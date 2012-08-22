@@ -65,37 +65,37 @@ CxSmtp::bCreate(const std::string &csUser, const std::string &csPass, const std:
 //DONE: bConnect
 bool
 CxSmtp::bConnect() {
-    bool        bRes = false;
-    std::string sRes = "";
+    bool        bRv = false;
+    std::string sRv = "";
 
     //-------------------------------------
     //������� �����
-    bRes = _m_scktSocket.bCreate(CxSocket::afInet, CxSocket::tpStream, CxSocket::ptIp);
-    xCHECK_RET(false == bRes, false);
+    bRv = _m_scktSocket.bCreate(CxSocket::afInet, CxSocket::tpStream, CxSocket::ptIp);
+    xCHECK_RET(false == bRv, false);
 
     //-------------------------------------
     //������ �����
     std::string sIpAddr;
 
-    bRes = CxDnsClient::bGetHostAddrByName(_m_sServer, &sIpAddr);
-    xCHECK_RET(false == bRes, false);
+    bRv = CxDnsClient::bGetHostAddrByName(_m_sServer, &sIpAddr);
+    xCHECK_RET(false == bRv, false);
 
     //-------------------------------------
     //�����������
-    bRes = _m_scktSocket.bConnect(sIpAddr, _m_usPort);
-    xCHECK_RET(false == bRes, false);
+    bRv = _m_scktSocket.bConnect(sIpAddr, _m_usPort);
+    xCHECK_RET(false == bRv, false);
 
     //-------------------------------------
     //[welcome message]
-    sRes = _m_scktSocket.sRecvAll(0, "\r\n");
-    /*DEBUG*/xASSERT_MSG_RET(false == _bIsError(sRes), sRes.c_str(), false);
+    sRv = _m_scktSocket.sRecvAll(0, "\r\n");
+    /*DEBUG*/xASSERT_MSG_RET(false == _bIsError(sRv), sRv.c_str(), false);
 
     //-------------------------------------
     //[HELO\r\n]
     const std::string sHelloCmd = "HELO HOST\r\n";        //const std::string sHelloCmd = "HELO\r\n";
 
-    bRes = _bCommand(sHelloCmd, "\r\n", /*ref*/sRes);
-    xCHECK_RET(false == bRes, false);
+    bRv = _bCommand(sHelloCmd, "\r\n", /*ref*/sRv);
+    xCHECK_RET(false == bRv, false);
 
 
     _m_bConnected = true;
@@ -116,29 +116,29 @@ CxSmtp::bLogin() {
     S: 235 Authentication succeeded
     */
 
-    bool        bRes = false;
-    std::string sRes = "";
+    bool        bRv = false;
+    std::string sRv = "";
 
     //-------------------------------------
     //[AUTH\r\n]
     const std::string sAuthLoginCmd = "AUTH LOGIN\r\n";
 
-    bRes = _bCommand(sAuthLoginCmd, "\r\n", /*ref*/sRes);
-    xCHECK_RET(false == bRes, false);
+    bRv = _bCommand(sAuthLoginCmd, "\r\n", /*ref*/sRv);
+    xCHECK_RET(false == bRv, false);
 
     //-------------------------------------
     //[mylogin\r\n]
     const std::string sLoginCmd = CxBase64::sEncode(_m_sUser) + "\r\n";
 
-    bRes = _bCommand(sLoginCmd, "\r\n", /*ref*/sRes);
-    xCHECK_RET(false == bRes, false);
+    bRv = _bCommand(sLoginCmd, "\r\n", /*ref*/sRv);
+    xCHECK_RET(false == bRv, false);
 
     //-------------------------------------
     //[mypassword\r\n]
     const std::string sPasswordCmd = CxBase64::sEncode(_m_sPass) + "\r\n";
 
-    bRes = _bCommand(sPasswordCmd, "\r\n", /*ref*/sRes);
-    xCHECK_RET(false == bRes, false);
+    bRv = _bCommand(sPasswordCmd, "\r\n", /*ref*/sRv);
+    xCHECK_RET(false == bRv, false);
 
     return true;
 }
@@ -153,15 +153,15 @@ CxSmtp::bNoop() {
     S: +��
     */
 
-    bool        bRes = false;
-    std::string sRes = "";
+    bool        bRv = false;
+    std::string sRv = "";
 
     //-------------------------------------
     //[NOOP\r\n]
     std::string sNoopCmd = "NOOP\r\n";
 
-    bRes = _bCommand(sNoopCmd, "\r\n", /*ref*/sRes);
-    xCHECK_RET(false == bRes, false);
+    bRv = _bCommand(sNoopCmd, "\r\n", /*ref*/sRv);
+    xCHECK_RET(false == bRv, false);
 
     return true;
 }
@@ -176,15 +176,15 @@ CxSmtp::bRset() {
     S: +OK maildrop has 2 messages (320 octets)
     */
 
-    bool        bRes = false;
-    std::string sRes = "";
+    bool        bRv = false;
+    std::string sRv = "";
 
     //-------------------------------------
     //[RSET\r\n]
     std::string sRsetCmd = "RSET\r\n";
 
-    bRes = _bCommand(sRsetCmd, "\r\n", /*ref*/sRes);
-    xCHECK_RET(false == bRes, false);
+    bRv = _bCommand(sRsetCmd, "\r\n", /*ref*/sRv);
+    xCHECK_RET(false == bRv, false);
 
     return true;
 }
@@ -196,8 +196,8 @@ CxSmtp::bSendRaw(const std::string &csFilePath, const std::string &sFrom, const 
     /*DEBUG*/xASSERT_RET(false               == sFrom.empty(), false);
     /*DEBUG*/xASSERT_RET(false               == sTo.empty(),   false);
 
-    bool              bRes      = false;
-    std::string       sRes      = "";
+    bool              bRv      = false;
+    std::string       sRv      = "";
 
     /////////const std::string sHelloCmd = "HELO HOST\r\n";        //const std::string sHelloCmd = "HELO\r\n";
     const std::string sFromCmd  = "MAIL FROM: <" + sFrom + ">\r\n";
@@ -207,35 +207,35 @@ CxSmtp::bSendRaw(const std::string &csFilePath, const std::string &sFrom, const 
 
     //////////-------------------------------------
     //////////[HELO\r\n]
-    ////////////bRes = _bCommand(sHelloCmd, "\r\n", /*ref*/sRes);
-    ////////////xCHECK_RET(false == bRes, false);
+    ////////////bRv = _bCommand(sHelloCmd, "\r\n", /*ref*/sRv);
+    ////////////xCHECK_RET(false == bRv, false);
 
     //-------------------------------------
     //[MAIL FROM:<my_mail@mail.ru>\r\n]
-    bRes = _bCommand(sFromCmd, "\r\n", /*ref*/sRes);
-    xCHECK_RET(false == bRes, false);
+    bRv = _bCommand(sFromCmd, "\r\n", /*ref*/sRv);
+    xCHECK_RET(false == bRv, false);
 
     //-------------------------------------
     //[RCPT TO:<your_mail@mail.ru>\r\n]
-    bRes = _bCommand(sToCmd, "\r\n", /*ref*/sRes);
-    xCHECK_RET(false == bRes, false);
+    bRv = _bCommand(sToCmd, "\r\n", /*ref*/sRv);
+    xCHECK_RET(false == bRv, false);
 
     //-------------------------------------
     //[DATA\r\n]
-    bRes = _bCommand(sDataCmd, "\r\n", /*ref*/sRes);
-    xCHECK_RET(false == bRes, false);
+    bRv = _bCommand(sDataCmd, "\r\n", /*ref*/sRv);
+    xCHECK_RET(false == bRv, false);
 
     //-------------------------------------
     //DONE: ������ �� ����� � ����� ����� � �����
     std::string sText = "";
 
-    bRes = CxFile::bTextRead(csFilePath, &sText);
-    xCHECK_RET(false == bRes, false);
+    bRv = CxFile::bTextRead(csFilePath, &sText);
+    xCHECK_RET(false == bRv, false);
 
     //-------------------------------------
     //[DataText\r\n.\r\n]
-    bRes = _bCommand(sText + sEndCmd, "\r\n", /*ref*/sRes);
-    xCHECK_RET(false == bRes, false);
+    bRv = _bCommand(sText + sEndCmd, "\r\n", /*ref*/sRv);
+    xCHECK_RET(false == bRv, false);
 
     return true;
 }
@@ -247,8 +247,8 @@ CxSmtp::bSend(const std::string &csText, const std::string &sFrom, const std::st
     /*DEBUG*/xASSERT_RET(false               == sFrom.empty(), false);
     /*DEBUG*/xASSERT_RET(false               == sTo.empty(),   false);
 
-    bool              bRes      = false;
-    std::string       sRes      = "";
+    bool              bRv      = false;
+    std::string       sRv      = "";
 
     const std::string sHelloCmd = "HELO HOST\r\n";
     const std::string sFromCmd  = "MAIL FROM: <" + sFrom + ">\r\n";
@@ -258,33 +258,33 @@ CxSmtp::bSend(const std::string &csText, const std::string &sFrom, const std::st
 
     //////-------------------------------------
     //////[HELO DrWEB\r\n]
-    ////bRes = _bCommand(sHelloCmd, "\r\n", /*ref*/sRes);
-    ////xCHECK_RET(false == bRes, false);
+    ////bRv = _bCommand(sHelloCmd, "\r\n", /*ref*/sRv);
+    ////xCHECK_RET(false == bRv, false);
 
     //-------------------------------------
     //[MAIL FROM:<my_mail@mail.ru>\r\n]
-    bRes = _bCommand(sFromCmd, "\r\n", /*ref*/sRes);
-    xCHECK_RET(false == bRes, false);
+    bRv = _bCommand(sFromCmd, "\r\n", /*ref*/sRv);
+    xCHECK_RET(false == bRv, false);
 
     //-------------------------------------
     //[RCPT TO:<your_mail@mail.ru>\r\n]
-    bRes = _bCommand(sToCmd, "\r\n", /*ref*/sRes);
-    xCHECK_RET(false == bRes, false);
+    bRv = _bCommand(sToCmd, "\r\n", /*ref*/sRv);
+    xCHECK_RET(false == bRv, false);
 
     //-------------------------------------
     //[DATA\r\n]
-    bRes = _bCommand(sDataCmd, "\r\n", /*ref*/sRes);
-    xCHECK_RET(false == bRes, false);
+    bRv = _bCommand(sDataCmd, "\r\n", /*ref*/sRv);
+    xCHECK_RET(false == bRv, false);
 
     //-------------------------------------
     //�������� �����
-    bRes = _m_scktSocket.bSendAll(csText, 0);
-    xASSERT_RET(true == bRes, false);
+    bRv = _m_scktSocket.bSendAll(csText, 0);
+    xASSERT_RET(true == bRv, false);
 
     //-------------------------------------
     //[\r\n.\r\n]
-    bRes = _bCommand(sEndCmd, "\r\n", /*ref*/sRes);
-    xCHECK_RET(false == bRes, false);
+    bRv = _bCommand(sEndCmd, "\r\n", /*ref*/sRv);
+    xCHECK_RET(false == bRv, false);
 
     return true;
 }
@@ -299,18 +299,18 @@ CxSmtp::bDisconnect() {
     +�� dewey POP3 server signing off
     */
 
-    bool        bRes = false;
-    std::string sRes = "";
+    bool        bRv = false;
+    std::string sRv = "";
 
     //-------------------------------------
     //[QUIT]
     const std::string sQuitCmd = "QUIT\r\n";
 
-    bRes = _bCommand(sQuitCmd, "\r\n", /*ref*/sRes);
-    xCHECK_RET(false == bRes, false);
+    bRv = _bCommand(sQuitCmd, "\r\n", /*ref*/sRv);
+    xCHECK_RET(false == bRv, false);
 
-    bRes = _m_scktSocket.bClose();
-    xCHECK_RET(false == bRes, false);
+    bRv = _m_scktSocket.bClose();
+    xCHECK_RET(false == bRv, false);
 
     _m_bConnected = false;
 
@@ -332,19 +332,19 @@ CxSmtp::_bCommand(const std::string &csCmd, const std::string &csReplyDelimiter,
     /*DEBUG*/xASSERT_RET(false == csCmd.empty(),            false);
     /*DEBUG*/xASSERT_RET(false == csReplyDelimiter.empty(), false);
 
-    bool        bRes = false;
-    std::string sRes = "";
+    bool        bRv = false;
+    std::string sRv = "";
 
-    bRes = _m_scktSocket.bSendAll(csCmd, 0);
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bRv = _m_scktSocket.bSendAll(csCmd, 0);
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
-    sRes = _m_scktSocket.sRecvAll(0, csReplyDelimiter);
-    /*DEBUG*/xASSERT_MSG_RET(false == _bIsError(sRes), sRes.c_str(), false);
+    sRv = _m_scktSocket.sRecvAll(0, csReplyDelimiter);
+    /*DEBUG*/xASSERT_MSG_RET(false == _bIsError(sRv), sRv.c_str(), false);
 
-    sReply = sRes;
+    sReply = sRv;
 
 #ifdef _DEBUG
-    /*DEBUG*/_m_ConsoleLog.bWrite("Command :  %s          Response: %s\n", csCmd.c_str(), sRes.c_str());
+    /*DEBUG*/_m_ConsoleLog.bWrite("Command :  %s          Response: %s\n", csCmd.c_str(), sRv.c_str());
 #endif
 
     return true;
@@ -355,7 +355,7 @@ bool
 CxSmtp::_bIsError(const std::string &csText) {
     /*DEBUG*/xASSERT_RET(false == csText.empty(), true);
 
-    bool bRes = (bool)!(
+    bool bRv = (bool)!(
             !std::memcmp(csText.c_str(), "334", 3) ||    //334 VXNlcm5hbWU6
             !std::memcmp(csText.c_str(), "235", 3) ||    //235 2.0.0 Authentication successful
             !std::memcmp(csText.c_str(), "220", 3) ||    //220 Sergey Kerio MailServer 6.7.0 patch 1 ESMTP ready
@@ -364,7 +364,7 @@ CxSmtp::_bIsError(const std::string &csText) {
             !std::memcmp(csText.c_str(), "221", 3)        //221 221 2.0.0 SMTP closing connection
     );
 
-    return bRes;
+    return bRv;
 }
 //---------------------------------------------------------------------------
 

@@ -30,10 +30,10 @@ CxTest_CxProcessInfo::bUnit(
     // ulGetCpuUsage
     xTEST_CASE(cullCaseLoops)
     {
-        m_ulRes = CxProcessInfo::ulGetCpuUsage(CxCurrentProcess::ulGetId());
+        m_ulRv = CxProcessInfo::ulGetCpuUsage(CxCurrentProcess::ulGetId());
         // TODO: CxProcessInfo::ulGetCpuUsage
         #if xTEST_IGNORE
-            xTRACEV(xT("\tCxProcessInfo::ulGetCpuUsage(): %lu"), m_ulRes);
+            xTRACEV(xT("\tCxProcessInfo::ulGetCpuUsage(): %lu"), m_ulRv);
         #endif
 
     }
@@ -42,10 +42,10 @@ CxTest_CxProcessInfo::bUnit(
     // ulGetRamUsage
     xTEST_CASE(cullCaseLoops)
     {
-        m_ulRes = CxProcessInfo::ulGetRamUsage(CxCurrentProcess::ulGetId());
+        m_ulRv = CxProcessInfo::ulGetRamUsage(CxCurrentProcess::ulGetId());
         // TODO: CxProcessInfo::ulGetRamUsage
         #if xTEST_IGNORE
-            xTRACEV(xT("\tCxProcessInfo::ulGetRamUsage(): %lu"), m_ulRes);
+            xTRACEV(xT("\tCxProcessInfo::ulGetRamUsage(): %lu"), m_ulRv);
         #endif
     }
 
@@ -53,10 +53,10 @@ CxTest_CxProcessInfo::bUnit(
     // ulGetIOBytes
     xTEST_CASE(cullCaseLoops)
     {
-        m_ulRes = CxProcessInfo::ulGetIOBytes(CxCurrentProcess::ulGetId());
+        m_ulRv = CxProcessInfo::ulGetIOBytes(CxCurrentProcess::ulGetId());
         // TODO: CxProcessInfo::ulGetIOBytes
         #if xTEST_IGNORE
-            xTRACEV(xT("\tCxProcessInfo::ulGetIOBytes(): %lu"), m_ulRes);
+            xTRACEV(xT("\tCxProcessInfo::ulGetIOBytes(): %lu"), m_ulRv);
         #endif
     }
 
@@ -64,18 +64,18 @@ CxTest_CxProcessInfo::bUnit(
     // sGetExeName
     xTEST_CASE(cullCaseLoops)
     {
-        m_sRes = CxProcessInfo::sGetExeName( CxCurrentProcess::ulGetId() );
-        xTEST_EQ(true,   CxFile::bIsExists(m_sRes));
-        xTEST_EQ(m_sRes, CxPath::sGetExe());
+        m_sRv = CxProcessInfo::sGetExeName( CxCurrentProcess::ulGetId() );
+        xTEST_EQ(true,   CxFile::bIsExists(m_sRv));
+        xTEST_EQ(m_sRv, CxPath::sGetExe());
     }
 
     //--------------------------------------------------
     // ulGetParentId
     xTEST_CASE(cullCaseLoops)
     {
-        m_ulRes = CxProcessInfo::ulGetParentId( CxCurrentProcess::ulGetId() );
+        m_ulRv = CxProcessInfo::ulGetParentId( CxCurrentProcess::ulGetId() );
         // TODO: CxProcessInfo::ulGetParentId
-        // xTEST_DIFF(0UL, m_ulRes);
+        // xTEST_DIFF(0UL, m_ulRv);
     }
 
     return true;

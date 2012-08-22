@@ -49,11 +49,11 @@ bDownloadURL(
 
     fclose(pFile);    pFile = NULL;
 
-    BOOL bRes = ::InternetCloseHandle(hService);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, false);
+    BOOL bRv = ::InternetCloseHandle(hService);
+    /*DEBUG*/xASSERT_RET(FALSE != bRv, false);
 
-    bRes = ::InternetCloseHandle(hSession);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, false);
+    bRv = ::InternetCloseHandle(hSession);
+    /*DEBUG*/xASSERT_RET(FALSE != bRv, false);
 
     return true;
 }

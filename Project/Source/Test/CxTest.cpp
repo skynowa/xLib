@@ -21,27 +21,27 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxTest::CxTest() :
-    m_pvRes        (NULL),
-    m_chRes        (0),
-    m_bRes         (false),
-    m_iRes         (- 1),
-    m_siRes        (0),
-    m_usiRes       (0),
-    m_uiRes        (0U),
-    m_stRes        (0),
-    m_liRes        (0L),
-    m_ulRes        (0),
-    m_llRes        (0LL),
-    m_ullRes       (0UL),
-    m_fRes         (0.0f),
-    m_dRes         (0.0f),
-    m_sRes         (),
-    m_usRes        (),
-    m_vsRes        (),
-    m_msRes        (),
-    m_hRes         (),  //TODO: m_hRes
+    m_pvRv        (NULL),
+    m_chRv        (0),
+    m_bRv         (false),
+    m_iRv         (- 1),
+    m_siRv        (0),
+    m_usiRv       (0),
+    m_uiRv        (0U),
+    m_stRv        (0),
+    m_liRv        (0L),
+    m_ulRv        (0),
+    m_llRv        (0LL),
+    m_ullRv       (0UL),
+    m_fRv         (0.0f),
+    m_dRv         (0.0f),
+    m_sRv         (),
+    m_usRv        (),
+    m_vsRv        (),
+    m_msRv        (),
+    m_hRv         (),  //TODO: m_hRv
 #if xOS_ENV_WIN
-    m_hwndRes      (NULL),
+    m_hwndRv      (NULL),
 #endif
     _m_sWorkDirPath(),
     _m_sName       ()
@@ -64,8 +64,8 @@ CxTest::bRun(
 
     try {
         for (ulonglong_t i = 0ULL; i < cullUnitLoops; ++ i) {
-            bool bRes = bUnit(cullCaseLoops);
-            /*DEBUG*/xASSERT_MSG_RET(true == bRes, sGetName() + xT(": fail"), false);
+            bool bRv = bUnit(cullCaseLoops);
+            /*DEBUG*/xASSERT_MSG_RET(true == bRv, sGetName() + xT(": fail"), false);
         }
     }
     catch (const CxException &e) {
@@ -124,8 +124,8 @@ CxTest::bCreateWorkDir(
     } else {
         _m_sWorkDirPath = CxPath::sGetExeDir() + CxConst::xSLASH + csDirName;
 
-        bool bRes = CxDir::bCreateForce(_m_sWorkDirPath);
-        /*DEBUG*/xASSERT_RET(true == bRes, false);
+        bool bRv = CxDir::bCreateForce(_m_sWorkDirPath);
+        /*DEBUG*/xASSERT_RET(true == bRv, false);
     }
 
     return true;

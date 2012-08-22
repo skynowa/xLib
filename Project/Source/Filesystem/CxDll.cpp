@@ -46,8 +46,8 @@ CxDll::bLoad(
     xDEBUG_VARS_NA;
     /*DEBUG*/xASSERT_RET(false == csDllPath.empty(), false);
 
-    bool bRes = _bFree();
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bool bRv = _bFree();
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
 #if xOS_ENV_WIN
     _m_hDll = ::LoadLibrary(csDllPath.c_str());
@@ -131,8 +131,8 @@ CxDll::_bFree() {
     BOOL blRes = ::FreeLibrary(_m_hDll);
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX
-    int iRes = ::dlclose(_m_hDll);
-    /*DEBUG*/xASSERT_RET(0 == iRes, false);
+    int iRv = ::dlclose(_m_hDll);
+    /*DEBUG*/xASSERT_RET(0 == iRv, false);
 #endif
 
     _m_hDll = NULL;

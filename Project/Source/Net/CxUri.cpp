@@ -40,8 +40,8 @@ CxUri::CxUri(const std::string &csUri) :
     _m_sQuery    (),
     _m_sFragment ()
 {
-    bool bRes = _bParse(csUri);
-    /*DEBUG*/xASSERT_DO(true == bRes, return);
+    bool bRv = _bParse(csUri);
+    /*DEBUG*/xASSERT_DO(true == bRv, return);
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxUri
@@ -76,52 +76,52 @@ std::string
 CxUri::sGetUri() const {
     /*DEBUG*/
 
-    std::string sRes;
+    std::string sRv;
     std::string sTemp;
 
     sTemp = sGetScheme();
     if (false == sTemp.empty()) {
-        sRes += "";
-        sRes += sTemp;
+        sRv += "";
+        sRv += sTemp;
     }
 
     sTemp = sGetAuthority();
     if (false == sTemp.empty()) {
-        sRes += ":";
-        sRes += sTemp;
+        sRv += ":";
+        sRv += sTemp;
     }
 
     sTemp = sGetPath();
     if (false == sTemp.empty()) {
-        sRes += "";
-        sRes += sTemp;
+        sRv += "";
+        sRv += sTemp;
     }
 
     sTemp = sGetQuery();
     if (false == sTemp.empty()) {
-        sRes += "?";
-        sRes += sTemp;
+        sRv += "?";
+        sRv += sTemp;
     }
 
     sTemp = sGetFragment();
     if (false == sTemp.empty()) {
-        sRes += "#";
-        sRes += sTemp;
+        sRv += "#";
+        sRv += sTemp;
     }
 
-    return sRes;
+    return sRv;
 }
 bool
 CxUri::bSetUri(const std::string &csScheme, const std::string &csAuthority, const std::string &csPath, const std::string &csQuery, const std::string &csFragment) {
     /*DEBUG*/
 
-    bool bRes = false;  xUNUSED(bRes);
+    bool bRv = false;  xUNUSED(bRv);
 
-    bRes = bSetScheme   (csScheme);
-    bRes = bSetAuthority(csAuthority);
-    bRes = bSetPath     (csPath);
-    bRes = bSetQuery    (csQuery);
-    bRes = bSetFragment (csFragment);
+    bRv = bSetScheme   (csScheme);
+    bRv = bSetAuthority(csAuthority);
+    bRv = bSetPath     (csPath);
+    bRv = bSetQuery    (csQuery);
+    bRv = bSetFragment (csFragment);
 
     return true;
 }
@@ -249,7 +249,7 @@ CxUri::bSetFragment(const std::string &csFragment) {
 //DONE: bClear ()
 bool
 CxUri::bClear() {
-    ////bool bRes = false;
+    ////bool bRv = false;
 
     _m_sScheme.clear();
     _m_sAuthority.clear();
@@ -294,13 +294,13 @@ CxUri::sEscape(const std::string &csUri) {
     */
 
 
-    std::string sRes;
+    std::string sRv;
 
-    sRes = csUri;
+    sRv = csUri;
 
 
 
-    return sRes;
+    return sRv;
 }
 //---------------------------------------------------------------------------
 //TODO: sUnescape ()
@@ -309,11 +309,11 @@ std::string
 CxUri::sUnescape(const std::string &csUri) {
     /*DEBUG*/
 
-    std::string sRes;
+    std::string sRv;
 
     //TODO: sUnescape
 
-    return sRes;
+    return sRv;
 }
 //---------------------------------------------------------------------------
 //TODO: sEncodeComponent
@@ -321,7 +321,7 @@ CxUri::sUnescape(const std::string &csUri) {
 /*static*/
 std::string
 CxUri::sEncodeComponent(const std::string &csUri) {
-    std::string sRes;
+    std::string sRv;
 
     xFOREACH_CONST(std::string, it, csUri) {
         char c = *it;
@@ -335,7 +335,7 @@ CxUri::sEncodeComponent(const std::string &csUri) {
             c == '.' ||
             c == '~')
         {
-            sRes += c;
+            sRv += c;
         }
         /*
         RESERVED_PATH     = "?#";
@@ -345,14 +345,14 @@ CxUri::sEncodeComponent(const std::string &csUri) {
         */
         else if (c <= 0x20 || c >= 0x7F || ILLEGAL.find(c) != std::string::npos /*|| reserved.find(c) != std::string::npos*/) {
             //� -> %FF
-            sRes += CxString::sFormat(xT("%%%02X"), (uint_t)(uchar_t)c);
+            sRv += CxString::sFormat(xT("%%%02X"), (uint_t)(uchar_t)c);
         }
         else {
-            sRes += c;
+            sRv += c;
         }
     }
 
-    return sRes;
+    return sRv;
 }
 //---------------------------------------------------------------------------
 //TODO: sDecodeComponent
@@ -360,7 +360,7 @@ CxUri::sEncodeComponent(const std::string &csUri) {
 /*static*/
 std::string
 CxUri::sDecodeComponent(const std::string &csUri) {
-    std::string sRes;
+    std::string sRv;
 
     std::string::const_iterator it  = csUri.begin();
     std::string::const_iterator end = csUri.end();
@@ -408,10 +408,10 @@ CxUri::sDecodeComponent(const std::string &csUri) {
             }
         }
 
-        sRes += c;
+        sRv += c;
     }
 
-    return sRes;
+    return sRv;
 }
 //---------------------------------------------------------------------------
 
@@ -454,12 +454,12 @@ telnet : //192.0.2.16:80/
 */
 bool
 CxUri::_bParse(const std::string &csUri) {
-    bool bRes = false;
+    bool bRv = false;
 
     //Normilize();
 
-    bRes = bClear();
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bRv = bClear();
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     //-------------------------------------
     //[scheme] - [foo]
@@ -578,7 +578,7 @@ CxUri::_bParse(const std::string &csUri) {
 //TODO: _bNormilize ()
 bool
 CxUri::_bNormilize(const std::string &csUri) {
-    ////bool bRes = false;
+    ////bool bRv = false;
 
     //trim
     //lowcase(_m_sScheme)

@@ -52,9 +52,9 @@ CxFileAttribute::atGet(
 #elif xOS_ENV_UNIX
     xTSTAT_STRUCT stInfo = {0};
 
-    int iRes = ::xTSTAT(csFilePath.c_str(), &stInfo);
+    int iRv = ::xTSTAT(csFilePath.c_str(), &stInfo);
     /*DEBUG*/// n/a
-    if (- 1 == iRes) {
+    if (- 1 == iRv) {
         faRes = faInvalid;
     } else {
         faRes = static_cast<EAttribute>( stInfo.st_mode & S_IFMT );
@@ -78,8 +78,8 @@ CxFileAttribute::bSet(
     BOOL blRes = ::SetFileAttributes(csFilePath.c_str(), static_cast<ulong_t>( cfaValue ));
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX
-    int iRes = ::xTCHMOD(csFilePath.c_str(), static_cast<mode_t>( cfaValue ));
-    /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
+    int iRv = ::xTCHMOD(csFilePath.c_str(), static_cast<mode_t>( cfaValue ));
+    /*DEBUG*/xASSERT_RET(- 1 != iRv, false);
 #endif
 
     return true;
@@ -131,8 +131,8 @@ CxFileAttribute::bModify(
     cfaValue = static_cast<EAttribute>( static_cast<ulong_t>( cfaValue ) |  cfaAddValue    );
 
     // change the attributes
-    bool bRes = bSet(csFilePath, cfaValue);
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bool bRv = bSet(csFilePath, cfaValue);
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     return true;
 }

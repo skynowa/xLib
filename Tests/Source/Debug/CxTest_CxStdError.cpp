@@ -54,8 +54,8 @@ CxTest_CxStdError::bUnit(
         for (int i = 0; i < (int)xARRAY_SIZE(caiData); ++ i) {
             const int ciLastError = caiData[i];
 
-            m_bRes = CxStdError::bSet(ciLastError);
-            xTEST_EQ(true, m_bRes);
+            m_bRv = CxStdError::bSet(ciLastError);
+            xTEST_EQ(true, m_bRv);
             xTEST_EQ(ciLastError, CxStdError::iGet());
             xTEST_EQ(0, CxStdError::iGet());
         }
@@ -75,11 +75,11 @@ CxTest_CxStdError::bUnit(
         for (int i = 0; i < (int)xARRAY_SIZE(caiData); ++ i) {
             const int ciLastError = caiData[i];
 
-            m_bRes = CxStdError::bSet(ciLastError);
-            xTEST_EQ(true, m_bRes);
+            m_bRv = CxStdError::bSet(ciLastError);
+            xTEST_EQ(true, m_bRv);
 
-            m_bRes = CxStdError::bReset();
-            xTEST_EQ(true, m_bRes);
+            m_bRv = CxStdError::bReset();
+            xTEST_EQ(true, m_bRv);
             xTEST_EQ(0, CxStdError::iGet());
         }
     }
@@ -98,10 +98,10 @@ CxTest_CxStdError::bUnit(
         for (int i = 0; i < (int)xARRAY_SIZE(caiData); ++ i) {
             const int ciLastError = caiData[i];
 
-            m_sRes = CxStdError::sFormat(ciLastError);
-            xTEST_EQ(false, m_sRes.empty());
+            m_sRv = CxStdError::sFormat(ciLastError);
+            xTEST_EQ(false, m_sRv.empty());
 
-            //xTRACEV(xT("\CxStdError::sFormat(%lu) = %s (size = %lu)"), i, m_sRes.c_str(), m_sRes.size() - 4);
+            //xTRACEV(xT("\CxStdError::sFormat(%lu) = %s (size = %lu)"), i, m_sRv.c_str(), m_sRv.size() - 4);
         }
     }
 

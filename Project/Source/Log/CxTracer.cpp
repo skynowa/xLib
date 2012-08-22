@@ -38,20 +38,20 @@ CxTracer::bWrite(
     const tchar_t *pcszFormat, ...
 )
 {
-    std::tstring_t sRes;
+    std::tstring_t sRv;
 
     va_list palArgs;
     xVA_START(palArgs, pcszFormat);
-    sRes = CxString::sFormatV(pcszFormat, palArgs);
+    sRv = CxString::sFormatV(pcszFormat, palArgs);
     xVA_END(palArgs);
 
 #if xOS_ENV_WIN
-    (void)::OutputDebugString((sRes + CxConst::xNL).c_str());
+    (void)::OutputDebugString((sRv + CxConst::xNL).c_str());
 #elif xOS_ENV_UNIX
     xNA;
 #endif
 
-    std::tcout << sRes << std::endl;
+    std::tcout << sRv << std::endl;
 
     return true;
 }

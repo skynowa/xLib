@@ -29,9 +29,9 @@ CxConnectionString::sMSJetOleDb40(
     /*DEBUG*/// csUserId           - n/a
     /*DEBUG*/// csDatabasePassword - n/a
 
-    std::tstring_t sRes;
+    std::tstring_t sRv;
 
-    sRes =
+    sRv =
         std::tstring_t() +
         xT("Provider                                 = Microsoft.Jet.OLEDB.4.0;")                               +
         xT("Data Source                              = ") + CxString::sTrimSpace(csDataSource) + xT(";")        +
@@ -55,7 +55,7 @@ CxConnectionString::sMSJetOleDb40(
         xT("Persist Security Info                    = False;")                                                 +
         xT("User ID                                  = ") + CxString::sTrimSpace(csUserId)   + xT(";");
 
-    return sRes;
+    return sRv;
 }
 //---------------------------------------------------------------------------
 

@@ -42,33 +42,33 @@ CxTest_CxTcpClient::bUnit(
 
     //-------------------------------------
     //bCreate
-    m_bRes = objSocket.bCreate(afAf, tpType, ptProtocol);
-    xTEST_EQ(true, m_bRes);
+    m_bRv = objSocket.bCreate(afAf, tpType, ptProtocol);
+    xTEST_EQ(true, m_bRv);
 
     //-------------------------------------
     //bIsServerAlive
-    ////m_bRes = objSocket.bIsServerAlive(sIp, usPort);
-    ////xTEST_EQ(true, m_bRes);
+    ////m_bRv = objSocket.bIsServerAlive(sIp, usPort);
+    ////xTEST_EQ(true, m_bRv);
 
     //-------------------------------------
     //bDnsParse
-    m_bRes = CxDnsClient::bGetHostAddrByName(csDomain, &sIp);
-    xTEST_EQ(true, m_bRes);
+    m_bRv = CxDnsClient::bGetHostAddrByName(csDomain, &sIp);
+    xTEST_EQ(true, m_bRv);
 
     //-------------------------------------
     //bConnect
-    m_bRes = objSocket.bConnect(sIp, usPort);
-    xTEST_EQ(true, m_bRes);
+    m_bRv = objSocket.bConnect(sIp, usPort);
+    xTEST_EQ(true, m_bRv);
 
     //-------------------------------------
     //bIsReadable
-    m_bRes = objSocket.bIsReadable();
-    xTEST_EQ(false, m_bRes);
+    m_bRv = objSocket.bIsReadable();
+    xTEST_EQ(false, m_bRv);
 
     //-------------------------------------
     //bIsWritable
-    m_bRes = objSocket.bIsWritable();
-    xTEST_EQ(true, m_bRes);
+    m_bRv = objSocket.bIsWritable();
+    xTEST_EQ(true, m_bRv);
 
     //-------------------------------------
     //bGetPeerName
@@ -76,8 +76,8 @@ CxTest_CxTcpClient::bUnit(
         std::tstring_t _sIp;
         ushort_t  _usPort = 0;
 
-        m_bRes = objSocket.bGetPeerName(&_sIp, &_usPort);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = objSocket.bGetPeerName(&_sIp, &_usPort);
+        xTEST_EQ(true, m_bRv);
     }
 
     //-------------------------------------
@@ -86,14 +86,14 @@ CxTest_CxTcpClient::bUnit(
         std::tstring_t _sIp;
         ushort_t  _usPort = 0;
 
-        m_bRes = objSocket.bGetSocketName(&_sIp, &_usPort);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = objSocket.bGetSocketName(&_sIp, &_usPort);
+        xTEST_EQ(true, m_bRv);
     }
 
     //-------------------------------------
     //bIsReadible
-    ////m_bRes = objSocket.bIsReadable();
-    ////xTEST_EQ(true, m_bRes);
+    ////m_bRv = objSocket.bIsReadable();
+    ////xTEST_EQ(true, m_bRv);
 
     for (; ;) {
         std::tstring_t sText;
@@ -105,24 +105,24 @@ CxTest_CxTcpClient::bUnit(
 
         //-------------------------------------
         //iSend
-        m_iRes = objSocket.iSend(sText.c_str(), sText.size(), 0);
-        xTEST_DIFF((int)CxTcpClient::etError, m_iRes);
+        m_iRv = objSocket.iSend(sText.c_str(), sText.size(), 0);
+        xTEST_DIFF((int)CxTcpClient::etError, m_iRv);
     }
 
     //-------------------------------------
     //iRecv
-    ////m_iRes = objSocket.iRecv(&szRecvBuff[0], ARRAYSIZE(szRecvBuff), 0);
-    ////xTEST_DIFF(CxTcpClient::etError, m_iRes);
+    ////m_iRv = objSocket.iRecv(&szRecvBuff[0], ARRAYSIZE(szRecvBuff), 0);
+    ////xTEST_DIFF(CxTcpClient::etError, m_iRv);
 
     //-------------------------------------
     //bClose
-    m_bRes = objSocket.bClose();
-    xTEST_EQ(true, m_bRes);
+    m_bRv = objSocket.bClose();
+    xTEST_EQ(true, m_bRv);
 
     //-------------------------------------
     //iGetLastError
-    m_iRes = CxTcpClient::iGetLastError();
-    //xTEST_EQ(true, m_bRes);
+    m_iRv = CxTcpClient::iGetLastError();
+    //xTEST_EQ(true, m_bRv);
 
     return true;
 }

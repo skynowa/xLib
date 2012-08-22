@@ -21,8 +21,8 @@ CxHttpClient::~CxHttpClient() {
 //TODO: bHead ()
 bool
 CxHttpClient::bHead(const std::string &csUrl, std::string *psResponse) {
-    bool bRes = false;
-    xUNUSED(bRes);
+    bool bRv = false;
+    xUNUSED(bRv);
 
     //csUrl = http://dn1.berloga.net/83841/zombie_baseball_2.swf
 

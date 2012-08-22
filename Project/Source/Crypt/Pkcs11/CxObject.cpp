@@ -72,8 +72,8 @@ CxObject::bCreate(
     /*DEBUG*/xASSERT_RET(NULL != _m_hSession, false);
     /*DEBUG*/xASSERT_RET(NULL == _m_hObject,  false);
 
-    CK_RV ulRes = _m_pFunc->C_CreateObject(_m_hSession, pTemplate, ulCount, &_m_hObject);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    CK_RV ulRv = _m_pFunc->C_CreateObject(_m_hSession, pTemplate, ulCount, &_m_hObject);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -87,8 +87,8 @@ CxObject::bGetSize(
     /*DEBUG*/xASSERT_RET(NULL != _m_hSession, false);
     /*DEBUG*/xASSERT_RET(NULL != _m_hObject,  false);
 
-    CK_RV ulRes = _m_pFunc->C_GetObjectSize(_m_hSession, _m_hObject, pulSize);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    CK_RV ulRv = _m_pFunc->C_GetObjectSize(_m_hSession, _m_hObject, pulSize);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -104,8 +104,8 @@ CxObject::bCopy(
     /*DEBUG*/xASSERT_RET(NULL != _m_hSession, false);
     /*DEBUG*/xASSERT_RET(NULL != _m_hObject,  false);
 
-    CK_RV ulRes = _m_pFunc->C_CopyObject(_m_hSession, _m_hObject, pTemplate, ulCount, phNewObject);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    CK_RV ulRv = _m_pFunc->C_CopyObject(_m_hSession, _m_hObject, pTemplate, ulCount, phNewObject);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -126,19 +126,19 @@ CxObject::bFind(
 
     (*pvecObjectHandles).clear();
 
-    CK_RV ulRes = _m_pFunc->C_FindObjectsInit(_m_hSession, pTemplate, ulCount);    // To find all attributes, set ulCount to 0.
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    CK_RV ulRv = _m_pFunc->C_FindObjectsInit(_m_hSession, pTemplate, ulCount);    // To find all attributes, set ulCount to 0.
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     const CK_ULONG   culMaxFindedObjects        = 512;
     CK_OBJECT_HANDLE hList[culMaxFindedObjects] = {0};
     CK_ULONG         ulFound                    = 0;
 
-    ulRes = _m_pFunc->C_FindObjects(_m_hSession, &hList[0], xARRAY_SIZE(hList), &ulFound);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    ulRv = _m_pFunc->C_FindObjects(_m_hSession, &hList[0], xARRAY_SIZE(hList), &ulFound);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
     /*DEBUG*/xASSERT_RET    (xARRAY_SIZE(hList) >= ulFound,                            false);
 
-    ulRes = _m_pFunc->C_FindObjectsFinal(_m_hSession);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    ulRv = _m_pFunc->C_FindObjectsFinal(_m_hSession);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     xCHECK_RET(0 == ulFound, false);
 
@@ -160,8 +160,8 @@ bool CxObject::bGetAttributeValue(
     /*DEBUG*/xASSERT_RET(NULL != _m_hSession, false);
     /*DEBUG*/xASSERT_RET(NULL != _m_hObject,  false);
 
-    CK_RV ulRes = _m_pFunc->C_GetAttributeValue(_m_hSession, _m_hObject, pTemplate, ulCount);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    CK_RV ulRv = _m_pFunc->C_GetAttributeValue(_m_hSession, _m_hObject, pTemplate, ulCount);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -176,8 +176,8 @@ CxObject::bSetAttributeValue(
     /*DEBUG*/xASSERT_RET(NULL != _m_hSession, false);
     /*DEBUG*/xASSERT_RET(NULL != _m_hObject,  false);
 
-    CK_RV ulRes = _m_pFunc->C_SetAttributeValue(_m_hSession, _m_hObject, pTemplate, ulCount);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    CK_RV ulRv = _m_pFunc->C_SetAttributeValue(_m_hSession, _m_hObject, pTemplate, ulCount);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -188,8 +188,8 @@ CxObject::bDestroy() {
     /*DEBUG*/xASSERT_RET(NULL != _m_hSession, false);
     /*DEBUG*/xASSERT_RET(NULL != _m_hObject,  false);
 
-    CK_RV ulRes = _m_pFunc->C_DestroyObject(_m_hSession, _m_hObject);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    CK_RV ulRv = _m_pFunc->C_DestroyObject(_m_hSession, _m_hObject);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     _m_hObject = NULL;
 
@@ -206,7 +206,7 @@ CxObject::bGetData(
 {
     /*DEBUG*/
 
-    bool bRes = false;
+    bool bRv = false;
 
     //-------------------------------------
     //CxPkcs11
@@ -216,15 +216,15 @@ CxObject::bGetData(
     //CxSession
     CxSession objSession(objPkcs11);
 
-    bRes = objSession.bOpen(ulSlotId, CKF_SERIAL_SESSION | CKF_RW_SESSION, 0, 0);
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bRv = objSession.bOpen(ulSlotId, CKF_SERIAL_SESSION | CKF_RW_SESSION, 0, 0);
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     //-------------------------------------
     //CxLogin
     CxLogin objLogin(objPkcs11, objSession);
 
-    bRes = objLogin.bLogin(CKU_USER, (CK_UTF8CHAR_PTR)&cusUserPin.at(0), cusUserPin.size());
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bRv = objLogin.bLogin(CKU_USER, (CK_UTF8CHAR_PTR)&cusUserPin.at(0), cusUserPin.size());
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     //-------------------------------------
     //CxObject
@@ -236,7 +236,7 @@ CxObject::bGetData(
 
         CxObject objObject(objPkcs11, objSession);
 
-        bRes = objObject.bFind(atDataTemplate, xARRAY_SIZE(atDataTemplate), &vechData);
+        bRv = objObject.bFind(atDataTemplate, xARRAY_SIZE(atDataTemplate), &vechData);
         xCHECK_RET(0 >= vechData.size(), false);
     }
 
@@ -253,8 +253,8 @@ CxObject::bGetData(
     };
 
     //Get data issuer, subject, and value attributes
-    bRes = objData.bGetAttributeValue(atrTamplate, xARRAY_SIZE(atrTamplate));
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bRv = objData.bGetAttributeValue(atrTamplate, xARRAY_SIZE(atrTamplate));
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     ulong_t  ulValueLen = atrTamplate[0].ulValueLen;
     uchar_t *pucValue      = new uchar_t[ulValueLen];
@@ -263,8 +263,8 @@ CxObject::bGetData(
 
         atrTamplate[0].pValue = pucValue;
 
-        bRes = objData.bGetAttributeValue(atrTamplate, xARRAY_SIZE(atrTamplate));
-        /*DEBUG*/xASSERT_RET(true == bRes, false);
+        bRv = objData.bGetAttributeValue(atrTamplate, xARRAY_SIZE(atrTamplate));
+        /*DEBUG*/xASSERT_RET(true == bRv, false);
 
         std::ustring_t usValue = std::ustring_t(pucValue, ulValueLen);
 
@@ -275,13 +275,13 @@ CxObject::bGetData(
 
     //-------------------------------------
     //
-    bRes = objLogin.bLogout();
-    xCHECK_RET(false == bRes, false);
+    bRv = objLogin.bLogout();
+    xCHECK_RET(false == bRv, false);
 
     //-------------------------------------
     //
-    bRes = objSession.bClose();
-    xCHECK_RET(false == bRes, false);
+    bRv = objSession.bClose();
+    xCHECK_RET(false == bRv, false);
 
     return true;
 }
@@ -299,7 +299,7 @@ CxObject::bGetData(
     /*DEBUG*/xASSERT_RET(NULL  != pusDataLabel,       false);
     /*DEBUG*/xASSERT_RET(NULL  != pusDataValue,       false);
 
-    bool bRes = false;
+    bool bRv = false;
 
     //-------------------------------------
     //CxPkcs11
@@ -309,15 +309,15 @@ CxObject::bGetData(
     //CxSession
     CxSession objSession(objPkcs11);
 
-    bRes = objSession.bOpen(ulSlotId, CKF_SERIAL_SESSION | CKF_RW_SESSION, 0, 0);
-    xCHECK_RET(false == bRes, false);
+    bRv = objSession.bOpen(ulSlotId, CKF_SERIAL_SESSION | CKF_RW_SESSION, 0, 0);
+    xCHECK_RET(false == bRv, false);
 
     //-------------------------------------
     //CxLogin
     CxLogin objLogin(objPkcs11, objSession);
 
-    bRes = objLogin.bLogin(CKU_USER, (CK_UTF8CHAR_PTR)&cusUserPin.at(0), cusUserPin.size());
-    xCHECK_RET(false == bRes, false);
+    bRv = objLogin.bLogin(CKU_USER, (CK_UTF8CHAR_PTR)&cusUserPin.at(0), cusUserPin.size());
+    xCHECK_RET(false == bRv, false);
 
     //-------------------------------------
     //CxObject
@@ -331,7 +331,7 @@ CxObject::bGetData(
 
         CxObject objObject(objPkcs11, objSession);
 
-        bRes = objObject.bFind(atDataTemplate, xARRAY_SIZE(atDataTemplate), &vechData);
+        bRv = objObject.bFind(atDataTemplate, xARRAY_SIZE(atDataTemplate), &vechData);
         xCHECK_RET(0 >= vechData.size(), false);
 
         ////CK_OBJECT_HANDLE hData = vechData.at(0);
@@ -355,8 +355,8 @@ CxObject::bGetData(
         };
 
         //Get data issuer, subject, and value attributes
-        bRes = objData.bGetAttributeValue(atrTamplate, xARRAY_SIZE(atrTamplate));
-        /*DEBUG*/xASSERT_RET(true == bRes, false);
+        bRv = objData.bGetAttributeValue(atrTamplate, xARRAY_SIZE(atrTamplate));
+        /*DEBUG*/xASSERT_RET(true == bRv, false);
 
         std::ustring_t usLabel;
         std::ustring_t usValue;
@@ -371,8 +371,8 @@ CxObject::bGetData(
             atrTamplate[1].pValue = &usValue.at(0);
         }
 
-        bRes = objData.bGetAttributeValue(atrTamplate, xARRAY_SIZE(atrTamplate));
-        xASSERT_RET(true == bRes, false);
+        bRv = objData.bGetAttributeValue(atrTamplate, xARRAY_SIZE(atrTamplate));
+        xASSERT_RET(true == bRv, false);
 
         //���������
         pusDataLabel->push_back(usLabel);
@@ -381,13 +381,13 @@ CxObject::bGetData(
 
     //-------------------------------------
     //
-    bRes = objLogin.bLogout();
-    xCHECK_RET(false == bRes, false);
+    bRv = objLogin.bLogout();
+    xCHECK_RET(false == bRv, false);
 
     //-------------------------------------
     //
-    bRes = objSession.bClose();
-    xCHECK_RET(false == bRes, false);
+    bRv = objSession.bClose();
+    xCHECK_RET(false == bRv, false);
 
     return true;
 }
@@ -402,7 +402,7 @@ CxObject::bSetData(
 {
     /*DEBUG*/
 
-    bool bRes = false;
+    bool bRv = false;
 
     //-------------------------------------
     //CxPkcs11
@@ -412,15 +412,15 @@ CxObject::bSetData(
     //CxSession
     CxSession objSession(objPkcs11);
 
-    bRes = objSession.bOpen(ulSlotId, CKF_SERIAL_SESSION | CKF_RW_SESSION, NULL_PTR, 0);
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bRv = objSession.bOpen(ulSlotId, CKF_SERIAL_SESSION | CKF_RW_SESSION, NULL_PTR, 0);
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     //-------------------------------------
     //CxLogin
     CxLogin objLogin(objPkcs11, objSession);
 
-    bRes = objLogin.bLogin(CKU_USER, (CK_UTF8CHAR_PTR)&cusUserPin.at(0), cusUserPin.size());
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bRv = objLogin.bLogin(CKU_USER, (CK_UTF8CHAR_PTR)&cusUserPin.at(0), cusUserPin.size());
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     //-------------------------------------
     //CxObject
@@ -432,7 +432,7 @@ CxObject::bSetData(
 
         CxObject objObject(objPkcs11, objSession);
 
-        bRes = objObject.bFind(atDataTemplate, xARRAY_SIZE(atDataTemplate), &vechData);
+        bRv = objObject.bFind(atDataTemplate, xARRAY_SIZE(atDataTemplate), &vechData);
     }
 
     //-------------------------------------
@@ -450,8 +450,8 @@ CxObject::bSetData(
             {CKA_VALUE, (CK_VOID_PTR)&cusData.at(0), cusData.size()}
         };
 
-        bRes = objData.bSetAttributeValue(atrTamplate, xARRAY_SIZE(atrTamplate));
-        /*DEBUG*/xASSERT_RET(true == bRes, false);
+        bRv = objData.bSetAttributeValue(atrTamplate, xARRAY_SIZE(atrTamplate));
+        /*DEBUG*/xASSERT_RET(true == bRv, false);
     }
     else {
         //-------------------------------------
@@ -471,19 +471,19 @@ CxObject::bSetData(
             {CKA_MODIFIABLE,  &bTrue,                             sizeof(bTrue)       }
         };
 
-        bRes = objData.bCreate(atrTamplate, xARRAY_SIZE(atrTamplate));
-        /*DEBUG*/xASSERT_RET(true == bRes, false);
+        bRv = objData.bCreate(atrTamplate, xARRAY_SIZE(atrTamplate));
+        /*DEBUG*/xASSERT_RET(true == bRv, false);
     }
 
     //-------------------------------------
     //
-    bRes = objLogin.bLogout();
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bRv = objLogin.bLogout();
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     //-------------------------------------
     //
-    bRes = objSession.bClose();
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bRv = objSession.bClose();
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     return true;
 }
@@ -507,8 +507,8 @@ CxObject::bFindInit(
     /*DEBUG*/xASSERT_RET(NULL != _m_hSession, false);
     /*DEBUG*/// _m_hObject - n/a
 
-    CK_RV ulRes = _m_pFunc->C_FindObjectsInit(_m_hSession, pTemplate, ulCount);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    CK_RV ulRv = _m_pFunc->C_FindObjectsInit(_m_hSession, pTemplate, ulCount);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -524,8 +524,8 @@ CxObject::bFind(
     /*DEBUG*/xASSERT_RET(NULL != _m_hSession, false);
     /*DEBUG*/// _m_hObject - n/a
 
-    CK_RV ulRes = _m_pFunc->C_FindObjects(_m_hSession, phObject, ulMaxObjectCount, pulObjectCount);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    CK_RV ulRv = _m_pFunc->C_FindObjects(_m_hSession, phObject, ulMaxObjectCount, pulObjectCount);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
     /*DEBUG*/xASSERT_RET    (ulMaxObjectCount >= *pulObjectCount,                      false);
 
     return true;
@@ -537,8 +537,8 @@ CxObject::bFindFinal() {
     /*DEBUG*/xASSERT_RET(NULL != _m_hSession, false);
     /*DEBUG*/// _m_hObject - n/a
 
-    CK_RV ulRes = _m_pFunc->C_FindObjectsFinal(_m_hSession);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    CK_RV ulRv = _m_pFunc->C_FindObjectsFinal(_m_hSession);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }

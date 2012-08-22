@@ -36,8 +36,8 @@ CxTest_CxConsole::bUnit(
             const EBackground cbgBackground;
             const bool        cbIsBlink;
 
-            m_sRes = cnConsole.bSetTextColor(csText, cfgForeground, cbIsBold, cbIsUnderline, cbgBackground, cbIsBlink);
-            xTEST_EQ(true, m_bRes);
+            m_sRv = cnConsole.bSetTextColor(csText, cfgForeground, cbIsBold, cbIsUnderline, cbgBackground, cbIsBlink);
+            xTEST_EQ(true, m_bRv);
         #endif
     }
 
@@ -48,7 +48,7 @@ CxTest_CxConsole::bUnit(
         #if xTEST_IGNORE
             CxConsole cnConsole;
 
-            m_sRes = cnConsole.sRead();
+            m_sRv = cnConsole.sRead();
             // n/a
         #endif
     }
@@ -63,8 +63,8 @@ CxTest_CxConsole::bUnit(
 
             CxConsole cnConsole;
 
-            m_bRes = cnConsole.bWrite(csStr);
-            xTEST_EQ(true, m_bRes);
+            m_bRv = cnConsole.bWrite(csStr);
+            xTEST_EQ(true, m_bRv);
         #endif
     }
 
@@ -78,8 +78,8 @@ CxTest_CxConsole::bUnit(
 
             CxConsole cnConsole;
 
-            m_bRes = cnConsole.bWriteLine(csStr);
-            xTEST_EQ(true, m_bRes);
+            m_bRv = cnConsole.bWriteLine(csStr);
+            xTEST_EQ(true, m_bRv);
         #endif
     }
 
@@ -93,8 +93,8 @@ CxTest_CxConsole::bUnit(
 
             CxConsole cnConsole;
 
-            m_bRes = cnConsole.bWriteLine(csStr);
-            xTEST_EQ(true, m_bRes);
+            m_bRv = cnConsole.bWriteLine(csStr);
+            xTEST_EQ(true, m_bRv);
         #endif
     }
 
@@ -127,8 +127,8 @@ CxTest_CxConsole::bUnit(
 
             CxConsole cnConsole;
 
-            m_bRes = cnConsole.bPrompt(csPrompt, cbIsVisible, &sAnswer);
-            xTEST_EQ(true, m_bRes);
+            m_bRv = cnConsole.bPrompt(csPrompt, cbIsVisible, &sAnswer);
+            xTEST_EQ(true, m_bRv);
         #endif
     }
 
@@ -139,8 +139,8 @@ CxTest_CxConsole::bUnit(
         #if xTEST_IGNORE
             CxConsole cnConsole;
 
-            m_bRes = cnConsole.bPause();
-            xTEST_EQ(true, m_bRes);
+            m_bRv = cnConsole.bPause();
+            xTEST_EQ(true, m_bRv);
         #endif
     }
 
@@ -151,8 +151,8 @@ CxTest_CxConsole::bUnit(
         #if xTEST_IGNORE
             CxConsole cnConsole;
 
-            m_bRes = cnConsole.bClear();
-            xTEST_EQ(true, m_bRes);
+            m_bRv = cnConsole.bClear();
+            xTEST_EQ(true, m_bRv);
         #endif
     }
 
@@ -166,11 +166,11 @@ CxTest_CxConsole::bUnit(
 
             CxConsole cnConsole;
 
-            m_bRes = cnConsole.bSetTitle(csTitle);
-            xTEST_EQ(true, m_bRes);
+            m_bRv = cnConsole.bSetTitle(csTitle);
+            xTEST_EQ(true, m_bRv);
 
-            m_sRes = cnConsole.sGetTitle();
-            xTEST_EQ(m_sRes, csTitle);
+            m_sRv = cnConsole.sGetTitle();
+            xTEST_EQ(m_sRv, csTitle);
         #endif
     }
 
@@ -184,12 +184,12 @@ CxTest_CxConsole::bUnit(
 
             CxConsole cnConsole;
 
-            m_bRes = cnConsole.bSetTitle(csTitle);
-            xTEST_EQ(true, m_bRes);
+            m_bRv = cnConsole.bSetTitle(csTitle);
+            xTEST_EQ(true, m_bRv);
 
             #if 1 && xOS_ENV_WIN
-                m_sRes = cnConsole.sGetTitle();
-                xTEST_EQ(m_sRes, csTitle);
+                m_sRv = cnConsole.sGetTitle();
+                xTEST_EQ(m_sRv, csTitle);
             #endif
         #endif
     }
@@ -201,8 +201,8 @@ CxTest_CxConsole::bUnit(
         #if xTEST_IGNORE && xOS_ENV_WIN
             CxConsole cnConsole;
 
-            m_bRes = cnConsole.bCenterWindow();
-            xTEST_EQ(true, m_bRes);
+            m_bRv = cnConsole.bCenterWindow();
+            xTEST_EQ(true, m_bRv);
         #endif
     }
 
@@ -213,8 +213,8 @@ CxTest_CxConsole::bUnit(
         #if xOS_ENV_WIN && xTEST_IGNORE
             CxConsole cnConsole;
 
-            m_bRes = cnConsole.bSetFullScreen();
-            xTEST_EQ(true, m_bRes);
+            m_bRv = cnConsole.bSetFullScreen();
+            xTEST_EQ(true, m_bRv);
         #endif
     }
 
@@ -225,11 +225,11 @@ CxTest_CxConsole::bUnit(
         #if xOS_ENV_WIN && xTEST_IGNORE
             CxConsole cnConsole;
 
-            m_bRes = cnConsole.bEnableClose(false);
-            xTEST_EQ(true, m_bRes);
+            m_bRv = cnConsole.bEnableClose(false);
+            xTEST_EQ(true, m_bRv);
 
-            m_bRes = cnConsole.bEnableClose(true);
-            xTEST_EQ(true, m_bRes);
+            m_bRv = cnConsole.bEnableClose(true);
+            xTEST_EQ(true, m_bRv);
         #endif
     }
 

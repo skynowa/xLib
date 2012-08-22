@@ -23,14 +23,14 @@ CxTest_CxWaitableTimer::bUnit(
 )
 {
 #if xOS_ENV_WIN
-    bool bRes = false;
+    bool bRv = false;
 
     CxWaitableTimer WT;
 
     //-------------------------------------
     //создаем
-    bRes = WT.bCreate(false, xT(""), NULL);
-    if (false == bRes) {
+    bRv = WT.bCreate(false, xT(""), NULL);
+    if (false == bRv) {
         printf("CreateWaitableTimer failed (%lu)\n", GetLastError());
         return 1;
     }
@@ -39,7 +39,7 @@ CxTest_CxWaitableTimer::bUnit(
     //-------------------------------------
     //Устанавливаем
     WT.bSet(/*-30000000LL*/0, 2000, NULL, NULL, 0);
-    if (false == bRes) {
+    if (false == bRv) {
         printf("SetWaitableTimer failed (%lu)\n", GetLastError());
         //--return 2;
     }
@@ -49,10 +49,10 @@ CxTest_CxWaitableTimer::bUnit(
     while (true) {
         //-------------------------------------
         //ждем
-        bRes = WT.bWait(INFINITE);
+        bRv = WT.bWait(INFINITE);
         printf("ulWait success (%lu)\n", GetLastError());
 
-        if (false == bRes) {
+        if (false == bRv) {
             printf("ulWait failed (%lu)\n", GetLastError());
         } else {
             printf("Timer was signaled.\n");

@@ -66,7 +66,7 @@ CxConsole::bSetTextColor(
 {
     /*DEBUG*/// n/a
 
-    std::tstring_t sRes;
+    std::tstring_t sRv;
 
 #if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               std::tstring_t());
@@ -76,22 +76,22 @@ CxConsole::bSetTextColor(
     BOOL blRes = ::SetConsoleTextAttribute(_m_hStdOut.hGet(), cfgForeground);
     /*DEBUG*/xASSERT_RET(FALSE != blRes, std::tstring_t());
 #elif xOS_ENV_UNIX
-    xCHECK_DO(true == cbIsUnderline, sRes += CxString::sFormat(xT("\033[%im"), atUnderscore));
-    xCHECK_DO(true == cbIsBlink,     sRes += CxString::sFormat(xT("\033[%im"), atBlink)     );
-    xCHECK_DO(true == cbIsBold,      sRes += CxString::sFormat(xT("\033[%im"), atBold)      );
+    xCHECK_DO(true == cbIsUnderline, sRv += CxString::sFormat(xT("\033[%im"), atUnderscore));
+    xCHECK_DO(true == cbIsBlink,     sRv += CxString::sFormat(xT("\033[%im"), atBlink)     );
+    xCHECK_DO(true == cbIsBold,      sRv += CxString::sFormat(xT("\033[%im"), atBold)      );
 
-    sRes += CxString::sFormat(xT("\033[%im"), cbgBackground);
-    sRes += CxString::sFormat(xT("\033[%im"), cfgForeground);
-    sRes += csText;
-    sRes += xT("\033[0;0m");
+    sRv += CxString::sFormat(xT("\033[%im"), cbgBackground);
+    sRv += CxString::sFormat(xT("\033[%im"), cfgForeground);
+    sRv += csText;
+    sRv += xT("\033[0;0m");
 #endif
 
-    return sRes;
+    return sRv;
 }
 //---------------------------------------------------------------------------
 std::tstring_t
 CxConsole::sRead() {
-    std::tstring_t sRes;
+    std::tstring_t sRv;
 
 #if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               std::tstring_t());
@@ -106,12 +106,12 @@ CxConsole::sRead() {
     /*DEBUG*/xASSERT_RET(FALSE != blRes,  std::tstring_t());
     /*DEBUG*/xASSERT_RET(NULL  != szBuff, std::tstring_t());
 
-    sRes.assign(szBuff, ulRead - CxConst::xCRNL.size());
+    sRv.assign(szBuff, ulRead - CxConst::xCRNL.size());
 #elif xOS_ENV_UNIX
-    std::tcin >> sRes;
+    std::tcin >> sRv;
 #endif
 
-    return sRes;
+    return sRv;
 }
 //---------------------------------------------------------------------------
 bool
@@ -150,8 +150,8 @@ CxConsole::bWriteLine(
     /*DEBUG*/xASSERT_RET(false != _m_hStdOut.bIsValid(), false);
 #endif
 
-    bool bRes = bWrite(csStr + CxConst::xNL);
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bool bRv = bWrite(csStr + CxConst::xNL);
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     return true;
 }
@@ -167,11 +167,11 @@ CxConsole::bWriteErrLine(
     /*DEBUG*/xASSERT_RET(false != _m_hStdOut.bIsValid(), false);
 #endif
 
-    bool bRes = bWriteLine(xT("Error: ") + csStr);
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bool bRv = bWriteLine(xT("Error: ") + csStr);
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
-    bRes = bPause();
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bRv = bPause();
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     return true;
 }
@@ -224,8 +224,8 @@ CxConsole::bPrompt(
     /*DEBUG*/xASSERT_RET(NULL  != psAnswer,         false);
 
     for ( ; ; ) {
-        bool bRes = bWrite(csPrompt + xT(": "));
-        /*DEBUG*/xASSERT_RET(true == bRes, false);
+        bool bRv = bWrite(csPrompt + xT(": "));
+        /*DEBUG*/xASSERT_RET(true == bRv, false);
 
         for ( ; ; ) {
             const tchar_t chLetter = static_cast<tchar_t>( std::tcin.get() );   
@@ -242,8 +242,8 @@ CxConsole::bPrompt(
             (*psAnswer).push_back(chLetter);
         }
 
-        bRes = bWriteLine(CxConst::xSTR_EMPTY);
-        /*DEBUG*/xASSERT_RET(true == bRes, false);
+        bRv = bWriteLine(CxConst::xSTR_EMPTY);
+        /*DEBUG*/xASSERT_RET(true == bRv, false);
 
         xCHECK_DO(true == (*psAnswer).empty(), continue);
 
@@ -272,8 +272,8 @@ CxConsole::bPause() {
     #endif
 #endif
 
-    bool bRes = bWrite(xT("Press [ENTER] to continue..."));
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bool bRv = bWrite(xT("Press [ENTER] to continue..."));
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     std::cin.clear();
     std::cin.ignore();
@@ -317,8 +317,8 @@ CxConsole::bClear() {
     blRes = ::SetConsoleCursorPosition(_m_hStdOut.hGet(), coordScreen );
     /*DEBUG*/xASSERT_RET(FALSE != blRes,  false);
 #elif xOS_ENV_UNIX
-    bool bRes = bWriteLine(CxConst::xFF);
-    /*DEBUG*/xASSERT_RET(true == bRes,  false);
+    bool bRv = bWriteLine(CxConst::xFF);
+    /*DEBUG*/xASSERT_RET(true == bRv,  false);
 #endif
 
     return true;
@@ -344,8 +344,8 @@ CxConsole::bEnableClose(
     } else {
         xCHECK_RET(false == ::AppendMenu(_m_hMenu, SC_CLOSE, MF_BYCOMMAND, xT("")), false);
 
-        BOOL bRes = ::EnableMenuItem(_hGetMenuHandle(false), SC_CLOSE, MF_ENABLED);
-        /*DEBUG*/xASSERT_RET(TRUE != bRes, false);
+        BOOL bRv = ::EnableMenuItem(_hGetMenuHandle(false), SC_CLOSE, MF_ENABLED);
+        /*DEBUG*/xASSERT_RET(TRUE != bRv, false);
 
         ::SetWindowPos(_hGetWndHandle(), NULL, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_DRAWFRAME);
     }
@@ -361,7 +361,7 @@ std::tstring_t
 CxConsole::sGetTitle() {
     /*DEBUG*/
 
-    std::tstring_t sRes;
+    std::tstring_t sRv;
 
 #if xOS_ENV_WIN
     /*DEBUG*///_m_hWnd - n/a
@@ -375,13 +375,13 @@ CxConsole::sGetTitle() {
     ulTitleSize = ::GetConsoleTitle(szBuff, culBuffSize);
     /*DEBUG*/xASSERT_RET(0 < ulTitleSize, std::tstring_t());
 
-    sRes.assign(szBuff, ulTitleSize);
+    sRv.assign(szBuff, ulTitleSize);
 #elif xOS_ENV_UNIX
     //TODO: sGetTitle
     xNOT_IMPLEMENTED_RET(std::tstring_t());
 #endif
 
-    return sRes;
+    return sRv;
 }
 //---------------------------------------------------------------------------
 bool
@@ -401,8 +401,8 @@ CxConsole::bSetTitle(
 #elif xOS_ENV_UNIX
     //TODO: bSetTitle
 
-    bool bRes = bWriteLine( CxString::sFormat(xT("%c]0;%s%c"), xT('\033'), csTitle.c_str(), xT('\007')) );
-    /*DEBUG*/xASSERT_RET(true == bRes,  false);
+    bool bRv = bWriteLine( CxString::sFormat(xT("%c]0;%s%c"), xT('\033'), csTitle.c_str(), xT('\007')) );
+    /*DEBUG*/xASSERT_RET(true == bRv,  false);
 #endif
 
     return true;
@@ -436,8 +436,8 @@ CxConsole::bSetFullScreen() {
     blRes = ::SetConsoleWindowInfo(_m_hStdOut.hGet(), true, &recSmallRec);
     /*DEBUG*/xASSERT_RET(FALSE != blRes,  false);
 
-    bool bRes = bCenterWindow();
-    /*DEBUG*/xASSERT_RET(true == bRes,  false);
+    bool bRv = bCenterWindow();
+    /*DEBUG*/xASSERT_RET(true == bRv,  false);
 #elif xOS_ENV_UNIX
     //TODO: bSetFullScreen
     xNOT_IMPLEMENTED_RET(false);
@@ -494,8 +494,8 @@ HWND
 CxConsole::_hGetWndHandle() {
     /*DEBUG*/
 
-    HWND         hRes         = NULL;
-    bool         bRes         = false;
+    HWND         hRv         = NULL;
+    bool         bRv         = false;
     std::tstring_t sNewWndTitle;
     std::tstring_t sOldWndTitle;
 
@@ -507,21 +507,21 @@ CxConsole::_hGetWndHandle() {
     sNewWndTitle = CxString::sFormat(xT("%lu/%lu"), ::GetTickCount(), CxCurrentProcess::ulGetId());
 
     //Change current window title.
-    bRes = bSetTitle(sNewWndTitle);
-    /*DEBUG*/xASSERT_RET(true == bRes, NULL);
+    bRv = bSetTitle(sNewWndTitle);
+    /*DEBUG*/xASSERT_RET(true == bRv, NULL);
 
     //Ensure window title has been updated.
     CxCurrentThread::bSleep(50UL);
 
     //Look for NewWindowTitle.
-    hRes = ::FindWindow(NULL, sNewWndTitle.c_str());
-    /*DEBUG*/xASSERT_RET(NULL != hRes, NULL);
+    hRv = ::FindWindow(NULL, sNewWndTitle.c_str());
+    /*DEBUG*/xASSERT_RET(NULL != hRv, NULL);
 
     //Restore original window title.
-    bRes = bSetTitle(sOldWndTitle);
-    /*DEBUG*/xASSERT_RET(true == bRes, NULL);
+    bRv = bSetTitle(sOldWndTitle);
+    /*DEBUG*/xASSERT_RET(true == bRv, NULL);
 
-    return hRes;
+    return hRv;
 }
 
 #endif

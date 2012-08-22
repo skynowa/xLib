@@ -36,8 +36,8 @@ CxVolume::bIsValid(
     xDEBUG_VAR_NA(csVolumePath);
 
 #if   xOS_ENV_WIN
-    bool bRes = CxDir::bIsRoot(csVolumePath);
-    xCHECK_RET(false == bRes, false);
+    bool bRv = CxDir::bIsRoot(csVolumePath);
+    xCHECK_RET(false == bRv, false);
 #elif xOS_ENV_UNIX
     xCHECK_RET(true                  == csVolumePath.empty(), false);
     xCHECK_RET(CxConst::xSLASH.at(0) != csVolumePath.at(0),   false);
@@ -54,12 +54,12 @@ CxVolume::bIsReady(
 {
     /*DEBUG*/xASSERT_RET(false == csVolumePath.empty(), false);
 
-    bool           bRes        = false;
+    bool           bRv        = false;
     std::tstring_t sVolumePath = CxPath::sSlashAppend(csVolumePath);
     std::tstring_t sOldDirPath;
 
 #if xOS_ENV_WIN
-    std::tstring_t sRes;
+    std::tstring_t sRv;
     UINT           uiOldErrorMode = 0U;
 
     uiOldErrorMode = ::SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOALIGNMENTFAULTEXCEPT | SEM_NOGPFAULTERRORBOX | SEM_NOOPENFILEERRORBOX);
@@ -68,7 +68,7 @@ CxVolume::bIsReady(
     sOldDirPath  = CxDir::sGetCurrent();
     /*DEBUG*/// n/a
 
-    bRes = !!::SetCurrentDirectory(sVolumePath.c_str());
+    bRv = !!::SetCurrentDirectory(sVolumePath.c_str());
     /*DEBUG*/// n/a
 
     (void)CxDir::bSetCurrent(sOldDirPath);
@@ -78,14 +78,14 @@ CxVolume::bIsReady(
     sOldDirPath  = CxDir::sGetCurrent();
     /*DEBUG*/// n/a
 
-    int iRes = ::chdir(sVolumePath.c_str());
+    int iRv = ::chdir(sVolumePath.c_str());
     /*DEBUG*/// n/a
-    bRes = (- 1 != iRes);
+    bRv = (- 1 != iRv);
 
     (void)CxDir::bSetCurrent(sOldDirPath);
 #endif
 
-    return bRes;
+    return bRv;
 }
 //--------------------------------------------------------------------------
 /*static*/
@@ -123,8 +123,8 @@ CxVolume::bGetSpace(
         _sDirPath = csDirPath;
     }
 
-    bool bRes = CxDir::bIsExists(_sDirPath);
-    xCHECK_RET(false == bRes, false);
+    bool bRv = CxDir::bIsExists(_sDirPath);
+    xCHECK_RET(false == bRv, false);
 
 #if   xOS_ENV_WIN
     ULARGE_INTEGER ullAvailable = {{0}};
@@ -140,8 +140,8 @@ CxVolume::bGetSpace(
 #elif xOS_ENV_UNIX
     struct xSTATVFS stfInfo = {0};
 
-    int iRes = ::xSTATVFS(_sDirPath.c_str(), &stfInfo);
-    /*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, _sDirPath, false);
+    int iRv = ::xSTATVFS(_sDirPath.c_str(), &stfInfo);
+    /*DEBUG*/xASSERT_MSG_RET(- 1 != iRv, _sDirPath, false);
 
     xPTR_ASSIGN(pullAvailable, stfInfo.f_bavail * stfInfo.xSTATVFS_F_FRSIZE);
     xPTR_ASSIGN(pullTotal,     stfInfo.f_blocks * stfInfo.xSTATVFS_F_FRSIZE);
@@ -178,11 +178,11 @@ CxVolume::bMount(
     /*DEBUG*/xASSERT_RET(NO_ERROR == dwRes, false);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        int iRes = ::mount(csSourcePath.c_str(), csDestPath.c_str(), NULL, MS_REMOUNT, NULL);
-        /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
+        int iRv = ::mount(csSourcePath.c_str(), csDestPath.c_str(), NULL, MS_REMOUNT, NULL);
+        /*DEBUG*/xASSERT_RET(- 1 != iRv, false);
     #elif xOS_FREEBSD
-        int iRes = ::mount(csSourcePath.c_str(), csDestPath.c_str(), MNT_UPDATE, NULL);
-        /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
+        int iRv = ::mount(csSourcePath.c_str(), csDestPath.c_str(), MNT_UPDATE, NULL);
+        /*DEBUG*/xASSERT_RET(- 1 != iRv, false);
     #endif
 #endif
 
@@ -213,11 +213,11 @@ CxVolume::bUnMount(
 	const int ciFlag = cbIsForce ? MNT_FORCE : xMNT_DETACH;
 
     #if   xOS_LINUX
-        int iRes = ::umount2(csSourcePath.c_str(), ciFlag);
-        /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
+        int iRv = ::umount2(csSourcePath.c_str(), ciFlag);
+        /*DEBUG*/xASSERT_RET(- 1 != iRv, false);
     #elif xOS_FREEBSD
-        int iRes = ::unmount(csSourcePath.c_str(), ciFlag);
-        /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
+        int iRv = ::unmount(csSourcePath.c_str(), ciFlag);
+        /*DEBUG*/xASSERT_RET(- 1 != iRv, false);
     #endif
 #endif
 
@@ -235,18 +235,18 @@ CxVolume::bGetPaths(
     std::vector<std::tstring_t> vsRes;
 
 #if   xOS_ENV_WIN
-    std::tstring_t sRes;
-    DWORD          ulRes = 0UL;
+    std::tstring_t sRv;
+    DWORD          ulRv = 0UL;
 
-    ulRes = ::GetLogicalDriveStrings(0UL, NULL);
-    /*DEBUG*/xASSERT_RET(0UL != ulRes, false);
+    ulRv = ::GetLogicalDriveStrings(0UL, NULL);
+    /*DEBUG*/xASSERT_RET(0UL != ulRv, false);
 
-    sRes.resize(ulRes);
+    sRv.resize(ulRv);
 
-    ulRes = ::GetLogicalDriveStrings(sRes.size(), &sRes.at(0));
-    /*DEBUG*/xASSERT_RET(0UL != ulRes, false);
+    ulRv = ::GetLogicalDriveStrings(sRv.size(), &sRv.at(0));
+    /*DEBUG*/xASSERT_RET(0UL != ulRv, false);
 
-    for (const tchar_t *s = &sRes.at(0); 0 != *s; s += _tcslen(s) + sizeof(xT('\0'))) {
+    for (const tchar_t *s = &sRv.at(0); 0 != *s; s += _tcslen(s) + sizeof(xT('\0'))) {
         vsRes.push_back(s);
     }
 #elif xOS_ENV_UNIX
@@ -285,10 +285,10 @@ CxVolume::sGetLabel(
 {
     /*DEBUG*/xASSERT_RET(false == csVolumePath.empty(), std::tstring_t());
 
-    std::tstring_t sRes;
+    std::tstring_t sRv;
 
-    bool bRes = bIsReady(csVolumePath);
-    xCHECK_RET(false == bRes, std::tstring_t());
+    bool bRv = bIsReady(csVolumePath);
+    xCHECK_RET(false == bRv, std::tstring_t());
 
 #if   xOS_ENV_WIN
     tchar_t szVolumeName[MAX_PATH + 1] = {0};
@@ -307,7 +307,7 @@ CxVolume::sGetLabel(
     );
     /*DEBUG*/xASSERT_RET(FALSE != blRes && 0UL == CxLastError::ulGet(), std::tstring_t());
 
-    sRes.assign(szVolumeName);
+    sRv.assign(szVolumeName);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         // TODO: CxVolume::sGetLabel
@@ -316,7 +316,7 @@ CxVolume::sGetLabel(
     #endif
 #endif
 
-    return sRes;
+    return sRv;
 }
 //--------------------------------------------------------------------------
 /*static*/
@@ -329,8 +329,8 @@ CxVolume::bSetLabel(
     /*DEBUG*/
     /*DEBUG*/
 
-    bool bRes = bIsReady(csVolumePath);
-    xCHECK_RET(false == bRes, false);
+    bool bRv = bIsReady(csVolumePath);
+    xCHECK_RET(false == bRv, false);
 
 #if   xOS_ENV_WIN
     BOOL blRes = ::SetVolumeLabel(csVolumePath.c_str(), csVolumeName.c_str());
@@ -371,8 +371,8 @@ CxVolume::dtGetType(
              printf("[name]: %s\n[path]: %s\n[type]: %s\n\n",
                     pmteMountPoint->mnt_fsname, pmteMountPoint->mnt_dir, pmteMountPoint->mnt_type);
 
-            bool bRes = CxString::bCompareNoCase(csVolumePath, std::tstring_t(pmteMountPoint->mnt_dir));
-            xCHECK_DO(false == bRes, continue);
+            bool bRv = CxString::bCompareNoCase(csVolumePath, std::tstring_t(pmteMountPoint->mnt_dir));
+            xCHECK_DO(false == bRv, continue);
 
             // TODO: CxVolume::dtGetType
             dtRes = (NULL == pmteMountPoint->mnt_type) ? dtUnknown : dtOther;
@@ -380,8 +380,8 @@ CxVolume::dtGetType(
             break;
         }
 
-        int iRes = ::endmntent(pfFile);
-        xASSERT_RET(1 == iRes, dtUnknown);
+        int iRv = ::endmntent(pfFile);
+        xASSERT_RET(1 == iRv, dtUnknown);
     #elif xOS_FREEBSD
         // TODO: CxVolume::dtGetType
     #endif

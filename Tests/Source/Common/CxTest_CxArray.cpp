@@ -49,16 +49,16 @@ CxTest_CxArray::bUnit(
     //uiGetSize
     xTEST_CASE(cullCaseLoops)
     {
-        m_stRes = aszArray.size();
-        xTEST_EQ(cuiArraySize, m_stRes);
+        m_stRv = aszArray.size();
+        xTEST_EQ(cuiArraySize, m_stRv);
     }
 
     //--------------------------------------------------
     //bClear
     xTEST_CASE(cullCaseLoops)
     {
-        /*m_bRes =*/ aszArray.clear();
-        ////xTEST_EQ(true, m_bRes);
+        /*m_bRv =*/ aszArray.clear();
+        ////xTEST_EQ(true, m_bRv);
     }
 
     xTEST_CASE(cullCaseLoops) {

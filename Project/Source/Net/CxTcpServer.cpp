@@ -31,8 +31,8 @@ CxTcpServer::bBind(
     saSockAddr.sin_addr.s_addr = INADDR_ANY;
     saSockAddr.sin_port        = htons(usPort);
 
-    int iRes = ::bind(_m_sktSocket, CxMacros::xreinterpret_cast<const struct sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
-    /*DEBUG*/xASSERT_RET(etError != iRes, false);
+    int iRv = ::bind(_m_sktSocket, CxMacros::xreinterpret_cast<const struct sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
+    /*DEBUG*/xASSERT_RET(etError != iRv, false);
 
     ////int iOpt = 1;
     //???
@@ -50,8 +50,8 @@ CxTcpServer::bListen(
 {
     /*DEBUG*/xASSERT_RET(etInvalid != _m_sktSocket, false);
 
-    int iRes = ::listen(_m_sktSocket, iBacklog);
-    /*DEBUG*/xASSERT_RET(etError != iRes, false);
+    int iRv = ::listen(_m_sktSocket, iBacklog);
+    /*DEBUG*/xASSERT_RET(etError != iRv, false);
 
     return true;
 }
@@ -84,8 +84,8 @@ CxTcpServer::bAccept(
 
     //TODO: bAccept
     ////scktAcceptSocket = scktClient;
-    bool bRes = (* pscktAcceptSocket).bAssign(scktClient);
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bool bRv = (* pscktAcceptSocket).bAssign(scktClient);
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     //конверт из UNICODE
     std::string asFromIp = ::inet_ntoa(cliaddr.sin_addr);

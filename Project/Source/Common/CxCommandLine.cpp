@@ -19,16 +19,16 @@ xNAMESPACE_BEGIN(NxLib)
 //--------------------------------------------------------------------------
 long_t
 CxCommandLine::liGetArgsMax() {
-    long_t liRes = 0L;
+    long_t liRv = 0L;
 
 #if xOS_ENV_WIN
-    liRes = 32L * 1024L;
+    liRv = 32L * 1024L;
 #elif xOS_ENV_UNIX
-    liRes = ::sysconf(_SC_ARG_MAX) / sizeof(std::tstring_t::value_type);
-    /*DEBUG*/xASSERT_RET(- 1 != liRes, 0L);
+    liRv = ::sysconf(_SC_ARG_MAX) / sizeof(std::tstring_t::value_type);
+    /*DEBUG*/xASSERT_RET(- 1 != liRv, 0L);
 #endif
 
-    return liRes;
+    return liRv;
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -36,18 +36,18 @@ std::tstring_t
 CxCommandLine::sGet() {
     /*DEBUG*/// n/a
 
-    std::tstring_t sRes;
+    std::tstring_t sRv;
 
 #if xOS_ENV_WIN
     LPCTSTR pcszRes = ::GetCommandLine();
     /*DEBUG*/xASSERT_RET(NULL != pcszRes, std::tstring_t());
 
-    sRes = CxString::sTrimSpace(pcszRes);
+    sRv = CxString::sTrimSpace(pcszRes);
 #elif xOS_ENV_UNIX
-    sRes = CxString::sJoin(_ms_vsArgs, CxConst::xSPACE);
+    sRv = CxString::sJoin(_ms_vsArgs, CxConst::xSPACE);
 #endif
 
-    return sRes;
+    return sRv;
 }
 //---------------------------------------------------------------------------
 /*static*/

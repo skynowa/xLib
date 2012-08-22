@@ -70,7 +70,7 @@ CxThreadPool<TaskT>::bCreateGroup(uint_t uiStackSize, const TFuncPtr fpFuncPtr, 
     /*DEBUG*/xASSERT_RET(0    <  uiNumTasks,        false);
     /*DEBUG*/xASSERT_RET(0    <  uiMaxRunningTasks, false);
 
-    bool bRes = false;
+    bool bRv = false;
 
     xCHECK_DO(true == bIsRunning(), /*LOG*/_m_clLog.bWrite(xT("CxThreadPool: is running")); return true);
 
@@ -84,8 +84,8 @@ CxThreadPool<TaskT>::bCreateGroup(uint_t uiStackSize, const TFuncPtr fpFuncPtr, 
 
     //-------------------------------------
     //���
-    bRes = bCreate(0, 0, NULL);
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bRv = bCreate(0, 0, NULL);
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     return true;
 }
@@ -96,7 +96,7 @@ bool
 CxThreadPool<TaskT>::bResumeGroup() {
     /*DEBUG*/
 
-    bool bRes = false;
+    bool bRv = false;
 
     xCHECK_DO(false == bIsRunning(), /*LOG*/_m_clLog.bWrite(xT("CxThreadPool: not running")); return true);
 
@@ -108,15 +108,15 @@ CxThreadPool<TaskT>::bResumeGroup() {
         for (std::list<TaskT *>::iterator it = _m_lstpthTasks.begin();  it != _m_lstpthTasks.end();  ++ it)    {
             xCHECK_DO(false == (*it)->bIsRunning(), /*LOG*/_m_clLog.bWrite(xT("Not running")); continue);
 
-            bRes = (*it)->bResume();
-            /*DEBUG*/xASSERT_RET(true == bRes, false);
+            bRv = (*it)->bResume();
+            /*DEBUG*/xASSERT_RET(true == bRv, false);
         }
     }
 
     //-------------------------------------
     //���
-    bRes = bResume();
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bRv = bResume();
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     return true;
 }
@@ -127,14 +127,14 @@ bool
 CxThreadPool<TaskT>::bPauseGroup() {
     /*DEBUG*/
 
-    bool bRes = false;
+    bool bRv = false;
 
     xCHECK_DO(false == bIsRunning(), /*LOG*/_m_clLog.bWrite(xT("CxThreadPool: not running")); return true);
 
     //-------------------------------------
     //���
-    bRes = bPause();
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bRv = bPause();
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     //-------------------------------------
     //������� ������
@@ -144,8 +144,8 @@ CxThreadPool<TaskT>::bPauseGroup() {
         for (std::list<TaskT *>::iterator it = _m_lstpthTasks.begin();  it != _m_lstpthTasks.end();  ++ it)    {
             xCHECK_DO(false == (*it)->bIsRunning(), /*LOG*/_m_clLog.bWrite(xT("Not running")); continue);
 
-            bRes = (*it)->bPause();
-            /*DEBUG*/xASSERT_RET(true == bRes, false);
+            bRv = (*it)->bPause();
+            /*DEBUG*/xASSERT_RET(true == bRv, false);
         }
     }
 
@@ -158,14 +158,14 @@ bool
 CxThreadPool<TaskT>::bExitGroup(ulong_t ulTimeout) {
     /*DEBUG*/
 
-    bool bRes = false;
+    bool bRv = false;
 
     xCHECK_DO(false == bIsRunning(), /*LOG*/_m_clLog.bWrite(xT("CxThreadPool: not running")); return true);
 
     //-------------------------------------
     //���
-    bRes = bExit(ulTimeout/*INFINITE*/);
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bRv = bExit(ulTimeout/*INFINITE*/);
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     //-------------------------------------
     //������� ������
@@ -175,8 +175,8 @@ CxThreadPool<TaskT>::bExitGroup(ulong_t ulTimeout) {
         for (std::list<TaskT *>::iterator it = _m_lstpthTasks.begin();  it != _m_lstpthTasks.end();  ++ it)    {
             xCHECK_DO(false == (*it)->bIsRunning(), /*LOG*/_m_clLog.bWrite(xT("CxThreadPool: not running")); continue);
 
-            bRes = (*it)->bExit(ulTimeout);
-            /*DEBUG*/xASSERT_RET(true == bRes, false);
+            bRv = (*it)->bExit(ulTimeout);
+            /*DEBUG*/xASSERT_RET(true == bRv, false);
         }
     }
 
@@ -189,7 +189,7 @@ bool
 CxThreadPool<TaskT>::bKillGroup(ulong_t ulTimeout) {
     /*DEBUG*/xASSERT_RET(NULL != this, false);
 
-    bool bRes = false;
+    bool bRv = false;
 
     xCHECK_DO(false == bIsRunning(), /*LOG*/_m_clLog.bWrite(xT("CxThreadPool: not running")); return true);
 
@@ -201,15 +201,15 @@ CxThreadPool<TaskT>::bKillGroup(ulong_t ulTimeout) {
         for (std::list<TaskT *>::iterator it = _m_lstpthTasks.begin();  it != _m_lstpthTasks.end();  ++ it)    {
             xCHECK_DO(false == (*it)->bIsRunning(), /*LOG*/_m_clLog.bWrite(xT("Not running")); continue);
 
-            bRes = (*it)->bKill(ulTimeout);
-            /////*DEBUG*/xASSERT_RET(true == bRes, false);
+            bRv = (*it)->bKill(ulTimeout);
+            /////*DEBUG*/xASSERT_RET(true == bRv, false);
         }
     }
 
     //-------------------------------------
     //���
-    bRes = bKill(ulTimeout);
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bRv = bKill(ulTimeout);
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     return true;
 }
@@ -220,7 +220,7 @@ bool
 CxThreadPool<TaskT>::bWaitGroup(ulong_t ulTimeout) {
     /*DEBUG*/
 
-    bool bRes = false;
+    bool bRv = false;
 
     xCHECK_DO(false == bIsRunning(), /*LOG*/_m_clLog.bWrite(xT("CxThreadPool: not running")); return true);
 
@@ -232,15 +232,15 @@ CxThreadPool<TaskT>::bWaitGroup(ulong_t ulTimeout) {
         for (std::list<TaskT *>::iterator it = _m_lstpthTasks.begin();  it != _m_lstpthTasks.end();  ++ it)    {
             xCHECK_DO(false == (*it)->bIsRunning(), /*LOG*/_m_clLog.bWrite(xT("Not running")); continue);
 
-            bRes = (*it)->bWait(ulTimeout);
-            /*DEBUG*/xASSERT_RET(true == bRes, false);
+            bRv = (*it)->bWait(ulTimeout);
+            /*DEBUG*/xASSERT_RET(true == bRv, false);
         }
     }
 
     //-------------------------------------
     //��� - !�������� ������ ����!
-    //--bRes = bWait(ulTimeout);
-    //--xASSERT_RET(true == bRes, false);
+    //--bRv = bWait(ulTimeout);
+    //--xASSERT_RET(true == bRv, false);
 
     return true;
 }
@@ -268,7 +268,7 @@ bool
 CxThreadPool<TaskT>::bSetMaxTasks(uint_t uiNum)  {
     /*DEBUG*/// n/a
 
-    bool bRes = false;
+    bool bRv = false;
 
     //-------------------------------------
     //���������� (���� ������� uiNum �������)
@@ -276,8 +276,8 @@ CxThreadPool<TaskT>::bSetMaxTasks(uint_t uiNum)  {
         //������� ���� �������� � _m_uiMaxRunningTasks, ���� ���� uiNum
         size_t uiTasksForInc = uiNum - _m_uiMaxRunningTasks;
 
-        bRes = _m_semSemaphore.bRelease(uiTasksForInc, NULL);
-        /*DEBUG*/xASSERT_RET(true == bRes, false);
+        bRv = _m_semSemaphore.bRelease(uiTasksForInc, NULL);
+        /*DEBUG*/xASSERT_RET(true == bRv, false);
 
         _m_uiMaxRunningTasks = uiNum;
 
@@ -298,8 +298,8 @@ CxThreadPool<TaskT>::bSetMaxTasks(uint_t uiNum)  {
             //��������� ����� - �� ����������� �������
             ::InterlockedExchange(&((*it)->m_ulTag), 1);
 
-            bRes = (*it)->bExit(/*ulTimeout*/5000);
-            /*DEBUG*/xASSERT_RET(true == bRes, false);
+            bRv = (*it)->bExit(/*ulTimeout*/5000);
+            /*DEBUG*/xASSERT_RET(true == bRv, false);
 
             ++ uiCount;
             xCHECK_DO(uiCount >= uiTasksForDec, break);
@@ -349,14 +349,14 @@ bool
 CxThreadPool<TaskT>::bIsEmpty() const {
     /*DEBUG*/
 
-    bool bRes = true;
+    bool bRv = true;
 
     CxAutoCriticalSection CS(_m_csList);
 
-    bRes = _m_lstpthTasks.empty();
+    bRv = _m_lstpthTasks.empty();
     /*DEBUG*/// n/a
 
-    return bRes;
+    return bRv;
 }
 //---------------------------------------------------------------------------
 //TODO: bIsFull (�������� �� ���)
@@ -365,16 +365,16 @@ bool
 CxThreadPool<TaskT>::bIsFull() const {
     /*DEBUG*///xASSERT_RET(CONDITION, RET_VALUE);
 
-    bool bRes = false;
+    bool bRv = false;
 
     CxAutoCriticalSection CS(_m_csList, true);
 
     /*DEBUG*/xASSERT_RET(_m_uiMaxRunningTasks < _m_lstpthTasks.size(), true);
 
-    bRes = (_m_uiMaxRunningTasks == _m_lstpthTasks.size());
+    bRv = (_m_uiMaxRunningTasks == _m_lstpthTasks.size());
     /*DEBUG*/// n/a
 
-    return bRes;
+    return bRv;
 }
 //---------------------------------------------------------------------------
 //TODO: uiSize (���-�� ������� � ����)
@@ -408,12 +408,12 @@ CxThreadPool<TaskT>::uiOnRun(void *pvParam) {
     /*DEBUG*/
 
     uint_t uiRes = 0;
-    bool bRes  = false;
+    bool bRv  = false;
 
     //-------------------------------------
     //������ �������
-    bRes = _m_semSemaphore.bCreate(NULL, _m_uiMaxRunningTasks, /*_m_uiMaxRunningTasks*/2048, NULL);
-    /*DEBUG*/xASSERT_RET(true == bRes, 0);
+    bRv = _m_semSemaphore.bCreate(NULL, _m_uiMaxRunningTasks, /*_m_uiMaxRunningTasks*/2048, NULL);
+    /*DEBUG*/xASSERT_RET(true == bRv, 0);
 
     //-------------------------------------
     //������ ����
@@ -423,8 +423,8 @@ CxThreadPool<TaskT>::uiOnRun(void *pvParam) {
     for ( ; ; ) {
         //-------------------------------------
         //�������� ���������� ������
-        bRes = _m_semSemaphore.bWait(INFINITE);
-        /*DEBUG*/xASSERT_DO(true == bRes, break);
+        bRv = _m_semSemaphore.bWait(INFINITE);
+        /*DEBUG*/xASSERT_DO(true == bRv, break);
 
         //-------------------------------------
         //��� �������� (���� ��������� ��� ������� - �����)
@@ -433,13 +433,13 @@ CxThreadPool<TaskT>::uiOnRun(void *pvParam) {
 
         //-------------------------------------
         //�� ���� �� ����� ��� ���������������
-        bRes = bIsTimeToExit();
-        xCHECK_DO(true == bRes, break);
+        bRv = bIsTimeToExit();
+        xCHECK_DO(true == bRv, break);
 
         //-------------------------------------
         //������ ����. ������
-        bRes = _bAddTask(NULL);                                    //_m_semSemaphore.bWait(INFINITE);
-        /*DEBUG*/xASSERT_DO(true == bRes, break);                //continue ???
+        bRv = _bAddTask(NULL);                                    //_m_semSemaphore.bWait(INFINITE);
+        /*DEBUG*/xASSERT_DO(true == bRv, break);                //continue ???
 
         ++ _m_uiCurrTask;
 
@@ -448,14 +448,14 @@ CxThreadPool<TaskT>::uiOnRun(void *pvParam) {
 
     //-------------------------------------
     //���� ���� ����������� �������� ������ (���� �� ������)
-    ////bRes = bWaitGroup(INFINITE/*5000*/);
-    /////*DEBUG*/xASSERT_RET(true == bRes, 0);
+    ////bRv = bWaitGroup(INFINITE/*5000*/);
+    /////*DEBUG*/xASSERT_RET(true == bRv, 0);
 
     for (; ;) {
         xCHECK_DO(true == bIsEmpty(), break);
 
-        bRes = bSleep(500);
-        /*DEBUG*/xASSERT_DO(true == bRes, break);
+        bRv = bSleep(500);
+        /*DEBUG*/xASSERT_DO(true == bRv, break);
     }
     /*DEBUG*/xASSERT_RET(true == _m_lstpthTasks.empty(), 0);
 
@@ -479,7 +479,7 @@ bool
 CxThreadPool<TaskT>::_bAddTask(CxThread *pvItem) {
     /*DEBUG*/
 
-    bool bRes = false;
+    bool bRv = false;
 
     //-------------------------------------
     //������� ��������� ��������� �����
@@ -491,11 +491,11 @@ CxThreadPool<TaskT>::_bAddTask(CxThread *pvItem) {
                    pthTask->vAttachHandler_OnEnter( xCLOSURE(this, &CxThreadPool::_vOnEnterTask) );
                    pthTask->vAttachHandler_OnExit ( xCLOSURE(this, &CxThreadPool::_vOnExitTask ) );
 
-            bRes = pthTask->bCreate(_m_uiStackSize/*0*/, _m_fpFuncPtr/*0*/, _m_pvParam/*NULL*/);
-            /*DEBUG*/xASSERT_RET(true == bRes, false);
+            bRv = pthTask->bCreate(_m_uiStackSize/*0*/, _m_fpFuncPtr/*0*/, _m_pvParam/*NULL*/);
+            /*DEBUG*/xASSERT_RET(true == bRv, false);
 
-            bRes = pthTask->bResume();
-            /*DEBUG*/xASSERT_RET(true == bRes, false);
+            bRv = pthTask->bResume();
+            /*DEBUG*/xASSERT_RET(true == bRv, false);
         {
             CxAutoCriticalSection CS(_m_csList);
             _m_lstpthTasks.push_back(pthTask);
@@ -511,7 +511,7 @@ CxThreadPool<TaskT>::_bAddTask(CxThread *pvItem) {
 template<class TaskT>
 bool
 CxThreadPool<TaskT>::_bRemoveTask(CxThread *pvItem) {
-    bool bRes = false;
+    bool bRv = false;
 
     try {
         TaskT *pthTask = static_cast<TaskT *>(pvItem);
@@ -521,8 +521,8 @@ CxThreadPool<TaskT>::_bRemoveTask(CxThread *pvItem) {
         //-------------------------------------
         //����������� _m_semSemaphore
         if (0 == pthTask->m_ulTag) {
-            bRes = _m_semSemaphore.bRelease(1, NULL);
-            /*DEBUG*/xASSERT_RET(true == bRes, false);
+            bRv = _m_semSemaphore.bRelease(1, NULL);
+            /*DEBUG*/xASSERT_RET(true == bRv, false);
         }
 
         //-------------------------------------
@@ -562,10 +562,10 @@ CxThreadPool<TaskT>::_vOnExitTask(CxThread *pthSender)  {
     /*DEBUG*/xASSERT_DO(NULL  != pthSender,               return);
     /*DEBUG*/xASSERT_DO(false != pthSender->bIsRunning(), return);
 
-    bool bRes = false;
+    bool bRv = false;
 
-    bRes = _bRemoveTask(pthSender);    //if (true == bRes)        //bRelease
-    /*DEBUG*/xASSERT_DO(true == bRes, return);
+    bRv = _bRemoveTask(pthSender);    //if (true == bRv)        //bRelease
+    /*DEBUG*/xASSERT_DO(true == bRv, return);
 
     /*LOG*///_m_clLog.bWrite(xT("_vOnExitTask stop: #%i"), pthTask->m_uiIndex);
 }

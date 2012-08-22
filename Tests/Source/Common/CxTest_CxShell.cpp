@@ -28,8 +28,8 @@ CxTest_CxShell::bUnit(
     //bIsAvailable
     xTEST_CASE(cullCaseLoops)
     {
-        m_bRes = CxShell::bIsAvailable();
-        xTEST_EQ(true, m_bRes);
+        m_bRv = CxShell::bIsAvailable();
+        xTEST_EQ(true, m_bRv);
     }
 
     //-------------------------------------
@@ -53,8 +53,8 @@ CxTest_CxShell::bUnit(
             const std::tstring_t csFilePath = casData[i][0];
             const std::tstring_t csParams   = casData[i][1];
 
-            m_bRes = CxShell::bExecute(csFilePath, csParams);
-            xTEST_EQ(true, m_bRes);
+            m_bRv = CxShell::bExecute(csFilePath, csParams);
+            xTEST_EQ(true, m_bRv);
         }
     }
 
@@ -63,8 +63,8 @@ CxTest_CxShell::bUnit(
     //bFindExecutable
     xTEST_CASE(cullCaseLoops)
     {
-        m_sRes = CxShell::bFindExecutable(xT("win.ini"), xT("C:"));
-        xTEST_EQ(false, m_sRes.empty());
+        m_sRv = CxShell::bFindExecutable(xT("win.ini"), xT("C:"));
+        xTEST_EQ(false, m_sRv.empty());
     }
 
     //-------------------------------------
@@ -72,43 +72,43 @@ CxTest_CxShell::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         //SHELLEXECUTEINFO eiExecInfo = {0};
-        //m_bRes = CxShell::bExecuteEx(&eiExecInfo);
+        //m_bRv = CxShell::bExecuteEx(&eiExecInfo);
     }
 
     //-------------------------------------
     //bExecute
     xTEST_CASE(cullCaseLoops)
     {
-        //m_bRes = CxShell::bExecute(HWND hWnd, LPCTSTR pcszOperation, LPCTSTR pcszFile, LPCTSTR pcszParams, LPCTSTR pcszDirectory, int iShowCmd);
+        //m_bRv = CxShell::bExecute(HWND hWnd, LPCTSTR pcszOperation, LPCTSTR pcszFile, LPCTSTR pcszParams, LPCTSTR pcszDirectory, int iShowCmd);
     }
 
     //-------------------------------------
     //bExecuteHttp
     xTEST_CASE(cullCaseLoops)
     {
-        ////m_bRes = CxShell::bExecuteHttp(xT(" http://www.google.ru/ "));
+        ////m_bRv = CxShell::bExecuteHttp(xT(" http://www.google.ru/ "));
     }
 
     //-------------------------------------
     //bExecuteFtp
     xTEST_CASE(cullCaseLoops)
     {
-        ////m_bRes = CxShell::bExecuteFtp(xT(" ftp://ftp.drweb.com/ "));
+        ////m_bRv = CxShell::bExecuteFtp(xT(" ftp://ftp.drweb.com/ "));
     }
 
     //-------------------------------------
     //bExecuteEmail
     xTEST_CASE(cullCaseLoops)
     {
-        ////m_bRes = CxShell::bExecuteEmail(xT("  Sky_Nova@mail.ru "), xT("  Subject"), xT("  Body  "));
+        ////m_bRv = CxShell::bExecuteEmail(xT("  Sky_Nova@mail.ru "), xT("  Subject"), xT("  Body  "));
     }
 
     //-------------------------------------
     //sGetSpecialDirPath
     xTEST_CASE(cullCaseLoops) {
         #if (xWINVER >= xOS_WIN_2K)
-            m_sRes = CxShell::sGetSpecialDirPath(CxShell::sfFonts, NULL);
-            xTEST_EQ(std::tstring_t(xT("C:\\WINDOWS\\Fonts")), m_sRes);
+            m_sRv = CxShell::sGetSpecialDirPath(CxShell::sfFonts, NULL);
+            xTEST_EQ(std::tstring_t(xT("C:\\WINDOWS\\Fonts")), m_sRv);
         #endif //xOS_WIN_2K
     }
 #endif

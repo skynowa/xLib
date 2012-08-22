@@ -45,8 +45,8 @@ CxDecrypt::bInit(
 {
     /*DEBUG*/
 
-    CK_RV ulRes = _m_pFunc->C_DecryptInit(_m_hSession, pMechanism, hKey);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    CK_RV ulRv = _m_pFunc->C_DecryptInit(_m_hSession, pMechanism, hKey);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -61,8 +61,8 @@ CxDecrypt::bMake(
 {
     /*DEBUG*/
 
-    CK_RV ulRes = _m_pFunc->C_Decrypt(_m_hSession, pEncryptedData, ulEncryptedDataLen, pData, pulDataLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    CK_RV ulRv = _m_pFunc->C_Decrypt(_m_hSession, pEncryptedData, ulEncryptedDataLen, pData, pulDataLen);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -77,8 +77,8 @@ CxDecrypt::bUpdate(
 {
     /*DEBUG*/
 
-    CK_RV ulRes = _m_pFunc->C_DecryptUpdate(_m_hSession, pEncryptedPart, ulEncryptedPartLen, pPart, pulPartLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    CK_RV ulRv = _m_pFunc->C_DecryptUpdate(_m_hSession, pEncryptedPart, ulEncryptedPartLen, pPart, pulPartLen);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -91,8 +91,8 @@ CxDecrypt::bFinal(
 {
     /*DEBUG*/
 
-    CK_RV ulRes = _m_pFunc->C_DecryptFinal(_m_hSession, pLastPart, pulLastPartLen );
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    CK_RV ulRv = _m_pFunc->C_DecryptFinal(_m_hSession, pLastPart, pulLastPartLen );
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -107,8 +107,8 @@ CxDecrypt::bDigestUpdate(
 {
     /*DEBUG*/
 
-    CK_RV ulRes = _m_pFunc->C_DecryptDigestUpdate(_m_hSession, pEncryptedPart, ulEncryptedPartLen, pPart, pulPartLen );
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    CK_RV ulRv = _m_pFunc->C_DecryptDigestUpdate(_m_hSession, pEncryptedPart, ulEncryptedPartLen, pPart, pulPartLen );
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -123,8 +123,8 @@ CxDecrypt::bVerifyUpdate(
 {
     /*DEBUG*/
 
-    CK_RV ulRes = _m_pFunc->C_DecryptVerifyUpdate(_m_hSession, pEncryptedPart, ulEncryptedPartLen, pPart, pulPartLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    CK_RV ulRv = _m_pFunc->C_DecryptVerifyUpdate(_m_hSession, pEncryptedPart, ulEncryptedPartLen, pPart, pulPartLen);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -152,17 +152,17 @@ CxDecrypt::bMakeFile(
 
     //-------------------------------------
     //������ ����-����� � �����
-    bool         bRes            = false;
+    bool         bRv            = false;
     std::ustring_t usEncryptedData;
 
     {
         CxFile sfFileRaw;
 
-        bRes = sfFileRaw.bCreate(csInFilePath, CxFile::omBinRead, true);
-        /*DEBUG*/xASSERT_RET(true == bRes, false);
+        bRv = sfFileRaw.bCreate(csInFilePath, CxFile::omBinRead, true);
+        /*DEBUG*/xASSERT_RET(true == bRv, false);
 
-        bRes = sfFileRaw.bRead(&usEncryptedData);
-        /*DEBUG*/xASSERT_RET(true == bRes, false);
+        bRv = sfFileRaw.bRead(&usEncryptedData);
+        /*DEBUG*/xASSERT_RET(true == bRv, false);
     }
 
     //-------------------------------------
@@ -179,11 +179,11 @@ CxDecrypt::bMakeFile(
 
     {
         for (ulOffset = 0; ulOffset < usEncryptedData.size()/*ulResEncryptSize*//*usRawData.size()*/; ulOffset += ulPadSize) {
-            bRes = bInit(pMechanism, hKey);
-            xCHECK_RET(false == bRes, false);
+            bRv = bInit(pMechanism, hKey);
+            xCHECK_RET(false == bRv, false);
 
-            bRes = bMake(&usEncryptedData[0] + ulOffset, ulPadSize, &usDecryptedData[0] + ulOffset2, &usDecryptedDataSize);
-            xCHECK_RET(false == bRes, false);
+            bRv = bMake(&usEncryptedData[0] + ulOffset, ulPadSize, &usDecryptedData[0] + ulOffset2, &usDecryptedDataSize);
+            xCHECK_RET(false == bRv, false);
 
             ulOffset2 += usDecryptedDataSize;
         }
@@ -202,11 +202,11 @@ CxDecrypt::bMakeFile(
     {
         CxFile sfFileDecrypt;
 
-        bRes = sfFileDecrypt.bCreate(csOutFilePath, CxFile::omBinWrite, true);
-        /*DEBUG*/xASSERT_RET(true == bRes, false);
+        bRv = sfFileDecrypt.bCreate(csOutFilePath, CxFile::omBinWrite, true);
+        /*DEBUG*/xASSERT_RET(true == bRv, false);
 
-        bRes = sfFileDecrypt.bWrite(usDecryptedData);
-        /*DEBUG*/xASSERT_RET(true == bRes, false);
+        bRv = sfFileDecrypt.bWrite(usDecryptedData);
+        /*DEBUG*/xASSERT_RET(true == bRv, false);
     }
 
     return true;

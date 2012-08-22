@@ -26,38 +26,38 @@ CxCriticalSection::bCreate() {
     /*DEBUG*/
 
 #if xOS_ENV_WIN
-    bool bRes = false;
+    bool bRv = false;
 
     try {
         (void)::InitializeCriticalSection(&_m_hHandle);
 
-        bRes = true;
+        bRv = true;
     } catch (...) {
-        bRes = false;
+        bRv = false;
     }
 
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 #elif xOS_ENV_UNIX
-    int iRes = - 1;
+    int iRv = - 1;
 
     pthread_mutexattr_t maAttr;    // n/a {{0}}
 
-    iRes = ::pthread_mutexattr_init(&maAttr);
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), false);
+    iRv = ::pthread_mutexattr_init(&maAttr);
+    /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
 
-    iRes = ::pthread_mutexattr_setpshared(&maAttr, PTHREAD_PROCESS_PRIVATE);
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), false);
+    iRv = ::pthread_mutexattr_setpshared(&maAttr, PTHREAD_PROCESS_PRIVATE);
+    /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
 
-    iRes = ::pthread_mutexattr_settype(&maAttr, PTHREAD_MUTEX_RECURSIVE);
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), false);
+    iRv = ::pthread_mutexattr_settype(&maAttr, PTHREAD_MUTEX_RECURSIVE);
+    /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
 
     {
-        iRes = ::pthread_mutex_init(&_m_hHandle, &maAttr);
-        /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), false);
+        iRv = ::pthread_mutex_init(&_m_hHandle, &maAttr);
+        /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
     }
 
-    iRes = ::pthread_mutexattr_destroy(&maAttr);
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), false);
+    iRv = ::pthread_mutexattr_destroy(&maAttr);
+    /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
 #endif
 
     return true;
@@ -66,20 +66,20 @@ CxCriticalSection::bCreate() {
 /*virtual*/
 CxCriticalSection::~CxCriticalSection() {
 #if xOS_ENV_WIN
-    bool bRes = false;
+    bool bRv = false;
 
     try {
         (void)::DeleteCriticalSection(&_m_hHandle);
 
-        bRes = true;
+        bRv = true;
     } catch (...) {
-        bRes = false;
+        bRv = false;
     }
 
-    /*DEBUG*/xASSERT_DO(true == bRes, return);
+    /*DEBUG*/xASSERT_DO(true == bRv, return);
 #elif xOS_ENV_UNIX
-    int iRes = ::pthread_mutex_destroy(&_m_hHandle);
-    /*DEBUG*/xASSERT_MSG_DO(0 == iRes, CxLastError::sFormat(iRes), return);
+    int iRv = ::pthread_mutex_destroy(&_m_hHandle);
+    /*DEBUG*/xASSERT_MSG_DO(0 == iRv, CxLastError::sFormat(iRv), return);
 #endif
 }
 //---------------------------------------------------------------------------
@@ -93,20 +93,20 @@ CxCriticalSection::hGet() const {
 bool
 CxCriticalSection::bLock() {
 #if xOS_ENV_WIN
-    bool bRes = false;
+    bool bRv = false;
 
     try {
         (void)::EnterCriticalSection(&_m_hHandle);
 
-        bRes = true;
+        bRv = true;
     } catch (...) {
-        bRes = false;
+        bRv = false;
     }
 
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 #elif xOS_ENV_UNIX
-    int iRes = ::pthread_mutex_lock(&_m_hHandle);
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), false);
+    int iRv = ::pthread_mutex_lock(&_m_hHandle);
+    /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
 #endif
 
     return true;
@@ -118,8 +118,8 @@ CxCriticalSection::bTryLock() {
     BOOL blRes = ::TryEnterCriticalSection(&_m_hHandle);
     xCHECK_RET(FALSE == blRes, false);
 #elif xOS_ENV_UNIX
-    int iRes = ::pthread_mutex_trylock(&_m_hHandle);
-    xCHECK_RET(0 != iRes, false);
+    int iRv = ::pthread_mutex_trylock(&_m_hHandle);
+    xCHECK_RET(0 != iRv, false);
 #endif
 
     return true;
@@ -128,20 +128,20 @@ CxCriticalSection::bTryLock() {
 bool
 CxCriticalSection::bUnlock() {
 #if xOS_ENV_WIN
-    bool bRes = false;
+    bool bRv = false;
 
     try {
         (void)::LeaveCriticalSection(&_m_hHandle);
 
-        bRes = true;
+        bRv = true;
     } catch (...) {
-        bRes = false;
+        bRv = false;
     }
 
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 #elif xOS_ENV_UNIX
-    int iRes = ::pthread_mutex_unlock(&_m_hHandle);
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), false);
+    int iRv = ::pthread_mutex_unlock(&_m_hHandle);
+    /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
 #endif
 
     return true;

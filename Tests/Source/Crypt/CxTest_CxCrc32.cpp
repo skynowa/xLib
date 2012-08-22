@@ -31,11 +31,11 @@ CxTest_CxCrc32::bUnit(
     {
         CxFile flFile;
 
-        m_bRes = flFile.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = flFile.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        xTEST_EQ(true, m_bRv);
 
-        m_bRes = flFile.bResize(1337LL);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = flFile.bResize(1337LL);
+        xTEST_EQ(true, m_bRv);
     }
 
     //-------------------------------------
@@ -49,12 +49,12 @@ CxTest_CxCrc32::bUnit(
     //ulCalcFile, sFormatHex
     xTEST_CASE(cullCaseLoops)
     {
-        m_ulRes = CxCrc32::ulCalcFile(csFilePath);
-        xTEST_LESS(0UL, m_ulRes);
-        //xTRACE(m_ulRes);
+        m_ulRv = CxCrc32::ulCalcFile(csFilePath);
+        xTEST_LESS(0UL, m_ulRv);
+        //xTRACE(m_ulRv);
 
-        m_sRes = CxCrc32::sFormatHex(m_ulRes);
-        xTEST_EQ(false, m_sRes.empty());
+        m_sRv = CxCrc32::sFormatHex(m_ulRv);
+        xTEST_EQ(false, m_sRv.empty());
     }
 
     //-------------------------------------
@@ -68,12 +68,12 @@ CxTest_CxCrc32::bUnit(
     //ulCalcFileFast, sFormatHex
     xTEST_CASE(cullCaseLoops)
     {
-        m_ulRes = CxCrc32::ulCalcFileFast(csFilePath);
-        xTEST_LESS(0UL, m_ulRes);
-        //xTRACE(m_ulRes);
+        m_ulRv = CxCrc32::ulCalcFileFast(csFilePath);
+        xTEST_LESS(0UL, m_ulRv);
+        //xTRACE(m_ulRv);
 
-        m_sRes = CxCrc32::sFormatHex(m_ulRes);
-        xTEST_EQ(false, m_sRes.empty());
+        m_sRv = CxCrc32::sFormatHex(m_ulRv);
+        xTEST_EQ(false, m_sRv.empty());
     }
 
     return true;

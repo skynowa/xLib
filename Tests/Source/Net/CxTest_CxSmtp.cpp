@@ -70,49 +70,49 @@ CxTest_CxSmtp::bUnit(
 
     //-------------------------------------
     //bCreate
-    m_bRes = objSmtp.bCreate(csUser, csPass, csServer, usPort);
-    xTEST_EQ(true, m_bRes);
+    m_bRv = objSmtp.bCreate(csUser, csPass, csServer, usPort);
+    xTEST_EQ(true, m_bRv);
 
     //-------------------------------------
     //bConnect
-    m_bRes = objSmtp.bConnect();
-    xTEST_EQ(true, m_bRes);
+    m_bRv = objSmtp.bConnect();
+    xTEST_EQ(true, m_bRv);
 
     //-------------------------------------
     //bLogin
-    ////m_bRes = objSmtp.bLogin();
-    ////xTEST_EQ(true, m_bRes);
+    ////m_bRv = objSmtp.bLogin();
+    ////xTEST_EQ(true, m_bRv);
 
     //-------------------------------------
     //bSend
-    m_bRes = objSmtp.bSend(csText, csFrom, csTo);
-    xTEST_EQ(true, m_bRes);
+    m_bRv = objSmtp.bSend(csText, csFrom, csTo);
+    xTEST_EQ(true, m_bRv);
 
     //-------------------------------------
     //bSendRaw
 #if xTODO
     g_vsRes = CxDir::vsListFiles(csDirPath, "*.eml");
     for (size_t i = 0; i < g_vsRes.size(); i ++) {
-        m_bRes = objSmtp.bSendRaw(csDirPath + "\\" + g_vsRes.at(i), csFrom, csTo);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = objSmtp.bSendRaw(csDirPath + "\\" + g_vsRes.at(i), csFrom, csTo);
+        xTEST_EQ(true, m_bRv);
         /*LOG*///printf("Send msg %s\n", g_vsRes.at(i).c_str());
     }
 #endif
 
     //-------------------------------------
     //bNoop
-    m_bRes = objSmtp.bNoop();
-    xTEST_EQ(true, m_bRes);
+    m_bRv = objSmtp.bNoop();
+    xTEST_EQ(true, m_bRv);
 
     //-------------------------------------
     //bRset
-    m_bRes = objSmtp.bRset();
-    xTEST_EQ(true, m_bRes);
+    m_bRv = objSmtp.bRset();
+    xTEST_EQ(true, m_bRv);
 
     //-------------------------------------
     //bDisconnect
-    m_bRes = objSmtp.bDisconnect();
-    xTEST_EQ(true, m_bRes);
+    m_bRv = objSmtp.bDisconnect();
+    xTEST_EQ(true, m_bRv);
 #elif xOS_ENV_UNIX
 
 #endif

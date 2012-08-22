@@ -32,14 +32,14 @@ CxThreadStorage::~CxThreadStorage() {
 //---------------------------------------------------------------------------
 bool
 CxThreadStorage::bIsSet() const {
-    void *pvRes = NULL;
+    void *pvRv = NULL;
 
 #if xOS_ENV_WIN
-    pvRes = ::TlsGetValue(_m_indIndex);
-    xCHECK_RET(NULL == pvRes, false);
+    pvRv = ::TlsGetValue(_m_indIndex);
+    xCHECK_RET(NULL == pvRv, false);
 #elif xOS_ENV_UNIX
-    pvRes = ::pthread_getspecific(_m_indIndex);
-    xCHECK_RET(NULL == pvRes, false);
+    pvRv = ::pthread_getspecific(_m_indIndex);
+    xCHECK_RET(NULL == pvRv, false);
 #endif
 
     return true;
@@ -47,21 +47,21 @@ CxThreadStorage::bIsSet() const {
 //---------------------------------------------------------------------------
 void *
 CxThreadStorage::pvGetValue() const {
-    void *pvRes = NULL;
+    void *pvRv = NULL;
 
 #if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(TLS_OUT_OF_INDEXES != _m_indIndex, NULL);
 
-    pvRes = ::TlsGetValue(_m_indIndex);
-    /*DEBUG*/xASSERT_RET((NULL != pvRes) && (ERROR_SUCCESS == CxLastError::ulGet()), NULL);
+    pvRv = ::TlsGetValue(_m_indIndex);
+    /*DEBUG*/xASSERT_RET((NULL != pvRv) && (ERROR_SUCCESS == CxLastError::ulGet()), NULL);
 #elif xOS_ENV_UNIX
     /*DEBUG*/xASSERT_RET(0 <= _m_indIndex, NULL);
 
-    pvRes = ::pthread_getspecific(_m_indIndex);
-    /*DEBUG*/xASSERT_RET(NULL != pvRes, NULL);
+    pvRv = ::pthread_getspecific(_m_indIndex);
+    /*DEBUG*/xASSERT_RET(NULL != pvRv, NULL);
 #endif
 
-    return pvRes;
+    return pvRv;
 }
 //---------------------------------------------------------------------------
 bool
@@ -79,8 +79,8 @@ CxThreadStorage::bSetValue(
 #elif xOS_ENV_UNIX
     /*DEBUG*/xASSERT_RET(0 <= _m_indIndex, false);
 
-    int iRes = ::pthread_setspecific(_m_indIndex, pvValue);
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), false);
+    int iRv = ::pthread_setspecific(_m_indIndex, pvValue);
+    /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
 #endif
 
     return true;
@@ -106,8 +106,8 @@ CxThreadStorage::_bAlloc() {
 #elif xOS_ENV_UNIX
     /*DEBUG*/xASSERT_RET(static_cast<pthread_key_t>( -1 ) == _m_indIndex, false);
 
-    int iRes = ::pthread_key_create(&indRes, NULL);
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), false);
+    int iRv = ::pthread_key_create(&indRes, NULL);
+    /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
 #endif
 
     _m_indIndex = indRes;
@@ -127,8 +127,8 @@ CxThreadStorage::_bFree() {
 #elif xOS_ENV_UNIX
     /*DEBUG*/xASSERT_RET(0 <= _m_indIndex, false);
 
-    int iRes = ::pthread_key_delete(_m_indIndex);
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), false);
+    int iRv = ::pthread_key_delete(_m_indIndex);
+    /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
 
     _m_indIndex = static_cast<pthread_key_t>( -1 );
 #endif

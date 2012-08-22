@@ -28,36 +28,36 @@ CxTest_CxRandom::bUnit(
         //--------------------------------------------------
         //bSetSeed
         {
-            m_bRes = rndR.bSetSeed( static_cast<ulong_t>( time(NULL) ) );
-            xTEST_EQ(true, m_bRes);
+            m_bRv = rndR.bSetSeed( static_cast<ulong_t>( time(NULL) ) );
+            xTEST_EQ(true, m_bRv);
         }
 
         //--------------------------------------------------
         //iNextInt
         {
-            m_iRes = rndR.iNextInt();
-            xTEST_LESS(0, m_iRes);
+            m_iRv = rndR.iNextInt();
+            xTEST_LESS(0, m_iRv);
         }
 
         //--------------------------------------------------
         //iNextInt
         {
-            m_iRes = rndR.iNextInt(100);
-            xTEST_LESS_EQ(0, m_iRes);
+            m_iRv = rndR.iNextInt(100);
+            xTEST_LESS_EQ(0, m_iRv);
         }
 
         //--------------------------------------------------
         //iNextInt
         {
-            m_iRes = rndR.iNextInt(100, 200);
-            xTEST_EQ(true, 100 <= m_iRes && 200 >= m_iRes);
+            m_iRv = rndR.iNextInt(100, 200);
+            xTEST_EQ(true, 100 <= m_iRv && 200 >= m_iRv);
         }
 
         //--------------------------------------------------
         //liNextLong
         {
-            m_liRes = rndR.liNextLong();
-            xTEST_LESS(0L, m_liRes);
+            m_liRv = rndR.liNextLong();
+            xTEST_LESS(0L, m_liRv);
         }
 
         //--------------------------------------------------
@@ -70,35 +70,35 @@ CxTest_CxRandom::bUnit(
         //--------------------------------------------------
         //fNextFloat
         {
-            m_fRes = rndR.fNextFloat();
+            m_fRv = rndR.fNextFloat();
             //xASSERT
         }
 
         //--------------------------------------------------
         //bNextDouble
         {
-            m_dRes = rndR.bNextDouble();
+            m_dRv = rndR.bNextDouble();
             //xASSERT
         }
 
         //--------------------------------------------------
         //chNextChar
         {
-            m_chRes = rndR.chNextChar();
+            m_chRv = rndR.chNextChar();
             //xASSERT
         }
 
         //--------------------------------------------------
         //chNextFigure
         {
-            m_chRes = rndR.chNextFigure();
+            m_chRv = rndR.chNextFigure();
             //xASSERT
         }
 
         //--------------------------------------------------
         //dNextGaussian
         {
-            m_dRes = rndR.dNextGaussian();
+            m_dRv = rndR.dNextGaussian();
             //xASSERT
         }
     #endif
@@ -120,14 +120,14 @@ CxTest_CxRandom::bUnit(
             const long_t cliMin = caliData[i][0];
             const long_t cliMax = caliData[i][1];
 
-            m_bRes = CxRandom::bSetSeed();
-            xTEST_EQ(true, m_bRes);
+            m_bRv = CxRandom::bSetSeed();
+            xTEST_EQ(true, m_bRv);
 
-            m_liRes = CxRandom::liGetInt(cliMin, cliMax);
-            xTEST_EQ(true, m_liRes >= cliMin && m_liRes <= cliMax);
+            m_liRv = CxRandom::liGetInt(cliMin, cliMax);
+            xTEST_EQ(true, m_liRv >= cliMin && m_liRv <= cliMax);
 
-            m_liRes = CxRandom::liGetIntEx(cliMin, cliMax);
-            xTEST_EQ(true, m_liRes >= cliMin && m_liRes <= cliMax);
+            m_liRv = CxRandom::liGetIntEx(cliMin, cliMax);
+            xTEST_EQ(true, m_liRv >= cliMin && m_liRv <= cliMax);
         }
     }
 
@@ -138,12 +138,12 @@ CxTest_CxRandom::bUnit(
         const size_t cuiStrSize = 10;
 
         for (size_t i = 0; i < 10; ++ i) {
-            m_bRes = CxRandom::bSetSeed();
-            xTEST_EQ(true, m_bRes);
+            m_bRv = CxRandom::bSetSeed();
+            xTEST_EQ(true, m_bRv);
 
-            m_sRes = CxRandom::sGetString(cuiStrSize);
-            xTEST_EQ(cuiStrSize, m_sRes.size());
-            //xTRACEV(xT("\ti: %s"), m_sRes.c_str());
+            m_sRv = CxRandom::sGetString(cuiStrSize);
+            xTEST_EQ(cuiStrSize, m_sRv.size());
+            //xTRACEV(xT("\ti: %s"), m_sRv.c_str());
         }
     }
 

@@ -19,11 +19,11 @@ operator << (
     const std::ustring_t           &cusValue
 )
 {
-    std::tstring_t sRes;
+    std::tstring_t sRv;
 
-    sRes.assign( cusValue.begin(), cusValue.end() );
+    sRv.assign( cusValue.begin(), cusValue.end() );
 
-    osOut << sRes << std::flush;
+    osOut << sRv << std::flush;
 
     return osOut;
 }
@@ -118,7 +118,7 @@ CxString::lexical_cast(
 {
     //cValueT - n/a
 
-    std::tstring_t sRes;
+    std::tstring_t sRv;
 
     try {
         std::tostringstream_t ossRes;
@@ -126,14 +126,14 @@ CxString::lexical_cast(
         ossRes.exceptions(std::tostringstream_t::failbit | std::tostringstream_t::badbit);
         ossRes << cValueT;
 
-        sRes = ossRes.str();
+        sRv = ossRes.str();
     } catch (std::tostringstream_t::failure &e) {
-        sRes.clear();
+        sRv.clear();
     } catch (...) {
-        sRes.clear();
+        sRv.clear();
     }
 
-    return sRes;
+    return sRv;
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -147,7 +147,7 @@ CxString::lexical_cast(
     //cValueT - n/a
     //ciBase  - n/a
 
-    std::tstring_t sRes;
+    std::tstring_t sRv;
 
     try {
         std::tostringstream_t ossRes;
@@ -155,14 +155,14 @@ CxString::lexical_cast(
         ossRes.exceptions(std::tostringstream_t::failbit | std::tostringstream_t::badbit);
         ossRes << std::setbase(ciBase) << std::uppercase << cValueT;  //std::showbase
 
-        sRes = ossRes.str();
+        sRv = ossRes.str();
     } catch (std::tostringstream_t::failure &e) {
-        sRes.clear();
+        sRv.clear();
     } catch (...) {
-        sRes.clear();
+        sRv.clear();
     }
 
-    return sRes;
+    return sRv;
 }
 //---------------------------------------------------------------------------
 /*static*/

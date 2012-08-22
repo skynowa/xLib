@@ -112,5 +112,5 @@ xNAMESPACE_END(NxLib)
 /*
 ����� ������������ ������ ������:
 
-m_bRes = thpTP->bCreateGroup(0, (uint_t (WINAPI *)(void *))&CTest::s_uiThreadFunc, NULL);
+m_bRv = thpTP->bCreateGroup(0, (uint_t (WINAPI *)(void *))&CTest::s_uiThreadFunc, NULL);
 */

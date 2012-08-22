@@ -25,16 +25,16 @@ CxCurrentProcess::bIsCurrent(
 {
     /*DEBUG*/
 
-    bool bRes = false;
+    bool bRv = false;
 
 #if xOS_ENV_WIN
-    bRes = (ulGetId() == culId);
+    bRv = (ulGetId() == culId);
 #elif xOS_ENV_UNIX
     // TODO: If either thread1 or thread2 are not valid thread IDs, the behavior is undefined
-    // bRes = ::pthread_equal(ulGetId(), culId);
+    // bRv = ::pthread_equal(ulGetId(), culId);
 #endif
 
-    return bRes;
+    return bRv;
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -42,17 +42,17 @@ CxProcess::TxId
 CxCurrentProcess::ulGetId() {
     /*DEBUG*/// n/a
 
-    CxProcess::TxId ulRes;
+    CxProcess::TxId ulRv;
 
 #if xOS_ENV_WIN
-    ulRes = ::GetCurrentProcessId();
+    ulRv = ::GetCurrentProcessId();
     /*DEBUG*/// n/a
 #elif xOS_ENV_UNIX
-    ulRes = ::getpid();
+    ulRv = ::getpid();
     /*DEBUG*/// n/a
 #endif
 
-    return ulRes;
+    return ulRv;
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -60,7 +60,7 @@ CxProcess::TxId
 CxCurrentProcess::ulGetParentId() {
     /*DEBUG*/// n/a
 
-    CxProcess::TxId ulRes;
+    CxProcess::TxId ulRv;
 
 #if xOS_ENV_WIN
 	#if xCOMPILER_MINGW32 || xCOMPILER_CODEGEAR
@@ -79,14 +79,14 @@ CxCurrentProcess::ulGetParentId() {
 
 	const CxProcess::TxId culInvalidId = (ulong_t)- 1;
 
-	bool  bRes   = false;
+	bool  bRv   = false;
 	CxDll dlDll;
 
-	bRes = dlDll.bLoad(xT("ntdll.dll"));
-	/*DEBUG*/xASSERT_RET(true == bRes, culInvalidId);
+	bRv = dlDll.bLoad(xT("ntdll.dll"));
+	/*DEBUG*/xASSERT_RET(true == bRv, culInvalidId);
 
-    bRes = dlDll.bIsProcExists(xT("NtQueryInformationProcess"));
-    xCHECK_RET(false == bRes, culInvalidId);
+    bRv = dlDll.bIsProcExists(xT("NtQueryInformationProcess"));
+    xCHECK_RET(false == bRv, culInvalidId);
 
 	ULONG_PTR pulProcessInformation[6] = {0};
 	ULONG     ulReturnLength           = 0UL;
@@ -95,16 +95,16 @@ CxCurrentProcess::ulGetParentId() {
 	/*DEBUG*/xASSERT_RET(NULL != DllNtQueryInformationProcess, culInvalidId);
 
 	NTSTATUS ntsRes = DllNtQueryInformationProcess(hGetHandle(), ProcessBasicInformation, &pulProcessInformation, sizeof(pulProcessInformation), &ulReturnLength);
-	bRes = (ntsRes >= 0 && ulReturnLength == sizeof(pulProcessInformation));
-	/*DEBUG*/xASSERT_RET(true == bRes, culInvalidId);
+	bRv = (ntsRes >= 0 && ulReturnLength == sizeof(pulProcessInformation));
+	/*DEBUG*/xASSERT_RET(true == bRv, culInvalidId);
 
-	ulRes = pulProcessInformation[5];
+	ulRv = pulProcessInformation[5];
 #elif xOS_ENV_UNIX
-    ulRes = ::getppid();
+    ulRv = ::getppid();
     /*DEBUG*/// n/a
 #endif
 
-    return ulRes;
+    return ulRv;
 }
 //---------------------------------------------------------------------------
 // TODO: tests
@@ -113,21 +113,21 @@ CxProcess::TxHandle
 CxCurrentProcess::hGetHandle() {
     /*DEBUG*/// n/a
 
-    CxProcess::TxHandle hRes;
+    CxProcess::TxHandle hRv;
 
 #if xOS_ENV_WIN
     #if xDEPRECIATE
-        hRes = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, ulGetId());
+        hRv = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, ulGetId());
     #else
-        hRes = ::GetCurrentProcess();
+        hRv = ::GetCurrentProcess();
     #endif
-    /*DEBUG*/xASSERT_RET(NULL != hRes, NULL);
+    /*DEBUG*/xASSERT_RET(NULL != hRv, NULL);
 #elif xOS_ENV_UNIX
-    hRes = ::getpid();
+    hRv = ::getpid();
     /*DEBUG*/// n/a
 #endif
 
-    return hRes;
+    return hRv;
 }
 //---------------------------------------------------------------------------
 // TODO: tests

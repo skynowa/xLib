@@ -22,7 +22,7 @@ CxTest_CxMimeMessage::bUnit(
     const ulonglong_t cullCaseLoops
 )
 {
-    std::string m_sRes;
+    std::string m_sRv;
 
     CxPop3 objPop3;
 
@@ -97,30 +97,30 @@ CxTest_CxMimeMessage::bUnit(
     //-------------------------------------
     //sGenerateMessageID
     {
-        m_sRes = CxMimeHeader::sGenerateMessageID();
-        xTEST_EQ(false, m_sRes.empty());
+        m_sRv = CxMimeHeader::sGenerateMessageID();
+        xTEST_EQ(false, m_sRv.empty());
     }
 
 
     //-------------------------------------
     //bCreate
-    m_bRes = objPop3.bCreate(csUser, csPass, csServer, usPort);
-    xTEST_EQ(true, m_bRes);
+    m_bRv = objPop3.bCreate(csUser, csPass, csServer, usPort);
+    xTEST_EQ(true, m_bRv);
 
     //-------------------------------------
     //bConnect
-    m_bRes = objPop3.bConnect();
-    xTEST_EQ(true, m_bRes);
+    m_bRv = objPop3.bConnect();
+    xTEST_EQ(true, m_bRv);
 
     //-------------------------------------
     //bLogin
-    m_bRes = objPop3.bLogin();
-    xTEST_EQ(true, m_bRes);
+    m_bRv = objPop3.bLogin();
+    xTEST_EQ(true, m_bRv);
 
     //-------------------------------------
     //bStat
-    m_bRes = objPop3.bStat(ulSum, ulSize);
-    xTEST_EQ(true, m_bRes);
+    m_bRv = objPop3.bStat(ulSum, ulSize);
+    xTEST_EQ(true, m_bRv);
     /*LOG*/printf("Mails %lu\n", ulSum);
 
     //-------------------------------------
@@ -136,38 +136,38 @@ CxTest_CxMimeMessage::bUnit(
         //CxMimeHeader
         CxMimeHeader objHeader;
 
-        m_bRes = objPop3.bTop(i, 0, /*ref*/sRawHeader);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = objPop3.bTop(i, 0, /*ref*/sRawHeader);
+        xTEST_EQ(true, m_bRv);
 
         //-------------------------------------
         //bParse
-        m_bRes = objHeader.bParse(sRawHeader);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = objHeader.bParse(sRawHeader);
+        xTEST_EQ(true, m_bRv);
 
         //-------------------------------------
         //sGetField
-        ////m_sRes = objHeader.sGetField("Message-Id");
-        ////xTEST_EQ(false, m_sRes.empty());
+        ////m_sRv = objHeader.sGetField("Message-Id");
+        ////xTEST_EQ(false, m_sRv.empty());
 
-        ////m_sRes = objHeader.sGetField("fRom");
-        ////xTEST_EQ(false, m_sRes.empty());
-        ////xTEST_EQ("\"Admin@localhost\" <Admin@localhost>", m_sRes);
+        ////m_sRv = objHeader.sGetField("fRom");
+        ////xTEST_EQ(false, m_sRv.empty());
+        ////xTEST_EQ("\"Admin@localhost\" <Admin@localhost>", m_sRv);
 
-        ////m_sRes = objHeader.sGetField("X-MailType");
-        ////xTEST_EQ(false,         m_sRes.empty());
-        ////xTEST_EQ("Mail bomber", m_sRes);
+        ////m_sRv = objHeader.sGetField("X-MailType");
+        ////xTEST_EQ(false,         m_sRv.empty());
+        ////xTEST_EQ("Mail bomber", m_sRv);
 
-        ////m_sRes = objHeader.sGetField("To");
-        ////xTEST_EQ(false,              m_sRes.empty());
-        ////xTEST_EQ("test_1@localhost", m_sRes);
+        ////m_sRv = objHeader.sGetField("To");
+        ////xTEST_EQ(false,              m_sRv.empty());
+        ////xTEST_EQ("test_1@localhost", m_sRv);
 
-        ////m_sRes = objHeader.sGetField("Subject");
-        ////xTEST_EQ(false,                   m_sRes.empty());
-        ////xTEST_EQ("=?KOI8-R?B?8uXs4A==?=", m_sRes);
+        ////m_sRv = objHeader.sGetField("Subject");
+        ////xTEST_EQ(false,                   m_sRv.empty());
+        ////xTEST_EQ("=?KOI8-R?B?8uXs4A==?=", m_sRv);
 
-        ////m_sRes = objHeader.sGetField("Return-Path");
-        ////xTEST_EQ(false,               m_sRes.empty());
-        ////xTEST_EQ("<Admin@localhost>", m_sRes);
+        ////m_sRv = objHeader.sGetField("Return-Path");
+        ////xTEST_EQ(false,               m_sRv.empty());
+        ////xTEST_EQ("<Admin@localhost>", m_sRv);
 
         /*LOG*/printf("bTop %lu\n", i);
     }
@@ -179,41 +179,41 @@ CxTest_CxMimeMessage::bUnit(
 
         //-------------------------------------
         //bRetrieveHeader
-        m_bRes = objPop3.bRetrieveHeader(y, objHeader);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = objPop3.bRetrieveHeader(y, objHeader);
+        xTEST_EQ(true, m_bRv);
 
         //-------------------------------------
         //sGetField
-        ////m_sRes = objHeader.sGetField("Message-Id");
-        ////xTEST_EQ(false, m_sRes.empty());
+        ////m_sRv = objHeader.sGetField("Message-Id");
+        ////xTEST_EQ(false, m_sRv.empty());
 
-        ////m_sRes = objHeader.sGetField("fRom");
-        ////xTEST_EQ(false, m_sRes.empty());
-        ////xTEST_EQ("\"Admin@localhost\" <Admin@localhost>", m_sRes);
+        ////m_sRv = objHeader.sGetField("fRom");
+        ////xTEST_EQ(false, m_sRv.empty());
+        ////xTEST_EQ("\"Admin@localhost\" <Admin@localhost>", m_sRv);
 
-        ////m_sRes = objHeader.sGetField("X-MailType");
-        ////xTEST_EQ(false,         m_sRes.empty());
-        ////xTEST_EQ("Mail bomber", m_sRes);
+        ////m_sRv = objHeader.sGetField("X-MailType");
+        ////xTEST_EQ(false,         m_sRv.empty());
+        ////xTEST_EQ("Mail bomber", m_sRv);
 
-        ////m_sRes = objHeader.sGetField("To");
-        ////xTEST_EQ(false,              m_sRes.empty());
-        ////xTEST_EQ("test_1@localhost", m_sRes);
+        ////m_sRv = objHeader.sGetField("To");
+        ////xTEST_EQ(false,              m_sRv.empty());
+        ////xTEST_EQ("test_1@localhost", m_sRv);
 
-        ////m_sRes = objHeader.sGetField("Subject");
-        ////xTEST_EQ(false,                   m_sRes.empty());
-        ////xTEST_EQ("=?KOI8-R?B?8uXs4A==?=", m_sRes);
+        ////m_sRv = objHeader.sGetField("Subject");
+        ////xTEST_EQ(false,                   m_sRv.empty());
+        ////xTEST_EQ("=?KOI8-R?B?8uXs4A==?=", m_sRv);
 
-        ////m_sRes = objHeader.sGetField("Return-Path");
-        ////xTEST_EQ(false,               m_sRes.empty());
-        ////xTEST_EQ("<Admin@localhost>", m_sRes);
+        ////m_sRv = objHeader.sGetField("Return-Path");
+        ////xTEST_EQ(false,               m_sRv.empty());
+        ////xTEST_EQ("<Admin@localhost>", m_sRv);
 
         /*LOG*/printf("bRetrieveHeader %lu\n", y);
     }
 
     //-------------------------------------
     //bDisconnect
-    m_bRes = objPop3.bDisconnect();
-    xTEST_EQ(true, m_bRes);
+    m_bRv = objPop3.bDisconnect();
+    xTEST_EQ(true, m_bRv);
 
     return true;
 }

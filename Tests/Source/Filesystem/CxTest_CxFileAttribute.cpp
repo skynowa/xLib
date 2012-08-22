@@ -36,27 +36,27 @@ CxTest_CxFileAttribute::bUnit(
     //--------------------------------------------------
     //prepare
     {
-        m_bRes = CxFile::bDelete(csFilePath);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = CxFile::bDelete(csFilePath);
+        xTEST_EQ(true, m_bRv);
 
         CxFile F;
 
-        m_bRes = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        xTEST_EQ(true, m_bRv);
 
-        m_bRes = F.bClose();
-        xTEST_EQ(true, m_bRes);
+        m_bRv = F.bClose();
+        xTEST_EQ(true, m_bRv);
 
-        m_bRes = CxFile::bIsExists(csFilePath);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = CxFile::bIsExists(csFilePath);
+        xTEST_EQ(true, m_bRv);
     }
 
     //--------------------------------------------------
     //bSet, atGet
     xTEST_CASE(cullCaseLoops)
     {
-        m_bRes = CxFileAttribute::bSet(csFilePath, cfaValue);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = CxFileAttribute::bSet(csFilePath, cfaValue);
+        xTEST_EQ(true, m_bRv);
 
         CxFileAttribute::EAttribute faRes;
 
@@ -68,14 +68,14 @@ CxTest_CxFileAttribute::bUnit(
     //bAdd
     xTEST_CASE(cullCaseLoops)
     {
-        m_bRes = CxFileAttribute::bClear(csFilePath);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = CxFileAttribute::bClear(csFilePath);
+        xTEST_EQ(true, m_bRv);
 
-        m_bRes = CxFileAttribute::bAdd(csFilePath, cfaValue);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = CxFileAttribute::bAdd(csFilePath, cfaValue);
+        xTEST_EQ(true, m_bRv);
 
-        m_bRes = CxFileAttribute::bIsExists(csFilePath, cfaValue);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = CxFileAttribute::bIsExists(csFilePath, cfaValue);
+        xTEST_EQ(true, m_bRv);
     }
 
     //--------------------------------------------------
@@ -86,52 +86,52 @@ CxTest_CxFileAttribute::bUnit(
             CxFileAttribute::EAttribute faAttr  = CxFileAttribute::faHidden;
             CxFileAttribute::EAttribute faValue = CxFileAttribute::faReadOnly;
 
-            m_bRes = CxFileAttribute::bClear(csFilePath);
-            xTEST_EQ(true, m_bRes);
+            m_bRv = CxFileAttribute::bClear(csFilePath);
+            xTEST_EQ(true, m_bRv);
 
-            m_bRes = CxFileAttribute::bAdd(csFilePath, faAttr);
-            xTEST_EQ(true, m_bRes);
+            m_bRv = CxFileAttribute::bAdd(csFilePath, faAttr);
+            xTEST_EQ(true, m_bRv);
 
-            m_bRes = CxFileAttribute::bIsExists(csFilePath, faAttr);
-            xTEST_EQ(true, m_bRes);
+            m_bRv = CxFileAttribute::bIsExists(csFilePath, faAttr);
+            xTEST_EQ(true, m_bRv);
 
-            m_bRes = CxFileAttribute::bAdd(csFilePath, faValue);
-            xTEST_EQ(true, m_bRes);
+            m_bRv = CxFileAttribute::bAdd(csFilePath, faValue);
+            xTEST_EQ(true, m_bRv);
 
-            m_bRes = CxFileAttribute::bIsExists(csFilePath, faValue);
-            xTEST_EQ(true, m_bRes);
+            m_bRv = CxFileAttribute::bIsExists(csFilePath, faValue);
+            xTEST_EQ(true, m_bRv);
 
             //remove
-            m_bRes = CxFileAttribute::bRemove(csFilePath, faValue);
-            xTEST_EQ(true, m_bRes);
+            m_bRv = CxFileAttribute::bRemove(csFilePath, faValue);
+            xTEST_EQ(true, m_bRv);
 
-            m_bRes = CxFileAttribute::bIsExists(csFilePath, faValue);
-            xTEST_EQ(false, m_bRes);
+            m_bRv = CxFileAttribute::bIsExists(csFilePath, faValue);
+            xTEST_EQ(false, m_bRv);
 
-            m_bRes = CxFileAttribute::bIsExists(csFilePath, faAttr);
-            xTEST_EQ(true, m_bRes);
+            m_bRv = CxFileAttribute::bIsExists(csFilePath, faAttr);
+            xTEST_EQ(true, m_bRv);
 
             CxFileAttribute::EAttribute faRes = CxFileAttribute::atGet(csFilePath);
             xTEST_EQ((int)faAttr, (int)faRes);
         #elif xOS_ENV_UNIX
             //file
             {
-                m_bRes = CxFileAttribute::bIsExists(csFilePath, CxFileAttribute::faRegularFile);
-                xTEST_EQ(true, m_bRes);
+                m_bRv = CxFileAttribute::bIsExists(csFilePath, CxFileAttribute::faRegularFile);
+                xTEST_EQ(true, m_bRv);
 
-                m_bRes = CxFileAttribute::bIsExists(csFilePath, CxFileAttribute::faRegularFile);
-                xTEST_EQ(true, m_bRes);
+                m_bRv = CxFileAttribute::bIsExists(csFilePath, CxFileAttribute::faRegularFile);
+                xTEST_EQ(true, m_bRv);
             }
 
             //dir
             {
                 const std::tstring_t csDirPath = sGetWorkDirPath();
 
-                m_bRes = CxFileAttribute::bIsExists(csDirPath, CxFileAttribute::faDirectory);
-                xTEST_EQ(true, m_bRes);
+                m_bRv = CxFileAttribute::bIsExists(csDirPath, CxFileAttribute::faDirectory);
+                xTEST_EQ(true, m_bRv);
 
-                m_bRes = CxFileAttribute::bIsExists(csDirPath, CxFileAttribute::faDirectory);
-                xTEST_EQ(true, m_bRes);
+                m_bRv = CxFileAttribute::bIsExists(csDirPath, CxFileAttribute::faDirectory);
+                xTEST_EQ(true, m_bRv);
             }
         #endif
     }
@@ -148,8 +148,8 @@ CxTest_CxFileAttribute::bUnit(
             const CxFileAttribute::EAttribute cfaAddValue    = CxFileAttribute::faSymbolicLink;
         #endif
 
-        m_bRes = CxFileAttribute::bModify(csFilePath, cfaRemoveValue, cfaAddValue);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = CxFileAttribute::bModify(csFilePath, cfaRemoveValue, cfaAddValue);
+        xTEST_EQ(true, m_bRv);
     }
 
     //--------------------------------------------------
@@ -162,19 +162,19 @@ CxTest_CxFileAttribute::bUnit(
             CxFileAttribute::EAttribute faAttr = CxFileAttribute::faRegularFile;
         #endif
 
-        m_bRes = CxFileAttribute::bClear(csFilePath);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = CxFileAttribute::bClear(csFilePath);
+        xTEST_EQ(true, m_bRv);
 
-        m_bRes = CxFileAttribute::bIsExists(csFilePath, faAttr);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = CxFileAttribute::bIsExists(csFilePath, faAttr);
+        xTEST_EQ(true, m_bRv);
     }
 
     //--------------------------------------------------
     //bClear
     xTEST_CASE(cullCaseLoops)
     {
-        m_bRes = CxFileAttribute::bClear(csFilePath);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = CxFileAttribute::bClear(csFilePath);
+        xTEST_EQ(true, m_bRv);
 
         CxFileAttribute::EAttribute faRes;
 

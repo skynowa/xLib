@@ -32,11 +32,11 @@ CxTest_CxFileLog::bUnit(
     //bSetFilePath, sGetFilePath
     xTEST_CASE(cullCaseLoops)
     {
-        m_bRes = flLog.bSetFilePath(csFilePath);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = flLog.bSetFilePath(csFilePath);
+        xTEST_EQ(true, m_bRv);
 
-        m_sRes = flLog.sGetFilePath();
-        xTEST_EQ(csFilePath, m_sRes);
+        m_sRv = flLog.sGetFilePath();
+        xTEST_EQ(csFilePath, m_sRv);
     }
 
     //--------------------------------------------------
@@ -44,8 +44,8 @@ CxTest_CxFileLog::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         for (size_t i = 0; i < 10; ++ i) {
-            m_bRes = flLog.bWrite(xT("simple log string: %s"), xT("qwerty01234567890"));
-            xTEST_EQ(true, m_bRes);
+            m_bRv = flLog.bWrite(xT("simple log string: %s"), xT("qwerty01234567890"));
+            xTEST_EQ(true, m_bRv);
             xTEST_LESS(0LL, CxFile::llGetSize( flLog.sGetFilePath()) );
         }
     }
@@ -54,8 +54,8 @@ CxTest_CxFileLog::bUnit(
     //bClear
     xTEST_CASE(cullCaseLoops)
     {
-        m_bRes = flLog.bClear();
-        xTEST_EQ(true, m_bRes);
+        m_bRv = flLog.bClear();
+        xTEST_EQ(true, m_bRv);
         xTEST_EQ(0LL, CxFile::llGetSize( flLog.sGetFilePath()) );
     }
 
@@ -63,8 +63,8 @@ CxTest_CxFileLog::bUnit(
     //bDelete
     xTEST_CASE(cullCaseLoops)
     {
-        m_bRes = flLog.bDelete();
-        xTEST_EQ(true, m_bRes);
+        m_bRv = flLog.bDelete();
+        xTEST_EQ(true, m_bRv);
         xTEST_EQ(false, CxFile::bIsExists( flLog.sGetFilePath()) );
     }
 

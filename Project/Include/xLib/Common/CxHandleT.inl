@@ -76,8 +76,8 @@ CxHandleT<hvTag>::operator = (
 
     xCHECK_RET(_m_hHandle == chHandle, *this);
 
-    bool bRes = bClose();
-    /////*DEBUG*/xASSERT_RET(true == bRes, *this);
+    bool bRv = bClose();
+    /////*DEBUG*/xASSERT_RET(true == bRv, *this);
 
     _m_hHandle = chHandle;
 
@@ -95,8 +95,8 @@ CxHandleT<hvTag>::operator = (
 
     xCHECK_RET(this == &chHandle, *this);
 
-    bool bRes = bClose();
-    /////*DEBUG*/xASSERT_RET(true == bRes, *this);
+    bool bRv = bClose();
+    /////*DEBUG*/xASSERT_RET(true == bRv, *this);
 
     _m_hHandle = chHandle.hDuplicate();
     /*DEBUG*/// n/a;
@@ -131,7 +131,7 @@ CxHandleT<hvTag>::hDuplicate() const {
     /*DEBUG*/// n/a
     xCHECK_RET(false == bIsValid(), TxErrorValue::hGet());
 
-    native_handle_t hRes = TxErrorValue::hGet();
+    native_handle_t hRv = TxErrorValue::hGet();
 
 #if xOS_ENV_WIN
     native_handle_t hCurrentProcess = ::GetCurrentProcess();
@@ -140,18 +140,18 @@ CxHandleT<hvTag>::hDuplicate() const {
                     hCurrentProcess,
                     _m_hHandle,
                     hCurrentProcess,
-                    &hRes,
+                    &hRv,
                     DUPLICATE_SAME_ACCESS,
                     FALSE,
                     DUPLICATE_SAME_ACCESS
     );
     /////*DEBUG*/xASSERT_RET(FALSE != blRes, TxErrorValue::hGet());
 #elif xOS_ENV_UNIX
-    hRes = ::dup(_m_hHandle);
-    /////*DEBUG*/xASSERT_RET(TxErrorValue::hGet() != hRes, TxErrorValue::hGet());
+    hRv = ::dup(_m_hHandle);
+    /////*DEBUG*/xASSERT_RET(TxErrorValue::hGet() != hRv, TxErrorValue::hGet());
 #endif
 
-    return hRes;
+    return hRv;
 }
 //---------------------------------------------------------------------------
 template<EHandleValue hvTag>
@@ -159,7 +159,7 @@ bool
 CxHandleT<hvTag>::bIsValid() const {
     /*DEBUG*///n/a
 
-    bool bRes = false;
+    bool bRv = false;
 
 #if xOS_ENV_WIN
     bool bCond1 = (reinterpret_cast<native_handle_t>(0xCDCDCDCD) != _m_hHandle);   //created but not initialised
@@ -170,15 +170,15 @@ CxHandleT<hvTag>::bIsValid() const {
     bool bCond6 = (reinterpret_cast<native_handle_t>(0xDDDDDDDD) != _m_hHandle);   //deleted
     bool bCond7 = (TxErrorValue::hGet()                         != _m_hHandle);   //compare with error handle value
 
-    bRes = bCond1 && bCond2 && bCond3 && bCond4 && bCond5 && bCond6 && bCond7;
+    bRv = bCond1 && bCond2 && bCond3 && bCond4 && bCond5 && bCond6 && bCond7;
 #elif xOS_ENV_UNIX
     bool bCond1 = (TxErrorValue::hGet()                         != _m_hHandle);   //compare with error handle value
     bool bCond2 = (TxErrorValue::hGet()                         <  _m_hHandle);   //handle value is negative
 
-    bRes = bCond1 && bCond2;
+    bRv = bCond1 && bCond2;
 #endif
 
-    return bRes;
+    return bRv;
 }
 //---------------------------------------------------------------------------
 template<EHandleValue hvTag>
@@ -190,8 +190,8 @@ CxHandleT<hvTag>::bAttach(
     /*DEBUG*/// n/a
     xCHECK_RET(false == bIsValid(), true);
 
-    bool bRes = bClose();
-    /////*DEBUG*/xASSERT_RET(true == bRes, false);
+    bool bRv = bClose();
+    /////*DEBUG*/xASSERT_RET(true == bRv, false);
 
     _m_hHandle = chHandle;
 
@@ -221,8 +221,8 @@ CxHandleT<hvTag>::bClose() {
     BOOL blRes = ::CloseHandle(_m_hHandle);
     /////*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX
-    int  iRes  = ::close(_m_hHandle);
-    /////*DEBUG*/xASSERT_RET(- 1 != iRes, false);
+    int  iRv  = ::close(_m_hHandle);
+    /////*DEBUG*/xASSERT_RET(- 1 != iRv, false);
 #endif
 
     _m_hHandle = TxErrorValue::hGet();

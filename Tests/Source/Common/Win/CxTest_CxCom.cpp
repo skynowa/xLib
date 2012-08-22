@@ -30,18 +30,18 @@ CxTest_CxCom::bUnit(
     // bIsInit
     xTEST_CASE(cullCaseLoops)
     {
-        m_bRes = CxCom::bIsInit();
-        xTEST_EQ(false, m_bRes);
+        m_bRv = CxCom::bIsInit();
+        xTEST_EQ(false, m_bRv);
 
         {
             CxCom cmCom(CxCom::cmMultiThreaded);
 
-            m_bRes = CxCom::bIsInit();
-            xTEST_EQ(true, m_bRes);
+            m_bRv = CxCom::bIsInit();
+            xTEST_EQ(true, m_bRv);
         }
 
-        m_bRes = CxCom::bIsInit();
-        xTEST_EQ(false, m_bRes);
+        m_bRv = CxCom::bIsInit();
+        xTEST_EQ(false, m_bRv);
     }
 
 #endif

@@ -25,7 +25,7 @@ CxProcessInfo::ulGetCpuUsage(
     const CxProcess::TxId cidId
 )
 {
-    ulong_t ulRes = 0UL;
+    ulong_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN
     // TODO: CxProcessInfo::ulGetCpuUsage
@@ -33,7 +33,7 @@ CxProcessInfo::ulGetCpuUsage(
     // TODO: CxProcessInfo::ulGetCpuUsage
 #endif
 
-    return ulRes;
+    return ulRv;
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -42,7 +42,7 @@ CxProcessInfo::ulGetRamUsage(
     const CxProcess::TxId cidId
 )
 {
-    ulong_t ulRes = 0UL;
+    ulong_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN
     // TODO: CxProcessInfo::ulGetRamUsage
@@ -50,7 +50,7 @@ CxProcessInfo::ulGetRamUsage(
     // TODO: CxProcessInfo::ulGetRamUsage
 #endif
 
-    return ulRes;
+    return ulRv;
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -59,7 +59,7 @@ CxProcessInfo::ulGetIOBytes(
     const CxProcess::TxId cidId
 )
 {
-    ulong_t ulRes = 0UL;
+    ulong_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN
     // TODO: CxProcessInfo::ulGetIOBytes
@@ -92,12 +92,12 @@ CxProcessInfo::ulGetIOBytes(
         ulWriteBytes = CxString::lexical_cast<ulong_t>( sValue );
     }
 
-    ulRes = ulReadBytes + ulWriteBytes;
+    ulRv = ulReadBytes + ulWriteBytes;
 
     xTRACEV("\tulReadBytes: %lu, ulWriteBytes: %lu", ulReadBytes, ulWriteBytes);
 #endif
 
-    return ulRes;
+    return ulRv;
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -106,49 +106,49 @@ CxProcessInfo::sGetExeName(
     const CxProcess::TxId cidId
 )
 {
-    std::tstring_t sRes;
+    std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
-    sRes.resize(xPATH_MAX);
+    sRv.resize(xPATH_MAX);
 
     CxProcess::TxHandle hHandle = CxProcess::ulGetHandleById(cidId);
 
-    DWORD ulStored = ::GetModuleFileNameEx(hHandle, NULL, &sRes.at(0), sRes.size());
+    DWORD ulStored = ::GetModuleFileNameEx(hHandle, NULL, &sRv.at(0), sRv.size());
     /*DEBUG*/xASSERT_RET(0UL != ulStored, std::tstring_t());
 
-    sRes.resize(ulStored);
+    sRv.resize(ulStored);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         const std::tstring_t csProcFile = CxString::sFormat(xT("/proc/%ld/exe"), cidId);
 
-        bool bRes = CxFile::bIsExists(csProcFile);
-        xCHECK_RET(false == bRes, std::tstring_t());
+        bool bRv = CxFile::bIsExists(csProcFile);
+        xCHECK_RET(false == bRv, std::tstring_t());
 
         int iReaded = - 1;
-        sRes.resize(xPATH_MAX);
+        sRv.resize(xPATH_MAX);
 
         for ( ; ; ) {
-            iReaded = ::readlink(csProcFile.c_str(), &sRes.at(0), sRes.size() * sizeof(std::tstring_t::value_type));
+            iReaded = ::readlink(csProcFile.c_str(), &sRv.at(0), sRv.size() * sizeof(std::tstring_t::value_type));
             /*DEBUG*/xASSERT_RET(- 1 != iReaded, std::tstring_t());
 
-            xCHECK_DO(sRes.size() * sizeof(std::tstring_t::value_type) > static_cast<size_t>( iReaded ), break);
+            xCHECK_DO(sRv.size() * sizeof(std::tstring_t::value_type) > static_cast<size_t>( iReaded ), break);
 
-            sRes.resize(sRes.size() * 2);
+            sRv.resize(sRv.size() * 2);
         }
 
-        sRes.resize(iReaded);
+        sRv.resize(iReaded);
     #elif xOS_FREEBSD
         #if defined(KERN_PROC_PATHNAME)
-            sRes.resize(xPATH_MAX);
+            sRv.resize(xPATH_MAX);
 
             int aiMib[] = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, cidId};
 
-            size_t uiResSize = sRes.size() * sizeof(std::tstring_t::value_type);
+            size_t uiResSize = sRv.size() * sizeof(std::tstring_t::value_type);
 
-            int iRes = ::sysctl(aiMib, xARRAY_SIZE(aiMib), &sRes.at(0), &uiResSize, NULL, 0);
-            /*DEBUG*/xASSERT_RET(- 1 != iRes, std::tstring_t());
+            int iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), &sRv.at(0), &uiResSize, NULL, 0);
+            /*DEBUG*/xASSERT_RET(- 1 != iRv, std::tstring_t());
 
-            sRes.resize(uiResSize);
+            sRv.resize(uiResSize);
         #else
             // TODO: CxProcessInfo::sGetExeName
             xNOT_IMPLEMENTED_RET(std::tstring_t());
@@ -156,7 +156,7 @@ CxProcessInfo::sGetExeName(
     #endif
 #endif
 
-    return sRes;
+    return sRv;
 }
 //----------------------------------------------------------------------------------------------------
 /*static*/
@@ -165,7 +165,7 @@ CxProcessInfo::ulGetParentId(
     const CxProcess::TxId cidId
 )
 {
-    ulong_t ulRes = 0UL;
+    ulong_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN
     // TODO: CxProcessInfo::ulGetParentProcessId
@@ -177,7 +177,7 @@ CxProcessInfo::ulGetParentId(
     #endif
 #endif
 
-    return ulRes;
+    return ulRv;
 }
 //----------------------------------------------------------------------------------------------------
 

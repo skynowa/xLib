@@ -106,8 +106,8 @@ CxStackTrace::bGet(
 
         Dl_info dlinfo = {0};
 
-        int iRes = ::dladdr(pvStack[i], &dlinfo);
-        if (0 == iRes) {
+        int iRv = ::dladdr(pvStack[i], &dlinfo);
+        if (0 == iRv) {
             sStackLine = CxString::sFormat(xT("%u: %s"), iFramesNum - i - 1, ppszSymbols[i]);
         } else {
             const tchar_t *pcszSymName     = NULL;
@@ -142,18 +142,18 @@ CxStackTrace::sGet(
     const std::tstring_t &csLinesSeparator /* = xT("\n") */
 )
 {
-    std::tstring_t sRes;
+    std::tstring_t sRv;
 
     std::vector<std::tstring_t> vsStack;
 
-    bool bRes = bGet(&vsStack);
-    if (false == bRes) {
-        sRes.clear();
+    bool bRv = bGet(&vsStack);
+    if (false == bRv) {
+        sRv.clear();
     } else {
-        sRes = CxString::sJoin(vsStack, csLinesSeparator);
+        sRv = CxString::sJoin(vsStack, csLinesSeparator);
     }
 
-    return sRes;
+    return sRv;
 }
 //---------------------------------------------------------------------------
 

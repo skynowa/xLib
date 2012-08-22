@@ -69,15 +69,15 @@ CxTest_CxSystemInfo::bUnit(
             mapData.insert( std::pair<CxSystemInfo::EOsType, std::tstring_t>(CxSystemInfo::otWindows7,               xT("Windows 7")) );
 
             xFOREACH_CONST(TData, it, mapData) {
-                m_sRes = CxSystemInfo::sFormatOsType((*it).first);
-                xTEST_EQ((*it).second, m_sRes);
+                m_sRv = CxSystemInfo::sFormatOsType((*it).first);
+                xTEST_EQ((*it).second, m_sRv);
             }
         #elif xOS_ENV_UNIX
-            m_sRes = CxSystemInfo::sFormatOsType(CxSystemInfo::otLinux);
-            xTEST_EQ(false, m_sRes.empty());
+            m_sRv = CxSystemInfo::sFormatOsType(CxSystemInfo::otLinux);
+            xTEST_EQ(false, m_sRv.empty());
 
-            m_sRes = CxSystemInfo::sFormatOsType(CxSystemInfo::otFreeBSD);
-            xTEST_EQ(false, m_sRes.empty());
+            m_sRv = CxSystemInfo::sFormatOsType(CxSystemInfo::otFreeBSD);
+            xTEST_EQ(false, m_sRv.empty());
         #endif
     }
 
@@ -95,24 +95,24 @@ CxTest_CxSystemInfo::bUnit(
     //sFormatOsArch
     xTEST_CASE(cullCaseLoops)
     {
-        m_sRes = CxSystemInfo::sFormatOsArch(CxSystemInfo::oaUnknown);
-        xTEST_EQ(false, m_sRes.empty());
+        m_sRv = CxSystemInfo::sFormatOsArch(CxSystemInfo::oaUnknown);
+        xTEST_EQ(false, m_sRv.empty());
 
-        m_sRes = CxSystemInfo::sFormatOsArch(CxSystemInfo::oa32bit);
-        xTEST_EQ(false, m_sRes.empty());
+        m_sRv = CxSystemInfo::sFormatOsArch(CxSystemInfo::oa32bit);
+        xTEST_EQ(false, m_sRv.empty());
 
-        m_sRes = CxSystemInfo::sFormatOsArch(CxSystemInfo::oa64bit);
-        xTEST_EQ(false, m_sRes.empty());
+        m_sRv = CxSystemInfo::sFormatOsArch(CxSystemInfo::oa64bit);
+        xTEST_EQ(false, m_sRv.empty());
     }
 
     //-------------------------------------
     //sGetHostName
     xTEST_CASE(cullCaseLoops)
     {
-        m_sRes = CxSystemInfo::sGetHostName();
-        xTEST_EQ(false, m_sRes.empty());
+        m_sRv = CxSystemInfo::sGetHostName();
+        xTEST_EQ(false, m_sRv.empty());
         #if xTEST_IGNORE
-            xTRACEV(xT("\tCxSystemInfo::sGetHostName(): %s"), m_sRes.c_str());
+            xTRACEV(xT("\tCxSystemInfo::sGetHostName(): %s"), m_sRv.c_str());
         #endif
     }
 
@@ -120,9 +120,9 @@ CxTest_CxSystemInfo::bUnit(
     //bIsUserAnAdmin
     xTEST_CASE(cullCaseLoops)
     {
-        m_bRes = CxSystemInfo::bIsUserAnAdmin();
+        m_bRv = CxSystemInfo::bIsUserAnAdmin();
         #if xTEST_IGNORE
-            xTRACEV(xT("\tCxSystemInfo::bIsUserAnAdmin(): %s"), CxString::sBoolToStr(m_bRes).c_str());
+            xTRACEV(xT("\tCxSystemInfo::bIsUserAnAdmin(): %s"), CxString::sBoolToStr(m_bRv).c_str());
         #endif
     }
 
@@ -130,10 +130,10 @@ CxTest_CxSystemInfo::bUnit(
     //sGetUserName
     xTEST_CASE(cullCaseLoops)
     {
-        m_sRes = CxSystemInfo::sGetUserName();
-        xTEST_EQ(false, m_sRes.empty());
+        m_sRv = CxSystemInfo::sGetUserName();
+        xTEST_EQ(false, m_sRv.empty());
         #if xTEST_IGNORE
-            xTRACEV(xT("\tCxSystemInfo::sGetUserName(): %s"), m_sRes.c_str());
+            xTRACEV(xT("\tCxSystemInfo::sGetUserName(): %s"), m_sRv.c_str());
         #endif
     }
 
@@ -141,11 +141,11 @@ CxTest_CxSystemInfo::bUnit(
     // sGetUseHomeDir
     xTEST_CASE(cullCaseLoops)
     {
-        m_sRes = CxSystemInfo::sGetUseHomeDir();
-        xTEST_EQ(false, m_sRes.empty());
-        xTEST_EQ(true,  CxDir::bIsExists(m_sRes));
+        m_sRv = CxSystemInfo::sGetUseHomeDir();
+        xTEST_EQ(false, m_sRv.empty());
+        xTEST_EQ(true,  CxDir::bIsExists(m_sRv));
         #if xTEST_IGNORE || 1
-            xTRACEV(xT("\tCxSystemInfo::sGetUseHomeDir(): %s"), m_sRes.c_str());
+            xTRACEV(xT("\tCxSystemInfo::sGetUseHomeDir(): %s"), m_sRv.c_str());
         #endif
     }
 
@@ -153,22 +153,22 @@ CxTest_CxSystemInfo::bUnit(
     //ulGetNumOfCpus
     xTEST_CASE(cullCaseLoops)
     {
-        m_ulRes = CxSystemInfo::ulGetNumOfCpus();
+        m_ulRv = CxSystemInfo::ulGetNumOfCpus();
         #if xTEST_IGNORE
-            xTRACEV(xT("\tCxSystemInfo::ulGetNumOfCpus: %lu"), m_ulRes);
+            xTRACEV(xT("\tCxSystemInfo::ulGetNumOfCpus: %lu"), m_ulRv);
         #endif
-        xTEST_LESS(0UL, m_ulRes);
+        xTEST_LESS(0UL, m_ulRv);
     }
 
     //-------------------------------------
     //ulGetCurrentCpuNum
     xTEST_CASE(cullCaseLoops)
     {
-        m_ulRes = CxSystemInfo::ulGetCurrentCpuNum();
+        m_ulRv = CxSystemInfo::ulGetCurrentCpuNum();
         #if xTEST_IGNORE
-            xTRACEV(xT("\tCxSystemInfo::ulGetCurrentCpuNum: %lu"), m_ulRes);
+            xTRACEV(xT("\tCxSystemInfo::ulGetCurrentCpuNum: %lu"), m_ulRv);
         #endif
-        xTEST_EQ(true, CxSystemInfo::ulGetNumOfCpus() > m_ulRes);
+        xTEST_EQ(true, CxSystemInfo::ulGetNumOfCpus() > m_ulRv);
     }
 
     //--------------------------------------------------
@@ -183,11 +183,11 @@ CxTest_CxSystemInfo::bUnit(
     //sGetCpuModel
     xTEST_CASE(cullCaseLoops)
     {
-        m_sRes = CxSystemInfo::sGetCpuModel();
-        xTEST_EQ(false, m_sRes.empty());
+        m_sRv = CxSystemInfo::sGetCpuModel();
+        xTEST_EQ(false, m_sRv.empty());
 
         #if xTEST_IGNORE
-            xTRACEV(xT("\tCPU model: %s"), m_sRes.c_str());
+            xTRACEV(xT("\tCPU model: %s"), m_sRv.c_str());
         #endif
     }
 
@@ -195,26 +195,26 @@ CxTest_CxSystemInfo::bUnit(
     //ulGetCpuSpeed
     xTEST_CASE(cullCaseLoops)
     {
-        m_ulRes = CxSystemInfo::ulGetCpuSpeed();
-        xTEST_LESS(0UL, m_ulRes);
+        m_ulRv = CxSystemInfo::ulGetCpuSpeed();
+        xTEST_LESS(0UL, m_ulRv);
 
         #if xTEST_IGNORE
-            xTRACEV(xT("\tCPU speed: %ld"), m_ulRes);
+            xTRACEV(xT("\tCPU speed: %ld"), m_ulRv);
         #endif
     }
 
     //--------------------------------------------------
     //ullGetRamTotal
     {
-        m_ullRes = CxSystemInfo::ullGetRamTotal();
-        xTEST_LESS(0ULL, m_ullRes);
+        m_ullRv = CxSystemInfo::ullGetRamTotal();
+        xTEST_LESS(0ULL, m_ullRv);
     }
 
     //--------------------------------------------------
     //ullGetRamAvailable
     {
-        m_ullRes = CxSystemInfo::ullGetRamAvailable();
-        xTEST_LESS(0ULL, m_ullRes);
+        m_ullRv = CxSystemInfo::ullGetRamAvailable();
+        xTEST_LESS(0ULL, m_ullRv);
     }
 
     //--------------------------------------------------
@@ -222,11 +222,11 @@ CxTest_CxSystemInfo::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         for (size_t i = 0; i < 10; ++ i) {
-            m_ulRes = CxSystemInfo::ulGetCpuUsage();
-            xDEBUG_VAR_NA(m_ulRes);
+            m_ulRv = CxSystemInfo::ulGetCpuUsage();
+            xDEBUG_VAR_NA(m_ulRv);
 
             #if xTEST_IGNORE
-                xTRACEV(xT("\tCPU usage: %ld"), m_ulRes);
+                xTRACEV(xT("\tCPU usage: %ld"), m_ulRv);
 
                 CxCurrentThread::bSleep(1000UL);
             #endif
@@ -238,11 +238,11 @@ CxTest_CxSystemInfo::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         for (size_t i = 0; i < 10; ++ i) {
-            m_ulRes = CxSystemInfo::ulGetRamUsage();
-            xDEBUG_VAR_NA(m_ulRes);
+            m_ulRv = CxSystemInfo::ulGetRamUsage();
+            xDEBUG_VAR_NA(m_ulRv);
 
             #if xTEST_IGNORE
-                xTRACEV(xT("\tMemory usage: %ld"), m_ulRes);
+                xTRACEV(xT("\tMemory usage: %ld"), m_ulRv);
 
                 CxCurrentThread::bSleep(1000UL);
             #endif
@@ -253,8 +253,8 @@ CxTest_CxSystemInfo::bUnit(
     //ulGetPageSize
     xTEST_CASE(cullCaseLoops)
     {
-        m_ulRes = CxSystemInfo::ulGetPageSize();
-        xTEST_LESS(0UL, m_ulRes);
+        m_ulRv = CxSystemInfo::ulGetPageSize();
+        xTEST_LESS(0UL, m_ulRv);
     }
 
     return true;

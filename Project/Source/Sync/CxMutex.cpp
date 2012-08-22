@@ -50,10 +50,10 @@ CxMutex::bCreate(
 #if xOS_ENV_WIN
     const tchar_t *pcszName = (true == csName.empty()) ? (NULL) : (csName.c_str());
 
-    HANDLE hRes = ::CreateMutex(NULL, FALSE, pcszName);
-    /*DEBUG*/xASSERT_RET(NULL != hRes, false);
+    HANDLE hRv = ::CreateMutex(NULL, FALSE, pcszName);
+    /*DEBUG*/xASSERT_RET(NULL != hRv, false);
 
-    _m_hHandle.bSet(hRes);
+    _m_hHandle.bSet(hRv);
 #elif xOS_ENV_UNIX
 
 #endif
@@ -70,9 +70,9 @@ CxMutex::bLock(
     /*DEBUG*///culTimeout - n/a
 
 #if xOS_ENV_WIN
-    DWORD ulRes = ::WaitForSingleObject(_m_hHandle.hGet(), culTimeout);
-    /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0  == ulRes, false);
-    /*DEBUG*/xASSERT_RET(WAIT_ABANDONED != ulRes, false);
+    DWORD ulRv = ::WaitForSingleObject(_m_hHandle.hGet(), culTimeout);
+    /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0  == ulRv, false);
+    /*DEBUG*/xASSERT_RET(WAIT_ABANDONED != ulRv, false);
 #elif xOS_ENV_UNIX
 
 #endif

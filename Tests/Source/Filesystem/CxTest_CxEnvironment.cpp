@@ -34,8 +34,8 @@ CxTest_CxEnvironment::bUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            m_bRes = CxEnvironment::bSetVar(sData[i][0], sData[i][1]);
-            xTEST_EQ(true, m_bRes);
+            m_bRv = CxEnvironment::bSetVar(sData[i][0], sData[i][1]);
+            xTEST_EQ(true, m_bRv);
         }
     }
 
@@ -164,11 +164,11 @@ CxTest_CxEnvironment::bUnit(
     //bGetValues
     xTEST_CASE(cullCaseLoops)
     {
-        m_bRes = CxEnvironment::bGetValues(&m_vsRes);
-        xTEST_EQ(true, m_bRes);
-        xTEST_EQ(false, m_vsRes.empty());
+        m_bRv = CxEnvironment::bGetValues(&m_vsRv);
+        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(false, m_vsRv.empty());
 
-        ////CxString::vStdVectorPrintT(m_vsRes);
+        ////CxString::vStdVectorPrintT(m_vsRv);
     }
 
     //-------------------------------------

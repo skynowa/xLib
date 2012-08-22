@@ -32,8 +32,8 @@ CxProfiler::CxProfiler(
 //---------------------------------------------------------------------------
 CxProfiler::~CxProfiler() {
     if (false == _flLog.sGetFilePath().empty()) {
-        bool bRes = _flLog.bWrite(xT("----------------------------------------"));
-        /*DEBUG*/xASSERT_DO(true == bRes, return);
+        bool bRv = _flLog.bWrite(xT("----------------------------------------"));
+        /*DEBUG*/xASSERT_DO(true == bRv, return);
     }
 }
 //---------------------------------------------------------------------------
@@ -44,8 +44,8 @@ CxProfiler::bSetLogPath(
 {
     /*DEBUG*/
 
-    bool bRes = _flLog.bSetFilePath(csLogPath);
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bool bRv = _flLog.bSetFilePath(csLogPath);
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     return true;
 }
@@ -61,12 +61,12 @@ bool
 CxProfiler::bStart() {
     /*DEBUG*/xASSERT_RET(false == _m_bIsStarted, false);
 
-    bool bRes = _bResetData();
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bool bRv = _bResetData();
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     #if xTODO
-        bRes = CxProcess::bSetPriority(CxProcess::ulGetCurrId(), CxProcess::tpTimeCritical);
-        /*DEBUG*/xASSERT(true == bRes);
+        bRv = CxProcess::bSetPriority(CxProcess::ulGetCurrId(), CxProcess::tpTimeCritical);
+        /*DEBUG*/xASSERT(true == bRv);
     #endif
 
     CxCurrentThread::bSleep(10UL);
@@ -210,19 +210,19 @@ CxProfiler::bStop(
 
     //-------------------------------------
     //format comment
-    std::tstring_t sRes;
+    std::tstring_t sRv;
 
     va_list palArgs;
     xVA_START(palArgs, pcszComment);
 
-    sRes = CxString::sFormatV(pcszComment, palArgs);
+    sRv = CxString::sFormatV(pcszComment, palArgs);
 
     xVA_END(palArgs);
 
     //-------------------------------------
     //write to log
-    bool bRes = _flLog.bWrite(xT("%s: %s"), sTimeString.c_str(), sRes.c_str());
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bool bRv = _flLog.bWrite(xT("%s: %s"), sTimeString.c_str(), sRv.c_str());
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     _m_bIsStarted = false;
 
@@ -236,22 +236,22 @@ CxProfiler::bPulse(
 {
     //-------------------------------------
     //format comment
-    std::tstring_t sRes;
+    std::tstring_t sRv;
 
     va_list palArgs;
     xVA_START(palArgs, pcszComment);
 
-    sRes = CxString::sFormatV(pcszComment, palArgs);
+    sRv = CxString::sFormatV(pcszComment, palArgs);
 
     xVA_END(palArgs);
 
     //-------------------------------------
     //stop, start
-    bool bRes = bStop(xT("%s"), sRes.c_str());
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bool bRv = bStop(xT("%s"), sRv.c_str());
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
-    bRes = bStart();
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bRv = bStart();
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     return true;
 }
@@ -267,8 +267,8 @@ CxProfiler::bPulse(
 bool
 CxProfiler::_bResetData() {
     #if xTODO
-        bool bRes = CxProcess::bSetPriority(CxCurrentProcess::ulGetId(), CxProcess::tpNormal);
-        /*DEBUG*/xASSERT(true == bRes);
+        bool bRv = CxProcess::bSetPriority(CxCurrentProcess::ulGetId(), CxProcess::tpNormal);
+        /*DEBUG*/xASSERT(true == bRv);
     #endif
 
     _m_bIsStarted                       = false;
@@ -322,17 +322,17 @@ std::clock_t
 CxProfiler::_liGetClock() {
     /*DEBUG*/
 
-    std::clock_t liRes = static_cast<clock_t>( - 1 );
+    std::clock_t liRv = static_cast<clock_t>( - 1 );
 
     rusage ruUsage = {{0}};
 
-    int iRes = ::getrusage(RUSAGE_SELF, &ruUsage);
-    /*DEBUG*/xASSERT_RET(- 1 != iRes, static_cast<clock_t>( - 1 ));
+    int iRv = ::getrusage(RUSAGE_SELF, &ruUsage);
+    /*DEBUG*/xASSERT_RET(- 1 != iRv, static_cast<clock_t>( - 1 ));
 
-    liRes = static_cast<std::clock_t>(ruUsage.ru_utime.tv_sec  + ruUsage.ru_stime.tv_sec) * 1000000 +
+    liRv = static_cast<std::clock_t>(ruUsage.ru_utime.tv_sec  + ruUsage.ru_stime.tv_sec) * 1000000 +
             ruUsage.ru_utime.tv_usec + ruUsage.ru_stime.tv_usec;
 
-    return liRes;
+    return liRv;
 }
 
 #endif
@@ -353,24 +353,24 @@ CxProfiler::gettimeofday(
 #endif
 
     FILETIME    ftTime    = {0};
-    ulonglong_t ullRes    = 0ULL;
+    ulonglong_t ullRv    = 0ULL;
     static int  s_iTzFlag = 0;
 
     if (NULL != tv) {
         (void)::GetSystemTimeAsFileTime(&ftTime);
 
-        ullRes |= ftTime.dwHighDateTime;
-        ullRes <<= 32ULL;
-        ullRes |= ftTime.dwLowDateTime;
+        ullRv |= ftTime.dwHighDateTime;
+        ullRv <<= 32ULL;
+        ullRv |= ftTime.dwLowDateTime;
 
         //convert into microseconds
-        ullRes /= 10ULL;
+        ullRv /= 10ULL;
 
         //converting file time to unix epoch
-        ullRes -= DELTA_EPOCH_IN_MICROSECS;
+        ullRv -= DELTA_EPOCH_IN_MICROSECS;
 
-        tv->tv_sec  = static_cast<long_t>( ullRes / 1000000UL );
-        tv->tv_usec = static_cast<long_t>( ullRes % 1000000UL );
+        tv->tv_sec  = static_cast<long_t>( ullRv / 1000000UL );
+        tv->tv_usec = static_cast<long_t>( ullRv % 1000000UL );
     }
 
     if (NULL != tz) {

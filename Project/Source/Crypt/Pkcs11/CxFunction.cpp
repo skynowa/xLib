@@ -43,8 +43,8 @@ CxFunction::bGetList(
 {
     /*DEBUG*/
 
-    CK_RV ulRes = _m_pFunc->C_GetFunctionList(ppFunctionList);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    CK_RV ulRv = _m_pFunc->C_GetFunctionList(ppFunctionList);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -53,8 +53,8 @@ bool
 CxFunction::bGetStatus() {
     /*DEBUG*/
 
-    CK_RV ulRes = _m_pFunc->C_GetFunctionStatus(_m_hSession );
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    CK_RV ulRv = _m_pFunc->C_GetFunctionStatus(_m_hSession );
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -63,8 +63,8 @@ bool
 CxFunction::bCancel() {
     /*DEBUG*/
 
-    CK_RV ulRes = _m_pFunc->C_CancelFunction(_m_hSession);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    CK_RV ulRv = _m_pFunc->C_CancelFunction(_m_hSession);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -74,8 +74,8 @@ CxFunction::bGetListEx() {
     /*DEBUG*/
 
     #if xTODO
-        CK_RV ulRes = _m_pFunc->ETC_GetFunctionListEx();
-        /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+        CK_RV ulRv = _m_pFunc->ETC_GetFunctionListEx();
+        /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
     #endif
 
     return true;

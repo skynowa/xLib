@@ -31,12 +31,12 @@ CxEnvironment::bIsExists(
     xCHECK_RET(true == csVarName.empty(), false);
 
 #if xOS_ENV_WIN
-    std::tstring_t sRes;
+    std::tstring_t sRv;
     DWORD          ulStored = 0UL;
 
-    sRes.resize(xPATH_MAX);
+    sRv.resize(xPATH_MAX);
 
-    ulStored = ::GetEnvironmentVariable(csVarName.c_str(), &sRes.at(0), sRes.size());
+    ulStored = ::GetEnvironmentVariable(csVarName.c_str(), &sRv.at(0), sRv.size());
     /*DEBUG*/// n/a
     xCHECK_RET(0UL == ulStored && ERROR_ENVVAR_NOT_FOUND == CxLastError::ulGet(), false);
 #elif xOS_ENV_UNIX
@@ -84,30 +84,30 @@ CxEnvironment::sGetVar(
     /*DEBUG*/// n/a
     xCHECK_RET(false == bIsExists(csVarName), std::tstring_t());
 
-    std::tstring_t sRes;
+    std::tstring_t sRv;
 
 #if xOS_ENV_WIN
     DWORD ulStored = 0UL;
 
-    sRes.resize(xPATH_MAX);
+    sRv.resize(xPATH_MAX);
 
-    ulStored = ::GetEnvironmentVariable(csVarName.c_str(), &sRes.at(0), sRes.size());
+    ulStored = ::GetEnvironmentVariable(csVarName.c_str(), &sRv.at(0), sRv.size());
     /*DEBUG*/xASSERT_RET(0UL != ulStored, std::tstring_t());
 
-    sRes.resize(ulStored);
+    sRv.resize(ulStored);
 
-    if (sRes.size() < ulStored) {
-        ulStored = ::GetEnvironmentVariable(csVarName.c_str(), &sRes.at(0), sRes.size());
+    if (sRv.size() < ulStored) {
+        ulStored = ::GetEnvironmentVariable(csVarName.c_str(), &sRv.at(0), sRv.size());
         /*DEBUG*/xASSERT_RET(0UL != ulStored, std::tstring_t());
     }
 #elif xOS_ENV_UNIX
     const char *pcszRes = ::getenv(csVarName.c_str());
     /*DEBUG*/xASSERT_RET(NULL != pcszRes, std::tstring_t());
 
-    sRes.assign(pcszRes);
+    sRv.assign(pcszRes);
 #endif
 
-    return sRes;
+    return sRv;
 }
 //--------------------------------------------------------------------------
 /*static*/
@@ -124,8 +124,8 @@ CxEnvironment::bSetVar(
     BOOL blRes = ::SetEnvironmentVariable(csVarName.c_str(), csValue.c_str());
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX
-    int iRes = ::setenv(csVarName.c_str(), csValue.c_str(), true);
-    /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
+    int iRv = ::setenv(csVarName.c_str(), csValue.c_str(), true);
+    /*DEBUG*/xASSERT_RET(- 1 != iRv, false);
 #endif
 
     return true;
@@ -145,8 +145,8 @@ CxEnvironment::bDeleteVar(
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        int iRes = ::unsetenv(csVarName.c_str());
-        /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
+        int iRv = ::unsetenv(csVarName.c_str());
+        /*DEBUG*/xASSERT_RET(- 1 != iRv, false);
     #elif xOS_FREEBSD
         (void)::unsetenv(csVarName.c_str());
     #endif
@@ -204,43 +204,43 @@ CxEnvironment::sExpandStrings(
 {
     /*DEBUG*/xASSERT_RET(false == csVar.empty(), std::tstring_t());
 
-    std::tstring_t sRes;
+    std::tstring_t sRv;
 
 #if xOS_ENV_WIN
     DWORD ulStored = 0UL;
 
-    sRes.resize(xPATH_MAX);
+    sRv.resize(xPATH_MAX);
 
-    ulStored = ::ExpandEnvironmentStrings(csVar.c_str(), &sRes.at(0), sRes.size());
+    ulStored = ::ExpandEnvironmentStrings(csVar.c_str(), &sRv.at(0), sRv.size());
     /*DEBUG*/xASSERT_RET(0UL != ulStored, std::tstring_t());
 
-    sRes.resize(ulStored);
+    sRv.resize(ulStored);
 
-    if (sRes.size() < ulStored) {
-        ulStored = ::ExpandEnvironmentStrings(csVar.c_str(), &sRes.at(0), sRes.size());
+    if (sRv.size() < ulStored) {
+        ulStored = ::ExpandEnvironmentStrings(csVar.c_str(), &sRv.at(0), sRv.size());
         /*DEBUG*/xASSERT_RET(0UL != ulStored, std::tstring_t());
     }
 
-    sRes.resize(ulStored - sizeof('\0'));
+    sRv.resize(ulStored - sizeof('\0'));
 #elif xOS_ENV_UNIX
     const std::tstring_t csSep = xT("%");
 
-    sRes = csVar;
+    sRv = csVar;
 
     for ( ; ; ) {
         //--------------------------------------------------
         //find from left two first chars '%'
-        const size_t cuiStartSepPos = sRes.find(csSep);
+        const size_t cuiStartSepPos = sRv.find(csSep);
         xCHECK_DO(std::tstring_t::npos == cuiStartSepPos, break);
 
-        const size_t cuiStopSepPos  = sRes.find(csSep, cuiStartSepPos + csSep.size());
+        const size_t cuiStopSepPos  = sRv.find(csSep, cuiStartSepPos + csSep.size());
         xCHECK_DO(std::tstring_t::npos == cuiStopSepPos, break);
 
         //--------------------------------------------------
         //copy %var% to temp string
         std::tstring_t sRawEnvVar; // %var%
 
-        sRawEnvVar = CxString::sCut(sRes, cuiStartSepPos, cuiStopSepPos + csSep.size());
+        sRawEnvVar = CxString::sCut(sRv, cuiStartSepPos, cuiStopSepPos + csSep.size());
         xASSERT(false == sRawEnvVar.empty());
 
         std::tstring_t sEnvVar;    // var
@@ -255,11 +255,11 @@ CxEnvironment::sExpandStrings(
 
         //--------------------------------------------------
         //replace sEnvVar(%var%) by sExpandedEnvVar
-        sRes.replace(cuiStartSepPos, sRawEnvVar.size(), sExpandedEnvVar);
+        sRv.replace(cuiStartSepPos, sRawEnvVar.size(), sExpandedEnvVar);
     }
 #endif
 
-    return sRes;
+    return sRv;
 }
 //--------------------------------------------------------------------------
 

@@ -43,8 +43,8 @@ bool
 CxSleeper::bWakeUp() {
     /*DEBUG*/// n/a
 
-    bool bRes = _m_objEvent.bSet();
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bool bRv = _m_objEvent.bSet();
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     return true;
 }

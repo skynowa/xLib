@@ -66,11 +66,11 @@ CxMySQLConnection::bOptions(
     /*DEBUG*/// cpvArg   - n/a
 
 #if MYSQL_VERSION_ID < 50154
-    int iRes = ::mysql_options(_m_pmsConnection, cmoOption, static_cast<const tchar_t *>( cpvArg ));
+    int iRv = ::mysql_options(_m_pmsConnection, cmoOption, static_cast<const tchar_t *>( cpvArg ));
 #else
-    int iRes = ::mysql_options(_m_pmsConnection, cmoOption, cpvArg);
+    int iRv = ::mysql_options(_m_pmsConnection, cmoOption, cpvArg);
 #endif
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, sGetLastErrorStr(), false);
+    /*DEBUG*/xASSERT_MSG_RET(0 == iRv, sGetLastErrorStr(), false);
 
     return true;
 }
@@ -87,35 +87,35 @@ CxMySQLConnection::bIsExists(
     const ulong_t         culClientFlag
 )
 {
-    bool bRes = false;
+    bool bRv = false;
 
     CxMySQLConnection conConn;
 
     {
-        bRes = conConn.bIsValid();
-        xCHECK_RET(false == bRes, false);
+        bRv = conConn.bIsValid();
+        xCHECK_RET(false == bRv, false);
 
-        bRes = conConn.bConnect(csHost, csUser, csPassword, xT(""), cuiPort, csUnixSocket, culClientFlag);
-        xCHECK_RET(false == bRes, false);
+        bRv = conConn.bConnect(csHost, csUser, csPassword, xT(""), cuiPort, csUnixSocket, culClientFlag);
+        xCHECK_RET(false == bRv, false);
 
-        bRes = conConn.bQuery(
+        bRv = conConn.bQuery(
                     xT("SELECT IF (EXISTS(SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '%s'), 'true', 'false')"),
                     csDb.c_str());
-        /*DEBUG*/xASSERT_RET(true == bRes, false);
+        /*DEBUG*/xASSERT_RET(true == bRv, false);
     }
 
 
     CxMySQLRecordset recRec(conConn, false);
 
     {
-        bRes = recRec.bIsValid();
-        /*DEBUG*/xASSERT_RET(true == bRes,                false);
+        bRv = recRec.bIsValid();
+        /*DEBUG*/xASSERT_RET(true == bRv,                false);
         /*DEBUG*/xASSERT_RET(1ULL == recRec.ullRowsNum(), false);
 
         std::vector<std::tstring_t> vsRow;
 
-        bRes = recRec.bFetchRow(&vsRow);
-        /*DEBUG*/xASSERT_RET(true == bRes,         false);
+        bRv = recRec.bFetchRow(&vsRow);
+        /*DEBUG*/xASSERT_RET(true == bRv,         false);
         /*DEBUG*/xASSERT_RET(1    == vsRow.size(), false);
 
         xCHECK_RET(true == CxString::bCompareNoCase(xT("false"), vsRow.at(0)), false);
@@ -171,8 +171,8 @@ CxMySQLConnection::bQuery(
     csSqlQuery = CxString::sFormatV(pcszSqlFormat, palArgs);
     xVA_END(palArgs);
 
-    int iRes = ::mysql_real_query(_m_pmsConnection, csSqlQuery.data(), static_cast<ulong_t>( csSqlQuery.size() ));
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRes, sGetLastErrorStr(), false);
+    int iRv = ::mysql_real_query(_m_pmsConnection, csSqlQuery.data(), static_cast<ulong_t>( csSqlQuery.size() ));
+    /*DEBUG*/xASSERT_MSG_RET(0 == iRv, sGetLastErrorStr(), false);
 
     return true;
 }
@@ -222,7 +222,7 @@ std::tstring_t
 CxMySQLConnection::sGetLastErrorStr() const {
     /*DEBUG*/xASSERT_RET(false != bIsValid(), std::tstring_t());
 
-    std::tstring_t sRes;
+    std::tstring_t sRv;
 
     const uint_t  cuiLastError = uiGetLastError();
     const char   *cpszRes      = ::mysql_error(_m_pmsConnection);
@@ -230,12 +230,12 @@ CxMySQLConnection::sGetLastErrorStr() const {
     /*DEBUG*/xASSERT_RET(NULL != cpszRes, std::tstring_t());
 
     if (0 == cuiLastError) {
-        sRes = CxString::sFormat(xT("%u - \"%s\""), cuiLastError, xT("Success"));
+        sRv = CxString::sFormat(xT("%u - \"%s\""), cuiLastError, xT("Success"));
     } else {
-        sRes = CxString::sFormat(xT("%u - \"%s\""), cuiLastError, cpszRes);
+        sRv = CxString::sFormat(xT("%u - \"%s\""), cuiLastError, cpszRes);
     }
 
-    return sRes;
+    return sRv;
 }
 //---------------------------------------------------------------------------
 
@@ -308,10 +308,10 @@ my_ulonglong
 CxMySQLRecordset::ullRowsNum() const {
     /*DEBUG*/xASSERT_RET(false != bIsValid(), 0);
 
-    my_ulonglong ullRes = ::mysql_num_rows(_m_pmrResult);
+    my_ulonglong ullRv = ::mysql_num_rows(_m_pmrResult);
     /*DEBUG*/// n/a
 
-    return ullRes;
+    return ullRv;
 }
 //---------------------------------------------------------------------------
 bool
@@ -383,12 +383,12 @@ CxMySQLRecordset::bFetchRow(
     uiFieldsNum   = _m_pcmcConnection->uiFieldCount();
 
     //fetch row
-    bool bRes = _bFetchRow(&mrRow);
-    xCHECK_RET(false == bRes, true);
+    bool bRv = _bFetchRow(&mrRow);
+    xCHECK_RET(false == bRv, true);
 
     //field lengths
-    bRes = _bFetchLengths(&pulFieldLengths);
-    xASSERT(true == bRes);
+    bRv = _bFetchLengths(&pulFieldLengths);
+    xASSERT(true == bRv);
     xASSERT(NULL  != pulFieldLengths);
 
     //push to std::vector

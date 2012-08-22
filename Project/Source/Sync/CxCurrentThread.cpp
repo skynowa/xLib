@@ -23,16 +23,16 @@ CxCurrentThread::bIsCurrent(
 {
     /*DEBUG*/
 
-    bool bRes = false;
+    bool bRv = false;
 
 #if xOS_ENV_WIN
-    bRes = (ulGetId() == culId);
+    bRv = (ulGetId() == culId);
 #elif xOS_ENV_UNIX
     //TODO: If either thread1 or thread2 are not valid thread IDs, the behavior is undefined
-    bRes = ::pthread_equal(ulGetId(), culId);
+    bRv = ::pthread_equal(ulGetId(), culId);
 #endif
 
-    return bRes;
+    return bRv;
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -40,17 +40,17 @@ CxThread::TxId
 CxCurrentThread::ulGetId() {
     /*DEBUG*/// n/a
 
-    CxThread::TxId ulRes = 0UL;
+    CxThread::TxId ulRv = 0UL;
 
 #if xOS_ENV_WIN
-    ulRes = ::GetCurrentThreadId();
-    /*DEBUG*/xASSERT_RET(0UL < ulRes, 0UL);
+    ulRv = ::GetCurrentThreadId();
+    /*DEBUG*/xASSERT_RET(0UL < ulRv, 0UL);
 #elif xOS_ENV_UNIX
-    ulRes = ::pthread_self();
-    /*DEBUG*/xASSERT_RET(0UL < ulRes, 0UL);
+    ulRv = ::pthread_self();
+    /*DEBUG*/xASSERT_RET(0UL < ulRv, 0UL);
 #endif
 
-    return ulRes;
+    return ulRv;
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -58,17 +58,17 @@ CxThread::TxHandle
 CxCurrentThread::hGetHandle() {
     /*DEBUG*/// n/a
 
-    CxThread::TxHandle hRes;
+    CxThread::TxHandle hRv;
 
 #if xOS_ENV_WIN
-    hRes = ::GetCurrentThread();
-    /*DEBUG*/xASSERT_RET(NULL != hRes, NULL);
+    hRv = ::GetCurrentThread();
+    /*DEBUG*/xASSERT_RET(NULL != hRv, NULL);
 #elif xOS_ENV_UNIX
-    hRes = ::pthread_self();
-    /*DEBUG*/xASSERT_RET(0 < hRes, 0);
+    hRv = ::pthread_self();
+    /*DEBUG*/xASSERT_RET(0 < hRv, 0);
 #endif
 
-    return hRes;
+    return hRv;
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -79,8 +79,8 @@ CxCurrentThread::bYield() {
 #if xOS_ENV_WIN
     (void)::SwitchToThread();
 #elif xOS_ENV_UNIX
-    int iRes = ::sched_yield();
-    /*DEBUG*/xASSERT_MSG_RET(- 1 != iRes, CxLastError::sFormat(iRes), false);
+    int iRv = ::sched_yield();
+    /*DEBUG*/xASSERT_MSG_RET(- 1 != iRv, CxLastError::sFormat(iRv), false);
 #endif
 
     return true;
@@ -103,9 +103,9 @@ CxCurrentThread::bSleep(
     tsSleep.tv_nsec = (culMsec % 1000) * (1000 * 1000);
 
     for ( ; ; ) {
-        int iRes = ::nanosleep(&tsSleep, &tsRemain);
+        int iRv = ::nanosleep(&tsSleep, &tsRemain);
         /*DEBUG*/// n/a
-        xCHECK_DO(!(- 1 == iRes && EINTR == CxLastError::ulGet()), break);
+        xCHECK_DO(!(- 1 == iRv && EINTR == CxLastError::ulGet()), break);
 
         tsSleep = tsRemain;
     }

@@ -34,18 +34,18 @@ CxTest_CxAutoCriticalSection::bUnit(
         {
             CxAutoCriticalSection acsCS(csCS);
 
-            m_bRes = acsCS.bIsLocked();
-            xTEST_EQ(true, m_bRes);
+            m_bRv = acsCS.bIsLocked();
+            xTEST_EQ(true, m_bRv);
 
             for (size_t i = 0; i < 10; ++ i) {
-                m_bRes = acsCS.bIsLocked();
-                xTEST_EQ(true, m_bRes);
+                m_bRv = acsCS.bIsLocked();
+                xTEST_EQ(true, m_bRv);
 
                 ++ uiCounter;
             }
 
-            m_bRes = acsCS.bIsLocked();
-            xTEST_EQ(true, m_bRes);
+            m_bRv = acsCS.bIsLocked();
+            xTEST_EQ(true, m_bRv);
         }
     }
 

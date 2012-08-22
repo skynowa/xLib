@@ -133,16 +133,16 @@ CxMimeHeader::sGetField(
     /*DEBUG*/xASSERT_RET(false == _m_mmsHeader.empty(), std::tstring_t());
     /*DEBUG*/xASSERT_RET(false == csName.empty(),       std::tstring_t());
 
-    std::tstring_t sRes;
+    std::tstring_t sRv;
 
     std::pair<std::multimap<std::tstring_t, std::tstring_t>::const_iterator, std::multimap<std::tstring_t, std::tstring_t>::const_iterator> prEqualRange = _m_mmsHeader.equal_range(csName);
 
     std::multimap<std::tstring_t, std::tstring_t>::const_iterator it;
     for (it = prEqualRange.first; it != prEqualRange.second; ++ it) {
-        sRes = (*it).second;
+        sRv = (*it).second;
     }
 
-    return sRes;
+    return sRv;
 }
 //---------------------------------------------------------------------------
 //DONE: uiCount
@@ -251,12 +251,12 @@ CxMimeHeader::bSaveToFile(
 /*static*/
 std::tstring_t
 CxMimeHeader::sGenerateMessageID() {
-    std::tstring_t sRes;
+    std::tstring_t sRv;
 
-    sRes = CxString::sFormat(xT("%s@%s"), CxString::sCreateGuid().c_str(), CxSystemInfo::sGetHostName().c_str());
-    /*DEBUG*/xASSERT_RET(false == sRes.empty(), std::tstring_t());
+    sRv = CxString::sFormat(xT("%s@%s"), CxString::sCreateGuid().c_str(), CxSystemInfo::sGetHostName().c_str());
+    /*DEBUG*/xASSERT_RET(false == sRv.empty(), std::tstring_t());
 
-    return sRes;
+    return sRv;
 }
 //---------------------------------------------------------------------------
 

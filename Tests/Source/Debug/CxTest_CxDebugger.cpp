@@ -31,20 +31,20 @@ CxTest_CxDebugger::bUnit(
 
         CxDebugger dbgDebugger;
 
-        m_bRes = dbgDebugger.bGetEnabled();
-        xTEST_EQ(cbTrue, m_bRes);
+        m_bRv = dbgDebugger.bGetEnabled();
+        xTEST_EQ(cbTrue, m_bRv);
 
-        m_bRes = dbgDebugger.bSetEnabled(cbFalse);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = dbgDebugger.bSetEnabled(cbFalse);
+        xTEST_EQ(true, m_bRv);
 
-        m_bRes = dbgDebugger.bGetEnabled();
-        xTEST_EQ(cbFalse, m_bRes);
+        m_bRv = dbgDebugger.bGetEnabled();
+        xTEST_EQ(cbFalse, m_bRv);
 
-        m_bRes = dbgDebugger.bSetEnabled(cbTrue);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = dbgDebugger.bSetEnabled(cbTrue);
+        xTEST_EQ(true, m_bRv);
 
-        m_bRes = dbgDebugger.bGetEnabled();
-        xTEST_EQ(cbTrue, m_bRes);
+        m_bRv = dbgDebugger.bGetEnabled();
+        xTEST_EQ(cbTrue, m_bRv);
     }
 
     //-------------------------------------
@@ -53,7 +53,7 @@ CxTest_CxDebugger::bUnit(
     {
         CxDebugger dbgDebugger;
 
-        m_bRes = dbgDebugger.bIsActive();
+        m_bRv = dbgDebugger.bIsActive();
     }
 
     //-------------------------------------
@@ -62,11 +62,11 @@ CxTest_CxDebugger::bUnit(
     {
         CxDebugger dbgDebugger;
 
-        m_bRes = dbgDebugger.bIsDebugBuild();
+        m_bRv = dbgDebugger.bIsDebugBuild();
         #if defined(NDEBUG)
-            xTEST_EQ(false, m_bRes);
+            xTEST_EQ(false, m_bRv);
         #else
-            xTEST_EQ(true, m_bRes);
+            xTEST_EQ(true, m_bRv);
         #endif
     }
 
@@ -77,8 +77,8 @@ CxTest_CxDebugger::bUnit(
         CxDebugger dbgDebugger;
 
         #if xTEST_IGNORE
-            m_bRes = dbgDebugger.bBreak();
-            xTEST_EQ(true, m_bRes);
+            m_bRv = dbgDebugger.bBreak();
+            xTEST_EQ(true, m_bRv);
         #endif
     }
 
@@ -90,20 +90,20 @@ CxTest_CxDebugger::bUnit(
 
         CxDebugger dbgDebugger;
 
-        m_sRes = dbgDebugger.sGetLogPath();
-        xTEST_EQ(true, m_sRes.empty());
+        m_sRv = dbgDebugger.sGetLogPath();
+        xTEST_EQ(true, m_sRv.empty());
 
-        m_bRes = dbgDebugger.bSetLogPath(csFilePath);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = dbgDebugger.bSetLogPath(csFilePath);
+        xTEST_EQ(true, m_bRv);
 
-        m_sRes = dbgDebugger.sGetLogPath();
-        xTEST_EQ(csFilePath, m_sRes);
+        m_sRv = dbgDebugger.sGetLogPath();
+        xTEST_EQ(csFilePath, m_sRv);
 
-        m_bRes = dbgDebugger.bSetLogPath(xT(""));
-        xTEST_EQ(true, m_bRes);
+        m_bRv = dbgDebugger.bSetLogPath(xT(""));
+        xTEST_EQ(true, m_bRv);
 
-        m_sRes = dbgDebugger.sGetLogPath();
-        xTEST_EQ(true, m_sRes.empty());
+        m_sRv = dbgDebugger.sGetLogPath();
+        xTEST_EQ(true, m_sRv.empty());
     }
 
     //-------------------------------------
@@ -124,8 +124,8 @@ CxTest_CxDebugger::bUnit(
 
             CxDebugger dbgDebugger;
 
-            //m_bRes = dbgDebugger.bReportMake(rpReport);
-            //xTEST_EQ(true, m_bRes);
+            //m_bRv = dbgDebugger.bReportMake(rpReport);
+            //xTEST_EQ(true, m_bRv);
         }
     }
 
@@ -135,7 +135,7 @@ CxTest_CxDebugger::bUnit(
     {
         #if xTEST_IGNORE
             CxDebugger::bTrace(xT("\tCxDebugger: trace data %")xPR_SIZET, CxRandom::liGetIntEx(0, 10000));
-            xTEST_EQ(true, m_bRes);
+            xTEST_EQ(true, m_bRv);
         #endif
     }
 
@@ -147,7 +147,7 @@ CxTest_CxDebugger::bUnit(
             CxDebugger::bTrace(xT("\tCxDebugger: trace data %s"), CxRandom::sGetString( CxRandom::liGetIntEx(0, 20) ).c_str());
         #endif
 
-        xTEST_EQ(true, m_bRes);
+        xTEST_EQ(true, m_bRv);
     }
 
     //-------------------------------------
@@ -156,8 +156,8 @@ CxTest_CxDebugger::bUnit(
     {
         CxDebugger dbgDebugger;
 
-        m_bRes = dbgDebugger.bBeep();
-        xTEST_EQ(true, m_bRes);
+        m_bRv = dbgDebugger.bBeep();
+        xTEST_EQ(true, m_bRv);
     }
 
     //--------------------------------------------------

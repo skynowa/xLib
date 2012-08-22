@@ -29,8 +29,8 @@ CxTest_CxStackTrace::bUnit(
         CxStackTrace stStack;
         std::vector<std::tstring_t> vsStack;
 
-        m_bRes = stStack.bGet(&vsStack);
-        //xTEST_EQ(true, m_bRes);
+        m_bRv = stStack.bGet(&vsStack);
+        //xTEST_EQ(true, m_bRv);
         //xTEST_EQ(false, vsStack.empty());
     }
 

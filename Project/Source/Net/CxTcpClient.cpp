@@ -19,8 +19,8 @@ xNAMESPACE_BEGIN(NxLib)
 CxTcpClient::CxTcpClient() :
     _m_tvTimeout()
 {
-    bool bRes = bSetTimeout(0, SOCKET_TIMEOUT);
-    /*DEBUG*/xASSERT_DO(true == bRes, return);
+    bool bRv = bSetTimeout(0, SOCKET_TIMEOUT);
+    /*DEBUG*/xASSERT_DO(true == bRv, return);
 }
 //---------------------------------------------------------------------------
 CxTcpClient::~CxTcpClient() {
@@ -34,8 +34,8 @@ CxTcpClient::bIsReadable() {
 
     FD_SET(_m_sktSocket, &fds);
 
-    int iRes = ::select(0, &fds, NULL, NULL, &tvTimeout);
-    xCHECK_RET(iRes <= 0 || !FD_ISSET(_m_sktSocket, &fds), false);
+    int iRv = ::select(0, &fds, NULL, NULL, &tvTimeout);
+    xCHECK_RET(iRv <= 0 || !FD_ISSET(_m_sktSocket, &fds), false);
 
     return true;
 }
@@ -47,8 +47,8 @@ CxTcpClient::bIsWritable() {
 
     FD_SET(_m_sktSocket, &fds);
 
-    int iRes = ::select(0, NULL, &fds, NULL, &tvTimeout);
-    xCHECK_RET(iRes <= 0 || !FD_ISSET(_m_sktSocket, &fds), false);
+    int iRv = ::select(0, NULL, &fds, NULL, &tvTimeout);
+    xCHECK_RET(iRv <= 0 || !FD_ISSET(_m_sktSocket, &fds), false);
 
     return true;
 }
@@ -71,8 +71,8 @@ CxTcpClient::bConnect(
     saSockAddr.sin_addr.s_addr = ::inet_addr(asIp.c_str());
     saSockAddr.sin_port        = htons(usPort); //???????
 
-    int iRes = ::connect(_m_sktSocket, CxMacros::xreinterpret_cast<sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
-    /*DEBUG*/xASSERT_RET(etError != iRes, false);
+    int iRv = ::connect(_m_sktSocket, CxMacros::xreinterpret_cast<sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
+    /*DEBUG*/xASSERT_RET(etError != iRv, false);
 
     return true;
 }
@@ -85,14 +85,14 @@ CxTcpClient::bIoctl(
 {
     /*DEBUG*/xASSERT_RET(etInvalid != _m_sktSocket, false);
 
-    int iRes = etError;
+    int iRv = etError;
 
 #if xOS_ENV_WIN
-    iRes = ioctlsocket(_m_sktSocket, liCmd, pulArgp);
-    /*DEBUG*/xASSERT_RET(etError != iRes, false);
+    iRv = ioctlsocket(_m_sktSocket, liCmd, pulArgp);
+    /*DEBUG*/xASSERT_RET(etError != iRv, false);
 #elif xOS_ENV_UNIX
-    iRes = ::ioctl    (_m_sktSocket, liCmd, pulArgp);
-    /*DEBUG*/xASSERT_RET(etError != iRes, false);
+    iRv = ::ioctl    (_m_sktSocket, liCmd, pulArgp);
+    /*DEBUG*/xASSERT_RET(etError != iRv, false);
 #endif
 
     return true;
@@ -108,8 +108,8 @@ CxTcpClient::bSetNonBlockingMode(
 #if xOS_ENV_WIN
     ulong_t ulNonBlockingMode = static_cast<ulong_t>(cbFlag);
 
-    bool bRes = bIoctl(FIONBIO, static_cast<ulong_t FAR *>(&ulNonBlockingMode));
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bool bRv = bIoctl(FIONBIO, static_cast<ulong_t FAR *>(&ulNonBlockingMode));
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     /*
     int bOptVal = true;
@@ -186,15 +186,15 @@ CxTcpClient::bIsServerAlive(
     /*DEBUG*/xASSERT_RET(false == csIp.empty(),            false);
     /*DEBUG*/xASSERT_RET((65535 > usPort) && (0 < usPort), false);
 
-    bool bRes     = false;
-    int  iRes     = - 1;
+    bool bRv     = false;
+    int  iRv     = - 1;
 
     CxTcpClient objSocket;
 
     //-------------------------------------
     //bCreate
-    bRes = objSocket.bCreate(CxSocket::afInet, CxSocket::tpStream, CxSocket::ptIp);
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bRv = objSocket.bCreate(CxSocket::afInet, CxSocket::tpStream, CxSocket::ptIp);
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     //-------------------------------------
     //bConnect
@@ -207,10 +207,10 @@ CxTcpClient::bIsServerAlive(
     saSockAddr.sin_port        = htons(usPort); //TODO: htons
 
     //connect - [+] 0 [-] SOCKET_ERROR
-    iRes = ::connect(objSocket.iGetSocket(), CxMacros::xreinterpret_cast<sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
+    iRv = ::connect(objSocket.iGetSocket(), CxMacros::xreinterpret_cast<sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
     /*DEBUG*/// n/a
 
-    xCHECK_RET(0 != iRes, false);
+    xCHECK_RET(0 != iRv, false);
 
     return true;
 }
