@@ -66,15 +66,15 @@ CxLastError::sFormat(
     const ulong_t culCode
 )
 {
-    std::tstring_t sRes;
+    std::tstring_t sRv;
 
-    sRes = CxString::sFormat(xT("%lu - "), culCode);
+    sRv = CxString::sFormat(xT("%lu - "), culCode);
 
 #if xOS_ENV_WIN
-    DWORD  ulRes  = 0UL;
+    DWORD  ulRv  = 0UL;
     LPVOID pvBuff = NULL;
 
-    ulRes = ::FormatMessage(
+    ulRv = ::FormatMessage(
                     FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
                     NULL,
                     culCode,
@@ -83,16 +83,16 @@ CxLastError::sFormat(
                     0UL,
                     NULL);
 
-    xCHECK_RET(ERROR_MR_MID_NOT_FOUND == ulGet(), sRes.append(xT("Unknown error")));
-    xCHECK_RET(0UL                    == ulRes,   sRes.append(xT("[Cann't format error message]")));
+    xCHECK_RET(ERROR_MR_MID_NOT_FOUND == ulGet(), sRv.append(xT("Unknown error")));
+    xCHECK_RET(0UL                    == ulRv,   sRv.append(xT("[Cann't format error message]")));
 
     std::tstring_t sMessage;
 
-    sMessage.assign( static_cast<LPCTSTR>( pvBuff ), ulRes );
+    sMessage.assign( static_cast<LPCTSTR>( pvBuff ), ulRv );
     sMessage = CxString::sRemoveEol(sMessage);
     sMessage = CxString::sTrimRightChars(sMessage, CxConst::xDOT);
 
-    sRes.append(sMessage);
+    sRv.append(sMessage);
 
     (void)::LocalFree(pvBuff);
 #elif xOS_ENV_UNIX
@@ -100,20 +100,20 @@ CxLastError::sFormat(
         char szBuff[64 + 1] = {0};
 
         const tchar_t *pcszError = ::strerror_r(static_cast<int>( culCode ), &szBuff[0], xARRAY_SIZE(szBuff));
-        xCHECK_RET(NULL == pcszError, sRes.append(xT("[Cann't format error message]")));
+        xCHECK_RET(NULL == pcszError, sRv.append(xT("[Cann't format error message]")));
 
-        sRes.append(pcszError);
+        sRv.append(pcszError);
     #elif xOS_FREEBSD
         char szBuff[64 + 1] = {0};
 
-        int iRes = ::strerror_r(static_cast<int>( culCode ), &szBuff[0], xARRAY_SIZE(szBuff));
-        xCHECK_RET(- 1 == iRes, sRes.append(xT("[Cann't format error message]")));
+        int iRv = ::strerror_r(static_cast<int>( culCode ), &szBuff[0], xARRAY_SIZE(szBuff));
+        xCHECK_RET(- 1 == iRv, sRv.append(xT("[Cann't format error message]")));
 
-        sRes.append(&szBuff[0]);
+        sRv.append(&szBuff[0]);
     #endif
 #endif
 
-    return sRes;
+    return sRv;
 }
 //---------------------------------------------------------------------------
 

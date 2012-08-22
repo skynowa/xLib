@@ -32,25 +32,25 @@ CxTest_CxFileTemp::bUnit(
         CxFileTemp ftFileTemp(true);
         CxFile     fJobber;
 
-        m_bRes = ftFileTemp.bCreate(CxPath::sGetExe(), sGetWorkDirPath() + CxConst::xSLASH + xT("Temp"), &fJobber);
+        m_bRv = ftFileTemp.bCreate(CxPath::sGetExe(), sGetWorkDirPath() + CxConst::xSLASH + xT("Temp"), &fJobber);
         #if 0
             xTRACEV(xT("\tsTemp: %s"), fJobber.sGetPath().c_str());
         #endif
 
-        m_llRes = fJobber.llGetSize();
-        xTEST_EQ(0LL, m_llRes);
+        m_llRv = fJobber.llGetSize();
+        xTEST_EQ(0LL, m_llRv);
 
-        m_bRes = fJobber.bWriteLine(xT("qwertyuiop"));
-        xTEST_EQ(true, m_bRes);
+        m_bRv = fJobber.bWriteLine(xT("qwertyuiop"));
+        xTEST_EQ(true, m_bRv);
 
-        m_bRes = fJobber.bIsEmpty();
-        xTEST_EQ(false, m_bRes);
+        m_bRv = fJobber.bIsEmpty();
+        xTEST_EQ(false, m_bRv);
 
-        m_bRes = fJobber.bClear();
-        xTEST_EQ(true, m_bRes);
+        m_bRv = fJobber.bClear();
+        xTEST_EQ(true, m_bRv);
 
-        m_bRes = fJobber.bClose();
-        xTEST_EQ(true, m_bRes);
+        m_bRv = fJobber.bClose();
+        xTEST_EQ(true, m_bRv);
     }
 
     return true;

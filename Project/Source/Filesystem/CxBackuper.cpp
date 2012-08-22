@@ -47,15 +47,15 @@ CxBackuper::etExecute(
     /*DEBUG*/xASSERT_RET(false == csDestDirPath.empty(), etUnknown);
     /*DEBUG*/xASSERT_RET(NULL  != psDestFilePath,        etUnknown);
 
-    bool bRes = false;
+    bool bRv = false;
 
     (*psDestFilePath).clear();
 
-    bRes = CxFile::bIsExists(csFilePath);
-    xCHECK_RET(false == bRes, etDestFileNotExists);
+    bRv = CxFile::bIsExists(csFilePath);
+    xCHECK_RET(false == bRv, etDestFileNotExists);
 
-    bRes = CxDir::bIsExists(csDestDirPath);
-    xCHECK_DO(false == bRes, CxDir::bCreateForce(csDestDirPath));
+    bRv = CxDir::bIsExists(csDestDirPath);
+    xCHECK_DO(false == bRv, CxDir::bCreateForce(csDestDirPath));
 
     //-------------------------------------
     //process backup period
@@ -79,15 +79,15 @@ CxBackuper::etExecute(
                         CxPath::sGetFileName(csFilePath)    +
                         xT(".bak [") + sDateTimeStamp + xT("]");
 
-    bRes = CxFile::bIsExists(sBackupFilePath);
-    xCHECK_DO(true == bRes, *psDestFilePath = sBackupFilePath; return etSuccess);
+    bRv = CxFile::bIsExists(sBackupFilePath);
+    xCHECK_DO(true == bRv, *psDestFilePath = sBackupFilePath; return etSuccess);
 
     //-------------------------------------
     //check for enough space
     ulonglong_t ullTotalFreeBytes = 0ULL;
 
-    bRes = CxVolume::bGetSpace(csDestDirPath, NULL, NULL, &ullTotalFreeBytes);
-    xCHECK_RET(false == bRes, etUnknown);
+    bRv = CxVolume::bGetSpace(csDestDirPath, NULL, NULL, &ullTotalFreeBytes);
+    xCHECK_RET(false == bRv, etUnknown);
 
     if (static_cast<ulonglong_t>( CxFile::llGetSize(csFilePath) ) > ullTotalFreeBytes) {
         return etNotEnoughFreeSpace;
@@ -95,8 +95,8 @@ CxBackuper::etExecute(
 
     //-------------------------------------
     //copy
-    bRes = CxFile::bCopy(csFilePath, sBackupFilePath, true);
-    xCHECK_RET(false == bRes, etCopyingFail);
+    bRv = CxFile::bCopy(csFilePath, sBackupFilePath, true);
+    xCHECK_RET(false == bRv, etCopyingFail);
 
     //-------------------------------------
     //check for a valid backup

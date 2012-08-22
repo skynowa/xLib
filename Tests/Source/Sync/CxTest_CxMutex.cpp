@@ -30,8 +30,8 @@ CxTest_CxMutex::bUnit(
     //-------------------------------------
     //hGet
     {
-        ////CxMutex::TxHandle hRes = mtMutex.hGet();
-        ////xTEST_EQ(false, hRes.bIsValid());
+        ////CxMutex::TxHandle hRv = mtMutex.hGet();
+        ////xTEST_EQ(false, hRv.bIsValid());
     }
 
     //-------------------------------------
@@ -39,8 +39,8 @@ CxTest_CxMutex::bUnit(
     {
         CxMutex mtMutex;
 
-        m_bRes = mtMutex.bCreate(csName);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = mtMutex.bCreate(csName);
+        xTEST_EQ(true, m_bRv);
     }
 
     //-------------------------------------
@@ -50,14 +50,14 @@ CxTest_CxMutex::bUnit(
 
         CxMutex mtMutex;
 
-        m_bRes = mtMutex.bCreate(csName);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = mtMutex.bCreate(csName);
+        xTEST_EQ(true, m_bRv);
 
-        m_bRes = mtMutex.bLock(culTimeout);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = mtMutex.bLock(culTimeout);
+        xTEST_EQ(true, m_bRv);
 
-        m_bRes = mtMutex.bUnlock();
-        xTEST_EQ(true, m_bRes);
+        m_bRv = mtMutex.bUnlock();
+        xTEST_EQ(true, m_bRv);
     }
 
     return true;

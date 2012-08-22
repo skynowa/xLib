@@ -31,16 +31,16 @@ CxTest_CxCriticalSection::bUnit(
     {
         CxCriticalSection csCS;
 
-        m_bRes = csCS.bCreate();
-        xTEST_EQ(true, m_bRes);
+        m_bRv = csCS.bCreate();
+        xTEST_EQ(true, m_bRv);
 
-        m_bRes = csCS.bLock();
-        xTEST_EQ(true, m_bRes);
+        m_bRv = csCS.bLock();
+        xTEST_EQ(true, m_bRv);
 
         ++ uiVal;
 
-        m_bRes = csCS.bUnlock();
-        xTEST_EQ(true, m_bRes);
+        m_bRv = csCS.bUnlock();
+        xTEST_EQ(true, m_bRv);
     }
 
     //--------------------------------------------------
@@ -49,16 +49,16 @@ CxTest_CxCriticalSection::bUnit(
     {
         CxCriticalSection csCS;
 
-        m_bRes = csCS.bCreate();
-        xTEST_EQ(true, m_bRes);
+        m_bRv = csCS.bCreate();
+        xTEST_EQ(true, m_bRv);
 
-        m_bRes = csCS.bTryLock();
-        xTEST_EQ(true, m_bRes);
+        m_bRv = csCS.bTryLock();
+        xTEST_EQ(true, m_bRv);
 
         ++ uiVal;
 
-        m_bRes = csCS.bUnlock();
-        xTEST_EQ(true, m_bRes);
+        m_bRv = csCS.bUnlock();
+        xTEST_EQ(true, m_bRv);
     }
 
     //--------------------------------------------------
@@ -69,19 +69,19 @@ CxTest_CxCriticalSection::bUnit(
 
         const size_t cuiLocks = 10;
 
-        m_bRes = csCS.bCreate();
-        xTEST_EQ(true, m_bRes);
+        m_bRv = csCS.bCreate();
+        xTEST_EQ(true, m_bRv);
 
         for (size_t i = 0; i < cuiLocks; ++ i) {
-            m_bRes = csCS.bLock();
-            xTEST_EQ(true, m_bRes);
+            m_bRv = csCS.bLock();
+            xTEST_EQ(true, m_bRv);
         }
 
         ++ uiVal;
 
         for (size_t i = 0; i < cuiLocks; ++ i) {
-            m_bRes = csCS.bUnlock();
-            xTEST_EQ(true, m_bRes);
+            m_bRv = csCS.bUnlock();
+            xTEST_EQ(true, m_bRv);
         }
     }
 
@@ -93,19 +93,19 @@ CxTest_CxCriticalSection::bUnit(
 
         const size_t cuiLocks = 10;
 
-        m_bRes = csCS.bCreate();
-        xTEST_EQ(true, m_bRes);
+        m_bRv = csCS.bCreate();
+        xTEST_EQ(true, m_bRv);
 
         for (size_t i = 0; i < cuiLocks; ++ i) {
-            m_bRes = csCS.bTryLock();
-            xTEST_EQ(true, m_bRes);
+            m_bRv = csCS.bTryLock();
+            xTEST_EQ(true, m_bRv);
         }
 
         ++ uiVal;
 
         for (size_t i = 0; i < cuiLocks; ++ i) {
-            m_bRes = csCS.bUnlock();
-            xTEST_EQ(true, m_bRes);
+            m_bRv = csCS.bUnlock();
+            xTEST_EQ(true, m_bRv);
         }
     }
 

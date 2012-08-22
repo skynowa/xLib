@@ -46,8 +46,8 @@ CxPin::bInitToken(
 {
     /*DEBUG*/
 
-    CK_RV ulRes = _m_pFunc->C_InitToken(slotID, pPin, ulPinLen, pLabel);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    CK_RV ulRv = _m_pFunc->C_InitToken(slotID, pPin, ulPinLen, pLabel);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -60,8 +60,8 @@ CxPin::bInitPIN(
 {
     /*DEBUG*/
 
-    CK_RV ulRes = _m_pFunc->C_InitPIN(_m_hSession, pPin, ulPinLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    CK_RV ulRv = _m_pFunc->C_InitPIN(_m_hSession, pPin, ulPinLen);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -76,8 +76,8 @@ CxPin::bSetPIN(
 {
     /*DEBUG*/
 
-    CK_RV ulRes = _m_pFunc->C_SetPIN(_m_hSession, pOldPin, ulOldLen, pNewPin, ulNewLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    CK_RV ulRv = _m_pFunc->C_SetPIN(_m_hSession, pOldPin, ulOldLen, pNewPin, ulNewLen);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }

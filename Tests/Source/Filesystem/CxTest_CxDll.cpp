@@ -44,23 +44,23 @@ CxTest_CxDll::bUnit(
     for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
         CxDll objDll;
 
-        m_bRes = objDll.bIsLoaded();
-        xTEST_EQ(false, m_bRes);
+        m_bRv = objDll.bIsLoaded();
+        xTEST_EQ(false, m_bRv);
 
         //-------------------------------------
         //bLoad
-        m_bRes = objDll.bLoad(sData[i][0]);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = objDll.bLoad(sData[i][0]);
+        xTEST_EQ(true, m_bRv);
 
         //-------------------------------------
         //bIsLoaded
-        m_bRes = objDll.bIsLoaded();
-        xTEST_EQ(true, m_bRes);
+        m_bRv = objDll.bIsLoaded();
+        xTEST_EQ(true, m_bRv);
 
         //-------------------------------------
         //bIsProcExists
-        m_bRes = objDll.bIsProcExists(sData[i][1]);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = objDll.bIsProcExists(sData[i][1]);
+        xTEST_EQ(true, m_bRv);
 
         //-------------------------------------
         //fpGetProcAddress
@@ -82,16 +82,16 @@ CxTest_CxDll::bUnit(
         pDllFunc pCosine = NULL;
 
         pCosine = (pDllFunc)fpRes;
-        double m_dRes = pCosine(2.0);
-        xUNUSED(m_dRes);
-        //xTEST_EQ(-0.416147, m_dRes);
-        //xTRACEV(xT("\tpCosine(2.0): %f"), m_dRes);
+        double m_dRv = pCosine(2.0);
+        xUNUSED(m_dRv);
+        //xTEST_EQ(-0.416147, m_dRv);
+        //xTRACEV(xT("\tpCosine(2.0): %f"), m_dRv);
     #endif
 
         //-------------------------------------
         //bIsLoaded
-        m_bRes = objDll.bIsLoaded();
-        xTEST_EQ(true, m_bRes);
+        m_bRv = objDll.bIsLoaded();
+        xTEST_EQ(true, m_bRv);
 
     } //for
 

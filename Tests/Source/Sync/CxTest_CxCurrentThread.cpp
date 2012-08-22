@@ -49,8 +49,8 @@ CxTest_CxCurrentThread::bUnit(
             const CxThread::TxId culId = aulData[i][0];
             const bool           cbRes = xINT_TO_BOOL( (ulong_t)aulData[i][1] );
 
-            m_bRes = CxCurrentThread::bIsCurrent(culId);
-            xTEST_EQ(cbRes, m_bRes);
+            m_bRv = CxCurrentThread::bIsCurrent(culId);
+            xTEST_EQ(cbRes, m_bRv);
         }
     }
 
@@ -66,8 +66,8 @@ CxTest_CxCurrentThread::bUnit(
     //hGetHandle
     xTEST_CASE(cullCaseLoops)
     {
-        CxThread::TxHandle hRes = CxCurrentThread::hGetHandle();
-        xTEST_DIFF(0UL, (ulong_t)hRes);
+        CxThread::TxHandle hRv = CxCurrentThread::hGetHandle();
+        xTEST_DIFF(0UL, (ulong_t)hRv);
     }
 
     //--------------------------------------------------
@@ -82,16 +82,16 @@ CxTest_CxCurrentThread::bUnit(
     //hGetHandle
     xTEST_CASE(cullCaseLoops)
     {
-        CxThread::TxHandle hRes = CxCurrentThread::hGetHandle();
-        xTEST_LESS((ulong_t)0, (ulong_t)hRes);
+        CxThread::TxHandle hRv = CxCurrentThread::hGetHandle();
+        xTEST_LESS((ulong_t)0, (ulong_t)hRv);
     }
 
     //--------------------------------------------------
     //bYield
     xTEST_CASE(cullCaseLoops)
     {
-        m_bRes = CxCurrentThread::bYield();
-        xTEST_EQ(true, m_bRes);
+        m_bRv = CxCurrentThread::bYield();
+        xTEST_EQ(true, m_bRv);
     }
 
     //--------------------------------------------------
@@ -112,8 +112,8 @@ CxTest_CxCurrentThread::bUnit(
             
             dtTime1 = CxDateTime::dtGetCurrent();
 
-            m_bRes = CxCurrentThread::bSleep(cuiMsec);
-            xTEST_EQ(true, m_bRes);
+            m_bRv = CxCurrentThread::bSleep(cuiMsec);
+            xTEST_EQ(true, m_bRv);
 
             CxDateTime dtTime2;
             

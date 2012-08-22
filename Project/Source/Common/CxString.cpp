@@ -54,9 +54,9 @@ CxString::sTrimLeftChars(
     /*DEBUG*/// csStr   - n/a
     /*DEBUG*/// csChars - n/a
 
-    std::tstring_t sRes(csStr);
+    std::tstring_t sRv(csStr);
 
-    return sRes.erase(0, sRes.find_first_not_of(csChars));
+    return sRv.erase(0, sRv.find_first_not_of(csChars));
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -69,9 +69,9 @@ CxString::sTrimRightChars(
     /*DEBUG*/// csStr   - n/a
     /*DEBUG*/// csChars - n/a
 
-    std::tstring_t sRes(csStr);
+    std::tstring_t sRv(csStr);
 
-    return sRes.erase(sRes.find_last_not_of(csChars) + 1);
+    return sRv.erase(sRv.find_last_not_of(csChars) + 1);
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -84,12 +84,12 @@ CxString::sTrimChars(
     /*DEBUG*/// csStr   - n/a
     /*DEBUG*/// csChars - n/a
 
-    std::tstring_t sRes(csStr);
+    std::tstring_t sRv(csStr);
 
-    sRes = sTrimRightChars(sRes, csChars);
-    sRes = sTrimLeftChars (sRes, csChars);
+    sRv = sTrimRightChars(sRv, csChars);
+    sRv = sTrimLeftChars (sRv, csChars);
 
-    return sRes;
+    return sRv;
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -129,20 +129,20 @@ CxString::sReplaceAll(
     xCHECK_RET(true == csStr.empty(),    csStr);
     xCHECK_RET(true == csOldStr.empty(), csStr);
 
-    std::tstring_t sRes(csStr);
+    std::tstring_t sRv(csStr);
 
     size_t uiPos = 0;
 
     for ( ; ; ) {
-        uiPos = sRes.find(csOldStr, uiPos);
+        uiPos = sRv.find(csOldStr, uiPos);
         xCHECK_DO(std::tstring_t::npos == uiPos, break);
 
-        sRes.replace(uiPos, csOldStr.size(), csNewStr);
+        sRv.replace(uiPos, csOldStr.size(), csNewStr);
 
         uiPos += csNewStr.size();
     }
 
-    return sRes;
+    return sRv;
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -219,15 +219,15 @@ CxString::sJoin(
     /*DEBUG*/// cvsVec - n/a
     /*DEBUG*/// csSep    - n/a
 
-    std::tstring_t sRes;
+    std::tstring_t sRv;
 
     xFOREACH_CONST(std::vector<std::tstring_t>, it, cvsVec) {
-        sRes.append(*it);
+        sRv.append(*it);
 
-        xCHECK_DO(it < cvsVec.end() - 1, sRes.append(csSep));
+        xCHECK_DO(it < cvsVec.end() - 1, sRv.append(csSep));
     }
 
-    return sRes;
+    return sRv;
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -320,16 +320,16 @@ CxString::sToLowerCase(
     xCHECK_RET(true == csStr.empty(), std::tstring_t());
     xCHECK_DO (csStr.size() < uiLength, uiLength = csStr.size());
 
-    std::tstring_t sRes(csStr);
+    std::tstring_t sRv(csStr);
 
 #if xOS_ENV_WIN
-    ulong_t ulRes = ::CharLowerBuff(static_cast<LPTSTR>( &sRes[0] ), uiLength);
-    /*DEBUG*/xASSERT_RET(uiLength == ulRes, std::tstring_t());
+    ulong_t ulRv = ::CharLowerBuff(static_cast<LPTSTR>( &sRv[0] ), uiLength);
+    /*DEBUG*/xASSERT_RET(uiLength == ulRv, std::tstring_t());
 #elif xOS_ENV_UNIX
-    std::transform(sRes.begin(), sRes.begin() + uiLength, sRes.begin(), CxChar::chToLower);
+    std::transform(sRv.begin(), sRv.begin() + uiLength, sRv.begin(), CxChar::chToLower);
 #endif
 
-    return sRes;
+    return sRv;
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -344,16 +344,16 @@ CxString::sToUpperCase(
     xCHECK_RET(true == csStr.empty(), std::tstring_t());
     xCHECK_DO (csStr.size() < uiLength, uiLength = csStr.size());
 
-    std::tstring_t sRes(csStr);
+    std::tstring_t sRv(csStr);
 
 #if xOS_ENV_WIN
-    ulong_t ulRes = ::CharUpperBuff(static_cast<LPTSTR>( &sRes[0] ), uiLength);
-    /*DEBUG*/xASSERT_RET(uiLength == ulRes, std::tstring_t());
+    ulong_t ulRv = ::CharUpperBuff(static_cast<LPTSTR>( &sRv[0] ), uiLength);
+    /*DEBUG*/xASSERT_RET(uiLength == ulRv, std::tstring_t());
 #elif xOS_ENV_UNIX
-    std::transform(sRes.begin(), sRes.begin() + uiLength, sRes.begin(), CxChar::chToUpper);
+    std::transform(sRv.begin(), sRv.begin() + uiLength, sRv.begin(), CxChar::chToUpper);
 #endif
 
-    return sRes;
+    return sRv;
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -368,11 +368,11 @@ CxString::bCompareNoCase(
     xCHECK_RET(csStr1.size() != csStr2.size(), false);
 
 #if xOS_ENV_WIN
-    int iRes = - 1;
+    int iRv = - 1;
 
-    iRes = ::lstrcmpi(csStr1.c_str(), csStr2.c_str());
+    iRv = ::lstrcmpi(csStr1.c_str(), csStr2.c_str());
     /*DEBUG*/// n/a
-    xCHECK_RET(0 != iRes, false);
+    xCHECK_RET(0 != iRv, false);
 #elif xOS_ENV_UNIX
     struct SCompare {
         static bool
@@ -381,8 +381,8 @@ CxString::bCompareNoCase(
         }
     };
 
-    bool bRes = std::equal(csStr1.begin(), csStr1.end(), csStr2.begin(), SCompare::bNoCase);
-    xCHECK_RET(false == bRes, false);
+    bool bRv = std::equal(csStr1.begin(), csStr1.end(), csStr2.begin(), SCompare::bNoCase);
+    xCHECK_RET(false == bRv, false);
 #endif
 
     return true;
@@ -432,16 +432,16 @@ CxString::sFormat(
     /*DEBUG*/// n/a
     xCHECK_RET(NULL == pcszFormat, std::tstring_t());
 
-    std::tstring_t sRes;
+    std::tstring_t sRv;
 
     va_list palArgs;
     xVA_START(palArgs, pcszFormat);
 
-    sRes = sFormatV(pcszFormat, palArgs);
+    sRv = sFormatV(pcszFormat, palArgs);
 
     xVA_END(palArgs);
 
-    return sRes;
+    return sRv;
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -535,19 +535,19 @@ CxString::sMinimize(
     xCHECK_RET(true == csStr.empty(), std::tstring_t());
     xCHECK_RET(0    == cuiMaxLen,     std::tstring_t());
 
-    std::tstring_t sRes;
+    std::tstring_t sRv;
 
     if (csStr.size() > cuiMaxLen) {
         if (cuiMaxLen < CxConst::x3DOT.size()) {
-            sRes = csStr.substr(0, cuiMaxLen);
+            sRv = csStr.substr(0, cuiMaxLen);
         } else {
-            sRes = csStr.substr(0, cuiMaxLen - CxConst::x3DOT.size()) + CxConst::x3DOT;
+            sRv = csStr.substr(0, cuiMaxLen - CxConst::x3DOT.size()) + CxConst::x3DOT;
         }
     } else {
-        sRes = csStr;
+        sRv = csStr;
     }
 
-    return sRes;
+    return sRv;
 }
 //--------------------------------------------------------------------------
 /*static*/
@@ -555,7 +555,7 @@ std::tstring_t
 CxString::sCreateGuid() {
     /*DEBUG*/// n/a
 
-    std::tstring_t sRes;
+    std::tstring_t sRv;
 
 #if xOS_ENV_WIN
     GUID    guidId = {0};
@@ -564,7 +564,7 @@ CxString::sCreateGuid() {
     hrGuid = CoCreateGuid(&guidId);
     /*DEBUG*/xASSERT_RET(SUCCEEDED(hrGuid), std::tstring_t());
 
-    sRes = sFormat(
+    sRv = sFormat(
                 xT("%08lX-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X"),
                 guidId.Data1,
                 guidId.Data2,
@@ -572,14 +572,14 @@ CxString::sCreateGuid() {
                 guidId.Data4[0], guidId.Data4[1],
                 guidId.Data4[2], guidId.Data4[3], guidId.Data4[4], guidId.Data4[5], guidId.Data4[6], guidId.Data4[7]
     );
-    /*DEBUG*/xASSERT_RET(false == sRes.empty(), std::tstring_t());
+    /*DEBUG*/xASSERT_RET(false == sRv.empty(), std::tstring_t());
 #elif xOS_ENV_UNIX
     //TODO: (sCreateGuid)
     //#include <uuid/uuid.h>
     xNOT_IMPLEMENTED_RET(std::tstring_t());
 #endif
 
-    return sRes;
+    return sRv;
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -637,13 +637,13 @@ CxString::sTranslitLatToRus(
         {xT("ь"), xT("'")},   {xT("б"), xT("b")},  {xT("ю"), xT("yu")}
     };
 
-    std::tstring_t sRes(csStr);
+    std::tstring_t sRv(csStr);
 
     for (size_t i = 0; i < xARRAY_SIZE(csDict); ++ i) {
-        sRes = sReplaceAll(sRes, csDict[i][0], csDict[i][1]);
+        sRv = sReplaceAll(sRv, csDict[i][0], csDict[i][1]);
     }
 
-    return sRes;
+    return sRv;
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -654,7 +654,7 @@ CxString::sFormatBytes(
 {
     /*DEBUG*/// dBytes - n/a
 
-    std::tstring_t sRes = xT("Uknown");
+    std::tstring_t sRv = xT("Uknown");
 
     const ulonglong_t cullTB   = 1024ULL * 1024ULL * 1024ULL * 1024ULL;
     const ulonglong_t cullGB   = 1024ULL * 1024ULL * 1024ULL;
@@ -663,25 +663,25 @@ CxString::sFormatBytes(
     const ulonglong_t cullByte = 1ULL;
 
     if (     static_cast<ulonglong_t>(cdBytes) / cullTB   > 0ULL) {
-        sRes = sFormat(xT("%.2f TB"),      cdBytes / static_cast<double>(cullTB));
+        sRv = sFormat(xT("%.2f TB"),      cdBytes / static_cast<double>(cullTB));
     }
     else if (static_cast<ulonglong_t>(cdBytes) / cullGB   > 0ULL) {
-        sRes = sFormat(xT("%.2f GB"),      cdBytes / static_cast<double>(cullGB));
+        sRv = sFormat(xT("%.2f GB"),      cdBytes / static_cast<double>(cullGB));
     }
     else if (static_cast<ulonglong_t>(cdBytes) / cullMB   > 0ULL) {
-        sRes = sFormat(xT("%.2f MB"),      cdBytes / static_cast<double>(cullMB));
+        sRv = sFormat(xT("%.2f MB"),      cdBytes / static_cast<double>(cullMB));
     }
     else if (static_cast<ulonglong_t>(cdBytes) / cullKB   > 0ULL) {
-        sRes = sFormat(xT("%.2f KB"),      cdBytes / static_cast<double>(cullKB));
+        sRv = sFormat(xT("%.2f KB"),      cdBytes / static_cast<double>(cullKB));
     }
     else if (static_cast<ulonglong_t>(cdBytes) / cullByte > 0ULL) {
-        sRes = sFormat(xT("%.2f Byte(s)"), cdBytes / static_cast<double>(cullByte));
+        sRv = sFormat(xT("%.2f Byte(s)"), cdBytes / static_cast<double>(cullByte));
     }
     else {
-        sRes = sFormat(xT("%.2f Bit(s)"),  cdBytes);
+        sRv = sFormat(xT("%.2f Bit(s)"),  cdBytes);
     }
 
-    return sRes;
+    return sRv;
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -692,7 +692,7 @@ CxString::sFormatBytes(
 {
     /*DEBUG*/// ulBytes - n/a
 
-    std::tstring_t sRes = xT("<uknown>");
+    std::tstring_t sRv = xT("<uknown>");
 
     const ulonglong_t cullTB   = 1024ULL * 1024ULL * 1024ULL * 1024ULL;
     const ulonglong_t cullGB   = 1024ULL * 1024ULL * 1024ULL;
@@ -701,25 +701,25 @@ CxString::sFormatBytes(
     const ulonglong_t cullByte = 1ULL;
 
     if (     cullBytes / cullTB   > 0ULL) {
-        sRes = sFormat(xT("%.2f TB"),      static_cast<double>(cullBytes) / static_cast<double>(cullTB));
+        sRv = sFormat(xT("%.2f TB"),      static_cast<double>(cullBytes) / static_cast<double>(cullTB));
     }
     else if (cullBytes / cullGB   > 0ULL) {
-        sRes = sFormat(xT("%.2f GB"),      static_cast<double>(cullBytes) / static_cast<double>(cullGB));
+        sRv = sFormat(xT("%.2f GB"),      static_cast<double>(cullBytes) / static_cast<double>(cullGB));
     }
     else if (cullBytes / cullMB   > 0ULL) {
-        sRes = sFormat(xT("%.2f MB"),      static_cast<double>(cullBytes) / static_cast<double>(cullMB));
+        sRv = sFormat(xT("%.2f MB"),      static_cast<double>(cullBytes) / static_cast<double>(cullMB));
     }
     else if (cullBytes / cullKB   > 0ULL) {
-        sRes = sFormat(xT("%.2f KB"),      static_cast<double>(cullBytes) / static_cast<double>(cullKB));
+        sRv = sFormat(xT("%.2f KB"),      static_cast<double>(cullBytes) / static_cast<double>(cullKB));
     }
     else if (cullBytes / cullByte > 0ULL) {
-        sRes = sFormat(xT("%.2f Byte(s)"), static_cast<double>(cullBytes) / static_cast<double>(cullByte));
+        sRv = sFormat(xT("%.2f Byte(s)"), static_cast<double>(cullBytes) / static_cast<double>(cullByte));
     }
     else {
-        sRes = sFormat(xT("%.2f Bit(s)"),  static_cast<double>(cullBytes));
+        sRv = sFormat(xT("%.2f Bit(s)"),  static_cast<double>(cullBytes));
     }
 
-    return sRes;
+    return sRv;
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -733,12 +733,12 @@ CxString::sFormatPercentage(
     /*DEBUG*/// ullCurrValue - n/a
     xCHECK_RET(0 == ullMaxValue, xT("0%"));    //devision by zero
 
-    std::tstring_t sRes;
+    std::tstring_t sRv;
 
-    sRes = lexical_cast( ullCurrValue * 100ULL / ullMaxValue );
-    xCHECK_RET(true == sRes.empty(), xT("0%"));
+    sRv = lexical_cast( ullCurrValue * 100ULL / ullMaxValue );
+    xCHECK_RET(true == sRv.empty(), xT("0%"));
 
-    return sRes.append(xT("%"));
+    return sRv.append(xT("%"));
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -824,8 +824,8 @@ CxString::asCharToOemBuff(
 #if xOS_ENV_WIN
     asDst.resize(csSrc.size());
 
-    BOOL bRes = ::CharToOemBuff(csSrc.c_str(), &asDst.at(0), asDst.size());
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, std::string());
+    BOOL bRv = ::CharToOemBuff(csSrc.c_str(), &asDst.at(0), asDst.size());
+    /*DEBUG*/xASSERT_RET(FALSE != bRv, std::string());
 #elif xOS_ENV_UNIX
     //TODO: asCharToOemBuff
     xNOT_IMPLEMENTED_RET(std::string());
@@ -845,8 +845,8 @@ CxString::sOemToCharBuff(
 #if xOS_ENV_WIN
     sDst.resize(csSrc.size());
 
-    BOOL bRes = ::OemToCharBuff(csSrc.c_str(), &sDst.at(0), sDst.size());
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, std::tstring_t());
+    BOOL bRv = ::OemToCharBuff(csSrc.c_str(), &sDst.at(0), sDst.size());
+    /*DEBUG*/xASSERT_RET(FALSE != bRv, std::tstring_t());
 #elif xOS_ENV_UNIX
     //TODO: sOemToCharBuff
     xNOT_IMPLEMENTED_RET(std::tstring_t());

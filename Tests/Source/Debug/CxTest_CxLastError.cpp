@@ -40,9 +40,9 @@ CxTest_CxLastError::bUnit(
     // sGet
     xTEST_CASE(cullCaseLoops)
     {
-        m_sRes = CxLastError::sGet();
+        m_sRv = CxLastError::sGet();
         xTEST_EQ(0UL,   CxLastError::ulGet());
-        xTEST_EQ(false, m_sRes.empty());
+        xTEST_EQ(false, m_sRv.empty());
     }
 
     //-------------------------------------
@@ -59,9 +59,9 @@ CxTest_CxLastError::bUnit(
         for (size_t i = 0; i < xARRAY_SIZE(caulData); ++ i) {
             const ulong_t culLasError = caulData[i];
 
-            m_bRes = CxLastError::bSet(culLasError);
+            m_bRv = CxLastError::bSet(culLasError);
             xTEST_EQ(culLasError, CxLastError::ulGet());
-            xTEST_EQ(true, m_bRes);
+            xTEST_EQ(true, m_bRv);
         }
     }
 
@@ -79,11 +79,11 @@ CxTest_CxLastError::bUnit(
         for (size_t i = 0; i < xARRAY_SIZE(caulData); ++ i) {
             const ulong_t culLasError = caulData[i];
 
-            m_bRes = CxLastError::bSet(culLasError);
-            xTEST_EQ(true, m_bRes);
+            m_bRv = CxLastError::bSet(culLasError);
+            xTEST_EQ(true, m_bRv);
 
-            m_bRes = CxLastError::bReset();
-            xTEST_EQ(true, m_bRes);
+            m_bRv = CxLastError::bReset();
+            xTEST_EQ(true, m_bRv);
             xTEST_EQ(0UL, CxLastError::ulGet());
         }
     }
@@ -102,8 +102,8 @@ CxTest_CxLastError::bUnit(
         for (size_t i = 0; i < xARRAY_SIZE(caulData); ++ i) {
             const ulong_t culLasError = caulData[i];
 
-            m_sRes = CxLastError::sFormat(culLasError);
-            xTEST_EQ(false, m_sRes.empty());
+            m_sRv = CxLastError::sFormat(culLasError);
+            xTEST_EQ(false, m_sRv.empty());
         }
     }
 

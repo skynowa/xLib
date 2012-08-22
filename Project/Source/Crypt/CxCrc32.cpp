@@ -57,20 +57,20 @@ CxCrc32::ulCalcFile(
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), 0);
 
-    ulong_t ulRes = 0;
+    ulong_t ulRv = 0;
 
     std::ustring_t usFile;
 
-    bool bRes = CxFile::bBinRead(csFilePath, &usFile);
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bool bRv = CxFile::bBinRead(csFilePath, &usFile);
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     if (true == usFile.empty()) {
-        ulRes = 0;
+        ulRv = 0;
     } else {
-        ulRes = ulCalc(&usFile.at(0), usFile.size());
+        ulRv = ulCalc(&usFile.at(0), usFile.size());
     }
 
-    return ulRes;
+    return ulRv;
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -184,20 +184,20 @@ CxCrc32::ulCalcFileFast(
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), 0);
 
-    ulong_t ulRes = 0;
+    ulong_t ulRv = 0;
 
     std::ustring_t usFile;
 
-    bool bRes = CxFile::bBinRead(csFilePath, &usFile);
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bool bRv = CxFile::bBinRead(csFilePath, &usFile);
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     if (true == usFile.empty()) {
-        ulRes = 0;
+        ulRv = 0;
     } else {
-        ulRes = ulCalcFast(&usFile.at(0), usFile.size());
+        ulRv = ulCalcFast(&usFile.at(0), usFile.size());
     }
 
-    return ulRes;
+    return ulRv;
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -208,18 +208,18 @@ CxCrc32::sFormatHex(
 {
     /*DEBUG*/
 
-    std::tstring_t      sRes;
+    std::tstring_t      sRv;
     const size_t uiCrc32Size = 8;
 
-    sRes = CxString::sFormat(xT("%X"), culCrc32);    //0AADDEA0
+    sRv = CxString::sFormat(xT("%X"), culCrc32);    //0AADDEA0
 
-    size_t uiAdditionalZeros = uiCrc32Size - sRes.size();
+    size_t uiAdditionalZeros = uiCrc32Size - sRv.size();
     if (0 != uiAdditionalZeros) {
-        sRes.insert(0, uiAdditionalZeros, xT('0'));
+        sRv.insert(0, uiAdditionalZeros, xT('0'));
     }
-    /*DEBUG*/xASSERT_RET(uiCrc32Size == sRes.size(), std::tstring_t());
+    /*DEBUG*/xASSERT_RET(uiCrc32Size == sRv.size(), std::tstring_t());
 
-    return sRes;
+    return sRv;
 }
 //---------------------------------------------------------------------------
 

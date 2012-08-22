@@ -25,26 +25,26 @@ CxAutoCriticalSection::CxAutoCriticalSection(
     _m_csCS     (csCS),
     _m_bIsLocked(false)
 {
-    bool bRes = false;
+    bool bRv = false;
 
-    bRes = csCS.bCreate();
-    /*DEBUG*/xASSERT_DO(true == bRes, return);
+    bRv = csCS.bCreate();
+    /*DEBUG*/xASSERT_DO(true == bRv, return);
 
     if (false == cbIsUseTry) {
-        bRes = _m_csCS.bLock();
-        /*DEBUG*/xASSERT_DO(true == bRes, return);
+        bRv = _m_csCS.bLock();
+        /*DEBUG*/xASSERT_DO(true == bRv, return);
     } else {
-        bRes = _m_csCS.bTryLock();
+        bRv = _m_csCS.bTryLock();
         /*DEBUG*/// n/a
     }
 
-    _m_bIsLocked = bRes;
+    _m_bIsLocked = bRv;
 }
 //---------------------------------------------------------------------------
 CxAutoCriticalSection::~CxAutoCriticalSection() {
     if (false != _m_bIsLocked) {
-        bool bRes = _m_csCS.bUnlock();
-        /*DEBUG*/xASSERT_DO(true == bRes, return);
+        bool bRv = _m_csCS.bUnlock();
+        /*DEBUG*/xASSERT_DO(true == bRv, return);
     }
 
     _m_bIsLocked = false;

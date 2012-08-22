@@ -507,10 +507,10 @@ class CxMacros :
         static inline 
         bool
         numeric_limits_check(const T &x) {
-            bool bRes = ((std::numeric_limits<T>::min)() <= x) && 
+            bool bRv = ((std::numeric_limits<T>::min)() <= x) && 
                         ((std::numeric_limits<T>::max)() >= x);
 
-            return bRes;
+            return bRv;
         }
             ///< check numeric limites for type
 
@@ -538,15 +538,15 @@ class CxMacros :
         static inline 
         double
         dSafeDiv(const T1 &cVal1T, const T2 &cVal2T) {
-            double dRes = 0.0;
+            double dRv = 0.0;
             
             if (static_cast<T2>( 0 ) == cVal2T) {
-                dRes = 0.0;
+                dRv = 0.0;
             } else {
-                dRes = static_cast<double>( cVal1T ) / static_cast<double>( cVal2T );
+                dRv = static_cast<double>( cVal1T ) / static_cast<double>( cVal2T );
             }
 
-            return dRes;
+            return dRv;
         }
             ///< safe division
 

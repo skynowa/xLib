@@ -48,13 +48,13 @@ CxLogin::bLogin(
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    false);
     /*DEBUG*/xASSERT_RET(NULL != _m_hSession, false);
 
-    CK_RV ulRes = _m_pFunc->C_Login(_m_hSession, userType, pPin, ulPinLen);
+    CK_RV ulRv = _m_pFunc->C_Login(_m_hSession, userType, pPin, ulPinLen);
     xCHECK_DO(
-        CKR_PIN_INCORRECT == ulRes,
+        CKR_PIN_INCORRECT == ulRv,
         CxMsgBoxT::iShow(xT("Pin is incorrect"), xT("Pkcs11"), MB_OK + MB_ICONSTOP);
         return false
     );
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -64,8 +64,8 @@ CxLogin::bLogout() {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    false);
     /*DEBUG*/xASSERT_RET(NULL != _m_hSession, false);
 
-    CK_RV ulRes = _m_pFunc->C_Logout(_m_hSession);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    CK_RV ulRv = _m_pFunc->C_Logout(_m_hSession);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }

@@ -44,8 +44,8 @@ CxVerify::bInit(
 {
     /*DEBUG*/
 
-    CK_RV ulRes = _m_pFunc->C_VerifyInit(_m_hSession, pMechanism, hKey);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    CK_RV ulRv = _m_pFunc->C_VerifyInit(_m_hSession, pMechanism, hKey);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -60,8 +60,8 @@ CxVerify::bMake(
 {
     /*DEBUG*/
 
-    CK_RV ulRes = _m_pFunc->C_Verify(_m_hSession, pData, ulDataLen, pSignature, ulSignatureLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    CK_RV ulRv = _m_pFunc->C_Verify(_m_hSession, pData, ulDataLen, pSignature, ulSignatureLen);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -74,8 +74,8 @@ CxVerify::bFinal(
 {
     /*DEBUG*/
 
-    CK_RV ulRes = _m_pFunc->C_VerifyFinal(_m_hSession, pSignature, ulSignatureLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    CK_RV ulRv = _m_pFunc->C_VerifyFinal(_m_hSession, pSignature, ulSignatureLen);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -88,8 +88,8 @@ CxVerify::bRecoverInit(
 {
     /*DEBUG*/
 
-    CK_RV ulRes = _m_pFunc->C_VerifyRecoverInit(_m_hSession, pMechanism, hKey );
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    CK_RV ulRv = _m_pFunc->C_VerifyRecoverInit(_m_hSession, pMechanism, hKey );
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -104,8 +104,8 @@ CxVerify::bRecover(
 {
     /*DEBUG*/
 
-    CK_RV ulRes = _m_pFunc->C_VerifyRecover(_m_hSession, pSignature,ulSignatureLen, pData, pulDataLen );
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    CK_RV ulRv = _m_pFunc->C_VerifyRecover(_m_hSession, pSignature,ulSignatureLen, pData, pulDataLen );
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -118,8 +118,8 @@ CxVerify::bUpdate(
 {
     /*DEBUG*/
 
-    CK_RV ulRes = _m_pFunc->C_VerifyUpdate(_m_hSession, pPart, ulPartLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    CK_RV ulRv = _m_pFunc->C_VerifyUpdate(_m_hSession, pPart, ulPartLen);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }

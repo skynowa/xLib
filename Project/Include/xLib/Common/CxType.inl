@@ -26,15 +26,15 @@ CxType::sGetRawName(
 {
     /*DEBUG*/// n/a
 
-    std::tstring_t sRes;
+    std::tstring_t sRv;
 
     std::string asClassName;
 
     asClassName.assign( typeid(cObjectT).name() );
 
-    sRes = xS2TS(asClassName);
+    sRv = xS2TS(asClassName);
 
-    return sRes;
+    return sRv;
 }
 //---------------------------------------------------------------------------
 template<class T>
@@ -46,7 +46,7 @@ CxType::sGetName(
 {
     /*DEBUG*/// n/a
 
-    std::tstring_t sRes;
+    std::tstring_t sRv;
 
     std::string asClassName;
 
@@ -63,9 +63,9 @@ CxType::sGetName(
     //or use UnDecorateSymbolName
 #endif
 
-    sRes = xS2TS(asClassName);
+    sRv = xS2TS(asClassName);
 
-    return sRes;
+    return sRv;
 }
 //---------------------------------------------------------------------------
 template<class T1, class T2>

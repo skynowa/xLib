@@ -9,18 +9,18 @@
 
 #if xOS_ENV_WIN
 //---------------------------------------------------------------------------
-bool m_bRes = false;
+bool m_bRv = false;
 CxSemaphore m_Semaphore;
 //---------------------------------------------------------------------------
 unsigned __stdcall
 vTest( void* pArguments ) {
-    bool bRes = false;
+    bool bRv = false;
 
     /*LOG*/std::cout << "Start" << std::endl;
 
     for (int i = 1; i < 100; i ++) {
-        bRes = m_Semaphore.bWait(INFINITE);
-        xTEST_EQ(true, bRes);
+        bRv = m_Semaphore.bWait(INFINITE);
+        xTEST_EQ(true, bRv);
 
         /*LOG*/std::cout << i << std::endl;
     }
@@ -44,8 +44,8 @@ CxTest_CxSemaphore::bUnit(
     const ulonglong_t cullCaseLoops
 )
 {
-    m_bRes = m_Semaphore.bCreate(4, 2048, xT(""));
-    xTEST_EQ(true, m_bRes);
+    m_bRv = m_Semaphore.bCreate(4, 2048, xT(""));
+    xTEST_EQ(true, m_bRv);
 
     if (NULL == _beginthreadex(0, 0, &vTest, 0, 0, NULL)) {
         std::cout << "Error begin thread " << std::endl;
@@ -57,8 +57,8 @@ CxTest_CxSemaphore::bUnit(
         ::Sleep(2000);
 
         for (int x = 0; x < 2; x ++) {
-            m_bRes = m_Semaphore.bRelease(1, NULL);
-            xTEST_EQ(true, m_bRes);
+            m_bRv = m_Semaphore.bRelease(1, NULL);
+            xTEST_EQ(true, m_bRv);
         }
     }
 

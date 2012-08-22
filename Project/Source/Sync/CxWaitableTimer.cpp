@@ -44,10 +44,10 @@ CxWaitableTimer::bCreate(
 {
     /*DEBUG*/xASSERT_RET(false == _m_hWaitableTimer.bIsValid(), false);
 
-    HANDLE hRes = ::CreateWaitableTimer(pcsaTimerAttributes, bManualReset, csName.c_str());
-    /*DEBUG*/xASSERT_RET(NULL != hRes, false);
+    HANDLE hRv = ::CreateWaitableTimer(pcsaTimerAttributes, bManualReset, csName.c_str());
+    /*DEBUG*/xASSERT_RET(NULL != hRv, false);
 
-    _m_hWaitableTimer.bSet(hRes);
+    _m_hWaitableTimer.bSet(hRv);
 
     return true;
 }
@@ -70,10 +70,10 @@ CxWaitableTimer::bOpen(
     #endif
 #endif
 
-    HANDLE hRes = ::OpenWaitableTimer(culDesiredAccess, cbInheritHandle, csName.c_str());
-    /*DEBUG*/xASSERT_RET(NULL != hRes, false);
+    HANDLE hRv = ::OpenWaitableTimer(culDesiredAccess, cbInheritHandle, csName.c_str());
+    /*DEBUG*/xASSERT_RET(NULL != hRv, false);
 
-    _m_hWaitableTimer.bSet(hRes);
+    _m_hWaitableTimer.bSet(hRv);
 
     return true;
 }
@@ -122,8 +122,8 @@ CxWaitableTimer::bWait(
 {
     /*DEBUG*/xASSERT_RET(false != _m_hWaitableTimer.bIsValid(), false);
 
-    DWORD ulRes = ::WaitForSingleObject(_m_hWaitableTimer.hGet(), culTimeout);
-    /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == ulRes, false);
+    DWORD ulRv = ::WaitForSingleObject(_m_hWaitableTimer.hGet(), culTimeout);
+    /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == ulRv, false);
 
     return true;
 }

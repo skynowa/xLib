@@ -48,14 +48,14 @@ CxTest_CxBlowfish::bUnit(
             std::ustring_t sEncrypted;
             std::ustring_t sDecrypted;
 
-            m_bRes = BF.bSetKey(sKey);
-            xTEST_EQ(true, m_bRes);
+            m_bRv = BF.bSetKey(sKey);
+            xTEST_EQ(true, m_bRv);
 
-            m_bRes = BF.bEncryptCfb64(usPlain[i], &sEncrypted, CxBlowfish::cmEncrypt);
-            xTEST_EQ(true, m_bRes);
+            m_bRv = BF.bEncryptCfb64(usPlain[i], &sEncrypted, CxBlowfish::cmEncrypt);
+            xTEST_EQ(true, m_bRv);
 
-            m_bRes = BF.bEncryptCfb64(sEncrypted, &sDecrypted, CxBlowfish::cmDecrypt);
-            xTEST_EQ(true, m_bRes);
+            m_bRv = BF.bEncryptCfb64(sEncrypted, &sDecrypted, CxBlowfish::cmDecrypt);
+            xTEST_EQ(true, m_bRv);
 
             xASSERT(usPlain[i] == sDecrypted);
         }
@@ -73,19 +73,19 @@ CxTest_CxBlowfish::bUnit(
 
         //prepare
         {
-            m_bRes = CxFile::bTextWrite(sFilePlain, xT("text_text"));
-            xTEST_EQ(true, m_bRes);
+            m_bRv = CxFile::bTextWrite(sFilePlain, xT("text_text"));
+            xTEST_EQ(true, m_bRv);
         }
 
         //test
-        m_bRes = BF.bSetKey(sKey);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = BF.bSetKey(sKey);
+        xTEST_EQ(true, m_bRv);
 
-        m_bRes = BF.bEncryptFileCfb64(sFilePlain, sFileEncrypted, CxBlowfish::cmEncrypt);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = BF.bEncryptFileCfb64(sFilePlain, sFileEncrypted, CxBlowfish::cmEncrypt);
+        xTEST_EQ(true, m_bRv);
 
-        m_bRes = BF.bEncryptFileCfb64(sFileEncrypted, sFileDecrypted, CxBlowfish::cmDecrypt);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = BF.bEncryptFileCfb64(sFileEncrypted, sFileDecrypted, CxBlowfish::cmDecrypt);
+        xTEST_EQ(true, m_bRv);
     }
 
     return true;

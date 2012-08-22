@@ -38,11 +38,11 @@ CxTest_CxBackuper::bUnit(
         {
             CxFile F;
 
-            m_bRes = F.bCreate(csFilePath, CxFile::omBinCreateReadWrite, true);
-            xTEST_EQ(true, m_bRes);
+            m_bRv = F.bCreate(csFilePath, CxFile::omBinCreateReadWrite, true);
+            xTEST_EQ(true, m_bRv);
 
-            m_bRes = F.bResize(cliFileSize);
-            xTEST_EQ(true, m_bRes);
+            m_bRv = F.bResize(cliFileSize);
+            xTEST_EQ(true, m_bRv);
         }
 
         for (size_t i = 0; i < 10; ++ i) {
@@ -55,8 +55,8 @@ CxTest_CxBackuper::bUnit(
             xTEST_EQ(false, sBackupFilePath.empty())
         }
 
-        m_bRes = CxDir::bDeleteForce(csBackupDir);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = CxDir::bDeleteForce(csBackupDir);
+        xTEST_EQ(true, m_bRv);
     }
 
     return true;

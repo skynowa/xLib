@@ -176,15 +176,15 @@ CxRandom::liGetInt(
 {
     /*DEBUG*/xASSERT_RET(cliMin < cliMax, 0L);
 
-    long_t liRes = 0;
+    long_t liRv = 0;
 
 #if 1
-    liRes   = (::rand() % (cliMax - cliMin))  + cliMin;
+    liRv   = (::rand() % (cliMax - cliMin))  + cliMin;
 #else
-    liRes   = (::rand() * (double)(cliMax - cliMin) / RAND_MAX) + cliMin;
+    liRv   = (::rand() * (double)(cliMax - cliMin) / RAND_MAX) + cliMin;
 #endif
 
-    return liRes;
+    return liRv;
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -223,7 +223,7 @@ CxRandom::sGetString(
     const bool cbIsNumbers      = true;
     const bool cbIsAsciiSymbols = true;
 
-    std::tstring_t sRes;
+    std::tstring_t sRv;
     std::tstring_t sAllPossible;
 
     if (true == cbIsLetters) {
@@ -259,10 +259,10 @@ CxRandom::sGetString(
 
     const size_t cuiPossibilitiesNum = sAllPossible.length();
     for (size_t i = 0; i < cuiLength; ++ i) {
-        sRes.push_back( sAllPossible.at( liGetInt(0, cuiPossibilitiesNum) ) );
+        sRv.push_back( sAllPossible.at( liGetInt(0, cuiPossibilitiesNum) ) );
     }
 
-    return sRes;
+    return sRv;
 }
 //---------------------------------------------------------------------------
 

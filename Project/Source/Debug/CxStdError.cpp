@@ -58,34 +58,34 @@ CxStdError::sFormat(
     const int ciCode
 )
 {
-    std::tstring_t sRes;
+    std::tstring_t sRv;
 
-    sRes = CxString::sFormat(xT("%lu - "), ciCode);
+    sRv = CxString::sFormat(xT("%lu - "), ciCode);
 
 #if xOS_ENV_WIN
     tchar_t *pcszError = ::xSTRERROR(ciCode);
-    xCHECK_RET(NULL == pcszError, sRes.append(xT("[Cann't format error message]")));
+    xCHECK_RET(NULL == pcszError, sRv.append(xT("[Cann't format error message]")));
 
-    sRes.append(pcszError);
+    sRv.append(pcszError);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         char szBuff[64 + 1] = {0};
 
         const tchar_t *pcszError = ::strerror_r(ciCode, &szBuff[0], xARRAY_SIZE(szBuff));
-        xCHECK_RET(NULL == pcszError, sRes.append(xT("[Cann't format error message]")));
+        xCHECK_RET(NULL == pcszError, sRv.append(xT("[Cann't format error message]")));
 
-        sRes.append(pcszError);
+        sRv.append(pcszError);
     #elif xOS_FREEBSD
         char szBuff[64 + 1] = {0};
 
-        int iRes = ::strerror_r(static_cast<int>( ciCode ), &szBuff[0], xARRAY_SIZE(szBuff));
-        xCHECK_RET(- 1 == iRes, sRes.append(xT("[Cann't format error message]")));
+        int iRv = ::strerror_r(static_cast<int>( ciCode ), &szBuff[0], xARRAY_SIZE(szBuff));
+        xCHECK_RET(- 1 == iRv, sRv.append(xT("[Cann't format error message]")));
 
-        sRes.append(&szBuff[0]);
+        sRv.append(&szBuff[0]);
     #endif
 #endif
 
-    return sRes;
+    return sRv;
 }
 //---------------------------------------------------------------------------
 

@@ -100,8 +100,8 @@ CxTest_CxFunctorT::bUnit(
         CxFunctorT<B, bool, A> *pbF = new CxFunctorT<B, bool, A>(&b, &B::methodB);
         xTEST_PTR(pbF);
 
-        m_bRes = (*pbF)(a);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = (*pbF)(a);
+        xTEST_EQ(true, m_bRv);
 
         delete pbF;
     }
@@ -116,8 +116,8 @@ CxTest_CxFunctorT::bUnit(
         CxFunctorT<B, bool, A> *pbF = new CxFunctorT<B, bool, A>(&b, &B::methodB);
         xTEST_PTR(pbF);
 
-        m_bRes = pbF->Execute(a);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = pbF->Execute(a);
+        xTEST_EQ(true, m_bRv);
 
         delete pbF;
     }
@@ -130,8 +130,8 @@ CxTest_CxFunctorT::bUnit(
         B b;
         CxFunctorT<B, bool, A> bF(&b, &B::methodB);
 
-        m_bRes = bF(a);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = bF(a);
+        xTEST_EQ(true, m_bRv);
     }
 
     //-------------------------------------
@@ -143,8 +143,8 @@ CxTest_CxFunctorT::bUnit(
 
         CxFunctorT<B, bool, A> bF(&b, &B::methodB);
 
-        m_bRes = bF.Execute(a);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = bF.Execute(a);
+        xTEST_EQ(true, m_bRv);
     }
 
 
@@ -154,8 +154,8 @@ CxTest_CxFunctorT::bUnit(
     {
         CxFunctorT<CParam, std::tstring_t, void *> bF(&objParam, &CParam::sSetName);
 
-        m_sRes = bF.Execute(0);
-        xTEST_EQ(std::tstring_t(xT("Class_C")), m_sRes);
+        m_sRv = bF.Execute(0);
+        xTEST_EQ(std::tstring_t(xT("Class_C")), m_sRv);
     }
 
     return true;

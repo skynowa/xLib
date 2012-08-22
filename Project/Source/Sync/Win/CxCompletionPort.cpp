@@ -54,9 +54,9 @@ CxCompletionPort::bAssociate(
     /*DEBUG*/// hFile
     /*DEBUG*/xASSERT_RET(NULL  != pulCompletionKey,  false);
 
-    HANDLE hRes = ::CreateIoCompletionPort(hFile, _m_hCP.hGet(), pulCompletionKey, 0);
-    /*DEBUG*/xASSERT_RET(NULL          != hRes, false);
-    /*DEBUG*/xASSERT_RET(_m_hCP.hGet() == hRes, false);
+    HANDLE hRv = ::CreateIoCompletionPort(hFile, _m_hCP.hGet(), pulCompletionKey, 0);
+    /*DEBUG*/xASSERT_RET(NULL          != hRv, false);
+    /*DEBUG*/xASSERT_RET(_m_hCP.hGet() == hRv, false);
 
     return true;
 }

@@ -32,14 +32,14 @@ CxEvent::CxEvent(
     /*DEBUG*/xASSERT_DO(false == _m_hEvent.bIsValid(), return);
     /*DEBUG*/
 
-    HANDLE hRes = ::CreateEvent(NULL, ! cbIsAutoReset, cbIsSignaled, NULL);
-    /*DEBUG*/xASSERT_DO(NULL != hRes, return);
+    HANDLE hRv = ::CreateEvent(NULL, ! cbIsAutoReset, cbIsSignaled, NULL);
+    /*DEBUG*/xASSERT_DO(NULL != hRv, return);
 
-    _m_hEvent.bSet(hRes);
+    _m_hEvent.bSet(hRv);
     /*DEBUG*/// n/a
 #elif xOS_ENV_UNIX
-    int iRes = ::pthread_cond_init(&_m_cndCond, NULL);
-    /*DEBUG*/xASSERT_MSG_DO(0 == iRes, CxLastError::sFormat(iRes), return);
+    int iRv = ::pthread_cond_init(&_m_cndCond, NULL);
+    /*DEBUG*/xASSERT_MSG_DO(0 == iRv, CxLastError::sFormat(iRv), return);
 
     _m_bIsAutoReset = cbIsAutoReset;
     _m_bIsSignaled  = cbIsSignaled;
@@ -50,8 +50,8 @@ CxEvent::~CxEvent() {
 #if xOS_ENV_WIN
     // n/a
 #elif xOS_ENV_UNIX
-    int iRes = ::pthread_cond_destroy(&_m_cndCond);
-    /*DEBUG*/xASSERT_MSG_DO(0 == iRes, CxLastError::sFormat(iRes), return);
+    int iRv = ::pthread_cond_destroy(&_m_cndCond);
+    /*DEBUG*/xASSERT_MSG_DO(0 == iRv, CxLastError::sFormat(iRv), return);
 #endif
 }
 //---------------------------------------------------------------------------
@@ -80,11 +80,11 @@ CxEvent::bSet() {
         CxAutoCriticalSection acsAutoCS(_m_csCS);
 
         if (false == _m_bIsAutoReset) {
-            int iRes = ::pthread_cond_broadcast(&_m_cndCond);
-            /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), false);
+            int iRv = ::pthread_cond_broadcast(&_m_cndCond);
+            /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
         } else {
-            int iRes = ::pthread_cond_signal(&_m_cndCond);
-            /*DEBUG*/xASSERT_MSG_RET(0 == iRes, CxLastError::sFormat(iRes), false);
+            int iRv = ::pthread_cond_signal(&_m_cndCond);
+            /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
         }
 
         _m_bIsSignaled = true;
@@ -130,7 +130,7 @@ CxEvent::osWait(
     {
         CxAutoCriticalSection acsAutoCS(_m_csCS);
 
-        int iRes = 0;
+        int iRv = 0;
 
         if (false == _m_bIsSignaled) {
             ////xCHECK_RET(! culTimeout, osTimeout);    // no time for waiting
@@ -141,8 +141,8 @@ CxEvent::osWait(
                 // set timeout
                 timeval tvNow  = {0};
 
-                iRes = ::gettimeofday(&tvNow, NULL);
-                /*DEBUG*/xASSERT_RET(- 1 != iRes, osFailed);
+                iRv = ::gettimeofday(&tvNow, NULL);
+                /*DEBUG*/xASSERT_RET(- 1 != iRv, osFailed);
 
                 tsTime.tv_sec  = tvNow.tv_sec + culTimeout / 1000;
                 tsTime.tv_nsec = (((culTimeout % 1000) * 1000 + tvNow.tv_usec) % 1000000) * 1000;
@@ -151,18 +151,18 @@ CxEvent::osWait(
             // wait until condition thread returns control
             do {
                 if (xTIMEOUT_INFINITE != culTimeout) {
-                    iRes = ::pthread_cond_timedwait(&_m_cndCond, const_cast<CxCriticalSection::TxHandle *>( &_m_csCS.hGet() ), &tsTime);
+                    iRv = ::pthread_cond_timedwait(&_m_cndCond, const_cast<CxCriticalSection::TxHandle *>( &_m_csCS.hGet() ), &tsTime);
                 } else {
-                    iRes = ::pthread_cond_wait     (&_m_cndCond, const_cast<CxCriticalSection::TxHandle *>( &_m_csCS.hGet() ));
+                    iRv = ::pthread_cond_wait     (&_m_cndCond, const_cast<CxCriticalSection::TxHandle *>( &_m_csCS.hGet() ));
                 }
             }
-            while (!iRes && !_m_bIsSignaled);
+            while (!iRv && !_m_bIsSignaled);
         } else {
-            iRes = 0;
+            iRv = 0;
         }
 
         // adjust signaled member
-        switch (iRes) {
+        switch (iRv) {
             case 0:         { xCHECK_DO(false != _m_bIsAutoReset, _m_bIsSignaled = false);
                               osRes = osSignaled; }  break;
             case ETIMEDOUT: { osRes = osTimeout;  }  break;
@@ -181,10 +181,10 @@ CxEvent::bIsSignaled() {
     /*DEBUG*/// n/a
 
 #if xOS_ENV_WIN
-    DWORD ulRes = ::WaitForSingleObject(hGet().hGet(), 0UL);
+    DWORD ulRv = ::WaitForSingleObject(hGet().hGet(), 0UL);
     /*DEBUG*/// n/a
 
-    return (false != _m_hEvent.bIsValid()) && (osSignaled == ulRes);
+    return (false != _m_hEvent.bIsValid()) && (osSignaled == ulRv);
 #elif xOS_ENV_UNIX
     return _m_bIsSignaled;
 #endif

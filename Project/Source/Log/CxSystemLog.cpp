@@ -29,8 +29,8 @@ CxSystemLog::CxSystemLog() :
 #endif
     _m_bIsEnable(true)
 {
-    bool bRes = _bInit( CxPath::sGetFileBaseName(CxPath::sGetExe()) );
-    /*DEBUG*/xASSERT_DO(true == bRes, return);
+    bool bRv = _bInit( CxPath::sGetFileBaseName(CxPath::sGetExe()) );
+    /*DEBUG*/xASSERT_DO(true == bRv, return);
 }
 //---------------------------------------------------------------------------
 CxSystemLog::CxSystemLog(
@@ -41,8 +41,8 @@ CxSystemLog::CxSystemLog(
 #endif
     _m_bIsEnable(true)
 {
-    bool bRes = _bInit(csLogName);
-    /*DEBUG*/xASSERT_DO(true == bRes, return);
+    bool bRv = _bInit(csLogName);
+    /*DEBUG*/xASSERT_DO(true == bRv, return);
 }
 //---------------------------------------------------------------------------
 /*virtual*/
@@ -50,8 +50,8 @@ CxSystemLog::~CxSystemLog() {
 #if xOS_ENV_WIN
     /*DEBUG*/xASSERT_DO(NULL != _m_SysLog, return);
 
-    BOOL bRes = ::DeregisterEventSource(_m_SysLog);
-    /*DEBUG*/xASSERT_DO(FALSE != bRes, return);
+    BOOL bRv = ::DeregisterEventSource(_m_SysLog);
+    /*DEBUG*/xASSERT_DO(FALSE != bRv, return);
 
     _m_SysLog = NULL;
 #elif xOS_ENV_UNIX
@@ -98,8 +98,8 @@ CxSystemLog::bWrite(
 #if xOS_ENV_WIN
     LPCTSTR pcszStrings = sMessage.c_str();
 
-    BOOL bRes = ::ReportEvent(_m_SysLog, lvLevel, 0, 0UL, NULL, 1, 0UL, &pcszStrings, NULL);
-    /*DEBUG*/xASSERT_RET(FALSE != bRes, false);
+    BOOL bRv = ::ReportEvent(_m_SysLog, lvLevel, 0, 0UL, NULL, 1, 0UL, &pcszStrings, NULL);
+    /*DEBUG*/xASSERT_RET(FALSE != bRv, false);
 #elif xOS_ENV_UNIX
     (void)::syslog(lvLevel, xT("%s"), sMessage.c_str());
 #endif

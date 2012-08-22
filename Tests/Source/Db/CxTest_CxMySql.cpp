@@ -50,8 +50,8 @@ CxTest_CxMySql::bUnit(
     //--------------------------------------------------
     //bIsValid
     {
-        m_bRes = conConn.bIsValid();
-        xTEST_EQ(true, m_bRes);
+        m_bRv = conConn.bIsValid();
+        xTEST_EQ(true, m_bRv);
     }
 
     //--------------------------------------------------
@@ -60,8 +60,8 @@ CxTest_CxMySql::bUnit(
         mysql_option moOption = MYSQL_OPT_COMPRESS;
         const void  *cpvArg   = NULL;
 
-        m_bRes = conConn.bOptions(moOption, cpvArg);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = conConn.bOptions(moOption, cpvArg);
+        xTEST_EQ(true, m_bRv);
     }
 
     //--------------------------------------------------
@@ -92,29 +92,29 @@ CxTest_CxMySql::bUnit(
             //create Db
             std::tstring_t csDbDefaultName = xT("");
 
-            m_bRes = conConn.bConnect(csHost, csUser, csPassword, csDbDefaultName, cuiPort, csUnixSocket, culClientFlag);
-            xTEST_EQ(true, m_bRes);
+            m_bRv = conConn.bConnect(csHost, csUser, csPassword, csDbDefaultName, cuiPort, csUnixSocket, culClientFlag);
+            xTEST_EQ(true, m_bRv);
 
-            m_bRes = conConn.bQuery("CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET utf8", csDbName.c_str());
-            xTEST_EQ(true, m_bRes);
+            m_bRv = conConn.bQuery("CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET utf8", csDbName.c_str());
+            xTEST_EQ(true, m_bRv);
         } else {
             //connect to Db
-            m_bRes = conConn.bConnect(csHost, csUser, csPassword, csDbName, cuiPort, csUnixSocket, culClientFlag);
-            xTEST_EQ(true, m_bRes);
+            m_bRv = conConn.bConnect(csHost, csUser, csPassword, csDbName, cuiPort, csUnixSocket, culClientFlag);
+            xTEST_EQ(true, m_bRv);
         }
 
-        m_bRes = CxMySQLConnection::bIsExists(csHost, csUser, csPassword, csDbName, cuiPort, csUnixSocket, culClientFlag);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = CxMySQLConnection::bIsExists(csHost, csUser, csPassword, csDbName, cuiPort, csUnixSocket, culClientFlag);
+        xTEST_EQ(true, m_bRv);
     }
 
     //--------------------------------------------------
     //bQuery
     {
-        m_bRes = conConn.bConnect(csHost, csUser, csPassword, csDbName, cuiPort, csUnixSocket, culClientFlag);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = conConn.bConnect(csHost, csUser, csPassword, csDbName, cuiPort, csUnixSocket, culClientFlag);
+        xTEST_EQ(true, m_bRv);
 
         //create table
-        m_bRes = conConn.bQuery(
+        m_bRv = conConn.bQuery(
                              xT("CREATE TABLE IF NOT EXISTS "
                                 "   `%s` ("
                                 "       `f_id`    int(11)     NOT NULL AUTO_INCREMENT,"
@@ -122,10 +122,10 @@ CxTest_CxMySql::bUnit(
                                 "       `f_age`   SMALLINT(6) NOT NULL"
                                 "   )"),
                                 sTableName.c_str());
-        xTEST_EQ(true, m_bRes);
+        xTEST_EQ(true, m_bRv);
 
         //insert records
-        m_bRes = conConn.bQuery(
+        m_bRv = conConn.bQuery(
                              xT("INSERT INTO"
                                 "    `%s` (`f_name`, `f_age`)"
                                 "VALUES"
@@ -135,38 +135,38 @@ CxTest_CxMySql::bUnit(
                                 "    ('Vasya', 24),"
                                 "    ('Sasha', 20)"),
                                 sTableName.c_str());
-        xTEST_EQ(true, m_bRes);
+        xTEST_EQ(true, m_bRv);
 
         //select all records
         #if 0
-            m_bRes = conConn.bQuery(xT("SELECT * FROM `t_main`"));
-            xTEST_EQ(true, m_bRes);
+            m_bRv = conConn.bQuery(xT("SELECT * FROM `t_main`"));
+            xTEST_EQ(true, m_bRv);
         #else
-            m_bRes = conConn.bQuery(xT("CHECK TABLE `t_main`"));
-            xTEST_EQ(true, m_bRes);
+            m_bRv = conConn.bQuery(xT("CHECK TABLE `t_main`"));
+            xTEST_EQ(true, m_bRv);
         #endif
     }
 
     //--------------------------------------------------
     //uiFieldCount
     {
-        m_uiRes = conConn.uiFieldCount();
-        //xTRACE("uiFieldsNum: %i", m_uiRes);
-        //TODO: xTEST_EQ(3U, m_uiRes);
+        m_uiRv = conConn.uiFieldCount();
+        //xTRACE("uiFieldsNum: %i", m_uiRv);
+        //TODO: xTEST_EQ(3U, m_uiRv);
     }
 
     //--------------------------------------------------
     //uiGetLastError
     {
-        m_uiRes = conConn.uiGetLastError();
-        xTEST_EQ(0U, m_uiRes);
+        m_uiRv = conConn.uiGetLastError();
+        xTEST_EQ(0U, m_uiRv);
     }
 
     //--------------------------------------------------
     //sGetLastErrorStr
     {
-        m_sRes = conConn.sGetLastErrorStr();
-        xTEST_EQ(false, m_sRes.empty());
+        m_sRv = conConn.sGetLastErrorStr();
+        xTEST_EQ(false, m_sRv.empty());
     }
 
 
@@ -187,24 +187,24 @@ CxTest_CxMySql::bUnit(
     //--------------------------------------------------
     //bIsValid
     {
-        m_bRes = recRec.bIsValid();
-        xTEST_EQ(true, m_bRes);
+        m_bRv = recRec.bIsValid();
+        xTEST_EQ(true, m_bRv);
     }
 
     //--------------------------------------------------
     //uiFieldsNum
     {
-        m_uiRes = recRec.uiFieldsNum();
-        //xTRACE("uiFieldsNum: %i", m_uiRes);
-        //TODO: xTEST_EQ(3U, m_uiRes);
+        m_uiRv = recRec.uiFieldsNum();
+        //xTRACE("uiFieldsNum: %i", m_uiRv);
+        //TODO: xTEST_EQ(3U, m_uiRv);
     }
 
     //--------------------------------------------------
     //ullRowsNum
     {
-        my_ulonglong ullRes = recRec.ullRowsNum(); xUNUSED(ullRes);
-        //xTRACE("ullRowsNum: %lli", ullRes);
-        //TODO: xTEST_LESS(0ULL, ullRes);
+        my_ulonglong ullRv = recRec.ullRowsNum(); xUNUSED(ullRv);
+        //xTRACE("ullRowsNum: %lli", ullRv);
+        //TODO: xTEST_LESS(0ULL, ullRv);
     }
 
     //--------------------------------------------------
@@ -212,8 +212,8 @@ CxTest_CxMySql::bUnit(
     {
         MYSQL_FIELD mfField;
 
-        m_bRes = recRec.bFetchField(&mfField);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = recRec.bFetchField(&mfField);
+        xTEST_EQ(true, m_bRv);
     }
 
     //--------------------------------------------------
@@ -222,8 +222,8 @@ CxTest_CxMySql::bUnit(
         uint_t      uiFieldNumber = 0;
         MYSQL_FIELD mfField;
 
-        m_bRes = recRec.bFetchFieldDirect(uiFieldNumber, &mfField);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = recRec.bFetchFieldDirect(uiFieldNumber, &mfField);
+        xTEST_EQ(true, m_bRv);
     }
 
     //--------------------------------------------------
@@ -231,8 +231,8 @@ CxTest_CxMySql::bUnit(
     {
         MYSQL_FIELD mfField;
 
-        m_bRes = recRec.bFetchFields(&mfField);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = recRec.bFetchFields(&mfField);
+        xTEST_EQ(true, m_bRv);
     }
 
     #if xTODO
@@ -241,8 +241,8 @@ CxTest_CxMySql::bUnit(
         {
             MYSQL_ROW mrRow;
 
-            m_bRes = recRec.bFetchRow(&mrRow);
-            xTEST_EQ(true, m_bRes);
+            m_bRv = recRec.bFetchRow(&mrRow);
+            xTEST_EQ(true, m_bRv);
         }
 
         //--------------------------------------------------
@@ -250,8 +250,8 @@ CxTest_CxMySql::bUnit(
         {
             ulong_t *pulFieldLengths = NULL;
 
-            m_bRes = recRec.bFetchLengths(&pulFieldLengths);
-            xTEST_EQ(true, m_bRes);
+            m_bRv = recRec.bFetchLengths(&pulFieldLengths);
+            xTEST_EQ(true, m_bRv);
             xASSERT(NULL  != pulFieldLengths);
         }
     #endif
@@ -262,8 +262,8 @@ CxTest_CxMySql::bUnit(
         std::vector<std::tstring_t> vsRow;
 
         for (my_ulonglong i = 0; i < recRec.ullRowsNum(); ++ i) {
-            m_bRes = recRec.bFetchRow(&vsRow);
-            xTEST_EQ(true, m_bRes);
+            m_bRv = recRec.bFetchRow(&vsRow);
+            xTEST_EQ(true, m_bRv);
 
             //std::tcout << xT("Row ") << i << xT(": ") << vsRow << std::endl;
         }
@@ -272,21 +272,21 @@ CxTest_CxMySql::bUnit(
     //--------------------------------------------------
     //drop Db (cleaning)
     {
-        m_bRes = conConn.bQuery(xT("DROP TABLE IF EXISTS `%s`"), sTableName.c_str());
-        xTEST_EQ(true, m_bRes);
+        m_bRv = conConn.bQuery(xT("DROP TABLE IF EXISTS `%s`"), sTableName.c_str());
+        xTEST_EQ(true, m_bRv);
 
-        m_bRes = conConn.bQuery(xT("DROP DATABASE IF EXISTS `%s`"), csDbName.c_str());
-        xTEST_EQ(true, m_bRes);
+        m_bRv = conConn.bQuery(xT("DROP DATABASE IF EXISTS `%s`"), csDbName.c_str());
+        xTEST_EQ(true, m_bRv);
 
-        m_bRes = CxMySQLConnection::bIsExists(csHost, csUser, csPassword, csDbName, cuiPort, csUnixSocket, culClientFlag);
-        xTEST_EQ(false, m_bRes);
+        m_bRv = CxMySQLConnection::bIsExists(csHost, csUser, csPassword, csDbName, cuiPort, csUnixSocket, culClientFlag);
+        xTEST_EQ(false, m_bRv);
     }
 
     //--------------------------------------------------
     //bClose
     {
-        m_bRes = conConn.bClose();
-        xTEST_EQ(true, m_bRes);
+        m_bRv = conConn.bClose();
+        xTEST_EQ(true, m_bRv);
     }
 
     return true;

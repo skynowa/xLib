@@ -82,9 +82,9 @@ CxTest_CxBase64::bUnit(
             const std::string csValidChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
             for (size_t i = 0; i < csValidChars.size(); ++ i) {
-                m_bRes = CxBase64::bIsCharValid(csValidChars.at(i));
+                m_bRv = CxBase64::bIsCharValid(csValidChars.at(i));
                 //xTRACEV(xT("csValidChars.at(i): %c"), csValidChars.at(i));
-                xTEST_EQ(true, m_bRes);
+                xTEST_EQ(true, m_bRv);
             }
         }
 
@@ -92,9 +92,9 @@ CxTest_CxBase64::bUnit(
             const std::string csNonValidChars = "!@#$%^&*()_|:?";
 
             for (size_t i = 0; i < csNonValidChars.size(); ++ i) {
-                m_bRes = CxBase64::bIsCharValid(csNonValidChars.at(i));
+                m_bRv = CxBase64::bIsCharValid(csNonValidChars.at(i));
                 //xTRACEV(xT("csNonValidChars.at(i): %c"), csNonValidChars.at(i));
-                xTEST_EQ(false, m_bRes);
+                xTEST_EQ(false, m_bRv);
             }
         }
     }

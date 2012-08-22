@@ -91,8 +91,8 @@ CxProcess::bCreate(
     if (0L == liPid) {
         // TODO: csFilePath is executable
 
-        int iRes = ::execlp(csFilePath.c_str(), csFilePath.c_str(), sCmdLine.c_str(), static_cast<const tchar_t *>( NULL ));
-        /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
+        int iRv = ::execlp(csFilePath.c_str(), csFilePath.c_str(), sCmdLine.c_str(), static_cast<const tchar_t *>( NULL ));
+        /*DEBUG*/xASSERT_RET(- 1 != iRv, false);
 
         (void)::_exit(EXIT_SUCCESS);  /* not exit() */
     }
@@ -112,19 +112,19 @@ CxProcess::ulWait(
     EWaitResult wrStatus = wrFailed;
 
 #if xOS_ENV_WIN
-    DWORD ulRes = ::WaitForSingleObject(_m_hHandle, culTimeout);
-    /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == ulRes, static_cast<EWaitResult>( ulRes ));
+    DWORD ulRv = ::WaitForSingleObject(_m_hHandle, culTimeout);
+    /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == ulRv, static_cast<EWaitResult>( ulRv ));
 
-    wrStatus = static_cast<EWaitResult>( ulRes );
+    wrStatus = static_cast<EWaitResult>( ulRv );
 #elif xOS_ENV_UNIX
-    pid_t liRes   = - 1L;
+    pid_t liRv   = - 1L;
     int   iStatus = 0;
 
     do {
-        liRes = ::waitpid(_m_ulPid, &iStatus, 0);
+        liRv = ::waitpid(_m_ulPid, &iStatus, 0);
     }
-    while (liRes < 0L && EINTR == CxLastError::ulGet());
-    /*DEBUG*/xASSERT_RET(liRes == _m_ulPid, static_cast<EWaitResult>( iStatus ));
+    while (liRv < 0L && EINTR == CxLastError::ulGet());
+    /*DEBUG*/xASSERT_RET(liRv == _m_ulPid, static_cast<EWaitResult>( iStatus ));
 
     _m_uiExitStatus = WEXITSTATUS(iStatus);
     wrStatus        = static_cast<EWaitResult>( WEXITSTATUS(iStatus) );
@@ -140,8 +140,8 @@ CxProcess::bKill(
 {
     /*DEBUG*/
 
-    bool    bRes  = false;
-    ulong_t ulRes = 0UL;
+    bool    bRv  = false;
+    ulong_t ulRv = 0UL;
 
 #if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(NULL != _m_hHandle, false);
@@ -153,18 +153,18 @@ CxProcess::bKill(
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 
     for ( ; ; ) {
-        ulRes = ulGetExitStatus();
-        xCHECK_DO(STILL_ACTIVE != ulRes, break);
+        ulRv = ulGetExitStatus();
+        xCHECK_DO(STILL_ACTIVE != ulRv, break);
 
-        bRes = CxCurrentThread::bSleep(culTimeout);
-        /*DEBUG*/xASSERT_DO(true == bRes, break);
+        bRv = CxCurrentThread::bSleep(culTimeout);
+        /*DEBUG*/xASSERT_DO(true == bRv, break);
     }
 #elif xOS_ENV_UNIX
-    int iRes = ::kill(_m_ulPid, SIGKILL);
-    /*DEBUG*/xASSERT_RET(- 1 != iRes, false);
+    int iRv = ::kill(_m_ulPid, SIGKILL);
+    /*DEBUG*/xASSERT_RET(- 1 != iRv, false);
 
-    bRes = CxCurrentThread::bSleep(culTimeout);
-    /*DEBUG*/xASSERT(true == bRes);
+    bRv = CxCurrentThread::bSleep(culTimeout);
+    /*DEBUG*/xASSERT(true == bRv);
 
     _m_uiExitStatus = 0U;
 #endif
@@ -197,16 +197,16 @@ ulong_t
 CxProcess::ulGetExitStatus() const {
     /*DEBUG*/
 
-    ulong_t ulRes = 0UL;
+    ulong_t ulRv = 0UL;
 
 #if xOS_ENV_WIN
-    BOOL blRes = ::GetExitCodeProcess(_m_hHandle, &ulRes);
-    /*DEBUG*/xASSERT_RET(FALSE != blRes, ulRes);
+    BOOL blRes = ::GetExitCodeProcess(_m_hHandle, &ulRv);
+    /*DEBUG*/xASSERT_RET(FALSE != blRes, ulRv);
 #elif xOS_ENV_UNIX
-    ulRes = _m_uiExitStatus;
+    ulRv = _m_uiExitStatus;
 #endif
 
-    return ulRes;
+    return ulRv;
 }
 //---------------------------------------------------------------------------
 
@@ -223,16 +223,16 @@ CxProcess::ulGetIdByHandle(
     const TxHandle chHandle    ///< handle
 )
 {
-    TxId ulRes;
+    TxId ulRv;
 
 #if   xOS_ENV_WIN
-    ulRes = ::GetProcessId(chHandle);
-    xDEBUG_VAR_NA(ulRes);
+    ulRv = ::GetProcessId(chHandle);
+    xDEBUG_VAR_NA(ulRv);
 #elif xOS_ENV_UNIX
-    ulRes = static_cast<TxId>( chHandle );
+    ulRv = static_cast<TxId>( chHandle );
 #endif
 
-    return ulRes;
+    return ulRv;
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -241,16 +241,16 @@ CxProcess::ulGetHandleById(
     const TxId culId   ///< ID
 )
 {
-    TxHandle hRes;
+    TxHandle hRv;
 
 #if   xOS_ENV_WIN
-    hRes = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, culId);
-    xDEBUG_VAR_NA(hRes);
+    hRv = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, culId);
+    xDEBUG_VAR_NA(hRv);
 #elif xOS_ENV_UNIX
-    hRes = static_cast<TxHandle>( culId );
+    hRv = static_cast<TxHandle>( culId );
 #endif
 
-    return hRes;
+    return hRv;
 }
 //---------------------------------------------------------------------------
 

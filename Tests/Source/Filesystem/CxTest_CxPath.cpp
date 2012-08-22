@@ -30,24 +30,24 @@ CxTest_CxPath::bUnit(
     //sGetExe
     xTEST_CASE(cullCaseLoops)
     {
-        m_sRes = CxPath::sGetExe();
-        xTEST_EQ(true, CxFile::bIsExists(m_sRes));
+        m_sRv = CxPath::sGetExe();
+        xTEST_EQ(true, CxFile::bIsExists(m_sRv));
     }
 
     //-------------------------------------
     //sGetDll
     xTEST_CASE(cullCaseLoops)
     {
-        m_sRes = CxPath::sGetDll();
-        xTEST_EQ(true, CxFile::bIsExists(m_sRes));
+        m_sRv = CxPath::sGetDll();
+        xTEST_EQ(true, CxFile::bIsExists(m_sRv));
     }
 
     //-------------------------------------
     //sGetExeDir
     xTEST_CASE(cullCaseLoops)
     {
-        m_sRes = CxPath::sGetExeDir();
-        xTEST_EQ(true, CxDir::bIsExists(m_sRes));
+        m_sRv = CxPath::sGetExeDir();
+        xTEST_EQ(true, CxDir::bIsExists(m_sRv));
     }
 
     //-------------------------------------
@@ -57,8 +57,8 @@ CxTest_CxPath::bUnit(
         #if xOS_ENV_WIN
             std::tstring_t csFilePath = xT("C:\\Test.txt");
 
-            m_sRes = CxPath::sGetDrive(csFilePath);
-            xTEST_EQ(m_sRes, std::tstring_t(xT("C:")));
+            m_sRv = CxPath::sGetDrive(csFilePath);
+            xTEST_EQ(m_sRv, std::tstring_t(xT("C:")));
         #endif
     }
 
@@ -203,39 +203,39 @@ CxTest_CxPath::bUnit(
     //sGetStandartExt
     xTEST_CASE(cullCaseLoops)
     {
-        m_sRes = CxPath::sGetStandartExt(CxPath::seExe);
+        m_sRv = CxPath::sGetStandartExt(CxPath::seExe);
         #if xOS_ENV_WIN
-            xTEST_EQ(std::tstring_t(xT("exe")), m_sRes);
+            xTEST_EQ(std::tstring_t(xT("exe")), m_sRv);
         #elif xOS_ENV_UNIX
-            xTEST_EQ(std::tstring_t(xT("")), m_sRes);
+            xTEST_EQ(std::tstring_t(xT("")), m_sRv);
         #endif
 
-        m_sRes = CxPath::sGetStandartExt(CxPath::seDll);
+        m_sRv = CxPath::sGetStandartExt(CxPath::seDll);
         #if xOS_ENV_WIN
-            xTEST_EQ(std::tstring_t(xT("dll")), m_sRes);
+            xTEST_EQ(std::tstring_t(xT("dll")), m_sRv);
         #elif xOS_ENV_UNIX
-            xTEST_EQ(std::tstring_t(xT("so")), m_sRes);
+            xTEST_EQ(std::tstring_t(xT("so")), m_sRv);
         #endif
 
-        m_sRes = CxPath::sGetStandartExt(CxPath::seLib);
+        m_sRv = CxPath::sGetStandartExt(CxPath::seLib);
         #if xOS_ENV_WIN
-            xTEST_EQ(std::tstring_t(xT("lib")), m_sRes);
+            xTEST_EQ(std::tstring_t(xT("lib")), m_sRv);
         #elif xOS_ENV_UNIX
-            xTEST_EQ(std::tstring_t(xT("a")), m_sRes);
+            xTEST_EQ(std::tstring_t(xT("a")), m_sRv);
         #endif
 
-        m_sRes = CxPath::sGetStandartExt(CxPath::seObj);
+        m_sRv = CxPath::sGetStandartExt(CxPath::seObj);
         #if xOS_ENV_WIN
-            xTEST_EQ(std::tstring_t(xT("obj")), m_sRes);
+            xTEST_EQ(std::tstring_t(xT("obj")), m_sRv);
         #elif xOS_ENV_UNIX
-            xTEST_EQ(std::tstring_t(xT("o")), m_sRes);
+            xTEST_EQ(std::tstring_t(xT("o")), m_sRv);
         #endif
 
-        m_sRes = CxPath::sGetStandartExt(CxPath::seBat);
+        m_sRv = CxPath::sGetStandartExt(CxPath::seBat);
         #if xOS_ENV_WIN
-            xTEST_EQ(std::tstring_t(xT("bat")), m_sRes);
+            xTEST_EQ(std::tstring_t(xT("bat")), m_sRv);
         #elif xOS_ENV_UNIX
-            xTEST_EQ(std::tstring_t(xT("sh")), m_sRes);
+            xTEST_EQ(std::tstring_t(xT("sh")), m_sRv);
         #endif
     }
 
@@ -462,8 +462,8 @@ CxTest_CxPath::bUnit(
             };
 
             for (size_t i = 0; i < xARRAY_SIZE(casData); ++ i) {
-                m_bRes = CxPath::bIsAbsolute(casData[i]);
-                xTEST_EQ(true, m_bRes);
+                m_bRv = CxPath::bIsAbsolute(casData[i]);
+                xTEST_EQ(true, m_bRv);
             }
         }
 
@@ -488,8 +488,8 @@ CxTest_CxPath::bUnit(
             };
 
             for (size_t i = 0; i < xARRAY_SIZE(casData); ++ i) {
-                m_bRes = CxPath::bIsAbsolute(casData[i]);
-                xTEST_EQ(false, m_bRes);
+                m_bRv = CxPath::bIsAbsolute(casData[i]);
+                xTEST_EQ(false, m_bRv);
             }
         }
     }
@@ -618,17 +618,17 @@ CxTest_CxPath::bUnit(
         const std::tstring_t csUnixPath = xT("C:/TestDir");
         const std::tstring_t csWinPath  = xT("C:\\TestDir");
 
-        m_sRes = CxPath::sToWin(csUnixPath, false);
-        xTEST_EQ(m_sRes, std::tstring_t(xT("C:\\TestDir")));
+        m_sRv = CxPath::sToWin(csUnixPath, false);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("C:\\TestDir")));
 
-        m_sRes = CxPath::sToWin(csUnixPath, true);
-        xTEST_EQ(m_sRes, std::tstring_t(xT("C:\\TestDir\\")));
+        m_sRv = CxPath::sToWin(csUnixPath, true);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("C:\\TestDir\\")));
 
-        m_sRes = CxPath::sToWin(csWinPath, true);
-        xTEST_EQ(m_sRes, std::tstring_t(xT("C:\\TestDir\\")));
+        m_sRv = CxPath::sToWin(csWinPath, true);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("C:\\TestDir\\")));
 
-        m_sRes = CxPath::sToWin(csWinPath, false);
-        xTEST_EQ(m_sRes, std::tstring_t(xT("C:\\TestDir")));
+        m_sRv = CxPath::sToWin(csWinPath, false);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("C:\\TestDir")));
     }
 
     //-------------------------------------
@@ -638,17 +638,17 @@ CxTest_CxPath::bUnit(
         const std::tstring_t csUnixPath = xT("/home/user/Soft/TestDir");
         const std::tstring_t csWinPath  = xT("\\home\\user\\Soft\\TestDir");
 
-        m_sRes = CxPath::sToUnix(csUnixPath,  false);
-        xTEST_EQ(m_sRes, std::tstring_t(xT("/home/user/Soft/TestDir")));
+        m_sRv = CxPath::sToUnix(csUnixPath,  false);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("/home/user/Soft/TestDir")));
 
-        m_sRes = CxPath::sToUnix(csUnixPath,  true);
-        xTEST_EQ(m_sRes, std::tstring_t(xT("/home/user/Soft/TestDir/")));
+        m_sRv = CxPath::sToUnix(csUnixPath,  true);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("/home/user/Soft/TestDir/")));
 
-        m_sRes = CxPath::sToUnix(csWinPath,  true);
-        xTEST_EQ(m_sRes, std::tstring_t(xT("/home/user/Soft/TestDir/")));
+        m_sRv = CxPath::sToUnix(csWinPath,  true);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("/home/user/Soft/TestDir/")));
 
-        m_sRes = CxPath::sToUnix(csWinPath,  false);
-        xTEST_EQ(m_sRes, std::tstring_t(xT("/home/user/Soft/TestDir")));
+        m_sRv = CxPath::sToUnix(csWinPath,  false);
+        xTEST_EQ(m_sRv, std::tstring_t(xT("/home/user/Soft/TestDir")));
     }
 
     //--------------------------------------------------
@@ -659,32 +659,32 @@ CxTest_CxPath::bUnit(
             const std::tstring_t csUnixPath = xT("C:/TestDir");
             const std::tstring_t csWinPath  = xT("C:\\TestDir");
 
-            m_sRes = CxPath::sToCurrentOs(csWinPath,  false);
-            xTEST_EQ(m_sRes, std::tstring_t(xT("C:\\TestDir")));
+            m_sRv = CxPath::sToCurrentOs(csWinPath,  false);
+            xTEST_EQ(m_sRv, std::tstring_t(xT("C:\\TestDir")));
 
-            m_sRes = CxPath::sToCurrentOs(csWinPath,  true);
-            xTEST_EQ(m_sRes, std::tstring_t(xT("C:\\TestDir\\")));
+            m_sRv = CxPath::sToCurrentOs(csWinPath,  true);
+            xTEST_EQ(m_sRv, std::tstring_t(xT("C:\\TestDir\\")));
 
-            m_sRes = CxPath::sToCurrentOs(csWinPath,  true);
-            xTEST_EQ(m_sRes, std::tstring_t(xT("C:\\TestDir\\")));
+            m_sRv = CxPath::sToCurrentOs(csWinPath,  true);
+            xTEST_EQ(m_sRv, std::tstring_t(xT("C:\\TestDir\\")));
 
-            m_sRes = CxPath::sToCurrentOs(csWinPath,  false);
-            xTEST_EQ(m_sRes, std::tstring_t(xT("C:\\TestDir")));
+            m_sRv = CxPath::sToCurrentOs(csWinPath,  false);
+            xTEST_EQ(m_sRv, std::tstring_t(xT("C:\\TestDir")));
         #elif xOS_ENV_UNIX
             const std::tstring_t csUnixPath = xT("/home/user/Soft/TestDir");
             const std::tstring_t csWinPath  = xT("\\home\\user\\Soft\\TestDir");
 
-            m_sRes = CxPath::sToCurrentOs(csWinPath,  false);
-            xTEST_EQ(m_sRes, std::tstring_t(xT("/home/user/Soft/TestDir")));
+            m_sRv = CxPath::sToCurrentOs(csWinPath,  false);
+            xTEST_EQ(m_sRv, std::tstring_t(xT("/home/user/Soft/TestDir")));
 
-            m_sRes = CxPath::sToCurrentOs(csWinPath,  true);
-            xTEST_EQ(m_sRes, std::tstring_t(xT("/home/user/Soft/TestDir/")));
+            m_sRv = CxPath::sToCurrentOs(csWinPath,  true);
+            xTEST_EQ(m_sRv, std::tstring_t(xT("/home/user/Soft/TestDir/")));
 
-            m_sRes = CxPath::sToCurrentOs(csWinPath,  true);
-            xTEST_EQ(m_sRes, std::tstring_t(xT("/home/user/Soft/TestDir/")));
+            m_sRv = CxPath::sToCurrentOs(csWinPath,  true);
+            xTEST_EQ(m_sRv, std::tstring_t(xT("/home/user/Soft/TestDir/")));
 
-            m_sRes = CxPath::sToCurrentOs(csWinPath,  false);
-            xTEST_EQ(m_sRes, std::tstring_t(xT("/home/user/Soft/TestDir")));
+            m_sRv = CxPath::sToCurrentOs(csWinPath,  false);
+            xTEST_EQ(m_sRv, std::tstring_t(xT("/home/user/Soft/TestDir")));
         #endif
     }
 
@@ -694,11 +694,11 @@ CxTest_CxPath::bUnit(
     {
         std::vector<std::tstring_t> vsArgs;
 
-        m_bRes = CxCommandLine::bGetArgs(&vsArgs);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = CxCommandLine::bGetArgs(&vsArgs);
+        xTEST_EQ(true, m_bRv);
 
-        m_sRes = CxPath::sGetAbsolute(vsArgs.at(0));
-        xTEST_EQ(false, m_sRes.empty());
+        m_sRv = CxPath::sGetAbsolute(vsArgs.at(0));
+        xTEST_EQ(false, m_sRv.empty());
     }
 
     //-------------------------------------
@@ -735,11 +735,11 @@ CxTest_CxPath::bUnit(
                 std::tstring_t sFilePath = xT("/home/user/Soft/eclipse/workspace/xLib.test/Debug/filename");
             #endif
 
-	        m_sRes = CxPath::sGetShort(sFilePath, 4);
+	        m_sRv = CxPath::sGetShort(sFilePath, 4);
             #if   xOS_ENV_WIN
-                xTEST_EQ(std::tstring_t(xT("C:\\Test.txt")), m_sRes);
+                xTEST_EQ(std::tstring_t(xT("C:\\Test.txt")), m_sRv);
             #elif xOS_ENV_UNIX
-                xTEST_EQ(std::tstring_t(xT("/.../filename")), m_sRes);
+                xTEST_EQ(std::tstring_t(xT("/.../filename")), m_sRv);
             #endif
         }
 
@@ -750,11 +750,11 @@ CxTest_CxPath::bUnit(
                 std::tstring_t sFilePath = xT("/home/filename");
             #endif
 
-	        m_sRes = CxPath::sGetShort(sFilePath, 200);
+	        m_sRv = CxPath::sGetShort(sFilePath, 200);
             #if   xOS_ENV_WIN
-                xTEST_EQ(std::tstring_t(xT("C:\\Test.txt")), m_sRes);
+                xTEST_EQ(std::tstring_t(xT("C:\\Test.txt")), m_sRv);
             #elif xOS_ENV_UNIX
-                xTEST_EQ(std::tstring_t(xT("/home/filename")), m_sRes);
+                xTEST_EQ(std::tstring_t(xT("/home/filename")), m_sRv);
             #endif
         }
 
@@ -765,22 +765,22 @@ CxTest_CxPath::bUnit(
                 std::tstring_t sFilePath = xT("/home/user/Soft/eclipse/workspace/xLib.test/Debug/filename");
             #endif
 
-	        m_sRes = CxPath::sGetShort(sFilePath, 15);
+	        m_sRv = CxPath::sGetShort(sFilePath, 15);
             #if   xOS_ENV_WIN
-                xTEST_EQ(std::tstring_t(xT("D:\\...\\vSpeedButton_LoadDrives.cpp")), m_sRes);
+                xTEST_EQ(std::tstring_t(xT("D:\\...\\vSpeedButton_LoadDrives.cpp")), m_sRv);
             #elif xOS_ENV_UNIX
-                xTEST_EQ(std::tstring_t(xT("/.../filename")), m_sRes);
+                xTEST_EQ(std::tstring_t(xT("/.../filename")), m_sRv);
             #endif
         }
 
         {
             std::tstring_t sFilePath = xT("D:/xVCL\\Include/xVCL\\Units/Gui/Tools/LoadDrives.cpp");
 
-	        m_sRes = CxPath::sGetShort(sFilePath, 15);
+	        m_sRv = CxPath::sGetShort(sFilePath, 15);
             #if defined(xOS_ENV_WIN)
-                xTEST_EQ(std::tstring_t(xT("D:\\...\\LoadDrives.cpp")), m_sRes);
+                xTEST_EQ(std::tstring_t(xT("D:\\...\\LoadDrives.cpp")), m_sRv);
             #elif defined(xOS_ENV_UNIX)
-                xTEST_EQ(std::tstring_t(xT("D:/.../LoadDrives.cpp")), m_sRes);
+                xTEST_EQ(std::tstring_t(xT("D:/.../LoadDrives.cpp")), m_sRv);
             #endif
         }
     }
@@ -855,16 +855,16 @@ CxTest_CxPath::bUnit(
     //uiGetMaxSize
     xTEST_CASE(cullCaseLoops)
     {
-        m_uiRes = CxPath::uiGetMaxSize();
-        xTEST_LESS(0U, m_uiRes);
+        m_uiRv = CxPath::uiGetMaxSize();
+        xTEST_LESS(0U, m_uiRv);
     }
 
     //--------------------------------------------------
     //uiGetNameMaxSize
     xTEST_CASE(cullCaseLoops)
     {
-        m_uiRes = CxPath::uiGetNameMaxSize();
-        xTEST_LESS(0U, m_uiRes);
+        m_uiRv = CxPath::uiGetNameMaxSize();
+        xTEST_LESS(0U, m_uiRv);
     }
 
     return true;

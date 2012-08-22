@@ -110,8 +110,8 @@ CxTest_CxAtomicLongInt::bUnit(
         alLong1 = 7L;
         alLong2 = 7L;
 
-        m_bRes = ( alLong1 == alLong2 );
-        xTEST_EQ(true, m_bRes);
+        m_bRv = ( alLong1 == alLong2 );
+        xTEST_EQ(true, m_bRv);
     }
 
     //--------------------------------------------------
@@ -122,8 +122,8 @@ CxTest_CxAtomicLongInt::bUnit(
 
         alLong1 = 7L;
 
-        m_bRes = ( alLong1 == 7L );
-        xTEST_EQ(true, m_bRes);
+        m_bRv = ( alLong1 == 7L );
+        xTEST_EQ(true, m_bRv);
     }
 
     //--------------------------------------------------
@@ -136,8 +136,8 @@ CxTest_CxAtomicLongInt::bUnit(
         alLong1 = 7L;
         alLong2 = 7L;
 
-        m_bRes = ( alLong1 != alLong2 );
-        xTEST_EQ(false, m_bRes);
+        m_bRv = ( alLong1 != alLong2 );
+        xTEST_EQ(false, m_bRv);
     }
 
     //--------------------------------------------------
@@ -148,8 +148,8 @@ CxTest_CxAtomicLongInt::bUnit(
 
         alLong1 = 7L;
 
-        m_bRes = ( alLong1 != 7L );
-        xTEST_EQ(false, m_bRes);
+        m_bRv = ( alLong1 != 7L );
+        xTEST_EQ(false, m_bRv);
     }
 
     //--------------------------------------------------
@@ -160,8 +160,8 @@ CxTest_CxAtomicLongInt::bUnit(
 
         alLong1 = 7L;
 
-        m_bRes = ( alLong1 < 10L );
-        xTEST_EQ(true, m_bRes);
+        m_bRv = ( alLong1 < 10L );
+        xTEST_EQ(true, m_bRv);
     }
     //--------------------------------------------------
     //operator < (const CxAtomicLongInt &calValue)
@@ -173,8 +173,8 @@ CxTest_CxAtomicLongInt::bUnit(
         alLong1 = 7L;
         alLong2 = 10L;
 
-        m_bRes = ( alLong1 < alLong2 );
-        xTEST_EQ(true, m_bRes);
+        m_bRv = ( alLong1 < alLong2 );
+        xTEST_EQ(true, m_bRv);
     }
 
     //--------------------------------------------------
@@ -185,8 +185,8 @@ CxTest_CxAtomicLongInt::bUnit(
 
         alLong1 = 7L;
 
-        m_bRes = ( alLong1 <= 10L );
-        xTEST_EQ(true, m_bRes);
+        m_bRv = ( alLong1 <= 10L );
+        xTEST_EQ(true, m_bRv);
     }
 
     //--------------------------------------------------
@@ -199,8 +199,8 @@ CxTest_CxAtomicLongInt::bUnit(
         alLong1 = 7L;
         alLong2 = 10L;
 
-        m_bRes = ( alLong1 <= alLong2 );
-        xTEST_EQ(true, m_bRes);
+        m_bRv = ( alLong1 <= alLong2 );
+        xTEST_EQ(true, m_bRv);
     }
 
     //--------------------------------------------------
@@ -211,8 +211,8 @@ CxTest_CxAtomicLongInt::bUnit(
 
         alLong1 = 10L;
 
-        m_bRes = ( alLong1 > 7L );
-        xTEST_EQ(true, m_bRes);
+        m_bRv = ( alLong1 > 7L );
+        xTEST_EQ(true, m_bRv);
     }
 
     //--------------------------------------------------
@@ -225,8 +225,8 @@ CxTest_CxAtomicLongInt::bUnit(
         alLong1 = 10L;
         alLong2 = 7L;
 
-        m_bRes = ( alLong1 > alLong2 );
-        xTEST_EQ(true, m_bRes);
+        m_bRv = ( alLong1 > alLong2 );
+        xTEST_EQ(true, m_bRv);
     }
 
     //--------------------------------------------------
@@ -237,8 +237,8 @@ CxTest_CxAtomicLongInt::bUnit(
 
         alLong1 = 10L;
 
-        m_bRes = ( alLong1  >= 7L);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = ( alLong1  >= 7L);
+        xTEST_EQ(true, m_bRv);
     }
 
     //--------------------------------------------------
@@ -251,8 +251,8 @@ CxTest_CxAtomicLongInt::bUnit(
         alLong1 = 10L;
         alLong2 = 7L;
 
-        m_bRes = ( alLong1 >= alLong2 );
-        xTEST_EQ(true, m_bRes);
+        m_bRv = ( alLong1 >= alLong2 );
+        xTEST_EQ(true, m_bRv);
     }
 
     //--------------------------------------------------
@@ -321,8 +321,8 @@ CxTest_CxAtomicLongInt::bUnit(
         alLong1  = 10L;
         xTEST_EQ(alLong1.liGetValue(), 10L);
 
-        m_liRes = alLong1.liGetValue();
-        xTEST_EQ(10L, m_liRes);
+        m_liRv = alLong1.liGetValue();
+        xTEST_EQ(10L, m_liRv);
     }
 
     return true;

@@ -20,34 +20,34 @@ std::tstring_t
 CxLocale::sGetCurrent() {
     /*DEBUG*/// n/a
 
-    std::tstring_t sRes;
+    std::tstring_t sRv;
 
 #if xOS_ENV_WIN
-    int  iRes = - 1;
+    int  iRv = - 1;
     LCID lcId   = 0;
 
     lcId = ::GetSystemDefaultLCID();
     /*DEBUG*/// n/a
 
     //Retrieves information about a locale specified by identifier
-    iRes = ::GetLocaleInfo(lcId, LOCALE_SENGLANGUAGE, 0, 0);
-    /*DEBUG*/xASSERT_RET(0 != iRes, std::tstring_t());
+    iRv = ::GetLocaleInfo(lcId, LOCALE_SENGLANGUAGE, 0, 0);
+    /*DEBUG*/xASSERT_RET(0 != iRv, std::tstring_t());
 
-    sRes.resize(iRes);
-    iRes = ::GetLocaleInfo(lcId, LOCALE_SENGLANGUAGE, &sRes.at(0), sRes.size());
-    /*DEBUG*/xASSERT_RET(0 != iRes, std::tstring_t());
+    sRv.resize(iRv);
+    iRv = ::GetLocaleInfo(lcId, LOCALE_SENGLANGUAGE, &sRv.at(0), sRv.size());
+    /*DEBUG*/xASSERT_RET(0 != iRv, std::tstring_t());
 
-    sRes.resize(iRes - sizeof('\0'));    //delete from end '\0'
+    sRv.resize(iRv - sizeof('\0'));    //delete from end '\0'
 #elif xOS_ENV_UNIX
     const tchar_t *pcszLocale = NULL;
 
     pcszLocale = std::xTSETLOCALE(LC_ALL, NULL);
     /*DEBUG*/xASSERT_RET(NULL != pcszLocale, std::tstring_t());
 
-    sRes.assign(pcszLocale);
+    sRv.assign(pcszLocale);
 #endif
 
-    return sRes;
+    return sRv;
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -73,8 +73,8 @@ bool
 CxLocale::bSetDefault() {
     /*DEBUG*/// n/a
 
-    bool bRes = CxLocale::bSetCurrent(CxLocale::sGetCurrent());
-   /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bool bRv = CxLocale::bSetCurrent(CxLocale::sGetCurrent());
+   /*DEBUG*/xASSERT_RET(true == bRv, false);
 
    return true;
 }

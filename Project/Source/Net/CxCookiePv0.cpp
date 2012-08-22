@@ -29,10 +29,10 @@ CxCookiePv0::CxCookiePv0() :
 {
     /*DEBUG*/
 
-    bool bRes = false;
+    bool bRv = false;
 
-    bRes = bInit(std::tstring_t());
-    /*DEBUG*/xASSERT_DO(true == bRes, return);
+    bRv = bInit(std::tstring_t());
+    /*DEBUG*/xASSERT_DO(true == bRv, return);
 }
 //---------------------------------------------------------------------------
 CxCookiePv0::CxCookiePv0(
@@ -48,10 +48,10 @@ CxCookiePv0::CxCookiePv0(
 {
     /*DEBUG*/
 
-    bool bRes = false;
+    bool bRv = false;
 
-    bRes = bInit(csRawCookie);
-    /*DEBUG*/xASSERT_DO(true == bRes, return);
+    bRv = bInit(csRawCookie);
+    /*DEBUG*/xASSERT_DO(true == bRv, return);
 }
 //---------------------------------------------------------------------------
 /*virtual*/
@@ -197,43 +197,43 @@ std::tstring_t
 CxCookiePv0::sToString() const {
     /*DEBUG*/
 
-    std::tstring_t sRes;
+    std::tstring_t sRv;
 
     //name
-    sRes.append(_m_sName);
-    sRes.append(xT("="));
-    sRes.append(_m_sValue);
+    sRv.append(_m_sName);
+    sRv.append(xT("="));
+    sRv.append(_m_sValue);
 
     //domain
     if (false == _m_sDomain.empty()) {
-        sRes.append(xT("; Domain="));
-        sRes.append(_m_sDomain);
+        sRv.append(xT("; Domain="));
+        sRv.append(_m_sDomain);
     }
 
     //path
     if (false == _m_sPath.empty()) {
-        sRes.append(xT("; Path="));
-        sRes.append(_m_sPath);
+        sRv.append(xT("; Path="));
+        sRv.append(_m_sPath);
     }
 
     //expires
     if (false == _m_sExpires.empty()) {
         //[Wdy, DD-Mon-YYYY HH:MM:SS GMT]
-        sRes.append(xT("; Expires="));
-        sRes.append(_m_sExpires);
+        sRv.append(xT("; Expires="));
+        sRv.append(_m_sExpires);
     }
 
     //secure
     if (true == _m_bSecure) {
-        sRes.append(xT("; Secure"));
+        sRv.append(xT("; Secure"));
     }
 
     //HttpOmly
     if (true == _m_bHttpOnly) {
-        sRes.append(xT("; HttpOnly"));
+        sRv.append(xT("; HttpOnly"));
     }
 
-    return sRes;
+    return sRv;
 }
 //---------------------------------------------------------------------------
 //TODO: sGetDump make tests
@@ -241,9 +241,9 @@ std::tstring_t
 CxCookiePv0::sGetDump() const {
     /*DEBUG*/
 
-    std::tstring_t sRes;
+    std::tstring_t sRv;
 
-    sRes = CxString::sFormat(
+    sRv = CxString::sFormat(
             xT("[CxCookiePv0 dump]\n\n")
             xT("Name: %s\n")
             xT("Value: %s\n")
@@ -261,7 +261,7 @@ CxCookiePv0::sGetDump() const {
             CxString::sBoolToStr(bGetHttpOnly()).c_str()
     );
 
-    return sRes;
+    return sRv;
 }
 //---------------------------------------------------------------------------
 bool
@@ -306,7 +306,7 @@ CxCookiePv0::bInit(
     typedef std::pair<std::tstring_t, std::tstring_t>                TStringPair;
 
 
-    bool       bRes = false;
+    bool       bRv = false;
     TStringMap msCookie;
     std::tstring_t    sCookie;
 
@@ -317,15 +317,15 @@ CxCookiePv0::bInit(
     //split into pairs (name1=value1; name2=value2; nameN=valueN)
     std::vector<std::tstring_t> vsPairs;
 
-    bRes = CxString::bSplit(sCookie, CxConst::xSEMICOLON, &vsPairs);
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bRv = CxString::bSplit(sCookie, CxConst::xSEMICOLON, &vsPairs);
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     for (size_t i = 0; i < vsPairs.size(); ++ i) {
         //split into name, value (name=value)
         std::vector<std::tstring_t> vsTemp;
 
-        bRes = CxString::bSplit(vsPairs.at(i), CxConst::xEQUAL, &vsTemp);
-        /*DEBUG*/xASSERT_RET(true == bRes, false);
+        bRv = CxString::bSplit(vsPairs.at(i), CxConst::xEQUAL, &vsTemp);
+        /*DEBUG*/xASSERT_RET(true == bRv, false);
 
         std::tstring_t sCookieName  = CxString::sTrimSpace(vsTemp.at(0));
         std::tstring_t sCookieValue = ( (1 == vsTemp.size()) ? std::tstring_t() : vsTemp.at(1) );

@@ -25,14 +25,14 @@ xNAMESPACE_END(NxLib)
 
 //---------------------------------------------------------------------------
 /*int main(int argc, char* argv[]) {
-    bool        bRes         = false;
+    bool        bRv         = false;
     std::string sUrl         = xT("http://dn0.berloga.net/78938/Uraliskaya_rybalka_v.02.rar"); //xT("http://forum.vingrad.ru/forum/borland-c++builder.html");
     std::string sFileContent = xT("");
     std::string sFilePath    = xT("C:/test.rar");
 
 
-    bRes = bDownloadURL(sUrl.c_str(), sFilePath.c_str());
-    if (true == bRes) {
+    bRv = bDownloadURL(sUrl.c_str(), sFilePath.c_str());
+    if (true == bRv) {
         std::cout << "Yes" << std::endl;
     } else {
         std::cout << "No" << std::endl;

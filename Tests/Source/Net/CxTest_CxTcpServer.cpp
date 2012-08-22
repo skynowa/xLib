@@ -44,57 +44,57 @@ CxTest_CxTcpServer::bUnit(
 
     //-------------------------------------
     //bCreate
-    m_bRes = objListenSocket.bCreate(afAf, tpType, ptProtocol);
-    xTEST_EQ(true, m_bRes);
+    m_bRv = objListenSocket.bCreate(afAf, tpType, ptProtocol);
+    xTEST_EQ(true, m_bRv);
 
     //-------------------------------------
     //bGetHostAddrByName
-    m_bRes = CxDnsClient::bGetHostAddrByName(csDomain, &sIp);
-    xTEST_EQ(true, m_bRes);
+    m_bRv = CxDnsClient::bGetHostAddrByName(csDomain, &sIp);
+    xTEST_EQ(true, m_bRv);
 
     //-------------------------------------
     //bConnect
-    m_bRes = objListenSocket.bBind(usPort);
-    xTEST_EQ(true, m_bRes);
+    m_bRv = objListenSocket.bBind(usPort);
+    xTEST_EQ(true, m_bRv);
 
     //-------------------------------------
     //bListen
-    m_bRes = objListenSocket.bListen(SOMAXCONN);
-    xTEST_EQ(true, m_bRes);
+    m_bRv = objListenSocket.bListen(SOMAXCONN);
+    xTEST_EQ(true, m_bRv);
 
     //-------------------------------------
     //bAccept
-    m_bRes = objListenSocket.bAccept(&objClientSocket, &sIp);
-    xTEST_EQ(true, m_bRes);
+    m_bRv = objListenSocket.bAccept(&objClientSocket, &sIp);
+    xTEST_EQ(true, m_bRv);
 
     for (; ;) {
         //-------------------------------------
         //iRecv
-        m_iRes = objClientSocket.iRecv(&szRecvBuff[0], xARRAY_SIZE(szRecvBuff), 0);
-        xTEST_DIFF((int)CxTcpServer::etError, m_iRes);
+        m_iRv = objClientSocket.iRecv(&szRecvBuff[0], xARRAY_SIZE(szRecvBuff), 0);
+        xTEST_DIFF((int)CxTcpServer::etError, m_iRv);
 
-        std::tcout << std::tstring_t(szRecvBuff, m_iRes) << std::endl;
+        std::tcout << std::tstring_t(szRecvBuff, m_iRv) << std::endl;
     }
 
     //-------------------------------------
     //bClose
-    m_bRes = objClientSocket.bClose();
-    xTEST_EQ(true, m_bRes);
+    m_bRv = objClientSocket.bClose();
+    xTEST_EQ(true, m_bRv);
 
     //-------------------------------------
     //iSend
-    ////m_iRes = objSocket.iSend(sSendBuff.c_str(), sSendBuff.size(), 0);
-    ////xTEST_DIFF(CxTcpServer::etError, m_iRes);
+    ////m_iRv = objSocket.iSend(sSendBuff.c_str(), sSendBuff.size(), 0);
+    ////xTEST_DIFF(CxTcpServer::etError, m_iRv);
 
     //-------------------------------------
     //bClose
-    m_bRes = objListenSocket.bClose();
-    xTEST_EQ(true, m_bRes);
+    m_bRv = objListenSocket.bClose();
+    xTEST_EQ(true, m_bRv);
 
     //-------------------------------------
     //iGetLastError
-    m_iRes = CxTcpServer::iGetLastError();
-    //xTEST_EQ(true, m_bRes);
+    m_iRv = CxTcpServer::iGetLastError();
+    //xTEST_EQ(true, m_bRv);
 
     return true;
 }

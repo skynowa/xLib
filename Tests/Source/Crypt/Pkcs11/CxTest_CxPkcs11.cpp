@@ -40,8 +40,8 @@ CxTest_CxPkcs11::bUnit(
     //    const std::tstring_t csData      = xT("1203456789");
     //    std::ustring_t       usData      = xS2US(csData);
 
-    //    m_bRes = CxObject::bSetData(xS2US(csUserPin), xS2US(csDataLabel), usData);
-    //    xTEST_EQ(true, m_bRes);
+    //    m_bRv = CxObject::bSetData(xS2US(csUserPin), xS2US(csDataLabel), usData);
+    //    xTEST_EQ(true, m_bRv);
     }
 
     //-------------------------------------
@@ -52,8 +52,8 @@ CxTest_CxPkcs11::bUnit(
     //    const std::tstring_t csDataLabel = xT("Label_Id");
     //    std::ustring_t       usData;
 
-    //    m_bRes = CxObject::bGetData(xS2US(csUserPin), xS2US(csDataLabel), &usData);
-    //    xTEST_EQ(true, m_bRes);
+    //    m_bRv = CxObject::bGetData(xS2US(csUserPin), xS2US(csDataLabel), &usData);
+    //    xTEST_EQ(true, m_bRv);
     }
 
     //-------------------------------------
@@ -65,8 +65,8 @@ CxTest_CxPkcs11::bUnit(
         const std::tstring_t csData      = xT("1203456789");
         std::ustring_t       usData      = xS2US(csData);
 
-        m_bRes = CxObject::bSetData(ulSlot, xS2US(csUserPin), xS2US(csDataLabel), usData);
-        xTEST_EQ(true, m_bRes);
+        m_bRv = CxObject::bSetData(ulSlot, xS2US(csUserPin), xS2US(csDataLabel), usData);
+        xTEST_EQ(true, m_bRv);
     }
 #elif xOS_ENV_UNIX
 

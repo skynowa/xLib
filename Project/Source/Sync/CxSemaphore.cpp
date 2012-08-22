@@ -48,10 +48,10 @@ CxSemaphore::bCreate(
 #if xOS_ENV_WIN
     const tchar_t *pcszName = (true == csName.empty()) ? (NULL) : (csName.c_str());
 
-    HANDLE hRes = ::CreateSemaphore(NULL, cliInitialCount, cliMaxCount, pcszName);
-    /*DEBUG*/xASSERT_RET(NULL != hRes, false);
+    HANDLE hRv = ::CreateSemaphore(NULL, cliInitialCount, cliMaxCount, pcszName);
+    /*DEBUG*/xASSERT_RET(NULL != hRv, false);
 
-    _m_hSemaphore.bSet(hRes);
+    _m_hSemaphore.bSet(hRv);
     _m_sName = csName;
 #elif xOS_ENV_UNIX
 
@@ -72,10 +72,10 @@ CxSemaphore::bOpen(
     /*DEBUG*///csName    - n/a
 
 #if xOS_ENV_WIN
-    HANDLE hRes = ::OpenSemaphore(culAccess, cbInheritHandle, csName.c_str());
-    /*DEBUG*/xASSERT_RET(NULL != hRes, false);
+    HANDLE hRv = ::OpenSemaphore(culAccess, cbInheritHandle, csName.c_str());
+    /*DEBUG*/xASSERT_RET(NULL != hRv, false);
 
-    _m_hSemaphore.bSet(hRes);
+    _m_hSemaphore.bSet(hRv);
 #elif xOS_ENV_UNIX
 
 #endif
@@ -112,8 +112,8 @@ CxSemaphore::bWait(
     /*DEBUG*///ulTimeout - n/a
 
 #if xOS_ENV_WIN
-    DWORD ulRes = ::WaitForSingleObject(_m_hSemaphore.hGet(), culTimeout);
-    /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == ulRes, false);
+    DWORD ulRv = ::WaitForSingleObject(_m_hSemaphore.hGet(), culTimeout);
+    /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == ulRv, false);
 #elif xOS_ENV_UNIX
 
 #endif
@@ -125,16 +125,16 @@ long_t
 CxSemaphore::liGetValue() const {
     /////*DEBUG*/xASSERT_RET(false != _m_hSemaphore.bIsValid(), - 1L);
 
-    long_t liRes = - 1;
+    long_t liRv = - 1;
 
 #if xOS_ENV_WIN
-    bool bRes = bRelease(0, &liRes);
-    /*DEBUG*/xASSERT_RET(true == bRes, - 1L);
+    bool bRv = bRelease(0, &liRv);
+    /*DEBUG*/xASSERT_RET(true == bRv, - 1L);
 #elif xOS_ENV_UNIX
 
 #endif
 
-    return liRes;
+    return liRv;
 }
 //---------------------------------------------------------------------------
 bool
@@ -146,14 +146,14 @@ CxSemaphore::bReset(
     /////*DEBUG*/xASSERT_RET(false != _m_hSemaphore.bIsValid(),                      false);
     /*DEBUG*/xASSERT_RET(0 <= cliInitialCount && cliInitialCount <= cliMaxCount, false);
 
-    bool bRes = false;
+    bool bRv = false;
 
 #if xOS_ENV_WIN
-    bRes = _m_hSemaphore.bClose();
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bRv = _m_hSemaphore.bClose();
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
-    bRes = bCreate(cliInitialCount, cliMaxCount, _m_sName);
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bRv = bCreate(cliInitialCount, cliMaxCount, _m_sName);
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 #elif xOS_ENV_UNIX
     #if xTODO
         void Reset(int init = 0)    {

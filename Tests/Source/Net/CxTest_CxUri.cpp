@@ -22,230 +22,230 @@ CxTest_CxUri::bUnit(
     const ulonglong_t cullCaseLoops
 )
 {
-    std::string m_sRes;
+    std::string m_sRv;
 
     xTEST_CASE(cullCaseLoops)
     {
         CxUri objUri("foo://userinfo@example.com:8042/over/there?name=ferret#nose");
 
-        m_sRes  = objUri.sGetUri();
-        xTEST_EQ(std::string("foo://userinfo@example.com:8042/over/there?name=ferret#nose"), m_sRes);
+        m_sRv  = objUri.sGetUri();
+        xTEST_EQ(std::string("foo://userinfo@example.com:8042/over/there?name=ferret#nose"), m_sRv);
 
-        m_sRes  = objUri.sGetScheme();
-        xTEST_EQ(std::string("foo"), m_sRes);
+        m_sRv  = objUri.sGetScheme();
+        xTEST_EQ(std::string("foo"), m_sRv);
 
-        m_sRes  = objUri.sGetAuthority();
-        xTEST_EQ(std::string("//userinfo@example.com:8042"), m_sRes);
+        m_sRv  = objUri.sGetAuthority();
+        xTEST_EQ(std::string("//userinfo@example.com:8042"), m_sRv);
 
-        m_sRes  = objUri.sGetUserInfo();
-        xTEST_EQ(std::string("userinfo"), m_sRes);
+        m_sRv  = objUri.sGetUserInfo();
+        xTEST_EQ(std::string("userinfo"), m_sRv);
 
-        m_sRes  = objUri.sGetHost();
-        xTEST_EQ(std::string("example.com"), m_sRes);
+        m_sRv  = objUri.sGetHost();
+        xTEST_EQ(std::string("example.com"), m_sRv);
 
-        m_usiRes = objUri.usGetPort();
-        xTEST_EQ((ushort_t)8042u, m_usiRes);
+        m_usiRv = objUri.usGetPort();
+        xTEST_EQ((ushort_t)8042u, m_usiRv);
 
-        m_sRes  = objUri.sGetPath();
-        xTEST_EQ(std::string("/over/there"), m_sRes);
+        m_sRv  = objUri.sGetPath();
+        xTEST_EQ(std::string("/over/there"), m_sRv);
 
-        m_sRes  = objUri.sGetQuery();
-        xTEST_EQ(std::string("name=ferret"), m_sRes);
+        m_sRv  = objUri.sGetQuery();
+        xTEST_EQ(std::string("name=ferret"), m_sRv);
 
-        m_sRes  = objUri.sGetFragment();
-        xTEST_EQ(std::string("nose"), m_sRes);
+        m_sRv  = objUri.sGetFragment();
+        xTEST_EQ(std::string("nose"), m_sRv);
     }
 
     xTEST_CASE(cullCaseLoops)
     {
         CxUri objUri("foo://userinfo@example.com:8042/over/there?name=ferret");
 
-        m_sRes  = objUri.sGetUri();
-        xTEST_EQ(std::string("foo://userinfo@example.com:8042/over/there?name=ferret"), m_sRes);
+        m_sRv  = objUri.sGetUri();
+        xTEST_EQ(std::string("foo://userinfo@example.com:8042/over/there?name=ferret"), m_sRv);
 
-        m_sRes  = objUri.sGetScheme();
-        xTEST_EQ(std::string("foo"), m_sRes);
+        m_sRv  = objUri.sGetScheme();
+        xTEST_EQ(std::string("foo"), m_sRv);
 
-        m_sRes  = objUri.sGetAuthority();
-        xTEST_EQ(std::string("//userinfo@example.com:8042"), m_sRes);
+        m_sRv  = objUri.sGetAuthority();
+        xTEST_EQ(std::string("//userinfo@example.com:8042"), m_sRv);
 
-        m_sRes  = objUri.sGetUserInfo();
-        xTEST_EQ(std::string("userinfo"), m_sRes);
+        m_sRv  = objUri.sGetUserInfo();
+        xTEST_EQ(std::string("userinfo"), m_sRv);
 
-        m_sRes  = objUri.sGetHost();
-        xTEST_EQ(std::string("example.com"), m_sRes);
+        m_sRv  = objUri.sGetHost();
+        xTEST_EQ(std::string("example.com"), m_sRv);
 
-        m_usiRes = objUri.usGetPort();
-        xTEST_EQ((ushort_t)8042u, m_usiRes);
+        m_usiRv = objUri.usGetPort();
+        xTEST_EQ((ushort_t)8042u, m_usiRv);
 
-        m_sRes  = objUri.sGetPath();
-        xTEST_EQ(std::string("/over/there"), m_sRes);
+        m_sRv  = objUri.sGetPath();
+        xTEST_EQ(std::string("/over/there"), m_sRv);
 
-        m_sRes  = objUri.sGetQuery();
-        xTEST_EQ(std::string("name=ferret"), m_sRes);
+        m_sRv  = objUri.sGetQuery();
+        xTEST_EQ(std::string("name=ferret"), m_sRv);
 
-        m_sRes  = objUri.sGetFragment();
-		xTEST_EQ(std::string(""), m_sRes);
+        m_sRv  = objUri.sGetFragment();
+		xTEST_EQ(std::string(""), m_sRv);
     }
 
     xTEST_CASE(cullCaseLoops)
     {
         CxUri objUri("foo://userinfo@example.com:8042/over/there");
 
-        m_sRes  = objUri.sGetUri();
-        xTEST_EQ(std::string("foo://userinfo@example.com:8042/over/there"), m_sRes);
+        m_sRv  = objUri.sGetUri();
+        xTEST_EQ(std::string("foo://userinfo@example.com:8042/over/there"), m_sRv);
 
-        m_sRes  = objUri.sGetScheme();
-        xTEST_EQ(std::string("foo"), m_sRes);
+        m_sRv  = objUri.sGetScheme();
+        xTEST_EQ(std::string("foo"), m_sRv);
 
-        m_sRes  = objUri.sGetAuthority();
-        xTEST_EQ(std::string("//userinfo@example.com:8042"), m_sRes);
+        m_sRv  = objUri.sGetAuthority();
+        xTEST_EQ(std::string("//userinfo@example.com:8042"), m_sRv);
 
-        m_sRes  = objUri.sGetUserInfo();
-        xTEST_EQ(std::string("userinfo"), m_sRes);
+        m_sRv  = objUri.sGetUserInfo();
+        xTEST_EQ(std::string("userinfo"), m_sRv);
 
-        m_sRes  = objUri.sGetHost();
-        xTEST_EQ(std::string("example.com"), m_sRes);
+        m_sRv  = objUri.sGetHost();
+        xTEST_EQ(std::string("example.com"), m_sRv);
 
-        m_usiRes = objUri.usGetPort();
-        xTEST_EQ((ushort_t)8042u, m_usiRes);
+        m_usiRv = objUri.usGetPort();
+        xTEST_EQ((ushort_t)8042u, m_usiRv);
 
-        m_sRes  = objUri.sGetPath();
-        xTEST_EQ(std::string("/over/there"), m_sRes);
+        m_sRv  = objUri.sGetPath();
+        xTEST_EQ(std::string("/over/there"), m_sRv);
 
-        m_sRes  = objUri.sGetQuery();
-		xTEST_EQ(std::string(""), m_sRes);
+        m_sRv  = objUri.sGetQuery();
+		xTEST_EQ(std::string(""), m_sRv);
 
-        m_sRes  = objUri.sGetFragment();
-		xTEST_EQ(std::string(""), m_sRes);
+        m_sRv  = objUri.sGetFragment();
+		xTEST_EQ(std::string(""), m_sRv);
     }
 
     xTEST_CASE(cullCaseLoops)
     {
         CxUri objUri("foo://userinfo@example.com:8042");
 
-        m_sRes  = objUri.sGetUri();
-        xTEST_EQ(std::string("foo://userinfo@example.com:8042"), m_sRes);
+        m_sRv  = objUri.sGetUri();
+        xTEST_EQ(std::string("foo://userinfo@example.com:8042"), m_sRv);
 
-        m_sRes  = objUri.sGetScheme();
-        xTEST_EQ(std::string("foo"), m_sRes);
+        m_sRv  = objUri.sGetScheme();
+        xTEST_EQ(std::string("foo"), m_sRv);
 
-        m_sRes  = objUri.sGetAuthority();
-        xTEST_EQ(std::string("//userinfo@example.com:8042"), m_sRes);
+        m_sRv  = objUri.sGetAuthority();
+        xTEST_EQ(std::string("//userinfo@example.com:8042"), m_sRv);
 
-        m_sRes  = objUri.sGetUserInfo();
-        xTEST_EQ(std::string("userinfo"), m_sRes);
+        m_sRv  = objUri.sGetUserInfo();
+        xTEST_EQ(std::string("userinfo"), m_sRv);
 
-        m_sRes  = objUri.sGetHost();
-        xTEST_EQ(std::string("example.com"), m_sRes);
+        m_sRv  = objUri.sGetHost();
+        xTEST_EQ(std::string("example.com"), m_sRv);
 
-        m_usiRes = objUri.usGetPort();
-        xTEST_EQ((ushort_t)8042u, m_usiRes);
+        m_usiRv = objUri.usGetPort();
+        xTEST_EQ((ushort_t)8042u, m_usiRv);
 
-        m_sRes  = objUri.sGetPath();
-		xTEST_EQ(std::string(""), m_sRes);
+        m_sRv  = objUri.sGetPath();
+		xTEST_EQ(std::string(""), m_sRv);
 
-        m_sRes  = objUri.sGetQuery();
-		xTEST_EQ(std::string(""), m_sRes);
+        m_sRv  = objUri.sGetQuery();
+		xTEST_EQ(std::string(""), m_sRv);
 
-        m_sRes  = objUri.sGetFragment();
-		xTEST_EQ(std::string(""), m_sRes);
+        m_sRv  = objUri.sGetFragment();
+		xTEST_EQ(std::string(""), m_sRv);
     }
 
     xTEST_CASE(cullCaseLoops)
     {
         CxUri objUri("foo://userinfo@example.com");
 
-        m_sRes  = objUri.sGetUri();
-        xTEST_EQ(std::string("foo://userinfo@example.com"), m_sRes);
+        m_sRv  = objUri.sGetUri();
+        xTEST_EQ(std::string("foo://userinfo@example.com"), m_sRv);
 
-        m_sRes  = objUri.sGetScheme();
-        xTEST_EQ(std::string("foo"), m_sRes);
+        m_sRv  = objUri.sGetScheme();
+        xTEST_EQ(std::string("foo"), m_sRv);
 
-        m_sRes  = objUri.sGetAuthority();
-        xTEST_EQ(std::string("//userinfo@example.com"), m_sRes);
+        m_sRv  = objUri.sGetAuthority();
+        xTEST_EQ(std::string("//userinfo@example.com"), m_sRv);
 
-        m_sRes  = objUri.sGetUserInfo();
-        xTEST_EQ(std::string("userinfo"), m_sRes);
+        m_sRv  = objUri.sGetUserInfo();
+        xTEST_EQ(std::string("userinfo"), m_sRv);
 
-        m_sRes  = objUri.sGetHost();
-        xTEST_EQ(std::string("example.com"), m_sRes);
+        m_sRv  = objUri.sGetHost();
+        xTEST_EQ(std::string("example.com"), m_sRv);
 
-        m_usiRes = objUri.usGetPort();
-        xTEST_EQ((ushort_t)0, m_usiRes);
+        m_usiRv = objUri.usGetPort();
+        xTEST_EQ((ushort_t)0, m_usiRv);
 
-        m_sRes  = objUri.sGetPath();
-		xTEST_EQ(std::string(""), m_sRes);
+        m_sRv  = objUri.sGetPath();
+		xTEST_EQ(std::string(""), m_sRv);
 
-        m_sRes  = objUri.sGetQuery();
-		xTEST_EQ(std::string(""), m_sRes);
+        m_sRv  = objUri.sGetQuery();
+		xTEST_EQ(std::string(""), m_sRv);
 
-        m_sRes  = objUri.sGetFragment();
-		xTEST_EQ(std::string(""), m_sRes);
+        m_sRv  = objUri.sGetFragment();
+		xTEST_EQ(std::string(""), m_sRv);
     }
      
     xTEST_CASE(cullCaseLoops)
     {
         CxUri objUri("http://weather.yahoo.com/ukraine/kiev-city-municipality/kiev-924938/?unit=c");
 
-        m_sRes  = objUri.sGetUri();
-        xTEST_EQ(std::string("http://weather.yahoo.com/ukraine/kiev-city-municipality/kiev-924938/?unit=c"), m_sRes);
+        m_sRv  = objUri.sGetUri();
+        xTEST_EQ(std::string("http://weather.yahoo.com/ukraine/kiev-city-municipality/kiev-924938/?unit=c"), m_sRv);
 
-        m_sRes  = objUri.sGetScheme();
-        xTEST_EQ(std::string("http"), m_sRes);
+        m_sRv  = objUri.sGetScheme();
+        xTEST_EQ(std::string("http"), m_sRv);
 
-        m_sRes  = objUri.sGetAuthority();
-        xTEST_EQ(std::string("//weather.yahoo.com"), m_sRes);
+        m_sRv  = objUri.sGetAuthority();
+        xTEST_EQ(std::string("//weather.yahoo.com"), m_sRv);
 
-        m_sRes  = objUri.sGetUserInfo();
-		xTEST_EQ(std::string(""), m_sRes);
+        m_sRv  = objUri.sGetUserInfo();
+		xTEST_EQ(std::string(""), m_sRv);
 
-        m_sRes  = objUri.sGetHost();
-        xTEST_EQ(std::string("weather.yahoo.com"), m_sRes);
+        m_sRv  = objUri.sGetHost();
+        xTEST_EQ(std::string("weather.yahoo.com"), m_sRv);
 
-        m_usiRes = objUri.usGetPort();
-        xTEST_EQ((ushort_t)80u, m_usiRes);
+        m_usiRv = objUri.usGetPort();
+        xTEST_EQ((ushort_t)80u, m_usiRv);
 
-        m_sRes  = objUri.sGetPath();
-        xTEST_EQ(std::string("/ukraine/kiev-city-municipality/kiev-924938/"), m_sRes);
+        m_sRv  = objUri.sGetPath();
+        xTEST_EQ(std::string("/ukraine/kiev-city-municipality/kiev-924938/"), m_sRv);
 
-        m_sRes  = objUri.sGetQuery();
-        xTEST_EQ(std::string("unit=c"), m_sRes);
+        m_sRv  = objUri.sGetQuery();
+        xTEST_EQ(std::string("unit=c"), m_sRv);
 
-        m_sRes  = objUri.sGetFragment();
-		xTEST_EQ(std::string(""), m_sRes);
+        m_sRv  = objUri.sGetFragment();
+		xTEST_EQ(std::string(""), m_sRv);
     }
 
     xTEST_CASE(cullCaseLoops)
     {
         CxUri objUri("http://dn1.berloga.net/83841/zombie_baseball_2.swf");
 
-        m_sRes  = objUri.sGetUri();
-        xTEST_EQ(std::string("http://dn1.berloga.net/83841/zombie_baseball_2.swf"), m_sRes);
+        m_sRv  = objUri.sGetUri();
+        xTEST_EQ(std::string("http://dn1.berloga.net/83841/zombie_baseball_2.swf"), m_sRv);
 
-        m_sRes  = objUri.sGetScheme();
-        xTEST_EQ(std::string("http"), m_sRes);
+        m_sRv  = objUri.sGetScheme();
+        xTEST_EQ(std::string("http"), m_sRv);
 
-        m_sRes  = objUri.sGetAuthority();
-        xTEST_EQ(std::string("//dn1.berloga.net"), m_sRes);
+        m_sRv  = objUri.sGetAuthority();
+        xTEST_EQ(std::string("//dn1.berloga.net"), m_sRv);
 
-        m_sRes  = objUri.sGetUserInfo();
-		xTEST_EQ(std::string(""), m_sRes);
+        m_sRv  = objUri.sGetUserInfo();
+		xTEST_EQ(std::string(""), m_sRv);
 
-        m_sRes  = objUri.sGetHost();
-        xTEST_EQ(std::string("dn1.berloga.net"), m_sRes);
+        m_sRv  = objUri.sGetHost();
+        xTEST_EQ(std::string("dn1.berloga.net"), m_sRv);
 
-        m_usiRes = objUri.usGetPort();
-        xTEST_EQ((ushort_t)80u, m_usiRes);
+        m_usiRv = objUri.usGetPort();
+        xTEST_EQ((ushort_t)80u, m_usiRv);
 
-        m_sRes  = objUri.sGetPath();
-        xTEST_EQ(std::string("/83841/zombie_baseball_2.swf"), m_sRes);
+        m_sRv  = objUri.sGetPath();
+        xTEST_EQ(std::string("/83841/zombie_baseball_2.swf"), m_sRv);
 
-        m_sRes  = objUri.sGetQuery();
-		xTEST_EQ(std::string(""), m_sRes);
+        m_sRv  = objUri.sGetQuery();
+		xTEST_EQ(std::string(""), m_sRv);
 
-		m_sRes  = objUri.sGetFragment();
-        xTEST_EQ(std::string(""), m_sRes);
+		m_sRv  = objUri.sGetFragment();
+        xTEST_EQ(std::string(""), m_sRv);
     }
 
     //-------------------------------------
@@ -260,10 +260,10 @@ CxTest_CxUri::bUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(sUri); i ++) {
-            m_sRes = CxUri::sEncodeComponent(sUri[i]);
-            m_sRes = CxUri::sDecodeComponent(m_sRes);
+            m_sRv = CxUri::sEncodeComponent(sUri[i]);
+            m_sRv = CxUri::sDecodeComponent(m_sRv);
 
-            xTEST_EQ(sUri[i], m_sRes);
+            xTEST_EQ(sUri[i], m_sRv);
         }
     }
 

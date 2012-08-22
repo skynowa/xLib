@@ -72,10 +72,10 @@ CxFileLog::bWrite(
 {
     /*DEBUG*/xASSERT_RET(NULL != pcszFormat, false);
 
-    bool bRes = false;
+    bool bRv = false;
 
-    bRes = _bDeleteIfFull();
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bRv = _bDeleteIfFull();
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     //-------------------------------------
     //time
@@ -99,39 +99,39 @@ CxFileLog::bWrite(
 
     CxFile sfFile;
 
-    bRes = sfFile.bCreate(sGetFilePath(), CxFile::omAppend, false);
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bRv = sfFile.bCreate(sGetFilePath(), CxFile::omAppend, false);
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
-    int iRes = sfFile.iWrite(xT("[%s] %s\n"), sTime.c_str(), sParam.c_str());
-    /*DEBUG*/xASSERT_RET(iRes != CxFile::etError, false);
+    int iRv = sfFile.iWrite(xT("[%s] %s\n"), sTime.c_str(), sParam.c_str());
+    /*DEBUG*/xASSERT_RET(iRv != CxFile::etError, false);
 
     return true;
 }
 //---------------------------------------------------------------------------
 bool
 CxFileLog::bClear() {
-    bool bRes = false;
+    bool bRv = false;
 
     #if xTODO
         CxAutoMutex SL(_m_mtFile);
     #endif
 
-    bRes = CxFile::bClear(sGetFilePath());
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bRv = CxFile::bClear(sGetFilePath());
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     return true;
 }
 //---------------------------------------------------------------------------
 bool
 CxFileLog::bDelete() {
-    bool bRes = false;
+    bool bRv = false;
 
     #if xTODO
         CxAutoMutex SL(_m_mtFile);
     #endif
 
-    bRes = CxFile::bDelete(sGetFilePath());
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bRv = CxFile::bDelete(sGetFilePath());
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     return true;
 }
@@ -146,14 +146,14 @@ CxFileLog::bDelete() {
 //---------------------------------------------------------------------------
 bool
 CxFileLog::_bDeleteIfFull() {
-    bool bRes = false;
+    bool bRv = false;
 
     #if xTODO
         CxAutoMutex SL(_m_mtFile);
     #endif
 
-    bRes = CxFile::bIsExists(sGetFilePath());
-    xCHECK_RET(false == bRes, true);
+    bRv = CxFile::bIsExists(sGetFilePath());
+    xCHECK_RET(false == bRv, true);
 
     //-------------------------------------
     //delete log, if full
@@ -161,8 +161,8 @@ CxFileLog::_bDeleteIfFull() {
 
     xCHECK_RET(ulSize < _m_ulMaxFileSizeBytes, true);
 
-    bRes = CxFile::bDelete(sGetFilePath());
-    /*DEBUG*/xASSERT_RET(true == bRes, false);
+    bRv = CxFile::bDelete(sGetFilePath());
+    /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     return true;
 }

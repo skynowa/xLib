@@ -117,8 +117,8 @@ xTMAIN(
     //--------------------------------------------------
     // set commandline args for xLib
     {
-        bool bRes = CxCommandLine::bSetArgs(iArgCount, paszArgs);
-        xTEST_EQ(true, bRes);
+        bool bRv = CxCommandLine::bSetArgs(iArgCount, paszArgs);
+        xTEST_EQ(true, bRv);
     }
 
     #if xTEMP_DISABLED
@@ -136,13 +136,13 @@ xTMAIN(
     {
         std::vector<std::tstring_t> vsArgs;
 
-        bool bRes = CxCommandLine::bGetArgs(&vsArgs);
-        xTEST_EQ(true, bRes);
+        bool bRv = CxCommandLine::bGetArgs(&vsArgs);
+        xTEST_EQ(true, bRv);
 
         // usage
         if (2 == iArgCount) {
-            bRes = CxString::bCompareNoCase(xT("-h"), vsArgs.at(1));
-            if (true == bRes) {
+            bRv = CxString::bCompareNoCase(xT("-h"), vsArgs.at(1));
+            if (true == bRv) {
                 std::tcout << xT("\nUsage: xlib_r is_tracing all_loops unit_loops\n")
                               xT("  - xlib_r      (binary file path)\n")
                               xT("  - is_tracing  (is tracing)\n")

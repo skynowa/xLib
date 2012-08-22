@@ -88,8 +88,8 @@ CxDebugger::bIsActive() {
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         // if ppid != sid, some process spawned our app, probably a debugger
-        bool bRes = ( ::getsid(::getpid()) != ::getppid() );
-        xCHECK_RET(false == bRes, false);
+        bool bRv = ( ::getsid(::getpid()) != ::getppid() );
+        xCHECK_RET(false == bRv, false);
     #elif xOS_FREEBSD
         int               aiMib[4]   = {0};
         struct kinfo_proc kiInfo     = {0};
@@ -105,8 +105,8 @@ CxDebugger::bIsActive() {
 
         uiInfoSize = sizeof(kiInfo);
 
-        int iRes = ::sysctl(aiMib, xARRAY_SIZE(aiMib), &kiInfo, &uiInfoSize, NULL, 0);
-        xCHECK_RET(- 1 == iRes, false);
+        int iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), &kiInfo, &uiInfoSize, NULL, 0);
+        xCHECK_RET(- 1 == iRv, false);
 
         // We're being debugged if the P_TRACED flag is set.
         xCHECK_RET(0 == (kiInfo.ki_flag & P_TRACED), false);
@@ -118,15 +118,15 @@ CxDebugger::bIsActive() {
 //---------------------------------------------------------------------------
 bool
 CxDebugger::bIsDebugBuild() {
-    bool bRes = false;
+    bool bRv = false;
 
 #if xBUILD_DEBUG
-    bRes = true;
+    bRv = true;
 #else
-    bRes = false;
+    bRv = false;
 #endif
 
-    return bRes;
+    return bRv;
 }
 //---------------------------------------------------------------------------
 bool
@@ -142,8 +142,8 @@ CxDebugger::bBreak() {
         ::abort();
     #endif
 #elif xOS_ENV_UNIX
-    int iRes = ::kill(CxCurrentProcess::ulGetId(), SIGALRM);
-    xCHECK_RET(- 1 == iRes, false);
+    int iRv = ::kill(CxCurrentProcess::ulGetId(), SIGALRM);
+    xCHECK_RET(- 1 == iRv, false);
 #endif
 
     return true;
@@ -200,14 +200,14 @@ CxDebugger::bBeep(
 {
 #if xOS_ENV_WIN
     #if xTODO
-        bool bRes = ::Beep(culFrequency, culDuration);
-        xCHECK_RET(false == bRes, false);
+        bool bRv = ::Beep(culFrequency, culDuration);
+        xCHECK_RET(false == bRv, false);
     #endif
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         #if xTODO
-            int iRes = std::xTSYSTEM(xT("xkbbell"));
-            xASSERT_RET(- 1 == iRes, false);
+            int iRv = std::xTSYSTEM(xT("xkbbell"));
+            xASSERT_RET(- 1 == iRv, false);
         #endif
     #elif xOS_FREEBSD
         //TODO: bBeep
@@ -222,14 +222,14 @@ CxDebugger::bBeep(
         xkc.bell_pitch    = culFrequency;   /* Hz 800 */
         xkc.bell_duration = culDuration;    /* ms 100 */
 
-        iRes = ::XChangeKeyboardControl(display, KBBellPercent | KBBellPitch | KBBellDuration, &xkc);
-        xCHECK_RET(- 1 == iRes, false);
+        iRv = ::XChangeKeyboardControl(display, KBBellPercent | KBBellPitch | KBBellDuration, &xkc);
+        xCHECK_RET(- 1 == iRv, false);
 
-        iRes = ::XBell(display, 0);
-        xCHECK_RET(- 1 == iRes, false);
+        iRv = ::XBell(display, 0);
+        xCHECK_RET(- 1 == iRv, false);
 
-        iRes = ::XCloseDisplay(display);
-        xCHECK_RET(- 1 == iRes, false);
+        iRv = ::XCloseDisplay(display);
+        xCHECK_RET(- 1 == iRv, false);
     #endif
 #endif
 

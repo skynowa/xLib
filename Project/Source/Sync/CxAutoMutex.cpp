@@ -22,16 +22,16 @@ CxAutoMutex::CxAutoMutex(
 ) :
     _m_mtMutex(mtMutex)
 {
-    bool bRes = _m_mtMutex.bCreate(xT(""));
-    /*DEBUG*/xASSERT_DO(true == bRes, return);
+    bool bRv = _m_mtMutex.bCreate(xT(""));
+    /*DEBUG*/xASSERT_DO(true == bRv, return);
 
-    bRes = _m_mtMutex.bLock(xTIMEOUT_INFINITE);
-    /*DEBUG*/xASSERT_DO(true == bRes, return);
+    bRv = _m_mtMutex.bLock(xTIMEOUT_INFINITE);
+    /*DEBUG*/xASSERT_DO(true == bRv, return);
 }
 //---------------------------------------------------------------------------
 CxAutoMutex::~CxAutoMutex() {
-    bool bRes = _m_mtMutex.bUnlock();
-    /*DEBUG*/xASSERT_DO(true == bRes, return);
+    bool bRv = _m_mtMutex.bUnlock();
+    /*DEBUG*/xASSERT_DO(true == bRv, return);
 }
 //---------------------------------------------------------------------------
 

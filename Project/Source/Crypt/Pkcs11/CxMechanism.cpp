@@ -42,8 +42,8 @@ CxMechanism::bGetInfo(
 {
     /*DEBUG*/
 
-    CK_RV ulRes = _m_pFunc->C_GetMechanismInfo(slotID, type, pInfo);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    CK_RV ulRv = _m_pFunc->C_GetMechanismInfo(slotID, type, pInfo);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -57,8 +57,8 @@ CxMechanism::bGetList(
 {
     /*DEBUG*/
 
-    CK_RV ulRes = _m_pFunc->C_GetMechanismList(slotID, pMechanismList, pulCount);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRes, CxUtils::sErrorStr(ulRes).c_str(), false);
+    CK_RV ulRv = _m_pFunc->C_GetMechanismList(slotID, pMechanismList, pulCount);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }

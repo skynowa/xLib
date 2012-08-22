@@ -39,8 +39,8 @@ CxTest_CxProcess::bUnit(
 
             CxProcess prProc;
 
-            m_bRes = prProc.bCreate(csFilePath, xT("%s"), csCmdLine.c_str());
-            xTEST_EQ(true, m_bRes);
+            m_bRv = prProc.bCreate(csFilePath, xT("%s"), csCmdLine.c_str());
+            xTEST_EQ(true, m_bRv);
 
             CxProcess::EWaitResult wrRes = prProc.ulWait(xTIMEOUT_INFINITE);
             xTEST_EQ(CxProcess::wrObject0, wrRes);
@@ -62,11 +62,11 @@ CxTest_CxProcess::bUnit(
 
             CxProcess prProc;
 
-            m_bRes = prProc.bCreate(csFilePath, xT("%s"), csCmdLine.c_str());
-            xTEST_EQ(true, m_bRes);
+            m_bRv = prProc.bCreate(csFilePath, xT("%s"), csCmdLine.c_str());
+            xTEST_EQ(true, m_bRv);
 
-            m_bRes = prProc.bKill(10UL);
-            xTEST_EQ(true, m_bRes);
+            m_bRv = prProc.bKill(10UL);
+            xTEST_EQ(true, m_bRv);
         #endif
     }
 
@@ -85,8 +85,8 @@ CxTest_CxProcess::bUnit(
 
             CxProcess prProc;
 
-            m_bRes = prProc.bCreate(csFilePath, xT("%s"), csCmdLine.c_str());
-            xTEST_EQ(true, m_bRes);
+            m_bRv = prProc.bCreate(csFilePath, xT("%s"), csCmdLine.c_str());
+            xTEST_EQ(true, m_bRv);
 
             CxProcess::TxHandle hHandle = prProc.hGet();
             xTEST_DIFF(static_cast<CxProcess::TxHandle>( NULL ), hHandle);
