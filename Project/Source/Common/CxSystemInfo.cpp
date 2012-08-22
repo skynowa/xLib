@@ -268,9 +268,9 @@ CxSystemInfo::bIsUserAnAdmin() {
     xCHECK_RET(FALSE == blRes, false);
 
     {
-	    BOOL blIsMember = FALSE;
+        BOOL blIsMember = FALSE;
 
-	    blRes = ::CheckTokenMembership(NULL, psAdministratorsGroup, &blIsMember);
+        blRes = ::CheckTokenMembership(NULL, psAdministratorsGroup, &blIsMember);
         if (FALSE == blRes || FALSE == blIsMember) {
             bIsAdmin = false;
         } else {
@@ -401,21 +401,21 @@ CxSystemInfo::ulGetCurrentCpuNum() {
     ulong_t ulRv = 0UL;
 
 #if xOS_ENV_WIN
-	typedef DWORD (WINAPI *TDllGetCurrentProcessorNumber)(void);
+    typedef DWORD (WINAPI *TDllGetCurrentProcessorNumber)(void);
 
-	CxDll dlDll;
+    CxDll dlDll;
 
-	bool bRv = dlDll.bLoad(xT("kernel32.dll"));
-	/*DEBUG*/xASSERT_RET(true == bRv, 0UL);
+    bool bRv = dlDll.bLoad(xT("kernel32.dll"));
+    /*DEBUG*/xASSERT_RET(true == bRv, 0UL);
 
     bRv = dlDll.bIsProcExists(xT("GetCurrentProcessorNumber"));
     xCHECK_RET(false == bRv, 0UL);
 
-	TDllGetCurrentProcessorNumber DllGetCurrentProcessorNumber = (TDllGetCurrentProcessorNumber)dlDll.fpGetProcAddress(xT("GetCurrentProcessorNumber"));
-	/*DEBUG*/xASSERT_RET(NULL != DllGetCurrentProcessorNumber, 0UL);
+    TDllGetCurrentProcessorNumber DllGetCurrentProcessorNumber = (TDllGetCurrentProcessorNumber)dlDll.fpGetProcAddress(xT("GetCurrentProcessorNumber"));
+    /*DEBUG*/xASSERT_RET(NULL != DllGetCurrentProcessorNumber, 0UL);
 
-	ulRv = DllGetCurrentProcessorNumber();
-	xDEBUG_VAR_NA(ulRv);
+    ulRv = DllGetCurrentProcessorNumber();
+    xDEBUG_VAR_NA(ulRv);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         #if defined(SYS_getcpu)

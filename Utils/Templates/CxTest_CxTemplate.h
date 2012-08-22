@@ -14,16 +14,16 @@
 class CxTest_[CxTemplate] :
     public CxTest
 {
-	public:
-		              CxTest_[CxTemplate]();
+    public:
+                      CxTest_[CxTemplate]();
             ///< constructor
-	    virtual      ~CxTest_[CxTemplate]();
-	        ///< destructor
+        virtual      ~CxTest_[CxTemplate]();
+            ///< destructor
 
-	    virtual bool  bUnit(const ulonglong_t cullBlockLoops);
-	        ///< unit test
+        virtual bool  bUnit(const ulonglong_t cullBlockLoops);
+            ///< unit test
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_[CxTemplate]H

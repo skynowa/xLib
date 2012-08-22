@@ -735,7 +735,7 @@ CxTest_CxPath::bUnit(
                 std::tstring_t sFilePath = xT("/home/user/Soft/eclipse/workspace/xLib.test/Debug/filename");
             #endif
 
-	        m_sRv = CxPath::sGetShort(sFilePath, 4);
+            m_sRv = CxPath::sGetShort(sFilePath, 4);
             #if   xOS_ENV_WIN
                 xTEST_EQ(std::tstring_t(xT("C:\\Test.txt")), m_sRv);
             #elif xOS_ENV_UNIX
@@ -750,7 +750,7 @@ CxTest_CxPath::bUnit(
                 std::tstring_t sFilePath = xT("/home/filename");
             #endif
 
-	        m_sRv = CxPath::sGetShort(sFilePath, 200);
+            m_sRv = CxPath::sGetShort(sFilePath, 200);
             #if   xOS_ENV_WIN
                 xTEST_EQ(std::tstring_t(xT("C:\\Test.txt")), m_sRv);
             #elif xOS_ENV_UNIX
@@ -765,7 +765,7 @@ CxTest_CxPath::bUnit(
                 std::tstring_t sFilePath = xT("/home/user/Soft/eclipse/workspace/xLib.test/Debug/filename");
             #endif
 
-	        m_sRv = CxPath::sGetShort(sFilePath, 15);
+            m_sRv = CxPath::sGetShort(sFilePath, 15);
             #if   xOS_ENV_WIN
                 xTEST_EQ(std::tstring_t(xT("D:\\...\\vSpeedButton_LoadDrives.cpp")), m_sRv);
             #elif xOS_ENV_UNIX
@@ -776,7 +776,7 @@ CxTest_CxPath::bUnit(
         {
             std::tstring_t sFilePath = xT("D:/xVCL\\Include/xVCL\\Units/Gui/Tools/LoadDrives.cpp");
 
-	        m_sRv = CxPath::sGetShort(sFilePath, 15);
+            m_sRv = CxPath::sGetShort(sFilePath, 15);
             #if defined(xOS_ENV_WIN)
                 xTEST_EQ(std::tstring_t(xT("D:\\...\\LoadDrives.cpp")), m_sRv);
             #elif defined(xOS_ENV_UNIX)

@@ -28,10 +28,10 @@ CxTest_CxHandleT::bUnit(
     //CxHandleT()
     xTEST_CASE(cullCaseLoops)
     {
-	    CxHandle objNullHandle;
+        CxHandle objNullHandle;
         xTEST_EQ(false, objNullHandle.bIsValid());
 
-	    CxFileHandle objInvalidHandle;
+        CxFileHandle objInvalidHandle;
         xTEST_EQ(false, objInvalidHandle.bIsValid());
     }
 
@@ -69,7 +69,7 @@ CxTest_CxHandleT::bUnit(
     //operator = (const native_handle_t chHandle)
     xTEST_CASE(cullCaseLoops)
     {
-	    CxHandle hHandle;
+        CxHandle hHandle;
 
         hHandle = CxCurrentProcess::hGetHandle();
 
@@ -81,7 +81,7 @@ CxTest_CxHandleT::bUnit(
     //operator = (const CxHandleT &chHandle)
     xTEST_CASE(cullCaseLoops)
     {
-	    CxHandle hHandle1;
+        CxHandle hHandle1;
         xTEST_EQ(false, hHandle1.bIsValid());
 
         CxHandle hHandle2;

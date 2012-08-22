@@ -222,18 +222,18 @@
 
 // xHOST_NAME_MAX
 #if xOS_ENV_WIN
-	#if defined(MAX_COMPUTERNAME_LENGTH)
-    	#define xHOST_NAME_MAX      MAX_COMPUTERNAME_LENGTH
+    #if defined(MAX_COMPUTERNAME_LENGTH)
+        #define xHOST_NAME_MAX      MAX_COMPUTERNAME_LENGTH
     #else
-    	#define xHOST_NAME_MAX      256 //custom define
+        #define xHOST_NAME_MAX      256 //custom define
     #endif
 #elif xOS_ENV_UNIX
     #if   defined(HOST_NAME_MAX)
-    	#define xHOST_NAME_MAX      HOST_NAME_MAX
+        #define xHOST_NAME_MAX      HOST_NAME_MAX
     #elif defined(MAXHOSTNAMELEN)
-    	#define xHOST_NAME_MAX      MAXHOSTNAMELEN
+        #define xHOST_NAME_MAX      MAXHOSTNAMELEN
     #else
-    	#define xHOST_NAME_MAX      256 //custom define
+        #define xHOST_NAME_MAX      256 //custom define
     #endif
 #endif
     ///< max host name length

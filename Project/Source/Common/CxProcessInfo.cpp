@@ -67,13 +67,13 @@ CxProcessInfo::ulGetIOBytes(
     #if xCOMMENT
         "/proc/[pid]/io"
 
-        1366	rchar: 323934931
-        1367	wchar: 323929600
-        1368	syscr: 632687
-        1369	syscw: 632675
-        1370	read_bytes: 0
-        1371	write_bytes: 323932160
-        1372	cancelled_write_bytes: 0
+        1366    rchar: 323934931
+        1367    wchar: 323929600
+        1368    syscr: 632687
+        1369    syscw: 632675
+        1370    read_bytes: 0
+        1371    write_bytes: 323932160
+        1372    cancelled_write_bytes: 0
     #endif
 
     std::tstring_t sProcPath  = CxString::sFormat(xT("/proc/%lu/io"), cidId);

@@ -63,8 +63,8 @@ CxCurrentProcess::ulGetParentId() {
     CxProcess::TxId ulRv;
 
 #if xOS_ENV_WIN
-	#if xCOMPILER_MINGW32 || xCOMPILER_CODEGEAR
-    	//typedef __success(return >= 0) LONG NTSTATUS;
+    #if xCOMPILER_MINGW32 || xCOMPILER_CODEGEAR
+        //typedef __success(return >= 0) LONG NTSTATUS;
         typedef LONG NTSTATUS;
 
         enum PROCESSINFOCLASS
@@ -73,32 +73,32 @@ CxCurrentProcess::ulGetParentId() {
             ProcessBasicInformation = 0,
             ProcessWow64Information = 26
         };
-	#endif
+    #endif
 
-	typedef NTSTATUS (WINAPI *TDllNtQueryInformationProcess)(HANDLE ProcessHandle, PROCESSINFOCLASS ProcessInformationClass, PVOID ProcessInformation, ULONG ProcessInformationLength, PULONG ReturnLength);
+    typedef NTSTATUS (WINAPI *TDllNtQueryInformationProcess)(HANDLE ProcessHandle, PROCESSINFOCLASS ProcessInformationClass, PVOID ProcessInformation, ULONG ProcessInformationLength, PULONG ReturnLength);
 
-	const CxProcess::TxId culInvalidId = (ulong_t)- 1;
+    const CxProcess::TxId culInvalidId = (ulong_t)- 1;
 
-	bool  bRv   = false;
-	CxDll dlDll;
+    bool  bRv   = false;
+    CxDll dlDll;
 
-	bRv = dlDll.bLoad(xT("ntdll.dll"));
-	/*DEBUG*/xASSERT_RET(true == bRv, culInvalidId);
+    bRv = dlDll.bLoad(xT("ntdll.dll"));
+    /*DEBUG*/xASSERT_RET(true == bRv, culInvalidId);
 
     bRv = dlDll.bIsProcExists(xT("NtQueryInformationProcess"));
     xCHECK_RET(false == bRv, culInvalidId);
 
-	ULONG_PTR pulProcessInformation[6] = {0};
-	ULONG     ulReturnLength           = 0UL;
+    ULONG_PTR pulProcessInformation[6] = {0};
+    ULONG     ulReturnLength           = 0UL;
 
-	TDllNtQueryInformationProcess DllNtQueryInformationProcess = (TDllNtQueryInformationProcess)dlDll.fpGetProcAddress(xT("NtQueryInformationProcess"));
-	/*DEBUG*/xASSERT_RET(NULL != DllNtQueryInformationProcess, culInvalidId);
+    TDllNtQueryInformationProcess DllNtQueryInformationProcess = (TDllNtQueryInformationProcess)dlDll.fpGetProcAddress(xT("NtQueryInformationProcess"));
+    /*DEBUG*/xASSERT_RET(NULL != DllNtQueryInformationProcess, culInvalidId);
 
-	NTSTATUS ntsRes = DllNtQueryInformationProcess(hGetHandle(), ProcessBasicInformation, &pulProcessInformation, sizeof(pulProcessInformation), &ulReturnLength);
-	bRv = (ntsRes >= 0 && ulReturnLength == sizeof(pulProcessInformation));
-	/*DEBUG*/xASSERT_RET(true == bRv, culInvalidId);
+    NTSTATUS ntsRes = DllNtQueryInformationProcess(hGetHandle(), ProcessBasicInformation, &pulProcessInformation, sizeof(pulProcessInformation), &ulReturnLength);
+    bRv = (ntsRes >= 0 && ulReturnLength == sizeof(pulProcessInformation));
+    /*DEBUG*/xASSERT_RET(true == bRv, culInvalidId);
 
-	ulRv = pulProcessInformation[5];
+    ulRv = pulProcessInformation[5];
 #elif xOS_ENV_UNIX
     ulRv = ::getppid();
     /*DEBUG*/// n/a

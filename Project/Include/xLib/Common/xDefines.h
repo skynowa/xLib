@@ -122,12 +122,12 @@
     #endif
 #elif xOS_ENV_UNIX
     #if xOS_FREEBSD
-		//TODO: standard C libraries
+        //TODO: standard C libraries
     #else
-    	#include <features.h>   // standard C libraries
+        #include <features.h>   // standard C libraries
     #endif
 
-    #include <bits/c++config.h>	// standard C++ libraries
+    #include <bits/c++config.h>    // standard C++ libraries
 #endif
 
 #if   xOS_ENV_WIN

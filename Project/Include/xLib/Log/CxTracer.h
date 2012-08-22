@@ -21,7 +21,7 @@ class CxTracer :
                             CxTracer    ();
             ///< constructor
         virtual            ~CxTracer    ();
-		    ///< destructor
+            ///< destructor
 
         template<class T>
         CxTracer &          operator << (const T &cValueT);

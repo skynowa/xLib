@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN(NxLib)
 class CxCurrentProcess :
     private CxNonCopyable
 {
-	public:
+    public:
          static bool               bIsCurrent      (const CxProcess::TxId culId);
             ///< is current id
         static CxProcess::TxId     ulGetId         ();
@@ -28,10 +28,10 @@ class CxCurrentProcess :
             ///< ends the calling process and all its threads
 
     private:
-				                   CxCurrentProcess();
+                                   CxCurrentProcess();
             ///< constructor
-		virtual                   ~CxCurrentProcess();
-		    ///< destructor
+        virtual                   ~CxCurrentProcess();
+            ///< destructor
 };
 
 xNAMESPACE_END(NxLib)
