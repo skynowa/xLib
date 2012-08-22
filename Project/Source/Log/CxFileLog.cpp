@@ -34,7 +34,7 @@ CxFileLog::CxFileLog(
 {
     /*DEBUG*/xASSERT_DO(true        == _m_sFilePath.empty(), return);
     /*DEBUG*/xASSERT_DO(lsLimitSize >  lsDefaultMaxSize,     return);
-	/*DEBUG*/xASSERT_DO(lsLimitSize >  culMaxFileSizeBytes,  return);
+    /*DEBUG*/xASSERT_DO(lsLimitSize >  culMaxFileSizeBytes,  return);
 }
 //---------------------------------------------------------------------------
 /*virtual*/

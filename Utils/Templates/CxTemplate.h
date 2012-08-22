@@ -12,11 +12,11 @@
 class [CxTemplate] :
     public CxNonCopyable
 {
-	public:
-				 [CxTemplate]();
+    public:
+                 [CxTemplate]();
             ///< constructor
-		virtual ~[CxTemplate]();
-		    ///< destructor
+        virtual ~[CxTemplate]();
+            ///< destructor
 
     private:
 

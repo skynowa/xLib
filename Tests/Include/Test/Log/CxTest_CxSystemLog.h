@@ -14,16 +14,16 @@
 class CxTest_CxSystemLog:
     public CxTest
 {
-	public:
-		              CxTest_CxSystemLog();
+    public:
+                      CxTest_CxSystemLog();
             ///< constructor
-	    virtual      ~CxTest_CxSystemLog();
-	        ///< destructor
+        virtual      ~CxTest_CxSystemLog();
+            ///< destructor
 
-	    virtual bool  bUnit(const ulonglong_t cullBlockLoops);
-	        ///< unit test
+        virtual bool  bUnit(const ulonglong_t cullBlockLoops);
+            ///< unit test
 
-	private:
+    private:
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxSystemLogH

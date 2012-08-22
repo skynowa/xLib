@@ -222,14 +222,14 @@ CxTest_CxDnsClient::bUnit(
     //bIsOnLan
     xTEST_CASE(cullCaseLoops)
     {
-	    //TODO: m_bRv = CxDnsClient::bIsOnLan(const ulong_t culIp);
+        //TODO: m_bRv = CxDnsClient::bIsOnLan(const ulong_t culIp);
     }
 
     //--------------------------------------------------
     //bIsBroadcast
     xTEST_CASE(cullCaseLoops)
     {
-	    //TODO: m_bRv = CxDnsClient::bIsBroadcast(const ulong_t culIp);
+        //TODO: m_bRv = CxDnsClient::bIsBroadcast(const ulong_t culIp);
     }
 
 

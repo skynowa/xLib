@@ -82,11 +82,11 @@
 #include <psapi.h>
 
 #if   xCOMPILER_MINGW32
-	#include <intrin.h>
+    #include <intrin.h>
 #elif xCOMPILER_MS
-	#include <intrin.h>
+    #include <intrin.h>
 #elif xCOMPILER_CODEGEAR
-	#include <dir.h>
+    #include <dir.h>
 #endif
 //---------------------------------------------------------------------------
 #endif  //xLib_Common_Win_xCommon_WinH

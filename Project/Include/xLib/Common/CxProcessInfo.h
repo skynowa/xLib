@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN(NxLib)
 class CxProcessInfo :
     public CxNonCopyable
 {
-	public:
+    public:
         static ulong_t        ulGetCpuUsage(const CxProcess::TxId cidId);
             ///< get CPU usage (percentage)
         static ulong_t        ulGetRamUsage(const CxProcess::TxId cidId);
@@ -28,10 +28,10 @@ class CxProcessInfo :
             ///< get parent process id
 
     private:
-    			              CxProcessInfo();
+                              CxProcessInfo();
             ///< constructor
-		virtual              ~CxProcessInfo();
-		    ///< destructor
+        virtual              ~CxProcessInfo();
+            ///< destructor
 };
 
 xNAMESPACE_END(NxLib)
