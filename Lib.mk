@@ -135,6 +135,10 @@ install:
 						mkdir -p $(DIR_INSTALL_INCLUDE)
 						cp -r $(DIR_ROOT_INCLUDE)/xLib $(DIR_INSTALL_INCLUDE)
 
+uninstall:
+						rm $(DIR_INSTALL)/$(PROGRAM_NAME)
+						rm -rf $(DIR_INSTALL_INCLUDE)/xLib
+
 .PHONY:					clean
 clean:
 						rm -rf $(DIR_BINARY)
