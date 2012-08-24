@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
-# \file  Tests_Unix.sh
-# \brief build tests for Unix OS
+# \file  Uninstall_Unix.sh
+# \brief uninstall xLib for Unix OS
 #
 
 
@@ -22,40 +22,39 @@ COL_WHITE='\e[0;37m'    # White
 
 # vars
 MAKE=
-TARGET_DIR=
+
+
+clear
+
+echo -e
+echo -e $COL_GREEN"Uninstall xLib ($OSTYPE) ... "$COL_NORM
+echo -e
 
 
 # prepare
-clear
-
 echo -e
 echo -e $COL_GREEN"Prepare..."$COL_NORM
 echo -e
 
 if   [ `uname` = "Linux" ]; then
     MAKE=make
-    TARGET_DIR="./Build/Tests/G++_linux/Release"
 elif [ `uname` = "FreeBSD" ]; then
     MAKE=gmake
-    TARGET_DIR="./Build/Tests/G++_freebsd/Release"
 else
     echo -e "Unknown OS"
     exit 1
 fi
 
-mkdir -p $TARGET_DIR
 
-
-# build
+# install
 echo -e
-echo -e ${COL_GREEN}"Build..."${COL_NORM}
+echo -e ${COL_GREEN}"Uninstall..."${COL_NORM}
 echo -e
 
-$MAKE --directory=$TARGET_DIR --makefile="../../../../Tests.mk"
+$MAKE uninstall --makefile="./Lib.mk"
 
 
 # finished
 echo -e
 echo -e ${COL_GREEN}"Finished."${COL_NORM}
 echo -e
-

@@ -33,7 +33,7 @@ echo -e
 
 # prepare
 echo -e
-echo -e $COL_GREEN"Prepare...($OSTYPE)"$COL_NORM
+echo -e $COL_GREEN"Prepare..."$COL_NORM
 echo -e
 
 if   [ `uname` = "Linux" ]; then
