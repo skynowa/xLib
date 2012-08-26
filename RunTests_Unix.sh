@@ -28,9 +28,9 @@ echo -e
 echo -e $COL_GREEN"Prepare...($OSTYPE)"$COL_NORM
 echo -e
 
-if   [ "$OSTYPE" = "linux-gnu" ]; then
+if   [ `uname` = "Linux" ]; then
     TARGET_DIR="./Build/Tests/G++_linux/Release"
-elif [ "$OSTYPE" = "FreeBSD" ]; then
+elif [ `uname` = "FreeBSD" ]; then
     TARGET_DIR="./Build/Tests/G++_freebsd/Release"
 else
     echo -e "Unknown OS"

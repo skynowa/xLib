@@ -28,10 +28,10 @@ echo -e
 echo -e $COL_GREEN"Prepare...($OSTYPE)"$COL_NORM
 echo -e
 
-if   [ "$OSTYPE" = "linux-gnu" ]; then
+if   [ `uname` = "Linux" ]; then
     MAKE=make
     TARGET_DIR="./Build/Libs/G++_linux/Release"
-elif [ "$OSTYPE" = "FreeBSD" ]; then
+elif [ `uname` = "FreeBSD" ]; then
     MAKE=gmake
     TARGET_DIR="./Build/Libs/G++_freebsd/Release"
 else
