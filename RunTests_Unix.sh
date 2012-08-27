@@ -5,11 +5,20 @@
 #
 
 
+# bash colors
+COL_NORM='\e[0m'        # Text Reset
+COL_BLACK='\e[0;30m'    # Black
+COL_RED='\e[0;31m'      # Red
+COL_GREEN='\e[0;32m'    # Green
+COL_YELLOW='\e[0;33m'   # Yellow
+COL_BLUE='\e[0;34m'     # Blue
+COL_PURPULE='\e[0;35m'  # Purple
+COL_CYAN='\e[0;36m'     # Cyan
+COL_WHITE='\e[0;37m'    # White
+
+
 # constants
-COL_NORM="$(tput setaf 9)"
-COL_RED="$(tput bold; tput setaf 1)"
-COL_GREEN="$(tput bold; tput setaf 2)"
-COL_YELLOW_BOLD="$(tput bold; tput setaf 3)"
+
 
 
 # vars
