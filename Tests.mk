@@ -13,7 +13,7 @@ BUILD_TYPE					:=	$(cBUILD_TYPE_RELEASE)
 
 ##################################################
 # constants
-cOS                         :=  $(shell uname -s)
+cOS                         :=  "$(shell uname -s)"
 
 cBUILD_TYPE_DEBUG			:=	"debug"
 cBUILD_TYPE_RELEASE			:=	"release"
@@ -28,19 +28,16 @@ cARCHIVER					:=	$(AR)
 ##################################################
 # xLib
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-PROGRAM_PREFIX				:=
-PROGRAM_SHORT_NAME			:=	xlib
-PROGRAM_POSTFIX				:=	_d
-PROGRAM_EXT					:=
+	PROGRAM_PREFIX			:=
+	PROGRAM_SHORT_NAME		:=	xlib
+	PROGRAM_POSTFIX			:=	_d
+	PROGRAM_EXT				:=
 else
-PROGRAM_PREFIX				:=
-PROGRAM_SHORT_NAME			:=	xlib
-PROGRAM_POSTFIX				:=	_r
-PROGRAM_EXT					:=
+	PROGRAM_PREFIX			:=
+	PROGRAM_SHORT_NAME		:=	xlib
+	PROGRAM_POSTFIX			:=	_r
+	PROGRAM_EXT				:=
 endif
-
-PROGRAM_NAME				:=	$(PROGRAM_PREFIX)$(PROGRAM_SHORT_NAME)$(PROGRAM_POSTFIX)$(PROGRAM_EXT)
-PROGRAM_PATH				:=	$(PROGRAM_NAME)
 
 PATH_PREFIX					:=	../../../../
 VPATH 						:=	$(PATH_PREFIX)
@@ -50,21 +47,26 @@ DIR_ROOT_SOURCE				:=	./Project/Source
 DIR_TESTS_ROOT_INCLUDE		:=	./Tests/Include
 DIR_TESTS_ROOT_SOURCE		:=	./Tests/Source
 
-ifeq ($(cOS), Linux)
+ifeq ($(cOS), "Linux")
 	ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
 		DIR_BINARY			:=	./Build/Tests/G++_linux/Debug
 	else
 		DIR_BINARY			:=	./Build/Tests/G++_linux/Release
 	endif
 else
+ifeq ($(cOS), "FreeBSD")
 	ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
 		DIR_BINARY			:=	./Build/Tests/G++_freebsd/Debug
 	else
 		DIR_BINARY			:=	./Build/Tests/G++_freebsd/Release
 	endif
+else
+    $(error Unsupported OS: $(cOS))
+endif
 endif
 
-DIR_INSTALL					:=	/usr/local/lib/xLib
+PROGRAM_NAME				:=	$(PROGRAM_PREFIX)$(PROGRAM_SHORT_NAME)$(PROGRAM_POSTFIX)$(PROGRAM_EXT)
+PROGRAM_PATH				:=	../../../../$(DIR_BINARY)/$(PROGRAM_NAME)
 
 SUBDIRS_SOURCE				:=	. \
 								Common \
@@ -124,16 +126,16 @@ DIRS_LIB					:=	/usr/lib64 \
 
 FLAGS_COMPILE				:=	$(CPPFLAGS) -Wall -pipe
 
-ifeq ($(cOS), Linux)
-LIBS						:=	$(LDFLAGS) -lmysqlclient -lm -lcrypto -lz -lssl -ldl
+ifeq ($(cOS), "Linux")
+    LIBS					:=	$(LDFLAGS) -lmysqlclient -lm -lcrypto -lz -lssl -ldl
 else
-LIBS						:=	$(LDFLAGS) -lmysqlclient -lm -lcrypto -lz -lssl -lexecinfo # -lc only with out -static
+    LIBS					:=	$(LDFLAGS) -lmysqlclient -lm -lcrypto -lz -lssl -lexecinfo # -lc only with out -static
 endif
 
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-FLAGS_LINK					:=	-pthread -O0 -g3 -rdynamic #-static
+    FLAGS_LINK				:=	-pthread -O0 -g3 -rdynamic #-static
 else
-FLAGS_LINK					:=	-pthread -O3 -g0 -s -fomit-frame-pointer -rdynamic #-static
+    FLAGS_LINK				:=	-pthread -O3 -g0 -s -fomit-frame-pointer -rdynamic #-static
 endif
 
 DIRS_RELATIVE_INCLUDE		:=	$(addprefix $(PATH_PREFIX), $(DIR_ROOT_INCLUDE))
@@ -162,14 +164,11 @@ OBJ_DIRS:
 # targets
 all: 							$(PROGRAM_PATH)
 
+run:
+								$(DIR_BINARY)/$(PROGRAM_NAME) 1 1 1 1
 
-install:
-								mkdir -p $(DIR_INSTALL)
-								cp $(DIR_BINARY)/$(PROGRAM_PREFIX)$(PROGRAM_SHORT_NAME)$(PROGRAM_EXT) $(DIR_INSTALL)
-
-.PHONY:							clean
 clean:
-								rm -rf $(DIR_BINARY)
+								if [ -d $(DIR_BINARY) ]; then rm -rf $(DIR_BINARY); fi
 
 help:
 								#TODO: help

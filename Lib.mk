@@ -13,7 +13,7 @@ BUILD_TYPE				:=	$(cBUILD_TYPE_RELEASE)
 
 ##################################################
 # constants
-cOS                     :=  $(shell uname -s)
+cOS                     :=  "$(shell uname -s)"
 
 cBUILD_TYPE_DEBUG		:=	"debug"
 cBUILD_TYPE_RELEASE		:=	"release"
@@ -28,18 +28,16 @@ cARCHIVER				:=	$(AR)
 ##################################################
 # xLib
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-PROGRAM_PREFIX			:=	lib
-PROGRAM_SHORT_NAME		:=	xlib
-PROGRAM_POSTFIX			:=	_d
-PROGRAM_EXT				:=	.a
+    PROGRAM_PREFIX		:=	lib
+    PROGRAM_SHORT_NAME	:=	xlib
+    PROGRAM_POSTFIX		:=	_d
+    PROGRAM_EXT			:=	.a
 else
-PROGRAM_PREFIX			:=	lib
-PROGRAM_SHORT_NAME		:=	xlib
-PROGRAM_POSTFIX			:=	_r
-PROGRAM_EXT				:=	.a
+    PROGRAM_PREFIX		:=	lib
+    PROGRAM_SHORT_NAME	:=	xlib
+    PROGRAM_POSTFIX		:=	_r
+    PROGRAM_EXT			:=	.a
 endif
-
-PROGRAM_NAME			:=	$(PROGRAM_PREFIX)$(PROGRAM_SHORT_NAME)$(PROGRAM_POSTFIX)$(PROGRAM_EXT)
 
 DIR_ROOT_INCLUDE		:=	./Project/Include
 DIR_ROOT_SOURCE			:=	./Project/Source
@@ -78,34 +76,35 @@ DIRS_LIB				:=	/usr/lib64 \
 							/usr/local/lib64/mysql \
 							/usr/local/lib/mysql
 
-ifeq ($(cOS), Linux)
+ifeq ($(cOS), "Linux")
 	ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
 		DIR_BINARY		:=	./Build/Libs/G++_linux/Debug
 	else
 		DIR_BINARY		:=	./Build/Libs/G++_linux/Release
 	endif
 else
-ifeq ($(cOS), FreeBSD)
+ifeq ($(cOS), "FreeBSD")
 	ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
 		DIR_BINARY		:=	./Build/Libs/G++_freebsd/Debug
 	else
 		DIR_BINARY		:=	./Build/Libs/G++_freebsd/Release
 	endif
 else
-	echo -e "Unsupported OS: $(cOS)"
+    $(error Unsupported OS: $(cOS))
 endif
 endif
 
 DIR_INSTALL_INCLUDE		:=	/usr/local/include
 DIR_INSTALL				:=	/usr/local/lib
+PROGRAM_NAME			:=	$(PROGRAM_PREFIX)$(PROGRAM_SHORT_NAME)$(PROGRAM_POSTFIX)$(PROGRAM_EXT)
 PROGRAM_PATH			:=	../../../../$(DIR_BINARY)/$(PROGRAM_NAME)
 
 FLAGS_COMPILE			:=	$(CPPFLAGS) -Wall -pipe
 
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-FLAGS_LINK				:=	-pthread -O0 -g3
+    FLAGS_LINK			:=	-pthread -O0 -g3
 else
-FLAGS_LINK				:=	-pthread -O3 -g0 -s -fomit-frame-pointer
+    FLAGS_LINK			:=	-pthread -O3 -g0 -s -fomit-frame-pointer
 endif
 
 DIRS_RELATIVE_INCLUDE	:=	$(addprefix ../../../../, $(DIR_ROOT_INCLUDE))
@@ -130,7 +129,7 @@ VPATH					:= ../../../../
 # targets
 all:
 						mkdir -p $(DIR_BINARY)
-						$(MAKE) --directory=./$(DIR_BINARY) --makefile=../../../../Lib.mk
+						$(MAKE) --directory=$(DIR_BINARY) --makefile=../../../../Lib.mk
 
 install:				uninstall
 
@@ -141,11 +140,11 @@ install:				uninstall
 						cp -r $(DIR_ROOT_INCLUDE)/xLib $(DIR_INSTALL_INCLUDE)
 
 uninstall:
-						if [ -f "$(DIR_INSTALL)/$(PROGRAM_NAME)" ]; then rm     "$(DIR_INSTALL)/$(PROGRAM_NAME)"; fi
-						if [ -d "$(DIR_INSTALL_INCLUDE)/xLib"    ]; then rm -rf "$(DIR_INSTALL_INCLUDE)/xLib";    fi
+						if [ -f $(DIR_INSTALL)/$(PROGRAM_NAME) ]; then rm     $(DIR_INSTALL)/$(PROGRAM_NAME); fi
+						if [ -d $(DIR_INSTALL_INCLUDE)/xLib    ]; then rm -rf $(DIR_INSTALL_INCLUDE)/xLib;    fi
 
 clean:
-						rm -rf $(DIR_BINARY)
+						if [ -d $(DIR_BINARY) ]; then rm -rf $(DIR_BINARY); fi
 
 include $(wildcard $(addsuffix /*.d, $(DIRS_OBJECTS)))
 
