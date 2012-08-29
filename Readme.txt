@@ -13,7 +13,7 @@ Web:            https://bitbucket.org/skynowa/xlib/
 
 Prerequisites:
     - bash-compatible Unix command shell
-    
+
 Dependencies:
     - OpenSSL
         Ubuntu: deb http://security.ubuntu.com/ubuntu lucid-security main
