@@ -63,7 +63,7 @@ SUBDIRS_SOURCE			:=	. \
 							Patterns \
 							Sync \
 							Sync/Win \
-                            Test \
+						    Test \
 							Units \
 							Units/Win
 
@@ -127,6 +127,8 @@ VPATH					:= ../../../../
 
 
 # targets
+.PHONY:					all install uninstall clean help
+
 all:
 						mkdir -p $(DIR_BINARY)
 						$(MAKE) --directory=$(DIR_BINARY) --makefile=../../../../Lib.mk
@@ -145,6 +147,20 @@ uninstall:
 
 clean:
 						if [ -d $(DIR_BINARY) ]; then rm -rf $(DIR_BINARY); fi
+
+help:
+						@echo -e
+						@echo -e "+---------------------------------------------+"
+						@echo -e "|    Lib.mk usage                             |"
+						@echo -e "+---------------------------------------------+"
+						@echo -e "| all       - build static and share libs     |"
+						@echo -e "| install   - install static and share libs   |"
+						@echo -e "| uninstall - uninstall static and share libs |"
+						@echo -e "| clean     - clean build                     |"
+						@echo -e "| help      - show help                       |"
+						@echo -e "+---------------------------------------------+"
+						@echo -e
+
 
 include $(wildcard $(addsuffix /*.d, $(DIRS_OBJECTS)))
 
