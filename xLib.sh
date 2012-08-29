@@ -42,7 +42,7 @@ TARGET_DIR=
 
 
 usage() {
-    echo -e
+    echo -e ""
     echo -e "+---------------------------------+"
     echo -e "|   xLib.sh usage                 |"
     echo -e "+---------------------------------+"
@@ -55,7 +55,7 @@ usage() {
     echo -e "| 7. Run tests                    |"
     echo -e "| 8. Quit                         |"
     echo -e "+---------------------------------+"
-    echo -e
+    echo -e ""
 }
 
 xlib_build_static_lib() {
