@@ -13,7 +13,7 @@ BUILD_TYPE					:=	$(cBUILD_TYPE_RELEASE)
 
 ##################################################
 # constants
-cOS                         :=  "$(shell uname -s)"
+cOS 						:=  "$(shell uname -s)"
 
 cBUILD_TYPE_DEBUG			:=	"debug"
 cBUILD_TYPE_RELEASE			:=	"release"
@@ -162,6 +162,8 @@ OBJ_DIRS:
 
 
 # targets
+.PHONY:							all run clean help
+
 all: 							$(PROGRAM_PATH)
 
 run:
@@ -171,7 +173,16 @@ clean:
 								if [ -d $(DIR_BINARY) ]; then rm -rf $(DIR_BINARY); fi
 
 help:
-								#TODO: help
+								@echo -e
+								@echo -e "+---------------------------------+"
+								@echo -e "|   Tests.mk usage                |"
+								@echo -e "+---------------------------------+"
+								@echo -e "| all   - build tests             |"
+								@echo -e "| run   - run tests               |"
+								@echo -e "| clean - clean build             |"
+								@echo -e "| help  - show help               |"
+								@echo -e "----------------------------------+"
+								@echo -e
 
 include $(wildcard $(addsuffix /*.d, $(DIRS_OBJECTS)))
 include $(wildcard $(addsuffix /*.d, $(TESTS_DIRS_OBJECTS)))

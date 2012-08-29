@@ -43,18 +43,18 @@ TARGET_DIR=
 
 usage() {
     echo -e
-    echo -e "---------------------------------"
-    echo -e "   `basename $0` usage"
-    echo -e "---------------------------------"
-    echo -e "1. Build static lib"
-    echo -e "2. Install static lib (as root)"
-    echo -e "3. Build share lib"
-    echo -e "4. Install share lib (as root)"
-    echo -e "5. Uninstall lib (as root)"
-    echo -e "6. Build tests"
-    echo -e "7. Run tests"
-    echo -e "8. Quit"
-    echo -e "---------------------------------"
+    echo -e "+---------------------------------+"
+    echo -e "|   xLib.sh usage                 |"
+    echo -e "+---------------------------------+"
+    echo -e "| 1. Build static lib             |"
+    echo -e "| 2. Install static lib (as root) |"
+    echo -e "| 3. Build share lib              |"
+    echo -e "| 4. Install share lib (as root)  |"
+    echo -e "| 5. Uninstall lib (as root)      |"
+    echo -e "| 6. Build tests                  |"
+    echo -e "| 7. Run tests                    |"
+    echo -e "| 8. Quit                         |"
+    echo -e "+---------------------------------+"
     echo -e
 }
 
