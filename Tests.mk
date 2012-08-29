@@ -173,7 +173,7 @@ clean:
 								if [ -d $(DIR_BINARY) ]; then rm -rf $(DIR_BINARY); fi
 
 help:
-								@echo -e
+								@echo -e ""
 								@echo -e "+---------------------------------+"
 								@echo -e "|   Tests.mk usage                |"
 								@echo -e "+---------------------------------+"
@@ -182,7 +182,7 @@ help:
 								@echo -e "| clean - clean build             |"
 								@echo -e "| help  - show help               |"
 								@echo -e "----------------------------------+"
-								@echo -e
+								@echo -e ""
 
 include $(wildcard $(addsuffix /*.d, $(DIRS_OBJECTS)))
 include $(wildcard $(addsuffix /*.d, $(TESTS_DIRS_OBJECTS)))
