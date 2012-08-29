@@ -84,7 +84,8 @@ ifeq ($(cOS), Linux)
 	else
 		DIR_BINARY		:=	./Build/Libs/G++_linux/Release
 	endif
-else ifeq($(cOS), FreeBSD)
+else
+ifeq ($(cOS), FreeBSD)
 	ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
 		DIR_BINARY		:=	./Build/Libs/G++_freebsd/Debug
 	else
@@ -92,6 +93,7 @@ else ifeq($(cOS), FreeBSD)
 	endif
 else
 	echo -e "Unsupported OS: $(cOS)"
+endif
 endif
 
 DIR_INSTALL_INCLUDE		:=	/usr/local/include
