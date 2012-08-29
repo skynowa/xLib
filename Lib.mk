@@ -84,12 +84,14 @@ ifeq ($(cOS), Linux)
 	else
 		DIR_BINARY		:=	./Build/Libs/G++_linux/Release
 	endif
-else
+else ifeq($(cOS), FreeBSD)
 	ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
 		DIR_BINARY		:=	./Build/Libs/G++_freebsd/Debug
 	else
 		DIR_BINARY		:=	./Build/Libs/G++_freebsd/Release
 	endif
+else
+	echo -e "Unsupported OS: $(cOS)"
 endif
 
 DIR_INSTALL_INCLUDE		:=	/usr/local/include
@@ -128,7 +130,8 @@ all:
 						mkdir -p $(DIR_BINARY)
 						$(MAKE) --directory=./$(DIR_BINARY) --makefile=../../../../Lib.mk
 
-install:
+install:				uninstall
+
 						mkdir -p $(DIR_INSTALL)
 						cp    $(DIR_BINARY)/$(PROGRAM_NAME) $(DIR_INSTALL)/$(PROGRAM_NAME)
 
@@ -136,10 +139,9 @@ install:
 						cp -r $(DIR_ROOT_INCLUDE)/xLib $(DIR_INSTALL_INCLUDE)
 
 uninstall:
-						rm $(DIR_INSTALL)/$(PROGRAM_NAME)
-						rm -rf $(DIR_INSTALL_INCLUDE)/xLib
+						if [ -f "$(DIR_INSTALL)/$(PROGRAM_NAME)" ]; then rm     "$(DIR_INSTALL)/$(PROGRAM_NAME)"; fi
+						if [ -d "$(DIR_INSTALL_INCLUDE)/xLib"    ]; then rm -rf "$(DIR_INSTALL_INCLUDE)/xLib";    fi
 
-.PHONY:					clean
 clean:
 						rm -rf $(DIR_BINARY)
 
