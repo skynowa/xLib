@@ -43,7 +43,7 @@ else
     exit 1
 fi
 
-mkdir -p $TARGET_DIR
+mkdir -p "$TARGET_DIR"
 
 
 # build
@@ -51,7 +51,7 @@ echo -e
 echo -e ${COL_GREEN}"Build..."${COL_NORM}
 echo -e
 
-$MAKE --directory=$TARGET_DIR --makefile="../../../../Tests.mk"
+$MAKE all --directory="$TARGET_DIR" --makefile="../../../../Tests.mk"
 
 
 # finished

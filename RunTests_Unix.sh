@@ -22,6 +22,7 @@ COL_WHITE='\e[0;37m'    # White
 
 
 # vars
+MAKE=
 TARGET_DIR=
 
 
@@ -38,8 +39,10 @@ echo -e $COL_GREEN"Prepare..."$COL_NORM
 echo -e
 
 if   [ `uname` = "Linux" ]; then
+    MAKE=make
     TARGET_DIR="./Build/Tests/G++_linux/Release"
 elif [ `uname` = "FreeBSD" ]; then
+    MAKE=gmake
     TARGET_DIR="./Build/Tests/G++_freebsd/Release"
 else
     echo -e "Unknown OS"
@@ -52,8 +55,9 @@ echo -e
 echo -e ${COL_GREEN}"Build and run..."${COL_NORM}
 echo -e
 
-./Tests_Unix.sh
-$TARGET_DIR/xlib_r 1 1 1 1
+# ./Tests_Unix.sh
+# $TARGET_DIR/xlib_r 1 1 1 1
+$MAKE run --makefile="./Tests.mk"
 
 
 # finished

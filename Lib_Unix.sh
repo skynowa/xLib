@@ -47,7 +47,7 @@ else
     exit 1
 fi
 
-mkdir -p $TARGET_DIR
+mkdir -p "$TARGET_DIR"
 
 
 # build
@@ -55,7 +55,6 @@ echo -e
 echo -e ${COL_GREEN}"Build..."${COL_NORM}
 echo -e
 
-# TODO: --directory=$TARGET_DIR
 $MAKE all --makefile="./Lib.mk"
 
 
