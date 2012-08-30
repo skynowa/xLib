@@ -331,7 +331,7 @@ CxDebugger::_bMsgboxFormated(
     std::tcerr << xT("\nAbort (a), Ignore (i), Retry (r): ");
     std::tcerr.flush();
 
-    #if 1
+    #if 0
         EConsoleCmd cmRes = static_cast<EConsoleCmd>( std::tcin.get() );   std::tcin.ignore();
     #else
         EConsoleCmd cmRes = cmIgnore;
