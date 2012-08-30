@@ -5,27 +5,16 @@
 #
 
 
-#
-# 1 - build static lib
-# 2 - install static lib
-# 3 - build share lib
-# 4 - install share lib
-# 5 - build tests
-# 6 - run tests
-# 7 - quit
-#
-
-
 # bash colors
-COL_NORM='\e[0m'        # Text Reset
-COL_BLACK='\e[0;30m'    # Black
-COL_RED='\e[0;31m'      # Red
-COL_GREEN='\e[0;32m'    # Green
-COL_YELLOW='\e[0;33m'   # Yellow
-COL_BLUE='\e[0;34m'     # Blue
-COL_PURPULE='\e[0;35m'  # Purple
-COL_CYAN='\e[0;36m'     # Cyan
-COL_WHITE='\e[0;37m'    # White
+# COL_NORM='\e[0m'        # Text Reset
+# COL_BLACK='\e[0;30m'    # Black
+# COL_RED='\e[0;31m'      # Red
+# COL_GREEN='\e[0;32m'    # Green
+# COL_YELLOW='\e[0;33m'   # Yellow
+# COL_BLUE='\e[0;34m'     # Blue
+# COL_PURPULE='\e[0;35m'  # Purple
+# COL_CYAN='\e[0;36m'     # Cyan
+# COL_WHITE='\e[0;37m'    # White
 
 
 # constants
@@ -109,16 +98,16 @@ invalid_option() {
 # main
 #
 
-if [ 0 = $# ]; then
+opt_count=$#
+opt_menu_pos=$1
+
+if [ 0 = $opt_count ]; then
     usage
     exit 0
 fi
 
-opt=$1
-
-
 # take action
-case $opt in
+case $opt_menu_pos in
     1)  xlib_build_static_lib;;
     2)  xlib_install_static_lib;;
     3)  xlib_build_share_lib;;
