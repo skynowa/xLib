@@ -139,7 +139,7 @@ CxDebugger::bBreak() {
     #elif xCOMPILER_MINGW32
         asm("int $3");
     #else
-        ::abort();
+        (void)::abort();
     #endif
 #elif xOS_ENV_UNIX
     int iRv = ::kill(CxCurrentProcess::ulGetId(), SIGALRM);
@@ -251,13 +251,19 @@ CxDebugger::_bMsgboxPlain(
 {
     xCHECK_RET(false == bGetEnabled(), true);
 
-#if xOS_ENV_WIN
-    ulong_t ulType = MB_ABORTRETRYIGNORE | MB_ICONSTOP;
-#elif xOS_ENV_UNIX
-    ulong_t ulType = 1UL;
-#endif
+
+
+#if xDEBUG_USE_PROMPT_DIALOG
+    #if xOS_ENV_WIN
+        ulong_t ulType = MB_ABORTRETRYIGNORE | MB_ICONSTOP;
+    #elif xOS_ENV_UNIX
+        ulong_t ulType = 1UL;
+    #endif
 
     CxMsgBoxT::EModalResult mrRes = CxMsgBoxT::iShow(crpReport.m_sReport, CxPath::sGetExe(), ulType);
+#else
+    CxMsgBoxT::EModalResult mrRes = CxMsgBoxT::mrIgnore;
+#endif
     switch (mrRes) {
         case CxMsgBoxT::mrAbort: {
                 CxCurrentProcess::bExit(0U);
@@ -294,7 +300,11 @@ CxDebugger::_bMsgboxFormated(
 #if xOS_ENV_WIN
     //-------------------------------------
     //show message
-    CxMsgBoxRtf::EModalResult mrRes = CxMsgBoxRtf::iShow(NULL, crpReport.m_sReport, CxPath::sGetExe());
+    #if xDEBUG_USE_PROMPT_DIALOG
+        CxMsgBoxRtf::EModalResult mrRes = CxMsgBoxRtf::iShow(NULL, crpReport.m_sReport, CxPath::sGetExe());
+    #else
+        CxMsgBoxRtf::EModalResult mrRes = CxMsgBoxRtf::mrIgnore;
+    #endif
     switch (mrRes) {
         case CxMsgBoxRtf::mrAbort: {
                 CxCurrentProcess::bExit(0U);
@@ -331,7 +341,7 @@ CxDebugger::_bMsgboxFormated(
     std::tcerr << xT("\nAbort (a), Ignore (i), Retry (r): ");
     std::tcerr.flush();
 
-    #if 0
+    #if xDEBUG_USE_PROMPT_DIALOG
         EConsoleCmd cmRes = static_cast<EConsoleCmd>( std::tcin.get() );   std::tcin.ignore();
     #else
         EConsoleCmd cmRes = cmIgnore;
@@ -394,7 +404,11 @@ CxDebugger::_bStdoutPlain(
     std::tcout << xT("\nAbort (a), Ignore (i), Retry (r): ");
     std::tcout.flush();
 
+#if xDEBUG_USE_PROMPT_DIALOG
     EConsoleCmd cmRes = static_cast<EConsoleCmd>( std::tcin.get() );   std::tcin.ignore();
+#else
+    EConsoleCmd cmRes = cmIgnore;
+#endif
     switch (cmRes) {
         case cmAbort: {
                 std::tcout << xT("Abort...\n\n");  std::tcout.flush();
@@ -453,7 +467,11 @@ CxDebugger::_bStdoutHtml(
     std::tcout << xT("\nAbort (a), Ignore (i), Retry (r): ");
     std::tcout.flush();
 
+#if xDEBUG_USE_PROMPT_DIALOG
     EConsoleCmd cmRes = static_cast<EConsoleCmd>( std::tcin.get() );   std::tcin.ignore();
+#else
+    EConsoleCmd cmRes = cmIgnore;
+#endif
     switch (cmRes) {
         case cmAbort: {
                 std::tcout << xT("Abort...\n\n");  std::tcout.flush();
@@ -538,7 +556,7 @@ CxDebugger::_bLoggingHtml(
     const CxErrorReport &crpReport
 )
 {
-    //TODO: bLoggingHtml
+    // TODO: bLoggingHtml
 
     return true;
 }

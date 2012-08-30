@@ -10,7 +10,12 @@
 #define xUSING_NAMESPACE_NXLIB          1
     ///< automatically include the NxLib namespace
 
-//log mode (only one mode can be activated)
+#define xDEBUG_USE_PROMPT_DIALOG        0
+    ///< debug prompt dialog:
+    ///<    0 - don't stop executing, pass throw dialog prompt
+    ///<    1 - stop executing on dialog prompt, wait for user choice
+
+// log mode (only one mode can be activated)
 #define xDEBUG_MODE_MSGBOX_PLAIN        0
     ///< debug mode "message box with plain text"
 #define xDEBUG_MODE_MSGBOX_FORMATED     0
