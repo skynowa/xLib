@@ -390,57 +390,6 @@ CxVolume::dtGetType(
     return dtRes;
 }
 //--------------------------------------------------------------------------
-#if xOS_ENV_WIN
-
-/*static*/
-bool
-CxVolume::bGetInfo(
-    const std::tstring_t &csVolumePath,
-    std::tstring_t       *psVolumeName,
-    ulong_t              *pulVolumeSerialNumber,
-    ulong_t              *pulMaximumComponentLength,
-    ulong_t              *pulFileSystemFlags,
-    std::tstring_t       *psFileSystemName
-)
-{
-    /*DEBUG*/xASSERT_RET(false == csVolumePath.empty(), false);
-    /*DEBUG*/// psVolumeName              - n/a
-    /*DEBUG*/// pulVolumeSerialNumber     - n/a
-    /*DEBUG*/// pulMaximumComponentLength - n/a
-    /*DEBUG*/// pulFileSystemFlags        - n/a
-    /*DEBUG*/// psFileSystemName          - n/a
-
-    tchar_t szVolumeName    [MAX_PATH + 1] = {0};
-    ulong_t ulVolumeSerialNumber           = 0UL;
-    ulong_t ulMaximumComponentLength       = 0UL;
-    ulong_t ulFileSystemFlags              = 0UL;
-    tchar_t szFileSystemName[MAX_PATH + 1] = {0};
-
-
-    BOOL blRes = ::GetVolumeInformation(
-                        CxPath::sSlashAppend(csVolumePath).c_str(),
-                        &szVolumeName[0],
-                        xARRAY_SIZE(szVolumeName),
-                        &ulVolumeSerialNumber,
-                        &ulMaximumComponentLength,
-                        &ulFileSystemFlags,
-                        &szFileSystemName[0],
-                        xARRAY_SIZE(szFileSystemName)
-    );
-    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
-
-    // out
-    xPTR_ASSIGN(psVolumeName,              szVolumeName);
-    xPTR_ASSIGN(pulVolumeSerialNumber,     ulVolumeSerialNumber);
-    xPTR_ASSIGN(pulMaximumComponentLength, ulMaximumComponentLength);
-    xPTR_ASSIGN(pulFileSystemFlags,        ulFileSystemFlags);
-    xPTR_ASSIGN(psFileSystemName,          szFileSystemName);
-
-    return true;
-}
-
-#endif
-//--------------------------------------------------------------------------
 
 
 /****************************************************************************

@@ -304,37 +304,6 @@ CxTest_CxVolume::bUnit(
         xTEST_EQ(CxVolume::dtFixed, dtRes);
     }
 
-    //--------------------------------------------------
-    // bGetInfo
-    xTEST_CASE(cullCaseLoops)
-    {
-        #if xOS_ENV_WIN
-            std::vector<std::tstring_t> vsVolumes;
-
-            m_bRv = CxVolume::bGetPaths(&vsVolumes);
-            xTEST_EQ(true, m_bRv);
-
-            for (size_t i = 0; i < vsVolumes.size(); ++ i) {
-                xCHECK_DO(false == CxVolume::bIsReady(vsVolumes.at(i)), continue);
-
-                std::tstring_t  sDrivePath               = vsVolumes.at(i);
-                std::tstring_t  sVolumeName;
-                ulong_t         ulVolumeSerialNumber     = 0UL;
-                ulong_t         ulMaximumComponentLength = 0UL;
-                ulong_t         ulFileSystemFlags        = 0UL;
-                std::tstring_t  sFileSystemName;
-
-                m_bRv  = CxVolume::bGetInfo(sDrivePath,
-                                             &sVolumeName,
-                                             &ulVolumeSerialNumber,
-                                             &ulMaximumComponentLength,
-                                             &ulFileSystemFlags,
-                                             &sFileSystemName);
-                xTEST_EQ(true, m_bRv);
-            }
-        #endif
-    }
-
     return true;
 }
 //---------------------------------------------------------------------------
