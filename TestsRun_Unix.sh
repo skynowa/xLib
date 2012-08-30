@@ -55,7 +55,7 @@ echo -e
 echo -e ${COL_GREEN}"Build and run..."${COL_NORM}
 echo -e
 
-# ./Tests_Unix.sh
+./TestsBuild_Unix.sh
 # $TARGET_DIR/xlib_r 1 1 1 1
 $MAKE run --makefile="./Tests.mk"
 
