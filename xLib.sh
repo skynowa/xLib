@@ -59,11 +59,11 @@ usage() {
 }
 
 xlib_build_static_lib() {
-    ./Lib_Unix.sh
+    ./LibBuild_Unix.sh
 }
 
 xlib_install_static_lib() {
-    ./Install_Unix.sh
+    ./LibInstall_Unix.sh
 }
 
 xlib_build_share_lib() {
@@ -79,15 +79,15 @@ xlib_install_sharelib() {
 }
 
 xlib_uninstall_libs() {
-    ./Uninstall_Unix.sh
+    ./LibUninstall_Unix.sh
 }
 
 xlib_build_tests() {
-    ./Tests_Unix.sh
+    ./TestsBuild_Unix.sh
 }
 
 xlib_run_tests() {
-    ./RunTests_Unix.sh
+    ./TestsRun_Unix.sh
 }
 
 quit() {
