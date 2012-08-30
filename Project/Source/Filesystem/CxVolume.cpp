@@ -309,11 +309,12 @@ CxVolume::sGetLabel(
 
     sRv.assign(szVolumeName);
 #elif xOS_ENV_UNIX
-    #if   xOS_LINUX
-        // TODO: CxVolume::sGetLabel
-    #elif xOS_FREEBSD
-        // TODO: CxVolume::sGetLabel
-    #endif
+    // REVIEW: just get the dir name ??
+    if (CxConst::xUNIX_SLASH == csVolumePath) {
+        sRv = CxConst::xUNIX_SLASH;
+    } else {
+        sRv = CxPath::sGetFileName(csVolumePath);
+    }
 #endif
 
     return sRv;
