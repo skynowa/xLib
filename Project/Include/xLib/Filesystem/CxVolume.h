@@ -61,15 +61,6 @@ class CxVolume :
 
         static EType          dtGetType(const std::tstring_t &csVolumePath);
 
-    #if   xOS_ENV_WIN
-        static bool           bGetInfo (const std::tstring_t &csVolumePath,
-                                        std::tstring_t       *psVolumeName,
-                                        ulong_t              *pulVolumeSerialNumber,
-                                        ulong_t              *pulMaximumComponentLength,
-                                        ulong_t              *pulFileSystemFlags,
-                                        std::tstring_t       *psFileSystemName);
-    #endif
-
     private:
                               CxVolume ();
             ///< constructor
