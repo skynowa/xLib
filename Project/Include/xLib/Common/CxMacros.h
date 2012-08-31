@@ -428,19 +428,19 @@
 
 // xFOREACH
 #define xFOREACH(it_t, it, cont)  \
-                                    for (it_t::iterator               it = (cont).begin();  it != (cont).end();  ++ it)
+                                    for (it_t::iterator               it((cont).begin());  it != (cont).end();  ++ it)
     ///< iterate STL container (using it_t::iterator)
 
 #define xFOREACH_CONST(it_t, it, cont) \
-                                    for (it_t::const_iterator         it = (cont).begin();  it != (cont).end();  ++ it)
+                                    for (it_t::const_iterator         it((cont).begin());  it != (cont).end();  ++ it)
     ///< iterate STL container (using it_t::const_iterator)
 
 #define xFOREACH_R(it_t, it, cont)  \
-                                    for (it_t::reverse_iterator       it = (cont).rbegin(); it != (cont).rend(); ++ it)
+                                    for (it_t::reverse_iterator       it((cont).rbegin()); it != (cont).rend(); ++ it)
     ///< iterate STL container (using it_t::reverse_iterator)
 
 #define xFOREACH_R_CONST(it_t, it, cont)  \
-                                    for (it_t::const_reverse_iterator it = (cont).rbegin(); it != (cont).rend(); ++ it)
+                                    for (it_t::const_reverse_iterator it((cont).rbegin()); it != (cont).rend(); ++ it)
     ///< iterate STL container (using it_t::const_reverse_iterator)
 
 
@@ -461,27 +461,27 @@ class CxMacros :
 {
     public:
         template<class T>
-        static inline 
+        static inline
         void
         vPtrDelete(T *&pPtrT) {
-            if (NULL != pPtrT) { 
-                delete pPtrT; pPtrT = NULL; 
+            if (NULL != pPtrT) {
+                delete pPtrT; pPtrT = NULL;
             }
         }
             ///< delete object by pointer
 
         template<class T>
-        static inline 
+        static inline
         void
         vArrayDelete(T *&pPtrT) {
-            if (NULL != pPtrT) { 
-                delete [] pPtrT;  pPtrT = NULL; 
+            if (NULL != pPtrT) {
+                delete [] pPtrT;  pPtrT = NULL;
             }
         }
             ///< delete array by pointer
 
         template <typename ArrayT, const size_t cuiArraySize>
-        static inline 
+        static inline
         size_t
         uiCountOf(const ArrayT (&)[cuiArraySize]) {
             return cuiArraySize;
@@ -489,7 +489,7 @@ class CxMacros :
             ///< get array size
 
         template <class T>
-        static inline 
+        static inline
         const T &
         xMax(const T &x , const T &y) {
             return (x > y) ? x : y;
@@ -497,7 +497,7 @@ class CxMacros :
             ///< get max value
 
         template <class T>
-        static inline 
+        static inline
         const T &
         xMin(const T &x , const T &y) {
             return (x < y) ? x : y;
@@ -505,21 +505,21 @@ class CxMacros :
             ///< get min value
 
         template <class T>
-        static inline 
+        static inline
         void
         xSwap(T &a, T &b) {
-            T temp = a; 
-            a = b; 
+            T temp = a;
+            a = b;
             b = temp;
         }
             ///< swap variables
 
         //TODO: numeric_limits_check
         template <class T>
-        static inline 
+        static inline
         bool
         numeric_limits_check(const T &x) {
-            bool bRv = ((std::numeric_limits<T>::min)() <= x) && 
+            bool bRv = ((std::numeric_limits<T>::min)() <= x) &&
                         ((std::numeric_limits<T>::max)() >= x);
 
             return bRv;
@@ -527,7 +527,7 @@ class CxMacros :
             ///< check numeric limites for type
 
         template <class ToT, class FromT>
-        static inline 
+        static inline
         ToT
         xreinterpret_cast(const FromT &pPtrT) {
             void *pvVoidCast = static_cast<void *>( pPtrT );
@@ -539,7 +539,7 @@ class CxMacros :
         }
             ///< allows any pointer to be converted into any other pointer type
 
-        static inline 
+        static inline
         double
         dRound(const double &cdValue) {
             return ::floor(cdValue + 0.5);
@@ -547,11 +547,11 @@ class CxMacros :
             ///< round double value to the integer part
 
         template <class T1, class T2>
-        static inline 
+        static inline
         double
         dSafeDiv(const T1 &cVal1T, const T2 &cVal2T) {
             double dRv = 0.0;
-            
+
             if (static_cast<T2>( 0 ) == cVal2T) {
                 dRv = 0.0;
             } else {
