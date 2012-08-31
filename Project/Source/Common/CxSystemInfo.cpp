@@ -411,7 +411,7 @@ CxSystemInfo::ulGetCurrentCpuNum() {
     bRv = dlDll.bIsProcExists(xT("GetCurrentProcessorNumber"));
     xCHECK_RET(false == bRv, 0UL);
 
-    DllGetCurrentProcessorNumber_t DllGetCurrentProcessorNumber = (TDllGetCurrentProcessorNumber)dlDll.fpGetProcAddress(xT("GetCurrentProcessorNumber"));
+    DllGetCurrentProcessorNumber_t DllGetCurrentProcessorNumber = (DllGetCurrentProcessorNumber_t)dlDll.fpGetProcAddress(xT("GetCurrentProcessorNumber"));
     /*DEBUG*/xASSERT_RET(NULL != DllGetCurrentProcessorNumber, 0UL);
 
     ulRv = DllGetCurrentProcessorNumber();
