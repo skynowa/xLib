@@ -65,7 +65,7 @@ CxTest_CxProcessInfo::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         m_sRv = CxProcessInfo::sGetExeName( CxCurrentProcess::ulGetId() );
-        xTEST_EQ(true,   CxFile::bIsExists(m_sRv));
+        xTEST_EQ(true,  CxFile::bIsExists(m_sRv));
         xTEST_EQ(m_sRv, CxPath::sGetExe());
     }
 

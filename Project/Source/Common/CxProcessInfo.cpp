@@ -8,7 +8,6 @@
 
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
-#include <xLib/Sync/CxProcess.h>
 
 
 xNAMESPACE_BEGIN(NxLib)
@@ -94,7 +93,7 @@ CxProcessInfo::ulGetIOBytes(
 
     ulRv = ulReadBytes + ulWriteBytes;
 
-    xTRACEV("\tulReadBytes: %lu, ulWriteBytes: %lu", ulReadBytes, ulWriteBytes);
+    // xTRACEV("\tulReadBytes: %lu, ulWriteBytes: %lu", ulReadBytes, ulWriteBytes);
 #endif
 
     return ulRv;

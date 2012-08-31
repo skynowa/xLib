@@ -47,7 +47,8 @@ CxShell::bExecute(
     xDEBUG_VAR_NA(csFilePath);
     xDEBUG_VAR_NA(csParams);
 
-    xCHECK_RET(false == bIsAvailable(), false);
+    xCHECK_RET(true  == csFilePath.empty(), true);
+    xCHECK_RET(false == bIsAvailable(),     false);
 
     // REVIEW: security bug - xT("%s \"%s\"") or xT("\"%s\" \"%s\"") ??
     std::tstring_t sCommand = CxString::sFormat(xT("%s \"%s\""), csFilePath.c_str(), csParams.c_str());

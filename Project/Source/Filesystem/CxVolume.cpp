@@ -369,8 +369,8 @@ CxVolume::dtGetType(
             const mntent *pmteMountPoint = ::getmntent(pfFile);
             xCHECK_DO(NULL == pmteMountPoint, break);
 
-             printf("[name]: %s\n[path]: %s\n[type]: %s\n\n",
-                    pmteMountPoint->mnt_fsname, pmteMountPoint->mnt_dir, pmteMountPoint->mnt_type);
+            // printf("[name]: %s\n[path]: %s\n[type]: %s\n\n",
+            //        pmteMountPoint->mnt_fsname, pmteMountPoint->mnt_dir, pmteMountPoint->mnt_type);
 
             bool bRv = CxString::bCompareNoCase(csVolumePath, std::tstring_t(pmteMountPoint->mnt_dir));
             xCHECK_DO(false == bRv, continue);

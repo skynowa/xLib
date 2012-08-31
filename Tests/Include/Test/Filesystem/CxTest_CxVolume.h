@@ -11,7 +11,9 @@
 #include <xLib/Test/CxTest.h>
 #include <xLib/Filesystem/CxVolume.h>
 //---------------------------------------------------------------------------
-class CxTest_CxVolume : public CxTest {
+class CxTest_CxVolume :
+    public CxTest
+{
     public:
                      CxTest_CxVolume();
         virtual     ~CxTest_CxVolume();
