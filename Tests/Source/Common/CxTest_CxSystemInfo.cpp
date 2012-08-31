@@ -176,7 +176,11 @@ CxTest_CxSystemInfo::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         CxSystemInfo::ECpuVendor cvType = CxSystemInfo::cvGetCpuVendor();
-        xTEST_EQ(true, CxSystemInfo::cvIntel == cvType || CxSystemInfo::cvAmd == cvType);
+        #if xOS_FREEBSD
+            xTEST_EQ(true, CxSystemInfo::cvUnknown == cvType);
+        #else
+            xTEST_EQ(true, CxSystemInfo::cvIntel == cvType || CxSystemInfo::cvAmd == cvType);
+        #endif
     }
 
     //--------------------------------------------------
