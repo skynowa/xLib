@@ -401,7 +401,7 @@ CxSystemInfo::ulGetCurrentCpuNum() {
     ulong_t ulRv = 0UL;
 
 #if xOS_ENV_WIN
-    typedef DWORD (WINAPI *TDllGetCurrentProcessorNumber)(void);
+    typedef DWORD (WINAPI *DllGetCurrentProcessorNumber_t)(void);
 
     CxDll dlDll;
 
@@ -411,7 +411,7 @@ CxSystemInfo::ulGetCurrentCpuNum() {
     bRv = dlDll.bIsProcExists(xT("GetCurrentProcessorNumber"));
     xCHECK_RET(false == bRv, 0UL);
 
-    TDllGetCurrentProcessorNumber DllGetCurrentProcessorNumber = (TDllGetCurrentProcessorNumber)dlDll.fpGetProcAddress(xT("GetCurrentProcessorNumber"));
+    DllGetCurrentProcessorNumber_t DllGetCurrentProcessorNumber = (TDllGetCurrentProcessorNumber)dlDll.fpGetProcAddress(xT("GetCurrentProcessorNumber"));
     /*DEBUG*/xASSERT_RET(NULL != DllGetCurrentProcessorNumber, 0UL);
 
     ulRv = DllGetCurrentProcessorNumber();
@@ -451,7 +451,7 @@ CxSystemInfo::ulGetCurrentCpuNum() {
 
         #endif
     #elif xOS_FREEBSD
-        //TODO: ulGetCurrentCpuNum
+        // OS_NOT_SUPPORTED: ulGetCurrentCpuNum
         ulRv = 0UL;
     #endif
 #endif
