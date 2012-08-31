@@ -20,9 +20,9 @@ class CxEvent :
 {
     public:
         #if xOS_ENV_WIN
-        typedef CxHandle        TxHandle;   ///< handle
+        typedef CxHandle        handle_t;   ///< handle
     #elif xOS_ENV_UNIX
-        typedef pthread_cond_t  TxHandle;   ///< handle
+        typedef pthread_cond_t  handle_t;   ///< handle
     #endif
 
         enum EObjectState
@@ -45,7 +45,7 @@ class CxEvent :
         virtual          ~CxEvent    ();
             ///< destructor
 
-        const TxHandle &  hGet       () const;
+        const handle_t &  hGet       () const;
             ///< get handle
         bool              bSet       ();
             ///< signal the event for the waiting thread (!!! unlock !!!)
@@ -61,7 +61,7 @@ class CxEvent :
         CxHandle          _m_hEvent;        ///< event
     #elif xOS_ENV_UNIX
         CxCriticalSection _m_csCS;          ///< critical section
-        TxHandle          _m_cndCond;       ///< condition variable
+        handle_t          _m_cndCond;       ///< condition variable
         volatile bool     _m_bIsAutoReset;  ///< auto-reset flag
         volatile bool     _m_bIsSignaled;   ///< is signaled flag
     #endif

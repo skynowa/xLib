@@ -106,7 +106,7 @@ CxProcess::bCreate(
 //---------------------------------------------------------------------------
 CxProcess::EWaitResult
 CxProcess::ulWait(
-    const ulong_t culTimeout
+    const ulong_t &culTimeout
 )
 {
     EWaitResult wrStatus = wrFailed;
@@ -117,7 +117,7 @@ CxProcess::ulWait(
 
     wrStatus = static_cast<EWaitResult>( ulRv );
 #elif xOS_ENV_UNIX
-    pid_t liRv   = - 1L;
+    pid_t liRv    = - 1L;
     int   iStatus = 0;
 
     do {
@@ -135,7 +135,7 @@ CxProcess::ulWait(
 //---------------------------------------------------------------------------
 bool
 CxProcess::bKill(
-    const ulong_t culTimeout    // FIX: culTimeout not used
+    const ulong_t &culTimeout    // FIX: culTimeout not used
 )
 {
     /*DEBUG*/
@@ -172,14 +172,14 @@ CxProcess::bKill(
     return true;
 }
 //---------------------------------------------------------------------------
-CxProcess::TxHandle
+CxProcess::handle_t
 CxProcess::hGet() const {
     /*DEBUG*/
 
     return _m_hHandle;
 }
 //---------------------------------------------------------------------------
-CxProcess::TxId
+CxProcess::id_t
 CxProcess::ulGetId() const {
     /*DEBUG*/
 
@@ -218,36 +218,36 @@ CxProcess::ulGetExitStatus() const {
 
 //---------------------------------------------------------------------------
 /*static*/
-CxProcess::TxId
+CxProcess::id_t
 CxProcess::ulGetIdByHandle(
-    const TxHandle chHandle    ///< handle
+    const handle_t &chHandle    ///< handle
 )
 {
-    TxId ulRv;
+    id_t ulRv;
 
 #if   xOS_ENV_WIN
     ulRv = ::GetProcessId(chHandle);
     xDEBUG_VAR_NA(ulRv);
 #elif xOS_ENV_UNIX
-    ulRv = static_cast<TxId>( chHandle );
+    ulRv = static_cast<id_t>( chHandle );
 #endif
 
     return ulRv;
 }
 //---------------------------------------------------------------------------
 /*static*/
-CxProcess::TxHandle
+CxProcess::handle_t
 CxProcess::ulGetHandleById(
-    const TxId culId   ///< ID
+    const id_t &culId   ///< ID
 )
 {
-    TxHandle hRv;
+    handle_t hRv;
 
 #if   xOS_ENV_WIN
     hRv = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, culId);
     xDEBUG_VAR_NA(hRv);
 #elif xOS_ENV_UNIX
-    hRv = static_cast<TxHandle>( culId );
+    hRv = static_cast<handle_t>( culId );
 #endif
 
     return hRv;

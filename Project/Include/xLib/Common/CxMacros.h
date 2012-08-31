@@ -276,6 +276,7 @@
 #endif
     ///< maximum permissible string length of an environmental variable
 
+
 // xFRAMES_MAX
 #if   xOS_ENV_WIN
     #define xFRAMES_MAX             62UL    // from MSDN, ::CaptureStackBackTrace
@@ -283,6 +284,7 @@
     #define xFRAMES_MAX             256    // custom define, this should be enough
 #endif
     ///< maximum frames for stack trace
+
 
 // var args
 #if defined(va_start)
@@ -412,6 +414,16 @@
     #endif
 #endif
     ///< temprory directory
+
+
+// xNATIVE_HANDLE_NULL, xNATIVE_HANDLE_INVALID
+#if xOS_ENV_WIN
+    #define xNATIVE_HANDLE_NULL     ( static_cast<native_handle_t>( NULL ) )                  ///< native handle value "null"
+    #define xNATIVE_HANDLE_INVALID  ( static_cast<native_handle_t>( INVALID_HANDLE_VALUE ) )  ///< native handle value "invalid"
+#elif xOS_ENV_UNIX
+    #define xNATIVE_HANDLE_NULL     ( static_cast<native_handle_t>( 0 ) )                     ///< native handle value "null"
+    #define xNATIVE_HANDLE_INVALID  ( static_cast<native_handle_t>( - 1 ) )                   ///< native handle value "invalid"
+#endif
 
 
 // xFOREACH

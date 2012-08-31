@@ -282,7 +282,7 @@ CxTest_CxThread::bUnit(
     //hGet
     xTEST_CASE(cullCaseLoops)
     {
-        CxThread::TxHandle hRv = pthT->hGet();
+        CxThread::handle_t hRv = pthT->hGet();
         xTEST_DIFF(0UL, (ulong_t)hRv);
     }
 
@@ -290,7 +290,7 @@ CxTest_CxThread::bUnit(
     //ulGetId
     xTEST_CASE(cullCaseLoops)
     {
-        CxThread::TxId idRes = pthT->ulGetId();
+        CxThread::id_t idRes = pthT->ulGetId();
         xTEST_DIFF(0UL, (ulong_t)idRes);
     }
 

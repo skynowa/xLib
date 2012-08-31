@@ -27,7 +27,7 @@ CxSemaphore::~CxSemaphore() {
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-const CxSemaphore::TxHandle &
+const CxSemaphore::handle_t &
 CxSemaphore::hGet() const {
     /*DEBUG*/
 

@@ -31,7 +31,7 @@ CxTestManager::CxTestManager(
 //---------------------------------------------------------------------------
 /*virtual*/
 CxTestManager::~CxTestManager() {
-    xFOREACH(TContainer, it, _m_ctnTests) {
+    xFOREACH(container_t, it, _m_ctnTests) {
         /*CxMacros::*/xPTR_DELETE(*it);
     }
 
@@ -42,7 +42,7 @@ CxTestManager::~CxTestManager() {
 bool
 CxTestManager::bAdd(
     CxTest               *pvtTest,
-    const std::tstring_t &csTestName /* = CxConst::xSTR_EMPTY*/
+    const std::tstring_t &csTestName /* = CxConst::xSTR_EMPTY */
 )
 {
     /*DEBUG*/
@@ -74,7 +74,7 @@ CxTestManager::bRun(
     xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: all loops: %") xPR_I64u xT(", unit loops: %") xPR_I64u xT(", block loops: %") xPR_I64u xT(", unit number: %")  xPR_SIZET xT("\n"), cullAllLoops, cullUnitLoops, cullCaseLoops, _m_ctnTests.size()));
 
     for (ulonglong_t i = 0ULL; i < cullAllLoops; ++ i) {
-        xFOREACH_CONST(TContainer, it, _m_ctnTests) {
+        xFOREACH_CONST(container_t, it, _m_ctnTests) {
             xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: run test \"%s\""), (*it)->sGetName().c_str()));
 
             bool bRv = (*it)->bRun(cullUnitLoops, cullCaseLoops);

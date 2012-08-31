@@ -30,7 +30,7 @@ CxTest_CxMutex::bUnit(
     //-------------------------------------
     //hGet
     {
-        ////CxMutex::TxHandle hRv = mtMutex.hGet();
+        ////CxMutex::handle_t hRv = mtMutex.hGet();
         ////xTEST_EQ(false, hRv.bIsValid());
     }
 

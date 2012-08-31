@@ -20,7 +20,7 @@ xNAMESPACE_BEGIN(NxLib)
 /*static*/
 bool
 CxCurrentProcess::bIsCurrent(
-    const CxProcess::TxId culId
+    const CxProcess::id_t &culId
 )
 {
     /*DEBUG*/
@@ -38,11 +38,11 @@ CxCurrentProcess::bIsCurrent(
 }
 //---------------------------------------------------------------------------
 /*static*/
-CxProcess::TxId
+CxProcess::id_t
 CxCurrentProcess::ulGetId() {
     /*DEBUG*/// n/a
 
-    CxProcess::TxId ulRv;
+    CxProcess::id_t ulRv;
 
 #if xOS_ENV_WIN
     ulRv = ::GetCurrentProcessId();
@@ -56,11 +56,11 @@ CxCurrentProcess::ulGetId() {
 }
 //---------------------------------------------------------------------------
 /*static*/
-CxProcess::TxId
+CxProcess::id_t
 CxCurrentProcess::ulGetParentId() {
     /*DEBUG*/// n/a
 
-    CxProcess::TxId ulRv;
+    CxProcess::id_t ulRv;
 
 #if xOS_ENV_WIN
     #if xCOMPILER_MINGW32 || xCOMPILER_CODEGEAR
@@ -77,7 +77,7 @@ CxCurrentProcess::ulGetParentId() {
 
     typedef NTSTATUS (WINAPI *TDllNtQueryInformationProcess)(HANDLE ProcessHandle, PROCESSINFOCLASS ProcessInformationClass, PVOID ProcessInformation, ULONG ProcessInformationLength, PULONG ReturnLength);
 
-    const CxProcess::TxId culInvalidId = (ulong_t)- 1;
+    const CxProcess::id_t culInvalidId = (ulong_t)- 1;
 
     bool  bRv   = false;
     CxDll dlDll;
@@ -109,11 +109,11 @@ CxCurrentProcess::ulGetParentId() {
 //---------------------------------------------------------------------------
 // TODO: tests
 /*static*/
-CxProcess::TxHandle
+CxProcess::handle_t
 CxCurrentProcess::hGetHandle() {
     /*DEBUG*/// n/a
 
-    CxProcess::TxHandle hRv;
+    CxProcess::handle_t hRv;
 
 #if xOS_ENV_WIN
     #if xDEPRECIATE
@@ -134,7 +134,7 @@ CxCurrentProcess::hGetHandle() {
 /*static*/
 bool
 CxCurrentProcess::bExit(
-    const uint_t cuiExitCode
+    const uint_t &cuiExitCode
 )
 {
     /*DEBUG*/

@@ -55,7 +55,7 @@ CxEvent::~CxEvent() {
 #endif
 }
 //---------------------------------------------------------------------------
-const CxEvent::TxHandle &
+const CxEvent::handle_t &
 CxEvent::hGet() const {
     /*DEBUG*/
 
@@ -151,9 +151,9 @@ CxEvent::osWait(
             // wait until condition thread returns control
             do {
                 if (xTIMEOUT_INFINITE != culTimeout) {
-                    iRv = ::pthread_cond_timedwait(&_m_cndCond, const_cast<CxCriticalSection::TxHandle *>( &_m_csCS.hGet() ), &tsTime);
+                    iRv = ::pthread_cond_timedwait(&_m_cndCond, const_cast<CxCriticalSection::handle_t *>( &_m_csCS.hGet() ), &tsTime);
                 } else {
-                    iRv = ::pthread_cond_wait     (&_m_cndCond, const_cast<CxCriticalSection::TxHandle *>( &_m_csCS.hGet() ));
+                    iRv = ::pthread_cond_wait     (&_m_cndCond, const_cast<CxCriticalSection::handle_t *>( &_m_csCS.hGet() ));
                 }
             }
             while (!iRv && !_m_bIsSignaled);

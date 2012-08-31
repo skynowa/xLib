@@ -28,25 +28,25 @@ CxTest_CxCurrentThread::bUnit(
     //bIsCurrent
     xTEST_CASE(cullCaseLoops)
     {
-        CxThread::TxId aulData[5][2] = {{0}};
+        CxThread::id_t aulData[5][2] = {{0}};
 
-        aulData[0][0] = (CxThread::TxId)CxCurrentThread::ulGetId();
-        aulData[0][1] = (CxThread::TxId)true;
+        aulData[0][0] = (CxThread::id_t)CxCurrentThread::ulGetId();
+        aulData[0][1] = (CxThread::id_t)true;
 
-        aulData[1][0] = (CxThread::TxId)((ulong_t)CxCurrentThread::ulGetId() - 1);
-        aulData[1][1] = (CxThread::TxId)false;
+        aulData[1][0] = (CxThread::id_t)((ulong_t)CxCurrentThread::ulGetId() - 1);
+        aulData[1][1] = (CxThread::id_t)false;
 
-        aulData[2][0] = (CxThread::TxId)0;
-        aulData[2][1] = (CxThread::TxId)false;
+        aulData[2][0] = (CxThread::id_t)0;
+        aulData[2][1] = (CxThread::id_t)false;
 
-        aulData[3][0] = (CxThread::TxId) - 1;
-        aulData[3][1] = (CxThread::TxId)false;
+        aulData[3][0] = (CxThread::id_t) - 1;
+        aulData[3][1] = (CxThread::id_t)false;
 
-        aulData[4][0] = (CxThread::TxId)- 1;
-        aulData[4][1] = (CxThread::TxId)false;
+        aulData[4][0] = (CxThread::id_t)- 1;
+        aulData[4][1] = (CxThread::id_t)false;
 
         for (std::size_t i = 0; i < xARRAY_SIZE(aulData); ++ i) {
-            const CxThread::TxId culId = aulData[i][0];
+            const CxThread::id_t culId = aulData[i][0];
             const bool           cbRes = xINT_TO_BOOL( (ulong_t)aulData[i][1] );
 
             m_bRv = CxCurrentThread::bIsCurrent(culId);
@@ -58,7 +58,7 @@ CxTest_CxCurrentThread::bUnit(
     //ulGetId
     xTEST_CASE(cullCaseLoops)
     {
-        CxThread::TxId idRes = CxCurrentThread::ulGetId();
+        CxThread::id_t idRes = CxCurrentThread::ulGetId();
         xTEST_LESS(0UL, (ulong_t)idRes);
     }
 
@@ -66,7 +66,7 @@ CxTest_CxCurrentThread::bUnit(
     //hGetHandle
     xTEST_CASE(cullCaseLoops)
     {
-        CxThread::TxHandle hRv = CxCurrentThread::hGetHandle();
+        CxThread::handle_t hRv = CxCurrentThread::hGetHandle();
         xTEST_DIFF(0UL, (ulong_t)hRv);
     }
 
@@ -74,7 +74,7 @@ CxTest_CxCurrentThread::bUnit(
     //ulGetId
     xTEST_CASE(cullCaseLoops)
     {
-        CxThread::TxId idRes = CxCurrentThread::ulGetId();
+        CxThread::id_t idRes = CxCurrentThread::ulGetId();
         xTEST_LESS(0UL, (ulong_t)idRes);
     }
 
@@ -82,7 +82,7 @@ CxTest_CxCurrentThread::bUnit(
     //hGetHandle
     xTEST_CASE(cullCaseLoops)
     {
-        CxThread::TxHandle hRv = CxCurrentThread::hGetHandle();
+        CxThread::handle_t hRv = CxCurrentThread::hGetHandle();
         xTEST_LESS((ulong_t)0, (ulong_t)hRv);
     }
 

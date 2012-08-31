@@ -18,9 +18,9 @@ class CxCriticalSection :
 {
     public:
     #if xOS_ENV_WIN
-        typedef CRITICAL_SECTION TxHandle;
+        typedef CRITICAL_SECTION handle_t;
     #elif xOS_ENV_UNIX
-        typedef pthread_mutex_t  TxHandle;
+        typedef pthread_mutex_t  handle_t;
     #endif
 
                           CxCriticalSection();
@@ -28,7 +28,7 @@ class CxCriticalSection :
         virtual          ~CxCriticalSection();
             ///< destructor
 
-        const TxHandle &  hGet             () const;
+        const handle_t &  hGet             () const;
             ///< get handle
         bool              bCreate          ();
             ///< create
@@ -40,7 +40,7 @@ class CxCriticalSection :
             ///< unlock
 
     private:
-        TxHandle          _m_hHandle;   ///< critical section handle
+        handle_t          _m_hHandle;   ///< critical section handle
 };
 
 xNAMESPACE_END(NxLib)

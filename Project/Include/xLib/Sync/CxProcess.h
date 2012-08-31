@@ -18,11 +18,11 @@ class CxProcess :
 {
     public:
     #if xOS_ENV_WIN
-        typedef HANDLE TxHandle; ///< handle
-        typedef DWORD  TxId;     ///< ID
+        typedef HANDLE handle_t; ///< handle
+        typedef DWORD  id_t;     ///< ID
     #elif xOS_ENV_UNIX
-        typedef pid_t  TxHandle; ///< handle
-        typedef pid_t  TxId;     ///< ID
+        typedef pid_t  handle_t; ///< handle
+        typedef pid_t  id_t;     ///< ID
     #endif
 
         enum EWaitResult
@@ -47,31 +47,31 @@ class CxProcess :
 
         bool            bCreate        (const std::tstring_t &csFilePath, const tchar_t *pcszParams, ...);
             ///< execute a file
-        EWaitResult     ulWait         (const ulong_t culTimeout);
+        EWaitResult     ulWait         (const ulong_t &culTimeout);
             ///< wait for termonation
-        bool            bKill          (const ulong_t culTimeout);
+        bool            bKill          (const ulong_t &culTimeout);
             ///< kills the calling process and all of its threads
 
-        TxHandle        hGet           () const;
+        handle_t        hGet           () const;
             ///< get handle
-        TxId            ulGetId        () const;
+        id_t            ulGetId        () const;
             ///< get ID
         bool            bIsCurrent     () const;
             ///< is current
         ulong_t         ulGetExitStatus() const;
             ///< get termination status
 
-        static TxId     ulGetIdByHandle(const TxHandle chHandle);
+        static id_t     ulGetIdByHandle(const handle_t &chHandle);
             ///< ge ID by handle
-        static TxHandle ulGetHandleById(const TxId culId);
+        static handle_t ulGetHandleById(const id_t &culId);
             ///< ge handle by ID
 
     private:
-        TxHandle        _m_hHandle;
+        handle_t        _m_hHandle;
     #if xOS_ENV_WIN
         HANDLE          _m_hThread;
     #endif
-        TxId            _m_ulPid;
+        id_t            _m_ulPid;
         uint_t          _m_uiExitStatus;            ///< exit code
 
 };

@@ -22,7 +22,7 @@ xNAMESPACE_BEGIN(NxLib)
 /*static*/
 ulong_t
 CxProcessInfo::ulGetCpuUsage(
-    const CxProcess::TxId cidId
+    const CxProcess::id_t &cidId
 )
 {
     ulong_t ulRv = 0UL;
@@ -39,7 +39,7 @@ CxProcessInfo::ulGetCpuUsage(
 /*static*/
 ulong_t
 CxProcessInfo::ulGetRamUsage(
-    const CxProcess::TxId cidId
+    const CxProcess::id_t &cidId
 )
 {
     ulong_t ulRv = 0UL;
@@ -56,7 +56,7 @@ CxProcessInfo::ulGetRamUsage(
 /*static*/
 ulong_t
 CxProcessInfo::ulGetIOBytes(
-    const CxProcess::TxId cidId
+    const CxProcess::id_t &cidId
 )
 {
     ulong_t ulRv = 0UL;
@@ -103,7 +103,7 @@ CxProcessInfo::ulGetIOBytes(
 /*static*/
 std::tstring_t
 CxProcessInfo::sGetExeName(
-    const CxProcess::TxId cidId
+    const CxProcess::id_t &cidId
 )
 {
     std::tstring_t sRv;
@@ -111,7 +111,7 @@ CxProcessInfo::sGetExeName(
 #if   xOS_ENV_WIN
     sRv.resize(xPATH_MAX);
 
-    CxProcess::TxHandle hHandle = CxProcess::ulGetHandleById(cidId);
+    CxProcess::handle_t hHandle = CxProcess::ulGetHandleById(cidId);
 
     DWORD ulStored = ::GetModuleFileNameEx(hHandle, NULL, &sRv.at(0), sRv.size());
     /*DEBUG*/xASSERT_RET(0UL != ulStored, std::tstring_t());
@@ -162,7 +162,7 @@ CxProcessInfo::sGetExeName(
 /*static*/
 ulong_t
 CxProcessInfo::ulGetParentId(
-    const CxProcess::TxId cidId
+    const CxProcess::id_t &cidId
 )
 {
     ulong_t ulRv = 0UL;
