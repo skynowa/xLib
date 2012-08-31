@@ -488,6 +488,7 @@ CxSystemInfo::cvGetCpuVendor() {
             cvRes = cvUnknown;
         }
     #elif xCOMPILER_CODEGEAR
+        // TODO: CxSystemInfo::cvGetCpuVendor()
         cvRes = cvUnknown;
     #endif
 #elif xOS_ENV_UNIX
@@ -506,7 +507,8 @@ CxSystemInfo::cvGetCpuVendor() {
             cvRes = cvUnknown;
         }
     #elif xOS_FREEBSD
-        //TODO: CxSystemInfo::cvGetCpuVendor()
+        // OS_NOT_SUPPORTED: CxSystemInfo::cvGetCpuVendor()
+        cvRes = cvUnknown;
     #endif
 #endif
 
