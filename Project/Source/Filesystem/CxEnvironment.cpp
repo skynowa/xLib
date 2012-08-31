@@ -56,8 +56,8 @@ CxEnvironment::bIsVarValid(
 {
     xDEBUG_VAR_NA(csVarName);
 
-    xCHECK_RET(true              == csVarName.empty(),       false);
-    xCHECK_RET(std::string::npos != csVarName.find(xT("=")), false);
+    xCHECK_RET(true              == csVarName.empty(),               false);
+    xCHECK_RET(std::string::npos != csVarName.find(CxConst::xEQUAL), false);
 
     return true;
 }

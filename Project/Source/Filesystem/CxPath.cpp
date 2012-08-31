@@ -854,11 +854,11 @@ CxPath::sGetProcValue(
     {
         bool bRv = false;
 
-        bRv = CxDir::bIsExists(xT("/proc/"));
-        xCHECK_MSG_RET(false == bRv, xT("Proc dir not mount"), std::tstring_t());
+        bRv = CxDir::bIsExists(xT("/proc"));
+        xCHECK_DO(false == bRv, CxTracer::bWrite(xT("xLib: warning (/proc dir not mount)")); return std::tstring_t());
 
-        bRv = CxDir::bIsEmpty(xT("/proc/"));
-        xCHECK_MSG_RET(true == bRv, xT("Proc dir is empty"),  std::tstring_t());
+        bRv = CxDir::bIsEmpty(xT("/proc"));
+        xCHECK_DO(true  == bRv, CxTracer::bWrite(xT("xLib: warning (/proc dir is empty)"));  return std::tstring_t());
     }
 
 
