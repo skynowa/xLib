@@ -49,7 +49,8 @@ CxShell::bExecute(
 
     xCHECK_RET(false == bIsAvailable(), false);
 
-    std::tstring_t sCommand = CxString::sFormat(xT("\"%s\" \"%s\""), csFilePath.c_str(), csParams.c_str());
+    // REVIEW: security bug - xT("%s \"%s\"") or xT("\"%s\" \"%s\"") ??
+    std::tstring_t sCommand = CxString::sFormat(xT("%s \"%s\""), csFilePath.c_str(), csParams.c_str());
 
     int iRv = ::xTSYSTEM(sCommand.c_str());
     /*DEBUG*/xASSERT_RET(- 1 != iRv, false);

@@ -105,7 +105,7 @@ CxThread::bCreate(
     //-------------------------------------
     //start
 #if xOS_ENV_WIN
-    TxId ulId = 0UL;
+    id_t ulId = 0UL;
 
     HANDLE hRv = reinterpret_cast<HANDLE>( ::_beginthreadex(NULL, cuiStackSize, _s_uiJobEntry, this, 0U, (uint_t *)&ulId) );
     /*DEBUG*/xASSERT_RET(NULL != hRv, false);
@@ -118,7 +118,7 @@ CxThread::bCreate(
     _m_ulId = ulId;
 #elif xOS_ENV_UNIX
     int            iRv = - 1;
-    TxId           ulId;
+    id_t           ulId;
     pthread_attr_t paAttributes; // n/a - {{0}}
 
     iRv = ::pthread_attr_init(&paAttributes);
@@ -353,7 +353,7 @@ CxThread::bIsRunning() const {
     bool bCond2 = ( 0UL           <  _m_ulId                                       );
     bool bCond3 = ( true          == _m_bIsRunning                                 );
     bool bCond4 = ( WAIT_OBJECT_0 != ::WaitForSingleObject(_m_hThread.hGet(), 0UL) );
-    bool bCond5 = ( STILL_ACTIVE  == ulRv                                         );
+    bool bCond5 = ( STILL_ACTIVE  == ulRv                                          );
 
     bRv = bCond1 && bCond2 && bCond3 && bCond4 && bCond5;
 #elif xOS_ENV_UNIX
@@ -363,7 +363,7 @@ CxThread::bIsRunning() const {
 
     #if xTODO
         bool bCond4 = ( WAIT_OBJECT_0 != ::WaitForSingleObject(_m_hThread.hGet(), 0UL) );
-        bool bCond5 = ( STILL_ACTIVE  == ulRv                                         );
+        bool bCond5 = ( STILL_ACTIVE  == ulRv                                          );
     #endif
 
     bRv = bCond1 && bCond2 && bCond3 /*&& bCond4 && bCond5*/;
@@ -850,10 +850,10 @@ CxThread::ulGetCpuCount() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-CxThread::TxHandle
+CxThread::handle_t
 CxThread::hGet() const {
 #if xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), TxHandle());
+    /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), handle_t());
 
     return _m_hThread.hGet();
 #elif xOS_ENV_UNIX
@@ -861,7 +861,7 @@ CxThread::hGet() const {
 #endif
 }
 //---------------------------------------------------------------------------
-CxThread::TxId
+CxThread::id_t
 CxThread::ulGetId() const {
 #if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), 0);
@@ -968,7 +968,7 @@ CxThread::bSetDebugName(
 
 //---------------------------------------------------------------------------
 /*static*/
-CxThread::TxHandle
+CxThread::handle_t
 CxThread::hOpen(
     const ulong_t culAccess,
     const bool    cbInheritHandle,
@@ -977,14 +977,14 @@ CxThread::hOpen(
 {
     /*DEBUG*///ulAccess       - n/a
     /*DEBUG*///bInheritHandle - n/a
-    /*DEBUG*/xASSERT_RET(0UL < culId, TxHandle());
+    /*DEBUG*/xASSERT_RET(0UL < culId, handle_t());
 
 #if xOS_ENV_WIN
-    TxHandle hRv = ::OpenThread(culAccess, cbInheritHandle, culId);
+    handle_t hRv = ::OpenThread(culAccess, cbInheritHandle, culId);
     /*DEBUG*/xASSERT_RET(NULL != hRv, NULL);
 #elif xOS_ENV_UNIX
     //TODO: hOpen
-    TxHandle hRv = 0;
+    handle_t hRv = 0;
 #endif
 
     return hRv;
@@ -1061,7 +1061,7 @@ CxThread::bIsTimeToExit() {
 
 //---------------------------------------------------------------------------
 /*static*/
-CxThread::TxExitStatus xSTDCALL
+CxThread::exit_status_t xSTDCALL
 CxThread::_s_uiJobEntry(
     void *pvParam
 )
@@ -1080,7 +1080,7 @@ CxThread::_s_uiJobEntry(
 
     CxEvent::EObjectState osRes = pthThis->_m_pevStarter->osWait(5000UL);   // not infinite timeout
     xTEST_EQ(CxEvent::osSignaled, osRes);
-    /*DEBUG*/xASSERT_RET(CxEvent::osSignaled == osRes, TxExitStatus());
+    /*DEBUG*/xASSERT_RET(CxEvent::osSignaled == osRes, exit_status_t());
 
     xPTR_DELETE(pthThis->_m_pevStarter);
 

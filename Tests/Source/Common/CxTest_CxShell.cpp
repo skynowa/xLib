@@ -39,7 +39,6 @@ CxTest_CxShell::bUnit(
         const std::tstring_t casData[][2] = {
             { xT("cd"), xT("./") },
             { xT("cd"), xT(".")  },
-            { xT("cd"), xT("")   },
             { xT(""),   xT("")   }
 
         #if   xOS_ENV_WIN

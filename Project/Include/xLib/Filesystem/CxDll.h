@@ -37,12 +37,12 @@ class CxDll :
 
     private:
     #if xOS_ENV_WIN
-        typedef HMODULE  TxHandle;
+        typedef HMODULE  handle_t;
     #elif xOS_ENV_UNIX
-        typedef void *   TxHandle;
+        typedef void *   handle_t;
     #endif
 
-        TxHandle      _m_hDll;   ///< dll module handle
+        handle_t      _m_hDll;   ///< dll module handle
 
         bool          _bFree          ();
             ///< free

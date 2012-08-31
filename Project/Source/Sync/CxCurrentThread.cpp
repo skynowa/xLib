@@ -18,7 +18,7 @@ xNAMESPACE_BEGIN(NxLib)
 /*static*/
 bool
 CxCurrentThread::bIsCurrent(
-    const CxThread::TxId culId
+    const CxThread::id_t &culId
 )
 {
     /*DEBUG*/
@@ -36,11 +36,11 @@ CxCurrentThread::bIsCurrent(
 }
 //---------------------------------------------------------------------------
 /*static*/
-CxThread::TxId
+CxThread::id_t
 CxCurrentThread::ulGetId() {
     /*DEBUG*/// n/a
 
-    CxThread::TxId ulRv = 0UL;
+    CxThread::id_t ulRv = 0UL;
 
 #if xOS_ENV_WIN
     ulRv = ::GetCurrentThreadId();
@@ -54,11 +54,11 @@ CxCurrentThread::ulGetId() {
 }
 //---------------------------------------------------------------------------
 /*static*/
-CxThread::TxHandle
+CxThread::handle_t
 CxCurrentThread::hGetHandle() {
     /*DEBUG*/// n/a
 
-    CxThread::TxHandle hRv;
+    CxThread::handle_t hRv;
 
 #if xOS_ENV_WIN
     hRv = ::GetCurrentThread();

@@ -21,6 +21,26 @@ CxCriticalSection::CxCriticalSection() :
 
 }
 //---------------------------------------------------------------------------
+/*virtual*/
+CxCriticalSection::~CxCriticalSection() {
+#if xOS_ENV_WIN
+    bool bRv = false;
+
+    try {
+        (void)::DeleteCriticalSection(&_m_hHandle);
+
+        bRv = true;
+    } catch (...) {
+        bRv = false;
+    }
+
+    /*DEBUG*/xASSERT_DO(true == bRv, return);
+#elif xOS_ENV_UNIX
+    int iRv = ::pthread_mutex_destroy(&_m_hHandle);
+    /*DEBUG*/xASSERT_MSG_DO(0 == iRv, CxLastError::sFormat(iRv), return);
+#endif
+}
+//---------------------------------------------------------------------------
 bool
 CxCriticalSection::bCreate() {
     /*DEBUG*/
@@ -63,27 +83,7 @@ CxCriticalSection::bCreate() {
     return true;
 }
 //---------------------------------------------------------------------------
-/*virtual*/
-CxCriticalSection::~CxCriticalSection() {
-#if xOS_ENV_WIN
-    bool bRv = false;
-
-    try {
-        (void)::DeleteCriticalSection(&_m_hHandle);
-
-        bRv = true;
-    } catch (...) {
-        bRv = false;
-    }
-
-    /*DEBUG*/xASSERT_DO(true == bRv, return);
-#elif xOS_ENV_UNIX
-    int iRv = ::pthread_mutex_destroy(&_m_hHandle);
-    /*DEBUG*/xASSERT_MSG_DO(0 == iRv, CxLastError::sFormat(iRv), return);
-#endif
-}
-//---------------------------------------------------------------------------
-const CxCriticalSection::TxHandle &
+const CxCriticalSection::handle_t &
 CxCriticalSection::hGet() const {
     /*DEBUG*/
 

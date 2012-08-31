@@ -32,7 +32,7 @@ CxMutex::~CxMutex() {
 #endif
 }
 //---------------------------------------------------------------------------
-const CxMutex::TxHandle &
+const CxMutex::handle_t &
 CxMutex::hGet() const {
     /*DEBUG*/
 

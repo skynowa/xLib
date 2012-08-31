@@ -28,10 +28,10 @@ class CxTestManager :
             ///< run all tests
 
     private:
-        typedef std::vector<CxTest *> TContainer;
+        typedef std::vector<CxTest *> container_t;
 
-        const bool _m_cbIsUseTracing;   ///< is use tracing
-        TContainer _m_ctnTests;         ///< CxTest's container
+        const bool  _m_cbIsUseTracing;   ///< is use tracing
+        container_t _m_ctnTests;         ///< CxTest's container
 };
 
 xNAMESPACE_END(NxLib)

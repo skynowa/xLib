@@ -18,15 +18,15 @@ class CxMutex :
 {
     public:
     #if xOS_ENV_WIN
-        typedef CxHandle  TxHandle;
+        typedef CxHandle  handle_t;
     #elif xOS_ENV_UNIX
-        typedef int       TxHandle;
+        typedef int       handle_t;
     #endif
 
                           CxMutex();
         virtual          ~CxMutex();
 
-        const TxHandle &  hGet   () const;
+        const handle_t &  hGet   () const;
             ///< get handle
         bool              bCreate(const std::tstring_t &csName);
             ///< create
@@ -36,7 +36,7 @@ class CxMutex :
             ///< unlock
 
     private:
-        TxHandle          _m_hHandle;   ///< mutex section handle
+        handle_t          _m_hHandle;   ///< mutex section handle
 };
 
 xNAMESPACE_END(NxLib)

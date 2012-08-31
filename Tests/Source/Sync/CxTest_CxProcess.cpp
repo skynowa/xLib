@@ -28,10 +28,10 @@ CxTest_CxProcess::bUnit(
     // bCreate, ulWait
     xTEST_CASE(cullCaseLoops)
     {
-        #if 1
+        #if 0
             #if xOS_ENV_WIN
                 const std::tstring_t csFilePath = xT("C:\\Windows\\System32\\attrib.exe");
-                const std::tstring_t csCmdLine  = xT("/?");
+                const std::tstring_t csCmdLine  = xT("");
             #elif xOS_ENV_UNIX
                 const std::tstring_t csFilePath = xT("/usr/ls");
                 const std::tstring_t csCmdLine  = xT("-la");
@@ -51,7 +51,7 @@ CxTest_CxProcess::bUnit(
     // bKill
     xTEST_CASE(cullCaseLoops)
     {
-        #if 1
+        #if 0
             #if xOS_ENV_WIN
                 const std::tstring_t csFilePath = xT("C:\\Windows\\System32\\attrib.exe");
                 const std::tstring_t csCmdLine  = xT("/?");
@@ -74,13 +74,13 @@ CxTest_CxProcess::bUnit(
     // hGet, ulGetId
     xTEST_CASE(cullCaseLoops)
     {
-        #if 1
+        #if 0
             #if xOS_ENV_WIN
                 const std::tstring_t csFilePath = xT("C:\\Windows\\System32\\attrib.exe");
                 const std::tstring_t csCmdLine  = xT("/?");
             #elif xOS_ENV_UNIX
                 const std::tstring_t csFilePath = xT("/usr/bin/nautilus");
-                const std::tstring_t csCmdLine  = xT("");
+                const std::tstring_t csCmdLine  = xT(">");
             #endif
 
             CxProcess prProc;
@@ -88,11 +88,11 @@ CxTest_CxProcess::bUnit(
             m_bRv = prProc.bCreate(csFilePath, xT("%s"), csCmdLine.c_str());
             xTEST_EQ(true, m_bRv);
 
-            CxProcess::TxHandle hHandle = prProc.hGet();
-            xTEST_DIFF(static_cast<CxProcess::TxHandle>( NULL ), hHandle);
+            CxProcess::handle_t hHandle = prProc.hGet();
+            xTEST_DIFF(static_cast<CxProcess::handle_t>( NULL ), hHandle);
 
-            CxProcess::TxId ulId = prProc.ulGetId();
-            xTEST_LESS(static_cast<CxProcess::TxId>( 0 ), ulId);
+            CxProcess::id_t ulId = prProc.ulGetId();
+            xTEST_LESS(static_cast<CxProcess::id_t>( 0 ), ulId);
 
             CxProcess::EWaitResult wrRes = prProc.ulWait(xTIMEOUT_INFINITE);
             xTEST_EQ(CxProcess::wrObject0, wrRes);
@@ -103,7 +103,7 @@ CxTest_CxProcess::bUnit(
     // ulGetIdByHandle
     xTEST_CASE(cullCaseLoops)
     {
-        CxProcess::TxId ulId = CxProcess::ulGetIdByHandle( CxCurrentProcess::hGetHandle() );
+        CxProcess::id_t ulId = CxProcess::ulGetIdByHandle( CxCurrentProcess::hGetHandle() );
         xTEST_DIFF(0UL, static_cast<ulong_t>( ulId ));
     }
 
@@ -111,7 +111,7 @@ CxTest_CxProcess::bUnit(
     // ulGetHandleById
     xTEST_CASE(cullCaseLoops)
     {
-        CxProcess::TxHandle hHandle = CxProcess::ulGetHandleById( CxCurrentProcess::ulGetId() );
+        CxProcess::handle_t hHandle = CxProcess::ulGetHandleById( CxCurrentProcess::ulGetId() );
         xTEST_EQ(true, CxHandle(hHandle).bIsValid());
     }
 

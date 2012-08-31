@@ -26,7 +26,7 @@ CxTest_CxCurrentProcess::bUnit(
     //ulGetCurrId
     xTEST_CASE(cullCaseLoops)
     {
-        CxProcess::TxId ulRv = CxCurrentProcess::ulGetId();
+        CxProcess::id_t ulRv = CxCurrentProcess::ulGetId();
         xTEST_LESS(0UL, (ulong_t)ulRv);
     }
 
@@ -34,7 +34,7 @@ CxTest_CxCurrentProcess::bUnit(
     //ulGetCurrParentId
     xTEST_CASE(cullCaseLoops)
     {
-        CxProcess::TxId ulRv = CxCurrentProcess::ulGetParentId();
+        CxProcess::id_t ulRv = CxCurrentProcess::ulGetParentId();
         xTEST_LESS(0UL, (ulong_t)ulRv);
     }
 

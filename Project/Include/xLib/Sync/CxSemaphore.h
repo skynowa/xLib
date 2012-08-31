@@ -18,15 +18,15 @@ class CxSemaphore :
 {
     public:
         #if xOS_ENV_WIN
-            typedef CxHandle  TxHandle;
+            typedef CxHandle  handle_t;
         #elif xOS_ENV_UNIX
-            typedef int       TxHandle;
+            typedef int       handle_t;
         #endif
 
                               CxSemaphore();
         virtual              ~CxSemaphore();
 
-        const TxHandle &      hGet       () const;
+        const handle_t &      hGet       () const;
             ///< get handle
         bool                  bCreate    (const long_t cliInitialCount, const long_t cliMaxCount, const std::tstring_t &csName);
             ///< create
@@ -43,7 +43,7 @@ class CxSemaphore :
             ///< reset
 
     private:
-        TxHandle              _m_hSemaphore;
+        handle_t              _m_hSemaphore;
         std::tstring_t        _m_sName;
 };
 
