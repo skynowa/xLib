@@ -462,7 +462,8 @@ CxSystemInfo::ulGetCurrentCpuNum() {
 /*static*/
 CxSystemInfo::ECpuVendor
 CxSystemInfo::cvGetCpuVendor() {
-    ECpuVendor cvRes = cvUnknown;
+    ECpuVendor  cvRes = cvUnknown;
+    std::string sValue;
 
 #if   xOS_ENV_WIN
     #if   xCOMPILER_MINGW32 || xCOMPILER_MS
@@ -478,39 +479,69 @@ CxSystemInfo::cvGetCpuVendor() {
         *reinterpret_cast<int *>( &szMan[4] ) = aiCpuInfo[3];
         *reinterpret_cast<int *>( &szMan[8] ) = aiCpuInfo[2];
 
-        if      (std::string("GenuineIntel") == szMan) {
-            cvRes = cvIntel;
-        }
-        else if (std::string("AuthenticAMD") == szMan) {
-            cvRes = cvAmd;
-        }
-        else {
-            cvRes = cvUnknown;
-        }
+        sValue = std::string(szMan);
+        /*DEBUG*/xASSERT_RET(false == sValue.empty(), cvUnknown);
     #elif xCOMPILER_CODEGEAR
         // TODO: CxSystemInfo::cvGetCpuVendor()
-        cvRes = cvUnknown;
+        sValue = std::string();
     #endif
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         // target proc line: "vendor_id : GenuineIntel"
-        std::tstring_t sValue = CxPath::sGetProcValue(xT("/proc/cpuinfo"), xT("vendor_id"));
+        sValue = CxPath::sGetProcValue(xT("/proc/cpuinfo"), xT("vendor_id"));
         /*DEBUG*/xASSERT_RET(false == sValue.empty(), cvUnknown);
-
-        if      (std::string("GenuineIntel") == sValue) {
-            cvRes = cvIntel;
-        }
-        else if (std::string("AuthenticAMD") == sValue) {
-            cvRes = cvAmd;
-        }
-        else {
-            cvRes = cvUnknown;
-        }
     #elif xOS_FREEBSD
-        // OS_NOT_SUPPORTED: CxSystemInfo::cvGetCpuVendor()
-        cvRes = cvUnknown;
+        // Use gcc 4.4 provided cpuid intrinsic
+        // 32 bit fpic requires ebx be preserved
+        struct _SFunctor {
+            #if (defined(__pic__) || defined(__APPLE__)) && defined(__i386__)
+                static inline void
+                __cpuid(int aiCpuInfo[4], int iInfoType) {
+                    __asm__ volatile (
+                        "mov %%ebx, %%edi\n"
+                        "cpuid\n"
+                        "xchg %%edi, %%ebx\n"
+                        : "=a"(aiCpuInfo[0]), "=D"(aiCpuInfo[1]), "=c"(aiCpuInfo[2]), "=d"(aiCpuInfo[3])
+                        : "a"(iInfoType)
+                    );
+                }
+            #elif defined(__i386__) || defined(__x86_64__)
+                static inline void
+                __cpuid(int aiCpuInfo[4], int iInfoType) {
+                    __asm__ volatile (
+                        "cpuid\n"
+                        : "=a"(aiCpuInfo[0]), "=b"(aiCpuInfo[1]), "=c"(aiCpuInfo[2]), "=d"(aiCpuInfo[3])
+                        : "a"(iInfoType)
+                    );
+                }
+            #else
+                // OS_NOT_SUPPORTED: CxSystemInfo::cvGetCpuVendor()
+                #error xLib: Can not define __cpuid
+            #endif
+        };
+
+        int aiCpuInfo[4] = {0};
+
+        (void)_SFunctor::__cpuid(aiCpuInfo, 0);
+
+        aiCpuInfo[0] = aiCpuInfo[1];  // Reorder output
+        aiCpuInfo[1] = aiCpuInfo[3];
+        aiCpuInfo[2] = aiCpuInfo[2];
+        aiCpuInfo[3] = 0;
+
+        sValue = std::string(CxMacros::xreinterpret_cast<char *>( &aiCpuInfo[0] ));
+        /*DEBUG*/xASSERT_RET(false == sValue.empty(), cvUnknown);
     #endif
 #endif
+    if      (std::string("GenuineIntel") == sValue) {
+        cvRes = cvIntel;
+    }
+    else if (std::string("AuthenticAMD") == sValue) {
+        cvRes = cvAmd;
+    }
+    else {
+        cvRes = cvUnknown;
+    }
 
     return cvRes;
 }
