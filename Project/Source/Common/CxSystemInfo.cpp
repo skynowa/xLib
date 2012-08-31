@@ -328,7 +328,7 @@ CxSystemInfo::sGetUserName() {
 }
 //---------------------------------------------------------------------------
 /*static*/
-std::tstring_t 
+std::tstring_t
 CxSystemInfo::sGetUseHomeDir() {
     std::tstring_t sRv;
 
@@ -341,14 +341,14 @@ CxSystemInfo::sGetUseHomeDir() {
     sRv.assign(szBuff);
 #elif xOS_ENV_UNIX
    /*
-    * MAN: 
+    * MAN:
     *
-    * Login programs use the value of this field to initialize 
-    * the HOME environment variable for the login shell. 
-    * An application that wants to determine its user's home directory 
-    * should inspect the value of HOME (rather than the value getpwuid(getuid())->pw_dir) 
-    * since this allows the user to modify their notion of "the home directory" 
-    * during a login session. To determine the (initial) home directory of another user, 
+    * Login programs use the value of this field to initialize
+    * the HOME environment variable for the login shell.
+    * An application that wants to determine its user's home directory
+    * should inspect the value of HOME (rather than the value getpwuid(getuid())->pw_dir)
+    * since this allows the user to modify their notion of "the home directory"
+    * during a login session. To determine the (initial) home directory of another user,
     * it is necessary to use getpwnam("username")->pw_dir or similar.
     */
 
@@ -557,7 +557,7 @@ CxSystemInfo::sGetCpuModel() {
             sRv = CxString::sFormat(xT("%s"), szMan);
         }
     #elif xCOMPILER_CODEGEAR
-        sRv = xUNKNOWN_STRING;
+        sRv = std::tstring_t();
     #endif
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
@@ -567,7 +567,21 @@ CxSystemInfo::sGetCpuModel() {
 
         sRv = sValue;
     #elif xOS_FREEBSD
-        //TODO: CxSystemInfo::sGetCpuModel()
+        int         iRv         = - 1;
+        std::string sValue;
+        size_t      uiValueSize = 0;
+
+        iRv = ::sysctlbyname("hw.model", NULL, &uiValueSize, NULL, 0U);
+        /*DEBUG*/xASSERT_RET(- 1 != iRv,         std::tstring_t());
+        /*DEBUG*/xASSERT_RET(0U  != uiValueSize, std::tstring_t());
+
+        sValue.resize(uiValueSize);
+
+        iRv = ::sysctlbyname("hw.model", &sValue.at(0), &uiValueSize, NULL, 0U);
+        /*DEBUG*/xASSERT_RET(- 1           != iRv,         std::tstring_t());
+        /*DEBUG*/xASSERT_RET(sValue.size() == uiValueSize, std::tstring_t());
+
+        sRv = sValue;
     #endif
 #endif
 
