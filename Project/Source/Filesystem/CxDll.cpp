@@ -7,9 +7,9 @@
 #include <xLib/Filesystem/CxDll.h>
 
 #if xOS_ENV_WIN
-    //lib: n/a
+    // lib: n/a
 #elif xOS_ENV_UNIX
-    //lib: -ldl, -lc (FreeBSD)
+    // lib: -ldl, -lc (FreeBSD)
 #endif
 
 

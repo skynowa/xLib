@@ -8,6 +8,12 @@
 
 #include <xLib/Filesystem/CxPath.h>
 
+#if xOS_ENV_WIN
+    // lib: n/a
+#elif xOS_ENV_UNIX
+    // lib: -lrt
+#endif
+
 
 xNAMESPACE_BEGIN(NxLib)
 

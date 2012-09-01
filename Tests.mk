@@ -127,15 +127,19 @@ DIRS_LIB					:=	/usr/lib64 \
 FLAGS_COMPILE				:=	$(CPPFLAGS) -Wall -pipe
 
 ifeq ($(cOS), "Linux")
-    LIBS					:=	$(LDFLAGS) -lmysqlclient -lm -lcrypto -lz -lssl -ldl
+	LIBS					:=	$(LDFLAGS) -lrt -lmysqlclient -lm -lcrypto -lz -lssl -ldl
 else
-    LIBS					:=	$(LDFLAGS) -lmysqlclient -lm -lcrypto -lz -lssl -lexecinfo # -lc only with out -static
+ifeq ($(cOS), "FreeBSD")
+	LIBS					:=	$(LDFLAGS) -lrt -lmysqlclient -lm -lcrypto -lz -lssl -lexecinfo # -lc only with out -static
+else
+    $(error Unsupported OS: $(cOS))
+endif
 endif
 
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-    FLAGS_LINK				:=	-pthread -O0 -g3 -rdynamic #-static
+	FLAGS_LINK				:=	-pthread -O0 -g3 -rdynamic #-static
 else
-    FLAGS_LINK				:=	-pthread -O3 -g0 -s -fomit-frame-pointer -rdynamic #-static
+	FLAGS_LINK				:=	-pthread -O3 -g0 -s -fomit-frame-pointer -rdynamic #-static
 endif
 
 DIRS_RELATIVE_INCLUDE		:=	$(addprefix $(PATH_PREFIX), $(DIR_ROOT_INCLUDE))

@@ -28,15 +28,15 @@ cARCHIVER				:=	$(AR)
 ##################################################
 # xLib
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-    PROGRAM_PREFIX		:=	lib
-    PROGRAM_SHORT_NAME	:=	xlib
-    PROGRAM_POSTFIX		:=	_d
-    PROGRAM_EXT			:=	.a
+	PROGRAM_PREFIX		:=	lib
+	PROGRAM_SHORT_NAME	:=	xlib
+	PROGRAM_POSTFIX		:=	_d
+	PROGRAM_EXT			:=	.a
 else
-    PROGRAM_PREFIX		:=	lib
-    PROGRAM_SHORT_NAME	:=	xlib
-    PROGRAM_POSTFIX		:=	_r
-    PROGRAM_EXT			:=	.a
+	PROGRAM_PREFIX		:=	lib
+	PROGRAM_SHORT_NAME	:=	xlib
+	PROGRAM_POSTFIX		:=	_r
+	PROGRAM_EXT			:=	.a
 endif
 
 DIR_ROOT_INCLUDE		:=	./Project/Include
@@ -63,7 +63,7 @@ SUBDIRS_SOURCE			:=	. \
 							Patterns \
 							Sync \
 							Sync/Win \
-						    Test \
+							Test \
 							Units \
 							Units/Win
 
@@ -102,9 +102,9 @@ PROGRAM_PATH			:=	../../../../$(DIR_BINARY)/$(PROGRAM_NAME)
 FLAGS_COMPILE			:=	$(CPPFLAGS) -Wall -pipe
 
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-    FLAGS_LINK			:=	-pthread -O0 -g3
+	FLAGS_LINK			:=	-pthread -O0 -g3
 else
-    FLAGS_LINK			:=	-pthread -O3 -g0 -s -fomit-frame-pointer
+	FLAGS_LINK			:=	-pthread -O3 -g0 -s -fomit-frame-pointer
 endif
 
 DIRS_RELATIVE_INCLUDE	:=	$(addprefix ../../../../, $(DIR_ROOT_INCLUDE))
@@ -136,7 +136,7 @@ all:
 install:				uninstall
 
 						mkdir -p $(DIR_INSTALL)
-						cp    $(DIR_BINARY)/$(PROGRAM_NAME) $(DIR_INSTALL)/$(PROGRAM_NAME)
+						cp $(DIR_BINARY)/$(PROGRAM_NAME) $(DIR_INSTALL)/$(PROGRAM_NAME)
 
 						mkdir -p $(DIR_INSTALL_INCLUDE)
 						cp -r $(DIR_ROOT_INCLUDE)/xLib $(DIR_INSTALL_INCLUDE)
