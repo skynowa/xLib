@@ -60,7 +60,7 @@ class CxEvent :
     #if xOS_ENV_WIN
         CxHandle          _m_hEvent;        ///< event
     #elif xOS_ENV_UNIX
-        CxMutex _m_csCS;          ///< critical section
+        CxMutex           _m_mtMutex;       ///< mutex
         handle_t          _m_cndCond;       ///< condition variable
         volatile bool     _m_bIsAutoReset;  ///< auto-reset flag
         volatile bool     _m_bIsSignaled;   ///< is signaled flag
