@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
-# \file  TestsBuild_Unix.sh
-# \brief build tests for Unix OS
+# \file  TestsClean_Unix.sh
+# \brief clean tests for Unix OS
 #
 
 
@@ -43,15 +43,13 @@ else
     exit 1
 fi
 
-mkdir -p "$TARGET_DIR"
-
 
 # execute
 echo -e
-echo -e ${COL_GREEN}"Build tests..."${COL_NORM}
+echo -e ${COL_GREEN}"Clean tests..."${COL_NORM}
 echo -e
 
-$MAKE all --directory="$TARGET_DIR" --makefile="../../../../Tests.mk"
+$MAKE clean --makefile="./Tests.mk"
 
 
 # finished

@@ -24,13 +24,15 @@ CxTest_CxAutoMutex::bUnit(
     const ulonglong_t cullCaseLoops
 )
 {
+    const std::tstring_t csName = xT("mutex_name_a");
+
     //-------------------------------------
     //CxAutoMutex
     xTEST_CASE(cullCaseLoops)
     {
         CxMutex mtMutex;
 
-        CxAutoMutex objAutoMutex(mtMutex);
+        CxAutoMutex objAutoMutex(mtMutex, csName);
     }
 
     return true;

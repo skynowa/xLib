@@ -89,17 +89,14 @@
 #include <Test/Sync/CxTest_CxThreadStorage.h>
 #include <Test/Sync/CxTest_CxCriticalSection.h>
 #include <Test/Sync/CxTest_CxAutoCriticalSection.h>
+#include <Test/Sync/CxTest_CxMutex.h>
+#include <Test/Sync/CxTest_CxAutoMutex.h>
 #include <Test/Sync/CxTest_CxEvent.h>
 #include <Test/Sync/CxTest_CxSleeper.h>
 #include <Test/Sync/CxTest_CxCurrentThread.h>
 #include <Test/Sync/CxTest_CxThread.h>
 #include <Test/Sync/CxTest_CxCurrentProcess.h>
 #include <Test/Sync/CxTest_CxProcess.h>
-
-#if xOS_ENV_WIN
-    #include <Test/Sync/CxTest_CxMutex.h>
-    #include <Test/Sync/CxTest_CxAutoMutex.h>
-#endif
 
 //Gui
 #include <Test/Gui/Dialogs/CxTest_CxMsgBoxT.h>
@@ -256,19 +253,14 @@ xTMAIN(
         (void)tmManager.bAdd(new CxTest_CxThreadStorage);
         (void)tmManager.bAdd(new CxTest_CxCriticalSection);
         (void)tmManager.bAdd(new CxTest_CxAutoCriticalSection);
+        (void)tmManager.bAdd(new CxTest_CxMutex);
+        (void)tmManager.bAdd(new CxTest_CxAutoMutex);
         (void)tmManager.bAdd(new CxTest_CxEvent);
         (void)tmManager.bAdd(new CxTest_CxSleeper);
         (void)tmManager.bAdd(new CxTest_CxCurrentThread);
         (void)tmManager.bAdd(new CxTest_CxThread);
         (void)tmManager.bAdd(new CxTest_CxCurrentProcess);
         (void)tmManager.bAdd(new CxTest_CxProcess);
-
-    #if xOS_ENV_WIN
-        (void)tmManager.bAdd(new CxTest_CxMutex);
-        (void)tmManager.bAdd(new CxTest_CxAutoMutex);
-    #elif xOS_ENV_UNIX
-
-    #endif
 
         // Gui
         (void)tmManager.bAdd(new CxTest_CxMsgBoxT);

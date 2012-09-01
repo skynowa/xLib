@@ -10,7 +10,7 @@
 #define xUSING_NAMESPACE_NXLIB          1
     ///< automatically include the NxLib namespace
 
-#define xDEBUG_USE_PROMPT_DIALOG        0
+#define xDEBUG_USE_PROMPT_DIALOG        1
     ///< debug prompt dialog:
     ///<    0 - don't stop executing, pass throw dialog prompt
     ///<    1 - stop executing on dialog prompt, wait for user choice

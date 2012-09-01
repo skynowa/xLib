@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # \file  xLib.sh
-# \brief build, install, uninstall, test, ... for Unix OS
+# \brief build, clean, install, uninstall, test, ... for Unix OS
 #
 
 
@@ -32,50 +32,48 @@ TARGET_DIR=
 
 usage() {
     echo -e ""
-    echo -e "+---------------------------------+"
-    echo -e "|   xLib.sh usage                 |"
-    echo -e "+---------------------------------+"
-    echo -e "| 1. Build static lib             |"
-    echo -e "| 2. Install static lib (as root) |"
-    echo -e "| 3. Build share lib              |"
-    echo -e "| 4. Install share lib (as root)  |"
-    echo -e "| 5. Uninstall lib (as root)      |"
-    echo -e "| 6. Build tests                  |"
-    echo -e "| 7. Run tests                    |"
-    echo -e "| 8. Quit                         |"
-    echo -e "+---------------------------------+"
+    echo -e "+------------------------------+"
+    echo -e "|   xLib.sh usage              |"
+    echo -e "+------------------------------+"
+    echo -e "| 1. Libs build                |"
+    echo -e "| 2. Libs clean                |"
+    echo -e "| 3. Libs install              |"
+    echo -e "| 4. Libs uninstall            |"
+    echo -e "|                              |"
+    echo -e "| 5. Tests build               |"
+    echo -e "| 6. Tests clean               |"
+    echo -e "| 7. Tests run                 |"
+    echo -e "|                              |"
+    echo -e "| 8. Quit                      |"
+    echo -e "+------------------------------+"
     echo -e ""
 }
 
-xlib_build_static_lib() {
-    ./LibBuild_Unix.sh
+xlib_libs_build() {
+    ./LibsBuild_Unix.sh
 }
 
-xlib_install_static_lib() {
-    ./LibInstall_Unix.sh
+xlib_libs_clean() {
+    ./LibsClean_Unix.sh
 }
 
-xlib_build_share_lib() {
-    echo -e
-    echo -e "TODO: build_share_lib"
-    echo -e
+xlib_libs_install() {
+    ./LibsInstall_Unix.sh
 }
 
-xlib_install_sharelib() {
-    echo -e
-    echo -e "TODO: install_sharelib"
-    echo -e
+xlib_libs_uninstall() {
+    ./LibsUninstall_Unix.sh
 }
 
-xlib_uninstall_libs() {
-    ./LibUninstall_Unix.sh
-}
-
-xlib_build_tests() {
+xlib_tests_build() {
     ./TestsBuild_Unix.sh
 }
 
-xlib_run_tests() {
+xlib_tests_clean() {
+    ./TestsClean_Unix.sh
+}
+
+xlib_tests_run() {
     ./TestsRun_Unix.sh
 }
 
@@ -108,13 +106,15 @@ fi
 
 # take action
 case $opt_menu_pos in
-    1)  xlib_build_static_lib;;
-    2)  xlib_install_static_lib;;
-    3)  xlib_build_share_lib;;
-    4)  xlib_install_sharelib;;
-    5)  xlib_uninstall_libs;;
-    6)  xlib_build_tests;;
-    7)  xlib_run_tests;;
+    1)  xlib_libs_build;;
+    2)  xlib_libs_clean;;
+    3)  xlib_libs_install;;
+    4)  xlib_libs_uninstall;;
+
+    5)  xlib_tests_build;;
+    6)  xlib_tests_clean;;
+    7)  xlib_tests_run;;
+
     8)  quit;;
     *)  invalid_option;;
 esac

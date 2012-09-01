@@ -41,6 +41,7 @@
 #include <pthread.h>    // lib: -pthread
 #include <sched.h>
 #include <sys/sem.h>
+#include <semaphore.h>
 
 // dll
 #include <dlfcn.h>

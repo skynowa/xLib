@@ -49,16 +49,16 @@ DIR_TESTS_ROOT_SOURCE		:=	./Tests/Source
 
 ifeq ($(cOS), "Linux")
 	ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-		DIR_BINARY			:=	./Build/Tests/G++_linux/Debug
+		DIR_BIN				:=	./Build/Tests/G++_linux/Debug
 	else
-		DIR_BINARY			:=	./Build/Tests/G++_linux/Release
+		DIR_BIN				:=	./Build/Tests/G++_linux/Release
 	endif
 else
 ifeq ($(cOS), "FreeBSD")
 	ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-		DIR_BINARY			:=	./Build/Tests/G++_freebsd/Debug
+		DIR_BIN				:=	./Build/Tests/G++_freebsd/Debug
 	else
-		DIR_BINARY			:=	./Build/Tests/G++_freebsd/Release
+		DIR_BIN				:=	./Build/Tests/G++_freebsd/Release
 	endif
 else
     $(error Unsupported OS: $(cOS))
@@ -66,7 +66,7 @@ endif
 endif
 
 PROGRAM_NAME				:=	$(PROGRAM_PREFIX)$(PROGRAM_SHORT_NAME)$(PROGRAM_POSTFIX)$(PROGRAM_EXT)
-PROGRAM_PATH				:=	../../../../$(DIR_BINARY)/$(PROGRAM_NAME)
+PROGRAM_PATH				:=	../../../../$(DIR_BIN)/$(PROGRAM_NAME)
 
 SUBDIRS_SOURCE				:=	. \
 								Common \
@@ -171,10 +171,10 @@ OBJ_DIRS:
 all: 							$(PROGRAM_PATH)
 
 run:
-								$(DIR_BINARY)/$(PROGRAM_NAME) 1 1 1 1
+								$(DIR_BIN)/$(PROGRAM_NAME) 1 1 1 1
 
 clean:
-								if [ -d $(DIR_BINARY) ]; then rm -rf $(DIR_BINARY); fi
+								if [ -d $(DIR_BIN) ]; then rm -rf $(DIR_BIN); fi
 
 help:
 								@echo -e ""
