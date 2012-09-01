@@ -28,22 +28,22 @@ class CxSemaphore :
 
         const handle_t &      hGet       () const;
             ///< get handle
-        bool                  bCreate    (const long_t cliInitialCount, const long_t cliMaxCount, const std::tstring_t &csName);
+        bool                  bCreate    (const long_t &cliInitialCount, const long_t &cliMaxCount, const std::tstring_t &csName);
             ///< create
-        bool                  bOpen      (const ulong_t culAccess, const bool cbInheritHandle, const std::tstring_t &csName) ;
+        bool                  bOpen      (const std::tstring_t &csName) ;
             ///< open
-        bool                  bRelease   (const long_t cliReleaseCount/* = 1*/, long_t *pliOldCount/* = NULL*/) const;
+        bool                  bRelease   (const long_t &cliReleaseCount /* = 1 */, long_t *pliOldCount/* = NULL*/) const;
             ///< release
-        bool                  bWait      (const ulong_t culTimeout) const;
+        bool                  bWait      (const ulong_t &culTimeout) const;
             ///< wait
 
         long_t                liGetValue () const;
             ///< get value
-        bool                  bReset     (const long_t cliInitialCount, const long_t cliMaxCount);
+        bool                  bReset     (const long_t &cliInitialCount, const long_t &cliMaxCount);
             ///< reset
 
     private:
-        handle_t              _m_hSemaphore;
+        handle_t              _m_hHandle;
         std::tstring_t        _m_sName;
 };
 

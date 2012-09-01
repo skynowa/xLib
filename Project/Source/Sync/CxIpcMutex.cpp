@@ -61,7 +61,7 @@ CxIpcMutex::bCreate(
     if (true == csName.empty()) {
         pcszWinName = NULL;
     } else {
-        _sWinName    = xT("Global\\") + csName;
+        _sWinName   = xT("Global\\") + csName;
         pcszWinName = _sWinName.c_str();
     }
 
@@ -97,7 +97,7 @@ CxIpcMutex::bOpen(
     if (true == csName.empty()) {
         pcszWinName = NULL;
     } else {
-        _sWinName    = xT("Global\\") + csName;
+        _sWinName   = xT("Global\\") + csName;
         pcszWinName = _sWinName.c_str();
     }
 

@@ -12,7 +12,7 @@
 #include <xLib/Common/CxConsole.h>
 #include <xLib/Common/CxCommandLine.h>
 
-//Common
+// Common
 #include <Test/Common/CxTest_CxMacros.h>
 #include <Test/Common/CxTest_CxHandleT.h>
 #include <Test/Common/CxTest_CxType.h>
@@ -32,18 +32,18 @@
     #include <Test/Common/Win/CxTest_CxCom.h>
 #endif
 
-//Crypt
+// Crypt
 #include <Test/Crypt/CxTest_CxBase64.h>
 #include <Test/Crypt/CxTest_CxCrc32.h>
 #include <Test/Crypt/CxTest_CxBlowfish.h>
 #include <Test/Crypt/CxTest_CxRandom.h>
 #include <Test/Crypt/Pkcs11/CxTest_CxPkcs11.h>
 
-//Db
+// Db
 #include <Test/Db/CxTest_CxConnectionString.h>
 #include <Test/Db/CxTest_CxMySql.h>
 
-//Debug
+// Debug
 #include <Test/Debug/CxTest_CxStdError.h>
 #include <Test/Debug/CxTest_CxLastError.h>
 #include <Test/Debug/CxTest_CxException.h>
@@ -53,7 +53,7 @@
 #include <Test/Debug/CxTest_CxProfiler.h>
 #include <Test/Debug/CxTest_CxAutoProfiler.h>
 
-//Filesystem
+// Filesystem
 #include <Test/Filesystem/CxTest_CxPath.h>
 #include <Test/Filesystem/CxTest_CxFileAttribute.h>
 #include <Test/Filesystem/CxTest_CxFile.h>
@@ -65,12 +65,12 @@
 #include <Test/Filesystem/CxTest_CxLocalStorage.h>
 #include <Test/Filesystem/CxTest_CxBackuper.h>
 
-//Log
+// Log
 #include <Test/Log/CxTest_CxTracer.h>
 #include <Test/Log/CxTest_CxFileLog.h>
 #include <Test/Log/CxTest_CxSystemLog.h>
 
-//Net
+// Net
 #include <Test/Net/CxTest_CxCookiePv0.h>
 #include <Test/Net/CxTest_CxCookiePv1.h>
 #include <Test/Net/CxTest_CxCgi.h>
@@ -81,10 +81,10 @@
 #include <Test/Net/CxTest_CxTcpServer.h>
 #include <Test/Net/CxTest_CxHttpClient.h>
 
-//Patterns
+// Patterns
 #include <Test/Patterns/CxTest_CxSingleton.h>
 
-//Sync
+// Sync
 #include <Test/Sync/CxTest_CxAtomicLongInt.h>
 #include <Test/Sync/CxTest_CxThreadStorage.h>
 #include <Test/Sync/CxTest_CxMutex.h>
@@ -93,15 +93,16 @@
 #include <Test/Sync/CxTest_CxAutoIpcMutex.h>
 #include <Test/Sync/CxTest_CxEvent.h>
 #include <Test/Sync/CxTest_CxSleeper.h>
+#include <Test/Sync/CxTest_CxSemaphore.h>
 #include <Test/Sync/CxTest_CxCurrentThread.h>
 #include <Test/Sync/CxTest_CxThread.h>
 #include <Test/Sync/CxTest_CxCurrentProcess.h>
 #include <Test/Sync/CxTest_CxProcess.h>
 
-//Gui
+// Gui
 #include <Test/Gui/Dialogs/CxTest_CxMsgBoxT.h>
 
-//Units
+// Units
 //TODO: test Units
 #include <Test/Units/CxTest_Draft.h>
 //---------------------------------------------------------------------------
@@ -256,6 +257,7 @@ xTMAIN(
         (void)tmManager.bAdd(new CxTest_CxIpcMutex);
         (void)tmManager.bAdd(new CxTest_CxAutoIpcMutex);
         (void)tmManager.bAdd(new CxTest_CxEvent);
+        (void)tmManager.bAdd(new CxTest_CxSemaphore);
         (void)tmManager.bAdd(new CxTest_CxSleeper);
         (void)tmManager.bAdd(new CxTest_CxCurrentThread);
         (void)tmManager.bAdd(new CxTest_CxThread);

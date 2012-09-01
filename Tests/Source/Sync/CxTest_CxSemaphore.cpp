@@ -6,29 +6,9 @@
 
 #include <Test/Sync/CxTest_CxSemaphore.h>
 
+#include <xLib/Sync/CxCurrentThread.h>
 
-#if xOS_ENV_WIN
-//---------------------------------------------------------------------------
-bool m_bRv = false;
-CxSemaphore m_Semaphore;
-//---------------------------------------------------------------------------
-unsigned __stdcall
-vTest( void* pArguments ) {
-    bool bRv = false;
-
-    /*LOG*/std::cout << "Start" << std::endl;
-
-    for (int i = 1; i < 100; i ++) {
-        bRv = m_Semaphore.bWait(INFINITE);
-        xTEST_EQ(true, bRv);
-
-        /*LOG*/std::cout << i << std::endl;
-    }
-
-    /*LOG*/std::cout << "Stop" << std::endl;
-
-    return 0;
-}
+    
 //---------------------------------------------------------------------------
 CxTest_CxSemaphore::CxTest_CxSemaphore() {
 
@@ -44,20 +24,58 @@ CxTest_CxSemaphore::bUnit(
     const ulonglong_t cullCaseLoops
 )
 {
-    m_bRv = m_Semaphore.bCreate(4, 2048, xT(""));
-    xTEST_EQ(true, m_bRv);
+    struct _SFunctor 
+    {
+    #if xOS_ENV_WIN
+        static uint_t xSTDCALL
+    #elif xOS_ENV_UNIX
+        static void * xSTDCALL
+    #endif
+	    uiJob(void *pArguments) {
+	        CxTracer() << xT("Start");
 
-    if (NULL == _beginthreadex(0, 0, &vTest, 0, 0, NULL)) {
-        std::cout << "Error begin thread " << std::endl;
-    }
+            CxSemaphore *psemSem = static_cast<CxSemaphore *>(pArguments);
+            xTEST_PTR(psemSem);
+	
+	        for (int i = 0; i < 50; i ++) {
+	            bool bRv = psemSem->bWait(xTIMEOUT_INFINITE);
+	            xTEST_EQ(true, bRv);
+	
+	            CxTracer() << xTRACE_VAR(i);
+	        }
+	
+	        CxTracer() << xT("Stop");
+	
+	        return 0U;
+	    }
+    };
+
 
     //-------------------------------------
-    //bRelease
-    for (size_t i = 0; i < 100; ++ i) {
-        ::Sleep(2000);
+    // bCreate
+    CxSemaphore semSemaphore;
+
+    m_bRv = semSemaphore.bCreate(4, 2048, xT(""));
+    xTEST_EQ(true, m_bRv);
+
+#if xOS_ENV_WIN
+    uintptr_t puiRv = ::_beginthreadex(NULL, 0U, &_SFunctor::uiJob, &semSemaphore, 0U, NULL);
+    xTEST_PTR(puiRv);
+#elif xOS_ENV_UNIX
+    id_t ulId = 0UL;
+
+    int iRv = ::pthread_create(&ulId, NULL, &_SFunctor::uiJob, &semSemaphore);
+    xTEST_EQ(0, iRv);
+#endif
+
+    //-------------------------------------
+    // bRelease
+    for (size_t i = 0; i < 50; ++ i) {
+        m_bRv = CxCurrentThread::bSleep(1);
+        xTEST_EQ(true, m_bRv);
 
         for (int x = 0; x < 2; x ++) {
-            m_bRv = m_Semaphore.bRelease(1, NULL);
+            m_bRv = semSemaphore.bRelease(1, NULL);
             xTEST_EQ(true, m_bRv);
         }
     }
@@ -65,6 +83,3 @@ CxTest_CxSemaphore::bUnit(
     return true;
 }
 //---------------------------------------------------------------------------
-#elif xOS_ENV_UNIX
-
-#endif
