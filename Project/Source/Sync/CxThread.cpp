@@ -22,28 +22,28 @@ xNAMESPACE_BEGIN(NxLib)
 CxThread::CxThread(
     const bool cbIsAutoDelete
 ) :
-    m_ulTag                 (0UL),
+    m_ulTag          (0UL),
 
     //data
-    _m_hThread              (),
-    _m_ulId                 (0UL),
-    _m_uiExitStatus         (0U),
-    _m_pvParam              (NULL),
-    _m_cbIsAutoDelete       (cbIsAutoDelete),
+    _m_hThread       (),
+    _m_ulId          (0UL),
+    _m_uiExitStatus  (0U),
+    _m_pvParam       (NULL),
+    _m_cbIsAutoDelete(cbIsAutoDelete),
 
     //flags
-    _m_bIsCreated           (false),
-    _m_bIsRunning           (false),
+    _m_bIsCreated    (false),
+    _m_bIsRunning    (false),
     /*_m_bIsPaused*/// n/a
     /*_m_bIsExited*/// n/a
 
     //
-    ///_vOnExit             (NULL),
+    ///_vOnExit      (NULL),
 
     //other
-    _m_pevStarter           (NULL),
-    _m_evPause              (false, false),
-    _m_evExit               (true,  false)
+    _m_pevStarter    (NULL),
+    _m_evPause       (false, false),
+    _m_evExit        (true,  false)
 {
 }
 //---------------------------------------------------------------------------

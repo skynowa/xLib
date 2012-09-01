@@ -219,7 +219,7 @@ xTMAIN(
         (void)tmManager.bAdd(new CxTest_CxFileTemp);
         (void)tmManager.bAdd(new CxTest_CxDll);
         (void)tmManager.bAdd(new CxTest_CxDir);
-        (void)tmManager.bAdd(new CxTest_CxVolume);
+        ////(void)tmManager.bAdd(new CxTest_CxVolume);
         (void)tmManager.bAdd(new CxTest_CxEnvironment);
         (void)tmManager.bAdd(new CxTest_CxLocalStorage);
         (void)tmManager.bAdd(new CxTest_CxBackuper);

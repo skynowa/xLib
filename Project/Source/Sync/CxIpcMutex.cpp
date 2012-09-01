@@ -132,13 +132,6 @@ CxIpcMutex::bLock(
     /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0  == ulRv, false);
     /*DEBUG*/xASSERT_RET(WAIT_ABANDONED != ulRv, false);
 #elif xOS_ENV_UNIX
-    #if xCAN_REMOVE
-        struct timespec {
-            time_t tv_sec;      /* Seconds */
-            long   tv_nsec;     /* Nanoseconds [0 .. 999999999] */
-        };
-    #endif
-
     struct _SFunctor {
         static void
         timespec_addms(struct timespec *ts, long ms) {
