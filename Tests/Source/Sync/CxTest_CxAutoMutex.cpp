@@ -1,38 +1,38 @@
 /**
- * \file   CxTest_CxAutoCriticalSection.cpp
+ * \file   CxTest_CxAutoMutex.cpp
  * \brief
  */
 
 
-#include <Test/Sync/CxTest_CxAutoCriticalSection.h>
+#include <Test/Sync/CxTest_CxAutoMutex.h>
 
-#include <xLib/Sync/CxCriticalSection.h>
+#include <xLib/Sync/CxMutex.h>
 
 
 //---------------------------------------------------------------------------
-CxTest_CxAutoCriticalSection::CxTest_CxAutoCriticalSection() {
+CxTest_CxAutoMutex::CxTest_CxAutoMutex() {
 
 }
 //---------------------------------------------------------------------------
-CxTest_CxAutoCriticalSection::~CxTest_CxAutoCriticalSection() {
+CxTest_CxAutoMutex::~CxTest_CxAutoMutex() {
 
 }
 //---------------------------------------------------------------------------
 /*virtual*/
 bool
-CxTest_CxAutoCriticalSection::bUnit(
+CxTest_CxAutoMutex::bUnit(
     const ulonglong_t cullCaseLoops
 )
 {
     //-------------------------------------
-    //CxAutoCriticalSection
+    //CxAutoMutex
     xTEST_CASE(cullCaseLoops)
     {
         size_t            uiCounter = 0;
-        CxCriticalSection csCS;
+        CxMutex csCS;
 
         {
-            CxAutoCriticalSection acsCS(csCS);
+            CxAutoMutex acsCS(csCS);
 
             m_bRv = acsCS.bIsLocked();
             xTEST_EQ(true, m_bRv);

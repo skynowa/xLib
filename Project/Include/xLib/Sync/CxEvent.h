@@ -9,8 +9,8 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/CxHandleT.h>
-#include <xLib/Sync/CxCriticalSection.h>
-#include <xLib/Sync/CxAutoCriticalSection.h>
+#include <xLib/Sync/CxMutex.h>
+#include <xLib/Sync/CxAutoMutex.h>
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
@@ -60,7 +60,7 @@ class CxEvent :
     #if xOS_ENV_WIN
         CxHandle          _m_hEvent;        ///< event
     #elif xOS_ENV_UNIX
-        CxCriticalSection _m_csCS;          ///< critical section
+        CxMutex _m_csCS;          ///< critical section
         handle_t          _m_cndCond;       ///< condition variable
         volatile bool     _m_bIsAutoReset;  ///< auto-reset flag
         volatile bool     _m_bIsSignaled;   ///< is signaled flag

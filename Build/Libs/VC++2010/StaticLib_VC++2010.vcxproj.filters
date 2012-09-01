@@ -409,13 +409,7 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxAtomicLongInt.h">
       <Filter>xLib\Sync</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxAutoCriticalSection.h">
-      <Filter>xLib\Sync</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxAutoIpcMutex.h">
-      <Filter>xLib\Sync</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxCriticalSection.h">
       <Filter>xLib\Sync</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxCurrentProcess.h">
@@ -452,6 +446,12 @@
       <Filter>xLib\Sync</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxWaitableTimer.h">
+      <Filter>xLib\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxAutoMutex.h">
+      <Filter>xLib\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxMutex.h">
       <Filter>xLib\Sync</Filter>
     </ClInclude>
   </ItemGroup>
@@ -710,12 +710,6 @@
     <ClCompile Include="..\..\..\Project\Source\Sync\CxAtomicLongInt.cpp">
       <Filter>xLib\Sync</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Project\Source\Sync\CxAutoCriticalSection.cpp">
-      <Filter>xLib\Sync</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Project\Source\Sync\CxCriticalSection.cpp">
-      <Filter>xLib\Sync</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Sync\CxCurrentProcess.cpp">
       <Filter>xLib\Sync</Filter>
     </ClCompile>
@@ -768,6 +762,12 @@
       <Filter>xLib\Sync</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Sync\CxIpcMutex.cpp">
+      <Filter>xLib\Sync</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Project\Source\Sync\CxAutoMutex.cpp">
+      <Filter>xLib\Sync</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Project\Source\Sync\CxMutex.cpp">
       <Filter>xLib\Sync</Filter>
     </ClCompile>
   </ItemGroup>

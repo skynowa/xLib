@@ -1,24 +1,24 @@
 /**
- * \file   CxTest_CxCriticalSection.cpp
+ * \file   CxTest_CxMutex.cpp
  * \brief
  */
 
 
-#include <Test/Sync/CxTest_CxCriticalSection.h>
+#include <Test/Sync/CxTest_CxMutex.h>
 
 
 //---------------------------------------------------------------------------
-CxTest_CxCriticalSection::CxTest_CxCriticalSection() {
+CxTest_CxMutex::CxTest_CxMutex() {
 
 }
 //---------------------------------------------------------------------------
-CxTest_CxCriticalSection::~CxTest_CxCriticalSection() {
+CxTest_CxMutex::~CxTest_CxMutex() {
 
 }
 //---------------------------------------------------------------------------
 /*virtual*/
 bool
-CxTest_CxCriticalSection::bUnit(
+CxTest_CxMutex::bUnit(
     const ulonglong_t cullCaseLoops
 )
 {
@@ -29,7 +29,7 @@ CxTest_CxCriticalSection::bUnit(
     //bLock, bUnlock
     xTEST_CASE(cullCaseLoops)
     {
-        CxCriticalSection csCS;
+        CxMutex csCS;
 
         m_bRv = csCS.bCreate();
         xTEST_EQ(true, m_bRv);
@@ -47,7 +47,7 @@ CxTest_CxCriticalSection::bUnit(
     //bTryLock, bUnlock
     xTEST_CASE(cullCaseLoops)
     {
-        CxCriticalSection csCS;
+        CxMutex csCS;
 
         m_bRv = csCS.bCreate();
         xTEST_EQ(true, m_bRv);
@@ -65,7 +65,7 @@ CxTest_CxCriticalSection::bUnit(
     //bLock, bUnlock
     xTEST_CASE(cullCaseLoops)
     {
-        CxCriticalSection csCS;
+        CxMutex csCS;
 
         const size_t cuiLocks = 10;
 
@@ -89,7 +89,7 @@ CxTest_CxCriticalSection::bUnit(
     //bTryLock, bUnlock
     xTEST_CASE(cullCaseLoops)
     {
-        CxCriticalSection csCS;
+        CxMutex csCS;
 
         const size_t cuiLocks = 10;
 

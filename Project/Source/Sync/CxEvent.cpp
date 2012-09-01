@@ -77,7 +77,7 @@ CxEvent::bSet() {
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX
     {
-        CxAutoCriticalSection acsAutoCS(_m_csCS);
+        CxAutoMutex acsAutoCS(_m_csCS);
 
         if (false == _m_bIsAutoReset) {
             int iRv = ::pthread_cond_broadcast(&_m_cndCond);
@@ -104,7 +104,7 @@ CxEvent::bReset() {
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX
     {
-        CxAutoCriticalSection acsAutoCS(_m_csCS);
+        CxAutoMutex acsAutoCS(_m_csCS);
 
         _m_bIsSignaled = false;
     }
@@ -128,7 +128,7 @@ CxEvent::osWait(
     osRes = static_cast<EObjectState>( ::WaitForSingleObject(hGet().hGet(), culTimeout) );
 #elif xOS_ENV_UNIX
     {
-        CxAutoCriticalSection acsAutoCS(_m_csCS);
+        CxAutoMutex acsAutoCS(_m_csCS);
 
         int iRv = 0;
 
@@ -151,9 +151,9 @@ CxEvent::osWait(
             // wait until condition thread returns control
             do {
                 if (xTIMEOUT_INFINITE != culTimeout) {
-                    iRv = ::pthread_cond_timedwait(&_m_cndCond, const_cast<CxCriticalSection::handle_t *>( &_m_csCS.hGet() ), &tsTime);
+                    iRv = ::pthread_cond_timedwait(&_m_cndCond, const_cast<CxMutex::handle_t *>( &_m_csCS.hGet() ), &tsTime);
                 } else {
-                    iRv = ::pthread_cond_wait     (&_m_cndCond, const_cast<CxCriticalSection::handle_t *>( &_m_csCS.hGet() ));
+                    iRv = ::pthread_cond_wait     (&_m_cndCond, const_cast<CxMutex::handle_t *>( &_m_csCS.hGet() ));
                 }
             }
             while (!iRv && !_m_bIsSignaled);

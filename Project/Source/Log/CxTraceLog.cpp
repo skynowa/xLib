@@ -8,7 +8,7 @@
 
 #include <xLib/Common/CxDateTime.h>
 #include <xLib/Filesystem/CxPath.h>
-#include <xLib/Sync/CxCriticalSection.h>
+#include <xLib/Sync/CxMutex.h>
 
 
 xNAMESPACE_BEGIN(NxLib)
