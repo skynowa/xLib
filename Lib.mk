@@ -78,16 +78,16 @@ DIRS_LIB				:=	/usr/lib64 \
 
 ifeq ($(cOS), "Linux")
 	ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-		DIR_BIN			:=	./Build/Libs/G++_linux/Debug
+		DIR_BIN			:=	./Build/Libs/GCC_linux/Debug
 	else
-		DIR_BIN			:=	./Build/Libs/G++_linux/Release
+		DIR_BIN			:=	./Build/Libs/GCC_linux/Release
 	endif
 else
 ifeq ($(cOS), "FreeBSD")
 	ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-		DIR_BIN			:=	./Build/Libs/G++_freebsd/Debug
+		DIR_BIN			:=	./Build/Libs/GCC_freebsd/Debug
 	else
-		DIR_BIN			:=	./Build/Libs/G++_freebsd/Release
+		DIR_BIN			:=	./Build/Libs/GCC_freebsd/Release
 	endif
 else
     $(error Unsupported OS: $(cOS))

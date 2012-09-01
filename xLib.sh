@@ -21,8 +21,6 @@
 
 
 # vars
-MAKE=
-TARGET_DIR=
 
 
 #

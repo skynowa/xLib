@@ -49,16 +49,16 @@ DIR_TESTS_ROOT_SOURCE		:=	./Tests/Source
 
 ifeq ($(cOS), "Linux")
 	ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-		DIR_BIN				:=	./Build/Tests/G++_linux/Debug
+		DIR_BIN				:=	./Build/Tests/GCC_linux/Debug
 	else
-		DIR_BIN				:=	./Build/Tests/G++_linux/Release
+		DIR_BIN				:=	./Build/Tests/GCC_linux/Release
 	endif
 else
 ifeq ($(cOS), "FreeBSD")
 	ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-		DIR_BIN				:=	./Build/Tests/G++_freebsd/Debug
+		DIR_BIN				:=	./Build/Tests/GCC_freebsd/Debug
 	else
-		DIR_BIN				:=	./Build/Tests/G++_freebsd/Release
+		DIR_BIN				:=	./Build/Tests/GCC_freebsd/Release
 	endif
 else
     $(error Unsupported OS: $(cOS))
@@ -185,7 +185,7 @@ help:
 								@echo -e "| run   - run tests               |"
 								@echo -e "| clean - clean build             |"
 								@echo -e "| help  - show help               |"
-								@echo -e "----------------------------------+"
+								@echo -e "+---------------------------------+"
 								@echo -e ""
 
 include $(wildcard $(addsuffix /*.d, $(DIRS_OBJECTS)))
