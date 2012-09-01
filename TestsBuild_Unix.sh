@@ -34,10 +34,10 @@ echo -e
 
 if   [ `uname` = "Linux" ]; then
     MAKE=make
-    TARGET_DIR="./Build/Tests/G++_linux/Release"
+    TARGET_DIR="./Build/Tests/GCC_linux/Release"
 elif [ `uname` = "FreeBSD" ]; then
     MAKE=gmake
-    TARGET_DIR="./Build/Tests/G++_freebsd/Release"
+    TARGET_DIR="./Build/Tests/GCC_freebsd/Release"
 else
     echo -e "Unknown OS"
     exit 1

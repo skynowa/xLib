@@ -39,33 +39,33 @@ Build/Tests/C++BuilderXE2/*.rc
 Build/Libs/C++BuilderXE2/Win32/
 
 
-##### G++_win #####
-Build/Tests/G++_win/Debug/
-Build/Tests/G++_win/Release/
-Build/Tests/G++_win/.settings/
+##### MinGW #####
+Build/Tests/MinGW/Debug/
+Build/Tests/MinGW/Release/
+Build/Tests/MinGW/.settings/
 
-Build/Libs/G++_win/Debug/
-Build/Libs/G++_win/Release/
-Build/Libs/G++_win/.settings/
+Build/Libs/MinGW/Debug/
+Build/Libs/MinGW/Release/
+Build/Libs/MinGW/.settings/
 
-##### G++_linux #####
-Build/Tests/G++_linux/Debug/
-Build/Tests/G++_linux/Release/
-Build/Tests/G++_linux/.settings/
+##### GCC_linux #####
+Build/Tests/GCC_linux/Debug/
+Build/Tests/GCC_linux/Release/
+Build/Tests/GCC_linux/.settings/
 
-Build/Libs/G++_linux/Debug/
-Build/Libs/G++_linux/Release/
-Build/Libs/G++_linux/.settings/
+Build/Libs/GCC_linux/Debug/
+Build/Libs/GCC_linux/Release/
+Build/Libs/GCC_linux/.settings/
 
 
-##### G++_freebsd #####
-Build/Tests/G++_freebsd/Debug/
-Build/Tests/G++_freebsd/Release/
-Build/Tests/G++_freebsd/.settings/
+##### GCC_freebsd #####
+Build/Tests/GCC_freebsd/Debug/
+Build/Tests/GCC_freebsd/Release/
+Build/Tests/GCC_freebsd/.settings/
 
-Build/Libs/G++_freebsd/Debug/
-Build/Libs/G++_freebsd/Release/
-Build/Libs/G++_freebsd/.settings/
+Build/Libs/GCC_freebsd/Debug/
+Build/Libs/GCC_freebsd/Release/
+Build/Libs/GCC_freebsd/.settings/
 
 
 ##### VC++2008 #####
