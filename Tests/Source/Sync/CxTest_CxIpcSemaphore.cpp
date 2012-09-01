@@ -1,26 +1,26 @@
 /**
- * \file   CxTest_CxSemaphore.cpp
+ * \file   CxTest_CxIpcSemaphore.cpp
  * \brief
  */
 
 
-#include <Test/Sync/CxTest_CxSemaphore.h>
+#include <Test/Sync/CxTest_CxIpcSemaphore.h>
 
 #include <xLib/Sync/CxCurrentThread.h>
 
     
 //---------------------------------------------------------------------------
-CxTest_CxSemaphore::CxTest_CxSemaphore() {
+CxTest_CxIpcSemaphore::CxTest_CxIpcSemaphore() {
 
 }
 //---------------------------------------------------------------------------
-CxTest_CxSemaphore::~CxTest_CxSemaphore() {
+CxTest_CxIpcSemaphore::~CxTest_CxIpcSemaphore() {
 
 }
 //---------------------------------------------------------------------------
 /*virtual*/
 bool
-CxTest_CxSemaphore::bUnit(
+CxTest_CxIpcSemaphore::bUnit(
     const ulonglong_t cullCaseLoops
 )
 {
@@ -34,7 +34,7 @@ CxTest_CxSemaphore::bUnit(
 	    uiJob(void *pArguments) {
 	        CxTracer() << xT("Start");
 
-            CxSemaphore *psemSem = static_cast<CxSemaphore *>(pArguments);
+            CxIpcSemaphore *psemSem = static_cast<CxIpcSemaphore *>(pArguments);
             xTEST_PTR(psemSem);
 	
 	        for (int i = 0; i < 50; i ++) {
@@ -53,7 +53,7 @@ CxTest_CxSemaphore::bUnit(
 
     //-------------------------------------
     // bCreate
-    CxSemaphore semSemaphore;
+    CxIpcSemaphore semSemaphore;
 
     m_bRv = semSemaphore.bCreate(4, 2048, xT(""));
     xTEST_EQ(true, m_bRv);

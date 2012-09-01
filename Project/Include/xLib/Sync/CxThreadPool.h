@@ -9,7 +9,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/xClosure.h>
-#include <xLib/Sync/CxSemaphore.h>
+#include <xLib/Sync/CxIpcSemaphore.h>
 
 #include <list>
 ////#include <boost\function.hpp>
@@ -39,7 +39,7 @@ class CxThreadPool :
         const bool                _m_cbIsGroupPaused;
         const bool                _m_cbIsGroupAutoDelete;
 
-        mutable CxSemaphore       _m_semSemaphore;
+        mutable CxIpcSemaphore       _m_semSemaphore;
         std::list<TaskT *>        _m_lstpthTasks;
 
         size_t                    _m_uiMaxRunningTasks;
