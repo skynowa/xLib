@@ -78,16 +78,16 @@ DIRS_LIB				:=	/usr/lib64 \
 
 ifeq ($(cOS), "Linux")
 	ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-		DIR_BINARY		:=	./Build/Libs/G++_linux/Debug
+		DIR_BIN			:=	./Build/Libs/G++_linux/Debug
 	else
-		DIR_BINARY		:=	./Build/Libs/G++_linux/Release
+		DIR_BIN			:=	./Build/Libs/G++_linux/Release
 	endif
 else
 ifeq ($(cOS), "FreeBSD")
 	ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-		DIR_BINARY		:=	./Build/Libs/G++_freebsd/Debug
+		DIR_BIN			:=	./Build/Libs/G++_freebsd/Debug
 	else
-		DIR_BINARY		:=	./Build/Libs/G++_freebsd/Release
+		DIR_BIN			:=	./Build/Libs/G++_freebsd/Release
 	endif
 else
     $(error Unsupported OS: $(cOS))
@@ -97,7 +97,7 @@ endif
 DIR_INSTALL_INCLUDE		:=	/usr/local/include
 DIR_INSTALL				:=	/usr/local/lib
 PROGRAM_NAME			:=	$(PROGRAM_PREFIX)$(PROGRAM_SHORT_NAME)$(PROGRAM_POSTFIX)$(PROGRAM_EXT)
-PROGRAM_PATH			:=	../../../../$(DIR_BINARY)/$(PROGRAM_NAME)
+PROGRAM_PATH			:=	../../../../$(DIR_BIN)/$(PROGRAM_NAME)
 
 FLAGS_COMPILE			:=	$(CPPFLAGS) -Wall -pipe
 
@@ -130,13 +130,13 @@ VPATH					:= ../../../../
 .PHONY:					all install uninstall clean help
 
 all:
-						mkdir -p $(DIR_BINARY)
-						$(MAKE) --directory=$(DIR_BINARY) --makefile=../../../../Lib.mk
+						mkdir -p $(DIR_BIN)
+						$(MAKE) --directory=$(DIR_BIN) --makefile=../../../../Lib.mk
 
 install:				uninstall
 
 						mkdir -p $(DIR_INSTALL)
-						cp $(DIR_BINARY)/$(PROGRAM_NAME) $(DIR_INSTALL)/$(PROGRAM_NAME)
+						cp $(DIR_BIN)/$(PROGRAM_NAME) $(DIR_INSTALL)/$(PROGRAM_NAME)
 
 						mkdir -p $(DIR_INSTALL_INCLUDE)
 						cp -r $(DIR_ROOT_INCLUDE)/xLib $(DIR_INSTALL_INCLUDE)
@@ -146,7 +146,7 @@ uninstall:
 						if [ -d $(DIR_INSTALL_INCLUDE)/xLib    ]; then rm -rf $(DIR_INSTALL_INCLUDE)/xLib;    fi
 
 clean:
-						if [ -d $(DIR_BINARY) ]; then rm -rf $(DIR_BINARY); fi
+						if [ -d $(DIR_BIN) ]; then rm -rf $(DIR_BIN); fi
 
 help:
 						@echo -e ""

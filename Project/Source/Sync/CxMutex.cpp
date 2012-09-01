@@ -12,6 +12,8 @@
     // lib: -lrt
 #endif
 
+#include <xLib/Filesystem/CxPath.h>
+
 
 xNAMESPACE_BEGIN(NxLib)
 
@@ -49,13 +51,21 @@ CxMutex::bCreate(
 #if   xOS_ENV_WIN
     /*DEBUG*/// csName
 #elif xOS_ENV_UNIX
-    /*DEBUG*/xASSERT_RET(xNAME_MAX - 4 > csName.size());
+    /*DEBUG*/xASSERT_RET(xNAME_MAX - 4 > csName.size(), false);
 #endif
 
 #if xOS_ENV_WIN
-    const tchar_t *pcszName = ( csName.empty() ? NULL : csName.c_str() );
+    const tchar_t *pcszWinName = NULL;
+    std::tstring_t _sWinName;
 
-    HANDLE hRv = ::CreateMutex(NULL, FALSE, pcszName);
+    if (true == csName.empty()) {
+        pcszWinName = NULL;
+    } else {
+        sWinName    = xT("Global\\") + csName;
+        pcszWinName = _sWinName.c_str();
+    }
+
+    HANDLE hRv = ::CreateMutex(NULL, FALSE, pcszWinName);
     /*DEBUG*/xASSERT_RET(NULL != hRv, false);
 
     _m_hHandle.bSet(hRv);
@@ -63,8 +73,44 @@ CxMutex::bCreate(
 #elif xOS_ENV_UNIX
     std::tstring_t sUnixName = CxConst::xUNIX_SLASH + csName;
 
-    handle_t hHandle = ::sem_open(sUnixName.c_str(), O_CREAT | O_RDWR, 0777, 1U);
-    /*DEBUG*/xASSERT_RET(SEM_FAILED != _m_hHandle, false);
+    handle_t hHandle = ::sem_open(sUnixName.c_str(), O_CREAT, 0777, 1U);
+    /*DEBUG*/xASSERT_RET(SEM_FAILED != hHandle, false);
+
+    _m_hHandle = hHandle;
+    _m_sName   = sUnixName;
+#endif
+
+    return true;
+}
+//---------------------------------------------------------------------------
+bool
+CxMutex::bOpen(
+    const std::tstring_t &csName
+)
+{
+    /*DEBUG*/
+
+#if   xOS_ENV_WIN
+    const tchar_t *pcszWinName = NULL;
+    std::tstring_t _sWinName;
+
+    if (true == csName.empty()) {
+        pcszWinName = NULL;
+    } else {
+        sWinName    = xT("Global\\") + csName;
+        pcszWinName = _sWinName.c_str();
+    }
+
+    HANDLE hRv = ::OpenMutex(MUTEX_ALL_ACCESS, FALSE, pcszWinName);
+    /*DEBUG*/xASSERT_RET(NULL != hRv, false);
+
+    _m_hHandle.bSet(hRv);
+    _m_sName = csName;
+#elif xOS_ENV_UNIX
+    std::tstring_t sUnixName = CxConst::xUNIX_SLASH + csName;
+
+    handle_t hHandle = ::sem_open(sUnixName.c_str(), O_CREAT, 0777, 1U);
+    /*DEBUG*/xASSERT_RET(SEM_FAILED != hHandle, false);
 
     _m_hHandle = hHandle;
     _m_sName   = sUnixName;
@@ -119,10 +165,10 @@ CxMutex::bLock(
         iRv = ::clock_gettime(CLOCK_REALTIME, &tmsTimeout);
         /*DEBUG*/xASSERT_RET(- 1 != iRv, false);
 
-        (void)_SFunctor::timespec_addms(&tmsTimeout, culTimeoutMsec)
+        (void)_SFunctor::timespec_addms(&tmsTimeout, culTimeoutMsec);
     }
 
-    while (- 1 == (iRv = ::sem_timedwait(&_m_hHandle, &tmsTimeout)) && (EINTR == errno)) {
+    while (- 1 == (iRv = ::sem_timedwait(_m_hHandle, &tmsTimeout)) && (EINTR == errno)) {
         // Restart if interrupted by handler
         continue;
     }

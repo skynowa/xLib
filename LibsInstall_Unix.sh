@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
-# \file  Lib_Unix.sh
-# \brief build static lib for Unix OS
+# \file  LibsInstall_Unix.sh
+# \brief install libs for Unix OS
 #
 
 
@@ -22,14 +22,14 @@
 
 # vars
 MAKE=
-TARGET_DIR=
 
 
 clear
 
 echo -e
-echo -e $COL_GREEN"Lib xLib ($OSTYPE) ... "$COL_NORM
+echo -e $COL_GREEN"Install xLib ($OSTYPE) ... "$COL_NORM
 echo -e
+
 
 # prepare
 echo -e
@@ -38,24 +38,20 @@ echo -e
 
 if   [ `uname` = "Linux" ]; then
     MAKE=make
-    TARGET_DIR="./Build/Libs/G++_linux/Release"
 elif [ `uname` = "FreeBSD" ]; then
     MAKE=gmake
-    TARGET_DIR="./Build/Libs/G++_freebsd/Release"
 else
     echo -e "Unknown OS"
     exit 1
 fi
 
-mkdir -p "$TARGET_DIR"
 
-
-# build
+# execute
 echo -e
-echo -e ${COL_GREEN}"Build..."${COL_NORM}
+echo -e ${COL_GREEN}"Install libs..."${COL_NORM}
 echo -e
 
-$MAKE all --makefile="./Lib.mk"
+$MAKE install --makefile="./Lib.mk"
 
 
 # finished

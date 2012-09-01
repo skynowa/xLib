@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# \file  RunTests_Unix.sh
+# \file  TestsRun_Unix.sh
 # \brief run tests for Unix OS
 #
 
@@ -50,13 +50,12 @@ else
 fi
 
 
-# run
+# execute
 echo -e
-echo -e ${COL_GREEN}"Build and run..."${COL_NORM}
+echo -e ${COL_GREEN}"Build and run tests..."${COL_NORM}
 echo -e
 
 ./TestsBuild_Unix.sh
-# $TARGET_DIR/xlib_r 1 1 1 1
 $MAKE run --makefile="./Tests.mk"
 
 

@@ -46,6 +46,15 @@ CxTest_CxMutex::bUnit(
     }
 
     //-------------------------------------
+    // bOpen
+    {
+        CxMutex mtMutex;
+
+        m_bRv = mtMutex.bOpen(csName);
+        xTEST_EQ(true, m_bRv);
+    }
+
+    //-------------------------------------
     // bLock, bUnlock
     {
         const ulong_t culTimeout = 1000UL;

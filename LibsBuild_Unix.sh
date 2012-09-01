@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
-# \file  Uninstall_Unix.sh
-# \brief uninstall xLib for Unix OS
+# \file  LibsBuild_Unix.sh
+# \brief build libs for Unix OS
 #
 
 
@@ -22,14 +22,14 @@
 
 # vars
 MAKE=
+TARGET_DIR=
 
 
 clear
 
 echo -e
-echo -e $COL_GREEN"Uninstall xLib ($OSTYPE) ... "$COL_NORM
+echo -e $COL_GREEN"Lib xLib ($OSTYPE) ... "$COL_NORM
 echo -e
-
 
 # prepare
 echo -e
@@ -38,20 +38,24 @@ echo -e
 
 if   [ `uname` = "Linux" ]; then
     MAKE=make
+    TARGET_DIR="./Build/Libs/G++_linux/Release"
 elif [ `uname` = "FreeBSD" ]; then
     MAKE=gmake
+    TARGET_DIR="./Build/Libs/G++_freebsd/Release"
 else
     echo -e "Unknown OS"
     exit 1
 fi
 
+mkdir -p "$TARGET_DIR"
 
-# install
+
+# execute
 echo -e
-echo -e ${COL_GREEN}"Uninstall..."${COL_NORM}
+echo -e ${COL_GREEN}"Build libs..."${COL_NORM}
 echo -e
 
-$MAKE uninstall --makefile="./Lib.mk"
+$MAKE all --makefile="./Lib.mk"
 
 
 # finished
