@@ -1,26 +1,26 @@
 /**
- * \file   CxTest_CxCriticalSection.h
+ * \file   CxTest_CxAutoMutex.h
  * \brief
  */
 
 
-#ifndef CxTest_CxCriticalSectionH
-#define CxTest_CxCriticalSectionH
+#ifndef CxTest_CxAutoMutexH
+#define CxTest_CxAutoMutexH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
-#include <xLib/Sync/CxCriticalSection.h>
+#include <xLib/Sync/CxAutoMutex.h>
 //---------------------------------------------------------------------------
-class CxTest_CxCriticalSection :
+class CxTest_CxAutoMutex :
     public CxTest
 {
     public:
-                     CxTest_CxCriticalSection();
-        virtual     ~CxTest_CxCriticalSection();
+                     CxTest_CxAutoMutex();
+        virtual     ~CxTest_CxAutoMutex();
 
         virtual bool bUnit(const ulonglong_t cullCaseLoops);
 
     private:
 };
 //---------------------------------------------------------------------------
-#endif //CxTest_CxCriticalSectionH
+#endif //CxTest_CxAutoMutexH

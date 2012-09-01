@@ -11,7 +11,7 @@
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxCriticalSection;
+class CxMutex;
 
 class CxConsoleLog :
     private CxNonCopyable
@@ -27,7 +27,7 @@ class CxConsoleLog :
             ///< write
 
     private:
-        static CxCriticalSection _ms_csConsole;        ///< critical section
+        static CxMutex _ms_csConsole;        ///< critical section
         bool                     _m_bIsUseTimeStr;    ///< is use time string
 };
 

@@ -9,8 +9,8 @@
 #include <xLib/Common/CxDateTime.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
-#include <xLib/Sync/CxCriticalSection.h>
-#include <xLib/Sync/CxAutoCriticalSection.h>
+#include <xLib/Sync/CxMutex.h>
+#include <xLib/Sync/CxAutoMutex.h>
 
 
 xNAMESPACE_BEGIN(NxLib)
@@ -21,7 +21,7 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-CxCriticalSection CxConsoleLog::_ms_csConsole;
+CxMutex CxConsoleLog::_ms_csConsole;
 //---------------------------------------------------------------------------
 /*explicit*/
 CxConsoleLog::CxConsoleLog(
@@ -65,7 +65,7 @@ CxConsoleLog::bWrite(
 
     //-------------------------------------
     //write
-    /*LOCK*/CxAutoCriticalSection SL(_ms_csConsole);
+    /*LOCK*/CxAutoMutex SL(_ms_csConsole);
 
     std::tcout << sTime << sParam << std::endl;
 

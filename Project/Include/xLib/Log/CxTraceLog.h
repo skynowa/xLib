@@ -12,7 +12,7 @@
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxCriticalSection;
+class CxMutex;
 
 class CxTraceLog :
     private CxNonCopyable

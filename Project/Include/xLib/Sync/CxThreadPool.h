@@ -20,8 +20,8 @@
 
 xNAMESPACE_BEGIN(NxLib)
 
-class CxCriticalSection;
-class CxAutoCriticalSection;
+class CxMutex;
+class CxAutoMutex;
 class CxThread;
 
 template<class TaskT>
@@ -47,7 +47,7 @@ class CxThreadPool :
         size_t                    _m_uiCurrTask;
 
         //static
-        static CxCriticalSection  _m_csList;
+        static CxMutex  _m_csList;
         static CxConsoleLog       _m_clLog;
 
         bool                      _bAddTask    (CxThread *pvItem);
@@ -88,8 +88,8 @@ class CxThreadPool :
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#include <xLib/Sync/CxCriticalSection.h>
-#include <xLib/Sync/CxAutoCriticalSection.h>
+#include <xLib/Sync/CxMutex.h>
+#include <xLib/Sync/CxAutoMutex.h>
 #include <xLib/Sync/CxThread.h>
 #include <Sync/CxThreadPool.inl>
 

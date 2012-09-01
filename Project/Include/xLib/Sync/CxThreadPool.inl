@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 template<class TaskT>
-CxCriticalSection CxThreadPool<TaskT>::_m_csList;
+CxMutex CxThreadPool<TaskT>::_m_csList;
 
 template<class TaskT>
 CxConsoleLog      CxThreadPool<TaskT>::_m_clLog(false);
@@ -103,7 +103,7 @@ CxThreadPool<TaskT>::bResumeGroup() {
     //-------------------------------------
     //������� ������
     {
-        CxAutoCriticalSection CS(_m_csList);
+        CxAutoMutex CS(_m_csList);
 
         for (std::list<TaskT *>::iterator it = _m_lstpthTasks.begin();  it != _m_lstpthTasks.end();  ++ it)    {
             xCHECK_DO(false == (*it)->bIsRunning(), /*LOG*/_m_clLog.bWrite(xT("Not running")); continue);
@@ -139,7 +139,7 @@ CxThreadPool<TaskT>::bPauseGroup() {
     //-------------------------------------
     //������� ������
     {
-        CxAutoCriticalSection CS(_m_csList);
+        CxAutoMutex CS(_m_csList);
 
         for (std::list<TaskT *>::iterator it = _m_lstpthTasks.begin();  it != _m_lstpthTasks.end();  ++ it)    {
             xCHECK_DO(false == (*it)->bIsRunning(), /*LOG*/_m_clLog.bWrite(xT("Not running")); continue);
@@ -170,7 +170,7 @@ CxThreadPool<TaskT>::bExitGroup(ulong_t ulTimeout) {
     //-------------------------------------
     //������� ������
     {
-        CxAutoCriticalSection CS(_m_csList);
+        CxAutoMutex CS(_m_csList);
 
         for (std::list<TaskT *>::iterator it = _m_lstpthTasks.begin();  it != _m_lstpthTasks.end();  ++ it)    {
             xCHECK_DO(false == (*it)->bIsRunning(), /*LOG*/_m_clLog.bWrite(xT("CxThreadPool: not running")); continue);
@@ -196,7 +196,7 @@ CxThreadPool<TaskT>::bKillGroup(ulong_t ulTimeout) {
     //-------------------------------------
     //������� ������
     {
-        CxAutoCriticalSection CS(_m_csList);
+        CxAutoMutex CS(_m_csList);
 
         for (std::list<TaskT *>::iterator it = _m_lstpthTasks.begin();  it != _m_lstpthTasks.end();  ++ it)    {
             xCHECK_DO(false == (*it)->bIsRunning(), /*LOG*/_m_clLog.bWrite(xT("Not running")); continue);
@@ -227,7 +227,7 @@ CxThreadPool<TaskT>::bWaitGroup(ulong_t ulTimeout) {
     //-------------------------------------
     //������� ������
     {
-        CxAutoCriticalSection CS(_m_csList);
+        CxAutoMutex CS(_m_csList);
 
         for (std::list<TaskT *>::iterator it = _m_lstpthTasks.begin();  it != _m_lstpthTasks.end();  ++ it)    {
             xCHECK_DO(false == (*it)->bIsRunning(), /*LOG*/_m_clLog.bWrite(xT("Not running")); continue);
@@ -287,7 +287,7 @@ CxThreadPool<TaskT>::bSetMaxTasks(uint_t uiNum)  {
     //-------------------------------------
     //���������� (��������� ���-�� ������� + ��������� std::list)
     if (_m_uiMaxRunningTasks > uiNum) {
-        CxAutoCriticalSection CS(_m_csList);
+        CxAutoMutex CS(_m_csList);
 
         size_t uiCount       = 0;
         size_t uiTasksForDec = _m_uiMaxRunningTasks - uiNum;
@@ -351,7 +351,7 @@ CxThreadPool<TaskT>::bIsEmpty() const {
 
     bool bRv = true;
 
-    CxAutoCriticalSection CS(_m_csList);
+    CxAutoMutex CS(_m_csList);
 
     bRv = _m_lstpthTasks.empty();
     /*DEBUG*/// n/a
@@ -367,7 +367,7 @@ CxThreadPool<TaskT>::bIsFull() const {
 
     bool bRv = false;
 
-    CxAutoCriticalSection CS(_m_csList, true);
+    CxAutoMutex CS(_m_csList, true);
 
     /*DEBUG*/xASSERT_RET(_m_uiMaxRunningTasks < _m_lstpthTasks.size(), true);
 
@@ -385,7 +385,7 @@ CxThreadPool<TaskT>::uiGetSize() const {
 
     uint_t uiRes = 0;
 
-    CxAutoCriticalSection CS(_m_csList, true);
+    CxAutoMutex CS(_m_csList, true);
 
     uiRes = _m_lstpthTasks.size();
     /*DEBUG*/// n/a
@@ -497,7 +497,7 @@ CxThreadPool<TaskT>::_bAddTask(CxThread *pvItem) {
             bRv = pthTask->bResume();
             /*DEBUG*/xASSERT_RET(true == bRv, false);
         {
-            CxAutoCriticalSection CS(_m_csList);
+            CxAutoMutex CS(_m_csList);
             _m_lstpthTasks.push_back(pthTask);
         }
     } catch (...) {
@@ -528,7 +528,7 @@ CxThreadPool<TaskT>::_bRemoveTask(CxThread *pvItem) {
         //-------------------------------------
         //������� �� ������ ��������� �� �����
         {
-            CxAutoCriticalSection CS(_m_csList);
+            CxAutoMutex CS(_m_csList);
 
             _m_lstpthTasks.remove(pthTask);
         }
