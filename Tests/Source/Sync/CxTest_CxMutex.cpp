@@ -22,20 +22,22 @@ CxTest_CxMutex::bUnit(
     const ulonglong_t cullCaseLoops
 )
 {
-    const std::tstring_t csName = CxString::sCreateGuid();
+    const std::tstring_t csName = xT("mutex_name_a");
 
-
-    
 
     //-------------------------------------
-    //hGet
+    // hGet
     {
-        ////CxMutex::handle_t hRv = mtMutex.hGet();
+        CxMutex mtMutex;
+
+        CxMutex::handle_t hRv;
+
+        hRv = mtMutex.hGet();
         ////xTEST_EQ(false, hRv.bIsValid());
     }
 
     //-------------------------------------
-    //bCreate
+    // bCreate
     {
         CxMutex mtMutex;
 
@@ -44,7 +46,7 @@ CxTest_CxMutex::bUnit(
     }
 
     //-------------------------------------
-    //bLock, bUnlock
+    // bLock, bUnlock
     {
         const ulong_t culTimeout = 1000UL;
 

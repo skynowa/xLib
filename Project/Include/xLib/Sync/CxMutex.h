@@ -20,7 +20,7 @@ class CxMutex :
     #if xOS_ENV_WIN
         typedef CxHandle  handle_t;
     #elif xOS_ENV_UNIX
-        typedef int       handle_t;
+        typedef sem_t *   handle_t;
     #endif
 
                           CxMutex();
@@ -30,22 +30,16 @@ class CxMutex :
             ///< get handle
         bool              bCreate(const std::tstring_t &csName);
             ///< create
+        bool              bLock  (const ulong_t &culTimeoutMsec) const;
+            ///< unlock by timeout in msec
         bool              bUnlock() const;
             ///< lock
-        bool              bLock  (const ulong_t culTimeout) const;
-            ///< unlock
 
     private:
-        handle_t          _m_hHandle;   ///< mutex section handle
+        handle_t          _m_hHandle;   ///< mutex native handle
+        std::tstring_t    _m_sName;     ///< mutex name
 };
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxMutexH
-
-#if xTODO
-    CreateMutex - semget, semctl
-    CloseHandle - semctl
-    WaitForSingleObject - semop
-    ReleaseMutex - semop
-#endif
