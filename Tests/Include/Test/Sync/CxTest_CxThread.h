@@ -17,10 +17,10 @@ class CWorkThread :
     ///< tests thread
 {
     public:
-        size_t       m_uiIndex;
+        size_t         m_uiIndex;
 
-                     CWorkThread(const bool cbAutoDelete);
-        virtual     ~CWorkThread();
+                       CWorkThread(const bool &cbAutoDelete);
+        virtual       ~CWorkThread();
 
     protected:
         virtual uint_t uiOnRun    (void *pData);
@@ -33,7 +33,7 @@ class CxTest_CxThread :
                      CxTest_CxThread();
         virtual     ~CxTest_CxThread();
 
-        virtual bool bUnit(const ulonglong_t cullCaseLoops);
+        virtual bool bUnit          (const ulonglong_t cullCaseLoops);
 
     private:
 };

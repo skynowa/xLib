@@ -20,7 +20,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxThread::CxThread(
-    const bool cbIsAutoDelete
+    const bool &cbIsAutoDelete
 ) :
     m_ulTag          (0UL),
 
@@ -79,9 +79,9 @@ CxThread::~CxThread() {
 //---------------------------------------------------------------------------
 bool
 CxThread::bCreate(
-    const bool   cbIsPaused,
-    const uint_t cuiStackSize,
-    void        *pvParam
+    const bool   &cbIsPaused,
+    const uint_t &cuiStackSize,
+    void         *pvParam
 )
 {
 #if xOS_ENV_WIN
@@ -236,7 +236,7 @@ CxThread::bExit() {
 //---------------------------------------------------------------------------
 bool
 CxThread::bKill(
-    const ulong_t culTimeout
+    const ulong_t &culTimeout
 )
 {
     bool    bRv  = false;
@@ -289,7 +289,7 @@ CxThread::bKill(
 //---------------------------------------------------------------------------
 bool
 CxThread::bWait(
-    const ulong_t culTimeout
+    const ulong_t &culTimeout
 ) const
 {
 #if xOS_ENV_WIN
@@ -596,7 +596,7 @@ CxThread::_iGetPriorityMax() {
 //---------------------------------------------------------------------------
 bool
 CxThread::bSetPriority(
-    const EPriority ctpPriority
+    const EPriority &ctpPriority
 ) const
 {
 #if xOS_ENV_WIN
@@ -739,7 +739,7 @@ CxThread::bIsPriorityBoost() const {
 //---------------------------------------------------------------------------
 bool
 CxThread::bSetPriorityBoost(
-    const bool cbIsEnabled
+    const bool &cbIsEnabled
 ) const
 {
 #if xOS_ENV_WIN
@@ -764,7 +764,7 @@ CxThread::bSetPriorityBoost(
 //---------------------------------------------------------------------------
 bool
 CxThread::bSetCpuAffinity(
-    const int ciProcNum
+    const int &ciProcNum
 ) const
 {
 #if xOS_ENV_WIN
@@ -796,7 +796,7 @@ CxThread::bSetCpuAffinity(
 //---------------------------------------------------------------------------
 bool
 CxThread::bSetCpuIdeal(
-    const ulong_t culIdealCpu    ///< value is zero-based
+    const ulong_t &culIdealCpu    ///< value is zero-based
 ) const
 {
 #if xOS_ENV_WIN
@@ -970,9 +970,9 @@ CxThread::bSetDebugName(
 /*static*/
 CxThread::handle_t
 CxThread::hOpen(
-    const ulong_t culAccess,
-    const bool    cbInheritHandle,
-    const ulong_t culId
+    const ulong_t &culAccess,
+    const bool    &cbInheritHandle,
+    const ulong_t &culId
 )
 {
     /*DEBUG*///ulAccess       - n/a
