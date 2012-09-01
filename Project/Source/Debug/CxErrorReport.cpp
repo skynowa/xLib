@@ -234,7 +234,9 @@ CxErrorReport::_bInitPlain() {
         xT("%s%s\n")      //Build type
         xT("%s%s\n")      //OS version
         xT("%s%s\n")      //OS architecture
-        xT("%s%s\n")      //stack trace
+        xT("\n")
+
+        xT("%s\n%s\n")    //stack trace
         xT("\n")
 
         xT("%s%s"),       //Comment
@@ -257,6 +259,7 @@ CxErrorReport::_bInitPlain() {
         xT("Build type:      "), m_sBuildType.c_str(),
         xT("OS version:      "), m_sOsVersion.c_str(),
         xT("OS architecture: "), m_sOsArchitecture.c_str(),
+
         xT("Stack trace:     "), m_sStackTrace.c_str(),
 
         xT("Comment:         "), m_sComment.c_str());
@@ -289,7 +292,9 @@ CxErrorReport::_bInitHtml() {
         xT("<b>%s</b>%s\n")      //Build type
         xT("<b>%s</b>%s\n")      //OS version
         xT("<b>%s</b>%s\n")      //OS architecture
-        xT("<b>%s</b>%s\n")      //stack trace
+        xT("\n")
+
+        xT("<b>%s</b>\n%s\n")    //stack trace
         xT("\n")
 
         xT("<b>%s</b>%s")        //Comment
@@ -345,6 +350,7 @@ CxErrorReport::_bInitFormated() {
         xT("\\b %s\\lang1033\\f0  \\b0 %s\\par")
         xT("\\lang1049\\f2\\par")
         xT("\\b %s\\b0  \\lang1033\\f0   %s\\lang1049\\f2\\par")
+        xT("\\lang1049\\f2\\par")
         xT("\\b %s\\b0  \\lang1033\\f0   %s\\lang1049\\f2\\par")
         xT("}"),
 
@@ -368,6 +374,7 @@ CxErrorReport::_bInitFormated() {
         xT("OS architecture: "), m_sOsArchitecture.c_str(),
 
         xT("Stack trace:     "), m_sStackTrace.c_str(),
+
         xT("Comment:         "), m_sComment.c_str()
     );
 #elif xOS_ENV_UNIX
@@ -393,7 +400,9 @@ CxErrorReport::_bInitFormated() {
         xT("%s%s\n")      //Build type
         xT("%s%s\n")      //OS version
         xT("%s%s\n")      //OS architecture
-        xT("%s%s\n")      //stack trace
+        xT("#  \n")
+
+        xT("%s\n%s\n")    //stack trace
         xT("#  \n")
 
         xT("%s%s\n")      //Comment
