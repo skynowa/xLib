@@ -427,9 +427,6 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxProcess.h">
       <Filter>xLib\Sync</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxSemaphore.h">
-      <Filter>xLib\Sync</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxSharedMemory.h">
       <Filter>xLib\Sync</Filter>
     </ClInclude>
@@ -452,6 +449,9 @@
       <Filter>xLib\Sync</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxMutex.h">
+      <Filter>xLib\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxIpcSemaphore.h">
       <Filter>xLib\Sync</Filter>
     </ClInclude>
   </ItemGroup>
@@ -722,9 +722,6 @@
     <ClCompile Include="..\..\..\Project\Source\Sync\CxProcess.cpp">
       <Filter>xLib\Sync</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Project\Source\Sync\CxSemaphore.cpp">
-      <Filter>xLib\Sync</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Sync\CxSharedMemory.cpp">
       <Filter>xLib\Sync</Filter>
     </ClCompile>
@@ -768,6 +765,9 @@
       <Filter>xLib\Sync</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Sync\CxMutex.cpp">
+      <Filter>xLib\Sync</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Project\Source\Sync\CxIpcSemaphore.cpp">
       <Filter>xLib\Sync</Filter>
     </ClCompile>
   </ItemGroup>
