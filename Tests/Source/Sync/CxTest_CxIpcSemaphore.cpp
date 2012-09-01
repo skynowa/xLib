@@ -55,7 +55,7 @@ CxTest_CxIpcSemaphore::bUnit(
     // bCreate
     CxIpcSemaphore semSemaphore;
 
-    m_bRv = semSemaphore.bCreate(4, 2048, xT(""));
+    m_bRv = semSemaphore.bCreate(4, 2048, xT("sema_name"));
     xTEST_EQ(true, m_bRv);
 
 #if xOS_ENV_WIN
@@ -79,6 +79,8 @@ CxTest_CxIpcSemaphore::bUnit(
             xTEST_EQ(true, m_bRv);
         }
     }
+
+    //m_bRv = CxCurrentThread::bSleep(3000);
 
     return true;
 }
