@@ -97,7 +97,7 @@ CxMutex::bOpen(
     if (true == csName.empty()) {
         pcszWinName = NULL;
     } else {
-        sWinName    = xT("Global\\") + csName;
+        _sWinName    = xT("Global\\") + csName;
         pcszWinName = _sWinName.c_str();
     }
 
