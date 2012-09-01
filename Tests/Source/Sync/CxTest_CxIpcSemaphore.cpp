@@ -8,7 +8,7 @@
 
 #include <xLib/Sync/CxCurrentThread.h>
 
-    
+
 //---------------------------------------------------------------------------
 CxTest_CxIpcSemaphore::CxTest_CxIpcSemaphore() {
 
@@ -24,7 +24,7 @@ CxTest_CxIpcSemaphore::bUnit(
     const ulonglong_t cullCaseLoops
 )
 {
-    struct _SFunctor 
+    struct _SFunctor
     {
     #if xOS_ENV_WIN
         static uint_t xSTDCALL
@@ -36,16 +36,16 @@ CxTest_CxIpcSemaphore::bUnit(
 
             CxIpcSemaphore *psemSem = static_cast<CxIpcSemaphore *>(pArguments);
             xTEST_PTR(psemSem);
-	
+
 	        for (int i = 0; i < 50; i ++) {
 	            bool bRv = psemSem->bWait(xTIMEOUT_INFINITE);
 	            xTEST_EQ(true, bRv);
-	
+
 	            CxTracer() << xTRACE_VAR(i);
 	        }
-	
+
 	        CxTracer() << xT("Stop");
-	
+
 	        return 0U;
 	    }
     };
@@ -62,7 +62,7 @@ CxTest_CxIpcSemaphore::bUnit(
     uintptr_t puiRv = ::_beginthreadex(NULL, 0U, &_SFunctor::uiJob, &semSemaphore, 0U, NULL);
     xTEST_PTR(puiRv);
 #elif xOS_ENV_UNIX
-    id_t ulId = 0UL;
+    pthread_t ulId = 0UL;
 
     int iRv = ::pthread_create(&ulId, NULL, &_SFunctor::uiJob, &semSemaphore);
     xTEST_EQ(0, iRv);
