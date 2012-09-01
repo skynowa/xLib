@@ -447,9 +447,6 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxAutoCriticalSection.h">
       <Filter>xLib\Sync</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxAutoMutex.h">
-      <Filter>xLib\Sync</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxCriticalSection.h">
       <Filter>xLib\Sync</Filter>
     </ClInclude>
@@ -460,9 +457,6 @@
       <Filter>xLib\Sync</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxEvent.h">
-      <Filter>xLib\Sync</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxMutex.h">
       <Filter>xLib\Sync</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxProcess.h">
@@ -678,9 +672,6 @@
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxAutoCriticalSection.h">
       <Filter>Test\Sync</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxAutoMutex.h">
-      <Filter>Test\Sync</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxCriticalSection.h">
       <Filter>Test\Sync</Filter>
     </ClInclude>
@@ -688,9 +679,6 @@
       <Filter>Test\Sync</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxCurrentThread.h">
-      <Filter>Test\Sync</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxMutex.h">
       <Filter>Test\Sync</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxProcess.h">
@@ -737,6 +725,18 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\xCommon_Win.h">
       <Filter>xLib\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxIpcMutex.h">
+      <Filter>xLib\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxIpcMutex.h">
+      <Filter>Test\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxAutoIpcMutex.h">
+      <Filter>xLib\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxAutoIpcMutex.h">
+      <Filter>Test\Sync</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -962,9 +962,6 @@
     <ClCompile Include="..\..\..\Project\Source\Sync\CxAutoCriticalSection.cpp">
       <Filter>xLib\Sync</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Project\Source\Sync\CxAutoMutex.cpp">
-      <Filter>xLib\Sync</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Sync\CxCriticalSection.cpp">
       <Filter>xLib\Sync</Filter>
     </ClCompile>
@@ -975,9 +972,6 @@
       <Filter>xLib\Sync</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Sync\CxEvent.cpp">
-      <Filter>xLib\Sync</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Project\Source\Sync\CxMutex.cpp">
       <Filter>xLib\Sync</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Sync\CxProcess.cpp">
@@ -1190,9 +1184,6 @@
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxAutoCriticalSection.cpp">
       <Filter>Test\Sync</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxAutoMutex.cpp">
-      <Filter>Test\Sync</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxCriticalSection.cpp">
       <Filter>Test\Sync</Filter>
     </ClCompile>
@@ -1203,9 +1194,6 @@
       <Filter>Test\Sync</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxEvent.cpp">
-      <Filter>Test\Sync</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxMutex.cpp">
       <Filter>Test\Sync</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxProcess.cpp">
@@ -1282,6 +1270,18 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Common\xCommon.cpp">
       <Filter>xLib\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Project\Source\Sync\CxIpcMutex.cpp">
+      <Filter>xLib\Sync</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxIpcMutex.cpp">
+      <Filter>Test\Sync</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Project\Source\Sync\CxAutoIpcMutex.cpp">
+      <Filter>xLib\Sync</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxAutoIpcMutex.cpp">
+      <Filter>Test\Sync</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

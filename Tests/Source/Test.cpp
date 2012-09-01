@@ -89,8 +89,8 @@
 #include <Test/Sync/CxTest_CxThreadStorage.h>
 #include <Test/Sync/CxTest_CxCriticalSection.h>
 #include <Test/Sync/CxTest_CxAutoCriticalSection.h>
-#include <Test/Sync/CxTest_CxMutex.h>
-#include <Test/Sync/CxTest_CxAutoMutex.h>
+#include <Test/Sync/CxTest_CxIpcMutex.h>
+#include <Test/Sync/CxTest_CxAutoIpcMutex.h>
 #include <Test/Sync/CxTest_CxEvent.h>
 #include <Test/Sync/CxTest_CxSleeper.h>
 #include <Test/Sync/CxTest_CxCurrentThread.h>
@@ -253,8 +253,8 @@ xTMAIN(
         (void)tmManager.bAdd(new CxTest_CxThreadStorage);
         (void)tmManager.bAdd(new CxTest_CxCriticalSection);
         (void)tmManager.bAdd(new CxTest_CxAutoCriticalSection);
-        (void)tmManager.bAdd(new CxTest_CxMutex);
-        (void)tmManager.bAdd(new CxTest_CxAutoMutex);
+        (void)tmManager.bAdd(new CxTest_CxIpcMutex);
+        (void)tmManager.bAdd(new CxTest_CxAutoIpcMutex);
         (void)tmManager.bAdd(new CxTest_CxEvent);
         (void)tmManager.bAdd(new CxTest_CxSleeper);
         (void)tmManager.bAdd(new CxTest_CxCurrentThread);

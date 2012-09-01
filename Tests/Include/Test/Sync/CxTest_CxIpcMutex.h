@@ -1,26 +1,26 @@
 /**
- * \file   CxTest_CxMutex.h
+ * \file   CxTest_CxIpcMutex.h
  * \brief
  */
 
 
-#ifndef CxTest_CxMutexH
-#define CxTest_CxMutexH
+#ifndef CxTest_CxIpcMutexH
+#define CxTest_CxIpcMutexH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
-#include <xLib/Sync/CxMutex.h>
+#include <xLib/Sync/CxIpcMutex.h>
 //---------------------------------------------------------------------------
-class CxTest_CxMutex :
+class CxTest_CxIpcMutex :
     public CxTest
 {
     public:
-                     CxTest_CxMutex();
-        virtual     ~CxTest_CxMutex();
+                     CxTest_CxIpcMutex();
+        virtual     ~CxTest_CxIpcMutex();
 
         virtual bool bUnit(const ulonglong_t cullCaseLoops);
 
     private:
 };
 //---------------------------------------------------------------------------
-#endif //CxTest_CxMutexH
+#endif //CxTest_CxIpcMutexH

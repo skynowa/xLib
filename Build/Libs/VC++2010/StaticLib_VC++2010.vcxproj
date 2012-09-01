@@ -115,6 +115,22 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxTcpServer.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxUri.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Patterns\CxSingleton.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxAtomicLongInt.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxAutoCriticalSection.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxAutoIpcMutex.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxCriticalSection.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxCurrentProcess.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxCurrentThread.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxEvent.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxIpcMutex.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxProcess.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxSemaphore.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxSharedMemory.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxSleeper.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxThread.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxThreadPool.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxThreadStorage.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxWaitableTimer.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\Win\CxCompletionPort.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Test\CxTest.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Test\CxTestManager.h" />
@@ -131,6 +147,7 @@
     <None Include="..\..\..\Project\Include\xLib\Debug\CxException.inl" />
     <None Include="..\..\..\Project\Include\xLib\Gui\Dialogs\CxMsgBoxT.inl" />
     <None Include="..\..\..\Project\Include\xLib\Gui\Win\Dialogs\CxMsgBoxRtf.inl" />
+    <None Include="..\..\..\Project\Include\xLib\Sync\CxThreadPool.inl" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Project\Source\Common\CxChar.cpp" />
@@ -209,12 +226,12 @@
     <ClCompile Include="..\..\..\Project\Source\Net\CxUri.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Sync\CxAtomicLongInt.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Sync\CxAutoCriticalSection.cpp" />
-    <ClCompile Include="..\..\..\Project\Source\Sync\CxAutoMutex.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Sync\CxAutoIpcMutex.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Sync\CxCriticalSection.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Sync\CxCurrentProcess.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Sync\CxCurrentThread.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Sync\CxEvent.cpp" />
-    <ClCompile Include="..\..\..\Project\Source\Sync\CxMutex.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Sync\CxIpcMutex.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Sync\CxProcess.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Sync\CxSemaphore.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Sync\CxSharedMemory.cpp" />
