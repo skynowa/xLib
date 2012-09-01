@@ -11,7 +11,7 @@
 #include <xLib/Filesystem/CxFile.h>
 
 #if xOS_ENV_WIN
-    #include <xLib/Sync/CxAutoMutex.h>
+    #include <xLib/Sync/CxAutoIpcMutex.h>
 #endif
 
 
@@ -29,7 +29,7 @@ CxFileLog::CxFileLog(
     _m_sFilePath         (),
     _m_ulMaxFileSizeBytes(culMaxFileSizeBytes)
     #if xTODO
-        CxAutoMutex
+        CxAutoIpcMutex
     #endif
 {
     /*DEBUG*/xASSERT_DO(true        == _m_sFilePath.empty(), return);
@@ -94,7 +94,7 @@ CxFileLog::bWrite(
     //-------------------------------------
     //write to file
     #if xTODO
-        CxAutoMutex SL(_m_mtFile);
+        CxAutoIpcMutex SL(_m_mtFile);
     #endif
 
     CxFile sfFile;
@@ -113,7 +113,7 @@ CxFileLog::bClear() {
     bool bRv = false;
 
     #if xTODO
-        CxAutoMutex SL(_m_mtFile);
+        CxAutoIpcMutex SL(_m_mtFile);
     #endif
 
     bRv = CxFile::bClear(sGetFilePath());
@@ -127,7 +127,7 @@ CxFileLog::bDelete() {
     bool bRv = false;
 
     #if xTODO
-        CxAutoMutex SL(_m_mtFile);
+        CxAutoIpcMutex SL(_m_mtFile);
     #endif
 
     bRv = CxFile::bDelete(sGetFilePath());
@@ -149,7 +149,7 @@ CxFileLog::_bDeleteIfFull() {
     bool bRv = false;
 
     #if xTODO
-        CxAutoMutex SL(_m_mtFile);
+        CxAutoIpcMutex SL(_m_mtFile);
     #endif
 
     bRv = CxFile::bIsExists(sGetFilePath());

@@ -1,24 +1,24 @@
 /**
- * \file   CxTest_CxMutex.cpp
+ * \file   CxTest_CxIpcMutex.cpp
  * \brief
  */
 
 
-#include <Test/Sync/CxTest_CxMutex.h>
+#include <Test/Sync/CxTest_CxIpcMutex.h>
 
 
 //---------------------------------------------------------------------------
-CxTest_CxMutex::CxTest_CxMutex() {
+CxTest_CxIpcMutex::CxTest_CxIpcMutex() {
 
 }
 //---------------------------------------------------------------------------
-CxTest_CxMutex::~CxTest_CxMutex() {
+CxTest_CxIpcMutex::~CxTest_CxIpcMutex() {
 
 }
 //---------------------------------------------------------------------------
 /*virtual*/
 bool
-CxTest_CxMutex::bUnit(
+CxTest_CxIpcMutex::bUnit(
     const ulonglong_t cullCaseLoops
 )
 {
@@ -28,9 +28,9 @@ CxTest_CxMutex::bUnit(
     //-------------------------------------
     // hGet
     {
-        CxMutex mtMutex;
+        CxIpcMutex mtMutex;
 
-        CxMutex::handle_t hRv;
+        CxIpcMutex::handle_t hRv;
 
         hRv = mtMutex.hGet();
         ////xTEST_EQ(false, hRv.bIsValid());
@@ -39,7 +39,7 @@ CxTest_CxMutex::bUnit(
     //-------------------------------------
     // bCreate
     {
-        CxMutex mtMutex;
+        CxIpcMutex mtMutex;
 
         m_bRv = mtMutex.bCreate(csName);
         xTEST_EQ(true, m_bRv);
@@ -48,7 +48,7 @@ CxTest_CxMutex::bUnit(
     //-------------------------------------
     // bOpen
     {
-        CxMutex mtMutex;
+        CxIpcMutex mtMutex;
 
         m_bRv = mtMutex.bCreate(csName);
         xTEST_EQ(true, m_bRv);
@@ -62,7 +62,7 @@ CxTest_CxMutex::bUnit(
     {
         const ulong_t culTimeout = 1000UL;
 
-        CxMutex mtMutex;
+        CxIpcMutex mtMutex;
 
         m_bRv = mtMutex.bCreate(csName);
         xTEST_EQ(true, m_bRv);

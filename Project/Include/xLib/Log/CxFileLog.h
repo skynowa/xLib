@@ -10,7 +10,7 @@
 #include <xLib/Common/xCommon.h>
 
 #if xOS_ENV_WIN
-    #include <xLib/Sync/CxMutex.h>
+    #include <xLib/Sync/CxIpcMutex.h>
 #elif xOS_ENV_UNIX
 
 #endif
@@ -52,7 +52,7 @@ class CxFileLog :
         ulong_t                _m_ulMaxFileSizeBytes;   ///< maximum file size in bytes
 
     #if xTODO
-        CxAutoMutex            _m_mtFile;
+        CxAutoIpcMutex            _m_mtFile;
     #endif
 
         bool                   _bDeleteIfFull();

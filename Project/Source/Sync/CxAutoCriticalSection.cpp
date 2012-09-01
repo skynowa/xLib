@@ -7,7 +7,7 @@
 #include <xLib/Sync/CxAutoCriticalSection.h>
 
 #include <xLib/Sync/CxCriticalSection.h>
-#include <xLib/Sync/CxMutex.h>
+#include <xLib/Sync/CxIpcMutex.h>
 
 
 xNAMESPACE_BEGIN(NxLib)

@@ -406,6 +406,54 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\xCommon_Win.h">
       <Filter>xLib\Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxAtomicLongInt.h">
+      <Filter>xLib\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxAutoCriticalSection.h">
+      <Filter>xLib\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxAutoIpcMutex.h">
+      <Filter>xLib\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxCriticalSection.h">
+      <Filter>xLib\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxCurrentProcess.h">
+      <Filter>xLib\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxCurrentThread.h">
+      <Filter>xLib\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxEvent.h">
+      <Filter>xLib\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxIpcMutex.h">
+      <Filter>xLib\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxProcess.h">
+      <Filter>xLib\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxSemaphore.h">
+      <Filter>xLib\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxSharedMemory.h">
+      <Filter>xLib\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxSleeper.h">
+      <Filter>xLib\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxThread.h">
+      <Filter>xLib\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxThreadPool.h">
+      <Filter>xLib\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxThreadStorage.h">
+      <Filter>xLib\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxWaitableTimer.h">
+      <Filter>xLib\Sync</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Project\Include\xLib\Common\CxArray.inl">
@@ -434,6 +482,9 @@
     </None>
     <None Include="..\..\..\Project\Include\xLib\Debug\CxException.inl">
       <Filter>xLib\Debug</Filter>
+    </None>
+    <None Include="..\..\..\Project\Include\xLib\Sync\CxThreadPool.inl">
+      <Filter>xLib\Sync</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -662,9 +713,6 @@
     <ClCompile Include="..\..\..\Project\Source\Sync\CxAutoCriticalSection.cpp">
       <Filter>xLib\Sync</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Project\Source\Sync\CxAutoMutex.cpp">
-      <Filter>xLib\Sync</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Sync\CxCriticalSection.cpp">
       <Filter>xLib\Sync</Filter>
     </ClCompile>
@@ -675,9 +723,6 @@
       <Filter>xLib\Sync</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Sync\CxEvent.cpp">
-      <Filter>xLib\Sync</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Project\Source\Sync\CxMutex.cpp">
       <Filter>xLib\Sync</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Sync\CxProcess.cpp">
@@ -718,6 +763,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Common\xCommon.cpp">
       <Filter>xLib\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Project\Source\Sync\CxAutoIpcMutex.cpp">
+      <Filter>xLib\Sync</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Project\Source\Sync\CxIpcMutex.cpp">
+      <Filter>xLib\Sync</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

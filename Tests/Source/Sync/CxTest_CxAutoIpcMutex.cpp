@@ -1,38 +1,38 @@
 /**
- * \file   CxTest_CxAutoMutex.cpp
+ * \file   CxTest_CxAutoIpcMutex.cpp
  * \brief
  */
 
 
-#include <Test/Sync/CxTest_CxAutoMutex.h>
+#include <Test/Sync/CxTest_CxAutoIpcMutex.h>
 
-#include <xLib/Sync/CxMutex.h>
+#include <xLib/Sync/CxIpcMutex.h>
 
 
 //---------------------------------------------------------------------------
-CxTest_CxAutoMutex::CxTest_CxAutoMutex() {
+CxTest_CxAutoIpcMutex::CxTest_CxAutoIpcMutex() {
 
 }
 //---------------------------------------------------------------------------
-CxTest_CxAutoMutex::~CxTest_CxAutoMutex() {
+CxTest_CxAutoIpcMutex::~CxTest_CxAutoIpcMutex() {
 
 }
 //---------------------------------------------------------------------------
 /*virtual*/
 bool
-CxTest_CxAutoMutex::bUnit(
+CxTest_CxAutoIpcMutex::bUnit(
     const ulonglong_t cullCaseLoops
 )
 {
     const std::tstring_t csName = xT("mutex_name_a");
 
     //-------------------------------------
-    //CxAutoMutex
+    //CxAutoIpcMutex
     xTEST_CASE(cullCaseLoops)
     {
-        CxMutex mtMutex;
+        CxIpcMutex mtMutex;
 
-        CxAutoMutex objAutoMutex(mtMutex, csName);
+        CxAutoIpcMutex objAutoMutex(mtMutex, csName);
     }
 
     return true;
