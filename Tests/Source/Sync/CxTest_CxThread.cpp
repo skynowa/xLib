@@ -39,7 +39,7 @@ CWorkThread::uiOnRun(
     #endif
 
     uint_t uiRes = 0;
-    bool bRv  = false;
+    bool   bRv   = false;
 
     //bIsCurrent
     bRv = CxThread::bIsCurrent();
@@ -66,10 +66,6 @@ CWorkThread::uiOnRun(
             xTEST_EQ(true, bRv);
         }
     }
-
-    #if xTEMP_DISABLED
-        CxConsole().bPause();
-    #endif
 
     #if xTEST_IGNORE
         xTRACEV(xT("\tCWorkThread: end #%lu\n"), m_ulTag);
@@ -403,8 +399,6 @@ CxTest_CxThread::bUnit(
         xTEST_PTR(pthT);
         xPTR_DELETE(pthT);
     }
-
-    ////CxConsole().bPause();
 
     return true;
 }
