@@ -50,6 +50,9 @@ CxTest_CxMutex::bUnit(
     {
         CxMutex mtMutex;
 
+        m_bRv = mtMutex.bCreate(csName);
+        xTEST_EQ(true, m_bRv);
+
         m_bRv = mtMutex.bOpen(csName);
         xTEST_EQ(true, m_bRv);
     }
