@@ -23,24 +23,24 @@ class CxMutex :
         typedef pthread_mutex_t  handle_t;
     #endif
 
-                          CxMutex();
+                          CxMutex ();
             ///< constructor
-        virtual          ~CxMutex();
+        virtual          ~CxMutex ();
             ///< destructor
 
-        const handle_t &  hGet             () const;
+        const handle_t &  hGet    () const;
             ///< get handle
-        bool              bCreate          ();
+        bool              bCreate ();
             ///< create
-        bool              bLock            ();
+        bool              bLock   ();
             ///< lock
-        bool              bTryLock         ();
+        bool              bTryLock();
             ///< try lock
-        bool              bUnlock          ();
+        bool              bUnlock ();
             ///< unlock
 
     private:
-        handle_t          _m_hHandle;   ///< critical section handle
+        handle_t          _m_hHandle;   ///< mutex native handle
 };
 
 xNAMESPACE_END(NxLib)
