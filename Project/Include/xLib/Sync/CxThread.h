@@ -52,13 +52,13 @@ class CxThread :
 
         volatile long_t      m_ulTag;    ///< tag
 
-                             CxThread              (const bool cbAutoDelete);
+                             CxThread              (const bool &cbAutoDelete);
             ///< constructor
         virtual             ~CxThread              () = 0;
             ///< destructor
 
         //actions
-        bool                 bCreate               (const bool cbIsPaused, const uint_t cuiStackSize, void *pvParam);
+        bool                 bCreate               (const bool &cbIsPaused, const uint_t &cuiStackSize, void *pvParam);
             ///< start
         bool                 bResume               ();
             ///< resume
@@ -66,9 +66,9 @@ class CxThread :
             ///< pause
         bool                 bExit                 ();
             ///< exit (set flag "exit")
-        bool                 bKill                 (const ulong_t culTimeout);
+        bool                 bKill                 (const ulong_t &culTimeout);
             ///< kill
-        bool                 bWait                 (const ulong_t culTimeout) const;
+        bool                 bWait                 (const ulong_t &culTimeout) const;
             ///< wait
 
         //flags
@@ -98,7 +98,7 @@ class CxThread :
     #endif
 
         //priority
-        bool                 bSetPriority          (const EPriority ctpPriority) const;
+        bool                 bSetPriority          (const EPriority &ctpPriority) const;
             ///< set priority (under Linux must use admin privilege)
         EPriority            tpGetPriority         () const;
             ///< get priotity
@@ -110,13 +110,13 @@ class CxThread :
             ///< decrease priority on one level
         bool                 bIsPriorityBoost      () const;
             ///< get priority boost control state
-        bool                 bSetPriorityBoost     (const bool cbIsEnabled) const;
+        bool                 bSetPriorityBoost     (const bool &cbIsEnabled) const;
             ///< disables or enables the ability of the system to temporarily boost the priority of a thread
 
         //CPU
-        bool                 bSetCpuAffinity       (const int ciProcNum) const;
+        bool                 bSetCpuAffinity       (const int &ciProcNum) const;
             ///< set processor affinity
-        bool                 bSetCpuIdeal          (const ulong_t culIdealCpu) const;
+        bool                 bSetCpuIdeal          (const ulong_t &culIdealCpu) const;
             ///< sets preferred processor for a thread
         ulong_t              ulGetCpuIdeal         () const;
             ///< get current ideal processor without changing it
@@ -136,7 +136,7 @@ class CxThread :
             ///< set name your threads in the debugger thread list
 
         //static
-        static handle_t      hOpen                 (const ulong_t culAccess, const bool cbInheritHandle, const ulong_t culId);
+        static handle_t      hOpen                 (const ulong_t &culAccess, const bool &cbInheritHandle, const ulong_t &culId);
             ///< opens an existing thread object
 
     protected:

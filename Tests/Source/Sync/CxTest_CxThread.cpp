@@ -17,7 +17,7 @@
 
 //---------------------------------------------------------------------------
 CWorkThread::CWorkThread(
-    const bool cbAutoDelete
+    const bool &cbAutoDelete
 ) :
     CxThread (cbAutoDelete),
     m_uiIndex(0U)
