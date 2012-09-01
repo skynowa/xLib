@@ -152,9 +152,9 @@ CxSemaphore::bReset(
     /////*DEBUG*/xASSERT_RET(false != _m_hSemaphore.bIsValid(),                      false);
     /*DEBUG*/xASSERT_RET(0 <= cliInitialCount && cliInitialCount <= cliMaxCount, false);
 
-    // bool bRv = false;
-
 #if xOS_ENV_WIN
+    bool bRv = false;
+
     bRv = _m_hSemaphore.bClose();
     /*DEBUG*/xASSERT_RET(true == bRv, false);
 
