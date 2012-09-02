@@ -13,6 +13,11 @@
 
 xNAMESPACE_BEGIN(NxLib)
 
+//constants
+const ulong_t CxThread::_ms_culStillActiveTimeout;
+const ulong_t CxThread::_ms_culExitTimeout;
+
+
 /****************************************************************************
 *    public
 *

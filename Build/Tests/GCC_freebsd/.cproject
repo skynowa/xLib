@@ -23,8 +23,8 @@
 <option id="gnu.cpp.compiler.option.optimization.level.1068671059" name="Optimization Level" superClass="gnu.cpp.compiler.option.optimization.level" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
 <option id="gnu.cpp.compiler.option.debugging.level.65876981" name="Debug Level" superClass="gnu.cpp.compiler.option.debugging.level" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
 <option id="gnu.cpp.compiler.option.include.paths.1208086981" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
-<listOptionValue builtIn="false" value="/root/Projects/xLib/Project/Include"/>
-<listOptionValue builtIn="false" value="/root/Projects/xLib/Tests/Include"/>
+<listOptionValue builtIn="false" value="/home/skynowa/Projects/xLib/Project/Include"/>
+<listOptionValue builtIn="false" value="/home/skynowa/Projects/xLib/Tests/Include"/>
 </option>
 <inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.185954350" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 </tool>
@@ -206,7 +206,7 @@
 </scannerInfoProvider>
 </profile>
 </scannerConfigBuildInfo>
-<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cross.exe.release.957630853;cdt.managedbuild.config.gnu.cross.exe.release.957630853.;cdt.managedbuild.tool.gnu.cross.cpp.compiler.1889927221;cdt.managedbuild.tool.gnu.cpp.compiler.input.681499195">
+<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cross.exe.debug.1807949318;cdt.managedbuild.config.gnu.cross.exe.debug.1807949318.;cdt.managedbuild.tool.gnu.cross.cpp.compiler.719251840;cdt.managedbuild.tool.gnu.cpp.compiler.input.185954350">
 <autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileCPP"/>
 <profile id="org.eclipse.cdt.make.core.GCCStandardMakePerProjectProfile">
 <buildOutputProvider>
@@ -289,7 +289,7 @@
 </scannerInfoProvider>
 </profile>
 </scannerConfigBuildInfo>
-<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cross.exe.debug.1807949318;cdt.managedbuild.config.gnu.cross.exe.debug.1807949318.;cdt.managedbuild.tool.gnu.cross.cpp.compiler.719251840;cdt.managedbuild.tool.gnu.cpp.compiler.input.185954350">
+<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cross.exe.release.957630853;cdt.managedbuild.config.gnu.cross.exe.release.957630853.;cdt.managedbuild.tool.gnu.cross.cpp.compiler.1889927221;cdt.managedbuild.tool.gnu.cpp.compiler.input.681499195">
 <autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileCPP"/>
 <profile id="org.eclipse.cdt.make.core.GCCStandardMakePerProjectProfile">
 <buildOutputProvider>
@@ -477,8 +477,8 @@
 <option id="gnu.cpp.compiler.option.optimization.level.532023813" name="Optimization Level" superClass="gnu.cpp.compiler.option.optimization.level" value="gnu.cpp.compiler.optimization.level.most" valueType="enumerated"/>
 <option id="gnu.cpp.compiler.option.debugging.level.1157286500" name="Debug Level" superClass="gnu.cpp.compiler.option.debugging.level" value="gnu.cpp.compiler.debugging.level.none" valueType="enumerated"/>
 <option id="gnu.cpp.compiler.option.include.paths.1215666080" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
-<listOptionValue builtIn="false" value="/root/Projects/xLib/Project/Include"/>
-<listOptionValue builtIn="false" value="/root/Projects/xLib/Tests/Include"/>
+<listOptionValue builtIn="false" value="/home/skynowa/Projects/xLib/Project/Include"/>
+<listOptionValue builtIn="false" value="/home/skynowa/Projects/xLib/Tests/Include"/>
 </option>
 <inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.681499195" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 </tool>
@@ -660,7 +660,7 @@
 </scannerInfoProvider>
 </profile>
 </scannerConfigBuildInfo>
-<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cross.exe.release.957630853;cdt.managedbuild.config.gnu.cross.exe.release.957630853.;cdt.managedbuild.tool.gnu.cross.cpp.compiler.1889927221;cdt.managedbuild.tool.gnu.cpp.compiler.input.681499195">
+<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cross.exe.debug.1807949318;cdt.managedbuild.config.gnu.cross.exe.debug.1807949318.;cdt.managedbuild.tool.gnu.cross.cpp.compiler.719251840;cdt.managedbuild.tool.gnu.cpp.compiler.input.185954350">
 <autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileCPP"/>
 <profile id="org.eclipse.cdt.make.core.GCCStandardMakePerProjectProfile">
 <buildOutputProvider>
@@ -743,7 +743,7 @@
 </scannerInfoProvider>
 </profile>
 </scannerConfigBuildInfo>
-<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cross.exe.debug.1807949318;cdt.managedbuild.config.gnu.cross.exe.debug.1807949318.;cdt.managedbuild.tool.gnu.cross.cpp.compiler.719251840;cdt.managedbuild.tool.gnu.cpp.compiler.input.185954350">
+<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.cross.exe.release.957630853;cdt.managedbuild.config.gnu.cross.exe.release.957630853.;cdt.managedbuild.tool.gnu.cross.cpp.compiler.1889927221;cdt.managedbuild.tool.gnu.cpp.compiler.input.681499195">
 <autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileCPP"/>
 <profile id="org.eclipse.cdt.make.core.GCCStandardMakePerProjectProfile">
 <buildOutputProvider>
