@@ -55,7 +55,7 @@ CxTest_CxIpcSemaphore::bUnit(
     // bCreate
     CxIpcSemaphore semSemaphore;
 
-    m_bRv = semSemaphore.bCreate(4, 2048, xT("sema_name"));
+    m_bRv = semSemaphore.bCreate(4, xT("sema_name"));
     xTEST_EQ(true, m_bRv);
 
 #if xOS_ENV_WIN
@@ -75,7 +75,7 @@ CxTest_CxIpcSemaphore::bUnit(
         xTEST_EQ(true, m_bRv);
 
         for (int x = 0; x < 2; x ++) {
-            m_bRv = semSemaphore.bRelease(1, NULL);
+            m_bRv = semSemaphore.bPost();
             xTEST_EQ(true, m_bRv);
         }
     }

@@ -177,7 +177,7 @@ CxTest_CxHandleT::bUnit(
     }
 
     //-------------------------------------
-    //bSetInformation
+    //bSetInfo
     xTEST_CASE(cullCaseLoops)
     {
     #if xOS_ENV_WIN
@@ -187,10 +187,10 @@ CxTest_CxHandleT::bUnit(
             hHandle = CxCurrentProcess::hGetHandle();
             xTEST_EQ(true, hHandle.bIsValid());
 
-            m_bRv = hHandle.bSetInformation(HANDLE_FLAG_INHERIT, 0);
+            m_bRv = hHandle.bSetInfo(HANDLE_FLAG_INHERIT, 0);
             xTEST_EQ(true, m_bRv);
 
-            m_ulRv = hHandle.ulGetInformation();
+            m_ulRv = hHandle.ulGetInfo();
             xTEST_EQ((ulong_t)HANDLE_FLAG_INHERIT, m_ulRv);
         #endif
     #elif xOS_ENV_UNIX
@@ -199,7 +199,7 @@ CxTest_CxHandleT::bUnit(
     }
 
     //-------------------------------------
-    //ulGetInformation
+    //ulGetInfo
     xTEST_CASE(cullCaseLoops)
     {
     #if xOS_ENV_WIN
@@ -209,10 +209,10 @@ CxTest_CxHandleT::bUnit(
             hHandle = CxCurrentProcess::hGetHandle();
             xTEST_EQ(true, hHandle.bIsValid());
 
-            m_bRv = hHandle.bSetInformation(HANDLE_FLAG_PROTECT_FROM_CLOSE, 0);
+            m_bRv = hHandle.bSetInfo(HANDLE_FLAG_PROTECT_FROM_CLOSE, 0);
             xTEST_EQ(true, m_bRv);
 
-            m_ulRv = hHandle.ulGetInformation();
+            m_ulRv = hHandle.ulGetInfo();
             xTEST_EQ((ulong_t)HANDLE_FLAG_PROTECT_FROM_CLOSE, m_ulRv);
         #endif
     #elif xOS_ENV_UNIX

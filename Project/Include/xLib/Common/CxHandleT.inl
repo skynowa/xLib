@@ -19,40 +19,40 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-template<EHandleValue hvTag>
+template<ExHandleValue hvTag>
 CxHandleT<hvTag>::CxHandleT() :
-    _m_hHandle( TxErrorValue::hGet() )
+    _m_hHandle( error_value_t::hGet() )
 {
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-template<EHandleValue hvTag>
+template<ExHandleValue hvTag>
 /*explicit*/
 CxHandleT<hvTag>::CxHandleT(
-    const native_handle_t chHandle
+    const native_handle_t &chHandle
 ) :
     _m_hHandle(chHandle)
 {
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-template<EHandleValue hvTag>
+template<ExHandleValue hvTag>
 /*explicit*/
 CxHandleT<hvTag>::CxHandleT(
     const CxHandleT &chHandle
 ) :
-    _m_hHandle( TxErrorValue::hGet() )
+    _m_hHandle( error_value_t::hGet() )
 {
     /*DEBUG*/
 
     _m_hHandle = chHandle.hDuplicate();
 }
 //---------------------------------------------------------------------------
-template<EHandleValue hvTag>
+template<ExHandleValue hvTag>
 CxHandleT<hvTag>::~CxHandleT() {
     /*DEBUG*/// n/a
 
-    (void)bClose();
+    (bool)bClose();
 }
 //---------------------------------------------------------------------------
 
@@ -63,10 +63,10 @@ CxHandleT<hvTag>::~CxHandleT() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-template<EHandleValue hvTag>
+template<ExHandleValue hvTag>
 CxHandleT<hvTag> &
 CxHandleT<hvTag>::operator = (
-    const native_handle_t chHandle
+    const native_handle_t &chHandle
 )
 {
     /////*DEBUG*/xASSERT_RET(false == bIsValid(), *this);
@@ -84,7 +84,7 @@ CxHandleT<hvTag>::operator = (
     return *this;
 }
 //---------------------------------------------------------------------------
-template<EHandleValue hvTag>
+template<ExHandleValue hvTag>
 CxHandleT<hvTag> &
 CxHandleT<hvTag>::operator = (
     const CxHandleT &chHandle
@@ -104,7 +104,7 @@ CxHandleT<hvTag>::operator = (
     return *this;
 }
 //---------------------------------------------------------------------------
-template<EHandleValue hvTag>
+template<ExHandleValue hvTag>
 native_handle_t
 CxHandleT<hvTag>::hGet() const {
     /*DEBUG*/
@@ -112,10 +112,10 @@ CxHandleT<hvTag>::hGet() const {
     return _m_hHandle;
 }
 //---------------------------------------------------------------------------
-template<EHandleValue hvTag>
+template<ExHandleValue hvTag>
 bool
 CxHandleT<hvTag>::bSet(
-    const native_handle_t chHandle
+    const native_handle_t &chHandle
 )
 {
     /*DEBUG*/
@@ -125,13 +125,13 @@ CxHandleT<hvTag>::bSet(
     return true;
 }
 //---------------------------------------------------------------------------
-template<EHandleValue hvTag>
+template<ExHandleValue hvTag>
 native_handle_t
 CxHandleT<hvTag>::hDuplicate() const {
     /*DEBUG*/// n/a
-    xCHECK_RET(false == bIsValid(), TxErrorValue::hGet());
+    xCHECK_RET(false == bIsValid(), error_value_t::hGet());
 
-    native_handle_t hRv = TxErrorValue::hGet();
+    native_handle_t hRv = error_value_t::hGet();
 
 #if xOS_ENV_WIN
     native_handle_t hCurrentProcess = ::GetCurrentProcess();
@@ -145,16 +145,16 @@ CxHandleT<hvTag>::hDuplicate() const {
                     FALSE,
                     DUPLICATE_SAME_ACCESS
     );
-    /////*DEBUG*/xASSERT_RET(FALSE != blRes, TxErrorValue::hGet());
+    /////*DEBUG*/xASSERT_RET(FALSE != blRes, error_value_t::hGet());
 #elif xOS_ENV_UNIX
     hRv = ::dup(_m_hHandle);
-    /////*DEBUG*/xASSERT_RET(TxErrorValue::hGet() != hRv, TxErrorValue::hGet());
+    /////*DEBUG*/xASSERT_RET(error_value_t::hGet() != hRv, error_value_t::hGet());
 #endif
 
     return hRv;
 }
 //---------------------------------------------------------------------------
-template<EHandleValue hvTag>
+template<ExHandleValue hvTag>
 bool
 CxHandleT<hvTag>::bIsValid() const {
     /*DEBUG*///n/a
@@ -168,12 +168,12 @@ CxHandleT<hvTag>::bIsValid() const {
     bool bCond4 = (reinterpret_cast<native_handle_t>(0xFDFDFDFD) != _m_hHandle);   //no man's land (normally outside of a process)
     bool bCond5 = (reinterpret_cast<native_handle_t>(0xFEEEFEEE) != _m_hHandle);   //freed memory set by NT's heap manager
     bool bCond6 = (reinterpret_cast<native_handle_t>(0xDDDDDDDD) != _m_hHandle);   //deleted
-    bool bCond7 = (TxErrorValue::hGet()                         != _m_hHandle);   //compare with error handle value
+    bool bCond7 = (error_value_t::hGet()                         != _m_hHandle);   //compare with error handle value
 
     bRv = bCond1 && bCond2 && bCond3 && bCond4 && bCond5 && bCond6 && bCond7;
 #elif xOS_ENV_UNIX
-    bool bCond1 = (TxErrorValue::hGet()                         != _m_hHandle);   //compare with error handle value
-    bool bCond2 = (TxErrorValue::hGet()                         <  _m_hHandle);   //handle value is negative
+    bool bCond1 = (error_value_t::hGet()                         != _m_hHandle);   //compare with error handle value
+    bool bCond2 = (error_value_t::hGet()                         <  _m_hHandle);   //handle value is negative
 
     bRv = bCond1 && bCond2;
 #endif
@@ -181,10 +181,10 @@ CxHandleT<hvTag>::bIsValid() const {
     return bRv;
 }
 //---------------------------------------------------------------------------
-template<EHandleValue hvTag>
+template<ExHandleValue hvTag>
 bool
 CxHandleT<hvTag>::bAttach(
-    const native_handle_t chHandle
+    const native_handle_t &chHandle
 )
 {
     /*DEBUG*/// n/a
@@ -198,24 +198,24 @@ CxHandleT<hvTag>::bAttach(
     return true;
 }
 //---------------------------------------------------------------------------
-template<EHandleValue hvTag>
+template<ExHandleValue hvTag>
 native_handle_t
 CxHandleT<hvTag>::hDetach() {
     /*DEBUG*///n/a
 
     native_handle_t hHandle = _m_hHandle;
 
-    _m_hHandle = TxErrorValue::hGet();
+    _m_hHandle = error_value_t::hGet();
 
     return hHandle;
 }
 //---------------------------------------------------------------------------
-template<EHandleValue hvTag>
+template<ExHandleValue hvTag>
 bool
 CxHandleT<hvTag>::bClose() {
     /*DEBUG*/// n/a
 
-    xCHECK_DO(false == bIsValid(), _m_hHandle = TxErrorValue::hGet(); return true);
+    xCHECK_DO(false == bIsValid(), _m_hHandle = error_value_t::hGet(); return true);
 
 #if xOS_ENV_WIN
     BOOL blRes = ::CloseHandle(_m_hHandle);
@@ -225,16 +225,16 @@ CxHandleT<hvTag>::bClose() {
     /////*DEBUG*/xASSERT_RET(- 1 != iRv, false);
 #endif
 
-    _m_hHandle = TxErrorValue::hGet();
+    _m_hHandle = error_value_t::hGet();
 
     return true;
 }
 //---------------------------------------------------------------------------
 #if xOS_ENV_WIN
 
-template<EHandleValue hvTag>
+template<ExHandleValue hvTag>
 ulong_t
-CxHandleT<hvTag>::ulGetInformation() const {
+CxHandleT<hvTag>::ulGetInfo() const {
     /////*DEBUG*/xASSERT_RET(true == bIsValid(), 0UL);
 
     DWORD ulFlags = 0UL;
@@ -250,11 +250,11 @@ CxHandleT<hvTag>::ulGetInformation() const {
 //---------------------------------------------------------------------------
 #if xOS_ENV_WIN
 
-template<EHandleValue hvTag>
+template<ExHandleValue hvTag>
 bool
-CxHandleT<hvTag>::bSetInformation(
-    const ulong_t culMask,
-    const ulong_t culFlags
+CxHandleT<hvTag>::bSetInfo(
+    const ulong_t &culMask,
+    const ulong_t &culFlags
 )
 {
     /////*DEBUG*/xASSERT_RET(true == bIsValid(), false);

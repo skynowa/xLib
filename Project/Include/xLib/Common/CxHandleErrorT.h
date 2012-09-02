@@ -11,14 +11,14 @@
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-enum EHandleValue
+enum ExHandleValue
     /// error handle type
 {
     hvNull,     ///< like "null"
     hvInvalid   ///< like "invalid"
 };
 
-template<EHandleValue hvTag>
+template<ExHandleValue hvTag>
 struct CxHandleErrorT;
     /// handle error
 

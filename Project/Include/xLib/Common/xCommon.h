@@ -23,7 +23,7 @@
  *       Ex          - enumeration
  *       p           - pointer
  *       T           - template
- *       Tx          - type
+ *       _t          - type
  *
  *   Access:
  *       g           - global

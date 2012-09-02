@@ -17,33 +17,33 @@ class CxIpcSemaphore :
     /// semaphore
 {
     public:
-        #if xOS_ENV_WIN
-            typedef CxHandle handle_t;
-        #elif xOS_ENV_UNIX
-            typedef sem_t *  handle_t;
-        #endif
+    #if xOS_ENV_WIN
+        typedef CxHandle handle_t;
+    #elif xOS_ENV_UNIX
+        typedef sem_t *  handle_t;
+    #endif
 
                          CxIpcSemaphore();
         virtual         ~CxIpcSemaphore();
 
-        const handle_t & hGet           () const;
+        const handle_t & hGet          () const;
             ///< get handle
-        bool             bCreate        (const long_t &cliInitialValue, const long_t &cliMaxValue, const std::tstring_t &csName);
+        bool             bCreate       (const long_t &cliInitialValue, const std::tstring_t &csName);
             ///< create
-        bool             bOpen          (const std::tstring_t &csName) ;
+        bool             bOpen         (const std::tstring_t &csName);
             ///< open
-        bool             bRelease       (const long_t &cliReleaseValue /* = 1 */, long_t *pliOldValue/* = NULL*/) const;
+        bool             bPost         () const;
             ///< release
-        bool             bWait          (const ulong_t &culTimeoutMsec) const;
+        bool             bWait         (const ulong_t &culTimeoutMsec) const;
             ///< wait
-        long_t           liGetValue     () const;
+        long_t           liGetValue    () const;
             ///< get value
-        bool             bReset         (const long_t &cliInitialValue, const long_t &cliMaxValue);
-            ///< reset
 
     private:
         handle_t         _m_hHandle;
         std::tstring_t   _m_sName;
+
+        bool             _bIsValid     () const;
 };
 
 xNAMESPACE_END(NxLib)
