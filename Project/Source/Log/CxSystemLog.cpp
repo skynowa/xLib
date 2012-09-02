@@ -27,7 +27,7 @@ CxSystemLog::CxSystemLog() :
     _m_bIsEnable(true)
 #if xOS_ENV_WIN
     ,
-    _m_SysLog   (NULL),
+    _m_SysLog   (NULL)
 #endif
 {
     bool bRv = _bInit( CxPath::sGetFileBaseName(CxPath::sGetExe()) );
@@ -37,10 +37,11 @@ CxSystemLog::CxSystemLog() :
 CxSystemLog::CxSystemLog(
     const std::tstring_t &csLogName
 ) :
-#if xOS_ENV_WIN
-    _m_SysLog   (NULL),
-#endif
     _m_bIsEnable(true)
+#if xOS_ENV_WIN
+    ,
+    _m_SysLog   (NULL)
+#endif
 {
     bool bRv = _bInit(csLogName);
     /*DEBUG*/xASSERT_DO(true == bRv, return);
@@ -123,7 +124,7 @@ CxSystemLog::_bInit(
 {
 #if xOS_ENV_WIN
     _m_SysLog = ::RegisterEventSource(NULL, csLogName.c_str());
-    /*DEBUG*/xASSERT_DO(NULL != _m_SysLog, false);
+    /*DEBUG*/xASSERT_RET(NULL != _m_SysLog, false);
 #elif xOS_ENV_UNIX
     (void)::openlog(csLogName.c_str(), LOG_PID | LOG_NDELAY | LOG_NOWAIT, LOG_USER);
 #endif
