@@ -24,9 +24,15 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxIpcSemaphore::CxIpcSemaphore() :
+#if xOS_ENV_WIN
     _m_hHandle(),
+#elif xOS_ENV_UNIX
+    _m_hHandle(NULL),
+#endif
     _m_sName  ()
 {
+    /*DEBUG*/xASSERT_DO(false == _m_hHandle.bIsValid(), return);
+
 #if xOS_ENV_WIN
     xNA;
 #elif xOS_ENV_UNIX
@@ -35,12 +41,12 @@ CxIpcSemaphore::CxIpcSemaphore() :
 }
 //---------------------------------------------------------------------------
 CxIpcSemaphore::~CxIpcSemaphore() {
-    /*DEBUG*/// n/a
+    /*DEBUG*/xASSERT_DO(true == _m_hHandle.bIsValid(), return);
 
 #if xOS_ENV_WIN
     xNA;
 #elif xOS_ENV_UNIX
-    int iRv = ::sem_close(_m_hHandle);
+    int iRv = ::sem_close(_m_hHandle);  _m_hHandle = NULL;
     /*DEBUG*/xASSERT_DO(- 1 != iRv, return);
 
     // sem_destroy
@@ -50,7 +56,7 @@ CxIpcSemaphore::~CxIpcSemaphore() {
 //---------------------------------------------------------------------------
 const CxIpcSemaphore::handle_t &
 CxIpcSemaphore::hGet() const {
-    /*DEBUG*/
+    /*DEBUG*/xASSERT(true == _m_hHandle.bIsValid());
 
     return _m_hHandle;
 }
@@ -58,18 +64,17 @@ CxIpcSemaphore::hGet() const {
 bool
 CxIpcSemaphore::bCreate(
     const long_t         &cliInitialValue,
-    const long_t         &cliMaxValue,
     const std::tstring_t &csName
 )
 {
-    /////*DEBUG*/xASSERT_RET(false == _m_hHandle.bIsValid(),                      false);
-    /*DEBUG*/xASSERT_RET(0L <= cliInitialValue && cliInitialValue <= cliMaxValue, false);
-    /*DEBUG*/xASSERT_RET(CxPath::uiGetMaxSize() > csName.size(),                  false);
+    /*DEBUG*/xASSERT_RET(false                  == _m_hHandle.bIsValid(), false);
+    /*DEBUG*/xASSERT_RET(CxPath::uiGetMaxSize() >  csName.size(),         false);
+    /*DEBUG*/xASSERT_RET(0L <= cliInitialValue && cliInitialValue <= xSEMAPHORE_VALUE_MAX, false);
 
 #if xOS_ENV_WIN
-    const tchar_t *pcszWinName = NULL;
-    std::tstring_t _sWinName;
-
+    const tchar_t  *pcszWinName = NULL;
+    std::tstring_t  _sWinName;
+        
     if (true == csName.empty()) {
         pcszWinName = NULL;
     } else {
@@ -77,15 +82,17 @@ CxIpcSemaphore::bCreate(
         pcszWinName = _sWinName.c_str();
     }
 
-    HANDLE hRv = ::CreateSemaphore(NULL, cliInitialValue, cliMaxValue, pcszWinName);
-    /*DEBUG*/xASSERT_RET(NULL != hRv, false);
+    HANDLE  hRv         = ::CreateSemaphore(NULL, cliInitialValue, xSEMAPHORE_VALUE_MAX, pcszWinName);
+    ulong_t ulLastError = CxLastError::ulGet();
+    /*DEBUG*/xASSERT_RET(NULL        != hRv,                  false);
+    /*DEBUG*/xASSERT_RET(ulLastError != ERROR_ALREADY_EXISTS, false);
 
     _m_hHandle.bSet(hRv);
     _m_sName = csName;
 #elif xOS_ENV_UNIX
     std::tstring_t sUnixName = CxConst::xUNIX_SLASH + csName;
 
-    handle_t hHandle = ::sem_open(sUnixName.c_str(), O_CREAT, 0777, cliInitialValue);///////////////////////
+    handle_t hHandle = ::sem_open(sUnixName.c_str(), O_CREAT, 0777, cliInitialValue);
     /*DEBUG*/xASSERT_RET(SEM_FAILED != hHandle, false);
 
     _m_hHandle = hHandle;
@@ -100,7 +107,7 @@ CxIpcSemaphore::bOpen(
     const std::tstring_t &csName
 )
 {
-    /////*DEBUG*/xASSERT_RET(false != _m_hHandle.bIsValid(), false);
+    /*DEBUG*/xASSERT_RET(true == _m_hHandle.bIsValid(), false);
     /*DEBUG*///csName    - n/a
 
 #if xOS_ENV_WIN
@@ -122,7 +129,7 @@ CxIpcSemaphore::bOpen(
 #elif xOS_ENV_UNIX
     std::tstring_t sUnixName = CxConst::xUNIX_SLASH + csName;
 
-    handle_t hHandle = ::sem_open(sUnixName.c_str(), O_RDWR, 0777, 0U); ///////////////////////
+    handle_t hHandle = ::sem_open(sUnixName.c_str(), O_RDWR, 0777, 0U);
     /*DEBUG*/xASSERT_RET(SEM_FAILED != hHandle, false);
 
     _m_hHandle = hHandle;
@@ -133,18 +140,14 @@ CxIpcSemaphore::bOpen(
 }
 //---------------------------------------------------------------------------
 bool
-CxIpcSemaphore::bRelease(
-    const long_t &cliReleaseValue,
-    long_t       *pliOldValue
-) const
-{
-    /////*DEBUG*/xASSERT_RET(false != _m_hHandle.bIsValid(), false);
-    /*DEBUG*///liReleaseValue - n/a
-    /*DEBUG*///pliOldValue    - n/a
+CxIpcSemaphore::bPost() const {
+    /*DEBUG*/xASSERT_RET(true == _m_hHandle.bIsValid(), false);
 
 #if xOS_ENV_WIN
-    BOOL blRes = ::ReleaseSemaphore(_m_hHandle.hGet(), cliReleaseValue, pliOldValue);
-    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
+   const LONG cliPostValue = 1L;
+
+   BOOL blRes = ::ReleaseSemaphore(_m_hHandle.hGet(), cliPostValue, NULL);
+   /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX
     int iRv = ::sem_post(_m_hHandle);
     /*DEBUG*/xASSERT_RET(- 1 != iRv, false);
@@ -158,7 +161,7 @@ CxIpcSemaphore::bWait(
     const ulong_t &culTimeoutMsec
 ) const
 {
-    /////*DEBUG*/xASSERT_RET(false != _m_hHandle.bIsValid(), false);
+    /*DEBUG*/xASSERT_RET(true == _m_hHandle.bIsValid(), false);
     /*DEBUG*///ulTimeout - n/a
 
 #if xOS_ENV_WIN
@@ -225,13 +228,15 @@ CxIpcSemaphore::bWait(
 //---------------------------------------------------------------------------
 long_t
 CxIpcSemaphore::liGetValue() const {
-    /////*DEBUG*/xASSERT_RET(false != _m_hHandle.bIsValid(), - 1L);
+    /*DEBUG*/xASSERT_RET(true == _m_hHandle.bIsValid(), - 1L);
 
     long_t liRv = - 1L;
 
 #if xOS_ENV_WIN
-    bool bRv = bRelease(0L, &liRv);
-    /*DEBUG*/xASSERT_RET(true == bRv, - 1L);
+    const LONG cliPostValue = 0L;
+
+    BOOL blRv = ::ReleaseSemaphore(_m_hHandle.hGet(), cliPostValue, &liRv);
+    /*DEBUG*/xASSERT_RET(FALSE != blRv, - 1L);
 #elif xOS_ENV_UNIX
     int iValue = - 1;
 
@@ -244,33 +249,21 @@ CxIpcSemaphore::liGetValue() const {
     return liRv;
 }
 //---------------------------------------------------------------------------
+
+
+/****************************************************************************
+*    private
+*
+*****************************************************************************/
+
+//---------------------------------------------------------------------------
 bool
-CxIpcSemaphore::bReset(
-    const long_t &cliInitialValue,
-    const long_t &cliMaxValue
-)
-{
-    /////*DEBUG*/xASSERT_RET(false != _m_hHandle.bIsValid(),                     false);
-    /*DEBUG*/xASSERT_RET(0 <= cliInitialValue && cliInitialValue <= cliMaxValue, false);
-
+CxIpcSemaphore::_bIsValid() const {
 #if xOS_ENV_WIN
-    bool bRv = false;
-
-    bRv = _m_hHandle.bClose();
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
-
-    bRv = bCreate(cliInitialValue, cliMaxValue, _m_sName);
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    return _m_hHandle.bIsValid();
 #elif xOS_ENV_UNIX
-    #if xTODO
-        void Reset(int init = 0)    {
-            ::sem_destroy(&S);
-            ::sem_init(&S, 0, init);
-        }
-    #endif
+    return (NULL != _m_hHandle);
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
 

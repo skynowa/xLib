@@ -21,50 +21,50 @@ xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-template<EHandleValue hvTag>
+template<ExHandleValue hvTag>
 class CxHandleT
     /// handle
 {
     public:
-                       CxHandleT       ();
+                        CxHandleT  ();
             ///< constructor
-        explicit       CxHandleT       (const native_handle_t chHandle);
+        explicit        CxHandleT  (const native_handle_t &chHandle);
             ///< constructor
-        explicit       CxHandleT       (const CxHandleT &chHandle);
+        explicit        CxHandleT  (const CxHandleT &chHandle);
             ///< constructor
-        virtual       ~CxHandleT       ();
+        virtual        ~CxHandleT  ();
             ///< destructor
 
-        CxHandleT &    operator =      (const native_handle_t chHandle);
+        CxHandleT &     operator = (const native_handle_t &chHandle);
             ///< operator =
-        CxHandleT &    operator =      (const CxHandleT &chHandle);
+        CxHandleT &     operator = (const CxHandleT &chHandle);
             ///< operator =
 
-        native_handle_t hGet            () const;
+        native_handle_t hGet       () const;
             ///< get
-        bool           bSet            (const native_handle_t chHandle);
+        bool            bSet       (const native_handle_t &chHandle);
             ///< set
-        native_handle_t hDuplicate      () const;
+        native_handle_t hDuplicate () const;
             ///< duplicate handle
 
-        bool           bIsValid        () const;
+        bool            bIsValid   () const;
             ///< is valid
-        bool           bAttach         (const native_handle_t chHandle);
+        bool            bAttach    (const native_handle_t &chHandle);
             ///< attach
-        native_handle_t hDetach         ();
+        native_handle_t hDetach    ();
             ///< detach
-        bool           bClose          ();
+        bool            bClose     ();
             ///< close
 
     #if xOS_ENV_WIN
-        ulong_t        ulGetInformation() const;
+        ulong_t         ulGetInfo  () const;
             ///< get certain properties of an object handle
-        bool           bSetInformation (const ulong_t culMask, const ulong_t culFlags);
+        bool            bSetInfo   (const ulong_t &culMask, const ulong_t &culFlags);
             ///< set information
     #endif
 
     private:
-        typedef CxHandleErrorT<hvTag>  TxErrorValue;
+        typedef CxHandleErrorT<hvTag>  error_value_t;
 
         native_handle_t _m_hHandle;    ///< handle
 };

@@ -281,9 +281,18 @@
 #if   xOS_ENV_WIN
     #define xFRAMES_MAX             62UL    // from MSDN, ::CaptureStackBackTrace
 #elif xOS_ENV_UNIX
-    #define xFRAMES_MAX             256    // custom define, this should be enough
+    #define xFRAMES_MAX             256     // custom define, this should be enough
 #endif
     ///< maximum frames for stack trace
+
+
+// xSEMAPHORE_VALUE_MAX
+#if xOS_ENV_WIN
+    #define xSEMAPHORE_VALUE_MAX    ((std::numeric_limits<LONG>::max)())    // LONG, custom define (tested on Win7 x64)
+#elif xOS_ENV_UNIX
+    #define xSEMAPHORE_VALUE_MAX    (SEM_VALUE_MAX)                         // int
+#endif
+    ///< semaphore maximum value
 
 
 // var args
@@ -520,7 +529,7 @@ class CxMacros :
         bool
         numeric_limits_check(const T &x) {
             bool bRv = ((std::numeric_limits<T>::min)() <= x) &&
-                        ((std::numeric_limits<T>::max)() >= x);
+                       ((std::numeric_limits<T>::max)() >= x);
 
             return bRv;
         }
