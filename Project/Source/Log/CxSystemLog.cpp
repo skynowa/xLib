@@ -24,10 +24,11 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxSystemLog::CxSystemLog() :
+    _m_bIsEnable(true)
 #if xOS_ENV_WIN
+    ,
     _m_SysLog   (NULL),
 #endif
-    _m_bIsEnable(true)
 {
     bool bRv = _bInit( CxPath::sGetFileBaseName(CxPath::sGetExe()) );
     /*DEBUG*/xASSERT_DO(true == bRv, return);

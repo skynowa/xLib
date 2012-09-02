@@ -82,12 +82,12 @@
 		<link>
 			<name>Project/Source</name>
 			<type>2</type>
-			<location>D:/xLib/Project/Source</location>
+			<location>D:/Projects/xLib/Project/Source</location>
 		</link>
 		<link>
 			<name>Tests/Source</name>
 			<type>2</type>
-			<location>D:/xLib/Tests/Source</location>
+			<location>D:/Projects/xLib/Tests/Source</location>
 		</link>
 	</linkedResources>
 </projectDescription>
