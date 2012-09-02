@@ -467,13 +467,10 @@ CxSystemInfo::cvGetCpuVendor() {
 
 #if   xOS_ENV_WIN
     #if   xCOMPILER_MINGW32 || xCOMPILER_MS
-        uint_t uiHighestFeature = 0U;
         int    aiCpuInfo[4]     = {0};
         char   szMan[13]        = {0};
 
         (void)::__cpuid(aiCpuInfo, 0);
-
-        uiHighestFeature = static_cast<uint_t>( aiCpuInfo[0] );
 
         *reinterpret_cast<int *>( &szMan[0] ) = aiCpuInfo[1];
         *reinterpret_cast<int *>( &szMan[4] ) = aiCpuInfo[3];
@@ -555,13 +552,11 @@ CxSystemInfo::sGetCpuModel() {
     #if   xCOMPILER_MINGW32 || xCOMPILER_MS
         char szMan[13] = {0};
 
-        // get szMan
+        // get highest feature
         {
             int aiCpuInfo[4] = {0};
 
             (void)::__cpuid(aiCpuInfo, 0);
-
-            uint_t uiHighestFeature = static_cast<uint_t>( aiCpuInfo[0] );
 
             *reinterpret_cast<int *>( &szMan[0] ) = aiCpuInfo[1];
             *reinterpret_cast<int *>( &szMan[4] ) = aiCpuInfo[3];

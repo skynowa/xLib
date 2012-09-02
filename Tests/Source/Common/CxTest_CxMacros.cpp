@@ -198,12 +198,12 @@ CxTest_CxMacros::bUnit(
     // xLEX_TO_STR
     xTEST_CASE(cullCaseLoops)
     {
-        long_t liVal;
+        long_t liVal = - 1;
 
         m_sRv = xLEX_TO_STR(liVal);
         xTEST_EQ(std::tstring_t(xT("liVal")), m_sRv);
 
-        liVal = 0;
+        xUNUSED(liVal);
     }
 
     //-------------------------------------
