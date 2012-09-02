@@ -13,9 +13,11 @@
 
 xNAMESPACE_BEGIN(NxLib)
 
-//constants
-const ulong_t CxThread::_ms_culStillActiveTimeout;
-const ulong_t CxThread::_ms_culExitTimeout;
+#if xOS_ENV_UNIX
+    //constants
+    const ulong_t CxThread::_ms_culStillActiveTimeout;
+    const ulong_t CxThread::_ms_culExitTimeout;
+#endif
 
 
 /****************************************************************************
