@@ -17,22 +17,22 @@ class CxDll :
 {
     public:
     #if xOS_ENV_WIN
-        typedef FARPROC TxProcAddress;
+        typedef FARPROC proc_address_t;
     #elif xOS_ENV_UNIX
-        typedef void *  TxProcAddress;
+        typedef void *  proc_address_t;
     #endif
-                      CxDll           ();
+                       CxDll           ();
             ///< constructor
-        virtual      ~CxDll           ();
+        virtual       ~CxDll           ();
             ///< destructor
 
-        bool          bIsLoaded       () const;
+        bool           bIsLoaded       () const;
             ///< is loaded
-        bool          bLoad           (const std::tstring_t &csDllPath);
+        bool           bLoad           (const std::tstring_t &csDllPath);
             ///< load
-        bool          bIsProcExists   (const std::tstring_t &csProcName) const;
+        bool           bIsProcExists   (const std::tstring_t &csProcName) const;
             ///< is function exists
-        TxProcAddress fpGetProcAddress(const std::tstring_t &csProcName) const;
+        proc_address_t fpGetProcAddress(const std::tstring_t &csProcName) const;
             ///< get address of an exported function or variable
 
     private:
@@ -42,9 +42,9 @@ class CxDll :
         typedef void *   handle_t;
     #endif
 
-        handle_t      _m_hDll;   ///< dll module handle
+        handle_t       _m_hDll;   ///< dll module handle
 
-        bool          _bFree          ();
+        bool           _bFree          ();
             ///< free
 };
 

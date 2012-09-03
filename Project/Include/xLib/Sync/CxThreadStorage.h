@@ -30,9 +30,9 @@ class CxThreadStorage :
 
     private:
     #if xOS_ENV_WIN
-        typedef ulong_t       TxIndex;
+        typedef ulong_t       index_t;
     #elif xOS_ENV_UNIX
-        typedef pthread_key_t TxIndex;
+        typedef pthread_key_t index_t;
     #endif
 
         bool     _bAlloc        ();
@@ -40,7 +40,7 @@ class CxThreadStorage :
         bool     _bFree         ();
             ///< releases a thread storage index
 
-        TxIndex  _m_indIndex;
+        index_t  _m_indIndex;
             ///< thread storage index
 };
 
