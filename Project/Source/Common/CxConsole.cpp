@@ -57,10 +57,10 @@ CxConsole::~CxConsole() {
 std::tstring_t
 CxConsole::bSetTextColor(
     const std::tstring_t &csText,
-    const EForeground     cfgForeground,
+    const ExForeground    cfgForeground,
     const bool            cbIsBold,
     const bool            cbIsUnderline,
-    const EBackground     cbgBackground,
+    const ExBackground    cbgBackground,
     const bool            cbIsBlink
 )
 {
@@ -228,7 +228,7 @@ CxConsole::bPrompt(
         /*DEBUG*/xASSERT_RET(true == bRv, false);
 
         for ( ; ; ) {
-            const tchar_t chLetter = static_cast<tchar_t>( std::tcin.get() );   
+            const tchar_t chLetter = static_cast<tchar_t>( std::tcin.get() );
 
             // asterisks
             xCHECK_DO(true == cbIsVisible, bWrite(xT("*")));

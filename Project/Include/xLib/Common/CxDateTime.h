@@ -15,7 +15,7 @@ class CxDateTime
     /// date, time
 {
     public:
-        enum EFormatType
+        enum ExFormatType
             /// format type
         {
             ftTime,     ///< HH.MM.SS.MMM
@@ -27,7 +27,7 @@ class CxDateTime
         //constructors, destructor
                               CxDateTime          ();
             ///< constructor
-        explicit              CxDateTime          (const std::tstring_t &csDT, const EFormatType cftFormat);
+        explicit              CxDateTime          (const std::tstring_t &csDT, const ExFormatType cftFormat);
             ///< constructor
         /*explicit*/          CxDateTime          (const CxDateTime &cdtDT);
             ///< constructor
@@ -92,7 +92,7 @@ class CxDateTime
         #endif
 
         //formating
-        std::tstring_t        sFormat             (const EFormatType cftFormat) const;
+        std::tstring_t        sFormat             (const ExFormatType cftFormat) const;
             ///< formating
 
         //static
@@ -152,7 +152,7 @@ class CxDateTime
 
         ulonglong_t           _ullToMilliseconds  () const;
             ///< convert to milliseconds
-        static bool           _bParse             (const std::tstring_t &csDT, const EFormatType cftFormat, CxDateTime *pdtDT);
+        static bool           _bParse             (const std::tstring_t &csDT, const ExFormatType cftFormat, CxDateTime *pdtDT);
             ///< parsing datetime string
 };
 

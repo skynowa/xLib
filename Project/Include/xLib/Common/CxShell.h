@@ -26,7 +26,7 @@ class CxShell :
         static bool           bExecute          (const std::tstring_t &csFilePath, const std::tstring_t &csParams);
 
     #if xOS_ENV_WIN
-        enum EOperation
+        enum ExOperation
             /// operations
         {
             opEdit,
@@ -120,7 +120,7 @@ class CxShell :
 
         static std::tstring_t bFindExecutable   (const std::tstring_t &csFileName, const std::tstring_t &csFindDirPath);
             ///< find executable file path
-        static bool           bExecute          (const HWND chOwner, const EOperation copOperation, const std::tstring_t &csFilePath, const std::tstring_t &csParams, const std::tstring_t &csDir, const EShowFlag csfShowCmd);
+        static bool           bExecute          (const HWND chOwner, const ExOperation copOperation, const std::tstring_t &csFilePath, const std::tstring_t &csParams, const std::tstring_t &csDir, const EShowFlag csfShowCmd);
             ///< execute
         static bool           bExecuteEx        (SHELLEXECUTEINFO *peiInfo);
             ///< execute

@@ -29,7 +29,7 @@ CxTest_CxSystemInfo::bUnit(
     //osGetOS
     xTEST_CASE(cullCaseLoops)
     {
-        CxSystemInfo::EOsType otType = CxSystemInfo::otUnknown;
+        CxSystemInfo::ExOsType otType = CxSystemInfo::otUnknown;
 
         otType = CxSystemInfo::osGetOS();
         #if xOS_ENV_WIN
