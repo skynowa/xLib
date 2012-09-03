@@ -1,23 +1,23 @@
 /**
- * \file   CxTest_[CxTemplate].h
- * \brief  test [CxTemplate]
+ * \file   CxTest_CxSemaphore.h
+ * \brief  test CxSemaphore
  */
 
 
-#ifndef CxTest_[CxTemplate]H
-#define CxTest_[CxTemplate]H
+#ifndef CxTest_CxSemaphoreH
+#define CxTest_CxSemaphoreH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
-#include <xLib/xxxxxxxxx/[CxTemplate].h>
+#include <xLib/Sync/CxSemaphore.h>
 //---------------------------------------------------------------------------
-class CxTest_[CxTemplate] :
+class CxTest_CxSemaphore :
     public CxTest
 {
     public:
-                      CxTest_[CxTemplate]();
+                      CxTest_CxSemaphore();
             ///< constructor
-        virtual      ~CxTest_[CxTemplate]();
+        virtual      ~CxTest_CxSemaphore();
             ///< destructor
 
         virtual bool  bUnit(const ulonglong_t cullBlockLoops);
@@ -26,4 +26,4 @@ class CxTest_[CxTemplate] :
     private:
 };
 //---------------------------------------------------------------------------
-#endif //CxTest_[CxTemplate]H
+#endif //CxTest_CxSemaphoreH

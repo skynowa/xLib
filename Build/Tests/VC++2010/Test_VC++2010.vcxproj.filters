@@ -738,6 +738,12 @@
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxIpcSemaphore.h">
       <Filter>Test\Sync</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxSemaphore.h">
+      <Filter>xLib\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxSemaphore.h">
+      <Filter>Test\Sync</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Project\Include\xLib\Common\CxArray.inl">
@@ -1281,6 +1287,12 @@
       <Filter>xLib\Sync</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxIpcSemaphore.cpp">
+      <Filter>Test\Sync</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Project\Source\Sync\CxSemaphore.cpp">
+      <Filter>xLib\Sync</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxSemaphore.cpp">
       <Filter>Test\Sync</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,6 +1,6 @@
 /**
  * \file  CxIpcSemaphore.cpp
- * \brief semaphore
+ * \brief semaphore (interprocess)
  */
 
 

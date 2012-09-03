@@ -93,6 +93,7 @@
 #include <Test/Sync/CxTest_CxAutoIpcMutex.h>
 #include <Test/Sync/CxTest_CxEvent.h>
 #include <Test/Sync/CxTest_CxSleeper.h>
+#include <Test/Sync/CxTest_CxSemaphore.h>
 #include <Test/Sync/CxTest_CxIpcSemaphore.h>
 #include <Test/Sync/CxTest_CxCurrentThread.h>
 #include <Test/Sync/CxTest_CxThread.h>
@@ -257,6 +258,7 @@ xTMAIN(
         (void)tmManager.bAdd(new CxTest_CxIpcMutex);
         (void)tmManager.bAdd(new CxTest_CxAutoIpcMutex);
         (void)tmManager.bAdd(new CxTest_CxEvent);
+        (void)tmManager.bAdd(new CxTest_CxSemaphore);
         (void)tmManager.bAdd(new CxTest_CxIpcSemaphore);
         (void)tmManager.bAdd(new CxTest_CxSleeper);
         (void)tmManager.bAdd(new CxTest_CxCurrentThread);
