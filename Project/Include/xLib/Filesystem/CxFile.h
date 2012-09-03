@@ -249,13 +249,13 @@ class CxFile :
             ///< read to std::tstring_t
         static bool            bTextWrite   (const std::tstring_t &csFilePath, const std::tstring_t &csContent);
             ///< write std::tstring_t
-        static bool            bTextRead    (const std::tstring_t &csFilePath, std::vector<std::tstring_t> *pvsContent);
+        static bool            bTextRead    (const std::tstring_t &csFilePath, std::vec_tstring_t *pvsContent);
             ///< read to std::vector
-        static bool            bTextWrite   (const std::tstring_t &csFilePath, const std::vector<std::tstring_t> &cvsContent);
+        static bool            bTextWrite   (const std::tstring_t &csFilePath, const std::vec_tstring_t &cvsContent);
             ///< write std::vector
-        static bool            bTextRead    (const std::tstring_t &csFilePath, const std::tstring_t &csSeparator, std::map<std::tstring_t, std::tstring_t> *pmsContent);
+        static bool            bTextRead    (const std::tstring_t &csFilePath, const std::tstring_t &csSeparator, std::map_tstring_t *pmsContent);
             ///< read text to std::map
-        static bool            bTextWrite   (const std::tstring_t &csFilePath, const std::tstring_t &csSeparator, const std::map<std::tstring_t, std::tstring_t> &cmsContent);
+        static bool            bTextWrite   (const std::tstring_t &csFilePath, const std::tstring_t &csSeparator, const std::map_tstring_t &cmsContent);
             ///< write text from std::map
 
         //binary

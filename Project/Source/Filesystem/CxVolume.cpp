@@ -227,12 +227,12 @@ CxVolume::bUnMount(
 /*static*/
 bool
 CxVolume::bGetPaths(
-    std::vector<std::tstring_t> *pvsVolumePaths
+    std::vec_tstring_t *pvsVolumePaths
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != pvsVolumePaths, false);
 
-    std::vector<std::tstring_t> vsRes;
+    std::vec_tstring_t vsRes;
 
 #if   xOS_ENV_WIN
     std::tstring_t sRv;

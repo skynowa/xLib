@@ -53,7 +53,7 @@ class CxObject :
             ///< get data
         static bool          bSetData          (CK_SLOT_ID ulSlotId, const std::ustring_t &cusUserPin, const std::ustring_t &cusDataLabel, const std::ustring_t &cusData);
             ///< set data
-        static bool          bGetData          (CK_SLOT_ID ulSlotId, const std::ustring_t &cusUserPin, std::vector<std::ustring_t> *pusDataLabel, std::vector<std::ustring_t> *pusDataValue);
+        static bool          bGetData          (CK_SLOT_ID ulSlotId, const std::ustring_t &cusUserPin, std::vec_ustring_t *pusDataLabel, std::vec_ustring_t *pusDataValue);
             ///< get data
 
     private:

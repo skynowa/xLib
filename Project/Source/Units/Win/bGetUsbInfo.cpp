@@ -30,7 +30,7 @@ xNAMESPACE_BEGIN(NxLib)
 bool
 bGetUsbInfo(
     const std::tstring_t        &csDrive,
-    std::vector<std::tstring_t> *pvsInfo
+    std::vec_tstring_t *pvsInfo
 )
 {
 #if 0

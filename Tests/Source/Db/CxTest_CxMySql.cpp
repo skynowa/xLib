@@ -259,7 +259,7 @@ CxTest_CxMySql::bUnit(
     //--------------------------------------------------
     //bFetchRow
     {
-        std::vector<std::tstring_t> vsRow;
+        std::vec_tstring_t vsRow;
 
         for (my_ulonglong i = 0; i < recRec.ullRowsNum(); ++ i) {
             m_bRv = recRec.bFetchRow(&vsRow);

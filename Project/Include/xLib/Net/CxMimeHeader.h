@@ -34,7 +34,7 @@ class CxMimeHeader :
 
         bool                   _m_bRes;
         std::tstring_t         _m_sRes;
-        std::multimap<std::tstring_t, std::tstring_t> _m_mmsHeader;
+        std::mmap_tstring_t    _m_mmsHeader;
 
         //Delivered-To:
         //Return-Path:

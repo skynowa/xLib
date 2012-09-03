@@ -88,7 +88,7 @@ class CxMySQLRecordset :
             ///< The MYSQL_FIELD structure for the specified column
         bool                     bFetchFields     (MYSQL_FIELD *pmfField) const;
             ///< An array of MYSQL_FIELD structures for all columns of a result set
-        bool                     bFetchRow        (std::vector<std::tstring_t> *pvsRow) const;
+        bool                     bFetchRow        (std::vec_tstring_t *pvsRow) const;
             ///< fetching row
 
     private:

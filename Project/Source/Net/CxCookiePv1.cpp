@@ -317,8 +317,8 @@ CxCookiePv1::bInit(
     typedef std::pair<std::tstring_t, std::tstring_t>                TStringPair;
 
 
-    bool         bRv = false;
-    TStringMap   msCookie;
+    bool           bRv = false;
+    TStringMap     msCookie;
     std::tstring_t sCookie;
 
     sCookie = csRawCookie;
@@ -326,14 +326,14 @@ CxCookiePv1::bInit(
     sCookie = CxString::sRemoveAll(sCookie, CxConst::xDQM);
 
     //split into pairs (name1=value1; name2=value2; nameN=valueN)
-    std::vector<std::tstring_t> vsPairs;
+    std::vec_tstring_t vsPairs;
 
     bRv = CxString::bSplit(sCookie, CxConst::xSEMICOLON, &vsPairs);
     /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     for (size_t i = 0; i < vsPairs.size(); ++ i) {
         //split into name, value (name=value)
-        std::vector<std::tstring_t> vsTemp;
+        std::vec_tstring_t vsTemp;
 
         bRv = CxString::bSplit(vsPairs.at(i), CxConst::xEQUAL, &vsTemp);
         /*DEBUG*/xASSERT_RET(true == bRv, false);

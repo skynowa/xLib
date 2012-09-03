@@ -13,7 +13,7 @@
 
     xNAMESPACE_BEGIN(NxLib)
 
-        bool bGetUsbInfo(const std::tstring_t &csDrive, std::vector<std::tstring_t> *pvsInfo);
+        bool bGetUsbInfo(const std::tstring_t &csDrive, std::vec_tstring_t *pvsInfo);
             ///< get USB info
 
     xNAMESPACE_END(NxLib)
@@ -38,7 +38,7 @@
  * )
  * {
  *     bool                 bRv = false;
- *     std::vector<std::tstring_t> vsRes;
+ *     std::vec_tstring_t vsRes;
  *
  *     bRv = bGetUsbInfo("H:\\", &vsRes);
  *     xASSERT("\\??\\USB"                              == vsRes.at(0));

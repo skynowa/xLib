@@ -251,9 +251,9 @@ CxDir::bCreateForce(
 {
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), false);
 
-    bool                        bRv = false;
-    std::vector<std::tstring_t> vsPathParts;
-    std::tstring_t              sBuildPath;
+    bool               bRv = false;
+    std::vec_tstring_t vsPathParts;
+    std::tstring_t     sBuildPath;
 
     //-------------------------------------
     //split csDirPath into parts
@@ -262,7 +262,7 @@ CxDir::bCreateForce(
 
     //-------------------------------------
     //create dirs by steps
-    xFOREACH_CONST(std::vector<std::tstring_t>, it, vsPathParts) {
+    xFOREACH_CONST(std::vec_tstring_t, it, vsPathParts) {
         sBuildPath.append(*it).append(CxConst::xSLASH);
 
         bRv = bCreate(sBuildPath);
@@ -300,7 +300,7 @@ CxDir::bCopy(
 
     //--------------------------------------------------
     //get lists of files
-    std::vector<std::tstring_t> vsFilePathes;
+    std::vec_tstring_t vsFilePathes;
 
     vsFilePathes.clear();
     bRv = bFindFiles(csDirPathFrom, CxConst::xMASK_ALL, true, &vsFilePathes);
@@ -308,7 +308,7 @@ CxDir::bCopy(
 
     //--------------------------------------------------
     //copy
-    xFOREACH_R_CONST(std::vector<std::tstring_t>, it, vsFilePathes) {
+    xFOREACH_R_CONST(std::vec_tstring_t, it, vsFilePathes) {
         std::tstring_t sFilePathTo = *it;
 
         size_t uiPosBegin = sFilePathTo.find(csDirPathFrom);
@@ -422,13 +422,13 @@ CxDir::bClearForce(
     //-------------------------------------
     //delete files
     {
-        std::vector<std::tstring_t> vsFilePathes;
+        std::vec_tstring_t vsFilePathes;
 
         vsFilePathes.clear();
         bRv = bFindFiles(csDirPath, CxConst::xMASK_ALL, true, &vsFilePathes);
         /*DEBUG*/xASSERT_RET(true == bRv, false);
 
-        xFOREACH_R(std::vector<std::tstring_t>, it, vsFilePathes) {
+        xFOREACH_R(std::vec_tstring_t, it, vsFilePathes) {
             (void)CxFile::bDelete(*it);
         }
     }
@@ -436,13 +436,13 @@ CxDir::bClearForce(
     //-------------------------------------
     //delete subdirs
     {
-        std::vector<std::tstring_t> vsDirPathes;
+        std::vec_tstring_t vsDirPathes;
 
         vsDirPathes.clear();
         bRv = bFindDirs(csDirPath, CxConst::xMASK_ALL, true, &vsDirPathes);
         /*DEBUG*/xASSERT_RET(true == bRv, false);
 
-        xFOREACH_R(std::vector<std::tstring_t>, it, vsDirPathes) {
+        xFOREACH_R(std::vec_tstring_t, it, vsDirPathes) {
             (void)bDelete(*it);
         }
     }
@@ -478,10 +478,10 @@ CxDir::bDeleteForce(
 /*static*/
 bool
 CxDir::bFindFiles(
-    const std::tstring_t        &csDirPath,
-    const std::tstring_t        &cMask,
-    const bool                   cbIsRecurse,
-    std::vector<std::tstring_t> *pvsFilePathes    ///< \note must be empty
+    const std::tstring_t &csDirPath,
+    const std::tstring_t &cMask,
+    const bool            cbIsRecurse,
+    std::vec_tstring_t   *pvsFilePathes    ///< \note must be empty
 )
 {
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), false);
@@ -623,10 +623,10 @@ CxDir::bFindFiles(
 /*static*/
 bool
 CxDir::bFindDirs(
-    const std::tstring_t        &csDirPath,
-    const std::tstring_t        &cMask,
-    const bool                   cbIsRecurse,
-    std::vector<std::tstring_t> *pvsDirPathes    ///< \note must be empty
+    const std::tstring_t &csDirPath,
+    const std::tstring_t &cMask,
+    const bool            cbIsRecurse,
+    std::vec_tstring_t   *pvsDirPathes    ///< \note must be empty
 )
 {
     /*DEBUG*/xASSERT_RET(false == csDirPath.empty(), false);

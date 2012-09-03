@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //--------------------------------------------------------------------------
-/*static*/ std::vector<std::tstring_t> CxCommandLine::_ms_vsArgs;
+/*static*/ std::vec_tstring_t CxCommandLine::_ms_vsArgs;
 //--------------------------------------------------------------------------
 long_t
 CxCommandLine::liGetArgsMax() {
@@ -53,7 +53,7 @@ CxCommandLine::sGet() {
 /*static*/
 bool
 CxCommandLine::bGetArgs(
-    std::vector<std::tstring_t> *pvsArgs
+    std::vec_tstring_t *pvsArgs
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != pvsArgs, false);
@@ -75,7 +75,7 @@ CxCommandLine::bSetArgs(
 {
     /*DEBUG*/// n/a (because we'll have a recursion)
 
-    std::vector<std::tstring_t> vsArgs;
+    std::vec_tstring_t vsArgs;
 
     for (int i = 0; i < ciArgsCount; ++ i) {
         vsArgs.push_back(paszArgs[i]);

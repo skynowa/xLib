@@ -497,7 +497,7 @@ CxTest_CxString::bUnit(
     //bSplit
     xTEST_CASE(cullCaseLoops)
     {
-        std::vector<std::tstring_t> vsText;
+        std::vec_tstring_t vsText;
 
         m_bRv = CxString::bSplit(xT("1+++22+++333+++4444+++55555+++666666"), xT("+"), &vsText);
         xTEST_EQ(true, m_bRv);
@@ -514,7 +514,7 @@ CxTest_CxString::bUnit(
     //sJoin
     xTEST_CASE(cullCaseLoops)
     {
-        std::vector<std::tstring_t> vsRes;
+        std::vec_tstring_t vsRes;
         vsRes.push_back(xT("111"));
         vsRes.push_back(xT(""));
         vsRes.push_back(xT("222"));
@@ -528,7 +528,7 @@ CxTest_CxString::bUnit(
     //sJoin
     xTEST_CASE(cullCaseLoops)
     {
-        std::vector<std::tstring_t> vsRes;
+        std::vec_tstring_t vsRes;
         vsRes.push_back(xT("111"));
         vsRes.push_back(xT(""));
         vsRes.push_back(xT("222"));

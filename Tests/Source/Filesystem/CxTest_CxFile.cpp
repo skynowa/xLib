@@ -22,7 +22,7 @@ CxTest_CxFile::bUnit(
     const ulonglong_t cullCaseLoops
 )
 {
-    const std::tstring_t csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
+    const std::tstring_t csFilePath = sGetTempDirPath() + CxConst::xSLASH + xT("Test.txt");
 
 
     /****************************************************************************
@@ -186,7 +186,7 @@ CxTest_CxFile::bUnit(
         {
             CxFile F;
 
-            m_bRv = F.bCreate(sGetWorkDirPath() + CxConst::xSLASH + xT("DataNew.dat"), CxFile::omBinWrite, true);
+            m_bRv = F.bCreate(sGetTempDirPath() + CxConst::xSLASH + xT("DataNew.dat"), CxFile::omBinWrite, true);
             xTEST_EQ(true, m_bRv);
 
             m_bRv = F.bWrite(usText1);
@@ -698,7 +698,7 @@ CxTest_CxFile::bUnit1(
 {
     /*DEBUG*/
 
-    const std::tstring_t csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
+    const std::tstring_t csFilePath = sGetTempDirPath() + CxConst::xSLASH + xT("Test.txt");
 
     /****************************************************************************
     *   static
@@ -715,7 +715,7 @@ CxTest_CxFile::bUnit1(
         m_bRv = CxFile::bIsFile(xT(""));
         xTEST_EQ(false, m_bRv);
 
-        m_bRv = CxFile::bIsFile(sGetWorkDirPath());
+        m_bRv = CxFile::bIsFile(sGetTempDirPath());
         xTEST_EQ(false, m_bRv);
     }
 
@@ -732,7 +732,7 @@ CxTest_CxFile::bUnit1(
         m_bRv = CxFile::bIsExists(xT(""));
         xTEST_EQ(false, m_bRv);
 
-        m_bRv = CxFile::bIsExists(sGetWorkDirPath());
+        m_bRv = CxFile::bIsExists(sGetTempDirPath());
         xTEST_EQ(false, m_bRv);
     }
 
@@ -767,7 +767,7 @@ CxTest_CxFile::bUnit1(
     //bRename
     xTEST_CASE(cullCaseLoops)
     {
-        const std::tstring_t csNewFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
+        const std::tstring_t csNewFilePath = sGetTempDirPath() + CxConst::xSLASH + xT("New.Test.txt");
 
         m_bRv = CxFile::bTextWrite(csFilePath, xT("Simple text"));
         xTEST_EQ(true, m_bRv);
@@ -807,7 +807,7 @@ CxTest_CxFile::bUnit1(
     //bCopy
     xTEST_CASE(cullCaseLoops)
     {
-        const std::tstring_t sFilePathFrom = sGetWorkDirPath() + CxConst::xSLASH + xT("test_copy.txt");
+        const std::tstring_t sFilePathFrom = sGetTempDirPath() + CxConst::xSLASH + xT("test_copy.txt");
         const std::tstring_t sFilePathTo   = sFilePathFrom + xT("_addition_to_name");
 
         {
@@ -834,15 +834,15 @@ CxTest_CxFile::bUnit1(
     //bMove
     xTEST_CASE(cullCaseLoops)
     {
-        const std::tstring_t csNewFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
+        const std::tstring_t csNewFilePath = sGetTempDirPath() + CxConst::xSLASH + xT("New.Test.txt");
 
         m_bRv = CxFile::bTextWrite(csNewFilePath, xT("Simple text"));
         xTEST_EQ(true, m_bRv);
 
-        m_bRv = CxFile::bDelete(sGetWorkDirPath() + CxConst::xSLASH + csNewFilePath);
+        m_bRv = CxFile::bDelete(sGetTempDirPath() + CxConst::xSLASH + csNewFilePath);
         xTEST_EQ(true, m_bRv);
 
-        m_bRv = CxFile::bMove(csNewFilePath, sGetWorkDirPath());
+        m_bRv = CxFile::bMove(csNewFilePath, sGetTempDirPath());
         xTEST_EQ(true, m_bRv);
     }
 
@@ -860,7 +860,7 @@ CxTest_CxFile::bUnit1(
     //bClear
     xTEST_CASE(cullCaseLoops)
     {
-        const std::tstring_t csNewFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
+        const std::tstring_t csNewFilePath = sGetTempDirPath() + CxConst::xSLASH + xT("New.Test.txt");
 
         m_bRv = CxFile::bClear(csNewFilePath);
         xTEST_EQ(true, m_bRv);
@@ -870,7 +870,7 @@ CxTest_CxFile::bUnit1(
     //bDelete
     xTEST_CASE(cullCaseLoops)
     {
-        const std::tstring_t csNewFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
+        const std::tstring_t csNewFilePath = sGetTempDirPath() + CxConst::xSLASH + xT("New.Test.txt");
 
         m_bRv = CxFile::bDelete(csNewFilePath);
         xTEST_EQ(true, m_bRv);
@@ -884,7 +884,7 @@ CxTest_CxFile::bUnit1(
     xTEST_CASE(cullCaseLoops)
     {
         #if xTODO
-            const std::tstring_t csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("New.Test.txt");
+            const std::tstring_t csFilePath = sGetTempDirPath() + CxConst::xSLASH + xT("New.Test.txt");
 
             for (size_t i = 0; i < 20; ++ i) {
                 if (i < 10) {
@@ -1002,7 +1002,7 @@ CxTest_CxFile::bUnit1(
     //bTextRead, bTextWrite (std::vector)
     xTEST_CASE(cullCaseLoops)
     {
-        std::vector<std::tstring_t> vsFileContent;
+        std::vec_tstring_t vsFileContent;
 
         {
             CxFile F;
@@ -1022,7 +1022,7 @@ CxTest_CxFile::bUnit1(
         m_bRv = CxFile::bTextWrite(csFilePath, vsFileContent);
         xTEST_EQ(true, m_bRv);
 
-        std::vector<std::tstring_t> vsStr;
+        std::vec_tstring_t vsStr;
         m_bRv = CxFile::bTextRead(csFilePath, &vsStr);
         xTEST_EQ(true, m_bRv);
 
@@ -1033,7 +1033,7 @@ CxTest_CxFile::bUnit1(
     //empty content
     xTEST_CASE(cullCaseLoops)
     {
-        std::vector<std::tstring_t> vsFileContent;
+        std::vec_tstring_t vsFileContent;
 
         {
             CxFile F;
@@ -1048,7 +1048,7 @@ CxTest_CxFile::bUnit1(
         m_bRv = CxFile::bTextWrite(csFilePath, vsFileContent);
         xTEST_EQ(true, m_bRv);
 
-        std::vector<std::tstring_t> vsStr;
+        std::vec_tstring_t vsStr;
         m_bRv = CxFile::bTextRead(csFilePath, &vsStr);
         xTEST_EQ(true, m_bRv);
 
@@ -1060,8 +1060,8 @@ CxTest_CxFile::bUnit1(
     //bTextRead, bTextWrite (std::vector)
     xTEST_CASE(cullCaseLoops)
     {
-        std::map<std::tstring_t, std::tstring_t> cmsFileContent;
-        const std::tstring_t              csSeparator = CxConst::xEQUAL;
+        std::map_tstring_t   cmsFileContent;
+        const std::tstring_t csSeparator = CxConst::xEQUAL;
 
         {
             CxFile F;
@@ -1081,7 +1081,7 @@ CxTest_CxFile::bUnit1(
         m_bRv = CxFile::bTextWrite(csFilePath, csSeparator, cmsFileContent);
         xTEST_EQ(true, m_bRv);
 
-        std::map<std::tstring_t, std::tstring_t> msStr;
+        std::map_tstring_t msStr;
         m_bRv = CxFile::bTextRead(csFilePath, csSeparator, &msStr);
         xTEST_EQ(true, m_bRv);
 
@@ -1092,8 +1092,8 @@ CxTest_CxFile::bUnit1(
     //empty content
     xTEST_CASE(cullCaseLoops)
     {
-        std::map<std::tstring_t, std::tstring_t> cmsFileContent;
-        const std::tstring_t              csSeparator = CxConst::xEQUAL;
+        std::map_tstring_t   cmsFileContent;
+        const std::tstring_t csSeparator = CxConst::xEQUAL;
 
         {
             CxFile F;
@@ -1108,7 +1108,7 @@ CxTest_CxFile::bUnit1(
         m_bRv = CxFile::bTextWrite(csFilePath, csSeparator, cmsFileContent);
         xTEST_EQ(true, m_bRv);
 
-        std::map<std::tstring_t, std::tstring_t> msStr;
+        std::map_tstring_t msStr;
         m_bRv = CxFile::bTextRead(csFilePath, csSeparator, &msStr);
         xTEST_EQ(true, m_bRv);
 
@@ -1181,7 +1181,7 @@ CxTest_CxFile::bUnitPrivate(
     /*DEBUG*/
 
 #if xTEST_PRIVATE_DATA
-    const std::tstring_t csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
+    const std::tstring_t csFilePath = sGetTempDirPath() + CxConst::xSLASH + xT("Test.txt");
 
 
     //--------------------------------------------------

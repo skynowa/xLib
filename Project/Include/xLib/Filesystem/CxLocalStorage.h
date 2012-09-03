@@ -11,7 +11,7 @@
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-typedef std::map<std::tstring_t, std::tstring_t> TLocalStorage;
+typedef std::map_tstring_t TLocalStorage;
 
 class CxLocalStorage :
     private CxNonCopyable

@@ -131,14 +131,14 @@ CxTest_CxLocalStorage::bUnit(
 
         //success
         {
-            std::vector<std::tstring_t> vsPairs;
+            std::vec_tstring_t vsPairs;
 
             vsPairs.push_back(csKey1 + CxConst::xEQUAL + csValue1);
             vsPairs.push_back(csKey2 + CxConst::xEQUAL + csValue2);
             vsPairs.push_back(csKey3 + CxConst::xEQUAL + csValue3);
 
             for (size_t i = 0; i < vsPairs.size(); ++ i) {
-                std::vector<std::tstring_t> vsPair;
+                std::vec_tstring_t vsPair;
 
                 m_bRv = CxString::bSplit(vsPairs.at(i), CxConst::xEQUAL, &vsPair);
                 xTEST_EQ(true, m_bRv);
@@ -151,7 +151,7 @@ CxTest_CxLocalStorage::bUnit(
 
         //fail
         {
-            std::vector<std::tstring_t> vsPairs;
+            std::vec_tstring_t vsPairs;
 
             vsPairs.push_back(xT("not_existance_key"));
             vsPairs.push_back(xT("s<erfsenot_existance_key56eb54"));
@@ -160,7 +160,7 @@ CxTest_CxLocalStorage::bUnit(
             vsPairs.push_back(xT("not_exi5g675467stance_key"));
 
             for (size_t i = 0; i < vsPairs.size(); ++ i) {
-                std::vector<std::tstring_t> vsPair;
+                std::vec_tstring_t vsPair;
 
                 m_bRv = CxString::bSplit(vsPairs.at(i), CxConst::xEQUAL, &vsPair);
                 xTEST_EQ(true, m_bRv);

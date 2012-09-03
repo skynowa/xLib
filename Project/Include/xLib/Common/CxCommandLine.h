@@ -20,13 +20,13 @@ class CxCommandLine :
             ///< get maximum length of commandline arguments (in chars)
         static std::tstring_t sGet         ();
             ///< get commandline string for the current process
-        static bool           bGetArgs     (std::vector<std::tstring_t> *pvsArgs);
+        static bool           bGetArgs     (std::vec_tstring_t *pvsArgs);
             ///< get commandline arguments
         static bool           bSetArgs     (const int ciArgsCount, tchar_t *paszArgs[]);
             ///< set commandline arguments
 
     private:
-        static std::vector<std::tstring_t> _ms_vsArgs;  ///< command line arguments
+        static std::vec_tstring_t _ms_vsArgs;  ///< command line arguments
 
                               CxCommandLine();
             ///< constructor

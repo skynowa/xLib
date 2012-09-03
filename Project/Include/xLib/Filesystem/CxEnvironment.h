@@ -28,7 +28,7 @@ class CxEnvironment :
             ///< set or change value by name
         static bool           bDeleteVar    (const std::tstring_t &csVarName);
             ///< delete var
-        static bool           bGetValues    (std::vector<std::tstring_t> *pvsValues);
+        static bool           bGetValues    (std::vec_tstring_t *pvsValues);
             ///< get all values
         static std::tstring_t sExpandStrings(const std::tstring_t &csvVar);
             ///< expands strings by separator "%"

@@ -80,11 +80,11 @@ class CxString :
         static std::tstring_t sRemoveAll        (const std::tstring_t &csStr, const std::tstring_t &csRemoveStr);
             ///< remove all strings
 
-        static bool           bSplit            (const std::tstring_t &csStr, const std::tstring_t &csSep, std::vector<std::tstring_t> *pvsOut);
+        static bool           bSplit            (const std::tstring_t &csStr, const std::tstring_t &csSep, std::vec_tstring_t *pvsOut);
             ///< split by separator
-        static std::tstring_t sJoin             (const std::vector<std::tstring_t> &cvsVec, const tchar_t cchSep);
+        static std::tstring_t sJoin             (const std::vec_tstring_t &cvsVec, const tchar_t cchSep);
             ///< join with char separator
-        static std::tstring_t sJoin             (const std::vector<std::tstring_t> &cvsVec, const std::tstring_t &csSep);
+        static std::tstring_t sJoin             (const std::vec_tstring_t &cvsVec, const std::tstring_t &csSep);
             ///< oin with string separator
         static std::tstring_t sCut              (const std::tstring_t &csStr, const std::tstring_t &csLeftSep, const std::tstring_t &csRightSep);
             ///< cut using strings

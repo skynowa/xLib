@@ -176,10 +176,10 @@ CxDnsClient::bGetHostAddrInfo(
 /*static*/
 bool
 CxDnsClient::bGetProtocolByName(
-    const std::tstring_t        &csProtocolName,
-    std::tstring_t              *psName,
-    std::vector<std::tstring_t> *pvsAliases,
-    short_t                     *psiNumber
+    const std::tstring_t &csProtocolName,
+    std::tstring_t       *psName,
+    std::vec_tstring_t   *pvsAliases,
+    short_t              *psiNumber
 )
 {
     /*DEBUG*/xASSERT_RET(false == csProtocolName.empty(), false);
@@ -228,10 +228,10 @@ CxDnsClient::bGetProtocolByName(
 /*static*/
 bool
 CxDnsClient::bGetProtocolByNumber(
-    short_t                      siNumber,
-    std::tstring_t              *psName,
-    std::vector<std::tstring_t> *pvsAliases,
-    short_t                     *psiNumber
+    short_t             siNumber,
+    std::tstring_t     *psName,
+    std::vec_tstring_t *pvsAliases,
+    short_t            *psiNumber
 )
 {
     /*DEBUG*///siNum      - n/a
@@ -277,12 +277,12 @@ CxDnsClient::bGetProtocolByNumber(
 /*static*/
 bool
 CxDnsClient::bGetServiceByName(
-    const std::tstring_t        &csServiceName,
-    const std::tstring_t        &csProtocolName,
-    std::tstring_t              *psName,
-    std::vector<std::tstring_t> *pvsAliases,
-    short_t                     *psiPort,
-    std::tstring_t              *psProtocolName
+    const std::tstring_t &csServiceName,
+    const std::tstring_t &csProtocolName,
+    std::tstring_t       *psName,
+    std::vec_tstring_t   *pvsAliases,
+    short_t              *psiPort,
+    std::tstring_t       *psProtocolName
 )
 {
     /*DEBUG*/xASSERT_RET(false == csServiceName.empty(), false);
@@ -339,12 +339,12 @@ CxDnsClient::bGetServiceByName(
 /*static*/
 bool
 CxDnsClient::bGetServiceByPort(
-    short_t                      siPort,
-    const std::tstring_t        &csProtocolName,
-    std::tstring_t              *psName,
-    std::vector<std::tstring_t> *pvsAliases,
-    short_t                     *psiPort,
-    std::tstring_t              *psProtocolName
+    short_t               siPort,
+    const std::tstring_t &csProtocolName,
+    std::tstring_t       *psName,
+    std::vec_tstring_t   *pvsAliases,
+    short_t              *psiPort,
+    std::tstring_t       *psProtocolName
 )
 {
     /*DEBUG*///TODO: siPort

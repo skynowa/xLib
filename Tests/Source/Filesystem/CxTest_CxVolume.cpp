@@ -28,11 +28,11 @@ CxTest_CxVolume::bUnit(
     {
         //true
         {
-            std::vector<std::tstring_t> vsData;
+            std::vec_tstring_t vsData;
 
             m_bRv = CxVolume::bGetPaths(&vsData);
 
-            xFOREACH(std::vector<std::tstring_t>, it, vsData) {
+            xFOREACH(std::vec_tstring_t, it, vsData) {
                 m_bRv = CxVolume::bIsValid(*it);
                 xTEST_EQ(true, m_bRv);
             }
@@ -149,11 +149,11 @@ CxTest_CxVolume::bUnit(
     // bGetSpace
     xTEST_CASE(cullCaseLoops)
     {
-        std::vector<std::tstring_t> vsData;
+        std::vec_tstring_t vsData;
 
         m_bRv = CxVolume::bGetPaths(&vsData);
 
-        xFOREACH(std::vector<std::tstring_t>, it, vsData) {
+        xFOREACH(std::vec_tstring_t, it, vsData) {
             ulonglong_t ullAvailable = 0ULL;
             ulonglong_t ullTotal     = 0ULL;
             ulonglong_t ullFree      = 0ULL;
@@ -167,7 +167,7 @@ CxTest_CxVolume::bUnit(
             xTEST_LESS_EQ(0ULL, ullFree);
         }
 
-        xFOREACH(std::vector<std::tstring_t>, it, vsData) {
+        xFOREACH(std::vec_tstring_t, it, vsData) {
             ulonglong_t ullAvailable = 0ULL;
             ulonglong_t ullTotal     = 0ULL;
             ulonglong_t ullFree      = 0ULL;
@@ -181,7 +181,7 @@ CxTest_CxVolume::bUnit(
             xTEST_LESS_EQ(0ULL, ullFree);
         }
 
-        xFOREACH(std::vector<std::tstring_t>, it, vsData) {
+        xFOREACH(std::vec_tstring_t, it, vsData) {
             ulonglong_t ullAvailable = 0ULL;
             ulonglong_t ullTotal     = 0ULL;
             ulonglong_t ullFree      = 0ULL;
@@ -241,7 +241,7 @@ CxTest_CxVolume::bUnit(
     // bGetPaths
     xTEST_CASE(cullCaseLoops)
     {
-        std::vector<std::tstring_t> vsVolumePaths;
+        std::vec_tstring_t vsVolumePaths;
 
         m_bRv = CxVolume::bGetPaths(&vsVolumePaths);
         xTEST_EQ(true, m_bRv);
@@ -256,12 +256,12 @@ CxTest_CxVolume::bUnit(
     // sGetLabel
     xTEST_CASE(cullCaseLoops)
     {
-        std::vector<std::tstring_t> vsVolumePaths;
+        std::vec_tstring_t vsVolumePaths;
 
         m_bRv = CxVolume::bGetPaths(&vsVolumePaths);
         xTEST_EQ(true, m_bRv);
 
-        xFOREACH(std::vector<std::tstring_t>, it, vsVolumePaths) {
+        xFOREACH(std::vec_tstring_t, it, vsVolumePaths) {
             m_sRv = CxVolume::sGetLabel(*it);
             // n/a
             #if xTEST_IGNORE
@@ -274,12 +274,12 @@ CxTest_CxVolume::bUnit(
     // bSetLabel
     xTEST_CASE(cullCaseLoops)
     {
-        std::vector<std::tstring_t> vsVolumePaths;
+        std::vec_tstring_t vsVolumePaths;
 
         m_bRv = CxVolume::bGetPaths(&vsVolumePaths);
         xTEST_EQ(true, m_bRv);
 
-        xFOREACH(std::vector<std::tstring_t>, it, vsVolumePaths) {
+        xFOREACH(std::vec_tstring_t, it, vsVolumePaths) {
             m_sRv = CxVolume::sGetLabel(*it);
 
             xCHECK_DO(false == CxVolume::bIsReady(*it), continue);

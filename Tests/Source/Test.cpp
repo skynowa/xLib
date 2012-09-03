@@ -132,7 +132,7 @@ xTMAIN(
     ulonglong_t ullBlockLoops = 1UL;
 
     {
-        std::vector<std::tstring_t> vsArgs;
+        std::vec_tstring_t vsArgs;
 
         bool bRv = CxCommandLine::bGetArgs(&vsArgs);
         xTEST_EQ(true, bRv);

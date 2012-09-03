@@ -46,18 +46,18 @@ CxTest::CxTest() :
     _m_sWorkDirPath(),
     _m_sName       ()
 {
-    (void)bCreateWorkDir(xT("Temp for tests"));
+    (void)bCreateTempDir(xT("Temp for tests"));
 }
 //---------------------------------------------------------------------------
 /*virtual*/
 CxTest::~CxTest() /* = 0*/ {
-    (void)CxDir::bDeleteForce( sGetWorkDirPath() );
+    (void)CxDir::bDeleteForce( sGetTempDirPath() );
 }
 //---------------------------------------------------------------------------
 bool
 CxTest::bRun(
-    const ulonglong_t cullUnitLoops,
-    const ulonglong_t cullCaseLoops
+    const ulonglong_t &cullUnitLoops,
+    const ulonglong_t &cullCaseLoops
 )
 {
     /*DEBUG*/
@@ -113,7 +113,7 @@ CxTest::bUnit(
 }
 //---------------------------------------------------------------------------
 bool
-CxTest::bCreateWorkDir(
+CxTest::bCreateTempDir(
     const std::tstring_t &csDirName
 )
 {
@@ -132,7 +132,7 @@ CxTest::bCreateWorkDir(
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxTest::sGetWorkDirPath() const {
+CxTest::sGetTempDirPath() const {
     /*DEBUG*/xASSERT(false == _m_sWorkDirPath.empty());
 
     return _m_sWorkDirPath;

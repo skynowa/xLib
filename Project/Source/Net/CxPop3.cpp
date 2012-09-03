@@ -496,9 +496,9 @@ CxPop3::_ulMailsSum(const std::tstring_t &csServerAnswer) {
     /*DEBUG*/xASSERT_RET(false == csServerAnswer.empty(), false);
 
     //+OK 2 1141841
-    ulong_t                     ulSum = 0UL;
-    std::tstring_t              sSum;
-    std::vector<std::tstring_t> vsRes;
+    ulong_t            ulSum = 0UL;
+    std::tstring_t     sSum;
+    std::vec_tstring_t vsRes;
 
     bool bRv = CxString::bSplit(csServerAnswer, " ", &vsRes);
     /*DEBUG*/xASSERT_RET(true == bRv, 0UL);
@@ -515,9 +515,9 @@ CxPop3::_ulMailsSize(const std::tstring_t &csServerAnswer) {
     /*DEBUG*/xASSERT_RET(false == csServerAnswer.empty(), false);
 
     //+OK 2 1141841
-    ulong_t        ulSize = 0;
-    std::tstring_t sSize;
-    std::vector<std::tstring_t> vsRes;
+    ulong_t            ulSize = 0;
+    std::tstring_t     sSize;
+    std::vec_tstring_t vsRes;
 
     bool bRv = CxString::bSplit(csServerAnswer, " ", &vsRes);
     /*DEBUG*/xASSERT_RET(true == bRv, 0UL);

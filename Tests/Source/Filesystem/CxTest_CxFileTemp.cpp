@@ -32,7 +32,7 @@ CxTest_CxFileTemp::bUnit(
         CxFileTemp ftFileTemp(true);
         CxFile     fJobber;
 
-        m_bRv = ftFileTemp.bCreate(CxPath::sGetExe(), sGetWorkDirPath() + CxConst::xSLASH + xT("Temp"), &fJobber);
+        m_bRv = ftFileTemp.bCreate(CxPath::sGetExe(), sGetTempDirPath() + CxConst::xSLASH + xT("Temp"), &fJobber);
         #if 0
             xTRACEV(xT("\tsTemp: %s"), fJobber.sGetPath().c_str());
         #endif

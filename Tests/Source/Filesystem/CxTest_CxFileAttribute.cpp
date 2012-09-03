@@ -25,7 +25,7 @@ CxTest_CxFileAttribute::bUnit(
     const ulonglong_t cullCaseLoops
 )
 {
-    const std::tstring_t csFilePath = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.txt");
+    const std::tstring_t csFilePath = sGetTempDirPath() + CxConst::xSLASH + xT("Test.txt");
 
     #if xOS_ENV_WIN
         const CxFileAttribute::EAttribute cfaValue = CxFileAttribute::faReadOnly;
@@ -125,7 +125,7 @@ CxTest_CxFileAttribute::bUnit(
 
             //dir
             {
-                const std::tstring_t csDirPath = sGetWorkDirPath();
+                const std::tstring_t csDirPath = sGetTempDirPath();
 
                 m_bRv = CxFileAttribute::bIsExists(csDirPath, CxFileAttribute::faDirectory);
                 xTEST_EQ(true, m_bRv);
