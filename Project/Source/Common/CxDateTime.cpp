@@ -32,7 +32,7 @@ CxDateTime::CxDateTime() :
 //---------------------------------------------------------------------------
 CxDateTime::CxDateTime(
     const std::tstring_t &csDT,
-    const EFormatType   cftFormat
+    const ExFormatType   cftFormat
 ) :
     _m_ullDateTimeInMSec(0),
     _m_usYear           (0),
@@ -498,7 +498,7 @@ CxDateTime::_ullToMilliseconds() const {
 //--------------------------------------------------------------------------
 std::tstring_t
 CxDateTime::sFormat(
-    const EFormatType cftFormat
+    const ExFormatType cftFormat
 ) const
 {
     /*DEBUG*/xASSERT_RET(false != bIsValid(), std::tstring_t());
@@ -1045,7 +1045,7 @@ CxDateTime::usGetWeekDayNum(
 bool
 CxDateTime::_bParse(
     const std::tstring_t &csDT,
-    const EFormatType     cftFormat,
+    const ExFormatType    cftFormat,
     CxDateTime           *pdtDT) {
     /*DEBUG*/
 

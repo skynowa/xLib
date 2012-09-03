@@ -41,7 +41,7 @@ CxTest_CxDateTime::bUnit(
     //CxDateTime(const std::tstring_t &csDT, EFormatType ftFormat)
     xTEST_CASE(cullCaseLoops)
     {
-        const CxDateTime::EFormatType caftFormats[] = {
+        const CxDateTime::ExFormatType caftFormats[] = {
             ////CxDateTime::ftTime,     //HH.MM.SS.MMM
             ////CxDateTime::ftDate,     //DD.MM.YYYY
             ////CxDateTime::ftDateTime, //DD.MM.YYYY HH.MM.SS.MMM

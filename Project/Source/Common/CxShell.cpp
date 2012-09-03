@@ -87,7 +87,7 @@ CxShell::bFindExecutable(
 bool
 CxShell::bExecute(
     const HWND            chOwner,
-    const EOperation      copOperation,
+    const ExOperation     copOperation,
     const std::tstring_t &csFilePath,
     const std::tstring_t &csParams,
     const std::tstring_t &csDir,

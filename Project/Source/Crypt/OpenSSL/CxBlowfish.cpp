@@ -133,7 +133,7 @@ CxBlowfish::bEncryptCfb64(
     uchar_t          *pucOut,
     const long_t      cliInSize,
     int              *piNum,
-    const ECryptMode  cmMode
+    const ExCryptMode cmMode
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != pucIn,     false);
@@ -152,7 +152,7 @@ bool
 CxBlowfish::bEncryptCfb64(
     const std::ustring_t &cusIn,
     std::ustring_t       *pusOut,
-    const ECryptMode      cmMode
+    const ExCryptMode     cmMode
 )
 {
     /*DEBUG*/xASSERT_RET(false == cusIn.empty(), false);
@@ -173,7 +173,7 @@ bool
 CxBlowfish::bEncryptFileCfb64(
     const std::tstring_t &csFilePathIn,
     const std::tstring_t &csFilePathOut,
-    const ECryptMode      cmMode
+    const ExCryptMode     cmMode
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePathIn.empty(),  false);

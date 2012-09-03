@@ -25,9 +25,9 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 /*static*/
-CxSystemInfo::EOsType
+CxSystemInfo::ExOsType
 CxSystemInfo::osGetOS() {
-    EOsType otRes = otUnknown;
+    ExOsType otRes = otUnknown;
 
 #if xOS_ENV_WIN
     OSVERSIONINFO ovVer = {0};
@@ -96,7 +96,7 @@ CxSystemInfo::osGetOS() {
 /*static*/
 std::tstring_t
 CxSystemInfo::sFormatOsType(
-    const EOsType otOsType
+    const ExOsType otOsType
 )
 {
     xDEBUG_VAR_NA(otOsType);

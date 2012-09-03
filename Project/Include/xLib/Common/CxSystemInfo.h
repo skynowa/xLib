@@ -16,7 +16,7 @@ class CxSystemInfo :
     /// system information
 {
    public:
-        enum EOsType
+        enum ExOsType
             /// OS type
         {
             otUnknown,
@@ -61,9 +61,9 @@ class CxSystemInfo :
         };
 
         // OS
-        static EOsType        osGetOS           ();
+        static ExOsType       osGetOS           ();
             ///< get information about the current OS
-        static std::tstring_t sFormatOsType     (const EOsType otOsType);
+        static std::tstring_t sFormatOsType     (const ExOsType otOsType);
             ///< format OS type
 
         static EOsArch        oaGetOsArch       ();
@@ -79,7 +79,7 @@ class CxSystemInfo :
         static std::tstring_t sGetUserName      ();
             ///< get the name of the user associated with the current thread
         static std::tstring_t sGetUseHomeDir    ();
-            ///< 
+            ///<
 
         // CPU
         static ulong_t        ulGetNumOfCpus    ();

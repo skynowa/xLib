@@ -17,7 +17,7 @@ class CxBlowfish :
     /// blowfish (openssl-1.0.0a)
 {
     public:
-        enum ECryptMode
+        enum ExCryptMode
             /// crypt mode
         {
             cmUnknown = - 1,
@@ -42,11 +42,11 @@ class CxBlowfish :
             ///< get maximum key size
 
         //cfb64
-        bool          bEncryptCfb64       (uchar_t *pucIn, uchar_t *pucOut, const long_t cliInSize, int *piNum, const ECryptMode cmMode);
+        bool          bEncryptCfb64       (uchar_t *pucIn, uchar_t *pucOut, const long_t cliInSize, int *piNum, const ExCryptMode cmMode);
             ///< encrypt buffer
-        bool          bEncryptCfb64       (const std::ustring_t &cusIn, std::ustring_t *pusOut, const ECryptMode cmMode);
+        bool          bEncryptCfb64       (const std::ustring_t &cusIn, std::ustring_t *pusOut, const ExCryptMode cmMode);
             ///< encrypt std::ustring_t
-        bool          bEncryptFileCfb64   (const std::tstring_t &csFilePathIn, const std::tstring_t &csFilePathOut, const ECryptMode cmMode);
+        bool          bEncryptFileCfb64   (const std::tstring_t &csFilePathIn, const std::tstring_t &csFilePathOut, const ExCryptMode cmMode);
             ///< encrypt file
 
     private:
