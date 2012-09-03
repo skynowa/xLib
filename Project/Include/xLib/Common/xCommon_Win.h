@@ -6,7 +6,9 @@
 
 #ifndef xLib_Common_Win_xCommon_WinH
 #define xLib_Common_Win_xCommon_WinH
-//---------------------------------------------------------------------------
+//--------------------------------------------------------------------------
+#include <SDKDDKVer.h>
+
 #if !defined(WIN32_LEAN_AND_MEAN)
     #define WIN32_LEAN_AND_MEAN 1
 #endif
@@ -63,7 +65,6 @@
     #pragma option -w-8057  // parameter is never used
     #pragma option -w-8058  // cannot create pre-compiled header: initialized data in header
     #pragma option -w-8004  // is assigned a value that is never used
-    #pragma option -w-8022  // hides virtual function 'Image::Clone()'
     #pragma option -w-8008  // Condition is always true
 #endif
 //---------------------------------------------------------------------------

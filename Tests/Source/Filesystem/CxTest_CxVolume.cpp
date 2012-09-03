@@ -270,25 +270,6 @@ CxTest_CxVolume::bUnit(
         }
     }
 
-    //--------------------------------------------------
-    // bSetLabel
-    xTEST_CASE(cullCaseLoops)
-    {
-        std::vec_tstring_t vsVolumePaths;
-
-        m_bRv = CxVolume::bGetPaths(&vsVolumePaths);
-        xTEST_EQ(true, m_bRv);
-
-        xFOREACH(std::vec_tstring_t, it, vsVolumePaths) {
-            m_sRv = CxVolume::sGetLabel(*it);
-
-            xCHECK_DO(false == CxVolume::bIsReady(*it), continue);
-
-            m_bRv = CxVolume::bSetLabel(*it, m_sRv);
-            xTEST_EQ(true, m_bRv);
-        }
-    }
-
     //-------------------------------------
     // dtGetType
     xTEST_CASE(cullCaseLoops)

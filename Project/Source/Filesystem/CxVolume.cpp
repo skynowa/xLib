@@ -321,33 +321,6 @@ CxVolume::sGetLabel(
 }
 //--------------------------------------------------------------------------
 /*static*/
-bool
-CxVolume::bSetLabel(
-    const std::tstring_t &csVolumePath,
-    const std::tstring_t &csVolumeName
-)
-{
-    /*DEBUG*/
-    /*DEBUG*/
-
-    bool bRv = bIsReady(csVolumePath);
-    xCHECK_RET(false == bRv, false);
-
-#if   xOS_ENV_WIN
-    BOOL blRes = ::SetVolumeLabel(csVolumePath.c_str(), csVolumeName.c_str());
-    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
-#elif xOS_ENV_UNIX
-    #if   xOS_LINUX
-        // TODO: CxVolume::bSetLabel
-    #elif xOS_FREEBSD
-        // TODO: CxVolume::bSetLabel
-    #endif
-#endif
-
-    return true;
-}
-//--------------------------------------------------------------------------
-/*static*/
 CxVolume::ExType
 CxVolume::dtGetType(
     const std::tstring_t &csVolumePath

@@ -27,10 +27,7 @@
 #include <Test/Common/CxTest_CxConsole.h>
 #include <Test/Common/CxTest_CxCommandLine.h>
 #include <Test/Common/CxTest_CxShell.h>
-
-#if xOS_ENV_WIN
-    #include <Test/Common/Win/CxTest_CxCom.h>
-#endif
+#include <Test/Common/Win/CxTest_CxCom.h>
 
 // Crypt
 #include <Test/Crypt/CxTest_CxBase64.h>
@@ -104,15 +101,11 @@
 #include <Test/Gui/Dialogs/CxTest_CxMsgBoxT.h>
 
 // Units
-//TODO: test Units
+// TODO: test Units
 #include <Test/Units/CxTest_Draft.h>
 //---------------------------------------------------------------------------
 int
-xTMAIN(
-    int      iArgCount,
-    tchar_t *paszArgs[]
-)
-{
+xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
     //--------------------------------------------------
     // set commandline args for xLib
     {
@@ -169,7 +162,7 @@ xTMAIN(
     {
         CxTestManager tmManager(bIsUseTracing);
 
-        //Common
+        // Common
         (void)tmManager.bAdd(new CxTest_CxMacros);
         (void)tmManager.bAdd(new CxTest_CxHandleT);
         (void)tmManager.bAdd(new CxTest_CxType);
@@ -184,12 +177,7 @@ xTMAIN(
         (void)tmManager.bAdd(new CxTest_CxConsole);
         (void)tmManager.bAdd(new CxTest_CxCommandLine);
         (void)tmManager.bAdd(new CxTest_CxShell);
-
-    #if xOS_ENV_WIN
         (void)tmManager.bAdd(new CxTest_CxCom);
-    #elif xOS_ENV_UNIX
-
-    #endif
 
         // Crypt
         (void)tmManager.bAdd(new CxTest_CxCrc32);
@@ -201,7 +189,7 @@ xTMAIN(
 
         // Db
         (void)tmManager.bAdd(new CxTest_CxConnectionString);
-        //(void)tmManager.bAdd(new CxTest_CxMySql);
+        // (void)tmManager.bAdd(new CxTest_CxMySql);
 
         // Debug
         (void)tmManager.bAdd(new CxTest_CxStdError);
@@ -220,7 +208,7 @@ xTMAIN(
         (void)tmManager.bAdd(new CxTest_CxFileTemp);
         (void)tmManager.bAdd(new CxTest_CxDll);
         (void)tmManager.bAdd(new CxTest_CxDir);
-        ////(void)tmManager.bAdd(new CxTest_CxVolume);
+        (void)tmManager.bAdd(new CxTest_CxVolume);
         (void)tmManager.bAdd(new CxTest_CxEnvironment);
         (void)tmManager.bAdd(new CxTest_CxLocalStorage);
         (void)tmManager.bAdd(new CxTest_CxBackuper);
@@ -236,19 +224,15 @@ xTMAIN(
         (void)tmManager.bAdd(new CxTest_CxCgi);
         (void)tmManager.bAdd(new CxTest_CxSocketInit);
         (void)tmManager.bAdd(new CxTest_CxDnsClient);
-        //(void)tmManager.bAdd(new CxTest_CxTcpClient);
-        //(void)tmManager.bAdd(new CxTest_CxTcpServer);
-        //(void)tmManager.bAdd(new CxTest_CxHttpClient);
+        // (void)tmManager.bAdd(new CxTest_CxTcpClient);
+        // (void)tmManager.bAdd(new CxTest_CxTcpServer);
+        // (void)tmManager.bAdd(new CxTest_CxHttpClient);
 
         // Patterns
         (void)tmManager.bAdd(new CxTest_CxSingleton);
 
         // Pkcs11
-    #if xOS_ENV_WIN
-        ////(void)tmManager.bAdd(new CxTest_CxPkcs11);
-    #elif xOS_ENV_UNIX
-
-    #endif
+        // (void)tmManager.bAdd(new CxTest_CxPkcs11);
 
         // Sync
         (void)tmManager.bAdd(new CxTest_CxAtomicLongInt);
