@@ -101,6 +101,25 @@ Build/Libs/VC++2010/*.sdf
 Build/Libs/VC++2010/*.opensdf
 Build/Libs/VC++2010/ipch
 
+##### VC++2012 #####
+Build/Tests/VC++2012/Debug/
+Build/Tests/VC++2012/Release/
+Build/Tests/VC++2012/*.ncb
+Build/Tests/VC++2012/*.suo
+Build/Tests/VC++2012/*.user
+Build/Tests/VC++2012/*.sdf
+Build/Tests/VC++2012/*.opensdf
+Build/Tests/VC++2012/ipch
+
+Build/Libs/VC++2012/Debug/
+Build/Libs/VC++2012/Release/
+Build/Libs/VC++2012/*.ncb
+Build/Libs/VC++2012/*.suo
+Build/Libs/VC++2012/*.user
+Build/Libs/VC++2012/*.sdf
+Build/Libs/VC++2012/*.opensdf
+Build/Libs/VC++2012/ipch
+
 
 ##### files #####
 TODO.txt

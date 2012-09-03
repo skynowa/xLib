@@ -49,9 +49,3 @@ class CxIpcSemaphore :
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxIpcSemaphoreH
-
-
-/*
-    SEM_VALUE_MAX
-
-*/

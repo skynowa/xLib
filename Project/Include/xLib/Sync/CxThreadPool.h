@@ -8,7 +8,6 @@
 #define xLib_Sync_CxThreadPoolH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
-#include <xLib/Common/xClosure.h>
 #include <xLib/Sync/CxIpcSemaphore.h>
 
 #include <list>
@@ -91,7 +90,7 @@ xNAMESPACE_END(NxLib)
 #include <xLib/Sync/CxMutex.h>
 #include <xLib/Sync/CxAutoMutex.h>
 #include <xLib/Sync/CxThread.h>
-#include <Sync/CxThreadPool.inl>
+#include "CxThreadPool.inl"
 
 #endif
 //---------------------------------------------------------------------------
