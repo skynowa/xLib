@@ -27,8 +27,8 @@ CxTest_bGetUsbInfo::bUnit(
     //bGetUsbInfo
     xTEST_CASE(cullCaseLoops)
     {
-        const std::tstring_t        csDrive = xT("I:");
-        std::vector<std::tstring_t> vsInfo;
+        const std::tstring_t csDrive = xT("I:");
+        std::vec_tstring_t   vsInfo;
 
         m_bRv = bGetUsbInfo(csDrive, &vsInfo);
         xTEST_EQ(true, m_bRv);
@@ -47,8 +47,8 @@ CxTest_bGetUsbInfo::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         #if xTEMP_DISABLED
-            const std::tstring_t        csDrive = xT("Y:");
-            std::vector<std::tstring_t> vsInfo;
+            const std::tstring_t csDrive = xT("Y:");
+            std::vec_tstring_t   vsInfo;
 
             m_bRv = bGetUsbInfo(csDrive, &vsInfo);
             xASSERT(true == m_bRv);

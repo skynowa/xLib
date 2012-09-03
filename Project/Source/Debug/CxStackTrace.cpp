@@ -46,10 +46,10 @@ CxStackTrace::~CxStackTrace() {
 //---------------------------------------------------------------------------
 bool
 CxStackTrace::bGet(
-    std::vector<std::tstring_t> *pvsStack
+    std::vec_tstring_t *pvsStack
 )
 {
-    std::vector<std::tstring_t> vsStack;
+    std::vec_tstring_t vsStack;
 
 #if xOS_ENV_WIN
     #if   xCOMPILER_MINGW32
@@ -144,7 +144,7 @@ CxStackTrace::sGet(
 {
     std::tstring_t sRv;
 
-    std::vector<std::tstring_t> vsStack;
+    std::vec_tstring_t vsStack;
 
     bool bRv = bGet(&vsStack);
     if (false == bRv) {

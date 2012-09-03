@@ -28,7 +28,7 @@ class CxVolume :
             ///< mount
         static bool           bUnMount (const std::tstring_t &csSourcePath, const bool cbIsForce);
             ///< unmount
-        static bool           bGetPaths(std::vector<std::tstring_t> *pvsVolumePaths);
+        static bool           bGetPaths(std::vec_tstring_t *pvsVolumePaths);
             ///< get paths
         static std::tstring_t sGetLabel(const std::tstring_t &csVolumePath);
             ///< get label

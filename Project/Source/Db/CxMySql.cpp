@@ -112,7 +112,7 @@ CxMySQLConnection::bIsExists(
         /*DEBUG*/xASSERT_RET(true == bRv,                false);
         /*DEBUG*/xASSERT_RET(1ULL == recRec.ullRowsNum(), false);
 
-        std::vector<std::tstring_t> vsRow;
+        std::vec_tstring_t vsRow;
 
         bRv = recRec.bFetchRow(&vsRow);
         /*DEBUG*/xASSERT_RET(true == bRv,         false);
@@ -360,7 +360,7 @@ CxMySQLRecordset::bFetchFields(
 //---------------------------------------------------------------------------
 bool
 CxMySQLRecordset::bFetchRow(
-    std::vector<std::tstring_t> *pvsRow
+    std::vec_tstring_t *pvsRow
 ) const
 {
     /*DEBUG*/xASSERT_RET(false != bIsValid(), false);

@@ -27,7 +27,7 @@ CxTest_CxStackTrace::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         CxStackTrace stStack;
-        std::vector<std::tstring_t> vsStack;
+        std::vec_tstring_t vsStack;
 
         m_bRv = stStack.bGet(&vsStack);
         //xTEST_EQ(true, m_bRv);

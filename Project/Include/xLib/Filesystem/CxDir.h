@@ -48,9 +48,9 @@ class CxDir :
         static bool           bDeleteForce(const std::tstring_t &csDirPath);
             ///< detetion dir fnd all content of it
 
-        static bool           bFindFiles  (const std::tstring_t &csDirPath, const std::tstring_t &cMask, const bool cbIsRecurse, std::vector<std::tstring_t> *pvsFilePathes);
+        static bool           bFindFiles  (const std::tstring_t &csDirPath, const std::tstring_t &cMask, const bool cbIsRecurse, std::vec_tstring_t *pvsFilePathes);
             ///< search files
-        static bool           bFindDirs   (const std::tstring_t &csDirPath, const std::tstring_t &cMask, const bool cbIsRecurse, std::vector<std::tstring_t> *pvsDirPathes);
+        static bool           bFindDirs   (const std::tstring_t &csDirPath, const std::tstring_t &cMask, const bool cbIsRecurse, std::vec_tstring_t *pvsDirPathes);
             ///< search subdirs
 
     private:

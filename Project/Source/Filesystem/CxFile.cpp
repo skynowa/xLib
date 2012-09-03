@@ -1210,17 +1210,17 @@ CxFile::bTextWrite(
 /*static*/
 bool
 CxFile::bTextRead(
-    const std::tstring_t        &csFilePath,
-    std::vector<std::tstring_t> *pvsContent
+    const std::tstring_t &csFilePath,
+    std::vec_tstring_t   *pvsContent
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),    false);
     /*DEBUG*/xASSERT_RET(true  == bIsExists(csFilePath), false);
     /*DEBUG*/xASSERT_RET(NULL  != pvsContent,            false);
 
-    bool                        bRv = false;
-    std::vector<std::tstring_t> vsRes;
-    std::tstring_t              sFileContent;
+    bool               bRv = false;
+    std::vec_tstring_t vsRes;
+    std::tstring_t     sFileContent;
 
     bRv = bTextRead(csFilePath, &sFileContent);
     /*DEBUG*/xASSERT_RET(true == bRv, false);
@@ -1237,8 +1237,8 @@ CxFile::bTextRead(
 /*static*/
 bool
 CxFile::bTextWrite(
-    const std::tstring_t              &csFilePath,
-    const std::vector<std::tstring_t> &cvsContent
+    const std::tstring_t     &csFilePath,
+    const std::vec_tstring_t &cvsContent
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
@@ -1260,9 +1260,9 @@ CxFile::bTextWrite(
 /*static*/
 bool
 CxFile::bTextRead(
-    const std::tstring_t                     &csFilePath,
-    const std::tstring_t                     &csSeparator,
-    std::map<std::tstring_t, std::tstring_t> *pmsContent
+    const std::tstring_t &csFilePath,
+    const std::tstring_t &csSeparator,
+    std::map_tstring_t   *pmsContent
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),    false);
@@ -1281,9 +1281,9 @@ CxFile::bTextRead(
     /*DEBUG*/xASSERT_RET(ifsStream.is_open(), false);
     /*DEBUG*/xASSERT_RET(!ifsStream.eof(),    false);
 
-    std::map<std::tstring_t, std::tstring_t> msRv;
-    std::tstring_t                           sLine;
-    std::vector<std::tstring_t>              vsLine;
+    std::map_tstring_t msRv;
+    std::tstring_t     sLine;
+    std::vec_tstring_t vsLine;
 
     for (size_t i = 0; !ifsStream.eof(); ++ i) {
         std::getline(ifsStream, sLine);
@@ -1301,16 +1301,16 @@ CxFile::bTextRead(
 
 
 #if xTODO
-    bool                                     bRv = false;
-    std::map<std::tstring_t, std::tstring_t> msRv;
-    std::vector<std::tstring_t>              vsRes;
+    bool               bRv = false;
+    std::map_tstring_t msRv;
+    std::vec_tstring_t vsRes;
 
     bRv = bTextRead(csFilePath, &vsRes);
     /*DEBUG*/xASSERT_RET(true == bRv, false);
 
-    std::vector<std::tstring_t>::_const_iterator it;
+    std::vec_tstring_t::_const_iterator it;
     for (it = vsRes.begin(); it != vsRes.end(); ++ it) {
-        std::vector<std::tstring_t> vsLine;
+        std::vec_tstring_t vsLine;
 
         bRv = CxString::bSplit(vsRes.at(0), csSeparator, &vsLine);
         /*DEBUG*/xASSERT_RET(true == bRv, false);
@@ -1328,9 +1328,9 @@ CxFile::bTextRead(
 /*static*/
 bool
 CxFile::bTextWrite(
-    const std::tstring_t                           &csFilePath,
-    const std::tstring_t                           &csSeparator,
-    const std::map<std::tstring_t, std::tstring_t> &cmsContent
+    const std::tstring_t     &csFilePath,
+    const std::tstring_t     &csSeparator,
+    const std::map_tstring_t &cmsContent
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),  false);
@@ -1345,7 +1345,7 @@ CxFile::bTextWrite(
     bRv = stdFile.bCreate(csFilePath, omWrite, true);
     /*DEBUG*/xASSERT_RET(true == bRv, false);
 
-    typedef std::map<std::tstring_t, std::tstring_t> TContent;
+    typedef std::map_tstring_t TContent;
 
     xFOREACH_CONST(TContent, it, cmsContent) {
         bRv = stdFile.bWriteLine((*it).first + csSeparator + (*it).second);

@@ -176,9 +176,9 @@ CxString::sRemoveAll(
 /*static*/
 bool
 CxString::bSplit(
-    const std::tstring_t        &csStr,
-    const std::tstring_t        &csSep,
-    std::vector<std::tstring_t> *pvsOut
+    const std::tstring_t &csStr,
+    const std::tstring_t &csSep,
+    std::vec_tstring_t   *pvsOut
 )
 {
     /*DEBUG*/// csStr    - n/a
@@ -189,9 +189,9 @@ CxString::bSplit(
     xCHECK_RET(true == csSep.empty(), true);
     xCHECK_RET(NULL == pvsOut,        false);
 
-    std::vector<std::tstring_t> vsRes;
-    size_t                    uiPrevPos = 0;     //start of string
-    size_t                    uiPos     = 0;
+    std::vec_tstring_t vsRes;
+    size_t             uiPrevPos = 0;     //start of string
+    size_t             uiPos     = 0;
 
     for ( ; ; ) {
         uiPos = csStr.find(csSep, uiPrevPos);
@@ -212,8 +212,8 @@ CxString::bSplit(
 /*static*/
 std::tstring_t
 CxString::sJoin(
-    const std::vector<std::tstring_t> &cvsVec,
-    const std::tstring_t              &csSep
+    const std::vec_tstring_t &cvsVec,
+    const std::tstring_t     &csSep
 )
 {
     /*DEBUG*/// cvsVec - n/a
@@ -221,7 +221,7 @@ CxString::sJoin(
 
     std::tstring_t sRv;
 
-    xFOREACH_CONST(std::vector<std::tstring_t>, it, cvsVec) {
+    xFOREACH_CONST(std::vec_tstring_t, it, cvsVec) {
         sRv.append(*it);
 
         xCHECK_DO(it < cvsVec.end() - 1, sRv.append(csSep));
@@ -233,8 +233,8 @@ CxString::sJoin(
 /*static*/
 std::tstring_t
 CxString::sJoin(
-    const std::vector<std::tstring_t> &cvsVec,
-    const tchar_t                      cchSep
+    const std::vec_tstring_t &cvsVec,
+    const tchar_t             cchSep
 )
 {
     /*DEBUG*/// cvsVec - n/a

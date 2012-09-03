@@ -692,7 +692,7 @@ CxTest_CxPath::bUnit(
     //sGetAbsolute
     xTEST_CASE(cullCaseLoops)
     {
-        std::vector<std::tstring_t> vsArgs;
+        std::vec_tstring_t vsArgs;
 
         m_bRv = CxCommandLine::bGetArgs(&vsArgs);
         xTEST_EQ(true, m_bRv);

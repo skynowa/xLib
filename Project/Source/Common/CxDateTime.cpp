@@ -1078,7 +1078,7 @@ CxDateTime::_bParse(
                 sDT = CxString::sReplaceAll(sDT, CxConst::xHYPHEN, CxConst::xSPACE);
 
                 //split by separator " "
-                std::vector<std::tstring_t> vsDates;
+                std::vec_tstring_t vsDates;
 
                 bRv = CxString::bSplit(sDT, CxConst::xSPACE, &vsDates);
                 /*DEBUG*/xASSERT_RET(true == bRv, false);

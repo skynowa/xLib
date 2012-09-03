@@ -62,7 +62,7 @@ CxMimeHeader::bParse(
 
     */
 
-    std::vector<std::tstring_t> vsHeader;
+    std::vec_tstring_t vsHeader;
     _m_bRes = CxString::bSplit(csRawHeader, _ms_csEndOfLine, &vsHeader);
     /*DEBUG*///TODO:
 
@@ -107,7 +107,7 @@ CxMimeHeader::bParse(
     //-------------------------------------
     //std::vector -> std::map
     for (size_t i = 0; i < vsHeader.size(); i ++) {
-        std::vector<std::tstring_t> vsLines;
+        std::vec_tstring_t vsLines;
         //--vsLines = vsSplit(": ", vsHeader.at(i));
         _m_bRes = CxString::bSplitKeyValue(vsHeader.at(i), _ms_csAttrDelimiter, &vsLines);
         /*DEBUG*/xASSERT_RET(false != _m_bRes,           false);
@@ -135,9 +135,9 @@ CxMimeHeader::sGetField(
 
     std::tstring_t sRv;
 
-    std::pair<std::multimap<std::tstring_t, std::tstring_t>::const_iterator, std::multimap<std::tstring_t, std::tstring_t>::const_iterator> prEqualRange = _m_mmsHeader.equal_range(csName);
+    std::pair<std::mmap_tstring_t::const_iterator, std::mmap_tstring_t::const_iterator> prEqualRange = _m_mmsHeader.equal_range(csName);
 
-    std::multimap<std::tstring_t, std::tstring_t>::const_iterator it;
+    std::mmap_tstring_t::const_iterator it;
     for (it = prEqualRange.first; it != prEqualRange.second; ++ it) {
         sRv = (*it).second;
     }

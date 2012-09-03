@@ -67,9 +67,9 @@ CxTest_CxBlowfish::bUnit(
     {
         CxBlowfish BF;
         std::tstring_t sKey           = xT("888888888");
-        std::tstring_t sFilePlain     = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.Plain.txt");
-        std::tstring_t sFileEncrypted = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.Encrypted.txt");
-        std::tstring_t sFileDecrypted = sGetWorkDirPath() + CxConst::xSLASH + xT("Test.FileDecrypted.txt");
+        std::tstring_t sFilePlain     = sGetTempDirPath() + CxConst::xSLASH + xT("Test.Plain.txt");
+        std::tstring_t sFileEncrypted = sGetTempDirPath() + CxConst::xSLASH + xT("Test.Encrypted.txt");
+        std::tstring_t sFileDecrypted = sGetTempDirPath() + CxConst::xSLASH + xT("Test.FileDecrypted.txt");
 
         //prepare
         {

@@ -124,9 +124,9 @@ CxTest_CxDnsClient::bUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(cszProtocolNames); ++ i) {
-            std::tstring_t              sName;
-            std::vector<std::tstring_t> vsAliases;
-            short_t                siNumber = - 1;
+            std::tstring_t     sName;
+            std::vec_tstring_t vsAliases;
+            short_t            siNumber = - 1;
 
             m_bRv = CxDnsClient::bGetProtocolByName(cszProtocolNames[i], &sName, &vsAliases, &siNumber);
             xTEST_EQ(true, m_bRv);
@@ -150,9 +150,9 @@ CxTest_CxDnsClient::bUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(ciProtocolNumbers); ++ i) {
-            std::tstring_t              sName;
-            std::vector<std::tstring_t> vsAliases;
-            short_t                siNumber = - 1;
+            std::tstring_t     sName;
+            std::vec_tstring_t vsAliases;
+            short_t            siNumber = - 1;
 
             m_bRv = CxDnsClient::bGetProtocolByNumber(ciProtocolNumbers[i], &sName, &vsAliases, &siNumber);
             xTEST_EQ(true, m_bRv);
@@ -171,12 +171,12 @@ CxTest_CxDnsClient::bUnit(
     //-------------------------------------
     //bGetServiceByName
     {
-        std::tstring_t              csServiceName  = xT("http");
-        const tchar_t          cszProtocolNames[][10] = {xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"), xT("pup"), xT("udp"), xT("hmp"), xT("xns-idp"), xT("rdp") };
-        std::tstring_t              sName;
-        std::vector<std::tstring_t> vsAliases;
-        short_t                siPort;
-        std::tstring_t              sProtocolName;
+        std::tstring_t     csServiceName  = xT("http");
+        const tchar_t      cszProtocolNames[][10] = {xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"), xT("pup"), xT("udp"), xT("hmp"), xT("xns-idp"), xT("rdp") };
+        std::tstring_t     sName;
+        std::vec_tstring_t vsAliases;
+        short_t            siPort;
+        std::tstring_t     sProtocolName;
 
         m_bRv = CxDnsClient::bGetServiceByName(csServiceName, cszProtocolNames[3], &sName, &vsAliases, &siPort, &sProtocolName);
         xTEST_EQ(true, m_bRv);
@@ -196,12 +196,12 @@ CxTest_CxDnsClient::bUnit(
     //-------------------------------------
     //bGetServiceByPort
     {
-        short_t                     csiPort  = 20480;
-        const tchar_t               cszProtocolNames[][10] = {xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"), xT("pup"), xT("udp"), xT("hmp"), xT("xns-idp"), xT("rdp") };
-        std::tstring_t              sName;
-        std::vector<std::tstring_t> vsAliases;
-        short_t                     siPort = - 1;
-        std::tstring_t              sProtocolName;
+        short_t            csiPort  = 20480;
+        const tchar_t      cszProtocolNames[][10] = {xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"), xT("pup"), xT("udp"), xT("hmp"), xT("xns-idp"), xT("rdp") };
+        std::tstring_t     sName;
+        std::vec_tstring_t vsAliases;
+        short_t            siPort = - 1;
+        std::tstring_t     sProtocolName;
 
         m_bRv = CxDnsClient::bGetServiceByPort(csiPort, cszProtocolNames[3], &sName, &vsAliases, &siPort, &sProtocolName);
         xTEST_EQ(true, m_bRv);

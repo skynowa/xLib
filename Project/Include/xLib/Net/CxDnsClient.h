@@ -29,15 +29,15 @@ class CxDnsClient :
             ///< get host addr info
 
         //protocol
-        static bool bGetProtocolByName  (const std::tstring_t &csProtocolName, std::tstring_t *psName, std::vector<std::tstring_t> *pvsAliases, short_t *psiNumber);
+        static bool bGetProtocolByName  (const std::tstring_t &csProtocolName, std::tstring_t *psName, std::vec_tstring_t *pvsAliases, short_t *psiNumber);
             ///< get protocol by name
-        static bool bGetProtocolByNumber(short_t siNumber, std::tstring_t *psName, std::vector<std::tstring_t> *pvsAliases, short_t *psiNum);
+        static bool bGetProtocolByNumber(short_t siNumber, std::tstring_t *psName, std::vec_tstring_t *pvsAliases, short_t *psiNum);
             ///< get protocol by number
 
         //service
-        static bool bGetServiceByName   (const std::tstring_t &csServiceName, const std::tstring_t &csProtocolName, std::tstring_t *psName, std::vector<std::tstring_t> *pvsAliases, short_t *psiPort,  std::tstring_t *psProtocolName);
+        static bool bGetServiceByName   (const std::tstring_t &csServiceName, const std::tstring_t &csProtocolName, std::tstring_t *psName, std::vec_tstring_t *pvsAliases, short_t *psiPort,  std::tstring_t *psProtocolName);
             ///< get service by name
-        static bool bGetServiceByPort   (short_t siPort, const std::tstring_t &csProtocolName, std::tstring_t *psName, std::vector<std::tstring_t> *pvsAliases, short_t *psiPort,  std::tstring_t *psProtocolName);
+        static bool bGetServiceByPort   (short_t siPort, const std::tstring_t &csProtocolName, std::tstring_t *psName, std::vec_tstring_t *pvsAliases, short_t *psiPort,  std::tstring_t *psProtocolName);
             ///< get service by port
 
         static bool bIsOnLan            (const ulong_t culIp);

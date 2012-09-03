@@ -288,10 +288,10 @@ CxObject::bGetData(
 //--------------------------------------------------------------------------
 bool
 CxObject::bGetData(
-    CK_SLOT_ID                 ulSlotId,
-    const std::ustring_t        &cusUserPin,
-    std::vector<std::ustring_t> *pusDataLabel,
-    std::vector<std::ustring_t> *pusDataValue
+    CK_SLOT_ID            ulSlotId,
+    const std::ustring_t &cusUserPin,
+    std::vec_ustring_t   *pusDataLabel,
+    std::vec_ustring_t   *pusDataValue
 )
 {
     /*DEBUG*/// ulSlotId - n/a

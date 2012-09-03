@@ -39,7 +39,7 @@ class CxThreadPool :
         const bool                _m_cbIsGroupPaused;
         const bool                _m_cbIsGroupAutoDelete;
 
-        mutable CxIpcSemaphore       _m_semSemaphore;
+        mutable CxIpcSemaphore    _m_semSemaphore;
         std::list<TaskT *>        _m_lstpthTasks;
 
         size_t                    _m_uiMaxRunningTasks;
@@ -47,7 +47,7 @@ class CxThreadPool :
         size_t                    _m_uiCurrTask;
 
         //static
-        static CxMutex  _m_csList;
+        static CxMutex            _m_csList;
         static CxConsoleLog       _m_clLog;
 
         bool                      _bAddTask    (CxThread *pvItem);

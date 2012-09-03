@@ -71,7 +71,7 @@ CxPath::sGetExe() {
 
             sRv.resize(uiResSize);
         #else
-            std::vector<std::tstring_t> vsArgs;
+            std::vec_tstring_t vsArgs;
 
             bool bRv = CxCommandLine::bGetArgs(&vsArgs);
             /*DEBUG*/xASSERT_RET(true  == bRv,                      std::tstring_t());

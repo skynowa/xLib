@@ -158,12 +158,12 @@ CxEnvironment::bDeleteVar(
 /*static*/
 bool
 CxEnvironment::bGetValues(
-    std::vector<std::tstring_t> *pvsValues
+    std::vec_tstring_t *pvsValues
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != pvsValues, false);
 
-    std::vector<std::tstring_t> vsArgs;
+    std::vec_tstring_t vsArgs;
 
 #if xOS_ENV_WIN
     LPTSTR pszVar = NULL;
