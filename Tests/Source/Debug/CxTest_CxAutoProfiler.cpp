@@ -22,7 +22,7 @@ CxTest_CxAutoProfiler::bUnit(
     const ulonglong_t cullCaseLoops
 )
 {
-    const CxProfiler::EMode pmPerformMode[] = {
+    const CxProfiler::ExMode pmPerformMode[] = {
             CxProfiler::pmStdClock,
             CxProfiler::pmDateTime,
         #if xOS_ENV_WIN

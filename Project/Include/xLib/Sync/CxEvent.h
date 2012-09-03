@@ -25,7 +25,7 @@ class CxEvent :
         typedef pthread_cond_t  handle_t;   ///< handle
     #endif
 
-        enum EObjectState
+        enum ExObjectState
             /// current object state
         {
             #if xOS_ENV_WIN
@@ -51,7 +51,7 @@ class CxEvent :
             ///< signal the event for the waiting thread (!!! unlock !!!)
         bool              bReset     ();
             ///< once signaled, the event class must be "reset" before responding to a new signal
-        EObjectState      osWait     (const ulong_t culTimeout = xTIMEOUT_INFINITE);
+        ExObjectState     osWait     (const ulong_t culTimeout = xTIMEOUT_INFINITE);
             ///< wait either for the cxevent to be signaled by another thread or for the specified timeout duration
         bool              bIsSignaled();
             ///< is signaled

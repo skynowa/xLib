@@ -1202,7 +1202,7 @@ CxTest_CxFile::bUnitPrivate(
     #if xTODO
     xTEST_CASE(cullCaseLoops)
     {
-        const CxFile::EOpenMode comMode = CxFile::omOpenReadWrite;
+        const CxFile::ExOpenMode comMode = CxFile::omOpenReadWrite;
 
         CxFile sfFile;
 
@@ -1221,7 +1221,7 @@ CxTest_CxFile::bUnitPrivate(
     //_sGetOpenMode
     xTEST_CASE(cullCaseLoops)
     {
-        std::vector< std::pair<CxFile::EOpenMode, std::tstring_t> > vpData;
+        std::vector< std::pair<CxFile::ExOpenMode, std::tstring_t> > vpData;
 
         vpData.push_back( std::make_pair(CxFile::omRead,               xT("r")) );
         vpData.push_back( std::make_pair(CxFile::omWrite,              xT("w")) );

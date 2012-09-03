@@ -23,7 +23,7 @@ namespace NxCgi {
         /// CGI environment
     {
         public:
-            enum ERequestMethod
+            enum ExRequestMethod
                 /// request method
             {
                 rmUknown,
@@ -97,7 +97,7 @@ namespace NxCgi {
             const std::tstring_t &sGetCountryCode       () const;
                 ///< get country code
 
-            ERequestMethod        rmGetRequestMethod    () const;
+            ExRequestMethod       rmGetRequestMethod    () const;
                 ///< get request method
             std::tstring_t        sGetDump              () const;
                 ///< get dump
@@ -134,7 +134,7 @@ namespace NxCgi {
             std::tstring_t        _m_sHttpHost;            ///< HTTP host
             std::tstring_t        _m_sHttpAcceptLanguage;    ///< HTTP accept language
             std::tstring_t        _m_sCountryCode;        ///< country code
-            ERequestMethod        _m_rmRequestMethod;        ///< request method
+            ExRequestMethod       _m_rmRequestMethod;        ///< request method
 
             bool                  _bInit                ();
                 ///< initiate class data

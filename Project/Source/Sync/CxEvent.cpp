@@ -113,19 +113,19 @@ CxEvent::bReset() {
     return true;
 }
 //---------------------------------------------------------------------------
-CxEvent::EObjectState
+CxEvent::ExObjectState
 CxEvent::osWait(
     const ulong_t culTimeout /*= xTIMEOUT_INFINITE*/  ///< in milliseconds
 )
 {
     /*DEBUG*/// culTimeout - n/a
 
-    EObjectState osRes = osFailed;
+    ExObjectState osRes = osFailed;
 
 #if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(false != _m_hEvent.bIsValid(), osFailed);
 
-    osRes = static_cast<EObjectState>( ::WaitForSingleObject(hGet().hGet(), culTimeout) );
+    osRes = static_cast<ExObjectState>( ::WaitForSingleObject(hGet().hGet(), culTimeout) );
 #elif xOS_ENV_UNIX
     {
         CxAutoMutex acsAutoMutex(_m_mtMutex);

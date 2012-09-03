@@ -603,7 +603,7 @@ CxThread::_iGetPriorityMax() {
 //---------------------------------------------------------------------------
 bool
 CxThread::bSetPriority(
-    const EPriority &ctpPriority
+    const ExPriority &ctpPriority
 ) const
 {
 #if xOS_ENV_WIN
@@ -627,7 +627,7 @@ CxThread::bSetPriority(
     return true;
 }
 //---------------------------------------------------------------------------
-CxThread::EPriority
+CxThread::ExPriority
 CxThread::tpGetPriority() const {
 #if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), tpError);
@@ -635,10 +635,10 @@ CxThread::tpGetPriority() const {
 
 #endif
 
-    CxThread::EPriority tpRes = tpError;
+    CxThread::ExPriority tpRes = tpError;
 
 #if xOS_ENV_WIN
-    tpRes = static_cast<EPriority>( ::GetThreadPriority(_m_hThread.hGet()) );
+    tpRes = static_cast<ExPriority>( ::GetThreadPriority(_m_hThread.hGet()) );
     /*DEBUG*/xASSERT_RET(tpError != tpRes, tpError);
 #elif xOS_ENV_UNIX
     sched_param spParam  = {0};
@@ -647,7 +647,7 @@ CxThread::tpGetPriority() const {
     int iRv = ::pthread_getschedparam(ulGetId(), &iPolicy, &spParam);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), tpError);
 
-    tpRes = static_cast<EPriority>( spParam.sched_priority );
+    tpRes = static_cast<ExPriority>( spParam.sched_priority );
 #endif
 
     return tpRes;
@@ -679,8 +679,8 @@ CxThread::bPriorityUp() const {
 
 #endif
 
-    EPriority tpOldLevel  = tpError;
-    EPriority tpiNewLevel = tpError;
+    ExPriority tpOldLevel  = tpError;
+    ExPriority tpiNewLevel = tpError;
 
     tpOldLevel = tpGetPriority();
     switch (tpOldLevel) {
@@ -706,8 +706,8 @@ CxThread::bPriorityDown() const {
 
 #endif
 
-    EPriority tpOldLevel  = tpError;
-    EPriority tpiNewLevel = tpError;
+    ExPriority tpOldLevel  = tpError;
+    ExPriority tpiNewLevel = tpError;
 
     tpOldLevel = tpGetPriority();
     switch (tpOldLevel) {
@@ -1085,7 +1085,7 @@ CxThread::_s_uiJobEntry(
     //handle must be valid
     ////CxCurrentThread::bSleep(500UL);
 
-    CxEvent::EObjectState osRes = pthThis->_m_pevStarter->osWait(5000UL);   // not infinite timeout
+    CxEvent::ExObjectState osRes = pthThis->_m_pevStarter->osWait(5000UL);   // not infinite timeout
     xTEST_EQ(CxEvent::osSignaled, osRes);
     /*DEBUG*/xASSERT_RET(CxEvent::osSignaled == osRes, exit_status_t());
 
@@ -1172,7 +1172,7 @@ CxThread::_bWaitResumption() {
     /*_m_bIsPaused*///  n/a
     /*_m_bIsExited*///  n/a
 
-    CxEvent::EObjectState osRes = _m_evPause.osWait();
+    CxEvent::ExObjectState osRes = _m_evPause.osWait();
     /*DEBUG*/xASSERT_RET(CxEvent::osFailed   != osRes, false);
     /*DEBUG*/xASSERT_RET(CxEvent::osTimeout  != osRes, false);
     /*DEBUG*/xASSERT_RET(CxEvent::osSignaled == osRes, false);

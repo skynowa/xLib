@@ -18,7 +18,7 @@ class CxThread :
     /// thread
 {
     public:
-        enum EPriority
+        enum ExPriority
             /// priotity
         {
             #if xOS_ENV_WIN
@@ -98,9 +98,9 @@ class CxThread :
     #endif
 
         //priority
-        bool                 bSetPriority          (const EPriority &ctpPriority) const;
+        bool                 bSetPriority          (const ExPriority &ctpPriority) const;
             ///< set priority (under Linux must use admin privilege)
-        EPriority            tpGetPriority         () const;
+        ExPriority           tpGetPriority         () const;
             ///< get priotity
         std::tstring_t       sGetPriorityString    () const;
             ///< get priority as string

@@ -16,7 +16,7 @@ class CxPath :
     /// file system path
 {
     public:
-        enum EStandartExt
+        enum ExStandartExt
             /// standart extension
         {
             seExe,  ///< execute module
@@ -47,7 +47,7 @@ class CxPath :
             ///< get name without extension
         static std::tstring_t sGetExt         (const std::tstring_t &csFilePath);
             ///< get extension
-        static std::tstring_t sGetStandartExt (const EStandartExt cseFileExt);
+        static std::tstring_t sGetStandartExt (const ExStandartExt cseFileExt);
             ///< get standart extension
 
     #if xOS_ENV_WIN

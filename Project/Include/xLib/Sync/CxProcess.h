@@ -25,7 +25,7 @@ class CxProcess :
         typedef pid_t  id_t;     ///< ID
     #endif
 
-        enum EWaitResult
+        enum ExWaitResult
             /// wait result
         {
             #if   xOS_ENV_WIN
@@ -47,7 +47,7 @@ class CxProcess :
 
         bool            bCreate        (const std::tstring_t &csFilePath, const tchar_t *pcszParams, ...);
             ///< execute a file
-        EWaitResult     ulWait         (const ulong_t &culTimeout);
+        ExWaitResult    ulWait         (const ulong_t &culTimeout);
             ///< wait for termonation
         bool            bKill          (const ulong_t &culTimeout);
             ///< kills the calling process and all of its threads

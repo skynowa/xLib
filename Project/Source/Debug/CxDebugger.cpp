@@ -260,9 +260,9 @@ CxDebugger::_bMsgboxPlain(
         ulong_t ulType = 1UL;
     #endif
 
-    CxMsgBoxT::EModalResult mrRes = CxMsgBoxT::iShow(crpReport.m_sReport, CxPath::sGetExe(), ulType);
+    CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::iShow(crpReport.m_sReport, CxPath::sGetExe(), ulType);
 #else
-    CxMsgBoxT::EModalResult mrRes = CxMsgBoxT::mrIgnore;
+    CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::mrIgnore;
 #endif
     switch (mrRes) {
         case CxMsgBoxT::mrAbort: {
@@ -301,9 +301,9 @@ CxDebugger::_bMsgboxFormated(
     //-------------------------------------
     //show message
     #if xDEBUG_USE_PROMPT_DIALOG
-        CxMsgBoxRtf::EModalResult mrRes = CxMsgBoxRtf::iShow(NULL, crpReport.m_sReport, CxPath::sGetExe());
+        CxMsgBoxRtf::ExModalResult mrRes = CxMsgBoxRtf::iShow(NULL, crpReport.m_sReport, CxPath::sGetExe());
     #else
-        CxMsgBoxRtf::EModalResult mrRes = CxMsgBoxRtf::mrIgnore;
+        CxMsgBoxRtf::ExModalResult mrRes = CxMsgBoxRtf::mrIgnore;
     #endif
     switch (mrRes) {
         case CxMsgBoxRtf::mrAbort: {

@@ -19,11 +19,11 @@ class CxDnsClient :
     public:
         static bool bGetHostAddrByName  (const std::tstring_t &csHostName, std::tstring_t *psHostAddr);
             ///< get host address by name
-        static bool bGetHostNameByAddr  (const std::tstring_t &csHostAddr, CxSocket::EAddressFamily afFamily, std::tstring_t *psHostName);
+        static bool bGetHostNameByAddr  (const std::tstring_t &csHostAddr, CxSocket::ExAddressFamily afFamily, std::tstring_t *psHostName);
             ///< get host name by address
         static bool bGetLocalHostName   (std::tstring_t *psHostName);
             ///< get local host name
-        static bool bGetNameInfo        (CxSocket::EAddressFamily afFamily, const std::tstring_t &csHostAddr, ushort_t usPort);
+        static bool bGetNameInfo        (CxSocket::ExAddressFamily afFamily, const std::tstring_t &csHostAddr, ushort_t usPort);
             ///< get name info
         static bool bGetHostAddrInfo    (const std::tstring_t &csHostName, const std::tstring_t &csPort, const addrinfo_t *pHints, addrinfo_t **ppResult);
             ///< get host addr info

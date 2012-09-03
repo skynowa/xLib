@@ -16,7 +16,7 @@ class CxBackuper :
     /// backup file
 {
     public:
-        enum EErrorType
+        enum ExErrorType
             /// error type
         {
             etUnknown,
@@ -26,7 +26,7 @@ class CxBackuper :
             etCopyingFail
         };
 
-        enum EBackupPeriod
+        enum ExBackupPeriod
             /// backup period
         {
             bpUnknown,
@@ -36,16 +36,16 @@ class CxBackuper :
             //TODO: bpMonthly
         };
 
-        explicit            CxBackuper(const EBackupPeriod cbpPeriod);
+        explicit             CxBackuper(const ExBackupPeriod cbpPeriod);
             ///< constructor
-        virtual            ~CxBackuper();
+        virtual             ~CxBackuper();
             ///< destructor
 
-        EErrorType          etExecute (const std::tstring_t &csFilePath, const std::tstring_t &csDestDirPath, std::tstring_t *psDestFilePath);
+        ExErrorType          etExecute (const std::tstring_t &csFilePath, const std::tstring_t &csDestDirPath, std::tstring_t *psDestFilePath);
             ///< backup
 
     private:
-        const EBackupPeriod _m_cbpPeriod;  ///< backup period
+        const ExBackupPeriod _m_cbpPeriod;  ///< backup period
 
 };
 

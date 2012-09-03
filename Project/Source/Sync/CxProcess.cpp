@@ -104,18 +104,18 @@ CxProcess::bCreate(
     return true;
 }
 //---------------------------------------------------------------------------
-CxProcess::EWaitResult
+CxProcess::ExWaitResult
 CxProcess::ulWait(
     const ulong_t &culTimeout
 )
 {
-    EWaitResult wrStatus = wrFailed;
+    ExWaitResult wrStatus = wrFailed;
 
 #if xOS_ENV_WIN
     DWORD ulRv = ::WaitForSingleObject(_m_hHandle, culTimeout);
-    /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == ulRv, static_cast<EWaitResult>( ulRv ));
+    /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == ulRv, static_cast<ExWaitResult>( ulRv ));
 
-    wrStatus = static_cast<EWaitResult>( ulRv );
+    wrStatus = static_cast<ExWaitResult>( ulRv );
 #elif xOS_ENV_UNIX
     pid_t liRv    = - 1L;
     int   iStatus = 0;
@@ -124,10 +124,10 @@ CxProcess::ulWait(
         liRv = ::waitpid(_m_ulPid, &iStatus, 0);
     }
     while (liRv < 0L && EINTR == CxLastError::ulGet());
-    /*DEBUG*/xASSERT_RET(liRv == _m_ulPid, static_cast<EWaitResult>( iStatus ));
+    /*DEBUG*/xASSERT_RET(liRv == _m_ulPid, static_cast<ExWaitResult>( iStatus ));
 
     _m_uiExitStatus = WEXITSTATUS(iStatus);
-    wrStatus        = static_cast<EWaitResult>( WEXITSTATUS(iStatus) );
+    wrStatus        = static_cast<ExWaitResult>( WEXITSTATUS(iStatus) );
 #endif
 
     return wrStatus;

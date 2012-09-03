@@ -21,17 +21,17 @@ xNAMESPACE_BEGIN(NxLib)
 
 template <class TextT, class TitleT>
 /*static*/
-CxMsgBoxT::EModalResult
+CxMsgBoxT::ExModalResult
 CxMsgBoxT::iShow(
     const HWND    chWnd,
     const TextT  &cText,
     const TitleT &cTitle,
-    const uint_t    cuiType
+    const uint_t  cuiType
 )
 {
-    EModalResult mrRes = mrAbort;
+    ExModalResult mrRes = mrAbort;
 
-    mrRes = static_cast<EModalResult>( ::MessageBox(
+    mrRes = static_cast<ExModalResult>( ::MessageBox(
                             chWnd,
                             CxString::lexical_cast(cText).c_str(),
                             CxString::lexical_cast(cTitle).c_str(),
@@ -44,17 +44,17 @@ CxMsgBoxT::iShow(
 //---------------------------------------------------------------------------
 template <class TextT, class TitleT>
 /*static*/
-CxMsgBoxT::EModalResult
+CxMsgBoxT::ExModalResult
 CxMsgBoxT::iShow(
     const TextT  &cText,
     const TitleT &cTitle,
     const uint_t    cuiType
 )
 {
-    EModalResult mrRes = mrAbort;
+    ExModalResult mrRes = mrAbort;
 
 #if xOS_ENV_WIN
-    mrRes = static_cast<EModalResult>( ::MessageBox(
+    mrRes = static_cast<ExModalResult>( ::MessageBox(
                             NULL,
                             CxString::lexical_cast(cText).c_str(),
                             CxString::lexical_cast(cTitle).c_str(),
@@ -66,7 +66,7 @@ CxMsgBoxT::iShow(
                             CxString::lexical_cast(cTitle).c_str(),
                             xT("Abort, Ignore, Retry"));
 
-    mrRes = static_cast<EModalResult>( std::xTSYSTEM(sMsg.c_str()) );
+    mrRes = static_cast<ExModalResult>( std::xTSYSTEM(sMsg.c_str()) );
 #endif
 
     return mrRes;
@@ -74,16 +74,16 @@ CxMsgBoxT::iShow(
 //---------------------------------------------------------------------------
 template <class TextT, class TitleT>
 /*static*/
-CxMsgBoxT::EModalResult
+CxMsgBoxT::ExModalResult
 CxMsgBoxT::iShow(
     const TextT  &cText,
     const TitleT &cTitle
 )
 {
-    EModalResult mrRes = mrAbort;
+    ExModalResult mrRes = mrAbort;
 
 #if xOS_ENV_WIN
-    mrRes = static_cast<EModalResult>( ::MessageBox(
+    mrRes = static_cast<ExModalResult>( ::MessageBox(
                             NULL,
                             CxString::lexical_cast(cText).c_str(),
                             CxString::lexical_cast(cTitle).c_str(),
@@ -95,7 +95,7 @@ CxMsgBoxT::iShow(
                             CxString::lexical_cast(cTitle).c_str(),
                             xT("Ok"));
 
-    mrRes = static_cast<EModalResult>( std::xTSYSTEM(sMsg.c_str()) );
+    mrRes = static_cast<ExModalResult>( std::xTSYSTEM(sMsg.c_str()) );
 #endif
 
     return mrRes;
@@ -103,15 +103,15 @@ CxMsgBoxT::iShow(
 //---------------------------------------------------------------------------
 template <class TextT>
 /*static*/
-CxMsgBoxT::EModalResult
+CxMsgBoxT::ExModalResult
 CxMsgBoxT::iShow(
     const TextT &cText
 )
 {
-    EModalResult mrRes = mrAbort;
+    ExModalResult mrRes = mrAbort;
 
 #if xOS_ENV_WIN
-    mrRes = static_cast<EModalResult>( ::MessageBox(
+    mrRes = static_cast<ExModalResult>( ::MessageBox(
                             NULL,
                             CxString::lexical_cast(cText).c_str(),
                             CxPath::sGetFileName( CxPath::sGetExe() ).c_str(),
@@ -123,7 +123,7 @@ CxMsgBoxT::iShow(
                             xT("Message box"),
                             xT("Ok"));
 
-    mrRes = static_cast<EModalResult>( std::xTSYSTEM(sMsg.c_str()) );
+    mrRes = static_cast<ExModalResult>( std::xTSYSTEM(sMsg.c_str()) );
 #endif
 
     return mrRes;

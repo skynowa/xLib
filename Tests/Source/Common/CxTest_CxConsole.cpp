@@ -110,7 +110,7 @@ CxTest_CxConsole::bUnit(
 
             CxConsole cnConsole;
 
-            CxConsole::EModalResult mrRes = cnConsole.iMsgBox(csText, csTitle, cuiType);
+            CxConsole::ExModalResult mrRes = cnConsole.iMsgBox(csText, csTitle, cuiType);
             xUNUSED(mrRes);
         #endif
     }

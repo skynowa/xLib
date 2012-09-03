@@ -36,7 +36,7 @@ class CxVolume :
             ///< set label
 
 
-        enum EType
+        enum ExType
             /// filesystem type
         {
             #if   xOS_ENV_WIN
@@ -59,7 +59,7 @@ class CxVolume :
             #endif
         };
 
-        static EType          dtGetType(const std::tstring_t &csVolumePath);
+        static ExType         dtGetType(const std::tstring_t &csVolumePath);
 
     private:
                               CxVolume ();

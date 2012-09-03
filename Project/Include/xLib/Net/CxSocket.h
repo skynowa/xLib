@@ -16,7 +16,7 @@ class CxSocket :
     /// socket
 {
     public:
-        enum EAddressFamily
+        enum ExAddressFamily
             /// address family
         {
         #if xOS_ENV_WIN
@@ -65,7 +65,7 @@ class CxSocket :
         #endif
         };
 
-        enum EType
+        enum ExType
            /// type
         {
             tpStream      = SOCK_STREAM,
@@ -75,7 +75,7 @@ class CxSocket :
             tpSeqPacket   = SOCK_SEQPACKET
         };
 
-        enum EProtocol
+        enum ExProtocol
             /// protocol
         {
         #if xOS_ENV_WIN
@@ -150,7 +150,7 @@ class CxSocket :
         #endif
         };
 
-        enum EErrorType
+        enum ExErrorType
             /// errors
         {
         #if xOS_ENV_WIN
@@ -162,7 +162,7 @@ class CxSocket :
         #endif
         };
 
-        enum EOptions
+        enum ExOptions
             /// options
         {
             SOCKET_TIMEOUT   = 0,       ///< (1000000 / 10)
@@ -193,7 +193,7 @@ class CxSocket :
         *
         *****************************************************************************/
 
-        bool           bCreate        (EAddressFamily afFamily, EType tpType, EProtocol ptProtocol);
+        bool           bCreate        (ExAddressFamily afFamily, ExType tpType, ExProtocol ptProtocol);
             ///< creates a socket that is bound to a specific transport service provider
         socket_t       iGetSocket     () const;
             ///< get socket
