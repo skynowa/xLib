@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{392C4A8A-DB58-47DD-8F98-A54207110B74}</ProjectGuid>
+    <RootNamespace>StaticLib_VC2012</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxArray.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxChar.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxCommandLine.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxConsole.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxConst.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxDateTime.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxFunctorT.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxHandleErrorT.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxHandleT.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxLocale.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxMacros.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxNonAssignable.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxNonCopyable.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxProcessInfo.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxShell.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxString.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxSystemInfo.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxType.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\Win\CxCom.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\xCheks.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\xCommon.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\xCommon_Unix.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\xCommon_Win.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\xConfig.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\xDefines.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\xFunctions.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\xLinking.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\xTracing.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\xTypes.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\CxCrc32.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\CxRandom.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\OpenSSL\CxBase64.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\OpenSSL\CxBlowfish.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\All.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\Common.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxDecrypt.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxDigest.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxEncrypt.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxFunction.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxInfo.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxKey.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxLogin.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxMechanism.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxObject.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxPin.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxPkcs11.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxSession.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxSign.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxSlot.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxUtils.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxVerify.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\SDK\4.53\cryptoki.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\SDK\4.53\eTPkcs11.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\SDK\4.53\eTSAPI.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\SDK\4.53\otp-pkcs11.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\SDK\4.53\pkcs11.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\SDK\4.53\pkcs11f.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\SDK\4.53\pkcs11t.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Db\CxConnectionString.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Db\CxMySql.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Db\Win\CxAdo.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Debug\CxAutoProfiler.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Debug\CxDebugger.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Debug\CxErrorReport.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Debug\CxException.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Debug\CxLastError.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Debug\CxProfiler.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Debug\CxStackTrace.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Debug\CxStdError.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Debug\xDebug.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Filesystem\CxBackuper.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Filesystem\CxDir.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Filesystem\CxDll.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Filesystem\CxEnvironment.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Filesystem\CxFile.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Filesystem\CxFileAttribute.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Filesystem\CxFileTemp.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Filesystem\CxLocalStorage.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Filesystem\CxPath.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Filesystem\CxVolume.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Gui\Dialogs\CxMsgBoxT.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Gui\Win\Dialogs\CxInputBox.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Gui\Win\Dialogs\CxMsgBoxRtf.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Log\CxConsoleLog.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Log\CxFileLog.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Log\CxSystemLog.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Log\CxTraceLog.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Log\CxTracer.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Log\xLogs.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxCgi.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxCookiePv0.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxCookiePv1.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxDnsClient.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxHttpClient.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxMimeBody.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxMimeHeader.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxMimeMessage.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxPop3.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxSmtp.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxSocket.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxSocketInit.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxTcpClient.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxTcpServer.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxUri.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Patterns\CxSingleton.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxAtomicLongInt.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxAutoIpcMutex.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxAutoMutex.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxCurrentProcess.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxCurrentThread.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxEvent.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxIpcMutex.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxIpcSemaphore.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxMutex.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxProcess.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxSemaphore.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxSharedMemory.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxSleeper.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxThread.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxThreadPool.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxThreadStorage.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxWaitableTimer.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\Win\CxCompletionPort.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Test\CxTest.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Test\CxTestManager.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Units\Win\bDownloadURL.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Units\Win\bGetUsbInfo.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Project\Include\xLib\Common\CxArray.inl" />
+    <None Include="..\..\..\Project\Include\xLib\Common\CxFunctorT.inl" />
+    <None Include="..\..\..\Project\Include\xLib\Common\CxHandleT.inl" />
+    <None Include="..\..\..\Project\Include\xLib\Common\CxString.inl" />
+    <None Include="..\..\..\Project\Include\xLib\Common\CxType.inl" />
+    <None Include="..\..\..\Project\Include\xLib\Debug\CxErrorReport.inl" />
+    <None Include="..\..\..\Project\Include\xLib\Debug\CxException.inl" />
+    <None Include="..\..\..\Project\Include\xLib\Gui\Dialogs\CxMsgBoxT.inl" />
+    <None Include="..\..\..\Project\Include\xLib\Gui\Win\Dialogs\CxMsgBoxRtf.inl" />
+    <None Include="..\..\..\Project\Include\xLib\Sync\CxThreadPool.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Project\Source\Common\CxChar.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Common\CxCommandLine.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Common\CxConsole.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Common\CxConst.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Common\CxDateTime.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Common\CxLocale.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Common\CxProcessInfo.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Common\CxShell.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Common\CxString.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Common\CxSystemInfo.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Common\Win\CxCom.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Common\xCommon.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Crypt\CxCrc32.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Crypt\CxRandom.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Crypt\OpenSSL\CxBase64.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Crypt\OpenSSL\CxBlowfish.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxDecrypt.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxDigest.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxEncrypt.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxFunction.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxInfo.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxKey.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxLogin.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxMechanism.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxObject.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxPin.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxPkcs11.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxSession.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxSign.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxSlot.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxUtils.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxVerify.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Db\CxConnectionString.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Db\CxMySql.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Db\Win\CxAdo.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Debug\CxAutoProfiler.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Debug\CxDebugger.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Debug\CxErrorReport.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Debug\CxException.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Debug\CxLastError.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Debug\CxProfiler.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Debug\CxStackTrace.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Debug\CxStdError.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Filesystem\CxBackuper.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Filesystem\CxDir.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Filesystem\CxDll.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Filesystem\CxEnvironment.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Filesystem\CxFile.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Filesystem\CxFileAttribute.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Filesystem\CxFileTemp.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Filesystem\CxLocalStorage.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Filesystem\CxPath.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Filesystem\CxVolume.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Gui\Win\Dialogs\CxInputBox.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Log\CxConsoleLog.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Log\CxFileLog.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Log\CxSystemLog.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Log\CxTraceLog.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Log\CxTracer.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Net\CxCgi.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Net\CxCookiePv0.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Net\CxCookiePv1.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Net\CxDnsClient.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Net\CxHttpClient.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Net\CxMimeBody.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Net\CxMimeHeader.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Net\CxMimeMessage.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Net\CxPop3.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Net\CxSmtp.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Net\CxSocket.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Net\CxSocketInit.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Net\CxTcpClient.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Net\CxTcpServer.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Net\CxUri.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Sync\CxAtomicLongInt.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Sync\CxAutoIpcMutex.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Sync\CxAutoMutex.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Sync\CxCurrentProcess.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Sync\CxCurrentThread.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Sync\CxEvent.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Sync\CxIpcMutex.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Sync\CxIpcSemaphore.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Sync\CxMutex.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Sync\CxProcess.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Sync\CxSemaphore.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Sync\CxSharedMemory.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Sync\CxSleeper.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Sync\CxThread.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Sync\CxThreadStorage.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Sync\CxWaitableTimer.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Sync\Win\CxCompletionPort.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Test\CxTest.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Test\CxTestManager.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Units\Win\bDownloadURL.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Units\Win\bGetUsbInfo.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
