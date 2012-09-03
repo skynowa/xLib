@@ -31,7 +31,7 @@ CxIpcSemaphore::CxIpcSemaphore() :
 #endif
     _m_sName  ()
 {
-    /*DEBUG*/xASSERT_DO(false == _m_hHandle.bIsValid(), return);
+    /*DEBUG*/xASSERT_DO(false == _bIsValid(), return);
 
 #if xOS_ENV_WIN
     xNA;
@@ -41,7 +41,7 @@ CxIpcSemaphore::CxIpcSemaphore() :
 }
 //---------------------------------------------------------------------------
 CxIpcSemaphore::~CxIpcSemaphore() {
-    /*DEBUG*/xASSERT_DO(true == _m_hHandle.bIsValid(), return);
+    /*DEBUG*/xASSERT_DO(true == _bIsValid(), return);
 
 #if xOS_ENV_WIN
     xNA;
@@ -56,7 +56,7 @@ CxIpcSemaphore::~CxIpcSemaphore() {
 //---------------------------------------------------------------------------
 const CxIpcSemaphore::handle_t &
 CxIpcSemaphore::hGet() const {
-    /*DEBUG*/xASSERT(true == _m_hHandle.bIsValid());
+    /*DEBUG*/xASSERT(true == _bIsValid());
 
     return _m_hHandle;
 }
@@ -67,8 +67,8 @@ CxIpcSemaphore::bCreate(
     const std::tstring_t &csName
 )
 {
-    /*DEBUG*/xASSERT_RET(false                  == _m_hHandle.bIsValid(), false);
-    /*DEBUG*/xASSERT_RET(CxPath::uiGetMaxSize() >  csName.size(),         false);
+    /*DEBUG*/xASSERT_RET(false                  == _bIsValid(),   false);
+    /*DEBUG*/xASSERT_RET(CxPath::uiGetMaxSize() >  csName.size(), false);
     /*DEBUG*/xASSERT_RET(0L <= cliInitialValue && cliInitialValue <= xSEMAPHORE_VALUE_MAX, false);
 
 #if xOS_ENV_WIN
@@ -107,7 +107,7 @@ CxIpcSemaphore::bOpen(
     const std::tstring_t &csName
 )
 {
-    /*DEBUG*/xASSERT_RET(true == _m_hHandle.bIsValid(), false);
+    /*DEBUG*/xASSERT_RET(true == _bIsValid(), false);
     /*DEBUG*///csName    - n/a
 
 #if xOS_ENV_WIN
@@ -141,7 +141,7 @@ CxIpcSemaphore::bOpen(
 //---------------------------------------------------------------------------
 bool
 CxIpcSemaphore::bPost() const {
-    /*DEBUG*/xASSERT_RET(true == _m_hHandle.bIsValid(), false);
+    /*DEBUG*/xASSERT_RET(true == _bIsValid(), false);
 
 #if xOS_ENV_WIN
    const LONG cliPostValue = 1L;
@@ -161,7 +161,7 @@ CxIpcSemaphore::bWait(
     const ulong_t &culTimeoutMsec
 ) const
 {
-    /*DEBUG*/xASSERT_RET(true == _m_hHandle.bIsValid(), false);
+    /*DEBUG*/xASSERT_RET(true == _bIsValid(), false);
     /*DEBUG*///ulTimeout - n/a
 
 #if xOS_ENV_WIN
@@ -228,7 +228,7 @@ CxIpcSemaphore::bWait(
 //---------------------------------------------------------------------------
 long_t
 CxIpcSemaphore::liGetValue() const {
-    /*DEBUG*/xASSERT_RET(true == _m_hHandle.bIsValid(), - 1L);
+    /*DEBUG*/xASSERT_RET(true == _bIsValid(), - 1L);
 
     long_t liRv = - 1L;
 
