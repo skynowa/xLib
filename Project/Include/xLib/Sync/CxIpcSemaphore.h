@@ -1,8 +1,8 @@
 /**
  * \file  CxIpcSemaphore.h
- * \brief semaphore
+ * \brief semaphore (interprocess)
  */
-
+ 
 
 #ifndef xLib_Sync_CxIpcSemaphoreH
 #define xLib_Sync_CxIpcSemaphoreH
@@ -14,7 +14,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 class CxIpcSemaphore :
     private CxNonCopyable
-    /// semaphore
+    /// semaphore (interprocess)
 {
     public:
     #if xOS_ENV_WIN

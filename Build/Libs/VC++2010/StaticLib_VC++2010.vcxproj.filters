@@ -454,6 +454,9 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxIpcSemaphore.h">
       <Filter>xLib\Sync</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxSemaphore.h">
+      <Filter>xLib\Sync</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Project\Include\xLib\Common\CxArray.inl">
@@ -768,6 +771,9 @@
       <Filter>xLib\Sync</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Sync\CxIpcSemaphore.cpp">
+      <Filter>xLib\Sync</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Project\Source\Sync\CxSemaphore.cpp">
       <Filter>xLib\Sync</Filter>
     </ClCompile>
   </ItemGroup>

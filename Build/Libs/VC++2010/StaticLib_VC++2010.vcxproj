@@ -125,6 +125,7 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxIpcSemaphore.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxMutex.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxProcess.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxSemaphore.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxSharedMemory.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxSleeper.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxThread.h" />
@@ -234,6 +235,7 @@
     <ClCompile Include="..\..\..\Project\Source\Sync\CxIpcSemaphore.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Sync\CxMutex.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Sync\CxProcess.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Sync\CxSemaphore.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Sync\CxSharedMemory.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Sync\CxSleeper.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Sync\CxThread.cpp" />
