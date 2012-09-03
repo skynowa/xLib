@@ -96,7 +96,7 @@ CxThreadStorage::bSetValue(
 //---------------------------------------------------------------------------
 bool
 CxThreadStorage::_bAlloc() {
-    TxIndex indRes = (TxIndex)- 1;
+    index_t indRes = (index_t)- 1;
 
 #if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(TLS_OUT_OF_INDEXES == _m_indIndex, false);

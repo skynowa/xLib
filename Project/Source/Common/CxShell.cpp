@@ -248,7 +248,7 @@ CxShell::bCreateShortcut(
                                               ///< Прим.: Windows сама НЕ добавляет к имени расширение .lnk
     const std::tstring_t &csFilePath,         ///< путь и имя программы/файла, например, "C:\\Windows\\NotePad.Exe" или "C:\\Мои документы\\Файл.doc"
     const std::tstring_t &csWorkingDirectory, ///< рабочий каталог, например, "C:\\Windows"
-    const std::tstring_t &csArguments,        ///< аргументы командной строки, например, "C:\\Doc\\Text.Txt"
+    const std::tstring_t &csArguments,        ///< аргументы командной строки, например, "C:\\Doc\\Text.txt"
     const WORD            cwHotKey,           ///< горячая клавиша, например, для Ctrl+Alt+A HOTKEY(HOTKEYF_ALT|HOTKEYF_CONTROL,'A')
     const int             ciCmdShow,          ///< начальный вид, например, SW_SHOWNORMAL (см. параметр nCmdShow функции ShowWindow)
     const std::tstring_t &csIconFilePath,     ///< путь и имя файла, содержащего иконку, например, "C:\\Windows\\NotePad.Exe"
