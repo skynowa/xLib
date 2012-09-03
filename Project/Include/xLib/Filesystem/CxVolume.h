@@ -32,9 +32,6 @@ class CxVolume :
             ///< get paths
         static std::tstring_t sGetLabel(const std::tstring_t &csVolumePath);
             ///< get label
-        static bool           bSetLabel(const std::tstring_t &csVolumePath, const std::tstring_t &csVolumeName);
-            ///< set label
-
 
         enum ExType
             /// filesystem type
