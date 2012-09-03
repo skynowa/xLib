@@ -24,7 +24,7 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 //explicit
 CxBackuper::CxBackuper(
-    const EBackupPeriod cbpPeriod
+    const ExBackupPeriod cbpPeriod
 ) :
     _m_cbpPeriod(cbpPeriod)
 {
@@ -36,7 +36,7 @@ CxBackuper::~CxBackuper() {
 
 }
 //---------------------------------------------------------------------------
-CxBackuper::EErrorType
+CxBackuper::ExErrorType
 CxBackuper::etExecute(
     const std::tstring_t &csFilePath,
     const std::tstring_t &csDestDirPath,

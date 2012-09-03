@@ -61,7 +61,7 @@ CxTest_CxSystemLog::bUnit(
     // bWrite
     xTEST_CASE(cullBlockLoops)
     {
-        CxSystemLog::ELevel alvLogLevel[] = {
+        CxSystemLog::ExLevel alvLogLevel[] = {
             CxSystemLog::lvEmerg, CxSystemLog::lvAlert, CxSystemLog::lvCritical,
             CxSystemLog::lvError, CxSystemLog::lvWarning, CxSystemLog::lvNotice,
             CxSystemLog::lvInfo, CxSystemLog::lvDebug

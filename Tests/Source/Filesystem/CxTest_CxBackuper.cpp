@@ -50,7 +50,7 @@ CxTest_CxBackuper::bUnit(
 
             std::tstring_t sBackupFilePath;
 
-            CxBackuper::EErrorType etRes = bkBackuper.etExecute(csFilePath, csBackupDir, &sBackupFilePath);
+            CxBackuper::ExErrorType etRes = bkBackuper.etExecute(csFilePath, csBackupDir, &sBackupFilePath);
             xTEST_EQ(CxBackuper::etSuccess, etRes);
             xTEST_EQ(false, sBackupFilePath.empty())
         }

@@ -25,14 +25,14 @@ class CxHttpClient :
         //body
         class CxBody;
 
-        enum EProtocolVersion
+        enum ExProtocolVersion
             /// protocol version
         {
             pv10 = 0,
             pv11 = 1
         };
 
-        enum EMethod
+        enum ExMethod
             /// method
         {
             hmHead,

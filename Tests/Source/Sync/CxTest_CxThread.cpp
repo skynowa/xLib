@@ -158,7 +158,7 @@ CxTest_CxThread::bUnit(
     //bSetPriority, tpGetPriority
     xTEST_CASE(cullCaseLoops)
     {
-        const CxThread::EPriority ctpPriority = CxThread::tpLowest;
+        const CxThread::ExPriority ctpPriority = CxThread::tpLowest;
 
         #if xOS_ENV_WIN
             m_bRv = pthT->bSetPriority(ctpPriority);

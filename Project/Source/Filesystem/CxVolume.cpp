@@ -348,17 +348,17 @@ CxVolume::bSetLabel(
 }
 //--------------------------------------------------------------------------
 /*static*/
-CxVolume::EType
+CxVolume::ExType
 CxVolume::dtGetType(
     const std::tstring_t &csVolumePath
 )
 {
     /*DEBUG*/xASSERT_RET(false == csVolumePath.empty(), dtUnknown);
 
-    EType dtRes = dtUnknown;
+    ExType dtRes = dtUnknown;
 
 #if   xOS_ENV_WIN
-    dtRes = static_cast<EType>( ::GetDriveType(CxPath::sSlashAppend(csVolumePath).c_str()) );
+    dtRes = static_cast<ExType>( ::GetDriveType(CxPath::sSlashAppend(csVolumePath).c_str()) );
     xDEBUG_VAR_NA(dtRes);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX

@@ -110,7 +110,7 @@ CxTest_CxDebugger::bUnit(
     //bReportMake
     xTEST_CASE(cullCaseLoops)
     {
-        const CxErrorReport::EType crtType[] = {
+        const CxErrorReport::ExType crtType[] = {
             CxErrorReport::rtMsgboxPlain,
             CxErrorReport::rtMsgboxFormated,
             CxErrorReport::rtStdoutPlain,

@@ -21,7 +21,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxProfiler::CxProfiler(
-    const EMode cpmMode
+    const ExMode cpmMode
 ) :
     _m_pmModeNow (cpmMode),
     _m_bIsStarted(false),

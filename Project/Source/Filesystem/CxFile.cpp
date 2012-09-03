@@ -47,7 +47,7 @@ CxFile::~CxFile() {
 bool
 CxFile::bCreate(
     const std::tstring_t &csFilePath,
-    const EOpenMode       comMode,
+    const ExOpenMode       comMode,
     const bool            cbIsUseBuffering
 )
 {
@@ -83,7 +83,7 @@ CxFile::bCreate(
 bool
 CxFile::bReopen(
     const std::tstring_t &csFilePath,
-    const EOpenMode       comMode,
+    const ExOpenMode       comMode,
     const bool            cbIsUseBuffering
 )
 {
@@ -386,8 +386,8 @@ CxFile::bClear() const {
 //---------------------------------------------------------------------------
 bool
 CxFile::bLocking(
-    const ELockingMode clmMode,
-    const long_t       cliBytes
+    const ExLockingMode clmMode,
+    const long_t        cliBytes
 )
 {
 #if xOS_ENV_WIN
@@ -403,8 +403,8 @@ CxFile::bLocking(
 //---------------------------------------------------------------------------
 bool
 CxFile::bSetPosition(
-    const long_t           clOffset,
-    const EPointerPosition cppPos
+    const long_t            clOffset,
+    const ExPointerPosition cppPos
 ) const
 {
     /*DEBUG*/xASSERT_RET(false != bIsValid(), false);
@@ -428,7 +428,7 @@ CxFile::liGetPosition() const {
 bool
 CxFile::bSetVBuff(
     char                 *pszBuff,
-    const EBufferingMode  cbmMode,
+    const ExBufferingMode cbmMode,
     const size_t          cuiSize
 ) const
 {
@@ -446,7 +446,7 @@ CxFile::bSetVBuff(
 
 bool
 CxFile::bSetMode(
-    const ETranslationMode ctmMode
+    const ExTranslationMode ctmMode
 ) const
 {
     int iRv = ::setmode(_iGetHandle(pGet()), ctmMode);
@@ -616,7 +616,7 @@ CxFile::bIsFile(
 {
     bool bRv = false;
 
-    CxFileAttribute::EAttribute atAttr = CxFileAttribute::atGet(csFilePath);
+    CxFileAttribute::ExAttribute atAttr = CxFileAttribute::atGet(csFilePath);
     xCHECK_RET(CxFileAttribute::faInvalid == atAttr, false);
 
 #if xOS_ENV_WIN
@@ -684,7 +684,7 @@ CxFile::sIsExists(
 bool
 CxFile::bAccess(
     const std::tstring_t &csFilePath,
-    const EAccessMode     camMode
+    const ExAccessMode    camMode
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
@@ -699,8 +699,8 @@ CxFile::bAccess(
 /*static*/
 bool
 CxFile::bChmod(
-    const std::tstring_t  &csFilePath,
-    const EPermissionMode  cpmMode
+    const std::tstring_t   &csFilePath,
+    const ExPermissionMode  cpmMode
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
@@ -1465,8 +1465,8 @@ CxFile::_iGetHandle(
 /*static*/
 std::FILE *
 CxFile::_pfGetHandle(
-    int             iFileHandle,
-    const EOpenMode omMode
+    int              iFileHandle,
+    const ExOpenMode omMode
 )
 {
     /*DEBUG*/
@@ -1480,7 +1480,7 @@ CxFile::_pfGetHandle(
 /*static*/
 std::tstring_t
 CxFile::_sGetOpenMode(
-    const EOpenMode comMode
+    const ExOpenMode comMode
 )
 {
     /*DEBUG*/// omMode - n/a

@@ -66,7 +66,7 @@ CxTest_CxDnsClient::bUnit(
     //-------------------------------------
     //bGetNameInfo
     {
-        ////CxDnsClient::EAddressFamily afFamily  = CxDnsClient::afInet;
+        ////CxDnsClient::ExAddressFamily afFamily  = CxDnsClient::afInet;
         ////std::tstring_t                     sHostAddr = /*xT("207.46.172.252");*/    xT("forum.vingrad.ru");
         ////ushort_t                      usPort    = 27015;
 

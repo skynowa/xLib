@@ -27,7 +27,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxErrorReport::CxErrorReport(
-    const EType          &crtType,
+    const ExType          &crtType,
     const std::tstring_t &csExp,
     const ulong_t         culLastError,
     const std::tstring_t &csFile,
@@ -75,7 +75,7 @@ CxErrorReport::CxErrorReport(
 }
 //---------------------------------------------------------------------------
 CxErrorReport::CxErrorReport(
-    const EType          &crtType,
+    const ExType          &crtType,
     const std::tstring_t &csExp,
     const ulong_t         culLastError,
     const std::tstring_t &csFile,
@@ -144,7 +144,7 @@ CxErrorReport::~CxErrorReport() {
 //---------------------------------------------------------------------------
 bool
 CxErrorReport::_bInitVars(
-    const EType          &crtType,
+    const ExType          &crtType,
     const std::tstring_t &csExp,
     const ulong_t         culLastError,
     const std::tstring_t &csFile,

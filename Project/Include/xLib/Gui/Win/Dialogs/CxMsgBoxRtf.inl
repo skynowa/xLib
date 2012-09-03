@@ -41,7 +41,7 @@ xNAMESPACE_BEGIN(CxMsgBoxRtf)
 #define xCXRICHEDIT20_CONTROL_CLASS             RICHEDIT_CLASS
 #define xCXTAB_CONTROL_CLASS                    WC_TABCONTROL
 //---------------------------------------------------------------------------
-EModalResult g_mrRes          = mrNone;
+ExModalResult g_mrRes          = mrNone;
 std::tstring_t g_sTitle;
 std::tstring_t g_sMessage;
 
@@ -259,7 +259,7 @@ DialogProc(
     return false;
 }
 //---------------------------------------------------------------------------
-EModalResult
+ExModalResult
 iShow(
     HWND                  hwndOwner,
     const std::tstring_t &csMessage,

@@ -228,7 +228,7 @@ CxPath::sGetExt(
 /*static*/
 std::tstring_t
 CxPath::sGetStandartExt(
-    const EStandartExt cseFileExt
+    const ExStandartExt cseFileExt
 )
 {
     std::tstring_t sRv;

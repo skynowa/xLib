@@ -18,7 +18,7 @@ class CxProfiler :
     /// code profiling (msec)
 {
     public:
-        enum EMode
+        enum ExMode
             /// mode
         {
             pmStdClock,         ///< use std::clock_t
@@ -32,7 +32,7 @@ class CxProfiler :
         #endif
         };
 
-                              CxProfiler (const EMode cpmMode);
+                              CxProfiler (const ExMode cpmMode);
             ///< constructor
         virtual              ~CxProfiler ();
             ///< destructor
@@ -50,7 +50,7 @@ class CxProfiler :
             ///< stop, start measurement
 
     private:
-        const EMode           _m_pmModeNow;           ///< which mode is running now
+        const ExMode          _m_pmModeNow;           ///< which mode is running now
         bool                  _m_bIsStarted;          ///< is started
         CxFileLog             _flLog;                 ///< file log
 

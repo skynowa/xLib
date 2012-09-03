@@ -81,9 +81,9 @@ CxSocket::operator socket_t () {
 //---------------------------------------------------------------------------
 bool
 CxSocket::bCreate(
-    EAddressFamily afFamily,
-    EType          tpType,
-    EProtocol      ptProtocol
+    ExAddressFamily afFamily,
+    ExType          tpType,
+    ExProtocol      ptProtocol
 )
 {
     /*DEBUG*/xASSERT_RET(etInvalid == _m_sktSocket, false);

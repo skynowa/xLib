@@ -16,7 +16,7 @@ class CxSystemLog :
     /// logging to system event log
 {
     public:
-        enum ELevel
+        enum ExLevel
             /// log level
         {
         #if   xOS_ENV_WIN
@@ -54,7 +54,7 @@ class CxSystemLog :
 
         bool     bSetEnabled(const bool cbFlag);
             ///< set enabled
-        bool     bWrite     (const ELevel lvLevel, const tchar_t *pcszFormat, ...);
+        bool     bWrite     (const ExLevel lvLevel, const tchar_t *pcszFormat, ...);
             ///< write to log
 
     private:

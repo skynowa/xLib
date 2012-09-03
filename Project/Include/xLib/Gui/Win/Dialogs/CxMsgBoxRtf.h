@@ -14,7 +14,7 @@ xNAMESPACE_BEGIN(NxLib)
 xNAMESPACE_BEGIN(CxMsgBoxRtf)
     /// formated message box
 
-    enum EModalResult
+    enum ExModalResult
         /// modal result
     {
         mrInternalError = - 1,
@@ -30,7 +30,7 @@ xNAMESPACE_BEGIN(CxMsgBoxRtf)
         ///< create content
     INT_PTR CALLBACK DialogProc    (HWND hDlg, uint_t uiMsg, WPARAM wParam, LPARAM lParam);
         ///< window callback
-    EModalResult     iShow         (HWND hwndOwner, const std::tstring_t &csMessage, const std::tstring_t &csTiltle);
+    ExModalResult    iShow         (HWND hwndOwner, const std::tstring_t &csMessage, const std::tstring_t &csTiltle);
         ///< show
 
 xNAMESPACE_END(CxMsgBoxRtf)

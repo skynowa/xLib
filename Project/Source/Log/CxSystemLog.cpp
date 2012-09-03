@@ -75,7 +75,7 @@ CxSystemLog::bSetEnabled(
 //---------------------------------------------------------------------------
 bool
 CxSystemLog::bWrite(
-    const ELevel   lvLevel,
+    const ExLevel  lvLevel,
     const tchar_t *pcszFormat, ...
 )
 {

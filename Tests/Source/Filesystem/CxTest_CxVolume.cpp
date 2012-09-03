@@ -299,7 +299,7 @@ CxTest_CxVolume::bUnit(
             const std::tstring_t csVolumePath = xT("/");
         #endif
 
-        CxVolume::EType dtRes = CxVolume::dtGetType(csVolumePath);
+        CxVolume::ExType dtRes = CxVolume::dtGetType(csVolumePath);
         // CxTracer() << xTRACE_VAR(dtRes);
         xTEST_EQ(CxVolume::dtFixed, dtRes);
     }

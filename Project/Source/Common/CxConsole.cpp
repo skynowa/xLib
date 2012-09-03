@@ -176,14 +176,14 @@ CxConsole::bWriteErrLine(
     return true;
 }
 //---------------------------------------------------------------------------
-CxConsole::EModalResult
+CxConsole::ExModalResult
 CxConsole::iMsgBox(
     const std::tstring_t &csText,
     const std::tstring_t &csTitle,
     const uint_t          cuiType
 )
 {
-    EModalResult mrRes;
+    ExModalResult mrRes;
 
     enum EConsoleCmd {
         cmAbort  = xT('a'),

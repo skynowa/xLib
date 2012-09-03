@@ -33,7 +33,7 @@ CxTest_CxMsgBoxT::bUnit(
         const std::tstring_t csTitle = xT("Simple title");
         const uint_t         cuiType = 0;
 
-        CxMsgBoxT::EModalResult mrRes = CxMsgBoxT::iShow(chWnd, csText, csTitle, cuiType);
+        CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::iShow(chWnd, csText, csTitle, cuiType);
         xUNUSED(mrRes);
     }
 #endif
@@ -46,7 +46,7 @@ CxTest_CxMsgBoxT::bUnit(
         const std::tstring_t csTitle = xT("Simple title");
         const uint_t         cuiType = 0;
 
-        CxMsgBoxT::EModalResult mrRes = CxMsgBoxT::iShow(csText, csTitle, cuiType);
+        CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::iShow(csText, csTitle, cuiType);
         xUNUSED(mrRes);
     }
 
@@ -57,7 +57,7 @@ CxTest_CxMsgBoxT::bUnit(
         const std::tstring_t csText  = xT("\nmessage box with 2 params...\n");
         const std::tstring_t csTitle = xT("Simple title");
 
-        CxMsgBoxT::EModalResult mrRes = CxMsgBoxT::iShow(csText, csTitle);
+        CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::iShow(csText, csTitle);
         xUNUSED(mrRes);
     }
 
@@ -67,7 +67,7 @@ CxTest_CxMsgBoxT::bUnit(
     {
         const std::tstring_t csText  = xT("\nmessage box with 1 param...\n");
 
-        CxMsgBoxT::EModalResult mrRes = CxMsgBoxT::iShow(csText);
+        CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::iShow(csText);
         xUNUSED(mrRes);
     }
 #endif

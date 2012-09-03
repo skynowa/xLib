@@ -42,7 +42,7 @@ CxTest_CxProcess::bUnit(
             m_bRv = prProc.bCreate(csFilePath, xT("%s"), csCmdLine.c_str());
             xTEST_EQ(true, m_bRv);
 
-            CxProcess::EWaitResult wrRes = prProc.ulWait(xTIMEOUT_INFINITE);
+            CxProcess::ExWaitResult wrRes = prProc.ulWait(xTIMEOUT_INFINITE);
             xTEST_EQ(CxProcess::wrObject0, wrRes);
         #endif
     }
@@ -94,7 +94,7 @@ CxTest_CxProcess::bUnit(
             CxProcess::id_t ulId = prProc.ulGetId();
             xTEST_LESS(static_cast<CxProcess::id_t>( 0 ), ulId);
 
-            CxProcess::EWaitResult wrRes = prProc.ulWait(xTIMEOUT_INFINITE);
+            CxProcess::ExWaitResult wrRes = prProc.ulWait(xTIMEOUT_INFINITE);
             xTEST_EQ(CxProcess::wrObject0, wrRes);
         #endif
     }

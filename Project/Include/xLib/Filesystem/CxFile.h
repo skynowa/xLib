@@ -16,13 +16,13 @@ class CxFile :
     /// file
 {
     public:
-        enum EErrorType
+        enum ExErrorType
             /// error type
         {
             etError = - 1
         };
 
-        enum EOpenMode
+        enum ExOpenMode
             /// open mode
         {
             omRead,                ///< "r"
@@ -41,7 +41,7 @@ class CxFile :
         };
 
     #if xOS_ENV_WIN
-        enum ETranslationMode
+        enum ExTranslationMode
             /// translation mode
         {
             tmText   = O_TEXT,
@@ -49,7 +49,7 @@ class CxFile :
         };
     #endif
 
-        enum EAccessMode
+        enum ExAccessMode
             /// access mode
         {
             amExistence = 0,
@@ -58,7 +58,7 @@ class CxFile :
             amReadWrite = 6
         };
 
-        enum EPointerPosition
+        enum ExPointerPosition
             /// pointer position
         {
             ppError = - 1L,
@@ -67,7 +67,7 @@ class CxFile :
             ppEnd   = SEEK_END
         };
 
-        enum EBufferingMode
+        enum ExBufferingMode
             /// buffering mode
         {
             bmFull = _IOFBF,
@@ -75,7 +75,7 @@ class CxFile :
             bmNo   = _IONBF
         };
 
-        enum ELockingMode
+        enum ExLockingMode
             /// locking mode
         {
             #if xOS_ENV_WIN
@@ -90,7 +90,7 @@ class CxFile :
             #endif
         };
 
-        enum EPermissionMode
+        enum ExPermissionMode
             /// permission mode
         {
             #if xOS_ENV_WIN
@@ -125,9 +125,9 @@ class CxFile :
             ///< destructor
 
         //open, get
-        bool                   bCreate      (const std::tstring_t &csFilePath, const EOpenMode omMode, const bool cbIsUseBuffering);
+        bool                   bCreate      (const std::tstring_t &csFilePath, const ExOpenMode omMode, const bool cbIsUseBuffering);
             ///< open
-        bool                   bReopen      (const std::tstring_t &csFilePath, const EOpenMode omMode, const bool cbIsUseBuffering);
+        bool                   bReopen      (const std::tstring_t &csFilePath, const ExOpenMode omMode, const bool cbIsUseBuffering);
             ///< reopen with different file or mode
         bool                   bAttach      (std::FILE *pflFile);
             ///< attach to stream
@@ -169,17 +169,17 @@ class CxFile :
         //times
 
         //other
-        bool                   bLocking     (const ELockingMode clmMode, const long_t cliBytes);
+        bool                   bLocking     (const ExLockingMode clmMode, const long_t cliBytes);
             ///< locks or unlocks bytes of a file
-        bool                   bSetPosition (const long_t clOffset, const EPointerPosition cppPos) const;
+        bool                   bSetPosition (const long_t clOffset, const ExPointerPosition cppPos) const;
             ///< set stream position indicator
         long_t                 liGetPosition() const;
             ///< get current position in stream
-        bool                   bSetVBuff    (char *pszBuff, const EBufferingMode cbmMode, const size_t cuiSize) const;
+        bool                   bSetVBuff    (char *pszBuff, const ExBufferingMode cbmMode, const size_t cuiSize) const;
             ///< change stream buffering
 
     #if xOS_ENV_WIN
-        bool                   bSetMode     (const ETranslationMode tmMode) const;
+        bool                   bSetMode     (const ExTranslationMode tmMode) const;
             ///< sets the file translation mode
     #endif
 
@@ -215,9 +215,9 @@ class CxFile :
             ///< check for existence
         static std::tstring_t  sIsExists    (const std::tstring_t &csFilePath);
             ///< check for existence, if exists - generate new file name (file path), which not exists
-        static bool            bAccess      (const std::tstring_t &csFilePath, const EAccessMode camMode);
+        static bool            bAccess      (const std::tstring_t &csFilePath, const ExAccessMode camMode);
             ///< determine file-access permission
-        static bool            bChmod       (const std::tstring_t &csFilePath, const EPermissionMode cpmMode);
+        static bool            bChmod       (const std::tstring_t &csFilePath, const ExPermissionMode cpmMode);
             ///< change the file-permission settings
         static bool            bClear       (const std::tstring_t &csFilePath);
             ///< clear content
@@ -270,9 +270,9 @@ class CxFile :
 
         static int             _iGetHandle  (std::FILE *pfFile);
             ///< gets the file descriptor associated with a stream
-        static std::FILE *     _pfGetHandle (int iFileHandle, const EOpenMode omMode);
+        static std::FILE *     _pfGetHandle (int iFileHandle, const ExOpenMode omMode);
             ///< get stream by handle
-        static std::tstring_t  _sGetOpenMode(const EOpenMode comMode);
+        static std::tstring_t  _sGetOpenMode(const ExOpenMode comMode);
             ///< get open mode as string, by default use "r"
 
         friend class           CxFileTemp;

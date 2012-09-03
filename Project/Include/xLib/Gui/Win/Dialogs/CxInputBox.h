@@ -23,7 +23,7 @@ class CxInputBox :
     /// input box
 {
     public:
-        enum EModalResult
+        enum ExModalResult
             /// modal result
         {
             mrOk,
@@ -35,7 +35,7 @@ class CxInputBox :
         virtual                ~CxInputBox  ();
             ///< destructor
 
-        EModalResult            mrShowModal (const std::tstring_t &csCaption, const std::tstring_t &csPrompt, const std::tstring_t &csText);
+        ExModalResult           mrShowModal (const std::tstring_t &csCaption, const std::tstring_t &csPrompt, const std::tstring_t &csText);
             ///< show modal
         std::tstring_t          sGetText    ();
             ///< get text

@@ -584,7 +584,7 @@ CxCgiEnvironment::sGetCountryCode() const {
     return _m_sCountryCode;
 }
 //---------------------------------------------------------------------------
-CxCgiEnvironment::ERequestMethod
+CxCgiEnvironment::ExRequestMethod
 CxCgiEnvironment::rmGetRequestMethod() const {
     /*DEBUG*/
 

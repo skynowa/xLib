@@ -17,7 +17,7 @@ class CxConsole :
     /// console
 {
     public:
-        enum EModalResult
+        enum ExModalResult
             /// modal result
         {
             mrAbort  = 3,
@@ -30,7 +30,7 @@ class CxConsole :
         virtual     ~CxConsole     ();
             ///< destructor
 
-        enum EAttribute
+        enum ExAttribute
             /// attribute
         {
             atAllOff = 0, atBold = 1, atUnderscore = 4, atBlink = 5, atReverse = 7, atConcealed  = 8
@@ -60,7 +60,7 @@ class CxConsole :
             ///< write line
         bool           bWriteErrLine (const std::tstring_t &csStr);
             ///< write error message
-        EModalResult   iMsgBox       (const std::tstring_t &csText, const std::tstring_t &csTitle, const uint_t cuiType);
+        ExModalResult   iMsgBox       (const std::tstring_t &csText, const std::tstring_t &csTitle, const uint_t cuiType);
             ///< show console message dialog
         bool           bPrompt       (const std::tstring_t &csPrompt, const bool cbIsVisible, std::tstring_t *psAnswer);
             ///< show console prompt dialog

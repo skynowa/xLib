@@ -25,9 +25,9 @@ CxTest_CxTcpClient::bUnit(
     const ulonglong_t cullCaseLoops
 )
 {
-    CxSocket::EAddressFamily afAf           = CxSocket::afInet;
-    CxSocket::EType          tpType         = CxSocket::tpStream;
-    CxSocket::EProtocol      ptProtocol     = CxSocket::ptIp;
+    CxSocket::ExAddressFamily afAf           = CxSocket::afInet;
+    CxSocket::ExType          tpType         = CxSocket::tpStream;
+    CxSocket::ExProtocol      ptProtocol     = CxSocket::ptIp;
 
     const std::tstring_t             csDomain        = xT("127.0.0.1");
     std::tstring_t                     sIp            = xT("127.0.0.1");

@@ -32,7 +32,7 @@ CxInputBox::~CxInputBox() {
 
 }
 //---------------------------------------------------------------------------
-CxInputBox::EModalResult
+CxInputBox::ExModalResult
 CxInputBox::mrShowModal(
     const std::tstring_t &csCaption,
     const std::tstring_t &csPrompt,
@@ -181,7 +181,7 @@ CxInputBox::mrShowModal(
     blRes = ::UnregisterClass(xT("CxInputBox"), hInstance);
     /*DEBUG*/xASSERT_RET(FALSE != blRes, CxInputBox::mrCancel);
 
-    return static_cast<EModalResult>( msgMsg.wParam );
+    return static_cast<ExModalResult>( msgMsg.wParam );
 }
 //---------------------------------------------------------------------------
 std::tstring_t

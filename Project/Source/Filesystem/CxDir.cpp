@@ -32,7 +32,7 @@ CxDir::bIsExists(
     
     xCHECK_RET(true == csDirPath.empty(), false);
 
-    CxFileAttribute::EAttribute atAttr = CxFileAttribute::atGet(csDirPath);
+    CxFileAttribute::ExAttribute atAttr = CxFileAttribute::atGet(csDirPath);
     xCHECK_RET(CxFileAttribute::faInvalid == atAttr, false);
 
     bool bRv = CxFileAttribute::bIsExists(csDirPath, CxFileAttribute::faDirectory);
