@@ -24,7 +24,7 @@ RandomNumber () {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-bool
+bool 
 CxTest_CxString::bUnit(
     const ulonglong_t cullCaseLoops
 )
@@ -258,13 +258,13 @@ CxTest_CxString::bUnit(
                 const std::tstring_t sRv    = casData[i];
 
                 const std::tstring_t sHexStr = CxString::lexical_cast(sRv, caiBases[b]);
-                const std::tstring_t sStdStr = CxString::lexical_cast<std::tstring_t>(sHexStr, caiBases[b]);
+                const std::tstring_t sStdStr = CxString::lexical_cast(sHexStr, caiBases[b]);
 
                 xTEST_EQ(sRv, sStdStr);
             }
         }
     }
-     
+
     //-------------------------------------
     //bBoolToStr
     xTEST_CASE(cullCaseLoops)
