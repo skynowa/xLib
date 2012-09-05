@@ -81,6 +81,7 @@
 #include <io.h>
 #include <winternl.h>
 #include <psapi.h>
+#include <TlHelp32.h>
 
 #if   xCOMPILER_MINGW32
     #include <intrin.h>

@@ -6,6 +6,8 @@
 
 #include <xLib/Sync/CxProcess.h>
 
+#include <xLib/Common/CxSystemInfo.h>
+#include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Sync/CxCurrentThread.h>
 #include <xLib/Sync/CxCurrentProcess.h>
@@ -251,6 +253,38 @@ CxProcess::ulGetHandleById(
 #endif
 
     return hRv;
+}
+//--------------------------------------------------------------------------
+/*static*/
+bool
+CxProcess::bIsRunning(
+    const std::tstring_t &csProcessName
+)
+{
+#if   xOS_ENV_WIN
+    typedef CxHandleT<hvInvalid> snapshot_t;
+
+    snapshot_t      hSnapshot;
+    PROCESSENTRY32  peProcess = {0};    peProcess.dwSize = sizeof(PROCESSENTRY32);   
+
+    hSnapshot = ::CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0UL);
+    /*DEBUG*/xASSERT_RET(true == hSnapshot.bIsValid(), false);
+        
+    BOOL blRv = ::Process32First(hSnapshot.hGet(), &peProcess);
+    /*DEBUG*/xASSERT_RET(FALSE != blRv, false);
+
+    for ( ; ; ) {
+        bool bRv = CxString::bCompareNoCase(csProcessName, peProcess.szExeFile);
+        xCHECK_RET(true == bRv, true);   // OK
+        
+        blRv = ::Process32Next(hSnapshot.hGet(), &peProcess); 
+        xCHECK_DO(FALSE == blRv, break);
+    } 
+#elif xOS_ENV_UNIX
+    // TODO: CxProcess::bIsRunning
+#endif
+
+    return false;
 }
 //---------------------------------------------------------------------------
 

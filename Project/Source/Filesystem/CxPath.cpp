@@ -32,12 +32,14 @@ CxPath::sGetExe() {
     std::tstring_t sRv;
 
 #if xOS_ENV_WIN
+    // REVIEW: QueryFullProcessImageName on xOS_WIN_VER > xOS_WIN_S03
+
     sRv.resize(xPATH_MAX);
 
-    DWORD ulStored = ::GetModuleFileName(NULL, &sRv.at(0), sRv.size());
-    /*DEBUG*/xASSERT_RET(0UL != ulStored, std::tstring_t());
+    DWORD dwStored = ::GetModuleFileName(NULL, &sRv.at(0), sRv.size());
+    /*DEBUG*/xASSERT_RET(0UL != dwStored, std::tstring_t());
 
-    sRv.resize(ulStored);
+    sRv.resize(dwStored);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         const std::tstring_t csProcFile = CxString::sFormat(xT("/proc/%ld/exe"), CxCurrentProcess::ulGetId());

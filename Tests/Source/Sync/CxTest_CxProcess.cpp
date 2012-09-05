@@ -6,6 +6,7 @@
 
 #include <Test/Sync/CxTest_CxProcess.h>
 
+#include <xLib/Filesystem/CxPath.h>
 #include <xLib/Sync/CxCurrentProcess.h>
 
 
@@ -113,6 +114,34 @@ CxTest_CxProcess::bUnit(
     {
         CxProcess::handle_t hHandle = CxProcess::ulGetHandleById( CxCurrentProcess::ulGetId() );
         xTEST_EQ(true, CxHandle(hHandle).bIsValid());
+    }
+
+    //--------------------------------------------------
+    // bIsRunning
+    xTEST_CASE(cullCaseLoops)
+    {
+        std::tstring_t sData[][2] = {
+            {xT("explorer.exe"),  xT("true") },
+            {xT("explorer.exe "), xT("false")},
+            {xT("explorer."),     xT("false")},
+            {xT("explorer"),      xT("false")},
+            {xT("explore"),       xT("false")},
+        };
+
+        for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
+            const std::tstring_t csProcName = sData[i][0];
+            const bool           cbRv       = CxString::bStrToBool(sData[i][1]);
+
+            m_bRv = CxProcess::bIsRunning(csProcName);
+            xTEST_EQ(cbRv, cbRv);
+        }
+
+        {
+            const std::tstring_t csProcName = CxPath::sGetFileName(CxPath::sGetExe());
+
+            m_bRv = CxProcess::bIsRunning(csProcName);
+            xTEST_EQ(true, m_bRv);
+        }
     }
 
     return true;
