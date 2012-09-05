@@ -241,9 +241,6 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\SDK\4.53\pkcs11t.h">
       <Filter>xLib\Crypt\Pkcs11\SDK\4.53</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Project\Include\xLib\Db\Win\adodefs.h">
-      <Filter>xLib\Db\Win</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Db\Win\CxAdo.h">
       <Filter>xLib\Db\Win</Filter>
     </ClInclude>
