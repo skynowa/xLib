@@ -29,12 +29,27 @@ CxTest_CxSystemInfo::bUnit(
     //osGetOS
     xTEST_CASE(cullCaseLoops)
     {
-        CxSystemInfo::ExOsType otType = CxSystemInfo::otUnknown;
+        const CxSystemInfo::ExOsType otType = CxSystemInfo::osGetOS();
+        xTEST_DIFF(CxSystemInfo::otUnknown, otType);
 
-        otType = CxSystemInfo::osGetOS();
         #if xOS_ENV_WIN
-            xTEST_DIFF(CxSystemInfo::otLinux,   otType);
-            xTEST_DIFF(CxSystemInfo::otFreeBSD, otType);
+            m_bRv = 
+                otType == CxSystemInfo::otWindows3 ||
+                otType == CxSystemInfo::otWindows95 ||
+                otType == CxSystemInfo::otWindows98 ||
+                otType == CxSystemInfo::otWindowsNT ||
+                otType == CxSystemInfo::otWindows2000 ||
+                otType == CxSystemInfo::otWindowsXP ||
+                otType == CxSystemInfo::otWindowsXPProx64Edition ||
+                otType == CxSystemInfo::otWindowsServer2003 ||
+                otType == CxSystemInfo::otWindowsHomeServer ||
+                otType == CxSystemInfo::otWindowsServer2003R2 ||
+                otType == CxSystemInfo::otWindowsVista ||
+                otType == CxSystemInfo::otWindowsServer2008 ||
+                otType == CxSystemInfo::otWindowsServer2008R2 ||
+                otType == CxSystemInfo::otWindows7;
+
+            xTEST_EQ(true, m_bRv);
         #elif xOS_ENV_UNIX
             #if xOS_FREEBSD
                 xTEST_EQ(CxSystemInfo::otFreeBSD, otType);

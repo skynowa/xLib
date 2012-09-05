@@ -20,8 +20,9 @@ class CxSystemInfo :
             /// OS type
         {
             otUnknown,
-
-            //windows
+        
+        #if xOS_ENV_WIN
+            // windows family
             otWindows3,
             otWindows95,
             otWindows98,
@@ -35,13 +36,13 @@ class CxSystemInfo :
             otWindowsVista,
             otWindowsServer2008,
             otWindowsServer2008R2,
-            otWindows7,
-
-            //Linux
+            otWindows7
+        #elif xOS_ENV_UNIX
+            // Linux  family
             otLinux,
-
-            //BSD
+            // BSD family
             otFreeBSD
+        #endif
         };
 
         enum EOsArch
@@ -79,7 +80,7 @@ class CxSystemInfo :
         static std::tstring_t sGetUserName      ();
             ///< get the name of the user associated with the current thread
         static std::tstring_t sGetUseHomeDir    ();
-            ///<
+            ///< get home directory of current user
 
         // CPU
         static ulong_t        ulGetNumOfCpus    ();

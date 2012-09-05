@@ -413,6 +413,9 @@
     <ClCompile Include="..\..\..\Tests\Source\Units\CxTest_Draft.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Units\Win\CxTest_bGetUsbInfo.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\..\TODO.txt" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{955D7A41-669F-4721-B287-AAC3880A98CF}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>

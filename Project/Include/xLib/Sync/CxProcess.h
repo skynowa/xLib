@@ -62,9 +62,11 @@ class CxProcess :
             ///< get termination status
 
         static id_t     ulGetIdByHandle(const handle_t &chHandle);
-            ///< ge ID by handle
+            ///< get ID by handle
         static handle_t ulGetHandleById(const id_t &culId);
-            ///< ge handle by ID
+            ///< get handle by ID
+        static bool     bIsRunning     (const std::tstring_t &csProcessName);
+            ///< is process runnig by name (with extension)
 
     private:
         handle_t        _m_hHandle;
