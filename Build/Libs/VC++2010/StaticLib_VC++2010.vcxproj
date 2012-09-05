@@ -69,7 +69,6 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\SDK\4.53\pkcs11t.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Db\CxConnectionString.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Db\CxMySql.h" />
-    <ClInclude Include="..\..\..\Project\Include\xLib\Db\Win\adodefs.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Db\Win\CxAdo.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Debug\CxAutoProfiler.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Debug\CxDebugger.h" />
