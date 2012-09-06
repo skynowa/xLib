@@ -20,7 +20,7 @@ class CxSystemInfo :
             /// OS type
         {
             otUnknown,
-        
+
         #if xOS_ENV_WIN
             // windows family
             otWindows3,
@@ -45,7 +45,7 @@ class CxSystemInfo :
         #endif
         };
 
-        enum EOsArch
+        enum ExOsArch
             /// OS architecture
         {
             oaUnknown,
@@ -53,7 +53,7 @@ class CxSystemInfo :
             oa64bit
         };
 
-        enum ECpuVendor
+        enum ExCpuVendor
             /// CPU type
         {
             cvUnknown,
@@ -67,10 +67,13 @@ class CxSystemInfo :
         static std::tstring_t sFormatOsType     (const ExOsType otOsType);
             ///< format OS type
 
-        static EOsArch        oaGetOsArch       ();
+        static ExOsArch       oaGetOsArch       ();
             ///< get OS architecture
-        static std::tstring_t sFormatOsArch     (const EOsArch oaOsArch);
+        static std::tstring_t sFormatOsArch     (const ExOsArch oaOsArch);
             ///< format get OS architecture
+
+        static std::string    sGetDesktopName   ();
+            ///< desktop environments
 
         // users
         static std::tstring_t sGetHostName      ();
@@ -87,7 +90,7 @@ class CxSystemInfo :
             ///< get num of CPUs
         static ulong_t        ulGetCurrentCpuNum();
             ///< get the number of the processor the current thread was running on during the call to this function
-        static ECpuVendor     cvGetCpuVendor    ();
+        static ExCpuVendor    cvGetCpuVendor    ();
             ///< get CPU vendor
         static std::tstring_t sGetCpuModel      ();
             ///< get CPU model name
