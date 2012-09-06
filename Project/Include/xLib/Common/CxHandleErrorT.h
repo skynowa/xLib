@@ -14,8 +14,8 @@ xNAMESPACE_BEGIN(NxLib)
 enum ExHandleValue
     /// error handle type
 {
-    hvNull,     ///< like "null"
-    hvInvalid   ///< like "invalid"
+    hvInvalid = - 1,    ///< like "invalid"
+    hvNull    = 0,      ///< like "null"
 };
 
 template<ExHandleValue hvTag>
@@ -23,21 +23,25 @@ struct CxHandleErrorT;
     /// handle error
 
 template<>
-struct CxHandleErrorT<hvNull>
-    /// handle error is hvNull
-{
-    static native_handle_t
-    hGet () { return xNATIVE_HANDLE_NULL; }
-};
-
-template<>
 struct CxHandleErrorT<hvInvalid>
     /// handle error is hvInvalid
 {
-    static native_handle_t
-    hGet () { return xNATIVE_HANDLE_INVALID; }
+    static 
+    native_handle_t hGet() { 
+        return xNATIVE_HANDLE_INVALID; 
+    }
+};
+
+template<>
+struct CxHandleErrorT<hvNull>
+    /// handle error is hvNull
+{
+    static 
+    native_handle_t hGet() { 
+        return xNATIVE_HANDLE_NULL; 
+    }
 };
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif    //xLib_Common_CxHandleErrorTH
+#endif  // xLib_Common_CxHandleErrorTH
