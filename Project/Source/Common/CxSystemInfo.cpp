@@ -727,8 +727,8 @@ CxSystemInfo::ulGetCpuUsage() {
     ulRv = static_cast<ulong_t>( dRv );
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        double             dRv               = 0.0;
-        int                iRv               = - 1;
+        double             dRv                = 0.0;
+        int                iRv                = - 1;
 
         static bool        bIsFirstRun        = true;
 
@@ -743,7 +743,7 @@ CxSystemInfo::ulGetCpuUsage() {
         ulonglong_t        ullTotalIdle       = 0ULL;
         ulonglong_t        ullTotal           = 0ULL;
 
-        //read proc file for the first time
+        // read proc file for the first time
         if (true == bIsFirstRun) {
             FILE *pFile = fopen("/proc/stat", "r");
             /*DEBUG*/xASSERT_RET(NULL != pFile, 0UL);
@@ -757,7 +757,7 @@ CxSystemInfo::ulGetCpuUsage() {
             bIsFirstRun = false;
         }
 
-        //read proc file for the next times
+        // read proc file for the next times
         {
             FILE *pFile = fopen("/proc/stat", "r");
             /*DEBUG*/xASSERT_RET(NULL != pFile, 0UL);
@@ -772,14 +772,14 @@ CxSystemInfo::ulGetCpuUsage() {
         if (ullUserTotal < ullUserTotalOld || ullUserTotalLow < ullUserTotalLowOld ||
             ullSysTotal  < ullSysTotalOld  || ullTotalIdle    < ullTotalIdleOld)
         {
-            //Overflow detection. Just skip this value.
-            dRv      = 0.0;
+            // Overflow detection. Just skip this value.
+            dRv       = 0.0;
         } else {
             ullTotal  = (ullUserTotal - ullUserTotalOld) + (ullUserTotalLow - ullUserTotalLowOld) + (ullSysTotal - ullSysTotalOld);
-            dRv      = ullTotal;
+            dRv       = ullTotal;
             ullTotal += (ullTotalIdle - ullTotalIdleOld);
-            dRv     /= ullTotal;
-            dRv     *= 100ULL;
+            dRv      /= ullTotal;
+            dRv      *= 100ULL;
         }
 
         ullUserTotalOld    = ullUserTotal;
