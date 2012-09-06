@@ -120,28 +120,36 @@ CxTest_CxProcess::bUnit(
     // bIsRunning
     xTEST_CASE(cullCaseLoops)
     {
-        std::tstring_t sData[][2] = {
-            {xT("explorer.exe"),  xT("true") },
-            {xT("explorer.exe "), xT("false")},
-            {xT("explorer."),     xT("false")},
-            {xT("explorer"),      xT("false")},
-            {xT("explore"),       xT("false")},
-        };
+        #if   xOS_ENV_WIN
+            std::tstring_t sData[][2] = {
+                {xT("explorer.exe"),  xT("true") },
+                {xT("explorer.exe "), xT("false")},
+                {xT("explorer."),     xT("false")},
+                {xT("explorer"),      xT("false")},
+                {xT("explore"),       xT("false")},
+            };
+        #elif xOS_ENV_UNIX
+            // TODO: xTEST_CASE for CxProcess::bIsRunning
+        #endif
 
-        for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            const std::tstring_t csProcName = sData[i][0];
-            const bool           cbRv       = CxString::bStrToBool(sData[i][1]);
+        #if   xOS_ENV_WIN
+            for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
+                const std::tstring_t csProcName = sData[i][0];
+                const bool           cbRv       = CxString::bStrToBool(sData[i][1]);
 
-            m_bRv = CxProcess::bIsRunning(csProcName);
-            xTEST_EQ(cbRv, cbRv);
-        }
+                m_bRv = CxProcess::bIsRunning(csProcName);
+                xTEST_EQ(cbRv, cbRv);
+            }
 
-        {
-            const std::tstring_t csProcName = CxPath::sGetFileName(CxPath::sGetExe());
+            {
+                const std::tstring_t csProcName = CxPath::sGetFileName(CxPath::sGetExe());
 
-            m_bRv = CxProcess::bIsRunning(csProcName);
-            xTEST_EQ(true, m_bRv);
-        }
+                m_bRv = CxProcess::bIsRunning(csProcName);
+                xTEST_EQ(true, m_bRv);
+            }
+        #elif xOS_ENV_UNIX
+            // TODO: xTEST_CASE for CxProcess::bIsRunning
+        #endif
     }
 
     return true;

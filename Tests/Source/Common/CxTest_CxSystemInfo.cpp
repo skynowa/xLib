@@ -26,14 +26,14 @@ CxTest_CxSystemInfo::bUnit(
 )
 {
     //--------------------------------------------------
-    //osGetOS
+    // osGetOS
     xTEST_CASE(cullCaseLoops)
     {
         const CxSystemInfo::ExOsType otType = CxSystemInfo::osGetOS();
         xTEST_DIFF(CxSystemInfo::otUnknown, otType);
 
         #if xOS_ENV_WIN
-            m_bRv = 
+            m_bRv =
                 otType == CxSystemInfo::otWindows3 ||
                 otType == CxSystemInfo::otWindows95 ||
                 otType == CxSystemInfo::otWindows98 ||
@@ -60,7 +60,7 @@ CxTest_CxSystemInfo::bUnit(
     }
 
     //-------------------------------------
-    //sFormatOsType
+    // sFormatOsType
     xTEST_CASE(cullCaseLoops)
     {
         #if xOS_ENV_WIN
@@ -97,17 +97,17 @@ CxTest_CxSystemInfo::bUnit(
     }
 
     //--------------------------------------------------
-    //oaGetOsArch
+    // oaGetOsArch
     xTEST_CASE(cullCaseLoops)
     {
-        CxSystemInfo::EOsArch oaRes = CxSystemInfo::oaUnknown;
+        CxSystemInfo::ExOsArch oaRes = CxSystemInfo::oaUnknown;
 
         oaRes = CxSystemInfo::oaGetOsArch();
         xTEST_DIFF(CxSystemInfo::oaUnknown, oaRes);
     }
 
     //--------------------------------------------------
-    //sFormatOsArch
+    // sFormatOsArch
     xTEST_CASE(cullCaseLoops)
     {
         m_sRv = CxSystemInfo::sFormatOsArch(CxSystemInfo::oaUnknown);
@@ -121,7 +121,7 @@ CxTest_CxSystemInfo::bUnit(
     }
 
     //-------------------------------------
-    //sGetHostName
+    // sGetHostName
     xTEST_CASE(cullCaseLoops)
     {
         m_sRv = CxSystemInfo::sGetHostName();
@@ -132,7 +132,7 @@ CxTest_CxSystemInfo::bUnit(
     }
 
     //--------------------------------------------------
-    //bIsUserAnAdmin
+    // bIsUserAnAdmin
     xTEST_CASE(cullCaseLoops)
     {
         m_bRv = CxSystemInfo::bIsUserAnAdmin();
@@ -165,7 +165,7 @@ CxTest_CxSystemInfo::bUnit(
     }
 
     //-------------------------------------
-    //ulGetNumOfCpus
+    // ulGetNumOfCpus
     xTEST_CASE(cullCaseLoops)
     {
         m_ulRv = CxSystemInfo::ulGetNumOfCpus();
@@ -176,7 +176,7 @@ CxTest_CxSystemInfo::bUnit(
     }
 
     //-------------------------------------
-    //ulGetCurrentCpuNum
+    // ulGetCurrentCpuNum
     xTEST_CASE(cullCaseLoops)
     {
         m_ulRv = CxSystemInfo::ulGetCurrentCpuNum();
@@ -190,12 +190,12 @@ CxTest_CxSystemInfo::bUnit(
     // cvGetCpuVendor
     xTEST_CASE(cullCaseLoops)
     {
-        CxSystemInfo::ECpuVendor cvType = CxSystemInfo::cvGetCpuVendor();
+        CxSystemInfo::ExCpuVendor cvType = CxSystemInfo::cvGetCpuVendor();
         xTEST_EQ(true, CxSystemInfo::cvIntel == cvType || CxSystemInfo::cvAmd == cvType);
     }
 
     //--------------------------------------------------
-    //sGetCpuModel
+    // sGetCpuModel
     xTEST_CASE(cullCaseLoops)
     {
         m_sRv = CxSystemInfo::sGetCpuModel();
@@ -207,7 +207,7 @@ CxTest_CxSystemInfo::bUnit(
     }
 
     //--------------------------------------------------
-    //ulGetCpuSpeed
+    // ulGetCpuSpeed
     xTEST_CASE(cullCaseLoops)
     {
         m_ulRv = CxSystemInfo::ulGetCpuSpeed();
@@ -219,21 +219,21 @@ CxTest_CxSystemInfo::bUnit(
     }
 
     //--------------------------------------------------
-    //ullGetRamTotal
+    // ullGetRamTotal
     {
         m_ullRv = CxSystemInfo::ullGetRamTotal();
         xTEST_LESS(0ULL, m_ullRv);
     }
 
     //--------------------------------------------------
-    //ullGetRamAvailable
+    // ullGetRamAvailable
     {
         m_ullRv = CxSystemInfo::ullGetRamAvailable();
         xTEST_LESS(0ULL, m_ullRv);
     }
 
     //--------------------------------------------------
-    //ulGetCpuUsage
+    // ulGetCpuUsage
     xTEST_CASE(cullCaseLoops)
     {
         for (size_t i = 0; i < 10; ++ i) {
@@ -249,7 +249,7 @@ CxTest_CxSystemInfo::bUnit(
     }
 
     //--------------------------------------------------
-    //ulGetRamUsage
+    // ulGetRamUsage
     xTEST_CASE(cullCaseLoops)
     {
         for (size_t i = 0; i < 10; ++ i) {
@@ -265,7 +265,7 @@ CxTest_CxSystemInfo::bUnit(
     }
 
     //--------------------------------------------------
-    //ulGetPageSize
+    // ulGetPageSize
     xTEST_CASE(cullCaseLoops)
     {
         m_ulRv = CxSystemInfo::ulGetPageSize();

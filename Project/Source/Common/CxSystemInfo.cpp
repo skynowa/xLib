@@ -148,9 +148,9 @@ CxSystemInfo::sFormatOsType(
 }
 //---------------------------------------------------------------------------
 /*static*/
-CxSystemInfo::EOsArch
+CxSystemInfo::ExOsArch
 CxSystemInfo::oaGetOsArch() {
-    EOsArch oaRes = oaUnknown;
+    ExOsArch oaRes = oaUnknown;
 
 #if xOS_ENV_WIN
     #if xCPU_64BIT
@@ -173,7 +173,7 @@ CxSystemInfo::oaGetOsArch() {
     utsname unKernelInfo= {{0}};
 
     int iRv = ::uname(&unKernelInfo);
-    /*DEBUG*/xASSERT_RET(- 1 != iRv,                                       oaUnknown);
+    /*DEBUG*/xASSERT_RET(- 1 != iRv,                                         oaUnknown);
     /*DEBUG*/xASSERT_RET(0   != std::tstring_t(unKernelInfo.machine).size(), oaUnknown);
 
     //32-bit checks
@@ -213,7 +213,7 @@ CxSystemInfo::oaGetOsArch() {
 /*static*/
 std::tstring_t
 CxSystemInfo::sFormatOsArch(
-    const EOsArch oaOsArch
+    const ExOsArch oaOsArch
 )
 {
     std::tstring_t sRv;
@@ -225,6 +225,30 @@ CxSystemInfo::sFormatOsArch(
 
         default:                        sRv = CxConst::xUNKNOWN_STRING; break;
     }
+
+    return sRv;
+}
+//---------------------------------------------------------------------------
+/*static*/
+std::string
+CxSystemInfo::sGetDesktopName() {
+    std::string sRv;
+
+#if   xOS_ENV_WIN
+    const std::tstring_t csNativeDesktop = xT("explorer.exe");
+
+    bool bRv = CxProcess::bIsRunning(csNativeDesktop);
+    if (true == bRv) {
+        sRv = csNativeDesktop;
+    } else {
+        // TODO: implement some checks for detecting Windows shell
+    }
+
+    /*DEBUG*/xASSERT_RET(false == sRv.empty(), std::tstring_t());
+#elif xOS_ENV_UNIX
+    sRv = CxEnvironment::sGetVar(xT("DESKTOP_SESSION"));
+    /*DEBUG*/xASSERT_RET(false == sRv.empty(), std::tstring_t());
+#endif
 
     return sRv;
 }
@@ -460,9 +484,9 @@ CxSystemInfo::ulGetCurrentCpuNum() {
 }
 //---------------------------------------------------------------------------
 /*static*/
-CxSystemInfo::ECpuVendor
+CxSystemInfo::ExCpuVendor
 CxSystemInfo::cvGetCpuVendor() {
-    ECpuVendor  cvRes = cvUnknown;
+    ExCpuVendor cvRes = cvUnknown;
     std::string sValue;
 
 #if   xOS_ENV_WIN
@@ -665,7 +689,7 @@ CxSystemInfo::ulGetCpuUsage() {
     ulong_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN
-    double                dRv             = 0.0;
+    double                dRv              = 0.0;
 
     FILETIME              ftSysIdle        = {0};
     FILETIME              ftSysKernel      = {0};
