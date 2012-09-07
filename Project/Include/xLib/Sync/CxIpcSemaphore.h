@@ -2,7 +2,7 @@
  * \file  CxIpcSemaphore.h
  * \brief semaphore (interprocess)
  */
- 
+
 
 #ifndef xLib_Sync_CxIpcSemaphoreH
 #define xLib_Sync_CxIpcSemaphoreH

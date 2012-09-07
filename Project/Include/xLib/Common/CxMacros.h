@@ -279,9 +279,9 @@
 
 // xFRAMES_MAX
 #if   xOS_ENV_WIN
-    #define xFRAMES_MAX             62UL    // from MSDN, ::CaptureStackBackTrace
+    #define xSTACK_TRACE_FRAMES_MAX 62UL    // from MSDN, ::CaptureStackBackTrace
 #elif xOS_ENV_UNIX
-    #define xFRAMES_MAX             256     // custom define, this should be enough
+    #define xSTACK_TRACE_FRAMES_MAX 256     // custom define, this should be enough
 #endif
     ///< maximum frames for stack trace
 
