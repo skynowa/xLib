@@ -118,6 +118,12 @@ xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
         std::tcout << "<pre>\n\n"                   << std::endl;
     #endif
 
+/*
+    std::tstring_t sRv = CxStackTrace().sGet();
+    std::tcout << sRv << std::endl;
+
+    return 0;*/
+
     //--------------------------------------------------
     // options (default)
     bool        bIsUseTracing = true;

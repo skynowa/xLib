@@ -1,7 +1,6 @@
 /**
  * \file   CxStackTrace.h
  * \brief  get stack backtrace of the caller function
- *         http://idlebox.net/
  */
 
 
@@ -17,20 +16,23 @@ class CxStackTrace :
     /// stack trace
 {
     public:
-                       CxStackTrace();
+        explicit       CxStackTrace(const std::tstring_t &csLinePrefix = xT("\t"), const std::tstring_t &csLinesSeparator = xT("\n"));
             ///< constructor
         virtual       ~CxStackTrace();
             ///< destructor
 
         bool           bGet        (std::vec_tstring_t *pvsStack);
             ///< get stack trace
-        std::tstring_t sGet        (const std::tstring_t &csLinesSeparator = xT("\n"));
+        std::tstring_t sGet        ();
             ///< get stack trace
 
     private:
+        const std::tstring_t _m_csLinePrefix;
+        const std::tstring_t _m_csLineSeparator;   
 
 };
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_Debug_CxStackTraceH
+    
