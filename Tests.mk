@@ -6,12 +6,6 @@
 
 
 ##################################################
-# settings
-#BUILD_TYPE					:=	$(cBUILD_TYPE_DEBUG)
-BUILD_TYPE					:=	$(cBUILD_TYPE_RELEASE)
-
-
-##################################################
 # constants
 cOS 						:=  "$(shell uname -s)"
 
@@ -24,6 +18,10 @@ cBIN_TYPE_TESTS				:=	"tests"
 cCOMPILER					:=	$(CXX)
 cARCHIVER					:=	$(AR)
 
+##################################################
+# settings
+BUILD_TYPE					:=	$(cBUILD_TYPE_DEBUG)
+#BUILD_TYPE					:=	$(cBUILD_TYPE_RELEASE)
 
 ##################################################
 # xLib
@@ -38,9 +36,6 @@ else
 	PROGRAM_POSTFIX			:=	_r
 	PROGRAM_EXT				:=
 endif
-
-PATH_PREFIX					:=	../../../../
-VPATH 						:=	$(PATH_PREFIX)
 
 DIR_ROOT_INCLUDE			:=	./Project/Include
 DIR_ROOT_SOURCE				:=	./Project/Source
@@ -142,16 +137,16 @@ else
 	FLAGS_LINK				:=	-pthread -O3 -g0 -s -fomit-frame-pointer -rdynamic #-static
 endif
 
-DIRS_RELATIVE_INCLUDE		:=	$(addprefix $(PATH_PREFIX), $(DIR_ROOT_INCLUDE))
-DIRS_RELATIVE_SOURCE		:=	$(addprefix $(PATH_PREFIX)$(DIR_ROOT_SOURCE)/, $(SUBDIRS_SOURCE))
+DIRS_RELATIVE_INCLUDE		:=	$(addprefix ../../../../, $(DIR_ROOT_INCLUDE))
+DIRS_RELATIVE_SOURCE		:=	$(addprefix ../../../../$(DIR_ROOT_SOURCE)/, $(SUBDIRS_SOURCE))
 DIRS_OBJECTS				:=	$(addprefix $(DIR_ROOT_SOURCE)/, $(SUBDIRS_SOURCE))
-OBJECTS						:=	$(patsubst $(PATH_PREFIX)%, %, $(wildcard $(addsuffix /*.cpp, $(DIRS_RELATIVE_SOURCE))))
+OBJECTS						:=	$(patsubst ../../../../%, %, $(wildcard $(addsuffix /*.cpp, $(DIRS_RELATIVE_SOURCE))))
 OBJECTS						:=	$(OBJECTS:.cpp=.o)
 
-TESTS_DIRS_RELATIVE_INCLUDE	:=	$(addprefix $(PATH_PREFIX), $(DIR_TESTS_ROOT_INCLUDE))
-TESTS_DIRS_RELATIVE_SOURCE	:=	$(addprefix $(PATH_PREFIX)$(DIR_TESTS_ROOT_SOURCE)/, $(SUBDIRS_TESTS_SOURCE))
+TESTS_DIRS_RELATIVE_INCLUDE	:=	$(addprefix ../../../../, $(DIR_TESTS_ROOT_INCLUDE))
+TESTS_DIRS_RELATIVE_SOURCE	:=	$(addprefix ../../../../$(DIR_TESTS_ROOT_SOURCE)/, $(SUBDIRS_TESTS_SOURCE))
 TESTS_DIRS_OBJECTS			:=	$(addprefix $(DIR_TESTS_ROOT_SOURCE)/, $(SUBDIRS_TESTS_SOURCE))
-TESTS_OBJECTS				:=	$(patsubst $(PATH_PREFIX)%, %, $(wildcard $(addsuffix /*.cpp, $(TESTS_DIRS_RELATIVE_SOURCE))))
+TESTS_OBJECTS				:=	$(patsubst ../../../../%, %, $(wildcard $(addsuffix /*.cpp, $(TESTS_DIRS_RELATIVE_SOURCE))))
 TESTS_OBJECTS				:=	$(TESTS_OBJECTS:.cpp=.o)
 
 
@@ -161,6 +156,8 @@ $(PROGRAM_PATH): 				OBJ_DIRS $(OBJECTS) $(TESTS_OBJECTS) $(DIRS_RELATIVE_INCLUD
 OBJ_DIRS:
 								mkdir -p $(DIRS_OBJECTS) $(TESTS_DIRS_OBJECTS)
 
+VPATH 						:=	../../../../
+
 %.o:							%.cpp
 								$(cCOMPILER) -c $(FLAGS_COMPILE) $(FLAGS_LINK) $(addprefix -I, $(DIRS_RELATIVE_INCLUDE) $(TESTS_DIRS_RELATIVE_INCLUDE) $(DIR_OTHER_INCLUDE)) -o $@ $<
 
@@ -168,7 +165,9 @@ OBJ_DIRS:
 # targets
 .PHONY:							all run clean help
 
-all: 							$(PROGRAM_PATH)
+all:
+								mkdir -p $(DIR_BIN)
+								$(MAKE) --directory=$(DIR_BIN) --makefile=../../../../Tests.mk
 
 run:
 								$(DIR_BIN)/$(PROGRAM_NAME) 1 1 1 1

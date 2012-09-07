@@ -16,23 +16,34 @@ class CxStackTrace :
     /// stack trace
 {
     public:
-        explicit       CxStackTrace(const std::tstring_t &csLinePrefix = xT("\t"), const std::tstring_t &csLinesSeparator = xT("\n"));
+        explicit             CxStackTrace(const std::tstring_t &csLinePrefix         = xT("\t\t"),
+                                          const std::tstring_t &csLinesSeparator     = xT("\n"),
+                                          const bool           &cbIsWrapFilePathes   = true,
+                                          const bool           &cbIsFuncParamsEnable = false);
             ///< constructor
-        virtual       ~CxStackTrace();
+        virtual             ~CxStackTrace();
             ///< destructor
 
-        bool           bGet        (std::vec_tstring_t *pvsStack);
+        bool                 bGet        (std::vec_tstring_t *pvsStack) const;
             ///< get stack trace
-        std::tstring_t sGet        ();
+        std::tstring_t       sGet        () const;
             ///< get stack trace
+        std::tstring_t       sFormat     () const;
+            ///< format stack trace
 
     private:
         const std::tstring_t _m_csLinePrefix;
-        const std::tstring_t _m_csLineSeparator;   
+        const std::tstring_t _m_csLineSeparator;
+        const bool           _m_cbIsWrapFilePathes;
+        const bool           _m_cbIsFuncParamsEnable;
+
+    #if xOS_ENV_UNIX
+        static bool          _bAddr2Line (const void *pvSymbolAddress, std::tstring_t *psFilePath,
+                                          std::tstring_t *psFunctionName, ulong_t *pulSourceLine);
+    #endif
 
 };
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_Debug_CxStackTraceH
-    

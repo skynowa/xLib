@@ -24,7 +24,7 @@ CxMutex::CxMutex() :
 /*virtual*/
 CxMutex::~CxMutex() {
     ///*DEBUG*/xASSERT_DO(true == _bIsValid(), return);
-xASSERT(false);
+
 #if xOS_ENV_WIN
     bool bRv = false;
 

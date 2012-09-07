@@ -34,10 +34,8 @@ echo -e
 
 if   [ `uname` = "Linux" ]; then
     MAKE=make
-    TARGET_DIR="./Build/Tests/GCC_linux/Release"
 elif [ `uname` = "FreeBSD" ]; then
     MAKE=gmake
-    TARGET_DIR="./Build/Tests/GCC_freebsd/Release"
 else
     echo -e "Unknown OS"
     exit 1
@@ -51,7 +49,7 @@ echo -e
 echo -e ${COL_GREEN}"Build tests..."${COL_NORM}
 echo -e
 
-$MAKE all --directory="$TARGET_DIR" --makefile="../../../../Tests.mk"
+$MAKE all --makefile="./Tests.mk"
 
 
 # finished

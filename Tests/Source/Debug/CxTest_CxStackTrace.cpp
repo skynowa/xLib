@@ -23,40 +23,40 @@ CxTest_CxStackTrace::bUnit(
 )
 {
     //--------------------------------------------------
-    //bGet
+    // bGet
     xTEST_CASE(cullCaseLoops)
     {
-        CxStackTrace stStack;
+        CxStackTrace       stStack;
         std::vec_tstring_t vsStack;
 
         m_bRv = stStack.bGet(&vsStack);
-        //xTEST_EQ(true, m_bRv);
-        //xTEST_EQ(false, vsStack.empty());
+        xTEST_EQ(true,  m_bRv);
+        xTEST_EQ(false, vsStack.empty());
+
+        #if xTEST_IGNORE
+            std::tcout << xT("stack trace:") << std::endl;
+            std::tcout << vsStack            << std::endl;
+        #endif
     }
 
     //--------------------------------------------------
-    //sGet
+    // sGet
     xTEST_CASE(cullCaseLoops)
     {
         CxStackTrace stStack;
-        std::tstring_t sStack;
 
-        sStack = stStack.sGet();
-        //xTEST_EQ(false, sStack.empty());
+        m_sRv = stStack.sGet();
+        xTEST_EQ(false, m_sRv.empty());
     }
 
-    /*****************************************************************************/
-    #if xTEMP_DISABLED
-        std::vector<std::string> vsStack;
-
-        CxStackTrace stStack;
-
-        stStack.bGet(&vsStack, 64);
-
-        std::tcerr << "stack trace:" << std::endl;
-        std::tcerr << vsStack        << std::endl;
-    #endif
-    /*****************************************************************************/
+    //--------------------------------------------------
+    // xASSERT
+    xTEST_CASE(cullCaseLoops)
+    {
+        #if xTEMP_DISABLED
+            xASSERT(false);
+        #endif
+    }
 
     return true;
 }

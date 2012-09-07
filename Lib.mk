@@ -6,14 +6,8 @@
 
 
 ##################################################
-# settings
-#BUILD_TYPE				:=	$(cBUILD_TYPE_DEBUG)
-BUILD_TYPE				:=	$(cBUILD_TYPE_RELEASE)
-
-
-##################################################
 # constants
-cOS                     :=  "$(shell uname -s)"
+cOS 					:=  "$(shell uname -s)"
 
 cBUILD_TYPE_DEBUG		:=	"debug"
 cBUILD_TYPE_RELEASE		:=	"release"
@@ -24,6 +18,10 @@ cBIN_TYPE_TESTS			:=	"tests"
 cCOMPILER				:=	$(CXX)
 cARCHIVER				:=	$(AR)
 
+##################################################
+# settings
+BUILD_TYPE				:=	$(cBUILD_TYPE_DEBUG)
+#BUILD_TYPE				:=	$(cBUILD_TYPE_RELEASE)
 
 ##################################################
 # xLib
