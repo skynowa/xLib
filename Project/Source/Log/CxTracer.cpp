@@ -22,9 +22,7 @@ CxTracer::CxTracer() :
 //---------------------------------------------------------------------------
 /*virtual*/
 CxTracer::~CxTracer() {
-    if (false == _m_ossStream.str().empty()) {
-        vWrite(_m_ossStream.str());
-    }
+    vWrite(_m_ossStream.str());
 }
 //---------------------------------------------------------------------------
 /*static*/
@@ -33,6 +31,8 @@ CxTracer::vWrite(
     const tchar_t *pcszFormat, ...
 )
 {
+    xCHECK_DO(pcszFormat == NULL, return);
+
     std::tstring_t sRv;
 
     va_list palArgs;
