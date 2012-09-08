@@ -47,8 +47,7 @@ CxTest_CxTracer::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
     #if xTEST_IGNORE
-        m_bRv = CxTracer::bWrite(xT("\t%s: %d"), "test_str", 12345);
-        xTEST_EQ(true, m_bRv);
+        CxTracer::vWrite(xT("\t%s: %d"), "test_str", 12345);
     #endif
     }
 
@@ -59,8 +58,7 @@ CxTest_CxTracer::bUnit(
     #if xTEST_IGNORE
         std::tstring_t sData = xT("\ttest_str");
 
-        m_bRv = CxTracer::bWrite(sData);
-        xTEST_EQ(true, m_bRv);
+        CxTracer::vWrite(sData);
     #endif
     }
 

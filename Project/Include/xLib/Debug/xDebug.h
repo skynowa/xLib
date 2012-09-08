@@ -202,18 +202,16 @@
 #endif
 //-------------------------------------------------------------------------
 #if xDEBUG_MODE_TRACE
-    #define xTRACEV(format, ...)                        { CxTracer::bWrite(format, __VA_ARGS__);        }
+    #define xTRACEV(format, ...)                        { CxTracer::vWrite(format, __VA_ARGS__);        }
         ///< tracing
-    #define xTRACE(msg)                                 { CxTracer::bWrite(msg);                        }
+    #define xTRACE(msg)                                 { CxTracer::vWrite(msg);                        }
         ///< tracing
-    #define xTRACE_FUNC                                 { CxTracer::bWrite(xT("%s"), xFUNCTION);        }
+    #define xTRACE_FUNC                                 { CxTracer::vWrite(xT("%s"), xFUNCTION);        }
         ///< tracing, comment with current function name
-    #define xTRACE_FUNC_MSG(s)                          { CxTracer::bWrite(xT("%s: %s"), xFUNCTION, s); }
+    #define xTRACE_FUNC_MSG(s)                          { CxTracer::vWrite(xT("%s: %s"), xFUNCTION, s); }
         ///< tracing, comment with current function name and message
-    #define xTRACE_POINT                                { CxTracer::bWrite(xT("Point: %lu (file: %s, function: %s, last error: %s, line: %lu)"), xCOUNTER, xFILE, xFUNCTION, CxLastError::sGet().c_str(), xLINE); }
+    #define xTRACE_POINT                                { CxTracer::vWrite(xT("Point: %lu (file: %s, function: %s, last error: %s, line: %lu)"), xCOUNTER, xFILE, xFUNCTION, CxLastError::sGet().c_str(), xLINE); }
         ///< trace point (use CxTracer)
-    #define xSTD_TRACE_POINT                            { std::tcout << xT("Point: ") << xCOUNTER << xT(" (file: ") << xFILE << xT(", function: ") << xFUNCTION << xT(", line: ") << xLINE << xT(")") << std::endl; }
-        ///< trace point (use std::cout)
 #else
     #define xTRACEV(format, ...)                        { xNA }
         ///< nothing
@@ -225,11 +223,6 @@
         ///< nothing
     #define xTRACE_POINT                                { xNA }
         ///< nothing
-    #define xSTD_TRACE_POINT                            { xNA }
-        ///< nothing
 #endif
-
-
-#define xSTD_TRACEV(format, ...)                        { CxTracer::bWrite(format, __VA_ARGS__);        }
 //---------------------------------------------------------------------------
 #endif //xLib_Debug_xDebugH
