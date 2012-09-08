@@ -18,22 +18,22 @@ class CxTracer :
     /// tracing
 {
     public:
-                            CxTracer    ();
+                              CxTracer    ();
             ///< constructor
-        virtual            ~CxTracer    ();
+        virtual              ~CxTracer    ();
             ///< destructor
 
         template<class T>
-        CxTracer &          operator << (const T &cValueT);
+        CxTracer &            operator << (const T &cValueT);
             ///< operator <<
 
-        static bool         bWrite      (const tchar_t *pcszFormat, ...);
+        static void           vWrite      (const tchar_t *pcszFormat, ...);
             ///< tracing to debugger, std::cout
-        static bool         bWrite      (const std::tstring_t &csMsg);
+        static void           vWrite      (const std::tstring_t &csMsg);
             ///< tracing to debugger, std::cout
 
     private:
-        std::ostringstream  _m_ossStream;    ///< string stream
+        std::tostringstream_t _m_ossStream;    ///< string stream
 
 };
 
