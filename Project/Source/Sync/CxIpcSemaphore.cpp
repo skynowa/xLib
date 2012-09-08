@@ -92,7 +92,7 @@ CxIpcSemaphore::bCreate(
 #elif xOS_ENV_UNIX
     std::tstring_t sUnixName = CxConst::xUNIX_SLASH + csName;
 
-    handle_t hHandle = ::sem_open(sUnixName.c_str(), O_CREAT, 0777, cliInitialValue);
+    handle_t hHandle = ::sem_open(sUnixName.c_str(), O_CREAT | O_RDWR, 0777, cliInitialValue);
     /*DEBUG*/xASSERT_RET(SEM_FAILED != hHandle, false);
 
     _m_hHandle = hHandle;
