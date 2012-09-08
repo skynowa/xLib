@@ -9,15 +9,15 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 template<class T>
 CxErrorReport::CxErrorReport(
-    const ExType          &crtType,
+    const ExType         &crtType,
     const T              &cVarT1,
     const T              &cVarT2,
     const std::tstring_t &csExpr1,
     const std::tstring_t &csExpr2,
     const std::tstring_t &csExprSign,
-    const ulong_t         culLastError,
+    const ulong_t        &culLastError,
     const std::tstring_t &csFile,
-    const ulong_t         culLine,
+    const ulong_t        &culLine,
     const std::tstring_t &csFunc,
     const std::tstring_t &csDate,
     const std::tstring_t &csTime,
@@ -69,7 +69,7 @@ CxErrorReport::CxErrorReport(
         sComment = ossStream.str();
     }
 
-    (void)_bInitVars(crtType, sExpr, culLastError, csFile, culLine, csFunc, csDate, csTime, csStackTrace, sComment);
+    (void)_bConstruct(crtType, sExpr, culLastError, csFile, culLine, csFunc, csDate, csTime, csStackTrace, sComment);
 
     switch (crtType) {
         case rtMsgboxPlain:     { (void)_bInitPlain();    } break;

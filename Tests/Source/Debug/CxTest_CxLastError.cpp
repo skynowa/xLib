@@ -59,9 +59,8 @@ CxTest_CxLastError::bUnit(
         for (size_t i = 0; i < xARRAY_SIZE(caulData); ++ i) {
             const ulong_t culLasError = caulData[i];
 
-            m_bRv = CxLastError::bSet(culLasError);
+            CxLastError::vSet(culLasError);
             xTEST_EQ(culLasError, CxLastError::ulGet());
-            xTEST_EQ(true, m_bRv);
         }
     }
 
@@ -79,11 +78,8 @@ CxTest_CxLastError::bUnit(
         for (size_t i = 0; i < xARRAY_SIZE(caulData); ++ i) {
             const ulong_t culLasError = caulData[i];
 
-            m_bRv = CxLastError::bSet(culLasError);
-            xTEST_EQ(true, m_bRv);
-
-            m_bRv = CxLastError::bReset();
-            xTEST_EQ(true, m_bRv);
+            CxLastError::vSet(culLasError);
+            CxLastError::vReset();
             xTEST_EQ(0UL, CxLastError::ulGet());
         }
     }

@@ -22,6 +22,8 @@ CxTest_CxDebugger::bUnit(
     const ulonglong_t cullCaseLoops
 )
 {
+    xSTD_VERIFY(1 == 3);
+
     //-------------------------------------
     //bGetEnabled, bGetEnabled
     xTEST_CASE(cullCaseLoops)

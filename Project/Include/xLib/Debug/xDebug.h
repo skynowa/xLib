@@ -172,6 +172,26 @@
     #error xLib: incorrect debug mode
 #endif
 //-------------------------------------------------------------------------
+#define xSTD_VERIFY(expr)                               { \
+                                                            if ( !(expr) )  { \
+                                                                std::tstring_t sLastError = CxLastError::sGet(); \
+                                                                CxTracer::vWrite(xT("\n--------------------------------- xSTD_VERIFY ----------------------------------\n") \
+                                                                                 xT("  Expression: %s\n") \
+                                                                                 xT("  File:       %s\n") \
+                                                                                 xT("  Function:   %s\n") \
+                                                                                 xT("  Line:       %lu\n") \
+                                                                                 xT("  Last error: %s\n") \
+                                                                                 xT("--------------------------------------------------------------------------------\n"), \
+                                                                                 xT(#expr), \
+                                                                                 xFILE, \
+                                                                                 xFUNCTION, \
+                                                                                 xLINE, \
+                                                                                 sLastError.c_str());  \
+                                                                (void)::exit(EXIT_FAILURE); \
+                                                            } \
+                                                        }
+    ///< check expression (work in debug and release modes)
+
 #define xCHECK_RET(expr, return_expr)                   { if ((expr)) { return (return_expr);                                       } }
     ///< check expression and return value
 #define xCHECK_DO(expr, do_expr)                        { if ((expr)) { do_expr;                                                    } }
@@ -188,16 +208,16 @@
 #define xNOT_IMPLEMENTED_RET(return_expr)               { xASSERT_MSG_RET(false, xT("Not implemented"), (return_expr)); }
     ///< show not implemented message and return value
 
-#define xAUTO_PROFILER(file_path, mode, comment, ...)   CxAutoProfiler _apfPerfom(file_path, mode, comment, __VA_ARGS__)
+#define xAUTO_PROFILER(file_path, mode, comment, ...)   CxAutoProfiler _apfProfiler(file_path, mode, comment, __VA_ARGS__)
     ///< auto profiler
-#define xAUTO_PROFILER_FUNC(file_path, mode)            CxAutoProfiler _apfFunc(file_path, mode, xFUNCTION)
+#define xAUTO_PROFILER_FUNC(file_path, mode)            CxAutoProfiler _apfProfiler(file_path, mode, xFUNCTION)
     ///< auto profiler, comment contains name of current function
 
 #if xTEST_BLOCK_WITH_TRACE_POINT
-    #define xTEST_CASE(cuiLoops)                        xTRACE_POINT; for (size_t _uiBlockLoops = 0; _uiBlockLoops < (cuiLoops); ++ _uiBlockLoops)
+    #define xTEST_CASE(cuiLoops)                        xTRACE_POINT; for (size_t _uiBlockLoops = 0U; _uiBlockLoops < (cuiLoops); ++ _uiBlockLoops)
         ///< test block with trace point
 #else
-    #define xTEST_CASE(cuiLoops)                                      for (size_t _uiBlockLoops = 0; _uiBlockLoops < (cuiLoops); ++ _uiBlockLoops)
+    #define xTEST_CASE(cuiLoops)                                      for (size_t _uiBlockLoops = 0U; _uiBlockLoops < (cuiLoops); ++ _uiBlockLoops)
         ///< test block without trace point
 #endif
 //-------------------------------------------------------------------------
