@@ -186,7 +186,7 @@ CxDebugger::bReportMake(
 
     //-------------------------------------
     //never corrupt the last error value
-    (void)CxLastError::bSet(culLastError);
+    CxLastError::vSet(culLastError);
 
     return true;
 }

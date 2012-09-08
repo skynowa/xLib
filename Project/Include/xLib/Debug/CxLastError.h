@@ -20,11 +20,11 @@ class CxLastError :
             ///< get the calling thread's last-error code value
         static std::tstring_t sGet       ();
             ///< get as string
-        static bool           bSet       (const ulong_t culCode);
+        static void           vSet       (const ulong_t &culCode);
             ///< set the last error code for the calling thread
-        static bool           bReset     ();
+        static void           vReset     ();
             ///< set last error code to 0
-        static std::tstring_t sFormat    (const ulong_t culCode);
+        static std::tstring_t sFormat    (const ulong_t &culCode);
             ///< get last error as string
 
     private:

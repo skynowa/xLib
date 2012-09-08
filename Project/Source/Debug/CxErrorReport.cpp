@@ -27,11 +27,11 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxErrorReport::CxErrorReport(
-    const ExType          &crtType,
+    const ExType         &crtType,
     const std::tstring_t &csExp,
-    const ulong_t         culLastError,
+    const ulong_t        &culLastError,
     const std::tstring_t &csFile,
-    const ulong_t         culLine,
+    const ulong_t        &culLine,
     const std::tstring_t &csFunc,
     const std::tstring_t &csDate,
     const std::tstring_t &csTime,
@@ -60,7 +60,7 @@ CxErrorReport::CxErrorReport(
 {
     /*DEBUG*/
 
-    (void)_bInitVars(crtType, csExp, culLastError, csFile, culLine, csFunc, csDate, csTime, csStackTrace, csComment.c_str());
+    (void)_bConstruct(crtType, csExp, culLastError, csFile, culLine, csFunc, csDate, csTime, csStackTrace, csComment.c_str());
 
     switch (crtType) {
         case rtMsgboxPlain:     { _bInitPlain();    }   break;
@@ -75,11 +75,11 @@ CxErrorReport::CxErrorReport(
 }
 //---------------------------------------------------------------------------
 CxErrorReport::CxErrorReport(
-    const ExType          &crtType,
+    const ExType         &crtType,
     const std::tstring_t &csExp,
-    const ulong_t         culLastError,
+    const ulong_t        &culLastError,
     const std::tstring_t &csFile,
-    const ulong_t         culLine,
+    const ulong_t        &culLine,
     const std::tstring_t &csFunc,
     const std::tstring_t &csDate,
     const std::tstring_t &csTime,
@@ -115,7 +115,7 @@ CxErrorReport::CxErrorReport(
     sComment = CxString::sFormatV(pcszComment, palArgs);
     xVA_END(palArgs);
 
-    (void)_bInitVars(crtType, csExp, culLastError, csFile, culLine, csFunc, csDate, csTime, csStackTrace, sComment.c_str());
+    (void)_bConstruct(crtType, csExp, culLastError, csFile, culLine, csFunc, csDate, csTime, csStackTrace, sComment.c_str());
 
     switch (crtType) {
         case rtMsgboxPlain:     { (void)_bInitPlain();    }   break;
@@ -143,12 +143,12 @@ CxErrorReport::~CxErrorReport() {
 
 //---------------------------------------------------------------------------
 bool
-CxErrorReport::_bInitVars(
-    const ExType          &crtType,
+CxErrorReport::_bConstruct(
+    const ExType         &crtType,
     const std::tstring_t &csExp,
-    const ulong_t         culLastError,
+    const ulong_t        &culLastError,
     const std::tstring_t &csFile,
-    const ulong_t         culLine,
+    const ulong_t        &culLine,
     const std::tstring_t &csFunc,
     const std::tstring_t &csDate,
     const std::tstring_t &csTime,

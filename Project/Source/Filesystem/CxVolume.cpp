@@ -293,7 +293,7 @@ CxVolume::sGetLabel(
 #if   xOS_ENV_WIN
     tchar_t szVolumeName[MAX_PATH + 1] = {0};
 
-    CxLastError::bReset();
+    CxLastError::vReset();
 
     BOOL blRes = ::GetVolumeInformation(
                         CxPath::sSlashAppend(csVolumePath).c_str(),

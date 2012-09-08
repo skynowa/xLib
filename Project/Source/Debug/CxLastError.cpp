@@ -18,15 +18,15 @@ xNAMESPACE_BEGIN(NxLib)
 /*static*/
 ulong_t
 CxLastError::ulGet() {
-    ulong_t ulCode = 0UL; /*= culCodeSuccess*/;
+    ulong_t ulCode = 0UL; /* = culCodeSuccess */;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     ulCode = ::GetLastError();
 #elif xOS_ENV_UNIX
     ulCode = static_cast<ulong_t>( errno );
 #endif
 
-    (void)bReset();
+    vReset();
 
     return ulCode;
 }
@@ -38,32 +38,30 @@ CxLastError::sGet() {
 }
 //---------------------------------------------------------------------------
 /*static*/
-bool
-CxLastError::bSet(
-    const ulong_t culCode
+void
+CxLastError::vSet(
+    const ulong_t &culCode
 )
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     (void)::SetLastError(culCode);
 #elif xOS_ENV_UNIX
     errno = static_cast<int>( culCode );
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
 /*static*/
-bool
-CxLastError::bReset() {
+void
+CxLastError::vReset() {
     const ulong_t culCodeSuccess = 0UL;
 
-    return bSet(culCodeSuccess);
+    vSet(culCodeSuccess);
 }
 //---------------------------------------------------------------------------
 /*static*/
 std::tstring_t
 CxLastError::sFormat(
-    const ulong_t culCode
+    const ulong_t &culCode
 )
 {
     std::tstring_t sRv;
@@ -71,10 +69,10 @@ CxLastError::sFormat(
     sRv = CxString::sFormat(xT("%lu - "), culCode);
 
 #if xOS_ENV_WIN
-    DWORD  ulRv  = 0UL;
+    DWORD  dwRv   = 0UL;
     LPVOID pvBuff = NULL;
 
-    ulRv = ::FormatMessage(
+    dwRv = ::FormatMessage(
                     FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
                     NULL,
                     culCode,
@@ -84,11 +82,11 @@ CxLastError::sFormat(
                     NULL);
 
     xCHECK_RET(ERROR_MR_MID_NOT_FOUND == ulGet(), sRv.append(xT("Unknown error")));
-    xCHECK_RET(0UL                    == ulRv,   sRv.append(xT("[Cann't format error message]")));
+    xCHECK_RET(0UL                    == dwRv,    sRv.append(xT("[Cann't format error message]")));
 
     std::tstring_t sMessage;
 
-    sMessage.assign( static_cast<LPCTSTR>( pvBuff ), ulRv );
+    sMessage.assign( static_cast<LPCTSTR>( pvBuff ), dwRv );
     sMessage = CxString::sRemoveEol(sMessage);
     sMessage = CxString::sTrimRightChars(sMessage, CxConst::xDOT);
 
