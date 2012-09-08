@@ -10,8 +10,6 @@
 #include <xLib/Crypt/OpenSSL/CxBase64.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
-#include <xLib/Log/CxTraceLog.h>
-#include <xLib/Log/CxConsoleLog.h>
 #include <xLib/Net/CxDnsClient.h>
 //---------------------------------------------------------------------------
 
@@ -27,7 +25,6 @@ xNAMESPACE_BEGIN(NxLib)
 //DONE: CxSmtp
 CxSmtp::CxSmtp() :
     _m_scktSocket(),
-    _m_ConsoleLog(false),
     _m_sUser(),
     _m_sPass(),
     _m_sServer(),
@@ -343,7 +340,7 @@ CxSmtp::_bCommand(const std::string &csCmd, const std::string &csReplyDelimiter,
 
     sReply = sRv;
 
-#ifdef _DEBUG
+#if 0
     /*DEBUG*/_m_ConsoleLog.bWrite("Command :  %s          Response: %s\n", csCmd.c_str(), sRv.c_str());
 #endif
 

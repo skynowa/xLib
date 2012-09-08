@@ -377,16 +377,10 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Gui\Win\Dialogs\CxMsgBoxRtf.h">
       <Filter>xLib\Gui\Win\Dialogs</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Project\Include\xLib\Log\CxConsoleLog.h">
-      <Filter>xLib\Log</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Log\CxFileLog.h">
       <Filter>xLib\Log</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Log\CxSystemLog.h">
-      <Filter>xLib\Log</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Project\Include\xLib\Log\CxTraceLog.h">
       <Filter>xLib\Log</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Log\CxTracer.h">
@@ -933,16 +927,10 @@
     <ClCompile Include="..\..\..\Project\Source\Gui\Win\Dialogs\CxInputBox.cpp">
       <Filter>xLib\Gui\Win\Dialogs</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Project\Source\Log\CxConsoleLog.cpp">
-      <Filter>xLib\Log</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Log\CxFileLog.cpp">
       <Filter>xLib\Log</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Log\CxSystemLog.cpp">
-      <Filter>xLib\Log</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Project\Source\Log\CxTraceLog.cpp">
       <Filter>xLib\Log</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Log\CxTracer.cpp">
