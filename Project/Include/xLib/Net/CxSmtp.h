@@ -9,8 +9,6 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Net/CxTcpClient.h>
-#include <xLib/Log/CxConsoleLog.h>
-#include <xLib/Log/CxTraceLog.h>
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
@@ -36,7 +34,6 @@ class CxSmtp :
 
     private:
         CxTcpClient         _m_scktSocket;
-        CxConsoleLog        _m_ConsoleLog;
         std::string         _m_sUser;
         std::string         _m_sPass;
         std::string         _m_sServer;

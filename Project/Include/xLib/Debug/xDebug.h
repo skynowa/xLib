@@ -228,5 +228,8 @@
     #define xSTD_TRACE_POINT                            { xNA }
         ///< nothing
 #endif
+
+
+#define xSTD_TRACEV(format, ...)                        { CxTracer::bWrite(format, __VA_ARGS__);        }
 //---------------------------------------------------------------------------
 #endif //xLib_Debug_xDebugH

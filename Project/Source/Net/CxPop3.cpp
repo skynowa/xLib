@@ -24,7 +24,6 @@ CxPop3::CxPop3() :
     _m_sRes      (),
     ////_m_siInit    (2, 2),
     _m_scktSocket(),
-    _m_clLog     (false),
     _m_sUser     (),
     _m_sPass     (),
     _m_sServer   (),
@@ -150,7 +149,7 @@ CxPop3::bStat(ulong_t &ulSum, ulong_t &ulSize) {
     ulSum  = _ulMailsSum (_m_sRes);
     ulSize = _ulMailsSize(_m_sRes);
 
-#ifdef _DEBUG
+#if 0
     //+OK 2 1141841
     /*DEBUG*/_m_clLog.bWrite("Recv STAT Resp: MailsSum  = %u\n", ulSum);
     /*DEBUG*/_m_clLog.bWrite("Recv STAT Resp: MailsSize = %u\n", ulSize);

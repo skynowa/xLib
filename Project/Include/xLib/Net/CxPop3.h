@@ -11,8 +11,6 @@
 #include <xLib/Net/CxTcpClient.h>
 #include <xLib/Net/CxDnsClient.h>
 #include <xLib/Common/xCommon.h>
-#include <xLib/Log/CxConsoleLog.h>
-#include <xLib/Log/CxTraceLog.h>
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
@@ -50,7 +48,6 @@ class CxPop3 :
         std::tstring_t    _m_sRes;
         /////CxSocketInit _m_siInit;
         CxTcpClient       _m_scktSocket;
-        CxConsoleLog      _m_clLog;
         std::tstring_t    _m_sUser;
         std::tstring_t    _m_sPass;
         std::tstring_t    _m_sServer;

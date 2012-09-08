@@ -297,9 +297,6 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxVerify.h">
       <Filter>xLib\Crypt\Pkcs11</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Project\Include\xLib\Db\Win\adodefs.h">
-      <Filter>xLib\Db\Win</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Db\Win\CxAdo.h">
       <Filter>xLib\Db\Win</Filter>
     </ClInclude>
@@ -378,16 +375,10 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Log\CxSystemLog.h">
       <Filter>xLib\Log</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Project\Include\xLib\Log\CxTraceLog.h">
-      <Filter>xLib\Log</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Log\CxTracer.h">
       <Filter>xLib\Log</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Log\xLogs.h">
-      <Filter>xLib\Log</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Project\Include\xLib\Log\CxConsoleLog.h">
       <Filter>xLib\Log</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxCookiePv0.h">
@@ -905,13 +896,7 @@
     <ClCompile Include="..\..\..\Project\Source\Log\CxSystemLog.cpp">
       <Filter>xLib\Log</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Project\Source\Log\CxTraceLog.cpp">
-      <Filter>xLib\Log</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Log\CxTracer.cpp">
-      <Filter>xLib\Log</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Project\Source\Log\CxConsoleLog.cpp">
       <Filter>xLib\Log</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Net\CxCookiePv0.cpp">

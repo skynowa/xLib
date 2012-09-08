@@ -145,10 +145,8 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Gui\Dialogs\CxMsgBoxT.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Gui\Win\Dialogs\CxInputBox.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Gui\Win\Dialogs\CxMsgBoxRtf.h" />
-    <ClInclude Include="..\..\..\Project\Include\xLib\Log\CxConsoleLog.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Log\CxFileLog.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Log\CxSystemLog.h" />
-    <ClInclude Include="..\..\..\Project\Include\xLib\Log\CxTraceLog.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Log\CxTracer.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Log\xLogs.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxCgi.h" />
@@ -257,10 +255,8 @@
     <ClCompile Include="..\..\..\Project\Source\Filesystem\CxPath.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Filesystem\CxVolume.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Gui\Win\Dialogs\CxInputBox.cpp" />
-    <ClCompile Include="..\..\..\Project\Source\Log\CxConsoleLog.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Log\CxFileLog.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Log\CxSystemLog.cpp" />
-    <ClCompile Include="..\..\..\Project\Source\Log\CxTraceLog.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Log\CxTracer.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Net\CxCgi.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Net\CxCookiePv0.cpp" />
