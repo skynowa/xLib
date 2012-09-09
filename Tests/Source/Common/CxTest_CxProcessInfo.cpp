@@ -78,6 +78,14 @@ CxTest_CxProcessInfo::bUnit(
         // xTEST_DIFF(0UL, m_ulRv);
     }
 
+    //--------------------------------------------------
+    // CxProcessInfo::sGetArgs
+    xTEST_CASE(cullCaseLoops)
+    {
+        m_sRv = CxProcessInfo::sGetArgs(CxCurrentProcess::ulGetId());
+        // TODO: test CxProcessInfo::sGetArgs
+    }
+
     return true;
 }
 //---------------------------------------------------------------------------
