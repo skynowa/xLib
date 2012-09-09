@@ -250,26 +250,31 @@ CxVolume::bGetPaths(
         vsRes.push_back(s);
     }
 #elif xOS_ENV_UNIX
-    struct _SMounts {
-        std::tstring_t m_sDevice;
-        std::tstring_t m_sDestination;
-        std::tstring_t m_sFsType;
-        std::tstring_t m_sOptions;
-        int            m_iDump;
-        int            m_iPass;
-    };
+    #if   xOS_LINUX
+        struct _SMounts {
+            std::tstring_t m_sDevice;
+            std::tstring_t m_sDestination;
+            std::tstring_t m_sFsType;
+            std::tstring_t m_sOptions;
+            int            m_iDump;
+            int            m_iPass;
+        };
 
-    std::tifstream_t fsProcMounts(xT("/proc/mounts"));
+        std::tifstream_t fsProcMounts(xT("/proc/mounts"));
+        /*DEBUG*/xASSERT_RET(true == fsProcMounts.good(), false);
 
-    for ( ; !fsProcMounts.eof(); ) {
-        _SMounts mntMounts;
+        for ( ; !fsProcMounts.eof(); ) {
+            _SMounts mntMounts;
 
-        fsProcMounts >> mntMounts.m_sDevice  >> mntMounts.m_sDestination >> mntMounts.m_sFsType >>
-                        mntMounts.m_sOptions >> mntMounts.m_iDump        >> mntMounts.m_iPass;
-        xCHECK_DO(true == mntMounts.m_sDevice.empty(), continue);
+            fsProcMounts >> mntMounts.m_sDevice  >> mntMounts.m_sDestination >> mntMounts.m_sFsType >>
+                            mntMounts.m_sOptions >> mntMounts.m_iDump        >> mntMounts.m_iPass;
+            xCHECK_DO(true == mntMounts.m_sDevice.empty(), continue);
 
-        vsRes.push_back(mntMounts.m_sDestination);
-    }
+            vsRes.push_back(mntMounts.m_sDestination);
+        }
+    #elif xOS_FREEBSD
+        // TODO: CxVolume::bGetPaths
+    #endif
 #endif
 
     std::swap(*pvsVolumePaths, vsRes);

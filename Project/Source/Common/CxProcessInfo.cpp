@@ -138,16 +138,15 @@ CxProcessInfo::sGetExeName(
         sRv.resize(iReaded);
     #elif xOS_FREEBSD
         #if defined(KERN_PROC_PATHNAME)
-            sRv.resize(xPATH_MAX);
+            int aiMib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, cidId};
 
-            int aiMib[] = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, cidId};
+            tchar_t szBuff[PATH_MAX + 1] = {0};
+            size_t  uiBuffSize           = sizeof(szBuff) - 1;
 
-            size_t uiResSize = sRv.size() * sizeof(std::tstring_t::value_type);
-
-            int iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), &sRv.at(0), &uiResSize, NULL, 0);
+            int iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), szBuff, &uiBuffSize, NULL, 0U);
             /*DEBUG*/xASSERT_RET(- 1 != iRv, std::tstring_t());
 
-            sRv.resize(uiResSize);
+            sRv.assign(szBuff);
         #else
             // TODO: CxProcessInfo::sGetExeName
             xNOT_IMPLEMENTED_RET(std::tstring_t());
