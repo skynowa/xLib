@@ -178,6 +178,45 @@ CxProcessInfo::ulGetParentId(
     return ulRv;
 }
 //----------------------------------------------------------------------------------------------------
+/*static*/
+std::tstring_t
+CxProcessInfo::sGetArgs(
+    const CxProcess::id_t &cidId
+)
+{
+    // TODO: tests for CxProcessInfo::sGetArgs
+
+    std::tstring_t sRv;
+
+#if   xOS_ENV_WIN
+    // TODO: CxProcessInfo::sGetArgs
+#elif xOS_ENV_UNIX
+    #if   xOS_LINUX
+        // TODO: CxProcessInfo::sGetArgs
+    #elif xOS_FREEBSD
+        int iRv      = - 1;
+        int aiMib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_ARGS, cidId};
+
+        std::string sBuff;
+        size_t      uiBuffSize = 0;
+
+        // get uiBuffSize
+        iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), NULL,         &uiBuffSize, NULL, 0);
+        /*DEBUG*/xASSERT_RET(- 1 != iRv, std::tstring_t());
+
+        sBuff.resize(uiBuffSize);
+
+        iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), &sBuff.at(0), &uiBuffSize, NULL, 0U);
+        /*DEBUG*/xASSERT_RET(- 1 != iRv, std::tstring_t());
+
+        sRv = sBuff;    // BUG: sBuff or sBuff.c_str() - FreeBSD crazy!!!
+    #endif
+#endif
+
+
+    return sRv;
+}
+//----------------------------------------------------------------------------------------------------
 
 
 /****************************************************************************
