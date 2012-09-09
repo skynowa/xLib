@@ -62,21 +62,20 @@ CxPath::sGetExe() {
         sRv.resize(iReaded);
     #elif xOS_FREEBSD
         #if defined(KERN_PROC_PATHNAME)
-            sRv.resize(xPATH_MAX);
+            int aiMib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, - 1};
 
-            int aiMib[] = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, - 1};
+            tchar_t szBuff[PATH_MAX + 1] = {0};
+            size_t  uiBuffSize           = sizeof(szBuff) - 1;
 
-            size_t uiResSize = sRv.size() * sizeof(std::tstring_t::value_type);
-
-            int iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), &sRv.at(0), &uiResSize, NULL, 0);
+            int iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), szBuff, &uiBuffSize, NULL, 0U);
             /*DEBUG*/xASSERT_RET(- 1 != iRv, std::tstring_t());
 
-            sRv.resize(uiResSize);
+            sRv.assign(szBuff);
         #else
             std::vec_tstring_t vsArgs;
 
             bool bRv = CxCommandLine::bGetArgs(&vsArgs);
-            /*DEBUG*/xASSERT_RET(true  == bRv,                      std::tstring_t());
+            /*DEBUG*/xASSERT_RET(true  == bRv,                       std::tstring_t());
             /*DEBUG*/xASSERT_RET(false == vsArgs.empty(),            std::tstring_t());
             /*DEBUG*/xASSERT_RET(false == bIsAbsolute(vsArgs.at(0)), std::tstring_t());
 
@@ -858,11 +857,11 @@ CxPath::sGetProcValue(
 
         bRv = CxDir::bIsExists(xT("/proc"));
         xCHECK_DO(false == bRv,
-                  CxTracer::bWrite(xT("::: xLib: warning (/proc dir not mount) :::")); return std::tstring_t());
+                  CxTracer::vWrite(xT("::: xLib: warning (/proc dir not mount) :::")); return std::tstring_t());
 
         bRv = CxDir::bIsEmpty(xT("/proc"));
         xCHECK_DO(true == bRv,
-                  CxTracer::bWrite(xT("::: xLib: warning (/proc dir is empty) :::"));  return std::tstring_t());
+                  CxTracer::vWrite(xT("::: xLib: warning (/proc dir is empty) :::"));  return std::tstring_t());
     }
 
 

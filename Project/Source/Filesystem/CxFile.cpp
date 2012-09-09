@@ -744,7 +744,6 @@ CxFile::bDelete(
 )
 {
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
-
     xCHECK_RET(false == bIsExists(csFilePath), true);
 
     bool bRv = bChmod(csFilePath, pmWrite);
@@ -752,7 +751,6 @@ CxFile::bDelete(
 
     int iRv = ::xTREMOVE(csFilePath.c_str());
     /*DEBUG*/xASSERT_RET(- 1 != iRv, false);
-
     /*DEBUG*/xASSERT_RET(false == bIsExists(csFilePath), false);
 
     return true;

@@ -251,7 +251,6 @@ CxTest_CxVolume::bUnit(
         #endif
     }
 
-
     //--------------------------------------------------
     // sGetLabel
     xTEST_CASE(cullCaseLoops)

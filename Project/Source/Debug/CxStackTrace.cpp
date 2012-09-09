@@ -272,9 +272,9 @@ CxStackTrace::_bAddr2Line(
     *   -v --version           Display the program's version
     */
 
-    std::snprintf(szCmdLine, xARRAY_SIZE(szCmdLine) - 1,
-                  xT("addr2line -C -e %s -f -i %lx"),
-                  CxPath::sGetExe().c_str(), (ulong_t)pvSymbolAddress);
+    snprintf(szCmdLine, xARRAY_SIZE(szCmdLine) - 1,
+             xT("addr2line -C -e %s -f %lx"),   /* xT("addr2line -C -e %s -f -i %lx") */
+             CxPath::sGetExe().c_str(), (ulong_t)pvSymbolAddress);
 
     FILE *pflFile = ::popen(szCmdLine, xT("r"));
     assert(NULL != pflFile);

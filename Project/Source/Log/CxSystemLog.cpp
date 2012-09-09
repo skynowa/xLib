@@ -9,7 +9,7 @@
 #include <xLib/Filesystem/CxPath.h>
 
 #if xOS_ENV_WIN
-
+    xNA
 #elif xOS_ENV_UNIX
     #include <syslog.h>
 #endif
@@ -49,7 +49,7 @@ CxSystemLog::CxSystemLog(
 //---------------------------------------------------------------------------
 /*virtual*/
 CxSystemLog::~CxSystemLog() {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     /*DEBUG*/xASSERT_DO(NULL != _m_SysLog, return);
 
     BOOL bRv = ::DeregisterEventSource(_m_SysLog);
@@ -97,7 +97,7 @@ CxSystemLog::bWrite(
 
     //-------------------------------------
     //write
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     LPCTSTR pcszStrings = sMessage.c_str();
 
     BOOL bRv = ::ReportEvent(_m_SysLog, lvLevel, 0, 0UL, NULL, 1, 0UL, &pcszStrings, NULL);
@@ -122,7 +122,7 @@ CxSystemLog::_bInit(
     const std::tstring_t &csLogName
 )
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     _m_SysLog = ::RegisterEventSource(NULL, csLogName.c_str());
     /*DEBUG*/xASSERT_RET(NULL != _m_SysLog, false);
 #elif xOS_ENV_UNIX
