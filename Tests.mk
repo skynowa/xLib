@@ -132,9 +132,9 @@ endif
 endif
 
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
-	FLAGS_LINK				:=	-pthread -O0 -g3 -rdynamic #-static
+	FLAGS_LINK				:=	-O0 -g3 -rdynamic #-static
 else
-	FLAGS_LINK				:=	-pthread -O3 -g0 -s -fomit-frame-pointer -rdynamic #-static
+	FLAGS_LINK				:=	-O3 -g0 -s -fomit-frame-pointer -rdynamic #-static
 endif
 
 DIRS_RELATIVE_INCLUDE		:=	$(addprefix ../../../../, $(DIR_ROOT_INCLUDE))

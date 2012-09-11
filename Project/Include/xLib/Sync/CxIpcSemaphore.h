@@ -49,3 +49,9 @@ class CxIpcSemaphore :
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif    //xLib_Sync_CxIpcSemaphoreH
+
+/*
+    SysV  semaphores are semget/semop/semctl
+    POSIX semaphores are sem_open/sem_close/sem_*
+
+*/
