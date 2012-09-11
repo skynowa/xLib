@@ -71,7 +71,7 @@ CxTcpClient::bConnect(
     saSockAddr.sin_addr.s_addr = ::inet_addr(asIp.c_str());
     saSockAddr.sin_port        = htons(usPort); //???????
 
-    int iRv = ::connect(_m_sktSocket, CxMacros::xreinterpret_cast<sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
+    int iRv = ::connect(_m_sktSocket, CxMacros::reinterpretCastT<sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
     /*DEBUG*/xASSERT_RET(etError != iRv, false);
 
     return true;
@@ -207,7 +207,7 @@ CxTcpClient::bIsServerAlive(
     saSockAddr.sin_port        = htons(usPort); //TODO: htons
 
     //connect - [+] 0 [-] SOCKET_ERROR
-    iRv = ::connect(objSocket.iGetSocket(), CxMacros::xreinterpret_cast<sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
+    iRv = ::connect(objSocket.iGetSocket(), CxMacros::reinterpretCastT<sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
     /*DEBUG*/// n/a
 
     xCHECK_RET(0 != iRv, false);

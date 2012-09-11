@@ -9,18 +9,20 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+// xTEST_PRIVATE_DATA
 #if xTEST_PRIVATE_DATA
     #define private                 public
     #define protected               public
 #endif
+    ///< for testing private class data
 
 
 // xFORCE_INLINE
-#if defined(xCOMPILER_MINGW32)
+#if   xCOMPILER_MINGW32
     #define xFORCE_INLINE           __attribute__((__always_inline__)) inline
-#elif defined(xCOMPILER_MS)
+#elif xCOMPILER_MS
     #define xFORCE_INLINE           __forceinline
-#elif defined(xCOMPILER_GNUC)
+#elif xCOMPILER_GNUC
     #define xFORCE_INLINE           __attribute__((__always_inline__)) inline
 #else
     #define xFORCE_INLINE           inline
@@ -29,7 +31,7 @@
 
 
 // xSTDCALL
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #define xSTDCALL                __stdcall
 #elif xOS_ENV_UNIX
     #define xSTDCALL
@@ -61,11 +63,11 @@
 
 
 // utils
-#define xPTR_DELETE(p)              { CxMacros::vPtrDelete(p); }
+#define xPTR_DELETE(p)              { CxMacros::ptrDeleteT(p); }
     ///< delete object by pointer
-#define xARRAY_DELETE(p)            { CxMacros::vArrayDelete(p); }
+#define xARRAY_DELETE(p)            { CxMacros::arrayDeleteT(p); }
     ///< delete array by pointer
-#define xARRAY_SIZE(a)              ( CxMacros::uiCountOf(a) )
+#define xARRAY_SIZE(a)              ( CxMacros::arraySizeT(a) )
     ///< get array size
 #define xARRAY_SIZE2(a)             ( sizeof(a) / sizeof((a)[0]) )
     ///< get array size
@@ -81,16 +83,16 @@
     ///< close file stream (FILE *)
 #define xRELEASE(p)                 { if (NULL != (p)) {(p)->Release(); (p) = NULL; } }
     ///< release object
-#define xMAX(a, b)                  ( ((a) > (b)) ? (a) : (b) )
+#define xMAX(a, b)                  ( CxMacros::maxT( (a), (b) ) )
     ///< get max value
-#define xMIN(a, b)                  ( ((a) < (b)) ? (a) : (b) )
+#define xMIN(a, b)                  ( CxMacros::minT( (a), (b) ) )
     ///< get min value
 #define xINT_TO_BOOL(expr)          ( (0 == (expr)) ? false : true )
     ///< convert int to bool
 
 
 // xUNUSED
-#if xCOMPILER_MINGW32 || xCOMPILER_MS
+#if   xCOMPILER_MINGW32 || xCOMPILER_MS
     #define xUNUSED(arg)            ( static_cast<void>( arg ) )
 #elif xCOMPILER_CODEGEAR
     #define xUNUSED(arg)            ( static_cast<void>( arg ) )
@@ -163,7 +165,7 @@
 
 
 // xFUNCTION
-#if xCOMPILER_MS
+#if   xCOMPILER_MS
     #define xFUNCTION               xT(__FUNCTION__)
 #elif xCOMPILER_CODEGEAR
     #define xFUNCTION               xT(__FUNC__)
@@ -221,7 +223,7 @@
 
 
 // xHOST_NAME_MAX
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #if defined(MAX_COMPUTERNAME_LENGTH)
         #define xHOST_NAME_MAX      MAX_COMPUTERNAME_LENGTH
     #else
@@ -240,17 +242,17 @@
 
 
 // xPATH_MAX
-#define xPATH_MAX                   (CxPath::uiGetMaxSize())
+#define xPATH_MAX                   ( CxPath::uiGetMaxSize() )
     ///< max path length
 
 
 // xNAME_MAX
-#define xNAME_MAX                   (CxPath::uiGetNameMaxSize())
+#define xNAME_MAX                   ( CxPath::uiGetNameMaxSize() )
     ///< max file name length
 
 
 // xLINE_MAX
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #define xLINE_MAX               2048 //custom define
 #elif xOS_ENV_UNIX
     #if   defined(LINE_MAX)
@@ -265,7 +267,7 @@
 
 
 // xENV_MAX
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #if   xCOMPILER_MS
         #define xENV_MAX            _MAX_ENV
     #else
@@ -287,8 +289,8 @@
 
 
 // xSEMAPHORE_VALUE_MAX
-#if xOS_ENV_WIN
-    #define xSEMAPHORE_VALUE_MAX    ((std::numeric_limits<LONG>::max)())    // LONG, custom define (tested on Win7 x64)
+#if   xOS_ENV_WIN
+    #define xSEMAPHORE_VALUE_MAX    ( (std::numeric_limits<LONG>::max)() )    // LONG, custom define (tested on Win7 x64)
 #elif xOS_ENV_UNIX
     #define xSEMAPHORE_VALUE_MAX    (SEM_VALUE_MAX)                         // int
 #endif
@@ -317,7 +319,7 @@
 
 
 // qualifiers
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #ifdef xCPU_64BIT
         #define xPR_SIZET           xT("I")
             ///< qualifier for std::size_t
@@ -370,7 +372,7 @@
 
 
 // xTIMEOUT_INFINITE
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #define xTIMEOUT_INFINITE       INFINITE
 #elif xOS_ENV_UNIX
     #define xTIMEOUT_INFINITE       ( ~(0UL) )
@@ -409,7 +411,7 @@
 
 
 // xDIR_TEMP temprory directory
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #if defined(P_tmpdir)
         #define xDIR_TEMP           xT(P_tmpdir)
     #else
@@ -426,7 +428,7 @@
 
 
 // xNATIVE_HANDLE_NULL, xNATIVE_HANDLE_INVALID
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #define xNATIVE_HANDLE_NULL     ( static_cast<native_handle_t>( NULL ) )                  ///< native handle value "null"
     #define xNATIVE_HANDLE_INVALID  ( static_cast<native_handle_t>( INVALID_HANDLE_VALUE ) )  ///< native handle value "invalid"
 #elif xOS_ENV_UNIX
@@ -472,7 +474,7 @@ class CxMacros :
         template<class T>
         static inline
         void
-        vPtrDelete(T *&pPtrT) {
+        ptrDeleteT(T *&pPtrT) {
             if (NULL != pPtrT) {
                 delete pPtrT; pPtrT = NULL;
             }
@@ -482,7 +484,7 @@ class CxMacros :
         template<class T>
         static inline
         void
-        vArrayDelete(T *&pPtrT) {
+        arrayDeleteT(T *&pPtrT) {
             if (NULL != pPtrT) {
                 delete [] pPtrT;  pPtrT = NULL;
             }
@@ -492,7 +494,7 @@ class CxMacros :
         template <typename ArrayT, const size_t cuiArraySize>
         static inline
         size_t
-        uiCountOf(const ArrayT (&)[cuiArraySize]) {
+        arraySizeT(const ArrayT (&)[cuiArraySize]) {
             return cuiArraySize;
         }
             ///< get array size
@@ -500,7 +502,7 @@ class CxMacros :
         template <class T>
         static inline
         const T &
-        xMax(const T &x , const T &y) {
+        maxT(const T &x , const T &y) {
             return (x > y) ? x : y;
         }
             ///< get max value
@@ -508,7 +510,7 @@ class CxMacros :
         template <class T>
         static inline
         const T &
-        xMin(const T &x , const T &y) {
+        minT(const T &x , const T &y) {
             return (x < y) ? x : y;
         }
             ///< get min value
@@ -516,18 +518,18 @@ class CxMacros :
         template <class T>
         static inline
         void
-        xSwap(T &a, T &b) {
+        swapT(T &a, T &b) {
             T temp = a;
             a = b;
             b = temp;
         }
             ///< swap variables
 
-        //TODO: numeric_limits_check
+        //TODO: numericLimitsCheckT
         template <class T>
         static inline
         bool
-        numeric_limits_check(const T &x) {
+        numericLimitsCheckT(const T &x) {
             bool bRv = ((std::numeric_limits<T>::min)() <= x) &&
                        ((std::numeric_limits<T>::max)() >= x);
 
@@ -538,7 +540,7 @@ class CxMacros :
         template <class ToT, class FromT>
         static inline
         ToT
-        xreinterpret_cast(const FromT &pPtrT) {
+        reinterpretCastT(const FromT &pPtrT) {
             void *pvVoidCast = static_cast<void *>( pPtrT );
             /////*DEBUG*/xASSERT(NULL != pvVoidCast);
 
@@ -550,7 +552,7 @@ class CxMacros :
 
         static inline
         double
-        dRound(const double &cdValue) {
+        round(const double &cdValue) {
             return ::floor(cdValue + 0.5);
         }
             ///< round double value to the integer part
@@ -558,7 +560,7 @@ class CxMacros :
         template <class T1, class T2>
         static inline
         double
-        dSafeDiv(const T1 &cVal1T, const T2 &cVal2T) {
+        safeDivT(const T1 &cVal1T, const T2 &cVal2T) {
             double dRv = 0.0;
 
             if (static_cast<T2>( 0 ) == cVal2T) {

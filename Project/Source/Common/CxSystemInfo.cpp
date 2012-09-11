@@ -550,7 +550,7 @@ CxSystemInfo::cvGetCpuVendor() {
         aiCpuInfo[2] = aiCpuInfo[2];
         aiCpuInfo[3] = 0;
 
-        sValue = std::string(CxMacros::xreinterpret_cast<char *>( &aiCpuInfo[0] ));
+        sValue = std::string(CxMacros::reinterpretCastT<char *>( &aiCpuInfo[0] ));
         /*DEBUG*/xASSERT_RET(false == sValue.empty(), cvUnknown);
     #endif
 #endif
@@ -711,7 +711,7 @@ CxSystemInfo::ulGetCpuUsage() {
     (void)::CopyMemory(&ulSysKernel, &ftSysKernel, sizeof(ftSysKernel));
     (void)::CopyMemory(&ulSysUser,   &ftSysUser,   sizeof(ftSysUser));
 
-    dRv = CxMacros::dSafeDiv(
+    dRv = CxMacros::safeDivT(
                 (ulSysKernel.QuadPart - s_ulSysKernelOld.QuadPart) +
                 (ulSysUser.QuadPart   - s_ulSysUserOld.QuadPart)   -
                 (ulSysIdle.QuadPart   - s_ulSysIdleOld.QuadPart)
@@ -806,7 +806,7 @@ CxSystemInfo::ulGetCpuUsage() {
         ulUsed       = aulCpIime[CP_USER] + aulCpIime[CP_NICE] + aulCpIime[CP_SYS];
         ulTotal      = aulCpIime[CP_USER] + aulCpIime[CP_NICE] + aulCpIime[CP_SYS] + aulCpIime[CP_IDLE];
 
-        dCpuUsage    = CxMacros::dSafeDiv(ulUsed - s_ulUsedOld, ulTotal - s_ulTotalOld) * 100.0;
+        dCpuUsage    = CxMacros::safeDivT(ulUsed - s_ulUsedOld, ulTotal - s_ulTotalOld) * 100.0;
 
         s_ulUsedOld  = ulUsed;
         s_ulTotalOld = ulTotal;
@@ -912,7 +912,7 @@ CxSystemInfo::ulGetRamUsage() {
 
         ulong_t ulUsage = siInfo.totalram - siInfo.freeram;
 
-        ulRv = static_cast<ulong_t>( CxMacros::dSafeDiv(ulUsage * 100.0, siInfo.totalram) );
+        ulRv = static_cast<ulong_t>( CxMacros::safeDivT(ulUsage * 100.0, siInfo.totalram) );
         /*DEBUG*/xASSERT_RET(siInfo.totalram == ulUsage + siInfo.freeram, 0UL);
     #elif xOS_FREEBSD
         ulonglong_t ullRamTotal = 0ULL;
@@ -937,7 +937,7 @@ CxSystemInfo::ulGetRamUsage() {
 
         ulonglong_t ullRamUsage = ullRamTotal - ullRamFree;
 
-        ulRv = static_cast<ulong_t>( CxMacros::dSafeDiv(ullRamUsage * 100.0, ullRamTotal) );
+        ulRv = static_cast<ulong_t>( CxMacros::safeDivT(ullRamUsage * 100.0, ullRamTotal) );
         /*DEBUG*/xASSERT_RET(ullRamTotal == ullRamUsage + ullRamFree, 0UL);
     #endif
 #endif
