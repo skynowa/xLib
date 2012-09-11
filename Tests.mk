@@ -122,10 +122,10 @@ DIRS_LIB					:=	/usr/lib64 \
 FLAGS_COMPILE				:=	$(CPPFLAGS) -Wall -pipe
 
 ifeq ($(cOS), "Linux")
-	LIBS					:=	$(LDFLAGS) -lrt -lmysqlclient -lm -lcrypto -lz -lssl -ldl
+	LIBS					:=	$(LDFLAGS) -lpthread -lrt -lmysqlclient -lm -lcrypto -lz -lssl -ldl
 else
 ifeq ($(cOS), "FreeBSD")
-	LIBS					:=	$(LDFLAGS) -lrt -lmysqlclient -lm -lcrypto -lz -lssl -lexecinfo # -lc only with out -static
+	LIBS					:=	$(LDFLAGS) -lpthread -lrt -lmysqlclient -lm -lcrypto -lz -lssl -lexecinfo # -lc only with out -static
 else
     $(error Unsupported OS: $(cOS))
 endif
