@@ -257,7 +257,7 @@ CxTest_CxMacros::bUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(cdData); ++ i) {
-            double dRes0 = CxMacros::dRound(cdData[i][0]);
+            double dRes0 = CxMacros::round(cdData[i][0]);
             double dRes1 = cdData[i][1];
             xTEST_EQ(dRes0, dRes1);
         }

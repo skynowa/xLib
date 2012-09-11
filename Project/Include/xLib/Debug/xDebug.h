@@ -192,15 +192,15 @@
                                                         }
     ///< check expression (work in debug and release modes)
 
-#define xCHECK_RET(expr, return_expr)                   { if ((expr)) { return (return_expr);                                       } }
+#define xCHECK_RET(expr, return_expr)                   { if ((expr)) { return (return_expr);                          } }
     ///< check expression and return value
-#define xCHECK_DO(expr, do_expr)                        { if ((expr)) { do_expr;                                                    } }
+#define xCHECK_DO(expr, do_expr)                        { if ((expr)) { do_expr;                                       } }
     ///< check expression and do instructions
-#define xCHECK_MSG(expr, comment)                       { if ((expr)) { std::tcout << (comment) << std::endl;                       } }
+#define xCHECK_MSG(expr, comment)                       { if ((expr)) { CxTracer() << (comment);                       } }
     ///< check expression and show message with comment
-#define xCHECK_MSG_RET(expr, comment, return_expr)      { if ((expr)) { std::tcout << (comment) << std::endl; return (return_expr); } }
+#define xCHECK_MSG_RET(expr, comment, return_expr)      { if ((expr)) { CxTracer() << (comment); return (return_expr); } }
     ///< check expression, show message with comment and return value
-#define xCHECK_MSG_DO(expr, comment, do_expr)           { if ((expr)) { std::tcout << (comment) << std::endl; do_expr;              } }
+#define xCHECK_MSG_DO(expr, comment, do_expr)           { if ((expr)) { CxTracer() << (comment); do_expr;              } }
     ///< check expression, show message with comment and do instructions
 
 #define xASSERT_STATIC(expr)                            { switch (0) {case 0: case (expr):;} }
@@ -222,24 +222,16 @@
 #endif
 //-------------------------------------------------------------------------
 #if xDEBUG_MODE_TRACE
-    #define xTRACEV(format, ...)                        { CxTracer::vWrite(format, __VA_ARGS__);        }
+    #define xTRACE(msg)                                 { CxTracer() << (msg);                   }
         ///< tracing
-    #define xTRACE(msg)                                 { CxTracer::vWrite(msg);                        }
+    #define xTRACEV(format, ...)                        { CxTracer::vWrite(format, __VA_ARGS__); }
         ///< tracing
-    #define xTRACE_FUNC                                 { CxTracer::vWrite(xT("%s"), xFUNCTION);        }
-        ///< tracing, comment with current function name
-    #define xTRACE_FUNC_MSG(s)                          { CxTracer::vWrite(xT("%s: %s"), xFUNCTION, s); }
-        ///< tracing, comment with current function name and message
     #define xTRACE_POINT                                { CxTracer::vWrite(xT("Point: %lu (file: %s, function: %s, last error: %s, line: %lu)"), xCOUNTER, xFILE, xFUNCTION, CxLastError::sGet().c_str(), xLINE); }
         ///< trace point (use CxTracer)
 #else
-    #define xTRACEV(format, ...)                        { xNA }
-        ///< nothing
     #define xTRACE(msg)                                 { xNA }
         ///< nothing
-    #define xTRACE_FUNC                                 { xNA }
-        ///< nothing
-    #define xTRACE_FUNC_MSG(s)                          { xNA }
+    #define xTRACEV(format, ...)                        { xNA }
         ///< nothing
     #define xTRACE_POINT                                { xNA }
         ///< nothing

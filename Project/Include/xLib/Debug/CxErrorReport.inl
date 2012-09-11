@@ -56,7 +56,7 @@ CxErrorReport::CxErrorReport(
         std::tostringstream_t ossStream;
         ossStream.exceptions(std::tostringstream_t::eofbit | std::tostringstream_t::failbit | std::tostringstream_t::badbit);
 
-        size_t uiAlignWidth = CxMacros::xMax(csExpr1.size(), csExpr2.size());
+        size_t uiAlignWidth = xMAX(csExpr1.size(), csExpr2.size());
 
         ossStream << std::left << std::setw(uiAlignWidth) << csExpr1 << xT(": ") << cVarT1 << xT("\n")
                   << xT("                    ")

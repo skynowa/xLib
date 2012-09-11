@@ -566,13 +566,13 @@ CxDateTime::bIsValid(
 {
     /*DEBUG*/
 
-    /*DEBUG*/xASSERT_MSG(false != CxMacros::numeric_limits_check<ushort_t>(cusYear),        CxString::lexical_cast(cusYear));
-    /*DEBUG*/xASSERT_MSG(false != CxMacros::numeric_limits_check<ushort_t>(cusMonth),       CxString::lexical_cast(cusMonth));
-    /*DEBUG*/xASSERT_MSG(false != CxMacros::numeric_limits_check<ushort_t>(cusDay),         CxString::lexical_cast(cusDay));
-    /*DEBUG*/xASSERT_MSG(false != CxMacros::numeric_limits_check<ushort_t>(cusHour),        CxString::lexical_cast(cusHour));
-    /*DEBUG*/xASSERT_MSG(false != CxMacros::numeric_limits_check<ushort_t>(cusMinute),      CxString::lexical_cast(cusMinute));
-    /*DEBUG*/xASSERT_MSG(false != CxMacros::numeric_limits_check<ushort_t>(cusSecond),      CxString::lexical_cast(cusSecond));
-    /*DEBUG*/xASSERT_MSG(false != CxMacros::numeric_limits_check<ushort_t>(cusMillisecond), CxString::lexical_cast(cusMillisecond));
+    /*DEBUG*/xASSERT_MSG(false != CxMacros::numericLimitsCheckT<ushort_t>(cusYear),        CxString::lexical_cast(cusYear));
+    /*DEBUG*/xASSERT_MSG(false != CxMacros::numericLimitsCheckT<ushort_t>(cusMonth),       CxString::lexical_cast(cusMonth));
+    /*DEBUG*/xASSERT_MSG(false != CxMacros::numericLimitsCheckT<ushort_t>(cusDay),         CxString::lexical_cast(cusDay));
+    /*DEBUG*/xASSERT_MSG(false != CxMacros::numericLimitsCheckT<ushort_t>(cusHour),        CxString::lexical_cast(cusHour));
+    /*DEBUG*/xASSERT_MSG(false != CxMacros::numericLimitsCheckT<ushort_t>(cusMinute),      CxString::lexical_cast(cusMinute));
+    /*DEBUG*/xASSERT_MSG(false != CxMacros::numericLimitsCheckT<ushort_t>(cusSecond),      CxString::lexical_cast(cusSecond));
+    /*DEBUG*/xASSERT_MSG(false != CxMacros::numericLimitsCheckT<ushort_t>(cusMillisecond), CxString::lexical_cast(cusMillisecond));
 
     bool bYear        = (/*cusYear   >= 0U && */cusYear   <= 9999U);
     /*DEBUG*/xASSERT_MSG(true == bYear,        xT("usYear:   ")        + CxString::lexical_cast(cusYear));
@@ -615,7 +615,7 @@ bool
 CxDateTime::bIsValid() const {
     /*DEBUG*/
 
-    /*DEBUG*/xASSERT_MSG(CxMacros::numeric_limits_check<ulonglong_t>(_m_ullDateTimeInMSec), CxString::lexical_cast(_m_ullDateTimeInMSec));
+    /*DEBUG*/xASSERT_MSG(CxMacros::numericLimitsCheckT<ulonglong_t>(_m_ullDateTimeInMSec), CxString::lexical_cast(_m_ullDateTimeInMSec));
 
     return bIsValid(*this);
 }

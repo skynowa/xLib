@@ -292,7 +292,7 @@ CxShell::bCreateShortcut(
 
     IPersistFile *ppfPF = NULL;
 
-    hRv = pslSL->QueryInterface(IID_IPersistFile, CxMacros::xreinterpret_cast<void **>( &ppfPF ));
+    hRv = pslSL->QueryInterface(IID_IPersistFile, CxMacros::reinterpretCastT<void **>( &ppfPF ));
     /*DEBUG*/xASSERT_RET(SUCCEEDED(hRv), false);
 
 #if xUNICODE
