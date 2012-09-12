@@ -64,7 +64,7 @@ CxStackTrace::bGet(
 
     std::vector<std::vec_tstring_t> vvsStack;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #if   xCOMPILER_MINGW32
         // TODO: CxStackTrace::bGet
     #elif xCOMPILER_MS || xCOMPILER_CODEGEAR
@@ -86,33 +86,44 @@ CxStackTrace::bGet(
         psiSymbol->MaxNameLen   = 255UL;
 
         for (ushort_t i = 1U; i < usFramesNum; ++ i) {
-            std::tstring_t sStackLine;
+            int            iStackLineNum = 0;
+            std::tstring_t sModulePath;
+            std::tstring_t sFilePath;
+            std::tstring_t sFileLine;
+            std::tstring_t sByteOffset;
+            std::tstring_t sFunctionName;
+
 
             blRes = ::SymFromAddr(hProcess, reinterpret_cast<DWORD64>( pvStack[i] ), NULL, psiSymbol);
             if (FALSE == blRes) {
-                sStackLine = CxConst::xUNKNOWN_STRING;
+                iStackLineNum = i;
+                sModulePath   = xT("[???]");
+                sFilePath     = xT("[???]");
+                sFileLine     = xT("[???]");
+                sByteOffset   = CxString::sFormat(xT("%p"), ptrdiff_t(0));
+                sFunctionName = xT("[???]");
             } else {
-                /*
-                int            iStackLineNum = 0;
-                std::tstring_t sModulePath;
-                std::tstring_t sFilePath;
-                std::tstring_t sFileLine;
-                std::tstring_t sByteOffset;
-                std::tstring_t sFunctionName;
-                */
-
-                const ptrdiff_t      ullAddress = static_cast<ptrdiff_t>( psiSymbol->Address );
-                const std::tstring_t csName     = std::tstring_t(psiSymbol->Name);
-
-                sStackLine = CxString::sFormat(xT("%s%u: %p  %s%s"),
-                                                _m_csLinePrefix.c_str(),
-                                                usFramesNum - i - 1U,
-                                                ullAddress,
-                                                csName.c_str(),
-                                                _m_csLineSeparator.c_str());
+                iStackLineNum = i;
+                sModulePath   = xT("[???]");
+                sFilePath     = xT("[???]");
+                sFileLine     = xT("[???]");
+                sByteOffset   = CxString::sFormat(xT("%p"), static_cast<ptrdiff_t>( psiSymbol->Address ) );
+                sFunctionName = std::tstring_t(psiSymbol->Name);
             }
 
-            vsStack.push_back(sStackLine);
+            // out
+            {
+                std::vec_tstring_t vsStackLine;
+
+                vsStackLine.push_back( CxString::lexical_cast(iStackLineNum) );
+                vsStackLine.push_back(sModulePath);
+                vsStackLine.push_back(sFilePath);
+                vsStackLine.push_back(sFileLine);
+                vsStackLine.push_back(sByteOffset);
+                vsStackLine.push_back(sFunctionName);
+
+                vvsStack.push_back(vsStackLine);
+            }
         }
 
         xARRAY_DELETE(psiSymbol);
@@ -129,14 +140,13 @@ CxStackTrace::bGet(
     xCHECK_RET(NULL == ppszSymbols, false);
 
     for (int i = 0; i < iFramesNum; ++ i) {
-        std::tstring_t sStackLine;
-
         int            iStackLineNum = 0;
         std::tstring_t sModulePath;
         std::tstring_t sFilePath;
         std::tstring_t sFileLine;
         std::tstring_t sByteOffset;
         std::tstring_t sFunctionName;
+
 
         Dl_info dlinfo = {0};
 
@@ -145,9 +155,9 @@ CxStackTrace::bGet(
             iStackLineNum = i;
             sModulePath   = (NULL == dlinfo.dli_fname) ? xT("[???]") : dlinfo.dli_fname;
             sFilePath     = xT("[???]");
-            sFunctionName = (NULL == ppszSymbols[i])   ? xT("[???]") : ppszSymbols[i];
             sFileLine     = xT("[???]");
             sByteOffset   = CxString::sFormat(xT("%p"), ptrdiff_t(0));
+            sFunctionName = (NULL == ppszSymbols[i])   ? xT("[???]") : ppszSymbols[i];
         } else {
             const tchar_t *pcszSymbolName = NULL;
             int            iStatus        = - 1;
@@ -171,9 +181,9 @@ CxStackTrace::bGet(
             iStackLineNum = i;
             sModulePath   = (NULL == dlinfo.dli_fname) ? xT("[???]") : dlinfo.dli_fname;
             sFilePath     = _sFilePath.empty()         ? xT("[???]") : _sFilePath;
-            sFunctionName = (NULL == pcszSymbolName)   ? xT("[???]") : pcszSymbolName;
             sFileLine     = CxString::lexical_cast(_ulSourceLine);
             sByteOffset   = CxString::sFormat(xT("%p"), ptrdiff_t(dlinfo.dli_saddr));
+            sFunctionName = (NULL == pcszSymbolName)   ? xT("[???]") : pcszSymbolName;
 
             xBUFF_FREE(pszDemangleName);
         }
@@ -201,16 +211,16 @@ CxStackTrace::bGet(
 
         // out
         {
-            std::vec_tstring_t v;
+            std::vec_tstring_t vsStackLine;
 
-            v.push_back( CxString::lexical_cast(iStackLineNum) );
-            v.push_back(sModulePath);
-            v.push_back(sFilePath);
-            v.push_back(sFileLine);
-            v.push_back(sByteOffset);
-            v.push_back(sFunctionName);
+            vsStackLine.push_back( CxString::lexical_cast(iStackLineNum) );
+            vsStackLine.push_back(sModulePath);
+            vsStackLine.push_back(sFilePath);
+            vsStackLine.push_back(sFileLine);
+            vsStackLine.push_back(sByteOffset);
+            vsStackLine.push_back(sFunctionName);
 
-            vvsStack.push_back(v);
+            vvsStack.push_back(vsStackLine);
         }
     } // for
 #endif
