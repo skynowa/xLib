@@ -142,8 +142,11 @@ CxDebugger::bBreak() {
         (void)::abort();
     #endif
 #elif xOS_ENV_UNIX
-    int iRv = ::kill(CxCurrentProcess::ulGetId(), SIGALRM);
+    int iRv = ::raise(SIGTRAP);
     xCHECK_RET(- 1 == iRv, false);
+
+    //// int iRv = ::kill(CxCurrentProcess::ulGetId(), SIGALRM);
+    //// xCHECK_RET(- 1 == iRv, false);
 #endif
 
     return true;
