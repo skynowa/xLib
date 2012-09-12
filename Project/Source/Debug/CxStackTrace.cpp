@@ -36,14 +36,16 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 CxStackTrace::CxStackTrace(
     const std::tstring_t &csLinePrefix,         /* = xT("\t") */
+    const std::tstring_t &csElementSeparator,   /* = xT("  ") */
     const std::tstring_t &csLinesSeparator,     /* = xT("\n") */
     const bool           &cbIsWrapFilePathes,   /* = true */
-    const bool           &cbIsFuncParamsEnable  /* = false */
+    const bool           &cbIsFuncParamsDisable /* = true */
 ) :
-    _m_csLinePrefix        (csLinePrefix),
-    _m_csLineSeparator     (csLinesSeparator),
-    _m_cbIsWrapFilePathes  (cbIsWrapFilePathes),
-    _m_cbIsFuncParamsEnable(cbIsFuncParamsEnable)
+    _m_csLinePrefix         (csLinePrefix),
+    _m_csElementSeparator   (csElementSeparator),
+    _m_csLineSeparator      (csLinesSeparator),
+    _m_cbIsWrapFilePathes   (cbIsWrapFilePathes),
+    _m_cbIsFuncParamsDisable(cbIsFuncParamsDisable)
 {
 
 }
@@ -55,16 +57,16 @@ CxStackTrace::~CxStackTrace() {
 //---------------------------------------------------------------------------
 bool
 CxStackTrace::bGet(
-    std::vec_tstring_t *pvsStack
-) const
+    std::vector<std::vec_tstring_t> *pvvsStack
+)
 {
-    xCHECK_RET(NULL == pvsStack, false);
+    xCHECK_RET(NULL == pvvsStack, false);
 
-    std::vec_tstring_t vsStack;
+    std::vector<std::vec_tstring_t> vvsStack;
 
 #if xOS_ENV_WIN
     #if   xCOMPILER_MINGW32
-        //TODO: CxStackTrace::bGet
+        // TODO: CxStackTrace::bGet
     #elif xCOMPILER_MS || xCOMPILER_CODEGEAR
         void        *pvStack[xSTACK_TRACE_FRAMES_MAX] = {0};
         SYMBOL_INFO *psiSymbol                        = NULL;
@@ -79,7 +81,7 @@ CxStackTrace::bGet(
         xCHECK_RET(usFramesNum == 0U, false);
 
         psiSymbol               = new (std::nothrow) SYMBOL_INFO[ sizeof(SYMBOL_INFO) + (255UL + 1) * sizeof(tchar_t) ];\
-        /*DEBUG*/
+        /*DEBUG*/xSTD_VERIFY(NULL != psiSymbol);
         psiSymbol->SizeOfStruct = sizeof(SYMBOL_INFO);
         psiSymbol->MaxNameLen   = 255UL;
 
@@ -91,11 +93,12 @@ CxStackTrace::bGet(
                 sStackLine = CxConst::xUNKNOWN_STRING;
             } else {
                 /*
+                int            iStackLineNum = 0;
                 std::tstring_t sModulePath;
                 std::tstring_t sFilePath;
-                std::tstring_t sFunctionName;
                 std::tstring_t sFileLine;
                 std::tstring_t sByteOffset;
+                std::tstring_t sFunctionName;
                 */
 
                 const ptrdiff_t      ullAddress = static_cast<ptrdiff_t>( psiSymbol->Address );
@@ -131,9 +134,9 @@ CxStackTrace::bGet(
         int            iStackLineNum = 0;
         std::tstring_t sModulePath;
         std::tstring_t sFilePath;
-        std::tstring_t sFunctionName;
         std::tstring_t sFileLine;
         std::tstring_t sByteOffset;
+        std::tstring_t sFunctionName;
 
         Dl_info dlinfo = {0};
 
@@ -162,7 +165,7 @@ CxStackTrace::bGet(
             ulong_t        _ulSourceLine = 0;
 
             bool bRv = _bAddr2Line(dlinfo.dli_saddr, &_sFilePath, &_sFunctionName, &_ulSourceLine);
-            assert(true == bRv);
+            xSTD_VERIFY(true == bRv);
             xUNUSED(_sFunctionName);
 
             iStackLineNum = i;
@@ -175,64 +178,59 @@ CxStackTrace::bGet(
             xBUFF_FREE(pszDemangleName);
         }
 
-
+        // swap file pathes
         if (true == _m_cbIsWrapFilePathes) {
             sModulePath = CxPath::sGetFileName(sModulePath);
             sFilePath   = CxPath::sGetFileName(sFilePath);
         }
 
-        if (false == _m_cbIsFuncParamsEnable) {
+        // disable function params
+        if (true == _m_cbIsFuncParamsDisable) {
             size_t uiPos1 = sFunctionName.find(xT("("));
             size_t uiPos2 = sFunctionName.find(xT(")"));
 
             if (std::tstring_t::npos != uiPos1 &&
                 std::tstring_t::npos != uiPos2)
             {
-                assert(uiPos1 < uiPos2);
+                xSTD_VERIFY(uiPos1 < uiPos2);
+
                 sFunctionName = sFunctionName.substr(0, uiPos1 + 1) +
                                 sFunctionName.substr(uiPos2);
             }
         }
 
-        sStackLine = CxString::sFormat(xT("%s%u: %s  %s  %s  %s  %s%s"),
-                                _m_csLinePrefix.c_str(),
-                                iStackLineNum,
-                                sModulePath.c_str(),
-                                sFilePath.c_str(),
-                                sByteOffset.c_str(),
-                                sFunctionName.c_str(),
-                                sFileLine.c_str(),
-                                _m_csLineSeparator.c_str());
+        // out
+        {
+            std::vec_tstring_t v;
 
-        vsStack.push_back(sStackLine);
-    }
+            v.push_back( CxString::lexical_cast(iStackLineNum) );
+            v.push_back(sModulePath);
+            v.push_back(sFilePath);
+            v.push_back(sFileLine);
+            v.push_back(sByteOffset);
+            v.push_back(sFunctionName);
+
+            vvsStack.push_back(v);
+        }
+    } // for
 #endif
 
-    std::swap(*pvsStack, vsStack);
+    std::swap(*pvvsStack, vvsStack);
 
     return true;
 }
 //---------------------------------------------------------------------------
 std::tstring_t
-CxStackTrace::sGet() const {
+CxStackTrace::sGet()  {
     std::tstring_t sRv;
 
-    std::vec_tstring_t vsStack;
+    std::vector<std::vec_tstring_t> vvsStack;
 
-    bool bRv = bGet(&vsStack);
+    bool bRv = bGet(&vvsStack);
     xCHECK_RET(false == bRv, std::tstring_t());
 
-    sRv = CxString::sJoin(vsStack, std::tstring_t());
-
-    return sRv;
-}
-//---------------------------------------------------------------------------
-std::tstring_t
-CxStackTrace::sFormat() const {
-    std::tstring_t sRv;
-
-
-
+    sRv = _sFormat(&vvsStack);
+    xCHECK_RET(true == sRv.empty(), CxConst::xUNKNOWN_STRING);
 
     return sRv;
 }
@@ -244,6 +242,45 @@ CxStackTrace::sFormat() const {
 *
 *****************************************************************************/
 
+
+//---------------------------------------------------------------------------
+std::tstring_t
+CxStackTrace::_sFormat(
+    std::vector<std::vec_tstring_t> *pvvsStack
+)
+{
+    std::tstring_t      sRv;
+
+    const size_t        cuiElementsNum = 6U;
+    std::vector<size_t> vuiMaxs(cuiElementsNum, 0U);
+
+    // get elements max sizes
+    for (size_t i = 0; i < cuiElementsNum; ++ i) {
+        xFOREACH_CONST(std::vector<std::vec_tstring_t>, it, *pvvsStack) {
+            const size_t uiCurr = it->at(i).size();
+
+            xCHECK_DO(uiCurr > vuiMaxs[i], vuiMaxs[i] = uiCurr);
+        }
+    }
+
+    // formating
+    xFOREACH_CONST(std::vector<std::vec_tstring_t>, it, *pvvsStack) {
+        std::tstringstream_t ssStackLine;
+
+        ssStackLine << _m_csLinePrefix
+                    << std::setw(vuiMaxs[0]) << std::right << it->at(0) << _m_csElementSeparator
+                    << std::setw(vuiMaxs[1]) << std::left  << it->at(1) << _m_csElementSeparator
+                    << std::setw(vuiMaxs[2]) << std::left  << it->at(2) << _m_csElementSeparator
+                    << std::setw(vuiMaxs[3]) << std::right << it->at(3) << _m_csElementSeparator
+                    << std::setw(vuiMaxs[4]) << std::left  << it->at(4) << _m_csElementSeparator
+                    << std::setw(vuiMaxs[5]) << std::left  << it->at(5)
+                    << _m_csLineSeparator;
+
+        sRv.append(ssStackLine.str());
+    }
+
+    return sRv;
+}
 //---------------------------------------------------------------------------
 #if xOS_ENV_UNIX
 
@@ -277,14 +314,14 @@ CxStackTrace::_bAddr2Line(
              CxPath::sGetExe().c_str(), (ulong_t)pvSymbolAddress);
 
     FILE *pflFile = ::popen(szCmdLine, xT("r"));
-    assert(NULL != pflFile);
+    xSTD_VERIFY(NULL != pflFile);
 
     // get function name
     {
         tchar_t szBuff[1024 + 1] = {0};
 
         const tchar_t *pcszFunctionName = std::fgets(szBuff, xARRAY_SIZE(szBuff), pflFile);
-        assert(NULL != pcszFunctionName);
+        xSTD_VERIFY(NULL != pcszFunctionName);
 
         (*psFunctionName).assign(pcszFunctionName);
     }
@@ -294,7 +331,7 @@ CxStackTrace::_bAddr2Line(
         tchar_t szBuff[1024 + 1] = {0};
 
         const tchar_t *pcszFileAndLine = std::fgets(szBuff, xARRAY_SIZE(szBuff), pflFile);
-        assert(NULL != pcszFileAndLine);
+        xSTD_VERIFY(NULL != pcszFileAndLine);
 
        /*
         * Parse that variants of pcszFileAndLine string:
@@ -305,24 +342,23 @@ CxStackTrace::_bAddr2Line(
         std::vec_tstring_t vsLine;
 
         bool bRv = CxString::bSplit(pcszFileAndLine, xT(":"), &vsLine);
-        assert(true == bRv);
-        assert(2U   == vsLine.size());
+        xSTD_VERIFY(true == bRv);
+        xSTD_VERIFY(2U   == vsLine.size());
 
         // out
-        assert(0 == std::feof(pflFile));
+        xSTD_VERIFY(0 == std::feof(pflFile));
 
         *psFilePath    = vsLine.at(0);
         *pulSourceLine = CxString::lexical_cast<ulong_t>( vsLine.at(1) );
     }
 
     int iRv =::pclose(pflFile);    pflFile = NULL;
-    assert(- 1 != iRv);
+    xSTD_VERIFY(- 1 != iRv);
 
     return true;
 }
 
 #endif  // xOS_ENV_UNIX
 //---------------------------------------------------------------------------
-
 
 xNAMESPACE_END(NxLib)
