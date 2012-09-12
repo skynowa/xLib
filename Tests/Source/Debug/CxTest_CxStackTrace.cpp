@@ -26,12 +26,12 @@ CxTest_CxStackTrace::bUnit(
     // bGet
     xTEST_CASE(cullCaseLoops)
     {
-        CxStackTrace       stStack;
-        std::vec_tstring_t vsStack;
+        CxStackTrace                    stStack;
+        std::vector<std::vec_tstring_t> vvsStack;
 
-        m_bRv = stStack.bGet(&vsStack);
+        m_bRv = stStack.bGet(&vvsStack);
         xTEST_EQ(true,  m_bRv);
-        xTEST_EQ(false, vsStack.empty());
+        xTEST_EQ(false, vvsStack.empty());
 
         #if xTEST_IGNORE
             std::tcout << xT("stack trace:") << std::endl;
@@ -53,7 +53,7 @@ CxTest_CxStackTrace::bUnit(
     // xASSERT
     xTEST_CASE(cullCaseLoops)
     {
-        #if xTEMP_DISABLED
+        #if xTEST_IGNORE
             xASSERT(false);
         #endif
     }
