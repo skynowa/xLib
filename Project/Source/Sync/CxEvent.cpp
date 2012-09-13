@@ -16,8 +16,8 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxEvent::CxEvent(
-    const bool cbIsAutoReset,
-    const bool cbIsSignaled     ///< false - wait, lock
+    const bool &cbIsAutoReset,
+    const bool &cbIsSignaled     ///< false - wait, lock
 ) :
 #if xOS_ENV_WIN
     _m_hEvent      ()
@@ -28,7 +28,7 @@ CxEvent::CxEvent(
     _m_bIsSignaled (false)
 #endif
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     /*DEBUG*/xASSERT_DO(false == _m_hEvent.bIsValid(), return);
     /*DEBUG*/
 
@@ -47,8 +47,8 @@ CxEvent::CxEvent(
 }
 //---------------------------------------------------------------------------
 CxEvent::~CxEvent() {
-#if xOS_ENV_WIN
-    // n/a
+#if   xOS_ENV_WIN
+    xNA;
 #elif xOS_ENV_UNIX
     int iRv = ::pthread_cond_destroy(&_m_cndCond);
     /*DEBUG*/xASSERT_MSG_DO(0 == iRv, CxLastError::sFormat(iRv), return);
@@ -59,17 +59,17 @@ const CxEvent::handle_t &
 CxEvent::hGet() const {
     /*DEBUG*/
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     return _m_hEvent;
 #elif xOS_ENV_UNIX
     return _m_cndCond;
 #endif
 }
 //---------------------------------------------------------------------------
-//NOTE: unblock threads blocked on a condition variable
+// NOTE: unblock threads blocked on a condition variable
 bool
 CxEvent::bSet() {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(false != _m_hEvent.bIsValid(), false);
     /*DEBUG*/
 
@@ -77,7 +77,7 @@ CxEvent::bSet() {
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX
     {
-        CxAutoMutex acsAutoMutex(_m_mtMutex);
+        CxAutoMutex amtAutoMutex(_m_mtMutex);
 
         if (false == _m_bIsAutoReset) {
             int iRv = ::pthread_cond_broadcast(&_m_cndCond);
@@ -96,7 +96,7 @@ CxEvent::bSet() {
 //---------------------------------------------------------------------------
 bool
 CxEvent::bReset() {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(false != _m_hEvent.bIsValid(), false);
     /*DEBUG*/
 
@@ -104,7 +104,7 @@ CxEvent::bReset() {
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX
     {
-        CxAutoMutex acsAutoMutex(_m_mtMutex);
+        CxAutoMutex amtAutoMutex(_m_mtMutex);
 
         _m_bIsSignaled = false;
     }
@@ -115,20 +115,20 @@ CxEvent::bReset() {
 //---------------------------------------------------------------------------
 CxEvent::ExObjectState
 CxEvent::osWait(
-    const ulong_t culTimeout /*= xTIMEOUT_INFINITE*/  ///< in milliseconds
+    const ulong_t &culTimeout /* = xTIMEOUT_INFINITE */  ///< in milliseconds
 )
 {
     /*DEBUG*/// culTimeout - n/a
 
     ExObjectState osRes = osFailed;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(false != _m_hEvent.bIsValid(), osFailed);
 
     osRes = static_cast<ExObjectState>( ::WaitForSingleObject(hGet().hGet(), culTimeout) );
 #elif xOS_ENV_UNIX
     {
-        CxAutoMutex acsAutoMutex(_m_mtMutex);
+        CxAutoMutex amtAutoMutex(_m_mtMutex);
 
         int iRv = 0;
 
@@ -180,14 +180,18 @@ bool
 CxEvent::bIsSignaled() {
     /*DEBUG*/// n/a
 
-#if xOS_ENV_WIN
-    DWORD ulRv = ::WaitForSingleObject(hGet().hGet(), 0UL);
+    bool bRes = false;
+
+#if   xOS_ENV_WIN
+    DWORD dwRv = ::WaitForSingleObject(hGet().hGet(), 0UL);
     /*DEBUG*/// n/a
 
-    return (false != _m_hEvent.bIsValid()) && (osSignaled == ulRv);
+    bRes = (false != _m_hEvent.bIsValid()) && (osSignaled == dwRv);
 #elif xOS_ENV_UNIX
-    return _m_bIsSignaled;
+    bRes = _m_bIsSignaled;
 #endif
+
+    return bRes;
 }
 //---------------------------------------------------------------------------
 
