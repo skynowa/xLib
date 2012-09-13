@@ -113,7 +113,7 @@ CxEvent::bReset() {
     return true;
 }
 //---------------------------------------------------------------------------
-bool
+CxEvent::ExObjectState
 CxEvent::osWait(
     const ulong_t &culTimeout /* = xTIMEOUT_INFINITE */  ///< in milliseconds
 )
