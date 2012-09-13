@@ -19,7 +19,7 @@ CxEvent::CxEvent(
     const bool &cbIsAutoReset,
     const bool &cbIsSignaled     ///< false - wait, lock
 ) :
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     _m_hEvent      ()
 #elif xOS_ENV_UNIX
     _m_mtMutex     (),
@@ -113,7 +113,7 @@ CxEvent::bReset() {
     return true;
 }
 //---------------------------------------------------------------------------
-CxEvent::ExObjectState
+bool
 CxEvent::osWait(
     const ulong_t &culTimeout /* = xTIMEOUT_INFINITE */  ///< in milliseconds
 )
@@ -125,7 +125,7 @@ CxEvent::osWait(
 #if   xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(false != _m_hEvent.bIsValid(), osFailed);
 
-    osRes = static_cast<ExObjectState>( ::WaitForSingleObject(hGet().hGet(), culTimeout) );
+    osRes = ::WaitForSingleObject(hGet().hGet(), culTimeout);
 #elif xOS_ENV_UNIX
     {
         CxAutoMutex amtAutoMutex(_m_mtMutex);
@@ -135,43 +135,50 @@ CxEvent::osWait(
         if (false == _m_bIsSignaled) {
             ////xCHECK_RET(! culTimeout, osTimeout);    // no time for waiting
 
-            timespec tsTime = {0};
+            timespec tsTimeoutMs = {0};
 
             if (xTIMEOUT_INFINITE != culTimeout) {
-                // set timeout
                 timeval tvNow  = {0};
 
                 iRv = ::gettimeofday(&tvNow, NULL);
                 /*DEBUG*/xASSERT_RET(- 1 != iRv, osFailed);
 
-                tsTime.tv_sec  = tvNow.tv_sec + culTimeout / 1000;
-                tsTime.tv_nsec = (((culTimeout % 1000) * 1000 + tvNow.tv_usec) % 1000000) * 1000;
+                tsTimeoutMs.tv_sec  = tvNow.tv_sec + culTimeout / 1000;
+                tsTimeoutMs.tv_nsec = (((culTimeout % 1000) * 1000 + tvNow.tv_usec) % 1000000) * 1000;
             }
 
             // wait until condition thread returns control
             do {
-                if (xTIMEOUT_INFINITE != culTimeout) {
-                    iRv = ::pthread_cond_timedwait(&_m_cndCond, const_cast<CxMutex::handle_t *>( &_m_mtMutex.hGet() ), &tsTime);
-                } else {
+                if (xTIMEOUT_INFINITE == culTimeout) {
                     iRv = ::pthread_cond_wait     (&_m_cndCond, const_cast<CxMutex::handle_t *>( &_m_mtMutex.hGet() ));
+                } else {
+                    iRv = ::pthread_cond_timedwait(&_m_cndCond, const_cast<CxMutex::handle_t *>( &_m_mtMutex.hGet() ), &tsTimeoutMs);
                 }
             }
-            while (!iRv && !_m_bIsSignaled);
+            while (0 == iRv && !_m_bIsSignaled);
         } else {
             iRv = 0;
         }
 
         // adjust signaled member
         switch (iRv) {
-            case 0:         { xCHECK_DO(false != _m_bIsAutoReset, _m_bIsSignaled = false);
-                              osRes = osSignaled; }  break;
+            case 0:         {
+                                if (true == _m_bIsAutoReset) {
+                                    _m_bIsSignaled = false;
+                                } else {
+                                    _m_bIsSignaled = true;
+                                    osRes = osSignaled;
+                                }
+                            }
+                            break;
+
             case ETIMEDOUT: { osRes = osTimeout;  }  break;
             default:        { osRes = osFailed;   }  break;
         }
     }
 #endif
 
-    /*DEBUG*/xASSERT_MSG_RET(osSignaled == osRes || osTimeout == osRes, CxLastError::sFormat(osRes), osFailed);
+    ///*DEBUG*/xASSERT_MSG_RET(osSignaled == osRes || osTimeout == osRes, CxLastError::sFormat(osRes), osFailed);
 
     return osRes;
 }
@@ -180,18 +187,18 @@ bool
 CxEvent::bIsSignaled() {
     /*DEBUG*/// n/a
 
-    bool bRes = false;
+    bool bRv = false;
 
 #if   xOS_ENV_WIN
     DWORD dwRv = ::WaitForSingleObject(hGet().hGet(), 0UL);
     /*DEBUG*/// n/a
 
-    bRes = (false != _m_hEvent.bIsValid()) && (osSignaled == dwRv);
+    bRv = (false != _m_hEvent.bIsValid() && osSignaled == dwRv);
 #elif xOS_ENV_UNIX
-    bRes = _m_bIsSignaled;
+    bRv = _m_bIsSignaled;
 #endif
 
-    return bRes;
+    return bRv;
 }
 //---------------------------------------------------------------------------
 

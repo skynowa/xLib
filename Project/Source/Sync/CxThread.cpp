@@ -1150,15 +1150,17 @@ CxThread::_s_uiJobEntry(
     // flags
     pthThis->_vSetStatesDefault();
 
+#if   xOS_ENV_WIN
+    exit_status_t esExitStatus = pthThis->_m_uiExitStatus;
+#elif xOS_ENV_UNIX
+    exit_status_t esExitStatus = &pthThis->_m_uiExitStatus;
+#endif
+
     //-------------------------------------
     // auto delete oneself
     xCHECK_DO(true == pthThis->_m_cbIsAutoDelete, xPTR_DELETE(pthThis));
 
-#if   xOS_ENV_WIN
-    return  pthThis->_m_uiExitStatus;
-#elif xOS_ENV_UNIX
-    return &pthThis->_m_uiExitStatus;
-#endif
+    return esExitStatus;
 }
 //---------------------------------------------------------------------------
 bool

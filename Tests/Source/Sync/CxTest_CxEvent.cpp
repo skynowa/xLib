@@ -23,19 +23,19 @@ CxTest_CxEvent::bUnit(
 )
 {
     //-------------------------------------
-    //hGet
+    // hGet
     {
         CxEvent objEvent(true, true);
 
-        #if xOS_ENV_WIN
+        #if   xOS_ENV_WIN
             xTEST_EQ(true, objEvent.hGet().bIsValid())
         #elif xOS_ENV_UNIX
-            //TODO: hRv
+            // TODO: hRv
         #endif
     }
 
     //-------------------------------------
-    //bIsSignaled
+    // bIsSignaled
     {
         {
             CxEvent objEvent(true, true);
@@ -53,7 +53,7 @@ CxTest_CxEvent::bUnit(
     }
 
     //-------------------------------------
-    //bSet
+    // bSet
     {
         const size_t cuiSpinCount = 3;
 
@@ -78,7 +78,7 @@ CxTest_CxEvent::bUnit(
     }
 
     //-------------------------------------
-    //bReset
+    // bReset
     {
         const size_t cuiSpinCount = 3;
 
@@ -103,7 +103,7 @@ CxTest_CxEvent::bUnit(
     }
 
     //-------------------------------------
-    //bWait
+    // bWait
     {
         {
             const bool cbIsAutoReset  = false;
@@ -132,18 +132,9 @@ CxTest_CxEvent::bUnit(
             m_bRv = objEvent.bIsSignaled();
             xTEST_EQ(cbInitialState, m_bRv);
 
-            CxEvent::ExObjectState osRes = objEvent.osWait(5);
+            CxEvent::ExObjectState osRes = objEvent.osWait(5);  //BUG: objEvent.osWait(5);
+            xTEST_EQ((ulong_t)CxEvent::osTimeout, (ulong_t)osRes);
 
-            //BUG: objEvent.osWait(5);
-        #if xOS_ENV_WIN
-            #if xTODO
-                xTEST_EQ((ulong_t)CxEvent::osSignaled, (ulong_t)osRes);   //LINUX   - osSignaled
-                                                                          //Windows - osTimeout
-            #endif
-        #elif xOS_ENV_UNIX
-            xTEST_EQ((ulong_t)CxEvent::osSignaled, (ulong_t)osRes);   //LINUX   - osSignaled
-                                                                      //Windows - osTimeout
-        #endif
             m_bRv = objEvent.bIsSignaled();
             xTEST_EQ(false, m_bRv);
         }
