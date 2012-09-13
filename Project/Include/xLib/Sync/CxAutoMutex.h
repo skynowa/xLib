@@ -18,11 +18,11 @@ class CxAutoMutex :
     /// auto critical section
 {
     public:
-                           CxAutoMutex(CxMutex &csCS, const bool cbIsUseTry = false);
+                           CxAutoMutex(CxMutex &csCS, const bool &cbIsUseTry = false);
             ///< constructor
         virtual           ~CxAutoMutex();
             ///< destructor
-        bool               bIsLocked            () const;
+        bool               bIsLocked  () const;
             ///< is locked
 
     private:

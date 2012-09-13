@@ -18,14 +18,12 @@ xNAMESPACE_BEGIN(NxLib)
 CxMutex::CxMutex() :
     _m_hHandle()
 {
-    ///*DEBUG*/xASSERT_DO(false == _bIsValid(), return);
+
 }
 //---------------------------------------------------------------------------
 /*virtual*/
 CxMutex::~CxMutex() {
-    ///*DEBUG*/xASSERT_DO(true == _bIsValid(), return);
-
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     bool bRv = false;
 
     try {
@@ -45,9 +43,7 @@ CxMutex::~CxMutex() {
 //---------------------------------------------------------------------------
 bool
 CxMutex::bCreate() {
-    ///*DEBUG*/xASSERT_RET(false == _bIsValid(), false);
-
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     bool bRv = false;
 
     try {
@@ -87,16 +83,12 @@ CxMutex::bCreate() {
 //---------------------------------------------------------------------------
 const CxMutex::handle_t &
 CxMutex::hGet() const {
-    ///*DEBUG*/xASSERT(true == _bIsValid());
-
     return _m_hHandle;
 }
 //---------------------------------------------------------------------------
 bool
 CxMutex::bLock() {
-    ///*DEBUG*/xASSERT_RET(true == _bIsValid(), false);
-
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     bool bRv = false;
 
     try {
@@ -118,9 +110,7 @@ CxMutex::bLock() {
 //---------------------------------------------------------------------------
 bool
 CxMutex::bTryLock() {
-    ///*DEBUG*/xASSERT_RET(true == _bIsValid(), false);
-
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     BOOL blRes = ::TryEnterCriticalSection(&_m_hHandle);
     xCHECK_RET(FALSE == blRes, false);
 #elif xOS_ENV_UNIX
@@ -133,9 +123,7 @@ CxMutex::bTryLock() {
 //---------------------------------------------------------------------------
 bool
 CxMutex::bUnlock() {
-    ///*DEBUG*/xASSERT_RET(true == _bIsValid(), false);
-
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     bool bRv = false;
 
     try {
@@ -153,27 +141,6 @@ CxMutex::bUnlock() {
 #endif
 
     return true;
-}
-//---------------------------------------------------------------------------
-
-
-/****************************************************************************
-*    private
-*
-*****************************************************************************/
-
-//---------------------------------------------------------------------------
-bool
-CxMutex::_bIsValid() const {
-#if xTODO
-    #if xOS_ENV_WIN
-        return (NULL != _m_hHandle.OwningThread);
-    #elif xOS_ENV_UNIX
-        return (0 < _m_hHandle.__owner);
-    #endif
-#endif
-
-    return false;
 }
 //---------------------------------------------------------------------------
 
