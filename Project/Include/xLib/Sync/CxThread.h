@@ -21,7 +21,7 @@ class CxThread :
         enum ExPriority
             /// priotity
         {
-            #if xOS_ENV_WIN
+            #if   xOS_ENV_WIN
                 tpError        = THREAD_PRIORITY_ERROR_RETURN,
                 tpIdle         = THREAD_PRIORITY_IDLE,
                 tpLowest       = THREAD_PRIORITY_LOWEST,
@@ -42,7 +42,7 @@ class CxThread :
             #endif
         };
 
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         typedef HANDLE    handle_t; ///< handle
         typedef DWORD     id_t;     ///< ID
     #elif xOS_ENV_UNIX
@@ -57,7 +57,7 @@ class CxThread :
         virtual             ~CxThread             () = 0;
             ///< destructor
 
-        //actions
+        // actions
         bool                 bCreate              (const bool &cbIsPaused, const uint_t &cuiStackSize, void *pvParam);
             ///< start
         bool                 bResume              ();
@@ -71,7 +71,7 @@ class CxThread :
         bool                 bWait                (const ulong_t &culTimeout) const;
             ///< wait
 
-        //flags
+        // flags
         bool                 bIsCreated           () const;
             ///< is created
         bool                 bIsRunning           () const;
@@ -82,7 +82,7 @@ class CxThread :
             ///< is exited (is set flag "exit")
 
     #if xOS_ENV_WIN
-        //messages
+        // messages
         bool                 bPostMessage         (HWND hHwnd, uint_t uiMsg, uint_t uiParam1, long_t liParam2) const;
             ///< post message from thread to window
         bool                 bSendMessage         (HWND hHwnd, uint_t uiMsg, uint_t uiParam1, long_t liParam2) const;
@@ -97,7 +97,7 @@ class CxThread :
             ///< waiting for message with params from other thread
     #endif
 
-        //priority
+        // priority
         bool                 bSetPriority         (const ExPriority &ctpPriority) const;
             ///< set priority (under Linux must use admin privilege)
         ExPriority           tpGetPriority        () const;
@@ -113,7 +113,7 @@ class CxThread :
         bool                 bSetPriorityBoost    (const bool &cbIsEnabled) const;
             ///< disables or enables the ability of the system to temporarily boost the priority of a thread
 
-        //CPU
+        // CPU
         bool                 bSetCpuAffinity      (const int &ciProcNum) const;
             ///< set processor affinity
         bool                 bSetCpuIdeal         (const ulong_t &culIdealCpu) const;
@@ -123,7 +123,7 @@ class CxThread :
         static ulong_t       ulGetCpuCount        ();
             ///< get CPU count on machine
 
-        //other
+        // other
         handle_t             hGet                 () const;
             ///< get handle
         id_t                 ulGetId              () const;
@@ -135,12 +135,12 @@ class CxThread :
         bool                 bSetDebugName        (const std::tstring_t &csName) const;
             ///< set name your threads in the debugger thread list
 
-        //static
+        // static
         static handle_t      hOpen                (const ulong_t &culAccess, const bool &cbInheritHandle, const ulong_t &culId);
             ///< opens an existing thread object
 
     protected:
-        //events
+        // events
         virtual uint_t       uiOnRun              (void *pvParam) = 0;
             ///< work thread function, must be overrided
         //--virtual void    vOnEnter              ();
@@ -150,11 +150,11 @@ class CxThread :
             ///< is need to exit from work thread function
 
     private:
-        //constants
+        // constants
         static const ulong_t _ms_culStillActiveTimeout = 2UL;    ///< still active timeout (msec)
         static const ulong_t _ms_culExitTimeout        = 5000UL; ///< exit timeout (msec)
 
-        //thread data
+        // thread data
     #if xOS_ENV_WIN
         CxHandle             _m_hThread;                 ///< native handle
     #elif xOS_ENV_UNIX
@@ -166,19 +166,19 @@ class CxThread :
         void                *_m_pvParam;                 ///< param for job function
         const bool           _m_cbIsAutoDelete;          ///< is autodelete thread object
 
-        //flags
+        // flags
         //TODO: make struct SFlags
         bool                 _m_bIsCreated;              ///< is created
         bool                 _m_bIsRunning;              ///< is running
         /*bool               _m_bIsPaused;*/// n/a
         /*bool               _m_bIsExited;*/// n/a
 
-        //other
+        // other
         CxEvent             *_m_pevStarter;              ///< starter event
         CxEvent              _m_evPause;                 ///< pause event
         CxEvent              _m_evExit;                  ///< exit event
 
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         typedef uint_t       exit_status_t;
     #elif xOS_ENV_UNIX
         typedef void *       exit_status_t;
@@ -192,7 +192,7 @@ class CxThread :
         void                 _vSetStatesDefault   ();
             ///< set states as default
 
-        //static
+        // static
         static int           _iGetPriorityMin     ();
         static int           _iGetPriorityMax     ();
 };

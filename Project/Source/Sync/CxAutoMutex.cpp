@@ -19,22 +19,22 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxAutoMutex::CxAutoMutex(
-    CxMutex    &csCS,
+    CxMutex    &mtMutex,
     const bool &cbIsUseTry /* = false */
 ) :
-    _m_csCS     (csCS),
+    _m_mtMutex  (mtMutex),
     _m_bIsLocked(false)
 {
     bool bRv = false;
 
-    bRv = csCS.bCreate();
+    bRv = _m_mtMutex.bCreate();
     /*DEBUG*/xASSERT_DO(true == bRv, return);
 
     if (false == cbIsUseTry) {
-        bRv = _m_csCS.bLock();
+        bRv = _m_mtMutex.bLock();
         /*DEBUG*/xASSERT_DO(true == bRv, return);
     } else {
-        bRv = _m_csCS.bTryLock();
+        bRv = _m_mtMutex.bTryLock();
         /*DEBUG*/// n/a
     }
 
@@ -43,7 +43,7 @@ CxAutoMutex::CxAutoMutex(
 //---------------------------------------------------------------------------
 CxAutoMutex::~CxAutoMutex() {
     if (false != _m_bIsLocked) {
-        bool bRv = _m_csCS.bUnlock();
+        bool bRv = _m_mtMutex.bUnlock();
         /*DEBUG*/xASSERT_DO(true == bRv, return);
     }
 

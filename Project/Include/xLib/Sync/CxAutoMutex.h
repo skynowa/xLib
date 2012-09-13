@@ -18,16 +18,17 @@ class CxAutoMutex :
     /// auto critical section
 {
     public:
-                           CxAutoMutex(CxMutex &csCS, const bool &cbIsUseTry = false);
+                 CxAutoMutex(CxMutex &mtMutex, const bool &cbIsUseTry = false);
             ///< constructor
-        virtual           ~CxAutoMutex();
+        virtual ~CxAutoMutex();
             ///< destructor
-        bool               bIsLocked  () const;
+
+        bool     bIsLocked  () const;
             ///< is locked
 
     private:
-        CxMutex &_m_csCS;         ///< critical section
-        bool               _m_bIsLocked;    ///< lock flag for explicit unlock
+        CxMutex &_m_mtMutex;    ///< mutex
+        bool     _m_bIsLocked;  ///< lock flag for explicit unlock
 };
 
 xNAMESPACE_END(NxLib)
