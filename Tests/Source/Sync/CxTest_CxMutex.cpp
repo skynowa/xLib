@@ -26,7 +26,7 @@ CxTest_CxMutex::bUnit(
 
 
     //--------------------------------------------------
-    //bLock, bUnlock
+    // bLock, bUnlock
     xTEST_CASE(cullCaseLoops)
     {
         CxMutex csCS;
@@ -44,7 +44,7 @@ CxTest_CxMutex::bUnit(
     }
 
     //--------------------------------------------------
-    //bTryLock, bUnlock
+    // bTryLock, bUnlock
     xTEST_CASE(cullCaseLoops)
     {
         CxMutex csCS;
@@ -62,7 +62,7 @@ CxTest_CxMutex::bUnit(
     }
 
     //--------------------------------------------------
-    //bLock, bUnlock
+    // bLock, bUnlock
     xTEST_CASE(cullCaseLoops)
     {
         CxMutex csCS;
@@ -86,7 +86,7 @@ CxTest_CxMutex::bUnit(
     }
 
     //--------------------------------------------------
-    //bTryLock, bUnlock
+    // bTryLock, bUnlock
     xTEST_CASE(cullCaseLoops)
     {
         CxMutex csCS;

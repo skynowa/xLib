@@ -19,8 +19,8 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxAutoMutex::CxAutoMutex(
-    CxMutex &csCS,
-    const bool         cbIsUseTry /* = false*/
+    CxMutex    &csCS,
+    const bool &cbIsUseTry /* = false */
 ) :
     _m_csCS     (csCS),
     _m_bIsLocked(false)

@@ -25,10 +25,10 @@ CxTest_CxAutoMutex::bUnit(
 )
 {
     //-------------------------------------
-    //CxAutoMutex
+    // CxAutoMutex
     xTEST_CASE(cullCaseLoops)
     {
-        size_t            uiCounter = 0;
+        size_t  uiCounter = 0;
         CxMutex csCS;
 
         {
