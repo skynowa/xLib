@@ -25,19 +25,19 @@ class CxEvent :
         typedef pthread_cond_t handle_t;   ///< handle
     #endif
 
-//        enum ExObjectState
-//            /// current object state
-//        {
-//            #if   xOS_ENV_WIN
-//                osSignaled = WAIT_OBJECT_0, ///< signaled
-//                osTimeout  = WAIT_TIMEOUT,  ///< time-out interval elapsed and the object's state is nonsignaled
-//                osFailed   = WAIT_FAILED    ///< failed
-//            #elif xOS_ENV_UNIX
-//                osSignaled = 0,             ///< signaled
-//                osTimeout  = ETIMEDOUT,     ///< time-out interval elapsed and the object's state is nonsignaled
-//                osFailed /* other values */ ///< failed
-//            #endif
-//        };
+        enum ExObjectState
+            /// current object state
+        {
+            #if   xOS_ENV_WIN
+                osSignaled = WAIT_OBJECT_0, ///< signaled
+                osTimeout  = WAIT_TIMEOUT,  ///< time-out interval elapsed and the object's state is nonsignaled
+                osFailed   = WAIT_FAILED    ///< failed
+            #elif xOS_ENV_UNIX
+                osSignaled = 0,             ///< signaled
+                osTimeout  = ETIMEDOUT,     ///< time-out interval elapsed and the object's state is nonsignaled
+                osFailed /* other values */ ///< failed
+            #endif
+        };
 
 
                           CxEvent    (const bool &cbIsAutoReset, const bool &cbIsSignaled);
