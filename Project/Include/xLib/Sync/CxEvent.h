@@ -19,16 +19,16 @@ class CxEvent :
     /// event
 {
     public:
-        #if xOS_ENV_WIN
-        typedef CxHandle        handle_t;   ///< handle
+    #if   xOS_ENV_WIN
+        typedef CxHandle       handle_t;   ///< handle
     #elif xOS_ENV_UNIX
-        typedef pthread_cond_t  handle_t;   ///< handle
+        typedef pthread_cond_t handle_t;   ///< handle
     #endif
 
         enum ExObjectState
             /// current object state
         {
-            #if xOS_ENV_WIN
+            #if   xOS_ENV_WIN
                 osSignaled = WAIT_OBJECT_0, ///< signaled
                 osTimeout  = WAIT_TIMEOUT,  ///< time-out interval elapsed and the object's state is nonsignaled
                 osFailed   = WAIT_FAILED    ///< failed
@@ -40,7 +40,7 @@ class CxEvent :
         };
 
 
-                          CxEvent    (const bool cbIsAutoReset, const bool cbIsSignaled);
+                          CxEvent    (const bool &cbIsAutoReset, const bool &cbIsSignaled);
             ///< constructor
         virtual          ~CxEvent    ();
             ///< destructor
@@ -51,13 +51,13 @@ class CxEvent :
             ///< signal the event for the waiting thread (!!! unlock !!!)
         bool              bReset     ();
             ///< once signaled, the event class must be "reset" before responding to a new signal
-        ExObjectState     osWait     (const ulong_t culTimeout = xTIMEOUT_INFINITE);
+        ExObjectState     osWait     (const ulong_t &culTimeout = xTIMEOUT_INFINITE);
             ///< wait either for the cxevent to be signaled by another thread or for the specified timeout duration
         bool              bIsSignaled();
             ///< is signaled
 
     private:
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         CxHandle          _m_hEvent;        ///< event
     #elif xOS_ENV_UNIX
         CxMutex           _m_mtMutex;       ///< mutex
