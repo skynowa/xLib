@@ -179,7 +179,11 @@ CxEvent::osWait(
                             break;
 
             case ETIMEDOUT: {
-                                osRes = osTimeout;
+                                //if (false == _m_bIsAutoReset) {
+                                //   osRes = osSignaled;
+                                //} else {
+                                   osRes = _m_bIsSignaled ? osSignaled : osTimeout;
+                                //}
                             }
                             break;
 
@@ -192,7 +196,7 @@ CxEvent::osWait(
     }
 #endif
 
-    ///*DEBUG*/xASSERT_MSG_RET(osSignaled == osRes || osTimeout == osRes, CxLastError::sFormat(osRes), osFailed);
+    /*DEBUG*/xASSERT_MSG_RET(osSignaled == osRes || osTimeout == osRes, CxLastError::sFormat(osRes), osFailed);
 
     return osRes;
 }
