@@ -132,7 +132,7 @@ CxEvent::osWait(
 
         int iRv = 0;
 
-        if (false == _m_bIsSignaled) {
+        //if (false == _m_bIsSignaled) {
             timespec tsTimeoutMs = {0};
 
             if (xTIMEOUT_INFINITE != culTimeout) {
@@ -160,13 +160,11 @@ CxEvent::osWait(
                 } else {
                     iRv = ::pthread_cond_timedwait(&_m_cndCond, const_cast<CxMutex::handle_t *>( &_m_mtMutex.hGet() ), &tsTimeoutMs);
                 }
-
-                xCHECK_DO(ETIMEDOUT == iRv, break);
             }
             while (!iRv && !_m_bIsSignaled);
-        } else {
-            iRv = 0;
-        }
+        //} else {
+        //    iRv = 0;
+        //}
         CxTracer() << xTRACE_VAR(iRv);
 
         // adjust signaled member
@@ -177,9 +175,16 @@ CxEvent::osWait(
                             }
                             break;
 
-            case ETIMEDOUT: { osRes = osTimeout;  }  break;
-            default:        { osRes = osTimeout;  }  break;
+            case ETIMEDOUT: {
+                                xCHECK_DO(true == _m_bIsAutoReset, _m_bIsSignaled = false);
+                                osRes = osTimeout;
+                            }
+                            break;
 
+            default:        {
+                                xASSERT(false);
+                            }
+                            break;
         }
 
     }
