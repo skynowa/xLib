@@ -145,6 +145,9 @@ CxTest_CxEvent::bUnit(
 
             CxEvent objEvent(cbIsAutoReset, cbInitialState);
 
+            m_bRv = objEvent.bIsSignaled();
+            xTEST_EQ(cbInitialState, m_bRv);
+
             CxEvent::ExObjectState osRes = objEvent.osWait(10);
             xTEST_EQ(CxEvent::osTimeout, osRes);
 
@@ -158,11 +161,14 @@ CxTest_CxEvent::bUnit(
 
             CxEvent objEvent(cbIsAutoReset, cbInitialState);
 
+            m_bRv = objEvent.bIsSignaled();
+            xTEST_EQ(cbInitialState, m_bRv);
+
             CxEvent::ExObjectState osRes = objEvent.osWait(10);
-            xTEST_EQ(CxEvent::osTimeout, osRes);
+            xTEST_EQ(CxEvent::osSignaled, osRes);
 
             m_bRv = objEvent.bIsSignaled();
-            xTEST_EQ(false, m_bRv);
+            xTEST_EQ(true, m_bRv);
         }
 
     }
