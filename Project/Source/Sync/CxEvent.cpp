@@ -168,16 +168,17 @@ CxEvent::osWait(
         CxTracer() << xTRACE_VAR(iRv);
 
         // adjust signaled member
+        if (true == _m_bIsAutoReset) {
+            _m_bIsSignaled = false;
+        }
+
         switch (iRv) {
             case 0:         {
-                                xCHECK_DO(true == _m_bIsAutoReset, _m_bIsSignaled = false);
                                 osRes = osSignaled;
                             }
                             break;
 
             case ETIMEDOUT: {
-                                //xCHECK_DO(true == _m_bIsAutoReset, _m_bIsSignaled = false);
-                                _m_bIsSignaled = false;
                                 osRes = osTimeout;
                             }
                             break;
