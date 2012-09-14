@@ -79,11 +79,11 @@ CxEvent::bSet() {
     {
         CxAutoMutex amtAutoMutex(_m_mtMutex);
 
-        if (false == _m_bIsAutoReset) {
-            int iRv = ::pthread_cond_broadcast(&_m_cndCond);
+        if (true == _m_bIsAutoReset) {
+            int iRv = ::pthread_cond_signal(&_m_cndCond);
             /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
         } else {
-            int iRv = ::pthread_cond_signal(&_m_cndCond);
+            int iRv = ::pthread_cond_broadcast(&_m_cndCond);
             /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
         }
 
@@ -125,7 +125,7 @@ CxEvent::osWait(
 #if   xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(false != _m_hEvent.bIsValid(), osFailed);
 
-    osRes = ::WaitForSingleObject(hGet().hGet(), culTimeout);
+    osRes = static_cast<ExObjectState>( ::WaitForSingleObject(hGet().hGet(), culTimeout) );
 #elif xOS_ENV_UNIX
     {
         CxAutoMutex amtAutoMutex(_m_mtMutex);
@@ -133,8 +133,6 @@ CxEvent::osWait(
         int iRv = 0;
 
         if (false == _m_bIsSignaled) {
-            ////xCHECK_RET(! culTimeout, osTimeout);    // no time for waiting
-
             timespec tsTimeoutMs = {0};
 
             if (xTIMEOUT_INFINITE != culTimeout) {
@@ -144,7 +142,15 @@ CxEvent::osWait(
                 /*DEBUG*/xASSERT_RET(- 1 != iRv, osFailed);
 
                 tsTimeoutMs.tv_sec  = tvNow.tv_sec + culTimeout / 1000;
-                tsTimeoutMs.tv_nsec = (((culTimeout % 1000) * 1000 + tvNow.tv_usec) % 1000000) * 1000;
+                tsTimeoutMs.tv_nsec = tvNow.tv_usec * 1000 + (culTimeout % 1000) * 1000000;
+
+                // handle overflow
+                if (tsTimeoutMs.tv_nsec >= 1000000000) {
+                    CxTracer() << xT("xLib: CxEvent::osWait - handle overflow");
+
+                    ++ tsTimeoutMs.tv_sec;
+                    tsTimeoutMs.tv_nsec -= 1000000000;
+                }
             }
 
             // wait until condition thread returns control
@@ -154,27 +160,28 @@ CxEvent::osWait(
                 } else {
                     iRv = ::pthread_cond_timedwait(&_m_cndCond, const_cast<CxMutex::handle_t *>( &_m_mtMutex.hGet() ), &tsTimeoutMs);
                 }
+
+                xCHECK_DO(ETIMEDOUT == iRv, break);
             }
-            while (0 == iRv && !_m_bIsSignaled);
+            while (!iRv && !_m_bIsSignaled);
         } else {
             iRv = 0;
         }
+        CxTracer() << xTRACE_VAR(iRv);
 
         // adjust signaled member
         switch (iRv) {
             case 0:         {
-                                if (true == _m_bIsAutoReset) {
-                                    _m_bIsSignaled = false;
-                                } else {
-                                    _m_bIsSignaled = true;
-                                    osRes = osSignaled;
-                                }
+                                xCHECK_DO(true == _m_bIsAutoReset, _m_bIsSignaled = false);
+                                osRes = osSignaled;
                             }
                             break;
 
             case ETIMEDOUT: { osRes = osTimeout;  }  break;
-            default:        { osRes = osFailed;   }  break;
+            default:        { osRes = osTimeout;  }  break;
+
         }
+
     }
 #endif
 
