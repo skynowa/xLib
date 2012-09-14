@@ -105,22 +105,22 @@ CxTest_CxEvent::bUnit(
     //-------------------------------------
     // bWait
     {
-//        {
-//            const bool cbIsAutoReset  = false;
-//            const bool cbInitialState = false;
-//
-//
-//            CxEvent objEvent(cbIsAutoReset, cbInitialState);
-//
-//            m_bRv = objEvent.bIsSignaled();
-//            xTEST_EQ(cbInitialState, m_bRv);
-//
-//            CxEvent::ExObjectState osRes = objEvent.osWait(5);
-//            xTEST_EQ((ulong_t)CxEvent::osTimeout, (ulong_t)osRes);
-//
-//            m_bRv = objEvent.bIsSignaled();
-//            xTEST_EQ(cbInitialState, m_bRv);
-//        }
+        {
+            const bool cbIsAutoReset  = false;
+            const bool cbInitialState = false;
+
+
+            CxEvent objEvent(cbIsAutoReset, cbInitialState);
+
+            m_bRv = objEvent.bIsSignaled();
+            xTEST_EQ(cbInitialState, m_bRv);
+
+            CxEvent::ExObjectState osRes = objEvent.osWait(5);
+            xTEST_EQ((ulong_t)CxEvent::osTimeout, (ulong_t)osRes);
+
+            m_bRv = objEvent.bIsSignaled();
+            xTEST_EQ(cbInitialState, m_bRv);
+        }
 
         {
             const bool cbIsAutoReset  = true;
@@ -132,7 +132,7 @@ CxTest_CxEvent::bUnit(
             m_bRv = objEvent.bIsSignaled();
             xTEST_EQ(cbInitialState, m_bRv);
 
-            CxEvent::ExObjectState osRes = objEvent.osWait(50000);  //BUG: objEvent.osWait(5);
+            CxEvent::ExObjectState osRes = objEvent.osWait(3000);  //BUG: objEvent.osWait(5);
             xTEST_EQ((ulong_t)CxEvent::osTimeout, (ulong_t)osRes);
 
             m_bRv = objEvent.bIsSignaled();
