@@ -132,12 +132,39 @@ CxTest_CxEvent::bUnit(
             m_bRv = objEvent.bIsSignaled();
             xTEST_EQ(cbInitialState, m_bRv);
 
-            CxEvent::ExObjectState osRes = objEvent.osWait(50);  //BUG: objEvent.osWait(5);
+            CxEvent::ExObjectState osRes = objEvent.osWait(10);
             xTEST_EQ(CxEvent::osTimeout, osRes);
 
             m_bRv = objEvent.bIsSignaled();
             xTEST_EQ(false, m_bRv);
         }
+
+        {
+            const bool cbIsAutoReset  = true;
+            const bool cbInitialState = false;
+
+            CxEvent objEvent(cbIsAutoReset, cbInitialState);
+
+            CxEvent::ExObjectState osRes = objEvent.osWait(10);
+            xTEST_EQ(CxEvent::osTimeout, osRes);
+
+            m_bRv = objEvent.bIsSignaled();
+            xTEST_EQ(false, m_bRv);
+        }
+
+        {
+            const bool cbIsAutoReset  = false;
+            const bool cbInitialState = true;
+
+            CxEvent objEvent(cbIsAutoReset, cbInitialState);
+
+            CxEvent::ExObjectState osRes = objEvent.osWait(10);
+            xTEST_EQ(CxEvent::osTimeout, osRes);
+
+            m_bRv = objEvent.bIsSignaled();
+            xTEST_EQ(false, m_bRv);
+        }
+
     }
 
     return true;

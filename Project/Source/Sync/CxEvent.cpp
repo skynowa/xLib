@@ -176,7 +176,8 @@ CxEvent::osWait(
                             break;
 
             case ETIMEDOUT: {
-                                xCHECK_DO(true == _m_bIsAutoReset, _m_bIsSignaled = false);
+                                //xCHECK_DO(true == _m_bIsAutoReset, _m_bIsSignaled = false);
+                                _m_bIsSignaled = false;
                                 osRes = osTimeout;
                             }
                             break;
