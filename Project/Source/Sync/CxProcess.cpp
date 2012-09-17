@@ -42,7 +42,7 @@ CxProcess::CxProcess() :
 //---------------------------------------------------------------------------
 /*virtual*/
 CxProcess::~CxProcess() {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     BOOL blRes = FALSE;
 
     blRes = ::CloseHandle(_m_hThread);
@@ -74,7 +74,7 @@ CxProcess::bCreate(
 
     //xTRACEV(xT("sCmdLine: %s"), sCmdLine.c_str());
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     STARTUPINFO         siInfo = {0};   siInfo.cb = sizeof(siInfo);
     PROCESS_INFORMATION piInfo = {0};
 
@@ -113,7 +113,7 @@ CxProcess::ulWait(
 {
     ExWaitResult wrStatus = wrFailed;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     DWORD ulRv = ::WaitForSingleObject(_m_hHandle, culTimeout);
     /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == ulRv, static_cast<ExWaitResult>( ulRv ));
 
@@ -145,7 +145,7 @@ CxProcess::bKill(
     bool    bRv  = false;
     ulong_t ulRv = 0UL;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(NULL != _m_hHandle, false);
     /*DEBUG*/// ulTimeout - n/a
 
@@ -201,7 +201,7 @@ CxProcess::ulGetExitStatus() const {
 
     ulong_t ulRv = 0UL;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     BOOL blRes = ::GetExitCodeProcess(_m_hHandle, &ulRv);
     /*DEBUG*/xASSERT_RET(FALSE != blRes, ulRv);
 #elif xOS_ENV_UNIX
@@ -265,21 +265,21 @@ CxProcess::bIsRunning(
     typedef CxHandleT<hvInvalid> snapshot_t;
 
     snapshot_t      hSnapshot;
-    PROCESSENTRY32  peProcess = {0};    peProcess.dwSize = sizeof(PROCESSENTRY32);   
+    PROCESSENTRY32  peProcess = {0};    peProcess.dwSize = sizeof(PROCESSENTRY32);
 
     hSnapshot = ::CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0UL);
     /*DEBUG*/xASSERT_RET(true == hSnapshot.bIsValid(), false);
-        
+
     BOOL blRv = ::Process32First(hSnapshot.hGet(), &peProcess);
     /*DEBUG*/xASSERT_RET(FALSE != blRv, false);
 
     for ( ; ; ) {
         bool bRv = CxString::bCompareNoCase(csProcessName, peProcess.szExeFile);
         xCHECK_RET(true == bRv, true);   // OK
-        
-        blRv = ::Process32Next(hSnapshot.hGet(), &peProcess); 
+
+        blRv = ::Process32Next(hSnapshot.hGet(), &peProcess);
         xCHECK_DO(FALSE == blRv, break);
-    } 
+    }
 #elif xOS_ENV_UNIX
     // TODO: CxProcess::bIsRunning
 #endif

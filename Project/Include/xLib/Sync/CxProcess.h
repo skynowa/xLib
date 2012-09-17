@@ -17,7 +17,7 @@ class CxProcess :
     /// process
 {
     public:
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         typedef HANDLE handle_t; ///< handle
         typedef DWORD  id_t;     ///< ID
     #elif xOS_ENV_UNIX
