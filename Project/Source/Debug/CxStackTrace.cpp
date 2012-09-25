@@ -9,14 +9,14 @@
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Sync/CxCurrentProcess.h>
 
-#if xOS_ENV_WIN
-    #ifdef xUNICODE
-        #define DBGHELP_TRANSLATE_TCHAR 1
-    #endif
-
+#if   xOS_ENV_WIN
     #if   xCOMPILER_MINGW32
-        //
+        // TODO: 
     #elif xCOMPILER_MS || xCOMPILER_CODEGEAR
+        #ifdef xUNICODE
+            #define DBGHELP_TRANSLATE_TCHAR 1
+        #endif
+
         #include <DbgHelp.h>
         #pragma comment(lib, "DbgHelp.Lib")
     #endif
@@ -61,7 +61,8 @@ CxStackTrace::bGet(
 )
 {
     xCHECK_RET(NULL == pvvsStack, false);
-
+    
+    const std::tstring_t            csDataNotFound = xT("[???]");
     std::vector<std::vec_tstring_t> vvsStack;
 
 #if   xOS_ENV_WIN
@@ -80,7 +81,7 @@ CxStackTrace::bGet(
         ushort_t usFramesNum = ::CaptureStackBackTrace(0UL, xSTACK_TRACE_FRAMES_MAX, pvStack, NULL);
         xCHECK_RET(usFramesNum == 0U, false);
 
-        psiSymbol               = new (std::nothrow) SYMBOL_INFO[ sizeof(SYMBOL_INFO) + (255UL + 1) * sizeof(tchar_t) ];\
+        psiSymbol               = new (std::nothrow) SYMBOL_INFO[ sizeof(SYMBOL_INFO) + (255UL + 1) * sizeof(tchar_t) ];
         /*DEBUG*/xSTD_VERIFY(NULL != psiSymbol);
         psiSymbol->SizeOfStruct = sizeof(SYMBOL_INFO);
         psiSymbol->MaxNameLen   = 255UL;
@@ -93,22 +94,67 @@ CxStackTrace::bGet(
             std::tstring_t sByteOffset;
             std::tstring_t sFunctionName;
 
+            // iStackLineNum
+            {
+                iStackLineNum = i;
+            }
 
-            blRes = ::SymFromAddr(hProcess, reinterpret_cast<DWORD64>( pvStack[i] ), NULL, psiSymbol);
-            if (FALSE == blRes) {
-                iStackLineNum = i;
-                sModulePath   = xT("[???]");
-                sFilePath     = xT("[???]");
-                sFileLine     = xT("[???]");
-                sByteOffset   = CxString::sFormat(xT("%p"), ptrdiff_t(0));
-                sFunctionName = xT("[???]");
-            } else {
-                iStackLineNum = i;
-                sModulePath   = xT("[???]");
-                sFilePath     = xT("[???]");
-                sFileLine     = xT("[???]");
-                sByteOffset   = CxString::sFormat(xT("%p"), static_cast<ptrdiff_t>( psiSymbol->Address ) );
-                sFunctionName = std::tstring_t(psiSymbol->Name);
+            // sModulePath
+            {
+                IMAGEHLP_MODULE64 miModuleInfo = {0};   miModuleInfo.SizeOfStruct = sizeof(IMAGEHLP_MODULE64);
+
+                blRes = ::SymGetModuleInfo64(hProcess, reinterpret_cast<DWORD64>( pvStack[i] ), &miModuleInfo);
+                if (FALSE == blRes) {
+                    sModulePath   = csDataNotFound;
+                } else {
+                    sModulePath   = miModuleInfo.ImageName;
+                }
+            }
+            
+            // sFilePath, sFileLine
+            {
+                DWORD           dwDisplacement  = 0UL;
+                IMAGEHLP_LINE64 ihlImagehlpLine = {0};    ihlImagehlpLine.SizeOfStruct = sizeof(IMAGEHLP_LINE64);
+
+                blRes = ::SymGetLineFromAddr64(hProcess, reinterpret_cast<DWORD64>( pvStack[i] ), &dwDisplacement, &ihlImagehlpLine);
+                if (FALSE == blRes) {
+                    sFilePath     = csDataNotFound;
+                    sFileLine     = csDataNotFound;
+                } else {
+                    sFilePath     = ihlImagehlpLine.FileName;
+                    sFileLine     = CxString::lexical_cast(ihlImagehlpLine.LineNumber);
+                }
+            }
+
+            // iStackLineNum, sByteOffset, sFunctionName
+            {
+                blRes = ::SymFromAddr(hProcess, reinterpret_cast<DWORD64>( pvStack[i] ), NULL, psiSymbol);
+                if (FALSE == blRes) {
+                    sByteOffset   = CxString::sFormat(xT("%p"), ptrdiff_t(0));
+                    sFunctionName = csDataNotFound;
+                } else {
+                    sByteOffset   = CxString::sFormat(xT("%p"), static_cast<ptrdiff_t>( psiSymbol->Address ) );
+                    sFunctionName = std::tstring_t(psiSymbol->Name);
+                }
+            }
+
+            // swap file pathes
+            if (true == _m_cbIsWrapFilePathes) {
+                sModulePath = CxPath::sGetFileName(sModulePath);
+                sFilePath   = CxPath::sGetFileName(sFilePath);
+            }
+
+            // disable function params
+            if (true == _m_cbIsFuncParamsDisable) {
+                const size_t cuiPos1 = sFunctionName.find(xT("("));
+                const size_t cuiPos2 = sFunctionName.find(xT(")"));
+
+                if (std::tstring_t::npos != cuiPos1 && std::tstring_t::npos != cuiPos2) {
+                    xSTD_VERIFY(cuiPos1 < cuiPos2);
+
+                    sFunctionName = sFunctionName.substr(0, cuiPos1 + 1) +
+                                    sFunctionName.substr(cuiPos2);
+                }
             }
 
             // out
@@ -147,17 +193,16 @@ CxStackTrace::bGet(
         std::tstring_t sByteOffset;
         std::tstring_t sFunctionName;
 
-
         Dl_info dlinfo = {0};
 
         int iRv = ::dladdr(pvStack[i], &dlinfo);
         if (0 == iRv) {
             iStackLineNum = i;
-            sModulePath   = (NULL == dlinfo.dli_fname) ? xT("[???]") : dlinfo.dli_fname;
-            sFilePath     = xT("[???]");
-            sFileLine     = xT("[???]");
+            sModulePath   = (NULL == dlinfo.dli_fname) ? csDataNotFound : dlinfo.dli_fname;
+            sFilePath     = csDataNotFound;
+            sFileLine     = csDataNotFound;
             sByteOffset   = CxString::sFormat(xT("%p"), ptrdiff_t(0));
-            sFunctionName = (NULL == ppszSymbols[i])   ? xT("[???]") : ppszSymbols[i];
+            sFunctionName = (NULL == ppszSymbols[i])   ? csDataNotFound : ppszSymbols[i];
         } else {
             const tchar_t *pcszSymbolName = NULL;
             int            iStatus        = - 1;
@@ -172,18 +217,18 @@ CxStackTrace::bGet(
 
             std::tstring_t _sFilePath;
             std::tstring_t _sFunctionName;
-            ulong_t        _ulSourceLine = 0;
+            ulong_t        _ulSourceLine = 0U;
 
             bool bRv = _bAddr2Line(dlinfo.dli_saddr, &_sFilePath, &_sFunctionName, &_ulSourceLine);
             xSTD_VERIFY(true == bRv);
             xUNUSED(_sFunctionName);
 
             iStackLineNum = i;
-            sModulePath   = (NULL == dlinfo.dli_fname) ? xT("[???]") : dlinfo.dli_fname;
-            sFilePath     = _sFilePath.empty()         ? xT("[???]") : _sFilePath;
+            sModulePath   = (NULL == dlinfo.dli_fname) ? csDataNotFound : dlinfo.dli_fname;
+            sFilePath     = _sFilePath.empty()         ? csDataNotFound : _sFilePath;
             sFileLine     = CxString::lexical_cast(_ulSourceLine);
             sByteOffset   = CxString::sFormat(xT("%p"), ptrdiff_t(dlinfo.dli_saddr));
-            sFunctionName = (NULL == pcszSymbolName)   ? xT("[???]") : pcszSymbolName;
+            sFunctionName = (NULL == pcszSymbolName)   ? csDataNotFound : pcszSymbolName;
 
             xBUFF_FREE(pszDemangleName);
         }
@@ -196,16 +241,14 @@ CxStackTrace::bGet(
 
         // disable function params
         if (true == _m_cbIsFuncParamsDisable) {
-            size_t uiPos1 = sFunctionName.find(xT("("));
-            size_t uiPos2 = sFunctionName.find(xT(")"));
+            const size_t cuiPos1 = sFunctionName.find(xT("("));
+            const size_t cuiPos2 = sFunctionName.find(xT(")"));
 
-            if (std::tstring_t::npos != uiPos1 &&
-                std::tstring_t::npos != uiPos2)
-            {
-                xSTD_VERIFY(uiPos1 < uiPos2);
+            if (std::tstring_t::npos != cuiPos1 && std::tstring_t::npos != cuiPos2) {
+                xSTD_VERIFY(cuiPos1 < cuiPos2);
 
-                sFunctionName = sFunctionName.substr(0, uiPos1 + 1) +
-                                sFunctionName.substr(uiPos2);
+                sFunctionName = sFunctionName.substr(0, cuiPos1 + 1) +
+                                sFunctionName.substr(cuiPos2);
             }
         }
 
