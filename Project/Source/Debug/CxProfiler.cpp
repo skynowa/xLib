@@ -315,7 +315,7 @@ CxProfiler::_bResetData() {
 //--------------------------------------------------------------------------
 #if xOS_ENV_UNIX && xOS_FREEBSD
 
-/*static*/
+/* static */
 std::clock_t
 CxProfiler::_liGetClock() {
     /*DEBUG*/
@@ -337,7 +337,7 @@ CxProfiler::_liGetClock() {
 //---------------------------------------------------------------------------
 #if xOS_ENV_WIN
 
-/*static*/
+/* static */
 int
 CxProfiler::gettimeofday(
     struct timeval  *tv,

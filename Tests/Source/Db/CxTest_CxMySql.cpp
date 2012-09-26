@@ -16,7 +16,7 @@ CxTest_CxMySql::~CxTest_CxMySql() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxMySql::bUnit(
     const ulonglong_t cullCaseLoops

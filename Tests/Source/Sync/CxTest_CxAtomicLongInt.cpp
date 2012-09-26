@@ -16,7 +16,7 @@ CxTest_CxAtomicLongInt::~CxTest_CxAtomicLongInt() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxAtomicLongInt::bUnit(
     const ulonglong_t cullCaseLoops

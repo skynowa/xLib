@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxConnectionString::sMSJetOleDb40(
     const std::tstring_t &a_csDataSource,
@@ -70,7 +70,7 @@ CxConnectionString::CxConnectionString() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxConnectionString::~CxConnectionString() {
 
 }

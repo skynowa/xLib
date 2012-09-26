@@ -25,7 +25,7 @@ CxThreadStorage::CxThreadStorage() :
     (void)_bAlloc();
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxThreadStorage::~CxThreadStorage() {
     (void)_bFree();
 }

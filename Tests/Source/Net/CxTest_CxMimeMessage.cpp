@@ -16,7 +16,7 @@ CxTest_CxMimeMessage::~CxTest_CxMimeMessage() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxMimeMessage::bUnit(
     const ulonglong_t cullCaseLoops

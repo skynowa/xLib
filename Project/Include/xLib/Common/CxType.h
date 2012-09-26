@@ -28,9 +28,9 @@ class CxType :
         static bool           bIsEquals  (const T1 &cObjectT1, const T2 &cObjectT2);
             ///< is equals
     private:
-                              CxType     () {};
+                              CxType     ();
             ///< constructor
-        virtual              ~CxType     () {};
+        virtual              ~CxType     ();
             ///< destructor
 };
 

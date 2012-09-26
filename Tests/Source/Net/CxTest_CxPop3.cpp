@@ -20,7 +20,7 @@ CxTest_CxPop3::~CxTest_CxPop3() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxPop3::bUnit(
     const ulonglong_t cullCaseLoops

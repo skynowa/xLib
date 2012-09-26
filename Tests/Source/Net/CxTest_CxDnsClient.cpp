@@ -18,7 +18,7 @@ CxTest_CxDnsClient::~CxTest_CxDnsClient() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxDnsClient::bUnit(
     const ulonglong_t cullCaseLoops

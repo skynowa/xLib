@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxDnsClient::bGetHostAddrByName(
     const std::tstring_t &a_csHostName,
@@ -47,7 +47,7 @@ CxDnsClient::bGetHostAddrByName(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxDnsClient::bGetHostNameByAddr(
     const std::tstring_t      &a_csHostAddr,
@@ -99,7 +99,7 @@ CxDnsClient::bGetHostNameByAddr(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxDnsClient::bGetLocalHostName(
     std::tstring_t *a_psHostName
@@ -120,7 +120,7 @@ CxDnsClient::bGetLocalHostName(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxDnsClient::bGetNameInfo(
     CxSocket::ExAddressFamily  a_afFamily,
@@ -153,7 +153,7 @@ CxDnsClient::bGetNameInfo(
 }
 //---------------------------------------------------------------------------
 //NOTE: http://www.geekpage.jp/en/programming/linux-network/getaddrinfo-0.php
-/*static*/
+/* static */
 bool
 CxDnsClient::bGetHostAddrInfo(
     const std::tstring_t  &a_csHostName,
@@ -173,7 +173,7 @@ CxDnsClient::bGetHostAddrInfo(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxDnsClient::bGetProtocolByName(
     const std::tstring_t &a_csProtocolName,
@@ -225,7 +225,7 @@ CxDnsClient::bGetProtocolByName(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxDnsClient::bGetProtocolByNumber(
     short_t             a_siNumber,
@@ -274,7 +274,7 @@ CxDnsClient::bGetProtocolByNumber(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxDnsClient::bGetServiceByName(
     const std::tstring_t &a_csServiceName,
@@ -336,7 +336,7 @@ CxDnsClient::bGetServiceByName(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxDnsClient::bGetServiceByPort(
     short_t               a_siPort,
@@ -398,7 +398,7 @@ CxDnsClient::bGetServiceByPort(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxDnsClient::bIsOnLan(
     const ulong_t a_culIp
@@ -410,7 +410,7 @@ CxDnsClient::bIsOnLan(
     return (0L == ((ntohl(a_culIp) ^ ntohl(culMyIpAddress)) & ntohl(culNetMask)));
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxDnsClient::bIsBroadcast(
     const ulong_t a_culIp
@@ -433,7 +433,7 @@ CxDnsClient::CxDnsClient() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxDnsClient::~CxDnsClient() {
 
 }

@@ -19,7 +19,7 @@ CxTest_CxFileTemp::~CxTest_CxFileTemp() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxFileTemp::bUnit(
     const ulonglong_t cullCaseLoops

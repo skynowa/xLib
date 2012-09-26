@@ -192,6 +192,7 @@
     <None Include="..\..\..\Project\Include\xLib\Common\CxArray.inl" />
     <None Include="..\..\..\Project\Include\xLib\Common\CxFunctorT.inl" />
     <None Include="..\..\..\Project\Include\xLib\Common\CxHandleT.inl" />
+    <None Include="..\..\..\Project\Include\xLib\Common\CxMacros.inl" />
     <None Include="..\..\..\Project\Include\xLib\Common\CxString.inl" />
     <None Include="..\..\..\Project\Include\xLib\Common\CxType.inl" />
     <None Include="..\..\..\Project\Include\xLib\Debug\CxErrorReport.inl" />

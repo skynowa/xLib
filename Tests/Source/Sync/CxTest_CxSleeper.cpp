@@ -16,7 +16,7 @@ CxTest_CxSleeper::~CxTest_CxSleeper() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxSleeper::bUnit(
     const ulonglong_t cullCaseLoops

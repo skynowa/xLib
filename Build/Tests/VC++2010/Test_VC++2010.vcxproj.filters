@@ -768,6 +768,9 @@
       <Filter>xLib\Debug</Filter>
     </None>
     <None Include="..\..\..\TODO.txt" />
+    <None Include="..\..\..\Project\Include\xLib\Common\CxMacros.inl">
+      <Filter>xLib\Common</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Project\Source\Common\Win\CxCom.cpp">

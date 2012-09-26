@@ -37,7 +37,7 @@ CxAutoProfiler::CxAutoProfiler(
     (void)_m_pfProfiler.bStart();
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxAutoProfiler::~CxAutoProfiler() {
     (void)_m_pfProfiler.bStop(xT("%s"), _m_sComment.c_str());
 }

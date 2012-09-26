@@ -264,7 +264,7 @@ CxUri::bClear() {
 }
 //---------------------------------------------------------------------------
 //TODO: sEscape ()
-/*static*/
+/* static */
 std::string
 CxUri::sEscape(const std::string &csUri) {
     /*DEBUG*/
@@ -304,7 +304,7 @@ CxUri::sEscape(const std::string &csUri) {
 }
 //---------------------------------------------------------------------------
 //TODO: sUnescape ()
-/*static*/
+/* static */
 std::string
 CxUri::sUnescape(const std::string &csUri) {
     /*DEBUG*/
@@ -318,7 +318,7 @@ CxUri::sUnescape(const std::string &csUri) {
 //---------------------------------------------------------------------------
 //TODO: sEncodeComponent
 //void URI::encode(const std::string& str, const std::string& reserved, std::string& encodedStr)
-/*static*/
+/* static */
 std::string
 CxUri::sEncodeComponent(const std::string &a_csUri) {
     std::string sRv;
@@ -357,7 +357,7 @@ CxUri::sEncodeComponent(const std::string &a_csUri) {
 //---------------------------------------------------------------------------
 //TODO: sDecodeComponent
 //void URI::decode(const std::string& str, std::string& decodedStr)
-/*static*/
+/* static */
 std::string
 CxUri::sDecodeComponent(const std::string &a_csUri) {
     std::string sRv;

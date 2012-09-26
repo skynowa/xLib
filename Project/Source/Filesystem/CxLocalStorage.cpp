@@ -50,7 +50,7 @@ CxLocalStorage::CxLocalStorage(
     /*DEBUG*/xASSERT_DO(true == bRv, return);
 }
 //-------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxLocalStorage::~CxLocalStorage() {
 
 }

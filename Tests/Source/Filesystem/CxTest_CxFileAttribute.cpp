@@ -19,7 +19,7 @@ CxTest_CxFileAttribute::~CxTest_CxFileAttribute() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxFileAttribute::bUnit(
     const ulonglong_t cullCaseLoops

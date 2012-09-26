@@ -47,7 +47,7 @@ CxSystemLog::CxSystemLog(
     /*DEBUG*/xASSERT_DO(true == bRv, return);
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxSystemLog::~CxSystemLog() {
 #if   xOS_ENV_WIN
     /*DEBUG*/xASSERT_DO(NULL != _m_SysLog, return);

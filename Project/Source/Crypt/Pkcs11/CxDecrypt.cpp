@@ -32,7 +32,7 @@ CxDecrypt::CxDecrypt(
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxDecrypt::~CxDecrypt() {
 
 }

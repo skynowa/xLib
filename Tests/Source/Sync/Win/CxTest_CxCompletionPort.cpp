@@ -16,7 +16,7 @@ CxTest_CxCompletionPort::~CxTest_CxCompletionPort() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxCompletionPort::bUnit(
     const ulonglong_t cullCaseLoops

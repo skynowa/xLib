@@ -16,7 +16,7 @@ CxTest_CxErrorReport::~CxTest_CxErrorReport() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxErrorReport::bUnit(
     const ulonglong_t cullCaseLoops

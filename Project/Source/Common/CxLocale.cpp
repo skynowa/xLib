@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxLocale::sGetCurrent() {
     /*DEBUG*/// n/a
@@ -50,7 +50,7 @@ CxLocale::sGetCurrent() {
     return sRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxLocale::bSetCurrent(
     const std::tstring_t &csLocale
@@ -68,7 +68,7 @@ CxLocale::bSetCurrent(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxLocale::bSetDefault() {
     /*DEBUG*/// n/a
@@ -91,7 +91,7 @@ CxLocale::CxLocale() {
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxLocale::~CxLocale() {
     /*DEBUG*/// n/a
 }

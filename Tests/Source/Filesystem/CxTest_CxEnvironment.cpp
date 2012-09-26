@@ -16,7 +16,7 @@ CxTest_CxEnvironment::~CxTest_CxEnvironment() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxEnvironment::bUnit(
     const ulonglong_t cullCaseLoops

@@ -30,7 +30,7 @@ CxIpcMutex::CxIpcMutex() :
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxIpcMutex::~CxIpcMutex() {
 
 }

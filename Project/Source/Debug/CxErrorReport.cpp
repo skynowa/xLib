@@ -129,7 +129,7 @@ CxErrorReport::CxErrorReport(
     }
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxErrorReport::~CxErrorReport() {
     /*DEBUG*/
 }

@@ -30,7 +30,7 @@ CxFileTemp::CxFileTemp(
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxFileTemp::~CxFileTemp() {
     (void)(*_m_pfFile).bClose();
 

@@ -23,7 +23,7 @@ RandomNumber () {
     return (uchar_t)(rand()%100);
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool 
 CxTest_CxString::bUnit(
     const ulonglong_t cullCaseLoops

@@ -21,7 +21,7 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxShell::bIsAvailable() {
     xDEBUG_VARS_NA;
@@ -37,7 +37,7 @@ CxShell::bIsAvailable() {
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxShell::bExecute(
     const std::tstring_t &a_csFilePath,   ///< file path to binary file
@@ -64,7 +64,7 @@ CxShell::bExecute(
 #if xOS_ENV_WIN
 
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxShell::bFindExecutable(
     const std::tstring_t &a_csFileName,
@@ -83,7 +83,7 @@ CxShell::bFindExecutable(
     return std::tstring_t(szRes);
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxShell::bExecute(
     const HWND            a_chOwner,
@@ -123,7 +123,7 @@ CxShell::bExecute(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxShell::bExecuteEx(
     SHELLEXECUTEINFO *a_peiInfo
@@ -137,7 +137,7 @@ CxShell::bExecuteEx(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxShell::bExecuteHttp(
     const std::tstring_t &a_csUrl
@@ -155,7 +155,7 @@ CxShell::bExecuteHttp(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxShell::bExecuteFtp(
     const std::tstring_t &a_csUrl
@@ -173,7 +173,7 @@ CxShell::bExecuteFtp(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxShell::bExecuteEmail(
     const std::tstring_t &a_csToEmail,
@@ -210,7 +210,7 @@ CxShell::bExecuteEmail(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxShell::sGetSpecialDirPath(
     const ESpecialDir a_csfDir,
@@ -240,7 +240,7 @@ CxShell::sGetSpecialDirPath(
 //---------------------------------------------------------------------------
 #define xHOTKEY(modifier, key) ((((modifier) & 0xff) << 8) | ((key)&0xff))
 
-/*static*/
+/* static */
 bool
 CxShell::bCreateShortcut(
     const std::tstring_t &a_csShortCutFilePath, ///< путь и имя ярлыка, например, "C:\\Блокнот.lnk"
@@ -322,7 +322,7 @@ CxShell::CxShell() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxShell::~CxShell() {
 
 }

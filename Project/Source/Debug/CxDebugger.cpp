@@ -45,7 +45,7 @@ CxDebugger::CxDebugger() :
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxDebugger::~CxDebugger() {
 
 }
@@ -194,7 +194,7 @@ CxDebugger::bReportMake(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxDebugger::bBeep(
     const ulong_t a_culFrequency /*= 800UL*/,

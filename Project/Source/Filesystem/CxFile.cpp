@@ -29,7 +29,7 @@ CxFile::CxFile() :
 {
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxFile::~CxFile() {
     /*DEBUG*/// n/a
 
@@ -608,7 +608,7 @@ CxFile::bClose() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxFile::bIsFile(
     const std::tstring_t &csFilePath
@@ -639,7 +639,7 @@ CxFile::bIsFile(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxFile::bIsExists(
     const std::tstring_t &csFilePath
@@ -654,7 +654,7 @@ CxFile::bIsExists(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxFile::sIsExists(
     const std::tstring_t &csFilePath
@@ -680,7 +680,7 @@ CxFile::sIsExists(
     return sRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxFile::bAccess(
     const std::tstring_t &csFilePath,
@@ -696,7 +696,7 @@ CxFile::bAccess(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxFile::bChmod(
     const std::tstring_t   &csFilePath,
@@ -717,7 +717,7 @@ CxFile::bChmod(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxFile::bClear(
     const std::tstring_t &csFilePath
@@ -737,7 +737,7 @@ CxFile::bClear(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxFile::bDelete(
     const std::tstring_t &csFilePath
@@ -756,7 +756,7 @@ CxFile::bDelete(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxFile::bTryDelete(
     const std::tstring_t &csFilePath,
@@ -784,7 +784,7 @@ CxFile::bTryDelete(
     return bIsDeleted;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxFile::bWipe(
     const std::tstring_t &csFilePath,
@@ -901,7 +901,7 @@ CxFile::bWipe(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxFile::bUnlink(
     const std::tstring_t &csFilePath
@@ -915,7 +915,7 @@ CxFile::bUnlink(
     return false;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxFile::bRename(
     const std::tstring_t &csOldFilePath,
@@ -931,7 +931,7 @@ CxFile::bRename(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxFile::bMove(
     const std::tstring_t &csFilePath,
@@ -947,7 +947,7 @@ CxFile::bMove(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxFile::bCopy(
     const std::tstring_t &csFilePathFrom,
@@ -1003,7 +1003,7 @@ CxFile::bCopy(
     return true;
 }
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 longlong_t
 CxFile::llGetSize(
     const std::tstring_t &csFilePath
@@ -1023,7 +1023,7 @@ CxFile::llGetSize(
     return liRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 ulonglong_t
 CxFile::ullGetLines(
     const std::tstring_t &csFilePath
@@ -1045,7 +1045,7 @@ CxFile::ullGetLines(
     return ullRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxFile::bGetTime(
     const std::tstring_t &csFilePath,
@@ -1147,7 +1147,7 @@ CxFile::bSetTime(
 *****************************************************************************/
 
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxFile::bTextRead(
     const std::tstring_t &csFilePath,
@@ -1179,7 +1179,7 @@ CxFile::bTextRead(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxFile::bTextWrite(
     const std::tstring_t &csFilePath,
@@ -1205,7 +1205,7 @@ CxFile::bTextWrite(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxFile::bTextRead(
     const std::tstring_t &csFilePath,
@@ -1232,7 +1232,7 @@ CxFile::bTextRead(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxFile::bTextWrite(
     const std::tstring_t     &csFilePath,
@@ -1255,7 +1255,7 @@ CxFile::bTextWrite(
     return true;
 }
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxFile::bTextRead(
     const std::tstring_t &csFilePath,
@@ -1323,7 +1323,7 @@ CxFile::bTextRead(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxFile::bTextWrite(
     const std::tstring_t     &csFilePath,
@@ -1378,7 +1378,7 @@ CxFile::bTextWrite(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxFile::bBinRead(
     const std::tstring_t &csFilePath,
@@ -1412,7 +1412,7 @@ CxFile::bBinRead(
 
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxFile::bBinWrite(
     const std::tstring_t &csFilePath,
@@ -1446,7 +1446,7 @@ CxFile::bBinWrite(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 int
 CxFile::_iGetHandle(
     std::FILE *pfFile
@@ -1460,7 +1460,7 @@ CxFile::_iGetHandle(
     return iRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 std::FILE *
 CxFile::_pfGetHandle(
     int              iFileHandle,
@@ -1475,7 +1475,7 @@ CxFile::_pfGetHandle(
     return pfRes;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxFile::_sGetOpenMode(
     const ExOpenMode comMode

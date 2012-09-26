@@ -16,7 +16,7 @@ CxTest_CxAutoProfiler::~CxTest_CxAutoProfiler() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxAutoProfiler::bUnit(
     const ulonglong_t cullCaseLoops

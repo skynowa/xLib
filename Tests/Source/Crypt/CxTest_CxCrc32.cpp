@@ -16,7 +16,7 @@ CxTest_CxCrc32::~CxTest_CxCrc32() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxCrc32::bUnit(
     const ulonglong_t cullCaseLoops

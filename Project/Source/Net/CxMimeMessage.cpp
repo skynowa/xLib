@@ -17,12 +17,12 @@ CxMimeMessage::CxMimeMessage() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxMimeMessage::~CxMimeMessage() {
 
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxMimeMessage::bParse(
     const std::tstring_t &a_csRawMessage,
@@ -36,7 +36,7 @@ CxMimeMessage::bParse(
     return false;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxMimeMessage::bLoadFromRawFile(
     const std::tstring_t &a_csFilePath
@@ -45,7 +45,7 @@ CxMimeMessage::bLoadFromRawFile(
     return false;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxMimeMessage::bSaveToRawFile(
     const std::tstring_t &a_csFilePath

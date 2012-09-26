@@ -18,7 +18,7 @@ CxTest_CxIpcSemaphore::~CxTest_CxIpcSemaphore() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxIpcSemaphore::bUnit(
     const ulonglong_t cullCaseLoops

@@ -19,7 +19,7 @@ CxTest_CxLocalStorage::~CxTest_CxLocalStorage() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxLocalStorage::bUnit(
     const ulonglong_t cullCaseLoops

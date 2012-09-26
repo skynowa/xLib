@@ -21,7 +21,7 @@ CxAtomicLongInt::CxAtomicLongInt() :
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxAtomicLongInt::~CxAtomicLongInt() {
 
 }

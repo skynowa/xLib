@@ -21,7 +21,7 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxEnvironment::bIsExists(
     const std::tstring_t &csVarName
@@ -48,7 +48,7 @@ CxEnvironment::bIsExists(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxEnvironment::bIsVarValid(
     const std::tstring_t &csVarName
@@ -62,7 +62,7 @@ CxEnvironment::bIsVarValid(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxEnvironment::bIsValueValid(
     const std::tstring_t &csVarValue
@@ -75,7 +75,7 @@ CxEnvironment::bIsValueValid(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxEnvironment::sGetVar(
     const std::tstring_t &csVarName
@@ -110,7 +110,7 @@ CxEnvironment::sGetVar(
     return sRv;
 }
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxEnvironment::bSetVar(
     const std::tstring_t &csVarName,
@@ -131,7 +131,7 @@ CxEnvironment::bSetVar(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxEnvironment::bDeleteVar(
     const std::tstring_t &csVarName
@@ -155,7 +155,7 @@ CxEnvironment::bDeleteVar(
     return true;
 }
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxEnvironment::bGetValues(
     std::vec_tstring_t *pvsValues
@@ -196,7 +196,7 @@ CxEnvironment::bGetValues(
     return true;
 }
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxEnvironment::sExpandStrings(
     const std::tstring_t &csVar
@@ -274,7 +274,7 @@ CxEnvironment::CxEnvironment() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxEnvironment::~CxEnvironment() {
 
 }

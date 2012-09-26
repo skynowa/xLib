@@ -21,7 +21,7 @@ CxMutex::CxMutex() :
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxMutex::~CxMutex() {
 #if   xOS_ENV_WIN
     bool bRv = false;

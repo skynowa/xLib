@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxFileAttribute::bIsExists(
     const std::tstring_t &csFilePath,
@@ -36,7 +36,7 @@ CxFileAttribute::bIsExists(
     return false;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 CxFileAttribute::ExAttribute
 CxFileAttribute::atGet(
     const std::tstring_t &csFilePath
@@ -64,7 +64,7 @@ CxFileAttribute::atGet(
     return faRes;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxFileAttribute::bSet(
     const std::tstring_t &csFilePath,
@@ -85,7 +85,7 @@ CxFileAttribute::bSet(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxFileAttribute::bAdd(
     const std::tstring_t &csFilePath,
@@ -98,7 +98,7 @@ CxFileAttribute::bAdd(
     return bModify(csFilePath, static_cast<ExAttribute>( 0 ), cfaValue);
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxFileAttribute::bRemove(
     const std::tstring_t &csFilePath,
@@ -111,7 +111,7 @@ CxFileAttribute::bRemove(
     return bModify(csFilePath, cfaValue, static_cast<ExAttribute>( 0 ));
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxFileAttribute::bModify(
     const std::tstring_t &csFilePath,
@@ -137,7 +137,7 @@ CxFileAttribute::bModify(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxFileAttribute::bClear(
     const std::tstring_t &csFilePath
@@ -160,7 +160,7 @@ CxFileAttribute::CxFileAttribute() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxFileAttribute::~CxFileAttribute() {
 
 }

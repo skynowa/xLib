@@ -21,7 +21,7 @@ CxSleeper::CxSleeper() :
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxSleeper::~CxSleeper() {
 
 }

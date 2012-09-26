@@ -16,7 +16,7 @@ CxTest_CxStackTrace::~CxTest_CxStackTrace() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxStackTrace::bUnit(
     const ulonglong_t cullCaseLoops

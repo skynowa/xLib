@@ -22,7 +22,7 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxDir::bIsExists(
     const std::tstring_t &csDirPath
@@ -41,7 +41,7 @@ CxDir::bIsExists(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxDir::bIsEmpty(
     const std::tstring_t &csDirPath,
@@ -106,7 +106,7 @@ CxDir::bIsEmpty(
     return bRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxDir::bIsRoot(
     const std::tstring_t &csDirPath
@@ -129,7 +129,7 @@ CxDir::bIsRoot(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxDir::bIsDir(
     const std::tstring_t &csDirPath
@@ -143,7 +143,7 @@ CxDir::bIsDir(
     return true;
 }
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxDir::sGetCurrent() {
     /*DEBUG*/// n/a
@@ -168,7 +168,7 @@ CxDir::sGetCurrent() {
     return sRv;
 }
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxDir::bSetCurrent(
     const std::tstring_t &csDirPath
@@ -189,7 +189,7 @@ CxDir::bSetCurrent(
     return true;
 }
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxDir::sGetTemp() {
     /*DEBUG*/// n/a
@@ -220,7 +220,7 @@ CxDir::sGetTemp() {
     return sRv;
 }
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxDir::bCreate(
     const std::tstring_t &csDirPath
@@ -274,7 +274,7 @@ CxDir::bCreateForce(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxDir::bCopy(
     const std::tstring_t &csDirPathFrom,
@@ -329,7 +329,7 @@ CxDir::bCopy(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxDir::bMove(
     const std::tstring_t &csDirPathFrom,
@@ -351,7 +351,7 @@ CxDir::bMove(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxDir::bDelete(
     const std::tstring_t &csDirPath
@@ -378,7 +378,7 @@ CxDir::bDelete(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxDir::bTryDelete(
     const std::tstring_t &csDirPath,
@@ -405,7 +405,7 @@ CxDir::bTryDelete(
     return bIsDeleted;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxDir::bClearForce(
     const std::tstring_t &csDirPath
@@ -452,7 +452,7 @@ CxDir::bClearForce(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxDir::bDeleteForce(
     const std::tstring_t &csDirPath
@@ -475,7 +475,7 @@ CxDir::bDeleteForce(
 //--------------------------------------------------------------------------
 //TODO: bFindFiles
 //http://www.metalshell.com/source_code/86/List_Contents_of_a_Directory.html
-/*static*/
+/* static */
 bool
 CxDir::bFindFiles(
     const std::tstring_t &csDirPath,
@@ -620,7 +620,7 @@ CxDir::bFindFiles(
     return true;
 }
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxDir::bFindDirs(
     const std::tstring_t &csDirPath,
@@ -722,7 +722,7 @@ CxDir::CxDir() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxDir::~CxDir() {
 
 }

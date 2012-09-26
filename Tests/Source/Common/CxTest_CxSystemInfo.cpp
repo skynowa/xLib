@@ -19,7 +19,7 @@ CxTest_CxSystemInfo::~CxTest_CxSystemInfo() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxSystemInfo::bUnit(
     const ulonglong_t cullCaseLoops

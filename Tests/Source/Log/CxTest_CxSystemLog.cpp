@@ -16,7 +16,7 @@ CxTest_CxSystemLog::~CxTest_CxSystemLog() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxSystemLog::bUnit(
     const ulonglong_t cullBlockLoops

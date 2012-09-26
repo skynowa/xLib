@@ -20,12 +20,12 @@ CxTracer::CxTracer() :
 {
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxTracer::~CxTracer() {
     vWrite(_m_ossStream.str());
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 void
 CxTracer::vWrite(
     const tchar_t *a_pcszFormat, ...
@@ -43,7 +43,7 @@ CxTracer::vWrite(
     vWrite(sRv);
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 void
 CxTracer::vWrite(
     const std::tstring_t &a_csMsg

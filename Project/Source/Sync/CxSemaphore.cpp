@@ -17,7 +17,7 @@ CxSemaphore::CxSemaphore() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxSemaphore::~CxSemaphore() {
 
 }

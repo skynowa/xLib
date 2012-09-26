@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 ulong_t
 CxLastError::ulGet() {
     ulong_t ulCode = 0UL; /* = culCodeSuccess */;
@@ -31,13 +31,13 @@ CxLastError::ulGet() {
     return ulCode;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxLastError::sGet() {
     return sFormat(ulGet());
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 void
 CxLastError::vSet(
     const ulong_t &a_culCode
@@ -50,7 +50,7 @@ CxLastError::vSet(
 #endif
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 void
 CxLastError::vReset() {
     const ulong_t culCodeSuccess = 0UL;
@@ -58,7 +58,7 @@ CxLastError::vReset() {
     vSet(culCodeSuccess);
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxLastError::sFormat(
     const ulong_t &a_culCode
@@ -126,7 +126,7 @@ CxLastError::CxLastError() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxLastError::~CxLastError() {
 
 }

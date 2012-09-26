@@ -49,7 +49,7 @@ CxTest::CxTest() :
     (void)bCreateTempDir(xT("Temp for tests"));
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxTest::~CxTest() /* = 0*/ {
     (void)CxDir::bDeleteForce( sGetTempDirPath() );
 }
@@ -83,7 +83,7 @@ CxTest::bRun(
     return true;
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest::bUnit(
     const ulonglong_t a_cullCaseLoops

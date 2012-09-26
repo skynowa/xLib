@@ -40,7 +40,7 @@ CxProcess::CxProcess() :
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxProcess::~CxProcess() {
 #if   xOS_ENV_WIN
     BOOL blRes = FALSE;
@@ -220,7 +220,7 @@ CxProcess::ulGetExitStatus() const {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 CxProcess::id_t
 CxProcess::ulGetIdByHandle(
     const handle_t &a_chHandle    ///< handle
@@ -238,7 +238,7 @@ CxProcess::ulGetIdByHandle(
     return ulRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 CxProcess::handle_t
 CxProcess::ulGetHandleById(
     const id_t &a_culId   ///< ID
@@ -256,7 +256,7 @@ CxProcess::ulGetHandleById(
     return hRv;
 }
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxProcess::bIsRunning(
     const std::tstring_t &a_csProcessName

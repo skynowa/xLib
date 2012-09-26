@@ -18,7 +18,7 @@ CxTest_CxBlowfish::~CxTest_CxBlowfish() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxBlowfish::bUnit(
     const ulonglong_t cullCaseLoops
