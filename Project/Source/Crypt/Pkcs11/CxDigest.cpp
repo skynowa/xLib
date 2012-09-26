@@ -22,11 +22,11 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxDigest::CxDigest(
-    const CxPkcs11  &cPkcs11,
-    const CxSession &cSession
+    const CxPkcs11  &a_cPkcs11,
+    const CxSession &a_cSession
 ) :
-    _m_pFunc   (cPkcs11.pGetFuncList()),
-    _m_hSession(cSession.hGetHandle())
+    _m_pFunc   (a_cPkcs11.pGetFuncList()),
+    _m_hSession(a_cSession.hGetHandle())
 {
 
 }
@@ -38,15 +38,15 @@ CxDigest::~CxDigest() {
 //---------------------------------------------------------------------------
 bool
 CxDigest::bMake(
-    CK_BYTE_PTR  pData,        ///< data to be digested
-    CK_ULONG     ulDataLen,    ///< bytes of data to digest
-    CK_BYTE_PTR  pDigest,      ///< gets the message digest
-    CK_ULONG_PTR pulDigestLen  ///< gets digest length
+    CK_BYTE_PTR  a_pData,        ///< data to be digested
+    CK_ULONG     a_ulDataLen,    ///< bytes of data to digest
+    CK_BYTE_PTR  a_pDigest,      ///< gets the message digest
+    CK_ULONG_PTR a_pulDigestLen  ///< gets digest length
 )
 {
     /*DEBUG*/
 
-    CK_RV ulRv = _m_pFunc->C_Digest(_m_hSession, pData, ulDataLen, pDigest, pulDigestLen);
+    CK_RV ulRv = _m_pFunc->C_Digest(_m_hSession, a_pData, a_ulDataLen, a_pDigest, a_pulDigestLen);
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
@@ -54,15 +54,15 @@ CxDigest::bMake(
 //---------------------------------------------------------------------------
 bool
 CxDigest::bEncryptUpdate(
-    CK_BYTE_PTR  pPart,               ///< the plaintext data
-    CK_ULONG     ulPartLen,           ///< plaintext length
-    CK_BYTE_PTR  pEncryptedPart,      ///< gets ciphertext
-    CK_ULONG_PTR pulEncryptedPartLen  ///< gets c-text length)
+    CK_BYTE_PTR  a_pPart,               ///< the plaintext data
+    CK_ULONG     a_ulPartLen,           ///< plaintext length
+    CK_BYTE_PTR  a_pEncryptedPart,      ///< gets ciphertext
+    CK_ULONG_PTR a_pulEncryptedPartLen  ///< gets c-text length)
 )
 {
     /*DEBUG*/
 
-    CK_RV ulRv = _m_pFunc->C_DigestEncryptUpdate(_m_hSession, pPart, ulPartLen, pEncryptedPart, pulEncryptedPartLen);
+    CK_RV ulRv = _m_pFunc->C_DigestEncryptUpdate(_m_hSession, a_pPart, a_ulPartLen, a_pEncryptedPart, a_pulEncryptedPartLen);
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
@@ -70,13 +70,13 @@ CxDigest::bEncryptUpdate(
 //---------------------------------------------------------------------------
 bool
 CxDigest::bFinal(
-    CK_BYTE_PTR  pDigest,      ///< gets the message digest
-    CK_ULONG_PTR pulDigestLen  ///< gets byte count of digest
+    CK_BYTE_PTR  a_pDigest,      ///< gets the message digest
+    CK_ULONG_PTR a_pulDigestLen  ///< gets byte count of digest
 )
 {
     /*DEBUG*/
 
-    CK_RV ulRv = _m_pFunc->C_DigestFinal(_m_hSession, pDigest, pulDigestLen );
+    CK_RV ulRv = _m_pFunc->C_DigestFinal(_m_hSession, a_pDigest, a_pulDigestLen );
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
@@ -84,12 +84,12 @@ CxDigest::bFinal(
 //---------------------------------------------------------------------------
 bool
 CxDigest::bInit(
-    CK_MECHANISM_PTR pMechanism  ///< the digesting mechanism
+    CK_MECHANISM_PTR a_pMechanism  ///< the digesting mechanism
 )
 {
     /*DEBUG*/
 
-    CK_RV ulRv = _m_pFunc->C_DigestInit(_m_hSession,    pMechanism);
+    CK_RV ulRv = _m_pFunc->C_DigestInit(_m_hSession, a_pMechanism);
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
@@ -97,12 +97,12 @@ CxDigest::bInit(
 //---------------------------------------------------------------------------
 bool
 CxDigest::bKey(
-    CK_OBJECT_HANDLE hKey       ///< secret key to digest
+    CK_OBJECT_HANDLE a_hKey       ///< secret key to digest
 )
 {
     /*DEBUG*/
 
-    CK_RV ulRv = _m_pFunc->C_DigestKey(_m_hSession, hKey );
+    CK_RV ulRv = _m_pFunc->C_DigestKey(_m_hSession, a_hKey);
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
@@ -110,13 +110,13 @@ CxDigest::bKey(
 //---------------------------------------------------------------------------
 bool
 CxDigest::bUpdate(
-    CK_BYTE_PTR pPart,     ///< data to be digested
-    CK_ULONG    ulPartLen  ///< bytes of data to be digested
+    CK_BYTE_PTR a_pPart,     ///< data to be digested
+    CK_ULONG    a_ulPartLen  ///< bytes of data to be digested
 )
 {
     /*DEBUG*/
 
-    CK_RV ulRv = _m_pFunc->C_DigestUpdate(_m_hSession, pPart, ulPartLen);
+    CK_RV ulRv = _m_pFunc->C_DigestUpdate(_m_hSession, a_pPart, a_ulPartLen);
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;

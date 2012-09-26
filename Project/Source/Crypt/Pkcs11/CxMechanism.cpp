@@ -21,9 +21,9 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxMechanism::CxMechanism(
-    const CxPkcs11 &cPkcs11
+    const CxPkcs11 &a_cPkcs11
 ) :
-    _m_pFunc(cPkcs11.pGetFuncList())
+    _m_pFunc(a_cPkcs11.pGetFuncList())
 {
 
 }
@@ -35,14 +35,14 @@ CxMechanism::~CxMechanism() {
 //---------------------------------------------------------------------------
 bool
 CxMechanism::bGetInfo(
-    CK_SLOT_ID            slotID,  ///< ID of the token's slot
-    CK_MECHANISM_TYPE     type,    ///< type of mechanism
-    CK_MECHANISM_INFO_PTR pInfo    ///< receives mechanism info
+    CK_SLOT_ID            a_slotID,  ///< ID of the token's slot
+    CK_MECHANISM_TYPE     a_type,    ///< type of mechanism
+    CK_MECHANISM_INFO_PTR a_pInfo    ///< receives mechanism info
 )
 {
     /*DEBUG*/
 
-    CK_RV ulRv = _m_pFunc->C_GetMechanismInfo(slotID, type, pInfo);
+    CK_RV ulRv = _m_pFunc->C_GetMechanismInfo(a_slotID, a_type, a_pInfo);
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
@@ -50,14 +50,14 @@ CxMechanism::bGetInfo(
 //---------------------------------------------------------------------------
 bool
 CxMechanism::bGetList(
-    CK_SLOT_ID            slotID,          ///< ID of token's slot
-    CK_MECHANISM_TYPE_PTR pMechanismList,  ///< gets mech. array
-    CK_ULONG_PTR          pulCount         ///< gets # of mechs.
+    CK_SLOT_ID            a_slotID,          ///< ID of token's slot
+    CK_MECHANISM_TYPE_PTR a_pMechanismList,  ///< gets mech. array
+    CK_ULONG_PTR          a_pulCount         ///< gets # of mechs.
 )
 {
     /*DEBUG*/
 
-    CK_RV ulRv = _m_pFunc->C_GetMechanismList(slotID, pMechanismList, pulCount);
+    CK_RV ulRv = _m_pFunc->C_GetMechanismList(a_slotID, a_pMechanismList, a_pulCount);
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;

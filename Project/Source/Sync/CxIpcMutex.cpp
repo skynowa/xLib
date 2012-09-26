@@ -44,24 +44,24 @@ CxIpcMutex::hGet() const {
 //---------------------------------------------------------------------------
 bool
 CxIpcMutex::bCreate(
-    const std::tstring_t &csName
+    const std::tstring_t &a_csName
 )
 {
     /////*DEBUG*/xASSERT_RET(false == _m_hHandle.bIsValid(), false);
 #if   xOS_ENV_WIN
     /*DEBUG*/// csName
 #elif xOS_ENV_UNIX
-    /*DEBUG*/xASSERT_RET(xNAME_MAX - 4 > csName.size(), false);
+    /*DEBUG*/xASSERT_RET(xNAME_MAX - 4 > a_csName.size(), false);
 #endif
 
 #if xOS_ENV_WIN
     const tchar_t *pcszWinName = NULL;
     std::tstring_t _sWinName;
 
-    if (true == csName.empty()) {
+    if (true == a_csName.empty()) {
         pcszWinName = NULL;
     } else {
-        _sWinName   = xT("Global\\") + csName;
+        _sWinName   = xT("Global\\") + a_csName;
         pcszWinName = _sWinName.c_str();
     }
 
@@ -69,9 +69,9 @@ CxIpcMutex::bCreate(
     /*DEBUG*/xASSERT_RET(NULL != hRv, false);
 
     _m_hHandle.bSet(hRv);
-    _m_sName = csName;
+    _m_sName = a_csName;
 #elif xOS_ENV_UNIX
-    std::tstring_t sUnixName = CxConst::xUNIX_SLASH + csName;
+    std::tstring_t sUnixName = CxConst::xUNIX_SLASH + a_csName;
 
     handle_t hHandle = ::sem_open(sUnixName.c_str(), O_CREAT, 0777, 1U);
     /*DEBUG*/xASSERT_RET(SEM_FAILED != hHandle, false);
@@ -85,7 +85,7 @@ CxIpcMutex::bCreate(
 //---------------------------------------------------------------------------
 bool
 CxIpcMutex::bOpen(
-    const std::tstring_t &csName
+    const std::tstring_t &a_csName
 )
 {
     /*DEBUG*/
@@ -94,10 +94,10 @@ CxIpcMutex::bOpen(
     const tchar_t *pcszWinName = NULL;
     std::tstring_t _sWinName;
 
-    if (true == csName.empty()) {
+    if (true == a_csName.empty()) {
         pcszWinName = NULL;
     } else {
-        _sWinName   = xT("Global\\") + csName;
+        _sWinName   = xT("Global\\") + a_csName;
         pcszWinName = _sWinName.c_str();
     }
 
@@ -105,9 +105,9 @@ CxIpcMutex::bOpen(
     /*DEBUG*/xASSERT_RET(NULL != hRv, false);
 
     _m_hHandle.bSet(hRv);
-    _m_sName = csName;
+    _m_sName = a_csName;
 #elif xOS_ENV_UNIX
-    std::tstring_t sUnixName = CxConst::xUNIX_SLASH + csName;
+    std::tstring_t sUnixName = CxConst::xUNIX_SLASH + a_csName;
 
     handle_t hHandle = ::sem_open(sUnixName.c_str(), O_RDWR, 0777, 1U);
     /*DEBUG*/xASSERT_RET(SEM_FAILED != hHandle, false);
@@ -121,14 +121,14 @@ CxIpcMutex::bOpen(
 //---------------------------------------------------------------------------
 bool
 CxIpcMutex::bLock(
-    const ulong_t &culTimeoutMsec
+    const ulong_t &a_culTimeoutMsec
 ) const
 {
     /////*DEBUG*/xASSERT_RET(false != _m_hHandle.bIsValid(), false);
     /*DEBUG*///culTimeout - n/a
 
 #if xOS_ENV_WIN
-    DWORD ulRv = ::WaitForSingleObject(_m_hHandle.hGet(), culTimeoutMsec);
+    DWORD ulRv = ::WaitForSingleObject(_m_hHandle.hGet(), a_culTimeoutMsec);
     /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0  == ulRv, false);
     /*DEBUG*/xASSERT_RET(WAIT_ABANDONED != ulRv, false);
 #elif xOS_ENV_UNIX
@@ -158,7 +158,7 @@ CxIpcMutex::bLock(
         iRv = ::clock_gettime(CLOCK_REALTIME, &tmsTimeout);
         /*DEBUG*/xASSERT_RET(- 1 != iRv, false);
 
-        (void)_SFunctor::timespec_addms(&tmsTimeout, culTimeoutMsec);
+        (void)_SFunctor::timespec_addms(&tmsTimeout, a_culTimeoutMsec);
     }
 
     while (- 1 == (iRv = ::sem_timedwait(_m_hHandle, &tmsTimeout)) && (EINTR == errno)) {

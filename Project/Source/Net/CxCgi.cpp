@@ -25,11 +25,11 @@ using namespace NxCgi;
 
 //---------------------------------------------------------------------------
 CxCgi::CxCgi(
-    const size_t cuiMaxSize
+    const size_t a_cuiMaxSize
 ) :
     Environment(*this),
     Cookies    (*this),
-    Formdata   (*this, cuiMaxSize)
+    Formdata   (*this, a_cuiMaxSize)
 {
 }
 //---------------------------------------------------------------------------
@@ -60,14 +60,14 @@ CxCgi::sGetDump()  const{
 /*static*/
 bool
 CxCgi::bRedirect(
-    const std::tstring_t &csUrl
+    const std::tstring_t &a_csUrl
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csUrl.empty(), false)
+    /*DEBUG*/xASSERT_RET(false == a_csUrl.empty(), false)
 
     std::tstring_t sHttpResponse;
 
-    sHttpResponse.append( CxString::sFormat(xT("Location: %s\n"), csUrl.c_str()) );
+    sHttpResponse.append( CxString::sFormat(xT("Location: %s\n"), a_csUrl.c_str()) );
     sHttpResponse.append( CxConst::xNL );
 
     std::tcout << sHttpResponse << std::endl;
@@ -78,14 +78,14 @@ CxCgi::bRedirect(
 /*static*/
 bool
 CxCgi::bPageShow(
-    const std::tstring_t &csFilePath
+    const std::tstring_t &a_csFilePath
 )
 {
     bool bRv = false;
 
     std::tstring_t sFileContent;
 
-    bRv = CxFile::bTextRead(csFilePath, &sFileContent);
+    bRv = CxFile::bTextRead(a_csFilePath, &sFileContent);
     /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     std::tcout << sFileContent << std::endl;
@@ -109,21 +109,21 @@ namespace {
 /*static*/
 bool
 CxCgi::bUriEncode(
-    const std::tstring_t &csUri,
-    const std::tstring_t &csReserved,
-    std::tstring_t       *psEncodedStr
+    const std::tstring_t &a_csUri,
+    const std::tstring_t &a_csReserved,
+    std::tstring_t       *a_psEncodedStr
 )
 {
-    xFOREACH_CONST(std::tstring_t, it, csUri) {
+    xFOREACH_CONST(std::tstring_t, it, a_csUri) {
         char chChar = *it;
 
         if ((chChar >= 'a' && chChar <= 'z') || (chChar >= 'A' && chChar <= 'Z') || (chChar >= '0' && chChar <= '9') ||
              chChar == '-' || chChar == '_'  || chChar == '.' || chChar == '~')
         {
-            (*psEncodedStr) += chChar;
+            (*a_psEncodedStr) += chChar;
         }
-        else if (chChar <= 0x20 || chChar >= 0x7F || std::tstring_t::npos != URI_ILLEGAL.find(chChar) || std::tstring_t::npos != csReserved.find(chChar)) {
-            (*psEncodedStr) += '%';
+        else if (chChar <= 0x20 || chChar >= 0x7F || std::tstring_t::npos != URI_ILLEGAL.find(chChar) || std::tstring_t::npos != a_csReserved.find(chChar)) {
+            (*a_psEncodedStr) += '%';
             //--encodedStr += NumberFormatter::formatHex((unsigned) (unsigned char) chChar, 2);
 
             /*
@@ -133,10 +133,10 @@ CxCgi::bUriEncode(
                 std::sprintf(buffer, "%0*X", width, value);
                 str.append(buffer);
              */
-            (*psEncodedStr) += CxString::sFormat(xT("%0*X"), 2, (uint_t)(uchar_t)chChar);
+            (*a_psEncodedStr) += CxString::sFormat(xT("%0*X"), 2, (uint_t)(uchar_t)chChar);
         }
         else {
-            (*psEncodedStr) += chChar;
+            (*a_psEncodedStr) += chChar;
         }
     }
 
@@ -147,12 +147,12 @@ CxCgi::bUriEncode(
 /*static*/
 bool
 CxCgi::bUriDecode(
-    const std::tstring_t &csUri,
-    std::tstring_t       *psDecodedStr
+    const std::tstring_t &a_csUri,
+    std::tstring_t       *a_psDecodedStr
 )
 {
-    std::tstring_t::const_iterator it  = csUri.begin();
-    std::tstring_t::const_iterator end = csUri.end();
+    std::tstring_t::const_iterator it  = a_csUri.begin();
+    std::tstring_t::const_iterator end = a_csUri.end();
 
     while (it != end) {
         char chChar = *it++;
@@ -194,7 +194,7 @@ CxCgi::bUriDecode(
             }
         }
 
-        (*psDecodedStr) += chChar;
+        (*a_psDecodedStr) += chChar;
     }
 
     return true;
@@ -202,7 +202,7 @@ CxCgi::bUriDecode(
 //----------------------------------------------------------------------------------------------------
 //TODO: cgl_parsecgibuf
 int
-cgl_parsecgibuf(/*cgllist *cdata,*/ char *query) {
+cgl_parsecgibuf(/*cgllist *cdata,*/ char *a_query) {
 //    char *s;
 //    char *np;
 //    char *vp;
@@ -270,7 +270,7 @@ cgl_parsecgibuf(/*cgllist *cdata,*/ char *query) {
 //----------------------------------------------------------------------------------------------------
 //TODO: bUrlEscape
 int
-CxCgi::bUrlEscape(char *s, FILE *fw) {
+CxCgi::bUrlEscape(char *a_s, FILE *a_fw) {
 //    register int    c;
 //
 //    while((c = *s++) != (char)0) {
@@ -297,7 +297,7 @@ CxCgi::bUrlEscape(char *s, FILE *fw) {
 //TODO: bUrlUnescape
 //modified from the Apache code. Code shrinks string, so can be done in place.
 int
-CxCgi::bUrlUnescape(char *s) {
+CxCgi::bUrlUnescape(char *a_s) {
 //    int    error;
 //    char    *p;
 //
@@ -333,7 +333,7 @@ CxCgi::bUrlUnescape(char *s) {
 //TODO: cgl_hex2char
 //ripped off from the Apache code
 char
-CxCgi::cgl_hex2char(char *what) {
+CxCgi::cgl_hex2char(char *a_what) {
     register char digit = '\0';
 
 //    if (!what)
@@ -360,9 +360,9 @@ CxCgi::cgl_hex2char(char *what) {
 
 //---------------------------------------------------------------------------
 CxCgiEnvironment::CxCgiEnvironment(
-    CxCgi &ccgCgi
+    CxCgi &a_ccgCgi
 ) :
-    _m_ccgCgi         (ccgCgi),
+    _m_ccgCgi         (a_ccgCgi),
     _m_rmRequestMethod(rmUknown)
 {
     _bInit();
@@ -741,9 +741,9 @@ CxCgiEnvironment::_bInit() {
 
 //---------------------------------------------------------------------------
 CxCgiCookies::CxCgiCookies(
-    CxCgi &ccgCgi
+    CxCgi &a_ccgCgi
 ):
-    _m_ccgCgi(ccgCgi)
+    _m_ccgCgi(a_ccgCgi)
 {
     _bInit();
 }
@@ -757,13 +757,13 @@ CxCgiCookies::~CxCgiCookies() {
 //---------------------------------------------------------------------------
 std::tstring_t
 CxCgiCookies::operator [] (
-    const std::tstring_t &csCookieName
+    const std::tstring_t &a_csCookieName
 )
 {
     /*DEBUG*/
 
     xFOREACH_CONST(TCookies, it, Items) {
-        xCHECK_DO(false == CxString::bCompareNoCase(csCookieName, (*it)->sGetValue()), continue);
+        xCHECK_DO(false == CxString::bCompareNoCase(a_csCookieName, (*it)->sGetValue()), continue);
 
         return (*it)->sGetValue();
     }
@@ -850,11 +850,11 @@ CxCgiCookies::_bInit() {
 
 //---------------------------------------------------------------------------
 CxCgiFormData::CxCgiFormData(
-    CxCgi        &ccgCgi,
-    const size_t  cuiMaxSize
+    CxCgi        &a_ccgCgi,
+    const size_t  a_cuiMaxSize
 ) :
-    _m_cuiMaxData(cuiMaxSize),
-    _m_ccgCgi    (ccgCgi)
+    _m_cuiMaxData(a_cuiMaxSize),
+    _m_ccgCgi    (a_ccgCgi)
 {
     _bInit();
 }

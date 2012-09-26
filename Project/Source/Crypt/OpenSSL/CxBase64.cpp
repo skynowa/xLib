@@ -31,7 +31,7 @@ xNAMESPACE_BEGIN(NxLib)
 /*static*/
 std::string
 CxBase64::sEncode(
-    const std::string &csStr
+    const std::string &a_csStr
 )
 {
     std::string  sRv;
@@ -52,9 +52,9 @@ CxBase64::sEncode(
     pbioContainer = ::BIO_push(pbioBase64, pbioMemory);
     /*DEBUG*/// n/a
 
-    int iWritten = ::BIO_write(pbioContainer, &csStr.at(0), csStr.size());    (void)BIO_flush(pbioContainer);
-    /*DEBUG*/xASSERT_RET(0                                <  iWritten, std::string());
-    /*DEBUG*/xASSERT_RET(static_cast<int>( csStr.size() ) == iWritten, std::string());
+    int iWritten = ::BIO_write(pbioContainer, &a_csStr.at(0), a_csStr.size());    (void)BIO_flush(pbioContainer);
+    /*DEBUG*/xASSERT_RET(0                                  <  iWritten, std::string());
+    /*DEBUG*/xASSERT_RET(static_cast<int>( a_csStr.size() ) == iWritten, std::string());
 
     long_t liRv = BIO_get_mem_ptr(pbioContainer, &pbmBuffMemory);
     /*DEBUG*/xASSERT_RET(0 < liRv, std::string());
@@ -69,7 +69,7 @@ CxBase64::sEncode(
 /*static*/
 std::string
 CxBase64::sDecode(
-    const std::string &csStr
+    const std::string &a_csStr
 )
 {
     std::string  sRv;
@@ -79,7 +79,7 @@ CxBase64::sDecode(
 
 
     //create a memory buffer containing base64 encoded data
-    pbioMemory = ::BIO_new_mem_buf((void *)&csStr.at(0), csStr.size());
+    pbioMemory = ::BIO_new_mem_buf((void *)&a_csStr.at(0), a_csStr.size());
     /*DEBUG*/xASSERT_RET(NULL != pbioMemory, std::string());
 
     //create a base64 filter
@@ -91,7 +91,7 @@ CxBase64::sDecode(
     //push a Base64 filter so that reading from buffer decodes it
     pbioContainer = ::BIO_push(pbioBase64, pbioMemory);
 
-    sRv.resize(csStr.size());
+    sRv.resize(a_csStr.size());
 
     int iReaded = ::BIO_read(pbioContainer, &sRv.at(0), sRv.size());
     /*DEBUG*/xASSERT_RET(0 < iReaded, std::string());
@@ -106,12 +106,12 @@ CxBase64::sDecode(
 /*static*/
 bool
 CxBase64::bIsCharValid(
-    const char cchChar
+    const char a_cchChar
 )
 {
     /*DEBUG*/// n/a
 
-    bool bRv = ((false != CxChar::bIsAlphaNum(cchChar)) || ('+' == cchChar) || ('/' == cchChar));
+    bool bRv = ((false != CxChar::bIsAlphaNum(a_cchChar)) || ('+' == a_cchChar) || ('/' == a_cchChar));
 
     return bRv;
 }

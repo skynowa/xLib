@@ -27,16 +27,16 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxErrorReport::CxErrorReport(
-    const ExType         &crtType,
-    const std::tstring_t &csExp,
-    const ulong_t        &culLastError,
-    const std::tstring_t &csFile,
-    const ulong_t        &culLine,
-    const std::tstring_t &csFunc,
-    const std::tstring_t &csDate,
-    const std::tstring_t &csTime,
-    const std::tstring_t &csStackTrace,
-    const std::tstring_t &csComment
+    const ExType         &a_crtType,
+    const std::tstring_t &a_csExp,
+    const ulong_t        &a_culLastError,
+    const std::tstring_t &a_csFile,
+    const ulong_t        &a_culLine,
+    const std::tstring_t &a_csFunc,
+    const std::tstring_t &a_csDate,
+    const std::tstring_t &a_csTime,
+    const std::tstring_t &a_csStackTrace,
+    const std::tstring_t &a_csComment
 ) :
     m_rtType         (rtUnknown),
     m_sReport        (),
@@ -60,9 +60,9 @@ CxErrorReport::CxErrorReport(
 {
     /*DEBUG*/
 
-    (void)_bConstruct(crtType, csExp, culLastError, csFile, culLine, csFunc, csDate, csTime, csStackTrace, csComment.c_str());
+    (void)_bConstruct(a_crtType, a_csExp, a_culLastError, a_csFile, a_culLine, a_csFunc, a_csDate, a_csTime, a_csStackTrace, a_csComment.c_str());
 
-    switch (crtType) {
+    switch (a_crtType) {
         case rtMsgboxPlain:     { _bInitPlain();    }   break;
         case rtMsgboxFormated:  { _bInitFormated(); }   break;
         case rtStdoutPlain:     { _bInitPlain();    }   break;
@@ -75,16 +75,16 @@ CxErrorReport::CxErrorReport(
 }
 //---------------------------------------------------------------------------
 CxErrorReport::CxErrorReport(
-    const ExType         &crtType,
-    const std::tstring_t &csExp,
-    const ulong_t        &culLastError,
-    const std::tstring_t &csFile,
-    const ulong_t        &culLine,
-    const std::tstring_t &csFunc,
-    const std::tstring_t &csDate,
-    const std::tstring_t &csTime,
-    const std::tstring_t &csStackTrace,
-    const tchar_t        *pcszComment, ...
+    const ExType         &a_crtType,
+    const std::tstring_t &a_csExp,
+    const ulong_t        &a_culLastError,
+    const std::tstring_t &a_csFile,
+    const ulong_t        &a_culLine,
+    const std::tstring_t &a_csFunc,
+    const std::tstring_t &a_csDate,
+    const std::tstring_t &a_csTime,
+    const std::tstring_t &a_csStackTrace,
+    const tchar_t        *a_pcszComment, ...
 ) :
     m_rtType         (rtUnknown),
     m_sReport        (),
@@ -111,13 +111,13 @@ CxErrorReport::CxErrorReport(
     std::tstring_t sComment;
     va_list        palArgs;
 
-    xVA_START(palArgs, pcszComment);
-    sComment = CxString::sFormatV(pcszComment, palArgs);
+    xVA_START(palArgs, a_pcszComment);
+    sComment = CxString::sFormatV(a_pcszComment, palArgs);
     xVA_END(palArgs);
 
-    (void)_bConstruct(crtType, csExp, culLastError, csFile, culLine, csFunc, csDate, csTime, csStackTrace, sComment.c_str());
+    (void)_bConstruct(a_crtType, a_csExp, a_culLastError, a_csFile, a_culLine, a_csFunc, a_csDate, a_csTime, a_csStackTrace, sComment.c_str());
 
-    switch (crtType) {
+    switch (a_crtType) {
         case rtMsgboxPlain:     { (void)_bInitPlain();    }   break;
         case rtMsgboxFormated:  { (void)_bInitFormated(); }   break;
         case rtStdoutPlain:     { (void)_bInitPlain();    }   break;
@@ -144,16 +144,16 @@ CxErrorReport::~CxErrorReport() {
 //---------------------------------------------------------------------------
 bool
 CxErrorReport::_bConstruct(
-    const ExType         &crtType,
-    const std::tstring_t &csExp,
-    const ulong_t        &culLastError,
-    const std::tstring_t &csFile,
-    const ulong_t        &culLine,
-    const std::tstring_t &csFunc,
-    const std::tstring_t &csDate,
-    const std::tstring_t &csTime,
-    const std::tstring_t &csStackTrace,
-    const std::tstring_t &csComment
+    const ExType         &a_crtType,
+    const std::tstring_t &a_csExp,
+    const ulong_t        &a_culLastError,
+    const std::tstring_t &a_csFile,
+    const ulong_t        &a_culLine,
+    const std::tstring_t &a_csFunc,
+    const std::tstring_t &a_csDate,
+    const std::tstring_t &a_csTime,
+    const std::tstring_t &a_csStackTrace,
+    const std::tstring_t &a_csComment
 )
 {
     /*DEBUG*/
@@ -161,7 +161,7 @@ CxErrorReport::_bConstruct(
     const size_t cuiReportWidthMax = 46;
 
 
-    m_rtType          = crtType;
+    m_rtType          = a_crtType;
 
 #if 1
     m_sProgram        = CxPath::sToUnix( CxPath::sGetShort(CxPath::sGetExe(), cuiReportWidthMax), false );
@@ -169,33 +169,33 @@ CxErrorReport::_bConstruct(
     m_ulThreadId      = (ulong_t)CxCurrentThread::ulGetId();
     m_sFileSize       = CxString::sFormatBytes( static_cast<ulonglong_t>( CxFile::llGetSize(CxPath::sGetExe())) );
 
-    m_sSourceFile     = CxPath::sToUnix( CxPath::sGetShort(csFile, cuiReportWidthMax), false );
-    m_ulSourceLine    = culLine;
-    m_sFunctionName   = csFunc;
-    m_sExpression     = csExp;
-    m_ulLastError     = culLastError;
-    m_sLastErrorStr   = CxLastError::sFormat(culLastError);
+    m_sSourceFile     = CxPath::sToUnix( CxPath::sGetShort(a_csFile, cuiReportWidthMax), false );
+    m_ulSourceLine    = a_culLine;
+    m_sFunctionName   = a_csFunc;
+    m_sExpression     = a_csExp;
+    m_ulLastError     = a_culLastError;
+    m_sLastErrorStr   = CxLastError::sFormat(a_culLastError);
 
     m_sCurrentDate    = CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftDateTime);
-    m_sBuildDate      = CxString::sFormat(xT("%s/%s"), csDate.c_str(), csTime.c_str());
+    m_sBuildDate      = CxString::sFormat(xT("%s/%s"), a_csDate.c_str(), a_csTime.c_str());
     m_sBuildType      = (true == CxDebugger().bIsDebugBuild()) ? xT("debug") : xT("release");
     m_sOsVersion      = CxSystemInfo::sFormatOsType( CxSystemInfo::osGetOS() );
     m_sOsArchitecture = CxSystemInfo::sFormatOsArch( CxSystemInfo::oaGetOsArch() );
 
-    m_sStackTrace     = csStackTrace;
-    m_sComment        = (false == csComment.empty()) ? csComment : CxConst::xHYPHEN;
+    m_sStackTrace     = a_csStackTrace;
+    m_sComment        = (false == a_csComment.empty()) ? a_csComment : CxConst::xHYPHEN;
 #else
     m_sProgram        = xT("");
     m_ulProcessId     = (ulong_t)CxCurrentProcess::ulGetId();
     m_ulThreadId      = (ulong_t)CxCurrentThread::ulGetId();
     m_sFileSize       = xT("");
 
-    m_sSourceFile     = csFile;
-    m_ulSourceLine    = culLine;
-    m_sFunctionName   = csFunc;
-    m_sExpression     = csExp;
-    m_ulLastError     = culLastError;
-    m_sLastErrorStr   = CxLastError::sFormat(culLastError);
+    m_sSourceFile     = a_csFile;
+    m_ulSourceLine    = a_culLine;
+    m_sFunctionName   = a_csFunc;
+    m_sExpression     = a_csExp;
+    m_ulLastError     = a_culLastError;
+    m_sLastErrorStr   = CxLastError::sFormat(a_culLastError);
 
     m_sCurrentDate    = xT("");
     m_sBuildDate      = xT("");
@@ -203,8 +203,8 @@ CxErrorReport::_bConstruct(
     m_sOsVersion      = xT("");
     m_sOsArchitecture = xT("");
 
-    m_sStackTrace     = csStackTrace;
-    m_sComment        = (false == csComment.empty()) ? csComment : CxConst::xHYPHEN;
+    m_sStackTrace     = a_csStackTrace;
+    m_sComment        = (false == a_csComment.empty()) ? a_csComment : CxConst::xHYPHEN;
 #endif
 
     return true;

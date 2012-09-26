@@ -27,7 +27,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxThread::CxThread(
-    const bool &cbIsAutoDelete
+    const bool &a_cbIsAutoDelete
 ) :
     m_ulTag          (0UL),
 
@@ -36,7 +36,7 @@ CxThread::CxThread(
     _m_ulId          (0UL),
     _m_uiExitStatus  (0U),
     _m_pvParam       (NULL),
-    _m_cbIsAutoDelete(cbIsAutoDelete),
+    _m_cbIsAutoDelete(a_cbIsAutoDelete),
 
     // flags
     _m_bIsCreated    (false),
@@ -86,9 +86,9 @@ CxThread::~CxThread() {
 //---------------------------------------------------------------------------
 bool
 CxThread::bCreate(
-    const bool   &cbIsPaused,
-    const uint_t &cuiStackSize,
-    void         *pvParam
+    const bool   &a_cbIsPaused,
+    const uint_t &a_cuiStackSize,
+    void         *a_pvParam
 )
 {
 #if   xOS_ENV_WIN
@@ -102,7 +102,7 @@ CxThread::bCreate(
 
     bool bRv = false;
 
-    _m_pvParam = pvParam;
+    _m_pvParam = a_pvParam;
 
     //-------------------------------------
     // _m_evStarter
@@ -114,7 +114,7 @@ CxThread::bCreate(
 #if   xOS_ENV_WIN
     id_t ulId = 0UL;
 
-    HANDLE hRv = reinterpret_cast<HANDLE>( ::_beginthreadex(NULL, cuiStackSize, _s_uiJobEntry, this, 0U, (uint_t *)&ulId) );
+    HANDLE hRv = reinterpret_cast<HANDLE>( ::_beginthreadex(NULL, a_cuiStackSize, _s_uiJobEntry, this, 0U, (uint_t *)&ulId) );
     /*DEBUG*/xASSERT_RET(NULL != hRv, false);
     /*DEBUG*/xASSERT_RET(0UL  <  ulId, false);
 
@@ -136,7 +136,7 @@ CxThread::bCreate(
 
     if (0 != cuiStackSize) {
         //TODO: size_t size = PTHREAD_STACK_MIN + 0x4000;
-        iRv = ::pthread_attr_setstacksize(&paAttributes, cuiStackSize);
+        iRv = ::pthread_attr_setstacksize(&paAttributes, a_cuiStackSize);
         /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
     }
 
@@ -159,7 +159,7 @@ CxThread::bCreate(
         _m_bIsRunning = true;
         /*_m_bIsPaused*/// n/a
 
-        if (false != cbIsPaused) {
+        if (false != a_cbIsPaused) {
             bRv = bPause();
             /*DEBUG*/xASSERT_RET(true == bRv, false);
         } else {
@@ -243,7 +243,7 @@ CxThread::bExit() {
 //---------------------------------------------------------------------------
 bool
 CxThread::bKill(
-    const ulong_t &culTimeout
+    const ulong_t &a_culTimeout
 )
 {
     bool    bRv  = false;
@@ -262,14 +262,14 @@ CxThread::bKill(
         ulRv = ulGetExitStatus();
         xCHECK_DO(STILL_ACTIVE != ulRv, break);
 
-        bRv = CxCurrentThread::bSleep(culTimeout);
+        bRv = CxCurrentThread::bSleep(a_culTimeout);
         /*DEBUG*/xASSERT_DO(true == bRv, break);
     }
 #elif xOS_ENV_UNIX
     int iRv = ::pthread_kill(_m_ulId, SIGALRM);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
 
-    bRv = CxCurrentThread::bSleep(culTimeout);
+    bRv = CxCurrentThread::bSleep(a_culTimeout);
     /*DEBUG*/xASSERT(true == bRv);
 #endif
 
@@ -296,7 +296,7 @@ CxThread::bKill(
 //---------------------------------------------------------------------------
 bool
 CxThread::bWait(
-    const ulong_t &culTimeout
+    const ulong_t &a_culTimeout
 ) const
 {
 #if   xOS_ENV_WIN
@@ -310,11 +310,11 @@ CxThread::bWait(
     /*DEBUG*/xASSERT(CxCurrentThread::ulGetId() != _m_ulId);
     xCHECK_RET(CxCurrentThread::ulGetId() == _m_ulId, true);
 
-    DWORD ulRv = ::WaitForSingleObject(_m_hThread.hGet(), culTimeout);
+    DWORD ulRv = ::WaitForSingleObject(_m_hThread.hGet(), a_culTimeout);
     /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == ulRv, false);
 #elif xOS_ENV_UNIX
     // TODO: thread must not be detached
-    // FIX:  culTimeout
+    // FIX:  a_culTimeout
     int iRv = ::pthread_join(_m_ulId, NULL);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
 #endif
@@ -421,17 +421,17 @@ CxThread::bIsExited() {
 
 bool
 CxThread::bPostMessage(
-    HWND   hHwnd,
-    uint_t uiMsg,
-    uint_t uiParam1,
-    long_t liParam2
+    HWND   a_hHwnd,
+    uint_t a_uiMsg,
+    uint_t a_uiParam1,
+    long_t a_liParam2
 ) const
 {
     /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), false);
-    /*DEBUG*/xASSERT_RET(NULL  != hHwnd,                 false);
-    /*DEBUG*/xASSERT_RET(false != ::IsWindow(hHwnd),     false);
+    /*DEBUG*/xASSERT_RET(NULL  != a_hHwnd,               false);
+    /*DEBUG*/xASSERT_RET(false != ::IsWindow(a_hHwnd),   false);
 
-    BOOL blRes = ::PostMessage(hHwnd, uiMsg, static_cast<WPARAM>( uiParam1 ), static_cast<LPARAM>( liParam2 ));
+    BOOL blRes = ::PostMessage(a_hHwnd, a_uiMsg, static_cast<WPARAM>( a_uiParam1 ), static_cast<LPARAM>( a_liParam2 ));
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 
     return true;
@@ -443,17 +443,17 @@ CxThread::bPostMessage(
 
 bool
 CxThread::bSendMessage(
-    HWND   hHwnd,
-    uint_t uiMsg,
-    uint_t uiParam1,
-    long_t liParam2
+    HWND   a_hHwnd,
+    uint_t a_uiMsg,
+    uint_t a_uiParam1,
+    long_t a_liParam2
 ) const
 {
     /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), false);
-    /*DEBUG*/xASSERT_RET(NULL  != hHwnd,                 false);
-    /*DEBUG*/xASSERT_RET(false != ::IsWindow(hHwnd),     false);
+    /*DEBUG*/xASSERT_RET(NULL  != a_hHwnd,               false);
+    /*DEBUG*/xASSERT_RET(false != ::IsWindow(a_hHwnd),   false);
 
-    (void)::SendMessage(hHwnd, uiMsg, static_cast<WPARAM>( uiParam1 ), static_cast<LPARAM>( liParam2 ));
+    (void)::SendMessage(a_hHwnd, a_uiMsg, static_cast<WPARAM>( a_uiParam1 ), static_cast<LPARAM>( a_liParam2 ));
     /*DEBUG*/xASSERT_RET(0UL == CxLastError::ulGet(), false);
 
     return true;
@@ -465,14 +465,14 @@ CxThread::bSendMessage(
 
 bool
 CxThread::bPostThreadMessage(
-    uint_t uiMsg,
-    uint_t uiParam1,
-    long_t liParam2
+    uint_t a_uiMsg,
+    uint_t a_uiParam1,
+    long_t a_liParam2
 ) const
 {
     /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), false);
 
-    BOOL blRes = ::PostThreadMessage(ulGetId(), uiMsg, static_cast<WPARAM>( uiParam1 ), static_cast<LPARAM>( liParam2 ));
+    BOOL blRes = ::PostThreadMessage(ulGetId(), a_uiMsg, static_cast<WPARAM>( a_uiParam1 ), static_cast<LPARAM>( a_liParam2 ));
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 
     return true;
@@ -484,20 +484,20 @@ CxThread::bPostThreadMessage(
 
 bool
 CxThread::bTryPostThreadMessage(
-    uint_t  uiMsg,
-    uint_t  uiParam1,
-    long_t  liParam2,
-    ulong_t ulAttemps,
-    ulong_t ulAttempTimeout
+    uint_t  a_uiMsg,
+    uint_t  a_uiParam1,
+    long_t  a_liParam2,
+    ulong_t a_ulAttemps,
+    ulong_t a_ulAttempTimeout
 ) const
 {
     /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), false);
 
-    for (ulong_t i = 0UL; i < ulAttemps; ++ i) {
-        BOOL blRes = ::PostThreadMessage(ulGetId(), uiMsg, static_cast<WPARAM>( uiParam1 ), static_cast<LPARAM>( liParam2 ));
+    for (ulong_t i = 0UL; i < a_ulAttemps; ++ i) {
+        BOOL blRes = ::PostThreadMessage(ulGetId(), a_uiMsg, static_cast<WPARAM>( a_uiParam1 ), static_cast<LPARAM>( a_liParam2 ));
 
         xCHECK_RET(FALSE != blRes, true);
-        xCHECK_DO (FALSE == blRes, CxCurrentThread::bSleep(ulAttempTimeout));
+        xCHECK_DO (FALSE == blRes, CxCurrentThread::bSleep(a_ulAttempTimeout));
     }
 
     return false;
@@ -509,18 +509,18 @@ CxThread::bTryPostThreadMessage(
 
 bool
 CxThread::bMessageWaitQueue(
-    uint_t  uiMsg,
-    uint_t *puiParam1,
-    long_t *pliParam2
+    uint_t  a_uiMsg,
+    uint_t *a_puiParam1,
+    long_t *a_pliParam2
 ) const
 {
     /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), false);
-    /*DEBUG*/xASSERT_RET(0     <  uiMsg,                 false);
+    /*DEBUG*/xASSERT_RET(0     <  a_uiMsg,               false);
 
     std::vector<uint_t> vuiMsg;
-    vuiMsg.push_back(uiMsg);
+    vuiMsg.push_back(a_uiMsg);
 
-    bool bRv = bMessageWaitQueue(vuiMsg, NULL, puiParam1, pliParam2);
+    bool bRv = bMessageWaitQueue(vuiMsg, NULL, a_puiParam1, a_pliParam2);
     /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     return true;
@@ -532,14 +532,14 @@ CxThread::bMessageWaitQueue(
 
 bool
 CxThread::bMessageWaitQueue(
-    const std::vector<uint_t> &cvuiMsg,
-    uint_t                    *puiMsg,
-    uint_t                    *puiParam1,
-    long_t                    *pliParam2
+    const std::vector<uint_t> &a_cvuiMsg,
+    uint_t                    *a_puiMsg,
+    uint_t                    *a_puiParam1,
+    long_t                    *a_pliParam2
 ) const
 {
     /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), false);
-    /*DEBUG*/xASSERT_RET(false == cvuiMsg.empty(),       false);
+    /*DEBUG*/xASSERT_RET(false == a_cvuiMsg.empty(),     false);
 
     BOOL blRes  = FALSE;
     MSG  msgMsg = {0};
@@ -547,12 +547,12 @@ CxThread::bMessageWaitQueue(
     while ((blRes = ::GetMessage(&msgMsg, NULL, 0, 0 ))) {
         /*DEBUG*/xASSERT_RET(- 1 != blRes, false);
 
-        for (size_t i = 0; i < cvuiMsg.size(); ++ i) {
-            xCHECK_DO(cvuiMsg.at(i) != msgMsg.message, continue);
+        for (size_t i = 0; i < a_cvuiMsg.size(); ++ i) {
+            xCHECK_DO(a_cvuiMsg.at(i) != msgMsg.message, continue);
 
-            xPTR_ASSIGN(puiMsg,    msgMsg.message                      );
-            xPTR_ASSIGN(puiParam1, static_cast<uint_t>( msgMsg.wParam ));
-            xPTR_ASSIGN(pliParam2, static_cast<long_t>( msgMsg.lParam ));
+            xPTR_ASSIGN(a_puiMsg,    msgMsg.message                      );
+            xPTR_ASSIGN(a_puiParam1, static_cast<uint_t>( msgMsg.wParam ));
+            xPTR_ASSIGN(a_pliParam2, static_cast<long_t>( msgMsg.lParam ));
 
             return true;
         }
@@ -603,13 +603,13 @@ CxThread::_iGetPriorityMax() {
 //---------------------------------------------------------------------------
 bool
 CxThread::bSetPriority(
-    const ExPriority &ctpPriority
+    const ExPriority &a_ctpPriority
 ) const
 {
 #if   xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), false);
 
-    BOOL blRes = ::SetThreadPriority(_m_hThread.hGet(), ctpPriority);
+    BOOL blRes = ::SetThreadPriority(_m_hThread.hGet(), a_ctpPriority);
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX
     #if xOS_ENV_UNIX
@@ -618,7 +618,7 @@ CxThread::bSetPriority(
 
     sched_param spParam = {0};
 
-    spParam.sched_priority = ctpPriority;
+    spParam.sched_priority = a_ctpPriority;
 
     int iRv = ::pthread_setschedparam(ulGetId(), SCHED_FIFO, &spParam);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
@@ -746,13 +746,13 @@ CxThread::bIsPriorityBoost() const {
 //---------------------------------------------------------------------------
 bool
 CxThread::bSetPriorityBoost(
-    const bool &cbIsEnabled
+    const bool &a_cbIsEnabled
 ) const
 {
 #if   xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(false != _m_hThread.bIsValid(), false);
 
-    BOOL blRes = ::SetThreadPriorityBoost(_m_hThread.hGet(), ! cbIsEnabled);
+    BOOL blRes = ::SetThreadPriorityBoost(_m_hThread.hGet(), ! a_cbIsEnabled);
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 
     return true;
@@ -771,7 +771,7 @@ CxThread::bSetPriorityBoost(
 //---------------------------------------------------------------------------
 bool
 CxThread::bSetCpuAffinity(
-    const int &ciProcNum
+    const int &a_ciProcNum
 ) const
 {
 #if   xOS_ENV_WIN
@@ -779,7 +779,7 @@ CxThread::bSetCpuAffinity(
 
     DWORD_PTR dwMask;
 
-    dwMask = 1UL << ciProcNum;
+    dwMask = 1UL << a_ciProcNum;
 
     DWORD_PTR uiRes = ::SetThreadAffinityMask(_m_hThread.hGet(), dwMask);
     /*DEBUG*/xASSERT_RET(0                       != uiRes, false);
@@ -792,7 +792,7 @@ CxThread::bSetCpuAffinity(
     #endif
 
     CPU_ZERO(&csCpuSet);
-    (void)CPU_SET(ciProcNum, &csCpuSet);
+    (void)CPU_SET(a_ciProcNum, &csCpuSet);
 
     int iRv = ::pthread_setaffinity_np(ulGetId(), sizeof(csCpuSet), &csCpuSet);
     /*DEBUG*/xASSERT_MSG_RET(- 1 != iRv, CxLastError::sFormat(iRv), false);
@@ -803,7 +803,7 @@ CxThread::bSetCpuAffinity(
 //---------------------------------------------------------------------------
 bool
 CxThread::bSetCpuIdeal(
-    const ulong_t &culIdealCpu    ///< value is zero-based
+    const ulong_t &a_culIdealCpu    ///< value is zero-based
 ) const
 {
 #if   xOS_ENV_WIN
@@ -811,7 +811,7 @@ CxThread::bSetCpuIdeal(
 
     DWORD ulRv = (DWORD) - 1;
 
-    ulRv = ::SetThreadIdealProcessor(_m_hThread.hGet(), culIdealCpu);
+    ulRv = ::SetThreadIdealProcessor(_m_hThread.hGet(), a_culIdealCpu);
     /*DEBUG*/xASSERT_RET((DWORD) - 1 != ulRv, false);
 #elif xOS_ENV_UNIX
     return false;
@@ -910,11 +910,11 @@ CxThread::ulGetExitStatus() const {
 //---------------------------------------------------------------------------
 bool
 CxThread::bSetDebugName(
-    const std::tstring_t &csName
+    const std::tstring_t &a_csName
 ) const
 {
-    /////*DEBUG*/xASSERT_RET(0  < _m_ulId,       false);
-    /////*DEBUG*/xASSERT_RET(32 > csName.size(), false); //MAX_NAME_SIZE 32
+    /////*DEBUG*/xASSERT_RET(0  < _m_ulId,         false);
+    /////*DEBUG*/xASSERT_RET(32 > a_csName.size(), false); //MAX_NAME_SIZE 32
 
     //// TODO: xCHECK_RET(false == CxDebugger().bIsActive(), true);
 
@@ -938,7 +938,7 @@ CxThread::bSetDebugName(
         ////tiInfo.pszName    = xTS2S(csName).c_str();
         tiInfo.pszName    = "[Unknown]";
     #else
-        tiInfo.pszName    = csName.c_str();
+        tiInfo.pszName    = a_csName.c_str();
     #endif
         tiInfo.dwThreadID = ulGetId();
         tiInfo.dwFlags    = 0;
@@ -956,10 +956,10 @@ CxThread::bSetDebugName(
     #endif
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        int iRv = ::prctl(PR_SET_NAME, csName.c_str(), 0, 0, 0);
+        int iRv = ::prctl(PR_SET_NAME, a_csName.c_str(), 0, 0, 0);
         /*DEBUG*/xASSERT_RET(- 1 != iRv, false);
     #elif xOS_FREEBSD
-         (void)pthread_set_name_np(ulGetId(), csName.c_str());
+         (void)pthread_set_name_np(ulGetId(), a_csName.c_str());
     #endif
 #endif
 
@@ -977,17 +977,17 @@ CxThread::bSetDebugName(
 /*static*/
 CxThread::handle_t
 CxThread::hOpen(
-    const ulong_t &culAccess,
-    const bool    &cbInheritHandle,
-    const ulong_t &culId
+    const ulong_t &a_culAccess,
+    const bool    &a_cbInheritHandle,
+    const ulong_t &a_culId
 )
 {
     /*DEBUG*///ulAccess       - n/a
     /*DEBUG*///bInheritHandle - n/a
-    /*DEBUG*/xASSERT_RET(0UL < culId, handle_t());
+    /*DEBUG*/xASSERT_RET(0UL < a_culId, handle_t());
 
 #if   xOS_ENV_WIN
-    handle_t hRv = ::OpenThread(culAccess, cbInheritHandle, culId);
+    handle_t hRv = ::OpenThread(a_culAccess, a_cbInheritHandle, a_culId);
     /*DEBUG*/xASSERT_RET(NULL != hRv, NULL);
 #elif xOS_ENV_UNIX
     //TODO: hOpen
@@ -1008,7 +1008,7 @@ CxThread::hOpen(
 /*virtual*/
 uint_t
 CxThread::uiOnRun(
-    void *pvParam
+    void *a_pvParam
 ) /* = 0*/
 {
     /*DEBUG*/// n/a

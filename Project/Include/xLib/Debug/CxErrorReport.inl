@@ -9,20 +9,20 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 template<class T>
 CxErrorReport::CxErrorReport(
-    const ExType         &crtType,
-    const T              &cVarT1,
-    const T              &cVarT2,
-    const std::tstring_t &csExpr1,
-    const std::tstring_t &csExpr2,
-    const std::tstring_t &csExprSign,
-    const ulong_t        &culLastError,
-    const std::tstring_t &csFile,
-    const ulong_t        &culLine,
-    const std::tstring_t &csFunc,
-    const std::tstring_t &csDate,
-    const std::tstring_t &csTime,
-    const std::tstring_t &csStackTrace,
-    const std::tstring_t &csComment
+    const ExType         &a_crtType,
+    const T              &a_cVarT1,
+    const T              &a_cVarT2,
+    const std::tstring_t &a_csExpr1,
+    const std::tstring_t &a_csExpr2,
+    const std::tstring_t &a_csExprSign,
+    const ulong_t        &a_culLastError,
+    const std::tstring_t &a_csFile,
+    const ulong_t        &a_culLine,
+    const std::tstring_t &a_csFunc,
+    const std::tstring_t &a_csDate,
+    const std::tstring_t &a_csTime,
+    const std::tstring_t &a_csStackTrace,
+    const std::tstring_t &a_csComment
 ) :
     m_rtType         (rtUnknown),
     m_sReport        (),
@@ -47,7 +47,7 @@ CxErrorReport::CxErrorReport(
     /*DEBUG*/
 
     //sExpr
-    std::tstring_t sExpr = csExpr1 + xT(" ") + csExprSign + xT(" ") + csExpr2;
+    std::tstring_t sExpr = a_csExpr1 + xT(" ") + a_csExprSign + xT(" ") + a_csExpr2;
 
     //sComment
     std::tstring_t sComment;
@@ -56,11 +56,11 @@ CxErrorReport::CxErrorReport(
         std::tostringstream_t ossStream;
         ossStream.exceptions(std::tostringstream_t::eofbit | std::tostringstream_t::failbit | std::tostringstream_t::badbit);
 
-        size_t uiAlignWidth = xMAX(csExpr1.size(), csExpr2.size());
+        size_t uiAlignWidth = xMAX(a_csExpr1.size(), a_csExpr2.size());
 
-        ossStream << std::left << std::setw(uiAlignWidth) << csExpr1 << xT(": ") << cVarT1 << xT("\n")
+        ossStream << std::left << std::setw(uiAlignWidth) << a_csExpr1 << xT(": ") << a_cVarT1 << xT("\n")
                   << xT("                    ")
-                  << std::left << std::setw(uiAlignWidth) << csExpr2 << xT(": ") << cVarT2;
+                  << std::left << std::setw(uiAlignWidth) << a_csExpr2 << xT(": ") << a_cVarT2;
 
         if (false == m_sComment.empty()) {
             ossStream << xT("\n                      (")  << m_sComment << xT(")");
@@ -69,9 +69,9 @@ CxErrorReport::CxErrorReport(
         sComment = ossStream.str();
     }
 
-    (void)_bConstruct(crtType, sExpr, culLastError, csFile, culLine, csFunc, csDate, csTime, csStackTrace, sComment);
+    (void)_bConstruct(a_crtType, sExpr, a_culLastError, a_csFile, a_culLine, a_csFunc, a_csDate, a_csTime, a_csStackTrace, sComment);
 
-    switch (crtType) {
+    switch (a_crtType) {
         case rtMsgboxPlain:     { (void)_bInitPlain();    } break;
         case rtMsgboxFormated:  { (void)_bInitFormated(); } break;
         case rtStdoutPlain:     { (void)_bInitPlain();    } break;

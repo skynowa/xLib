@@ -79,7 +79,7 @@ const int    ciBtnSpace       = 8;
 //---------------------------------------------------------------------------
 bool
 bCreateContent(
-    HWND hParent
+    HWND a_hParent
 )
 {
     g_hFont = (HFONT)::SendMessage(g_hMainWnd, WM_GETFONT, 0, 0);
@@ -92,7 +92,7 @@ bCreateContent(
                         xT("ID_staImg"),
                         WS_CHILD | WS_VISIBLE | SS_ICON,
                         16, 16, 56, 40,
-                        hParent,
+                        a_hParent,
                         (HMENU)ID_staImg,
                         g_hInst,
                         NULL);
@@ -107,7 +107,7 @@ bCreateContent(
                         xT(""),
                         WS_CHILD | WS_VISIBLE | ES_LEFT | ES_MULTILINE | ES_WANTRETURN | ES_READONLY,
                         90, 8, 420, 400,
-                        hParent,
+                        a_hParent,
                         (HMENU)ID_redtText,
                         g_hInst,
                         NULL);
@@ -130,7 +130,7 @@ bCreateContent(
                         xT("Abort"),
                         WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP,
                         ciBtnLeftMargin, 420, ciBtnWidth, ciBtnHeight,
-                        hParent,
+                        a_hParent,
                         (HMENU)ID_btnAbort,
                         g_hInst,
                         NULL);
@@ -144,7 +144,7 @@ bCreateContent(
                         xT("Break"),
                         WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP,
                         ciBtnLeftMargin + (ciBtnWidth + ciBtnSpace) * 1, 420, ciBtnWidth, ciBtnHeight,
-                        hParent,
+                        a_hParent,
                         (HMENU)ID_btnRetry,
                         g_hInst,
                         NULL);
@@ -158,7 +158,7 @@ bCreateContent(
                         xT("Ignore"),
                         WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP,
                         ciBtnLeftMargin + (ciBtnWidth + ciBtnSpace) * 2, 420, ciBtnWidth, ciBtnHeight,
-                        hParent,
+                        a_hParent,
                         (HMENU)ID_btnIgnore,
                         g_hInst,
                         NULL);
@@ -172,7 +172,7 @@ bCreateContent(
                         xT("Copy"),
                         WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP,
                         ciBtnLeftMargin + (ciBtnWidth + ciBtnSpace) * 3, 420, ciBtnWidth, ciBtnHeight,
-                        hParent,
+                        a_hParent,
                         (HMENU)ID_btnCopyToClip,
                         g_hInst,
                         NULL);
@@ -186,7 +186,7 @@ bCreateContent(
                         xT("Report"),
                         WS_CHILD | WS_VISIBLE | WS_BORDER | WS_TABSTOP,
                         ciBtnLeftMargin + (ciBtnWidth + ciBtnSpace) * 4, 420, ciBtnWidth, ciBtnHeight,
-                        hParent,
+                        a_hParent,
                         (HMENU)ID_btnSendReport,
                         g_hInst,
                         NULL);
@@ -197,41 +197,41 @@ bCreateContent(
 //---------------------------------------------------------------------------
 INT_PTR CALLBACK
 DialogProc(
-    HWND   hDlg,
-    uint_t   uiMsg,
-    WPARAM wParam,
-    LPARAM lParam
+    HWND   a_hDlg,
+    uint_t a_uiMsg,
+    WPARAM a_wParam,
+    LPARAM a_lParam
 )
 {
-    switch(uiMsg) {
+    switch(a_uiMsg) {
         case WM_INITDIALOG:    {
-                bCreateContent(hDlg);
+                bCreateContent(a_hDlg);
             }
             return true;
 
         case WM_CLOSE: {
-                ::EndDialog(hDlg, 0);
+                ::EndDialog(a_hDlg, 0);
             }
             return true;
 
         case WM_COMMAND:
             {
-                switch (LOWORD(wParam))    {
+                switch (LOWORD(a_wParam))    {
                     case ID_btnAbort: {
                             g_mrRes = CxMsgBoxRtf::mrAbort;
-                            ::SendMessage(hDlg, WM_CLOSE, (WPARAM)0, (LPARAM)0);
+                            ::SendMessage(a_hDlg, WM_CLOSE, (WPARAM)0, (LPARAM)0);
                         }
                         return true;
 
                     case ID_btnRetry: {
                             g_mrRes = CxMsgBoxRtf::mrRetry;
-                            ::SendMessage(hDlg, WM_CLOSE, (WPARAM)0, (LPARAM)0);
+                            ::SendMessage(a_hDlg, WM_CLOSE, (WPARAM)0, (LPARAM)0);
                         }
                         return true;
 
                     case ID_btnIgnore: {
                             g_mrRes = CxMsgBoxRtf::mrIgnore;
-                            ::SendMessage(hDlg, WM_CLOSE, (WPARAM)0, (LPARAM)0);
+                            ::SendMessage(a_hDlg, WM_CLOSE, (WPARAM)0, (LPARAM)0);
                         }
                         return true;
 
@@ -261,9 +261,9 @@ DialogProc(
 //---------------------------------------------------------------------------
 ExModalResult
 iShow(
-    HWND                  hwndOwner,
-    const std::tstring_t &csMessage,
-    const std::tstring_t &csTiltle
+    HWND                  a_hwndOwner,
+    const std::tstring_t &a_csMessage,
+    const std::tstring_t &a_csTiltle
 )
 {
     HMODULE           hmRichEdtDll = NULL;
@@ -307,14 +307,14 @@ iShow(
 
     lpwsz = (LPWSTR)lpw;
     ////TODO: nchar = 1 + ::MultiByteToWideChar(CP_ACP, 0, csTiltle.c_str(), -1, lpwsz, 50);
-    nchar = 1 + csTiltle.size();
+    nchar = 1 + a_csTiltle.size();
     lpw += nchar;
 
-    g_sTitle   = csTiltle;
-    g_sMessage = csMessage;
+    g_sTitle   = a_csTiltle;
+    g_sMessage = a_csMessage;
 
     ::GlobalUnlock(hgbl);
-    lpRes = ::DialogBoxIndirect(g_hInst, (LPDLGTEMPLATE)hgbl, hwndOwner, reinterpret_cast<DLGPROC>(DialogProc));
+    lpRes = ::DialogBoxIndirect(g_hInst, (LPDLGTEMPLATE)hgbl, a_hwndOwner, reinterpret_cast<DLGPROC>(DialogProc));
     ::GlobalFree(hgbl);
 
     //-------------------------------------

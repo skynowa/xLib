@@ -56,12 +56,12 @@ CxConsole::~CxConsole() {
 //NOTE: http://lifeforce4.wordpress.com/, http://lifeforce4.wordpress.com/
 std::tstring_t
 CxConsole::bSetTextColor(
-    const std::tstring_t &csText,
-    const ExForeground    cfgForeground,
-    const bool            cbIsBold,
-    const bool            cbIsUnderline,
-    const ExBackground    cbgBackground,
-    const bool            cbIsBlink
+    const std::tstring_t &a_csText,
+    const ExForeground    a_cfgForeground,
+    const bool            a_cbIsBold,
+    const bool            a_cbIsUnderline,
+    const ExBackground    a_cbgBackground,
+    const bool            a_cbIsBlink
 )
 {
     /*DEBUG*/// n/a
@@ -73,15 +73,15 @@ CxConsole::bSetTextColor(
     /*DEBUG*/xASSERT_RET(false != _m_hStdIn.bIsValid(),  std::tstring_t());
     /*DEBUG*/xASSERT_RET(false != _m_hStdOut.bIsValid(), std::tstring_t());
 
-    BOOL blRes = ::SetConsoleTextAttribute(_m_hStdOut.hGet(), cfgForeground);
+    BOOL blRes = ::SetConsoleTextAttribute(_m_hStdOut.hGet(), a_cfgForeground);
     /*DEBUG*/xASSERT_RET(FALSE != blRes, std::tstring_t());
 #elif xOS_ENV_UNIX
-    xCHECK_DO(true == cbIsUnderline, sRv += CxString::sFormat(xT("\033[%im"), atUnderscore));
-    xCHECK_DO(true == cbIsBlink,     sRv += CxString::sFormat(xT("\033[%im"), atBlink)     );
-    xCHECK_DO(true == cbIsBold,      sRv += CxString::sFormat(xT("\033[%im"), atBold)      );
+    xCHECK_DO(true == a_cbIsUnderline, sRv += CxString::sFormat(xT("\033[%im"), atUnderscore));
+    xCHECK_DO(true == a_cbIsBlink,     sRv += CxString::sFormat(xT("\033[%im"), atBlink)     );
+    xCHECK_DO(true == a_cbIsBold,      sRv += CxString::sFormat(xT("\033[%im"), atBold)      );
 
-    sRv += CxString::sFormat(xT("\033[%im"), cbgBackground);
-    sRv += CxString::sFormat(xT("\033[%im"), cfgForeground);
+    sRv += CxString::sFormat(xT("\033[%im"), a_cbgBackground);
+    sRv += CxString::sFormat(xT("\033[%im"), a_cfgForeground);
     sRv += csText;
     sRv += xT("\033[0;0m");
 #endif
@@ -116,7 +116,7 @@ CxConsole::sRead() {
 //---------------------------------------------------------------------------
 bool
 CxConsole::bWrite(
-    const std::tstring_t &csStr
+    const std::tstring_t &a_csStr
 )
 {
 #if xOS_ENV_WIN
@@ -126,11 +126,11 @@ CxConsole::bWrite(
 
     ulong_t ulWritten = 0UL;
 
-    BOOL blRes = ::WriteConsole(_m_hStdOut.hGet(), &csStr.at(0), csStr.size(), &ulWritten, NULL);
-    /*DEBUG*/xASSERT_RET(FALSE     != blRes,        false);
-    /*DEBUG*/xASSERT_RET(ulWritten == csStr.size(), false);
+    BOOL blRes = ::WriteConsole(_m_hStdOut.hGet(), &a_csStr.at(0), a_csStr.size(), &ulWritten, NULL);
+    /*DEBUG*/xASSERT_RET(FALSE     != blRes,          false);
+    /*DEBUG*/xASSERT_RET(ulWritten == a_csStr.size(), false);
 #elif xOS_ENV_UNIX
-    std::tcout << csStr;
+    std::tcout << a_csStr;
 #endif
 
     std::tcout.flush();
@@ -140,7 +140,7 @@ CxConsole::bWrite(
 //---------------------------------------------------------------------------
 bool
 CxConsole::bWriteLine(
-    const std::tstring_t &csStr /* = xT("")*/
+    const std::tstring_t &a_csStr /* = xT("") */
 )
 {
 #if xOS_ENV_WIN
@@ -150,7 +150,7 @@ CxConsole::bWriteLine(
     /*DEBUG*/xASSERT_RET(false != _m_hStdOut.bIsValid(), false);
 #endif
 
-    bool bRv = bWrite(csStr + CxConst::xNL);
+    bool bRv = bWrite(a_csStr + CxConst::xNL);
     /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     return true;
@@ -158,7 +158,7 @@ CxConsole::bWriteLine(
 //---------------------------------------------------------------------------
 bool
 CxConsole::bWriteErrLine(
-    const std::tstring_t &csStr
+    const std::tstring_t &a_csStr
 )
 {
 #if xOS_ENV_WIN
@@ -167,7 +167,7 @@ CxConsole::bWriteErrLine(
     /*DEBUG*/xASSERT_RET(false != _m_hStdOut.bIsValid(), false);
 #endif
 
-    bool bRv = bWriteLine(xT("Error: ") + csStr);
+    bool bRv = bWriteLine(xT("Error: ") + a_csStr);
     /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     bRv = bPause();
@@ -178,9 +178,9 @@ CxConsole::bWriteErrLine(
 //---------------------------------------------------------------------------
 CxConsole::ExModalResult
 CxConsole::iMsgBox(
-    const std::tstring_t &csText,
-    const std::tstring_t &csTitle,
-    const uint_t          cuiType
+    const std::tstring_t &a_csText,
+    const std::tstring_t &a_csTitle,
+    const uint_t          a_cuiType
 )
 {
     ExModalResult mrRes;
@@ -193,9 +193,9 @@ CxConsole::iMsgBox(
 
     bWriteLine();
     bWriteLine(xT("################################################################################"));
-    bWriteLine(xT("#  ") + csTitle);
+    bWriteLine(xT("#  ") + a_csTitle);
     bWriteLine(xT("#"));
-    bWriteLine(xT("#  ") + csText);
+    bWriteLine(xT("#  ") + a_csText);
     bWriteLine(xT("#"));
     bWriteLine(xT("################################################################################"));
     bWriteLine();
@@ -215,37 +215,37 @@ CxConsole::iMsgBox(
 //---------------------------------------------------------------------------
 bool
 CxConsole::bPrompt(
-    const std::tstring_t &csPrompt,
-    const bool            cbIsVisible,
-    std::tstring_t       *psAnswer
+    const std::tstring_t &a_csPrompt,
+    const bool            a_cbIsVisible,
+    std::tstring_t       *a_psAnswer
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csPrompt.empty(), false);
-    /*DEBUG*/xASSERT_RET(NULL  != psAnswer,         false);
+    /*DEBUG*/xASSERT_RET(false == a_csPrompt.empty(), false);
+    /*DEBUG*/xASSERT_RET(NULL  != a_psAnswer,         false);
 
     for ( ; ; ) {
-        bool bRv = bWrite(csPrompt + xT(": "));
+        bool bRv = bWrite(a_csPrompt + xT(": "));
         /*DEBUG*/xASSERT_RET(true == bRv, false);
 
         for ( ; ; ) {
             const tchar_t chLetter = static_cast<tchar_t>( std::tcin.get() );
 
             // asterisks
-            xCHECK_DO(true == cbIsVisible, bWrite(xT("*")));
+            xCHECK_DO(true == a_cbIsVisible, bWrite(xT("*")));
 
             // ENTER
             xCHECK_DO(10 == chLetter, break);
 
             // BACKSPACE
-            xCHECK_DO(0x8 == chLetter, (*psAnswer).clear(); continue);
+            xCHECK_DO(0x8 == chLetter, (*a_psAnswer).clear(); continue);
 
-            (*psAnswer).push_back(chLetter);
+            (*a_psAnswer).push_back(chLetter);
         }
 
         bRv = bWriteLine(CxConst::xSTR_EMPTY);
         /*DEBUG*/xASSERT_RET(true == bRv, false);
 
-        xCHECK_DO(true == (*psAnswer).empty(), continue);
+        xCHECK_DO(true == (*a_psAnswer).empty(), continue);
 
         break;
     }
@@ -326,7 +326,7 @@ CxConsole::bClear() {
 //---------------------------------------------------------------------------
 bool
 CxConsole::bEnableClose(
-    const bool cbFlag
+    const bool a_cbFlag
 )
 {
     /*DEBUG*/
@@ -339,7 +339,7 @@ CxConsole::bEnableClose(
     _m_hMenu = _hGetMenuHandle(false);
     /*DEBUG*/xASSERT_RET(NULL != _m_hMenu, false);
 
-    if (false == cbFlag) {
+    if (false == a_cbFlag) {
         xCHECK_RET(false == ::DeleteMenu(_m_hMenu, SC_CLOSE, MF_BYCOMMAND), false);
     } else {
         xCHECK_RET(false == ::AppendMenu(_m_hMenu, SC_CLOSE, MF_BYCOMMAND, xT("")), false);
@@ -386,7 +386,7 @@ CxConsole::sGetTitle() {
 //---------------------------------------------------------------------------
 bool
 CxConsole::bSetTitle(
-    const std::tstring_t &csTitle
+    const std::tstring_t &a_csTitle
 )
 {
     /*DEBUG*/
@@ -396,12 +396,12 @@ CxConsole::bSetTitle(
     /*DEBUG*/xASSERT_RET(false != _m_hStdIn.bIsValid(),  false);
     /*DEBUG*/xASSERT_RET(false != _m_hStdOut.bIsValid(), false);
 
-    BOOL blRes = ::SetConsoleTitle(csTitle.c_str());
+    BOOL blRes = ::SetConsoleTitle(a_csTitle.c_str());
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX
     //TODO: bSetTitle
 
-    bool bRv = bWriteLine( CxString::sFormat(xT("%c]0;%s%c"), xT('\033'), csTitle.c_str(), xT('\007')) );
+    bool bRv = bWriteLine( CxString::sFormat(xT("%c]0;%s%c"), xT('\033'), a_csTitle.c_str(), xT('\007')) );
     /*DEBUG*/xASSERT_RET(true == bRv,  false);
 #endif
 
@@ -530,14 +530,14 @@ CxConsole::_hGetWndHandle() {
 
 HMENU
 CxConsole::_hGetMenuHandle(
-    const bool cbRevert
+    const bool a_cbRevert
 )
 {
     /*DEBUG*/
 
-    _m_hMenu = ::GetSystemMenu(_m_hWnd, cbRevert);
-    /*DEBUG*/if (false == cbRevert) { xASSERT_RET(NULL != _m_hMenu, NULL); }
-    /*DEBUG*/if (true  == cbRevert) { xASSERT_RET(NULL == _m_hMenu, NULL); }
+    _m_hMenu = ::GetSystemMenu(_m_hWnd, a_cbRevert);
+    /*DEBUG*/if (false == a_cbRevert) { xASSERT_RET(NULL != _m_hMenu, NULL); }
+    /*DEBUG*/if (true  == a_cbRevert) { xASSERT_RET(NULL == _m_hMenu, NULL); }
 
     return _m_hMenu;
 }

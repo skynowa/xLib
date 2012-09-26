@@ -37,14 +37,14 @@ CxWaitableTimer::hGetHandle() const {
 //---------------------------------------------------------------------------
 bool
 CxWaitableTimer::bCreate(
-    const bool                   bManualReset,
-    const std::tstring_t        &csName,
-    const LPSECURITY_ATTRIBUTES  pcsaTimerAttributes
+    const bool                   a_bManualReset,
+    const std::tstring_t        &a_csName,
+    const LPSECURITY_ATTRIBUTES  a_pcsaTimerAttributes
 )
 {
     /*DEBUG*/xASSERT_RET(false == _m_hWaitableTimer.bIsValid(), false);
 
-    HANDLE hRv = ::CreateWaitableTimer(pcsaTimerAttributes, bManualReset, csName.c_str());
+    HANDLE hRv = ::CreateWaitableTimer(a_pcsaTimerAttributes, a_bManualReset, a_csName.c_str());
     /*DEBUG*/xASSERT_RET(NULL != hRv, false);
 
     _m_hWaitableTimer.bSet(hRv);
@@ -54,9 +54,9 @@ CxWaitableTimer::bCreate(
 //---------------------------------------------------------------------------
 bool
 CxWaitableTimer::bOpen(
-    const std::tstring_t &csName,
-    const ulong_t         culDesiredAccess,
-    const bool            cbInheritHandle
+    const std::tstring_t &a_csName,
+    const ulong_t         a_culDesiredAccess,
+    const bool            a_cbInheritHandle
 )
 {
     /*DEBUG*/xASSERT_RET(false != _m_hWaitableTimer.bIsValid(), false);
@@ -70,7 +70,7 @@ CxWaitableTimer::bOpen(
     #endif
 #endif
 
-    HANDLE hRv = ::OpenWaitableTimer(culDesiredAccess, cbInheritHandle, csName.c_str());
+    HANDLE hRv = ::OpenWaitableTimer(a_culDesiredAccess, a_cbInheritHandle, a_csName.c_str());
     /*DEBUG*/xASSERT_RET(NULL != hRv, false);
 
     _m_hWaitableTimer.bSet(hRv);
@@ -90,11 +90,11 @@ CxWaitableTimer::bCancel() const {
 //---------------------------------------------------------------------------
 bool
 CxWaitableTimer::bSet(
-    const longlong_t cllDueTime,
-    const long_t     cliPeriod,
-    PTIMERAPCROUTINE pfnCompletionRoutine,
-    LPVOID           pvArgToCompletionRoutine,
-    const bool       cbResume
+    const longlong_t a_cllDueTime,
+    const long_t     a_cliPeriod,
+    PTIMERAPCROUTINE a_pfnCompletionRoutine,
+    LPVOID           a_pvArgToCompletionRoutine,
+    const bool       a_cbResume
 ) const
 {
     /*DEBUG*/xASSERT_RET(false != _m_hWaitableTimer.bIsValid(), false);
@@ -107,9 +107,9 @@ CxWaitableTimer::bSet(
     */
 
     LARGE_INTEGER liDueTime = {{0}};
-    liDueTime.QuadPart = cllDueTime;
+    liDueTime.QuadPart = a_cllDueTime;
 
-    BOOL blRes = ::SetWaitableTimer(_m_hWaitableTimer.hGet(), &liDueTime, cliPeriod, pfnCompletionRoutine, pvArgToCompletionRoutine, cbResume);
+    BOOL blRes = ::SetWaitableTimer(_m_hWaitableTimer.hGet(), &liDueTime, a_cliPeriod, a_pfnCompletionRoutine, a_pvArgToCompletionRoutine, a_cbResume);
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 
     return true;
@@ -117,12 +117,12 @@ CxWaitableTimer::bSet(
 //---------------------------------------------------------------------------
 bool
 CxWaitableTimer::bWait(
-    const ulong_t culTimeout
+    const ulong_t a_culTimeout
 ) const
 {
     /*DEBUG*/xASSERT_RET(false != _m_hWaitableTimer.bIsValid(), false);
 
-    DWORD ulRv = ::WaitForSingleObject(_m_hWaitableTimer.hGet(), culTimeout);
+    DWORD ulRv = ::WaitForSingleObject(_m_hWaitableTimer.hGet(), a_culTimeout);
     /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == ulRv, false);
 
     return true;

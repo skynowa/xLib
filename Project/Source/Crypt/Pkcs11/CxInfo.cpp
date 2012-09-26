@@ -21,9 +21,9 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxInfo::CxInfo(
-    const CxPkcs11 &cPkcs11
+    const CxPkcs11 &a_cPkcs11
 ) :
-    _m_pFunc(cPkcs11.pGetFuncList())
+    _m_pFunc(a_cPkcs11.pGetFuncList())
 {
 
 }
@@ -34,12 +34,12 @@ CxInfo::~CxInfo() {
 //---------------------------------------------------------------------------
 bool
 CxInfo::bGet(
-    CK_INFO_PTR pInfo  ///< location that receives information
+    CK_INFO_PTR a_pInfo  ///< location that receives information
 )
 {
     /*DEBUG*/
 
-    CK_RV ulRv = _m_pFunc->C_GetInfo(pInfo);
+    CK_RV ulRv = _m_pFunc->C_GetInfo(a_pInfo);
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
@@ -47,13 +47,13 @@ CxInfo::bGet(
 //---------------------------------------------------------------------------
 bool
 CxInfo::bGetToken(
-    CK_SLOT_ID        slotID,  ///< ID of the token's slot
-    CK_TOKEN_INFO_PTR pInfo    ///< receives the token information
+    CK_SLOT_ID        a_slotID,  ///< ID of the token's slot
+    CK_TOKEN_INFO_PTR a_pInfo    ///< receives the token information
 )
 {
     /*DEBUG*/
 
-    CK_RV ulRv = _m_pFunc->C_GetTokenInfo(slotID, pInfo);
+    CK_RV ulRv = _m_pFunc->C_GetTokenInfo(a_slotID, a_pInfo);
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;

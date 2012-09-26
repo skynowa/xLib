@@ -35,7 +35,7 @@ CxSystemLog::CxSystemLog() :
 }
 //---------------------------------------------------------------------------
 CxSystemLog::CxSystemLog(
-    const std::tstring_t &csLogName
+    const std::tstring_t &a_csLogName
 ) :
     _m_bIsEnable(true)
 #if xOS_ENV_WIN
@@ -43,7 +43,7 @@ CxSystemLog::CxSystemLog(
     _m_SysLog   (NULL)
 #endif
 {
-    bool bRv = _bInit(csLogName);
+    bool bRv = _bInit(a_csLogName);
     /*DEBUG*/xASSERT_DO(true == bRv, return);
 }
 //---------------------------------------------------------------------------
@@ -75,11 +75,11 @@ CxSystemLog::bSetEnabled(
 //---------------------------------------------------------------------------
 bool
 CxSystemLog::bWrite(
-    const ExLevel  lvLevel,
-    const tchar_t *pcszFormat, ...
+    const ExLevel  a_lvLevel,
+    const tchar_t *a_pcszFormat, ...
 )
 {
-    /*DEBUG*/xASSERT_RET(NULL != pcszFormat, false);
+    /*DEBUG*/xASSERT_RET(NULL != a_pcszFormat, false);
 #if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(NULL != _m_SysLog,  false);
 #endif
@@ -91,8 +91,8 @@ CxSystemLog::bWrite(
     std::tstring_t sMessage;
     va_list        alArgs;
 
-    xVA_START(alArgs, pcszFormat);
-    sMessage = CxString::sFormatV(pcszFormat, alArgs);
+    xVA_START(alArgs, a_pcszFormat);
+    sMessage = CxString::sFormatV(a_pcszFormat, alArgs);
     xVA_END(alArgs);
 
     //-------------------------------------
@@ -100,7 +100,7 @@ CxSystemLog::bWrite(
 #if   xOS_ENV_WIN
     LPCTSTR pcszStrings = sMessage.c_str();
 
-    BOOL bRv = ::ReportEvent(_m_SysLog, lvLevel, 0, 0UL, NULL, 1, 0UL, &pcszStrings, NULL);
+    BOOL bRv = ::ReportEvent(_m_SysLog, a_lvLevel, 0, 0UL, NULL, 1, 0UL, &pcszStrings, NULL);
     /*DEBUG*/xASSERT_RET(FALSE != bRv, false);
 #elif xOS_ENV_UNIX
     (void)::syslog(lvLevel, xT("%s"), sMessage.c_str());
@@ -119,14 +119,14 @@ CxSystemLog::bWrite(
 //---------------------------------------------------------------------------
 bool
 CxSystemLog::_bInit(
-    const std::tstring_t &csLogName
+    const std::tstring_t &a_csLogName
 )
 {
 #if   xOS_ENV_WIN
-    _m_SysLog = ::RegisterEventSource(NULL, csLogName.c_str());
+    _m_SysLog = ::RegisterEventSource(NULL, a_csLogName.c_str());
     /*DEBUG*/xASSERT_RET(NULL != _m_SysLog, false);
 #elif xOS_ENV_UNIX
-    (void)::openlog(csLogName.c_str(), LOG_PID | LOG_NDELAY | LOG_NOWAIT, LOG_USER);
+    (void)::openlog(a_csLogName.c_str(), LOG_PID | LOG_NDELAY | LOG_NOWAIT, LOG_USER);
 #endif
 
     return true;

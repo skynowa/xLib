@@ -21,11 +21,11 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxObject::CxObject(
-    const CxPkcs11  &cPkcs11,
-    const CxSession &cSession
+    const CxPkcs11  &a_cPkcs11,
+    const CxSession &a_cSession
 ) :
-    _m_pFunc   (cPkcs11.pGetFuncList()),
-    _m_hSession(cSession.hGetHandle()),
+    _m_pFunc   (a_cPkcs11.pGetFuncList()),
+    _m_hSession(a_cSession.hGetHandle()),
     _m_hObject (NULL)
 {
     /*DEBUG*/xASSERT_DO(NULL != _m_pFunc,    return);
@@ -50,29 +50,29 @@ CxObject::hGetHandle() const {
 //---------------------------------------------------------------------------
 bool
 CxObject::bSetHandle(
-    CK_OBJECT_HANDLE hHandle
+    CK_OBJECT_HANDLE a_hHandle
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    false);
     /*DEBUG*/xASSERT_RET(NULL != _m_hSession, false);
     /*DEBUG*/// _m_hObject - n/a
 
-    _m_hObject = hHandle;
+    _m_hObject = a_hHandle;
 
     return true;
 }
 //---------------------------------------------------------------------------
 bool
 CxObject::bCreate(
-    CK_ATTRIBUTE_PTR pTemplate,    ///< the object's template
-    CK_ULONG         ulCount    ///< attributes in template
+    CK_ATTRIBUTE_PTR a_pTemplate,   ///< the object's template
+    CK_ULONG         a_ulCount      ///< attributes in template
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    false);
     /*DEBUG*/xASSERT_RET(NULL != _m_hSession, false);
     /*DEBUG*/xASSERT_RET(NULL == _m_hObject,  false);
 
-    CK_RV ulRv = _m_pFunc->C_CreateObject(_m_hSession, pTemplate, ulCount, &_m_hObject);
+    CK_RV ulRv = _m_pFunc->C_CreateObject(_m_hSession, a_pTemplate, a_ulCount, &_m_hObject);
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
@@ -80,14 +80,14 @@ CxObject::bCreate(
 //---------------------------------------------------------------------------
 bool
 CxObject::bGetSize(
-    CK_ULONG_PTR pulSize    ///< receives size of object
+    CK_ULONG_PTR a_pulSize    ///< receives size of object
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    false);
     /*DEBUG*/xASSERT_RET(NULL != _m_hSession, false);
     /*DEBUG*/xASSERT_RET(NULL != _m_hObject,  false);
 
-    CK_RV ulRv = _m_pFunc->C_GetObjectSize(_m_hSession, _m_hObject, pulSize);
+    CK_RV ulRv = _m_pFunc->C_GetObjectSize(_m_hSession, _m_hObject, a_pulSize);
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
@@ -95,16 +95,16 @@ CxObject::bGetSize(
 //---------------------------------------------------------------------------
 bool
 CxObject::bCopy(
-    CK_ATTRIBUTE_PTR     pTemplate,   ///< template for new object
-    CK_ULONG             ulCount,     ///< attributes in template
-    CK_OBJECT_HANDLE_PTR phNewObject  ///< receives handle of copy
+    CK_ATTRIBUTE_PTR     a_pTemplate,   ///< template for new object
+    CK_ULONG             a_ulCount,     ///< attributes in template
+    CK_OBJECT_HANDLE_PTR a_phNewObject  ///< receives handle of copy
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    false);
     /*DEBUG*/xASSERT_RET(NULL != _m_hSession, false);
     /*DEBUG*/xASSERT_RET(NULL != _m_hObject,  false);
 
-    CK_RV ulRv = _m_pFunc->C_CopyObject(_m_hSession, _m_hObject, pTemplate, ulCount, phNewObject);
+    CK_RV ulRv = _m_pFunc->C_CopyObject(_m_hSession, _m_hObject, a_pTemplate, a_ulCount, a_phNewObject);
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
@@ -112,21 +112,21 @@ CxObject::bCopy(
 //--------------------------------------------------------------------------
 bool
 CxObject::bFind(
-    CK_ATTRIBUTE_PTR               pTemplate,           ///< attribute values to match
-    CK_ULONG                       ulCount,             ///< attrs in search template
-    std::vector<CK_OBJECT_HANDLE> *pvecObjectHandles    ///< [out] handles to objects
+    CK_ATTRIBUTE_PTR               a_pTemplate,           ///< attribute values to match
+    CK_ULONG                       a_ulCount,             ///< attrs in search template
+    std::vector<CK_OBJECT_HANDLE> *a_pvecObjectHandles    ///< [out] handles to objects
 )
 {
-    /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,          false);
-    /*DEBUG*/xASSERT_RET(NULL != _m_hSession,       false);
+    /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,            false);
+    /*DEBUG*/xASSERT_RET(NULL != _m_hSession,         false);
     /*DEBUG*/// _m_hObject - n/a
-    /*DEBUG*/xASSERT_RET(NULL != pTemplate,         false);
+    /*DEBUG*/xASSERT_RET(NULL != a_pTemplate,         false);
     /*DEBUG*/// ulCount    - n/a
-    /*DEBUG*/xASSERT_RET(NULL != pvecObjectHandles, false);
+    /*DEBUG*/xASSERT_RET(NULL != a_pvecObjectHandles, false);
 
-    (*pvecObjectHandles).clear();
+    (*a_pvecObjectHandles).clear();
 
-    CK_RV ulRv = _m_pFunc->C_FindObjectsInit(_m_hSession, pTemplate, ulCount);    // To find all attributes, set ulCount to 0.
+    CK_RV ulRv = _m_pFunc->C_FindObjectsInit(_m_hSession, a_pTemplate, a_ulCount);    // To find all attributes, set ulCount to 0.
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     const CK_ULONG   culMaxFindedObjects        = 512;
@@ -145,22 +145,22 @@ CxObject::bFind(
     //-------------------------------------
     //���������� std::vector
     for (CK_ULONG i = 0; i < ulFound; ++ i) {
-        (*pvecObjectHandles).push_back(hList[i]);
+        (*a_pvecObjectHandles).push_back(hList[i]);
     }
 
     return true;
 }
 //---------------------------------------------------------------------------
 bool CxObject::bGetAttributeValue(
-    CK_ATTRIBUTE_PTR pTemplate,  ///< specifies attrs; gets vals
-    CK_ULONG         ulCount     ///< attributes in template
+    CK_ATTRIBUTE_PTR a_pTemplate,  ///< specifies attrs; gets vals
+    CK_ULONG         a_ulCount     ///< attributes in template
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    false);
     /*DEBUG*/xASSERT_RET(NULL != _m_hSession, false);
     /*DEBUG*/xASSERT_RET(NULL != _m_hObject,  false);
 
-    CK_RV ulRv = _m_pFunc->C_GetAttributeValue(_m_hSession, _m_hObject, pTemplate, ulCount);
+    CK_RV ulRv = _m_pFunc->C_GetAttributeValue(_m_hSession, _m_hObject, a_pTemplate, a_ulCount);
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
@@ -168,15 +168,15 @@ bool CxObject::bGetAttributeValue(
 //---------------------------------------------------------------------------
 bool
 CxObject::bSetAttributeValue(
-    CK_ATTRIBUTE_PTR pTemplate,  ///< specifies attrs and values
-    CK_ULONG         ulCount     ///< attributes in template
+    CK_ATTRIBUTE_PTR a_pTemplate,  ///< specifies attrs and values
+    CK_ULONG         a_ulCount     ///< attributes in template
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    false);
     /*DEBUG*/xASSERT_RET(NULL != _m_hSession, false);
     /*DEBUG*/xASSERT_RET(NULL != _m_hObject,  false);
 
-    CK_RV ulRv = _m_pFunc->C_SetAttributeValue(_m_hSession, _m_hObject, pTemplate, ulCount);
+    CK_RV ulRv = _m_pFunc->C_SetAttributeValue(_m_hSession, _m_hObject, a_pTemplate, a_ulCount);
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
@@ -198,10 +198,10 @@ CxObject::bDestroy() {
 //---------------------------------------------------------------------------
 bool
 CxObject::bGetData(
-    CK_SLOT_ID          ulSlotId,
-    const std::ustring_t &cusUserPin,
-    const std::ustring_t &cusDataLabel,
-    std::ustring_t       *pusData
+    CK_SLOT_ID            a_ulSlotId,
+    const std::ustring_t &a_cusUserPin,
+    const std::ustring_t &a_cusDataLabel,
+    std::ustring_t       *a_pusData
 )
 {
     /*DEBUG*/
@@ -216,14 +216,14 @@ CxObject::bGetData(
     //CxSession
     CxSession objSession(objPkcs11);
 
-    bRv = objSession.bOpen(ulSlotId, CKF_SERIAL_SESSION | CKF_RW_SESSION, 0, 0);
+    bRv = objSession.bOpen(a_ulSlotId, CKF_SERIAL_SESSION | CKF_RW_SESSION, 0, 0);
     /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     //-------------------------------------
     //CxLogin
     CxLogin objLogin(objPkcs11, objSession);
 
-    bRv = objLogin.bLogin(CKU_USER, (CK_UTF8CHAR_PTR)&cusUserPin.at(0), cusUserPin.size());
+    bRv = objLogin.bLogin(CKU_USER, (CK_UTF8CHAR_PTR)&a_cusUserPin.at(0), a_cusUserPin.size());
     /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     //-------------------------------------
@@ -231,7 +231,7 @@ CxObject::bGetData(
     std::vector<CK_OBJECT_HANDLE> vechData;
     {
         CK_ATTRIBUTE atDataTemplate [] = {
-            {CKA_LABEL, (CK_VOID_PTR)&cusDataLabel.at(0), cusDataLabel.size()}
+            {CKA_LABEL, (CK_VOID_PTR)&a_cusDataLabel.at(0), a_cusDataLabel.size()}
         };
 
         CxObject objObject(objPkcs11, objSession);
@@ -268,7 +268,7 @@ CxObject::bGetData(
 
         std::ustring_t usValue = std::ustring_t(pucValue, ulValueLen);
 
-        (*pusData) = usValue;
+        (*a_pusData) = usValue;
 
     }
     delete [] pucValue;
@@ -288,16 +288,16 @@ CxObject::bGetData(
 //--------------------------------------------------------------------------
 bool
 CxObject::bGetData(
-    CK_SLOT_ID            ulSlotId,
-    const std::ustring_t &cusUserPin,
-    std::vec_ustring_t   *pusDataLabel,
-    std::vec_ustring_t   *pusDataValue
+    CK_SLOT_ID            a_ulSlotId,
+    const std::ustring_t &a_cusUserPin,
+    std::vec_ustring_t   *a_pusDataLabel,
+    std::vec_ustring_t   *a_pusDataValue
 )
 {
     /*DEBUG*/// ulSlotId - n/a
-    /*DEBUG*/xASSERT_RET(false == cusUserPin.empty(), false);
-    /*DEBUG*/xASSERT_RET(NULL  != pusDataLabel,       false);
-    /*DEBUG*/xASSERT_RET(NULL  != pusDataValue,       false);
+    /*DEBUG*/xASSERT_RET(false == a_cusUserPin.empty(), false);
+    /*DEBUG*/xASSERT_RET(NULL  != a_pusDataLabel,       false);
+    /*DEBUG*/xASSERT_RET(NULL  != a_pusDataValue,       false);
 
     bool bRv = false;
 
@@ -309,14 +309,14 @@ CxObject::bGetData(
     //CxSession
     CxSession objSession(objPkcs11);
 
-    bRv = objSession.bOpen(ulSlotId, CKF_SERIAL_SESSION | CKF_RW_SESSION, 0, 0);
+    bRv = objSession.bOpen(a_ulSlotId, CKF_SERIAL_SESSION | CKF_RW_SESSION, 0, 0);
     xCHECK_RET(false == bRv, false);
 
     //-------------------------------------
     //CxLogin
     CxLogin objLogin(objPkcs11, objSession);
 
-    bRv = objLogin.bLogin(CKU_USER, (CK_UTF8CHAR_PTR)&cusUserPin.at(0), cusUserPin.size());
+    bRv = objLogin.bLogin(CKU_USER, (CK_UTF8CHAR_PTR)&a_cusUserPin.at(0), a_cusUserPin.size());
     xCHECK_RET(false == bRv, false);
 
     //-------------------------------------
@@ -339,8 +339,8 @@ CxObject::bGetData(
 
     //-------------------------------------
     //CxObject
-    (*pusDataLabel).clear();
-    (*pusDataValue).clear();
+    (*a_pusDataLabel).clear();
+    (*a_pusDataValue).clear();
 
     for (size_t i = 0; i < vechData.size(); ++ i) {
         CxObject objData(objPkcs11, objSession);
@@ -375,8 +375,8 @@ CxObject::bGetData(
         xASSERT_RET(true == bRv, false);
 
         //���������
-        pusDataLabel->push_back(usLabel);
-        pusDataValue->push_back(usValue);
+        a_pusDataLabel->push_back(usLabel);
+        a_pusDataValue->push_back(usValue);
     }
 
     //-------------------------------------
@@ -394,10 +394,10 @@ CxObject::bGetData(
 //--------------------------------------------------------------------------
 bool
 CxObject::bSetData(
-    CK_SLOT_ID          ulSlotId,
-    const std::ustring_t &cusUserPin,
-    const std::ustring_t &cusDataLabel,
-    const std::ustring_t &cusData
+    CK_SLOT_ID            a_ulSlotId,
+    const std::ustring_t &a_cusUserPin,
+    const std::ustring_t &a_cusDataLabel,
+    const std::ustring_t &a_cusData
 )
 {
     /*DEBUG*/
@@ -412,14 +412,14 @@ CxObject::bSetData(
     //CxSession
     CxSession objSession(objPkcs11);
 
-    bRv = objSession.bOpen(ulSlotId, CKF_SERIAL_SESSION | CKF_RW_SESSION, NULL_PTR, 0);
+    bRv = objSession.bOpen(a_ulSlotId, CKF_SERIAL_SESSION | CKF_RW_SESSION, NULL_PTR, 0);
     /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     //-------------------------------------
     //CxLogin
     CxLogin objLogin(objPkcs11, objSession);
 
-    bRv = objLogin.bLogin(CKU_USER, (CK_UTF8CHAR_PTR)&cusUserPin.at(0), cusUserPin.size());
+    bRv = objLogin.bLogin(CKU_USER, (CK_UTF8CHAR_PTR)&a_cusUserPin.at(0), a_cusUserPin.size());
     /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     //-------------------------------------
@@ -427,7 +427,7 @@ CxObject::bSetData(
     std::vector<CK_OBJECT_HANDLE> vechData;
     {
         CK_ATTRIBUTE atDataTemplate [] = {
-            {CKA_LABEL, (CK_VOID_PTR)&cusDataLabel.at(0), cusDataLabel.size()}
+            {CKA_LABEL, (CK_VOID_PTR)&a_cusDataLabel.at(0), a_cusDataLabel.size()}
         };
 
         CxObject objObject(objPkcs11, objSession);
@@ -447,7 +447,7 @@ CxObject::bSetData(
         //-------------------------------------
         //������ ������ � ������ ��������
         CK_ATTRIBUTE atrTamplate[] = {
-            {CKA_VALUE, (CK_VOID_PTR)&cusData.at(0), cusData.size()}
+            {CKA_VALUE, (CK_VOID_PTR)&a_cusData.at(0), a_cusData.size()}
         };
 
         bRv = objData.bSetAttributeValue(atrTamplate, xARRAY_SIZE(atrTamplate));
@@ -462,13 +462,13 @@ CxObject::bSetData(
         std::ustring_t         usApplication;
 
         CK_ATTRIBUTE atrTamplate [] = {
-            {CKA_CLASS,       &ocData,                            sizeof(ocData)      },
-            {CKA_TOKEN,       &bTrue,                             sizeof(bTrue)       },
-            {CKA_PRIVATE,     &bTrue,                             sizeof(bTrue)       },
-            {CKA_LABEL,        (CK_VOID_PTR)&cusDataLabel.at(0),  cusDataLabel.size() },
-          /*{CKA_APPLICATION,  (CK_VOID_PTR)&usApplication.at(0), usApplication.size()},*/
-            {CKA_VALUE,        (CK_VOID_PTR)&cusData.at(0),       cusData.size()      },
-            {CKA_MODIFIABLE,  &bTrue,                             sizeof(bTrue)       }
+            {CKA_CLASS,       &ocData,                             sizeof(ocData)         },
+            {CKA_TOKEN,       &bTrue,                              sizeof(bTrue)          },
+            {CKA_PRIVATE,     &bTrue,                              sizeof(bTrue)          },
+            {CKA_LABEL,        (CK_VOID_PTR)&a_cusDataLabel.at(0), a_cusDataLabel.size()  },
+          /*{CKA_APPLICATION,  (CK_VOID_PTR)&a_usApplication.at(0),a_usApplication.size() },*/
+            {CKA_VALUE,        (CK_VOID_PTR)&a_cusData.at(0),      a_cusData.size()       },
+            {CKA_MODIFIABLE,  &bTrue,                              sizeof(bTrue)          }
         };
 
         bRv = objData.bCreate(atrTamplate, xARRAY_SIZE(atrTamplate));

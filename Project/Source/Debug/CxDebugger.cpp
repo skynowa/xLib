@@ -65,10 +65,10 @@ CxDebugger::bGetEnabled() {
 //---------------------------------------------------------------------------
 bool
 CxDebugger::bSetEnabled(
-    const bool cbFlag
+    const bool a_cbFlag
 )
 {
-    _m_bIsEnabled = cbFlag;
+    _m_bIsEnabled = a_cbFlag;
 
     return true;
 }
@@ -154,10 +154,10 @@ CxDebugger::bBreak() {
 //---------------------------------------------------------------------------
 bool
 CxDebugger::bSetLogPath(
-    const std::tstring_t &csFilePath
+    const std::tstring_t &a_csFilePath
 )
 {
-    _m_sLogPath = csFilePath;
+    _m_sLogPath = a_csFilePath;
 
     return true;
 }
@@ -169,22 +169,22 @@ CxDebugger::sGetLogPath() {
 //---------------------------------------------------------------------------
 bool
 CxDebugger::bReportMake(
-    const CxErrorReport &crpReport
+    const CxErrorReport &a_crpReport
 )
 {
     //-------------------------------------
     //never corrupt the last error value
     const ulong_t culLastError = CxLastError::ulGet();
 
-    switch (crpReport.m_rtType) {
-        case CxErrorReport::rtMsgboxPlain:    { _bMsgboxPlain   (crpReport); } break;
-        case CxErrorReport::rtMsgboxFormated: { _bMsgboxFormated(crpReport); } break;
-        case CxErrorReport::rtStdoutPlain:    { _bStdoutPlain   (crpReport); } break;
-        case CxErrorReport::rtStdoutHtml:     { _bStdoutHtml    (crpReport); } break;
-        case CxErrorReport::rtLoggingPlain:   { _bLoggingPlain  (crpReport); } break;
-        case CxErrorReport::rtLoggingHtml:    { _bLoggingHtml   (crpReport); } break;
+    switch (a_crpReport.m_rtType) {
+        case CxErrorReport::rtMsgboxPlain:    { _bMsgboxPlain   (a_crpReport); } break;
+        case CxErrorReport::rtMsgboxFormated: { _bMsgboxFormated(a_crpReport); } break;
+        case CxErrorReport::rtStdoutPlain:    { _bStdoutPlain   (a_crpReport); } break;
+        case CxErrorReport::rtStdoutHtml:     { _bStdoutHtml    (a_crpReport); } break;
+        case CxErrorReport::rtLoggingPlain:   { _bLoggingPlain  (a_crpReport); } break;
+        case CxErrorReport::rtLoggingHtml:    { _bLoggingHtml   (a_crpReport); } break;
 
-        default:                              { _bStdoutPlain   (crpReport); } break;
+        default:                              { _bStdoutPlain   (a_crpReport); } break;
     }
 
     //-------------------------------------
@@ -197,13 +197,13 @@ CxDebugger::bReportMake(
 /*static*/
 bool
 CxDebugger::bBeep(
-    const ulong_t culFrequency /*= 800UL*/,
-    const ulong_t culDuration  /*= 100UL*/
+    const ulong_t a_culFrequency /*= 800UL*/,
+    const ulong_t a_culDuration  /*= 100UL*/
 )
 {
 #if xOS_ENV_WIN
     #if xTODO
-        bool bRv = ::Beep(culFrequency, culDuration);
+        bool bRv = ::Beep(a_culFrequency, a_culDuration);
         xCHECK_RET(false == bRv, false);
     #endif
 #elif xOS_ENV_UNIX
@@ -222,8 +222,8 @@ CxDebugger::bBeep(
 
         XKeyboardControl xkc;
         xkc.bell_percent  = 10;
-        xkc.bell_pitch    = culFrequency;   /* Hz 800 */
-        xkc.bell_duration = culDuration;    /* ms 100 */
+        xkc.bell_pitch    = a_culFrequency;   /* Hz 800 */
+        xkc.bell_duration = a_culDuration;    /* ms 100 */
 
         iRv = ::XChangeKeyboardControl(display, KBBellPercent | KBBellPitch | KBBellDuration, &xkc);
         xCHECK_RET(- 1 == iRv, false);
@@ -249,7 +249,7 @@ CxDebugger::bBeep(
 //---------------------------------------------------------------------------
 bool
 CxDebugger::_bMsgboxPlain(
-    const CxErrorReport &crpReport
+    const CxErrorReport &a_crpReport
 )
 {
     xCHECK_RET(false == bGetEnabled(), true);
@@ -263,7 +263,7 @@ CxDebugger::_bMsgboxPlain(
         ulong_t ulType = 1UL;
     #endif
 
-    CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::iShow(crpReport.m_sReport, CxPath::sGetExe(), ulType);
+    CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::iShow(a_crpReport.m_sReport, CxPath::sGetExe(), ulType);
 #else
     CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::mrIgnore;
 #endif
@@ -295,7 +295,7 @@ CxDebugger::_bMsgboxPlain(
 //---------------------------------------------------------------------------
 bool
 CxDebugger::_bMsgboxFormated(
-    const CxErrorReport &crpReport
+    const CxErrorReport &a_crpReport
 )
 {
     xCHECK_RET(false == bGetEnabled(), true);
@@ -304,7 +304,7 @@ CxDebugger::_bMsgboxFormated(
     //-------------------------------------
     //show message
     #if xDEBUG_USE_PROMPT_DIALOG
-        CxMsgBoxRtf::ExModalResult mrRes = CxMsgBoxRtf::iShow(NULL, crpReport.m_sReport, CxPath::sGetExe());
+        CxMsgBoxRtf::ExModalResult mrRes = CxMsgBoxRtf::iShow(NULL, a_crpReport.m_sReport, CxPath::sGetExe());
     #else
         CxMsgBoxRtf::ExModalResult mrRes = CxMsgBoxRtf::mrIgnore;
     #endif
@@ -389,7 +389,7 @@ CxDebugger::_bMsgboxFormated(
 //---------------------------------------------------------------------------
 bool
 CxDebugger::_bStdoutPlain(
-    const CxErrorReport &crpReport
+    const CxErrorReport &a_crpReport
 )
 {
     xCHECK_RET(false == bGetEnabled(), true);
@@ -401,7 +401,7 @@ CxDebugger::_bStdoutPlain(
     };
 
     std::tcout << xT("\n####################################################################################################\n");
-    std::tcout << crpReport.m_sReport;
+    std::tcout << a_crpReport.m_sReport;
     std::tcout << xT("\n####################################################################################################\n");
     std::tcout << xT("\n");
     std::tcout << xT("\nAbort (a), Ignore (i), Retry (r): ");
@@ -451,7 +451,7 @@ CxDebugger::_bStdoutPlain(
 //---------------------------------------------------------------------------
 bool
 CxDebugger::_bStdoutHtml(
-    const CxErrorReport &crpReport
+    const CxErrorReport &a_crpReport
 )
 {
     xCHECK_RET(false == bGetEnabled(), true);
@@ -464,7 +464,7 @@ CxDebugger::_bStdoutHtml(
 
     std::tcout << xT("<pre>");
     std::tcout << xT("\n####################################################################################################\n");
-    std::tcout << crpReport.m_sReport;
+    std::tcout << a_crpReport.m_sReport;
     std::tcout << xT("\n####################################################################################################\n");
     std::tcout << xT("\n");
     std::tcout << xT("\nAbort (a), Ignore (i), Retry (r): ");
@@ -516,7 +516,7 @@ CxDebugger::_bStdoutHtml(
 //---------------------------------------------------------------------------
 bool
 CxDebugger::_bLoggingPlain(
-    const CxErrorReport &crpReport
+    const CxErrorReport &a_crpReport
 )
 {
     xCHECK_RET(false == bGetEnabled(), true);
@@ -542,7 +542,7 @@ CxDebugger::_bLoggingPlain(
             xT("####################################################################################################\n")
             xT("%s\n")
             xT("####################################################################################################\n"),
-            crpReport.m_sReport.c_str()
+            a_crpReport.m_sReport.c_str()
         );
 
         std::xTFPRINTF(pFile, xT("%s"), csMsg.data());
@@ -556,7 +556,7 @@ CxDebugger::_bLoggingPlain(
 //---------------------------------------------------------------------------
 bool
 CxDebugger::_bLoggingHtml(
-    const CxErrorReport &crpReport
+    const CxErrorReport &a_crpReport
 )
 {
     // TODO: bLoggingHtml

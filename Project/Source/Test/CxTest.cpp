@@ -56,15 +56,15 @@ CxTest::~CxTest() /* = 0*/ {
 //---------------------------------------------------------------------------
 bool
 CxTest::bRun(
-    const ulonglong_t &cullUnitLoops,
-    const ulonglong_t &cullCaseLoops
+    const ulonglong_t &a_cullUnitLoops,
+    const ulonglong_t &a_cullCaseLoops
 )
 {
     /*DEBUG*/
 
     try {
-        for (ulonglong_t i = 0ULL; i < cullUnitLoops; ++ i) {
-            bool bRv = bUnit(cullCaseLoops);
+        for (ulonglong_t i = 0ULL; i < a_cullUnitLoops; ++ i) {
+            bool bRv = bUnit(a_cullCaseLoops);
             /*DEBUG*/xASSERT_MSG_RET(true == bRv, sGetName() + xT(": fail"), false);
         }
     }
@@ -86,7 +86,7 @@ CxTest::bRun(
 /*virtual*/
 bool
 CxTest::bUnit(
-    const ulonglong_t cullCaseLoops
+    const ulonglong_t a_cullCaseLoops
 ) /*= 0*/
 {
     /*DEBUG*/// n/a
@@ -94,7 +94,7 @@ CxTest::bUnit(
     #if xTODO
         //-------------------------------------
         //[FUNCTION_NAME]
-        xTEST_CASE(cullCaseLoops)
+        xTEST_CASE(ca_ullCaseLoops)
         {
             const std::tstring_t casData[][2] = {
                 {xT("TEST_STRING_1"), xT("MUST_BE_1")},
@@ -114,15 +114,15 @@ CxTest::bUnit(
 //---------------------------------------------------------------------------
 bool
 CxTest::bCreateTempDir(
-    const std::tstring_t &csDirName
+    const std::tstring_t &a_csDirName
 )
 {
     /*DEBUG*/// n/a
 
-    if (true == csDirName.empty()) {
+    if (true == a_csDirName.empty()) {
         _m_sWorkDirPath = CxDir::sGetTemp();
     } else {
-        _m_sWorkDirPath = CxPath::sGetExeDir() + CxConst::xSLASH + csDirName;
+        _m_sWorkDirPath = CxPath::sGetExeDir() + CxConst::xSLASH + a_csDirName;
 
         bool bRv = CxDir::bCreateForce(_m_sWorkDirPath);
         /*DEBUG*/xASSERT_RET(true == bRv, false);
@@ -147,12 +147,12 @@ CxTest::sGetName() const {
 //---------------------------------------------------------------------------
 bool
 CxTest::bSetName(
-    const std::tstring_t &csTestName
+    const std::tstring_t &a_csTestName
 )
 {
     /*DEBUG*/
 
-    _m_sName = csTestName;
+    _m_sName = a_csTestName;
 
     return true;
 }

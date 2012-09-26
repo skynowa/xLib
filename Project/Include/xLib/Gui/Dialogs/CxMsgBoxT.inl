@@ -23,19 +23,19 @@ template <class TextT, class TitleT>
 /*static*/
 CxMsgBoxT::ExModalResult
 CxMsgBoxT::iShow(
-    const HWND    chWnd,
-    const TextT  &cText,
-    const TitleT &cTitle,
-    const uint_t  cuiType
+    const HWND    a_chWnd,
+    const TextT  &a_cText,
+    const TitleT &a_cTitle,
+    const uint_t  a_cuiType
 )
 {
     ExModalResult mrRes = mrAbort;
 
     mrRes = static_cast<ExModalResult>( ::MessageBox(
-                            chWnd,
-                            CxString::string_cast(cText).c_str(),
-                            CxString::string_cast(cTitle).c_str(),
-                            cuiType) );
+                            a_chWnd,
+                            CxString::string_cast(a_cText).c_str(),
+                            CxString::string_cast(a_cTitle).c_str(),
+                            a_cuiType) );
 
     return mrRes;
 }
@@ -46,9 +46,9 @@ template <class TextT, class TitleT>
 /*static*/
 CxMsgBoxT::ExModalResult
 CxMsgBoxT::iShow(
-    const TextT  &cText,
-    const TitleT &cTitle,
-    const uint_t    cuiType
+    const TextT  &a_cText,
+    const TitleT &a_cTitle,
+    const uint_t  a_cuiType
 )
 {
     ExModalResult mrRes = mrAbort;
@@ -56,14 +56,14 @@ CxMsgBoxT::iShow(
 #if xOS_ENV_WIN
     mrRes = static_cast<ExModalResult>( ::MessageBox(
                             NULL,
-                            CxString::string_cast(cText).c_str(),
-                            CxString::string_cast(cTitle).c_str(),
-                            cuiType) );
+                            CxString::string_cast(a_cText).c_str(),
+                            CxString::string_cast(a_cTitle).c_str(),
+                            a_cuiType) );
 #elif xOS_ENV_UNIX
     std::tstring_t sMsg = CxString::sFormat(
                             xT("xmessage -center \"%s\" -title \"%s\" -buttons \"%s\""),
-                            CxString::string_cast(cText).c_str(),
-                            CxString::string_cast(cTitle).c_str(),
+                            CxString::string_cast(a_cText).c_str(),
+                            CxString::string_cast(a_cTitle).c_str(),
                             xT("Abort, Ignore, Retry"));
 
     mrRes = static_cast<ExModalResult>( std::xTSYSTEM(sMsg.c_str()) );
@@ -76,8 +76,8 @@ template <class TextT, class TitleT>
 /*static*/
 CxMsgBoxT::ExModalResult
 CxMsgBoxT::iShow(
-    const TextT  &cText,
-    const TitleT &cTitle
+    const TextT  &a_cText,
+    const TitleT &a_cTitle
 )
 {
     ExModalResult mrRes = mrAbort;
@@ -85,14 +85,14 @@ CxMsgBoxT::iShow(
 #if xOS_ENV_WIN
     mrRes = static_cast<ExModalResult>( ::MessageBox(
                             NULL,
-                            CxString::string_cast(cText).c_str(),
-                            CxString::string_cast(cTitle).c_str(),
+                            CxString::string_cast(a_cText).c_str(),
+                            CxString::string_cast(a_cTitle).c_str(),
                             MB_OK) );
 #elif xOS_ENV_UNIX
     std::tstring_t sMsg = CxString::sFormat(
                             xT("xmessage -center \"%s\" -title \"%s\" -buttons \"%s\""),
-                            CxString::string_cast(cText).c_str(),
-                            CxString::string_cast(cTitle).c_str(),
+                            CxString::string_cast(a_cText).c_str(),
+                            CxString::string_cast(a_cTitle).c_str(),
                             xT("Ok"));
 
     mrRes = static_cast<ExModalResult>( std::xTSYSTEM(sMsg.c_str()) );
@@ -105,7 +105,7 @@ template <class TextT>
 /*static*/
 CxMsgBoxT::ExModalResult
 CxMsgBoxT::iShow(
-    const TextT &cText
+    const TextT &a_cText
 )
 {
     ExModalResult mrRes = mrAbort;
@@ -113,13 +113,13 @@ CxMsgBoxT::iShow(
 #if xOS_ENV_WIN
     mrRes = static_cast<ExModalResult>( ::MessageBox(
                             NULL,
-                            CxString::string_cast(cText).c_str(),
+                            CxString::string_cast(a_cText).c_str(),
                             CxPath::sGetFileName( CxPath::sGetExe() ).c_str(),
                             MB_OK) );
 #elif xOS_ENV_UNIX
     std::tstring_t sMsg = CxString::sFormat(
                             xT("xmessage -center \"%s\" -title \"%s\" -buttons \"%s\""),
-                            CxString::string_cast(cText).c_str(),
+                            CxString::string_cast(a_cText).c_str(),
                             xT("Message box"),
                             xT("Ok"));
 

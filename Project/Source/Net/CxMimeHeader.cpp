@@ -35,7 +35,7 @@ CxMimeHeader::~CxMimeHeader () {
 //DONE: bParse (��������� ��������� ������� "TOP 10 0" �� ��������, ��������)
 bool
 CxMimeHeader::bParse(
-    const std::tstring_t &csRawHeader
+    const std::tstring_t &a_csRawHeader
 )
 {
 #if xTODO
@@ -127,15 +127,15 @@ CxMimeHeader::bParse(
 //DONE: sGetField
 std::tstring_t
 CxMimeHeader::sGetField(
-    const std::tstring_t &csName
+    const std::tstring_t &a_csName
 )
 {
     /*DEBUG*/xASSERT_RET(false == _m_mmsHeader.empty(), std::tstring_t());
-    /*DEBUG*/xASSERT_RET(false == csName.empty(),       std::tstring_t());
+    /*DEBUG*/xASSERT_RET(false == a_csName.empty(),     std::tstring_t());
 
     std::tstring_t sRv;
 
-    std::pair<std::mmap_tstring_t::const_iterator, std::mmap_tstring_t::const_iterator> prEqualRange = _m_mmsHeader.equal_range(csName);
+    std::pair<std::mmap_tstring_t::const_iterator, std::mmap_tstring_t::const_iterator> prEqualRange = _m_mmsHeader.equal_range(a_csName);
 
     std::mmap_tstring_t::const_iterator it;
     for (it = prEqualRange.first; it != prEqualRange.second; ++ it) {
@@ -196,11 +196,11 @@ CxMimeHeader::uiCount() {
 
 bool
 CxMimeHeader::bLoadFromFile(
-    const std::tstring_t &csRawMessageFilePath
+    const std::tstring_t &a_csRawMessageFilePath
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csRawMessageFilePath.empty(),                 false);
-    /*DEBUG*/xASSERT_RET(true  == CxFile::bIsExists(csRawMessageFilePath), false);
+    /*DEBUG*/xASSERT_RET(false == a_csRawMessageFilePath.empty(),            false);
+    /*DEBUG*/xASSERT_RET(true  == CxFile::bIsExists(a_csRawMessageFilePath), false);
 
     std::tstring_t sRawHeader;
     std::tstring_t sLine;
@@ -212,7 +212,7 @@ CxMimeHeader::bLoadFromFile(
 
     //-------------------------------------
     //������ ���������� ����� � ������ �� ����� ������ (\r\n\r\n - ������ ������)
-    std::tifstream_t ifsStream(csRawMessageFilePath.c_str());
+    std::tifstream_t ifsStream(a_csRawMessageFilePath.c_str());
     /*DEBUG*/xASSERT_RET(ifsStream,           false);
     /*DEBUG*/xASSERT_RET(!ifsStream.fail(),   false);
     /*DEBUG*/xASSERT_RET(ifsStream.good(),    false);
@@ -239,7 +239,7 @@ CxMimeHeader::bLoadFromFile(
 //TODO: bSaveToFile
 bool
 CxMimeHeader::bSaveToFile(
-    const std::tstring_t &csFilePath
+    const std::tstring_t &a_csFilePath
 )
 {
     //_m_mmsHeader

@@ -96,7 +96,7 @@ CxSystemInfo::osGetOS() {
 /*static*/
 std::tstring_t
 CxSystemInfo::sFormatOsType(
-    const ExOsType otOsType
+    const ExOsType a_otOsType
 )
 {
     xDEBUG_VAR_NA(otOsType);
@@ -104,7 +104,7 @@ CxSystemInfo::sFormatOsType(
     std::tstring_t sRv;
 
 #if xOS_ENV_WIN
-    switch (otOsType) {
+    switch (a_otOsType) {
         case otWindows3:                { sRv = xT("Windows 3.1");                }    break;
         case otWindows95:               { sRv = xT("Windows 95");                 }    break;
         case otWindows98:               { sRv = xT("Windows 98");                 }    break;
@@ -213,12 +213,12 @@ CxSystemInfo::oaGetOsArch() {
 /*static*/
 std::tstring_t
 CxSystemInfo::sFormatOsArch(
-    const ExOsArch oaOsArch
+    const ExOsArch a_oaOsArch
 )
 {
     std::tstring_t sRv;
 
-    switch (oaOsArch) {
+    switch (a_oaOsArch) {
         case CxSystemInfo::oa32bit:     sRv = xT("32-bit");             break;
         case CxSystemInfo::oa64bit:     sRv = xT("64-bit");             break;
         case CxSystemInfo::oaUnknown:   sRv = CxConst::xUNKNOWN_STRING; break;

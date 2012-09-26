@@ -24,17 +24,17 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxSocketInit::CxSocketInit(
-    const ushort_t cusMajorVersion,
-    const ushort_t cusMinorVersion
+    const ushort_t a_cusMajorVersion,
+    const ushort_t a_cusMinorVersion
 )
 {
 #if   xOS_ENV_WIN
     WSADATA wdData = {0};
 
-    int iRv = ::WSAStartup(MAKEWORD(cusMajorVersion, cusMinorVersion), &wdData);
-    xASSERT_DO(0 == iRv,                                  return);
-    xASSERT_DO(HIBYTE(wdData.wVersion) == cusMinorVersion, return);
-    xASSERT_DO(LOBYTE(wdData.wVersion) == cusMajorVersion, return);
+    int iRv = ::WSAStartup(MAKEWORD(a_cusMajorVersion, a_cusMinorVersion), &wdData);
+    xASSERT_DO(0 == iRv,                                     return);
+    xASSERT_DO(HIBYTE(wdData.wVersion) == a_cusMinorVersion, return);
+    xASSERT_DO(LOBYTE(wdData.wVersion) == a_cusMajorVersion, return);
 #elif xOS_ENV_UNIX
     xNA;
 #endif

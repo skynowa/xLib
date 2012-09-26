@@ -36,10 +36,10 @@ CxStdError::sGet() {
 /*static*/
 bool
 CxStdError::bSet(
-    const int ciCode
+    const int a_ciCode
 )
 {
-    errno = ciCode;
+    errno = a_ciCode;
 
     return true;
 }
@@ -55,15 +55,15 @@ CxStdError::bReset() {
 /*static*/
 std::tstring_t
 CxStdError::sFormat(
-    const int ciCode
+    const int a_ciCode
 )
 {
     std::tstring_t sRv;
 
-    sRv = CxString::sFormat(xT("%lu - "), ciCode);
+    sRv = CxString::sFormat(xT("%lu - "), a_ciCode);
 
 #if xOS_ENV_WIN
-    tchar_t *pcszError = ::xSTRERROR(ciCode);
+    tchar_t *pcszError = ::xSTRERROR(a_ciCode);
     xCHECK_RET(NULL == pcszError, sRv.append(xT("[Cann't format error message]")));
 
     sRv.append(pcszError);
@@ -71,14 +71,14 @@ CxStdError::sFormat(
     #if   xOS_LINUX
         char szBuff[64 + 1] = {0};
 
-        const tchar_t *pcszError = ::strerror_r(ciCode, &szBuff[0], xARRAY_SIZE(szBuff));
+        const tchar_t *pcszError = ::strerror_r(a_ciCode, &szBuff[0], xARRAY_SIZE(szBuff));
         xCHECK_RET(NULL == pcszError, sRv.append(xT("[Cann't format error message]")));
 
         sRv.append(pcszError);
     #elif xOS_FREEBSD
         char szBuff[64 + 1] = {0};
 
-        int iRv = ::strerror_r(static_cast<int>( ciCode ), &szBuff[0], xARRAY_SIZE(szBuff));
+        int iRv = ::strerror_r(static_cast<int>( a_ciCode ), &szBuff[0], xARRAY_SIZE(szBuff));
         xCHECK_RET(- 1 == iRv, sRv.append(xT("[Cann't format error message]")));
 
         sRv.append(&szBuff[0]);

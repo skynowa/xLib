@@ -28,12 +28,12 @@ CxSleeper::~CxSleeper() {
 //---------------------------------------------------------------------------
 bool
 CxSleeper::bSleep(
-    const ulong_t &culTimeout  ///< in milliseconds
+    const ulong_t &a_culTimeout  ///< in milliseconds
 )
 {
     /*DEBUG*/// n/a
 
-    CxEvent::ExObjectState osRes = _m_objEvent.osWait(culTimeout);
+    CxEvent::ExObjectState osRes = _m_objEvent.osWait(a_culTimeout);
     /*DEBUG*/xASSERT_RET(CxEvent::osSignaled == osRes || CxEvent::osTimeout == osRes, false);
 
     return true;

@@ -15,10 +15,10 @@ xNAMESPACE_BEGIN(NxLib)
 template<class T>
 CxException &
 CxException::operator << (
-    const T &cMessageT
+    const T &a_cMessageT
 )
 {
-    _m_sMessage.append( CxString::string_cast(cMessageT) );
+    _m_sMessage.append( CxString::string_cast(a_cMessageT) );
 
     return *this;
 }

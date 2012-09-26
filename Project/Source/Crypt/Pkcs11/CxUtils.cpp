@@ -20,14 +20,14 @@ xNAMESPACE_BEGIN(NxLib)
 /*static*/
 std::tstring_t
 CxUtils::sErrorStr(
-    const CK_RV culCode
+    const CK_RV a_culCode
 )
 {
     /*DEBUG*/// culCode - n/a
 
     std::tstring_t sRv;
 
-    switch (culCode) {
+    switch (a_culCode) {
         case CKR_OK:                               sRv = xT("CKR_OK");
         case CKR_CANCEL:                           sRv = xT("CKR_CANCEL");
         case CKR_HOST_MEMORY:                      sRv = xT("CKR_HOST_MEMORY");

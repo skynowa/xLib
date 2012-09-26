@@ -22,11 +22,11 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxFunction::CxFunction(
-    const CxPkcs11  &cPkcs11,
-    const CxSession &cSession
+    const CxPkcs11  &a_cPkcs11,
+    const CxSession &a_cSession
 ) :
-    _m_pFunc   (cPkcs11.pGetFuncList()),
-    _m_hSession(cSession.hGetHandle())
+    _m_pFunc   (a_cPkcs11.pGetFuncList()),
+    _m_hSession(a_cSession.hGetHandle())
 {
 
 }
@@ -38,12 +38,12 @@ CxFunction::~CxFunction() {
 //---------------------------------------------------------------------------
 bool
 CxFunction::bGetList(
-    CK_FUNCTION_LIST_PTR_PTR ppFunctionList  ///< receives pointer to function list
+    CK_FUNCTION_LIST_PTR_PTR a_ppFunctionList  ///< receives pointer to function list
 )
 {
     /*DEBUG*/
 
-    CK_RV ulRv = _m_pFunc->C_GetFunctionList(ppFunctionList);
+    CK_RV ulRv = _m_pFunc->C_GetFunctionList(a_ppFunctionList);
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;

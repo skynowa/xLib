@@ -57,19 +57,19 @@ CxProcess::~CxProcess() {
 //---------------------------------------------------------------------------
 bool
 CxProcess::bCreate(
-    const std::tstring_t &csFilePath,
-    const tchar_t        *pcszParams, ...
+    const std::tstring_t &a_csFilePath,
+    const tchar_t        *a_pcszParams, ...
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),            false);
-    /*DEBUG*/xASSERT_RET(true  == CxFile::bIsExists(csFilePath), false);
-    /*DEBUG*/xASSERT_RET(NULL  != pcszParams,                    false);
+    /*DEBUG*/xASSERT_RET(false == a_csFilePath.empty(),            false);
+    /*DEBUG*/xASSERT_RET(true  == CxFile::bIsExists(a_csFilePath), false);
+    /*DEBUG*/xASSERT_RET(NULL  != a_pcszParams,                    false);
 
     std::tstring_t sCmdLine;
 
     va_list palArgs;
-    xVA_START(palArgs, pcszParams);
-    sCmdLine = CxString::sFormatV(pcszParams, palArgs);
+    xVA_START(palArgs, a_pcszParams);
+    sCmdLine = CxString::sFormatV(a_pcszParams, palArgs);
     xVA_END(palArgs);
 
     //xTRACEV(xT("sCmdLine: %s"), sCmdLine.c_str());
@@ -78,7 +78,7 @@ CxProcess::bCreate(
     STARTUPINFO         siInfo = {0};   siInfo.cb = sizeof(siInfo);
     PROCESS_INFORMATION piInfo = {0};
 
-    BOOL blRes = ::CreateProcess(csFilePath.c_str(), const_cast<LPTSTR>( sCmdLine.c_str() ),
+    BOOL blRes = ::CreateProcess(a_csFilePath.c_str(), const_cast<LPTSTR>( sCmdLine.c_str() ),
                                  NULL, NULL, FALSE, NORMAL_PRIORITY_CLASS, NULL, NULL,
                                  &siInfo, &piInfo);
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
@@ -93,7 +93,7 @@ CxProcess::bCreate(
     if (0L == liPid) {
         // TODO: csFilePath is executable
 
-        int iRv = ::execlp(csFilePath.c_str(), csFilePath.c_str(), sCmdLine.c_str(), static_cast<const tchar_t *>( NULL ));
+        int iRv = ::execlp(csFilePath.c_str(), a_csFilePath.c_str(), a_sCmdLine.c_str(), static_cast<const tchar_t *>( NULL ));
         /*DEBUG*/xASSERT_RET(- 1 != iRv, false);
 
         (void)::_exit(EXIT_SUCCESS);  /* not exit() */
@@ -108,17 +108,18 @@ CxProcess::bCreate(
 //---------------------------------------------------------------------------
 CxProcess::ExWaitResult
 CxProcess::ulWait(
-    const ulong_t &culTimeout
+    const ulong_t &a_culTimeout
 )
 {
     ExWaitResult wrStatus = wrFailed;
 
 #if   xOS_ENV_WIN
-    DWORD ulRv = ::WaitForSingleObject(_m_hHandle, culTimeout);
+    DWORD ulRv = ::WaitForSingleObject(_m_hHandle, a_culTimeout);
     /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == ulRv, static_cast<ExWaitResult>( ulRv ));
 
     wrStatus = static_cast<ExWaitResult>( ulRv );
 #elif xOS_ENV_UNIX
+    // TODO: a_culTimeout
     pid_t liRv    = - 1L;
     int   iStatus = 0;
 
@@ -137,7 +138,7 @@ CxProcess::ulWait(
 //---------------------------------------------------------------------------
 bool
 CxProcess::bKill(
-    const ulong_t &culTimeout    // FIX: culTimeout not used
+    const ulong_t &a_culTimeout    // FIX: culTimeout not used
 )
 {
     /*DEBUG*/
@@ -158,14 +159,14 @@ CxProcess::bKill(
         ulRv = ulGetExitStatus();
         xCHECK_DO(STILL_ACTIVE != ulRv, break);
 
-        bRv = CxCurrentThread::bSleep(culTimeout);
+        bRv = CxCurrentThread::bSleep(a_culTimeout);
         /*DEBUG*/xASSERT_DO(true == bRv, break);
     }
 #elif xOS_ENV_UNIX
     int iRv = ::kill(_m_ulPid, SIGKILL);
     /*DEBUG*/xASSERT_RET(- 1 != iRv, false);
 
-    bRv = CxCurrentThread::bSleep(culTimeout);
+    bRv = CxCurrentThread::bSleep(a_culTimeout);
     /*DEBUG*/xASSERT(true == bRv);
 
     _m_uiExitStatus = 0U;
@@ -222,16 +223,16 @@ CxProcess::ulGetExitStatus() const {
 /*static*/
 CxProcess::id_t
 CxProcess::ulGetIdByHandle(
-    const handle_t &chHandle    ///< handle
+    const handle_t &a_chHandle    ///< handle
 )
 {
     id_t ulRv;
 
 #if   xOS_ENV_WIN
-    ulRv = ::GetProcessId(chHandle);
+    ulRv = ::GetProcessId(a_chHandle);
     xDEBUG_VAR_NA(ulRv);
 #elif xOS_ENV_UNIX
-    ulRv = static_cast<id_t>( chHandle );
+    ulRv = static_cast<id_t>( a_chHandle );
 #endif
 
     return ulRv;
@@ -240,16 +241,16 @@ CxProcess::ulGetIdByHandle(
 /*static*/
 CxProcess::handle_t
 CxProcess::ulGetHandleById(
-    const id_t &culId   ///< ID
+    const id_t &a_culId   ///< ID
 )
 {
     handle_t hRv;
 
 #if   xOS_ENV_WIN
-    hRv = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, culId);
+    hRv = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, a_culId);
     xDEBUG_VAR_NA(hRv);
 #elif xOS_ENV_UNIX
-    hRv = static_cast<handle_t>( culId );
+    hRv = static_cast<handle_t>( a_culId );
 #endif
 
     return hRv;
@@ -258,7 +259,7 @@ CxProcess::ulGetHandleById(
 /*static*/
 bool
 CxProcess::bIsRunning(
-    const std::tstring_t &csProcessName
+    const std::tstring_t &a_csProcessName
 )
 {
 #if   xOS_ENV_WIN
@@ -274,7 +275,7 @@ CxProcess::bIsRunning(
     /*DEBUG*/xASSERT_RET(FALSE != blRv, false);
 
     for ( ; ; ) {
-        bool bRv = CxString::bCompareNoCase(csProcessName, peProcess.szExeFile);
+        bool bRv = CxString::bCompareNoCase(a_csProcessName, peProcess.szExeFile);
         xCHECK_RET(true == bRv, true);   // OK
 
         blRv = ::Process32Next(hSnapshot.hGet(), &peProcess);

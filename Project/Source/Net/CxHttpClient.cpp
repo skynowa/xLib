@@ -20,7 +20,7 @@ CxHttpClient::~CxHttpClient() {
 //---------------------------------------------------------------------------
 //TODO: bHead ()
 bool
-CxHttpClient::bHead(const std::string &csUrl, std::string *psResponse) {
+CxHttpClient::bHead(const std::string &a_csUrl, std::string *a_psResponse) {
     bool bRv = false;
     xUNUSED(bRv);
 
@@ -47,61 +47,61 @@ CxHttpClient::bHead(const std::string &csUrl, std::string *psResponse) {
 //---------------------------------------------------------------------------
 //TODO: bGet ()
 bool
-CxHttpClient::bGet(const std::string &csUrl,  std::string *psResponse) {
+CxHttpClient::bGet(const std::string &a_csUrl,  std::string *a_psResponse) {
     return false;
 }
 //---------------------------------------------------------------------------
 //TODO: bPost ()
 bool
-CxHttpClient::bPost(const std::string &csUrl,  const std::string &csParams, std::string *psResponse) {
+CxHttpClient::bPost(const std::string &a_csUrl,  const std::string &a_csParams, std::string *a_psResponse) {
     return false;
 }
 //---------------------------------------------------------------------------
 //TODO: bOptions ()
 bool
-CxHttpClient::bOptions(const std::string &csUrl) {
+CxHttpClient::bOptions(const std::string &a_csUrl) {
     return false;
 }
 //---------------------------------------------------------------------------
 //TODO: bTrace ()
 bool
-CxHttpClient::bTrace(const std::string &csUrl) {
+CxHttpClient::bTrace(const std::string &a_csUrl) {
     return false;
 }
 //---------------------------------------------------------------------------
 //TODO: bPut ()
 bool
-CxHttpClient::bPut(const std::string &csUrl) {
+CxHttpClient::bPut(const std::string &a_csUrl) {
     return false;
 }
 //---------------------------------------------------------------------------
 //TODO: bDelete ()
 bool
-CxHttpClient::bDelete(const std::string &csUrl) {
+CxHttpClient::bDelete(const std::string &a_csUrl) {
     return false;
 }
 //---------------------------------------------------------------------------
 //TODO: bConnect ()
 bool
-CxHttpClient::bConnect(const std::string &csUrl) {
+CxHttpClient::bConnect(const std::string &a_csUrl) {
     return false;
 }
 //---------------------------------------------------------------------------
 //TODO: bPatch ()
 bool
-CxHttpClient::bPatch(const std::string &csUrl) {
+CxHttpClient::bPatch(const std::string &a_csUrl) {
     return false;
 }
 //---------------------------------------------------------------------------
 //TODO: bLink ()
 bool
-CxHttpClient::bLink(const std::string &csUrl) {
+CxHttpClient::bLink(const std::string &a_csUrl) {
     return false;
 }
 //---------------------------------------------------------------------------
 //TODO: bUnlink ()
 bool
-CxHttpClient::bUnlink(const std::string &csUrl) {
+CxHttpClient::bUnlink(const std::string &a_csUrl) {
     return false;
 }
 //---------------------------------------------------------------------------
