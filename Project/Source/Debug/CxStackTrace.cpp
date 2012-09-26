@@ -11,7 +11,7 @@
 
 #if   xOS_ENV_WIN
     #if   xCOMPILER_MINGW32
-        // TODO: 
+        // TODO:
     #elif xCOMPILER_MS || xCOMPILER_CODEGEAR
         #ifdef xUNICODE
             #define DBGHELP_TRANSLATE_TCHAR 1
@@ -61,7 +61,7 @@ CxStackTrace::bGet(
 )
 {
     xCHECK_RET(NULL == a_pvvsStack, false);
-    
+
     const std::tstring_t            csDataNotFound = xT("[???]");
     std::vector<std::vec_tstring_t> vvsStack;
 
@@ -110,7 +110,7 @@ CxStackTrace::bGet(
                     sModulePath   = miModuleInfo.ImageName;
                 }
             }
-            
+
             // sFilePath, sFileLine
             {
                 DWORD           dwDisplacement  = 0UL;
@@ -364,7 +364,7 @@ CxStackTrace::_bAddr2Line(
 
     snprintf(szCmdLine, xARRAY_SIZE(szCmdLine) - 1,
              xT("addr2line -C -e %s -f %lx"),   /* xT("addr2line -C -e %s -f -i %lx") */
-             CxPath::sGetExe().c_str(), (ulong_t)pvSymbolAddress);
+             CxPath::sGetExe().c_str(), (ulong_t)a_pvSymbolAddress);
 
     FILE *pflFile = ::popen(szCmdLine, xT("r"));
     xSTD_VERIFY(NULL != pflFile);
@@ -376,7 +376,7 @@ CxStackTrace::_bAddr2Line(
         const tchar_t *pcszFunctionName = std::fgets(szBuff, xARRAY_SIZE(szBuff), pflFile);
         xSTD_VERIFY(NULL != pcszFunctionName);
 
-        (*psFunctionName).assign(pcszFunctionName);
+        (*a_psFunctionName).assign(pcszFunctionName);
     }
 
     // get file and line
@@ -401,8 +401,8 @@ CxStackTrace::_bAddr2Line(
         // out
         xSTD_VERIFY(0 == std::feof(pflFile));
 
-        *psFilePath    = vsLine.at(0);
-        *pulSourceLine = CxString::string_cast<ulong_t>( vsLine.at(1) );
+        *a_psFilePath    = vsLine.at(0);
+        *a_pulSourceLine = CxString::string_cast<ulong_t>( vsLine.at(1) );
     }
 
     int iRv =::pclose(pflFile);    pflFile = NULL;

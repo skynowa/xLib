@@ -142,7 +142,7 @@ CxCurrentProcess::bExit(
 #if xOS_ENV_WIN
     (void)::ExitProcess(a_cuiExitCode);
 #elif xOS_ENV_UNIX
-    (void)::exit(static_cast<int>( cuiExitCode ));
+    (void)::exit(static_cast<int>( a_cuiExitCode ));
 #endif
 
     return true;

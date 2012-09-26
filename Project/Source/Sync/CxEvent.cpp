@@ -42,7 +42,7 @@ CxEvent::CxEvent(
     int iRv = ::pthread_cond_init(&_m_cndCond, NULL);
     /*DEBUG*/xASSERT_MSG_DO(0 == iRv, CxLastError::sFormat(iRv), return);
 
-    _m_bIsSignaled  = cbIsSignaled;
+    _m_bIsSignaled  = a_cbIsSignaled;
 #endif
 }
 //---------------------------------------------------------------------------
@@ -135,7 +135,7 @@ CxEvent::osWait(
         //if (false == _m_bIsSignaled) {
             timespec tsTimeoutMs = {0};
 
-            if (xTIMEOUT_INFINITE != culTimeout) {
+            if (xTIMEOUT_INFINITE != a_culTimeout) {
                 timeval tvNow  = {0};
 
                 iRv = ::gettimeofday(&tvNow, NULL);
@@ -155,7 +155,7 @@ CxEvent::osWait(
 
             // wait until condition thread returns control
             do {
-                if (xTIMEOUT_INFINITE == culTimeout) {
+                if (xTIMEOUT_INFINITE == a_culTimeout) {
                     iRv = ::pthread_cond_wait     (&_m_cndCond, const_cast<CxMutex::handle_t *>( &_m_mtMutex.hGet() ));
                 } else {
                     iRv = ::pthread_cond_timedwait(&_m_cndCond, const_cast<CxMutex::handle_t *>( &_m_mtMutex.hGet() ), &tsTimeoutMs);

@@ -338,7 +338,7 @@ CxDebugger::_bMsgboxFormated(
     };
 
     std::tcerr << CxConsole().bSetTextColor( xT("\n####################################################################################################\n"), CxConsole::fgWhite, true, false, CxConsole::bgBlack, false );
-    std::tcerr << crpReport.m_sReport;
+    std::tcerr << a_crpReport.m_sReport;
     std::tcerr << CxConsole().bSetTextColor( xT("\n####################################################################################################\n"), CxConsole::fgWhite, true, false, CxConsole::bgBlack, false );
     std::tcerr << xT("\n");
     std::tcerr << xT("\nAbort (a), Ignore (i), Retry (r): ");

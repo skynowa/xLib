@@ -168,8 +168,8 @@ CxSocket::iSend(
     #endif
 
     ssize_t iRv = ::send(_m_sktSocket, a_pcszBuff, a_iBuffSize, MSG_NOSIGNAL);
-    /*DEBUG*/xASSERT_RET(etError                          != iRv, etError);
-    /*DEBUG*/xASSERT_RET(iBuffSize * (int)sizeof(tchar_t) >= iRv, etError);
+    /*DEBUG*/xASSERT_RET(etError                            != iRv, etError);
+    /*DEBUG*/xASSERT_RET(a_iBuffSize * (int)sizeof(tchar_t) >= iRv, etError);
 #endif
 
     return iRv / sizeof(tchar_t);
@@ -239,9 +239,9 @@ CxSocket::iRecv(
     /*DEBUG*/xASSERT_RET(a_iBuffSize * (int)sizeof(tchar_t) >= iRv,                                  etError);
 #elif xOS_ENV_UNIX
     ssize_t iRv = ::recv(_m_sktSocket, (char *)a_pszBuff, a_iBuffSize * sizeof(tchar_t), a_iFlags);
-    /*DEBUG*/xASSERT_RET(etError                        != iRv,                                      etError);
-    /*DEBUG*/xASSERT_RET(0                              != iRv,                                      etError);  //gracefully closed
-    /*DEBUG*/xASSERT_RET(iBuffSize * (int)sizeof(tchar_t) >= iRv,                                    etError);
+    /*DEBUG*/xASSERT_RET(etError                            != iRv,                                  etError);
+    /*DEBUG*/xASSERT_RET(0                                  != iRv,                                  etError);  //gracefully closed
+    /*DEBUG*/xASSERT_RET(a_iBuffSize * (int)sizeof(tchar_t) >= iRv,                                  etError);
 #endif
 
     return iRv / sizeof(tchar_t);

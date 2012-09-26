@@ -82,7 +82,7 @@ CxConsole::bSetTextColor(
 
     sRv += CxString::sFormat(xT("\033[%im"), a_cbgBackground);
     sRv += CxString::sFormat(xT("\033[%im"), a_cfgForeground);
-    sRv += csText;
+    sRv += a_csText;
     sRv += xT("\033[0;0m");
 #endif
 
