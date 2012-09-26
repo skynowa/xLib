@@ -104,7 +104,7 @@ xNAMESPACE_END(std)
 xNAMESPACE_BEGIN(NxLib)
 
 /****************************************************************************
-*   lexical_cast
+*   string_cast
 *
 *****************************************************************************/
 
@@ -112,7 +112,7 @@ xNAMESPACE_BEGIN(NxLib)
 /*static*/
 template<class T>
 inline std::tstring_t
-CxString::lexical_cast(
+CxString::string_cast(
     const T &cValueT
 )
 {
@@ -139,7 +139,7 @@ CxString::lexical_cast(
 /*static*/
 template<class T>
 inline std::tstring_t
-CxString::lexical_cast(
+CxString::string_cast(
     const T   &cValueT,
     const int  ciBase
 )
@@ -168,7 +168,7 @@ CxString::lexical_cast(
 /*static*/
 template<class T>
 inline T
-CxString::lexical_cast(
+CxString::string_cast(
     const std::tstring_t &csStr
 )
 {
@@ -193,7 +193,7 @@ CxString::lexical_cast(
 /*static*/
 template<class T>
 inline T
-CxString::lexical_cast(
+CxString::string_cast(
     const std::tstring_t &csStr,
     const int           ciBase
 )

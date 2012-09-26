@@ -202,7 +202,7 @@ CxThread::bResume() {
 bool
 CxThread::bPause() {
 #if   xOS_ENV_WIN
-    /*DEBUG*/xASSERT_MSG_RET(false != _m_hThread.bIsValid(), CxString::lexical_cast(_m_hThread.hGet()).c_str(), false);
+    /*DEBUG*/xASSERT_MSG_RET(false != _m_hThread.bIsValid(), CxString::string_cast(_m_hThread.hGet()).c_str(), false);
 #elif xOS_ENV_UNIX
 
 #endif

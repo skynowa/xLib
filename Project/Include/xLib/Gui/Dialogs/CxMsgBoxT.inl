@@ -33,8 +33,8 @@ CxMsgBoxT::iShow(
 
     mrRes = static_cast<ExModalResult>( ::MessageBox(
                             chWnd,
-                            CxString::lexical_cast(cText).c_str(),
-                            CxString::lexical_cast(cTitle).c_str(),
+                            CxString::string_cast(cText).c_str(),
+                            CxString::string_cast(cTitle).c_str(),
                             cuiType) );
 
     return mrRes;
@@ -56,14 +56,14 @@ CxMsgBoxT::iShow(
 #if xOS_ENV_WIN
     mrRes = static_cast<ExModalResult>( ::MessageBox(
                             NULL,
-                            CxString::lexical_cast(cText).c_str(),
-                            CxString::lexical_cast(cTitle).c_str(),
+                            CxString::string_cast(cText).c_str(),
+                            CxString::string_cast(cTitle).c_str(),
                             cuiType) );
 #elif xOS_ENV_UNIX
     std::tstring_t sMsg = CxString::sFormat(
                             xT("xmessage -center \"%s\" -title \"%s\" -buttons \"%s\""),
-                            CxString::lexical_cast(cText).c_str(),
-                            CxString::lexical_cast(cTitle).c_str(),
+                            CxString::string_cast(cText).c_str(),
+                            CxString::string_cast(cTitle).c_str(),
                             xT("Abort, Ignore, Retry"));
 
     mrRes = static_cast<ExModalResult>( std::xTSYSTEM(sMsg.c_str()) );
@@ -85,14 +85,14 @@ CxMsgBoxT::iShow(
 #if xOS_ENV_WIN
     mrRes = static_cast<ExModalResult>( ::MessageBox(
                             NULL,
-                            CxString::lexical_cast(cText).c_str(),
-                            CxString::lexical_cast(cTitle).c_str(),
+                            CxString::string_cast(cText).c_str(),
+                            CxString::string_cast(cTitle).c_str(),
                             MB_OK) );
 #elif xOS_ENV_UNIX
     std::tstring_t sMsg = CxString::sFormat(
                             xT("xmessage -center \"%s\" -title \"%s\" -buttons \"%s\""),
-                            CxString::lexical_cast(cText).c_str(),
-                            CxString::lexical_cast(cTitle).c_str(),
+                            CxString::string_cast(cText).c_str(),
+                            CxString::string_cast(cTitle).c_str(),
                             xT("Ok"));
 
     mrRes = static_cast<ExModalResult>( std::xTSYSTEM(sMsg.c_str()) );
@@ -113,13 +113,13 @@ CxMsgBoxT::iShow(
 #if xOS_ENV_WIN
     mrRes = static_cast<ExModalResult>( ::MessageBox(
                             NULL,
-                            CxString::lexical_cast(cText).c_str(),
+                            CxString::string_cast(cText).c_str(),
                             CxPath::sGetFileName( CxPath::sGetExe() ).c_str(),
                             MB_OK) );
 #elif xOS_ENV_UNIX
     std::tstring_t sMsg = CxString::sFormat(
                             xT("xmessage -center \"%s\" -title \"%s\" -buttons \"%s\""),
-                            CxString::lexical_cast(cText).c_str(),
+                            CxString::string_cast(cText).c_str(),
                             xT("Message box"),
                             xT("Ok"));
 

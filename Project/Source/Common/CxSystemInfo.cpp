@@ -666,7 +666,7 @@ CxSystemInfo::ulGetCpuSpeed() {
         std::tstring_t sValue = CxPath::sGetProcValue(xT("/proc/cpuinfo"), xT("cpu MHz"));
         /*DEBUG*/xASSERT_RET(false == sValue.empty(), 0UL);
 
-        double dCpuSpeedMHz = CxString::lexical_cast<double>( sValue );
+        double dCpuSpeedMHz = CxString::string_cast<double>( sValue );
 
         ulRv = static_cast<ulong_t>( CxMacros::round(dCpuSpeedMHz) );
     #elif xOS_FREEBSD

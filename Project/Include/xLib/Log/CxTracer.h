@@ -51,7 +51,7 @@ CxTracer::operator << (const T &cValueT) {
 
 #define xTRACE_VAR(v)   std::tstring_t() \
                             .append(xT(#v": ")) \
-                            .append(CxString::lexical_cast(v)) \
+                            .append(CxString::string_cast(v)) \
                             .append(xT(" "))
     ///< trace variable, trace variable and value
 

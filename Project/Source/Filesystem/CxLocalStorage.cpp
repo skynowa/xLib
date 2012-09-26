@@ -202,7 +202,7 @@ CxLocalStorage::iKeyReadInt(
     /*DEBUG*///csKey         - n/a
     /*DEBUG*///iDefaultValue - n/a
 
-    return CxString::lexical_cast<long_t>( sKeyReadString(csKey, CxString::lexical_cast(cliDefaultValue)) );
+    return CxString::string_cast<long_t>( sKeyReadString(csKey, CxString::string_cast(cliDefaultValue)) );
 }
 //-------------------------------------------------------------------------
 bool
@@ -215,7 +215,7 @@ CxLocalStorage::bKeyWriteInt(
     /*DEBUG*///csKey     - n/a
     /*DEBUG*///iValue    - n/a
 
-    return bKeyWriteString(csKey, CxString::lexical_cast(cliValue));
+    return bKeyWriteString(csKey, CxString::string_cast(cliValue));
 }
 //-------------------------------------------------------------------------
 double
@@ -228,7 +228,7 @@ CxLocalStorage::dKeyReadFloat(
     /*DEBUG*///csKey         - n/a
     /*DEBUG*///dDefaultValue - n/a
 
-    return CxString::lexical_cast<double>( sKeyReadString(csKey, CxString::lexical_cast(cdDefaultValue)) );
+    return CxString::string_cast<double>( sKeyReadString(csKey, CxString::string_cast(cdDefaultValue)) );
 }
 //-------------------------------------------------------------------------
 bool
@@ -241,7 +241,7 @@ CxLocalStorage::bKeyWriteFloat(
     /*DEBUG*///csKey     - n/a
     /*DEBUG*///dValue    - n/a
 
-    return bKeyWriteString(csKey, CxString::lexical_cast(cdValue));
+    return bKeyWriteString(csKey, CxString::string_cast(cdValue));
 }
 //-------------------------------------------------------------------------
 bool
@@ -296,7 +296,7 @@ CxLocalStorage::usKeyReadBin(
     std::tstring_t sHexStr = sKeyReadString(csKey, std::tstring_t(cusDefaultValue.begin(), cusDefaultValue.end()));
 
     //sHexStr -> usRv
-    sRv = CxString::lexical_cast(sHexStr, 16);
+    sRv = CxString::string_cast(sHexStr, 16);
 
     return std::ustring_t(sRv.begin(), sRv.end());
 }
@@ -314,7 +314,7 @@ CxLocalStorage::bKeyWriteBin(
     //cusValue (std::ustring_t) -> sHexStr (std::tstring_t)
     std::tstring_t sHexStr;
 
-    sHexStr = CxString::lexical_cast( std::tstring_t(cusValue.begin(), cusValue.end()), 16);
+    sHexStr = CxString::string_cast( std::tstring_t(cusValue.begin(), cusValue.end()), 16);
 
     return bKeyWriteString(csKey, sHexStr);
 }

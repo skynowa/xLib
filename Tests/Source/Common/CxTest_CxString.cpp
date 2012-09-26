@@ -111,71 +111,71 @@ CxTest_CxString::bUnit(
     }
 
     //-------------------------------------
-    //lexical_cast (to string)
+    //string_cast (to string)
     xTEST_CASE(cullCaseLoops)
     {
-        m_sRv = CxString::lexical_cast(1);
+        m_sRv = CxString::string_cast(1);
         xTEST_EQ(std::tstring_t(xT("1")), m_sRv);
 
-        m_sRv = CxString::lexical_cast(xT('A'));
+        m_sRv = CxString::string_cast(xT('A'));
         xTEST_EQ(std::tstring_t(xT("A")), m_sRv);
 
-        m_sRv = CxString::lexical_cast(xT("-"));
+        m_sRv = CxString::string_cast(xT("-"));
         xTEST_EQ(std::tstring_t(xT("-")), m_sRv);
 
-        m_sRv = CxString::lexical_cast(0.0);
+        m_sRv = CxString::string_cast(0.0);
         xTEST_EQ(std::tstring_t(xT("0")), m_sRv);
 
-        m_sRv = CxString::lexical_cast(- 5);
+        m_sRv = CxString::string_cast(- 5);
         xTEST_EQ(std::tstring_t(xT("-5")), m_sRv);
 
-        m_sRv = CxString::lexical_cast(true);
+        m_sRv = CxString::string_cast(true);
         xTEST_EQ(std::tstring_t(xT("1")), m_sRv);
 
-        m_sRv = CxString::lexical_cast(false);
+        m_sRv = CxString::string_cast(false);
         xTEST_EQ(std::tstring_t(xT("0")), m_sRv);
     }
 
     //-------------------------------------
-    //lexical_cast (from string)
+    //string_cast (from string)
     xTEST_CASE(cullCaseLoops)
     {
-        m_sRv = CxString::lexical_cast<std::tstring_t>(xT("String"));
+        m_sRv = CxString::string_cast<std::tstring_t>(xT("String"));
         xTEST_EQ(std::tstring_t(xT("String")), m_sRv);
 
-        m_iRv = CxString::lexical_cast<int>(xT("7"));
+        m_iRv = CxString::string_cast<int>(xT("7"));
         xTEST_EQ(7, m_iRv);
 
-        m_ulRv = CxString::lexical_cast<ulong_t>(xT("123"));
+        m_ulRv = CxString::string_cast<ulong_t>(xT("123"));
         xTEST_EQ(123UL, m_ulRv);
 
-        m_ullRv = CxString::lexical_cast<ulonglong_t>(xT("123"));
+        m_ullRv = CxString::string_cast<ulonglong_t>(xT("123"));
         xTEST_EQ(123ULL, m_ullRv);
 
-        m_dRv = CxString::lexical_cast<double>(xT("5.3"));
+        m_dRv = CxString::string_cast<double>(xT("5.3"));
         xTEST_EQ(5.3, m_dRv);
 
-        ////m_bRv = lexical_cast<bool>(xT("true"));
+        ////m_bRv = string_cast<bool>(xT("true"));
         ////xTEST_EQ(5.3, m_dRv);
 
-        ////m_bRv = lexical_cast<bool>(xT("false"));
+        ////m_bRv = string_cast<bool>(xT("false"));
         ////xTEST_EQ(5.3, m_dRv);
 
-        ////m_uiRv = CxString::lexical_cast<size_t>( std::tstring_t() );
+        ////m_uiRv = CxString::string_cast<size_t>( std::tstring_t() );
         ////xTEST_EQ(0U, m_uiRv);
     }
 
     //-------------------------------------
-    //lexical_cast (to string by base)
+    //string_cast (to string by base)
     xTEST_CASE(cullCaseLoops)
     {
-        m_sRv = CxString::lexical_cast(1033, 8);
+        m_sRv = CxString::string_cast(1033, 8);
         xTEST_EQ(std::tstring_t(xT("2011")), m_sRv);
 
-        m_sRv = CxString::lexical_cast(1033, 10);
+        m_sRv = CxString::string_cast(1033, 10);
         xTEST_EQ(std::tstring_t(xT("1033")), m_sRv);
 
-        m_sRv = CxString::lexical_cast(1033, 16);
+        m_sRv = CxString::string_cast(1033, 16);
         xTEST_EQ(std::tstring_t(xT("409")), m_sRv);
     }
 
@@ -184,13 +184,13 @@ CxTest_CxString::bUnit(
         ////m_sRv = CxString::sIntToStr(1033L, 2);
         ////xTEST_EQ(std::tstring_t(xT("10000001001")), m_sRv);
 
-        m_sRv = CxString::lexical_cast(1033L, 8);
+        m_sRv = CxString::string_cast(1033L, 8);
         xTEST_EQ(std::tstring_t(xT("2011")), m_sRv);
 
-        m_sRv = CxString::lexical_cast(1033L, 10);
+        m_sRv = CxString::string_cast(1033L, 10);
         xTEST_EQ(std::tstring_t(xT("1033")), m_sRv);
 
-        m_sRv = CxString::lexical_cast(1033L, 16);
+        m_sRv = CxString::string_cast(1033L, 16);
         xTEST_EQ(std::tstring_t(xT("409")), m_sRv);
     }
 
@@ -199,13 +199,13 @@ CxTest_CxString::bUnit(
         ////m_sRv = CxString::sIntToStr(1033UL, 2);
         ////xTEST_EQ(std::tstring_t(xT("10000001001")), m_sRv);
 
-        m_sRv = CxString::lexical_cast(1033UL, 8);
+        m_sRv = CxString::string_cast(1033UL, 8);
         xTEST_EQ(std::tstring_t(xT("2011")), m_sRv);
 
-        m_sRv = CxString::lexical_cast(1033UL, 10);
+        m_sRv = CxString::string_cast(1033UL, 10);
         xTEST_EQ(std::tstring_t(xT("1033")), m_sRv);
 
-        m_sRv = CxString::lexical_cast(1033UL, 16);
+        m_sRv = CxString::string_cast(1033UL, 16);
         xTEST_EQ(std::tstring_t(xT("409")), m_sRv);
     }
 
@@ -214,13 +214,13 @@ CxTest_CxString::bUnit(
         ////m_sRv = CxString::sIntToStr(1033LL, 2);
         ////xTEST_EQ(xT("10000001001") == m_sRv);
 
-        m_sRv = CxString::lexical_cast(1033LL, 8);
+        m_sRv = CxString::string_cast(1033LL, 8);
         xTEST_EQ(std::tstring_t(xT("2011")), m_sRv);
 
-        m_sRv = CxString::lexical_cast(1033LL, 10);
+        m_sRv = CxString::string_cast(1033LL, 10);
         xTEST_EQ(std::tstring_t(xT("1033")), m_sRv);
 
-        m_sRv = CxString::lexical_cast(1033LL, 16);
+        m_sRv = CxString::string_cast(1033LL, 16);
         xTEST_EQ(std::tstring_t(xT("409")), m_sRv);
     }
 
@@ -229,18 +229,18 @@ CxTest_CxString::bUnit(
         ////m_sRv = CxString::sIntToStr(1033ULL, 2);
         ////xTEST_EQ(std::tstring_t(xT("10000001001")), m_sRv);
 
-        m_sRv = CxString::lexical_cast(1033ULL, 8);
+        m_sRv = CxString::string_cast(1033ULL, 8);
         xTEST_EQ(std::tstring_t(xT("2011")), m_sRv);
 
-        m_sRv = CxString::lexical_cast(1033ULL, 10);
+        m_sRv = CxString::string_cast(1033ULL, 10);
         xTEST_EQ(std::tstring_t(xT("1033")), m_sRv);
 
-        m_sRv = CxString::lexical_cast(1033ULL, 16);
+        m_sRv = CxString::string_cast(1033ULL, 16);
         xTEST_EQ(std::tstring_t(xT("409")), m_sRv);
     }
 
     //-------------------------------------
-    //lexical_cast (from, to string by base)
+    //string_cast (from, to string by base)
     xTEST_CASE(cullCaseLoops)
     {
         const int caiBases[] = {8, 10, 16};
@@ -257,8 +257,8 @@ CxTest_CxString::bUnit(
             for (size_t i = 0; i < xARRAY_SIZE(casData); ++ i) {
                 const std::tstring_t sRv    = casData[i];
 
-                const std::tstring_t sHexStr = CxString::lexical_cast(sRv, caiBases[b]);
-                const std::tstring_t sStdStr = CxString::lexical_cast(sHexStr, caiBases[b]);
+                const std::tstring_t sHexStr = CxString::string_cast(sRv, caiBases[b]);
+                const std::tstring_t sStdStr = CxString::string_cast(sHexStr, caiBases[b]);
 
                 xTEST_EQ(sRv, sStdStr);
             }

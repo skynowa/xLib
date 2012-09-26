@@ -145,10 +145,10 @@ xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
 
         // loops number
         if (5 == iArgCount) {
-            bIsUseTracing = CxString::lexical_cast<bool>       ( vsArgs.at(1) );
-            ullAllLoops   = CxString::lexical_cast<ulonglong_t>( vsArgs.at(2) );
-            ullUnitLoops  = CxString::lexical_cast<ulonglong_t>( vsArgs.at(3) );
-            ullBlockLoops = CxString::lexical_cast<ulonglong_t>( vsArgs.at(4) );
+            bIsUseTracing = CxString::string_cast<bool>       ( vsArgs.at(1) );
+            ullAllLoops   = CxString::string_cast<ulonglong_t>( vsArgs.at(2) );
+            ullUnitLoops  = CxString::string_cast<ulonglong_t>( vsArgs.at(3) );
+            ullBlockLoops = CxString::string_cast<ulonglong_t>( vsArgs.at(4) );
         }
     }
 
