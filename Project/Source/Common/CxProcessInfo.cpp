@@ -138,7 +138,7 @@ CxProcessInfo::sGetExeName(
         sRv.resize(iReaded);
     #elif xOS_FREEBSD
         #if defined(KERN_PROC_PATHNAME)
-            int aiMib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, cidId};
+            int aiMib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, a_cidId};
 
             tchar_t szBuff[PATH_MAX + 1] = {0};
             size_t  uiBuffSize           = sizeof(szBuff) - 1;
