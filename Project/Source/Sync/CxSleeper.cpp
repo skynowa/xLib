@@ -28,7 +28,7 @@ CxSleeper::~CxSleeper() {
 //---------------------------------------------------------------------------
 bool
 CxSleeper::bSleep(
-    const ulong_t culTimeout  ///< in milliseconds
+    const ulong_t &culTimeout  ///< in milliseconds
 )
 {
     /*DEBUG*/// n/a
