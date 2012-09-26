@@ -116,7 +116,7 @@ CxTest_CxEvent::bUnit(
             xTEST_EQ(cbInitialState, m_bRv);
 
             CxEvent::ExObjectState osRes = objEvent.osWait(5);
-            xTEST_EQ((ulong_t)CxEvent::osTimeout, (ulong_t)osRes);
+            xTEST_EQ(CxEvent::osTimeout, osRes);
 
             m_bRv = objEvent.bIsSignaled();
             xTEST_EQ(cbInitialState, m_bRv);

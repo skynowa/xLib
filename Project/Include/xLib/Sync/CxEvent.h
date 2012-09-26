@@ -62,8 +62,9 @@ class CxEvent :
     #elif xOS_ENV_UNIX
         CxMutex           _m_mtMutex;       ///< mutex
         handle_t          _m_cndCond;       ///< condition variable
-        volatile bool     _m_bIsAutoReset;  ///< auto-reset flag
-        volatile bool     _m_bIsSignaled;   ///< is signaled flag
+        const bool        _m_cbIsAutoReset;  ///< auto-reset flag
+        const bool        _m_cbInitState;
+        bool              _m_bIsSignaled;   ///< is signaled flag
     #endif
 };
 

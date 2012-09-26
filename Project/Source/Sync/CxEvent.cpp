@@ -20,12 +20,13 @@ CxEvent::CxEvent(
     const bool &cbIsSignaled     ///< false - wait, lock
 ) :
 #if   xOS_ENV_WIN
-    _m_hEvent      ()
+    _m_hEvent       ()
 #elif xOS_ENV_UNIX
-    _m_mtMutex     (),
-    _m_cndCond     (),
-    _m_bIsAutoReset(false),
-    _m_bIsSignaled (false)
+    _m_mtMutex      (),
+    _m_cndCond      (),
+    _m_cbIsAutoReset(cbIsAutoReset),
+    _m_cbInitState  (cbIsSignaled),
+    _m_bIsSignaled  (false)
 #endif
 {
 #if   xOS_ENV_WIN
@@ -41,7 +42,6 @@ CxEvent::CxEvent(
     int iRv = ::pthread_cond_init(&_m_cndCond, NULL);
     /*DEBUG*/xASSERT_MSG_DO(0 == iRv, CxLastError::sFormat(iRv), return);
 
-    _m_bIsAutoReset = cbIsAutoReset;
     _m_bIsSignaled  = cbIsSignaled;
 #endif
 }
@@ -79,7 +79,7 @@ CxEvent::bSet() {
     {
         CxAutoMutex amtAutoMutex(_m_mtMutex);
 
-        if (true == _m_bIsAutoReset) {
+        if (true == _m_cbIsAutoReset) {
             int iRv = ::pthread_cond_signal(&_m_cndCond);
             /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
         } else {
@@ -168,29 +168,28 @@ CxEvent::osWait(
         CxTracer() << xTRACE_VAR(iRv);
 
         // adjust signaled member
-        if (true == _m_bIsAutoReset) {
-            _m_bIsSignaled = false;
-        }
-
         switch (iRv) {
-            case 0:         {
-                                osRes = osSignaled;
-                            }
-                            break;
+            case 0:
+                if (_m_cbIsAutoReset) {
+                    _m_bIsSignaled = false;
+                }
 
-            case ETIMEDOUT: {
-                                //if (false == _m_bIsAutoReset) {
-                                //   osRes = osSignaled;
-                                //} else {
-                                   osRes = _m_bIsSignaled ? osSignaled : osTimeout;
-                                //}
-                            }
-                            break;
+                osRes = osSignaled;
+                break;
 
-            default:        {
-                                xASSERT(false);
-                            }
-                            break;
+            case ETIMEDOUT:
+                    osRes = osTimeout;
+
+                    if (_m_cbIsAutoReset) {
+                        _m_bIsSignaled = false;
+                    } else {
+                        osRes = _m_cbInitState ? osSignaled : osTimeout;
+                        _m_bIsSignaled = _m_cbInitState;
+                    }
+
+
+                break;
+
         }
 
     }
