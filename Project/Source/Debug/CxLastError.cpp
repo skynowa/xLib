@@ -40,13 +40,13 @@ CxLastError::sGet() {
 /*static*/
 void
 CxLastError::vSet(
-    const ulong_t &culCode
+    const ulong_t &a_culCode
 )
 {
 #if   xOS_ENV_WIN
-    (void)::SetLastError(culCode);
+    (void)::SetLastError(a_culCode);
 #elif xOS_ENV_UNIX
-    errno = static_cast<int>( culCode );
+    errno = static_cast<int>( a_culCode );
 #endif
 }
 //---------------------------------------------------------------------------
@@ -61,12 +61,12 @@ CxLastError::vReset() {
 /*static*/
 std::tstring_t
 CxLastError::sFormat(
-    const ulong_t &culCode
+    const ulong_t &a_culCode
 )
 {
     std::tstring_t sRv;
 
-    sRv = CxString::sFormat(xT("%lu - "), culCode);
+    sRv = CxString::sFormat(xT("%lu - "), a_culCode);
 
 #if xOS_ENV_WIN
     DWORD  dwRv   = 0UL;
@@ -75,7 +75,7 @@ CxLastError::sFormat(
     dwRv = ::FormatMessage(
                     FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
                     NULL,
-                    culCode,
+                    a_culCode,
                     MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
                     reinterpret_cast<LPTSTR>( &pvBuff ),
                     0UL,
@@ -97,14 +97,14 @@ CxLastError::sFormat(
     #if   xOS_LINUX
         char szBuff[64 + 1] = {0};
 
-        const tchar_t *pcszError = ::strerror_r(static_cast<int>( culCode ), &szBuff[0], xARRAY_SIZE(szBuff));
+        const tchar_t *pcszError = ::strerror_r(static_cast<int>( a_culCode ), &szBuff[0], xARRAY_SIZE(szBuff));
         xCHECK_RET(NULL == pcszError, sRv.append(xT("[Cann't format error message]")));
 
         sRv.append(pcszError);
     #elif xOS_FREEBSD
         char szBuff[64 + 1] = {0};
 
-        int iRv = ::strerror_r(static_cast<int>( culCode ), &szBuff[0], xARRAY_SIZE(szBuff));
+        int iRv = ::strerror_r(static_cast<int>( a_culCode ), &szBuff[0], xARRAY_SIZE(szBuff));
         xCHECK_RET(- 1 == iRv, sRv.append(xT("[Cann't format error message]")));
 
         sRv.append(&szBuff[0]);

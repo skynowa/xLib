@@ -40,18 +40,18 @@ CxShell::bIsAvailable() {
 /*static*/
 bool
 CxShell::bExecute(
-    const std::tstring_t &csFilePath,   ///< file path to binary file
-    const std::tstring_t &csParams      ///< command line params for binary file
+    const std::tstring_t &a_csFilePath,   ///< file path to binary file
+    const std::tstring_t &a_csParams      ///< command line params for binary file
 )
 {
-    xDEBUG_VAR_NA(csFilePath);
-    xDEBUG_VAR_NA(csParams);
+    xDEBUG_VAR_NA(a_csFilePath);
+    xDEBUG_VAR_NA(a_csParams);
 
-    xCHECK_RET(true  == csFilePath.empty(), true);
-    xCHECK_RET(false == bIsAvailable(),     false);
+    xCHECK_RET(true  == a_csFilePath.empty(), true);
+    xCHECK_RET(false == bIsAvailable(),       false);
 
     // REVIEW: security bug - xT("%s \"%s\"") or xT("\"%s\" \"%s\"") ??
-    std::tstring_t sCommand = CxString::sFormat(xT("%s \"%s\""), csFilePath.c_str(), csParams.c_str());
+    std::tstring_t sCommand = CxString::sFormat(xT("%s \"%s\""), a_csFilePath.c_str(), a_csParams.c_str());
 
     int iRv = ::xTSYSTEM(sCommand.c_str());
     /*DEBUG*/xASSERT_RET(- 1 != iRv, false);
@@ -67,17 +67,17 @@ CxShell::bExecute(
 /*static*/
 std::tstring_t
 CxShell::bFindExecutable(
-    const std::tstring_t &csFileName,
-    const std::tstring_t &csFindDirPath
+    const std::tstring_t &a_csFileName,
+    const std::tstring_t &a_csFindDirPath
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csFileName.empty(), std::tstring_t());
+    /*DEBUG*/xASSERT_RET(false == a_csFileName.empty(), std::tstring_t());
     /*DEBUG*/// csFindDirPath - n/a
 
-    int     iRv            = SE_ERR_FNF;
+    int     iRv             = SE_ERR_FNF;
     tchar_t szRes[MAX_PATH] = {0};
 
-    iRv = reinterpret_cast<int>( ::FindExecutable(csFileName.c_str(), csFindDirPath.c_str(), szRes) );
+    iRv = reinterpret_cast<int>( ::FindExecutable(a_csFileName.c_str(), a_csFindDirPath.c_str(), szRes) );
     /*DEBUG*/xASSERT_RET(32 < iRv, std::tstring_t());
 
     return std::tstring_t(szRes);
@@ -86,12 +86,12 @@ CxShell::bFindExecutable(
 /*static*/
 bool
 CxShell::bExecute(
-    const HWND            chOwner,
-    const ExOperation     copOperation,
-    const std::tstring_t &csFilePath,
-    const std::tstring_t &csParams,
-    const std::tstring_t &csDir,
-    const EShowFlag       csfShowCmd
+    const HWND            a_chOwner,
+    const ExOperation     a_copOperation,
+    const std::tstring_t &a_csFilePath,
+    const std::tstring_t &a_csParams,
+    const std::tstring_t &a_csDir,
+    const EShowFlag       a_csfShowCmd
 )
 {
     /*DEBUG*/// chOwner      - n/a
@@ -101,12 +101,12 @@ CxShell::bExecute(
     /*DEBUG*/// csDir        - n/a
     /*DEBUG*/// csfShowCmd   - n/a
 
-    std::tstring_t sFilePath  = CxString::sTrimSpace(csFilePath);
-    std::tstring_t sParams    = CxString::sTrimSpace(csParams);
-    std::tstring_t sDir       = CxString::sTrimSpace(csDir);
+    std::tstring_t sFilePath  = CxString::sTrimSpace(a_csFilePath);
+    std::tstring_t sParams    = CxString::sTrimSpace(a_csParams);
+    std::tstring_t sDir       = CxString::sTrimSpace(a_csDir);
 
     std::tstring_t sOperation;
-    switch (copOperation) {
+    switch (a_copOperation) {
         case opEdit:    { sOperation = xT("edit");    } break;
         case opExplore: { sOperation = xT("explore"); } break;
         case opFind:    { sOperation = xT("find");    } break;
@@ -117,7 +117,7 @@ CxShell::bExecute(
         default:        { sOperation = xT("");        } break;
     }
 
-    int iRv = reinterpret_cast<int>( ::ShellExecute(chOwner, sOperation.c_str(), sFilePath.c_str(), sParams.c_str(), sDir.c_str(), csfShowCmd) );
+    int iRv = reinterpret_cast<int>( ::ShellExecute(a_chOwner, sOperation.c_str(), sFilePath.c_str(), sParams.c_str(), sDir.c_str(), a_csfShowCmd) );
     /*DEBUG*/xASSERT_RET(32 < iRv, false);
 
     return true;
@@ -126,12 +126,12 @@ CxShell::bExecute(
 /*static*/
 bool
 CxShell::bExecuteEx(
-    SHELLEXECUTEINFO *peiInfo
+    SHELLEXECUTEINFO *a_peiInfo
 )
 {
-    /*DEBUG*/xASSERT_RET(false != peiInfo, false);
+    /*DEBUG*/xASSERT_RET(false != a_peiInfo, false);
 
-    BOOL bRv = ::ShellExecuteEx(peiInfo);
+    BOOL bRv = ::ShellExecuteEx(a_peiInfo);
     /*DEBUG*/xASSERT_RET(FALSE != bRv, false);
 
     return true;
@@ -140,12 +140,12 @@ CxShell::bExecuteEx(
 /*static*/
 bool
 CxShell::bExecuteHttp(
-    const std::tstring_t &csUrl
+    const std::tstring_t &a_csUrl
 )
 {
     /*DEBUG*/// csUrl - n/a
 
-    std::tstring_t sUrl = CxString::sTrimSpace(csUrl);
+    std::tstring_t sUrl = CxString::sTrimSpace(a_csUrl);
 
     xCHECK_RET(true == sUrl.empty(), false);
 
@@ -158,12 +158,12 @@ CxShell::bExecuteHttp(
 /*static*/
 bool
 CxShell::bExecuteFtp(
-    const std::tstring_t &csUrl
+    const std::tstring_t &a_csUrl
 )
 {
     /*DEBUG*/// csUrl - n/a
 
-    std::tstring_t sUrl = CxString::sTrimSpace(csUrl);
+    std::tstring_t sUrl = CxString::sTrimSpace(a_csUrl);
 
     xCHECK_RET(true == sUrl.empty(), false);
 
@@ -176,20 +176,20 @@ CxShell::bExecuteFtp(
 /*static*/
 bool
 CxShell::bExecuteEmail(
-    const std::tstring_t &csToEmail,
-    const std::tstring_t &csSubject,
-    const std::tstring_t &csBody
+    const std::tstring_t &a_csToEmail,
+    const std::tstring_t &a_csSubject,
+    const std::tstring_t &a_csBody
 )
 {
     /*DEBUG*/// csToEmail - n/a
     /*DEBUG*/// csSubject - n/a
     /*DEBUG*/// csBody    - n/a
 
-    std::tstring_t sToEmail = CxString::sTrimSpace(csToEmail);
-    std::tstring_t sSubject = CxString::sTrimSpace(csSubject);
-    std::tstring_t sBody    = CxString::sTrimSpace(csBody);
+    std::tstring_t sToEmail = CxString::sTrimSpace(a_csToEmail);
+    std::tstring_t sSubject = CxString::sTrimSpace(a_csSubject);
+    std::tstring_t sBody    = CxString::sTrimSpace(a_csBody);
 
-    xCHECK_RET(true == csToEmail.empty(), false);
+    xCHECK_RET(true == a_csToEmail.empty(), false);
 
     //mailto:sAddress[sHeaders]
     //mailto:user@example.com?subject=Message Title&body=Message Content
@@ -213,8 +213,8 @@ CxShell::bExecuteEmail(
 /*static*/
 std::tstring_t
 CxShell::sGetSpecialDirPath(
-    const ESpecialDir csfDir,
-    const HANDLE      chToken
+    const ESpecialDir a_csfDir,
+    const HANDLE      a_chToken
 )
 {
     /*DEBUG*/// csfDir  - n/a
@@ -224,7 +224,7 @@ CxShell::sGetSpecialDirPath(
     LPITEMIDLIST pidlList = {0};
 
     ////hRv = ::SHGetFolderLocation(NULL, sfDir, chToken, 0, &pidlList);    //FIXME: SHGetFolderLocation
-    hRv = ::SHGetSpecialFolderLocation(NULL, csfDir, &pidlList);
+    hRv = ::SHGetSpecialFolderLocation(NULL, a_csfDir, &pidlList);
     /*DEBUG*/xASSERT_DO(SUCCEEDED(hRv), ::CoTaskMemFree(pidlList); return std::tstring_t());
 
     tchar_t szRes[MAX_PATH + sizeof(tchar_t)] = {0};
@@ -243,17 +243,17 @@ CxShell::sGetSpecialDirPath(
 /*static*/
 bool
 CxShell::bCreateShortcut(
-    const std::tstring_t &csShortCutFilePath, ///< путь и имя ярлыка, например, "C:\\Блокнот.lnk"
-                                              ///< Если не указан путь, ярлык будет создан в папке, указанной в следующем параметре.
-                                              ///< Прим.: Windows сама НЕ добавляет к имени расширение .lnk
-    const std::tstring_t &csFilePath,         ///< путь и имя программы/файла, например, "C:\\Windows\\NotePad.Exe" или "C:\\Мои документы\\Файл.doc"
-    const std::tstring_t &csWorkingDirectory, ///< рабочий каталог, например, "C:\\Windows"
-    const std::tstring_t &csArguments,        ///< аргументы командной строки, например, "C:\\Doc\\Text.txt"
-    const WORD            cwHotKey,           ///< горячая клавиша, например, для Ctrl+Alt+A HOTKEY(HOTKEYF_ALT|HOTKEYF_CONTROL,'A')
-    const int             ciCmdShow,          ///< начальный вид, например, SW_SHOWNORMAL (см. параметр nCmdShow функции ShowWindow)
-    const std::tstring_t &csIconFilePath,     ///< путь и имя файла, содержащего иконку, например, "C:\\Windows\\NotePad.Exe"
-    const int             ciIconIndex,        ///< индекс иконки в файле, нумеруется с 0
-    const std::tstring_t &csDescription       ///< description
+    const std::tstring_t &a_csShortCutFilePath, ///< путь и имя ярлыка, например, "C:\\Блокнот.lnk"
+                                                ///< Если не указан путь, ярлык будет создан в папке, указанной в следующем параметре.
+                                                ///< Прим.: Windows сама НЕ добавляет к имени расширение .lnk
+    const std::tstring_t &a_csFilePath,         ///< путь и имя программы/файла, например, "C:\\Windows\\NotePad.Exe" или "C:\\Мои документы\\Файл.doc"
+    const std::tstring_t &a_csWorkingDirectory, ///< рабочий каталог, например, "C:\\Windows"
+    const std::tstring_t &a_csArguments,        ///< аргументы командной строки, например, "C:\\Doc\\Text.txt"
+    const WORD            a_cwHotKey,           ///< горячая клавиша, например, для Ctrl+Alt+A HOTKEY(HOTKEYF_ALT|HOTKEYF_CONTROL,'A')
+    const int             a_ciCmdShow,          ///< начальный вид, например, SW_SHOWNORMAL (см. параметр nCmdShow функции ShowWindow)
+    const std::tstring_t &a_csIconFilePath,     ///< путь и имя файла, содержащего иконку, например, "C:\\Windows\\NotePad.Exe"
+    const int             a_ciIconIndex,        ///< индекс иконки в файле, нумеруется с 0
+    const std::tstring_t &a_csDescription       ///< description
 )
 {
     /*DEBUG*/
@@ -267,25 +267,25 @@ CxShell::bCreateShortcut(
     /*DEBUG*/xASSERT_RET(SUCCEEDED(hRv), false);
 
     {
-        hRv = pslSL->SetPath(csFilePath.c_str());
+        hRv = pslSL->SetPath(a_csFilePath.c_str());
         /*DEBUG*/xASSERT_RET(SUCCEEDED(hRv), false);
 
-        hRv = pslSL->SetArguments(csArguments.c_str());
+        hRv = pslSL->SetArguments(a_csArguments.c_str());
         /*DEBUG*/xASSERT_RET(SUCCEEDED(hRv), false);
 
-        hRv = pslSL->SetWorkingDirectory(csWorkingDirectory.c_str());
+        hRv = pslSL->SetWorkingDirectory(a_csWorkingDirectory.c_str());
         /*DEBUG*/xASSERT_RET(SUCCEEDED(hRv), false);
 
-        hRv = pslSL->SetIconLocation(csIconFilePath.c_str(), ciIconIndex);
+        hRv = pslSL->SetIconLocation(a_csIconFilePath.c_str(), a_ciIconIndex);
         /*DEBUG*/xASSERT_RET(SUCCEEDED(hRv), false);
 
-        hRv = pslSL->SetHotkey(cwHotKey);
+        hRv = pslSL->SetHotkey(a_cwHotKey);
         /*DEBUG*/xASSERT_RET(SUCCEEDED(hRv), false);
 
-        hRv = pslSL->SetShowCmd(ciCmdShow);
+        hRv = pslSL->SetShowCmd(a_ciCmdShow);
         /*DEBUG*/xASSERT_RET(SUCCEEDED(hRv), false);
 
-        hRv = pslSL->SetDescription(csDescription.c_str());
+        hRv = pslSL->SetDescription(a_csDescription.c_str());
         /*DEBUG*/xASSERT_RET(SUCCEEDED(hRv), false);
     }
 
@@ -300,7 +300,7 @@ CxShell::bCreateShortcut(
 #else
     wchar_t wszBuff[MAX_PATH + 1] = {0};
 
-    ::MultiByteToWideChar(CP_ACP, 0, csShortCutFilePath.c_str(), - 1, wszBuff, MAX_PATH);
+    ::MultiByteToWideChar(CP_ACP, 0, a_csShortCutFilePath.c_str(), - 1, wszBuff, MAX_PATH);
     hRv = ppfPF->Save(wszBuff, true);
 #endif
 

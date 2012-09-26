@@ -24,17 +24,17 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxFileLog::CxFileLog(
-    const ulong_t culMaxFileSizeBytes
+    const ulong_t a_culMaxFileSizeBytes
 ) :
     _m_sFilePath         (),
-    _m_ulMaxFileSizeBytes(culMaxFileSizeBytes)
+    _m_ulMaxFileSizeBytes(a_culMaxFileSizeBytes)
     #if xTODO
         CxAutoIpcMutex
     #endif
 {
-    /*DEBUG*/xASSERT_DO(true        == _m_sFilePath.empty(), return);
-    /*DEBUG*/xASSERT_DO(lsLimitSize >  lsDefaultMaxSize,     return);
-    /*DEBUG*/xASSERT_DO(lsLimitSize >  culMaxFileSizeBytes,  return);
+    /*DEBUG*/xASSERT_DO(true        == _m_sFilePath.empty(),  return);
+    /*DEBUG*/xASSERT_DO(lsLimitSize >  lsDefaultMaxSize,      return);
+    /*DEBUG*/xASSERT_DO(lsLimitSize >  a_culMaxFileSizeBytes, return);
 }
 //---------------------------------------------------------------------------
 /*virtual*/
@@ -44,15 +44,15 @@ CxFileLog::~CxFileLog() {
 //---------------------------------------------------------------------------
 bool
 CxFileLog::bSetFilePath(
-    const std::tstring_t &csFilePath
+    const std::tstring_t &a_csFilePath
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
+    /*DEBUG*/xASSERT_RET(false == a_csFilePath.empty(), false);
 
-    if (std::tstring_t::npos == csFilePath.find(CxConst::xSLASH)) {
-        _m_sFilePath = CxPath::sGetDir(CxPath::sGetExe()) + CxConst::xSLASH + csFilePath;
+    if (std::tstring_t::npos == a_csFilePath.find(CxConst::xSLASH)) {
+        _m_sFilePath = CxPath::sGetDir(CxPath::sGetExe()) + CxConst::xSLASH + a_csFilePath;
     } else {
-        _m_sFilePath = csFilePath;
+        _m_sFilePath = a_csFilePath;
     }
 
     return true;
@@ -67,10 +67,10 @@ CxFileLog::sGetFilePath() const {
 //---------------------------------------------------------------------------
 bool
 CxFileLog::bWrite(
-    const tchar_t *pcszFormat, ...
+    const tchar_t *a_pcszFormat, ...
 )
 {
-    /*DEBUG*/xASSERT_RET(NULL != pcszFormat, false);
+    /*DEBUG*/xASSERT_RET(NULL != a_pcszFormat, false);
 
     bool bRv = false;
 
@@ -87,8 +87,8 @@ CxFileLog::bWrite(
     std::tstring_t sParam;
     va_list      palArgs;
 
-    xVA_START(palArgs, pcszFormat);
-    sParam = CxString::sFormatV(pcszFormat, palArgs);
+    xVA_START(palArgs, a_pcszFormat);
+    sParam = CxString::sFormatV(a_pcszFormat, palArgs);
     xVA_END(palArgs);
 
     //-------------------------------------

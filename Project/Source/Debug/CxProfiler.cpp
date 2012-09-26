@@ -21,9 +21,9 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxProfiler::CxProfiler(
-    const ExMode cpmMode
+    const ExMode a_cpmMode
 ) :
-    _m_pmModeNow (cpmMode),
+    _m_pmModeNow (a_cpmMode),
     _m_bIsStarted(false),
     _flLog       (CxFileLog::lsDefaultSize)
 {
@@ -39,12 +39,12 @@ CxProfiler::~CxProfiler() {
 //---------------------------------------------------------------------------
 bool
 CxProfiler::bSetLogPath(
-    const std::tstring_t &csLogPath
+    const std::tstring_t &a_csLogPath
 )
 {
     /*DEBUG*/
 
-    bool bRv = _flLog.bSetFilePath(csLogPath);
+    bool bRv = _flLog.bSetFilePath(a_csLogPath);
     /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     return true;
@@ -132,7 +132,7 @@ CxProfiler::bStart() {
 //--------------------------------------------------------------------------
 bool
 CxProfiler::bStop(
-    const tchar_t *pcszComment, ...
+    const tchar_t *a_pcszComment, ...
 )
 {
     /*DEBUG*/xASSERT_RET(false != _m_bIsStarted, false);
@@ -213,10 +213,8 @@ CxProfiler::bStop(
     std::tstring_t sRv;
 
     va_list palArgs;
-    xVA_START(palArgs, pcszComment);
-
-    sRv = CxString::sFormatV(pcszComment, palArgs);
-
+    xVA_START(palArgs, a_pcszComment);
+    sRv = CxString::sFormatV(a_pcszComment, palArgs);
     xVA_END(palArgs);
 
     //-------------------------------------

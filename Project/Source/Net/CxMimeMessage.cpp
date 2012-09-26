@@ -25,9 +25,9 @@ CxMimeMessage::~CxMimeMessage() {
 /*static*/
 bool
 CxMimeMessage::bParse(
-    const std::tstring_t &csRawMessage,
-    CxMimeHeader  &Header,
-    CxMimeBody    &Body
+    const std::tstring_t &a_csRawMessage,
+    CxMimeHeader         &a_Header,
+    CxMimeBody           &a_Body
 )
 {
     //m_Header;
@@ -39,20 +39,18 @@ CxMimeMessage::bParse(
 /*static*/
 bool
 CxMimeMessage::bLoadFromRawFile(
-    const std::tstring_t &csFilePath
+    const std::tstring_t &a_csFilePath
 )
 {
-
     return false;
 }
 //---------------------------------------------------------------------------
 /*static*/
 bool
 CxMimeMessage::bSaveToRawFile(
-    const std::tstring_t &csFilePath
+    const std::tstring_t &a_csFilePath
 )
 {
-
     return false;
 }
 //---------------------------------------------------------------------------

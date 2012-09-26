@@ -28,16 +28,16 @@ CxTracer::~CxTracer() {
 /*static*/
 void
 CxTracer::vWrite(
-    const tchar_t *pcszFormat, ...
+    const tchar_t *a_pcszFormat, ...
 )
 {
-    xCHECK_DO(pcszFormat == NULL, return);
+    xCHECK_DO(a_pcszFormat == NULL, return);
 
     std::tstring_t sRv;
 
     va_list palArgs;
-    xVA_START(palArgs, pcszFormat);
-    sRv = CxString::sFormatV(pcszFormat, palArgs);
+    xVA_START(palArgs, a_pcszFormat);
+    sRv = CxString::sFormatV(a_pcszFormat, palArgs);
     xVA_END(palArgs);
 
     vWrite(sRv);
@@ -46,16 +46,16 @@ CxTracer::vWrite(
 /*static*/
 void
 CxTracer::vWrite(
-    const std::tstring_t &csMsg
+    const std::tstring_t &a_csMsg
 )
 {
 #if   xOS_ENV_WIN
-    (void)::OutputDebugString((csMsg + CxConst::xNL).c_str());
+    (void)::OutputDebugString((a_csMsg + CxConst::xNL).c_str());
 #elif xOS_ENV_UNIX
     xNA;
 #endif
 
-    std::tcout << csMsg << std::endl;
+    std::tcout << a_csMsg << std::endl;
 }
 //---------------------------------------------------------------------------
 

@@ -30,7 +30,7 @@ CxUri::CxUri() :
 }
 //---------------------------------------------------------------------------
 //DONE: CxUri
-CxUri::CxUri(const std::string &csUri) :
+CxUri::CxUri(const std::string &a_csUri) :
     _m_sScheme   (),
     _m_sAuthority(),
     _m_sUserInfo (),
@@ -40,7 +40,7 @@ CxUri::CxUri(const std::string &csUri) :
     _m_sQuery    (),
     _m_sFragment ()
 {
-    bool bRv = _bParse(csUri);
+    bool bRv = _bParse(a_csUri);
     /*DEBUG*/xASSERT_DO(true == bRv, return);
 }
 //---------------------------------------------------------------------------
@@ -112,16 +112,16 @@ CxUri::sGetUri() const {
     return sRv;
 }
 bool
-CxUri::bSetUri(const std::string &csScheme, const std::string &csAuthority, const std::string &csPath, const std::string &csQuery, const std::string &csFragment) {
+CxUri::bSetUri(const std::string &a_csScheme, const std::string &a_csAuthority, const std::string &a_csPath, const std::string &a_csQuery, const std::string &a_csFragment) {
     /*DEBUG*/
 
     bool bRv = false;  xUNUSED(bRv);
 
-    bRv = bSetScheme   (csScheme);
-    bRv = bSetAuthority(csAuthority);
-    bRv = bSetPath     (csPath);
-    bRv = bSetQuery    (csQuery);
-    bRv = bSetFragment (csFragment);
+    bRv = bSetScheme   (a_csScheme);
+    bRv = bSetAuthority(a_csAuthority);
+    bRv = bSetPath     (a_csPath);
+    bRv = bSetQuery    (a_csQuery);
+    bRv = bSetFragment (a_csFragment);
 
     return true;
 }
@@ -320,10 +320,10 @@ CxUri::sUnescape(const std::string &csUri) {
 //void URI::encode(const std::string& str, const std::string& reserved, std::string& encodedStr)
 /*static*/
 std::string
-CxUri::sEncodeComponent(const std::string &csUri) {
+CxUri::sEncodeComponent(const std::string &a_csUri) {
     std::string sRv;
 
-    xFOREACH_CONST(std::string, it, csUri) {
+    xFOREACH_CONST(std::string, it, a_csUri) {
         char c = *it;
 
         if (
@@ -359,11 +359,11 @@ CxUri::sEncodeComponent(const std::string &csUri) {
 //void URI::decode(const std::string& str, std::string& decodedStr)
 /*static*/
 std::string
-CxUri::sDecodeComponent(const std::string &csUri) {
+CxUri::sDecodeComponent(const std::string &a_csUri) {
     std::string sRv;
 
-    std::string::const_iterator it  = csUri.begin();
-    std::string::const_iterator end = csUri.end();
+    std::string::const_iterator it  = a_csUri.begin();
+    std::string::const_iterator end = a_csUri.end();
 
     while (it != end) {
         char c = *it ++;
@@ -453,7 +453,7 @@ tel    : +1-816-555-1212
 telnet : //192.0.2.16:80/
 */
 bool
-CxUri::_bParse(const std::string &csUri) {
+CxUri::_bParse(const std::string &a_csUri) {
     bool bRv = false;
 
     //Normilize();
@@ -465,11 +465,11 @@ CxUri::_bParse(const std::string &csUri) {
     //[scheme] - [foo]
     //[INPUT]     - foo://userinfo@example.com:8042/over/there?name=ferret#nose
     size_t uiSchemeStart = 0;
-    size_t uiSchemeEnd   = csUri.find_first_of(CxConst::xCOLON);
+    size_t uiSchemeEnd   = a_csUri.find_first_of(CxConst::xCOLON);
     /*DEBUG*/xASSERT_RET(std::string::npos       != uiSchemeEnd, false);
     /*DEBUG*/xASSERT_RET(7/*SCHEME_MAX_SIZE + 1*/ > uiSchemeEnd, false);
 
-    _m_sScheme = CxString::sCut(csUri, uiSchemeStart, uiSchemeEnd);
+    _m_sScheme = CxString::sCut(a_csUri, uiSchemeStart, uiSchemeEnd);
 
     //-------------------------------------
     //[authority] - [example.com:8042]
@@ -478,17 +478,17 @@ CxUri::_bParse(const std::string &csUri) {
 
     //���� ����� [:] ���� [//] - ����������
     size_t uiSlashCount = 0;
-    while ('/' == csUri.at(uiAuthorityStart + uiSlashCount)) {
+    while ('/' == a_csUri.at(uiAuthorityStart + uiSlashCount)) {
         uiSlashCount ++;
     }
 
-    size_t uiAuthorityEnd = csUri.find_first_of("/?#", uiAuthorityStart + uiSlashCount); //or by the end
+    size_t uiAuthorityEnd = a_csUri.find_first_of("/?#", uiAuthorityStart + uiSlashCount); //or by the end
 
     if (std::string::npos == uiAuthorityEnd) {
-        uiAuthorityEnd = csUri.size();
+        uiAuthorityEnd = a_csUri.size();
     }
 
-    _m_sAuthority = CxString::sCut(csUri, uiAuthorityStart /*+ uiSlashCount*/, uiAuthorityEnd);
+    _m_sAuthority = CxString::sCut(a_csUri, uiAuthorityStart /*+ uiSlashCount*/, uiAuthorityEnd);
 
     //-------------------------------------
     //[_m_sUserInfo] - [userinfo]
@@ -543,33 +543,33 @@ CxUri::_bParse(const std::string &csUri) {
     //[_m_sPath] - [/over/there?]
     //[INPUT]     - foo://userinfo@example.com:8042/over/there?name=ferret#nose
     size_t uiPathStart = uiAuthorityEnd;
-    size_t uiPathEnd   = csUri.find_first_of("?#", uiPathStart);  //or by the end
+    size_t uiPathEnd   = a_csUri.find_first_of("?#", uiPathStart);  //or by the end
 
     if (std::string::npos == uiPathEnd) {
-        uiPathEnd = csUri.size();
+        uiPathEnd = a_csUri.size();
     }
 
-    _m_sPath = CxString::sCut(csUri, uiPathStart, uiPathEnd);
+    _m_sPath = CxString::sCut(a_csUri, uiPathStart, uiPathEnd);
 
     //-------------------------------------
     //[_m_sQuery] - [name=ferret]
     //[INPUT]     - foo://userinfo@example.com:8042/over/there?name=ferret#nose
     size_t uiQueryStart = uiPathEnd;
-    size_t uiQueryEnd   = csUri.find_first_of("#", uiQueryStart);
+    size_t uiQueryEnd   = a_csUri.find_first_of("#", uiQueryStart);
 
     if (std::string::npos == uiQueryEnd) {
-        uiQueryEnd = csUri.size();
+        uiQueryEnd = a_csUri.size();
     }
 
-    _m_sQuery = CxString::sCut(csUri, uiQueryStart + 1/*"?"*/, uiQueryEnd);
+    _m_sQuery = CxString::sCut(a_csUri, uiQueryStart + 1/*"?"*/, uiQueryEnd);
 
     //-------------------------------------
     //[_m_sFragment] - [nose]
     //[INPUT]     - foo://userinfo@example.com:8042/over/there?name=ferret#nose
     size_t uiFragmentStart = uiQueryEnd + std::string("#").size();
-    size_t uiFragmentEnd   = csUri.size();                        //by the end
+    size_t uiFragmentEnd   = a_csUri.size();                        //by the end
 
-    _m_sFragment = CxString::sCut(csUri, uiFragmentStart, uiFragmentEnd);
+    _m_sFragment = CxString::sCut(a_csUri, uiFragmentStart, uiFragmentEnd);
 
 
     return true;
@@ -577,7 +577,7 @@ CxUri::_bParse(const std::string &csUri) {
 //---------------------------------------------------------------------------
 //TODO: _bNormilize ()
 bool
-CxUri::_bNormilize(const std::string &csUri) {
+CxUri::_bNormilize(const std::string &a_csUri) {
     ////bool bRv = false;
 
     //trim

@@ -66,20 +66,20 @@ CxThreadStorage::pvGetValue() const {
 //---------------------------------------------------------------------------
 bool
 CxThreadStorage::bSetValue(
-    void *pvValue
+    void *a_pvValue
 ) const
 {
-    /*DEBUG*/xASSERT_RET(NULL != pvValue, false);
+    /*DEBUG*/xASSERT_RET(NULL != a_pvValue, false);
 
 #if xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(TLS_OUT_OF_INDEXES != _m_indIndex, false);
 
-    BOOL blRes = ::TlsSetValue(_m_indIndex, pvValue);
+    BOOL blRes = ::TlsSetValue(_m_indIndex, a_pvValue);
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX
     /*DEBUG*/xASSERT_RET(0 <= _m_indIndex, false);
 
-    int iRv = ::pthread_setspecific(_m_indIndex, pvValue);
+    int iRv = ::pthread_setspecific(_m_indIndex, a_pvValue);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
 #endif
 

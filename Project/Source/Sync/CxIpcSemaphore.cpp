@@ -63,36 +63,36 @@ CxIpcSemaphore::hGet() const {
 //---------------------------------------------------------------------------
 bool
 CxIpcSemaphore::bCreate(
-    const long_t         &cliInitialValue,
-    const std::tstring_t &csName
+    const long_t         &a_cliInitialValue,
+    const std::tstring_t &a_csName
 )
 {
-    /*DEBUG*/xASSERT_RET(false                  == _bIsValid(),   false);
-    /*DEBUG*/xASSERT_RET(CxPath::uiGetMaxSize() >  csName.size(), false);
-    /*DEBUG*/xASSERT_RET(0L <= cliInitialValue && cliInitialValue <= xSEMAPHORE_VALUE_MAX, false);
+    /*DEBUG*/xASSERT_RET(false                   == _bIsValid(),     false);
+    /*DEBUG*/xASSERT_RET(CxPath::uiGetMaxSize()  >  a_csName.size(), false);
+    /*DEBUG*/xASSERT_RET(0L <= a_cliInitialValue && a_cliInitialValue <= xSEMAPHORE_VALUE_MAX, false);
 
 #if xOS_ENV_WIN
     const tchar_t  *pcszWinName = NULL;
     std::tstring_t  _sWinName;
         
-    if (true == csName.empty()) {
+    if (true == a_csName.empty()) {
         pcszWinName = NULL;
     } else {
-        _sWinName   = xT("Global\\") + csName;
+        _sWinName   = xT("Global\\") + a_csName;
         pcszWinName = _sWinName.c_str();
     }
 
-    HANDLE  hRv         = ::CreateSemaphore(NULL, cliInitialValue, xSEMAPHORE_VALUE_MAX, pcszWinName);
+    HANDLE  hRv         = ::CreateSemaphore(NULL, a_cliInitialValue, xSEMAPHORE_VALUE_MAX, pcszWinName);
     ulong_t ulLastError = CxLastError::ulGet();
     /*DEBUG*/xASSERT_RET(NULL        != hRv,                  false);
     /*DEBUG*/xASSERT_RET(ulLastError != ERROR_ALREADY_EXISTS, false);
 
     _m_hHandle.bSet(hRv);
-    _m_sName = csName;
+    _m_sName = a_csName;
 #elif xOS_ENV_UNIX
-    std::tstring_t sUnixName = CxConst::xUNIX_SLASH + csName;
+    std::tstring_t sUnixName = CxConst::xUNIX_SLASH + a_csName;
 
-    handle_t hHandle = ::sem_open(sUnixName.c_str(), O_CREAT | O_RDWR, 0777, cliInitialValue);
+    handle_t hHandle = ::sem_open(sUnixName.c_str(), O_CREAT | O_RDWR, 0777, a_cliInitialValue);
     /*DEBUG*/xASSERT_RET(SEM_FAILED != hHandle, false);
 
     _m_hHandle = hHandle;
@@ -104,7 +104,7 @@ CxIpcSemaphore::bCreate(
 //---------------------------------------------------------------------------
 bool
 CxIpcSemaphore::bOpen(
-    const std::tstring_t &csName
+    const std::tstring_t &a_csName
 )
 {
     /*DEBUG*/xASSERT_RET(true == _bIsValid(), false);
@@ -114,10 +114,10 @@ CxIpcSemaphore::bOpen(
     const tchar_t *pcszWinName = NULL;
     std::tstring_t _sWinName;
 
-    if (true == csName.empty()) {
+    if (true == a_csName.empty()) {
         pcszWinName = NULL;
     } else {
-        _sWinName   = xT("Global\\") + csName;
+        _sWinName   = xT("Global\\") + a_csName;
         pcszWinName = _sWinName.c_str();
     }
 
@@ -125,9 +125,9 @@ CxIpcSemaphore::bOpen(
     /*DEBUG*/xASSERT_RET(NULL != hRv, false);
 
     _m_hHandle.bSet(hRv);
-    _m_sName = csName;
+    _m_sName = a_csName;
 #elif xOS_ENV_UNIX
-    std::tstring_t sUnixName = CxConst::xUNIX_SLASH + csName;
+    std::tstring_t sUnixName = CxConst::xUNIX_SLASH + a_csName;
 
     handle_t hHandle = ::sem_open(sUnixName.c_str(), O_RDWR, 0777, 0U);
     /*DEBUG*/xASSERT_RET(SEM_FAILED != hHandle, false);
@@ -158,14 +158,14 @@ CxIpcSemaphore::bPost() const {
 //---------------------------------------------------------------------------
 bool
 CxIpcSemaphore::bWait(
-    const ulong_t &culTimeoutMsec
+    const ulong_t &a_culTimeoutMsec
 ) const
 {
     /*DEBUG*/xASSERT_RET(true == _bIsValid(), false);
     /*DEBUG*///ulTimeout - n/a
 
 #if xOS_ENV_WIN
-    DWORD dwRv = ::WaitForSingleObject(_m_hHandle.hGet(), culTimeoutMsec);
+    DWORD dwRv = ::WaitForSingleObject(_m_hHandle.hGet(), a_culTimeoutMsec);
     /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == dwRv, false);
 #elif xOS_ENV_UNIX
     struct _SFunctor {
@@ -194,7 +194,7 @@ CxIpcSemaphore::bWait(
         iRv = ::clock_gettime(CLOCK_REALTIME, &tmsTimeout);
         /*DEBUG*/xASSERT_RET(- 1 != iRv, false);
 
-        (void)_SFunctor::timespec_addms(&tmsTimeout, culTimeoutMsec);
+        (void)_SFunctor::timespec_addms(&tmsTimeout, a_culTimeoutMsec);
     }
 
 #if xC99_OLD

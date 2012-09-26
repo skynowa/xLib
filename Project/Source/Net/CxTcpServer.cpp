@@ -20,16 +20,16 @@ CxTcpServer::~CxTcpServer() {
 //---------------------------------------------------------------------------
 bool
 CxTcpServer::bBind(
-    ushort_t usPort
+    ushort_t a_usPort
 )
 {
-    /*DEBUG*/xASSERT_RET(etInvalid != _m_sktSocket,        false);
-    /*DEBUG*/xASSERT_RET((32767 > usPort) && (0 < usPort), false);
+    /*DEBUG*/xASSERT_RET(etInvalid != _m_sktSocket,            false);
+    /*DEBUG*/xASSERT_RET((32767 > a_usPort) && (0 < a_usPort), false);
 
     struct sockaddr_in saSockAddr = {0};
     saSockAddr.sin_family      = _m_siFamily;
     saSockAddr.sin_addr.s_addr = INADDR_ANY;
-    saSockAddr.sin_port        = htons(usPort);
+    saSockAddr.sin_port        = htons(a_usPort);
 
     int iRv = ::bind(_m_sktSocket, CxMacros::reinterpretCastT<const struct sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
     /*DEBUG*/xASSERT_RET(etError != iRv, false);
@@ -45,12 +45,12 @@ CxTcpServer::bBind(
 //---------------------------------------------------------------------------
 bool
 CxTcpServer::bListen(
-    int iBacklog /*= SOMAXCONN*/
+    int a_iBacklog /*= SOMAXCONN*/
 )
 {
     /*DEBUG*/xASSERT_RET(etInvalid != _m_sktSocket, false);
 
-    int iRv = ::listen(_m_sktSocket, iBacklog);
+    int iRv = ::listen(_m_sktSocket, a_iBacklog);
     /*DEBUG*/xASSERT_RET(etError != iRv, false);
 
     return true;
@@ -58,13 +58,13 @@ CxTcpServer::bListen(
 //---------------------------------------------------------------------------
 bool
 CxTcpServer::bAccept(
-    CxTcpServer *pscktAcceptSocket,
-    std::tstring_t      *psFromIp
+    CxTcpServer    *a_pscktAcceptSocket,
+    std::tstring_t *a_psFromIp
 )
 {
-    /*DEBUG*/xASSERT_RET(etInvalid != _m_sktSocket,      false);
-    /*DEBUG*/xASSERT_RET(NULL      != pscktAcceptSocket, false);
-    /*DEBUG*/xASSERT_RET(NULL      != psFromIp,          false);
+    /*DEBUG*/xASSERT_RET(etInvalid != _m_sktSocket,        false);
+    /*DEBUG*/xASSERT_RET(NULL      != a_pscktAcceptSocket, false);
+    /*DEBUG*/xASSERT_RET(NULL      != a_psFromIp,          false);
 
     socket_t scktClient = etInvalid;
 
@@ -84,13 +84,13 @@ CxTcpServer::bAccept(
 
     //TODO: bAccept
     ////scktAcceptSocket = scktClient;
-    bool bRv = (* pscktAcceptSocket).bAssign(scktClient);
+    bool bRv = (*a_pscktAcceptSocket).bAssign(scktClient);
     /*DEBUG*/xASSERT_RET(true == bRv, false);
 
     //конверт из UNICODE
     std::string asFromIp = ::inet_ntoa(cliaddr.sin_addr);
 
-    (*psFromIp).assign(asFromIp.begin(), asFromIp.end());
+    (*a_psFromIp).assign(asFromIp.begin(), asFromIp.end());
 
     return true;
 }

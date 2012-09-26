@@ -20,7 +20,7 @@ xNAMESPACE_BEGIN(NxLib)
 /*static*/
 bool
 CxCurrentProcess::bIsCurrent(
-    const CxProcess::id_t &culId
+    const CxProcess::id_t &a_culId
 )
 {
     /*DEBUG*/
@@ -28,10 +28,10 @@ CxCurrentProcess::bIsCurrent(
     bool bRv = false;
 
 #if xOS_ENV_WIN
-    bRv = (ulGetId() == culId);
+    bRv = (ulGetId() == a_culId);
 #elif xOS_ENV_UNIX
     // TODO: If either thread1 or thread2 are not valid thread IDs, the behavior is undefined
-    // bRv = ::pthread_equal(ulGetId(), culId);
+    // bRv = ::pthread_equal(ulGetId(), a_culId);
 #endif
 
     return bRv;
@@ -134,13 +134,13 @@ CxCurrentProcess::hGetHandle() {
 /*static*/
 bool
 CxCurrentProcess::bExit(
-    const uint_t &cuiExitCode
+    const uint_t &a_cuiExitCode
 )
 {
     /*DEBUG*/
 
 #if xOS_ENV_WIN
-    (void)::ExitProcess(cuiExitCode);
+    (void)::ExitProcess(a_cuiExitCode);
 #elif xOS_ENV_UNIX
     (void)::exit(static_cast<int>( cuiExitCode ));
 #endif

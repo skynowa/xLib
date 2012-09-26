@@ -35,17 +35,17 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxStackTrace::CxStackTrace(
-    const std::tstring_t &csLinePrefix,         /* = xT("\t") */
-    const std::tstring_t &csElementSeparator,   /* = xT("  ") */
-    const std::tstring_t &csLinesSeparator,     /* = xT("\n") */
-    const bool           &cbIsWrapFilePathes,   /* = true */
-    const bool           &cbIsFuncParamsDisable /* = true */
+    const std::tstring_t &a_csLinePrefix,         /* = xT("\t") */
+    const std::tstring_t &a_csElementSeparator,   /* = xT("  ") */
+    const std::tstring_t &a_csLinesSeparator,     /* = xT("\n") */
+    const bool           &a_cbIsWrapFilePathes,   /* = true */
+    const bool           &a_cbIsFuncParamsDisable /* = true */
 ) :
-    _m_csLinePrefix         (csLinePrefix),
-    _m_csElementSeparator   (csElementSeparator),
-    _m_csLineSeparator      (csLinesSeparator),
-    _m_cbIsWrapFilePathes   (cbIsWrapFilePathes),
-    _m_cbIsFuncParamsDisable(cbIsFuncParamsDisable)
+    _m_csLinePrefix         (a_csLinePrefix),
+    _m_csElementSeparator   (a_csElementSeparator),
+    _m_csLineSeparator      (a_csLinesSeparator),
+    _m_cbIsWrapFilePathes   (a_cbIsWrapFilePathes),
+    _m_cbIsFuncParamsDisable(a_cbIsFuncParamsDisable)
 {
 
 }
@@ -57,10 +57,10 @@ CxStackTrace::~CxStackTrace() {
 //---------------------------------------------------------------------------
 bool
 CxStackTrace::bGet(
-    std::vector<std::vec_tstring_t> *pvvsStack
+    std::vector<std::vec_tstring_t> *a_pvvsStack
 )
 {
-    xCHECK_RET(NULL == pvvsStack, false);
+    xCHECK_RET(NULL == a_pvvsStack, false);
     
     const std::tstring_t            csDataNotFound = xT("[???]");
     std::vector<std::vec_tstring_t> vvsStack;
@@ -268,7 +268,7 @@ CxStackTrace::bGet(
     } // for
 #endif
 
-    std::swap(*pvvsStack, vvsStack);
+    std::swap(*a_pvvsStack, vvsStack);
 
     return true;
 }
@@ -299,7 +299,7 @@ CxStackTrace::sGet()  {
 //---------------------------------------------------------------------------
 std::tstring_t
 CxStackTrace::_sFormat(
-    std::vector<std::vec_tstring_t> *pvvsStack
+    std::vector<std::vec_tstring_t> *a_pvvsStack
 )
 {
     std::tstring_t      sRv;
@@ -309,7 +309,7 @@ CxStackTrace::_sFormat(
 
     // get elements max sizes
     for (size_t i = 0; i < cuiElementsNum; ++ i) {
-        xFOREACH_CONST(std::vector<std::vec_tstring_t>, it, *pvvsStack) {
+        xFOREACH_CONST(std::vector<std::vec_tstring_t>, it, *a_pvvsStack) {
             const size_t uiCurr = it->at(i).size();
 
             xCHECK_DO(uiCurr > vuiMaxs[i], vuiMaxs[i] = uiCurr);
@@ -317,7 +317,7 @@ CxStackTrace::_sFormat(
     }
 
     // formating
-    xFOREACH_CONST(std::vector<std::vec_tstring_t>, it, *pvvsStack) {
+    xFOREACH_CONST(std::vector<std::vec_tstring_t>, it, *a_pvvsStack) {
         std::tstringstream_t ssStackLine;
 
         ssStackLine << _m_csLinePrefix
@@ -340,10 +340,10 @@ CxStackTrace::_sFormat(
 /*static*/
 bool
 CxStackTrace::_bAddr2Line(
-    const void     *pvSymbolAddress,
-    std::tstring_t *psFilePath,
-    std::tstring_t *psFunctionName,
-    ulong_t        *pulSourceLine
+    const void     *a_pvSymbolAddress,
+    std::tstring_t *a_psFilePath,
+    std::tstring_t *a_psFunctionName,
+    ulong_t        *a_pulSourceLine
 )
 {
     tchar_t szCmdLine[1024 + 1] = {0};

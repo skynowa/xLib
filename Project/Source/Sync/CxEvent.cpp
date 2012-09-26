@@ -16,16 +16,16 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxEvent::CxEvent(
-    const bool &cbIsAutoReset,
-    const bool &cbIsSignaled     ///< false - wait, lock
+    const bool &a_cbIsAutoReset,
+    const bool &a_cbIsSignaled     ///< false - wait, lock
 ) :
 #if   xOS_ENV_WIN
     _m_hEvent       ()
 #elif xOS_ENV_UNIX
     _m_mtMutex      (),
     _m_cndCond      (),
-    _m_cbIsAutoReset(cbIsAutoReset),
-    _m_cbInitState  (cbIsSignaled),
+    _m_cbIsAutoReset(a_cbIsAutoReset),
+    _m_cbInitState  (a_cbIsSignaled),
     _m_bIsSignaled  (false)
 #endif
 {
@@ -33,7 +33,7 @@ CxEvent::CxEvent(
     /*DEBUG*/xASSERT_DO(false == _m_hEvent.bIsValid(), return);
     /*DEBUG*/
 
-    HANDLE hRv = ::CreateEvent(NULL, ! cbIsAutoReset, cbIsSignaled, NULL);
+    HANDLE hRv = ::CreateEvent(NULL, ! a_cbIsAutoReset, a_cbIsSignaled, NULL);
     /*DEBUG*/xASSERT_DO(NULL != hRv, return);
 
     _m_hEvent.bSet(hRv);
@@ -115,7 +115,7 @@ CxEvent::bReset() {
 //---------------------------------------------------------------------------
 CxEvent::ExObjectState
 CxEvent::osWait(
-    const ulong_t &culTimeout /* = xTIMEOUT_INFINITE */  ///< in milliseconds
+    const ulong_t &a_culTimeout /* = xTIMEOUT_INFINITE */  ///< in milliseconds
 )
 {
     /*DEBUG*/// culTimeout - n/a
@@ -125,7 +125,7 @@ CxEvent::osWait(
 #if   xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(false != _m_hEvent.bIsValid(), osFailed);
 
-    osRes = static_cast<ExObjectState>( ::WaitForSingleObject(hGet().hGet(), culTimeout) );
+    osRes = static_cast<ExObjectState>( ::WaitForSingleObject(hGet().hGet(), a_culTimeout) );
 #elif xOS_ENV_UNIX
     {
         CxAutoMutex amtAutoMutex(_m_mtMutex);
@@ -141,8 +141,8 @@ CxEvent::osWait(
                 iRv = ::gettimeofday(&tvNow, NULL);
                 /*DEBUG*/xASSERT_RET(- 1 != iRv, osFailed);
 
-                tsTimeoutMs.tv_sec  = tvNow.tv_sec + culTimeout / 1000;
-                tsTimeoutMs.tv_nsec = tvNow.tv_usec * 1000 + (culTimeout % 1000) * 1000000;
+                tsTimeoutMs.tv_sec  = tvNow.tv_sec + a_culTimeout / 1000;
+                tsTimeoutMs.tv_nsec = tvNow.tv_usec * 1000 + (a_culTimeout % 1000) * 1000000;
 
                 // handle overflow
                 if (tsTimeoutMs.tv_nsec >= 1000000000) {

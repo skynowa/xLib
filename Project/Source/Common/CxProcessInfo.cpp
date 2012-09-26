@@ -21,7 +21,7 @@ xNAMESPACE_BEGIN(NxLib)
 /*static*/
 ulong_t
 CxProcessInfo::ulGetCpuUsage(
-    const CxProcess::id_t &cidId
+    const CxProcess::id_t &a_cidId
 )
 {
     ulong_t ulRv = 0UL;
@@ -38,7 +38,7 @@ CxProcessInfo::ulGetCpuUsage(
 /*static*/
 ulong_t
 CxProcessInfo::ulGetRamUsage(
-    const CxProcess::id_t &cidId
+    const CxProcess::id_t &a_cidId
 )
 {
     ulong_t ulRv = 0UL;
@@ -55,7 +55,7 @@ CxProcessInfo::ulGetRamUsage(
 /*static*/
 ulong_t
 CxProcessInfo::ulGetIOBytes(
-    const CxProcess::id_t &cidId
+    const CxProcess::id_t &a_cidId
 )
 {
     ulong_t ulRv = 0UL;
@@ -75,7 +75,7 @@ CxProcessInfo::ulGetIOBytes(
         1372    cancelled_write_bytes: 0
     #endif
 
-    std::tstring_t sProcPath  = CxString::sFormat(xT("/proc/%lu/io"), cidId);
+    std::tstring_t sProcPath  = CxString::sFormat(xT("/proc/%lu/io"), a_cidId);
 
     ulong_t ulReadBytes = 0UL;
     {
@@ -102,7 +102,7 @@ CxProcessInfo::ulGetIOBytes(
 /*static*/
 std::tstring_t
 CxProcessInfo::sGetExeName(
-    const CxProcess::id_t &cidId
+    const CxProcess::id_t &a_cidId
 )
 {
     std::tstring_t sRv;
@@ -110,7 +110,7 @@ CxProcessInfo::sGetExeName(
 #if   xOS_ENV_WIN
     sRv.resize(xPATH_MAX);
 
-    CxProcess::handle_t hHandle = CxProcess::ulGetHandleById(cidId);
+    CxProcess::handle_t hHandle = CxProcess::ulGetHandleById(a_cidId);
 
     DWORD ulStored = ::GetModuleFileNameEx(hHandle, NULL, &sRv.at(0), sRv.size());
     /*DEBUG*/xASSERT_RET(0UL != ulStored, std::tstring_t());
@@ -118,7 +118,7 @@ CxProcessInfo::sGetExeName(
     sRv.resize(ulStored);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        const std::tstring_t csProcFile = CxString::sFormat(xT("/proc/%ld/exe"), cidId);
+        const std::tstring_t csProcFile = CxString::sFormat(xT("/proc/%ld/exe"), a_cidId);
 
         bool bRv = CxFile::bIsExists(csProcFile);
         xCHECK_RET(false == bRv, std::tstring_t());
@@ -160,7 +160,7 @@ CxProcessInfo::sGetExeName(
 /*static*/
 ulong_t
 CxProcessInfo::ulGetParentId(
-    const CxProcess::id_t &cidId
+    const CxProcess::id_t &a_cidId
 )
 {
     ulong_t ulRv = 0UL;
@@ -181,7 +181,7 @@ CxProcessInfo::ulGetParentId(
 /*static*/
 std::tstring_t
 CxProcessInfo::sGetArgs(
-    const CxProcess::id_t &cidId
+    const CxProcess::id_t &a_cidId
 )
 {
     // TODO: tests for CxProcessInfo::sGetArgs
@@ -195,7 +195,7 @@ CxProcessInfo::sGetArgs(
         // TODO: CxProcessInfo::sGetArgs
     #elif xOS_FREEBSD
         int iRv      = - 1;
-        int aiMib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_ARGS, cidId};
+        int aiMib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_ARGS, a_cidId};
 
         std::string sBuff;
         size_t      uiBuffSize = 0;

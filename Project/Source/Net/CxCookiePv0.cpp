@@ -36,7 +36,7 @@ CxCookiePv0::CxCookiePv0() :
 }
 //---------------------------------------------------------------------------
 CxCookiePv0::CxCookiePv0(
-    const std::tstring_t &csRawCookie
+    const std::tstring_t &a_csRawCookie
 ) :
     _m_sName    (),
     _m_sValue   (),
@@ -50,7 +50,7 @@ CxCookiePv0::CxCookiePv0(
 
     bool bRv = false;
 
-    bRv = bInit(csRawCookie);
+    bRv = bInit(a_csRawCookie);
     /*DEBUG*/xASSERT_DO(true == bRv, return);
 }
 //---------------------------------------------------------------------------
@@ -69,12 +69,12 @@ CxCookiePv0::sGetName() const {
 //---------------------------------------------------------------------------
 bool
 CxCookiePv0::bSetName(
-    const std::tstring_t &csName
+    const std::tstring_t &a_csName
 )
 {
     /*DEBUG*/
 
-    _m_sName = csName;
+    _m_sName = a_csName;
 
     return true;
 }
@@ -88,12 +88,12 @@ CxCookiePv0::sGetValue() const {
 //---------------------------------------------------------------------------
 bool
 CxCookiePv0::bSetValue(
-    const std::tstring_t &csValue
+    const std::tstring_t &a_csValue
 )
 {
     /*DEBUG*/
 
-    _m_sValue = csValue;
+    _m_sValue = a_csValue;
 
     return true;
 }
@@ -107,12 +107,12 @@ CxCookiePv0::sGetDomain() const {
 //---------------------------------------------------------------------------
 bool
 CxCookiePv0::bSetDomain(
-    const std::tstring_t &csDomain
+    const std::tstring_t &a_csDomain
 )
 {
     /*DEBUG*/
 
-    _m_sDomain = csDomain;
+    _m_sDomain = a_csDomain;
 
     return true;
 }
@@ -126,12 +126,12 @@ CxCookiePv0::sGetPath() const {
 //---------------------------------------------------------------------------
 bool
 CxCookiePv0::bSetPath(
-    const std::tstring_t &csPath
+    const std::tstring_t &a_csPath
 )
 {
     /*DEBUG*/
 
-    _m_sPath = csPath;
+    _m_sPath = a_csPath;
 
     return true;
 }
@@ -145,12 +145,12 @@ CxCookiePv0::sGetExpires() const {
 //---------------------------------------------------------------------------
 bool
 CxCookiePv0::bSetExpires(
-    const std::tstring_t &csExpires
+    const std::tstring_t &a_csExpires
 )
 {
     /*DEBUG*/
 
-    _m_sExpires = csExpires;
+    _m_sExpires = a_csExpires;
 
     return true;
 }
@@ -164,12 +164,12 @@ CxCookiePv0::bGetSecure() const {
 //---------------------------------------------------------------------------
 bool
 CxCookiePv0::bSetSecure(
-    bool bFlag
+    bool a_bFlag
 )
 {
     /*DEBUG*/
 
-    _m_bSecure = bFlag;
+    _m_bSecure = a_bFlag;
 
     return true;
 }
@@ -183,12 +183,12 @@ CxCookiePv0::bGetHttpOnly() const {
 //---------------------------------------------------------------------------
 bool
 CxCookiePv0::bSetHttpOnly(
-    bool bFlag
+    bool a_bFlag
 )
 {
     /*DEBUG*/
 
-    _m_bHttpOnly = bFlag;
+    _m_bHttpOnly = a_bFlag;
 
     return true;
 }
@@ -296,7 +296,7 @@ struct SCompareNoCase {
 //---------------------------------------------------------------------------
 bool
 CxCookiePv0::bInit(
-    const std::tstring_t &csRawCookie
+    const std::tstring_t &a_csRawCookie
 )
 {
     /*DEBUG*/// _m_msCookie - n/a
@@ -310,7 +310,7 @@ CxCookiePv0::bInit(
     TStringMap msCookie;
     std::tstring_t    sCookie;
 
-    sCookie = csRawCookie;
+    sCookie = a_csRawCookie;
     sCookie = CxString::sRemoveAll(sCookie, CxConst::xSQM);
     sCookie = CxString::sRemoveAll(sCookie, CxConst::xDQM);
 

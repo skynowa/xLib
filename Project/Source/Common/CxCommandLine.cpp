@@ -53,15 +53,15 @@ CxCommandLine::sGet() {
 /*static*/
 bool
 CxCommandLine::bGetArgs(
-    std::vec_tstring_t *pvsArgs
+    std::vec_tstring_t *a_pvsArgs
 )
 {
-    /*DEBUG*/xASSERT_RET(NULL != pvsArgs, false);
+    /*DEBUG*/xASSERT_RET(NULL != a_pvsArgs, false);
 
     xCHECK_DO(true == _ms_vsArgs.empty(),
               CxTracer::vWrite(xT("::: xLib: warning (command line is empty) :::")));
 
-    (*pvsArgs) = _ms_vsArgs;
+    (*a_pvsArgs) = _ms_vsArgs;
 
     return true;
 }
@@ -69,16 +69,16 @@ CxCommandLine::bGetArgs(
 /*static*/
 bool
 CxCommandLine::bSetArgs(
-    const int  ciArgsCount,
-    tchar_t   *paszArgs[]
+    const int  a_ciArgsCount,
+    tchar_t   *a_paszArgs[]
 )
 {
     /*DEBUG*/// n/a (because we'll have a recursion)
 
     std::vec_tstring_t vsArgs;
 
-    for (int i = 0; i < ciArgsCount; ++ i) {
-        vsArgs.push_back(paszArgs[i]);
+    for (int i = 0; i < a_ciArgsCount; ++ i) {
+        vsArgs.push_back(a_paszArgs[i]);
     }
 
     //out

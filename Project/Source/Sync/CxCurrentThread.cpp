@@ -18,7 +18,7 @@ xNAMESPACE_BEGIN(NxLib)
 /*static*/
 bool
 CxCurrentThread::bIsCurrent(
-    const CxThread::id_t &culId
+    const CxThread::id_t &a_culId
 )
 {
     /*DEBUG*/
@@ -26,10 +26,10 @@ CxCurrentThread::bIsCurrent(
     bool bRv = false;
 
 #if xOS_ENV_WIN
-    bRv = (ulGetId() == culId);
+    bRv = (ulGetId() == a_culId);
 #elif xOS_ENV_UNIX
     //TODO: If either thread1 or thread2 are not valid thread IDs, the behavior is undefined
-    bRv = ::pthread_equal(ulGetId(), culId);
+    bRv = ::pthread_equal(ulGetId(), a_culId);
 #endif
 
     return bRv;
@@ -89,18 +89,18 @@ CxCurrentThread::bYield() {
 /*static*/
 bool
 CxCurrentThread::bSleep(
-    const ulong_t culMsec
+    const ulong_t a_culMsec
 ) {
     /*DEBUG*/// n/a
 
 #if xOS_ENV_WIN
-    (void)::Sleep(culMsec);
+    (void)::Sleep(a_culMsec);
 #elif xOS_ENV_UNIX
     timespec tsSleep  = {0};
     timespec tsRemain = {0};
 
-    tsSleep.tv_sec  = culMsec / 1000;
-    tsSleep.tv_nsec = (culMsec % 1000) * (1000 * 1000);
+    tsSleep.tv_sec  = a_culMsec / 1000;
+    tsSleep.tv_nsec = (a_culMsec % 1000) * (1000 * 1000);
 
     for ( ; ; ) {
         int iRv = ::nanosleep(&tsSleep, &tsRemain);

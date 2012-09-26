@@ -77,8 +77,6 @@
     ///< zero struct memory
 #define xBUFF_FREE(pvBuff)          { if (NULL != (pvBuff)) { std::free(pvBuff); (pvBuff) = NULL; }    }
     ///< free buffer memory
-#define xPTR_ASSIGN(ptr, value)     { if (NULL != (ptr)) { *(ptr) = (value); }                 }
-    ///< assign pointer
 #define xFCLOSE(f)                  { if (NULL != (f)) { std::fclose(f); (f) = NULL; } }
     ///< close file stream (FILE *)
 #define xRELEASE(p)                 { if (NULL != (p)) {(p)->Release(); (p) = NULL; } }
@@ -490,6 +488,23 @@ class CxMacros :
             }
         }
             ///< delete array by pointer
+
+
+
+        template<class T>
+        static inline
+        void
+        ptrAssignT(T *&pPtrT, const T &valueT) {
+            if (NULL != pPtrT) { 
+                *pPtrT = valueT;
+            }
+        }
+            ///< assign pointer
+
+        #define xPTR_ASSIGN(ptr, value)     { if (NULL != (ptr)) { *(ptr) = (value); }                 }
+
+
+
 
         template <typename ArrayT, const size_t cuiArraySize>
         static inline

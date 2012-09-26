@@ -22,11 +22,11 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxPin::CxPin(
-    const CxPkcs11  &cPkcs11,
-    const CxSession &cSession
+    const CxPkcs11  &a_cPkcs11,
+    const CxSession &a_cSession
 ) :
-    _m_pFunc   (cPkcs11.pGetFuncList()),
-    _m_hSession(cSession.hGetHandle())
+    _m_pFunc   (a_cPkcs11.pGetFuncList()),
+    _m_hSession(a_cSession.hGetHandle())
 {
 
 }
@@ -38,15 +38,15 @@ CxPin::~CxPin() {
 //---------------------------------------------------------------------------
 bool
 CxPin::bInitToken(
-    CK_SLOT_ID      slotID,    ///< ID of the token's slot
-    CK_UTF8CHAR_PTR pPin,      ///< the SO's initial PIN
-    CK_ULONG        ulPinLen,  ///< length in bytes of the PIN
-    CK_UTF8CHAR_PTR pLabel     ///< 32-byte token label (blank padded)
+    CK_SLOT_ID      a_slotID,    ///< ID of the token's slot
+    CK_UTF8CHAR_PTR a_pPin,      ///< the SO's initial PIN
+    CK_ULONG        a_ulPinLen,  ///< length in bytes of the PIN
+    CK_UTF8CHAR_PTR a_pLabel     ///< 32-byte token label (blank padded)
 )
 {
     /*DEBUG*/
 
-    CK_RV ulRv = _m_pFunc->C_InitToken(slotID, pPin, ulPinLen, pLabel);
+    CK_RV ulRv = _m_pFunc->C_InitToken(a_slotID, a_pPin, a_ulPinLen, a_pLabel);
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
@@ -54,13 +54,13 @@ CxPin::bInitToken(
 //---------------------------------------------------------------------------
 bool
 CxPin::bInitPIN(
-    CK_UTF8CHAR_PTR pPin,      ///< the normal user's PIN
-    CK_ULONG        ulPinLen   ///< length in bytes of the PIN
+    CK_UTF8CHAR_PTR a_pPin,      ///< the normal user's PIN
+    CK_ULONG        a_ulPinLen   ///< length in bytes of the PIN
 )
 {
     /*DEBUG*/
 
-    CK_RV ulRv = _m_pFunc->C_InitPIN(_m_hSession, pPin, ulPinLen);
+    CK_RV ulRv = _m_pFunc->C_InitPIN(_m_hSession, a_pPin, a_ulPinLen);
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;
@@ -68,15 +68,15 @@ CxPin::bInitPIN(
 //---------------------------------------------------------------------------
 bool
 CxPin::bSetPIN(
-    CK_UTF8CHAR_PTR pOldPin,   ///< the old PIN
-    CK_ULONG        ulOldLen,  ///< length of the old PIN
-    CK_UTF8CHAR_PTR pNewPin,   ///< the new PIN
-    CK_ULONG        ulNewLen   ///< length of the new PIN
+    CK_UTF8CHAR_PTR a_pOldPin,   ///< the old PIN
+    CK_ULONG        a_ulOldLen,  ///< length of the old PIN
+    CK_UTF8CHAR_PTR a_pNewPin,   ///< the new PIN
+    CK_ULONG        a_ulNewLen   ///< length of the new PIN
 )
 {
     /*DEBUG*/
 
-    CK_RV ulRv = _m_pFunc->C_SetPIN(_m_hSession, pOldPin, ulOldLen, pNewPin, ulNewLen);
+    CK_RV ulRv = _m_pFunc->C_SetPIN(_m_hSession, a_pOldPin, a_ulOldLen, a_pNewPin, a_ulNewLen);
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
 
     return true;

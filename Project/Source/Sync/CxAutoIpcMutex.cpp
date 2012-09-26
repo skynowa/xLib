@@ -18,12 +18,12 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxAutoIpcMutex::CxAutoIpcMutex(
-    CxIpcMutex              &mtMutex,
-    const std::tstring_t &csName
+    CxIpcMutex           &a_mtMutex,
+    const std::tstring_t &a_csName
 ) :
-    _m_mtMutex(mtMutex)
+    _m_mtMutex(a_mtMutex)
 {
-    bool bRv = _m_mtMutex.bCreate(csName);
+    bool bRv = _m_mtMutex.bCreate(a_csName);
     /*DEBUG*/xASSERT_DO(true == bRv, return);
 
     bRv = _m_mtMutex.bLock(xTIMEOUT_INFINITE);
