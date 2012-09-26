@@ -6,6 +6,8 @@
 
 #include <xLib/Net/CxTcpClient.h>
 
+#include <xLib/Common/CxMacros.h>
+
 
 xNAMESPACE_BEGIN(NxLib)
 
@@ -146,8 +148,9 @@ CxTcpClient::bGetTimeout(
     /*DEBUG*/// pliSec      - n/a
     /*DEBUG*/// pliMicroSec - n/a
 
-    CxMacros::ptrAssignT(a_pliSec,      _m_tvTimeout.tv_sec);
-    CxMacros::ptrAssignT(a_pliMicroSec, _m_tvTimeout.tv_usec);
+    // BUG: static_cast<long_t>( _m_tvTimeout.tv_sec  )
+    CxMacros::ptrAssignT(a_pliSec,      static_cast<long_t>( _m_tvTimeout.tv_sec  ));
+    CxMacros::ptrAssignT(a_pliMicroSec, static_cast<long_t>( _m_tvTimeout.tv_usec ));
 
     return true;
 }
