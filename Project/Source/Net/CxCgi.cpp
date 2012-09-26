@@ -919,7 +919,7 @@ CxCgiFormData::_bInit() {
                     uiPostSize = 0;
                 }
                 else {
-                    uiPostSize = CxString::lexical_cast<size_t>( _m_ccgCgi.Environment.sGetContentLength() );
+                    uiPostSize = CxString::string_cast<size_t>( _m_ccgCgi.Environment.sGetContentLength() );
                 }
                 /*DEBUG*/xASSERT_RET(0U            <  uiPostSize, false);
                 /*DEBUG*/xASSERT_RET(_m_cuiMaxData >= uiPostSize, false);  //secure

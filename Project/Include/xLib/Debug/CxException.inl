@@ -18,7 +18,7 @@ CxException::operator << (
     const T &cMessageT
 )
 {
-    _m_sMessage.append( CxString::lexical_cast(cMessageT) );
+    _m_sMessage.append( CxString::string_cast(cMessageT) );
 
     return *this;
 }

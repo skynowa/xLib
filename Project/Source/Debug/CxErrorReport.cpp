@@ -415,11 +415,11 @@ CxErrorReport::_bInitFormated() {
         xT("#  Thread id:       "), m_ulThreadId,
         xT("#  File size:       "), m_sFileSize.c_str(),
 
-        xT("#  Source file:     "), CxConsole().bSetTextColor( m_sSourceFile,                          CxConsole::fgWhite,   true, false, CxConsole::bgBlack, false ).c_str(),
-        xT("#  Source line:     "), CxConsole().bSetTextColor( CxString::lexical_cast(m_ulSourceLine), CxConsole::fgMagenta, true, true,  CxConsole::bgBlack, false ).c_str(),
-        xT("#  Function name:   "), CxConsole().bSetTextColor( m_sFunctionName,                        CxConsole::fgCyan,    true, false, CxConsole::bgBlack, false ).c_str(),
-        xT("#  Expression:      "), CxConsole().bSetTextColor( m_sExpression,                          CxConsole::fgYellow,  true, false, CxConsole::bgBlack, false ).c_str(),
-        xT("#  Last error:      "), CxConsole().bSetTextColor( m_sLastErrorStr,                        CxConsole::fgRed,     true, false, CxConsole::bgBlack, false ).c_str(),
+        xT("#  Source file:     "), CxConsole().bSetTextColor( m_sSourceFile,                         CxConsole::fgWhite,   true, false, CxConsole::bgBlack, false ).c_str(),
+        xT("#  Source line:     "), CxConsole().bSetTextColor( CxString::string_cast(m_ulSourceLine), CxConsole::fgMagenta, true, true,  CxConsole::bgBlack, false ).c_str(),
+        xT("#  Function name:   "), CxConsole().bSetTextColor( m_sFunctionName,                       CxConsole::fgCyan,    true, false, CxConsole::bgBlack, false ).c_str(),
+        xT("#  Expression:      "), CxConsole().bSetTextColor( m_sExpression,                         CxConsole::fgYellow,  true, false, CxConsole::bgBlack, false ).c_str(),
+        xT("#  Last error:      "), CxConsole().bSetTextColor( m_sLastErrorStr,                       CxConsole::fgRed,     true, false, CxConsole::bgBlack, false ).c_str(),
 
         xT("#  Current date:    "), m_sCurrentDate.c_str(),
         xT("#  Build date:      "), m_sBuildDate.c_str(),

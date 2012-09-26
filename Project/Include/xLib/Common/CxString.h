@@ -42,19 +42,19 @@ class CxString :
 {
     public:
         template<class T>
-        static std::tstring_t lexical_cast      (const T &cValueT);
+        static std::tstring_t string_cast       (const T &cValueT);
             ///< convert type to std::tstring_t
 
         template<class T>
-        static std::tstring_t lexical_cast      (const T &cValueT, const int ciBase);
+        static std::tstring_t string_cast       (const T &cValueT, const int ciBase);
             ///< convert type to std::tstring_t by base
 
         template<class T>
-        static T              lexical_cast      (const std::tstring_t &csStr);
+        static T              string_cast       (const std::tstring_t &csStr);
             ///< convert std::tstring_t to type
 
         template<class T>
-        static T              lexical_cast      (const std::tstring_t &csStr, const int ciBase);
+        static T              string_cast       (const std::tstring_t &csStr, const int ciBase);
             ///< convert std::tstring_t by base (8, 10, 16) to type
 
         static std::tstring_t sBoolToStr        (const bool cbBool);

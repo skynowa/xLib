@@ -794,7 +794,7 @@ CxTest_CxFile::bUnit1(
             xTEST_EQ(true, m_bRv);
 
             for (size_t i = 0; i < cullLinesNum; ++ i) {
-                m_bRv = F.bWriteLine( CxString::lexical_cast(i) );
+                m_bRv = F.bWriteLine( CxString::string_cast(i) );
                 xTEST_EQ(true, m_bRv);
             }
         }

@@ -247,7 +247,7 @@ CxCookiePv1::sToString() const {
 
     if (_m_liMaxAge >= 0) {
         sRv.append(xT("; Max-Age=\""));
-        sRv.append( CxString::lexical_cast(_m_liMaxAge) );
+        sRv.append( CxString::string_cast(_m_liMaxAge) );
         sRv.append(xT("\""));
     }
 
@@ -356,7 +356,7 @@ CxCookiePv1::bInit(
     _m_sComment  = msCookie[xT("Comment")];
     _m_sDomain   = msCookie[xT("Domain")];
     _m_sPath     = msCookie[xT("Path")];
-    _m_liMaxAge  = CxString::lexical_cast<longlong_t>( msCookie[xT("Max-Age")] );
+    _m_liMaxAge  = CxString::string_cast<longlong_t>( msCookie[xT("Max-Age")] );
     _m_bSecure   = ( msCookie.end() != msCookie.find(xT("Secure")) );
     _m_bHttpOnly = ( msCookie.end() != msCookie.find(xT("HttpOnly")) );
 

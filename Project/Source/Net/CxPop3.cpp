@@ -270,7 +270,7 @@ CxPop3::bTop(int iNum, int iLines, std::tstring_t &sBuff) {
 
     //-------------------------------------
     //[TOP 1 10\r\n]
-    std::tstring_t sTopCmd = "TOP " + CxString::lexical_cast(iNum) + " " + CxString::lexical_cast(iLines) + "\r\n";
+    std::tstring_t sTopCmd = "TOP " + CxString::string_cast(iNum) + " " + CxString::string_cast(iLines) + "\r\n";
 
     bool bRv = _bCommand(sTopCmd, "\r\n.\r\n", &_m_sRes);
     xCHECK_RET(false == bRv, false);
@@ -298,7 +298,7 @@ CxPop3::bRetriveRaw(int iNum, const std::tstring_t &csDirPath, const std::tstrin
 
     //-------------------------------------
     //[RETR 3\r\n]
-    const std::tstring_t sRetrCmd = "RETR " + CxString::lexical_cast(iNum) + "\r\n";
+    const std::tstring_t sRetrCmd = "RETR " + CxString::string_cast(iNum) + "\r\n";
 
     bool bRv = _bCommand(sRetrCmd, "\r\n.\r\n", &_m_sRes);
     xCHECK_RET(false == bRv, false);
@@ -354,7 +354,7 @@ CxPop3::bRetriveRawAndBackup(int iNum, const std::tstring_t &csDirPath, const st
 
     //-------------------------------------
     //[RETR 3\r\n]
-    const std::tstring_t sRetrCmd = "RETR " + CxString::lexical_cast(iNum) + "\r\n";
+    const std::tstring_t sRetrCmd = "RETR " + CxString::string_cast(iNum) + "\r\n";
 
     bool bRv = _bCommand(sRetrCmd, "\r\n.\r\n", &_m_sRes);
     xCHECK_RET(false == bRv, false);
@@ -423,7 +423,7 @@ CxPop3::bRetrieveHeader(int iNum, CxMimeHeader &mhMimeHeader) {
 
     //-------------------------------------
     //[TOP 1 0\r\n]
-    std::tstring_t sTopCmd = "TOP " + CxString::lexical_cast(iNum) + " " + "0" + "\r\n";
+    std::tstring_t sTopCmd = "TOP " + CxString::string_cast(iNum) + " " + "0" + "\r\n";
 
     bool bRv = _bCommand(sTopCmd, "\r\n.\r\n", &_m_sRes);
     xCHECK_RET(false == bRv, false);
@@ -456,7 +456,7 @@ CxPop3::bDelete(int iNum) {
 
     //-------------------------------------
     //[DELE 2\r\n]
-    const std::tstring_t sDeleCmd = "DELE " + CxString::lexical_cast(iNum) + "\r\n";
+    const std::tstring_t sDeleCmd = "DELE " + CxString::string_cast(iNum) + "\r\n";
 
     bool bRv = _bCommand(sDeleCmd, "\r\n", &_m_sRes);
     xCHECK_RET(false == bRv, false);

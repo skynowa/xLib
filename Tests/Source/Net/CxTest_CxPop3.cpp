@@ -151,7 +151,7 @@ CxTest_CxPop3::bUnit(
     for (ulong_t i = 1; i <= ulSum; i ++) {
         CxDir::bCreateForce(csDirPath);
 
-        m_bRv = objPop3.bRetriveRaw(i, csDirPath, csFileName + xT("_") + CxString::lexical_cast(i) + xT(".eml"));
+        m_bRv = objPop3.bRetriveRaw(i, csDirPath, csFileName + xT("_") + CxString::string_cast(i) + xT(".eml"));
         xTEST_EQ(true, m_bRv);
 
         /*LOG*/printf("bRetriveRaw %lu\n", i);
