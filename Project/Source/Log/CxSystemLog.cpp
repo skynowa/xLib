@@ -103,7 +103,7 @@ CxSystemLog::bWrite(
     BOOL bRv = ::ReportEvent(_m_SysLog, a_lvLevel, 0, 0UL, NULL, 1, 0UL, &pcszStrings, NULL);
     /*DEBUG*/xASSERT_RET(FALSE != bRv, false);
 #elif xOS_ENV_UNIX
-    (void)::syslog(lvLevel, xT("%s"), sMessage.c_str());
+    (void)::syslog(a_lvLevel, xT("%s"), sMessage.c_str());
 #endif
 
     return true;

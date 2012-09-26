@@ -93,7 +93,7 @@ CxProcess::bCreate(
     if (0L == liPid) {
         // TODO: csFilePath is executable
 
-        int iRv = ::execlp(csFilePath.c_str(), a_csFilePath.c_str(), a_sCmdLine.c_str(), static_cast<const tchar_t *>( NULL ));
+        int iRv = ::execlp(a_csFilePath.c_str(), a_csFilePath.c_str(), sCmdLine.c_str(), static_cast<const tchar_t *>( NULL ));
         /*DEBUG*/xASSERT_RET(- 1 != iRv, false);
 
         (void)::_exit(EXIT_SUCCESS);  /* not exit() */

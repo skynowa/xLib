@@ -134,7 +134,7 @@ CxThread::bCreate(
     iRv = ::pthread_attr_setdetachstate(&paAttributes, PTHREAD_CREATE_JOINABLE); //PTHREAD_CREATE_DETACHED
     /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
 
-    if (0 != cuiStackSize) {
+    if (0 != a_cuiStackSize) {
         //TODO: size_t size = PTHREAD_STACK_MIN + 0x4000;
         iRv = ::pthread_attr_setstacksize(&paAttributes, a_cuiStackSize);
         /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);

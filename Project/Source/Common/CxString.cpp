@@ -350,7 +350,7 @@ CxString::sToUpperCase(
     ulong_t ulRv = ::CharUpperBuff(static_cast<LPTSTR>( &sRv[0] ), a_uiLength);
     /*DEBUG*/xASSERT_RET(a_uiLength == ulRv, std::tstring_t());
 #elif xOS_ENV_UNIX
-    std::transform(sRv.begin(), sRv.begin() + uiLength, sRv.begin(), CxChar::chToUpper);
+    std::transform(sRv.begin(), sRv.begin() + a_uiLength, sRv.begin(), CxChar::chToUpper);
 #endif
 
     return sRv;
