@@ -18,7 +18,7 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 ulong_t
 CxProcessInfo::ulGetCpuUsage(
     const CxProcess::id_t &a_cidId
@@ -35,7 +35,7 @@ CxProcessInfo::ulGetCpuUsage(
     return ulRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 ulong_t
 CxProcessInfo::ulGetRamUsage(
     const CxProcess::id_t &a_cidId
@@ -52,7 +52,7 @@ CxProcessInfo::ulGetRamUsage(
     return ulRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 ulong_t
 CxProcessInfo::ulGetIOBytes(
     const CxProcess::id_t &a_cidId
@@ -99,7 +99,7 @@ CxProcessInfo::ulGetIOBytes(
     return ulRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxProcessInfo::sGetExeName(
     const CxProcess::id_t &a_cidId
@@ -157,7 +157,7 @@ CxProcessInfo::sGetExeName(
     return sRv;
 }
 //----------------------------------------------------------------------------------------------------
-/*static*/
+/* static */
 ulong_t
 CxProcessInfo::ulGetParentId(
     const CxProcess::id_t &a_cidId
@@ -178,7 +178,7 @@ CxProcessInfo::ulGetParentId(
     return ulRv;
 }
 //----------------------------------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxProcessInfo::sGetArgs(
     const CxProcess::id_t &a_cidId
@@ -229,7 +229,7 @@ CxProcessInfo::CxProcessInfo() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxProcessInfo::~CxProcessInfo() {
 
 }

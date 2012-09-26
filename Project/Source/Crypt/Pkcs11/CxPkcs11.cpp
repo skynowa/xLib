@@ -30,7 +30,7 @@ CxPkcs11::CxPkcs11() :
     (void)bInitialize();
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxPkcs11::~CxPkcs11() {
     /*DEBUG*/
 

@@ -16,7 +16,7 @@ CxTest_CxRandom::~CxTest_CxRandom() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxRandom::bUnit(
     const ulonglong_t cullCaseLoops

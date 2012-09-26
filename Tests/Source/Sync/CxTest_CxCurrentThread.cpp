@@ -18,7 +18,7 @@ CxTest_CxCurrentThread::~CxTest_CxCurrentThread() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxCurrentThread::bUnit(
     const ulonglong_t cullCaseLoops

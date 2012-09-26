@@ -18,7 +18,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 template<class T>
-/*static*/
+/* static */
 std::tstring_t
 CxType::sGetRawName(
     const T &cObjectT
@@ -38,7 +38,7 @@ CxType::sGetRawName(
 }
 //---------------------------------------------------------------------------
 template<class T>
-/*static*/
+/* static */
 std::tstring_t
 CxType::sGetName(
     const T &cObjectT
@@ -69,7 +69,7 @@ CxType::sGetName(
 }
 //---------------------------------------------------------------------------
 template<class T1, class T2>
-/*static*/
+/* static */
 bool
 CxType::bIsEquals(
     const T1 &cObjectT1,

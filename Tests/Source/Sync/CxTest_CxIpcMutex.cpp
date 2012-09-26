@@ -16,7 +16,7 @@ CxTest_CxIpcMutex::~CxTest_CxIpcMutex() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxIpcMutex::bUnit(
     const ulonglong_t cullCaseLoops

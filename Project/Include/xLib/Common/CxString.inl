@@ -109,7 +109,7 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 template<class T>
 inline std::tstring_t
 CxString::string_cast(
@@ -136,7 +136,7 @@ CxString::string_cast(
     return sRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 template<class T>
 inline std::tstring_t
 CxString::string_cast(
@@ -165,7 +165,7 @@ CxString::string_cast(
     return sRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 template<class T>
 inline T
 CxString::string_cast(
@@ -190,7 +190,7 @@ CxString::string_cast(
     return ResT;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 template<class T>
 inline T
 CxString::string_cast(

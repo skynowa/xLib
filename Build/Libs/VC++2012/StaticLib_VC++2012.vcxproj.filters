@@ -483,6 +483,9 @@
     <None Include="..\..\..\Project\Include\xLib\Sync\CxThreadPool.inl">
       <Filter>xLib\Sync</Filter>
     </None>
+    <None Include="..\..\..\Project\Include\xLib\Common\CxMacros.inl">
+      <Filter>xLib\Common</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Project\Source\Common\Win\CxCom.cpp">

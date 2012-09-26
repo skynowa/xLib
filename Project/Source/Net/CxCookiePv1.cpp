@@ -56,7 +56,7 @@ CxCookiePv1::CxCookiePv1(
     /*DEBUG*/xASSERT_DO(true == bRv, return);
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxCookiePv1::~CxCookiePv1() {
     /*DEBUG*/
 

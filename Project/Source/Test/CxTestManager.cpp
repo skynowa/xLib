@@ -29,7 +29,7 @@ CxTestManager::CxTestManager(
     xCHECK_DO(_m_cbIsUseTracing, xTRACE (xT("\n")));
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxTestManager::~CxTestManager() {
     xFOREACH(container_t, it, _m_ctnTests) {
         /*CxMacros::*/xPTR_DELETE(*it);

@@ -30,7 +30,7 @@ CxSession::CxSession(
     /*DEBUG*/xASSERT_DO(NULL == _m_hSession, return);
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxSession::~CxSession() {
 
 }

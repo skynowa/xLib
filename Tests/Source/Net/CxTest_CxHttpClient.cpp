@@ -16,7 +16,7 @@ CxTest_CxHttpClient::~CxTest_CxHttpClient() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxHttpClient::bUnit(
     const ulonglong_t cullCaseLoops

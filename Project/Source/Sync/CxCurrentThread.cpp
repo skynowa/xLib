@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxCurrentThread::bIsCurrent(
     const CxThread::id_t &a_culId
@@ -35,7 +35,7 @@ CxCurrentThread::bIsCurrent(
     return bRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 CxThread::id_t
 CxCurrentThread::ulGetId() {
     /*DEBUG*/// n/a
@@ -53,7 +53,7 @@ CxCurrentThread::ulGetId() {
     return ulRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 CxThread::handle_t
 CxCurrentThread::hGetHandle() {
     /*DEBUG*/// n/a
@@ -71,7 +71,7 @@ CxCurrentThread::hGetHandle() {
     return hRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxCurrentThread::bYield() {
     /*DEBUG*/// n/a
@@ -86,7 +86,7 @@ CxCurrentThread::bYield() {
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxCurrentThread::bSleep(
     const ulong_t a_culMsec
@@ -126,7 +126,7 @@ CxCurrentThread::CxCurrentThread() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxCurrentThread::~CxCurrentThread() {
 
 }

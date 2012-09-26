@@ -16,7 +16,7 @@ CxTest_CxLocale::~CxTest_CxLocale() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxLocale::bUnit(
     const ulonglong_t cullCaseLoops

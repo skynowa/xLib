@@ -33,7 +33,7 @@ CxBlowfish::CxBlowfish() {
     xBUFF_ZERO(_m_ucIvec);
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxBlowfish::~CxBlowfish() {
     /*SECURE*/xSTRUCT_ZERO(_m_bfKey);
     /*SECURE*/xBUFF_ZERO(_m_ucIvec);
@@ -113,7 +113,7 @@ CxBlowfish::bSetFileKey(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 size_t
 CxBlowfish::uiGetMaxKeySize() {
     return MAX_KEY_SIZE;

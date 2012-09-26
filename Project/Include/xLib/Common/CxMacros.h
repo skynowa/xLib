@@ -470,131 +470,58 @@ class CxMacros :
 {
     public:
         template<class T>
-        static inline
-        void
-        ptrDeleteT(T *&pPtrT) {
-            if (NULL != pPtrT) {
-                delete pPtrT; pPtrT = NULL;
-            }
-        }
+        static inline void      ptrDeleteT         (T * &pPtrT);
             ///< delete object by pointer
 
         template<class T>
-        static inline
-        void
-        arrayDeleteT(T *&pPtrT) {
-            if (NULL != pPtrT) {
-                delete [] pPtrT;  pPtrT = NULL;
-            }
-        }
+        static inline void      arrayDeleteT       (T * &pPtrT);
             ///< delete array by pointer
 
-
-
         template<class T>
-        static inline
-        void
-        ptrAssignT(T *&pPtrT, const T &valueT) {
-            if (NULL != pPtrT) { 
-                *pPtrT = valueT;
-            }
-        }
+        static inline void      ptrAssignT         (T * &pPtrT, const T &valueT);
             ///< assign pointer
 
-        #define xPTR_ASSIGN(ptr, value)     { if (NULL != (ptr)) { *(ptr) = (value); }                 }
-
-
-
-
         template <typename ArrayT, const size_t cuiArraySize>
-        static inline
-        size_t
-        arraySizeT(const ArrayT (&)[cuiArraySize]) {
-            return cuiArraySize;
-        }
+        static inline size_t    arraySizeT         (const ArrayT (&)[cuiArraySize]);
             ///< get array size
 
         template <class T>
-        static inline
-        const T &
-        maxT(const T &x , const T &y) {
-            return (x > y) ? x : y;
-        }
+        static inline const T & maxT               (const T &x , const T &y);
             ///< get max value
 
         template <class T>
-        static inline
-        const T &
-        minT(const T &x , const T &y) {
-            return (x < y) ? x : y;
-        }
+        static inline const T & minT               (const T &x , const T &y);
             ///< get min value
 
         template <class T>
-        static inline
-        void
-        swapT(T &a, T &b) {
-            T temp = a;
-            a = b;
-            b = temp;
-        }
+        static inline void      swapT              (T &a, T &b);
             ///< swap variables
 
-        //TODO: numericLimitsCheckT
+        // TODO: numericLimitsCheckT
         template <class T>
-        static inline
-        bool
-        numericLimitsCheckT(const T &x) {
-            bool bRv = ((std::numeric_limits<T>::min)() <= x) &&
-                       ((std::numeric_limits<T>::max)() >= x);
-
-            return bRv;
-        }
+        static inline bool      numericLimitsCheckT(const T &x);
             ///< check numeric limites for type
 
         template <class ToT, class FromT>
-        static inline
-        ToT
-        reinterpretCastT(const FromT &pPtrT) {
-            void *pvVoidCast = static_cast<void *>( pPtrT );
-            /////*DEBUG*/xASSERT(NULL != pvVoidCast);
-
-            ToT ResT = static_cast<ToT>( pvVoidCast );
-
-            return ResT;
-        }
+        static inline ToT       reinterpretCastT   (const FromT &pPtrT);
             ///< allows any pointer to be converted into any other pointer type
 
-        static inline
-        double
-        round(const double &cdValue) {
-            return ::floor(cdValue + 0.5);
-        }
+        static inline double    round              (const double &cdValue);
             ///< round double value to the integer part
 
         template <class T1, class T2>
-        static inline
-        double
-        safeDivT(const T1 &cVal1T, const T2 &cVal2T) {
-            double dRv = 0.0;
-
-            if (static_cast<T2>( 0 ) == cVal2T) {
-                dRv = 0.0;
-            } else {
-                dRv = static_cast<double>( cVal1T ) / static_cast<double>( cVal2T );
-            }
-
-            return dRv;
-        }
+        static inline double    safeDivT           (const T1 &cVal1T, const T2 &cVal2T);
             ///< safe division
 
     private:
-                CxMacros();
-                    ///< constructor
-               ~CxMacros();
-                    ///< destructor
+                                CxMacros           ();
+            ///< constructor
+                               ~CxMacros           ();
+            ///< destructor
 };
 
 xNAMESPACE_END(NxLib)
+//---------------------------------------------------------------------------
+#include "CxMacros.inl"
 //---------------------------------------------------------------------------
 #endif //xLib_Common_CxMacrosH

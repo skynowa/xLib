@@ -21,7 +21,7 @@ CxException::CxException() :
     /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxException::~CxException() {
     /*DEBUG*/// n/a
 }

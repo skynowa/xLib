@@ -31,7 +31,7 @@ CxBackuper::CxBackuper(
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxBackuper::~CxBackuper() {
 
 }

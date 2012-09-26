@@ -16,7 +16,7 @@ CxTest_bGetUsbInfo::~CxTest_bGetUsbInfo() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_bGetUsbInfo::bUnit(
     const ulonglong_t cullCaseLoops

@@ -19,7 +19,7 @@ CxTest_CxTcpServer::~CxTest_CxTcpServer() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxTcpServer::bUnit(
     const ulonglong_t cullCaseLoops

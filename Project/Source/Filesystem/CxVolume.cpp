@@ -27,7 +27,7 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxVolume::bIsValid(
     const std::tstring_t &csVolumePath
@@ -46,7 +46,7 @@ CxVolume::bIsValid(
     return true;
 }
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxVolume::bIsReady(
     const std::tstring_t &csVolumePath
@@ -88,7 +88,7 @@ CxVolume::bIsReady(
     return bRv;
 }
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxVolume::bIsEmpty(
     const std::tstring_t &csVolumePath
@@ -99,7 +99,7 @@ CxVolume::bIsEmpty(
     return CxDir::bIsEmpty(csVolumePath, CxConst::xMASK_FILES_ALL);
 }
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxVolume::bGetSpace(
     const std::tstring_t &csDirPath,
@@ -134,24 +134,24 @@ CxVolume::bGetSpace(
     BOOL blRes = ::GetDiskFreeSpaceEx(_sDirPath.c_str(), &ullAvailable, &ullTotal, &ullFree);
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 
-    xPTR_ASSIGN(pullAvailable, ullAvailable.QuadPart);
-    xPTR_ASSIGN(pullTotal,     ullTotal.QuadPart);
-    xPTR_ASSIGN(pullFree,      ullFree.QuadPart);
+    CxMacros::ptrAssignT(pullAvailable, ullAvailable.QuadPart);
+    CxMacros::ptrAssignT(pullTotal,     ullTotal.QuadPart);
+    CxMacros::ptrAssignT(pullFree,      ullFree.QuadPart);
 #elif xOS_ENV_UNIX
     struct xSTATVFS stfInfo = {0};
 
     int iRv = ::xSTATVFS(_sDirPath.c_str(), &stfInfo);
     /*DEBUG*/xASSERT_MSG_RET(- 1 != iRv, _sDirPath, false);
 
-    xPTR_ASSIGN(pullAvailable, stfInfo.f_bavail * stfInfo.xSTATVFS_F_FRSIZE);
-    xPTR_ASSIGN(pullTotal,     stfInfo.f_blocks * stfInfo.xSTATVFS_F_FRSIZE);
-    xPTR_ASSIGN(pullFree,      stfInfo.f_bfree  * stfInfo.xSTATVFS_F_FRSIZE);
+    CxMacros::ptrAssignT(pullAvailable, stfInfo.f_bavail * stfInfo.xSTATVFS_F_FRSIZE);
+    CxMacros::ptrAssignT(pullTotal,     stfInfo.f_blocks * stfInfo.xSTATVFS_F_FRSIZE);
+    CxMacros::ptrAssignT(pullFree,      stfInfo.f_bfree  * stfInfo.xSTATVFS_F_FRSIZE);
 #endif
 
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxVolume::bMount(
     const std::tstring_t &csSourcePath, ///< source path
@@ -189,7 +189,7 @@ CxVolume::bMount(
     return true;
 }
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxVolume::bUnMount(
     const std::tstring_t &csSourcePath, ///< source path
@@ -224,7 +224,7 @@ CxVolume::bUnMount(
     return true;
 }
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxVolume::bGetPaths(
     std::vec_tstring_t *pvsVolumePaths
@@ -282,7 +282,7 @@ CxVolume::bGetPaths(
     return true;
 }
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxVolume::sGetLabel(
     const std::tstring_t &csVolumePath
@@ -325,7 +325,7 @@ CxVolume::sGetLabel(
     return sRv;
 }
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 CxVolume::ExType
 CxVolume::dtGetType(
     const std::tstring_t &csVolumePath
@@ -381,7 +381,7 @@ CxVolume::CxVolume() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxVolume::~CxVolume() {
 
 }

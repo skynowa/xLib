@@ -16,7 +16,7 @@ CxTest_CxDateTime::~CxTest_CxDateTime() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxDateTime::bUnit(
     const ulonglong_t cullCaseLoops

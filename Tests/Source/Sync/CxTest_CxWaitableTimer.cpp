@@ -16,7 +16,7 @@ CxTest_CxWaitableTimer::~CxTest_CxWaitableTimer() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxWaitableTimer::bUnit(
     const ulonglong_t cullCaseLoops

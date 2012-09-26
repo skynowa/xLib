@@ -26,7 +26,7 @@ xNAMESPACE_BEGIN(NxLib)
 //      http://libsylph.sourceforge.net/wiki/Full_path_to_binary
 //      http://h21007.www2.hp.com/portal/site/dspp/menuitem.863c3e4cbcdc3f3515b49c108973a801?ciid=88086d6e1de021106d6e1de02110275d6e10RCRD
 
-/*static*/
+/* static */
 std::tstring_t
 CxPath::sGetExe() {
     std::tstring_t sRv;
@@ -95,7 +95,7 @@ CxPath::sGetExe() {
     static void vFunction() { ; }
 #endif
 
-/*static*/
+/* static */
 std::tstring_t
 CxPath::sGetDll() {
     /*DEBUG*/
@@ -122,7 +122,7 @@ CxPath::sGetDll() {
     return sRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxPath::sGetExeDir() {
     return sGetDir(sGetExe());
@@ -130,7 +130,7 @@ CxPath::sGetExeDir() {
 //---------------------------------------------------------------------------
 #if xOS_ENV_WIN
 
-/*static*/
+/* static */
 std::tstring_t
 CxPath::sGetDrive(
     const std::tstring_t &csFilePath
@@ -147,7 +147,7 @@ CxPath::sGetDrive(
 
 #endif
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxPath::sGetDir(
     const std::tstring_t &csFilePath
@@ -161,7 +161,7 @@ CxPath::sGetDir(
     return csFilePath.substr(0, uiSlashPos);
 }
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxPath::sGetDirName(
     const std::tstring_t &csFilePath
@@ -180,7 +180,7 @@ CxPath::sGetDirName(
     }
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxPath::sGetFileName(
     const std::tstring_t &csFilePath
@@ -194,7 +194,7 @@ CxPath::sGetFileName(
     return csFilePath.substr(uiSlashPos + CxConst::xSLASH.size(), csFilePath.size());
 }
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxPath::sGetFileBaseName(
     const std::tstring_t &csFilePath
@@ -208,7 +208,7 @@ CxPath::sGetFileBaseName(
     return CxString::sCut(csFilePath, uiSlashPos + CxConst::xSLASH.size(), uiDotPos);
 }
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxPath::sGetExt(
     const std::tstring_t &csFilePath
@@ -226,7 +226,7 @@ CxPath::sGetExt(
     return csFilePath.substr(uiDotPos + CxConst::xDOT.size());
 }
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxPath::sGetStandartExt(
     const ExStandartExt cseFileExt
@@ -256,7 +256,7 @@ CxPath::sGetStandartExt(
 //---------------------------------------------------------------------------
 #if xOS_ENV_WIN
 
-/*static*/
+/* static */
 std::tstring_t
 CxPath::sSetDrive(
     const std::tstring_t &csFilePath,
@@ -279,7 +279,7 @@ CxPath::sSetDrive(
 
 #endif
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxPath::sSetDir(
     const std::tstring_t &csFilePath,
@@ -300,7 +300,7 @@ CxPath::sSetDir(
     return sRv.replace(uiPos, sDir.size(), sSlashRemove(csDirPath));
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxPath::sSetFileName(
     const std::tstring_t &csFilePath,
@@ -321,7 +321,7 @@ CxPath::sSetFileName(
     return sRv.replace(uiPos, sFullName.size(), csFullName);
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxPath::sSetFileBaseName(
     const std::tstring_t &csFilePath,
@@ -342,7 +342,7 @@ CxPath::sSetFileBaseName(
     return sRv.replace(uiPos, sName.size(), csName);
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxPath::sSetExt(
     const std::tstring_t &csFilePath,
@@ -358,7 +358,7 @@ CxPath::sSetExt(
 
 
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxPath::sRemoveExt(
     const std::tstring_t &csFilePath
@@ -371,7 +371,7 @@ CxPath::sRemoveExt(
     return csFilePath.substr(0, uiDotPos);
 }
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxPath::sRemoveExtIf(
     const std::tstring_t &csFilePath,
@@ -390,7 +390,7 @@ CxPath::sRemoveExtIf(
 }
 //---------------------------------------------------------------------------
 //TODO: bIsValid
-/*static*/
+/* static */
 bool
 CxPath::bIsValid(
     const std::tstring_t &csFilePath
@@ -412,7 +412,7 @@ CxPath::bIsValid(
 }
 //---------------------------------------------------------------------------
 //TODO: bIsNameValid
-/*static*/
+/* static */
 bool
 CxPath::bIsNameValid(
     const std::tstring_t &csFilePath
@@ -437,7 +437,7 @@ CxPath::bIsNameValid(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxPath::bIsAbsolute(
     const std::tstring_t &csFilePath
@@ -456,7 +456,7 @@ CxPath::bIsAbsolute(
     return false;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxPath::sSetValidName(
     const std::tstring_t &csFileName
@@ -525,7 +525,7 @@ CxPath::sSetValidName(
     return sRv;
 }
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxPath::sToWin(
     const std::tstring_t &csFilePath,
@@ -548,7 +548,7 @@ CxPath::sToWin(
     return sRv;
 }
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxPath::sToUnix(
     const std::tstring_t &csFilePath,
@@ -571,7 +571,7 @@ CxPath::sToUnix(
     return sRv;
 }
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxPath::sToCurrentOs(
     const std::tstring_t &csFilePath,
@@ -598,7 +598,7 @@ CxPath::sToCurrentOs(
     return sRv;
 }
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxPath::sGetAbsolute(
     const std::tstring_t &csFilePath
@@ -639,7 +639,7 @@ CxPath::sGetAbsolute(
     return sRv;
 }
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxPath::sGetShortName(
     const std::tstring_t &csFileName,
@@ -673,7 +673,7 @@ CxPath::sGetShortName(
     return sRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxPath::sGetShort(
     const std::tstring_t &csFilePath,
@@ -733,7 +733,7 @@ CxPath::sGetShort(
     return sRv;
 }
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxPath::sSlashAppend(
     const std::tstring_t &csDirPath
@@ -744,7 +744,7 @@ CxPath::sSlashAppend(
     return CxString::sTrimRightChars(csDirPath, CxConst::xSLASH).append(CxConst::xSLASH);
 }
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxPath::sSlashRemove(
     const std::tstring_t &csDirPath
@@ -755,7 +755,7 @@ CxPath::sSlashRemove(
     return CxString::sTrimRightChars(csDirPath, CxConst::xSLASH);
 }
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 size_t
 CxPath::uiGetMaxSize() {
     /*DEBUG*/
@@ -799,7 +799,7 @@ CxPath::uiGetMaxSize() {
     return uiRes;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 size_t
 CxPath::uiGetNameMaxSize() {
     /*DEBUG*/
@@ -844,7 +844,7 @@ CxPath::uiGetNameMaxSize() {
 //---------------------------------------------------------------------------
 #if xOS_ENV_UNIX
 
-/*static*/
+/* static */
 std::tstring_t
 CxPath::sGetProcValue(
     const std::tstring_t &csProcPath,   ///< file path to proc-file
@@ -910,7 +910,7 @@ CxPath::CxPath() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxPath::~CxPath() {
 
 }

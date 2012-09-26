@@ -37,7 +37,7 @@ CxFileLog::CxFileLog(
     /*DEBUG*/xASSERT_DO(lsLimitSize >  a_culMaxFileSizeBytes, return);
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxFileLog::~CxFileLog() {
 
 }

@@ -50,7 +50,7 @@ CxStackTrace::CxStackTrace(
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxStackTrace::~CxStackTrace() {
 
 }
@@ -337,7 +337,7 @@ CxStackTrace::_sFormat(
 //---------------------------------------------------------------------------
 #if xOS_ENV_UNIX
 
-/*static*/
+/* static */
 bool
 CxStackTrace::_bAddr2Line(
     const void     *a_pvSymbolAddress,

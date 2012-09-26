@@ -16,7 +16,7 @@ CxTest_CxDir::~CxTest_CxDir() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxDir::bUnit(
     const ulonglong_t cullCaseLoops

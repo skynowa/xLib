@@ -54,7 +54,7 @@ CxThread::CxThread(
 {
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxThread::~CxThread() {
     /*DEBUG*/
 
@@ -550,9 +550,9 @@ CxThread::bMessageWaitQueue(
         for (size_t i = 0; i < a_cvuiMsg.size(); ++ i) {
             xCHECK_DO(a_cvuiMsg.at(i) != msgMsg.message, continue);
 
-            xPTR_ASSIGN(a_puiMsg,    msgMsg.message                      );
-            xPTR_ASSIGN(a_puiParam1, static_cast<uint_t>( msgMsg.wParam ));
-            xPTR_ASSIGN(a_pliParam2, static_cast<long_t>( msgMsg.lParam ));
+            CxMacros::ptrAssignT(a_puiMsg,    msgMsg.message                      );
+            CxMacros::ptrAssignT(a_puiParam1, static_cast<uint_t>( msgMsg.wParam ));
+            CxMacros::ptrAssignT(a_pliParam2, static_cast<long_t>( msgMsg.lParam ));
 
             return true;
         }
@@ -571,7 +571,7 @@ CxThread::bMessageWaitQueue(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 int
 CxThread::_iGetPriorityMin() {
     int iRv = - 1;
@@ -586,7 +586,7 @@ CxThread::_iGetPriorityMin() {
     return iRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 int
 CxThread::_iGetPriorityMax() {
     int iRv = - 1;
@@ -840,7 +840,7 @@ CxThread::ulGetCpuIdeal() const {
     return ulRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 ulong_t
 CxThread::ulGetCpuCount() {
     ulong_t ulRv = CxSystemInfo::ulGetNumOfCpus();
@@ -974,7 +974,7 @@ CxThread::bSetDebugName(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 CxThread::handle_t
 CxThread::hOpen(
     const ulong_t &a_culAccess,
@@ -1005,7 +1005,7 @@ CxThread::hOpen(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 uint_t
 CxThread::uiOnRun(
     void *a_pvParam
@@ -1067,7 +1067,7 @@ CxThread::bIsTimeToExit() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 CxThread::exit_status_t xSTDCALL
 CxThread::_s_uiJobEntry(
     void *pvParam

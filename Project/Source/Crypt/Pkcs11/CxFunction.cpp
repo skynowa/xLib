@@ -31,7 +31,7 @@ CxFunction::CxFunction(
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxFunction::~CxFunction() {
 
 }

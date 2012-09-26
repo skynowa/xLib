@@ -16,7 +16,7 @@ CxTest_CxCurrentProcess::~CxTest_CxCurrentProcess() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxCurrentProcess::bUnit(
     const ulonglong_t cullCaseLoops

@@ -21,7 +21,7 @@ CxSharedMemory::CxSharedMemory() {
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxSharedMemory
-/*virtual*/
+/* virtual */
 CxSharedMemory::~CxSharedMemory() {
 
 }

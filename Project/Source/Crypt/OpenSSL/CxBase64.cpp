@@ -28,7 +28,7 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //----------------------------------------------------------------------------------------------------
-/*static*/
+/* static */
 std::string
 CxBase64::sEncode(
     const std::string &a_csStr
@@ -66,7 +66,7 @@ CxBase64::sEncode(
     return sRv;
 }
 //----------------------------------------------------------------------------------------------------
-/*static*/
+/* static */
 std::string
 CxBase64::sDecode(
     const std::string &a_csStr
@@ -103,7 +103,7 @@ CxBase64::sDecode(
     return sRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxBase64::bIsCharValid(
     const char a_cchChar
@@ -128,7 +128,7 @@ CxBase64::CxBase64() {
     /*DEBUG*/
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxBase64::~CxBase64() {
     /*DEBUG*/
 }

@@ -32,7 +32,7 @@ CxTest_CxSingleton::~CxTest_CxSingleton() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxSingleton::bUnit(
     const ulonglong_t cullCaseLoops

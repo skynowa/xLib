@@ -33,7 +33,7 @@ CxCgi::CxCgi(
 {
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxCgi::~CxCgi() {
 
 }
@@ -57,7 +57,7 @@ CxCgi::sGetDump()  const{
     return sRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxCgi::bRedirect(
     const std::tstring_t &a_csUrl
@@ -75,7 +75,7 @@ CxCgi::bRedirect(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxCgi::bPageShow(
     const std::tstring_t &a_csFilePath
@@ -106,7 +106,7 @@ namespace {
 }
 //---------------------------------------------------------------------------
 //TODO: bUriEncode
-/*static*/
+/* static */
 bool
 CxCgi::bUriEncode(
     const std::tstring_t &a_csUri,
@@ -144,7 +144,7 @@ CxCgi::bUriEncode(
 }
 //---------------------------------------------------------------------------
 //TODO: bUriDecode ()
-/*static*/
+/* static */
 bool
 CxCgi::bUriDecode(
     const std::tstring_t &a_csUri,
@@ -368,7 +368,7 @@ CxCgiEnvironment::CxCgiEnvironment(
     _bInit();
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxCgiEnvironment::~CxCgiEnvironment() {
 
 }
@@ -748,7 +748,7 @@ CxCgiCookies::CxCgiCookies(
     _bInit();
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxCgiCookies::~CxCgiCookies() {
     xFOREACH(TCookies, it, Items) {
         xPTR_DELETE(*it);
@@ -859,7 +859,7 @@ CxCgiFormData::CxCgiFormData(
     _bInit();
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxCgiFormData::~CxCgiFormData() {
 
 }

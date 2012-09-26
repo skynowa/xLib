@@ -16,7 +16,7 @@ CxTest_CxSemaphore::~CxTest_CxSemaphore() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxSemaphore::bUnit(
     const ulonglong_t cullBlockLoops

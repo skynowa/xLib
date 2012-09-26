@@ -16,7 +16,7 @@ CxTest_CxPkcs11::~CxTest_CxPkcs11() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxPkcs11::bUnit(
     const ulonglong_t cullCaseLoops

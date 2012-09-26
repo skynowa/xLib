@@ -27,7 +27,7 @@ CxMimeHeader::CxMimeHeader() :
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxMimeHeader
-/*virtual*/
+/* virtual */
 CxMimeHeader::~CxMimeHeader () {
 
 }
@@ -248,7 +248,7 @@ CxMimeHeader::bSaveToFile(
 }
 //---------------------------------------------------------------------------
 //TODO: sGenerateMessageID (������� Message-ID ��� "<", ">")
-/*static*/
+/* static */
 std::tstring_t
 CxMimeHeader::sGenerateMessageID() {
     std::tstring_t sRv;

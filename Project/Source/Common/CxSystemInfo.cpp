@@ -24,7 +24,7 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 CxSystemInfo::ExOsType
 CxSystemInfo::osGetOS() {
     ExOsType otRes = otUnknown;
@@ -93,7 +93,7 @@ CxSystemInfo::osGetOS() {
     return otRes;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxSystemInfo::sFormatOsType(
     const ExOsType a_otOsType
@@ -147,7 +147,7 @@ CxSystemInfo::sFormatOsType(
     return sRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 CxSystemInfo::ExOsArch
 CxSystemInfo::oaGetOsArch() {
     ExOsArch oaRes = oaUnknown;
@@ -210,7 +210,7 @@ CxSystemInfo::oaGetOsArch() {
     return oaRes;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxSystemInfo::sFormatOsArch(
     const ExOsArch a_oaOsArch
@@ -229,7 +229,7 @@ CxSystemInfo::sFormatOsArch(
     return sRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 std::string
 CxSystemInfo::sGetDesktopName() {
     std::string sRv;
@@ -253,7 +253,7 @@ CxSystemInfo::sGetDesktopName() {
     return sRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxSystemInfo::sGetHostName() {
     std::tstring_t sRv;
@@ -278,7 +278,7 @@ CxSystemInfo::sGetHostName() {
     return sRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxSystemInfo::bIsUserAnAdmin() {
 #if xOS_ENV_WIN
@@ -322,7 +322,7 @@ CxSystemInfo::bIsUserAnAdmin() {
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxSystemInfo::sGetUserName() {
     std::tstring_t sRv;
@@ -351,7 +351,7 @@ CxSystemInfo::sGetUserName() {
     return sRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxSystemInfo::sGetUseHomeDir() {
     std::tstring_t sRv;
@@ -390,7 +390,7 @@ CxSystemInfo::sGetUseHomeDir() {
     return sRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 ulong_t
 CxSystemInfo::ulGetNumOfCpus() {
     ulong_t ulRv = 0UL;
@@ -419,7 +419,7 @@ CxSystemInfo::ulGetNumOfCpus() {
     return ulRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 ulong_t
 CxSystemInfo::ulGetCurrentCpuNum() {
     ulong_t ulRv = 0UL;
@@ -483,7 +483,7 @@ CxSystemInfo::ulGetCurrentCpuNum() {
     return ulRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 CxSystemInfo::ExCpuVendor
 CxSystemInfo::cvGetCpuVendor() {
     ExCpuVendor cvRes = cvUnknown;
@@ -567,7 +567,7 @@ CxSystemInfo::cvGetCpuVendor() {
     return cvRes;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxSystemInfo::sGetCpuModel() {
     std::tstring_t sRv;
@@ -640,7 +640,7 @@ CxSystemInfo::sGetCpuModel() {
     return sRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 ulong_t
 CxSystemInfo::ulGetCpuSpeed() {
     ulong_t ulRv = 0UL;
@@ -683,7 +683,7 @@ CxSystemInfo::ulGetCpuSpeed() {
     return ulRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 ulong_t
 CxSystemInfo::ulGetCpuUsage() {
     ulong_t ulRv = 0UL;
@@ -818,7 +818,7 @@ CxSystemInfo::ulGetCpuUsage() {
     return ulRv;
 }
 //----------------------------------------------------------------------------------------------------
-/*static*/
+/* static */
 ulonglong_t
 CxSystemInfo::ullGetRamTotal() {
     ulonglong_t ullRv = 0ULL;
@@ -855,7 +855,7 @@ CxSystemInfo::ullGetRamTotal() {
     return ullRv;
 }
 //----------------------------------------------------------------------------------------------------
-/*static*/
+/* static */
 ulonglong_t
 CxSystemInfo::ullGetRamAvailable() {
     ulonglong_t ullRv = 0ULL;
@@ -890,7 +890,7 @@ CxSystemInfo::ullGetRamAvailable() {
     return ullRv;
 }
 //----------------------------------------------------------------------------------------------------
-/*static*/
+/* static */
 ulong_t
 CxSystemInfo::ulGetRamUsage() {
     ulong_t ulRv = 0UL;
@@ -945,7 +945,7 @@ CxSystemInfo::ulGetRamUsage() {
     return ulRv;
 }
 //----------------------------------------------------------------------------------------------------
-/*static*/
+/* static */
 ulong_t
 CxSystemInfo::ulGetPageSize() {
     ulong_t ulRv = 0UL;
@@ -978,7 +978,7 @@ CxSystemInfo::ulGetPageSize() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxSystemInfo::CxSystemInfo() {
 
 }

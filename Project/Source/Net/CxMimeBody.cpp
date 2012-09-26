@@ -14,7 +14,7 @@ CxMimeBody::CxMimeBody() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxMimeBody::~CxMimeBody() {
 
 }

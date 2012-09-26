@@ -19,7 +19,7 @@ CxTest_CxBackuper::~CxTest_CxBackuper() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxBackuper::bUnit(
     const ulonglong_t cullCaseLoops

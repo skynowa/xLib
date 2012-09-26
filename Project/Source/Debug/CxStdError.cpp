@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 int
 CxStdError::iGet() {
     int iCode = 0; /*= ciCodeSuccess*/;
@@ -27,13 +27,13 @@ CxStdError::iGet() {
     return iCode;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxStdError::sGet() {
     return sFormat(iGet());
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxStdError::bSet(
     const int a_ciCode
@@ -44,7 +44,7 @@ CxStdError::bSet(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxStdError::bReset() {
     const int ciCodeSuccess = 0;
@@ -52,7 +52,7 @@ CxStdError::bReset() {
     return bSet(ciCodeSuccess);
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxStdError::sFormat(
     const int a_ciCode
@@ -100,7 +100,7 @@ CxStdError::CxStdError() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxStdError::~CxStdError() {
 
 }

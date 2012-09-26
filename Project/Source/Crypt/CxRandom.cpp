@@ -32,7 +32,7 @@ CxRandom::CxRandom(
     liNext();
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxRandom::~CxRandom() {
 
 }
@@ -167,7 +167,7 @@ CxRandom::bSetSeed() {
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 long_t
 CxRandom::liGetInt(
     const long_t a_cliMin,
@@ -187,7 +187,7 @@ CxRandom::liGetInt(
     return liRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 long_t
 CxRandom::liGetIntEx(
     const long_t a_cliMin,
@@ -209,7 +209,7 @@ CxRandom::liGetIntEx(
     return vliRes.at(0);
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxRandom::sGetString(
     const size_t a_cuiLength

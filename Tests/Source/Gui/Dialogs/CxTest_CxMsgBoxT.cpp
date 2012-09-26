@@ -16,7 +16,7 @@ CxTest_CxMsgBoxT::~CxTest_CxMsgBoxT() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxMsgBoxT::bUnit(
     const ulonglong_t cullCaseLoops

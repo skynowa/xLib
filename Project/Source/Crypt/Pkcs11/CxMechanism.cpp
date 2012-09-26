@@ -28,7 +28,7 @@ CxMechanism::CxMechanism(
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxMechanism::~CxMechanism() {
 
 }

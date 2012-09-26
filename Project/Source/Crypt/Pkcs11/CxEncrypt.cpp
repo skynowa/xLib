@@ -32,7 +32,7 @@ CxEncrypt::CxEncrypt(
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxEncrypt::~CxEncrypt() {
 
 }

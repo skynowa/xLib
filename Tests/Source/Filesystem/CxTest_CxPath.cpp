@@ -20,7 +20,7 @@ CxTest_CxPath::~CxTest_CxPath() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxPath::bUnit(
     const ulonglong_t cullCaseLoops

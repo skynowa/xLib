@@ -17,7 +17,7 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 ulong_t
 CxCrc32::ulCalc(
     uchar_t       *a_pucBuff,
@@ -49,7 +49,7 @@ CxCrc32::ulCalc(
     return crc ^ 0xFFFFFFFFUL;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 ulong_t
 CxCrc32::ulCalcFile(
     const std::tstring_t &a_csFilePath
@@ -73,7 +73,7 @@ CxCrc32::ulCalcFile(
     return ulRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 ulong_t
 CxCrc32::ulCalcFast(
     uchar_t       *a_pucBuff,
@@ -176,7 +176,7 @@ CxCrc32::ulCalcFast(
     return crc ^ 0xFFFFFFFFUL;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 ulong_t
 CxCrc32::ulCalcFileFast(
     const std::tstring_t &a_csFilePath
@@ -200,7 +200,7 @@ CxCrc32::ulCalcFileFast(
     return ulRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxCrc32::sFormatHex(
     const ulong_t a_culCrc32
@@ -234,7 +234,7 @@ CxCrc32::CxCrc32() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxCrc32::~CxCrc32() {
 
 }

@@ -16,17 +16,17 @@ class CxFunctorT
     /// function object
 {
     public:
-        typedef  ReturnT   (ClassT::*Method)(ParamT);
+        typedef  ReturnT     (ClassT::*Method)(ParamT);
             ///< return type
 
-                 CxFunctorT(ClassT *pObject, Method method);
+                 CxFunctorT  (ClassT *pObject, Method method);
             ///< constructor
-        virtual ~CxFunctorT();
+        virtual ~CxFunctorT  ();
             ///< destructor
 
-        ReturnT  operator()(ParamT Param);
+        ReturnT  operator () (ParamT Param);
             ///< operator ()
-        ReturnT  Execute   (ParamT Param);
+        ReturnT  Execute     (ParamT Param);
             ///< execute operator ()
 
     private:

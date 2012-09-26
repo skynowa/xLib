@@ -28,7 +28,7 @@ CxSlot::CxSlot(
     /*DEBUG*/xASSERT_DO(NULL != _m_pFunc, return);
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxSlot::~CxSlot() {
 
 }

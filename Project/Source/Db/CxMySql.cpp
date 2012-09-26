@@ -34,7 +34,7 @@ CxMySQLConnection::CxMySQLConnection() :
     _m_pmsConnection = _pmsConnection;
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxMySQLConnection::~CxMySQLConnection() {
     /*DEBUG*/
 
@@ -75,7 +75,7 @@ CxMySQLConnection::bOptions(
     return true;
 }
 //----------------------------------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxMySQLConnection::bIsExists(
     const std::tstring_t &a_csHost,
@@ -269,7 +269,7 @@ CxMySQLRecordset::CxMySQLRecordset(
     _m_pmrResult = pmrResult;
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxMySQLRecordset::~CxMySQLRecordset() {
     /*DEBUG*/// _m_pmrResult - n/a
 

@@ -17,7 +17,7 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxCurrentProcess::bIsCurrent(
     const CxProcess::id_t &a_culId
@@ -37,7 +37,7 @@ CxCurrentProcess::bIsCurrent(
     return bRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 CxProcess::id_t
 CxCurrentProcess::ulGetId() {
     /*DEBUG*/// n/a
@@ -55,7 +55,7 @@ CxCurrentProcess::ulGetId() {
     return ulRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 CxProcess::id_t
 CxCurrentProcess::ulGetParentId() {
     /*DEBUG*/// n/a
@@ -108,7 +108,7 @@ CxCurrentProcess::ulGetParentId() {
 }
 //---------------------------------------------------------------------------
 // TODO: tests
-/*static*/
+/* static */
 CxProcess::handle_t
 CxCurrentProcess::hGetHandle() {
     /*DEBUG*/// n/a
@@ -131,7 +131,7 @@ CxCurrentProcess::hGetHandle() {
 }
 //---------------------------------------------------------------------------
 // TODO: tests
-/*static*/
+/* static */
 bool
 CxCurrentProcess::bExit(
     const uint_t &a_cuiExitCode
@@ -160,7 +160,7 @@ CxCurrentProcess::CxCurrentProcess() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxCurrentProcess::~CxCurrentProcess() {
 
 }

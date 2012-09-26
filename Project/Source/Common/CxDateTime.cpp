@@ -552,7 +552,7 @@ CxDateTime::sFormat(
 *****************************************************************************/
 
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxDateTime::bIsValid(
     const ushort_t a_cusYear,
@@ -600,7 +600,7 @@ CxDateTime::bIsValid(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxDateTime::bIsValid(
     const CxDateTime &a_cdtDT
@@ -620,7 +620,7 @@ CxDateTime::bIsValid() const {
     return bIsValid(*this);
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 CxDateTime
 CxDateTime::dtGetCurrent() {
     /*DEBUG*/
@@ -662,7 +662,7 @@ CxDateTime::dtGetCurrent() {
 //---------------------------------------------------------------------------
 #if xOS_ENV_WIN
 
-/*static*/
+/* static */
 longlong_t
 CxDateTime::i64FiletimeToInt64(
     const FILETIME &cftTime
@@ -675,7 +675,7 @@ CxDateTime::i64FiletimeToInt64(
 //--------------------------------------------------------------------------
 #if xOS_ENV_WIN
 
-/*static*/
+/* static */
 bool
 CxDateTime::bUnixTimeToFileTime(
     const time_t  a_ctmUnixTime,
@@ -700,7 +700,7 @@ CxDateTime::bUnixTimeToFileTime(
 #if xOS_ENV_WIN
 
 //TODO: make tests tmFileTimeToUnixTime
-/*static*/
+/* static */
 time_t
 CxDateTime::tmFileTimeToUnixTime(
     const FILETIME &a_ftFileTime
@@ -719,7 +719,7 @@ CxDateTime::tmFileTimeToUnixTime(
 
 #endif
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 ushort_t
 CxDateTime::usDaysInMonth(
     const ushort_t a_cusYear,
@@ -739,7 +739,7 @@ CxDateTime::usDaysInMonth(
     return usRv;
 }
 //--------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxDateTime::bIsLeapYear(
     const ushort_t a_cusYear
@@ -779,7 +779,7 @@ NOTE: signs of the zodiac
         -----------------------------------------------------
 */
 
-/*static*/
+/* static */
 std::tstring_t
 CxDateTime::sGetZodiacSign(
     const ushort_t a_cusMonth,
@@ -842,7 +842,7 @@ CxDateTime::sGetZodiacSign(
     return std::tstring_t();
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxDateTime::sGetMonthStr(
     ushort_t   a_usMonth,
@@ -899,7 +899,7 @@ CxDateTime::sGetMonthStr(
     return sRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 ushort_t
 CxDateTime::usGetMonthNum(
     const std::tstring_t &a_csMonth,
@@ -948,7 +948,7 @@ CxDateTime::usGetMonthNum(
     return static_cast<ushort_t>( - 1 );  //TODO: static_cast<ushort_t>( - 1 )
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxDateTime::sGetWeekDayStr(
     ushort_t   a_usDay,
@@ -993,7 +993,7 @@ CxDateTime::sGetWeekDayStr(
     return sRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 ushort_t
 CxDateTime::usGetWeekDayNum(
     const std::tstring_t &a_csDay,
@@ -1041,7 +1041,7 @@ CxDateTime::usGetWeekDayNum(
 
 //---------------------------------------------------------------------------
 //DONE: _bParse ()
-/*static*/
+/* static */
 bool
 CxDateTime::_bParse(
     const std::tstring_t &a_csDT,

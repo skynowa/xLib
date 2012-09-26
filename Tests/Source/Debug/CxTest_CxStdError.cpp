@@ -16,7 +16,7 @@ CxTest_CxStdError::~CxTest_CxStdError() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_CxStdError::bUnit(
     const ulonglong_t cullCaseLoops

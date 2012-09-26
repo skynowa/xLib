@@ -23,7 +23,7 @@ CxCompletionPort::CxCompletionPort() {
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxCompletionPort
-/*virtual*/
+/* virtual */
 CxCompletionPort::~CxCompletionPort() {
     /*DEBUG*/
 }

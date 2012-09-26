@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //--------------------------------------------------------------------------
-/*static*/ std::vec_tstring_t CxCommandLine::_ms_vsArgs;
+/* static */ std::vec_tstring_t CxCommandLine::_ms_vsArgs;
 //--------------------------------------------------------------------------
 long_t
 CxCommandLine::liGetArgsMax() {
@@ -31,7 +31,7 @@ CxCommandLine::liGetArgsMax() {
     return liRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 std::tstring_t
 CxCommandLine::sGet() {
     /*DEBUG*/// n/a
@@ -50,7 +50,7 @@ CxCommandLine::sGet() {
     return sRv;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxCommandLine::bGetArgs(
     std::vec_tstring_t *a_pvsArgs
@@ -66,7 +66,7 @@ CxCommandLine::bGetArgs(
     return true;
 }
 //---------------------------------------------------------------------------
-/*static*/
+/* static */
 bool
 CxCommandLine::bSetArgs(
     const int  a_ciArgsCount,
@@ -101,7 +101,7 @@ CxCommandLine::CxCommandLine() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 CxCommandLine::~CxCommandLine() {
 
 }

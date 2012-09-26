@@ -19,7 +19,7 @@ CxTest_Draft::~CxTest_Draft() {
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 bool
 CxTest_Draft::bUnit(
     const ulonglong_t cullCaseLoops
