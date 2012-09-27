@@ -7,6 +7,7 @@
 #include <xLib/Filesystem/CxEnvironment.h>
 
 #include <xLib/Common/CxConst.h>
+#include <xLib/Common/CxString.h>
 #include <xLib/Filesystem/CxPath.h>
 
 

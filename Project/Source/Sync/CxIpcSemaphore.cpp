@@ -6,6 +6,7 @@
 
 #include <xLib/Sync/CxIpcSemaphore.h>
 
+#include <xLib/Common/CxConst.h>
 #include <xLib/Filesystem/CxPath.h>
 
 #if   xOS_ENV_WIN
@@ -74,7 +75,7 @@ CxIpcSemaphore::bCreate(
 #if xOS_ENV_WIN
     const tchar_t  *pcszWinName = NULL;
     std::tstring_t  _sWinName;
-        
+
     if (true == a_csName.empty()) {
         pcszWinName = NULL;
     } else {
