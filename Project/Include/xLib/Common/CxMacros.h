@@ -486,20 +486,20 @@ class CxMacros :
             ///< get array size
 
         template <class T>
-        static inline const T & maxT               (const T &x , const T &y);
+        static inline const T & maxT               (const T &cValue1T , const T &cValue2T);
             ///< get max value
 
         template <class T>
-        static inline const T & minT               (const T &x , const T &y);
+        static inline const T & minT               (const T &cValue1T , const T &cValue2T);
             ///< get min value
 
         template <class T>
-        static inline void      swapT              (T &a, T &b);
+        static inline void      swapT              (T &value1T, T &value2T);
             ///< swap variables
 
         // TODO: numericLimitsCheckT
         template <class T>
-        static inline bool      numericLimitsCheckT(const T &x);
+        static inline bool      numericLimitsCheckT(const T &cValueT);
             ///< check numeric limites for type
 
         template <class ToT, class FromT>
@@ -510,7 +510,7 @@ class CxMacros :
             ///< round double value to the integer part
 
         template <class T1, class T2>
-        static inline double    safeDivT           (const T1 &cVal1T, const T2 &cVal2T);
+        static inline double    safeDivT           (const T1 &cValue1T, const T2 &cValue2T);
             ///< safe division
 
     private:
