@@ -43,11 +43,11 @@ template<class T>
 /* static */ inline
 void
 CxUtils::ptrAssignT(
-    T *     &a_pPtrT, 
+    T *     &a_pPtrT,
     const T &a_valueT
 )
 {
-    if (NULL != a_pPtrT) { 
+    if (NULL != a_pPtrT) {
         *a_pPtrT = a_valueT;
     }
 }
@@ -66,7 +66,7 @@ template <class T>
 /* static */ inline
 const T &
 CxUtils::maxT(
-    const T &a_cValue1T, 
+    const T &a_cValue1T,
     const T &a_cValue2T
 )
 {
@@ -77,7 +77,7 @@ template <class T>
 /* static */ inline
 const T &
 CxUtils::minT(
-    const T &a_cValue1T, 
+    const T &a_cValue1T,
     const T &a_cValue2T
 )
 {
@@ -88,9 +88,9 @@ template <class T>
 /* static */ inline
 void
 CxUtils::swapT(
-    T &a_value1T, 
+    T &a_value1T,
     T &a_value2T
-) 
+)
 {
     T temp = a_value1T;
 
@@ -121,7 +121,7 @@ CxUtils::reinterpretCastT(
 {
     void *pvVoidCast = static_cast<void *>( a_pPtrT );
 #if   xOS_ENV_WIN
-    /*DEBUG*/xASSERT(NULL != pvVoidCast);
+    /*DEBUG*/// xASSERT(NULL != pvVoidCast);
 #elif xOS_ENV_UNIX
     /*DEBUG*/// TODO: xASSERT(NULL != pvVoidCast);
 #endif
@@ -144,7 +144,7 @@ template <class T1, class T2>
 /* static */ inline
 double
 CxUtils::safeDivT(
-    const T1 &a_cValue1T, 
+    const T1 &a_cValue1T,
     const T2 &a_cValue2T
 )
 {

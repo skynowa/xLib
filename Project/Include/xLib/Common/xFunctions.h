@@ -88,9 +88,9 @@
 
     //strerror
     #if   xCOMPILER_MINGW32
-        #define xSTRERROR       _wcserror
-    #elif xCOMPILER_MS
         #define xSTRERROR       _tcserror
+    #elif xCOMPILER_MS
+        #define xSTRERROR       _tcserror_s
     #elif xCOMPILER_GNUC
         #define xSTRERROR       strerror_r
     #elif xCOMPILER_CODEGEAR
@@ -192,9 +192,9 @@
 
     //strerror
     #if   xCOMPILER_MINGW32
-        #define xSTRERROR       strerror
-    #elif xCOMPILER_MS
         #define xSTRERROR       _tcserror
+    #elif xCOMPILER_MS
+        #define xSTRERROR       _tcserror_s
     #elif xCOMPILER_GNUC
         #define xSTRERROR       strerror_r
     #elif xCOMPILER_CODEGEAR

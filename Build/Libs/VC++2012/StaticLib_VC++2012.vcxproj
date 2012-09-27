@@ -89,6 +89,7 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\xDefines.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\xFunctions.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\xLinking.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\xSysDefines.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\xTracing.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\xTypes.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\CxCrc32.h" />

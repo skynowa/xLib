@@ -8,11 +8,6 @@
 #ifndef xLib_Common_Unix_xCommon_UnixH
 #define xLib_Common_Unix_xCommon_UnixH
 //----------------------------------------------------------------------------------------------------
-#if !defined(_GNU_SOURCE)
-    #define _GNU_SOURCE 1
-#endif
-
-//----------------------------------------------------------------------------------------------------
 
 // POSIX
 #include <string.h>

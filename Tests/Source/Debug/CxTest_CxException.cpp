@@ -32,7 +32,7 @@ CxTest_CxException::bUnit(
         try {
             throw CxException();
         }
-        catch (CxException &e) {
+        catch (const CxException &e) {
             xTEST_EQ(CxConst::xSTR_EMPTY, e.sGetWhat());
             //xTRACEV( xT("std::what: %s"), e.sGetWhat().c_str() );
         }
@@ -56,7 +56,7 @@ CxTest_CxException::bUnit(
             try {
                 throw CxException() << sTestData[i][0].c_str();
             }
-            catch (CxException &e) {
+            catch (const CxException &e) {
                 xTEST_EQ(sTestData[i][1], e.sGetWhat());
                 //xTRACEV( xT("std::what: %s"), e.sGetWhat().c_str() );
             }
@@ -73,7 +73,9 @@ CxTest_CxException::bUnit(
         try {
             throw CxException() << xT("CxException_test_exception");
         }
-        catch (CxException &e) {
+        catch (const CxException &e) {
+            xUNUSED(e);
+
             //xTRACEV( xT("std::what: %s"), e.sGetWhat().c_str() );
         }
         catch (...) {
@@ -90,7 +92,9 @@ CxTest_CxException::bUnit(
 
             sStr.at(0);
         }
-        catch (std::exception &e) {
+        catch (const std::exception &e) {
+            xUNUSED(e);
+
             //xTRACEV( xT("std::what: %s"), e.what() );
         }
         catch (...) {
