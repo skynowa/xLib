@@ -122,7 +122,7 @@ CxMacros::reinterpretCastT(
 #if   xOS_ENV_WIN
     /*DEBUG*/xASSERT(NULL != pvVoidCast);
 #elif xOS_ENV_UNIX
-    /*DEBUG*/xASSERT(NULL != pvVoidCast);
+    /*DEBUG*/// TODO: xASSERT(NULL != pvVoidCast);
 #endif
 
     ToT ResT = static_cast<ToT>( pvVoidCast );
