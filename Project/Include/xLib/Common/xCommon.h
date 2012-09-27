@@ -163,7 +163,7 @@ namespace NxLib { }
 #include <xLib/Common/xTypes.h>
 #include <xLib/Common/xFunctions.h>
 #include <xLib/Common/CxNonCopyable.h>
-#include <xLib/Common/CxMacros.h>
+#include <xLib/Common/CxUtils.h>
 #include <xLib/Debug/xDebug.h>
 
 #include <xLib/Common/xCheks.h>

@@ -168,9 +168,6 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxLocale.h">
       <Filter>xLib\Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxMacros.h">
-      <Filter>xLib\Common</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxNonAssignable.h">
       <Filter>xLib\Common</Filter>
     </ClInclude>
@@ -289,9 +286,6 @@
       <Filter>xLib\Crypt\Pkcs11</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxSlot.h">
-      <Filter>xLib\Crypt\Pkcs11</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxUtils.h">
       <Filter>xLib\Crypt\Pkcs11</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxVerify.h">
@@ -471,9 +465,6 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Test\CxTestManager.h">
       <Filter>xLib\Test</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Project\Include\xLib\Units\Win\bDownloadURL.h">
-      <Filter>xLib\Units\Win</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Units\Win\bGetUsbInfo.h">
       <Filter>xLib\Units\Win</Filter>
     </ClInclude>
@@ -502,9 +493,6 @@
       <Filter>Test\Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxLocale.h">
-      <Filter>Test\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxMacros.h">
       <Filter>Test\Common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxProcessInfo.h">
@@ -735,6 +723,12 @@
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxSemaphore.h">
       <Filter>Test\Sync</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxUtils.h">
+      <Filter>xLib\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxUtils.h">
+      <Filter>Test\Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Project\Include\xLib\Common\CxArray.inl">
@@ -768,7 +762,7 @@
       <Filter>xLib\Debug</Filter>
     </None>
     <None Include="..\..\..\TODO.txt" />
-    <None Include="..\..\..\Project\Include\xLib\Common\CxMacros.inl">
+    <None Include="..\..\..\Project\Include\xLib\Common\CxUtils.inl">
       <Filter>xLib\Common</Filter>
     </None>
   </ItemGroup>
@@ -822,9 +816,6 @@
       <Filter>xLib\Crypt\Pkcs11</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxSlot.cpp">
-      <Filter>xLib\Crypt\Pkcs11</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxUtils.cpp">
       <Filter>xLib\Crypt\Pkcs11</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxVerify.cpp">
@@ -986,9 +977,6 @@
     <ClCompile Include="..\..\..\Project\Source\Test\CxTestManager.cpp">
       <Filter>xLib\Test</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Project\Source\Units\Win\bDownloadURL.cpp">
-      <Filter>xLib\Units\Win</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Units\Win\bGetUsbInfo.cpp">
       <Filter>xLib\Units\Win</Filter>
     </ClCompile>
@@ -1017,9 +1005,6 @@
       <Filter>Test\Common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxLocale.cpp">
-      <Filter>Test\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxMacros.cpp">
       <Filter>Test\Common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxProcessInfo.cpp">
@@ -1282,6 +1267,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxSemaphore.cpp">
       <Filter>Test\Sync</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxUtils.cpp">
+      <Filter>Test\Common</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,11 +1,11 @@
 /**
- * \file  CxMacros.h
+ * \file  CxUtils.h
  * \brief functions like macroses
  */
 
 
-#ifndef xLib_Common_CxMacrosH
-#define xLib_Common_CxMacrosH
+#ifndef xLib_Common_CxUtilsH
+#define xLib_Common_CxUtilsH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
@@ -13,7 +13,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 class CxDebugger;
 
-class CxMacros :
+class CxUtils :
     private CxNonCopyable
     /// help macroses
 {
@@ -63,14 +63,14 @@ class CxMacros :
             ///< safe division
 
     private:
-                                CxMacros           ();
+                                CxUtils           ();
             ///< constructor
-                               ~CxMacros           ();
+                               ~CxUtils           ();
             ///< destructor
 };
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#include "CxMacros.inl"
+#include "CxUtils.inl"
 //---------------------------------------------------------------------------
-#endif //xLib_Common_CxMacrosH
+#endif //xLib_Common_CxUtilsH

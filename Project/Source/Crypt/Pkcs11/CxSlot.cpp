@@ -7,7 +7,6 @@
 #include <xLib/Crypt/Pkcs11/CxSlot.h>
 
 #include <xLib/Crypt/Pkcs11/CxPkcs11.h>
-#include <xLib/Crypt/Pkcs11/CxUtils.h>
 
 
 #if xOS_ENV_WIN
@@ -56,13 +55,13 @@ CxSlot::bGetList(
     (*a_pvecSlotList).clear();
 
     CK_RV ulRv = _m_pFunc->C_GetSlotList(a_bTokenPresent, NULL_PTR, &ulCount);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
     xCHECK_RET(0 == ulCount, true);
 
     (*a_pvecSlotList).resize(ulCount);
 
     ulRv = _m_pFunc->C_GetSlotList(a_bTokenPresent, &(*a_pvecSlotList).at(0), &ulCount);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK                 == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK                 == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
     /*DEBUG*/xASSERT_RET    ((*a_pvecSlotList).size() == ulCount,                              false);
 
     return true;
@@ -79,7 +78,7 @@ CxSlot::bGetInfo(
     /*DEBUG*/xASSERT_RET(NULL != a_pInfo,  false);
 
     CK_RV ulRv = _m_pFunc->C_GetSlotInfo(a_slotID, a_pInfo);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -97,7 +96,7 @@ CxSlot::nfWaitForEvent(
     /*DEBUG*/// pRserved - n/a
 
     CK_RV ulRv = _m_pFunc->C_WaitForSlotEvent(a_flags, a_pSlot, a_pRserved);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), nfError);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), nfError);
 
     //-------------------------------------
     //�������� ������� ������ � �����

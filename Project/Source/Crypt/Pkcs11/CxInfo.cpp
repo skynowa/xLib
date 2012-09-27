@@ -7,7 +7,6 @@
 #include <xLib/Crypt/Pkcs11/CxInfo.h>
 
 #include <xLib/Crypt/Pkcs11/CxPkcs11.h>
-#include <xLib/Crypt/Pkcs11/CxUtils.h>
 
 
 #if xOS_ENV_WIN
@@ -40,7 +39,7 @@ CxInfo::bGet(
     /*DEBUG*/
 
     CK_RV ulRv = _m_pFunc->C_GetInfo(a_pInfo);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -54,7 +53,7 @@ CxInfo::bGetToken(
     /*DEBUG*/
 
     CK_RV ulRv = _m_pFunc->C_GetTokenInfo(a_slotID, a_pInfo);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }

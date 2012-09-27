@@ -33,7 +33,7 @@ CxTestManager::CxTestManager(
 /* virtual */
 CxTestManager::~CxTestManager() {
     xFOREACH(container_t, it, _m_ctnTests) {
-        /*CxMacros::*/xPTR_DELETE(*it);
+        /*CxUtils::*/xPTR_DELETE(*it);
     }
 
     xCHECK_DO(_m_cbIsUseTracing, xTRACE(xT("CxTestManager: all tests destructed.")));

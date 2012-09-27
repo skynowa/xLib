@@ -1,5 +1,5 @@
 /**
- * \file  CxMacros.inl
+ * \file  CxUtils.inl
  * \brief functions like macroses
  */
 
@@ -18,7 +18,7 @@ xNAMESPACE_BEGIN(NxLib)
 template<class T>
 /* static */ inline
 void
-CxMacros::ptrDeleteT(
+CxUtils::ptrDeleteT(
     T * &a_pPtrT
 )
 {
@@ -30,7 +30,7 @@ CxMacros::ptrDeleteT(
 template<class T>
 /* static */ inline
 void
-CxMacros::arrayDeleteT(
+CxUtils::arrayDeleteT(
     T * &a_pPtrT
 )
 {
@@ -42,7 +42,7 @@ CxMacros::arrayDeleteT(
 template<class T>
 /* static */ inline
 void
-CxMacros::ptrAssignT(
+CxUtils::ptrAssignT(
     T *     &a_pPtrT, 
     const T &a_valueT
 )
@@ -55,7 +55,7 @@ CxMacros::ptrAssignT(
 template <typename ArrayT, const size_t cuiArraySize>
 /* static */ inline
 size_t
-CxMacros::arraySizeT(
+CxUtils::arraySizeT(
     const ArrayT (&)[cuiArraySize]
 )
 {
@@ -65,7 +65,7 @@ CxMacros::arraySizeT(
 template <class T>
 /* static */ inline
 const T &
-CxMacros::maxT(
+CxUtils::maxT(
     const T &a_cValue1T, 
     const T &a_cValue2T
 )
@@ -76,7 +76,7 @@ CxMacros::maxT(
 template <class T>
 /* static */ inline
 const T &
-CxMacros::minT(
+CxUtils::minT(
     const T &a_cValue1T, 
     const T &a_cValue2T
 )
@@ -87,7 +87,7 @@ CxMacros::minT(
 template <class T>
 /* static */ inline
 void
-CxMacros::swapT(
+CxUtils::swapT(
     T &a_value1T, 
     T &a_value2T
 ) 
@@ -102,7 +102,7 @@ CxMacros::swapT(
 template <class T>
 /* static */ inline
 bool
-CxMacros::numericLimitsCheckT(
+CxUtils::numericLimitsCheckT(
     const T &a_cValueT
 )
 {
@@ -115,7 +115,7 @@ CxMacros::numericLimitsCheckT(
 template <class ToT, class FromT>
 /* static */ inline
 ToT
-CxMacros::reinterpretCastT(
+CxUtils::reinterpretCastT(
     const FromT &a_pPtrT
 )
 {
@@ -133,7 +133,7 @@ CxMacros::reinterpretCastT(
 //---------------------------------------------------------------------------
 /* static */ inline
 double
-CxMacros::round(
+CxUtils::round(
     const double &a_cdValue
 )
 {
@@ -143,7 +143,7 @@ CxMacros::round(
 template <class T1, class T2>
 /* static */ inline
 double
-CxMacros::safeDivT(
+CxUtils::safeDivT(
     const T1 &a_cValue1T, 
     const T2 &a_cValue2T
 )

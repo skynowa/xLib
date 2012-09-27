@@ -8,7 +8,6 @@
 
 #include <xLib/Crypt/Pkcs11/CxPkcs11.h>
 #include <xLib/Crypt/Pkcs11/CxSession.h>
-#include <xLib/Crypt/Pkcs11/CxUtils.h>
 
 
 #if xOS_ENV_WIN
@@ -47,7 +46,7 @@ CxDigest::bMake(
     /*DEBUG*/
 
     CK_RV ulRv = _m_pFunc->C_Digest(_m_hSession, a_pData, a_ulDataLen, a_pDigest, a_pulDigestLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -63,7 +62,7 @@ CxDigest::bEncryptUpdate(
     /*DEBUG*/
 
     CK_RV ulRv = _m_pFunc->C_DigestEncryptUpdate(_m_hSession, a_pPart, a_ulPartLen, a_pEncryptedPart, a_pulEncryptedPartLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -77,7 +76,7 @@ CxDigest::bFinal(
     /*DEBUG*/
 
     CK_RV ulRv = _m_pFunc->C_DigestFinal(_m_hSession, a_pDigest, a_pulDigestLen );
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -90,7 +89,7 @@ CxDigest::bInit(
     /*DEBUG*/
 
     CK_RV ulRv = _m_pFunc->C_DigestInit(_m_hSession, a_pMechanism);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -103,7 +102,7 @@ CxDigest::bKey(
     /*DEBUG*/
 
     CK_RV ulRv = _m_pFunc->C_DigestKey(_m_hSession, a_hKey);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -117,7 +116,7 @@ CxDigest::bUpdate(
     /*DEBUG*/
 
     CK_RV ulRv = _m_pFunc->C_DigestUpdate(_m_hSession, a_pPart, a_ulPartLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }

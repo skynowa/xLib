@@ -20,22 +20,25 @@ class CxPkcs11 :
     /// Aladdin eToken, PKCS#11
 {
     public:
-                             CxPkcs11      ();
+                              CxPkcs11      ();
             ///< constructor
-        virtual             ~CxPkcs11      ();
+        virtual              ~CxPkcs11      ();
             ///< destructor
 
-        CK_FUNCTION_LIST_PTR pGetFuncList  () const;
+        CK_FUNCTION_LIST_PTR  pGetFuncList  () const;
             ///< get pointer to dll's functions list
+        static std::tstring_t sErrorStr     (const CK_RV culCode);
+            ///< get error string by code, SDK 4.53
+
    private:
         CK_FUNCTION_LIST_PTR _m_pFunc;            ///< pointer to fumction
         CxDll                _m_dllETPkcs11;    ///< Pkcs11 CxDll object
 
-        bool                 _bLoadETPkcs11();
+        bool                 _bLoadETPkcs11 ();
             ///< load eTPkcs11.dll
-        bool                 bInitialize   ();
+        bool                 bInitialize    ();
             ///< initiate PKCS#11
-        bool                 bFinalize     ();
+        bool                 bFinalize      ();
             ///< finalize PKCS#11
 };
 

@@ -1,26 +1,26 @@
 /**
- * \file   CxTest_CxMacros.h
+ * \file   CxTest_CxUtils.h
  * \brief
  */
 
 
-#ifndef CxTest_CxMacrosH
-#define CxTest_CxMacrosH
+#ifndef CxTest_CxUtilsH
+#define CxTest_CxUtilsH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
-#include <xLib/Common/CxMacros.h>
+#include <xLib/Common/CxUtils.h>
 //---------------------------------------------------------------------------
-class CxTest_CxMacros :
+class CxTest_CxUtils :
     public CxTest
 {
     public:
-                       CxTest_CxMacros();
-        virtual       ~CxTest_CxMacros();
+                       CxTest_CxUtils();
+        virtual       ~CxTest_CxUtils();
 
         virtual  bool  bUnit          (const ulonglong_t cullCaseLoops);
 
     private:
 };
 //---------------------------------------------------------------------------
-#endif //CxTest_CxMacrosH
+#endif //CxTest_CxUtilsH

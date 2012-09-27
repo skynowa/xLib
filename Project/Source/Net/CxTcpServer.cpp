@@ -31,7 +31,7 @@ CxTcpServer::bBind(
     saSockAddr.sin_addr.s_addr = INADDR_ANY;
     saSockAddr.sin_port        = htons(a_usPort);
 
-    int iRv = ::bind(_m_sktSocket, CxMacros::reinterpretCastT<const struct sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
+    int iRv = ::bind(_m_sktSocket, CxUtils::reinterpretCastT<const struct sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
     /*DEBUG*/xASSERT_RET(etError != iRv, false);
 
     ////int iOpt = 1;
@@ -72,13 +72,13 @@ CxTcpServer::bAccept(
     struct sockaddr_in cliaddr  = {0};
     int                iAddrlen = sizeof(cliaddr);
 
-    scktClient = ::accept(_m_sktSocket, CxMacros::reinterpretCastT<struct sockaddr *>( &cliaddr ), &iAddrlen);
+    scktClient = ::accept(_m_sktSocket, CxUtils::reinterpretCastT<struct sockaddr *>( &cliaddr ), &iAddrlen);
     /*DEBUG*/xASSERT_RET(etInvalid != scktClient, false);
 #elif xOS_ENV_UNIX
     struct sockaddr_in cliaddr  = {0};
     socklen_t          iAddrlen = sizeof(cliaddr);
 
-    scktClient = ::accept(_m_sktSocket, CxMacros::reinterpretCastT<struct sockaddr *>( &cliaddr ), &iAddrlen);
+    scktClient = ::accept(_m_sktSocket, CxUtils::reinterpretCastT<struct sockaddr *>( &cliaddr ), &iAddrlen);
     /*DEBUG*/xASSERT_RET(etInvalid != scktClient, false);
 #endif
 

@@ -294,11 +294,11 @@
 
 //--------------------------------------------------
 // utils
-#define xPTR_DELETE(p)              { CxMacros::ptrDeleteT(p); }
+#define xPTR_DELETE(p)              { CxUtils::ptrDeleteT(p); }
     ///< delete object by pointer
-#define xARRAY_DELETE(p)            { CxMacros::arrayDeleteT(p); }
+#define xARRAY_DELETE(p)            { CxUtils::arrayDeleteT(p); }
     ///< delete array by pointer
-#define xARRAY_SIZE(a)              ( CxMacros::arraySizeT(a) )
+#define xARRAY_SIZE(a)              ( CxUtils::arraySizeT(a) )
     ///< get array size
 #define xARRAY_SIZE2(a)             ( sizeof(a) / sizeof((a)[0]) )
     ///< get array size
@@ -312,9 +312,9 @@
     ///< close file stream (FILE *)
 #define xRELEASE(p)                 { if (NULL != (p)) {(p)->Release(); (p) = NULL; } }
     ///< release object
-#define xMAX(a, b)                  ( CxMacros::maxT( (a), (b) ) )
+#define xMAX(a, b)                  ( CxUtils::maxT( (a), (b) ) )
     ///< get max value
-#define xMIN(a, b)                  ( CxMacros::minT( (a), (b) ) )
+#define xMIN(a, b)                  ( CxUtils::minT( (a), (b) ) )
     ///< get min value
 #define xINT_TO_BOOL(expr)          ( (0 == (expr)) ? false : true )
     ///< convert int to bool

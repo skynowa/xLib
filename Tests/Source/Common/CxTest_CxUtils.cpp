@@ -1,26 +1,26 @@
 /**
- * \file   CxTest_CxMacros.cpp
+ * \file   CxTest_CxUtils.cpp
  * \brief
  */
 
 
-#include <Test/Common/CxTest_CxMacros.h>
+#include <Test/Common/CxTest_CxUtils.h>
 
 #include <xLib/Common/CxString.h>
 
 
 //---------------------------------------------------------------------------
-CxTest_CxMacros::CxTest_CxMacros() {
+CxTest_CxUtils::CxTest_CxUtils() {
 
 }
 //---------------------------------------------------------------------------
-CxTest_CxMacros::~CxTest_CxMacros() {
+CxTest_CxUtils::~CxTest_CxUtils() {
 
 }
 //---------------------------------------------------------------------------
 /* virtual */
 bool
-CxTest_CxMacros::bUnit(
+CxTest_CxUtils::bUnit(
     const ulonglong_t cullCaseLoops
 )
 {
@@ -118,7 +118,7 @@ CxTest_CxMacros::bUnit(
         int *pPtr = new int();
         xTEST_PTR(pPtr);
 
-        /*CxMacros::*/xPTR_DELETE(pPtr);
+        /*CxUtils::*/xPTR_DELETE(pPtr);
         xASSERT(NULL == pPtr);
     }
 
@@ -129,7 +129,7 @@ CxTest_CxMacros::bUnit(
         int *pPtr = new int[5];
         xTEST_PTR(pPtr);
 
-        /*CxMacros::*/xARRAY_DELETE(pPtr);
+        /*CxUtils::*/xARRAY_DELETE(pPtr);
         xASSERT(NULL == pPtr);
     }
 
@@ -259,7 +259,7 @@ CxTest_CxMacros::bUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(cdData); ++ i) {
-            double dRes0 = CxMacros::round(cdData[i][0]);
+            double dRes0 = CxUtils::round(cdData[i][0]);
             double dRes1 = cdData[i][1];
             xTEST_EQ(dRes0, dRes1);
         }

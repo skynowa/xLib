@@ -12,7 +12,6 @@
 #if xOS_ENV_WIN
     #include <xLib/Crypt/Pkcs11/Common.h>
 
-    #include <xLib/Crypt/Pkcs11/CxUtils.h>
     #include <xLib/Crypt/Pkcs11/CxPkcs11.h>
     #include <xLib/Crypt/Pkcs11/CxFunction.h>
     #include <xLib/Crypt/Pkcs11/CxSlot.h>

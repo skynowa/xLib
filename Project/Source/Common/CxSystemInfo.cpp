@@ -552,7 +552,7 @@ CxSystemInfo::cvGetCpuVendor() {
         aiCpuInfo[2] = aiCpuInfo[2];
         aiCpuInfo[3] = 0;
 
-        sValue = std::string(CxMacros::reinterpretCastT<char *>( &aiCpuInfo[0] ));
+        sValue = std::string(CxUtils::reinterpretCastT<char *>( &aiCpuInfo[0] ));
         /*DEBUG*/xASSERT_RET(false == sValue.empty(), cvUnknown);
     #endif
 #endif
@@ -670,7 +670,7 @@ CxSystemInfo::ulGetCpuSpeed() {
 
         double dCpuSpeedMHz = CxString::string_cast<double>( sValue );
 
-        ulRv = static_cast<ulong_t>( CxMacros::round(dCpuSpeedMHz) );
+        ulRv = static_cast<ulong_t>( CxUtils::round(dCpuSpeedMHz) );
     #elif xOS_FREEBSD
         ulong_t ulCpuSpeedMHz     = 0UL;
         size_t  uiCpuSpeedMHzSize = sizeof(ulCpuSpeedMHz);
@@ -713,7 +713,7 @@ CxSystemInfo::ulGetCpuUsage() {
     (void)::CopyMemory(&ulSysKernel, &ftSysKernel, sizeof(ftSysKernel));
     (void)::CopyMemory(&ulSysUser,   &ftSysUser,   sizeof(ftSysUser));
 
-    dRv = CxMacros::safeDivT(
+    dRv = CxUtils::safeDivT(
                 (ulSysKernel.QuadPart - s_ulSysKernelOld.QuadPart) +
                 (ulSysUser.QuadPart   - s_ulSysUserOld.QuadPart)   -
                 (ulSysIdle.QuadPart   - s_ulSysIdleOld.QuadPart)
@@ -808,12 +808,12 @@ CxSystemInfo::ulGetCpuUsage() {
         ulUsed       = aulCpIime[CP_USER] + aulCpIime[CP_NICE] + aulCpIime[CP_SYS];
         ulTotal      = aulCpIime[CP_USER] + aulCpIime[CP_NICE] + aulCpIime[CP_SYS] + aulCpIime[CP_IDLE];
 
-        dCpuUsage    = CxMacros::safeDivT(ulUsed - s_ulUsedOld, ulTotal - s_ulTotalOld) * 100.0;
+        dCpuUsage    = CxUtils::safeDivT(ulUsed - s_ulUsedOld, ulTotal - s_ulTotalOld) * 100.0;
 
         s_ulUsedOld  = ulUsed;
         s_ulTotalOld = ulTotal;
 
-        ulRv = static_cast<ulong_t>( CxMacros::round(dCpuUsage) );
+        ulRv = static_cast<ulong_t>( CxUtils::round(dCpuUsage) );
     #endif
 #endif
 
@@ -914,7 +914,7 @@ CxSystemInfo::ulGetRamUsage() {
 
         ulong_t ulUsage = siInfo.totalram - siInfo.freeram;
 
-        ulRv = static_cast<ulong_t>( CxMacros::safeDivT(ulUsage * 100.0, siInfo.totalram) );
+        ulRv = static_cast<ulong_t>( CxUtils::safeDivT(ulUsage * 100.0, siInfo.totalram) );
         /*DEBUG*/xASSERT_RET(siInfo.totalram == ulUsage + siInfo.freeram, 0UL);
     #elif xOS_FREEBSD
         ulonglong_t ullRamTotal = 0ULL;
@@ -939,7 +939,7 @@ CxSystemInfo::ulGetRamUsage() {
 
         ulonglong_t ullRamUsage = ullRamTotal - ullRamFree;
 
-        ulRv = static_cast<ulong_t>( CxMacros::safeDivT(ullRamUsage * 100.0, ullRamTotal) );
+        ulRv = static_cast<ulong_t>( CxUtils::safeDivT(ullRamUsage * 100.0, ullRamTotal) );
         /*DEBUG*/xASSERT_RET(ullRamTotal == ullRamUsage + ullRamFree, 0UL);
     #endif
 #endif

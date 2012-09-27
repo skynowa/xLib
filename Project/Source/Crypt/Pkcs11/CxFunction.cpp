@@ -8,7 +8,6 @@
 
 #include <xLib/Crypt/Pkcs11/CxPkcs11.h>
 #include <xLib/Crypt/Pkcs11/CxSession.h>
-#include <xLib/Crypt/Pkcs11/CxUtils.h>
 
 
 #if xOS_ENV_WIN
@@ -44,7 +43,7 @@ CxFunction::bGetList(
     /*DEBUG*/
 
     CK_RV ulRv = _m_pFunc->C_GetFunctionList(a_ppFunctionList);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -54,7 +53,7 @@ CxFunction::bGetStatus() {
     /*DEBUG*/
 
     CK_RV ulRv = _m_pFunc->C_GetFunctionStatus(_m_hSession );
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -64,7 +63,7 @@ CxFunction::bCancel() {
     /*DEBUG*/
 
     CK_RV ulRv = _m_pFunc->C_CancelFunction(_m_hSession);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -75,7 +74,7 @@ CxFunction::bGetListEx() {
 
     #if xTODO
         CK_RV ulRv = _m_pFunc->ETC_GetFunctionListEx();
-        /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
+        /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
     #endif
 
     return true;

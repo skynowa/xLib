@@ -412,13 +412,13 @@ CxSocket::bGetPeerName(
     SOCKADDR_IN sockAddr     = {0};
     int         iSockAddrLen = sizeof(sockAddr);
 
-    int iRv = ::getpeername(_m_sktSocket, CxMacros::reinterpretCastT<SOCKADDR *>( &sockAddr ), &iSockAddrLen);
+    int iRv = ::getpeername(_m_sktSocket, CxUtils::reinterpretCastT<SOCKADDR *>( &sockAddr ), &iSockAddrLen);
     /*DEBUG*/xASSERT_RET(etError != iRv, false);
 #elif xOS_ENV_UNIX
     sockaddr_in sockAddr      = {0};
     socklen_t   uiSockAddrLen = sizeof(sockAddr);
 
-    int iRv = ::getpeername(_m_sktSocket, CxMacros::reinterpretCastT<sockaddr *>( &sockAddr ), &uiSockAddrLen);
+    int iRv = ::getpeername(_m_sktSocket, CxUtils::reinterpretCastT<sockaddr *>( &sockAddr ), &uiSockAddrLen);
     /*DEBUG*/xASSERT_RET(etError != iRv, false);
 #endif
 
@@ -449,13 +449,13 @@ CxSocket::bGetSocketName(
     SOCKADDR_IN sockAddr     = {0};
     int         iSockAddrLen = sizeof(sockAddr);
 
-    int iRv = ::getsockname(_m_sktSocket, CxMacros::reinterpretCastT<SOCKADDR *>( &sockAddr ), &iSockAddrLen);
+    int iRv = ::getsockname(_m_sktSocket, CxUtils::reinterpretCastT<SOCKADDR *>( &sockAddr ), &iSockAddrLen);
     /*DEBUG*/xASSERT_RET(etError != iRv, false);
 #elif xOS_ENV_UNIX
     sockaddr_in sockAddr     = {0};
     socklen_t   iSockAddrLen = sizeof(sockAddr);
 
-    int iRv = ::getsockname(_m_sktSocket, CxMacros::reinterpretCastT<sockaddr *>( &sockAddr ), &iSockAddrLen);
+    int iRv = ::getsockname(_m_sktSocket, CxUtils::reinterpretCastT<sockaddr *>( &sockAddr ), &iSockAddrLen);
     /*DEBUG*/xASSERT_RET(etError != iRv, false);
 #endif
 

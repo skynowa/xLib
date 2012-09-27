@@ -6,8 +6,6 @@
 
 #include <xLib/Crypt/Pkcs11/CxPkcs11.h>
 
-#include <xLib/Crypt/Pkcs11/CxUtils.h>
-
 
 #if xOS_ENV_WIN
 
@@ -44,6 +42,120 @@ CxPkcs11::pGetFuncList() const {
     return _m_pFunc;
 }
 //---------------------------------------------------------------------------
+/* static */
+std::tstring_t
+CxPkcs11::sErrorStr(
+    const CK_RV a_culCode
+)
+{
+    /*DEBUG*/// culCode - n/a
+
+    std::tstring_t sRv;
+
+    switch (a_culCode) {
+        case CKR_OK:                               sRv = xT("CKR_OK");
+        case CKR_CANCEL:                           sRv = xT("CKR_CANCEL");
+        case CKR_HOST_MEMORY:                      sRv = xT("CKR_HOST_MEMORY");
+        case CKR_SLOT_ID_INVALID:                  sRv = xT("CKR_SLOT_ID_INVALID");
+        case CKR_GENERAL_ERROR:                    sRv = xT("CKR_GENERAL_ERROR");
+        case CKR_FUNCTION_FAILED:                  sRv = xT("CKR_FUNCTION_FAILED");
+        case CKR_ARGUMENTS_BAD:                    sRv = xT("CKR_ARGUMENTS_BAD");
+        case CKR_NO_EVENT:                         sRv = xT("CKR_NO_EVENT");
+        case CKR_NEED_TO_CREATE_THREADS:           sRv = xT("CKR_NEED_TO_CREATE_THREADS");
+        case CKR_CANT_LOCK:                        sRv = xT("CKR_CANT_LOCK");
+        case CKR_ATTRIBUTE_READ_ONLY:              sRv = xT("CKR_ATTRIBUTE_READ_ONLY");
+        case CKR_ATTRIBUTE_SENSITIVE:              sRv = xT("CKR_ATTRIBUTE_SENSITIVE");
+        case CKR_ATTRIBUTE_TYPE_INVALID:           sRv = xT("CKR_ATTRIBUTE_TYPE_INVALID");
+        case CKR_ATTRIBUTE_VALUE_INVALID:          sRv = xT("CKR_ATTRIBUTE_VALUE_INVALID");
+        case CKR_DATA_INVALID:                     sRv = xT("CKR_DATA_INVALID");
+        case CKR_DATA_LEN_RANGE:                   sRv = xT("CKR_DATA_LEN_RANGE");
+        case CKR_DEVICE_ERROR:                     sRv = xT("CKR_DEVICE_ERROR");
+        case CKR_DEVICE_MEMORY:                    sRv = xT("CKR_DEVICE_MEMORY");
+        case CKR_DEVICE_REMOVED:                   sRv = xT("CKR_DEVICE_REMOVED");
+        case CKR_ENCRYPTED_DATA_INVALID:           sRv = xT("CKR_ENCRYPTED_DATA_INVALID");
+        case CKR_ENCRYPTED_DATA_LEN_RANGE:         sRv = xT("CKR_ENCRYPTED_DATA_LEN_RANGE");
+        case CKR_FUNCTION_CANCELED:                sRv = xT("CKR_FUNCTION_CANCELED");
+        case CKR_FUNCTION_NOT_PARALLEL:            sRv = xT("CKR_FUNCTION_NOT_PARALLEL");
+        case CKR_FUNCTION_NOT_SUPPORTED:           sRv = xT("CKR_FUNCTION_NOT_SUPPORTED");
+        case CKR_KEY_HANDLE_INVALID:               sRv = xT("CKR_KEY_HANDLE_INVALID");
+        case CKR_KEY_SIZE_RANGE:                   sRv = xT("CKR_KEY_SIZE_RANGE");
+        case CKR_KEY_TYPE_INCONSISTENT:            sRv = xT("CKR_KEY_TYPE_INCONSISTENT");
+        case CKR_KEY_NOT_NEEDED:                   sRv = xT("CKR_KEY_NOT_NEEDED");
+        case CKR_KEY_CHANGED:                      sRv = xT("CKR_KEY_CHANGED");
+        case CKR_KEY_NEEDED:                       sRv = xT("CKR_KEY_NEEDED");
+        case CKR_KEY_INDIGESTIBLE:                 sRv = xT("CKR_KEY_INDIGESTIBLE");
+        case CKR_KEY_FUNCTION_NOT_PERMITTED:       sRv = xT("CKR_KEY_FUNCTION_NOT_PERMITTED");
+        case CKR_KEY_NOT_WRAPPABLE:                sRv = xT("CKR_KEY_NOT_WRAPPABLE");
+        case CKR_KEY_UNEXTRACTABLE:                sRv = xT("CKR_KEY_UNEXTRACTABLE");
+        case CKR_MECHANISM_INVALID:                sRv = xT("CKR_MECHANISM_INVALID");
+        case CKR_MECHANISM_PARAM_INVALID:          sRv = xT("CKR_MECHANISM_PARAM_INVALID");
+        case CKR_OBJECT_HANDLE_INVALID:            sRv = xT("CKR_OBJECT_HANDLE_INVALID");
+        case CKR_OPERATION_ACTIVE:                 sRv = xT("CKR_OPERATION_ACTIVE");
+        case CKR_OPERATION_NOT_INITIALIZED:        sRv = xT("CKR_OPERATION_NOT_INITIALIZED");
+        case CKR_PIN_INCORRECT:                    sRv = xT("CKR_PIN_INCORRECT");
+        case CKR_PIN_INVALID:                      sRv = xT("CKR_PIN_INVALID");
+        case CKR_PIN_LEN_RANGE:                    sRv = xT("CKR_PIN_LEN_RANGE");
+        case CKR_PIN_EXPIRED:                      sRv = xT("CKR_PIN_EXPIRED");
+        case CKR_PIN_LOCKED:                       sRv = xT("CKR_PIN_LOCKED");
+        case CKR_SESSION_CLOSED:                   sRv = xT("CKR_SESSION_CLOSED");
+        case CKR_SESSION_COUNT:                    sRv = xT("CKR_SESSION_COUNT");
+        case CKR_SESSION_HANDLE_INVALID:           sRv = xT("CKR_SESSION_HANDLE_INVALID");
+        case CKR_SESSION_PARALLEL_NOT_SUPPORTED:   sRv = xT("CKR_SESSION_PARALLEL_NOT_SUPPORTED");
+        case CKR_SESSION_READ_ONLY:                sRv = xT("CKR_SESSION_READ_ONLY");
+        case CKR_SESSION_EXISTS:                   sRv = xT("CKR_SESSION_EXISTS");
+        case CKR_SESSION_READ_ONLY_EXISTS:         sRv = xT("CKR_SESSION_READ_ONLY_EXISTS");
+        case CKR_SESSION_READ_WRITE_SO_EXISTS:     sRv = xT("CKR_SESSION_READ_WRITE_SO_EXISTS");
+        case CKR_SIGNATURE_INVALID:                sRv = xT("CKR_SIGNATURE_INVALID");
+        case CKR_SIGNATURE_LEN_RANGE:              sRv = xT("CKR_SIGNATURE_LEN_RANGE");
+        case CKR_TEMPLATE_INCOMPLETE:              sRv = xT("CKR_TEMPLATE_INCOMPLETE");
+        case CKR_TEMPLATE_INCONSISTENT:            sRv = xT("CKR_TEMPLATE_INCONSISTENT");
+        case CKR_TOKEN_NOT_PRESENT:                sRv = xT("CKR_TOKEN_NOT_PRESENT");
+        case CKR_TOKEN_NOT_RECOGNIZED:             sRv = xT("CKR_TOKEN_NOT_RECOGNIZED");
+        case CKR_TOKEN_WRITE_PROTECTED:            sRv = xT("CKR_TOKEN_WRITE_PROTECTED");
+        case CKR_UNWRAPPING_KEY_HANDLE_INVALID:    sRv = xT("CKR_UNWRAPPING_KEY_HANDLE_INVALID");
+        case CKR_UNWRAPPING_KEY_SIZE_RANGE:        sRv = xT("CKR_UNWRAPPING_KEY_SIZE_RANGE");
+        case CKR_UNWRAPPING_KEY_TYPE_INCONSISTENT: sRv = xT("CKR_UNWRAPPING_KEY_TYPE_INCONSISTENT");
+        case CKR_USER_ALREADY_LOGGED_IN:           sRv = xT("CKR_USER_ALREADY_LOGGED_IN");
+        case CKR_USER_NOT_LOGGED_IN:               sRv = xT("CKR_USER_NOT_LOGGED_IN");
+        case CKR_USER_PIN_NOT_INITIALIZED:         sRv = xT("CKR_USER_PIN_NOT_INITIALIZED");
+        case CKR_USER_TYPE_INVALID:                sRv = xT("CKR_USER_TYPE_INVALID");
+        case CKR_USER_ANOTHER_ALREADY_LOGGED_IN:   sRv = xT("CKR_USER_ANOTHER_ALREADY_LOGGED_IN");
+        case CKR_USER_TOO_MANY_TYPES:              sRv = xT("CKR_USER_TOO_MANY_TYPES");
+        case CKR_WRAPPED_KEY_INVALID:              sRv = xT("CKR_WRAPPED_KEY_INVALID");
+        case CKR_WRAPPED_KEY_LEN_RANGE:            sRv = xT("CKR_WRAPPED_KEY_LEN_RANGE");
+        case CKR_WRAPPING_KEY_HANDLE_INVALID:      sRv = xT("CKR_WRAPPING_KEY_HANDLE_INVALID");
+        case CKR_WRAPPING_KEY_SIZE_RANGE:          sRv = xT("CKR_WRAPPING_KEY_SIZE_RANGE");
+        case CKR_WRAPPING_KEY_TYPE_INCONSISTENT:   sRv = xT("CKR_WRAPPING_KEY_TYPE_INCONSISTENT");
+        case CKR_RANDOM_SEED_NOT_SUPPORTED:        sRv = xT("CKR_RANDOM_SEED_NOT_SUPPORTED");
+        case CKR_RANDOM_NO_RNG:                    sRv = xT("CKR_RANDOM_NO_RNG");
+        case CKR_DOMAIN_PARAMS_INVALID:            sRv = xT("CKR_DOMAIN_PARAMS_INVALID");        /*new SDK 4.53*/
+        case CKR_BUFFER_TOO_SMALL:                 sRv = xT("CKR_BUFFER_TOO_SMALL");
+        case CKR_SAVED_STATE_INVALID:              sRv = xT("CKR_SAVED_STATE_INVALID");
+        case CKR_INFORMATION_SENSITIVE:            sRv = xT("CKR_INFORMATION_SENSITIVE");
+        case CKR_STATE_UNSAVEABLE:                 sRv = xT("CKR_STATE_UNSAVEABLE");
+        case CKR_CRYPTOKI_NOT_INITIALIZED:         sRv = xT("CKR_CRYPTOKI_NOT_INITIALIZED");
+        case CKR_CRYPTOKI_ALREADY_INITIALIZED:     sRv = xT("CKR_CRYPTOKI_ALREADY_INITIALIZED");
+        case CKR_MUTEX_BAD:                        sRv = xT("CKR_MUTEX_BAD");
+        case CKR_MUTEX_NOT_LOCKED:                 sRv = xT("CKR_MUTEX_NOT_LOCKED");
+        case CKR_FUNCTION_REJECTED:                sRv = xT("CKR_FUNCTION_REJECTED");            /*new SDK 4.53*/
+        case CKR_VENDOR_DEFINED:                   sRv = xT("CKR_VENDOR_DEFINED");
+        case CKR_SAPI_OBJECT_DOES_NOT_EXIST:       sRv = xT("CKR_SAPI_OBJECT_DOES_NOT_EXIST");   /*new SDK 4.53*/
+        case CKR_SAPI_OBJECT_ALREADY_EXISTS:       sRv = xT("CKR_SAPI_OBJECT_ALREADY_EXISTS");   /*new SDK 4.53*/
+        case CKR_SAPI_NOT_SUPPORTED_BY_TOKEN:      sRv = xT("CKR_SAPI_NOT_SUPPORTED_BY_TOKEN");  /*new SDK 4.53*/
+        case CKR_SAPI_PIN_QUALITY:                 sRv = xT("CKR_SAPI_PIN_QUALITY");             /*new SDK 4.53*/
+        case CKR_SAPI_PIN_DEFAULT:                 sRv = xT("CKR_SAPI_PIN_DEFAULT");             /*new SDK 4.53*/
+        case CKR_SAPI_PIN_EXPIRATION:              sRv = xT("CKR_SAPI_PIN_EXPIRATION");          /*new SDK 4.53*/
+        case CKR_SAPI_PIN_CHANGE_NOT_ALLOWED:      sRv = xT("CKR_SAPI_PIN_CHANGE_NOT_ALLOWED");  /*new SDK 4.53*/
+        case CKR_SAPI_CANCELLED:                   sRv = xT("CKR_SAPI_CANCELLED");               /*new SDK 4.53*/
+        case CKR_NEW_PIN_MODE:                     sRv = xT("CKR_NEW_PIN_MODE");                 /*new SDK 4.53*/
+        case CKR_NEXT_OTP:                         sRv = xT("CKR_NEXT_OTP");                     /*new SDK 4.53*/
+
+        default:                                   sRv = xT("CKR_UNKNOWN_ERROR");
+    }
+
+    return sRv;
+}
+//---------------------------------------------------------------------------
 
 
 /****************************************************************************
@@ -65,7 +177,7 @@ CxPkcs11::_bLoadETPkcs11() {
     /*DEBUG*/xASSERT_RET(NULL != pFunctionList, false);
 
     CK_RV ulRv = pFunctionList(&_m_pFunc);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
     /*DEBUG*/xASSERT_RET    (NULL   != _m_pFunc,                                       false);
 
     return true;
@@ -76,7 +188,7 @@ CxPkcs11::bInitialize() {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc, false);
 
     CK_RV ulRv = _m_pFunc->C_Initialize(NULL_PTR);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -86,7 +198,7 @@ CxPkcs11::bFinalize() {
     /*DEBUG*/xASSERT_RET(NULL != _m_pFunc, false);
 
     CK_RV ulRv = _m_pFunc->C_Finalize(NULL_PTR);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }

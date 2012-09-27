@@ -1073,9 +1073,9 @@ CxFile::bGetTime(
     BOOL blRes = ::GetFileTime(m_hHandle.hGet(), &ftCreate, &ftAccess, &ftModified);
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 
-    CxMacros::ptrAssignT(ptmCreate,   CxDateTime::tmFileTimeToUnixTime(ftCreate));
-    CxMacros::ptrAssignT(ptmAccess,   CxDateTime::tmFileTimeToUnixTime(ftAccess));
-    CxMacros::ptrAssignT(ptmModified, CxDateTime::tmFileTimeToUnixTime(ftModified));
+    CxUtils::ptrAssignT(ptmCreate,   CxDateTime::tmFileTimeToUnixTime(ftCreate));
+    CxUtils::ptrAssignT(ptmAccess,   CxDateTime::tmFileTimeToUnixTime(ftAccess));
+    CxUtils::ptrAssignT(ptmModified, CxDateTime::tmFileTimeToUnixTime(ftModified));
 #elif xOS_ENV_UNIX
     xTSTAT_STRUCT stInfo = {0};
 
@@ -1083,8 +1083,8 @@ CxFile::bGetTime(
     /*DEBUG*/xASSERT_RET(- 1 != iRv, false);
 
     //ctmCreate - n/a
-    CxMacros::ptrAssignT(ptmAccess,   stInfo.st_atime);
-    CxMacros::ptrAssignT(ptmModified, stInfo.st_mtime);
+    CxUtils::ptrAssignT(ptmAccess,   stInfo.st_atime);
+    CxUtils::ptrAssignT(ptmModified, stInfo.st_mtime);
 #endif
 
     return true;
