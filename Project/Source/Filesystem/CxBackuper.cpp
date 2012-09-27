@@ -6,6 +6,7 @@
 
 #include <xLib/Filesystem/CxBackuper.h>
 
+#include <xLib/Common/CxString.h>
 #include <xLib/Common/CxDateTime.h>
 #include <xLib/Crypt/CxCrc32.h>
 #include <xLib/Filesystem/CxPath.h>

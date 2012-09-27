@@ -6,6 +6,8 @@
 
 #include <Test/Filesystem/CxTest_CxDir.h>
 
+#include <xLib/Common/CxString.h>
+
 
 //---------------------------------------------------------------------------
 CxTest_CxDir::CxTest_CxDir() {

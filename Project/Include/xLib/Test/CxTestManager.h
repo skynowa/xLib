@@ -8,6 +8,7 @@
 #define xLib_Debug_CxTestManagerH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
+#include <xLib/Common/CxConst.h>
 #include <xLib/Test/CxTest.h>
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)

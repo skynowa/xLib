@@ -24,14 +24,8 @@ xNAMESPACE_BEGIN(NxLib)
 
     // tchar_t
     #if xUNICODE
-        #define xTEXT(x)               L##x
-        #define xT(x)                  xTEXT(x)
-
         typedef wchar_t                tchar_t;
     #else
-        #define xTEXT(x)               x
-        #define xT(x)                  xTEXT(x)
-
         typedef char                   tchar_t;
     #endif
         ///< char

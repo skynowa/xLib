@@ -6,6 +6,8 @@
 
 #include <Test/Filesystem/CxTest_CxEnvironment.h>
 
+#include <xLib/Common/CxString.h>
+
 
 //---------------------------------------------------------------------------
 CxTest_CxEnvironment::CxTest_CxEnvironment() {

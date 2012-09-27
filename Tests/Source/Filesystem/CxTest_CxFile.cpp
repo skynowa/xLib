@@ -6,6 +6,8 @@
 
 #include <Test/Filesystem/CxTest_CxFile.h>
 
+#include <xLib/Common/CxConst.h>
+#include <xLib/Common/CxString.h>
 
 //---------------------------------------------------------------------------
 CxTest_CxFile::CxTest_CxFile() {

@@ -6,6 +6,8 @@
 
 #include <xLib/Log/CxFileLog.h>
 
+#include <xLib/Common/CxConst.h>
+#include <xLib/Common/CxString.h>
 #include <xLib/Common/CxDateTime.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>

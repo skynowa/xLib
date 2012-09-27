@@ -6,6 +6,8 @@
 
 #include <Test/Common/CxTest_CxMacros.h>
 
+#include <xLib/Common/CxString.h>
+
 
 //---------------------------------------------------------------------------
 CxTest_CxMacros::CxTest_CxMacros() {

@@ -6,6 +6,7 @@
 
 #include <xLib/Filesystem/CxLocalStorage.h>
 
+#include <xLib/Common/CxString.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxDir.h>
 #include <xLib/Filesystem/CxFile.h>

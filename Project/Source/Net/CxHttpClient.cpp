@@ -6,6 +6,8 @@
 
 #include <xLib/Net/CxHttpClient.h>  //65536
 
+#include <xLib/Common/CxConst.h>
+
 
 xNAMESPACE_BEGIN(NxLib)
 

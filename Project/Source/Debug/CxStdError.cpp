@@ -6,6 +6,8 @@
 
 #include <xLib/Debug/CxStdError.h>
 
+#include <xLib/Common/CxString.h>
+
 
 xNAMESPACE_BEGIN(NxLib)
 

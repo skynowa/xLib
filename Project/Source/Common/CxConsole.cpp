@@ -6,6 +6,8 @@
 
 #include <xLib/Common/CxConsole.h>
 
+#include <xLib/Common/CxConst.h>
+#include <xLib/Common/CxString.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Sync/CxCurrentThread.h>
 #include <xLib/Sync/CxCurrentProcess.h>

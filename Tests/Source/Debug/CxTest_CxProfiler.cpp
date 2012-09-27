@@ -6,6 +6,7 @@
 
 #include <Test/Debug/CxTest_CxProfiler.h>
 
+#include <xLib/Common/CxConst.h>
 
 //---------------------------------------------------------------------------
 CxTest_CxProfiler::CxTest_CxProfiler() {

@@ -7,6 +7,7 @@
 #include <xLib/Filesystem/CxDir.h>
 
 #include <xLib/Common/CxChar.h>
+#include <xLib/Common/CxString.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Filesystem/CxFileAttribute.h>

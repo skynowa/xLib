@@ -8,7 +8,7 @@
 #define CXAdoH
 
 
-#if defined(xOS_WIN)
+#if xOS_WIN
 
 xNAMESPACE_BEGIN(NxLib)
 

@@ -6,6 +6,7 @@
 
 #include <xLib/Sync/CxThread.h>
 
+#include <xLib/Common/CxString.h>
 #include <xLib/Common/CxSystemInfo.h>
 #include <xLib/Sync/CxCurrentThread.h>
 #include <xLib/Sync/CxProcess.h>
