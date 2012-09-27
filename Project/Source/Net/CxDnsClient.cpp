@@ -386,7 +386,7 @@ CxDnsClient::bGetServiceByPort(
 
     //-------------------------------------
     //psiPort
-    CxMacros::ptrAssignT(a_psiPort, psvInfo->s_port);
+    CxMacros::ptrAssignT(a_psiPort, static_cast<short_t>( psvInfo->s_port ));
 
     //-------------------------------------
     //psProtocolName
