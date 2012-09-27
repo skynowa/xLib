@@ -6,7 +6,7 @@
 
 #include <xLib/Net/CxCgi.h>
 
-#include <xLib/Common/CxMacros.h>
+#include <xLib/Common/CxUtils.h>
 #include <xLib/Common/CxConst.h>
 #include <xLib/Common/CxString.h>
 #include <xLib/Filesystem/CxEnvironment.h>

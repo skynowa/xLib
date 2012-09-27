@@ -7,7 +7,6 @@
 #include <xLib/Crypt/Pkcs11/CxSession.h>
 
 #include <xLib/Crypt/Pkcs11/CxPkcs11.h>
-#include <xLib/Crypt/Pkcs11/CxUtils.h>
 
 
 #if xOS_ENV_WIN
@@ -55,7 +54,7 @@ CxSession::bOpen(
     /*DEBUG*/xASSERT_RET(NULL == _m_hSession, false);
 
     CK_RV ulRv = _m_pFunc->C_OpenSession(a_slotID, a_flags, a_pApplication, a_Notify, &_m_hSession);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -69,7 +68,7 @@ CxSession::bGetInfo(
     /*DEBUG*/xASSERT_RET(NULL != _m_hSession, false);
 
     CK_RV ulRv = _m_pFunc->C_GetSessionInfo(_m_hSession, a_pInfo);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -86,7 +85,7 @@ CxSession::bSetOperationState(
     /*DEBUG*/xASSERT_RET(NULL != _m_hSession, false);
 
     CK_RV ulRv = _m_pFunc->C_SetOperationState(_m_hSession, a_pOperationState, a_ulOperationStateLen, a_hEncryptionKey, a_hAuthenticationKey);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -101,7 +100,7 @@ CxSession::bGetOperationState(
     /*DEBUG*/xASSERT_RET(NULL != _m_hSession, false);
 
     CK_RV ulRv = _m_pFunc->C_GetOperationState(_m_hSession, a_pOperationState, a_pulOperationStateLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -113,7 +112,7 @@ CxSession::bClose() {
 
 
     CK_RV ulRv = _m_pFunc->C_CloseSession(_m_hSession);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
 
     _m_hSession = NULL;
 
@@ -129,7 +128,7 @@ CxSession::bCloseAll(
     /*DEBUG*/// _m_hSession - n/a
 
     CK_RV ulRv = _m_pFunc->C_CloseAllSessions(slotID);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
 
     _m_hSession = NULL;
 

@@ -551,9 +551,9 @@ CxThread::bMessageWaitQueue(
         for (size_t i = 0; i < a_cvuiMsg.size(); ++ i) {
             xCHECK_DO(a_cvuiMsg.at(i) != msgMsg.message, continue);
 
-            CxMacros::ptrAssignT(a_puiMsg,    msgMsg.message                      );
-            CxMacros::ptrAssignT(a_puiParam1, static_cast<uint_t>( msgMsg.wParam ));
-            CxMacros::ptrAssignT(a_pliParam2, static_cast<long_t>( msgMsg.lParam ));
+            CxUtils::ptrAssignT(a_puiMsg,    msgMsg.message                      );
+            CxUtils::ptrAssignT(a_puiParam1, static_cast<uint_t>( msgMsg.wParam ));
+            CxUtils::ptrAssignT(a_pliParam2, static_cast<long_t>( msgMsg.lParam ));
 
             return true;
         }

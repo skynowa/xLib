@@ -6,7 +6,7 @@
 
 #include <xLib/Net/CxTcpClient.h>
 
-#include <xLib/Common/CxMacros.h>
+#include <xLib/Common/CxUtils.h>
 
 
 xNAMESPACE_BEGIN(NxLib)
@@ -73,7 +73,7 @@ CxTcpClient::bConnect(
     saSockAddr.sin_addr.s_addr = ::inet_addr(asIp.c_str());
     saSockAddr.sin_port        = htons(a_usPort); //???????
 
-    int iRv = ::connect(_m_sktSocket, CxMacros::reinterpretCastT<sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
+    int iRv = ::connect(_m_sktSocket, CxUtils::reinterpretCastT<sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
     /*DEBUG*/xASSERT_RET(etError != iRv, false);
 
     return true;
@@ -149,8 +149,8 @@ CxTcpClient::bGetTimeout(
     /*DEBUG*/// pliMicroSec - n/a
 
     // BUG: static_cast<long_t>( _m_tvTimeout.tv_sec  )
-    CxMacros::ptrAssignT(a_pliSec,      static_cast<long_t>( _m_tvTimeout.tv_sec  ));
-    CxMacros::ptrAssignT(a_pliMicroSec, static_cast<long_t>( _m_tvTimeout.tv_usec ));
+    CxUtils::ptrAssignT(a_pliSec,      static_cast<long_t>( _m_tvTimeout.tv_sec  ));
+    CxUtils::ptrAssignT(a_pliMicroSec, static_cast<long_t>( _m_tvTimeout.tv_usec ));
 
     return true;
 }
@@ -210,7 +210,7 @@ CxTcpClient::bIsServerAlive(
     saSockAddr.sin_port        = htons(a_usPort); //TODO: htons
 
     //connect - [+] 0 [-] SOCKET_ERROR
-    iRv = ::connect(objSocket.iGetSocket(), CxMacros::reinterpretCastT<sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
+    iRv = ::connect(objSocket.iGetSocket(), CxUtils::reinterpretCastT<sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
     /*DEBUG*/// n/a
 
     xCHECK_RET(0 != iRv, false);

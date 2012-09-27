@@ -134,18 +134,18 @@ CxVolume::bGetSpace(
     BOOL blRes = ::GetDiskFreeSpaceEx(_sDirPath.c_str(), &ullAvailable, &ullTotal, &ullFree);
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 
-    CxMacros::ptrAssignT(pullAvailable, ullAvailable.QuadPart);
-    CxMacros::ptrAssignT(pullTotal,     ullTotal.QuadPart);
-    CxMacros::ptrAssignT(pullFree,      ullFree.QuadPart);
+    CxUtils::ptrAssignT(pullAvailable, ullAvailable.QuadPart);
+    CxUtils::ptrAssignT(pullTotal,     ullTotal.QuadPart);
+    CxUtils::ptrAssignT(pullFree,      ullFree.QuadPart);
 #elif xOS_ENV_UNIX
     struct xSTATVFS stfInfo = {0};
 
     int iRv = ::xSTATVFS(_sDirPath.c_str(), &stfInfo);
     /*DEBUG*/xASSERT_MSG_RET(- 1 != iRv, _sDirPath, false);
 
-    CxMacros::ptrAssignT(pullAvailable, static_cast<ulonglong_t>( stfInfo.f_bavail * stfInfo.xSTATVFS_F_FRSIZE ));
-    CxMacros::ptrAssignT(pullTotal,     static_cast<ulonglong_t>( stfInfo.f_blocks * stfInfo.xSTATVFS_F_FRSIZE ));
-    CxMacros::ptrAssignT(pullFree,      static_cast<ulonglong_t>( stfInfo.f_bfree  * stfInfo.xSTATVFS_F_FRSIZE ));
+    CxUtils::ptrAssignT(pullAvailable, static_cast<ulonglong_t>( stfInfo.f_bavail * stfInfo.xSTATVFS_F_FRSIZE ));
+    CxUtils::ptrAssignT(pullTotal,     static_cast<ulonglong_t>( stfInfo.f_blocks * stfInfo.xSTATVFS_F_FRSIZE ));
+    CxUtils::ptrAssignT(pullFree,      static_cast<ulonglong_t>( stfInfo.f_bfree  * stfInfo.xSTATVFS_F_FRSIZE ));
 #endif
 
     return true;

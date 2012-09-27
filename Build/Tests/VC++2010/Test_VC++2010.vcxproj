@@ -205,7 +205,6 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxHandleErrorT.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxHandleT.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxLocale.h" />
-    <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxMacros.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxNonAssignable.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxNonCopyable.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxProcessInfo.h" />
@@ -213,6 +212,7 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxString.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxSystemInfo.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxType.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxUtils.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\Win\CxCom.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\xCheks.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\xCommon.h" />
@@ -244,7 +244,6 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxSession.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxSign.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxSlot.h" />
-    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxUtils.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxVerify.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\SDK\4.53\cryptoki.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\SDK\4.53\eTPkcs11.h" />
@@ -321,7 +320,6 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\Win\CxCompletionPort.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Test\CxTest.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Test\CxTestManager.h" />
-    <ClInclude Include="..\..\..\Project\Include\xLib\Units\Win\bDownloadURL.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Units\Win\bGetUsbInfo.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxArray.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxChar.h" />
@@ -331,12 +329,12 @@
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxFunctorT.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxHandleT.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxLocale.h" />
-    <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxMacros.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxProcessInfo.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxShell.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxString.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxSystemInfo.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxType.h" />
+    <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxUtils.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\Win\CxTest_CxCom.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Crypt\CxTest_CxBase64.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Crypt\CxTest_CxBlowfish.h" />
@@ -406,9 +404,9 @@
     <None Include="..\..\..\Project\Include\xLib\Common\CxArray.inl" />
     <None Include="..\..\..\Project\Include\xLib\Common\CxFunctorT.inl" />
     <None Include="..\..\..\Project\Include\xLib\Common\CxHandleT.inl" />
-    <None Include="..\..\..\Project\Include\xLib\Common\CxMacros.inl" />
     <None Include="..\..\..\Project\Include\xLib\Common\CxString.inl" />
     <None Include="..\..\..\Project\Include\xLib\Common\CxType.inl" />
+    <None Include="..\..\..\Project\Include\xLib\Common\CxUtils.inl" />
     <None Include="..\..\..\Project\Include\xLib\Debug\CxErrorReport.inl" />
     <None Include="..\..\..\Project\Include\xLib\Debug\CxException.inl" />
     <None Include="..\..\..\Project\Include\xLib\Gui\Dialogs\CxMsgBoxT.inl" />
@@ -447,7 +445,6 @@
     <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxSession.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxSign.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxSlot.cpp" />
-    <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxUtils.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxVerify.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Db\CxConnectionString.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Db\CxMySql.cpp">
@@ -511,7 +508,6 @@
     <ClCompile Include="..\..\..\Project\Source\Sync\Win\CxCompletionPort.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Test\CxTest.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Test\CxTestManager.cpp" />
-    <ClCompile Include="..\..\..\Project\Source\Units\Win\bDownloadURL.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Units\Win\bGetUsbInfo.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxArray.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxChar.cpp" />
@@ -521,12 +517,12 @@
     <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxFunctorT.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxHandleT.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxLocale.cpp" />
-    <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxMacros.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxProcessInfo.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxShell.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxString.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxSystemInfo.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxType.cpp" />
+    <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxUtils.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Common\Win\CxTest_CxCom.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Crypt\CxTest_CxBase64.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Crypt\CxTest_CxBlowfish.cpp" />

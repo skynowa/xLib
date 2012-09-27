@@ -112,9 +112,6 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxLocale.h">
       <Filter>xLib\Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxMacros.h">
-      <Filter>xLib\Common</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxNonAssignable.h">
       <Filter>xLib\Common</Filter>
     </ClInclude>
@@ -212,9 +209,6 @@
       <Filter>xLib\Crypt\Pkcs11</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxSlot.h">
-      <Filter>xLib\Crypt\Pkcs11</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxUtils.h">
       <Filter>xLib\Crypt\Pkcs11</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxVerify.h">
@@ -382,9 +376,6 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Test\CxTestManager.h">
       <Filter>xLib\Test</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Project\Include\xLib\Units\Win\bDownloadURL.h">
-      <Filter>xLib\Units\Win</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Units\Win\bGetUsbInfo.h">
       <Filter>xLib\Units\Win</Filter>
     </ClInclude>
@@ -448,6 +439,9 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxSemaphore.h">
       <Filter>xLib\Sync</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxUtils.h">
+      <Filter>xLib\Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Project\Include\xLib\Common\CxArray.inl">
@@ -480,7 +474,7 @@
     <None Include="..\..\..\Project\Include\xLib\Sync\CxThreadPool.inl">
       <Filter>xLib\Sync</Filter>
     </None>
-    <None Include="..\..\..\Project\Include\xLib\Common\CxMacros.inl">
+    <None Include="..\..\..\Project\Include\xLib\Common\CxUtils.inl">
       <Filter>xLib\Common</Filter>
     </None>
   </ItemGroup>
@@ -567,9 +561,6 @@
       <Filter>xLib\Crypt\Pkcs11</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxSlot.cpp">
-      <Filter>xLib\Crypt\Pkcs11</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxUtils.cpp">
       <Filter>xLib\Crypt\Pkcs11</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxVerify.cpp">
@@ -733,9 +724,6 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Test\CxTestManager.cpp">
       <Filter>xLib\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Project\Source\Units\Win\bDownloadURL.cpp">
-      <Filter>xLib\Units\Win</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Units\Win\bGetUsbInfo.cpp">
       <Filter>xLib\Units\Win</Filter>

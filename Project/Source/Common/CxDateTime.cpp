@@ -351,13 +351,13 @@ CxDateTime::bGet(
     /*DEBUG*/xASSERT_RET(false != bIsValid(), false);
     /*DEBUG*/// n/a
     
-    CxMacros::ptrAssignT(a_pusYear,        _m_usYear);
-    CxMacros::ptrAssignT(a_pusMonth,       _m_usMonth);
-    CxMacros::ptrAssignT(a_pusDay,         _m_usDay);
-    CxMacros::ptrAssignT(a_pusHour,        _m_usHour);
-    CxMacros::ptrAssignT(a_pusMinute,      _m_usMinute);
-    CxMacros::ptrAssignT(a_pusSecond,      _m_usSecond);
-    CxMacros::ptrAssignT(a_pusMillisecond, _m_usMillisecond);
+    CxUtils::ptrAssignT(a_pusYear,        _m_usYear);
+    CxUtils::ptrAssignT(a_pusMonth,       _m_usMonth);
+    CxUtils::ptrAssignT(a_pusDay,         _m_usDay);
+    CxUtils::ptrAssignT(a_pusHour,        _m_usHour);
+    CxUtils::ptrAssignT(a_pusMinute,      _m_usMinute);
+    CxUtils::ptrAssignT(a_pusSecond,      _m_usSecond);
+    CxUtils::ptrAssignT(a_pusMillisecond, _m_usMillisecond);
 
     return true;
 }
@@ -568,13 +568,13 @@ CxDateTime::bIsValid(
 {
     /*DEBUG*/
 
-    /*DEBUG*/xASSERT_MSG(false != CxMacros::numericLimitsCheckT<ushort_t>(a_cusYear),        CxString::string_cast(a_cusYear));
-    /*DEBUG*/xASSERT_MSG(false != CxMacros::numericLimitsCheckT<ushort_t>(a_cusMonth),       CxString::string_cast(a_cusMonth));
-    /*DEBUG*/xASSERT_MSG(false != CxMacros::numericLimitsCheckT<ushort_t>(a_cusDay),         CxString::string_cast(a_cusDay));
-    /*DEBUG*/xASSERT_MSG(false != CxMacros::numericLimitsCheckT<ushort_t>(a_cusHour),        CxString::string_cast(a_cusHour));
-    /*DEBUG*/xASSERT_MSG(false != CxMacros::numericLimitsCheckT<ushort_t>(a_cusMinute),      CxString::string_cast(a_cusMinute));
-    /*DEBUG*/xASSERT_MSG(false != CxMacros::numericLimitsCheckT<ushort_t>(a_cusSecond),      CxString::string_cast(a_cusSecond));
-    /*DEBUG*/xASSERT_MSG(false != CxMacros::numericLimitsCheckT<ushort_t>(a_cusMillisecond), CxString::string_cast(a_cusMillisecond));
+    /*DEBUG*/xASSERT_MSG(false != CxUtils::numericLimitsCheckT<ushort_t>(a_cusYear),        CxString::string_cast(a_cusYear));
+    /*DEBUG*/xASSERT_MSG(false != CxUtils::numericLimitsCheckT<ushort_t>(a_cusMonth),       CxString::string_cast(a_cusMonth));
+    /*DEBUG*/xASSERT_MSG(false != CxUtils::numericLimitsCheckT<ushort_t>(a_cusDay),         CxString::string_cast(a_cusDay));
+    /*DEBUG*/xASSERT_MSG(false != CxUtils::numericLimitsCheckT<ushort_t>(a_cusHour),        CxString::string_cast(a_cusHour));
+    /*DEBUG*/xASSERT_MSG(false != CxUtils::numericLimitsCheckT<ushort_t>(a_cusMinute),      CxString::string_cast(a_cusMinute));
+    /*DEBUG*/xASSERT_MSG(false != CxUtils::numericLimitsCheckT<ushort_t>(a_cusSecond),      CxString::string_cast(a_cusSecond));
+    /*DEBUG*/xASSERT_MSG(false != CxUtils::numericLimitsCheckT<ushort_t>(a_cusMillisecond), CxString::string_cast(a_cusMillisecond));
 
     bool bYear        = (/*cusYear   >= 0U && */a_cusYear   <= 9999U);
     /*DEBUG*/xASSERT_MSG(true == bYear,        xT("usYear:   ")        + CxString::string_cast(a_cusYear));
@@ -617,7 +617,7 @@ bool
 CxDateTime::bIsValid() const {
     /*DEBUG*/
 
-    /*DEBUG*/xASSERT_MSG(CxMacros::numericLimitsCheckT<ulonglong_t>(_m_ullDateTimeInMSec), CxString::string_cast(_m_ullDateTimeInMSec));
+    /*DEBUG*/xASSERT_MSG(CxUtils::numericLimitsCheckT<ulonglong_t>(_m_ullDateTimeInMSec), CxString::string_cast(_m_ullDateTimeInMSec));
 
     return bIsValid(*this);
 }

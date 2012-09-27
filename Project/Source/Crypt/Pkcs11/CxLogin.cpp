@@ -8,7 +8,6 @@
 
 #include <xLib/Crypt/Pkcs11/CxPkcs11.h>
 #include <xLib/Crypt/Pkcs11/CxSession.h>
-#include <xLib/Crypt/Pkcs11/CxUtils.h>
 #include <xLib/Gui/Dialogs/CxMsgBoxT.h>
 
 
@@ -54,7 +53,7 @@ CxLogin::bLogin(
         CxMsgBoxT::iShow(xT("Pin is incorrect"), xT("Pkcs11"), MB_OK + MB_ICONSTOP);
         return false
     );
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
@@ -65,7 +64,7 @@ CxLogin::bLogout() {
     /*DEBUG*/xASSERT_RET(NULL != _m_hSession, false);
 
     CK_RV ulRv = _m_pFunc->C_Logout(_m_hSession);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxUtils::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
 
     return true;
 }
