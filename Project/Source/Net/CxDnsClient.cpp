@@ -220,7 +220,7 @@ CxDnsClient::bGetProtocolByName(
 
     //-------------------------------------
     //psiNumber
-    xCHECK_DO(NULL != a_psiNumber, *a_psiNumber = pptInfo->p_proto);
+    CxMacros::ptrAssignT(a_psiNumber, *a_psiNumber = pptInfo->p_proto);
 
     return true;
 }
@@ -269,7 +269,7 @@ CxDnsClient::bGetProtocolByNumber(
 
     //-------------------------------------
     //psiNum
-    xCHECK_DO(NULL != a_psiNumber, *a_psiNumber = pptInfo->p_proto);
+    CxMacros::ptrAssignT(a_psiNumber, *a_psiNumber = pptInfo->p_proto);
 
     return true;
 }
@@ -324,7 +324,7 @@ CxDnsClient::bGetServiceByName(
     }
     //-------------------------------------
     //psiPort
-    xCHECK_DO(NULL != a_psiPort, *a_psiPort = psvInfo->s_port);
+    CxMacros::ptrAssignT(a_psiPort, *a_psiPort = psvInfo->s_port);
 
     //-------------------------------------
     //psProtocolName
@@ -386,7 +386,7 @@ CxDnsClient::bGetServiceByPort(
 
     //-------------------------------------
     //psiPort
-    xCHECK_DO(NULL != a_psiPort, *a_psiPort = psvInfo->s_port);
+    CxMacros::ptrAssignT(a_psiPort, psvInfo->s_port);
 
     //-------------------------------------
     //psProtocolName
