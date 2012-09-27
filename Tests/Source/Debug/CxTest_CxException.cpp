@@ -74,8 +74,6 @@ CxTest_CxException::bUnit(
             throw CxException() << xT("CxException_test_exception");
         }
         catch (const CxException &e) {
-            xUNUSED(e);
-
             //xTRACEV( xT("std::what: %s"), e.sGetWhat().c_str() );
         }
         catch (...) {
@@ -93,8 +91,6 @@ CxTest_CxException::bUnit(
             sStr.at(0);
         }
         catch (const std::exception &e) {
-            xUNUSED(e);
-
             //xTRACEV( xT("std::what: %s"), e.what() );
         }
         catch (...) {
@@ -104,7 +100,7 @@ CxTest_CxException::bUnit(
 
     //--------------------------------------------------
     // xTRY, xCATCH_ALL, xTHROW
-    xTEST_CASE(cullCaseLoops) 
+    xTEST_CASE(cullCaseLoops)
     {
         #if 0
             xTRY {
