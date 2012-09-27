@@ -6,6 +6,8 @@
 
 #include <xLib/Sync/CxEvent.h>
 
+#include <xLib/Common/CxString.h>
+
 
 xNAMESPACE_BEGIN(NxLib)
 

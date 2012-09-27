@@ -6,6 +6,8 @@
 
 #include <Test/Db/CxTest_CxMySql.h>
 
+#include <xLib/Common/CxString.h>
+
 
 //---------------------------------------------------------------------------
 CxTest_CxMySql::CxTest_CxMySql() {

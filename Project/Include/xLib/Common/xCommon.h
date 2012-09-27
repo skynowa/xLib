@@ -3,11 +3,12 @@
  * \brief common header for xLib
  */
 
+
 /**
  * \mainpage
  *
  * This library is cross-platform and can be compiled and used on
- * Linux, BSD and Windows (x32, x64)
+ * Linux, FreeBSD and Windows (x86, x64)
  *
  * \author  skynowa@gmail.com
  * \date    2008 - 2012
@@ -101,10 +102,6 @@
 //---------------------------------------------------------------------------
 // config
 #include <xLib/Common/xConfig.h>
-#include <xLib/Common/xDefines.h>
-
-// tracing
-#include <xLib/Common/xTracing.h>
 
 // POSIX
 #include <sys/types.h>  // must be at the top (it's portable)
@@ -154,6 +151,8 @@ namespace NxLib { }
     using namespace NxLib;
 #endif
 
+#include <xLib/Common/xDefines.h>
+
 #if   xOS_ENV_WIN
     #include <xLib/Common/xCommon_Win.h>
 #elif xOS_ENV_UNIX
@@ -166,6 +165,7 @@ namespace NxLib { }
 #include <xLib/Common/CxUtils.h>
 #include <xLib/Debug/xDebug.h>
 
+#include <xLib/Common/xTracing.h>
 #include <xLib/Common/xCheks.h>
 #include <xLib/Common/xLinking.h>
 //---------------------------------------------------------------------------

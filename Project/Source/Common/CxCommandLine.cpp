@@ -6,6 +6,7 @@
 
 #include <xLib/Common/CxCommandLine.h>
 
+#include <xLib/Common/CxConst.h>
 #include <xLib/Common/CxString.h>
 
 
