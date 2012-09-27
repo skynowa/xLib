@@ -6,6 +6,8 @@
 
 #include <xLib/Net/CxDnsClient.h>
 
+#include <xLib/Common/CxString.h>
+
 
 xNAMESPACE_BEGIN(NxLib)
 

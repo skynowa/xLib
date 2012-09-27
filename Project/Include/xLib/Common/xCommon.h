@@ -26,10 +26,11 @@
  *       _t          - type
  *
  *   Access:
- *       g           - global
- *       s           - static
- *       m           - member of some data structure
- *       fr          - friend
+ *       g_          - global
+ *       s_          - static
+ *       m_          - member of some data structure
+ *       fr_         - friend
+ *       a_          - function param
  *
  *   Modify:
  *       c           - const
@@ -159,17 +160,13 @@ namespace NxLib { }
     #include <xLib/Common/xCommon_Unix.h>
 #endif
 
-#include <xLib/Common/xFunctions.h>
-#include <xLib/Common/xLinking.h>
-#include <xLib/Common/CxMacros.h>
 #include <xLib/Common/xTypes.h>
-
-#include <xLib/Common/CxConst.h>
+#include <xLib/Common/xFunctions.h>
 #include <xLib/Common/CxNonCopyable.h>
+#include <xLib/Common/CxMacros.h>
 #include <xLib/Debug/xDebug.h>
-#include <xLib/Common/CxString.h>
 
-// checks
 #include <xLib/Common/xCheks.h>
+#include <xLib/Common/xLinking.h>
 //---------------------------------------------------------------------------
 #endif  //xLib_Common_xCommonH

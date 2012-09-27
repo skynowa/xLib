@@ -7,7 +7,7 @@
 #include <xLib/Db/Win/CxAdo.h>
 
 
-#if defined(xOS_WIN)
+#if xOS_WIN
 
 xNAMESPACE_BEGIN(NxLib)
 

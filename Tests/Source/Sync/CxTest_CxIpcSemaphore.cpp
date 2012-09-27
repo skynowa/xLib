@@ -6,6 +6,7 @@
 
 #include <Test/Sync/CxTest_CxIpcSemaphore.h>
 
+#include <xLib/Common/CxString.h>
 #include <xLib/Sync/CxCurrentThread.h>
 
 

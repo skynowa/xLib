@@ -6,6 +6,8 @@
 
 #include <Test/Crypt/CxTest_CxCrc32.h>
 
+#include <xLib/Common/CxConst.h>
+
 
 //---------------------------------------------------------------------------
 CxTest_CxCrc32::CxTest_CxCrc32() {

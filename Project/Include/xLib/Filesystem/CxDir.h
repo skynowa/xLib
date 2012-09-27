@@ -8,6 +8,7 @@
 #define xLib_Filesystem_CxDirH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
+#include <xLib/Common/CxConst.h>
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 

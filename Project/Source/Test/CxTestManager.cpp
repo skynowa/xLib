@@ -7,6 +7,7 @@
 #include <xLib/Test/CxTestManager.h>
 
 #include <xLib/Common/CxType.h>
+#include <xLib/Common/CxString.h>
 #include <xLib/Filesystem/CxPath.h>
 
 

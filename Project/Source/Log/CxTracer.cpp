@@ -6,6 +6,9 @@
 
 #include <xLib/Log/CxTracer.h>
 
+#include <xLib/Common/CxConst.h>
+#include <xLib/Common/CxString.h>
+
 
 xNAMESPACE_BEGIN(NxLib)
 

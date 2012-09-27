@@ -6,6 +6,8 @@
 
 #include <Test/Debug/CxTest_CxAutoProfiler.h>
 
+#include <xLib/Common/CxConst.h>
+
 
 //---------------------------------------------------------------------------
 CxTest_CxAutoProfiler::CxTest_CxAutoProfiler() {

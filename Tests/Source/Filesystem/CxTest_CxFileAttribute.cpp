@@ -6,6 +6,7 @@
 
 #include <Test/Filesystem/CxTest_CxFileAttribute.h>
 
+#include <xLib/Common/CxConst.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
 

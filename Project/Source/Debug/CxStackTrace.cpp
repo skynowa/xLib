@@ -6,6 +6,8 @@
 
 #include <xLib/Debug/CxStackTrace.h>
 
+#include <xLib/Common/CxConst.h>
+#include <xLib/Common/CxString.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Sync/CxCurrentProcess.h>
 

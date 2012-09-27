@@ -6,6 +6,7 @@
 
 #include <xLib/Debug/CxProfiler.h>
 
+#include <xLib/Common/CxString.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Sync/CxCurrentThread.h>

@@ -6,6 +6,8 @@
 
 #include <Test/Debug/CxTest_CxException.h>
 
+#include <xLib/Common/CxConst.h>
+
 
 //---------------------------------------------------------------------------
 CxTest_CxException::CxTest_CxException() {

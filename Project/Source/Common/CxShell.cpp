@@ -6,6 +6,7 @@
 
 #include <xLib/Common/CxShell.h>
 
+#include <xLib/Common/CxString.h>
 #include <xLib/Common/Win/CxCom.h>
 
 #if xCOMPILER_MINGW32

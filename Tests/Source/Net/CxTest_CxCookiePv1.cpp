@@ -6,6 +6,8 @@
 
 #include <Test/Net/CxTest_CxCookiePv1.h>
 
+#include <xLib/Common/CxString.h>
+
 
 //---------------------------------------------------------------------------
 CxTest_CxCookiePv1::CxTest_CxCookiePv1() {

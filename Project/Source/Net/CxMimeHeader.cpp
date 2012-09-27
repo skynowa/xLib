@@ -6,6 +6,7 @@
 
 #include <xLib/Net/CxMimeHeader.h>
 
+#include <xLib/Common/CxString.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Common/CxSystemInfo.h>
 #include <xLib/Common/CxLocale.h>

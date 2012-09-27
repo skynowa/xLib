@@ -6,6 +6,7 @@
 
 #include <xLib/Filesystem/CxFile.h>
 
+#include <xLib/Common/CxString.h>
 #include <xLib/Common/CxLocale.h>
 #include <xLib/Common/CxDateTime.h>
 #include <xLib/Filesystem/CxPath.h>

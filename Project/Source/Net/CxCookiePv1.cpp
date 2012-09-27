@@ -6,6 +6,8 @@
 
 #include <xLib/Net/CxCookiePv1.h>
 
+#include <xLib/Common/CxConst.h>
+#include <xLib/Common/CxString.h>
 #include <xLib/Common/CxDateTime.h>
 #include <xLib/Filesystem/CxEnvironment.h>
 

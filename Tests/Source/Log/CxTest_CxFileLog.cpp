@@ -6,6 +6,7 @@
 
 #include <Test/Log/CxTest_CxFileLog.h>
 
+#include <xLib/Common/CxConst.h>
 #include <xLib/Filesystem/CxFile.h>
 
 

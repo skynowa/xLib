@@ -6,6 +6,7 @@
 
 #include <xLib/Crypt/CxCrc32.h>
 
+#include <xLib/Common/CxString.h>
 #include <xLib/Filesystem/CxFile.h>
 
 

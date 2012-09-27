@@ -6,7 +6,7 @@
 
 #include <xLib/Common/CxString.h>
 
-
+#include <xLib/Common/CxConst.h>
 #include <xLib/Common/CxChar.h>
 #include <xLib/Common/CxArray.h>
 
