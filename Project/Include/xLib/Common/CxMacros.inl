@@ -19,11 +19,11 @@ template<class T>
 /* static */ inline
 void
 CxMacros::ptrDeleteT(
-    T * &pPtrT
+    T * &a_pPtrT
 )
 {
-    if (NULL != pPtrT) {
-        delete pPtrT; pPtrT = NULL;
+    if (NULL != a_pPtrT) {
+        delete a_pPtrT; a_pPtrT = NULL;
     }
 }
 //---------------------------------------------------------------------------
@@ -31,11 +31,11 @@ template<class T>
 /* static */ inline
 void
 CxMacros::arrayDeleteT(
-    T * &pPtrT
+    T * &a_pPtrT
 )
 {
-    if (NULL != pPtrT) {
-        delete [] pPtrT;  pPtrT = NULL;
+    if (NULL != a_pPtrT) {
+        delete [] a_pPtrT;  a_pPtrT = NULL;
     }
 }
 //---------------------------------------------------------------------------
@@ -43,12 +43,12 @@ template<class T>
 /* static */ inline
 void
 CxMacros::ptrAssignT(
-    T *     &pPtrT, 
-    const T &valueT
+    T *     &a_pPtrT, 
+    const T &a_valueT
 )
 {
-    if (NULL != pPtrT) { 
-        *pPtrT = valueT;
+    if (NULL != a_pPtrT) { 
+        *a_pPtrT = a_valueT;
     }
 }
 //---------------------------------------------------------------------------
@@ -66,35 +66,36 @@ template <class T>
 /* static */ inline
 const T &
 CxMacros::maxT(
-    const T &x, 
-    const T &y
+    const T &a_cValue1T, 
+    const T &a_cValue2T
 )
 {
-    return (x > y) ? x : y;
+    return (a_cValue1T > a_cValue2T) ? a_cValue1T : a_cValue2T;
 }
 //---------------------------------------------------------------------------
 template <class T>
 /* static */ inline
 const T &
 CxMacros::minT(
-    const T &x, 
-    const T &y
+    const T &a_cValue1T, 
+    const T &a_cValue2T
 )
 {
-    return (x < y) ? x : y;
+    return (a_cValue1T < a_cValue2T) ? a_cValue1T : a_cValue2T;
 }
 //---------------------------------------------------------------------------
 template <class T>
 /* static */ inline
 void
 CxMacros::swapT(
-    T &a, 
-    T &b
+    T &a_value1T, 
+    T &a_value2T
 ) 
 {
-    T temp = a;
-    a = b;
-    b = temp;
+    T temp = a_value1T;
+
+    a_value1T = a_value2T;
+    a_value2T = temp;
 }
 //---------------------------------------------------------------------------
 //TODO: numericLimitsCheckT
@@ -102,11 +103,11 @@ template <class T>
 /* static */ inline
 bool
 CxMacros::numericLimitsCheckT(
-    const T &x
+    const T &a_cValueT
 )
 {
-    bool bRv = ((std::numeric_limits<T>::min)() <= x) &&
-               ((std::numeric_limits<T>::max)() >= x);
+    bool bRv = ((std::numeric_limits<T>::min)() <= a_cValueT) &&
+               ((std::numeric_limits<T>::max)() >= a_cValueT);
 
     return bRv;
 }
@@ -115,10 +116,10 @@ template <class ToT, class FromT>
 /* static */ inline
 ToT
 CxMacros::reinterpretCastT(
-    const FromT &pPtrT
+    const FromT &a_pPtrT
 )
 {
-    void *pvVoidCast = static_cast<void *>( pPtrT );
+    void *pvVoidCast = static_cast<void *>( a_pPtrT );
 #if   xOS_ENV_WIN
     /*DEBUG*/xASSERT(NULL != pvVoidCast);
 #elif xOS_ENV_UNIX
@@ -133,26 +134,26 @@ CxMacros::reinterpretCastT(
 /* static */ inline
 double
 CxMacros::round(
-    const double &cdValue
+    const double &a_cdValue
 )
 {
-    return ::floor(cdValue + 0.5);
+    return ::floor(a_cdValue + 0.5);
 }
 //---------------------------------------------------------------------------
 template <class T1, class T2>
 /* static */ inline
 double
 CxMacros::safeDivT(
-    const T1 &cVal1T, 
-    const T2 &cVal2T
+    const T1 &a_cValue1T, 
+    const T2 &a_cValue2T
 )
 {
     double dRv = 0.0;
 
-    if (static_cast<T2>( 0 ) == cVal2T) {
+    if (static_cast<T2>( 0 ) == a_cValue2T) {
         dRv = 0.0;
     } else {
-        dRv = static_cast<double>( cVal1T ) / static_cast<double>( cVal2T );
+        dRv = static_cast<double>( a_cValue1T ) / static_cast<double>( a_cValue2T );
     }
 
     return dRv;
