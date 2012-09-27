@@ -143,9 +143,9 @@ CxVolume::bGetSpace(
     int iRv = ::xSTATVFS(_sDirPath.c_str(), &stfInfo);
     /*DEBUG*/xASSERT_MSG_RET(- 1 != iRv, _sDirPath, false);
 
-    CxMacros::ptrAssignT(pullAvailable, stfInfo.f_bavail * stfInfo.xSTATVFS_F_FRSIZE);
-    CxMacros::ptrAssignT(pullTotal,     stfInfo.f_blocks * stfInfo.xSTATVFS_F_FRSIZE);
-    CxMacros::ptrAssignT(pullFree,      stfInfo.f_bfree  * stfInfo.xSTATVFS_F_FRSIZE);
+    CxMacros::ptrAssignT(pullAvailable, static_cast<ulonglong_t>( stfInfo.f_bavail * stfInfo.xSTATVFS_F_FRSIZE ));
+    CxMacros::ptrAssignT(pullTotal,     static_cast<ulonglong_t>( stfInfo.f_blocks * stfInfo.xSTATVFS_F_FRSIZE ));
+    CxMacros::ptrAssignT(pullFree,      static_cast<ulonglong_t>( stfInfo.f_bfree  * stfInfo.xSTATVFS_F_FRSIZE ));
 #endif
 
     return true;
