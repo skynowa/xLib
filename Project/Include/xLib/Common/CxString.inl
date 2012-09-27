@@ -128,8 +128,6 @@ CxString::string_cast(
 
         sRv = ossRes.str();
     } catch (const std::tostringstream_t::failure &e) {
-        xUNUSED(e);
-
         sRv.clear();
     } catch (...) {
         sRv.clear();
@@ -159,8 +157,6 @@ CxString::string_cast(
 
         sRv = ossRes.str();
     } catch (const std::tostringstream_t::failure &e) {
-        xUNUSED(e);
-
         sRv.clear();
     } catch (...) {
         sRv.clear();
@@ -186,8 +182,6 @@ CxString::string_cast(
         issStream.exceptions(std::tistringstream_t::failbit | std::tistringstream_t::badbit);
         issStream >> ResT;
     } catch (const std::tistringstream_t::failure &e) {
-        xUNUSED(e);
-
         return T();
     } catch (...) {
         return T();
@@ -215,8 +209,6 @@ CxString::string_cast(
         issStream.exceptions(std::tistringstream_t::failbit | std::tistringstream_t::badbit);
         issStream >> std::setbase(ciBase) >> ResT;
     } catch (const std::tistringstream_t::failure &e) {
-        xUNUSED(e);
-
         return T();
     } catch (...) {
         return T();
