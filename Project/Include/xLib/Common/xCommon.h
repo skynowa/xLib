@@ -101,6 +101,7 @@
 #define xLib_Common_xCommonH
 //---------------------------------------------------------------------------
 // config
+#include <xLib/Common/xSysDefines.h>
 #include <xLib/Common/xConfig.h>
 
 // POSIX

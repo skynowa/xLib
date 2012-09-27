@@ -64,11 +64,20 @@ CxStdError::sFormat(
 
     sRv = CxString::sFormat(xT("%lu - "), a_ciCode);
 
-#if xOS_ENV_WIN
-    tchar_t *pcszError = ::xSTRERROR(a_ciCode);
-    xCHECK_RET(NULL == pcszError, sRv.append(xT("[Cann't format error message]")));
+#if   xOS_ENV_WIN
+    #if   xCOMPILER_MINGW32
+        tchar_t *pcszError = ::xSTRERROR(a_ciCode);
+        xCHECK_RET(NULL == pcszError, sRv.append(xT("[Cann't format error message]")));
 
-    sRv.append(pcszError);
+        sRv.append(pcszError);
+    #elif xCOMPILER_MS || xCOMPILER_CODEGEAR
+        tchar_t szBuff[64 + 1] = {0};
+
+        errno_t iError = ::xSTRERROR(szBuff, xARRAY_SIZE(szBuff), a_ciCode);
+        xCHECK_RET(0 != iError, sRv.append(xT("[Cann't format error message]")));
+
+        sRv.append(szBuff);
+    #endif
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         char szBuff[64 + 1] = {0};
