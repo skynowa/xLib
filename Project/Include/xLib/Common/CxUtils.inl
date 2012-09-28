@@ -114,7 +114,7 @@ CxUtils::intToBool(
     const T &a_valueT
 )
 {
-    return ( (0 == a_valueT) ? false : true );
+    return (0 == a_valueT) ? false : true;
 }
 //---------------------------------------------------------------------------
 template <class T>
@@ -161,13 +161,7 @@ CxUtils::reinterpretCastT(
 )
 {
     void *pvVoidCast = static_cast<void *>( a_pPtrT );
-#if   xOS_ENV_WIN
-    /*DEBUG*/// xASSERT(NULL != pvVoidCast);
-#elif xOS_ENV_UNIX
-    /*DEBUG*/// TODO: xASSERT(NULL != pvVoidCast);
-#endif
-
-    ToT ResT = static_cast<ToT>( pvVoidCast );
+    ToT   ResT       = static_cast<ToT>( pvVoidCast );
 
     return ResT;
 }
