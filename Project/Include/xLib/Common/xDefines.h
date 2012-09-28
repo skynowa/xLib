@@ -93,21 +93,19 @@
     ///< get array size
 #define xARRAY_SIZE2(a)             ( sizeof(a) / sizeof((a)[0]) )
     ///< get array size
-#define xBUFF_ZERO(Buff)            { std::memset(static_cast<void *>( &(Buff)[0] ), 0, sizeof(Buff)); }
+#define xBUFF_ZERO(b)               { CxUtils::bufferZeroT(b); }
     ///< zero buffer memory
-#define xSTRUCT_ZERO(Buff)          { std::memset(static_cast<void *>( &(Buff) ),    0, sizeof(Buff)); }
+#define xSTRUCT_ZERO(s)             { CxUtils::structZeroT(s); }
     ///< zero struct memory
-#define xBUFF_FREE(pvBuff)          { if (NULL != (pvBuff)) { std::free(pvBuff); (pvBuff) = NULL; }    }
+#define xBUFF_FREE(pvBuff)          { CxUtils::bufferFreeT(pvBuff);   }
     ///< free buffer memory
-#define xFCLOSE(f)                  { if (NULL != (f)) { std::fclose(f); (f) = NULL; } }
+#define xFCLOSE(f)                  { CxUtils::fileClose(f); }
     ///< close file stream (FILE *)
-#define xRELEASE(p)                 { if (NULL != (p)) {(p)->Release(); (p) = NULL; } }
-    ///< release object
 #define xMAX(a, b)                  ( CxUtils::maxT( (a), (b) ) )
     ///< get max value
 #define xMIN(a, b)                  ( CxUtils::minT( (a), (b) ) )
     ///< get min value
-#define xINT_TO_BOOL(expr)          ( (0 == (expr)) ? false : true )
+#define xINT_TO_BOOL(i)             ( CxUtils::intToBool(i) )
     ///< convert int to bool
 
 //--------------------------------------------------

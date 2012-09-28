@@ -30,9 +30,28 @@ class CxUtils :
         static inline void      ptrAssignT         (T * &pPtrT, const T &valueT);
             ///< assign pointer
 
-        template <typename ArrayT, const size_t cuiArraySize>
-        static inline size_t    arraySizeT         (const ArrayT (&)[cuiArraySize]);
+        template <typename T, const size_t cuiArraySize>
+        static inline size_t    arraySizeT         (const T (&)[cuiArraySize]);
             ///< get array size
+
+        template <typename T, const size_t cuiArraySize>
+        static inline void      bufferZeroT        (T (&bufferT)[cuiArraySize]);
+            ///< zero buffer memory
+
+        template <typename T>
+        static inline void      structZeroT        (T &structT);
+            ///< zero buffer memory
+
+        template <typename T>
+        static inline void      bufferFreeT        (T * &pPtrT);
+            ///< free buffer memory
+
+        static inline void      fileClose          (FILE * &pFile);
+            ///< close file stream (FILE *)
+
+        template <typename T>
+        static inline bool      intToBool          (const T &valueT);
+            ///< convert int to bool
 
         template <class T>
         static inline const T & maxT               (const T &cValue1T , const T &cValue2T);
@@ -45,11 +64,6 @@ class CxUtils :
         template <class T>
         static inline void      swapT              (T &value1T, T &value2T);
             ///< swap variables
-
-        // TODO: numericLimitsCheckT
-        template <class T>
-        static inline bool      numericLimitsCheckT(const T &cValueT);
-            ///< check numeric limites for type
 
         template <class ToT, class FromT>
         static inline ToT       reinterpretCastT   (const FromT &pPtrT);

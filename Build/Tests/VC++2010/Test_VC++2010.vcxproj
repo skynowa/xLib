@@ -336,6 +336,7 @@
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxSystemInfo.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxType.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxUtils.h" />
+    <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_xDefines.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\Win\CxTest_CxCom.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Crypt\CxTest_CxBase64.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Crypt\CxTest_CxBlowfish.h" />
@@ -524,6 +525,7 @@
     <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxSystemInfo.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxType.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxUtils.cpp" />
+    <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_xDefines.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Common\Win\CxTest_CxCom.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Crypt\CxTest_CxBase64.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Crypt\CxTest_CxBlowfish.cpp" />

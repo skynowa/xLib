@@ -6,6 +6,7 @@
 
 #include <Test/Common/CxTest_CxUtils.h>
 
+#include <xLib/Common/CxConst.h>
 #include <xLib/Common/CxString.h>
 
 
@@ -24,228 +25,225 @@ CxTest_CxUtils::bUnit(
     const ulonglong_t cullCaseLoops
 )
 {
-    //--------------------------------------------------
-    // several combinations of preprocessor's defines
-    xTEST_CASE(cullCaseLoops)
-    {
-        /*
-            if (DEFINE_VAL == NOT_ZERO_DIGIT) {
-                [true]
-            } else {
-                [false]
-            }
-        */
-
-        {
-            #define xDEF_A
-
-
-            #if defined(xDEF_A)
-
-            #else
-                xTEST_FAIL;
-            #endif
-
-            //#if xDEF_A                      //compile error: #if with no expression
-            //
-            //#endif
-
-            //#if defined(xDEF_A) && xDEF_A   //compile error: operator '&&' has no right operand
-            //
-            //#endif
-        }
-
-        {
-            #define xDEF_B -1
-
-
-            #if defined(xDEF_B) && xDEF_B
-
-            #else
-                xTEST_FAIL;
-            #endif
-        }
-
-        {
-            #define xDEF_C 0
-
-
-            #if defined(xDEF_C) && xDEF_C
-                xTEST_FAIL;
-            #else
-
-            #endif
-        }
-
-        {
-            #define xDEF_D 1
-
-
-            #if defined(xDEF_D) && xDEF_D
-
-            #else
-                xTEST_FAIL;
-            #endif
-        }
-
-        {
-            #define xDEF_E 2
-
-
-            #if defined(xDEF_E) && xDEF_E
-
-            #else
-                xTEST_FAIL;
-            #endif
-        }
-
-        {
-            #define xDEF_F zzz
-
-
-            #if defined(xDEF_F) && xDEF_F
-                xTEST_FAIL;
-            #else
-
-            #endif
-        }
-    }
-
     //-------------------------------------
-    // xPTR_DELETE
+    // ptrDeleteT
     xTEST_CASE(cullCaseLoops)
     {
         int *pPtr = new int();
         xTEST_PTR(pPtr);
 
-        /*CxUtils::*/xPTR_DELETE(pPtr);
-        xASSERT(NULL == pPtr);
+        CxUtils::ptrDeleteT(pPtr);
+        xTEST_PTR_FAIL(pPtr);
     }
 
     //-------------------------------------
-    // xARRAY_DELETE
+    // arrayDeleteT
     xTEST_CASE(cullCaseLoops)
     {
         int *pPtr = new int[5];
         xTEST_PTR(pPtr);
 
-        /*CxUtils::*/xARRAY_DELETE(pPtr);
-        xASSERT(NULL == pPtr);
+        CxUtils::arrayDeleteT(pPtr);
+        xTEST_PTR_FAIL(pPtr);
     }
 
     //-------------------------------------
-    // xBUFF_ZERO
+    // ptrAssignT
     xTEST_CASE(cullCaseLoops)
     {
-        tchar_t szBuff[255 + 1];
+        const int ciVal = 10;
 
-        xBUFF_ZERO(szBuff);
+        // true
+        {
+            int *piData = new int;
+            xTEST_PTR(piData);
 
-        for (size_t i = 0; i < xARRAY_SIZE(szBuff); ++ i) {
-            xTEST_EQ(xT('\0'), szBuff[i]);
+            CxUtils::ptrAssignT(piData, ciVal);
+            xTEST_EQ(ciVal, *piData);
+
+            CxUtils::ptrDeleteT(piData);
+            xTEST_PTR_FAIL(piData);
+        }
+
+        // false
+        {
+            int *piData = NULL;
+
+            CxUtils::ptrAssignT(piData, ciVal);
+            xTEST_PTR_FAIL(piData);
         }
     }
 
     //-------------------------------------
-    // xARRAY_SIZE
+    // arraySizeT
     xTEST_CASE(cullCaseLoops)
     {
         {
             tchar_t szBuff[256] = {0};
-            m_uiRv = xARRAY_SIZE(szBuff);
+            m_uiRv = CxUtils::arraySizeT(szBuff);
             xTEST_EQ(256U, m_uiRv);
 
             int aiBuff[256] = {0};
-            m_uiRv = xARRAY_SIZE(aiBuff);
+            m_uiRv = CxUtils::arraySizeT(aiBuff);
             xTEST_EQ(256U, m_uiRv);
 
             std::tstring_t asBuff[256];
-            m_uiRv = xARRAY_SIZE(asBuff);
+            m_uiRv = CxUtils::arraySizeT(asBuff);
             xTEST_EQ(256U, m_uiRv);
         }
 
-        //must compile-error
+        // must compile-error
         {
-            ////tchar_t *pszBuff = NULL;
-            ////m_uiRv = xARRAY_SIZE(pszBuff);
+            //// tchar_t *pszBuff = NULL;
+            //// m_uiRv = xARRAY_SIZE(pszBuff);
         }
     }
 
     //-------------------------------------
-    // xMAX
+    // bufferZeroT
     xTEST_CASE(cullCaseLoops)
     {
-        m_uiRv = xMAX(0, 1);
+        tchar_t szBuff[255 + 1];
+
+        CxUtils::bufferZeroT(szBuff);
+
+        for (size_t i = 0; i < xARRAY_SIZE(szBuff); ++ i) {
+            xTEST_EQ(xT('\0'), szBuff[i]);
+        }
+
+        xTEST_EQ(0U, xTSTRLEN(szBuff));
+    }
+
+    //-------------------------------------
+    // structZeroT
+    xTEST_CASE(cullCaseLoops)
+    {
+        struct SData {
+            int            m_iValue;
+            double         m_dValue;
+            std::tstring_t m_sValue;
+        };
+
+
+        const int            ciValue = 10;
+        const double         cdValue = 20.0;
+        const std::tstring_t csValue = xT("30");
+
+        SData datData = {0};
+
+        xTEST_EQ(0,   datData.m_iValue);
+        xTEST_EQ(0.0, datData.m_dValue);
+        xTEST_EQ(0U,  datData.m_sValue.size());
+
+        datData.m_iValue = ciValue;
+        datData.m_dValue = cdValue;
+        datData.m_sValue = csValue;
+
+        CxUtils::structZeroT(datData);
+
+        xTEST_EQ(0,   datData.m_iValue);
+        xTEST_EQ(0.0, datData.m_dValue);
+        xTEST_EQ(0U,  datData.m_sValue.size());
+    }
+
+    //-------------------------------------
+    // bufferFreeT
+    xTEST_CASE(cullCaseLoops)
+    {
+        // true
+        {
+            char *pszBuff = (char *)malloc(10 + 1);
+            xTEST_PTR(pszBuff);
+
+            CxUtils::bufferFreeT(pszBuff);
+            xTEST_PTR_FAIL(pszBuff);
+        }
+
+        // false
+        {
+            char *pszBuff = NULL;
+
+            CxUtils::bufferFreeT(pszBuff);
+            xTEST_PTR_FAIL(pszBuff);
+        }
+    }
+
+    //-------------------------------------
+    // fileClose
+    xTEST_CASE(cullCaseLoops)
+    {
+        const std::tstring_t csFilaPath = sGetTempDirPath() + CxConst::xSLASH + xT("test_fileclose.txt");
+
+        FILE *pFile = xTFOPEN(csFilaPath.c_str(), xT("w"));
+        xTEST_PTR(pFile);
+
+        CxUtils::fileClose(pFile);
+        xTEST_PTR_FAIL(pFile);
+    }
+
+    //--------------------------------------------------
+    // intToBool
+    xTEST_CASE(cullCaseLoops)
+    {
+        // false
+        {
+            const int iVal = 0;
+
+            m_bRv = CxUtils::intToBool(iVal);
+            xTEST_EQ(false, m_bRv);
+        }
+
+        // true
+        {
+            const int caiData[] = { -1000, -100, -1, 1, 100, 1000};
+
+            for (size_t i = 0; i < xARRAY_SIZE(caiData); ++ i) {
+                const int iVal = caiData[i];
+
+                m_bRv = CxUtils::intToBool(iVal);
+                xTEST_EQ(true, m_bRv);
+            }
+        }
+    }
+
+    //-------------------------------------
+    // maxT
+    xTEST_CASE(cullCaseLoops)
+    {
+        m_uiRv = CxUtils::maxT(0, 1);
         xTEST_EQ(1U, m_uiRv);
     }
 
     //-------------------------------------
-    // xMIN
+    // minT
     xTEST_CASE(cullCaseLoops)
     {
-        m_uiRv = xMIN(5, 8);
+        m_uiRv = CxUtils::minT(5, 8);
         xTEST_EQ(5U, m_uiRv);
     }
 
     //-------------------------------------
-    // xUNUSED
+    // swapT
     xTEST_CASE(cullCaseLoops)
     {
-        size_t uiArg = 0;
+        int iVal1 = 1;
+        int iVal2 = 2;
 
-        xUNUSED(uiArg);
+        CxUtils::swapT(iVal1, iVal2);
+
+        xTEST_EQ(2, iVal1);
+        xTEST_EQ(1, iVal2);
     }
 
     //-------------------------------------
-    // xLEX_TO_STR
+    // reinterpretCastT
     xTEST_CASE(cullCaseLoops)
     {
-        long_t liVal = - 1;
-
-        m_sRv = xLEX_TO_STR(liVal);
-        xTEST_EQ(std::tstring_t(xT("liVal")), m_sRv);
-
-        xUNUSED(liVal);
+        // TODO: test for CxUtils::reinterpretCastT
     }
 
     //-------------------------------------
-    // xLEX_CAT
-    xTEST_CASE(cullCaseLoops)
-    {
-        std::string sVal;
-
-        xLEX_CAT(s, Val) = xT("XLIB_VAL");
-        xTEST_EQ(std::tstring_t(xT("XLIB_VAL")), sVal);
-
-        sVal.clear();
-    }
-
-    //-------------------------------------
-    // xS2US
-    xTEST_CASE(cullCaseLoops)
-    {
-    }
-
-    //-------------------------------------
-    // xUS2S
-    xTEST_CASE(cullCaseLoops)
-    {
-    }
-
-    //-------------------------------------
-    // xS2TS
-    xTEST_CASE(cullCaseLoops)
-    {
-    }
-
-    //-------------------------------------
-    // xTS2S
-    xTEST_CASE(cullCaseLoops)
-    {
-    }
-
-    //-------------------------------------
-    // dRound
+    // round
     xTEST_CASE(cullCaseLoops)
     {
         const double cdData[][2] = {
@@ -266,40 +264,13 @@ CxTest_CxUtils::bUnit(
     }
 
     //-------------------------------------
-    // qualifiers
+    // safeDivT
     xTEST_CASE(cullCaseLoops)
     {
-        // xPR_SIZET
-        {
-            const size_t cuiValue = 2356567;
-
-            m_sRv = CxString::sFormat(xT("%")xPR_SIZET, cuiValue);
-            xTEST_EQ(CxString::string_cast(cuiValue), m_sRv);
-        }
-
-        // xPR_I64d
-        {
-            const longlong_t cllValue = 36745723;
-
-            m_sRv = CxString::sFormat(xT("%")xPR_I64d, cllValue);
-            xTEST_EQ(CxString::string_cast(cllValue), m_sRv);
-        }
-
-        // xPR_I64u
-        {
-            const ulonglong_t cullValue = 4767834;
-
-            m_sRv = CxString::sFormat(xT("%")xPR_I64u, cullValue);
-            xTEST_EQ(CxString::string_cast(cullValue), m_sRv);
-        }
-
-        // xPR_I64x
-        {
-            const longlong_t cllValue = 57830;
-
-            m_sRv = CxString::sFormat(xT("%")xPR_I64x, cllValue);
-            xTEST_EQ(CxString::sToLowerCase( CxString::string_cast(cllValue, 16) ), m_sRv);
-        }
+        CxUtils::safeDivT(0, 0);
+        CxUtils::safeDivT(0, 1);
+        CxUtils::safeDivT(1, 0);
+        CxUtils::safeDivT(1, 1);
     }
 
     return true;

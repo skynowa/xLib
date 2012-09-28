@@ -52,14 +52,69 @@ CxUtils::ptrAssignT(
     }
 }
 //---------------------------------------------------------------------------
-template <typename ArrayT, const size_t cuiArraySize>
+template <typename T, const size_t cuiArraySize>
 /* static */ inline
 size_t
 CxUtils::arraySizeT(
-    const ArrayT (&)[cuiArraySize]
+    const T (&)[cuiArraySize]
 )
 {
     return cuiArraySize;
+}
+//---------------------------------------------------------------------------
+template <typename T, const size_t cuiArraySize>
+/* static */ inline
+void
+CxUtils::bufferZeroT(
+    T (&a_bufferT)[cuiArraySize]
+)
+{
+    (void *)std::memset(&a_bufferT[0], 0, cuiArraySize);
+}
+//---------------------------------------------------------------------------
+template <typename T>
+/* static */ inline
+void
+CxUtils::structZeroT(
+    T &a_structT
+)
+{
+    (void *)std::memset(&a_structT, 0, sizeof(a_structT));
+}
+//---------------------------------------------------------------------------
+template <typename T>
+/* static */ inline
+void
+CxUtils::bufferFreeT(
+    T * &a_pPtrT
+)
+{
+    if (NULL != a_pPtrT) { 
+        std::free(a_pPtrT); 
+        a_pPtrT = NULL; 
+    } 
+}
+//---------------------------------------------------------------------------
+/* static */ inline
+void
+CxUtils::fileClose(
+    FILE * &a_pFile
+)
+{
+    if (NULL != a_pFile) { 
+        std::fclose(a_pFile); 
+        a_pFile = NULL; 
+    }
+}
+//---------------------------------------------------------------------------
+template <typename T>
+/* static */ inline 
+bool
+CxUtils::intToBool(
+    const T &a_valueT
+)
+{
+    return ( (0 == a_valueT) ? false : true );
 }
 //---------------------------------------------------------------------------
 template <class T>
@@ -96,20 +151,6 @@ CxUtils::swapT(
 
     a_value1T = a_value2T;
     a_value2T = temp;
-}
-//---------------------------------------------------------------------------
-//TODO: numericLimitsCheckT
-template <class T>
-/* static */ inline
-bool
-CxUtils::numericLimitsCheckT(
-    const T &a_cValueT
-)
-{
-    bool bRv = ((std::numeric_limits<T>::min)() <= a_cValueT) &&
-               ((std::numeric_limits<T>::max)() >= a_cValueT);
-
-    return bRv;
 }
 //---------------------------------------------------------------------------
 template <class ToT, class FromT>

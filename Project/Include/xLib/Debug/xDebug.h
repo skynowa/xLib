@@ -29,6 +29,7 @@
 #define _xTEST_LESS_EQ(report_type, expr1, expr2)                 { if ( !((expr1) <= (expr2)) )  { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, expr1,         expr2,          xT(#expr1), xT(#expr2), xT("<="), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger().bReportMake(rpReport); } }
 #define _xTEST_GREATER_EQ(report_type, expr1, expr2)              { if ( !((expr1) >= (expr2)) )  { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, expr1,         expr2,          xT(#expr1), xT(#expr2), xT(">="), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger().bReportMake(rpReport); } }
 #define _xTEST_PTR(report_type, ptr)                              { if ( (NULL)    == (ptr)    )  { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, (intptr_t)ptr, (intptr_t)NULL, xT("NULL"), xT(#ptr),   xT("!="), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger().bReportMake(rpReport); } }
+#define _xTEST_PTR_FAIL(report_type, ptr)                         { if ( (NULL)    != (ptr)    )  { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, (intptr_t)ptr, (intptr_t)NULL, xT("NULL"), xT(#ptr),   xT("=="), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger().bReportMake(rpReport); } }
 #define _xTEST_FAIL(report_type)                                  { if ( true                  )  { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, xT(""),        xT(""),         xT("fail"), xT(""),     xT(""),   ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger().bReportMake(rpReport); } }
 
 
@@ -47,6 +48,7 @@
     #define xTEST_LESS_EQ(expr1, expr2)                 _xTEST_LESS_EQ(CxErrorReport::rtMsgboxPlain, expr1, expr2)
     #define xTEST_GREATER_EQ(expr1, expr2)              _xTEST_GREATER_EQ(CxErrorReport::rtMsgboxPlain, expr1, expr2)
     #define xTEST_PTR(ptr)                              _xTEST_PTR(CxErrorReport::rtMsgboxPlain, ptr)
+    #define xTEST_PTR_FAIL(ptr)                         _xTEST_PTR_FAIL(CxErrorReport::rtMsgboxPlain, ptr)
     #define xTEST_FAIL                                  _xTEST_FAIL(CxErrorReport::rtMsgboxPlain)
 
 #elif xDEBUG_MODE_MSGBOX_FORMATED
@@ -64,6 +66,7 @@
     #define xTEST_LESS_EQ(expr1, expr2)                 _xTEST_LESS_EQ(CxErrorReport::rtMsgboxFormated, expr1, expr2)
     #define xTEST_GREATER_EQ(expr1, expr2)              _xTEST_GREATER_EQ(CxErrorReport::rtMsgboxFormated, expr1, expr2)
     #define xTEST_PTR(ptr)                              _xTEST_PTR(CxErrorReport::rtMsgboxFormated, ptr)
+    #define xTEST_PTR_FAIL(ptr)                         _xTEST_PTR_FAIL(CxErrorReport::rtMsgboxFormated, ptr)
     #define xTEST_FAIL                                  _xTEST_FAIL(CxErrorReport::rtMsgboxFormated)
 
 #elif xDEBUG_MODE_STDOUT_PLAIN
@@ -81,6 +84,7 @@
     #define xTEST_LESS_EQ(expr1, expr2)                 _xTEST_LESS_EQ(CxErrorReport::rtStdoutPlain, expr1, expr2)
     #define xTEST_GREATER_EQ(expr1, expr2)              _xTEST_GREATER_EQ(CxErrorReport::rtStdoutPlain, expr1, expr2)
     #define xTEST_PTR(ptr)                              _xTEST_PTR(CxErrorReport::rtStdoutPlain, ptr)
+    #define xTEST_PTR_FAIL(ptr)                         _xTEST_PTR_FAIL(CxErrorReport::rtStdoutPlain, ptr)
     #define xTEST_FAIL                                  _xTEST_FAIL(CxErrorReport::rtStdoutPlain)
 
 #elif xDEBUG_MODE_STDOUT_HTML
@@ -98,6 +102,7 @@
     #define xTEST_LESS_EQ(expr1, expr2)                 _xTEST_LESS_EQ(CxErrorReport::rtStdoutHtml, expr1, expr2)
     #define xTEST_GREATER_EQ(expr1, expr2)              _xTEST_GREATER_EQ(CxErrorReport::rtStdoutHtml, expr1, expr2)
     #define xTEST_PTR(ptr)                              _xTEST_PTR(CxErrorReport::rtStdoutHtml, ptr)
+    #define xTEST_PTR_FAIL(ptr)                         _xTEST_PTR_FAIL(CxErrorReport::rtStdoutHtml, ptr)
     #define xTEST_FAIL                                  _xTEST_FAIL(CxErrorReport::rtStdoutHtml)
 
 #elif xDEBUG_MODE_LOGGING_PLAIN
@@ -115,6 +120,7 @@
     #define xTEST_LESS_EQ(expr1, expr2)                 _xTEST_LESS_EQ(CxErrorReport::rtLoggingPlain, expr1, expr2)
     #define xTEST_GREATER_EQ(expr1, expr2)              _xTEST_GREATER_EQ(CxErrorReport::rtLoggingPlain, expr1, expr2)
     #define xTEST_PTR(ptr)                              _xTEST_PTR(CxErrorReport::rtLoggingPlain, ptr)
+    #define xTEST_PTR_FAIL(ptr)                         _xTEST_PTR_FAIL(CxErrorReport::rtLoggingPlain, ptr)
     #define xTEST_FAIL                                  _xTEST_FAIL(CxErrorReport::rtLoggingPlain)
 
 #elif xDEBUG_MODE_LOGGING_HTML
@@ -132,6 +138,7 @@
     #define xTEST_LESS_EQ(expr1, expr2)                 _xTEST_LESS_EQ(CxErrorReport::rtLoggingHtml, expr1, expr2)
     #define xTEST_GREATER_EQ(expr1, expr2)              _xTEST_GREATER_EQ(CxErrorReport::rtLoggingHtml, expr1, expr2)
     #define xTEST_PTR(ptr)                              _xTEST_PTR(CxErrorReport::rtLoggingHtml, ptr)
+    #define xTEST_PTR_FAIL(ptr)                         _xTEST_PTR_FAIL(CxErrorReport::rtLoggingHtml, ptr)
     #define xTEST_FAIL                                  _xTEST_FAIL(CxErrorReport::rtLoggingHtml)
 
 #elif xDEBUG_MODE_NOLOGGING
@@ -149,6 +156,7 @@
     #define xTEST_LESS_EQ(expr1, expr2)                 { xNA }
     #define xTEST_GREATER_EQ(expr1, expr2)              { xNA }
     #define xTEST_PTR(ptr)                              { xNA }
+    #define xTEST_PTR_FAIL(ptr)                         { xNA }
     #define xTEST_FAIL                                  { xNA }
 
 #elif xDEBUG_MODE_NO
@@ -166,6 +174,7 @@
     #define xTEST_LESS_EQ(expr1, expr2)                 { xNA }
     #define xTEST_GREATER_EQ(expr1, expr2)              { xNA }
     #define xTEST_PTR(ptr)                              { xNA }
+    #define xTEST_PTR_FAIL(ptr)                         { xNA }
     #define xTEST_FAIL                                  { xNA }
 
 #else
