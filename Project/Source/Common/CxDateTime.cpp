@@ -568,14 +568,6 @@ CxDateTime::bIsValid(
 {
     /*DEBUG*/
 
-    /*DEBUG*/xASSERT_MSG(false != CxUtils::numericLimitsCheckT<ushort_t>(a_cusYear),        CxString::string_cast(a_cusYear));
-    /*DEBUG*/xASSERT_MSG(false != CxUtils::numericLimitsCheckT<ushort_t>(a_cusMonth),       CxString::string_cast(a_cusMonth));
-    /*DEBUG*/xASSERT_MSG(false != CxUtils::numericLimitsCheckT<ushort_t>(a_cusDay),         CxString::string_cast(a_cusDay));
-    /*DEBUG*/xASSERT_MSG(false != CxUtils::numericLimitsCheckT<ushort_t>(a_cusHour),        CxString::string_cast(a_cusHour));
-    /*DEBUG*/xASSERT_MSG(false != CxUtils::numericLimitsCheckT<ushort_t>(a_cusMinute),      CxString::string_cast(a_cusMinute));
-    /*DEBUG*/xASSERT_MSG(false != CxUtils::numericLimitsCheckT<ushort_t>(a_cusSecond),      CxString::string_cast(a_cusSecond));
-    /*DEBUG*/xASSERT_MSG(false != CxUtils::numericLimitsCheckT<ushort_t>(a_cusMillisecond), CxString::string_cast(a_cusMillisecond));
-
     bool bYear        = (/*cusYear   >= 0U && */a_cusYear   <= 9999U);
     /*DEBUG*/xASSERT_MSG(true == bYear,        xT("usYear:   ")        + CxString::string_cast(a_cusYear));
 
@@ -616,8 +608,6 @@ CxDateTime::bIsValid(
 bool
 CxDateTime::bIsValid() const {
     /*DEBUG*/
-
-    /*DEBUG*/xASSERT_MSG(CxUtils::numericLimitsCheckT<ulonglong_t>(_m_ullDateTimeInMSec), CxString::string_cast(_m_ullDateTimeInMSec));
 
     return bIsValid(*this);
 }

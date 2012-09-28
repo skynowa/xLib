@@ -46,7 +46,7 @@ CxTest_CxType::bUnit(
     //bIsEquals
     xTEST_CASE(cullCaseLoops)
     {
-         std::string  sObject1;
+        std::string  sObject1;
         std::wstring sObject2;
 
         m_bRv = CxType::bIsEquals(sObject1, sObject2);
