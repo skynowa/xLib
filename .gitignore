@@ -64,8 +64,6 @@ bin/*
 [Dd]ebug*/
 [Rr]elease/
 
-build/
-
 
 [Tt]est[Rr]esult
 [Bb]uild[Ll]og.*

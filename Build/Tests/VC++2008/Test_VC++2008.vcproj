@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="windows-1251"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
-	Name="Test.VC++ 2008"
-	ProjectGUID="{BD92A805-400C-4F61-B0EE-9A3605B34831}"
-	RootNamespace="Test.VC++ 2008"
-	TargetFrameworkVersion="131072"
+	Version="9,00"
+	Name="Test_VC++2008"
+	ProjectGUID="{232852BF-0166-44FC-B016-1B2009C23F64}"
+	RootNamespace="Test_VC2008"
+	Keyword="Win32Proj"
+	TargetFrameworkVersion="196613"
 	>
 	<Platforms>
 		<Platform
@@ -17,14 +18,10 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory=".\Debug"
-			IntermediateDirectory=".\Debug"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
-			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="0"
-			BuildLogFile=""
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -40,22 +37,16 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\Debug/Test.VC++ 2008.tlb"
-				HeaderFileName=""
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;"
+				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="1"
-				PrecompiledHeaderFile=".\Debug/Test.VC++ 2008.pch"
-				AssemblerListingLocation=".\Debug/"
-				ObjectFile=".\Debug/"
-				ProgramDataBaseFileName=".\Debug/"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
 			/>
 			<Tool
@@ -63,22 +54,15 @@
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG"
-				Culture="1049"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile=".\Debug/Test.VC++ 2008.exe"
 				LinkIncremental="2"
-				SuppressStartupBanner="true"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile=".\Debug/Test.VC++ 2008.pdb"
 				SubSystem="1"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -92,8 +76,6 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-				SuppressStartupBanner="true"
-				OutputFile=".\Debug/Test.VC++ 2008.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -107,14 +89,11 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory=".\Release"
-			IntermediateDirectory=".\Release"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
-			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
 			CharacterSet="0"
-			BuildLogFile=""
+			WholeProgramOptimization="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -130,44 +109,34 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TypeLibraryName=".\Release/Test.VC++ 2008.tlb"
-				HeaderFileName=""
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="2"
-				InlineFunctionExpansion="1"
+				EnableIntrinsicFunctions="true"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
-				StringPooling="true"
-				RuntimeLibrary="0"
+				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
-				PrecompiledHeaderFile=".\Release/Test.VC++ 2008.pch"
-				AssemblerListingLocation=".\Release/"
-				ObjectFile=".\Release/"
-				ProgramDataBaseFileName=".\Release/"
+				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				SuppressStartupBanner="true"
+				DebugInformationFormat="3"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="1049"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile=".\Release/Test.VC++ 2008.exe"
 				LinkIncremental="1"
-				SuppressStartupBanner="true"
-				ProgramDatabaseFile=".\Release/Test.VC++ 2008.pdb"
+				GenerateDebugInformation="true"
 				SubSystem="1"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -181,8 +150,6 @@
 			/>
 			<Tool
 				Name="VCBscMakeTool"
-				SuppressStartupBanner="true"
-				OutputFile=".\Release/Test.VC++ 2008.bsc"
 			/>
 			<Tool
 				Name="VCFxCopTool"
@@ -202,877 +169,133 @@
 			Name="Tests"
 			>
 			<File
-				RelativePath="..\..\Tests\Source\Test.cpp"
+				RelativePath="..\..\..\Tests\Source\Test.cpp"
 				>
 			</File>
 			<Filter
 				Name="Common"
 				>
 				<File
-					RelativePath="..\..\Tests\Source\Common\CxTest_CxArray.cpp"
+					RelativePath="..\..\..\Tests\Source\Common\CxTest_CxArray.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Tests\Include\Test\Common\CxTest_CxArray.h"
+					RelativePath="..\..\..\Tests\Include\Test\Common\CxTest_CxArray.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Tests\Source\Common\CxTest_CxChar.cpp"
+					RelativePath="..\..\..\Tests\Source\Common\CxTest_CxChar.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Tests\Include\Test\Common\CxTest_CxChar.h"
+					RelativePath="..\..\..\Tests\Include\Test\Common\CxTest_CxChar.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Tests\Source\Common\Win\CxTest_CxCom.cpp"
+					RelativePath="..\..\..\Tests\Source\Common\CxTest_CxCommandLine.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Tests\Include\Test\Common\Win\CxTest_CxCom.h"
+					RelativePath="..\..\..\Tests\Include\Test\Common\CxTest_CxCommandLine.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Tests\Source\Common\CxTest_CxCommandLine.cpp"
+					RelativePath="..\..\..\Tests\Source\Common\CxTest_CxConsole.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Tests\Include\Test\Common\CxTest_CxCommandLine.h"
+					RelativePath="..\..\..\Tests\Include\Test\Common\CxTest_CxConsole.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Tests\Source\Common\CxTest_CxConsole.cpp"
+					RelativePath="..\..\..\Tests\Source\Common\CxTest_CxDateTime.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Tests\Include\Test\Common\CxTest_CxConsole.h"
+					RelativePath="..\..\..\Tests\Include\Test\Common\CxTest_CxDateTime.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Tests\Source\Common\CxTest_CxDateTime.cpp"
+					RelativePath="..\..\..\Tests\Source\Common\CxTest_CxFunctorT.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Tests\Include\Test\Common\CxTest_CxDateTime.h"
+					RelativePath="..\..\..\Tests\Include\Test\Common\CxTest_CxFunctorT.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Tests\Source\Common\CxTest_CxException.cpp"
+					RelativePath="..\..\..\Tests\Source\Common\CxTest_CxHandleT.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Tests\Include\Test\Common\CxTest_CxException.h"
+					RelativePath="..\..\..\Tests\Include\Test\Common\CxTest_CxHandleT.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Tests\Source\Common\CxTest_CxFunctorT.cpp"
+					RelativePath="..\..\..\Tests\Source\Common\CxTest_CxLocale.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Tests\Include\Test\Common\CxTest_CxFunctorT.h"
+					RelativePath="..\..\..\Tests\Include\Test\Common\CxTest_CxLocale.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Tests\Source\Common\CxTest_CxHandleT.cpp"
+					RelativePath="..\..\..\Tests\Source\Common\CxTest_CxProcessInfo.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Tests\Include\Test\Common\CxTest_CxHandleT.h"
+					RelativePath="..\..\..\Tests\Include\Test\Common\CxTest_CxProcessInfo.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Tests\Source\Common\CxTest_CxLocale.cpp"
+					RelativePath="..\..\..\Tests\Source\Common\CxTest_CxShell.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Tests\Include\Test\Common\CxTest_CxLocale.h"
+					RelativePath="..\..\..\Tests\Include\Test\Common\CxTest_CxShell.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Tests\Source\Common\CxTest_CxMacros.cpp"
+					RelativePath="..\..\..\Tests\Source\Common\CxTest_CxString.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Tests\Include\Test\Common\CxTest_CxMacros.h"
+					RelativePath="..\..\..\Tests\Include\Test\Common\CxTest_CxString.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Tests\Source\Common\CxTest_CxProcessInfo.cpp"
+					RelativePath="..\..\..\Tests\Source\Common\CxTest_CxSystemInfo.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Tests\Include\Test\Common\CxTest_CxProcessInfo.h"
+					RelativePath="..\..\..\Tests\Include\Test\Common\CxTest_CxSystemInfo.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Tests\Source\Common\CxTest_CxShell.cpp"
+					RelativePath="..\..\..\Tests\Source\Common\CxTest_CxType.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Tests\Include\Test\Common\CxTest_CxShell.h"
+					RelativePath="..\..\..\Tests\Include\Test\Common\CxTest_CxType.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Tests\Source\Common\CxTest_CxString.cpp"
+					RelativePath="..\..\..\Tests\Source\Common\CxTest_CxUtils.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Tests\Include\Test\Common\CxTest_CxString.h"
+					RelativePath="..\..\..\Tests\Include\Test\Common\CxTest_CxUtils.h"
 					>
 				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Common\CxTest_CxSystemInfo.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Common\CxTest_CxSystemInfo.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Common\CxTest_CxType.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Common\CxTest_CxType.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Crypt"
-				>
-				<File
-					RelativePath="..\..\Tests\Source\Crypt\CxTest_CxBase64.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Crypt\CxTest_CxBase64.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Crypt\CxTest_CxBlowfish.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Crypt\CxTest_CxBlowfish.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Crypt\CxTest_CxCrc32.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Crypt\CxTest_CxCrc32.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Crypt\Pkcs11\CxTest_CxPkcs11.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Crypt\Pkcs11\CxTest_CxPkcs11.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Crypt\CxTest_CxRandom.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Crypt\CxTest_CxRandom.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Db"
-				>
-				<File
-					RelativePath="..\..\Tests\Source\Db\CxTest_CxConnectionString.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Db\CxTest_CxConnectionString.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Db\CxTest_CxMySql.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Db\CxTest_CxMySql.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Debug"
-				>
-				<File
-					RelativePath="..\..\Tests\Source\Debug\CxTest_CxAutoProfiler.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Debug\CxTest_CxAutoProfiler.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Debug\CxTest_CxDebugger.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Debug\CxTest_CxDebugger.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Debug\CxTest_CxErrorReport.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Debug\CxTest_CxErrorReport.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Debug\CxTest_CxLastError.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Debug\CxTest_CxLastError.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Debug\CxTest_CxProfiler.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Debug\CxTest_CxProfiler.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Debug\CxTest_CxStackTrace.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Debug\CxTest_CxStackTrace.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Debug\CxTest_CxStdError.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Debug\CxTest_CxStdError.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Filesystem"
-				>
-				<File
-					RelativePath="..\..\Tests\Source\Filesystem\CxTest_CxBackuper.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Filesystem\CxTest_CxBackuper.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Filesystem\CxTest_CxDir.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Filesystem\CxTest_CxDir.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Filesystem\CxTest_CxDll.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Filesystem\CxTest_CxDll.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Filesystem\CxTest_CxEnvironment.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Filesystem\CxTest_CxEnvironment.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Filesystem\CxTest_CxFile.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Filesystem\CxTest_CxFile.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Filesystem\CxTest_CxFileAttribute.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Filesystem\CxTest_CxFileAttribute.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Filesystem\CxTest_CxFileTemp.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Filesystem\CxTest_CxFileTemp.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Filesystem\CxTest_CxLocalStorage.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Filesystem\CxTest_CxLocalStorage.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Filesystem\CxTest_CxPath.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Filesystem\CxTest_CxPath.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Filesystem\CxTest_CxVolume.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Filesystem\CxTest_CxVolume.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Gui"
-				>
-				<File
-					RelativePath="..\..\Tests\Source\Gui\Win\Gdi+\CxTest_CxGdiplus.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Gui\Win\Gdi+\CxTest_CxGdiplus.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Gui\Win\Gdi+\CxTest_CxImage.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Gui\Win\Gdi+\CxTest_CxImage.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Gui\Dialogs\CxTest_CxMsgBoxT.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Gui\Dialogs\CxTest_CxMsgBoxT.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Log"
-				>
-				<File
-					RelativePath="..\..\Tests\Source\Log\CxTest_CxFileLog.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Log\CxTest_CxFileLog.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Log\CxTest_CxSystemLog.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Log\CxTest_CxSystemLog.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Log\CxTest_CxTracer.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Log\CxTest_CxTracer.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Net"
-				>
-				<File
-					RelativePath="..\..\Tests\Source\Net\CxTest_CxCgi.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Net\CxTest_CxCgi.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Net\CxTest_CxCookiePv0.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Net\CxTest_CxCookiePv0.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Net\CxTest_CxCookiePv1.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Net\CxTest_CxCookiePv1.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Net\CxTest_CxDnsClient.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Net\CxTest_CxDnsClient.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Net\CxTest_CxHttpClient.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Net\CxTest_CxHttpClient.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Net\CxTest_CxMimeMessage.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Net\CxTest_CxMimeMessage.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Net\CxTest_CxPop3.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Net\CxTest_CxPop3.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Net\CxTest_CxSmtp.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Net\CxTest_CxSmtp.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Net\CxTest_CxSocket.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Net\CxTest_CxSocket.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Net\CxTest_CxSocketInit.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Net\CxTest_CxSocketInit.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Net\CxTest_CxTcpClient.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Net\CxTest_CxTcpClient.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Net\CxTest_CxTcpServer.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Net\CxTest_CxTcpServer.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Net\CxTest_CxUri.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Net\CxTest_CxUri.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Patterns"
-				>
-				<File
-					RelativePath="..\..\Tests\Source\Patterns\CxTest_CxSingleton.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Patterns\CxTest_CxSingleton.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Sync"
-				>
-				<File
-					RelativePath="..\..\Tests\Source\Sync\CxTest_CxAtomicLongInt.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Sync\CxTest_CxAtomicLongInt.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Sync\CxTest_CxAutoCriticalSection.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Sync\CxTest_CxAutoCriticalSection.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Sync\CxTest_CxAutoMutex.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Sync\CxTest_CxAutoMutex.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Sync\Win\CxTest_CxCompletionPort.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Sync\Win\CxTest_CxCompletionPort.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Sync\CxTest_CxCriticalSection.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Sync\CxTest_CxCriticalSection.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Sync\CxTest_CxCurrentProcess.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Sync\CxTest_CxCurrentProcess.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Sync\CxTest_CxCurrentThread.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Sync\CxTest_CxCurrentThread.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Sync\CxTest_CxEvent.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Sync\CxTest_CxEvent.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Sync\CxTest_CxMutex.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Sync\CxTest_CxMutex.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Sync\CxTest_CxProcess.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Sync\CxTest_CxProcess.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Sync\CxTest_CxSemaphore.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Sync\CxTest_CxSemaphore.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Sync\CxTest_CxSleeper.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Sync\CxTest_CxSleeper.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Sync\CxTest_CxThread.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Sync\CxTest_CxThread.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Sync\CxTest_CxThreadStorage.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Sync\CxTest_CxThreadStorage.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Sync\CxTest_CxWaitableTimer.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Sync\CxTest_CxWaitableTimer.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Units"
-				>
-				<File
-					RelativePath="..\..\Tests\Source\Units\Win\CxTest_bGetUsbInfo.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Units\Win\CxTest_bGetUsbInfo.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Source\Units\CxTest_Draft.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Tests\Include\Test\Units\CxTest_Draft.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Test"
-				>
-			</Filter>
-		</Filter>
-		<Filter
-			Name="xLib"
-			>
-			<Filter
-				Name="Common"
-				>
-				<File
-					RelativePath="..\..\Include\xLib\Common\CxArray.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Common\CxArray.inl"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Common\CxChar.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Common\CxChar.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Common\CxCommandLine.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Common\CxCommandLine.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Common\CxConsole.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Common\CxConsole.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Common\CxConst.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Common\CxConst.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Common\CxDateTime.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Common\CxDateTime.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Common\CxException.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Common\CxException.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Common\CxException.inl"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Common\CxFunctorT.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Common\CxFunctorT.inl"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Common\CxHandleErrorT.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Common\CxHandleT.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Common\CxHandleT.inl"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Common\CxLocale.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Common\CxLocale.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Common\CxMacros.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Common\CxNonAssignable.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Common\CxNonCopyable.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Common\CxProcessInfo.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Common\CxProcessInfo.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Common\CxShell.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Common\CxShell.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Common\CxString.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Common\CxString.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Common\CxString.inl"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Common\CxSystemInfo.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Common\CxSystemInfo.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Common\CxType.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Common\CxType.inl"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Common\xCheks.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Common\xCommon.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Common\xConfig.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Common\xDefines.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Common\xFunctions.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Common\xLinking.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Common\xTracing.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Common\xTypes.h"
-					>
-				</File>
-				<Filter
-					Name="Unix"
-					>
-					<File
-						RelativePath="..\..\Include\xLib\Common\Unix\xCommon_Unix.h"
-						>
-					</File>
-				</Filter>
 				<Filter
 					Name="Win"
 					>
 					<File
-						RelativePath="..\..\Source\Common\Win\CxCom.cpp"
+						RelativePath="..\..\..\Tests\Source\Common\Win\CxTest_CxCom.cpp"
 						>
 					</File>
 					<File
-						RelativePath="..\..\Include\xLib\Common\Win\CxCom.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Include\xLib\Common\Win\xCommon_Win.h"
+						RelativePath="..\..\..\Tests\Include\Test\Common\Win\CxTest_CxCom.h"
 						>
 					</File>
 				</Filter>
@@ -1081,319 +304,63 @@
 				Name="Crypt"
 				>
 				<File
-					RelativePath="..\..\Source\Crypt\CxCrc32.cpp"
+					RelativePath="..\..\..\Tests\Source\Crypt\CxTest_CxBase64.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Include\xLib\Crypt\CxCrc32.h"
+					RelativePath="..\..\..\Tests\Include\Test\Crypt\CxTest_CxBase64.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Source\Crypt\CxRandom.cpp"
+					RelativePath="..\..\..\Tests\Source\Crypt\CxTest_CxBlowfish.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Include\xLib\Crypt\CxRandom.h"
+					RelativePath="..\..\..\Tests\Include\Test\Crypt\CxTest_CxBlowfish.h"
 					>
 				</File>
-				<Filter
-					Name="OpenSSL"
+				<File
+					RelativePath="..\..\..\Tests\Source\Crypt\CxTest_CxCrc32.cpp"
 					>
-					<File
-						RelativePath="..\..\Source\Crypt\OpenSSL\CxBase64.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Include\xLib\Crypt\OpenSSL\CxBase64.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Source\Crypt\OpenSSL\CxBlowfish.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Include\xLib\Crypt\OpenSSL\CxBlowfish.h"
-						>
-					</File>
-				</Filter>
-				<Filter
-					Name="Pkcs11"
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Include\Test\Crypt\CxTest_CxCrc32.h"
 					>
-					<File
-						RelativePath="..\..\Include\xLib\Crypt\Pkcs11\All.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Include\xLib\Crypt\Pkcs11\Common.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Source\Crypt\Pkcs11\CxDecrypt.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Include\xLib\Crypt\Pkcs11\CxDecrypt.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Source\Crypt\Pkcs11\CxDigest.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Include\xLib\Crypt\Pkcs11\CxDigest.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Source\Crypt\Pkcs11\CxEncrypt.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Include\xLib\Crypt\Pkcs11\CxEncrypt.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Source\Crypt\Pkcs11\CxFunction.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Include\xLib\Crypt\Pkcs11\CxFunction.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Source\Crypt\Pkcs11\CxInfo.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Include\xLib\Crypt\Pkcs11\CxInfo.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Source\Crypt\Pkcs11\CxKey.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Include\xLib\Crypt\Pkcs11\CxKey.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Source\Crypt\Pkcs11\CxLogin.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Include\xLib\Crypt\Pkcs11\CxLogin.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Source\Crypt\Pkcs11\CxMechanism.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Include\xLib\Crypt\Pkcs11\CxMechanism.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Source\Crypt\Pkcs11\CxObject.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Include\xLib\Crypt\Pkcs11\CxObject.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Source\Crypt\Pkcs11\CxPin.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Include\xLib\Crypt\Pkcs11\CxPin.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Source\Crypt\Pkcs11\CxPkcs11.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Include\xLib\Crypt\Pkcs11\CxPkcs11.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Source\Crypt\Pkcs11\CxSession.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Include\xLib\Crypt\Pkcs11\CxSession.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Source\Crypt\Pkcs11\CxSign.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Include\xLib\Crypt\Pkcs11\CxSign.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Source\Crypt\Pkcs11\CxSlot.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Include\xLib\Crypt\Pkcs11\CxSlot.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Source\Crypt\Pkcs11\CxUtils.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Include\xLib\Crypt\Pkcs11\CxUtils.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Source\Crypt\Pkcs11\CxVerify.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Include\xLib\Crypt\Pkcs11\CxVerify.h"
-						>
-					</File>
-					<Filter
-						Name="SDK"
-						>
-						<Filter
-							Name="4.53"
-							>
-							<File
-								RelativePath="..\..\Include\xLib\Crypt\Pkcs11\SDK\4.53\cryptoki.h"
-								>
-							</File>
-							<File
-								RelativePath="..\..\Include\xLib\Crypt\Pkcs11\SDK\4.53\eTPkcs11.h"
-								>
-							</File>
-							<File
-								RelativePath="..\..\Include\xLib\Crypt\Pkcs11\SDK\4.53\eTSAPI.h"
-								>
-							</File>
-							<File
-								RelativePath="..\..\Include\xLib\Crypt\Pkcs11\SDK\4.53\otp-pkcs11.h"
-								>
-							</File>
-							<File
-								RelativePath="..\..\Include\xLib\Crypt\Pkcs11\SDK\4.53\pkcs11.h"
-								>
-							</File>
-							<File
-								RelativePath="..\..\Include\xLib\Crypt\Pkcs11\SDK\4.53\pkcs11f.h"
-								>
-							</File>
-							<File
-								RelativePath="..\..\Include\xLib\Crypt\Pkcs11\SDK\4.53\pkcs11t.h"
-								>
-							</File>
-						</Filter>
-					</Filter>
-				</Filter>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Source\Crypt\Pkcs11\CxTest_CxPkcs11.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Include\Test\Crypt\Pkcs11\CxTest_CxPkcs11.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Source\Crypt\CxTest_CxRandom.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Include\Test\Crypt\CxTest_CxRandom.h"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="Db"
 				>
 				<File
-					RelativePath="..\..\Source\Db\CxConnectionString.cpp"
+					RelativePath="..\..\..\Tests\Source\Db\CxTest_CxConnectionString.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Include\xLib\Db\CxConnectionString.h"
+					RelativePath="..\..\..\Tests\Include\Test\Db\CxTest_CxConnectionString.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Source\Db\CxMySql.cpp"
+					RelativePath="..\..\..\Tests\Source\Db\CxTest_CxMySql.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Include\xLib\Db\CxMySql.h"
-					>
-				</File>
-				<Filter
-					Name="Win"
-					>
-					<File
-						RelativePath="..\..\Include\xLib\Db\Win\adodefs.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Source\Db\Win\CxAdo.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Include\xLib\Db\Win\CxAdo.h"
-						>
-					</File>
-				</Filter>
-			</Filter>
-			<Filter
-				Name="Debug"
-				>
-				<File
-					RelativePath="..\..\Source\Debug\CxAutoProfiler.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Debug\CxAutoProfiler.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Debug\CxDebugger.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Debug\CxDebugger.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Debug\CxErrorReport.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Debug\CxErrorReport.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Debug\CxErrorReport.inl"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Debug\CxLastError.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Debug\CxLastError.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Debug\CxProfiler.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Debug\CxProfiler.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Debug\CxStackTrace.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Debug\CxStackTrace.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Debug\CxStdError.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Debug\CxStdError.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Debug\xDebug.h"
+					RelativePath="..\..\..\Tests\Include\Test\Db\CxTest_CxMySql.h"
 					>
 				</File>
 			</Filter>
@@ -1401,83 +368,151 @@
 				Name="Filesystem"
 				>
 				<File
-					RelativePath="..\..\Source\Filesystem\CxBackuper.cpp"
+					RelativePath="..\..\..\Tests\Source\Filesystem\CxTest_CxBackuper.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Include\xLib\Filesystem\CxBackuper.h"
+					RelativePath="..\..\..\Tests\Include\Test\Filesystem\CxTest_CxBackuper.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Source\Filesystem\CxDir.cpp"
+					RelativePath="..\..\..\Tests\Source\Filesystem\CxTest_CxDir.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Include\xLib\Filesystem\CxDir.h"
+					RelativePath="..\..\..\Tests\Include\Test\Filesystem\CxTest_CxDir.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Source\Filesystem\CxDll.cpp"
+					RelativePath="..\..\..\Tests\Source\Filesystem\CxTest_CxDll.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Include\xLib\Filesystem\CxDll.h"
+					RelativePath="..\..\..\Tests\Include\Test\Filesystem\CxTest_CxDll.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Source\Filesystem\CxEnvironment.cpp"
+					RelativePath="..\..\..\Tests\Source\Filesystem\CxTest_CxEnvironment.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Include\xLib\Filesystem\CxEnvironment.h"
+					RelativePath="..\..\..\Tests\Include\Test\Filesystem\CxTest_CxEnvironment.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Source\Filesystem\CxFile.cpp"
+					RelativePath="..\..\..\Tests\Source\Filesystem\CxTest_CxFile.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Include\xLib\Filesystem\CxFile.h"
+					RelativePath="..\..\..\Tests\Include\Test\Filesystem\CxTest_CxFile.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Source\Filesystem\CxFileAttribute.cpp"
+					RelativePath="..\..\..\Tests\Source\Filesystem\CxTest_CxFileAttribute.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Include\xLib\Filesystem\CxFileAttribute.h"
+					RelativePath="..\..\..\Tests\Include\Test\Filesystem\CxTest_CxFileAttribute.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Source\Filesystem\CxFileTemp.cpp"
+					RelativePath="..\..\..\Tests\Source\Filesystem\CxTest_CxFileTemp.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Include\xLib\Filesystem\CxFileTemp.h"
+					RelativePath="..\..\..\Tests\Include\Test\Filesystem\CxTest_CxFileTemp.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Source\Filesystem\CxLocalStorage.cpp"
+					RelativePath="..\..\..\Tests\Source\Filesystem\CxTest_CxLocalStorage.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Include\xLib\Filesystem\CxLocalStorage.h"
+					RelativePath="..\..\..\Tests\Include\Test\Filesystem\CxTest_CxLocalStorage.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Source\Filesystem\CxPath.cpp"
+					RelativePath="..\..\..\Tests\Source\Filesystem\CxTest_CxPath.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Include\xLib\Filesystem\CxPath.h"
+					RelativePath="..\..\..\Tests\Include\Test\Filesystem\CxTest_CxPath.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Source\Filesystem\CxVolume.cpp"
+					RelativePath="..\..\..\Tests\Source\Filesystem\CxTest_CxVolume.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Include\xLib\Filesystem\CxVolume.h"
+					RelativePath="..\..\..\Tests\Include\Test\Filesystem\CxTest_CxVolume.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Debug"
+				>
+				<File
+					RelativePath="..\..\..\Tests\Source\Debug\CxTest_CxAutoProfiler.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Include\Test\Debug\CxTest_CxAutoProfiler.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Source\Debug\CxTest_CxDebugger.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Include\Test\Debug\CxTest_CxDebugger.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Source\Debug\CxTest_CxErrorReport.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Include\Test\Debug\CxTest_CxErrorReport.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Source\Debug\CxTest_CxException.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Include\Test\Debug\CxTest_CxException.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Source\Debug\CxTest_CxLastError.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Include\Test\Debug\CxTest_CxLastError.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Source\Debug\CxTest_CxProfiler.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Include\Test\Debug\CxTest_CxProfiler.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Source\Debug\CxTest_CxStackTrace.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Include\Test\Debug\CxTest_CxStackTrace.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Source\Debug\CxTest_CxStdError.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Include\Test\Debug\CxTest_CxStdError.h"
 					>
 				</File>
 			</Filter>
@@ -1488,104 +523,40 @@
 					Name="Dialogs"
 					>
 					<File
-						RelativePath="..\..\Source\Gui\Win\GDI+\CxGdiplus.cpp"
+						RelativePath="..\..\..\Tests\Source\Gui\Dialogs\CxTest_CxMsgBoxT.cpp"
 						>
 					</File>
 					<File
-						RelativePath="..\..\Source\Gui\Win\GDI+\CxImage.cpp"
+						RelativePath="..\..\..\Tests\Include\Test\Gui\Dialogs\CxTest_CxMsgBoxT.h"
 						>
 					</File>
-					<File
-						RelativePath="..\..\Include\xLib\Gui\Dialogs\CxMsgBoxT.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\Include\xLib\Gui\Dialogs\CxMsgBoxT.inl"
-						>
-					</File>
-				</Filter>
-				<Filter
-					Name="Win"
-					>
-					<Filter
-						Name="GDI+"
-						>
-						<File
-							RelativePath="..\..\Include\xLib\Gui\Win\GDI+\CxGdiplus.h"
-							>
-						</File>
-						<File
-							RelativePath="..\..\Include\xLib\Gui\Win\GDI+\CxImage.h"
-							>
-						</File>
-					</Filter>
-					<Filter
-						Name="Dialogs"
-						>
-						<File
-							RelativePath="..\..\Source\Gui\Win\Dialogs\CxInputBox.cpp"
-							>
-						</File>
-						<File
-							RelativePath="..\..\Include\xLib\Gui\Win\Dialogs\CxInputBox.h"
-							>
-						</File>
-						<File
-							RelativePath="..\..\Include\xLib\Gui\Win\Dialogs\CxMsgBoxRtf.h"
-							>
-						</File>
-						<File
-							RelativePath="..\..\Include\xLib\Gui\Win\Dialogs\CxMsgBoxRtf.inl"
-							>
-						</File>
-					</Filter>
 				</Filter>
 			</Filter>
 			<Filter
 				Name="Log"
 				>
 				<File
-					RelativePath="..\..\Source\Log\CxConsoleLog.cpp"
+					RelativePath="..\..\..\Tests\Source\Log\CxTest_CxFileLog.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Include\xLib\Log\CxConsoleLog.h"
+					RelativePath="..\..\..\Tests\Include\Test\Log\CxTest_CxFileLog.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Source\Log\CxFileLog.cpp"
+					RelativePath="..\..\..\Tests\Source\Log\CxTest_CxSystemLog.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Include\xLib\Log\CxFileLog.h"
+					RelativePath="..\..\..\Tests\Include\Test\Log\CxTest_CxSystemLog.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Source\Log\CxSystemLog.cpp"
+					RelativePath="..\..\..\Tests\Source\Log\CxTest_CxTracer.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Include\xLib\Log\CxSystemLog.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Log\CxTraceLog.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Log\CxTraceLog.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Log\CxTracer.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Log\CxTracer.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Log\xLogs.h"
+					RelativePath="..\..\..\Tests\Include\Test\Log\CxTest_CxTracer.h"
 					>
 				</File>
 			</Filter>
@@ -1593,123 +564,107 @@
 				Name="Net"
 				>
 				<File
-					RelativePath="..\..\Source\Net\CxCgi.cpp"
+					RelativePath="..\..\..\Tests\Source\Net\CxTest_CxCgi.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Include\xLib\Net\CxCgi.h"
+					RelativePath="..\..\..\Tests\Include\Test\Net\CxTest_CxCgi.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Source\Net\CxCookiePv0.cpp"
+					RelativePath="..\..\..\Tests\Source\Net\CxTest_CxCookiePv0.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Include\xLib\Net\CxCookiePv0.h"
+					RelativePath="..\..\..\Tests\Include\Test\Net\CxTest_CxCookiePv0.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Source\Net\CxCookiePv1.cpp"
+					RelativePath="..\..\..\Tests\Source\Net\CxTest_CxCookiePv1.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Include\xLib\Net\CxCookiePv1.h"
+					RelativePath="..\..\..\Tests\Include\Test\Net\CxTest_CxCookiePv1.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Source\Net\CxDnsClient.cpp"
+					RelativePath="..\..\..\Tests\Source\Net\CxTest_CxDnsClient.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Include\xLib\Net\CxDnsClient.h"
+					RelativePath="..\..\..\Tests\Include\Test\Net\CxTest_CxDnsClient.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Source\Net\CxHttpClient.cpp"
+					RelativePath="..\..\..\Tests\Source\Net\CxTest_CxHttpClient.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Include\xLib\Net\CxHttpClient.h"
+					RelativePath="..\..\..\Tests\Include\Test\Net\CxTest_CxHttpClient.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Source\Net\CxMimeBody.cpp"
+					RelativePath="..\..\..\Tests\Source\Net\CxTest_CxMimeMessage.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Include\xLib\Net\CxMimeBody.h"
+					RelativePath="..\..\..\Tests\Include\Test\Net\CxTest_CxMimeMessage.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Source\Net\CxMimeHeader.cpp"
+					RelativePath="..\..\..\Tests\Source\Net\CxTest_CxPop3.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Include\xLib\Net\CxMimeHeader.h"
+					RelativePath="..\..\..\Tests\Include\Test\Net\CxTest_CxPop3.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Source\Net\CxMimeMessage.cpp"
+					RelativePath="..\..\..\Tests\Source\Net\CxTest_CxSmtp.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Include\xLib\Net\CxMimeMessage.h"
+					RelativePath="..\..\..\Tests\Include\Test\Net\CxTest_CxSmtp.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Source\Net\CxPop3.cpp"
+					RelativePath="..\..\..\Tests\Source\Net\CxTest_CxSocket.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Include\xLib\Net\CxPop3.h"
+					RelativePath="..\..\..\Tests\Include\Test\Net\CxTest_CxSocket.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Source\Net\CxSmtp.cpp"
+					RelativePath="..\..\..\Tests\Source\Net\CxTest_CxSocketInit.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Include\xLib\Net\CxSmtp.h"
+					RelativePath="..\..\..\Tests\Include\Test\Net\CxTest_CxSocketInit.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Source\Net\CxSocket.cpp"
+					RelativePath="..\..\..\Tests\Source\Net\CxTest_CxTcpClient.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Include\xLib\Net\CxSocket.h"
+					RelativePath="..\..\..\Tests\Include\Test\Net\CxTest_CxTcpClient.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Source\Net\CxSocketInit.cpp"
+					RelativePath="..\..\..\Tests\Source\Net\CxTest_CxTcpServer.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Include\xLib\Net\CxSocketInit.h"
+					RelativePath="..\..\..\Tests\Include\Test\Net\CxTest_CxTcpServer.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Source\Net\CxTcpClient.cpp"
+					RelativePath="..\..\..\Tests\Source\Net\CxTest_CxUri.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Include\xLib\Net\CxTcpClient.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Net\CxTcpServer.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Net\CxTcpServer.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Net\CxUri.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Net\CxUri.h"
+					RelativePath="..\..\..\Tests\Include\Test\Net\CxTest_CxUri.h"
 					>
 				</File>
 			</Filter>
@@ -1717,153 +672,985 @@
 				Name="Patterns"
 				>
 				<File
-					RelativePath="..\..\Include\xLib\Patterns\CxSingleton.h"
+					RelativePath="..\..\..\Tests\Source\Patterns\CxTest_CxSingleton.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Include\Test\Patterns\CxTest_CxSingleton.h"
 					>
 				</File>
 			</Filter>
 			<Filter
-				Name="Sync"
+				Name="Units"
 				>
 				<File
-					RelativePath="..\..\Source\Sync\CxAtomicLongInt.cpp"
+					RelativePath="..\..\..\Tests\Source\Units\CxTest_Draft.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\..\Include\xLib\Sync\CxAtomicLongInt.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Sync\CxAutoCriticalSection.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Sync\CxAutoCriticalSection.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Sync\CxAutoMutex.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Sync\CxAutoMutex.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Sync\CxCriticalSection.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Sync\CxCriticalSection.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Sync\CxCurrentProcess.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Sync\CxCurrentProcess.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Sync\CxCurrentThread.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Sync\CxCurrentThread.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Sync\CxEvent.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Sync\CxEvent.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Sync\CxMutex.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Sync\CxMutex.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Sync\CxProcess.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Sync\CxProcess.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Sync\CxSemaphore.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Sync\CxSemaphore.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Sync\CxSharedMemory.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Sync\CxSharedMemory.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Sync\CxSleeper.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Sync\CxSleeper.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Sync\CxThread.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Sync\CxThread.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Sync\CxThreadPool.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Sync\CxThreadPool.inl"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Sync\CxThreadStorage.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Sync\CxThreadStorage.h"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Source\Sync\CxWaitableTimer.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\Include\xLib\Sync\CxWaitableTimer.h"
+					RelativePath="..\..\..\Tests\Include\Test\Units\CxTest_Draft.h"
 					>
 				</File>
 				<Filter
 					Name="Win"
 					>
 					<File
-						RelativePath="..\..\Source\Sync\Win\CxCompletionPort.cpp"
+						RelativePath="..\..\..\Tests\Source\Units\Win\CxTest_bGetUsbInfo.cpp"
 						>
 					</File>
 					<File
-						RelativePath="..\..\Include\xLib\Sync\Win\CxCompletionPort.h"
+						RelativePath="..\..\..\Tests\Include\Test\Units\Win\CxTest_bGetUsbInfo.h"
 						>
 					</File>
 				</Filter>
+			</Filter>
+			<Filter
+				Name="Sync"
+				>
+				<File
+					RelativePath="..\..\..\Tests\Source\Sync\CxTest_CxAtomicLongInt.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Include\Test\Sync\CxTest_CxAtomicLongInt.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Source\Sync\CxTest_CxAutoIpcMutex.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Include\Test\Sync\CxTest_CxAutoIpcMutex.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Source\Sync\CxTest_CxAutoMutex.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Include\Test\Sync\CxTest_CxAutoMutex.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Source\Sync\CxTest_CxCurrentProcess.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Include\Test\Sync\CxTest_CxCurrentProcess.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Source\Sync\CxTest_CxCurrentThread.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Include\Test\Sync\CxTest_CxCurrentThread.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Source\Sync\CxTest_CxEvent.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Include\Test\Sync\CxTest_CxEvent.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Source\Sync\CxTest_CxIpcMutex.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Include\Test\Sync\CxTest_CxIpcMutex.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Source\Sync\CxTest_CxIpcSemaphore.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Include\Test\Sync\CxTest_CxIpcSemaphore.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Source\Sync\CxTest_CxMutex.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Include\Test\Sync\CxTest_CxMutex.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Source\Sync\CxTest_CxProcess.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Include\Test\Sync\CxTest_CxProcess.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Source\Sync\CxTest_CxSemaphore.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Include\Test\Sync\CxTest_CxSemaphore.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Source\Sync\CxTest_CxSleeper.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Include\Test\Sync\CxTest_CxSleeper.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Source\Sync\CxTest_CxThread.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Include\Test\Sync\CxTest_CxThread.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Source\Sync\CxTest_CxThreadStorage.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Include\Test\Sync\CxTest_CxThreadStorage.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Source\Sync\CxTest_CxWaitableTimer.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Include\Test\Sync\CxTest_CxWaitableTimer.h"
+					>
+				</File>
+				<Filter
+					Name="Win"
+					>
+					<File
+						RelativePath="..\..\..\Tests\Source\Sync\Win\CxTest_CxCompletionPort.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Tests\Include\Test\Sync\Win\CxTest_CxCompletionPort.h"
+						>
+					</File>
+				</Filter>
+			</Filter>
+		</Filter>
+		<Filter
+			Name="xLib"
+			>
+			<Filter
+				Name="Common"
+				>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\CxArray.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\CxArray.inl"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Common\CxChar.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\CxChar.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Common\CxCommandLine.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\CxCommandLine.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Common\CxConsole.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\CxConsole.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Common\CxConst.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\CxConst.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Common\CxDateTime.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\CxDateTime.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\CxFunctorT.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\CxFunctorT.inl"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\CxHandleErrorT.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\CxHandleT.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\CxHandleT.inl"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Common\CxLocale.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\CxLocale.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\CxNonAssignable.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\CxNonCopyable.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Common\CxProcessInfo.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\CxProcessInfo.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Common\CxShell.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\CxShell.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Common\CxString.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\CxString.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\CxString.inl"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Common\CxSystemInfo.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\CxSystemInfo.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\CxType.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\CxType.inl"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\CxUtils.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\CxUtils.inl"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\xCheks.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Common\xCommon.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\xCommon.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\xCommon_Unix.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\xCommon_Win.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\xConfig.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\xDefines.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\xFunctions.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\xLinking.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\xSysDefines.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\xTracing.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\xTypes.h"
+					>
+				</File>
+				<Filter
+					Name="Win"
+					>
+					<File
+						RelativePath="..\..\..\Project\Source\Common\Win\CxCom.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Include\xLib\Common\Win\CxCom.h"
+						>
+					</File>
+				</Filter>
+			</Filter>
+			<Filter
+				Name="Crypt"
+				>
+				<File
+					RelativePath="..\..\..\Project\Source\Crypt\CxCrc32.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Crypt\CxCrc32.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Crypt\CxRandom.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Crypt\CxRandom.h"
+					>
+				</File>
+				<Filter
+					Name="OpenSSL"
+					>
+					<File
+						RelativePath="..\..\..\Project\Source\Crypt\OpenSSL\CxBase64.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Include\xLib\Crypt\OpenSSL\CxBase64.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Source\Crypt\OpenSSL\CxBlowfish.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Include\xLib\Crypt\OpenSSL\CxBlowfish.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="Pkcs11"
+					>
+					<File
+						RelativePath="..\..\..\Project\Include\xLib\Crypt\Pkcs11\All.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Include\xLib\Crypt\Pkcs11\Common.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Source\Crypt\Pkcs11\CxDecrypt.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxDecrypt.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Source\Crypt\Pkcs11\CxDigest.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxDigest.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Source\Crypt\Pkcs11\CxEncrypt.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxEncrypt.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Source\Crypt\Pkcs11\CxFunction.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxFunction.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Source\Crypt\Pkcs11\CxInfo.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxInfo.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Source\Crypt\Pkcs11\CxKey.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxKey.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Source\Crypt\Pkcs11\CxLogin.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxLogin.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Source\Crypt\Pkcs11\CxMechanism.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxMechanism.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Source\Crypt\Pkcs11\CxObject.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxObject.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Source\Crypt\Pkcs11\CxPin.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxPin.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Source\Crypt\Pkcs11\CxPkcs11.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxPkcs11.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Source\Crypt\Pkcs11\CxSession.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxSession.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Source\Crypt\Pkcs11\CxSign.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxSign.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Source\Crypt\Pkcs11\CxSlot.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxSlot.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Source\Crypt\Pkcs11\CxVerify.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxVerify.h"
+						>
+					</File>
+					<Filter
+						Name="SDK"
+						>
+						<Filter
+							Name="4.53"
+							>
+							<File
+								RelativePath="..\..\..\Project\Include\xLib\Crypt\Pkcs11\SDK\4.53\cryptoki.h"
+								>
+							</File>
+							<File
+								RelativePath="..\..\..\Project\Include\xLib\Crypt\Pkcs11\SDK\4.53\eTPkcs11.h"
+								>
+							</File>
+							<File
+								RelativePath="..\..\..\Project\Include\xLib\Crypt\Pkcs11\SDK\4.53\eTSAPI.h"
+								>
+							</File>
+							<File
+								RelativePath="..\..\..\Project\Include\xLib\Crypt\Pkcs11\SDK\4.53\otp-pkcs11.h"
+								>
+							</File>
+							<File
+								RelativePath="..\..\..\Project\Include\xLib\Crypt\Pkcs11\SDK\4.53\pkcs11.h"
+								>
+							</File>
+							<File
+								RelativePath="..\..\..\Project\Include\xLib\Crypt\Pkcs11\SDK\4.53\pkcs11f.h"
+								>
+							</File>
+							<File
+								RelativePath="..\..\..\Project\Include\xLib\Crypt\Pkcs11\SDK\4.53\pkcs11t.h"
+								>
+							</File>
+						</Filter>
+					</Filter>
+				</Filter>
+			</Filter>
+			<Filter
+				Name="Db"
+				>
+				<File
+					RelativePath="..\..\..\Project\Source\Db\CxConnectionString.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Db\CxConnectionString.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Db\CxMySql.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Db\CxMySql.h"
+					>
+				</File>
+				<Filter
+					Name="Win"
+					>
+					<File
+						RelativePath="..\..\..\Project\Source\Db\Win\CxAdo.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Include\xLib\Db\Win\CxAdo.h"
+						>
+					</File>
+				</Filter>
+			</Filter>
+			<Filter
+				Name="Debug"
+				>
+				<File
+					RelativePath="..\..\..\Project\Source\Debug\CxAutoProfiler.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Debug\CxAutoProfiler.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Debug\CxDebugger.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Debug\CxDebugger.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Debug\CxErrorReport.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Debug\CxErrorReport.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Debug\CxErrorReport.inl"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Debug\CxException.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Debug\CxException.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Debug\CxException.inl"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Debug\CxLastError.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Debug\CxLastError.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Debug\CxProfiler.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Debug\CxProfiler.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Debug\CxStackTrace.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Debug\CxStackTrace.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Debug\CxStdError.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Debug\CxStdError.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Debug\xDebug.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Filesystem"
+				>
+				<File
+					RelativePath="..\..\..\Project\Source\Filesystem\CxBackuper.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Filesystem\CxBackuper.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Filesystem\CxDir.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Filesystem\CxDir.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Filesystem\CxDll.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Filesystem\CxDll.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Filesystem\CxEnvironment.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Filesystem\CxEnvironment.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Filesystem\CxFile.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Filesystem\CxFile.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Filesystem\CxFileAttribute.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Filesystem\CxFileAttribute.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Filesystem\CxFileTemp.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Filesystem\CxFileTemp.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Filesystem\CxLocalStorage.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Filesystem\CxLocalStorage.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Filesystem\CxPath.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Filesystem\CxPath.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Filesystem\CxVolume.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Filesystem\CxVolume.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Gui"
+				>
+				<Filter
+					Name="Dialogs"
+					>
+					<File
+						RelativePath="..\..\..\Project\Include\xLib\Gui\Dialogs\CxMsgBoxT.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Include\xLib\Gui\Dialogs\CxMsgBoxT.inl"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="Win"
+					>
+					<Filter
+						Name="Dialogs"
+						>
+						<File
+							RelativePath="..\..\..\Project\Source\Gui\Win\Dialogs\CxInputBox.cpp"
+							>
+						</File>
+						<File
+							RelativePath="..\..\..\Project\Include\xLib\Gui\Win\Dialogs\CxInputBox.h"
+							>
+						</File>
+						<File
+							RelativePath="..\..\..\Project\Include\xLib\Gui\Win\Dialogs\CxMsgBoxRtf.h"
+							>
+						</File>
+						<File
+							RelativePath="..\..\..\Project\Include\xLib\Gui\Win\Dialogs\CxMsgBoxRtf.inl"
+							>
+						</File>
+					</Filter>
+				</Filter>
+			</Filter>
+			<Filter
+				Name="Patterns"
+				>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Patterns\CxSingleton.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Log"
+				>
+				<File
+					RelativePath="..\..\..\Project\Source\Log\CxFileLog.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Log\CxFileLog.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Log\CxSystemLog.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Log\CxSystemLog.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Log\CxTracer.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Log\CxTracer.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Log\xLogs.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Net"
+				>
+				<File
+					RelativePath="..\..\..\Project\Source\Net\CxCgi.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Net\CxCgi.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Net\CxCookiePv0.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Net\CxCookiePv0.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Net\CxCookiePv1.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Net\CxCookiePv1.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Net\CxDnsClient.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Net\CxDnsClient.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Net\CxHttpClient.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Net\CxHttpClient.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Net\CxMimeBody.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Net\CxMimeBody.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Net\CxMimeHeader.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Net\CxMimeHeader.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Net\CxMimeMessage.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Net\CxMimeMessage.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Net\CxPop3.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Net\CxPop3.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Net\CxSmtp.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Net\CxSmtp.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Net\CxSocket.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Net\CxSocket.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Net\CxSocketInit.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Net\CxSocketInit.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Net\CxTcpClient.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Net\CxTcpClient.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Net\CxTcpServer.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Net\CxTcpServer.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Net\CxUri.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Net\CxUri.h"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="Units"
@@ -1872,11 +1659,11 @@
 					Name="Win"
 					>
 					<File
-						RelativePath="..\..\Source\Units\Win\bDownloadURL.cpp"
+						RelativePath="..\..\..\Project\Source\Units\Win\bGetUsbInfo.cpp"
 						>
 					</File>
 					<File
-						RelativePath="..\..\Source\Units\Win\bGetUsbInfo.cpp"
+						RelativePath="..\..\..\Project\Include\xLib\Units\Win\bGetUsbInfo.h"
 						>
 					</File>
 				</Filter>
@@ -1884,12 +1671,176 @@
 			<Filter
 				Name="Test"
 				>
+				<File
+					RelativePath="..\..\..\Project\Source\Test\CxTest.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Test\CxTest.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Test\CxTestManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Test\CxTestManager.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Sync"
+				>
+				<File
+					RelativePath="..\..\..\Project\Source\Sync\CxAtomicLongInt.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Sync\CxAtomicLongInt.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Sync\CxAutoIpcMutex.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Sync\CxAutoIpcMutex.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Sync\CxAutoMutex.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Sync\CxAutoMutex.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Sync\CxCurrentProcess.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Sync\CxCurrentProcess.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Sync\CxCurrentThread.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Sync\CxCurrentThread.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Sync\CxEvent.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Sync\CxEvent.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Sync\CxIpcMutex.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Sync\CxIpcMutex.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Sync\CxIpcSemaphore.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Sync\CxIpcSemaphore.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Sync\CxMutex.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Sync\CxMutex.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Sync\CxProcess.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Sync\CxProcess.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Sync\CxSemaphore.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Sync\CxSemaphore.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Sync\CxSharedMemory.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Sync\CxSharedMemory.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Sync\CxSleeper.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Sync\CxSleeper.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Sync\CxThread.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Sync\CxThread.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Sync\CxThreadPool.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Sync\CxThreadPool.inl"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Sync\CxThreadStorage.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Sync\CxThreadStorage.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Sync\CxWaitableTimer.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Sync\CxWaitableTimer.h"
+					>
+				</File>
+				<Filter
+					Name="Win"
+					>
+					<File
+						RelativePath="..\..\..\Project\Source\Sync\Win\CxCompletionPort.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Include\xLib\Sync\Win\CxCompletionPort.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 		</Filter>
-		<File
-			RelativePath="..\..\TODO.txt"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>
