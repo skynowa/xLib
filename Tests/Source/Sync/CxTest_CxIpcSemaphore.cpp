@@ -27,7 +27,7 @@ CxTest_CxIpcSemaphore::bUnit(
 {
     struct _SFunctor
     {
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         static uint_t xSTDCALL
     #elif xOS_ENV_UNIX
         static void * xSTDCALL
@@ -59,7 +59,7 @@ CxTest_CxIpcSemaphore::bUnit(
     m_bRv = semSemaphore.bCreate(4, xT("sema_name"));
     xTEST_EQ(true, m_bRv);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     uintptr_t puiRv = ::_beginthreadex(NULL, 0U, &_SFunctor::uiJob, &semSemaphore, 0U, NULL);
     xTEST_PTR(puiRv);
 #elif xOS_ENV_UNIX

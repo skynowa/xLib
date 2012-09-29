@@ -12,7 +12,7 @@
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #include <xLib/Sync/CxAutoIpcMutex.h>
 #endif
 

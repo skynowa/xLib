@@ -71,7 +71,7 @@ CxLastError::sFormat(
 
     sRv = CxString::sFormat(xT("%lu - "), a_culCode);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     DWORD  dwRv   = 0UL;
     LPVOID pvBuff = NULL;
 

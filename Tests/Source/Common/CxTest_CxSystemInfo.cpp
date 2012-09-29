@@ -32,7 +32,7 @@ CxTest_CxSystemInfo::bUnit(
         const CxSystemInfo::ExOsType otType = CxSystemInfo::osGetOS();
         xTEST_DIFF(CxSystemInfo::otUnknown, otType);
 
-        #if xOS_ENV_WIN
+        #if   xOS_ENV_WIN
             m_bRv =
                 otType == CxSystemInfo::otWindows3 ||
                 otType == CxSystemInfo::otWindows95 ||
@@ -63,7 +63,7 @@ CxTest_CxSystemInfo::bUnit(
     // sFormatOsType
     xTEST_CASE(cullCaseLoops)
     {
-        #if xOS_ENV_WIN
+        #if   xOS_ENV_WIN
             typedef std::map<CxSystemInfo::ExOsType, std::tstring_t> TData;
 
             TData mapData;

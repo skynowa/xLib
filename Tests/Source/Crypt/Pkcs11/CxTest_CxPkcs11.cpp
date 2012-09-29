@@ -22,7 +22,7 @@ CxTest_CxPkcs11::bUnit(
     const ulonglong_t cullCaseLoops
 )
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     CxPkcs11 objPkcs11;
     CxSlot   objSlot(objPkcs11);
 

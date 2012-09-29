@@ -22,7 +22,7 @@ CxTest_CxSmtp::bUnit(
     const ulonglong_t cullCaseLoops
 )
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     //-------------------------------------
     //IPNET
     //const std::string  csUser     = "domen";

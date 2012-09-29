@@ -32,7 +32,7 @@ CxEnvironment::bIsExists(
     /*DEBUG*/// n/a
     xCHECK_RET(true == csVarName.empty(), false);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     std::tstring_t sRv;
     DWORD          ulStored = 0UL;
 
@@ -88,7 +88,7 @@ CxEnvironment::sGetVar(
 
     std::tstring_t sRv;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     DWORD ulStored = 0UL;
 
     sRv.resize(xPATH_MAX);
@@ -122,7 +122,7 @@ CxEnvironment::bSetVar(
     /*DEBUG*/xASSERT_RET(true == bIsVarValid(csVarName), false);
     /*DEBUG*/xASSERT_RET(true == bIsVarValid(csValue),   false);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     BOOL blRes = ::SetEnvironmentVariable(csVarName.c_str(), csValue.c_str());
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX
@@ -142,7 +142,7 @@ CxEnvironment::bDeleteVar(
     /*DEBUG*/// n/a
     xCHECK_RET(false == bIsExists(csVarName), true);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     BOOL blRes = ::SetEnvironmentVariable(csVarName.c_str(), NULL);
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX
@@ -167,7 +167,7 @@ CxEnvironment::bGetValues(
 
     std::vec_tstring_t vsArgs;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     LPTSTR pszVar = NULL;
     LPTCH  lpvEnv = NULL;
 
@@ -208,7 +208,7 @@ CxEnvironment::sExpandStrings(
 
     std::tstring_t sRv;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     DWORD ulStored = 0UL;
 
     sRv.resize(xPATH_MAX);

@@ -173,7 +173,7 @@ CxTest_CxThread::bUnit(
     {
         const CxThread::ExPriority ctpPriority = CxThread::tpLowest;
 
-        #if xOS_ENV_WIN
+        #if   xOS_ENV_WIN
             m_bRv = pthT->bSetPriority(ctpPriority);
             xTEST_EQ(true, m_bRv);
 
@@ -202,7 +202,7 @@ CxTest_CxThread::bUnit(
     // bPriorityUp, bPriorityDown
     xTEST_CASE(cullCaseLoops)
     {
-        #if xOS_ENV_WIN
+        #if   xOS_ENV_WIN
             m_bRv = pthT->bPriorityUp();
             xTEST_EQ(true, m_bRv);
 
@@ -217,7 +217,7 @@ CxTest_CxThread::bUnit(
     // bIsPriorityBoost
     xTEST_CASE(cullCaseLoops)
     {
-        #if xOS_ENV_WIN
+        #if   xOS_ENV_WIN
             m_bRv = pthT->bIsPriorityBoost();
             xTEST_EQ(true, m_bRv);
         #elif xOS_ENV_UNIX
@@ -229,7 +229,7 @@ CxTest_CxThread::bUnit(
     // bSetPriorityBoost
     xTEST_CASE(cullCaseLoops)
     {
-        #if xOS_ENV_WIN
+        #if   xOS_ENV_WIN
             m_bRv = pthT->bSetPriorityBoost(false);
             xTEST_EQ(true, m_bRv);
 

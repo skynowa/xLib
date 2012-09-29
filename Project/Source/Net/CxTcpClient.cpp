@@ -89,7 +89,7 @@ CxTcpClient::bIoctl(
 
     int iRv = etError;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     iRv = ioctlsocket(_m_sktSocket, a_liCmd, a_pulArgp);
     /*DEBUG*/xASSERT_RET(etError != iRv, false);
 #elif xOS_ENV_UNIX
@@ -107,7 +107,7 @@ CxTcpClient::bSetNonBlockingMode(
 {
     /*DEBUG*/
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     ulong_t ulNonBlockingMode = static_cast<ulong_t>(a_cbFlag);
 
     bool bRv = bIoctl(FIONBIO, static_cast<ulong_t FAR *>(&ulNonBlockingMode));

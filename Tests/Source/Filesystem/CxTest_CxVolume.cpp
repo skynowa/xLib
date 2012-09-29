@@ -70,7 +70,7 @@ CxTest_CxVolume::bUnit(
     {
         //true
         {
-            #if xOS_ENV_WIN
+            #if   xOS_ENV_WIN
                 const std::tstring_t  g_csVolumePathWithSlash     = xT("C:\\");
                 const std::tstring_t  g_csVolumeePathWithoutSlash = xT("C:");
             #elif xOS_ENV_UNIX
@@ -87,7 +87,7 @@ CxTest_CxVolume::bUnit(
 
         //false
         {
-            #if xOS_ENV_WIN
+            #if   xOS_ENV_WIN
                 const std::tstring_t  g_csVolumePathWithSlash     = xT("B:\\");
                 const std::tstring_t  g_csVolumeePathWithoutSlash = xT("B:");
             #elif xOS_ENV_UNIX
@@ -110,7 +110,7 @@ CxTest_CxVolume::bUnit(
         //true
         {
             #if xTODO
-                #if xOS_ENV_WIN
+                #if   xOS_ENV_WIN
                     const std::tstring_t  g_csVolumePathWithSlash     = xT("B:\\");
                     const std::tstring_t  g_csVolumeePathWithoutSlash = xT("B:");
                 #elif xOS_ENV_UNIX
@@ -128,7 +128,7 @@ CxTest_CxVolume::bUnit(
 
         //false
         {
-            #if xOS_ENV_WIN
+            #if   xOS_ENV_WIN
                 const std::tstring_t  g_csVolumePathWithSlash     = xT("C:\\");
                 const std::tstring_t  g_csVolumeePathWithoutSlash = xT("C:");
             #elif xOS_ENV_UNIX
@@ -222,7 +222,7 @@ CxTest_CxVolume::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
     #if xTEST_IGNORE
-        #if xOS_ENV_WIN
+        #if   xOS_ENV_WIN
             const std::tstring_t csSourcePath = xT("\\\\KSF\\Files\\INSTALL");
             const std::tstring_t csDestPath   = xT("T:");
         #elif xOS_ENV_UNIX

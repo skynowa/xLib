@@ -22,7 +22,7 @@ CxTest_bGetUsbInfo::bUnit(
     const ulonglong_t cullCaseLoops
 )
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     //-------------------------------------
     //bGetUsbInfo
     xTEST_CASE(cullCaseLoops)

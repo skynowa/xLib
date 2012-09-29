@@ -102,7 +102,7 @@ CxTest_CxDnsClient::bUnit(
             ///*struct addrinfo **/   paiList->ai_next;        // Next structure in linked list
         }
 
-        #if xOS_ENV_WIN
+        #if   xOS_ENV_WIN
             #if xCOMPILER_MS
                 ::FreeAddrInfo(paiList);
             #else

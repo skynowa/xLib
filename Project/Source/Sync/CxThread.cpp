@@ -418,7 +418,7 @@ CxThread::bIsExited() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
 
 bool
 CxThread::bPostMessage(
@@ -440,7 +440,7 @@ CxThread::bPostMessage(
 
 #endif
 //---------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
 
 bool
 CxThread::bSendMessage(
@@ -462,7 +462,7 @@ CxThread::bSendMessage(
 
 #endif
 //---------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
 
 bool
 CxThread::bPostThreadMessage(
@@ -481,7 +481,7 @@ CxThread::bPostThreadMessage(
 
 #endif
 //---------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
 
 bool
 CxThread::bTryPostThreadMessage(
@@ -506,7 +506,7 @@ CxThread::bTryPostThreadMessage(
 
 #endif
 //---------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
 
 bool
 CxThread::bMessageWaitQueue(
@@ -529,7 +529,7 @@ CxThread::bMessageWaitQueue(
 
 #endif
 //---------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
 
 bool
 CxThread::bMessageWaitQueue(
@@ -1135,7 +1135,7 @@ CxThread::_s_uiJobEntry(
 
     //-------------------------------------
     // clean members (is need to close???)
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     bRv = pthThis->_m_hThread.bClose();
     /*DEBUG*/xASSERT(true == bRv);
 #elif xOS_ENV_UNIX

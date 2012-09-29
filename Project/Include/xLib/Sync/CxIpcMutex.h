@@ -17,7 +17,7 @@ class CxIpcMutex :
     /// mutex
 {
     public:
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         typedef CxHandle  handle_t;
     #elif xOS_ENV_UNIX
         typedef sem_t *   handle_t;

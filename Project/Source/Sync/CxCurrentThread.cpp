@@ -25,7 +25,7 @@ CxCurrentThread::bIsCurrent(
 
     bool bRv = false;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     bRv = (ulGetId() == a_culId);
 #elif xOS_ENV_UNIX
     //TODO: If either thread1 or thread2 are not valid thread IDs, the behavior is undefined
@@ -42,7 +42,7 @@ CxCurrentThread::ulGetId() {
 
     CxThread::id_t ulRv = 0UL;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     ulRv = ::GetCurrentThreadId();
     /*DEBUG*/xASSERT_RET(0UL < ulRv, 0UL);
 #elif xOS_ENV_UNIX
@@ -60,7 +60,7 @@ CxCurrentThread::hGetHandle() {
 
     CxThread::handle_t hRv;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     hRv = ::GetCurrentThread();
     /*DEBUG*/xASSERT_RET(NULL != hRv, NULL);
 #elif xOS_ENV_UNIX
@@ -76,7 +76,7 @@ bool
 CxCurrentThread::bYield() {
     /*DEBUG*/// n/a
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     (void)::SwitchToThread();
 #elif xOS_ENV_UNIX
     int iRv = ::sched_yield();
@@ -93,7 +93,7 @@ CxCurrentThread::bSleep(
 ) {
     /*DEBUG*/// n/a
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     (void)::Sleep(a_culMsec);
 #elif xOS_ENV_UNIX
     timespec tsSleep  = {0};

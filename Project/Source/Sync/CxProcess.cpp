@@ -13,7 +13,7 @@
 #include <xLib/Sync/CxCurrentThread.h>
 #include <xLib/Sync/CxCurrentProcess.h>
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #if !xCOMPILER_MINGW32
         #pragma comment(lib, "psapi.lib")
     #endif
@@ -32,7 +32,7 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 CxProcess::CxProcess() :
     _m_hHandle     (0),
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     _m_hThread     (NULL),
 #endif
     _m_ulPid       (0UL),

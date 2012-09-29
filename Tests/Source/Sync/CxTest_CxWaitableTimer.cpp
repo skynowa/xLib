@@ -22,7 +22,7 @@ CxTest_CxWaitableTimer::bUnit(
     const ulonglong_t cullCaseLoops
 )
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     bool bRv = false;
 
     CxWaitableTimer WT;

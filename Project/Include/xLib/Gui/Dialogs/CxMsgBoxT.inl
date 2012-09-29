@@ -17,7 +17,7 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
 
 template <class TextT, class TitleT>
 /* static */
@@ -53,7 +53,7 @@ CxMsgBoxT::iShow(
 {
     ExModalResult mrRes = mrAbort;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     mrRes = static_cast<ExModalResult>( ::MessageBox(
                             NULL,
                             CxString::string_cast(a_cText).c_str(),
@@ -82,7 +82,7 @@ CxMsgBoxT::iShow(
 {
     ExModalResult mrRes = mrAbort;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     mrRes = static_cast<ExModalResult>( ::MessageBox(
                             NULL,
                             CxString::string_cast(a_cText).c_str(),
@@ -110,7 +110,7 @@ CxMsgBoxT::iShow(
 {
     ExModalResult mrRes = mrAbort;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     mrRes = static_cast<ExModalResult>( ::MessageBox(
                             NULL,
                             CxString::string_cast(a_cText).c_str(),

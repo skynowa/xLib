@@ -21,7 +21,7 @@ class CxSystemInfo :
         {
             otUnknown,
 
-        #if xOS_ENV_WIN
+        #if   xOS_ENV_WIN
             // windows family
             otWindows3,
             otWindows95,

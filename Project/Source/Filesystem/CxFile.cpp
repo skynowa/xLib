@@ -391,7 +391,7 @@ CxFile::bLocking(
     const long_t        cliBytes
 )
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     int iRv = ::xLOCKING(_iGetHandle(pGet()), clmMode, cliBytes);
     /*DEBUG*/xASSERT_RET(- 1 != iRv, false);
 #elif xOS_ENV_UNIX
@@ -443,7 +443,7 @@ CxFile::bSetVBuff(
     return true;
 }
 //---------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
 
 bool
 CxFile::bSetMode(
@@ -497,7 +497,7 @@ CxFile::bResize(
 {
     /*DEBUG*/// n/a
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     int iRv = static_cast<int>( ::xCHSIZE(_iGetHandle(pGet()), cllSize) );
     /*DEBUG*/xASSERT_RET(0 == iRv, false);
 #elif xOS_ENV_UNIX
@@ -620,7 +620,7 @@ CxFile::bIsFile(
     CxFileAttribute::ExAttribute atAttr = CxFileAttribute::atGet(csFilePath);
     xCHECK_RET(CxFileAttribute::faInvalid == atAttr, false);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     bRv = CxFileAttribute::bIsExists(csFilePath, CxFileAttribute::faDirectory);
     xCHECK_RET(true == bRv, false);
 
@@ -707,7 +707,7 @@ CxFile::bChmod(
     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
     /*DEBUG*///iMode
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     int iRv = ::xTCHMOD(csFilePath.c_str(), static_cast<int>( cpmMode ));
     /*DEBUG*/xASSERT_RET(- 1 != iRv, false);
 #elif xOS_ENV_UNIX
@@ -1060,7 +1060,7 @@ CxFile::bGetTime(
     /*DEBUG*/// pftAccess   - n/a
     /*DEBUG*/// pftModified - n/a
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     FILETIME ftCreate   = {0};
     FILETIME ftAccess   = {0};
     FILETIME ftModified = {0};
@@ -1104,7 +1104,7 @@ CxFile::bSetTime(
     /*DEBUG*/// ctmAccess   - n/a
     /*DEBUG*/// ctmModified - n/a
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     bool     bRv     = false;
 
     FILETIME ftCreate = {0};

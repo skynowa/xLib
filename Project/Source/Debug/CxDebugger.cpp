@@ -15,7 +15,7 @@
 #include <xLib/Sync/CxCurrentProcess.h>
 #include <xLib/Gui/Dialogs/CxMsgBoxT.h>
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #include <xLib/Gui/Win/Dialogs/CxMsgBoxRtf.h>
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
@@ -75,7 +75,7 @@ CxDebugger::bSetEnabled(
 //---------------------------------------------------------------------------
 bool
 CxDebugger::bIsActive() {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     // local debugger
     BOOL blRes = ::IsDebuggerPresent();
     xCHECK_RET(FALSE != blRes, true);
@@ -133,7 +133,7 @@ bool
 CxDebugger::bBreak() {
     xCHECK_RET(false == bGetEnabled(), true);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #if xCOMPILER_MS || xCOMPILER_CODEGEAR
         _asm {int 3}
     #elif xCOMPILER_MINGW32
@@ -201,7 +201,7 @@ CxDebugger::bBeep(
     const ulong_t a_culDuration  /*= 100UL*/
 )
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #if xTODO
         bool bRv = ::Beep(a_culFrequency, a_culDuration);
         xCHECK_RET(false == bRv, false);
@@ -257,7 +257,7 @@ CxDebugger::_bMsgboxPlain(
 
 
 #if xDEBUG_USE_PROMPT_DIALOG
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         ulong_t ulType = MB_ABORTRETRYIGNORE | MB_ICONSTOP;
     #elif xOS_ENV_UNIX
         ulong_t ulType = 1UL;
@@ -300,7 +300,7 @@ CxDebugger::_bMsgboxFormated(
 {
     xCHECK_RET(false == bGetEnabled(), true);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     //-------------------------------------
     //show message
     #if xDEBUG_USE_PROMPT_DIALOG

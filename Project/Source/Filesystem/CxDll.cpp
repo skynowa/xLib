@@ -6,7 +6,7 @@
 
 #include <xLib/Filesystem/CxDll.h>
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     // lib: n/a
 #elif xOS_ENV_UNIX
     // lib: -ldl, -lc (FreeBSD)
@@ -49,7 +49,7 @@ CxDll::bLoad(
     bool bRv = _bFree();
     /*DEBUG*/xASSERT_RET(true == bRv, false);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     _m_hDll = ::LoadLibrary(csDllPath.c_str());
     /*DEBUG*/xASSERT_RET(NULL != _m_hDll, false);
 #elif xOS_ENV_UNIX
@@ -67,7 +67,7 @@ CxDll::bIsProcExists(
 {
     /*DEBUG*/xASSERT_RET(NULL != _m_hDll, false);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     proc_address_t fpRes = ::GetProcAddress(_m_hDll, xTS2S(csProcName).c_str());
     xCHECK_RET(NULL == fpRes, false);
 #elif xOS_ENV_UNIX
@@ -94,7 +94,7 @@ CxDll::fpGetProcAddress(
 
     proc_address_t fpRes = NULL;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     fpRes = ::GetProcAddress(_m_hDll, xTS2S(csProcName).c_str());
     /*DEBUG*/xASSERT_RET(NULL != fpRes, NULL);
 #elif xOS_ENV_UNIX
@@ -127,7 +127,7 @@ CxDll::_bFree() {
 
     xCHECK_RET(false == bIsLoaded(), true);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     BOOL blRes = ::FreeLibrary(_m_hDll);
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX

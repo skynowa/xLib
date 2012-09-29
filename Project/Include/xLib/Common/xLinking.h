@@ -7,7 +7,7 @@
 #ifndef xLib_Common_xLinkingH
 #define xLib_Common_xLinkingH
 //---------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #if !defined(_LIB) && xIS_AUTO_LINKING
         #if defined(NDEBUG)
             //release

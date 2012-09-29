@@ -9,7 +9,7 @@
 #include <xLib/Common/CxString.h>
 #include <xLib/Filesystem/CxPath.h>
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     xNA
 #elif xOS_ENV_UNIX
     #include <syslog.h>
@@ -26,7 +26,7 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 CxSystemLog::CxSystemLog() :
     _m_bIsEnable(true)
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     ,
     _m_SysLog   (NULL)
 #endif
@@ -39,7 +39,7 @@ CxSystemLog::CxSystemLog(
     const std::tstring_t &a_csLogName
 ) :
     _m_bIsEnable(true)
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     ,
     _m_SysLog   (NULL)
 #endif
@@ -81,7 +81,7 @@ CxSystemLog::bWrite(
 )
 {
     /*DEBUG*/xASSERT_RET(NULL != a_pcszFormat, false);
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(NULL != _m_SysLog,  false);
 #endif
 

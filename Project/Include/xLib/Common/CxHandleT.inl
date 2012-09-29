@@ -133,7 +133,7 @@ CxHandleT<hvTag>::hDuplicate() const {
 
     native_handle_t hRv = error_value_t::hGet();
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     native_handle_t hCurrentProcess = ::GetCurrentProcess();
 
     BOOL blRes = ::DuplicateHandle(
@@ -161,7 +161,7 @@ CxHandleT<hvTag>::bIsValid() const {
 
     bool bRv = false;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     bool bCond1 = (reinterpret_cast<native_handle_t>(0xCDCDCDCD) != _m_hHandle);   //created but not initialised
     bool bCond2 = (reinterpret_cast<native_handle_t>(0xCCCCCCCC) != _m_hHandle);   //uninitialized locals in VC6 when you compile w/ /GZ
     bool bCond3 = (reinterpret_cast<native_handle_t>(0xBAADF00D) != _m_hHandle);   //indicate an uninitialized variable
@@ -217,7 +217,7 @@ CxHandleT<hvTag>::bClose() {
 
     xCHECK_DO(false == bIsValid(), _m_hHandle = error_value_t::hGet(); return true);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     BOOL blRes = ::CloseHandle(_m_hHandle);
     /////*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX
@@ -230,7 +230,7 @@ CxHandleT<hvTag>::bClose() {
     return true;
 }
 //---------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
 
 template<ExHandleValue hvTag>
 ulong_t
@@ -248,7 +248,7 @@ CxHandleT<hvTag>::ulGetInfo() const {
 
 #endif
 //---------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
 
 template<ExHandleValue hvTag>
 bool

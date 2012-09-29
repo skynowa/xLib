@@ -7,7 +7,7 @@
 #include <xLib/Sync/Win/CxCompletionPort.h>
 
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
 
 xNAMESPACE_BEGIN(NxLib)
 

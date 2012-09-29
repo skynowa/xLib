@@ -81,7 +81,7 @@ class CxThread :
         bool                 bIsExited            ();
             ///< is exited (is set flag "exit")
 
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         // messages
         bool                 bPostMessage         (HWND hHwnd, uint_t uiMsg, uint_t uiParam1, long_t liParam2) const;
             ///< post message from thread to window
@@ -155,7 +155,7 @@ class CxThread :
         static const ulong_t _ms_culExitTimeout        = 5000UL; ///< exit timeout (msec)
 
         // thread data
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         CxHandle             _m_hThread;                 ///< native handle
     #elif xOS_ENV_UNIX
         handle_t             _m_hThread;                 ///< native handle

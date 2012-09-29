@@ -9,7 +9,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #include <shellapi.h>
     #include <shlwapi.h>
     #include <shlobj.h>
@@ -25,7 +25,7 @@ class CxShell :
         static bool           bIsAvailable      ();
         static bool           bExecute          (const std::tstring_t &csFilePath, const std::tstring_t &csParams);
 
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         enum ExOperation
             /// operations
         {

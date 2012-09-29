@@ -9,7 +9,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #include <xLib/Sync/CxIpcMutex.h>
 #elif xOS_ENV_UNIX
 

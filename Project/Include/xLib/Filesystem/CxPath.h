@@ -33,7 +33,7 @@ class CxPath :
         static std::tstring_t sGetDll         ();
             ///< get full path to dll
 
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         static std::tstring_t sGetDrive       (const std::tstring_t &csFilePath);
             ///< get drive
     #endif
@@ -50,7 +50,7 @@ class CxPath :
         static std::tstring_t sGetStandartExt (const ExStandartExt cseFileExt);
             ///< get standart extension
 
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         static std::tstring_t sSetDrive       (const std::tstring_t &csFilePath, const std::tstring_t &csDrivePath);
             ///< set drive
     #endif

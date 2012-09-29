@@ -322,7 +322,7 @@ CxString::sToLowerCase(
 
     std::tstring_t sRv(a_csStr);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     ulong_t ulRv = ::CharLowerBuff(static_cast<LPTSTR>( &sRv[0] ), a_uiLength);
     /*DEBUG*/xASSERT_RET(a_uiLength == ulRv, std::tstring_t());
 #elif xOS_ENV_UNIX
@@ -346,7 +346,7 @@ CxString::sToUpperCase(
 
     std::tstring_t sRv(a_csStr);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     ulong_t ulRv = ::CharUpperBuff(static_cast<LPTSTR>( &sRv[0] ), a_uiLength);
     /*DEBUG*/xASSERT_RET(a_uiLength == ulRv, std::tstring_t());
 #elif xOS_ENV_UNIX
@@ -367,7 +367,7 @@ CxString::bCompareNoCase(
     /*DEBUG*/// csStr2 - n/a
     xCHECK_RET(a_csStr1.size() != a_csStr2.size(), false);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     int iRv = - 1;
 
     iRv = ::lstrcmpi(a_csStr1.c_str(), a_csStr2.c_str());
@@ -557,7 +557,7 @@ CxString::sCreateGuid() {
 
     std::tstring_t sRv;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     GUID    guidId = {0};
     HRESULT hrGuid = S_FALSE;
 
@@ -753,7 +753,7 @@ CxString::sStrToWStr(
 
     std::wstring wsRes;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     int iSize = ::MultiByteToWideChar(a_cuiCodePage, 0, a_csStr.c_str(), - 1, NULL, 0);
     /*DEBUG*/xASSERT_RET(0 < iSize, std::wstring());
 
@@ -780,7 +780,7 @@ CxString::sWStrToStr(
 
     std::string asRes;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     int iSize = ::WideCharToMultiByte(a_cuiCodePage, 0UL, a_cwsStr.c_str(), - 1, NULL, 0, NULL, NULL);
     /*DEBUG*/xASSERT_RET(0 < iSize, std::string());
 
@@ -821,7 +821,7 @@ CxString::asCharToOemBuff(
 {
     std::string asDst;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     asDst.resize(a_csSrc.size());
 
     BOOL bRv = ::CharToOemBuff(a_csSrc.c_str(), &asDst.at(0), asDst.size());
@@ -842,7 +842,7 @@ CxString::sOemToCharBuff(
 {
     std::tstring_t sDst;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     sDst.resize(a_csSrc.size());
 
     BOOL bRv = ::OemToCharBuff(a_csSrc.c_str(), &sDst.at(0), sDst.size());

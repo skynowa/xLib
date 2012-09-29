@@ -24,7 +24,7 @@ long_t
 CxCommandLine::liGetArgsMax() {
     long_t liRv = 0L;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     liRv = 32L * 1024L;
 #elif xOS_ENV_UNIX
     liRv = ::sysconf(_SC_ARG_MAX) / sizeof(std::tstring_t::value_type);
@@ -41,7 +41,7 @@ CxCommandLine::sGet() {
 
     std::tstring_t sRv;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     LPCTSTR pcszRes = ::GetCommandLine();
     /*DEBUG*/xASSERT_RET(NULL != pcszRes, std::tstring_t());
 

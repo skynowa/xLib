@@ -22,7 +22,7 @@ CxLocale::sGetCurrent() {
 
     std::tstring_t sRv;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     int  iRv = - 1;
     LCID lcId   = 0;
 

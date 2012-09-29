@@ -56,7 +56,7 @@ CxDir::bIsEmpty(
 
     //TODO: CxPath::sToCurrentOs + CxPath::sSlashAppend
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     HANDLE          hFile    = INVALID_HANDLE_VALUE;
     WIN32_FIND_DATA fdData   = {0};
     std::tstring_t  sDirPath = CxPath::sToCurrentOs( CxPath::sSlashAppend(csDirPath) + csMask, false );
@@ -115,7 +115,7 @@ CxDir::bIsRoot(
 {
     /*DEBUG*/// n/a
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     xCHECK_RET(3 != csDirPath.size(), false);
 
     bool bRes1 = CxChar::bIsAlpha(csDirPath.at(0));
@@ -152,7 +152,7 @@ CxDir::sGetCurrent() {
     std::tstring_t sRv;
     std::tstring_t sBuff(xPATH_MAX + 1, 0);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     DWORD ulRv = ::GetCurrentDirectory(xPATH_MAX, &sBuff[0]);
     /*DEBUG*/xASSERT_RET(0UL   != ulRv,     std::tstring_t());
     /*DEBUG*/xASSERT_RET(ulRv <  xPATH_MAX, std::tstring_t());
@@ -179,7 +179,7 @@ CxDir::bSetCurrent(
 
     std::tstring_t sDirPath = CxPath::sSlashAppend(csDirPath);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     BOOL blRes = ::SetCurrentDirectory(sDirPath.c_str());
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX
@@ -197,7 +197,7 @@ CxDir::sGetTemp() {
 
     std::tstring_t sRv;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     std::tstring_t sBuff(xPATH_MAX + 1, 0);
 
     DWORD ulRv = ::GetTempPath(xPATH_MAX, &sBuff[0]);
@@ -232,7 +232,7 @@ CxDir::bCreate(
     bool bRv = bIsExists(csDirPath);
     xCHECK_RET(true == bRv, true);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     BOOL blRes = ::CreateDirectory(csDirPath.c_str(), NULL);
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX
@@ -366,7 +366,7 @@ CxDir::bDelete(
     bRv = CxFileAttribute::bSet(csDirPath, CxFileAttribute::faNormal);
     /*DEBUG*/xASSERT_RET(true == bRv, false);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     BOOL blRes = ::RemoveDirectory(csDirPath.c_str());
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX
@@ -494,7 +494,7 @@ CxDir::bFindFiles(
         (*pvsFilePathes).clear();
     #endif
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     HANDLE          hFile         = INVALID_HANDLE_VALUE;
     WIN32_FIND_DATA fdData        = {0};
     std::tstring_t  sFilePath     = CxPath::sToCurrentOs( CxPath::sSlashAppend(csDirPath) + cMask, false );
@@ -638,7 +638,7 @@ CxDir::bFindDirs(
         (*pvsDirPathes).clear();
     #endif
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     HANDLE          hFile        = INVALID_HANDLE_VALUE;
     WIN32_FIND_DATA fdData       = {0};
     std::tstring_t  sRootDirPath = CxPath::sToCurrentOs( CxPath::sSlashAppend(csDirPath) + cMask, false );

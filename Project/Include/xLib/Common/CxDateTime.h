@@ -109,7 +109,7 @@ class CxDateTime
             ///< get number days in month
         static bool           bIsLeapYear         (const ushort_t cusYear);
             ///< is leap year
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         static longlong_t     i64FiletimeToInt64  (const FILETIME &cftTime);
             ///< convert FILETIME to longlong_t
         static bool           bUnixTimeToFileTime (const time_t ctmUnixTime, FILETIME *pftFileTime);

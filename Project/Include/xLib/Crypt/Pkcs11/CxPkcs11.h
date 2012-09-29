@@ -11,7 +11,7 @@
 #include <xLib/Crypt/Pkcs11/Common.h>
 #include <xLib/Filesystem/CxDll.h>
 //---------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
 
 xNAMESPACE_BEGIN(NxLib)
 

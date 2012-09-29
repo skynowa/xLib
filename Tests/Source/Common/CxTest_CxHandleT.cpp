@@ -180,7 +180,7 @@ CxTest_CxHandleT::bUnit(
     //bSetInfo
     xTEST_CASE(cullCaseLoops)
     {
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         #if xTODO
             CxHandle hHandle;
 
@@ -202,7 +202,7 @@ CxTest_CxHandleT::bUnit(
     //ulGetInfo
     xTEST_CASE(cullCaseLoops)
     {
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         #if xTODO
             CxHandle hHandle;
 
