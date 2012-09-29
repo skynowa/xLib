@@ -95,7 +95,7 @@ CxTest_CxUtils::bUnit(
         // must compile-error
         {
             //// tchar_t *pszBuff = NULL;
-            //// m_uiRv = xARRAY_SIZE(pszBuff);
+            //// m_uiRv = CxUtils::arraySizeT(pszBuff);
         }
     }
 
@@ -107,7 +107,7 @@ CxTest_CxUtils::bUnit(
 
         CxUtils::bufferZeroT(szBuff);
 
-        for (size_t i = 0; i < xARRAY_SIZE(szBuff); ++ i) {
+        for (size_t i = 0; i < CxUtils::arraySizeT(szBuff); ++ i) {
             xTEST_EQ(xT('\0'), szBuff[i]);
         }
 
@@ -197,7 +197,7 @@ CxTest_CxUtils::bUnit(
         {
             const int caiData[] = { -1000, -100, -1, 1, 100, 1000};
 
-            for (size_t i = 0; i < xARRAY_SIZE(caiData); ++ i) {
+            for (size_t i = 0; i < CxUtils::arraySizeT(caiData); ++ i) {
                 const int iVal = caiData[i];
 
                 m_bRv = CxUtils::intToBool(iVal);
@@ -256,7 +256,7 @@ CxTest_CxUtils::bUnit(
             {-10.6, -11.0}
         };
 
-        for (size_t i = 0; i < xARRAY_SIZE(cdData); ++ i) {
+        for (size_t i = 0; i < CxUtils::arraySizeT(cdData); ++ i) {
             double dRes0 = CxUtils::round(cdData[i][0]);
             double dRes1 = cdData[i][1];
             xTEST_EQ(dRes0, dRes1);
