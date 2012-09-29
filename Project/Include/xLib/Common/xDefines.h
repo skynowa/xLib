@@ -289,7 +289,7 @@
     ///< maximum permissible string length of an environmental variable
 
 //--------------------------------------------------
-// xFRAMES_MAX
+// xSTACK_TRACE_FRAMES_MAX
 #if   xOS_ENV_WIN
     #define xSTACK_TRACE_FRAMES_MAX 62UL    // from MSDN, ::CaptureStackBackTrace
 #elif xOS_ENV_UNIX
@@ -403,21 +403,6 @@
     #endif
 #endif
     ///< filesystem page size
-
-//--------------------------------------------------
-// xSTATVFS (struct and function)
-#if   xOS_ENV_WIN
-    xNA
-#elif xOS_ENV_UNIX
-    #if xOS_FREEBSD
-        #define xSTATVFS            statvfs
-        #define xSTATVFS_F_FRSIZE   f_frsize
-    #else
-        #define xSTATVFS            statfs64
-        #define xSTATVFS_F_FRSIZE   f_bsize
-    #endif
-#endif
-    ///< filesystem statfs (struct and function)
 
 //--------------------------------------------------
 // xDIR_TEMP temprory directory

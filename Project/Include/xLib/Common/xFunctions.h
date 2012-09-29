@@ -271,5 +271,19 @@
 #else
     #define xGETNAMEINFO        getnameinfo
 #endif
+
+// xSTATVFS (struct and function)
+#if   xOS_ENV_WIN
+    xNA
+#elif xOS_ENV_UNIX
+    #if xOS_FREEBSD
+        #define xSTATVFS            statvfs
+        #define xSTATVFS_F_FRSIZE   f_frsize
+    #else
+        #define xSTATVFS            statfs64
+        #define xSTATVFS_F_FRSIZE   f_bsize
+    #endif
+#endif
+    ///< filesystem statfs (struct and function)
 //---------------------------------------------------------------------------
 #endif  //xLib_Common_xFunctionsH

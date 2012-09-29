@@ -20,7 +20,7 @@ class CxTest_CxSemaphore :
         virtual      ~CxTest_CxSemaphore();
             ///< destructor
 
-        virtual bool  bUnit(const ulonglong_t cullBlockLoops);
+        virtual bool  bUnit(const ulonglong_t cullCaseLoops);
             ///< unit test
 
     private:
