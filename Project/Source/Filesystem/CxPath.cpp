@@ -32,7 +32,7 @@ std::tstring_t
 CxPath::sGetExe() {
     std::tstring_t sRv;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     // REVIEW: QueryFullProcessImageName on xOS_WIN_VER > xOS_WIN_S03
 
     sRv.resize(xPATH_MAX);
@@ -90,7 +90,7 @@ CxPath::sGetExe() {
     return sRv;
 }
 //---------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     extern "C" IMAGE_DOS_HEADER __ImageBase;
 #elif xOS_ENV_UNIX
     static void vFunction() { ; }
@@ -103,7 +103,7 @@ CxPath::sGetDll() {
 
     std::tstring_t sRv;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     sRv.resize(xPATH_MAX);
 
     DWORD ulStored = ::GetModuleFileName(reinterpret_cast<HINSTANCE>( &__ImageBase ), &sRv.at(0), sRv.size());
@@ -129,7 +129,7 @@ CxPath::sGetExeDir() {
     return sGetDir(sGetExe());
 }
 //---------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
 
 /* static */
 std::tstring_t
@@ -236,7 +236,7 @@ CxPath::sGetStandartExt(
     std::tstring_t sRv;
 
     switch (cseFileExt) {
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         case seExe: { sRv = xT("exe"); }   break;
         case seDll: { sRv = xT("dll"); }   break;
         case seLib: { sRv = xT("lib"); }   break;
@@ -255,7 +255,7 @@ CxPath::sGetStandartExt(
     return sRv;
 }
 //---------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
 
 /* static */
 std::tstring_t
@@ -447,7 +447,7 @@ CxPath::bIsAbsolute(
     xCHECK_RET(true                  == csFilePath.empty(), false);
     xCHECK_RET(CxConst::xSLASH.at(0) == csFilePath.at(0),   true);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     xCHECK_RET(1 == csFilePath.size(),                                                          false);
     xCHECK_RET(CxChar::bIsAlpha(csFilePath.at(0)) && CxConst::xCOLON.at(0) == csFilePath.at(1), true);
 #else
@@ -475,7 +475,7 @@ CxPath::sSetValidName(
     //check for name size
     xCHECK_RET(xNAME_MAX <= sRv.size(), std::tstring_t());
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     //-------------------------------------
     //if only dots
     size_t uiDotPos = sRv.find_first_not_of(CxConst::xDOT);
@@ -609,7 +609,7 @@ CxPath::sGetAbsolute(
 
     std::tstring_t sRv;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     DWORD          ulRv = 0UL;
     std::tstring_t sBuff;
 
@@ -763,7 +763,7 @@ CxPath::uiGetMaxSize() {
 
     size_t uiRes = 0;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #if defined(MAX_PATH)
         uiRes = MAX_PATH;
     #else
@@ -807,7 +807,7 @@ CxPath::uiGetNameMaxSize() {
 
     size_t uiRes = 0;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #if defined(FILENAME_MAX)
         uiRes = FILENAME_MAX;
     #else

@@ -20,7 +20,7 @@ class CxFileAttribute :
             /// attribute
         {
             //TODO: separate writable and readable attributes
-            #if xOS_ENV_WIN
+            #if   xOS_ENV_WIN
                 faInvalid           = INVALID_FILE_ATTRIBUTES,
                 faNormal            = FILE_ATTRIBUTE_NORMAL,
                 faReadOnly          = FILE_ATTRIBUTE_READONLY,

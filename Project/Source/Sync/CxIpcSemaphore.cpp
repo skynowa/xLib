@@ -25,7 +25,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxIpcSemaphore::CxIpcSemaphore() :
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     _m_hHandle(),
 #elif xOS_ENV_UNIX
     _m_hHandle(NULL),
@@ -34,7 +34,7 @@ CxIpcSemaphore::CxIpcSemaphore() :
 {
     /*DEBUG*/xASSERT_DO(false == _bIsValid(), return);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     xNA;
 #elif xOS_ENV_UNIX
     // sem_init
@@ -44,7 +44,7 @@ CxIpcSemaphore::CxIpcSemaphore() :
 CxIpcSemaphore::~CxIpcSemaphore() {
     /*DEBUG*/xASSERT_DO(true == _bIsValid(), return);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     xNA;
 #elif xOS_ENV_UNIX
     int iRv = ::sem_close(_m_hHandle);  _m_hHandle = NULL;
@@ -72,7 +72,7 @@ CxIpcSemaphore::bCreate(
     /*DEBUG*/xASSERT_RET(CxPath::uiGetMaxSize()  >  a_csName.size(), false);
     /*DEBUG*/xASSERT_RET(0L <= a_cliInitialValue && a_cliInitialValue <= xSEMAPHORE_VALUE_MAX, false);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     const tchar_t  *pcszWinName = NULL;
     std::tstring_t  _sWinName;
 
@@ -111,7 +111,7 @@ CxIpcSemaphore::bOpen(
     /*DEBUG*/xASSERT_RET(true == _bIsValid(), false);
     /*DEBUG*///csName    - n/a
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     const tchar_t *pcszWinName = NULL;
     std::tstring_t _sWinName;
 
@@ -144,7 +144,7 @@ bool
 CxIpcSemaphore::bPost() const {
     /*DEBUG*/xASSERT_RET(true == _bIsValid(), false);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
    const LONG cliPostValue = 1L;
 
    BOOL blRes = ::ReleaseSemaphore(_m_hHandle.hGet(), cliPostValue, NULL);
@@ -165,7 +165,7 @@ CxIpcSemaphore::bWait(
     /*DEBUG*/xASSERT_RET(true == _bIsValid(), false);
     /*DEBUG*///ulTimeout - n/a
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     DWORD dwRv = ::WaitForSingleObject(_m_hHandle.hGet(), a_culTimeoutMsec);
     /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == dwRv, false);
 #elif xOS_ENV_UNIX
@@ -233,7 +233,7 @@ CxIpcSemaphore::liGetValue() const {
 
     long_t liRv = - 1L;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     const LONG cliPostValue = 0L;
 
     BOOL blRv = ::ReleaseSemaphore(_m_hHandle.hGet(), cliPostValue, &liRv);
@@ -260,7 +260,7 @@ CxIpcSemaphore::liGetValue() const {
 //---------------------------------------------------------------------------
 bool
 CxIpcSemaphore::_bIsValid() const {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     return _m_hHandle.bIsValid();
 #elif xOS_ENV_UNIX
     return (NULL != _m_hHandle);

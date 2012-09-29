@@ -6,7 +6,7 @@
 
 #include <xLib/Net/CxSocketInit.h>
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #if xCOMPILER_MS
         #pragma comment(lib, "ws2_32.Lib")
     #endif

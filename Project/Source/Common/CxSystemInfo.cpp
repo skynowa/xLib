@@ -13,7 +13,7 @@
 #include <xLib/Filesystem/CxDll.h>
 #include <xLib/Sync/CxCurrentProcess.h>
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #include <shlobj.h>
 #endif
 
@@ -31,7 +31,7 @@ CxSystemInfo::ExOsType
 CxSystemInfo::osGetOS() {
     ExOsType otRes = otUnknown;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     OSVERSIONINFO ovVer = {0};
     ovVer.dwOSVersionInfoSize = sizeof(ovVer);
 
@@ -105,7 +105,7 @@ CxSystemInfo::sFormatOsType(
 
     std::tstring_t sRv;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     switch (a_otOsType) {
         case otWindows3:                { sRv = xT("Windows 3.1");                }    break;
         case otWindows95:               { sRv = xT("Windows 95");                 }    break;
@@ -154,7 +154,7 @@ CxSystemInfo::ExOsArch
 CxSystemInfo::oaGetOsArch() {
     ExOsArch oaRes = oaUnknown;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #if xCPU_64BIT
         oaRes = oa64bit;
     #elif xCPU_32BIT
@@ -260,7 +260,7 @@ std::tstring_t
 CxSystemInfo::sGetHostName() {
     std::tstring_t sRv;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     ulong_t ulBuffSize                 = xHOST_NAME_MAX;
     tchar_t szBuff[xHOST_NAME_MAX + 1] = {0};
 
@@ -283,7 +283,7 @@ CxSystemInfo::sGetHostName() {
 /* static */
 bool
 CxSystemInfo::bIsUserAnAdmin() {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     bool                     bIsAdmin              = false;
     SID_IDENTIFIER_AUTHORITY siaNtAuthority        = { SECURITY_NT_AUTHORITY };
     PSID                     psAdministratorsGroup = NULL;
@@ -329,7 +329,7 @@ std::tstring_t
 CxSystemInfo::sGetUserName() {
     std::tstring_t sRv;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     DWORD   ulBuffSize        = UNLEN;
     tchar_t szBuff[UNLEN + 1] = {0};
 
@@ -358,7 +358,7 @@ std::tstring_t
 CxSystemInfo::sGetUseHomeDir() {
     std::tstring_t sRv;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     tchar_t szBuff[MAX_PATH + 1] = {0};
 
     HRESULT hrRes = SHGetFolderPath(NULL, CSIDL_PROFILE, NULL, 0UL, &szBuff[0]);
@@ -397,7 +397,7 @@ ulong_t
 CxSystemInfo::ulGetNumOfCpus() {
     ulong_t ulRv = 0UL;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     SYSTEM_INFO siSysInfo = {{0}};
 
     (void)::GetNativeSystemInfo(&siSysInfo);
@@ -426,7 +426,7 @@ ulong_t
 CxSystemInfo::ulGetCurrentCpuNum() {
     ulong_t ulRv = 0UL;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     typedef DWORD (WINAPI *DllGetCurrentProcessorNumber_t)(void);
 
     CxDll dlDll;
@@ -647,7 +647,7 @@ ulong_t
 CxSystemInfo::ulGetCpuSpeed() {
     ulong_t ulRv = 0UL;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     DWORD ulCpuSpeedMHz = 0UL;
     DWORD dwBuffSize    = sizeof(ulCpuSpeedMHz);
     HKEY  hKey          = NULL;

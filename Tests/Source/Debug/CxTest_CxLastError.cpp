@@ -22,7 +22,7 @@ CxTest_CxLastError::bUnit(
     const ulonglong_t cullCaseLoops
 )
 {
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         const ulong_t cuiMaxErrors = 15999;  /*0...15999*/;
     #elif xOS_ENV_UNIX
         const ulong_t cuiMaxErrors = 132;    /*0...132*/

@@ -27,7 +27,7 @@ CxTest_CxAutoProfiler::bUnit(
     const CxProfiler::ExMode pmPerformMode[] = {
             CxProfiler::pmStdClock,
             CxProfiler::pmDateTime,
-        #if xOS_ENV_WIN
+        #if   xOS_ENV_WIN
             CxProfiler::pmTickCount,
             CxProfiler::pmPerformanceCount,
             CxProfiler::pmThreadTimes,

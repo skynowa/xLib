@@ -55,7 +55,7 @@ CxIpcMutex::bCreate(
     /*DEBUG*/xASSERT_RET(xNAME_MAX - 4 > a_csName.size(), false);
 #endif
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     const tchar_t *pcszWinName = NULL;
     std::tstring_t _sWinName;
 
@@ -128,7 +128,7 @@ CxIpcMutex::bLock(
     /////*DEBUG*/xASSERT_RET(false != _m_hHandle.bIsValid(), false);
     /*DEBUG*///culTimeout - n/a
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     DWORD ulRv = ::WaitForSingleObject(_m_hHandle.hGet(), a_culTimeoutMsec);
     /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0  == ulRv, false);
     /*DEBUG*/xASSERT_RET(WAIT_ABANDONED != ulRv, false);
@@ -184,7 +184,7 @@ bool
 CxIpcMutex::bUnlock() const {
     /////*DEBUG*/xASSERT_RET(false != _m_hHandle.bIsValid(), false);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     BOOL blRes = ::ReleaseMutex(_m_hHandle.hGet());
     /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
 #elif xOS_ENV_UNIX

@@ -19,7 +19,7 @@ class CxMsgBoxT :
         enum ExModalResult
             /// modal result
         {
-            #if xOS_ENV_WIN
+            #if   xOS_ENV_WIN
                 mrAbort  = IDABORT,
                 mrIgnore = IDIGNORE,
                 mrRetry  = IDRETRY
@@ -30,7 +30,7 @@ class CxMsgBoxT :
             #endif
         };
 
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         template <typename TextT, typename TitleT>
         static ExModalResult iShow(const HWND chWnd, const TextT &cText, const TitleT &cTitle, const uint_t cuiType);
             ///< message box has parent window, with custom text, custom title, custom type

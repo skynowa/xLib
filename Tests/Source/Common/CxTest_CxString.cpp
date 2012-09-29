@@ -399,7 +399,7 @@ CxTest_CxString::bUnit(
     //sRemoveEol
     xTEST_CASE(cullCaseLoops)
     {
-        #if xOS_ENV_WIN
+        #if   xOS_ENV_WIN
             const std::tstring_t sTestData[][2] = {
                 {xT("TEST_STRING_1"), xT("TEST_STRING_1\r\n")},
                 {xT("TEST_STRING_1"), xT("TEST_STRING_1\r")},
@@ -1044,7 +1044,7 @@ CxTest_CxString::bUnit(
     //sCreateGuid
     xTEST_CASE(cullCaseLoops)
     {
-        #if xOS_ENV_WIN
+        #if   xOS_ENV_WIN
             m_sRv = CxString::sCreateGuid();
             xTEST_EQ(false, m_sRv.empty());
         #elif xOS_ENV_UNIX
@@ -1089,7 +1089,7 @@ CxTest_CxString::bUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(csAnsiStr) - 1; i ++) {
-            #if xOS_ENV_WIN
+            #if   xOS_ENV_WIN
                 //CP_ACP(ANSI) <-> CP_UTF8(UTF-8)
                 std::string sAnsi;
                 std::string sUtf8;
@@ -1119,7 +1119,7 @@ CxTest_CxString::bUnit(
     {
         std::string sRv;
 
-        #if xOS_ENV_WIN
+        #if   xOS_ENV_WIN
             sRv = CxString::asCharToOemBuff(xT("Boss, hello? "));
             xTEST_EQ(std::string("Boss, hello? "), sRv);
         #elif xOS_ENV_UNIX
@@ -1133,7 +1133,7 @@ CxTest_CxString::bUnit(
     {
         std::tstring_t sRv;
 
-        #if xOS_ENV_WIN
+        #if   xOS_ENV_WIN
             sRv = CxString::sOemToCharBuff(("1111, hdbhjgjk hkl, jl.,kh."));
             xTEST_EQ(std::tstring_t(xT("1111, hdbhjgjk hkl, jl.,kh.")), sRv);
         #elif xOS_ENV_UNIX

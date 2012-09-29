@@ -60,7 +60,7 @@ CxFileTemp::bCreate(
 
     _m_sFilePath = CxPath::sSlashAppend(csDirPath) + CxPath::sGetFileName(csFilePath) + csFileNameTemplate;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #if xCOMPILER_MINGW32 || xCOMPILER_CODEGEAR
         _m_sFilePath.resize(_m_sFilePath.size() + 1);
 

@@ -22,7 +22,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxConsole::CxConsole()
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     :
     _m_hWnd   (NULL),
     _m_hMenu  (NULL),
@@ -32,7 +32,7 @@ CxConsole::CxConsole()
 
 #endif
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     _m_hStdIn  = ::GetStdHandle(STD_INPUT_HANDLE);
     /*DEBUG*/xASSERT_DO(false != _m_hStdIn.bIsValid(), return);
     /*DEBUG*/xASSERT_DO(NULL  != _m_hStdIn.hGet(),     return);
@@ -49,7 +49,7 @@ CxConsole::CxConsole()
 }
 //---------------------------------------------------------------------------
 CxConsole::~CxConsole() {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     (void)_m_hStdIn.hDetach();
     (void)_m_hStdOut.hDetach();
 #endif
@@ -70,7 +70,7 @@ CxConsole::bSetTextColor(
 
     std::tstring_t sRv;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               std::tstring_t());
     /*DEBUG*/xASSERT_RET(false != _m_hStdIn.bIsValid(),  std::tstring_t());
     /*DEBUG*/xASSERT_RET(false != _m_hStdOut.bIsValid(), std::tstring_t());
@@ -95,7 +95,7 @@ std::tstring_t
 CxConsole::sRead() {
     std::tstring_t sRv;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               std::tstring_t());
     /*DEBUG*/xASSERT_RET(false != _m_hStdIn.bIsValid(),  std::tstring_t());
     /*DEBUG*/xASSERT_RET(false != _m_hStdOut.bIsValid(), std::tstring_t());
@@ -121,7 +121,7 @@ CxConsole::bWrite(
     const std::tstring_t &a_csStr
 )
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               false);
     /*DEBUG*/xASSERT_RET(false != _m_hStdIn.bIsValid(),  false);
     /*DEBUG*/xASSERT_RET(false != _m_hStdOut.bIsValid(), false);
@@ -145,7 +145,7 @@ CxConsole::bWriteLine(
     const std::tstring_t &a_csStr /* = xT("") */
 )
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     //TODO: xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               false);
     /*DEBUG*/xASSERT_RET(false != _m_hStdIn.bIsValid(),  false);
@@ -163,7 +163,7 @@ CxConsole::bWriteErrLine(
     const std::tstring_t &a_csStr
 )
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               false);
     /*DEBUG*/xASSERT_RET(false != _m_hStdIn.bIsValid(),  false);
     /*DEBUG*/xASSERT_RET(false != _m_hStdOut.bIsValid(), false);
@@ -287,7 +287,7 @@ bool
 CxConsole::bClear() {
     /*DEBUG*/
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               false);
     /*DEBUG*/xASSERT_RET(false != _m_hStdIn.bIsValid(),  false);
     /*DEBUG*/xASSERT_RET(false != _m_hStdOut.bIsValid(), false);
@@ -333,7 +333,7 @@ CxConsole::bEnableClose(
 {
     /*DEBUG*/
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               false);
     /*DEBUG*/xASSERT_RET(false != _m_hStdIn.bIsValid(),  false);
     /*DEBUG*/xASSERT_RET(false != _m_hStdOut.bIsValid(), false);
@@ -365,7 +365,7 @@ CxConsole::sGetTitle() {
 
     std::tstring_t sRv;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     /*DEBUG*///_m_hWnd - n/a
     /*DEBUG*/xASSERT_RET(false != _m_hStdIn.bIsValid(),  std::tstring_t());
     /*DEBUG*/xASSERT_RET(false != _m_hStdOut.bIsValid(), std::tstring_t());
@@ -393,7 +393,7 @@ CxConsole::bSetTitle(
 {
     /*DEBUG*/
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     /*DEBUG*///_m_hWnd - n/a
     /*DEBUG*/xASSERT_RET(false != _m_hStdIn.bIsValid(),  false);
     /*DEBUG*/xASSERT_RET(false != _m_hStdOut.bIsValid(), false);
@@ -414,7 +414,7 @@ bool
 CxConsole::bSetFullScreen() {
     /*DEBUG*/
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     //TODO: xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               false);
     /*DEBUG*/xASSERT_RET(false != _m_hStdIn.bIsValid(),  false);
@@ -451,7 +451,7 @@ bool
 CxConsole::bCenterWindow() {
     /*DEBUG*/
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               false);
     /*DEBUG*/xASSERT_RET(false != _m_hStdIn.bIsValid(),  false);
     /*DEBUG*/xASSERT_RET(false != _m_hStdOut.bIsValid(), false);
@@ -490,7 +490,7 @@ CxConsole::bCenterWindow() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
 
 HWND
 CxConsole::_hGetWndHandle() {
@@ -528,7 +528,7 @@ CxConsole::_hGetWndHandle() {
 
 #endif
 //---------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
 
 HMENU
 CxConsole::_hGetMenuHandle(

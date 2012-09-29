@@ -57,7 +57,7 @@ CxTest_CxShell::bUnit(
         }
     }
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     //-------------------------------------
     //bFindExecutable
     xTEST_CASE(cullCaseLoops)

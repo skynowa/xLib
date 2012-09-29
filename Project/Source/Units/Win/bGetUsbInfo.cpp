@@ -7,7 +7,7 @@
 #include <xLib/Units/Win/bGetUsbInfo.h>
 
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
 
 #include <winioctl.h>
 #include <setupapi.h>

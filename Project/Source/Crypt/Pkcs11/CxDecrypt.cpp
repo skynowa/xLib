@@ -11,7 +11,7 @@
 #include <xLib/Filesystem/CxFile.h>
 
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
 
 xNAMESPACE_BEGIN(NxLib)
 

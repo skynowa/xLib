@@ -107,7 +107,7 @@ bool
 CxSocket::bIsValid() const {
     /*DEBUG*/// n/a
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     return (_m_sktSocket >= 0);
 #elif xOS_ENV_UNIX
     return (_m_sktSocket >= 0);
@@ -120,7 +120,7 @@ CxSocket::bClose() {
 
     int iRv = etError;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     iRv = shutdown(_m_sktSocket, SD_BOTH);
     /*DEBUG*/xASSERT_RET(etError != iRv, false);
 
@@ -158,7 +158,7 @@ CxSocket::iSend(
     /*DEBUG*/xASSERT_RET(NULL      != a_pcszBuff,          etError);
     /*DEBUG*//////xASSERT_RET(0         <  ::lstrlen(pcszBuff), etError);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     int     iRv = ::send(_m_sktSocket, (LPCSTR)a_pcszBuff, a_iBuffSize * sizeof(tchar_t), a_iFlags);
     /*DEBUG*/xASSERT_RET(etError                            != iRv && WSAEWOULDBLOCK != iGetLastError(), etError);
     /*DEBUG*/xASSERT_RET(a_iBuffSize * (int)sizeof(tchar_t) >= iRv,                                      etError);
@@ -232,7 +232,7 @@ CxSocket::iRecv(
 
     std::memset(a_pszBuff, 0, a_iBuffSize * sizeof(tchar_t));
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     int     iRv = ::recv(_m_sktSocket, (LPSTR)a_pszBuff, a_iBuffSize * sizeof(tchar_t), a_iFlags);
     /*DEBUG*/xASSERT_RET(etError                        != iRv && WSAEWOULDBLOCK != iGetLastError(), etError);
     /*DEBUG*/xASSERT_RET(0                              != iRv,                                      etError);  //gracefully closed
@@ -261,7 +261,7 @@ CxSocket::sRecvAll(
         int   iRv  = - 1;
         ulong_t ulArg = (ulong_t)false;
 
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         iRv = ::ioctlsocket(_m_sktSocket, FIONREAD, &ulArg);
     #elif xOS_ENV_UNIX
         iRv = ::ioctl      (_m_sktSocket, FIONREAD, &ulArg);
@@ -408,7 +408,7 @@ CxSocket::bGetPeerName(
     /*DEBUG*///psPeerAddr  - n/a
     /*DEBUG*///pusPeerPort - n/a
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     SOCKADDR_IN sockAddr     = {0};
     int         iSockAddrLen = sizeof(sockAddr);
 
@@ -445,7 +445,7 @@ CxSocket::bGetSocketName(
     /*DEBUG*///psPeerAddr  - n/a
     /*DEBUG*///pusPeerPort - n/a
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     SOCKADDR_IN sockAddr     = {0};
     int         iSockAddrLen = sizeof(sockAddr);
 
@@ -508,7 +508,7 @@ int
 CxSocket::iGetLastError() {
     /*DEBUG*/// n/a
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     return ::WSAGetLastError();
 #elif xOS_ENV_UNIX
     return errno;

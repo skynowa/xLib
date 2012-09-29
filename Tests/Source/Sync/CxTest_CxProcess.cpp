@@ -31,7 +31,7 @@ CxTest_CxProcess::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         #if 0
-            #if xOS_ENV_WIN
+            #if   xOS_ENV_WIN
                 const std::tstring_t csFilePath = xT("C:\\Windows\\System32\\attrib.exe");
                 const std::tstring_t csCmdLine  = xT("");
             #elif xOS_ENV_UNIX
@@ -54,7 +54,7 @@ CxTest_CxProcess::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         #if 0
-            #if xOS_ENV_WIN
+            #if   xOS_ENV_WIN
                 const std::tstring_t csFilePath = xT("C:\\Windows\\System32\\attrib.exe");
                 const std::tstring_t csCmdLine  = xT("/?");
             #elif xOS_ENV_UNIX
@@ -77,7 +77,7 @@ CxTest_CxProcess::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         #if 0
-            #if xOS_ENV_WIN
+            #if   xOS_ENV_WIN
                 const std::tstring_t csFilePath = xT("C:\\Windows\\System32\\attrib.exe");
                 const std::tstring_t csCmdLine  = xT("/?");
             #elif xOS_ENV_UNIX

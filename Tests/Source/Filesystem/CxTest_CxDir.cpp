@@ -27,7 +27,7 @@ CxTest_CxDir::bUnit(
     const std::tstring_t csTempScanDirPath = sGetTempDirPath() + CxConst::xSLASH + xT("Scan");
     const std::tstring_t csMask            = xT("*.txt");
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     const std::tstring_t csFilePath        = sGetTempDirPath() + xT("\\Test.txt");
     const std::tstring_t csRootTestDirPath = sGetTempDirPath() + xT("\\Test_Dir");
     const std::tstring_t csDirPath         = sGetTempDirPath() + xT("\\Test_Dir\\1\\2\\3");
@@ -117,7 +117,7 @@ CxTest_CxDir::bUnit(
     //bIsRoot
     xTEST_CASE(cullCaseLoops)
     {
-        #if xOS_ENV_WIN
+        #if   xOS_ENV_WIN
             const std::tstring_t sTestData[][2] = {
                 {xT("TEST_STRING_1"), xT("false")},
                 {xT(""),              xT("false")},

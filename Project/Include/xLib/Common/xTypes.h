@@ -31,7 +31,7 @@ xNAMESPACE_BEGIN(NxLib)
         ///< char
 
     // addrinfo_t
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         #if xCOMPILER_MINGW32
             typedef addrinfo           addrinfo_t;
         #else
@@ -43,7 +43,7 @@ xNAMESPACE_BEGIN(NxLib)
         ///<  hold host address information
 
     // native_handle_t
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         typedef HANDLE                 native_handle_t;
     #elif xOS_ENV_UNIX
         typedef int                    native_handle_t;
@@ -51,7 +51,7 @@ xNAMESPACE_BEGIN(NxLib)
         ///< native handle
    
     // socket_t
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         typedef SOCKET                 socket_t;
     #elif xOS_ENV_UNIX
         typedef int                    socket_t;

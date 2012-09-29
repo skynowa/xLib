@@ -16,7 +16,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxThreadStorage::CxThreadStorage() :
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     _m_indIndex(TLS_OUT_OF_INDEXES)
 #elif xOS_ENV_UNIX
     _m_indIndex(static_cast<pthread_key_t>( -1 ))
@@ -34,7 +34,7 @@ bool
 CxThreadStorage::bIsSet() const {
     void *pvRv = NULL;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     pvRv = ::TlsGetValue(_m_indIndex);
     xCHECK_RET(NULL == pvRv, false);
 #elif xOS_ENV_UNIX
@@ -49,7 +49,7 @@ void *
 CxThreadStorage::pvGetValue() const {
     void *pvRv = NULL;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(TLS_OUT_OF_INDEXES != _m_indIndex, NULL);
 
     pvRv = ::TlsGetValue(_m_indIndex);
@@ -71,7 +71,7 @@ CxThreadStorage::bSetValue(
 {
     /*DEBUG*/xASSERT_RET(NULL != a_pvValue, false);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(TLS_OUT_OF_INDEXES != _m_indIndex, false);
 
     BOOL blRes = ::TlsSetValue(_m_indIndex, a_pvValue);
@@ -98,7 +98,7 @@ bool
 CxThreadStorage::_bAlloc() {
     index_t indRes = (index_t)- 1;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(TLS_OUT_OF_INDEXES == _m_indIndex, false);
 
     indRes = ::TlsAlloc();
@@ -117,7 +117,7 @@ CxThreadStorage::_bAlloc() {
 //---------------------------------------------------------------------------
 bool
 CxThreadStorage::_bFree() {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     /*DEBUG*/xASSERT_RET(TLS_OUT_OF_INDEXES != _m_indIndex, false);
 
     BOOL blRes = ::TlsFree(_m_indIndex);

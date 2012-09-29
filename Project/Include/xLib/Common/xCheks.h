@@ -33,7 +33,7 @@
 
 //--------------------------------------------------
 //Win
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #if !defined(MAX_PATH)
         #error xLib: MAX_PATH not defined
     #endif

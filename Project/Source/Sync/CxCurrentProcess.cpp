@@ -27,7 +27,7 @@ CxCurrentProcess::bIsCurrent(
 
     bool bRv = false;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     bRv = (ulGetId() == a_culId);
 #elif xOS_ENV_UNIX
     // TODO: If either thread1 or thread2 are not valid thread IDs, the behavior is undefined
@@ -44,7 +44,7 @@ CxCurrentProcess::ulGetId() {
 
     CxProcess::id_t ulRv;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     ulRv = ::GetCurrentProcessId();
     /*DEBUG*/// n/a
 #elif xOS_ENV_UNIX
@@ -62,7 +62,7 @@ CxCurrentProcess::ulGetParentId() {
 
     CxProcess::id_t ulRv;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #if xCOMPILER_MINGW32 || xCOMPILER_CODEGEAR
         //typedef __success(return >= 0) LONG NTSTATUS;
         typedef LONG NTSTATUS;
@@ -115,7 +115,7 @@ CxCurrentProcess::hGetHandle() {
 
     CxProcess::handle_t hRv;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #if xDEPRECIATE
         hRv = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, ulGetId());
     #else
@@ -139,7 +139,7 @@ CxCurrentProcess::bExit(
 {
     /*DEBUG*/
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     (void)::ExitProcess(a_cuiExitCode);
 #elif xOS_ENV_UNIX
     (void)::exit(static_cast<int>( a_cuiExitCode ));

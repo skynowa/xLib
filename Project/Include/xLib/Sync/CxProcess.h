@@ -70,7 +70,7 @@ class CxProcess :
 
     private:
         handle_t        _m_hHandle;
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         HANDLE          _m_hThread;
     #endif
         id_t            _m_ulPid;

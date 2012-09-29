@@ -16,7 +16,7 @@ class CxDll :
     /// dynamic linking loader
 {
     public:
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         typedef FARPROC proc_address_t;
     #elif xOS_ENV_UNIX
         typedef void *  proc_address_t;
@@ -36,7 +36,7 @@ class CxDll :
             ///< get address of an exported function or variable
 
     private:
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         typedef HMODULE handle_t;
     #elif xOS_ENV_UNIX
         typedef void *  handle_t;

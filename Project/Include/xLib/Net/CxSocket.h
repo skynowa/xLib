@@ -19,7 +19,7 @@ class CxSocket :
         enum ExAddressFamily
             /// address family
         {
-        #if xOS_ENV_WIN
+        #if   xOS_ENV_WIN
             afUnspecified = AF_UNSPEC,
             afInet        = AF_INET,
             afIpx         = AF_IPX,
@@ -78,7 +78,7 @@ class CxSocket :
         enum ExProtocol
             /// protocol
         {
-        #if xOS_ENV_WIN
+        #if   xOS_ENV_WIN
             ptIp          = IPPROTO_IP,
             ptIcmp        = IPPROTO_ICMP,
             ptIgmp        = IPPROTO_IGMP,
@@ -153,7 +153,7 @@ class CxSocket :
         enum ExErrorType
             /// errors
         {
-        #if xOS_ENV_WIN
+        #if   xOS_ENV_WIN
             etInvalid = INVALID_SOCKET,  ///< ~0
             etError   = SOCKET_ERROR     ///< -1
         #elif xOS_ENV_UNIX

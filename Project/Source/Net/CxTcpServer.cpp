@@ -68,7 +68,7 @@ CxTcpServer::bAccept(
 
     socket_t scktClient = etInvalid;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     struct sockaddr_in cliaddr  = {0};
     int                iAddrlen = sizeof(cliaddr);
 

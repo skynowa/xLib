@@ -40,7 +40,7 @@ CxTest::CxTest() :
     m_vsRv         (),
     m_msRv         (),
     m_hRv          (xNATIVE_HANDLE_NULL),
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     m_hwndRv       (NULL),
 #endif
     _m_sWorkDirPath(),

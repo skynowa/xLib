@@ -28,7 +28,7 @@ CxTest_CxFileAttribute::bUnit(
 {
     const std::tstring_t csFilePath = sGetTempDirPath() + CxConst::xSLASH + xT("Test.txt");
 
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         const CxFileAttribute::ExAttribute cfaValue = CxFileAttribute::faReadOnly;
     #elif xOS_ENV_UNIX
         const CxFileAttribute::ExAttribute cfaValue = CxFileAttribute::faRegularFile;
@@ -83,7 +83,7 @@ CxTest_CxFileAttribute::bUnit(
     //bRemove
     xTEST_CASE(cullCaseLoops)
     {
-        #if xOS_ENV_WIN
+        #if   xOS_ENV_WIN
             CxFileAttribute::ExAttribute faAttr  = CxFileAttribute::faHidden;
             CxFileAttribute::ExAttribute faValue = CxFileAttribute::faReadOnly;
 
@@ -141,7 +141,7 @@ CxTest_CxFileAttribute::bUnit(
     //bModify
     xTEST_CASE(cullCaseLoops)
     {
-        #if xOS_ENV_WIN
+        #if   xOS_ENV_WIN
             const CxFileAttribute::ExAttribute cfaRemoveValue = cfaValue;
             const CxFileAttribute::ExAttribute cfaAddValue    = CxFileAttribute::faHidden;
         #elif xOS_ENV_UNIX
@@ -157,7 +157,7 @@ CxTest_CxFileAttribute::bUnit(
     //bIsExists
     xTEST_CASE(cullCaseLoops)
     {
-        #if xOS_ENV_WIN
+        #if   xOS_ENV_WIN
             CxFileAttribute::ExAttribute faAttr = CxFileAttribute::faNormal;
         #elif xOS_ENV_UNIX
             CxFileAttribute::ExAttribute faAttr = CxFileAttribute::faRegularFile;
@@ -181,7 +181,7 @@ CxTest_CxFileAttribute::bUnit(
 
         faRes = CxFileAttribute::atGet(csFilePath);
         //xTRACEV("faRes: %lld", faRes);
-        #if xOS_ENV_WIN
+        #if   xOS_ENV_WIN
             xTEST_EQ((int)CxFileAttribute::faNormal, (int)faRes);
         #elif xOS_ENV_UNIX
             xTEST_EQ((int)CxFileAttribute::faRegularFile, (int)faRes);

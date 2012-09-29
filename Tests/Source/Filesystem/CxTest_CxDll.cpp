@@ -22,7 +22,7 @@ CxTest_CxDll::bUnit(
     const ulonglong_t cullCaseLoops
 )
 {
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         const std::tstring_t sData[][2] = {
             {xT("kernel32.dll"), xT("Beep")}
         };
@@ -69,7 +69,7 @@ CxTest_CxDll::bUnit(
         fpRes = objDll.fpGetProcAddress(sData[i][1]);
         xTEST_PTR(fpRes);
 
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         typedef void (__stdcall *pDllFunc)(ulong_t, ulong_t);
 
         pDllFunc pLoadBeepFunc = NULL;

@@ -10,7 +10,7 @@
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxDir.h>
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #if !xCOMPILER_MINGW32
         #pragma comment(lib, "mpr.lib")
     #endif
@@ -59,7 +59,7 @@ CxVolume::bIsReady(
     std::tstring_t sVolumePath = CxPath::sSlashAppend(csVolumePath);
     std::tstring_t sOldDirPath;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     std::tstring_t sRv;
     UINT           uiOldErrorMode = 0U;
 
@@ -162,7 +162,7 @@ CxVolume::bMount(
     /*DEBUG*/xASSERT_RET(false == csSourcePath.empty(), false);
     /*DEBUG*/xASSERT_RET(false == csDestPath.empty(),   false);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     // TODO: CxVolume::bMount - is it correct?
     NETRESOURCE nrNetResource = {0};
 
@@ -200,7 +200,7 @@ CxVolume::bUnMount(
     /*DEBUG*/xASSERT_RET(false == csSourcePath.empty(), false);
     /*DEBUG*/// cbIsForce - n/a
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     // TODO: CxVolume::bUnMount - is it correct?
     DWORD dwRes = ::WNetCancelConnection2(csSourcePath.c_str(), CONNECT_UPDATE_PROFILE, cbIsForce);
     /*DEBUG*/xASSERT_RET(NO_ERROR == dwRes, false);

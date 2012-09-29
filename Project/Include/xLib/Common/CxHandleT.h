@@ -56,7 +56,7 @@ class CxHandleT
         bool            bClose     ();
             ///< close
 
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         ulong_t         ulGetInfo  () const;
             ///< get certain properties of an object handle
         bool            bSetInfo   (const ulong_t &culMask, const ulong_t &culFlags);

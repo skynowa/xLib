@@ -155,7 +155,7 @@ CxRandom::bSetSeed() {
 
     uint_t uiSeed = 0;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     uiSeed = static_cast<uint_t>( ::GetTickCount() );
 #elif xOS_ENV_UNIX
     uiSeed = static_cast<uint_t>( std::time(NULL) );

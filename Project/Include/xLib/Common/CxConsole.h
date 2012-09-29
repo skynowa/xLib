@@ -81,7 +81,7 @@ class CxConsole :
             ///< enable close button
 
     private:
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         HWND           _m_hWnd;       ///< console window handle
         HMENU          _m_hMenu;      ///< console menu handle
         CxFileHandle   _m_hStdIn;     ///< standart input handle

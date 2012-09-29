@@ -45,7 +45,7 @@ CxTest_CxEnvironment::bUnit(
     //bIsExists
     xTEST_CASE(cullCaseLoops)
     {
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         const std::tstring_t sData[][2] = {
             {xT("ENV_TEST_1"), xT("true")},
             {xT("ENV_TEST_2"), xT("true")},
@@ -75,7 +75,7 @@ CxTest_CxEnvironment::bUnit(
     //bIsVarValid
     xTEST_CASE(cullCaseLoops)
     {
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         const std::tstring_t sData[][2] = {
             {xT("ENV_TEST_1"), xT("true")},
             {xT("ENV_TEST_2"), xT("true")},
@@ -108,7 +108,7 @@ CxTest_CxEnvironment::bUnit(
     //bIsValueValid
     xTEST_CASE(cullCaseLoops)
     {
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         const std::tstring_t sData[][2] = {
             {xT("ENV_TEST_1"), xT("true")},
             {xT("ENV_TEST_2"), xT("true")},
@@ -139,7 +139,7 @@ CxTest_CxEnvironment::bUnit(
     //sGetVar
     xTEST_CASE(cullCaseLoops)
     {
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         const std::tstring_t sData[][2] = {
             {xT("ENV_TEST_1"), xT("value1")},
             {xT("ENV_TEST_2"), xT("value2")},
@@ -177,7 +177,7 @@ CxTest_CxEnvironment::bUnit(
     //sExpandStrings
     xTEST_CASE(cullCaseLoops)
     {
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         const std::tstring_t sData[][2] = {
             {xT(" System root: %SystemRoot%"),  xT(" System root: C:\\Windows")},
             {xT("Windows Dir: %windir% "),      xT("Windows Dir: C:\\Windows ")}

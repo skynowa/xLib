@@ -24,7 +24,7 @@ class CxProfiler :
             pmStdClock,         ///< use std::clock_t
             pmDateTime,         ///< use CxDateTime
             pmGetTimeOfDay      ///< use gettimeofday
-        #if xOS_ENV_WIN
+        #if   xOS_ENV_WIN
             ,
             pmTickCount,        ///< use ::GetTickCount
             pmPerformanceCount, ///< use ::QueryPerformanceFrequency
@@ -66,7 +66,7 @@ class CxProfiler :
         double                _m_dMicrosecStart;      ///< start value
         double                _m_dMicrosecStop;       ///< stop value
 
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         //pmTickCount
         ulong_t               _m_ulTicksStart;        ///< start value
         ulong_t               _m_ulTicksStop;         ///< stop value
@@ -94,7 +94,7 @@ class CxProfiler :
             ///< http://bugs.vcmi.eu/view.php?id=719
     #endif
 
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         struct timezone
             /// for gettimeofday
         {

@@ -11,7 +11,7 @@
 #include <openssl/bio.h>
 #include <openssl/buffer.h>
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #if xCOMPILER_MS
         #pragma comment(lib, "libeay32.lib")
     #endif

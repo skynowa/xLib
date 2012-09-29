@@ -97,7 +97,7 @@ CxProfiler::bStart() {
             }
             break;
 
-        #if xOS_ENV_WIN
+        #if   xOS_ENV_WIN
             case pmTickCount: {
                     _m_ulTicksStart = ::GetTickCount();
                     /*DEBUG*/// n/a
@@ -177,7 +177,7 @@ CxProfiler::bStop(
             }
             break;
 
-        #if xOS_ENV_WIN
+        #if   xOS_ENV_WIN
             case pmTickCount: {
                     _m_ulTicksStop = ::GetTickCount();
                     /*DEBUG*/// n/a
@@ -284,7 +284,7 @@ CxProfiler::_bResetData() {
     _m_dMicrosecStart                   = 0.0f;
     _m_dMicrosecStop                    = 0.0f;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     //pmGetTickCount
     _m_ulTicksStart                     = 0UL;
     _m_ulTicksStop                      = 0UL;
@@ -336,7 +336,7 @@ CxProfiler::_liGetClock() {
 
 #endif
 //---------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
 
 /* static */
 int

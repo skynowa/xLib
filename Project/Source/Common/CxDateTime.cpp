@@ -617,7 +617,7 @@ CxDateTime
 CxDateTime::dtGetCurrent() {
     /*DEBUG*/
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     SYSTEMTIME stDateTime = {0};
 
     (void)::GetLocalTime(&stDateTime);
@@ -652,7 +652,7 @@ CxDateTime::dtGetCurrent() {
 #endif
 }
 //---------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
 
 /* static */
 longlong_t
@@ -665,7 +665,7 @@ CxDateTime::i64FiletimeToInt64(
 
 #endif
 //--------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
 
 /* static */
 bool
@@ -689,7 +689,7 @@ CxDateTime::bUnixTimeToFileTime(
 #endif
 
 //---------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
 
 //TODO: make tests tmFileTimeToUnixTime
 /* static */
