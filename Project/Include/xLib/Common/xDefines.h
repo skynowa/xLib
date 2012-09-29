@@ -7,11 +7,6 @@
 #ifndef xLib_Common_xDefinesH
 #define xLib_Common_xDefinesH
 //----------------------------------------------------------------------------------------------------
-//// #include <stdlib.h>         // compilers
-//// #include <limits.h>         // standard C libraries
-//// #include <xLib/Common/xCommon.h>
-//// #include <stdarg.h>
-//----------------------------------------------------------------------------------------------------
 
 //--------------------------------------------------
 // lexema utils
@@ -97,7 +92,7 @@
     ///< zero buffer memory
 #define xSTRUCT_ZERO(s)             { CxUtils::structZeroT(s); }
     ///< zero struct memory
-#define xBUFF_FREE(pvBuff)          { CxUtils::bufferFreeT(pvBuff);   }
+#define xBUFF_FREE(pvBuff)          { CxUtils::bufferFreeT(pvBuff); }
     ///< free buffer memory
 #define xFCLOSE(f)                  { CxUtils::fileClose(f); }
     ///< close file stream (FILE *)
@@ -164,7 +159,6 @@
 #endif
     ///< source file path
 
-
 // xLINE
 #if defined(__LINE__)
     #define xLINE                   __LINE__
@@ -172,7 +166,6 @@
     #define xLINE                   0UL
 #endif
     ///< source code line number
-
 
 // xFUNCTION
 #if   xCOMPILER_MS
@@ -186,7 +179,6 @@
 #endif
     ///< source function name
 
-
 // xDATE
 #if defined(__DATE__)
     #define xDATE                   xT(__DATE__)
@@ -194,7 +186,6 @@
     #define xDATE                   xT("<unknown xDATE>")
 #endif
     ///< build source date stamp
-
 
 // xTIME
 #if defined(__TIME__)
@@ -204,7 +195,6 @@
 #endif
     ///< build source time stamp
 
-
 // xDATETIME
 #if defined(__DATE__) && defined(__TIME__)
     #define xDATETIME               xT(__DATE__) xT(" ") xT(__TIME__)
@@ -212,7 +202,6 @@
     #define xDATETIME               xT("<unknown xDATETIME>")
 #endif
     ///< build source datetime stamp
-
 
 // xCOUNTER
 #if defined(__COUNTER__)
@@ -222,7 +211,7 @@
 #endif
     ///< Expands to an integer starting with 0 and incrementing by 1 every time it is used in a compiland
 
-//--------------------------------------------------
+//-------------------------------------
 // function params
 #define xIN
     ///< incoming param
@@ -231,7 +220,7 @@
 #define xIN_OUT
     ///< incoming and outcoming param
 
-//--------------------------------------------------
+//-------------------------------------
 // xHOST_NAME_MAX
 #if   xOS_ENV_WIN
     #if defined(MAX_COMPUTERNAME_LENGTH)
@@ -250,17 +239,17 @@
 #endif
     ///< max host name length
 
-//--------------------------------------------------
+//-------------------------------------
 // xPATH_MAX
 #define xPATH_MAX                   ( CxPath::uiGetMaxSize() )
     ///< max path length
 
-//--------------------------------------------------
+//-------------------------------------
 // xNAME_MAX
 #define xNAME_MAX                   ( CxPath::uiGetNameMaxSize() )
     ///< max file name length
 
-//--------------------------------------------------
+//-------------------------------------
 // xLINE_MAX
 #if   xOS_ENV_WIN
     #define xLINE_MAX               2048 // custom define
@@ -275,7 +264,7 @@
 #endif
     ///< maximum length of a utility's input line, either from standard input or from a file
 
-//--------------------------------------------------
+//-------------------------------------
 // xENV_MAX
 #if   xOS_ENV_WIN
     #if   xCOMPILER_MS
@@ -288,7 +277,7 @@
 #endif
     ///< maximum permissible string length of an environmental variable
 
-//--------------------------------------------------
+//-------------------------------------
 // xSTACK_TRACE_FRAMES_MAX
 #if   xOS_ENV_WIN
     #define xSTACK_TRACE_FRAMES_MAX 62UL    // from MSDN, ::CaptureStackBackTrace
@@ -297,7 +286,7 @@
 #endif
     ///< maximum frames for stack trace
 
-//--------------------------------------------------
+//-------------------------------------
 // xSEMAPHORE_VALUE_MAX
 #if   xOS_ENV_WIN
     #define xSEMAPHORE_VALUE_MAX    ( (std::numeric_limits<LONG>::max)() )    // LONG, custom define (tested on Win7 x64)
@@ -306,7 +295,7 @@
 #endif
     ///< semaphore maximum value
 
-//--------------------------------------------------
+//-------------------------------------
 // var args
 #if defined(va_start)
     #define xVA_START(val, fmt)     ( va_start(val, fmt) )
@@ -327,7 +316,7 @@
         ///< Each invocation of xVA_START() must be matched by a corresponding invocation of xVA_END() in the same function
 #endif
 
-//--------------------------------------------------
+//-------------------------------------
 // qualifiers
 #if   xOS_ENV_WIN
     #ifdef xCPU_64BIT
@@ -380,7 +369,7 @@
 #endif
     ///< qualifiers
 
-//--------------------------------------------------
+//-------------------------------------
 // xTIMEOUT_INFINITE
 #if   xOS_ENV_WIN
     #define xTIMEOUT_INFINITE       INFINITE
@@ -389,7 +378,7 @@
 #endif
     ///< infinite timeout
 
-//--------------------------------------------------
+//-------------------------------------
 // xPAGE_SIZE
 #if   xOS_ENV_WIN
     xNA
@@ -404,7 +393,7 @@
 #endif
     ///< filesystem page size
 
-//--------------------------------------------------
+//-------------------------------------
 // xDIR_TEMP temprory directory
 #if   xOS_ENV_WIN
     #if defined(P_tmpdir)
@@ -421,7 +410,7 @@
 #endif
     ///< temprory directory
 
-//--------------------------------------------------
+//-------------------------------------
 // xNATIVE_HANDLE_NULL, xNATIVE_HANDLE_INVALID
 #if   xOS_ENV_WIN
     #define xNATIVE_HANDLE_NULL     ( static_cast<native_handle_t>( NULL ) )                  ///< native handle value "null"
@@ -431,7 +420,7 @@
     #define xNATIVE_HANDLE_INVALID  ( static_cast<native_handle_t>( - 1 ) )                   ///< native handle value "invalid"
 #endif
 
-//--------------------------------------------------
+//-------------------------------------
 // xFOREACH
 #define xFOREACH(it_t, it, cont)  \
                                     for (it_t::iterator               it((cont).begin());  it != (cont).end();  ++ it)
@@ -449,7 +438,7 @@
                                     for (it_t::const_reverse_iterator it((cont).rbegin()); it != (cont).rend(); ++ it)
     ///< iterate STL container (using it_t::const_reverse_iterator)
 
-//--------------------------------------------------
+//-------------------------------------
 // other
 
 //----------------------------------------------------------------------------------------------------
