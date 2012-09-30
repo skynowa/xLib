@@ -24,15 +24,15 @@ CxAutoIpcMutex::CxAutoIpcMutex(
     _m_mtMutex(a_mtMutex)
 {
     bool bRv = _m_mtMutex.bCreate(a_csName);
-    /*DEBUG*/xASSERT_DO(true == bRv, return);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     bRv = _m_mtMutex.bLock(xTIMEOUT_INFINITE);
-    /*DEBUG*/xASSERT_DO(true == bRv, return);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 }
 //---------------------------------------------------------------------------
 CxAutoIpcMutex::~CxAutoIpcMutex() {
     bool bRv = _m_mtMutex.bUnlock();
-    /*DEBUG*/xASSERT_DO(true == bRv, return);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 }
 //---------------------------------------------------------------------------
 

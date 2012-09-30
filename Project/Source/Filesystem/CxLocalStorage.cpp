@@ -26,12 +26,12 @@ CxLocalStorage::CxLocalStorage() :
     _m_sFilePath  (),
     _m_msIni      ()
 {
-    /*DEBUG*/xASSERT_DO(false == _m_csSeparator.empty(), return);
-    /*DEBUG*/xASSERT_DO(false == _m_csFileExt.empty(),   return);
-    /*DEBUG*/xASSERT_DO(true  == _m_sFilePath.empty(),   return);
+    /*DEBUG*/xTEST_EQ(false, _m_csSeparator.empty());
+    /*DEBUG*/xTEST_EQ(false, _m_csFileExt.empty());
+    /*DEBUG*/xTEST_EQ(true,  _m_sFilePath.empty());
 
     bool bRv = bSetPath(CxPath::sSetExt( CxPath::sGetExe(), _m_csFileExt ));
-    /*DEBUG*/xASSERT_DO(true == bRv, return);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 }
 //-------------------------------------------------------------------------
 CxLocalStorage::CxLocalStorage(
@@ -42,13 +42,13 @@ CxLocalStorage::CxLocalStorage(
     _m_sFilePath  (),
     _m_msIni      ()
 {
-    /*DEBUG*/xASSERT_DO(false == _m_csSeparator.empty(), return);
-    /*DEBUG*/xASSERT_DO(false == _m_csFileExt.empty(),   return);
-    /*DEBUG*/xASSERT_DO(true  == _m_sFilePath.empty(),   return);
-    /*DEBUG*/xASSERT_DO(false == csFilePath.empty(),     return);
+    /*DEBUG*/xTEST_EQ(false, _m_csSeparator.empty());
+    /*DEBUG*/xTEST_EQ(false, _m_csFileExt.empty());
+    /*DEBUG*/xTEST_EQ(true,  _m_sFilePath.empty());
+    /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
 
     bool bRv = bSetPath(CxPath::sSetExt( csFilePath, _m_csFileExt ));
-    /*DEBUG*/xASSERT_DO(true == bRv, return);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 }
 //-------------------------------------------------------------------------
 /* virtual */

@@ -34,9 +34,9 @@ CxFileLog::CxFileLog(
         CxAutoIpcMutex
     #endif
 {
-    /*DEBUG*/xASSERT_DO(true        == _m_sFilePath.empty(),  return);
-    /*DEBUG*/xASSERT_DO(lsLimitSize >  lsDefaultMaxSize,      return);
-    /*DEBUG*/xASSERT_DO(lsLimitSize >  a_culMaxFileSizeBytes, return);
+    /*DEBUG*/xTEST_EQ(true, _m_sFilePath.empty());
+    /*DEBUG*/xTEST_GREATER(lsLimitSize, lsDefaultMaxSize);
+    /*DEBUG*/xTEST_GREATER(static_cast<ulong_t>( lsLimitSize ), a_culMaxFileSizeBytes);
 }
 //---------------------------------------------------------------------------
 /* virtual */

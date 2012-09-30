@@ -34,7 +34,7 @@ CxProfiler::CxProfiler(
 CxProfiler::~CxProfiler() {
     if (false == _flLog.sGetFilePath().empty()) {
         bool bRv = _flLog.bWrite(xT("----------------------------------------"));
-        /*DEBUG*/xASSERT_DO(true == bRv, return);
+        /*DEBUG*/xTEST_EQ(true, bRv);
     }
 }
 //---------------------------------------------------------------------------

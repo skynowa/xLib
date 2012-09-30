@@ -28,8 +28,8 @@ CxLogin::CxLogin(
     _m_pFunc   (a_cPkcs11.pGetFuncList()),
     _m_hSession(a_cSession.hGetHandle())
 {
-    /*DEBUG*/xASSERT_DO(NULL != _m_pFunc,    return);
-    /*DEBUG*/xASSERT_DO(NULL != _m_hSession, return);
+    /*DEBUG*/xTEST_PTR(_m_pFunc);
+    /*DEBUG*/xTEST_PTR(_m_hSession);
 }
 //---------------------------------------------------------------------------
 /* virtual */

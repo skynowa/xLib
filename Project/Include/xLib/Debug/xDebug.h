@@ -15,12 +15,6 @@
 #include <xLib/Debug/CxDebugger.h>
 #include <xLib/Log/CxTracer.h>
 //---------------------------------------------------------------------------
-#define _xASSERT_RET(report_type, expr, return_expr)              { if ( !(expr) )                { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, xT(#expr), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger().bReportMake(rpReport); return (return_expr);} }
-#define _xASSERT_DO(report_type, expr, do_expr)                   { if ( !(expr) )                { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, xT(#expr), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger().bReportMake(rpReport); do_expr;}      }
-#define _xASSERT_MSG(report_type, expr, comment)                  { if ( !(expr) )                { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, xT(#expr), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), comment); CxDebugger().bReportMake(rpReport);}                       }
-#define _xASSERT_MSG_RET(report_type, expr, comment, return_expr) { if ( !(expr) )                { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, xT(#expr), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), comment); CxDebugger().bReportMake(rpReport); return (return_expr);} }
-#define _xASSERT_MSG_DO(report_type, expr, comment, do_expr)      { if ( !(expr) )                { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, xT(#expr), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), comment); CxDebugger().bReportMake(rpReport); do_expr;}      }
-
 #define _xTEST_EQ(report_type, expr1, expr2)                      { if ( !((expr1) == (expr2)) )  { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, expr1,         expr2,          xT(#expr1), xT(#expr2), xT("=="), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger().bReportMake(rpReport); } }
 #define _xTEST_DIFF(report_type, expr1, expr2)                    { if ( !((expr1) != (expr2)) )  { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, expr1,         expr2,          xT(#expr1), xT(#expr2), xT("!="), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger().bReportMake(rpReport); } }
 #define _xTEST_LESS(report_type, expr1, expr2)                    { if ( !((expr1) <  (expr2)) )  { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, expr1,         expr2,          xT(#expr1), xT(#expr2), xT("<"),  ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger().bReportMake(rpReport); } }
@@ -31,10 +25,14 @@
 #define _xTEST_PTR_FAIL(report_type, ptr)                         { if ( (NULL)    != (ptr)    )  { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, (intptr_t)ptr, (intptr_t)NULL, xT("NULL"), xT(#ptr),   xT("=="), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger().bReportMake(rpReport); } }
 #define _xTEST_FAIL(report_type)                                  { if ( true                  )  { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, xT(""),        xT(""),         xT("fail"), xT(""),     xT(""),   ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger().bReportMake(rpReport); } }
 
+#define _xASSERT_RET(report_type, expr, return_expr)              { if ( !(expr) )                { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, xT(#expr), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger().bReportMake(rpReport); return (return_expr);} }
+#define _xASSERT_MSG(report_type, expr, comment)                  { if ( !(expr) )                { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, xT(#expr), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), comment); CxDebugger().bReportMake(rpReport);}                       }
+#define _xASSERT_MSG_RET(report_type, expr, comment, return_expr) { if ( !(expr) )                { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, xT(#expr), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), comment); CxDebugger().bReportMake(rpReport); return (return_expr);} }
+#define _xASSERT_MSG_DO(report_type, expr, comment, do_expr)      { if ( !(expr) )                { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, xT(#expr), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), comment); CxDebugger().bReportMake(rpReport); do_expr;}              }
+
 
 #if xDEBUG_MODE_MSGBOX_PLAIN
     #define xASSERT_RET(expr, return_expr)              _xASSERT_RET(CxErrorReport::rtMsgboxPlain, expr, return_expr)
-    #define xASSERT_DO(expr, do_expr)                   _xASSERT_DO(CxErrorReport::rtMsgboxPlain, expr, do_expr)
     #define xASSERT_MSG(expr, comment)                  _xASSERT_MSG(CxErrorReport::rtMsgboxPlain, expr, comment)
     #define xASSERT_MSG_RET(expr, comment, return_expr) _xASSERT_MSG_RET(CxErrorReport::rtMsgboxPlain, expr, comment, return_expr)
     #define xASSERT_MSG_DO(expr, comment, do_expr)      _xASSERT_MSG_DO(CxErrorReport::rtMsgboxPlain, expr, comment, do_expr)
@@ -51,7 +49,6 @@
 
 #elif xDEBUG_MODE_MSGBOX_FORMATED
     #define xASSERT_RET(expr, return_expr)              _xASSERT_RET(CxErrorReport::rtMsgboxFormated, expr, return_expr)
-    #define xASSERT_DO(expr, do_expr)                   _xASSERT_DO(CxErrorReport::rtMsgboxFormated, expr, do_expr)
     #define xASSERT_MSG(expr, comment)                  _xASSERT_MSG(CxErrorReport::rtMsgboxFormated, expr, comment)
     #define xASSERT_MSG_RET(expr, comment, return_expr) _xASSERT_MSG_RET(CxErrorReport::rtMsgboxFormated, expr, comment, return_expr)
     #define xASSERT_MSG_DO(expr, comment, do_expr)      _xASSERT_MSG_DO(CxErrorReport::rtMsgboxFormated, expr, comment, do_expr)
@@ -68,7 +65,6 @@
 
 #elif xDEBUG_MODE_STDOUT_PLAIN
     #define xASSERT_RET(expr, return_expr)              _xASSERT_RET(CxErrorReport::rtStdoutPlain, expr, return_expr)
-    #define xASSERT_DO(expr, do_expr)                   _xASSERT_DO(CxErrorReport::rtStdoutPlain, expr, do_expr)
     #define xASSERT_MSG(expr, comment)                  _xASSERT_MSG(CxErrorReport::rtStdoutPlain, expr, comment)
     #define xASSERT_MSG_RET(expr, comment, return_expr) _xASSERT_MSG_RET(CxErrorReport::rtStdoutPlain, expr, comment, return_expr)
     #define xASSERT_MSG_DO(expr, comment, do_expr)      _xASSERT_MSG_DO(CxErrorReport::rtStdoutPlain, expr, comment, do_expr)
@@ -85,7 +81,6 @@
 
 #elif xDEBUG_MODE_STDOUT_HTML
     #define xASSERT_RET(expr, return_expr)              _xASSERT_RET(CxErrorReport::rtStdoutHtml, expr, return_expr)
-    #define xASSERT_DO(expr, do_expr)                   _xASSERT_DO(CxErrorReport::rtStdoutHtml, expr, do_expr)
     #define xASSERT_MSG(expr, comment)                  _xASSERT_MSG(CxErrorReport::rtStdoutHtml, expr, comment)
     #define xASSERT_MSG_RET(expr, comment, return_expr) _xASSERT_MSG_RET(CxErrorReport::rtStdoutHtml, expr, comment, return_expr)
     #define xASSERT_MSG_DO(expr, comment, do_expr)      _xASSERT_MSG_DO(CxErrorReport::rtStdoutHtml, expr, comment, do_expr)
@@ -102,7 +97,6 @@
 
 #elif xDEBUG_MODE_LOGGING_PLAIN
     #define xASSERT_RET(expr, return_expr)              _xASSERT_RET(CxErrorReport::rtLoggingPlain, expr, return_expr)
-    #define xASSERT_DO(expr, do_expr)                   _xASSERT_DO(CxErrorReport::rtLoggingPlain, expr, do_expr)
     #define xASSERT_MSG(expr, comment)                  _xASSERT_MSG(CxErrorReport::rtLoggingPlain, expr, comment)
     #define xASSERT_MSG_RET(expr, comment, return_expr) _xASSERT_MSG_RET(CxErrorReport::rtLoggingPlain, expr, comment, return_expr)
     #define xASSERT_MSG_DO(expr, comment, do_expr)      _xASSERT_MSG_DO(CxErrorReport::rtLoggingPlain, expr, comment, do_expr)
@@ -119,7 +113,6 @@
 
 #elif xDEBUG_MODE_LOGGING_HTML
     #define xASSERT_RET(expr, return_expr)              _xASSERT_RET(CxErrorReport::rtLoggingHtml, expr, return_expr)
-    #define xASSERT_DO(expr, do_expr)                   _xASSERT_DO(CxErrorReport::rtLoggingHtml, expr, do_expr)
     #define xASSERT_MSG(expr, comment)                  _xASSERT_MSG(CxErrorReport::rtLoggingHtml, expr, comment)
     #define xASSERT_MSG_RET(expr, comment, return_expr) _xASSERT_MSG_RET(CxErrorReport::rtLoggingHtml, expr, comment, return_expr)
     #define xASSERT_MSG_DO(expr, comment, do_expr)      _xASSERT_MSG_DO(CxErrorReport::rtLoggingHtml, expr, comment, do_expr)
@@ -136,7 +129,6 @@
 
 #elif xDEBUG_MODE_NOLOGGING
     #define xASSERT_RET(expr, return_expr)              { if ( !(expr) ) { return (return_expr); } }
-    #define xASSERT_DO(expr, do_expr)                   { if ( !(expr) ) { do_expr;              } }
     #define xASSERT_MSG(expr, comment)                  { xNA                                      }
     #define xASSERT_MSG_RET(expr, comment, return_expr) { if ( !(expr) ) { return (return_expr); } }
     #define xASSERT_MSG_DO(expr, comment, do_expr)      { if ( !(expr) ) { do_expr;              } }
@@ -153,7 +145,6 @@
 
 #elif xDEBUG_MODE_NO
     #define xASSERT_RET(expr, return_expr)              { xNA }
-    #define xASSERT_DO(expr, do_expr)                   { xNA }
     #define xASSERT_MSG(expr, comment)                  { xNA }
     #define xASSERT_MSG_RET(expr, comment, return_expr) { xNA }
     #define xASSERT_MSG_DO(expr, comment, do_expr)      { xNA }

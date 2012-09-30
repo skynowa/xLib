@@ -565,7 +565,7 @@ CxThreadPool<TaskT>::_vOnExitTask(CxThread *a_pthSender)  {
     bool bRv = false;
 
     bRv = _bRemoveTask(a_pthSender);    //if (true == bRv)        //bRelease
-    /*DEBUG*/xASSERT_DO(true == bRv, return);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     /*LOG*///_m_clLog.bWrite(xT("_vOnExitTask stop: #%i"), a_pthTask->m_uiIndex);
 }

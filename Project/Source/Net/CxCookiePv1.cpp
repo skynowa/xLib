@@ -35,7 +35,7 @@ CxCookiePv1::CxCookiePv1() :
     bool bRv = false;
 
     bRv = bInit(std::tstring_t());
-    /*DEBUG*/xASSERT_DO(true == bRv, return);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 }
 //---------------------------------------------------------------------------
 CxCookiePv1::CxCookiePv1(
@@ -55,7 +55,7 @@ CxCookiePv1::CxCookiePv1(
     bool bRv = false;
 
     bRv = bInit(a_csRawCookie);
-    /*DEBUG*/xASSERT_DO(true == bRv, return);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 }
 //---------------------------------------------------------------------------
 /* virtual */

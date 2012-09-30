@@ -27,9 +27,9 @@ CxObject::CxObject(
     _m_hSession(a_cSession.hGetHandle()),
     _m_hObject (NULL)
 {
-    /*DEBUG*/xASSERT_DO(NULL != _m_pFunc,    return);
-    /*DEBUG*/xASSERT_DO(NULL != _m_hSession, return);
-    /*DEBUG*/xASSERT_DO(NULL == _m_hObject,  return);
+    /*DEBUG*/xTEST_PTR(_m_pFunc);
+    /*DEBUG*/xTEST_PTR(_m_hSession);
+    /*DEBUG*/xTEST_PTR(_m_hObject);
 
 }
 //---------------------------------------------------------------------------

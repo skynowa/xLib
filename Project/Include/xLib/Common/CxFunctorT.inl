@@ -20,8 +20,11 @@ CxFunctorT<ClassT, ReturnT, ParamT>::CxFunctorT(
     _m_pObject(pObject),
     _m_Method (method)
 {
-    /*DEBUG*/xASSERT_DO(NULL != _m_pObject, return);
-    /*DEBUG*/xASSERT_DO(NULL != _m_Method,  return);
+    // TODO: debug code
+#if xTODO
+    /*DEBUG*/xTEST_DIFF(NULL, _m_pObject);
+    /*DEBUG*/xTEST_DIFF(NULL, _m_Method);
+#endif
 }
 //---------------------------------------------------------------------------
 template <class ClassT, typename ReturnT, typename ParamT>

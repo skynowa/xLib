@@ -32,11 +32,11 @@ CxEvent::CxEvent(
 #endif
 {
 #if   xOS_ENV_WIN
-    /*DEBUG*/xASSERT_DO(false == _m_hEvent.bIsValid(), return);
+    /*DEBUG*/xTEST_EQ(false, _m_hEvent.bIsValid());
     /*DEBUG*/
 
     HANDLE hRv = ::CreateEvent(NULL, ! a_cbIsAutoReset, a_cbIsSignaled, NULL);
-    /*DEBUG*/xASSERT_DO(NULL != hRv, return);
+    /*DEBUG*/xTEST_DIFF(static_cast<HANDLE>(NULL), hRv);
 
     _m_hEvent.bSet(hRv);
     /*DEBUG*/// n/a

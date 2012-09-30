@@ -32,7 +32,7 @@ CxSystemLog::CxSystemLog() :
 #endif
 {
     bool bRv = _bInit( CxPath::sGetFileBaseName(CxPath::sGetExe()) );
-    /*DEBUG*/xASSERT_DO(true == bRv, return);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 }
 //---------------------------------------------------------------------------
 CxSystemLog::CxSystemLog(
@@ -45,16 +45,16 @@ CxSystemLog::CxSystemLog(
 #endif
 {
     bool bRv = _bInit(a_csLogName);
-    /*DEBUG*/xASSERT_DO(true == bRv, return);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 }
 //---------------------------------------------------------------------------
 /* virtual */
 CxSystemLog::~CxSystemLog() {
 #if   xOS_ENV_WIN
-    /*DEBUG*/xASSERT_DO(NULL != _m_SysLog, return);
+    /*DEBUG*/xTEST_PTR(_m_SysLog);
 
     BOOL bRv = ::DeregisterEventSource(_m_SysLog);
-    /*DEBUG*/xASSERT_DO(FALSE != bRv, return);
+    /*DEBUG*/xTEST_DIFF(FALSE, bRv);
 
     _m_SysLog = NULL;
 #elif xOS_ENV_UNIX

@@ -22,7 +22,7 @@ CxTcpClient::CxTcpClient() :
     _m_tvTimeout()
 {
     bool bRv = bSetTimeout(0, SOCKET_TIMEOUT);
-    /*DEBUG*/xASSERT_DO(true == bRv, return);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 }
 //---------------------------------------------------------------------------
 CxTcpClient::~CxTcpClient() {

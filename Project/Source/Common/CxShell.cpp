@@ -226,12 +226,12 @@ CxShell::sGetSpecialDirPath(
 
     ////hRv = ::SHGetFolderLocation(NULL, sfDir, chToken, 0, &pidlList);    //FIXME: SHGetFolderLocation
     hRv = ::SHGetSpecialFolderLocation(NULL, a_csfDir, &pidlList);
-    /*DEBUG*/xASSERT_DO(SUCCEEDED(hRv), ::CoTaskMemFree(pidlList); return std::tstring_t());
+    /*DEBUG*/xTEST_EQ(true, SUCCEEDED(hRv));
 
     tchar_t szRes[MAX_PATH + sizeof(tchar_t)] = {0};
 
     BOOL bRv = ::SHGetPathFromIDList(pidlList, &szRes[0]);
-    /*DEBUG*/xASSERT_DO(FALSE != bRv, ::CoTaskMemFree(pidlList); return std::tstring_t());
+    /*DEBUG*/xTEST_DIFF(FALSE, bRv);
 
     ::CoTaskMemFree(pidlList);
     /*DEBUG*/// n/a

@@ -186,15 +186,6 @@ CxTest_CxDebugger::bUnit(
     }
 
     //--------------------------------------------------
-    //xASSERT_DO
-    xTEST_CASE(cullCaseLoops)
-    {
-        std::tstring_t sVar1 = xT("xxx");
-        std::tstring_t sVar2 = xT("xxx");
-        xASSERT_DO(sVar1 == sVar2, sVar1.clear());
-    }
-
-    //--------------------------------------------------
     //xASSERT_MSG
     xTEST_CASE(cullCaseLoops)
     {
