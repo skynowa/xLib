@@ -28,11 +28,11 @@ CxAutoMutex::CxAutoMutex(
     bool bRv = false;
 
     bRv = _m_mtMutex.bCreate();
-    /*DEBUG*/xASSERT_DO(true == bRv, return);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     if (false == a_cbIsUseTry) {
         bRv = _m_mtMutex.bLock();
-        /*DEBUG*/xASSERT_DO(true == bRv, return);
+        /*DEBUG*/xTEST_EQ(true, bRv);
     } else {
         bRv = _m_mtMutex.bTryLock();
         /*DEBUG*/// n/a
@@ -44,7 +44,7 @@ CxAutoMutex::CxAutoMutex(
 CxAutoMutex::~CxAutoMutex() {
     if (false != _m_bIsLocked) {
         bool bRv = _m_mtMutex.bUnlock();
-        /*DEBUG*/xASSERT_DO(true == bRv, return);
+        /*DEBUG*/xTEST_EQ(true, bRv);
     }
 
     _m_bIsLocked = false;

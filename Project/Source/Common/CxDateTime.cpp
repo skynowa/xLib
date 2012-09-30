@@ -50,11 +50,11 @@ CxDateTime::CxDateTime(
     CxDateTime dtDT;
 
     bool bRv = _bParse(a_csDT, a_cftFormat, &dtDT);
-    /*DEBUG*/xASSERT_DO(true == bRv, return);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     bRv = bSet(dtDT._m_usYear, dtDT._m_usMonth,  dtDT._m_usDay,
                    dtDT._m_usHour, dtDT._m_usMinute, dtDT._m_usSecond, dtDT._m_usMillisecond);
-    /*DEBUG*/xASSERT_DO(true == bRv, return);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 }
 //---------------------------------------------------------------------------
 CxDateTime::CxDateTime(
@@ -73,7 +73,7 @@ CxDateTime::CxDateTime(
 
     bool bRv = bSet(a_cdtDT._m_usYear, a_cdtDT._m_usMonth,  a_cdtDT._m_usDay,
                     a_cdtDT._m_usHour, a_cdtDT._m_usMinute, a_cdtDT._m_usSecond, a_cdtDT._m_usMillisecond);
-    /*DEBUG*/xASSERT_DO(true == bRv, return);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 }
 //---------------------------------------------------------------------------
 CxDateTime::CxDateTime(
@@ -91,7 +91,7 @@ CxDateTime::CxDateTime(
     /*DEBUG*/
 
     bool bRv = bSet(a_cullMilliseconds);
-    /*DEBUG*/xASSERT_DO(true == bRv, return);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 }
 //---------------------------------------------------------------------------
 CxDateTime::CxDateTime(
@@ -112,7 +112,7 @@ CxDateTime::CxDateTime(
     /*DEBUG*/
 
     bool bRv = bSet(0, 0, 0, a_cusHour, a_cusMinute, a_cusSecond, a_cusMillisecond);
-    /*DEBUG*/xASSERT_DO(true == bRv, return);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 }
 //---------------------------------------------------------------------------
 CxDateTime::CxDateTime(
@@ -132,7 +132,7 @@ CxDateTime::CxDateTime(
     /*DEBUG*/
 
     bool bRv = bSet(a_cusYear, a_cusMonth, a_cusDay, 0, 0, 0, 0);
-    /*DEBUG*/xASSERT_DO(true == bRv, return);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 }
 //---------------------------------------------------------------------------
 CxDateTime::CxDateTime(
@@ -156,7 +156,7 @@ CxDateTime::CxDateTime(
     /*DEBUG*/
 
     bool bRv = bSet(a_cusYear, a_cusMonth, a_cusDay, a_cusHour, a_cusMinute, a_cusSecond, a_cusMillisecond);
-    /*DEBUG*/xASSERT_DO(true == bRv, return);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 }
 //---------------------------------------------------------------------------
 CxDateTime::~CxDateTime() {
@@ -256,7 +256,7 @@ CxDateTime::operator = (
     xCHECK_RET(this == &a_cdtDT, *this);
 
     bool bRv = bSet(a_cdtDT._m_ullDateTimeInMSec);
-    /*DEBUG*/xASSERT_DO(true == bRv, return *this);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     return *this;
 }
@@ -270,7 +270,7 @@ CxDateTime::operator = (
     /*DEBUG*/
 
     bool bRv = bSet(a_cullMillisecond);
-    /*DEBUG*/xASSERT_DO(true == bRv, return *this);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     return *this;
 }
@@ -308,7 +308,7 @@ CxDateTime::operator += (
     _m_ullDateTimeInMSec += a_cdtDT._m_ullDateTimeInMSec;
 
     bool bRv = bSet(_m_ullDateTimeInMSec);
-    /*DEBUG*/xASSERT_DO(true == bRv, return *this);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     return *this;
 }
@@ -324,7 +324,7 @@ CxDateTime::operator -= (
     _m_ullDateTimeInMSec -= a_cdtDT._m_ullDateTimeInMSec;
 
     bool bRv = bSet(_m_ullDateTimeInMSec);
-    /*DEBUG*/xASSERT_DO(true == bRv, return *this);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     return *this;
 }

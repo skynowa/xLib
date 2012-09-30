@@ -264,7 +264,7 @@ CxThread::bKill(
         xCHECK_DO(STILL_ACTIVE != ulRv, break);
 
         bRv = CxCurrentThread::bSleep(a_culTimeout);
-        /*DEBUG*/xASSERT_DO(true == bRv, break);
+        /*DEBUG*/xTEST_EQ(true, bRv);
     }
 #elif xOS_ENV_UNIX
     int iRv = ::pthread_kill(_m_ulId, SIGALRM);

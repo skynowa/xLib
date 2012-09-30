@@ -32,7 +32,7 @@ CxIpcSemaphore::CxIpcSemaphore() :
 #endif
     _m_sName  ()
 {
-    /*DEBUG*/xASSERT_DO(false == _bIsValid(), return);
+    /*DEBUG*/xTEST_EQ(false, _bIsValid());
 
 #if   xOS_ENV_WIN
     xNA;
@@ -42,7 +42,7 @@ CxIpcSemaphore::CxIpcSemaphore() :
 }
 //---------------------------------------------------------------------------
 CxIpcSemaphore::~CxIpcSemaphore() {
-    /*DEBUG*/xASSERT_DO(true == _bIsValid(), return);
+    /*DEBUG*/xTEST_EQ(true, _bIsValid());
 
 #if   xOS_ENV_WIN
     xNA;

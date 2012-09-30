@@ -36,7 +36,7 @@ CxCom::CxCom(
     ++ _ms_lInitCount;
     if (0L == _ms_lInitCount) {
         HRESULT hrRes = ::CoInitializeEx(NULL, _m_ulConModel);
-        /*DEBUG*/xASSERT_DO(SUCCEEDED(hrRes), return);
+        /*DEBUG*/xTEST_EQ(true, SUCCEEDED(hrRes));
     }
 }
 //---------------------------------------------------------------------------

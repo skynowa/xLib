@@ -34,7 +34,7 @@ CxMutex::~CxMutex() {
         bRv = false;
     }
 
-    /*DEBUG*/xASSERT_DO(true == bRv, return);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 #elif xOS_ENV_UNIX
     int iRv = ::pthread_mutex_destroy(&_m_hHandle);
     /*DEBUG*/xASSERT_MSG_DO(0 == iRv, CxLastError::sFormat(iRv), return);

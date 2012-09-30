@@ -54,10 +54,10 @@ CxTest_CxException::bUnit(
 
         for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
             try {
-                throw CxException() << sTestData[i][0].c_str();
+                throw CxException() << sTestData[i][0].c_str() << xT(".");
             }
             catch (const CxException &e) {
-                xTEST_EQ(sTestData[i][1], e.sGetWhat());
+                xTEST_EQ(sTestData[i][1] + xT("."), e.sGetWhat());
                 //xTRACEV( xT("std::what: %s"), e.sGetWhat().c_str() );
             }
             catch (...) {

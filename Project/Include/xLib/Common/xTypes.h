@@ -63,20 +63,20 @@ xNAMESPACE_END(NxLib)
 
 xNAMESPACE_BEGIN(std)
 
-    typedef basic_string<tchar_t, char_traits<tchar_t>, allocator<tchar_t> >        tstring_t;
-    typedef basic_string<uchar_t, char_traits<uchar_t>, allocator<uchar_t> >        ustring_t;
+    typedef basic_string< tchar_t, char_traits<tchar_t>, allocator<tchar_t> >        tstring_t;
+    typedef basic_string< uchar_t, char_traits<uchar_t>, allocator<uchar_t> >        ustring_t;
 
-    typedef basic_istream <tchar_t, char_traits<tchar_t> >                          tistream_t;
-    typedef basic_ostream <tchar_t, char_traits<tchar_t> >                          tostream_t;
-    typedef basic_iostream<tchar_t, char_traits<tchar_t> >                          tiostream_t;
+    typedef basic_istream < tchar_t, char_traits<tchar_t> >                          tistream_t;
+    typedef basic_ostream < tchar_t, char_traits<tchar_t> >                          tostream_t;
+    typedef basic_iostream< tchar_t, char_traits<tchar_t> >                          tiostream_t;
 
-    typedef basic_istringstream<tchar_t, char_traits<tchar_t>, allocator<tchar_t> > tistringstream_t;
-    typedef basic_ostringstream<tchar_t, char_traits<tchar_t>, allocator<tchar_t> > tostringstream_t;
-    typedef basic_stringstream <tchar_t, char_traits<tchar_t>, allocator<tchar_t> > tstringstream_t;
+    typedef basic_istringstream< tchar_t, char_traits<tchar_t>, allocator<tchar_t> > tistringstream_t;
+    typedef basic_ostringstream< tchar_t, char_traits<tchar_t>, allocator<tchar_t> > tostringstream_t;
+    typedef basic_stringstream < tchar_t, char_traits<tchar_t>, allocator<tchar_t> > tstringstream_t;
 
-    typedef basic_ifstream<tchar_t, char_traits<tchar_t> >                          tifstream_t;
-    typedef basic_ofstream<tchar_t, char_traits<tchar_t> >                          tofstream_t;
-    typedef basic_fstream <tchar_t, char_traits<tchar_t> >                          tfstream_t;
+    typedef basic_ifstream< tchar_t, char_traits<tchar_t> >                          tifstream_t;
+    typedef basic_ofstream< tchar_t, char_traits<tchar_t> >                          tofstream_t;
+    typedef basic_fstream < tchar_t, char_traits<tchar_t> >                          tfstream_t;
 
     // it's useful
     typedef vector<tchar_t>                                                         vec_tchar_t;

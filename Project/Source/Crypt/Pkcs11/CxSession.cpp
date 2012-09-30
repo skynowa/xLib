@@ -25,8 +25,8 @@ CxSession::CxSession(
     _m_pFunc   (a_cPkcs11.pGetFuncList()),
     _m_hSession(NULL)
 {
-    /*DEBUG*/xASSERT_DO(NULL != _m_pFunc,    return);
-    /*DEBUG*/xASSERT_DO(NULL == _m_hSession, return);
+    /*DEBUG*/xTEST_PTR(_m_pFunc);
+    /*DEBUG*/xTEST_PTR(_m_hSession);
 }
 //---------------------------------------------------------------------------
 /* virtual */
@@ -36,8 +36,8 @@ CxSession::~CxSession() {
 //---------------------------------------------------------------------------
 CK_SESSION_HANDLE
 CxSession::hGetHandle() const {
-    /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    NULL);
-    /*DEBUG*/xASSERT_RET(NULL != _m_hSession, NULL);
+    /*DEBUG*/xTEST_PTR(_m_pFunc);
+    /*DEBUG*/xTEST_PTR(_m_hSession);
 
     return _m_hSession;
 }

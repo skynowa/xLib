@@ -24,7 +24,7 @@ CxSlot::CxSlot(
 ) :
     _m_pFunc(a_cPkcs11.pGetFuncList())
 {
-    /*DEBUG*/xASSERT_DO(NULL != _m_pFunc, return);
+    /*DEBUG*/xTEST_PTR(_m_pFunc);
 }
 //---------------------------------------------------------------------------
 /* virtual */

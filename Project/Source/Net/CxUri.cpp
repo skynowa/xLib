@@ -44,7 +44,7 @@ CxUri::CxUri(const std::string &a_csUri) :
     _m_sFragment ()
 {
     bool bRv = _bParse(a_csUri);
-    /*DEBUG*/xASSERT_DO(true == bRv, return);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxUri

@@ -21,7 +21,7 @@ CxPkcs11::CxPkcs11() :
     _m_pFunc      (NULL),
     _m_dllETPkcs11()
 {
-    /*DEBUG*/xASSERT_DO(NULL == _m_pFunc, return);
+    /*DEBUG*/xTEST_PTR(_m_pFunc);
     /*DEBUG*/// _m_dllETPkcs11 - n/a
 
     (void)_bLoadETPkcs11();

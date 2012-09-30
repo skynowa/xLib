@@ -34,15 +34,15 @@ CxConsole::CxConsole()
 {
 #if   xOS_ENV_WIN
     _m_hStdIn  = ::GetStdHandle(STD_INPUT_HANDLE);
-    /*DEBUG*/xASSERT_DO(false != _m_hStdIn.bIsValid(), return);
-    /*DEBUG*/xASSERT_DO(NULL  != _m_hStdIn.hGet(),     return);
+    /*DEBUG*/xTEST_EQ(true, _m_hStdIn.bIsValid());
+    /*DEBUG*/xTEST_DIFF(xNATIVE_HANDLE_NULL, _m_hStdIn.hGet());
 
     _m_hStdOut = ::GetStdHandle(STD_OUTPUT_HANDLE);
-    /*DEBUG*/xASSERT_DO(false != _m_hStdOut.bIsValid(), return);
-    /*DEBUG*/xASSERT_DO(NULL  != _m_hStdOut.hGet(),     return);
+    /*DEBUG*/xTEST_EQ(true, _m_hStdOut.bIsValid());
+    /*DEBUG*/xTEST_DIFF(xNATIVE_HANDLE_NULL, _m_hStdOut.hGet());
 
     _m_hWnd = _hGetWndHandle();
-    /*DEBUG*/xASSERT_DO(NULL != _m_hWnd, return);
+    /*DEBUG*/xTEST_DIFF(static_cast<HWND>( NULL ), _m_hWnd);
 
     //_m_hMenu - n/a
 #endif
