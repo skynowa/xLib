@@ -207,7 +207,7 @@ CxTest_CxFile::bUnit(
             xTEST_EQ(true, m_bRv);
 
             xTEST_EQ(usText1.size(), usText2.size());
-            xASSERT(usText1 == usText2);
+            xTEST_EQ(true, usText1 == usText2);
         }
     }
 
@@ -1029,7 +1029,7 @@ CxTest_CxFile::bUnit1(
         xTEST_EQ(true, m_bRv);
 
         xTEST_EQ(vsFileContent.size(), vsStr.size());
-        xASSERT(vsFileContent == vsStr);
+        xTEST_EQ(true, vsFileContent == vsStr);
     }
 
     //empty content
@@ -1055,7 +1055,7 @@ CxTest_CxFile::bUnit1(
         xTEST_EQ(true, m_bRv);
 
         xTEST_EQ(vsFileContent.size(), vsStr.size());
-        xASSERT(vsFileContent == vsStr);
+        xTEST_EQ(true, vsFileContent == vsStr);
     }
 
     //--------------------------------------------------
@@ -1088,7 +1088,7 @@ CxTest_CxFile::bUnit1(
         xTEST_EQ(true, m_bRv);
 
         xTEST_EQ(cmsFileContent.size(), msStr.size());
-        xASSERT(cmsFileContent == msStr);
+        xTEST_EQ(true, cmsFileContent == msStr);
     }
 
     //empty content
@@ -1115,7 +1115,7 @@ CxTest_CxFile::bUnit1(
         xTEST_EQ(true, m_bRv);
 
         xTEST_EQ(cmsFileContent.size(), msStr.size());
-        xASSERT(cmsFileContent == msStr);
+        xTEST_EQ(true, cmsFileContent == msStr);
     }
 
     //-------------------------------------
@@ -1147,7 +1147,7 @@ CxTest_CxFile::bUnit1(
         m_bRv = CxFile::bBinRead(csFilePath, &usStr);
         xTEST_EQ(true, m_bRv);
 
-        xASSERT(usFileContent == usStr);
+        xTEST_EQ(true, usFileContent == usStr);
     }
 
     //empty content
@@ -1169,7 +1169,7 @@ CxTest_CxFile::bUnit1(
         m_bRv = CxFile::bBinRead(csFilePath, &usStr);
         xTEST_EQ(true, m_bRv);
 
-        xASSERT(usFileContent == usStr);
+        xTEST_EQ(true, usFileContent == usStr);
     }
 
     return true;

@@ -488,7 +488,7 @@ CxTest_CxDateTime::bUnit(
             }
             _m_dtTimesStop = CxDateTime::dtGetCurrent();
 
-            xASSERT(_m_dtTimesStop >= _m_dtTimesStart);
+            xTEST_EQ(true, _m_dtTimesStop >= _m_dtTimesStart);
         }
     }
 

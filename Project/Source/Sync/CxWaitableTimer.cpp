@@ -24,7 +24,7 @@ CxWaitableTimer::CxWaitableTimer() :
 }
 //---------------------------------------------------------------------------
 CxWaitableTimer::~CxWaitableTimer() {
-    /*DEBUG*/xASSERT(false != _m_hWaitableTimer.bIsValid());
+    /*DEBUG*/xTEST_DIFF(false, _m_hWaitableTimer.bIsValid());
 
 }
 //---------------------------------------------------------------------------

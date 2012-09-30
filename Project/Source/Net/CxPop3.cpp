@@ -311,7 +311,7 @@ CxPop3::bRetriveRaw(int a_iNum, const std::tstring_t &a_csDirPath, const std::ts
     if (std::tstring_t::npos != uiOkPos && 0 == uiOkPos && std::tstring_t::npos != uiFirstCRPos) {
         _m_sRes.erase(uiOkPos, uiFirstCRPos - uiOkPos + 2);    //"\r\n - 2 c������"
     } else {
-        /*DEBUG*/xASSERT(false);
+        /*DEBUG*/xTEST_FAIL;
     }
 
     //-------------------------------------
@@ -320,7 +320,7 @@ CxPop3::bRetriveRaw(int a_iNum, const std::tstring_t &a_csDirPath, const std::ts
     if (std::tstring_t::npos != uiEndOfMessagePos) {
         _m_sRes.erase(uiEndOfMessagePos, 5);    //"\r\n.\r\n" - 5 c������"
     } else {
-        /*DEBUG*/xASSERT(false);
+        /*DEBUG*/xTEST_FAIL;
     }
 
     //-------------------------------------
@@ -367,7 +367,7 @@ CxPop3::bRetriveRawAndBackup(int a_iNum, const std::tstring_t &a_csDirPath, cons
     if (std::tstring_t::npos != uiOkPos && 0 == uiOkPos && std::tstring_t::npos != uiFirstCRPos) {
         _m_sRes.erase(uiOkPos, uiFirstCRPos - uiOkPos + 2);    //"\r\n - 2 c������"
     } else {
-        /*DEBUG*/xASSERT(false);
+        /*DEBUG*/xTEST_FAIL;
     }
 
     //-------------------------------------
@@ -376,7 +376,7 @@ CxPop3::bRetriveRawAndBackup(int a_iNum, const std::tstring_t &a_csDirPath, cons
     if (std::tstring_t::npos != uiEndOfMessagePos) {
         _m_sRes.erase(uiEndOfMessagePos, 5);    //"\r\n.\r\n" - 5 c������"
     } else {
-        /*DEBUG*/xASSERT(false);
+        /*DEBUG*/xTEST_FAIL;
     }
 
     //-------------------------------------

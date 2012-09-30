@@ -105,7 +105,7 @@ CxTest_CxHandleT::bUnit(
         xTEST_EQ(true, m_bRv);
 
         m_hRv = hHandle.hGet();
-        xASSERT(native_handle_t() == m_hRv);
+        xTEST_EQ(true, native_handle_t() == m_hRv);
 
         m_bRv = hHandle.bSet(CxCurrentProcess::hGetHandle());
         xTEST_EQ(true, m_bRv);

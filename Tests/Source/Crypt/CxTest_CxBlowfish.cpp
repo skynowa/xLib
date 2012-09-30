@@ -58,7 +58,7 @@ CxTest_CxBlowfish::bUnit(
             m_bRv = BF.bEncryptCfb64(sEncrypted, &sDecrypted, CxBlowfish::cmDecrypt);
             xTEST_EQ(true, m_bRv);
 
-            xASSERT(usPlain[i] == sDecrypted);
+            xTEST_EQ(true, usPlain[i] == sDecrypted);
         }
     }
 

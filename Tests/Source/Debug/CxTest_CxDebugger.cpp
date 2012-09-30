@@ -173,7 +173,7 @@ CxTest_CxDebugger::bUnit(
     {
         std::tstring_t sVar1 = xT("xxx");
         std::tstring_t sVar2 = xT("xxx");
-        xASSERT(sVar1 == sVar2);
+        xTEST_EQ(sVar1, sVar2);
     }
 
     //--------------------------------------------------

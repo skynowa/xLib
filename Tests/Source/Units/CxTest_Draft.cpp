@@ -140,7 +140,7 @@ CxTest_Draft::bUnit(
     xTEST_CASE(1)
     {
         #if 0
-            xASSERT(false);
+            xTEST_FAIL;
         #endif
     }
 
