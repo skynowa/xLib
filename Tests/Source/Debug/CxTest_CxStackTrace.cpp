@@ -54,7 +54,7 @@ CxTest_CxStackTrace::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         #if xTEST_IGNORE
-            xASSERT(false);
+            xTEST_FAIL;
         #endif
     }
 

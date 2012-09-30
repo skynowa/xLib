@@ -47,10 +47,10 @@ CxProcess::~CxProcess() {
     BOOL blRes = FALSE;
 
     blRes = ::CloseHandle(_m_hThread);
-    /*DEBUG*/xASSERT(FALSE != blRes);
+    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 
     blRes = ::CloseHandle(_m_hHandle);
-    /*DEBUG*/xASSERT(FALSE != blRes);
+    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
 
 #endif

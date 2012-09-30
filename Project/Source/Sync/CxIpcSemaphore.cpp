@@ -57,7 +57,7 @@ CxIpcSemaphore::~CxIpcSemaphore() {
 //---------------------------------------------------------------------------
 const CxIpcSemaphore::handle_t &
 CxIpcSemaphore::hGet() const {
-    /*DEBUG*/xASSERT(true == _bIsValid());
+    /*DEBUG*/xTEST_EQ(true, _bIsValid());
 
     return _m_hHandle;
 }

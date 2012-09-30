@@ -67,7 +67,7 @@ CxThread::~CxThread() {
         if (false == bRv) {
             bRv = bKill(_ms_culExitTimeout);
             if (false == bRv) {
-                /*DEBUG*/xASSERT(false);
+                /*DEBUG*/xTEST_FAIL;
             }
         }
     }
@@ -278,7 +278,7 @@ CxThread::bKill(
     // clean members
 #if   xOS_ENV_WIN
     bRv = _m_hThread.bClose();
-    /*DEBUG*/xASSERT(true == bRv);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 #elif xOS_ENV_UNIX
     _m_hThread = 0UL;
 #endif
@@ -308,7 +308,7 @@ CxThread::bWait(
     //flags
     //?????????
 
-    /*DEBUG*/xASSERT(CxCurrentThread::ulGetId() != _m_ulId);
+    /*DEBUG*/xTEST_DIFF(CxCurrentThread::ulGetId(), _m_ulId);
     xCHECK_RET(CxCurrentThread::ulGetId() == _m_ulId, true);
 
     DWORD ulRv = ::WaitForSingleObject(_m_hThread.hGet(), a_culTimeout);
@@ -1105,7 +1105,7 @@ CxThread::_s_uiJobEntry(
             #endif
         }
         catch (...) {
-            /*DEBUG*/xASSERT(false);
+            /*DEBUG*/xTEST_FAIL;
         }
 
         //-------------------------------------
@@ -1118,7 +1118,7 @@ CxThread::_s_uiJobEntry(
             xASSERT_MSG(false, xS2TS(asWhat).c_str());
         }
         catch (...) {
-            /*DEBUG*/xASSERT(false);
+            /*DEBUG*/xTEST_FAIL;
         }
 
         //-------------------------------------
@@ -1129,7 +1129,7 @@ CxThread::_s_uiJobEntry(
             #endif
         }
         catch (...) {
-            /*DEBUG*/xASSERT(false);
+            /*DEBUG*/xTEST_FAIL;
         }
     }
 
@@ -1137,7 +1137,7 @@ CxThread::_s_uiJobEntry(
     // clean members (is need to close???)
 #if   xOS_ENV_WIN
     bRv = pthThis->_m_hThread.bClose();
-    /*DEBUG*/xASSERT(true == bRv);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 #elif xOS_ENV_UNIX
     //TODO: _m_hThread.bClose()
 #endif

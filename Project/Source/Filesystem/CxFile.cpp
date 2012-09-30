@@ -826,7 +826,7 @@ CxFile::bWipe(
                 //chRand
                 {
                     bRv = sfFile.bSetPosition(0L, ppBegin);
-                    /*DEBUG*/xASSERT(true == bRv);
+                    /*DEBUG*/xTEST_EQ(true, bRv);
 
                     for (longlong_t i = 0LL; i < llSize; ++ i) {
                         size_t uiRes = std::fwrite(&chRand, 1, sizeof(chRand), sfFile.pGet());
@@ -837,7 +837,7 @@ CxFile::bWipe(
                 //chChar1
                 {
                     bRv = sfFile.bSetPosition(0L, ppBegin);
-                    /*DEBUG*/xASSERT(true == bRv);
+                    /*DEBUG*/xTEST_EQ(true, bRv);
 
                     for (longlong_t i = 0LL; i < llSize; ++ i) {
                         size_t uiRes = std::fwrite(&chChar1, 1, sizeof(chChar1), sfFile.pGet());
@@ -848,7 +848,7 @@ CxFile::bWipe(
                 //chChar2
                 {
                     bRv = sfFile.bSetPosition(0L, ppBegin);
-                    /*DEBUG*/xASSERT(true == bRv);
+                    /*DEBUG*/xTEST_EQ(true, bRv);
 
                     for (longlong_t i = 0LL; i < llSize; ++ i) {
                         size_t uiRes = std::fwrite(&chChar2, 1, sizeof(chChar2), sfFile.pGet());

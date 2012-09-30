@@ -829,7 +829,7 @@ CxDateTime::sGetZodiacSign(
     xCHECK_RET(a_cusMonth == 2  && a_cusDay >= 20, xT("Рыбы"));
     xCHECK_RET(a_cusMonth == 3  && a_cusDay <= 20, xT("Рыбы"));
 
-    /*DEBUG*/xASSERT(false);
+    /*DEBUG*/xTEST_FAIL;
 
     return std::tstring_t();
 }

@@ -1018,7 +1018,7 @@ CxTest_CxString::bUnit(
                 xTEST_PTR(m_pvRv);
 
                 for (size_t x = 0; x < asBuff[i].size() * sizeof(std::tstring_t::value_type); ++ x) {
-                    xASSERT(0 == asBuff[i].at(x));
+                    xTEST_EQ(true, 0 == asBuff[i].at(x));
                 }
             }
         }
@@ -1029,7 +1029,7 @@ CxTest_CxString::bUnit(
 
             for (size_t i = 0; i < xARRAY_SIZE(cauiSizes); ++ i) {
                 m_pvRv = CxString::pvMemoryZeroSecure(NULL, cauiSizes[i]);
-                xASSERT(NULL == m_pvRv);
+                xTEST_PTR_FAIL(m_pvRv);
             }
         }
     }

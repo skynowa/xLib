@@ -133,7 +133,7 @@ CxTest::bCreateTempDir(
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxTest::sGetTempDirPath() const {
-    /*DEBUG*/xASSERT(false == _m_sWorkDirPath.empty());
+    /*DEBUG*/xTEST_EQ(false, _m_sWorkDirPath.empty());
 
     return _m_sWorkDirPath;
 }
