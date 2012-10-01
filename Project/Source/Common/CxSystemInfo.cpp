@@ -79,7 +79,7 @@ CxSystemInfo::osGetOS() {
     utsname unKernelInfo= {{0}};
 
     int iRv = ::uname(&unKernelInfo);
-    /*DEBUG*/xASSERT_RET(- 1 != iRv, otUnknown);
+    /*DEBUG*/xTEST_DIFF(- 1, iRv);
 
     if      (true == CxString::bCompareNoCase(xT("Linux"), unKernelInfo.sysname)) {
         otRes = otLinux;
@@ -130,7 +130,7 @@ CxSystemInfo::sFormatOsType(
         utsname unKernelInfo= {{0}};
 
         int iRv = ::uname(&unKernelInfo);
-        /*DEBUG*/xASSERT_RET(- 1 != iRv, std::tstring_t());
+        /*DEBUG*/xTEST_DIFF(- 1, iRv);
 
         sRv = CxString::sFormat(xT("%s %s (%s) %s"),
                                  unKernelInfo.sysname, unKernelInfo.release,
@@ -175,8 +175,8 @@ CxSystemInfo::oaGetOsArch() {
     utsname unKernelInfo= {{0}};
 
     int iRv = ::uname(&unKernelInfo);
-    /*DEBUG*/xASSERT_RET(- 1 != iRv,                                         oaUnknown);
-    /*DEBUG*/xASSERT_RET(0   != std::tstring_t(unKernelInfo.machine).size(), oaUnknown);
+    /*DEBUG*/xTEST_DIFF(- 1, iRv);
+    /*DEBUG*/// TODO: xTEST_DIFF(0,   strlen(unKernelInfo.machine));
 
     //32-bit checks
     if      (true == CxString::bCompareNoCase(xT("i386"), unKernelInfo.machine)) {
@@ -272,7 +272,7 @@ CxSystemInfo::sGetHostName() {
     utsname unKernelInfo= {{0}};
 
     int iRv = ::uname(&unKernelInfo);
-    /*DEBUG*/xASSERT_RET(- 1 != iRv);
+    /*DEBUG*/xTEST_DIFF(- 1, iRv);
 
     sRv.assign(unKernelInfo.nodename);
 #endif
@@ -345,7 +345,7 @@ CxSystemInfo::sGetUserName() {
     xDEBUG_VAR_NA(cuiUserId);
 
     passwd *ppwPassword = ::getpwuid(cuiUserId);
-    /*DEBUG*/xTEST_PTR(ppwPassword, std::tstring_t());
+    /*DEBUG*/xTEST_PTR(ppwPassword);
 
     sRv.assign(ppwPassword->pw_name);
 #endif
@@ -383,7 +383,7 @@ CxSystemInfo::sGetUseHomeDir() {
         sRv = CxEnvironment::sGetVar(xT("HOME"));
     } else {
         passwd *ppwPass = ::getpwuid( ::getuid() );
-        xTEST_PTR(ppwPass, std::tstring_t());
+        xTEST_PTR(ppwPass);
 
         sRv.assign(ppwPass->pw_dir);
     }
@@ -406,7 +406,7 @@ CxSystemInfo::ulGetNumOfCpus() {
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         long_t liRv = ::sysconf(_SC_NPROCESSORS_ONLN);
-        /*DEBUG*/xASSERT_RET(- 1 != liRv, 0UL);
+        /*DEBUG*/xTEST_DIFF(- 1L, liRv);
 
         ulRv = static_cast<ulong_t>( liRv );
     #elif xOS_FREEBSD
@@ -414,7 +414,7 @@ CxSystemInfo::ulGetNumOfCpus() {
         size_t uiResSize = sizeof(ulRv);
 
         int iRv = ::sysctl(aiMib, static_cast<u_int>( xARRAY_SIZE(aiMib) ), &ulRv, &uiResSize, NULL, 0);
-        /*DEBUG*/xASSERT_RET(- 1 != iRv, 0UL);
+        /*DEBUG*/xTEST_DIFF(- 1, iRv);
     #endif
 #endif
 
@@ -457,7 +457,7 @@ CxSystemInfo::ulGetCurrentCpuNum() {
 
                 // ::sched_getcpu() function is available since glibc 2.6, it is glibc specific
                 int iRv = ::sched_getcpu();
-                /*DEBUG*/xASSERT_RET(- 1 != iRv, 0UL);
+                /*DEBUG*/xTEST_DIFF(- 1, iRv);
 
                 ulRv = static_cast<ulong_t>( iRv );
             #else
@@ -512,7 +512,7 @@ CxSystemInfo::cvGetCpuVendor() {
     #if   xOS_LINUX
         // target proc line: "vendor_id : GenuineIntel"
         sValue = CxPath::sGetProcValue(xT("/proc/cpuinfo"), xT("vendor_id"));
-        /*DEBUG*/xTEST_EQ(false, sValue.empty(), cvUnknown);
+        /*DEBUG*/xTEST_EQ(false, sValue.empty());
     #elif xOS_FREEBSD
         // Use gcc 4.4 provided cpuid intrinsic
         // 32 bit fpic requires ebx be preserved
@@ -617,7 +617,7 @@ CxSystemInfo::sGetCpuModel() {
     #if   xOS_LINUX
         // target proc line: "model name    : Intel(R) Xeon(R) CPU           E5620  @ 2.40GHz"
         std::tstring_t sValue = CxPath::sGetProcValue(xT("/proc/cpuinfo"), xT("model name"));
-        /*DEBUG*/xTEST_EQ(false, sValue.empty(), std::tstring_t());
+        /*DEBUG*/xTEST_EQ(false, sValue.empty());
 
         sRv = sValue;
     #elif xOS_FREEBSD
@@ -666,7 +666,7 @@ CxSystemInfo::ulGetCpuSpeed() {
     #if   xOS_LINUX
         // target proc line: "cpu MHz         : 2796.380"
         std::tstring_t sValue = CxPath::sGetProcValue(xT("/proc/cpuinfo"), xT("cpu MHz"));
-        /*DEBUG*/xTEST_EQ(false, sValue.empty(), 0UL);
+        /*DEBUG*/xTEST_EQ(false, sValue.empty());
 
         double dCpuSpeedMHz = CxString::string_cast<double>( sValue );
 
@@ -748,13 +748,13 @@ CxSystemInfo::ulGetCpuUsage() {
         // read proc file for the first time
         if (true == bIsFirstRun) {
             FILE *pFile = fopen("/proc/stat", "r");
-            /*DEBUG*/xTEST_PTR(pFile, 0UL);
+            /*DEBUG*/xTEST_PTR(pFile);
 
             iRv = fscanf(pFile, "cpu %Ld %Ld %Ld %Ld", &ullUserTotalOld, &ullUserTotalLowOld, &ullSysTotalOld, &ullTotalIdleOld);
-            /*DEBUG*/xASSERT_RET(- 1 != iRv, 0UL);
+            /*DEBUG*/xTEST_DIFF(- 1, iRv);
 
             iRv = fclose(pFile);
-            /*DEBUG*/xASSERT_RET(- 1 != iRv, 0UL);
+            /*DEBUG*/xTEST_DIFF(- 1, iRv);
 
             bIsFirstRun = false;
         }
@@ -762,13 +762,13 @@ CxSystemInfo::ulGetCpuUsage() {
         // read proc file for the next times
         {
             FILE *pFile = fopen("/proc/stat", "r");
-            /*DEBUG*/xTEST_PTR(pFile, 0UL);
+            /*DEBUG*/xTEST_PTR(pFile);
 
             iRv = fscanf(pFile, "cpu %Ld %Ld %Ld %Ld", &ullUserTotal, &ullUserTotalLow, &ullSysTotal, &ullTotalIdle);
-            /*DEBUG*/xASSERT_RET(- 1 != iRv, 0UL);
+            /*DEBUG*/xTEST_DIFF(- 1, iRv);
 
             iRv = fclose(pFile);
-            /*DEBUG*/xASSERT_RET(- 1 != iRv, 0UL);
+            /*DEBUG*/xTEST_DIFF(- 1, iRv);
         }
 
         if (ullUserTotal < ullUserTotalOld || ullUserTotalLow < ullUserTotalLowOld ||
@@ -838,7 +838,7 @@ CxSystemInfo::ullGetRamTotal() {
         struct sysinfo siInfo = {0};
 
         int iRv = ::sysinfo(&siInfo);
-        /*DEBUG*/xASSERT_RET(- 1 != iRv, 0ULL);
+        /*DEBUG*/xTEST_DIFF(- 1, iRv);
 
         ullRv = siInfo.totalram * siInfo.mem_unit;
     #elif xOS_FREEBSD
@@ -875,7 +875,7 @@ CxSystemInfo::ullGetRamAvailable() {
         struct sysinfo siInfo = {0};
 
         int iRv = ::sysinfo(&siInfo);
-        /*DEBUG*/xASSERT_RET(- 1 != iRv, 0ULL);
+        /*DEBUG*/xTEST_DIFF(- 1, iRv);
 
         ullRv = siInfo.freeram * siInfo.mem_unit;
     #elif xOS_FREEBSD
@@ -910,12 +910,12 @@ CxSystemInfo::ulGetRamUsage() {
         struct sysinfo siInfo = {0};
 
         int iRv = ::sysinfo(&siInfo);
-        /*DEBUG*/xASSERT_RET(- 1 != iRv, 0UL);
+        /*DEBUG*/xTEST_DIFF(- 1, iRv);
 
         ulong_t ulUsage = siInfo.totalram - siInfo.freeram;
 
         ulRv = static_cast<ulong_t>( CxUtils::safeDivT(ulUsage * 100.0, siInfo.totalram) );
-        /*DEBUG*/xASSERT_RET(siInfo.totalram == ulUsage + siInfo.freeram, 0UL);
+        /*DEBUG*/xTEST_EQ(siInfo.totalram, ulUsage + siInfo.freeram);
     #elif xOS_FREEBSD
         ulonglong_t ullRamTotal = 0ULL;
         {
@@ -960,8 +960,8 @@ CxSystemInfo::ulGetPageSize() {
     ulRv = siSysInfo.dwPageSize;
 #elif xOS_ENV_UNIX
     int iRv = ::sysconf(xPAGE_SIZE);
-    /*DEBUG*/xASSERT_RET(- 1 != iRv, 0UL);
-    /*DEBUG*/xASSERT_RET(0   <  iRv, 0UL);
+    /*DEBUG*/xTEST_DIFF(- 1, iRv);
+    /*DEBUG*/xTEST_LESS(0, iRv);
 
     ulRv = static_cast<ulong_t>( iRv );
 #endif

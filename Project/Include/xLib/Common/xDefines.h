@@ -152,19 +152,11 @@
 // buildin macroses
 
 // xFILE
-#if defined(__FILE__)
-    #define xFILE                   xT(__FILE__)
-#else
-    #define xFILE                   xT("<unknown xFILE>")
-#endif
+#define xFILE                       xT(__FILE__)
     ///< source file path
 
 // xLINE
-#if defined(__LINE__)
-    #define xLINE                   ( __LINE__ )
-#else
-    #define xLINE                   ( 0UL )
-#endif
+#define xLINE                       __LINE__
     ///< source code line number
 
 // xFUNCTION
@@ -180,35 +172,19 @@
     ///< source function name
 
 // xDATE
-#if defined(__DATE__)
-    #define xDATE                   xT(__DATE__)
-#else
-    #define xDATE                   xT("<unknown xDATE>")
-#endif
+#define xDATE                       xT(__DATE__)
     ///< build source date stamp
 
 // xTIME
-#if defined(__TIME__)
-    #define xTIME                   xT(__TIME__)
-#else
-    #define xTIME                   xT("<unknown xTIME>")
-#endif
+#define xTIME                       xT(__TIME__)
     ///< build source time stamp
 
 // xDATETIME
-#if defined(__DATE__) && defined(__TIME__)
-    #define xDATETIME               xT(__DATE__) xT(" ") xT(__TIME__)
-#else
-    #define xDATETIME               xT("<unknown xDATETIME>")
-#endif
+#define xDATETIME                   xT(__DATE__) xT(" ") xT(__TIME__)
     ///< build source datetime stamp
 
 // xCOUNTER
-#if defined(__COUNTER__)
-    #define xCOUNTER                ( __COUNTER__ )
-#else
-    #define xCOUNTER                ( 0UL )
-#endif
+#define xCOUNTER                    __COUNTER__
     ///< Expands to an integer starting with 0 and incrementing by 1 every time it is used in a compiland
 
 //-------------------------------------

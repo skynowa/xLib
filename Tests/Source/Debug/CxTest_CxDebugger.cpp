@@ -120,12 +120,19 @@ CxTest_CxDebugger::bUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(crtType); ++ i) {
-            CxErrorReport rpReport(crtType[i], xT("expr"), CxLastError::ulGet(), xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT("test"));
+            ulong_t ulLastError = CxLastError::ulGet();
+
+            ulong_t val1 = 10;
+            ulong_t val2 = 20;
+
+            CxErrorReport rpReport(crtType[i], val1, val2, "val1", "val2", xT("=="),
+                                   ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME,
+                                   CxStackTrace().sGet(), xT(""));
 
             CxDebugger dbgDebugger;
 
-            //m_bRv = dbgDebugger.bReportMake(rpReport);
-            //xTEST_EQ(true, m_bRv);
+            // m_bRv = dbgDebugger.bReportMake(rpReport);
+            // xTEST_EQ(true, m_bRv);
         }
     }
 
@@ -158,49 +165,6 @@ CxTest_CxDebugger::bUnit(
 
         m_bRv = dbgDebugger.bBeep();
         xTEST_EQ(true, m_bRv);
-    }
-
-    //--------------------------------------------------
-    //xNOT_IMPLEMENTED_RET
-    xTEST_CASE(cullCaseLoops)
-    {
-        //TODO: xNOT_IMPLEMENTED_RET
-    }
-
-    //--------------------------------------------------
-    //xASSERT
-    xTEST_CASE(cullCaseLoops)
-    {
-        std::tstring_t sVar1 = xT("xxx");
-        std::tstring_t sVar2 = xT("xxx");
-        xTEST_EQ(sVar1, sVar2);
-    }
-
-    //--------------------------------------------------
-    //xASSERT_MSG
-    xTEST_CASE(cullCaseLoops)
-    {
-        std::tstring_t sVar1 = xT("xxx");
-        std::tstring_t sVar2 = xT("xxx");
-        xASSERT_MSG(sVar1 == sVar2, xT("Simple message"));
-    }
-
-    //--------------------------------------------------
-    //xASSERT_MSG_RET
-    xTEST_CASE(cullCaseLoops)
-    {
-        std::tstring_t sVar1 = xT("xxx");
-        std::tstring_t sVar2 = xT("xxx");
-        xASSERT_MSG_RET(sVar1 == sVar2, xT("Simple message"), false);
-    }
-
-    //--------------------------------------------------
-    //xASSERT_MSG_DO
-    xTEST_CASE(cullCaseLoops)
-    {
-        std::tstring_t sVar1 = xT("xxx");
-        std::tstring_t sVar2 = xT("xxx");
-        xASSERT_MSG_DO(sVar1 == sVar2, xT("Simple message"), sVar1.swap(sVar2));
     }
 
     //--------------------------------------------------

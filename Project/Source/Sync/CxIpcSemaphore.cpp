@@ -48,7 +48,7 @@ CxIpcSemaphore::~CxIpcSemaphore() {
     xNA;
 #elif xOS_ENV_UNIX
     int iRv = ::sem_close(_m_hHandle);  _m_hHandle = NULL;
-    /*DEBUG*/xASSERT_DO(- 1 != iRv, return);
+    /*DEBUG*/xTEST_DIFF(- 1, iRv);
 
     // sem_destroy
     // sem_unlink
@@ -94,7 +94,7 @@ CxIpcSemaphore::bCreate(
     std::tstring_t sUnixName = CxConst::xUNIX_SLASH + a_csName;
 
     handle_t hHandle = ::sem_open(sUnixName.c_str(), O_CREAT | O_RDWR, 0777, a_cliInitialValue);
-    /*DEBUG*/xASSERT_RET(SEM_FAILED != hHandle, false);
+    /*DEBUG*/xTEST_DIFF(SEM_FAILED, hHandle);
 
     _m_hHandle = hHandle;
     _m_sName   = sUnixName;
@@ -131,7 +131,7 @@ CxIpcSemaphore::bOpen(
     std::tstring_t sUnixName = CxConst::xUNIX_SLASH + a_csName;
 
     handle_t hHandle = ::sem_open(sUnixName.c_str(), O_RDWR, 0777, 0U);
-    /*DEBUG*/xASSERT_RET(SEM_FAILED != hHandle, false);
+    /*DEBUG*/xTEST_DIFF(SEM_FAILED, hHandle);
 
     _m_hHandle = hHandle;
     _m_sName   = sUnixName;
@@ -242,7 +242,7 @@ CxIpcSemaphore::liGetValue() const {
     int iValue = - 1;
 
     int iRv = ::sem_getvalue(_m_hHandle, &iValue);
-    /*DEBUG*/xASSERT_RET(- 1 != iRv, - 1L);
+    /*DEBUG*/xTEST_DIFF(- 1, iRv);
 
     liRv = iValue;
 #endif

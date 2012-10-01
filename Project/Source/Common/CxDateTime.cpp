@@ -350,7 +350,7 @@ CxDateTime::bGet(
 {
     /*DEBUG*/xTEST_EQ(true, bIsValid());
     /*DEBUG*/// n/a
-    
+
     CxUtils::ptrAssignT(a_pusYear,        _m_usYear);
     CxUtils::ptrAssignT(a_pusMonth,       _m_usMonth);
     CxUtils::ptrAssignT(a_pusDay,         _m_usDay);
@@ -569,25 +569,25 @@ CxDateTime::bIsValid(
     /*DEBUG*/
 
     bool bYear        = (/*cusYear   >= 0U && */a_cusYear   <= 9999U);
-    /*DEBUG*/xASSERT_MSG(true == bYear,        xT("usYear:   ")        + CxString::string_cast(a_cusYear));
+    /*DEBUG*/xTEST_EQ(true, bYear);
 
     bool bMonth       = (/*cusMonth  >= 0 /1/ &&*/ a_cusMonth  <= 12U);
-    /*DEBUG*/xASSERT_MSG(true == bMonth,       xT("usMonth:  ")        + CxString::string_cast(a_cusMonth));
+    /*DEBUG*/xTEST_EQ(true, bMonth);
 
     bool bDay         = true;   ////(usDay    >= 0/*1*/ && usDay    <= usDaysInMonth(a_usYear, a_usMonth));
-    /*DEBUG*/xASSERT_MSG(true == bDay,         xT("usDay:    ")        + CxString::string_cast(a_cusDay));
+    /*DEBUG*/xTEST_EQ(true, bDay);
 
     bool bHour        = (/*cusHour   >= 0 &&*/ a_cusHour   <= 23U);
-    /*DEBUG*/xASSERT_MSG(true == bHour,        xT("usHour:   ")        + CxString::string_cast(a_cusHour));
+    /*DEBUG*/xTEST_EQ(true, bHour);
 
     bool bMinute      = (/*cusMinute >= 0 &&*/ a_cusMinute <= 59U);
-    /*DEBUG*/xASSERT_MSG(true == bMinute,      xT("usMinute: ")        + CxString::string_cast(a_cusMinute));
+    /*DEBUG*/xTEST_EQ(true, bMinute);
 
     bool bSecond      = (/*cusSecond >= 0 &&*/ a_cusSecond <= 59U);
-    /*DEBUG*/xASSERT_MSG(true == bSecond,      xT("usSecond: ")        + CxString::string_cast(a_cusSecond));
+    /*DEBUG*/xTEST_EQ(true, bSecond);
 
     bool bMillisecond = (/*cusMillisecond >= 0 &&*/ a_cusMillisecond   <= 999U);
-    /*DEBUG*/xASSERT_MSG(true == bMillisecond, xT("usMillisecond:   ") + CxString::string_cast(a_cusMillisecond));
+    /*DEBUG*/xTEST_EQ(true, bMillisecond);
 
     xCHECK_RET(false == (bYear && bMonth && bDay && bHour && bMinute && bSecond && bMillisecond), false);
 
@@ -629,13 +629,13 @@ CxDateTime::dtGetCurrent() {
     timeval tvTime = {0};
 
     int iRv = ::gettimeofday(&tvTime, NULL);
-    /*DEBUG*/xASSERT_RET(- 1 != iRv, CxDateTime());
+    /*DEBUG*/xTEST_DIFF(- 1, iRv);
 
     //get datetime
     std::tm *ptmDateTime = {0};
 
     ptmDateTime = std::localtime( reinterpret_cast<const time_t *>( &tvTime.tv_sec ));
-    /*DEBUG*/xTEST_PTR(ptmDateTime, CxDateTime());
+    /*DEBUG*/xTEST_PTR(ptmDateTime);
 
     //set datetime
     ushort_t usYear        = ptmDateTime->tm_year + 1900U;
@@ -646,7 +646,7 @@ CxDateTime::dtGetCurrent() {
     ushort_t usSecond      = ptmDateTime->tm_sec;
     ushort_t usMillisecond = static_cast<ushort_t>( tvTime.tv_usec * 0.001 );
 
-    /*DEBUG*/xTEST_EQ(true, bIsValid(usYear, usMonth, usDay, usHour, usMinute, usSecond, usMillisecond), CxDateTime());
+    /*DEBUG*/xTEST_EQ(true, bIsValid(usYear, usMonth, usDay, usHour, usMinute, usSecond, usMillisecond));
 
     return CxDateTime(usYear, usMonth, usDay, usHour, usMinute, usSecond, usMillisecond);
 #endif

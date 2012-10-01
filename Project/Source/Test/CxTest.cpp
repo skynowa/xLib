@@ -65,19 +65,19 @@ CxTest::bRun(
     try {
         for (ulonglong_t i = 0ULL; i < a_cullUnitLoops; ++ i) {
             bool bRv = bUnit(a_cullCaseLoops);
-            /*DEBUG*/xASSERT_MSG_RET(true == bRv, sGetName() + xT(": fail"), false);
+            /*DEBUG*/xTEST_MSG_EQ(true, bRv, sGetName() + xT(": fail"));
         }
     }
     catch (const CxException &e) {
-        /*DEBUG*/xASSERT_MSG_RET(false, sGetName() + xT(": ") + e.sGetWhat(), false);
+        /*DEBUG*/xTEST_FAIL(sGetName() + xT(": ") + e.sGetWhat());
     }
     catch (const std::exception &cexE) {
         std::string asMsg = cexE.what();
 
-        /*DEBUG*/xASSERT_MSG_RET(false, sGetName() + xT(": ") + xS2TS(asMsg), false);
+        /*DEBUG*/xTEST_FAIL(sGetName() + xT(": ") + xS2TS(asMsg));
     }
     catch (...) {
-        /*DEBUG*/xASSERT_MSG_RET(false, sGetName() + xT(": Unknown test error"), false);
+        /*DEBUG*/xTEST_FAIL(sGetName() + xT(": Unknown test error"));
     }
 
     return true;

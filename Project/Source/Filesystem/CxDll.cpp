@@ -74,7 +74,7 @@ CxDll::bIsProcExists(
     const char *pszError = NULL;
 
     pszError = ::dlerror();
-    /*DEBUG*/xTEST_PTR_FAIL(pszError, false);
+    /*DEBUG*/xTEST_PTR_FAIL(pszError);
 
     (void)::dlsym(_m_hDll, csProcName.c_str());
 
@@ -101,13 +101,13 @@ CxDll::fpGetProcAddress(
     const char *pszError = NULL;
 
     pszError = ::dlerror();
-    /*DEBUG*/xTEST_PTR_FAIL(pszError, NULL);
+    /*DEBUG*/xTEST_PTR_FAIL(pszError);
 
     fpRes = ::dlsym(_m_hDll, csProcName.c_str());
     xDEBUG_VAR_NA(fpRes)
 
     pszError = ::dlerror();
-    /*DEBUG*/xTEST_PTR_FAIL(pszError, NULL);
+    /*DEBUG*/xTEST_PTR_FAIL(pszError);
 #endif
 
     return fpRes;

@@ -79,7 +79,7 @@ CxTcpServer::bAccept(
     socklen_t          iAddrlen = sizeof(cliaddr);
 
     scktClient = ::accept(_m_sktSocket, CxUtils::reinterpretCastT<struct sockaddr *>( &cliaddr ), &iAddrlen);
-    /*DEBUG*/xASSERT_RET(etInvalid != scktClient, false);
+    /*DEBUG*/xTEST_DIFF(xSOCKET_HANDLE_INVALID, scktClient);
 #endif
 
     //TODO: bAccept

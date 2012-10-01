@@ -291,7 +291,7 @@ CxFile::bReadLine(
 {
     /*DEBUG*/xTEST_EQ(true, bIsValid());
     /*DEBUG*/xTEST_PTR(psStr);
-    /*DEBUG*/xTEST_LESS(0U, cuiMaxCount);
+    /*DEBUG*/xTEST_LESS(size_t(0U), cuiMaxCount);
 
     #if xTEMP_DISABLED
         if ((*psStr).size() != cuiMaxCount) {
@@ -766,7 +766,7 @@ CxFile::bTryDelete(
 )
 {
     /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
-    /*DEBUG*/xTEST_LESS(0U, cuiAttempts);
+    /*DEBUG*/xTEST_LESS(size_t(0U), cuiAttempts);
 
     const size_t cuiMaxAttempts  = 100;  //MAGIC_NUMBER: cuiMaxAttempts
     const size_t cuiRealAttempts = (cuiMaxAttempts < cuiAttempts) ? cuiMaxAttempts : cuiAttempts;

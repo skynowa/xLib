@@ -58,36 +58,23 @@ class CxErrorReport :
         //comment
         std::tstring_t m_sComment;        ///< comment
 
-
-                       CxErrorReport(const ExType         &crtType,      const std::tstring_t &csExp, 
-                                     const ulong_t        &culLastError, const std::tstring_t &csFile, 
-                                     const ulong_t        &culLine,      const std::tstring_t &csFunc, 
-                                     const std::tstring_t &csDate,       const std::tstring_t &csTime, 
-                                     const std::tstring_t &csStackTrace, const std::tstring_t &csComment);
-            ///< constructor
-                       CxErrorReport(const ExType         &crtType,      const std::tstring_t &csExp, 
-                                     const ulong_t        &culLastError, const std::tstring_t &csFile, 
-                                     const ulong_t        &culLine,      const std::tstring_t &csFunc, 
-                                     const std::tstring_t &csDate,       const std::tstring_t &csTime, 
-                                     const std::tstring_t &csStackTrace, const tchar_t        *pcszComment, ...);
-            ///< constructor
                        template<class T>
-                       CxErrorReport(const ExType         &crtType,      const T &cVatT1, 
-                                     const T              &cVatT2,       const std::tstring_t &csExpr1, 
-                                     const std::tstring_t &csExpr2,      const std::tstring_t &csExprSign, 
-                                     const ulong_t        &culLastError, const std::tstring_t &csFile, 
-                                     const ulong_t        &culLine,      const std::tstring_t &csFunc, 
-                                     const std::tstring_t &csDate,       const std::tstring_t &csTime, 
+                       CxErrorReport(const ExType         &crtType,      const T &cVatT1,
+                                     const T              &cVatT2,       const std::tstring_t &csExpr1,
+                                     const std::tstring_t &csExpr2,      const std::tstring_t &csExprSign,
+                                     const ulong_t        &culLastError, const std::tstring_t &csFile,
+                                     const ulong_t        &culLine,      const std::tstring_t &csFunc,
+                                     const std::tstring_t &csDate,       const std::tstring_t &csTime,
                                      const std::tstring_t &csStackTrace, const std::tstring_t &csComment);
             ///< constructor
         virtual       ~CxErrorReport();
             ///< destructor
 
     private:
-        bool          _bConstruct   (const ExType         &crtType,      const std::tstring_t &csExp, 
-                                     const ulong_t        &culLastError, const std::tstring_t &csFile, 
-                                     const ulong_t        &culLine,      const std::tstring_t &csFunc, 
-                                     const std::tstring_t &csDate,       const std::tstring_t &csTime, 
+        bool          _bConstruct   (const ExType         &crtType,      const std::tstring_t &csExp,
+                                     const ulong_t        &culLastError, const std::tstring_t &csFile,
+                                     const ulong_t        &culLine,      const std::tstring_t &csFunc,
+                                     const std::tstring_t &csDate,       const std::tstring_t &csTime,
                                      const std::tstring_t &csStackTrace, const std::tstring_t &csComment);
             ///< initiate class members
         bool          _bInitPlain   ();

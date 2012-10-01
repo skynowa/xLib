@@ -30,7 +30,7 @@ CxDir::bIsExists(
 )
 {
     /*DEBUG*/// n/a
-    
+
     xCHECK_RET(true == csDirPath.empty(), false);
 
     CxFileAttribute::ExAttribute atAttr = CxFileAttribute::atGet(csDirPath);
@@ -83,7 +83,7 @@ CxDir::bIsEmpty(
     dirent *pdrEntry = {0};
 
     pDir = ::opendir(csDirPath.c_str());
-    /*DEBUG*/xTEST_PTR(pDir, true);
+    /*DEBUG*/xTEST_PTR(pDir);
 
     pdrEntry = ::readdir(pDir);
     xCHECK_RET(NULL == pdrEntry, true);
@@ -160,8 +160,8 @@ CxDir::sGetCurrent() {
     sRv.assign(sBuff, 0, ulRv);
 #elif xOS_ENV_UNIX
     tchar_t *pszRes = ::getcwd(&sBuff[0], xPATH_MAX);
-    /*DEBUG*/xASSERT_RET(NULL         != pszRes);
-    /*DEBUG*/xASSERT_RET(&sBuff.at(0) == pszRes);
+    /*DEBUG*/xTEST_PTR(pszRes);
+    /*DEBUG*/xTEST_EQ(&sBuff.at(0), pszRes);
 
     sRv.assign(pszRes);
 #endif
@@ -388,7 +388,7 @@ CxDir::bTryDelete(
 )
 {
     /*DEBUG*/xTEST_EQ(false, csDirPath.empty());
-    /*DEBUG*/xTEST_LESS(0U, cuiAttempts);
+    /*DEBUG*/xTEST_LESS(size_t(0U), cuiAttempts);
 
     const size_t cuiMaxAttempts  = 100;  //MAGIC_NUMBER: cuiMaxAttempts
     const size_t cuiRealAttempts = (cuiMaxAttempts < cuiAttempts) ? cuiMaxAttempts : cuiAttempts;
@@ -557,7 +557,7 @@ CxDir::bFindFiles(
         dirent *pdrEntry = {0};
 
         pDir = ::opendir(csDirPath.c_str());
-        /*DEBUG*/xTEST_PTR(pDir, false);
+        /*DEBUG*/xTEST_PTR(pDir);
 
         pdrEntry = ::readdir(pDir);
         xCHECK_RET(NULL == pdrEntry, false);

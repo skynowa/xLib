@@ -77,7 +77,7 @@ CxPop3::bConnect() {
      //-------------------------------------
      //[welcome message]
      _m_sRes = _m_scktSocket.sRecvAll(0, "\r\n");
-     /*DEBUG*/xASSERT_MSG_RET(false == _bIsError(_m_sRes), _m_sRes.c_str(), false); //��� "+OK"
+     /*DEBUG*/xTEST_MSG_EQ(false, _bIsError(_m_sRes), _m_sRes); // "+OK"
 
     _m_bConnected = true;
 

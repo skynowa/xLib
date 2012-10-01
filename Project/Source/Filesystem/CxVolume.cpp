@@ -142,7 +142,7 @@ CxVolume::bGetSpace(
     struct xSTATVFS stfInfo = {0};
 
     int iRv = ::xSTATVFS(_sDirPath.c_str(), &stfInfo);
-    /*DEBUG*/xASSERT_MSG_RET(- 1 != iRv, _sDirPath, false);
+    /*DEBUG*/xTEST_DIFF(- 1, iRv);
 
     CxUtils::ptrAssignT(pullAvailable, static_cast<ulonglong_t>( stfInfo.f_bavail * stfInfo.xSTATVFS_F_FRSIZE ));
     CxUtils::ptrAssignT(pullTotal,     static_cast<ulonglong_t>( stfInfo.f_blocks * stfInfo.xSTATVFS_F_FRSIZE ));
@@ -262,7 +262,7 @@ CxVolume::bGetPaths(
         };
 
         std::tifstream_t fsProcMounts(xT("/proc/mounts"));
-        /*DEBUG*/xTEST_EQ(true, fsProcMounts.good(), false);
+        /*DEBUG*/xTEST_EQ(true, !! fsProcMounts.good());
 
         for ( ; !fsProcMounts.eof(); ) {
             _SMounts mntMounts;
@@ -342,7 +342,7 @@ CxVolume::dtGetType(
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         FILE *pfFile = ::setmntent(xT("/etc/mtab"), xT("r"));
-        xTEST_PTR(pfFile, dtUnknown);
+        xTEST_PTR(pfFile);
 
         for ( ; ; ) {
             const mntent *pmteMountPoint = ::getmntent(pfFile);
@@ -361,7 +361,7 @@ CxVolume::dtGetType(
         }
 
         int iRv = ::endmntent(pfFile);
-        xASSERT_RET(1 == iRv, dtUnknown);
+        xTEST_EQ(1, iRv);
     #elif xOS_FREEBSD
         // TODO: CxVolume::dtGetType
     #endif
