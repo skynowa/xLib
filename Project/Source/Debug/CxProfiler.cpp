@@ -67,7 +67,7 @@ CxProfiler::bStart() {
 
     #if xTODO
         bRv = CxProcess::bSetPriority(CxProcess::ulGetCurrId(), CxProcess::tpTimeCritical);
-        /*DEBUG*/xASSERT(true == bRv);
+        /*DEBUG*/xTEST_EQ(true, bRv);
     #endif
 
     CxCurrentThread::bSleep(10UL);
@@ -267,7 +267,7 @@ bool
 CxProfiler::_bResetData() {
     #if xTODO
         bool bRv = CxProcess::bSetPriority(CxCurrentProcess::ulGetId(), CxProcess::tpNormal);
-        /*DEBUG*/xASSERT(true == bRv);
+        /*DEBUG*/xTEST_EQ(true, bRv);
     #endif
 
     _m_bIsStarted                       = false;

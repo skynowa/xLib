@@ -136,7 +136,7 @@ CxTest_Draft::bUnit(
     }
 
     //--------------------------------------------------
-    //xASSERT
+    // xTEST_FAIL
     xTEST_CASE(1)
     {
         #if 0

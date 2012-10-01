@@ -192,8 +192,8 @@ CxDecrypt::bMakeFile(
 
     //-------------------------------------
     //check that we are back where we started
-    /*DEBUG*/////xASSERT(usRawData        == usDecryptedData);
-    /*DEBUG*/////xASSERT(usRawData.size() == usDecryptedData.size());
+    /*DEBUG*/////xTEST_EQ(true, usRawData == usDecryptedData);
+    /*DEBUG*/////xTEST_EQ(usRawData.size(), usDecryptedData.size());
     /*DEBUG*/////std::cout << &usDecryptedData[0] << std::endl;
 
     //-------------------------------------

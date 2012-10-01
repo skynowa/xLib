@@ -196,7 +196,7 @@ CxTest_CxFile::bUnit(
         }
 
         //-------------------------------------
-        //xASSERT
+        // bRead
         {
             CxFile F;
 

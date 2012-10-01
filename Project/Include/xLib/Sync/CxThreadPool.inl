@@ -417,7 +417,7 @@ CxThreadPool<TaskT>::uiOnRun(void *a_pvParam) {
 
     //-------------------------------------
     //������ ����
-    /*DEBUG*/xASSERT(true == _m_lstpthTasks.empty());
+    /*DEBUG*/xTEST_EQ(true, _m_lstpthTasks.empty());
     _m_lstpthTasks.clear();
 
     for ( ; ; ) {
