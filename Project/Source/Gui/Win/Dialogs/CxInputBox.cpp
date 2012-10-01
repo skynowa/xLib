@@ -44,7 +44,7 @@ CxInputBox::mrShowModal(
     /*DEBUG*/// csText    - n/a
 
     HINSTANCE hInstance = ::GetModuleHandle(NULL);
-    /*DEBUG*/xASSERT_RET(NULL != hInstance, mrCancel);
+    /*DEBUG*/xTEST_EQ(true, NULL != hInstance);
 
     WNDCLASS wndClass = {0};
 
@@ -58,7 +58,7 @@ CxInputBox::mrShowModal(
     wndClass.cbWndExtra    = 4;    //4�����
 
     BOOL blRes = ::RegisterClass(&wndClass);
-    /*DEBUG*/xASSERT_RET(FALSE != blRes, CxInputBox::mrCancel);
+    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 
     //-------------------------------------
     //_m_hWndMain
@@ -79,7 +79,7 @@ CxInputBox::mrShowModal(
                             NULL,
                             hInstance,
                             NULL);
-    /*DEBUG*/xASSERT_RET(NULL != _m_hWndMain, mrCancel);
+    /*DEBUG*/xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWndMain);
 
     ::SetWindowLong(_m_hWndMain, 0, (long_t)this);
 
@@ -95,7 +95,7 @@ CxInputBox::mrShowModal(
                             (HMENU)ID_staPrompt,
                             hInstance,
                             NULL);
-    /*DEBUG*/xASSERT_RET(NULL != _m_hStaPrompt, mrCancel);
+    /*DEBUG*/xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hStaPrompt);
 
     //-------------------------------------
     //_m_hEdtText
@@ -109,7 +109,7 @@ CxInputBox::mrShowModal(
                             (HMENU)ID_edtText,
                             hInstance,
                             NULL);
-    /*DEBUG*/xASSERT_RET(NULL != _m_hEdtText, mrCancel);
+    /*DEBUG*/xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hEdtText);
 
     //-------------------------------------
     //_m_hBtnOk
@@ -123,7 +123,7 @@ CxInputBox::mrShowModal(
                             (HMENU)ID_btnOK,
                             hInstance,
                             NULL);
-    /*DEBUG*/xASSERT_RET(NULL != _m_hBtnOk, mrCancel);
+    /*DEBUG*/xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hBtnOk);
 
     //-------------------------------------
     //_m_hBtnCancel
@@ -137,7 +137,7 @@ CxInputBox::mrShowModal(
                             (HMENU)ID_btnCancel,
                             hInstance,
                             NULL);
-    /*DEBUG*/xASSERT_RET(NULL != _m_hBtnCancel, mrCancel);
+    /*DEBUG*/xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hBtnCancel);
 
     //-------------------------------------
     //_m_hWndMain
@@ -179,7 +179,7 @@ CxInputBox::mrShowModal(
 
     ::DestroyWindow(_m_hWndMain);
     blRes = ::UnregisterClass(xT("CxInputBox"), hInstance);
-    /*DEBUG*/xASSERT_RET(FALSE != blRes, CxInputBox::mrCancel);
+    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 
     return static_cast<ExModalResult>( msgMsg.wParam );
 }
@@ -208,7 +208,7 @@ CxInputBox::_ms_pWndProc(
 {
     if (WM_COMMAND == uiMsg) {
         CxInputBox *pibThis = (CxInputBox *)::GetWindowLong(hWnd, 0);
-        /*DEBUG*/xASSERT_RET(NULL != pibThis, 0);
+        /*DEBUG*/xTEST_PTR(pibThis);
 
         switch (wParam) {
             case ID_btnOK: {

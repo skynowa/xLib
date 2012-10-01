@@ -125,7 +125,7 @@ CxTest::bCreateTempDir(
         _m_sWorkDirPath = CxPath::sGetExeDir() + CxConst::xSLASH + a_csDirName;
 
         bool bRv = CxDir::bCreateForce(_m_sWorkDirPath);
-        /*DEBUG*/xASSERT_RET(true == bRv, false);
+        /*DEBUG*/xTEST_EQ(true, bRv);
     }
 
     return true;

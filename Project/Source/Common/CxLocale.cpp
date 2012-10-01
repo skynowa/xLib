@@ -31,18 +31,18 @@ CxLocale::sGetCurrent() {
 
     //Retrieves information about a locale specified by identifier
     iRv = ::GetLocaleInfo(lcId, LOCALE_SENGLANGUAGE, 0, 0);
-    /*DEBUG*/xASSERT_RET(0 != iRv, std::tstring_t());
+    /*DEBUG*/xTEST_DIFF(0, iRv);
 
     sRv.resize(iRv);
     iRv = ::GetLocaleInfo(lcId, LOCALE_SENGLANGUAGE, &sRv.at(0), sRv.size());
-    /*DEBUG*/xASSERT_RET(0 != iRv, std::tstring_t());
+    /*DEBUG*/xTEST_DIFF(0, iRv);
 
     sRv.resize(iRv - sizeof('\0'));    //delete from end '\0'
 #elif xOS_ENV_UNIX
     const tchar_t *pcszLocale = NULL;
 
     pcszLocale = std::xTSETLOCALE(LC_ALL, NULL);
-    /*DEBUG*/xASSERT_RET(NULL != pcszLocale, std::tstring_t());
+    /*DEBUG*/xTEST_PTR(pcszLocale);
 
     sRv.assign(pcszLocale);
 #endif
@@ -63,7 +63,7 @@ CxLocale::bSetCurrent(
     const tchar_t *pcszRes = NULL;
 
     pcszRes = ::xTSETLOCALE(LC_ALL, pcszLocale);
-    /*DEBUG*/xASSERT_RET(NULL != pcszRes, false);
+    /*DEBUG*/xTEST_PTR(pcszRes);
 
     return true;
 }
@@ -74,7 +74,7 @@ CxLocale::bSetDefault() {
     /*DEBUG*/// n/a
 
     bool bRv = CxLocale::bSetCurrent(CxLocale::sGetCurrent());
-   /*DEBUG*/xASSERT_RET(true == bRv, false);
+   /*DEBUG*/xTEST_EQ(true, bRv);
 
    return true;
 }

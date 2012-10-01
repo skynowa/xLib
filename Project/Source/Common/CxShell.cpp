@@ -55,7 +55,7 @@ CxShell::bExecute(
     std::tstring_t sCommand = CxString::sFormat(xT("%s \"%s\""), a_csFilePath.c_str(), a_csParams.c_str());
 
     int iRv = ::xTSYSTEM(sCommand.c_str());
-    /*DEBUG*/xASSERT_RET(- 1 != iRv, false);
+    /*DEBUG*/xTEST_DIFF(- 1, iRv);
 
     return true;
 }
@@ -72,14 +72,14 @@ CxShell::bFindExecutable(
     const std::tstring_t &a_csFindDirPath
 )
 {
-    /*DEBUG*/xASSERT_RET(false == a_csFileName.empty(), std::tstring_t());
+    /*DEBUG*/xTEST_EQ(false, a_csFileName.empty());
     /*DEBUG*/// csFindDirPath - n/a
 
     int     iRv             = SE_ERR_FNF;
     tchar_t szRes[MAX_PATH] = {0};
 
     iRv = reinterpret_cast<int>( ::FindExecutable(a_csFileName.c_str(), a_csFindDirPath.c_str(), szRes) );
-    /*DEBUG*/xASSERT_RET(32 < iRv, std::tstring_t());
+    /*DEBUG*/xTEST_LESS(32, iRv);
 
     return std::tstring_t(szRes);
 }
@@ -119,7 +119,7 @@ CxShell::bExecute(
     }
 
     int iRv = reinterpret_cast<int>( ::ShellExecute(a_chOwner, sOperation.c_str(), sFilePath.c_str(), sParams.c_str(), sDir.c_str(), a_csfShowCmd) );
-    /*DEBUG*/xASSERT_RET(32 < iRv, false);
+    /*DEBUG*/xTEST_LESS(32, iRv);
 
     return true;
 }
@@ -130,10 +130,10 @@ CxShell::bExecuteEx(
     SHELLEXECUTEINFO *a_peiInfo
 )
 {
-    /*DEBUG*/xASSERT_RET(false != a_peiInfo, false);
+    /*DEBUG*/xTEST_PTR(a_peiInfo);
 
     BOOL bRv = ::ShellExecuteEx(a_peiInfo);
-    /*DEBUG*/xASSERT_RET(FALSE != bRv, false);
+    /*DEBUG*/xTEST_DIFF(FALSE, bRv);
 
     return true;
 }
@@ -151,7 +151,7 @@ CxShell::bExecuteHttp(
     xCHECK_RET(true == sUrl.empty(), false);
 
     bool bRv = bExecute(NULL, opOpen, xT("IEXPLORE.EXE"), sUrl, xT(""), sfShowNormal);
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     return true;
 }
@@ -169,7 +169,7 @@ CxShell::bExecuteFtp(
     xCHECK_RET(true == sUrl.empty(), false);
 
     bool bRv = bExecute(NULL, opOpen, xT("explorer.exe"), xT("/e, ") + sUrl, xT(""), sfShowNormal);
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     return true;
 }
@@ -206,7 +206,7 @@ CxShell::bExecuteEmail(
     //iMsgBox(sCmd);
 
     bool bRv = bExecute(NULL, opOpen, sCmd, xT(""), xT(""), sfShowNormal);
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     return true;
 }
@@ -265,36 +265,36 @@ CxShell::bCreateShortcut(
     HRESULT     hRv  = 0;
 
     hRv = ::CoCreateInstance(CLSID_ShellLink, NULL, CLSCTX_INPROC_SERVER, IID_IShellLink, (void **)&pslSL);
-    /*DEBUG*/xASSERT_RET(SUCCEEDED(hRv), false);
+    /*DEBUG*/xTEST_EQ(true, SUCCEEDED(hRv));
 
     {
         hRv = pslSL->SetPath(a_csFilePath.c_str());
-        /*DEBUG*/xASSERT_RET(SUCCEEDED(hRv), false);
+        /*DEBUG*/xTEST_EQ(true, SUCCEEDED(hRv));
 
         hRv = pslSL->SetArguments(a_csArguments.c_str());
-        /*DEBUG*/xASSERT_RET(SUCCEEDED(hRv), false);
+        /*DEBUG*/xTEST_EQ(true, SUCCEEDED(hRv));
 
         hRv = pslSL->SetWorkingDirectory(a_csWorkingDirectory.c_str());
-        /*DEBUG*/xASSERT_RET(SUCCEEDED(hRv), false);
+        /*DEBUG*/xTEST_EQ(true, SUCCEEDED(hRv));
 
         hRv = pslSL->SetIconLocation(a_csIconFilePath.c_str(), a_ciIconIndex);
-        /*DEBUG*/xASSERT_RET(SUCCEEDED(hRv), false);
+        /*DEBUG*/xTEST_EQ(true, SUCCEEDED(hRv));
 
         hRv = pslSL->SetHotkey(a_cwHotKey);
-        /*DEBUG*/xASSERT_RET(SUCCEEDED(hRv), false);
+        /*DEBUG*/xTEST_EQ(true, SUCCEEDED(hRv));
 
         hRv = pslSL->SetShowCmd(a_ciCmdShow);
-        /*DEBUG*/xASSERT_RET(SUCCEEDED(hRv), false);
+        /*DEBUG*/xTEST_EQ(true, SUCCEEDED(hRv));
 
         hRv = pslSL->SetDescription(a_csDescription.c_str());
-        /*DEBUG*/xASSERT_RET(SUCCEEDED(hRv), false);
+        /*DEBUG*/xTEST_EQ(true, SUCCEEDED(hRv));
     }
 
 
     IPersistFile *ppfPF = NULL;
 
     hRv = pslSL->QueryInterface(IID_IPersistFile, CxUtils::reinterpretCastT<void **>( &ppfPF ));
-    /*DEBUG*/xASSERT_RET(SUCCEEDED(hRv), false);
+    /*DEBUG*/xTEST_EQ(true, SUCCEEDED(hRv));
 
 #if xUNICODE
     hRv = ppfPF->Save(csShortCutFilePath.c_str(), true);

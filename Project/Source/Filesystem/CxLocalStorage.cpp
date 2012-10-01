@@ -61,18 +61,18 @@ CxLocalStorage::bCreateDefault(
     const std::tstring_t &csContent
 ) const
 {
-    /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), false);
+    /*DEBUG*/xTEST_EQ(false, _m_sFilePath.empty());
     /*DEBUG*/// csContent - n/a;
 
     bool bRv = CxFile::bTextWrite(_m_sFilePath, csContent);
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     return true;
 }
 //-------------------------------------------------------------------------
 std::tstring_t
 CxLocalStorage::sGetPath() const {
-    /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), std::tstring_t());
+    /*DEBUG*/xTEST_EQ(false, _m_sFilePath.empty());
 
     return _m_sFilePath;
 }
@@ -83,10 +83,10 @@ CxLocalStorage::bSetPath(
 )
 {
     /*DEBUG*///_m_sFilePath - n/a
-    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
+    /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
 
     bool bRv = CxDir::bCreateForce(CxPath::sGetDir(csFilePath));
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     _m_sFilePath = csFilePath;
 
@@ -105,7 +105,7 @@ CxLocalStorage::bFlush() const {
     /*DEBUG*/
 
     bool bRv = CxFile::bTextWrite(_m_sFilePath, _m_csSeparator, _m_msIni);
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     return true;
 }
@@ -115,7 +115,7 @@ CxLocalStorage::bClear() {
     /*DEBUG*/
 
     bool bRv = CxFile::bClear(_m_sFilePath);
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     return true;
 }
@@ -126,7 +126,7 @@ CxLocalStorage::bDelete() {
 
     //file
     bool bRv = CxFile::bDelete(_m_sFilePath);
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     //TLocalStorage
     _m_msIni.clear();
@@ -147,12 +147,12 @@ CxLocalStorage::bKeyIsExists(
     const std::tstring_t &csKey
 ) const
 {
-    /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), false);
+    /*DEBUG*/xTEST_EQ(false, _m_sFilePath.empty());
 
     TLocalStorage mmsIni;
 
     bool bRv = CxFile::bTextRead(_m_sFilePath, _m_csSeparator, &mmsIni);
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     xCHECK_RET(mmsIni.end() == mmsIni.find(csKey), false);
 
@@ -165,14 +165,14 @@ CxLocalStorage::sKeyReadString(
     const std::tstring_t &csDefaultValue
 )
 {
-    /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), std::tstring_t());
-    /*DEBUG*/xASSERT_RET(false == csKey.empty(),        std::tstring_t());
+    /*DEBUG*/xTEST_EQ(false, _m_sFilePath.empty());
+    /*DEBUG*/xTEST_EQ(false, csKey.empty());
     /*DEBUG*///csDefaultValue - n/a
 
     std::tstring_t sRv;
 
     bool bRv = _bRead(csKey, csDefaultValue, &sRv);
-    /*DEBUG*/xASSERT_RET(true == bRv, std::tstring_t());
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     return sRv;
 }
@@ -183,12 +183,12 @@ CxLocalStorage::bKeyWriteString(
     const std::tstring_t &csValue
 )
 {
-    /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), false);
-    /*DEBUG*/xASSERT_RET(false == csKey.empty(),        false);
+    /*DEBUG*/xTEST_EQ(false, _m_sFilePath.empty());
+    /*DEBUG*/xTEST_EQ(false, csKey.empty());
     /*DEBUG*///csValue   - n/a
 
     bool bRv = _bWrite(csKey, csValue);
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     return true;
 }
@@ -199,7 +199,7 @@ CxLocalStorage::iKeyReadInt(
     const long_t          cliDefaultValue
 )
 {
-    /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), 0);
+    /*DEBUG*/xTEST_EQ(false, _m_sFilePath.empty());
     /*DEBUG*///csKey         - n/a
     /*DEBUG*///iDefaultValue - n/a
 
@@ -212,7 +212,7 @@ CxLocalStorage::bKeyWriteInt(
     const long_t          cliValue
 )
 {
-    /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), false);
+    /*DEBUG*/xTEST_EQ(false, _m_sFilePath.empty());
     /*DEBUG*///csKey     - n/a
     /*DEBUG*///iValue    - n/a
 
@@ -225,7 +225,7 @@ CxLocalStorage::dKeyReadFloat(
     const double          cdDefaultValue
 )
 {
-    /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), 0.0);
+    /*DEBUG*/xTEST_EQ(false, _m_sFilePath.empty());
     /*DEBUG*///csKey         - n/a
     /*DEBUG*///dDefaultValue - n/a
 
@@ -238,7 +238,7 @@ CxLocalStorage::bKeyWriteFloat(
     const double          cdValue
 )
 {
-    /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), false);
+    /*DEBUG*/xTEST_EQ(false, _m_sFilePath.empty());
     /*DEBUG*///csKey     - n/a
     /*DEBUG*///dValue    - n/a
 
@@ -251,7 +251,7 @@ CxLocalStorage::bKeyReadBool(
     const bool            cbDefaultValue
 )
 {
-    /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), false);
+    /*DEBUG*/xTEST_EQ(false, _m_sFilePath.empty());
     /*DEBUG*///csKey         - n/a
     /*DEBUG*///bDefaultValue - n/a
 
@@ -271,7 +271,7 @@ CxLocalStorage::bKeyWriteBool(
     const bool            cbValue
 )
 {
-    /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), false);
+    /*DEBUG*/xTEST_EQ(false, _m_sFilePath.empty());
     /*DEBUG*///csKey     - n/a
     /*DEBUG*///bValue    - n/a
 
@@ -288,7 +288,7 @@ CxLocalStorage::usKeyReadBin(
     const std::ustring_t &cusDefaultValue
 )
 {
-    /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), std::ustring_t());
+    /*DEBUG*/xTEST_EQ(false, _m_sFilePath.empty());
     /*DEBUG*///csKey          - n/a
     /*DEBUG*///cusDefaultValue - n/a
 
@@ -308,7 +308,7 @@ CxLocalStorage::bKeyWriteBin(
     const std::ustring_t &cusValue
 )
 {
-    /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), false);
+    /*DEBUG*/xTEST_EQ(false, _m_sFilePath.empty());
     /*DEBUG*///csKey     - n/a
     /*DEBUG*///cusValue  - n/a
 
@@ -325,8 +325,8 @@ CxLocalStorage::bKeyClear(
     const std::tstring_t &csKey
 )
 {
-    /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), false);
-    /*DEBUG*/xASSERT_RET(false == csKey.empty(),        false);
+    /*DEBUG*/xTEST_EQ(false, _m_sFilePath.empty());
+    /*DEBUG*/xTEST_EQ(false, csKey.empty());
 
     return bKeyWriteString(csKey, std::tstring_t());
 }
@@ -336,12 +336,12 @@ CxLocalStorage::bKeyDelete(
    const std::tstring_t &csKey
 )
 {
-    /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), false);
-    /*DEBUG*/xASSERT_RET(false == csKey.empty(),        false);
+    /*DEBUG*/xTEST_EQ(false, _m_sFilePath.empty());
+    /*DEBUG*/xTEST_EQ(false, csKey.empty());
 
     //read from file
     bool bRv = CxFile::bTextRead(_m_sFilePath, _m_csSeparator, &_m_msIni);
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     xCHECK_RET(_m_msIni.end() == _m_msIni.find(csKey), true);
 
@@ -350,7 +350,7 @@ CxLocalStorage::bKeyDelete(
 
     //write to file
     bRv = CxFile::bTextWrite(_m_sFilePath, _m_csSeparator, _m_msIni);
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     return true;
 }
@@ -372,17 +372,17 @@ CxLocalStorage::_bRead(
 {
     /*DEBUG*/// csKey          - n/a
     /*DEBUG*/// csDefaultValue - n/a
-    /*DEBUG*/xASSERT_RET(NULL != psValue, false);
+    /*DEBUG*/xTEST_PTR(psValue);
 
     //read from file
     bool bRv = CxFile::bTextRead(_m_sFilePath, _m_csSeparator, &_m_msIni);
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     //read to TLocalStorage
     TLocalStorage::iterator it = _m_msIni.find(csKey);
     if (_m_msIni.end() == it) {
         bRv = _bWrite(csKey, csDefaultValue);
-        /*DEBUG*/xASSERT_RET(true == bRv, false);
+        /*DEBUG*/xTEST_EQ(true, bRv);
 
         (*psValue) = csDefaultValue;
     } else {
@@ -398,8 +398,8 @@ CxLocalStorage::_bWrite(
     const std::tstring_t &csValue
 )
 {
-    /*DEBUG*/xASSERT_RET(false == _m_sFilePath.empty(), false);
-    /*DEBUG*/xASSERT_RET(false == csKey.empty(),        false);
+    /*DEBUG*/xTEST_EQ(false, _m_sFilePath.empty());
+    /*DEBUG*/xTEST_EQ(false, csKey.empty());
     /*DEBUG*/// csValue - n/a
 
     //write to TLocalStorage
@@ -412,7 +412,7 @@ CxLocalStorage::_bWrite(
 
     //write to file
     bool bRv = CxFile::bTextWrite(_m_sFilePath, _m_csSeparator, _m_msIni);
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     return true;
 }

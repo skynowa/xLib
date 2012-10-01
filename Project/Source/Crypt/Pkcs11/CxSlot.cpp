@@ -46,9 +46,9 @@ CxSlot::bGetList(
     std::vector<CK_SLOT_ID> *a_pvecSlotList       ///< receives array of slot IDs
 )
 {
-    /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,       false);
+    /*DEBUG*/xTEST_PTR(_m_pFunc);
     /*DEBUG*/// bTokenPresent - n/a
-    /*DEBUG*/xASSERT_RET(NULL != a_pvecSlotList, false);
+    /*DEBUG*/xTEST_PTR(a_pvecSlotList);
 
     CK_ULONG ulCount = 0;
 
@@ -62,7 +62,7 @@ CxSlot::bGetList(
 
     ulRv = _m_pFunc->C_GetSlotList(a_bTokenPresent, &(*a_pvecSlotList).at(0), &ulCount);
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK                 == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
-    /*DEBUG*/xASSERT_RET    ((*a_pvecSlotList).size() == ulCount,                              false);
+    /*DEBUG*/xTEST_EQ(static_cast<ulong_t>( (*a_pvecSlotList).size() ), ulCount);
 
     return true;
 }
@@ -73,9 +73,9 @@ CxSlot::bGetInfo(
     CK_SLOT_INFO_PTR a_pInfo    ///< receives the slot information
 )
 {
-    /*DEBUG*/xASSERT_RET(NULL != _m_pFunc, false);
+    /*DEBUG*/xTEST_PTR(_m_pFunc);
     /*DEBUG*/// slotID - n/a
-    /*DEBUG*/xASSERT_RET(NULL != a_pInfo,  false);
+    /*DEBUG*/xTEST_PTR(a_pInfo);
 
     CK_RV ulRv = _m_pFunc->C_GetSlotInfo(a_slotID, a_pInfo);
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
@@ -90,9 +90,9 @@ CxSlot::nfWaitForEvent(
     CK_VOID_PTR    a_pRserved   ///< reserved.  Should be NULL_PTR
 )
 {
-    /*DEBUG*/xASSERT_RET(NULL     != _m_pFunc, nfError);
+    /*DEBUG*/xTEST_PTR(_m_pFunc);
     /*DEBUG*/// flags    - n/a
-    /*DEBUG*/xASSERT_RET(NULL     != a_pSlot,  nfError);
+    /*DEBUG*/xTEST_PTR(a_pSlot);
     /*DEBUG*/// pRserved - n/a
 
     CK_RV ulRv = _m_pFunc->C_WaitForSlotEvent(a_flags, a_pSlot, a_pRserved);
@@ -103,7 +103,7 @@ CxSlot::nfWaitForEvent(
     CK_SLOT_INFO siInfo = {{0}};
 
     bool bRv = bGetInfo(*a_pSlot, &siInfo);
-    /*DEBUG*/xASSERT_RET(true == bRv, nfError);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     xCHECK_RET(siInfo.flags & CKF_TOKEN_PRESENT, nfInsertion);
 

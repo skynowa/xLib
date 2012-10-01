@@ -61,9 +61,9 @@ CxTcpClient::bConnect(
     ushort_t              a_usPort
 )
 {
-    /*DEBUG*/xASSERT_RET(etInvalid != _m_sktSocket,            false);
-    /*DEBUG*/xASSERT_RET(false     == a_csIp.empty(),          false);
-    /*DEBUG*/xASSERT_RET((65535 > a_usPort) && (0 < a_usPort), false);
+    /*DEBUG*/xTEST_DIFF(xSOCKET_HANDLE_INVALID, _m_sktSocket);
+    /*DEBUG*/xTEST_EQ(false, a_csIp.empty());
+    /*DEBUG*/xTEST_EQ(true, (65535 > a_usPort) && (0 < a_usPort));
 
     //конверт из UNICODE
     std::string asIp(a_csIp.begin(), a_csIp.end());
@@ -74,7 +74,7 @@ CxTcpClient::bConnect(
     saSockAddr.sin_port        = htons(a_usPort); //???????
 
     int iRv = ::connect(_m_sktSocket, CxUtils::reinterpretCastT<sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
-    /*DEBUG*/xASSERT_RET(etError != iRv, false);
+    /*DEBUG*/xTEST_DIFF(xSOCKET_ERROR, iRv);
 
     return true;
 }
@@ -85,13 +85,13 @@ CxTcpClient::bIoctl(
     ulong_t *a_pulArgp
 )
 {
-    /*DEBUG*/xASSERT_RET(etInvalid != _m_sktSocket, false);
+    /*DEBUG*/xTEST_DIFF(xSOCKET_HANDLE_INVALID, _m_sktSocket);
 
-    int iRv = etError;
+    int iRv = xSOCKET_ERROR;
 
 #if   xOS_ENV_WIN
     iRv = ioctlsocket(_m_sktSocket, a_liCmd, a_pulArgp);
-    /*DEBUG*/xASSERT_RET(etError != iRv, false);
+    /*DEBUG*/xTEST_DIFF(xSOCKET_ERROR, iRv);
 #elif xOS_ENV_UNIX
     iRv = ::ioctl    (_m_sktSocket, a_liCmd, a_pulArgp);
     /*DEBUG*/xASSERT_RET(etError != iRv, false);
@@ -111,7 +111,7 @@ CxTcpClient::bSetNonBlockingMode(
     ulong_t ulNonBlockingMode = static_cast<ulong_t>(a_cbFlag);
 
     bool bRv = bIoctl(FIONBIO, static_cast<ulong_t FAR *>(&ulNonBlockingMode));
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     /*
     int bOptVal = true;
@@ -186,8 +186,8 @@ CxTcpClient::bIsServerAlive(
     ushort_t              a_usPort
 )
 {
-    /*DEBUG*/xASSERT_RET(false == a_csIp.empty(),              false);
-    /*DEBUG*/xASSERT_RET((65535 > a_usPort) && (0 < a_usPort), false);
+    /*DEBUG*/xTEST_EQ(false, a_csIp.empty());
+    /*DEBUG*/xTEST_EQ(true, (65535 > a_usPort) && (0 < a_usPort));
 
     bool bRv     = false;
     int  iRv     = - 1;
@@ -197,7 +197,7 @@ CxTcpClient::bIsServerAlive(
     //-------------------------------------
     //bCreate
     bRv = objSocket.bCreate(CxSocket::afInet, CxSocket::tpStream, CxSocket::ptIp);
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     //-------------------------------------
     //bConnect

@@ -248,7 +248,7 @@ CxTest_xDefines::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         m_ulRv = xLINE;
-        xTEST_GREATER(0UL, m_ulRv);
+        xTEST_GR(0UL, m_ulRv);
     }
 
     //--------------------------------------------------
@@ -323,7 +323,7 @@ CxTest_xDefines::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         m_iRv = xHOST_NAME_MAX;
-        xTEST_GREATER(0, m_iRv);
+        xTEST_GR(0, m_iRv);
     }
 
     //--------------------------------------------------
@@ -331,7 +331,7 @@ CxTest_xDefines::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         m_stRv = xPATH_MAX;
-        xTEST_GREATER(m_stRv, 0U);
+        xTEST_GR(m_stRv, 0U);
     }
 
     //--------------------------------------------------
@@ -339,7 +339,7 @@ CxTest_xDefines::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         m_stRv = xNAME_MAX;
-        xTEST_GREATER(m_stRv, 0U);
+        xTEST_GR(m_stRv, 0U);
     }
 
     //--------------------------------------------------
@@ -347,7 +347,7 @@ CxTest_xDefines::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         m_stRv = xLINE_MAX;
-        xTEST_GREATER(m_stRv, 0U);
+        xTEST_GR(m_stRv, 0U);
     }
 
     //--------------------------------------------------
@@ -355,7 +355,7 @@ CxTest_xDefines::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         m_stRv = xENV_MAX;
-        xTEST_GREATER(m_stRv, 0U);
+        xTEST_GR(m_stRv, 0U);
     }
 
     //--------------------------------------------------
@@ -363,7 +363,7 @@ CxTest_xDefines::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         m_ulRv = xSTACK_TRACE_FRAMES_MAX;
-        xTEST_GREATER(m_ulRv, 0UL);
+        xTEST_GR(m_ulRv, 0UL);
     }
 
     //--------------------------------------------------
@@ -371,7 +371,7 @@ CxTest_xDefines::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         m_liRv = xSEMAPHORE_VALUE_MAX;
-        xTEST_GREATER(m_liRv, 0L);
+        xTEST_GR(m_liRv, 0L);
     }
 
     //--------------------------------------------------
@@ -436,7 +436,7 @@ CxTest_xDefines::bUnit(
     {
         #if xOS_ENV_UNIX
             m_stRv = xPAGE_SIZE;
-            xTEST_GREATER(m_stRv, 0);
+            xTEST_GR(m_stRv, 0);
         #endif
     }
 

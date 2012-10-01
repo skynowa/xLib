@@ -26,7 +26,7 @@ CxConnectionString::sMSJetOleDb40(
     const std::tstring_t &a_csDatabasePassword
 )
 {
-    /*DEBUG*/xASSERT_RET(false == CxString::sTrimSpace(a_csDataSource).empty(), std::tstring_t());
+    /*DEBUG*/xTEST_EQ(false, CxString::sTrimSpace(a_csDataSource).empty());
     /*DEBUG*/// csPassword         - n/a
     /*DEBUG*/// csUserId           - n/a
     /*DEBUG*/// csDatabasePassword - n/a

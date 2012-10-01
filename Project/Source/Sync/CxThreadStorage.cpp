@@ -50,15 +50,15 @@ CxThreadStorage::pvGetValue() const {
     void *pvRv = NULL;
 
 #if   xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(TLS_OUT_OF_INDEXES != _m_indIndex, NULL);
+    /*DEBUG*/xTEST_DIFF(TLS_OUT_OF_INDEXES, _m_indIndex);
 
     pvRv = ::TlsGetValue(_m_indIndex);
-    /*DEBUG*/xASSERT_RET((NULL != pvRv) && (ERROR_SUCCESS == CxLastError::ulGet()), NULL);
+    /*DEBUG*/xTEST_EQ(true, (NULL != pvRv) && (ERROR_SUCCESS == CxLastError::ulGet()));
 #elif xOS_ENV_UNIX
     /*DEBUG*/xASSERT_RET(0 <= _m_indIndex, NULL);
 
     pvRv = ::pthread_getspecific(_m_indIndex);
-    /*DEBUG*/xASSERT_RET(NULL != pvRv, NULL);
+    /*DEBUG*/xTEST_PTR(pvRv, NULL);
 #endif
 
     return pvRv;
@@ -69,13 +69,13 @@ CxThreadStorage::bSetValue(
     void *a_pvValue
 ) const
 {
-    /*DEBUG*/xASSERT_RET(NULL != a_pvValue, false);
+    /*DEBUG*/xTEST_PTR(a_pvValue);
 
 #if   xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(TLS_OUT_OF_INDEXES != _m_indIndex, false);
+    /*DEBUG*/xTEST_DIFF(TLS_OUT_OF_INDEXES, _m_indIndex);
 
     BOOL blRes = ::TlsSetValue(_m_indIndex, a_pvValue);
-    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
+    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     /*DEBUG*/xASSERT_RET(0 <= _m_indIndex, false);
 
@@ -99,10 +99,10 @@ CxThreadStorage::_bAlloc() {
     index_t indRes = (index_t)- 1;
 
 #if   xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(TLS_OUT_OF_INDEXES == _m_indIndex, false);
+    /*DEBUG*/xTEST_EQ(TLS_OUT_OF_INDEXES, _m_indIndex);
 
     indRes = ::TlsAlloc();
-    /*DEBUG*/xASSERT_RET(TLS_OUT_OF_INDEXES != indRes, false);
+    /*DEBUG*/xTEST_DIFF(TLS_OUT_OF_INDEXES, indRes);
 #elif xOS_ENV_UNIX
     /*DEBUG*/xASSERT_RET(static_cast<pthread_key_t>( -1 ) == _m_indIndex, false);
 
@@ -118,10 +118,10 @@ CxThreadStorage::_bAlloc() {
 bool
 CxThreadStorage::_bFree() {
 #if   xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(TLS_OUT_OF_INDEXES != _m_indIndex, false);
+    /*DEBUG*/xTEST_DIFF(TLS_OUT_OF_INDEXES, _m_indIndex);
 
     BOOL blRes = ::TlsFree(_m_indIndex);
-    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
+    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 
     _m_indIndex = TLS_OUT_OF_INDEXES;
 #elif xOS_ENV_UNIX

@@ -46,7 +46,7 @@ CxProfiler::bSetLogPath(
     /*DEBUG*/
 
     bool bRv = _flLog.bSetFilePath(a_csLogPath);
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     return true;
 }
@@ -60,10 +60,10 @@ CxProfiler::sGetLogPath() const {
 //--------------------------------------------------------------------------
 bool
 CxProfiler::bStart() {
-    /*DEBUG*/xASSERT_RET(false == _m_bIsStarted, false);
+    /*DEBUG*/xTEST_EQ(false, _m_bIsStarted);
 
     bool bRv = _bResetData();
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     #if xTODO
         bRv = CxProcess::bSetPriority(CxProcess::ulGetCurrId(), CxProcess::tpTimeCritical);
@@ -79,7 +79,7 @@ CxProfiler::bStart() {
                 #else
                     _m_ctClocksStart = std::clock();
                 #endif
-                /*DEBUG*/xASSERT_RET(static_cast<clock_t>( - 1 ) != _m_ctClocksStart, false);
+                /*DEBUG*/xTEST_DIFF(static_cast<clock_t>( - 1 ), _m_ctClocksStart);
             }
             break;
 
@@ -106,16 +106,16 @@ CxProfiler::bStart() {
 
             case pmPerformanceCount: {
                     BOOL blRes = ::QueryPerformanceFrequency(&_m_liCountersPerfFreq);
-                    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
+                    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 
                     blRes = ::QueryPerformanceCounter(&_m_liCountersStart);
-                    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
+                    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
                 }
                 break;
 
             case pmThreadTimes: {
                     BOOL blRes = ::GetThreadTimes(CxCurrentThread::hGetHandle(), &_m_lpCreationTime, &_m_lpExitTime, &_m_lpKernelTimeStart, &_m_lpUserTimeStart);
-                    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
+                    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
                 }
                 break;
         #endif
@@ -136,7 +136,7 @@ CxProfiler::bStop(
     const tchar_t *a_pcszComment, ...
 )
 {
-    /*DEBUG*/xASSERT_RET(false != _m_bIsStarted, false);
+    /*DEBUG*/xTEST_EQ(true, _m_bIsStarted);
 
     std::tstring_t sTimeString = xT("0:00:00:000");
 
@@ -153,7 +153,7 @@ CxProfiler::bStop(
                     _m_ctClocksStop   = std::clock();
                 #endif
 
-                /*DEBUG*/xASSERT_RET(static_cast<clock_t>( - 1 ) != _m_ctClocksStop, false);
+                /*DEBUG*/xTEST_DIFF(static_cast<clock_t>( - 1 ), _m_ctClocksStop);
 
                 sTimeString = CxDateTime( (_m_ctClocksStop - _m_ctClocksStart) / ctClockResolution ).sFormat(CxDateTime::ftTime);
             }
@@ -188,7 +188,7 @@ CxProfiler::bStop(
 
             case pmPerformanceCount: {
                     BOOL blRes = ::QueryPerformanceCounter(&_m_liCountersStop);
-                    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
+                    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 
                     sTimeString = CxDateTime((_m_liCountersStop.QuadPart - _m_liCountersStart.QuadPart) * 1000 / _m_liCountersPerfFreq.QuadPart).sFormat(CxDateTime::ftTime);
                 }
@@ -196,7 +196,7 @@ CxProfiler::bStop(
 
             case pmThreadTimes: {
                     BOOL blRes = ::GetThreadTimes(CxCurrentThread::hGetHandle(), &_m_lpCreationTime, &_m_lpExitTime, &_m_lpKernelTimeStop, &_m_lpUserTimeStop);
-                    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
+                    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 
                     sTimeString = CxDateTime((CxDateTime::i64FiletimeToInt64(_m_lpUserTimeStop) - CxDateTime::i64FiletimeToInt64(_m_lpUserTimeStart)) / 10000).sFormat(CxDateTime::ftTime);
                 }
@@ -204,7 +204,7 @@ CxProfiler::bStop(
         #endif
 
         default: {
-                /*DEBUG*/xASSERT_RET(false, false);
+                /*DEBUG*/xTEST_FAIL;
             }
             break;
     }
@@ -221,7 +221,7 @@ CxProfiler::bStop(
     //-------------------------------------
     //write to log
     bool bRv = _flLog.bWrite(xT("%s: %s"), sTimeString.c_str(), sRv.c_str());
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     _m_bIsStarted = false;
 
@@ -247,10 +247,10 @@ CxProfiler::bPulse(
     //-------------------------------------
     //stop, start
     bool bRv = bStop(xT("%s"), sRv.c_str());
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     bRv = bStart();
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     return true;
 }

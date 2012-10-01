@@ -174,7 +174,7 @@ CxRandom::liGetInt(
     const long_t a_cliMax
 )
 {
-    /*DEBUG*/xASSERT_RET(a_cliMin < a_cliMax, 0L);
+    /*DEBUG*/xTEST_LESS(a_cliMin, a_cliMax);
 
     long_t liRv = 0;
 
@@ -194,7 +194,7 @@ CxRandom::liGetIntEx(
     const long_t a_cliMax
 )
 {
-    /*DEBUG*/xASSERT_RET(a_cliMin < a_cliMax, 0)
+    /*DEBUG*/xTEST_LESS(a_cliMin, a_cliMax);
 
     std::vector<long_t> vliRes;
 
@@ -202,7 +202,7 @@ CxRandom::liGetIntEx(
         vliRes.push_back(i);
     }
 
-    /*DEBUG*/xASSERT_RET(false == vliRes.empty(), 0L);
+    /*DEBUG*/xTEST_EQ(false, vliRes.empty());
 
     std::random_shuffle(vliRes.begin(), vliRes.end());
 

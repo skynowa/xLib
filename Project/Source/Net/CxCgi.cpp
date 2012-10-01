@@ -65,7 +65,7 @@ CxCgi::bRedirect(
     const std::tstring_t &a_csUrl
 )
 {
-    /*DEBUG*/xASSERT_RET(false == a_csUrl.empty(), false)
+    /*DEBUG*/xTEST_EQ(false, a_csUrl.empty())
 
     std::tstring_t sHttpResponse;
 
@@ -88,7 +88,7 @@ CxCgi::bPageShow(
     std::tstring_t sFileContent;
 
     bRv = CxFile::bTextRead(a_csFilePath, &sFileContent);
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     std::tcout << sFileContent << std::endl;
 
@@ -824,11 +824,11 @@ CxCgiCookies::_bInit() {
     TCookies           vecckCookies;
 
     bRv = CxString::bSplit(sRawCookies, CxConst::xSEMICOLON, &vsRawCookies);
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     xFOREACH_CONST(std::vec_tstring_t, it, vsRawCookies) {
         CxCookiePv0 *pckItem = new(std::nothrow) CxCookiePv0(*it);
-        /*DEBUG*/xASSERT_RET(NULL != pckItem, false);
+        /*DEBUG*/xTEST_PTR(pckItem);
 
         vecckCookies.push_back(pckItem);
     }
@@ -901,7 +901,7 @@ CxCgiFormData::_bInit() {
     int iRv = _m_ccgCgi.Environment.rmGetRequestMethod();
     switch (iRv) {
         case CxCgiEnvironment::rmGet: {
-                /*DEBUG*/xASSERT_RET(false == _m_ccgCgi.Environment.sGetQueryString().empty(), false);
+                /*DEBUG*/xTEST_EQ(false, _m_ccgCgi.Environment.sGetQueryString().empty());
 
                 //TODO: cgl_parsecgibuf(cgl_Formdata, cgl_Buf)
 
@@ -913,7 +913,7 @@ CxCgiFormData::_bInit() {
                 bool bRv = false;
 
                 bRv = CxString::bCompareNoCase(xT("application/x-www-form-urlencoded"), _m_ccgCgi.Environment.sGetContentType());
-                /*DEBUG*/xASSERT_RET(true == bRv, false);
+                /*DEBUG*/xTEST_EQ(true, bRv);
 
                 //get content length
                 size_t uiPostSize = 0;  // in bytes
@@ -923,8 +923,8 @@ CxCgiFormData::_bInit() {
                 else {
                     uiPostSize = CxString::string_cast<size_t>( _m_ccgCgi.Environment.sGetContentLength() );
                 }
-                /*DEBUG*/xASSERT_RET(0U            <  uiPostSize, false);
-                /*DEBUG*/xASSERT_RET(_m_cuiMaxData >= uiPostSize, false);  //secure
+                /*DEBUG*/xTEST_LESS(0U,  uiPostSize);
+                /*DEBUG*/xTEST_GR_EQ(_m_cuiMaxData, uiPostSize);  //secure
                 xCHECK_RET(_m_cuiMaxData <= uiPostSize, false);
 
 
@@ -933,12 +933,12 @@ CxCgiFormData::_bInit() {
                 std::tstring_t sBuff;
 
                 bRv = sfFile.bAttach(stdin);
-                /*DEBUG*/xASSERT_RET(true == bRv, false);
+                /*DEBUG*/xTEST_EQ(true, bRv);
 
                 sBuff.resize(uiPostSize);
 
                 size_t uiRes = sfFile.uiRead(&sBuff.at(0), sBuff.size());
-                /*DEBUG*/xASSERT_RET(uiRes == sBuff.size(), false);
+                /*DEBUG*/xTEST_EQ(uiRes, sBuff.size());
 
                 //TODO: cgl_parsecgibuf(cgl_Formdata, cgl_Buf)
 
@@ -949,7 +949,7 @@ CxCgiFormData::_bInit() {
             break;
 
         default: {
-                /////*DEBUG*/xASSERT_RET(false, false);
+                /////*DEBUG*/xTEST_FAIL;
             }
             break;
     }

@@ -34,8 +34,8 @@ bGetUsbInfo(
 )
 {
 #if 0
-    /*DEBUG*/xASSERT_RET(false == csDrive.empty(), false);
-    /*DEBUG*/xASSERT_RET(NULL  != pvsInfo,         false);
+    /*DEBUG*/xTEST_EQ(false, csDrive.empty(), false);
+    /*DEBUG*/xTEST_PTR(pvsInfo,         false);
 
     bool                     bRv                   = false;
     int                      mapiRes                = CR_FAILURE;

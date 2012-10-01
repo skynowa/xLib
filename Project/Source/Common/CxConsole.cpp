@@ -42,7 +42,7 @@ CxConsole::CxConsole()
     /*DEBUG*/xTEST_DIFF(xNATIVE_HANDLE_NULL, _m_hStdOut.hGet());
 
     _m_hWnd = _hGetWndHandle();
-    /*DEBUG*/xTEST_DIFF(static_cast<HWND>( NULL ), _m_hWnd);
+    /*DEBUG*/xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
 
     //_m_hMenu - n/a
 #endif
@@ -71,12 +71,12 @@ CxConsole::bSetTextColor(
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               std::tstring_t());
-    /*DEBUG*/xASSERT_RET(false != _m_hStdIn.bIsValid(),  std::tstring_t());
-    /*DEBUG*/xASSERT_RET(false != _m_hStdOut.bIsValid(), std::tstring_t());
+    /*DEBUG*/xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
+    /*DEBUG*/xTEST_EQ(true, _m_hStdIn.bIsValid());
+    /*DEBUG*/xTEST_EQ(true, _m_hStdOut.bIsValid());
 
     BOOL blRes = ::SetConsoleTextAttribute(_m_hStdOut.hGet(), a_cfgForeground);
-    /*DEBUG*/xASSERT_RET(FALSE != blRes, std::tstring_t());
+    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     xCHECK_DO(true == a_cbIsUnderline, sRv += CxString::sFormat(xT("\033[%im"), atUnderscore));
     xCHECK_DO(true == a_cbIsBlink,     sRv += CxString::sFormat(xT("\033[%im"), atBlink)     );
@@ -96,17 +96,17 @@ CxConsole::sRead() {
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               std::tstring_t());
-    /*DEBUG*/xASSERT_RET(false != _m_hStdIn.bIsValid(),  std::tstring_t());
-    /*DEBUG*/xASSERT_RET(false != _m_hStdOut.bIsValid(), std::tstring_t());
+    /*DEBUG*/xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
+    /*DEBUG*/xTEST_EQ(true, _m_hStdIn.bIsValid());
+    /*DEBUG*/xTEST_EQ(true, _m_hStdOut.bIsValid());
 
     ulong_t       ulRead                  = 0UL;
     const ulong_t culBuffSize             = 1024UL * 4UL;
     tchar_t       szBuff[culBuffSize + 1] = {0};
 
     BOOL blRes = ::ReadConsole(_m_hStdIn.hGet(), &szBuff[0], culBuffSize, &ulRead, NULL);
-    /*DEBUG*/xASSERT_RET(FALSE != blRes,  std::tstring_t());
-    /*DEBUG*/xASSERT_RET(NULL  != szBuff, std::tstring_t());
+    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
+    /*DEBUG*/xTEST_PTR(szBuff);
 
     sRv.assign(szBuff, ulRead - CxConst::xCRNL.size());
 #elif xOS_ENV_UNIX
@@ -122,15 +122,15 @@ CxConsole::bWrite(
 )
 {
 #if   xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               false);
-    /*DEBUG*/xASSERT_RET(false != _m_hStdIn.bIsValid(),  false);
-    /*DEBUG*/xASSERT_RET(false != _m_hStdOut.bIsValid(), false);
+    /*DEBUG*/xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
+    /*DEBUG*/xTEST_EQ(true, _m_hStdIn.bIsValid());
+    /*DEBUG*/xTEST_EQ(true, _m_hStdOut.bIsValid());
 
     ulong_t ulWritten = 0UL;
 
     BOOL blRes = ::WriteConsole(_m_hStdOut.hGet(), &a_csStr.at(0), a_csStr.size(), &ulWritten, NULL);
-    /*DEBUG*/xASSERT_RET(FALSE     != blRes,          false);
-    /*DEBUG*/xASSERT_RET(ulWritten == a_csStr.size(), false);
+    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
+    /*DEBUG*/xTEST_EQ(static_cast<size_t>( ulWritten ), a_csStr.size());
 #elif xOS_ENV_UNIX
     std::tcout << a_csStr;
 #endif
@@ -147,13 +147,13 @@ CxConsole::bWriteLine(
 {
 #if   xOS_ENV_WIN
     //TODO: xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               false);
-    /*DEBUG*/xASSERT_RET(false != _m_hStdIn.bIsValid(),  false);
-    /*DEBUG*/xASSERT_RET(false != _m_hStdOut.bIsValid(), false);
+    /*DEBUG*/xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
+    /*DEBUG*/xTEST_EQ(true, _m_hStdIn.bIsValid());
+    /*DEBUG*/xTEST_EQ(true, _m_hStdOut.bIsValid());
 #endif
 
     bool bRv = bWrite(a_csStr + CxConst::xNL);
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     return true;
 }
@@ -164,16 +164,16 @@ CxConsole::bWriteErrLine(
 )
 {
 #if   xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               false);
-    /*DEBUG*/xASSERT_RET(false != _m_hStdIn.bIsValid(),  false);
-    /*DEBUG*/xASSERT_RET(false != _m_hStdOut.bIsValid(), false);
+    /*DEBUG*/xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
+    /*DEBUG*/xTEST_EQ(true, _m_hStdIn.bIsValid());
+    /*DEBUG*/xTEST_EQ(true, _m_hStdOut.bIsValid());
 #endif
 
     bool bRv = bWriteLine(xT("Error: ") + a_csStr);
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     bRv = bPause();
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     return true;
 }
@@ -222,12 +222,12 @@ CxConsole::bPrompt(
     std::tstring_t       *a_psAnswer
 )
 {
-    /*DEBUG*/xASSERT_RET(false == a_csPrompt.empty(), false);
-    /*DEBUG*/xASSERT_RET(NULL  != a_psAnswer,         false);
+    /*DEBUG*/xTEST_EQ(false, a_csPrompt.empty());
+    /*DEBUG*/xTEST_PTR(a_psAnswer);
 
     for ( ; ; ) {
         bool bRv = bWrite(a_csPrompt + xT(": "));
-        /*DEBUG*/xASSERT_RET(true == bRv, false);
+        /*DEBUG*/xTEST_EQ(true, bRv);
 
         for ( ; ; ) {
             const tchar_t chLetter = static_cast<tchar_t>( std::tcin.get() );
@@ -245,7 +245,7 @@ CxConsole::bPrompt(
         }
 
         bRv = bWriteLine(CxConst::xSTR_EMPTY);
-        /*DEBUG*/xASSERT_RET(true == bRv, false);
+        /*DEBUG*/xTEST_EQ(true, bRv);
 
         xCHECK_DO(true == (*a_psAnswer).empty(), continue);
 
@@ -275,7 +275,7 @@ CxConsole::bPause() {
 #endif
 
     bool bRv = bWrite(xT("Press [ENTER] to continue..."));
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     std::cin.clear();
     std::cin.ignore();
@@ -288,9 +288,9 @@ CxConsole::bClear() {
     /*DEBUG*/
 
 #if   xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               false);
-    /*DEBUG*/xASSERT_RET(false != _m_hStdIn.bIsValid(),  false);
-    /*DEBUG*/xASSERT_RET(false != _m_hStdOut.bIsValid(), false);
+    /*DEBUG*/xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
+    /*DEBUG*/xTEST_EQ(true, _m_hStdIn.bIsValid());
+    /*DEBUG*/xTEST_EQ(true, _m_hStdOut.bIsValid());
 
     COORD                      coordScreen   = {0};     //here's where we'll home the cursor
     ulong_t                    cCharsWritten = 0UL;
@@ -299,28 +299,28 @@ CxConsole::bClear() {
 
     //get the number of character cells in the current buffer
     BOOL blRes = ::GetConsoleScreenBufferInfo(_m_hStdOut.hGet(), &csbi);
-    /*DEBUG*/xASSERT_RET(FALSE != blRes,  false);
+    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 
     ulConSize = csbi.dwSize.X * csbi.dwSize.Y;
 
     //fill the entire screen with blanks
     blRes = ::FillConsoleOutputCharacter(_m_hStdOut.hGet(), (tchar_t)xT(' '), ulConSize, coordScreen, &cCharsWritten);
-    /*DEBUG*/xASSERT_RET(FALSE != blRes,  false);
+    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 
     //get the current text attribute
     blRes = ::GetConsoleScreenBufferInfo(_m_hStdOut.hGet(), &csbi);
-    /*DEBUG*/xASSERT_RET(FALSE != blRes,  false);
+    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 
     //now set the buffer's attributes accordingly
     blRes = ::FillConsoleOutputAttribute(_m_hStdOut.hGet(), csbi.wAttributes, ulConSize, coordScreen, &cCharsWritten);
-    /*DEBUG*/xASSERT_RET(FALSE != blRes,  false);
+    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 
     //put the cursor at (0, 0)
     blRes = ::SetConsoleCursorPosition(_m_hStdOut.hGet(), coordScreen );
-    /*DEBUG*/xASSERT_RET(FALSE != blRes,  false);
+    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     bool bRv = bWriteLine(CxConst::xFF);
-    /*DEBUG*/xASSERT_RET(true == bRv,  false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 #endif
 
     return true;
@@ -334,12 +334,12 @@ CxConsole::bEnableClose(
     /*DEBUG*/
 
 #if   xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               false);
-    /*DEBUG*/xASSERT_RET(false != _m_hStdIn.bIsValid(),  false);
-    /*DEBUG*/xASSERT_RET(false != _m_hStdOut.bIsValid(), false);
+    /*DEBUG*/xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
+    /*DEBUG*/xTEST_EQ(true, _m_hStdIn.bIsValid());
+    /*DEBUG*/xTEST_EQ(true, _m_hStdOut.bIsValid());
 
     _m_hMenu = _hGetMenuHandle(false);
-    /*DEBUG*/xASSERT_RET(NULL != _m_hMenu, false);
+    /*DEBUG*/xTEST_EQ(true, NULL != _m_hMenu);
 
     if (false == a_cbFlag) {
         xCHECK_RET(false == ::DeleteMenu(_m_hMenu, SC_CLOSE, MF_BYCOMMAND), false);
@@ -347,7 +347,7 @@ CxConsole::bEnableClose(
         xCHECK_RET(false == ::AppendMenu(_m_hMenu, SC_CLOSE, MF_BYCOMMAND, xT("")), false);
 
         BOOL bRv = ::EnableMenuItem(_hGetMenuHandle(false), SC_CLOSE, MF_ENABLED);
-        /*DEBUG*/xASSERT_RET(TRUE != bRv, false);
+        /*DEBUG*/xTEST_DIFF(TRUE, bRv);
 
         ::SetWindowPos(_hGetWndHandle(), NULL, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_DRAWFRAME);
     }
@@ -367,15 +367,15 @@ CxConsole::sGetTitle() {
 
 #if   xOS_ENV_WIN
     /*DEBUG*///_m_hWnd - n/a
-    /*DEBUG*/xASSERT_RET(false != _m_hStdIn.bIsValid(),  std::tstring_t());
-    /*DEBUG*/xASSERT_RET(false != _m_hStdOut.bIsValid(), std::tstring_t());
+    /*DEBUG*/xTEST_EQ(true, _m_hStdIn.bIsValid());
+    /*DEBUG*/xTEST_EQ(true, _m_hStdOut.bIsValid());
 
     const ulong_t culBuffSize             = 1024UL;
     tchar_t       szBuff[culBuffSize + 1] = {0};
     ulong_t       ulTitleSize             = 0UL;
 
     ulTitleSize = ::GetConsoleTitle(szBuff, culBuffSize);
-    /*DEBUG*/xASSERT_RET(0 < ulTitleSize, std::tstring_t());
+    /*DEBUG*/xTEST_LESS(0UL, ulTitleSize);
 
     sRv.assign(szBuff, ulTitleSize);
 #elif xOS_ENV_UNIX
@@ -395,16 +395,16 @@ CxConsole::bSetTitle(
 
 #if   xOS_ENV_WIN
     /*DEBUG*///_m_hWnd - n/a
-    /*DEBUG*/xASSERT_RET(false != _m_hStdIn.bIsValid(),  false);
-    /*DEBUG*/xASSERT_RET(false != _m_hStdOut.bIsValid(), false);
+    /*DEBUG*/xTEST_EQ(true, _m_hStdIn.bIsValid());
+    /*DEBUG*/xTEST_EQ(true, _m_hStdOut.bIsValid());
 
     BOOL blRes = ::SetConsoleTitle(a_csTitle.c_str());
-    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
+    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     //TODO: bSetTitle
 
     bool bRv = bWriteLine( CxString::sFormat(xT("%c]0;%s%c"), xT('\033'), a_csTitle.c_str(), xT('\007')) );
-    /*DEBUG*/xASSERT_RET(true == bRv,  false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 #endif
 
     return true;
@@ -416,9 +416,9 @@ CxConsole::bSetFullScreen() {
 
 #if   xOS_ENV_WIN
     //TODO: xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               false);
-    /*DEBUG*/xASSERT_RET(false != _m_hStdIn.bIsValid(),  false);
-    /*DEBUG*/xASSERT_RET(false != _m_hStdOut.bIsValid(), false);
+    /*DEBUG*/xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
+    /*DEBUG*/xTEST_EQ(true, _m_hStdIn.bIsValid());
+    /*DEBUG*/xTEST_EQ(true, _m_hStdOut.bIsValid());
 
     COORD crdCoord = ::GetLargestConsoleWindowSize(_m_hStdOut.hGet());
     xCHECK_RET(crdCoord.X == 0 && crdCoord.Y == 0, false);
@@ -433,13 +433,13 @@ CxConsole::bSetFullScreen() {
     recSmallRec.Bottom = crdCoord.Y - 2;
 
     BOOL blRes = ::SetConsoleScreenBufferSize(_m_hStdOut.hGet(), crdCoord);
-    /*DEBUG*/xASSERT_RET(FALSE != blRes,  false);
+    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 
     blRes = ::SetConsoleWindowInfo(_m_hStdOut.hGet(), true, &recSmallRec);
-    /*DEBUG*/xASSERT_RET(FALSE != blRes,  false);
+    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 
     bool bRv = bCenterWindow();
-    /*DEBUG*/xASSERT_RET(true == bRv,  false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 #elif xOS_ENV_UNIX
     //TODO: bSetFullScreen
     xNOT_IMPLEMENTED_RET(false);
@@ -452,19 +452,19 @@ CxConsole::bCenterWindow() {
     /*DEBUG*/
 
 #if   xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(NULL  != _m_hWnd,               false);
-    /*DEBUG*/xASSERT_RET(false != _m_hStdIn.bIsValid(),  false);
-    /*DEBUG*/xASSERT_RET(false != _m_hStdOut.bIsValid(), false);
+    /*DEBUG*/xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
+    /*DEBUG*/xTEST_EQ(true, _m_hStdIn.bIsValid());
+    /*DEBUG*/xTEST_EQ(true, _m_hStdOut.bIsValid());
 
     BOOL blRes = FALSE;
 
     RECT rcOrigin = {0};
     blRes = ::GetWindowRect(_m_hWnd, &rcOrigin);
-    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
+    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 
     RECT rcDesktop = {0};
     blRes = ::SystemParametersInfo(SPI_GETWORKAREA, 0, &rcDesktop, 0);
-    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
+    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 
     int iDesktopX  = (rcDesktop.right  - rcDesktop.left) / 2;
     int iDesktopY  = (rcDesktop.bottom - rcDesktop.top)  / 2;
@@ -473,7 +473,7 @@ CxConsole::bCenterWindow() {
     int X          = iDesktopX - iWndWidth / 2;        if (X < 0) {X = 0;}
 
     blRes = ::MoveWindow(_m_hWnd, X, iDesktopY - iWndHeight / 2, iWndWidth, iWndHeight, true);
-    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
+    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     //TODO: bCenterWindow
     xNOT_IMPLEMENTED_RET(false);
@@ -503,25 +503,25 @@ CxConsole::_hGetWndHandle() {
 
     //Fetch current window title.
     sOldWndTitle = sGetTitle();
-    /*DEBUG*/xASSERT_RET(false == sOldWndTitle.empty(), NULL);
+    /*DEBUG*/xTEST_EQ(false, sOldWndTitle.empty());
 
     //Format a "unique" szNewWndTitle.
     sNewWndTitle = CxString::sFormat(xT("%lu/%lu"), ::GetTickCount(), CxCurrentProcess::ulGetId());
 
     //Change current window title.
     bRv = bSetTitle(sNewWndTitle);
-    /*DEBUG*/xASSERT_RET(true == bRv, NULL);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     //Ensure window title has been updated.
     CxCurrentThread::bSleep(50UL);
 
     //Look for NewWindowTitle.
     hRv = ::FindWindow(NULL, sNewWndTitle.c_str());
-    /*DEBUG*/xASSERT_RET(NULL != hRv, NULL);
+    /*DEBUG*/xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, hRv);
 
     //Restore original window title.
     bRv = bSetTitle(sOldWndTitle);
-    /*DEBUG*/xASSERT_RET(true == bRv, NULL);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     return hRv;
 }
@@ -538,8 +538,8 @@ CxConsole::_hGetMenuHandle(
     /*DEBUG*/
 
     _m_hMenu = ::GetSystemMenu(_m_hWnd, a_cbRevert);
-    /*DEBUG*/if (false == a_cbRevert) { xASSERT_RET(NULL != _m_hMenu, NULL); }
-    /*DEBUG*/if (true  == a_cbRevert) { xASSERT_RET(NULL == _m_hMenu, NULL); }
+    /*DEBUG*/if (false == a_cbRevert) { xTEST_EQ(true, NULL != _m_hMenu); }
+    /*DEBUG*/if (true  == a_cbRevert) { xTEST_EQ(true, NULL == _m_hMenu); }
 
     return _m_hMenu;
 }

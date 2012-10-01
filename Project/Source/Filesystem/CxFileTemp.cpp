@@ -46,9 +46,9 @@ CxFileTemp::bCreate(
     CxFile               *pfFile
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(), false);
-    /*DEBUG*/xASSERT_RET(false == csDirPath.empty(),  false);
-    /*DEBUG*/xASSERT_RET(false == pfFile->bIsValid(), false);
+    /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
+    /*DEBUG*/xTEST_EQ(false, csDirPath.empty());
+    /*DEBUG*/xTEST_EQ(false, pfFile->bIsValid());
 
     const std::tstring_t csFileNameTemplate = xT("XXXXXX");
 
@@ -56,7 +56,7 @@ CxFileTemp::bCreate(
     FILE *_pfStdFile = NULL;
 
     bool bRv = CxDir::bCreateForce(csDirPath);
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     _m_sFilePath = CxPath::sSlashAppend(csDirPath) + CxPath::sGetFileName(csFilePath) + csFileNameTemplate;
 
@@ -65,30 +65,30 @@ CxFileTemp::bCreate(
         _m_sFilePath.resize(_m_sFilePath.size() + 1);
 
         tchar_t *pszFile = ::xTMKSTEMP(&_m_sFilePath.at(0));
-        /*DEBUG*/xASSERT_RET(NULL != pszFile, false);
+        /*DEBUG*/xTEST_PTR(pszFile, false);
 
         _pfStdFile = std::xTFOPEN(pszFile, CxFile::_sGetOpenMode(CxFile::omBinCreateReadWrite).c_str());
-        /*DEBUG*/xASSERT_RET(NULL != _pfStdFile, false);
+        /*DEBUG*/xTEST_PTR(_pfStdFile, false);
     #else
         _m_sFilePath.resize(_m_sFilePath.size() + 1);
 
         errno_t iError = ::xTMKSTEMP(&_m_sFilePath.at(0), _m_sFilePath.size() + 1);
-        /*DEBUG*/xASSERT_RET(0 == iError, false);
+        /*DEBUG*/xTEST_EQ(0, iError);
 
         _pfStdFile = ::xTFOPEN(_m_sFilePath.c_str(), CxFile::_sGetOpenMode(CxFile::omBinCreateReadWrite).c_str());
-        /*DEBUG*/xASSERT_RET(NULL != _pfStdFile, false);
+        /*DEBUG*/xTEST_PTR(_pfStdFile);
     #endif
 #elif xOS_ENV_UNIX
     int iFile = ::xTMKSTEMP(&_m_sFilePath.at(0));
     /*DEBUG*/xASSERT_RET(- 1 != iFile, false);
 
     _pfStdFile = ::xTFDOPEN(iFile, CxFile::_sGetOpenMode(CxFile::omBinCreateReadWrite).c_str());
-    /*DEBUG*/xASSERT_RET(NULL != _pfStdFile, false);
+    /*DEBUG*/xTEST_PTR(_pfStdFile, false);
 #endif
 
     //out
     bRv = (*pfFile).bAttach(_pfStdFile);
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     _m_pfFile = pfFile;
 

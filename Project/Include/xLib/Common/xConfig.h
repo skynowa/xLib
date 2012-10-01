@@ -102,8 +102,6 @@
     ///< debug mode "logging with plain text"
 #define xDEBUG_MODE_LOGGING_HTML        0
     ///< debug mode "logging with HTML text"
-#define xDEBUG_MODE_NOLOGGING           0
-    ///< debug mode "no logging"
 #define xDEBUG_MODE_NO                  0
     ///< debug mode "no debugging"
 

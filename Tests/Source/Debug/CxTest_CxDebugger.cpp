@@ -177,15 +177,6 @@ CxTest_CxDebugger::bUnit(
     }
 
     //--------------------------------------------------
-    //xASSERT_RET
-    xTEST_CASE(cullCaseLoops)
-    {
-        std::tstring_t sVar1 = xT("xxx");
-        std::tstring_t sVar2 = xT("xxx");
-        xASSERT_RET(sVar1 == sVar2, false);
-    }
-
-    //--------------------------------------------------
     //xASSERT_MSG
     xTEST_CASE(cullCaseLoops)
     {
@@ -242,7 +233,7 @@ CxTest_CxDebugger::bUnit(
         {
             int iVar1 = 110;
             int iVar2 = 10;
-            xTEST_GREATER(iVar1, iVar2);
+            xTEST_GR(iVar1, iVar2);
         }
 
         xTEST_CASE(cullCaseLoops)
@@ -260,11 +251,11 @@ CxTest_CxDebugger::bUnit(
         {
             int iVar1 = 500;
             int iVar2 = 147;
-            xTEST_GREATER_EQ(iVar1, iVar2);
+            xTEST_GR_EQ(iVar1, iVar2);
 
             int iVar3 = 77777;
             int iVar4 = 77777;
-            xTEST_GREATER_EQ(iVar3, iVar4);
+            xTEST_GR_EQ(iVar3, iVar4);
         }
     }
 
@@ -298,7 +289,7 @@ CxTest_CxDebugger::bUnit(
         {
             std::tstring_t sVar1 = xT("bbb");
             std::tstring_t sVar2 = xT("aaa");
-            xTEST_GREATER(sVar1, sVar2);
+            xTEST_GR(sVar1, sVar2);
         }
 
         xTEST_CASE(cullCaseLoops)
@@ -316,11 +307,11 @@ CxTest_CxDebugger::bUnit(
         {
             std::tstring_t sVar1 = xT("aaa");
             std::tstring_t sVar2 = xT("aaa");
-            xTEST_GREATER_EQ(sVar1, sVar2);
+            xTEST_GR_EQ(sVar1, sVar2);
 
             std::tstring_t sVar3 = xT("hhhh");
             std::tstring_t sVar4 = xT("aaa");
-            xTEST_GREATER_EQ(sVar3, sVar4);
+            xTEST_GR_EQ(sVar3, sVar4);
         }
     }
 

@@ -106,7 +106,7 @@ CxTest_CxTcpClient::bUnit(
         //-------------------------------------
         //iSend
         m_iRv = objSocket.iSend(sText.c_str(), sText.size(), 0);
-        xTEST_DIFF((int)CxTcpClient::etError, m_iRv);
+        xTEST_DIFF(xSOCKET_ERROR, m_iRv);
     }
 
     //-------------------------------------

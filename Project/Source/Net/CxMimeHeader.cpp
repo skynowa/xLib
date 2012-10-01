@@ -111,8 +111,8 @@ CxMimeHeader::bParse(
         std::vec_tstring_t vsLines;
         //--vsLines = vsSplit(": ", vsHeader.at(i));
         _m_bRes = CxString::bSplitKeyValue(vsHeader.at(i), _ms_csAttrDelimiter, &vsLines);
-        /*DEBUG*/xASSERT_RET(false != _m_bRes,           false);
-        /*DEBUG*/xASSERT_RET(false == vsLines.empty(), false);
+        /*DEBUG*/xTEST_EQ(true, _m_bRes,           false);
+        /*DEBUG*/xTEST_EQ(false, vsLines.empty(), false);
 
         //????????? ? ?????? "????" ? "????????"
         std::tstring_t sKey   = CxString::sTrimSpace(vsLines.at(0));
@@ -131,8 +131,8 @@ CxMimeHeader::sGetField(
     const std::tstring_t &a_csName
 )
 {
-    /*DEBUG*/xASSERT_RET(false == _m_mmsHeader.empty(), std::tstring_t());
-    /*DEBUG*/xASSERT_RET(false == a_csName.empty(),     std::tstring_t());
+    /*DEBUG*/xTEST_EQ(false, _m_mmsHeader.empty());
+    /*DEBUG*/xTEST_EQ(false, a_csName.empty());
 
     std::tstring_t sRv;
 
@@ -156,8 +156,8 @@ CxMimeHeader::uiCount() {
 #if xTODO
     bool
     CxMimeHeader::bLoadFromFile(const std::tstring_t &csFilePath) {
-     /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),                 false);
-     /*DEBUG*/xASSERT_RET(true  == CxFile::bIsExists(csFilePath), false);
+     /*DEBUG*/xTEST_EQ(false, csFilePath.empty(),                 false);
+     /*DEBUG*/xTEST_EQ(true, CxFile::bIsExists(csFilePath), false);
 
      std::tstring_t       sUknownEmail("Uknown@Uknown.Uknown");
      std::tstring_t       sLine("");
@@ -200,8 +200,8 @@ CxMimeHeader::bLoadFromFile(
     const std::tstring_t &a_csRawMessageFilePath
 )
 {
-    /*DEBUG*/xASSERT_RET(false == a_csRawMessageFilePath.empty(),            false);
-    /*DEBUG*/xASSERT_RET(true  == CxFile::bIsExists(a_csRawMessageFilePath), false);
+    /*DEBUG*/xTEST_EQ(false, a_csRawMessageFilePath.empty());
+    /*DEBUG*/xTEST_EQ(true, CxFile::bIsExists(a_csRawMessageFilePath));
 
     std::tstring_t sRawHeader;
     std::tstring_t sLine;
@@ -209,16 +209,16 @@ CxMimeHeader::bLoadFromFile(
     //-------------------------------------
     //������������� ��������� ������
     _m_bRes = CxLocale::bSetDefault();
-    /*DEBUG*/xASSERT_RET(false != _m_bRes, false);
+    /*DEBUG*/xTEST_EQ(true, _m_bRes);
 
     //-------------------------------------
     //������ ���������� ����� � ������ �� ����� ������ (\r\n\r\n - ������ ������)
     std::tifstream_t ifsStream(a_csRawMessageFilePath.c_str());
-    /*DEBUG*/xASSERT_RET(ifsStream,           false);
-    /*DEBUG*/xASSERT_RET(!ifsStream.fail(),   false);
-    /*DEBUG*/xASSERT_RET(ifsStream.good(),    false);
-    /*DEBUG*/xASSERT_RET(ifsStream.is_open(), false);
-    /*DEBUG*/xASSERT_RET(!ifsStream.eof(),    false);
+    /*DEBUG*/xTEST_EQ(true, !! ifsStream);
+    /*DEBUG*/xTEST_EQ(false, ifsStream.fail());
+    /*DEBUG*/xTEST_EQ(true,  ifsStream.good());
+    /*DEBUG*/xTEST_EQ(true,  ifsStream.is_open());
+    /*DEBUG*/xTEST_EQ(false, ifsStream.eof());
 
     ////ulong_t ulCountBreaks = 0;
     for (; !ifsStream.eof(); ) {
@@ -255,7 +255,7 @@ CxMimeHeader::sGenerateMessageID() {
     std::tstring_t sRv;
 
     sRv = CxString::sFormat(xT("%s@%s"), CxString::sCreateGuid().c_str(), CxSystemInfo::sGetHostName().c_str());
-    /*DEBUG*/xASSERT_RET(false == sRv.empty(), std::tstring_t());
+    /*DEBUG*/xTEST_EQ(false, sRv.empty());
 
     return sRv;
 }

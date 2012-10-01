@@ -24,8 +24,8 @@ CxDnsClient::bGetHostAddrByName(
     std::tstring_t       *a_psHostAddr
 )
 {
-    /*DEBUG*/xASSERT_RET(false == a_csHostName.empty(), false);
-    /*DEBUG*/xASSERT_RET(NULL  != a_psHostAddr,         false);
+    /*DEBUG*/xTEST_EQ(false, a_csHostName.empty());
+    /*DEBUG*/xTEST_PTR(a_psHostAddr);
 
     std::tstring_t sRv;
 
@@ -33,7 +33,7 @@ CxDnsClient::bGetHostAddrByName(
     std::string casHostName(a_csHostName.begin(), a_csHostName.end());
 
     hostent *pHostent = ::gethostbyname(casHostName.c_str());
-    /*DEBUG*/xASSERT_RET(NULL != pHostent, false);
+    /*DEBUG*/xTEST_PTR(pHostent);
 
     sRv = CxString::sFormat(
                 xT("%u.%u.%u.%u"),
@@ -42,7 +42,7 @@ CxDnsClient::bGetHostAddrByName(
                 static_cast<uchar_t>(pHostent->h_addr_list[0][2]),
                 static_cast<uchar_t>(pHostent->h_addr_list[0][3])
     );
-    /*DEBUG*/xASSERT_RET(false == sRv.empty(), false);
+    /*DEBUG*/xTEST_EQ(false, sRv.empty());
 
     (*a_psHostAddr) = sRv;
 
@@ -57,8 +57,8 @@ CxDnsClient::bGetHostNameByAddr(
     std::tstring_t            *a_psHostName
 )
 {
-    /*DEBUG*/xASSERT_RET(false == a_csHostAddr.empty(), false);
-    /*DEBUG*/xASSERT_RET(NULL  != a_psHostName,         false);
+    /*DEBUG*/xTEST_EQ(false, a_csHostAddr.empty());
+    /*DEBUG*/xTEST_PTR(a_psHostName);
 
     //convert to UNICODE
     std::string casHostAddr(a_csHostAddr.begin(), a_csHostAddr.end());
@@ -75,7 +75,7 @@ CxDnsClient::bGetHostNameByAddr(
                     /*DEBUG*/xASSERT_RET(0 != iRv, false);
 
                     pHostent = ::gethostbyaddr((char *) &iaAddr6, 16, afInet6);
-                    /*DEBUG*/xASSERT_RET(NULL != pHostent, false);
+                    /*DEBUG*/xTEST_PTR(pHostent, false);
                 #endif
             #endif //xOS_WIN_VISTA
             }
@@ -85,10 +85,10 @@ CxDnsClient::bGetHostNameByAddr(
                 in_addr iaAddr;
 
                 iaAddr.s_addr = ::inet_addr(casHostAddr.c_str());
-                /*DEBUG*/xASSERT_RET(iaAddr.s_addr != INADDR_NONE, false);
+                /*DEBUG*/xTEST_DIFF(iaAddr.s_addr, static_cast<ulong_t>( INADDR_NONE ));
 
                 pHostent = ::gethostbyaddr((char *) &iaAddr, sizeof(iaAddr)/*4*/, CxSocket::afInet);
-                /*DEBUG*/xASSERT_RET(NULL != pHostent, false);
+                /*DEBUG*/xTEST_PTR(pHostent);
             }
             break;
     }
@@ -107,12 +107,12 @@ CxDnsClient::bGetLocalHostName(
     std::tstring_t *a_psHostName
 )
 {
-    /*DEBUG*/xASSERT_RET(NULL != a_psHostName, false);
+    /*DEBUG*/xTEST_PTR(a_psHostName);
 
     std::string asRes(xHOST_NAME_MAX, '0');
 
     int iRv = ::gethostname(&asRes.at(0), asRes.size() * sizeof(std::string::value_type));
-    /*DEBUG*/xASSERT_RET(0 == iRv, false);
+    /*DEBUG*/xTEST_EQ(0, iRv);
 
     asRes.assign(asRes.c_str());    //delete '0' from end
 
@@ -130,9 +130,9 @@ CxDnsClient::bGetNameInfo(
     ushort_t                   a_usPort
 )
 {
-    /*DEBUG*///xASSERT_RET(NULL != _m_hWnd, FALSE_RET_VALUE);
-    /*DEBUG*///xASSERT_RET(NULL != _m_hWnd, FALSE_RET_VALUE);
-    /*DEBUG*///xASSERT_RET(NULL != _m_hWnd, FALSE_RET_VALUE);
+    /*DEBUG*///xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
+    /*DEBUG*///xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
+    /*DEBUG*///xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
 
     //convert to UNICODE
     std::string casHostAddr(a_csHostAddr.begin(), a_csHostAddr.end());
@@ -147,7 +147,7 @@ CxDnsClient::bGetNameInfo(
 
     //TODO: bGetNameInfo
     int iRv = ::xGETNAMEINFO((struct sockaddr *)&saGNI, sizeof(saGNI), &szHostName[0], NI_MAXHOST, &szServInfo[0], NI_MAXSERV, NI_NUMERICSERV);
-    /*DEBUG*/xASSERT_RET(0 == iRv, false);
+    /*DEBUG*/xTEST_EQ(0, iRv);
 
     //hostname
 
@@ -164,13 +164,13 @@ CxDnsClient::bGetHostAddrInfo(
     addrinfo_t           **a_ppResult
 )
 {
-    /*DEBUG*///xASSERT_RET(NULL != _m_hWnd, FALSE_RET_VALUE);
-    /*DEBUG*///xASSERT_RET(NULL != _m_hWnd, FALSE_RET_VALUE);
-    /*DEBUG*///xASSERT_RET(NULL != _m_hWnd, FALSE_RET_VALUE);
-    /*DEBUG*///xASSERT_RET(NULL != _m_hWnd, FALSE_RET_VALUE);
+    /*DEBUG*///xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
+    /*DEBUG*///xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
+    /*DEBUG*///xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
+    /*DEBUG*///xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
 
     int iRv = ::xGETADDRINFO(a_csHostName.c_str(), a_csPort.c_str(), a_pHints, a_ppResult);
-    /*DEBUG*/xASSERT_RET(0 == iRv, false);
+    /*DEBUG*/xTEST_EQ(0, iRv);
 
     return true;
 }
@@ -184,7 +184,7 @@ CxDnsClient::bGetProtocolByName(
     short_t              *a_psiNumber
 )
 {
-    /*DEBUG*/xASSERT_RET(false == a_csProtocolName.empty(), false);
+    /*DEBUG*/xTEST_EQ(false, a_csProtocolName.empty());
     /*DEBUG*///psName     - n/a
     /*DEBUG*///pvsAliases - n/a
     /*DEBUG*///psiNumber  - n/a
@@ -193,7 +193,7 @@ CxDnsClient::bGetProtocolByName(
     std::string asProtocolName(a_csProtocolName.begin(), a_csProtocolName.end());
 
     protoent/*PROTOENT*/ *pptInfo = ::getprotobyname(asProtocolName.c_str());
-    /*DEBUG*/xASSERT_RET(NULL != pptInfo, false);
+    /*DEBUG*/xTEST_PTR(pptInfo);
 
     //-------------------------------------
     //psName
@@ -242,7 +242,7 @@ CxDnsClient::bGetProtocolByNumber(
     /*DEBUG*///psiNum     - n/a
 
     protoent/*PROTOENT*/*pptInfo = ::getprotobynumber(a_siNumber);
-    /*DEBUG*/xASSERT_RET(NULL != pptInfo, false);
+    /*DEBUG*/xTEST_PTR(pptInfo);
 
     //-------------------------------------
     //psName
@@ -287,8 +287,8 @@ CxDnsClient::bGetServiceByName(
     std::tstring_t       *a_psProtocolName
 )
 {
-    /*DEBUG*/xASSERT_RET(false == a_csServiceName.empty(), false);
-    /*DEBUG*/xASSERT_RET(false == a_csProtocolName.empty(), false);
+    /*DEBUG*/xTEST_EQ(false, a_csServiceName.empty());
+    /*DEBUG*/xTEST_EQ(false, a_csProtocolName.empty());
     /*DEBUG*///psName         - n/a
     /*DEBUG*///pvsAliases   - n/a
     /*DEBUG*///psiPort        - n/a
@@ -299,7 +299,7 @@ CxDnsClient::bGetServiceByName(
     std::string asProtocolName(a_csProtocolName.begin(), a_csProtocolName.end());
 
     servent *psvInfo = ::getservbyname(asServiceName.c_str(), asProtocolName.c_str());
-    /*DEBUG*/xASSERT_RET(NULL != psvInfo, false);
+    /*DEBUG*/xTEST_PTR(psvInfo);
 
     //-------------------------------------
     //psName
@@ -350,7 +350,7 @@ CxDnsClient::bGetServiceByPort(
 )
 {
     /*DEBUG*///TODO: siPort
-    /*DEBUG*/xASSERT_RET(false == a_csProtocolName.empty(), false);
+    /*DEBUG*/xTEST_EQ(false, a_csProtocolName.empty());
     /*DEBUG*///psName         - n/a
     /*DEBUG*///pvsAliases   - n/a
     /*DEBUG*///psiPort        - n/a
@@ -360,7 +360,7 @@ CxDnsClient::bGetServiceByPort(
     std::string asProtocolName(a_csProtocolName.begin(), a_csProtocolName.end());
 
     servent *psvInfo = ::getservbyport(a_siPort, asProtocolName.c_str());
-    /*DEBUG*/xASSERT_RET(NULL != psvInfo, false);
+    /*DEBUG*/xTEST_PTR(psvInfo);
 
     //-------------------------------------
     //psName

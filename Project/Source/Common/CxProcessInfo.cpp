@@ -114,7 +114,7 @@ CxProcessInfo::sGetExeName(
     CxProcess::handle_t hHandle = CxProcess::ulGetHandleById(a_cidId);
 
     DWORD ulStored = ::GetModuleFileNameEx(hHandle, NULL, &sRv.at(0), sRv.size());
-    /*DEBUG*/xASSERT_RET(0UL != ulStored, std::tstring_t());
+    /*DEBUG*/xTEST_DIFF(0UL, ulStored);
 
     sRv.resize(ulStored);
 #elif xOS_ENV_UNIX
@@ -129,7 +129,7 @@ CxProcessInfo::sGetExeName(
 
         for ( ; ; ) {
             iReaded = ::readlink(csProcFile.c_str(), &sRv.at(0), sRv.size() * sizeof(std::tstring_t::value_type));
-            /*DEBUG*/xASSERT_RET(- 1 != iReaded, std::tstring_t());
+            /*DEBUG*/xASSERT_RET(- 1 != iReaded);
 
             xCHECK_DO(sRv.size() * sizeof(std::tstring_t::value_type) > static_cast<size_t>( iReaded ), break);
 
@@ -145,7 +145,7 @@ CxProcessInfo::sGetExeName(
             size_t  uiBuffSize           = sizeof(szBuff) - 1;
 
             int iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), szBuff, &uiBuffSize, NULL, 0U);
-            /*DEBUG*/xASSERT_RET(- 1 != iRv, std::tstring_t());
+            /*DEBUG*/xASSERT_RET(- 1 != iRv);
 
             sRv.assign(szBuff);
         #else
@@ -203,12 +203,12 @@ CxProcessInfo::sGetArgs(
 
         // get uiBuffSize
         iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), NULL,         &uiBuffSize, NULL, 0);
-        /*DEBUG*/xASSERT_RET(- 1 != iRv, std::tstring_t());
+        /*DEBUG*/xASSERT_RET(- 1 != iRv);
 
         sBuff.resize(uiBuffSize);
 
         iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), &sBuff.at(0), &uiBuffSize, NULL, 0U);
-        /*DEBUG*/xASSERT_RET(- 1 != iRv, std::tstring_t());
+        /*DEBUG*/xASSERT_RET(- 1 != iRv);
 
         sRv = sBuff;    // BUG: sBuff or sBuff.c_str() - FreeBSD crazy!!!
     #endif
