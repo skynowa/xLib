@@ -150,18 +150,6 @@ class CxSocket :
         #endif
         };
 
-        enum ExErrorType
-            /// errors
-        {
-        #if   xOS_ENV_WIN
-            etInvalid = INVALID_SOCKET,  ///< ~0
-            etError   = SOCKET_ERROR     ///< -1
-        #elif xOS_ENV_UNIX
-            etInvalid = - 1,
-            etError   = - 1
-        #endif
-        };
-
         enum ExOptions
             /// options
         {

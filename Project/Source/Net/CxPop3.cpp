@@ -41,10 +41,10 @@ CxPop3::~CxPop3() {
 //DONE: bCreate
 bool
 CxPop3::bCreate(const std::tstring_t &a_csUser, const std::tstring_t &a_csPass, const std::tstring_t &a_csServer, ushort_t a_usPort) {
-     /*DEBUG*/xASSERT_RET(false == a_csUser.empty(),            false);
-     /*DEBUG*/xASSERT_RET(false == a_csPass.empty(),            false);
-     /*DEBUG*/xASSERT_RET(false == a_csServer.empty(),          false);
-     /*DEBUG*/xASSERT_RET((32767 > a_usPort) && (0 < a_usPort), false);
+     /*DEBUG*/xTEST_EQ(false, a_csUser.empty());
+     /*DEBUG*/xTEST_EQ(false, a_csPass.empty());
+     /*DEBUG*/xTEST_EQ(false, a_csServer.empty());
+     /*DEBUG*/xTEST_EQ(true, (32767 > a_usPort) && (0 < a_usPort));
 
      _m_sUser   = a_csUser;
      _m_sPass   = a_csPass;
@@ -255,8 +255,8 @@ CxPop3::bRset() {
 //DONE: bTop (�������� ��������� ������)
 bool
 CxPop3::bTop(int a_iNum, int a_iLines, std::tstring_t &a_sBuff) {
-    /*DEBUG*/xASSERT_RET(a_iNum   > 0,   false);
-    /*DEBUG*/xASSERT_RET(a_iLines > - 1, false);
+    /*DEBUG*/xTEST_GR(a_iNum, 0);
+    /*DEBUG*/xTEST_GR(a_iLines,- 1);
 
     //-------------------------------------
     //RFC
@@ -284,9 +284,9 @@ CxPop3::bTop(int a_iNum, int a_iLines, std::tstring_t &a_sBuff) {
 //DONE: bRetriveRaw ()
 bool
 CxPop3::bRetriveRaw(int a_iNum, const std::tstring_t &a_csDirPath, const std::tstring_t &a_csFileName) {  //csDirPath ��� �����
-    /*DEBUG*/xASSERT_RET(a_iNum > 0,                    false);
-    /*DEBUG*/xASSERT_RET(false == a_csDirPath.empty(),  false);
-    /*DEBUG*/xASSERT_RET(false == a_csFileName.empty(), false);
+    /*DEBUG*/xTEST_GR(a_iNum, 0);
+    /*DEBUG*/xTEST_EQ(false, a_csDirPath.empty());
+    /*DEBUG*/xTEST_EQ(false, a_csFileName.empty());
 
     //-------------------------------------
     //RFC
@@ -328,7 +328,7 @@ CxPop3::bRetriveRaw(int a_iNum, const std::tstring_t &a_csDirPath, const std::ts
     CxFile stdFile;
 
     bRv = stdFile.bCreate(a_csDirPath + "\\" + a_csFileName, CxFile::omBinWrite, true);
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     size_t uiWriteSize = stdFile.uiWrite(&_m_sRes[0], _m_sRes.size());
     /*DEBUG*///???
@@ -340,9 +340,9 @@ CxPop3::bRetriveRaw(int a_iNum, const std::tstring_t &a_csDirPath, const std::ts
 //DONE: bRetriveRawAndBackup ()
 bool
 CxPop3::bRetriveRawAndBackup(int a_iNum, const std::tstring_t &a_csDirPath, const std::tstring_t &a_csBackupDirPath, const std::tstring_t &a_csFileName) {
-    /*DEBUG*/xASSERT_RET(a_iNum > 0,                                                           false);
-    /*DEBUG*/xASSERT_RET(! (true == a_csDirPath.empty() && true == a_csBackupDirPath.empty()), false);
-    /*DEBUG*/xASSERT_RET(false == a_csFileName.empty(),                                        false);
+    /*DEBUG*/xTEST_GR(a_iNum, 0);
+    /*DEBUG*/xTEST_EQ(false, (true == a_csDirPath.empty() && true == a_csBackupDirPath.empty()));
+    /*DEBUG*/xTEST_EQ(false, a_csFileName.empty());
 
     //-------------------------------------
     //RFC
@@ -409,7 +409,7 @@ CxPop3::bRetriveRawAndBackup(int a_iNum, const std::tstring_t &a_csDirPath, cons
 //DONE: bRetrieveHeader ()
 bool
 CxPop3::bRetrieveHeader(int a_iNum, CxMimeHeader &a_mhMimeHeader) {
-    /*DEBUG*/xASSERT_RET(a_iNum > 0, false);
+    /*DEBUG*/xTEST_LESS(a_iNum, 0);
 
     //-------------------------------------
     //RFC
@@ -439,7 +439,7 @@ CxPop3::bRetrieveHeader(int a_iNum, CxMimeHeader &a_mhMimeHeader) {
 //DONE: bDelete (������� ������)
 bool
 CxPop3::bDelete(int a_iNum) {
-    /*DEBUG*/xASSERT_RET(a_iNum > 0, false);
+    /*DEBUG*/xTEST_GR(a_iNum, 0);
 
     //-------------------------------------
     //RFC
@@ -493,7 +493,7 @@ CxPop3::bDisconnect() {
 //DONE: _ulMailsSum (������� ����� �����)
 ulong_t
 CxPop3::_ulMailsSum(const std::tstring_t &a_csServerAnswer) {
-    /*DEBUG*/xASSERT_RET(false == a_csServerAnswer.empty(), false);
+    /*DEBUG*/xTEST_EQ(false, a_csServerAnswer.empty());
 
     //+OK 2 1141841
     ulong_t            ulSum = 0UL;
@@ -501,7 +501,7 @@ CxPop3::_ulMailsSum(const std::tstring_t &a_csServerAnswer) {
     std::vec_tstring_t vsRes;
 
     bool bRv = CxString::bSplit(a_csServerAnswer, " ", &vsRes);
-    /*DEBUG*/xASSERT_RET(true == bRv, 0UL);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     sSum  = vsRes.at(1);
     ulSum = ::atol(sSum.c_str());        // ul -> l
@@ -512,7 +512,7 @@ CxPop3::_ulMailsSum(const std::tstring_t &a_csServerAnswer) {
 //DONE: _ulMailsSize (����� ������ ����� � ������)
 ulong_t
 CxPop3::_ulMailsSize(const std::tstring_t &a_csServerAnswer) {
-    /*DEBUG*/xASSERT_RET(false == a_csServerAnswer.empty(), false);
+    /*DEBUG*/xTEST_EQ(false, a_csServerAnswer.empty());
 
     //+OK 2 1141841
     ulong_t            ulSize = 0;
@@ -520,7 +520,7 @@ CxPop3::_ulMailsSize(const std::tstring_t &a_csServerAnswer) {
     std::vec_tstring_t vsRes;
 
     bool bRv = CxString::bSplit(a_csServerAnswer, " ", &vsRes);
-    /*DEBUG*/xASSERT_RET(true == bRv, 0UL);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     sSize  = vsRes.at(2);
     ulSize = ::atol(sSize.c_str());    // ul+\r\n -> l
@@ -540,12 +540,12 @@ CxPop3::_ulMailsSize(const std::tstring_t &a_csServerAnswer) {
 //DONE: _bCommand ()
 bool
 CxPop3::_bCommand(const std::tstring_t &csCmd, const std::tstring_t &csReplyDelimiter, std::tstring_t *psReply) {
-    /*DEBUG*/xASSERT_RET(false == csCmd.empty(),            false);
-    /*DEBUG*/xASSERT_RET(false == csReplyDelimiter.empty(), false);
-    /*DEBUG*/xASSERT_RET(NULL  != psReply,                  false);
+    /*DEBUG*/xTEST_EQ(false, csCmd.empty());
+    /*DEBUG*/xTEST_EQ(false, csReplyDelimiter.empty());
+    /*DEBUG*/xTEST_PTR(psReply);
 
     bool bRv = _m_scktSocket.bSendAll(csCmd, 0);
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     _m_sRes = _m_scktSocket.sRecvAll(0, csReplyDelimiter);
     /*DEBUG*/////xASSERT_MSG_RET(false == _bIsError(_m_sRes), _m_sRes.c_str(), false);
@@ -562,7 +562,7 @@ CxPop3::_bCommand(const std::tstring_t &csCmd, const std::tstring_t &csReplyDeli
 //DONE: _bIsError ()
 bool
 CxPop3::_bIsError(const std::tstring_t &csText) {
-    /*DEBUG*/xASSERT_RET(false == csText.empty(), true);
+    /*DEBUG*/xTEST_EQ(false, csText.empty());
 
     if (0 == std::memcmp(csText.c_str(), "+OK", 3)) {
         return false;
@@ -571,7 +571,7 @@ CxPop3::_bIsError(const std::tstring_t &csText) {
         return true;
     }
 
-    /*DEBUG*/xASSERT_RET(false, true);
+    /*DEBUG*/xTEST_FAIL;
 
     return true;
 }

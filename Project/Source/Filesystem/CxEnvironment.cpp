@@ -94,17 +94,17 @@ CxEnvironment::sGetVar(
     sRv.resize(xPATH_MAX);
 
     ulStored = ::GetEnvironmentVariable(csVarName.c_str(), &sRv.at(0), sRv.size());
-    /*DEBUG*/xASSERT_RET(0UL != ulStored, std::tstring_t());
+    /*DEBUG*/xTEST_DIFF(0UL, ulStored);
 
     sRv.resize(ulStored);
 
     if (sRv.size() < ulStored) {
         ulStored = ::GetEnvironmentVariable(csVarName.c_str(), &sRv.at(0), sRv.size());
-        /*DEBUG*/xASSERT_RET(0UL != ulStored, std::tstring_t());
+        /*DEBUG*/xTEST_DIFF(0UL, ulStored);
     }
 #elif xOS_ENV_UNIX
     const char *pcszRes = ::getenv(csVarName.c_str());
-    /*DEBUG*/xASSERT_RET(NULL != pcszRes, std::tstring_t());
+    /*DEBUG*/xTEST_PTR(pcszRes);
 
     sRv.assign(pcszRes);
 #endif
@@ -119,15 +119,15 @@ CxEnvironment::bSetVar(
     const std::tstring_t &csValue
 )
 {
-    /*DEBUG*/xASSERT_RET(true == bIsVarValid(csVarName), false);
-    /*DEBUG*/xASSERT_RET(true == bIsVarValid(csValue),   false);
+    /*DEBUG*/xTEST_EQ(true, bIsVarValid(csVarName));
+    /*DEBUG*/xTEST_EQ(true, bIsVarValid(csValue));
 
 #if   xOS_ENV_WIN
     BOOL blRes = ::SetEnvironmentVariable(csVarName.c_str(), csValue.c_str());
-    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
+    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     int iRv = ::setenv(csVarName.c_str(), csValue.c_str(), true);
-    /*DEBUG*/xASSERT_RET(- 1 != iRv, false);
+    /*DEBUG*/xTEST_DIFF(- 1, iRv);
 #endif
 
     return true;
@@ -144,11 +144,11 @@ CxEnvironment::bDeleteVar(
 
 #if   xOS_ENV_WIN
     BOOL blRes = ::SetEnvironmentVariable(csVarName.c_str(), NULL);
-    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
+    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         int iRv = ::unsetenv(csVarName.c_str());
-        /*DEBUG*/xASSERT_RET(- 1 != iRv, false);
+        /*DEBUG*/xTEST_DIFF(- 1, iRv);
     #elif xOS_FREEBSD
         (void)::unsetenv(csVarName.c_str());
     #endif
@@ -163,7 +163,7 @@ CxEnvironment::bGetValues(
     std::vec_tstring_t *pvsValues
 )
 {
-    /*DEBUG*/xASSERT_RET(NULL != pvsValues, false);
+    /*DEBUG*/xTEST_PTR(pvsValues);
 
     std::vec_tstring_t vsArgs;
 
@@ -172,7 +172,7 @@ CxEnvironment::bGetValues(
     LPTCH  lpvEnv = NULL;
 
     lpvEnv = ::GetEnvironmentStrings();
-    /*DEBUG*/xASSERT_RET(NULL != lpvEnv, false);
+    /*DEBUG*/xTEST_PTR(lpvEnv);
 
     //Variable strings are separated by NULL byte, and the block is terminated by a NULL byte
     pszVar = static_cast<LPTSTR>( lpvEnv );
@@ -183,9 +183,9 @@ CxEnvironment::bGetValues(
     }
 
     BOOL blRes = ::FreeEnvironmentStrings(lpvEnv);
-    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
+    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
-    /*DEBUG*/xASSERT_RET(NULL != environ, false);
+    /*DEBUG*/xTEST_PTR(environ, false);
 
     for (size_t i = 0; NULL != environ[i]; ++ i) {
         vsArgs.push_back(environ[i]);
@@ -204,7 +204,7 @@ CxEnvironment::sExpandStrings(
     const std::tstring_t &csVar
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csVar.empty(), std::tstring_t());
+    /*DEBUG*/xTEST_EQ(false, csVar.empty());
 
     std::tstring_t sRv;
 
@@ -214,13 +214,13 @@ CxEnvironment::sExpandStrings(
     sRv.resize(xPATH_MAX);
 
     ulStored = ::ExpandEnvironmentStrings(csVar.c_str(), &sRv.at(0), sRv.size());
-    /*DEBUG*/xASSERT_RET(0UL != ulStored, std::tstring_t());
+    /*DEBUG*/xTEST_DIFF(0UL, ulStored);
 
     sRv.resize(ulStored);
 
     if (sRv.size() < ulStored) {
         ulStored = ::ExpandEnvironmentStrings(csVar.c_str(), &sRv.at(0), sRv.size());
-        /*DEBUG*/xASSERT_RET(0UL != ulStored, std::tstring_t());
+        /*DEBUG*/xTEST_DIFF(0UL, ulStored);
     }
 
     sRv.resize(ulStored - sizeof('\0'));

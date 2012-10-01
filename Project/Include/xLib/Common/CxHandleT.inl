@@ -69,7 +69,7 @@ CxHandleT<hvTag>::operator = (
     const native_handle_t &chHandle
 )
 {
-    /////*DEBUG*/xASSERT_RET(false == bIsValid(), *this);
+    /////*DEBUG*/xTEST_EQ(false, bIsValid(), *this);
     /*DEBUG*///hHandle - n/a
 
     //Try m_Handle.Attach(other.Detach(), if you got an assertion here.
@@ -77,7 +77,7 @@ CxHandleT<hvTag>::operator = (
     xCHECK_RET(_m_hHandle == chHandle, *this);
 
     bool bRv = bClose();
-    /////*DEBUG*/xASSERT_RET(true == bRv, *this);
+    /////*DEBUG*/xTEST_EQ(true, bRv, *this);
 
     _m_hHandle = chHandle;
 
@@ -90,13 +90,13 @@ CxHandleT<hvTag>::operator = (
     const CxHandleT &chHandle
 )
 {
-    ///*DEBUG*/xASSERT_RET(false == bIsValid(), *this);
+    ///*DEBUG*/xTEST_EQ(false, bIsValid(), *this);
     /*DEBUG*///CxHandleT - n/a
 
     xCHECK_RET(this == &chHandle, *this);
 
     bool bRv = bClose();
-    /////*DEBUG*/xASSERT_RET(true == bRv, *this);
+    /////*DEBUG*/xTEST_EQ(true, bRv, *this);
 
     _m_hHandle = chHandle.hDuplicate();
     /*DEBUG*/// n/a;
@@ -145,7 +145,7 @@ CxHandleT<hvTag>::hDuplicate() const {
                     FALSE,
                     DUPLICATE_SAME_ACCESS
     );
-    /////*DEBUG*/xASSERT_RET(FALSE != blRes, error_value_t::hGet());
+    /////*DEBUG*/xTEST_DIFF(FALSE, blRes, error_value_t::hGet());
 #elif xOS_ENV_UNIX
     hRv = ::dup(_m_hHandle);
     /////*DEBUG*/xASSERT_RET(error_value_t::hGet() != hRv, error_value_t::hGet());
@@ -191,7 +191,7 @@ CxHandleT<hvTag>::bAttach(
     xCHECK_RET(false == bIsValid(), true);
 
     bool bRv = bClose();
-    /////*DEBUG*/xASSERT_RET(true == bRv, false);
+    /////*DEBUG*/xTEST_EQ(true, bRv);
 
     _m_hHandle = chHandle;
 
@@ -219,10 +219,10 @@ CxHandleT<hvTag>::bClose() {
 
 #if   xOS_ENV_WIN
     BOOL blRes = ::CloseHandle(_m_hHandle);
-    /////*DEBUG*/xASSERT_RET(FALSE != blRes, false);
+    /////*DEBUG*/xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     int  iRv  = ::close(_m_hHandle);
-    /////*DEBUG*/xASSERT_RET(- 1 != iRv, false);
+    /////*DEBUG*/xTEST_DIFF(- 1, iRv);
 #endif
 
     _m_hHandle = error_value_t::hGet();
@@ -235,12 +235,12 @@ CxHandleT<hvTag>::bClose() {
 template<ExHandleValue hvTag>
 ulong_t
 CxHandleT<hvTag>::ulGetInfo() const {
-    /////*DEBUG*/xASSERT_RET(true == bIsValid(), 0UL);
+    /////*DEBUG*/xTEST_EQ(true, bIsValid(), 0UL);
 
     DWORD dwFlags = 0UL;
 
     BOOL blRes = ::GetHandleInformation(_m_hHandle, &dwFlags);
-    /////*DEBUG*/xASSERT_RET(FALSE != blRes,   0UL);
+    /////*DEBUG*/xTEST_DIFF(FALSE, blRes,   0UL);
     /////*DEBUG*/xASSERT_RET(0UL   != ulFlags, 0UL);
 
     return dwFlags;
@@ -257,12 +257,12 @@ CxHandleT<hvTag>::bSetInfo(
     const ulong_t &culFlags
 )
 {
-    /////*DEBUG*/xASSERT_RET(true == bIsValid(), false);
+    /////*DEBUG*/xTEST_EQ(true, bIsValid(), false);
     /*DEBUG*///ulMask  - n/a
     /*DEBUG*///ulFlags - ????
 
     BOOL blRes = ::SetHandleInformation(_m_hHandle, culMask, culFlags);
-    /////*DEBUG*/xASSERT_RET(FALSE != blRes, false);
+    /////*DEBUG*/xTEST_DIFF(FALSE, blRes);
 
     return true;
 }

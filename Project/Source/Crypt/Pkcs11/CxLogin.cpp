@@ -44,8 +44,8 @@ CxLogin::bLogin(
     CK_ULONG        a_ulPinLen   ///< length of the PIN
 )
 {
-    /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    false);
-    /*DEBUG*/xASSERT_RET(NULL != _m_hSession, false);
+    /*DEBUG*/xTEST_PTR(_m_pFunc);
+    /*DEBUG*/xTEST_PTR(_m_hSession);
 
     CK_RV ulRv = _m_pFunc->C_Login(_m_hSession, a_userType, a_pPin, a_ulPinLen);
     xCHECK_DO(
@@ -60,8 +60,8 @@ CxLogin::bLogin(
 //---------------------------------------------------------------------------
 bool
 CxLogin::bLogout() {
-    /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    false);
-    /*DEBUG*/xASSERT_RET(NULL != _m_hSession, false);
+    /*DEBUG*/xTEST_PTR(_m_pFunc);
+    /*DEBUG*/xTEST_PTR(_m_hSession);
 
     CK_RV ulRv = _m_pFunc->C_Logout(_m_hSession);
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);

@@ -413,11 +413,16 @@
 //-------------------------------------
 // xNATIVE_HANDLE_NULL, xNATIVE_HANDLE_INVALID
 #if   xOS_ENV_WIN
-    #define xNATIVE_HANDLE_NULL     ( static_cast<native_handle_t>( NULL ) )                  ///< native handle value "null"
-    #define xNATIVE_HANDLE_INVALID  ( static_cast<native_handle_t>( INVALID_HANDLE_VALUE ) )  ///< native handle value "invalid"
+    #define xNATIVE_HANDLE_NULL     ( static_cast<native_handle_t>( NULL ) )                    ///< native handle value "null"
+    #define xNATIVE_HANDLE_INVALID  ( static_cast<native_handle_t>( INVALID_HANDLE_VALUE ) )    ///< native handle value "invalid"
+    #define xWND_NATIVE_HANDLE_NULL ( static_cast<HWND>( NULL ) )                               ///< window native handle value "null"
+    #define xSOCKET_HANDLE_INVALID  ( static_cast<socket_t>( INVALID_SOCKET ) )                 ///< socket native handle value "null"
+    #define xSOCKET_ERROR           ( SOCKET_ERROR )                                            ///< socket native handle value "error"
 #elif xOS_ENV_UNIX
-    #define xNATIVE_HANDLE_NULL     ( static_cast<native_handle_t>( 0 ) )                     ///< native handle value "null"
-    #define xNATIVE_HANDLE_INVALID  ( static_cast<native_handle_t>( - 1 ) )                   ///< native handle value "invalid"
+    #define xNATIVE_HANDLE_NULL     ( static_cast<native_handle_t>( 0 ) )                       ///< native handle value "null"
+    #define xNATIVE_HANDLE_INVALID  ( static_cast<native_handle_t>( - 1 ) )                     ///< native handle value "invalid"
+    #define xSOCKET_HANDLE_INVALID  ( static_cast<socket_t>( - 1 ) )                            ///< socket native handle value "null"
+    #define xSOCKET_ERROR           ( - 1 )                                                     ///< socket native handle value "error"
 #endif
 
 //-------------------------------------

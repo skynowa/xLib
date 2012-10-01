@@ -46,10 +46,10 @@ CxSmtp::~CxSmtp() {
 //DONE: bCreate
 bool
 CxSmtp::bCreate(const std::string &a_csUser, const std::string &a_csPass, const std::string &a_csServer, ushort_t a_usPort) {
-    /*DEBUG*/xASSERT_RET(false == a_csUser.empty(),            false);
-    /*DEBUG*/////xASSERT_RET(false == a_csPass.empty(),        false);
-    /*DEBUG*/xASSERT_RET(false == a_csServer.empty(),          false);
-    /*DEBUG*/xASSERT_RET((32767 > a_usPort) && (0 < a_usPort), false);
+    /*DEBUG*/xTEST_EQ(false, a_csUser.empty());
+    /*DEBUG*/////xTEST_EQ(false, a_csPass.empty());
+    /*DEBUG*/xTEST_EQ(false, a_csServer.empty());
+    /*DEBUG*/xTEST_EQ(true, (32767 > a_usPort) && (0 < a_usPort));
 
     _m_sUser   = a_csUser;
     _m_sPass   = a_csPass;
@@ -189,9 +189,9 @@ CxSmtp::bRset() {
 //DONE: bSendRaw
 bool
 CxSmtp::bSendRaw(const std::string &a_csFilePath, const std::string &a_sFrom, const std::string &a_sTo) {
-    /*DEBUG*/xASSERT_RET(CxSocket::etInvalid != _m_scktSocket,   false);
-    /*DEBUG*/xASSERT_RET(false               == a_sFrom.empty(), false);
-    /*DEBUG*/xASSERT_RET(false               == a_sTo.empty(),   false);
+    /*DEBUG*/// TODO: xTEST_DIFF(xSOCKET_HANDLE_INVALID, _m_scktSocket,   false);
+    /*DEBUG*/xTEST_EQ(false, a_sFrom.empty());
+    /*DEBUG*/xTEST_EQ(false, a_sTo.empty());
 
     bool        bRv = false;
     std::string sRv;
@@ -240,9 +240,9 @@ CxSmtp::bSendRaw(const std::string &a_csFilePath, const std::string &a_sFrom, co
 //DONE: bSend
 bool
 CxSmtp::bSend(const std::string &a_csText, const std::string &a_sFrom, const std::string &a_sTo) {
-    /*DEBUG*/xASSERT_RET(CxSocket::etInvalid != _m_scktSocket,   false);
-    /*DEBUG*/xASSERT_RET(false               == a_sFrom.empty(), false);
-    /*DEBUG*/xASSERT_RET(false               == a_sTo.empty(),   false);
+    /*DEBUG*/// TODO: xTEST_DIFF(xSOCKET_HANDLE_INVALID, _m_scktSocket);
+    /*DEBUG*/xTEST_EQ(false, a_sFrom.empty());
+    /*DEBUG*/xTEST_EQ(false, a_sTo.empty());
 
     bool              bRv      = false;
     std::string       sRv      = "";
@@ -276,7 +276,7 @@ CxSmtp::bSend(const std::string &a_csText, const std::string &a_sFrom, const std
     //-------------------------------------
     //�������� �����
     bRv = _m_scktSocket.bSendAll(a_csText, 0);
-    xASSERT_RET(true == bRv, false);
+    xTEST_EQ(true, bRv);
 
     //-------------------------------------
     //[\r\n.\r\n]
@@ -326,14 +326,14 @@ CxSmtp::bDisconnect() {
 //DONE: _bCommand
 bool
 CxSmtp::_bCommand(const std::string &a_csCmd, const std::string &a_csReplyDelimiter, std::string &a_sReply) {
-    /*DEBUG*/xASSERT_RET(false == a_csCmd.empty(),            false);
-    /*DEBUG*/xASSERT_RET(false == a_csReplyDelimiter.empty(), false);
+    /*DEBUG*/xTEST_EQ(false, a_csCmd.empty());
+    /*DEBUG*/xTEST_EQ(false, a_csReplyDelimiter.empty());
 
     bool        bRv = false;
     std::string sRv = "";
 
     bRv = _m_scktSocket.bSendAll(a_csCmd, 0);
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     sRv = _m_scktSocket.sRecvAll(0, a_csReplyDelimiter);
     /*DEBUG*/xASSERT_MSG_RET(false == _bIsError(sRv), sRv.c_str(), false);
@@ -350,7 +350,7 @@ CxSmtp::_bCommand(const std::string &a_csCmd, const std::string &a_csReplyDelimi
 //DONE: _bIsError
 bool
 CxSmtp::_bIsError(const std::string &a_csText) {
-    /*DEBUG*/xASSERT_RET(false == a_csText.empty(), true);
+    /*DEBUG*/xTEST_EQ(false, a_csText.empty());
 
     bool bRv = (bool)!(
             !std::memcmp(a_csText.c_str(), "334", 3) ||    //334 VXNlcm5hbWU6

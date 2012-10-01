@@ -119,7 +119,7 @@ CxTest_CxCurrentThread::bUnit(
             
             dtTime2 = CxDateTime::dtGetCurrent();
 
-            xTEST_GREATER_EQ(dtTime2.ullToMilliseconds(), dtTime1.ullToMilliseconds());
+            xTEST_GR_EQ(dtTime2.ullToMilliseconds(), dtTime1.ullToMilliseconds());
             //xTRACEV(xT("sNow1: %s,\nsNow2: %s"), dtTime1.sFormat(CxDateTime::ftTime).c_str(), dtTime2.sFormat(CxDateTime::ftTime).c_str());
         }
     }

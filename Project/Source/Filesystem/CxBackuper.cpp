@@ -44,9 +44,9 @@ CxBackuper::etExecute(
     std::tstring_t       *psDestFilePath
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csFilePath.empty(),    etUnknown);
-    /*DEBUG*/xASSERT_RET(false == csDestDirPath.empty(), etUnknown);
-    /*DEBUG*/xASSERT_RET(NULL  != psDestFilePath,        etUnknown);
+    /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
+    /*DEBUG*/xTEST_EQ(false, csDestDirPath.empty());
+    /*DEBUG*/xTEST_PTR(psDestFilePath);
 
     bool bRv = false;
 

@@ -38,7 +38,7 @@ CxCompletionPort::bCreate(
     /*DEBUG*/// ulThreadsNum - n/a
 
     _m_hCP = ::CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, 0, a_ulThreadsNum);
-    /*DEBUG*/xASSERT_RET(false != _m_hCP.bIsValid(), false);
+    /*DEBUG*/xTEST_EQ(true, _m_hCP.bIsValid());
 
     return true;
 }
@@ -50,13 +50,13 @@ CxCompletionPort::bAssociate(
     ULONG_PTR a_pulCompletionKey
 )
 {
-    /*DEBUG*/xASSERT_RET(false != _m_hCP.bIsValid(), false);
+    /*DEBUG*/xTEST_EQ(true, _m_hCP.bIsValid());
     /*DEBUG*/// hFile
-    /*DEBUG*/xASSERT_RET(NULL  != a_pulCompletionKey,  false);
+    /*DEBUG*/xTEST_PTR(a_pulCompletionKey);
 
     HANDLE hRv = ::CreateIoCompletionPort(a_hFile, _m_hCP.hGet(), a_pulCompletionKey, 0);
-    /*DEBUG*/xASSERT_RET(NULL          != hRv, false);
-    /*DEBUG*/xASSERT_RET(_m_hCP.hGet() == hRv, false);
+    /*DEBUG*/xTEST_EQ(xNATIVE_HANDLE_INVALID, hRv);
+    /*DEBUG*/xTEST_EQ(_m_hCP.hGet(), hRv);
 
     return true;
 }
@@ -70,14 +70,14 @@ CxCompletionPort::bGetStatus(
     ulong_t       a_ulMilliseconds
 )
 {
-    /*DEBUG*/xASSERT_RET(false != _m_hCP.bIsValid(), false);
-    /*DEBUG*/xASSERT_RET(NULL  != a_lpNumberOfBytes,   false);
-    /*DEBUG*/xASSERT_RET(NULL  != a_lpCompletionKey,   false);
-    /*DEBUG*/xASSERT_RET(NULL  != a_lpOverlapped,      false);
+    /*DEBUG*/xTEST_EQ(true, _m_hCP.bIsValid());
+    /*DEBUG*/xTEST_PTR(a_lpNumberOfBytes);
+    /*DEBUG*/xTEST_PTR(a_lpCompletionKey);
+    /*DEBUG*/xTEST_PTR(a_lpOverlapped);
     /*DEBUG*/// ulMilliseconds - n/a
 
     BOOL blRes = ::GetQueuedCompletionStatus(_m_hCP.hGet(), a_lpNumberOfBytes, a_lpCompletionKey, a_lpOverlapped, a_ulMilliseconds);
-    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
+    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 
     return true;
 }
@@ -90,13 +90,13 @@ CxCompletionPort::bPostStatus(
     LPOVERLAPPED a_lpOverlapped
 )
 {
-    /*DEBUG*/xASSERT_RET(false != _m_hCP.bIsValid(), false);
+    /*DEBUG*/xTEST_EQ(true, _m_hCP.bIsValid());
     /*DEBUG*/// ulNumberOfBytesTransferred - n/a
     /*DEBUG*/// ulCompletionKey            - n/a
-    /*DEBUG*/xASSERT_RET(NULL  != a_lpOverlapped,    false);
+    /*DEBUG*/xTEST_PTR(a_lpOverlapped);
 
     BOOL blRes = ::PostQueuedCompletionStatus(_m_hCP.hGet(), a_ulNumberOfBytesTransferred, a_ulCompletionKey, a_lpOverlapped);
-    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
+    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 
     return true;
 }

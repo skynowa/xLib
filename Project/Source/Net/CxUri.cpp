@@ -374,14 +374,14 @@ CxUri::sDecodeComponent(const std::string &a_csUri) {
         if (c == '%') {
             if (it == end) {
                 //throw SyntaxException("URI encoding: no hex digit following percent sign", csUri);
-                /*DEBUG*/xASSERT_RET(false, "");
+                /*DEBUG*/xTEST_FAIL;
             }
 
             char hi = *it ++;
 
             if (it == end) {
                 //throw SyntaxException("URI encoding: two hex digits must follow percent sign", csUri);
-                /*DEBUG*/xASSERT_RET(false, "");
+                /*DEBUG*/xTEST_FAIL;
             }
 
             char lo = *it ++;
@@ -394,7 +394,7 @@ CxUri::sDecodeComponent(const std::string &a_csUri) {
                 c = hi - 'a' + 10;
             } else {
                 //throw SyntaxException("URI encoding: not a hex digit");
-                /*DEBUG*/xASSERT_RET(false, "");
+                /*DEBUG*/xTEST_FAIL;
             }
 
             c *= 16;
@@ -407,7 +407,7 @@ CxUri::sDecodeComponent(const std::string &a_csUri) {
                 c += lo - 'a' + 10;
             } else {
                 //throw SyntaxException("URI encoding: not a hex digit");
-                /*DEBUG*/xASSERT_RET(false, "");
+                /*DEBUG*/xTEST_FAIL;
             }
         }
 
@@ -462,15 +462,15 @@ CxUri::_bParse(const std::string &a_csUri) {
     //Normilize();
 
     bRv = bClear();
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     //-------------------------------------
     //[scheme] - [foo]
     //[INPUT]     - foo://userinfo@example.com:8042/over/there?name=ferret#nose
     size_t uiSchemeStart = 0;
     size_t uiSchemeEnd   = a_csUri.find_first_of(CxConst::xCOLON);
-    /*DEBUG*/xASSERT_RET(std::string::npos       != uiSchemeEnd, false);
-    /*DEBUG*/xASSERT_RET(7/*SCHEME_MAX_SIZE + 1*/ > uiSchemeEnd, false);
+    /*DEBUG*/xTEST_DIFF(std::string::npos, uiSchemeEnd);
+    /*DEBUG*/xTEST_GR(7U/*SCHEME_MAX_SIZE + 1*/, uiSchemeEnd);
 
     _m_sScheme = CxString::sCut(a_csUri, uiSchemeStart, uiSchemeEnd);
 

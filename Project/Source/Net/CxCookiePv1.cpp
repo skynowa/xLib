@@ -331,14 +331,14 @@ CxCookiePv1::bInit(
     std::vec_tstring_t vsPairs;
 
     bRv = CxString::bSplit(sCookie, CxConst::xSEMICOLON, &vsPairs);
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     for (size_t i = 0; i < vsPairs.size(); ++ i) {
         //split into name, value (name=value)
         std::vec_tstring_t vsTemp;
 
         bRv = CxString::bSplit(vsPairs.at(i), CxConst::xEQUAL, &vsTemp);
-        /*DEBUG*/xASSERT_RET(true == bRv, false);
+        /*DEBUG*/xTEST_EQ(true, bRv);
 
         std::tstring_t sCookieName  = CxString::sTrimSpace(vsTemp.at(0));
         std::tstring_t sCookieValue = ( (1 == vsTemp.size()) ? std::tstring_t() : vsTemp.at(1) );

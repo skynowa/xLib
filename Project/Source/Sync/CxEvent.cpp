@@ -72,11 +72,11 @@ CxEvent::hGet() const {
 bool
 CxEvent::bSet() {
 #if   xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(false != _m_hEvent.bIsValid(), false);
+    /*DEBUG*/xTEST_EQ(true, _m_hEvent.bIsValid());
     /*DEBUG*/
 
     BOOL blRes = ::SetEvent(hGet().hGet());
-    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
+    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     {
         CxAutoMutex amtAutoMutex(_m_mtMutex);
@@ -99,11 +99,11 @@ CxEvent::bSet() {
 bool
 CxEvent::bReset() {
 #if   xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(false != _m_hEvent.bIsValid(), false);
+    /*DEBUG*/xTEST_EQ(true, _m_hEvent.bIsValid());
     /*DEBUG*/
 
     BOOL blRes = ::ResetEvent(hGet().hGet());
-    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
+    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     {
         CxAutoMutex amtAutoMutex(_m_mtMutex);
@@ -125,7 +125,7 @@ CxEvent::osWait(
     ExObjectState osRes = osFailed;
 
 #if   xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(false != _m_hEvent.bIsValid(), osFailed);
+    /*DEBUG*/xTEST_EQ(true, _m_hEvent.bIsValid());
 
     osRes = static_cast<ExObjectState>( ::WaitForSingleObject(hGet().hGet(), a_culTimeout) );
 #elif xOS_ENV_UNIX

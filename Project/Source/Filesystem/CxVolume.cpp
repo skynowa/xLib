@@ -53,7 +53,7 @@ CxVolume::bIsReady(
     const std::tstring_t &csVolumePath
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csVolumePath.empty(), false);
+    /*DEBUG*/xTEST_EQ(false, csVolumePath.empty());
 
     bool           bRv        = false;
     std::tstring_t sVolumePath = CxPath::sSlashAppend(csVolumePath);
@@ -95,7 +95,7 @@ CxVolume::bIsEmpty(
     const std::tstring_t &csVolumePath
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csVolumePath.empty(), false);
+    /*DEBUG*/xTEST_EQ(false, csVolumePath.empty());
 
     return CxDir::bIsEmpty(csVolumePath, CxConst::xMASK_FILES_ALL);
 }
@@ -133,7 +133,7 @@ CxVolume::bGetSpace(
     ULARGE_INTEGER ullFree      = {{0}};
 
     BOOL blRes = ::GetDiskFreeSpaceEx(_sDirPath.c_str(), &ullAvailable, &ullTotal, &ullFree);
-    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
+    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 
     CxUtils::ptrAssignT(pullAvailable, ullAvailable.QuadPart);
     CxUtils::ptrAssignT(pullTotal,     ullTotal.QuadPart);
@@ -159,8 +159,8 @@ CxVolume::bMount(
     const std::tstring_t &csDestPath    ///< destination path
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csSourcePath.empty(), false);
-    /*DEBUG*/xASSERT_RET(false == csDestPath.empty(),   false);
+    /*DEBUG*/xTEST_EQ(false, csSourcePath.empty());
+    /*DEBUG*/xTEST_EQ(false, csDestPath.empty());
 
 #if   xOS_ENV_WIN
     // TODO: CxVolume::bMount - is it correct?
@@ -176,14 +176,14 @@ CxVolume::bMount(
     nrNetResource.lpProvider    = NULL;
 
     DWORD dwRes = ::WNetAddConnection2(&nrNetResource, NULL, NULL, CONNECT_UPDATE_PROFILE);
-    /*DEBUG*/xASSERT_RET(NO_ERROR == dwRes, false);
+    /*DEBUG*/xTEST_EQ(static_cast<DWORD>( NO_ERROR ), dwRes);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         int iRv = ::mount(csSourcePath.c_str(), csDestPath.c_str(), NULL, MS_REMOUNT, NULL);
-        /*DEBUG*/xASSERT_RET(- 1 != iRv, false);
+        /*DEBUG*/xTEST_DIFF(- 1, iRv);
     #elif xOS_FREEBSD
         int iRv = ::mount(csSourcePath.c_str(), csDestPath.c_str(), MNT_UPDATE, NULL);
-        /*DEBUG*/xASSERT_RET(- 1 != iRv, false);
+        /*DEBUG*/xTEST_DIFF(- 1, iRv);
     #endif
 #endif
 
@@ -197,13 +197,13 @@ CxVolume::bUnMount(
     const bool            cbIsForce     ///< force unmount even if busy
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csSourcePath.empty(), false);
+    /*DEBUG*/xTEST_EQ(false, csSourcePath.empty());
     /*DEBUG*/// cbIsForce - n/a
 
 #if   xOS_ENV_WIN
     // TODO: CxVolume::bUnMount - is it correct?
     DWORD dwRes = ::WNetCancelConnection2(csSourcePath.c_str(), CONNECT_UPDATE_PROFILE, cbIsForce);
-    /*DEBUG*/xASSERT_RET(NO_ERROR == dwRes, false);
+    /*DEBUG*/xTEST_EQ(static_cast<DWORD>( NO_ERROR ), dwRes);
 #elif xOS_ENV_UNIX
     #ifdef MNT_DETACH
         #define xMNT_DETACH MNT_DETACH
@@ -215,10 +215,10 @@ CxVolume::bUnMount(
 
     #if   xOS_LINUX
         int iRv = ::umount2(csSourcePath.c_str(), ciFlag);
-        /*DEBUG*/xASSERT_RET(- 1 != iRv, false);
+        /*DEBUG*/xTEST_DIFF(- 1, iRv);
     #elif xOS_FREEBSD
         int iRv = ::unmount(csSourcePath.c_str(), ciFlag);
-        /*DEBUG*/xASSERT_RET(- 1 != iRv, false);
+        /*DEBUG*/xTEST_DIFF(- 1, iRv);
     #endif
 #endif
 
@@ -231,7 +231,7 @@ CxVolume::bGetPaths(
     std::vec_tstring_t *pvsVolumePaths
 )
 {
-    /*DEBUG*/xASSERT_RET(NULL != pvsVolumePaths, false);
+    /*DEBUG*/xTEST_PTR(pvsVolumePaths);
 
     std::vec_tstring_t vsRes;
 
@@ -240,12 +240,12 @@ CxVolume::bGetPaths(
     DWORD          ulRv = 0UL;
 
     ulRv = ::GetLogicalDriveStrings(0UL, NULL);
-    /*DEBUG*/xASSERT_RET(0UL != ulRv, false);
+    /*DEBUG*/xTEST_DIFF(0UL, ulRv);
 
     sRv.resize(ulRv);
 
     ulRv = ::GetLogicalDriveStrings(sRv.size(), &sRv.at(0));
-    /*DEBUG*/xASSERT_RET(0UL != ulRv, false);
+    /*DEBUG*/xTEST_DIFF(0UL, ulRv);
 
     for (const tchar_t *s = &sRv.at(0); 0 != *s; s += _tcslen(s) + sizeof(xT('\0'))) {
         vsRes.push_back(s);
@@ -262,7 +262,7 @@ CxVolume::bGetPaths(
         };
 
         std::tifstream_t fsProcMounts(xT("/proc/mounts"));
-        /*DEBUG*/xASSERT_RET(true == fsProcMounts.good(), false);
+        /*DEBUG*/xTEST_EQ(true, fsProcMounts.good(), false);
 
         for ( ; !fsProcMounts.eof(); ) {
             _SMounts mntMounts;
@@ -289,7 +289,7 @@ CxVolume::sGetLabel(
     const std::tstring_t &csVolumePath
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csVolumePath.empty(), std::tstring_t());
+    /*DEBUG*/xTEST_EQ(false, csVolumePath.empty());
 
     std::tstring_t sRv;
 
@@ -311,7 +311,7 @@ CxVolume::sGetLabel(
                         NULL,
                         0
     );
-    /*DEBUG*/xASSERT_RET(FALSE != blRes && 0UL == CxLastError::ulGet(), std::tstring_t());
+    /*DEBUG*/xTEST_DIFF(false, blRes && 0UL == CxLastError::ulGet());
 
     sRv.assign(szVolumeName);
 #elif xOS_ENV_UNIX
@@ -332,7 +332,7 @@ CxVolume::dtGetType(
     const std::tstring_t &csVolumePath
 )
 {
-    /*DEBUG*/xASSERT_RET(false == csVolumePath.empty(), dtUnknown);
+    /*DEBUG*/xTEST_EQ(false, csVolumePath.empty());
 
     ExType dtRes = dtUnknown;
 
@@ -342,7 +342,7 @@ CxVolume::dtGetType(
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         FILE *pfFile = ::setmntent(xT("/etc/mtab"), xT("r"));
-        xASSERT_RET(NULL != pfFile, dtUnknown);
+        xTEST_PTR(pfFile, dtUnknown);
 
         for ( ; ; ) {
             const mntent *pmteMountPoint = ::getmntent(pfFile);

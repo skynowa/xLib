@@ -48,7 +48,7 @@ CxIpcMutex::bCreate(
     const std::tstring_t &a_csName
 )
 {
-    /////*DEBUG*/xASSERT_RET(false == _m_hHandle.bIsValid(), false);
+    /////*DEBUG*/xTEST_EQ(false, _m_hHandle.bIsValid(), false);
 #if   xOS_ENV_WIN
     /*DEBUG*/// csName
 #elif xOS_ENV_UNIX
@@ -67,7 +67,7 @@ CxIpcMutex::bCreate(
     }
 
     HANDLE hRv = ::CreateMutex(NULL, FALSE, pcszWinName);
-    /*DEBUG*/xASSERT_RET(NULL != hRv, false);
+    /*DEBUG*/xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
 
     _m_hHandle.bSet(hRv);
     _m_sName = a_csName;
@@ -103,7 +103,7 @@ CxIpcMutex::bOpen(
     }
 
     HANDLE hRv = ::OpenMutex(MUTEX_ALL_ACCESS, FALSE, pcszWinName);
-    /*DEBUG*/xASSERT_RET(NULL != hRv, false);
+    /*DEBUG*/xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
 
     _m_hHandle.bSet(hRv);
     _m_sName = a_csName;
@@ -125,13 +125,13 @@ CxIpcMutex::bLock(
     const ulong_t &a_culTimeoutMsec
 ) const
 {
-    /////*DEBUG*/xASSERT_RET(false != _m_hHandle.bIsValid(), false);
+    /////*DEBUG*/xTEST_EQ(true, _m_hHandle.bIsValid(), false);
     /*DEBUG*///culTimeout - n/a
 
 #if   xOS_ENV_WIN
     DWORD ulRv = ::WaitForSingleObject(_m_hHandle.hGet(), a_culTimeoutMsec);
-    /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0  == ulRv, false);
-    /*DEBUG*/xASSERT_RET(WAIT_ABANDONED != ulRv, false);
+    /*DEBUG*/xTEST_EQ(WAIT_OBJECT_0, ulRv);
+    /*DEBUG*/xTEST_DIFF(WAIT_ABANDONED, ulRv);
 #elif xOS_ENV_UNIX
     struct _SFunctor {
         static void
@@ -157,7 +157,7 @@ CxIpcMutex::bLock(
     // add msec to struct timespec
     {
         iRv = ::clock_gettime(CLOCK_REALTIME, &tmsTimeout);
-        /*DEBUG*/xASSERT_RET(- 1 != iRv, false);
+        /*DEBUG*/xTEST_DIFF(- 1, iRv);
 
         (void)_SFunctor::timespec_addms(&tmsTimeout, a_culTimeoutMsec);
     }
@@ -182,14 +182,14 @@ CxIpcMutex::bLock(
 //---------------------------------------------------------------------------
 bool
 CxIpcMutex::bUnlock() const {
-    /////*DEBUG*/xASSERT_RET(false != _m_hHandle.bIsValid(), false);
+    /////*DEBUG*/xTEST_EQ(true, _m_hHandle.bIsValid(), false);
 
 #if   xOS_ENV_WIN
     BOOL blRes = ::ReleaseMutex(_m_hHandle.hGet());
-    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
+    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     int iRv = ::sem_post(_m_hHandle);
-    /*DEBUG*/xASSERT_RET(- 1 != iRv, false);
+    /*DEBUG*/xTEST_DIFF(- 1, iRv);
 #endif
 
     return true;

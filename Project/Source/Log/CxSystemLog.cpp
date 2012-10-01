@@ -80,9 +80,9 @@ CxSystemLog::bWrite(
     const tchar_t *a_pcszFormat, ...
 )
 {
-    /*DEBUG*/xASSERT_RET(NULL != a_pcszFormat, false);
+    /*DEBUG*/xTEST_PTR(a_pcszFormat);
 #if   xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(NULL != _m_SysLog,  false);
+    /*DEBUG*/xTEST_DIFF(xNATIVE_HANDLE_NULL, _m_SysLog);
 #endif
 
     xCHECK_RET(false == _m_bIsEnable, false);
@@ -102,7 +102,7 @@ CxSystemLog::bWrite(
     LPCTSTR pcszStrings = sMessage.c_str();
 
     BOOL bRv = ::ReportEvent(_m_SysLog, a_lvLevel, 0, 0UL, NULL, 1, 0UL, &pcszStrings, NULL);
-    /*DEBUG*/xASSERT_RET(FALSE != bRv, false);
+    /*DEBUG*/xTEST_DIFF(FALSE, bRv);
 #elif xOS_ENV_UNIX
     (void)::syslog(a_lvLevel, xT("%s"), sMessage.c_str());
 #endif
@@ -125,7 +125,7 @@ CxSystemLog::_bInit(
 {
 #if   xOS_ENV_WIN
     _m_SysLog = ::RegisterEventSource(NULL, a_csLogName.c_str());
-    /*DEBUG*/xASSERT_RET(NULL != _m_SysLog, false);
+    /*DEBUG*/xTEST_DIFF(xNATIVE_HANDLE_NULL, _m_SysLog);
 #elif xOS_ENV_UNIX
     (void)::openlog(a_csLogName.c_str(), LOG_PID | LOG_NDELAY | LOG_NOWAIT, LOG_USER);
 #endif

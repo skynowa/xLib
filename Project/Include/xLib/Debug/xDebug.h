@@ -18,21 +18,19 @@
 #define _xTEST_EQ(report_type, expr1, expr2)                      { if ( !((expr1) == (expr2)) )  { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, expr1,         expr2,          xT(#expr1), xT(#expr2), xT("=="), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger().bReportMake(rpReport); } }
 #define _xTEST_DIFF(report_type, expr1, expr2)                    { if ( !((expr1) != (expr2)) )  { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, expr1,         expr2,          xT(#expr1), xT(#expr2), xT("!="), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger().bReportMake(rpReport); } }
 #define _xTEST_LESS(report_type, expr1, expr2)                    { if ( !((expr1) <  (expr2)) )  { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, expr1,         expr2,          xT(#expr1), xT(#expr2), xT("<"),  ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger().bReportMake(rpReport); } }
-#define _xTEST_GREATER(report_type, expr1, expr2)                 { if ( !((expr1) >  (expr2)) )  { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, expr1,         expr2,          xT(#expr1), xT(#expr2), xT(">"),  ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger().bReportMake(rpReport); } }
+#define _xTEST_GR(report_type, expr1, expr2)                      { if ( !((expr1) >  (expr2)) )  { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, expr1,         expr2,          xT(#expr1), xT(#expr2), xT(">"),  ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger().bReportMake(rpReport); } }
 #define _xTEST_LESS_EQ(report_type, expr1, expr2)                 { if ( !((expr1) <= (expr2)) )  { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, expr1,         expr2,          xT(#expr1), xT(#expr2), xT("<="), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger().bReportMake(rpReport); } }
-#define _xTEST_GREATER_EQ(report_type, expr1, expr2)              { if ( !((expr1) >= (expr2)) )  { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, expr1,         expr2,          xT(#expr1), xT(#expr2), xT(">="), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger().bReportMake(rpReport); } }
+#define _xTEST_GR_EQ(report_type, expr1, expr2)                   { if ( !((expr1) >= (expr2)) )  { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, expr1,         expr2,          xT(#expr1), xT(#expr2), xT(">="), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger().bReportMake(rpReport); } }
 #define _xTEST_PTR(report_type, ptr)                              { if ( (NULL)    == (ptr)    )  { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, (intptr_t)ptr, (intptr_t)NULL, xT("NULL"), xT(#ptr),   xT("!="), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger().bReportMake(rpReport); } }
 #define _xTEST_PTR_FAIL(report_type, ptr)                         { if ( (NULL)    != (ptr)    )  { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, (intptr_t)ptr, (intptr_t)NULL, xT("NULL"), xT(#ptr),   xT("=="), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger().bReportMake(rpReport); } }
 #define _xTEST_FAIL(report_type)                                  { if ( true                  )  { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, xT(""),        xT(""),         xT("fail"), xT(""),     xT(""),   ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger().bReportMake(rpReport); } }
 
-#define _xASSERT_RET(report_type, expr, return_expr)              { if ( !(expr) )                { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, xT(#expr), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), xT(""));  CxDebugger().bReportMake(rpReport); return (return_expr);} }
 #define _xASSERT_MSG(report_type, expr, comment)                  { if ( !(expr) )                { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, xT(#expr), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), comment); CxDebugger().bReportMake(rpReport);}                       }
 #define _xASSERT_MSG_RET(report_type, expr, comment, return_expr) { if ( !(expr) )                { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, xT(#expr), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), comment); CxDebugger().bReportMake(rpReport); return (return_expr);} }
 #define _xASSERT_MSG_DO(report_type, expr, comment, do_expr)      { if ( !(expr) )                { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, xT(#expr), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), comment); CxDebugger().bReportMake(rpReport); do_expr;}              }
 
 
 #if xDEBUG_MODE_MSGBOX_PLAIN
-    #define xASSERT_RET(expr, return_expr)              _xASSERT_RET(CxErrorReport::rtMsgboxPlain, expr, return_expr)
     #define xASSERT_MSG(expr, comment)                  _xASSERT_MSG(CxErrorReport::rtMsgboxPlain, expr, comment)
     #define xASSERT_MSG_RET(expr, comment, return_expr) _xASSERT_MSG_RET(CxErrorReport::rtMsgboxPlain, expr, comment, return_expr)
     #define xASSERT_MSG_DO(expr, comment, do_expr)      _xASSERT_MSG_DO(CxErrorReport::rtMsgboxPlain, expr, comment, do_expr)
@@ -40,15 +38,14 @@
     #define xTEST_EQ(expr1, expr2)                      _xTEST_EQ(CxErrorReport::rtMsgboxPlain, expr1, expr2)
     #define xTEST_DIFF(expr1, expr2)                    _xTEST_DIFF(CxErrorReport::rtMsgboxPlain, expr1, expr2)
     #define xTEST_LESS(expr1, expr2)                    _xTEST_LESS(CxErrorReport::rtMsgboxPlain, expr1, expr2)
-    #define xTEST_GREATER(expr1, expr2)                 _xTEST_GREATER(CxErrorReport::rtMsgboxPlain, expr1, expr2)
+    #define xTEST_GR(expr1, expr2)                      _xTEST_GR(CxErrorReport::rtMsgboxPlain, expr1, expr2)
     #define xTEST_LESS_EQ(expr1, expr2)                 _xTEST_LESS_EQ(CxErrorReport::rtMsgboxPlain, expr1, expr2)
-    #define xTEST_GREATER_EQ(expr1, expr2)              _xTEST_GREATER_EQ(CxErrorReport::rtMsgboxPlain, expr1, expr2)
+    #define xTEST_GR_EQ(expr1, expr2)                   _xTEST_GR_EQ(CxErrorReport::rtMsgboxPlain, expr1, expr2)
     #define xTEST_PTR(ptr)                              _xTEST_PTR(CxErrorReport::rtMsgboxPlain, ptr)
     #define xTEST_PTR_FAIL(ptr)                         _xTEST_PTR_FAIL(CxErrorReport::rtMsgboxPlain, ptr)
     #define xTEST_FAIL                                  _xTEST_FAIL(CxErrorReport::rtMsgboxPlain)
 
 #elif xDEBUG_MODE_MSGBOX_FORMATED
-    #define xASSERT_RET(expr, return_expr)              _xASSERT_RET(CxErrorReport::rtMsgboxFormated, expr, return_expr)
     #define xASSERT_MSG(expr, comment)                  _xASSERT_MSG(CxErrorReport::rtMsgboxFormated, expr, comment)
     #define xASSERT_MSG_RET(expr, comment, return_expr) _xASSERT_MSG_RET(CxErrorReport::rtMsgboxFormated, expr, comment, return_expr)
     #define xASSERT_MSG_DO(expr, comment, do_expr)      _xASSERT_MSG_DO(CxErrorReport::rtMsgboxFormated, expr, comment, do_expr)
@@ -56,15 +53,14 @@
     #define xTEST_EQ(expr1, expr2)                      _xTEST_EQ(CxErrorReport::rtMsgboxFormated, expr1, expr2)
     #define xTEST_DIFF(expr1, expr2)                    _xTEST_DIFF(CxErrorReport::rtMsgboxFormated, expr1, expr2)
     #define xTEST_LESS(expr1, expr2)                    _xTEST_LESS(CxErrorReport::rtMsgboxFormated, expr1, expr2)
-    #define xTEST_GREATER(expr1, expr2)                 _xTEST_GREATER(CxErrorReport::rtMsgboxFormated, expr1, expr2)
+    #define xTEST_GR(expr1, expr2)                      _xTEST_GR(CxErrorReport::rtMsgboxFormated, expr1, expr2)
     #define xTEST_LESS_EQ(expr1, expr2)                 _xTEST_LESS_EQ(CxErrorReport::rtMsgboxFormated, expr1, expr2)
-    #define xTEST_GREATER_EQ(expr1, expr2)              _xTEST_GREATER_EQ(CxErrorReport::rtMsgboxFormated, expr1, expr2)
+    #define xTEST_GR_EQ(expr1, expr2)                   _xTEST_GR_EQ(CxErrorReport::rtMsgboxFormated, expr1, expr2)
     #define xTEST_PTR(ptr)                              _xTEST_PTR(CxErrorReport::rtMsgboxFormated, ptr)
     #define xTEST_PTR_FAIL(ptr)                         _xTEST_PTR_FAIL(CxErrorReport::rtMsgboxFormated, ptr)
     #define xTEST_FAIL                                  _xTEST_FAIL(CxErrorReport::rtMsgboxFormated)
 
 #elif xDEBUG_MODE_STDOUT_PLAIN
-    #define xASSERT_RET(expr, return_expr)              _xASSERT_RET(CxErrorReport::rtStdoutPlain, expr, return_expr)
     #define xASSERT_MSG(expr, comment)                  _xASSERT_MSG(CxErrorReport::rtStdoutPlain, expr, comment)
     #define xASSERT_MSG_RET(expr, comment, return_expr) _xASSERT_MSG_RET(CxErrorReport::rtStdoutPlain, expr, comment, return_expr)
     #define xASSERT_MSG_DO(expr, comment, do_expr)      _xASSERT_MSG_DO(CxErrorReport::rtStdoutPlain, expr, comment, do_expr)
@@ -72,15 +68,14 @@
     #define xTEST_EQ(expr1, expr2)                      _xTEST_EQ(CxErrorReport::rtStdoutPlain, expr1, expr2)
     #define xTEST_DIFF(expr1, expr2)                    _xTEST_DIFF(CxErrorReport::rtStdoutPlain, expr1, expr2)
     #define xTEST_LESS(expr1, expr2)                    _xTEST_LESS(CxErrorReport::rtStdoutPlain, expr1, expr2)
-    #define xTEST_GREATER(expr1, expr2)                 _xTEST_GREATER(CxErrorReport::rtStdoutPlain, expr1, expr2)
+    #define xTEST_GR(expr1, expr2)                      _xTEST_GR(CxErrorReport::rtStdoutPlain, expr1, expr2)
     #define xTEST_LESS_EQ(expr1, expr2)                 _xTEST_LESS_EQ(CxErrorReport::rtStdoutPlain, expr1, expr2)
-    #define xTEST_GREATER_EQ(expr1, expr2)              _xTEST_GREATER_EQ(CxErrorReport::rtStdoutPlain, expr1, expr2)
+    #define xTEST_GR_EQ(expr1, expr2)                   _xTEST_GR_EQ(CxErrorReport::rtStdoutPlain, expr1, expr2)
     #define xTEST_PTR(ptr)                              _xTEST_PTR(CxErrorReport::rtStdoutPlain, ptr)
     #define xTEST_PTR_FAIL(ptr)                         _xTEST_PTR_FAIL(CxErrorReport::rtStdoutPlain, ptr)
     #define xTEST_FAIL                                  _xTEST_FAIL(CxErrorReport::rtStdoutPlain)
 
 #elif xDEBUG_MODE_STDOUT_HTML
-    #define xASSERT_RET(expr, return_expr)              _xASSERT_RET(CxErrorReport::rtStdoutHtml, expr, return_expr)
     #define xASSERT_MSG(expr, comment)                  _xASSERT_MSG(CxErrorReport::rtStdoutHtml, expr, comment)
     #define xASSERT_MSG_RET(expr, comment, return_expr) _xASSERT_MSG_RET(CxErrorReport::rtStdoutHtml, expr, comment, return_expr)
     #define xASSERT_MSG_DO(expr, comment, do_expr)      _xASSERT_MSG_DO(CxErrorReport::rtStdoutHtml, expr, comment, do_expr)
@@ -88,15 +83,14 @@
     #define xTEST_EQ(expr1, expr2)                      _xTEST_EQ(CxErrorReport::rtStdoutHtml, expr1, expr2)
     #define xTEST_DIFF(expr1, expr2)                    _xTEST_DIFF(CxErrorReport::rtStdoutHtml, expr1, expr2)
     #define xTEST_LESS(expr1, expr2)                    _xTEST_LESS(CxErrorReport::rtStdoutHtml, expr1, expr2)
-    #define xTEST_GREATER(expr1, expr2)                 _xTEST_GREATER(CxErrorReport::rtStdoutHtml, expr1, expr2)
+    #define xTEST_GR(expr1, expr2)                      _xTEST_GREATER(CxErrorReport::rtStdoutHtml, expr1, expr2)
     #define xTEST_LESS_EQ(expr1, expr2)                 _xTEST_LESS_EQ(CxErrorReport::rtStdoutHtml, expr1, expr2)
-    #define xTEST_GREATER_EQ(expr1, expr2)              _xTEST_GREATER_EQ(CxErrorReport::rtStdoutHtml, expr1, expr2)
+    #define xTEST_GR_EQ(expr1, expr2)                   _xTEST_GR_EQ(CxErrorReport::rtStdoutHtml, expr1, expr2)
     #define xTEST_PTR(ptr)                              _xTEST_PTR(CxErrorReport::rtStdoutHtml, ptr)
     #define xTEST_PTR_FAIL(ptr)                         _xTEST_PTR_FAIL(CxErrorReport::rtStdoutHtml, ptr)
     #define xTEST_FAIL                                  _xTEST_FAIL(CxErrorReport::rtStdoutHtml)
 
 #elif xDEBUG_MODE_LOGGING_PLAIN
-    #define xASSERT_RET(expr, return_expr)              _xASSERT_RET(CxErrorReport::rtLoggingPlain, expr, return_expr)
     #define xASSERT_MSG(expr, comment)                  _xASSERT_MSG(CxErrorReport::rtLoggingPlain, expr, comment)
     #define xASSERT_MSG_RET(expr, comment, return_expr) _xASSERT_MSG_RET(CxErrorReport::rtLoggingPlain, expr, comment, return_expr)
     #define xASSERT_MSG_DO(expr, comment, do_expr)      _xASSERT_MSG_DO(CxErrorReport::rtLoggingPlain, expr, comment, do_expr)
@@ -104,15 +98,14 @@
     #define xTEST_EQ(expr1, expr2)                      _xTEST_EQ(CxErrorReport::rtLoggingPlain, expr1, expr2)
     #define xTEST_DIFF(expr1, expr2)                    _xTEST_DIFF(CxErrorReport::rtLoggingPlain, expr1, expr2)
     #define xTEST_LESS(expr1, expr2)                    _xTEST_LESS(CxErrorReport::rtLoggingPlain, expr1, expr2)
-    #define xTEST_GREATER(expr1, expr2)                 _xTEST_GREATER(CxErrorReport::rtLoggingPlain, expr1, expr2)
+    #define xTEST_GR(expr1, expr2)                      _xTEST_GR(CxErrorReport::rtLoggingPlain, expr1, expr2)
     #define xTEST_LESS_EQ(expr1, expr2)                 _xTEST_LESS_EQ(CxErrorReport::rtLoggingPlain, expr1, expr2)
-    #define xTEST_GREATER_EQ(expr1, expr2)              _xTEST_GREATER_EQ(CxErrorReport::rtLoggingPlain, expr1, expr2)
+    #define xTEST_GR_EQ(expr1, expr2)                   _xTEST_GR_EQ(CxErrorReport::rtLoggingPlain, expr1, expr2)
     #define xTEST_PTR(ptr)                              _xTEST_PTR(CxErrorReport::rtLoggingPlain, ptr)
     #define xTEST_PTR_FAIL(ptr)                         _xTEST_PTR_FAIL(CxErrorReport::rtLoggingPlain, ptr)
     #define xTEST_FAIL                                  _xTEST_FAIL(CxErrorReport::rtLoggingPlain)
 
 #elif xDEBUG_MODE_LOGGING_HTML
-    #define xASSERT_RET(expr, return_expr)              _xASSERT_RET(CxErrorReport::rtLoggingHtml, expr, return_expr)
     #define xASSERT_MSG(expr, comment)                  _xASSERT_MSG(CxErrorReport::rtLoggingHtml, expr, comment)
     #define xASSERT_MSG_RET(expr, comment, return_expr) _xASSERT_MSG_RET(CxErrorReport::rtLoggingHtml, expr, comment, return_expr)
     #define xASSERT_MSG_DO(expr, comment, do_expr)      _xASSERT_MSG_DO(CxErrorReport::rtLoggingHtml, expr, comment, do_expr)
@@ -120,31 +113,14 @@
     #define xTEST_EQ(expr1, expr2)                      _xTEST_EQ(CxErrorReport::rtLoggingHtml, expr1, expr2)
     #define xTEST_DIFF(expr1, expr2)                    _xTEST_DIFF(CxErrorReport::rtLoggingHtml, expr1, expr2)
     #define xTEST_LESS(expr1, expr2)                    _xTEST_LESS(CxErrorReport::rtLoggingHtml, expr1, expr2)
-    #define xTEST_GREATER(expr1, expr2)                 _xTEST_GREATER(CxErrorReport::rtLoggingHtml, expr1, expr2)
+    #define xTEST_GR(expr1, expr2)                      _xTEST_GR(CxErrorReport::rtLoggingHtml, expr1, expr2)
     #define xTEST_LESS_EQ(expr1, expr2)                 _xTEST_LESS_EQ(CxErrorReport::rtLoggingHtml, expr1, expr2)
-    #define xTEST_GREATER_EQ(expr1, expr2)              _xTEST_GREATER_EQ(CxErrorReport::rtLoggingHtml, expr1, expr2)
+    #define xTEST_GR_EQ(expr1, expr2)                   _xTEST_GR_EQ(CxErrorReport::rtLoggingHtml, expr1, expr2)
     #define xTEST_PTR(ptr)                              _xTEST_PTR(CxErrorReport::rtLoggingHtml, ptr)
     #define xTEST_PTR_FAIL(ptr)                         _xTEST_PTR_FAIL(CxErrorReport::rtLoggingHtml, ptr)
     #define xTEST_FAIL                                  _xTEST_FAIL(CxErrorReport::rtLoggingHtml)
 
-#elif xDEBUG_MODE_NOLOGGING
-    #define xASSERT_RET(expr, return_expr)              { if ( !(expr) ) { return (return_expr); } }
-    #define xASSERT_MSG(expr, comment)                  { xNA                                      }
-    #define xASSERT_MSG_RET(expr, comment, return_expr) { if ( !(expr) ) { return (return_expr); } }
-    #define xASSERT_MSG_DO(expr, comment, do_expr)      { if ( !(expr) ) { do_expr;              } }
-
-    #define xTEST_EQ(expr1, expr2)                      { xNA }
-    #define xTEST_DIFF(expr1, expr2)                    { xNA }
-    #define xTEST_LESS(expr1, expr2)                    { xNA }
-    #define xTEST_GREATER(expr1, expr2)                 { xNA }
-    #define xTEST_LESS_EQ(expr1, expr2)                 { xNA }
-    #define xTEST_GREATER_EQ(expr1, expr2)              { xNA }
-    #define xTEST_PTR(ptr)                              { xNA }
-    #define xTEST_PTR_FAIL(ptr)                         { xNA }
-    #define xTEST_FAIL                                  { xNA }
-
 #elif xDEBUG_MODE_NO
-    #define xASSERT_RET(expr, return_expr)              { xNA }
     #define xASSERT_MSG(expr, comment)                  { xNA }
     #define xASSERT_MSG_RET(expr, comment, return_expr) { xNA }
     #define xASSERT_MSG_DO(expr, comment, do_expr)      { xNA }
@@ -152,9 +128,9 @@
     #define xTEST_EQ(expr1, expr2)                      { xNA }
     #define xTEST_DIFF(expr1, expr2)                    { xNA }
     #define xTEST_LESS(expr1, expr2)                    { xNA }
-    #define xTEST_GREATER(expr1, expr2)                 { xNA }
+    #define xTEST_GR(expr1, expr2)                      { xNA }
     #define xTEST_LESS_EQ(expr1, expr2)                 { xNA }
-    #define xTEST_GREATER_EQ(expr1, expr2)              { xNA }
+    #define xTEST_GR_EQ(expr1, expr2)                   { xNA }
     #define xTEST_PTR(ptr)                              { xNA }
     #define xTEST_PTR_FAIL(ptr)                         { xNA }
     #define xTEST_FAIL                                  { xNA }

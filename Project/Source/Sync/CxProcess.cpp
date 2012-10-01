@@ -62,9 +62,9 @@ CxProcess::bCreate(
     const tchar_t        *a_pcszParams, ...
 )
 {
-    /*DEBUG*/xASSERT_RET(false == a_csFilePath.empty(),            false);
-    /*DEBUG*/xASSERT_RET(true  == CxFile::bIsExists(a_csFilePath), false);
-    /*DEBUG*/xASSERT_RET(NULL  != a_pcszParams,                    false);
+    /*DEBUG*/xTEST_EQ(false, a_csFilePath.empty());
+    /*DEBUG*/xTEST_EQ(true, CxFile::bIsExists(a_csFilePath));
+    /*DEBUG*/xTEST_PTR(a_pcszParams);
 
     std::tstring_t sCmdLine;
 
@@ -82,7 +82,7 @@ CxProcess::bCreate(
     BOOL blRes = ::CreateProcess(a_csFilePath.c_str(), const_cast<LPTSTR>( sCmdLine.c_str() ),
                                  NULL, NULL, FALSE, NORMAL_PRIORITY_CLASS, NULL, NULL,
                                  &siInfo, &piInfo);
-    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
+    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 
     _m_hHandle = piInfo.hProcess;
     _m_hThread = piInfo.hThread;
@@ -95,7 +95,7 @@ CxProcess::bCreate(
         // TODO: csFilePath is executable
 
         int iRv = ::execlp(a_csFilePath.c_str(), a_csFilePath.c_str(), sCmdLine.c_str(), static_cast<const tchar_t *>( NULL ));
-        /*DEBUG*/xASSERT_RET(- 1 != iRv, false);
+        /*DEBUG*/xTEST_DIFF(- 1, iRv);
 
         (void)::_exit(EXIT_SUCCESS);  /* not exit() */
     }
@@ -116,7 +116,7 @@ CxProcess::ulWait(
 
 #if   xOS_ENV_WIN
     DWORD ulRv = ::WaitForSingleObject(_m_hHandle, a_culTimeout);
-    /*DEBUG*/xASSERT_RET(WAIT_OBJECT_0 == ulRv, static_cast<ExWaitResult>( ulRv ));
+    /*DEBUG*/xTEST_EQ(WAIT_OBJECT_0, ulRv);
 
     wrStatus = static_cast<ExWaitResult>( ulRv );
 #elif xOS_ENV_UNIX
@@ -148,13 +148,13 @@ CxProcess::bKill(
     ulong_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN
-    /*DEBUG*/xASSERT_RET(NULL != _m_hHandle, false);
+    /*DEBUG*/xTEST_DIFF(xNATIVE_HANDLE_NULL, _m_hHandle);
     /*DEBUG*/// ulTimeout - n/a
 
     _m_uiExitStatus = 0U;
 
     BOOL blRes = ::TerminateProcess(_m_hHandle, _m_uiExitStatus);
-    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
+    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 
     for ( ; ; ) {
         ulRv = ulGetExitStatus();
@@ -165,7 +165,7 @@ CxProcess::bKill(
     }
 #elif xOS_ENV_UNIX
     int iRv = ::kill(_m_ulPid, SIGKILL);
-    /*DEBUG*/xASSERT_RET(- 1 != iRv, false);
+    /*DEBUG*/xTEST_DIFF(- 1, iRv);
 
     bRv = CxCurrentThread::bSleep(a_culTimeout);
     /*DEBUG*/xASSERT(true == bRv);
@@ -205,7 +205,7 @@ CxProcess::ulGetExitStatus() const {
 
 #if   xOS_ENV_WIN
     BOOL blRes = ::GetExitCodeProcess(_m_hHandle, &ulRv);
-    /*DEBUG*/xASSERT_RET(FALSE != blRes, ulRv);
+    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     ulRv = _m_uiExitStatus;
 #endif
@@ -270,10 +270,10 @@ CxProcess::bIsRunning(
     PROCESSENTRY32  peProcess = {0};    peProcess.dwSize = sizeof(PROCESSENTRY32);
 
     hSnapshot = ::CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0UL);
-    /*DEBUG*/xASSERT_RET(true == hSnapshot.bIsValid(), false);
+    /*DEBUG*/xTEST_EQ(true, hSnapshot.bIsValid());
 
     BOOL blRv = ::Process32First(hSnapshot.hGet(), &peProcess);
-    /*DEBUG*/xASSERT_RET(FALSE != blRv, false);
+    /*DEBUG*/xTEST_DIFF(FALSE, blRv);
 
     for ( ; ; ) {
         bool bRv = CxString::bCompareNoCase(a_csProcessName, peProcess.szExeFile);

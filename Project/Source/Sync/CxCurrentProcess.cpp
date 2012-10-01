@@ -83,7 +83,7 @@ CxCurrentProcess::ulGetParentId() {
     CxDll dlDll;
 
     bRv = dlDll.bLoad(xT("ntdll.dll"));
-    /*DEBUG*/xASSERT_RET(true == bRv, culInvalidId);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     bRv = dlDll.bIsProcExists(xT("NtQueryInformationProcess"));
     xCHECK_RET(false == bRv, culInvalidId);
@@ -92,11 +92,11 @@ CxCurrentProcess::ulGetParentId() {
     ULONG     ulReturnLength           = 0UL;
 
     Dll_NtQueryInformationProcess_t DllNtQueryInformationProcess = (Dll_NtQueryInformationProcess_t)dlDll.fpGetProcAddress(xT("NtQueryInformationProcess"));
-    /*DEBUG*/xASSERT_RET(NULL != DllNtQueryInformationProcess, culInvalidId);
+    /*DEBUG*/xTEST_PTR(DllNtQueryInformationProcess);
 
     NTSTATUS ntsRes = DllNtQueryInformationProcess(hGetHandle(), ProcessBasicInformation, &pulProcessInformation, sizeof(pulProcessInformation), &ulReturnLength);
     bRv = (ntsRes >= 0 && ulReturnLength == sizeof(pulProcessInformation));
-    /*DEBUG*/xASSERT_RET(true == bRv, culInvalidId);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     ulRv = pulProcessInformation[5];
 #elif xOS_ENV_UNIX
@@ -121,7 +121,7 @@ CxCurrentProcess::hGetHandle() {
     #else
         hRv = ::GetCurrentProcess();
     #endif
-    /*DEBUG*/xASSERT_RET(NULL != hRv, NULL);
+    /*DEBUG*/xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
 #elif xOS_ENV_UNIX
     hRv = ::getpid();
     /*DEBUG*/// n/a

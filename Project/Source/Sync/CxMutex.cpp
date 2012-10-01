@@ -54,7 +54,7 @@ CxMutex::bCreate() {
         bRv = false;
     }
 
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 #elif xOS_ENV_UNIX
     int iRv = - 1;
 
@@ -99,7 +99,7 @@ CxMutex::bLock() {
         bRv = false;
     }
 
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 #elif xOS_ENV_UNIX
     int iRv = ::pthread_mutex_lock(&_m_hHandle);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
@@ -134,7 +134,7 @@ CxMutex::bUnlock() {
         bRv = false;
     }
 
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 #elif xOS_ENV_UNIX
     int iRv = ::pthread_mutex_unlock(&_m_hHandle);
     /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);

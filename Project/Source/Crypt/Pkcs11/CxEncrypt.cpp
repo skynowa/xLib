@@ -112,10 +112,10 @@ CxEncrypt::bMakeFile(
     CK_OBJECT_HANDLE      a_hKey
 )
 {
-    /*DEBUG*/xASSERT_RET(false == a_csInFilePath.empty(),  false);
-    /*DEBUG*/xASSERT_RET(false == a_csOutFilePath.empty(), false);
-    /*DEBUG*/xASSERT_RET(NULL  != a_pMechanism,            false);
-    /*DEBUG*/xASSERT_RET(NULL  != a_hKey,                  false);
+    /*DEBUG*/xTEST_EQ(false, a_csInFilePath.empty());
+    /*DEBUG*/xTEST_EQ(false, a_csOutFilePath.empty());
+    /*DEBUG*/xTEST_PTR(a_pMechanism);
+    /*DEBUG*/xTEST_PTR(a_hKey);
 
     //-------------------------------------
     //������ ����� � �����
@@ -126,10 +126,10 @@ CxEncrypt::bMakeFile(
         CxFile sfFileRaw;
 
         bRv = sfFileRaw.bCreate(a_csInFilePath, CxFile::omBinRead, true);
-        /*DEBUG*/xASSERT_RET(true == bRv, false);
+        /*DEBUG*/xTEST_EQ(true, bRv);
 
         bRv = sfFileRaw.bRead(&usPlainData);
-        /*DEBUG*/xASSERT_RET(true == bRv, false);
+        /*DEBUG*/xTEST_EQ(true, bRv);
     }
 
     //-------------------------------------
@@ -171,10 +171,10 @@ CxEncrypt::bMakeFile(
         CxFile sfFileEncrypt;
 
         bRv = sfFileEncrypt.bCreate(a_csOutFilePath, CxFile::omBinWrite, true);
-        /*DEBUG*/xASSERT_RET(true == bRv, false);
+        /*DEBUG*/xTEST_EQ(true, bRv);
 
         bRv = sfFileEncrypt.bWrite(usEncryptedData);
-        /*DEBUG*/xASSERT_RET(true == bRv, false);
+        /*DEBUG*/xTEST_EQ(true, bRv);
     }
 
     return true;

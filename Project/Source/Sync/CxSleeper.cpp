@@ -34,7 +34,7 @@ CxSleeper::bSleep(
     /*DEBUG*/// n/a
 
     CxEvent::ExObjectState osRes = _m_objEvent.osWait(a_culTimeout);
-    /*DEBUG*/xASSERT_RET(CxEvent::osSignaled == osRes || CxEvent::osTimeout == osRes, false);
+    /*DEBUG*/xTEST_EQ(true, CxEvent::osSignaled == osRes || CxEvent::osTimeout == osRes);
 
     return true;
 }
@@ -44,7 +44,7 @@ CxSleeper::bWakeUp() {
     /*DEBUG*/// n/a
 
     bool bRv = _m_objEvent.bSet();
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     return true;
 }

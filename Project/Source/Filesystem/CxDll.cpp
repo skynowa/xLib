@@ -44,17 +44,17 @@ CxDll::bLoad(
 )
 {
     xDEBUG_VARS_NA;
-    /*DEBUG*/xASSERT_RET(false == csDllPath.empty(), false);
+    /*DEBUG*/xTEST_EQ(false, csDllPath.empty());
 
     bool bRv = _bFree();
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
 #if   xOS_ENV_WIN
     _m_hDll = ::LoadLibrary(csDllPath.c_str());
-    /*DEBUG*/xASSERT_RET(NULL != _m_hDll, false);
+    /*DEBUG*/xTEST_PTR(_m_hDll);
 #elif xOS_ENV_UNIX
     _m_hDll = ::dlopen(csDllPath.c_str(), RTLD_LAZY | RTLD_GLOBAL);
-    /*DEBUG*/xASSERT_RET(NULL != _m_hDll, false);
+    /*DEBUG*/xTEST_PTR(_m_hDll);
 #endif
 
     return true;
@@ -65,7 +65,7 @@ CxDll::bIsProcExists(
     const std::tstring_t &csProcName
 ) const
 {
-    /*DEBUG*/xASSERT_RET(NULL != _m_hDll, false);
+    /*DEBUG*/xTEST_PTR(_m_hDll);
 
 #if   xOS_ENV_WIN
     proc_address_t fpRes = ::GetProcAddress(_m_hDll, xTS2S(csProcName).c_str());
@@ -74,7 +74,7 @@ CxDll::bIsProcExists(
     const char *pszError = NULL;
 
     pszError = ::dlerror();
-    /*DEBUG*/xASSERT_RET(NULL == pszError, false);
+    /*DEBUG*/xTEST_PTR_FAIL(pszError, false);
 
     (void)::dlsym(_m_hDll, csProcName.c_str());
 
@@ -90,24 +90,24 @@ CxDll::fpGetProcAddress(
     const std::tstring_t &csProcName
 ) const
 {
-    /*DEBUG*/xASSERT_RET(NULL != _m_hDll, NULL);
+    /*DEBUG*/xTEST_PTR(_m_hDll);
 
     proc_address_t fpRes = NULL;
 
 #if   xOS_ENV_WIN
     fpRes = ::GetProcAddress(_m_hDll, xTS2S(csProcName).c_str());
-    /*DEBUG*/xASSERT_RET(NULL != fpRes, NULL);
+    /*DEBUG*/xTEST_PTR(fpRes);
 #elif xOS_ENV_UNIX
     const char *pszError = NULL;
 
     pszError = ::dlerror();
-    /*DEBUG*/xASSERT_RET(NULL == pszError, NULL);
+    /*DEBUG*/xTEST_PTR_FAIL(pszError, NULL);
 
     fpRes = ::dlsym(_m_hDll, csProcName.c_str());
     xDEBUG_VAR_NA(fpRes)
 
     pszError = ::dlerror();
-    /*DEBUG*/xASSERT_RET(NULL == pszError, NULL);
+    /*DEBUG*/xTEST_PTR_FAIL(pszError, NULL);
 #endif
 
     return fpRes;
@@ -129,10 +129,10 @@ CxDll::_bFree() {
 
 #if   xOS_ENV_WIN
     BOOL blRes = ::FreeLibrary(_m_hDll);
-    /*DEBUG*/xASSERT_RET(FALSE != blRes, false);
+    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     int iRv = ::dlclose(_m_hDll);
-    /*DEBUG*/xASSERT_RET(0 == iRv, false);
+    /*DEBUG*/xTEST_EQ(0, iRv);
 #endif
 
     _m_hDll = NULL;

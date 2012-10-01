@@ -35,8 +35,8 @@ CxFileLog::CxFileLog(
     #endif
 {
     /*DEBUG*/xTEST_EQ(true, _m_sFilePath.empty());
-    /*DEBUG*/xTEST_GREATER(lsLimitSize, lsDefaultMaxSize);
-    /*DEBUG*/xTEST_GREATER(static_cast<ulong_t>( lsLimitSize ), a_culMaxFileSizeBytes);
+    /*DEBUG*/xTEST_GR(lsLimitSize, lsDefaultMaxSize);
+    /*DEBUG*/xTEST_GR(static_cast<ulong_t>( lsLimitSize ), a_culMaxFileSizeBytes);
 }
 //---------------------------------------------------------------------------
 /* virtual */
@@ -49,7 +49,7 @@ CxFileLog::bSetFilePath(
     const std::tstring_t &a_csFilePath
 )
 {
-    /*DEBUG*/xASSERT_RET(false == a_csFilePath.empty(), false);
+    /*DEBUG*/xTEST_EQ(false, a_csFilePath.empty());
 
     if (std::tstring_t::npos == a_csFilePath.find(CxConst::xSLASH)) {
         _m_sFilePath = CxPath::sGetDir(CxPath::sGetExe()) + CxConst::xSLASH + a_csFilePath;
@@ -72,12 +72,12 @@ CxFileLog::bWrite(
     const tchar_t *a_pcszFormat, ...
 )
 {
-    /*DEBUG*/xASSERT_RET(NULL != a_pcszFormat, false);
+    /*DEBUG*/xTEST_PTR(a_pcszFormat);
 
     bool bRv = false;
 
     bRv = _bDeleteIfFull();
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     //-------------------------------------
     //time
@@ -102,10 +102,10 @@ CxFileLog::bWrite(
     CxFile sfFile;
 
     bRv = sfFile.bCreate(sGetFilePath(), CxFile::omAppend, false);
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     int iRv = sfFile.iWrite(xT("[%s] %s\n"), sTime.c_str(), sParam.c_str());
-    /*DEBUG*/xASSERT_RET(iRv != CxFile::etError, false);
+    /*DEBUG*/xTEST_DIFF(iRv, static_cast<int>( CxFile::etError ));
 
     return true;
 }
@@ -119,7 +119,7 @@ CxFileLog::bClear() {
     #endif
 
     bRv = CxFile::bClear(sGetFilePath());
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     return true;
 }
@@ -133,7 +133,7 @@ CxFileLog::bDelete() {
     #endif
 
     bRv = CxFile::bDelete(sGetFilePath());
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     return true;
 }
@@ -164,7 +164,7 @@ CxFileLog::_bDeleteIfFull() {
     xCHECK_RET(ulSize < _m_ulMaxFileSizeBytes, true);
 
     bRv = CxFile::bDelete(sGetFilePath());
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     return true;
 }

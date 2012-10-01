@@ -50,8 +50,8 @@ CxSession::bOpen(
     CK_NOTIFY   a_Notify         ///< callback function
 )
 {
-    /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    false);
-    /*DEBUG*/xASSERT_RET(NULL == _m_hSession, false);
+    /*DEBUG*/xTEST_PTR(_m_pFunc);
+    /*DEBUG*/xTEST_PTR_FAIL(_m_hSession);
 
     CK_RV ulRv = _m_pFunc->C_OpenSession(a_slotID, a_flags, a_pApplication, a_Notify, &_m_hSession);
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
@@ -64,8 +64,8 @@ CxSession::bGetInfo(
     CK_SESSION_INFO_PTR a_pInfo      ///< receives session info
 )
 {
-    /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    false);
-    /*DEBUG*/xASSERT_RET(NULL != _m_hSession, false);
+    /*DEBUG*/xTEST_PTR(_m_pFunc);
+    /*DEBUG*/xTEST_PTR(_m_hSession);
 
     CK_RV ulRv = _m_pFunc->C_GetSessionInfo(_m_hSession, a_pInfo);
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
@@ -81,8 +81,8 @@ CxSession::bSetOperationState(
     CK_OBJECT_HANDLE a_hAuthenticationKey    ///< sign/verify key
 )
 {
-    /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    false);
-    /*DEBUG*/xASSERT_RET(NULL != _m_hSession, false);
+    /*DEBUG*/xTEST_PTR(_m_pFunc);
+    /*DEBUG*/xTEST_PTR(_m_hSession);
 
     CK_RV ulRv = _m_pFunc->C_SetOperationState(_m_hSession, a_pOperationState, a_ulOperationStateLen, a_hEncryptionKey, a_hAuthenticationKey);
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
@@ -96,8 +96,8 @@ CxSession::bGetOperationState(
     CK_ULONG_PTR a_pulOperationStateLen  ///< gets state length
 )
 {
-    /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    false);
-    /*DEBUG*/xASSERT_RET(NULL != _m_hSession, false);
+    /*DEBUG*/xTEST_PTR(_m_pFunc);
+    /*DEBUG*/xTEST_PTR(_m_hSession);
 
     CK_RV ulRv = _m_pFunc->C_GetOperationState(_m_hSession, a_pOperationState, a_pulOperationStateLen);
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
@@ -107,8 +107,8 @@ CxSession::bGetOperationState(
 //---------------------------------------------------------------------------
 bool
 CxSession::bClose() {
-    /*DEBUG*/xASSERT_RET(NULL != _m_pFunc,    false);
-    /*DEBUG*/xASSERT_RET(NULL != _m_hSession, false);
+    /*DEBUG*/xTEST_PTR(_m_pFunc);
+    /*DEBUG*/xTEST_PTR(_m_hSession);
 
 
     CK_RV ulRv = _m_pFunc->C_CloseSession(_m_hSession);
@@ -124,7 +124,7 @@ CxSession::bCloseAll(
     CK_SLOT_ID slotID  ///< the token's slot
 )
 {
-    /*DEBUG*/xASSERT_RET(NULL != _m_pFunc, false);
+    /*DEBUG*/xTEST_PTR(_m_pFunc);
     /*DEBUG*/// _m_hSession - n/a
 
     CK_RV ulRv = _m_pFunc->C_CloseAllSessions(slotID);

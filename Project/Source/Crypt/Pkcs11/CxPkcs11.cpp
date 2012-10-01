@@ -37,7 +37,7 @@ CxPkcs11::~CxPkcs11() {
 //---------------------------------------------------------------------------
 CK_FUNCTION_LIST_PTR
 CxPkcs11::pGetFuncList() const {
-    /*DEBUG*/xASSERT_RET(NULL != _m_pFunc, NULL);
+    /*DEBUG*/xTEST_PTR(_m_pFunc);
 
     return _m_pFunc;
 }
@@ -169,23 +169,23 @@ CxPkcs11::_bLoadETPkcs11() {
     /*DEBUG*/
 
     bool bRv = _m_dllETPkcs11.bLoad(xT("eTPkcs11.dll"));
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     CK_C_GetFunctionList pFunctionList = NULL;
 
     (FARPROC &)pFunctionList = (FARPROC)_m_dllETPkcs11.fpGetProcAddress(xT("C_GetFunctionList"));
-    /*DEBUG*/xASSERT_RET(NULL != pFunctionList, false);
+    /*DEBUG*/xTEST_PTR(pFunctionList);
 
     CK_RV ulRv = pFunctionList(&_m_pFunc);
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
-    /*DEBUG*/xASSERT_RET    (NULL   != _m_pFunc,                                       false);
+    /*DEBUG*/xTEST_PTR(_m_pFunc);
 
     return true;
 }
 //---------------------------------------------------------------------------
 bool
 CxPkcs11::bInitialize() {
-    /*DEBUG*/xASSERT_RET(NULL != _m_pFunc, false);
+    /*DEBUG*/xTEST_PTR(_m_pFunc);
 
     CK_RV ulRv = _m_pFunc->C_Initialize(NULL_PTR);
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
@@ -195,7 +195,7 @@ CxPkcs11::bInitialize() {
 //---------------------------------------------------------------------------
 bool
 CxPkcs11::bFinalize() {
-    /*DEBUG*/xASSERT_RET(NULL != _m_pFunc, false);
+    /*DEBUG*/xTEST_PTR(_m_pFunc);
 
     CK_RV ulRv = _m_pFunc->C_Finalize(NULL_PTR);
     /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);

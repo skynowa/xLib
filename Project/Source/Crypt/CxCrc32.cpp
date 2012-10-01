@@ -25,8 +25,8 @@ CxCrc32::ulCalc(
     const ulong_t  a_culSize
 )
 {
-    /*DEBUG*/xASSERT_RET(NULL != a_pucBuff, 0);
-    /*DEBUG*/xASSERT_RET(0    <  a_culSize, 0);
+    /*DEBUG*/xTEST_PTR(a_pucBuff);
+    /*DEBUG*/xTEST_LESS(0UL, a_culSize);
 
     ulong_t crc            = 0;
     ulong_t crc_table[256] = {0};
@@ -56,14 +56,14 @@ CxCrc32::ulCalcFile(
     const std::tstring_t &a_csFilePath
 )
 {
-    /*DEBUG*/xASSERT_RET(false == a_csFilePath.empty(), 0);
+    /*DEBUG*/xTEST_EQ(false, a_csFilePath.empty());
 
     ulong_t ulRv = 0;
 
     std::ustring_t usFile;
 
     bool bRv = CxFile::bBinRead(a_csFilePath, &usFile);
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     if (true == usFile.empty()) {
         ulRv = 0;
@@ -81,8 +81,8 @@ CxCrc32::ulCalcFast(
     const ulong_t  a_culSize
 )
 {
-    /*DEBUG*/xASSERT_RET(NULL != a_pucBuff,  0);
-    /*DEBUG*/xASSERT_RET(0    <  a_culSize,  0);
+    /*DEBUG*/xTEST_PTR(a_pucBuff);
+    /*DEBUG*/xTEST_LESS(0UL, a_culSize);
 
     ulong_t crc            = 0;
     ulong_t crc_table[256] = {
@@ -183,14 +183,14 @@ CxCrc32::ulCalcFileFast(
     const std::tstring_t &a_csFilePath
 )
 {
-    /*DEBUG*/xASSERT_RET(false == a_csFilePath.empty(), 0);
+    /*DEBUG*/xTEST_EQ(false, a_csFilePath.empty());
 
     ulong_t ulRv = 0;
 
     std::ustring_t usFile;
 
     bool bRv = CxFile::bBinRead(a_csFilePath, &usFile);
-    /*DEBUG*/xASSERT_RET(true == bRv, false);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 
     if (true == usFile.empty()) {
         ulRv = 0;
@@ -218,7 +218,7 @@ CxCrc32::sFormatHex(
     if (0 != uiAdditionalZeros) {
         sRv.insert(0, uiAdditionalZeros, xT('0'));
     }
-    /*DEBUG*/xASSERT_RET(uiCrc32Size == sRv.size(), std::tstring_t());
+    /*DEBUG*/xTEST_EQ(uiCrc32Size, sRv.size());
 
     return sRv;
 }
