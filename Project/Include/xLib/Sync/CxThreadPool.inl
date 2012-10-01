@@ -64,11 +64,11 @@ CxThreadPool<TaskT>::~CxThreadPool() {
 template<class TaskT>
 bool
 CxThreadPool<TaskT>::bCreateGroup(uint_t a_uiStackSize, const TFuncPtr a_fpFuncPtr, void *a_pvParam, uint_t a_uiNumTasks, uint_t a_uiMaxRunningTasks) {
-    /*DEBUG*/xASSERT_RET(0    <= a_uiStackSize,       false);    //TODO: MaxValue
-    /*DEBUG*/xTEST_PTR_FAIL(a_fpFuncPtr,         false);
-    /*DEBUG*/xTEST_PTR(a_pvParam,           false);
-    /*DEBUG*/xASSERT_RET(0    <  a_uiNumTasks,        false);
-    /*DEBUG*/xASSERT_RET(0    <  a_uiMaxRunningTasks, false);
+    /*DEBUG*/xTEST_LESS_EQ(size_t(0), a_uiStackSize);    // TODO: MaxValue
+    /*DEBUG*/xTEST_PTR_FAIL(a_fpFuncPtr);
+    /*DEBUG*/xTEST_PTR(a_pvParam);
+    /*DEBUG*/xTEST_LESS_EQ(size_t(0), a_uiNumTasks);
+    /*DEBUG*/xTEST_LESS_EQ(size_t(0), a_uiMaxRunningTasks);
 
     bool bRv = false;
 
@@ -363,13 +363,13 @@ CxThreadPool<TaskT>::bIsEmpty() const {
 template<class TaskT>
 bool
 CxThreadPool<TaskT>::bIsFull() const {
-    /*DEBUG*///xASSERT_RET(CONDITION, RET_VALUE);
+    /*DEBUG*///xTEST_EQ(CONDITION);
 
     bool bRv = false;
 
     CxAutoMutex CS(_m_csList, true);
 
-    /*DEBUG*/xASSERT_RET(_m_uiMaxRunningTasks < _m_lstpthTasks.size(), true);
+    /*DEBUG*/xTEST_LESS(_m_uiMaxRunningTasks, _m_lstpthTasks.size());
 
     bRv = (_m_uiMaxRunningTasks == _m_lstpthTasks.size());
     /*DEBUG*/// n/a
@@ -381,7 +381,7 @@ CxThreadPool<TaskT>::bIsFull() const {
 template<class TaskT>
 uint_t
 CxThreadPool<TaskT>::uiGetSize() const {
-    /*DEBUG*///xASSERT_RET(CONDITION, RET_VALUE);
+    /*DEBUG*///xTEST_EQ(CONDITION);
 
     uint_t uiRes = 0;
 
@@ -424,7 +424,7 @@ CxThreadPool<TaskT>::uiOnRun(void *a_pvParam) {
         //-------------------------------------
         //�������� ���������� ������
         bRv = _m_semSemaphore.bWait(INFINITE);
-        /*DEBUG*/xASSERT_DO(true == bRv, break);
+        /*DEBUG*/xTEST_EQ(true, bRv);
 
         //-------------------------------------
         //��� �������� (���� ��������� ��� ������� - �����)
@@ -438,8 +438,8 @@ CxThreadPool<TaskT>::uiOnRun(void *a_pvParam) {
 
         //-------------------------------------
         //������ ����. ������
-        bRv = _bAddTask(NULL);                                    //_m_semSemaphore.bWait(INFINITE);
-        /*DEBUG*/xASSERT_DO(true == bRv, break);                //continue ???
+        bRv = _bAddTask(NULL);                       //_m_semSemaphore.bWait(INFINITE);
+        /*DEBUG*/xTEST_EQ(true, bRv);                //continue ???
 
         ++ _m_uiCurrTask;
 
@@ -455,7 +455,7 @@ CxThreadPool<TaskT>::uiOnRun(void *a_pvParam) {
         xCHECK_DO(true == bIsEmpty(), break);
 
         bRv = bSleep(500);
-        /*DEBUG*/xASSERT_DO(true == bRv, break);
+        /*DEBUG*/xTEST_EQ(true, bRv);
     }
     /*DEBUG*/xTEST_EQ(true, _m_lstpthTasks.empty(), 0);
 
@@ -546,8 +546,8 @@ template<class TaskT>
 void
 CxThreadPool<TaskT>::_vOnEnterTask(CxThread *a_pthSender)  {
     /*DEBUG*/
-    /*DEBUG*/xASSERT_DO(NULL  != a_pthSender,               return);
-    /*DEBUG*/xASSERT_DO(false != a_pthSender->bIsRunning(), return);
+    /*DEBUG*/xTEST_PTR(a_pthSender);
+    /*DEBUG*/xTEST_EQ(true, a_pthSender->bIsRunning());
 
     //...
 
@@ -559,8 +559,8 @@ template<class TaskT>
 void
 CxThreadPool<TaskT>::_vOnExitTask(CxThread *a_pthSender)  {
     /*DEBUG*/
-    /*DEBUG*/xASSERT_DO(NULL  != a_pthSender,               return);
-    /*DEBUG*/xASSERT_DO(false != a_pthSender->bIsRunning(), return);
+    /*DEBUG*/xTEST_PTR(a_pthSender);
+    /*DEBUG*/xTEST_EQ(true, a_pthSender->bIsRunning());
 
     bool bRv = false;
 

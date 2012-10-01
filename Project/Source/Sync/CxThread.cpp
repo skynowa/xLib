@@ -914,8 +914,8 @@ CxThread::bSetDebugName(
     const std::tstring_t &a_csName
 ) const
 {
-    /////*DEBUG*/xASSERT_RET(0  < _m_ulId,         false);
-    /////*DEBUG*/xASSERT_RET(32 > a_csName.size(), false); //MAX_NAME_SIZE 32
+    /////*DEBUG*/xTEST_LESS(0, _m_ulId);
+    /////*DEBUG*/xTEST_GR(32, a_csName.size()); //MAX_NAME_SIZE 32
 
     //// TODO: xCHECK_RET(false == CxDebugger().bIsActive(), true);
 

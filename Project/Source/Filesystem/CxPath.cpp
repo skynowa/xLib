@@ -783,7 +783,7 @@ CxPath::uiGetMaxSize() {
 
         liRv       = ::pathconf("/", _PC_PATH_MAX);
         ulLastError = CxLastError::ulGet();
-        /*DEBUG*/xASSERT_RET(- 1L == liRv && 0UL != culSavedError, 0);
+        /*DEBUG*/xTEST_EQ(true, - 1L == liRv && 0UL != culSavedError);
 
         if (- 1L == liRv && culSavedError == ulLastError) {
             //system does not have a limit for the requested resource
@@ -827,7 +827,7 @@ CxPath::uiGetNameMaxSize() {
 
         liRv       = ::pathconf("/", _PC_NAME_MAX);
         ulLastError = CxLastError::ulGet();
-        /*DEBUG*/xASSERT_RET(- 1L == liRv && 0UL != culSavedError, 0);
+        /*DEBUG*/xTEST_EQ(true, - 1L == liRv && 0UL != culSavedError);
 
         if (- 1L == liRv && culSavedError == ulLastError) {
             //system does not have a limit for the requested resource
