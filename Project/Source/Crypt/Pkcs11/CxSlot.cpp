@@ -55,13 +55,13 @@ CxSlot::bGetList(
     (*a_pvecSlotList).clear();
 
     CK_RV ulRv = _m_pFunc->C_GetSlotList(a_bTokenPresent, NULL_PTR, &ulCount);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
     xCHECK_RET(0 == ulCount, true);
 
     (*a_pvecSlotList).resize(ulCount);
 
     ulRv = _m_pFunc->C_GetSlotList(a_bTokenPresent, &(*a_pvecSlotList).at(0), &ulCount);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK                 == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
     /*DEBUG*/xTEST_EQ(static_cast<ulong_t>( (*a_pvecSlotList).size() ), ulCount);
 
     return true;
@@ -78,7 +78,7 @@ CxSlot::bGetInfo(
     /*DEBUG*/xTEST_PTR(a_pInfo);
 
     CK_RV ulRv = _m_pFunc->C_GetSlotInfo(a_slotID, a_pInfo);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     return true;
 }
@@ -96,7 +96,7 @@ CxSlot::nfWaitForEvent(
     /*DEBUG*/// pRserved - n/a
 
     CK_RV ulRv = _m_pFunc->C_WaitForSlotEvent(a_flags, a_pSlot, a_pRserved);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), nfError);
+    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     //-------------------------------------
     //�������� ������� ������ � �����

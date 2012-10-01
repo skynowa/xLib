@@ -177,7 +177,7 @@ CxPkcs11::_bLoadETPkcs11() {
     /*DEBUG*/xTEST_PTR(pFunctionList);
 
     CK_RV ulRv = pFunctionList(&_m_pFunc);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
     /*DEBUG*/xTEST_PTR(_m_pFunc);
 
     return true;
@@ -188,7 +188,7 @@ CxPkcs11::bInitialize() {
     /*DEBUG*/xTEST_PTR(_m_pFunc);
 
     CK_RV ulRv = _m_pFunc->C_Initialize(NULL_PTR);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     return true;
 }
@@ -198,7 +198,7 @@ CxPkcs11::bFinalize() {
     /*DEBUG*/xTEST_PTR(_m_pFunc);
 
     CK_RV ulRv = _m_pFunc->C_Finalize(NULL_PTR);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     return true;
 }

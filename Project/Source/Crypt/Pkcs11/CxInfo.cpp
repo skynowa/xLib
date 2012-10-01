@@ -39,7 +39,7 @@ CxInfo::bGet(
     /*DEBUG*/
 
     CK_RV ulRv = _m_pFunc->C_GetInfo(a_pInfo);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     return true;
 }
@@ -53,7 +53,7 @@ CxInfo::bGetToken(
     /*DEBUG*/
 
     CK_RV ulRv = _m_pFunc->C_GetTokenInfo(a_slotID, a_pInfo);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     return true;
 }

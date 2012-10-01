@@ -43,7 +43,7 @@ CxFunction::bGetList(
     /*DEBUG*/
 
     CK_RV ulRv = _m_pFunc->C_GetFunctionList(a_ppFunctionList);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     return true;
 }
@@ -53,7 +53,7 @@ CxFunction::bGetStatus() {
     /*DEBUG*/
 
     CK_RV ulRv = _m_pFunc->C_GetFunctionStatus(_m_hSession );
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     return true;
 }
@@ -63,7 +63,7 @@ CxFunction::bCancel() {
     /*DEBUG*/
 
     CK_RV ulRv = _m_pFunc->C_CancelFunction(_m_hSession);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     return true;
 }
@@ -74,7 +74,7 @@ CxFunction::bGetListEx() {
 
     #if xTODO
         CK_RV ulRv = _m_pFunc->ETC_GetFunctionListEx();
-        /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
+        /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
     #endif
 
     return true;

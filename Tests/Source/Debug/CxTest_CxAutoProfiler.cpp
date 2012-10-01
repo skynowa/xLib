@@ -37,7 +37,7 @@ CxTest_CxAutoProfiler::bUnit(
     };
 
     //-------------------------------------
-    //CxAutoProfiler
+    // CxAutoProfiler
     xTEST_CASE(cullCaseLoops)
     {
         for (size_t i = 0; i < xARRAY_SIZE(pmPerformMode); ++ i) {
@@ -48,22 +48,6 @@ CxTest_CxAutoProfiler::bUnit(
                     size_t z = 0;
 
                     z++; --z; z = z / 7;
-                }
-            }
-        }
-    }
-
-    //-------------------------------------
-    //xAUTO_PERFORM_FUNC
-    xTEST_CASE(cullCaseLoops) {
-        for (size_t i = 0; i < xARRAY_SIZE(pmPerformMode); ++ i) {
-            xAUTO_PROFILER_FUNC(sGetTempDirPath() + CxConst::xSLASH + xT("__FuncLog.log"), pmPerformMode[i]);
-
-            for (size_t x = 0; x < 2; ++ x) {
-                for (size_t y = 0; y < 2; ++ y) {
-                    size_t z = 0;
-
-                    z++; --z; z = z / 13;
                 }
             }
         }
