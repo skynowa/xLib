@@ -159,14 +159,14 @@ CxMimeHeader::uiCount() {
      /*DEBUG*/xTEST_EQ(false, csFilePath.empty(),                 false);
      /*DEBUG*/xTEST_EQ(true, CxFile::bIsExists(csFilePath), false);
 
-     std::tstring_t       sUknownEmail("Uknown@Uknown.Uknown");
-     std::tstring_t       sLine("");
-     std::ifstream     ifsStream(csFilePath.c_str());
-     /*DEBUG*/xASSERT_RET(ifsStream,           false);
-     /*DEBUG*/xASSERT_RET(!ifsStream.fail(),   false);
-     /*DEBUG*/xASSERT_RET(ifsStream.good(),    false);
-     /*DEBUG*/xASSERT_RET(ifsStream.is_open(), false);
-     /*DEBUG*/xASSERT_RET(!ifsStream.eof(),    false);
+     std::tstring_t sUknownEmail("Uknown@Uknown.Uknown");
+     std::tstring_t sLine("");
+     std::ifstream  ifsStream(csFilePath.c_str());
+     /*DEBUG*/xTEST_EQ(true,  !! ifsStream);
+     /*DEBUG*/xTEST_EQ(false, ifsStream.fail());
+     /*DEBUG*/xTEST_EQ(true,  ifsStream.good());
+     /*DEBUG*/xTEST_EQ(true,  ifsStream.is_open());
+     /*DEBUG*/xTEST_EQ(false, ifsStream.eof());
 
      ulong_t ulCountBreaks = 0;
      for (ulong_t i = 0; !ifsStream.eof();  ++ i) {

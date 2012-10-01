@@ -156,7 +156,7 @@ CxSocket::iSend(
 {
     /*DEBUG*/xTEST_DIFF(xSOCKET_HANDLE_INVALID, _m_sktSocket);
     /*DEBUG*/xTEST_PTR(a_pcszBuff);
-    /*DEBUG*//////xASSERT_RET(0         <  ::lstrlen(pcszBuff), xSOCKET_ERROR);
+    /*DEBUG*//////xTEST_LESS(0, ::lstrlen(pcszBuff));
 
 #if   xOS_ENV_WIN
     int     iRv = ::send(_m_sktSocket, (LPCSTR)a_pcszBuff, a_iBuffSize * sizeof(tchar_t), a_iFlags);

@@ -145,10 +145,10 @@ CxHandleT<hvTag>::hDuplicate() const {
                     FALSE,
                     DUPLICATE_SAME_ACCESS
     );
-    /////*DEBUG*/xTEST_DIFF(FALSE, blRes, error_value_t::hGet());
+    /////*DEBUG*/xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     hRv = ::dup(_m_hHandle);
-    /////*DEBUG*/xASSERT_RET(error_value_t::hGet() != hRv, error_value_t::hGet());
+    /////*DEBUG*/xTEST_EQ(true == error_value_t::hGet() != hRv);
 #endif
 
     return hRv;
@@ -240,8 +240,8 @@ CxHandleT<hvTag>::ulGetInfo() const {
     DWORD dwFlags = 0UL;
 
     BOOL blRes = ::GetHandleInformation(_m_hHandle, &dwFlags);
-    /////*DEBUG*/xTEST_DIFF(FALSE, blRes,   0UL);
-    /////*DEBUG*/xASSERT_RET(0UL   != ulFlags, 0UL);
+    /////*DEBUG*/xTEST_DIFF(FALSE, blRes);
+    /////*DEBUG*/xTEST_DIFF(0UL,   ulFlags);
 
     return dwFlags;
 }

@@ -548,7 +548,7 @@ CxPop3::_bCommand(const std::tstring_t &csCmd, const std::tstring_t &csReplyDeli
     /*DEBUG*/xTEST_EQ(true, bRv);
 
     _m_sRes = _m_scktSocket.sRecvAll(0, csReplyDelimiter);
-    /*DEBUG*/////xASSERT_MSG_RET(false == _bIsError(_m_sRes), _m_sRes.c_str(), false);
+    /*DEBUG*/////xTEST_MSG_EQ(false, _bIsError(_m_sRes), _m_sRes);
 
     (*psReply) = _m_sRes;
 

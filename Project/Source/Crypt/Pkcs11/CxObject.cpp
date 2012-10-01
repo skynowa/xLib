@@ -525,7 +525,7 @@ CxObject::bFind(
 
     CK_RV ulRv = _m_pFunc->C_FindObjects(_m_hSession, phObject, ulMaxObjectCount, pulObjectCount);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-    /*DEBUG*/xASSERT_RET    (ulMaxObjectCount >= *pulObjectCount,                      false);
+    /*DEBUG*/xTEST_GR_EQ(ulMaxObjectCount, *pulObjectCount);
 
     return true;
 }

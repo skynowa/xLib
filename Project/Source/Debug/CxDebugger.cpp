@@ -210,7 +210,7 @@ CxDebugger::bBeep(
     #if   xOS_LINUX
         #if xTODO
             int iRv = std::xTSYSTEM(xT("xkbbell"));
-            xASSERT_RET(- 1 == iRv, false);
+            xTEST_EQ(- 1, iRv);
         #endif
     #elif xOS_FREEBSD
         //TODO: bBeep

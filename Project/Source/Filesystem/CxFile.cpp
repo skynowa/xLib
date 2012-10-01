@@ -471,7 +471,7 @@ CxFile::llGetSize() const {
 
     //TODO: fstat
     int iRv = ::xTSTAT(_m_sFilePath.c_str(), &stStat);
-    /*DEBUG*/xASSERT_RET(- 1 != iRv);
+    /*DEBUG*/xTEST_DIFF(- 1, iRv);
 
     return stStat.st_size;
 #else

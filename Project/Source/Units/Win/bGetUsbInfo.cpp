@@ -48,7 +48,7 @@ bGetUsbInfo(
     HKEY                     hKey                   = NULL;
 
     hPnP = ::SetupDiGetClassDevs(&GUID_DEVINTERFACE_VOLUME, NULL, 0, DIGCF_PRESENT | DIGCF_DEVICEINTERFACE);
-    /*DEBUG*/xASSERT_RET(INVALID_HANDLE_VALUE != hPnP, false);
+    /*DEBUG*/xTEST_EQ(true, INVALID_HANDLE_VALUE != hPnP);
 
     //__try {
     didDeviceInterfaceData.cbSize = sizeof(SP_DEVICE_INTERFACE_DATA);

@@ -88,7 +88,7 @@
 #define xCHECK_MSG_DO(expr, comment, do_expr)           { if ((expr)) { CxTracer() << (comment); do_expr;              } }
     ///< check expression, show message with comment and do instructions
 
-#define xASSERT_STATIC(expr)                            { switch (0) {case 0: case (expr):;} }
+#define xTEST_STATIC(expr)                              { switch (0) {case 0: case (expr):;} }
     ///< static assert
 #define xNOT_IMPLEMENTED_RET(return_expr)               { xTEST_MSG_FAIL(xT("Not implemented")); }
     ///< show not implemented message and return value

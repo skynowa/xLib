@@ -44,15 +44,15 @@ xNAMESPACE_END(NxLib)
         ///< like try
 
 #define xCATCH_ALL \
-            catch (const CxException &exExp) {           \
-                xASSERT_MSG(false, exExp.sGetWhat());    \
-            }                                            \
-            catch (const std::exception &cexExp) {       \
-                std::string asMsg = cexExp.what();       \
-                xASSERT_MSG(false, xS2TS(asMsg));        \
-            }                                            \
-            catch (...) {                                \
-                xASSERT_MSG(false, xT("unknown error")); \
+            catch (const CxException &exExp) {      \
+                xTEST_MSG_FAIL(exExp.sGetWhat());   \
+            }                                       \
+            catch (const std::exception &cexExp) {  \
+                std::string asMsg = cexExp.what();  \
+                xTEST_FAIL(xS2TS(asMsg));           \
+            }                                       \
+            catch (...) {                           \
+                xTEST_FAIL(xT("unknown error"));    \
             }
         ///< catch CxException, std::exception and all other exceptions
 //---------------------------------------------------------------------------

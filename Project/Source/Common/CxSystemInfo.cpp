@@ -448,7 +448,7 @@ CxSystemInfo::ulGetCurrentCpuNum() {
             ulong_t ulCpu = 0UL;
 
             int iRv = ::syscall(SYS_getcpu, &ulCpu, NULL, NULL);
-            /*DEBUG*/xASSERT_RET(- 1 != iRv, 0UL);
+            /*DEBUG*/xTEST_DIFF(- 1, iRv);
 
             ulRv = ulCpu;
         #else
@@ -470,7 +470,7 @@ CxSystemInfo::ulGetCurrentCpuNum() {
                 uint_t uiCpu = 0U;
 
                 int iRv = ::getcpu(&uiCpu, NULL, NULL);
-                /*DEBUG*/xASSERT_RET(- 1 != iRv, 0UL);
+                /*DEBUG*/xTEST_DIFF(- 1, iRv);
 
                 ulRv = uiCpu;
             #endif
@@ -923,7 +923,7 @@ CxSystemInfo::ulGetRamUsage() {
             size_t  uiRamTotalSize = sizeof(ullRamTotal);
 
             int iRv = ::sysctl(aiMib, 2, &ullRamTotal, &uiRamTotalSize, NULL, 0);
-            /*DEBUG*/xASSERT_RET(- 1 != iRv, 0UL);
+            /*DEBUG*/xTEST_DIFF(- 1, iRv);
         }
 
         ulonglong_t ullRamFree = 0ULL;
@@ -932,7 +932,7 @@ CxSystemInfo::ulGetRamUsage() {
             size_t      ullAvailPhysPagesSize = sizeof(ullAvailPhysPages);
 
             int iRv = ::sysctlbyname("vm.stats.vm.v_free_count", &ullAvailPhysPages, &ullAvailPhysPagesSize, NULL, 0);
-            /*DEBUG*/xASSERT_RET(- 1 != iRv, 0ULL);
+            /*DEBUG*/xTEST_DIFF(- 1, iRv);
 
             ullRamFree = ullAvailPhysPages * ulGetPageSize();
         }
@@ -940,7 +940,7 @@ CxSystemInfo::ulGetRamUsage() {
         ulonglong_t ullRamUsage = ullRamTotal - ullRamFree;
 
         ulRv = static_cast<ulong_t>( CxUtils::safeDivT(ullRamUsage * 100.0, ullRamTotal) );
-        /*DEBUG*/xASSERT_RET(ullRamTotal == ullRamUsage + ullRamFree, 0UL);
+        /*DEBUG*/xTEST_EQ(ullRamTotal, ullRamUsage + ullRamFree);
     #endif
 #endif
 

@@ -326,7 +326,7 @@ CxProfiler::_liGetClock() {
     rusage ruUsage = {{0}};
 
     int iRv = ::getrusage(RUSAGE_SELF, &ruUsage);
-    /*DEBUG*/xASSERT_RET(- 1 != iRv, static_cast<clock_t>( - 1 ));
+    /*DEBUG*/xTEST_DIFF(- 1, iRv);
 
     liRv = static_cast<std::clock_t>(ruUsage.ru_utime.tv_sec  + ruUsage.ru_stime.tv_sec) * 1000000 +
             ruUsage.ru_utime.tv_usec + ruUsage.ru_stime.tv_usec;
