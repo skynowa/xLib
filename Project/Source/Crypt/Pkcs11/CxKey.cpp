@@ -46,7 +46,7 @@ CxKey::bGenerate(
     /*DEBUG*/
 
     CK_RV ulRv = _m_pFunc->C_GenerateKey(_m_hSession, a_pMechanism, a_pTemplate, a_ulCount, a_phKey);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     return true;
 }
@@ -65,7 +65,7 @@ CxKey::bGeneratePair(
     /*DEBUG*/
 
     CK_RV ulRv = _m_pFunc->C_GenerateKeyPair(_m_hSession, a_pMechanism, a_pPublicKeyTemplate, a_ulPublicKeyAttributeCount, a_pPrivateKeyTemplate, a_ulPrivateKeyAttributeCount, a_phPublicKey, a_phPrivateKey);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     return true;
 }
@@ -82,7 +82,7 @@ CxKey::bDerive(
     /*DEBUG*/
 
     CK_RV ulRv = _m_pFunc->C_DeriveKey(_m_hSession, a_pMechanism, a_hBaseKey, a_pTemplate, a_ulAttributeCount, a_phKey);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     return true;
 }
@@ -99,7 +99,7 @@ CxKey::bWrap(
     /*DEBUG*/
 
     CK_RV ulRv = _m_pFunc->C_WrapKey(_m_hSession, a_pMechanism, a_hWrappingKey, a_hKey, a_pWrappedKey, a_pulWrappedKeyLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     return true;
 }
@@ -118,7 +118,7 @@ CxKey::bUnwrap(
     /*DEBUG*/
 
     CK_RV ulRv = _m_pFunc->C_UnwrapKey(_m_hSession, a_pMechanism, a_hUnwrappingKey, a_pWrappedKey, a_ulWrappedKeyLen, a_pTemplate, a_ulAttributeCount, a_phKey);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     return true;
 }
@@ -132,7 +132,7 @@ CxKey::bSeedRandom(
     /*DEBUG*/
 
     CK_RV ulRv = _m_pFunc->C_SeedRandom(_m_hSession, pSeed, ulSeedLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     return true;
 }
@@ -146,7 +146,7 @@ CxKey::bGenerateRandom(
     /*DEBUG*/
 
     CK_RV ulRv = _m_pFunc->C_GenerateRandom(_m_hSession, a_pRandomData, a_ulRandomLen);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     return true;
 }

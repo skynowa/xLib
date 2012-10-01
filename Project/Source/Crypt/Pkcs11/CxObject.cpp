@@ -72,7 +72,7 @@ CxObject::bCreate(
     /*DEBUG*/xTEST_PTR_FAIL(_m_hObject);
 
     CK_RV ulRv = _m_pFunc->C_CreateObject(_m_hSession, a_pTemplate, a_ulCount, &_m_hObject);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     return true;
 }
@@ -87,7 +87,7 @@ CxObject::bGetSize(
     /*DEBUG*/xTEST_PTR(_m_hObject);
 
     CK_RV ulRv = _m_pFunc->C_GetObjectSize(_m_hSession, _m_hObject, a_pulSize);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     return true;
 }
@@ -104,7 +104,7 @@ CxObject::bCopy(
     /*DEBUG*/xTEST_PTR(_m_hObject);
 
     CK_RV ulRv = _m_pFunc->C_CopyObject(_m_hSession, _m_hObject, a_pTemplate, a_ulCount, a_phNewObject);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     return true;
 }
@@ -126,18 +126,18 @@ CxObject::bFind(
     (*a_pvecObjectHandles).clear();
 
     CK_RV ulRv = _m_pFunc->C_FindObjectsInit(_m_hSession, a_pTemplate, a_ulCount);    // To find all attributes, set ulCount to 0.
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     const CK_ULONG   culMaxFindedObjects        = 512;
     CK_OBJECT_HANDLE hList[culMaxFindedObjects] = {0};
     CK_ULONG         ulFound                    = 0;
 
     ulRv = _m_pFunc->C_FindObjects(_m_hSession, &hList[0], xARRAY_SIZE(hList), &ulFound);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
     /*DEBUG*/xTEST_GR_EQ(static_cast<ulong_t>( xARRAY_SIZE(hList) ), ulFound);
 
     ulRv = _m_pFunc->C_FindObjectsFinal(_m_hSession);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     xCHECK_RET(0 == ulFound, false);
 
@@ -160,7 +160,7 @@ bool CxObject::bGetAttributeValue(
     /*DEBUG*/xTEST_PTR(_m_hObject);
 
     CK_RV ulRv = _m_pFunc->C_GetAttributeValue(_m_hSession, _m_hObject, a_pTemplate, a_ulCount);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     return true;
 }
@@ -176,7 +176,7 @@ CxObject::bSetAttributeValue(
     /*DEBUG*/xTEST_PTR(_m_hObject);
 
     CK_RV ulRv = _m_pFunc->C_SetAttributeValue(_m_hSession, _m_hObject, a_pTemplate, a_ulCount);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     return true;
 }
@@ -188,7 +188,7 @@ CxObject::bDestroy() {
     /*DEBUG*/xTEST_PTR(_m_hObject);
 
     CK_RV ulRv = _m_pFunc->C_DestroyObject(_m_hSession, _m_hObject);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     _m_hObject = NULL;
 
@@ -507,7 +507,7 @@ CxObject::bFindInit(
     /*DEBUG*/// _m_hObject - n/a
 
     CK_RV ulRv = _m_pFunc->C_FindObjectsInit(_m_hSession, pTemplate, ulCount);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     return true;
 }
@@ -524,7 +524,7 @@ CxObject::bFind(
     /*DEBUG*/// _m_hObject - n/a
 
     CK_RV ulRv = _m_pFunc->C_FindObjects(_m_hSession, phObject, ulMaxObjectCount, pulObjectCount);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
     /*DEBUG*/xASSERT_RET    (ulMaxObjectCount >= *pulObjectCount,                      false);
 
     return true;
@@ -537,7 +537,7 @@ CxObject::bFindFinal() {
     /*DEBUG*/// _m_hObject - n/a
 
     CK_RV ulRv = _m_pFunc->C_FindObjectsFinal(_m_hSession);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     return true;
 }

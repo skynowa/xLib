@@ -42,7 +42,7 @@ CxMechanism::bGetInfo(
     /*DEBUG*/
 
     CK_RV ulRv = _m_pFunc->C_GetMechanismInfo(a_slotID, a_type, a_pInfo);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     return true;
 }
@@ -57,7 +57,7 @@ CxMechanism::bGetList(
     /*DEBUG*/
 
     CK_RV ulRv = _m_pFunc->C_GetMechanismList(a_slotID, a_pMechanismList, a_pulCount);
-    /*DEBUG*/xASSERT_MSG_RET(CKR_OK == ulRv, CxPkcs11::sErrorStr(ulRv).c_str(), false);
+    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     return true;
 }
