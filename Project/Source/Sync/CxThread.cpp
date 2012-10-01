@@ -143,7 +143,7 @@ CxThread::bCreate(
 
     iRv = ::pthread_create(&ulId, &paAttributes, &_s_uiJobEntry, this);
     /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
-    /*DEBUG*/xTEST_MSG_LESS(0UL, ulId, CxLastError::sFormat(iRv));
+    /*DEBUG*/xTEST_MSG_EQ(true, 0UL < ulId, CxLastError::sFormat(iRv));
 
     iRv = ::pthread_attr_destroy(&paAttributes);
     /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));

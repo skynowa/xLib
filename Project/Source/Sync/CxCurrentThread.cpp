@@ -47,7 +47,7 @@ CxCurrentThread::ulGetId() {
     /*DEBUG*/xTEST_LESS(0UL, ulRv);
 #elif xOS_ENV_UNIX
     ulRv = ::pthread_self();
-    /*DEBUG*/xTEST_LESS(0UL, ulRv);
+    /*DEBUG*/xTEST_EQ(true, 0UL < ulRv);
 #endif
 
     return ulRv;
