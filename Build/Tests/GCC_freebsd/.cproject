@@ -36,6 +36,12 @@
 </tool>
 </toolChain>
 </folderInfo>
+<fileInfo id="cdt.managedbuild.config.gnu.cross.exe.debug.1807949318.949066341" name="CxTest_CxMySql.cpp" rcbsApplicability="disable" resourcePath="Tests/Source/Db/CxTest_CxMySql.cpp" toolsToInvoke="cdt.managedbuild.tool.gnu.cross.cpp.compiler.719251840.1407186995">
+<tool id="cdt.managedbuild.tool.gnu.cross.cpp.compiler.719251840.1407186995" name="Cross G++ Compiler" superClass="cdt.managedbuild.tool.gnu.cross.cpp.compiler.719251840"/>
+</fileInfo>
+<sourceEntries>
+<entry excluding="Tests/Source/Db/CxTest_CxMySql.cpp|Project/Source/Db/CxMySql.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+</sourceEntries>
 </configuration>
 </storageModule>
 <storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
@@ -490,6 +496,12 @@
 </tool>
 </toolChain>
 </folderInfo>
+<fileInfo id="cdt.managedbuild.config.gnu.cross.exe.release.957630853.1793237377" name="CxTest_CxMySql.cpp" rcbsApplicability="disable" resourcePath="Tests/Source/Db/CxTest_CxMySql.cpp" toolsToInvoke="cdt.managedbuild.tool.gnu.cross.cpp.compiler.1889927221.1472427081">
+<tool id="cdt.managedbuild.tool.gnu.cross.cpp.compiler.1889927221.1472427081" name="Cross G++ Compiler" superClass="cdt.managedbuild.tool.gnu.cross.cpp.compiler.1889927221"/>
+</fileInfo>
+<sourceEntries>
+<entry excluding="Tests/Source/Db/CxTest_CxMySql.cpp|Project/Source/Db/CxMySql.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+</sourceEntries>
 </configuration>
 </storageModule>
 <storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>

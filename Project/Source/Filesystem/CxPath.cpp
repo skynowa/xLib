@@ -69,7 +69,7 @@ CxPath::sGetExe() {
             size_t  uiBuffSize           = sizeof(szBuff) - 1;
 
             int iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), szBuff, &uiBuffSize, NULL, 0U);
-            /*DEBUG*/xASSERT_RET(- 1 != iRv);
+            /*DEBUG*/xTEST_DIFF(- 1, iRv);
 
             sRv.assign(szBuff);
         #else

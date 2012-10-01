@@ -553,7 +553,7 @@ CxSystemInfo::cvGetCpuVendor() {
         aiCpuInfo[3] = 0;
 
         sValue = std::string(CxUtils::reinterpretCastT<char *>( &aiCpuInfo[0] ));
-        /*DEBUG*/xTEST_EQ(false, sValue.empty(), cvUnknown);
+        /*DEBUG*/xTEST_EQ(false, sValue.empty());
     #endif
 #endif
     if      (std::string("GenuineIntel") == sValue) {
@@ -626,14 +626,14 @@ CxSystemInfo::sGetCpuModel() {
         size_t      uiValueSize = 0;
 
         iRv = ::sysctlbyname("hw.model", NULL, &uiValueSize, NULL, 0U);
-        /*DEBUG*/xASSERT_RET(- 1 != iRv,         std::tstring_t());
-        /*DEBUG*/xASSERT_RET(0U  != uiValueSize, std::tstring_t());
+        /*DEBUG*/xTEST_DIFF(- 1, iRv);
+        /*DEBUG*/xTEST_DIFF(0U, uiValueSize);
 
         sValue.resize(uiValueSize);
 
         iRv = ::sysctlbyname("hw.model", &sValue.at(0), &uiValueSize, NULL, 0U);
-        /*DEBUG*/xASSERT_RET(- 1           != iRv,         std::tstring_t());
-        /*DEBUG*/xASSERT_RET(sValue.size() == uiValueSize, std::tstring_t());
+        /*DEBUG*/xTEST_DIFF(- 1, iRv);
+        /*DEBUG*/xTEST_EQ(sValue.size(), uiValueSize);
 
         sRv = sValue;
     #endif
@@ -676,7 +676,7 @@ CxSystemInfo::ulGetCpuSpeed() {
         size_t  uiCpuSpeedMHzSize = sizeof(ulCpuSpeedMHz);
 
         int iRv = ::sysctlbyname("hw.clockrate", &ulCpuSpeedMHz, &uiCpuSpeedMHzSize, NULL, 0);
-        /*DEBUG*/xASSERT_RET(- 1 != iRv, 0UL);
+        /*DEBUG*/xTEST_DIFF(- 1, iRv);
 
         ulRv = ulCpuSpeedMHz;
     #endif
@@ -803,7 +803,7 @@ CxSystemInfo::ulGetCpuUsage() {
         size_t         uiCpTimeSize         = sizeof(aulCpIime);
 
         int iRv = ::sysctlbyname("kern.cp_time", &aulCpIime, &uiCpTimeSize, NULL, 0);
-        /*DEBUG*/xASSERT_RET(- 1 != iRv, 0UL);
+        /*DEBUG*/xTEST_DIFF(- 1, iRv);
 
         ulUsed       = aulCpIime[CP_USER] + aulCpIime[CP_NICE] + aulCpIime[CP_SYS];
         ulTotal      = aulCpIime[CP_USER] + aulCpIime[CP_NICE] + aulCpIime[CP_SYS] + aulCpIime[CP_IDLE];
@@ -848,7 +848,7 @@ CxSystemInfo::ullGetRamTotal() {
         size_t      uiRamTotalSize = sizeof(ullRamTotal);
 
         int iRv = ::sysctl(aiMib, 2, &ullRamTotal, &uiRamTotalSize, NULL, 0);
-        /*DEBUG*/xASSERT_RET(- 1 != iRv, 0UL);
+        /*DEBUG*/xTEST_DIFF(- 1, iRv);
 
         ullRv = ullRamTotal;
     #endif
@@ -883,7 +883,7 @@ CxSystemInfo::ullGetRamAvailable() {
         size_t      ullAvailPhysPagesSize = sizeof(ullAvailPhysPages);
 
         int iRv = ::sysctlbyname("vm.stats.vm.v_free_count", &ullAvailPhysPages, &ullAvailPhysPagesSize, NULL, 0);
-        /*DEBUG*/xASSERT_RET(- 1 != iRv, 0ULL);
+        /*DEBUG*/xTEST_DIFF(- 1, iRv);
 
         ullRv = ullAvailPhysPages * ulGetPageSize();
     #endif
