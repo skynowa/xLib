@@ -71,35 +71,35 @@ CxTest_CxRandom::bUnit(
         //fNextFloat
         {
             m_fRv = rndR.fNextFloat();
-            //xASSERT
+            //
         }
 
         //--------------------------------------------------
         //bNextDouble
         {
             m_dRv = rndR.bNextDouble();
-            //xASSERT
+            // 
         }
 
         //--------------------------------------------------
         //chNextChar
         {
             m_chRv = rndR.chNextChar();
-            //xASSERT
+            //
         }
 
         //--------------------------------------------------
         //chNextFigure
         {
             m_chRv = rndR.chNextFigure();
-            //xASSERT
+            //
         }
 
         //--------------------------------------------------
         //dNextGaussian
         {
             m_dRv = rndR.dNextGaussian();
-            //xASSERT
+            //
         }
     #endif
 

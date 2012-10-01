@@ -70,13 +70,13 @@ bGetUsbInfo(
         }
 
         SP_DEVICE_INTERFACE_DETAIL_DATA *diddDeviceInterfaceDetailData = (SP_DEVICE_INTERFACE_DETAIL_DATA *)malloc((size_t)ulBytesReturned);
-        /*DEBUG*/xASSERT(NULL != diddDeviceInterfaceDetailData);
+        /*DEBUG*/xTEST_PTR(diddDeviceInterfaceDetailData);
 
         {
             diddDeviceInterfaceDetailData->cbSize = sizeof(SP_DEVICE_INTERFACE_DETAIL_DATA);
 
             bRv = ::SetupDiGetDeviceInterfaceDetail(hPnP, &didDeviceInterfaceData, diddDeviceInterfaceDetailData, ulBytesReturned, &ulBytesReturned, &ddDevinfoData);
-            /*DEBUG*/xASSERT(FALSE != bRv);
+            /*DEBUG*/xTEAT_DIFF(FALSE, bRv);
             if (FALSE == bRv) {
                 xBUFF_FREE(diddDeviceInterfaceDetailData);
                 continue;
@@ -98,10 +98,10 @@ bGetUsbInfo(
             Inst    = ddDevinfoData.DevInst;
 
             mapiRes = ::CM_Get_Parent(&Inst, Inst, 0);
-            /*DEBUG*/////xASSERT(CR_SUCCESS == mapiRes);
+            /*DEBUG*/////xTEST_EQ(CR_SUCCESS, mapiRes);
 
             mapiRes = ::CM_Get_Parent(&Inst, Inst, 0);
-            /*DEBUG*/////xASSERT(CR_SUCCESS == mapiRes);
+            /*DEBUG*/////xTEST_EQ(CR_SUCCESS, mapiRes);
 
             ::CM_Open_DevNode_Key(Inst, KEY_READ, 0, REGDISPOSITION(RegDisposition_OpenExisting), &hKey, 0);
 
@@ -115,12 +115,12 @@ bGetUsbInfo(
 
                 if (ERROR_SUCCESS == ::RegQueryValueEx(hKey, xT("SymbolicName"), NULL , NULL, (LPBYTE)&szRes[0], &ulResSize)) {
                     bool _bRes = CxString::bSplit(std::tstring_t(szRes, ulResSize / sizeof(tchar_t)), xT("#"), pvsInfo);
-                    /*DEBUG*/xASSERT(true == _bRes);
+                    /*DEBUG*/xTEST_EQ(true, _bRes);
                 }
 
                 if (NULL != hKey) {
                     iRv = ::RegCloseKey(hKey);
-                    /*DEBUG*/xASSERT(ERROR_SUCCESS == iRv);
+                    /*DEBUG*/xTEST_EQ(ERROR_SUCCESS, iRv);
                 }
 
                 bRv = TRUE;

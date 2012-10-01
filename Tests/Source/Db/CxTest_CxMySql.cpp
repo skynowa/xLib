@@ -254,7 +254,7 @@ CxTest_CxMySql::bUnit(
 
             m_bRv = recRec.bFetchLengths(&pulFieldLengths);
             xTEST_EQ(true, m_bRv);
-            xASSERT(NULL  != pulFieldLengths);
+            xTEST_PTR(pulFieldLengths);
         }
     #endif
 
