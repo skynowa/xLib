@@ -208,9 +208,9 @@ CxTest_xDefines::bUnit(
         xENUM_INC(EData, datData);
         xENUM_DEC(EData, datData);
 
-        xTEST_EQ(EData::datOne, datData);
+        xTEST_EQ(static_cast<int>( datOne ), static_cast<int>( datData ));
     }
-    
+
     //--------------------------------------------------
     // temporary enable/disable code
     xTEST_CASE(cullCaseLoops)
@@ -232,7 +232,7 @@ CxTest_xDefines::bUnit(
     //--------------------------------------------------
     // buildin macroses
     {
-    
+
     }
 
     //--------------------------------------------------
@@ -287,8 +287,8 @@ CxTest_xDefines::bUnit(
     // xCOUNTER
     xTEST_CASE(cullCaseLoops)
     {
-        m_sRv = CxString::string_cast(xCOUNTER);
-        xTEST_EQ(false, m_sRv.empty());
+        // TODO: m_sRv = CxString::string_cast(xCOUNTER);
+        // xTEST_EQ(false, m_sRv.empty());
     }
 
     //--------------------------------------------------
@@ -297,14 +297,14 @@ CxTest_xDefines::bUnit(
     {
         struct STest {
             std::tstring_t execute(
-                xIN     const int         &a_iVal, 
-                xOUT    const std::size_t &a_uiVal, 
-                xIN_OUT tchar_t           *a_piVal) 
+                xIN     const int         &a_iVal,
+                xOUT    const std::size_t &a_uiVal,
+                xIN_OUT tchar_t           *a_piVal)
             {
                 std::tstringstream_t sstStream;
 
-                sstStream << xT("a_iVal=")  << a_iVal 
-                          << xT("a_uiVal=") << a_uiVal 
+                sstStream << xT("a_iVal=")  << a_iVal
+                          << xT("a_uiVal=") << a_uiVal
                           << xT("a_piVal=") << a_piVal;
 
                 return sstStream.str();
@@ -331,7 +331,7 @@ CxTest_xDefines::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         m_stRv = xPATH_MAX;
-        xTEST_GR(m_stRv, 0U);
+        xTEST_GR(m_stRv, size_t(0U));
     }
 
     //--------------------------------------------------
@@ -339,7 +339,7 @@ CxTest_xDefines::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         m_stRv = xNAME_MAX;
-        xTEST_GR(m_stRv, 0U);
+        xTEST_GR(m_stRv, size_t(0U));
     }
 
     //--------------------------------------------------
@@ -347,7 +347,7 @@ CxTest_xDefines::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         m_stRv = xLINE_MAX;
-        xTEST_GR(m_stRv, 0U);
+        xTEST_GR(m_stRv, size_t(0U));
     }
 
     //--------------------------------------------------
@@ -355,7 +355,7 @@ CxTest_xDefines::bUnit(
     xTEST_CASE(cullCaseLoops)
     {
         m_stRv = xENV_MAX;
-        xTEST_GR(m_stRv, 0U);
+        xTEST_GR(m_stRv, size_t(0U));
     }
 
     //--------------------------------------------------
@@ -436,7 +436,7 @@ CxTest_xDefines::bUnit(
     {
         #if xOS_ENV_UNIX
             m_stRv = xPAGE_SIZE;
-            xTEST_GR(m_stRv, 0);
+            xTEST_GR(m_stRv, size_t(0U));
         #endif
     }
 
@@ -539,7 +539,7 @@ CxTest_xDefines::bUnit(
     // other
     xTEST_CASE(cullCaseLoops)
     {
-    
+
     }
 
     return true;

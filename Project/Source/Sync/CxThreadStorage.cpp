@@ -55,10 +55,10 @@ CxThreadStorage::pvGetValue() const {
     pvRv = ::TlsGetValue(_m_indIndex);
     /*DEBUG*/xTEST_EQ(true, (NULL != pvRv) && (ERROR_SUCCESS == CxLastError::ulGet()));
 #elif xOS_ENV_UNIX
-    /*DEBUG*/xASSERT_RET(0 <= _m_indIndex, NULL);
+    /*DEBUG*/xTEST_EQ(true, 0 < _m_indIndex);
 
     pvRv = ::pthread_getspecific(_m_indIndex);
-    /*DEBUG*/xTEST_PTR(pvRv, NULL);
+    /*DEBUG*/xTEST_PTR(pvRv);
 #endif
 
     return pvRv;
@@ -77,10 +77,10 @@ CxThreadStorage::bSetValue(
     BOOL blRes = ::TlsSetValue(_m_indIndex, a_pvValue);
     /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
-    /*DEBUG*/xASSERT_RET(0 <= _m_indIndex, false);
+    /*DEBUG*/xTEST_EQ(true, 0 < _m_indIndex);
 
     int iRv = ::pthread_setspecific(_m_indIndex, a_pvValue);
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
+    /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 #endif
 
     return true;
@@ -104,10 +104,10 @@ CxThreadStorage::_bAlloc() {
     indRes = ::TlsAlloc();
     /*DEBUG*/xTEST_DIFF(TLS_OUT_OF_INDEXES, indRes);
 #elif xOS_ENV_UNIX
-    /*DEBUG*/xASSERT_RET(static_cast<pthread_key_t>( -1 ) == _m_indIndex, false);
+    /*DEBUG*/xTEST_EQ(static_cast<pthread_key_t>( - 1 ), _m_indIndex);
 
     int iRv = ::pthread_key_create(&indRes, NULL);
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
+    /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 #endif
 
     _m_indIndex = indRes;
@@ -125,10 +125,10 @@ CxThreadStorage::_bFree() {
 
     _m_indIndex = TLS_OUT_OF_INDEXES;
 #elif xOS_ENV_UNIX
-    /*DEBUG*/xASSERT_RET(0 <= _m_indIndex, false);
+    /*DEBUG*/xTEST_EQ(true, 0 < _m_indIndex);
 
     int iRv = ::pthread_key_delete(_m_indIndex);
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
+    /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 
     _m_indIndex = static_cast<pthread_key_t>( -1 );
 #endif

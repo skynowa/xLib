@@ -470,7 +470,7 @@ CxUri::_bParse(const std::string &a_csUri) {
     size_t uiSchemeStart = 0;
     size_t uiSchemeEnd   = a_csUri.find_first_of(CxConst::xCOLON);
     /*DEBUG*/xTEST_DIFF(std::string::npos, uiSchemeEnd);
-    /*DEBUG*/xTEST_GR(7U/*SCHEME_MAX_SIZE + 1*/, uiSchemeEnd);
+    /*DEBUG*/xTEST_GR(size_t(7U)/*SCHEME_MAX_SIZE + 1*/, uiSchemeEnd);
 
     _m_sScheme = CxString::sCut(a_csUri, uiSchemeStart, uiSchemeEnd);
 

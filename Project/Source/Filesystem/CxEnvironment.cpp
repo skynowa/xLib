@@ -185,7 +185,7 @@ CxEnvironment::bGetValues(
     BOOL blRes = ::FreeEnvironmentStrings(lpvEnv);
     /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
-    /*DEBUG*/xTEST_PTR(environ, false);
+    /*DEBUG*/xTEST_PTR(environ);
 
     for (size_t i = 0; NULL != environ[i]; ++ i) {
         vsArgs.push_back(environ[i]);
@@ -243,7 +243,7 @@ CxEnvironment::sExpandStrings(
         std::tstring_t sRawEnvVar; // %var%
 
         sRawEnvVar = CxString::sCut(sRv, cuiStartSepPos, cuiStopSepPos + csSep.size());
-        xASSERT(false == sRawEnvVar.empty());
+        xTEST_EQ(false, sRawEnvVar.empty());
 
         std::tstring_t sEnvVar;    // var
 

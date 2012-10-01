@@ -85,7 +85,7 @@ CxSmtp::bConnect() {
     //-------------------------------------
     //[welcome message]
     sRv = _m_scktSocket.sRecvAll(0, "\r\n");
-    /*DEBUG*/xASSERT_MSG_RET(false == _bIsError(sRv), sRv.c_str(), false);
+    /*DEBUG*/xTEST_MSG_EQ(false, _bIsError(sRv), sRv);
 
     //-------------------------------------
     //[HELO\r\n]
@@ -336,7 +336,7 @@ CxSmtp::_bCommand(const std::string &a_csCmd, const std::string &a_csReplyDelimi
     /*DEBUG*/xTEST_EQ(true, bRv);
 
     sRv = _m_scktSocket.sRecvAll(0, a_csReplyDelimiter);
-    /*DEBUG*/xASSERT_MSG_RET(false == _bIsError(sRv), sRv.c_str(), false);
+    /*DEBUG*/xTEST_MSG_EQ(false, _bIsError(sRv), sRv);
 
     a_sReply = sRv;
 

@@ -47,7 +47,7 @@ CxCurrentThread::ulGetId() {
     /*DEBUG*/xTEST_LESS(0UL, ulRv);
 #elif xOS_ENV_UNIX
     ulRv = ::pthread_self();
-    /*DEBUG*/xASSERT_RET(0UL < ulRv, 0UL);
+    /*DEBUG*/xTEST_LESS(0UL, ulRv);
 #endif
 
     return ulRv;
@@ -65,7 +65,7 @@ CxCurrentThread::hGetHandle() {
     /*DEBUG*/xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
 #elif xOS_ENV_UNIX
     hRv = ::pthread_self();
-    /*DEBUG*/xASSERT_RET(0 < hRv, 0);
+    /*DEBUG*/xTEST_EQ(true, 0 < hRv);
 #endif
 
     return hRv;
@@ -80,7 +80,7 @@ CxCurrentThread::bYield() {
     (void)::SwitchToThread();
 #elif xOS_ENV_UNIX
     int iRv = ::sched_yield();
-    /*DEBUG*/xASSERT_MSG_RET(- 1 != iRv, CxLastError::sFormat(iRv), false);
+    /*DEBUG*/xTEST_MSG_DIFF(- 1, iRv, CxLastError::sFormat(iRv));
 #endif
 
     return true;

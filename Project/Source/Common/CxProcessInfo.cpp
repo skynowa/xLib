@@ -129,7 +129,7 @@ CxProcessInfo::sGetExeName(
 
         for ( ; ; ) {
             iReaded = ::readlink(csProcFile.c_str(), &sRv.at(0), sRv.size() * sizeof(std::tstring_t::value_type));
-            /*DEBUG*/xASSERT_RET(- 1 != iReaded);
+            /*DEBUG*/xTEST_DIFF(- 1, iReaded);
 
             xCHECK_DO(sRv.size() * sizeof(std::tstring_t::value_type) > static_cast<size_t>( iReaded ), break);
 

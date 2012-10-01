@@ -53,7 +53,7 @@ CxPath::sGetExe() {
 
         for ( ; ; ) {
             iReaded = ::readlink(csProcFile.c_str(), &sRv.at(0), sRv.size() * sizeof(std::tstring_t::value_type));
-            /*DEBUG*/xASSERT_RET(- 1 != iReaded);
+            /*DEBUG*/xTEST_DIFF(- 1, iReaded);
 
             xCHECK_DO(sRv.size() * sizeof(std::tstring_t::value_type) > static_cast<size_t>( iReaded ), break);
 
@@ -115,7 +115,7 @@ CxPath::sGetDll() {
     void    *fpProcAddress = (void *)vFunction;
 
     int iRv = ::dladdr(fpProcAddress, &diInfo);
-    /*DEBUF*/xASSERT_RET(0 < iRv, CxConst::xSTR_EMPTY);
+    /*DEBUF*/xTEST_LESS(0, iRv);
 
     sRv = sGetAbsolute(diInfo.dli_fname);
 #endif
@@ -648,7 +648,7 @@ CxPath::sGetShortName(
 )
 {
     /*DEBUG*/xTEST_EQ(false, csFileName.empty());
-    /*DEBUG*/xTEST_LESS(0U, cuiMaxSize);
+    /*DEBUG*/xTEST_LESS(size_t(0), cuiMaxSize);
 
     std::tstring_t sRv;
 
@@ -682,7 +682,7 @@ CxPath::sGetShort(
 )
 {
     /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
-    /*DEBUG*/xTEST_LESS(0U, cuiMaxSize);
+    /*DEBUG*/xTEST_LESS(size_t(0), cuiMaxSize);
 
     // util fuction
     struct _SSlashes
@@ -869,11 +869,11 @@ CxPath::sGetProcValue(
     std::tstring_t sRv;
 
     std::tifstream_t ifsStream(csProcPath.c_str());
-    /*DEBUG*/xASSERT_RET(ifsStream,           std::tstring_t());
-    /*DEBUG*/xASSERT_RET(!ifsStream.fail(),   std::tstring_t());
-    /*DEBUG*/xASSERT_RET(ifsStream.good(),    std::tstring_t());
-    /*DEBUG*/xASSERT_RET(ifsStream.is_open());
-    /*DEBUG*/xASSERT_RET(!ifsStream.eof(),    std::tstring_t());
+    /*DEBUG*/xTEST_EQ(true,  !! ifsStream);
+    /*DEBUG*/xTEST_EQ(false, ifsStream.fail());
+    /*DEBUG*/xTEST_EQ(true,  ifsStream.good());
+    /*DEBUG*/xTEST_EQ(true,  ifsStream.is_open());
+    /*DEBUG*/xTEST_EQ(false, ifsStream.eof());
 
     for ( ; !ifsStream.eof(); ) {
         std::tstring_t sLine;
@@ -886,7 +886,7 @@ CxPath::sGetProcValue(
 
         // parse value
         size_t uiDelimPos = sLine.find(xT(":"));
-        /*DEBUG*/xASSERT_RET(std::string::npos != uiDelimPos);
+        /*DEBUG*/xTEST_DIFF(std::string::npos, uiDelimPos);
 
         sRv = sLine.substr(uiDelimPos + 1);
         sRv = CxString::sTrimSpace(sRv);

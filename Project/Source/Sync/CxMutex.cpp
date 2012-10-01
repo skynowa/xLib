@@ -37,7 +37,7 @@ CxMutex::~CxMutex() {
     /*DEBUG*/xTEST_EQ(true, bRv);
 #elif xOS_ENV_UNIX
     int iRv = ::pthread_mutex_destroy(&_m_hHandle);
-    /*DEBUG*/xASSERT_MSG_DO(0 == iRv, CxLastError::sFormat(iRv), return);
+    /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 #endif
 }
 //---------------------------------------------------------------------------
@@ -61,21 +61,21 @@ CxMutex::bCreate() {
     pthread_mutexattr_t maAttr;    // n/a {{0}}
 
     iRv = ::pthread_mutexattr_init(&maAttr);
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
+    /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 
     iRv = ::pthread_mutexattr_setpshared(&maAttr, PTHREAD_PROCESS_PRIVATE);
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
+    /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 
     iRv = ::pthread_mutexattr_settype(&maAttr, PTHREAD_MUTEX_RECURSIVE);
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
+    /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 
     {
         iRv = ::pthread_mutex_init(&_m_hHandle, &maAttr);
-        /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
+        /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
     }
 
     iRv = ::pthread_mutexattr_destroy(&maAttr);
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
+    /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 #endif
 
     return true;
@@ -102,7 +102,7 @@ CxMutex::bLock() {
     /*DEBUG*/xTEST_EQ(true, bRv);
 #elif xOS_ENV_UNIX
     int iRv = ::pthread_mutex_lock(&_m_hHandle);
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
+    /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 #endif
 
     return true;
@@ -137,7 +137,7 @@ CxMutex::bUnlock() {
     /*DEBUG*/xTEST_EQ(true, bRv);
 #elif xOS_ENV_UNIX
     int iRv = ::pthread_mutex_unlock(&_m_hHandle);
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
+    /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 #endif
 
     return true;

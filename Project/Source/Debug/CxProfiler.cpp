@@ -121,7 +121,7 @@ CxProfiler::bStart() {
         #endif
 
         default: {
-                /*DEBUG*/xASSERT_MSG_RET(false, xT("Unknown mode"), false);
+                /*DEBUG*/xTEST_FAIL;
             }
             break;
     }

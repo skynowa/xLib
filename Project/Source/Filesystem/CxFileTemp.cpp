@@ -80,10 +80,10 @@ CxFileTemp::bCreate(
     #endif
 #elif xOS_ENV_UNIX
     int iFile = ::xTMKSTEMP(&_m_sFilePath.at(0));
-    /*DEBUG*/xASSERT_RET(- 1 != iFile, false);
+    /*DEBUG*/xTEST_DIFF(- 1, iFile);
 
     _pfStdFile = ::xTFDOPEN(iFile, CxFile::_sGetOpenMode(CxFile::omBinCreateReadWrite).c_str());
-    /*DEBUG*/xTEST_PTR(_pfStdFile, false);
+    /*DEBUG*/xTEST_PTR(_pfStdFile);
 #endif
 
     //out

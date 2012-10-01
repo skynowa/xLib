@@ -128,7 +128,7 @@ CxSocket::bClose() {
     /*DEBUG*/xTEST_DIFF(xSOCKET_ERROR, iRv);
 #elif xOS_ENV_UNIX
     iRv = ::close(_m_sktSocket);
-    /*DEBUG*/xTEST_DIFF(xSOCKET_ERROR, iRv, false);
+    /*DEBUG*/xTEST_DIFF(xSOCKET_ERROR, iRv);
 #endif
 
     _m_sktSocket = xSOCKET_HANDLE_INVALID;
@@ -168,8 +168,8 @@ CxSocket::iSend(
     #endif
 
     ssize_t iRv = ::send(_m_sktSocket, a_pcszBuff, a_iBuffSize, MSG_NOSIGNAL);
-    /*DEBUG*/xASSERT_RET(xSOCKET_ERROR                            != iRv, xSOCKET_ERROR);
-    /*DEBUG*/xASSERT_RET(a_iBuffSize * (int)sizeof(tchar_t) >= iRv, xSOCKET_ERROR);
+    /*DEBUG*/xTEST_DIFF(ssize_t(xSOCKET_ERROR), iRv);
+    /*DEBUG*/xTEST_GR_EQ(ssize_t(a_iBuffSize * sizeof(tchar_t)), iRv);
 #endif
 
     return iRv / sizeof(tchar_t);
@@ -184,7 +184,7 @@ CxSocket::bSendAll(
 {
     /*DEBUG*/xTEST_DIFF(xSOCKET_HANDLE_INVALID, _m_sktSocket);
     /*DEBUG*/xTEST_EQ(false, a_csBuff.empty());
-    /*DEBUG*/xTEST_LESS(0U, a_csBuff.size());
+    /*DEBUG*/xTEST_LESS(size_t(0U), a_csBuff.size());
 
     //-------------------------------------
     //������ �� ������ ������� � ����� � ������
@@ -239,9 +239,9 @@ CxSocket::iRecv(
     /*DEBUG*/xTEST_GR_EQ(a_iBuffSize * (int)sizeof(tchar_t), iRv);
 #elif xOS_ENV_UNIX
     ssize_t iRv = ::recv(_m_sktSocket, (char *)a_pszBuff, a_iBuffSize * sizeof(tchar_t), a_iFlags);
-    /*DEBUG*/xASSERT_RET(xSOCKET_ERROR                            != iRv,                                  xSOCKET_ERROR);
-    /*DEBUG*/xASSERT_RET(0                                  != iRv,                                  xSOCKET_ERROR);  //gracefully closed
-    /*DEBUG*/xASSERT_RET(a_iBuffSize * (int)sizeof(tchar_t) >= iRv,                                  xSOCKET_ERROR);
+    /*DEBUG*/xTEST_DIFF(ssize_t(xSOCKET_ERROR), iRv);
+    /*DEBUG*/xTEST_DIFF(ssize_t(0), iRv);  //gracefully closed
+    /*DEBUG*/xTEST_GR_EQ(ssize_t(a_iBuffSize * sizeof(tchar_t)), iRv);
 #endif
 
     return iRv / sizeof(tchar_t);
@@ -419,7 +419,7 @@ CxSocket::bGetPeerName(
     socklen_t   uiSockAddrLen = sizeof(sockAddr);
 
     int iRv = ::getpeername(_m_sktSocket, CxUtils::reinterpretCastT<sockaddr *>( &sockAddr ), &uiSockAddrLen);
-    /*DEBUG*/xTEST_DIFF(xSOCKET_ERROR, iRv, false);
+    /*DEBUG*/xTEST_DIFF(xSOCKET_ERROR, iRv);
 #endif
 
     if (NULL != a_psPeerAddr) {
@@ -456,7 +456,7 @@ CxSocket::bGetSocketName(
     socklen_t   iSockAddrLen = sizeof(sockAddr);
 
     int iRv = ::getsockname(_m_sktSocket, CxUtils::reinterpretCastT<sockaddr *>( &sockAddr ), &iSockAddrLen);
-    /*DEBUG*/xTEST_DIFF(xSOCKET_ERROR, iRv, false);
+    /*DEBUG*/xTEST_DIFF(xSOCKET_ERROR, iRv);
 #endif
 
     if (NULL != a_psSocketAddr) {

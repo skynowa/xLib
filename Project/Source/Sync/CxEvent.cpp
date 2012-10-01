@@ -42,7 +42,7 @@ CxEvent::CxEvent(
     /*DEBUG*/// n/a
 #elif xOS_ENV_UNIX
     int iRv = ::pthread_cond_init(&_m_cndCond, NULL);
-    /*DEBUG*/xASSERT_MSG_DO(0 == iRv, CxLastError::sFormat(iRv), return);
+    /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 
     _m_bIsSignaled  = a_cbIsSignaled;
 #endif
@@ -53,7 +53,7 @@ CxEvent::~CxEvent() {
     xNA;
 #elif xOS_ENV_UNIX
     int iRv = ::pthread_cond_destroy(&_m_cndCond);
-    /*DEBUG*/xASSERT_MSG_DO(0 == iRv, CxLastError::sFormat(iRv), return);
+    /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 #endif
 }
 //---------------------------------------------------------------------------
@@ -83,10 +83,10 @@ CxEvent::bSet() {
 
         if (true == _m_cbIsAutoReset) {
             int iRv = ::pthread_cond_signal(&_m_cndCond);
-            /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
+            /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
         } else {
             int iRv = ::pthread_cond_broadcast(&_m_cndCond);
-            /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
+            /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
         }
 
         _m_bIsSignaled = true;
@@ -141,7 +141,7 @@ CxEvent::osWait(
                 timeval tvNow  = {0};
 
                 iRv = ::gettimeofday(&tvNow, NULL);
-                /*DEBUG*/xASSERT_RET(- 1 != iRv, osFailed);
+                /*DEBUG*/xTEST_DIFF(- 1, iRv);
 
                 tsTimeoutMs.tv_sec  = tvNow.tv_sec + a_culTimeout / 1000;
                 tsTimeoutMs.tv_nsec = tvNow.tv_usec * 1000 + (a_culTimeout % 1000) * 1000000;
@@ -197,7 +197,7 @@ CxEvent::osWait(
     }
 #endif
 
-    /*DEBUG*/xASSERT_MSG_RET(osSignaled == osRes || osTimeout == osRes, CxLastError::sFormat(osRes), osFailed);
+    /*DEBUG*/xTEST_MSG_EQ(true, osSignaled == osRes || osTimeout == osRes, CxLastError::sFormat(osRes));
 
     return osRes;
 }

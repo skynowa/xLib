@@ -130,23 +130,23 @@ CxThread::bCreate(
     pthread_attr_t paAttributes; // n/a - {{0}}
 
     iRv = ::pthread_attr_init(&paAttributes);
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
+    /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 
     iRv = ::pthread_attr_setdetachstate(&paAttributes, PTHREAD_CREATE_JOINABLE); //PTHREAD_CREATE_DETACHED
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
+    /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 
     if (0 != a_cuiStackSize) {
         //TODO: size_t size = PTHREAD_STACK_MIN + 0x4000;
         iRv = ::pthread_attr_setstacksize(&paAttributes, a_cuiStackSize);
-        /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
+        /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
     }
 
     iRv = ::pthread_create(&ulId, &paAttributes, &_s_uiJobEntry, this);
-    /*DEBUG*/xASSERT_MSG_RET(0   == iRv, CxLastError::sFormat(iRv), false);
-    /*DEBUG*/xASSERT_MSG_RET(0UL <  ulId, CxLastError::sFormat(iRv), false);
+    /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    /*DEBUG*/xTEST_MSG_LESS(0UL, ulId, CxLastError::sFormat(iRv));
 
     iRv = ::pthread_attr_destroy(&paAttributes);
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
+    /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 
     _m_hThread = ulId;  //TODO: is it right?
     _m_ulId    = ulId;
@@ -268,10 +268,10 @@ CxThread::bKill(
     }
 #elif xOS_ENV_UNIX
     int iRv = ::pthread_kill(_m_ulId, SIGALRM);
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
+    /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 
     bRv = CxCurrentThread::bSleep(a_culTimeout);
-    /*DEBUG*/xASSERT(true == bRv);
+    /*DEBUG*/xTEST_EQ(true, bRv);
 #endif
 
     //-------------------------------------
@@ -317,7 +317,7 @@ CxThread::bWait(
     // TODO: thread must not be detached
     // FIX:  a_culTimeout
     int iRv = ::pthread_join(_m_ulId, NULL);
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
+    /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 #endif
 
     return true;
@@ -581,7 +581,7 @@ CxThread::_iGetPriorityMin() {
     iRv = THREAD_PRIORITY_IDLE;
 #elif xOS_ENV_UNIX
     iRv = ::sched_get_priority_min(SCHED_FIFO);
-    /*DEBUG*/xASSERT_MSG_RET(- 1 != iRv, CxLastError::sFormat(iRv), 0);
+    /*DEBUG*/xTEST_MSG_DIFF(- 1, iRv, CxLastError::sFormat(iRv));
 #endif
 
     return iRv;
@@ -596,7 +596,7 @@ CxThread::_iGetPriorityMax() {
     iRv = THREAD_PRIORITY_TIME_CRITICAL;
 #elif xOS_ENV_UNIX
     iRv = ::sched_get_priority_max(SCHED_FIFO);
-    /*DEBUG*/xASSERT_MSG_RET(- 1 != iRv, CxLastError::sFormat(iRv), 0);
+    /*DEBUG*/xTEST_MSG_DIFF(- 1, iRv, CxLastError::sFormat(iRv));
 #endif
 
     return iRv;
@@ -622,7 +622,7 @@ CxThread::bSetPriority(
     spParam.sched_priority = a_ctpPriority;
 
     int iRv = ::pthread_setschedparam(ulGetId(), SCHED_FIFO, &spParam);
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), false);
+    /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 #endif
 
     return true;
@@ -646,7 +646,7 @@ CxThread::tpGetPriority() const {
     int         iPolicy  = SCHED_FIFO;
 
     int iRv = ::pthread_getschedparam(ulGetId(), &iPolicy, &spParam);
-    /*DEBUG*/xASSERT_MSG_RET(0 == iRv, CxLastError::sFormat(iRv), tpError);
+    /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 
     tpRes = static_cast<ExPriority>( spParam.sched_priority );
 #endif
@@ -796,7 +796,7 @@ CxThread::bSetCpuAffinity(
     (void)CPU_SET(a_ciProcNum, &csCpuSet);
 
     int iRv = ::pthread_setaffinity_np(ulGetId(), sizeof(csCpuSet), &csCpuSet);
-    /*DEBUG*/xASSERT_MSG_RET(- 1 != iRv, CxLastError::sFormat(iRv), false);
+    /*DEBUG*/xTEST_MSG_DIFF(- 1, iRv, CxLastError::sFormat(iRv));
 #endif
 
     return true;
@@ -1013,7 +1013,7 @@ CxThread::uiOnRun(
 ) /* = 0*/
 {
     /*DEBUG*/// n/a
-    /*DEBUG*/xASSERT_MSG_RET(false, xT("It's virtual method"), 0U);
+    /*DEBUG*/xTEST_MSG_FAIL(xT("It's virtual method"));
 
     uint_t uiRes = 0U;
 
@@ -1114,7 +1114,7 @@ CxThread::_s_uiJobEntry(
         }
         catch (std::exception &e) {
             std::string asWhat = e.what();
-            xASSERT_MSG(false, xS2TS(asWhat).c_str());
+            xTEST_MSG_FAIL(xS2TS(asWhat));
         }
         catch (...) {
             /*DEBUG*/xTEST_FAIL;

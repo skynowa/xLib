@@ -923,7 +923,7 @@ CxCgiFormData::_bInit() {
                 else {
                     uiPostSize = CxString::string_cast<size_t>( _m_ccgCgi.Environment.sGetContentLength() );
                 }
-                /*DEBUG*/xTEST_LESS(0U,  uiPostSize);
+                /*DEBUG*/xTEST_LESS(size_t(0U), uiPostSize);
                 /*DEBUG*/xTEST_GR_EQ(_m_cuiMaxData, uiPostSize);  //secure
                 xCHECK_RET(_m_cuiMaxData <= uiPostSize, false);
 

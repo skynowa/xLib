@@ -52,7 +52,7 @@ CxIpcMutex::bCreate(
 #if   xOS_ENV_WIN
     /*DEBUG*/// csName
 #elif xOS_ENV_UNIX
-    /*DEBUG*/xASSERT_RET(xNAME_MAX - 4 > a_csName.size(), false);
+    /*DEBUG*/xTEST_GR(xNAME_MAX - 4, a_csName.size());
 #endif
 
 #if   xOS_ENV_WIN
@@ -75,7 +75,7 @@ CxIpcMutex::bCreate(
     std::tstring_t sUnixName = CxConst::xUNIX_SLASH + a_csName;
 
     handle_t hHandle = ::sem_open(sUnixName.c_str(), O_CREAT | O_RDWR, 0777, 1U);
-    /*DEBUG*/xASSERT_RET(SEM_FAILED != hHandle, false);
+    /*DEBUG*/xTEST_DIFF(SEM_FAILED, hHandle);
 
     _m_hHandle = hHandle;
     _m_sName   = sUnixName;
@@ -111,7 +111,7 @@ CxIpcMutex::bOpen(
     std::tstring_t sUnixName = CxConst::xUNIX_SLASH + a_csName;
 
     handle_t hHandle = ::sem_open(sUnixName.c_str(), O_RDWR, 0777, 1U);
-    /*DEBUG*/xASSERT_RET(SEM_FAILED != hHandle, false);
+    /*DEBUG*/xTEST_DIFF(SEM_FAILED, hHandle);
 
     _m_hHandle = hHandle;
     _m_sName   = sUnixName;

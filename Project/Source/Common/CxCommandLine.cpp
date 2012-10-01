@@ -28,7 +28,7 @@ CxCommandLine::liGetArgsMax() {
     liRv = 32L * 1024L;
 #elif xOS_ENV_UNIX
     liRv = ::sysconf(_SC_ARG_MAX) / sizeof(std::tstring_t::value_type);
-    /*DEBUG*/xASSERT_RET(- 1 != liRv, 0L);
+    /*DEBUG*/xTEST_DIFF(- 1L, liRv);
 #endif
 
     return liRv;

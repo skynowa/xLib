@@ -85,7 +85,7 @@ CxDnsClient::bGetHostNameByAddr(
                 in_addr iaAddr;
 
                 iaAddr.s_addr = ::inet_addr(casHostAddr.c_str());
-                /*DEBUG*/xTEST_DIFF(iaAddr.s_addr, static_cast<ulong_t>( INADDR_NONE ));
+                /*DEBUG*/xTEST_EQ(true, iaAddr.s_addr != INADDR_NONE);
 
                 pHostent = ::gethostbyaddr((char *) &iaAddr, sizeof(iaAddr)/*4*/, CxSocket::afInet);
                 /*DEBUG*/xTEST_PTR(pHostent);
