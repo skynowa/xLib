@@ -25,10 +25,10 @@ CxObject::CxObject(
 ) :
     _m_pFunc   (a_cPkcs11.pGetFuncList()),
     _m_hSession(a_cSession.hGetHandle()),
-    _m_hObject (NULL)
+    _m_hObject (0UL)
 {
     /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/xTEST_PTR(_m_hSession);
+    /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
     /*DEBUG*/xTEST_PTR(_m_hObject);
 
 }
@@ -41,7 +41,7 @@ CxObject::~CxObject() {
 CK_OBJECT_HANDLE
 CxObject::hGetHandle() const {
     /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/xTEST_PTR(_m_hSession);
+    /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
     /*DEBUG*/xTEST_PTR(_m_hObject);
 
     return _m_hObject;
@@ -53,7 +53,7 @@ CxObject::bSetHandle(
 )
 {
     /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/xTEST_PTR(_m_hSession);
+    /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
     /*DEBUG*/// _m_hObject - n/a
 
     _m_hObject = a_hHandle;
@@ -68,7 +68,7 @@ CxObject::bCreate(
 )
 {
     /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/xTEST_PTR(_m_hSession);
+    /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
     /*DEBUG*/xTEST_PTR_FAIL(_m_hObject);
 
     CK_RV ulRv = _m_pFunc->C_CreateObject(_m_hSession, a_pTemplate, a_ulCount, &_m_hObject);
@@ -83,7 +83,7 @@ CxObject::bGetSize(
 )
 {
     /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/xTEST_PTR(_m_hSession);
+    /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
     /*DEBUG*/xTEST_PTR(_m_hObject);
 
     CK_RV ulRv = _m_pFunc->C_GetObjectSize(_m_hSession, _m_hObject, a_pulSize);
@@ -100,7 +100,7 @@ CxObject::bCopy(
 )
 {
     /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/xTEST_PTR(_m_hSession);
+    /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
     /*DEBUG*/xTEST_PTR(_m_hObject);
 
     CK_RV ulRv = _m_pFunc->C_CopyObject(_m_hSession, _m_hObject, a_pTemplate, a_ulCount, a_phNewObject);
@@ -117,7 +117,7 @@ CxObject::bFind(
 )
 {
     /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/xTEST_PTR(_m_hSession);
+    /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
     /*DEBUG*/// _m_hObject - n/a
     /*DEBUG*/xTEST_PTR(a_pTemplate);
     /*DEBUG*/// ulCount    - n/a
@@ -156,7 +156,7 @@ bool CxObject::bGetAttributeValue(
 )
 {
     /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/xTEST_PTR(_m_hSession);
+    /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
     /*DEBUG*/xTEST_PTR(_m_hObject);
 
     CK_RV ulRv = _m_pFunc->C_GetAttributeValue(_m_hSession, _m_hObject, a_pTemplate, a_ulCount);
@@ -172,7 +172,7 @@ CxObject::bSetAttributeValue(
 )
 {
     /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/xTEST_PTR(_m_hSession);
+    /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
     /*DEBUG*/xTEST_PTR(_m_hObject);
 
     CK_RV ulRv = _m_pFunc->C_SetAttributeValue(_m_hSession, _m_hObject, a_pTemplate, a_ulCount);
@@ -184,13 +184,13 @@ CxObject::bSetAttributeValue(
 bool
 CxObject::bDestroy() {
     /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/xTEST_PTR(_m_hSession);
+    /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
     /*DEBUG*/xTEST_PTR(_m_hObject);
 
     CK_RV ulRv = _m_pFunc->C_DestroyObject(_m_hSession, _m_hObject);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
-    _m_hObject = NULL;
+    _m_hObject = 0UL;
 
     return true;
 }
@@ -496,14 +496,14 @@ CxObject::bSetData(
 
 #if xTODO
 //---------------------------------------------------------------------------
-bool 
+bool
 CxObject::bFindInit(
     CK_ATTRIBUTE_PTR pTemplate,  ///< attribute values to match
     CK_ULONG         ulCount     ///< attrs in search template
 )
 {
     /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/xTEST_PTR(_m_hSession);
+    /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
     /*DEBUG*/// _m_hObject - n/a
 
     CK_RV ulRv = _m_pFunc->C_FindObjectsInit(_m_hSession, pTemplate, ulCount);
@@ -512,7 +512,7 @@ CxObject::bFindInit(
     return true;
 }
 //---------------------------------------------------------------------------
-bool 
+bool
 CxObject::bFind(
     CK_OBJECT_HANDLE_PTR phObject,          ///< gets obj. handles
     CK_ULONG             ulMaxObjectCount,  ///< max handles to get
@@ -520,7 +520,7 @@ CxObject::bFind(
 )
 {
     /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/xTEST_PTR(_m_hSession);
+    /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
     /*DEBUG*/// _m_hObject - n/a
 
     CK_RV ulRv = _m_pFunc->C_FindObjects(_m_hSession, phObject, ulMaxObjectCount, pulObjectCount);
@@ -530,10 +530,10 @@ CxObject::bFind(
     return true;
 }
 //---------------------------------------------------------------------------
-bool 
+bool
 CxObject::bFindFinal() {
     /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/xTEST_PTR(_m_hSession);
+    /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
     /*DEBUG*/// _m_hObject - n/a
 
     CK_RV ulRv = _m_pFunc->C_FindObjectsFinal(_m_hSession);

@@ -41,6 +41,7 @@
 #include <Test/Db/CxTest_CxMySql.h>
 
 // Debug
+#include <Test/Debug/CxTest_xDebug.h>
 #include <Test/Debug/CxTest_CxStdError.h>
 #include <Test/Debug/CxTest_CxLastError.h>
 #include <Test/Debug/CxTest_CxException.h>
@@ -187,6 +188,7 @@ xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
         // (void)tmManager.bAdd(new CxTest_CxMySql);
 
         // Debug
+        (void)tmManager.bAdd(new CxTest_xDebug);
         (void)tmManager.bAdd(new CxTest_CxStdError);
         (void)tmManager.bAdd(new CxTest_CxLastError);
         (void)tmManager.bAdd(new CxTest_CxException);

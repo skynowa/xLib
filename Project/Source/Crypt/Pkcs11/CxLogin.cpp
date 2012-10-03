@@ -29,7 +29,7 @@ CxLogin::CxLogin(
     _m_hSession(a_cSession.hGetHandle())
 {
     /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/xTEST_PTR(_m_hSession);
+    /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
 }
 //---------------------------------------------------------------------------
 /* virtual */
@@ -45,7 +45,7 @@ CxLogin::bLogin(
 )
 {
     /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/xTEST_PTR(_m_hSession);
+    /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
 
     CK_RV ulRv = _m_pFunc->C_Login(_m_hSession, a_userType, a_pPin, a_ulPinLen);
     xCHECK_DO(
@@ -61,7 +61,7 @@ CxLogin::bLogin(
 bool
 CxLogin::bLogout() {
     /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/xTEST_PTR(_m_hSession);
+    /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
 
     CK_RV ulRv = _m_pFunc->C_Logout(_m_hSession);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
