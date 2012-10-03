@@ -117,7 +117,7 @@
     /// < hide "unused variable" warnings
 
 //--------------------------------------------------
-// xENUM_INC, xENUM_DEC
+// TODO: make template functions xENUM_INC, xENUM_DEC
 #define xENUM_INC(type, obj)        { (obj) = static_cast<type>( static_cast<int>( obj ) + 1 ); }
     ///< increment enumerator
 #define xENUM_DEC(type, obj)        { (obj) = static_cast<type>( static_cast<int>( obj ) - 1 ); }
@@ -152,39 +152,75 @@
 // buildin macroses
 
 // xFILE
-#define xFILE                       xT(__FILE__)
+#if defined(__FILE__)
+    #define xFILE                   xT(__FILE__)
+#else
+    #define xFILE                   CxConst::xUNKNOWN_STRING
+#endif
     ///< source file path
 
 // xLINE
-#define xLINE                       __LINE__
+#if defined(__LINE__)
+    #define xLINE                   __LINE__
+#else
+    #define xLINE                   CxConst::xUNKNOWN_STRING
+#endif
     ///< source code line number
 
 // xFUNCTION
 #if   xCOMPILER_MS
-    #define xFUNCTION               xT(__FUNCTION__)
+    #if defined(__FUNCTION__)
+        #define xFUNCTION           xT(__FUNCTION__)
+    #else
+        #define xFUNCTION           CxConst::xUNKNOWN_STRING
+    #endif
 #elif xCOMPILER_CODEGEAR
-    #define xFUNCTION               xT(__FUNC__)
+    #if defined(__FUNC__)
+        #define xFUNCTION           xT(__FUNC__)
+    #else
+        #define xFUNCTION           CxConst::xUNKNOWN_STRING
+    #endif
 #elif xCOMPILER_GNUC || xCOMPILER_MINGW32
-    #define xFUNCTION               xT(__PRETTY_FUNCTION__)
+    #if defined(__PRETTY_FUNCTION__)
+        #define xFUNCTION           xT(__PRETTY_FUNCTION__)
+    #else
+        #define xFUNCTION           CxConst::xUNKNOWN_STRING
+    #endif
 #else
-    #define xFUNCTION               xT("<unknown xFUNCTION>")
+    #define xFUNCTION               CxConst::xUNKNOWN_STRING
 #endif
     ///< source function name
 
 // xDATE
-#define xDATE                       xT(__DATE__)
+#if defined(__DATE__)
+    #define xDATE                   xT(__DATE__)
+#else
+    #define xDATE                   CxConst::xUNKNOWN_STRING
+#endif
     ///< build source date stamp
 
 // xTIME
-#define xTIME                       xT(__TIME__)
+#if defined(__TIME__)
+    #define xTIME                   xT(__TIME__)
+#else
+    #define xTIME                   CxConst::xUNKNOWN_STRING
+#endif
     ///< build source time stamp
 
 // xDATETIME
-#define xDATETIME                   xT(__DATE__) xT(" ") xT(__TIME__)
+#if defined(xDATE) && defined(xTIME)
+    #define xDATETIME               xDATE xT(" ") xTIME
+#else
+    #define xDATETIME               CxConst::xUNKNOWN_STRING
+#endif
     ///< build source datetime stamp
 
 // xCOUNTER
-#define xCOUNTER                    __COUNTER__
+#if defined(__COUNTER__)
+    #define xCOUNTER                __COUNTER__
+#else
+    #define xCOUNTER                0
+#endif
     ///< Expands to an integer starting with 0 and incrementing by 1 every time it is used in a compiland
 
 //-------------------------------------

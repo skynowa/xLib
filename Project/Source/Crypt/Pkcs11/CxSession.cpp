@@ -23,10 +23,10 @@ CxSession::CxSession(
     const CxPkcs11 &a_cPkcs11
 ) :
     _m_pFunc   (a_cPkcs11.pGetFuncList()),
-    _m_hSession(NULL)
+    _m_hSession(0UL)
 {
     /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/xTEST_PTR(_m_hSession);
+    /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
 }
 //---------------------------------------------------------------------------
 /* virtual */
@@ -37,7 +37,7 @@ CxSession::~CxSession() {
 CK_SESSION_HANDLE
 CxSession::hGetHandle() const {
     /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/xTEST_PTR(_m_hSession);
+    /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
 
     return _m_hSession;
 }
@@ -65,7 +65,7 @@ CxSession::bGetInfo(
 )
 {
     /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/xTEST_PTR(_m_hSession);
+    /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
 
     CK_RV ulRv = _m_pFunc->C_GetSessionInfo(_m_hSession, a_pInfo);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
@@ -82,7 +82,7 @@ CxSession::bSetOperationState(
 )
 {
     /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/xTEST_PTR(_m_hSession);
+    /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
 
     CK_RV ulRv = _m_pFunc->C_SetOperationState(_m_hSession, a_pOperationState, a_ulOperationStateLen, a_hEncryptionKey, a_hAuthenticationKey);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
@@ -97,7 +97,7 @@ CxSession::bGetOperationState(
 )
 {
     /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/xTEST_PTR(_m_hSession);
+    /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
 
     CK_RV ulRv = _m_pFunc->C_GetOperationState(_m_hSession, a_pOperationState, a_pulOperationStateLen);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
@@ -108,7 +108,7 @@ CxSession::bGetOperationState(
 bool
 CxSession::bClose() {
     /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/xTEST_PTR(_m_hSession);
+    /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
 
 
     CK_RV ulRv = _m_pFunc->C_CloseSession(_m_hSession);

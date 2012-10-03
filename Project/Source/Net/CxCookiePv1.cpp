@@ -271,7 +271,7 @@ std::tstring_t
 CxCookiePv1::sGetDump() const {
     std::tstring_t sRv;
 
-    xNOT_IMPLEMENTED_RET(CxConst::xSTR_EMPTY);
+    xNOT_IMPLEMENTED;
 
     return sRv;
 }

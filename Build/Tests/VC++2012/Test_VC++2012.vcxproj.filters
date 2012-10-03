@@ -731,6 +731,9 @@
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_xDefines.h">
       <Filter>Test\Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Tests\Include\Test\Debug\CxTest_xDebug.h">
+      <Filter>Test\Debug</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Project\Include\xLib\Common\CxArray.inl">
@@ -1274,6 +1277,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_xDefines.cpp">
       <Filter>Test\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Tests\Source\Debug\CxTest_xDebug.cpp">
+      <Filter>Test\Debug</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
