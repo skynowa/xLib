@@ -30,23 +30,23 @@ class CxBlowfish :
         virtual      ~CxBlowfish          ();
             ///< destructor
 
-        bool          bSetKey             (uchar_t *pucKey, const int ciKeySize);
+        void          vSetKey             (uchar_t *pucKey, const int &ciKeySize);
             ///< set key
-        bool          bSetKey             (const std::ustring_t &cusKey);
+        void          vSetKey             (const std::ustring_t &cusKey);
             ///< set key
-        bool          bSetKey             (const std::tstring_t &csKey);
+        void          vSetKey             (const std::tstring_t &csKey);
             ///< set key
-        bool          bSetFileKey         (const std::tstring_t &csFilePath);
+        void          vSetFileKey         (const std::tstring_t &csFilePath);
             ///< set key as file
         static size_t uiGetMaxKeySize     ();
             ///< get maximum key size
 
         //cfb64
-        bool          bEncryptCfb64       (uchar_t *pucIn, uchar_t *pucOut, const long_t cliInSize, int *piNum, const ExCryptMode cmMode);
+        void          vEncryptCfb64       (uchar_t *pucIn, uchar_t *pucOut, const long_t &cliInSize, int *piNum, const ExCryptMode &cmMode);
             ///< encrypt buffer
-        bool          bEncryptCfb64       (const std::ustring_t &cusIn, std::ustring_t *pusOut, const ExCryptMode cmMode);
+        void          vEncryptCfb64       (const std::ustring_t &cusIn, std::ustring_t *pusOut, const ExCryptMode &cmMode);
             ///< encrypt std::ustring_t
-        bool          bEncryptFileCfb64   (const std::tstring_t &csFilePathIn, const std::tstring_t &csFilePathOut, const ExCryptMode cmMode);
+        void          vEncryptFileCfb64   (const std::tstring_t &csFilePathIn, const std::tstring_t &csFilePathOut, const ExCryptMode &cmMode);
             ///< encrypt file
 
     private:
