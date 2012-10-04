@@ -75,6 +75,8 @@ bin/*
 *.obj
 *.pch
 *.pdb
+*.idb
+*.pidb
 *.pgc
 *.pgd
 *.rsp
@@ -87,9 +89,8 @@ bin/*
 *.vssscc
 .builds
 
-*.pidb
-
 *.log
+*.tlog
 *.scc
 
 # Visual C++ cache files
