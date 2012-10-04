@@ -353,7 +353,7 @@ CxConsole::bEnableClose(
     }
 #elif xOS_ENV_UNIX
     //TODO: bEnableClose
-    xNOT_IMPLEMENTED_RET(false);
+    xNOT_IMPLEMENTED;
 #endif
 
     return true;
@@ -380,7 +380,7 @@ CxConsole::sGetTitle() {
     sRv.assign(szBuff, ulTitleSize);
 #elif xOS_ENV_UNIX
     //TODO: sGetTitle
-    xNOT_IMPLEMENTED_RET(std::tstring_t());
+    xNOT_IMPLEMENTED;
 #endif
 
     return sRv;
@@ -442,7 +442,7 @@ CxConsole::bSetFullScreen() {
     /*DEBUG*/xTEST_EQ(true, bRv);
 #elif xOS_ENV_UNIX
     //TODO: bSetFullScreen
-    xNOT_IMPLEMENTED_RET(false);
+    xNOT_IMPLEMENTED;
 #endif
     return true;
 }
@@ -476,7 +476,7 @@ CxConsole::bCenterWindow() {
     /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     //TODO: bCenterWindow
-    xNOT_IMPLEMENTED_RET(false);
+    xNOT_IMPLEMENTED;
 #endif
 
     return true;
