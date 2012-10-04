@@ -98,7 +98,7 @@ CxSystemInfo::osGetOS() {
 /* static */
 std::tstring_t
 CxSystemInfo::sFormatOsType(
-    const ExOsType a_otOsType
+    const ExOsType &a_otOsType
 )
 {
     xDEBUG_VAR_NA(otOsType);
@@ -215,7 +215,7 @@ CxSystemInfo::oaGetOsArch() {
 /* static */
 std::tstring_t
 CxSystemInfo::sFormatOsArch(
-    const ExOsArch a_oaOsArch
+    const ExOsArch &a_oaOsArch
 )
 {
     std::tstring_t sRv;
