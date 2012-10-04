@@ -17,79 +17,79 @@
  *
  * <pre>
  *   Data:
- *       Nx          - namespace
- *       Cx          - class
- *       Sx          - struct
- *       Ux          - union
- *       Ex          - enumeration
- *       p           - pointer
- *       T           - template
- *       _t          - type
+ *       Nx*          - namespace
+ *       Cx*          - class
+ *       Sx*          - struct
+ *       Ux*          - union
+ *       Ex*          - enumeration
+ *       p*           - pointer
+ *       *T           - template
+ *       *_t          - type
  *
  *   Access:
- *       g_          - global
- *       s_          - static
- *       m_          - member of some data structure
- *       fr_         - friend
- *       a_          - function param
+ *       g_*          - global
+ *       s_*          - static
+ *       m_*          - member of some data structure
+ *       fr_*         - friend
+ *       a_*          - function param
  *
  *   Modify:
- *       c           - const
- *       v           - volatile
- *       m           - mutable
+ *       c*           - const
+ *       v*           - volatile
+ *       m*           - mutable
  *
  *   Types:
- *       a           - array
+ *       a*           - array
  *
- *       v           - void
- *       b           - bool
+ *       v*           - void
+ *       b*           - bool
  *
- *       i           - int
- *       ui          - unsigned int
- *       uc          - uchar_t                  (unsigned char)
- *       si          - short_t                  (short int)
- *       li          - long_t                   (long int)
- *       lli         - longlong_t               (long long int)
- *       ui          - uint_t                   (unsigned int)
- *       us          - ushort_t                 (unsigned short int)
- *       ul          - ulong_t                  (unsigned long int)
- *       ull         - ulonglong_t              (unsigned long long int)
+ *       i*           - int
+ *       ui*          - unsigned int
+ *       uc*          - uchar_t                  (unsigned char)
+ *       si*          - short_t                  (short int)
+ *       li*          - long_t                   (long int)
+ *       lli*         - longlong_t               (long long int)
+ *       ui*          - uint_t                   (unsigned int)
+ *       us*          - ushort_t                 (unsigned short int)
+ *       ul*          - ulong_t                  (unsigned long int)
+ *       ull*         - ulonglong_t              (unsigned long long int)
  *
- *       f           - float
- *       d           - double
- *       ld          - long double
+ *       f*           - float
+ *       d*           - double
+ *       ld*          - long double
  *
- *       sz          - C-string
+ *       sz*          - C-string
  *
  *   STL types:
- *       s           - std::tstring_t           (std::string)
- *       us          - std::ustring_t           (std::ustring)
+ *       s*           - std::tstring_t           (std::string)
+ *       us*          - std::ustring_t           (std::ustring)
  *
- *       ism         - std::tistream_t          (std::istream)
- *       osm         - std::tostream_t          (std::ostream)
- *       iosm        - std::tiostream_t         (std::iostream)
+ *       ism*         - std::tistream_t          (std::istream)
+ *       osm*         - std::tostream_t          (std::ostream)
+ *       iosm*        - std::tiostream_t         (std::iostream)
  *
- *       issm        - std::tistringstream_t    (std::istringstream)
- *       ossm        - std::tostringstream_t    (std::ostringstream)
- *       ssm         - std::tstringstream_t     (std::stringstream)
+ *       issm*        - std::tistringstream_t    (std::istringstream)
+ *       ossm*        - std::tostringstream_t    (std::ostringstream)
+ *       ssm*         - std::tstringstream_t     (std::stringstream)
  *
- *       ifsm        - std::tifstream_t         (std::ifstream)
- *       ofsm        - std::tofstream_t         (std::ofstream)
- *       fsm         - std::tfstream_t          (std::fstream)
+ *       ifsm*        - std::tifstream_t         (std::ifstream)
+ *       ofsm*        - std::tofstream_t         (std::ofstream)
+ *       fsm*         - std::tfstream_t          (std::fstream)
  *
- *       v[type]     - std::vector
- *       d[type]     - std::deque
- *       l[type]     - std::list
+ *       v[type]*     - std::vector
+ *       d[type]*     - std::deque
+ *       l[type]*     - std::list
  *
- *       st[type]    - std::stack
- *       q[type]     - std::queue
- *       pq[type]    - std::priority_queue
+ *       st[type]*    - std::stack
+ *       q[type]*     - std::queue
+ *       pq[type]*    - std::priority_queue
  *
- *       s[type]     - std::set
- *       ms[type]    - std::multiset
- *       m[type]     - std::map
- *       mm[type]    - std::multimap
- *       bs[type]    - std::bitset
+ *       s[type]*     - std::set
+ *       ms[type]*    - std::multiset
+ *       m[type]*     - std::map
+ *       mm[type]*    - std::multimap
+ *       bs[type]*    - std::bitset
  * </pre>
  *
  * \section sec_samples Samples
