@@ -43,11 +43,10 @@ CxTest_CxCommandLine::bUnit(
     }
 
     //-------------------------------------
-    //bGetArgs
+    // vGetArgs
     xTEST_CASE(cullCaseLoops)
     {
-        m_bRv = CxCommandLine::bGetArgs(&m_vsRv);
-        xTEST_EQ(true,  m_bRv);
+        CxCommandLine::vGetArgs(&m_vsRv);
         xTEST_EQ(false, m_vsRv.empty());
     }
 
