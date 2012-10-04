@@ -1108,16 +1108,13 @@ CxFile::bSetTime(
     bool     bRv     = false;
 
     FILETIME ftCreate = {0};
-    bRv = CxDateTime::bUnixTimeToFileTime(ctmCreate, &ftCreate);
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    CxDateTime::vUnixTimeToFileTime(ctmCreate, &ftCreate);
 
     FILETIME ftAccess = {0};
-    bRv = CxDateTime::bUnixTimeToFileTime(ctmAccess, &ftAccess);
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    CxDateTime::vUnixTimeToFileTime(ctmAccess, &ftAccess);
 
     FILETIME ftModified = {0};
-    bRv = CxDateTime::bUnixTimeToFileTime(ctmModified, &ftModified);
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    CxDateTime::vUnixTimeToFileTime(ctmModified, &ftModified);
 
     CxFileHandle m_hHandle;
 

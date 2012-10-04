@@ -258,11 +258,8 @@ CxTest_CxDateTime::bUnit(
         ushort_t     usSecond = 55;
         ushort_t     usMSec   = 666;
 
-        m_bRv = dtDT.bSet(usYear, usMonth, usDay, usHour, usMinute, usSecond, usMSec);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = dtDT.bGet(&usYear, &usMonth, &usDay, &usHour, &usMinute, &usSecond, &usMSec);
-        xTEST_EQ(true, m_bRv);
+        dtDT.vSet(usYear, usMonth, usDay, usHour, usMinute, usSecond, usMSec);
+        dtDT.vGet(&usYear, &usMonth, &usDay, &usHour, &usMinute, &usSecond, &usMSec);
 
         xTEST_EQ((ushort_t)2010, usYear);
         xTEST_EQ((ushort_t)1,    usMonth);
@@ -313,11 +310,8 @@ CxTest_CxDateTime::bUnit(
         ushort_t     usSecond = 0;
         ushort_t     usMSec   = 0;
 
-        m_bRv = dtDT.bSet(ui64DT);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = dtDT.bGet(&usYear, &usMonth, &usDay, &usHour, &usMinute, &usSecond, &usMSec);
-        xTEST_EQ(true, m_bRv);
+        dtDT.vSet(ui64DT);
+        dtDT.vGet(&usYear, &usMonth, &usDay, &usHour, &usMinute, &usSecond, &usMSec);
 
         xTEST_EQ((ushort_t)0, usYear);
         xTEST_EQ((ushort_t)0, usMonth);
@@ -562,8 +556,7 @@ CxTest_CxDateTime::bUnit(
             const time_t ctmUnixTime = 1000;
             FILETIME     ftFileTime  = {0};
 
-            m_bRv = CxDateTime::bUnixTimeToFileTime(ctmUnixTime, &ftFileTime);
-            xTEST_EQ(true, m_bRv);
+            CxDateTime::vUnixTimeToFileTime(ctmUnixTime, &ftFileTime);
         #endif
     }
 
