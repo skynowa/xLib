@@ -817,7 +817,7 @@ CxFile::bWipe(
             //--------------------------------------------------
             //fill by 0x55, 0xAA, random char
             for (size_t p = 0; p < cuiPasses; ++ p) {
-                CxRandom::bSetSeed();
+                CxRandom::vSetSeed();
 
                 const uchar_t chRand  = static_cast<uchar_t>(CxRandom::liGetInt(0, 255) + 1);
                 const uchar_t chChar1 = 0x55;
