@@ -500,8 +500,7 @@ CxPop3::_ulMailsSum(const std::tstring_t &a_csServerAnswer) {
     std::tstring_t     sSum;
     std::vec_tstring_t vsRes;
 
-    bool bRv = CxString::bSplit(a_csServerAnswer, " ", &vsRes);
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    CxString::vSplit(a_csServerAnswer, " ", &vsRes);
 
     sSum  = vsRes.at(1);
     ulSum = ::atol(sSum.c_str());        // ul -> l
@@ -519,8 +518,7 @@ CxPop3::_ulMailsSize(const std::tstring_t &a_csServerAnswer) {
     std::tstring_t     sSize;
     std::vec_tstring_t vsRes;
 
-    bool bRv = CxString::bSplit(a_csServerAnswer, " ", &vsRes);
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    CxString::vSplit(a_csServerAnswer, " ", &vsRes);
 
     sSize  = vsRes.at(2);
     ulSize = ::atol(sSize.c_str());    // ul+\r\n -> l

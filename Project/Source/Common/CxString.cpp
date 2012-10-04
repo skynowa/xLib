@@ -22,7 +22,7 @@ xNAMESPACE_BEGIN(NxLib)
 /* static */
 std::tstring_t
 CxString::sBoolToStr(
-    const bool a_cbBool
+    const bool &a_cbBool
 )
 {
     /*DEBUG*/// bBool - n/a
@@ -174,8 +174,8 @@ CxString::sRemoveAll(
 }
 //---------------------------------------------------------------------------
 /* static */
-bool
-CxString::bSplit(
+void
+CxString::vSplit(
     const std::tstring_t &a_csStr,
     const std::tstring_t &a_csSep,
     std::vec_tstring_t   *a_pvsOut
@@ -185,9 +185,9 @@ CxString::bSplit(
     /*DEBUG*/// csSep    - n/a
     /*DEBUG*/// pvsOut - n/a
 
-    xCHECK_RET(true == a_csStr.empty(), true);
-    xCHECK_RET(true == a_csSep.empty(), true);
-    xCHECK_RET(NULL == a_pvsOut,        false);
+    xCHECK_DO(true == a_csStr.empty(), return);
+    xCHECK_DO(true == a_csSep.empty(), return);
+    xTEST_PTR(a_pvsOut);
 
     std::vec_tstring_t vsRes;
     size_t             uiPrevPos = 0;     //start of string
@@ -205,8 +205,6 @@ CxString::bSplit(
 
     //out
     std::swap(*a_pvsOut, vsRes);
-
-    return true;
 }
 //---------------------------------------------------------------------------
 /* static */

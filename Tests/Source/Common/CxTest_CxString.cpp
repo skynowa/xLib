@@ -499,15 +499,11 @@ CxTest_CxString::bUnit(
     {
         std::vec_tstring_t vsText;
 
-        m_bRv = CxString::bSplit(xT("1+++22+++333+++4444+++55555+++666666"), xT("+"), &vsText);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = CxString::bSplit(xT("Key+"), xT("+"), &vsText);
-        xTEST_EQ(true, m_bRv);
+        CxString::vSplit(xT("1+++22+++333+++4444+++55555+++666666"), xT("+"), &vsText);
+        CxString::vSplit(xT("Key+"), xT("+"), &vsText);
 
         vsText.clear();
-        m_bRv = CxString::bSplit(xT(""), xT("+"), &vsText);
-        xTEST_EQ(true, m_bRv);
+        CxString::vSplit(xT(""), xT("+"), &vsText);
     }
 
     //-------------------------------------

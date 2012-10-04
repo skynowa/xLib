@@ -818,13 +818,11 @@ bool
 CxCgiCookies::_bInit() {
     /*DEBUG*/
 
-    bool               bRv         = false;
     std::tstring_t     sRawCookies = _m_ccgCgi.Environment.sGetHttpCookie();
     std::vec_tstring_t vsRawCookies;
     TCookies           vecckCookies;
 
-    bRv = CxString::bSplit(sRawCookies, CxConst::xSEMICOLON, &vsRawCookies);
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    CxString::vSplit(sRawCookies, CxConst::xSEMICOLON, &vsRawCookies);
 
     xFOREACH_CONST(std::vec_tstring_t, it, vsRawCookies) {
         CxCookiePv0 *pckItem = new(std::nothrow) CxCookiePv0(*it);
