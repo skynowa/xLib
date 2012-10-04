@@ -74,10 +74,18 @@ class CxUtils :
         static inline double    safeDivT        (const T1 &cValue1T, const T2 &cValue2T);
             ///< safe division
 
+        template <class T>
+        static inline T         enumInc         (const T &valueT);    
+            ///< increment enumerator
+
+        template <class T>
+        static inline T         enumDec         (const T &valueT); 
+            ///< decriment enumerator
+
     private:
-                                CxUtils        ();
+                                CxUtils         ();
             ///< constructor
-                               ~CxUtils        ();
+                               ~CxUtils         ();
             ///< destructor
 };
 
