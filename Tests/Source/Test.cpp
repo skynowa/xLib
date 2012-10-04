@@ -110,8 +110,7 @@ xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
     //--------------------------------------------------
     // set commandline args for xLib
     {
-        bool bRv = CxCommandLine::bSetArgs(iArgCount, paszArgs);
-        xTEST_EQ(true, bRv);
+        CxCommandLine::vSetArgs(iArgCount, paszArgs);
     }
 
     //--------------------------------------------------
@@ -124,12 +123,11 @@ xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
     {
         std::vec_tstring_t vsArgs;
 
-        bool bRv = CxCommandLine::bGetArgs(&vsArgs);
-        xTEST_EQ(true, bRv);
+        CxCommandLine::vGetArgs(&vsArgs);
 
         // usage
         if (2 == iArgCount) {
-            bRv = CxString::bCompareNoCase(xT("-h"), vsArgs.at(1));
+            bool bRv = CxString::bCompareNoCase(xT("-h"), vsArgs.at(1));
             if (true == bRv) {
                 std::tcout << xT("\nUsage: xlib_r is_tracing all_loops unit_loops\n")
                               xT("  - xlib_r      (binary file path)\n")

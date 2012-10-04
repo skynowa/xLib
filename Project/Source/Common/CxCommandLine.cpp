@@ -54,8 +54,8 @@ CxCommandLine::sGet() {
 }
 //---------------------------------------------------------------------------
 /* static */
-bool
-CxCommandLine::bGetArgs(
+void
+CxCommandLine::vGetArgs(
     std::vec_tstring_t *a_pvsArgs
 )
 {
@@ -65,14 +65,12 @@ CxCommandLine::bGetArgs(
               CxTracer::vWrite(xT("::: xLib: warning (command line is empty) :::")));
 
     (*a_pvsArgs) = _ms_vsArgs;
-
-    return true;
 }
 //---------------------------------------------------------------------------
 /* static */
-bool
-CxCommandLine::bSetArgs(
-    const int  a_ciArgsCount,
+void
+CxCommandLine::vSetArgs(
+    const int &a_ciArgsCount,
     tchar_t   *a_paszArgs[]
 )
 {
@@ -88,8 +86,6 @@ CxCommandLine::bSetArgs(
     std::swap(_ms_vsArgs, vsArgs);
 
     xCHECK_DO(true == _ms_vsArgs.empty(), CxTracer::vWrite(xT("xLib: warning (command line is empty)")));
-
-    return true;
 }
 //---------------------------------------------------------------------------
 

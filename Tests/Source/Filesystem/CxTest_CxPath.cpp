@@ -689,13 +689,12 @@ CxTest_CxPath::bUnit(
     }
 
     //-------------------------------------
-    //sGetAbsolute
+    // sGetAbsolute
     xTEST_CASE(cullCaseLoops)
     {
         std::vec_tstring_t vsArgs;
 
-        m_bRv = CxCommandLine::bGetArgs(&vsArgs);
-        xTEST_EQ(true, m_bRv);
+        CxCommandLine::vGetArgs(&vsArgs);
 
         m_sRv = CxPath::sGetAbsolute(vsArgs.at(0));
         xTEST_EQ(false, m_sRv.empty());
