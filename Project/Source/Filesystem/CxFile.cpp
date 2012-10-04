@@ -1221,8 +1221,7 @@ CxFile::bTextRead(
     bRv = bTextRead(csFilePath, &sFileContent);
     /*DEBUG*/xTEST_EQ(true, bRv);
 
-    bRv = CxString::bSplit(sFileContent, CxConst::xNL, &vsRes);
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    CxString::vSplit(sFileContent, CxConst::xNL, &vsRes);
 
     //out
     std::swap((*pvsContent), vsRes);
@@ -1286,8 +1285,7 @@ CxFile::bTextRead(
 
         sLine = CxString::sTrimRightChars(sLine, CxConst::xEOL);
 
-        bRv = CxString::bSplit(sLine, csSeparator, &vsLine);
-        /*DEBUG*/xTEST_EQ(true, bRv);
+        CxString::vSplit(sLine, csSeparator, &vsLine);
 
         msRv.insert( std::pair<std::tstring_t, std::tstring_t>(vsLine.at(0), vsLine.at(1)) );
     }

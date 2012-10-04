@@ -57,7 +57,7 @@ class CxString :
         static T              string_cast       (const std::tstring_t &csStr, const int ciBase);
             ///< convert std::tstring_t by base (8, 10, 16) to type
 
-        static std::tstring_t sBoolToStr        (const bool cbBool);
+        static std::tstring_t sBoolToStr        (const bool &cbBool);
             ///< bool to std::tstring_t
         static bool           bStrToBool        (const std::tstring_t &csStr);
             ///< convert std::tstring_t to bool
@@ -80,7 +80,7 @@ class CxString :
         static std::tstring_t sRemoveAll        (const std::tstring_t &csStr, const std::tstring_t &csRemoveStr);
             ///< remove all strings
 
-        static bool           bSplit            (const std::tstring_t &csStr, const std::tstring_t &csSep, std::vec_tstring_t *pvsOut);
+        static void           vSplit            (const std::tstring_t &csStr, const std::tstring_t &csSep, std::vec_tstring_t *pvsOut);
             ///< split by separator
         static std::tstring_t sJoin             (const std::vec_tstring_t &cvsVec, const tchar_t cchSep);
             ///< join with char separator

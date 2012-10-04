@@ -1053,8 +1053,7 @@ CxDateTime::_vParse(
                 //split by separator " "
                 std::vec_tstring_t vsDates;
 
-                bRv = CxString::bSplit(sDT, CxConst::xSPACE, &vsDates);
-                /*DEBUG*/xTEST_EQ(true, bRv);
+                CxString::vSplit(sDT, CxConst::xSPACE, &vsDates);
 
                 //CxString::vStdVectorPrintT(vsDates);
 

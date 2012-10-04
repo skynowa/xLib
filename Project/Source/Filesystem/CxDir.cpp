@@ -258,8 +258,7 @@ CxDir::bCreateForce(
 
     //-------------------------------------
     //split csDirPath into parts
-    bRv = CxString::bSplit( CxPath::sToCurrentOs(csDirPath, false), CxConst::xSLASH, &vsPathParts );
-    /*DEBUG*/xTEST_EQ(true, bRv);
+     CxString::vSplit( CxPath::sToCurrentOs(csDirPath, false), CxConst::xSLASH, &vsPathParts );
 
     //-------------------------------------
     //create dirs by steps
