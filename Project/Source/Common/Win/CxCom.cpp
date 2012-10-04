@@ -25,7 +25,7 @@ long_t CxCom::_ms_lInitCount = 0L;
 
 //---------------------------------------------------------------------------
 CxCom::CxCom(
-    const EConcurrencyModel ccmCoModel /* = cmMultiThreaded*/
+    const EConcurrencyModel &ccmCoModel /* = cmMultiThreaded*/
 ) :
     _m_ulConModel(static_cast<DWORD>( ccmCoModel ))
 {

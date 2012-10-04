@@ -28,7 +28,7 @@ class CxCom :
             cmSpeedOverMemory   = COINIT_SPEED_OVER_MEMORY
         };
 
-                      CxCom  (const EConcurrencyModel ccmCoModel /* = cmMultiThreaded*/);
+        explicit      CxCom  (const EConcurrencyModel &ccmCoModel /* = cmMultiThreaded*/);
             ///< constructor
         virtual      ~CxCom  ();
             ///< destructor
