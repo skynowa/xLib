@@ -16,18 +16,18 @@ class CxRandom :
     /// random
 {
     public:
-                              CxRandom     (long_t liSeed = time(NULL));
+        explicit              CxRandom     (const long_t &liSeed = std::time(NULL));
             ///< constructor
         virtual              ~CxRandom     ();
             ///< destructor
 
-        bool                  bSetSeed     (long_t liSeed);
+        void                  vSetSeed     (const long_t &liSeed);
             ///< set seed
         int                   iNextInt     ();
             ///< next int
-        int                   iNextInt     (int max);
+        int                   iNextInt     (const int &max);
             ///< next int
-        int                   iNextInt     (int a, int b);
+        int                   iNextInt     (const int &a, const int &b);
             ///< next int
         long_t                liNextLong   ();
             ///< next long_t
@@ -44,13 +44,13 @@ class CxRandom :
         double                dNextGaussian();
             ///< next gaussian
 
-        static bool           bSetSeed     ();
+        static void           vSetSeed     ();
             ///< set seed
-        static long_t         liGetInt     (const long_t cliMin, const long_t cliMax);
+        static long_t         liGetInt     (const long_t &cliMin, const long_t &cliMax);
             ///< generates a random number between specified min/max boundaries
-        static long_t         liGetIntEx   (const long_t cliMin, const long_t cliMax);
+        static long_t         liGetIntEx   (const long_t &cliMin, const long_t &cliMax);
             ///< generates a random number between specified min/max boundaries using a vector to shuffle
-        static std::tstring_t sGetString   (const size_t cuiSize);
+        static std::tstring_t sGetString   (const size_t &cuiSize);
             ///< get random string
 
     protected:

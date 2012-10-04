@@ -120,8 +120,7 @@ CxTest_CxRandom::bUnit(
             const long_t cliMin = caliData[i][0];
             const long_t cliMax = caliData[i][1];
 
-            m_bRv = CxRandom::bSetSeed();
-            xTEST_EQ(true, m_bRv);
+            CxRandom::vSetSeed();
 
             m_liRv = CxRandom::liGetInt(cliMin, cliMax);
             xTEST_EQ(true, m_liRv >= cliMin && m_liRv <= cliMax);
@@ -138,8 +137,7 @@ CxTest_CxRandom::bUnit(
         const size_t cuiStrSize = 10;
 
         for (size_t i = 0; i < 10; ++ i) {
-            m_bRv = CxRandom::bSetSeed();
-            xTEST_EQ(true, m_bRv);
+            CxRandom::vSetSeed();
 
             m_sRv = CxRandom::sGetString(cuiStrSize);
             xTEST_EQ(cuiStrSize, m_sRv.size());
