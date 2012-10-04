@@ -9,7 +9,12 @@
 #include <xLib/Common/CxConst.h>
 #include <xLib/Common/CxString.h>
 
-
+//---------------------------------------------------------------------------
+enum EData {
+    datOne,
+    datTwo,
+    datTree
+};
 //---------------------------------------------------------------------------
 CxTest_CxUtils::CxTest_CxUtils() {
 
@@ -275,18 +280,14 @@ CxTest_CxUtils::bUnit(
     // enumInc, enumDec
     xTEST_CASE(cullCaseLoops)
     {
-        enum EData {
-            datOne,
-            datTwo,
-            datTree
-        };
+
 
         EData datData = datOne;
 
         datData = CxUtils::enumInc(datData);
         datData = CxUtils::enumDec(datData);
 
-        xTEST_EQ(datOne, datData);
+        xTEST_EQ(static_cast<long_t>( datOne ), static_cast<long_t>( datData ));
     }
 
     return true;

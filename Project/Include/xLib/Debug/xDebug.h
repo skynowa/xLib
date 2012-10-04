@@ -62,7 +62,7 @@
 //-------------------------------------------------------------------------
 #define xSTD_VERIFY(expr)                                { \
                                                             if ( !(expr) )  { \
-                                                                std::tstring_t sLastError = CxLastError::sGet(); \
+                                                                const std::tstring_t sLastError = CxLastError::sGet(); \
                                                                 CxTracer::vWrite(xT("\n--------------------------------- xSTD_VERIFY ----------------------------------\n") \
                                                                                  xT("  Expression: %s\n") \
                                                                                  xT("  File:       %s\n") \
