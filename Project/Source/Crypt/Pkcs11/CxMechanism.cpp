@@ -32,8 +32,8 @@ CxMechanism::~CxMechanism() {
 
 }
 //---------------------------------------------------------------------------
-bool
-CxMechanism::bGetInfo(
+void
+CxMechanism::vGetInfo(
     CK_SLOT_ID            a_slotID,  ///< ID of the token's slot
     CK_MECHANISM_TYPE     a_type,    ///< type of mechanism
     CK_MECHANISM_INFO_PTR a_pInfo    ///< receives mechanism info
@@ -43,12 +43,10 @@ CxMechanism::bGetInfo(
 
     CK_RV ulRv = _m_pFunc->C_GetMechanismInfo(a_slotID, a_type, a_pInfo);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxMechanism::bGetList(
+void
+CxMechanism::vGetList(
     CK_SLOT_ID            a_slotID,          ///< ID of token's slot
     CK_MECHANISM_TYPE_PTR a_pMechanismList,  ///< gets mech. array
     CK_ULONG_PTR          a_pulCount         ///< gets # of mechs.
@@ -58,8 +56,6 @@ CxMechanism::bGetList(
 
     CK_RV ulRv = _m_pFunc->C_GetMechanismList(a_slotID, a_pMechanismList, a_pulCount);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-
-    return true;
 }
 //---------------------------------------------------------------------------
 

@@ -24,15 +24,15 @@ CxPkcs11::CxPkcs11() :
     /*DEBUG*/xTEST_PTR(_m_pFunc);
     /*DEBUG*/// _m_dllETPkcs11 - n/a
 
-    (void)_bLoadETPkcs11();
-    (void)bInitialize();
+    _vLoadETPkcs11();
+    vInitialize();
 }
 //---------------------------------------------------------------------------
 /* virtual */
 CxPkcs11::~CxPkcs11() {
     /*DEBUG*/
 
-    (void)bFinalize();
+    vFinalize();
 }
 //---------------------------------------------------------------------------
 CK_FUNCTION_LIST_PTR
@@ -164,8 +164,8 @@ CxPkcs11::sErrorStr(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-bool
-CxPkcs11::_bLoadETPkcs11() {
+void
+CxPkcs11::_vLoadETPkcs11() {
     /*DEBUG*/
 
     bool bRv = _m_dllETPkcs11.bLoad(xT("eTPkcs11.dll"));
@@ -179,28 +179,22 @@ CxPkcs11::_bLoadETPkcs11() {
     CK_RV ulRv = pFunctionList(&_m_pFunc);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
     /*DEBUG*/xTEST_PTR(_m_pFunc);
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxPkcs11::bInitialize() {
+void
+CxPkcs11::vInitialize() {
     /*DEBUG*/xTEST_PTR(_m_pFunc);
 
     CK_RV ulRv = _m_pFunc->C_Initialize(NULL_PTR);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxPkcs11::bFinalize() {
+void
+CxPkcs11::vFinalize() {
     /*DEBUG*/xTEST_PTR(_m_pFunc);
 
     CK_RV ulRv = _m_pFunc->C_Finalize(NULL_PTR);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-
-    return true;
 }
 //---------------------------------------------------------------------------
 

@@ -65,8 +65,7 @@ CxTest_CxPkcs11::bUnit(
         const std::tstring_t csData      = xT("1203456789");
         std::ustring_t       usData      = xS2US(csData);
 
-        m_bRv = CxObject::bSetData(ulSlot, xS2US(csUserPin), xS2US(csDataLabel), usData);
-        xTEST_EQ(true, m_bRv);
+        CxObject::vSetData(ulSlot, xS2US(csUserPin), xS2US(csDataLabel), usData);
     }
 #elif xOS_ENV_UNIX
 

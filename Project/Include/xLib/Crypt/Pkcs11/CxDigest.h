@@ -27,17 +27,17 @@ class CxDigest :
         virtual             ~CxDigest      ();
             ///< destructor
 
-        bool                 bMake         (CK_BYTE_PTR pData, CK_ULONG ulDataLen, CK_BYTE_PTR pDigest, CK_ULONG_PTR pulDigestLen);
+        void                 vMake         (CK_BYTE_PTR pData, CK_ULONG ulDataLen, CK_BYTE_PTR pDigest, CK_ULONG_PTR pulDigestLen);
             ///< digests data in a single part
-        bool                 bEncryptUpdate(CK_BYTE_PTR pPart, CK_ULONG ulPartLen, CK_BYTE_PTR pEncryptedPart, CK_ULONG_PTR pulEncryptedPartLen);
+        void                 vEncryptUpdate(CK_BYTE_PTR pPart, CK_ULONG ulPartLen, CK_BYTE_PTR pEncryptedPart, CK_ULONG_PTR pulEncryptedPartLen);
             ///< continues a multiple-part digesting and encryption operation
-        bool                 bFinal        (CK_BYTE_PTR pDigest, CK_ULONG_PTR pulDigestLen);
+        void                 vFinal        (CK_BYTE_PTR pDigest, CK_ULONG_PTR pulDigestLen);
             ///< finishes a multiple-part message-digesting operation
-        bool                 bInit         (CK_MECHANISM_PTR pMechanism);
+        void                 vInit         (CK_MECHANISM_PTR pMechanism);
             ///< initializes a message-digesting operation
-        bool                 bKey          (CK_OBJECT_HANDLE hKey);
+        void                 vKey          (CK_OBJECT_HANDLE hKey);
             ///< continues a multi-part message-digesting operation, by digesting the value of a secret key as part of the data already digested
-        bool                 bUpdate       (CK_BYTE_PTR pPart, CK_ULONG ulPartLen);
+        void                 vUpdate       (CK_BYTE_PTR pPart, CK_ULONG ulPartLen);
             ///< continues a multiple-part message-digesting operation
 
     private:

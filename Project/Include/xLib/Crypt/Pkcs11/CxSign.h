@@ -27,19 +27,19 @@ class CxSign :
         virtual             ~CxSign        ();
             ///< destructor
 
-        bool                 bInit         (CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
+        void                 vInit         (CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
             ///< initializes a signature (private key encryption) operation, where the signature is (will be) an appendix to the data, and plaintext cannot be recovered from the signature
-        bool                 bMake         (CK_BYTE_PTR pData, CK_ULONG ulDataLen, CK_BYTE_PTR pSignature, CK_ULONG_PTR pulSignatureLen);
+        void                 vMake         (CK_BYTE_PTR pData, CK_ULONG ulDataLen, CK_BYTE_PTR pSignature, CK_ULONG_PTR pulSignatureLen);
             ///< signs (encrypts with private key) data in a single part, where the signature is (will be) an appendix to the data, and plaintext cannot be recovered from the signature
-        bool                 bUpdate       (CK_BYTE_PTR pPart, CK_ULONG ulPartLen);
+        void                 vUpdate       (CK_BYTE_PTR pPart, CK_ULONG ulPartLen);
             ///< continues a multiple-part signature operation,where the signature is (will be) an appendix to the data, and plaintext cannot be recovered from the signature
-        bool                 bEncryptUpdate(CK_BYTE_PTR pPart, CK_ULONG ulPartLen, CK_BYTE_PTR pEncryptedPart, CK_ULONG_PTR pulEncryptedPartLen);
+        void                 vEncryptUpdate(CK_BYTE_PTR pPart, CK_ULONG ulPartLen, CK_BYTE_PTR pEncryptedPart, CK_ULONG_PTR pulEncryptedPartLen);
             ///< continues a multiple-part signing and encryption operation
-        bool                 bFinal        (CK_BYTE_PTR pSignature, CK_ULONG_PTR pulSignatureLen);
+        void                 vFinal        (CK_BYTE_PTR pSignature, CK_ULONG_PTR pulSignatureLen);
             ///< finishes a multiple-part signature operation, returning the signature
-        bool                 bRecoverInit  (CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
+        void                 vRecoverInit  (CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
             ///< initializes a signature operation, where the data can be recovered from the signature
-        bool                 bRecover      (CK_BYTE_PTR pData, CK_ULONG ulDataLen, CK_BYTE_PTR pSignature, CK_ULONG_PTR pulSignatureLen);
+        void                 vRecover      (CK_BYTE_PTR pData, CK_ULONG ulDataLen, CK_BYTE_PTR pSignature, CK_ULONG_PTR pulSignatureLen);
             ///< signs data in a single operation, where the data can be recovered from the signature
 
     private:

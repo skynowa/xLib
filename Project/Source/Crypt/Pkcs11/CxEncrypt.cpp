@@ -36,8 +36,8 @@ CxEncrypt::~CxEncrypt() {
 
 }
 //---------------------------------------------------------------------------
-bool
-CxEncrypt::bInit(
+void
+CxEncrypt::vInit(
     CK_MECHANISM_PTR a_pMechanism,  ///< the encryption mechanism
     CK_OBJECT_HANDLE a_hKey         ///< handle of encryption key
 )
@@ -46,12 +46,10 @@ CxEncrypt::bInit(
 
     CK_RV ulRv = _m_pFunc->C_EncryptInit(_m_hSession, a_pMechanism, a_hKey);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxEncrypt::bMake(
+void
+CxEncrypt::vMake(
     CK_BYTE_PTR  a_pData,               ///< the plaintext data
     CK_ULONG     a_ulDataLen,           ///< bytes of plaintext
     CK_BYTE_PTR  a_pEncryptedData,      ///< gets ciphertext
@@ -62,12 +60,10 @@ CxEncrypt::bMake(
 
     CK_RV ulRv = _m_pFunc->C_Encrypt(_m_hSession, a_pData, a_ulDataLen, a_pEncryptedData, a_pulEncryptedDataLen  );
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxEncrypt::bUpdate(
+void
+CxEncrypt::vUpdate(
     CK_BYTE_PTR  a_pPart,              ///< the plaintext data
     CK_ULONG     a_ulPartLen,          ///< plaintext data len
     CK_BYTE_PTR  a_pEncryptedPart,     ///< gets ciphertext
@@ -78,12 +74,10 @@ CxEncrypt::bUpdate(
 
     CK_RV ulRv = _m_pFunc->C_EncryptUpdate(_m_hSession, a_pPart, a_ulPartLen, a_pEncryptedPart, a_pulEncryptedPartLen);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxEncrypt::bFinal(
+void
+CxEncrypt::vFinal(
     CK_BYTE_PTR  a_pLastEncryptedPart,      ///< last c-text
     CK_ULONG_PTR a_pulLastEncryptedPartLen  ///< gets last size
 )
@@ -92,8 +86,6 @@ CxEncrypt::bFinal(
 
     CK_RV ulRv = _m_pFunc->C_EncryptFinal(_m_hSession, a_pLastEncryptedPart, a_pulLastEncryptedPartLen );
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-
-    return true;
 }
 //---------------------------------------------------------------------------
 
@@ -104,8 +96,8 @@ CxEncrypt::bFinal(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-bool
-CxEncrypt::bMakeFile(
+void
+CxEncrypt::vMakeFile(
     const std::tstring_t &a_csInFilePath,
     const std::tstring_t &a_csOutFilePath,
     CK_MECHANISM_PTR      a_pMechanism,
@@ -152,11 +144,8 @@ CxEncrypt::bMakeFile(
                 ulPadSize = uiDataSize - ulOffset;
             }
 
-            bRv = bInit(a_pMechanism, a_hKey);
-            xCHECK_RET(false == bRv, false);
-
-            bRv = bMake(&usPlainData[0] + ulOffset, ulPadSize, &usEncryptedData[0] + ulOffset2, &usEncryptedDataSize);
-            xCHECK_RET(false == bRv, false);
+            vInit(a_pMechanism, a_hKey);
+            vMake(&usPlainData[0] + ulOffset, ulPadSize, &usEncryptedData[0] + ulOffset2, &usEncryptedDataSize);
 
             ulOffset2 += usEncryptedDataSize;
         }
@@ -177,7 +166,6 @@ CxEncrypt::bMakeFile(
         /*DEBUG*/xTEST_EQ(true, bRv);
     }
 
-    return true;
 }
 //---------------------------------------------------------------------------
 

@@ -21,14 +21,14 @@ class CxInfo :
     /// Pkcs11 info
 {
     public:
-                             CxInfo   (const CxPkcs11 &cPkcs11);
+        explicit            CxInfo   (const CxPkcs11 &cPkcs11);
             ///< constructor
         virtual             ~CxInfo   ();
             ///< destructor
 
-        bool                 bGet     (CK_INFO_PTR pInfo);
+        void                 vGet     (CK_INFO_PTR pInfo);
             ///< returns general information about Cryptoki
-        bool                 bGetToken(CK_SLOT_ID slotID, CK_TOKEN_INFO_PTR pInfo);
+        void                 vGetToken(CK_SLOT_ID slotID, CK_TOKEN_INFO_PTR pInfo);
             ///< obtains information about a particular token in the system
 
     private:

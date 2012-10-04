@@ -27,13 +27,13 @@ class CxFunction :
         virtual             ~CxFunction();
             ///< destructor
 
-        bool                 bGetList  (CK_FUNCTION_LIST_PTR_PTR ppFunctionList);
+        void                 vGetList  (CK_FUNCTION_LIST_PTR_PTR ppFunctionList);
             ///< returns the function list
-        bool                 bGetStatus();
+        void                 vGetStatus();
             ///< is a legacy function; it obtains an updated status of a function running in parallel with an application
-        bool                 bCancel   ();
+        void                 vCancel   ();
             ///< is a legacy function; it cancels a function running in parallel
-        bool                 bGetListEx();
+        void                 vGetListEx();
             ///< SDK 4.53
 
     private:
