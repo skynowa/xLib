@@ -156,7 +156,7 @@
 #if defined(__LINE__)
     #define xLINE                   __LINE__
 #else
-    #define xLINE                   CxConst::xUNKNOWN_STRING
+    #define xLINE                   0
 #endif
     ///< source code line number
 
@@ -231,7 +231,7 @@
     #if defined(MAX_COMPUTERNAME_LENGTH)
         #define xHOST_NAME_MAX      ( MAX_COMPUTERNAME_LENGTH )
     #else
-        #define xHOST_NAME_MAX      ( 256 ) // custom define
+        #define xHOST_NAME_MAX      ( 15 ) // custom define
     #endif
 #elif xOS_ENV_UNIX
     #if   defined(HOST_NAME_MAX)
@@ -420,14 +420,25 @@
 #if   xOS_ENV_WIN
     #define xNATIVE_HANDLE_NULL     ( static_cast<native_handle_t>( NULL ) )                    ///< native handle value "null"
     #define xNATIVE_HANDLE_INVALID  ( static_cast<native_handle_t>( INVALID_HANDLE_VALUE ) )    ///< native handle value "invalid"
-    #define xWND_NATIVE_HANDLE_NULL ( static_cast<HWND>( NULL ) )                               ///< window native handle value "null"
-    #define xSOCKET_HANDLE_INVALID  ( static_cast<socket_t>( INVALID_SOCKET ) )                 ///< socket native handle value "null"
-    #define xSOCKET_ERROR           ( SOCKET_ERROR )                                            ///< socket native handle value "error"
 #elif xOS_ENV_UNIX
     #define xNATIVE_HANDLE_NULL     ( static_cast<native_handle_t>( 0 ) )                       ///< native handle value "null"
     #define xNATIVE_HANDLE_INVALID  ( static_cast<native_handle_t>( - 1 ) )                     ///< native handle value "invalid"
-    #define xSOCKET_HANDLE_INVALID  ( static_cast<socket_t>( - 1 ) )                            ///< socket native handle value "null"
+#endif
+
+//-------------------------------------
+// xSOCKET_ERROR, xSOCKET_HANDLE_INVALID
+#if   xOS_ENV_WIN
+    #define xSOCKET_ERROR           ( SOCKET_ERROR )                                            ///< socket native handle value "error"
+    #define xSOCKET_HANDLE_INVALID  ( static_cast<socket_t>( INVALID_SOCKET ) )                 ///< socket native handle value "null"
+#elif xOS_ENV_UNIX
     #define xSOCKET_ERROR           ( - 1 )                                                     ///< socket native handle value "error"
+    #define xSOCKET_HANDLE_INVALID  ( static_cast<socket_t>( - 1 ) )                            ///< socket native handle value "null"
+#endif
+
+//-------------------------------------
+// xWND_NATIVE_HANDLE_NULL
+#if xOS_ENV_WIN
+    #define xWND_NATIVE_HANDLE_NULL ( static_cast<HWND>( NULL ) )                               ///< window native handle value "null"
 #endif
 
 //-------------------------------------
@@ -449,7 +460,7 @@
     ///< iterate STL container (using it_t::const_reverse_iterator)
 
 //-------------------------------------
-// other
+// etc
 
 //----------------------------------------------------------------------------------------------------
 #endif  //xLib_Common_xDefinesH

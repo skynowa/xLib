@@ -280,8 +280,6 @@ CxTest_CxUtils::bUnit(
     // enumInc, enumDec
     xTEST_CASE(cullCaseLoops)
     {
-
-
         EData datData = datOne;
 
         datData = CxUtils::enumInc(datData);
