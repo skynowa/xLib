@@ -64,12 +64,12 @@ class CxSystemInfo :
         // OS
         static ExOsType       osGetOS           ();
             ///< get information about the current OS
-        static std::tstring_t sFormatOsType     (const ExOsType otOsType);
+        static std::tstring_t sFormatOsType     (const ExOsType &otOsType);
             ///< format OS type
 
         static ExOsArch       oaGetOsArch       ();
             ///< get OS architecture
-        static std::tstring_t sFormatOsArch     (const ExOsArch oaOsArch);
+        static std::tstring_t sFormatOsArch     (const ExOsArch &oaOsArch);
             ///< format get OS architecture
 
         static std::string    sGetDesktopName   ();
