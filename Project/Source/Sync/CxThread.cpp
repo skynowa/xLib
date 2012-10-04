@@ -119,8 +119,7 @@ CxThread::bCreate(
     /*DEBUG*/xTEST_DIFF(xNATIVE_HANDLE_INVALID, hRv);
     /*DEBUG*/xTEST_LESS(0UL, ulId);
 
-    bRv = _m_hThread.bSet(hRv);
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    _m_hThread.vSet(hRv);
     /*DEBUG*/xTEST_EQ(true, _m_hThread.bIsValid());
 
     _m_ulId = ulId;
@@ -277,8 +276,7 @@ CxThread::bKill(
     //-------------------------------------
     // clean members
 #if   xOS_ENV_WIN
-    bRv = _m_hThread.bClose();
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    _m_hThread.vClose();
 #elif xOS_ENV_UNIX
     _m_hThread = 0UL;
 #endif
@@ -1135,10 +1133,9 @@ CxThread::_s_uiJobEntry(
     //-------------------------------------
     // clean members (is need to close???)
 #if   xOS_ENV_WIN
-    bRv = pthThis->_m_hThread.bClose();
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    pthThis->_m_hThread.vClose();
 #elif xOS_ENV_UNIX
-    //TODO: _m_hThread.bClose()
+    // TODO: _m_hThread.vClose()
 #endif
 
     pthThis->_m_ulId         = 0UL;

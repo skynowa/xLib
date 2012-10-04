@@ -88,7 +88,7 @@ CxIpcSemaphore::bCreate(
     /*DEBUG*/xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
     /*DEBUG*/xTEST_DIFF(ulLastError, static_cast<ulong_t>( ERROR_ALREADY_EXISTS ));
 
-    _m_hHandle.bSet(hRv);
+    _m_hHandle.vSet(hRv);
     _m_sName = a_csName;
 #elif xOS_ENV_UNIX
     std::tstring_t sUnixName = CxConst::xUNIX_SLASH + a_csName;
@@ -125,7 +125,7 @@ CxIpcSemaphore::bOpen(
     HANDLE hRv = ::OpenSemaphore(SEMAPHORE_ALL_ACCESS, FALSE, pcszWinName);
     /*DEBUG*/xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
 
-    _m_hHandle.bSet(hRv);
+    _m_hHandle.vSet(hRv);
     _m_sName = a_csName;
 #elif xOS_ENV_UNIX
     std::tstring_t sUnixName = CxConst::xUNIX_SLASH + a_csName;

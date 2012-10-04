@@ -101,14 +101,12 @@ CxTest_CxHandleT::bUnit(
         m_hRv = hHandle.hGet();
         xTEST_EQ(false, hHandle.bIsValid());
 
-        m_bRv = hHandle.bSet(native_handle_t());
-        xTEST_EQ(true, m_bRv);
+        hHandle.vSet(native_handle_t());
 
         m_hRv = hHandle.hGet();
         xTEST_EQ(true, native_handle_t() == m_hRv);
 
-        m_bRv = hHandle.bSet(CxCurrentProcess::hGetHandle());
-        xTEST_EQ(true, m_bRv);
+        hHandle.vSet(CxCurrentProcess::hGetHandle());
 
         m_hRv = hHandle.hGet();
         xTEST_EQ(CxCurrentProcess::hGetHandle(), m_hRv);
@@ -136,8 +134,7 @@ CxTest_CxHandleT::bUnit(
         m_bRv = hHandle.bIsValid();
         xTEST_EQ(false, m_bRv);
 
-        m_bRv = hHandle.bSet(CxCurrentProcess::hGetHandle());
-        xTEST_EQ(true, m_bRv);
+        hHandle.vSet(CxCurrentProcess::hGetHandle());
 
         m_hRv = hHandle.hDetach();
         xTEST_EQ(false, hHandle.bIsValid());
@@ -149,8 +146,7 @@ CxTest_CxHandleT::bUnit(
     {
         CxHandle hHandle;
 
-        m_bRv = hHandle.bAttach(CxCurrentProcess::hGetHandle());
-        xTEST_EQ(true, m_bRv);
+        hHandle.vAttach(CxCurrentProcess::hGetHandle());
     }
 
     //-------------------------------------
@@ -169,8 +165,7 @@ CxTest_CxHandleT::bUnit(
     {
         CxHandle hHandle;
 
-        m_bRv = hHandle.bClose();
-        xTEST_EQ(true, m_bRv);
+        hHandle.vClose();
 
         m_bRv = hHandle.bIsValid();
         xTEST_EQ(false, m_bRv);

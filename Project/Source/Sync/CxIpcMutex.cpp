@@ -69,7 +69,7 @@ CxIpcMutex::bCreate(
     HANDLE hRv = ::CreateMutex(NULL, FALSE, pcszWinName);
     /*DEBUG*/xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
 
-    _m_hHandle.bSet(hRv);
+    _m_hHandle.vSet(hRv);
     _m_sName = a_csName;
 #elif xOS_ENV_UNIX
     std::tstring_t sUnixName = CxConst::xUNIX_SLASH + a_csName;
@@ -105,7 +105,7 @@ CxIpcMutex::bOpen(
     HANDLE hRv = ::OpenMutex(MUTEX_ALL_ACCESS, FALSE, pcszWinName);
     /*DEBUG*/xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
 
-    _m_hHandle.bSet(hRv);
+    _m_hHandle.vSet(hRv);
     _m_sName = a_csName;
 #elif xOS_ENV_UNIX
     std::tstring_t sUnixName = CxConst::xUNIX_SLASH + a_csName;

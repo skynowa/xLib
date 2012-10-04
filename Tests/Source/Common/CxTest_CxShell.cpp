@@ -52,8 +52,7 @@ CxTest_CxShell::bUnit(
             const std::tstring_t csFilePath = casData[i][0];
             const std::tstring_t csParams   = casData[i][1];
 
-            m_bRv = CxShell::bExecute(csFilePath, csParams);
-            xTEST_EQ(true, m_bRv);
+            CxShell::vExecute(csFilePath, csParams);
         }
     }
 
@@ -62,7 +61,7 @@ CxTest_CxShell::bUnit(
     //bFindExecutable
     xTEST_CASE(cullCaseLoops)
     {
-        m_sRv = CxShell::bFindExecutable(xT("win.ini"), xT("C:"));
+        m_sRv = CxShell::sFindExecutable(xT("win.ini"), xT("C:"));
         xTEST_EQ(false, m_sRv.empty());
     }
 
