@@ -32,7 +32,7 @@ CxConsole::CxConsole()
 
 #endif
 {
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     _m_hStdIn  = ::GetStdHandle(STD_INPUT_HANDLE);
     /*DEBUG*/xTEST_EQ(true, _m_hStdIn.bIsValid());
     /*DEBUG*/xTEST_DIFF(xNATIVE_HANDLE_NULL, _m_hStdIn.hGet());
@@ -57,13 +57,13 @@ CxConsole::~CxConsole() {
 //---------------------------------------------------------------------------
 //NOTE: http://lifeforce4.wordpress.com/, http://lifeforce4.wordpress.com/
 std::tstring_t
-CxConsole::bSetTextColor(
+CxConsole::sSetTextColor(
     const std::tstring_t &a_csText,
-    const ExForeground    a_cfgForeground,
-    const bool            a_cbIsBold,
-    const bool            a_cbIsUnderline,
-    const ExBackground    a_cbgBackground,
-    const bool            a_cbIsBlink
+    const ExForeground   &a_cfgForeground,
+    const bool           &a_cbIsBold,
+    const bool           &a_cbIsUnderline,
+    const ExBackground   &a_cbgBackground,
+    const bool           &a_cbIsBlink
 )
 {
     /*DEBUG*/// n/a
@@ -116,8 +116,8 @@ CxConsole::sRead() {
     return sRv;
 }
 //---------------------------------------------------------------------------
-bool
-CxConsole::bWrite(
+void
+CxConsole::vWrite(
     const std::tstring_t &a_csStr
 )
 {
@@ -136,53 +136,43 @@ CxConsole::bWrite(
 #endif
 
     std::tcout.flush();
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxConsole::bWriteLine(
+void
+CxConsole::vWriteLine(
     const std::tstring_t &a_csStr /* = xT("") */
 )
 {
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     //TODO: xOS_ENV_WIN
     /*DEBUG*/xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
     /*DEBUG*/xTEST_EQ(true, _m_hStdIn.bIsValid());
     /*DEBUG*/xTEST_EQ(true, _m_hStdOut.bIsValid());
 #endif
 
-    bool bRv = bWrite(a_csStr + CxConst::xNL);
-    /*DEBUG*/xTEST_EQ(true, bRv);
-
-    return true;
+    vWrite(a_csStr + CxConst::xNL);
 }
 //---------------------------------------------------------------------------
-bool
-CxConsole::bWriteErrLine(
+void
+CxConsole::vWriteErrLine(
     const std::tstring_t &a_csStr
 )
 {
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     /*DEBUG*/xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
     /*DEBUG*/xTEST_EQ(true, _m_hStdIn.bIsValid());
     /*DEBUG*/xTEST_EQ(true, _m_hStdOut.bIsValid());
 #endif
 
-    bool bRv = bWriteLine(xT("Error: ") + a_csStr);
-    /*DEBUG*/xTEST_EQ(true, bRv);
-
-    bRv = bPause();
-    /*DEBUG*/xTEST_EQ(true, bRv);
-
-    return true;
+    vWriteLine(xT("Error: ") + a_csStr);
+    vPause();
 }
 //---------------------------------------------------------------------------
 CxConsole::ExModalResult
 CxConsole::iMsgBox(
     const std::tstring_t &a_csText,
     const std::tstring_t &a_csTitle,
-    const uint_t          a_cuiType
+    const uint_t         &a_cuiType
 )
 {
     ExModalResult mrRes;
@@ -193,32 +183,32 @@ CxConsole::iMsgBox(
         cmRetry  = xT('r')
     };
 
-    bWriteLine();
-    bWriteLine(xT("################################################################################"));
-    bWriteLine(xT("#  ") + a_csTitle);
-    bWriteLine(xT("#"));
-    bWriteLine(xT("#  ") + a_csText);
-    bWriteLine(xT("#"));
-    bWriteLine(xT("################################################################################"));
-    bWriteLine();
-    bWrite(CxString::sFormat(xT("\nAbort (%c), Ignore (%c), Retry (%c): "), cmAbort, cmIgnore, cmRetry));
+    vWriteLine();
+    vWriteLine(xT("################################################################################"));
+    vWriteLine(xT("#  ") + a_csTitle);
+    vWriteLine(xT("#"));
+    vWriteLine(xT("#  ") + a_csText);
+    vWriteLine(xT("#"));
+    vWriteLine(xT("################################################################################"));
+    vWriteLine();
+    vWrite(CxString::sFormat(xT("\nAbort (%c), Ignore (%c), Retry (%c): "), cmAbort, cmIgnore, cmRetry));
 
     EConsoleCmd cmRes = static_cast<EConsoleCmd>( std::tcin.get() );   std::tcin.ignore();
     switch (cmRes) {
-        case cmAbort:  { mrRes = mrAbort;  bWriteLine(xT("Abort..."));  } break;
-        case cmIgnore: { mrRes = mrIgnore; bWriteLine(xT("Ignore...")); } break;
-        case cmRetry:  { mrRes = mrRetry;  bWriteLine(xT("Retry..."));  } break;
+        case cmAbort:  { mrRes = mrAbort;  vWriteLine(xT("Abort..."));  } break;
+        case cmIgnore: { mrRes = mrIgnore; vWriteLine(xT("Ignore...")); } break;
+        case cmRetry:  { mrRes = mrRetry;  vWriteLine(xT("Retry..."));  } break;
 
-        default:       { mrRes = mrRetry;  bWriteLine(xT("Retry..."));  } break;
+        default:       { mrRes = mrRetry;  vWriteLine(xT("Retry..."));  } break;
     }
 
     return mrRes;
 }
 //---------------------------------------------------------------------------
-bool
-CxConsole::bPrompt(
+void
+CxConsole::vPrompt(
     const std::tstring_t &a_csPrompt,
-    const bool            a_cbIsVisible,
+    const bool           &a_cbIsVisible,
     std::tstring_t       *a_psAnswer
 )
 {
@@ -226,14 +216,13 @@ CxConsole::bPrompt(
     /*DEBUG*/xTEST_PTR(a_psAnswer);
 
     for ( ; ; ) {
-        bool bRv = bWrite(a_csPrompt + xT(": "));
-        /*DEBUG*/xTEST_EQ(true, bRv);
+        vWrite(a_csPrompt + xT(": "));
 
         for ( ; ; ) {
             const tchar_t chLetter = static_cast<tchar_t>( std::tcin.get() );
 
             // asterisks
-            xCHECK_DO(true == a_cbIsVisible, bWrite(xT("*")));
+            xCHECK_DO(true == a_cbIsVisible, vWrite(xT("*")));
 
             // ENTER
             xCHECK_DO(10 == chLetter, break);
@@ -244,19 +233,16 @@ CxConsole::bPrompt(
             (*a_psAnswer).push_back(chLetter);
         }
 
-        bRv = bWriteLine(CxConst::xSTR_EMPTY);
-        /*DEBUG*/xTEST_EQ(true, bRv);
+        vWriteLine(CxConst::xSTR_EMPTY);
 
         xCHECK_DO(true == (*a_psAnswer).empty(), continue);
 
         break;
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxConsole::bPause() {
+void
+CxConsole::vPause() {
     /*DEBUG*/
 
 #if xTODO
@@ -274,17 +260,14 @@ CxConsole::bPause() {
     #endif
 #endif
 
-    bool bRv = bWrite(xT("Press [ENTER] to continue..."));
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    vWrite(xT("Press [ENTER] to continue..."));
 
     std::cin.clear();
     std::cin.ignore();
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxConsole::bClear() {
+void
+CxConsole::vClear() {
     /*DEBUG*/
 
 #if   xOS_ENV_WIN
@@ -322,13 +305,11 @@ CxConsole::bClear() {
     bool bRv = bWriteLine(CxConst::xFF);
     /*DEBUG*/xTEST_EQ(true, bRv);
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxConsole::bEnableClose(
-    const bool a_cbFlag
+void
+CxConsole::vEnableClose(
+    const bool &a_cbFlag
 )
 {
     /*DEBUG*/
@@ -342,9 +323,11 @@ CxConsole::bEnableClose(
     /*DEBUG*/xTEST_EQ(true, NULL != _m_hMenu);
 
     if (false == a_cbFlag) {
-        xCHECK_RET(false == ::DeleteMenu(_m_hMenu, SC_CLOSE, MF_BYCOMMAND), false);
+        BOOL blRv = ::DeleteMenu(_m_hMenu, SC_CLOSE, MF_BYCOMMAND);
+        /*DEBUG*/xTEST_DIFF(FALSE, blRv);
     } else {
-        xCHECK_RET(false == ::AppendMenu(_m_hMenu, SC_CLOSE, MF_BYCOMMAND, xT("")), false);
+        BOOL blRv = ::AppendMenu(_m_hMenu, SC_CLOSE, MF_BYCOMMAND, xT(""));
+        /*DEBUG*/xTEST_DIFF(FALSE, blRv);
 
         BOOL bRv = ::EnableMenuItem(_hGetMenuHandle(false), SC_CLOSE, MF_ENABLED);
         /*DEBUG*/xTEST_DIFF(TRUE, bRv);
@@ -355,8 +338,6 @@ CxConsole::bEnableClose(
     //TODO: bEnableClose
     xNOT_IMPLEMENTED;
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
 std::tstring_t
@@ -386,8 +367,8 @@ CxConsole::sGetTitle() {
     return sRv;
 }
 //---------------------------------------------------------------------------
-bool
-CxConsole::bSetTitle(
+void
+CxConsole::vSetTitle(
     const std::tstring_t &a_csTitle
 )
 {
@@ -406,12 +387,10 @@ CxConsole::bSetTitle(
     bool bRv = bWriteLine( CxString::sFormat(xT("%c]0;%s%c"), xT('\033'), a_csTitle.c_str(), xT('\007')) );
     /*DEBUG*/xTEST_EQ(true, bRv);
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxConsole::bSetFullScreen() {
+void
+CxConsole::vSetFullScreen() {
     /*DEBUG*/
 
 #if   xOS_ENV_WIN
@@ -421,7 +400,7 @@ CxConsole::bSetFullScreen() {
     /*DEBUG*/xTEST_EQ(true, _m_hStdOut.bIsValid());
 
     COORD crdCoord = ::GetLargestConsoleWindowSize(_m_hStdOut.hGet());
-    xCHECK_RET(crdCoord.X == 0 && crdCoord.Y == 0, false);
+    /*DEBUG*/xTEST_EQ(true, 0 == crdCoord.X && 0 == crdCoord.Y);
 
     crdCoord.X -= 2;
     crdCoord.Y -= 2;
@@ -438,17 +417,15 @@ CxConsole::bSetFullScreen() {
     blRes = ::SetConsoleWindowInfo(_m_hStdOut.hGet(), true, &recSmallRec);
     /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 
-    bool bRv = bCenterWindow();
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    vCenterWindow();
 #elif xOS_ENV_UNIX
-    //TODO: bSetFullScreen
+    //TODO: vSetFullScreen
     xNOT_IMPLEMENTED;
 #endif
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxConsole::bCenterWindow() {
+void
+CxConsole::vCenterWindow() {
     /*DEBUG*/
 
 #if   xOS_ENV_WIN
@@ -470,16 +447,14 @@ CxConsole::bCenterWindow() {
     int iDesktopY  = (rcDesktop.bottom - rcDesktop.top)  / 2;
     int iWndWidth  = (rcOrigin.right   - rcOrigin.left);
     int iWndHeight = (rcOrigin.bottom  - rcOrigin.top);
-    int X          = iDesktopX - iWndWidth / 2;        if (X < 0) {X = 0;}
+    int X          = iDesktopX - iWndWidth / 2;        if (X < 0) { X = 0; }
 
     blRes = ::MoveWindow(_m_hWnd, X, iDesktopY - iWndHeight / 2, iWndWidth, iWndHeight, true);
     /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
-    //TODO: bCenterWindow
+    // TODO: vCenterWindow
     xNOT_IMPLEMENTED;
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
 
@@ -496,8 +471,8 @@ HWND
 CxConsole::_hGetWndHandle() {
     /*DEBUG*/
 
-    HWND         hRv         = NULL;
-    bool         bRv         = false;
+    HWND           hRv = NULL;
+    bool           bRv = false;
     std::tstring_t sNewWndTitle;
     std::tstring_t sOldWndTitle;
 
@@ -509,8 +484,7 @@ CxConsole::_hGetWndHandle() {
     sNewWndTitle = CxString::sFormat(xT("%lu/%lu"), ::GetTickCount(), CxCurrentProcess::ulGetId());
 
     //Change current window title.
-    bRv = bSetTitle(sNewWndTitle);
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    vSetTitle(sNewWndTitle);
 
     //Ensure window title has been updated.
     CxCurrentThread::bSleep(50UL);
@@ -520,8 +494,7 @@ CxConsole::_hGetWndHandle() {
     /*DEBUG*/xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, hRv);
 
     //Restore original window title.
-    bRv = bSetTitle(sOldWndTitle);
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    vSetTitle(sOldWndTitle);
 
     return hRv;
 }
@@ -532,7 +505,7 @@ CxConsole::_hGetWndHandle() {
 
 HMENU
 CxConsole::_hGetMenuHandle(
-    const bool a_cbRevert
+    const bool &a_cbRevert
 )
 {
     /*DEBUG*/

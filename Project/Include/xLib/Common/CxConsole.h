@@ -33,51 +33,56 @@ class CxConsole :
         enum ExAttribute
             /// attribute
         {
-            atAllOff = 0, atBold = 1, atUnderscore = 4, atBlink = 5, atReverse = 7, atConcealed  = 8
+            atAllOff = 0, atBold = 1, atUnderscore = 4, 
+            atBlink = 5, atReverse = 7, atConcealed  = 8
         };
 
         enum ExForeground
             /// foreground color
         {
-            fgBlack  = 30, fgRed  = 31, fgGreen  = 32, fgYellow  = 33, fgBlue  = 34, fgMagenta  = 35, fgCyan  = 36, fgWhite  = 37,
-            fgBlack_ = 90, fgRed_ = 91, fgGreen_ = 92, fgYellow_ = 93, fgBlue_ = 94, fgMagenta_ = 95, fgCyan_ = 96, fgWhite_ = 97
+            fgBlack  = 30, fgRed  = 31, fgGreen  = 32, fgYellow  = 33, 
+            fgBlue  = 34, fgMagenta  = 35, fgCyan  = 36, fgWhite  = 37,
+            fgBlack_ = 90, fgRed_ = 91, fgGreen_ = 92, fgYellow_ = 93, 
+            fgBlue_ = 94, fgMagenta_ = 95, fgCyan_ = 96, fgWhite_ = 97
         };
 
         enum ExBackground
             /// background color
         {
-            bgBlack  = 40,  bgRed  = 41,  bgGreen  = 42,  bgYellow  = 43,  bgBlue  = 44,  bgMagenta  = 45,  bgCyan  = 46,  bgWhite  = 47,
-            bgBlack_ = 100, bgRed_ = 101, bgGreen_ = 102, bgYellow_ = 103, bgBlue_ = 104, bgMagenta_ = 105, bgCyan_ = 106, bgWhite_ = 107
+            bgBlack  = 40,  bgRed  = 41,  bgGreen  = 42,  bgYellow  = 43,  
+            bgBlue  = 44,  bgMagenta  = 45,  bgCyan  = 46,  bgWhite  = 47,
+            bgBlack_ = 100, bgRed_ = 101, bgGreen_ = 102, bgYellow_ = 103, 
+            bgBlue_ = 104, bgMagenta_ = 105, bgCyan_ = 106, bgWhite_ = 107
         };
 
-        std::tstring_t bSetTextColor (const std::tstring_t &csText, const ExForeground cfgForeground, const bool cbIsBold, const bool cbIsUnderline, const ExBackground cbgBackground, const bool cbIsBlink);
+        std::tstring_t sSetTextColor (const std::tstring_t &csText, const ExForeground &cfgForeground, const bool &cbIsBold, const bool &cbIsUnderline, const ExBackground &cbgBackground, const bool &cbIsBlink);
             ///< set text color
         std::tstring_t sRead         ();
             ///< read
-        bool           bWrite        (const std::tstring_t &csStr);
+        void           vWrite        (const std::tstring_t &csStr);
             ///< write
-        bool           bWriteLine    (const std::tstring_t &csStr = xT(""));
+        void           vWriteLine    (const std::tstring_t &csStr = xT(""));
             ///< write line
-        bool           bWriteErrLine (const std::tstring_t &csStr);
+        void           vWriteErrLine (const std::tstring_t &csStr);
             ///< write error message
-        ExModalResult   iMsgBox       (const std::tstring_t &csText, const std::tstring_t &csTitle, const uint_t cuiType);
+        ExModalResult  iMsgBox       (const std::tstring_t &csText, const std::tstring_t &csTitle, const uint_t &cuiType);
             ///< show console message dialog
-        bool           bPrompt       (const std::tstring_t &csPrompt, const bool cbIsVisible, std::tstring_t *psAnswer);
+        void           vPrompt       (const std::tstring_t &csPrompt, const bool &cbIsVisible, std::tstring_t *psAnswer);
             ///< show console prompt dialog
-        bool           bPause        ();
+        void           vPause        ();
             ///< pause
-        bool           bClear        ();
+        void           vClear        ();
             ///< clear
 
         std::tstring_t sGetTitle     ();
             ///< get title string
-        bool           bSetTitle     (const std::tstring_t &csTitle);
+        void           vSetTitle     (const std::tstring_t &csTitle);
             ///< set title string
-        bool           bCenterWindow ();
+        void           vCenterWindow ();
             ///< allign to center
-        bool           bSetFullScreen ();
+        void           vSetFullScreen ();
             ///< set full screen
-        bool           bEnableClose  (const bool cbFlag);
+        void           vEnableClose  (const bool &cbFlag);
             ///< enable close button
 
     private:
@@ -89,7 +94,7 @@ class CxConsole :
 
         HWND           _hGetWndHandle ();
             ///< get console window handle
-        HMENU          _hGetMenuHandle(const bool cbRevert);
+        HMENU          _hGetMenuHandle(const bool &cbRevert);
             ///< get console menu handle
     #elif xOS_ENV_UNIX
         xNA;
