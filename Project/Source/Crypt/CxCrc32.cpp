@@ -22,7 +22,7 @@ xNAMESPACE_BEGIN(NxLib)
 ulong_t
 CxCrc32::ulCalc(
     uchar_t       *a_pucBuff,
-    const ulong_t  a_culSize
+    const ulong_t &a_culSize
 )
 {
     /*DEBUG*/xTEST_PTR(a_pucBuff);
@@ -78,7 +78,7 @@ CxCrc32::ulCalcFile(
 ulong_t
 CxCrc32::ulCalcFast(
     uchar_t       *a_pucBuff,
-    const ulong_t  a_culSize
+    const ulong_t &a_culSize
 )
 {
     /*DEBUG*/xTEST_PTR(a_pucBuff);
@@ -204,7 +204,7 @@ CxCrc32::ulCalcFileFast(
 /* static */
 std::tstring_t
 CxCrc32::sFormatHex(
-    const ulong_t a_culCrc32
+    const ulong_t &a_culCrc32
 )
 {
     /*DEBUG*/
