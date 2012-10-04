@@ -576,7 +576,7 @@ CxString::sCreateGuid() {
 #elif xOS_ENV_UNIX
     //TODO: (sCreateGuid)
     //#include <uuid/uuid.h>
-    xNOT_IMPLEMENTED_RET(std::tstring_t());
+    xNOT_IMPLEMENTED;
 #endif
 
     return sRv;
@@ -762,7 +762,7 @@ CxString::sStrToWStr(
     /*DEBUG*/xTEST_LESS(0, iSize);
 #elif xOS_ENV_UNIX
     //TODO: (sStrToWStr)
-    xNOT_IMPLEMENTED_RET(std::wstring());
+    xNOT_IMPLEMENTED;
 #endif
 
     return wsRes;
@@ -789,7 +789,7 @@ CxString::sWStrToStr(
     /*DEBUG*/xTEST_LESS(0, iSize);
 #elif xOS_ENV_UNIX
     //TODO: (sWStrToStr)
-    xNOT_IMPLEMENTED_RET(std::string());
+    xNOT_IMPLEMENTED;
 #endif
 
     return asRes;
@@ -828,7 +828,7 @@ CxString::asCharToOemBuff(
     /*DEBUG*/xTEST_DIFF(FALSE, bRv);
 #elif xOS_ENV_UNIX
     //TODO: asCharToOemBuff
-    xNOT_IMPLEMENTED_RET(std::string());
+    xNOT_IMPLEMENTED;
 #endif
 
     return asDst;
@@ -849,7 +849,7 @@ CxString::sOemToCharBuff(
     /*DEBUG*/xTEST_DIFF(FALSE, bRv);
 #elif xOS_ENV_UNIX
     //TODO: sOemToCharBuff
-    xNOT_IMPLEMENTED_RET(std::tstring_t());
+    xNOT_IMPLEMENTED;
 #endif
 
     return sDst;
