@@ -24,25 +24,25 @@ class CxDateTime
             ftRFC1123   ///< Wdy, DD Mon YYYY HH:MM:SS GMT
         };
 
-        //constructors, destructor
+        // constructors, destructor
                               CxDateTime          ();
             ///< constructor
-        explicit              CxDateTime          (const std::tstring_t &csDT, const ExFormatType cftFormat);
+        explicit              CxDateTime          (const std::tstring_t &csDT, const ExFormatType &cftFormat);
             ///< constructor
         /*explicit*/          CxDateTime          (const CxDateTime &cdtDT);
             ///< constructor
-        explicit              CxDateTime          (const ulonglong_t cullMilliseconds);
+        explicit              CxDateTime          (const ulonglong_t &cullMilliseconds);
             ///< constructor
-                              CxDateTime          (const ushort_t cusHour, const ushort_t cusMinute, const ushort_t cusSecond, const ushort_t cusMillisecond);
+                              CxDateTime          (const ushort_t &cusHour, const ushort_t &cusMinute, const ushort_t &cusSecond, const ushort_t &cusMillisecond);
             ///< constructor
-                              CxDateTime          (const ushort_t cusYear, const ushort_t cusMonth, const ushort_t cusDay);
+                              CxDateTime          (const ushort_t &cusYear, const ushort_t &cusMonth, const ushort_t &cusDay);
             ///< constructor
-                              CxDateTime          (const ushort_t cusYear, const ushort_t cusMonth, const ushort_t cusDay, const ushort_t cusHour, const ushort_t cusMinute, const ushort_t cusSecond, const ushort_t cusMillisecond);
+                              CxDateTime          (const ushort_t &cusYear, const ushort_t &cusMonth, const ushort_t &cusDay, const ushort_t &cusHour, const ushort_t &cusMinute, const ushort_t &cusSecond, const ushort_t &cusMillisecond);
             ///< constructor
         virtual              ~CxDateTime          ();
             ///< destructor
 
-        //comparison operators
+        // comparison operators
         bool                  operator ==         (const CxDateTime &cdtDT) const;
             ///< operator ==
         bool                  operator !=         (const CxDateTime &cdtDT) const;
@@ -56,10 +56,10 @@ class CxDateTime
         bool                  operator >=         (const CxDateTime &cdtDT) const;
             ///< operator >=
 
-        //assignment operators
+        // assignment operators
         const CxDateTime     &operator =          (const CxDateTime &cdtDT);
             ///< operator =
-        const CxDateTime     &operator =          (const ulonglong_t cullMillisecond);
+        const CxDateTime     &operator =          (const ulonglong_t &cullMillisecond);
             ///< operator =
 
         CxDateTime            operator +          (const CxDateTime &cdtDT) const;
@@ -73,17 +73,17 @@ class CxDateTime
         //++
         //--
 
-        //get/set
-        bool                  bGet                (ushort_t *pusYear, ushort_t *pusMonth, ushort_t *pusDay, ushort_t *pusHour, ushort_t *pusMinute, ushort_t *pusSecond, ushort_t *pusMillisecond) const;
+        // get/set
+        void                  vGet                (ushort_t *pusYear, ushort_t *pusMonth, ushort_t *pusDay, ushort_t *pusHour, ushort_t *pusMinute, ushort_t *pusSecond, ushort_t *pusMillisecond) const;
             ///< get datetime data
         ushort_t              usGetDayOfWeek      () const;
             ///< get day of week, days since Sunday 0-6
-        bool                  bSet                (const ulonglong_t ullMSec);
+        void                  vSet                (const ulonglong_t &ullMSec);
             ///< set CxDateTime by milliseconds
-        bool                  bSet                (const ushort_t cusYear, const ushort_t cusMonth, const ushort_t cusDay, const ushort_t cusHour, const ushort_t cusMinute, const ushort_t cusSecond, const ushort_t cusMillisecond);
+        void                  vSet                (const ushort_t &cusYear, const ushort_t &cusMonth, const ushort_t &cusDay, const ushort_t &cusHour, const ushort_t &cusMinute, const ushort_t &cusSecond, const ushort_t &cusMillisecond);
             ///< set CxDateTime by datetime data
 
-        //converting
+        // converting
         ulonglong_t           ullToMilliseconds   () const;
             ///< convert CxDateTime to milliseconds
         #if xTODO
@@ -92,11 +92,11 @@ class CxDateTime
         #endif
 
         //formating
-        std::tstring_t        sFormat             (const ExFormatType cftFormat) const;
+        std::tstring_t        sFormat             (const ExFormatType &cftFormat) const;
             ///< formating
 
         //static
-        static bool           bIsValid            (const ushort_t cusYear, const ushort_t cusMonth, const ushort_t cusDay, const ushort_t cusHour, const ushort_t cusMinute, const ushort_t cusSecond, const ushort_t cusMillisecond);
+        static bool           bIsValid            (const ushort_t &cusYear, const ushort_t &cusMonth, const ushort_t &cusDay, const ushort_t &cusHour, const ushort_t &cusMinute, const ushort_t &cusSecond, const ushort_t &cusMillisecond);
             ///< checking for a valid datetime
         static bool           bIsValid            (const CxDateTime &cdtDT);
             ///< checking for a valid datetime
@@ -105,29 +105,29 @@ class CxDateTime
 
         static CxDateTime     dtGetCurrent        ();
             ///< get current datetime
-        static ushort_t       usDaysInMonth       (const ushort_t cusYear, const ushort_t cusMonth);
+        static ushort_t       usDaysInMonth       (const ushort_t &cusYear, const ushort_t &cusMonth);
             ///< get number days in month
-        static bool           bIsLeapYear         (const ushort_t cusYear);
+        static bool           bIsLeapYear         (const ushort_t &cusYear);
             ///< is leap year
     #if   xOS_ENV_WIN
         static longlong_t     i64FiletimeToInt64  (const FILETIME &cftTime);
             ///< convert FILETIME to longlong_t
-        static bool           bUnixTimeToFileTime (const time_t ctmUnixTime, FILETIME *pftFileTime);
+        static void           vUnixTimeToFileTime (const time_t &ctmUnixTime, FILETIME *pftFileTime);
             ///< convert UNIX time_t to Win32 FILETIME
         static time_t         tmFileTimeToUnixTime(const FILETIME &ftFileTime);
             ///< convert Win32 FILETIME to UNIX time_t
     #endif
 
         //other
-        static std::tstring_t sGetZodiacSign      (const ushort_t cusMonth, const ushort_t cusDay);
+        static std::tstring_t sGetZodiacSign      (const ushort_t &cusMonth, const ushort_t &cusDay);
             ///< sign of the zodiac by date
-        static std::tstring_t sGetMonthStr        (ushort_t usMonth, const bool cbIsShortName);
+        static std::tstring_t sGetMonthStr        (ushort_t usMonth, const bool &cbIsShortName);
             ///< get month string
-        static ushort_t       usGetMonthNum       (const std::tstring_t &csMonth, const bool cbIsShortName);
+        static ushort_t       usGetMonthNum       (const std::tstring_t &csMonth, const bool &cbIsShortName);
             ///< get month number by string
-        static std::tstring_t sGetWeekDayStr      (ushort_t usDay, const bool cbIsShortName);
+        static std::tstring_t sGetWeekDayStr      (ushort_t usDay, const bool &cbIsShortName);
             ///< get week day string
-        static ushort_t       usGetWeekDayNum     (const std::tstring_t &csDay, const bool cbIsShortName);
+        static ushort_t       usGetWeekDayNum     (const std::tstring_t &csDay, const bool &cbIsShortName);
             ///< get week day number by string
 
     private:
@@ -152,7 +152,7 @@ class CxDateTime
 
         ulonglong_t           _ullToMilliseconds  () const;
             ///< convert to milliseconds
-        static bool           _bParse             (const std::tstring_t &csDT, const ExFormatType cftFormat, CxDateTime *pdtDT);
+        static void           _vParse             (const std::tstring_t &csDT, const ExFormatType &cftFormat, CxDateTime *pdtDT);
             ///< parsing datetime string
 };
 
