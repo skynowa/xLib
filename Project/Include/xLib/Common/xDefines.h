@@ -117,13 +117,6 @@
     /// < hide "unused variable" warnings
 
 //--------------------------------------------------
-// TODO: make template functions xENUM_INC, xENUM_DEC
-#define xENUM_INC(type, obj)        { (obj) = static_cast<type>( static_cast<int>( obj ) + 1 ); }
-    ///< increment enumerator
-#define xENUM_DEC(type, obj)        { (obj) = static_cast<type>( static_cast<int>( obj ) - 1 ); }
-    ///< decriment enumerator
-
-//--------------------------------------------------
 // temporary enable/disable code
 #define xTEMP_ENABLED               1
     ///< temporary code enabled

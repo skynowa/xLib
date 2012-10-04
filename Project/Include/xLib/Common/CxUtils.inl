@@ -194,5 +194,23 @@ CxUtils::safeDivT(
     return dRv;
 }
 //---------------------------------------------------------------------------
+template <class T>
+/* static */ inline T         
+CxUtils::enumInc(
+    const T &a_valueT
+)
+{ 
+    return static_cast<T>( static_cast<long_t>( a_valueT ) + 1 ); 
+}
+//---------------------------------------------------------------------------
+template <class T>
+/* static */  inline T         
+CxUtils::enumDec(
+    const T &a_valueT
+)
+{
+    return static_cast<T>( static_cast<long_t>( a_valueT ) - 1 ); 
+}
+//---------------------------------------------------------------------------
 
 xNAMESPACE_END(NxLib)

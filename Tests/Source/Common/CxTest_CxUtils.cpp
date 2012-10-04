@@ -271,6 +271,24 @@ CxTest_CxUtils::bUnit(
         CxUtils::safeDivT(1, 1);
     }
 
+    //--------------------------------------------------
+    // enumInc, enumDec
+    xTEST_CASE(cullCaseLoops)
+    {
+        enum EData {
+            datOne,
+            datTwo,
+            datTree
+        };
+
+        EData datData = datOne;
+
+        datData = CxUtils::enumInc(datData);
+        datData = CxUtils::enumDec(datData);
+
+        xTEST_EQ(datOne, datData);
+    }
+
     return true;
 }
 //---------------------------------------------------------------------------

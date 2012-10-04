@@ -194,24 +194,6 @@ CxTest_xDefines::bUnit(
     }
 
     //--------------------------------------------------
-    // xENUM_INC, xENUM_DEC
-    xTEST_CASE(cullCaseLoops)
-    {
-        enum EData {
-            datOne,
-            datTwo,
-            datTree
-        };
-
-        EData datData = datOne;
-
-        xENUM_INC(EData, datData);
-        xENUM_DEC(EData, datData);
-
-        xTEST_EQ(static_cast<int>( datOne ), static_cast<int>( datData ));
-    }
-
-    //--------------------------------------------------
     // temporary enable/disable code
     xTEST_CASE(cullCaseLoops)
     {
