@@ -106,7 +106,7 @@ CxBase64::sDecode(
 /* static */
 bool
 CxBase64::bIsCharValid(
-    const char a_cchChar
+    const char &a_cchChar
 )
 {
     /*DEBUG*/// n/a
