@@ -38,7 +38,7 @@ CxEvent::CxEvent(
     HANDLE hRv = ::CreateEvent(NULL, ! a_cbIsAutoReset, a_cbIsSignaled, NULL);
     /*DEBUG*/xTEST_DIFF(static_cast<HANDLE>(NULL), hRv);
 
-    _m_hEvent.bSet(hRv);
+    _m_hEvent.vSet(hRv);
     /*DEBUG*/// n/a
 #elif xOS_ENV_UNIX
     int iRv = ::pthread_cond_init(&_m_cndCond, NULL);

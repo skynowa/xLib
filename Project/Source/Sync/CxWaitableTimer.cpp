@@ -47,7 +47,7 @@ CxWaitableTimer::bCreate(
     HANDLE hRv = ::CreateWaitableTimer(a_pcsaTimerAttributes, a_bManualReset, a_csName.c_str());
     /*DEBUG*/xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
 
-    _m_hWaitableTimer.bSet(hRv);
+    _m_hWaitableTimer.vSet(hRv);
 
     return true;
 }
@@ -73,7 +73,7 @@ CxWaitableTimer::bOpen(
     HANDLE hRv = ::OpenWaitableTimer(a_culDesiredAccess, a_cbInheritHandle, a_csName.c_str());
     /*DEBUG*/xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
 
-    _m_hWaitableTimer.bSet(hRv);
+    _m_hWaitableTimer.vSet(hRv);
 
     return true;
 }

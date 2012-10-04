@@ -42,24 +42,24 @@ class CxHandleT
 
         native_handle_t hGet       () const;
             ///< get
-        bool            bSet       (const native_handle_t &chHandle);
+        void            vSet       (const native_handle_t &chHandle);
             ///< set
         native_handle_t hDuplicate () const;
             ///< duplicate handle
 
         bool            bIsValid   () const;
             ///< is valid
-        bool            bAttach    (const native_handle_t &chHandle);
+        void            vAttach    (const native_handle_t &chHandle);
             ///< attach
         native_handle_t hDetach    ();
             ///< detach
-        bool            bClose     ();
+        void            vClose     ();
             ///< close
 
     #if   xOS_ENV_WIN
         ulong_t         ulGetInfo  () const;
             ///< get certain properties of an object handle
-        bool            bSetInfo   (const ulong_t &culMask, const ulong_t &culFlags);
+        void            vSetInfo   (const ulong_t &culMask, const ulong_t &culFlags);
             ///< set information
     #endif
 

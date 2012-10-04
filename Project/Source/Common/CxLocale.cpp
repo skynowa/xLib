@@ -51,8 +51,8 @@ CxLocale::sGetCurrent() {
 }
 //---------------------------------------------------------------------------
 /* static */
-bool
-CxLocale::bSetCurrent(
+void
+CxLocale::vSetCurrent(
     const std::tstring_t &csLocale
 )
 {
@@ -64,19 +64,14 @@ CxLocale::bSetCurrent(
 
     pcszRes = ::xTSETLOCALE(LC_ALL, pcszLocale);
     /*DEBUG*/xTEST_PTR(pcszRes);
-
-    return true;
 }
 //---------------------------------------------------------------------------
 /* static */
-bool
-CxLocale::bSetDefault() {
+void
+CxLocale::vSetDefault() {
     /*DEBUG*/// n/a
 
-    bool bRv = CxLocale::bSetCurrent(CxLocale::sGetCurrent());
-   /*DEBUG*/xTEST_EQ(true, bRv);
-
-   return true;
+    vSetCurrent(CxLocale::sGetCurrent());
 }
 //---------------------------------------------------------------------------
 

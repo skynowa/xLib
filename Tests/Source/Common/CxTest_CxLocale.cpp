@@ -34,24 +34,21 @@ CxTest_CxLocale::bUnit(
     //bSetCurrent
     xTEST_CASE(cullCaseLoops)
     {
-        m_bRv = CxLocale::bSetCurrent( CxLocale::sGetCurrent() );
-        xTEST_EQ(true, m_bRv);
+        CxLocale::vSetCurrent( CxLocale::sGetCurrent() );
     }
 
     //-------------------------------------
     //bSetDefault
     xTEST_CASE(cullCaseLoops)
     {
-        m_bRv = CxLocale::bSetDefault();
-        xTEST_EQ(true, m_bRv);
+        CxLocale::vSetDefault();
     }
 
     //-------------------------------------
     //bSetCurrent
     xTEST_CASE(cullCaseLoops)
     {
-        m_bRv = CxLocale::bSetCurrent(CxLocale::sGetCurrent());
-        xTEST_EQ(true, m_bRv);
+        CxLocale::vSetCurrent(CxLocale::sGetCurrent());
     }
 
     return true;
