@@ -35,8 +35,8 @@ CxFunction::~CxFunction() {
 
 }
 //---------------------------------------------------------------------------
-bool
-CxFunction::bGetList(
+void
+CxFunction::vGetList(
     CK_FUNCTION_LIST_PTR_PTR a_ppFunctionList  ///< receives pointer to function list
 )
 {
@@ -44,40 +44,32 @@ CxFunction::bGetList(
 
     CK_RV ulRv = _m_pFunc->C_GetFunctionList(a_ppFunctionList);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxFunction::bGetStatus() {
+void
+CxFunction::vGetStatus() {
     /*DEBUG*/
 
-    CK_RV ulRv = _m_pFunc->C_GetFunctionStatus(_m_hSession );
+    CK_RV ulRv = _m_pFunc->C_GetFunctionStatus(_m_hSession);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxFunction::bCancel() {
+void
+CxFunction::vCancel() {
     /*DEBUG*/
 
     CK_RV ulRv = _m_pFunc->C_CancelFunction(_m_hSession);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxFunction::bGetListEx() {
+void
+CxFunction::vGetListEx() {
     /*DEBUG*/
 
     #if xTODO
         CK_RV ulRv = _m_pFunc->ETC_GetFunctionListEx();
         /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
     #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
 

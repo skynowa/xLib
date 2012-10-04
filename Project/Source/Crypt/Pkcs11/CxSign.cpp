@@ -35,8 +35,8 @@ CxSign::~CxSign() {
 
 }
 //---------------------------------------------------------------------------
-bool
-CxSign::bInit(
+void
+CxSign::vInit(
     CK_MECHANISM_PTR a_pMechanism,  ///< the signature mechanism
     CK_OBJECT_HANDLE a_hKey         ///< handle of signature key
 )
@@ -45,12 +45,10 @@ CxSign::bInit(
 
     CK_RV ulRv = _m_pFunc->C_SignInit(_m_hSession, a_pMechanism, a_hKey);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxSign::bMake(
+void
+CxSign::vMake(
     CK_BYTE_PTR  a_pData,           ///< the data to sign
     CK_ULONG     a_ulDataLen,       ///< count of bytes to sign
     CK_BYTE_PTR  a_pSignature,      ///< gets the signature
@@ -61,12 +59,10 @@ CxSign::bMake(
 
     CK_RV ulRv = _m_pFunc->C_Sign(_m_hSession, a_pData, a_ulDataLen, a_pSignature, a_pulSignatureLen);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxSign::bUpdate(
+void
+CxSign::vUpdate(
     CK_BYTE_PTR pPart,     ///< the data to sign
     CK_ULONG    ulPartLen  ///< count of bytes to sign
 )
@@ -75,12 +71,10 @@ CxSign::bUpdate(
 
     CK_RV ulRv = _m_pFunc->C_SignUpdate(_m_hSession, pPart, ulPartLen);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxSign::bEncryptUpdate(
+void
+CxSign::vEncryptUpdate(
     CK_BYTE_PTR  a_pPart,               ///< the plaintext data
     CK_ULONG     a_ulPartLen,           ///< plaintext length
     CK_BYTE_PTR  a_pEncryptedPart,      ///< gets ciphertext
@@ -91,12 +85,10 @@ CxSign::bEncryptUpdate(
 
     CK_RV ulRv = _m_pFunc->C_SignEncryptUpdate(_m_hSession, a_pPart, a_ulPartLen, a_pEncryptedPart, a_pulEncryptedPartLen);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxSign::bFinal(
+void
+CxSign::vFinal(
     CK_BYTE_PTR  a_pSignature,      ///< gets the signature
     CK_ULONG_PTR a_pulSignatureLen  ///< gets signature length
 )
@@ -105,12 +97,10 @@ CxSign::bFinal(
 
     CK_RV ulRv = _m_pFunc->C_SignFinal(_m_hSession, a_pSignature, a_pulSignatureLen);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxSign::bRecoverInit(
+void
+CxSign::vRecoverInit(
     CK_MECHANISM_PTR a_pMechanism, ///< the signature mechanism
     CK_OBJECT_HANDLE a_hKey        ///< handle of the signature key
 )
@@ -119,12 +109,10 @@ CxSign::bRecoverInit(
 
     CK_RV ulRv = _m_pFunc->C_SignRecoverInit(_m_hSession, a_pMechanism, a_hKey);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxSign::bRecover(
+void
+CxSign::vRecover(
     CK_BYTE_PTR  a_pData,           ///< the data to sign
     CK_ULONG     a_ulDataLen,       ///< count of bytes to sign
     CK_BYTE_PTR  a_pSignature,      ///< gets the signature
@@ -135,8 +123,6 @@ CxSign::bRecover(
 
     CK_RV ulRv = _m_pFunc->C_SignRecover(_m_hSession, a_pData, a_ulDataLen, a_pSignature, a_pulSignatureLen);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-
-    return true;
 }
 //---------------------------------------------------------------------------
 

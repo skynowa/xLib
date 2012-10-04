@@ -21,24 +21,24 @@ class CxSession :
     /// Pkcs11 session
 {
     public:
-                             CxSession         (const CxPkcs11 &cPkcs11);
+        explicit             CxSession         (const CxPkcs11 &cPkcs11);
             ///< constructor
         virtual             ~CxSession         ();
             ///< destructor
 
         CK_SESSION_HANDLE    hGetHandle        () const;
             ///< get handle
-        bool                 bOpen             (CK_SLOT_ID slotID, CK_FLAGS flags, CK_VOID_PTR pApplication, CK_NOTIFY Notify);
+        void                 vOpen             (CK_SLOT_ID slotID, CK_FLAGS flags, CK_VOID_PTR pApplication, CK_NOTIFY Notify);
             ///< opens a session between an application and a token
-        bool                 bGetInfo          (CK_SESSION_INFO_PTR pInfo);
+        void                 vGetInfo          (CK_SESSION_INFO_PTR pInfo);
             ///< obtains information about the session
-        bool                 bSetOperationState(CK_BYTE_PTR pOperationState, CK_ULONG ulOperationStateLen, CK_OBJECT_HANDLE hEncryptionKey, CK_OBJECT_HANDLE hAuthenticationKey);
+        void                 vSetOperationState(CK_BYTE_PTR pOperationState, CK_ULONG ulOperationStateLen, CK_OBJECT_HANDLE hEncryptionKey, CK_OBJECT_HANDLE hAuthenticationKey);
             ///< restores the state of the cryptographic operation in a session
-        bool                 bGetOperationState(CK_BYTE_PTR pOperationState, CK_ULONG_PTR pulOperationStateLen);
+        void                 vGetOperationState(CK_BYTE_PTR pOperationState, CK_ULONG_PTR pulOperationStateLen);
             ///< obtains the state of the cryptographic operation in a session
-        bool                 bClose            ();
+        void                 vClose            ();
             ///< closes a session between an application and a token
-        bool                 bCloseAll         (CK_SLOT_ID slotID);
+        void                 vCloseAll         (CK_SLOT_ID slotID);
             ///< closes all sessions with a token
 
     private:

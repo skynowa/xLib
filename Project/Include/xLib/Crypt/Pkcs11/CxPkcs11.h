@@ -34,11 +34,11 @@ class CxPkcs11 :
         CK_FUNCTION_LIST_PTR _m_pFunc;            ///< pointer to fumction
         CxDll                _m_dllETPkcs11;    ///< Pkcs11 CxDll object
 
-        bool                 _bLoadETPkcs11 ();
+        void                 _vLoadETPkcs11 ();
             ///< load eTPkcs11.dll
-        bool                 bInitialize    ();
+        void                 vInitialize    ();
             ///< initiate PKCS#11
-        bool                 bFinalize      ();
+        void                 vFinalize      ();
             ///< finalize PKCS#11
 };
 

@@ -31,8 +31,8 @@ CxInfo::~CxInfo() {
 
 }
 //---------------------------------------------------------------------------
-bool
-CxInfo::bGet(
+void
+CxInfo::vGet(
     CK_INFO_PTR a_pInfo  ///< location that receives information
 )
 {
@@ -40,12 +40,10 @@ CxInfo::bGet(
 
     CK_RV ulRv = _m_pFunc->C_GetInfo(a_pInfo);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxInfo::bGetToken(
+void
+CxInfo::vGetToken(
     CK_SLOT_ID        a_slotID,  ///< ID of the token's slot
     CK_TOKEN_INFO_PTR a_pInfo    ///< receives the token information
 )
@@ -54,8 +52,6 @@ CxInfo::bGetToken(
 
     CK_RV ulRv = _m_pFunc->C_GetTokenInfo(a_slotID, a_pInfo);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-
-    return true;
 }
 //---------------------------------------------------------------------------
 

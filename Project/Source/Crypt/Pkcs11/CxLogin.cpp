@@ -37,8 +37,8 @@ CxLogin::~CxLogin() {
 
 }
 //---------------------------------------------------------------------------
-bool
-CxLogin::bLogin(
+void
+CxLogin::vLogin(
     CK_USER_TYPE    a_userType,  ///< user type
     CK_UTF8CHAR_PTR a_pPin,      ///< user's PIN
     CK_ULONG        a_ulPinLen   ///< length of the PIN
@@ -51,22 +51,18 @@ CxLogin::bLogin(
     xCHECK_DO(
         CKR_PIN_INCORRECT == ulRv,
         CxMsgBoxT::iShow(xT("Pin is incorrect"), xT("Pkcs11"), MB_OK + MB_ICONSTOP);
-        return false
+        return
     );
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxLogin::bLogout() {
+void
+CxLogin::vLogout() {
     /*DEBUG*/xTEST_PTR(_m_pFunc);
     /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
 
     CK_RV ulRv = _m_pFunc->C_Logout(_m_hSession);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-
-    return true;
 }
 //---------------------------------------------------------------------------
 

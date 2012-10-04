@@ -35,8 +35,8 @@ CxKey::~CxKey() {
 
 }
 //---------------------------------------------------------------------------
-bool
-CxKey::bGenerate(
+void
+CxKey::vGenerate(
     CK_MECHANISM_PTR     a_pMechanism,  ///< key generation mech.
     CK_ATTRIBUTE_PTR     a_pTemplate,   ///< template for new key
     CK_ULONG             a_ulCount,     ///< # of attrs in template
@@ -47,12 +47,10 @@ CxKey::bGenerate(
 
     CK_RV ulRv = _m_pFunc->C_GenerateKey(_m_hSession, a_pMechanism, a_pTemplate, a_ulCount, a_phKey);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxKey::bGeneratePair(
+void
+CxKey::vGeneratePair(
     CK_MECHANISM_PTR     a_pMechanism,                  ///< key-gen mech.
     CK_ATTRIBUTE_PTR     a_pPublicKeyTemplate,          ///< template for pub key
     CK_ULONG             a_ulPublicKeyAttributeCount,   ///< # pub. attrs.
@@ -66,12 +64,10 @@ CxKey::bGeneratePair(
 
     CK_RV ulRv = _m_pFunc->C_GenerateKeyPair(_m_hSession, a_pMechanism, a_pPublicKeyTemplate, a_ulPublicKeyAttributeCount, a_pPrivateKeyTemplate, a_ulPrivateKeyAttributeCount, a_phPublicKey, a_phPrivateKey);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxKey::bDerive(
+void
+CxKey::vDerive(
     CK_MECHANISM_PTR     a_pMechanism,        ///< key deriv. mech.
     CK_OBJECT_HANDLE     a_hBaseKey,          ///< base key
     CK_ATTRIBUTE_PTR     a_pTemplate,         ///< new key template
@@ -83,12 +79,10 @@ CxKey::bDerive(
 
     CK_RV ulRv = _m_pFunc->C_DeriveKey(_m_hSession, a_pMechanism, a_hBaseKey, a_pTemplate, a_ulAttributeCount, a_phKey);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxKey::bWrap(
+void
+CxKey::vWrap(
     CK_MECHANISM_PTR a_pMechanism,      ///< the wrapping mechanism
     CK_OBJECT_HANDLE a_hWrappingKey,    ///< wrapping key
     CK_OBJECT_HANDLE a_hKey,            ///< key to be wrapped
@@ -100,12 +94,10 @@ CxKey::bWrap(
 
     CK_RV ulRv = _m_pFunc->C_WrapKey(_m_hSession, a_pMechanism, a_hWrappingKey, a_hKey, a_pWrappedKey, a_pulWrappedKeyLen);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxKey::bUnwrap(
+void
+CxKey::vUnwrap(
     CK_MECHANISM_PTR     a_pMechanism,        ///< unwrapping mech.
     CK_OBJECT_HANDLE     a_hUnwrappingKey,    ///< unwrapping key
     CK_BYTE_PTR          a_pWrappedKey,       ///< the wrapped key
@@ -119,12 +111,10 @@ CxKey::bUnwrap(
 
     CK_RV ulRv = _m_pFunc->C_UnwrapKey(_m_hSession, a_pMechanism, a_hUnwrappingKey, a_pWrappedKey, a_ulWrappedKeyLen, a_pTemplate, a_ulAttributeCount, a_phKey);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxKey::bSeedRandom(
+void
+CxKey::vSeedRandom(
     CK_BYTE_PTR pSeed,     ///< the seed material
     CK_ULONG    ulSeedLen  ///< length of seed material
 )
@@ -133,12 +123,10 @@ CxKey::bSeedRandom(
 
     CK_RV ulRv = _m_pFunc->C_SeedRandom(_m_hSession, pSeed, ulSeedLen);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxKey::bGenerateRandom(
+void
+CxKey::vGenerateRandom(
     CK_BYTE_PTR a_pRandomData,  ///< receives the random data
     CK_ULONG    a_ulRandomLen   ///< # of bytes to generate
 )
@@ -147,8 +135,6 @@ CxKey::bGenerateRandom(
 
     CK_RV ulRv = _m_pFunc->C_GenerateRandom(_m_hSession, a_pRandomData, a_ulRandomLen);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-
-    return true;
 }
 //---------------------------------------------------------------------------
 

@@ -42,8 +42,8 @@ CxSession::hGetHandle() const {
     return _m_hSession;
 }
 //---------------------------------------------------------------------------
-bool
-CxSession::bOpen(
+void
+CxSession::vOpen(
     CK_SLOT_ID  a_slotID,        ///< the slot's ID
     CK_FLAGS    a_flags,         ///< from CK_SESSION_INFO
     CK_VOID_PTR a_pApplication,  ///< passed to callback
@@ -55,12 +55,10 @@ CxSession::bOpen(
 
     CK_RV ulRv = _m_pFunc->C_OpenSession(a_slotID, a_flags, a_pApplication, a_Notify, &_m_hSession);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxSession::bGetInfo(
+void
+CxSession::vGetInfo(
     CK_SESSION_INFO_PTR a_pInfo      ///< receives session info
 )
 {
@@ -69,12 +67,10 @@ CxSession::bGetInfo(
 
     CK_RV ulRv = _m_pFunc->C_GetSessionInfo(_m_hSession, a_pInfo);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxSession::bSetOperationState(
+void
+CxSession::vSetOperationState(
     CK_BYTE_PTR      a_pOperationState,      ///< holds state
     CK_ULONG         a_ulOperationStateLen,  ///< holds state length
     CK_OBJECT_HANDLE a_hEncryptionKey,       ///< en/decryption key
@@ -86,12 +82,10 @@ CxSession::bSetOperationState(
 
     CK_RV ulRv = _m_pFunc->C_SetOperationState(_m_hSession, a_pOperationState, a_ulOperationStateLen, a_hEncryptionKey, a_hAuthenticationKey);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxSession::bGetOperationState(
+void
+CxSession::vGetOperationState(
     CK_BYTE_PTR  a_pOperationState,      ///< gets state
     CK_ULONG_PTR a_pulOperationStateLen  ///< gets state length
 )
@@ -101,12 +95,10 @@ CxSession::bGetOperationState(
 
     CK_RV ulRv = _m_pFunc->C_GetOperationState(_m_hSession, a_pOperationState, a_pulOperationStateLen);
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxSession::bClose() {
+void
+CxSession::vClose() {
     /*DEBUG*/xTEST_PTR(_m_pFunc);
     /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
 
@@ -115,12 +107,10 @@ CxSession::bClose() {
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     _m_hSession = NULL;
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxSession::bCloseAll(
+void
+CxSession::vCloseAll(
     CK_SLOT_ID slotID  ///< the token's slot
 )
 {
@@ -131,8 +121,6 @@ CxSession::bCloseAll(
     /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     _m_hSession = NULL;
-
-    return true;
 }
 //---------------------------------------------------------------------------
 
