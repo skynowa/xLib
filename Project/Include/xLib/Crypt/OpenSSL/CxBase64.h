@@ -20,7 +20,7 @@ class CxBase64 :
             ///< encoding
         static std::string sDecode     (const std::string &csStr);
             ///< decoding
-        static bool        bIsCharValid(const char cchChar);
+        static bool        bIsCharValid(const char &cchChar);
             ///< is a valid Base64 char
 
     private:
