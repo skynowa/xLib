@@ -34,14 +34,12 @@ CxTest_CxDebugger::bUnit(
         m_bRv = dbgDebugger.bGetEnabled();
         xTEST_EQ(cbTrue, m_bRv);
 
-        m_bRv = dbgDebugger.bSetEnabled(cbFalse);
-        xTEST_EQ(true, m_bRv);
+        dbgDebugger.vSetEnabled(cbFalse);
 
         m_bRv = dbgDebugger.bGetEnabled();
         xTEST_EQ(cbFalse, m_bRv);
 
-        m_bRv = dbgDebugger.bSetEnabled(cbTrue);
-        xTEST_EQ(true, m_bRv);
+        dbgDebugger.vSetEnabled(cbTrue);
 
         m_bRv = dbgDebugger.bGetEnabled();
         xTEST_EQ(cbTrue, m_bRv);
@@ -93,14 +91,12 @@ CxTest_CxDebugger::bUnit(
         m_sRv = dbgDebugger.sGetLogPath();
         xTEST_EQ(true, m_sRv.empty());
 
-        m_bRv = dbgDebugger.bSetLogPath(csFilePath);
-        xTEST_EQ(true, m_bRv);
+        dbgDebugger.vSetLogPath(csFilePath);
 
         m_sRv = dbgDebugger.sGetLogPath();
         xTEST_EQ(csFilePath, m_sRv);
 
-        m_bRv = dbgDebugger.bSetLogPath(xT(""));
-        xTEST_EQ(true, m_bRv);
+        dbgDebugger.vSetLogPath(xT(""));
 
         m_sRv = dbgDebugger.sGetLogPath();
         xTEST_EQ(true, m_sRv.empty());
@@ -154,16 +150,6 @@ CxTest_CxDebugger::bUnit(
             CxDebugger::bTrace(xT("\tCxDebugger: trace data %s"), CxRandom::sGetString( CxRandom::liGetIntEx(0, 20) ).c_str());
         #endif
 
-        xTEST_EQ(true, m_bRv);
-    }
-
-    //-------------------------------------
-    //bBeep
-    xTEST_CASE(cullCaseLoops)
-    {
-        CxDebugger dbgDebugger;
-
-        m_bRv = dbgDebugger.bBeep();
         xTEST_EQ(true, m_bRv);
     }
 

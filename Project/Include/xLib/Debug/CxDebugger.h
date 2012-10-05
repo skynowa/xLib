@@ -26,22 +26,20 @@ class CxDebugger :
 
         bool                  bGetEnabled     ();
             ///< is debugging enabled
-        bool                  bSetEnabled     (const bool cbFlag);
+        void                  vSetEnabled     (const bool &cbFlag);
             ///< set debugging mode on/off
         bool                  bIsActive       ();
             ///< is OS debugger presents
         bool                  bIsDebugBuild   ();
             ///< is debug build (is NDEBUG macros is don't set)
-        bool                  bBreak          ();
+        void                  vBreak          ();
             ///< attach to OS debugger
-        bool                  bSetLogPath     (const std::tstring_t &csFilePath);
+        void                  vSetLogPath     (const std::tstring_t &csFilePath);
             ///< set log file path
         std::tstring_t        sGetLogPath     ();
             ///< get log file path
-        bool                  bReportMake     (const CxErrorReport &crpReport);
+        void                  vReportMake     (const CxErrorReport &crpReport);
             ///< make report
-        static bool           bBeep           (const ulong_t culFrequency = 800UL, const ulong_t culDuration = 100UL);
-            ///< play sound
 
     private:
         bool                  _m_bIsEnabled;
@@ -49,17 +47,17 @@ class CxDebugger :
         std::tstring_t        _m_sLogPath;
             ///< log path
 
-        bool                  _bMsgboxPlain   (const CxErrorReport &crpReport);
+        void                  _vMsgboxPlain   (const CxErrorReport &crpReport);
             ///< show message box with plain report
-        bool                  _bMsgboxFormated(const CxErrorReport &crpReport);
+        void                  _vMsgboxFormated(const CxErrorReport &crpReport);
             ///< show message box with formated report, std::cerr
-        bool                  _bStdoutPlain   (const CxErrorReport &crpReport);
+        void                  _vStdoutPlain   (const CxErrorReport &crpReport);
             ///< show plain report in std::cout
-        bool                  _bStdoutHtml    (const CxErrorReport &crpReport);
+        void                  _vStdoutHtml    (const CxErrorReport &crpReport);
             ///< show html report in std::cout
-        bool                  _bLoggingPlain  (const CxErrorReport &crpReport);
+        void                  _vLoggingPlain  (const CxErrorReport &crpReport);
             ///< log plain report to file
-        bool                  _bLoggingHtml   (const CxErrorReport &crpReport);
+        void                  _vLoggingHtml   (const CxErrorReport &crpReport);
             ///< log html report to file
 };
 
