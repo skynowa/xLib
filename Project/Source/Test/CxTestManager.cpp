@@ -21,7 +21,7 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 /*explicit*/
 CxTestManager::CxTestManager(
-    const bool a_cbIsUseTracing
+    const bool &a_cbIsUseTracing
 ) :
     _m_cbIsUseTracing(a_cbIsUseTracing),
     _m_ctnTests      ()
@@ -40,8 +40,8 @@ CxTestManager::~CxTestManager() {
     xCHECK_DO(_m_cbIsUseTracing, xTRACE (xT("\n")));
 }
 //---------------------------------------------------------------------------
-bool
-CxTestManager::bAdd(
+void
+CxTestManager::vAdd(
     CxTest               *a_pvtTest,
     const std::tstring_t &a_csTestName /* = CxConst::xSTR_EMPTY */
 )
@@ -56,12 +56,10 @@ CxTestManager::bAdd(
     #if xTEMP_DISABLED
         xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: added test \"%s\""), a_pvtTest->sGetName().c_str()));
     #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxTestManager::bRun(
+void
+CxTestManager::vRun(
     const ulonglong_t &a_cullAllLoops,
     const ulonglong_t &a_cullUnitLoops,
     const ulonglong_t &a_cullCaseLoops
@@ -87,8 +85,6 @@ CxTestManager::bRun(
 
     xCHECK_DO(_m_cbIsUseTracing, xTRACE(xT("CxTestManager: all tests successful done.")));
     xCHECK_DO(_m_cbIsUseTracing, xTRACE(xT("\n")));
-
-    return true;
 }
 //---------------------------------------------------------------------------
 
