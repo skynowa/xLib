@@ -26,19 +26,19 @@ class CxTcpClient :
             ///< checking for readability
         bool        bIsWritable        ();
             ///< checking for writability
-        bool        bConnect           (const std::tstring_t &csIp, ushort_t usPort);
+        void        vConnect           (const std::tstring_t &csIp, const ushort_t &cusPort);
             ///< connecting
 
-        bool        bIoctl             (long_t liCmd, ulong_t *pulArgp);
+        void        vIoctl             (const long_t &cliCmd, ulong_t *pulArgp);
             ///< controls the i/o mode
-        bool        bSetNonBlockingMode(const bool cbFlag);
+        void        vSetNonBlockingMode(const bool &cbFlag);
             ///< set nonblocking mode
-        bool        bGetTimeout        (long_t *pliSec, long_t *pliMicroSec);
+        void        vGetTimeout        (long_t *pliSec, long_t *pliMicroSec);
             ///< get timeout
-        bool        bSetTimeout        (long_t liSec,   long_t liMicroSec);
+        void        vSetTimeout        (const long_t &cliSec, const long_t &cliMicroSec);
             ///< set timeout
 
-        static bool bIsServerAlive     (const std::tstring_t &csIp, ushort_t usPort);
+        static bool bIsServerAlive     (const std::tstring_t &csIp, const ushort_t &cusPort);
             ///< is sever socket available
 
     protected:

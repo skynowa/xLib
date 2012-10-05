@@ -21,8 +21,7 @@ xNAMESPACE_BEGIN(NxLib)
 CxTcpClient::CxTcpClient() :
     _m_tvTimeout()
 {
-    bool bRv = bSetTimeout(0, SOCKET_TIMEOUT);
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    vSetTimeout(0L, SOCKET_TIMEOUT);
 }
 //---------------------------------------------------------------------------
 CxTcpClient::~CxTcpClient() {
@@ -55,15 +54,15 @@ CxTcpClient::bIsWritable() {
     return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxTcpClient::bConnect(
+void
+CxTcpClient::vConnect(
     const std::tstring_t &a_csIp,
-    ushort_t              a_usPort
+    const ushort_t       &a_cusPort
 )
 {
     /*DEBUG*/xTEST_DIFF(xSOCKET_HANDLE_INVALID, _m_sktSocket);
     /*DEBUG*/xTEST_EQ(false, a_csIp.empty());
-    /*DEBUG*/xTEST_EQ(true, (65535 > a_usPort) && (0 < a_usPort));
+    /*DEBUG*/xTEST_EQ(true, (65535 > a_cusPort) && (0 < a_cusPort));
 
     //конверт из UNICODE
     std::string asIp(a_csIp.begin(), a_csIp.end());
@@ -71,18 +70,16 @@ CxTcpClient::bConnect(
     sockaddr_in saSockAddr = {0};
     saSockAddr.sin_family      = _m_siFamily;
     saSockAddr.sin_addr.s_addr = ::inet_addr(asIp.c_str());
-    saSockAddr.sin_port        = htons(a_usPort); //???????
+    saSockAddr.sin_port        = htons(a_cusPort); //???????
 
     int iRv = ::connect(_m_sktSocket, CxUtils::reinterpretCastT<sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
     /*DEBUG*/xTEST_DIFF(xSOCKET_ERROR, iRv);
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxTcpClient::bIoctl(
-    long_t   a_liCmd,
-    ulong_t *a_pulArgp
+void
+CxTcpClient::vIoctl(
+    const long_t &a_cliCmd,
+    ulong_t      *a_pulArgp
 )
 {
     /*DEBUG*/xTEST_DIFF(xSOCKET_HANDLE_INVALID, _m_sktSocket);
@@ -90,19 +87,17 @@ CxTcpClient::bIoctl(
     int iRv = xSOCKET_ERROR;
 
 #if   xOS_ENV_WIN
-    iRv = ioctlsocket(_m_sktSocket, a_liCmd, a_pulArgp);
+    iRv = ioctlsocket(_m_sktSocket, a_cliCmd, a_pulArgp);
     /*DEBUG*/xTEST_DIFF(xSOCKET_ERROR, iRv);
 #elif xOS_ENV_UNIX
-    iRv = ::ioctl    (_m_sktSocket, a_liCmd, a_pulArgp);
+    iRv = ::ioctl    (_m_sktSocket, a_cliCmd, a_pulArgp);
     /*DEBUG*/xTEST_DIFF(xSOCKET_ERROR, iRv);
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxTcpClient::bSetNonBlockingMode(
-    const bool a_cbFlag
+void
+CxTcpClient::vSetNonBlockingMode(
+    const bool &a_cbFlag
 )
 {
     /*DEBUG*/
@@ -110,8 +105,7 @@ CxTcpClient::bSetNonBlockingMode(
 #if   xOS_ENV_WIN
     ulong_t ulNonBlockingMode = static_cast<ulong_t>(a_cbFlag);
 
-    bool bRv = bIoctl(FIONBIO, static_cast<ulong_t FAR *>(&ulNonBlockingMode));
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    vIoctl(FIONBIO, static_cast<ulong_t FAR *>(&ulNonBlockingMode));
 
     /*
     int bOptVal = true;
@@ -134,12 +128,10 @@ CxTcpClient::bSetNonBlockingMode(
     iFlags = ::fcntl(_m_sktSocket, F_SETFL, iFlags);
     /*DEBUG*/xTEST_DIFF(xSOCKET_ERROR, iFlags);
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxTcpClient::bGetTimeout(
+void
+CxTcpClient::vGetTimeout(
     long_t *a_pliSec,
     long_t *a_pliMicroSec
 )
@@ -151,24 +143,20 @@ CxTcpClient::bGetTimeout(
     // BUG: static_cast<long_t>( _m_tvTimeout.tv_sec  )
     CxUtils::ptrAssignT(a_pliSec,      static_cast<long_t>( _m_tvTimeout.tv_sec  ));
     CxUtils::ptrAssignT(a_pliMicroSec, static_cast<long_t>( _m_tvTimeout.tv_usec ));
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxTcpClient::bSetTimeout(
-    long_t a_liSec,
-    long_t a_liMicroSec
+void
+CxTcpClient::vSetTimeout(
+    const long_t &a_cliSec,
+    const long_t &a_cliMicroSec
 )
 {
     /*DEBUG*/
     /*DEBUG*/// liSec      - n/a
     /*DEBUG*/// liMicroSec - n/a
 
-    _m_tvTimeout.tv_sec  = a_liSec;
-    _m_tvTimeout.tv_usec = a_liMicroSec;
-
-    return true;
+    _m_tvTimeout.tv_sec  = a_cliSec;
+    _m_tvTimeout.tv_usec = a_cliMicroSec;
 }
 //---------------------------------------------------------------------------
 
@@ -183,11 +171,11 @@ CxTcpClient::bSetTimeout(
 bool
 CxTcpClient::bIsServerAlive(
     const std::tstring_t &a_csIp,
-    ushort_t              a_usPort
+    const ushort_t       &a_cusPort
 )
 {
     /*DEBUG*/xTEST_EQ(false, a_csIp.empty());
-    /*DEBUG*/xTEST_EQ(true, (65535 > a_usPort) && (0 < a_usPort));
+    /*DEBUG*/xTEST_EQ(true, (65535 > a_cusPort) && (0 < a_cusPort));
 
     int iRv = - 1;
 
@@ -205,7 +193,7 @@ CxTcpClient::bIsServerAlive(
     sockaddr_in saSockAddr = {0};
     saSockAddr.sin_family      = CxSocket::afInet;
     saSockAddr.sin_addr.s_addr = ::inet_addr(asIp.c_str());
-    saSockAddr.sin_port        = htons(a_usPort); //TODO: htons
+    saSockAddr.sin_port        = htons(a_cusPort); //TODO: htons
 
     //connect - [+] 0 [-] SOCKET_ERROR
     iRv = ::connect(objSocket.iGetSocket(), CxUtils::reinterpretCastT<sockaddr *>( &saSockAddr ), sizeof(saSockAddr));

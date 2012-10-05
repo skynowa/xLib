@@ -67,7 +67,7 @@ CxPop3::vConnect() {
 
      //-------------------------------------
      //Connect
-     _m_scktSocket.bConnect(sIp, _m_usPort);
+     _m_scktSocket.vConnect(sIp, _m_usPort);
 
      //-------------------------------------
      //[welcome message]
