@@ -165,7 +165,7 @@ namespace NxCgi {
         private:
             CxCgi          &_m_ccgCgi;    ///< CxCgi object
 
-            bool            _bInit      ();
+            void            _vInit      ();
                 ///< initiate class data
     };
     //---------------------------------------------------------------------------
@@ -194,7 +194,7 @@ namespace NxCgi {
             CxCgi                &_m_ccgCgi;        ///< CxCgi object
             std::tstring_t        _m_sFormData;     ///< form data
 
-            bool                  _bInit       ();
+            void                  _vInit       ();
                 ///< initiate class data
     };
     //---------------------------------------------------------------------------
