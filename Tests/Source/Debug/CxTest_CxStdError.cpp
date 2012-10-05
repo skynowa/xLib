@@ -54,8 +54,7 @@ CxTest_CxStdError::bUnit(
         for (int i = 0; i < (int)xARRAY_SIZE(caiData); ++ i) {
             const int ciLastError = caiData[i];
 
-            m_bRv = CxStdError::bSet(ciLastError);
-            xTEST_EQ(true, m_bRv);
+            CxStdError::vSet(ciLastError);
             xTEST_EQ(ciLastError, CxStdError::iGet());
             xTEST_EQ(0, CxStdError::iGet());
         }
@@ -75,11 +74,8 @@ CxTest_CxStdError::bUnit(
         for (int i = 0; i < (int)xARRAY_SIZE(caiData); ++ i) {
             const int ciLastError = caiData[i];
 
-            m_bRv = CxStdError::bSet(ciLastError);
-            xTEST_EQ(true, m_bRv);
-
-            m_bRv = CxStdError::bReset();
-            xTEST_EQ(true, m_bRv);
+            CxStdError::vSet(ciLastError);
+            CxStdError::vReset();
             xTEST_EQ(0, CxStdError::iGet());
         }
     }

@@ -24,7 +24,7 @@ CxStdError::iGet() {
 
     iCode = errno;
 
-    (void)bReset();
+    vReset();
 
     return iCode;
 }
@@ -36,28 +36,26 @@ CxStdError::sGet() {
 }
 //---------------------------------------------------------------------------
 /* static */
-bool
-CxStdError::bSet(
-    const int a_ciCode
+void
+CxStdError::vSet(
+    const int &a_ciCode
 )
 {
     errno = a_ciCode;
-
-    return true;
 }
 //---------------------------------------------------------------------------
 /* static */
-bool
-CxStdError::bReset() {
+void
+CxStdError::vReset() {
     const int ciCodeSuccess = 0;
 
-    return bSet(ciCodeSuccess);
+    vSet(ciCodeSuccess);
 }
 //---------------------------------------------------------------------------
 /* static */
 std::tstring_t
 CxStdError::sFormat(
-    const int a_ciCode
+    const int &a_ciCode
 )
 {
     std::tstring_t sRv;
