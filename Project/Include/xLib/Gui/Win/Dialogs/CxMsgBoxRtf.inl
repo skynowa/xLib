@@ -77,9 +77,9 @@ const int    ciRichEdtShift   = 68;
 const int    ciBtnLeftMargin  = 90;
 const int    ciBtnSpace       = 8;
 //---------------------------------------------------------------------------
-bool
-bCreateContent(
-    HWND a_hParent
+void
+vCreateContent(
+    const HWND &a_hParent
 )
 {
     g_hFont = (HFONT)::SendMessage(g_hMainWnd, WM_GETFONT, 0, 0);
@@ -191,8 +191,6 @@ bCreateContent(
                         g_hInst,
                         NULL);
     ::SendMessage(g_hBtnSendReport, WM_SETFONT, (WPARAM)g_hFont, (LPARAM)true);
-
-    return true;
 }
 //---------------------------------------------------------------------------
 INT_PTR CALLBACK
@@ -205,7 +203,7 @@ DialogProc(
 {
     switch(a_uiMsg) {
         case WM_INITDIALOG:    {
-                bCreateContent(a_hDlg);
+                vCreateContent(a_hDlg);
             }
             return true;
 
@@ -261,7 +259,7 @@ DialogProc(
 //---------------------------------------------------------------------------
 ExModalResult
 iShow(
-    HWND                  a_hwndOwner,
+    const HWND           &a_hwndOwner,
     const std::tstring_t &a_csMessage,
     const std::tstring_t &a_csTiltle
 )
