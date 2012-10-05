@@ -69,17 +69,17 @@ CxErrorReport::CxErrorReport(
         sComment = ossStream.str();
     }
 
-    (void)_bConstruct(a_crtType, sExpr, a_culLastError, a_csFile, a_culLine, a_csFunc, a_csDate, a_csTime, a_csStackTrace, sComment);
+    _vConstruct(a_crtType, sExpr, a_culLastError, a_csFile, a_culLine, a_csFunc, a_csDate, a_csTime, a_csStackTrace, sComment);
 
     switch (a_crtType) {
-        case rtMsgboxPlain:     { (void)_bInitPlain();    } break;
-        case rtMsgboxFormated:  { (void)_bInitFormated(); } break;
-        case rtStdoutPlain:     { (void)_bInitPlain();    } break;
-        case rtStdoutHtml:      { (void)_bInitHtml();     } break;
-        case rtLoggingPlain:    { (void)_bInitPlain();    } break;
-        case rtLoggingHtml:     { (void)_bInitHtml();     } break;
+        case rtMsgboxPlain:     { _vInitPlain();    } break;
+        case rtMsgboxFormated:  { _vInitFormated(); } break;
+        case rtStdoutPlain:     { _vInitPlain();    } break;
+        case rtStdoutHtml:      { _vInitHtml();     } break;
+        case rtLoggingPlain:    { _vInitPlain();    } break;
+        case rtLoggingHtml:     { _vInitHtml();     } break;
 
-        default:                { (void)_bInitPlain();    } break;
+        default:                { _vInitPlain();    } break;
     }
 }
 //---------------------------------------------------------------------------

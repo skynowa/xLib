@@ -71,17 +71,17 @@ class CxErrorReport :
             ///< destructor
 
     private:
-        bool          _bConstruct   (const ExType         &crtType,      const std::tstring_t &csExp,
+        void          _vConstruct   (const ExType         &crtType,      const std::tstring_t &csExp,
                                      const ulong_t        &culLastError, const std::tstring_t &csFile,
                                      const ulong_t        &culLine,      const std::tstring_t &csFunc,
                                      const std::tstring_t &csDate,       const std::tstring_t &csTime,
                                      const std::tstring_t &csStackTrace, const std::tstring_t &csComment);
             ///< initiate class members
-        bool          _bInitPlain   ();
+        void          _vInitPlain   ();
             ///< initiate plain report
-        bool          _bInitHtml    ();
+        void          _vInitHtml    ();
             ///< initiate HTML report
-        bool          _bInitFormated();
+        void          _vInitFormated();
             ///< initiate formatrd report
 };
 
