@@ -42,7 +42,7 @@ CxAtomicLongInt::operator += (
 //---------------------------------------------------------------------------
 CxAtomicLongInt &
 CxAtomicLongInt::operator += (
-    const long_t a_cliValue
+    const long_t &a_cliValue
 )
 {
 #if   xOS_ENV_WIN
@@ -70,7 +70,7 @@ CxAtomicLongInt::operator -= (
 //---------------------------------------------------------------------------
 CxAtomicLongInt &
 CxAtomicLongInt::operator -= (
-    const long_t a_cliValue
+    const long_t &a_cliValue
 )
 {
 #if   xOS_ENV_WIN
@@ -98,7 +98,7 @@ CxAtomicLongInt::operator = (
 //---------------------------------------------------------------------------
 CxAtomicLongInt &
 CxAtomicLongInt::operator = (
-    const long_t a_cliValue
+    const long_t &a_cliValue
 )
 {
 #if   xOS_ENV_WIN
@@ -120,7 +120,7 @@ CxAtomicLongInt::operator == (
 //---------------------------------------------------------------------------
 bool
 CxAtomicLongInt::operator == (
-    const long_t a_cliValue
+    const long_t &a_cliValue
 ) const
 {
     return (_m_liValue == a_cliValue);
@@ -136,7 +136,7 @@ CxAtomicLongInt::operator != (
 //---------------------------------------------------------------------------
 bool
 CxAtomicLongInt::operator != (
-    const long_t a_cliValue
+    const long_t &a_cliValue
 ) const
 {
     return (_m_liValue != a_cliValue);
