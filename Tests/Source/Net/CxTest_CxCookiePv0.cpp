@@ -42,38 +42,38 @@ CxTest_CxCookiePv0::bUnit(
     {
         CxCookiePv0 ckCookiePv0;
 
-        m_bRv = ckCookiePv0.bSetName(csName);
-        xTEST_EQ(true, m_bRv);
+        ckCookiePv0.vSetName(csName);
+
         m_sRv = ckCookiePv0.sGetName();
         xTEST_EQ(csName, m_sRv);
 
-        m_bRv = ckCookiePv0.bSetValue(csValue);
-        xTEST_EQ(true, m_bRv);
+        ckCookiePv0.vSetValue(csValue);
+
         m_sRv = ckCookiePv0.sGetValue();
         xTEST_EQ(csValue, m_sRv);
 
-        m_bRv = ckCookiePv0.bSetDomain(csDomain);
-        xTEST_EQ(true, m_bRv);
+        ckCookiePv0.vSetDomain(csDomain);
+
         m_sRv = ckCookiePv0.sGetDomain();
         xTEST_EQ(csDomain, m_sRv);
 
-        m_bRv = ckCookiePv0.bSetPath(csPath);
-        xTEST_EQ(true, m_bRv);
+        ckCookiePv0.vSetPath(csPath);
+
         m_sRv = ckCookiePv0.sGetPath();
         xTEST_EQ(csPath, m_sRv);
 
-        m_bRv = ckCookiePv0.bSetExpires(csExpires);
-        xTEST_EQ(true, m_bRv);
+        ckCookiePv0.vSetExpires(csExpires);
+  
         m_sRv = ckCookiePv0.sGetExpires();
         xTEST_EQ(csExpires, m_sRv);
 
-        m_bRv = ckCookiePv0.bSetSecure(cbSecure);
-        xTEST_EQ(true, m_bRv);
+        ckCookiePv0.vSetSecure(cbSecure);
+
         m_bRv = ckCookiePv0.bGetSecure();
         xTEST_EQ(cbSecure, m_bRv);
 
-        m_bRv = ckCookiePv0.bSetHttpOnly(cbHttpOnly);
-        xTEST_EQ(true, m_bRv);
+        ckCookiePv0.vSetHttpOnly(cbHttpOnly);
+
         m_bRv = ckCookiePv0.bGetHttpOnly();
         xTEST_EQ(cbHttpOnly, m_bRv);
 
@@ -86,8 +86,7 @@ CxTest_CxCookiePv0::bUnit(
             xTEST_EQ(ckCookiePv0.sToString() , _ckCookiePv0.sToString());
         }
 
-        m_bRv = ckCookiePv0.bClear();
-        xTEST_EQ(true, m_bRv);
+        ckCookiePv0.vClear();
     }
 
     //--------------------------------------------------
@@ -120,8 +119,7 @@ CxTest_CxCookiePv0::bUnit(
         m_sRv = ckCookiePv0.sToString();
         xTEST_EQ(csRawCookie, m_sRv);
 
-        m_bRv = ckCookiePv0.bClear();
-        xTEST_EQ(true, m_bRv);
+        ckCookiePv0.vClear();
     }
 
     return true;
