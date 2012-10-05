@@ -66,8 +66,7 @@ CxPop3::bConnect() {
      //Parse domain
      std::tstring_t sIp;
 
-     bRv = CxDnsClient::bGetHostAddrByName(_m_sServer, &sIp);
-     xCHECK_RET(false == bRv, false);
+     CxDnsClient::vGetHostAddrByName(_m_sServer, &sIp);
 
      //-------------------------------------
      //Connect

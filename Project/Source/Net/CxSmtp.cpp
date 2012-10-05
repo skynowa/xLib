@@ -74,8 +74,7 @@ CxSmtp::bConnect() {
     //������ �����
     std::string sIpAddr;
 
-    bRv = CxDnsClient::bGetHostAddrByName(_m_sServer, &sIpAddr);
-    xCHECK_RET(false == bRv, false);
+    CxDnsClient::vGetHostAddrByName(_m_sServer, &sIpAddr);
 
     //-------------------------------------
     //�����������

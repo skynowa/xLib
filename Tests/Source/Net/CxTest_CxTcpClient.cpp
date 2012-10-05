@@ -52,8 +52,7 @@ CxTest_CxTcpClient::bUnit(
 
     //-------------------------------------
     //bDnsParse
-    m_bRv = CxDnsClient::bGetHostAddrByName(csDomain, &sIp);
-    xTEST_EQ(true, m_bRv);
+    CxDnsClient::vGetHostAddrByName(csDomain, &sIp);
 
     //-------------------------------------
     //bConnect

@@ -34,8 +34,7 @@ CxTest_CxDnsClient::bUnit(
         std::tstring_t sHostName = xT("msdn.microsoft.com");
         std::tstring_t sHostAddr = xT("");
 
-        m_bRv = CxDnsClient::bGetHostAddrByName(sHostName, &sHostAddr);
-        xTEST_EQ(true, m_bRv);
+        CxDnsClient::vGetHostAddrByName(sHostName, &sHostAddr);
 
         //std::tcout << xT("[bGetHostAddrByName]: ") << sHostAddr << std::endl;
     }
@@ -46,8 +45,7 @@ CxTest_CxDnsClient::bUnit(
         std::tstring_t sHostName = xT("");
         std::tstring_t sHostAddr = xT("127.0.0.1");
 
-        m_bRv = CxDnsClient::bGetHostNameByAddr(sHostAddr, CxSocket::afInet, &sHostName);
-        xTEST_EQ(true, m_bRv);
+        CxDnsClient::vGetHostNameByAddr(sHostAddr, CxSocket::afInet, &sHostName);
 
         //std::tcout << xT("[bGetHostNameByAddr]: ") << sHostName << std::endl;
     }
@@ -57,8 +55,7 @@ CxTest_CxDnsClient::bUnit(
     {
         std::tstring_t sLocalHostName = xT("");
 
-        m_bRv = CxDnsClient::bGetLocalHostName(&sLocalHostName);
-        xTEST_EQ(true, m_bRv);
+        CxDnsClient::vGetLocalHostName(&sLocalHostName);
 
         //std::tcout << xT("[bGetLocalHostName]: ") << sLocalHostName << std::endl;
     }
@@ -85,8 +82,7 @@ CxTest_CxDnsClient::bUnit(
         ////addrinfo_t aiHints  = {0};
         addrinfo_t *paiList = NULL;
 
-        m_bRv = CxDnsClient::bGetHostAddrInfo(sHostName, sPort, NULL, &paiList);
-        xTEST_EQ(true, m_bRv);
+        CxDnsClient::vGetHostAddrInfo(sHostName, sPort, NULL, &paiList);
 
         //xSTD_COUT(xT("[bGetLocalHostName]: ") << sLocalHostName);
 
@@ -128,8 +124,7 @@ CxTest_CxDnsClient::bUnit(
             std::vec_tstring_t vsAliases;
             short_t            siNumber = - 1;
 
-            m_bRv = CxDnsClient::bGetProtocolByName(cszProtocolNames[i], &sName, &vsAliases, &siNumber);
-            xTEST_EQ(true, m_bRv);
+            CxDnsClient::vGetProtocolByName(cszProtocolNames[i], &sName, &vsAliases, &siNumber);
 
             //std::tcout << xT("[bGetProtocolByName]: ")             << std::endl;
             //std::tcout << xT("    sName:    ") << sName             << std::endl;
@@ -154,8 +149,7 @@ CxTest_CxDnsClient::bUnit(
             std::vec_tstring_t vsAliases;
             short_t            siNumber = - 1;
 
-            m_bRv = CxDnsClient::bGetProtocolByNumber(ciProtocolNumbers[i], &sName, &vsAliases, &siNumber);
-            xTEST_EQ(true, m_bRv);
+            CxDnsClient::vGetProtocolByNumber(ciProtocolNumbers[i], &sName, &vsAliases, &siNumber);
 
             //std::tcout << xT("[bGetProtocolByNumber]: ")           << std::endl;
             //std::tcout << xT("    sName:    ") << sName             << std::endl;;
@@ -178,8 +172,7 @@ CxTest_CxDnsClient::bUnit(
         short_t            siPort;
         std::tstring_t     sProtocolName;
 
-        m_bRv = CxDnsClient::bGetServiceByName(csServiceName, cszProtocolNames[3], &sName, &vsAliases, &siPort, &sProtocolName);
-        xTEST_EQ(true, m_bRv);
+        CxDnsClient::vGetServiceByName(csServiceName, cszProtocolNames[3], &sName, &vsAliases, &siPort, &sProtocolName);
 
         //std::tcout << xT("[bGetServiceByName]: ")                   << std::endl;
         //std::tcout << xT("    sName:         ") << sName             << std::endl;
@@ -203,8 +196,7 @@ CxTest_CxDnsClient::bUnit(
         short_t            siPort = - 1;
         std::tstring_t     sProtocolName;
 
-        m_bRv = CxDnsClient::bGetServiceByPort(csiPort, cszProtocolNames[3], &sName, &vsAliases, &siPort, &sProtocolName);
-        xTEST_EQ(true, m_bRv);
+        CxDnsClient::vGetServiceByPort(csiPort, cszProtocolNames[3], &sName, &vsAliases, &siPort, &sProtocolName);
 
         //std::tcout << xT("[bGetServiceByPort]: ") << std::endl;
         //std::tcout << xT("    sName:         ") << sName << std::endl;
@@ -231,8 +223,7 @@ CxTest_CxDnsClient::bUnit(
     {
         //TODO: m_bRv = CxDnsClient::bIsBroadcast(const ulong_t culIp);
     }
-
-
+    
     return true;
 }
 //---------------------------------------------------------------------------
