@@ -23,35 +23,32 @@ CxMimeMessage::~CxMimeMessage() {
 }
 //---------------------------------------------------------------------------
 /* static */
-bool
-CxMimeMessage::bParse(
+void
+CxMimeMessage::vParse(
     const std::tstring_t &a_csRawMessage,
     CxMimeHeader         &a_Header,
     CxMimeBody           &a_Body
 )
 {
-    //m_Header;
-    //m_Body;
-
-    return false;
+    xNOT_IMPLEMENTED;
 }
 //---------------------------------------------------------------------------
 /* static */
-bool
-CxMimeMessage::bLoadFromRawFile(
+void
+CxMimeMessage::vLoadFromRawFile(
     const std::tstring_t &a_csFilePath
 )
 {
-    return false;
+    xNOT_IMPLEMENTED;
 }
 //---------------------------------------------------------------------------
 /* static */
-bool
-CxMimeMessage::bSaveToRawFile(
+void
+CxMimeMessage::vSaveToRawFile(
     const std::tstring_t &a_csFilePath
 )
 {
-    return false;
+    xNOT_IMPLEMENTED;
 }
 //---------------------------------------------------------------------------
 
