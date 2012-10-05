@@ -62,8 +62,8 @@ CxIpcSemaphore::hGet() const {
     return _m_hHandle;
 }
 //---------------------------------------------------------------------------
-bool
-CxIpcSemaphore::bCreate(
+void
+CxIpcSemaphore::vCreate(
     const long_t         &a_cliInitialValue,
     const std::tstring_t &a_csName
 )
@@ -99,12 +99,10 @@ CxIpcSemaphore::bCreate(
     _m_hHandle = hHandle;
     _m_sName   = sUnixName;
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxIpcSemaphore::bOpen(
+void
+CxIpcSemaphore::vOpen(
     const std::tstring_t &a_csName
 )
 {
@@ -136,12 +134,10 @@ CxIpcSemaphore::bOpen(
     _m_hHandle = hHandle;
     _m_sName   = sUnixName;
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxIpcSemaphore::bPost() const {
+void
+CxIpcSemaphore::vPost() const {
     /*DEBUG*/xTEST_EQ(true, _bIsValid());
 
 #if   xOS_ENV_WIN
@@ -153,12 +149,10 @@ CxIpcSemaphore::bPost() const {
     int iRv = ::sem_post(_m_hHandle);
     /*DEBUG*/xTEST_DIFF(- 1, iRv);
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxIpcSemaphore::bWait(
+void
+CxIpcSemaphore::vWait(
     const ulong_t &a_culTimeoutMsec
 ) const
 {
@@ -223,8 +217,6 @@ CxIpcSemaphore::bWait(
         }
     }
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
 long_t
