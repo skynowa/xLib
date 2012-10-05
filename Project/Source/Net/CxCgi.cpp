@@ -744,7 +744,7 @@ CxCgiCookies::CxCgiCookies(
 ):
     _m_ccgCgi(a_ccgCgi)
 {
-    _bInit();
+    _vInit();
 }
 //---------------------------------------------------------------------------
 /* virtual */
@@ -811,8 +811,8 @@ CxCgiCookies::sGetDump() const {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-bool
-CxCgiCookies::_bInit() {
+void
+CxCgiCookies::_vInit() {
     /*DEBUG*/
 
     std::tstring_t     sRawCookies = _m_ccgCgi.Environment.sGetHttpCookie();
@@ -829,8 +829,6 @@ CxCgiCookies::_bInit() {
     }
 
     std::swap(vecckCookies, Items);
-
-    return true;
 }
 //---------------------------------------------------------------------------
 
@@ -853,7 +851,7 @@ CxCgiFormData::CxCgiFormData(
     _m_cuiMaxData(a_cuiMaxSize),
     _m_ccgCgi    (a_ccgCgi)
 {
-    _bInit();
+    _vInit();
 }
 //---------------------------------------------------------------------------
 /* virtual */
@@ -889,8 +887,8 @@ CxCgiFormData::sGetDump() const {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-bool
-CxCgiFormData::_bInit() {
+void
+CxCgiFormData::_vInit() {
     /*DEBUG*/
 
     int iRv = _m_ccgCgi.Environment.rmGetRequestMethod();
@@ -920,8 +918,7 @@ CxCgiFormData::_bInit() {
                 }
                 /*DEBUG*/xTEST_LESS(size_t(0U), uiPostSize);
                 /*DEBUG*/xTEST_GR_EQ(_m_cuiMaxData, uiPostSize);  //secure
-                xCHECK_RET(_m_cuiMaxData <= uiPostSize, false);
-
+                xTEST_EQ(false, _m_cuiMaxData <= uiPostSize);
 
                 //read, parse data
                 CxFile       sfFile;
@@ -947,8 +944,6 @@ CxCgiFormData::_bInit() {
             }
             break;
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------
 
