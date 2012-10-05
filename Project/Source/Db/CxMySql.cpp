@@ -40,7 +40,7 @@ CxMySQLConnection::CxMySQLConnection() :
 CxMySQLConnection::~CxMySQLConnection() {
     /*DEBUG*/
 
-    (void)bClose();
+    vClose();
 }
 //---------------------------------------------------------------------------
 MYSQL *
@@ -57,10 +57,10 @@ CxMySQLConnection::bIsValid() const {
     return (NULL != _m_pmsConnection);
 }
 //---------------------------------------------------------------------------
-bool
-CxMySQLConnection::bOptions(
-    mysql_option  a_cmoOption,
-    const void   *a_cpvArg
+void
+CxMySQLConnection::vOptions(
+    const mysql_option &a_cmoOption,
+    const void         *a_cpvArg
 ) const
 {
     /*DEBUG*/xTEST_EQ(true, bIsValid());
@@ -73,8 +73,6 @@ CxMySQLConnection::bOptions(
     int iRv = ::mysql_options(_m_pmsConnection, a_cmoOption, a_cpvArg);
 #endif
     /*DEBUG*/xTEST_MSG_EQ(0, iRv, sGetLastErrorStr());
-
-    return true;
 }
 //----------------------------------------------------------------------------------------------------
 /* static */
@@ -84,9 +82,9 @@ CxMySQLConnection::bIsExists(
     const std::tstring_t &a_csUser,
     const std::tstring_t &a_csPassword,
     const std::tstring_t &a_csDb,
-    const uint_t          a_cuiPort,
+    const uint_t         &a_cuiPort,
     const std::tstring_t &a_csUnixSocket,
-    const ulong_t         a_culClientFlag
+    const ulong_t        &a_culClientFlag
 )
 {
     bool bRv = false;
@@ -97,16 +95,11 @@ CxMySQLConnection::bIsExists(
         bRv = conConn.bIsValid();
         xCHECK_RET(false == bRv, false);
 
-        bRv = conConn.bConnect(a_csHost, a_csUser, a_csPassword, xT(""), a_cuiPort, a_csUnixSocket, a_culClientFlag);
-        xCHECK_RET(false == bRv, false);
-
-        bRv = conConn.bQuery(
-                    xT("SELECT IF (EXISTS(SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '%s'), 'true', 'false')"),
-                    a_csDb.c_str());
-        /*DEBUG*/xTEST_EQ(true, bRv);
+        conConn.vConnect(a_csHost, a_csUser, a_csPassword, xT(""), a_cuiPort, a_csUnixSocket, a_culClientFlag);
+        conConn.vQuery(xT("SELECT IF (EXISTS(SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '%s'), 'true', 'false')"), 
+                       a_csDb.c_str());
     }
-
-
+    
     CxMySQLRecordset recRec(conConn, false);
 
     {
@@ -116,8 +109,7 @@ CxMySQLConnection::bIsExists(
 
         std::vec_tstring_t vsRow;
 
-        bRv = recRec.bFetchRow(&vsRow);
-        /*DEBUG*/xTEST_EQ(true, bRv);
+        recRec.vFetchRow(&vsRow);
         /*DEBUG*/xTEST_EQ(static_cast<size_t>( 1U ), vsRow.size());
 
         xCHECK_RET(true == CxString::bCompareNoCase(xT("false"), vsRow.at(0)), false);
@@ -128,15 +120,15 @@ CxMySQLConnection::bIsExists(
     return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxMySQLConnection::bConnect(
+void
+CxMySQLConnection::vConnect(
     const std::tstring_t &a_csHost,
     const std::tstring_t &a_csUser,
     const std::tstring_t &a_csPassword,
     const std::tstring_t &a_csDb,
-    const uint_t          a_cuiPort,
+    const uint_t         &a_cuiPort,
     const std::tstring_t &a_csUnixSocket,
-    const ulong_t         a_culClientFlag
+    const ulong_t        &a_culClientFlag
 )
 {
     /*DEBUG*/xTEST_EQ(true, bIsValid());
@@ -154,12 +146,10 @@ CxMySQLConnection::bConnect(
     /*DEBUG*/xTEST_MSG_EQ(_m_pmsConnection, pmsConnection, sGetLastErrorStr());
 
     _m_pmsConnection = pmsConnection;
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxMySQLConnection::bQuery(
+void
+CxMySQLConnection::vQuery(
     const tchar_t *a_pcszSqlFormat, ...
 ) const
 {
@@ -175,8 +165,6 @@ CxMySQLConnection::bQuery(
 
     int iRv = ::mysql_real_query(_m_pmsConnection, csSqlQuery.data(), static_cast<ulong_t>( csSqlQuery.size() ));
     /*DEBUG*/xTEST_MSG_EQ(0, iRv, sGetLastErrorStr());
-
-    return true;
 }
 //---------------------------------------------------------------------------
 uint_t
@@ -189,8 +177,8 @@ CxMySQLConnection::uiFieldCount() const {
     return uiRes;
 }
 //---------------------------------------------------------------------------
-bool
-CxMySQLConnection::bClose() {
+void
+CxMySQLConnection::vClose() {
     /*DEBUG*/// _m_pmsConnection - n/a
 
     if (false != bIsValid()) {
@@ -198,8 +186,6 @@ CxMySQLConnection::bClose() {
 
         _m_pmsConnection = NULL;
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------
 
@@ -250,7 +236,7 @@ CxMySQLConnection::sGetLastErrorStr() const {
 //---------------------------------------------------------------------------
 CxMySQLRecordset::CxMySQLRecordset(
     const CxMySQLConnection &a_cmcConnection, ///< connection
-    const bool               a_cbIsUseResult  ///< use result or store result
+    const bool              &a_cbIsUseResult  ///< use result or store result
 ) :
     _m_pcmcConnection(&a_cmcConnection),
     _m_pmrResult     (NULL)
@@ -316,8 +302,8 @@ CxMySQLRecordset::ullRowsNum() const {
     return ullRv;
 }
 //---------------------------------------------------------------------------
-bool
-CxMySQLRecordset::bFetchField(
+void
+CxMySQLRecordset::vFetchField(
     MYSQL_FIELD *a_pmfField
 ) const
 {
@@ -326,13 +312,11 @@ CxMySQLRecordset::bFetchField(
 
     a_pmfField = ::mysql_fetch_field(_m_pmrResult);
     /*DEBUG*/xTEST_MSG_PTR(a_pmfField, _m_pcmcConnection->sGetLastErrorStr());
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxMySQLRecordset::bFetchFieldDirect(
-    const uint_t  a_cuiFieldNumber,
+void
+CxMySQLRecordset::vFetchFieldDirect(
+    const uint_t &a_cuiFieldNumber,
     MYSQL_FIELD  *a_pmfField
 ) const
 {
@@ -342,12 +326,10 @@ CxMySQLRecordset::bFetchFieldDirect(
 
     a_pmfField = ::mysql_fetch_field_direct(_m_pmrResult, a_cuiFieldNumber);
     /*DEBUG*/xTEST_MSG_PTR(a_pmfField, _m_pcmcConnection->sGetLastErrorStr());
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxMySQLRecordset::bFetchFields(
+void
+CxMySQLRecordset::vFetchFields(
     MYSQL_FIELD *a_pmfField
 ) const
 {
@@ -356,12 +338,10 @@ CxMySQLRecordset::bFetchFields(
 
     a_pmfField = ::mysql_fetch_fields(_m_pmrResult);
     /*DEBUG*/xTEST_MSG_PTR(a_pmfField, _m_pcmcConnection->sGetLastErrorStr());
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxMySQLRecordset::bFetchRow(
+void
+CxMySQLRecordset::vFetchRow(
     std::vec_tstring_t *a_pvsRow
 ) const
 {
@@ -385,12 +365,10 @@ CxMySQLRecordset::bFetchRow(
     uiFieldsNum   = _m_pcmcConnection->uiFieldCount();
 
     //fetch row
-    bool bRv = _bFetchRow(&mrRow);
-    xCHECK_RET(false == bRv, true);
+    _vFetchRow(&mrRow);
 
     //field lengths
-    bRv = _bFetchLengths(&pulFieldLengths);
-    xTEST_EQ(true, bRv);
+    _vFetchLengths(&pulFieldLengths);
     xTEST_PTR(pulFieldLengths);
 
     //push to std::vector
@@ -405,8 +383,6 @@ CxMySQLRecordset::bFetchRow(
 
         (*a_pvsRow).push_back(sField);
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------
 
@@ -417,8 +393,8 @@ CxMySQLRecordset::bFetchRow(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-bool
-CxMySQLRecordset::_bFetchRow(
+void
+CxMySQLRecordset::_vFetchRow(
     MYSQL_ROW *a_pmrRow
 ) const
 {
@@ -427,13 +403,11 @@ CxMySQLRecordset::_bFetchRow(
 
     *a_pmrRow = ::mysql_fetch_row(_m_pmrResult);
     /*DEBUG*/// n/a
-    xCHECK_RET(NULL == *a_pmrRow, false);
-
-    return true;
+    xTEST_PTR(*a_pmrRow);
 }
 //---------------------------------------------------------------------------
-bool
-CxMySQLRecordset::_bFetchLengths(
+void
+CxMySQLRecordset::_vFetchLengths(
     ulong_t **a_ppulFieldLengths
 ) const
 {
@@ -442,8 +416,6 @@ CxMySQLRecordset::_bFetchLengths(
 
     *a_ppulFieldLengths = ::mysql_fetch_lengths(_m_pmrResult);
     /*DEBUG*/xTEST_MSG_PTR(*a_ppulFieldLengths, _m_pcmcConnection->sGetLastErrorStr());
-
-    return true;
 }
 //---------------------------------------------------------------------------
 
