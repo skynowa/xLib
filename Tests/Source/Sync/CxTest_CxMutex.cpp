@@ -31,16 +31,12 @@ CxTest_CxMutex::bUnit(
     {
         CxMutex csCS;
 
-        m_bRv = csCS.bCreate();
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = csCS.bLock();
-        xTEST_EQ(true, m_bRv);
+        csCS.vCreate();
+        csCS.vLock();
 
         ++ uiVal;
 
-        m_bRv = csCS.bUnlock();
-        xTEST_EQ(true, m_bRv);
+        csCS.vUnlock();
     }
 
     //--------------------------------------------------
@@ -49,16 +45,14 @@ CxTest_CxMutex::bUnit(
     {
         CxMutex csCS;
 
-        m_bRv = csCS.bCreate();
-        xTEST_EQ(true, m_bRv);
+        csCS.vCreate();
 
         m_bRv = csCS.bTryLock();
         xTEST_EQ(true, m_bRv);
 
         ++ uiVal;
 
-        m_bRv = csCS.bUnlock();
-        xTEST_EQ(true, m_bRv);
+        csCS.vUnlock();
     }
 
     //--------------------------------------------------
@@ -69,19 +63,16 @@ CxTest_CxMutex::bUnit(
 
         const size_t cuiLocks = 10;
 
-        m_bRv = csCS.bCreate();
-        xTEST_EQ(true, m_bRv);
+        csCS.vCreate();
 
         for (size_t i = 0; i < cuiLocks; ++ i) {
-            m_bRv = csCS.bLock();
-            xTEST_EQ(true, m_bRv);
+            csCS.vLock();
         }
 
         ++ uiVal;
 
         for (size_t i = 0; i < cuiLocks; ++ i) {
-            m_bRv = csCS.bUnlock();
-            xTEST_EQ(true, m_bRv);
+            csCS.vUnlock();
         }
     }
 
@@ -93,8 +84,7 @@ CxTest_CxMutex::bUnit(
 
         const size_t cuiLocks = 10;
 
-        m_bRv = csCS.bCreate();
-        xTEST_EQ(true, m_bRv);
+        csCS.vCreate();
 
         for (size_t i = 0; i < cuiLocks; ++ i) {
             m_bRv = csCS.bTryLock();
@@ -104,8 +94,7 @@ CxTest_CxMutex::bUnit(
         ++ uiVal;
 
         for (size_t i = 0; i < cuiLocks; ++ i) {
-            m_bRv = csCS.bUnlock();
-            xTEST_EQ(true, m_bRv);
+            csCS.vUnlock();
         }
     }
 

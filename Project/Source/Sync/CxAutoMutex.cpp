@@ -25,26 +25,23 @@ CxAutoMutex::CxAutoMutex(
     _m_mtMutex  (a_mtMutex),
     _m_bIsLocked(false)
 {
-    bool bRv = false;
-
-    bRv = _m_mtMutex.bCreate();
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    _m_mtMutex.vCreate();
 
     if (false == a_cbIsUseTry) {
-        bRv = _m_mtMutex.bLock();
-        /*DEBUG*/xTEST_EQ(true, bRv);
-    } else {
-        bRv = _m_mtMutex.bTryLock();
-        /*DEBUG*/// n/a
-    }
+        _m_mtMutex.vLock();
 
-    _m_bIsLocked = bRv;
+        _m_bIsLocked = true;
+    } else {
+        bool bRv = _m_mtMutex.bTryLock();
+        /*DEBUG*/// n/a
+
+        _m_bIsLocked = bRv;
+    }
 }
 //---------------------------------------------------------------------------
 CxAutoMutex::~CxAutoMutex() {
     if (false != _m_bIsLocked) {
-        bool bRv = _m_mtMutex.bUnlock();
-        /*DEBUG*/xTEST_EQ(true, bRv);
+        _m_mtMutex.vUnlock();
     }
 
     _m_bIsLocked = false;
