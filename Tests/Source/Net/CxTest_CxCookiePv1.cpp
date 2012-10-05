@@ -43,43 +43,43 @@ CxTest_CxCookiePv1::bUnit(
     {
         CxCookiePv1 ckCookiePv1;
 
-        m_bRv = ckCookiePv1.bSetName(csName);
-        xTEST_EQ(true, m_bRv);
+        ckCookiePv1.vSetName(csName);
+
         m_sRv = ckCookiePv1.sGetName();
         xTEST_EQ(csName, m_sRv);
 
-        m_bRv = ckCookiePv1.bSetValue(csValue);
-        xTEST_EQ(true, m_bRv);
+        ckCookiePv1.vSetValue(csValue);
+
         m_sRv = ckCookiePv1.sGetValue();
         xTEST_EQ(csValue, m_sRv);
 
-        m_bRv = ckCookiePv1.bSetComment(csComment);
-        xTEST_EQ(true, m_bRv);
+        ckCookiePv1.vSetComment(csComment);
+
         m_sRv = ckCookiePv1.sGetComment();
         xTEST_EQ(csComment, m_sRv);
 
-        m_bRv = ckCookiePv1.bSetDomain(csDomain);
-        xTEST_EQ(true, m_bRv);
+        ckCookiePv1.vSetDomain(csDomain);
+
         m_sRv = ckCookiePv1.sGetDomain();
         xTEST_EQ(csDomain, m_sRv);
 
-        m_bRv = ckCookiePv1.bSetPath(csPath);
-        xTEST_EQ(true, m_bRv);
+        ckCookiePv1.vSetPath(csPath);
+
         m_sRv = ckCookiePv1.sGetPath();
         xTEST_EQ(csPath, m_sRv);
 
-        m_bRv = ckCookiePv1.bSetMaxAge(ciMaxAge);
-        xTEST_EQ(true, m_bRv);
+        ckCookiePv1.vSetMaxAge(ciMaxAge);
+
         m_llRv = ckCookiePv1.liGetMaxAge();
         xTEST_EQ(ciMaxAge, m_llRv);
 
-        m_bRv = ckCookiePv1.bSetSecure(cbSecure);
-        xTEST_EQ(true, m_bRv);
+        ckCookiePv1.vSetSecure(cbSecure);
+
         m_bRv = ckCookiePv1.bGetSecure();
         xTEST_EQ(cbSecure, m_bRv);
 
-        m_bRv = ckCookiePv1.bSetHttpOnly(cbHttpOnly);
-        xTEST_EQ(true, m_bRv);
+         ckCookiePv1.vSetHttpOnly(cbHttpOnly);
+
         m_bRv = ckCookiePv1.bGetHttpOnly();
         xTEST_EQ(cbHttpOnly, m_bRv);
 
@@ -92,8 +92,7 @@ CxTest_CxCookiePv1::bUnit(
             xTEST_EQ(ckCookiePv1.sToString() , _ckCookiePv0.sToString());
         }
 
-        m_bRv = ckCookiePv1.bClear();
-        xTEST_EQ(true, m_bRv);
+        ckCookiePv1.vClear();
     }
 
     //--------------------------------------------------
@@ -129,8 +128,7 @@ CxTest_CxCookiePv1::bUnit(
         m_sRv = ckCookiePv1.sToString();
         xTEST_EQ(csRawCookie, m_sRv);
 
-        m_bRv = ckCookiePv1.bClear();
-        xTEST_EQ(true, m_bRv);
+        ckCookiePv1.vClear();
     }
 
     return true;
