@@ -391,6 +391,7 @@
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxSemaphore.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxSleeper.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxThread.h" />
+    <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxThreadPool.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxThreadStorage.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxWaitableTimer.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\Win\CxTest_CxCompletionPort.h" />
@@ -576,6 +577,7 @@
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxSemaphore.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxSleeper.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxThread.cpp" />
+    <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxThreadPool.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxThreadStorage.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxWaitableTimer.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Sync\Win\CxTest_CxCompletionPort.cpp" />
