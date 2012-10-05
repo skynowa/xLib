@@ -35,17 +35,17 @@ class CxMySQLConnection :
             ///< get handle
         bool                     bIsValid         () const;
             ///< validating handle
-        bool                     bOptions         (const mysql_option cmoOption, const void *cpvArg) const;
+        void                     vOptions         (const mysql_option &cmoOption, const void *cpvArg) const;
             ///< set extra connect options and affect behavior
-        static bool              bIsExists        (const std::tstring_t &csHost, const std::tstring_t &csUser, const std::tstring_t &csPassword, const std::tstring_t &csDb, const uint_t cuiPort, const std::tstring_t &csUnixSocket, const ulong_t culClientFlag);
+        static bool              bIsExists        (const std::tstring_t &csHost, const std::tstring_t &csUser, const std::tstring_t &csPassword, const std::tstring_t &csDb, const uint_t &cuiPort, const std::tstring_t &csUnixSocket, const ulong_t &culClientFlag);
             ///<
-        bool                     bConnect         (const std::tstring_t &csHost, const std::tstring_t &csUser, const std::tstring_t &csPassword, const std::tstring_t &csDb, const uint_t cuiPort, const std::tstring_t &csUnixSocket, const ulong_t culClientFlag);
+        void                     vConnect         (const std::tstring_t &csHost, const std::tstring_t &csUser, const std::tstring_t &csPassword, const std::tstring_t &csDb, const uint_t &cuiPort, const std::tstring_t &csUnixSocket, const ulong_t &culClientFlag);
             ///< attempts to establish a connection to a MySQL database engine running on host
-        bool                     bQuery           (const tchar_t *pcszSqlFormat, ...) const;
+        void                     vQuery           (const tchar_t *pcszSqlFormat, ...) const;
             ///< executes the SQL statement
         uint_t                   uiFieldCount     () const;
             ///< number of columns in a result set
-        bool                     bClose           ();
+        void                     vClose           ();
             ///< closes a previously opened connection
 
         //errors
@@ -68,7 +68,7 @@ class CxMySQLRecordset :
     /// MySQL recordset
 {
     public:
-                                 CxMySQLRecordset (const CxMySQLConnection &cmsConnection, const bool cbIsUseResult);
+                                 CxMySQLRecordset (const CxMySQLConnection &cmsConnection, const bool &cbIsUseResult);
             ///< constructor
         virtual                 ~CxMySQLRecordset ();
             ///< destructor
@@ -82,13 +82,13 @@ class CxMySQLRecordset :
             ///< number of columns in a result set
         my_ulonglong             ullRowsNum       () const;
             ///< number of rows in the result set
-        bool                     bFetchField      (MYSQL_FIELD *pmfField) const;
+        void                     vFetchField      (MYSQL_FIELD *pmfField) const;
             ///< The MYSQL_FIELD structure for the current column
-        bool                     bFetchFieldDirect(const uint_t cuiFieldNumber, MYSQL_FIELD *pmfField) const;
+        void                     vFetchFieldDirect(const uint_t &cuiFieldNumber, MYSQL_FIELD *pmfField) const;
             ///< The MYSQL_FIELD structure for the specified column
-        bool                     bFetchFields     (MYSQL_FIELD *pmfField) const;
+        void                     vFetchFields     (MYSQL_FIELD *pmfField) const;
             ///< An array of MYSQL_FIELD structures for all columns of a result set
-        bool                     bFetchRow        (std::vec_tstring_t *pvsRow) const;
+        void                     vFetchRow        (std::vec_tstring_t *pvsRow) const;
             ///< fetching row
 
     private:
@@ -97,9 +97,9 @@ class CxMySQLRecordset :
         MYSQL_RES               *_m_pmrResult;
             ///< for private use
 
-        bool                     _bFetchLengths   (ulong_t **ppulFieldLengths) const;
+        void                     _vFetchLengths   (ulong_t **ppulFieldLengths) const;
             ///< An array of unsigned long_t integers representing the size of each column
-        bool                     _bFetchRow       (MYSQL_ROW *pmrRow) const;
+        void                     _vFetchRow       (MYSQL_ROW *pmrRow) const;
             ///< A MYSQL_ROW structure for the next row
 };
 
