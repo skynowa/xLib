@@ -20,19 +20,19 @@ class CxAtomicLongInt :
         virtual          ~CxAtomicLongInt();
 
         CxAtomicLongInt & operator +=    (const CxAtomicLongInt &calValue);
-        CxAtomicLongInt & operator +=    (const long_t cliRight);
+        CxAtomicLongInt & operator +=    (const long_t &cliRight);
 
         CxAtomicLongInt & operator -=    (const CxAtomicLongInt &calValue);
-        CxAtomicLongInt & operator -=    (const long_t cliRight);
+        CxAtomicLongInt & operator -=    (const long_t &cliRight);
 
         CxAtomicLongInt & operator =     (const CxAtomicLongInt &calValue);
-        CxAtomicLongInt & operator =     (const long_t cliRight);
+        CxAtomicLongInt & operator =     (const long_t &cliRight);
 
         bool              operator ==    (const CxAtomicLongInt &calValue) const ;
-        bool              operator ==    (const long_t cliRight) const ;
+        bool              operator ==    (const long_t &cliRight) const ;
 
         bool              operator !=    (const CxAtomicLongInt &calValue) const ;
-        bool              operator !=    (const long_t cliRight) const ;
+        bool              operator !=    (const long_t &cliRight) const ;
 
         bool              operator <     (const long_t &cliValue) const;
         bool              operator <     (const CxAtomicLongInt &calValue) const;
