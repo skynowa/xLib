@@ -284,12 +284,10 @@ CxDir::vCopy(
     //sets attr "normal"
     bool bRv = bIsExists(csDirPathTo);
     if (true == bRv) {
-        bRv = CxFileAttribute::bSet(csDirPathTo, CxFileAttribute::faNormal);
-        /*DEBUG*/xTEST_EQ(true, bRv);
+        CxFileAttribute::vSet(csDirPathTo, CxFileAttribute::faNormal);
     }
 
-    bRv = CxFileAttribute::bSet(csDirPathFrom, CxFileAttribute::faNormal);
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    CxFileAttribute::vSet(csDirPathFrom, CxFileAttribute::faNormal);
 
     //--------------------------------------------------
     //get lists of files
@@ -345,8 +343,7 @@ CxDir::vDelete(
     bool bRv = bIsExists(csDirPath);
     xCHECK_DO(false == bRv, return);
 
-    bRv = CxFileAttribute::bSet(csDirPath, CxFileAttribute::faNormal);
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    CxFileAttribute::vSet(csDirPath, CxFileAttribute::faNormal);
 
 #if   xOS_ENV_WIN
     BOOL blRes = ::RemoveDirectory(csDirPath.c_str());

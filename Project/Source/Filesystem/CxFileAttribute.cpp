@@ -19,7 +19,7 @@ xNAMESPACE_BEGIN(NxLib)
 bool
 CxFileAttribute::bIsExists(
     const std::tstring_t &csFilePath,
-    const ExAttribute     cfaValue
+    const ExAttribute    &cfaValue
 )
 {
     /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
@@ -65,10 +65,10 @@ CxFileAttribute::atGet(
 }
 //---------------------------------------------------------------------------
 /* static */
-bool
-CxFileAttribute::bSet(
+void
+CxFileAttribute::vSet(
     const std::tstring_t &csFilePath,
-    const ExAttribute      cfaValue
+    const ExAttribute    &cfaValue
 )
 {
     /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
@@ -81,42 +81,40 @@ CxFileAttribute::bSet(
     int iRv = ::xTCHMOD(csFilePath.c_str(), static_cast<mode_t>( cfaValue ));
     /*DEBUG*/xTEST_DIFF(- 1, iRv);
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
 /* static */
-bool
-CxFileAttribute::bAdd(
+void
+CxFileAttribute::vAdd(
     const std::tstring_t &csFilePath,
-    const ExAttribute     cfaValue
+    const ExAttribute    &cfaValue
 )
 {
     /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
     /*DEBUG*/// cfaValue
 
-    return bModify(csFilePath, static_cast<ExAttribute>( 0 ), cfaValue);
+    vModify(csFilePath, static_cast<ExAttribute>( 0 ), cfaValue);
 }
 //---------------------------------------------------------------------------
 /* static */
-bool
-CxFileAttribute::bRemove(
+void
+CxFileAttribute::vRemove(
     const std::tstring_t &csFilePath,
-    const ExAttribute     cfaValue
+    const ExAttribute    &cfaValue
 )
 {
     /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
     /*DEBUG*/// cfaValue
 
-    return bModify(csFilePath, cfaValue, static_cast<ExAttribute>( 0 ));
+    vModify(csFilePath, cfaValue, static_cast<ExAttribute>( 0 ));
 }
 //---------------------------------------------------------------------------
 /* static */
-bool
-CxFileAttribute::bModify(
+void
+CxFileAttribute::vModify(
     const std::tstring_t &csFilePath,
-    const ExAttribute     cfaRemoveValue,
-    const ExAttribute     cfaAddValue
+    const ExAttribute    &cfaRemoveValue,
+    const ExAttribute    &cfaAddValue
 )
 {
     /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
@@ -131,21 +129,18 @@ CxFileAttribute::bModify(
     cfaValue = static_cast<ExAttribute>( static_cast<ulong_t>( cfaValue ) |  cfaAddValue    );
 
     // change the attributes
-    bool bRv = bSet(csFilePath, cfaValue);
-    /*DEBUG*/xTEST_EQ(true, bRv);
-
-    return true;
+    vSet(csFilePath, cfaValue);
 }
 //---------------------------------------------------------------------------
 /* static */
-bool
-CxFileAttribute::bClear(
+void
+CxFileAttribute::vClear(
     const std::tstring_t &csFilePath
 )
 {
     /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
 
-    return bSet(csFilePath, faNormal);
+    vSet(csFilePath, faNormal);
 }
 //---------------------------------------------------------------------------
 

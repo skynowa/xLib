@@ -50,19 +50,19 @@ class CxFileAttribute :
             #endif
         };
 
-        static bool        bIsExists      (const std::tstring_t &csFilePath, const ExAttribute cfaValue);
+        static bool        bIsExists      (const std::tstring_t &csFilePath, const ExAttribute &cfaValue);
             ///< is exists
         static ExAttribute atGet          (const std::tstring_t &csFilePath);
             ///< get
-        static bool        bSet           (const std::tstring_t &csFilePath, const ExAttribute cfaValue);
+        static void        vSet           (const std::tstring_t &csFilePath, const ExAttribute &cfaValue);
             ///< set
-        static bool        bAdd           (const std::tstring_t &csFilePath, const ExAttribute cfaValue);
+        static void        vAdd           (const std::tstring_t &csFilePath, const ExAttribute &cfaValue);
             ///< add
-        static bool        bRemove        (const std::tstring_t &csFilePath, const ExAttribute cfaValue);
+        static void        vRemove        (const std::tstring_t &csFilePath, const ExAttribute &cfaValue);
             ///< remove
-        static bool        bModify        (const std::tstring_t &csFilePath, const ExAttribute cfaRemoveValue, const ExAttribute cfaAddValue);
+        static void        vModify        (const std::tstring_t &csFilePath, const ExAttribute &cfaRemoveValue, const ExAttribute &cfaAddValue);
             ///< modify
-        static bool        bClear         (const std::tstring_t &csFilePath);
+        static void        vClear         (const std::tstring_t &csFilePath);
             ///< clear (set normal attributes)
 
     private:
