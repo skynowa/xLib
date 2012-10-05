@@ -36,8 +36,7 @@ CxTest_CxEnvironment::bUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            m_bRv = CxEnvironment::bSetVar(sData[i][0], sData[i][1]);
-            xTEST_EQ(true, m_bRv);
+            CxEnvironment::vSetVar(sData[i][0], sData[i][1]);
         }
     }
 
@@ -166,8 +165,7 @@ CxTest_CxEnvironment::bUnit(
     //bGetValues
     xTEST_CASE(cullCaseLoops)
     {
-        m_bRv = CxEnvironment::bGetValues(&m_vsRv);
-        xTEST_EQ(true, m_bRv);
+        CxEnvironment::vGetValues(&m_vsRv);
         xTEST_EQ(false, m_vsRv.empty());
 
         ////CxString::vStdVectorPrintT(m_vsRv);
@@ -210,9 +208,8 @@ CxTest_CxEnvironment::bUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            bool bStr1 = CxEnvironment::bDeleteVar(sData[i][0]);
-            xTEST_EQ(true, bStr1);
-        }
+            CxEnvironment::vDeleteVar(sData[i][0]);
+          }
     }
 
     return true;

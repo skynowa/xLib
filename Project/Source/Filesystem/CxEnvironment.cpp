@@ -113,8 +113,8 @@ CxEnvironment::sGetVar(
 }
 //--------------------------------------------------------------------------
 /* static */
-bool
-CxEnvironment::bSetVar(
+void
+CxEnvironment::vSetVar(
     const std::tstring_t &csVarName,
     const std::tstring_t &csValue
 )
@@ -129,18 +129,16 @@ CxEnvironment::bSetVar(
     int iRv = ::setenv(csVarName.c_str(), csValue.c_str(), true);
     /*DEBUG*/xTEST_DIFF(- 1, iRv);
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
 /* static */
-bool
-CxEnvironment::bDeleteVar(
+void
+CxEnvironment::vDeleteVar(
     const std::tstring_t &csVarName
 )
 {
     /*DEBUG*/// n/a
-    xCHECK_RET(false == bIsExists(csVarName), true);
+    xCHECK_DO(false == bIsExists(csVarName), return);
 
 #if   xOS_ENV_WIN
     BOOL blRes = ::SetEnvironmentVariable(csVarName.c_str(), NULL);
@@ -153,13 +151,11 @@ CxEnvironment::bDeleteVar(
         (void)::unsetenv(csVarName.c_str());
     #endif
 #endif
-
-    return true;
 }
 //--------------------------------------------------------------------------
 /* static */
-bool
-CxEnvironment::bGetValues(
+void
+CxEnvironment::vGetValues(
     std::vec_tstring_t *pvsValues
 )
 {
@@ -194,8 +190,6 @@ CxEnvironment::bGetValues(
 
     //out
     std::swap(*pvsValues, vsArgs);
-
-    return true;
 }
 //--------------------------------------------------------------------------
 /* static */
