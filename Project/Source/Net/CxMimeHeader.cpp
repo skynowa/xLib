@@ -21,8 +21,6 @@ const std::tstring_t CxMimeHeader::_ms_csEndOfLine     = xT("\r\n");
 //---------------------------------------------------------------------------
 //DONE: CxMimeHeader
 CxMimeHeader::CxMimeHeader() :
-    _m_bRes     (false),
-    _m_sRes     (),
     _m_mmsHeader()
 {
 }
@@ -34,8 +32,8 @@ CxMimeHeader::~CxMimeHeader () {
 }
 //---------------------------------------------------------------------------
 //DONE: bParse (��������� ��������� ������� "TOP 10 0" �� ��������, ��������)
-bool
-CxMimeHeader::bParse(
+void
+CxMimeHeader::vParse(
     const std::tstring_t &a_csRawHeader
 )
 {
@@ -121,8 +119,6 @@ CxMimeHeader::bParse(
         _m_mmsHeader.insert(std::pair<std::tstring_t, std::tstring_t>(sKey, sValue));
     }
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
 //DONE: sGetField
@@ -195,8 +191,8 @@ CxMimeHeader::uiCount() {
     }
 #endif
 
-bool
-CxMimeHeader::bLoadFromFile(
+void
+CxMimeHeader::vLoadFromFile(
     const std::tstring_t &a_csRawMessageFilePath
 )
 {
@@ -231,20 +227,16 @@ CxMimeHeader::bLoadFromFile(
 
     //-------------------------------------
     //����������
-    _m_bRes = bParse(sRawHeader);
-
-    return _m_bRes;
+    vParse(sRawHeader);
 }
 //---------------------------------------------------------------------------
 //TODO: bSaveToFile
-bool
-CxMimeHeader::bSaveToFile(
+void
+CxMimeHeader::vSaveToFile(
     const std::tstring_t &a_csFilePath
 )
 {
-    //_m_mmsHeader
-
-    return true;
+    xNOT_IMPLEMENTED;
 }
 //---------------------------------------------------------------------------
 //TODO: sGenerateMessageID (������� Message-ID ��� "<", ">")

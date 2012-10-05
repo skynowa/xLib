@@ -427,7 +427,7 @@ CxPop3::bRetrieveHeader(int a_iNum, CxMimeHeader &a_mhMimeHeader) {
 
     //-------------------------------------
     //������ �����
-    a_mhMimeHeader.bParse(_m_sRes);
+    a_mhMimeHeader.vParse(_m_sRes);
 
     return true;
 }
