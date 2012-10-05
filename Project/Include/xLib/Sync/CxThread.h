@@ -58,17 +58,17 @@ class CxThread :
             ///< destructor
 
         // actions
-        bool                 bCreate              (const bool &cbIsPaused, const uint_t &cuiStackSize, void *pvParam);
+        void                 vCreate              (const bool &cbIsPaused, const uint_t &cuiStackSize, void *pvParam);
             ///< start
-        bool                 bResume              ();
+        void                 vResume              ();
             ///< resume
-        bool                 bPause               ();
+        void                 vPause               ();
             ///< pause
-        bool                 bExit                ();
+        void                 vExit                ();
             ///< exit (set flag "exit")
-        bool                 bKill                (const ulong_t &culTimeout);
+        void                 vKill                (const ulong_t &culTimeout);
             ///< kill
-        bool                 bWait                (const ulong_t &culTimeout) const;
+        void                 vWait                (const ulong_t &culTimeout) const;
             ///< wait
 
         // flags
@@ -83,40 +83,40 @@ class CxThread :
 
     #if   xOS_ENV_WIN
         // messages
-        bool                 bPostMessage         (HWND hHwnd, uint_t uiMsg, uint_t uiParam1, long_t liParam2) const;
+        void                 vPostMessage         (HWND hHwnd, uint_t uiMsg, uint_t uiParam1, long_t liParam2) const;
             ///< post message from thread to window
-        bool                 bSendMessage         (HWND hHwnd, uint_t uiMsg, uint_t uiParam1, long_t liParam2) const;
+        void                 vSendMessage         (HWND hHwnd, uint_t uiMsg, uint_t uiParam1, long_t liParam2) const;
             ///< send message from thread to window
-        bool                 bPostThreadMessage   (uint_t uiMsg, uint_t uiParam1, long_t liParam2) const;
+        void                 vPostThreadMessage   (uint_t uiMsg, uint_t uiParam1, long_t liParam2) const;
             ///< post message from thread to thread
         bool                 bTryPostThreadMessage(uint_t uiMsg, uint_t uiParam1, long_t liParam2, ulong_t ulAttemps, ulong_t ulAttempTimeout) const;
             ///< try post message from thread to thread
-        bool                 bMessageWaitQueue    (uint_t uiMsg, uint_t *puiParam1, long_t *pliParam2) const;
+        void                 vMessageWaitQueue    (uint_t uiMsg, uint_t *puiParam1, long_t *pliParam2) const;
             ///< waiting for message with params from other thread
-        bool                 bMessageWaitQueue    (const std::vector<uint_t> &cvuiMsg, uint_t *puiMsg, uint_t *puiParam1, long_t *pliParam2) const;
+        void                 vMessageWaitQueue    (const std::vector<uint_t> &cvuiMsg, uint_t *puiMsg, uint_t *puiParam1, long_t *pliParam2) const;
             ///< waiting for message with params from other thread
     #endif
 
         // priority
-        bool                 bSetPriority         (const ExPriority &ctpPriority) const;
+        void                 vSetPriority         (const ExPriority &ctpPriority) const;
             ///< set priority (under Linux must use admin privilege)
         ExPriority           tpGetPriority        () const;
             ///< get priotity
         std::tstring_t       sGetPriorityString   () const;
             ///< get priority as string
-        bool                 bPriorityUp          () const;
+        void                 vPriorityUp          () const;
             ///< increase priority on one level
-        bool                 bPriorityDown        () const;
+        void                 vPriorityDown        () const;
             ///< decrease priority on one level
         bool                 bIsPriorityBoost     () const;
             ///< get priority boost control state
-        bool                 bSetPriorityBoost    (const bool &cbIsEnabled) const;
+        void                 vSetPriorityBoost    (const bool &cbIsEnabled) const;
             ///< disables or enables the ability of the system to temporarily boost the priority of a thread
 
         // CPU
-        bool                 bSetCpuAffinity      (const int &ciProcNum) const;
+        void                 vSetCpuAffinity      (const int &ciProcNum) const;
             ///< set processor affinity
-        bool                 bSetCpuIdeal         (const ulong_t &culIdealCpu) const;
+        void                 vSetCpuIdeal         (const ulong_t &culIdealCpu) const;
             ///< sets preferred processor for a thread
         ulong_t              ulGetCpuIdeal        () const;
             ///< get current ideal processor without changing it
@@ -132,7 +132,7 @@ class CxThread :
             ///< is current
         ulong_t              ulGetExitStatus      () const;
             ///< get termination status
-        bool                 bSetDebugName        (const std::tstring_t &csName) const;
+        void                 vSetDebugName        (const std::tstring_t &csName) const;
             ///< set name your threads in the debugger thread list
 
         // static

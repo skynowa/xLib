@@ -63,13 +63,15 @@ CxThread::~CxThread() {
     // close thread, if it still running
     bool bRv = bIsRunning();
     if (true == bRv) {
-        bRv = bExit();
-        if (false == bRv) {
-            bRv = bKill(_ms_culExitTimeout);
-            if (false == bRv) {
-                /*DEBUG*/xTEST_FAIL;
-            }
-        }
+        vExit();
+
+        // TODO: CxThread::~CxThread()
+        //if (false == bRv) {
+        //    vKill(_ms_culExitTimeout);
+        //    if (false == bRv) {
+        //        /*DEBUG*/xTEST_FAIL;
+        //    }
+        //}
     }
 
     //-------------------------------------
@@ -85,8 +87,8 @@ CxThread::~CxThread() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-bool
-CxThread::bCreate(
+void
+CxThread::vCreate(
     const bool   &a_cbIsPaused,
     const uint_t &a_cuiStackSize,
     void         *a_pvParam
@@ -160,11 +162,9 @@ CxThread::bCreate(
         /*_m_bIsPaused*/// n/a
 
         if (false != a_cbIsPaused) {
-            bRv = bPause();
-            /*DEBUG*/xTEST_EQ(true, bRv);
+            vPause();
         } else {
-            bRv = bResume();
-            /*DEBUG*/xTEST_EQ(true, bRv);
+            vResume();
         }
 
         /*_m_bIsExited*/// n/a
@@ -173,12 +173,10 @@ CxThread::bCreate(
     //-------------------------------------
     // construction is complete, start job entry
     _m_pevStarter->vSet();
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxThread::bResume() {
+void
+CxThread::vResume() {
 #if   xOS_ENV_WIN
     /*DEBUG*/xTEST_EQ(true, _m_hThread.bIsValid());
 #elif xOS_ENV_UNIX
@@ -193,12 +191,10 @@ CxThread::bResume() {
     /*_m_bIsRunning*/// n/a
     /*_m_bIsPaused*///  n/a
     /*_m_bIsExited*///  n/a
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxThread::bPause() {
+void
+CxThread::vPause() {
 #if   xOS_ENV_WIN
     /*DEBUG*/xTEST_MSG_EQ(true, _m_hThread.bIsValid(), CxString::string_cast(_m_hThread.hGet()));
 #elif xOS_ENV_UNIX
@@ -213,12 +209,10 @@ CxThread::bPause() {
     /*_m_bIsRunning*/// n/a
     /*_m_bIsPaused*///  n/a
     /*_m_bIsExited*///  n/a
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxThread::bExit() {
+void
+CxThread::vExit() {
 #if   xOS_ENV_WIN
     /*DEBUG*/xTEST_EQ(true, _m_hThread.bIsValid());
 #elif xOS_ENV_UNIX
@@ -232,13 +226,12 @@ CxThread::bExit() {
     /*_m_bIsExited*///  n/a
     /*_m_bIsCreated*/// n/a
     /*_m_bIsRunning*/// n/a
-    /*_m_bIsPaused*/    xCHECK_DO(true == bIsPaused(), bResume()); //если поток приостановленный (bPause) - возобновляем
+    /*_m_bIsPaused*/    xCHECK_DO(true == bIsPaused(), vResume()); //если поток приостановленный (bPause) - возобновляем
                                                                    //если ожидает чего-то
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxThread::bKill(
+void
+CxThread::vKill(
     const ulong_t &a_culTimeout
 )
 {
@@ -284,12 +277,10 @@ CxThread::bKill(
     //-------------------------------------
     //flags
     _vSetStatesDefault();
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxThread::bWait(
+void
+CxThread::vWait(
     const ulong_t &a_culTimeout
 ) const
 {
@@ -302,7 +293,7 @@ CxThread::bWait(
     //?????????
 
     /*DEBUG*/xTEST_DIFF(CxCurrentThread::ulGetId(), _m_ulId);
-    xCHECK_RET(CxCurrentThread::ulGetId() == _m_ulId, true);
+    xCHECK_DO(CxCurrentThread::ulGetId() == _m_ulId, return);
 
     DWORD ulRv = ::WaitForSingleObject(_m_hThread.hGet(), a_culTimeout);
     /*DEBUG*/xTEST_EQ(WAIT_OBJECT_0, ulRv);
@@ -312,8 +303,6 @@ CxThread::bWait(
     int iRv = ::pthread_join(_m_ulId, NULL);
     /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
 
@@ -413,8 +402,8 @@ CxThread::bIsExited() {
 //---------------------------------------------------------------------------
 #if   xOS_ENV_WIN
 
-bool
-CxThread::bPostMessage(
+void
+CxThread::vPostMessage(
     HWND   a_hHwnd,
     uint_t a_uiMsg,
     uint_t a_uiParam1,
@@ -427,16 +416,14 @@ CxThread::bPostMessage(
 
     BOOL blRes = ::PostMessage(a_hHwnd, a_uiMsg, static_cast<WPARAM>( a_uiParam1 ), static_cast<LPARAM>( a_liParam2 ));
     /*DEBUG*/xTEST_DIFF(FALSE, blRes);
-
-    return true;
 }
 
 #endif
 //---------------------------------------------------------------------------
 #if   xOS_ENV_WIN
 
-bool
-CxThread::bSendMessage(
+void
+CxThread::vSendMessage(
     HWND   a_hHwnd,
     uint_t a_uiMsg,
     uint_t a_uiParam1,
@@ -449,16 +436,14 @@ CxThread::bSendMessage(
 
     (void)::SendMessage(a_hHwnd, a_uiMsg, static_cast<WPARAM>( a_uiParam1 ), static_cast<LPARAM>( a_liParam2 ));
     /*DEBUG*/xTEST_EQ(0UL, CxLastError::ulGet());
-
-    return true;
 }
 
 #endif
 //---------------------------------------------------------------------------
 #if   xOS_ENV_WIN
 
-bool
-CxThread::bPostThreadMessage(
+void
+CxThread::vPostThreadMessage(
     uint_t a_uiMsg,
     uint_t a_uiParam1,
     long_t a_liParam2
@@ -468,8 +453,6 @@ CxThread::bPostThreadMessage(
 
     BOOL blRes = ::PostThreadMessage(ulGetId(), a_uiMsg, static_cast<WPARAM>( a_uiParam1 ), static_cast<LPARAM>( a_liParam2 ));
     /*DEBUG*/xTEST_DIFF(FALSE, blRes);
-
-    return true;
 }
 
 #endif
@@ -501,8 +484,8 @@ CxThread::bTryPostThreadMessage(
 //---------------------------------------------------------------------------
 #if   xOS_ENV_WIN
 
-bool
-CxThread::bMessageWaitQueue(
+void
+CxThread::vMessageWaitQueue(
     uint_t  a_uiMsg,
     uint_t *a_puiParam1,
     long_t *a_pliParam2
@@ -514,18 +497,15 @@ CxThread::bMessageWaitQueue(
     std::vector<uint_t> vuiMsg;
     vuiMsg.push_back(a_uiMsg);
 
-    bool bRv = bMessageWaitQueue(vuiMsg, NULL, a_puiParam1, a_pliParam2);
-    /*DEBUG*/xTEST_EQ(true, bRv);
-
-    return true;
+    vMessageWaitQueue(vuiMsg, NULL, a_puiParam1, a_pliParam2);
 }
 
 #endif
 //---------------------------------------------------------------------------
 #if   xOS_ENV_WIN
 
-bool
-CxThread::bMessageWaitQueue(
+void
+CxThread::vMessageWaitQueue(
     const std::vector<uint_t> &a_cvuiMsg,
     uint_t                    *a_puiMsg,
     uint_t                    *a_puiParam1,
@@ -548,11 +528,9 @@ CxThread::bMessageWaitQueue(
             CxUtils::ptrAssignT(a_puiParam1, static_cast<uint_t>( msgMsg.wParam ));
             CxUtils::ptrAssignT(a_pliParam2, static_cast<long_t>( msgMsg.lParam ));
 
-            return true;
+            break;
         }
     }
-
-    return true;
 }
 
 #endif
@@ -595,8 +573,8 @@ CxThread::_iGetPriorityMax() {
     return iRv;
 }
 //---------------------------------------------------------------------------
-bool
-CxThread::bSetPriority(
+void
+CxThread::vSetPriority(
     const ExPriority &a_ctpPriority
 ) const
 {
@@ -617,8 +595,6 @@ CxThread::bSetPriority(
     int iRv = ::pthread_setschedparam(ulGetId(), SCHED_FIFO, &spParam);
     /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
 CxThread::ExPriority
@@ -665,8 +641,8 @@ CxThread::sGetPriorityString() const {
     return xT("N/A");
 }
 //---------------------------------------------------------------------------
-bool
-CxThread::bPriorityUp() const {
+void
+CxThread::vPriorityUp() const {
 #if   xOS_ENV_WIN
     /*DEBUG*/xTEST_EQ(true, _m_hThread.bIsValid());
 #elif xOS_ENV_UNIX
@@ -678,22 +654,22 @@ CxThread::bPriorityUp() const {
 
     tpOldLevel = tpGetPriority();
     switch (tpOldLevel) {
-        case tpIdle:            tpiNewLevel = tpLowest;             break;
-        case tpLowest:          tpiNewLevel = tpBelowNormal;        break;
-        case tpBelowNormal:     tpiNewLevel = tpNormal;             break;
-        case tpNormal:          tpiNewLevel = tpAboveNormal;        break;
-        case tpAboveNormal:     tpiNewLevel = tpHighest;            break;
-        case tpHighest:         tpiNewLevel = tpTimeCritical;       break;
-        case tpTimeCritical:    return true;                        break;
+        case tpIdle:            tpiNewLevel = tpLowest;         break;
+        case tpLowest:          tpiNewLevel = tpBelowNormal;    break;
+        case tpBelowNormal:     tpiNewLevel = tpNormal;         break;
+        case tpNormal:          tpiNewLevel = tpAboveNormal;    break;
+        case tpAboveNormal:     tpiNewLevel = tpHighest;        break;
+        case tpHighest:         tpiNewLevel = tpTimeCritical;   break;
+        case tpTimeCritical:    return;                         break;
 
-        default:                /*DEBUG*/xTEST_FAIL; break;
+        default:                /*DEBUG*/xTEST_FAIL;            break;
     }
 
-    return bSetPriority(tpiNewLevel);
+    vSetPriority(tpiNewLevel);
 }
 //---------------------------------------------------------------------------
-bool
-CxThread::bPriorityDown() const {
+void
+CxThread::vPriorityDown() const {
 #if   xOS_ENV_WIN
     /*DEBUG*/xTEST_EQ(true, _m_hThread.bIsValid());
 #elif xOS_ENV_UNIX
@@ -705,18 +681,18 @@ CxThread::bPriorityDown() const {
 
     tpOldLevel = tpGetPriority();
     switch (tpOldLevel) {
-        case tpIdle:            return true;                        break;
-        case tpLowest:          tpiNewLevel = tpIdle;               break;
-        case tpBelowNormal:     tpiNewLevel = tpLowest;             break;
-        case tpNormal:          tpiNewLevel = tpBelowNormal;        break;
-        case tpAboveNormal:     tpiNewLevel = tpNormal;             break;
-        case tpHighest:         tpiNewLevel = tpAboveNormal;        break;
-        case tpTimeCritical:    tpiNewLevel = tpHighest;            break;
+        case tpIdle:            return;                         break;
+        case tpLowest:          tpiNewLevel = tpIdle;           break;
+        case tpBelowNormal:     tpiNewLevel = tpLowest;         break;
+        case tpNormal:          tpiNewLevel = tpBelowNormal;    break;
+        case tpAboveNormal:     tpiNewLevel = tpNormal;         break;
+        case tpHighest:         tpiNewLevel = tpAboveNormal;    break;
+        case tpTimeCritical:    tpiNewLevel = tpHighest;        break;
 
-        default:                /*DEBUG*/xTEST_FAIL; break;
+        default:                /*DEBUG*/xTEST_FAIL;            break;
     }
 
-    return bSetPriority(tpiNewLevel);
+    vSetPriority(tpiNewLevel);
 }
 //---------------------------------------------------------------------------
 bool
@@ -738,8 +714,8 @@ CxThread::bIsPriorityBoost() const {
 #endif
 }
 //---------------------------------------------------------------------------
-bool
-CxThread::bSetPriorityBoost(
+void
+CxThread::vSetPriorityBoost(
     const bool &a_cbIsEnabled
 ) const
 {
@@ -748,10 +724,8 @@ CxThread::bSetPriorityBoost(
 
     BOOL blRes = ::SetThreadPriorityBoost(_m_hThread.hGet(), ! a_cbIsEnabled);
     /*DEBUG*/xTEST_DIFF(FALSE, blRes);
-
-    return true;
 #elif xOS_ENV_UNIX
-    return false;
+    return;
 #endif
 }
 //---------------------------------------------------------------------------
@@ -763,8 +737,8 @@ CxThread::bSetPriorityBoost(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-bool
-CxThread::bSetCpuAffinity(
+void
+CxThread::vSetCpuAffinity(
     const int &a_ciProcNum
 ) const
 {
@@ -791,12 +765,10 @@ CxThread::bSetCpuAffinity(
     int iRv = ::pthread_setaffinity_np(ulGetId(), sizeof(csCpuSet), &csCpuSet);
     /*DEBUG*/xTEST_MSG_DIFF(- 1, iRv, CxLastError::sFormat(iRv));
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxThread::bSetCpuIdeal(
+void
+CxThread::vSetCpuIdeal(
     const ulong_t &a_culIdealCpu    ///< value is zero-based
 ) const
 {
@@ -810,8 +782,6 @@ CxThread::bSetCpuIdeal(
 #elif xOS_ENV_UNIX
     return false;
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
 ulong_t
@@ -902,8 +872,8 @@ CxThread::ulGetExitStatus() const {
 //}
 
 //---------------------------------------------------------------------------
-bool
-CxThread::bSetDebugName(
+void
+CxThread::vSetDebugName(
     const std::tstring_t &a_csName
 ) const
 {
@@ -956,8 +926,6 @@ CxThread::bSetDebugName(
          (void)pthread_set_name_np(ulGetId(), a_csName.c_str());
     #endif
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
 
