@@ -24,8 +24,8 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxSocketInit::CxSocketInit(
-    const ushort_t a_cusMajorVersion,
-    const ushort_t a_cusMinorVersion
+    const ushort_t &a_cusMajorVersion,
+    const ushort_t &a_cusMinorVersion
 )
 {
 #if   xOS_ENV_WIN

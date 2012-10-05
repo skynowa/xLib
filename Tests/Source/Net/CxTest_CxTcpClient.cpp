@@ -42,8 +42,7 @@ CxTest_CxTcpClient::bUnit(
 
     //-------------------------------------
     //bCreate
-    m_bRv = objSocket.bCreate(afAf, tpType, ptProtocol);
-    xTEST_EQ(true, m_bRv);
+    objSocket.vCreate(afAf, tpType, ptProtocol);
 
     //-------------------------------------
     //bIsServerAlive
@@ -73,20 +72,18 @@ CxTest_CxTcpClient::bUnit(
     //bGetPeerName
     {
         std::tstring_t _sIp;
-        ushort_t  _usPort = 0;
+        ushort_t       _usPort = 0;
 
-        m_bRv = objSocket.bGetPeerName(&_sIp, &_usPort);
-        xTEST_EQ(true, m_bRv);
+        objSocket.vGetPeerName(&_sIp, &_usPort);
     }
 
     //-------------------------------------
     //bGetSocketName
     {
         std::tstring_t _sIp;
-        ushort_t  _usPort = 0;
+        ushort_t       _usPort = 0;
 
-        m_bRv = objSocket.bGetSocketName(&_sIp, &_usPort);
-        xTEST_EQ(true, m_bRv);
+        objSocket.vGetSocketName(&_sIp, &_usPort);
     }
 
     //-------------------------------------
@@ -115,8 +112,7 @@ CxTest_CxTcpClient::bUnit(
 
     //-------------------------------------
     //bClose
-    m_bRv = objSocket.bClose();
-    xTEST_EQ(true, m_bRv);
+    objSocket.vClose();
 
     //-------------------------------------
     //iGetLastError

@@ -189,15 +189,13 @@ CxTcpClient::bIsServerAlive(
     /*DEBUG*/xTEST_EQ(false, a_csIp.empty());
     /*DEBUG*/xTEST_EQ(true, (65535 > a_usPort) && (0 < a_usPort));
 
-    bool bRv     = false;
-    int  iRv     = - 1;
+    int iRv = - 1;
 
     CxTcpClient objSocket;
 
     //-------------------------------------
     //bCreate
-    bRv = objSocket.bCreate(CxSocket::afInet, CxSocket::tpStream, CxSocket::ptIp);
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    objSocket.vCreate(CxSocket::afInet, CxSocket::tpStream, CxSocket::ptIp);
 
     //-------------------------------------
     //bConnect

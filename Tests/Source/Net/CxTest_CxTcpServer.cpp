@@ -44,8 +44,7 @@ CxTest_CxTcpServer::bUnit(
 
     //-------------------------------------
     //bCreate
-    m_bRv = objListenSocket.bCreate(afAf, tpType, ptProtocol);
-    xTEST_EQ(true, m_bRv);
+    objListenSocket.vCreate(afAf, tpType, ptProtocol);
 
     //-------------------------------------
     //bGetHostAddrByName
@@ -77,8 +76,7 @@ CxTest_CxTcpServer::bUnit(
 
     //-------------------------------------
     //bClose
-    m_bRv = objClientSocket.bClose();
-    xTEST_EQ(true, m_bRv);
+    objClientSocket.vClose();
 
     //-------------------------------------
     //iSend
@@ -87,8 +85,7 @@ CxTest_CxTcpServer::bUnit(
 
     //-------------------------------------
     //bClose
-    m_bRv = objListenSocket.bClose();
-    xTEST_EQ(true, m_bRv);
+    objListenSocket.vClose();
 
     //-------------------------------------
     //iGetLastError
