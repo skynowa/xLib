@@ -230,7 +230,7 @@ CxPath::sGetExt(
 /* static */
 std::tstring_t
 CxPath::sGetStandartExt(
-    const ExStandartExt cseFileExt
+    const ExStandartExt &cseFileExt
 )
 {
     std::tstring_t sRv;
@@ -530,7 +530,7 @@ CxPath::sSetValidName(
 std::tstring_t
 CxPath::sToWin(
     const std::tstring_t &csFilePath,
-    const bool           cbIsSlashAtEnd
+    const bool           &cbIsSlashAtEnd
 )
 {
     /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
@@ -553,7 +553,7 @@ CxPath::sToWin(
 std::tstring_t
 CxPath::sToUnix(
     const std::tstring_t &csFilePath,
-    const bool            cbIsSlashAtEnd
+    const bool           &cbIsSlashAtEnd
 )
 {
     /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
@@ -576,7 +576,7 @@ CxPath::sToUnix(
 std::tstring_t
 CxPath::sToCurrentOs(
     const std::tstring_t &csFilePath,
-    const bool            cbIsSlashAtEnd
+    const bool           &cbIsSlashAtEnd
 )
 {
     /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
@@ -644,7 +644,7 @@ CxPath::sGetAbsolute(
 std::tstring_t
 CxPath::sGetShortName(
     const std::tstring_t &csFileName,
-    const size_t          cuiMaxSize
+    const size_t         &cuiMaxSize
 )
 {
     /*DEBUG*/xTEST_EQ(false, csFileName.empty());
@@ -678,7 +678,7 @@ CxPath::sGetShortName(
 std::tstring_t
 CxPath::sGetShort(
     const std::tstring_t &csFilePath,
-    const size_t          cuiMaxSize
+    const size_t         &cuiMaxSize
 )
 {
     /*DEBUG*/xTEST_EQ(false, csFilePath.empty());

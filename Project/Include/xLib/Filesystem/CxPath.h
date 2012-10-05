@@ -47,7 +47,7 @@ class CxPath :
             ///< get name without extension
         static std::tstring_t sGetExt         (const std::tstring_t &csFilePath);
             ///< get extension
-        static std::tstring_t sGetStandartExt (const ExStandartExt cseFileExt);
+        static std::tstring_t sGetStandartExt (const ExStandartExt &cseFileExt);
             ///< get standart extension
 
     #if   xOS_ENV_WIN
@@ -75,18 +75,18 @@ class CxPath :
         static bool           bIsAbsolute     (const std::tstring_t &csFilePath);
             ///< is absolute
 
-        static std::tstring_t sToWin          (const std::tstring_t &csFilePath, const bool cbIsSlashAtEnd);
+        static std::tstring_t sToWin          (const std::tstring_t &csFilePath, const bool &cbIsSlashAtEnd);
             ///< convert slashes to Windows style
-        static std::tstring_t sToUnix         (const std::tstring_t &csFilePath, const bool cbIsSlashAtEnd);
+        static std::tstring_t sToUnix         (const std::tstring_t &csFilePath, const bool &cbIsSlashAtEnd);
             ///< convert slashes to Nix style
-        static std::tstring_t sToCurrentOs    (const std::tstring_t &csFilePath, const bool cbIsSlashAtEnd);
+        static std::tstring_t sToCurrentOs    (const std::tstring_t &csFilePath, const bool &cbIsSlashAtEnd);
             ///< convert slashes to current OS style
         static std::tstring_t sGetAbsolute    (const std::tstring_t &csFilePath);
             ///< get absolute path
 
-        static std::tstring_t sGetShortName   (const std::tstring_t &csFileName, const size_t cuiMaxSize);
+        static std::tstring_t sGetShortName   (const std::tstring_t &csFileName, const size_t &cuiMaxSize);
             ///< get short name
-        static std::tstring_t sGetShort       (const std::tstring_t &csFilePath, const size_t cuiMaxSize);
+        static std::tstring_t sGetShort       (const std::tstring_t &csFilePath, const size_t &cuiMaxSize);
             ///< get short path
         static std::tstring_t sSetValidName   (const std::tstring_t &csFileName);
             ///< set name as valid
