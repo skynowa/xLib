@@ -11,24 +11,24 @@
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-template <class ClassNameT>
+template <class T>
 class CxSingleton :
     private CxNonCopyable
     /// singleton
 {
     public:
-        static ClassNameT &GetInstance()
+        static T &GetInstance()
             ///< get object instance
         {
-            static ClassNameT m_Instance;
+            static T instanceT;
 
-            return m_Instance;
+            return instanceT;
         }
 
     private:
-                 CxSingleton() {};
+                 CxSingleton() { };
             ///< constructor
-        virtual ~CxSingleton() {};
+        virtual ~CxSingleton() { };
             ///< destructor
 };
 
