@@ -25,24 +25,24 @@ class CxPop3 :
                           CxPop3              ();
                          ~CxPop3              ();
 
-        bool              bCreate             (const std::tstring_t &csUser, const std::tstring_t &csPass, const std::tstring_t &csServer, ushort_t usPort);
-        bool              bConnect            ();
-        bool              bLogin              ();
+        void              vCreate             (const std::tstring_t &csUser, const std::tstring_t &csPass, const std::tstring_t &csServer, ushort_t usPort);
+        void              vConnect            ();
+        void              vLogin              ();
 
-        bool              bStat               (ulong_t &ulSum, ulong_t &ulSize);
-        bool              bList               (std::vector<ulong_t> &veculList);
-        bool              bListAt             (ulong_t &ulIndex);
-        bool              bNoop               ();
-        bool              bRset               ();
-        bool              bTop                (int iNum, int iLines, std::tstring_t &sBuff);
+        void              vStat               (ulong_t &ulSum, ulong_t &ulSize);
+        void              vList               (std::vector<ulong_t> &veculList);
+        void              vListAt             (ulong_t &ulIndex);
+        void              vNoop               ();
+        void              vRset               ();
+        void              vTop                (int iNum, int iLines, std::tstring_t &sBuff);
 
-        bool      /*RETR*/bRetrive            (int iNum, const std::tstring_t &csRawMimeMessage);
-        bool      /*RETR*/bRetriveRaw         (int iNum, const std::tstring_t &csDirPath, const std::tstring_t &csFileName);
-        bool      /*RETR*/bRetriveRawAndBackup(int iNum, const std::tstring_t &csDirPath, const std::tstring_t &csBackupDirPath, const std::tstring_t &csFileName);
-        bool      /*TOP*/ bRetrieveHeader     (int iNum, CxMimeHeader &mhMimeHeader);
+        void              vRetrive            (int iNum, const std::tstring_t &csRawMimeMessage);
+        void              vRetriveRaw         (int iNum, const std::tstring_t &csDirPath, const std::tstring_t &csFileName);
+        void              vRetriveRawAndBackup(int iNum, const std::tstring_t &csDirPath, const std::tstring_t &csBackupDirPath, const std::tstring_t &csFileName);
+        void              vRetrieveHeader     (int iNum, CxMimeHeader &mhMimeHeader);
 
-        bool              bDelete             (int iNum);
-        bool              bDisconnect         ();
+        void              vDelete             (int iNum);
+        void              vDisconnect         ();
 
     private:
         std::tstring_t    _m_sRes;
@@ -54,7 +54,7 @@ class CxPop3 :
         ushort_t          _m_usPort;
         bool              _m_bConnected;
 
-        bool              _bCommand           (const std::tstring_t &csCmd, const std::tstring_t &csReplyDelimiter, std::tstring_t *psReply);
+        void              _vCommand           (const std::tstring_t &csCmd, const std::tstring_t &csReplyDelimiter, std::tstring_t *psReply);
         bool              _bIsError           (const std::tstring_t &csText);
         ulong_t           _ulMailsSum         (const std::tstring_t &csServerAnswer);
         ulong_t           _ulMailsSize        (const std::tstring_t &csServerAnswer);
