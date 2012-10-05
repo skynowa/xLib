@@ -740,15 +740,12 @@ CxFile::vWipe(
 
     xCHECK_DO(false == bIsExists(csFilePath), return);
 
-    bool bRv = false;
-
     {
         CxFile sfFile;
 
         //--------------------------------------------------
         //set normal file attributes
-        bRv = CxFileAttribute::bSet(csFilePath, CxFileAttribute::faNormal);
-        /*DEBUG*/xTEST_EQ(true, bRv);
+        CxFileAttribute::vSet(csFilePath, CxFileAttribute::faNormal);
 
         //--------------------------------------------------
         //open
