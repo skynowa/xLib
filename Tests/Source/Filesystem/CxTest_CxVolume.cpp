@@ -31,7 +31,7 @@ CxTest_CxVolume::bUnit(
         {
             std::vec_tstring_t vsData;
 
-            m_bRv = CxVolume::bGetPaths(&vsData);
+            CxVolume::vGetPaths(&vsData);
 
             xFOREACH(std::vec_tstring_t, it, vsData) {
                 m_bRv = CxVolume::bIsValid(*it);
@@ -152,7 +152,7 @@ CxTest_CxVolume::bUnit(
     {
         std::vec_tstring_t vsData;
 
-        m_bRv = CxVolume::bGetPaths(&vsData);
+        CxVolume::vGetPaths(&vsData);
 
         xFOREACH(std::vec_tstring_t, it, vsData) {
             ulonglong_t ullAvailable = 0ULL;
@@ -161,8 +161,7 @@ CxTest_CxVolume::bUnit(
 
             xCHECK_DO(false == CxVolume::bIsReady(*it), continue);
 
-            m_bRv = CxVolume::bGetSpace(*it, &ullAvailable, &ullTotal, &ullFree);
-            xTEST_EQ(true, m_bRv);
+            CxVolume::vGetSpace(*it, &ullAvailable, &ullTotal, &ullFree);
             xTEST_LESS_EQ(0ULL, ullAvailable);
             xTEST_LESS_EQ(0ULL, ullTotal);
             xTEST_LESS_EQ(0ULL, ullFree);
@@ -175,8 +174,7 @@ CxTest_CxVolume::bUnit(
 
             xCHECK_DO(false == CxVolume::bIsReady(*it), continue);
 
-            m_bRv = CxVolume::bGetSpace(*it, NULL, NULL, NULL);
-            xTEST_EQ(true, m_bRv);
+            CxVolume::vGetSpace(*it, NULL, NULL, NULL);
             xTEST_LESS_EQ(0ULL, ullAvailable);
             xTEST_LESS_EQ(0ULL, ullTotal);
             xTEST_LESS_EQ(0ULL, ullFree);
@@ -189,8 +187,7 @@ CxTest_CxVolume::bUnit(
 
             xCHECK_DO(false == CxVolume::bIsReady(*it), continue);
 
-            m_bRv = CxVolume::bGetSpace(*it, &ullAvailable, &ullTotal, &ullFree);
-            xTEST_EQ(true, m_bRv);
+            CxVolume::vGetSpace(*it, &ullAvailable, &ullTotal, &ullFree);
             xTEST_LESS_EQ(0ULL, ullAvailable);
             xTEST_LESS_EQ(0ULL, ullTotal);
             xTEST_LESS_EQ(0ULL, ullFree);
@@ -205,8 +202,7 @@ CxTest_CxVolume::bUnit(
             ulonglong_t ullTotal     = 0ULL;
             ulonglong_t ullFree      = 0ULL;
 
-            m_bRv = CxVolume::bGetSpace(CxConst::xSTR_EMPTY, &ullAvailable, &ullTotal, &ullFree);
-            xTEST_EQ(true, m_bRv);
+            CxVolume::vGetSpace(CxConst::xSTR_EMPTY, &ullAvailable, &ullTotal, &ullFree);
             xTEST_LESS_EQ(0ULL, ullAvailable);
             xTEST_LESS_EQ(0ULL, ullTotal);
             xTEST_LESS_EQ(0ULL, ullFree);
@@ -230,11 +226,8 @@ CxTest_CxVolume::bUnit(
             const std::tstring_t csDestPath   = xT("~\test_volume");
         #endif
 
-        m_bRv = CxVolume::bMount(csSourcePath, csDestPath);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = CxVolume::bUnMount(csDestPath, true);
-        xTEST_EQ(true, m_bRv);
+        CxVolume::vMount(csSourcePath, csDestPath);
+        CxVolume::vUnMount(csDestPath, true);
     #endif
     }
 
@@ -244,8 +237,7 @@ CxTest_CxVolume::bUnit(
     {
         std::vec_tstring_t vsVolumePaths;
 
-        m_bRv = CxVolume::bGetPaths(&vsVolumePaths);
-        xTEST_EQ(true, m_bRv);
+        CxVolume::vGetPaths(&vsVolumePaths);
 
         #if xTEST_IGNORE
             std::tcout << vsVolumePaths << std::endl;
@@ -258,8 +250,7 @@ CxTest_CxVolume::bUnit(
     {
         std::vec_tstring_t vsVolumePaths;
 
-        m_bRv = CxVolume::bGetPaths(&vsVolumePaths);
-        xTEST_EQ(true, m_bRv);
+        CxVolume::vGetPaths(&vsVolumePaths);
 
         xFOREACH(std::vec_tstring_t, it, vsVolumePaths) {
             m_sRv = CxVolume::sGetLabel(*it);

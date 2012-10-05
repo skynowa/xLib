@@ -87,8 +87,12 @@ CxBackuper::etExecute(
     //check for enough space
     ulonglong_t ullTotalFreeBytes = 0ULL;
 
-    bRv = CxVolume::bGetSpace(csDestDirPath, NULL, NULL, &ullTotalFreeBytes);
-    xCHECK_RET(false == bRv, etUnknown);
+    try {
+        CxVolume::vGetSpace(csDestDirPath, NULL, NULL, &ullTotalFreeBytes);
+    } 
+    catch (const CxException &) {
+        return etUnknown;
+    }
 
     if (static_cast<ulonglong_t>( CxFile::llGetSize(csFilePath) ) > ullTotalFreeBytes) {
         return etNotEnoughFreeSpace;

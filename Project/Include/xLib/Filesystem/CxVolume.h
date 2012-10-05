@@ -22,13 +22,13 @@ class CxVolume :
             ///< is ready
         static bool           bIsEmpty (const std::tstring_t &csVolumePath);
             ///< is empty
-        static bool           bGetSpace(const std::tstring_t &csDirPath, ulonglong_t *pullAvailable, ulonglong_t *pullTotal, ulonglong_t *pullFree);
+        static void           vGetSpace(const std::tstring_t &csDirPath, ulonglong_t *pullAvailable, ulonglong_t *pullTotal, ulonglong_t *pullFree);
             ///< get free space
-        static bool           bMount   (const std::tstring_t &csSourcePath, const std::tstring_t &csDestPath);
+        static void           vMount   (const std::tstring_t &csSourcePath, const std::tstring_t &csDestPath);
             ///< mount
-        static bool           bUnMount (const std::tstring_t &csSourcePath, const bool cbIsForce);
+        static void           vUnMount (const std::tstring_t &csSourcePath, const bool &cbIsForce);
             ///< unmount
-        static bool           bGetPaths(std::vec_tstring_t *pvsVolumePaths);
+        static void           vGetPaths(std::vec_tstring_t *pvsVolumePaths);
             ///< get paths
         static std::tstring_t sGetLabel(const std::tstring_t &csVolumePath);
             ///< get label

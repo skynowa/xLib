@@ -83,7 +83,7 @@ CxVolume::bIsReady(
     /*DEBUG*/// n/a
     bRv = (- 1 != iRv);
 
-    (void)CxDir::bSetCurrent(sOldDirPath);
+    CxDir::vSetCurrent(sOldDirPath);
 #endif
 
     return bRv;
@@ -101,8 +101,8 @@ CxVolume::bIsEmpty(
 }
 //--------------------------------------------------------------------------
 /* static */
-bool
-CxVolume::bGetSpace(
+void
+CxVolume::vGetSpace(
     const std::tstring_t &csDirPath,
     ulonglong_t          *pullAvailable,   ///< for unprivileged users
     ulonglong_t          *pullTotal,
@@ -125,7 +125,7 @@ CxVolume::bGetSpace(
     }
 
     bool bRv = CxDir::bIsExists(_sDirPath);
-    xCHECK_RET(false == bRv, false);
+    xTEST_EQ(true, bRv);
 
 #if   xOS_ENV_WIN
     ULARGE_INTEGER ullAvailable = {{0}};
@@ -148,13 +148,11 @@ CxVolume::bGetSpace(
     CxUtils::ptrAssignT(pullTotal,     static_cast<ulonglong_t>( stfInfo.f_blocks * stfInfo.xSTATVFS_F_FRSIZE ));
     CxUtils::ptrAssignT(pullFree,      static_cast<ulonglong_t>( stfInfo.f_bfree  * stfInfo.xSTATVFS_F_FRSIZE ));
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
 /* static */
-bool
-CxVolume::bMount(
+void
+CxVolume::vMount(
     const std::tstring_t &csSourcePath, ///< source path
     const std::tstring_t &csDestPath    ///< destination path
 )
@@ -186,15 +184,13 @@ CxVolume::bMount(
         /*DEBUG*/xTEST_DIFF(- 1, iRv);
     #endif
 #endif
-
-    return true;
 }
 //--------------------------------------------------------------------------
 /* static */
-bool
-CxVolume::bUnMount(
+void
+CxVolume::vUnMount(
     const std::tstring_t &csSourcePath, ///< source path
-    const bool            cbIsForce     ///< force unmount even if busy
+    const bool           &cbIsForce     ///< force unmount even if busy
 )
 {
     /*DEBUG*/xTEST_EQ(false, csSourcePath.empty());
@@ -221,13 +217,11 @@ CxVolume::bUnMount(
         /*DEBUG*/xTEST_DIFF(- 1, iRv);
     #endif
 #endif
-
-    return true;
 }
 //--------------------------------------------------------------------------
 /* static */
-bool
-CxVolume::bGetPaths(
+void
+CxVolume::vGetPaths(
     std::vec_tstring_t *pvsVolumePaths
 )
 {
@@ -279,8 +273,6 @@ CxVolume::bGetPaths(
 #endif
 
     std::swap(*pvsVolumePaths, vsRes);
-
-    return true;
 }
 //--------------------------------------------------------------------------
 /* static */
