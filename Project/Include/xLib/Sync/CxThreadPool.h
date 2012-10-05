@@ -9,80 +9,82 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Sync/CxIpcSemaphore.h>
+#include <xLib/Sync/CxThread.h>
 
 #include <list>
+
 ////#include <boost\function.hpp>
 ////#include <boost\bind.hpp>
 ////#include <functional>
 //---------------------------------------------------------------------------
-#if   xOS_ENV_WIN
-
 xNAMESPACE_BEGIN(NxLib)
 
 class CxMutex;
 class CxAutoMutex;
 class CxThread;
 
-template<class TaskT>
+template<class T>
 class CxThreadPool :
     public CxThread
     /// thread pool
 {
+    public:
+        typedef void (T::*func_ptr_t)(void *);
+
+        // construct? destruct
+                               CxThreadPool (const bool &cbIsPaused, const bool &cbIsAutoDelete, 
+                                             const bool &cbIsGroupPaused, const bool &cbIsGroupAutoDelete);
+        virtual               ~CxThreadPool ();
+
+        // groups
+        void                   vGroupCreate (const uint_t &cuiStackSize, const func_ptr_t fpFuncPtr, void *pvParam, 
+                                             const uint_t &cuiNumTasks, const uint_t &cuiMaxRunningTasks);
+        void                   vGroupResume ();
+        void                   vGroupPause  ();
+        void                   vGroupExit   (const ulong_t &culTimeout);
+        void                   vGroupKill   (const ulong_t &culTimeout);
+        void                   vGroupWait   (const ulong_t &culTimeout);
+
+        size_t                 uiGetMaxTasks() const;
+        void                   vSetMaxTasks (const uint_t &cuiNum);
+
+        size_t                 uiGetNumTasks() const;
+        void                   vSetNumTasks (const uint_t &cuiNum);
+
+        bool                   bIsEmpty     () const;
+        bool                   bIsFull      () const;
+        size_t                 uiGetSize    () const;
+
+    protected:
+        virtual uint_t         uiOnRun      (void *pvParam);    /* overload */
+
     private:
-        mutable bool              _m_bRes;
+        uint_t                 _m_uiStackSize;
+        func_ptr_t             _m_fpFuncPtr;
+        void                  *_m_pvParam;
 
-        uint_t                    _m_uiStackSize;
-        TFuncPtr                  _m_fpFuncPtr;
-        void                     *_m_pvParam;
+        const bool             _m_cbIsGroupPaused;
+        const bool             _m_cbIsGroupAutoDelete;
 
-        const bool                _m_cbIsGroupPaused;
-        const bool                _m_cbIsGroupAutoDelete;
+        mutable CxIpcSemaphore _m_semSemaphore;
+        std::list<T *>         _m_lthTasks;
 
-        mutable CxIpcSemaphore    _m_semSemaphore;
-        std::list<TaskT *>        _m_lstpthTasks;
-
-        size_t                    _m_uiMaxRunningTasks;
-        size_t                    _m_uiNumTasks;
-        size_t                    _m_uiCurrTask;
+        size_t                 _m_uiMaxRunningTasks;
+        size_t                 _m_uiNumTasks;
+        size_t                 _m_uiCurrTask;
 
         //static
-        static CxMutex            _m_csList;
-        static CxConsoleLog       _m_clLog;
+        static CxMutex         _m_mtList;
+        static CxTracer        _m_clLog;
 
-        bool                      _bAddTask    (CxThread *pvItem);
-        bool                      _bRemoveTask (CxThread *pvItem);
+        void                   _vTaskAdd    (CxThread *pvItem);
+        void                   _vTaskRemove (CxThread *pvItem);
 
-        void                      _vOnEnterTask(CxThread *pthSender);
-        void                      _vOnExitTask (CxThread *pthSender);
+        void                   _vOnEnterTask(CxThread *pthSender);
+        void                   _vOnExitTask (CxThread *pthSender);
 
         //WatchDog
 
-    public:
-                                  CxThreadPool (bool bIsPaused, bool bIsAutoDelete, bool bIsGroupPaused, bool bIsGroupAutoDelete);
-        virtual                  ~CxThreadPool ();
-
-        //�������� � �������
-        bool                      bCreateGroup (uint_t uiStackSize, const TFuncPtr fpFuncPtr, void *pvParam, uint_t uiNumTasks, uint_t uiMaxRunningTasks);
-        bool                      bResumeGroup ();
-        bool                      bPauseGroup  ();
-        bool                      bExitGroup   (ulong_t ulTimeout);
-        bool                      bKillGroup   (ulong_t ulTimeout);
-        bool                      bWaitGroup   (ulong_t ulTimeout);
-
-        size_t                    uiGetMaxTasks() const;
-        bool                      bSetMaxTasks (uint_t uiNum);
-
-        size_t                    uiGetNumTasks() const;
-        bool                      bSetNumTasks (uint_t uiNum);
-
-        bool                      bIsEmpty     () const;
-        bool                      bIsFull      () const;
-        size_t                    uiGetSize    () const;
-
-        //������
-
-    protected:
-        virtual uint_t            uiOnRun      (void *pvParam);    /*overload*/
 };
 
 xNAMESPACE_END(NxLib)
@@ -90,26 +92,7 @@ xNAMESPACE_END(NxLib)
 #include <xLib/Sync/CxMutex.h>
 #include <xLib/Sync/CxAutoMutex.h>
 #include <xLib/Sync/CxThread.h>
+
 #include "CxThreadPool.inl"
-
-#endif
 //---------------------------------------------------------------------------
-#endif    //xLib_Sync_CxThreadPoolH
-
-
-/****************************************************************************
-*    FAQ
-*
-*****************************************************************************/
-
-/*
-    1. ������� ������ CxThreadPool
-    2. ������� ����� CxWorkThread::CxThread
-    3. �������� ������ CxWorkThread::CxThread
-*/
-
-/*
-����� ������������ ������ ������:
-
-m_bRv = thpTP->bCreateGroup(0, (uint_t (WINAPI *)(void *))&CTest::s_uiThreadFunc, NULL);
-*/
+#endif // xLib_Sync_CxThreadPoolH

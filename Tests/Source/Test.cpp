@@ -95,6 +95,7 @@
 #include <Test/Sync/CxTest_CxIpcSemaphore.h>
 #include <Test/Sync/CxTest_CxCurrentThread.h>
 #include <Test/Sync/CxTest_CxThread.h>
+#include <Test/Sync/CxTest_CxThreadPool.h>
 #include <Test/Sync/CxTest_CxCurrentProcess.h>
 #include <Test/Sync/CxTest_CxProcess.h>
 
@@ -242,6 +243,7 @@ xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
         (void)tmManager.bAdd(new CxTest_CxSleeper);
         (void)tmManager.bAdd(new CxTest_CxCurrentThread);
         (void)tmManager.bAdd(new CxTest_CxThread);
+        // (void)tmManager.bAdd(new CxTest_CxThreadPool);
         (void)tmManager.bAdd(new CxTest_CxCurrentProcess);
         (void)tmManager.bAdd(new CxTest_CxProcess);
 
