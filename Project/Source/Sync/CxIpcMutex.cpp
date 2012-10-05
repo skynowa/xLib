@@ -43,8 +43,8 @@ CxIpcMutex::hGet() const {
     return _m_hHandle;
 }
 //---------------------------------------------------------------------------
-bool
-CxIpcMutex::bCreate(
+void
+CxIpcMutex::vCreate(
     const std::tstring_t &a_csName
 )
 {
@@ -80,12 +80,10 @@ CxIpcMutex::bCreate(
     _m_hHandle = hHandle;
     _m_sName   = sUnixName;
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxIpcMutex::bOpen(
+void
+CxIpcMutex::vOpen(
     const std::tstring_t &a_csName
 )
 {
@@ -116,12 +114,10 @@ CxIpcMutex::bOpen(
     _m_hHandle = hHandle;
     _m_sName   = sUnixName;
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxIpcMutex::bLock(
+void
+CxIpcMutex::vLock(
     const ulong_t &a_culTimeoutMsec
 ) const
 {
@@ -176,12 +172,10 @@ CxIpcMutex::bLock(
         }
     }
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxIpcMutex::bUnlock() const {
+void
+CxIpcMutex::vUnlock() const {
     /////*DEBUG*/xTEST_EQ(true, _m_hHandle.bIsValid(), false);
 
 #if   xOS_ENV_WIN
@@ -191,8 +185,6 @@ CxIpcMutex::bUnlock() const {
     int iRv = ::sem_post(_m_hHandle);
     /*DEBUG*/xTEST_DIFF(- 1, iRv);
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
 

@@ -28,13 +28,13 @@ class CxIpcMutex :
 
         const handle_t &  hGet   () const;
             ///< get handle
-        bool              bCreate(const std::tstring_t &csName);
+        void              vCreate(const std::tstring_t &csName);
             ///< create
-        bool              bOpen  (const std::tstring_t &csName);
+        void              vOpen  (const std::tstring_t &csName);
             ///< open
-        bool              bLock  (const ulong_t &culTimeoutMsec) const;
+        void              vLock  (const ulong_t &culTimeoutMsec) const;
             ///< unlock by timeout in msec
-        bool              bUnlock() const;
+        void              vUnlock() const;
             ///< lock
 
     private:
