@@ -35,9 +35,9 @@ CxWaitableTimer::hGetHandle() const {
     return _m_hWaitableTimer.hGet();
 }
 //---------------------------------------------------------------------------
-bool
-CxWaitableTimer::bCreate(
-    const bool                   a_bManualReset,
+void
+CxWaitableTimer::vCreate(
+    const bool                  &a_bManualReset,
     const std::tstring_t        &a_csName,
     const LPSECURITY_ATTRIBUTES  a_pcsaTimerAttributes
 )
@@ -48,15 +48,13 @@ CxWaitableTimer::bCreate(
     /*DEBUG*/xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
 
     _m_hWaitableTimer.vSet(hRv);
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxWaitableTimer::bOpen(
+void
+CxWaitableTimer::vOpen(
     const std::tstring_t &a_csName,
-    const ulong_t         a_culDesiredAccess,
-    const bool            a_cbInheritHandle
+    const ulong_t        &a_culDesiredAccess,
+    const bool           &a_cbInheritHandle
 )
 {
     /*DEBUG*/xTEST_EQ(true, _m_hWaitableTimer.bIsValid());
@@ -74,27 +72,23 @@ CxWaitableTimer::bOpen(
     /*DEBUG*/xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
 
     _m_hWaitableTimer.vSet(hRv);
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxWaitableTimer::bCancel() const {
+void
+CxWaitableTimer::vCancel() const {
     /*DEBUG*/xTEST_EQ(true, _m_hWaitableTimer.bIsValid());
 
     BOOL blRes = ::CancelWaitableTimer(_m_hWaitableTimer.hGet());
     /*DEBUG*/xTEST_DIFF(FALSE, blRes);
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxWaitableTimer::bSet(
-    const longlong_t a_cllDueTime,
-    const long_t     a_cliPeriod,
-    PTIMERAPCROUTINE a_pfnCompletionRoutine,
-    LPVOID           a_pvArgToCompletionRoutine,
-    const bool       a_cbResume
+void
+CxWaitableTimer::vSet(
+    const longlong_t &a_cllDueTime,
+    const long_t     &a_cliPeriod,
+    PTIMERAPCROUTINE  a_pfnCompletionRoutine,
+    LPVOID            a_pvArgToCompletionRoutine,
+    const bool       &a_cbResume
 ) const
 {
     /*DEBUG*/xTEST_EQ(true, _m_hWaitableTimer.bIsValid());
@@ -111,21 +105,17 @@ CxWaitableTimer::bSet(
 
     BOOL blRes = ::SetWaitableTimer(_m_hWaitableTimer.hGet(), &liDueTime, a_cliPeriod, a_pfnCompletionRoutine, a_pvArgToCompletionRoutine, a_cbResume);
     /*DEBUG*/xTEST_DIFF(FALSE, blRes);
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxWaitableTimer::bWait(
-    const ulong_t a_culTimeout
+void
+CxWaitableTimer::vWait(
+    const ulong_t &a_culTimeout
 ) const
 {
     /*DEBUG*/xTEST_EQ(true, _m_hWaitableTimer.bIsValid());
 
     DWORD ulRv = ::WaitForSingleObject(_m_hWaitableTimer.hGet(), a_culTimeout);
     /*DEBUG*/xTEST_EQ(WAIT_OBJECT_0, ulRv);
-
-    return true;
 }
 //---------------------------------------------------------------------------
 
