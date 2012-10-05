@@ -63,7 +63,7 @@ CxSmtp::vConnect() {
 
     //-------------------------------------
     //������� �����
-    _m_scktSocket.bCreate(CxSocket::afInet, CxSocket::tpStream, CxSocket::ptIp);
+    _m_scktSocket.vCreate(CxSocket::afInet, CxSocket::tpStream, CxSocket::ptIp);
 
     //-------------------------------------
     //������ �����
@@ -238,7 +238,7 @@ CxSmtp::vSend(const std::string &a_csText, const std::string &a_sFrom, const std
 
     //-------------------------------------
     //�������� �����
-    _m_scktSocket.bSendAll(a_csText, 0);
+    _m_scktSocket.vSendAll(a_csText, 0);
 
     //-------------------------------------
     //[\r\n.\r\n]
@@ -265,7 +265,7 @@ CxSmtp::vDisconnect() {
 
     _vCommand(sQuitCmd, "\r\n", /*ref*/sRv);
 
-    _m_scktSocket.bClose();
+    _m_scktSocket.vClose();
 
     _m_bConnected = false;
 }
@@ -287,8 +287,7 @@ CxSmtp::_vCommand(const std::string &a_csCmd, const std::string &a_csReplyDelimi
 
     std::string sRv;
 
-    _m_scktSocket.bSendAll(a_csCmd, 0);
-
+    _m_scktSocket.vSendAll(a_csCmd, 0);
     _m_scktSocket.sRecvAll(0, a_csReplyDelimiter);
 
     a_sReply = sRv;

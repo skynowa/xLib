@@ -57,7 +57,7 @@ void
 CxPop3::vConnect() {
      //-------------------------------------
      //Create sock
-     _m_scktSocket.bCreate(CxSocket::afInet, CxSocket::tpStream, CxSocket::ptIp);
+     _m_scktSocket.vCreate(CxSocket::afInet, CxSocket::tpStream, CxSocket::ptIp);
 
      //-------------------------------------
      //Parse domain
@@ -444,7 +444,7 @@ CxPop3::vDisconnect() {
 
     _vCommand(sQuitCmd, "\r\n", &_m_sRes);
 
-    _m_scktSocket.bClose();
+    _m_scktSocket.vClose();
 
     _m_bConnected = false;
 }
@@ -501,8 +501,7 @@ CxPop3::_vCommand(const std::tstring_t &csCmd, const std::tstring_t &csReplyDeli
     /*DEBUG*/xTEST_EQ(false, csReplyDelimiter.empty());
     /*DEBUG*/xTEST_PTR(psReply);
 
-    bool bRv = _m_scktSocket.bSendAll(csCmd, 0);
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    _m_scktSocket.vSendAll(csCmd, 0);
 
     _m_sRes = _m_scktSocket.sRecvAll(0, csReplyDelimiter);
     /*DEBUG*/////xTEST_MSG_EQ(false, _bIsError(_m_sRes), _m_sRes);

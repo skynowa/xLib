@@ -16,7 +16,7 @@ class CxSocketInit :
     /// initiates use of the Winsock DLL by a process
 {
     public:
-                  CxSocketInit(const ushort_t cusHighVersion, const ushort_t cusLowVersion);
+                  CxSocketInit(const ushort_t &cusHighVersion, const ushort_t &cusLowVersion);
             ///< constructor (init winsock DLL)
         virtual  ~CxSocketInit();
             ///< destructor  (clean winsock DLL)
