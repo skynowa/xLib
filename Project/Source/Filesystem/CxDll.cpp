@@ -28,7 +28,7 @@ CxDll::CxDll() :
 //---------------------------------------------------------------------------
 /* virtual */
 CxDll::~CxDll() {
-    (void)_bFree();
+    _vFree();
 }
 //---------------------------------------------------------------------------
 bool
@@ -38,16 +38,15 @@ CxDll::bIsLoaded() const {
     return (NULL != _m_hDll);
 }
 //---------------------------------------------------------------------------
-bool
-CxDll::bLoad(
+void
+CxDll::vLoad(
     const std::tstring_t &csDllPath
 )
 {
     xDEBUG_VARS_NA;
     /*DEBUG*/xTEST_EQ(false, csDllPath.empty());
 
-    bool bRv = _bFree();
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    _vFree();
 
 #if   xOS_ENV_WIN
     _m_hDll = ::LoadLibrary(csDllPath.c_str());
@@ -56,8 +55,6 @@ CxDll::bLoad(
     _m_hDll = ::dlopen(csDllPath.c_str(), RTLD_LAZY | RTLD_GLOBAL);
     /*DEBUG*/xTEST_PTR(_m_hDll);
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
 bool
@@ -121,11 +118,11 @@ CxDll::fpGetProcAddress(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-bool
-CxDll::_bFree() {
+void
+CxDll::_vFree() {
     xDEBUG_VARS_NA;
 
-    xCHECK_RET(false == bIsLoaded(), true);
+    xCHECK_DO(false == bIsLoaded(), return);
 
 #if   xOS_ENV_WIN
     BOOL blRes = ::FreeLibrary(_m_hDll);
@@ -136,8 +133,6 @@ CxDll::_bFree() {
 #endif
 
     _m_hDll = NULL;
-
-    return true;
 }
 //---------------------------------------------------------------------------
 

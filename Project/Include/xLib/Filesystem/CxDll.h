@@ -28,7 +28,7 @@ class CxDll :
 
         bool            bIsLoaded       () const;
             ///< is loaded
-        bool            bLoad           (const std::tstring_t &csDllPath);
+        void            vLoad           (const std::tstring_t &csDllPath);
             ///< load
         bool            bIsProcExists   (const std::tstring_t &csProcName) const;
             ///< is function exists
@@ -44,7 +44,7 @@ class CxDll :
 
         handle_t        _m_hDll;   ///< dll module handle
 
-        bool            _bFree          ();
+        void            _vFree          ();
             ///< free
 };
 
