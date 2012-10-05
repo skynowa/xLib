@@ -23,14 +23,14 @@ class CxSmtp :
                             CxSmtp     ();
                            ~CxSmtp     ();
 
-        bool                bCreate    (const std::string &csUser, const std::string &csPass, const std::string &csServer, ushort_t usPort);
-        bool                bConnect   ();
-        bool                bLogin     ();
-        bool                bNoop      ();
-        bool                bRset      ();
-        bool                bSendRaw   (const std::string &csFilePath, const std::string &csFrom, const std::string &csTo);
-        bool                bSend      (const std::string &csText, const std::string &sFrom, const std::string &sTo);
-        bool                bDisconnect();
+        void                vCreate    (const std::string &csUser, const std::string &csPass, const std::string &csServer, const ushort_t &cusPort);
+        void                vConnect   ();
+        void                vLogin     ();
+        void                vNoop      ();
+        void                vRset      ();
+        void                vSendRaw   (const std::string &csFilePath, const std::string &csFrom, const std::string &csTo);
+        void                vSend      (const std::string &csText, const std::string &sFrom, const std::string &sTo);
+        void                vDisconnect();
 
     private:
         CxTcpClient         _m_scktSocket;
@@ -40,7 +40,7 @@ class CxSmtp :
         ushort_t            _m_usPort;
         bool                _m_bConnected;
 
-        bool                _bCommand   (const std::string &csCmd, const std::string &csReplyDelimiter, std::string &sReply); /*+*/
+        void                _vCommand   (const std::string &csCmd, const std::string &csReplyDelimiter, std::string &sReply); /*+*/
         bool                _bIsError   (const std::string &csText);
 };
 
