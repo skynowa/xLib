@@ -55,8 +55,7 @@ CxFileTemp::bCreate(
 
     FILE *_pfStdFile = NULL;
 
-    bool bRv = CxDir::bCreateForce(csDirPath);
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    CxDir::vCreateForce(csDirPath);
 
     _m_sFilePath = CxPath::sSlashAppend(csDirPath) + CxPath::sGetFileName(csFilePath) + csFileNameTemplate;
 
@@ -87,7 +86,7 @@ CxFileTemp::bCreate(
 #endif
 
     //out
-    bRv = (*pfFile).bAttach(_pfStdFile);
+    bool bRv = (*pfFile).bAttach(_pfStdFile);
     /*DEBUG*/xTEST_EQ(true, bRv);
 
     _m_pfFile = pfFile;

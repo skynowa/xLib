@@ -51,11 +51,8 @@ CxTest_CxDir::bUnit(
     *****************************************************************************/
 
     {
-        m_bRv = CxDir::bDeleteForce(csRootTestDirPath);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = CxDir::bCreateForce(csDirPath);
-        xTEST_EQ(true, m_bRv);
+        CxDir::vDeleteForce(csRootTestDirPath);
+        CxDir::vCreateForce(csDirPath);
     }
 
     /****************************************************************************
@@ -67,8 +64,7 @@ CxTest_CxDir::bUnit(
     //bCreate
     xTEST_CASE(cullCaseLoops)
     {
-        m_bRv = CxDir::bCreate(csDirPath2);
-        xTEST_EQ(true, m_bRv);
+        CxDir::vCreate(csDirPath2);
     }
 
     //-------------------------------------
@@ -157,11 +153,8 @@ CxTest_CxDir::bUnit(
         m_sRv = CxDir::sGetCurrent();
         xTEST_EQ(false, m_sRv.empty());
 
-        m_bRv = CxDir::bSetCurrent( sGetTempDirPath() );
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = CxDir::bSetCurrent(m_sRv);
-        xTEST_EQ(true, m_bRv);
+        CxDir::vSetCurrent( sGetTempDirPath() );
+        CxDir::vSetCurrent(m_sRv);
     }
 
     //-------------------------------------
@@ -187,8 +180,7 @@ CxTest_CxDir::bUnit(
     //bCreateForce
     xTEST_CASE(cullCaseLoops)
     {
-        m_bRv = CxDir::bCreateForce(csDirPath);
-        xTEST_EQ(true, m_bRv);
+        CxDir::vCreateForce(csDirPath);
     }
 
     //-------------------------------------
@@ -208,29 +200,18 @@ CxTest_CxDir::bUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(sDirPathes); ++ i) {
-            m_bRv = CxDir::bCreateForce(sDirPathes[i]);
-            xTEST_EQ(true, m_bRv);
+            CxDir::vCreateForce(sDirPathes[i]);
         }
 
-        m_bRv = CxDir::bDeleteForce(csDirDest);
-        xTEST_EQ(true, m_bRv);
+        CxDir::vDeleteForce(csDirDest);
 
         //-------------------------------------
         //bCopy
-        m_bRv = CxDir::bCopy(csDirSource, csDirDest, true);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = CxDir::bDelete(csDirDest);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = CxDir::bCopy(csDirSource, csDirDest, false);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = CxDir::bDeleteForce(csDirDest);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = CxDir::bDeleteForce(csDirSource);
-        xTEST_EQ(true, m_bRv);
+        CxDir::vCopy(csDirSource, csDirDest, true);
+        CxDir::vDelete(csDirDest);
+        CxDir::vCopy(csDirSource, csDirDest, false);
+        CxDir::vDeleteForce(csDirDest);
+        CxDir::vDeleteForce(csDirSource);
     }
 
     //-------------------------------------
@@ -250,17 +231,13 @@ CxTest_CxDir::bUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(sDirPathes); ++ i) {
-            m_bRv = CxDir::bCreateForce(sDirPathes[i]);
-            xTEST_EQ(true, m_bRv);
+            CxDir::vCreateForce(sDirPathes[i]);
         }
 
         //-------------------------------------
         //bMove
-        m_bRv = CxDir::bMove(csDirSource, csDirDest, true);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = CxDir::bDelete(csDirDest);
-        xTEST_EQ(true, m_bRv);
+        CxDir::vMove(csDirSource, csDirDest, true);
+        CxDir::vDelete(csDirDest);
     }
 
     //-------------------------------------
@@ -278,16 +255,14 @@ CxTest_CxDir::bUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(sDirPathes); ++ i) {
-            m_bRv = CxDir::bCreateForce(sDirPathes[i]);
-            xTEST_EQ(true, m_bRv);
+            CxDir::vCreateForce(sDirPathes[i]);
         }
 
         //-------------------------------------
         //bFindDirs
         {
             m_vsRv.clear();
-            m_bRv = CxDir::bFindDirs(csTempScanDirPath, CxConst::xMASK_ALL, false, &m_vsRv);
-            xTEST_EQ(true, m_bRv);
+            CxDir::vFindDirs(csTempScanDirPath, CxConst::xMASK_ALL, false, &m_vsRv);
             //CxString::vStdVectorPrintT(m_vsRv);
 
             xTEST_EQ((size_t)2, m_vsRv.size());
@@ -297,8 +272,7 @@ CxTest_CxDir::bUnit(
         //bFindDirs
         {
             m_vsRv.clear();
-            m_bRv = CxDir::bFindDirs(csTempScanDirPath, CxConst::xMASK_ALL, true, &m_vsRv);
-            xTEST_EQ(true, m_bRv);
+            CxDir::vFindDirs(csTempScanDirPath, CxConst::xMASK_ALL, true, &m_vsRv);
             //CxString::vStdVectorPrintT(m_vsRv);
 
             xTEST_EQ(xARRAY_SIZE(sDirPathes), m_vsRv.size());
@@ -332,8 +306,7 @@ CxTest_CxDir::bUnit(
         //bFindFiles
         {
             m_vsRv.clear();
-            m_bRv = CxDir::bFindFiles(csTempScanDirPath, CxConst::xMASK_ALL, false, &m_vsRv);
-            xTEST_EQ(true, m_bRv);
+            CxDir::vFindFiles(csTempScanDirPath, CxConst::xMASK_ALL, false, &m_vsRv);
             //CxString::vStdVectorPrintT(m_vsRv);
 
             xTEST_EQ((size_t)2, m_vsRv.size());
@@ -343,8 +316,7 @@ CxTest_CxDir::bUnit(
         //bFindFiles
         {
             m_vsRv.clear();
-            m_bRv = CxDir::bFindFiles(csTempScanDirPath, CxConst::xMASK_ALL, true, &m_vsRv);
-            xTEST_EQ(true, m_bRv);
+            CxDir::vFindFiles(csTempScanDirPath, CxConst::xMASK_ALL, true, &m_vsRv);
             //CxString::vStdVectorPrintT(m_vsRv);
 
             xTEST_EQ(xARRAY_SIZE(g_sFilePathes), m_vsRv.size());
@@ -355,38 +327,30 @@ CxTest_CxDir::bUnit(
     //bClearForce
     xTEST_CASE(cullCaseLoops)
     {
-        m_bRv = CxDir::bClearForce(csDirPath);
-        xTEST_EQ(true, m_bRv);
+        CxDir::vClearForce(csDirPath);
     }
 
     //-------------------------------------
     //bDelete
     xTEST_CASE(cullCaseLoops)
     {
-        m_bRv = CxDir::bDelete(csDirPath2);
-        xTEST_EQ(true, m_bRv);
+        CxDir::vDelete(csDirPath2);
     }
 
     //-------------------------------------
     //bTryDelete
     xTEST_CASE(cullCaseLoops)
     {
-        m_bRv = CxDir::bCreateForce(csDirPath2);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = CxDir::bTryDelete(csDirPath2, 10, 5);
-        xTEST_EQ(true, m_bRv);
+        CxDir::vCreateForce(csDirPath2);
+        CxDir::vTryDelete(csDirPath2, 10, 5);
     }
 
     //-------------------------------------
     //bDeleteForce
     xTEST_CASE(cullCaseLoops)
     {
-        m_bRv = CxDir::bCreateForce(csDirPath);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = CxDir::bDeleteForce(csDirPath);
-        xTEST_EQ(true, m_bRv);
+        CxDir::vCreateForce(csDirPath);
+        CxDir::vDeleteForce(csDirPath);
     }
 
     return true;

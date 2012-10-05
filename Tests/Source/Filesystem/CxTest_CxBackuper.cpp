@@ -55,8 +55,7 @@ CxTest_CxBackuper::bUnit(
             xTEST_EQ(false, sBackupFilePath.empty())
         }
 
-        m_bRv = CxDir::bDeleteForce(csBackupDir);
-        xTEST_EQ(true, m_bRv);
+        CxDir::vDeleteForce(csBackupDir);
     }
 
     return true;

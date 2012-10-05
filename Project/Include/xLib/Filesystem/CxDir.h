@@ -27,31 +27,31 @@ class CxDir :
             ///< is dir
         static std::tstring_t sGetCurrent ();
             ///< get current
-        static bool           bSetCurrent (const std::tstring_t &csDirPath);
+        static void           vSetCurrent (const std::tstring_t &csDirPath);
             ///< set current
         static std::tstring_t sGetTemp    ();
             ///< get path to system var %Temp%
-        static bool           bCreate     (const std::tstring_t &csDirPath);
+        static void           vCreate     (const std::tstring_t &csDirPath);
             ///< create
-        static bool           bCreateForce(const std::tstring_t &csDirPath);
+        static void           vCreateForce(const std::tstring_t &csDirPath);
             ///< creation of all dirs that not exists in path
-        static bool           bCopy       (const std::tstring_t &csDirPathFrom, const std::tstring_t &csDirPathTo, const bool cbFailIfExists);
+        static void           vCopy       (const std::tstring_t &csDirPathFrom, const std::tstring_t &csDirPathTo, const bool &cbFailIfExists);
             ///< copy
-        static bool           bMove       (const std::tstring_t &csDirPathFrom, const std::tstring_t &csDirPathTo, const bool cbFailIfExists);
+        static void           vMove       (const std::tstring_t &csDirPathFrom, const std::tstring_t &csDirPathTo, const bool &cbFailIfExists);
             ///< move
 
-        static bool           bDelete     (const std::tstring_t &csDirPath);
+        static void           vDelete     (const std::tstring_t &csDirPath);
             ///< deletion dir which empty
-        static bool           bTryDelete  (const std::tstring_t &csDirPath, const size_t cuiAttempts, const ulong_t culTimeoutMsec);
+        static void           vTryDelete  (const std::tstring_t &csDirPath, const size_t &cuiAttempts, const ulong_t &culTimeoutMsec);
             ///< try deleting, max 100 attempts
-        static bool           bClearForce (const std::tstring_t &csDirPath);
+        static void           vClearForce (const std::tstring_t &csDirPath);
             ///< detetion all content of dir
-        static bool           bDeleteForce(const std::tstring_t &csDirPath);
+        static void           vDeleteForce(const std::tstring_t &csDirPath);
             ///< detetion dir fnd all content of it
 
-        static bool           bFindFiles  (const std::tstring_t &csDirPath, const std::tstring_t &cMask, const bool cbIsRecurse, std::vec_tstring_t *pvsFilePathes);
+        static void           vFindFiles  (const std::tstring_t &csDirPath, const std::tstring_t &cMask, const bool &cbIsRecurse, std::vec_tstring_t *pvsFilePathes);
             ///< search files
-        static bool           bFindDirs   (const std::tstring_t &csDirPath, const std::tstring_t &cMask, const bool cbIsRecurse, std::vec_tstring_t *pvsDirPathes);
+        static void           vFindDirs   (const std::tstring_t &csDirPath, const std::tstring_t &cMask, const bool &cbIsRecurse, std::vec_tstring_t *pvsDirPathes);
             ///< search subdirs
 
     private:

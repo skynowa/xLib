@@ -72,7 +72,7 @@ CxVolume::bIsReady(
     bRv = !!::SetCurrentDirectory(sVolumePath.c_str());
     /*DEBUG*/// n/a
 
-    (void)CxDir::bSetCurrent(sOldDirPath);
+    CxDir::vSetCurrent(sOldDirPath);
 
     (void)::SetErrorMode(uiOldErrorMode);
 #elif xOS_ENV_UNIX
