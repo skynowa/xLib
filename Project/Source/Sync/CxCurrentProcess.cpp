@@ -131,8 +131,8 @@ CxCurrentProcess::hGetHandle() {
 //---------------------------------------------------------------------------
 // TODO: tests
 /* static */
-bool
-CxCurrentProcess::bExit(
+void
+CxCurrentProcess::vExit(
     const uint_t &a_cuiExitCode
 )
 {
@@ -143,8 +143,6 @@ CxCurrentProcess::bExit(
 #elif xOS_ENV_UNIX
     (void)::exit(static_cast<int>( a_cuiExitCode ));
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
 
