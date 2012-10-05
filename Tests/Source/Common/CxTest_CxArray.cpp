@@ -17,9 +17,9 @@ CxTest_CxArray::~CxTest_CxArray() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxArray::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxArray::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     const size_t cuiArraySize = 5;
@@ -65,7 +65,5 @@ CxTest_CxArray::bUnit(
         NxArray::make_array<std::tstring_t>( xT("0"),  xT("1") );
         NxArray::make_array<std::tstring_t>( xT("0"),  xT("1"),  xT("2") );
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

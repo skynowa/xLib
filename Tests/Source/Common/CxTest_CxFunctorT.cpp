@@ -85,9 +85,9 @@ CxTest_CxFunctorT::~CxTest_CxFunctorT() {
 
 }
 //---------------------------------------------------------------------------
-bool
-CxTest_CxFunctorT::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxFunctorT::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     //-------------------------------------
@@ -157,7 +157,5 @@ CxTest_CxFunctorT::bUnit(
         m_sRv = bF.Execute(0);
         xTEST_EQ(std::tstring_t(xT("Class_C")), m_sRv);
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

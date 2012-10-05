@@ -17,9 +17,9 @@ CxTest_CxRandom::~CxTest_CxRandom() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxRandom::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxRandom::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     #if xTODO
@@ -144,7 +144,5 @@ CxTest_CxRandom::bUnit(
             //xTRACEV(xT("\ti: %s"), m_sRv.c_str());
         }
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

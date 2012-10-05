@@ -18,7 +18,7 @@ class CxTest_CxBlowfish :
                      CxTest_CxBlowfish();
         virtual     ~CxTest_CxBlowfish();
 
-        virtual bool bUnit(const ulonglong_t cullCaseLoops);
+        virtual void vUnit(const ulonglong_t &cullCaseLoops);
 
     private:
 };

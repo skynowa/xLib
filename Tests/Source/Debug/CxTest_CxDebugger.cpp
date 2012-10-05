@@ -17,9 +17,9 @@ CxTest_CxDebugger::~CxTest_CxDebugger() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxDebugger::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxDebugger::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     //-------------------------------------
@@ -264,7 +264,5 @@ CxTest_CxDebugger::bUnit(
             xTEST_GR_EQ(sVar3, sVar4);
         }
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

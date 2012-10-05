@@ -18,7 +18,7 @@ class CxTest_CxLocale :
                      CxTest_CxLocale();
         virtual     ~CxTest_CxLocale();
 
-        virtual bool bUnit(const ulonglong_t cullCaseLoops);
+        virtual void vUnit(const ulonglong_t &cullCaseLoops);
 
     private:
 };

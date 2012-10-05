@@ -18,7 +18,7 @@ class CxTest_CxIpcMutex :
                      CxTest_CxIpcMutex();
         virtual     ~CxTest_CxIpcMutex();
 
-        virtual bool bUnit(const ulonglong_t cullCaseLoops);
+        virtual void vUnit(const ulonglong_t &cullCaseLoops);
 
     private:
 };

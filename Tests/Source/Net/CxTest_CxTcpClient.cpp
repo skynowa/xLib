@@ -20,9 +20,9 @@ CxTest_CxTcpClient::~CxTest_CxTcpClient() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxTcpClient::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxTcpClient::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     CxSocket::ExAddressFamily afAf           = CxSocket::afInet;
@@ -117,7 +117,5 @@ CxTest_CxTcpClient::bUnit(
     //iGetLastError
     m_iRv = CxTcpClient::iGetLastError();
     //xTEST_EQ(true, m_bRv);
-
-    return true;
 }
 //---------------------------------------------------------------------------

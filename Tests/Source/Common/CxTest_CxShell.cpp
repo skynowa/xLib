@@ -17,9 +17,9 @@ CxTest_CxShell::~CxTest_CxShell() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxShell::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxShell::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     /*DEBUG*/
@@ -110,7 +110,5 @@ CxTest_CxShell::bUnit(
         #endif //xOS_WIN_2K
     }
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------

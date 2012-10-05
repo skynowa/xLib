@@ -20,9 +20,9 @@ CxTest_CxTcpServer::~CxTest_CxTcpServer() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxTcpServer::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxTcpServer::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     /*DEBUG*/
@@ -88,7 +88,5 @@ CxTest_CxTcpServer::bUnit(
     //iGetLastError
     m_iRv = CxTcpServer::iGetLastError();
     //xTEST_EQ(true, m_bRv);
-
-    return true;
 }
 //---------------------------------------------------------------------------

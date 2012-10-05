@@ -17,9 +17,9 @@ CxTest_CxErrorReport::~CxTest_CxErrorReport() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxErrorReport::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxErrorReport::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     //--------------------------------------------------
@@ -35,7 +35,5 @@ CxTest_CxErrorReport::bUnit(
                                ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME,
                                CxStackTrace().sGet(), xT(""));
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

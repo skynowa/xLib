@@ -17,9 +17,9 @@ CxTest_CxSystemLog::~CxTest_CxSystemLog() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxSystemLog::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxSystemLog::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     //--------------------------------------------------
@@ -66,7 +66,5 @@ CxTest_CxSystemLog::bUnit(
             slSytemLog.vWrite(alvLogLevel[i], xT("%s%")xPR_SIZET, xT("This is test system log message #"), i);
         }
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

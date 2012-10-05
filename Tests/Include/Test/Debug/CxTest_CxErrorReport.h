@@ -18,7 +18,7 @@ class CxTest_CxErrorReport :
                      CxTest_CxErrorReport();
         virtual     ~CxTest_CxErrorReport();
 
-        virtual bool bUnit(const ulonglong_t cullCaseLoops);
+        virtual void vUnit(const ulonglong_t &cullCaseLoops);
 
     private:
 };

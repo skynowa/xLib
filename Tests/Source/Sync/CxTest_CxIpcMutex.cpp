@@ -17,9 +17,9 @@ CxTest_CxIpcMutex::~CxTest_CxIpcMutex() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxIpcMutex::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxIpcMutex::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     const std::tstring_t csName = xT("mutex_name_a");
@@ -64,7 +64,5 @@ CxTest_CxIpcMutex::bUnit(
         mtMutex.vLock(culTimeout);
         mtMutex.vUnlock();
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

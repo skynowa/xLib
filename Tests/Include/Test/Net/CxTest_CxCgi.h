@@ -18,7 +18,7 @@ class CxTest_CxCgi :
                      CxTest_CxCgi();
         virtual     ~CxTest_CxCgi();
 
-        virtual bool bUnit(const ulonglong_t cullCaseLoops);
+        virtual void vUnit(const ulonglong_t &cullCaseLoops);
 
     private:
 };

@@ -17,9 +17,9 @@ CxTest_CxMsgBoxT::~CxTest_CxMsgBoxT() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxMsgBoxT::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxMsgBoxT::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
 #if xTEST_IGNORE
@@ -71,7 +71,5 @@ CxTest_CxMsgBoxT::bUnit(
         xUNUSED(mrRes);
     }
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------

@@ -17,13 +17,11 @@ CxTest_CxSemaphore::~CxTest_CxSemaphore() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxSemaphore::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxSemaphore::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
 
-
-    return true;
 }
 //---------------------------------------------------------------------------

@@ -17,9 +17,9 @@ CxTest_CxChar::~CxTest_CxChar() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxChar::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxChar::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     //--------------------------------------------------
@@ -324,7 +324,5 @@ CxTest_CxChar::bUnit(
             xTEST_EQ(sDataUpper.at(i), m_chRv);
         }
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

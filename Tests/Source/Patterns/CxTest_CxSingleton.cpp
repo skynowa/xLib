@@ -33,9 +33,9 @@ CxTest_CxSingleton::~CxTest_CxSingleton() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxSingleton::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxSingleton::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     //-------------------------------------
@@ -70,7 +70,5 @@ CxTest_CxSingleton::bUnit(
         ////TLoggerSingleton *pobjLoggerSingleton = new TLoggerSingleton;
         ////xPTR_DELETE(pobjLoggerSingleton);
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

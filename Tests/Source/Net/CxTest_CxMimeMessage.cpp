@@ -17,9 +17,9 @@ CxTest_CxMimeMessage::~CxTest_CxMimeMessage() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxMimeMessage::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxMimeMessage::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     std::string m_sRv;
@@ -206,7 +206,5 @@ CxTest_CxMimeMessage::bUnit(
     //-------------------------------------
     //bDisconnect
     objPop3.vDisconnect();
-
-    return true;
 }
 //---------------------------------------------------------------------------

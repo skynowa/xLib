@@ -18,7 +18,7 @@ class CxTest_CxRandom :
                      CxTest_CxRandom();
         virtual     ~CxTest_CxRandom();
 
-        virtual bool bUnit(const ulonglong_t cullCaseLoops);
+        virtual void vUnit(const ulonglong_t &cullCaseLoops);
 
     private:
 };

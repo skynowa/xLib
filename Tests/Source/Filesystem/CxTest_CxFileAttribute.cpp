@@ -21,9 +21,9 @@ CxTest_CxFileAttribute::~CxTest_CxFileAttribute() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxFileAttribute::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxFileAttribute::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     const std::tstring_t csFilePath = sGetTempDirPath() + CxConst::xSLASH + xT("Test.txt");
@@ -171,7 +171,5 @@ CxTest_CxFileAttribute::bUnit(
             xTEST_EQ((int)CxFileAttribute::faRegularFile, (int)faRes);
         #endif
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

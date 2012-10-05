@@ -49,7 +49,7 @@ CxTestManager::bAdd(
     /*DEBUG*/
     /*DEBUG*/xTEST_PTR(a_pvtTest)
 
-    (void)a_pvtTest->bSetName( CxType::sGetName(*a_pvtTest) );
+    a_pvtTest->vSetName( CxType::sGetName(*a_pvtTest) );
 
     _m_ctnTests.push_back(a_pvtTest);
 
@@ -62,9 +62,9 @@ CxTestManager::bAdd(
 //---------------------------------------------------------------------------
 bool
 CxTestManager::bRun(
-    const ulonglong_t a_cullAllLoops,
-    const ulonglong_t a_cullUnitLoops,
-    const ulonglong_t a_cullCaseLoops
+    const ulonglong_t &a_cullAllLoops,
+    const ulonglong_t &a_cullUnitLoops,
+    const ulonglong_t &a_cullCaseLoops
 )
 {
     /*DEBUG*/
@@ -78,8 +78,8 @@ CxTestManager::bRun(
         xFOREACH_CONST(container_t, it, _m_ctnTests) {
             xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: run test \"%s\""), (*it)->sGetName().c_str()));
 
-            bool bRv = (*it)->bRun(a_cullUnitLoops, a_cullCaseLoops);
-            xTEST_MSG_EQ(true, bRv, CxString::sFormat(xT("CxTestManager: test \"%s\" not complete"), (*it)->sGetName().c_str()));
+            (*it)->vRun(a_cullUnitLoops, a_cullCaseLoops);
+            // TODO: xTEST_MSG_EQ(true, bRv, CxString::sFormat(xT("CxTestManager: test \"%s\" not complete"), (*it)->sGetName().c_str()));
 
             //xCHECK_DO(_m_cbIsUseTracing, xTRACE(xT("...Ok")));
         }

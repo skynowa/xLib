@@ -20,9 +20,9 @@ CxTest_CxCgi::~CxTest_CxCgi() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxCgi::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxCgi::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     //--------------------------------------------------
@@ -280,7 +280,5 @@ CxTest_CxCgi::bUnit(
             }
         }
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

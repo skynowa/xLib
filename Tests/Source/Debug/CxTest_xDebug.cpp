@@ -19,9 +19,9 @@ CxTest_xDebug::~CxTest_xDebug() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-bool
-CxTest_xDebug::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_xDebug::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     //--------------------------------------------------
@@ -221,7 +221,5 @@ CxTest_xDebug::bUnit(
             xTRACE_POINT;
         #endif
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

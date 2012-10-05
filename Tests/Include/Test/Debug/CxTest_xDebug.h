@@ -20,7 +20,7 @@ class CxTest_xDebug :
         virtual      ~CxTest_xDebug();
             ///< destructor
 
-        virtual bool  bUnit(const ulonglong_t cullCaseLoops);
+        virtual void vUnit(const ulonglong_t &cullCaseLoops);
             ///< unit test
 
     private:

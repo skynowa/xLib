@@ -19,9 +19,9 @@ CxTest_CxMySql::~CxTest_CxMySql() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxMySql::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxMySql::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     const std::tstring_t csHost        = xT("127.0.0.1");
@@ -269,7 +269,5 @@ CxTest_CxMySql::bUnit(
     //--------------------------------------------------
     //bClose
     conConn.vClose();
-
-    return true;
 }
 //---------------------------------------------------------------------------

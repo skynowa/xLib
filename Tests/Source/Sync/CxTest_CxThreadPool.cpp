@@ -18,9 +18,9 @@ CxTest_CxThreadPool::~CxTest_CxThreadPool() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-bool
-CxTest_CxThreadPool::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxThreadPool::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     const bool cbIsPaused            = true;
@@ -58,8 +58,6 @@ CxTest_CxThreadPool::bUnit(
 
     tpPool->uiGetNumTasks();
     tpPool->vSetNumTasks (10);
-
-    return true;
 }
 //---------------------------------------------------------------------------
 

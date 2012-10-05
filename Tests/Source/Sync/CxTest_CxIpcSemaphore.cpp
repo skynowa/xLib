@@ -20,9 +20,9 @@ CxTest_CxIpcSemaphore::~CxTest_CxIpcSemaphore() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxIpcSemaphore::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxIpcSemaphore::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     struct _SFunctor
@@ -78,7 +78,5 @@ CxTest_CxIpcSemaphore::bUnit(
     }
 
     //m_bRv = CxCurrentThread::bSleep(3000);
-
-    return true;
 }
 //---------------------------------------------------------------------------

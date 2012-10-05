@@ -19,9 +19,9 @@ CxTest_CxCrc32::~CxTest_CxCrc32() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxCrc32::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxCrc32::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     /*DEBUG*/
@@ -74,7 +74,5 @@ CxTest_CxCrc32::bUnit(
         m_sRv = CxCrc32::sFormatHex(m_ulRv);
         xTEST_EQ(false, m_sRv.empty());
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

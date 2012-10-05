@@ -22,9 +22,9 @@ CxTest_CxPop3::~CxTest_CxPop3() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxPop3::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxPop3::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
 #if   xOS_ENV_WIN
@@ -164,7 +164,5 @@ CxTest_CxPop3::bUnit(
 #elif xOS_ENV_UNIX
 
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------

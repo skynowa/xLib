@@ -17,9 +17,9 @@ CxTest_CxLocale::~CxTest_CxLocale() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxLocale::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxLocale::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     //-------------------------------------
@@ -50,7 +50,5 @@ CxTest_CxLocale::bUnit(
     {
         CxLocale::vSetCurrent(CxLocale::sGetCurrent());
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

@@ -18,9 +18,9 @@ CxTest_CxProfiler::~CxTest_CxProfiler() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxProfiler::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxProfiler::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     const CxProfiler::ExMode pmPerformMode[] = {
@@ -59,7 +59,5 @@ CxTest_CxProfiler::bUnit(
 
         pfP.vStop(xT(""));
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

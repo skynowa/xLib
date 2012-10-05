@@ -18,7 +18,7 @@ class CxTest_CxVolume :
                      CxTest_CxVolume();
         virtual     ~CxTest_CxVolume();
 
-        virtual bool bUnit(const ulonglong_t cullCaseLoops);
+        virtual void vUnit(const ulonglong_t &cullCaseLoops);
 
     private:
 };

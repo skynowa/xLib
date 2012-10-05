@@ -19,9 +19,9 @@ CxTest_CxCookiePv1::~CxTest_CxCookiePv1() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxCookiePv1::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxCookiePv1::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     const std::tstring_t   csName      = xT("Name1");
@@ -130,7 +130,5 @@ CxTest_CxCookiePv1::bUnit(
 
         ckCookiePv1.vClear();
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

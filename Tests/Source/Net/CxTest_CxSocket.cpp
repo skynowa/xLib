@@ -20,13 +20,11 @@ CxTest_CxSocket::~CxTest_CxSocket() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxSocket::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxSocket::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     CxSocketInit siInit22(2, 2);
-
-    return true;
 }
 //---------------------------------------------------------------------------

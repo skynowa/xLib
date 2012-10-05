@@ -17,9 +17,9 @@ CxTest_CxDll::~CxTest_CxDll() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxDll::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxDll::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     #if   xOS_ENV_WIN
@@ -93,7 +93,5 @@ CxTest_CxDll::bUnit(
         xTEST_EQ(true, m_bRv);
 
     } //for
-
-    return true;
 }
 //---------------------------------------------------------------------------

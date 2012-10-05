@@ -17,9 +17,9 @@ CxTest_CxStdError::~CxTest_CxStdError() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxStdError::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxStdError::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     const int ciMaxErrors = 132;  /*0...132*/;
@@ -100,7 +100,5 @@ CxTest_CxStdError::bUnit(
             //xTRACEV(xT("\CxStdError::sFormat(%lu) = %s (size = %lu)"), i, m_sRv.c_str(), m_sRv.size() - 4);
         }
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

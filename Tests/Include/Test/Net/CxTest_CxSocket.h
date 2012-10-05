@@ -18,7 +18,7 @@ class CxTest_CxSocket :
                      CxTest_CxSocket();
         virtual     ~CxTest_CxSocket();
 
-        virtual bool bUnit(const ulonglong_t cullCaseLoops);
+        virtual void vUnit(const ulonglong_t &cullCaseLoops);
 
     private:
 };

@@ -19,9 +19,9 @@ CxTest_CxDir::~CxTest_CxDir() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxDir::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxDir::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     const std::tstring_t csTempScanDirPath = sGetTempDirPath() + CxConst::xSLASH + xT("Scan");
@@ -351,7 +351,5 @@ CxTest_CxDir::bUnit(
         CxDir::vCreateForce(csDirPath);
         CxDir::vDeleteForce(csDirPath);
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

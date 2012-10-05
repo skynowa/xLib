@@ -20,9 +20,9 @@ CxTest_xDefines::~CxTest_xDefines() {
 }
 //---------------------------------------------------------------------------
 /*virtual*/
-bool
-CxTest_xDefines::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_xDefines::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     //-------------------------------------
@@ -523,7 +523,5 @@ CxTest_xDefines::bUnit(
     {
 
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

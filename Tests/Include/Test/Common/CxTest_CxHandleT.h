@@ -18,7 +18,7 @@ class CxTest_CxHandleT :
                      CxTest_CxHandleT();
         virtual     ~CxTest_CxHandleT();
 
-        virtual bool bUnit(const ulonglong_t cullCaseLoops);
+        virtual void vUnit(const ulonglong_t &cullCaseLoops);
 
     private:
 };

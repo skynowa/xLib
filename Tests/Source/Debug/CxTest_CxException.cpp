@@ -19,9 +19,9 @@ CxTest_CxException::~CxTest_CxException() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxException::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxException::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
 
@@ -122,7 +122,5 @@ CxTest_CxException::bUnit(
             xCATCH_ALL;
         #endif
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

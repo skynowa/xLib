@@ -17,9 +17,9 @@ CxTest_CxBase64::~CxTest_CxBase64() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxBase64::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxBase64::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     //-------------------------------------
@@ -98,7 +98,5 @@ CxTest_CxBase64::bUnit(
             }
         }
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------
