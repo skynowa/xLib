@@ -104,28 +104,24 @@ CxTest_CxMimeMessage::bUnit(
 
     //-------------------------------------
     //bCreate
-    m_bRv = objPop3.bCreate(csUser, csPass, csServer, usPort);
-    xTEST_EQ(true, m_bRv);
+    objPop3.vCreate(csUser, csPass, csServer, usPort);
 
     //-------------------------------------
     //bConnect
-    m_bRv = objPop3.bConnect();
-    xTEST_EQ(true, m_bRv);
+    objPop3.vConnect();
 
     //-------------------------------------
     //bLogin
-    m_bRv = objPop3.bLogin();
-    xTEST_EQ(true, m_bRv);
+    objPop3.vLogin();
 
     //-------------------------------------
     //bStat
-    m_bRv = objPop3.bStat(ulSum, ulSize);
-    xTEST_EQ(true, m_bRv);
+    objPop3.vStat(ulSum, ulSize);
     /*LOG*/printf("Mails %lu\n", ulSum);
 
     //-------------------------------------
     //bTop
-    std::string sRawHeader = "";
+    std::string sRawHeader;
 
     for (ulong_t i = 1; i <= ulSum; i ++) {
         //-------------------------------------
@@ -136,8 +132,7 @@ CxTest_CxMimeMessage::bUnit(
         //CxMimeHeader
         CxMimeHeader objHeader;
 
-        m_bRv = objPop3.bTop(i, 0, /*ref*/sRawHeader);
-        xTEST_EQ(true, m_bRv);
+        objPop3.vTop(i, 0, /*ref*/sRawHeader);
 
         //-------------------------------------
         //bParse
@@ -178,8 +173,7 @@ CxTest_CxMimeMessage::bUnit(
 
         //-------------------------------------
         //bRetrieveHeader
-        m_bRv = objPop3.bRetrieveHeader(y, objHeader);
-        xTEST_EQ(true, m_bRv);
+        objPop3.vRetrieveHeader(y, objHeader);
 
         //-------------------------------------
         //sGetField
@@ -211,8 +205,7 @@ CxTest_CxMimeMessage::bUnit(
 
     //-------------------------------------
     //bDisconnect
-    m_bRv = objPop3.bDisconnect();
-    xTEST_EQ(true, m_bRv);
+    objPop3.vDisconnect();
 
     return true;
 }

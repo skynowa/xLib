@@ -73,23 +73,19 @@ CxTest_CxPop3::bUnit(
 
     //-------------------------------------
     //bCreate
-    m_bRv = objPop3.bCreate(csUser, csPass, csServer, cusPort);
-    xTEST_EQ(true, m_bRv);
+    objPop3.vCreate(csUser, csPass, csServer, cusPort);
 
     //-------------------------------------
     //bConnect
-    m_bRv = objPop3.bConnect();
-    xTEST_EQ(true, m_bRv);
+    objPop3.vConnect();
 
     //-------------------------------------
     //bLogin
-    m_bRv = objPop3.bLogin();
-    xTEST_EQ(true, m_bRv);
+    objPop3.vLogin();
 
     //-------------------------------------
     //bStat
-    m_bRv = objPop3.bStat(ulSum, ulSize);
-    xTEST_EQ(true, m_bRv);
+    objPop3.vStat(ulSum, ulSize);
 
     //-------------------------------------
     //bList
@@ -103,18 +99,15 @@ CxTest_CxPop3::bUnit(
 
     //-------------------------------------
     //bNoop
-    m_bRv = objPop3.bNoop();
-    xTEST_EQ(true, m_bRv);
+    objPop3.vNoop();
 
     //-------------------------------------
     //bDelete
-    m_bRv = objPop3.bDelete(ulMsgID);
-    xTEST_EQ(true, m_bRv);
+    objPop3.vDelete(ulMsgID);
 
     //-------------------------------------
     //bRset
-    m_bRv = objPop3.bRset();
-    xTEST_EQ(true, m_bRv);
+    objPop3.vRset();
 
     //-------------------------------------
     //bTop
@@ -152,9 +145,7 @@ CxTest_CxPop3::bUnit(
     for (ulong_t i = 1; i <= ulSum; i ++) {
         CxDir::vCreateForce(csDirPath);
 
-        m_bRv = objPop3.bRetriveRaw(i, csDirPath, csFileName + xT("_") + CxString::string_cast(i) + xT(".eml"));
-        xTEST_EQ(true, m_bRv);
-
+        objPop3.vRetriveRaw(i, csDirPath, csFileName + xT("_") + CxString::string_cast(i) + xT(".eml"));
         /*LOG*/printf("bRetriveRaw %lu\n", i);
     }
 
@@ -163,16 +154,13 @@ CxTest_CxPop3::bUnit(
     for (ulong_t i = 1; i <= ulSum; i ++) {
         CxMimeHeader mhMimeHeader;
 
-        m_bRv = objPop3.bRetrieveHeader(iNum, mhMimeHeader);
-        xTEST_EQ(true, m_bRv);
-
+        objPop3.vRetrieveHeader(iNum, mhMimeHeader);
         /*LOG*/printf("bRetrieveHeader %lu\n", i);
     }
 
     //-------------------------------------
     //bDisconnect
-    m_bRv = objPop3.bDisconnect();
-    xTEST_EQ(true, m_bRv);
+    objPop3.vDisconnect();
 #elif xOS_ENV_UNIX
 
 #endif

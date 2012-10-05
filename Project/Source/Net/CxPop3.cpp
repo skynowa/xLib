@@ -35,12 +35,12 @@ CxPop3::CxPop3() :
 //---------------------------------------------------------------------------
 //DONE: ~CxPop3
 CxPop3::~CxPop3() {
-    xCHECK_DO(true == _m_bConnected, bDisconnect());
+    vDisconnect();
 }
 //---------------------------------------------------------------------------
 //DONE: bCreate
-bool
-CxPop3::bCreate(const std::tstring_t &a_csUser, const std::tstring_t &a_csPass, const std::tstring_t &a_csServer, ushort_t a_usPort) {
+void
+CxPop3::vCreate(const std::tstring_t &a_csUser, const std::tstring_t &a_csPass, const std::tstring_t &a_csServer, ushort_t a_usPort) {
      /*DEBUG*/xTEST_EQ(false, a_csUser.empty());
      /*DEBUG*/xTEST_EQ(false, a_csPass.empty());
      /*DEBUG*/xTEST_EQ(false, a_csServer.empty());
@@ -50,17 +50,14 @@ CxPop3::bCreate(const std::tstring_t &a_csUser, const std::tstring_t &a_csPass, 
      _m_sPass   = a_csPass;
      _m_sServer = a_csServer;
      _m_usPort  = a_usPort;
-
-     return true;
 }
 //---------------------------------------------------------------------------
 //DONE: bConnect
-bool
-CxPop3::bConnect() {
+void
+CxPop3::vConnect() {
      //-------------------------------------
      //Create sock
-     bool bRv = _m_scktSocket.bCreate(CxSocket::afInet, CxSocket::tpStream, CxSocket::ptIp);
-     xCHECK_RET(false == bRv, false);
+     _m_scktSocket.bCreate(CxSocket::afInet, CxSocket::tpStream, CxSocket::ptIp);
 
      //-------------------------------------
      //Parse domain
@@ -70,8 +67,7 @@ CxPop3::bConnect() {
 
      //-------------------------------------
      //Connect
-     bRv = _m_scktSocket.bConnect(sIp, _m_usPort);
-     xCHECK_RET(false == bRv, false);
+     _m_scktSocket.bConnect(sIp, _m_usPort);
 
      //-------------------------------------
      //[welcome message]
@@ -79,13 +75,11 @@ CxPop3::bConnect() {
      /*DEBUG*/xTEST_MSG_EQ(false, _bIsError(_m_sRes), _m_sRes); // "+OK"
 
     _m_bConnected = true;
-
-     return true;
  }
 //---------------------------------------------------------------------------
 //DONE: bLogin
-bool
-CxPop3::bLogin() {
+void
+CxPop3::vLogin() {
     //-------------------------------------
     //RFC
     /*
@@ -116,22 +110,18 @@ CxPop3::bLogin() {
     //[USER user\r\n]
     const std::tstring_t sUserCmd = "USER " + _m_sUser + "\r\n";
 
-    bool bRv = _bCommand(sUserCmd, "\r\n", &_m_sRes);
-    xCHECK_RET(false == bRv, false);
+    _vCommand(sUserCmd, "\r\n", &_m_sRes);
 
     //-------------------------------------
     //[PASS\r\n]
     std::tstring_t sPassCmd = "PASS " + _m_sPass + "\r\n";
 
-    bRv = _bCommand(sPassCmd, "\r\n", &_m_sRes);
-    xCHECK_RET(false == bRv, false);
-
-    return true;
+    _vCommand(sPassCmd, "\r\n", &_m_sRes);
 }
 //---------------------------------------------------------------------------
 //DONE: bStat
-bool
-CxPop3::bStat(ulong_t &a_ulSum, ulong_t &a_ulSize) {
+void
+CxPop3::vStat(ulong_t &a_ulSum, ulong_t &a_ulSize) {
     //-------------------------------------
     //RFC
     /*
@@ -143,8 +133,7 @@ CxPop3::bStat(ulong_t &a_ulSum, ulong_t &a_ulSize) {
     //[LIST\r\n]
     const std::tstring_t sStatCmd = "STAT\r\n";
 
-    bool bRv = _bCommand(sStatCmd, "\r\n", &_m_sRes);
-    xCHECK_RET(false == bRv, false);
+    _vCommand(sStatCmd, "\r\n", &_m_sRes);
 
     a_ulSum  = _ulMailsSum (_m_sRes);
     a_ulSize = _ulMailsSize(_m_sRes);
@@ -154,13 +143,11 @@ CxPop3::bStat(ulong_t &a_ulSum, ulong_t &a_ulSize) {
     /*DEBUG*/_m_clLog.bWrite("Recv STAT Resp: MailsSum  = %u\n", a_ulSum);
     /*DEBUG*/_m_clLog.bWrite("Recv STAT Resp: MailsSize = %u\n", a_ulSize);
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
 //TODO: bList (������ ��������, ������ �� �������)
-bool
-CxPop3::bList(std::vector<ulong_t> &a_veculList) {
+void
+CxPop3::vList(std::vector<ulong_t> &a_veculList) {
     //-------------------------------------
     //RFC
     /*
@@ -180,14 +167,13 @@ CxPop3::bList(std::vector<ulong_t> &a_veculList) {
     �: LIST 3
     S: -ERR no such message, only 2 messages in maildrop
     */
-
-
-    return false;
+    
+    xNOT_IMPLEMENTED;
 }
 //---------------------------------------------------------------------------
 //TODO: bListAt (������ ������ � �������� ulIndex)
-bool
-CxPop3::bListAt(ulong_t &a_ulIndex) {
+void
+CxPop3::vListAt(ulong_t &a_ulIndex) {
     //-------------------------------------
     //RFC
     /*
@@ -208,12 +194,12 @@ CxPop3::bListAt(ulong_t &a_ulIndex) {
     S: -ERR no such message, only 2 messages in maildrop
     */
 
-    return false;
+    xNOT_IMPLEMENTED;
 }
 //---------------------------------------------------------------------------
 //DONE: bNoop (�������� ��������� ���������� � ����)
-bool
-CxPop3::bNoop() {
+void
+CxPop3::vNoop() {
     //-------------------------------------
     //RFC
     /*
@@ -225,15 +211,12 @@ CxPop3::bNoop() {
     //[NOOP\r\n]
     std::tstring_t sNoopCmd = "NOOP\r\n";
 
-    bool bRv = _bCommand(sNoopCmd, "\r\n", &_m_sRes);
-    xCHECK_RET(false == bRv, false);
-
-    return true;
+    _vCommand(sNoopCmd, "\r\n", &_m_sRes);
 }
 //---------------------------------------------------------------------------
 //DONE: bRset (������ ����� �������� �����)
-bool
-CxPop3::bRset() {
+void
+CxPop3::vRset() {
     //-------------------------------------
     //RFC
     /*
@@ -245,15 +228,12 @@ CxPop3::bRset() {
     //[RSET\r\n]
     std::tstring_t sRsetCmd = "RSET\r\n";
 
-    bool bRv = _bCommand(sRsetCmd, "\r\n", &_m_sRes);
-    xCHECK_RET(false == bRv, false);
-
-    return true;
+    _vCommand(sRsetCmd, "\r\n", &_m_sRes);
 }
 //---------------------------------------------------------------------------
 //DONE: bTop (�������� ��������� ������)
-bool
-CxPop3::bTop(int a_iNum, int a_iLines, std::tstring_t &a_sBuff) {
+void
+CxPop3::vTop(int a_iNum, int a_iLines, std::tstring_t &a_sBuff) {
     /*DEBUG*/xTEST_GR(a_iNum, 0);
     /*DEBUG*/xTEST_GR(a_iLines,- 1);
 
@@ -272,17 +252,14 @@ CxPop3::bTop(int a_iNum, int a_iLines, std::tstring_t &a_sBuff) {
     //[TOP 1 10\r\n]
     std::tstring_t sTopCmd = "TOP " + CxString::string_cast(a_iNum) + " " + CxString::string_cast(a_iLines) + "\r\n";
 
-    bool bRv = _bCommand(sTopCmd, "\r\n.\r\n", &_m_sRes);
-    xCHECK_RET(false == bRv, false);
+    _vCommand(sTopCmd, "\r\n.\r\n", &_m_sRes);
 
     a_sBuff = _m_sRes;
-
-    return true;
 }
 //---------------------------------------------------------------------------
 //DONE: bRetriveRaw ()
-bool
-CxPop3::bRetriveRaw(int a_iNum, const std::tstring_t &a_csDirPath, const std::tstring_t &a_csFileName) {  //csDirPath ��� �����
+void
+CxPop3::vRetriveRaw(int a_iNum, const std::tstring_t &a_csDirPath, const std::tstring_t &a_csFileName) {  //csDirPath ��� �����
     /*DEBUG*/xTEST_GR(a_iNum, 0);
     /*DEBUG*/xTEST_EQ(false, a_csDirPath.empty());
     /*DEBUG*/xTEST_EQ(false, a_csFileName.empty());
@@ -300,8 +277,7 @@ CxPop3::bRetriveRaw(int a_iNum, const std::tstring_t &a_csDirPath, const std::ts
     //[RETR 3\r\n]
     const std::tstring_t sRetrCmd = "RETR " + CxString::string_cast(a_iNum) + "\r\n";
 
-    bool bRv = _bCommand(sRetrCmd, "\r\n.\r\n", &_m_sRes);
-    xCHECK_RET(false == bRv, false);
+    _vCommand(sRetrCmd, "\r\n.\r\n", &_m_sRes);
 
     //-------------------------------------
     //DONE: ������� 1-�� ������ [+OK message 1 (652 octets)]
@@ -331,13 +307,11 @@ CxPop3::bRetriveRaw(int a_iNum, const std::tstring_t &a_csDirPath, const std::ts
     size_t uiWriteSize = stdFile.uiWrite(&_m_sRes[0], _m_sRes.size());
     /*DEBUG*///???
     xUNUSED(uiWriteSize);
-
-    return true;
 }
 //---------------------------------------------------------------------------
 //DONE: bRetriveRawAndBackup ()
-bool
-CxPop3::bRetriveRawAndBackup(int a_iNum, const std::tstring_t &a_csDirPath, const std::tstring_t &a_csBackupDirPath, const std::tstring_t &a_csFileName) {
+void
+CxPop3::vRetriveRawAndBackup(int a_iNum, const std::tstring_t &a_csDirPath, const std::tstring_t &a_csBackupDirPath, const std::tstring_t &a_csFileName) {
     /*DEBUG*/xTEST_GR(a_iNum, 0);
     /*DEBUG*/xTEST_EQ(false, (true == a_csDirPath.empty() && true == a_csBackupDirPath.empty()));
     /*DEBUG*/xTEST_EQ(false, a_csFileName.empty());
@@ -355,8 +329,7 @@ CxPop3::bRetriveRawAndBackup(int a_iNum, const std::tstring_t &a_csDirPath, cons
     //[RETR 3\r\n]
     const std::tstring_t sRetrCmd = "RETR " + CxString::string_cast(a_iNum) + "\r\n";
 
-    bool bRv = _bCommand(sRetrCmd, "\r\n.\r\n", &_m_sRes);
-    xCHECK_RET(false == bRv, false);
+    _vCommand(sRetrCmd, "\r\n.\r\n", &_m_sRes);
 
     //-------------------------------------
     //DONE: ������� 1-�� ������ [+OK message 1 (652 octets)]
@@ -385,7 +358,7 @@ CxPop3::bRetriveRawAndBackup(int a_iNum, const std::tstring_t &a_csDirPath, cons
         stdfOriginal.vCreate(a_csDirPath + "\\" + a_csFileName, CxFile::omBinWrite, true);
 
         size_t uiOriginalWriteSize = stdfOriginal.uiWrite(&_m_sRes[0], _m_sRes.size());
-        xCHECK_RET(0 == uiOriginalWriteSize, false);
+        xTEST_DIFF(0U, uiOriginalWriteSize);
     }
 
     //-------------------------------------
@@ -396,15 +369,13 @@ CxPop3::bRetriveRawAndBackup(int a_iNum, const std::tstring_t &a_csDirPath, cons
         stdfBackup.vCreate(a_csBackupDirPath + "\\" + a_csFileName, CxFile::omBinWrite, true);
 
         size_t uiBackupWriteSize = stdfBackup.uiWrite(&_m_sRes[0], _m_sRes.size());
-        xCHECK_RET(0 == uiBackupWriteSize, false);
+        xTEST_DIFF(0U, uiBackupWriteSize);
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------
 //DONE: bRetrieveHeader ()
-bool
-CxPop3::bRetrieveHeader(int a_iNum, CxMimeHeader &a_mhMimeHeader) {
+void
+CxPop3::vRetrieveHeader(int a_iNum, CxMimeHeader &a_mhMimeHeader) {
     /*DEBUG*/xTEST_LESS(a_iNum, 0);
 
     //-------------------------------------
@@ -422,19 +393,16 @@ CxPop3::bRetrieveHeader(int a_iNum, CxMimeHeader &a_mhMimeHeader) {
     //[TOP 1 0\r\n]
     std::tstring_t sTopCmd = "TOP " + CxString::string_cast(a_iNum) + " " + "0" + "\r\n";
 
-    bool bRv = _bCommand(sTopCmd, "\r\n.\r\n", &_m_sRes);
-    xCHECK_RET(false == bRv, false);
+    _vCommand(sTopCmd, "\r\n.\r\n", &_m_sRes);
 
     //-------------------------------------
     //������ �����
     a_mhMimeHeader.vParse(_m_sRes);
-
-    return true;
 }
 //---------------------------------------------------------------------------
 //DONE: bDelete (������� ������)
-bool
-CxPop3::bDelete(int a_iNum) {
+void
+CxPop3::vDelete(int a_iNum) {
     /*DEBUG*/xTEST_GR(a_iNum, 0);
 
     //-------------------------------------
@@ -455,15 +423,14 @@ CxPop3::bDelete(int a_iNum) {
     //[DELE 2\r\n]
     const std::tstring_t sDeleCmd = "DELE " + CxString::string_cast(a_iNum) + "\r\n";
 
-    bool bRv = _bCommand(sDeleCmd, "\r\n", &_m_sRes);
-    xCHECK_RET(false == bRv, false);
-
-    return true;
+    _vCommand(sDeleCmd, "\r\n", &_m_sRes);
 }
 //---------------------------------------------------------------------------
 //DONE: bDisconnect (������������� �� �������)
-bool
-CxPop3::bDisconnect() {
+void
+CxPop3::vDisconnect() {
+    xCHECK_DO(false == _m_bConnected, return);
+
     //-------------------------------------
     //RFC
     /*
@@ -475,15 +442,11 @@ CxPop3::bDisconnect() {
     //[QUIT\r\n]
     const std::tstring_t sQuitCmd = "QUIT\r\n";
 
-    bool bRv = _bCommand(sQuitCmd, "\r\n", &_m_sRes);
-    xCHECK_RET(false == bRv, false);
+    _vCommand(sQuitCmd, "\r\n", &_m_sRes);
 
-    bRv = _m_scktSocket.bClose();
-    xCHECK_RET(false == bRv, false);
+    _m_scktSocket.bClose();
 
     _m_bConnected = false;
-
-    return true;
 }
 //---------------------------------------------------------------------------
 //DONE: _ulMailsSum (������� ����� �����)
@@ -532,8 +495,8 @@ CxPop3::_ulMailsSize(const std::tstring_t &a_csServerAnswer) {
 
 //---------------------------------------------------------------------------
 //DONE: _bCommand ()
-bool
-CxPop3::_bCommand(const std::tstring_t &csCmd, const std::tstring_t &csReplyDelimiter, std::tstring_t *psReply) {
+void
+CxPop3::_vCommand(const std::tstring_t &csCmd, const std::tstring_t &csReplyDelimiter, std::tstring_t *psReply) {
     /*DEBUG*/xTEST_EQ(false, csCmd.empty());
     /*DEBUG*/xTEST_EQ(false, csReplyDelimiter.empty());
     /*DEBUG*/xTEST_PTR(psReply);
@@ -550,7 +513,7 @@ CxPop3::_bCommand(const std::tstring_t &csCmd, const std::tstring_t &csReplyDeli
     /*DEBUG*/////_m_clLog.bWrite("Command :  %s          Response: %s\n", csCmd.c_str(), _m_sRes.c_str());
 #endif
 
-    return (! _bIsError(_m_sRes)/*true*/);
+    xTEST_EQ(false, _bIsError(_m_sRes));
 }
 //---------------------------------------------------------------------------
 //DONE: _bIsError ()
