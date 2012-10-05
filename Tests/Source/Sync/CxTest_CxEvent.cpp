@@ -61,16 +61,14 @@ CxTest_CxEvent::bUnit(
         CxEvent objEvent(true, true);
 
         for (size_t i = 0; i < cuiSpinCount; ++ i) {
-            m_bRv = objEvent.bReset();
-            xTEST_EQ(true, m_bRv);
+            objEvent.vReset();
 
             m_bRv = objEvent.bIsSignaled();
             xTEST_EQ(false, m_bRv);
         }
 
         for (size_t i = 0; i < cuiSpinCount; ++ i) {
-            m_bRv = objEvent.bSet();
-            xTEST_EQ(true, m_bRv);
+            objEvent.vSet();
 
             m_bRv = objEvent.bIsSignaled();
             xTEST_EQ(true, m_bRv);
@@ -86,16 +84,14 @@ CxTest_CxEvent::bUnit(
         CxEvent objEvent(true, true);
 
         for (size_t i = 0; i < cuiSpinCount; ++ i) {
-            m_bRv = objEvent.bSet();
-            xTEST_EQ(true, m_bRv);
+            objEvent.vSet();
 
             m_bRv = objEvent.bIsSignaled();
             xTEST_EQ(true, m_bRv);
         }
 
         for (size_t i = 0; i < cuiSpinCount; ++ i) {
-            m_bRv = objEvent.bReset();
-            xTEST_EQ(true, m_bRv);
+            objEvent.vReset();
 
             m_bRv = objEvent.bIsSignaled();
             xTEST_EQ(false, m_bRv);

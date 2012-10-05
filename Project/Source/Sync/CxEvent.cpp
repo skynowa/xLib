@@ -69,8 +69,8 @@ CxEvent::hGet() const {
 }
 //---------------------------------------------------------------------------
 // NOTE: unblock threads blocked on a condition variable
-bool
-CxEvent::bSet() {
+void
+CxEvent::vSet() {
 #if   xOS_ENV_WIN
     /*DEBUG*/xTEST_EQ(true, _m_hEvent.bIsValid());
     /*DEBUG*/
@@ -92,12 +92,10 @@ CxEvent::bSet() {
         _m_bIsSignaled = true;
     }
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxEvent::bReset() {
+void
+CxEvent::vReset() {
 #if   xOS_ENV_WIN
     /*DEBUG*/xTEST_EQ(true, _m_hEvent.bIsValid());
     /*DEBUG*/
@@ -111,8 +109,6 @@ CxEvent::bReset() {
         _m_bIsSignaled = false;
     }
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
 CxEvent::ExObjectState

@@ -172,8 +172,7 @@ CxThread::bCreate(
 
     //-------------------------------------
     // construction is complete, start job entry
-    bRv = _m_pevStarter->bSet();
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    _m_pevStarter->vSet();
 
     return true;
 }
@@ -186,8 +185,7 @@ CxThread::bResume() {
 
 #endif
 
-    bool bRv = _m_evPause.bSet();
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    _m_evPause.vSet();
 
     //-------------------------------------
     //flags
@@ -207,8 +205,7 @@ CxThread::bPause() {
 
 #endif
 
-    bool bRv = _m_evPause.bReset();
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    _m_evPause.vReset();
 
     //-------------------------------------
     //flags
@@ -228,8 +225,7 @@ CxThread::bExit() {
 
 #endif
 
-    bool bRv = _m_evExit.bSet();
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    _m_evExit.vSet();
 
     //-------------------------------------
     //flags

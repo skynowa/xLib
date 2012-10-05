@@ -47,9 +47,9 @@ class CxEvent :
 
         const handle_t &  hGet       () const;
             ///< get handle
-        bool              bSet       ();
+        void              vSet       ();
             ///< signal the event for the waiting thread (!!! unlock !!!)
-        bool              bReset     ();
+        void              vReset     ();
             ///< once signaled, the event class must be "reset" before responding to a new signal
         ExObjectState     osWait     (const ulong_t &culTimeout = xTIMEOUT_INFINITE);
             ///< wait either for the cxevent to be signaled by another thread or for the specified timeout duration
@@ -62,7 +62,7 @@ class CxEvent :
     #elif xOS_ENV_UNIX
         CxMutex           _m_mtMutex;       ///< mutex
         handle_t          _m_cndCond;       ///< condition variable
-        const bool        _m_cbIsAutoReset;  ///< auto-reset flag
+        const bool        _m_cbIsAutoReset; ///< auto-reset flag
         const bool        _m_cbInitState;
         bool              _m_bIsSignaled;   ///< is signaled flag
     #endif
