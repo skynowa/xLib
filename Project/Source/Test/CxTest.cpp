@@ -51,7 +51,7 @@ CxTest::CxTest() :
 //---------------------------------------------------------------------------
 /* virtual */
 CxTest::~CxTest() /* = 0*/ {
-    (void)CxDir::bDeleteForce( sGetTempDirPath() );
+    CxDir::vDeleteForce( sGetTempDirPath() );
 }
 //---------------------------------------------------------------------------
 bool
@@ -124,8 +124,7 @@ CxTest::bCreateTempDir(
     } else {
         _m_sWorkDirPath = CxPath::sGetExeDir() + CxConst::xSLASH + a_csDirName;
 
-        bool bRv = CxDir::bCreateForce(_m_sWorkDirPath);
-        /*DEBUG*/xTEST_EQ(true, bRv);
+        CxDir::vCreateForce(_m_sWorkDirPath);
     }
 
     return true;

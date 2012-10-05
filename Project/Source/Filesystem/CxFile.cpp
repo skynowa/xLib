@@ -60,8 +60,7 @@ CxFile::bCreate(
     bool bRv = false;
 
     //create force dirs
-    bRv = CxDir::bCreateForce( CxPath::sGetDir(csFilePath) );
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    CxDir::vCreateForce( CxPath::sGetDir(csFilePath) );
 
     //create, open file
     std::FILE *pFile = ::xTFOPEN(csFilePath.c_str(), _sGetOpenMode(comMode).c_str());

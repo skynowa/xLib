@@ -56,7 +56,7 @@ CxBackuper::etExecute(
     xCHECK_RET(false == bRv, etDestFileNotExists);
 
     bRv = CxDir::bIsExists(csDestDirPath);
-    xCHECK_DO(false == bRv, CxDir::bCreateForce(csDestDirPath));
+    xCHECK_DO(false == bRv, CxDir::vCreateForce(csDestDirPath));
 
     //-------------------------------------
     //process backup period

@@ -85,8 +85,7 @@ CxLocalStorage::bSetPath(
     /*DEBUG*///_m_sFilePath - n/a
     /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
 
-    bool bRv = CxDir::bCreateForce(CxPath::sGetDir(csFilePath));
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    CxDir::vCreateForce(CxPath::sGetDir(csFilePath));
 
     _m_sFilePath = csFilePath;
 

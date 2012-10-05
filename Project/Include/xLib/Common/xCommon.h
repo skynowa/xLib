@@ -166,6 +166,7 @@ namespace NxLib { }
 #include <xLib/Common/CxNonCopyable.h>
 #include <xLib/Common/CxUtils.h>
 #include <xLib/Debug/xDebug.h>
+#include <xLib/Debug/CxException.h>
 
 #include <xLib/Common/xTracing.h>
 #include <xLib/Common/xCheks.h>
