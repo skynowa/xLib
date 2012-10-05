@@ -168,8 +168,7 @@ void
 CxPkcs11::_vLoadETPkcs11() {
     /*DEBUG*/
 
-    bool bRv = _m_dllETPkcs11.bLoad(xT("eTPkcs11.dll"));
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    _m_dllETPkcs11.vLoad(xT("eTPkcs11.dll"));
 
     CK_C_GetFunctionList pFunctionList = NULL;
 

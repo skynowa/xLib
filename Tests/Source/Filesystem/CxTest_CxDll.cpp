@@ -49,8 +49,7 @@ CxTest_CxDll::bUnit(
 
         //-------------------------------------
         //bLoad
-        m_bRv = objDll.bLoad(sData[i][0]);
-        xTEST_EQ(true, m_bRv);
+        objDll.vLoad(sData[i][0]);
 
         //-------------------------------------
         //bIsLoaded

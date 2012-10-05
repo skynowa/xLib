@@ -82,8 +82,7 @@ CxCurrentProcess::ulGetParentId() {
     bool  bRv   = false;
     CxDll dlDll;
 
-    bRv = dlDll.bLoad(xT("ntdll.dll"));
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    dlDll.vLoad(xT("ntdll.dll"));
 
     bRv = dlDll.bIsProcExists(xT("NtQueryInformationProcess"));
     xCHECK_RET(false == bRv, culInvalidId);
