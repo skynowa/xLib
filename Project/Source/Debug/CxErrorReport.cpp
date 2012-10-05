@@ -40,8 +40,8 @@ CxErrorReport::~CxErrorReport() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-bool
-CxErrorReport::_bConstruct(
+void
+CxErrorReport::_vConstruct(
     const ExType         &a_crtType,
     const std::tstring_t &a_csExp,
     const ulong_t        &a_culLastError,
@@ -104,12 +104,10 @@ CxErrorReport::_bConstruct(
     m_sStackTrace     = a_csStackTrace;
     m_sComment        = (false == a_csComment.empty()) ? a_csComment : CxConst::xHYPHEN;
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxErrorReport::_bInitPlain() {
+void
+CxErrorReport::_vInitPlain() {
     m_sReport = CxString::sFormat(
         xT("%s\n")        //CxErrorReport
         xT("\n")
@@ -161,12 +159,10 @@ CxErrorReport::_bInitPlain() {
         xT("Stack trace:     "), m_sStackTrace.c_str(),
 
         xT("Comment:         "), m_sComment.c_str());
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxErrorReport::_bInitHtml() {
+void
+CxErrorReport::_vInitHtml() {
     m_sReport = CxString::sFormat(
         xT("<pre>")
         xT("<b><u>%s</u></b>\n") //CxErrorReport
@@ -218,12 +214,10 @@ CxErrorReport::_bInitHtml() {
         xT("Stack trace:     "), m_sStackTrace.c_str(),
 
         xT("Comment:         "), m_sComment.c_str());
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxErrorReport::_bInitFormated() {
+void
+CxErrorReport::_vInitFormated() {
 #if   xOS_ENV_WIN
     m_sReport = CxString::sFormat(
         xT("{\\rtf1\\ansi\\ansicpg1251\\deff0\\deflang1049{\\fonttbl{\\f0\\fswiss\\fcharset0 Arial;}{\\f1\\fnil DejaVu Sans Mono;}{\\f2\\fswiss\\fcharset204{\\*\\fname Arial;}Arial CYR;}{\\f3\\fswiss\\fprq2\\fcharset204{\\*\\fname Arial;}Arial CYR;}{\\f4\\fswiss\\fprq2\\fcharset0 Arial;}}")
@@ -329,8 +323,6 @@ CxErrorReport::_bInitFormated() {
         xT("#  Comment:         "), CxConsole().bSetTextColor( m_sComment,                             CxConsole::fgYellow_, false, false, CxConsole::bgBlue,  false ).c_str()
     );
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
 
