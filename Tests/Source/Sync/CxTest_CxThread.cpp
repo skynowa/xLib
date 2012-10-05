@@ -104,9 +104,9 @@ CxTest_CxThread::~CxTest_CxThread() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxThread::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxThread::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     const bool cbIsPaused   = true;
@@ -394,7 +394,5 @@ CxTest_CxThread::bUnit(
         xTEST_PTR(pthT);
         xPTR_DELETE(pthT);
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

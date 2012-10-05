@@ -18,7 +18,7 @@ class CxTest_CxException :
                      CxTest_CxException();
         virtual     ~CxTest_CxException();
 
-        virtual bool bUnit(const ulonglong_t cullCaseLoops);
+        virtual void vUnit(const ulonglong_t &cullCaseLoops);
 
     private:
 };

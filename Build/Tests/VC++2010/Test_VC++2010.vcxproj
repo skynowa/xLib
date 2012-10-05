@@ -318,7 +318,6 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\Win\CxCompletionPort.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Test\CxTest.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Test\CxTestManager.h" />
-    <ClInclude Include="..\..\..\Project\Include\xLib\Units\Win\bGetUsbInfo.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxArray.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxChar.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxCommandLine.h" />
@@ -395,8 +394,6 @@
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxThreadStorage.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxWaitableTimer.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\Win\CxTest_CxCompletionPort.h" />
-    <ClInclude Include="..\..\..\Tests\Include\Test\Units\CxTest_Draft.h" />
-    <ClInclude Include="..\..\..\Tests\Include\Test\Units\Win\CxTest_bGetUsbInfo.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Project\Include\xLib\Common\CxArray.inl" />
@@ -503,7 +500,6 @@
     <ClCompile Include="..\..\..\Project\Source\Sync\Win\CxCompletionPort.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Test\CxTest.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Test\CxTestManager.cpp" />
-    <ClCompile Include="..\..\..\Project\Source\Units\Win\bGetUsbInfo.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxArray.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxChar.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxCommandLine.cpp" />
@@ -582,8 +578,6 @@
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxWaitableTimer.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Sync\Win\CxTest_CxCompletionPort.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Test.cpp" />
-    <ClCompile Include="..\..\..\Tests\Source\Units\CxTest_Draft.cpp" />
-    <ClCompile Include="..\..\..\Tests\Source\Units\Win\CxTest_bGetUsbInfo.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

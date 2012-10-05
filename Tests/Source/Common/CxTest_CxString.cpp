@@ -24,9 +24,9 @@ RandomNumber () {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool 
-CxTest_CxString::bUnit(
-    const ulonglong_t cullCaseLoops
+void 
+CxTest_CxString::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     /****************************************************************************
@@ -1136,7 +1136,5 @@ CxTest_CxString::bUnit(
             //TODO: sOemToCharBuff
         #endif
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

@@ -25,9 +25,9 @@ CxTest_CxUtils::~CxTest_CxUtils() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxUtils::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxUtils::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     //-------------------------------------
@@ -287,7 +287,5 @@ CxTest_CxUtils::bUnit(
 
         xTEST_EQ(static_cast<long_t>( datOne ), static_cast<long_t>( datData ));
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

@@ -21,9 +21,9 @@ CxTest_CxProcess::~CxTest_CxProcess() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxProcess::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxProcess::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     //--------------------------------------------------
@@ -152,7 +152,5 @@ CxTest_CxProcess::bUnit(
             // TODO: xTEST_CASE for CxProcess::bIsRunning
         #endif
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

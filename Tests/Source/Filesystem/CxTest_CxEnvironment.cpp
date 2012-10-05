@@ -19,9 +19,9 @@ CxTest_CxEnvironment::~CxTest_CxEnvironment() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxEnvironment::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxEnvironment::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     //-------------------------------------
@@ -211,7 +211,5 @@ CxTest_CxEnvironment::bUnit(
             CxEnvironment::vDeleteVar(sData[i][0]);
           }
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

@@ -19,9 +19,9 @@ CxTest_CxAutoProfiler::~CxTest_CxAutoProfiler() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxAutoProfiler::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxAutoProfiler::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     const CxProfiler::ExMode pmPerformMode[] = {
@@ -52,7 +52,5 @@ CxTest_CxAutoProfiler::bUnit(
             }
         }
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

@@ -101,10 +101,6 @@
 
 // Gui
 #include <Test/Gui/Dialogs/CxTest_CxMsgBoxT.h>
-
-// Units
-// TODO: test Units
-#include <Test/Units/CxTest_Draft.h>
 //---------------------------------------------------------------------------
 int
 xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
@@ -249,10 +245,6 @@ xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
 
         // Gui
         (void)tmManager.bAdd(new CxTest_CxMsgBoxT);
-
-        // Units
-        (void)tmManager.bAdd(new CxTest_Draft);
-
 
         (void)tmManager.bRun(ullAllLoops, ullUnitLoops, ullBlockLoops);
     }

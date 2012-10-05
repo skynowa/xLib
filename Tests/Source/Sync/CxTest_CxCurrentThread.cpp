@@ -19,9 +19,9 @@ CxTest_CxCurrentThread::~CxTest_CxCurrentThread() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxCurrentThread::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxCurrentThread::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     //--------------------------------------------------
@@ -121,7 +121,5 @@ CxTest_CxCurrentThread::bUnit(
             //xTRACEV(xT("sNow1: %s,\nsNow2: %s"), dtTime1.sFormat(CxDateTime::ftTime).c_str(), dtTime2.sFormat(CxDateTime::ftTime).c_str());
         }
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

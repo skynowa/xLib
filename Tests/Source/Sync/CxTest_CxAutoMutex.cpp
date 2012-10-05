@@ -19,9 +19,9 @@ CxTest_CxAutoMutex::~CxTest_CxAutoMutex() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxAutoMutex::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxAutoMutex::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     //-------------------------------------
@@ -48,7 +48,5 @@ CxTest_CxAutoMutex::bUnit(
             xTEST_EQ(true, m_bRv);
         }
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

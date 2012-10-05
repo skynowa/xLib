@@ -18,7 +18,7 @@ class CxTest_CxArray :
                      CxTest_CxArray();
         virtual     ~CxTest_CxArray();
 
-        virtual bool bUnit(const ulonglong_t cullCaseLoops);
+        virtual void vUnit(const ulonglong_t &cullCaseLoops);
 
     private:
 };

@@ -20,9 +20,9 @@ CxTest_CxBlowfish::~CxTest_CxBlowfish() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxBlowfish::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxBlowfish::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     //-------------------------------------
@@ -77,7 +77,5 @@ CxTest_CxBlowfish::bUnit(
         BF.vEncryptFileCfb64(sFilePlain, sFileEncrypted, CxBlowfish::cmEncrypt);
         BF.vEncryptFileCfb64(sFileEncrypted, sFileDecrypted, CxBlowfish::cmDecrypt);
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

@@ -49,17 +49,17 @@ class CxTest :
         virtual               ~CxTest         () = 0;
             ///< destructor
 
-        bool                   bRun           (const ulonglong_t &cullUnitLoops, const ulonglong_t &cullCaseLoops);
+        void                   vRun           (const ulonglong_t &cullUnitLoops, const ulonglong_t &cullCaseLoops);
             ///< run test units
-        virtual bool           bUnit          (const ulonglong_t cullCaseLoops) = 0;
+        virtual void           vUnit          (const ulonglong_t &cullCaseLoops) = 0;
             ///< test unit
-        bool                   bCreateTempDir (const std::tstring_t &csDirName);
+        void                   vCreateTempDir (const std::tstring_t &csDirName);
             ///< create work dir
         const std::tstring_t & sGetTempDirPath() const;
             ///< get work dir path
         const std::tstring_t & sGetName       () const;
             ///< get name
-        bool                   bSetName       (const std::tstring_t &csTestName);
+        void                   vSetName       (const std::tstring_t &csTestName);
             ///< set name
 
     private:

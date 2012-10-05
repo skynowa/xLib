@@ -20,7 +20,7 @@ class CxTest_CxCurrentThread :
         virtual      ~CxTest_CxCurrentThread();
             ///< destructor
 
-        virtual bool  bUnit(const ulonglong_t cullCaseLoops);
+        virtual void vUnit(const ulonglong_t &cullCaseLoops);
             ///< unit test
 
     private:

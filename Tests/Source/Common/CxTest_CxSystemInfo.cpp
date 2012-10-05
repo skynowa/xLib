@@ -20,9 +20,9 @@ CxTest_CxSystemInfo::~CxTest_CxSystemInfo() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxSystemInfo::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxSystemInfo::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     //--------------------------------------------------
@@ -271,7 +271,5 @@ CxTest_CxSystemInfo::bUnit(
         m_ulRv = CxSystemInfo::ulGetPageSize();
         xTEST_LESS(0UL, m_ulRv);
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

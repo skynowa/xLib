@@ -17,9 +17,9 @@ CxTest_CxCommandLine::~CxTest_CxCommandLine() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxCommandLine::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxCommandLine::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     //--------------------------------------------------
@@ -58,7 +58,5 @@ CxTest_CxCommandLine::bUnit(
             m_bRv = CxCommandLine::bSetArgs(ciArgsCount, paszArgs);
         #endif
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

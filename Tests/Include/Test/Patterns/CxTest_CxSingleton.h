@@ -18,7 +18,7 @@ class CxTest_CxSingleton :
                      CxTest_CxSingleton();
         virtual     ~CxTest_CxSingleton();
 
-        virtual bool bUnit(const ulonglong_t cullCaseLoops);
+        virtual void vUnit(const ulonglong_t &cullCaseLoops);
 
     private:
 };

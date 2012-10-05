@@ -19,7 +19,7 @@ class CxTest_CxCrc32 :
                      CxTest_CxCrc32();
         virtual     ~CxTest_CxCrc32();
 
-        virtual bool bUnit(const ulonglong_t cullCaseLoops);
+        virtual void vUnit(const ulonglong_t &cullCaseLoops);
 
     private:
 };

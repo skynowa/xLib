@@ -17,9 +17,9 @@ CxTest_CxPkcs11::~CxTest_CxPkcs11() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxPkcs11::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxPkcs11::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
 #if   xOS_ENV_WIN
@@ -70,7 +70,5 @@ CxTest_CxPkcs11::bUnit(
 #elif xOS_ENV_UNIX
 
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------

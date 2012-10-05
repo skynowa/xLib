@@ -17,9 +17,9 @@ CxTest_CxDateTime::~CxTest_CxDateTime() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxDateTime::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxDateTime::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     /****************************************************************************
@@ -797,7 +797,5 @@ CxTest_CxDateTime::bUnit(
             xTEST_EQ((ushort_t)- 1, m_usiRv);
         }
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

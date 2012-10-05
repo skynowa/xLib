@@ -17,9 +17,9 @@ CxTest_CxLastError::~CxTest_CxLastError() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxLastError::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxLastError::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     #if   xOS_ENV_WIN
@@ -102,7 +102,5 @@ CxTest_CxLastError::bUnit(
             xTEST_EQ(false, m_sRv.empty());
         }
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

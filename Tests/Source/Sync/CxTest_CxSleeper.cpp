@@ -17,9 +17,9 @@ CxTest_CxSleeper::~CxTest_CxSleeper() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxSleeper::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxSleeper::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     //--------------------------------------------------
@@ -62,7 +62,5 @@ CxTest_CxSleeper::bUnit(
             objSleeper.vWakeUp();
         #endif
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

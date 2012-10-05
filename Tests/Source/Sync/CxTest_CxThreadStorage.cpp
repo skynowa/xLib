@@ -17,9 +17,9 @@ CxTest_CxThreadStorage::~CxTest_CxThreadStorage() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxThreadStorage::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxThreadStorage::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     //--------------------------------------------------
@@ -54,7 +54,5 @@ CxTest_CxThreadStorage::bUnit(
             delete pulRes;
         }
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

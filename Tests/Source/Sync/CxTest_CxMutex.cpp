@@ -17,9 +17,9 @@ CxTest_CxMutex::~CxTest_CxMutex() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxMutex::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxMutex::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     size_t uiVal = 0;
@@ -97,7 +97,5 @@ CxTest_CxMutex::bUnit(
             csCS.vUnlock();
         }
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

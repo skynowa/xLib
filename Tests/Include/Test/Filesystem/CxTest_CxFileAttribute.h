@@ -18,7 +18,7 @@ class CxTest_CxFileAttribute :
                        CxTest_CxFileAttribute();
         virtual       ~CxTest_CxFileAttribute();
 
-        virtual  bool  bUnit(const ulonglong_t cullCaseLoops);
+        virtual  void  vUnit(const ulonglong_t &cullCaseLoops);
 
     private:
 };

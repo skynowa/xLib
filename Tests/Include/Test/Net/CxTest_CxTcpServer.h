@@ -18,7 +18,7 @@ class CxTest_CxTcpServer :
                      CxTest_CxTcpServer();
         virtual     ~CxTest_CxTcpServer();
 
-        virtual bool bUnit(const ulonglong_t cullCaseLoops);
+        virtual void vUnit(const ulonglong_t &cullCaseLoops);
 
     private:
 };

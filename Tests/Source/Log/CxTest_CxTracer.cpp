@@ -17,9 +17,9 @@ CxTest_CxTracer::~CxTest_CxTracer() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxTracer::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxTracer::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     //--------------------------------------------------
@@ -79,7 +79,5 @@ CxTest_CxTracer::bUnit(
                     << xTRACE_VAR(szData);
     #endif
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

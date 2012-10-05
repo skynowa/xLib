@@ -17,9 +17,9 @@ CxTest_CxSmtp::~CxTest_CxSmtp() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxSmtp::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxSmtp::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
 #if   xOS_ENV_WIN
@@ -108,7 +108,5 @@ CxTest_CxSmtp::bUnit(
 #elif xOS_ENV_UNIX
 
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------

@@ -17,9 +17,9 @@ CxTest_CxStackTrace::~CxTest_CxStackTrace() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxStackTrace::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxStackTrace::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     //--------------------------------------------------
@@ -57,7 +57,5 @@ CxTest_CxStackTrace::bUnit(
             xTEST_FAIL;
         #endif
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

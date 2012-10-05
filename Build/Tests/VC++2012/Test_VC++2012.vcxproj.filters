@@ -72,12 +72,6 @@
     <Filter Include="xLib\Test">
       <UniqueIdentifier>{a906e8fe-0b75-4120-9074-ac4f5f5182b7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="xLib\Units">
-      <UniqueIdentifier>{64712e81-6504-44df-ab16-966c9b816db5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="xLib\Units\Win">
-      <UniqueIdentifier>{2f917fc7-6b77-406b-a734-aaead2df9f27}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Test\Common">
       <UniqueIdentifier>{cfdb851d-79f8-4b3d-8eaa-556a38476ea1}</UniqueIdentifier>
     </Filter>
@@ -108,9 +102,6 @@
     <Filter Include="Test\Sync">
       <UniqueIdentifier>{57ead189-419c-43c6-af09-709b7a700e69}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Test\Units">
-      <UniqueIdentifier>{202f00bc-6196-49c2-b905-d4468302ee95}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Test\Common\Win">
       <UniqueIdentifier>{e2ebaac2-1236-485b-9c8d-eee72372b8e3}</UniqueIdentifier>
     </Filter>
@@ -122,9 +113,6 @@
     </Filter>
     <Filter Include="Test\Sync\Win">
       <UniqueIdentifier>{0196835a-b3a6-4e8c-a102-6ed901012431}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Test\Units\Win">
-      <UniqueIdentifier>{9b6a7fb7-ea0e-450b-92b2-0eaf919555a9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -491,9 +479,6 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Test\CxTestManager.h">
       <Filter>xLib\Test</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Project\Include\xLib\Units\Win\bGetUsbInfo.h">
-      <Filter>xLib\Units\Win</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\Win\CxTest_CxCom.h">
       <Filter>Test\Common\Win</Filter>
     </ClInclude>
@@ -712,12 +697,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxWaitableTimer.h">
       <Filter>Test\Sync</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Tests\Include\Test\Units\Win\CxTest_bGetUsbInfo.h">
-      <Filter>Test\Units\Win</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Tests\Include\Test\Units\CxTest_Draft.h">
-      <Filter>Test\Units</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxUtils.h">
       <Filter>xLib\Common</Filter>
@@ -1043,15 +1022,6 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Test\CxTestManager.cpp">
       <Filter>xLib\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Project\Source\Units\Win\bGetUsbInfo.cpp">
-      <Filter>xLib\Units\Win</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Tests\Source\Units\Win\CxTest_bGetUsbInfo.cpp">
-      <Filter>Test\Units\Win</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Tests\Source\Units\CxTest_Draft.cpp">
-      <Filter>Test\Units</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Tests\Source\Sync\Win\CxTest_CxCompletionPort.cpp">
       <Filter>Test\Sync\Win</Filter>

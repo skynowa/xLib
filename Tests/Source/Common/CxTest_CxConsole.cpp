@@ -17,9 +17,9 @@ CxTest_CxConsole::~CxTest_CxConsole() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxConsole::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxConsole::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     //--------------------------------------------------
@@ -232,7 +232,5 @@ CxTest_CxConsole::bUnit(
             xTEST_EQ(true, m_bRv);
         #endif
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

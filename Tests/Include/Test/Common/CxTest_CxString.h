@@ -18,7 +18,7 @@ class CxTest_CxString :
                      CxTest_CxString();
         virtual     ~CxTest_CxString();
 
-        virtual     bool bUnit(const ulonglong_t cullCaseLoops);
+        virtual     void vUnit(const ulonglong_t &cullCaseLoops);
 
     private:
 };

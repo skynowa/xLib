@@ -18,7 +18,7 @@ class CxTest_CxAtomicLongInt :
                      CxTest_CxAtomicLongInt();
         virtual     ~CxTest_CxAtomicLongInt();
 
-        virtual bool bUnit(const ulonglong_t cullCaseLoops);
+        virtual void vUnit(const ulonglong_t &cullCaseLoops);
 
     private:
 };

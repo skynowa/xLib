@@ -20,9 +20,9 @@ CxTest_CxFileLog::~CxTest_CxFileLog() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxFileLog::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxFileLog::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     const std::tstring_t csFilePath = sGetTempDirPath() + CxConst::xSLASH + xT("Test.log");
@@ -64,7 +64,5 @@ CxTest_CxFileLog::bUnit(
         flLog.vDelete();
         xTEST_EQ(false, CxFile::bIsExists( flLog.sGetFilePath()) );
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

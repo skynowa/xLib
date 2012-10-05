@@ -18,7 +18,7 @@ class CxTest_CxCookiePv0 :
                      CxTest_CxCookiePv0();
         virtual     ~CxTest_CxCookiePv0();
 
-        virtual bool bUnit(const ulonglong_t cullCaseLoops);
+        virtual void vUnit(const ulonglong_t &cullCaseLoops);
 
     private:
 };

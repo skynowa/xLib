@@ -18,7 +18,7 @@ class CxTest_CxMySql :
                      CxTest_CxMySql();
         virtual     ~CxTest_CxMySql();
 
-        virtual bool bUnit(const ulonglong_t cullCaseLoops);
+        virtual void vUnit(const ulonglong_t &cullCaseLoops);
 
     private:
 };

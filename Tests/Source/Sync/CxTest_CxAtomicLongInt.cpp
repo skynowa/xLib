@@ -17,9 +17,9 @@ CxTest_CxAtomicLongInt::~CxTest_CxAtomicLongInt() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxAtomicLongInt::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxAtomicLongInt::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     //--------------------------------------------------
@@ -324,7 +324,5 @@ CxTest_CxAtomicLongInt::bUnit(
         m_liRv = alLong1.liGetValue();
         xTEST_EQ(10L, m_liRv);
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

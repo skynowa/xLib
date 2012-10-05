@@ -17,9 +17,9 @@ CxTest_CxUri::~CxTest_CxUri() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxUri::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxUri::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     std::string m_sRv;
@@ -266,7 +266,5 @@ CxTest_CxUri::bUnit(
             xTEST_EQ(sUri[i], m_sRv);
         }
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

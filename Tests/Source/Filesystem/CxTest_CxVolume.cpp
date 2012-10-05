@@ -18,9 +18,9 @@ CxTest_CxVolume::~CxTest_CxVolume() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxVolume::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxVolume::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     //-------------------------------------
@@ -275,7 +275,5 @@ CxTest_CxVolume::bUnit(
         // CxTracer() << xTRACE_VAR(dtRes);
         // TODO: xTEST_EQ(CxVolume::dtFixed, dtRes);
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

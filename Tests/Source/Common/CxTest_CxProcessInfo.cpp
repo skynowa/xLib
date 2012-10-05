@@ -21,9 +21,9 @@ CxTest_CxProcessInfo::~CxTest_CxProcessInfo() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxProcessInfo::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxProcessInfo::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     //--------------------------------------------------
@@ -85,7 +85,5 @@ CxTest_CxProcessInfo::bUnit(
         m_sRv = CxProcessInfo::sGetArgs(CxCurrentProcess::ulGetId());
         // TODO: test CxProcessInfo::sGetArgs
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

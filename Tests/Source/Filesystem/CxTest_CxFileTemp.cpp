@@ -21,9 +21,9 @@ CxTest_CxFileTemp::~CxTest_CxFileTemp() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxFileTemp::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxFileTemp::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     //-------------------------------------
@@ -49,7 +49,5 @@ CxTest_CxFileTemp::bUnit(
         fJobber.vClear();
         fJobber.vClose();
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

@@ -46,7 +46,7 @@ CxTest::CxTest() :
     _m_sWorkDirPath(),
     _m_sName       ()
 {
-    (void)bCreateTempDir(xT("Temp for tests"));
+    vCreateTempDir(xT("Temp for tests"));
 }
 //---------------------------------------------------------------------------
 /* virtual */
@@ -54,8 +54,8 @@ CxTest::~CxTest() /* = 0*/ {
     CxDir::vDeleteForce( sGetTempDirPath() );
 }
 //---------------------------------------------------------------------------
-bool
-CxTest::bRun(
+void
+CxTest::vRun(
     const ulonglong_t &a_cullUnitLoops,
     const ulonglong_t &a_cullCaseLoops
 )
@@ -64,8 +64,8 @@ CxTest::bRun(
 
     try {
         for (ulonglong_t i = 0ULL; i < a_cullUnitLoops; ++ i) {
-            bool bRv = bUnit(a_cullCaseLoops);
-            /*DEBUG*/xTEST_MSG_EQ(true, bRv, sGetName() + xT(": fail"));
+            vUnit(a_cullCaseLoops);
+            // TODO: /*DEBUG*/xTEST_MSG_EQ(true, bRv, sGetName() + xT(": fail"));
         }
     }
     catch (const CxException &e) {
@@ -79,41 +79,37 @@ CxTest::bRun(
     catch (...) {
         /*DEBUG*/xTEST_FAIL(sGetName() + xT(": Unknown test error"));
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest::bUnit(
-    const ulonglong_t a_cullCaseLoops
+void
+CxTest::vUnit(
+    const ulonglong_t &cullCaseLoops
 ) /*= 0*/
 {
     /*DEBUG*/// n/a
 
-    #if xTODO
-        //-------------------------------------
-        //[FUNCTION_NAME]
-        xTEST_CASE(ca_ullCaseLoops)
-        {
-            const std::tstring_t casData[][2] = {
-                {xT("TEST_STRING_1"), xT("MUST_BE_1")},
-                {xT("TEST_STRING_2"), xT("MUST_BE_2")},
-                {xT("TEST_STRING_3"), xT("MUST_BE_3")},
-                {xT("TEST_STRING_4"), xT("MUST_BE_4")}
-            };
+#if xTODO
+    //-------------------------------------
+    //[FUNCTION_NAME]
+    xTEST_CASE(ca_ullCaseLoops)
+    {
+        const std::tstring_t casData[][2] = {
+            {xT("TEST_STRING_1"), xT("MUST_BE_1")},
+            {xT("TEST_STRING_2"), xT("MUST_BE_2")},
+            {xT("TEST_STRING_3"), xT("MUST_BE_3")},
+            {xT("TEST_STRING_4"), xT("MUST_BE_4")}
+        };
 
-            for (size_t i = 0; i < xARRAY_SIZE(casData); ++ i) {
+        for (size_t i = 0; i < xARRAY_SIZE(casData); ++ i) {
 
-            }
         }
-    #endif
-
-    return true;
+    }
+#endif
 }
 //---------------------------------------------------------------------------
-bool
-CxTest::bCreateTempDir(
+void
+CxTest::vCreateTempDir(
     const std::tstring_t &a_csDirName
 )
 {
@@ -126,8 +122,6 @@ CxTest::bCreateTempDir(
 
         CxDir::vCreateForce(_m_sWorkDirPath);
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
@@ -144,16 +138,14 @@ CxTest::sGetName() const {
     return _m_sName;
 }
 //---------------------------------------------------------------------------
-bool
-CxTest::bSetName(
+void
+CxTest::vSetName(
     const std::tstring_t &a_csTestName
 )
 {
     /*DEBUG*/
 
     _m_sName = a_csTestName;
-
-    return true;
 }
 //---------------------------------------------------------------------------
 

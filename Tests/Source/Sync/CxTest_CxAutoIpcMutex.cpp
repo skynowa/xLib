@@ -19,9 +19,9 @@ CxTest_CxAutoIpcMutex::~CxTest_CxAutoIpcMutex() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxAutoIpcMutex::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxAutoIpcMutex::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     const std::tstring_t csName = xT("mutex_name_a");
@@ -34,7 +34,5 @@ CxTest_CxAutoIpcMutex::bUnit(
 
         CxAutoIpcMutex objAutoMutex(mtMutex, csName);
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

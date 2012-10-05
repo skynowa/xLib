@@ -22,9 +22,9 @@ CxTest_CxLocalStorage::~CxTest_CxLocalStorage() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxLocalStorage::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxLocalStorage::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     const std::tstring_t csFilePath = CxPath::sSetExt( CxPath::sGetExe(), xT("ini") );
@@ -285,7 +285,5 @@ CxTest_CxLocalStorage::bUnit(
         iniIni.vDelete();
         xTEST_EQ(false, CxFile::bIsExists( iniIni.sGetPath() ));
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

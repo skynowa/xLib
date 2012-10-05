@@ -21,9 +21,9 @@ CxTest_CxPath::~CxTest_CxPath() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxPath::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxPath::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     //-------------------------------------
@@ -865,7 +865,5 @@ CxTest_CxPath::bUnit(
         m_uiRv = CxPath::uiGetNameMaxSize();
         xTEST_LESS(0U, m_uiRv);
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

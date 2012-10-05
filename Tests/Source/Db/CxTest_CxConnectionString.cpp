@@ -18,13 +18,11 @@ CxTest_CxConnectionString::~CxTest_CxConnectionString() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxConnectionString::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxConnectionString::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     /*DEBUG*/
-
-    return true;
 }
 //---------------------------------------------------------------------------

@@ -17,9 +17,9 @@ CxTest_CxCurrentProcess::~CxTest_CxCurrentProcess() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxCurrentProcess::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxCurrentProcess::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     //--------------------------------------------------
@@ -37,7 +37,5 @@ CxTest_CxCurrentProcess::bUnit(
         CxProcess::id_t ulRv = CxCurrentProcess::ulGetParentId();
         xTEST_LESS(0UL, (ulong_t)ulRv);
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

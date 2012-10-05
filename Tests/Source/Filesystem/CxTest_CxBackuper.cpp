@@ -20,9 +20,9 @@ CxTest_CxBackuper::~CxTest_CxBackuper() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxBackuper::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxBackuper::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     const std::tstring_t csFilePath  = sGetTempDirPath() + CxConst::xSLASH + xT("Test.txt");
@@ -54,7 +54,5 @@ CxTest_CxBackuper::bUnit(
 
         CxDir::vDeleteForce(csBackupDir);
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

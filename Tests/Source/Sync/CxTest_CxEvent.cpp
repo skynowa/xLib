@@ -17,9 +17,9 @@ CxTest_CxEvent::~CxTest_CxEvent() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxEvent::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxEvent::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     //-------------------------------------
@@ -168,7 +168,5 @@ CxTest_CxEvent::bUnit(
         }
 
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

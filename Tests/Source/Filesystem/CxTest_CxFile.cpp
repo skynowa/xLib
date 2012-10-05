@@ -19,9 +19,9 @@ CxTest_CxFile::~CxTest_CxFile() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxFile::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxFile::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     const std::tstring_t csFilePath = sGetTempDirPath() + CxConst::xSLASH + xT("Test.txt");
@@ -587,14 +587,10 @@ CxTest_CxFile::bUnit(
     }
 
     //bUnit1
-    m_bRv = bUnit1(cullCaseLoops);
-    xTEST_EQ(true, m_bRv);
+    vUnit1(cullCaseLoops);
 
     //bUnitePrivate
-    m_bRv = bUnitPrivate(cullCaseLoops);
-    xTEST_EQ(true, m_bRv);
-
-    return true;
+    vUnitPrivate(cullCaseLoops);
 }
 //---------------------------------------------------------------------------
 
@@ -605,9 +601,9 @@ CxTest_CxFile::bUnit(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-bool
-CxTest_CxFile::bUnit1(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxFile::vUnit1(
+    const ulonglong_t &cullCaseLoops
 )
 {
     /*DEBUG*/
@@ -1006,13 +1002,11 @@ CxTest_CxFile::bUnit1(
 
         xTEST_EQ(true, usFileContent == usStr);
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxTest_CxFile::bUnitPrivate(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxFile::vUnitPrivate(
+    const ulonglong_t &cullCaseLoops
 )
 {
     /*DEBUG*/
@@ -1081,7 +1075,5 @@ CxTest_CxFile::bUnitPrivate(
         }
     }
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------

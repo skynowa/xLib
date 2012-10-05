@@ -18,7 +18,7 @@ class CxTest_CxProcess :
                      CxTest_CxProcess();
         virtual     ~CxTest_CxProcess();
 
-        virtual bool bUnit(const ulonglong_t cullCaseLoops);
+        virtual void vUnit(const ulonglong_t &cullCaseLoops);
 
     private:
 };

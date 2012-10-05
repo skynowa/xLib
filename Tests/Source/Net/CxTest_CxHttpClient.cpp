@@ -17,16 +17,14 @@ CxTest_CxHttpClient::~CxTest_CxHttpClient() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxHttpClient::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxHttpClient::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE(cullCaseLoops)
     {
         CxHttpClient hcHttpClient;
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------

@@ -19,9 +19,9 @@ CxTest_CxDnsClient::~CxTest_CxDnsClient() {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-bool
-CxTest_CxDnsClient::bUnit(
-    const ulonglong_t cullCaseLoops
+void
+CxTest_CxDnsClient::vUnit(
+    const ulonglong_t &cullCaseLoops
 )
 {
     //-------------------------------------
@@ -223,7 +223,5 @@ CxTest_CxDnsClient::bUnit(
     {
         //TODO: m_bRv = CxDnsClient::bIsBroadcast(const ulong_t culIp);
     }
-    
-    return true;
 }
 //---------------------------------------------------------------------------
