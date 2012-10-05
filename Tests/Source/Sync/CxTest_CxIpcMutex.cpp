@@ -41,8 +41,7 @@ CxTest_CxIpcMutex::bUnit(
     {
         CxIpcMutex mtMutex;
 
-        m_bRv = mtMutex.bCreate(csName);
-        xTEST_EQ(true, m_bRv);
+        mtMutex.vCreate(csName);
     }
 
     //-------------------------------------
@@ -50,11 +49,8 @@ CxTest_CxIpcMutex::bUnit(
     {
         CxIpcMutex mtMutex;
 
-        m_bRv = mtMutex.bCreate(csName);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = mtMutex.bOpen(csName);
-        xTEST_EQ(true, m_bRv);
+        mtMutex.vCreate(csName);
+        mtMutex.vOpen(csName);
     }
 
     //-------------------------------------
@@ -64,14 +60,9 @@ CxTest_CxIpcMutex::bUnit(
 
         CxIpcMutex mtMutex;
 
-        m_bRv = mtMutex.bCreate(csName);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = mtMutex.bLock(culTimeout);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = mtMutex.bUnlock();
-        xTEST_EQ(true, m_bRv);
+        mtMutex.vCreate(csName);
+        mtMutex.vLock(culTimeout);
+        mtMutex.vUnlock();
     }
 
     return true;
