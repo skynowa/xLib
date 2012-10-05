@@ -62,9 +62,7 @@ CxCrc32::ulCalcFile(
 
     std::ustring_t usFile;
 
-    bool bRv = CxFile::bBinRead(a_csFilePath, &usFile);
-    /*DEBUG*/xTEST_EQ(true, bRv);
-
+    CxFile::vBinRead(a_csFilePath, &usFile);
     if (true == usFile.empty()) {
         ulRv = 0;
     } else {
@@ -189,9 +187,7 @@ CxCrc32::ulCalcFileFast(
 
     std::ustring_t usFile;
 
-    bool bRv = CxFile::bBinRead(a_csFilePath, &usFile);
-    /*DEBUG*/xTEST_EQ(true, bRv);
-
+    CxFile::vBinRead(a_csFilePath, &usFile);
     if (true == usFile.empty()) {
         ulRv = 0;
     } else {

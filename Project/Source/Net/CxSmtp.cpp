@@ -226,8 +226,7 @@ CxSmtp::bSendRaw(const std::string &a_csFilePath, const std::string &a_sFrom, co
     //DONE: ������ �� ����� � ����� ����� � �����
     std::string sText = "";
 
-    bRv = CxFile::bTextRead(a_csFilePath, &sText);
-    xCHECK_RET(false == bRv, false);
+    CxFile::vTextRead(a_csFilePath, &sText);
 
     //-------------------------------------
     //[DataText\r\n.\r\n]

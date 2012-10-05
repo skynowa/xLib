@@ -298,8 +298,7 @@ CxTest_CxDir::bUnit(
         for (size_t i = 0; i < xARRAY_SIZE(g_sFilePathes); ++ i) {
             CxFile sfFile;
 
-            m_bRv = sfFile.bCreate(g_sFilePathes[i], CxFile::omWrite, true);
-            xTEST_EQ(true, m_bRv);
+            sfFile.vCreate(g_sFilePathes[i], CxFile::omWrite, true);
         }
 
         //-------------------------------------

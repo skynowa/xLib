@@ -38,11 +38,8 @@ CxTest_CxBackuper::bUnit(
         {
             CxFile F;
 
-            m_bRv = F.bCreate(csFilePath, CxFile::omBinCreateReadWrite, true);
-            xTEST_EQ(true, m_bRv);
-
-            m_bRv = F.bResize(cliFileSize);
-            xTEST_EQ(true, m_bRv);
+            F.vCreate(csFilePath, CxFile::omBinCreateReadWrite, true);
+            F.vResize(cliFileSize);
         }
 
         for (size_t i = 0; i < 10; ++ i) {

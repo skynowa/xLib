@@ -33,11 +33,8 @@ CxTest_CxCrc32::bUnit(
     {
         CxFile flFile;
 
-        m_bRv = flFile.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = flFile.bResize(1337LL);
-        xTEST_EQ(true, m_bRv);
+        flFile.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        flFile.vResize(1337LL);
     }
 
     //-------------------------------------

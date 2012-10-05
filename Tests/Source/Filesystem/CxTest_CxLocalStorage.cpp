@@ -51,8 +51,7 @@ CxTest_CxLocalStorage::bUnit(
 
     //--------------------------------------------------
     //CxLocalStorage(csFilePath)
-    m_bRv = CxFile::bDelete(csFilePath);
-    xTEST_EQ(true, m_bRv);
+    CxFile::vDelete(csFilePath);
 
     CxLocalStorage iniIni(csFilePath);
 

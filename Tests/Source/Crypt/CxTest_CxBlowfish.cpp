@@ -69,8 +69,7 @@ CxTest_CxBlowfish::bUnit(
 
         //prepare
         {
-            m_bRv = CxFile::bTextWrite(sFilePlain, xT("text_text"));
-            xTEST_EQ(true, m_bRv);
+            CxFile::vTextWrite(sFilePlain, xT("text_text"));
         }
 
         //test

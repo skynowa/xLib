@@ -34,8 +34,7 @@ CxTest_CxFile::bUnit(
 
     xTEST_CASE(cullCaseLoops)
     {
-        m_bRv = CxFile::bDelete(csFilePath);
-        xTEST_EQ(true, m_bRv);
+        CxFile::vDelete(csFilePath);
     }
 
 
@@ -51,8 +50,7 @@ CxTest_CxFile::bUnit(
         CxFile F;
 
         for (size_t i = 0; i < 1; ++ i) {
-            m_bRv = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-            xTEST_EQ(true, m_bRv);
+            F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
         }
     }
 
@@ -62,12 +60,10 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRv = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-        xTEST_EQ(true, m_bRv);
+        F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
 
         for (size_t i = 0; i < 7; ++ i) {
-            m_bRv = F.bReopen(csFilePath, CxFile::omOpenReadWrite, true);
-            xTEST_EQ(true, m_bRv);
+            F.vReopen(csFilePath, CxFile::omOpenReadWrite, true);
         }
     }
 
@@ -77,8 +73,7 @@ CxTest_CxFile::bUnit(
     {
         CxFile _F;
 
-        m_bRv = _F.bAttach(stdout);
-        xTEST_EQ(true, m_bRv);
+        _F.vAttach(stdout);
 
         m_bRv = _F.bIsValid();
         xTEST_EQ(true, m_bRv);
@@ -94,8 +89,7 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRv = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-        xTEST_EQ(true, m_bRv);
+        F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
 
         FILE *pFile = F.pGet();
         xTEST_PTR(pFile);
@@ -107,8 +101,7 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRv = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-        xTEST_EQ(true, m_bRv);
+        F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
 
         m_sRv = F.sGetPath();
         xTEST_EQ(csFilePath, m_sRv);
@@ -131,9 +124,7 @@ CxTest_CxFile::bUnit(
         {
             CxFile F;
 
-            m_bRv = F.bCreate(csFilePath, CxFile::omBinCreateReadWrite, true);
-            xTEST_EQ(true, m_bRv);
-
+            F.vCreate(csFilePath, CxFile::omBinCreateReadWrite, true);
             F.uiWrite(&sBuffWrite.at(0), sBuffWrite.size());
         }
 
@@ -141,9 +132,7 @@ CxTest_CxFile::bUnit(
         {
             CxFile F;
 
-            m_bRv = F.bCreate(csFilePath, CxFile::omBinRead, true);
-            xTEST_EQ(true, m_bRv);
-
+            F.vCreate(csFilePath, CxFile::omBinRead, true);
             F.uiRead(&sBuffRead.at(0), sBuffWrite.size());
         }
 
@@ -164,11 +153,8 @@ CxTest_CxFile::bUnit(
         {
             CxFile F;
 
-            m_bRv = F.bCreate(csFilePath, CxFile::omBinWrite, true);
-            xTEST_EQ(true, m_bRv);
-
-            m_bRv = F.bWrite(sContent);
-            xTEST_EQ(true, m_bRv);
+            F.vCreate(csFilePath, CxFile::omBinWrite, true);
+            F.vWrite(sContent);
         }
 
         //-------------------------------------
@@ -176,11 +162,8 @@ CxTest_CxFile::bUnit(
         {
             CxFile F;
 
-            m_bRv = F.bCreate(csFilePath, CxFile::omBinRead, true);
-            xTEST_EQ(true, m_bRv);
-
-            m_bRv = F.bRead(&usText1);
-            xTEST_EQ(true, m_bRv);
+            F.vCreate(csFilePath, CxFile::omBinRead, true);
+            F.vRead(&usText1);
         }
 
         //-------------------------------------
@@ -188,11 +171,8 @@ CxTest_CxFile::bUnit(
         {
             CxFile F;
 
-            m_bRv = F.bCreate(sGetTempDirPath() + CxConst::xSLASH + xT("DataNew.dat"), CxFile::omBinWrite, true);
-            xTEST_EQ(true, m_bRv);
-
-            m_bRv = F.bWrite(usText1);
-            xTEST_EQ(true, m_bRv);
+            F.vCreate(sGetTempDirPath() + CxConst::xSLASH + xT("DataNew.dat"), CxFile::omBinWrite, true);
+            F.vWrite(usText1);
         }
 
         //-------------------------------------
@@ -200,11 +180,8 @@ CxTest_CxFile::bUnit(
         {
             CxFile F;
 
-            m_bRv = F.bCreate(csFilePath, CxFile::omBinRead, true);
-            xTEST_EQ(true, m_bRv);
-
-            m_bRv = F.bRead(&usText2);
-            xTEST_EQ(true, m_bRv);
+            F.vCreate(csFilePath, CxFile::omBinRead, true);
+            F.vRead(&usText2);
 
             xTEST_EQ(usText1.size(), usText2.size());
             xTEST_EQ(true, usText1 == usText2);
@@ -222,22 +199,16 @@ CxTest_CxFile::bUnit(
         {
             CxFile F;
 
-            m_bRv = F.bCreate(csFilePath, CxFile::omWrite, true);
-            xTEST_EQ(true, m_bRv);
-
-            m_bRv = F.bWriteLine(sBuffWrite);
-            xTEST_EQ(true, m_bRv);
+            F.vCreate(csFilePath, CxFile::omWrite, true);
+            F.vWriteLine(sBuffWrite);
         }
 
         //bReadLine
         {
             CxFile F;
 
-            m_bRv = F.bCreate(csFilePath, CxFile::omRead, true);
-            xTEST_EQ(true, m_bRv);
-
-            m_bRv = F.bReadLine(&sBuffRead, sBuffWrite.size());
-            xTEST_EQ(true, m_bRv);
+            F.vCreate(csFilePath, CxFile::omRead, true);
+            F.vReadLine(&sBuffRead, sBuffWrite.size());
         }
 
         //assert
@@ -253,26 +224,18 @@ CxTest_CxFile::bUnit(
 
         CxFile F;
 
-        m_bRv = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-        xTEST_EQ(true, m_bRv);
+        F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        F.vWriteChar(chChar);
+        F.vSetPosition(0, CxFile::ppBegin);
 
-        m_bRv = F.bWriteChar(chChar);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = F.bSetPosition(0, CxFile::ppBegin);
-        xTEST_EQ(true, m_bRv);
         m_chRv = F.chReadChar();
         xTEST_EQ(chChar, m_chRv);
 
-        m_bRv = F.bSetPosition(0, CxFile::ppBegin);
-        xTEST_EQ(true, m_bRv);
-        m_bRv = F.bWriteChar(chChar);
-        xTEST_EQ(true, m_bRv);
+        F.vSetPosition(0, CxFile::ppBegin);
+        F.vWriteChar(chChar);
 
-        m_bRv = F.bSetPosition(0, CxFile::ppBegin);
-        xTEST_EQ(true, m_bRv);
-        m_bRv = F.bUngetChar(chChar);
-        xTEST_EQ(true, m_bRv);
+        F.vSetPosition(0, CxFile::ppBegin);
+        F.vUngetChar(chChar);
     }
 
     //--------------------------------------------------
@@ -281,11 +244,8 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRv = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = F.bClear();
-        xTEST_EQ(true, m_bRv);
+        F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        F.vClear();
     }
 
 
@@ -301,23 +261,20 @@ CxTest_CxFile::bUnit(
         {
             CxFile F;
 
-            m_bRv = F.bCreate(csFilePath, CxFile::omCreateReadWrite, false);
-            xTEST_EQ(true, m_bRv);
+            F.vCreate(csFilePath, CxFile::omCreateReadWrite, false);
         }
 
         const time_t ctmCreate   = 1319714265;
         const time_t ctmAccess   = 1319714452;
         const time_t ctmModified = 1319714452;
 
-        m_bRv = CxFile::bSetTime(csFilePath, ctmCreate, ctmAccess, ctmModified);
-        xTEST_EQ(true, m_bRv);
+        CxFile::vSetTime(csFilePath, ctmCreate, ctmAccess, ctmModified);
 
         time_t tmCreate   = 0;
         time_t tmAccess   = 0;
         time_t tmModified = 0;
 
-        m_bRv = CxFile::bGetTime(csFilePath, &tmCreate, &tmAccess, &tmModified);
-        xTEST_EQ(true, m_bRv);
+        CxFile::vGetTime(csFilePath, &tmCreate, &tmAccess, &tmModified);
 
     #if   xOS_ENV_WIN
         xTEST_EQ(ctmCreate, tmCreate);
@@ -344,8 +301,7 @@ CxTest_CxFile::bUnit(
         {
             CxFile F;
 
-            m_bRv = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-            xTEST_EQ(true, m_bRv);
+            F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
 
             int iResFprintf = F.iWrite(csTestContent.c_str());
             xTEST_LESS(0, iResFprintf);
@@ -356,11 +312,8 @@ CxTest_CxFile::bUnit(
         {
             CxFile F;
 
-            m_bRv = F.bCreate(csFilePath, CxFile::omRead, true);
-            xTEST_EQ(true, m_bRv);
-
-            m_bRv = F.bRead(&sContent);
-            xTEST_EQ(true, m_bRv);
+            F.vCreate(csFilePath, CxFile::omRead, true);
+            F.vRead(&sContent);
         }
 
         xTEST_EQ(csTestContent, sContent);
@@ -372,8 +325,7 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRv = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-        xTEST_EQ(true, m_bRv);
+        F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
 
         int iResFprintf = F.iWrite(xT("%s"), xT("xxx"));
         xTEST_LESS(0, iResFprintf);
@@ -398,8 +350,7 @@ CxTest_CxFile::bUnit(
 
         CxFile F;
 
-        m_bRv = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-        xTEST_EQ(true, m_bRv);
+        F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
 
         SWriter::DoV(F, xT("%s"), xT("zzz"));
     }
@@ -416,17 +367,10 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRv = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = F.bResize(1024);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = F.bLocking(CxFile::lmLock, 10);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = F.bLocking(CxFile::lmUnlock, 10);
-        xTEST_EQ(true, m_bRv);
+        F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        F.vResize(1024);
+        F.vLocking(CxFile::lmLock, 10);
+        F.vLocking(CxFile::lmUnlock, 10);
     }
 
     //-------------------------------------
@@ -435,11 +379,8 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRv = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = F.bSetPosition(0, CxFile::ppBegin);
-        xTEST_EQ(true, m_bRv);
+        F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        F.vSetPosition(0, CxFile::ppBegin);
 
         long_t liRv = F.liGetPosition();
         xTEST_EQ(0L, liRv);
@@ -453,11 +394,8 @@ CxTest_CxFile::bUnit(
 
         CxFile F;
 
-        m_bRv = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = F.bResize(cllNewSize);
-        xTEST_EQ(true, m_bRv);
+        F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        F.vResize(cllNewSize);
 
         longlong_t llSize = F.llGetSize();
         xTEST_EQ(cllNewSize, llSize);
@@ -469,11 +407,8 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRv = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = F.bResize(0);
-        xTEST_EQ(true, m_bRv);
+        F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        F.vResize(0);
     }
 
     //-------------------------------------
@@ -484,11 +419,8 @@ CxTest_CxFile::bUnit(
 
         CxFile F;
 
-        m_bRv = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = F.bSetVBuff(&asBuffRead.at(0), CxFile::bmFull, asBuffRead.size() * 2);
-        xTEST_EQ(true, m_bRv);
+        F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        F.vSetVBuff(&asBuffRead.at(0), CxFile::bmFull, asBuffRead.size() * 2);
     }
 
     //-------------------------------------
@@ -497,11 +429,10 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRv = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-        xTEST_EQ(true, m_bRv);
+        F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
 
         #if   xOS_ENV_WIN
-            m_bRv = F.bSetMode(CxFile::tmBinary);
+            F.vSetMode(CxFile::tmBinary);
             xTEST_EQ(true, m_bRv);
         #elif xOS_ENV_UNIX
             //TODO: bSetMode
@@ -514,12 +445,10 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRv = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-        xTEST_EQ(true, m_bRv);
+        F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
 
         #if   xOS_ENV_WIN
-            m_bRv = F.bSetMode(CxFile::tmText);
-            xTEST_EQ(true, m_bRv);
+            F.vSetMode(CxFile::tmText);
         #elif xOS_ENV_UNIX
             //TODO: bSetMode
         #endif
@@ -540,14 +469,12 @@ CxTest_CxFile::bUnit(
         m_bRv = F.bIsValid();
         xTEST_EQ(false, m_bRv);
 
-        m_bRv = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-        xTEST_EQ(true, m_bRv);
+        F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
 
         m_bRv = F.bIsValid();
         xTEST_EQ(true, m_bRv);
 
-        m_bRv = F.bClose();
-        xTEST_EQ(true, m_bRv);
+        F.vClose();
     }
 
     //--------------------------------------------------
@@ -559,14 +486,12 @@ CxTest_CxFile::bUnit(
         m_bRv = F.bIsOpen();
         xTEST_EQ(false, m_bRv);
 
-        m_bRv = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-        xTEST_EQ(true, m_bRv);
+        F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
 
         m_bRv = F.bIsOpen();
         xTEST_EQ(true, m_bRv);
 
-        m_bRv = F.bClose();
-        xTEST_EQ(true, m_bRv);
+        F.vClose();
 
         m_bRv = F.bIsOpen();
         xTEST_EQ(false, m_bRv);
@@ -578,8 +503,7 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRv = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-        xTEST_EQ(true, m_bRv);
+        F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
 
         m_bRv = F.bIsEmpty();
         xTEST_EQ(true, m_bRv);
@@ -590,8 +514,7 @@ CxTest_CxFile::bUnit(
         m_bRv = F.bIsEmpty();
         xTEST_EQ(false, m_bRv);
 
-        m_bRv = F.bClear();
-        xTEST_EQ(true, m_bRv);
+        F.vClear();
 
         m_bRv = F.bIsEmpty();
         xTEST_EQ(true, m_bRv);
@@ -603,8 +526,7 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRv = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-        xTEST_EQ(true, m_bRv);
+        F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
 
         m_bRv = F.bIsEof();
         xTEST_EQ(false, m_bRv);
@@ -616,8 +538,7 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRv = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-        xTEST_EQ(true, m_bRv);
+        F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
 
         m_bRv = F.bIsError();
         xTEST_EQ(false, m_bRv);
@@ -629,11 +550,8 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRv = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = F.bErrorClear();
-        xTEST_EQ(true, m_bRv);
+        F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        F.vErrorClear();
     }
 
 
@@ -648,11 +566,8 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRv = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = F.bFlush();
-        xTEST_EQ(true, m_bRv);
+        F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        F.vFlush();
 
         m_bRv = F.bIsValid();
         xTEST_EQ(true, m_bRv);
@@ -664,11 +579,8 @@ CxTest_CxFile::bUnit(
     {
         CxFile F;
 
-        m_bRv = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = F.bClose();
-        xTEST_EQ(true, m_bRv);
+        F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        F.vClose();
 
         m_bRv = F.bIsValid();
         xTEST_EQ(false, m_bRv);
@@ -753,16 +665,14 @@ CxTest_CxFile::bUnit1(
     //bAccess
     xTEST_CASE(cullCaseLoops)
     {
-        m_bRv = CxFile::bAccess(csFilePath, CxFile::amExistence);
-        xTEST_EQ(true, m_bRv);
+        CxFile::vAccess(csFilePath, CxFile::amExistence);
     }
 
     //-------------------------------------
     //bChmod
     xTEST_CASE(cullCaseLoops)
     {
-        m_bRv = CxFile::bChmod(csFilePath, CxFile::pmReadWrite);
-        xTEST_EQ(true, m_bRv);
+        CxFile::vChmod(csFilePath, CxFile::pmReadWrite);
     }
 
     //-------------------------------------
@@ -771,17 +681,10 @@ CxTest_CxFile::bUnit1(
     {
         const std::tstring_t csNewFilePath = sGetTempDirPath() + CxConst::xSLASH + xT("New.Test.txt");
 
-        m_bRv = CxFile::bTextWrite(csFilePath, xT("Simple text"));
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = CxFile::bDelete(csNewFilePath);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = CxFile::bRename(csFilePath, csNewFilePath);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = CxFile::bDelete(csNewFilePath);
-        xTEST_EQ(true, m_bRv);
+        CxFile::vTextWrite(csFilePath, xT("Simple text"));
+        CxFile::vDelete(csNewFilePath);
+        CxFile::vRename(csFilePath, csNewFilePath);
+        CxFile::vDelete(csNewFilePath);
     }
 
     //--------------------------------------------------
@@ -792,12 +695,10 @@ CxTest_CxFile::bUnit1(
         {
             CxFile F;
 
-            m_bRv = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-            xTEST_EQ(true, m_bRv);
+            F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
 
             for (size_t i = 0; i < cullLinesNum; ++ i) {
-                m_bRv = F.bWriteLine( CxString::string_cast(i) );
-                xTEST_EQ(true, m_bRv);
+                F.vWriteLine( CxString::string_cast(i) );
             }
         }
 
@@ -815,21 +716,16 @@ CxTest_CxFile::bUnit1(
         {
             CxFile F;
 
-            m_bRv = F.bCreate(sFilePathFrom, CxFile::omBinCreateReadWrite, true);
-            xTEST_EQ(true, m_bRv);
-
-            m_bRv = F.bResize(1024 * 5);
-            xTEST_EQ(true, m_bRv);
+            F.vCreate(sFilePathFrom, CxFile::omBinCreateReadWrite, true);
+            F.vResize(1024 * 5);
         }
 
-        m_bRv = CxFile::bCopy(sFilePathFrom, sFilePathTo, false);
-        xTEST_EQ(true, m_bRv);
+        CxFile::vCopy(sFilePathFrom, sFilePathTo, false);
 
         m_bRv = CxFile::bIsExists(sFilePathTo);
         xTEST_EQ(true, m_bRv);
 
-        m_bRv = CxFile::bCopy(sFilePathFrom, sFilePathTo, true);
-        xTEST_EQ(false, m_bRv);
+        CxFile::vCopy(sFilePathFrom, sFilePathTo, true);
     }
 
     //-------------------------------------
@@ -838,14 +734,9 @@ CxTest_CxFile::bUnit1(
     {
         const std::tstring_t csNewFilePath = sGetTempDirPath() + CxConst::xSLASH + xT("New.Test.txt");
 
-        m_bRv = CxFile::bTextWrite(csNewFilePath, xT("Simple text"));
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = CxFile::bDelete(sGetTempDirPath() + CxConst::xSLASH + csNewFilePath);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = CxFile::bMove(csNewFilePath, sGetTempDirPath());
-        xTEST_EQ(true, m_bRv);
+        CxFile::vTextWrite(csNewFilePath, xT("Simple text"));
+        CxFile::vDelete(sGetTempDirPath() + CxConst::xSLASH + csNewFilePath);
+        CxFile::vMove(csNewFilePath, sGetTempDirPath());
     }
 
     //-------------------------------------
@@ -864,8 +755,7 @@ CxTest_CxFile::bUnit1(
     {
         const std::tstring_t csNewFilePath = sGetTempDirPath() + CxConst::xSLASH + xT("New.Test.txt");
 
-        m_bRv = CxFile::bClear(csNewFilePath);
-        xTEST_EQ(true, m_bRv);
+        CxFile::vClear(csNewFilePath);
     }
 
     //-------------------------------------
@@ -874,11 +764,8 @@ CxTest_CxFile::bUnit1(
     {
         const std::tstring_t csNewFilePath = sGetTempDirPath() + CxConst::xSLASH + xT("New.Test.txt");
 
-        m_bRv = CxFile::bDelete(csNewFilePath);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = CxFile::bDelete(csNewFilePath);
-        xTEST_EQ(true, m_bRv);
+        CxFile::vDelete(csNewFilePath);
+        CxFile::vDelete(csNewFilePath);
     }
 
     //--------------------------------------------------
@@ -892,25 +779,16 @@ CxTest_CxFile::bUnit1(
                 if (i < 10) {
                     CxFile F;
 
-                    m_bRv = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-                    xTEST_EQ(true, m_bRv);
-
-                    m_bRv = F.bResize(1024);
-                    xTEST_EQ(true, m_bRv);
-
-                    m_bRv = F.bLocking(CxFile::lmLock, 10);
-                    xTEST_EQ(true, m_bRv);
+                    F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
+                    F.vResize(1024);
+                    F.vLocking(CxFile::lmLock, 10);
 
                     //try
-                    m_bRv = CxFile::bTryDelete(csFilePath, 2000);
-                    xTEST_EQ(false, m_bRv);
-
-                    m_bRv = F.bLocking(CxFile::lmUnlock, 10);
-                    xTEST_EQ(true, m_bRv);
+                    CxFile::vTryDelete(csFilePath, 2000);
+                    F.vLocking(CxFile::lmUnlock, 10);
                 } else {
                     //try
-                    m_bRv = CxFile::bTryDelete(csFilePath, 33);
-                    xTEST_EQ(true, m_bRv);
+                    CxFile::vTryDelete(csFilePath, 33);
                 }
             }
         #endif
@@ -923,16 +801,13 @@ CxTest_CxFile::bUnit1(
         {
             CxFile F;
 
-            m_bRv = F.bCreate(csFilePath, CxFile::omBinCreateReadWrite, true);
-            xTEST_EQ(true, m_bRv);
-
+            F.vCreate(csFilePath, CxFile::omBinCreateReadWrite, true);
             m_iRv = F.iWrite(xT("0123456789"));
             xTEST_DIFF(static_cast<int>( CxFile::etError ), m_iRv);
         }
 
         for (size_t i = 0; i < 3; ++ i) {
-            m_bRv = CxFile::bWipe(csFilePath, 10);
-            xTEST_EQ(true, m_bRv);
+            CxFile::vWipe(csFilePath, 10);
         }
     }
 
@@ -951,24 +826,18 @@ CxTest_CxFile::bUnit1(
         {
             CxFile F;
 
-            m_bRv = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-            xTEST_EQ(true, m_bRv);
+            F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
 
             for (size_t i = 0; i < 7; ++ i) {
-                m_bRv = F.bWriteLine(xT("asducfgnoawifgumoaeriuatgmoi"));
-                xTEST_EQ(true, m_bRv);
+                F.vWriteLine(xT("asducfgnoawifgumoaeriuatgmoi"));
             }
         }
 
-        m_bRv = CxFile::bTextRead(csFilePath, &sFileContent);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = CxFile::bTextWrite(csFilePath, sFileContent);
-        xTEST_EQ(true, m_bRv);
+        CxFile::vTextRead(csFilePath, &sFileContent);
+        CxFile::vTextWrite(csFilePath, sFileContent);
 
         std::tstring_t sStr;
-        m_bRv = CxFile::bTextRead(csFilePath, &sStr);
-        xTEST_EQ(true, m_bRv);
+        CxFile::vTextRead(csFilePath, &sStr);
 
         xTEST_EQ(sFileContent.size(), sStr.size());
         xTEST_EQ(sFileContent, sStr);
@@ -982,19 +851,14 @@ CxTest_CxFile::bUnit1(
         {
             CxFile F;
 
-            m_bRv = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-            xTEST_EQ(true, m_bRv);
+            F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
         }
 
-        m_bRv = CxFile::bTextRead(csFilePath, &sFileContent);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = CxFile::bTextWrite(csFilePath, sFileContent);
-        xTEST_EQ(true, m_bRv);
-
+        CxFile::vTextRead(csFilePath, &sFileContent);
+        CxFile::vTextWrite(csFilePath, sFileContent);
+        
         std::tstring_t sStr;
-        m_bRv = CxFile::bTextRead(csFilePath, &sStr);
-        xTEST_EQ(true, m_bRv);
+        CxFile::vTextRead(csFilePath, &sStr);
 
         xTEST_EQ(sFileContent.size(), sStr.size());
         xTEST_EQ(sFileContent, sStr);
@@ -1009,24 +873,18 @@ CxTest_CxFile::bUnit1(
         {
             CxFile F;
 
-            m_bRv = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-            xTEST_EQ(true, m_bRv);
+            F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
 
             for (size_t i = 0; i < 10; ++ i) {
-                m_bRv = F.bWriteLine(xT("asducfgnoawifgumoaeriuatgmoi"));
-                xTEST_EQ(true, m_bRv);
+                F.vWriteLine(xT("asducfgnoawifgumoaeriuatgmoi"));
             }
         }
 
-        m_bRv = CxFile::bTextRead(csFilePath, &vsFileContent);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = CxFile::bTextWrite(csFilePath, vsFileContent);
-        xTEST_EQ(true, m_bRv);
+        CxFile::vTextRead(csFilePath, &vsFileContent);
+        CxFile::vTextWrite(csFilePath, vsFileContent);
 
         std::vec_tstring_t vsStr;
-        m_bRv = CxFile::bTextRead(csFilePath, &vsStr);
-        xTEST_EQ(true, m_bRv);
+        CxFile::vTextRead(csFilePath, &vsStr);
 
         xTEST_EQ(vsFileContent.size(), vsStr.size());
         xTEST_EQ(true, vsFileContent == vsStr);
@@ -1040,19 +898,14 @@ CxTest_CxFile::bUnit1(
         {
             CxFile F;
 
-            m_bRv = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-            xTEST_EQ(true, m_bRv);
+            F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
         }
 
-        m_bRv = CxFile::bTextRead(csFilePath, &vsFileContent);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = CxFile::bTextWrite(csFilePath, vsFileContent);
-        xTEST_EQ(true, m_bRv);
+        CxFile::vTextRead(csFilePath, &vsFileContent);
+        CxFile::vTextWrite(csFilePath, vsFileContent);
 
         std::vec_tstring_t vsStr;
-        m_bRv = CxFile::bTextRead(csFilePath, &vsStr);
-        xTEST_EQ(true, m_bRv);
+        CxFile::vTextRead(csFilePath, &vsStr);
 
         xTEST_EQ(vsFileContent.size(), vsStr.size());
         xTEST_EQ(true, vsFileContent == vsStr);
@@ -1068,24 +921,18 @@ CxTest_CxFile::bUnit1(
         {
             CxFile F;
 
-            m_bRv = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-            xTEST_EQ(true, m_bRv);
+            F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
 
             for (size_t i = 0; i < 10; ++ i) {
-                m_bRv = F.bWriteLine(xT("asducfgnoawifg") + csSeparator + xT("umoaeriuatgmoi"));
-                xTEST_EQ(true, m_bRv);
+                F.vWriteLine(xT("asducfgnoawifg") + csSeparator + xT("umoaeriuatgmoi"));
             }
         }
 
-        m_bRv = CxFile::bTextRead(csFilePath, csSeparator, &cmsFileContent);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = CxFile::bTextWrite(csFilePath, csSeparator, cmsFileContent);
-        xTEST_EQ(true, m_bRv);
+        CxFile::vTextRead(csFilePath, csSeparator, &cmsFileContent);
+        CxFile::vTextWrite(csFilePath, csSeparator, cmsFileContent);
 
         std::map_tstring_t msStr;
-        m_bRv = CxFile::bTextRead(csFilePath, csSeparator, &msStr);
-        xTEST_EQ(true, m_bRv);
+        CxFile::vTextRead(csFilePath, csSeparator, &msStr);
 
         xTEST_EQ(cmsFileContent.size(), msStr.size());
         xTEST_EQ(true, cmsFileContent == msStr);
@@ -1100,19 +947,14 @@ CxTest_CxFile::bUnit1(
         {
             CxFile F;
 
-            m_bRv = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-            xTEST_EQ(true, m_bRv);
+            F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
         }
 
-        m_bRv = CxFile::bTextRead(csFilePath, csSeparator, &cmsFileContent);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = CxFile::bTextWrite(csFilePath, csSeparator, cmsFileContent);
-        xTEST_EQ(true, m_bRv);
+        CxFile::vTextRead(csFilePath, csSeparator, &cmsFileContent);
+        CxFile::vTextWrite(csFilePath, csSeparator, cmsFileContent);
 
         std::map_tstring_t msStr;
-        m_bRv = CxFile::bTextRead(csFilePath, csSeparator, &msStr);
-        xTEST_EQ(true, m_bRv);
+        CxFile::vTextRead(csFilePath, csSeparator, &msStr);
 
         xTEST_EQ(cmsFileContent.size(), msStr.size());
         xTEST_EQ(true, cmsFileContent == msStr);
@@ -1127,25 +969,21 @@ CxTest_CxFile::bUnit1(
         {
             CxFile F;
 
-            m_bRv = F.bCreate(csFilePath, CxFile::omBinCreateReadWrite, true);
-            xTEST_EQ(true, m_bRv);
+            F.vCreate(csFilePath, CxFile::omBinCreateReadWrite, true);
 
             m_iRv = F.iWrite(xT("0123456789"));
             xTEST_LESS(0, m_iRv);
 
-            m_bRv = F.bResize(1024 * 5);
-            xTEST_EQ(true, m_bRv);
+            F.vResize(1024 * 5);
 
             m_iRv = F.iWrite(xT("0123456789"));
             xTEST_LESS(0, m_iRv);
         }
 
-        m_bRv = CxFile::bBinWrite(csFilePath, usFileContent);
-        xTEST_EQ(true, m_bRv);
+        CxFile::vBinWrite(csFilePath, usFileContent);
 
         std::ustring_t usStr;
-        m_bRv = CxFile::bBinRead(csFilePath, &usStr);
-        xTEST_EQ(true, m_bRv);
+        CxFile::vBinRead(csFilePath, &usStr);
 
         xTEST_EQ(true, usFileContent == usStr);
     }
@@ -1158,16 +996,13 @@ CxTest_CxFile::bUnit1(
         {
             CxFile F;
 
-            m_bRv = F.bCreate(csFilePath, CxFile::omBinCreateReadWrite, true);
-            xTEST_EQ(true, m_bRv);
+            F.vCreate(csFilePath, CxFile::omBinCreateReadWrite, true);
         }
 
-        m_bRv = CxFile::bBinWrite(csFilePath, usFileContent);
-        xTEST_EQ(true, m_bRv);
+        CxFile::vBinWrite(csFilePath, usFileContent);
 
         std::ustring_t usStr;
-        m_bRv = CxFile::bBinRead(csFilePath, &usStr);
-        xTEST_EQ(true, m_bRv);
+        CxFile::vBinRead(csFilePath, &usStr);
 
         xTEST_EQ(true, usFileContent == usStr);
     }
@@ -1192,8 +1027,7 @@ CxTest_CxFile::bUnitPrivate(
     {
         CxFile sfFile;
 
-        m_bRv = sfFile.bCreate(csFilePath, CxFile::omRead, true);
-        xTEST_EQ(true, m_bRv);
+        sfFile.vCreate(csFilePath, CxFile::omRead, true);
 
         m_iRv = CxFile::_iGetHandle( sfFile.pGet() );
         xTEST_DIFF((int)CxFile::etError, m_iRv);
@@ -1208,8 +1042,7 @@ CxTest_CxFile::bUnitPrivate(
 
         CxFile sfFile;
 
-        m_bRv = sfFile.bCreate(csFilePath, comMode, true);
-        xTEST_EQ(true, m_bRv);
+        sfFile.vCreate(csFilePath, comMode, true);
 
         int iFile = CxFile::_iGetHandle(sfFile.pGet());
         xTEST_DIFF((int)CxFile::etError, iFile);
@@ -1241,7 +1074,7 @@ CxTest_CxFile::bUnitPrivate(
 
         for (size_t i = 0; i < vpData.size(); ++ i) {
             CxFile::EOpenMode omRes = vpData.at(i).first;
-            std::tstring_t                sRv  = vpData.at(i).second;
+            std::tstring_t    sRv   = vpData.at(i).second;
 
             m_sRv = CxFile::_sGetOpenMode(omRes);
             xTEST_EQ(sRv, m_sRv);
