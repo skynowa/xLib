@@ -25,7 +25,7 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 //explicit
 CxBackuper::CxBackuper(
-    const ExBackupPeriod cbpPeriod
+    const ExBackupPeriod &cbpPeriod
 ) :
     _m_cbpPeriod(cbpPeriod)
 {

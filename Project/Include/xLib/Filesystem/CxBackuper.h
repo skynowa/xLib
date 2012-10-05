@@ -36,7 +36,7 @@ class CxBackuper :
             //TODO: bpMonthly
         };
 
-        explicit             CxBackuper(const ExBackupPeriod cbpPeriod);
+        explicit             CxBackuper(const ExBackupPeriod &cbpPeriod);
             ///< constructor
         virtual             ~CxBackuper();
             ///< destructor
