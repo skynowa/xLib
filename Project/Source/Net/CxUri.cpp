@@ -43,8 +43,7 @@ CxUri::CxUri(const std::string &a_csUri) :
     _m_sQuery    (),
     _m_sFragment ()
 {
-    bool bRv = _bParse(a_csUri);
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    _vParse(a_csUri);
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxUri
@@ -114,19 +113,15 @@ CxUri::sGetUri() const {
 
     return sRv;
 }
-bool
-CxUri::bSetUri(const std::string &a_csScheme, const std::string &a_csAuthority, const std::string &a_csPath, const std::string &a_csQuery, const std::string &a_csFragment) {
+void
+CxUri::vSetUri(const std::string &a_csScheme, const std::string &a_csAuthority, const std::string &a_csPath, const std::string &a_csQuery, const std::string &a_csFragment) {
     /*DEBUG*/
 
-    bool bRv = false;  xUNUSED(bRv);
-
-    bRv = bSetScheme   (a_csScheme);
-    bRv = bSetAuthority(a_csAuthority);
-    bRv = bSetPath     (a_csPath);
-    bRv = bSetQuery    (a_csQuery);
-    bRv = bSetFragment (a_csFragment);
-
-    return true;
+    vSetScheme   (a_csScheme);
+    vSetAuthority(a_csAuthority);
+    vSetPath     (a_csPath);
+    vSetQuery    (a_csQuery);
+    vSetFragment (a_csFragment);
 }
 //---------------------------------------------------------------------------
 //TODO: sGetScheme
@@ -134,11 +129,9 @@ std::string
 CxUri::sGetScheme() const {
     return sEncodeComponent(_m_sScheme);
 }
-bool
-CxUri::bSetScheme(const std::string &csScheme) {
+void
+CxUri::vSetScheme(const std::string &csScheme) {
     _m_sScheme = sDecodeComponent(csScheme);
-
-    return true;
 }
 //---------------------------------------------------------------------------
 //DONE: sGetAuthority
@@ -164,11 +157,9 @@ CxUri::sGetAuthority() const {
 
     return sEncodeComponent(sTempAuthority/*_m_sAuthority*/);
 }
-bool
-CxUri::bSetAuthority(const std::string &csAuthority) {
+void
+CxUri::vSetAuthority(const std::string &csAuthority) {
     _m_sAuthority = sDecodeComponent(csAuthority);
-
-    return true;
 }
 //---------------------------------------------------------------------------
 //DONE: sGetUserInfo
@@ -176,13 +167,11 @@ std::string
 CxUri::sGetUserInfo() const {
     return sEncodeComponent(_m_sUserInfo);
 }
-bool
-CxUri::bSetUserInfo(const std::string &csUserInfo) {
+void
+CxUri::vSetUserInfo(const std::string &csUserInfo) {
     _m_sUserInfo = sDecodeComponent(csUserInfo);
 
     //TODO: bSetAuthority
-
-    return true;
 }
 //---------------------------------------------------------------------------
 //DONE: sGetHost
@@ -190,13 +179,11 @@ std::string
 CxUri::sGetHost() const {
     return sEncodeComponent(_m_sHost);
 }
-bool
-CxUri::bSetHost(const std::string &csHost) {
+void
+CxUri::vSetHost(const std::string &csHost) {
     _m_sHost = sDecodeComponent(csHost);
 
     //TODO: bSetAuthority
-
-    return true;
 }
 //---------------------------------------------------------------------------
 //DONE: usGetPort
@@ -204,13 +191,11 @@ ushort_t
 CxUri::usGetPort() {
     return _m_usPort;
 }
-bool
-CxUri::bSetPort(const ushort_t &cusPort) {
+void
+CxUri::vSetPort(const ushort_t &cusPort) {
     _m_usPort = cusPort;
 
     //TODO: bSetAuthority
-
-    return true;
 }
 //---------------------------------------------------------------------------
 //DONE: sGetPath
@@ -218,11 +203,9 @@ std::string
 CxUri::sGetPath() const {
     return sEncodeComponent(_m_sPath);
 }
-bool
-CxUri::bSetPath(const std::string &csPath) {
+void
+CxUri::vSetPath(const std::string &csPath) {
     _m_sPath = sDecodeComponent(csPath);
-
-    return true;
 }
 //---------------------------------------------------------------------------
 //DONE: sGetQuery
@@ -230,11 +213,9 @@ std::string
 CxUri::sGetQuery() const {
     return sEncodeComponent(_m_sQuery);
 }
-bool
-CxUri::bSetQuery(const std::string &csQuery) {
+void
+CxUri::vSetQuery(const std::string &csQuery) {
     _m_sQuery = sDecodeComponent(csQuery);
-
-    return true;
 }
 //---------------------------------------------------------------------------
 //DONE: sGetFragment
@@ -242,16 +223,14 @@ std::string
 CxUri::sGetFragment() const {
     return sEncodeComponent(_m_sFragment);
 }
-bool
-CxUri::bSetFragment(const std::string &csFragment) {
+void
+CxUri::vSetFragment(const std::string &csFragment) {
     _m_sFragment = sDecodeComponent(csFragment);
-
-    return true;
 }
 //---------------------------------------------------------------------------
 //DONE: bClear ()
-bool
-CxUri::bClear() {
+void
+CxUri::vClear() {
     ////bool bRv = false;
 
     _m_sScheme.clear();
@@ -262,8 +241,6 @@ CxUri::bClear() {
     _m_sPath.clear();
     _m_sQuery.clear();
     _m_sFragment.clear();
-
-    return true;
 }
 //---------------------------------------------------------------------------
 //TODO: sEscape ()
@@ -455,14 +432,11 @@ data   : text/plain;charset=iso-8859-7,%be%fg%be
 tel    : +1-816-555-1212
 telnet : //192.0.2.16:80/
 */
-bool
-CxUri::_bParse(const std::string &a_csUri) {
-    bool bRv = false;
-
+void
+CxUri::_vParse(const std::string &a_csUri) {
     //Normilize();
 
-    bRv = bClear();
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    vClear();
 
     //-------------------------------------
     //[scheme] - [foo]
@@ -573,21 +547,18 @@ CxUri::_bParse(const std::string &a_csUri) {
     size_t uiFragmentEnd   = a_csUri.size();                        //by the end
 
     _m_sFragment = CxString::sCut(a_csUri, uiFragmentStart, uiFragmentEnd);
-
-
-    return true;
 }
 //---------------------------------------------------------------------------
 //TODO: _bNormilize ()
-bool
-CxUri::_bNormilize(const std::string &a_csUri) {
+void
+CxUri::_vNormilize(const std::string &a_csUri) {
     ////bool bRv = false;
 
     //trim
     //lowcase(_m_sScheme)
     //remove dot-segment
 
-    return true;
+    xNOT_IMPLEMENTED;
 }
 //---------------------------------------------------------------------------
 //TODO: _usGetDefaultPort ()
@@ -617,7 +588,7 @@ CxUri::_usGetDefaultPort() const {
 //TODO: _bIsDefaultPort ()
 bool
 CxUri::_bIsDefaultPort() const {
-    return (_m_usPort == _usGetDefaultPort());
+    return ( _m_usPort == _usGetDefaultPort() );
 }
 //---------------------------------------------------------------------------
 
