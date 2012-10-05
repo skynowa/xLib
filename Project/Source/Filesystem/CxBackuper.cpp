@@ -96,8 +96,12 @@ CxBackuper::etExecute(
 
     //-------------------------------------
     //copy
-    bRv = CxFile::bCopy(csFilePath, sBackupFilePath, true);
-    xCHECK_RET(false == bRv, etCopyingFail);
+    try {
+        CxFile::vCopy(csFilePath, sBackupFilePath, true);
+    } 
+    catch (const CxException &) {
+        return etCopyingFail;   
+    }
 
     //-------------------------------------
     //check for a valid backup

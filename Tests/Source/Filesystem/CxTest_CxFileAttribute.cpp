@@ -37,16 +37,12 @@ CxTest_CxFileAttribute::bUnit(
     //--------------------------------------------------
     //prepare
     {
-        m_bRv = CxFile::bDelete(csFilePath);
-        xTEST_EQ(true, m_bRv);
+        CxFile::vDelete(csFilePath);
 
         CxFile F;
 
-        m_bRv = F.bCreate(csFilePath, CxFile::omCreateReadWrite, true);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = F.bClose();
-        xTEST_EQ(true, m_bRv);
+        F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
+        F.vClose();
 
         m_bRv = CxFile::bIsExists(csFilePath);
         xTEST_EQ(true, m_bRv);

@@ -85,8 +85,7 @@ CxBlowfish::vSetFileKey(
     std::ustring_t usFile;
     CxFile         sfFile;
 
-    bool bRv = sfFile.bCreate(a_csFilePath, CxFile::omBinRead, true);
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    sfFile.vCreate(a_csFilePath, CxFile::omBinRead, true);
 
     longlong_t llFileSize = sfFile.llGetSize();
     /*DEBUG*/xTEST_LESS(0LL, llFileSize);
@@ -164,18 +163,14 @@ CxBlowfish::vEncryptFileCfb64(
     /*DEBUG*/xTEST_EQ(false, a_csFilePathIn.empty());
     /*DEBUG*/xTEST_EQ(false, a_csFilePathOut.empty());
 
-    bool           bRv = false;
     std::ustring_t usIn;
     std::ustring_t usOut;
 
     {
         CxFile sfFileIn;
 
-        bRv = sfFileIn.bCreate(a_csFilePathIn, CxFile::omBinRead, true);
-        /*DEBUG*/xTEST_EQ(true, bRv);
-
-        bRv = sfFileIn.bRead(&usIn);
-        /*DEBUG*/xTEST_EQ(true, bRv);
+        sfFileIn.vCreate(a_csFilePathIn, CxFile::omBinRead, true);
+        sfFileIn.vRead(&usIn);
     }
 
     vEncryptCfb64(usIn, &usOut, a_cmMode);
@@ -183,11 +178,8 @@ CxBlowfish::vEncryptFileCfb64(
     {
         CxFile sfFileOut;
 
-        bRv = sfFileOut.bCreate(a_csFilePathOut, CxFile::omBinCreateReadWrite, true);
-        /*DEBUG*/xTEST_EQ(true, bRv);
-
-        bRv = sfFileOut.bWrite(usOut);
-        /*DEBUG*/xTEST_EQ(true, bRv);
+        sfFileOut.vCreate(a_csFilePathOut, CxFile::omBinCreateReadWrite, true);
+        sfFileOut.vWrite(usOut);
     }
 }
 //---------------------------------------------------------------------------

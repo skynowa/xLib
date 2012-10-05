@@ -101,8 +101,7 @@ CxFileLog::bWrite(
 
     CxFile sfFile;
 
-    bRv = sfFile.bCreate(sGetFilePath(), CxFile::omAppend, false);
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    sfFile.vCreate(sGetFilePath(), CxFile::omAppend, false);
 
     int iRv = sfFile.iWrite(xT("[%s] %s\n"), sTime.c_str(), sParam.c_str());
     /*DEBUG*/xTEST_DIFF(iRv, static_cast<int>( CxFile::etError ));
@@ -112,14 +111,11 @@ CxFileLog::bWrite(
 //---------------------------------------------------------------------------
 bool
 CxFileLog::bClear() {
-    bool bRv = false;
-
     #if xTODO
         CxAutoIpcMutex SL(_m_mtFile);
     #endif
 
-    bRv = CxFile::bClear(sGetFilePath());
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    CxFile::vClear(sGetFilePath());
 
     return true;
 }
@@ -132,8 +128,7 @@ CxFileLog::bDelete() {
         CxAutoIpcMutex SL(_m_mtFile);
     #endif
 
-    bRv = CxFile::bDelete(sGetFilePath());
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    CxFile::vDelete(sGetFilePath());
 
     return true;
 }
@@ -163,8 +158,7 @@ CxFileLog::_bDeleteIfFull() {
 
     xCHECK_RET(ulSize < _m_ulMaxFileSizeBytes, true);
 
-    bRv = CxFile::bDelete(sGetFilePath());
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    CxFile::vDelete(sGetFilePath());
 
     return true;
 }

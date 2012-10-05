@@ -21,7 +21,7 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 /*explicit*/
 CxFileTemp::CxFileTemp(
-    const bool cbIsAutoDelete
+    const bool &cbIsAutoDelete
 ) :
     _m_cbIsAutoDelete(cbIsAutoDelete),
     _m_pfFile        (NULL),
@@ -32,15 +32,15 @@ CxFileTemp::CxFileTemp(
 //---------------------------------------------------------------------------
 /* virtual */
 CxFileTemp::~CxFileTemp() {
-    (void)(*_m_pfFile).bClose();
+    (*_m_pfFile).vClose();
 
     if (false != _m_cbIsAutoDelete) {
-        (void)CxFile::bDelete(_m_sFilePath);
+        CxFile::vDelete(_m_sFilePath);
     }
 }
 //---------------------------------------------------------------------------
-bool
-CxFileTemp::bCreate(
+void
+CxFileTemp::vCreate(
     const std::tstring_t &csFilePath,
     const std::tstring_t &csDirPath,
     CxFile               *pfFile
@@ -86,12 +86,9 @@ CxFileTemp::bCreate(
 #endif
 
     //out
-    bool bRv = (*pfFile).bAttach(_pfStdFile);
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    (*pfFile).vAttach(_pfStdFile);
 
     _m_pfFile = pfFile;
-
-    return true;
 }
 //---------------------------------------------------------------------------
 

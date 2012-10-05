@@ -125,11 +125,11 @@ class CxFile :
             ///< destructor
 
         //open, get
-        bool                   bCreate      (const std::tstring_t &csFilePath, const ExOpenMode omMode, const bool cbIsUseBuffering);
+        void                   vCreate      (const std::tstring_t &csFilePath, const ExOpenMode &omMode, const bool &cbIsUseBuffering);
             ///< open
-        bool                   bReopen      (const std::tstring_t &csFilePath, const ExOpenMode omMode, const bool cbIsUseBuffering);
+        void                   vReopen      (const std::tstring_t &csFilePath, const ExOpenMode &omMode, const bool &cbIsUseBuffering);
             ///< reopen with different file or mode
-        bool                   bAttach      (std::FILE *pflFile);
+        void                   vAttach      (std::FILE *pflFile);
             ///< attach to stream
         std::FILE *            pDetach      ();
             ///< detach from stream
@@ -139,53 +139,53 @@ class CxFile :
             ///< get file path
 
         //read, write
-        size_t                 uiRead       (void *pvBuff,        const size_t cuiCount) const;
+        size_t                 uiRead       (void *pvBuff,        const size_t &cuiCount) const;
             ///< read block of data
-        size_t                 uiWrite      (const void *pcvBuff, const size_t cuiCount) const;
+        size_t                 uiWrite      (const void *pcvBuff, const size_t &cuiCount) const;
             ///< write block of data
-        bool                   bRead        (std::ustring_t *psBuff) const;
+        void                   vRead        (std::ustring_t *psBuff) const;
             ///< read to std::ustring_t
-        bool                   bWrite       (const std::ustring_t &csBuff) const;
+        void                   vWrite       (const std::ustring_t &csBuff) const;
             ///< write from std::ustring_t
-        bool                   bRead        (std::tstring_t *psBuff) const;
+        void                   vRead        (std::tstring_t *psBuff) const;
             ///< read to std::tstring_t
         int                    iWrite       (const tchar_t *pcszFormat, ...) const;
             ///< write formatted output to stream
         int                    iWriteV      (const tchar_t *pcszFormat, va_list arg) const;
             ///< write formatted variable argument list to stream
-        bool                   bReadLine    (std::tstring_t *psStr, const size_t cuiMaxCount) const;
+        void                   vReadLine    (std::tstring_t *psStr, const size_t &cuiMaxCount) const;
             ///< read string to newline or to the end of file
-        bool                   bWriteLine   (const std::tstring_t &csStr) const;
+        void                   vWriteLine   (const std::tstring_t &csStr) const;
             ///< write string and end of line
         tchar_t                chReadChar   () const;
             ///< get character
-        bool                   bWriteChar   (const tchar_t ccChar) const;
+        void                   vWriteChar   (const tchar_t &ccChar) const;
             ///< write character
-        bool                   bUngetChar   (const tchar_t ccChar) const;
+        void                   vUngetChar   (const tchar_t &ccChar) const;
             ///< unget character from stream
-        bool                   bClear       () const;
+        void                   vClear       () const;
             ///< clear
 
         //times
 
         //other
-        bool                   bLocking     (const ExLockingMode clmMode, const long_t cliBytes);
+        void                   vLocking     (const ExLockingMode &clmMode, const long_t &cliBytes);
             ///< locks or unlocks bytes of a file
-        bool                   bSetPosition (const long_t clOffset, const ExPointerPosition cppPos) const;
+        void                   vSetPosition (const long_t &clOffset, const ExPointerPosition &cppPos) const;
             ///< set stream position indicator
         long_t                 liGetPosition() const;
             ///< get current position in stream
-        bool                   bSetVBuff    (char *pszBuff, const ExBufferingMode cbmMode, const size_t cuiSize) const;
+        void                   vSetVBuff    (char *pszBuff, const ExBufferingMode &cbmMode, const size_t &cuiSize) const;
             ///< change stream buffering
 
     #if   xOS_ENV_WIN
-        bool                   bSetMode     (const ExTranslationMode tmMode) const;
+        void                   vSetMode     (const ExTranslationMode &tmMode) const;
             ///< sets the file translation mode
     #endif
 
         longlong_t             llGetSize    () const;
             ///< get file size
-        bool                   bResize      (const longlong_t cllSize) const;
+        void                   vResize      (const longlong_t &cllSize) const;
             ///< changes the file size
 
         //error handling
@@ -199,13 +199,13 @@ class CxFile :
             ///< check end of file indicator
         bool                   bIsError     () const;
             ///< check error indicator
-        bool                   bErrorClear  () const;
+        void                   vErrorClear  () const;
             ///< clear error indicators
 
         //closing
-        bool                   bFlush       () const;
+        void                   vFlush       () const;
             ///< flush
-        bool                   bClose       ();
+        void                   vClose       ();
             ///< close
 
         //static
@@ -215,53 +215,53 @@ class CxFile :
             ///< check for existence
         static std::tstring_t  sIsExists    (const std::tstring_t &csFilePath);
             ///< check for existence, if exists - generate new file name (file path), which not exists
-        static bool            bAccess      (const std::tstring_t &csFilePath, const ExAccessMode camMode);
+        static void            vAccess      (const std::tstring_t &csFilePath, const ExAccessMode &camMode);
             ///< determine file-access permission
-        static bool            bChmod       (const std::tstring_t &csFilePath, const ExPermissionMode cpmMode);
+        static void            vChmod       (const std::tstring_t &csFilePath, const ExPermissionMode &cpmMode);
             ///< change the file-permission settings
-        static bool            bClear       (const std::tstring_t &csFilePath);
+        static void            vClear       (const std::tstring_t &csFilePath);
             ///< clear content
-        static bool            bDelete      (const std::tstring_t &csFilePath);
+        static void            vDelete      (const std::tstring_t &csFilePath);
             ///< deleting
-        static bool            bTryDelete   (const std::tstring_t &csFilePath, const size_t cuiAttempts, const ulong_t culTimeoutMsec);
+        static void            vTryDelete   (const std::tstring_t &csFilePath, const size_t &cuiAttempts, const ulong_t &culTimeoutMsec);
             ///< try deleting, max 100 attempts
-        static bool            bWipe        (const std::tstring_t &csFilePath, const size_t cuiPasses);
+        static void            vWipe        (const std::tstring_t &csFilePath, const size_t &cuiPasses);
             ///< wipe
-        static bool            bUnlink      (const std::tstring_t &csFilePath);
+        static void            vUnlink      (const std::tstring_t &csFilePath);
             ///< deleting
-        static bool            bRename      (const std::tstring_t &csOldFilePath,  const std::tstring_t &csNewFilePath);
+        static void            vRename      (const std::tstring_t &csOldFilePath,  const std::tstring_t &csNewFilePath);
             ///< renaming
-        static bool            bMove        (const std::tstring_t &csFilePath,     const std::tstring_t &csDirPath);
+        static void            vMove        (const std::tstring_t &csFilePath,     const std::tstring_t &csDirPath);
             ///< move
-        static bool            bCopy        (const std::tstring_t &csFilePathFrom, const std::tstring_t &csFilePathTo, const bool cbFailIfExists);
+        static void            vCopy        (const std::tstring_t &csFilePathFrom, const std::tstring_t &csFilePathTo, const bool &cbFailIfExists);
             ///< copy
         static longlong_t      llGetSize    (const std::tstring_t &csFilePath);
             ///< get size
         static ulonglong_t     ullGetLines  (const std::tstring_t &csFilePath);
             ///< get number of lines
-        static bool            bGetTime     (const std::tstring_t &csFilePath, time_t *ptmCreate, time_t *ptmAccess, time_t *ptmModified);
+        static void            vGetTime     (const std::tstring_t &csFilePath, time_t *ptmCreate, time_t *ptmAccess, time_t *ptmModified);
             ///< get time
-        static bool            bSetTime     (const std::tstring_t &csFilePath, const time_t &ctmCreate, const time_t &ctmAccess, const time_t &ctmModified);
+        static void            vSetTime     (const std::tstring_t &csFilePath, const time_t &ctmCreate, const time_t &ctmAccess, const time_t &ctmModified);
             ///< set time
 
         //text
-        static bool            bTextRead    (const std::tstring_t &csFilePath, std::tstring_t *psContent);
+        static void            vTextRead    (const std::tstring_t &csFilePath, std::tstring_t *psContent);
             ///< read to std::tstring_t
-        static bool            bTextWrite   (const std::tstring_t &csFilePath, const std::tstring_t &csContent);
+        static void            vTextWrite   (const std::tstring_t &csFilePath, const std::tstring_t &csContent);
             ///< write std::tstring_t
-        static bool            bTextRead    (const std::tstring_t &csFilePath, std::vec_tstring_t *pvsContent);
+        static void            vTextRead    (const std::tstring_t &csFilePath, std::vec_tstring_t *pvsContent);
             ///< read to std::vector
-        static bool            bTextWrite   (const std::tstring_t &csFilePath, const std::vec_tstring_t &cvsContent);
+        static void            vTextWrite   (const std::tstring_t &csFilePath, const std::vec_tstring_t &cvsContent);
             ///< write std::vector
-        static bool            bTextRead    (const std::tstring_t &csFilePath, const std::tstring_t &csSeparator, std::map_tstring_t *pmsContent);
+        static void            vTextRead    (const std::tstring_t &csFilePath, const std::tstring_t &csSeparator, std::map_tstring_t *pmsContent);
             ///< read text to std::map
-        static bool            bTextWrite   (const std::tstring_t &csFilePath, const std::tstring_t &csSeparator, const std::map_tstring_t &cmsContent);
+        static void            vTextWrite   (const std::tstring_t &csFilePath, const std::tstring_t &csSeparator, const std::map_tstring_t &cmsContent);
             ///< write text from std::map
 
         //binary
-        static bool            bBinRead     (const std::tstring_t &csFilePath, std::ustring_t *pusContent);
+        static void            vBinRead     (const std::tstring_t &csFilePath, std::ustring_t *pusContent);
             ///< read binary data
-        static bool            bBinWrite    (const std::tstring_t &csFilePath, const std::ustring_t &cusContent);
+        static void            vBinWrite    (const std::tstring_t &csFilePath, const std::ustring_t &cusContent);
             ///< write binary data
 
     private:
@@ -270,9 +270,9 @@ class CxFile :
 
         static int             _iGetHandle  (std::FILE *pfFile);
             ///< gets the file descriptor associated with a stream
-        static std::FILE *     _pfGetHandle (int iFileHandle, const ExOpenMode omMode);
+        static std::FILE *     _pfGetHandle (int iFileHandle, const ExOpenMode &omMode);
             ///< get stream by handle
-        static std::tstring_t  _sGetOpenMode(const ExOpenMode comMode);
+        static std::tstring_t  _sGetOpenMode(const ExOpenMode &comMode);
             ///< get open mode as string, by default use "r"
 
         friend class           CxFileTemp;

@@ -145,11 +145,8 @@ CxDecrypt::vMakeFile(
     {
         CxFile sfFileRaw;
 
-        bRv = sfFileRaw.bCreate(a_csInFilePath, CxFile::omBinRead, true);
-        /*DEBUG*/xTEST_EQ(true, bRv);
-
-        bRv = sfFileRaw.bRead(&usEncryptedData);
-        /*DEBUG*/xTEST_EQ(true, bRv);
+        sfFileRaw.vCreate(a_csInFilePath, CxFile::omBinRead, true);
+        sfFileRaw.vRead(&usEncryptedData);
     }
 
     //-------------------------------------
@@ -186,11 +183,8 @@ CxDecrypt::vMakeFile(
     {
         CxFile sfFileDecrypt;
 
-        bRv = sfFileDecrypt.bCreate(a_csOutFilePath, CxFile::omBinWrite, true);
-        /*DEBUG*/xTEST_EQ(true, bRv);
-
-        bRv = sfFileDecrypt.bWrite(usDecryptedData);
-        /*DEBUG*/xTEST_EQ(true, bRv);
+        sfFileDecrypt.vCreate(a_csOutFilePath, CxFile::omBinWrite, true);
+        sfFileDecrypt.vWrite(usDecryptedData);
     }
 }
 //---------------------------------------------------------------------------

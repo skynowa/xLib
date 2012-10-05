@@ -83,12 +83,9 @@ CxCgi::bPageShow(
     const std::tstring_t &a_csFilePath
 )
 {
-    bool bRv = false;
-
     std::tstring_t sFileContent;
 
-    bRv = CxFile::bTextRead(a_csFilePath, &sFileContent);
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    CxFile::vTextRead(a_csFilePath, &sFileContent);
 
     std::tcout << sFileContent << std::endl;
 
@@ -930,8 +927,7 @@ CxCgiFormData::_bInit() {
                 CxFile       sfFile;
                 std::tstring_t sBuff;
 
-                bRv = sfFile.bAttach(stdin);
-                /*DEBUG*/xTEST_EQ(true, bRv);
+                sfFile.vAttach(stdin);
 
                 sBuff.resize(uiPostSize);
 

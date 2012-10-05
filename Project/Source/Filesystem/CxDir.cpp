@@ -310,8 +310,7 @@ CxDir::vCopy(
 
         vCreateForce(CxPath::sGetDir(sFilePathTo));
 
-        bRv = CxFile::bCopy(*it, sFilePathTo, cbFailIfExists);
-        /*DEBUG*/xTEST_EQ(true, bRv);
+        CxFile::vCopy(*it, sFilePathTo, cbFailIfExists);
     }
 
     //--------------------------------------------------
@@ -411,7 +410,7 @@ CxDir::vClearForce(
         vFindFiles(csDirPath, CxConst::xMASK_ALL, true, &vsFilePathes);
 
         xFOREACH_R(std::vec_tstring_t, it, vsFilePathes) {
-            (void)CxFile::bDelete(*it);
+            CxFile::vDelete(*it);
         }
     }
 
