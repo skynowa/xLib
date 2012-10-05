@@ -22,13 +22,13 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxProfiler::CxProfiler(
-    const ExMode a_cpmMode
+    const ExMode &a_cpmMode
 ) :
     _m_pmModeNow (a_cpmMode),
     _m_bIsStarted(false),
     _flLog       (CxFileLog::lsDefaultSize)
 {
-    (void)_bResetData();
+    _vResetData();
 }
 //---------------------------------------------------------------------------
 CxProfiler::~CxProfiler() {
@@ -38,17 +38,14 @@ CxProfiler::~CxProfiler() {
     }
 }
 //---------------------------------------------------------------------------
-bool
-CxProfiler::bSetLogPath(
+void 
+CxProfiler::vSetLogPath(
     const std::tstring_t &a_csLogPath
 )
 {
     /*DEBUG*/
 
-    bool bRv = _flLog.bSetFilePath(a_csLogPath);
-    /*DEBUG*/xTEST_EQ(true, bRv);
-
-    return true;
+    _flLog.bSetFilePath(a_csLogPath);
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
@@ -58,12 +55,11 @@ CxProfiler::sGetLogPath() const {
     return _flLog.sGetFilePath();
 }
 //--------------------------------------------------------------------------
-bool
-CxProfiler::bStart() {
+void
+CxProfiler::vStart() {
     /*DEBUG*/xTEST_EQ(false, _m_bIsStarted);
 
-    bool bRv = _bResetData();
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    _vResetData();
 
     #if xTODO
         bRv = CxProcess::bSetPriority(CxProcess::ulGetCurrId(), CxProcess::tpTimeCritical);
@@ -127,12 +123,10 @@ CxProfiler::bStart() {
     }
 
     _m_bIsStarted = true;
-
-    return true;
 }
 //--------------------------------------------------------------------------
-bool
-CxProfiler::bStop(
+void
+CxProfiler::vStop(
     const tchar_t *a_pcszComment, ...
 )
 {
@@ -224,12 +218,10 @@ CxProfiler::bStop(
     /*DEBUG*/xTEST_EQ(true, bRv);
 
     _m_bIsStarted = false;
-
-    return true;
 }
 //--------------------------------------------------------------------------
-bool
-CxProfiler::bPulse(
+void
+CxProfiler::vPulse(
     const tchar_t *pcszComment, ...
 )
 {
@@ -246,13 +238,8 @@ CxProfiler::bPulse(
 
     //-------------------------------------
     //stop, start
-    bool bRv = bStop(xT("%s"), sRv.c_str());
-    /*DEBUG*/xTEST_EQ(true, bRv);
-
-    bRv = bStart();
-    /*DEBUG*/xTEST_EQ(true, bRv);
-
-    return true;
+    vStop(xT("%s"), sRv.c_str());
+    vStart();
 }
 //---------------------------------------------------------------------------
 
@@ -263,8 +250,8 @@ CxProfiler::bPulse(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-bool
-CxProfiler::_bResetData() {
+void
+CxProfiler::_vResetData() {
     #if xTODO
         bool bRv = CxProcess::bSetPriority(CxCurrentProcess::ulGetId(), CxProcess::tpNormal);
         /*DEBUG*/xTEST_EQ(true, bRv);
@@ -310,8 +297,6 @@ CxProfiler::_bResetData() {
 #elif xOS_ENV_UNIX
 
 #endif
-
-    return true;
 }
 //--------------------------------------------------------------------------
 #if xOS_ENV_UNIX && xOS_FREEBSD

@@ -40,14 +40,12 @@ CxTest_CxProfiler::bUnit(
 
         CxProfiler pfP(pmPerformMode[i]);
 
-        m_bRv = pfP.bSetLogPath(csFilePath);
-        xTEST_EQ(true, m_bRv);
+        pfP.vSetLogPath(csFilePath);
 
         m_sRv = pfP.sGetLogPath();
         xTEST_EQ(csFilePath, m_sRv);
 
-        m_bRv = pfP.bStart();
-        xTEST_EQ(true, m_bRv);
+        pfP.vStart();
 
         for (size_t y = 0; y < 10; ++ y) {
             for (size_t j = 0; j < 2; ++ j) {
@@ -56,12 +54,10 @@ CxTest_CxProfiler::bUnit(
                 x++; --x; x = x / 3;
             }
 
-            pfP.bPulse(xT("Variable i: %zu"), y);
-            xTEST_EQ(true, m_bRv);
+            pfP.vPulse(xT("Variable i: %zu"), y);
         }
 
-        pfP.bStop(xT(""));
-        xTEST_EQ(true, m_bRv);
+        pfP.vStop(xT(""));
     }
 
     return true;
