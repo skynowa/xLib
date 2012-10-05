@@ -22,12 +22,12 @@ CxThreadStorage::CxThreadStorage() :
     _m_indIndex(static_cast<pthread_key_t>( -1 ))
 #endif
 {
-    (void)_bAlloc();
+    _vAlloc();
 }
 //---------------------------------------------------------------------------
 /* virtual */
 CxThreadStorage::~CxThreadStorage() {
-    (void)_bFree();
+    _vFree();
 }
 //---------------------------------------------------------------------------
 bool
@@ -64,8 +64,8 @@ CxThreadStorage::pvGetValue() const {
     return pvRv;
 }
 //---------------------------------------------------------------------------
-bool
-CxThreadStorage::bSetValue(
+void
+CxThreadStorage::vSetValue(
     void *a_pvValue
 ) const
 {
@@ -82,8 +82,6 @@ CxThreadStorage::bSetValue(
     int iRv = ::pthread_setspecific(_m_indIndex, a_pvValue);
     /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
 
@@ -94,8 +92,8 @@ CxThreadStorage::bSetValue(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-bool
-CxThreadStorage::_bAlloc() {
+void
+CxThreadStorage::_vAlloc() {
     index_t indRes = (index_t)- 1;
 
 #if   xOS_ENV_WIN
@@ -111,12 +109,10 @@ CxThreadStorage::_bAlloc() {
 #endif
 
     _m_indIndex = indRes;
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxThreadStorage::_bFree() {
+void
+CxThreadStorage::_vFree() {
 #if   xOS_ENV_WIN
     /*DEBUG*/xTEST_DIFF(TLS_OUT_OF_INDEXES, _m_indIndex);
 
@@ -132,8 +128,6 @@ CxThreadStorage::_bFree() {
 
     _m_indIndex = static_cast<pthread_key_t>( -1 );
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
 
