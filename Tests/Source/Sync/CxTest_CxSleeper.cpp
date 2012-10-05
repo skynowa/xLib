@@ -42,9 +42,8 @@ CxTest_CxSleeper::bUnit(
             m_bRv = objSleeper.bIsSleeping();
             xTEST_EQ(false, m_bRv);
 
-            m_bRv = objSleeper.bSleep(5);
-            xTEST_EQ(true, m_bRv);
-
+            objSleeper.vSleep(5);
+ 
             m_bRv = objSleeper.bIsSleeping();
             xTEST_EQ(false, m_bRv);
 
@@ -60,8 +59,7 @@ CxTest_CxSleeper::bUnit(
         #if xTODO
             CxSleeper objSleeper;
 
-            m_bRv = objSleeper.bWakeUp();
-            xTEST_EQ(true, m_bRv);
+            objSleeper.vWakeUp();
         #endif
     }
 

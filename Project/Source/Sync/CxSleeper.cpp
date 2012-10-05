@@ -26,8 +26,8 @@ CxSleeper::~CxSleeper() {
 
 }
 //---------------------------------------------------------------------------
-bool
-CxSleeper::bSleep(
+void
+CxSleeper::vSleep(
     const ulong_t &a_culTimeout  ///< in milliseconds
 )
 {
@@ -35,18 +35,13 @@ CxSleeper::bSleep(
 
     CxEvent::ExObjectState osRes = _m_objEvent.osWait(a_culTimeout);
     /*DEBUG*/xTEST_EQ(true, CxEvent::osSignaled == osRes || CxEvent::osTimeout == osRes);
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxSleeper::bWakeUp() {
+void
+CxSleeper::vWakeUp() {
     /*DEBUG*/// n/a
 
-    bool bRv = _m_objEvent.bSet();
-    /*DEBUG*/xTEST_EQ(true, bRv);
-
-    return true;
+    _m_objEvent.vSet();
 }
 //---------------------------------------------------------------------------
 bool
@@ -54,7 +49,6 @@ CxSleeper::bIsSleeping() {
     /*DEBUG*/// n/a
 
     return _m_objEvent.bIsSignaled();
-    /*DEBUG*/// n/a
 }
 //---------------------------------------------------------------------------
 
