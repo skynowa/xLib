@@ -32,21 +32,21 @@ class CxProfiler :
         #endif
         };
 
-                              CxProfiler (const ExMode cpmMode);
+        explicit              CxProfiler (const ExMode &cpmMode);
             ///< constructor
         virtual              ~CxProfiler ();
             ///< destructor
 
-        bool                  bSetLogPath(const std::tstring_t &csLogPath);
+        void                  vSetLogPath(const std::tstring_t &csLogPath);
             ///< set log path
         const std::tstring_t &sGetLogPath() const;
             ///< get log path
 
-        bool                  bStart     ();
+        void                  vStart     ();
             ///< start measurement
-        bool                  bStop      (const tchar_t *pcszComment, ...);
+        void                  vStop      (const tchar_t *pcszComment, ...);
             ///< stop measurement
-        bool                  bPulse     (const tchar_t *pcszComment, ...);
+        void                  vPulse     (const tchar_t *pcszComment, ...);
             ///< stop, start measurement
 
     private:
@@ -85,7 +85,7 @@ class CxProfiler :
         FILETIME              _m_lpUserTimeStop;      ///< stop value
     #endif
 
-        bool                  _bResetData();
+        void                  _vResetData();
             ///< reset all class data
 
     #if xOS_ENV_UNIX && xOS_FREEBSD
