@@ -45,11 +45,11 @@ class CxProcess :
                         CxProcess      ();
         virtual        ~CxProcess      ();
 
-        bool            bCreate        (const std::tstring_t &csFilePath, const tchar_t *pcszParams, ...);
+        void            vCreate        (const std::tstring_t &csFilePath, const tchar_t *pcszParams, ...);
             ///< execute a file
         ExWaitResult    ulWait         (const ulong_t &culTimeout);
             ///< wait for termonation
-        bool            bKill          (const ulong_t &culTimeout);
+        void            vKill          (const ulong_t &culTimeout);
             ///< kills the calling process and all of its threads
 
         handle_t        hGet           () const;

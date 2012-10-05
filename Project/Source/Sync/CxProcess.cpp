@@ -56,8 +56,8 @@ CxProcess::~CxProcess() {
 #endif
 }
 //---------------------------------------------------------------------------
-bool
-CxProcess::bCreate(
+void
+CxProcess::vCreate(
     const std::tstring_t &a_csFilePath,
     const tchar_t        *a_pcszParams, ...
 )
@@ -103,8 +103,6 @@ CxProcess::bCreate(
     _m_hHandle = liPid;
     _m_ulPid   = liPid;
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
 CxProcess::ExWaitResult
@@ -137,14 +135,13 @@ CxProcess::ulWait(
     return wrStatus;
 }
 //---------------------------------------------------------------------------
-bool
-CxProcess::bKill(
+void
+CxProcess::vKill(
     const ulong_t &a_culTimeout    // FIX: culTimeout not used
 )
 {
     /*DEBUG*/
 
-    bool    bRv  = false;
     ulong_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN
@@ -166,13 +163,10 @@ CxProcess::bKill(
     int iRv = ::kill(_m_ulPid, SIGKILL);
     /*DEBUG*/xTEST_DIFF(- 1, iRv);
 
-    bRv = CxCurrentThread::bSleep(a_culTimeout);
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    CxCurrentThread::bSleep(a_culTimeout);
 
     _m_uiExitStatus = 0U;
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
 CxProcess::handle_t
