@@ -39,8 +39,7 @@ CxTest_CxIpcSemaphore::bUnit(
             xTEST_PTR(psemSem);
 
 	        for (int i = 0; i < 50; i ++) {
-	            bool bRv = psemSem->bWait(xTIMEOUT_INFINITE);
-	            xTEST_EQ(true, bRv);
+	            psemSem->vWait(xTIMEOUT_INFINITE);
 
 	            CxTracer() << xTRACE_VAR(i);
 	        }
@@ -56,8 +55,7 @@ CxTest_CxIpcSemaphore::bUnit(
     // bCreate
     CxIpcSemaphore semSemaphore;
 
-    m_bRv = semSemaphore.bCreate(4, xT("sema_name"));
-    xTEST_EQ(true, m_bRv);
+    semSemaphore.vCreate(4, xT("sema_name"));
 
 #if   xOS_ENV_WIN
     uintptr_t puiRv = ::_beginthreadex(NULL, 0U, &_SFunctor::uiJob, &semSemaphore, 0U, NULL);
@@ -76,8 +74,7 @@ CxTest_CxIpcSemaphore::bUnit(
         xTEST_EQ(true, m_bRv);
 
         for (int x = 0; x < 2; x ++) {
-            m_bRv = semSemaphore.bPost();
-            xTEST_EQ(true, m_bRv);
+            semSemaphore.vPost();
         }
     }
 

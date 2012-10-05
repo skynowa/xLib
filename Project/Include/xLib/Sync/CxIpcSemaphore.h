@@ -28,13 +28,13 @@ class CxIpcSemaphore :
 
         const handle_t & hGet          () const;
             ///< get handle
-        bool             bCreate       (const long_t &cliInitialValue, const std::tstring_t &csName);
+        void             vCreate       (const long_t &cliInitialValue, const std::tstring_t &csName);
             ///< create
-        bool             bOpen         (const std::tstring_t &csName);
+        void             vOpen         (const std::tstring_t &csName);
             ///< open
-        bool             bPost         () const;
+        void             vPost         () const;
             ///< release
-        bool             bWait         (const ulong_t &culTimeoutMsec) const;
+        void             vWait         (const ulong_t &culTimeoutMsec) const;
             ///< wait
         long_t           liGetValue    () const;
             ///< get value
