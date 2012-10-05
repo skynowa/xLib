@@ -90,8 +90,7 @@ CxTest_CxCurrentThread::bUnit(
     //bYield
     xTEST_CASE(cullCaseLoops)
     {
-        m_bRv = CxCurrentThread::bYield();
-        xTEST_EQ(true, m_bRv);
+        CxCurrentThread::vYield();
     }
 
     //--------------------------------------------------
@@ -112,8 +111,7 @@ CxTest_CxCurrentThread::bUnit(
             
             dtTime1 = CxDateTime::dtGetCurrent();
 
-            m_bRv = CxCurrentThread::bSleep(cuiMsec);
-            xTEST_EQ(true, m_bRv);
+            CxCurrentThread::vSleep(cuiMsec);
 
             CxDateTime dtTime2;
             

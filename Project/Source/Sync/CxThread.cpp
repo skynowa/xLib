@@ -258,8 +258,7 @@ CxThread::bKill(
         ulRv = ulGetExitStatus();
         xCHECK_DO(STILL_ACTIVE != ulRv, break);
 
-        bRv = CxCurrentThread::bSleep(a_culTimeout);
-        /*DEBUG*/xTEST_EQ(true, bRv);
+        CxCurrentThread::vSleep(a_culTimeout);
     }
 #elif xOS_ENV_UNIX
     int iRv = ::pthread_kill(_m_ulId, SIGALRM);
@@ -492,7 +491,7 @@ CxThread::bTryPostThreadMessage(
         BOOL blRes = ::PostThreadMessage(ulGetId(), a_uiMsg, static_cast<WPARAM>( a_uiParam1 ), static_cast<LPARAM>( a_liParam2 ));
 
         xCHECK_RET(FALSE != blRes, true);
-        xCHECK_DO (FALSE == blRes, CxCurrentThread::bSleep(a_ulAttempTimeout));
+        xCHECK_DO (FALSE == blRes, CxCurrentThread::vSleep(a_ulAttempTimeout));
     }
 
     return false;
