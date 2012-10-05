@@ -141,8 +141,7 @@ CxTest_CxMimeMessage::bUnit(
 
         //-------------------------------------
         //bParse
-        m_bRv = objHeader.bParse(sRawHeader);
-        xTEST_EQ(true, m_bRv);
+        objHeader.vParse(sRawHeader);
 
         //-------------------------------------
         //sGetField

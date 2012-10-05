@@ -19,11 +19,11 @@ class CxMimeHeader :
                                CxMimeHeader      ();
                               ~CxMimeHeader      ();
 
-        bool                   bParse            (const std::tstring_t &csRawHeader);
+        void                   vParse            (const std::tstring_t &csRawHeader);
         std::tstring_t         sGetField         (const std::tstring_t &csName);
         size_t                 uiCount           ();
-        bool                   bLoadFromFile     (const std::tstring_t &csRawMessageFilePath);
-        bool                   bSaveToFile       (const std::tstring_t &csFilePath);
+        void                   vLoadFromFile     (const std::tstring_t &csRawMessageFilePath);
+        void                   vSaveToFile       (const std::tstring_t &csFilePath);
 
         static std::tstring_t  sGenerateMessageID();
 
@@ -32,8 +32,6 @@ class CxMimeHeader :
         static const std::tstring_t _ms_csEndOfHeader;
         static const std::tstring_t _ms_csEndOfLine;
 
-        bool                   _m_bRes;
-        std::tstring_t         _m_sRes;
         std::mmap_tstring_t    _m_mmsHeader;
 
         //Delivered-To:
