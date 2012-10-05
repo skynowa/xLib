@@ -21,11 +21,12 @@ CxHttpClient::~CxHttpClient() {
 }
 //---------------------------------------------------------------------------
 //TODO: bHead ()
-bool
-CxHttpClient::bHead(const std::string &a_csUrl, std::string *a_psResponse) {
-    bool bRv = false;
-    xUNUSED(bRv);
-
+void
+CxHttpClient::vHead(
+    const std::string &a_csUrl, 
+    std::string       *a_psResponse
+)
+{
     //csUrl = http://dn1.berloga.net/83841/zombie_baseball_2.swf
 
     std::string sStartLine;
@@ -40,71 +41,99 @@ CxHttpClient::bHead(const std::string &a_csUrl, std::string *a_psResponse) {
                  "User-Agent: Mozilla/3.0 (compatible; Indy Library)" + CxConst::xCRNL + CxConst::xCRNL;
 
     sBody      = "";
-
-    return true;
-
-
-
 }
 //---------------------------------------------------------------------------
 //TODO: bGet ()
-bool
-CxHttpClient::bGet(const std::string &a_csUrl,  std::string *a_psResponse) {
-    return false;
+void
+CxHttpClient::vGet(
+    const std::string &a_csUrl,  
+    std::string       *a_psResponse
+)
+{
+    xNOT_IMPLEMENTED;
 }
 //---------------------------------------------------------------------------
 //TODO: bPost ()
-bool
-CxHttpClient::bPost(const std::string &a_csUrl,  const std::string &a_csParams, std::string *a_psResponse) {
-    return false;
+void
+CxHttpClient::vPost(
+    const std::string &a_csUrl,  
+    const std::string &a_csParams, 
+    std::string       *a_psResponse
+) 
+{
+    xNOT_IMPLEMENTED;
 }
 //---------------------------------------------------------------------------
 //TODO: bOptions ()
-bool
-CxHttpClient::bOptions(const std::string &a_csUrl) {
-    return false;
+void
+CxHttpClient::vOptions(
+    const std::string &a_csUrl
+)
+{
+    xNOT_IMPLEMENTED;
 }
 //---------------------------------------------------------------------------
 //TODO: bTrace ()
-bool
-CxHttpClient::bTrace(const std::string &a_csUrl) {
-    return false;
+void
+CxHttpClient::vTrace(
+    const std::string &a_csUrl
+)
+{
+    xNOT_IMPLEMENTED;
 }
 //---------------------------------------------------------------------------
 //TODO: bPut ()
-bool
-CxHttpClient::bPut(const std::string &a_csUrl) {
-    return false;
+void
+CxHttpClient::vPut(
+    const std::string &a_csUrl
+)
+{
+    xNOT_IMPLEMENTED;
 }
 //---------------------------------------------------------------------------
 //TODO: bDelete ()
-bool
-CxHttpClient::bDelete(const std::string &a_csUrl) {
-    return false;
+void
+CxHttpClient::vDelete(
+    const std::string &a_csUrl
+)
+{
+    xNOT_IMPLEMENTED;
 }
 //---------------------------------------------------------------------------
 //TODO: bConnect ()
-bool
-CxHttpClient::bConnect(const std::string &a_csUrl) {
-    return false;
+void
+CxHttpClient::vConnect(
+    const std::string &a_csUrl
+)
+{
+    xNOT_IMPLEMENTED;
 }
 //---------------------------------------------------------------------------
 //TODO: bPatch ()
-bool
-CxHttpClient::bPatch(const std::string &a_csUrl) {
-    return false;
+void
+CxHttpClient::vPatch(
+    const std::string &a_csUrl
+)
+{
+    xNOT_IMPLEMENTED;
 }
 //---------------------------------------------------------------------------
 //TODO: bLink ()
-bool
-CxHttpClient::bLink(const std::string &a_csUrl) {
-    return false;
+void
+CxHttpClient::vLink(
+    const std::string &a_csUrl
+)
+{
+    xNOT_IMPLEMENTED;
 }
 //---------------------------------------------------------------------------
 //TODO: bUnlink ()
-bool
-CxHttpClient::bUnlink(const std::string &a_csUrl) {
-    return false;
+void
+CxHttpClient::vUnlink(
+    const std::string &a_csUrl
+)
+{
+    xNOT_IMPLEMENTED;
 }
 //---------------------------------------------------------------------------
 
