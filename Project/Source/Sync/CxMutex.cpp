@@ -41,8 +41,8 @@ CxMutex::~CxMutex() {
 #endif
 }
 //---------------------------------------------------------------------------
-bool
-CxMutex::bCreate() {
+void
+CxMutex::vCreate() {
 #if   xOS_ENV_WIN
     bool bRv = false;
 
@@ -77,8 +77,6 @@ CxMutex::bCreate() {
     iRv = ::pthread_mutexattr_destroy(&maAttr);
     /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
 const CxMutex::handle_t &
@@ -86,8 +84,8 @@ CxMutex::hGet() const {
     return _m_hHandle;
 }
 //---------------------------------------------------------------------------
-bool
-CxMutex::bLock() {
+void
+CxMutex::vLock() {
 #if   xOS_ENV_WIN
     bool bRv = false;
 
@@ -104,8 +102,6 @@ CxMutex::bLock() {
     int iRv = ::pthread_mutex_lock(&_m_hHandle);
     /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
 bool
@@ -121,8 +117,8 @@ CxMutex::bTryLock() {
     return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxMutex::bUnlock() {
+void
+CxMutex::vUnlock() {
 #if   xOS_ENV_WIN
     bool bRv = false;
 
@@ -139,8 +135,6 @@ CxMutex::bUnlock() {
     int iRv = ::pthread_mutex_unlock(&_m_hHandle);
     /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
 

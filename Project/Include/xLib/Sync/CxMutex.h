@@ -30,13 +30,13 @@ class CxMutex :
 
         const handle_t &  hGet    () const;
             ///< get handle
-        bool              bCreate ();
+        void              vCreate ();
             ///< create
-        bool              bLock   ();
+        void              vLock   ();
             ///< lock
         bool              bTryLock();
             ///< try lock
-        bool              bUnlock ();
+        void              vUnlock ();
             ///< unlock
 
     private:
