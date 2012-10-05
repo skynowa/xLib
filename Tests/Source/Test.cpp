@@ -154,99 +154,99 @@ xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
         CxTestManager tmManager(bIsUseTracing);
 
         // Common
-        (void)tmManager.bAdd(new CxTest_CxUtils);
-        (void)tmManager.bAdd(new CxTest_CxHandleT);
-        (void)tmManager.bAdd(new CxTest_CxType);
-        (void)tmManager.bAdd(new CxTest_CxFunctorT);
-        (void)tmManager.bAdd(new CxTest_CxArray);
-        (void)tmManager.bAdd(new CxTest_CxChar);
-        (void)tmManager.bAdd(new CxTest_CxLocale);
-        (void)tmManager.bAdd(new CxTest_CxString);
-        (void)tmManager.bAdd(new CxTest_CxDateTime);
-        (void)tmManager.bAdd(new CxTest_CxSystemInfo);
-        (void)tmManager.bAdd(new CxTest_CxProcessInfo);
-        (void)tmManager.bAdd(new CxTest_CxConsole);
-        (void)tmManager.bAdd(new CxTest_CxCommandLine);
-        (void)tmManager.bAdd(new CxTest_CxShell);
-        (void)tmManager.bAdd(new CxTest_CxCom);
+        tmManager.vAdd(new CxTest_CxUtils);
+        tmManager.vAdd(new CxTest_CxHandleT);
+        tmManager.vAdd(new CxTest_CxType);
+        tmManager.vAdd(new CxTest_CxFunctorT);
+        tmManager.vAdd(new CxTest_CxArray);
+        tmManager.vAdd(new CxTest_CxChar);
+        tmManager.vAdd(new CxTest_CxLocale);
+        tmManager.vAdd(new CxTest_CxString);
+        tmManager.vAdd(new CxTest_CxDateTime);
+        tmManager.vAdd(new CxTest_CxSystemInfo);
+        tmManager.vAdd(new CxTest_CxProcessInfo);
+        tmManager.vAdd(new CxTest_CxConsole);
+        tmManager.vAdd(new CxTest_CxCommandLine);
+        tmManager.vAdd(new CxTest_CxShell);
+        tmManager.vAdd(new CxTest_CxCom);
 
         // Crypt
-        (void)tmManager.bAdd(new CxTest_CxCrc32);
-        (void)tmManager.bAdd(new CxTest_CxRandom);
+        tmManager.vAdd(new CxTest_CxCrc32);
+        tmManager.vAdd(new CxTest_CxRandom);
     #if !xCOMPILER_MINGW32
-        (void)tmManager.bAdd(new CxTest_CxBase64);
-        (void)tmManager.bAdd(new CxTest_CxBlowfish);
+        tmManager.vAdd(new CxTest_CxBase64);
+        tmManager.vAdd(new CxTest_CxBlowfish);
     #endif
 
         // Db
-        (void)tmManager.bAdd(new CxTest_CxConnectionString);
-        // (void)tmManager.bAdd(new CxTest_CxMySql);
+        tmManager.vAdd(new CxTest_CxConnectionString);
+        // tmManager.vAdd(new CxTest_CxMySql);
 
         // Debug
-        (void)tmManager.bAdd(new CxTest_xDebug);
-        (void)tmManager.bAdd(new CxTest_CxStdError);
-        (void)tmManager.bAdd(new CxTest_CxLastError);
-        (void)tmManager.bAdd(new CxTest_CxException);
-        (void)tmManager.bAdd(new CxTest_CxStackTrace);
-        (void)tmManager.bAdd(new CxTest_CxDebugger);
-        (void)tmManager.bAdd(new CxTest_CxErrorReport);
-        (void)tmManager.bAdd(new CxTest_CxProfiler);
-        (void)tmManager.bAdd(new CxTest_CxAutoProfiler);
+        tmManager.vAdd(new CxTest_xDebug);
+        tmManager.vAdd(new CxTest_CxStdError);
+        tmManager.vAdd(new CxTest_CxLastError);
+        tmManager.vAdd(new CxTest_CxException);
+        tmManager.vAdd(new CxTest_CxStackTrace);
+        tmManager.vAdd(new CxTest_CxDebugger);
+        tmManager.vAdd(new CxTest_CxErrorReport);
+        tmManager.vAdd(new CxTest_CxProfiler);
+        tmManager.vAdd(new CxTest_CxAutoProfiler);
 
         // Filesystem
-        (void)tmManager.bAdd(new CxTest_CxPath);
-        (void)tmManager.bAdd(new CxTest_CxFileAttribute);
-        (void)tmManager.bAdd(new CxTest_CxFile);
-        (void)tmManager.bAdd(new CxTest_CxFileTemp);
-        (void)tmManager.bAdd(new CxTest_CxDll);
-        (void)tmManager.bAdd(new CxTest_CxDir);
-        (void)tmManager.bAdd(new CxTest_CxVolume);
-        (void)tmManager.bAdd(new CxTest_CxEnvironment);
-        (void)tmManager.bAdd(new CxTest_CxLocalStorage);
-        (void)tmManager.bAdd(new CxTest_CxBackuper);
+        tmManager.vAdd(new CxTest_CxPath);
+        tmManager.vAdd(new CxTest_CxFileAttribute);
+        tmManager.vAdd(new CxTest_CxFile);
+        tmManager.vAdd(new CxTest_CxFileTemp);
+        tmManager.vAdd(new CxTest_CxDll);
+        tmManager.vAdd(new CxTest_CxDir);
+        tmManager.vAdd(new CxTest_CxVolume);
+        tmManager.vAdd(new CxTest_CxEnvironment);
+        tmManager.vAdd(new CxTest_CxLocalStorage);
+        tmManager.vAdd(new CxTest_CxBackuper);
 
         // Log
-        (void)tmManager.bAdd(new CxTest_CxTracer);
-        (void)tmManager.bAdd(new CxTest_CxFileLog);
-        (void)tmManager.bAdd(new CxTest_CxSystemLog);
+        tmManager.vAdd(new CxTest_CxTracer);
+        tmManager.vAdd(new CxTest_CxFileLog);
+        tmManager.vAdd(new CxTest_CxSystemLog);
 
         // Net
-        (void)tmManager.bAdd(new CxTest_CxCookiePv0);
-        (void)tmManager.bAdd(new CxTest_CxCookiePv1);
-        (void)tmManager.bAdd(new CxTest_CxCgi);
-        (void)tmManager.bAdd(new CxTest_CxSocketInit);
-        (void)tmManager.bAdd(new CxTest_CxDnsClient);
-        // (void)tmManager.bAdd(new CxTest_CxTcpClient);
-        // (void)tmManager.bAdd(new CxTest_CxTcpServer);
-        // (void)tmManager.bAdd(new CxTest_CxHttpClient);
+        tmManager.vAdd(new CxTest_CxCookiePv0);
+        tmManager.vAdd(new CxTest_CxCookiePv1);
+        tmManager.vAdd(new CxTest_CxCgi);
+        tmManager.vAdd(new CxTest_CxSocketInit);
+        tmManager.vAdd(new CxTest_CxDnsClient);
+        // tmManager.vAdd(new CxTest_CxTcpClient);
+        // tmManager.vAdd(new CxTest_CxTcpServer);
+        // tmManager.vAdd(new CxTest_CxHttpClient);
 
         // Patterns
-        (void)tmManager.bAdd(new CxTest_CxSingleton);
+        tmManager.vAdd(new CxTest_CxSingleton);
 
         // Pkcs11
-        // (void)tmManager.bAdd(new CxTest_CxPkcs11);
+        // tmManager.vAdd(new CxTest_CxPkcs11);
 
         // Sync
-        (void)tmManager.bAdd(new CxTest_CxAtomicLongInt);
-        (void)tmManager.bAdd(new CxTest_CxThreadStorage);
-        (void)tmManager.bAdd(new CxTest_CxMutex);
-        (void)tmManager.bAdd(new CxTest_CxAutoMutex);
-        (void)tmManager.bAdd(new CxTest_CxIpcMutex);
-        (void)tmManager.bAdd(new CxTest_CxAutoIpcMutex);
-        (void)tmManager.bAdd(new CxTest_CxEvent);
-        (void)tmManager.bAdd(new CxTest_CxSemaphore);
-        (void)tmManager.bAdd(new CxTest_CxIpcSemaphore);
-        (void)tmManager.bAdd(new CxTest_CxSleeper);
-        (void)tmManager.bAdd(new CxTest_CxCurrentThread);
-        (void)tmManager.bAdd(new CxTest_CxThread);
-        // (void)tmManager.bAdd(new CxTest_CxThreadPool);
-        (void)tmManager.bAdd(new CxTest_CxCurrentProcess);
-        (void)tmManager.bAdd(new CxTest_CxProcess);
+        tmManager.vAdd(new CxTest_CxAtomicLongInt);
+        tmManager.vAdd(new CxTest_CxThreadStorage);
+        tmManager.vAdd(new CxTest_CxMutex);
+        tmManager.vAdd(new CxTest_CxAutoMutex);
+        tmManager.vAdd(new CxTest_CxIpcMutex);
+        tmManager.vAdd(new CxTest_CxAutoIpcMutex);
+        tmManager.vAdd(new CxTest_CxEvent);
+        tmManager.vAdd(new CxTest_CxSemaphore);
+        tmManager.vAdd(new CxTest_CxIpcSemaphore);
+        tmManager.vAdd(new CxTest_CxSleeper);
+        tmManager.vAdd(new CxTest_CxCurrentThread);
+        tmManager.vAdd(new CxTest_CxThread);
+        // tmManager.vAdd(new CxTest_CxThreadPool);
+        tmManager.vAdd(new CxTest_CxCurrentProcess);
+        tmManager.vAdd(new CxTest_CxProcess);
 
         // Gui
-        (void)tmManager.bAdd(new CxTest_CxMsgBoxT);
+        tmManager.vAdd(new CxTest_CxMsgBoxT);
 
-        (void)tmManager.bRun(ullAllLoops, ullUnitLoops, ullBlockLoops);
+        tmManager.vRun(ullAllLoops, ullUnitLoops, ullBlockLoops);
     }
 
     return true;
