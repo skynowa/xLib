@@ -23,10 +23,10 @@ template <class TextT, class TitleT>
 /* static */
 CxMsgBoxT::ExModalResult
 CxMsgBoxT::iShow(
-    const HWND    a_chWnd,
+    const HWND   &a_chWnd,
     const TextT  &a_cText,
     const TitleT &a_cTitle,
-    const uint_t  a_cuiType
+    const uint_t &a_cuiType
 )
 {
     ExModalResult mrRes = mrAbort;
@@ -48,7 +48,7 @@ CxMsgBoxT::ExModalResult
 CxMsgBoxT::iShow(
     const TextT  &a_cText,
     const TitleT &a_cTitle,
-    const uint_t  a_cuiType
+    const uint_t &a_cuiType
 )
 {
     ExModalResult mrRes = mrAbort;
