@@ -214,7 +214,7 @@ CxDebugger::_vMsgboxPlain(
 #endif
     switch (mrRes) {
         case CxMsgBoxT::mrAbort: {
-                CxCurrentProcess::bExit(0U);
+                CxCurrentProcess::vExit(0U);
             }
             break;
 
@@ -229,7 +229,7 @@ CxDebugger::_vMsgboxPlain(
                     vBreak();
                 } else {
                     CxMsgBoxT::iShow(xT("Debugger is not present.\nThe application will be terminated."), xT("xLib"));
-                    CxCurrentProcess::bExit(0U);
+                    CxCurrentProcess::vExit(0U);
                 }
             }
             break;
@@ -253,7 +253,7 @@ CxDebugger::_vMsgboxFormated(
     #endif
     switch (mrRes) {
         case CxMsgBoxRtf::mrAbort: {
-                CxCurrentProcess::bExit(0U);
+                CxCurrentProcess::vExit(0U);
             }
             break;
 
@@ -268,7 +268,7 @@ CxDebugger::_vMsgboxFormated(
                     vBreak();
                 } else {
                     CxMsgBoxT::iShow(xT("Debugger is not present.\nThe application will be terminated."), xT("xLib"), MB_OK | MB_ICONWARNING);
-                    CxCurrentProcess::bExit(0U);
+                    CxCurrentProcess::vExit(0U);
                 }
             }
             break;
@@ -296,7 +296,7 @@ CxDebugger::_vMsgboxFormated(
         case cmAbort: {
                 std::tcerr << xT("Abort...\n\n");  std::tcerr.flush();
 
-                CxCurrentProcess::bExit(0U);
+                CxCurrentProcess::vExit(0U);
             }
             break;
 
@@ -320,7 +320,7 @@ CxDebugger::_vMsgboxFormated(
                     std::tcerr << xT("\n\n");
                     std::tcerr.flush();
 
-                    CxCurrentProcess::bExit(0U);
+                    CxCurrentProcess::vExit(0U);
                 }
             }
             break;
@@ -357,7 +357,7 @@ CxDebugger::_vStdoutPlain(
         case cmAbort: {
                 std::tcout << xT("Abort...\n\n");  std::tcout.flush();
 
-                CxCurrentProcess::bExit(0U);
+                CxCurrentProcess::vExit(0U);
             }
             break;
 
@@ -381,7 +381,7 @@ CxDebugger::_vStdoutPlain(
                     std::tcout << xT("\n\n");
                     std::tcout.flush();
 
-                    CxCurrentProcess::bExit(0U);
+                    CxCurrentProcess::vExit(0U);
                 }
             }
             break;
@@ -418,7 +418,7 @@ CxDebugger::_vStdoutHtml(
         case cmAbort: {
                 std::tcout << xT("Abort...\n\n");  std::tcout.flush();
 
-                CxCurrentProcess::bExit(0U);
+                CxCurrentProcess::vExit(0U);
             }
             break;
 
@@ -442,7 +442,7 @@ CxDebugger::_vStdoutHtml(
                     std::tcout << xT("\n\n");
                     std::tcout.flush();
 
-                    CxCurrentProcess::bExit(0U);
+                    CxCurrentProcess::vExit(0U);
                 }
             }
             break;
