@@ -22,11 +22,11 @@ class CxTcpServer :
         virtual ~CxTcpServer();
             ///< destructor
 
-        bool     bBind      (ushort_t usPort);
+        void     vBind      (const ushort_t &cusPort);
             ///< associates a local address with a socket
-        bool     bListen    (int iBacklog /* = SOMAXCONN*/);
+        void     vListen    (const int &ciBacklog /* = SOMAXCONN*/);
             ///< places a socket in a state in which it is listening for an incoming connection
-        bool     bAccept    (CxTcpServer *pscktAcceptSocket, std::tstring_t *psFromIp);
+        void     vAccept    (CxTcpServer *pscktAcceptSocket, std::tstring_t *psFromIp);
             ///< permits an incoming connection attempt on a socket
 
     protected:

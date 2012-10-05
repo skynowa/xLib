@@ -52,18 +52,15 @@ CxTest_CxTcpServer::bUnit(
 
     //-------------------------------------
     //bConnect
-    m_bRv = objListenSocket.bBind(usPort);
-    xTEST_EQ(true, m_bRv);
+    objListenSocket.vBind(usPort);
 
     //-------------------------------------
     //bListen
-    m_bRv = objListenSocket.bListen(SOMAXCONN);
-    xTEST_EQ(true, m_bRv);
+    objListenSocket.vListen(SOMAXCONN);
 
     //-------------------------------------
     //bAccept
-    m_bRv = objListenSocket.bAccept(&objClientSocket, &sIp);
-    xTEST_EQ(true, m_bRv);
+    objListenSocket.vAccept(&objClientSocket, &sIp);
 
     for (; ;) {
         //-------------------------------------
