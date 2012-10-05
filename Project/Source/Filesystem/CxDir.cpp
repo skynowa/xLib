@@ -379,8 +379,7 @@ CxDir::vTryDelete(
             xNA;
         }
 
-        bool bRv = CxCurrentThread::bSleep(culTimeoutMsec);
-        /*DEBUG*/xTEST_EQ(true, bRv);
+        CxCurrentThread::vSleep(culTimeoutMsec);
     }
 }
 //---------------------------------------------------------------------------

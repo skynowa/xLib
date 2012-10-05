@@ -22,9 +22,9 @@ class CxCurrentThread :
             ///< get the thread identifier of the calling thread
         static CxThread::handle_t hGetHandle     ();
             ///< get pseudo handle for the calling thread
-        static bool               bYield         ();
+        static void               vYield         ();
             ///< yield
-        static bool               bSleep         (const ulong_t culMsec);
+        static void               vSleep         (const ulong_t &culMsec);
             ///< sleep
     private:
                                   CxCurrentThread();

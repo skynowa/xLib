@@ -70,8 +70,7 @@ CxTest_CxIpcSemaphore::bUnit(
     //-------------------------------------
     // bRelease
     for (size_t i = 0; i < 50; ++ i) {
-        m_bRv = CxCurrentThread::bSleep(1);
-        xTEST_EQ(true, m_bRv);
+        CxCurrentThread::vSleep(1);
 
         for (int x = 0; x < 2; x ++) {
             semSemaphore.vPost();

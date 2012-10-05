@@ -487,7 +487,7 @@ CxConsole::_hGetWndHandle() {
     vSetTitle(sNewWndTitle);
 
     //Ensure window title has been updated.
-    CxCurrentThread::bSleep(50UL);
+    CxCurrentThread::vSleep(50UL);
 
     //Look for NewWindowTitle.
     hRv = ::FindWindow(NULL, sNewWndTitle.c_str());

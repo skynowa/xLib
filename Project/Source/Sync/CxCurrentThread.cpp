@@ -72,8 +72,8 @@ CxCurrentThread::hGetHandle() {
 }
 //---------------------------------------------------------------------------
 /* static */
-bool
-CxCurrentThread::bYield() {
+void
+CxCurrentThread::vYield() {
     /*DEBUG*/// n/a
 
 #if   xOS_ENV_WIN
@@ -82,14 +82,12 @@ CxCurrentThread::bYield() {
     int iRv = ::sched_yield();
     /*DEBUG*/xTEST_MSG_DIFF(- 1, iRv, CxLastError::sFormat(iRv));
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
 /* static */
-bool
-CxCurrentThread::bSleep(
-    const ulong_t a_culMsec
+void
+CxCurrentThread::vSleep(
+    const ulong_t &a_culMsec
 ) {
     /*DEBUG*/// n/a
 
@@ -110,8 +108,6 @@ CxCurrentThread::bSleep(
         tsSleep = tsRemain;
     }
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
 

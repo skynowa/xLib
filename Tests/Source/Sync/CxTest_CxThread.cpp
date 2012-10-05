@@ -75,11 +75,8 @@ CWorkThread::uiOnRun(
                 xTRACE(xT("\t*"));
             #endif
 
-            bRv = CxCurrentThread::bSleep(50UL);
-            xTEST_EQ(true, bRv);
-
-            bRv = CxCurrentThread::bYield();
-            xTEST_EQ(true, bRv);
+            CxCurrentThread::vSleep(50UL);
+            CxCurrentThread::vYield();
         }
     }
 

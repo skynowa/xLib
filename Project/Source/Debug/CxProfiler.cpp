@@ -65,7 +65,7 @@ CxProfiler::vStart() {
         /*DEBUG*/xTEST_EQ(true, bRv);
     #endif
 
-    CxCurrentThread::bSleep(10UL);
+    CxCurrentThread::vSleep(10UL);
 
     switch (_m_pmModeNow) {
         case pmStdClock: {

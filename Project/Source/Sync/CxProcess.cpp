@@ -160,8 +160,7 @@ CxProcess::bKill(
         ulRv = ulGetExitStatus();
         xCHECK_DO(STILL_ACTIVE != ulRv, break);
 
-        bRv = CxCurrentThread::bSleep(a_culTimeout);
-        /*DEBUG*/xTEST_EQ(true, bRv);
+        CxCurrentThread::vSleep(a_culTimeout);
     }
 #elif xOS_ENV_UNIX
     int iRv = ::kill(_m_ulPid, SIGKILL);
