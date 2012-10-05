@@ -31,8 +31,7 @@ CxSystemLog::CxSystemLog() :
     _m_SysLog   (NULL)
 #endif
 {
-    bool bRv = _bInit( CxPath::sGetFileBaseName(CxPath::sGetExe()) );
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    _vInit( CxPath::sGetFileBaseName(CxPath::sGetExe()) );
 }
 //---------------------------------------------------------------------------
 CxSystemLog::CxSystemLog(
@@ -44,8 +43,7 @@ CxSystemLog::CxSystemLog(
     _m_SysLog   (NULL)
 #endif
 {
-    bool bRv = _bInit(a_csLogName);
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    _vInit(a_csLogName);
 }
 //---------------------------------------------------------------------------
 /* virtual */
@@ -62,21 +60,19 @@ CxSystemLog::~CxSystemLog() {
 #endif
 }
 //---------------------------------------------------------------------------
-bool
-CxSystemLog::bSetEnabled(
-    const bool cbFlag
+void
+CxSystemLog::vSetEnabled(
+    const bool &cbFlag
 )
 {
     /*DEBUG*/// cbFlag - n/a
 
     _m_bIsEnable = cbFlag;
-
-    return true;
 }
 //---------------------------------------------------------------------------
-bool
-CxSystemLog::bWrite(
-    const ExLevel  a_lvLevel,
+void
+CxSystemLog::vWrite(
+    const ExLevel &a_lvLevel,
     const tchar_t *a_pcszFormat, ...
 )
 {
@@ -85,7 +81,7 @@ CxSystemLog::bWrite(
     /*DEBUG*/xTEST_DIFF(xNATIVE_HANDLE_NULL, _m_SysLog);
 #endif
 
-    xCHECK_RET(false == _m_bIsEnable, false);
+    xCHECK_DO(false == _m_bIsEnable, return /* false */);  // TODO: CxSystemLog::vWrite
 
     //-------------------------------------
     //comment
@@ -106,8 +102,6 @@ CxSystemLog::bWrite(
 #elif xOS_ENV_UNIX
     (void)::syslog(a_lvLevel, xT("%s"), sMessage.c_str());
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
 
@@ -118,8 +112,8 @@ CxSystemLog::bWrite(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-bool
-CxSystemLog::_bInit(
+void
+CxSystemLog::_vInit(
     const std::tstring_t &a_csLogName
 )
 {
@@ -129,8 +123,6 @@ CxSystemLog::_bInit(
 #elif xOS_ENV_UNIX
     (void)::openlog(a_csLogName.c_str(), LOG_PID | LOG_NDELAY | LOG_NOWAIT, LOG_USER);
 #endif
-
-    return true;
 }
 //---------------------------------------------------------------------------
 

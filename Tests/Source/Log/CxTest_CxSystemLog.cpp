@@ -44,17 +44,10 @@ CxTest_CxSystemLog::bUnit(
     {
         CxSystemLog slSytemLog;
 
-        m_bRv = slSytemLog.bSetEnabled(true);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = slSytemLog.bSetEnabled(false);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = slSytemLog.bSetEnabled(true);
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = slSytemLog.bSetEnabled(false);
-        xTEST_EQ(true, m_bRv);
+        slSytemLog.vSetEnabled(true);
+        slSytemLog.vSetEnabled(false);
+        slSytemLog.vSetEnabled(true);
+        slSytemLog.vSetEnabled(false);
     }
 
     //--------------------------------------------------
@@ -70,8 +63,7 @@ CxTest_CxSystemLog::bUnit(
         CxSystemLog slSytemLog;
 
         for (size_t i = 0; i < xARRAY_SIZE(alvLogLevel); ++ i) {
-            m_bRv = slSytemLog.bWrite(alvLogLevel[i], xT("%s%")xPR_SIZET, xT("This is test system log message #"), i);
-            xTEST_EQ(true, m_bRv);
+            slSytemLog.vWrite(alvLogLevel[i], xT("%s%")xPR_SIZET, xT("This is test system log message #"), i);
         }
     }
 
