@@ -33,8 +33,7 @@ CxProfiler::CxProfiler(
 //---------------------------------------------------------------------------
 CxProfiler::~CxProfiler() {
     if (false == _flLog.sGetFilePath().empty()) {
-        bool bRv = _flLog.bWrite(xT("----------------------------------------"));
-        /*DEBUG*/xTEST_EQ(true, bRv);
+        _flLog.vWrite(xT("----------------------------------------"));
     }
 }
 //---------------------------------------------------------------------------
@@ -45,7 +44,7 @@ CxProfiler::vSetLogPath(
 {
     /*DEBUG*/
 
-    _flLog.bSetFilePath(a_csLogPath);
+    _flLog.vSetFilePath(a_csLogPath);
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
@@ -214,8 +213,7 @@ CxProfiler::vStop(
 
     //-------------------------------------
     //write to log
-    bool bRv = _flLog.bWrite(xT("%s: %s"), sTimeString.c_str(), sRv.c_str());
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    _flLog.vWrite(xT("%s: %s"), sTimeString.c_str(), sRv.c_str());
 
     _m_bIsStarted = false;
 }
