@@ -64,8 +64,7 @@ CxTest_CxLocalStorage::bUnit(
     //bCreateDefault
     xTEST_CASE(cullCaseLoops)
     {
-        m_bRv = iniIni.bCreateDefault(csContent);
-        xTEST_EQ(true, m_bRv);
+        iniIni.vCreateDefault(csContent);
     }
 
     //--------------------------------------------------
@@ -80,8 +79,7 @@ CxTest_CxLocalStorage::bUnit(
     //bSetPath
     xTEST_CASE(cullCaseLoops)
     {
-        m_bRv = iniIni.bSetPath(csFilePath);
-        xTEST_EQ(true, m_bRv);
+        iniIni.vSetPath(csFilePath);
 
         m_sRv = iniIni.sGetPath();
         xTEST_EQ(csFilePath, m_sRv);
@@ -98,8 +96,7 @@ CxTest_CxLocalStorage::bUnit(
         riniIni[csKey2] = csValue2;
         riniIni[csKey3] = csValue3;
 
-        m_bRv = iniIni.bFlush();
-        xTEST_EQ(true, m_bRv);
+        iniIni.vFlush();
 
         m_sRv = iniIni.sKeyReadString(csKey1, std::tstring_t());
         xTEST_EQ(csValue1, m_sRv);
@@ -112,8 +109,7 @@ CxTest_CxLocalStorage::bUnit(
 
         iniIni.cmsGet().clear();
 
-        m_bRv = iniIni.bFlush();
-        xTEST_EQ(true, m_bRv);
+        iniIni.vFlush();
     }
 
     //--------------------------------------------------
@@ -127,8 +123,7 @@ CxTest_CxLocalStorage::bUnit(
         riniIni[csKey2] = csValue2;
         riniIni[csKey3] = csValue3;
 
-        m_bRv = iniIni.bFlush();
-        xTEST_EQ(true, m_bRv);
+        iniIni.vFlush();
 
         //success
         {
@@ -171,8 +166,7 @@ CxTest_CxLocalStorage::bUnit(
 
         iniIni.cmsGet().clear();
 
-        m_bRv = iniIni.bFlush();
-        xTEST_EQ(true, m_bRv);
+        iniIni.vFlush();
     }
 
     //--------------------------------------------------
@@ -183,8 +177,7 @@ CxTest_CxLocalStorage::bUnit(
         {
             const std::tstring_t csStr = csValue1;
 
-            m_bRv = iniIni.bKeyWriteString(csKey1, csStr);
-            xTEST_EQ(true, m_bRv);
+            iniIni.vKeyWriteString(csKey1, csStr);
 
             m_sRv = iniIni.sKeyReadString(csKey1, std::tstring_t());
             xTEST_EQ(csStr, m_sRv);
@@ -194,8 +187,7 @@ CxTest_CxLocalStorage::bUnit(
         {
             const std::tstring_t csStr = xT("sssssssssssss");
 
-            m_bRv = iniIni.bKeyWriteString(csKey1, csStr);
-            xTEST_EQ(true, m_bRv);
+            iniIni.vKeyWriteString(csKey1, csStr);
 
             m_sRv = iniIni.sKeyReadString(csKey1, std::tstring_t());
             xTEST_EQ(csStr, m_sRv);
@@ -208,8 +200,7 @@ CxTest_CxLocalStorage::bUnit(
     {
         const long_t cliValue = 10L;
 
-        m_bRv  = iniIni.bKeyWriteInt(csKey1, cliValue);
-        xTEST_EQ(true, m_bRv);
+        iniIni.vKeyWriteInt(csKey1, cliValue);
 
         m_liRv = iniIni.iKeyReadInt(csKey1, 0L);
         xTEST_EQ(cliValue, m_liRv);
@@ -221,8 +212,7 @@ CxTest_CxLocalStorage::bUnit(
     {
         const double cdValue = 777.0f;
 
-        m_bRv  = iniIni.bKeyWriteFloat(csKey1, cdValue);
-        xTEST_EQ(true, m_bRv);
+        iniIni.vKeyWriteFloat(csKey1, cdValue);
 
         m_dRv = iniIni.dKeyReadFloat(csKey1, 0.0f);
         xTEST_EQ(cdValue, m_dRv);
@@ -234,8 +224,7 @@ CxTest_CxLocalStorage::bUnit(
     {
         const bool cbValue = false;
 
-        m_bRv  = iniIni.bKeyWriteBool(csKey1, cbValue);
-        xTEST_EQ(true, m_bRv);
+        iniIni.vKeyWriteBool(csKey1, cbValue);
 
         m_bRv = iniIni.bKeyReadBool(csKey1, true);
         xTEST_EQ(cbValue, m_bRv);
@@ -248,8 +237,7 @@ CxTest_CxLocalStorage::bUnit(
         const std::ustring_t cusValue(10, 'z');
         const std::ustring_t cusDefaultValue(10, 'd');
 
-        m_bRv  = iniIni.bKeyWriteBin(csKey1, cusValue);
-        xTEST_EQ(true, m_bRv);
+        iniIni.vKeyWriteBin(csKey1, cusValue);
 
         m_usRv = iniIni.usKeyReadBin(csKey1, cusDefaultValue);
 #if xTODO
@@ -261,8 +249,7 @@ CxTest_CxLocalStorage::bUnit(
     //bKeyClear
     xTEST_CASE(cullCaseLoops)
     {
-        m_bRv = iniIni.bKeyClear(csKey3);
-        xTEST_EQ(true, m_bRv);
+        iniIni.vKeyClear(csKey3);
         xTEST_EQ(true, iniIni.bKeyIsExists(csKey3));
 
         m_sRv = iniIni.sKeyReadString(csKey3, xT("fasrfsefrtg"));
@@ -276,12 +263,10 @@ CxTest_CxLocalStorage::bUnit(
         const std::tstring_t csKey   = xT("Key");
         const std::tstring_t csValue = xT("");
 
-        m_bRv = iniIni.bKeyWriteString(csKey, csValue);
-        xTEST_EQ(true, m_bRv);
+        iniIni.vKeyWriteString(csKey, csValue);
         xTEST_EQ(true, iniIni.bKeyIsExists(csKey));
 
-        m_bRv = iniIni.bKeyDelete(csKey);
-        xTEST_EQ(true, m_bRv);
+        iniIni.vKeyDelete(csKey);
         xTEST_EQ(false, iniIni.bKeyIsExists(csKey));
     }
 
@@ -289,8 +274,7 @@ CxTest_CxLocalStorage::bUnit(
     //bClear
     xTEST_CASE(cullCaseLoops)
     {
-        m_bRv = iniIni.bClear();
-        xTEST_EQ(true, m_bRv);
+        iniIni.vClear();
         xTEST_EQ(0LL, CxFile::llGetSize( iniIni.sGetPath() ));
     }
 
@@ -298,8 +282,7 @@ CxTest_CxLocalStorage::bUnit(
     //bDelete
     xTEST_CASE(cullCaseLoops)
     {
-        m_bRv = iniIni.bDelete();
-        xTEST_EQ(true, m_bRv);
+        iniIni.vDelete();
         xTEST_EQ(false, CxFile::bIsExists( iniIni.sGetPath() ));
     }
 
