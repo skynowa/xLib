@@ -73,7 +73,7 @@ CxSmtp::vConnect() {
 
     //-------------------------------------
     //�����������
-    _m_scktSocket.bConnect(sIpAddr, _m_usPort);
+    _m_scktSocket.vConnect(sIpAddr, _m_usPort);
 
     //-------------------------------------
     //[welcome message]

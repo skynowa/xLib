@@ -55,8 +55,7 @@ CxTest_CxTcpClient::bUnit(
 
     //-------------------------------------
     //bConnect
-    m_bRv = objSocket.bConnect(sIp, usPort);
-    xTEST_EQ(true, m_bRv);
+    objSocket.vConnect(sIp, usPort);
 
     //-------------------------------------
     //bIsReadable
