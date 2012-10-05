@@ -25,7 +25,7 @@ class CxThreadStorage :
 
         void    *pvGetValue     () const;
             ///< get the value
-        bool     bSetValue      (void *pvValue) const;
+        void     vSetValue      (void *pvValue) const;
             ///< set value
 
     private:
@@ -35,9 +35,9 @@ class CxThreadStorage :
         typedef pthread_key_t index_t;
     #endif
 
-        bool     _bAlloc        ();
+        void     _vAlloc        ();
             ///< allocates a thread storage index
-        bool     _bFree         ();
+        void     _vFree         ();
             ///< releases a thread storage index
 
         index_t  _m_indIndex;

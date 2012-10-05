@@ -39,8 +39,7 @@ CxTest_CxThreadStorage::bUnit(
             m_bRv = tlsTls.bIsSet();
             xTEST_EQ(false, m_bRv);
 
-            m_bRv = tlsTls.bSetValue(static_cast<void *>( pulValue ));
-            xTEST_EQ(true, m_bRv);
+            tlsTls.vSetValue(static_cast<void *>( pulValue ));
 
             m_bRv = tlsTls.bIsSet();
             xTEST_EQ(true, m_bRv);
