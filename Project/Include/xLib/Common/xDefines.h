@@ -167,23 +167,11 @@
 
 // xFUNCTION
 #if   xCOMPILER_MS
-    #if defined(__FUNCTION__)
-        #define xFUNCTION           xT(__FUNCTION__)
-    #else
-        #define xFUNCTION           xUNKNOWN_CSTRING
-    #endif
+    #define xFUNCTION               xT(__FUNCTION__)
 #elif xCOMPILER_CODEGEAR
-    #if defined(__FUNC__)
-        #define xFUNCTION           xT(__FUNC__)
-    #else
-        #define xFUNCTION           xUNKNOWN_CSTRING
-    #endif
+    #define xFUNCTION               xT(__FUNC__)
 #elif xCOMPILER_GNUC || xCOMPILER_MINGW32
-    #if defined(__PRETTY_FUNCTION__)
-        #define xFUNCTION           xT(__PRETTY_FUNCTION__)
-    #else
-        #define xFUNCTION           xUNKNOWN_CSTRING
-    #endif
+    #define xFUNCTION               xT(__PRETTY_FUNCTION__)
 #else
     #define xFUNCTION               xUNKNOWN_CSTRING
 #endif
