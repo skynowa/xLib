@@ -24,7 +24,6 @@
 #define _xTEST_MSG_PTR(report_type, ptr, msg)            { if ( NULL     == (ptr)   ) { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, (intptr_t)ptr, (intptr_t)NULL, xT("NULL"),  xT(#ptr),  xT("!="), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), (msg));  CxDebugger().vReportMake(rpReport); } }
 #define _xTEST_MSG_PTR_FAIL(report_type, ptr, msg)       { if ( NULL     != (ptr)   ) { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, (intptr_t)ptr, (intptr_t)NULL, xT("NULL"),  xT(#ptr),  xT("=="), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), (msg));  CxDebugger().vReportMake(rpReport); } }
 #define _xTEST_MSG_FAIL(report_type, msg)                { if ( true                ) { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, xT(""),        xT(""),         xT("false"), xT(""),    xT(""),   ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), (msg));  CxDebugger().vReportMake(rpReport); } }
-#define _xTESTMSG_(report_type, expr, msg)               { if ( !(expr)             ) { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, (true),        (expr),         xT("false"), xT(#expr), xT("=="), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), (msg));  CxDebugger().vReportMake(rpReport); } }
 
 #if xDEBUG_MODE_STDOUT_PLAIN
     #define xTEST_EQ(val1, val2)                         _xTEST_MSG_EQ      (CxErrorReport::rtStdoutPlain, val1, val2, xT(""))
@@ -58,6 +57,18 @@
     #define xTEST_PTR(ptr)                               { xNA }
     #define xTEST_PTR_FAIL(ptr)                          { xNA }
     #define xTEST_FAIL                                   { xNA }
+    #define xTEST(expr)                                  { xNA }
+
+    #define xTEST_MSG_EQ(val1, val2, msg)                { xNA }
+    #define xTEST_MSG_DIFF(val1, val2, msg)              { xNA }
+    #define xTEST_MSG_LESS(val1, val2, msg)              { xNA }
+    #define xTEST_MSG_GR(val1, val2, msg)                { xNA }
+    #define xTEST_MSG_LESS_EQ(val1, val2, msg)           { xNA }
+    #define xTEST_MSG_GR_EQ(val1, val2, msg)             { xNA }
+    #define xTEST_MSG_PTR(ptr, msg)                      { xNA }
+    #define xTEST_MSG_PTR_FAIL(ptr, msg)                 { xNA }
+    #define xTEST_MSG_FAIL(msg)                          { xNA }
+    #define xTEST_MSG(expr, msg)                         { xNA }
 #endif
 //-------------------------------------------------------------------------
 #define xSTD_VERIFY(expr)                                { \
