@@ -32,9 +32,6 @@
     <Filter Include="xLib\Sync">
       <UniqueIdentifier>{c024c200-8a22-4b5e-bf6d-57d7511cf44c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="xLib\Units">
-      <UniqueIdentifier>{5d4b0dbc-1b45-475d-bc89-8346918b7e12}</UniqueIdentifier>
-    </Filter>
     <Filter Include="xLib\Common\Unix">
       <UniqueIdentifier>{bf3e0ae4-15f6-4f34-9a27-f4557d10cf3d}</UniqueIdentifier>
     </Filter>
@@ -70,9 +67,6 @@
     </Filter>
     <Filter Include="xLib\Sync\Win">
       <UniqueIdentifier>{cda77029-2c2d-4aea-99b6-9c725a31a74c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="xLib\Units\Win">
-      <UniqueIdentifier>{882f128c-9759-4f13-9444-8ed94fd1e3a8}</UniqueIdentifier>
     </Filter>
     <Filter Include="xLib\Test">
       <UniqueIdentifier>{292e53c6-d315-4b39-825b-aea95425f8d6}</UniqueIdentifier>
@@ -375,9 +369,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Test\CxTestManager.h">
       <Filter>xLib\Test</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Project\Include\xLib\Units\Win\bGetUsbInfo.h">
-      <Filter>xLib\Units\Win</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Debug\CxException.h">
       <Filter>xLib\Debug</Filter>
@@ -727,9 +718,6 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Test\CxTestManager.cpp">
       <Filter>xLib\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Project\Source\Units\Win\bGetUsbInfo.cpp">
-      <Filter>xLib\Units\Win</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Debug\CxException.cpp">
       <Filter>xLib\Debug</Filter>
