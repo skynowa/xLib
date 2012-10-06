@@ -29,7 +29,7 @@ CxTest_CxDll::vUnit(
     #elif xOS_ENV_UNIX
         #if xOS_FREEBSD
             //if -static CxDll::bLoad don't load any 'so'-libraries
-            return true;
+            return;
 
             const std::tstring_t sData[][2] = {
                 {xT("libm.so"), xT("cos")}
