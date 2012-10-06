@@ -117,7 +117,6 @@
 #include <ctime>
 #include <errno.h>
 #include <stdarg.h>
-#include <time.h>
 #include <stddef.h>
 #include <math.h>
 #include <limits.h>
