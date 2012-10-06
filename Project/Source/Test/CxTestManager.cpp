@@ -26,7 +26,8 @@ CxTestManager::CxTestManager(
     _m_cbIsUseTracing(a_cbIsUseTracing),
     _m_ctnTests      ()
 {
-    xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("\n\nCxTestManager: *** xLib v.%s (author: %s date: %s) ***"), xLIB_VERSION, xLIB_AUTHOR, xLIB_DATE));
+    xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("\n\nCxTestManager: *** xLib v.%s (author: %s date: %s) ***"), 
+                                         xLIB_VERSION, xLIB_AUTHOR, xLIB_DATE));
     xCHECK_DO(_m_cbIsUseTracing, xTRACE (xT("\n")));
 }
 //---------------------------------------------------------------------------
@@ -70,7 +71,11 @@ CxTestManager::vRun(
     xCHECK_DO(_m_cbIsUseTracing, xTRACE (xT("\n")));
     xCHECK_DO(_m_cbIsUseTracing, xTRACE (xT("CxTestManager: start all tests...")));
     xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: module path: %s"), CxPath::sGetExe().c_str()));
-    xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: all loops: %") xPR_I64u xT(", unit loops: %") xPR_I64u xT(", block loops: %") xPR_I64u xT(", unit number: %")  xPR_SIZET xT("\n"), a_cullAllLoops, a_cullUnitLoops, a_cullCaseLoops, _m_ctnTests.size()));
+    xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: all loops: %") xPR_I64u 
+                                         xT(", unit loops: %") xPR_I64u 
+                                         xT(", case loops: %") xPR_I64u 
+                                         xT(", unit number: %") xPR_SIZET xT("\n"), 
+                                         a_cullAllLoops, a_cullUnitLoops, a_cullCaseLoops, _m_ctnTests.size()));
 
     for (ulonglong_t i = 0ULL; i < a_cullAllLoops; ++ i) {
         xFOREACH_CONST(container_t, it, _m_ctnTests) {
