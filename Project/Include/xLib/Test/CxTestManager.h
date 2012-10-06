@@ -37,9 +37,9 @@ class CxTestManager :
 
 xNAMESPACE_END(NxLib)
 
-//TODO: not enough RAM
-//TODO: not enough HDD
-//TODO: busy CPU
-//TODO: every macros wrapped by try-catch
+// TODO: CxTestManager - not enough RAM
+// TODO: CxTestManager - not enough HDD
+// TODO: CxTestManager - busy CPU
+// TODO: CxTestManager - every macros wrapped by try-catch
 //---------------------------------------------------------------------------
 #endif //xLib_CxTestManager.H

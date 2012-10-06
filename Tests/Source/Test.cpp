@@ -106,16 +106,14 @@ int
 xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
     //--------------------------------------------------
     // set commandline args for xLib
-    {
-        CxCommandLine::vSetArgs(iArgCount, paszArgs);
-    }
+    CxCommandLine::vSetArgs(iArgCount, paszArgs);
 
     //--------------------------------------------------
     // options (default)
     bool        bIsUseTracing = true;
     ulonglong_t ullAllLoops   = 1UL;
     ulonglong_t ullUnitLoops  = 1UL;
-    ulonglong_t ullBlockLoops = 1UL;
+    ulonglong_t ullCaseLoops  = 1UL;
 
     {
         std::vec_tstring_t vsArgs;
@@ -131,12 +129,12 @@ xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
                               xT("  - is_tracing  (is tracing)\n")
                               xT("  - all_loops   (loops for all tests)\n")
                               xT("  - unit_loops  (loops for unit test)\n")
-                              xT("  - case_loops  (loops for unit test)\n") << std::endl;
+                              xT("  - case_loops  (loops for case test)\n") << std::endl;
             } else {
                 std::tcout << xT("\nUnknown switches\n") << std::endl;
             }
 
-            return true;
+            return EXIT_SUCCESS;
         }
 
         // loops number
@@ -144,7 +142,7 @@ xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
             bIsUseTracing = CxString::string_cast<bool>       ( vsArgs.at(1) );
             ullAllLoops   = CxString::string_cast<ulonglong_t>( vsArgs.at(2) );
             ullUnitLoops  = CxString::string_cast<ulonglong_t>( vsArgs.at(3) );
-            ullBlockLoops = CxString::string_cast<ulonglong_t>( vsArgs.at(4) );
+            ullCaseLoops  = CxString::string_cast<ulonglong_t>( vsArgs.at(4) );
         }
     }
 
@@ -246,10 +244,10 @@ xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
         // Gui
         tmManager.vAdd(new CxTest_CxMsgBoxT);
 
-        tmManager.vRun(ullAllLoops, ullUnitLoops, ullBlockLoops);
+        tmManager.vRun(ullAllLoops, ullUnitLoops, ullCaseLoops);
     }
 
-    return true;
+    return EXIT_SUCCESS;
 }
 //---------------------------------------------------------------------------
 #endif //xLib_UnitTestH

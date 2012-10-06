@@ -152,7 +152,7 @@ CxProcess::vKill(
     /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 
     for ( ; ; ) {
-        ulRv = ulGetExitStatus();
+        ulong_t ulRv = ulGetExitStatus();
         xCHECK_DO(STILL_ACTIVE != ulRv, break);
 
         CxCurrentThread::vSleep(a_culTimeout);
