@@ -291,7 +291,9 @@ CxSystemInfo::bIsUserAnAdmin() {
     PSID                     psAdministratorsGroup = NULL;
 
     BOOL blRes = ::AllocateAndInitializeSid(&siaNtAuthority, 2,
-                                            SECURITY_BUILTIN_DOMAIN_RID, DOMAIN_ALIAS_RID_ADMINS, 0UL, 0UL, 0UL, 0UL, 0UL, 0UL,
+                                            SECURITY_BUILTIN_DOMAIN_RID,
+                                            DOMAIN_ALIAS_RID_ADMINS,
+                                            0UL, 0UL, 0UL, 0UL, 0UL, 0UL,
                                             &psAdministratorsGroup);
     xCHECK_RET(FALSE == blRes, false);
 
@@ -343,6 +345,7 @@ CxSystemInfo::sGetUserName() {
     struct passwd pwdPasswd = {0};
 
     _passwordFileEntry(&pwdPasswd);
+    xTEST_PTR(pwdPasswd.pw_name);
 
     sRv.assign(pwdPasswd.pw_name);
 #endif
@@ -382,6 +385,7 @@ CxSystemInfo::sGetUseHomeDir() {
         struct passwd pwdPasswd = {0};
 
         _passwordFileEntry(&pwdPasswd);
+        xTEST_PTR(pwdPasswd.pw_dir);
 
         sRv.assign(pwdPasswd.pw_dir);
     }
@@ -999,14 +1003,26 @@ CxSystemInfo::_passwordFileEntry(
     const uid_t cuiUserId = ::getuid();
     xDEBUG_VAR_NA(cuiUserId);
 
-    const long cliBuffSize = ::sysconf(_SC_GETPW_R_SIZE_MAX);
-    xTEST_DIFF(- 1L, cliBuffSize);
+    long_t liBuffSize = - 1L;
+
+    // get liBuffSize
+    {
+        liBuffSize = ::sysconf(_SC_GETPW_R_SIZE_MAX);
+        if (- 1L == liBuffSize) {
+            const long_t cliPwRSizeMax = 1024L;    // CUSTOM: 1024L - custom value
+
+            liBuffSize = cliPwRSizeMax;
+        }
+
+        xTEST_LESS(0L, liBuffSize);
+    }
 
     struct passwd *pwdResult = NULL;
-    char           szBuff[ cliBuffSize ];   (void *)std::memset(&szBuff[0], 0, sizeof(szBuff));
+    char           szBuff[ liBuffSize ];   (void *)std::memset(&szBuff[0], 0, sizeof(szBuff));
 
     int iRv = ::getpwuid_r(cuiUserId, a_pwdPasswd, szBuff, sizeof(szBuff), &pwdResult);
     xTEST_EQ(0, iRv);
+    xTEST_PTR(pwdResult);
 
 #if 0
     printf("\nThe user name is: %s\n",          a_pwdPasswd->pw_name);

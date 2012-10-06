@@ -779,7 +779,7 @@ CxPath::uiGetMaxSize() {
         long_t        liRv         = - 1L;
         ulong_t       ulLastError   = 0UL;
 
-        (void)CxLastError::bSet(culSavedError);
+        CxLastError::vSet(culSavedError);
 
         liRv       = ::pathconf("/", _PC_PATH_MAX);
         ulLastError = CxLastError::ulGet();
@@ -820,10 +820,10 @@ CxPath::uiGetNameMaxSize() {
         uiRes = NAME_MAX;
     #else
         const ulong_t culSavedError = 0UL;
-        long_t        liRv         = - 1L;
+        long_t        liRv          = - 1L;
         ulong_t       ulLastError   = 0UL;
 
-        (void)CxLastError::bSet(culSavedError);
+        CxLastError::vSet(culSavedError);
 
         liRv       = ::pathconf("/", _PC_NAME_MAX);
         ulLastError = CxLastError::ulGet();
