@@ -114,6 +114,11 @@ class CxSystemInfo :
             ///< constructor
         virtual              ~CxSystemInfo      ();
             ///< destructor
+
+    #if xOS_ENV_UNIX
+        static void           _passwordFileEntry(struct passwd *pwdPasswd);
+            ///< get password file entry
+    #endif
 };
 
 xNAMESPACE_END(NxLib)

@@ -340,16 +340,11 @@ CxSystemInfo::sGetUserName() {
 
     sRv.assign(szBuff, ulBuffSize);
 #elif xOS_ENV_UNIX
-    // FAQ: http://www.metalshell.com/source_code/107/List_Users.html
-    // FAQ: http://www.metalshell.com/source_code/83/Get_GID_Name.html
+    struct passwd pwdPasswd = {0};
 
-    const uid_t cuiUserId = ::getuid();
-    xDEBUG_VAR_NA(cuiUserId);
+    _passwordFileEntry(&pwdPasswd);
 
-    passwd *ppwPassword = ::getpwuid(cuiUserId);
-    /*DEBUG*/xTEST_PTR(ppwPassword);
-
-    sRv.assign(ppwPassword->pw_name);
+    sRv.assign(pwdPasswd.pw_name);
 #endif
 
     return sRv;
@@ -384,10 +379,11 @@ CxSystemInfo::sGetUseHomeDir() {
     if (true == bRv) {
         sRv = CxEnvironment::sGetVar(xT("HOME"));
     } else {
-        passwd *ppwPass = ::getpwuid( ::getuid() );
-        xTEST_PTR(ppwPass);
+        struct passwd pwdPasswd = {0};
 
-        sRv.assign(ppwPass->pw_dir);
+        _passwordFileEntry(&pwdPasswd);
+
+        sRv.assign(pwdPasswd.pw_dir);
     }
 #endif
 
@@ -989,6 +985,39 @@ CxSystemInfo::CxSystemInfo() {
 CxSystemInfo::~CxSystemInfo() {
 
 }
+//---------------------------------------------------------------------------
+#if xOS_ENV_UNIX
+
+/* static */
+void
+CxSystemInfo::_passwordFileEntry(
+    struct passwd *a_pwdPasswd
+)
+{
+    xTEST_PTR(a_pwdPasswd);
+
+    const uid_t cuiUserId = ::getuid();
+    xDEBUG_VAR_NA(cuiUserId);
+
+    const long cliBuffSize = ::sysconf(_SC_GETPW_R_SIZE_MAX);
+    xTEST_DIFF(- 1L, cliBuffSize);
+
+    struct passwd *pwdResult = NULL;
+    char           szBuff[ cliBuffSize ];   (void *)std::memset(&szBuff[0], 0, sizeof(szBuff));
+
+    int iRv = ::getpwuid_r(cuiUserId, a_pwdPasswd, szBuff, sizeof(szBuff), &pwdResult);
+    xTEST_EQ(0, iRv);
+
+#if 0
+    printf("\nThe user name is: %s\n",          a_pwdPasswd->pw_name);
+    printf("The user id   is: %u\n",            a_pwdPasswd->pw_uid);
+    printf("The group id  is: %u\n",            a_pwdPasswd->pw_gid);
+    printf("The initial directory is:    %s\n", a_pwdPasswd->pw_dir);
+    printf("The initial user program is: %s\n", a_pwdPasswd->pw_shell);
+#endif
+}
+
+#endif
 //---------------------------------------------------------------------------
 
 xNAMESPACE_END(NxLib)
