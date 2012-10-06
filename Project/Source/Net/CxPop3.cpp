@@ -167,7 +167,7 @@ CxPop3::vList(std::vector<ulong_t> &a_veculList) {
     �: LIST 3
     S: -ERR no such message, only 2 messages in maildrop
     */
-    
+
     xNOT_IMPLEMENTED;
 }
 //---------------------------------------------------------------------------
@@ -358,7 +358,7 @@ CxPop3::vRetriveRawAndBackup(int a_iNum, const std::tstring_t &a_csDirPath, cons
         stdfOriginal.vCreate(a_csDirPath + "\\" + a_csFileName, CxFile::omBinWrite, true);
 
         size_t uiOriginalWriteSize = stdfOriginal.uiWrite(&_m_sRes[0], _m_sRes.size());
-        xTEST_DIFF(0U, uiOriginalWriteSize);
+        xTEST_DIFF(size_t(0), uiOriginalWriteSize);
     }
 
     //-------------------------------------
@@ -369,7 +369,7 @@ CxPop3::vRetriveRawAndBackup(int a_iNum, const std::tstring_t &a_csDirPath, cons
         stdfBackup.vCreate(a_csBackupDirPath + "\\" + a_csFileName, CxFile::omBinWrite, true);
 
         size_t uiBackupWriteSize = stdfBackup.uiWrite(&_m_sRes[0], _m_sRes.size());
-        xTEST_DIFF(0U, uiBackupWriteSize);
+        xTEST_DIFF(size_t(0), uiBackupWriteSize);
     }
 }
 //---------------------------------------------------------------------------

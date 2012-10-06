@@ -34,6 +34,7 @@
 									<listOptionValue builtIn="false" value="&quot;${xLib}/Tests/Include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${xLib}/Project/Include&quot;"/>
 								</option>
+								<option id="gnu.cpp.compiler.option.warnings.wconversion.550718516" name="Implicit conversion warnings (-Wconversion)" superClass="gnu.cpp.compiler.option.warnings.wconversion" value="false" valueType="boolean"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1578464683" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.compiler.exe.debug.398517860" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.exe.debug">

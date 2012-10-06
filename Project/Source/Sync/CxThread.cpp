@@ -103,8 +103,6 @@ CxThread::vCreate(
     /*DEBUG*/// cuiStackSize - n/a
     /*DEBUG*/// pvParam      - n/a
 
-    bool bRv = false;
-
     _m_pvParam = a_pvParam;
 
     //-------------------------------------
@@ -235,7 +233,6 @@ CxThread::vKill(
     const ulong_t &a_culTimeout
 )
 {
-    bool    bRv  = false;
     ulong_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN
@@ -257,8 +254,7 @@ CxThread::vKill(
     int iRv = ::pthread_kill(_m_ulId, SIGALRM);
     /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 
-    bRv = CxCurrentThread::bSleep(a_culTimeout);
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    CxCurrentThread::vSleep(a_culTimeout);
 #endif
 
     //-------------------------------------
@@ -585,7 +581,7 @@ CxThread::vSetPriority(
     /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     #if xOS_ENV_UNIX
-        xCHECK_RET(false == CxSystemInfo::bIsUserAnAdmin(), false);
+        xTEST_EQ(false, CxSystemInfo::bIsUserAnAdmin());
     #endif
 
     sched_param spParam = {0};
@@ -780,7 +776,7 @@ CxThread::vSetCpuIdeal(
     ulRv = ::SetThreadIdealProcessor(_m_hThread.hGet(), a_culIdealCpu);
     /*DEBUG*/xTEST_DIFF((DWORD) - 1, ulRv);
 #elif xOS_ENV_UNIX
-    return false;
+    xNOT_IMPLEMENTED;
 #endif
 }
 //---------------------------------------------------------------------------

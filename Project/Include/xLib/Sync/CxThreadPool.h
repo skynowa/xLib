@@ -32,13 +32,13 @@ class CxThreadPool :
         typedef void (T::*func_ptr_t)(void *);
 
         // construct? destruct
-                               CxThreadPool (const bool &cbIsPaused, const bool &cbIsAutoDelete, 
+                               CxThreadPool (const bool &cbIsPaused, const bool &cbIsAutoDelete,
                                              const bool &cbIsGroupPaused, const bool &cbIsGroupAutoDelete);
         virtual               ~CxThreadPool ();
 
         // groups
-        void                   vGroupCreate (const uint_t &cuiStackSize, const func_ptr_t fpFuncPtr, void *pvParam, 
-                                             const uint_t &cuiNumTasks, const uint_t &cuiMaxRunningTasks);
+        void                   vGroupCreate (const uint_t &cuiStackSize, const func_ptr_t fpFuncPtr, void *pvParam,
+                                             const size_t &cuiNumTasks, const size_t &cuiMaxRunningTasks);
         void                   vGroupResume ();
         void                   vGroupPause  ();
         void                   vGroupExit   (const ulong_t &culTimeout);
@@ -46,10 +46,10 @@ class CxThreadPool :
         void                   vGroupWait   (const ulong_t &culTimeout);
 
         size_t                 uiGetMaxTasks() const;
-        void                   vSetMaxTasks (const uint_t &cuiNum);
+        void                   vSetMaxTasks (const size_t &cuiNum);
 
         size_t                 uiGetNumTasks() const;
-        void                   vSetNumTasks (const uint_t &cuiNum);
+        void                   vSetNumTasks (const size_t &cuiNum);
 
         bool                   bIsEmpty     () const;
         bool                   bIsFull      () const;
@@ -92,6 +92,7 @@ xNAMESPACE_END(NxLib)
 #include <xLib/Sync/CxMutex.h>
 #include <xLib/Sync/CxAutoMutex.h>
 #include <xLib/Sync/CxThread.h>
+#include <xLib/Sync/CxCurrentThread.h>
 
 #include "CxThreadPool.inl"
 //---------------------------------------------------------------------------

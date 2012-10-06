@@ -117,6 +117,11 @@
     /// < hide "unused variable" warnings
 
 //--------------------------------------------------
+// xUNKNOWN_CSTRING
+#define xUNKNOWN_CSTRING            xT("[unknown]")
+    ///< C string as unknown value
+
+//--------------------------------------------------
 // temporary enable/disable code
 #define xTEMP_ENABLED               1
     ///< temporary code enabled
@@ -148,7 +153,7 @@
 #if defined(__FILE__)
     #define xFILE                   xT(__FILE__)
 #else
-    #define xFILE                   CxConst::xUNKNOWN_STRING
+    #define xFILE                   xUNKNOWN_CSTRING
 #endif
     ///< source file path
 
@@ -165,22 +170,22 @@
     #if defined(__FUNCTION__)
         #define xFUNCTION           xT(__FUNCTION__)
     #else
-        #define xFUNCTION           CxConst::xUNKNOWN_STRING
+        #define xFUNCTION           xUNKNOWN_CSTRING
     #endif
 #elif xCOMPILER_CODEGEAR
     #if defined(__FUNC__)
         #define xFUNCTION           xT(__FUNC__)
     #else
-        #define xFUNCTION           CxConst::xUNKNOWN_STRING
+        #define xFUNCTION           xUNKNOWN_CSTRING
     #endif
 #elif xCOMPILER_GNUC || xCOMPILER_MINGW32
     #if defined(__PRETTY_FUNCTION__)
         #define xFUNCTION           xT(__PRETTY_FUNCTION__)
     #else
-        #define xFUNCTION           CxConst::xUNKNOWN_STRING
+        #define xFUNCTION           xUNKNOWN_CSTRING
     #endif
 #else
-    #define xFUNCTION               CxConst::xUNKNOWN_STRING
+    #define xFUNCTION               xUNKNOWN_CSTRING
 #endif
     ///< source function name
 
@@ -188,7 +193,7 @@
 #if defined(__DATE__)
     #define xDATE                   xT(__DATE__)
 #else
-    #define xDATE                   CxConst::xUNKNOWN_STRING
+    #define xDATE                   xUNKNOWN_CSTRING
 #endif
     ///< build source date stamp
 
@@ -196,7 +201,7 @@
 #if defined(__TIME__)
     #define xTIME                   xT(__TIME__)
 #else
-    #define xTIME                   CxConst::xUNKNOWN_STRING
+    #define xTIME                   xUNKNOWN_CSTRING
 #endif
     ///< build source time stamp
 
@@ -204,7 +209,7 @@
 #if defined(xDATE) && defined(xTIME)
     #define xDATETIME               xDATE xT(" ") xTIME
 #else
-    #define xDATETIME               CxConst::xUNKNOWN_STRING
+    #define xDATETIME               xUNKNOWN_CSTRING
 #endif
     ///< build source datetime stamp
 

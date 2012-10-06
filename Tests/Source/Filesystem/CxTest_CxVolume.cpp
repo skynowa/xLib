@@ -272,6 +272,7 @@ CxTest_CxVolume::vUnit(
         #endif
 
         CxVolume::ExType dtRes = CxVolume::dtGetType(csVolumePath);
+        xUNUSED(dtRes);
         // CxTracer() << xTRACE_VAR(dtRes);
         // TODO: xTEST_EQ(CxVolume::dtFixed, dtRes);
     }

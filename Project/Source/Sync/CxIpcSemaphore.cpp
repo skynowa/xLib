@@ -211,9 +211,9 @@ CxIpcSemaphore::vWait(
     if (- 1 == iRv) {
         if (ETIMEDOUT == iLastError) {
             // timeout
-            return false;
+            xTEST_FAIL;
         } else {
-            return false;
+            xTEST_FAIL;
         }
     }
 #endif

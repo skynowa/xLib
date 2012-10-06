@@ -214,7 +214,8 @@ CxHandleT<hvTag>::vClose() {
     BOOL blRes = ::CloseHandle(_m_hHandle);
     /////*DEBUG*/xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
-    int  iRv  = ::close(_m_hHandle);
+    int iRv = ::close(_m_hHandle);
+    xUNUSED(iRv);
     /////*DEBUG*/xTEST_DIFF(- 1, iRv);
 #endif
 

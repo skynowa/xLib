@@ -8,6 +8,7 @@
 
 #include <xLib/Common/CxChar.h>
 #include <xLib/Common/CxString.h>
+#include <xLib/Debug/CxException.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Filesystem/CxFileAttribute.h>
@@ -248,7 +249,6 @@ CxDir::vCreateForce(
 {
     /*DEBUG*/xTEST_EQ(false, csDirPath.empty());
 
-    bool               bRv = false;
     std::vec_tstring_t vsPathParts;
     std::tstring_t     sBuildPath;
 
@@ -374,8 +374,8 @@ CxDir::vTryDelete(
         try {
             vDelete(csDirPath);
             break;
-        } 
-        catch(const CxException &) {
+        }
+        catch (const CxException &) {
             xNA;
         }
 
@@ -529,7 +529,7 @@ CxDir::vFindFiles(
         /*DEBUG*/xTEST_PTR(pDir);
 
         pdrEntry = ::readdir(pDir);
-        xCHECK_RET(NULL == pdrEntry, false);
+        xTEST_PTR(pdrEntry);
 
         do {
             //dirs
@@ -662,7 +662,7 @@ CxDir::vFindDirs(
             //is search in subdirs ?
             xCHECK_DO(false == cbIsRecurse, continue);
 
-            (void)bFindDirs(sDirPath, cMask, cbIsRecurse, pvsDirPathes); //recursion
+            vFindDirs(sDirPath, cMask, cbIsRecurse, pvsDirPathes);  // recursion
         }
         //TODO: files
         else if (DT_REG == pdrEntry->d_type) {

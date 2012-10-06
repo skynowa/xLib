@@ -58,8 +58,7 @@ CxSmtp::vCreate(const std::string &a_csUser, const std::string &a_csPass, const 
 //DONE: bConnect
 void
 CxSmtp::vConnect() {
-    bool        bRv = false;
-    std::string sRv = "";
+    std::string sRv;
 
     //-------------------------------------
     //������� �����

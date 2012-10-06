@@ -302,8 +302,7 @@ CxConsole::vClear() {
     blRes = ::SetConsoleCursorPosition(_m_hStdOut.hGet(), coordScreen );
     /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
-    bool bRv = bWriteLine(CxConst::xFF);
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    vWriteLine(CxConst::xFF);
 #endif
 }
 //---------------------------------------------------------------------------
@@ -384,8 +383,7 @@ CxConsole::vSetTitle(
 #elif xOS_ENV_UNIX
     //TODO: bSetTitle
 
-    bool bRv = bWriteLine( CxString::sFormat(xT("%c]0;%s%c"), xT('\033'), a_csTitle.c_str(), xT('\007')) );
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    vWriteLine( CxString::sFormat(xT("%c]0;%s%c"), xT('\033'), a_csTitle.c_str(), xT('\007')) );
 #endif
 }
 //---------------------------------------------------------------------------
