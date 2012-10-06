@@ -434,8 +434,11 @@ CxTest_xDefines::vUnit(
     // xNATIVE_HANDLE_NULL, xNATIVE_HANDLE_INVALID
     xTEST_CASE(cullCaseLoops)
     {
-        xNATIVE_HANDLE_NULL;
-        xNATIVE_HANDLE_INVALID;
+       native_handle_t nhNull    = xNATIVE_HANDLE_NULL;
+       xUNUSED(nhNull);
+
+       native_handle_t nhInvalid = xNATIVE_HANDLE_INVALID;
+       xUNUSED(nhInvalid);
     }
 
     //--------------------------------------------------

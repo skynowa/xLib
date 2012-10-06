@@ -396,9 +396,8 @@ CxStackTrace::_bAddr2Line(
         */
         std::vec_tstring_t vsLine;
 
-        bool bRv = CxString::bSplit(pcszFileAndLine, xT(":"), &vsLine);
-        xSTD_VERIFY(true == bRv);
-        xSTD_VERIFY(2U   == vsLine.size());
+        CxString::vSplit(pcszFileAndLine, xT(":"), &vsLine);
+        xSTD_VERIFY(2U == vsLine.size());
 
         // out
         xSTD_VERIFY(0 == std::feof(pflFile));

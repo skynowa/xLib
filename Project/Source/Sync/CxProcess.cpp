@@ -142,8 +142,6 @@ CxProcess::vKill(
 {
     /*DEBUG*/
 
-    ulong_t ulRv = 0UL;
-
 #if   xOS_ENV_WIN
     /*DEBUG*/xTEST_DIFF(xNATIVE_HANDLE_NULL, _m_hHandle);
     /*DEBUG*/// ulTimeout - n/a
@@ -163,7 +161,7 @@ CxProcess::vKill(
     int iRv = ::kill(_m_ulPid, SIGKILL);
     /*DEBUG*/xTEST_DIFF(- 1, iRv);
 
-    CxCurrentThread::bSleep(a_culTimeout);
+    CxCurrentThread::vSleep(a_culTimeout);
 
     _m_uiExitStatus = 0U;
 #endif

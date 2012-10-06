@@ -9,6 +9,7 @@
 #include <xLib/Common/CxString.h>
 #include <xLib/Common/CxDateTime.h>
 #include <xLib/Crypt/CxCrc32.h>
+#include <xLib/Debug/CxException.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Filesystem/CxDir.h>
@@ -89,7 +90,7 @@ CxBackuper::etExecute(
 
     try {
         CxVolume::vGetSpace(csDestDirPath, NULL, NULL, &ullTotalFreeBytes);
-    } 
+    }
     catch (const CxException &) {
         return etUnknown;
     }
@@ -102,9 +103,9 @@ CxBackuper::etExecute(
     //copy
     try {
         CxFile::vCopy(csFilePath, sBackupFilePath, true);
-    } 
+    }
     catch (const CxException &) {
-        return etCopyingFail;   
+        return etCopyingFail;
     }
 
     //-------------------------------------

@@ -355,7 +355,7 @@ CxDateTime::usGetDayOfWeek() const {
     /*DEBUG*/xTEST_EQ(true, bIsValid()); //??? - 0
     /*DEBUG*/
 
-    ushort_t usRv      = 0;
+    ushort_t usRv       = 0;
     tm       tmTimeInfo = {0};
 
     tmTimeInfo.tm_year = _m_usYear  - 1900;
@@ -1022,9 +1022,7 @@ CxDateTime::_vParse(
     CxDateTime           *a_pdtDT) {
     /*DEBUG*/
 
-    bool bRv = false;
-
-    switch (a_cftFormat) {
+     switch (a_cftFormat) {
         case ftTime: {
                 //TODO: ftTime
             }

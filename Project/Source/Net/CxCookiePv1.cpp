@@ -294,8 +294,6 @@ CxCookiePv1::vInit(
     typedef std::map<std::tstring_t, std::tstring_t/*, SCompareNoCase*/> TStringMap;
     typedef std::pair<std::tstring_t, std::tstring_t>                TStringPair;
 
-
-    bool           bRv = false;
     TStringMap     msCookie;
     std::tstring_t sCookie;
 

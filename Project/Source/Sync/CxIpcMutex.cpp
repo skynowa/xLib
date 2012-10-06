@@ -166,9 +166,9 @@ CxIpcMutex::vLock(
     if (- 1 == iRv) {
         if (ETIMEDOUT == errno) {
             // timeout
-            return false;
+            xTEST_FAIL;
         } else {
-            return false;
+            xTEST_FAIL;
         }
     }
 #endif

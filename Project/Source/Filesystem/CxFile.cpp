@@ -9,6 +9,7 @@
 #include <xLib/Common/CxString.h>
 #include <xLib/Common/CxLocale.h>
 #include <xLib/Common/CxDateTime.h>
+#include <xLib/Debug/CxException.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxDir.h>
 #include <xLib/Filesystem/CxFileAttribute.h>
@@ -674,7 +675,6 @@ CxFile::vClear(
 {
     /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
 
-    bool   bRv = false;
     CxFile sfFile;
 
     sfFile.vCreate(csFilePath, omWrite, true);
@@ -710,9 +710,6 @@ CxFile::vTryDelete(
 
     const size_t cuiMaxAttempts  = 100;  //MAGIC_NUMBER: cuiMaxAttempts
     const size_t cuiRealAttempts = (cuiMaxAttempts < cuiAttempts) ? cuiMaxAttempts : cuiAttempts;
-
-
-    bool bIsDeleted = false;
 
     for (size_t i = 0; i < cuiRealAttempts; ++ i) {
         try {
@@ -1096,7 +1093,6 @@ CxFile::vTextWrite(
 
     //TODO: if csContent.empty()
 
-    bool   bRv = false;
     CxFile sfFile;
 
     sfFile.vCreate(csFilePath, omBinWrite, true);
@@ -1163,8 +1159,6 @@ CxFile::vTextRead(
     //if file empty
     xCHECK_DO(0L == llGetSize(csFilePath), (*pmsContent).clear(); return);
 
-    bool bRv = false;
-
     std::tifstream_t ifsStream(csFilePath.c_str());
     /*DEBUG*/xTEST_EQ(true,  !! ifsStream);
     /*DEBUG*/xTEST_EQ(false, ifsStream.fail());
@@ -1226,7 +1220,6 @@ CxFile::vTextWrite(
 
     //TODO: if cmsFile.empty()
 
-    bool   bRv = false;
     CxFile stdFile;
 
     stdFile.vCreate(csFilePath, omWrite, true);
