@@ -84,6 +84,8 @@ class CxSystemInfo :
             ///< get the name of the user associated with the current thread
         static std::tstring_t sGetUseHomeDir    ();
             ///< get home directory of current user
+        static std::string    sGetUserShellPath ();
+            ///< get shell path of current user
 
         // CPU
         static ulong_t        ulGetNumOfCpus    ();
