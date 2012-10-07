@@ -221,8 +221,7 @@ CxStackTrace::vGet(
             std::tstring_t _sFunctionName;
             ulong_t        _ulSourceLine = 0U;
 
-            bool bRv = _bAddr2Line(dlinfo.dli_saddr, &_sFilePath, &_sFunctionName, &_ulSourceLine);
-            xSTD_VERIFY(true == bRv);
+            _vAddr2Line(dlinfo.dli_saddr, &_sFilePath, &_sFunctionName, &_ulSourceLine);
             xUNUSED(_sFunctionName);
 
             iStackLineNum = i;
@@ -337,8 +336,8 @@ CxStackTrace::_sFormat(
 #if xOS_ENV_UNIX
 
 /* static */
-bool
-CxStackTrace::_bAddr2Line(
+void
+CxStackTrace::_vAddr2Line(
     const void     *a_pvSymbolAddress,
     std::tstring_t *a_psFilePath,
     std::tstring_t *a_psFunctionName,
@@ -405,8 +404,6 @@ CxStackTrace::_bAddr2Line(
 
     int iRv =::pclose(pflFile);    pflFile = NULL;
     xSTD_VERIFY(- 1 != iRv);
-
-    return true;
 }
 
 #endif  // xOS_ENV_UNIX
