@@ -401,7 +401,19 @@ CxSystemInfo::sGetUserShellPath() {
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
-    sRv = CxShell::sFindExecutable(xT("explorer.exe"), CxConst::xSTR_EMPTY);
+    LPITEMIDLIST pidl = {0};
+    
+    HRESULT hrRv = ::SHGetSpecialFolderLocation(NULL, CSIDL_WINDOWS, &pidl);
+    xTEST_EQ(S_OK, hrRv);
+
+    tchar_t szBuff[MAX_PATH + 1] = {0};
+
+    BOOL blRv = ::SHGetPathFromIDList(pidl, szBuff);
+    xTEST_DIFF(FALSE, blRv);
+
+    sRv.append(szBuff);
+    sRv.append(CxConst::xSLASH);
+    sRv.append(xT("explorer.exe"));
 #elif xOS_ENV_UNIX
     struct passwd pwdPasswd = {0};
 
