@@ -8,6 +8,7 @@
 
 #include <xLib/Common/CxConst.h>
 #include <xLib/Common/CxString.h>
+#include <xLib/Common/CxShell.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxEnvironment.h>
 #include <xLib/Filesystem/CxDll.h>
@@ -64,7 +65,7 @@ CxSystemInfo::osGetOS() {
                 xCHECK_DO(6UL == ovVer.dwMajorVersion && 1UL == ovVer.dwMinorVersion, otRes = otWindowsServer2008R2;    break);
                 xCHECK_DO(6UL == ovVer.dwMajorVersion && 1UL == ovVer.dwMinorVersion, otRes = otWindows7;               break);
 
-                //for unknown windows/newest windows version
+                // for unknown windows/newest windows version
                 otRes = otUnknown;
             }
             break;
@@ -389,6 +390,25 @@ CxSystemInfo::sGetUseHomeDir() {
 
         sRv.assign(pwdPasswd.pw_dir);
     }
+#endif
+
+    return sRv;
+}
+//---------------------------------------------------------------------------
+/* static */
+std::tstring_t
+CxSystemInfo::sGetUserShellPath() {
+    std::tstring_t sRv;
+
+#if   xOS_ENV_WIN
+    sRv = CxShell::sFindExecutable(xT("explorer.exe"), CxConst::xSTR_EMPTY);
+#elif xOS_ENV_UNIX
+    struct passwd pwdPasswd = {0};
+
+    _passwordFileEntry(&pwdPasswd);
+    xTEST_PTR(pwdPasswd.pw_shell);
+
+    sRv.assign(pwdPasswd.pw_shell);
 #endif
 
     return sRv;

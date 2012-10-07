@@ -6,6 +6,7 @@
 
 #include <Test/Common/CxTest_CxSystemInfo.h>
 
+#include <xLib/Filesystem/CxFile.h>
 #include <xLib/Filesystem/CxDir.h>
 #include <xLib/Sync/CxCurrentThread.h>
 
@@ -161,6 +162,18 @@ CxTest_CxSystemInfo::vUnit(
         xTEST_EQ(true,  CxDir::bIsExists(m_sRv));
         #if xTEST_IGNORE
             xTRACEV(xT("\tCxSystemInfo::sGetUseHomeDir(): %s"), m_sRv.c_str());
+        #endif
+    }
+
+    //-------------------------------------
+    // sGetUserShellPath
+    xTEST_CASE(cullCaseLoops)
+    {
+        m_sRv = CxSystemInfo::sGetUserShellPath();
+        xTEST_EQ(false, m_sRv.empty());
+        xTEST_EQ(true,  CxFile::bIsExists(m_sRv));
+        #if xTEST_IGNORE
+            xTRACEV(xT("\tCxSystemInfo::sGetUserShellPath(): %s"), m_sRv.c_str());
         #endif
     }
 

@@ -73,10 +73,11 @@ CxShell::sFindExecutable(
     /*DEBUG*/xTEST_EQ(false, a_csFileName.empty());
     /*DEBUG*/// csFindDirPath - n/a
 
-    int     iRv             = SE_ERR_FNF;
-    tchar_t szRes[MAX_PATH] = {0};
+    int            iRv             = SE_ERR_FNF;
+    tchar_t        szRes[MAX_PATH] = {0};
+    const tchar_t *cpszFindDirPath = a_csFindDirPath.empty() ? NULL : a_csFindDirPath.c_str();
 
-    iRv = reinterpret_cast<int>( ::FindExecutable(a_csFileName.c_str(), a_csFindDirPath.c_str(), szRes) );
+    iRv = reinterpret_cast<int>( ::FindExecutable(a_csFileName.c_str(), cpszFindDirPath, szRes) );
     /*DEBUG*/xTEST_LESS(32, iRv);
 
     return std::tstring_t(szRes);
