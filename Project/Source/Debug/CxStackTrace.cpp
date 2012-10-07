@@ -57,12 +57,12 @@ CxStackTrace::~CxStackTrace() {
 
 }
 //---------------------------------------------------------------------------
-bool
-CxStackTrace::bGet(
+void
+CxStackTrace::vGet(
     std::vector<std::vec_tstring_t> *a_pvvsStack
 )
 {
-    xCHECK_RET(NULL == a_pvvsStack, false);
+    xCHECK_DO(NULL == a_pvvsStack, return /* false */);
 
     const std::tstring_t            csDataNotFound = xT("[???]");
     std::vector<std::vec_tstring_t> vvsStack;
@@ -78,10 +78,10 @@ CxStackTrace::bGet(
         hProcess = CxCurrentProcess::hGetHandle();
 
         BOOL blRes = ::SymInitialize(hProcess, NULL, TRUE);
-        xCHECK_RET(FALSE == blRes, false);
+        xCHECK_DO(FALSE == blRes, return /* false */);
 
         ushort_t usFramesNum = ::CaptureStackBackTrace(0UL, xSTACK_TRACE_FRAMES_MAX, pvStack, NULL);
-        xCHECK_RET(usFramesNum == 0U, false);
+        xCHECK_DO(usFramesNum == 0U, return /* false */);
 
         psiSymbol               = new (std::nothrow) SYMBOL_INFO[ sizeof(SYMBOL_INFO) + (255UL + 1) * sizeof(tchar_t) ];
         /*DEBUG*/xSTD_VERIFY(NULL != psiSymbol);
@@ -182,10 +182,10 @@ CxStackTrace::bGet(
     void *pvStack[xSTACK_TRACE_FRAMES_MAX] = {0};
 
     int iFramesNum = ::backtrace(pvStack, xSTACK_TRACE_FRAMES_MAX);
-    xCHECK_RET(iFramesNum <= 0, false);
+    xCHECK_DO(iFramesNum <= 0, return /* false */);
 
     tchar_t **ppszSymbols = ::backtrace_symbols(pvStack, iFramesNum);
-    xCHECK_RET(NULL == ppszSymbols, false);
+    xCHECK_DO(NULL == ppszSymbols, return /* false */);
 
     for (int i = 0; i < iFramesNum; ++ i) {
         int            iStackLineNum = 0;
@@ -271,8 +271,6 @@ CxStackTrace::bGet(
 #endif
 
     std::swap(*a_pvvsStack, vvsStack);
-
-    return true;
 }
 //---------------------------------------------------------------------------
 std::tstring_t
@@ -281,8 +279,7 @@ CxStackTrace::sGet()  {
 
     std::vector<std::vec_tstring_t> vvsStack;
 
-    bool bRv = bGet(&vvsStack);
-    xCHECK_RET(false == bRv, std::tstring_t());
+    vGet(&vvsStack);
 
     sRv = _sFormat(&vvsStack);
     xCHECK_RET(true == sRv.empty(), CxConst::xUNKNOWN_STRING);

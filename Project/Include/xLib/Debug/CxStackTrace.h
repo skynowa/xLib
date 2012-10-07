@@ -25,7 +25,7 @@ class CxStackTrace :
         virtual             ~CxStackTrace();
             ///< destructor
 
-        bool                 bGet        (std::vector<std::vec_tstring_t> *pvvsStack);
+        void                 vGet        (std::vector<std::vec_tstring_t> *pvvsStack);
             ///< get stack trace
         std::tstring_t       sGet        () ;
             ///< get stack trace with format output
@@ -40,7 +40,7 @@ class CxStackTrace :
         std::tstring_t       _sFormat    (std::vector<std::vec_tstring_t> *pvvsStack);
             ///< format stack trace
     #if xOS_ENV_UNIX
-        static bool          _bAddr2Line (const void *pvSymbolAddress, std::tstring_t *psFilePath,
+        static void          _vAddr2Line (const void *pvSymbolAddress, std::tstring_t *psFilePath,
                                           std::tstring_t *psFunctionName, ulong_t *pulSourceLine);
     #endif
 
