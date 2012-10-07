@@ -62,8 +62,8 @@ CxErrorReport::CxErrorReport(
                   << xT("                    ")
                   << std::left << std::setw(uiAlignWidth) << a_csExpr2 << xT(": ") << a_cVarT2;
 
-        if (false == m_sComment.empty()) {
-            ossStream << xT("\n                      (")  << m_sComment << xT(")");
+        if (false == a_csComment.empty()) {
+            ossStream << xT("\n                      (")  << a_csComment << xT(")");
         }
 
         sComment = ossStream.str();
