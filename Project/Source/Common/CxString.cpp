@@ -131,7 +131,7 @@ CxString::sReplaceAll(
 
     std::tstring_t sRv(a_csStr);
 
-    size_t uiPos = 0;
+    size_t uiPos = 0U;
 
     for ( ; ; ) {
         uiPos = sRv.find(a_csOldStr, uiPos);
@@ -149,8 +149,8 @@ CxString::sReplaceAll(
 std::tstring_t
 CxString::sReplaceAll(
     const std::tstring_t &a_csStr,
-    const tchar_t         a_cchOldStr,
-    const tchar_t         a_cchNewStr
+    const tchar_t        &a_cchOldStr,
+    const tchar_t        &a_cchNewStr
 )
 {
     /*DEBUG*/// csStr    - n/a
@@ -190,8 +190,8 @@ CxString::vSplit(
     xTEST_PTR(a_pvsOut);
 
     std::vec_tstring_t vsRes;
-    size_t             uiPrevPos = 0;     //start of string
-    size_t             uiPos     = 0;
+    size_t             uiPrevPos = 0U;     //start of string
+    size_t             uiPos     = 0U;
 
     for ( ; ; ) {
         uiPos = a_csStr.find(a_csSep, uiPrevPos);
@@ -232,7 +232,7 @@ CxString::sJoin(
 std::tstring_t
 CxString::sJoin(
     const std::vec_tstring_t &a_cvsVec,
-    const tchar_t             a_cchSep
+    const tchar_t            &a_cchSep
 )
 {
     /*DEBUG*/// cvsVec - n/a
@@ -253,8 +253,8 @@ CxString::sCut(
     /*DEBUG*/// csLeftSep  - n/a
     /*DEBUG*/// csRightSep - n/a
 
-    size_t uiStartDelimPos = 0;
-    size_t uiStopDelimPos  = 0;
+    size_t uiStartDelimPos = 0U;
+    size_t uiStopDelimPos  = 0U;
 
     uiStartDelimPos = a_csStr.find(a_csLeftSep);
     xCHECK_RET(std::tstring_t::npos == uiStartDelimPos, std::tstring_t());
@@ -263,7 +263,7 @@ CxString::sCut(
     uiStopDelimPos  = a_csStr.rfind(a_csRightSep);
     xCHECK_RET(std::tstring_t::npos == uiStopDelimPos, std::tstring_t());
 
-    xCHECK_RET(uiStartDelimPos     >= uiStopDelimPos, std::tstring_t());
+    xCHECK_RET(uiStartDelimPos      >= uiStopDelimPos, std::tstring_t());
 
     return a_csStr.substr(uiStartDelimPos, uiStopDelimPos - uiStartDelimPos);
 }
@@ -272,14 +272,14 @@ CxString::sCut(
 std::tstring_t
 CxString::sCut(
     const std::tstring_t &a_csStr,
-    const size_t          a_cuiStartPos /* = 0 */,
-    const size_t          a_cuiEndPos   /* = std::tstring_t:npos */
+    const size_t         &a_cuiStartPos /* = 0 */,
+    const size_t         &a_cuiEndPos   /* = std::tstring_t:npos */
 )
 {
     xCHECK_RET(true          == a_csStr.empty(), std::tstring_t());
     xCHECK_RET(a_cuiStartPos >  a_cuiEndPos,     std::tstring_t());
 
-    size_t uiSize = ( (std::string::npos == a_cuiEndPos) ? (a_csStr.size()) : (a_cuiEndPos) ) - a_cuiStartPos/* + 1*/;
+    size_t uiSize = ( (std::string::npos == a_cuiEndPos) ? (a_csStr.size()) : (a_cuiEndPos) ) - a_cuiStartPos /* + 1*/;
 
     return a_csStr.substr(a_cuiStartPos, uiSize);
 }
@@ -310,21 +310,23 @@ CxString::sToUpperCase(
 std::tstring_t
 CxString::sToLowerCase(
     const std::tstring_t &a_csStr,
-    size_t                a_uiLength
+    const size_t         &a_cuiLength
 )
 {
     /*DEBUG*/// n/a
 
-    xCHECK_RET(true == a_csStr.empty(),     std::tstring_t());
-    xCHECK_DO (a_csStr.size() < a_uiLength, a_uiLength = a_csStr.size());
+    size_t uiLength = a_cuiLength;
+
+    xCHECK_RET(true == a_csStr.empty(),   std::tstring_t());
+    xCHECK_DO (a_csStr.size() < uiLength, uiLength = a_csStr.size());
 
     std::tstring_t sRv(a_csStr);
 
 #if   xOS_ENV_WIN
-    ulong_t ulRv = ::CharLowerBuff(static_cast<LPTSTR>( &sRv[0] ), a_uiLength);
-    /*DEBUG*/xTEST_EQ(a_uiLength, static_cast<size_t>( ulRv ));
+    ulong_t ulRv = ::CharLowerBuff(static_cast<LPTSTR>( &sRv[0] ), uiLength);
+    /*DEBUG*/xTEST_EQ(uiLength, static_cast<size_t>( ulRv ));
 #elif xOS_ENV_UNIX
-    std::transform(sRv.begin(), sRv.begin() + a_uiLength, sRv.begin(), CxChar::chToLower);
+    std::transform(sRv.begin(), sRv.begin() + uiLength, sRv.begin(), CxChar::chToLower);
 #endif
 
     return sRv;
@@ -334,21 +336,23 @@ CxString::sToLowerCase(
 std::tstring_t
 CxString::sToUpperCase(
     const std::tstring_t &a_csStr,
-    size_t                a_uiLength
+    const size_t         &a_cuiLength
 )
 {
     /*DEBUG*/// n/a
 
-    xCHECK_RET(true == a_csStr.empty(),     std::tstring_t());
-    xCHECK_DO (a_csStr.size() < a_uiLength, a_uiLength = a_csStr.size());
+    size_t uiLength = a_cuiLength;
+
+    xCHECK_RET(true == a_csStr.empty(),   std::tstring_t());
+    xCHECK_DO (a_csStr.size() < uiLength, uiLength = a_csStr.size());
 
     std::tstring_t sRv(a_csStr);
 
 #if   xOS_ENV_WIN
-    ulong_t ulRv = ::CharUpperBuff(static_cast<LPTSTR>( &sRv[0] ), a_uiLength);
-    /*DEBUG*/xTEST_EQ(a_uiLength, static_cast<size_t>( ulRv ));
+    ulong_t ulRv = ::CharUpperBuff(static_cast<LPTSTR>( &sRv[0] ), uiLength);
+    /*DEBUG*/xTEST_EQ(uiLength, static_cast<size_t>( ulRv ));
 #elif xOS_ENV_UNIX
-    std::transform(sRv.begin(), sRv.begin() + a_uiLength, sRv.begin(), CxChar::chToUpper);
+    std::transform(sRv.begin(), sRv.begin() + uiLength, sRv.begin(), CxChar::chToUpper);
 #endif
 
     return sRv;
@@ -366,9 +370,7 @@ CxString::bCompareNoCase(
     xCHECK_RET(a_csStr1.size() != a_csStr2.size(), false);
 
 #if   xOS_ENV_WIN
-    int iRv = - 1;
-
-    iRv = ::lstrcmpi(a_csStr1.c_str(), a_csStr2.c_str());
+    int iRv = ::lstrcmpi(a_csStr1.c_str(), a_csStr2.c_str());
     /*DEBUG*/// n/a
     xCHECK_RET(0 != iRv, false);
 #elif xOS_ENV_UNIX
@@ -396,16 +398,18 @@ CxString::bCompareNoCase(
 //---------------------------------------------------------------------------
 void *
 CxString::pvMemoryZeroSecure(
-    void   *a_pvBuff,
-    size_t  a_uiBuffSize
+    void         *a_pvBuff,
+    const size_t &a_cuiBuffSize
 )
 {
     /*DEBUG*/// pvBuff     - n/a
     /*DEBUG*/// uiBuffSize - n/a
 
+    size_t uiBuffSize = a_cuiBuffSize;
+
     for (volatile char *a_vpvBuff = static_cast<volatile char *>( a_pvBuff );
-         NULL != a_pvBuff && 0 != a_uiBuffSize;
-         ++ a_vpvBuff, -- a_uiBuffSize)
+         NULL != a_pvBuff && 0 != uiBuffSize;
+         ++ a_vpvBuff, -- uiBuffSize)
     {
         *a_vpvBuff = 0;
     }
@@ -526,12 +530,12 @@ CxString::sFormat(
 std::tstring_t
 CxString::sMinimize(
     const std::tstring_t &a_csStr,
-    const size_t          a_cuiMaxLen
+    const size_t         &a_cuiMaxLen
 )
 {
     /*DEBUG*/// n/a
     xCHECK_RET(true == a_csStr.empty(), std::tstring_t());
-    xCHECK_RET(0    == a_cuiMaxLen,     std::tstring_t());
+    xCHECK_RET(0U   == a_cuiMaxLen,     std::tstring_t());
 
     std::tstring_t sRv;
 
@@ -647,7 +651,7 @@ CxString::sTranslitLatToRus(
 /* static */
 std::tstring_t
 CxString::sFormatBytes(
-    const double a_cdBytes
+    const double &a_cdBytes
 )
 {
     /*DEBUG*/// dBytes - n/a
@@ -685,7 +689,7 @@ CxString::sFormatBytes(
 /* static */
 std::tstring_t
 CxString::sFormatBytes(
-    const ulonglong_t a_cullBytes
+    const ulonglong_t &a_cullBytes
 )
 {
     /*DEBUG*/// ulBytes - n/a
@@ -723,8 +727,8 @@ CxString::sFormatBytes(
 /* static */
 std::tstring_t
 CxString::sFormatPercentage(
-    ulonglong_t a_ullMaxValue,
-    ulonglong_t a_ullCurrValue
+    const ulonglong_t &a_ullMaxValue,
+    const ulonglong_t &a_ullCurrValue
 )
 {
     /*DEBUG*/// ullMaxValue  - n/a
@@ -743,7 +747,7 @@ CxString::sFormatPercentage(
 std::wstring
 CxString::sStrToWStr(
     const std::string &a_csStr,
-    const uint_t       a_cuiCodePage
+    const uint_t      &a_cuiCodePage
 )
 {
     /*DEBUG*/// csStr - n/a
@@ -770,7 +774,7 @@ CxString::sStrToWStr(
 std::string
 CxString::sWStrToStr(
     const std::wstring &a_cwsStr,
-    const uint_t        a_cuiCodePage
+    const uint_t       &a_cuiCodePage
 )
 {
     /*DEBUG*/// cwsStr - n/a
@@ -797,8 +801,8 @@ CxString::sWStrToStr(
 std::string
 CxString::sConvertCodePage(
     const std::string &a_csSource,
-    const uint_t       a_cuiCodePageSource,
-    const uint_t       a_cuiCodePageDest
+    const uint_t      &a_cuiCodePageSource,
+    const uint_t      &a_cuiCodePageDest
 )
 {
 //    /*DEBUG*/xTEST_EQ(false, csSource.empty(), std::string());        //FIX: csStr    - n/a

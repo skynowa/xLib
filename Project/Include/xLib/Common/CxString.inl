@@ -141,7 +141,7 @@ template<class T>
 inline std::tstring_t
 CxString::string_cast(
     const T   &cValueT,
-    const int  ciBase
+    const int &ciBase
 )
 {
     //cValueT - n/a
@@ -195,7 +195,7 @@ template<class T>
 inline T
 CxString::string_cast(
     const std::tstring_t &csStr,
-    const int           ciBase
+    const int            &ciBase
 )
 {
     //csStr  - n/a
