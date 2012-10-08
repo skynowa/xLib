@@ -46,7 +46,7 @@ class CxString :
             ///< convert type to std::tstring_t
 
         template<class T>
-        static std::tstring_t string_cast       (const T &cValueT, const int ciBase);
+        static std::tstring_t string_cast       (const T &cValueT, const int &ciBase);
             ///< convert type to std::tstring_t by base
 
         template<class T>
@@ -54,7 +54,7 @@ class CxString :
             ///< convert std::tstring_t to type
 
         template<class T>
-        static T              string_cast       (const std::tstring_t &csStr, const int ciBase);
+        static T              string_cast       (const std::tstring_t &csStr, const int &ciBase);
             ///< convert std::tstring_t by base (8, 10, 16) to type
 
         static std::tstring_t sBoolToStr        (const bool &cbBool);
@@ -75,36 +75,36 @@ class CxString :
 
         static std::tstring_t sReplaceAll       (const std::tstring_t &csStr, const std::tstring_t &csOldStr, const std::tstring_t &csNewStr);
             ///< replace all strings
-        static std::tstring_t sReplaceAll       (const std::tstring_t &csStr, const tchar_t ccOldStr, const tchar_t ccNewStr);
+        static std::tstring_t sReplaceAll       (const std::tstring_t &csStr, const tchar_t &ccOldStr, const tchar_t &ccNewStr);
             ///< replace all chars
         static std::tstring_t sRemoveAll        (const std::tstring_t &csStr, const std::tstring_t &csRemoveStr);
             ///< remove all strings
 
         static void           vSplit            (const std::tstring_t &csStr, const std::tstring_t &csSep, std::vec_tstring_t *pvsOut);
             ///< split by separator
-        static std::tstring_t sJoin             (const std::vec_tstring_t &cvsVec, const tchar_t cchSep);
+        static std::tstring_t sJoin             (const std::vec_tstring_t &cvsVec, const tchar_t &cchSep);
             ///< join with char separator
         static std::tstring_t sJoin             (const std::vec_tstring_t &cvsVec, const std::tstring_t &csSep);
             ///< oin with string separator
         static std::tstring_t sCut              (const std::tstring_t &csStr, const std::tstring_t &csLeftSep, const std::tstring_t &csRightSep);
             ///< cut using strings
-        static std::tstring_t sCut              (const std::tstring_t &csStr, const size_t cuiStartPos = 0, const size_t cuiEndPos = std::tstring_t::npos);
+        static std::tstring_t sCut              (const std::tstring_t &csStr, const size_t &cuiStartPos = 0, const size_t &cuiEndPos = std::tstring_t::npos);
             ///< cut using string positions
 
         static std::tstring_t sToLowerCase      (const std::tstring_t &csStr);
             ///< convert to lowcase
         static std::tstring_t sToUpperCase      (const std::tstring_t &csStr);
             ///< convert to uppercase
-        static std::tstring_t sToLowerCase      (const std::tstring_t &csStr, size_t uiLength);
+        static std::tstring_t sToLowerCase      (const std::tstring_t &csStr, const size_t &cuiLength);
             ///< convert to lowcase
-        static std::tstring_t sToUpperCase      (const std::tstring_t &csStr, size_t uiLength);
+        static std::tstring_t sToUpperCase      (const std::tstring_t &csStr, const size_t &cuiLength);
             ///< convert to uppercase
 
         static std::tstring_t sFormat           (const tchar_t *pcszFormat, ...);
             ///< format
         static std::tstring_t sFormatV          (const tchar_t *pcszFormat, va_list palArgs);
             ///< format
-        static std::tstring_t sMinimize         (const std::tstring_t &csStr, const size_t cuiMaxLen);
+        static std::tstring_t sMinimize         (const std::tstring_t &csStr, const size_t &cuiMaxLen);
             ///< minimize
 
         /****************************************************************************
@@ -122,24 +122,24 @@ class CxString :
 
         static std::tstring_t sTranslitLatToRus (const std::tstring_t &csStr);
             ///< translit
-        static std::tstring_t sFormatBytes      (const double cdBytes);
+        static std::tstring_t sFormatBytes      (const double &cdBytes);
             ///< format bytes (like Bit(s), Byte(s), MB, GB, TB)
-        static std::tstring_t sFormatBytes      (const ulonglong_t cullBytes);
+        static std::tstring_t sFormatBytes      (const ulonglong_t &cullBytes);
             ///< ormat bytes (like Bit(s), Byte(s), MB, GB, TB)
-        static std::tstring_t sFormatPercentage (ulonglong_t ullMaxValue, ulonglong_t ullCurrValue);
+        static std::tstring_t sFormatPercentage (const ulonglong_t &cullMaxValue, const ulonglong_t &cullCurrValue);
             ///< formatting percentage
 
-        static std::wstring   sStrToWStr        (const std::string  &csStr,  const uint_t cuiCodePage);
+        static std::wstring   sStrToWStr        (const std::string  &csStr,  const uint_t &cuiCodePage);
             ///< std::string in std::wstring
-        static std::string    sWStrToStr        (const std::wstring &cwsStr, const uint_t cuiCodePage);
+        static std::string    sWStrToStr        (const std::wstring &cwsStr, const uint_t &cuiCodePage);
             ///< std::wstring in std::string
 
-        static std::string    sConvertCodePage  (const std::string &csSource, const uint_t cuiCodePageSource, const uint_t cuiCodePageDest);
+        static std::string    sConvertCodePage  (const std::string &csSource, const uint_t &cuiCodePageSource, const uint_t &cuiCodePageDest);
             ///< convert codepage
 
         static std::string    asCharToOemBuff   (const std::tstring_t &csSrc);
             ///< convert char to oem
-        static std::tstring_t sOemToCharBuff    (const std::string  &csSrc);
+        static std::tstring_t sOemToCharBuff    (const std::string &csSrc);
             ///< convert oem to char
 
 
@@ -148,7 +148,7 @@ class CxString :
         *
         *****************************************************************************/
 
-        static void *         pvMemoryZeroSecure(void *pvBuff, size_t  uiBuffSize);
+        static void *         pvMemoryZeroSecure(void *pvBuff, const size_t &cuiBuffSize);
             ///< secure zero memory
 
 

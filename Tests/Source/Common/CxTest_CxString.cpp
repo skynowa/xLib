@@ -1028,6 +1028,22 @@ CxTest_CxString::vUnit(
                 xTEST_PTR_FAIL(m_pvRv);
             }
         }
+
+        // 3
+        {
+            uchar_t ucBuff[] = {
+                1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15, 
+                20, 21, 22, 23, 24, 25, 30, 31, 32, 33, 34, 35,
+                245, 246, 247, 248, 249, 250
+            };
+
+            m_pvRv = CxString::pvMemoryZeroSecure(ucBuff, xARRAY_SIZE(ucBuff));
+            xTEST_PTR(m_pvRv);
+
+            for (size_t i = 0; i < xARRAY_SIZE(ucBuff); ++ i) {
+                xTEST_EQ(true, 0 == ucBuff[i]);
+            }
+        }
     }
 
 
