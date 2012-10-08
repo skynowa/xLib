@@ -24,25 +24,20 @@ CxTest_CxStdError::vUnit(
 {
     const int ciMaxErrors = 132;  /*0...132*/;
 
-    //-------------------------------------
-    //iGet
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxStdError::iGet, cullCaseLoops)
     {
         (int)CxStdError::iGet();
         xTEST_EQ(0, CxStdError::iGet());
     }
 
-    //-------------------------------------
-    //iGet
-    xTEST_CASE(cullCaseLoops)
+   
+    xTEST_CASE(CxStdError::sGet, cullCaseLoops)
     {
         std::tstring_t sError = CxStdError::sGet();
         xTEST_EQ(false, sError.empty());
     }
 
-    //-------------------------------------
-    //bSet
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxStdError::vSet, cullCaseLoops)
     {
         const int caiData[] = {
             0,
@@ -60,9 +55,7 @@ CxTest_CxStdError::vUnit(
         }
     }
 
-    //-------------------------------------
-    //bReset
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxStdError::vReset, cullCaseLoops)
     {
         const int caiData[] = {
             0,
@@ -80,9 +73,7 @@ CxTest_CxStdError::vUnit(
         }
     }
 
-    //-------------------------------------
-    //sFormat
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxStdError::sFormat, cullCaseLoops)
     {
         const int caiData[] = {
             0,

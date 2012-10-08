@@ -108,11 +108,12 @@
     ///< show not implemented message and return value
 
 #if xTEST_BLOCK_WITH_TRACE_POINT
-    #define xTEST_CASE(cuiLoops)                         xTRACE_POINT; \
+    #define xTEST_CASE(case_name, cuiLoops)              xTRACE_POINT; \
                                                          for (size_t _uiCaseLoops = 0U; _uiCaseLoops < (cuiLoops); ++ _uiCaseLoops)
         ///< test block with trace point
 #else
-    #define xTEST_CASE(cuiLoops)                         for (size_t _uiCaseLoops = 0U; _uiCaseLoops < (cuiLoops); ++ _uiCaseLoops)
+    #define xTEST_CASE(case_name, cuiLoops)              /* CxTracer() << xT("\tCase name: ") << xLEX_TO_STR(case_name); */ \
+                                                         for (size_t _uiCaseLoops = 0U; _uiCaseLoops < (cuiLoops); ++ _uiCaseLoops)
         ///< test block without trace point
 #endif
 //-------------------------------------------------------------------------

@@ -26,9 +26,7 @@ CxTest_CxCom::vUnit(
 
 #if xOS_ENV_WIN
 
-    //-------------------------------------
-    // bIsInit
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxCom::CxCom bIsInit, cullCaseLoops)
     {
         m_bRv = CxCom::bIsInit();
         xTEST_EQ(false, m_bRv);

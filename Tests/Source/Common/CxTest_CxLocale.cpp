@@ -22,31 +22,23 @@ CxTest_CxLocale::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    //-------------------------------------
-    //sGetCurrent
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxLocale::sGetCurrent, cullCaseLoops)
     {
         m_sRv = CxLocale::sGetCurrent();
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    //-------------------------------------
-    //bSetCurrent
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxLocale::vSetCurrent, cullCaseLoops)
     {
         CxLocale::vSetCurrent( CxLocale::sGetCurrent() );
     }
 
-    //-------------------------------------
-    //bSetDefault
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxLocale::vSetDefault, cullCaseLoops)
     {
         CxLocale::vSetDefault();
     }
 
-    //-------------------------------------
-    //bSetCurrent
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxLocale::vSetCurrent, cullCaseLoops)
     {
         CxLocale::vSetCurrent(CxLocale::sGetCurrent());
     }

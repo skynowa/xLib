@@ -26,9 +26,7 @@ CxTest_CxFileTemp::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    //-------------------------------------
-    //sTempCreate, bTempClose
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxFileTemp::all, cullCaseLoops)
     {
         CxFileTemp ftFileTemp(true);
         CxFile     fJobber;

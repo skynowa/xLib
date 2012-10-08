@@ -22,18 +22,14 @@ CxTest_CxCommandLine::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    //--------------------------------------------------
-    //liGetArgsMax
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxCommandLine::liGetArgsMax, cullCaseLoops)
     {
         m_liRv = CxCommandLine::liGetArgsMax();
         xTEST_LESS(0L, m_liRv);
         //xTRACEV(xT("\tCxCommandLine::liGetArgsMax() = %li"), m_liRv);
     }
 
-    //-------------------------------------
-    //sGet
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxCommandLine::sGet, cullCaseLoops)
     {
         m_sRv = CxCommandLine::sGet();
         #if xTEST_IGNORE
@@ -42,20 +38,16 @@ CxTest_CxCommandLine::vUnit(
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    //-------------------------------------
-    // vGetArgs
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxCommandLine::vGetArgs, cullCaseLoops)
     {
         CxCommandLine::vGetArgs(&m_vsRv);
         xTEST_EQ(false, m_vsRv.empty());
     }
 
-    //--------------------------------------------------
-    //bSetArgs
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxCommandLine::vSetArgs, cullCaseLoops)
     {
         #if xTEST_IGNORE
-            m_bRv = CxCommandLine::bSetArgs(ciArgsCount, paszArgs);
+            CxCommandLine::vSetArgs(ciArgsCount, paszArgs);
         #endif
     }
 }

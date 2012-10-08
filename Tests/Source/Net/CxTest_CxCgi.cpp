@@ -25,9 +25,7 @@ CxTest_CxCgi::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    //--------------------------------------------------
-    //bPageShow
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxCgi::vPageShow, cullCaseLoops)
     {
         #if xTEST_IGNORE
             const std::tstring_t csFilePath = sGetTempDirPath() + CxConst::xSLASH + xT("Test.txt");
@@ -42,21 +40,15 @@ CxTest_CxCgi::vUnit(
                     xT("</body>")
                     xT("</html>");
 
-            m_bRv = CxFile::bTextWrite(csFilePath, sFileContent);
-            xTEST_EQ(true, m_bRv);
-
-            m_bRv = CxCgi::bPageShow(csFilePath);
-            xTEST_EQ(true, m_bRv);
+            CxFile::vTextWrite(csFilePath, sFileContent);
+            CxCgi::vPageShow(csFilePath);
         #endif
     }
 
-    //--------------------------------------------------
-    //bRedirect
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxCgi::vRedirect, cullCaseLoops)
     {
         #if xTEMP_DISABLED
-            CxCgi::bRedirect(xT("http://yandex.ru/"));
-            xTEST_EQ(true, m_bRv);
+            CxCgi::vRedirect(xT("http://yandex.ru/"));
         #endif
     }
 
@@ -66,8 +58,7 @@ CxTest_CxCgi::vUnit(
         cgCgi.Formdata.sGetDump();
     #endif
 
-
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxCgi::env_vars, cullCaseLoops)
     {
         //std::tcout << xT("<pre>");
 
@@ -221,9 +212,7 @@ CxTest_CxCgi::vUnit(
         //std::tcout << std::endl;
     }
 
-    //-------------------------------------
-    //bUriEncode, bUriDecode
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxCgi::bUriEncode CxCgi::sDecodedStr, cullCaseLoops)
     {
         //1
         {

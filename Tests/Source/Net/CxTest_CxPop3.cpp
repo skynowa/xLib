@@ -27,7 +27,6 @@ CxTest_CxPop3::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-#if   xOS_ENV_WIN
     //-------------------------------------
     //
     //const std::tstring_t csUser     = xT("Sergey");        //"test_1";
@@ -161,8 +160,5 @@ CxTest_CxPop3::vUnit(
     //-------------------------------------
     //bDisconnect
     objPop3.vDisconnect();
-#elif xOS_ENV_UNIX
-
-#endif
 }
 //---------------------------------------------------------------------------

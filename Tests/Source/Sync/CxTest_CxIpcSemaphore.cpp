@@ -68,7 +68,7 @@ CxTest_CxIpcSemaphore::vUnit(
 #endif
 
     //-------------------------------------
-    // bRelease
+    // vPost
     for (size_t i = 0; i < 50; ++ i) {
         CxCurrentThread::vSleep(1);
 

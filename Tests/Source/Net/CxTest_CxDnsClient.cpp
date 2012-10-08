@@ -24,12 +24,9 @@ CxTest_CxDnsClient::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    //-------------------------------------
-    //CxSocketInit
     CxSocketInit siInit(2, 2);
 
-    //-------------------------------------
-    //bGetHostAddrByName
+    xTEST_CASE(CxDnsClient::vGetHostAddrByName, cullCaseLoops)
     {
         std::tstring_t sHostName = xT("msdn.microsoft.com");
         std::tstring_t sHostAddr = xT("");
@@ -39,8 +36,7 @@ CxTest_CxDnsClient::vUnit(
         //std::tcout << xT("[bGetHostAddrByName]: ") << sHostAddr << std::endl;
     }
 
-    //-------------------------------------
-    //bGetHostNameByAddr
+    xTEST_CASE(CxDnsClient::vGetHostNameByAddr, cullCaseLoops)
     {
         std::tstring_t sHostName = xT("");
         std::tstring_t sHostAddr = xT("127.0.0.1");
@@ -50,8 +46,7 @@ CxTest_CxDnsClient::vUnit(
         //std::tcout << xT("[bGetHostNameByAddr]: ") << sHostName << std::endl;
     }
 
-    //-------------------------------------
-    //bGetLocalHostName
+    xTEST_CASE(CxDnsClient::vGetLocalHostName, cullCaseLoops)
     {
         std::tstring_t sLocalHostName = xT("");
 
@@ -60,8 +55,7 @@ CxTest_CxDnsClient::vUnit(
         //std::tcout << xT("[bGetLocalHostName]: ") << sLocalHostName << std::endl;
     }
 
-    //-------------------------------------
-    //bGetNameInfo
+    xTEST_CASE(CxDnsClient::vGetNameInfo, cullCaseLoops)
     {
         ////CxDnsClient::ExAddressFamily afFamily  = CxDnsClient::afInet;
         ////std::tstring_t                     sHostAddr = /*xT("207.46.172.252");*/    xT("forum.vingrad.ru");
@@ -73,8 +67,7 @@ CxTest_CxDnsClient::vUnit(
         //xSTD_COUT(xT("[bGetNameInfo]: ") << sLocalHostName);
     }
 
-    //-------------------------------------
-    //bGetHostAddrInfo
+    xTEST_CASE(CxDnsClient::vGetHostAddrInfo, cullCaseLoops)
     {
         std::tstring_t sHostName = xT("www.google.ru");
         std::tstring_t sPort     = xT("http");
@@ -110,8 +103,7 @@ CxTest_CxDnsClient::vUnit(
         /*DEBUG*/// n/a
     }
 
-    //-------------------------------------
-    //bGetProtocolByName
+    xTEST_CASE(CxDnsClient::vGetProtocolByName, cullCaseLoops)
     {
         const tchar_t cszProtocolNames[][10] =
         {
@@ -137,8 +129,7 @@ CxTest_CxDnsClient::vUnit(
         //std::tcout << std::endl;
     }
 
-    //-------------------------------------
-    //cszProtocolNumbers
+    xTEST_CASE(CxDnsClient::vGetProtocolByNumber, cullCaseLoops)
     {
         const int ciProtocolNumbers[] = {
             0, 1, 3, 6, 8, 12, 17, 20, 22, 27
@@ -162,8 +153,7 @@ CxTest_CxDnsClient::vUnit(
         //std::tcout << std::endl;
     }
 
-    //-------------------------------------
-    //bGetServiceByName
+    xTEST_CASE(CxDnsClient::vGetServiceByName, cullCaseLoops)
     {
         std::tstring_t     csServiceName  = xT("http");
         const tchar_t      cszProtocolNames[][10] = {xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"), xT("pup"), xT("udp"), xT("hmp"), xT("xns-idp"), xT("rdp") };
@@ -185,9 +175,7 @@ CxTest_CxDnsClient::vUnit(
         //std::tcout << std::endl;
     }
 
-
-    //-------------------------------------
-    //bGetServiceByPort
+    xTEST_CASE(CxDnsClient::vGetServiceByPort, cullCaseLoops)
     {
         short_t            csiPort  = 20480;
         const tchar_t      cszProtocolNames[][10] = {xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"), xT("pup"), xT("udp"), xT("hmp"), xT("xns-idp"), xT("rdp") };
@@ -208,18 +196,13 @@ CxTest_CxDnsClient::vUnit(
         //std::tcout << xT("  --------------------")                 << std::endl;
         //std::tcout << std::endl;
     }
-
-
-    //--------------------------------------------------
-    //bIsOnLan
-    xTEST_CASE(cullCaseLoops)
+    
+    xTEST_CASE(CxDnsClient::bIsOnLan, cullCaseLoops)
     {
         //TODO: m_bRv = CxDnsClient::bIsOnLan(const ulong_t culIp);
     }
 
-    //--------------------------------------------------
-    //bIsBroadcast
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxDnsClient::bIsBroadcast, cullCaseLoops)
     {
         //TODO: m_bRv = CxDnsClient::bIsBroadcast(const ulong_t culIp);
     }

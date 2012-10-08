@@ -25,9 +25,7 @@ CxTest_xDefines::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    //-------------------------------------
-    // several combinations of preprocessor's defines
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(xDefines::combinations of preprocessor defines, cullCaseLoops)
     {
         /*
             if (DEFINE_VAL == NOT_ZERO_DIGIT) {
@@ -112,9 +110,7 @@ CxTest_xDefines::vUnit(
         }
     }
 
-    //-------------------------------------
-    // xLEX_TO_STR
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(xDefines::xLEX_TO_STR_, cullCaseLoops)
     {
         long_t liVal = - 1;
 
@@ -124,9 +120,7 @@ CxTest_xDefines::vUnit(
         xUNUSED(liVal);
     }
 
-    //-------------------------------------
-    // xLEX_CAT
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(xDefines::xLEX_CAT_, cullCaseLoops)
     {
         std::string sVal;
 
@@ -136,9 +130,7 @@ CxTest_xDefines::vUnit(
         sVal.clear();
     }
 
-    //--------------------------------------------------
-    // xTEXT, xT
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(xDefines::xTEXT_ xT_, cullCaseLoops)
     {
         const std::tstring_t csStr(xT("xxx"));
 
@@ -149,53 +141,39 @@ CxTest_xDefines::vUnit(
         xTEST_EQ(csStr, m_sRv);
     }
 
-    //-------------------------------------
-    // xS2US
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(xDefines::xS2US_, cullCaseLoops)
     {
 
     }
 
-    //-------------------------------------
-    // xUS2S
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(xDefines::xUS2S_, cullCaseLoops)
     {
 
     }
 
-    //-------------------------------------
-    // xS2TS
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(xDefines::xS2TS_, cullCaseLoops)
     {
 
     }
 
-    //-------------------------------------
-    // xTS2S
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(xDefines::xTS2S_, cullCaseLoops)
     {
 
     }
 
-    //-------------------------------------
-    // utils
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(xDefines::utils, cullCaseLoops)
     {
 
     }
 
-    //-------------------------------------
-    // xUNUSED
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(xDefines::xUNUSED, cullCaseLoops)
     {
         size_t uiArg = 0U;
 
         xUNUSED(uiArg);
     }
 
-    //--------------------------------------------------
-    // temporary enable/disable code
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(xDefines::temporary enable disable code, cullCaseLoops)
     {
         xTEST_EQ(1, xTEMP_ENABLED);
         xTEST_EQ(0, xTEMP_DISABLED);
@@ -211,71 +189,54 @@ CxTest_xDefines::vUnit(
         xNA;
     }
 
-    //--------------------------------------------------
-    // buildin macroses
+    xTEST_CASE(xDefines::buildin macroses, cullCaseLoops)
     {
 
     }
 
-    //--------------------------------------------------
-    // xFILE
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(xDefines::xFILE_, cullCaseLoops)
     {
         m_sRv = xFILE;
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    //--------------------------------------------------
-    // xLINE
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(xDefines::xLINE_, cullCaseLoops)
     {
         m_ulRv = xLINE;
         xTEST_GR(0UL, m_ulRv);
     }
 
-    //--------------------------------------------------
-    // xFUNCTION
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(xDefines::xFUNCTION_, cullCaseLoops)
     {
         m_sRv = xFUNCTION;
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    //--------------------------------------------------
-    // xDATE
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(xDefines::xDATE_, cullCaseLoops)
     {
         m_sRv = xDATE;
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    //--------------------------------------------------
-    // xTIME
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(xDefines::xTIME_, cullCaseLoops)
     {
         m_sRv = xTIME;
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    //--------------------------------------------------
-    // xDATETIME
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(xDefines::xDATETIME_, cullCaseLoops)
     {
         m_sRv = xDATETIME;
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    //--------------------------------------------------
-    // xCOUNTER
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(xDefines::xCOUNTER_, cullCaseLoops)
     {
-        // TODO: m_sRv = CxString::string_cast(xCOUNTER);
-        // xTEST_EQ(false, m_sRv.empty());
+        m_sRv = CxString::string_cast(xCOUNTER);
+        xTEST_EQ(false, m_sRv.empty());
     }
 
-    //--------------------------------------------------
-    // function params
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(xDefines::function params, cullCaseLoops)
     {
         struct STest {
             std::tstring_t execute(
@@ -300,65 +261,49 @@ CxTest_xDefines::vUnit(
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    //--------------------------------------------------
-    // xHOST_NAME_MAX
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(xDefines::xHOST_NAME_MAX_, cullCaseLoops)
     {
         m_iRv = xHOST_NAME_MAX;
         xTEST_GR(0, m_iRv);
     }
 
-    //--------------------------------------------------
-    // xPATH_MAX
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(xDefines::xPATH_MAX_, cullCaseLoops)
     {
         m_stRv = xPATH_MAX;
         xTEST_GR(m_stRv, size_t(0U));
     }
 
-    //--------------------------------------------------
-    // xNAME_MAX
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(xDefines::xNAME_MAX_, cullCaseLoops)
     {
         m_stRv = xNAME_MAX;
         xTEST_GR(m_stRv, size_t(0U));
     }
 
-    //--------------------------------------------------
-    // xLINE_MAX
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(xDefines::xLINE_MAX_, cullCaseLoops)
     {
         m_stRv = xLINE_MAX;
         xTEST_GR(m_stRv, size_t(0U));
     }
 
-    //--------------------------------------------------
-    // xENV_MAX
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(xDefines::xENV_MAX_, cullCaseLoops)
     {
         m_stRv = xENV_MAX;
         xTEST_GR(m_stRv, size_t(0U));
     }
 
-    //--------------------------------------------------
-    // xFRAMES_MAX
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(xDefines::xFRAMES_MAX_, cullCaseLoops)
     {
         m_ulRv = xSTACK_TRACE_FRAMES_MAX;
         xTEST_GR(m_ulRv, 0UL);
     }
 
-    //--------------------------------------------------
-    // xSEMAPHORE_VALUE_MAX
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(xDefines::xSEMAPHORE_VALUE_MAX_, cullCaseLoops)
     {
         m_liRv = xSEMAPHORE_VALUE_MAX;
         xTEST_GR(m_liRv, 0L);
     }
 
-    //--------------------------------------------------
-    // var args
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(xDefines::var args, cullCaseLoops)
     {
         const std::tstring_t csVal = xT("aaa");
         const int            ciVal = 100;
@@ -368,9 +313,7 @@ CxTest_xDefines::vUnit(
         xTEST_EQ(std::tstring_t(xT("aaa, 100")), m_sRv);
     }
 
-    //-------------------------------------
-    // qualifiers
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(xDefines::qualifiers, cullCaseLoops)
     {
         // xPR_SIZET
         {
@@ -405,16 +348,13 @@ CxTest_xDefines::vUnit(
         }
     }
 
-    //--------------------------------------------------
-    // xTIMEOUT_INFINITE
-    xTEST_CASE(cullCaseLoops)
+
+    xTEST_CASE(xDefines::xTIMEOUT_INFINITE_, cullCaseLoops)
     {
         m_ullRv = xTIMEOUT_INFINITE;
     }
 
-    //--------------------------------------------------
-    // xPAGE_SIZE
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(xDefines::xPAGE_SIZE_, cullCaseLoops)
     {
         #if xOS_ENV_UNIX
             m_stRv = xPAGE_SIZE;
@@ -422,17 +362,13 @@ CxTest_xDefines::vUnit(
         #endif
     }
 
-    //--------------------------------------------------
-    // xDIR_TEMP temprory directory
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(xDefines::xDIR_TEMP_ temprory directory, cullCaseLoops)
     {
         m_sRv = xDIR_TEMP;
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    //--------------------------------------------------
-    // xNATIVE_HANDLE_NULL, xNATIVE_HANDLE_INVALID
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(xDefines::xNATIVE_HANDLE_NULL_ xNATIVE_HANDLE_INVALID_, cullCaseLoops)
     {
        native_handle_t nhNull    = xNATIVE_HANDLE_NULL;
        xUNUSED(nhNull);
@@ -441,9 +377,7 @@ CxTest_xDefines::vUnit(
        xUNUSED(nhInvalid);
     }
 
-    //--------------------------------------------------
-    // xFOREACH
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(xDefines::xFOREACH_, cullCaseLoops)
     {
         // xFOREACH
         {
@@ -521,8 +455,8 @@ CxTest_xDefines::vUnit(
     }
 
     //--------------------------------------------------
-    // other
-    xTEST_CASE(cullCaseLoops)
+    // etc
+    xTEST_CASE(xDefines::etc, cullCaseLoops)
     {
 
     }

@@ -36,9 +36,7 @@ CxTest_CxAutoProfiler::vUnit(
         #endif
     };
 
-    //-------------------------------------
-    // CxAutoProfiler
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxAutoProfiler::CxAutoProfiler, cullCaseLoops)
     {
         for (size_t i = 0; i < xARRAY_SIZE(pmPerformMode); ++ i) {
             CxAutoProfiler _apfAP(sGetTempDirPath() + CxConst::xSLASH + xT("__FuncLog.log"), pmPerformMode[i], xT("%i"), 777);
