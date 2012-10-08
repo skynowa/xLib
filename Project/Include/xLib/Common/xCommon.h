@@ -140,7 +140,6 @@
 #include <utility>
 #include <iomanip>
 #include <cerrno>
-#include <limits>
 #include <stdexcept>
 #include <locale.h>
 
@@ -166,7 +165,7 @@ namespace NxLib { }
 #include <xLib/Common/CxNonCopyable.h>
 #include <xLib/Common/CxUtils.h>
 #include <xLib/Debug/xDebug.h>
-//#include <xLib/Debug/CxException.h>
+// #include <xLib/Debug/CxException.h>
 
 #include <xLib/Common/xTracing.h>
 #include <xLib/Common/xCheks.h>

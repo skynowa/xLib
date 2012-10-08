@@ -56,9 +56,6 @@
     <Filter Include="xLib\Test">
       <UniqueIdentifier>{d6a86d1d-1855-4971-92bf-1d5e3106967b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="xLib\Units">
-      <UniqueIdentifier>{b2e73d82-f5f1-4d06-91e5-76ec0fc2d2d2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="xLib\Patterns">
       <UniqueIdentifier>{63fe7e41-6611-4992-a989-954ae6b54b57}</UniqueIdentifier>
     </Filter>
@@ -67,9 +64,6 @@
     </Filter>
     <Filter Include="xLib\Crypt\Pkcs11\SDK\4.53">
       <UniqueIdentifier>{c8fbd3ec-3831-4b5f-b43d-2164dd08b266}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="xLib\Units\Win">
-      <UniqueIdentifier>{382f4f2b-ee56-4258-9dbf-a5bd3a67da36}</UniqueIdentifier>
     </Filter>
     <Filter Include="xLib\Sync\Win">
       <UniqueIdentifier>{83253b76-8571-4c54-9ade-1d89d44e9ca4}</UniqueIdentifier>
@@ -378,9 +372,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Patterns\CxSingleton.h">
       <Filter>xLib\Patterns</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Project\Include\xLib\Units\Win\bGetUsbInfo.h">
-      <Filter>xLib\Units\Win</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Test\CxTest.h">
       <Filter>xLib\Test</Filter>
@@ -697,9 +688,6 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Net\CxCgi.cpp">
       <Filter>xLib\Net</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Project\Source\Units\Win\bGetUsbInfo.cpp">
-      <Filter>xLib\Units\Win</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Test\CxTest.cpp">
       <Filter>xLib\Test</Filter>
