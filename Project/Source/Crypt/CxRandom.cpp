@@ -52,8 +52,8 @@ CxRandom::vSetSeed(
 
     _m_liSeed = a_liSeed;
 
-    if (0 == _m_liSeed) {
-        _m_liSeed = 1;
+    if (0L == _m_liSeed) {
+        _m_liSeed = 1L;
     }
 
     _m_bHaveNextNextGaussian = false;
@@ -124,8 +124,8 @@ CxRandom::dNextGaussian() {
         double s  = 0.0;
 
         do {
-            v1 = 2 * bNextDouble() - 1; // between -1 and 1
-            v2 = 2 * bNextDouble() - 1; // between -1 and 1
+            v1 = 2 * bNextDouble() - 1; // between - 1 and 1
+            v2 = 2 * bNextDouble() - 1; // between - 1 and 1
             s = v1 * v1 + v2 * v2;
         }
         while (s >= 1 || s == 0);

@@ -26,8 +26,8 @@ CxTestManager::CxTestManager(
     _m_cbIsUseTracing(a_cbIsUseTracing),
     _m_ctnTests      ()
 {
-    xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("\n\nCxTestManager: *** xLib v.%s (author: %s date: %s) ***"), 
-                                         xLIB_VERSION, xLIB_AUTHOR, xLIB_DATE));
+    xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("\n\nCxTestManager: *** %s v.%s %s (author: %s date: %s) ***"), 
+                                         xLIB_NAME, xLIB_VERSION, xLIB_VERSION_SUFFIX, xLIB_AUTHOR, xLIB_DATE));
     xCHECK_DO(_m_cbIsUseTracing, xTRACE (xT("\n")));
 }
 //---------------------------------------------------------------------------

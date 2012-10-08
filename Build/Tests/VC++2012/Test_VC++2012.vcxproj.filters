@@ -716,6 +716,9 @@
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxThreadPool.h">
       <Filter>Test\Sync</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\xVersion.h">
+      <Filter>xLib\Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Project\Include\xLib\Common\CxArray.inl">

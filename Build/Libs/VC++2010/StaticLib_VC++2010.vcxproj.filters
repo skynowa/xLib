@@ -436,6 +436,9 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\xSysDefines.h">
       <Filter>xLib\Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\xVersion.h">
+      <Filter>xLib\Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Project\Include\xLib\Common\CxArray.inl">

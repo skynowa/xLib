@@ -2,7 +2,7 @@ xLib - C++ cross-platform library
 
 
 Platforms:      Windows, Linux, FreeBSD
-Architecture:   x32, x64
+Architecture:   x86, x64
 
 Authors:        skynowa
 E-mail:         skynowa@gmail.com
