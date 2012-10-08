@@ -24,10 +24,7 @@ CxTest_CxException::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-
-    //--------------------------------------------------
-    // CxException(), sGetWhat, e.sGetName
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxException::CxException, cullCaseLoops)
     {
         try {
             throw CxException();
@@ -41,9 +38,7 @@ CxTest_CxException::vUnit(
         }
     }
 
-    //--------------------------------------------------
-    // CxException(std::tstring_t), what
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxException::CxException(std::tstring_t), cullCaseLoops)
     {
         const std::tstring_t sTestData[][2] = {
             {xT("TEST_STRING_1"),        xT("TEST_STRING_1")},
@@ -66,9 +61,7 @@ CxTest_CxException::vUnit(
         }
     }
 
-    //--------------------------------------------------
-    // catch CxException
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxException::[catch CxException], cullCaseLoops)
     {
         try {
             throw CxException() << xT("CxException_test_exception");
@@ -81,9 +74,7 @@ CxTest_CxException::vUnit(
         }
     }
 
-    //--------------------------------------------------
-    // catch std::exception
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxException::[catch std::exception], cullCaseLoops)
     {
         try {
             std::tstring_t sStr;
@@ -98,9 +89,7 @@ CxTest_CxException::vUnit(
         }
     }
 
-    //--------------------------------------------------
-    // xTRY, xCATCH_ALL, xTHROW
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxException::xTRY_ xCATCH_ALL_ xTHROW_, cullCaseLoops)
     {
         #if 0
             xTRY {

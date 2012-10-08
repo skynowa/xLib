@@ -25,9 +25,7 @@ CxTest_CxBlowfish::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    //-------------------------------------
-    //bEncryptCfb64
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxBlowfish::vEncryptCfb64, cullCaseLoops)
     {
         const std::ustring_t usPlain[] = {
             std::ustring_t(1,  'a'),
@@ -57,9 +55,7 @@ CxTest_CxBlowfish::vUnit(
         }
     }
 
-    //-------------------------------------
-    //bEncryptFileCfb64
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxBlowfish::vEncryptFileCfb64, cullCaseLoops)
     {
         CxBlowfish BF;
         std::tstring_t sKey           = xT("888888888");

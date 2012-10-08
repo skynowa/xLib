@@ -23,9 +23,7 @@ CxTest_CxVolume::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    //-------------------------------------
-    // bIsValid
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxVolume::bIsValid, cullCaseLoops)
     {
         //true
         {
@@ -64,9 +62,7 @@ CxTest_CxVolume::vUnit(
         }
     }
 
-    //-------------------------------------
-    // bIsReady
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxVolume::bIsReady, cullCaseLoops)
     {
         //true
         {
@@ -103,9 +99,7 @@ CxTest_CxVolume::vUnit(
         }
     }
 
-    //-------------------------------------
-    // bIsEmpty
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxVolume::bIsEmpty, cullCaseLoops)
     {
         //true
         {
@@ -146,9 +140,7 @@ CxTest_CxVolume::vUnit(
         }
     }
 
-    //-------------------------------------
-    // bGetSpace
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxVolume::vGetSpace, cullCaseLoops)
     {
         std::vec_tstring_t vsData;
 
@@ -213,9 +205,7 @@ CxTest_CxVolume::vUnit(
         }
     }
 
-    //-------------------------------------
-    // bMount, bUnMount
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxVolume::vMount vUnMount, cullCaseLoops)
     {
     #if xTEST_IGNORE
         #if   xOS_ENV_WIN
@@ -231,9 +221,7 @@ CxTest_CxVolume::vUnit(
     #endif
     }
 
-    //-------------------------------------
-    // bGetPaths
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxVolume::vGetPaths, cullCaseLoops)
     {
         std::vec_tstring_t vsVolumePaths;
 
@@ -244,9 +232,7 @@ CxTest_CxVolume::vUnit(
         #endif
     }
 
-    //--------------------------------------------------
-    // sGetLabel
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxVolume::sGetLabel, cullCaseLoops)
     {
         std::vec_tstring_t vsVolumePaths;
 
@@ -261,9 +247,7 @@ CxTest_CxVolume::vUnit(
         }
     }
 
-    //-------------------------------------
-    // dtGetType
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxVolume::dtGetType, cullCaseLoops)
     {
         #if   xOS_ENV_WIN
             const std::tstring_t csVolumePath = xT("C:");

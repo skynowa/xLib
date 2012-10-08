@@ -24,10 +24,7 @@ CxTest_CxMutex::vUnit(
 {
     size_t uiVal = 0;
 
-
-    //--------------------------------------------------
-    // bLock, bUnlock
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxMutex::vLock CxMutex::vUnlock, cullCaseLoops)
     {
         CxMutex csCS;
 
@@ -39,9 +36,7 @@ CxTest_CxMutex::vUnit(
         csCS.vUnlock();
     }
 
-    //--------------------------------------------------
-    // bTryLock, bUnlock
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxMutex::vTryLock CxMutex::vUnlock, cullCaseLoops)
     {
         CxMutex csCS;
 
@@ -55,9 +50,7 @@ CxTest_CxMutex::vUnit(
         csCS.vUnlock();
     }
 
-    //--------------------------------------------------
-    // bLock, bUnlock
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxMutex::vLock CxMutex::vUnlock, cullCaseLoops)
     {
         CxMutex csCS;
 
@@ -76,9 +69,7 @@ CxTest_CxMutex::vUnit(
         }
     }
 
-    //--------------------------------------------------
-    // bTryLock, bUnlock
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxMutex::vTryLock CxMutex::vUnlock, cullCaseLoops)
     {
         CxMutex csCS;
 

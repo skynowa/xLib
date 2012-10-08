@@ -29,7 +29,7 @@ CxTest_CxCrc32::vUnit(
     const std::tstring_t csFilePath = sGetTempDirPath()  + CxConst::xSLASH + xT("Test.txt");;
 
     //-------------------------------------
-    //Prepare
+    // Prepare
     {
         CxFile flFile;
 
@@ -37,16 +37,12 @@ CxTest_CxCrc32::vUnit(
         flFile.vResize(1337LL);
     }
 
-    //-------------------------------------
-    //ulCalc
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxCrc32::ulCalc, cullCaseLoops)
     {
 
     }
 
-    //-------------------------------------
-    //ulCalcFile, sFormatHex
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxCrc32::ulCalcFile sFormatHex, cullCaseLoops)
     {
         m_ulRv = CxCrc32::ulCalcFile(csFilePath);
         xTEST_LESS(0UL, m_ulRv);
@@ -56,16 +52,12 @@ CxTest_CxCrc32::vUnit(
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    //-------------------------------------
-    //ulCalcFast
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxCrc32::ulCalcFast, cullCaseLoops)
     {
 
     }
 
-    //------------------------------------
-    //ulCalcFileFast, sFormatHex
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxCrc32::ulCalcFileFast sFormatHex, cullCaseLoops)
     {
         m_ulRv = CxCrc32::ulCalcFileFast(csFilePath);
         xTEST_LESS(0UL, m_ulRv);

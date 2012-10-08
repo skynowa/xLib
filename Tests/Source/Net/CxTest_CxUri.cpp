@@ -24,7 +24,7 @@ CxTest_CxUri::vUnit(
 {
     std::string m_sRv;
 
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxUri::getters, cullCaseLoops)
     {
         CxUri objUri("foo://userinfo@example.com:8042/over/there?name=ferret#nose");
 
@@ -56,7 +56,7 @@ CxTest_CxUri::vUnit(
         xTEST_EQ(std::string("nose"), m_sRv);
     }
 
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxUri::getters, cullCaseLoops)
     {
         CxUri objUri("foo://userinfo@example.com:8042/over/there?name=ferret");
 
@@ -88,7 +88,7 @@ CxTest_CxUri::vUnit(
         xTEST_EQ(std::string(""), m_sRv);
     }
 
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxUri::getters, cullCaseLoops)
     {
         CxUri objUri("foo://userinfo@example.com:8042/over/there");
 
@@ -120,7 +120,7 @@ CxTest_CxUri::vUnit(
         xTEST_EQ(std::string(""), m_sRv);
     }
 
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxUri::getters, cullCaseLoops)
     {
         CxUri objUri("foo://userinfo@example.com:8042");
 
@@ -152,7 +152,7 @@ CxTest_CxUri::vUnit(
         xTEST_EQ(std::string(""), m_sRv);
     }
 
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxUri::getters, cullCaseLoops)
     {
         CxUri objUri("foo://userinfo@example.com");
 
@@ -184,7 +184,7 @@ CxTest_CxUri::vUnit(
         xTEST_EQ(std::string(""), m_sRv);
     }
      
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxUri::getters, cullCaseLoops)
     {
         CxUri objUri("http://weather.yahoo.com/ukraine/kiev-city-municipality/kiev-924938/?unit=c");
 
@@ -216,7 +216,7 @@ CxTest_CxUri::vUnit(
         xTEST_EQ(std::string(""), m_sRv);
     }
 
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxUri::getters, cullCaseLoops)
     {
         CxUri objUri("http://dn1.berloga.net/83841/zombie_baseball_2.swf");
 
@@ -248,9 +248,7 @@ CxTest_CxUri::vUnit(
         xTEST_EQ(std::string(""), m_sRv);
     }
 
-    //-------------------------------------
-    //sEncode, sDecode
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxUri::sEncodeComponent CxUri::sDecodeComponent, cullCaseLoops)
     {
         const std::string sUri[] = {
             "http://dn1.berloga.net/83841/xxxxx.swf",

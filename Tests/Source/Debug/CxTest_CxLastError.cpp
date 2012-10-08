@@ -28,26 +28,20 @@ CxTest_CxLastError::vUnit(
         const ulong_t cuiMaxErrors = 132;    /*0...132*/
     #endif
 
-    //-------------------------------------
-    // ulGet
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxLastError::ulGet, cullCaseLoops)
     {
         (void)CxLastError::ulGet();
         xTEST_EQ(0UL, CxLastError::ulGet());
     }
 
-    //-------------------------------------
-    // sGet
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxLastError::sGet, cullCaseLoops)
     {
         m_sRv = CxLastError::sGet();
         xTEST_EQ(0UL,   CxLastError::ulGet());
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    //-------------------------------------
-    // bSet
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxLastError::vSet, cullCaseLoops)
     {
         const ulong_t caulData[] = {
             0UL,
@@ -64,9 +58,7 @@ CxTest_CxLastError::vUnit(
         }
     }
 
-    //-------------------------------------
-    // bReset
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxLastError::vReset, cullCaseLoops)
     {
         const ulong_t caulData[] = {
             0UL,
@@ -84,9 +76,7 @@ CxTest_CxLastError::vUnit(
         }
     }
 
-    //-------------------------------------
-    // sFormat
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxLastError::sFormat, cullCaseLoops)
     {
         const ulong_t caulData[] = {
             0UL,

@@ -31,9 +31,7 @@ CxTest_CxPkcs11::vUnit(
 
     /////nfNotif    = objSlot.nfWaitForEvent(0, &ulSlot, NULL_PTR);
 
-    //-------------------------------------
-    //bSetData
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxPkcs11::vSetData, cullCaseLoops)
     {
     //    const std::tstring_t csUserPin   = xT("1111");
     //    const std::tstring_t csDataLabel = xT("Label_Id");
@@ -44,9 +42,7 @@ CxTest_CxPkcs11::vUnit(
     //    xTEST_EQ(true, m_bRv);
     }
 
-    //-------------------------------------
-    //bGetData
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxPkcs11::vGetData, cullCaseLoops)
     {
     //    const std::tstring_t csUserPin   = xT("1111");
     //    const std::tstring_t csDataLabel = xT("Label_Id");
@@ -56,9 +52,7 @@ CxTest_CxPkcs11::vUnit(
     //    xTEST_EQ(true, m_bRv);
     }
 
-    //-------------------------------------
-    //
-    xTEST_CASE(cullCaseLoops)
+    xTEST_CASE(CxPkcs11::vSetData, cullCaseLoops)
     {
         const std::tstring_t csUserPin   = xT("1111");
         const std::tstring_t csDataLabel = xT("Key1.tkey");
