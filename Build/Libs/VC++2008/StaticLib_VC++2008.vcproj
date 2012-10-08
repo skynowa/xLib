@@ -330,6 +330,10 @@
 				RelativePath="..\..\..\Project\Include\xLib\Common\xTypes.h"
 				>
 			</File>
+			<File
+				RelativePath="..\..\..\Project\Include\xLib\Common\xVersion.h"
+				>
+			</File>
 			<Filter
 				Name="Win"
 				>
@@ -886,22 +890,6 @@
 				RelativePath="..\..\..\Project\Include\xLib\Test\CxTestManager.h"
 				>
 			</File>
-		</Filter>
-		<Filter
-			Name="Units"
-			>
-			<Filter
-				Name="Win"
-				>
-				<File
-					RelativePath="..\..\..\Project\Source\Units\Win\bGetUsbInfo.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\Project\Include\xLib\Units\Win\bGetUsbInfo.h"
-					>
-				</File>
-			</Filter>
 		</Filter>
 		<Filter
 			Name="Db"

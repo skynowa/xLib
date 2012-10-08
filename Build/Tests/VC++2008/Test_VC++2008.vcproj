@@ -358,10 +358,42 @@
 				<File
 					RelativePath="..\..\..\Tests\Source\Db\CxTest_CxMySql.cpp"
 					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						ExcludedFromBuild="true"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						ExcludedFromBuild="true"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\..\Tests\Include\Test\Db\CxTest_CxMySql.h"
 					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						ExcludedFromBuild="true"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						ExcludedFromBuild="true"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+						/>
+					</FileConfiguration>
 				</File>
 			</Filter>
 			<Filter
@@ -513,6 +545,14 @@
 				</File>
 				<File
 					RelativePath="..\..\..\Tests\Include\Test\Debug\CxTest_CxStdError.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Source\Debug\CxTest_xDebug.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Include\Test\Debug\CxTest_xDebug.h"
 					>
 				</File>
 			</Filter>
@@ -681,30 +721,6 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="Units"
-				>
-				<File
-					RelativePath="..\..\..\Tests\Source\Units\CxTest_Draft.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\Tests\Include\Test\Units\CxTest_Draft.h"
-					>
-				</File>
-				<Filter
-					Name="Win"
-					>
-					<File
-						RelativePath="..\..\..\Tests\Source\Units\Win\CxTest_bGetUsbInfo.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\..\Tests\Include\Test\Units\Win\CxTest_bGetUsbInfo.h"
-						>
-					</File>
-				</Filter>
-			</Filter>
-			<Filter
 				Name="Sync"
 				>
 				<File
@@ -809,6 +825,14 @@
 				</File>
 				<File
 					RelativePath="..\..\..\Tests\Include\Test\Sync\CxTest_CxThread.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Source\Sync\CxTest_CxThreadPool.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Include\Test\Sync\CxTest_CxThreadPool.h"
 					>
 				</File>
 				<File
@@ -1029,6 +1053,10 @@
 				</File>
 				<File
 					RelativePath="..\..\..\Project\Include\xLib\Common\xTypes.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\xVersion.h"
 					>
 				</File>
 				<Filter
@@ -1266,10 +1294,42 @@
 				<File
 					RelativePath="..\..\..\Project\Source\Db\CxMySql.cpp"
 					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						ExcludedFromBuild="true"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						ExcludedFromBuild="true"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+						/>
+					</FileConfiguration>
 				</File>
 				<File
 					RelativePath="..\..\..\Project\Include\xLib\Db\CxMySql.h"
 					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						ExcludedFromBuild="true"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						ExcludedFromBuild="true"
+						>
+						<Tool
+							Name="VCCustomBuildTool"
+						/>
+					</FileConfiguration>
 				</File>
 				<Filter
 					Name="Win"
@@ -1651,22 +1711,6 @@
 					RelativePath="..\..\..\Project\Include\xLib\Net\CxUri.h"
 					>
 				</File>
-			</Filter>
-			<Filter
-				Name="Units"
-				>
-				<Filter
-					Name="Win"
-					>
-					<File
-						RelativePath="..\..\..\Project\Source\Units\Win\bGetUsbInfo.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\..\Project\Include\xLib\Units\Win\bGetUsbInfo.h"
-						>
-					</File>
-				</Filter>
 			</Filter>
 			<Filter
 				Name="Test"

@@ -159,6 +159,7 @@ namespace NxLib { }
     #include <xLib/Common/xCommon_Unix.h>
 #endif
 
+#include <xLib/Common/xVersion.h>
 #include <xLib/Common/xTypes.h>
 #include <xLib/Common/xFunctions.h>
 #include <xLib/Common/CxConst.h>

@@ -11,15 +11,6 @@
 #include <limits.h>         // standard C libraries
 
 //--------------------------------------------------
-// xLib info
-#define xLIB_VERSION xT("1.0.000")
-    ///< xLib version
-#define xLIB_AUTHOR  xT("Skynowa")
-    ///< xLib author
-#define xLIB_DATE    xDATETIME
-    ///< xLib build datetime stamp
-
-//--------------------------------------------------
 // OS family
 #if defined(_WIN32) || defined(_WIN64) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(__WINDOWS__)
     #define xOS_WIN 1
