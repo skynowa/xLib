@@ -185,7 +185,6 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\Win\CxCompletionPort.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Test\CxTest.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Test\CxTestManager.h" />
-    <ClInclude Include="..\..\..\Project\Include\xLib\Units\Win\bGetUsbInfo.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Project\Include\xLib\Common\CxArray.inl" />
@@ -291,7 +290,6 @@
     <ClCompile Include="..\..\..\Project\Source\Sync\Win\CxCompletionPort.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Test\CxTest.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Test\CxTestManager.cpp" />
-    <ClCompile Include="..\..\..\Project\Source\Units\Win\bGetUsbInfo.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -99,9 +99,9 @@ CxTest_CxCurrentThread::vUnit(
     {
         const ulong_t caulData[] = {
             0,
-            1,
-            (std::numeric_limits<ulong_t>::min)(),
-            //(std::numeric_limits<ulong_t>::max)()
+            1
+            // ULONG_MIN,
+            // ULONG_MAX
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(caulData); ++ i) {
