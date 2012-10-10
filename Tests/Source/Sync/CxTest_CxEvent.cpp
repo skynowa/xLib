@@ -27,7 +27,7 @@ CxTest_CxEvent::vUnit(
         CxEvent objEvent(true, true);
 
         #if   xOS_ENV_WIN
-            xTEST_EQ(true, objEvent.hGet().bIsValid())
+            xTEST_EQ(true, objEvent.hHandle().bIsValid())
         #elif xOS_ENV_UNIX
             // TODO: hRv
         #endif

@@ -26,15 +26,15 @@ class CxIpcMutex :
                           CxIpcMutex();
         virtual          ~CxIpcMutex();
 
-        const handle_t &  hGet   () const;
+        const handle_t &  hHandle   () const;
             ///< get handle
-        void              vCreate(const std::tstring_t &csName);
+        void              vCreate   (const std::tstring_t &csName);
             ///< create
-        void              vOpen  (const std::tstring_t &csName);
+        void              vOpen     (const std::tstring_t &csName);
             ///< open
-        void              vLock  (const ulong_t &culTimeoutMsec) const;
+        void              vLock     (const ulong_t &culTimeoutMsec) const;
             ///< unlock by timeout in msec
-        void              vUnlock() const;
+        void              vUnlock   () const;
             ///< lock
 
     private:

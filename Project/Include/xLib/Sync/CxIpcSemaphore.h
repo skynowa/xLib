@@ -26,7 +26,7 @@ class CxIpcSemaphore :
                          CxIpcSemaphore();
         virtual         ~CxIpcSemaphore();
 
-        const handle_t & hGet          () const;
+        const handle_t & hHandle       () const;
             ///< get handle
         void             vCreate       (const long_t &cliInitialValue, const std::tstring_t &csName);
             ///< create

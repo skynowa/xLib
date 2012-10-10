@@ -37,7 +37,7 @@ CxIpcMutex::~CxIpcMutex() {
 }
 //---------------------------------------------------------------------------
 const CxIpcMutex::handle_t &
-CxIpcMutex::hGet() const {
+CxIpcMutex::hHandle() const {
     /*DEBUG*/
 
     return _m_hHandle;

@@ -16,7 +16,7 @@ class CxCurrentProcess :
     private CxNonCopyable
 {
     public:
-         static bool               bIsCurrent      (const CxProcess::id_t &culId);
+        static bool                bIsCurrent      (const CxProcess::id_t &culId);
             ///< is current id
         static CxProcess::id_t     ulId            ();
             ///< process ID of the calling process

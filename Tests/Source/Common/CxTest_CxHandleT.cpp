@@ -155,7 +155,7 @@ CxTest_CxHandleT::vUnit(
         #if xTODO
             CxHandle hHandle;
 
-            hHandle = CxCurrentProcess::hGetHandle();
+            hHandle = CxCurrentProcess::hHandle();
             xTEST_EQ(true, hHandle.bIsValid());
 
             hHandle.vSetInfo(HANDLE_FLAG_INHERIT, 0);
@@ -174,7 +174,7 @@ CxTest_CxHandleT::vUnit(
         #if xTODO
             CxHandle hHandle;
 
-            hHandle = CxCurrentProcess::hGetHandle();
+            hHandle = CxCurrentProcess::hHandle();
             xTEST_EQ(true, hHandle.bIsValid());
 
             hHandle.vSetInfo(HANDLE_FLAG_PROTECT_FROM_CLOSE, 0);

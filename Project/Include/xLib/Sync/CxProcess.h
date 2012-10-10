@@ -52,7 +52,7 @@ class CxProcess :
         void            vKill          (const ulong_t &culTimeout);
             ///< kills the calling process and all of its threads
 
-        handle_t        hGet           () const;
+        handle_t        hHandle        () const;
             ///< get handle
         id_t            ulId           () const;
             ///< get ID

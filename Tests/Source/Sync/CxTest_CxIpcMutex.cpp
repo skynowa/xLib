@@ -31,7 +31,7 @@ CxTest_CxIpcMutex::vUnit(
 
         CxIpcMutex::handle_t hRv;
 
-        hRv = mtMutex.hGet();
+        hRv = mtMutex.hHandle();
         ////xTEST_EQ(false, hRv.bIsValid());
     }
 

@@ -28,7 +28,7 @@ class CxMutex :
         virtual          ~CxMutex ();
             ///< destructor
 
-        const handle_t &  hGet    () const;
+        const handle_t &  hHandle () const;
             ///< get handle
         void              vCreate ();
             ///< create
