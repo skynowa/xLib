@@ -126,7 +126,7 @@ CxSystemInfo::sFormatOsType(
         default:                        { sRv = CxConst::xUNKNOWN_STRING;         }    break;
     }
 #elif xOS_ENV_UNIX
-    if (osGetOS() == a_otOsType) {
+    if (osOS() == a_otOsType) {
         // current OS type - get info about OS kernel
         utsname unKernelInfo= {{0}};
 
@@ -402,7 +402,7 @@ CxSystemInfo::sUserShellPath() {
 
 #if   xOS_ENV_WIN
     LPITEMIDLIST pidl = {0};
-    
+
     HRESULT hrRv = ::SHGetSpecialFolderLocation(NULL, CSIDL_WINDOWS, &pidl);
     xTEST_EQ(S_OK, hrRv);
 
@@ -544,7 +544,7 @@ CxSystemInfo::cvCpuVendor() {
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         // target proc line: "vendor_id : GenuineIntel"
-        sValue = CxPath::sGetProcValue(xT("/proc/cpuinfo"), xT("vendor_id"));
+        sValue = CxPath::sProcValue(xT("/proc/cpuinfo"), xT("vendor_id"));
         /*DEBUG*/xTEST_EQ(false, sValue.empty());
     #elif xOS_FREEBSD
         // Use gcc 4.4 provided cpuid intrinsic
@@ -649,7 +649,7 @@ CxSystemInfo::sCpuModel() {
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         // target proc line: "model name    : Intel(R) Xeon(R) CPU           E5620  @ 2.40GHz"
-        std::tstring_t sValue = CxPath::sGetProcValue(xT("/proc/cpuinfo"), xT("model name"));
+        std::tstring_t sValue = CxPath::sProcValue(xT("/proc/cpuinfo"), xT("model name"));
         /*DEBUG*/xTEST_EQ(false, sValue.empty());
 
         sRv = sValue;
@@ -698,7 +698,7 @@ CxSystemInfo::ulCpuSpeed() {
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         // target proc line: "cpu MHz         : 2796.380"
-        std::tstring_t sValue = CxPath::sGetProcValue(xT("/proc/cpuinfo"), xT("cpu MHz"));
+        std::tstring_t sValue = CxPath::sProcValue(xT("/proc/cpuinfo"), xT("cpu MHz"));
         /*DEBUG*/xTEST_EQ(false, sValue.empty());
 
         double dCpuSpeedMHz = CxString::string_cast<double>( sValue );
