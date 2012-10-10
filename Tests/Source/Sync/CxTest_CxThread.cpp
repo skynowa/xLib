@@ -251,7 +251,7 @@ CxTest_CxThread::vUnit(
 
     xTEST_CASE(CxThread::hGet, cullCaseLoops)
     {
-        CxThread::handle_t hRv = pthT->hGet();
+        CxThread::handle_t hRv = pthT->hHandle();
         xTEST_DIFF(0UL, (ulong_t)hRv);
     }
 

@@ -56,7 +56,7 @@ CxIpcSemaphore::~CxIpcSemaphore() {
 }
 //---------------------------------------------------------------------------
 const CxIpcSemaphore::handle_t &
-CxIpcSemaphore::hGet() const {
+CxIpcSemaphore::hHandle() const {
     /*DEBUG*/xTEST_EQ(true, _bIsValid());
 
     return _m_hHandle;

@@ -45,7 +45,7 @@ class CxEvent :
         virtual          ~CxEvent    ();
             ///< destructor
 
-        const handle_t &  hGet       () const;
+        const handle_t &  hHandle    () const;
             ///< get handle
         void              vSet       ();
             ///< signal the event for the waiting thread (!!! unlock !!!)

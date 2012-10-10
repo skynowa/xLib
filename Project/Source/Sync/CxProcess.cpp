@@ -168,7 +168,7 @@ CxProcess::vKill(
 }
 //---------------------------------------------------------------------------
 CxProcess::handle_t
-CxProcess::hGet() const {
+CxProcess::hHandle() const {
     /*DEBUG*/
 
     return _m_hHandle;

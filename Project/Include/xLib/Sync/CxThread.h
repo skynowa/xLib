@@ -124,7 +124,7 @@ class CxThread :
             ///< get CPU count on machine
 
         // other
-        handle_t             hGet                 () const;
+        handle_t             hHandle              () const;
             ///< get handle
         id_t                 ulGetId              () const;
             ///< get ID

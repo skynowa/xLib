@@ -58,7 +58,7 @@ CxTest_CxCurrentThread::vUnit(
         xTEST_LESS(0UL, (ulong_t)idRes);
     }
 
-    xTEST_CASE(CxCurrentThread::hGetHandle, cullCaseLoops)
+    xTEST_CASE(CxCurrentThread::hHandle, cullCaseLoops)
     {
         CxThread::handle_t hRv = CxCurrentThread::hHandle();
         xTEST_DIFF(0UL, (ulong_t)hRv);
@@ -70,7 +70,7 @@ CxTest_CxCurrentThread::vUnit(
         xTEST_LESS(0UL, (ulong_t)idRes);
     }
 
-    xTEST_CASE(CxCurrentThread::hGetHandle, cullCaseLoops)
+    xTEST_CASE(CxCurrentThread::hHandle, cullCaseLoops)
     {
         CxThread::handle_t hRv = CxCurrentThread::hHandle();
         xTEST_LESS((ulong_t)0, (ulong_t)hRv);

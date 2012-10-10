@@ -818,7 +818,7 @@ CxThread::ulCpuCount() {
 
 //---------------------------------------------------------------------------
 CxThread::handle_t
-CxThread::hGet() const {
+CxThread::hHandle() const {
 #if   xOS_ENV_WIN
     /*DEBUG*/xTEST_EQ(true, _m_hThread.bIsValid());
 

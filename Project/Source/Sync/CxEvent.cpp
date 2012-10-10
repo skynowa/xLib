@@ -58,7 +58,7 @@ CxEvent::~CxEvent() {
 }
 //---------------------------------------------------------------------------
 const CxEvent::handle_t &
-CxEvent::hGet() const {
+CxEvent::hHandle() const {
     /*DEBUG*/
 
 #if   xOS_ENV_WIN
@@ -75,7 +75,7 @@ CxEvent::vSet() {
     /*DEBUG*/xTEST_EQ(true, _m_hEvent.bIsValid());
     /*DEBUG*/
 
-    BOOL blRes = ::SetEvent(hGet().hGet());
+    BOOL blRes = ::SetEvent(hHandle().hGet());
     /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     {
@@ -100,7 +100,7 @@ CxEvent::vReset() {
     /*DEBUG*/xTEST_EQ(true, _m_hEvent.bIsValid());
     /*DEBUG*/
 
-    BOOL blRes = ::ResetEvent(hGet().hGet());
+    BOOL blRes = ::ResetEvent(hHandle().hGet());
     /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     {
@@ -123,7 +123,7 @@ CxEvent::osWait(
 #if   xOS_ENV_WIN
     /*DEBUG*/xTEST_EQ(true, _m_hEvent.bIsValid());
 
-    osRes = static_cast<ExObjectState>( ::WaitForSingleObject(hGet().hGet(), a_culTimeout) );
+    osRes = static_cast<ExObjectState>( ::WaitForSingleObject(hHandle().hGet(), a_culTimeout) );
 #elif xOS_ENV_UNIX
     {
         CxAutoMutex amtAutoMutex(_m_mtMutex);
@@ -205,7 +205,7 @@ CxEvent::bIsSignaled() {
     bool bRv = false;
 
 #if   xOS_ENV_WIN
-    DWORD dwRv = ::WaitForSingleObject(hGet().hGet(), 0UL);
+    DWORD dwRv = ::WaitForSingleObject(hHandle().hGet(), 0UL);
     /*DEBUG*/// n/a
 
     bRv = (false != _m_hEvent.bIsValid() && osSignaled == dwRv);

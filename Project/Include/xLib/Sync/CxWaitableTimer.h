@@ -22,7 +22,7 @@ class CxWaitableTimer  :
                  CxWaitableTimer();
         virtual ~CxWaitableTimer();
 
-        HANDLE   hGetHandle     () const;
+        HANDLE   hHandle        () const;
         void     vCreate        (const bool &cbManualReset, const std::tstring_t &csName/* = NULL*/, const LPSECURITY_ATTRIBUTES pcsaTimerAttributes/* = NULL*/);
         void     vOpen          (const std::tstring_t &csName, const ulong_t &culDesiredAccess = TIMER_ALL_ACCESS, const bool &cbInheritHandle = false);
         void     vCancel        () const;
@@ -30,7 +30,7 @@ class CxWaitableTimer  :
         void     vWait          (const ulong_t &ulTimeout) const;
 
     private:
-        CxHandle _m_hWaitableTimer;
+        CxHandle _m_hHandle;
 };
 
 xNAMESPACE_END(NxLib)
