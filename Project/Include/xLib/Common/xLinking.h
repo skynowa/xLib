@@ -8,8 +8,8 @@
 #define xLib_Common_xLinkingH
 //---------------------------------------------------------------------------
 #if   xOS_ENV_WIN
-    #if !defined(_LIB) && xIS_AUTO_LINKING
-        #if defined(NDEBUG)
+    #if !xLIB && xIS_AUTO_LINKING
+        #if xBUILD_RELEASE
             //release
             #if xUNICODE
                 #pragma comment(lib, "xLibW_Release.lib")
