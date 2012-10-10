@@ -22,15 +22,15 @@ CxTest_CxCurrentProcess::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    xTEST_CASE(CxCurrentProcess::ulGetCurrId, cullCaseLoops)
+    xTEST_CASE(CxCurrentProcess::ulCurrId, cullCaseLoops)
     {
-        CxProcess::id_t ulRv = CxCurrentProcess::ulGetId();
+        CxProcess::id_t ulRv = CxCurrentProcess::ulId();
         xTEST_LESS(0UL, (ulong_t)ulRv);
     }
 
-    xTEST_CASE(CxCurrentProcess::ulGetCurrParentId, cullCaseLoops)
+    xTEST_CASE(CxCurrentProcess::ulCurrParentId, cullCaseLoops)
     {
-        CxProcess::id_t ulRv = CxCurrentProcess::ulGetParentId();
+        CxProcess::id_t ulRv = CxCurrentProcess::ulParentId();
         xTEST_LESS(0UL, (ulong_t)ulRv);
     }
 }

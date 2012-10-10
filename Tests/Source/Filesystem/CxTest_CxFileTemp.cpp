@@ -31,12 +31,12 @@ CxTest_CxFileTemp::vUnit(
         CxFileTemp ftFileTemp(true);
         CxFile     fJobber;
 
-        ftFileTemp.vCreate(CxPath::sGetExe(), sGetTempDirPath() + CxConst::xSLASH + xT("Temp"), &fJobber);
+        ftFileTemp.vCreate(CxPath::sExe(), sTempDirPath() + CxConst::xSLASH + xT("Temp"), &fJobber);
         #if 0
             xTRACEV(xT("\tsTemp: %s"), fJobber.sGetPath().c_str());
         #endif
 
-        m_llRv = fJobber.llGetSize();
+        m_llRv = fJobber.llSize();
         xTEST_EQ(0LL, m_llRv);
 
         fJobber.vWriteLine(xT("qwertyuiop"));

@@ -118,7 +118,7 @@ xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
     {
         std::vec_tstring_t vsArgs;
 
-        CxCommandLine::vGetArgs(&vsArgs);
+        CxCommandLine::vArgs(&vsArgs);
 
         // usage
         if (2 == iArgCount) {

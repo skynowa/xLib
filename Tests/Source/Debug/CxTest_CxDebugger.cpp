@@ -29,17 +29,17 @@ CxTest_CxDebugger::vUnit(
 
         CxDebugger dbgDebugger;
 
-        m_bRv = dbgDebugger.bGetEnabled();
+        m_bRv = dbgDebugger.bIsEnabled();
         xTEST_EQ(cbTrue, m_bRv);
 
         dbgDebugger.vSetEnabled(cbFalse);
 
-        m_bRv = dbgDebugger.bGetEnabled();
+        m_bRv = dbgDebugger.bIsEnabled();
         xTEST_EQ(cbFalse, m_bRv);
 
         dbgDebugger.vSetEnabled(cbTrue);
 
-        m_bRv = dbgDebugger.bGetEnabled();
+        m_bRv = dbgDebugger.bIsEnabled();
         xTEST_EQ(cbTrue, m_bRv);
     }
 
@@ -77,17 +77,17 @@ CxTest_CxDebugger::vUnit(
 
         CxDebugger dbgDebugger;
 
-        m_sRv = dbgDebugger.sGetLogPath();
+        m_sRv = dbgDebugger.sLogPath();
         xTEST_EQ(true, m_sRv.empty());
 
         dbgDebugger.vSetLogPath(csFilePath);
 
-        m_sRv = dbgDebugger.sGetLogPath();
+        m_sRv = dbgDebugger.sLogPath();
         xTEST_EQ(csFilePath, m_sRv);
 
         dbgDebugger.vSetLogPath(xT(""));
 
-        m_sRv = dbgDebugger.sGetLogPath();
+        m_sRv = dbgDebugger.sLogPath();
         xTEST_EQ(true, m_sRv.empty());
     }
 

@@ -164,7 +164,7 @@ CxRandom::vSetSeed() {
 //---------------------------------------------------------------------------
 /* static */
 long_t
-CxRandom::liGetInt(
+CxRandom::liInt(
     const long_t &a_cliMin,
     const long_t &a_cliMax
 )
@@ -184,7 +184,7 @@ CxRandom::liGetInt(
 //---------------------------------------------------------------------------
 /* static */
 long_t
-CxRandom::liGetIntEx(
+CxRandom::liIntEx(
     const long_t &a_cliMin,
     const long_t &a_cliMax
 )
@@ -206,7 +206,7 @@ CxRandom::liGetIntEx(
 //---------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxRandom::sGetString(
+CxRandom::sString(
     const size_t &a_cuiLength
 )
 {
@@ -254,7 +254,7 @@ CxRandom::sGetString(
 
     const size_t cuiPossibilitiesNum = sAllPossible.length();
     for (size_t i = 0; i < a_cuiLength; ++ i) {
-        sRv.push_back( sAllPossible.at( liGetInt(0, cuiPossibilitiesNum) ) );
+        sRv.push_back( sAllPossible.at( liInt(0, cuiPossibilitiesNum) ) );
     }
 
     return sRv;

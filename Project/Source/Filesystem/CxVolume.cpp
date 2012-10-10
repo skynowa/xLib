@@ -66,7 +66,7 @@ CxVolume::bIsReady(
     uiOldErrorMode = ::SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOALIGNMENTFAULTEXCEPT | SEM_NOGPFAULTERRORBOX | SEM_NOOPENFILEERRORBOX);
     /*DEBUG*/// n/a
 
-    sOldDirPath  = CxDir::sGetCurrent();
+    sOldDirPath  = CxDir::sCurrent();
     /*DEBUG*/// n/a
 
     bRv = !!::SetCurrentDirectory(sVolumePath.c_str());
@@ -102,7 +102,7 @@ CxVolume::bIsEmpty(
 //--------------------------------------------------------------------------
 /* static */
 void
-CxVolume::vGetSpace(
+CxVolume::vSpace(
     const std::tstring_t &csDirPath,
     ulonglong_t          *pullAvailable,   ///< for unprivileged users
     ulonglong_t          *pullTotal,
@@ -119,7 +119,7 @@ CxVolume::vGetSpace(
     std::tstring_t _sDirPath;
 
     if (true == csDirPath.empty()) {
-        _sDirPath = CxPath::sGetExeDir();
+        _sDirPath = CxPath::sExeDir();
     } else {
         _sDirPath = csDirPath;
     }
@@ -221,7 +221,7 @@ CxVolume::vUnMount(
 //--------------------------------------------------------------------------
 /* static */
 void
-CxVolume::vGetPaths(
+CxVolume::vPaths(
     std::vec_tstring_t *pvsVolumePaths
 )
 {
@@ -277,7 +277,7 @@ CxVolume::vGetPaths(
 //--------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxVolume::sGetLabel(
+CxVolume::sLabel(
     const std::tstring_t &csVolumePath
 )
 {
@@ -320,7 +320,7 @@ CxVolume::sGetLabel(
 //--------------------------------------------------------------------------
 /* static */
 CxVolume::ExType
-CxVolume::dtGetType(
+CxVolume::dtType(
     const std::tstring_t &csVolumePath
 )
 {

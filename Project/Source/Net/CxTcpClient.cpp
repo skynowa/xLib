@@ -131,7 +131,7 @@ CxTcpClient::vSetNonBlockingMode(
 }
 //---------------------------------------------------------------------------
 void
-CxTcpClient::vGetTimeout(
+CxTcpClient::vTimeout(
     long_t *a_pliSec,
     long_t *a_pliMicroSec
 )
@@ -196,7 +196,7 @@ CxTcpClient::bIsServerAlive(
     saSockAddr.sin_port        = htons(a_cusPort); //TODO: htons
 
     //connect - [+] 0 [-] SOCKET_ERROR
-    iRv = ::connect(objSocket.iGetSocket(), CxUtils::reinterpretCastT<sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
+    iRv = ::connect(objSocket.iHandle(), CxUtils::reinterpretCastT<sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
     /*DEBUG*/// n/a
 
     xCHECK_RET(0 != iRv, false);

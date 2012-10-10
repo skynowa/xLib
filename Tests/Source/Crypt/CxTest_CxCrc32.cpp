@@ -26,7 +26,7 @@ CxTest_CxCrc32::vUnit(
 {
     /*DEBUG*/
 
-    const std::tstring_t csFilePath = sGetTempDirPath()  + CxConst::xSLASH + xT("Test.txt");;
+    const std::tstring_t csFilePath = sTempDirPath()  + CxConst::xSLASH + xT("Test.txt");;
 
     //-------------------------------------
     // Prepare

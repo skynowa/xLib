@@ -152,7 +152,7 @@ CxProcess::vKill(
     /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 
     for ( ; ; ) {
-        ulong_t ulRv = ulGetExitStatus();
+        ulong_t ulRv = ulExitStatus();
         xCHECK_DO(STILL_ACTIVE != ulRv, break);
 
         CxCurrentThread::vSleep(a_culTimeout);
@@ -175,7 +175,7 @@ CxProcess::hGet() const {
 }
 //---------------------------------------------------------------------------
 CxProcess::id_t
-CxProcess::ulGetId() const {
+CxProcess::ulId() const {
     /*DEBUG*/
 
     return _m_ulPid;
@@ -185,11 +185,11 @@ bool
 CxProcess::bIsCurrent() const {
     /*DEBUG*/
 
-    return CxCurrentProcess::bIsCurrent( CxCurrentProcess::ulGetId() );
+    return CxCurrentProcess::bIsCurrent( CxCurrentProcess::ulId() );
 }
 //---------------------------------------------------------------------------
 ulong_t
-CxProcess::ulGetExitStatus() const {
+CxProcess::ulExitStatus() const {
     /*DEBUG*/
 
     ulong_t ulRv = 0UL;
@@ -214,7 +214,7 @@ CxProcess::ulGetExitStatus() const {
 //---------------------------------------------------------------------------
 /* static */
 CxProcess::id_t
-CxProcess::ulGetIdByHandle(
+CxProcess::ulIdByHandle(
     const handle_t &a_chHandle    ///< handle
 )
 {
@@ -232,7 +232,7 @@ CxProcess::ulGetIdByHandle(
 //---------------------------------------------------------------------------
 /* static */
 CxProcess::handle_t
-CxProcess::ulGetHandleById(
+CxProcess::ulHandleById(
     const id_t &a_culId   ///< ID
 )
 {

@@ -22,15 +22,15 @@ CxTest_CxLocale::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    xTEST_CASE(CxLocale::sGetCurrent, cullCaseLoops)
+    xTEST_CASE(CxLocale::sCurrent, cullCaseLoops)
     {
-        m_sRv = CxLocale::sGetCurrent();
+        m_sRv = CxLocale::sCurrent();
         xTEST_EQ(false, m_sRv.empty());
     }
 
     xTEST_CASE(CxLocale::vSetCurrent, cullCaseLoops)
     {
-        CxLocale::vSetCurrent( CxLocale::sGetCurrent() );
+        CxLocale::vSetCurrent( CxLocale::sCurrent() );
     }
 
     xTEST_CASE(CxLocale::vSetDefault, cullCaseLoops)
@@ -40,7 +40,7 @@ CxTest_CxLocale::vUnit(
 
     xTEST_CASE(CxLocale::vSetCurrent, cullCaseLoops)
     {
-        CxLocale::vSetCurrent(CxLocale::sGetCurrent());
+        CxLocale::vSetCurrent(CxLocale::sCurrent());
     }
 }
 //---------------------------------------------------------------------------

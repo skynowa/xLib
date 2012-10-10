@@ -49,7 +49,7 @@ class CxAtomicLongInt :
         CxAtomicLongInt & operator ++    (const int ciValue);
         CxAtomicLongInt & operator --    (const int ciValue);
 
-        long_t            liGetValue     () const;
+        long_t            liValue        () const;
 
     private:
         volatile long_t  _m_liValue;

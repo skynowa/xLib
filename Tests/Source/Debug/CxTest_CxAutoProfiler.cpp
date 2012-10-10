@@ -39,7 +39,7 @@ CxTest_CxAutoProfiler::vUnit(
     xTEST_CASE(CxAutoProfiler::CxAutoProfiler, cullCaseLoops)
     {
         for (size_t i = 0; i < xARRAY_SIZE(pmPerformMode); ++ i) {
-            CxAutoProfiler _apfAP(sGetTempDirPath() + CxConst::xSLASH + xT("__FuncLog.log"), pmPerformMode[i], xT("%i"), 777);
+            CxAutoProfiler _apfAP(sTempDirPath() + CxConst::xSLASH + xT("__FuncLog.log"), pmPerformMode[i], xT("%i"), 777);
 
             for (size_t x = 0; x < 2; ++ x) {
                 for (size_t y = 0; y < 2; ++ y) {

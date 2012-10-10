@@ -33,7 +33,7 @@ class CxTcpClient :
             ///< controls the i/o mode
         void        vSetNonBlockingMode(const bool &cbFlag);
             ///< set nonblocking mode
-        void        vGetTimeout        (long_t *pliSec, long_t *pliMicroSec);
+        void        vTimeout           (long_t *pliSec, long_t *pliMicroSec);
             ///< get timeout
         void        vSetTimeout        (const long_t &cliSec, const long_t &cliMicroSec);
             ///< set timeout

@@ -24,7 +24,7 @@ class CxDebugger :
         virtual              ~CxDebugger      ();
             ///< destructor
 
-        bool                  bGetEnabled     ();
+        bool                  bIsEnabled     ();
             ///< is debugging enabled
         void                  vSetEnabled     (const bool &cbFlag);
             ///< set debugging mode on/off
@@ -36,7 +36,7 @@ class CxDebugger :
             ///< attach to OS debugger
         void                  vSetLogPath     (const std::tstring_t &csFilePath);
             ///< set log file path
-        std::tstring_t        sGetLogPath     ();
+        std::tstring_t        sLogPath        ();
             ///< get log file path
         void                  vReportMake     (const CxErrorReport &crpReport);
             ///< make report

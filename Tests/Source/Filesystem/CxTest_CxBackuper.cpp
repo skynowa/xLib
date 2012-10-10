@@ -25,8 +25,8 @@ CxTest_CxBackuper::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    const std::tstring_t csFilePath  = sGetTempDirPath() + CxConst::xSLASH + xT("Test.txt");
-    const std::tstring_t csBackupDir = sGetTempDirPath() + CxConst::xSLASH + xT("Backup_dir");
+    const std::tstring_t csFilePath  = sTempDirPath() + CxConst::xSLASH + xT("Test.txt");
+    const std::tstring_t csBackupDir = sTempDirPath() + CxConst::xSLASH + xT("Backup_dir");
 
 
     xTEST_CASE(CxBackuper::etExecute, cullCaseLoops)

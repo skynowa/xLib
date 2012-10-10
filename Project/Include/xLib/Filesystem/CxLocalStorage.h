@@ -28,7 +28,7 @@ class CxLocalStorage :
         //creation
         void                   vCreateDefault (const std::tstring_t &csContent) const;
             ///< create default file
-        std::tstring_t         sGetPath       () const;
+        std::tstring_t         sPath          () const;
             ///< get file path
         void                   vSetPath       (const std::tstring_t &csFilePath);
             ///< set file path

@@ -83,7 +83,7 @@ CxDll::bIsProcExists(
 }
 //---------------------------------------------------------------------------
 CxDll::proc_address_t
-CxDll::fpGetProcAddress(
+CxDll::fpProcAddress(
     const std::tstring_t &csProcName
 ) const
 {

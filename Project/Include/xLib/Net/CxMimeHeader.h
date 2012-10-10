@@ -20,7 +20,7 @@ class CxMimeHeader :
                               ~CxMimeHeader      ();
 
         void                   vParse            (const std::tstring_t &csRawHeader);
-        std::tstring_t         sGetField         (const std::tstring_t &csName);
+        std::tstring_t         sField            (const std::tstring_t &csName);
         size_t                 uiCount           ();
         void                   vLoadFromFile     (const std::tstring_t &csRawMessageFilePath);
         void                   vSaveToFile       (const std::tstring_t &csFilePath);

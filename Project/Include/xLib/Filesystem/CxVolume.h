@@ -22,15 +22,15 @@ class CxVolume :
             ///< is ready
         static bool           bIsEmpty (const std::tstring_t &csVolumePath);
             ///< is empty
-        static void           vGetSpace(const std::tstring_t &csDirPath, ulonglong_t *pullAvailable, ulonglong_t *pullTotal, ulonglong_t *pullFree);
+        static void           vSpace   (const std::tstring_t &csDirPath, ulonglong_t *pullAvailable, ulonglong_t *pullTotal, ulonglong_t *pullFree);
             ///< get free space
         static void           vMount   (const std::tstring_t &csSourcePath, const std::tstring_t &csDestPath);
             ///< mount
         static void           vUnMount (const std::tstring_t &csSourcePath, const bool &cbIsForce);
             ///< unmount
-        static void           vGetPaths(std::vec_tstring_t *pvsVolumePaths);
+        static void           vPaths   (std::vec_tstring_t *pvsVolumePaths);
             ///< get paths
-        static std::tstring_t sGetLabel(const std::tstring_t &csVolumePath);
+        static std::tstring_t sLabel   (const std::tstring_t &csVolumePath);
             ///< get label
 
         enum ExType
@@ -56,7 +56,7 @@ class CxVolume :
             #endif
         };
 
-        static ExType         dtGetType(const std::tstring_t &csVolumePath);
+        static ExType         dtType   (const std::tstring_t &csVolumePath);
 
     private:
                               CxVolume ();

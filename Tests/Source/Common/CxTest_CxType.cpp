@@ -26,7 +26,7 @@ CxTest_CxType::vUnit(
     {
         std::tstring_t sObject;
 
-        m_sRv = CxType::sGetName(sObject);
+        m_sRv = CxType::sName(sObject);
         xTEST_EQ(false, m_sRv.empty());
     }
 
@@ -34,7 +34,7 @@ CxTest_CxType::vUnit(
     {
         std::tstring_t sObject;
 
-        m_sRv = CxType::sGetRawName(sObject);
+        m_sRv = CxType::sRawName(sObject);
         xTEST_EQ(false, m_sRv.empty())
     }
 

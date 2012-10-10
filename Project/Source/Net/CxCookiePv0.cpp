@@ -57,7 +57,7 @@ CxCookiePv0::~CxCookiePv0() {
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCookiePv0::sGetName() const {
+CxCookiePv0::sName() const {
     /*DEBUG*/
 
     return _m_sName;
@@ -74,7 +74,7 @@ CxCookiePv0::vSetName(
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCookiePv0::sGetValue() const {
+CxCookiePv0::sValue() const {
     /*DEBUG*/
 
     return _m_sValue;
@@ -89,7 +89,7 @@ CxCookiePv0::vSetValue(
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCookiePv0::sGetDomain() const {
+CxCookiePv0::sDomain() const {
     /*DEBUG*/
 
     return _m_sDomain;
@@ -106,7 +106,7 @@ CxCookiePv0::vSetDomain(
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCookiePv0::sGetPath() const {
+CxCookiePv0::sPath() const {
     /*DEBUG*/
 
     return _m_sPath;
@@ -123,7 +123,7 @@ CxCookiePv0::vSetPath(
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCookiePv0::sGetExpires() const {
+CxCookiePv0::sExpires() const {
     /*DEBUG*/
 
     return _m_sExpires;
@@ -216,9 +216,9 @@ CxCookiePv0::sToString() const {
     return sRv;
 }
 //---------------------------------------------------------------------------
-//TODO: sGetDump make tests
+//TODO: sDump make tests
 std::tstring_t
-CxCookiePv0::sGetDump() const {
+CxCookiePv0::sDump() const {
     /*DEBUG*/
 
     std::tstring_t sRv;
@@ -232,11 +232,11 @@ CxCookiePv0::sGetDump() const {
             xT("Expires: %s\n")
             xT("Secure: %s\n")
             xT("HttpOnly: %s\n\n"),
-            sGetName().c_str(),
-            sGetValue().c_str(),
-            sGetDomain().c_str(),
-            sGetPath().c_str(),
-            sGetExpires().c_str(),
+            sName().c_str(),
+            sValue().c_str(),
+            sDomain().c_str(),
+            sPath().c_str(),
+            sExpires().c_str(),
             CxString::sBoolToStr(bGetSecure()).c_str(),
             CxString::sBoolToStr(bGetHttpOnly()).c_str()
     );

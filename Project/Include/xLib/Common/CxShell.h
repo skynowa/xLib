@@ -130,7 +130,7 @@ class CxShell :
             ///< execute FTP
         static void           vExecuteEmail     (const std::tstring_t &csToEmail, const std::tstring_t &csSubject, const std::tstring_t &csBody);
             ///< execute email
-        static std::tstring_t sGetSpecialDirPath(const ESpecialDir &csfDir, const HANDLE &chToken);
+        static std::tstring_t sSpecialDirPath   (const ESpecialDir &csfDir, const HANDLE &chToken);
             ///< get special dir path
         static void           vCreateShortcut   (const std::tstring_t &csShortCutFilePath,
                                                  const std::tstring_t &csFilePath,

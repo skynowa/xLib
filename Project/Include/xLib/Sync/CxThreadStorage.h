@@ -23,7 +23,7 @@ class CxThreadStorage :
 
         bool     bIsSet         () const;
 
-        void    *pvGetValue     () const;
+        void    *pvValue        () const;
             ///< get the value
         void     vSetValue      (void *pvValue) const;
             ///< set value

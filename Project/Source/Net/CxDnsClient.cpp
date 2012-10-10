@@ -19,7 +19,7 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 /* static */
 void
-CxDnsClient::vGetHostAddrByName(
+CxDnsClient::vHostAddrByName(
     const std::tstring_t &a_csHostName,
     std::tstring_t       *a_psHostAddr
 )
@@ -49,7 +49,7 @@ CxDnsClient::vGetHostAddrByName(
 //---------------------------------------------------------------------------
 /* static */
 void
-CxDnsClient::vGetHostNameByAddr(
+CxDnsClient::vHostNameByAddr(
     const std::tstring_t            &a_csHostAddr,
     const CxSocket::ExAddressFamily &a_afFamily,
     std::tstring_t                  *a_psHostName
@@ -99,7 +99,7 @@ CxDnsClient::vGetHostNameByAddr(
 //---------------------------------------------------------------------------
 /* static */
 void
-CxDnsClient::vGetLocalHostName(
+CxDnsClient::vLocalHostName(
     std::tstring_t *a_psHostName
 )
 {
@@ -118,7 +118,7 @@ CxDnsClient::vGetLocalHostName(
 //---------------------------------------------------------------------------
 /* static */
 void
-CxDnsClient::vGetNameInfo(
+CxDnsClient::vNameInfo(
     CxSocket::ExAddressFamily &a_afFamily,
     const std::tstring_t      &a_csHostAddr,
     const ushort_t            &a_usPort
@@ -149,7 +149,7 @@ CxDnsClient::vGetNameInfo(
 //NOTE: http://www.geekpage.jp/en/programming/linux-network/getaddrinfo-0.php
 /* static */
 void
-CxDnsClient::vGetHostAddrInfo(
+CxDnsClient::vHostAddrInfo(
     const std::tstring_t  &a_csHostName,
     const std::tstring_t  &a_csPort,
     const addrinfo_t      *a_pHints,
@@ -167,7 +167,7 @@ CxDnsClient::vGetHostAddrInfo(
 //---------------------------------------------------------------------------
 /* static */
 void
-CxDnsClient::vGetProtocolByName(
+CxDnsClient::vProtocolByName(
     const std::tstring_t &a_csProtocolName,
     std::tstring_t       *a_psName,
     std::vec_tstring_t   *a_pvsAliases,
@@ -217,7 +217,7 @@ CxDnsClient::vGetProtocolByName(
 //---------------------------------------------------------------------------
 /* static */
 void
-CxDnsClient::vGetProtocolByNumber(
+CxDnsClient::vProtocolByNumber(
     const short_t      &a_siNumber,
     std::tstring_t     *a_psName,
     std::vec_tstring_t *a_pvsAliases,
@@ -264,7 +264,7 @@ CxDnsClient::vGetProtocolByNumber(
 //---------------------------------------------------------------------------
 /* static */
 void
-CxDnsClient::vGetServiceByName(
+CxDnsClient::vServiceByName(
     const std::tstring_t &a_csServiceName,
     const std::tstring_t &a_csProtocolName,
     std::tstring_t       *a_psName,
@@ -324,7 +324,7 @@ CxDnsClient::vGetServiceByName(
 //---------------------------------------------------------------------------
 /* static */
 void
-CxDnsClient::vGetServiceByPort(
+CxDnsClient::vServiceByPort(
     const short_t        &a_siPort,
     const std::tstring_t &a_csProtocolName,
     std::tstring_t       *a_psName,

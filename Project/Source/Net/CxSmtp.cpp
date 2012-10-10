@@ -68,7 +68,7 @@ CxSmtp::vConnect() {
     //������ �����
     std::string sIpAddr;
 
-    CxDnsClient::vGetHostAddrByName(_m_sServer, &sIpAddr);
+    CxDnsClient::vHostAddrByName(_m_sServer, &sIpAddr);
 
     //-------------------------------------
     //�����������

@@ -65,11 +65,11 @@ CxBackuper::etExecute(
 
     switch (_m_cbpPeriod) {
         //TODO: case bpHourly:  { ; }   break;
-        case bpDaily:   { sDateTimeStamp = CxDateTime().dtGetCurrent().sFormat(CxDateTime::ftDate);     }    break;
+        case bpDaily:   { sDateTimeStamp = CxDateTime().dtCurrent().sFormat(CxDateTime::ftDate);     }    break;
         //TODO: case bpWeekly:  { ; }   break;
         //TODO: case bpMonthly: { ; }   break;
 
-        default:        { sDateTimeStamp = CxDateTime().dtGetCurrent().sFormat(CxDateTime::ftDateTime); }    break;
+        default:        { sDateTimeStamp = CxDateTime().dtCurrent().sFormat(CxDateTime::ftDateTime); }    break;
     }
 
     sDateTimeStamp = CxString::sReplaceAll(sDateTimeStamp, xT(":"), xT("-"));
@@ -78,7 +78,7 @@ CxBackuper::etExecute(
     //format file full name
     std::tstring_t sBackupFilePath =
                         CxPath::sSlashAppend(csDestDirPath) +
-                        CxPath::sGetFileName(csFilePath)    +
+                        CxPath::sFileName(csFilePath)       +
                         xT(".bak [") + sDateTimeStamp + xT("]");
 
     bRv = CxFile::bIsExists(sBackupFilePath);
@@ -89,13 +89,13 @@ CxBackuper::etExecute(
     ulonglong_t ullTotalFreeBytes = 0ULL;
 
     try {
-        CxVolume::vGetSpace(csDestDirPath, NULL, NULL, &ullTotalFreeBytes);
+        CxVolume::vSpace(csDestDirPath, NULL, NULL, &ullTotalFreeBytes);
     }
     catch (const CxException &) {
         return etUnknown;
     }
 
-    if (static_cast<ulonglong_t>( CxFile::llGetSize(csFilePath) ) > ullTotalFreeBytes) {
+    if (static_cast<ulonglong_t>( CxFile::llSize(csFilePath) ) > ullTotalFreeBytes) {
         return etNotEnoughFreeSpace;
     }
 
@@ -111,7 +111,7 @@ CxBackuper::etExecute(
     //-------------------------------------
     //check for a valid backup
     xCHECK_RET(false                               == CxFile::bIsExists(sBackupFilePath),       etCopyingFail);
-    xCHECK_RET(CxFile::llGetSize(csFilePath)       != CxFile::llGetSize(sBackupFilePath),       etCopyingFail);
+    xCHECK_RET(CxFile::llSize(csFilePath)          != CxFile::llSize(sBackupFilePath),          etCopyingFail);
     xCHECK_RET(CxCrc32::ulCalcFileFast(csFilePath) != CxCrc32::ulCalcFileFast(sBackupFilePath), etCopyingFail);
 
     //[out]

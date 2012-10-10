@@ -25,7 +25,7 @@ class CxPkcs11 :
         virtual              ~CxPkcs11      ();
             ///< destructor
 
-        CK_FUNCTION_LIST_PTR  pGetFuncList  () const;
+        CK_FUNCTION_LIST_PTR  pFuncList     () const;
             ///< get pointer to dll's functions list
         static std::tstring_t sErrorStr     (const CK_RV culCode);
             ///< get error string by code, SDK 4.53

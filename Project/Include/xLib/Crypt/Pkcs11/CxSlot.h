@@ -34,9 +34,9 @@ class CxSlot :
         virtual             ~CxSlot        ();
             ///< destructor
 
-        void                 vGetList      (CK_BBOOL bTokenPresent, std::vector<CK_SLOT_ID> *pvecSlotList);
+        void                 vList         (CK_BBOOL bTokenPresent, std::vector<CK_SLOT_ID> *pvecSlotList);
             ///< obtains a list of slots in the system
-        void                 vGetInfo      (CK_SLOT_ID slotID, CK_SLOT_INFO_PTR pInfo);
+        void                 vInfo         (CK_SLOT_ID slotID, CK_SLOT_INFO_PTR pInfo);
             ///< obtains information about a particular slot in the system
         ENotification        nfWaitForEvent(CK_FLAGS flags, CK_SLOT_ID_PTR pSlot, CK_VOID_PTR pRserved);
             ///< waits for a slot event (token insertion, removal, etc.) to occur

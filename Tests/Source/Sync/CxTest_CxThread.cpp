@@ -163,7 +163,7 @@ CxTest_CxThread::vUnit(
         #if   xOS_ENV_WIN
             pthT->vSetPriority(ctpPriority);
 
-            m_iRv = pthT->tpGetPriority();
+            m_iRv = pthT->tpPriority();
             xTEST_EQ((int)ctpPriority, (int)m_iRv);
         #elif xOS_ENV_UNIX
             pthT->vSetPriority(ctpPriority);
@@ -223,7 +223,7 @@ CxTest_CxThread::vUnit(
 
     xTEST_CASE(CxThread::vSetCpuAffinity, cullCaseLoops)
     {
-        for (size_t i = 0; i < CxSystemInfo::ulGetNumOfCpus(); ++ i) {
+        for (size_t i = 0; i < CxSystemInfo::ulNumOfCpus(); ++ i) {
             pthT->vSetCpuAffinity(i);
         }
     }
@@ -233,8 +233,8 @@ CxTest_CxThread::vUnit(
         #if   xOS_ENV_WIN
             pthT->vSetCpuIdeal(0);
 
-            m_ulRv = pthT->ulGetCpuIdeal();
-            xTEST_EQ(true, CxSystemInfo::ulGetNumOfCpus() > m_ulRv);
+            m_ulRv = pthT->ulCpuIdeal();
+            xTEST_EQ(true, CxSystemInfo::ulNumOfCpus() > m_ulRv);
         #elif xOS_ENV_UNIX
 
         #endif
@@ -242,7 +242,7 @@ CxTest_CxThread::vUnit(
 
     xTEST_CASE(CxThread::ulGetCpuCount, cullCaseLoops)
     {
-        m_ulRv = CxThread::ulGetCpuCount();
+        m_ulRv = CxThread::ulCpuCount();
         xTEST_LESS(0UL, m_ulRv);
     }
 

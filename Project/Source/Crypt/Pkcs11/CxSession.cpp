@@ -22,7 +22,7 @@ xNAMESPACE_BEGIN(NxLib)
 CxSession::CxSession(
     const CxPkcs11 &a_cPkcs11
 ) :
-    _m_pFunc   (a_cPkcs11.pGetFuncList()),
+    _m_pFunc   (a_cPkcs11.pFuncList()),
     _m_hSession(0UL)
 {
     /*DEBUG*/xTEST_PTR(_m_pFunc);
@@ -35,7 +35,7 @@ CxSession::~CxSession() {
 }
 //---------------------------------------------------------------------------
 CK_SESSION_HANDLE
-CxSession::hGetHandle() const {
+CxSession::hHandle() const {
     /*DEBUG*/xTEST_PTR(_m_pFunc);
     /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
 
@@ -58,7 +58,7 @@ CxSession::vOpen(
 }
 //---------------------------------------------------------------------------
 void
-CxSession::vGetInfo(
+CxSession::vInfo(
     CK_SESSION_INFO_PTR a_pInfo      ///< receives session info
 )
 {
@@ -85,7 +85,7 @@ CxSession::vSetOperationState(
 }
 //---------------------------------------------------------------------------
 void
-CxSession::vGetOperationState(
+CxSession::vOperationState(
     CK_BYTE_PTR  a_pOperationState,      ///< gets state
     CK_ULONG_PTR a_pulOperationStateLen  ///< gets state length
 )

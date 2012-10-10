@@ -26,28 +26,28 @@ class CxPath :
             seBat   ///< shell script file
         };
 
-        static std::tstring_t sGetExe         ();
+        static std::tstring_t sExe            ();
             ///< get full path to exe
-        static std::tstring_t sGetExeDir      ();
+        static std::tstring_t sExeDir         ();
             ///< get dir path to exe
-        static std::tstring_t sGetDll         ();
+        static std::tstring_t sDll            ();
             ///< get full path to dll
 
     #if   xOS_ENV_WIN
-        static std::tstring_t sGetDrive       (const std::tstring_t &csFilePath);
+        static std::tstring_t sDrive          (const std::tstring_t &csFilePath);
             ///< get drive
     #endif
-        static std::tstring_t sGetDir         (const std::tstring_t &csFilePath);
+        static std::tstring_t sDir            (const std::tstring_t &csFilePath);
             ///< get dir path, without a trailing backslash '\'
-        static std::tstring_t sGetDirName     (const std::tstring_t &csFilePath);
+        static std::tstring_t sDirName        (const std::tstring_t &csFilePath);
             ///< get dir name
-        static std::tstring_t sGetFileName    (const std::tstring_t &csFilePath);
+        static std::tstring_t sFileName       (const std::tstring_t &csFilePath);
             ///< get name.extension
-        static std::tstring_t sGetFileBaseName(const std::tstring_t &csFilePath);
+        static std::tstring_t sFileBaseName   (const std::tstring_t &csFilePath);
             ///< get name without extension
-        static std::tstring_t sGetExt         (const std::tstring_t &csFilePath);
+        static std::tstring_t sExt            (const std::tstring_t &csFilePath);
             ///< get extension
-        static std::tstring_t sGetStandartExt (const ExStandartExt &cseFileExt);
+        static std::tstring_t sStandartExt    (const ExStandartExt &cseFileExt);
             ///< get standart extension
 
     #if   xOS_ENV_WIN
@@ -81,12 +81,12 @@ class CxPath :
             ///< convert slashes to Nix style
         static std::tstring_t sToCurrentOs    (const std::tstring_t &csFilePath, const bool &cbIsSlashAtEnd);
             ///< convert slashes to current OS style
-        static std::tstring_t sGetAbsolute    (const std::tstring_t &csFilePath);
+        static std::tstring_t sAbsolute       (const std::tstring_t &csFilePath);
             ///< get absolute path
 
-        static std::tstring_t sGetShortName   (const std::tstring_t &csFileName, const size_t &cuiMaxSize);
+        static std::tstring_t sShortName      (const std::tstring_t &csFileName, const size_t &cuiMaxSize);
             ///< get short name
-        static std::tstring_t sGetShort       (const std::tstring_t &csFilePath, const size_t &cuiMaxSize);
+        static std::tstring_t sShort          (const std::tstring_t &csFilePath, const size_t &cuiMaxSize);
             ///< get short path
         static std::tstring_t sSetValidName   (const std::tstring_t &csFileName);
             ///< set name as valid
@@ -96,13 +96,13 @@ class CxPath :
         static std::tstring_t sSlashRemove    (const std::tstring_t &csDirPath);
             ///< remove slash
 
-        static size_t         uiGetMaxSize    ();
+        static size_t         uiMaxSize       ();
             ///< get max path length in symbols
-        static size_t         uiGetNameMaxSize();
+        static size_t         uiNameMaxSize   ();
             ///< get max name length in symbols
 
     #if xOS_ENV_UNIX
-        static std::tstring_t sGetProcValue   (const std::tstring_t &csProcPath, const std::tstring_t &csData);
+        static std::tstring_t sProcValue      (const std::tstring_t &csProcPath, const std::tstring_t &csData);
             ///< get from UNIX proc file content value by data
     #endif
 

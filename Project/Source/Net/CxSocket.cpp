@@ -93,7 +93,7 @@ CxSocket::vCreate(
 }
 //---------------------------------------------------------------------------
 socket_t
-CxSocket::iGetSocket() const {
+CxSocket::iHandle() const {
     /*DEBUG*/xTEST_DIFF(xSOCKET_HANDLE_INVALID, _m_sktSocket);
 
     return _m_sktSocket;
@@ -156,7 +156,7 @@ CxSocket::iSend(
 
 #if   xOS_ENV_WIN
     int     iRv = ::send(_m_sktSocket, (LPCSTR)a_pcszBuff, a_ciBuffSize * sizeof(tchar_t), a_ciFlags);
-    /*DEBUG*/xTEST_EQ(true, xSOCKET_ERROR != iRv && WSAEWOULDBLOCK != iGetLastError());
+    /*DEBUG*/xTEST_EQ(true, xSOCKET_ERROR != iRv && WSAEWOULDBLOCK != iLastError());
     /*DEBUG*/xTEST_GR_EQ(a_ciBuffSize * (int)sizeof(tchar_t), iRv);
 #elif xOS_ENV_UNIX
     #if !defined(MSG_NOSIGNAL)
@@ -228,7 +228,7 @@ CxSocket::iRecv(
 
 #if   xOS_ENV_WIN
     int     iRv = ::recv(_m_sktSocket, (LPSTR)a_pszBuff, a_ciBuffSize * sizeof(tchar_t), a_ciFlags);
-    /*DEBUG*/xTEST_EQ(true, xSOCKET_ERROR != iRv && WSAEWOULDBLOCK != iGetLastError());
+    /*DEBUG*/xTEST_EQ(true, xSOCKET_ERROR != iRv && WSAEWOULDBLOCK != iLastError());
     /*DEBUG*/xTEST_DIFF(0, iRv);  //gracefully closed
     /*DEBUG*/xTEST_GR_EQ(a_ciBuffSize * (int)sizeof(tchar_t), iRv);
 #elif xOS_ENV_UNIX
@@ -261,7 +261,7 @@ CxSocket::sRecvAll(
         iRv = ::ioctl      (_m_sktSocket, FIONREAD, &ulArg);
     #endif
 
-        xCHECK_DO(0 != iRv,           break);
+        xCHECK_DO(0 != iRv,            break);
         xCHECK_DO(0 == ulArg,          break);
         xCHECK_DO(cuiBuffSize < ulArg, ulArg = cuiBuffSize);
 
@@ -328,13 +328,13 @@ CxSocket::iSendBytes(
         xCHECK_RET(!iRC, xSOCKET_ERROR);
 
         //An error occurred
-        xCHECK_RET(iRC < 0, iGetLastError());
+        xCHECK_RET(iRC < 0, iLastError());
 
         //send a few bytes
         iSendStatus = ::send(_m_sktSocket, a_pszBuff, iMessageLength, 0);
 
         //An error occurred when sending data
-        xCHECK_RET(iSendStatus < 0, iGetLastError());
+        xCHECK_RET(iSendStatus < 0, iLastError());
 
         //update the buffer and the counter
         iMessageLength -= iSendStatus;
@@ -371,13 +371,13 @@ CxSocket::iReceiveBytes(
         xCHECK_RET(!iRC, xSOCKET_ERROR);
 
         //An error occurred
-        xCHECK_RET(iRC < 0, iGetLastError());
+        xCHECK_RET(iRC < 0, iLastError());
 
         //recive a few bytes
         iReceiveStatus = ::recv(_m_sktSocket, a_pszBuff, iStillToReceive, 0);
 
         //An error occurred when the function recv ()
-        xCHECK_RET(iReceiveStatus < 0, iGetLastError());
+        xCHECK_RET(iReceiveStatus < 0, iLastError());
 
         //changed the value of the counter and the buffer
         iStillToReceive -= iReceiveStatus;
@@ -396,7 +396,7 @@ CxSocket::iReceiveBytes(
 
 //---------------------------------------------------------------------------
 void
-CxSocket::vGetPeerName(
+CxSocket::vPeerName(
     std::tstring_t *a_psPeerAddr,
     ushort_t       *a_pusPeerPort
 )
@@ -431,7 +431,7 @@ CxSocket::vGetPeerName(
 }
 //---------------------------------------------------------------------------
 void
-CxSocket::vGetSocketName(
+CxSocket::vSocketName(
     std::tstring_t *a_psSocketAddr,
     ushort_t       *a_pusSocketPort
 )
@@ -497,7 +497,7 @@ CxSocket::iSelect(
 //---------------------------------------------------------------------------
 /* static */
 int
-CxSocket::iGetLastError() {
+CxSocket::iLastError() {
     /*DEBUG*/// n/a
 
 #if   xOS_ENV_WIN

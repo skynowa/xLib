@@ -37,7 +37,7 @@ class CxFileLog :
 
         void                   vSetFilePath  (const std::tstring_t &csFilePath);
             ///< set log path
-        const std::tstring_t & sGetFilePath  () const;
+        const std::tstring_t & sFilePath     () const;
             ///< get log path
 
         void                   vWrite        (const tchar_t *pcszFormat, ...);

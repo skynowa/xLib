@@ -17,7 +17,7 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxLocale::sGetCurrent() {
+CxLocale::sCurrent() {
     /*DEBUG*/// n/a
 
     std::tstring_t sRv;
@@ -71,7 +71,7 @@ void
 CxLocale::vSetDefault() {
     /*DEBUG*/// n/a
 
-    vSetCurrent(CxLocale::sGetCurrent());
+    vSetCurrent(CxLocale::sCurrent());
 }
 //---------------------------------------------------------------------------
 

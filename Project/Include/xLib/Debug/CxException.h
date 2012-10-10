@@ -20,7 +20,7 @@ class CxException
         virtual               ~CxException ();
             ///< destructor
 
-        const std::tstring_t & sGetWhat    () const;
+        const std::tstring_t & sWhat       () const;
             ///< get message
         template<class T>
         CxException &          operator << (const T &cMessageT);
@@ -45,7 +45,7 @@ xNAMESPACE_END(NxLib)
 
 #define xCATCH_ALL \
             catch (const CxException &exExp) {      \
-                xTEST_MSG_FAIL(exExp.sGetWhat());   \
+                xTEST_MSG_FAIL(exExp.sWhat());      \
             }                                       \
             catch (const std::exception &cexExp) {  \
                 std::string asMsg = cexExp.what();  \

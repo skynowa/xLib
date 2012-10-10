@@ -28,7 +28,7 @@ CxCurrentProcess::bIsCurrent(
     bool bRv = false;
 
 #if   xOS_ENV_WIN
-    bRv = (ulGetId() == a_culId);
+    bRv = (ulId() == a_culId);
 #elif xOS_ENV_UNIX
     // TODO: If either thread1 or thread2 are not valid thread IDs, the behavior is undefined
     // bRv = ::pthread_equal(ulGetId(), a_culId);
@@ -39,7 +39,7 @@ CxCurrentProcess::bIsCurrent(
 //---------------------------------------------------------------------------
 /* static */
 CxProcess::id_t
-CxCurrentProcess::ulGetId() {
+CxCurrentProcess::ulId() {
     /*DEBUG*/// n/a
 
     CxProcess::id_t ulRv;
@@ -57,7 +57,7 @@ CxCurrentProcess::ulGetId() {
 //---------------------------------------------------------------------------
 /* static */
 CxProcess::id_t
-CxCurrentProcess::ulGetParentId() {
+CxCurrentProcess::ulParentId() {
     /*DEBUG*/// n/a
 
     CxProcess::id_t ulRv;
@@ -90,10 +90,10 @@ CxCurrentProcess::ulGetParentId() {
     ULONG_PTR pulProcessInformation[6] = {0};
     ULONG     ulReturnLength           = 0UL;
 
-    Dll_NtQueryInformationProcess_t DllNtQueryInformationProcess = (Dll_NtQueryInformationProcess_t)dlDll.fpGetProcAddress(xT("NtQueryInformationProcess"));
+    Dll_NtQueryInformationProcess_t DllNtQueryInformationProcess = (Dll_NtQueryInformationProcess_t)dlDll.fpProcAddress(xT("NtQueryInformationProcess"));
     /*DEBUG*/xTEST_PTR(DllNtQueryInformationProcess);
 
-    NTSTATUS ntsRes = DllNtQueryInformationProcess(hGetHandle(), ProcessBasicInformation, &pulProcessInformation, sizeof(pulProcessInformation), &ulReturnLength);
+    NTSTATUS ntsRes = DllNtQueryInformationProcess(hHandle(), ProcessBasicInformation, &pulProcessInformation, sizeof(pulProcessInformation), &ulReturnLength);
     bRv = (ntsRes >= 0 && ulReturnLength == sizeof(pulProcessInformation));
     /*DEBUG*/xTEST_EQ(true, bRv);
 
@@ -109,7 +109,7 @@ CxCurrentProcess::ulGetParentId() {
 // TODO: tests
 /* static */
 CxProcess::handle_t
-CxCurrentProcess::hGetHandle() {
+CxCurrentProcess::hHandle() {
     /*DEBUG*/// n/a
 
     CxProcess::handle_t hRv;

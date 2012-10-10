@@ -17,7 +17,7 @@ class CxSingleton :
     /// singleton
 {
     public:
-        static T &GetInstance()
+        static T &get()
             ///< get object instance
         {
             static T instanceT;

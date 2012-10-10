@@ -76,7 +76,7 @@ class CxDateTime
         // get/set
         void                  vGet                (ushort_t *pusYear, ushort_t *pusMonth, ushort_t *pusDay, ushort_t *pusHour, ushort_t *pusMinute, ushort_t *pusSecond, ushort_t *pusMillisecond) const;
             ///< get datetime data
-        ushort_t              usGetDayOfWeek      () const;
+        ushort_t              usDayOfWeek         () const;
             ///< get day of week, days since Sunday 0-6
         void                  vSet                (const ulonglong_t &ullMSec);
             ///< set CxDateTime by milliseconds
@@ -103,7 +103,7 @@ class CxDateTime
                bool           bIsValid            () const;
             ///< checking for a valid datetime
 
-        static CxDateTime     dtGetCurrent        ();
+        static CxDateTime     dtCurrent           ();
             ///< get current datetime
         static ushort_t       usDaysInMonth       (const ushort_t &cusYear, const ushort_t &cusMonth);
             ///< get number days in month
@@ -119,15 +119,15 @@ class CxDateTime
     #endif
 
         //other
-        static std::tstring_t sGetZodiacSign      (const ushort_t &cusMonth, const ushort_t &cusDay);
+        static std::tstring_t sZodiacSign         (const ushort_t &cusMonth, const ushort_t &cusDay);
             ///< sign of the zodiac by date
-        static std::tstring_t sGetMonthStr        (ushort_t usMonth, const bool &cbIsShortName);
+        static std::tstring_t sMonthStr           (ushort_t usMonth, const bool &cbIsShortName);
             ///< get month string
-        static ushort_t       usGetMonthNum       (const std::tstring_t &csMonth, const bool &cbIsShortName);
+        static ushort_t       usMonthNum          (const std::tstring_t &csMonth, const bool &cbIsShortName);
             ///< get month number by string
-        static std::tstring_t sGetWeekDayStr      (ushort_t usDay, const bool &cbIsShortName);
+        static std::tstring_t sWeekDayStr         (ushort_t usDay, const bool &cbIsShortName);
             ///< get week day string
-        static ushort_t       usGetWeekDayNum     (const std::tstring_t &csDay, const bool &cbIsShortName);
+        static ushort_t       usWeekDayNum        (const std::tstring_t &csDay, const bool &cbIsShortName);
             ///< get week day number by string
 
     private:

@@ -26,27 +26,27 @@ class CxCookiePv1 :
         void                   vInit       (const std::tstring_t &csRawCookie);
             ///< parsing raw cookie string pv0
 
-        const std::tstring_t & sGetName    () const;
+        const std::tstring_t & sName    () const;
             ///< get name
         void                   vSetName    (const std::tstring_t &csName);
             ///< set name
 
-        const std::tstring_t & sGetValue   () const;
+        const std::tstring_t & sValue   () const;
             ///< get value
         void                   vSetValue   (const std::tstring_t &csValue);
             ///< set value
 
-        const std::tstring_t & sGetComment () const;
+        const std::tstring_t & sComment () const;
             ///< get comment
         void                   vSetComment (const std::tstring_t &csComment);
             ///< set comment
 
-        const std::tstring_t & sGetDomain  () const;
+        const std::tstring_t & sDomain  () const;
             ///< get domain
         void                   vSetDomain  (const std::tstring_t &csDomain);
             ///< set domain
 
-        const std::tstring_t & sGetPath    () const;
+        const std::tstring_t & sPath    () const;
             ///< get path
         void                   vSetPath    (const std::tstring_t &csPath);
             ///< set path
@@ -68,7 +68,7 @@ class CxCookiePv1 :
 
         std::tstring_t         sToString   () const;
             ///< convert to string
-        std::tstring_t         sGetDump    () const;
+        std::tstring_t         sDump    () const;
             ///< get dump
         void                   vClear      ();
             ///< clear

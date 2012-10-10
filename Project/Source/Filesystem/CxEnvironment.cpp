@@ -79,7 +79,7 @@ CxEnvironment::bIsValueValid(
 //---------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxEnvironment::sGetVar(
+CxEnvironment::sVar(
     const std::tstring_t &csVarName
 )
 {
@@ -155,7 +155,7 @@ CxEnvironment::vDeleteVar(
 //--------------------------------------------------------------------------
 /* static */
 void
-CxEnvironment::vGetValues(
+CxEnvironment::vValues(
     std::vec_tstring_t *pvsValues
 )
 {

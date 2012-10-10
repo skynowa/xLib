@@ -22,7 +22,7 @@ xNAMESPACE_BEGIN(NxLib)
 CxInfo::CxInfo(
     const CxPkcs11 &a_cPkcs11
 ) :
-    _m_pFunc(a_cPkcs11.pGetFuncList())
+    _m_pFunc(a_cPkcs11.pFuncList())
 {
 
 }
@@ -43,7 +43,7 @@ CxInfo::vGet(
 }
 //---------------------------------------------------------------------------
 void
-CxInfo::vGetToken(
+CxInfo::vToken(
     CK_SLOT_ID        a_slotID,  ///< ID of the token's slot
     CK_TOKEN_INFO_PTR a_pInfo    ///< receives the token information
 )

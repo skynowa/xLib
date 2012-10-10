@@ -27,7 +27,7 @@ class CxObject :
         virtual             ~CxObject          ();
             ///< destructor
 
-        CK_OBJECT_HANDLE     hGetHandle        () const;
+        CK_OBJECT_HANDLE     hHandle           () const;
             ///< get handle
         void                 vSetHandle        (CK_OBJECT_HANDLE hHandle);
             ///< assign object handle
@@ -49,16 +49,16 @@ class CxObject :
             ///< destroys an object
 
         //Utils
-        static void          vGetData          (CK_SLOT_ID ulSlotId, const std::ustring_t &cusUserPin, const std::ustring_t &cusDataLabel, std::ustring_t *pusData);
+        static void          vData             (CK_SLOT_ID ulSlotId, const std::ustring_t &cusUserPin, const std::ustring_t &cusDataLabel, std::ustring_t *pusData);
             ///< get data
         static void          vSetData          (CK_SLOT_ID ulSlotId, const std::ustring_t &cusUserPin, const std::ustring_t &cusDataLabel, const std::ustring_t &cusData);
             ///< set data
-        static void          vGetData          (CK_SLOT_ID ulSlotId, const std::ustring_t &cusUserPin, std::vec_ustring_t *pusDataLabel, std::vec_ustring_t *pusDataValue);
+        static void          vData             (CK_SLOT_ID ulSlotId, const std::ustring_t &cusUserPin, std::vec_ustring_t *pusDataLabel, std::vec_ustring_t *pusDataValue);
             ///< get data
 
     private:
-        CK_FUNCTION_LIST_PTR _m_pFunc;        ///< pointer to dll's functions list
-        CK_SESSION_HANDLE    _m_hSession;    ///< session handle
+        CK_FUNCTION_LIST_PTR _m_pFunc;      ///< pointer to dll's functions list
+        CK_SESSION_HANDLE    _m_hSession;   ///< session handle
         CK_OBJECT_HANDLE     _m_hObject;    ///< bject handle
 
     #if xTODO

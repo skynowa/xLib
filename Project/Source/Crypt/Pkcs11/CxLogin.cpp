@@ -25,8 +25,8 @@ CxLogin::CxLogin(
     const CxPkcs11  &a_cPkcs11,
     const CxSession &a_cSession
 ) :
-    _m_pFunc   (a_cPkcs11.pGetFuncList()),
-    _m_hSession(a_cSession.hGetHandle())
+    _m_pFunc   (a_cPkcs11.pFuncList()),
+    _m_hSession(a_cSession.hHandle())
 {
     /*DEBUG*/xTEST_PTR(_m_pFunc);
     /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);

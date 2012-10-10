@@ -28,10 +28,10 @@ CxTest_CxCurrentThread::vUnit(
     {
         CxThread::id_t aulData[5][2] = {{0}};
 
-        aulData[0][0] = (CxThread::id_t)CxCurrentThread::ulGetId();
+        aulData[0][0] = (CxThread::id_t)CxCurrentThread::ulId();
         aulData[0][1] = (CxThread::id_t)true;
 
-        aulData[1][0] = (CxThread::id_t)((ulong_t)CxCurrentThread::ulGetId() - 1);
+        aulData[1][0] = (CxThread::id_t)((ulong_t)CxCurrentThread::ulId() - 1);
         aulData[1][1] = (CxThread::id_t)false;
 
         aulData[2][0] = (CxThread::id_t)0;
@@ -54,25 +54,25 @@ CxTest_CxCurrentThread::vUnit(
 
     xTEST_CASE(CxCurrentThread::ulGetId, cullCaseLoops)
     {
-        CxThread::id_t idRes = CxCurrentThread::ulGetId();
+        CxThread::id_t idRes = CxCurrentThread::ulId();
         xTEST_LESS(0UL, (ulong_t)idRes);
     }
 
     xTEST_CASE(CxCurrentThread::hGetHandle, cullCaseLoops)
     {
-        CxThread::handle_t hRv = CxCurrentThread::hGetHandle();
+        CxThread::handle_t hRv = CxCurrentThread::hHandle();
         xTEST_DIFF(0UL, (ulong_t)hRv);
     }
 
     xTEST_CASE(CxCurrentThread::ulGetId, cullCaseLoops)
     {
-        CxThread::id_t idRes = CxCurrentThread::ulGetId();
+        CxThread::id_t idRes = CxCurrentThread::ulId();
         xTEST_LESS(0UL, (ulong_t)idRes);
     }
 
     xTEST_CASE(CxCurrentThread::hGetHandle, cullCaseLoops)
     {
-        CxThread::handle_t hRv = CxCurrentThread::hGetHandle();
+        CxThread::handle_t hRv = CxCurrentThread::hHandle();
         xTEST_LESS((ulong_t)0, (ulong_t)hRv);
     }
 
@@ -95,13 +95,13 @@ CxTest_CxCurrentThread::vUnit(
 
             CxDateTime dtTime1;
             
-            dtTime1 = CxDateTime::dtGetCurrent();
+            dtTime1 = CxDateTime::dtCurrent();
 
             CxCurrentThread::vSleep(cuiMsec);
 
             CxDateTime dtTime2;
             
-            dtTime2 = CxDateTime::dtGetCurrent();
+            dtTime2 = CxDateTime::dtCurrent();
 
             xTEST_GR_EQ(dtTime2.ullToMilliseconds(), dtTime1.ullToMilliseconds());
             //xTRACEV(xT("sNow1: %s,\nsNow2: %s"), dtTime1.sFormat(CxDateTime::ftTime).c_str(), dtTime2.sFormat(CxDateTime::ftTime).c_str());

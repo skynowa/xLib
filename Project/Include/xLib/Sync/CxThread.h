@@ -100,9 +100,9 @@ class CxThread :
         // priority
         void                 vSetPriority         (const ExPriority &ctpPriority) const;
             ///< set priority (under Linux must use admin privilege)
-        ExPriority           tpGetPriority        () const;
+        ExPriority           tpPriority           () const;
             ///< get priotity
-        std::tstring_t       sGetPriorityString   () const;
+        std::tstring_t       sPriorityString      () const;
             ///< get priority as string
         void                 vPriorityUp          () const;
             ///< increase priority on one level
@@ -118,9 +118,9 @@ class CxThread :
             ///< set processor affinity
         void                 vSetCpuIdeal         (const ulong_t &culIdealCpu) const;
             ///< sets preferred processor for a thread
-        ulong_t              ulGetCpuIdeal        () const;
+        ulong_t              ulCpuIdeal           () const;
             ///< get current ideal processor without changing it
-        static ulong_t       ulGetCpuCount        ();
+        static ulong_t       ulCpuCount           ();
             ///< get CPU count on machine
 
         // other
@@ -193,8 +193,8 @@ class CxThread :
             ///< set states as default
 
         // static
-        static int           _iGetPriorityMin     ();
-        static int           _iGetPriorityMax     ();
+        static int           _iPriorityMin        ();
+        static int           _iPriorityMax        ();
 };
 
 xNAMESPACE_END(NxLib)

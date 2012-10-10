@@ -46,7 +46,7 @@ CxThreadStorage::bIsSet() const {
 }
 //---------------------------------------------------------------------------
 void *
-CxThreadStorage::pvGetValue() const {
+CxThreadStorage::pvValue() const {
     void *pvRv = NULL;
 
 #if   xOS_ENV_WIN

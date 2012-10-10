@@ -226,7 +226,7 @@ CxHandleT<hvTag>::vClose() {
 
 template<ExHandleValue hvTag>
 ulong_t
-CxHandleT<hvTag>::ulGetInfo() const {
+CxHandleT<hvTag>::ulInfo() const {
     /////*DEBUG*/xTEST_EQ(true, bIsValid(), 0UL);
 
     DWORD dwFlags = 0UL;

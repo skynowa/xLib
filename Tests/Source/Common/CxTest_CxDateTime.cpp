@@ -286,15 +286,15 @@ CxTest_CxDateTime::vUnit(
         xTEST_EQ((ushort_t)0, usMSec);
     }
 
-    xTEST_CASE(CxDateTime::usGetDayOfWeek, cullCaseLoops)
+    xTEST_CASE(CxDateTime::usDayOfWeek, cullCaseLoops)
     {
-        m_usiRv = CxDateTime(2011, 7, 25, 13, 0, 0, 0).usGetDayOfWeek();
+        m_usiRv = CxDateTime(2011, 7, 25, 13, 0, 0, 0).usDayOfWeek();
         xTEST_EQ((ushort_t)1, m_usiRv);
 
-        m_usiRv = CxDateTime(2011, 7, 31, 0, 0, 0, 0).usGetDayOfWeek();
+        m_usiRv = CxDateTime(2011, 7, 31, 0, 0, 0, 0).usDayOfWeek();
         xTEST_EQ((ushort_t)0, m_usiRv);
 
-        m_usiRv = CxDateTime(2011, 3, 18, 0, 0, 0, 0).usGetDayOfWeek();
+        m_usiRv = CxDateTime(2011, 3, 18, 0, 0, 0, 0).usDayOfWeek();
         xTEST_EQ((ushort_t)5, m_usiRv);
     }
 
@@ -407,13 +407,13 @@ CxTest_CxDateTime::vUnit(
         //TODO: tests bIsValid
     }
 
-    xTEST_CASE(CxDateTime::dtGetCurrent, cullCaseLoops)
+    xTEST_CASE(CxDateTime::dtCurrent, cullCaseLoops)
     {
         //1
         {
             CxDateTime dtNowDT;
 
-            m_sRv = dtNowDT.dtGetCurrent().sFormat(CxDateTime::ftDateTime);
+            m_sRv = dtNowDT.dtCurrent().sFormat(CxDateTime::ftDateTime);
             xTEST_DIFF(std::tstring_t(xT("00.00.0000 0:00:00:000")), m_sRv);
         }
 
@@ -422,7 +422,7 @@ CxTest_CxDateTime::vUnit(
             CxDateTime _m_dtTimesStart;
             CxDateTime _m_dtTimesStop;
 
-            _m_dtTimesStart = CxDateTime::dtGetCurrent();
+            _m_dtTimesStart = CxDateTime::dtCurrent();
             {
                 for (int x = 0; x < 100; ++ x) {
                     for (int y = 0; y < 20; ++ y) {
@@ -432,7 +432,7 @@ CxTest_CxDateTime::vUnit(
                     }
                 }
             }
-            _m_dtTimesStop = CxDateTime::dtGetCurrent();
+            _m_dtTimesStop = CxDateTime::dtCurrent();
 
             xTEST_EQ(true, _m_dtTimesStop >= _m_dtTimesStart);
         }
@@ -557,74 +557,74 @@ CxTest_CxDateTime::vUnit(
     #endif
     }
 
-    xTEST_CASE(CxDateTime::sGetMonthStr, cullCaseLoops)
+    xTEST_CASE(CxDateTime::sMonthStr, cullCaseLoops)
     {
         //bIsShortName = false
-        m_sRv = CxDateTime::sGetMonthStr((ushort_t)- 1, false);
+        m_sRv = CxDateTime::sMonthStr((ushort_t)- 1, false);
         xTEST_EQ(std::tstring_t(xT("December")), m_sRv);
-        m_sRv = CxDateTime::sGetMonthStr(0, false);
+        m_sRv = CxDateTime::sMonthStr(0, false);
         xTEST_EQ(std::tstring_t(xT("January")), m_sRv);
-        m_sRv = CxDateTime::sGetMonthStr(1, false);
+        m_sRv = CxDateTime::sMonthStr(1, false);
         xTEST_EQ(std::tstring_t(xT("January")), m_sRv);
-        m_sRv = CxDateTime::sGetMonthStr(2, false);
+        m_sRv = CxDateTime::sMonthStr(2, false);
         xTEST_EQ(std::tstring_t(xT("February")), m_sRv);
-        m_sRv = CxDateTime::sGetMonthStr(3, false);
+        m_sRv = CxDateTime::sMonthStr(3, false);
         xTEST_EQ(std::tstring_t(xT("March")), m_sRv);
-        m_sRv = CxDateTime::sGetMonthStr(4, false);
+        m_sRv = CxDateTime::sMonthStr(4, false);
         xTEST_EQ(std::tstring_t(xT("April")), m_sRv);
-        m_sRv = CxDateTime::sGetMonthStr(5, false);
+        m_sRv = CxDateTime::sMonthStr(5, false);
         xTEST_EQ(std::tstring_t(xT("May")), m_sRv);
-        m_sRv = CxDateTime::sGetMonthStr(6, false);
+        m_sRv = CxDateTime::sMonthStr(6, false);
         xTEST_EQ(std::tstring_t(xT("June")), m_sRv);
-        m_sRv = CxDateTime::sGetMonthStr(7, false);
+        m_sRv = CxDateTime::sMonthStr(7, false);
         xTEST_EQ(std::tstring_t(xT("July")), m_sRv);
-        m_sRv = CxDateTime::sGetMonthStr(8, false);
+        m_sRv = CxDateTime::sMonthStr(8, false);
         xTEST_EQ(std::tstring_t(xT("August")), m_sRv);
-        m_sRv = CxDateTime::sGetMonthStr(9, false);
+        m_sRv = CxDateTime::sMonthStr(9, false);
         xTEST_EQ(std::tstring_t(xT("September")), m_sRv);
-        m_sRv = CxDateTime::sGetMonthStr(10, false);
+        m_sRv = CxDateTime::sMonthStr(10, false);
         xTEST_EQ(std::tstring_t(xT("October")), m_sRv);
-        m_sRv = CxDateTime::sGetMonthStr(11, false);
+        m_sRv = CxDateTime::sMonthStr(11, false);
         xTEST_EQ(std::tstring_t(xT("November")), m_sRv);
-        m_sRv = CxDateTime::sGetMonthStr(12, false);
+        m_sRv = CxDateTime::sMonthStr(12, false);
         xTEST_EQ(std::tstring_t(xT("December")), m_sRv);
-        m_sRv = CxDateTime::sGetMonthStr(13, false);
+        m_sRv = CxDateTime::sMonthStr(13, false);
         xTEST_EQ(std::tstring_t(xT("December")), m_sRv);
 
         //bIsShortName = true
-        m_sRv = CxDateTime::sGetMonthStr((ushort_t)- 1, true);
+        m_sRv = CxDateTime::sMonthStr((ushort_t)- 1, true);
         xTEST_EQ(std::tstring_t(xT("Dec")), m_sRv);
-        m_sRv = CxDateTime::sGetMonthStr(0, true);
+        m_sRv = CxDateTime::sMonthStr(0, true);
         xTEST_EQ(std::tstring_t(xT("Jan")), m_sRv);
-        m_sRv = CxDateTime::sGetMonthStr(1, true);
+        m_sRv = CxDateTime::sMonthStr(1, true);
         xTEST_EQ(std::tstring_t(xT("Jan")), m_sRv);
-        m_sRv = CxDateTime::sGetMonthStr(2, true);
+        m_sRv = CxDateTime::sMonthStr(2, true);
         xTEST_EQ(std::tstring_t(xT("Feb")), m_sRv);
-        m_sRv = CxDateTime::sGetMonthStr(3, true);
+        m_sRv = CxDateTime::sMonthStr(3, true);
         xTEST_EQ(std::tstring_t(xT("Mar")), m_sRv);
-        m_sRv = CxDateTime::sGetMonthStr(4, true);
+        m_sRv = CxDateTime::sMonthStr(4, true);
         xTEST_EQ(std::tstring_t(xT("Apr")), m_sRv);
-        m_sRv = CxDateTime::sGetMonthStr(5, true);
+        m_sRv = CxDateTime::sMonthStr(5, true);
         xTEST_EQ(std::tstring_t(xT("May")), m_sRv);
-        m_sRv = CxDateTime::sGetMonthStr(6, true);
+        m_sRv = CxDateTime::sMonthStr(6, true);
         xTEST_EQ(std::tstring_t(xT("Jun")), m_sRv);
-        m_sRv = CxDateTime::sGetMonthStr(7, true);
+        m_sRv = CxDateTime::sMonthStr(7, true);
         xTEST_EQ(std::tstring_t(xT("Jul")), m_sRv);
-        m_sRv = CxDateTime::sGetMonthStr(8, true);
+        m_sRv = CxDateTime::sMonthStr(8, true);
         xTEST_EQ(std::tstring_t(xT("Aug")), m_sRv);
-        m_sRv = CxDateTime::sGetMonthStr(9, true);
+        m_sRv = CxDateTime::sMonthStr(9, true);
         xTEST_EQ(std::tstring_t(xT("Sep")), m_sRv);
-        m_sRv = CxDateTime::sGetMonthStr(10, true);
+        m_sRv = CxDateTime::sMonthStr(10, true);
         xTEST_EQ(std::tstring_t(xT("Oct")), m_sRv);
-        m_sRv = CxDateTime::sGetMonthStr(11, true);
+        m_sRv = CxDateTime::sMonthStr(11, true);
         xTEST_EQ(std::tstring_t(xT("Nov")), m_sRv);
-        m_sRv = CxDateTime::sGetMonthStr(12, true);
+        m_sRv = CxDateTime::sMonthStr(12, true);
         xTEST_EQ(std::tstring_t(xT("Dec")), m_sRv);
-        m_sRv = CxDateTime::sGetMonthStr(13, true);
+        m_sRv = CxDateTime::sMonthStr(13, true);
         xTEST_EQ(std::tstring_t(xT("Dec")), m_sRv);
     }
 
-    xTEST_CASE(CxDateTime::usGetMonthNum, cullCaseLoops)
+    xTEST_CASE(CxDateTime::usMonthNum, cullCaseLoops)
     {
         const std::tstring_t casMonths[12][2] = {
             { xT("January"),    xT("Jan") },
@@ -642,68 +642,68 @@ CxTest_CxDateTime::vUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(casMonths); ++ i) {
-            m_usiRv = CxDateTime::usGetMonthNum(casMonths[i][0], false);
+            m_usiRv = CxDateTime::usMonthNum(casMonths[i][0], false);
             xTEST_EQ((ushort_t)(i + 1), m_usiRv);
 
-            m_usiRv = CxDateTime::usGetMonthNum(casMonths[i][1], true);
+            m_usiRv = CxDateTime::usMonthNum(casMonths[i][1], true);
             xTEST_EQ((ushort_t)(i + 1), m_usiRv);
 
             if (xT("May") == casMonths[i][0] || xT("May") == casMonths[i][1]) {
-                m_usiRv = CxDateTime::usGetMonthNum(casMonths[i][0], true);
+                m_usiRv = CxDateTime::usMonthNum(casMonths[i][0], true);
                 xTEST_EQ((ushort_t)(i + 1), m_usiRv);
 
-                m_usiRv = CxDateTime::usGetMonthNum(casMonths[i][1], false);
+                m_usiRv = CxDateTime::usMonthNum(casMonths[i][1], false);
                 xTEST_EQ((ushort_t)(i + 1), m_usiRv);
             } else {
-                m_usiRv = CxDateTime::usGetMonthNum(casMonths[i][0], true);
+                m_usiRv = CxDateTime::usMonthNum(casMonths[i][0], true);
                 xTEST_EQ((ushort_t)- 1, m_usiRv);
 
-                m_usiRv = CxDateTime::usGetMonthNum(casMonths[i][1], false);
+                m_usiRv = CxDateTime::usMonthNum(casMonths[i][1], false);
                 xTEST_EQ((ushort_t)- 1, m_usiRv);
             }
         }
     }
 
-    xTEST_CASE(CxDateTime::sGetWeekDayStr, cullCaseLoops)
+    xTEST_CASE(CxDateTime::sWeekDayStr, cullCaseLoops)
     {
         //bIsShortName = false
-        m_sRv = CxDateTime::sGetWeekDayStr(0, false);
+        m_sRv = CxDateTime::sWeekDayStr(0, false);
         xTEST_EQ(std::tstring_t(xT("Sunday")), m_sRv);
-        m_sRv = CxDateTime::sGetWeekDayStr(1, false);
+        m_sRv = CxDateTime::sWeekDayStr(1, false);
         xTEST_EQ(std::tstring_t(xT("Monday")), m_sRv);
-        m_sRv = CxDateTime::sGetWeekDayStr(2, false);
+        m_sRv = CxDateTime::sWeekDayStr(2, false);
         xTEST_EQ(std::tstring_t(xT("Tuesday")), m_sRv);
-        m_sRv = CxDateTime::sGetWeekDayStr(3, false);
+        m_sRv = CxDateTime::sWeekDayStr(3, false);
         xTEST_EQ(std::tstring_t(xT("Wednesday")), m_sRv);
-        m_sRv = CxDateTime::sGetWeekDayStr(4, false);
+        m_sRv = CxDateTime::sWeekDayStr(4, false);
         xTEST_EQ(std::tstring_t(xT("Thursday")), m_sRv);
-        m_sRv = CxDateTime::sGetWeekDayStr(5, false);
+        m_sRv = CxDateTime::sWeekDayStr(5, false);
         xTEST_EQ(std::tstring_t(xT("Friday")), m_sRv);
-        m_sRv = CxDateTime::sGetWeekDayStr(6, false);
+        m_sRv = CxDateTime::sWeekDayStr(6, false);
         xTEST_EQ(std::tstring_t(xT("Saturday")), m_sRv);
-        m_sRv = CxDateTime::sGetWeekDayStr(7, false);
+        m_sRv = CxDateTime::sWeekDayStr(7, false);
         xTEST_EQ(std::tstring_t(xT("Saturday")), m_sRv);
 
         //bIsShortName = true
-        m_sRv = CxDateTime::sGetWeekDayStr(0, true);
+        m_sRv = CxDateTime::sWeekDayStr(0, true);
         xTEST_EQ(std::tstring_t(xT("Sun")), m_sRv);
-        m_sRv = CxDateTime::sGetWeekDayStr(1, true);
+        m_sRv = CxDateTime::sWeekDayStr(1, true);
         xTEST_EQ(std::tstring_t(xT("Mon")), m_sRv);
-        m_sRv = CxDateTime::sGetWeekDayStr(2, true);
+        m_sRv = CxDateTime::sWeekDayStr(2, true);
         xTEST_EQ(std::tstring_t(xT("Tue")), m_sRv);
-        m_sRv = CxDateTime::sGetWeekDayStr(3, true);
+        m_sRv = CxDateTime::sWeekDayStr(3, true);
         xTEST_EQ(std::tstring_t(xT("Wed")), m_sRv);
-        m_sRv = CxDateTime::sGetWeekDayStr(4, true);
+        m_sRv = CxDateTime::sWeekDayStr(4, true);
         xTEST_EQ(std::tstring_t(xT("Thu")), m_sRv);
-        m_sRv = CxDateTime::sGetWeekDayStr(5, true);
+        m_sRv = CxDateTime::sWeekDayStr(5, true);
         xTEST_EQ(std::tstring_t(xT("Fri")), m_sRv);
-        m_sRv = CxDateTime::sGetWeekDayStr(6, true);
+        m_sRv = CxDateTime::sWeekDayStr(6, true);
         xTEST_EQ(std::tstring_t(xT("Sat")), m_sRv);
-        m_sRv = CxDateTime::sGetWeekDayStr(7, true);
+        m_sRv = CxDateTime::sWeekDayStr(7, true);
         xTEST_EQ(std::tstring_t(xT("Sat")), m_sRv);
     }
 
-    xTEST_CASE(CxDateTime::usGetWeekDayNum, cullCaseLoops)
+    xTEST_CASE(CxDateTime::usWeekDayNum, cullCaseLoops)
     {
         const std::tstring_t casDays[7][2] = {
             { xT("Sunday"),     xT("Sun") },
@@ -716,16 +716,16 @@ CxTest_CxDateTime::vUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(casDays); ++ i) {
-            m_usiRv = CxDateTime::usGetWeekDayNum(casDays[i][0], false);
+            m_usiRv = CxDateTime::usWeekDayNum(casDays[i][0], false);
             xTEST_EQ((ushort_t)i, m_usiRv);
 
-            m_usiRv = CxDateTime::usGetWeekDayNum(casDays[i][1], true);
+            m_usiRv = CxDateTime::usWeekDayNum(casDays[i][1], true);
             xTEST_EQ((ushort_t)i, m_usiRv);
 
-            m_usiRv = CxDateTime::usGetWeekDayNum(casDays[i][0], true);
+            m_usiRv = CxDateTime::usWeekDayNum(casDays[i][0], true);
             xTEST_EQ((ushort_t)- 1, m_usiRv);
 
-            m_usiRv = CxDateTime::usGetWeekDayNum(casDays[i][1], false);
+            m_usiRv = CxDateTime::usWeekDayNum(casDays[i][1], false);
             xTEST_EQ((ushort_t)- 1, m_usiRv);
         }
     }

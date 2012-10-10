@@ -17,38 +17,38 @@ class CxDnsClient :
     /// DNS client
 {
     public:
-        static void vGetHostAddrByName  (const std::tstring_t &csHostName, std::tstring_t *psHostAddr);
+        static void vHostAddrByName  (const std::tstring_t &csHostName, std::tstring_t *psHostAddr);
             ///< get host address by name
-        static void vGetHostNameByAddr  (const std::tstring_t &csHostAddr, const CxSocket::ExAddressFamily &afFamily, std::tstring_t *psHostName);
+        static void vHostNameByAddr  (const std::tstring_t &csHostAddr, const CxSocket::ExAddressFamily &afFamily, std::tstring_t *psHostName);
             ///< get host name by address
-        static void vGetLocalHostName   (std::tstring_t *psHostName);
+        static void vLocalHostName   (std::tstring_t *psHostName);
             ///< get local host name
-        static void vGetNameInfo        (CxSocket::ExAddressFamily &afFamily, const std::tstring_t &csHostAddr, const ushort_t &cusPort);
+        static void vNameInfo        (CxSocket::ExAddressFamily &afFamily, const std::tstring_t &csHostAddr, const ushort_t &cusPort);
             ///< get name info
-        static void vGetHostAddrInfo    (const std::tstring_t &csHostName, const std::tstring_t &csPort, const addrinfo_t *pHints, addrinfo_t **ppResult);
+        static void vHostAddrInfo    (const std::tstring_t &csHostName, const std::tstring_t &csPort, const addrinfo_t *pHints, addrinfo_t **ppResult);
             ///< get host addr info
 
         //protocol
-        static void vGetProtocolByName  (const std::tstring_t &csProtocolName, std::tstring_t *psName, std::vec_tstring_t *pvsAliases, short_t *psiNumber);
+        static void vProtocolByName  (const std::tstring_t &csProtocolName, std::tstring_t *psName, std::vec_tstring_t *pvsAliases, short_t *psiNumber);
             ///< get protocol by name
-        static void vGetProtocolByNumber(const short_t &csiNumber, std::tstring_t *psName, std::vec_tstring_t *pvsAliases, short_t *psiNum);
+        static void vProtocolByNumber(const short_t &csiNumber, std::tstring_t *psName, std::vec_tstring_t *pvsAliases, short_t *psiNum);
             ///< get protocol by number
 
         //service
-        static void vGetServiceByName   (const std::tstring_t &csServiceName, const std::tstring_t &csProtocolName, std::tstring_t *psName, std::vec_tstring_t *pvsAliases, short_t *psiPort,  std::tstring_t *psProtocolName);
+        static void vServiceByName   (const std::tstring_t &csServiceName, const std::tstring_t &csProtocolName, std::tstring_t *psName, std::vec_tstring_t *pvsAliases, short_t *psiPort,  std::tstring_t *psProtocolName);
             ///< get service by name
-        static void vGetServiceByPort   (const short_t &csiPort, const std::tstring_t &csProtocolName, std::tstring_t *psName, std::vec_tstring_t *pvsAliases, short_t *psiPort, std::tstring_t *psProtocolName);
+        static void vServiceByPort   (const short_t &csiPort, const std::tstring_t &csProtocolName, std::tstring_t *psName, std::vec_tstring_t *pvsAliases, short_t *psiPort, std::tstring_t *psProtocolName);
             ///< get service by port
 
-        static bool bIsOnLan            (const ulong_t &culIp);
+        static bool bIsOnLan         (const ulong_t &culIp);
             ///< return true if IP is on this LAN
-        static bool bIsBroadcast        (const ulong_t &culIp);
+        static bool bIsBroadcast     (const ulong_t &culIp);
             ///< return true if IP is a (directed) ip-broadcast address
 
     private:
-                    CxDnsClient         ();
+                    CxDnsClient      ();
             ///< constructor
-        virtual    ~CxDnsClient         ();
+        virtual    ~CxDnsClient      ();
             ///< destructor
 };
 

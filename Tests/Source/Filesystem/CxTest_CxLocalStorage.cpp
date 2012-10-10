@@ -27,7 +27,7 @@ CxTest_CxLocalStorage::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    const std::tstring_t csFilePath = CxPath::sSetExt( CxPath::sGetExe(), xT("ini") );
+    const std::tstring_t csFilePath = CxPath::sSetExt( CxPath::sExe(), xT("ini") );
 
     const std::tstring_t csKey1     = xT("a");
     const std::tstring_t csValue1   = xT("1");
@@ -64,7 +64,7 @@ CxTest_CxLocalStorage::vUnit(
 
     xTEST_CASE(CxLocalStorage::sGetPath, cullCaseLoops)
     {
-        m_sRv = iniIni.sGetPath();
+        m_sRv = iniIni.sPath();
         xTEST_EQ(csFilePath, m_sRv);
     }
 
@@ -72,7 +72,7 @@ CxTest_CxLocalStorage::vUnit(
     {
         iniIni.vSetPath(csFilePath);
 
-        m_sRv = iniIni.sGetPath();
+        m_sRv = iniIni.sPath();
         xTEST_EQ(csFilePath, m_sRv);
     }
 
@@ -246,13 +246,13 @@ CxTest_CxLocalStorage::vUnit(
     xTEST_CASE(CxLocalStorage::vClear, cullCaseLoops)
     {
         iniIni.vClear();
-        xTEST_EQ(0LL, CxFile::llGetSize( iniIni.sGetPath() ));
+        xTEST_EQ(0LL, CxFile::llSize( iniIni.sPath() ));
     }
 
     xTEST_CASE(CxLocalStorage::vDelete, cullCaseLoops)
     {
         iniIni.vDelete();
-        xTEST_EQ(false, CxFile::bIsExists( iniIni.sGetPath() ));
+        xTEST_EQ(false, CxFile::bIsExists( iniIni.sPath() ));
     }
 }
 //---------------------------------------------------------------------------

@@ -59,7 +59,7 @@ CxDebugger::~CxDebugger() {
 
 //---------------------------------------------------------------------------
 bool
-CxDebugger::bGetEnabled() {
+CxDebugger::bIsEnabled() {
     return _m_bIsEnabled;
 }
 //---------------------------------------------------------------------------
@@ -81,7 +81,7 @@ CxDebugger::bIsActive() {
     // remote debugger
     BOOL blIsRemoteDebuggerPresent = FALSE;
 
-    blRes = ::CheckRemoteDebuggerPresent(CxCurrentProcess::hGetHandle(), &blIsRemoteDebuggerPresent);
+    blRes = ::CheckRemoteDebuggerPresent(CxCurrentProcess::hHandle(), &blIsRemoteDebuggerPresent);
     xCHECK_RET(FALSE == blRes || FALSE == blIsRemoteDebuggerPresent, false);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
@@ -96,7 +96,7 @@ CxDebugger::bIsActive() {
         aiMib[0] = CTL_KERN;
         aiMib[1] = KERN_PROC;
         aiMib[2] = KERN_PROC_PID;
-        aiMib[3] = CxCurrentProcess::ulGetId();
+        aiMib[3] = CxCurrentProcess::ulId();
 
         // if sysctl fails for some bizarre reason, we get a predictable result
         kiInfo.ki_flag = 0;
@@ -129,7 +129,7 @@ CxDebugger::bIsDebugBuild() {
 //---------------------------------------------------------------------------
 void
 CxDebugger::vBreak() {
-    xCHECK_DO(false == bGetEnabled(), return);
+    xCHECK_DO(false == bIsEnabled(), return);
 
 #if   xOS_ENV_WIN
     #if xCOMPILER_MS || xCOMPILER_CODEGEAR
@@ -143,7 +143,7 @@ CxDebugger::vBreak() {
     int iRv = ::raise(SIGTRAP);
     xTEST_DIFF(- 1, iRv);
 
-    //// int iRv = ::kill(CxCurrentProcess::ulGetId(), SIGALRM);
+    //// int iRv = ::kill(CxCurrentProcess::ulId(), SIGALRM);
     //// xTEST_DIFF(- 1, iRv);
 #endif
 }
@@ -157,7 +157,7 @@ CxDebugger::vSetLogPath(
 }
 //---------------------------------------------------------------------------
 std::tstring_t
-CxDebugger::sGetLogPath() {
+CxDebugger::sLogPath() {
     return _m_sLogPath;
 }
 //---------------------------------------------------------------------------
@@ -199,7 +199,7 @@ CxDebugger::_vMsgboxPlain(
     const CxErrorReport &a_crpReport
 )
 {
-    xCHECK_DO(false == bGetEnabled(), return);
+    xCHECK_DO(false == bIsEnabled(), return);
 
 #if xDEBUG_USE_PROMPT_DIALOG
     #if   xOS_ENV_WIN
@@ -208,7 +208,7 @@ CxDebugger::_vMsgboxPlain(
         ulong_t ulType = 1UL;
     #endif
 
-    CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::iShow(a_crpReport.m_sReport, CxPath::sGetExe(), ulType);
+    CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::iShow(a_crpReport.m_sReport, CxPath::sExe(), ulType);
 #else
     CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::mrIgnore;
 #endif
@@ -241,13 +241,13 @@ CxDebugger::_vMsgboxFormated(
     const CxErrorReport &a_crpReport
 )
 {
-    xCHECK_DO(false == bGetEnabled(), return);
+    xCHECK_DO(false == bIsEnabled(), return);
 
 #if   xOS_ENV_WIN
     //-------------------------------------
     //show message
     #if xDEBUG_USE_PROMPT_DIALOG
-        CxMsgBoxRtf::ExModalResult mrRes = CxMsgBoxRtf::iShow(NULL, a_crpReport.m_sReport, CxPath::sGetExe());
+        CxMsgBoxRtf::ExModalResult mrRes = CxMsgBoxRtf::iShow(NULL, a_crpReport.m_sReport, CxPath::sExe());
     #else
         CxMsgBoxRtf::ExModalResult mrRes = CxMsgBoxRtf::mrIgnore;
     #endif
@@ -333,7 +333,7 @@ CxDebugger::_vStdoutPlain(
     const CxErrorReport &a_crpReport
 )
 {
-    xCHECK_DO(false == bGetEnabled(), return);
+    xCHECK_DO(false == bIsEnabled(), return);
 
     enum EConsoleCmd {
         cmAbort  = xT('a'),
@@ -393,7 +393,7 @@ CxDebugger::_vStdoutHtml(
     const CxErrorReport &a_crpReport
 )
 {
-    xCHECK_DO(false == bGetEnabled(), return);
+    xCHECK_DO(false == bIsEnabled(), return);
 
     enum EConsoleCmd {
         cmAbort  = xT('a'),
@@ -456,16 +456,16 @@ CxDebugger::_vLoggingPlain(
     const CxErrorReport &a_crpReport
 )
 {
-    xCHECK_DO(false == bGetEnabled(), return);
+    xCHECK_DO(false == bIsEnabled(), return);
 
     //--------------------------------------------------
     //get log file path
     std::tstring_t sFilePath;
 
-    if (true == sGetLogPath().empty()) {
-        sFilePath = CxPath::sSetExt(CxPath::sGetExe(), xT("debug"));
+    if (true == sLogPath().empty()) {
+        sFilePath = CxPath::sSetExt(CxPath::sExe(), xT("debug"));
     } else {
-        sFilePath = sGetLogPath();
+        sFilePath = sLogPath();
     }
 
     //--------------------------------------------------

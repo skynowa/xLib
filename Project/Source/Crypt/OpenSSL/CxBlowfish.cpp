@@ -87,7 +87,7 @@ CxBlowfish::vSetFileKey(
 
     sfFile.vCreate(a_csFilePath, CxFile::omBinRead, true);
 
-    longlong_t llFileSize = sfFile.llGetSize();
+    longlong_t llFileSize = sfFile.llSize();
     /*DEBUG*/xTEST_LESS(0LL, llFileSize);
     /*DEBUG*/xTEST_GR_EQ(static_cast<longlong_t>( MAX_KEY_SIZE ) >= llFileSize, false);
 
@@ -104,7 +104,7 @@ CxBlowfish::vSetFileKey(
 //---------------------------------------------------------------------------
 /* static */
 size_t
-CxBlowfish::uiGetMaxKeySize() {
+CxBlowfish::uiMaxKeySize() {
     return MAX_KEY_SIZE;
 }
 //---------------------------------------------------------------------------

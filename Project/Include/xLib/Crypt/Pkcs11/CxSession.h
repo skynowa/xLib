@@ -26,15 +26,15 @@ class CxSession :
         virtual             ~CxSession         ();
             ///< destructor
 
-        CK_SESSION_HANDLE    hGetHandle        () const;
+        CK_SESSION_HANDLE    hHandle           () const;
             ///< get handle
         void                 vOpen             (CK_SLOT_ID slotID, CK_FLAGS flags, CK_VOID_PTR pApplication, CK_NOTIFY Notify);
             ///< opens a session between an application and a token
-        void                 vGetInfo          (CK_SESSION_INFO_PTR pInfo);
+        void                 vInfo             (CK_SESSION_INFO_PTR pInfo);
             ///< obtains information about the session
         void                 vSetOperationState(CK_BYTE_PTR pOperationState, CK_ULONG ulOperationStateLen, CK_OBJECT_HANDLE hEncryptionKey, CK_OBJECT_HANDLE hAuthenticationKey);
             ///< restores the state of the cryptographic operation in a session
-        void                 vGetOperationState(CK_BYTE_PTR pOperationState, CK_ULONG_PTR pulOperationStateLen);
+        void                 vOperationState   (CK_BYTE_PTR pOperationState, CK_ULONG_PTR pulOperationStateLen);
             ///< obtains the state of the cryptographic operation in a session
         void                 vClose            ();
             ///< closes a session between an application and a token
