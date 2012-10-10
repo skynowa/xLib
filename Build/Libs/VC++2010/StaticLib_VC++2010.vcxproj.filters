@@ -474,6 +474,7 @@
     <None Include="..\..\..\Project\Include\xLib\Common\CxUtils.inl">
       <Filter>xLib\Common</Filter>
     </None>
+    <None Include="..\..\..\TODO.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Project\Source\Common\Win\CxCom.cpp">

@@ -149,6 +149,7 @@
     <None Include="..\..\..\Project\Include\xLib\Gui\Dialogs\CxMsgBoxT.inl" />
     <None Include="..\..\..\Project\Include\xLib\Gui\Win\Dialogs\CxMsgBoxRtf.inl" />
     <None Include="..\..\..\Project\Include\xLib\Sync\CxThreadPool.inl" />
+    <None Include="..\..\..\TODO.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Project\Source\Common\CxChar.cpp" />
