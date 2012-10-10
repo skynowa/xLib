@@ -6,6 +6,7 @@
 
 #include <Test/Net/CxTest_CxCgi.h>
 
+#include <xLib/Filesystem/CxFile.h>
 #include <xLib/Net/CxCookiePv0.h>
 #include <xLib/Net/CxCookiePv1.h>
 
@@ -230,14 +231,12 @@ CxTest_CxCgi::vUnit(
                 std::tstring_t sUri        = sData[i];
                 std::tstring_t sEncodedStr;
 
-                m_bRv = CxCgi::bUriEncode(sUri, ILLEGAL_CHARS, &sEncodedStr);
-                xTEST_EQ(true,  m_bRv);
+                CxCgi::vUriEncode(sUri, ILLEGAL_CHARS, &sEncodedStr);
                 xTEST_EQ(false, sEncodedStr.empty());
 
                 std::tstring_t sDecodedStr;
 
-                m_bRv = CxCgi::bUriDecode(sEncodedStr, &sDecodedStr);
-                xTEST_EQ(true, m_bRv)
+                CxCgi::vUriDecode(sEncodedStr, &sDecodedStr);
                 xTEST_EQ(sUri, sDecodedStr);
             }
         }
@@ -257,14 +256,12 @@ CxTest_CxCgi::vUnit(
                 std::tstring_t sUri        = sData[i];
                 std::tstring_t sDecodedStr;
 
-                m_bRv = CxCgi::bUriDecode(sUri, &sDecodedStr);
-                xTEST_EQ(true,  m_bRv)
+                CxCgi::vUriDecode(sUri, &sDecodedStr);
                 xTEST_EQ(false, sDecodedStr.empty());
 
                 std::tstring_t sEncodedStr;
 
-                m_bRv = CxCgi::bUriEncode(sDecodedStr, ILLEGAL_CHARS, &sEncodedStr);
-                xTEST_EQ(true,  m_bRv);
+                CxCgi::vUriEncode(sDecodedStr, ILLEGAL_CHARS, &sEncodedStr);
                 xTEST_EQ(sUri,  sEncodedStr);
             }
         }

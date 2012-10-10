@@ -114,7 +114,7 @@
 #define xIS_AUTO_LINKING                0
     ///< auto linkage
 
-#define xTEST_PRIVATE_DATA              0
+#define xTEST_PRIVATE_DATA              1
     ///< for tests private data
 
 #define xTEST_BLOCK_WITH_TRACE_POINT    0

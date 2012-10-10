@@ -60,8 +60,8 @@ CxCgi::sDump()  const{
 }
 //---------------------------------------------------------------------------
 /* static */
-bool
-CxCgi::bRedirect(
+void
+CxCgi::vRedirect(
     const std::tstring_t &a_csUrl
 )
 {
@@ -73,13 +73,11 @@ CxCgi::bRedirect(
     sHttpResponse.append( CxConst::xNL );
 
     std::tcout << sHttpResponse << std::endl;
-
-    return true;
 }
 //---------------------------------------------------------------------------
 /* static */
-bool
-CxCgi::bPageShow(
+void
+CxCgi::vPageShow(
     const std::tstring_t &a_csFilePath
 )
 {
@@ -88,8 +86,6 @@ CxCgi::bPageShow(
     CxFile::vTextRead(a_csFilePath, &sFileContent);
 
     std::tcout << sFileContent << std::endl;
-
-    return true;
 }
 //---------------------------------------------------------------------------
 
@@ -106,8 +102,8 @@ namespace {
 //---------------------------------------------------------------------------
 //TODO: bUriEncode
 /* static */
-bool
-CxCgi::bUriEncode(
+void
+CxCgi::vUriEncode(
     const std::tstring_t &a_csUri,
     const std::tstring_t &a_csReserved,
     std::tstring_t       *a_psEncodedStr
@@ -138,14 +134,12 @@ CxCgi::bUriEncode(
             (*a_psEncodedStr) += chChar;
         }
     }
-
-    return true;
 }
 //---------------------------------------------------------------------------
 //TODO: bUriDecode ()
 /* static */
-bool
-CxCgi::bUriDecode(
+void
+CxCgi::vUriDecode(
     const std::tstring_t &a_csUri,
     std::tstring_t       *a_psDecodedStr
 )
@@ -159,13 +153,13 @@ CxCgi::bUriDecode(
         if (chChar == '%') {
             if (it == end) {
                 ////throw SyntaxException("URI encoding: no hex digit following percent sign", str);
-                return false;
+                xTEST_FAIL;
             }
 
             char hi = *it++;
             if (it == end) {
                 ////throw SyntaxException("URI encoding: two hex digits must follow percent sign", str);
-                return false;
+                xTEST_FAIL;
             }
 
             char lo = *it++;
@@ -177,7 +171,7 @@ CxCgi::bUriDecode(
                 chChar = hi - 'a' + 10;
             else {
                 ////throw SyntaxException("URI encoding: not a hex digit");
-                return false;
+                xTEST_FAIL;
             }
 
             chChar *= 16;
@@ -189,14 +183,12 @@ CxCgi::bUriDecode(
                 chChar += lo - 'a' + 10;
             else {
                 ////throw SyntaxException("URI encoding: not a hex digit");
-                return false;
+                xTEST_FAIL;
             }
         }
 
         (*a_psDecodedStr) += chChar;
     }
-
-    return true;
 }
 //----------------------------------------------------------------------------------------------------
 //TODO: cgl_parsecgibuf
@@ -238,7 +230,6 @@ cgl_parsecgibuf(/*cgllist *cdata,*/ char *a_query) {
 //
 //        np = s;
 //    }
-
     return 0;
 }
 //----------------------------------------------------------------------------------------------------
@@ -251,7 +242,9 @@ cgl_parsecgibuf(/*cgllist *cdata,*/ char *a_query) {
 //    //--cgl_charify(s, ' ', '+');
 //    std::tstring_t sRv = CxString::sReplaceAll(s, CxConst::xSPACE, xT("+"));
 //
-//    return bUrlEscape(sRv, fw);
+//    vUrlEscape(sRv, fw);
+//
+//    return 
 //}
 ////----------------------------------------------------------------------------------------------------
 ////TODO: cgl_urldecode
@@ -262,14 +255,12 @@ cgl_parsecgibuf(/*cgllist *cdata,*/ char *a_query) {
 //
 //    sRv = CxString::sReplaceAll(s, xT("+"), CxConst::xSPACE);
 //
-//    bUrlUnescape(sRv);
-//
-//    return;
+//    vUrlUnescape(sRv);
 //}
 //----------------------------------------------------------------------------------------------------
 //TODO: bUrlEscape
-int
-CxCgi::bUrlEscape(char *a_s, FILE *a_fw) {
+void
+CxCgi::vUrlEscape(char *a_s, FILE *a_fw) {
 //    register int    c;
 //
 //    while((c = *s++) != (char)0) {
@@ -289,14 +280,12 @@ CxCgi::bUrlEscape(char *a_s, FILE *a_fw) {
 //                break;
 //        }
 //    }
-
-    return 0;
 }
 //----------------------------------------------------------------------------------------------------
 //TODO: bUrlUnescape
 //modified from the Apache code. Code shrinks string, so can be done in place.
-int
-CxCgi::bUrlUnescape(char *a_s) {
+void
+CxCgi::vUrlUnescape(char *a_s) {
 //    int    error;
 //    char    *p;
 //
@@ -325,8 +314,6 @@ CxCgi::bUrlUnescape(char *a_s) {
 //    *p = (char)0;
 //    if (error)
 //        return -1;
-
-    return 0;
 }
 //----------------------------------------------------------------------------------------------------
 //TODO: cgl_hex2char

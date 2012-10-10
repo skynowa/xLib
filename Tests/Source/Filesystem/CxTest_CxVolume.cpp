@@ -226,10 +226,7 @@ CxTest_CxVolume::vUnit(
         std::vec_tstring_t vsVolumePaths;
 
         CxVolume::vPaths(&vsVolumePaths);
-
-        #if xTEST_IGNORE
-            std::tcout << vsVolumePaths << std::endl;
-        #endif
+        xTEST_EQ(false, vsVolumePaths.empty());
     }
 
     xTEST_CASE(CxVolume::sGetLabel, cullCaseLoops)

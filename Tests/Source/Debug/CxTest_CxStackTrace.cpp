@@ -30,9 +30,9 @@ CxTest_CxStackTrace::vUnit(
         stStack.vGet(&vvsStack);
         xTEST_EQ(false, vvsStack.empty());
 
-        #if xTEST_IGNORE
+        #if xTEST_IGNORE && 0
             std::tcout << xT("stack trace:") << std::endl;
-            std::tcout << vsStack            << std::endl;
+            std::tcout << vvsStack           << std::endl;
         #endif
     }
 

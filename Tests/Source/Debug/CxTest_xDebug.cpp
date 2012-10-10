@@ -172,7 +172,7 @@ CxTest_xDebug::vUnit(
     {
         xTEST_STATIC(true);
 
-        #if xTEST_IGNORE
+        #if xTEST_IGNORE && 0
             xTEST_STATIC(false);
         #endif
     }

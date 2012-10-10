@@ -47,7 +47,7 @@ CxTest_CxCommandLine::vUnit(
     xTEST_CASE(CxCommandLine::vSetArgs, cullCaseLoops)
     {
         #if xTEST_IGNORE
-            CxCommandLine::vSetArgs(ciArgsCount, paszArgs);
+            CxCommandLine::vSetArgs(0, NULL);
         #endif
     }
 }

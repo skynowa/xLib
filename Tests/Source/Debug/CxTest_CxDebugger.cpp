@@ -119,22 +119,6 @@ CxTest_CxDebugger::vUnit(
         }
     }
 
-    xTEST_CASE(CxDebugger::vTrace, cullCaseLoops)
-    {
-        #if xTEST_IGNORE
-            CxDebugger::vTrace(xT("\tCxDebugger: trace data %")xPR_SIZET, CxRandom::liGetIntEx(0, 10000));
-        #endif
-    }
-
-    xTEST_CASE(CxDebugger::vTrace, cullCaseLoops)
-    {
-        #if xTEST_IGNORE || 0
-            CxDebugger::vTrace(xT("\tCxDebugger: trace data %s"), CxRandom::sGetString( CxRandom::liGetIntEx(0, 20) ).c_str());
-        #endif
-
-        xTEST_EQ(true, m_bRv);
-    }
-
     //--------------------------------------------------
     //like xTEST_EQ macroses
 

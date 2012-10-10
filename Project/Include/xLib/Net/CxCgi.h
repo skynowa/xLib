@@ -222,15 +222,15 @@ class CxCgi :
 
         std::tstring_t          sDump          () const;
             ///< get dump
-        static bool             bRedirect      (const std::tstring_t &csUrl);
+        static void             vRedirect      (const std::tstring_t &csUrl);
             ///< redirect to URL
-        static bool             bPageShow      (const std::tstring_t &csFilePath);
+        static void             vPageShow      (const std::tstring_t &csFilePath);
             ///< show page from file
 
         //encoding, decoding
-        static bool             bUriEncode     (const std::tstring_t &csUri, const std::tstring_t &csReserved, std::tstring_t *psEncodedStr);
+        static void             vUriEncode     (const std::tstring_t &csUri, const std::tstring_t &csReserved, std::tstring_t *psEncodedStr);
             ///< encode URI
-        static bool             bUriDecode     (const std::tstring_t &csUri, std::tstring_t *psDecodedStr);
+        static void             vUriDecode     (const std::tstring_t &csUri, std::tstring_t *psDecodedStr);
             ///< decode URI
 
     private:
@@ -244,9 +244,9 @@ class CxCgi :
         void                    cgl_urldecode  (char *s);
             ///< cgl_urldecode
 
-        int                     bUrlEscape     (char *s, FILE *fw);
+        void                    vUrlEscape     (char *s, FILE *fw);
             ///< URL escape
-        int                     bUrlUnescape   (char *s);
+        void                    vUrlUnescape   (char *s);
             ///< URL unescape
 
         char                    cgl_hex2char   (char *what);
