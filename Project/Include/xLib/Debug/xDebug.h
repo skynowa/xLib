@@ -47,6 +47,28 @@
     #define xTEST_MSG_PTR_FAIL(ptr, msg)                 _xTEST_MSG_PTR_FAIL(CxErrorReport::rtStdoutPlain, ptr, msg)
     #define xTEST_MSG_FAIL(msg)                          _xTEST_MSG_FAIL    (CxErrorReport::rtStdoutPlain, msg)
     #define xTEST_MSG(expr, msg)                         _xTEST_MSG_EQ      (CxErrorReport::rtStdoutPlain, true, expr, msg)
+#elif xDEBUG_MODE_MSGBOX_PLAIN
+    #define xTEST_EQ(val1, val2)                         _xTEST_MSG_EQ      (CxErrorReport::rtMsgboxPlain, val1, val2, xT(""))
+    #define xTEST_DIFF(val1, val2)                       _xTEST_MSG_DIFF    (CxErrorReport::rtMsgboxPlain, val1, val2, xT(""))
+    #define xTEST_LESS(val1, val2)                       _xTEST_MSG_LESS    (CxErrorReport::rtMsgboxPlain, val1, val2, xT(""))
+    #define xTEST_GR(val1, val2)                         _xTEST_MSG_GR      (CxErrorReport::rtMsgboxPlain, val1, val2, xT(""))
+    #define xTEST_LESS_EQ(val1, val2)                    _xTEST_MSG_LESS_EQ (CxErrorReport::rtMsgboxPlain, val1, val2, xT(""))
+    #define xTEST_GR_EQ(val1, val2)                      _xTEST_MSG_GR_EQ   (CxErrorReport::rtMsgboxPlain, val1, val2, xT(""))
+    #define xTEST_PTR(ptr)                               _xTEST_MSG_PTR     (CxErrorReport::rtMsgboxPlain, ptr, xT(""))
+    #define xTEST_PTR_FAIL(ptr)                          _xTEST_MSG_PTR_FAIL(CxErrorReport::rtMsgboxPlain, ptr, xT(""))
+    #define xTEST_FAIL                                   _xTEST_MSG_FAIL    (CxErrorReport::rtMsgboxPlain, xT(""))
+    #define xTEST(expr)                                  _xTEST_MSG_EQ      (CxErrorReport::rtMsgboxPlain, true, expr, xT(""))
+
+    #define xTEST_MSG_EQ(val1, val2, msg)                _xTEST_MSG_EQ      (CxErrorReport::rtMsgboxPlain, val1, val2, msg)
+    #define xTEST_MSG_DIFF(val1, val2, msg)              _xTEST_MSG_DIFF    (CxErrorReport::rtMsgboxPlain, val1, val2, msg)
+    #define xTEST_MSG_LESS(val1, val2, msg)              _xTEST_MSG_LESS    (CxErrorReport::rtMsgboxPlain, val1, val2, msg)
+    #define xTEST_MSG_GR(val1, val2, msg)                _xTEST_MSG_GR      (CxErrorReport::rtMsgboxPlain, val1, val2, msg)
+    #define xTEST_MSG_LESS_EQ(val1, val2, msg)           _xTEST_MSG_LESS_EQ (CxErrorReport::rtMsgboxPlain, val1, val2, msg)
+    #define xTEST_MSG_GR_EQ(val1, val2, msg)             _xTEST_MSG_GR_EQ   (CxErrorReport::rtMsgboxPlain, val1, val2, msg)
+    #define xTEST_MSG_PTR(ptr, msg)                      _xTEST_MSG_PTR     (CxErrorReport::rtMsgboxPlain, ptr, msg)
+    #define xTEST_MSG_PTR_FAIL(ptr, msg)                 _xTEST_MSG_PTR_FAIL(CxErrorReport::rtMsgboxPlain, ptr, msg)
+    #define xTEST_MSG_FAIL(msg)                          _xTEST_MSG_FAIL    (CxErrorReport::rtMsgboxPlain, msg)
+    #define xTEST_MSG(expr, msg)                         _xTEST_MSG_EQ      (CxErrorReport::rtMsgboxPlain, true, expr, msg)
 #else
     #define xTEST_EQ(val1, val2)                         { xNA }
     #define xTEST_DIFF(val1, val2)                       { xNA }
