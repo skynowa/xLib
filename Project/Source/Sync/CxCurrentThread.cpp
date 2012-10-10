@@ -29,7 +29,7 @@ CxCurrentThread::bIsCurrent(
     bRv = (ulId() == a_culId);
 #elif xOS_ENV_UNIX
     //TODO: If either thread1 or thread2 are not valid thread IDs, the behavior is undefined
-    bRv = ::pthread_equal(ulGetId(), a_culId);
+    bRv = ::pthread_equal(ulId(), a_culId);
 #endif
 
     return bRv;

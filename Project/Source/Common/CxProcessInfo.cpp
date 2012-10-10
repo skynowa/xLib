@@ -80,14 +80,14 @@ CxProcessInfo::ulIOBytes(
 
     ulong_t ulReadBytes = 0UL;
     {
-        std::tstring_t sValue = CxPath::sGetProcValue(sProcPath, xT("read_bytes"));
+        std::tstring_t sValue = CxPath::sProcValue(sProcPath, xT("read_bytes"));
 
         ulReadBytes = CxString::string_cast<ulong_t>( sValue );
     }
 
     ulong_t ulWriteBytes = 0UL;
     {
-        std::tstring_t sValue = CxPath::sGetProcValue(sProcPath, xT("write_bytes"));
+        std::tstring_t sValue = CxPath::sProcValue(sProcPath, xT("write_bytes"));
 
         ulWriteBytes = CxString::string_cast<ulong_t>( sValue );
     }

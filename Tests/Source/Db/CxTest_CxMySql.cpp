@@ -147,16 +147,16 @@ CxTest_CxMySql::vUnit(
     }
 
     //--------------------------------------------------
-    //uiGetLastError
+    // uiLastError
     {
-        m_uiRv = conConn.uiGetLastError();
+        m_uiRv = conConn.uiLastError();
         xTEST_EQ(0U, m_uiRv);
     }
 
     //--------------------------------------------------
-    //sGetLastErrorStr
+    // sLastErrorStr
     {
-        m_sRv = conConn.sGetLastErrorStr();
+        m_sRv = conConn.sLastErrorStr();
         xTEST_EQ(false, m_sRv.empty());
     }
 

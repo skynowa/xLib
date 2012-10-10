@@ -76,7 +76,7 @@ CxVolume::bIsReady(
 
     (void)::SetErrorMode(uiOldErrorMode);
 #elif xOS_ENV_UNIX
-    sOldDirPath  = CxDir::sGetCurrent();
+    sOldDirPath  = CxDir::sCurrent();
     /*DEBUG*/// n/a
 
     int iRv = ::chdir(sVolumePath.c_str());
@@ -311,7 +311,7 @@ CxVolume::sLabel(
     if (CxConst::xUNIX_SLASH == csVolumePath) {
         sRv = CxConst::xUNIX_SLASH;
     } else {
-        sRv = CxPath::sGetFileName(csVolumePath);
+        sRv = CxPath::sFileName(csVolumePath);
     }
 #endif
 

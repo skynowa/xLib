@@ -247,7 +247,7 @@ CxEnvironment::sExpandStrings(
         //expand var to temp string
         std::tstring_t sExpandedEnvVar;
 
-        sExpandedEnvVar = sGetVar(sEnvVar);
+        sExpandedEnvVar = sVar(sEnvVar);
 
         //--------------------------------------------------
         //replace sEnvVar(%var%) by sExpandedEnvVar

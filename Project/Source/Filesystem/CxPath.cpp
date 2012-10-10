@@ -117,7 +117,7 @@ CxPath::sDll() {
     int iRv = ::dladdr(fpProcAddress, &diInfo);
     /*DEBUF*/xTEST_LESS(0, iRv);
 
-    sRv = sGetAbsolute(diInfo.dli_fname);
+    sRv = sAbsolute(diInfo.dli_fname);
 #endif
 
     return sRv;

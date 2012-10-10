@@ -168,7 +168,7 @@ CxTest_CxThread::vUnit(
         #elif xOS_ENV_UNIX
             pthT->vSetPriority(ctpPriority);
 
-            m_iRv = pthT->tpGetPriority();
+            m_iRv = pthT->tpPriority();
             //TODO: xTEST_EQ(ctpPriority, m_iRv);
         #endif
     }
