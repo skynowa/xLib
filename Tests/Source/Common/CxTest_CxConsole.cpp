@@ -65,11 +65,9 @@ CxTest_CxConsole::vUnit(
         #if xTEST_IGNORE
             const std::tstring_t csStr = xT("\tConsole_test_line");
 
-
             CxConsole cnConsole;
 
-            m_bRv = cnConsole.vWriteLine(csStr);
-            xTEST_EQ(true, m_bRv);
+            cnConsole.vWriteLine(csStr);
         #endif
     }
 
@@ -155,7 +153,7 @@ CxTest_CxConsole::vUnit(
             cnConsole.vSetTitle(csTitle);
 
             #if 1 && xOS_ENV_WIN
-                m_sRv = cnConsole.sGetTitle();
+                m_sRv = cnConsole.sTitle();
                 xTEST_EQ(m_sRv, csTitle);
             #endif
         #endif
@@ -175,8 +173,7 @@ CxTest_CxConsole::vUnit(
         #if   xOS_ENV_WIN && xTEST_IGNORE
             CxConsole cnConsole;
 
-            m_bRv = cnConsole.bSetFullScreen();
-            xTEST_EQ(true, m_bRv);
+            cnConsole.vSetFullScreen();
         #endif
     }
 

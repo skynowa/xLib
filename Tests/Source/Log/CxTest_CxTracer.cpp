@@ -6,6 +6,8 @@
 
 #include <Test/Log/CxTest_CxTracer.h>
 
+#include <xLib/Common/CxString.h>
+
 
 //---------------------------------------------------------------------------
 CxTest_CxTracer::CxTest_CxTracer() {
@@ -62,11 +64,11 @@ CxTest_CxTracer::vUnit(
         double         aData  = 4.4;
         const tchar_t *szData = xT("data2");
 
-        CxTracer() << xT("\t")
-                    << xTRACE_VAR(sData)
-                    << xTRACE_VAR(ulData) 
-                    << xTRACE_VAR(aData)
-                    << xTRACE_VAR(szData);
+        CxTracer() << xT("\t") 
+                   << xTRACE_VAR(sData) 
+                   << xTRACE_VAR(ulData) 
+                   << xTRACE_VAR(aData) 
+                   << xTRACE_VAR(szData);
     #endif
     }
 }

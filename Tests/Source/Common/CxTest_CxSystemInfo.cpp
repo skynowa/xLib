@@ -6,6 +6,7 @@
 
 #include <Test/Common/CxTest_CxSystemInfo.h>
 
+#include <xLib/Common/CxString.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Filesystem/CxDir.h>
 #include <xLib/Sync/CxCurrentThread.h>

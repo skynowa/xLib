@@ -1018,8 +1018,8 @@ CxTest_CxFile::vUnitPrivate(
         vpData.push_back( std::make_pair(CxFile::omBinOpenReadAppend,  xT("ab+")) );
 
         for (size_t i = 0; i < vpData.size(); ++ i) {
-            CxFile::EOpenMode omRes = vpData.at(i).first;
-            std::tstring_t    sRv   = vpData.at(i).second;
+            CxFile::ExOpenMode omRes = vpData.at(i).first;
+            std::tstring_t     sRv   = vpData.at(i).second;
 
             m_sRv = CxFile::_sOpenMode(omRes);
             xTEST_EQ(sRv, m_sRv);
