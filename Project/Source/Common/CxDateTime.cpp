@@ -351,7 +351,7 @@ CxDateTime::vGet(
 }
 //---------------------------------------------------------------------------
 ushort_t
-CxDateTime::usGetDayOfWeek() const {
+CxDateTime::usDayOfWeek() const {
     /*DEBUG*/xTEST_EQ(true, bIsValid()); //??? - 0
     /*DEBUG*/
 
@@ -517,7 +517,7 @@ CxDateTime::sFormat(
         case ftRFC1123: {
                 sRv = CxString::sFormat(
                         xT("%s, %.2d %s %.4d %.2d:%.2d:%.2d GMT"),
-                        sGetWeekDayStr(usGetDayOfWeek(), true).c_str(), _m_usDay, CxDateTime::sGetMonthStr(_m_usMonth, true).c_str(), _m_usYear, _m_usHour, _m_usMinute, _m_usSecond);
+                        sWeekDayStr(usDayOfWeek(), true).c_str(), _m_usDay, CxDateTime::sMonthStr(_m_usMonth, true).c_str(), _m_usYear, _m_usHour, _m_usMinute, _m_usSecond);
             }
             break;
 
@@ -598,7 +598,7 @@ CxDateTime::bIsValid() const {
 //---------------------------------------------------------------------------
 /* static */
 CxDateTime
-CxDateTime::dtGetCurrent() {
+CxDateTime::dtCurrent() {
     /*DEBUG*/
 
 #if   xOS_ENV_WIN
@@ -755,7 +755,7 @@ NOTE: signs of the zodiac
 
 /* static */
 std::tstring_t
-CxDateTime::sGetZodiacSign(
+CxDateTime::sZodiacSign(
     const ushort_t &a_cusMonth,
     const ushort_t &a_cusDay
 )
@@ -818,7 +818,7 @@ CxDateTime::sGetZodiacSign(
 //---------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxDateTime::sGetMonthStr(
+CxDateTime::sMonthStr(
     ushort_t    a_usMonth,
     const bool &a_cbIsShortName
 )
@@ -875,7 +875,7 @@ CxDateTime::sGetMonthStr(
 //---------------------------------------------------------------------------
 /* static */
 ushort_t
-CxDateTime::usGetMonthNum(
+CxDateTime::usMonthNum(
     const std::tstring_t &a_csMonth,
     const bool           &a_cbIsShortName
 )
@@ -924,7 +924,7 @@ CxDateTime::usGetMonthNum(
 //---------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxDateTime::sGetWeekDayStr(
+CxDateTime::sWeekDayStr(
     ushort_t    a_usDay,
     const bool &a_cbIsShortName
 )
@@ -969,7 +969,7 @@ CxDateTime::sGetWeekDayStr(
 //---------------------------------------------------------------------------
 /* static */
 ushort_t
-CxDateTime::usGetWeekDayNum(
+CxDateTime::usWeekDayNum(
     const std::tstring_t &a_csDay,
     const bool           &a_cbIsShortName
 )
@@ -1055,9 +1055,9 @@ CxDateTime::_vParse(
 
                 //CxString::vStdVectorPrintT(vsDates);
 
-                //                   = CxString::string_cast<ushort_t>( vsDates.at(0) );   //Wed(0),
+                //                   = CxString::string_cast<ushort_t>( vsDates.at(0) );     //Wed(0),
                 (*a_pdtDT)._m_usDay    = CxString::string_cast<ushort_t>( vsDates.at(1) );   //23(1)
-                (*a_pdtDT)._m_usMonth  = usGetMonthNum(vsDates.at(2), true);                //Mar(2)
+                (*a_pdtDT)._m_usMonth  = usMonthNum(vsDates.at(2), true);                    //Mar(2)
                 (*a_pdtDT)._m_usYear   = CxString::string_cast<ushort_t>( vsDates.at(3) );   //2011(3)
                 (*a_pdtDT)._m_usHour   = CxString::string_cast<ushort_t>( vsDates.at(4) );   //15(4)
                 (*a_pdtDT)._m_usMinute = CxString::string_cast<ushort_t>( vsDates.at(5) );   //05(5)

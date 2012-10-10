@@ -37,7 +37,7 @@ class CxInputBox :
 
         ExModalResult           mrShowModal (const std::tstring_t &csCaption, const std::tstring_t &csPrompt, const std::tstring_t &csText);
             ///< show modal
-        std::tstring_t          sGetText    ();
+        std::tstring_t          sText       ();
             ///< get text
 
     private:

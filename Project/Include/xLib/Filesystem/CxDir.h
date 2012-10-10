@@ -25,11 +25,11 @@ class CxDir :
             ///< is root
         static bool           bIsDir      (const std::tstring_t &csDirPath);
             ///< is dir
-        static std::tstring_t sGetCurrent ();
+        static std::tstring_t sCurrent    ();
             ///< get current
         static void           vSetCurrent (const std::tstring_t &csDirPath);
             ///< set current
-        static std::tstring_t sGetTemp    ();
+        static std::tstring_t sTemp       ();
             ///< get path to system var %Temp%
         static void           vCreate     (const std::tstring_t &csDirPath);
             ///< create

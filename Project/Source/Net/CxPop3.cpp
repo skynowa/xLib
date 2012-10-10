@@ -63,7 +63,7 @@ CxPop3::vConnect() {
      //Parse domain
      std::tstring_t sIp;
 
-     CxDnsClient::vGetHostAddrByName(_m_sServer, &sIp);
+     CxDnsClient::vHostAddrByName(_m_sServer, &sIp);
 
      //-------------------------------------
      //Connect

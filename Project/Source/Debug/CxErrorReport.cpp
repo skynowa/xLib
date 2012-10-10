@@ -62,30 +62,30 @@ CxErrorReport::_vConstruct(
     m_rtType          = a_crtType;
 
 #if 1
-    m_sProgram        = CxPath::sToUnix( CxPath::sGetShort(CxPath::sGetExe(), cuiReportWidthMax), false );
-    m_ulProcessId     = (ulong_t)CxCurrentProcess::ulGetId();
-    m_ulThreadId      = (ulong_t)CxCurrentThread::ulGetId();
-    m_sFileSize       = CxString::sFormatBytes( static_cast<ulonglong_t>( CxFile::llGetSize(CxPath::sGetExe())) );
+    m_sProgram        = CxPath::sToUnix( CxPath::sShort(CxPath::sExe(), cuiReportWidthMax), false );
+    m_ulProcessId     = (ulong_t)CxCurrentProcess::ulId();
+    m_ulThreadId      = (ulong_t)CxCurrentThread::ulId();
+    m_sFileSize       = CxString::sFormatBytes( static_cast<ulonglong_t>( CxFile::llSize(CxPath::sExe())) );
 
-    m_sSourceFile     = CxPath::sToUnix( CxPath::sGetShort(a_csFile, cuiReportWidthMax), false );
+    m_sSourceFile     = CxPath::sToUnix( CxPath::sShort(a_csFile, cuiReportWidthMax), false );
     m_ulSourceLine    = a_culLine;
     m_sFunctionName   = a_csFunc;
     m_sExpression     = a_csExp;
     m_ulLastError     = a_culLastError;
     m_sLastErrorStr   = CxLastError::sFormat(a_culLastError);
 
-    m_sCurrentDate    = CxDateTime::dtGetCurrent().sFormat(CxDateTime::ftDateTime);
+    m_sCurrentDate    = CxDateTime::dtCurrent().sFormat(CxDateTime::ftDateTime);
     m_sBuildDate      = CxString::sFormat(xT("%s/%s"), a_csDate.c_str(), a_csTime.c_str());
     m_sBuildType      = (true == CxDebugger().bIsDebugBuild()) ? xT("debug") : xT("release");
-    m_sOsVersion      = CxSystemInfo::sFormatOsType( CxSystemInfo::osGetOS() );
-    m_sOsArchitecture = CxSystemInfo::sFormatOsArch( CxSystemInfo::oaGetOsArch() );
+    m_sOsVersion      = CxSystemInfo::sFormatOsType( CxSystemInfo::osOS() );
+    m_sOsArchitecture = CxSystemInfo::sFormatOsArch( CxSystemInfo::oaOsArch() );
 
     m_sStackTrace     = a_csStackTrace;
     m_sComment        = (false == a_csComment.empty()) ? a_csComment : CxConst::xHYPHEN;
 #else
     m_sProgram        = xT("");
-    m_ulProcessId     = (ulong_t)CxCurrentProcess::ulGetId();
-    m_ulThreadId      = (ulong_t)CxCurrentThread::ulGetId();
+    m_ulProcessId     = (ulong_t)CxCurrentProcess::ulId();
+    m_ulThreadId      = (ulong_t)CxCurrentThread::ulId();
     m_sFileSize       = xT("");
 
     m_sSourceFile     = a_csFile;

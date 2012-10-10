@@ -42,7 +42,7 @@ CxTest_CxThreadStorage::vUnit(
             m_bRv = tlsTls.bIsSet();
             xTEST_EQ(true, m_bRv);
 
-            ulong_t *pulRes = static_cast<ulong_t *>( tlsTls.pvGetValue() );
+            ulong_t *pulRes = static_cast<ulong_t *>( tlsTls.pvValue() );
             xTEST_PTR(pulRes);
             xTEST_EQ(culData, ulong_t(*pulRes));
 

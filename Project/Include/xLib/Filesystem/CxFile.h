@@ -135,7 +135,7 @@ class CxFile :
             ///< detach from stream
         std::FILE             *pGet         () const;
             ///< get handle
-        std::tstring_t         sGetPath     () const;
+        std::tstring_t         sPath        () const;
             ///< get file path
 
         //read, write
@@ -173,7 +173,7 @@ class CxFile :
             ///< locks or unlocks bytes of a file
         void                   vSetPosition (const long_t &clOffset, const ExPointerPosition &cppPos) const;
             ///< set stream position indicator
-        long_t                 liGetPosition() const;
+        long_t                 liPosition   () const;
             ///< get current position in stream
         void                   vSetVBuff    (char *pszBuff, const ExBufferingMode &cbmMode, const size_t &cuiSize) const;
             ///< change stream buffering
@@ -183,7 +183,7 @@ class CxFile :
             ///< sets the file translation mode
     #endif
 
-        longlong_t             llGetSize    () const;
+        longlong_t             llSize       () const;
             ///< get file size
         void                   vResize      (const longlong_t &cllSize) const;
             ///< changes the file size
@@ -235,11 +235,11 @@ class CxFile :
             ///< move
         static void            vCopy        (const std::tstring_t &csFilePathFrom, const std::tstring_t &csFilePathTo, const bool &cbFailIfExists);
             ///< copy
-        static longlong_t      llGetSize    (const std::tstring_t &csFilePath);
+        static longlong_t      llSize       (const std::tstring_t &csFilePath);
             ///< get size
-        static ulonglong_t     ullGetLines  (const std::tstring_t &csFilePath);
+        static ulonglong_t     ullLines     (const std::tstring_t &csFilePath);
             ///< get number of lines
-        static void            vGetTime     (const std::tstring_t &csFilePath, time_t *ptmCreate, time_t *ptmAccess, time_t *ptmModified);
+        static void            vTime        (const std::tstring_t &csFilePath, time_t *ptmCreate, time_t *ptmAccess, time_t *ptmModified);
             ///< get time
         static void            vSetTime     (const std::tstring_t &csFilePath, const time_t &ctmCreate, const time_t &ctmAccess, const time_t &ctmModified);
             ///< set time
@@ -268,11 +268,11 @@ class CxFile :
         std::FILE             *_m_pFile;      ///< file handle
         std::tstring_t         _m_sFilePath;  ///< file path
 
-        static int             _iGetHandle  (std::FILE *pfFile);
+        static int             _iHandle     (std::FILE *pfFile);
             ///< gets the file descriptor associated with a stream
-        static std::FILE *     _pfGetHandle (int iFileHandle, const ExOpenMode &omMode);
+        static std::FILE *     _pfHandle    (int iFileHandle, const ExOpenMode &omMode);
             ///< get stream by handle
-        static std::tstring_t  _sGetOpenMode(const ExOpenMode &comMode);
+        static std::tstring_t  _sOpenMode   (const ExOpenMode &comMode);
             ///< get open mode as string, by default use "r"
 
         friend class           CxFileTemp;

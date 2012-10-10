@@ -126,7 +126,7 @@ CxTest_CxEnvironment::vUnit(
         }
     }
 
-    xTEST_CASE(CxEnvironment::sGetVar, cullCaseLoops)
+    xTEST_CASE(CxEnvironment::sVar, cullCaseLoops)
     {
     #if   xOS_ENV_WIN
         const std::tstring_t sData[][2] = {
@@ -145,15 +145,15 @@ CxTest_CxEnvironment::vUnit(
     #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            std::tstring_t sStr1 = CxEnvironment::sGetVar(sData[i][0]);
+            std::tstring_t sStr1 = CxEnvironment::sVar(sData[i][0]);
             std::tstring_t sStr2 = sData[i][1];
             xTEST_EQ(sStr1, sStr2);
         }
     }
 
-    xTEST_CASE(CxEnvironment::vGetValues, cullCaseLoops)
+    xTEST_CASE(CxEnvironment::vValues, cullCaseLoops)
     {
-        CxEnvironment::vGetValues(&m_vsRv);
+        CxEnvironment::vValues(&m_vsRv);
         xTEST_EQ(false, m_vsRv.empty());
 
         ////CxString::vStdVectorPrintT(m_vsRv);

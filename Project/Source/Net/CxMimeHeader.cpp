@@ -123,7 +123,7 @@ CxMimeHeader::vParse(
 //---------------------------------------------------------------------------
 //DONE: sGetField
 std::tstring_t
-CxMimeHeader::sGetField(
+CxMimeHeader::sField(
     const std::tstring_t &a_csName
 )
 {
@@ -245,7 +245,7 @@ std::tstring_t
 CxMimeHeader::sGenerateMessageID() {
     std::tstring_t sRv;
 
-    sRv = CxString::sFormat(xT("%s@%s"), CxString::sCreateGuid().c_str(), CxSystemInfo::sGetHostName().c_str());
+    sRv = CxString::sFormat(xT("%s@%s"), CxString::sCreateGuid().c_str(), CxSystemInfo::sHostName().c_str());
     /*DEBUG*/xTEST_EQ(false, sRv.empty());
 
     return sRv;

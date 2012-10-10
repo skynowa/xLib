@@ -22,7 +22,7 @@ xNAMESPACE_BEGIN(NxLib)
 CxMechanism::CxMechanism(
     const CxPkcs11 &a_cPkcs11
 ) :
-    _m_pFunc(a_cPkcs11.pGetFuncList())
+    _m_pFunc(a_cPkcs11.pFuncList())
 {
 
 }
@@ -33,7 +33,7 @@ CxMechanism::~CxMechanism() {
 }
 //---------------------------------------------------------------------------
 void
-CxMechanism::vGetInfo(
+CxMechanism::vInfo(
     CK_SLOT_ID            a_slotID,  ///< ID of the token's slot
     CK_MECHANISM_TYPE     a_type,    ///< type of mechanism
     CK_MECHANISM_INFO_PTR a_pInfo    ///< receives mechanism info
@@ -46,7 +46,7 @@ CxMechanism::vGetInfo(
 }
 //---------------------------------------------------------------------------
 void
-CxMechanism::vGetList(
+CxMechanism::vList(
     CK_SLOT_ID            a_slotID,          ///< ID of token's slot
     CK_MECHANISM_TYPE_PTR a_pMechanismList,  ///< gets mech. array
     CK_ULONG_PTR          a_pulCount         ///< gets # of mechs.

@@ -27,7 +27,7 @@ CxException::~CxException() {
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxException::sGetWhat() const {
+CxException::sWhat() const {
     /*DEBUG*/
 
     return _m_sMessage;

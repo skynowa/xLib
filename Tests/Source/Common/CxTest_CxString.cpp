@@ -39,8 +39,8 @@ CxTest_CxString::vUnit(
         for (size_t i = 0; i < 10; ++ i) {
             std::ustring_t usStr;
 
-            usStr.resize( (size_t)CxRandom::liGetInt(1, 64) );
-            std::fill_n(usStr.begin(), usStr.size(), static_cast<std::ustring_t::value_type>( CxRandom::liGetInt(1, 255) ));
+            usStr.resize( (size_t)CxRandom::liInt(1, 64) );
+            std::fill_n(usStr.begin(), usStr.size(), static_cast<std::ustring_t::value_type>( CxRandom::liInt(1, 255) ));
 
             std::tstring_t sVal1 = std::tstring_t(usStr.begin(), usStr.end());
 

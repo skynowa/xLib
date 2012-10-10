@@ -18,9 +18,9 @@ class CxCurrentThread :
     public:
         static bool               bIsCurrent     (const CxThread::id_t &culId);
             ///< is current id
-        static CxThread::id_t     ulGetId        ();
+        static CxThread::id_t     ulId           ();
             ///< get the thread identifier of the calling thread
-        static CxThread::handle_t hGetHandle     ();
+        static CxThread::handle_t hHandle        ();
             ///< get pseudo handle for the calling thread
         static void               vYield         ();
             ///< yield

@@ -288,8 +288,8 @@ CxThread::vWait(
     //flags
     //?????????
 
-    /*DEBUG*/xTEST_DIFF(CxCurrentThread::ulGetId(), _m_ulId);
-    xCHECK_DO(CxCurrentThread::ulGetId() == _m_ulId, return);
+    /*DEBUG*/xTEST_DIFF(CxCurrentThread::ulId(), _m_ulId);
+    xCHECK_DO(CxCurrentThread::ulId() == _m_ulId, return);
 
     DWORD ulRv = ::WaitForSingleObject(_m_hThread.hGet(), a_culTimeout);
     /*DEBUG*/xTEST_EQ(WAIT_OBJECT_0, ulRv);
@@ -541,7 +541,7 @@ CxThread::vMessageWaitQueue(
 //---------------------------------------------------------------------------
 /* static */
 int
-CxThread::_iGetPriorityMin() {
+CxThread::_iPriorityMin() {
     int iRv = - 1;
 
 #if   xOS_ENV_WIN
@@ -556,7 +556,7 @@ CxThread::_iGetPriorityMin() {
 //---------------------------------------------------------------------------
 /* static */
 int
-CxThread::_iGetPriorityMax() {
+CxThread::_iPriorityMax() {
     int iRv = - 1;
 
 #if   xOS_ENV_WIN
@@ -594,7 +594,7 @@ CxThread::vSetPriority(
 }
 //---------------------------------------------------------------------------
 CxThread::ExPriority
-CxThread::tpGetPriority() const {
+CxThread::tpPriority() const {
 #if   xOS_ENV_WIN
     /*DEBUG*/xTEST_EQ(true, _m_hThread.bIsValid());
 #elif xOS_ENV_UNIX
@@ -620,10 +620,10 @@ CxThread::tpGetPriority() const {
 }
 //---------------------------------------------------------------------------
 std::tstring_t
-CxThread::sGetPriorityString() const {
+CxThread::sPriorityString() const {
     /*DEBUG*/// n/a
 
-    int iRv = tpGetPriority();
+    int iRv = tpPriority();
     switch (iRv) {
         case tpIdle:            return xT("Idle");
         case tpLowest:          return xT("Lowest");
@@ -648,7 +648,7 @@ CxThread::vPriorityUp() const {
     ExPriority tpOldLevel  = tpError;
     ExPriority tpiNewLevel = tpError;
 
-    tpOldLevel = tpGetPriority();
+    tpOldLevel = tpPriority();
     switch (tpOldLevel) {
         case tpIdle:            tpiNewLevel = tpLowest;         break;
         case tpLowest:          tpiNewLevel = tpBelowNormal;    break;
@@ -675,7 +675,7 @@ CxThread::vPriorityDown() const {
     ExPriority tpOldLevel  = tpError;
     ExPriority tpiNewLevel = tpError;
 
-    tpOldLevel = tpGetPriority();
+    tpOldLevel = tpPriority();
     switch (tpOldLevel) {
         case tpIdle:            return;                         break;
         case tpLowest:          tpiNewLevel = tpIdle;           break;
@@ -781,7 +781,7 @@ CxThread::vSetCpuIdeal(
 }
 //---------------------------------------------------------------------------
 ulong_t
-CxThread::ulGetCpuIdeal() const {
+CxThread::ulCpuIdeal() const {
 #if   xOS_ENV_WIN
     /*DEBUG*/xTEST_EQ(true, _m_hThread.bIsValid());
 #elif xOS_ENV_UNIX
@@ -802,8 +802,8 @@ CxThread::ulGetCpuIdeal() const {
 //---------------------------------------------------------------------------
 /* static */
 ulong_t
-CxThread::ulGetCpuCount() {
-    ulong_t ulRv = CxSystemInfo::ulGetNumOfCpus();
+CxThread::ulCpuCount() {
+    ulong_t ulRv = CxSystemInfo::ulNumOfCpus();
     xCHECK_RET(ulRv < 1UL || ulRv > 32UL, 1UL);
 
     return ulRv;
@@ -843,7 +843,7 @@ bool
 CxThread::bIsCurrent() const {
     /*DEBUG*/
 
-    return CxCurrentThread::bIsCurrent( CxCurrentThread::ulGetId() );
+    return CxCurrentThread::bIsCurrent( CxCurrentThread::ulId() );
 }
 //---------------------------------------------------------------------------
 ulong_t

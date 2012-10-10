@@ -22,13 +22,13 @@ class CxCompletionPort :
                  CxCompletionPort();
         virtual ~CxCompletionPort();
 
-        bool     bCreate         (ulong_t ulThreadsNum /*= 0*/);
-        bool     bAssociate      (HANDLE hFile, ULONG_PTR pulCompletionKey);
-        bool     bGetStatus      (LPDWORD lpNumberOfBytes, PULONG_PTR lpCompletionKey, LPOVERLAPPED *lpOverlapped, ulong_t ulMilliseconds);
-        bool     bPostStatus     (ulong_t ulNumberOfBytesTransferred, ULONG_PTR ulCompletionKey, LPOVERLAPPED lpOverlapped);
+        void     vCreate         (const ulong_t &culThreadsNum /* = 0UL */);
+        void     vAssociate      (const HANDLE &chFile, ULONG_PTR pulCompletionKey);
+        void     vStatus         (LPDWORD lpNumberOfBytes, PULONG_PTR lpCompletionKey, LPOVERLAPPED *lpOverlapped, const ulong_t &culMilliseconds);
+        void     vPostStatus     (const ulong_t &culNumberOfBytesTransferred, ULONG_PTR ulCompletionKey, LPOVERLAPPED lpOverlapped);
 
     private:
-        CxHandle _m_hCP;
+        CxHandle _m_hHandle;
 };
 
 xNAMESPACE_END(NxLib)

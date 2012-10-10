@@ -22,7 +22,7 @@ xNAMESPACE_BEGIN(NxLib)
 CxSlot::CxSlot(
     const CxPkcs11 &a_cPkcs11
 ) :
-    _m_pFunc(a_cPkcs11.pGetFuncList())
+    _m_pFunc(a_cPkcs11.pFuncList())
 {
     /*DEBUG*/xTEST_PTR(_m_pFunc);
 }
@@ -41,7 +41,7 @@ CxSlot::~CxSlot() {
 #endif
 
 void
-CxSlot::vGetList(
+CxSlot::vList(
     CK_BBOOL                 a_bTokenPresent,     ///< only slots with tokens?
     std::vector<CK_SLOT_ID> *a_pvecSlotList       ///< receives array of slot IDs
 )
@@ -67,7 +67,7 @@ CxSlot::vGetList(
 }
 //---------------------------------------------------------------------------
 void
-CxSlot::vGetInfo(
+CxSlot::vInfo(
     CK_SLOT_ID       a_slotID,  ///< the ID of the slot
     CK_SLOT_INFO_PTR a_pInfo    ///< receives the slot information
 )
@@ -99,7 +99,7 @@ CxSlot::nfWaitForEvent(
     //�������� ������� ������ � �����
     CK_SLOT_INFO siInfo = {{0}};
 
-    vGetInfo(*a_pSlot, &siInfo);
+    vInfo(*a_pSlot, &siInfo);
 
     xCHECK_RET(siInfo.flags & CKF_TOKEN_PRESENT, nfInsertion);
 

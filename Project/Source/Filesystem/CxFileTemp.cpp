@@ -57,7 +57,7 @@ CxFileTemp::vCreate(
 
     CxDir::vCreateForce(csDirPath);
 
-    _m_sFilePath = CxPath::sSlashAppend(csDirPath) + CxPath::sGetFileName(csFilePath) + csFileNameTemplate;
+    _m_sFilePath = CxPath::sSlashAppend(csDirPath) + CxPath::sFileName(csFilePath) + csFileNameTemplate;
 
 #if   xOS_ENV_WIN
     #if xCOMPILER_MINGW32 || xCOMPILER_CODEGEAR
@@ -74,14 +74,14 @@ CxFileTemp::vCreate(
         errno_t iError = ::xTMKSTEMP(&_m_sFilePath.at(0), _m_sFilePath.size() + 1);
         /*DEBUG*/xTEST_EQ(0, iError);
 
-        _pfStdFile = ::xTFOPEN(_m_sFilePath.c_str(), CxFile::_sGetOpenMode(CxFile::omBinCreateReadWrite).c_str());
+        _pfStdFile = ::xTFOPEN(_m_sFilePath.c_str(), CxFile::_sOpenMode(CxFile::omBinCreateReadWrite).c_str());
         /*DEBUG*/xTEST_PTR(_pfStdFile);
     #endif
 #elif xOS_ENV_UNIX
     int iFile = ::xTMKSTEMP(&_m_sFilePath.at(0));
     /*DEBUG*/xTEST_DIFF(- 1, iFile);
 
-    _pfStdFile = ::xTFDOPEN(iFile, CxFile::_sGetOpenMode(CxFile::omBinCreateReadWrite).c_str());
+    _pfStdFile = ::xTFDOPEN(iFile, CxFile::_sOpenMode(CxFile::omBinCreateReadWrite).c_str());
     /*DEBUG*/xTEST_PTR(_pfStdFile);
 #endif
 

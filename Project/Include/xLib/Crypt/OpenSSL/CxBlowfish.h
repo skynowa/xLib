@@ -38,7 +38,7 @@ class CxBlowfish :
             ///< set key
         void          vSetFileKey         (const std::tstring_t &csFilePath);
             ///< set key as file
-        static size_t uiGetMaxKeySize     ();
+        static size_t uiMaxKeySize        ();
             ///< get maximum key size
 
         //cfb64

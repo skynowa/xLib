@@ -74,7 +74,7 @@ class CxConsole :
         void           vClear        ();
             ///< clear
 
-        std::tstring_t sGetTitle     ();
+        std::tstring_t sTitle        ();
             ///< get title string
         void           vSetTitle     (const std::tstring_t &csTitle);
             ///< set title string
@@ -92,9 +92,9 @@ class CxConsole :
         CxFileHandle   _m_hStdIn;     ///< standart input handle
         CxFileHandle   _m_hStdOut;    ///< standart output handle
 
-        HWND           _hGetWndHandle ();
+        HWND           _hWndHandle    ();
             ///< get console window handle
-        HMENU          _hGetMenuHandle(const bool &cbRevert);
+        HMENU          _hMenuHandle   (const bool &cbRevert);
             ///< get console menu handle
     #elif xOS_ENV_UNIX
         xNA;

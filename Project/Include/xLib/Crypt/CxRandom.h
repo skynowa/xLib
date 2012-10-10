@@ -46,11 +46,11 @@ class CxRandom :
 
         static void           vSetSeed     ();
             ///< set seed
-        static long_t         liGetInt     (const long_t &cliMin, const long_t &cliMax);
+        static long_t         liInt        (const long_t &cliMin, const long_t &cliMax);
             ///< generates a random number between specified min/max boundaries
-        static long_t         liGetIntEx   (const long_t &cliMin, const long_t &cliMax);
+        static long_t         liIntEx      (const long_t &cliMin, const long_t &cliMax);
             ///< generates a random number between specified min/max boundaries using a vector to shuffle
-        static std::tstring_t sGetString   (const size_t &cuiSize);
+        static std::tstring_t sString      (const size_t &cuiSize);
             ///< get random string
 
     protected:

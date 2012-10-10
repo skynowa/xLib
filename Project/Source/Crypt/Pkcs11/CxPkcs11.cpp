@@ -36,7 +36,7 @@ CxPkcs11::~CxPkcs11() {
 }
 //---------------------------------------------------------------------------
 CK_FUNCTION_LIST_PTR
-CxPkcs11::pGetFuncList() const {
+CxPkcs11::pFuncList() const {
     /*DEBUG*/xTEST_PTR(_m_pFunc);
 
     return _m_pFunc;
@@ -172,7 +172,7 @@ CxPkcs11::_vLoadETPkcs11() {
 
     CK_C_GetFunctionList pFunctionList = NULL;
 
-    (FARPROC &)pFunctionList = (FARPROC)_m_dllETPkcs11.fpGetProcAddress(xT("C_GetFunctionList"));
+    (FARPROC &)pFunctionList = (FARPROC)_m_dllETPkcs11.fpProcAddress(xT("C_GetFunctionList"));
     /*DEBUG*/xTEST_PTR(pFunctionList);
 
     CK_RV ulRv = pFunctionList(&_m_pFunc);

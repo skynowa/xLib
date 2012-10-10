@@ -24,8 +24,8 @@ CxFunction::CxFunction(
     const CxPkcs11  &a_cPkcs11,
     const CxSession &a_cSession
 ) :
-    _m_pFunc   (a_cPkcs11.pGetFuncList()),
-    _m_hSession(a_cSession.hGetHandle())
+    _m_pFunc   (a_cPkcs11.pFuncList()),
+    _m_hSession(a_cSession.hHandle())
 {
 
 }
@@ -36,7 +36,7 @@ CxFunction::~CxFunction() {
 }
 //---------------------------------------------------------------------------
 void
-CxFunction::vGetList(
+CxFunction::vList(
     CK_FUNCTION_LIST_PTR_PTR a_ppFunctionList  ///< receives pointer to function list
 )
 {
@@ -47,7 +47,7 @@ CxFunction::vGetList(
 }
 //---------------------------------------------------------------------------
 void
-CxFunction::vGetStatus() {
+CxFunction::vStatus() {
     /*DEBUG*/
 
     CK_RV ulRv = _m_pFunc->C_GetFunctionStatus(_m_hSession);
@@ -63,7 +63,7 @@ CxFunction::vCancel() {
 }
 //---------------------------------------------------------------------------
 void
-CxFunction::vGetListEx() {
+CxFunction::vListEx() {
     /*DEBUG*/
 
     #if xTODO

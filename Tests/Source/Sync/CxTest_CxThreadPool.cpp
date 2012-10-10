@@ -53,10 +53,10 @@ CxTest_CxThreadPool::vUnit(
     tpPool->vGroupKill(500UL);
     tpPool->vGroupWait(500UL);
 
-    tpPool->uiGetMaxTasks();
+    tpPool->uiMaxTasks();
     tpPool->vSetMaxTasks (10);
 
-    tpPool->uiGetNumTasks();
+    tpPool->uiNumTasks();
     tpPool->vSetNumTasks (10);
 }
 //---------------------------------------------------------------------------

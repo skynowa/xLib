@@ -26,36 +26,36 @@ CxTest_CxDnsClient::vUnit(
 {
     CxSocketInit siInit(2, 2);
 
-    xTEST_CASE(CxDnsClient::vGetHostAddrByName, cullCaseLoops)
+    xTEST_CASE(CxDnsClient::vHostAddrByName, cullCaseLoops)
     {
         std::tstring_t sHostName = xT("msdn.microsoft.com");
         std::tstring_t sHostAddr = xT("");
 
-        CxDnsClient::vGetHostAddrByName(sHostName, &sHostAddr);
+        CxDnsClient::vHostAddrByName(sHostName, &sHostAddr);
 
         //std::tcout << xT("[bGetHostAddrByName]: ") << sHostAddr << std::endl;
     }
 
-    xTEST_CASE(CxDnsClient::vGetHostNameByAddr, cullCaseLoops)
+    xTEST_CASE(CxDnsClient::vHostNameByAddr, cullCaseLoops)
     {
         std::tstring_t sHostName = xT("");
         std::tstring_t sHostAddr = xT("127.0.0.1");
 
-        CxDnsClient::vGetHostNameByAddr(sHostAddr, CxSocket::afInet, &sHostName);
+        CxDnsClient::vHostNameByAddr(sHostAddr, CxSocket::afInet, &sHostName);
 
         //std::tcout << xT("[bGetHostNameByAddr]: ") << sHostName << std::endl;
     }
 
-    xTEST_CASE(CxDnsClient::vGetLocalHostName, cullCaseLoops)
+    xTEST_CASE(CxDnsClient::vLocalHostName, cullCaseLoops)
     {
         std::tstring_t sLocalHostName = xT("");
 
-        CxDnsClient::vGetLocalHostName(&sLocalHostName);
+        CxDnsClient::vLocalHostName(&sLocalHostName);
 
         //std::tcout << xT("[bGetLocalHostName]: ") << sLocalHostName << std::endl;
     }
 
-    xTEST_CASE(CxDnsClient::vGetNameInfo, cullCaseLoops)
+    xTEST_CASE(CxDnsClient::vNameInfo, cullCaseLoops)
     {
         ////CxDnsClient::ExAddressFamily afFamily  = CxDnsClient::afInet;
         ////std::tstring_t                     sHostAddr = /*xT("207.46.172.252");*/    xT("forum.vingrad.ru");
@@ -67,7 +67,7 @@ CxTest_CxDnsClient::vUnit(
         //xSTD_COUT(xT("[bGetNameInfo]: ") << sLocalHostName);
     }
 
-    xTEST_CASE(CxDnsClient::vGetHostAddrInfo, cullCaseLoops)
+    xTEST_CASE(CxDnsClient::vHostAddrInfo, cullCaseLoops)
     {
         std::tstring_t sHostName = xT("www.google.ru");
         std::tstring_t sPort     = xT("http");
@@ -75,7 +75,7 @@ CxTest_CxDnsClient::vUnit(
         ////addrinfo_t aiHints  = {0};
         addrinfo_t *paiList = NULL;
 
-        CxDnsClient::vGetHostAddrInfo(sHostName, sPort, NULL, &paiList);
+        CxDnsClient::vHostAddrInfo(sHostName, sPort, NULL, &paiList);
 
         //xSTD_COUT(xT("[bGetLocalHostName]: ") << sLocalHostName);
 
@@ -103,7 +103,7 @@ CxTest_CxDnsClient::vUnit(
         /*DEBUG*/// n/a
     }
 
-    xTEST_CASE(CxDnsClient::vGetProtocolByName, cullCaseLoops)
+    xTEST_CASE(CxDnsClient::vProtocolByName, cullCaseLoops)
     {
         const tchar_t cszProtocolNames[][10] =
         {
@@ -116,7 +116,7 @@ CxTest_CxDnsClient::vUnit(
             std::vec_tstring_t vsAliases;
             short_t            siNumber = - 1;
 
-            CxDnsClient::vGetProtocolByName(cszProtocolNames[i], &sName, &vsAliases, &siNumber);
+            CxDnsClient::vProtocolByName(cszProtocolNames[i], &sName, &vsAliases, &siNumber);
 
             //std::tcout << xT("[bGetProtocolByName]: ")             << std::endl;
             //std::tcout << xT("    sName:    ") << sName             << std::endl;
@@ -129,7 +129,7 @@ CxTest_CxDnsClient::vUnit(
         //std::tcout << std::endl;
     }
 
-    xTEST_CASE(CxDnsClient::vGetProtocolByNumber, cullCaseLoops)
+    xTEST_CASE(CxDnsClient::vProtocolByNumber, cullCaseLoops)
     {
         const int ciProtocolNumbers[] = {
             0, 1, 3, 6, 8, 12, 17, 20, 22, 27
@@ -140,7 +140,7 @@ CxTest_CxDnsClient::vUnit(
             std::vec_tstring_t vsAliases;
             short_t            siNumber = - 1;
 
-            CxDnsClient::vGetProtocolByNumber(ciProtocolNumbers[i], &sName, &vsAliases, &siNumber);
+            CxDnsClient::vProtocolByNumber(ciProtocolNumbers[i], &sName, &vsAliases, &siNumber);
 
             //std::tcout << xT("[bGetProtocolByNumber]: ")           << std::endl;
             //std::tcout << xT("    sName:    ") << sName             << std::endl;;
@@ -153,7 +153,7 @@ CxTest_CxDnsClient::vUnit(
         //std::tcout << std::endl;
     }
 
-    xTEST_CASE(CxDnsClient::vGetServiceByName, cullCaseLoops)
+    xTEST_CASE(CxDnsClient::vServiceByName, cullCaseLoops)
     {
         std::tstring_t     csServiceName  = xT("http");
         const tchar_t      cszProtocolNames[][10] = {xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"), xT("pup"), xT("udp"), xT("hmp"), xT("xns-idp"), xT("rdp") };
@@ -162,7 +162,7 @@ CxTest_CxDnsClient::vUnit(
         short_t            siPort;
         std::tstring_t     sProtocolName;
 
-        CxDnsClient::vGetServiceByName(csServiceName, cszProtocolNames[3], &sName, &vsAliases, &siPort, &sProtocolName);
+        CxDnsClient::vServiceByName(csServiceName, cszProtocolNames[3], &sName, &vsAliases, &siPort, &sProtocolName);
 
         //std::tcout << xT("[bGetServiceByName]: ")                   << std::endl;
         //std::tcout << xT("    sName:         ") << sName             << std::endl;
@@ -175,7 +175,7 @@ CxTest_CxDnsClient::vUnit(
         //std::tcout << std::endl;
     }
 
-    xTEST_CASE(CxDnsClient::vGetServiceByPort, cullCaseLoops)
+    xTEST_CASE(CxDnsClient::vServiceByPort, cullCaseLoops)
     {
         short_t            csiPort  = 20480;
         const tchar_t      cszProtocolNames[][10] = {xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"), xT("pup"), xT("udp"), xT("hmp"), xT("xns-idp"), xT("rdp") };
@@ -184,7 +184,7 @@ CxTest_CxDnsClient::vUnit(
         short_t            siPort = - 1;
         std::tstring_t     sProtocolName;
 
-        CxDnsClient::vGetServiceByPort(csiPort, cszProtocolNames[3], &sName, &vsAliases, &siPort, &sProtocolName);
+        CxDnsClient::vServiceByPort(csiPort, cszProtocolNames[3], &sName, &vsAliases, &siPort, &sProtocolName);
 
         //std::tcout << xT("[bGetServiceByPort]: ") << std::endl;
         //std::tcout << xT("    sName:         ") << sName << std::endl;

@@ -39,7 +39,7 @@ class CxProfiler :
 
         void                  vSetLogPath(const std::tstring_t &csLogPath);
             ///< set log path
-        const std::tstring_t &sGetLogPath() const;
+        const std::tstring_t &sLogPath   () const;
             ///< get log path
 
         void                  vStart     ();

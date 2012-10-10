@@ -20,31 +20,31 @@ class CxUri :
         explicit           CxUri            (const std::string &csUri);
                           ~CxUri            ();
 
-        std::string        sGetUri          () const;
+        std::string        sUri          () const;
         void               vSetUri          (const std::string &csScheme, const std::string &csAuthority, const std::string &csPath, const std::string &csQuery, const std::string &csFragment);
 
-        std::string        sGetScheme       () const;
+        std::string        sScheme       () const;
         void               vSetScheme       (const std::string &csScheme);
 
-        std::string        sGetAuthority    () const;
+        std::string        sAuthority    () const;
         void               vSetAuthority    (const std::string &csAuthority);
 
-        std::string        sGetUserInfo     () const;
+        std::string        sUserInfo     () const;
         void               vSetUserInfo     (const std::string &csUserInfo);
 
-        std::string        sGetHost         () const;
+        std::string        sHost         () const;
         void               vSetHost         (const std::string &csHost);
 
-        ushort_t           usGetPort        ();
+        ushort_t           usPort        ();
         void               vSetPort         (const ushort_t &cusPort);
 
-        std::string        sGetPath         () const;
+        std::string        sPath         () const;
         void               vSetPath         (const std::string &csPath);
 
-        std::string        sGetQuery        () const;
+        std::string        sQuery        () const;
         void               vSetQuery        (const std::string &csQuery);
 
-        std::string        sGetFragment     () const;
+        std::string        sFragment     () const;
         void               vSetFragment     (const std::string &csFragment);
 
         static std::string sEscape          (const std::string &csUri);
@@ -72,7 +72,7 @@ class CxUri :
 
         void               _vParse          (const std::string &csUri);
         void               _vNormilize      (const std::string &csUri);
-        ushort_t           _usGetDefaultPort() const;
+        ushort_t           _usDefaultPort() const;
         bool               _bIsDefaultPort  () const;
 };
 

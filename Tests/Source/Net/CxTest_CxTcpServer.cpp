@@ -48,7 +48,7 @@ CxTest_CxTcpServer::vUnit(
 
     //-------------------------------------
     //bGetHostAddrByName
-    CxDnsClient::vGetHostAddrByName(csDomain, &sIp);
+    CxDnsClient::vHostAddrByName(csDomain, &sIp);
 
     //-------------------------------------
     //bConnect
@@ -86,7 +86,7 @@ CxTest_CxTcpServer::vUnit(
 
     //-------------------------------------
     //iGetLastError
-    m_iRv = CxTcpServer::iGetLastError();
+    m_iRv = CxTcpServer::iLastError();
     //xTEST_EQ(true, m_bRv);
 }
 //---------------------------------------------------------------------------

@@ -51,7 +51,7 @@ CxUri::~CxUri() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: sGetUri
+//TODO: sUri
 /*
 URI = scheme ":" hier-part [ "?" query ] [ "#" fragment ]
 
@@ -75,37 +75,37 @@ tel    : +1-816-555-1212
 telnet : //192.0.2.16:80/
 */
 std::string
-CxUri::sGetUri() const {
+CxUri::sUri() const {
     /*DEBUG*/
 
     std::string sRv;
     std::string sTemp;
 
-    sTemp = sGetScheme();
+    sTemp = sScheme();
     if (false == sTemp.empty()) {
         sRv += "";
         sRv += sTemp;
     }
 
-    sTemp = sGetAuthority();
+    sTemp = sAuthority();
     if (false == sTemp.empty()) {
         sRv += ":";
         sRv += sTemp;
     }
 
-    sTemp = sGetPath();
+    sTemp = sPath();
     if (false == sTemp.empty()) {
         sRv += "";
         sRv += sTemp;
     }
 
-    sTemp = sGetQuery();
+    sTemp = sQuery();
     if (false == sTemp.empty()) {
         sRv += "?";
         sRv += sTemp;
     }
 
-    sTemp = sGetFragment();
+    sTemp = sFragment();
     if (false == sTemp.empty()) {
         sRv += "#";
         sRv += sTemp;
@@ -124,9 +124,9 @@ CxUri::vSetUri(const std::string &a_csScheme, const std::string &a_csAuthority, 
     vSetFragment (a_csFragment);
 }
 //---------------------------------------------------------------------------
-//TODO: sGetScheme
+//TODO: sScheme
 std::string
-CxUri::sGetScheme() const {
+CxUri::sScheme() const {
     return sEncodeComponent(_m_sScheme);
 }
 void
@@ -134,9 +134,9 @@ CxUri::vSetScheme(const std::string &csScheme) {
     _m_sScheme = sDecodeComponent(csScheme);
 }
 //---------------------------------------------------------------------------
-//DONE: sGetAuthority
+//DONE: sAuthority
 std::string
-CxUri::sGetAuthority() const {
+CxUri::sAuthority() const {
     std::string sTempAuthority;
 
     sTempAuthority += "//";
@@ -162,9 +162,9 @@ CxUri::vSetAuthority(const std::string &csAuthority) {
     _m_sAuthority = sDecodeComponent(csAuthority);
 }
 //---------------------------------------------------------------------------
-//DONE: sGetUserInfo
+//DONE: sUserInfo
 std::string
-CxUri::sGetUserInfo() const {
+CxUri::sUserInfo() const {
     return sEncodeComponent(_m_sUserInfo);
 }
 void
@@ -174,9 +174,9 @@ CxUri::vSetUserInfo(const std::string &csUserInfo) {
     //TODO: bSetAuthority
 }
 //---------------------------------------------------------------------------
-//DONE: sGetHost
+//DONE: sHost
 std::string
-CxUri::sGetHost() const {
+CxUri::sHost() const {
     return sEncodeComponent(_m_sHost);
 }
 void
@@ -186,9 +186,9 @@ CxUri::vSetHost(const std::string &csHost) {
     //TODO: bSetAuthority
 }
 //---------------------------------------------------------------------------
-//DONE: usGetPort
+//DONE: usPort
 ushort_t
-CxUri::usGetPort() {
+CxUri::usPort() {
     return _m_usPort;
 }
 void
@@ -198,9 +198,9 @@ CxUri::vSetPort(const ushort_t &cusPort) {
     //TODO: bSetAuthority
 }
 //---------------------------------------------------------------------------
-//DONE: sGetPath
+//DONE: sPath
 std::string
-CxUri::sGetPath() const {
+CxUri::sPath() const {
     return sEncodeComponent(_m_sPath);
 }
 void
@@ -208,9 +208,9 @@ CxUri::vSetPath(const std::string &csPath) {
     _m_sPath = sDecodeComponent(csPath);
 }
 //---------------------------------------------------------------------------
-//DONE: sGetQuery
+//DONE: sQuery
 std::string
-CxUri::sGetQuery() const {
+CxUri::sQuery() const {
     return sEncodeComponent(_m_sQuery);
 }
 void
@@ -218,9 +218,9 @@ CxUri::vSetQuery(const std::string &csQuery) {
     _m_sQuery = sDecodeComponent(csQuery);
 }
 //---------------------------------------------------------------------------
-//DONE: sGetFragment
+//DONE: sFragment
 std::string
-CxUri::sGetFragment() const {
+CxUri::sFragment() const {
     return sEncodeComponent(_m_sFragment);
 }
 void
@@ -503,7 +503,7 @@ CxUri::_vParse(const std::string &a_csUri) {
         _m_usPort = CxString::string_cast<ushort_t>(sPort);
     }
     if (0 == _m_usPort) {
-        _m_usPort = _usGetDefaultPort();
+        _m_usPort = _usDefaultPort();
     }
 
     //-------------------------------------
@@ -561,9 +561,9 @@ CxUri::_vNormilize(const std::string &a_csUri) {
     xNOT_IMPLEMENTED;
 }
 //---------------------------------------------------------------------------
-//TODO: _usGetDefaultPort ()
+//TODO: _usDefaultPort ()
 ushort_t
-CxUri::_usGetDefaultPort() const {
+CxUri::_usDefaultPort() const {
     if (       "ftp"    == _m_sScheme) {
         return 21;
     } else if ("ssh"    == _m_sScheme) {
@@ -588,7 +588,7 @@ CxUri::_usGetDefaultPort() const {
 //TODO: _bIsDefaultPort ()
 bool
 CxUri::_bIsDefaultPort() const {
-    return ( _m_usPort == _usGetDefaultPort() );
+    return ( _m_usPort == _usDefaultPort() );
 }
 //---------------------------------------------------------------------------
 

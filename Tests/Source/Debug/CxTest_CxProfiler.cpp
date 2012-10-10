@@ -36,13 +36,13 @@ CxTest_CxProfiler::vUnit(
     };
 
     for (size_t i = 0; i < xARRAY_SIZE(pmPerformMode); ++ i) {
-        const std::tstring_t csFilePath = sGetTempDirPath() + CxConst::xSLASH + xT("___Log.log");
+        const std::tstring_t csFilePath = sTempDirPath() + CxConst::xSLASH + xT("___Log.log");
 
         CxProfiler pfP(pmPerformMode[i]);
 
         pfP.vSetLogPath(csFilePath);
 
-        m_sRv = pfP.sGetLogPath();
+        m_sRv = pfP.sLogPath();
         xTEST_EQ(csFilePath, m_sRv);
 
         pfP.vStart();

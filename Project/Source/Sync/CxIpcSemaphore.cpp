@@ -69,7 +69,7 @@ CxIpcSemaphore::vCreate(
 )
 {
     /*DEBUG*/xTEST_EQ(false, _bIsValid());
-    /*DEBUG*/xTEST_GR(CxPath::uiGetMaxSize(), a_csName.size());
+    /*DEBUG*/xTEST_GR(CxPath::uiMaxSize(), a_csName.size());
     /*DEBUG*/xTEST_EQ(true, 0L <= a_cliInitialValue && a_cliInitialValue <= xSEMAPHORE_VALUE_MAX);
 
 #if   xOS_ENV_WIN
@@ -220,7 +220,7 @@ CxIpcSemaphore::vWait(
 }
 //---------------------------------------------------------------------------
 long_t
-CxIpcSemaphore::liGetValue() const {
+CxIpcSemaphore::liValue() const {
     /*DEBUG*/xTEST_EQ(true, _bIsValid());
 
     long_t liRv = - 1L;

@@ -75,7 +75,7 @@ CxStackTrace::vGet(
         SYMBOL_INFO *psiSymbol                        = NULL;
         HANDLE       hProcess                         = NULL;
 
-        hProcess = CxCurrentProcess::hGetHandle();
+        hProcess = CxCurrentProcess::hHandle();
 
         BOOL blRes = ::SymInitialize(hProcess, NULL, TRUE);
         xCHECK_DO(FALSE == blRes, return /* false */);
@@ -142,8 +142,8 @@ CxStackTrace::vGet(
 
             // swap file pathes
             if (true == _m_cbIsWrapFilePathes) {
-                sModulePath = CxPath::sGetFileName(sModulePath);
-                sFilePath   = CxPath::sGetFileName(sFilePath);
+                sModulePath = CxPath::sFileName(sModulePath);
+                sFilePath   = CxPath::sFileName(sFilePath);
             }
 
             // disable function params
@@ -362,7 +362,7 @@ CxStackTrace::_vAddr2Line(
 
     snprintf(szCmdLine, xARRAY_SIZE(szCmdLine) - 1,
              xT("addr2line -C -e %s -f %lx"),   /* xT("addr2line -C -e %s -f -i %lx") */
-             CxPath::sGetExe().c_str(), (ulong_t)a_pvSymbolAddress);
+             CxPath::sExe().c_str(), (ulong_t)a_pvSymbolAddress);
 
     FILE *pflFile = ::popen(szCmdLine, xT("r"));
     xSTD_VERIFY(NULL != pflFile);

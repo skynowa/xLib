@@ -59,7 +59,7 @@ CxCookiePv1::~CxCookiePv1() {
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCookiePv1::sGetName() const {
+CxCookiePv1::sName() const {
     /*DEBUG*/
 
     return _m_sName;
@@ -76,7 +76,7 @@ CxCookiePv1::vSetName(
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCookiePv1::sGetValue() const {
+CxCookiePv1::sValue() const {
     /*DEBUG*/
 
     return _m_sValue;
@@ -93,7 +93,7 @@ CxCookiePv1::vSetValue(
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCookiePv1::sGetComment() const {
+CxCookiePv1::sComment() const {
     /*DEBUG*/
 
     return _m_sComment;
@@ -110,7 +110,7 @@ CxCookiePv1::vSetComment(
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCookiePv1::sGetDomain() const {
+CxCookiePv1::sDomain() const {
     /*DEBUG*/
 
     return _m_sDomain;
@@ -127,7 +127,7 @@ CxCookiePv1::vSetDomain(
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCookiePv1::sGetPath() const {
+CxCookiePv1::sPath() const {
     /*DEBUG*/
 
     return _m_sPath;
@@ -244,9 +244,9 @@ CxCookiePv1::sToString() const {
     return sRv;
 }
 //---------------------------------------------------------------------------
-//TODO: sGetDump
+//TODO: sDump
 std::tstring_t
-CxCookiePv1::sGetDump() const {
+CxCookiePv1::sDump() const {
     std::tstring_t sRv;
 
     xNOT_IMPLEMENTED;

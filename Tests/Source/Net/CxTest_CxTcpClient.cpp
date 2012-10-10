@@ -51,7 +51,7 @@ CxTest_CxTcpClient::vUnit(
 
     //-------------------------------------
     //bDnsParse
-    CxDnsClient::vGetHostAddrByName(csDomain, &sIp);
+    CxDnsClient::vHostAddrByName(csDomain, &sIp);
 
     //-------------------------------------
     //bConnect
@@ -73,7 +73,7 @@ CxTest_CxTcpClient::vUnit(
         std::tstring_t _sIp;
         ushort_t       _usPort = 0;
 
-        objSocket.vGetPeerName(&_sIp, &_usPort);
+        objSocket.vPeerName(&_sIp, &_usPort);
     }
 
     //-------------------------------------
@@ -82,7 +82,7 @@ CxTest_CxTcpClient::vUnit(
         std::tstring_t _sIp;
         ushort_t       _usPort = 0;
 
-        objSocket.vGetSocketName(&_sIp, &_usPort);
+        objSocket.vSocketName(&_sIp, &_usPort);
     }
 
     //-------------------------------------
@@ -115,7 +115,7 @@ CxTest_CxTcpClient::vUnit(
 
     //-------------------------------------
     //iGetLastError
-    m_iRv = CxTcpClient::iGetLastError();
+    m_iRv = CxTcpClient::iLastError();
     //xTEST_EQ(true, m_bRv);
 }
 //---------------------------------------------------------------------------

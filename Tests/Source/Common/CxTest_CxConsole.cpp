@@ -130,7 +130,7 @@ CxTest_CxConsole::vUnit(
         #endif
     }
 
-    xTEST_CASE(CxConsole::sGetTitle, cullCaseLoops)
+    xTEST_CASE(CxConsole::sTitle, cullCaseLoops)
     {
         #if   xOS_ENV_WIN && xTEST_IGNORE
             std::tstring_t csTitle = xT("Title1");
@@ -139,7 +139,7 @@ CxTest_CxConsole::vUnit(
 
             cnConsole.vSetTitle(csTitle);
 
-            m_sRv = cnConsole.sGetTitle();
+            m_sRv = cnConsole.sTitle();
             xTEST_EQ(m_sRv, csTitle);
         #endif
     }

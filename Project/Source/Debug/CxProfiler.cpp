@@ -32,7 +32,7 @@ CxProfiler::CxProfiler(
 }
 //---------------------------------------------------------------------------
 CxProfiler::~CxProfiler() {
-    if (false == _flLog.sGetFilePath().empty()) {
+    if (false == _flLog.sFilePath().empty()) {
         _flLog.vWrite(xT("----------------------------------------"));
     }
 }
@@ -48,10 +48,10 @@ CxProfiler::vSetLogPath(
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxProfiler::sGetLogPath() const {
+CxProfiler::sLogPath() const {
     /*DEBUG*/
 
-    return _flLog.sGetFilePath();
+    return _flLog.sFilePath();
 }
 //--------------------------------------------------------------------------
 void
@@ -79,7 +79,7 @@ CxProfiler::vStart() {
             break;
 
         case pmDateTime: {
-                _m_dtTimesStart = CxDateTime::dtGetCurrent();
+                _m_dtTimesStart = CxDateTime::dtCurrent();
                 /*DEBUG*/// n/a
             }
             break;
@@ -109,7 +109,7 @@ CxProfiler::vStart() {
                 break;
 
             case pmThreadTimes: {
-                    BOOL blRes = ::GetThreadTimes(CxCurrentThread::hGetHandle(), &_m_lpCreationTime, &_m_lpExitTime, &_m_lpKernelTimeStart, &_m_lpUserTimeStart);
+                    BOOL blRes = ::GetThreadTimes(CxCurrentThread::hHandle(), &_m_lpCreationTime, &_m_lpExitTime, &_m_lpKernelTimeStart, &_m_lpUserTimeStart);
                     /*DEBUG*/xTEST_DIFF(FALSE, blRes);
                 }
                 break;
@@ -153,7 +153,7 @@ CxProfiler::vStop(
             break;
 
         case pmDateTime: {
-                _m_dtTimesStop = CxDateTime::dtGetCurrent();
+                _m_dtTimesStop = CxDateTime::dtCurrent();
                 /*DEBUG*/// n/a
 
                 sTimeString = (_m_dtTimesStop - _m_dtTimesStart).sFormat(CxDateTime::ftTime);
@@ -188,7 +188,7 @@ CxProfiler::vStop(
                 break;
 
             case pmThreadTimes: {
-                    BOOL blRes = ::GetThreadTimes(CxCurrentThread::hGetHandle(), &_m_lpCreationTime, &_m_lpExitTime, &_m_lpKernelTimeStop, &_m_lpUserTimeStop);
+                    BOOL blRes = ::GetThreadTimes(CxCurrentThread::hHandle(), &_m_lpCreationTime, &_m_lpExitTime, &_m_lpKernelTimeStop, &_m_lpUserTimeStop);
                     /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 
                     sTimeString = CxDateTime((CxDateTime::i64FiletimeToInt64(_m_lpUserTimeStop) - CxDateTime::i64FiletimeToInt64(_m_lpUserTimeStart)) / 10000).sFormat(CxDateTime::ftTime);
@@ -251,7 +251,7 @@ CxProfiler::vPulse(
 void
 CxProfiler::_vResetData() {
     #if xTODO
-        bool bRv = CxProcess::bSetPriority(CxCurrentProcess::ulGetId(), CxProcess::tpNormal);
+        bool bRv = CxProcess::bSetPriority(CxCurrentProcess::ulId(), CxProcess::tpNormal);
         /*DEBUG*/xTEST_EQ(true, bRv);
     #endif
 

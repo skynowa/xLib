@@ -120,10 +120,10 @@ CxTest_CxRandom::vUnit(
 
             CxRandom::vSetSeed();
 
-            m_liRv = CxRandom::liGetInt(cliMin, cliMax);
+            m_liRv = CxRandom::liInt(cliMin, cliMax);
             xTEST_EQ(true, m_liRv >= cliMin && m_liRv <= cliMax);
 
-            m_liRv = CxRandom::liGetIntEx(cliMin, cliMax);
+            m_liRv = CxRandom::liIntEx(cliMin, cliMax);
             xTEST_EQ(true, m_liRv >= cliMin && m_liRv <= cliMax);
         }
     }
@@ -135,7 +135,7 @@ CxTest_CxRandom::vUnit(
         for (size_t i = 0; i < 10; ++ i) {
             CxRandom::vSetSeed();
 
-            m_sRv = CxRandom::sGetString(cuiStrSize);
+            m_sRv = CxRandom::sString(cuiStrSize);
             xTEST_EQ(cuiStrSize, m_sRv.size());
             //xTRACEV(xT("\ti: %s"), m_sRv.c_str());
         }

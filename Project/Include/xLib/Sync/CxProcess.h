@@ -54,16 +54,16 @@ class CxProcess :
 
         handle_t        hGet           () const;
             ///< get handle
-        id_t            ulGetId        () const;
+        id_t            ulId           () const;
             ///< get ID
         bool            bIsCurrent     () const;
             ///< is current
-        ulong_t         ulGetExitStatus() const;
+        ulong_t         ulExitStatus   () const;
             ///< get termination status
 
-        static id_t     ulGetIdByHandle(const handle_t &chHandle);
+        static id_t     ulIdByHandle   (const handle_t &chHandle);
             ///< get ID by handle
-        static handle_t ulGetHandleById(const id_t &culId);
+        static handle_t ulHandleById   (const id_t &culId);
             ///< get handle by ID
         static bool     bIsRunning     (const std::tstring_t &csProcessName);
             ///< is process runnig by name (with extension)

@@ -45,15 +45,15 @@ class CxThreadPool :
         void                   vGroupKill   (const ulong_t &culTimeout);
         void                   vGroupWait   (const ulong_t &culTimeout);
 
-        size_t                 uiGetMaxTasks() const;
+        size_t                 uiMaxTasks   () const;
         void                   vSetMaxTasks (const size_t &cuiNum);
 
-        size_t                 uiGetNumTasks() const;
+        size_t                 uiNumTasks   () const;
         void                   vSetNumTasks (const size_t &cuiNum);
 
         bool                   bIsEmpty     () const;
         bool                   bIsFull      () const;
-        size_t                 uiGetSize    () const;
+        size_t                 uiSize       () const;
 
     protected:
         virtual uint_t         uiOnRun      (void *pvParam);    /* overload */

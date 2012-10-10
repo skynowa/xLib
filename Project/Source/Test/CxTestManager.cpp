@@ -50,12 +50,12 @@ CxTestManager::vAdd(
     /*DEBUG*/
     /*DEBUG*/xTEST_PTR(a_pvtTest)
 
-    a_pvtTest->vSetName( CxType::sGetName(*a_pvtTest) );
+    a_pvtTest->vSetName( CxType::sName(*a_pvtTest) );
 
     _m_ctnTests.push_back(a_pvtTest);
 
     #if xTEMP_DISABLED
-        xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: added test \"%s\""), a_pvtTest->sGetName().c_str()));
+        xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: added test \"%s\""), a_pvtTest->sName().c_str()));
     #endif
 }
 //---------------------------------------------------------------------------
@@ -70,7 +70,7 @@ CxTestManager::vRun(
 
     xCHECK_DO(_m_cbIsUseTracing, xTRACE (xT("\n")));
     xCHECK_DO(_m_cbIsUseTracing, xTRACE (xT("CxTestManager: start all tests...")));
-    xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: module path: %s"), CxPath::sGetExe().c_str()));
+    xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: module path: %s"), CxPath::sExe().c_str()));
     xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: all loops: %") xPR_I64u 
                                          xT(", unit loops: %") xPR_I64u 
                                          xT(", case loops: %") xPR_I64u 
@@ -79,10 +79,10 @@ CxTestManager::vRun(
 
     for (ulonglong_t i = 0ULL; i < a_cullAllLoops; ++ i) {
         xFOREACH_CONST(container_t, it, _m_ctnTests) {
-            xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: run test \"%s\""), (*it)->sGetName().c_str()));
+            xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: run test \"%s\""), (*it)->sName().c_str()));
 
             (*it)->vRun(a_cullUnitLoops, a_cullCaseLoops);
-            // TODO: xTEST_MSG_EQ(true, bRv, CxString::sFormat(xT("CxTestManager: test \"%s\" not complete"), (*it)->sGetName().c_str()));
+            // TODO: xTEST_MSG_EQ(true, bRv, CxString::sFormat(xT("CxTestManager: test \"%s\" not complete"), (*it)->sName().c_str()));
 
             //xCHECK_DO(_m_cbIsUseTracing, xTRACE(xT("...Ok")));
         }

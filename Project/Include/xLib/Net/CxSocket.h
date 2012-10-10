@@ -183,7 +183,7 @@ class CxSocket :
 
         void           vCreate        (const ExAddressFamily &cafFamily, const ExType &ctpType, const ExProtocol &cptProtocol);
             ///< creates a socket that is bound to a specific transport service provider
-        socket_t       iGetSocket     () const;
+        socket_t       iHandle        () const;
             ///< get socket
         bool           bIsValid       () const;
             ///< checking for validness
@@ -221,9 +221,9 @@ class CxSocket :
         *
         *****************************************************************************/
 
-        void           vGetPeerName   (std::tstring_t *psPeerAddr, ushort_t *pusPeerPort);
+        void           vPeerName      (std::tstring_t *psPeerAddr, ushort_t *pusPeerPort);
             ///< get address of the peer to which a socket is connected
-        void           vGetSocketName (std::tstring_t *psSocketAddr, ushort_t *pusSocketPort);
+        void           vSocketName    (std::tstring_t *psSocketAddr, ushort_t *pusSocketPort);
             ///< get local name for a socket
 
         /****************************************************************************
@@ -234,7 +234,7 @@ class CxSocket :
         ////getsockopt
         static int     iSelect        (int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, timeval *tvTimeout);
             ///< determines the status of one or more sockets, waiting if necessary, to perform synchronous I/O
-        static int     iGetLastError  ();
+        static int     iLastError     ();
             ///< get error status for the last operation that failed
 
     protected:

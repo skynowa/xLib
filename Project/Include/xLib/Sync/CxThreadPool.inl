@@ -228,7 +228,7 @@ CxThreadPool<T>::vGroupWait(
 //---------------------------------------------------------------------------
 template<class T>
 size_t
-CxThreadPool<T>::uiGetMaxTasks() const {
+CxThreadPool<T>::uiMaxTasks() const {
     /*DEBUG*/// n/a
 
     return _m_uiMaxRunningTasks;
@@ -298,7 +298,7 @@ CxThreadPool<T>::vSetMaxTasks(
 //---------------------------------------------------------------------------
 template<class T>
 size_t
-CxThreadPool<T>::uiGetNumTasks() const {
+CxThreadPool<T>::uiNumTasks() const {
     /*DEBUG*/// n/a
 
     return _m_uiNumTasks;
@@ -345,7 +345,7 @@ CxThreadPool<T>::bIsFull() const {
 //---------------------------------------------------------------------------
 template<class T>
 size_t
-CxThreadPool<T>::uiGetSize() const {
+CxThreadPool<T>::uiSize() const {
     /*DEBUG*///xTEST_EQ(CONDITION);
 
     CxAutoMutex amtMutex(_m_mtList, true);

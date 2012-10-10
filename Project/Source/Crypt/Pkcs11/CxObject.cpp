@@ -23,8 +23,8 @@ CxObject::CxObject(
     const CxPkcs11  &a_cPkcs11,
     const CxSession &a_cSession
 ) :
-    _m_pFunc   (a_cPkcs11.pGetFuncList()),
-    _m_hSession(a_cSession.hGetHandle()),
+    _m_pFunc   (a_cPkcs11.pFuncList()),
+    _m_hSession(a_cSession.hHandle()),
     _m_hObject (0UL)
 {
     /*DEBUG*/xTEST_PTR(_m_pFunc);
@@ -39,7 +39,7 @@ CxObject::~CxObject() {
 }
 //---------------------------------------------------------------------------
 CK_OBJECT_HANDLE
-CxObject::hGetHandle() const {
+CxObject::hHandle() const {
     /*DEBUG*/xTEST_PTR(_m_pFunc);
     /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
     /*DEBUG*/xTEST_PTR(_m_hObject);
@@ -181,7 +181,7 @@ CxObject::vDestroy() {
 }
 //---------------------------------------------------------------------------
 void
-CxObject::vGetData(
+CxObject::vData(
     CK_SLOT_ID            a_ulSlotId,
     const std::ustring_t &a_cusUserPin,
     const std::ustring_t &a_cusDataLabel,
@@ -260,7 +260,7 @@ CxObject::vGetData(
 }
 //--------------------------------------------------------------------------
 void
-CxObject::vGetData(
+CxObject::vData(
     CK_SLOT_ID            a_ulSlotId,
     const std::ustring_t &a_cusUserPin,
     std::vec_ustring_t   *a_pusDataLabel,

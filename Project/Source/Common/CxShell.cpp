@@ -199,7 +199,7 @@ CxShell::vExecuteEmail(
 //---------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxShell::sGetSpecialDirPath(
+CxShell::sSpecialDirPath(
     const ESpecialDir &a_csfDir,
     const HANDLE      &a_chToken
 )

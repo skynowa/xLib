@@ -41,7 +41,7 @@ CxConsole::CxConsole()
     /*DEBUG*/xTEST_EQ(true, _m_hStdOut.bIsValid());
     /*DEBUG*/xTEST_DIFF(xNATIVE_HANDLE_NULL, _m_hStdOut.hGet());
 
-    _m_hWnd = _hGetWndHandle();
+    _m_hWnd = _hWndHandle();
     /*DEBUG*/xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
 
     //_m_hMenu - n/a
@@ -318,7 +318,7 @@ CxConsole::vEnableClose(
     /*DEBUG*/xTEST_EQ(true, _m_hStdIn.bIsValid());
     /*DEBUG*/xTEST_EQ(true, _m_hStdOut.bIsValid());
 
-    _m_hMenu = _hGetMenuHandle(false);
+    _m_hMenu = _hMenuHandle(false);
     /*DEBUG*/xTEST_EQ(true, NULL != _m_hMenu);
 
     if (false == a_cbFlag) {
@@ -328,10 +328,10 @@ CxConsole::vEnableClose(
         BOOL blRv = ::AppendMenu(_m_hMenu, SC_CLOSE, MF_BYCOMMAND, xT(""));
         /*DEBUG*/xTEST_DIFF(FALSE, blRv);
 
-        BOOL bRv = ::EnableMenuItem(_hGetMenuHandle(false), SC_CLOSE, MF_ENABLED);
+        BOOL bRv = ::EnableMenuItem(_hMenuHandle(false), SC_CLOSE, MF_ENABLED);
         /*DEBUG*/xTEST_DIFF(TRUE, bRv);
 
-        ::SetWindowPos(_hGetWndHandle(), NULL, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_DRAWFRAME);
+        ::SetWindowPos(_hWndHandle(), NULL, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_DRAWFRAME);
     }
 #elif xOS_ENV_UNIX
     //TODO: bEnableClose
@@ -340,7 +340,7 @@ CxConsole::vEnableClose(
 }
 //---------------------------------------------------------------------------
 std::tstring_t
-CxConsole::sGetTitle() {
+CxConsole::sTitle() {
     /*DEBUG*/
 
     std::tstring_t sRv;
@@ -466,7 +466,7 @@ CxConsole::vCenterWindow() {
 #if   xOS_ENV_WIN
 
 HWND
-CxConsole::_hGetWndHandle() {
+CxConsole::_hWndHandle() {
     /*DEBUG*/
 
     HWND           hRv = NULL;
@@ -475,11 +475,11 @@ CxConsole::_hGetWndHandle() {
     std::tstring_t sOldWndTitle;
 
     //Fetch current window title.
-    sOldWndTitle = sGetTitle();
+    sOldWndTitle = sTitle();
     /*DEBUG*/xTEST_EQ(false, sOldWndTitle.empty());
 
     //Format a "unique" szNewWndTitle.
-    sNewWndTitle = CxString::sFormat(xT("%lu/%lu"), ::GetTickCount(), CxCurrentProcess::ulGetId());
+    sNewWndTitle = CxString::sFormat(xT("%lu/%lu"), ::GetTickCount(), CxCurrentProcess::ulId());
 
     //Change current window title.
     vSetTitle(sNewWndTitle);
@@ -502,7 +502,7 @@ CxConsole::_hGetWndHandle() {
 #if   xOS_ENV_WIN
 
 HMENU
-CxConsole::_hGetMenuHandle(
+CxConsole::_hMenuHandle(
     const bool &a_cbRevert
 )
 {

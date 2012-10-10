@@ -29,7 +29,7 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 /* static */
 CxSystemInfo::ExOsType
-CxSystemInfo::osGetOS() {
+CxSystemInfo::osOS() {
     ExOsType otRes = otUnknown;
 
 #if   xOS_ENV_WIN
@@ -152,7 +152,7 @@ CxSystemInfo::sFormatOsType(
 //---------------------------------------------------------------------------
 /* static */
 CxSystemInfo::ExOsArch
-CxSystemInfo::oaGetOsArch() {
+CxSystemInfo::oaOsArch() {
     ExOsArch oaRes = oaUnknown;
 
 #if   xOS_ENV_WIN
@@ -167,7 +167,7 @@ CxSystemInfo::oaGetOsArch() {
             dlDll.vLoad(xT("kernel32.dll"));
             blIsFuncExist = dlDll.bIsProcExists(xT("IsWow64Process"));
         }
-        BOOL blIsWow64Process = ::IsWow64Process(CxCurrentProcess::hGetHandle(), &blIs64BitOs);
+        BOOL blIsWow64Process = ::IsWow64Process(CxCurrentProcess::hHandle(), &blIs64BitOs);
 
         oaRes = (blIsFuncExist && blIsWow64Process && blIs64BitOs) ? oa64bit : oa32bit;
     #else
@@ -236,7 +236,7 @@ CxSystemInfo::sFormatOsArch(
 //---------------------------------------------------------------------------
 /* static */
 std::string
-CxSystemInfo::sGetDesktopName() {
+CxSystemInfo::sDesktopName() {
     std::string sRv;
 
 #if   xOS_ENV_WIN
@@ -251,7 +251,7 @@ CxSystemInfo::sGetDesktopName() {
 
     /*DEBUG*/xTEST_EQ(false, sRv.empty());
 #elif xOS_ENV_UNIX
-    sRv = CxEnvironment::sGetVar(xT("DESKTOP_SESSION"));
+    sRv = CxEnvironment::sVar(xT("DESKTOP_SESSION"));
     /*DEBUG*/xTEST_EQ(false, sRv.empty());
 #endif
 
@@ -260,7 +260,7 @@ CxSystemInfo::sGetDesktopName() {
 //---------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxSystemInfo::sGetHostName() {
+CxSystemInfo::sHostName() {
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
@@ -331,7 +331,7 @@ CxSystemInfo::bIsUserAnAdmin() {
 //---------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxSystemInfo::sGetUserName() {
+CxSystemInfo::sUserName() {
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
@@ -356,7 +356,7 @@ CxSystemInfo::sGetUserName() {
 //---------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxSystemInfo::sGetUseHomeDir() {
+CxSystemInfo::sUseHomeDir() {
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
@@ -381,7 +381,7 @@ CxSystemInfo::sGetUseHomeDir() {
 
     bool bRv = CxEnvironment::bIsExists(xT("HOME"));
     if (true == bRv) {
-        sRv = CxEnvironment::sGetVar(xT("HOME"));
+        sRv = CxEnvironment::sVar(xT("HOME"));
     } else {
         struct passwd pwdPasswd = {0};
 
@@ -397,7 +397,7 @@ CxSystemInfo::sGetUseHomeDir() {
 //---------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxSystemInfo::sGetUserShellPath() {
+CxSystemInfo::sUserShellPath() {
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
@@ -428,7 +428,7 @@ CxSystemInfo::sGetUserShellPath() {
 //---------------------------------------------------------------------------
 /* static */
 ulong_t
-CxSystemInfo::ulGetNumOfCpus() {
+CxSystemInfo::ulNumOfCpus() {
     ulong_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN
@@ -457,7 +457,7 @@ CxSystemInfo::ulGetNumOfCpus() {
 //---------------------------------------------------------------------------
 /* static */
 ulong_t
-CxSystemInfo::ulGetCurrentCpuNum() {
+CxSystemInfo::ulCurrentCpuNum() {
     ulong_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN
@@ -470,7 +470,7 @@ CxSystemInfo::ulGetCurrentCpuNum() {
     bool bRv = dlDll.bIsProcExists(xT("GetCurrentProcessorNumber"));
     xCHECK_RET(false == bRv, 0UL);
 
-    DllGetCurrentProcessorNumber_t DllGetCurrentProcessorNumber = (DllGetCurrentProcessorNumber_t)dlDll.fpGetProcAddress(xT("GetCurrentProcessorNumber"));
+    DllGetCurrentProcessorNumber_t DllGetCurrentProcessorNumber = (DllGetCurrentProcessorNumber_t)dlDll.fpProcAddress(xT("GetCurrentProcessorNumber"));
     /*DEBUG*/xTEST_PTR(DllGetCurrentProcessorNumber);
 
     ulRv = DllGetCurrentProcessorNumber();
@@ -520,7 +520,7 @@ CxSystemInfo::ulGetCurrentCpuNum() {
 //---------------------------------------------------------------------------
 /* static */
 CxSystemInfo::ExCpuVendor
-CxSystemInfo::cvGetCpuVendor() {
+CxSystemInfo::cvCpuVendor() {
     ExCpuVendor cvRes = cvUnknown;
     std::string sValue;
 
@@ -604,7 +604,7 @@ CxSystemInfo::cvGetCpuVendor() {
 //---------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxSystemInfo::sGetCpuModel() {
+CxSystemInfo::sCpuModel() {
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
@@ -677,7 +677,7 @@ CxSystemInfo::sGetCpuModel() {
 //---------------------------------------------------------------------------
 /* static */
 ulong_t
-CxSystemInfo::ulGetCpuSpeed() {
+CxSystemInfo::ulCpuSpeed() {
     ulong_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN
@@ -720,7 +720,7 @@ CxSystemInfo::ulGetCpuSpeed() {
 //---------------------------------------------------------------------------
 /* static */
 ulong_t
-CxSystemInfo::ulGetCpuUsage() {
+CxSystemInfo::ulCpuUsage() {
     ulong_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN
@@ -855,7 +855,7 @@ CxSystemInfo::ulGetCpuUsage() {
 //----------------------------------------------------------------------------------------------------
 /* static */
 ulonglong_t
-CxSystemInfo::ullGetRamTotal() {
+CxSystemInfo::ullRamTotal() {
     ulonglong_t ullRv = 0ULL;
 
 #if   xOS_ENV_WIN
@@ -892,7 +892,7 @@ CxSystemInfo::ullGetRamTotal() {
 //----------------------------------------------------------------------------------------------------
 /* static */
 ulonglong_t
-CxSystemInfo::ullGetRamAvailable() {
+CxSystemInfo::ullRamAvailable() {
     ulonglong_t ullRv = 0ULL;
 
 #if   xOS_ENV_WIN
@@ -927,7 +927,7 @@ CxSystemInfo::ullGetRamAvailable() {
 //----------------------------------------------------------------------------------------------------
 /* static */
 ulong_t
-CxSystemInfo::ulGetRamUsage() {
+CxSystemInfo::ulRamUsage() {
     ulong_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN
@@ -982,7 +982,7 @@ CxSystemInfo::ulGetRamUsage() {
 //----------------------------------------------------------------------------------------------------
 /* static */
 ulong_t
-CxSystemInfo::ulGetPageSize() {
+CxSystemInfo::ulPageSize() {
     ulong_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN

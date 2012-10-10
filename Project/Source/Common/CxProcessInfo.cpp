@@ -21,16 +21,16 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 /* static */
 ulong_t
-CxProcessInfo::ulGetCpuUsage(
+CxProcessInfo::ulCpuUsage(
     const CxProcess::id_t &a_cidId
 )
 {
     ulong_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN
-    // TODO: CxProcessInfo::ulGetCpuUsage
+    // TODO: CxProcessInfo::ulCpuUsage
 #elif xOS_ENV_UNIX
-    // TODO: CxProcessInfo::ulGetCpuUsage
+    // TODO: CxProcessInfo::ulCpuUsage
 #endif
 
     return ulRv;
@@ -38,16 +38,16 @@ CxProcessInfo::ulGetCpuUsage(
 //---------------------------------------------------------------------------
 /* static */
 ulong_t
-CxProcessInfo::ulGetRamUsage(
+CxProcessInfo::ulRamUsage(
     const CxProcess::id_t &a_cidId
 )
 {
     ulong_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN
-    // TODO: CxProcessInfo::ulGetRamUsage
+    // TODO: CxProcessInfo::ulRamUsage
 #elif xOS_ENV_UNIX
-    // TODO: CxProcessInfo::ulGetRamUsage
+    // TODO: CxProcessInfo::ulRamUsage
 #endif
 
     return ulRv;
@@ -55,14 +55,14 @@ CxProcessInfo::ulGetRamUsage(
 //---------------------------------------------------------------------------
 /* static */
 ulong_t
-CxProcessInfo::ulGetIOBytes(
+CxProcessInfo::ulIOBytes(
     const CxProcess::id_t &a_cidId
 )
 {
     ulong_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN
-    // TODO: CxProcessInfo::ulGetIOBytes
+    // TODO: CxProcessInfo::ulIOBytes
 #elif xOS_ENV_UNIX
     #if xCOMMENT
         "/proc/[pid]/io"
@@ -102,7 +102,7 @@ CxProcessInfo::ulGetIOBytes(
 //---------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxProcessInfo::sGetExeName(
+CxProcessInfo::sExeName(
     const CxProcess::id_t &a_cidId
 )
 {
@@ -111,7 +111,7 @@ CxProcessInfo::sGetExeName(
 #if   xOS_ENV_WIN
     sRv.resize(xPATH_MAX);
 
-    CxProcess::handle_t hHandle = CxProcess::ulGetHandleById(a_cidId);
+    CxProcess::handle_t hHandle = CxProcess::ulHandleById(a_cidId);
 
     DWORD ulStored = ::GetModuleFileNameEx(hHandle, NULL, &sRv.at(0), sRv.size());
     /*DEBUG*/xTEST_DIFF(0UL, ulStored);
@@ -160,19 +160,19 @@ CxProcessInfo::sGetExeName(
 //----------------------------------------------------------------------------------------------------
 /* static */
 ulong_t
-CxProcessInfo::ulGetParentId(
+CxProcessInfo::ulParentId(
     const CxProcess::id_t &a_cidId
 )
 {
     ulong_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN
-    // TODO: CxProcessInfo::ulGetParentProcessId
+    // TODO: CxProcessInfo::ulParentProcessId
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        // TODO: CxProcessInfo::ulGetParentProcessId
+        // TODO: CxProcessInfo::ulParentProcessId
     #elif xOS_FREEBSD
-        // TODO: CxProcessInfo::ulGetParentProcessId
+        // TODO: CxProcessInfo::ulParentProcessId
     #endif
 #endif
 
@@ -181,16 +181,16 @@ CxProcessInfo::ulGetParentId(
 //----------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxProcessInfo::sGetArgs(
+CxProcessInfo::sArgs(
     const CxProcess::id_t &a_cidId
 )
 {
-    // TODO: tests for CxProcessInfo::sGetArgs
+    // TODO: tests for CxProcessInfo::sArgs
 
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
-    // TODO: CxProcessInfo::sGetArgs
+    // TODO: CxProcessInfo::sArgs
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         // TODO: CxProcessInfo::sGetArgs

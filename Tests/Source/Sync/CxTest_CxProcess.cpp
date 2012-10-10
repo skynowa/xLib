@@ -90,15 +90,15 @@ CxTest_CxProcess::vUnit(
         #endif
     }
 
-    xTEST_CASE(CxProcess::ulGetIdByHandle, cullCaseLoops)
+    xTEST_CASE(CxProcess::ulIdByHandle, cullCaseLoops)
     {
-        CxProcess::id_t ulId = CxProcess::ulGetIdByHandle( CxCurrentProcess::hGetHandle() );
+        CxProcess::id_t ulId = CxProcess::ulIdByHandle( CxCurrentProcess::hHandle() );
         xTEST_DIFF(0UL, static_cast<ulong_t>( ulId ));
     }
 
     xTEST_CASE(CxProcess::ulGetHandleById, cullCaseLoops)
     {
-        CxProcess::handle_t hHandle = CxProcess::ulGetHandleById( CxCurrentProcess::ulGetId() );
+        CxProcess::handle_t hHandle = CxProcess::ulHandleById( CxCurrentProcess::ulId() );
         xTEST_EQ(true, CxHandle(hHandle).bIsValid());
     }
 
@@ -126,7 +126,7 @@ CxTest_CxProcess::vUnit(
             }
 
             {
-                const std::tstring_t csProcName = CxPath::sGetFileName(CxPath::sGetExe());
+                const std::tstring_t csProcName = CxPath::sFileName(CxPath::sExe());
 
                 m_bRv = CxProcess::bIsRunning(csProcName);
                 xTEST_EQ(true, m_bRv);

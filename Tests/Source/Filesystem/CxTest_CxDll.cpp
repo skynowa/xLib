@@ -65,7 +65,7 @@ CxTest_CxDll::vUnit(
         //fpGetProcAddress
         CxDll::proc_address_t fpRes = NULL;
 
-        fpRes = objDll.fpGetProcAddress(sData[i][1]);
+        fpRes = objDll.fpProcAddress(sData[i][1]);
         xTEST_PTR(fpRes);
 
     #if   xOS_ENV_WIN

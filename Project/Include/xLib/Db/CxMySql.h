@@ -49,9 +49,9 @@ class CxMySQLConnection :
             ///< closes a previously opened connection
 
         //errors
-        uint_t                   uiGetLastError   () const;
+        uint_t                   uiLastError      () const;
             ///< error code for the most recently invoked API function that can succeed or fail
-        std::tstring_t           sGetLastErrorStr () const;
+        std::tstring_t           sLastErrorStr    () const;
             ///< error message for the most recently invoked API function that failed
 
     private:

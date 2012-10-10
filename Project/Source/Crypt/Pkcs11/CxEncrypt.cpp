@@ -25,8 +25,8 @@ CxEncrypt::CxEncrypt(
     const CxPkcs11  &a_cPkcs11,
     const CxSession &a_cSession
 ) :
-    _m_pFunc   (a_cPkcs11.pGetFuncList()),
-    _m_hSession(a_cSession.hGetHandle())
+    _m_pFunc   (a_cPkcs11.pFuncList()),
+    _m_hSession(a_cSession.hHandle())
 {
 
 }

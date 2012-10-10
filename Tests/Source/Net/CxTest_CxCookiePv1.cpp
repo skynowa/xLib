@@ -43,27 +43,27 @@ CxTest_CxCookiePv1::vUnit(
 
         ckCookiePv1.vSetName(csName);
 
-        m_sRv = ckCookiePv1.sGetName();
+        m_sRv = ckCookiePv1.sName();
         xTEST_EQ(csName, m_sRv);
 
         ckCookiePv1.vSetValue(csValue);
 
-        m_sRv = ckCookiePv1.sGetValue();
+        m_sRv = ckCookiePv1.sValue();
         xTEST_EQ(csValue, m_sRv);
 
         ckCookiePv1.vSetComment(csComment);
 
-        m_sRv = ckCookiePv1.sGetComment();
+        m_sRv = ckCookiePv1.sComment();
         xTEST_EQ(csComment, m_sRv);
 
         ckCookiePv1.vSetDomain(csDomain);
 
-        m_sRv = ckCookiePv1.sGetDomain();
+        m_sRv = ckCookiePv1.sDomain();
         xTEST_EQ(csDomain, m_sRv);
 
         ckCookiePv1.vSetPath(csPath);
 
-        m_sRv = ckCookiePv1.sGetPath();
+        m_sRv = ckCookiePv1.sPath();
         xTEST_EQ(csPath, m_sRv);
 
         ckCookiePv1.vSetMaxAge(ciMaxAge);
@@ -97,19 +97,19 @@ CxTest_CxCookiePv1::vUnit(
     {
         CxCookiePv1 ckCookiePv1(csRawCookie);
 
-        m_sRv = ckCookiePv1.sGetName();
+        m_sRv = ckCookiePv1.sName();
         xTEST_EQ(csName, m_sRv);
 
-        m_sRv = ckCookiePv1.sGetValue();
+        m_sRv = ckCookiePv1.sValue();
         xTEST_EQ(csValue, m_sRv);
 
-        m_sRv = ckCookiePv1.sGetComment();
+        m_sRv = ckCookiePv1.sComment();
         xTEST_EQ(csComment, m_sRv);
 
-        m_sRv = ckCookiePv1.sGetDomain();
+        m_sRv = ckCookiePv1.sDomain();
         xTEST_EQ(csDomain, m_sRv);
 
-        m_sRv = ckCookiePv1.sGetPath();
+        m_sRv = ckCookiePv1.sPath();
         xTEST_EQ(csPath, m_sRv);
 
         m_llRv = ckCookiePv1.liGetMaxAge();

@@ -36,7 +36,7 @@ class CxIpcSemaphore :
             ///< release
         void             vWait         (const ulong_t &culTimeoutMsec) const;
             ///< wait
-        long_t           liGetValue    () const;
+        long_t           liValue       () const;
             ///< get value
 
     private:

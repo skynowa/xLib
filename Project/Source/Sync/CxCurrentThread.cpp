@@ -26,7 +26,7 @@ CxCurrentThread::bIsCurrent(
     bool bRv = false;
 
 #if   xOS_ENV_WIN
-    bRv = (ulGetId() == a_culId);
+    bRv = (ulId() == a_culId);
 #elif xOS_ENV_UNIX
     //TODO: If either thread1 or thread2 are not valid thread IDs, the behavior is undefined
     bRv = ::pthread_equal(ulGetId(), a_culId);
@@ -37,7 +37,7 @@ CxCurrentThread::bIsCurrent(
 //---------------------------------------------------------------------------
 /* static */
 CxThread::id_t
-CxCurrentThread::ulGetId() {
+CxCurrentThread::ulId() {
     /*DEBUG*/// n/a
 
     CxThread::id_t ulRv = 0UL;
@@ -55,7 +55,7 @@ CxCurrentThread::ulGetId() {
 //---------------------------------------------------------------------------
 /* static */
 CxThread::handle_t
-CxCurrentThread::hGetHandle() {
+CxCurrentThread::hHandle() {
     /*DEBUG*/// n/a
 
     CxThread::handle_t hRv;

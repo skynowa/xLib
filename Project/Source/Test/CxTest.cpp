@@ -51,7 +51,7 @@ CxTest::CxTest() :
 //---------------------------------------------------------------------------
 /* virtual */
 CxTest::~CxTest() /* = 0*/ {
-    CxDir::vDeleteForce( sGetTempDirPath() );
+    CxDir::vDeleteForce( sTempDirPath() );
 }
 //---------------------------------------------------------------------------
 void
@@ -69,15 +69,15 @@ CxTest::vRun(
         }
     }
     catch (const CxException &e) {
-        /*DEBUG*/xTEST_FAIL(sGetName() + xT(": ") + e.sGetWhat());
+        /*DEBUG*/xTEST_FAIL(sName() + xT(": ") + e.sWhat());
     }
     catch (const std::exception &cexE) {
         std::string asMsg = cexE.what();
 
-        /*DEBUG*/xTEST_FAIL(sGetName() + xT(": ") + xS2TS(asMsg));
+        /*DEBUG*/xTEST_FAIL(sName() + xT(": ") + xS2TS(asMsg));
     }
     catch (...) {
-        /*DEBUG*/xTEST_FAIL(sGetName() + xT(": Unknown test error"));
+        /*DEBUG*/xTEST_FAIL(sName() + xT(": Unknown test error"));
     }
 }
 //---------------------------------------------------------------------------
@@ -90,9 +90,7 @@ CxTest::vUnit(
     /*DEBUG*/// n/a
 
 #if xTODO
-    //-------------------------------------
-    //[FUNCTION_NAME]
-    xTEST_CASE(ca_ullCaseLoops)
+    xTEST_CASE(CaseName, ca_ullCaseLoops)
     {
         const std::tstring_t casData[][2] = {
             {xT("TEST_STRING_1"), xT("MUST_BE_1")},
@@ -116,23 +114,23 @@ CxTest::vCreateTempDir(
     /*DEBUG*/// n/a
 
     if (true == a_csDirName.empty()) {
-        _m_sWorkDirPath = CxDir::sGetTemp();
+        _m_sWorkDirPath = CxDir::sTemp();
     } else {
-        _m_sWorkDirPath = CxPath::sGetExeDir() + CxConst::xSLASH + a_csDirName;
+        _m_sWorkDirPath = CxPath::sExeDir() + CxConst::xSLASH + a_csDirName;
 
         CxDir::vCreateForce(_m_sWorkDirPath);
     }
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxTest::sGetTempDirPath() const {
+CxTest::sTempDirPath() const {
     /*DEBUG*/xTEST_EQ(false, _m_sWorkDirPath.empty());
 
     return _m_sWorkDirPath;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxTest::sGetName() const {
+CxTest::sName() const {
     /*DEBUG*/
 
     return _m_sName;

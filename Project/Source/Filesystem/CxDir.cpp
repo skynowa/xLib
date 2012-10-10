@@ -147,7 +147,7 @@ CxDir::bIsDir(
 //--------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxDir::sGetCurrent() {
+CxDir::sCurrent() {
     /*DEBUG*/// n/a
 
     std::tstring_t sRv;
@@ -191,7 +191,7 @@ CxDir::vSetCurrent(
 //--------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxDir::sGetTemp() {
+CxDir::sTemp() {
     /*DEBUG*/// n/a
 
     std::tstring_t sRv;
@@ -209,7 +209,7 @@ CxDir::sGetTemp() {
 
     bool bRv = CxEnvironment::bIsExists(csEnvDirTemp);
     if (true == bRv) {
-        sRv = CxEnvironment::sGetVar(csEnvDirTemp);
+        sRv = CxEnvironment::sVar(csEnvDirTemp);
     } else {
         sRv = xDIR_TEMP;
     }
@@ -306,7 +306,7 @@ CxDir::vCopy(
 
         sFilePathTo.replace(uiPosBegin, uiPosBegin + csDirPathFrom.size(), csDirPathTo);
 
-        vCreateForce(CxPath::sGetDir(sFilePathTo));
+        vCreateForce(CxPath::sDir(sFilePathTo));
 
         CxFile::vCopy(*it, sFilePathTo, cbFailIfExists);
     }
@@ -467,7 +467,7 @@ CxDir::vFindFiles(
     HANDLE          hFile         = INVALID_HANDLE_VALUE;
     WIN32_FIND_DATA fdData        = {0};
     std::tstring_t  sFilePath     = CxPath::sToCurrentOs( CxPath::sSlashAppend(csDirPath) + cMask, false );
-    std::tstring_t  sFileFullName = CxPath::sGetFileName(sFilePath);
+    std::tstring_t  sFileFullName = CxPath::sFileName(sFilePath);
     std::tstring_t  sPart;
     std::tstring_t  sTmpPath;
 

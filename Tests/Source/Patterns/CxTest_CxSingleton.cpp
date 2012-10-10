@@ -42,16 +42,16 @@ CxTest_CxSingleton::vUnit(
     {
         typedef CxSingleton<CLogger> TLoggerSingleton;
 
-        TLoggerSingleton::GetInstance().vOpen();
-        TLoggerSingleton::GetInstance().vWrite();
-        TLoggerSingleton::GetInstance().vClose();
+        TLoggerSingleton::get().vOpen();
+        TLoggerSingleton::get().vWrite();
+        TLoggerSingleton::get().vClose();
     }
 
     xTEST_CASE(CxSingleton::GetInstance, cullCaseLoops)
     {
-        CxSingleton<CLogger>::GetInstance().vOpen();
-        CxSingleton<CLogger>::GetInstance().vWrite();
-        CxSingleton<CLogger>::GetInstance().vClose();
+        CxSingleton<CLogger>::get().vOpen();
+        CxSingleton<CLogger>::get().vWrite();
+        CxSingleton<CLogger>::get().vClose();
     }
 
     xTEST_CASE(construct CxSingleton on stack, cullCaseLoops)
