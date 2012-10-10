@@ -34,6 +34,26 @@
     ///< for testing private class data
 
 //--------------------------------------------------
+// xDECL, xDECL_TEMPL
+#if xOS_ENV_WIN && xDLL
+    // TODO: xAPI_EXPORTS
+	#if xAPI_EXPORTS
+		#define xDECL                   __declspec(dllexport)
+		#define xDECL_TEMPL
+		
+        // #pragma warning (disable : 4018)
+	#else
+		#define xDECL                   __declspec(dllimport)
+		#define xDECL_TEMPL             extern
+		
+        // #pragma warning (disable : 4018)
+	#endif // xLib_EXPORTS
+#else
+	#define xDECL
+	#define xDECL_TEMPL
+#endif
+
+//--------------------------------------------------
 // xFORCE_INLINE
 #if   xCOMPILER_MINGW32
     #define xFORCE_INLINE               __attribute__((__always_inline__)) inline

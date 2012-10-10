@@ -67,6 +67,7 @@
 #else
     #error xLib: unsupported architectures
 #endif
+
 //--------------------------------------------------
 // compiler types
 #if   defined(__MINGW32__) || defined(__MINGW64__)
@@ -99,6 +100,20 @@
 #define xCOMPILER_GNUC_VER_MAJOR      __GNUC__
 #define xCOMPILER_GNUC_VER_MINOR      __GNUC_MINOR__
 #define xCOMPILER_GNUC_VER_PATCHLEVEL __GNUC_PATCHLEVEL__
+
+//--------------------------------------------------
+// xLib, xDLL
+#if   xOS_ENV_WIN
+    #define  xLib                     _LIB
+            ///<
+    #define  xDll                     _DLL
+            ///<
+#elif xOS_ENV_UNIX
+    #define  xLib    
+            ///<                 
+    #define  xDll  
+            ///<                       
+#endif
 
 //--------------------------------------------------
 // standard C libraries
