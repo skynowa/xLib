@@ -26,7 +26,7 @@ class CWorkThread :
         virtual       ~CWorkThread();
 
     protected:
-        virtual uint_t uiOnRun    (void *pData);
+        virtual uint_t uiOnRun    (void *pData) xOVERRIDE;
 };
 //---------------------------------------------------------------------------
 
