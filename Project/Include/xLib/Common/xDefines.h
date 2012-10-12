@@ -24,6 +24,7 @@
     #define xTEXT(x)                    x
     #define xT(x)                       xTEXT(x)
 #endif
+    ///<
 
 //--------------------------------------------------
 // xTEST_PRIVATE_DATA
@@ -40,18 +41,19 @@
 	#if xAPI_EXPORTS
 		#define xDECL                   __declspec(dllexport)
 		#define xDECL_TEMPL
-		
+
         // #pragma warning (disable : 4018)
 	#else
 		#define xDECL                   __declspec(dllimport)
 		#define xDECL_TEMPL             extern
-		
+
         // #pragma warning (disable : 4018)
 	#endif // xLib_EXPORTS
 #else
 	#define xDECL
 	#define xDECL_TEMPL
 #endif
+    ///<
 
 //--------------------------------------------------
 // xFORCE_INLINE
@@ -59,12 +61,29 @@
     #define xFORCE_INLINE               __attribute__((__always_inline__)) inline
 #elif xCOMPILER_MS
     #define xFORCE_INLINE               __forceinline
+#elif xCOMPILER_CODEGEAR
+    #define xFORCE_INLINE               inline
 #elif xCOMPILER_GNUC
     #define xFORCE_INLINE               __attribute__((__always_inline__)) inline
 #else
     #define xFORCE_INLINE               inline
 #endif
     ///< keyword "inline"
+
+//--------------------------------------------------
+// xNO_INLINE
+#if   xCOMPILER_MINGW32
+    #define xNO_INLINE                  __attribute__ ((noinline))
+#elif xCOMPILER_MS
+    #define xNO_INLINE                  __declspec(noinline)
+#elif xCOMPILER_CODEGEAR
+    #define xNO_INLINE                  // TODO: xNO_INLINE
+#elif xCOMPILER_GNUC
+    #define xNO_INLINE                  __attribute__ ((noinline))
+#else
+    #define xNO_INLINE                  // TODO: xNO_INLINE
+#endif
+    ///< keyword "noline"
 
 //--------------------------------------------------
 // xSTDCALL
@@ -74,6 +93,21 @@
     #define xSTDCALL
 #endif
     ///< calling convention
+
+//--------------------------------------------------
+// xOVERRIDE
+#if   xCOMPILER_MINGW32
+    #define xOVERRIDE
+#elif xCOMPILER_MS
+    #define xOVERRIDE                    override
+#elif xCOMPILER_CODEGEAR
+    #define xOVERRIDE                    override
+#elif xCOMPILER_GNUC
+    #define xOVERRIDE
+#else
+
+#endif
+    ///< keyword "override"
 
 //--------------------------------------------------
 // namespace
@@ -298,13 +332,13 @@
 //-------------------------------------
 // xSTACK_TRACE_FRAMES_MAX
 #if   xOS_ENV_WIN
-    #if (xOS_WIN_VER <= xOS_WIN_S03) 
-        // MSDN: Windows Server 2003 and Windows XP:  
-        //       The sum of the FramesToSkip and FramesToCapture 
+    #if (xOS_WIN_VER <= xOS_WIN_S03)
+        // MSDN: Windows Server 2003 and Windows XP:
+        //       The sum of the FramesToSkip and FramesToCapture
         //       parameters must be less than 63
-        #define xSTACK_TRACE_FRAMES_MAX ( 62UL )    
+        #define xSTACK_TRACE_FRAMES_MAX ( 62UL )
     #else
-        #define xSTACK_TRACE_FRAMES_MAX ( USHRT_MAX )        
+        #define xSTACK_TRACE_FRAMES_MAX ( USHRT_MAX )
     #endif
 #elif xOS_ENV_UNIX
     #define xSTACK_TRACE_FRAMES_MAX     ( 256 )     // custom define, this should be enough

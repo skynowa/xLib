@@ -56,7 +56,7 @@ class CxThreadPool :
         size_t                 uiSize       () const;
 
     protected:
-        virtual uint_t         uiOnRun      (void *pvParam);    /* overload */
+        virtual uint_t         uiOnRun      (void *pvParam) xOVERRIDE;
 
     private:
         uint_t                 _m_uiStackSize;

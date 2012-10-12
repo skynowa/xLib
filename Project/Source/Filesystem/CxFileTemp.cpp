@@ -66,7 +66,7 @@ CxFileTemp::vCreate(
         tchar_t *pszFile = ::xTMKSTEMP(&_m_sFilePath.at(0));
         /*DEBUG*/xTEST_PTR(pszFile);
 
-        _pfStdFile = std::xTFOPEN(pszFile, CxFile::_sGetOpenMode(CxFile::omBinCreateReadWrite).c_str());
+        _pfStdFile = std::xTFOPEN(pszFile, CxFile::_sOpenMode(CxFile::omBinCreateReadWrite).c_str());
         /*DEBUG*/xTEST_PTR(_pfStdFile);
     #else
         _m_sFilePath.resize(_m_sFilePath.size() + 1);
