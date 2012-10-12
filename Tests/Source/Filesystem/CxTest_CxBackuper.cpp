@@ -25,11 +25,11 @@ CxTest_CxBackuper::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    const std::tstring_t csFilePath  = sTempDirPath() + CxConst::xSLASH + xT("Test.txt");
+    const std::tstring_t csFilePath  = sTempDirPath() + CxConst::xSLASH + xT("Test_backup.txt");
     const std::tstring_t csBackupDir = sTempDirPath() + CxConst::xSLASH + xT("Backup_dir");
 
 
-    xTEST_CASE(CxBackuper::etExecute, cullCaseLoops)
+    xTEST_CASE(CxBackuper::vExecute, cullCaseLoops)
     {
         const long_t cliFileSize = 100L;
 
@@ -45,9 +45,10 @@ CxTest_CxBackuper::vUnit(
 
             std::tstring_t sBackupFilePath;
 
-            CxBackuper::ExErrorType etRes = bkBackuper.etExecute(csFilePath, csBackupDir, &sBackupFilePath);
-            xTEST_EQ(CxBackuper::etSuccess, etRes);
-            xTEST_EQ(false, sBackupFilePath.empty())
+            xTRY {
+                bkBackuper.vExecute(csFilePath, csBackupDir, &sBackupFilePath);
+            }
+            xCATCH_ALL;
         }
 
         CxDir::vDeleteForce(csBackupDir);

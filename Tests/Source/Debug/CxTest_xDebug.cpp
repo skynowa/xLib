@@ -29,6 +29,10 @@ CxTest_xDebug::vUnit(
     xTEST_CASE(xDebug::xTEST_*_, cullCaseLoops)
     {
         {
+            int iVal1 = 1;
+            int iVal2 = 1;
+            xTEST_MSG_EQ(iVal1, iVal2, "Simple message");
+
             xTEST_EQ(1UL, 1UL);
         }
 
