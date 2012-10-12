@@ -480,6 +480,29 @@
     ///< iterate STL container (using it_t::const_reverse_iterator)
 
 //-------------------------------------
+// xTHROW, xTRY, xCATCH_ALL
+#define xTHROW \
+            throw CxException
+        ///< like throw
+
+#define xTRY \
+            try
+        ///< like try
+
+#define xCATCH_ALL \
+            catch (const CxException &exExp) {      \
+                xTEST_MSG_FAIL(exExp.sWhat());      \
+            }                                       \
+            catch (const std::exception &cexExp) {  \
+                std::string asMsg = cexExp.what();  \
+                xTEST_FAIL(xS2TS(asMsg));           \
+            }                                       \
+            catch (...) {                           \
+                xTEST_FAIL(xT("unknown error"));    \
+            }
+        ///< catch CxException, std::exception and all other exceptions
+
+//-------------------------------------
 // etc
 
 //----------------------------------------------------------------------------------------------------

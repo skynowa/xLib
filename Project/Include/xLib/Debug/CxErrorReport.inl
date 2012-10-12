@@ -46,10 +46,18 @@ CxErrorReport::CxErrorReport(
 {
     /*DEBUG*/
 
-    //sExpr
+#if 0
+    CxErrorReport rpReport(report_type, 
+                           xT(""), xT(""),          // a_cVarT1, a_cVarT2
+                           xT("false"), xT(""),     // a_csExpr1, a_csExpr2 
+                           xT(""),                  // a_csExprSign
+                           ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), (msg));
+#endif
+
+    // sExpr
     std::tstring_t sExpr = a_csExpr1 + xT(" ") + a_csExprSign + xT(" ") + a_csExpr2;
 
-    //sComment
+    // sComment
     std::tstring_t sComment;
 
     {
@@ -59,11 +67,11 @@ CxErrorReport::CxErrorReport(
         size_t uiAlignWidth = xMAX(a_csExpr1.size(), a_csExpr2.size());
 
         ossStream << std::left << std::setw(uiAlignWidth) << a_csExpr1 << xT(": ") << a_cVarT1 << xT("\n")
-                  << xT("                    ")
+                  << xT("                 ")
                   << std::left << std::setw(uiAlignWidth) << a_csExpr2 << xT(": ") << a_cVarT2;
 
         if (false == a_csComment.empty()) {
-            ossStream << xT("\n                      (")  << a_csComment << xT(")");
+            ossStream << xT("\n                 (")  << a_csComment << xT(")");
         }
 
         sComment = ossStream.str();

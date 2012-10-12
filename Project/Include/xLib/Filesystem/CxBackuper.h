@@ -16,16 +16,6 @@ class CxBackuper :
     /// backup file
 {
     public:
-        enum ExErrorType
-            /// error type
-        {
-            etUnknown,
-            etSuccess,
-            etDestFileNotExists,
-            etNotEnoughFreeSpace,
-            etCopyingFail
-        };
-
         enum ExBackupPeriod
             /// backup period
         {
@@ -41,7 +31,7 @@ class CxBackuper :
         virtual             ~CxBackuper();
             ///< destructor
 
-        ExErrorType          etExecute (const std::tstring_t &csFilePath, const std::tstring_t &csDestDirPath, std::tstring_t *psDestFilePath);
+        void                 vExecute  (const std::tstring_t &csFilePath, const std::tstring_t &csDestDirPath, std::tstring_t *psDestFilePath);
             ///< backup
 
     private:
