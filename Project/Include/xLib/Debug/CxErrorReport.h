@@ -33,21 +33,24 @@ class CxErrorReport :
         ExType         m_rtType;          ///< report type
         std::tstring_t m_sReport;         ///< repoer message
 
-        //exe
+        // exe
         std::tstring_t m_sProgram;        ///< program name
         ulong_t        m_ulProcessId;     ///< current process id
         ulong_t        m_ulThreadId;      ///< current thread id
         std::tstring_t m_sFileSize;       ///< file size
 
-        //source
+        // source
         std::tstring_t m_sSourceFile;     ///< source file path
         ulong_t        m_ulSourceLine;    ///< source file line
         std::tstring_t m_sFunctionName;   ///< source function name
         std::tstring_t m_sExpression;     ///< expression
+        std::tstring_t m_sExprSign;       ///< expression sign
+
+
         ulong_t        m_ulLastError;     ///< system last error
         std::tstring_t m_sLastErrorStr;   ///< system last error as string
 
-        //other
+        // other
         std::tstring_t m_sCurrentDate;    ///< current date, time
         std::tstring_t m_sBuildDate;      ///< build date, time
         std::tstring_t m_sBuildType;      ///< get build type
@@ -55,13 +58,14 @@ class CxErrorReport :
         std::tstring_t m_sOsArchitecture; ///< OS architecture
         std::tstring_t m_sStackTrace;     ///< stack trace
 
-        //comment
+        // comment
         std::tstring_t m_sComment;        ///< comment
 
                        template<class T>
-                       CxErrorReport(const ExType         &crtType,      const T &cVatT1,
-                                     const T              &cVatT2,       const std::tstring_t &csExpr1,
-                                     const std::tstring_t &csExpr2,      const std::tstring_t &csExprSign,
+                       CxErrorReport(const ExType         &crtType,      
+                                     const std::tstring_t &csVar1,       const std::tstring_t &csVar2,
+                                     const T              &cVar1ValueT,  const T              &cVar2ValueT,       
+                                     const std::tstring_t &csExprSign,
                                      const ulong_t        &culLastError, const std::tstring_t &csFile,
                                      const ulong_t        &culLine,      const std::tstring_t &csFunc,
                                      const std::tstring_t &csDate,       const std::tstring_t &csTime,
@@ -71,7 +75,10 @@ class CxErrorReport :
             ///< destructor
 
     private:
-        void          _vConstruct   (const ExType         &crtType,      const std::tstring_t &csExp,
+        void          _vConstruct   (const ExType         &crtType,      
+                                     const std::tstring_t &csVar1,       const std::tstring_t &csVar2,
+                                     const std::tstring_t &csVar1Value,  const std::tstring_t &csVar2Value,
+                                     const std::tstring_t &csExprSign,
                                      const ulong_t        &culLastError, const std::tstring_t &csFile,
                                      const ulong_t        &culLine,      const std::tstring_t &csFunc,
                                      const std::tstring_t &csDate,       const std::tstring_t &csTime,
