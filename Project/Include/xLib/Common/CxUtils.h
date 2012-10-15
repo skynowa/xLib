@@ -16,15 +16,15 @@ class CxUtils :
     /// help macroses
 {
     public:
-        template<class T>
+        template<typename T>
         static inline void      ptrDeleteT      (T * &pPtrT);
             ///< delete object by pointer
 
-        template<class T>
+        template<typename T>
         static inline void      arrayDeleteT    (T * &pPtrT);
             ///< delete array by pointer
 
-        template<class T>
+        template<typename T>
         static inline void      ptrAssignT      (T * &pPtrT, const T &valueT);
             ///< assign pointer
 
@@ -51,34 +51,34 @@ class CxUtils :
         static inline bool      intToBool       (const T &valueT);
             ///< convert int to bool
 
-        template <class T>
+        template <typename T>
         static inline const T & maxT            (const T &cValue1T , const T &cValue2T);
             ///< get max value
 
-        template <class T>
+        template <typename T>
         static inline const T & minT            (const T &cValue1T , const T &cValue2T);
             ///< get min value
 
-        template <class T>
+        template <typename T>
         static inline void      swapT           (T &value1T, T &value2T);
             ///< swap variables
 
-        template <class ToT, class FromT>
+        template <typename ToT, typename FromT>
         static inline ToT       reinterpretCastT(const FromT &pPtrT);
             ///< allows any pointer to be converted into any other pointer type
 
         static inline double    round           (const double &cdValue);
             ///< round double value to the integer part
 
-        template <class T1, class T2>
+        template <typename T1, typename T2>
         static inline double    safeDivT        (const T1 &cValue1T, const T2 &cValue2T);
             ///< safe division
 
-        template <class T>
+        template <typename T>
         static inline T         enumInc         (const T &valueT);    
             ///< increment enumerator
 
-        template <class T>
+        template <typename T>
         static inline T         enumDec         (const T &valueT); 
             ///< decriment enumerator
 

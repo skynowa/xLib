@@ -12,22 +12,22 @@
 //overload operators << for std::basic_ostream
 xNAMESPACE_BEGIN(std)
 
-    template<class Traits>
+    template<typename Traits>
     inline basic_ostream<tchar_t, Traits> &
     operator << (basic_ostream<tchar_t, Traits> &osOut, const std::ustring_t &cusValue);
         ///< overload operators << for std::ustring_t
 
-    template<class Traits, class T>
+    template<typename Traits, class T>
     inline basic_ostream<tchar_t, Traits> &
     operator << (basic_ostream<tchar_t, Traits> &osOut, const vector<T> &cvValueT);
         ///< overload operators << for std::vector
 
-    template<class Traits, class T1, class T2>
+    template<typename Traits, class T1, class T2>
     inline basic_ostream<tchar_t, Traits> &
     operator << (basic_ostream<tchar_t, Traits> &osOut, const map<T1, T2> &cmValueT);
         ///< overload operators << for std::map
 
-    template<class Traits, class T1, class T2>
+    template<typename Traits, class T1, class T2>
     inline basic_ostream<tchar_t, Traits> &
     operator << (basic_ostream<tchar_t, Traits> &osOut, const multimap<T1, T2> &cmmValueT);
         ///< overload operators << for std::multimap
@@ -41,19 +41,19 @@ class CxString :
     /// strings utils
 {
     public:
-        template<class T>
+        template<typename T>
         static std::tstring_t string_cast       (const T &cValueT);
             ///< convert type to std::tstring_t
 
-        template<class T>
+        template<typename T>
         static std::tstring_t string_cast       (const T &cValueT, const int &ciBase);
             ///< convert type to std::tstring_t by base
 
-        template<class T>
+        template<typename T>
         static T              string_cast       (const std::tstring_t &csStr);
             ///< convert std::tstring_t to type
 
-        template<class T>
+        template<typename T>
         static T              string_cast       (const std::tstring_t &csStr, const int &ciBase);
             ///< convert std::tstring_t by base (8, 10, 16) to type
 

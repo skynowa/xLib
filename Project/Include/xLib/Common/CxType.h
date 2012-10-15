@@ -16,15 +16,15 @@ class CxType :
     /// type info
 {
     public:
-        template<class T>
+        template<typename T>
         static std::tstring_t sName    (const T &cObjectT);
             ///< get name
 
-        template<class T>
+        template<typename T>
         static std::tstring_t sRawName (const T &cObjectT);
             ///< get raw name
 
-        template<class T1, class T2>
+        template<typename T1, class T2>
         static bool           bIsEquals(const T1 &cObjectT1, const T2 &cObjectT2);
             ///< is equals
     private:

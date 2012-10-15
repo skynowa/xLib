@@ -12,13 +12,13 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-template<class T>
+template<typename T>
 CxMutex CxThreadPool<T>::_m_mtList;
 
-template<class T>
+template<typename T>
 CxTracer  CxThreadPool<T>::_m_clLog;
 //---------------------------------------------------------------------------
-template<class T>
+template<typename T>
 CxThreadPool<T>::CxThreadPool(
     const bool &a_cbIsPaused,
     const bool &a_cbIsAutoDelete,
@@ -43,7 +43,7 @@ CxThreadPool<T>::CxThreadPool(
     /*LOG*/_m_clLog.vWrite(xT("CxThreadPool: construct"));
 }
 //---------------------------------------------------------------------------
-template<class T>
+template<typename T>
 CxThreadPool<T>::~CxThreadPool() {
     /*DEBUG*/
 
@@ -58,7 +58,7 @@ CxThreadPool<T>::~CxThreadPool() {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-template<class T>
+template<typename T>
 void
 CxThreadPool<T>::vGroupCreate(
     const uint_t     &a_cuiStackSize,
@@ -89,7 +89,7 @@ CxThreadPool<T>::vGroupCreate(
     vCreate(false, 0U, NULL);
 }
 //---------------------------------------------------------------------------
-template<class T>
+template<typename T>
 void
 CxThreadPool<T>::vGroupResume() {
     /*DEBUG*/
@@ -113,7 +113,7 @@ CxThreadPool<T>::vGroupResume() {
     vResume();
 }
 //---------------------------------------------------------------------------
-template<class T>
+template<typename T>
 void
 CxThreadPool<T>::vGroupPause() {
     /*DEBUG*/
@@ -137,7 +137,7 @@ CxThreadPool<T>::vGroupPause() {
     }
 }
 //---------------------------------------------------------------------------
-template<class T>
+template<typename T>
 void
 CxThreadPool<T>::vGroupExit(
     const ulong_t &a_culTimeout
@@ -164,7 +164,7 @@ CxThreadPool<T>::vGroupExit(
     }
 }
 //---------------------------------------------------------------------------
-template<class T>
+template<typename T>
 void
 CxThreadPool<T>::vGroupKill(
     const ulong_t &a_culTimeout
@@ -191,7 +191,7 @@ CxThreadPool<T>::vGroupKill(
     vKill(a_culTimeout);
 }
 //---------------------------------------------------------------------------
-template<class T>
+template<typename T>
 void
 CxThreadPool<T>::vGroupWait(
     const ulong_t &a_culTimeout
@@ -226,7 +226,7 @@ CxThreadPool<T>::vGroupWait(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-template<class T>
+template<typename T>
 size_t
 CxThreadPool<T>::uiMaxTasks() const {
     /*DEBUG*/// n/a
@@ -234,7 +234,7 @@ CxThreadPool<T>::uiMaxTasks() const {
     return _m_uiMaxRunningTasks;
 }
 //---------------------------------------------------------------------------
-template<class T>
+template<typename T>
 void
 CxThreadPool<T>::vSetMaxTasks(
     const size_t &a_cuiNum
@@ -296,7 +296,7 @@ CxThreadPool<T>::vSetMaxTasks(
     /*DEBUG*/xTEST_FAIL;
 }
 //---------------------------------------------------------------------------
-template<class T>
+template<typename T>
 size_t
 CxThreadPool<T>::uiNumTasks() const {
     /*DEBUG*/// n/a
@@ -304,7 +304,7 @@ CxThreadPool<T>::uiNumTasks() const {
     return _m_uiNumTasks;
 }
 //---------------------------------------------------------------------------
-template<class T>
+template<typename T>
 void
 CxThreadPool<T>::vSetNumTasks(
     const size_t &a_cuiNum
@@ -315,7 +315,7 @@ CxThreadPool<T>::vSetNumTasks(
     _m_uiNumTasks = a_cuiNum;
 }
 //---------------------------------------------------------------------------
-template<class T>
+template<typename T>
 bool
 CxThreadPool<T>::bIsEmpty() const {
     /*DEBUG*/
@@ -328,7 +328,7 @@ CxThreadPool<T>::bIsEmpty() const {
     return bRv;
 }
 //---------------------------------------------------------------------------
-template<class T>
+template<typename T>
 bool
 CxThreadPool<T>::bIsFull() const {
     /*DEBUG*///xTEST_EQ(CONDITION);
@@ -343,7 +343,7 @@ CxThreadPool<T>::bIsFull() const {
     return bRv;
 }
 //---------------------------------------------------------------------------
-template<class T>
+template<typename T>
 size_t
 CxThreadPool<T>::uiSize() const {
     /*DEBUG*///xTEST_EQ(CONDITION);
@@ -364,7 +364,7 @@ CxThreadPool<T>::uiSize() const {
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-template<class T>
+template<typename T>
 uint_t
 CxThreadPool<T>::uiOnRun(
     void *a_pvParam
@@ -434,7 +434,7 @@ CxThreadPool<T>::uiOnRun(
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-template<class T>
+template<typename T>
 void
 CxThreadPool<T>::_vTaskAdd(
     CxThread *a_pvItem
@@ -458,7 +458,7 @@ CxThreadPool<T>::_vTaskAdd(
     }
 }
 //---------------------------------------------------------------------------
-template<class T>
+template<typename T>
 void
 CxThreadPool<T>::_vTaskRemove(
     CxThread *a_pvItem
@@ -487,7 +487,7 @@ CxThreadPool<T>::_vTaskRemove(
     return true;
 }
 //---------------------------------------------------------------------------
-template<class T>
+template<typename T>
 void
 CxThreadPool<T>::_vOnEnterTask(
     CxThread *a_pthSender
@@ -502,7 +502,7 @@ CxThreadPool<T>::_vOnEnterTask(
     /*LOG*///_m_clLog.vWrite(xT("_vOnEnterTask: #%i"), a_pthTask->m_uiIndex);
 }
 //---------------------------------------------------------------------------
-template<class T>
+template<typename T>
 void
 CxThreadPool<T>::_vOnExitTask(
     CxThread *a_pthSender

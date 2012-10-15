@@ -22,7 +22,7 @@ class CxException
 
         const std::tstring_t & sWhat       () const;
             ///< get message
-        template<class T>
+        template<typename T>
         CxException &          operator << (const T &cMessageT);
             ///< put message
 

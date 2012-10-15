@@ -11,7 +11,7 @@
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-template <class ClassT, typename ReturnT, typename ParamT>
+template <typename ClassT, typename ReturnT, typename ParamT>
 class CxFunctorT
     /// function object
 {

@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-template <class ClassT, typename ReturnT, typename ParamT>
+template <typename ClassT, typename ReturnT, typename ParamT>
 CxFunctorT<ClassT, ReturnT, ParamT>::CxFunctorT(
     ClassT *pObject,
     Method  method
@@ -27,12 +27,12 @@ CxFunctorT<ClassT, ReturnT, ParamT>::CxFunctorT(
 #endif
 }
 //---------------------------------------------------------------------------
-template <class ClassT, typename ReturnT, typename ParamT>
+template <typename ClassT, typename ReturnT, typename ParamT>
 CxFunctorT<ClassT, ReturnT, ParamT>::~CxFunctorT() {
     /*DEBUG*/
 }
 //---------------------------------------------------------------------------
-template <class ClassT, typename ReturnT, typename ParamT>
+template <typename ClassT, typename ReturnT, typename ParamT>
 ReturnT
 CxFunctorT<ClassT, ReturnT, ParamT>::operator()(
     ParamT Param
@@ -41,7 +41,7 @@ CxFunctorT<ClassT, ReturnT, ParamT>::operator()(
     return (_m_pObject->*_m_Method)(Param);
 }
 //---------------------------------------------------------------------------
-template <class ClassT, typename ReturnT, typename ParamT>
+template <typename ClassT, typename ReturnT, typename ParamT>
 ReturnT
 CxFunctorT<ClassT, ReturnT, ParamT>::Execute(
     ParamT Param
