@@ -49,12 +49,6 @@ CxTracer::operator << (const T &cValueT) {
     return *this;
 }
 
-#define xTRACE_VAR(v)   std::tstring_t() \
-                            .append(xT(#v": ")) \
-                            .append(CxString::string_cast(v)) \
-                            .append(xT(" "))
-    ///< trace variable, trace variable and value
-
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_CxTracerH
