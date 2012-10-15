@@ -19,7 +19,7 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 #if   xOS_ENV_WIN
 
-template <class TextT, class TitleT>
+template <typename TextT, class TitleT>
 /* static */
 CxMsgBoxT::ExModalResult
 CxMsgBoxT::iShow(
@@ -42,7 +42,7 @@ CxMsgBoxT::iShow(
 
 #endif
 //---------------------------------------------------------------------------
-template <class TextT, class TitleT>
+template <typename TextT, class TitleT>
 /* static */
 CxMsgBoxT::ExModalResult
 CxMsgBoxT::iShow(
@@ -72,7 +72,7 @@ CxMsgBoxT::iShow(
     return mrRes;
 }
 //---------------------------------------------------------------------------
-template <class TextT, class TitleT>
+template <typename TextT, class TitleT>
 /* static */
 CxMsgBoxT::ExModalResult
 CxMsgBoxT::iShow(
@@ -101,7 +101,7 @@ CxMsgBoxT::iShow(
     return mrRes;
 }
 //---------------------------------------------------------------------------
-template <class TextT>
+template <typename TextT>
 /* static */
 CxMsgBoxT::ExModalResult
 CxMsgBoxT::iShow(

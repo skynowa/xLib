@@ -17,7 +17,7 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-template<class T>
+template<typename T>
 /* static */
 std::tstring_t
 CxType::sRawName(
@@ -37,7 +37,7 @@ CxType::sRawName(
     return sRv;
 }
 //---------------------------------------------------------------------------
-template<class T>
+template<typename T>
 /* static */
 std::tstring_t
 CxType::sName(
@@ -68,7 +68,7 @@ CxType::sName(
     return sRv;
 }
 //---------------------------------------------------------------------------
-template<class T1, class T2>
+template<typename T1, class T2>
 /* static */
 bool
 CxType::bIsEquals(

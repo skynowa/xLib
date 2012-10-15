@@ -11,7 +11,7 @@
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-template <class T>
+template <typename T>
 class CxSingleton :
     private CxNonCopyable
     /// singleton
@@ -38,7 +38,7 @@ xNAMESPACE_END(NxLib)
 
 
 #if xTODO
-    template <class T>
+    template <typename T>
     class CxSingleton {
         public:
             static CxSingleton &Instance();
@@ -48,13 +48,13 @@ xNAMESPACE_END(NxLib)
            ////~CxSingleton();
 
     };
-    template <class T>
+    template <typename T>
     CxSingleton<T> &CxSingleton<T>::Instance() {
         static CxSingleton theSingleInstance;
 
         return theSingleInstance;
     }
-    template <class T>
+    template <typename T>
     T &Singleton<T>::Instance() {
         Create();
         T *p;

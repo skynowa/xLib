@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-template<class T>
+template<typename T>
 /* static */ inline
 void
 CxUtils::ptrDeleteT(
@@ -27,7 +27,7 @@ CxUtils::ptrDeleteT(
     }
 }
 //---------------------------------------------------------------------------
-template<class T>
+template<typename T>
 /* static */ inline
 void
 CxUtils::arrayDeleteT(
@@ -39,7 +39,7 @@ CxUtils::arrayDeleteT(
     }
 }
 //---------------------------------------------------------------------------
-template<class T>
+template<typename T>
 /* static */ inline
 void
 CxUtils::ptrAssignT(
@@ -117,7 +117,7 @@ CxUtils::intToBool(
     return (0 == a_valueT) ? false : true;
 }
 //---------------------------------------------------------------------------
-template <class T>
+template <typename T>
 /* static */ inline
 const T &
 CxUtils::maxT(
@@ -128,7 +128,7 @@ CxUtils::maxT(
     return (a_cValue1T > a_cValue2T) ? a_cValue1T : a_cValue2T;
 }
 //---------------------------------------------------------------------------
-template <class T>
+template <typename T>
 /* static */ inline
 const T &
 CxUtils::minT(
@@ -139,7 +139,7 @@ CxUtils::minT(
     return (a_cValue1T < a_cValue2T) ? a_cValue1T : a_cValue2T;
 }
 //---------------------------------------------------------------------------
-template <class T>
+template <typename T>
 /* static */ inline
 void
 CxUtils::swapT(
@@ -153,7 +153,7 @@ CxUtils::swapT(
     a_value2T = temp;
 }
 //---------------------------------------------------------------------------
-template <class ToT, class FromT>
+template <typename ToT, typename FromT>
 /* static */ inline
 ToT
 CxUtils::reinterpretCastT(
@@ -175,7 +175,7 @@ CxUtils::round(
     return ::floor(a_cdValue + 0.5);
 }
 //---------------------------------------------------------------------------
-template <class T1, class T2>
+template <typename T1, typename T2>
 /* static */ inline
 double
 CxUtils::safeDivT(
@@ -194,7 +194,7 @@ CxUtils::safeDivT(
     return dRv;
 }
 //---------------------------------------------------------------------------
-template <class T>
+template <typename T>
 /* static */ inline T         
 CxUtils::enumInc(
     const T &a_valueT
@@ -203,7 +203,7 @@ CxUtils::enumInc(
     return static_cast<T>( static_cast<long_t>( a_valueT ) + 1 ); 
 }
 //---------------------------------------------------------------------------
-template <class T>
+template <typename T>
 /* static */  inline T         
 CxUtils::enumDec(
     const T &a_valueT

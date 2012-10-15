@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-template<class T>
+template<typename T>
 CxException &
 CxException::operator << (
     const T &a_cMessageT

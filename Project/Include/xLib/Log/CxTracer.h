@@ -23,7 +23,7 @@ class CxTracer :
         virtual              ~CxTracer    ();
             ///< destructor
 
-        template<class T>
+        template<typename T>
         CxTracer &            operator << (const T &cValueT);
             ///< operator <<
 
@@ -41,7 +41,7 @@ xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-template<class T>
+template<typename T>
 CxTracer &
 CxTracer::operator << (const T &cValueT) {
     _m_ossStream << cValueT;

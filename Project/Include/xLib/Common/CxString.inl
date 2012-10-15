@@ -12,7 +12,7 @@
 xNAMESPACE_BEGIN(std)
 
 //---------------------------------------------------------------------------
-template<class Traits>
+template<typename Traits>
 inline basic_ostream<tchar_t, Traits> &
 operator << (
     basic_ostream<tchar_t, Traits> &osOut,
@@ -28,7 +28,7 @@ operator << (
     return osOut;
 }
 //---------------------------------------------------------------------------
-template<class Traits, class T>
+template<typename Traits, typename T>
 inline basic_ostream<tchar_t, Traits> &
 operator << (
     basic_ostream<tchar_t, Traits> &osOut,
@@ -51,7 +51,7 @@ operator << (
     return osOut;
 }
 //---------------------------------------------------------------------------
-template<class Traits, class T1, class T2>
+template<typename Traits, typename T1, typename T2>
 inline basic_ostream<tchar_t, Traits> &
 operator << (
     basic_ostream<tchar_t, Traits> &osOut,
@@ -74,7 +74,7 @@ operator << (
     return osOut;
 }
 //---------------------------------------------------------------------------
-template<class Traits, class T1, class T2>
+template<typename Traits, typename T1, typename T2>
 inline basic_ostream<tchar_t, Traits> &
 operator << (
     basic_ostream<tchar_t, Traits> &osOut,
@@ -110,7 +110,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 /* static */
-template<class T>
+template<typename T>
 inline std::tstring_t
 CxString::string_cast(
     const T &cValueT
@@ -137,7 +137,7 @@ CxString::string_cast(
 }
 //---------------------------------------------------------------------------
 /* static */
-template<class T>
+template<typename T>
 inline std::tstring_t
 CxString::string_cast(
     const T   &cValueT,
@@ -166,7 +166,7 @@ CxString::string_cast(
 }
 //---------------------------------------------------------------------------
 /* static */
-template<class T>
+template<typename T>
 inline T
 CxString::string_cast(
     const std::tstring_t &csStr
@@ -191,7 +191,7 @@ CxString::string_cast(
 }
 //---------------------------------------------------------------------------
 /* static */
-template<class T>
+template<typename T>
 inline T
 CxString::string_cast(
     const std::tstring_t &csStr,
