@@ -122,8 +122,6 @@ class CxString :
 
         static std::tstring_t sTranslitLatToRus (const std::tstring_t &csStr);
             ///< translit
-        static std::tstring_t sFormatBytes      (const double &cdBytes);
-            ///< format bytes (like Bit(s), Byte(s), MB, GB, TB)
         static std::tstring_t sFormatBytes      (const ulonglong_t &cullBytes);
             ///< ormat bytes (like Bit(s), Byte(s), MB, GB, TB)
         static std::tstring_t sFormatPercentage (const ulonglong_t &cullMaxValue, const ulonglong_t &cullCurrValue);

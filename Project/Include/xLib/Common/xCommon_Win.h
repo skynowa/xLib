@@ -1,4 +1,4 @@
-﻿/**
+/**
  * \file  xCommon_Win.h
  * \brief Windows common header for xLib
  */
@@ -18,13 +18,14 @@
 #include <lmcons.h>
 #include <sys/locking.h>
 #include <io.h>
-#include <winternl.h>
 #include <psapi.h>
 #include <TlHelp32.h>
 
 #if   xCOMPILER_MINGW32
+    #include <winternl.h>
     #include <intrin.h>
 #elif xCOMPILER_MS
+    #include <winternl.h>
     #include <intrin.h>
 #elif xCOMPILER_CODEGEAR
     #include <dir.h>

@@ -651,44 +651,6 @@ CxString::sTranslitLatToRus(
 /* static */
 std::tstring_t
 CxString::sFormatBytes(
-    const double &a_cdBytes
-)
-{
-    /*DEBUG*/// dBytes - n/a
-
-    std::tstring_t sRv = xT("Uknown");
-
-    const ulonglong_t cullTB   = 1024ULL * 1024ULL * 1024ULL * 1024ULL;
-    const ulonglong_t cullGB   = 1024ULL * 1024ULL * 1024ULL;
-    const ulonglong_t cullMB   = 1024ULL * 1024ULL;
-    const ulonglong_t cullKB   = 1024ULL;
-    const ulonglong_t cullByte = 1ULL;
-
-    if (     static_cast<ulonglong_t>(a_cdBytes) / cullTB   > 0ULL) {
-        sRv = sFormat(xT("%.2f TB"),      a_cdBytes / static_cast<double>(cullTB));
-    }
-    else if (static_cast<ulonglong_t>(a_cdBytes) / cullGB   > 0ULL) {
-        sRv = sFormat(xT("%.2f GB"),      a_cdBytes / static_cast<double>(cullGB));
-    }
-    else if (static_cast<ulonglong_t>(a_cdBytes) / cullMB   > 0ULL) {
-        sRv = sFormat(xT("%.2f MB"),      a_cdBytes / static_cast<double>(cullMB));
-    }
-    else if (static_cast<ulonglong_t>(a_cdBytes) / cullKB   > 0ULL) {
-        sRv = sFormat(xT("%.2f KB"),      a_cdBytes / static_cast<double>(cullKB));
-    }
-    else if (static_cast<ulonglong_t>(a_cdBytes) / cullByte > 0ULL) {
-        sRv = sFormat(xT("%.2f Byte(s)"), a_cdBytes / static_cast<double>(cullByte));
-    }
-    else {
-        sRv = sFormat(xT("%.2f Bit(s)"),  a_cdBytes);
-    }
-
-    return sRv;
-}
-//---------------------------------------------------------------------------
-/* static */
-std::tstring_t
-CxString::sFormatBytes(
     const ulonglong_t &a_cullBytes
 )
 {
@@ -733,14 +695,16 @@ CxString::sFormatPercentage(
 {
     /*DEBUG*/// ullMaxValue  - n/a
     /*DEBUG*/// ullCurrValue - n/a
-    xCHECK_RET(0ULL == a_ullMaxValue, xT("0%"));    //devision by zero
+    xCHECK_RET(0ULL == a_ullMaxValue, xT("0%"));    // devision by zero
 
     std::tstring_t sRv;
 
     sRv = string_cast( a_ullCurrValue * 100ULL / a_ullMaxValue );
     xCHECK_RET(true == sRv.empty(), xT("0%"));
 
-    return sRv.append(xT("%"));
+    sRv.append(xT("%"));
+
+    return sRv;
 }
 //---------------------------------------------------------------------------
 /* static */
@@ -759,7 +723,7 @@ CxString::sStrToWStr(
     int iSize = ::MultiByteToWideChar(a_cuiCodePage, 0, a_csStr.c_str(), - 1, NULL, 0);
     /*DEBUG*/xTEST_LESS(0, iSize);
 
-    wsRes.resize(iSize - 1);    //Р±РµР· '\0'
+    wsRes.resize(iSize - 1);    // '\0'
     iSize = ::MultiByteToWideChar(a_cuiCodePage, 0, a_csStr.c_str(), - 1, static_cast<LPWSTR>(&wsRes.at(0)), iSize);
     /*DEBUG*/xTEST_LESS(0, iSize);
 #elif xOS_ENV_UNIX

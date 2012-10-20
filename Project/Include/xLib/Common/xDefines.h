@@ -101,7 +101,7 @@
 #elif xCOMPILER_MS
     #define xOVERRIDE                    override
 #elif xCOMPILER_CODEGEAR
-    #define xOVERRIDE                    override
+    #define xOVERRIDE
 #elif xCOMPILER_GNUC
     #define xOVERRIDE
 #else

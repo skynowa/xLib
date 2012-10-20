@@ -830,41 +830,6 @@ CxTest_CxString::vUnit(
         //m_sRv = CxString::sRtfToStr(std::tstring_t sStr);
     }
 
-    xTEST_CASE(CxString::sBytesToStr, cullCaseLoops)
-    {
-        const float cafFloats[] = {
-            0.00001f,
-            0.0001f,
-            0.001f,
-            0.01f,
-            0.1f,
-            0.0f,
-            10.0f,
-            100.0f,
-            1000.0f,
-            10000.0f,
-            100000.0f,
-            1000000.0f,
-            10000000.0f,
-            100000000.0f,
-            1000000000.0f,
-            10000000000.0f,
-            100000000000.0f,
-            1000000000000.0f,
-            10000000000000.0f,
-            100000000000000.0f,
-            1000000000000000.0f,
-            10000000000000000.0f,
-            100000000000000000.0f,
-            1000000000000000000.0f
-        };
-
-        for (size_t i = 0; i < xARRAY_SIZE(cafFloats); ++ i) {
-            m_sRv = CxString::sFormatBytes(cafFloats[i]);
-            //xTRACE(m_sRv);
-        }
-    }
-
     xTEST_CASE(CxString::sBytesToStr(ulonglong_t), cullCaseLoops)
     {
         const ulonglong_t caullULongLong[] = {
