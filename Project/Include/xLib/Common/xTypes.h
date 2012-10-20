@@ -32,7 +32,9 @@ xNAMESPACE_BEGIN(NxLib)
 
     // addrinfo_t
     #if   xOS_ENV_WIN
-        #if xCOMPILER_MINGW32
+        #if   xCOMPILER_MINGW32
+            typedef addrinfo           addrinfo_t;
+        #elif xCOMPILER_CODEGEAR
             typedef addrinfo           addrinfo_t;
         #else
             typedef ADDRINFOT          addrinfo_t;

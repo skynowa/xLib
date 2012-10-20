@@ -27,7 +27,7 @@ class CxSocket :
             afNetbios     = AF_NETBIOS,
             afInet6       = AF_INET6,
             afIrdA        = AF_IRDA
-            #if !xCOMPILER_MINGW32
+            #if !xCOMPILER_MINGW32 && !xCOMPILER_CODEGEAR
                 ,
                 afBluetooth   = AF_BTH
             #endif
@@ -85,7 +85,9 @@ class CxSocket :
             ////ptRfcomm      = BTHPROTO_RFCOMM,
             ptTcp         = IPPROTO_TCP,
             ptUdp         = IPPROTO_UDP,
+            #if !xCOMPILER_CODEGEAR
             ptIcmpv6      = IPPROTO_ICMPV6,
+            #endif
             ////ptRm          = IPPROTO_RM
         #elif xOS_ENV_UNIX
             #if xOS_FREEBSD

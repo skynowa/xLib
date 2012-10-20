@@ -8,7 +8,9 @@
 #define xLib_Common_xConfigH
 //---------------------------------------------------------------------------
 #if   xOS_ENV_WIN
-    #include <SDKDDKVer.h>
+    #if xCOMPILER_MS
+        #include <SDKDDKVer.h>
+    #endif
 
     #if !defined(WIN32_LEAN_AND_MEAN)
         #define WIN32_LEAN_AND_MEAN 1
