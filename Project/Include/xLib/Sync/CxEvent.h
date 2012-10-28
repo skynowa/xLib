@@ -62,10 +62,11 @@ class CxEvent :
     #elif xOS_ENV_UNIX
         pthread_mutex_t   _m_mtMutex;       ///< mutex
         handle_t          _m_cndCond;       ///< condition variable
-        const bool        _m_cbIsAutoReset; ///< auto-reset flag
-        const bool        _m_cbInitState;
         bool              _m_bIsSignaled;   ///< is signaled flag
     #endif
+
+        const bool        _m_cbIsAutoReset; ///< auto-reset flag
+        const bool        _m_cbInitState;   ///< initisl state
 };
 
 xNAMESPACE_END(NxLib)
