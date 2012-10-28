@@ -83,6 +83,8 @@
 #include <Test/Patterns/CxTest_CxSingleton.h>
 
 // Sync
+#include <Test/Sync/Unix/CxTest_CxCondition.h>
+
 #include <Test/Sync/CxTest_CxAtomicLongInt.h>
 #include <Test/Sync/CxTest_CxThreadStorage.h>
 #include <Test/Sync/CxTest_CxMutex.h>
@@ -225,6 +227,8 @@ xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
         // tmManager.vAdd(new CxTest_CxPkcs11);
 
         // Sync
+        tmManager.vAdd(new CxTest_CxCondition);
+
         tmManager.vAdd(new CxTest_CxAtomicLongInt);
         tmManager.vAdd(new CxTest_CxThreadStorage);
         tmManager.vAdd(new CxTest_CxMutex);

@@ -79,7 +79,7 @@ CxEvent::vSet() {
     /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     {
-        CxAutoMutex amtAutoMutex(_m_mtMutex);
+        CxAutoMutex amtAutoMutex(&_m_mtMutex);
 
         if (true == _m_cbIsAutoReset) {
             int iRv = ::pthread_cond_signal(&_m_cndCond);
@@ -104,7 +104,7 @@ CxEvent::vReset() {
     /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     {
-        CxAutoMutex amtAutoMutex(_m_mtMutex);
+        CxAutoMutex amtAutoMutex(&_m_mtMutex);
 
         _m_bIsSignaled = false;
     }
@@ -126,7 +126,7 @@ CxEvent::osWait(
     osRes = static_cast<ExObjectState>( ::WaitForSingleObject(hHandle().hGet(), a_culTimeout) );
 #elif xOS_ENV_UNIX
     {
-        CxAutoMutex amtAutoMutex(_m_mtMutex);
+        CxAutoMutex amtAutoMutex(&_m_mtMutex);
 
         int iRv = 0;
 

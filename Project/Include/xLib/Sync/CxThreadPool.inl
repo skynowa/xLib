@@ -99,7 +99,7 @@ CxThreadPool<T>::vGroupResume() {
     //-------------------------------------
     //
     {
-        CxAutoMutex amtMutex(_m_mtList);
+        CxAutoMutex amtMutex(&_m_mtList);
 
         xFOREACH_CONST(typename std::list<T *>, it, _m_lthTasks) {
             xCHECK_DO(false == (*it)->bIsRunning(), /*LOG*/_m_clLog.vWrite(xT("Not running")); continue);
@@ -127,7 +127,7 @@ CxThreadPool<T>::vGroupPause() {
     //-------------------------------------
     //������� ������
     {
-        CxAutoMutex amtMutex(_m_mtList);
+        CxAutoMutex amtMutex(&_m_mtList);
 
         xFOREACH_CONST(typename std::list<T *>, it, _m_lthTasks) {
             xCHECK_DO(false == (*it)->bIsRunning(), /*LOG*/_m_clLog.vWrite(xT("Not running")); continue);
@@ -154,7 +154,7 @@ CxThreadPool<T>::vGroupExit(
     //-------------------------------------
     //������� ������
     {
-        CxAutoMutex amtMutex(_m_mtList);
+        CxAutoMutex amtMutex(&_m_mtList);
 
         xFOREACH_CONST(typename std::list<T *>, it, _m_lthTasks)    {
             xCHECK_DO(false == (*it)->bIsRunning(), /*LOG*/_m_clLog.vWrite(xT("CxThreadPool: not running")); continue);
@@ -177,7 +177,7 @@ CxThreadPool<T>::vGroupKill(
     //-------------------------------------
     //������� ������
     {
-        CxAutoMutex amtMutex(_m_mtList);
+        CxAutoMutex amtMutex(&_m_mtList);
 
         xFOREACH_CONST(typename std::list<T *>, it, _m_lthTasks)    {
             xCHECK_DO(false == (*it)->bIsRunning(), /*LOG*/_m_clLog.vWrite(xT("Not running")); continue);
@@ -204,7 +204,7 @@ CxThreadPool<T>::vGroupWait(
     //-------------------------------------
     //������� ������
     {
-        CxAutoMutex amtMutex(_m_mtList);
+        CxAutoMutex amtMutex(&_m_mtList);
 
         xFOREACH_CONST(typename std::list<T *>, it, _m_lthTasks)    {
             xCHECK_DO(false == (*it)->bIsRunning(), /*LOG*/_m_clLog.vWrite(xT("Not running")); continue);
@@ -260,7 +260,7 @@ CxThreadPool<T>::vSetMaxTasks(
     //-------------------------------------
     //���������� (��������� ���-�� ������� + ��������� std::list)
     if (_m_uiMaxRunningTasks > a_cuiNum) {
-        CxAutoMutex amtMutex(_m_mtList);
+        CxAutoMutex amtMutex(&_m_mtList);
 
         size_t uiCount       = 0U;
         size_t uiTasksForDec = _m_uiMaxRunningTasks - a_cuiNum;
@@ -320,7 +320,7 @@ bool
 CxThreadPool<T>::bIsEmpty() const {
     /*DEBUG*/
 
-    CxAutoMutex amtMutex(_m_mtList);
+    CxAutoMutex amtMutex(&_m_mtList);
 
     bool bRv = _m_lthTasks.empty();
     /*DEBUG*/// n/a
@@ -333,7 +333,7 @@ bool
 CxThreadPool<T>::bIsFull() const {
     /*DEBUG*///xTEST_EQ(CONDITION);
 
-    CxAutoMutex amtMutex(_m_mtList, true);
+    CxAutoMutex amtMutex(&_m_mtList, true);
 
     /*DEBUG*/xTEST_LESS(_m_uiMaxRunningTasks, _m_lthTasks.size());
 
@@ -348,7 +348,7 @@ size_t
 CxThreadPool<T>::uiSize() const {
     /*DEBUG*///xTEST_EQ(CONDITION);
 
-    CxAutoMutex amtMutex(_m_mtList, true);
+    CxAutoMutex amtMutex(&_m_mtList, true);
 
     size_t uiRes = _m_lthTasks.size();
     /*DEBUG*/// n/a
@@ -453,7 +453,7 @@ CxThreadPool<T>::_vTaskAdd(
     pthTask->vResume();
 
     {
-        CxAutoMutex amtMutex(_m_mtList);
+        CxAutoMutex amtMutex(&_m_mtList);
         _m_lthTasks.push_back(pthTask);
     }
 }
@@ -477,7 +477,7 @@ CxThreadPool<T>::_vTaskRemove(
     //-------------------------------------
     //������� �� ������ ��������� �� �����
     {
-        CxAutoMutex amtMutex(_m_mtList);
+        CxAutoMutex amtMutex(&_m_mtList);
 
         _m_lthTasks.remove(pthTask);
     }

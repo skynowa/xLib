@@ -139,30 +139,18 @@
         ///< test block without trace point
 #endif
 //-------------------------------------------------------------------------
-#if xDEBUG_MODE_TRACE
-    #define xTRACE(msg)                                  { CxTracer() << (msg);                   }
-        ///< tracing
-    #define xTRACE_VAR(v)                                ( std::tstring_t() \
-                                                                .append(xT(#v": ")) \
-                                                                .append(CxString::string_cast(v)) \
-                                                                .append(xT(" ")) \
-                                                         )
-        ///< trace variable, trace variable and value
-    #define xTRACEV(...)                                 { CxTracer::vWrite(__VA_ARGS__); }
-        ///< tracing
-    #define xTRACE_POINT                                 { CxTracer::vWrite(xT("Point: %lu (file: %s, function: %s, last error: %s, line: %lu)"), \
-                                                                            xCOUNTER, xFILE, xFUNCTION, CxLastError::sGet().c_str(), xLINE); }
-        ///< trace point (use CxTracer)
-
-#else
-    #define xTRACE(msg)                                  { xNA }
-        ///< nothing
-    #define xTRACE_VAR(v)                                { xNA }
-        ///< nothing
-    #define xTRACEV(format, ...)                         { xNA }
-        ///< nothing
-    #define xTRACE_POINT                                 { xNA }
-        ///< nothing
-#endif
+#define xTRACE(msg)                                  { CxTracer() << (msg);                   }
+    ///< tracing
+#define xTRACE_VAR(v)                                ( std::tstring_t() \
+                                                            .append(xT(#v": ")) \
+                                                            .append(CxString::string_cast(v)) \
+                                                            .append(xT(" ")) \
+                                                     )
+    ///< trace variable, trace variable and value
+#define xTRACEV(...)                                 { CxTracer::vWrite(__VA_ARGS__); }
+    ///< tracing
+#define xTRACE_POINT                                 { CxTracer::vWrite(xT("Point: %lu (file: %s, function: %s, last error: %s, line: %lu)"), \
+                                                                        xCOUNTER, xFILE, xFUNCTION, CxLastError::sGet().c_str(), xLINE); }
+    ///< trace point (use CxTracer)
 //---------------------------------------------------------------------------
 #endif //xLib_Debug_xDebugH
