@@ -863,6 +863,18 @@
 						>
 					</File>
 				</Filter>
+				<Filter
+					Name="Unix"
+					>
+					<File
+						RelativePath="..\..\..\Tests\Source\Sync\Unix\CxTest_CxCondition.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Tests\Include\Test\Sync\Unix\CxTest_CxCondition.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 		</Filter>
 		<Filter
@@ -1880,6 +1892,18 @@
 					</File>
 					<File
 						RelativePath="..\..\..\Project\Include\xLib\Sync\Win\CxCompletionPort.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="Unix"
+					>
+					<File
+						RelativePath="..\..\..\Project\Source\Sync\Unix\CxCondition.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\..\..\Project\Include\xLib\Sync\Unix\CxCondition.h"
 						>
 					</File>
 				</Filter>

@@ -83,7 +83,9 @@
 #include <Test/Patterns/CxTest_CxSingleton.h>
 
 // Sync
+#if xOS_ENV_UNIX
 #include <Test/Sync/Unix/CxTest_CxCondition.h>
+#endif
 
 #include <Test/Sync/CxTest_CxAtomicLongInt.h>
 #include <Test/Sync/CxTest_CxThreadStorage.h>
@@ -227,7 +229,9 @@ xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
         // tmManager.vAdd(new CxTest_CxPkcs11);
 
         // Sync
+	#if xOS_ENV_UNIX
         tmManager.vAdd(new CxTest_CxCondition);
+	#endif
 
         tmManager.vAdd(new CxTest_CxAtomicLongInt);
         tmManager.vAdd(new CxTest_CxThreadStorage);
