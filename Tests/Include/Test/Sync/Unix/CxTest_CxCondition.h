@@ -1,23 +1,25 @@
 /**
- * \file   CxTest_[CxTemplate].h
- * \brief  test [CxTemplate]
+ * \file   CxTest_CxCondition.h
+ * \brief  test CxCondition
  */
 
 
-#ifndef CxTest_[CxTemplate]H
-#define CxTest_[CxTemplate]H
+#ifndef CxTest_CxConditionH
+#define CxTest_CxConditionH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
-#include <xLib/xxxxxxxxx/[CxTemplate].h>
+#include <xLib/Sync/Unix/CxCondition.h>
 //---------------------------------------------------------------------------
-class CxTest_[CxTemplate] :
+#if xOS_ENV_UNIX
+
+class CxTest_CxCondition :
     public CxTest
 {
     public:
-                      CxTest_[CxTemplate]();
+                      CxTest_CxCondition();
             ///< constructor
-        virtual      ~CxTest_[CxTemplate]();
+        virtual      ~CxTest_CxCondition();
             ///< destructor
 
         virtual void  vUnit(const ulonglong_t &cullCaseLoops) xOVERRIDE;
@@ -25,5 +27,7 @@ class CxTest_[CxTemplate] :
 
     private:
 };
+
+#endif
 //---------------------------------------------------------------------------
-#endif //CxTest_[CxTemplate]H
+#endif // CxTest_CxConditionH

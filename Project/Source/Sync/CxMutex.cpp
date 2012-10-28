@@ -66,8 +66,11 @@ CxMutex::vCreate() {
     iRv = ::pthread_mutexattr_setpshared(&maAttr, PTHREAD_PROCESS_PRIVATE);
     /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 
+    // TODO: vCreate - PTHREAD_MUTEX_RECURSIVE
+#if 1
     iRv = ::pthread_mutexattr_settype(&maAttr, PTHREAD_MUTEX_RECURSIVE);
     /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+#endif
 
     {
         iRv = ::pthread_mutex_init(&_m_hHandle, &maAttr);
