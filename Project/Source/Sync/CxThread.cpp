@@ -106,9 +106,12 @@ CxThread::vCreate(
     _m_pvParam = a_pvParam;
 
     //-------------------------------------
-    // _m_evStarter
+    // events
     _m_pevStarter = new CxEvent(true, false);
-    /*DEBUG*/xTEST_PTR(_m_pevStarter);
+    xTEST_PTR(_m_pevStarter);
+
+    _m_evPause.vCreate();
+    _m_evExit.vCreate();
 
     //-------------------------------------
     // start
@@ -147,7 +150,7 @@ CxThread::vCreate(
     iRv = ::pthread_attr_destroy(&paAttributes);
     /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 
-    _m_hThread = ulId;  //TODO: is it right?
+    _m_hThread = ulId;  // TODO: is it right?
     _m_ulId    = ulId;
 #endif
     /*DEBUG*/xTEST_EQ(false, CxCurrentThread::bIsCurrent(_m_ulId));
@@ -1044,7 +1047,7 @@ CxThread::_s_uiJobEntry(
     // handle must be valid
     ////CxCurrentThread::bSleep(500UL);
 
-    CxEvent::ExObjectState osRes = pthThis->_m_pevStarter->osWait(5000UL);   // not infinite timeout
+    CxEvent::ExObjectState osRes = pthThis->_m_pevStarter->osWait(10000UL);   // not infinite timeout
     xTEST_EQ(CxEvent::osSignaled, osRes);
 
     xPTR_DELETE(pthThis->_m_pevStarter);

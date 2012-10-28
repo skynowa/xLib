@@ -26,6 +26,8 @@ CxTest_CxEvent::vUnit(
     {
         CxEvent objEvent(true, true);
 
+        objEvent.vCreate();
+
         #if   xOS_ENV_WIN
             xTEST_EQ(true, objEvent.hHandle().bIsValid())
         #elif xOS_ENV_UNIX
@@ -38,12 +40,16 @@ CxTest_CxEvent::vUnit(
         {
             CxEvent objEvent(true, true);
 
+            objEvent.vCreate();
+
             m_bRv = objEvent.bIsSignaled();
             xTEST_EQ(true, m_bRv);
         }
 
         {
             CxEvent objEvent(true, false);
+
+            objEvent.vCreate();
 
             m_bRv = objEvent.bIsSignaled();
             xTEST_EQ(false, m_bRv);
@@ -56,6 +62,8 @@ CxTest_CxEvent::vUnit(
 
 
         CxEvent objEvent(true, true);
+
+        objEvent.vCreate();
 
         for (size_t i = 0; i < cuiSpinCount; ++ i) {
             objEvent.vReset();
@@ -78,6 +86,8 @@ CxTest_CxEvent::vUnit(
 
 
         CxEvent objEvent(true, true);
+
+        objEvent.vCreate();
 
         for (size_t i = 0; i < cuiSpinCount; ++ i) {
             objEvent.vSet();
@@ -103,6 +113,8 @@ CxTest_CxEvent::vUnit(
 
             CxEvent objEvent(cbIsAutoReset, cbInitialState);
 
+            objEvent.vCreate();
+
             m_bRv = objEvent.bIsSignaled();
             xTEST_EQ(cbInitialState, m_bRv);
 
@@ -120,6 +132,8 @@ CxTest_CxEvent::vUnit(
 
             CxEvent objEvent(cbIsAutoReset, cbInitialState);
 
+            objEvent.vCreate();
+
             m_bRv = objEvent.bIsSignaled();
             xTEST_EQ(cbInitialState, m_bRv);
 
@@ -136,6 +150,8 @@ CxTest_CxEvent::vUnit(
 
             CxEvent objEvent(cbIsAutoReset, cbInitialState);
 
+            objEvent.vCreate();
+
             m_bRv = objEvent.bIsSignaled();
             xTEST_EQ(cbInitialState, m_bRv);
 
@@ -151,6 +167,8 @@ CxTest_CxEvent::vUnit(
             const bool cbInitialState = true;
 
             CxEvent objEvent(cbIsAutoReset, cbInitialState);
+
+            objEvent.vCreate();
 
             m_bRv = objEvent.bIsSignaled();
             xTEST_EQ(cbInitialState, m_bRv);

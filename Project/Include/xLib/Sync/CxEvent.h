@@ -45,6 +45,8 @@ class CxEvent :
 
         const handle_t &  hHandle    () const;
             ///< get handle
+        void              vCreate    ();
+            ///< create
         void              vSet       ();
             ///< signal the event for the waiting thread (!!! unlock !!!)
         void              vReset     ();

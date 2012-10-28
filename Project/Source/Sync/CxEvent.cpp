@@ -28,29 +28,9 @@ CxEvent::CxEvent(
     _m_cndCond      (),
     _m_cbIsAutoReset(a_cbIsAutoReset),
     _m_cbInitState  (a_cbIsSignaled),
-    _m_bIsSignaled  (false)
+    _m_bIsSignaled  (a_cbIsSignaled)
 #endif
 {
-#if   xOS_ENV_WIN
-    /*DEBUG*/xTEST_EQ(false, _m_hEvent.bIsValid());
-    /*DEBUG*/
-
-    HANDLE hRv = ::CreateEvent(NULL, ! a_cbIsAutoReset, a_cbIsSignaled, NULL);
-    /*DEBUG*/xTEST_DIFF(static_cast<HANDLE>(NULL), hRv);
-
-    _m_hEvent.vSet(hRv);
-    /*DEBUG*/// n/a
-#elif xOS_ENV_UNIX
-    int iRv = - 1;
-
-    iRv = ::pthread_mutex_init(&_m_mtMutex, NULL);   // mutex not recursive
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
-
-    iRv = ::pthread_cond_init(&_m_cndCond, NULL);
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
-
-    _m_bIsSignaled  = a_cbIsSignaled;
-#endif
 }
 //---------------------------------------------------------------------------
 CxEvent::~CxEvent() {
@@ -75,6 +55,28 @@ CxEvent::hHandle() const {
     return _m_hEvent;
 #elif xOS_ENV_UNIX
     return _m_cndCond;
+#endif
+}
+//---------------------------------------------------------------------------
+void
+CxEvent::vCreate() {
+#if   xOS_ENV_WIN
+    /*DEBUG*/xTEST_EQ(false, _m_hEvent.bIsValid());
+    /*DEBUG*/
+
+    HANDLE hRv = ::CreateEvent(NULL, ! a_cbIsAutoReset, a_cbIsSignaled, NULL);
+    /*DEBUG*/xTEST_DIFF(static_cast<HANDLE>(NULL), hRv);
+
+    _m_hEvent.vSet(hRv);
+    /*DEBUG*/// n/a
+#elif xOS_ENV_UNIX
+    int iRv = - 1;
+
+    iRv = ::pthread_mutex_init(&_m_mtMutex, NULL);   // mutex not recursive
+    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+
+    iRv = ::pthread_cond_init(&_m_cndCond, NULL);
+    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 #endif
 }
 //---------------------------------------------------------------------------
