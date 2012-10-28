@@ -41,8 +41,13 @@ CxEvent::CxEvent(
     _m_hEvent.vSet(hRv);
     /*DEBUG*/// n/a
 #elif xOS_ENV_UNIX
-    int iRv = ::pthread_cond_init(&_m_cndCond, NULL);
-    /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    int iRv = - 1;
+
+    iRv = ::pthread_mutex_init(&_m_mtMutex, NULL);   // mutex not recursive
+    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+
+    iRv = ::pthread_cond_init(&_m_cndCond, NULL);
+    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 
     _m_bIsSignaled  = a_cbIsSignaled;
 #endif
@@ -52,8 +57,13 @@ CxEvent::~CxEvent() {
 #if   xOS_ENV_WIN
     xNA;
 #elif xOS_ENV_UNIX
-    int iRv = ::pthread_cond_destroy(&_m_cndCond);
-    /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    int iRv = - 1;
+
+    iRv = ::pthread_cond_destroy(&_m_cndCond);
+    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+
+    iRv = ::pthread_mutex_destroy(&_m_mtMutex);
+    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 #endif
 }
 //---------------------------------------------------------------------------
@@ -78,9 +88,12 @@ CxEvent::vSet() {
     BOOL blRes = ::SetEvent(hHandle().hGet());
     /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
-    {
-        CxAutoMutex amtAutoMutex(&_m_mtMutex);
+    int iRv = - 1;
 
+    iRv = ::pthread_mutex_lock(&_m_mtMutex);
+    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+
+    {
         if (true == _m_cbIsAutoReset) {
             int iRv = ::pthread_cond_signal(&_m_cndCond);
             /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
@@ -91,6 +104,9 @@ CxEvent::vSet() {
 
         _m_bIsSignaled = true;
     }
+
+    iRv = ::pthread_mutex_unlock(&_m_mtMutex);
+    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 #endif
 }
 //---------------------------------------------------------------------------
@@ -103,11 +119,17 @@ CxEvent::vReset() {
     BOOL blRes = ::ResetEvent(hHandle().hGet());
     /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
-    {
-        CxAutoMutex amtAutoMutex(&_m_mtMutex);
+    int iRv = - 1;
 
+    iRv = ::pthread_mutex_lock(&_m_mtMutex);
+    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+
+    {
         _m_bIsSignaled = false;
     }
+
+    iRv = ::pthread_mutex_unlock(&_m_mtMutex);
+    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 #endif
 }
 //---------------------------------------------------------------------------
@@ -125,12 +147,15 @@ CxEvent::osWait(
 
     osRes = static_cast<ExObjectState>( ::WaitForSingleObject(hHandle().hGet(), a_culTimeout) );
 #elif xOS_ENV_UNIX
-    {
-        CxAutoMutex amtAutoMutex(&_m_mtMutex);
+    int iRv = - 1;
 
+    iRv = ::pthread_mutex_lock(&_m_mtMutex);
+    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+
+    {
         int iRv = 0;
 
-        //if (false == _m_bIsSignaled) {
+        // if (false == _m_bIsSignaled) {
             timespec tsTimeoutMs = {0};
 
             if (xTIMEOUT_INFINITE != a_culTimeout) {
@@ -144,7 +169,7 @@ CxEvent::osWait(
 
                 // handle overflow
                 if (tsTimeoutMs.tv_nsec >= 1000000000) {
-                    CxTracer() << xT("xLib: CxEvent::osWait - handle overflow");
+                    CxTracer() << xT("::: xLib: CxEvent::osWait - handle overflow :::");
 
                     ++ tsTimeoutMs.tv_sec;
                     tsTimeoutMs.tv_nsec -= 1000000000;
@@ -154,15 +179,15 @@ CxEvent::osWait(
             // wait until condition thread returns control
             do {
                 if (xTIMEOUT_INFINITE == a_culTimeout) {
-                    iRv = ::pthread_cond_wait     (&_m_cndCond, const_cast<CxMutex::handle_t *>( &_m_mtMutex.hHandle() ));
+                    iRv = ::pthread_cond_wait     (&_m_cndCond, &_m_mtMutex);
                 } else {
-                    iRv = ::pthread_cond_timedwait(&_m_cndCond, const_cast<CxMutex::handle_t *>( &_m_mtMutex.hHandle() ), &tsTimeoutMs);
+                    iRv = ::pthread_cond_timedwait(&_m_cndCond, &_m_mtMutex, &tsTimeoutMs);
                 }
             }
             while (!iRv && !_m_bIsSignaled);
-        //} else {
+        // } else {
         //    iRv = 0;
-        //}
+        // }
         CxTracer() << xTRACE_VAR(iRv);
 
         // adjust signaled member
@@ -191,6 +216,9 @@ CxEvent::osWait(
         }
 
     }
+
+    iRv = ::pthread_mutex_unlock(&_m_mtMutex);
+    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 #endif
 
     /*DEBUG*/xTEST_MSG_EQ(true, osSignaled == osRes || osTimeout == osRes, CxLastError::sFormat(osRes));

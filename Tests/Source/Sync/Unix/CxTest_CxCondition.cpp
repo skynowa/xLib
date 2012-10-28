@@ -6,9 +6,6 @@
 
 #include <Test/Sync/Unix/CxTest_CxCondition.h>
 
-#include <xLib/Sync/CxMutex.h>
-#include <xLib/Sync/CxAutoMutex.h>
-
 
 #if xOS_ENV_UNIX
 
@@ -17,8 +14,8 @@ const size_t    g_cuiThreadsNum = 3;
 const size_t    g_cuiCounterMax = 12;
 size_t          g_uiCounter     = 0;
 
-pthread_mutex_t g_mtMutex;
-pthread_cond_t  g_cndCondition;
+pthread_mutex_t g_mtMutex      = PTHREAD_MUTEX_INITIALIZER;
+pthread_cond_t  g_cndCondition = PTHREAD_COND_INITIALIZER;
 //---------------------------------------------------------------------------
 static
 void *
