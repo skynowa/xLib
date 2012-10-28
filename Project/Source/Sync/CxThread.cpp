@@ -580,9 +580,10 @@ CxThread::vSetPriority(
     BOOL blRes = ::SetThreadPriority(_m_hThread.hGet(), a_ctpPriority);
     /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
-    #if xOS_ENV_UNIX
-        xTEST_EQ(false, CxSystemInfo::bIsUserAnAdmin());
-    #endif
+    if (false == CxSystemInfo::bIsUserAnAdmin()) {
+        CxTracer() << xT("::: xLib: warning (CxThread::vSetPriority fail, need root) :::");
+        return;
+    }
 
     sched_param spParam = {0};
 

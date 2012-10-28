@@ -9,8 +9,6 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/CxHandleT.h>
-#include <xLib/Sync/CxMutex.h>
-#include <xLib/Sync/CxAutoMutex.h>
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
@@ -60,7 +58,7 @@ class CxEvent :
     #if   xOS_ENV_WIN
         CxHandle          _m_hEvent;        ///< event
     #elif xOS_ENV_UNIX
-        CxMutex           _m_mtMutex;       ///< mutex
+        pthread_mutex_t   _m_mtMutex;       ///< mutex
         handle_t          _m_cndCond;       ///< condition variable
         const bool        _m_cbIsAutoReset; ///< auto-reset flag
         const bool        _m_cbInitState;
