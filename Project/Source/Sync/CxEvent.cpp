@@ -22,14 +22,14 @@ CxEvent::CxEvent(
     const bool &a_cbIsSignaled     ///< false - wait, lock
 ) :
 #if   xOS_ENV_WIN
-    _m_hEvent       ()
+    _m_hEvent       (),
 #elif xOS_ENV_UNIX
     _m_mtMutex      (),
     _m_cndCond      (),
-    _m_cbIsAutoReset(a_cbIsAutoReset),
-    _m_cbInitState  (a_cbIsSignaled),
-    _m_bIsSignaled  (a_cbIsSignaled)
+    _m_bIsSignaled  (a_cbIsSignaled),
 #endif
+    _m_cbIsAutoReset(a_cbIsAutoReset),
+    _m_cbInitState  (a_cbIsSignaled)
 {
 }
 //---------------------------------------------------------------------------
@@ -64,7 +64,7 @@ CxEvent::vCreate() {
     /*DEBUG*/xTEST_EQ(false, _m_hEvent.bIsValid());
     /*DEBUG*/
 
-    HANDLE hRv = ::CreateEvent(NULL, ! a_cbIsAutoReset, a_cbIsSignaled, NULL);
+    HANDLE hRv = ::CreateEvent(NULL, ! _m_cbIsAutoReset, _m_cbInitState, NULL);
     /*DEBUG*/xTEST_DIFF(static_cast<HANDLE>(NULL), hRv);
 
     _m_hEvent.vSet(hRv);

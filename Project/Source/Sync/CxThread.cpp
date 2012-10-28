@@ -110,6 +110,7 @@ CxThread::vCreate(
     _m_pevStarter = new CxEvent(true, false);
     xTEST_PTR(_m_pevStarter);
 
+    _m_pevStarter->vCreate();
     _m_evPause.vCreate();
     _m_evExit.vCreate();
 
