@@ -870,6 +870,18 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="Unix"
+				>
+				<File
+					RelativePath="..\..\..\Project\Source\Sync\Unix\CxCondition.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Sync\Unix\CxCondition.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Test"
