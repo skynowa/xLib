@@ -121,6 +121,12 @@
     <Filter Include="Test\Crypt\Pkcs11">
       <UniqueIdentifier>{ed679414-dd91-4a8c-8125-ef22f282ff01}</UniqueIdentifier>
     </Filter>
+    <Filter Include="xLib\Sync\Unix">
+      <UniqueIdentifier>{f86898f1-1a3f-44dd-bfac-094d79655b7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test\Sync\Unix">
+      <UniqueIdentifier>{c59f0356-45ac-44d7-8b53-8250401e010c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\Win\CxCom.h">
@@ -723,6 +729,12 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\xVersion.h">
       <Filter>xLib\Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Tests\Include\Test\Sync\Unix\CxTest_CxCondition.h">
+      <Filter>Test\Sync\Unix</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\Unix\CxCondition.h">
+      <Filter>xLib\Sync\Unix</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Project\Include\xLib\Common\CxArray.inl">
@@ -1264,6 +1276,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxThreadPool.cpp">
       <Filter>Test\Sync</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Tests\Source\Sync\Unix\CxTest_CxCondition.cpp">
+      <Filter>Test\Sync\Unix</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Project\Source\Sync\Unix\CxCondition.cpp">
+      <Filter>xLib\Sync\Unix</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
