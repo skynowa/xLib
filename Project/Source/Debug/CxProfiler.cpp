@@ -69,7 +69,7 @@ CxProfiler::vStart() {
 
     switch (_m_pmModeNow) {
         case pmStdClock: {
-                _m_ctClocksStart = xSTD_CLOCK_T();
+                _m_ctClocksStart = xSTD_CLOCK_T();  // BUG: xSTD_CLOCK_T
                 /*DEBUG*/xTEST_DIFF(static_cast<clock_t>( - 1 ), _m_ctClocksStart);
             }
             break;
@@ -88,13 +88,25 @@ CxProfiler::vStart() {
             }
             break;
 
-        #if xOS_ENV_WIN
-            case pmTickCount: {
-                    _m_ulTicksStart = ::GetTickCount();
-                    /*DEBUG*/// n/a
-                }
-                break;
 
+        case pmSystemTicks: {
+                #if xOS_ENV_WIN
+                    _m_ulTicksStartMs = ::GetTickCount();
+                    /*DEBUG*/// n/a
+                #elif
+                    ulong_t        ulTicks = 0;
+	                struct timeval tvNow   = {0};
+
+                    xGETTIMEOFDAY(&now, NULL);
+                    ulTicks =  tvNow.tv_sec  * 1000l;
+                    ulTicks += tvNow.tv_usec / 1000l;
+
+                    _m_ulTicksStartMs = ulTicks
+                #endif
+            }
+            break;
+
+        #if xOS_ENV_WIN
             case pmPerformanceCount: {
                     BOOL blRes = ::QueryPerformanceFrequency(&_m_liCountersPerfFreq);
                     /*DEBUG*/xTEST_DIFF(FALSE, blRes);
@@ -104,7 +116,7 @@ CxProfiler::vStart() {
                 }
                 break;
 
-            case pmThreadTimes: {
+            case pmThreadTimes: {    // BUG: pmThreadTimes
                     BOOL blRes = ::GetThreadTimes(CxCurrentThread::hHandle(), &_m_lpCreationTime, &_m_lpExitTime, &_m_lpKernelTimeStart, &_m_lpUserTimeStart);
                     /*DEBUG*/xTEST_DIFF(FALSE, blRes);
                 }
@@ -137,7 +149,7 @@ CxProfiler::vStop(
                     std::clock_t ctClockResolution = CLOCKS_PER_SEC / 1000;
                 #endif
 
-                _m_ctClocksStop = xSTD_CLOCK_T();
+                _m_ctClocksStop = xSTD_CLOCK_T();  // BUG: xSTD_CLOCK_T
                 /*DEBUG*/xTEST_DIFF(static_cast<clock_t>( - 1 ), _m_ctClocksStop);
 
                 sTimeString = CxDateTime( (_m_ctClocksStop - _m_ctClocksStart) / ctClockResolution ).sFormat(CxDateTime::ftTime);
@@ -162,15 +174,26 @@ CxProfiler::vStop(
             }
             break;
 
-        #if xOS_ENV_WIN
-            case pmTickCount: {
-                    _m_ulTicksStop = ::GetTickCount();
-                    /*DEBUG*/// n/a
+        case pmSystemTicks: {
+                    #if xOS_ENV_WIN
+                        _m_ulTicksStopMs = ::GetTickCount();
+                        /*DEBUG*/// n/a
+                    #elif
+                        ulong_t        ulTicks = 0;
+	                    struct timeval tvNow   = {0};
 
-                    sTimeString = CxDateTime(_m_ulTicksStop - _m_ulTicksStart).sFormat(CxDateTime::ftTime);
+                        xGETTIMEOFDAY(&now, NULL);
+                        ulTicks =  tvNow.tv_sec  * 1000l;
+                        ulTicks += tvNow.tv_usec / 1000l;
+
+                        _m_ulTicksStopMs = ulTicks
+                    #endif
+
+                    sTimeString = CxDateTime(_m_ulTicksStopMs - _m_ulTicksStartMs).sFormat(CxDateTime::ftTime);
                 }
                 break;
 
+        #if xOS_ENV_WIN
             case pmPerformanceCount: {
                     BOOL blRes = ::QueryPerformanceCounter(&_m_liCountersStop);
                     /*DEBUG*/xTEST_DIFF(FALSE, blRes);
@@ -179,7 +202,7 @@ CxProfiler::vStop(
                 }
                 break;
 
-            case pmThreadTimes: {
+            case pmThreadTimes: {    // BUG: pmThreadTimes
                     BOOL blRes = ::GetThreadTimes(CxCurrentThread::hHandle(), &_m_lpCreationTime, &_m_lpExitTime, &_m_lpKernelTimeStop, &_m_lpUserTimeStop);
                     /*DEBUG*/xTEST_DIFF(FALSE, blRes);
 
@@ -261,8 +284,8 @@ CxProfiler::_vDataReset() {
 
 #if   xOS_ENV_WIN
     // pmGetTickCount
-    _m_ulTicksStart                     = 0UL;
-    _m_ulTicksStop                      = 0UL;
+    _m_ulTicksStartMs                   = 0UL;
+    _m_ulTicksStopMs                    = 0UL;
 
     // pmPerformanceCount
     _m_liCountersPerfFreq.QuadPart      = 0L;

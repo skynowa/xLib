@@ -7,6 +7,7 @@
 #include <Test/Debug/CxTest_CxAutoProfiler.h>
 
 #include <xLib/Common/CxConst.h>
+#include <xLib/Sync/CxCurrentThread.h>
 
 
 //---------------------------------------------------------------------------
@@ -27,12 +28,15 @@ CxTest_CxAutoProfiler::vUnit(
     const CxProfiler::ExMode pmPerformMode[] = {
             CxProfiler::pmStdClock,
             CxProfiler::pmDateTime,
+            CxProfiler::pmGetTimeOfDay,
+            CxProfiler::pmSystemTicks
+
         #if   xOS_ENV_WIN
-            CxProfiler::pmTickCount,
+            ,
             CxProfiler::pmPerformanceCount,
-            CxProfiler::pmThreadTimes,
+            CxProfiler::pmThreadTimes
         #elif xOS_ENV_UNIX
-            CxProfiler::pmGetTimeOfDay
+            xNA;
         #endif
     };
 
@@ -41,13 +45,7 @@ CxTest_CxAutoProfiler::vUnit(
         for (size_t i = 0; i < xARRAY_SIZE(pmPerformMode); ++ i) {
             CxAutoProfiler _apfAP(sTempDirPath() + CxConst::xSLASH + xT("__FuncLog.log"), pmPerformMode[i], xT("%i"), 777);
 
-            for (size_t x = 0; x < 2; ++ x) {
-                for (size_t y = 0; y < 2; ++ y) {
-                    size_t z = 0;
-
-                    z++; --z; z = z / 7;
-                }
-            }
+            CxCurrentThread::vSleep(5UL);
         }
     }
 }

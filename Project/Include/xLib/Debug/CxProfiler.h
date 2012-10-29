@@ -23,10 +23,10 @@ class CxProfiler :
         {
             pmStdClock,         ///< use std::clock_t
             pmDateTime,         ///< use CxDateTime
-            pmGetTimeOfDay      ///< use gettimeofday
+            pmGetTimeOfDay,     ///< use gettimeofday
+            pmSystemTicks       ///< use system ticks
         #if   xOS_ENV_WIN
             ,
-            pmTickCount,        ///< use ::GetTickCount
             pmPerformanceCount, ///< use ::QueryPerformanceFrequency
             pmThreadTimes       ///< use ::GetThreadTime
         #endif
@@ -54,29 +54,29 @@ class CxProfiler :
         bool                  _m_bIsStarted;          ///< is started
         CxFileLog             _flLog;                 ///< file log
 
-        //pmClock
+        // pmStdClock
         std::clock_t          _m_ctClocksStart;       ///< start value
         std::clock_t          _m_ctClocksStop;        ///< stop value
 
-        //pmDateTime
+        // pmDateTime
         CxDateTime            _m_dtTimesStart;        ///< start value
         CxDateTime            _m_dtTimesStop;         ///< stop value
 
-        //pmGetTimeOfDay
+        // pmGetTimeOfDay
         double                _m_dMicrosecStart;      ///< start value
         double                _m_dMicrosecStop;       ///< stop value
 
-    #if xOS_ENV_WIN
-        //pmTickCount
-        ulong_t               _m_ulTicksStart;        ///< start value
-        ulong_t               _m_ulTicksStop;         ///< stop value
+        // pmSystemTicks
+        ulong_t               _m_ulTicksStartMs;      ///< start value
+        ulong_t               _m_ulTicksStopMs;       ///< stop value
 
-        //pmPerformanceCount
+    #if xOS_ENV_WIN
+        // pmPerformanceCount
         LARGE_INTEGER         _m_liCountersPerfFreq;  ///< ticks per second
         LARGE_INTEGER         _m_liCountersStart;     ///< start value
         LARGE_INTEGER         _m_liCountersStop;      ///< stop value
 
-        //pmThreadTimes
+        // pmThreadTimes
         FILETIME              _m_lpCreationTime;      ///< for private use
         FILETIME              _m_lpExitTime;          ///< for private use
         FILETIME              _m_lpKernelTimeStart;   ///< start value
