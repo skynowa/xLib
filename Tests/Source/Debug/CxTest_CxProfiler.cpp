@@ -7,6 +7,8 @@
 #include <Test/Debug/CxTest_CxProfiler.h>
 
 #include <xLib/Common/CxConst.h>
+#include <xLib/Sync/CxCurrentThread.h>
+
 
 //---------------------------------------------------------------------------
 CxTest_CxProfiler::CxTest_CxProfiler() {
@@ -26,12 +28,15 @@ CxTest_CxProfiler::vUnit(
     const CxProfiler::ExMode pmPerformMode[] = {
             CxProfiler::pmStdClock,
             CxProfiler::pmDateTime,
+            CxProfiler::pmGetTimeOfDay,
+            CxProfiler::pmSystemTicks
+
         #if   xOS_ENV_WIN
-            CxProfiler::pmTickCount,
+            ,
             CxProfiler::pmPerformanceCount,
-            CxProfiler::pmThreadTimes,
+            CxProfiler::pmThreadTimes
         #elif xOS_ENV_UNIX
-            CxProfiler::pmGetTimeOfDay
+            xNA;
         #endif
     };
 
@@ -48,13 +53,9 @@ CxTest_CxProfiler::vUnit(
         pfP.vStart();
 
         for (size_t y = 0; y < 10; ++ y) {
-            for (size_t j = 0; j < 2; ++ j) {
-                size_t x = 0;
+            CxCurrentThread::vSleep(5UL);
 
-                x++; --x; x = x / 3;
-            }
-
-            pfP.vPulse(xT("Variable i: %zu"), y);
+            pfP.vPulse(xT("Variable i: %") xPR_SIZET, y);
         }
 
         pfP.vStop(xT(""));

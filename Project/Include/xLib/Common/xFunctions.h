@@ -312,7 +312,7 @@ xNAMESPACE_BEGIN(NxLib)
 #endif
     ///< implementation gettimeofday
 
-// xSTD_CLOCK_T
+// BUG: xSTD_CLOCK_T
 #if   xOS_ENV_WIN
     #define xSTD_CLOCK_T            std::clock_t
 #elif xOS_ENV_UNIX
