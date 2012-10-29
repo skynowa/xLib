@@ -137,7 +137,7 @@ CxTest_CxCondition::vUnit(
         xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 
         // for portability, explicitly create threads in a joinable state
-        pthread_attr_t atAttr = {{0}};
+        pthread_attr_t atAttr /* = {{0}} */;
 
         iRv = ::pthread_attr_init(&atAttr);
         xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));

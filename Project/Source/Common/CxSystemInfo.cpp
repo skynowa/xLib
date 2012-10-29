@@ -918,7 +918,7 @@ CxSystemInfo::ullRamAvailable() {
         int iRv = ::sysctlbyname("vm.stats.vm.v_free_count", &ullAvailPhysPages, &ullAvailPhysPagesSize, NULL, 0);
         /*DEBUG*/xTEST_DIFF(- 1, iRv);
 
-        ullRv = ullAvailPhysPages * ulGetPageSize();
+        ullRv = ullAvailPhysPages * ulPageSize();
     #endif
 #endif
 
@@ -967,7 +967,7 @@ CxSystemInfo::ulRamUsage() {
             int iRv = ::sysctlbyname("vm.stats.vm.v_free_count", &ullAvailPhysPages, &ullAvailPhysPagesSize, NULL, 0);
             /*DEBUG*/xTEST_DIFF(- 1, iRv);
 
-            ullRamFree = ullAvailPhysPages * ulGetPageSize();
+            ullRamFree = ullAvailPhysPages * ulPageSize();
         }
 
         ulonglong_t ullRamUsage = ullRamTotal - ullRamFree;
