@@ -140,7 +140,7 @@ CxObject::vFind(
     }
 }
 //---------------------------------------------------------------------------
-void 
+void
 CxObject::vGetAttributeValue(
     CK_ATTRIBUTE_PTR a_pTemplate,  ///< specifies attrs; gets vals
     CK_ULONG         a_ulCount     ///< attributes in template
@@ -189,8 +189,6 @@ CxObject::vData(
 )
 {
     /*DEBUG*/
-
-    bool bRv = false;
 
     //-------------------------------------
     //CxPkcs11
@@ -271,8 +269,6 @@ CxObject::vData(
     /*DEBUG*/xTEST_EQ(false, a_cusUserPin.empty());
     /*DEBUG*/xTEST_PTR(a_pusDataLabel);
     /*DEBUG*/xTEST_PTR(a_pusDataValue);
-
-    bool bRv = false;
 
     //-------------------------------------
     //CxPkcs11
@@ -363,8 +359,6 @@ CxObject::vSetData(
 )
 {
     /*DEBUG*/
-
-    bool bRv = false;
 
     //-------------------------------------
     //CxPkcs11

@@ -213,6 +213,7 @@
     <ClCompile Include="..\..\..\Project\Source\Common\CxSystemInfo.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Common\Win\CxCom.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Common\xCommon.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Common\xFunctions.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Crypt\CxCrc32.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Crypt\CxRandom.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Crypt\OpenSSL\CxBase64.cpp" />

@@ -1014,8 +1014,6 @@ CxFile::vSetTime(
     /*DEBUG*/// ctmModified - n/a
 
 #if   xOS_ENV_WIN
-    bool     bRv     = false;
-
     FILETIME ftCreate = {0};
     CxDateTime::vUnixTimeToFileTime(ctmCreate, &ftCreate);
 

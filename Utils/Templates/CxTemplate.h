@@ -9,6 +9,8 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class [CxTemplate] :
     public CxNonCopyable
 {
@@ -21,5 +23,7 @@ class [CxTemplate] :
     private:
 
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_[CxTemplate]H

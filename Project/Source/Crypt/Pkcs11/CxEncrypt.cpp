@@ -111,7 +111,6 @@ CxEncrypt::vMakeFile(
 
     //-------------------------------------
     //������ ����� � �����
-    bool         bRv        = false;
     std::ustring_t usPlainData;
 
     {

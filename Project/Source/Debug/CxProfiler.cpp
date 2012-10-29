@@ -28,7 +28,7 @@ CxProfiler::CxProfiler(
     _m_bIsStarted(false),
     _flLog       (CxFileLog::lsDefaultSize)
 {
-    _vResetData();
+    _vDataReset();
 }
 //---------------------------------------------------------------------------
 CxProfiler::~CxProfiler() {
@@ -58,22 +58,18 @@ void
 CxProfiler::vStart() {
     /*DEBUG*/xTEST_EQ(false, _m_bIsStarted);
 
-    _vResetData();
+    _vDataReset();
 
     #if xTODO
-        bRv = CxProcess::bSetPriority(CxProcess::ulGetCurrId(), CxProcess::tpTimeCritical);
-        /*DEBUG*/xTEST_EQ(true, bRv);
+         // TODO: CxProcess::vSetPriority
+        CxProcess::vSetPriority(CxProcess::ulGetCurrId(), CxProcess::tpTimeCritical);
     #endif
 
     CxCurrentThread::vSleep(10UL);
 
     switch (_m_pmModeNow) {
         case pmStdClock: {
-                #if xOS_FREEBSD
-                    _m_ctClocksStart = _liGetClock();
-                #else
-                    _m_ctClocksStart = std::clock();
-                #endif
+                _m_ctClocksStart = xSTD_CLOCK_T();
                 /*DEBUG*/xTEST_DIFF(static_cast<clock_t>( - 1 ), _m_ctClocksStart);
             }
             break;
@@ -86,13 +82,13 @@ CxProfiler::vStart() {
 
         case pmGetTimeOfDay: {
                 timeval tv = {0};
-                /*::*/gettimeofday(&tv, NULL);
+                /*::*/xGETTIMEOFDAY(&tv, NULL);
 
                 _m_dMicrosecStart = static_cast<double>( tv.tv_sec ) + static_cast<double>( tv.tv_usec ) * 0.000001;
             }
             break;
 
-        #if   xOS_ENV_WIN
+        #if xOS_ENV_WIN
             case pmTickCount: {
                     _m_ulTicksStart = ::GetTickCount();
                     /*DEBUG*/// n/a
@@ -135,17 +131,13 @@ CxProfiler::vStop(
 
     switch (_m_pmModeNow) {
         case pmStdClock: {
-                std::clock_t ctClockResolution;
-
                 #if xOS_FREEBSD
-                    ctClockResolution = 1000;
-                    _m_ctClocksStop   = _liGetClock();
-
+                    std::clock_t ctClockResolution = 1000;
                 #else
-                    ctClockResolution = CLOCKS_PER_SEC / 1000;
-                    _m_ctClocksStop   = std::clock();
+                    std::clock_t ctClockResolution = CLOCKS_PER_SEC / 1000;
                 #endif
 
+                _m_ctClocksStop = xSTD_CLOCK_T();
                 /*DEBUG*/xTEST_DIFF(static_cast<clock_t>( - 1 ), _m_ctClocksStop);
 
                 sTimeString = CxDateTime( (_m_ctClocksStop - _m_ctClocksStart) / ctClockResolution ).sFormat(CxDateTime::ftTime);
@@ -162,7 +154,7 @@ CxProfiler::vStop(
 
         case pmGetTimeOfDay: {
                 timeval tv = {0};
-                /*::*/gettimeofday(&tv, NULL);
+                /*::*/xGETTIMEOFDAY(&tv, NULL);
 
                 _m_dMicrosecStop = static_cast<double>( tv.tv_sec ) + static_cast<double>( tv.tv_usec ) * 0.000001;
 
@@ -170,7 +162,7 @@ CxProfiler::vStop(
             }
             break;
 
-        #if   xOS_ENV_WIN
+        #if xOS_ENV_WIN
             case pmTickCount: {
                     _m_ulTicksStop = ::GetTickCount();
                     /*DEBUG*/// n/a
@@ -203,7 +195,7 @@ CxProfiler::vStop(
     }
 
     //-------------------------------------
-    //format comment
+    // format comment
     std::tstring_t sRv;
 
     va_list palArgs;
@@ -212,7 +204,7 @@ CxProfiler::vStop(
     xVA_END(palArgs);
 
     //-------------------------------------
-    //write to log
+    // write to log
     _flLog.vWrite(xT("%s: %s"), sTimeString.c_str(), sRv.c_str());
 
     _m_bIsStarted = false;
@@ -220,22 +212,20 @@ CxProfiler::vStop(
 //--------------------------------------------------------------------------
 void
 CxProfiler::vPulse(
-    const tchar_t *pcszComment, ...
+    const tchar_t *a_pcszComment, ...
 )
 {
     //-------------------------------------
-    //format comment
+    // format comment
     std::tstring_t sRv;
 
     va_list palArgs;
-    xVA_START(palArgs, pcszComment);
-
-    sRv = CxString::sFormatV(pcszComment, palArgs);
-
+    xVA_START(palArgs, a_pcszComment);
+    sRv = CxString::sFormatV(a_pcszComment, palArgs);
     xVA_END(palArgs);
 
     //-------------------------------------
-    //stop, start
+    // stop, start
     vStop(xT("%s"), sRv.c_str());
     vStart();
 }
@@ -249,37 +239,37 @@ CxProfiler::vPulse(
 
 //---------------------------------------------------------------------------
 void
-CxProfiler::_vResetData() {
+CxProfiler::_vDataReset() {
     #if xTODO
-        bool bRv = CxProcess::bSetPriority(CxCurrentProcess::ulId(), CxProcess::tpNormal);
-        /*DEBUG*/xTEST_EQ(true, bRv);
+        // TODO: CxProcess::vSetPriority
+        CxProcess::vSetPriority(CxCurrentProcess::ulId(), CxProcess::tpNormal);
     #endif
 
     _m_bIsStarted                       = false;
 
-    //pmStdClock
+    // pmStdClock
     xSTRUCT_ZERO(_m_ctClocksStart);
     xSTRUCT_ZERO(_m_ctClocksStop);
 
-    //pmDateTime
+    // pmDateTime
     _m_dtTimesStart                     = 0ULL;
     _m_dtTimesStop                      = 0ULL;
 
-    //pmGetTimeOfDay
+    // pmGetTimeOfDay
     _m_dMicrosecStart                   = 0.0f;
     _m_dMicrosecStop                    = 0.0f;
 
 #if   xOS_ENV_WIN
-    //pmGetTickCount
+    // pmGetTickCount
     _m_ulTicksStart                     = 0UL;
     _m_ulTicksStop                      = 0UL;
 
-    //pmPerformanceCount
+    // pmPerformanceCount
     _m_liCountersPerfFreq.QuadPart      = 0L;
     _m_liCountersStart.QuadPart         = 0L;
     _m_liCountersStop.QuadPart          = 0L;
 
-    //pmThreadTimes
+    // pmThreadTimes
     _m_lpCreationTime.dwLowDateTime     = 0UL;
     _m_lpCreationTime.dwHighDateTime    = 0UL;
     _m_lpExitTime.dwLowDateTime         = 0UL;
@@ -293,82 +283,9 @@ CxProfiler::_vResetData() {
     _m_lpUserTimeStop.dwLowDateTime     = 0UL;
     _m_lpUserTimeStop.dwHighDateTime    = 0UL;
 #elif xOS_ENV_UNIX
-
+    xNA;
 #endif
 }
 //--------------------------------------------------------------------------
-#if xOS_ENV_UNIX && xOS_FREEBSD
-
-/* static */
-std::clock_t
-CxProfiler::_liGetClock() {
-    /*DEBUG*/
-
-    std::clock_t liRv = static_cast<clock_t>( - 1 );
-
-    rusage ruUsage = {{0}};
-
-    int iRv = ::getrusage(RUSAGE_SELF, &ruUsage);
-    /*DEBUG*/xTEST_DIFF(- 1, iRv);
-
-    liRv = static_cast<std::clock_t>(ruUsage.ru_utime.tv_sec  + ruUsage.ru_stime.tv_sec) * 1000000 +
-            ruUsage.ru_utime.tv_usec + ruUsage.ru_stime.tv_usec;
-
-    return liRv;
-}
-
-#endif
-//---------------------------------------------------------------------------
-#if   xOS_ENV_WIN
-
-/* static */
-int
-CxProfiler::gettimeofday(
-    struct timeval  *tv,
-    struct timezone *tz
-)
-{
-#if xCOMPILER_MS || defined(_MSC_EXTENSIONS)
-    ulonglong_t DELTA_EPOCH_IN_MICROSECS = 11644473600000000Ui64;
-#else
-    ulonglong_t DELTA_EPOCH_IN_MICROSECS = 11644473600000000ULL;
-#endif
-
-    FILETIME    ftTime    = {0};
-    ulonglong_t ullRv    = 0ULL;
-    static int  s_iTzFlag = 0;
-
-    if (NULL != tv) {
-        (void)::GetSystemTimeAsFileTime(&ftTime);
-
-        ullRv |= ftTime.dwHighDateTime;
-        ullRv <<= 32ULL;
-        ullRv |= ftTime.dwLowDateTime;
-
-        //convert into microseconds
-        ullRv /= 10ULL;
-
-        //converting file time to unix epoch
-        ullRv -= DELTA_EPOCH_IN_MICROSECS;
-
-        tv->tv_sec  = static_cast<long_t>( ullRv / 1000000UL );
-        tv->tv_usec = static_cast<long_t>( ullRv % 1000000UL );
-    }
-
-    if (NULL != tz) {
-        if (!s_iTzFlag) {
-            _tzset();
-            ++ s_iTzFlag;
-        }
-
-        tz->tz_minuteswest = _timezone / 60;
-        tz->tz_dsttime     = _daylight;
-    }
-
-    return 0;
-}
-
-#endif
-//---------------------------------------------------------------------------
 
 xNAMESPACE_END(NxLib)
