@@ -1048,6 +1048,10 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\..\Project\Source\Common\xFunctions.cpp"
+					>
+				</File>
+				<File
 					RelativePath="..\..\..\Project\Include\xLib\Common\xFunctions.h"
 					>
 				</File>

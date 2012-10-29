@@ -9,6 +9,8 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 #if xUNICODE
         #define tcin            wcin
         #define tcout           wcout
@@ -36,7 +38,7 @@
         #define xTGETCHAR       getwchar
         #define xTTMPNAM        _wtmpnam
 
-        //mkstemp
+        // xTMKSTEMP
     #if   xCOMPILER_MINGW32
         #define xTMKSTEMP       _wmktemp
     #elif xCOMPILER_MS
@@ -60,7 +62,7 @@
         #define xTCHMOD         _wchmod
         #define xTSYSTEM        _wsystem
 
-    //struct stat
+    // xTSTAT_STRUCT
     #if   xCOMPILER_MINGW32
         #define xTSTAT_STRUCT   struct stat
     #elif xCOMPILER_MS
@@ -73,7 +75,7 @@
         #define xTSTAT_STRUCT   struct stat
     #endif
 
-    //stat
+    // xTSTAT
     #if   xCOMPILER_MINGW32
         #define xTSTAT          _wstat
     #elif xCOMPILER_MS
@@ -86,7 +88,7 @@
         #define xTSTAT          _wstat
     #endif
 
-    //strerror
+    // xSTRERROR
     #if   xCOMPILER_MINGW32
         #define xSTRERROR       _tcserror
     #elif xCOMPILER_MS
@@ -99,7 +101,7 @@
         #define xSTRERROR       _wstrerror
     #endif
 
-        //chars
+        // chars
         #define xTISALNUM       iswalnum
         #define xTISALPHA       iswalpha
         #define xTISCNTRL       iswcntrl
@@ -140,7 +142,7 @@
         #define xTGETCHAR       getchar
         #define xTTMPNAM        tmpnam
 
-        //mkstemp
+        // xTMKSTEMP
     #if   xCOMPILER_MINGW32
         #define xTMKSTEMP       _mktemp
     #elif xCOMPILER_MS
@@ -164,7 +166,7 @@
         #define xTCHMOD         chmod
         #define xTSYSTEM        system
 
-    //struct stat
+    // xTSTAT_STRUCT
     #if   xCOMPILER_MINGW32
         #define xTSTAT_STRUCT   struct stat
     #elif xCOMPILER_MS
@@ -177,7 +179,7 @@
         #define xTSTAT_STRUCT   struct stat
     #endif
 
-    //stat
+    // xTSTAT
     #if   xCOMPILER_MINGW32
         #define xTSTAT          stat
     #elif xCOMPILER_MS
@@ -190,7 +192,7 @@
         #define xTSTAT          stat
     #endif
 
-    //strerror
+    // xSTRERROR
     #if   xCOMPILER_MINGW32
         #define xSTRERROR       _tcserror
     #elif xCOMPILER_MS
@@ -203,7 +205,7 @@
         #define xSTRERROR       strerror
     #endif
 
-        //chars
+        // chars
         #define xTISALNUM       isalnum
         #define xTISALPHA       isalpha
         #define xTISCNTRL       iscntrl
@@ -220,7 +222,7 @@
 #endif //xUNICODE
 
 
-//locking
+// xLOCKING
 #if   xCOMPILER_MINGW32
     #define xLOCKING            _locking
 #elif xCOMPILER_MS
@@ -233,7 +235,7 @@
     #define xLOCKING            locking
 #endif
 
-//chsize
+// xCHSIZE
 #if   xCOMPILER_MINGW32
     #define xCHSIZE             chsize
 #elif xCOMPILER_MS
@@ -246,7 +248,7 @@
     #define xCHSIZE             chsize
 #endif
 
-//getaddrinfo
+// xGETADDRINFO
 #if   xCOMPILER_MINGW32
     #define xGETADDRINFO        getaddrinfo
 #elif xCOMPILER_MS
@@ -259,7 +261,7 @@
     #define xGETADDRINFO        getaddrinfo
 #endif
 
-//getnameinfo
+// xGETNAMEINFO
 #if   xCOMPILER_MINGW32
     #define xGETNAMEINFO        getnameinfo
 #elif xCOMPILER_MS
@@ -285,5 +287,46 @@
     #endif
 #endif
     ///< filesystem statfs (struct and function)
+
+
+/****************************************************************************
+*    implementation missing functions
+*
+*****************************************************************************/
+
+// xGETTIMEOFDAY
+#if   xOS_ENV_WIN
+    struct timezone
+        /// for gettimeofday
+    {
+        int tz_minuteswest; ///< minutes W of Greenwich
+        int tz_dsttime;     ///< type of dst correction
+    };
+
+    int                             iGetTimeOfDay(struct timeval *tv, struct timezone *tz);
+        ///< porting from Linux gettimeofday
+
+    #define xGETTIMEOFDAY           iGetTimeOfDay
+#elif xOS_ENV_UNIX
+    #define xGETTIMEOFDAY           gettimeofday
+#endif
+    ///< implementation gettimeofday
+
+// xSTD_CLOCK_T
+#if   xOS_ENV_WIN
+    #define xSTD_CLOCK_T            std::clock_t
+#elif xOS_ENV_UNIX
+    #if   xOS_LINUX
+        #define xSTD_CLOCK_T        std::clock_t
+    #elif xOS_FREEBSD
+        std::clock_t                liGetClock();
+            ///< get std::clock_t (http://bugs.vcmi.eu/view.php?id=719)
+
+        #define xSTD_CLOCK_T        liGetClock
+    #endif
+#endif
+    ///< implementation std::clock_t
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif  //xLib_Common_xFunctionsH

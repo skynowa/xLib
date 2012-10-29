@@ -66,7 +66,7 @@ class CxProfiler :
         double                _m_dMicrosecStart;      ///< start value
         double                _m_dMicrosecStop;       ///< stop value
 
-    #if   xOS_ENV_WIN
+    #if xOS_ENV_WIN
         //pmTickCount
         ulong_t               _m_ulTicksStart;        ///< start value
         ulong_t               _m_ulTicksStop;         ///< stop value
@@ -85,26 +85,8 @@ class CxProfiler :
         FILETIME              _m_lpUserTimeStop;      ///< stop value
     #endif
 
-        void                  _vResetData();
+        void                  _vDataReset();
             ///< reset all class data
-
-    #if xOS_ENV_UNIX && xOS_FREEBSD
-        static std::clock_t   _liGetClock();
-            ///< get std::clock_t
-            ///< http://bugs.vcmi.eu/view.php?id=719
-    #endif
-
-    #if   xOS_ENV_WIN
-        struct timezone
-            /// for gettimeofday
-        {
-            int tz_minuteswest; ///< minutes W of Greenwich
-            int tz_dsttime;     ///< type of dst correction
-        };
-
-        static int            gettimeofday(struct timeval *tv, struct timezone *tz);
-            ///< porting from Linux gettimeofday
-    #endif
 };
 
 xNAMESPACE_END(NxLib)
@@ -112,7 +94,7 @@ xNAMESPACE_END(NxLib)
 #endif //xLib_Debug_CxProfilerH
 
 
-//http://www.metalshell.com/source_code/133/Microsecond_Benchmark.html
+// http://www.metalshell.com/source_code/133/Microsecond_Benchmark.html
 
 #if xTODO
     //system.h:
@@ -122,7 +104,7 @@ xNAMESPACE_END(NxLib)
     double time_in_seconds();
 
 
-    //system_posix.cpp:
+    // system_posix.cpp:
     #include "system.h"
     #include <sys/time.h>
 
@@ -133,7 +115,7 @@ xNAMESPACE_END(NxLib)
     }
 
 
-    //system_standard.cpp:
+    // system_standard.cpp:
     #include "system.h"
     #include <ctime>
 

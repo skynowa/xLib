@@ -62,8 +62,8 @@ CxTest_CxSmtp::vUnit(
     ulong_t              ulMsgID    = 1;
     std::vector<ulong_t> veculList;
     ulong_t              ulIndex    = 1;
-    int                iNum       = 1;
-    const std::string  csText     = "HELO";
+    int                  iNum       = 1;
+    const std::string    csText     = "HELO";
 
     CxSmtp objSmtp;
 

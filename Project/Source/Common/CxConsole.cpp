@@ -470,7 +470,6 @@ CxConsole::_hWndHandle() {
     /*DEBUG*/
 
     HWND           hRv = NULL;
-    bool           bRv = false;
     std::tstring_t sNewWndTitle;
     std::tstring_t sOldWndTitle;
 

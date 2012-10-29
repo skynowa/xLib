@@ -1283,5 +1283,8 @@
     <ClCompile Include="..\..\..\Project\Source\Sync\Unix\CxCondition.cpp">
       <Filter>xLib\Sync\Unix</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Project\Source\Common\xFunctions.cpp">
+      <Filter>xLib\Common</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
