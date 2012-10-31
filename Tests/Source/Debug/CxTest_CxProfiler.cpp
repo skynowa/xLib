@@ -25,7 +25,7 @@ CxTest_CxProfiler::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    const CxProfiler::ExMode pmPerformMode[] = {
+    const CxProfiler::ExMode pmMode[] = {
             CxProfiler::pmStdClock,
             CxProfiler::pmDateTime,
             CxProfiler::pmGetTimeOfDay,
@@ -36,14 +36,14 @@ CxTest_CxProfiler::vUnit(
             CxProfiler::pmPerformanceCount,
             CxProfiler::pmThreadTimes
         #elif xOS_ENV_UNIX
-            xNA;
+
         #endif
     };
 
-    for (size_t i = 0; i < xARRAY_SIZE(pmPerformMode); ++ i) {
-        const std::tstring_t csFilePath = sTempDirPath() + CxConst::xSLASH + xT("___Log.log");
+    for (size_t i = 0; i < xARRAY_SIZE(pmMode); ++ i) {
+        const std::tstring_t csFilePath = sTempDirPath() + CxConst::xSLASH + xT("CxProfilerLog.log");
 
-        CxProfiler pfP(pmPerformMode[i]);
+        CxProfiler pfP(pmMode[i]);
 
         pfP.vSetLogPath(csFilePath);
 

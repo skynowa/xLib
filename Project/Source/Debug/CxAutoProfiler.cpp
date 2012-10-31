@@ -26,14 +26,14 @@ CxAutoProfiler::CxAutoProfiler(
     _m_sComment  ()
 {
     //-------------------------------------
-    //format comment
+    // format comment
     va_list palArgs;
     xVA_START(palArgs, a_pcszComment);
     _m_sComment = CxString::sFormatV(a_pcszComment, palArgs);
     xVA_END(palArgs);
 
     //-------------------------------------
-    //start
+    // start
     _m_pfProfiler.vSetLogPath(a_csFilePath);
     _m_pfProfiler.vStart();
 }
