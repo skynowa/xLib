@@ -312,20 +312,20 @@ xNAMESPACE_BEGIN(NxLib)
 #endif
     ///< implementation gettimeofday
 
-// BUG: xSTD_CLOCK_T
+// xSTD_CLOCK
 #if   xOS_ENV_WIN
-    #define xSTD_CLOCK_T            std::clock_t
+    #define xSTD_CLOCK              std::clock
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        #define xSTD_CLOCK_T        std::clock_t
+        #define xSTD_CLOCK          std::clock
     #elif xOS_FREEBSD
         std::clock_t                liGetClock();
             ///< get std::clock_t (http://bugs.vcmi.eu/view.php?id=719)
 
-        #define xSTD_CLOCK_T        liGetClock
+        #define xSTD_CLOCK          liGetClock
     #endif
 #endif
-    ///< implementation std::clock_t
+    ///< implementation std::clock
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------

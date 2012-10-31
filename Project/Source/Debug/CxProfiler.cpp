@@ -37,7 +37,7 @@ CxProfiler::~CxProfiler() {
     }
 }
 //---------------------------------------------------------------------------
-void 
+void
 CxProfiler::vSetLogPath(
     const std::tstring_t &a_csLogPath
 )
@@ -69,7 +69,7 @@ CxProfiler::vStart() {
 
     switch (_m_pmModeNow) {
         case pmStdClock: {
-                _m_ctClocksStart = xSTD_CLOCK_T();  // BUG: xSTD_CLOCK_T
+                _m_ctClocksStart = xSTD_CLOCK();
                 /*DEBUG*/xTEST_DIFF(static_cast<clock_t>( - 1 ), _m_ctClocksStart);
             }
             break;
@@ -90,18 +90,18 @@ CxProfiler::vStart() {
 
 
         case pmSystemTicks: {
-                #if xOS_ENV_WIN
+                #if   xOS_ENV_WIN
                     _m_ulTicksStartMs = ::GetTickCount();
                     /*DEBUG*/// n/a
-                #elif
+                #elif xOS_ENV_UNIX
                     ulong_t        ulTicks = 0;
 	                struct timeval tvNow   = {0};
 
-                    xGETTIMEOFDAY(&now, NULL);
+                    xGETTIMEOFDAY(&tvNow, NULL);
                     ulTicks =  tvNow.tv_sec  * 1000l;
                     ulTicks += tvNow.tv_usec / 1000l;
 
-                    _m_ulTicksStartMs = ulTicks
+                    _m_ulTicksStartMs = ulTicks;
                 #endif
             }
             break;
@@ -143,13 +143,9 @@ CxProfiler::vStop(
 
     switch (_m_pmModeNow) {
         case pmStdClock: {
-                #if xOS_FREEBSD
-                    std::clock_t ctClockResolution = 1000;
-                #else
-                    std::clock_t ctClockResolution = CLOCKS_PER_SEC / 1000;
-                #endif
+                std::clock_t ctClockResolution = CLOCKS_PER_SEC / 1000;
 
-                _m_ctClocksStop = xSTD_CLOCK_T();  // BUG: xSTD_CLOCK_T
+                _m_ctClocksStop = xSTD_CLOCK();
                 /*DEBUG*/xTEST_DIFF(static_cast<clock_t>( - 1 ), _m_ctClocksStop);
 
                 sTimeString = CxDateTime( (_m_ctClocksStop - _m_ctClocksStart) / ctClockResolution ).sFormat(CxDateTime::ftTime);
@@ -175,18 +171,18 @@ CxProfiler::vStop(
             break;
 
         case pmSystemTicks: {
-                    #if xOS_ENV_WIN
+                    #if   xOS_ENV_WIN
                         _m_ulTicksStopMs = ::GetTickCount();
                         /*DEBUG*/// n/a
-                    #elif
+                    #elif xOS_ENV_UNIX
                         ulong_t        ulTicks = 0;
 	                    struct timeval tvNow   = {0};
 
-                        xGETTIMEOFDAY(&now, NULL);
+                        xGETTIMEOFDAY(&tvNow, NULL);
                         ulTicks =  tvNow.tv_sec  * 1000l;
                         ulTicks += tvNow.tv_usec / 1000l;
 
-                        _m_ulTicksStopMs = ulTicks
+                        _m_ulTicksStopMs = ulTicks;
                     #endif
 
                     sTimeString = CxDateTime(_m_ulTicksStopMs - _m_ulTicksStartMs).sFormat(CxDateTime::ftTime);

@@ -21,7 +21,7 @@ class CxProfiler :
         enum ExMode
             /// mode
         {
-            pmStdClock,         ///< use std::clock_t
+            pmStdClock,         ///< use std::clock
             pmDateTime,         ///< use CxDateTime
             pmGetTimeOfDay,     ///< use gettimeofday
             pmSystemTicks       ///< use system ticks
