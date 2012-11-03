@@ -26,8 +26,6 @@ TARGET_DIR=
 
 
 # prepare
-clear
-
 echo -e
 echo -e $COL_GREEN"Prepare..."$COL_NORM
 echo -e

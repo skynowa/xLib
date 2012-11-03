@@ -25,8 +25,6 @@
 MAKE=
 
 
-clear
-
 echo -e
 echo -e $COL_GREEN"Test xLib ($OSTYPE) ... "$COL_NORM
 echo -e
