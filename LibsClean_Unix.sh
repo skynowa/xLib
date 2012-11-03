@@ -24,11 +24,10 @@
 MAKE=
 
 
-clear
-
 echo -e
 echo -e $COL_GREEN"Clean xLib ($OSTYPE) ... "$COL_NORM
 echo -e
+
 
 # prepare
 echo -e

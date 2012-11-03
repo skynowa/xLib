@@ -24,8 +24,6 @@
 MAKE=
 
 
-clear
-
 echo -e
 echo -e $COL_GREEN"Install xLib ($OSTYPE) ... "$COL_NORM
 echo -e
