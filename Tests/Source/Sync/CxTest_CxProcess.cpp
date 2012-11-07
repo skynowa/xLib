@@ -102,6 +102,18 @@ CxTest_CxProcess::vUnit(
         xTEST_EQ(true, CxHandle(hHandle).bIsValid());
     }
 
+    xTEST_CASE(CxProcess::ulIdByName, cullCaseLoops)
+    {
+        #if   xOS_ENV_WIN
+            const std::tstring_t csProcessName = xT("explorer.exe");
+        #elif xOS_ENV_UNIX
+            const std::tstring_t csProcessName = xT("cron");
+        #endif
+
+        CxProcess::id_t ulId = CxProcess::ulIdByName(csProcessName);
+        xTEST_DIFF(0UL, static_cast<ulong_t>( ulId ));
+    }
+
     xTEST_CASE(CxProcess::bIsRunning, cullCaseLoops)
     {
         #if   xOS_ENV_WIN

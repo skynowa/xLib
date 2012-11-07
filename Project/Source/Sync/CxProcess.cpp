@@ -247,6 +247,45 @@ CxProcess::ulHandleById(
 
     return hRv;
 }
+//---------------------------------------------------------------------------
+/* static */
+CxProcess::id_t
+CxProcess::ulIdByName(
+    const std::tstring_t &a_csProcessName
+)
+{
+    id_t ulRv;
+
+#if   xOS_ENV_WIN
+    CxHandle       hSnapshot;
+    PROCESSENTRY32 peProcess = {0};    peProcess.dwSize = sizeof(PROCESSENTRY32);
+
+    hSnapshot = ::CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0UL);
+    /*DEBUG*/xTEST_EQ(true, hSnapshot.bIsValid());
+
+    BOOL blRv = ::Process32First(hSnapshot.hGet(), &peProcess);
+    /*DEBUG*/xTEST_DIFF(FALSE, blRv);
+
+    for ( ; ; ) {
+        bool bRv = CxString::bCompareNoCase(a_csProcessName, peProcess.szExeFile);
+        xCHECK_DO(true == bRv, break);   // OK
+
+        blRv = ::Process32Next(hSnapshot.hGet(), &peProcess);
+        xCHECK_DO(FALSE == blRv, break);
+    }
+
+    ulRv = peProcess.th32ProcessID;
+    xTEST_DIFF(0UL, ulRv);
+#elif xOS_ENV_UNIX
+    #if   xOS_LINUX
+        // TODO: CxProcess::ulIdByName
+    #elif xOS_FREEBSD
+        // TODO: CxProcess::ulIdByName
+    #endif
+#endif
+
+    return ulRv;
+}
 //--------------------------------------------------------------------------
 /* static */
 bool
@@ -255,10 +294,8 @@ CxProcess::bIsRunning(
 )
 {
 #if   xOS_ENV_WIN
-    typedef CxHandleT<hvInvalid> snapshot_t;
-
-    snapshot_t      hSnapshot;
-    PROCESSENTRY32  peProcess = {0};    peProcess.dwSize = sizeof(PROCESSENTRY32);
+    CxHandle       hSnapshot;
+    PROCESSENTRY32 peProcess = {0};    peProcess.dwSize = sizeof(PROCESSENTRY32);
 
     hSnapshot = ::CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0UL);
     /*DEBUG*/xTEST_EQ(true, hSnapshot.bIsValid());
