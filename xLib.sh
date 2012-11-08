@@ -58,7 +58,7 @@ xlib_libs_build() {
 }
 
 xlib_libs_rebuild() {
-    ./LibsClean_Unix.sh
+    ./LibsClean_Unix.sh &&
     ./LibsBuild_Unix.sh
 }
 
@@ -75,11 +75,11 @@ xlib_tests_clean() {
 }
 
 xlib_tests_build() {
-    ./TestsClean_Unix.sh
     ./TestsBuild_Unix.sh
 }
 
-xlib_tests_build() {
+xlib_tests_rebuild() {
+    ./TestsClean_Unix.sh &&
     ./TestsBuild_Unix.sh
 }
 
