@@ -102,6 +102,8 @@ class CxPath :
             ///< get max name length in symbols
 
     #if xOS_ENV_UNIX
+        static void           vProc           (const std::tstring_t &csProcPath, std::vec_tstring_t *pvsData);
+            ///<
         static std::tstring_t sProcValue      (const std::tstring_t &csProcPath, const std::tstring_t &csData);
             ///< get from UNIX proc file content value by data
     #endif

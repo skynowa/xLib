@@ -192,7 +192,7 @@ CxPath::sFileName(
     size_t uiSlashPos = csFilePath.rfind(CxConst::xSLASH, csFilePath.size());
     xCHECK_RET(std::tstring_t::npos == uiSlashPos, csFilePath);
 
-    return csFilePath.substr(uiSlashPos + CxConst::xSLASH.size(), csFilePath.size());
+    return csFilePath.substr(uiSlashPos + CxConst::xSLASH.size());
 }
 //--------------------------------------------------------------------------
 /* static */
@@ -846,6 +846,27 @@ CxPath::uiNameMaxSize() {
 #if xOS_ENV_UNIX
 
 /* static */
+void
+CxPath::vProc(
+    const std::tstring_t &csProcPath,
+    std::vec_tstring_t   *pvsData
+)
+{
+    std::vec_tstring_t vsRv;
+
+
+
+
+
+    // out
+    (*pvsData).swap(vsRv);
+}
+
+#endif
+//---------------------------------------------------------------------------
+#if xOS_ENV_UNIX
+
+/* static */
 std::tstring_t
 CxPath::sProcValue(
     const std::tstring_t &csProcPath,   ///< file path to proc-file
@@ -866,7 +887,7 @@ CxPath::sProcValue(
     }
 
 
-    std::tstring_t sRv;
+    std::tstring_t   sRv;
 
     std::tifstream_t ifsStream(csProcPath.c_str());
     /*DEBUG*/xTEST_EQ(true,  !! ifsStream);
