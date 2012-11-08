@@ -48,11 +48,12 @@
     #include <mntent.h>
 #elif xOS_FREEBSD
     #include <osreldate.h>
-    #include <pthread_np.h>    // lib: libpthread, -lpthread (FreeBSD)
+    #include <pthread_np.h>     // lib: libpthread, -lpthread (FreeBSD)
     #include <sys/mount.h>
     #include <sys/statvfs.h>
     #include <sys/resource.h>
     #include <sys/sysctl.h>
+    #include <sys/user.h>       // for struct kinfo_proc
 #endif
 
 // socket

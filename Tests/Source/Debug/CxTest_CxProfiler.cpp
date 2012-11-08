@@ -53,9 +53,9 @@ CxTest_CxProfiler::vUnit(
         pfP.vStart();
 
         for (size_t y = 0; y < 10; ++ y) {
-            CxCurrentThread::vSleep(5UL);
+            CxCurrentThread::vSleep(2000UL);
 
-            pfP.vPulse(xT("Variable i: %") xPR_SIZET, y);
+            pfP.vPulse(xT("Variable y: %") xPR_SIZET, y);
         }
 
         pfP.vStop(xT(""));

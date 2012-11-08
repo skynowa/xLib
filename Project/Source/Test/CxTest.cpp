@@ -46,7 +46,7 @@ CxTest::CxTest() :
     _m_sWorkDirPath(),
     _m_sName       ()
 {
-    vCreateTempDir(xT("Temp for tests"));
+    vCreateTempDir(xT("TestsTemp"));
 }
 //---------------------------------------------------------------------------
 /* virtual */

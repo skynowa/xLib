@@ -266,7 +266,7 @@ CxProcess::ulIdByName(
     BOOL blRv = ::Process32First(hSnapshot.hGet(), &peProcess);
     /*DEBUG*/xTEST_DIFF(FALSE, blRv);
 
-    for ( ; ; ) {
+    xFOREVER {
         bool bRv = CxString::bCompareNoCase(a_csProcessName, peProcess.szExeFile);
         xCHECK_DO(true == bRv, break);   // OK
 
@@ -321,62 +321,41 @@ CxProcess::ulIdByName(
 
         ulRv = iPid;
     #elif xOS_FREEBSD
-        // TODO: CxProcess::ulIdByName
+        int    aiMib[3]   = {CTL_KERN, KERN_PROC, KERN_PROC_ALL};
+        size_t uiBuffSize = 0U;
 
-        struct kinfo_proc *sProcesses = NULL, *sNewProcesses;
-        pid_t  iCurrentPid;
-        int    aiNames[4];
-        size_t iNamesLength;
-        int    i, iRetCode, iNumProcs;
-        size_t iSize;
+        int iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), NULL, &uiBuffSize, NULL, 0U);
+        /*DEBUG*/xTEST_DIFF(- 1, iRv);
 
-        iSize = 0;
-        aiNames[0] = CTL_KERN;
-        aiNames[1] = KERN_PROC;
-        aiNames[2] = KERN_PROC_ALL;
-        aiNames[3] = 0;
-        iNamesLength = 3;
+        // allocate memory and populate info in the  processes structure
+        kinfo_proc *pkpProcesses = NULL;
 
-        iRetCode = sysctl(aiNames, iNamesLength, NULL, &iSize, NULL, 0);
+        xFOREVER {
+            uiBuffSize += uiBuffSize / 10;
 
-        /*
-         * Allocate memory and populate info in the  processes structure
-         */
+            kinfo_proc *pkpNewProcesses = static_cast<kinfo_proc *>( realloc(pkpProcesses, uiBuffSize) );
+            xTEST_PTR(pkpNewProcesses);
 
-        do {
-                iSize += iSize / 10;
-                sNewProcesses = realloc(sProcesses, iSize);
+            pkpProcesses = pkpNewProcesses;
 
-                if (sNewProcesses == 0) {
-                        if (sProcesses)
-                                free(sProcesses);
-                                errx(1, "could not reallocate memory");
-                }
-                sProcesses = sNewProcesses;
-                iRetCode = sysctl(aiNames, iNamesLength, sProcesses, &iSize, NULL, 0);
-        } while (iRetCode == -1 && errno == ENOMEM);
-
-        iNumProcs = iSize / sizeof(struct kinfo_proc);
-
-        /*
-        * Search for the given process name and return its pid.
-        */
-
-        for (i = 0; i < iNumProcs; i++) {
-                iCurrentPid = sProcesses[i].kp_proc.p_pid;
-                if( strncmp(csProcessName, sProcesses[i].kp_proc.p_comm, MAXCOMLEN) == 0 ) {
-                        free(sProcesses);
-                        return iCurrentPid;
-                }
+            iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), pkpProcesses, &uiBuffSize, NULL, 0U);
+            xCHECK_DO(!(- 1 == iRv && errno == ENOMEM), break);
         }
 
-        /*
-         * Clean up and return -1 because the given proc name was not found
-         */
+        // search for the given process name and return its pid
+        size_t uiNumProcs = uiBuffSize / sizeof(kinfo_proc);
 
-        free(sProcesses);
+        for (size_t i = 0; i < uiNumProcs; ++ i) {
+            if (0 == strncmp(a_csProcessName.c_str(), pkpProcesses[i].ki_comm, MAXCOMLEN)) {
+                ulRv = pkpProcesses[i].ki_pid;
 
-        return (-1);
+                break;
+            } else {
+                ulRv = - 1;
+            }
+        }
+
+        xBUFF_FREE(pkpProcesses);
     #endif
 #endif
 
