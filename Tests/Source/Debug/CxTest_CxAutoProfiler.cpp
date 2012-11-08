@@ -44,7 +44,8 @@ CxTest_CxAutoProfiler::vUnit(
         const std::tstring_t csFilePath = sTempDirPath() + CxConst::xSLASH + xT("CxAutoProfilerLog.log");
 
         for (size_t y = 0; y < 10; ++ y) {
-            CxAutoProfiler apfP(csFilePath, pmMode[i], xT("Variable i: %") xPR_SIZET, y);
+            CxAutoProfiler apfP(csFilePath, pmMode[i],
+                                xT("Variable y: %") xPR_SIZET, y);
 
             CxCurrentThread::vSleep(5UL);
         }

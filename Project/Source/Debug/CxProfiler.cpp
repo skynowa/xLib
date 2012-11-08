@@ -143,12 +143,13 @@ CxProfiler::vStop(
 
     switch (_m_pmModeNow) {
         case pmStdClock: {
-                std::clock_t ctClockResolution = CLOCKS_PER_SEC / 1000;
-
                 _m_ctClocksStop = xSTD_CLOCK();
                 /*DEBUG*/xTEST_DIFF(static_cast<clock_t>( - 1 ), _m_ctClocksStop);
 
-                sTimeString = CxDateTime( (_m_ctClocksStop - _m_ctClocksStart) / ctClockResolution ).sFormat(CxDateTime::ftTime);
+                sTimeString = CxDateTime( static_cast<double>((_m_ctClocksStop - _m_ctClocksStart)) / CLOCKS_PER_SEC ).sFormat(CxDateTime::ftTime);
+
+
+
             }
             break;
 

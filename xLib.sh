@@ -42,9 +42,10 @@ usage() {
     echo -e "|  6. Tests clean              |"
     echo -e "|  7. Tests build              |"
     echo -e "|  8. Tests rebuild            |"
-    echo -e "|  9. Tests run                |"
+    echo -e "|  9. Tests build and run      |"
+    echo -e "| 10. Tests run                |"
     echo -e "|                              |"
-    echo -e "| 10. Quit                     |"
+    echo -e "| 11. Quit                     |"
     echo -e "+------------------------------+"
     echo -e ""
 }
@@ -81,6 +82,11 @@ xlib_tests_build() {
 xlib_tests_rebuild() {
     ./TestsClean_Unix.sh &&
     ./TestsBuild_Unix.sh
+}
+
+xlib_tests_build_run() {
+    ./TestsBuild_Unix.sh &&
+    ./TestsRun_Unix.sh
 }
 
 xlib_tests_run() {
@@ -125,9 +131,10 @@ case $opt_menu_pos in
     6)  xlib_tests_clean;;
     7)  xlib_tests_build;;
     8)  xlib_tests_rebuild;;
-    9)  xlib_tests_run;;
+    9)  xlib_tests_build_run;;
+    10) xlib_tests_run;;
 
-    10) quit;;
+    11) quit;;
     *)  invalid_option;;
 esac
 
