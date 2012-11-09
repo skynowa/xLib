@@ -301,8 +301,6 @@ CxProcess::ulIdByName(
             std::getline(cmdFile, cmdLine);
             xCHECK_DO(true == cmdLine.empty(), continue);
 
-            CxTracer() << xTRACE_VAR(cmdLine);
-
             // keep first cmdline item which contains the program path
             size_t uiPos = cmdLine.find('\0');
             if (std::string::npos != uiPos) {

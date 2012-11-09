@@ -109,7 +109,7 @@ CxTest_CxProcess::vUnit(
         CxProcess::id_t ulId = CxProcess::ulIdByName(csProcessName);
         xTEST_DIFF(0UL, static_cast<ulong_t>( ulId ));
 
-        CxTracer() << xTRACE_VAR(ulId);
+        // CxTracer() << xTRACE_VAR(ulId);
     }
 
     xTEST_CASE(CxProcess::bIsRunning, cullCaseLoops)
@@ -134,16 +134,16 @@ CxTest_CxProcess::vUnit(
                 m_bRv = CxProcess::bIsRunning(csProcName);
                 xTEST_EQ(cbRv, cbRv);
             }
-
-            {
-                const std::tstring_t csProcName = CxPath::sFileName(CxPath::sExe());
-
-                m_bRv = CxProcess::bIsRunning(csProcName);
-                xTEST_EQ(true, m_bRv);
-            }
         #elif xOS_ENV_UNIX
             // TODO: xTEST_CASE for CxProcess::bIsRunning
         #endif
+
+        {
+            const std::tstring_t csProcName = CxPath::sFileName(CxPath::sExe());
+
+            m_bRv = CxProcess::bIsRunning(csProcName);
+            xTEST_EQ(true, m_bRv);
+        }
     }
 }
 //---------------------------------------------------------------------------
