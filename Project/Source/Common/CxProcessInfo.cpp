@@ -20,6 +20,116 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 /* static */
+void
+CxProcessInfo::vCurrentIds(
+    std::vector<CxProcess::id_t> *a_pvidIds
+)
+{
+    std::vector<CxProcess::id_t> vidRv;
+    CxProcess::id_t              ulRv;
+
+#if   xOS_ENV_WIN
+    CxHandle       hSnapshot;
+    PROCESSENTRY32 peProcess = {0};    peProcess.dwSize = sizeof(PROCESSENTRY32);
+
+    hSnapshot = ::CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0UL);
+    /*DEBUG*/xTEST_EQ(true, hSnapshot.bIsValid());
+
+    BOOL blRv = ::Process32First(hSnapshot.hGet(), &peProcess);
+    /*DEBUG*/xTEST_DIFF(FALSE, blRv);
+
+    xFOREVER {
+        vidRv.push_back(peProcess.th32ProcessID);
+
+        blRv = ::Process32Next(hSnapshot.hGet(), &peProcess);
+        xCHECK_DO(FALSE == blRv, break);
+    }
+#elif xOS_ENV_UNIX
+    #if   xOS_LINUX
+        int iPid = -1;
+
+        // open the /proc directory
+        DIR *pDir = ::opendir("/proc");
+        xTEST_PTR(pDir);
+
+        // enumerate all entries in directory until process found
+        xFOREVER {
+            struct dirent *dirp = ::readdir(pDir);
+            xCHECK_DO(NULL == dirp, break);
+
+            // skip non-numeric entries
+            int iId = ::atoi(dirp->d_name);
+            xCHECK_DO(0 >= iId, continue);
+
+            // read contents of virtual /proc/{pid}/cmdline file
+            std::string   cmdPath = std::string("/proc/") + dirp->d_name + "/cmdline";
+            std::ifstream cmdFile(cmdPath.c_str());
+            std::string   cmdLine;
+
+            std::getline(cmdFile, cmdLine);
+            xCHECK_DO(true == cmdLine.empty(), continue);
+
+            // keep first cmdline item which contains the program path
+            size_t uiPos = cmdLine.find('\0');
+            if (std::string::npos != uiPos) {
+                cmdLine = cmdLine.substr(0, uiPos);
+            }
+
+            cmdLine = CxPath::sFileName(cmdLine);
+            if (a_csProcessName == cmdLine) {
+                iPid = iId;
+                break;
+            }
+        }
+
+        int iRv = ::closedir(pDir); pDir = NULL;
+        /*DEBUG*/xTEST_DIFF(- 1, iRv);
+
+        ulRv = iPid;
+    #elif xOS_FREEBSD
+        int    aiMib[3]   = {CTL_KERN, KERN_PROC, KERN_PROC_ALL};
+        size_t uiBuffSize = 0U;
+
+        int iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), NULL, &uiBuffSize, NULL, 0U);
+        /*DEBUG*/xTEST_DIFF(- 1, iRv);
+
+        // allocate memory and populate info in the  processes structure
+        kinfo_proc *pkpProcesses = NULL;
+
+        xFOREVER {
+            uiBuffSize += uiBuffSize / 10;
+
+            kinfo_proc *pkpNewProcesses = static_cast<kinfo_proc *>( realloc(pkpProcesses, uiBuffSize) );
+            xTEST_PTR(pkpNewProcesses);
+
+            pkpProcesses = pkpNewProcesses;
+
+            iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), pkpProcesses, &uiBuffSize, NULL, 0U);
+            xCHECK_DO(!(- 1 == iRv && errno == ENOMEM), break);
+        }
+
+        // search for the given process name and return its pid
+        size_t uiNumProcs = uiBuffSize / sizeof(kinfo_proc);
+
+        for (size_t i = 0; i < uiNumProcs; ++ i) {
+            if (0 == strncmp(a_csProcessName.c_str(), pkpProcesses[i].ki_comm, MAXCOMLEN)) {
+                ulRv = pkpProcesses[i].ki_pid;
+
+                break;
+            } else {
+                ulRv = - 1;
+            }
+        }
+
+        xBUFF_FREE(pkpProcesses);
+    #endif
+#endif
+
+    // out
+    (*a_pvidIds).swap(vidRv);
+}
+//---------------------------------------------------------------------------
+/* static */
 ulong_t
 CxProcessInfo::ulCpuUsage(
     const CxProcess::id_t &a_cidId

@@ -16,17 +16,19 @@ class CxProcessInfo :
     public CxNonCopyable
 {
     public:
-        static ulong_t        ulCpuUsage(const CxProcess::id_t &cidId);
+        static void           vCurrentIds  (std::vector<CxProcess::id_t> *pvidIds);
+            ///< get all IDs of current processes
+        static ulong_t        ulCpuUsage   (const CxProcess::id_t &cidId);
             ///< get CPU usage (percentage)
-        static ulong_t        ulRamUsage(const CxProcess::id_t &cidId);
+        static ulong_t        ulRamUsage   (const CxProcess::id_t &cidId);
             ///< get RAM usage (percentage)
-        static ulong_t        ulIOBytes (const CxProcess::id_t &cidId);
+        static ulong_t        ulIOBytes    (const CxProcess::id_t &cidId);
             ///< get total read and written bytes
-        static std::tstring_t sExeName  (const CxProcess::id_t &cidId);
+        static std::tstring_t sExeName     (const CxProcess::id_t &cidId);
             ///< get exe name
-        static ulong_t        ulParentId(const CxProcess::id_t &cidId);
+        static ulong_t        ulParentId   (const CxProcess::id_t &cidId);
             ///< get parent process id
-        static std::tstring_t sArgs     (const CxProcess::id_t &cidId);
+        static std::tstring_t sArgs        (const CxProcess::id_t &cidId);
             ///< get arguments
 
     private:

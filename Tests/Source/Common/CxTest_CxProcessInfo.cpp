@@ -26,6 +26,14 @@ CxTest_CxProcessInfo::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
+    xTEST_CASE(CxProcessInfo::vCurrentIds, cullCaseLoops)
+    {
+        std::vector<CxProcess::id_t> vidIds;
+
+        CxProcessInfo::vCurrentIds(&vidIds);
+        CxTracer() << vidIds;
+    }  
+
     xTEST_CASE(CxProcessInfo::ulCpuUsage, cullCaseLoops)
     {
         m_ulRv = CxProcessInfo::ulCpuUsage(CxCurrentProcess::ulId());
@@ -33,7 +41,6 @@ CxTest_CxProcessInfo::vUnit(
         #if xTEST_IGNORE
             xTRACEV(xT("\tCxProcessInfo::ulCpuUsage(): %lu"), m_ulRv);
         #endif
-
     }
 
     xTEST_CASE(CxProcessInfo::ulRamUsage, cullCaseLoops)
