@@ -47,11 +47,11 @@ CxDir::bIsExists(
 bool
 CxDir::bIsEmpty(
     const std::tstring_t &a_csDirPath,
-    const std::tstring_t &a_csMask
+    const std::tstring_t &a_csPattern
 )
 {
     /*DEBUG*/xTEST_EQ(false, a_csDirPath.empty());
-    /*DEBUG*/xTEST_EQ(false, a_csMask.empty());
+    /*DEBUG*/xTEST_EQ(false, a_csPattern.empty());
 
     bool bRv = false;
 
@@ -60,7 +60,7 @@ CxDir::bIsEmpty(
 #if   xOS_ENV_WIN
     HANDLE          hFile    = INVALID_HANDLE_VALUE;
     WIN32_FIND_DATA fdData   = {0};
-    std::tstring_t  sDirPath = CxPath::sToCurrentOs( CxPath::sSlashAppend(csDirPath) + csMask, false );
+    std::tstring_t  sDirPath = CxPath::sToCurrentOs( CxPath::sSlashAppend(a_csDirPath) + a_csPattern, false );
 
     hFile = ::FindFirstFile(sDirPath.c_str(), &fdData);
     xCHECK_RET(INVALID_HANDLE_VALUE == hFile, true);
@@ -75,7 +75,7 @@ CxDir::bIsEmpty(
             bRv = true;    // empty
         }
     }
-    while (false != ::FindNextFile(hFile, &fdData));
+    while (FALSE != ::FindNextFile(hFile, &fdData));
 
     BOOL blRes = ::FindClose(hFile);
     /*DEBUG*/xTEST_DIFF(FALSE, blRes);
@@ -117,11 +117,11 @@ CxDir::bIsRoot(
     /*DEBUG*/// n/a
 
 #if   xOS_ENV_WIN
-    xCHECK_RET(3 != csDirPath.size(), false);
+    xCHECK_RET(3 != a_csDirPath.size(), false);
 
-    bool bRes1 = CxChar::bIsAlpha(csDirPath.at(0));
-    bool bRes2 = (csDirPath.at(1) == CxConst::xCOLON.at(0));
-    bool bRes3 = (csDirPath.at(2) == CxConst::xWIN_SLASH.at(0) || csDirPath.at(2) == CxConst::xUNIX_SLASH.at(0));
+    bool bRes1 = CxChar::bIsAlpha(a_csDirPath.at(0));
+    bool bRes2 = (a_csDirPath.at(1) == CxConst::xCOLON.at(0));
+    bool bRes3 = (a_csDirPath.at(2) == CxConst::xWIN_SLASH.at(0) || a_csDirPath.at(2) == CxConst::xUNIX_SLASH.at(0));
 
     xCHECK_RET(false == bRes1 || false == bRes2 || false == bRes3, false);
 #elif xOS_ENV_UNIX
@@ -465,7 +465,7 @@ CxDir::vFindFiles(
 
 #if   xOS_ENV_WIN
     HANDLE          hFile         = INVALID_HANDLE_VALUE;
-    std::tstring_t  sFilePath     = CxPath::sToCurrentOs( CxPath::sSlashAppend(csDirPath) + a_csPattern, false );
+    std::tstring_t  sFilePath     = CxPath::sToCurrentOs( CxPath::sSlashAppend(a_csDirPath) + a_csPattern, false );
     std::tstring_t  sFileFullName = CxPath::sFileName(sFilePath);
     std::tstring_t  sPart;
     std::tstring_t  sTmpPath;
@@ -473,7 +473,7 @@ CxDir::vFindFiles(
 
     //-------------------------------------
     // subdirs
-    if (true == cbIsRecursively) {
+    if (true == a_cbIsRecursively) {
         sPart    = CxConst::xMASK_ALL;
         sTmpPath = CxPath::sSetFileName(sFilePath, sPart);
 
@@ -491,9 +491,9 @@ CxDir::vFindFiles(
                 sPart    = fdData.cFileName;
                 sTmpPath = CxPath::sSetFileName(sTmpPath, sPart);
 
-                vFindFiles(sTmpPath, sFileFullName, true, pvsFilePathes);
+                vFindFiles(sTmpPath, sFileFullName, true, a_pvsFilePathes);
             }
-            while (false != ::FindNextFile(hFile, &fdData));
+            while (FALSE != ::FindNextFile(hFile, &fdData));
 
             BOOL blRes = ::FindClose(hFile);
             /*DEBUG*/xTEST_DIFF(FALSE, blRes);
@@ -512,7 +512,7 @@ CxDir::vFindFiles(
         sPart    = fdData.cFileName;
         sTmpPath = CxPath::sSetFileName(sFilePath /*sTmpPath*/, sPart);
 
-        (*pvsFilePathes).push_back(sTmpPath);
+        (*a_pvsFilePathes).push_back(sTmpPath);
     }
     while ( FALSE != ::FindNextFile(hFile, &fdData) );
 
@@ -604,7 +604,7 @@ CxDir::vFindDirs(
 
 #if   xOS_ENV_WIN
     HANDLE          hFile        = xNATIVE_HANDLE_INVALID;
-    std::tstring_t  sRootDirPath = CxPath::sToCurrentOs( CxPath::sSlashAppend(csDirPath) + a_csPattern, false );
+    std::tstring_t  sRootDirPath = CxPath::sToCurrentOs( CxPath::sSlashAppend(a_csDirPath) + a_csPattern, false );
     WIN32_FIND_DATA fdData       = {0};
 
     hFile = ::FindFirstFile(sRootDirPath.c_str(), &fdData);
@@ -621,7 +621,7 @@ CxDir::vFindDirs(
 
             std::tstring_t sDirPath = CxPath::sSlashAppend(a_csDirPath) + sFileName;
 
-            (*pvsDirPathes).push_back(sDirPath);
+            (*a_pvsDirPathes).push_back(sDirPath);
 
             // is search in subdirs ?
             if (true == a_cbIsRecursively) {

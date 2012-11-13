@@ -19,7 +19,7 @@ class CxDir :
     public:
         static bool           bIsExists   (const std::tstring_t &csDirPath);
             ///< check for existence
-        static bool           bIsEmpty    (const std::tstring_t &csDirPath, const std::tstring_t &csMask = CxConst::xMASK_ALL);
+        static bool           bIsEmpty    (const std::tstring_t &csDirPath, const std::tstring_t &csPattern = CxConst::xMASK_ALL);
             ///< is empty
         static bool           bIsRoot     (const std::tstring_t &csDirPath);
             ///< is root
