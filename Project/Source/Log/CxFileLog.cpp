@@ -34,9 +34,9 @@ CxFileLog::CxFileLog(
         CxAutoIpcMutex
     #endif
 {
-    /*DEBUG*/xTEST_EQ(true, _m_sFilePath.empty());
-    /*DEBUG*/xTEST_GR(lsLimitSize, lsDefaultMaxSize);
-    /*DEBUG*/xTEST_GR(static_cast<ulong_t>( lsLimitSize ), a_culMaxFileSizeBytes);
+    xTEST_EQ(true, _m_sFilePath.empty());
+    xTEST_GR(lsLimitSize, lsDefaultMaxSize);
+    xTEST_GR(static_cast<ulong_t>( lsLimitSize ), a_culMaxFileSizeBytes);
 }
 //---------------------------------------------------------------------------
 /* virtual */
@@ -49,7 +49,7 @@ CxFileLog::vSetFilePath(
     const std::tstring_t &a_csFilePath
 )
 {
-    /*DEBUG*/xTEST_EQ(false, a_csFilePath.empty());
+    xTEST_EQ(false, a_csFilePath.empty());
 
     if (std::tstring_t::npos == a_csFilePath.find(CxConst::xSLASH)) {
         _m_sFilePath = CxPath::sDir(CxPath::sExe()) + CxConst::xSLASH + a_csFilePath;
@@ -60,7 +60,7 @@ CxFileLog::vSetFilePath(
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxFileLog::sFilePath() const {
-    /*DEBUG*/
+    
 
     return _m_sFilePath;
 }
@@ -70,7 +70,7 @@ CxFileLog::vWrite(
     const tchar_t *a_pcszFormat, ...
 )
 {
-    /*DEBUG*/xTEST_PTR(a_pcszFormat);
+    xTEST_PTR(a_pcszFormat);
 
     _vDeleteIfFull();
 
@@ -99,7 +99,7 @@ CxFileLog::vWrite(
     sfFile.vCreate(sFilePath(), CxFile::omAppend, false);
 
     int iRv = sfFile.iWrite(xT("[%s] %s\n"), sTime.c_str(), sParam.c_str());
-    /*DEBUG*/xTEST_DIFF(iRv, static_cast<int>( CxFile::etError ));
+    xTEST_DIFF(iRv, static_cast<int>( CxFile::etError ));
 }
 //---------------------------------------------------------------------------
 void

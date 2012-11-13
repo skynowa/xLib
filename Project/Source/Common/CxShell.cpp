@@ -55,7 +55,7 @@ CxShell::vExecute(
     std::tstring_t sCommand = CxString::sFormat(xT("%s \"%s\""), a_csFilePath.c_str(), a_csParams.c_str());
 
     int iRv = ::xTSYSTEM(sCommand.c_str());
-    /*DEBUG*/xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(- 1, iRv);
 }
 //---------------------------------------------------------------------------
 
@@ -70,15 +70,15 @@ CxShell::sFindExecutable(
     const std::tstring_t &a_csFindDirPath
 )
 {
-    /*DEBUG*/xTEST_EQ(false, a_csFileName.empty());
-    /*DEBUG*/// csFindDirPath - n/a
+    xTEST_EQ(false, a_csFileName.empty());
+    // csFindDirPath - n/a
 
     int            iRv             = SE_ERR_FNF;
     tchar_t        szRes[MAX_PATH] = {0};
     const tchar_t *cpszFindDirPath = a_csFindDirPath.empty() ? NULL : a_csFindDirPath.c_str();
 
     iRv = reinterpret_cast<int>( ::FindExecutable(a_csFileName.c_str(), cpszFindDirPath, szRes) );
-    /*DEBUG*/xTEST_LESS(32, iRv);
+    xTEST_LESS(32, iRv);
 
     return std::tstring_t(szRes);
 }
@@ -94,12 +94,12 @@ CxShell::vExecute(
     const EShowFlag      &a_csfShowCmd
 )
 {
-    /*DEBUG*/// chOwner      - n/a
-    /*DEBUG*/// ccsOperation - n/a
-    /*DEBUG*/// csFilePath   - n/a
-    /*DEBUG*/// csParams     - n/a
-    /*DEBUG*/// csDir        - n/a
-    /*DEBUG*/// csfShowCmd   - n/a
+    // chOwner      - n/a
+    // ccsOperation - n/a
+    // csFilePath   - n/a
+    // csParams     - n/a
+    // csDir        - n/a
+    // csfShowCmd   - n/a
 
     std::tstring_t sFilePath  = CxString::sTrimSpace(a_csFilePath);
     std::tstring_t sParams    = CxString::sTrimSpace(a_csParams);
@@ -118,7 +118,7 @@ CxShell::vExecute(
     }
 
     int iRv = reinterpret_cast<int>( ::ShellExecute(a_chOwner, sOperation.c_str(), sFilePath.c_str(), sParams.c_str(), sDir.c_str(), a_csfShowCmd) );
-    /*DEBUG*/xTEST_LESS(32, iRv);
+    xTEST_LESS(32, iRv);
 }
 //---------------------------------------------------------------------------
 /* static */
@@ -127,10 +127,10 @@ CxShell::vExecuteEx(
     SHELLEXECUTEINFO *a_peiInfo
 )
 {
-    /*DEBUG*/xTEST_PTR(a_peiInfo);
+    xTEST_PTR(a_peiInfo);
 
     BOOL bRv = ::ShellExecuteEx(a_peiInfo);
-    /*DEBUG*/xTEST_DIFF(FALSE, bRv);
+    xTEST_DIFF(FALSE, bRv);
 }
 //---------------------------------------------------------------------------
 /* static */
@@ -139,7 +139,7 @@ CxShell::vExecuteHttp(
     const std::tstring_t &a_csUrl
 )
 {
-    /*DEBUG*/// csUrl - n/a
+    // csUrl - n/a
 
     std::tstring_t sUrl = CxString::sTrimSpace(a_csUrl);
 
@@ -154,7 +154,7 @@ CxShell::vExecuteFtp(
     const std::tstring_t &a_csUrl
 )
 {
-    /*DEBUG*/// csUrl - n/a
+    // csUrl - n/a
 
     std::tstring_t sUrl = CxString::sTrimSpace(a_csUrl);
 
@@ -171,9 +171,9 @@ CxShell::vExecuteEmail(
     const std::tstring_t &a_csBody
 )
 {
-    /*DEBUG*/// csToEmail - n/a
-    /*DEBUG*/// csSubject - n/a
-    /*DEBUG*/// csBody    - n/a
+    // csToEmail - n/a
+    // csSubject - n/a
+    // csBody    - n/a
 
     std::tstring_t sToEmail = CxString::sTrimSpace(a_csToEmail);
     std::tstring_t sSubject = CxString::sTrimSpace(a_csSubject);
@@ -204,23 +204,23 @@ CxShell::sSpecialDirPath(
     const HANDLE      &a_chToken
 )
 {
-    /*DEBUG*/// csfDir  - n/a
-    /*DEBUG*/// chToken - n/a
+    // csfDir  - n/a
+    // chToken - n/a
 
     HRESULT      hRv     = S_FALSE;
     LPITEMIDLIST pidlList = {0};
 
     ////hRv = ::SHGetFolderLocation(NULL, sfDir, chToken, 0, &pidlList);    //FIXME: SHGetFolderLocation
     hRv = ::SHGetSpecialFolderLocation(NULL, a_csfDir, &pidlList);
-    /*DEBUG*/xTEST_EQ(true, SUCCEEDED(hRv));
+    xTEST_EQ(true, SUCCEEDED(hRv));
 
     tchar_t szRes[MAX_PATH + sizeof(tchar_t)] = {0};
 
     BOOL bRv = ::SHGetPathFromIDList(pidlList, &szRes[0]);
-    /*DEBUG*/xTEST_DIFF(FALSE, bRv);
+    xTEST_DIFF(FALSE, bRv);
 
     ::CoTaskMemFree(pidlList);
-    /*DEBUG*/// n/a
+    // n/a
 
     return std::tstring_t(szRes);
 }
@@ -243,7 +243,7 @@ CxShell::vCreateShortcut(
     const std::tstring_t &a_csDescription       ///< description
 )
 {
-    /*DEBUG*/
+    
 
     CxCom cmCom(CxCom::cmMultiThreaded);
 
@@ -251,36 +251,36 @@ CxShell::vCreateShortcut(
     HRESULT     hRv  = 0;
 
     hRv = ::CoCreateInstance(CLSID_ShellLink, NULL, CLSCTX_INPROC_SERVER, IID_IShellLink, (void **)&pslSL);
-    /*DEBUG*/xTEST_EQ(true, SUCCEEDED(hRv));
+    xTEST_EQ(true, SUCCEEDED(hRv));
 
     {
         hRv = pslSL->SetPath(a_csFilePath.c_str());
-        /*DEBUG*/xTEST_EQ(true, SUCCEEDED(hRv));
+        xTEST_EQ(true, SUCCEEDED(hRv));
 
         hRv = pslSL->SetArguments(a_csArguments.c_str());
-        /*DEBUG*/xTEST_EQ(true, SUCCEEDED(hRv));
+        xTEST_EQ(true, SUCCEEDED(hRv));
 
         hRv = pslSL->SetWorkingDirectory(a_csWorkingDirectory.c_str());
-        /*DEBUG*/xTEST_EQ(true, SUCCEEDED(hRv));
+        xTEST_EQ(true, SUCCEEDED(hRv));
 
         hRv = pslSL->SetIconLocation(a_csIconFilePath.c_str(), a_ciIconIndex);
-        /*DEBUG*/xTEST_EQ(true, SUCCEEDED(hRv));
+        xTEST_EQ(true, SUCCEEDED(hRv));
 
         hRv = pslSL->SetHotkey(a_cwHotKey);
-        /*DEBUG*/xTEST_EQ(true, SUCCEEDED(hRv));
+        xTEST_EQ(true, SUCCEEDED(hRv));
 
         hRv = pslSL->SetShowCmd(a_ciCmdShow);
-        /*DEBUG*/xTEST_EQ(true, SUCCEEDED(hRv));
+        xTEST_EQ(true, SUCCEEDED(hRv));
 
         hRv = pslSL->SetDescription(a_csDescription.c_str());
-        /*DEBUG*/xTEST_EQ(true, SUCCEEDED(hRv));
+        xTEST_EQ(true, SUCCEEDED(hRv));
     }
 
 
     IPersistFile *ppfPF = NULL;
 
     hRv = pslSL->QueryInterface(IID_IPersistFile, CxUtils::reinterpretCastT<void **>( &ppfPF ));
-    /*DEBUG*/xTEST_EQ(true, SUCCEEDED(hRv));
+    xTEST_EQ(true, SUCCEEDED(hRv));
 
 #if xUNICODE
     hRv = ppfPF->Save(csShortCutFilePath.c_str(), true);

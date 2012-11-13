@@ -29,7 +29,7 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 /* virtual */
 CxErrorReport::~CxErrorReport() {
-    /*DEBUG*/
+    
 }
 void
 CxErrorReport::_vConstruct(
@@ -49,7 +49,7 @@ CxErrorReport::_vConstruct(
     const std::tstring_t &a_csComment
 )
 {
-    /*DEBUG*/
+    
 
     const size_t cuiReportWidthMax = 46U;
 

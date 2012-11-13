@@ -44,10 +44,10 @@ CxSmtp::~CxSmtp() {
 //DONE: bCreate
 void
 CxSmtp::vCreate(const std::string &a_csUser, const std::string &a_csPass, const std::string &a_csServer, const ushort_t &a_cusPort) {
-    /*DEBUG*/xTEST_EQ(false, a_csUser.empty());
-    /*DEBUG*/////xTEST_EQ(false, a_csPass.empty());
-    /*DEBUG*/xTEST_EQ(false, a_csServer.empty());
-    /*DEBUG*/xTEST_EQ(true, (32767 > a_cusPort) && (0 < a_cusPort));
+    xTEST_EQ(false, a_csUser.empty());
+    ////xTEST_EQ(false, a_csPass.empty());
+    xTEST_EQ(false, a_csServer.empty());
+    xTEST_EQ(true, (32767 > a_cusPort) && (0 < a_cusPort));
 
     _m_sUser   = a_csUser;
     _m_sPass   = a_csPass;
@@ -77,7 +77,7 @@ CxSmtp::vConnect() {
     //-------------------------------------
     //[welcome message]
     sRv = _m_scktSocket.sRecvAll(0, "\r\n");
-    /*DEBUG*/xTEST_MSG_EQ(false, _bIsError(sRv), sRv);
+    xTEST_MSG_EQ(false, _bIsError(sRv), sRv);
 
     //-------------------------------------
     //[HELO\r\n]
@@ -163,9 +163,9 @@ CxSmtp::vRset() {
 //DONE: bSendRaw
 void
 CxSmtp::vSendRaw(const std::string &a_csFilePath, const std::string &a_sFrom, const std::string &a_sTo) {
-    /*DEBUG*/// TODO: xTEST_DIFF(xSOCKET_HANDLE_INVALID, _m_scktSocket,   false);
-    /*DEBUG*/xTEST_EQ(false, a_sFrom.empty());
-    /*DEBUG*/xTEST_EQ(false, a_sTo.empty());
+    // TODO: xTEST_DIFF(xSOCKET_HANDLE_INVALID, _m_scktSocket,   false);
+    xTEST_EQ(false, a_sFrom.empty());
+    xTEST_EQ(false, a_sTo.empty());
 
     std::string sRv;
 
@@ -206,9 +206,9 @@ CxSmtp::vSendRaw(const std::string &a_csFilePath, const std::string &a_sFrom, co
 //DONE: bSend
 void
 CxSmtp::vSend(const std::string &a_csText, const std::string &a_sFrom, const std::string &a_sTo) {
-    /*DEBUG*/// TODO: xTEST_DIFF(xSOCKET_HANDLE_INVALID, _m_scktSocket);
-    /*DEBUG*/xTEST_EQ(false, a_sFrom.empty());
-    /*DEBUG*/xTEST_EQ(false, a_sTo.empty());
+    // TODO: xTEST_DIFF(xSOCKET_HANDLE_INVALID, _m_scktSocket);
+    xTEST_EQ(false, a_sFrom.empty());
+    xTEST_EQ(false, a_sTo.empty());
 
     std::string sRv;
 
@@ -281,8 +281,8 @@ CxSmtp::vDisconnect() {
 //DONE: _bCommand
 void
 CxSmtp::_vCommand(const std::string &a_csCmd, const std::string &a_csReplyDelimiter, std::string &a_sReply) {
-    /*DEBUG*/xTEST_EQ(false, a_csCmd.empty());
-    /*DEBUG*/xTEST_EQ(false, a_csReplyDelimiter.empty());
+    xTEST_EQ(false, a_csCmd.empty());
+    xTEST_EQ(false, a_csReplyDelimiter.empty());
 
     std::string sRv;
 
@@ -295,7 +295,7 @@ CxSmtp::_vCommand(const std::string &a_csCmd, const std::string &a_csReplyDelimi
 //DONE: _bIsError
 bool
 CxSmtp::_bIsError(const std::string &a_csText) {
-    /*DEBUG*/xTEST_EQ(false, a_csText.empty());
+    xTEST_EQ(false, a_csText.empty());
 
     bool bRv = (bool)!(
             !std::memcmp(a_csText.c_str(), "334", 3) ||    //334 VXNlcm5hbWU6

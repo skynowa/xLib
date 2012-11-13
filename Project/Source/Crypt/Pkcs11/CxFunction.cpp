@@ -40,35 +40,35 @@ CxFunction::vList(
     CK_FUNCTION_LIST_PTR_PTR a_ppFunctionList  ///< receives pointer to function list
 )
 {
-    /*DEBUG*/
+    
 
     CK_RV ulRv = _m_pFunc->C_GetFunctionList(a_ppFunctionList);
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
 CxFunction::vStatus() {
-    /*DEBUG*/
+    
 
     CK_RV ulRv = _m_pFunc->C_GetFunctionStatus(_m_hSession);
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
 CxFunction::vCancel() {
-    /*DEBUG*/
+    
 
     CK_RV ulRv = _m_pFunc->C_CancelFunction(_m_hSession);
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
 CxFunction::vListEx() {
-    /*DEBUG*/
+    
 
     #if xTODO
         CK_RV ulRv = _m_pFunc->ETC_GetFunctionListEx();
-        /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+        xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
     #endif
 }
 //---------------------------------------------------------------------------

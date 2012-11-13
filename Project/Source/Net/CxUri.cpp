@@ -76,7 +76,7 @@ telnet : //192.0.2.16:80/
 */
 std::string
 CxUri::sUri() const {
-    /*DEBUG*/
+    
 
     std::string sRv;
     std::string sTemp;
@@ -115,7 +115,7 @@ CxUri::sUri() const {
 }
 void
 CxUri::vSetUri(const std::string &a_csScheme, const std::string &a_csAuthority, const std::string &a_csPath, const std::string &a_csQuery, const std::string &a_csFragment) {
-    /*DEBUG*/
+    
 
     vSetScheme   (a_csScheme);
     vSetAuthority(a_csAuthority);
@@ -247,7 +247,7 @@ CxUri::vClear() {
 /* static */
 std::string
 CxUri::sEscape(const std::string &csUri) {
-    /*DEBUG*/
+    
 
     /*
     int    c;
@@ -287,7 +287,7 @@ CxUri::sEscape(const std::string &csUri) {
 /* static */
 std::string
 CxUri::sUnescape(const std::string &csUri) {
-    /*DEBUG*/
+    
 
     std::string sRv;
 
@@ -351,14 +351,14 @@ CxUri::sDecodeComponent(const std::string &a_csUri) {
         if (c == '%') {
             if (it == end) {
                 //throw SyntaxException("URI encoding: no hex digit following percent sign", csUri);
-                /*DEBUG*/xTEST_FAIL;
+                xTEST_FAIL;
             }
 
             char hi = *it ++;
 
             if (it == end) {
                 //throw SyntaxException("URI encoding: two hex digits must follow percent sign", csUri);
-                /*DEBUG*/xTEST_FAIL;
+                xTEST_FAIL;
             }
 
             char lo = *it ++;
@@ -371,7 +371,7 @@ CxUri::sDecodeComponent(const std::string &a_csUri) {
                 c = hi - 'a' + 10;
             } else {
                 //throw SyntaxException("URI encoding: not a hex digit");
-                /*DEBUG*/xTEST_FAIL;
+                xTEST_FAIL;
             }
 
             c *= 16;
@@ -384,7 +384,7 @@ CxUri::sDecodeComponent(const std::string &a_csUri) {
                 c += lo - 'a' + 10;
             } else {
                 //throw SyntaxException("URI encoding: not a hex digit");
-                /*DEBUG*/xTEST_FAIL;
+                xTEST_FAIL;
             }
         }
 
@@ -443,8 +443,8 @@ CxUri::_vParse(const std::string &a_csUri) {
     //[INPUT]     - foo://userinfo@example.com:8042/over/there?name=ferret#nose
     size_t uiSchemeStart = 0;
     size_t uiSchemeEnd   = a_csUri.find_first_of(CxConst::xCOLON);
-    /*DEBUG*/xTEST_DIFF(std::string::npos, uiSchemeEnd);
-    /*DEBUG*/xTEST_GR(size_t(7U)/*SCHEME_MAX_SIZE + 1*/, uiSchemeEnd);
+    xTEST_DIFF(std::string::npos, uiSchemeEnd);
+    xTEST_GR(size_t(7U)/*SCHEME_MAX_SIZE + 1*/, uiSchemeEnd);
 
     _m_sScheme = CxString::sCut(a_csUri, uiSchemeStart, uiSchemeEnd);
 

@@ -60,9 +60,9 @@ CxTcpClient::vConnect(
     const ushort_t       &a_cusPort
 )
 {
-    /*DEBUG*/xTEST_DIFF(xSOCKET_HANDLE_INVALID, _m_sktSocket);
-    /*DEBUG*/xTEST_EQ(false, a_csIp.empty());
-    /*DEBUG*/xTEST_EQ(true, (65535 > a_cusPort) && (0 < a_cusPort));
+    xTEST_DIFF(xSOCKET_HANDLE_INVALID, _m_sktSocket);
+    xTEST_EQ(false, a_csIp.empty());
+    xTEST_EQ(true, (65535 > a_cusPort) && (0 < a_cusPort));
 
     //конверт из UNICODE
     std::string asIp(a_csIp.begin(), a_csIp.end());
@@ -73,7 +73,7 @@ CxTcpClient::vConnect(
     saSockAddr.sin_port        = htons(a_cusPort); //???????
 
     int iRv = ::connect(_m_sktSocket, CxUtils::reinterpretCastT<sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
-    /*DEBUG*/xTEST_DIFF(xSOCKET_ERROR, iRv);
+    xTEST_DIFF(xSOCKET_ERROR, iRv);
 }
 //---------------------------------------------------------------------------
 void
@@ -82,16 +82,16 @@ CxTcpClient::vIoctl(
     ulong_t      *a_pulArgp
 )
 {
-    /*DEBUG*/xTEST_DIFF(xSOCKET_HANDLE_INVALID, _m_sktSocket);
+    xTEST_DIFF(xSOCKET_HANDLE_INVALID, _m_sktSocket);
 
     int iRv = xSOCKET_ERROR;
 
 #if   xOS_ENV_WIN
     iRv = ioctlsocket(_m_sktSocket, a_cliCmd, a_pulArgp);
-    /*DEBUG*/xTEST_DIFF(xSOCKET_ERROR, iRv);
+    xTEST_DIFF(xSOCKET_ERROR, iRv);
 #elif xOS_ENV_UNIX
     iRv = ::ioctl    (_m_sktSocket, a_cliCmd, a_pulArgp);
-    /*DEBUG*/xTEST_DIFF(xSOCKET_ERROR, iRv);
+    xTEST_DIFF(xSOCKET_ERROR, iRv);
 #endif
 }
 //---------------------------------------------------------------------------
@@ -100,7 +100,7 @@ CxTcpClient::vSetNonBlockingMode(
     const bool &a_cbFlag
 )
 {
-    /*DEBUG*/
+    
 
 #if   xOS_ENV_WIN
     ulong_t ulNonBlockingMode = static_cast<ulong_t>(a_cbFlag);
@@ -117,7 +117,7 @@ CxTcpClient::vSetNonBlockingMode(
     int iFlags = - 1;
 
     iFlags = ::fcntl(_m_sktSocket, F_GETFL);
-    /*DEBUG*/xTEST_DIFF(xSOCKET_ERROR, iFlags);
+    xTEST_DIFF(xSOCKET_ERROR, iFlags);
 
     if (true == a_cbFlag) {
         iFlags = (iFlags |  O_NONBLOCK);
@@ -126,7 +126,7 @@ CxTcpClient::vSetNonBlockingMode(
     }
 
     iFlags = ::fcntl(_m_sktSocket, F_SETFL, iFlags);
-    /*DEBUG*/xTEST_DIFF(xSOCKET_ERROR, iFlags);
+    xTEST_DIFF(xSOCKET_ERROR, iFlags);
 #endif
 }
 //---------------------------------------------------------------------------
@@ -136,9 +136,9 @@ CxTcpClient::vTimeout(
     long_t *a_pliMicroSec
 )
 {
-    /*DEBUG*/
-    /*DEBUG*/// pliSec      - n/a
-    /*DEBUG*/// pliMicroSec - n/a
+    
+    // pliSec      - n/a
+    // pliMicroSec - n/a
 
     // BUG: static_cast<long_t>( _m_tvTimeout.tv_sec  )
     CxUtils::ptrAssignT(a_pliSec,      static_cast<long_t>( _m_tvTimeout.tv_sec  ));
@@ -151,9 +151,9 @@ CxTcpClient::vSetTimeout(
     const long_t &a_cliMicroSec
 )
 {
-    /*DEBUG*/
-    /*DEBUG*/// liSec      - n/a
-    /*DEBUG*/// liMicroSec - n/a
+    
+    // liSec      - n/a
+    // liMicroSec - n/a
 
     _m_tvTimeout.tv_sec  = a_cliSec;
     _m_tvTimeout.tv_usec = a_cliMicroSec;
@@ -174,8 +174,8 @@ CxTcpClient::bIsServerAlive(
     const ushort_t       &a_cusPort
 )
 {
-    /*DEBUG*/xTEST_EQ(false, a_csIp.empty());
-    /*DEBUG*/xTEST_EQ(true, (65535 > a_cusPort) && (0 < a_cusPort));
+    xTEST_EQ(false, a_csIp.empty());
+    xTEST_EQ(true, (65535 > a_cusPort) && (0 < a_cusPort));
 
     int iRv = - 1;
 
@@ -197,7 +197,7 @@ CxTcpClient::bIsServerAlive(
 
     //connect - [+] 0 [-] SOCKET_ERROR
     iRv = ::connect(objSocket.iHandle(), CxUtils::reinterpretCastT<sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
-    /*DEBUG*/// n/a
+    // n/a
 
     xCHECK_RET(0 != iRv, false);
 

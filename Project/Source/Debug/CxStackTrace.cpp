@@ -84,7 +84,7 @@ CxStackTrace::vGet(
         xCHECK_DO(usFramesNum == 0U, return /* false */);
 
         psiSymbol               = new (std::nothrow) SYMBOL_INFO[ sizeof(SYMBOL_INFO) + (255UL + 1) * sizeof(tchar_t) ];
-        /*DEBUG*/xSTD_VERIFY(NULL != psiSymbol);
+        xSTD_VERIFY(NULL != psiSymbol);
         psiSymbol->SizeOfStruct = sizeof(SYMBOL_INFO);
         psiSymbol->MaxNameLen   = 255UL;
 

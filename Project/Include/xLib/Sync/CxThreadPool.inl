@@ -37,7 +37,7 @@ CxThreadPool<T>::CxThreadPool(
     _m_uiNumTasks         (0U),
     _m_uiCurrTask         (0U)
 {
-    /*DEBUG*/
+    
 
     /*LOG*/_m_clLog.vWrite(xT("--------------------------------"));
     /*LOG*/_m_clLog.vWrite(xT("CxThreadPool: construct"));
@@ -45,7 +45,7 @@ CxThreadPool<T>::CxThreadPool(
 //---------------------------------------------------------------------------
 template<typename T>
 CxThreadPool<T>::~CxThreadPool() {
-    /*DEBUG*/
+    
 
     /*LOG*/_m_clLog.vWrite(xT("CxThreadPool: destroy"));
 }
@@ -68,11 +68,11 @@ CxThreadPool<T>::vGroupCreate(
     const size_t     &a_cuiMaxRunningTasks
 )
 {
-    /*DEBUG*/xTEST_LESS_EQ(0U, a_cuiStackSize);    // TODO: MaxValue
-    /*DEBUG*/ xDEBUG_VAR_NA(a_fpFuncPtr);
-    /*DEBUG*/ xDEBUG_VAR_NA(a_pvParam);
-    /*DEBUG*/xTEST_LESS_EQ(size_t(0), a_cuiNumTasks);
-    /*DEBUG*/xTEST_LESS_EQ(size_t(0), a_cuiMaxRunningTasks);
+    xTEST_LESS_EQ(0U, a_cuiStackSize);    // TODO: MaxValue
+     xDEBUG_VAR_NA(a_fpFuncPtr);
+     xDEBUG_VAR_NA(a_pvParam);
+    xTEST_LESS_EQ(size_t(0), a_cuiNumTasks);
+    xTEST_LESS_EQ(size_t(0), a_cuiMaxRunningTasks);
 
     xCHECK_DO(true == bIsRunning(), /*LOG*/_m_clLog.vWrite(xT("CxThreadPool: is running")); return);
 
@@ -92,7 +92,7 @@ CxThreadPool<T>::vGroupCreate(
 template<typename T>
 void
 CxThreadPool<T>::vGroupResume() {
-    /*DEBUG*/
+    
 
     xCHECK_DO(false == bIsRunning(), /*LOG*/_m_clLog.vWrite(xT("CxThreadPool: not running")); return);
 
@@ -116,7 +116,7 @@ CxThreadPool<T>::vGroupResume() {
 template<typename T>
 void
 CxThreadPool<T>::vGroupPause() {
-    /*DEBUG*/
+    
 
     xCHECK_DO(false == bIsRunning(), /*LOG*/_m_clLog.vWrite(xT("CxThreadPool: not running")); return);
 
@@ -143,7 +143,7 @@ CxThreadPool<T>::vGroupExit(
     const ulong_t &a_culTimeout
 )
 {
-    /*DEBUG*/
+    
 
     xCHECK_DO(false == bIsRunning(), /*LOG*/_m_clLog.vWrite(xT("CxThreadPool: not running")); return);
 
@@ -170,7 +170,7 @@ CxThreadPool<T>::vGroupKill(
     const ulong_t &a_culTimeout
 )
 {
-    /*DEBUG*/xTEST_PTR(this);
+    xTEST_PTR(this);
 
     xCHECK_DO(false == bIsRunning(), /*LOG*/_m_clLog.vWrite(xT("CxThreadPool: not running")); return);
 
@@ -197,7 +197,7 @@ CxThreadPool<T>::vGroupWait(
     const ulong_t &a_culTimeout
 )
 {
-    /*DEBUG*/
+    
 
     xCHECK_DO(false == bIsRunning(), /*LOG*/_m_clLog.vWrite(xT("CxThreadPool: not running")); return);
 
@@ -229,7 +229,7 @@ CxThreadPool<T>::vGroupWait(
 template<typename T>
 size_t
 CxThreadPool<T>::uiMaxTasks() const {
-    /*DEBUG*/// n/a
+    // n/a
 
     return _m_uiMaxRunningTasks;
 }
@@ -240,7 +240,7 @@ CxThreadPool<T>::vSetMaxTasks(
     const size_t &a_cuiNum
 )
 {
-    /*DEBUG*/// n/a
+    // n/a
 
     //-------------------------------------
     //���������� (���� ������� uiNum �������)
@@ -293,13 +293,13 @@ CxThreadPool<T>::vSetMaxTasks(
         return;
     }
 
-    /*DEBUG*/xTEST_FAIL;
+    xTEST_FAIL;
 }
 //---------------------------------------------------------------------------
 template<typename T>
 size_t
 CxThreadPool<T>::uiNumTasks() const {
-    /*DEBUG*/// n/a
+    // n/a
 
     return _m_uiNumTasks;
 }
@@ -310,7 +310,7 @@ CxThreadPool<T>::vSetNumTasks(
     const size_t &a_cuiNum
 )
 {
-    /*DEBUG*/// n/a
+    // n/a
 
     _m_uiNumTasks = a_cuiNum;
 }
@@ -318,12 +318,12 @@ CxThreadPool<T>::vSetNumTasks(
 template<typename T>
 bool
 CxThreadPool<T>::bIsEmpty() const {
-    /*DEBUG*/
+    
 
     CxAutoMutex amtMutex(&_m_mtList);
 
     bool bRv = _m_lthTasks.empty();
-    /*DEBUG*/// n/a
+    // n/a
 
     return bRv;
 }
@@ -331,14 +331,14 @@ CxThreadPool<T>::bIsEmpty() const {
 template<typename T>
 bool
 CxThreadPool<T>::bIsFull() const {
-    /*DEBUG*///xTEST_EQ(CONDITION);
+    //xTEST_EQ(CONDITION);
 
     CxAutoMutex amtMutex(&_m_mtList, true);
 
-    /*DEBUG*/xTEST_LESS(_m_uiMaxRunningTasks, _m_lthTasks.size());
+    xTEST_LESS(_m_uiMaxRunningTasks, _m_lthTasks.size());
 
     bool bRv = (_m_uiMaxRunningTasks == _m_lthTasks.size());
-    /*DEBUG*/// n/a
+    // n/a
 
     return bRv;
 }
@@ -346,12 +346,12 @@ CxThreadPool<T>::bIsFull() const {
 template<typename T>
 size_t
 CxThreadPool<T>::uiSize() const {
-    /*DEBUG*///xTEST_EQ(CONDITION);
+    //xTEST_EQ(CONDITION);
 
     CxAutoMutex amtMutex(&_m_mtList, true);
 
     size_t uiRes = _m_lthTasks.size();
-    /*DEBUG*/// n/a
+    // n/a
 
     return uiRes;
 }
@@ -370,7 +370,7 @@ CxThreadPool<T>::uiOnRun(
     void *a_pvParam
 )
 {
-    /*DEBUG*/
+    
 
     uint_t uiRes = 0U;
 
@@ -380,7 +380,7 @@ CxThreadPool<T>::uiOnRun(
 
     //-------------------------------------
     //������ ����
-    /*DEBUG*/xTEST_EQ(true, _m_lthTasks.empty());
+    xTEST_EQ(true, _m_lthTasks.empty());
     _m_lthTasks.clear();
 
     for ( ; ; ) {
@@ -401,7 +401,7 @@ CxThreadPool<T>::uiOnRun(
         //-------------------------------------
         //������ ����. ������
         _vTaskAdd(NULL);                       //_m_semSemaphore.bWait(INFINITE);
-        /*DEBUG*/xTEST_EQ(true, bRv);                //continue ???
+        xTEST_EQ(true, bRv);                //continue ???
 
         ++ _m_uiCurrTask;
 
@@ -411,14 +411,14 @@ CxThreadPool<T>::uiOnRun(
     //-------------------------------------
     //���� ���� ����������� �������� ������ (���� �� ������)
     ////bRv = bWaitGroup(INFINITE/*5000*/);
-    /////*DEBUG*/xTEST_EQ(true, bRv, 0);
+    ////xTEST_EQ(true, bRv, 0);
 
     for ( ; ; ) {
         xCHECK_DO(true == bIsEmpty(), break);
 
         CxCurrentThread::vSleep(500UL);
     }
-    /*DEBUG*/xTEST_EQ(true, _m_lthTasks.empty());
+    xTEST_EQ(true, _m_lthTasks.empty());
 
     /*LOG*/_m_clLog.vWrite(xT("CxThreadPool: Exit thread function"));
     /*LOG*/_m_clLog.vWrite(xT("CxThreadPool: List size: %u"), _m_lthTasks.size());
@@ -440,10 +440,10 @@ CxThreadPool<T>::_vTaskAdd(
     CxThread *a_pvItem
 )
 {
-    /*DEBUG*/
+    
 
     T *pthTask = new T(_m_cbIsGroupAutoDelete);
-    /*DEBUG*/xTEST_PTR(pthTask);
+    xTEST_PTR(pthTask);
 
     pthTask->m_uiIndex = _m_uiCurrTask;
     // TODO: pthTask->vAttachHandler_OnEnter( xCLOSURE(this, &CxThreadPool::_vOnEnterTask) );
@@ -465,8 +465,8 @@ CxThreadPool<T>::_vTaskRemove(
 )
 {
     T *pthTask = static_cast<T *>( a_pvItem );
-    /*DEBUG*/xTEST_PTR(pthTask);
-    /*DEBUG*/xTEST_EQ(true, pthTask->bIsRunning());
+    xTEST_PTR(pthTask);
+    xTEST_EQ(true, pthTask->bIsRunning());
 
     //-------------------------------------
     //����������� _m_semSemaphore
@@ -482,7 +482,7 @@ CxThreadPool<T>::_vTaskRemove(
         _m_lthTasks.remove(pthTask);
     }
 
-    /*DEBUG*/xTEST_PTR(pthTask);
+    xTEST_PTR(pthTask);
 
     return true;
 }
@@ -493,9 +493,9 @@ CxThreadPool<T>::_vOnEnterTask(
     CxThread *a_pthSender
 )
 {
-    /*DEBUG*/
-    /*DEBUG*/xTEST_PTR(a_pthSender);
-    /*DEBUG*/xTEST_EQ(true, a_pthSender->bIsRunning());
+    
+    xTEST_PTR(a_pthSender);
+    xTEST_EQ(true, a_pthSender->bIsRunning());
 
     //...
 
@@ -508,9 +508,9 @@ CxThreadPool<T>::_vOnExitTask(
     CxThread *a_pthSender
 )
 {
-    /*DEBUG*/
-    /*DEBUG*/xTEST_PTR(a_pthSender);
-    /*DEBUG*/xTEST_EQ(true, a_pthSender->bIsRunning());
+    
+    xTEST_PTR(a_pthSender);
+    xTEST_EQ(true, a_pthSender->bIsRunning());
 
     _vTaskRemove(a_pthSender);
 

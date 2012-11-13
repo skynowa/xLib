@@ -47,8 +47,8 @@ CxTestManager::vAdd(
     const std::tstring_t &a_csTestName /* = CxConst::xSTR_EMPTY */
 )
 {
-    /*DEBUG*/
-    /*DEBUG*/xTEST_PTR(a_pvtTest)
+    
+    xTEST_PTR(a_pvtTest)
 
     a_pvtTest->vSetName( CxType::sName(*a_pvtTest) );
 
@@ -66,7 +66,7 @@ CxTestManager::vRun(
     const ulonglong_t &a_cullCaseLoops
 )
 {
-    /*DEBUG*/
+    
 
     xCHECK_DO(_m_cbIsUseTracing, xTRACE (xT("\n")));
     xCHECK_DO(_m_cbIsUseTracing, xTRACE (xT("CxTestManager: start all tests...")));

@@ -22,8 +22,8 @@ CxFileAttribute::bIsExists(
     const ExAttribute    &cfaValue
 )
 {
-    /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
-    /*DEBUG*/// cfaValue
+    xTEST_EQ(false, csFilePath.empty());
+    // cfaValue
 
 #if xTEMP_DISABLED
     #if   xOS_ENV_WIN
@@ -42,18 +42,18 @@ CxFileAttribute::atGet(
     const std::tstring_t &csFilePath
 )
 {
-    /*DEBUG*/// csFilePath - n/a
+    // csFilePath - n/a
 
     ExAttribute faRes = faInvalid;
 
 #if   xOS_ENV_WIN
     faRes = static_cast<ExAttribute>( ::GetFileAttributes(csFilePath.c_str()) );
-    /*DEBUG*/// n/a
+    // n/a
 #elif xOS_ENV_UNIX
     xTSTAT_STRUCT stInfo = {0};
 
     int iRv = ::xTSTAT(csFilePath.c_str(), &stInfo);
-    /*DEBUG*/// n/a
+    // n/a
     if (- 1 == iRv) {
         faRes = faInvalid;
     } else {
@@ -71,15 +71,15 @@ CxFileAttribute::vSet(
     const ExAttribute    &cfaValue
 )
 {
-    /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
-    /*DEBUG*/// cfaValue
+    xTEST_EQ(false, csFilePath.empty());
+    // cfaValue
 
 #if   xOS_ENV_WIN
     BOOL blRes = ::SetFileAttributes(csFilePath.c_str(), static_cast<ulong_t>( cfaValue ));
-    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
+    xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     int iRv = ::xTCHMOD(csFilePath.c_str(), static_cast<mode_t>( cfaValue ));
-    /*DEBUG*/xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(- 1, iRv);
 #endif
 }
 //---------------------------------------------------------------------------
@@ -90,8 +90,8 @@ CxFileAttribute::vAdd(
     const ExAttribute    &cfaValue
 )
 {
-    /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
-    /*DEBUG*/// cfaValue
+    xTEST_EQ(false, csFilePath.empty());
+    // cfaValue
 
     vModify(csFilePath, static_cast<ExAttribute>( 0 ), cfaValue);
 }
@@ -103,8 +103,8 @@ CxFileAttribute::vRemove(
     const ExAttribute    &cfaValue
 )
 {
-    /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
-    /*DEBUG*/// cfaValue
+    xTEST_EQ(false, csFilePath.empty());
+    // cfaValue
 
     vModify(csFilePath, cfaValue, static_cast<ExAttribute>( 0 ));
 }
@@ -117,9 +117,9 @@ CxFileAttribute::vModify(
     const ExAttribute    &cfaAddValue
 )
 {
-    /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
-    /*DEBUG*/// cfaRemoveValue
-    /*DEBUG*/// cfaAddValue
+    xTEST_EQ(false, csFilePath.empty());
+    // cfaRemoveValue
+    // cfaAddValue
 
     // get the current attributes
     ExAttribute cfaValue = atGet(csFilePath);
@@ -138,7 +138,7 @@ CxFileAttribute::vClear(
     const std::tstring_t &csFilePath
 )
 {
-    /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
+    xTEST_EQ(false, csFilePath.empty());
 
     vSet(csFilePath, faNormal);
 }

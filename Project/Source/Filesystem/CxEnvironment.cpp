@@ -29,7 +29,7 @@ CxEnvironment::bIsExists(
     const std::tstring_t &csVarName
 )
 {
-    /*DEBUG*/// n/a
+    // n/a
     xCHECK_RET(true == csVarName.empty(), false);
 
 #if   xOS_ENV_WIN
@@ -39,11 +39,11 @@ CxEnvironment::bIsExists(
     sRv.resize(xPATH_MAX);
 
     ulStored = ::GetEnvironmentVariable(csVarName.c_str(), &sRv.at(0), sRv.size());
-    /*DEBUG*/// n/a
+    // n/a
     xCHECK_RET(0UL == ulStored && ERROR_ENVVAR_NOT_FOUND == CxLastError::ulGet(), false);
 #elif xOS_ENV_UNIX
     const char *pcszRes = ::getenv(csVarName.c_str());
-    /*DEBUG*/// n/a
+    // n/a
     xCHECK_RET(NULL == pcszRes, false);
 #endif
 
@@ -83,7 +83,7 @@ CxEnvironment::sVar(
     const std::tstring_t &csVarName
 )
 {
-    /*DEBUG*/// n/a
+    // n/a
     xCHECK_RET(false == bIsExists(csVarName), std::tstring_t());
 
     std::tstring_t sRv;
@@ -94,17 +94,17 @@ CxEnvironment::sVar(
     sRv.resize(xPATH_MAX);
 
     ulStored = ::GetEnvironmentVariable(csVarName.c_str(), &sRv.at(0), sRv.size());
-    /*DEBUG*/xTEST_DIFF(0UL, ulStored);
+    xTEST_DIFF(0UL, ulStored);
 
     sRv.resize(ulStored);
 
     if (sRv.size() < ulStored) {
         ulStored = ::GetEnvironmentVariable(csVarName.c_str(), &sRv.at(0), sRv.size());
-        /*DEBUG*/xTEST_DIFF(0UL, ulStored);
+        xTEST_DIFF(0UL, ulStored);
     }
 #elif xOS_ENV_UNIX
     const char *pcszRes = ::getenv(csVarName.c_str());
-    /*DEBUG*/xTEST_PTR(pcszRes);
+    xTEST_PTR(pcszRes);
 
     sRv.assign(pcszRes);
 #endif
@@ -119,15 +119,15 @@ CxEnvironment::vSetVar(
     const std::tstring_t &csValue
 )
 {
-    /*DEBUG*/xTEST_EQ(true, bIsVarValid(csVarName));
-    /*DEBUG*/xTEST_EQ(true, bIsVarValid(csValue));
+    xTEST_EQ(true, bIsVarValid(csVarName));
+    xTEST_EQ(true, bIsVarValid(csValue));
 
 #if   xOS_ENV_WIN
     BOOL blRes = ::SetEnvironmentVariable(csVarName.c_str(), csValue.c_str());
-    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
+    xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     int iRv = ::setenv(csVarName.c_str(), csValue.c_str(), true);
-    /*DEBUG*/xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(- 1, iRv);
 #endif
 }
 //---------------------------------------------------------------------------
@@ -137,16 +137,16 @@ CxEnvironment::vDeleteVar(
     const std::tstring_t &csVarName
 )
 {
-    /*DEBUG*/// n/a
+    // n/a
     xCHECK_DO(false == bIsExists(csVarName), return);
 
 #if   xOS_ENV_WIN
     BOOL blRes = ::SetEnvironmentVariable(csVarName.c_str(), NULL);
-    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
+    xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         int iRv = ::unsetenv(csVarName.c_str());
-        /*DEBUG*/xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(- 1, iRv);
     #elif xOS_FREEBSD
         (void)::unsetenv(csVarName.c_str());
     #endif
@@ -159,7 +159,7 @@ CxEnvironment::vValues(
     std::vec_tstring_t *pvsValues
 )
 {
-    /*DEBUG*/xTEST_PTR(pvsValues);
+    xTEST_PTR(pvsValues);
 
     std::vec_tstring_t vsArgs;
 
@@ -168,7 +168,7 @@ CxEnvironment::vValues(
     LPTCH  lpvEnv = NULL;
 
     lpvEnv = ::GetEnvironmentStrings();
-    /*DEBUG*/xTEST_PTR(lpvEnv);
+    xTEST_PTR(lpvEnv);
 
     //Variable strings are separated by NULL byte, and the block is terminated by a NULL byte
     pszVar = static_cast<LPTSTR>( lpvEnv );
@@ -179,9 +179,9 @@ CxEnvironment::vValues(
     }
 
     BOOL blRes = ::FreeEnvironmentStrings(lpvEnv);
-    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
+    xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
-    /*DEBUG*/xTEST_PTR(environ);
+    xTEST_PTR(environ);
 
     for (size_t i = 0; NULL != environ[i]; ++ i) {
         vsArgs.push_back(environ[i]);
@@ -198,7 +198,7 @@ CxEnvironment::sExpandStrings(
     const std::tstring_t &csVar
 )
 {
-    /*DEBUG*/xTEST_EQ(false, csVar.empty());
+    xTEST_EQ(false, csVar.empty());
 
     std::tstring_t sRv;
 
@@ -208,13 +208,13 @@ CxEnvironment::sExpandStrings(
     sRv.resize(xPATH_MAX);
 
     ulStored = ::ExpandEnvironmentStrings(csVar.c_str(), &sRv.at(0), sRv.size());
-    /*DEBUG*/xTEST_DIFF(0UL, ulStored);
+    xTEST_DIFF(0UL, ulStored);
 
     sRv.resize(ulStored);
 
     if (sRv.size() < ulStored) {
         ulStored = ::ExpandEnvironmentStrings(csVar.c_str(), &sRv.at(0), sRv.size());
-        /*DEBUG*/xTEST_DIFF(0UL, ulStored);
+        xTEST_DIFF(0UL, ulStored);
     }
 
     sRv.resize(ulStored - sizeof('\0'));

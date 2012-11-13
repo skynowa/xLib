@@ -24,7 +24,7 @@ CxSlot::CxSlot(
 ) :
     _m_pFunc(a_cPkcs11.pFuncList())
 {
-    /*DEBUG*/xTEST_PTR(_m_pFunc);
+    xTEST_PTR(_m_pFunc);
 }
 //---------------------------------------------------------------------------
 /* virtual */
@@ -46,24 +46,24 @@ CxSlot::vList(
     std::vector<CK_SLOT_ID> *a_pvecSlotList       ///< receives array of slot IDs
 )
 {
-    /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/// bTokenPresent - n/a
-    /*DEBUG*/xTEST_PTR(a_pvecSlotList);
+    xTEST_PTR(_m_pFunc);
+    // bTokenPresent - n/a
+    xTEST_PTR(a_pvecSlotList);
 
     CK_ULONG ulCount = 0;
 
     (*a_pvecSlotList).clear();
 
     CK_RV ulRv = _m_pFunc->C_GetSlotList(a_bTokenPresent, NULL_PTR, &ulCount);
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     xCHECK_DO(0 == ulCount, return);
 
     (*a_pvecSlotList).resize(ulCount);
 
     ulRv = _m_pFunc->C_GetSlotList(a_bTokenPresent, &(*a_pvecSlotList).at(0), &ulCount);
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-    /*DEBUG*/xTEST_EQ(static_cast<ulong_t>( (*a_pvecSlotList).size() ), ulCount);
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_EQ(static_cast<ulong_t>( (*a_pvecSlotList).size() ), ulCount);
 }
 //---------------------------------------------------------------------------
 void
@@ -72,12 +72,12 @@ CxSlot::vInfo(
     CK_SLOT_INFO_PTR a_pInfo    ///< receives the slot information
 )
 {
-    /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/// slotID - n/a
-    /*DEBUG*/xTEST_PTR(a_pInfo);
+    xTEST_PTR(_m_pFunc);
+    // slotID - n/a
+    xTEST_PTR(a_pInfo);
 
     CK_RV ulRv = _m_pFunc->C_GetSlotInfo(a_slotID, a_pInfo);
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 CxSlot::ENotification
@@ -87,13 +87,13 @@ CxSlot::nfWaitForEvent(
     CK_VOID_PTR    a_pRserved   ///< reserved.  Should be NULL_PTR
 )
 {
-    /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/// flags    - n/a
-    /*DEBUG*/xTEST_PTR(a_pSlot);
-    /*DEBUG*/// pRserved - n/a
+    xTEST_PTR(_m_pFunc);
+    // flags    - n/a
+    xTEST_PTR(a_pSlot);
+    // pRserved - n/a
 
     CK_RV ulRv = _m_pFunc->C_WaitForSlotEvent(a_flags, a_pSlot, a_pRserved);
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     //-------------------------------------
     //�������� ������� ������ � �����

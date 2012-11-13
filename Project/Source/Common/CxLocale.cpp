@@ -18,7 +18,7 @@ xNAMESPACE_BEGIN(NxLib)
 /* static */
 std::tstring_t
 CxLocale::sCurrent() {
-    /*DEBUG*/// n/a
+    // n/a
 
     std::tstring_t sRv;
 
@@ -27,22 +27,22 @@ CxLocale::sCurrent() {
     LCID lcId   = 0;
 
     lcId = ::GetSystemDefaultLCID();
-    /*DEBUG*/// n/a
+    // n/a
 
     //Retrieves information about a locale specified by identifier
     iRv = ::GetLocaleInfo(lcId, LOCALE_SENGLANGUAGE, 0, 0);
-    /*DEBUG*/xTEST_DIFF(0, iRv);
+    xTEST_DIFF(0, iRv);
 
     sRv.resize(iRv);
     iRv = ::GetLocaleInfo(lcId, LOCALE_SENGLANGUAGE, &sRv.at(0), sRv.size());
-    /*DEBUG*/xTEST_DIFF(0, iRv);
+    xTEST_DIFF(0, iRv);
 
     sRv.resize(iRv - sizeof('\0'));    //delete from end '\0'
 #elif xOS_ENV_UNIX
     const tchar_t *pcszLocale = NULL;
 
     pcszLocale = std::xTSETLOCALE(LC_ALL, NULL);
-    /*DEBUG*/xTEST_PTR(pcszLocale);
+    xTEST_PTR(pcszLocale);
 
     sRv.assign(pcszLocale);
 #endif
@@ -56,20 +56,20 @@ CxLocale::vSetCurrent(
     const std::tstring_t &csLocale
 )
 {
-    /*DEBUG*/// csLocale - n/a
+    // csLocale - n/a
 
     const tchar_t *pcszLocale = (true == csLocale.empty()) ? NULL : csLocale.c_str();
 
     const tchar_t *pcszRes = NULL;
 
     pcszRes = ::xTSETLOCALE(LC_ALL, pcszLocale);
-    /*DEBUG*/xTEST_PTR(pcszRes);
+    xTEST_PTR(pcszRes);
 }
 //---------------------------------------------------------------------------
 /* static */
 void
 CxLocale::vSetDefault() {
-    /*DEBUG*/// n/a
+    // n/a
 
     vSetCurrent(CxLocale::sCurrent());
 }
@@ -83,12 +83,12 @@ CxLocale::vSetDefault() {
 
 //---------------------------------------------------------------------------
 CxLocale::CxLocale() {
-    /*DEBUG*/// n/a
+    // n/a
 }
 //---------------------------------------------------------------------------
 /* virtual */
 CxLocale::~CxLocale() {
-    /*DEBUG*/// n/a
+    // n/a
 }
 //---------------------------------------------------------------------------
 

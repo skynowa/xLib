@@ -27,9 +27,9 @@ CxObject::CxObject(
     _m_hSession(a_cSession.hHandle()),
     _m_hObject (0UL)
 {
-    /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
-    /*DEBUG*/xTEST_PTR(_m_hObject);
+    xTEST_PTR(_m_pFunc);
+    xTEST_DIFF(0UL, _m_hSession);
+    xTEST_PTR(_m_hObject);
 
 }
 //---------------------------------------------------------------------------
@@ -40,9 +40,9 @@ CxObject::~CxObject() {
 //---------------------------------------------------------------------------
 CK_OBJECT_HANDLE
 CxObject::hHandle() const {
-    /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
-    /*DEBUG*/xTEST_PTR(_m_hObject);
+    xTEST_PTR(_m_pFunc);
+    xTEST_DIFF(0UL, _m_hSession);
+    xTEST_PTR(_m_hObject);
 
     return _m_hObject;
 }
@@ -52,9 +52,9 @@ CxObject::vSetHandle(
     CK_OBJECT_HANDLE a_hHandle
 )
 {
-    /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
-    /*DEBUG*/// _m_hObject - n/a
+    xTEST_PTR(_m_pFunc);
+    xTEST_DIFF(0UL, _m_hSession);
+    // _m_hObject - n/a
 
     _m_hObject = a_hHandle;
 }
@@ -65,12 +65,12 @@ CxObject::vCreate(
     CK_ULONG         a_ulCount      ///< attributes in template
 )
 {
-    /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
-    /*DEBUG*/xTEST_PTR_FAIL(_m_hObject);
+    xTEST_PTR(_m_pFunc);
+    xTEST_DIFF(0UL, _m_hSession);
+    xTEST_PTR_FAIL(_m_hObject);
 
     CK_RV ulRv = _m_pFunc->C_CreateObject(_m_hSession, a_pTemplate, a_ulCount, &_m_hObject);
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
@@ -78,12 +78,12 @@ CxObject::vGetSize(
     CK_ULONG_PTR a_pulSize    ///< receives size of object
 )
 {
-    /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
-    /*DEBUG*/xTEST_PTR(_m_hObject);
+    xTEST_PTR(_m_pFunc);
+    xTEST_DIFF(0UL, _m_hSession);
+    xTEST_PTR(_m_hObject);
 
     CK_RV ulRv = _m_pFunc->C_GetObjectSize(_m_hSession, _m_hObject, a_pulSize);
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
@@ -93,12 +93,12 @@ CxObject::vCopy(
     CK_OBJECT_HANDLE_PTR a_phNewObject  ///< receives handle of copy
 )
 {
-    /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
-    /*DEBUG*/xTEST_PTR(_m_hObject);
+    xTEST_PTR(_m_pFunc);
+    xTEST_DIFF(0UL, _m_hSession);
+    xTEST_PTR(_m_hObject);
 
     CK_RV ulRv = _m_pFunc->C_CopyObject(_m_hSession, _m_hObject, a_pTemplate, a_ulCount, a_phNewObject);
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 }
 //--------------------------------------------------------------------------
 void
@@ -108,28 +108,28 @@ CxObject::vFind(
     std::vector<CK_OBJECT_HANDLE> *a_pvecObjectHandles    ///< [out] handles to objects
 )
 {
-    /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
-    /*DEBUG*/// _m_hObject - n/a
-    /*DEBUG*/xTEST_PTR(a_pTemplate);
-    /*DEBUG*/// ulCount    - n/a
-    /*DEBUG*/xTEST_PTR(a_pvecObjectHandles);
+    xTEST_PTR(_m_pFunc);
+    xTEST_DIFF(0UL, _m_hSession);
+    // _m_hObject - n/a
+    xTEST_PTR(a_pTemplate);
+    // ulCount    - n/a
+    xTEST_PTR(a_pvecObjectHandles);
 
     (*a_pvecObjectHandles).clear();
 
     CK_RV ulRv = _m_pFunc->C_FindObjectsInit(_m_hSession, a_pTemplate, a_ulCount);    // To find all attributes, set ulCount to 0.
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     const CK_ULONG   culMaxFindedObjects        = 512;
     CK_OBJECT_HANDLE hList[culMaxFindedObjects] = {0};
     CK_ULONG         ulFound                    = 0;
 
     ulRv = _m_pFunc->C_FindObjects(_m_hSession, &hList[0], xARRAY_SIZE(hList), &ulFound);
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-    /*DEBUG*/xTEST_GR_EQ(static_cast<ulong_t>( xARRAY_SIZE(hList) ), ulFound);
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_GR_EQ(static_cast<ulong_t>( xARRAY_SIZE(hList) ), ulFound);
 
     ulRv = _m_pFunc->C_FindObjectsFinal(_m_hSession);
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     xTEST_DIFF(0UL, ulFound);
 
@@ -146,12 +146,12 @@ CxObject::vGetAttributeValue(
     CK_ULONG         a_ulCount     ///< attributes in template
 )
 {
-    /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
-    /*DEBUG*/xTEST_PTR(_m_hObject);
+    xTEST_PTR(_m_pFunc);
+    xTEST_DIFF(0UL, _m_hSession);
+    xTEST_PTR(_m_hObject);
 
     CK_RV ulRv = _m_pFunc->C_GetAttributeValue(_m_hSession, _m_hObject, a_pTemplate, a_ulCount);
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
@@ -160,22 +160,22 @@ CxObject::vSetAttributeValue(
     CK_ULONG         a_ulCount     ///< attributes in template
 )
 {
-    /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
-    /*DEBUG*/xTEST_PTR(_m_hObject);
+    xTEST_PTR(_m_pFunc);
+    xTEST_DIFF(0UL, _m_hSession);
+    xTEST_PTR(_m_hObject);
 
     CK_RV ulRv = _m_pFunc->C_SetAttributeValue(_m_hSession, _m_hObject, a_pTemplate, a_ulCount);
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
 CxObject::vDestroy() {
-    /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
-    /*DEBUG*/xTEST_PTR(_m_hObject);
+    xTEST_PTR(_m_pFunc);
+    xTEST_DIFF(0UL, _m_hSession);
+    xTEST_PTR(_m_hObject);
 
     CK_RV ulRv = _m_pFunc->C_DestroyObject(_m_hSession, _m_hObject);
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     _m_hObject = 0UL;
 }
@@ -188,7 +188,7 @@ CxObject::vData(
     std::ustring_t       *a_pusData
 )
 {
-    /*DEBUG*/
+    
 
     //-------------------------------------
     //CxPkcs11
@@ -265,10 +265,10 @@ CxObject::vData(
     std::vec_ustring_t   *a_pusDataValue
 )
 {
-    /*DEBUG*/// ulSlotId - n/a
-    /*DEBUG*/xTEST_EQ(false, a_cusUserPin.empty());
-    /*DEBUG*/xTEST_PTR(a_pusDataLabel);
-    /*DEBUG*/xTEST_PTR(a_pusDataValue);
+    // ulSlotId - n/a
+    xTEST_EQ(false, a_cusUserPin.empty());
+    xTEST_PTR(a_pusDataLabel);
+    xTEST_PTR(a_pusDataValue);
 
     //-------------------------------------
     //CxPkcs11
@@ -358,7 +358,7 @@ CxObject::vSetData(
     const std::ustring_t &a_cusData
 )
 {
-    /*DEBUG*/
+    
 
     //-------------------------------------
     //CxPkcs11
@@ -448,12 +448,12 @@ CxObject::bFindInit(
     CK_ULONG         ulCount     ///< attrs in search template
 )
 {
-    /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
-    /*DEBUG*/// _m_hObject - n/a
+    xTEST_PTR(_m_pFunc);
+    xTEST_DIFF(0UL, _m_hSession);
+    // _m_hObject - n/a
 
     CK_RV ulRv = _m_pFunc->C_FindObjectsInit(_m_hSession, pTemplate, ulCount);
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     return true;
 }
@@ -465,25 +465,25 @@ CxObject::bFind(
     CK_ULONG_PTR         pulObjectCount     ///< actual # returned
 )
 {
-    /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
-    /*DEBUG*/// _m_hObject - n/a
+    xTEST_PTR(_m_pFunc);
+    xTEST_DIFF(0UL, _m_hSession);
+    // _m_hObject - n/a
 
     CK_RV ulRv = _m_pFunc->C_FindObjects(_m_hSession, phObject, ulMaxObjectCount, pulObjectCount);
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-    /*DEBUG*/xTEST_GR_EQ(ulMaxObjectCount, *pulObjectCount);
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_GR_EQ(ulMaxObjectCount, *pulObjectCount);
 
     return true;
 }
 //---------------------------------------------------------------------------
 bool
 CxObject::bFindFinal() {
-    /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/xTEST_DIFF(0UL, _m_hSession);
-    /*DEBUG*/// _m_hObject - n/a
+    xTEST_PTR(_m_pFunc);
+    xTEST_DIFF(0UL, _m_hSession);
+    // _m_hObject - n/a
 
     CK_RV ulRv = _m_pFunc->C_FindObjectsFinal(_m_hSession);
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
     return true;
 }

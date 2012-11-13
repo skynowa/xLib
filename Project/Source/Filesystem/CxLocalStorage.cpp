@@ -26,9 +26,9 @@ CxLocalStorage::CxLocalStorage() :
     _m_sFilePath  (),
     _m_msIni      ()
 {
-    /*DEBUG*/xTEST_EQ(false, _m_csSeparator.empty());
-    /*DEBUG*/xTEST_EQ(false, _m_csFileExt.empty());
-    /*DEBUG*/xTEST_EQ(true,  _m_sFilePath.empty());
+    xTEST_EQ(false, _m_csSeparator.empty());
+    xTEST_EQ(false, _m_csFileExt.empty());
+    xTEST_EQ(true,  _m_sFilePath.empty());
 
     vSetPath(CxPath::sSetExt( CxPath::sExe(), _m_csFileExt ));
 }
@@ -41,10 +41,10 @@ CxLocalStorage::CxLocalStorage(
     _m_sFilePath  (),
     _m_msIni      ()
 {
-    /*DEBUG*/xTEST_EQ(false, _m_csSeparator.empty());
-    /*DEBUG*/xTEST_EQ(false, _m_csFileExt.empty());
-    /*DEBUG*/xTEST_EQ(true,  _m_sFilePath.empty());
-    /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
+    xTEST_EQ(false, _m_csSeparator.empty());
+    xTEST_EQ(false, _m_csFileExt.empty());
+    xTEST_EQ(true,  _m_sFilePath.empty());
+    xTEST_EQ(false, csFilePath.empty());
 
     vSetPath(CxPath::sSetExt( csFilePath, _m_csFileExt ));
 }
@@ -59,15 +59,15 @@ CxLocalStorage::vCreateDefault(
     const std::tstring_t &csContent
 ) const
 {
-    /*DEBUG*/xTEST_EQ(false, _m_sFilePath.empty());
-    /*DEBUG*/// csContent - n/a;
+    xTEST_EQ(false, _m_sFilePath.empty());
+    // csContent - n/a;
 
     CxFile::vTextWrite(_m_sFilePath, csContent);
 }
 //-------------------------------------------------------------------------
 std::tstring_t
 CxLocalStorage::sPath() const {
-    /*DEBUG*/xTEST_EQ(false, _m_sFilePath.empty());
+    xTEST_EQ(false, _m_sFilePath.empty());
 
     return _m_sFilePath;
 }
@@ -77,8 +77,8 @@ CxLocalStorage::vSetPath(
     const std::tstring_t &csFilePath
 )
 {
-    /*DEBUG*///_m_sFilePath - n/a
-    /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
+    //_m_sFilePath - n/a
+    xTEST_EQ(false, csFilePath.empty());
 
     CxDir::vCreateForce(CxPath::sDir(csFilePath));
 
@@ -87,28 +87,28 @@ CxLocalStorage::vSetPath(
 //---------------------------------------------------------------------------
 TLocalStorage &
 CxLocalStorage::cmsGet() {
-    /*DEBUG*/
+    
 
     return _m_msIni;
 }
 //---------------------------------------------------------------------------
 void
 CxLocalStorage::vFlush() const {
-    /*DEBUG*/
+    
 
     CxFile::vTextWrite(_m_sFilePath, _m_csSeparator, _m_msIni);
 }
 //---------------------------------------------------------------------------
 void
 CxLocalStorage::vClear() {
-    /*DEBUG*/
+    
 
     CxFile::vClear(_m_sFilePath);
 }
 //---------------------------------------------------------------------------
 void
 CxLocalStorage::vDelete() {
-    /*DEBUG*/
+    
 
     //file
     CxFile::vDelete(_m_sFilePath);
@@ -130,7 +130,7 @@ CxLocalStorage::bKeyIsExists(
     const std::tstring_t &csKey
 ) const
 {
-    /*DEBUG*/xTEST_EQ(false, _m_sFilePath.empty());
+    xTEST_EQ(false, _m_sFilePath.empty());
 
     TLocalStorage mmsIni;
 
@@ -147,9 +147,9 @@ CxLocalStorage::sKeyReadString(
     const std::tstring_t &csDefaultValue
 )
 {
-    /*DEBUG*/xTEST_EQ(false, _m_sFilePath.empty());
-    /*DEBUG*/xTEST_EQ(false, csKey.empty());
-    /*DEBUG*///csDefaultValue - n/a
+    xTEST_EQ(false, _m_sFilePath.empty());
+    xTEST_EQ(false, csKey.empty());
+    //csDefaultValue - n/a
 
     std::tstring_t sRv;
 
@@ -164,9 +164,9 @@ CxLocalStorage::vKeyWriteString(
     const std::tstring_t &csValue
 )
 {
-    /*DEBUG*/xTEST_EQ(false, _m_sFilePath.empty());
-    /*DEBUG*/xTEST_EQ(false, csKey.empty());
-    /*DEBUG*///csValue   - n/a
+    xTEST_EQ(false, _m_sFilePath.empty());
+    xTEST_EQ(false, csKey.empty());
+    //csValue   - n/a
 
     _vWrite(csKey, csValue);
 }
@@ -177,9 +177,9 @@ CxLocalStorage::iKeyReadInt(
     const long_t         &cliDefaultValue
 )
 {
-    /*DEBUG*/xTEST_EQ(false, _m_sFilePath.empty());
-    /*DEBUG*///csKey         - n/a
-    /*DEBUG*///iDefaultValue - n/a
+    xTEST_EQ(false, _m_sFilePath.empty());
+    //csKey         - n/a
+    //iDefaultValue - n/a
 
     return CxString::string_cast<long_t>( sKeyReadString(csKey, CxString::string_cast(cliDefaultValue)) );
 }
@@ -190,9 +190,9 @@ CxLocalStorage::vKeyWriteInt(
     const long_t         &cliValue
 )
 {
-    /*DEBUG*/xTEST_EQ(false, _m_sFilePath.empty());
-    /*DEBUG*///csKey     - n/a
-    /*DEBUG*///iValue    - n/a
+    xTEST_EQ(false, _m_sFilePath.empty());
+    //csKey     - n/a
+    //iValue    - n/a
 
     vKeyWriteString(csKey, CxString::string_cast(cliValue));
 }
@@ -203,9 +203,9 @@ CxLocalStorage::dKeyReadFloat(
     const double         &cdDefaultValue
 )
 {
-    /*DEBUG*/xTEST_EQ(false, _m_sFilePath.empty());
-    /*DEBUG*///csKey         - n/a
-    /*DEBUG*///dDefaultValue - n/a
+    xTEST_EQ(false, _m_sFilePath.empty());
+    //csKey         - n/a
+    //dDefaultValue - n/a
 
     return CxString::string_cast<double>( sKeyReadString(csKey, CxString::string_cast(cdDefaultValue)) );
 }
@@ -216,9 +216,9 @@ CxLocalStorage::vKeyWriteFloat(
     const double         &cdValue
 )
 {
-    /*DEBUG*/xTEST_EQ(false, _m_sFilePath.empty());
-    /*DEBUG*///csKey     - n/a
-    /*DEBUG*///dValue    - n/a
+    xTEST_EQ(false, _m_sFilePath.empty());
+    //csKey     - n/a
+    //dValue    - n/a
 
     vKeyWriteString(csKey, CxString::string_cast(cdValue));
 }
@@ -229,16 +229,16 @@ CxLocalStorage::bKeyReadBool(
     const bool           &cbDefaultValue
 )
 {
-    /*DEBUG*/xTEST_EQ(false, _m_sFilePath.empty());
-    /*DEBUG*///csKey         - n/a
-    /*DEBUG*///bDefaultValue - n/a
+    xTEST_EQ(false, _m_sFilePath.empty());
+    //csKey         - n/a
+    //bDefaultValue - n/a
 
     std::tstring_t sStr;
 
     sStr = sKeyReadString(csKey, CxString::sBoolToStr(cbDefaultValue));
 
     bool bRv = CxString::bStrToBool(sStr);
-    /*DEBUG*/
+    
 
     return bRv;
 }
@@ -249,9 +249,9 @@ CxLocalStorage::vKeyWriteBool(
     const bool           &cbValue
 )
 {
-    /*DEBUG*/xTEST_EQ(false, _m_sFilePath.empty());
-    /*DEBUG*///csKey     - n/a
-    /*DEBUG*///bValue    - n/a
+    xTEST_EQ(false, _m_sFilePath.empty());
+    //csKey     - n/a
+    //bValue    - n/a
 
     std::tstring_t sValue;
 
@@ -266,9 +266,9 @@ CxLocalStorage::usKeyReadBin(
     const std::ustring_t &cusDefaultValue
 )
 {
-    /*DEBUG*/xTEST_EQ(false, _m_sFilePath.empty());
-    /*DEBUG*///csKey          - n/a
-    /*DEBUG*///cusDefaultValue - n/a
+    xTEST_EQ(false, _m_sFilePath.empty());
+    //csKey          - n/a
+    //cusDefaultValue - n/a
 
     std::tstring_t sRv;
 
@@ -286,9 +286,9 @@ CxLocalStorage::vKeyWriteBin(
     const std::ustring_t &cusValue
 )
 {
-    /*DEBUG*/xTEST_EQ(false, _m_sFilePath.empty());
-    /*DEBUG*///csKey     - n/a
-    /*DEBUG*///cusValue  - n/a
+    xTEST_EQ(false, _m_sFilePath.empty());
+    //csKey     - n/a
+    //cusValue  - n/a
 
     //cusValue (std::ustring_t) -> sHexStr (std::tstring_t)
     std::tstring_t sHexStr;
@@ -303,8 +303,8 @@ CxLocalStorage::vKeyClear(
     const std::tstring_t &csKey
 )
 {
-    /*DEBUG*/xTEST_EQ(false, _m_sFilePath.empty());
-    /*DEBUG*/xTEST_EQ(false, csKey.empty());
+    xTEST_EQ(false, _m_sFilePath.empty());
+    xTEST_EQ(false, csKey.empty());
 
     vKeyWriteString(csKey, std::tstring_t());
 }
@@ -314,8 +314,8 @@ CxLocalStorage::vKeyDelete(
    const std::tstring_t &csKey
 )
 {
-    /*DEBUG*/xTEST_EQ(false, _m_sFilePath.empty());
-    /*DEBUG*/xTEST_EQ(false, csKey.empty());
+    xTEST_EQ(false, _m_sFilePath.empty());
+    xTEST_EQ(false, csKey.empty());
 
     //read from file
     CxFile::vTextRead(_m_sFilePath, _m_csSeparator, &_m_msIni);
@@ -344,9 +344,9 @@ CxLocalStorage::_vRead(
     std::tstring_t       *psValue
 )
 {
-    /*DEBUG*/// csKey          - n/a
-    /*DEBUG*/// csDefaultValue - n/a
-    /*DEBUG*/xTEST_PTR(psValue);
+    // csKey          - n/a
+    // csDefaultValue - n/a
+    xTEST_PTR(psValue);
 
     //read from file
     CxFile::vTextRead(_m_sFilePath, _m_csSeparator, &_m_msIni);
@@ -368,9 +368,9 @@ CxLocalStorage::_vWrite(
     const std::tstring_t &csValue
 )
 {
-    /*DEBUG*/xTEST_EQ(false, _m_sFilePath.empty());
-    /*DEBUG*/xTEST_EQ(false, csKey.empty());
-    /*DEBUG*/// csValue - n/a
+    xTEST_EQ(false, _m_sFilePath.empty());
+    xTEST_EQ(false, csKey.empty());
+    // csValue - n/a
 
     //write to TLocalStorage
     TLocalStorage::iterator it = _m_msIni.find(csKey);

@@ -74,7 +74,7 @@ CxCondition::vWait(
                 timeval  tvNow       = {0};
 
                 iRv = ::gettimeofday(&tvNow, NULL);
-                /*DEBUG*/xTEST_DIFF(- 1, iRv);
+                xTEST_DIFF(- 1, iRv);
 
                 tsTimeoutMs.tv_sec  = tvNow.tv_sec + a_culTimeoutMs / 1000;
                 tsTimeoutMs.tv_nsec = tvNow.tv_usec * 1000 + (a_culTimeoutMs % 1000) * 1000000;

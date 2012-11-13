@@ -49,10 +49,10 @@ CxSystemLog::CxSystemLog(
 /* virtual */
 CxSystemLog::~CxSystemLog() {
 #if   xOS_ENV_WIN
-    /*DEBUG*/xTEST_PTR(_m_SysLog);
+    xTEST_PTR(_m_SysLog);
 
     BOOL bRv = ::DeregisterEventSource(_m_SysLog);
-    /*DEBUG*/xTEST_DIFF(FALSE, bRv);
+    xTEST_DIFF(FALSE, bRv);
 
     _m_SysLog = NULL;
 #elif xOS_ENV_UNIX
@@ -65,7 +65,7 @@ CxSystemLog::vSetEnabled(
     const bool &cbFlag
 )
 {
-    /*DEBUG*/// cbFlag - n/a
+    // cbFlag - n/a
 
     _m_bIsEnable = cbFlag;
 }
@@ -76,9 +76,9 @@ CxSystemLog::vWrite(
     const tchar_t *a_pcszFormat, ...
 )
 {
-    /*DEBUG*/xTEST_PTR(a_pcszFormat);
+    xTEST_PTR(a_pcszFormat);
 #if   xOS_ENV_WIN
-    /*DEBUG*/xTEST_DIFF(xNATIVE_HANDLE_NULL, _m_SysLog);
+    xTEST_DIFF(xNATIVE_HANDLE_NULL, _m_SysLog);
 #endif
 
     xCHECK_DO(false == _m_bIsEnable, return /* false */);  // TODO: CxSystemLog::vWrite
@@ -98,7 +98,7 @@ CxSystemLog::vWrite(
     LPCTSTR pcszStrings = sMessage.c_str();
 
     BOOL bRv = ::ReportEvent(_m_SysLog, a_lvLevel, 0, 0UL, NULL, 1, 0UL, &pcszStrings, NULL);
-    /*DEBUG*/xTEST_DIFF(FALSE, bRv);
+    xTEST_DIFF(FALSE, bRv);
 #elif xOS_ENV_UNIX
     (void)::syslog(a_lvLevel, xT("%s"), sMessage.c_str());
 #endif
@@ -119,7 +119,7 @@ CxSystemLog::_vInit(
 {
 #if   xOS_ENV_WIN
     _m_SysLog = ::RegisterEventSource(NULL, a_csLogName.c_str());
-    /*DEBUG*/xTEST_DIFF(xNATIVE_HANDLE_NULL, _m_SysLog);
+    xTEST_DIFF(xNATIVE_HANDLE_NULL, _m_SysLog);
 #elif xOS_ENV_UNIX
     (void)::openlog(a_csLogName.c_str(), LOG_PID | LOG_NDELAY | LOG_NOWAIT, LOG_USER);
 #endif

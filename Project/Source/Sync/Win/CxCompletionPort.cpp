@@ -20,12 +20,12 @@ xNAMESPACE_BEGIN(NxLib)
 CxCompletionPort::CxCompletionPort() :
     _m_hHandle()
 {
-    /*DEBUG*/
+    
 }
 //---------------------------------------------------------------------------
 /* virtual */
 CxCompletionPort::~CxCompletionPort() {
-    /*DEBUG*/
+    
 }
 //---------------------------------------------------------------------------
 void
@@ -33,11 +33,11 @@ CxCompletionPort::vCreate(
     const ulong_t &a_culThreadsNum
 )
 {
-    /*DEBUG*/// _m_hCP       - n/a
-    /*DEBUG*/// ulThreadsNum - n/a
+    // _m_hCP       - n/a
+    // ulThreadsNum - n/a
 
     _m_hHandle = ::CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, 0, a_culThreadsNum);
-    /*DEBUG*/xTEST_EQ(true, _m_hHandle.bIsValid());
+    xTEST_EQ(true, _m_hHandle.bIsValid());
 }
 //---------------------------------------------------------------------------
 void
@@ -46,13 +46,13 @@ CxCompletionPort::vAssociate(
     ULONG_PTR      a_pulCompletionKey
 )
 {
-    /*DEBUG*/xTEST_EQ(true, _m_hHandle.bIsValid());
-    /*DEBUG*/// hFile
-    /*DEBUG*/xTEST_PTR(a_pulCompletionKey);
+    xTEST_EQ(true, _m_hHandle.bIsValid());
+    // hFile
+    xTEST_PTR(a_pulCompletionKey);
 
     HANDLE hRv = ::CreateIoCompletionPort(a_chFile, _m_hHandle.hGet(), a_pulCompletionKey, 0);
-    /*DEBUG*/xTEST_EQ(xNATIVE_HANDLE_INVALID, hRv);
-    /*DEBUG*/xTEST_EQ(_m_hHandle.hGet(), hRv);
+    xTEST_EQ(xNATIVE_HANDLE_INVALID, hRv);
+    xTEST_EQ(_m_hHandle.hGet(), hRv);
 }
 //---------------------------------------------------------------------------
 void
@@ -63,14 +63,14 @@ CxCompletionPort::vStatus(
     const ulong_t &a_culMilliseconds
 )
 {
-    /*DEBUG*/xTEST_EQ(true, _m_hHandle.bIsValid());
-    /*DEBUG*/xTEST_PTR(a_lpNumberOfBytes);
-    /*DEBUG*/xTEST_PTR(a_lpCompletionKey);
-    /*DEBUG*/xTEST_PTR(a_lpOverlapped);
-    /*DEBUG*/// ulMilliseconds - n/a
+    xTEST_EQ(true, _m_hHandle.bIsValid());
+    xTEST_PTR(a_lpNumberOfBytes);
+    xTEST_PTR(a_lpCompletionKey);
+    xTEST_PTR(a_lpOverlapped);
+    // ulMilliseconds - n/a
 
     BOOL blRes = ::GetQueuedCompletionStatus(_m_hHandle.hGet(), a_lpNumberOfBytes, a_lpCompletionKey, a_lpOverlapped, a_culMilliseconds);
-    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
+    xTEST_DIFF(FALSE, blRes);
 }
 //---------------------------------------------------------------------------
 void
@@ -80,13 +80,13 @@ CxCompletionPort::vPostStatus(
     LPOVERLAPPED   a_lpOverlapped
 )
 {
-    /*DEBUG*/xTEST_EQ(true, _m_hHandle.bIsValid());
-    /*DEBUG*/// ulNumberOfBytesTransferred - n/a
-    /*DEBUG*/// ulCompletionKey            - n/a
-    /*DEBUG*/xTEST_PTR(a_lpOverlapped);
+    xTEST_EQ(true, _m_hHandle.bIsValid());
+    // ulNumberOfBytesTransferred - n/a
+    // ulCompletionKey            - n/a
+    xTEST_PTR(a_lpOverlapped);
 
     BOOL blRes = ::PostQueuedCompletionStatus(_m_hHandle.hGet(), a_culNumberOfBytesTransferred, a_ulCompletionKey, a_lpOverlapped);
-    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
+    xTEST_DIFF(FALSE, blRes);
 }
 //---------------------------------------------------------------------------
 

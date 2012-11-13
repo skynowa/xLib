@@ -149,7 +149,7 @@ CxRandom::dNextGaussian() {
 //---------------------------------------------------------------------------
 void
 CxRandom::vSetSeed() {
-    /*DEBUG*/// n/a
+    // n/a
 
     uint_t uiSeed = 0U;
 
@@ -169,7 +169,7 @@ CxRandom::liInt(
     const long_t &a_cliMax
 )
 {
-    /*DEBUG*/xTEST_LESS(a_cliMin, a_cliMax);
+    xTEST_LESS(a_cliMin, a_cliMax);
 
     long_t liRv = 0L;
 
@@ -189,7 +189,7 @@ CxRandom::liIntEx(
     const long_t &a_cliMax
 )
 {
-    /*DEBUG*/xTEST_LESS(a_cliMin, a_cliMax);
+    xTEST_LESS(a_cliMin, a_cliMax);
 
     std::vector<long_t> vliRes;
 
@@ -197,7 +197,7 @@ CxRandom::liIntEx(
         vliRes.push_back(i);
     }
 
-    /*DEBUG*/xTEST_EQ(false, vliRes.empty());
+    xTEST_EQ(false, vliRes.empty());
 
     std::random_shuffle(vliRes.begin(), vliRes.end());
 
@@ -210,7 +210,7 @@ CxRandom::sString(
     const size_t &a_cuiLength
 )
 {
-    /*DEBUG*/
+    
 
     xCHECK_RET(0U == a_cuiLength, std::tstring_t());
 

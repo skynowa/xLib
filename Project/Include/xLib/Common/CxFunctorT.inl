@@ -22,14 +22,14 @@ CxFunctorT<ClassT, ReturnT, ParamT>::CxFunctorT(
 {
     // TODO: debug code
 #if xTODO
-    /*DEBUG*/xTEST_DIFF(NULL, _m_pObject);
-    /*DEBUG*/xTEST_DIFF(NULL, _m_Method);
+    xTEST_DIFF(NULL, _m_pObject);
+    xTEST_DIFF(NULL, _m_Method);
 #endif
 }
 //---------------------------------------------------------------------------
 template <typename ClassT, typename ReturnT, typename ParamT>
 CxFunctorT<ClassT, ReturnT, ParamT>::~CxFunctorT() {
-    /*DEBUG*/
+    
 }
 //---------------------------------------------------------------------------
 template <typename ClassT, typename ReturnT, typename ParamT>

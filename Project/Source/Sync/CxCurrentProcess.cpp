@@ -23,7 +23,7 @@ CxCurrentProcess::bIsCurrent(
     const CxProcess::id_t &a_culId
 )
 {
-    /*DEBUG*/
+    
 
     bool bRv = false;
 
@@ -40,16 +40,16 @@ CxCurrentProcess::bIsCurrent(
 /* static */
 CxProcess::id_t
 CxCurrentProcess::ulId() {
-    /*DEBUG*/// n/a
+    // n/a
 
     CxProcess::id_t ulRv;
 
 #if   xOS_ENV_WIN
     ulRv = ::GetCurrentProcessId();
-    /*DEBUG*/// n/a
+    // n/a
 #elif xOS_ENV_UNIX
     ulRv = ::getpid();
-    /*DEBUG*/// n/a
+    // n/a
 #endif
 
     return ulRv;
@@ -58,7 +58,7 @@ CxCurrentProcess::ulId() {
 /* static */
 CxProcess::id_t
 CxCurrentProcess::ulParentId() {
-    /*DEBUG*/// n/a
+    // n/a
 
     CxProcess::id_t ulRv;
 
@@ -91,16 +91,16 @@ CxCurrentProcess::ulParentId() {
     ULONG     ulReturnLength           = 0UL;
 
     Dll_NtQueryInformationProcess_t DllNtQueryInformationProcess = (Dll_NtQueryInformationProcess_t)dlDll.fpProcAddress(xT("NtQueryInformationProcess"));
-    /*DEBUG*/xTEST_PTR(DllNtQueryInformationProcess);
+    xTEST_PTR(DllNtQueryInformationProcess);
 
     NTSTATUS ntsRes = DllNtQueryInformationProcess(hHandle(), ProcessBasicInformation, &pulProcessInformation, sizeof(pulProcessInformation), &ulReturnLength);
     bRv = (ntsRes >= 0 && ulReturnLength == sizeof(pulProcessInformation));
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    xTEST_EQ(true, bRv);
 
     ulRv = pulProcessInformation[5];
 #elif xOS_ENV_UNIX
     ulRv = ::getppid();
-    /*DEBUG*/// n/a
+    // n/a
 #endif
 
     return ulRv;
@@ -110,7 +110,7 @@ CxCurrentProcess::ulParentId() {
 /* static */
 CxProcess::handle_t
 CxCurrentProcess::hHandle() {
-    /*DEBUG*/// n/a
+    // n/a
 
     CxProcess::handle_t hRv;
 
@@ -120,10 +120,10 @@ CxCurrentProcess::hHandle() {
     #else
         hRv = ::GetCurrentProcess();
     #endif
-    /*DEBUG*/xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
+    xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
 #elif xOS_ENV_UNIX
     hRv = ::getpid();
-    /*DEBUG*/// n/a
+    // n/a
 #endif
 
     return hRv;
@@ -136,7 +136,7 @@ CxCurrentProcess::vExit(
     const uint_t &a_cuiExitCode
 )
 {
-    /*DEBUG*/
+    
 
 #if   xOS_ENV_WIN
     (void)::ExitProcess(a_cuiExitCode);

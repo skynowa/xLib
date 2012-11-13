@@ -45,9 +45,9 @@ CxBlowfish::vSetKey(
     const int &a_ciKeySize
 )
 {
-    /*DEBUG*/xTEST_PTR(a_pucKey);
-    /*DEBUG*/xTEST_GR_EQ(static_cast<int>( MAX_KEY_SIZE ), a_ciKeySize);
-    /*DEBUG*/xTEST_LESS(0, a_ciKeySize);
+    xTEST_PTR(a_pucKey);
+    xTEST_GR_EQ(static_cast<int>( MAX_KEY_SIZE ), a_ciKeySize);
+    xTEST_LESS(0, a_ciKeySize);
 
     (void)::BF_set_key(&_m_bfKey, a_ciKeySize, a_pucKey);
 }
@@ -57,8 +57,8 @@ CxBlowfish::vSetKey(
     const std::ustring_t &a_cusKey
 )
 {
-    /*DEBUG*/xTEST_EQ(false, a_cusKey.empty());
-    /*DEBUG*/xTEST_GR_EQ(static_cast<size_t>( MAX_KEY_SIZE ), a_cusKey.size());
+    xTEST_EQ(false, a_cusKey.empty());
+    xTEST_GR_EQ(static_cast<size_t>( MAX_KEY_SIZE ), a_cusKey.size());
 
     vSetKey(const_cast<uchar_t *>( a_cusKey.data() ), a_cusKey.size());
 }
@@ -68,8 +68,8 @@ CxBlowfish::vSetKey(
     const std::tstring_t &a_csKey
 )
 {
-    /*DEBUG*/xTEST_EQ(false, a_csKey.empty());
-    /*DEBUG*/xTEST_GR_EQ(static_cast<size_t>( MAX_KEY_SIZE ), a_csKey.size() * sizeof(std::tstring_t::value_type));
+    xTEST_EQ(false, a_csKey.empty());
+    xTEST_GR_EQ(static_cast<size_t>( MAX_KEY_SIZE ), a_csKey.size() * sizeof(std::tstring_t::value_type));
 
     vSetKey(std::ustring_t(a_csKey.begin(), a_csKey.end()));
 }
@@ -79,7 +79,7 @@ CxBlowfish::vSetFileKey(
     const std::tstring_t &a_csFilePath
 )
 {
-    /*DEBUG*/xTEST_EQ(false, a_csFilePath.empty());
+    xTEST_EQ(false, a_csFilePath.empty());
 
     size_t         uiRes = 0;
     std::ustring_t usFile;
@@ -88,13 +88,13 @@ CxBlowfish::vSetFileKey(
     sfFile.vCreate(a_csFilePath, CxFile::omBinRead, true);
 
     longlong_t llFileSize = sfFile.llSize();
-    /*DEBUG*/xTEST_LESS(0LL, llFileSize);
-    /*DEBUG*/xTEST_GR_EQ(static_cast<longlong_t>( MAX_KEY_SIZE ) >= llFileSize, false);
+    xTEST_LESS(0LL, llFileSize);
+    xTEST_GR_EQ(static_cast<longlong_t>( MAX_KEY_SIZE ) >= llFileSize, false);
 
     usFile.resize( static_cast<size_t>( llFileSize ) );
 
     uiRes = sfFile.uiRead(&usFile.at(0), usFile.size());
-    /*DEBUG*/xTEST_EQ(usFile.size(), uiRes);
+    xTEST_EQ(usFile.size(), uiRes);
 
     vSetKey(usFile);
 
@@ -125,10 +125,10 @@ CxBlowfish::vEncryptCfb64(
     const ExCryptMode &a_cmMode
 )
 {
-    /*DEBUG*/xTEST_PTR(a_pucIn);
-    /*DEBUG*/xTEST_PTR(a_pucOut);
-    /*DEBUG*/xTEST_LESS(- 1L, a_cliInSize);
-    /*DEBUG*/xTEST_PTR(a_piNum);
+    xTEST_PTR(a_pucIn);
+    xTEST_PTR(a_pucOut);
+    xTEST_LESS(- 1L, a_cliInSize);
+    xTEST_PTR(a_piNum);
 
     xBUFF_ZERO(_m_ucIvec);
 
@@ -142,15 +142,15 @@ CxBlowfish::vEncryptCfb64(
     const ExCryptMode    &a_cmMode
 )
 {
-    /*DEBUG*/xTEST_EQ(false, a_cusIn.empty());
-    /*DEBUG*/xTEST_PTR(a_pusOut);
+    xTEST_EQ(false, a_cusIn.empty());
+    xTEST_PTR(a_pusOut);
 
     int iNum = 0;    //This integer must be initialized to zero when ivec is initialized
 
     (*a_pusOut).resize( a_cusIn.size() );
 
     vEncryptCfb64(const_cast<uchar_t *>( &a_cusIn.at(0) ), &(*a_pusOut).at(0), a_cusIn.size(), &iNum, a_cmMode);
-    /*DEBUG*/xTEST_LESS(- 1, iNum);
+    xTEST_LESS(- 1, iNum);
 }
 //---------------------------------------------------------------------------
 void
@@ -160,8 +160,8 @@ CxBlowfish::vEncryptFileCfb64(
     const ExCryptMode    &a_cmMode
 )
 {
-    /*DEBUG*/xTEST_EQ(false, a_csFilePathIn.empty());
-    /*DEBUG*/xTEST_EQ(false, a_csFilePathOut.empty());
+    xTEST_EQ(false, a_csFilePathIn.empty());
+    xTEST_EQ(false, a_csFilePathOut.empty());
 
     std::ustring_t usIn;
     std::ustring_t usOut;
