@@ -32,10 +32,10 @@ CxProcessInfo::vCurrentIds(
     PROCESSENTRY32 peProcess = {0};    peProcess.dwSize = sizeof(PROCESSENTRY32);
 
     hSnapshot = ::CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0UL);
-    /*DEBUG*/xTEST_EQ(true, hSnapshot.bIsValid());
+    xTEST_EQ(true, hSnapshot.bIsValid());
 
     BOOL blRv = ::Process32First(hSnapshot.hGet(), &peProcess);
-    /*DEBUG*/xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(FALSE, blRv);
 
     xFOREVER {
         vidRv.push_back(peProcess.th32ProcessID);
@@ -60,13 +60,13 @@ CxProcessInfo::vCurrentIds(
         }
 
         int iRv = ::closedir(pDir); pDir = NULL;
-        /*DEBUG*/xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(- 1, iRv);
     #elif xOS_FREEBSD
         int    aiMib[3]   = {CTL_KERN, KERN_PROC, KERN_PROC_ALL};
         size_t uiBuffSize = 0U;
 
         int iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), NULL, &uiBuffSize, NULL, 0U);
-        /*DEBUG*/xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(- 1, iRv);
 
         // allocate memory and populate info in the  processes structure
         kinfo_proc *pkpProcesses = NULL;
@@ -199,7 +199,7 @@ CxProcessInfo::sExeName(
     CxProcess::handle_t hHandle = CxProcess::ulHandleById(a_cidId);
 
     DWORD ulStored = ::GetModuleFileNameEx(hHandle, NULL, &sRv.at(0), sRv.size());
-    /*DEBUG*/xTEST_DIFF(0UL, ulStored);
+    xTEST_DIFF(0UL, ulStored);
 
     sRv.resize(ulStored);
 #elif xOS_ENV_UNIX
@@ -214,7 +214,7 @@ CxProcessInfo::sExeName(
 
         for ( ; ; ) {
             iReaded = ::readlink(csProcFile.c_str(), &sRv.at(0), sRv.size() * sizeof(std::tstring_t::value_type));
-            /*DEBUG*/xTEST_DIFF(- 1, iReaded);
+            xTEST_DIFF(- 1, iReaded);
 
             xCHECK_DO(sRv.size() * sizeof(std::tstring_t::value_type) > static_cast<size_t>( iReaded ), break);
 
@@ -230,7 +230,7 @@ CxProcessInfo::sExeName(
             size_t  uiBuffSize           = sizeof(szBuff) - 1;
 
             int iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), szBuff, &uiBuffSize, NULL, 0U);
-            /*DEBUG*/xTEST_DIFF(- 1, iRv);
+            xTEST_DIFF(- 1, iRv);
 
             sRv.assign(szBuff);
         #else
@@ -288,12 +288,12 @@ CxProcessInfo::sArgs(
 
         // get uiBuffSize
         iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), NULL,         &uiBuffSize, NULL, 0);
-        /*DEBUG*/xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(- 1, iRv);
 
         sBuff.resize(uiBuffSize);
 
         iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), &sBuff.at(0), &uiBuffSize, NULL, 0U);
-        /*DEBUG*/xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(- 1, iRv);
 
         sRv = sBuff;    // BUG: sBuff or sBuff.c_str() - FreeBSD crazy!!!
     #endif

@@ -21,8 +21,8 @@ CxPkcs11::CxPkcs11() :
     _m_pFunc      (NULL),
     _m_dllETPkcs11()
 {
-    /*DEBUG*/xTEST_PTR(_m_pFunc);
-    /*DEBUG*/// _m_dllETPkcs11 - n/a
+    xTEST_PTR(_m_pFunc);
+    // _m_dllETPkcs11 - n/a
 
     _vLoadETPkcs11();
     vInitialize();
@@ -30,14 +30,14 @@ CxPkcs11::CxPkcs11() :
 //---------------------------------------------------------------------------
 /* virtual */
 CxPkcs11::~CxPkcs11() {
-    /*DEBUG*/
+    
 
     vFinalize();
 }
 //---------------------------------------------------------------------------
 CK_FUNCTION_LIST_PTR
 CxPkcs11::pFuncList() const {
-    /*DEBUG*/xTEST_PTR(_m_pFunc);
+    xTEST_PTR(_m_pFunc);
 
     return _m_pFunc;
 }
@@ -48,7 +48,7 @@ CxPkcs11::sErrorStr(
     const CK_RV a_culCode
 )
 {
-    /*DEBUG*/// culCode - n/a
+    // culCode - n/a
 
     std::tstring_t sRv;
 
@@ -166,34 +166,34 @@ CxPkcs11::sErrorStr(
 //---------------------------------------------------------------------------
 void
 CxPkcs11::_vLoadETPkcs11() {
-    /*DEBUG*/
+    
 
     _m_dllETPkcs11.vLoad(xT("eTPkcs11.dll"));
 
     CK_C_GetFunctionList pFunctionList = NULL;
 
     (FARPROC &)pFunctionList = (FARPROC)_m_dllETPkcs11.fpProcAddress(xT("C_GetFunctionList"));
-    /*DEBUG*/xTEST_PTR(pFunctionList);
+    xTEST_PTR(pFunctionList);
 
     CK_RV ulRv = pFunctionList(&_m_pFunc);
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
-    /*DEBUG*/xTEST_PTR(_m_pFunc);
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_PTR(_m_pFunc);
 }
 //---------------------------------------------------------------------------
 void
 CxPkcs11::vInitialize() {
-    /*DEBUG*/xTEST_PTR(_m_pFunc);
+    xTEST_PTR(_m_pFunc);
 
     CK_RV ulRv = _m_pFunc->C_Initialize(NULL_PTR);
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
 CxPkcs11::vFinalize() {
-    /*DEBUG*/xTEST_PTR(_m_pFunc);
+    xTEST_PTR(_m_pFunc);
 
     CK_RV ulRv = _m_pFunc->C_Finalize(NULL_PTR);
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 

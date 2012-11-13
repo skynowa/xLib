@@ -29,14 +29,14 @@ CxCom::CxCom(
 ) :
     _m_ulConModel(static_cast<DWORD>( ccmCoModel ))
 {
-    /*DEBUG*/// n/a ?
+    // n/a ?
 
     ////xCHECK_DO(true == CxCom::bIsInit(ccmCoModel), return);
 
     ++ _ms_lInitCount;
     if (0L == _ms_lInitCount) {
         HRESULT hrRes = ::CoInitializeEx(NULL, _m_ulConModel);
-        /*DEBUG*/xTEST_EQ(true, SUCCEEDED(hrRes));
+        xTEST_EQ(true, SUCCEEDED(hrRes));
     }
 }
 //---------------------------------------------------------------------------
@@ -58,7 +58,7 @@ CxCom::~CxCom() {
 /* static */
 bool
 CxCom::bIsInit() {
-    /*DEBUG*/// n/a
+    // n/a
 
     return (_ms_lInitCount > 0L);
 }

@@ -42,22 +42,22 @@ CxBase64::sEncode(
 
 
     pbioBase64 = ::BIO_new(BIO_f_base64());
-    /*DEBUG*/xTEST_PTR(pbioBase64);
+    xTEST_PTR(pbioBase64);
 
     (void)BIO_set_flags(pbioBase64, BIO_FLAGS_BASE64_NO_NL);
 
     pbioMemory = ::BIO_new(::BIO_s_mem());
-    /*DEBUG*/xTEST_PTR(pbioMemory);
+    xTEST_PTR(pbioMemory);
 
     pbioContainer = ::BIO_push(pbioBase64, pbioMemory);
-    /*DEBUG*/// n/a
+    // n/a
 
     int iWritten = ::BIO_write(pbioContainer, &a_csStr.at(0), a_csStr.size());    (void)BIO_flush(pbioContainer);
-    /*DEBUG*/xTEST_LESS(0, iWritten);
-    /*DEBUG*/xTEST_EQ(static_cast<int>( a_csStr.size() ), iWritten);
+    xTEST_LESS(0, iWritten);
+    xTEST_EQ(static_cast<int>( a_csStr.size() ), iWritten);
 
     long_t liRv = BIO_get_mem_ptr(pbioContainer, &pbmBuffMemory);
-    /*DEBUG*/xTEST_LESS(0L, liRv);
+    xTEST_LESS(0L, liRv);
 
     sRv.assign(pbmBuffMemory->data, pbmBuffMemory->length);
 
@@ -80,11 +80,11 @@ CxBase64::sDecode(
 
     //create a memory buffer containing base64 encoded data
     pbioMemory = ::BIO_new_mem_buf((void *)&a_csStr.at(0), a_csStr.size());
-    /*DEBUG*/xTEST_PTR(pbioMemory);
+    xTEST_PTR(pbioMemory);
 
     //create a base64 filter
     pbioBase64 = ::BIO_new(BIO_f_base64());
-    /*DEBUG*/xTEST_PTR(pbioBase64);
+    xTEST_PTR(pbioBase64);
 
     (void)BIO_set_flags(pbioBase64, BIO_FLAGS_BASE64_NO_NL);
 
@@ -94,7 +94,7 @@ CxBase64::sDecode(
     sRv.resize(a_csStr.size());
 
     int iReaded = ::BIO_read(pbioContainer, &sRv.at(0), sRv.size());
-    /*DEBUG*/xTEST_LESS(0, iReaded);
+    xTEST_LESS(0, iReaded);
 
     sRv.resize(iReaded);
 
@@ -109,7 +109,7 @@ CxBase64::bIsCharValid(
 	const char &a_cchChar
 )
 {
-    /*DEBUG*/// n/a
+    // n/a
 
     bool bRv = ((false != CxChar::bIsAlphaNum(a_cchChar)) || ('+' == a_cchChar) || ('/' == a_cchChar));
 
@@ -125,12 +125,12 @@ CxBase64::bIsCharValid(
 
 //---------------------------------------------------------------------------
 CxBase64::CxBase64() {
-    /*DEBUG*/
+    
 }
 //---------------------------------------------------------------------------
 /* virtual */
 CxBase64::~CxBase64() {
-    /*DEBUG*/
+    
 }
 //---------------------------------------------------------------------------
 

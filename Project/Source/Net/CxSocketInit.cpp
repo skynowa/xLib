@@ -43,7 +43,7 @@ CxSocketInit::CxSocketInit(
 CxSocketInit::~CxSocketInit() {
 #if   xOS_ENV_WIN
     int iRv = ::WSACleanup();
-    /*DEBUG*/xTEST_EQ(0, iRv);
+    xTEST_EQ(0, iRv);
 #elif xOS_ENV_UNIX
     xNA;
 #endif

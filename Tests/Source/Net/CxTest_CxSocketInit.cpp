@@ -22,7 +22,7 @@ CxTest_CxSocketInit::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    /*DEBUG*/
+    
 
     xTEST_CASE(CxSocketInit::CxSocketInit, cullCaseLoops)
     {

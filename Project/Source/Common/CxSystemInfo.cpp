@@ -37,7 +37,7 @@ CxSystemInfo::osOS() {
     ovVer.dwOSVersionInfoSize = sizeof(ovVer);
 
     BOOL blRes = ::GetVersionEx(&ovVer);
-    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
+    xTEST_DIFF(FALSE, blRes);
 
     switch (ovVer.dwPlatformId) {
         case VER_PLATFORM_WIN32s: {
@@ -80,7 +80,7 @@ CxSystemInfo::osOS() {
     utsname unKernelInfo= {{0}};
 
     int iRv = ::uname(&unKernelInfo);
-    /*DEBUG*/xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(- 1, iRv);
 
     if      (true == CxString::bCompareNoCase(xT("Linux"), unKernelInfo.sysname)) {
         otRes = otLinux;
@@ -131,7 +131,7 @@ CxSystemInfo::sFormatOsType(
         utsname unKernelInfo= {{0}};
 
         int iRv = ::uname(&unKernelInfo);
-        /*DEBUG*/xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(- 1, iRv);
 
         sRv = CxString::sFormat(xT("%s %s (%s) %s"),
                                  unKernelInfo.sysname, unKernelInfo.release,
@@ -178,8 +178,8 @@ CxSystemInfo::oaOsArch() {
     utsname unKernelInfo= {{0}};
 
     int iRv = ::uname(&unKernelInfo);
-    /*DEBUG*/xTEST_DIFF(- 1, iRv);
-    /*DEBUG*/// TODO: xTEST_DIFF(0,   strlen(unKernelInfo.machine));
+    xTEST_DIFF(- 1, iRv);
+    // TODO: xTEST_DIFF(0,   strlen(unKernelInfo.machine));
 
     //32-bit checks
     if      (true == CxString::bCompareNoCase(xT("i386"), unKernelInfo.machine)) {
@@ -249,10 +249,10 @@ CxSystemInfo::sDesktopName() {
         // TODO: implement some checks for detecting Windows shell
     }
 
-    /*DEBUG*/xTEST_EQ(false, sRv.empty());
+    xTEST_EQ(false, sRv.empty());
 #elif xOS_ENV_UNIX
     sRv = CxEnvironment::sVar(xT("DESKTOP_SESSION"));
-    /*DEBUG*/xTEST_EQ(false, sRv.empty());
+    xTEST_EQ(false, sRv.empty());
 #endif
 
     return sRv;
@@ -268,14 +268,14 @@ CxSystemInfo::sHostName() {
     tchar_t szBuff[xHOST_NAME_MAX + 1] = {0};
 
     BOOL blRes = ::GetComputerName(szBuff, &ulBuffSize);
-    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
+    xTEST_DIFF(FALSE, blRes);
 
     sRv.assign(szBuff, ulBuffSize);
 #elif xOS_ENV_UNIX
     utsname unKernelInfo= {{0}};
 
     int iRv = ::uname(&unKernelInfo);
-    /*DEBUG*/xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(- 1, iRv);
 
     sRv.assign(unKernelInfo.nodename);
 #endif
@@ -339,7 +339,7 @@ CxSystemInfo::sUserName() {
     tchar_t szBuff[UNLEN + 1] = {0};
 
     BOOL blRes = ::GetUserName(&szBuff[0], &ulBuffSize);
-    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
+    xTEST_DIFF(FALSE, blRes);
 
     sRv.assign(szBuff, ulBuffSize);
 #elif xOS_ENV_UNIX
@@ -440,7 +440,7 @@ CxSystemInfo::ulNumOfCpus() {
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         long_t liRv = ::sysconf(_SC_NPROCESSORS_ONLN);
-        /*DEBUG*/xTEST_DIFF(- 1L, liRv);
+        xTEST_DIFF(- 1L, liRv);
 
         ulRv = static_cast<ulong_t>( liRv );
     #elif xOS_FREEBSD
@@ -448,7 +448,7 @@ CxSystemInfo::ulNumOfCpus() {
         size_t uiResSize = sizeof(ulRv);
 
         int iRv = ::sysctl(aiMib, static_cast<u_int>( xARRAY_SIZE(aiMib) ), &ulRv, &uiResSize, NULL, 0);
-        /*DEBUG*/xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(- 1, iRv);
     #endif
 #endif
 
@@ -471,7 +471,7 @@ CxSystemInfo::ulCurrentCpuNum() {
     xCHECK_RET(false == bRv, 0UL);
 
     DllGetCurrentProcessorNumber_t DllGetCurrentProcessorNumber = (DllGetCurrentProcessorNumber_t)dlDll.fpProcAddress(xT("GetCurrentProcessorNumber"));
-    /*DEBUG*/xTEST_PTR(DllGetCurrentProcessorNumber);
+    xTEST_PTR(DllGetCurrentProcessorNumber);
 
     ulRv = DllGetCurrentProcessorNumber();
     xDEBUG_VAR_NA(ulRv);
@@ -481,7 +481,7 @@ CxSystemInfo::ulCurrentCpuNum() {
             ulong_t ulCpu = 0UL;
 
             int iRv = ::syscall(SYS_getcpu, &ulCpu, NULL, NULL);
-            /*DEBUG*/xTEST_DIFF(- 1, iRv);
+            xTEST_DIFF(- 1, iRv);
 
             ulRv = ulCpu;
         #else
@@ -490,7 +490,7 @@ CxSystemInfo::ulCurrentCpuNum() {
 
                 // ::sched_getcpu() function is available since glibc 2.6, it is glibc specific
                 int iRv = ::sched_getcpu();
-                /*DEBUG*/xTEST_DIFF(- 1, iRv);
+                xTEST_DIFF(- 1, iRv);
 
                 ulRv = static_cast<ulong_t>( iRv );
             #else
@@ -503,7 +503,7 @@ CxSystemInfo::ulCurrentCpuNum() {
                 uint_t uiCpu = 0U;
 
                 int iRv = ::getcpu(&uiCpu, NULL, NULL);
-                /*DEBUG*/xTEST_DIFF(- 1, iRv);
+                xTEST_DIFF(- 1, iRv);
 
                 ulRv = uiCpu;
             #endif
@@ -536,7 +536,7 @@ CxSystemInfo::cvCpuVendor() {
         *reinterpret_cast<int *>( &szMan[8] ) = aiCpuInfo[2];
 
         sValue = std::string(szMan);
-        /*DEBUG*/xTEST_EQ(false, sValue.empty());
+        xTEST_EQ(false, sValue.empty());
     #elif xCOMPILER_CODEGEAR
         // TODO: CxSystemInfo::cvGetCpuVendor()
         sValue = std::string();
@@ -545,7 +545,7 @@ CxSystemInfo::cvCpuVendor() {
     #if   xOS_LINUX
         // target proc line: "vendor_id : GenuineIntel"
         sValue = CxPath::sProcValue(xT("/proc/cpuinfo"), xT("vendor_id"));
-        /*DEBUG*/xTEST_EQ(false, sValue.empty());
+        xTEST_EQ(false, sValue.empty());
     #elif xOS_FREEBSD
         // Use gcc 4.4 provided cpuid intrinsic
         // 32 bit fpic requires ebx be preserved
@@ -586,7 +586,7 @@ CxSystemInfo::cvCpuVendor() {
         aiCpuInfo[3] = 0;
 
         sValue = std::string(CxUtils::reinterpretCastT<char *>( &aiCpuInfo[0] ));
-        /*DEBUG*/xTEST_EQ(false, sValue.empty());
+        xTEST_EQ(false, sValue.empty());
     #endif
 #endif
     if      (std::string("GenuineIntel") == sValue) {
@@ -650,7 +650,7 @@ CxSystemInfo::sCpuModel() {
     #if   xOS_LINUX
         // target proc line: "model name    : Intel(R) Xeon(R) CPU           E5620  @ 2.40GHz"
         std::tstring_t sValue = CxPath::sProcValue(xT("/proc/cpuinfo"), xT("model name"));
-        /*DEBUG*/xTEST_EQ(false, sValue.empty());
+        xTEST_EQ(false, sValue.empty());
 
         sRv = sValue;
     #elif xOS_FREEBSD
@@ -659,14 +659,14 @@ CxSystemInfo::sCpuModel() {
         size_t      uiValueSize = 0;
 
         iRv = ::sysctlbyname("hw.model", NULL, &uiValueSize, NULL, 0U);
-        /*DEBUG*/xTEST_DIFF(- 1, iRv);
-        /*DEBUG*/xTEST_DIFF(0U, uiValueSize);
+        xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(0U, uiValueSize);
 
         sValue.resize(uiValueSize);
 
         iRv = ::sysctlbyname("hw.model", &sValue.at(0), &uiValueSize, NULL, 0U);
-        /*DEBUG*/xTEST_DIFF(- 1, iRv);
-        /*DEBUG*/xTEST_EQ(sValue.size(), uiValueSize);
+        xTEST_DIFF(- 1, iRv);
+        xTEST_EQ(sValue.size(), uiValueSize);
 
         sRv = sValue;
     #endif
@@ -686,20 +686,20 @@ CxSystemInfo::ulCpuSpeed() {
     HKEY  hKey          = NULL;
 
     LONG lRes = ::RegOpenKeyEx(HKEY_LOCAL_MACHINE, xT("HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0"), 0UL, KEY_READ, &hKey);
-    /*DEBUG*/xTEST_EQ(ERROR_SUCCESS, lRes);
+    xTEST_EQ(ERROR_SUCCESS, lRes);
 
     lRes = ::RegQueryValueEx(hKey, xT("~MHz"), NULL, NULL, reinterpret_cast<LPBYTE>( &ulCpuSpeedMHz ), &dwBuffSize);
-    /*DEBUG*/xTEST_EQ(ERROR_SUCCESS, lRes);
+    xTEST_EQ(ERROR_SUCCESS, lRes);
 
     lRes = ::RegCloseKey(hKey);    hKey = NULL;
-    /*DEBUG*/xTEST_EQ(ERROR_SUCCESS, lRes);
+    xTEST_EQ(ERROR_SUCCESS, lRes);
 
     ulRv = ulCpuSpeedMHz;
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         // target proc line: "cpu MHz         : 2796.380"
         std::tstring_t sValue = CxPath::sProcValue(xT("/proc/cpuinfo"), xT("cpu MHz"));
-        /*DEBUG*/xTEST_EQ(false, sValue.empty());
+        xTEST_EQ(false, sValue.empty());
 
         double dCpuSpeedMHz = CxString::string_cast<double>( sValue );
 
@@ -709,7 +709,7 @@ CxSystemInfo::ulCpuSpeed() {
         size_t  uiCpuSpeedMHzSize = sizeof(ulCpuSpeedMHz);
 
         int iRv = ::sysctlbyname("hw.clockrate", &ulCpuSpeedMHz, &uiCpuSpeedMHzSize, NULL, 0);
-        /*DEBUG*/xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(- 1, iRv);
 
         ulRv = ulCpuSpeedMHz;
     #endif
@@ -740,7 +740,7 @@ CxSystemInfo::ulCpuUsage() {
 
 
     BOOL blRes = ::GetSystemTimes(&ftSysIdle, &ftSysKernel, &ftSysUser);
-    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
+    xTEST_DIFF(FALSE, blRes);
 
     (void)::CopyMemory(&ulSysIdle,   &ftSysIdle,   sizeof(ftSysIdle));
     (void)::CopyMemory(&ulSysKernel, &ftSysKernel, sizeof(ftSysKernel));
@@ -781,13 +781,13 @@ CxSystemInfo::ulCpuUsage() {
         // read proc file for the first time
         if (true == bIsFirstRun) {
             FILE *pFile = fopen("/proc/stat", "r");
-            /*DEBUG*/xTEST_PTR(pFile);
+            xTEST_PTR(pFile);
 
             iRv = fscanf(pFile, "cpu %Ld %Ld %Ld %Ld", &ullUserTotalOld, &ullUserTotalLowOld, &ullSysTotalOld, &ullTotalIdleOld);
-            /*DEBUG*/xTEST_DIFF(- 1, iRv);
+            xTEST_DIFF(- 1, iRv);
 
             iRv = fclose(pFile);
-            /*DEBUG*/xTEST_DIFF(- 1, iRv);
+            xTEST_DIFF(- 1, iRv);
 
             bIsFirstRun = false;
         }
@@ -795,13 +795,13 @@ CxSystemInfo::ulCpuUsage() {
         // read proc file for the next times
         {
             FILE *pFile = fopen("/proc/stat", "r");
-            /*DEBUG*/xTEST_PTR(pFile);
+            xTEST_PTR(pFile);
 
             iRv = fscanf(pFile, "cpu %Ld %Ld %Ld %Ld", &ullUserTotal, &ullUserTotalLow, &ullSysTotal, &ullTotalIdle);
-            /*DEBUG*/xTEST_DIFF(- 1, iRv);
+            xTEST_DIFF(- 1, iRv);
 
             iRv = fclose(pFile);
-            /*DEBUG*/xTEST_DIFF(- 1, iRv);
+            xTEST_DIFF(- 1, iRv);
         }
 
         if (ullUserTotal < ullUserTotalOld || ullUserTotalLow < ullUserTotalLowOld ||
@@ -836,7 +836,7 @@ CxSystemInfo::ulCpuUsage() {
         size_t         uiCpTimeSize         = sizeof(aulCpIime);
 
         int iRv = ::sysctlbyname("kern.cp_time", &aulCpIime, &uiCpTimeSize, NULL, 0);
-        /*DEBUG*/xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(- 1, iRv);
 
         ulUsed       = aulCpIime[CP_USER] + aulCpIime[CP_NICE] + aulCpIime[CP_SYS];
         ulTotal      = aulCpIime[CP_USER] + aulCpIime[CP_NICE] + aulCpIime[CP_SYS] + aulCpIime[CP_IDLE];
@@ -863,7 +863,7 @@ CxSystemInfo::ullRamTotal() {
     msStatus.dwLength = sizeof(msStatus);
 
     BOOL blRes = ::GlobalMemoryStatusEx(&msStatus);
-    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
+    xTEST_DIFF(FALSE, blRes);
 
     ullRv = msStatus.ullTotalPhys;
 #elif xOS_ENV_UNIX
@@ -871,7 +871,7 @@ CxSystemInfo::ullRamTotal() {
         struct sysinfo siInfo = {0};
 
         int iRv = ::sysinfo(&siInfo);
-        /*DEBUG*/xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(- 1, iRv);
 
         ullRv = siInfo.totalram * siInfo.mem_unit;
     #elif xOS_FREEBSD
@@ -881,7 +881,7 @@ CxSystemInfo::ullRamTotal() {
         size_t      uiRamTotalSize = sizeof(ullRamTotal);
 
         int iRv = ::sysctl(aiMib, 2, &ullRamTotal, &uiRamTotalSize, NULL, 0);
-        /*DEBUG*/xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(- 1, iRv);
 
         ullRv = ullRamTotal;
     #endif
@@ -900,7 +900,7 @@ CxSystemInfo::ullRamAvailable() {
     msStatus.dwLength = sizeof(msStatus);
 
     BOOL blRes = ::GlobalMemoryStatusEx(&msStatus);
-    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
+    xTEST_DIFF(FALSE, blRes);
 
     ullRv = msStatus.ullAvailPhys;
 #elif xOS_ENV_UNIX
@@ -908,7 +908,7 @@ CxSystemInfo::ullRamAvailable() {
         struct sysinfo siInfo = {0};
 
         int iRv = ::sysinfo(&siInfo);
-        /*DEBUG*/xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(- 1, iRv);
 
         ullRv = siInfo.freeram * siInfo.mem_unit;
     #elif xOS_FREEBSD
@@ -916,7 +916,7 @@ CxSystemInfo::ullRamAvailable() {
         size_t      ullAvailPhysPagesSize = sizeof(ullAvailPhysPages);
 
         int iRv = ::sysctlbyname("vm.stats.vm.v_free_count", &ullAvailPhysPages, &ullAvailPhysPagesSize, NULL, 0);
-        /*DEBUG*/xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(- 1, iRv);
 
         ullRv = ullAvailPhysPages * ulPageSize();
     #endif
@@ -935,7 +935,7 @@ CxSystemInfo::ulRamUsage() {
     msStatus.dwLength = sizeof(msStatus);
 
     BOOL blRes = ::GlobalMemoryStatusEx(&msStatus);
-    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
+    xTEST_DIFF(FALSE, blRes);
 
     ulRv = msStatus.dwMemoryLoad;
 #elif xOS_ENV_UNIX
@@ -943,12 +943,12 @@ CxSystemInfo::ulRamUsage() {
         struct sysinfo siInfo = {0};
 
         int iRv = ::sysinfo(&siInfo);
-        /*DEBUG*/xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(- 1, iRv);
 
         ulong_t ulUsage = siInfo.totalram - siInfo.freeram;
 
         ulRv = static_cast<ulong_t>( CxUtils::safeDivT(ulUsage * 100.0, siInfo.totalram) );
-        /*DEBUG*/xTEST_EQ(siInfo.totalram, ulUsage + siInfo.freeram);
+        xTEST_EQ(siInfo.totalram, ulUsage + siInfo.freeram);
     #elif xOS_FREEBSD
         ulonglong_t ullRamTotal = 0ULL;
         {
@@ -956,7 +956,7 @@ CxSystemInfo::ulRamUsage() {
             size_t  uiRamTotalSize = sizeof(ullRamTotal);
 
             int iRv = ::sysctl(aiMib, 2, &ullRamTotal, &uiRamTotalSize, NULL, 0);
-            /*DEBUG*/xTEST_DIFF(- 1, iRv);
+            xTEST_DIFF(- 1, iRv);
         }
 
         ulonglong_t ullRamFree = 0ULL;
@@ -965,7 +965,7 @@ CxSystemInfo::ulRamUsage() {
             size_t      ullAvailPhysPagesSize = sizeof(ullAvailPhysPages);
 
             int iRv = ::sysctlbyname("vm.stats.vm.v_free_count", &ullAvailPhysPages, &ullAvailPhysPagesSize, NULL, 0);
-            /*DEBUG*/xTEST_DIFF(- 1, iRv);
+            xTEST_DIFF(- 1, iRv);
 
             ullRamFree = ullAvailPhysPages * ulPageSize();
         }
@@ -973,7 +973,7 @@ CxSystemInfo::ulRamUsage() {
         ulonglong_t ullRamUsage = ullRamTotal - ullRamFree;
 
         ulRv = static_cast<ulong_t>( CxUtils::safeDivT(ullRamUsage * 100.0, ullRamTotal) );
-        /*DEBUG*/xTEST_EQ(ullRamTotal, ullRamUsage + ullRamFree);
+        xTEST_EQ(ullRamTotal, ullRamUsage + ullRamFree);
     #endif
 #endif
 
@@ -993,13 +993,13 @@ CxSystemInfo::ulPageSize() {
     ulRv = siSysInfo.dwPageSize;
 #elif xOS_ENV_UNIX
     int iRv = ::sysconf(xPAGE_SIZE);
-    /*DEBUG*/xTEST_DIFF(- 1, iRv);
-    /*DEBUG*/xTEST_LESS(0, iRv);
+    xTEST_DIFF(- 1, iRv);
+    xTEST_LESS(0, iRv);
 
     ulRv = static_cast<ulong_t>( iRv );
 #endif
 
-    /*DEBUG*/xTEST_LESS(0UL, ulRv);
+    xTEST_LESS(0UL, ulRv);
 
     return ulRv;
 }

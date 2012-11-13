@@ -28,7 +28,7 @@ CxCommandLine::liArgsMax() {
     liRv = 32L * 1024L;
 #elif xOS_ENV_UNIX
     liRv = ::sysconf(_SC_ARG_MAX) / sizeof(std::tstring_t::value_type);
-    /*DEBUG*/xTEST_DIFF(- 1L, liRv);
+    xTEST_DIFF(- 1L, liRv);
 #endif
 
     return liRv;
@@ -37,13 +37,13 @@ CxCommandLine::liArgsMax() {
 /* static */
 std::tstring_t
 CxCommandLine::sGet() {
-    /*DEBUG*/// n/a
+    // n/a
 
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
     LPCTSTR pcszRes = ::GetCommandLine();
-    /*DEBUG*/xTEST_PTR(pcszRes);
+    xTEST_PTR(pcszRes);
 
     sRv = CxString::sTrimSpace(pcszRes);
 #elif xOS_ENV_UNIX
@@ -59,7 +59,7 @@ CxCommandLine::vArgs(
     std::vec_tstring_t *a_pvsArgs
 )
 {
-    /*DEBUG*/xTEST_PTR(a_pvsArgs);
+    xTEST_PTR(a_pvsArgs);
 
     xCHECK_DO(true == _ms_vsArgs.empty(),
               CxTracer() << xT("::: xLib: warning (command line is empty) :::"));
@@ -74,7 +74,7 @@ CxCommandLine::vSetArgs(
     tchar_t   *a_paszArgs[]
 )
 {
-    /*DEBUG*/// n/a (because we'll have a recursion)
+    // n/a (because we'll have a recursion)
 
     std::vec_tstring_t vsArgs;
 

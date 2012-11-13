@@ -45,7 +45,7 @@ CxErrorReport::CxErrorReport(
     m_sStackTrace    (),
     m_sComment       ()
 {
-    /*DEBUG*/
+    
 
     // sVar1Value
     std::tstring_t sVar1Value;

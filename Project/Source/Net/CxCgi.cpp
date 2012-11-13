@@ -42,7 +42,7 @@ CxCgi::~CxCgi() {
 //---------------------------------------------------------------------------
 std::tstring_t
 CxCgi::sDump()  const{
-    /*DEBUG*/
+    
 
     std::tstring_t sRv;
 
@@ -65,7 +65,7 @@ CxCgi::vRedirect(
     const std::tstring_t &a_csUrl
 )
 {
-    /*DEBUG*/xTEST_EQ(false, a_csUrl.empty())
+    xTEST_EQ(false, a_csUrl.empty())
 
     std::tstring_t sHttpResponse;
 
@@ -362,224 +362,224 @@ CxCgiEnvironment::~CxCgiEnvironment() {
 //DONE: sGetAuthType
 const std::tstring_t &
 CxCgiEnvironment::sAuthType() const {
-    /*DEBUG*/
+    
 
     return _m_sAuthType;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxCgiEnvironment::sContentLength() const {
-    /*DEBUG*/
+    
 
     return _m_sContentLength;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxCgiEnvironment::sContentType() const {
-    /*DEBUG*/
+    
 
     return _m_sContentType;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxCgiEnvironment::sDocumentRoot() const {
-    /*DEBUG*/
+    
 
     return _m_sDocumentRoot;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxCgiEnvironment::sGatewayInterface() const {
-    /*DEBUG*/
+    
 
     return _m_sGatewayInterface;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxCgiEnvironment::sHttpAccept() const {
-    /*DEBUG*/
+    
 
     return _m_sHttpAccept;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxCgiEnvironment::sHttpCookie() const {
-    /*DEBUG*/
+    
 
     return _m_sHttpCookie;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxCgiEnvironment::sHttpPragma() const {
-    /*DEBUG*/
+    
 
     return _m_sHttpPragma;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxCgiEnvironment::sHttpUserAgent() const {
-    /*DEBUG*/
+    
 
     return _m_sHttpUserAgent;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxCgiEnvironment::sPathInfo() const {
-    /*DEBUG*/
+    
 
     return _m_sPathInfo;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxCgiEnvironment::sPathTranslated() const {
-    /*DEBUG*/
+    
 
     return _m_sPathTranslated;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxCgiEnvironment::sQueryString() const {
-    /*DEBUG*/
+    
 
     return _m_sQueryString;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxCgiEnvironment::sRemoteAddr() const {
-    /*DEBUG*/
+    
 
     return _m_sRemoteAddr;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxCgiEnvironment::sRemoteHost() const {
-    /*DEBUG*/
+    
 
     return _m_sRemoteHost;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxCgiEnvironment::sRemoteIdent() const {
-    /*DEBUG*/
+    
 
     return _m_sRemoteIdent;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxCgiEnvironment::sRemotePort() const {
-    /*DEBUG*/
+    
 
     return _m_sRemotePort;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxCgiEnvironment::sRemoteUser() const {
-    /*DEBUG*/
+    
 
     return _m_sRemoteUser;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxCgiEnvironment::sRequestMethod() const {
-    /*DEBUG*/
+    
 
     return _m_sRequestMethod;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxCgiEnvironment::sRequestUri() const {
-    /*DEBUG*/
+    
 
     return _m_sRequestUri;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxCgiEnvironment::sScriptFilename() const {
-    /*DEBUG*/
+    
 
     return _m_sScriptFilename;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxCgiEnvironment::sScriptName() const {
-    /*DEBUG*/
+    
 
     return _m_sScriptName;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxCgiEnvironment::sServerAdmin() const {
-    /*DEBUG*/
+    
 
     return _m_sServerAdmin;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxCgiEnvironment::sServerName() const {
-    /*DEBUG*/
+    
 
     return _m_sServerName;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxCgiEnvironment::sServerPort() const {
-    /*DEBUG*/
+    
 
     return _m_sServerPort;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxCgiEnvironment::sServerProtocol() const {
-    /*DEBUG*/
+    
 
     return _m_sServerProtocol;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxCgiEnvironment::sServerSoftware() const {
-    /*DEBUG*/
+    
 
     return _m_sServerSoftware;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxCgiEnvironment::sHttpReferer() const {
-    /*DEBUG*/
+    
 
     return _m_sHttpReferer;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxCgiEnvironment::sHttpHost() const {
-    /*DEBUG*/
+    
 
     return _m_sHttpHost;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxCgiEnvironment::sHttpAcceptLanguage() const {
-   /*DEBUG*/
+   
 
    return _m_sHttpAcceptLanguage;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxCgiEnvironment::sCountryCode() const {
-    /*DEBUG*/
+    
 
     return _m_sCountryCode;
 }
 //---------------------------------------------------------------------------
 CxCgiEnvironment::ExRequestMethod
 CxCgiEnvironment::rmRequestMethod() const {
-    /*DEBUG*/
+    
 
     return _m_rmRequestMethod;
 }
 //---------------------------------------------------------------------------
 std::tstring_t
 CxCgiEnvironment::sDump() const {
-    /*DEBUG*/
+    
 
     std::tstring_t sRv;
 
@@ -659,7 +659,7 @@ CxCgiEnvironment::sDump() const {
 //---------------------------------------------------------------------------
 bool
 CxCgiEnvironment::_bInit() {
-    /*DEBUG*/
+    
 
     _m_sAuthType           = CxEnvironment::sVar(xT("AUTH_TYPE"));
     _m_sContentLength      = CxEnvironment::sVar(xT("CONTENT_LENGTH"));
@@ -746,7 +746,7 @@ CxCgiCookies::operator [] (
     const std::tstring_t &a_csCookieName
 )
 {
-    /*DEBUG*/
+    
 
     xFOREACH_CONST(TCookies, it, Items) {
         xCHECK_DO(false == CxString::bCompareNoCase(a_csCookieName, (*it)->sValue()), continue);
@@ -759,7 +759,7 @@ CxCgiCookies::operator [] (
 //---------------------------------------------------------------------------
 std::tstring_t
 CxCgiCookies::sDump() const {
-    /*DEBUG*/
+    
 
     std::tstring_t sRv;
 
@@ -800,7 +800,7 @@ CxCgiCookies::sDump() const {
 //---------------------------------------------------------------------------
 void
 CxCgiCookies::_vInit() {
-    /*DEBUG*/
+    
 
     std::tstring_t     sRawCookies = _m_ccgCgi.Environment.sHttpCookie();
     std::vec_tstring_t vsRawCookies;
@@ -810,7 +810,7 @@ CxCgiCookies::_vInit() {
 
     xFOREACH_CONST(std::vec_tstring_t, it, vsRawCookies) {
         CxCookiePv0 *pckItem = new(std::nothrow) CxCookiePv0(*it);
-        /*DEBUG*/xTEST_PTR(pckItem);
+        xTEST_PTR(pckItem);
 
         vecckCookies.push_back(pckItem);
     }
@@ -848,14 +848,14 @@ CxCgiFormData::~CxCgiFormData() {
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxCgiFormData::sRawData() const {
-    /*DEBUG*/
+    
 
     return _m_sFormData;
 }
 //---------------------------------------------------------------------------
 std::tstring_t
 CxCgiFormData::sDump() const {
-    /*DEBUG*/
+    
 
     std::tstring_t sRv;
 
@@ -876,12 +876,12 @@ CxCgiFormData::sDump() const {
 //---------------------------------------------------------------------------
 void
 CxCgiFormData::_vInit() {
-    /*DEBUG*/
+    
 
     int iRv = _m_ccgCgi.Environment.rmRequestMethod();
     switch (iRv) {
         case CxCgiEnvironment::rmGet: {
-                /*DEBUG*/xTEST_EQ(false, _m_ccgCgi.Environment.sQueryString().empty());
+                xTEST_EQ(false, _m_ccgCgi.Environment.sQueryString().empty());
 
                 //TODO: cgl_parsecgibuf(cgl_Formdata, cgl_Buf)
 
@@ -893,7 +893,7 @@ CxCgiFormData::_vInit() {
                 bool bRv = false;
 
                 bRv = CxString::bCompareNoCase(xT("application/x-www-form-urlencoded"), _m_ccgCgi.Environment.sContentType());
-                /*DEBUG*/xTEST_EQ(true, bRv);
+                xTEST_EQ(true, bRv);
 
                 //get content length
                 size_t uiPostSize = 0;  // in bytes
@@ -903,8 +903,8 @@ CxCgiFormData::_vInit() {
                 else {
                     uiPostSize = CxString::string_cast<size_t>( _m_ccgCgi.Environment.sContentLength() );
                 }
-                /*DEBUG*/xTEST_LESS(size_t(0U), uiPostSize);
-                /*DEBUG*/xTEST_GR_EQ(_m_cuiMaxData, uiPostSize);  //secure
+                xTEST_LESS(size_t(0U), uiPostSize);
+                xTEST_GR_EQ(_m_cuiMaxData, uiPostSize);  //secure
                 xTEST_EQ(false, _m_cuiMaxData <= uiPostSize);
 
                 //read, parse data
@@ -916,7 +916,7 @@ CxCgiFormData::_vInit() {
                 sBuff.resize(uiPostSize);
 
                 size_t uiRes = sfFile.uiRead(&sBuff.at(0), sBuff.size());
-                /*DEBUG*/xTEST_EQ(uiRes, sBuff.size());
+                xTEST_EQ(uiRes, sBuff.size());
 
                 //TODO: cgl_parsecgibuf(cgl_Formdata, cgl_Buf)
 
@@ -927,7 +927,7 @@ CxCgiFormData::_vInit() {
             break;
 
         default: {
-                /////*DEBUG*/xTEST_FAIL;
+                ////xTEST_FAIL;
             }
             break;
     }

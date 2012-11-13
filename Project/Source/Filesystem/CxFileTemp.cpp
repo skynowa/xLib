@@ -46,9 +46,9 @@ CxFileTemp::vCreate(
     CxFile               *pfFile
 )
 {
-    /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
-    /*DEBUG*/xTEST_EQ(false, csDirPath.empty());
-    /*DEBUG*/xTEST_EQ(false, pfFile->bIsValid());
+    xTEST_EQ(false, csFilePath.empty());
+    xTEST_EQ(false, csDirPath.empty());
+    xTEST_EQ(false, pfFile->bIsValid());
 
     const std::tstring_t csFileNameTemplate = xT("XXXXXX");
 
@@ -64,25 +64,25 @@ CxFileTemp::vCreate(
         _m_sFilePath.resize(_m_sFilePath.size() + 1);
 
         tchar_t *pszFile = ::xTMKSTEMP(&_m_sFilePath.at(0));
-        /*DEBUG*/xTEST_PTR(pszFile);
+        xTEST_PTR(pszFile);
 
         _pfStdFile = std::xTFOPEN(pszFile, CxFile::_sOpenMode(CxFile::omBinCreateReadWrite).c_str());
-        /*DEBUG*/xTEST_PTR(_pfStdFile);
+        xTEST_PTR(_pfStdFile);
     #else
         _m_sFilePath.resize(_m_sFilePath.size() + 1);
 
         errno_t iError = ::xTMKSTEMP(&_m_sFilePath.at(0), _m_sFilePath.size() + 1);
-        /*DEBUG*/xTEST_EQ(0, iError);
+        xTEST_EQ(0, iError);
 
         _pfStdFile = ::xTFOPEN(_m_sFilePath.c_str(), CxFile::_sOpenMode(CxFile::omBinCreateReadWrite).c_str());
-        /*DEBUG*/xTEST_PTR(_pfStdFile);
+        xTEST_PTR(_pfStdFile);
     #endif
 #elif xOS_ENV_UNIX
     int iFile = ::xTMKSTEMP(&_m_sFilePath.at(0));
-    /*DEBUG*/xTEST_DIFF(- 1, iFile);
+    xTEST_DIFF(- 1, iFile);
 
     _pfStdFile = ::xTFDOPEN(iFile, CxFile::_sOpenMode(CxFile::omBinCreateReadWrite).c_str());
-    /*DEBUG*/xTEST_PTR(_pfStdFile);
+    xTEST_PTR(_pfStdFile);
 #endif
 
     //out

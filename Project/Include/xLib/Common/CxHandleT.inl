@@ -23,7 +23,7 @@ template<ExHandleValue hvTag>
 CxHandleT<hvTag>::CxHandleT() :
     _m_hHandle( error_value_t::hGet() )
 {
-    /*DEBUG*/// n/a
+    // n/a
 }
 //---------------------------------------------------------------------------
 template<ExHandleValue hvTag>
@@ -33,7 +33,7 @@ CxHandleT<hvTag>::CxHandleT(
 ) :
     _m_hHandle(chHandle)
 {
-    /*DEBUG*/// n/a
+    // n/a
 }
 //---------------------------------------------------------------------------
 template<ExHandleValue hvTag>
@@ -43,14 +43,14 @@ CxHandleT<hvTag>::CxHandleT(
 ) :
     _m_hHandle( error_value_t::hGet() )
 {
-    /*DEBUG*/
+    
 
     _m_hHandle = chHandle.hDuplicate();
 }
 //---------------------------------------------------------------------------
 template<ExHandleValue hvTag>
 CxHandleT<hvTag>::~CxHandleT() {
-    /*DEBUG*/// n/a
+    // n/a
 
     vClose();
 }
@@ -69,8 +69,8 @@ CxHandleT<hvTag>::operator = (
     const native_handle_t &chHandle
 )
 {
-    /////*DEBUG*/xTEST_EQ(false, bIsValid(), *this);
-    /*DEBUG*///hHandle - n/a
+    ////xTEST_EQ(false, bIsValid(), *this);
+    //hHandle - n/a
 
     //Try m_Handle.Attach(other.Detach(), if you got an assertion here.
 
@@ -89,15 +89,15 @@ CxHandleT<hvTag>::operator = (
     const CxHandleT &chHandle
 )
 {
-    ///*DEBUG*/xTEST_EQ(false, bIsValid(), *this);
-    /*DEBUG*///CxHandleT - n/a
+    //xTEST_EQ(false, bIsValid(), *this);
+    //CxHandleT - n/a
 
     xCHECK_RET(this == &chHandle, *this);
 
     vClose();
 
     _m_hHandle = chHandle.hDuplicate();
-    /*DEBUG*/// n/a;
+    // n/a;
 
     return *this;
 }
@@ -105,7 +105,7 @@ CxHandleT<hvTag>::operator = (
 template<ExHandleValue hvTag>
 native_handle_t
 CxHandleT<hvTag>::hGet() const {
-    /*DEBUG*/
+    
 
     return _m_hHandle;
 }
@@ -116,7 +116,7 @@ CxHandleT<hvTag>::vSet(
     const native_handle_t &chHandle
 )
 {
-    /*DEBUG*/
+    
 
     _m_hHandle = chHandle;
 }
@@ -124,7 +124,7 @@ CxHandleT<hvTag>::vSet(
 template<ExHandleValue hvTag>
 native_handle_t
 CxHandleT<hvTag>::hDuplicate() const {
-    /*DEBUG*/// n/a
+    // n/a
     xCHECK_RET(false == bIsValid(), error_value_t::hGet());
 
     native_handle_t hRv = error_value_t::hGet();
@@ -141,10 +141,10 @@ CxHandleT<hvTag>::hDuplicate() const {
                     FALSE,
                     DUPLICATE_SAME_ACCESS
     );
-    /////*DEBUG*/xTEST_DIFF(FALSE, blRes);
+    ////xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     hRv = ::dup(_m_hHandle);
-    /////*DEBUG*/xTEST_EQ(true == error_value_t::hGet() != hRv);
+    ////xTEST_EQ(true == error_value_t::hGet() != hRv);
 #endif
 
     return hRv;
@@ -153,7 +153,7 @@ CxHandleT<hvTag>::hDuplicate() const {
 template<ExHandleValue hvTag>
 bool
 CxHandleT<hvTag>::bIsValid() const {
-    /*DEBUG*///n/a
+    //n/a
 
     bool bRv = false;
 
@@ -183,7 +183,7 @@ CxHandleT<hvTag>::vAttach(
     const native_handle_t &chHandle
 )
 {
-    /*DEBUG*/// n/a
+    // n/a
     xCHECK_DO(false == bIsValid(), return);
 
     vClose();
@@ -194,7 +194,7 @@ CxHandleT<hvTag>::vAttach(
 template<ExHandleValue hvTag>
 native_handle_t
 CxHandleT<hvTag>::hDetach() {
-    /*DEBUG*///n/a
+    //n/a
 
     native_handle_t hHandle = _m_hHandle;
 
@@ -206,17 +206,17 @@ CxHandleT<hvTag>::hDetach() {
 template<ExHandleValue hvTag>
 void
 CxHandleT<hvTag>::vClose() {
-    /*DEBUG*/// n/a
+    // n/a
 
     xCHECK_DO(false == bIsValid(), _m_hHandle = error_value_t::hGet(); return);
 
 #if   xOS_ENV_WIN
     BOOL blRes = ::CloseHandle(_m_hHandle);
-    /////*DEBUG*/xTEST_DIFF(FALSE, blRes);
+    ////xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     int iRv = ::close(_m_hHandle);
     xUNUSED(iRv);
-    /////*DEBUG*/xTEST_DIFF(- 1, iRv);
+    ////xTEST_DIFF(- 1, iRv);
 #endif
 
     _m_hHandle = error_value_t::hGet();
@@ -227,13 +227,13 @@ CxHandleT<hvTag>::vClose() {
 template<ExHandleValue hvTag>
 ulong_t
 CxHandleT<hvTag>::ulInfo() const {
-    /////*DEBUG*/xTEST_EQ(true, bIsValid(), 0UL);
+    ////xTEST_EQ(true, bIsValid(), 0UL);
 
     DWORD dwFlags = 0UL;
 
     BOOL blRes = ::GetHandleInformation(_m_hHandle, &dwFlags);
-    /////*DEBUG*/xTEST_DIFF(FALSE, blRes);
-    /////*DEBUG*/xTEST_DIFF(0UL,   ulFlags);
+    ////xTEST_DIFF(FALSE, blRes);
+    ////xTEST_DIFF(0UL,   ulFlags);
 
     return dwFlags;
 }
@@ -249,12 +249,12 @@ CxHandleT<hvTag>::vSetInfo(
     const ulong_t &culFlags
 )
 {
-    /////*DEBUG*/xTEST_EQ(true, bIsValid(), false);
-    /*DEBUG*///ulMask  - n/a
-    /*DEBUG*///ulFlags - ????
+    ////xTEST_EQ(true, bIsValid(), false);
+    //ulMask  - n/a
+    //ulFlags - ????
 
     BOOL blRes = ::SetHandleInformation(_m_hHandle, culMask, culFlags);
-    /////*DEBUG*/xTEST_DIFF(FALSE, blRes);
+    ////xTEST_DIFF(FALSE, blRes);
 }
 
 #endif

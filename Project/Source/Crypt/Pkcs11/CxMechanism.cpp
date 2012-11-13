@@ -39,10 +39,10 @@ CxMechanism::vInfo(
     CK_MECHANISM_INFO_PTR a_pInfo    ///< receives mechanism info
 )
 {
-    /*DEBUG*/
+    
 
     CK_RV ulRv = _m_pFunc->C_GetMechanismInfo(a_slotID, a_type, a_pInfo);
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
@@ -52,10 +52,10 @@ CxMechanism::vList(
     CK_ULONG_PTR          a_pulCount         ///< gets # of mechs.
 )
 {
-    /*DEBUG*/
+    
 
     CK_RV ulRv = _m_pFunc->C_GetMechanismList(a_slotID, a_pMechanismList, a_pulCount);
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 

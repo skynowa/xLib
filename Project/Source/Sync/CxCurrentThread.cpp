@@ -21,7 +21,7 @@ CxCurrentThread::bIsCurrent(
     const CxThread::id_t &a_culId
 )
 {
-    /*DEBUG*/
+    
 
     bool bRv = false;
 
@@ -38,16 +38,16 @@ CxCurrentThread::bIsCurrent(
 /* static */
 CxThread::id_t
 CxCurrentThread::ulId() {
-    /*DEBUG*/// n/a
+    // n/a
 
     CxThread::id_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN
     ulRv = ::GetCurrentThreadId();
-    /*DEBUG*/xTEST_LESS(0UL, ulRv);
+    xTEST_LESS(0UL, ulRv);
 #elif xOS_ENV_UNIX
     ulRv = ::pthread_self();
-    /*DEBUG*/xTEST_EQ(true, 0UL < ulRv);
+    xTEST_EQ(true, 0UL < ulRv);
 #endif
 
     return ulRv;
@@ -56,16 +56,16 @@ CxCurrentThread::ulId() {
 /* static */
 CxThread::handle_t
 CxCurrentThread::hHandle() {
-    /*DEBUG*/// n/a
+    // n/a
 
     CxThread::handle_t hRv;
 
 #if   xOS_ENV_WIN
     hRv = ::GetCurrentThread();
-    /*DEBUG*/xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
+    xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
 #elif xOS_ENV_UNIX
     hRv = ::pthread_self();
-    /*DEBUG*/xTEST_EQ(true, 0 < hRv);
+    xTEST_EQ(true, 0 < hRv);
 #endif
 
     return hRv;
@@ -74,13 +74,13 @@ CxCurrentThread::hHandle() {
 /* static */
 void
 CxCurrentThread::vYield() {
-    /*DEBUG*/// n/a
+    // n/a
 
 #if   xOS_ENV_WIN
     (void)::SwitchToThread();
 #elif xOS_ENV_UNIX
     int iRv = ::sched_yield();
-    /*DEBUG*/xTEST_MSG_DIFF(- 1, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_DIFF(- 1, iRv, CxLastError::sFormat(iRv));
 #endif
 }
 //---------------------------------------------------------------------------
@@ -89,7 +89,7 @@ void
 CxCurrentThread::vSleep(
     const ulong_t &a_culMsec
 ) {
-    /*DEBUG*/// n/a
+    // n/a
 
 #if   xOS_ENV_WIN
     (void)::Sleep(a_culMsec);
@@ -102,7 +102,7 @@ CxCurrentThread::vSleep(
 
     for ( ; ; ) {
         int iRv = ::nanosleep(&tsSleep, &tsRemain);
-        /*DEBUG*/// n/a
+        // n/a
         xCHECK_DO(!(- 1 == iRv && EINTR == CxLastError::ulGet()), break);
 
         tsSleep = tsRemain;

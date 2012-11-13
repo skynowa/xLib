@@ -42,10 +42,10 @@ CxEncrypt::vInit(
     CK_OBJECT_HANDLE a_hKey         ///< handle of encryption key
 )
 {
-    /*DEBUG*/
+    
 
     CK_RV ulRv = _m_pFunc->C_EncryptInit(_m_hSession, a_pMechanism, a_hKey);
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
@@ -56,10 +56,10 @@ CxEncrypt::vMake(
     CK_ULONG_PTR a_pulEncryptedDataLen  ///< gets c-text size
 )
 {
-    /*DEBUG*/
+    
 
     CK_RV ulRv = _m_pFunc->C_Encrypt(_m_hSession, a_pData, a_ulDataLen, a_pEncryptedData, a_pulEncryptedDataLen  );
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
@@ -70,10 +70,10 @@ CxEncrypt::vUpdate(
     CK_ULONG_PTR a_pulEncryptedPartLen ///< gets c-text size
 )
 {
-    /*DEBUG*/
+    
 
     CK_RV ulRv = _m_pFunc->C_EncryptUpdate(_m_hSession, a_pPart, a_ulPartLen, a_pEncryptedPart, a_pulEncryptedPartLen);
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
@@ -82,10 +82,10 @@ CxEncrypt::vFinal(
     CK_ULONG_PTR a_pulLastEncryptedPartLen  ///< gets last size
 )
 {
-    /*DEBUG*/
+    
 
     CK_RV ulRv = _m_pFunc->C_EncryptFinal(_m_hSession, a_pLastEncryptedPart, a_pulLastEncryptedPartLen );
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 
@@ -104,10 +104,10 @@ CxEncrypt::vMakeFile(
     CK_OBJECT_HANDLE      a_hKey
 )
 {
-    /*DEBUG*/xTEST_EQ(false, a_csInFilePath.empty());
-    /*DEBUG*/xTEST_EQ(false, a_csOutFilePath.empty());
-    /*DEBUG*/xTEST_PTR(a_pMechanism);
-    /*DEBUG*/xTEST_PTR(a_hKey);
+    xTEST_EQ(false, a_csInFilePath.empty());
+    xTEST_EQ(false, a_csOutFilePath.empty());
+    xTEST_PTR(a_pMechanism);
+    xTEST_PTR(a_hKey);
 
     //-------------------------------------
     //������ ����� � �����

@@ -45,9 +45,9 @@ CxBackuper::vExecute(
     std::tstring_t       *psDestFilePath
 )
 {
-    /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
-    /*DEBUG*/xTEST_EQ(false, csDestDirPath.empty());
-    /*DEBUG*/xTEST_PTR(psDestFilePath);
+    xTEST_EQ(false, csFilePath.empty());
+    xTEST_EQ(false, csDestDirPath.empty());
+    xTEST_PTR(psDestFilePath);
 
     // errors
     const std::tstring_t csError_DestFileNotExists  = xT("Destination file not exists");

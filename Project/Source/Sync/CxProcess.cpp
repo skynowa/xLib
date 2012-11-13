@@ -47,10 +47,10 @@ CxProcess::~CxProcess() {
     BOOL blRes = FALSE;
 
     blRes = ::CloseHandle(_m_hThread);
-    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
+    xTEST_DIFF(FALSE, blRes);
 
     blRes = ::CloseHandle(_m_hHandle);
-    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
+    xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
 
 #endif
@@ -62,9 +62,9 @@ CxProcess::vCreate(
     const tchar_t        *a_pcszParams, ...
 )
 {
-    /*DEBUG*/xTEST_EQ(false, a_csFilePath.empty());
-    /*DEBUG*/xTEST_EQ(true, CxFile::bIsExists(a_csFilePath));
-    /*DEBUG*/xTEST_PTR(a_pcszParams);
+    xTEST_EQ(false, a_csFilePath.empty());
+    xTEST_EQ(true, CxFile::bIsExists(a_csFilePath));
+    xTEST_PTR(a_pcszParams);
 
     std::tstring_t sCmdLine;
 
@@ -82,20 +82,20 @@ CxProcess::vCreate(
     BOOL blRes = ::CreateProcess(a_csFilePath.c_str(), const_cast<LPTSTR>( sCmdLine.c_str() ),
                                  NULL, NULL, FALSE, NORMAL_PRIORITY_CLASS, NULL, NULL,
                                  &siInfo, &piInfo);
-    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
+    xTEST_DIFF(FALSE, blRes);
 
     _m_hHandle = piInfo.hProcess;
     _m_hThread = piInfo.hThread;
     _m_ulPid   = piInfo.dwProcessId;
 #elif xOS_ENV_UNIX
     pid_t liPid = ::fork();
-    /*DEBUG*/xTEST_EQ(true, - 1L != liPid);
+    xTEST_EQ(true, - 1L != liPid);
 
     if (0L == liPid) {
         // TODO: csFilePath is executable
 
         int iRv = ::execlp(a_csFilePath.c_str(), a_csFilePath.c_str(), sCmdLine.c_str(), static_cast<const tchar_t *>( NULL ));
-        /*DEBUG*/xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(- 1, iRv);
 
         (void)::_exit(EXIT_SUCCESS);  /* not exit() */
     }
@@ -114,7 +114,7 @@ CxProcess::ulWait(
 
 #if   xOS_ENV_WIN
     DWORD ulRv = ::WaitForSingleObject(_m_hHandle, a_culTimeout);
-    /*DEBUG*/xTEST_EQ(WAIT_OBJECT_0, ulRv);
+    xTEST_EQ(WAIT_OBJECT_0, ulRv);
 
     wrStatus = static_cast<ExWaitResult>( ulRv );
 #elif xOS_ENV_UNIX
@@ -126,7 +126,7 @@ CxProcess::ulWait(
         liRv = ::waitpid(_m_ulPid, &iStatus, 0);
     }
     while (liRv < 0L && EINTR == CxLastError::ulGet());
-    /*DEBUG*/xTEST_EQ(liRv, _m_ulPid);
+    xTEST_EQ(liRv, _m_ulPid);
 
     _m_uiExitStatus = WEXITSTATUS(iStatus);
     wrStatus        = static_cast<ExWaitResult>( WEXITSTATUS(iStatus) );
@@ -140,16 +140,16 @@ CxProcess::vKill(
     const ulong_t &a_culTimeout    // FIX: culTimeout not used
 )
 {
-    /*DEBUG*/
+    
 
 #if   xOS_ENV_WIN
-    /*DEBUG*/xTEST_DIFF(xNATIVE_HANDLE_NULL, _m_hHandle);
-    /*DEBUG*/// ulTimeout - n/a
+    xTEST_DIFF(xNATIVE_HANDLE_NULL, _m_hHandle);
+    // ulTimeout - n/a
 
     _m_uiExitStatus = 0U;
 
     BOOL blRes = ::TerminateProcess(_m_hHandle, _m_uiExitStatus);
-    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
+    xTEST_DIFF(FALSE, blRes);
 
     for ( ; ; ) {
         ulong_t ulRv = ulExitStatus();
@@ -159,7 +159,7 @@ CxProcess::vKill(
     }
 #elif xOS_ENV_UNIX
     int iRv = ::kill(_m_ulPid, SIGKILL);
-    /*DEBUG*/xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(- 1, iRv);
 
     CxCurrentThread::vSleep(a_culTimeout);
 
@@ -169,34 +169,34 @@ CxProcess::vKill(
 //---------------------------------------------------------------------------
 CxProcess::handle_t
 CxProcess::hHandle() const {
-    /*DEBUG*/
+    
 
     return _m_hHandle;
 }
 //---------------------------------------------------------------------------
 CxProcess::id_t
 CxProcess::ulId() const {
-    /*DEBUG*/
+    
 
     return _m_ulPid;
 }
 //---------------------------------------------------------------------------
 bool
 CxProcess::bIsCurrent() const {
-    /*DEBUG*/
+    
 
     return CxCurrentProcess::bIsCurrent( CxCurrentProcess::ulId() );
 }
 //---------------------------------------------------------------------------
 ulong_t
 CxProcess::ulExitStatus() const {
-    /*DEBUG*/
+    
 
     ulong_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN
     BOOL blRes = ::GetExitCodeProcess(_m_hHandle, &ulRv);
-    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
+    xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     ulRv = _m_uiExitStatus;
 #endif
@@ -261,10 +261,10 @@ CxProcess::ulIdByName(
     PROCESSENTRY32 peProcess = {0};    peProcess.dwSize = sizeof(PROCESSENTRY32);
 
     hSnapshot = ::CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0UL);
-    /*DEBUG*/xTEST_EQ(true, hSnapshot.bIsValid());
+    xTEST_EQ(true, hSnapshot.bIsValid());
 
     BOOL blRv = ::Process32First(hSnapshot.hGet(), &peProcess);
-    /*DEBUG*/xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(FALSE, blRv);
 
     xFOREVER {
         bool bRv = CxString::bCompareNoCase(a_csProcessName, peProcess.szExeFile);
@@ -315,7 +315,7 @@ CxProcess::ulIdByName(
         }
 
         int iRv = ::closedir(pDir); pDir = NULL;
-        /*DEBUG*/xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(- 1, iRv);
 
         ulRv = iPid;
     #elif xOS_FREEBSD
@@ -323,7 +323,7 @@ CxProcess::ulIdByName(
         size_t uiBuffSize = 0U;
 
         int iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), NULL, &uiBuffSize, NULL, 0U);
-        /*DEBUG*/xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(- 1, iRv);
 
         // allocate memory and populate info in the  processes structure
         kinfo_proc *pkpProcesses = NULL;
@@ -371,10 +371,10 @@ CxProcess::bIsRunning(
     PROCESSENTRY32 peProcess = {0};    peProcess.dwSize = sizeof(PROCESSENTRY32);
 
     hSnapshot = ::CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0UL);
-    /*DEBUG*/xTEST_EQ(true, hSnapshot.bIsValid());
+    xTEST_EQ(true, hSnapshot.bIsValid());
 
     BOOL blRv = ::Process32First(hSnapshot.hGet(), &peProcess);
-    /*DEBUG*/xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(FALSE, blRv);
 
     for ( ; ; ) {
         bool bRv = CxString::bCompareNoCase(a_csProcessName, peProcess.szExeFile);

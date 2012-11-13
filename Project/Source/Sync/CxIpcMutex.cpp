@@ -38,7 +38,7 @@ CxIpcMutex::~CxIpcMutex() {
 //---------------------------------------------------------------------------
 const CxIpcMutex::handle_t &
 CxIpcMutex::hHandle() const {
-    /*DEBUG*/
+    
 
     return _m_hHandle;
 }
@@ -48,11 +48,11 @@ CxIpcMutex::vCreate(
     const std::tstring_t &a_csName
 )
 {
-    /////*DEBUG*/xTEST_EQ(false, _m_hHandle.bIsValid(), false);
+    ////xTEST_EQ(false, _m_hHandle.bIsValid(), false);
 #if   xOS_ENV_WIN
-    /*DEBUG*/// csName
+    // csName
 #elif xOS_ENV_UNIX
-    /*DEBUG*/xTEST_GR(xNAME_MAX - 4, a_csName.size());
+    xTEST_GR(xNAME_MAX - 4, a_csName.size());
 #endif
 
 #if   xOS_ENV_WIN
@@ -67,7 +67,7 @@ CxIpcMutex::vCreate(
     }
 
     HANDLE hRv = ::CreateMutex(NULL, FALSE, pcszWinName);
-    /*DEBUG*/xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
+    xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
 
     _m_hHandle.vSet(hRv);
     _m_sName = a_csName;
@@ -75,7 +75,7 @@ CxIpcMutex::vCreate(
     std::tstring_t sUnixName = CxConst::xUNIX_SLASH + a_csName;
 
     handle_t hHandle = ::sem_open(sUnixName.c_str(), O_CREAT | O_RDWR, 0777, 1U);
-    /*DEBUG*/xTEST_DIFF(SEM_FAILED, hHandle);
+    xTEST_DIFF(SEM_FAILED, hHandle);
 
     _m_hHandle = hHandle;
     _m_sName   = sUnixName;
@@ -87,7 +87,7 @@ CxIpcMutex::vOpen(
     const std::tstring_t &a_csName
 )
 {
-    /*DEBUG*/
+    
 
 #if   xOS_ENV_WIN
     const tchar_t *pcszWinName = NULL;
@@ -101,7 +101,7 @@ CxIpcMutex::vOpen(
     }
 
     HANDLE hRv = ::OpenMutex(MUTEX_ALL_ACCESS, FALSE, pcszWinName);
-    /*DEBUG*/xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
+    xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
 
     _m_hHandle.vSet(hRv);
     _m_sName = a_csName;
@@ -109,7 +109,7 @@ CxIpcMutex::vOpen(
     std::tstring_t sUnixName = CxConst::xUNIX_SLASH + a_csName;
 
     handle_t hHandle = ::sem_open(sUnixName.c_str(), O_RDWR, 0777, 1U);
-    /*DEBUG*/xTEST_DIFF(SEM_FAILED, hHandle);
+    xTEST_DIFF(SEM_FAILED, hHandle);
 
     _m_hHandle = hHandle;
     _m_sName   = sUnixName;
@@ -121,13 +121,13 @@ CxIpcMutex::vLock(
     const ulong_t &a_culTimeoutMsec
 ) const
 {
-    /////*DEBUG*/xTEST_EQ(true, _m_hHandle.bIsValid(), false);
-    /*DEBUG*///culTimeout - n/a
+    ////xTEST_EQ(true, _m_hHandle.bIsValid(), false);
+    //culTimeout - n/a
 
 #if   xOS_ENV_WIN
     DWORD ulRv = ::WaitForSingleObject(_m_hHandle.hGet(), a_culTimeoutMsec);
-    /*DEBUG*/xTEST_EQ(WAIT_OBJECT_0, ulRv);
-    /*DEBUG*/xTEST_DIFF(WAIT_ABANDONED, ulRv);
+    xTEST_EQ(WAIT_OBJECT_0, ulRv);
+    xTEST_DIFF(WAIT_ABANDONED, ulRv);
 #elif xOS_ENV_UNIX
     struct _SFunctor {
         static void
@@ -153,7 +153,7 @@ CxIpcMutex::vLock(
     // add msec to struct timespec
     {
         iRv = ::clock_gettime(CLOCK_REALTIME, &tmsTimeout);
-        /*DEBUG*/xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(- 1, iRv);
 
         (void)_SFunctor::timespec_addms(&tmsTimeout, a_culTimeoutMsec);
     }
@@ -176,14 +176,14 @@ CxIpcMutex::vLock(
 //---------------------------------------------------------------------------
 void
 CxIpcMutex::vUnlock() const {
-    /////*DEBUG*/xTEST_EQ(true, _m_hHandle.bIsValid(), false);
+    ////xTEST_EQ(true, _m_hHandle.bIsValid(), false);
 
 #if   xOS_ENV_WIN
     BOOL blRes = ::ReleaseMutex(_m_hHandle.hGet());
-    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
+    xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     int iRv = ::sem_post(_m_hHandle);
-    /*DEBUG*/xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(- 1, iRv);
 #endif
 }
 //---------------------------------------------------------------------------

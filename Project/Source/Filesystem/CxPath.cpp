@@ -38,7 +38,7 @@ CxPath::sExe() {
     sRv.resize(xPATH_MAX);
 
     DWORD dwStored = ::GetModuleFileName(NULL, &sRv.at(0), sRv.size());
-    /*DEBUG*/xTEST_DIFF(0UL, dwStored);
+    xTEST_DIFF(0UL, dwStored);
 
     sRv.resize(dwStored);
 #elif xOS_ENV_UNIX
@@ -53,7 +53,7 @@ CxPath::sExe() {
 
         for ( ; ; ) {
             iReaded = ::readlink(csProcFile.c_str(), &sRv.at(0), sRv.size() * sizeof(std::tstring_t::value_type));
-            /*DEBUG*/xTEST_DIFF(- 1, iReaded);
+            xTEST_DIFF(- 1, iReaded);
 
             xCHECK_DO(sRv.size() * sizeof(std::tstring_t::value_type) > static_cast<size_t>( iReaded ), break);
 
@@ -69,23 +69,23 @@ CxPath::sExe() {
             size_t  uiBuffSize           = sizeof(szBuff) - 1;
 
             int iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), szBuff, &uiBuffSize, NULL, 0U);
-            /*DEBUG*/xTEST_DIFF(- 1, iRv);
+            xTEST_DIFF(- 1, iRv);
 
             sRv.assign(szBuff);
         #else
             std::vec_tstring_t vsArgs;
 
             bool bRv = CxCommandLine::bGetArgs(&vsArgs);
-            /*DEBUG*/xTEST_EQ(true, bRv,                       std::tstring_t());
-            /*DEBUG*/xTEST_EQ(false, vsArgs.empty(),            std::tstring_t());
-            /*DEBUG*/xTEST_EQ(false, bIsAbsolute(vsArgs.at(0)));
+            xTEST_EQ(true, bRv,                       std::tstring_t());
+            xTEST_EQ(false, vsArgs.empty(),            std::tstring_t());
+            xTEST_EQ(false, bIsAbsolute(vsArgs.at(0)));
 
             sRv = sGetAbsolute(vsArgs.at(0));
         #endif
     #endif
 #endif
 
-    /*DEBUG*/xTEST_EQ(true, CxFile::bIsExists(sRv));
+    xTEST_EQ(true, CxFile::bIsExists(sRv));
 
     return sRv;
 }
@@ -99,7 +99,7 @@ CxPath::sExe() {
 /* static */
 std::tstring_t
 CxPath::sDll() {
-    /*DEBUG*/
+    
 
     std::tstring_t sRv;
 
@@ -107,7 +107,7 @@ CxPath::sDll() {
     sRv.resize(xPATH_MAX);
 
     DWORD ulStored = ::GetModuleFileName(reinterpret_cast<HINSTANCE>( &__ImageBase ), &sRv.at(0), sRv.size());
-    /*DEBUG*/xTEST_DIFF(0UL, ulStored);
+    xTEST_DIFF(0UL, ulStored);
 
     sRv.resize(ulStored);
 #elif xOS_ENV_UNIX
@@ -137,11 +137,11 @@ CxPath::sDrive(
     const std::tstring_t &csFilePath
 )
 {
-    /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
+    xTEST_EQ(false, csFilePath.empty());
 
     size_t uiDriveDelimPos = csFilePath.find(CxConst::xCOLON);
-    /*DEBUG*/xTEST_DIFF(std::tstring_t::npos, uiDriveDelimPos);
-    /*DEBUG*/xTEST_EQ(1U, uiDriveDelimPos);
+    xTEST_DIFF(std::tstring_t::npos, uiDriveDelimPos);
+    xTEST_EQ(1U, uiDriveDelimPos);
 
     return csFilePath.substr(0, uiDriveDelimPos + CxConst::xCOLON.size());
 }
@@ -154,7 +154,7 @@ CxPath::sDir(
     const std::tstring_t &csFilePath
 )
 {
-    /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
+    xTEST_EQ(false, csFilePath.empty());
 
     size_t uiSlashPos = csFilePath.rfind(CxConst::xSLASH, csFilePath.size());
     xCHECK_RET(std::tstring_t::npos == uiSlashPos, std::tstring_t());
@@ -168,7 +168,7 @@ CxPath::sDirName(
     const std::tstring_t &csFilePath
 )
 {
-    /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
+    xTEST_EQ(false, csFilePath.empty());
 
     size_t uiSlashPos2 = csFilePath.rfind(CxConst::xSLASH);
     xCHECK_RET(std::tstring_t::npos == uiSlashPos2, std::tstring_t());
@@ -187,7 +187,7 @@ CxPath::sFileName(
     const std::tstring_t &csFilePath
 )
 {
-    /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
+    xTEST_EQ(false, csFilePath.empty());
 
     size_t uiSlashPos = csFilePath.rfind(CxConst::xSLASH, csFilePath.size());
     xCHECK_RET(std::tstring_t::npos == uiSlashPos, csFilePath);
@@ -201,7 +201,7 @@ CxPath::sFileBaseName(
     const std::tstring_t &csFilePath
 )
 {
-    /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
+    xTEST_EQ(false, csFilePath.empty());
 
     size_t uiSlashPos = csFilePath.rfind(CxConst::xSLASH, csFilePath.size());
     size_t uiDotPos   = csFilePath.rfind(CxConst::xDOT,   csFilePath.size());
@@ -215,7 +215,7 @@ CxPath::sExt(
     const std::tstring_t &csFilePath
 )
 {
-    /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
+    xTEST_EQ(false, csFilePath.empty());
 
     size_t uiDotPos   = csFilePath.rfind(CxConst::xDOT,   csFilePath.size());
     xCHECK_RET(std::tstring_t::npos == uiDotPos, std::tstring_t());
@@ -264,16 +264,16 @@ CxPath::sSetDrive(
     const std::tstring_t &csDrivePath
 )
 {
-    /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
-    /*DEBUG*/// csDrivePath
+    xTEST_EQ(false, csFilePath.empty());
+    // csDrivePath
 
     std::tstring_t sRv(csFilePath);
 
     std::tstring_t sDriveStr = sDrive(sRv);
-    /*DEBUG*/xTEST_EQ(false, sDriveStr.empty());
+    xTEST_EQ(false, sDriveStr.empty());
 
     size_t uiPos = sRv.find(sDriveStr);
-    /*DEBUG*/xTEST_DIFF(std::tstring_t::npos, uiPos);
+    xTEST_DIFF(std::tstring_t::npos, uiPos);
 
     return sRv.replace(uiPos, sDriveStr.size(), csDrivePath);
 }
@@ -287,16 +287,16 @@ CxPath::sSetDir(
     const std::tstring_t &csDirPath
 )
 {
-    /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
-    /*DEBUG*/// csDirPath
+    xTEST_EQ(false, csFilePath.empty());
+    // csDirPath
 
     std::tstring_t sRv(csFilePath);
 
     std::tstring_t sDirStr = sDir(sRv);
-    /*DEBUG*/xTEST_EQ(false, sDirStr.empty());
+    xTEST_EQ(false, sDirStr.empty());
 
     size_t uiPos = sRv.find(sDirStr);
-    /*DEBUG*/xTEST_DIFF(std::tstring_t::npos, uiPos);
+    xTEST_DIFF(std::tstring_t::npos, uiPos);
 
     return sRv.replace(uiPos, sDirStr.size(), sSlashRemove(csDirPath));
 }
@@ -308,16 +308,16 @@ CxPath::sSetFileName(
     const std::tstring_t &csFullName
 )
 {
-    /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
-    /*DEBUG*/// csFullName
+    xTEST_EQ(false, csFilePath.empty());
+    // csFullName
 
     std::tstring_t sRv(csFilePath);
 
     std::tstring_t sFullName = sFileName(sRv);
-    /*DEBUG*/xTEST_EQ(false, sFullName.empty());
+    xTEST_EQ(false, sFullName.empty());
 
     size_t uiPos = sRv.rfind(sFullName);
-    /*DEBUG*/xTEST_DIFF(std::tstring_t::npos, uiPos);
+    xTEST_DIFF(std::tstring_t::npos, uiPos);
 
     return sRv.replace(uiPos, sFullName.size(), csFullName);
 }
@@ -329,16 +329,16 @@ CxPath::sSetFileBaseName(
     const std::tstring_t &csName
 )
 {
-    /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
-    /*DEBUG*/// csName
+    xTEST_EQ(false, csFilePath.empty());
+    // csName
 
     std::tstring_t sRv(csFilePath);
 
     std::tstring_t sName = sFileBaseName(sRv);
-    /*DEBUG*/xTEST_EQ(false, sName.empty());
+    xTEST_EQ(false, sName.empty());
 
     size_t uiPos = sRv.rfind(sName);
-    /*DEBUG*/xTEST_DIFF(std::tstring_t::npos, uiPos);
+    xTEST_DIFF(std::tstring_t::npos, uiPos);
 
     return sRv.replace(uiPos, sName.size(), csName);
 }
@@ -350,8 +350,8 @@ CxPath::sSetExt(
     const std::tstring_t &csExt
 )
 {
-    /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
-    /*DEBUG*/// csExt - n/a
+    xTEST_EQ(false, csFilePath.empty());
+    // csExt - n/a
 
     return sRemoveExt(csFilePath) + CxConst::xDOT + csExt;
 }
@@ -365,7 +365,7 @@ CxPath::sRemoveExt(
     const std::tstring_t &csFilePath
 )
 {
-    /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
+    xTEST_EQ(false, csFilePath.empty());
 
     size_t uiDotPos = csFilePath.rfind(CxConst::xDOT);
 
@@ -379,13 +379,13 @@ CxPath::sRemoveExtIf(
     const std::tstring_t &csExt
 )
 {
-    /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
+    xTEST_EQ(false, csFilePath.empty());
 
     size_t uiExtPos = csFilePath.rfind(CxConst::xDOT + csExt);
     xCHECK_RET(std::tstring_t::npos == uiExtPos, csFilePath);
 
     size_t uiDotPos = csFilePath.rfind(CxConst::xDOT);
-    /*DEBUG*/xTEST_DIFF(std::tstring_t::npos, uiDotPos);
+    xTEST_DIFF(std::tstring_t::npos, uiDotPos);
 
     return csFilePath.substr(0, uiDotPos);
 }
@@ -397,7 +397,7 @@ CxPath::bIsValid(
     const std::tstring_t &csFilePath
 )
 {
-    /*DEBUG*/// csFileName - n/a
+    // csFileName - n/a
 
     bool bRv = false;
 
@@ -419,7 +419,7 @@ CxPath::bIsNameValid(
     const std::tstring_t &csFilePath
 )
 {
-    /*DEBUG*/// csFileName - n/a
+    // csFileName - n/a
 
     bool bRv = false;
 
@@ -463,7 +463,7 @@ CxPath::sSetValidName(
     const std::tstring_t &csFileName
 )
 {
-    /*DEBUG*/// n/a
+    // n/a
 
     std::tstring_t sRv(csFileName);
 
@@ -533,8 +533,8 @@ CxPath::sToWin(
     const bool           &cbIsSlashAtEnd
 )
 {
-    /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
-    /*DEBUG*/// bIsSlashAtEnd - n/a
+    xTEST_EQ(false, csFilePath.empty());
+    // bIsSlashAtEnd - n/a
 
     std::tstring_t sRv;
 
@@ -556,8 +556,8 @@ CxPath::sToUnix(
     const bool           &cbIsSlashAtEnd
 )
 {
-    /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
-    /*DEBUG*/// bIsSlashAtEnd - n/a
+    xTEST_EQ(false, csFilePath.empty());
+    // bIsSlashAtEnd - n/a
 
     std::tstring_t sRv;
 
@@ -579,8 +579,8 @@ CxPath::sToCurrentOs(
     const bool           &cbIsSlashAtEnd
 )
 {
-    /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
-    /*DEBUG*/// bIsSlashAtEnd - n/a
+    xTEST_EQ(false, csFilePath.empty());
+    // bIsSlashAtEnd - n/a
 
     std::tstring_t sRv;
 
@@ -605,7 +605,7 @@ CxPath::sAbsolute(
     const std::tstring_t &csFilePath
 )
 {
-    /*DEBUG*/
+    
 
     std::tstring_t sRv;
 
@@ -614,12 +614,12 @@ CxPath::sAbsolute(
     std::tstring_t sBuff;
 
     ulRv = ::GetFullPathName(&csFilePath.at(0), 0, NULL, NULL);
-    /*DEBUG*/xTEST_DIFF(0UL, ulRv);
+    xTEST_DIFF(0UL, ulRv);
 
     sBuff.resize(ulRv);
 
     ulRv = ::GetFullPathName(&csFilePath.at(0), sBuff.size(), &sBuff.at(0), NULL);
-    /*DEBUG*/xTEST_DIFF(0UL, ulRv);
+    xTEST_DIFF(0UL, ulRv);
 
     sBuff.resize(ulRv);
 
@@ -630,12 +630,12 @@ CxPath::sAbsolute(
     sBuff.resize(xPATH_MAX);
 
     tchar_t *pszRes = ::realpath(&csFilePath.at(0), &sBuff.at(0));
-    /*DEBUG*/xTEST_PTR(pszRes);
+    xTEST_PTR(pszRes);
 
     sRv.assign(pszRes);
 #endif
 
-    /*DEBUG*/xTEST_EQ(true, bIsAbsolute(sRv));
+    xTEST_EQ(true, bIsAbsolute(sRv));
 
     return sRv;
 }
@@ -647,8 +647,8 @@ CxPath::sShortName(
     const size_t         &cuiMaxSize
 )
 {
-    /*DEBUG*/xTEST_EQ(false, csFileName.empty());
-    /*DEBUG*/xTEST_LESS(size_t(0), cuiMaxSize);
+    xTEST_EQ(false, csFileName.empty());
+    xTEST_LESS(size_t(0), cuiMaxSize);
 
     std::tstring_t sRv;
 
@@ -681,8 +681,8 @@ CxPath::sShort(
     const size_t         &cuiMaxSize
 )
 {
-    /*DEBUG*/xTEST_EQ(false, csFilePath.empty());
-    /*DEBUG*/xTEST_LESS(size_t(0), cuiMaxSize);
+    xTEST_EQ(false, csFilePath.empty());
+    xTEST_LESS(size_t(0), cuiMaxSize);
 
     // util fuction
     struct _SSlashes
@@ -740,7 +740,7 @@ CxPath::sSlashAppend(
     const std::tstring_t &csDirPath
 )
 {
-    /*DEBUG*/xTEST_EQ(false, csDirPath.empty());
+    xTEST_EQ(false, csDirPath.empty());
 
     return CxString::sTrimRightChars(csDirPath, CxConst::xSLASH).append(CxConst::xSLASH);
 }
@@ -751,7 +751,7 @@ CxPath::sSlashRemove(
     const std::tstring_t &csDirPath
 )
 {
-    /*DEBUG*/xTEST_EQ(false, csDirPath.empty());
+    xTEST_EQ(false, csDirPath.empty());
 
     return CxString::sTrimRightChars(csDirPath, CxConst::xSLASH);
 }
@@ -759,7 +759,7 @@ CxPath::sSlashRemove(
 /* static */
 size_t
 CxPath::uiMaxSize() {
-    /*DEBUG*/
+    
 
     size_t uiRes = 0;
 
@@ -783,7 +783,7 @@ CxPath::uiMaxSize() {
 
         liRv       = ::pathconf("/", _PC_PATH_MAX);
         ulLastError = CxLastError::ulGet();
-        /*DEBUG*/xTEST_EQ(true, - 1L == liRv && 0UL != culSavedError);
+        xTEST_EQ(true, - 1L == liRv && 0UL != culSavedError);
 
         if (- 1L == liRv && culSavedError == ulLastError) {
             //system does not have a limit for the requested resource
@@ -803,7 +803,7 @@ CxPath::uiMaxSize() {
 /* static */
 size_t
 CxPath::uiNameMaxSize() {
-    /*DEBUG*/
+    
 
     size_t uiRes = 0;
 
@@ -827,7 +827,7 @@ CxPath::uiNameMaxSize() {
 
         liRv       = ::pathconf("/", _PC_NAME_MAX);
         ulLastError = CxLastError::ulGet();
-        /*DEBUG*/xTEST_EQ(true, - 1L == liRv && 0UL != culSavedError);
+        xTEST_EQ(true, - 1L == liRv && 0UL != culSavedError);
 
         if (- 1L == liRv && culSavedError == ulLastError) {
             //system does not have a limit for the requested resource
@@ -890,11 +890,11 @@ CxPath::sProcValue(
     std::tstring_t   sRv;
 
     std::tifstream_t ifsStream(csProcPath.c_str());
-    /*DEBUG*/xTEST_EQ(true,  !! ifsStream);
-    /*DEBUG*/xTEST_EQ(false, ifsStream.fail());
-    /*DEBUG*/xTEST_EQ(true,  ifsStream.good());
-    /*DEBUG*/xTEST_EQ(true,  ifsStream.is_open());
-    /*DEBUG*/xTEST_EQ(false, ifsStream.eof());
+    xTEST_EQ(true,  !! ifsStream);
+    xTEST_EQ(false, ifsStream.fail());
+    xTEST_EQ(true,  ifsStream.good());
+    xTEST_EQ(true,  ifsStream.is_open());
+    xTEST_EQ(false, ifsStream.eof());
 
     for ( ; !ifsStream.eof(); ) {
         std::tstring_t sLine;
@@ -907,7 +907,7 @@ CxPath::sProcValue(
 
         // parse value
         size_t uiDelimPos = sLine.find(xT(":"));
-        /*DEBUG*/xTEST_DIFF(std::string::npos, uiDelimPos);
+        xTEST_DIFF(std::string::npos, uiDelimPos);
 
         sRv = sLine.substr(uiDelimPos + 1);
         sRv = CxString::sTrimSpace(sRv);

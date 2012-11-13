@@ -36,10 +36,10 @@ CxInfo::vGet(
     CK_INFO_PTR a_pInfo  ///< location that receives information
 )
 {
-    /*DEBUG*/
+    
 
     CK_RV ulRv = _m_pFunc->C_GetInfo(a_pInfo);
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
@@ -48,10 +48,10 @@ CxInfo::vToken(
     CK_TOKEN_INFO_PTR a_pInfo    ///< receives the token information
 )
 {
-    /*DEBUG*/
+    
 
     CK_RV ulRv = _m_pFunc->C_GetTokenInfo(a_slotID, a_pInfo);
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 

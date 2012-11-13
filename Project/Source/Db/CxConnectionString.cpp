@@ -26,10 +26,10 @@ CxConnectionString::sMSJetOleDb40(
     const std::tstring_t &a_csDatabasePassword
 )
 {
-    /*DEBUG*/xTEST_EQ(false, CxString::sTrimSpace(a_csDataSource).empty());
-    /*DEBUG*/// csPassword         - n/a
-    /*DEBUG*/// csUserId           - n/a
-    /*DEBUG*/// csDatabasePassword - n/a
+    xTEST_EQ(false, CxString::sTrimSpace(a_csDataSource).empty());
+    // csPassword         - n/a
+    // csUserId           - n/a
+    // csDatabasePassword - n/a
 
     std::tstring_t sRv;
 

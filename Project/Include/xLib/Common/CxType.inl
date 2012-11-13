@@ -24,7 +24,7 @@ CxType::sRawName(
     const T &cObjectT
 )
 {
-    /*DEBUG*/// n/a
+    // n/a
 
     std::tstring_t sRv;
 
@@ -44,7 +44,7 @@ CxType::sName(
     const T &cObjectT
 )
 {
-    /*DEBUG*/// n/a
+    // n/a
 
     std::tstring_t sRv;
 
@@ -76,7 +76,7 @@ CxType::bIsEquals(
     const T2 &cObjectT2
 )
 {
-    /*DEBUG*/// n/a
+    // n/a
 
     return ( sRawName(cObjectT1) == sRawName(cObjectT2) );
 }

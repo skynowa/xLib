@@ -42,21 +42,21 @@ CxProfiler::vSetLogPath(
     const std::tstring_t &a_csLogPath
 )
 {
-    /*DEBUG*/
+    
 
     _flLog.vSetFilePath(a_csLogPath);
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxProfiler::sLogPath() const {
-    /*DEBUG*/
+    
 
     return _flLog.sFilePath();
 }
 //--------------------------------------------------------------------------
 void
 CxProfiler::vStart() {
-    /*DEBUG*/xTEST_EQ(false, _m_bIsStarted);
+    xTEST_EQ(false, _m_bIsStarted);
 
     _vDataReset();
 
@@ -70,13 +70,13 @@ CxProfiler::vStart() {
     switch (_m_pmModeNow) {
         case pmStdClock: {
                 _m_ctClocksStart = xSTD_CLOCK();
-                /*DEBUG*/xTEST_DIFF(static_cast<clock_t>( - 1 ), _m_ctClocksStart);
+                xTEST_DIFF(static_cast<clock_t>( - 1 ), _m_ctClocksStart);
             }
             break;
 
         case pmDateTime: {
                 _m_dtTimesStart = CxDateTime::dtCurrent();
-                /*DEBUG*/// n/a
+                // n/a
             }
             break;
 
@@ -92,7 +92,7 @@ CxProfiler::vStart() {
         case pmSystemTicks: {
                 #if   xOS_ENV_WIN
                     _m_ulTicksStartMs = ::GetTickCount();
-                    /*DEBUG*/// n/a
+                    // n/a
                 #elif xOS_ENV_UNIX
                     ulong_t        ulTicks = 0;
 	                struct timeval tvNow   = {0};
@@ -109,22 +109,22 @@ CxProfiler::vStart() {
         #if xOS_ENV_WIN
             case pmPerformanceCount: {
                     BOOL blRes = ::QueryPerformanceFrequency(&_m_liCountersPerfFreq);
-                    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
+                    xTEST_DIFF(FALSE, blRes);
 
                     blRes = ::QueryPerformanceCounter(&_m_liCountersStart);
-                    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
+                    xTEST_DIFF(FALSE, blRes);
                 }
                 break;
 
             case pmThreadTimes: {    // BUG: pmThreadTimes
                     BOOL blRes = ::GetThreadTimes(CxCurrentThread::hHandle(), &_m_lpCreationTime, &_m_lpExitTime, &_m_lpKernelTimeStart, &_m_lpUserTimeStart);
-                    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
+                    xTEST_DIFF(FALSE, blRes);
                 }
                 break;
         #endif
 
         default: {
-                /*DEBUG*/xTEST_FAIL;
+                xTEST_FAIL;
             }
             break;
     }
@@ -137,14 +137,14 @@ CxProfiler::vStop(
     const tchar_t *a_pcszComment, ...
 )
 {
-    /*DEBUG*/xTEST_EQ(true, _m_bIsStarted);
+    xTEST_EQ(true, _m_bIsStarted);
 
     std::tstring_t sTimeString = xT("0:00:00:000");
 
     switch (_m_pmModeNow) {
         case pmStdClock: {
                 _m_ctClocksStop = xSTD_CLOCK();
-                /*DEBUG*/xTEST_DIFF(static_cast<clock_t>( - 1 ), _m_ctClocksStop);
+                xTEST_DIFF(static_cast<clock_t>( - 1 ), _m_ctClocksStop);
 
                 sTimeString = CxDateTime( static_cast<double>((_m_ctClocksStop - _m_ctClocksStart)) / CLOCKS_PER_SEC ).sFormat(CxDateTime::ftTime);
 
@@ -155,7 +155,7 @@ CxProfiler::vStop(
 
         case pmDateTime: {
                 _m_dtTimesStop = CxDateTime::dtCurrent();
-                /*DEBUG*/// n/a
+                // n/a
 
                 sTimeString = (_m_dtTimesStop - _m_dtTimesStart).sFormat(CxDateTime::ftTime);
             }
@@ -174,7 +174,7 @@ CxProfiler::vStop(
         case pmSystemTicks: {
                     #if   xOS_ENV_WIN
                         _m_ulTicksStopMs = ::GetTickCount();
-                        /*DEBUG*/// n/a
+                        // n/a
                     #elif xOS_ENV_UNIX
                         ulong_t        ulTicks = 0;
 	                    struct timeval tvNow   = {0};
@@ -193,7 +193,7 @@ CxProfiler::vStop(
         #if xOS_ENV_WIN
             case pmPerformanceCount: {
                     BOOL blRes = ::QueryPerformanceCounter(&_m_liCountersStop);
-                    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
+                    xTEST_DIFF(FALSE, blRes);
 
                     sTimeString = CxDateTime((_m_liCountersStop.QuadPart - _m_liCountersStart.QuadPart) * 1000 / _m_liCountersPerfFreq.QuadPart).sFormat(CxDateTime::ftTime);
                 }
@@ -201,7 +201,7 @@ CxProfiler::vStop(
 
             case pmThreadTimes: {    // BUG: pmThreadTimes
                     BOOL blRes = ::GetThreadTimes(CxCurrentThread::hHandle(), &_m_lpCreationTime, &_m_lpExitTime, &_m_lpKernelTimeStop, &_m_lpUserTimeStop);
-                    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
+                    xTEST_DIFF(FALSE, blRes);
 
                     sTimeString = CxDateTime((CxDateTime::i64FiletimeToInt64(_m_lpUserTimeStop) - CxDateTime::i64FiletimeToInt64(_m_lpUserTimeStart)) / 10000).sFormat(CxDateTime::ftTime);
                 }
@@ -209,7 +209,7 @@ CxProfiler::vStop(
         #endif
 
         default: {
-                /*DEBUG*/xTEST_FAIL;
+                xTEST_FAIL;
             }
             break;
     }

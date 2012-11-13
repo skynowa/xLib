@@ -32,7 +32,7 @@ CxIpcSemaphore::CxIpcSemaphore() :
 #endif
     _m_sName  ()
 {
-    /*DEBUG*/xTEST_EQ(false, _bIsValid());
+    xTEST_EQ(false, _bIsValid());
 
 #if   xOS_ENV_WIN
     xNA;
@@ -42,13 +42,13 @@ CxIpcSemaphore::CxIpcSemaphore() :
 }
 //---------------------------------------------------------------------------
 CxIpcSemaphore::~CxIpcSemaphore() {
-    /*DEBUG*/xTEST_EQ(true, _bIsValid());
+    xTEST_EQ(true, _bIsValid());
 
 #if   xOS_ENV_WIN
     xNA;
 #elif xOS_ENV_UNIX
     int iRv = ::sem_close(_m_hHandle);  _m_hHandle = NULL;
-    /*DEBUG*/xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(- 1, iRv);
 
     // sem_destroy
     // sem_unlink
@@ -57,7 +57,7 @@ CxIpcSemaphore::~CxIpcSemaphore() {
 //---------------------------------------------------------------------------
 const CxIpcSemaphore::handle_t &
 CxIpcSemaphore::hHandle() const {
-    /*DEBUG*/xTEST_EQ(true, _bIsValid());
+    xTEST_EQ(true, _bIsValid());
 
     return _m_hHandle;
 }
@@ -68,9 +68,9 @@ CxIpcSemaphore::vCreate(
     const std::tstring_t &a_csName
 )
 {
-    /*DEBUG*/xTEST_EQ(false, _bIsValid());
-    /*DEBUG*/xTEST_GR(CxPath::uiMaxSize(), a_csName.size());
-    /*DEBUG*/xTEST_EQ(true, 0L <= a_cliInitialValue && a_cliInitialValue <= xSEMAPHORE_VALUE_MAX);
+    xTEST_EQ(false, _bIsValid());
+    xTEST_GR(CxPath::uiMaxSize(), a_csName.size());
+    xTEST_EQ(true, 0L <= a_cliInitialValue && a_cliInitialValue <= xSEMAPHORE_VALUE_MAX);
 
 #if   xOS_ENV_WIN
     const tchar_t  *pcszWinName = NULL;
@@ -85,8 +85,8 @@ CxIpcSemaphore::vCreate(
 
     HANDLE  hRv         = ::CreateSemaphore(NULL, a_cliInitialValue, xSEMAPHORE_VALUE_MAX, pcszWinName);
     ulong_t ulLastError = CxLastError::ulGet();
-    /*DEBUG*/xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
-    /*DEBUG*/xTEST_DIFF(ulLastError, static_cast<ulong_t>( ERROR_ALREADY_EXISTS ));
+    xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
+    xTEST_DIFF(ulLastError, static_cast<ulong_t>( ERROR_ALREADY_EXISTS ));
 
     _m_hHandle.vSet(hRv);
     _m_sName = a_csName;
@@ -94,7 +94,7 @@ CxIpcSemaphore::vCreate(
     std::tstring_t sUnixName = CxConst::xUNIX_SLASH + a_csName;
 
     handle_t hHandle = ::sem_open(sUnixName.c_str(), O_CREAT | O_RDWR, 0777, a_cliInitialValue);
-    /*DEBUG*/xTEST_DIFF(SEM_FAILED, hHandle);
+    xTEST_DIFF(SEM_FAILED, hHandle);
 
     _m_hHandle = hHandle;
     _m_sName   = sUnixName;
@@ -106,8 +106,8 @@ CxIpcSemaphore::vOpen(
     const std::tstring_t &a_csName
 )
 {
-    /*DEBUG*/xTEST_EQ(true, _bIsValid());
-    /*DEBUG*///csName    - n/a
+    xTEST_EQ(true, _bIsValid());
+    //csName    - n/a
 
 #if   xOS_ENV_WIN
     const tchar_t *pcszWinName = NULL;
@@ -121,7 +121,7 @@ CxIpcSemaphore::vOpen(
     }
 
     HANDLE hRv = ::OpenSemaphore(SEMAPHORE_ALL_ACCESS, FALSE, pcszWinName);
-    /*DEBUG*/xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
+    xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
 
     _m_hHandle.vSet(hRv);
     _m_sName = a_csName;
@@ -129,7 +129,7 @@ CxIpcSemaphore::vOpen(
     std::tstring_t sUnixName = CxConst::xUNIX_SLASH + a_csName;
 
     handle_t hHandle = ::sem_open(sUnixName.c_str(), O_RDWR, 0777, 0U);
-    /*DEBUG*/xTEST_DIFF(SEM_FAILED, hHandle);
+    xTEST_DIFF(SEM_FAILED, hHandle);
 
     _m_hHandle = hHandle;
     _m_sName   = sUnixName;
@@ -138,16 +138,16 @@ CxIpcSemaphore::vOpen(
 //---------------------------------------------------------------------------
 void
 CxIpcSemaphore::vPost() const {
-    /*DEBUG*/xTEST_EQ(true, _bIsValid());
+    xTEST_EQ(true, _bIsValid());
 
 #if   xOS_ENV_WIN
    const LONG cliPostValue = 1L;
 
    BOOL blRes = ::ReleaseSemaphore(_m_hHandle.hGet(), cliPostValue, NULL);
-   /*DEBUG*/xTEST_DIFF(FALSE, blRes);
+   xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     int iRv = ::sem_post(_m_hHandle);
-    /*DEBUG*/xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(- 1, iRv);
 #endif
 }
 //---------------------------------------------------------------------------
@@ -156,12 +156,12 @@ CxIpcSemaphore::vWait(
     const ulong_t &a_culTimeoutMsec
 ) const
 {
-    /*DEBUG*/xTEST_EQ(true, _bIsValid());
-    /*DEBUG*///ulTimeout - n/a
+    xTEST_EQ(true, _bIsValid());
+    //ulTimeout - n/a
 
 #if   xOS_ENV_WIN
     DWORD dwRv = ::WaitForSingleObject(_m_hHandle.hGet(), a_culTimeoutMsec);
-    /*DEBUG*/xTEST_EQ(WAIT_OBJECT_0, dwRv);
+    xTEST_EQ(WAIT_OBJECT_0, dwRv);
 #elif xOS_ENV_UNIX
     struct _SFunctor {
         static void
@@ -187,7 +187,7 @@ CxIpcSemaphore::vWait(
     // add msec to struct timespec
     {
         iRv = ::clock_gettime(CLOCK_REALTIME, &tmsTimeout);
-        /*DEBUG*/xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(- 1, iRv);
 
         (void)_SFunctor::timespec_addms(&tmsTimeout, a_culTimeoutMsec);
     }
@@ -221,7 +221,7 @@ CxIpcSemaphore::vWait(
 //---------------------------------------------------------------------------
 long_t
 CxIpcSemaphore::liValue() const {
-    /*DEBUG*/xTEST_EQ(true, _bIsValid());
+    xTEST_EQ(true, _bIsValid());
 
     long_t liRv = - 1L;
 
@@ -229,12 +229,12 @@ CxIpcSemaphore::liValue() const {
     const LONG cliPostValue = 0L;
 
     BOOL blRv = ::ReleaseSemaphore(_m_hHandle.hGet(), cliPostValue, &liRv);
-    /*DEBUG*/xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(FALSE, blRv);
 #elif xOS_ENV_UNIX
     int iValue = - 1;
 
     int iRv = ::sem_getvalue(_m_hHandle, &iValue);
-    /*DEBUG*/xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(- 1, iRv);
 
     liRv = iValue;
 #endif

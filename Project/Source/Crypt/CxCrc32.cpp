@@ -25,8 +25,8 @@ CxCrc32::ulCalc(
     const ulong_t &a_culSize
 )
 {
-    /*DEBUG*/xTEST_PTR(a_pucBuff);
-    /*DEBUG*/xTEST_LESS(0UL, a_culSize);
+    xTEST_PTR(a_pucBuff);
+    xTEST_LESS(0UL, a_culSize);
 
     ulong_t crc            = 0;
     ulong_t crc_table[256] = {0};
@@ -56,7 +56,7 @@ CxCrc32::ulCalcFile(
     const std::tstring_t &a_csFilePath
 )
 {
-    /*DEBUG*/xTEST_EQ(false, a_csFilePath.empty());
+    xTEST_EQ(false, a_csFilePath.empty());
 
     ulong_t ulRv = 0;
 
@@ -79,8 +79,8 @@ CxCrc32::ulCalcFast(
     const ulong_t &a_culSize
 )
 {
-    /*DEBUG*/xTEST_PTR(a_pucBuff);
-    /*DEBUG*/xTEST_LESS(0UL, a_culSize);
+    xTEST_PTR(a_pucBuff);
+    xTEST_LESS(0UL, a_culSize);
 
     ulong_t crc            = 0;
     ulong_t crc_table[256] = {
@@ -181,7 +181,7 @@ CxCrc32::ulCalcFileFast(
     const std::tstring_t &a_csFilePath
 )
 {
-    /*DEBUG*/xTEST_EQ(false, a_csFilePath.empty());
+    xTEST_EQ(false, a_csFilePath.empty());
 
     ulong_t ulRv = 0;
 
@@ -203,7 +203,7 @@ CxCrc32::sFormatHex(
     const ulong_t &a_culCrc32
 )
 {
-    /*DEBUG*/
+    
 
     std::tstring_t      sRv;
     const size_t uiCrc32Size = 8;
@@ -214,7 +214,7 @@ CxCrc32::sFormatHex(
     if (0 != uiAdditionalZeros) {
         sRv.insert(0, uiAdditionalZeros, xT('0'));
     }
-    /*DEBUG*/xTEST_EQ(uiCrc32Size, sRv.size());
+    xTEST_EQ(uiCrc32Size, sRv.size());
 
     return sRv;
 }

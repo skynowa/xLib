@@ -42,10 +42,10 @@ CxDecrypt::vInit(
     CK_OBJECT_HANDLE a_hKey         ///< handle of decryption key
 )
 {
-    /*DEBUG*/
+    
 
     CK_RV ulRv = _m_pFunc->C_DecryptInit(_m_hSession, a_pMechanism, a_hKey);
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
@@ -56,10 +56,10 @@ CxDecrypt::vMake(
     CK_ULONG_PTR a_pulDataLen          ///< gets p-text size
 )
 {
-    /*DEBUG*/
+    
 
     CK_RV ulRv = _m_pFunc->C_Decrypt(_m_hSession, a_pEncryptedData, a_ulEncryptedDataLen, a_pData, a_pulDataLen);
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
@@ -70,10 +70,10 @@ CxDecrypt::vUpdate(
     CK_ULONG_PTR a_pulPartLen           ///< p-text size
 )
 {
-    /*DEBUG*/
+    
 
     CK_RV ulRv = _m_pFunc->C_DecryptUpdate(_m_hSession, a_pEncryptedPart, a_ulEncryptedPartLen, a_pPart, a_pulPartLen);
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
@@ -82,10 +82,10 @@ CxDecrypt::vFinal(
     CK_ULONG_PTR a_pulLastPartLen  ///< p-text size
 )
 {
-    /*DEBUG*/
+    
 
     CK_RV ulRv = _m_pFunc->C_DecryptFinal(_m_hSession, a_pLastPart, a_pulLastPartLen );
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
@@ -96,10 +96,10 @@ CxDecrypt::vDigestUpdate(
     CK_ULONG_PTR a_pulPartLen           ///< gets plaintext len
 )
 {
-    /*DEBUG*/
+    
 
     CK_RV ulRv = _m_pFunc->C_DecryptDigestUpdate(_m_hSession, a_pEncryptedPart, a_ulEncryptedPartLen, a_pPart, a_pulPartLen);
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
@@ -110,10 +110,10 @@ CxDecrypt::vVerifyUpdate(
     CK_ULONG_PTR a_pulPartLen           ///< gets p-text length
 )
 {
-    /*DEBUG*/
+    
 
     CK_RV ulRv = _m_pFunc->C_DecryptVerifyUpdate(_m_hSession, a_pEncryptedPart, a_ulEncryptedPartLen, a_pPart, a_pulPartLen);
-    /*DEBUG*/xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 
@@ -132,10 +132,10 @@ CxDecrypt::vMakeFile(
     CK_OBJECT_HANDLE      a_hKey
 )
 {
-    /*DEBUG*/xTEST_EQ(false, a_csInFilePath.empty());
-    /*DEBUG*/xTEST_EQ(false, a_csOutFilePath.empty());
-    /*DEBUG*/xTEST_PTR(a_pMechanism);
-    /*DEBUG*/xTEST_PTR(a_hKey);
+    xTEST_EQ(false, a_csInFilePath.empty());
+    xTEST_EQ(false, a_csOutFilePath.empty());
+    xTEST_PTR(a_pMechanism);
+    xTEST_PTR(a_hKey);
 
     //-------------------------------------
     //������ ����-����� � �����
@@ -173,9 +173,9 @@ CxDecrypt::vMakeFile(
 
     //-------------------------------------
     //check that we are back where we started
-    /*DEBUG*/////xTEST_EQ(true, usRawData == usDecryptedData);
-    /*DEBUG*/////xTEST_EQ(usRawData.size(), usDecryptedData.size());
-    /*DEBUG*/////std::cout << &usDecryptedData[0] << std::endl;
+    ////xTEST_EQ(true, usRawData == usDecryptedData);
+    ////xTEST_EQ(usRawData.size(), usDecryptedData.size());
+    ////std::cout << &usDecryptedData[0] << std::endl;
 
     //-------------------------------------
     //������ ������ � ����

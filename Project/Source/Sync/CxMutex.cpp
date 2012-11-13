@@ -34,10 +34,10 @@ CxMutex::~CxMutex() {
         bRv = false;
     }
 
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    xTEST_EQ(true, bRv);
 #elif xOS_ENV_UNIX
     int iRv = ::pthread_mutex_destroy(&_m_hHandle);
-    /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 #endif
 }
 //---------------------------------------------------------------------------
@@ -54,31 +54,31 @@ CxMutex::vCreate() {
         bRv = false;
     }
 
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    xTEST_EQ(true, bRv);
 #elif xOS_ENV_UNIX
     int iRv = - 1;
 
     pthread_mutexattr_t maAttr;    // n/a {{0}}
 
     iRv = ::pthread_mutexattr_init(&maAttr);
-    /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 
     iRv = ::pthread_mutexattr_setpshared(&maAttr, PTHREAD_PROCESS_PRIVATE);
-    /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 
     // TODO: vCreate - PTHREAD_MUTEX_RECURSIVE
 #if 1
     iRv = ::pthread_mutexattr_settype(&maAttr, PTHREAD_MUTEX_RECURSIVE);
-    /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 #endif
 
     {
         iRv = ::pthread_mutex_init(&_m_hHandle, &maAttr);
-        /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+        xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
     }
 
     iRv = ::pthread_mutexattr_destroy(&maAttr);
-    /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 #endif
 }
 //---------------------------------------------------------------------------
@@ -100,10 +100,10 @@ CxMutex::vLock() {
         bRv = false;
     }
 
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    xTEST_EQ(true, bRv);
 #elif xOS_ENV_UNIX
     int iRv = ::pthread_mutex_lock(&_m_hHandle);
-    /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 #endif
 }
 //---------------------------------------------------------------------------
@@ -133,10 +133,10 @@ CxMutex::vUnlock() {
         bRv = false;
     }
 
-    /*DEBUG*/xTEST_EQ(true, bRv);
+    xTEST_EQ(true, bRv);
 #elif xOS_ENV_UNIX
     int iRv = ::pthread_mutex_unlock(&_m_hHandle);
-    /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 #endif
 }
 //---------------------------------------------------------------------------

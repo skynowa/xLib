@@ -49,7 +49,7 @@ CxEvent::~CxEvent() {
 //---------------------------------------------------------------------------
 const CxEvent::handle_t &
 CxEvent::hHandle() const {
-    /*DEBUG*/
+    
 
 #if   xOS_ENV_WIN
     return _m_hEvent;
@@ -61,14 +61,14 @@ CxEvent::hHandle() const {
 void
 CxEvent::vCreate() {
 #if   xOS_ENV_WIN
-    /*DEBUG*/xTEST_EQ(false, _m_hEvent.bIsValid());
-    /*DEBUG*/
+    xTEST_EQ(false, _m_hEvent.bIsValid());
+    
 
     HANDLE hRv = ::CreateEvent(NULL, ! _m_cbIsAutoReset, _m_cbInitState, NULL);
-    /*DEBUG*/xTEST_DIFF(static_cast<HANDLE>(NULL), hRv);
+    xTEST_DIFF(static_cast<HANDLE>(NULL), hRv);
 
     _m_hEvent.vSet(hRv);
-    /*DEBUG*/// n/a
+    // n/a
 #elif xOS_ENV_UNIX
     int iRv = - 1;
 
@@ -84,11 +84,11 @@ CxEvent::vCreate() {
 void
 CxEvent::vSet() {
 #if   xOS_ENV_WIN
-    /*DEBUG*/xTEST_EQ(true, _m_hEvent.bIsValid());
-    /*DEBUG*/
+    xTEST_EQ(true, _m_hEvent.bIsValid());
+    
 
     BOOL blRes = ::SetEvent(hHandle().hGet());
-    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
+    xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     int iRv = - 1;
 
@@ -98,10 +98,10 @@ CxEvent::vSet() {
     {
         if (true == _m_cbIsAutoReset) {
             int iRv = ::pthread_cond_signal(&_m_cndCond);
-            /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+            xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
         } else {
             int iRv = ::pthread_cond_broadcast(&_m_cndCond);
-            /*DEBUG*/xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+            xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
         }
 
         _m_bIsSignaled = true;
@@ -115,11 +115,11 @@ CxEvent::vSet() {
 void
 CxEvent::vReset() {
 #if   xOS_ENV_WIN
-    /*DEBUG*/xTEST_EQ(true, _m_hEvent.bIsValid());
-    /*DEBUG*/
+    xTEST_EQ(true, _m_hEvent.bIsValid());
+    
 
     BOOL blRes = ::ResetEvent(hHandle().hGet());
-    /*DEBUG*/xTEST_DIFF(FALSE, blRes);
+    xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     int iRv = - 1;
 
@@ -140,12 +140,12 @@ CxEvent::osWait(
     const ulong_t &a_culTimeout /* = xTIMEOUT_INFINITE */  ///< in milliseconds
 )
 {
-    /*DEBUG*/// culTimeout - n/a
+    // culTimeout - n/a
 
     ExObjectState osRes = osFailed;
 
 #if   xOS_ENV_WIN
-    /*DEBUG*/xTEST_EQ(true, _m_hEvent.bIsValid());
+    xTEST_EQ(true, _m_hEvent.bIsValid());
 
     osRes = static_cast<ExObjectState>( ::WaitForSingleObject(hHandle().hGet(), a_culTimeout) );
 #elif xOS_ENV_UNIX
@@ -164,7 +164,7 @@ CxEvent::osWait(
                 timeval tvNow  = {0};
 
                 iRv = ::gettimeofday(&tvNow, NULL);
-                /*DEBUG*/xTEST_DIFF(- 1, iRv);
+                xTEST_DIFF(- 1, iRv);
 
                 tsTimeoutMs.tv_sec  = tvNow.tv_sec + a_culTimeout / 1000;
                 tsTimeoutMs.tv_nsec = tvNow.tv_usec * 1000 + (a_culTimeout % 1000) * 1000000;
@@ -223,20 +223,20 @@ CxEvent::osWait(
     xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
 #endif
 
-    /*DEBUG*/xTEST_MSG_EQ(true, osSignaled == osRes || osTimeout == osRes, CxLastError::sFormat(osRes));
+    xTEST_MSG_EQ(true, osSignaled == osRes || osTimeout == osRes, CxLastError::sFormat(osRes));
 
     return osRes;
 }
 //---------------------------------------------------------------------------
 bool
 CxEvent::bIsSignaled() {
-    /*DEBUG*/// n/a
+    // n/a
 
     bool bRv = false;
 
 #if   xOS_ENV_WIN
     DWORD dwRv = ::WaitForSingleObject(hHandle().hGet(), 0UL);
-    /*DEBUG*/// n/a
+    // n/a
 
     bRv = (false != _m_hEvent.bIsValid() && osSignaled == dwRv);
 #elif xOS_ENV_UNIX

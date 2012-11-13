@@ -100,7 +100,7 @@ CxTest_CxDnsClient::vUnit(
         #elif xOS_ENV_UNIX
                freeaddrinfo(paiList);
         #endif
-        /*DEBUG*/// n/a
+        // n/a
     }
 
     xTEST_CASE(CxDnsClient::vProtocolByName, cullCaseLoops)
