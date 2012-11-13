@@ -9,6 +9,7 @@
 #include <xLib/Common/CxString.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
+#include <xLib/Filesystem/CxDir.h>
 
 
 xNAMESPACE_BEGIN(NxLib)
@@ -45,22 +46,22 @@ CxProcessInfo::vCurrentIds(
     }
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        DIR *pDir = ::opendir("/proc");
-        xTEST_PTR(pDir);
+        std::vec_tstring_t a_vsDirPathes;
 
-        xFOREVER {
-            struct dirent *dirp = ::readdir(pDir);
-            xCHECK_DO(NULL == dirp, break);
+        CxDir::vFindDirs(xT("/proc"), CxConst::xMASK_ALL, false, &a_vsDirPathes);
 
-            // skip non-numeric entries
-            int iId = ::atoi(dirp->d_name);
-            xCHECK_DO(0 >= iId, continue);
+        // skip non-numeric entries
+        xFOREACH_CONST(std::vec_tstring_t, it, a_vsDirPathes) {
+            int iId = 0;
+            {
+                std::tstring_t sDirName = CxPath::sFileName(*it);
+
+                iId = ::atoi(sDirName.c_str());
+                xCHECK_DO(0 >= iId, continue);
+            }
 
             vidRv.push_back( static_cast<CxProcess::id_t>( iId )) ;
         }
-
-        int iRv = ::closedir(pDir); pDir = NULL;
-        xTEST_DIFF(- 1, iRv);
     #elif xOS_FREEBSD
         int    aiMib[3]   = {CTL_KERN, KERN_PROC, KERN_PROC_ALL};
         size_t uiBuffSize = 0U;
