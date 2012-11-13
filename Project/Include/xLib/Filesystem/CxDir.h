@@ -49,9 +49,11 @@ class CxDir :
         static void           vDeleteForce(const std::tstring_t &csDirPath);
             ///< detetion dir fnd all content of it
 
-        static void           vFindFiles  (const std::tstring_t &csDirPath, const std::tstring_t &cMask, const bool &cbIsRecurse, std::vec_tstring_t *pvsFilePathes);
+        static void           vFindFiles  (const std::tstring_t &csDirPath, const std::tstring_t &csPattern,
+                                           const bool &cbIsRecursively, std::vec_tstring_t *pvsFilePathes);
             ///< search files
-        static void           vFindDirs   (const std::tstring_t &csDirPath, const std::tstring_t &cMask, const bool &cbIsRecurse, std::vec_tstring_t *pvsDirPathes);
+        static void           vFindDirs   (const std::tstring_t &csDirPath, const std::tstring_t &csPattern,
+                                           const bool &cbIsRecursively, std::vec_tstring_t *pvsDirPathes);
             ///< search subdirs
 
     private:

@@ -26,7 +26,6 @@ CxProcessInfo::vCurrentIds(
 )
 {
     std::vector<CxProcess::id_t> vidRv;
-    CxProcess::id_t              ulRv;
 
 #if   xOS_ENV_WIN
     CxHandle       hSnapshot;
@@ -46,13 +45,9 @@ CxProcessInfo::vCurrentIds(
     }
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        int iPid = -1;
-
-        // open the /proc directory
         DIR *pDir = ::opendir("/proc");
         xTEST_PTR(pDir);
 
-        // enumerate all entries in directory until process found
         xFOREVER {
             struct dirent *dirp = ::readdir(pDir);
             xCHECK_DO(NULL == dirp, break);
@@ -61,31 +56,11 @@ CxProcessInfo::vCurrentIds(
             int iId = ::atoi(dirp->d_name);
             xCHECK_DO(0 >= iId, continue);
 
-            // read contents of virtual /proc/{pid}/cmdline file
-            std::string   cmdPath = std::string("/proc/") + dirp->d_name + "/cmdline";
-            std::ifstream cmdFile(cmdPath.c_str());
-            std::string   cmdLine;
-
-            std::getline(cmdFile, cmdLine);
-            xCHECK_DO(true == cmdLine.empty(), continue);
-
-            // keep first cmdline item which contains the program path
-            size_t uiPos = cmdLine.find('\0');
-            if (std::string::npos != uiPos) {
-                cmdLine = cmdLine.substr(0, uiPos);
-            }
-
-            cmdLine = CxPath::sFileName(cmdLine);
-            if (a_csProcessName == cmdLine) {
-                iPid = iId;
-                break;
-            }
+            vidRv.push_back( static_cast<CxProcess::id_t>( iId )) ;
         }
 
         int iRv = ::closedir(pDir); pDir = NULL;
         /*DEBUG*/xTEST_DIFF(- 1, iRv);
-
-        ulRv = iPid;
     #elif xOS_FREEBSD
         int    aiMib[3]   = {CTL_KERN, KERN_PROC, KERN_PROC_ALL};
         size_t uiBuffSize = 0U;
