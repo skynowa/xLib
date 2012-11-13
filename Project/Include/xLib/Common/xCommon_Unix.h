@@ -30,7 +30,7 @@
 #include <sys/param.h>
 
 // filesystem
-
+#include <fnmatch.h>    // fnmatch
 
 // thread
 #include <pthread.h>    // lib: -pthread
