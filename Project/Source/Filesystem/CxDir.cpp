@@ -478,7 +478,7 @@ CxDir::vFindFiles(
         HANDLE hFile = ::FindFirstFile(sTmpPath.c_str(), &fdData);
         if (INVALID_HANDLE_VALUE != hFile) {
             do {
-                // skipping files, dirs "." and ".."
+                // skip files, dirs "." and ".."
                 xCHECK_DO(!(fdData.dwFileAttributes & CxFileAttribute::faDirectory), continue);
                 xCHECK_DO(CxConst::xDOT  == std::tstring_t(fdData.cFileName),        continue);
                 xCHECK_DO(CxConst::x2DOT == std::tstring_t(fdData.cFileName),        continue);
@@ -539,7 +539,17 @@ CxDir::vFindFiles(
             }
             // TODO: files
             else if (DT_REG == pdrEntry->d_type) {
-                std::tstring_t sFilePath = CxPath::sSlashAppend(a_csDirPath) + std::tstring_t(pdrEntry->d_name);
+                std::tstring_t sFileName = pdrEntry->d_name;
+
+                // filter by pattern
+                {
+                    int iRv = ::fnmatch(a_csPattern.c_str(), sFileName.c_str(), 0);
+                    xTEST_EQ(true, (0 == iRv) || (FNM_NOMATCH == iRv));
+
+                    xCHECK_DO(0 != iRv, continue);
+                }
+
+                std::tstring_t sFilePath = CxPath::sSlashAppend(a_csDirPath) + sFileName;
 
                 (*a_pvsFilePathes).push_back(sFilePath);
             }
@@ -646,6 +656,14 @@ CxDir::vFindDirs(
             // skip "." ".."
             xCHECK_DO(CxConst::xDOT  == sFileName, continue);
             xCHECK_DO(CxConst::x2DOT == sFileName, continue);
+
+            // filter by pattern
+            {
+                int iRv = ::fnmatch(a_csPattern.c_str(), sFileName.c_str(), 0);
+                xTEST_EQ(true, (0 == iRv) || (FNM_NOMATCH == iRv));
+
+                xCHECK_DO(0 != iRv, continue);
+            }
 
             std::tstring_t sDirPath = CxPath::sSlashAppend(a_csDirPath) + sFileName;
 
