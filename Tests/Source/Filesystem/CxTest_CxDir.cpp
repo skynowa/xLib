@@ -46,7 +46,6 @@ CxTest_CxDir::vUnit(
 #endif
 
 
-
     xTEST_CASE(CxDir::vFindDirs, cullCaseLoops)
     {
         //-------------------------------------
@@ -58,20 +57,20 @@ CxTest_CxDir::vUnit(
             csTempScanDirPath + CxConst::xSLASH + xT("A") + CxConst::xSLASH + xT("AA"),
             csTempScanDirPath + CxConst::xSLASH + xT("A") + CxConst::xSLASH + xT("AA") + CxConst::xSLASH + xT("AAA")
         };
-xTRACE_POINT;
+
         for (size_t i = 0; i < xARRAY_SIZE(sDirPathes); ++ i) {
             CxDir::vCreateForce(sDirPathes[i]);
         }
-xTRACE_POINT;
+
         {
             m_vsRv.clear();
-xTRACE_POINT;
+
             CxDir::vFindDirs(csTempScanDirPath, CxConst::xMASK_ALL, false, &m_vsRv);
-            //CxString::vStdVectorPrintT(m_vsRv);
-xTRACE_POINT;
+            // TODO: CxString::vStdVectorPrintT(m_vsRv);
+
             xTEST_EQ((size_t)2, m_vsRv.size());
         }
-xTRACE_POINT;
+
         {
             m_vsRv.clear();
             CxDir::vFindDirs(csTempScanDirPath, CxConst::xMASK_ALL, true, &m_vsRv);
@@ -79,13 +78,12 @@ xTRACE_POINT;
 
             xTEST_EQ(xARRAY_SIZE(sDirPathes), m_vsRv.size());
         }
-xTRACE_POINT;
     }
 
     xTEST_CASE(CxDir::vFindFiles, cullCaseLoops)
     {
         //-------------------------------------
-        //prepare for csTempScanDirPath (create files)
+        // prepare for csTempScanDirPath (create files)
         const std::tstring_t g_sFilePathes[] =
         {
             csTempScanDirPath + CxConst::xSLASH + xT("File_1"),
@@ -118,16 +116,6 @@ xTRACE_POINT;
             xTEST_EQ(xARRAY_SIZE(g_sFilePathes), m_vsRv.size());
         }
     }
-
-
-
-
-
-
-
-
-
-
 
     /****************************************************************************
     *    prepare
@@ -262,31 +250,26 @@ xTRACE_POINT;
             csDirSource + CxConst::xSLASH + xT("AA"),
             csDirSource + CxConst::xSLASH + xT("AA") + CxConst::xSLASH + xT("AAA")
         };
-xTRACE_POINT;
+
         for (size_t i = 0; i < xARRAY_SIZE(sDirPathes); ++ i) {
             CxDir::vCreateForce(sDirPathes[i]);
         }
-xTRACE_POINT;
+
         CxDir::vDeleteForce(csDirDest);
-xTRACE_POINT
+
         //-------------------------------------
-        //bCopy
+        // vCopy
         CxDir::vCopy(csDirSource, csDirDest, true);
-xTRACE_POINT
         CxDir::vDelete(csDirDest);
-xTRACE_POINT
         CxDir::vCopy(csDirSource, csDirDest, false);
-xTRACE_POINT
         CxDir::vDeleteForce(csDirDest);
-xTRACE_POINT
         CxDir::vDeleteForce(csDirSource);
-xTRACE_POINT
     }
 
     xTEST_CASE(CxDir::vMove, cullCaseLoops)
     {
         //-------------------------------------
-        //prepare for csTempScanDirPath (create dirs)
+        // prepare for csTempScanDirPath (create dirs)
         const std::tstring_t csDirSource = sTempDirPath() + CxConst::xSLASH + xT("Source");
         const std::tstring_t csDirDest   = sTempDirPath() + CxConst::xSLASH + xT("Dest");
 
