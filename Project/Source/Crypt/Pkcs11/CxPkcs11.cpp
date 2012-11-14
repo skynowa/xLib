@@ -30,7 +30,7 @@ CxPkcs11::CxPkcs11() :
 //---------------------------------------------------------------------------
 /* virtual */
 CxPkcs11::~CxPkcs11() {
-    
+
 
     vFinalize();
 }
@@ -166,8 +166,6 @@ CxPkcs11::sErrorStr(
 //---------------------------------------------------------------------------
 void
 CxPkcs11::_vLoadETPkcs11() {
-    
-
     _m_dllETPkcs11.vLoad(xT("eTPkcs11.dll"));
 
     CK_C_GetFunctionList pFunctionList = NULL;

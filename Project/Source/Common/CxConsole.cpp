@@ -243,7 +243,7 @@ CxConsole::vPrompt(
 //---------------------------------------------------------------------------
 void
 CxConsole::vPause() {
-    
+
 
 #if xTODO
     #if   xOS_ENV_UNIX
@@ -268,7 +268,7 @@ CxConsole::vPause() {
 //---------------------------------------------------------------------------
 void
 CxConsole::vClear() {
-    
+
 
 #if   xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
@@ -311,7 +311,7 @@ CxConsole::vEnableClose(
     const bool &a_cbFlag
 )
 {
-    
+
 
 #if   xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
@@ -341,7 +341,7 @@ CxConsole::vEnableClose(
 //---------------------------------------------------------------------------
 std::tstring_t
 CxConsole::sTitle() {
-    
+
 
     std::tstring_t sRv;
 
@@ -371,7 +371,7 @@ CxConsole::vSetTitle(
     const std::tstring_t &a_csTitle
 )
 {
-    
+
 
 #if   xOS_ENV_WIN
     //_m_hWnd - n/a
@@ -389,7 +389,7 @@ CxConsole::vSetTitle(
 //---------------------------------------------------------------------------
 void
 CxConsole::vSetFullScreen() {
-    
+
 
 #if   xOS_ENV_WIN
     //TODO: xOS_ENV_WIN
@@ -424,7 +424,7 @@ CxConsole::vSetFullScreen() {
 //---------------------------------------------------------------------------
 void
 CxConsole::vCenterWindow() {
-    
+
 
 #if   xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
@@ -467,7 +467,7 @@ CxConsole::vCenterWindow() {
 
 HWND
 CxConsole::_hWndHandle() {
-    
+
 
     HWND           hRv = NULL;
     std::tstring_t sNewWndTitle;
@@ -505,7 +505,7 @@ CxConsole::_hMenuHandle(
     const bool &a_cbRevert
 )
 {
-    
+
 
     _m_hMenu = ::GetSystemMenu(_m_hWnd, a_cbRevert);
     if (false == a_cbRevert) { xTEST_EQ(true, NULL != _m_hMenu); }

@@ -140,7 +140,7 @@ CxProcess::vKill(
     const ulong_t &a_culTimeout    // FIX: culTimeout not used
 )
 {
-    
+
 
 #if   xOS_ENV_WIN
     xTEST_DIFF(xNATIVE_HANDLE_NULL, _m_hHandle);
@@ -169,28 +169,28 @@ CxProcess::vKill(
 //---------------------------------------------------------------------------
 CxProcess::handle_t
 CxProcess::hHandle() const {
-    
+
 
     return _m_hHandle;
 }
 //---------------------------------------------------------------------------
 CxProcess::id_t
 CxProcess::ulId() const {
-    
+
 
     return _m_ulPid;
 }
 //---------------------------------------------------------------------------
 bool
 CxProcess::bIsCurrent() const {
-    
+
 
     return CxCurrentProcess::bIsCurrent( CxCurrentProcess::ulId() );
 }
 //---------------------------------------------------------------------------
 ulong_t
 CxProcess::ulExitStatus() const {
-    
+
 
     ulong_t ulRv = 0UL;
 

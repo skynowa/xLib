@@ -243,7 +243,7 @@ CxShell::vCreateShortcut(
     const std::tstring_t &a_csDescription       ///< description
 )
 {
-    
+
 
     CxCom cmCom(CxCom::cmMultiThreaded);
 

@@ -28,7 +28,7 @@ class CxProcessInfo :
             ///< get exe name
         static ulong_t        ulParentId   (const CxProcess::id_t &cidId);
             ///< get parent process id
-        static std::tstring_t sArgs        (const CxProcess::id_t &cidId);
+        static std::tstring_t sCommandLine (const CxProcess::id_t &cidId);
             ///< get arguments
 
     private:

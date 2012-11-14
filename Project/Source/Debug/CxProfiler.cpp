@@ -42,14 +42,14 @@ CxProfiler::vSetLogPath(
     const std::tstring_t &a_csLogPath
 )
 {
-    
+
 
     _flLog.vSetFilePath(a_csLogPath);
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxProfiler::sLogPath() const {
-    
+
 
     return _flLog.sFilePath();
 }
