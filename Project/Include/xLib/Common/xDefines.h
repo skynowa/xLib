@@ -496,6 +496,15 @@
 #endif
 
 //-------------------------------------
+// NT_SUCCESS
+#if xOS_ENV_WIN
+    #ifndef NT_SUCCESS
+        // for Windows XP
+        #define NT_SUCCESS(Status)      (((NTSTATUS)(Status)) >= 0)                                 ///< generic test for success on any status value
+    #endif
+#endif
+
+//-------------------------------------
 // xFOREACH, xFOREVER
 #define xFOREACH(it_t, it, cont)  \
                                         for (it_t::iterator               it((cont).begin());  it != (cont).end();  ++ it)
