@@ -138,7 +138,7 @@ CxTest_CxFunctorT::vUnit(
         m_bRv = bF.Execute(a);
         xTEST_EQ(true, m_bRv);
     }
-    
+
     xTEST_CASE(CxFunctorT::Execute, cullCaseLoops)
     {
         CxFunctorT<CParam, std::tstring_t, void *> bF(&objParam, &CParam::sSetName);

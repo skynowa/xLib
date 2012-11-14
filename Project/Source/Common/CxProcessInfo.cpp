@@ -10,6 +10,7 @@
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Filesystem/CxDir.h>
+#include <xLib/Filesystem/CxDll.h>
 
 
 xNAMESPACE_BEGIN(NxLib)
@@ -267,16 +268,92 @@ CxProcessInfo::ulParentId(
 //----------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxProcessInfo::sArgs(
+CxProcessInfo::sCommandLine(
     const CxProcess::id_t &a_cidId
 )
 {
-    // TODO: tests for CxProcessInfo::sArgs
-
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
-    // TODO: CxProcessInfo::sArgs
+    typedef NTSTATUS (NTAPI *NtQueryInformationProcess_t) (
+        HANDLE ProcessHandle,
+        DWORD  ProcessInformationClass,
+        PVOID  ProcessInformation,
+        DWORD  ProcessInformationLength,
+        PDWORD ReturnLength
+    );
+
+    struct _SNested {
+        static
+        PVOID
+        pvPebAddress(HANDLE hProcessHandle) {
+            PVOID   pvRv    = NULL;
+            HMODULE hModule = ::GetModuleHandle(xT("ntdll.dll"));
+            xTEST_DIFF(static_cast<HMODULE>(NULL), hModule);
+
+            NtQueryInformationProcess_t
+            NtQueryInformationProcess = (NtQueryInformationProcess_t)::GetProcAddress(hModule, "NtQueryInformationProcess");
+            xTEST_PTR(NtQueryInformationProcess);
+
+            PROCESS_BASIC_INFORMATION pbiBasicInfo     = {0};
+            const DWORD               cdwBasicInfoSize = sizeof(pbiBasicInfo);   // in bytes
+            const PROCESSINFOCLASS    cpicInfo86       = ProcessBasicInformation;
+            const PROCESSINFOCLASS    cpicInfo64       = ProcessWow64Information;
+            DWORD                     dwReturnLength   = 0UL;
+
+            NTSTATUS nsRv = NtQueryInformationProcess(hProcessHandle,
+                                                      cpicInfo86,
+                                                      &pbiBasicInfo, cdwBasicInfoSize, &dwReturnLength);
+            xTEST_EQ(true, NT_SUCCESS(nsRv));
+            xTEST_EQ(cdwBasicInfoSize, dwReturnLength);
+            xTEST_PTR(pbiBasicInfo.PebBaseAddress);
+
+            pvRv = pbiBasicInfo.PebBaseAddress;
+
+            return pvRv;
+        }
+    };
+
+
+    CxHandle processHandle;
+
+    processHandle = ::OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, a_cidId);
+    xTEST_EQ(true, processHandle.bIsValid());
+
+    PVOID pebAddress               = _SNested::pvPebAddress(processHandle.hGet());
+    PVOID rtlUserProcParamsAddress = NULL;
+
+    // get the address of ProcessParameters
+    BOOL blRv = ::ReadProcessMemory(processHandle.hGet(), static_cast<PCHAR>(pebAddress) + 0x10,  &rtlUserProcParamsAddress, sizeof(PVOID), NULL);
+    xTEST_DIFF(FALSE, blRv);
+
+    // read the usCommandLine UNICODE_STRING structure
+    UNICODE_STRING usCommandLine = {0};
+
+    blRv = ::ReadProcessMemory(processHandle.hGet(), static_cast<PCHAR>(rtlUserProcParamsAddress) + 0x40, &usCommandLine, sizeof(usCommandLine), NULL);
+    xTEST_DIFF(FALSE, blRv);
+
+    // allocate memory to hold the command line
+    {
+        WCHAR *pCommandLineContents = static_cast<WCHAR *>( ::malloc(usCommandLine.Length) );
+        xTEST_PTR(pCommandLineContents);
+
+        // read the command line
+        blRv = ::ReadProcessMemory(processHandle.hGet(), usCommandLine.Buffer, pCommandLineContents, usCommandLine.Length, NULL);
+        xTEST_DIFF(FALSE, blRv);
+
+        // length specifier is in characters, but usCommandLine.Length is in bytes a WCHAR is 2 bytes
+        std::wstring wsRv;
+        wsRv.assign(pCommandLineContents, usCommandLine.Length / 2);
+
+    #if xUNICODE
+        sRv = wsRv;
+    #else
+        sRv = CxString::sWStrToStr(wsRv, CP_ACP);
+    #endif
+
+        (void)::free(pCommandLineContents); pCommandLineContents = NULL;
+    }
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         // TODO: CxProcessInfo::sGetArgs

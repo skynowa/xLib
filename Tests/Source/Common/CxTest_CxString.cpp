@@ -24,7 +24,7 @@ RandomNumber () {
 }
 //---------------------------------------------------------------------------
 /* virtual */
-void 
+void
 CxTest_CxString::vUnit(
     const ulonglong_t &cullCaseLoops
 )
@@ -256,7 +256,7 @@ CxTest_CxString::vUnit(
 
         m_sRv = CxString::sBoolToStr(false);
         xTEST_EQ(std::tstring_t(xT("false")), m_sRv);
-    } 
+    }
 
     xTEST_CASE(CxString::bStrToBool, cullCaseLoops)
     {
@@ -916,7 +916,7 @@ CxTest_CxString::vUnit(
         // 3
         {
             uchar_t ucBuff[] = {
-                1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15, 
+                1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15,
                 20, 21, 22, 23, 24, 25, 30, 31, 32, 33, 34, 35,
                 245, 246, 247, 248, 249, 250
             };
