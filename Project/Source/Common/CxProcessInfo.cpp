@@ -41,7 +41,9 @@ CxProcessInfo::vCurrentIds(
     xTEST_DIFF(FALSE, blRv);
 
     xFOREVER {
-        vidRv.push_back(peProcess.th32ProcessID);
+        DWORD dwPid = peProcess.th32ProcessID;
+
+        vidRv.push_back(dwPid);
 
         blRv = ::Process32Next(hSnapshot.hGet(), &peProcess);
         xCHECK_DO(FALSE == blRv, break);
@@ -54,15 +56,15 @@ CxProcessInfo::vCurrentIds(
 
         // skip non-numeric entries
         xFOREACH_CONST(std::vec_tstring_t, it, a_vsDirPathes) {
-            int iId = 0;
+            int iPid = 0;
             {
                 std::tstring_t sDirName = CxPath::sFileName(*it);
 
-                iId = ::atoi(sDirName.c_str());
-                xCHECK_DO(0 >= iId, continue);
+                iPid = ::atoi(sDirName.c_str());
+                xCHECK_DO(0 >= iPid, continue);
             }
 
-            vidRv.push_back( static_cast<CxProcess::id_t>( iId )) ;
+            vidRv.push_back( static_cast<CxProcess::id_t>( iPid ));
         }
     #elif xOS_FREEBSD
         int    aiMib[3]   = {CTL_KERN, KERN_PROC, KERN_PROC_ALL};
@@ -87,16 +89,12 @@ CxProcessInfo::vCurrentIds(
         }
 
         // search for the given process name and return its pid
-        size_t uiNumProcs = uiBuffSize / sizeof(kinfo_proc);
+        const size_t cuiProcsNum = uiBuffSize / sizeof(kinfo_proc);
 
-        for (size_t i = 0; i < uiNumProcs; ++ i) {
-            if (0 == strncmp(a_csProcessName.c_str(), pkpProcesses[i].ki_comm, MAXCOMLEN)) {
-                ulRv = pkpProcesses[i].ki_pid;
+        for (size_t i = 0; i < cuiProcsNum; ++ i) {
+            pid_t iPid = pkpProcesses[i].ki_pid;
 
-                break;
-            } else {
-                ulRv = - 1;
-            }
+            vidRv.push_back(iPid);
         }
 
         xBUFF_FREE(pkpProcesses);

@@ -18,20 +18,20 @@ xNAMESPACE_BEGIN(NxLib)
 /* static */
 bool
 CxFileAttribute::bIsExists(
-    const std::tstring_t &csFilePath,
-    const ExAttribute    &cfaValue
+    const std::tstring_t &a_csFilePath,
+    const ExAttribute    &a_cfaValue
 )
 {
-    xTEST_EQ(false, csFilePath.empty());
+    xTEST_EQ(false, a_csFilePath.empty());
     // cfaValue
 
 #if xTEMP_DISABLED
     #if   xOS_ENV_WIN
-        xCHECK_RET((atGet(csFilePath) & BS_TYPEMASK) == cfaValue, true);
+        xCHECK_RET((atGet(a_csFilePath) & BS_TYPEMASK) == cfaValue, true);
     #endif
 #endif
 
-    xCHECK_RET(cfaValue == (atGet(csFilePath) & cfaValue), true);
+    xCHECK_RET(a_cfaValue == (atGet(a_csFilePath) & a_cfaValue), true);
 
     return false;
 }
@@ -39,7 +39,7 @@ CxFileAttribute::bIsExists(
 /* static */
 CxFileAttribute::ExAttribute
 CxFileAttribute::atGet(
-    const std::tstring_t &csFilePath
+    const std::tstring_t &a_csFilePath
 )
 {
     // csFilePath - n/a
@@ -47,12 +47,12 @@ CxFileAttribute::atGet(
     ExAttribute faRes = faInvalid;
 
 #if   xOS_ENV_WIN
-    faRes = static_cast<ExAttribute>( ::GetFileAttributes(csFilePath.c_str()) );
+    faRes = static_cast<ExAttribute>( ::GetFileAttributes(a_csFilePath.c_str()) );
     // n/a
 #elif xOS_ENV_UNIX
     xTSTAT_STRUCT stInfo = {0};
 
-    int iRv = ::xTSTAT(csFilePath.c_str(), &stInfo);
+    int iRv = ::xTSTAT(a_csFilePath.c_str(), &stInfo);
     // n/a
     if (- 1 == iRv) {
         faRes = faInvalid;
@@ -67,18 +67,18 @@ CxFileAttribute::atGet(
 /* static */
 void
 CxFileAttribute::vSet(
-    const std::tstring_t &csFilePath,
-    const ExAttribute    &cfaValue
+    const std::tstring_t &a_csFilePath,
+    const ExAttribute    &a_cfaValue
 )
 {
-    xTEST_EQ(false, csFilePath.empty());
+    xTEST_EQ(false, a_csFilePath.empty());
     // cfaValue
 
 #if   xOS_ENV_WIN
-    BOOL blRes = ::SetFileAttributes(csFilePath.c_str(), static_cast<ulong_t>( cfaValue ));
+    BOOL blRes = ::SetFileAttributes(a_csFilePath.c_str(), static_cast<ulong_t>( cfaValue ));
     xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
-    int iRv = ::xTCHMOD(csFilePath.c_str(), static_cast<mode_t>( cfaValue ));
+    int iRv = ::xTCHMOD(a_csFilePath.c_str(), static_cast<mode_t>( a_cfaValue ));
     xTEST_DIFF(- 1, iRv);
 #endif
 }
@@ -86,50 +86,50 @@ CxFileAttribute::vSet(
 /* static */
 void
 CxFileAttribute::vAdd(
-    const std::tstring_t &csFilePath,
-    const ExAttribute    &cfaValue
+    const std::tstring_t &a_csFilePath,
+    const ExAttribute    &a_cfaValue
 )
 {
-    xTEST_EQ(false, csFilePath.empty());
+    xTEST_EQ(false, a_csFilePath.empty());
     // cfaValue
 
-    vModify(csFilePath, static_cast<ExAttribute>( 0 ), cfaValue);
+    vModify(a_csFilePath, static_cast<ExAttribute>( 0 ), a_cfaValue);
 }
 //---------------------------------------------------------------------------
 /* static */
 void
 CxFileAttribute::vRemove(
-    const std::tstring_t &csFilePath,
-    const ExAttribute    &cfaValue
+    const std::tstring_t &a_csFilePath,
+    const ExAttribute    &a_cfaValue
 )
 {
-    xTEST_EQ(false, csFilePath.empty());
+    xTEST_EQ(false, a_csFilePath.empty());
     // cfaValue
 
-    vModify(csFilePath, cfaValue, static_cast<ExAttribute>( 0 ));
+    vModify(a_csFilePath, a_cfaValue, static_cast<ExAttribute>( 0 ));
 }
 //---------------------------------------------------------------------------
 /* static */
 void
 CxFileAttribute::vModify(
-    const std::tstring_t &csFilePath,
-    const ExAttribute    &cfaRemoveValue,
-    const ExAttribute    &cfaAddValue
+    const std::tstring_t &a_csFilePath,
+    const ExAttribute    &a_cfaRemoveValue,
+    const ExAttribute    &a_cfaAddValue
 )
 {
-    xTEST_EQ(false, csFilePath.empty());
-    // cfaRemoveValue
-    // cfaAddValue
+    xTEST_EQ(false, a_csFilePath.empty());
+    // a_cfaRemoveValue
+    // a_cfaAddValue
 
     // get the current attributes
-    ExAttribute cfaValue = atGet(csFilePath);
+    ExAttribute cfaValue = atGet(a_csFilePath);
 
     // change bits
-    cfaValue = static_cast<ExAttribute>( static_cast<ulong_t>( cfaValue ) & ~cfaRemoveValue );
-    cfaValue = static_cast<ExAttribute>( static_cast<ulong_t>( cfaValue ) |  cfaAddValue    );
+    cfaValue = static_cast<ExAttribute>( static_cast<ulong_t>( cfaValue ) & ~a_cfaRemoveValue );
+    cfaValue = static_cast<ExAttribute>( static_cast<ulong_t>( cfaValue ) |  a_cfaAddValue    );
 
     // change the attributes
-    vSet(csFilePath, cfaValue);
+    vSet(a_csFilePath, cfaValue);
 }
 //---------------------------------------------------------------------------
 /* static */

@@ -21,9 +21,9 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 /*explicit*/
 CxFileTemp::CxFileTemp(
-    const bool &cbIsAutoDelete
+    const bool &a_cbIsAutoDelete
 ) :
-    _m_cbIsAutoDelete(cbIsAutoDelete),
+    _m_cbIsAutoDelete(a_cbIsAutoDelete),
     _m_pfFile        (NULL),
     _m_sFilePath     ()
 {
@@ -41,23 +41,23 @@ CxFileTemp::~CxFileTemp() {
 //---------------------------------------------------------------------------
 void
 CxFileTemp::vCreate(
-    const std::tstring_t &csFilePath,
-    const std::tstring_t &csDirPath,
-    CxFile               *pfFile
+    const std::tstring_t &a_csFilePath,
+    const std::tstring_t &a_csDirPath,
+    CxFile               *a_pfFile
 )
 {
-    xTEST_EQ(false, csFilePath.empty());
-    xTEST_EQ(false, csDirPath.empty());
-    xTEST_EQ(false, pfFile->bIsValid());
+    xTEST_EQ(false, a_csFilePath.empty());
+    xTEST_EQ(false, a_csDirPath.empty());
+    xTEST_EQ(false, a_pfFile->bIsValid());
 
     const std::tstring_t csFileNameTemplate = xT("XXXXXX");
 
 
     FILE *_pfStdFile = NULL;
 
-    CxDir::vCreateForce(csDirPath);
+    CxDir::vCreateForce(a_csDirPath);
 
-    _m_sFilePath = CxPath::sSlashAppend(csDirPath) + CxPath::sFileName(csFilePath) + csFileNameTemplate;
+    _m_sFilePath = CxPath::sSlashAppend(a_csDirPath) + CxPath::sFileName(a_csFilePath) + csFileNameTemplate;
 
 #if   xOS_ENV_WIN
     #if xCOMPILER_MINGW32 || xCOMPILER_CODEGEAR
@@ -86,9 +86,9 @@ CxFileTemp::vCreate(
 #endif
 
     //out
-    (*pfFile).vAttach(_pfStdFile);
+    (*a_pfFile).vAttach(_pfStdFile);
 
-    _m_pfFile = pfFile;
+    _m_pfFile = a_pfFile;
 }
 //---------------------------------------------------------------------------
 
