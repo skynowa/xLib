@@ -539,7 +539,7 @@ CxSystemInfo::cvCpuVendor() {
         xTEST_EQ(false, sValue.empty());
     #elif xCOMPILER_CODEGEAR
         // TODO: CxSystemInfo::cvGetCpuVendor()
-        sValue = std::string();
+        sValue = std::tstring_t();
     #endif
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX

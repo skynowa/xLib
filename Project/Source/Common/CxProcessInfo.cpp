@@ -329,7 +329,7 @@ CxProcessInfo::sCommandLine(
             ULONG_PTR pulProcessInformation[6] = {0};
             DWORD     dwReturnSize             = 0UL;   // in bytes
 
-            Dll_NtQueryInformationProcess_t 
+            Dll_NtQueryInformationProcess_t
             DllNtQueryInformationProcess = (Dll_NtQueryInformationProcess_t)dlDll.fpProcAddress(xT("NtQueryInformationProcess"));
             xTEST_PTR(DllNtQueryInformationProcess);
 
@@ -395,7 +395,15 @@ CxProcessInfo::sCommandLine(
     }
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        // TODO: CxProcessInfo::sCommandLine
+        // FIX: content of "/proc/%ld/cmdline" - missing spaces
+        const std::tstring_t csProcFile = CxString::sFormat(xT("/proc/%ld/cmdline"), a_cidId);
+
+        std::vec_tstring_t vsProcFile;
+
+        CxPath::vProc(csProcFile, &vsProcFile);
+        xTEST_EQ(size_t(1), vsProcFile.size())
+
+        sRv = vsProcFile.at(0);
     #elif xOS_FREEBSD
         int iRv      = - 1;
         int aiMib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_ARGS, a_cidId};
