@@ -275,6 +275,18 @@ CxProcessInfo::sCommandLine(
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
+    #if xCOMPILER_MINGW32 || xCOMPILER_CODEGEAR
+        //typedef __success(return >= 0) LONG NTSTATUS;
+        typedef LONG NTSTATUS;
+
+        enum PROCESSINFOCLASS
+            /// process info type
+        {
+            ProcessBasicInformation = 0,
+            ProcessWow64Information = 26
+        };
+    #endif
+
     typedef NTSTATUS (WINAPI *Dll_NtQueryInformationProcess_t) (
         HANDLE           ProcessHandle,
         PROCESSINFOCLASS ProcessInformationClass,
