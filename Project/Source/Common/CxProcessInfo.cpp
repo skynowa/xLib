@@ -395,7 +395,7 @@ CxProcessInfo::sCommandLine(
     }
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        // TODO: CxProcessInfo::sGetArgs
+        // TODO: CxProcessInfo::sCommandLine
     #elif xOS_FREEBSD
         int iRv      = - 1;
         int aiMib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_ARGS, a_cidId};
