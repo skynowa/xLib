@@ -496,11 +496,22 @@
 #endif
 
 //-------------------------------------
-// NT_SUCCESS
+// generic test for success on any status value (for Windows XP)
 #if xOS_ENV_WIN
     #ifndef NT_SUCCESS
-        // for Windows XP
         #define NT_SUCCESS(Status)      (((NTSTATUS)(Status)) >= 0)                                 ///< generic test for success on any status value
+    #endif
+
+    #ifndef NT_INFORMATION
+        #define NT_INFORMATION(Status)  ((((ULONG)(Status)) >> 30) == 1)                            ///< generic test for success on any status value
+    #endif
+
+    #ifndef NT_WARNING
+        #define NT_WARNING(Status)      ((((ULONG)(Status)) >> 30) == 2)                            ///< generic test for success on any status value
+    #endif
+
+    #ifndef NT_ERROR
+        #define NT_ERROR(Status)        ((((ULONG)(Status)) >> 30) == 3)                            ///< generic test for success on any status value
     #endif
 #endif
 
