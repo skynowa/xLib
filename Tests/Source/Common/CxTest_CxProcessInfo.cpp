@@ -112,7 +112,6 @@ CxTest_CxProcessInfo::vUnit(
         xFOREACH_CONST(std::vector<CxProcess::id_t>, it, vidIds) {
         #if   xOS_ENV_WIN
             xCHECK_DO(0 == *it, continue);
-            xCHECK_DO(4 == *it, continue);
             xCHECK_DO(344 == *it, continue);
         #elif xOS_ENV_UNIX
 
