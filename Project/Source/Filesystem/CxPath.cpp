@@ -879,8 +879,6 @@ CxPath::vProc(
 
         std::getline(ifsStream, sLine);
         vsRv.push_back(sLine);
-
-        break;
     }
 
     // out
@@ -898,43 +896,21 @@ CxPath::sProcValue(
     const std::tstring_t &a_csData        ///< target search data string
 )
 {
-    // check for existance "/proc" directory
-    {
-        bool bRv = false;
+    std::tstring_t     sRv;
+    std::vec_tstring_t vsProcFile;
 
-        bRv = CxDir::bIsExists(xT("/proc"));
-        xCHECK_DO(false == bRv,
-                  CxTracer() << xT("::: xLib: warning (/proc dir not mount) :::"); return std::tstring_t());
+    vProc(a_csProcPath, &vsProcFile);
 
-        bRv = CxDir::bIsEmpty(xT("/proc"));
-        xCHECK_DO(true == bRv,
-                  CxTracer() << xT("::: xLib: warning (/proc dir is empty) :::");  return std::tstring_t());
-    }
-
-
-    std::tstring_t   sRv;
-
-    std::tifstream_t ifsStream(a_csProcPath.c_str());
-    xTEST_EQ(true,  !! ifsStream);
-    xTEST_EQ(false, ifsStream.fail());
-    xTEST_EQ(true,  ifsStream.good());
-    xTEST_EQ(true,  ifsStream.is_open());
-    xTEST_EQ(false, ifsStream.eof());
-
-    for ( ; !ifsStream.eof(); ) {
-        std::tstring_t sLine;
-
-        std::getline(ifsStream, sLine);
-
+    xFOREACH_CONST (std::vec_tstring_t, it, vsProcFile) {
         // TODO: no case search
-        size_t uiPos = sLine.find(a_csData);
+        size_t uiPos = (*it).find(a_csData);
         xCHECK_DO(std::tstring_t::npos == uiPos, continue);
 
         // parse value
-        size_t uiDelimPos = sLine.find(xT(":"));
+        size_t uiDelimPos = (*it).find(xT(":"));
         xTEST_DIFF(std::string::npos, uiDelimPos);
 
-        sRv = sLine.substr(uiDelimPos + 1);
+        sRv = (*it).substr(uiDelimPos + 1);
         sRv = CxString::sTrimSpace(sRv);
 
         break;
