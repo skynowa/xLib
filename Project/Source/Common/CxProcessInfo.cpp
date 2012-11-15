@@ -11,6 +11,7 @@
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Filesystem/CxDir.h>
 #include <xLib/Filesystem/CxDll.h>
+#include <xLib/Filesystem/CxEnvironment.h>
 
 
 xNAMESPACE_BEGIN(NxLib)
@@ -275,6 +276,25 @@ CxProcessInfo::sCommandLine(
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
+    // process with PID 4
+    {
+        // System process for WinXP and later is PID 4 and we cannot access
+        // PEB, but we know it is aka ntoskrnl.exe so we will manually define it.
+        // ntkrnlpa.exe if Physical Address Extension (PAE)
+        // ntkrnlmp.exe if Symmetric MultiProcessing (SMP)
+        // Actual filename is ntoskrnl.exe, but other name will be in
+        // Original Filename field of version block.
+
+        const CxProcess::id_t cidNtoskrnlId = 4UL;  // MAGIC: cidNtoskrnlId
+
+        if (cidNtoskrnlId == a_cidId) {
+            sRv = CxEnvironment::sExpandStrings(xT("%SystemRoot%\\System32\\ntoskrnl.exe"));
+
+            return sRv;
+        }
+    }
+
+
     #if xCOMPILER_MINGW32 || xCOMPILER_CODEGEAR
         //typedef __success(return >= 0) LONG NTSTATUS;
         typedef LONG NTSTATUS;
