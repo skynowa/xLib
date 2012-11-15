@@ -75,7 +75,7 @@ CxFileAttribute::vSet(
     // cfaValue
 
 #if   xOS_ENV_WIN
-    BOOL blRes = ::SetFileAttributes(a_csFilePath.c_str(), static_cast<ulong_t>( cfaValue ));
+    BOOL blRes = ::SetFileAttributes(a_csFilePath.c_str(), static_cast<ulong_t>( a_cfaValue ));
     xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     int iRv = ::xTCHMOD(a_csFilePath.c_str(), static_cast<mode_t>( a_cfaValue ));
