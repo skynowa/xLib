@@ -37,7 +37,7 @@ CxVolume::bIsValid(
     xDEBUG_VAR_NA(csVolumePath);
 
 #if   xOS_ENV_WIN
-    bool bRv = CxDir::bIsRoot(csVolumePath);
+    bool bRv = CxDir::bIsRoot(a_csVolumePath);
     xCHECK_RET(false == bRv, false);
 #elif xOS_ENV_UNIX
     xCHECK_RET(true                  == a_csVolumePath.empty(), false);
@@ -168,8 +168,8 @@ CxVolume::vMount(
     nrNetResource.dwType        = RESOURCETYPE_DISK;
     nrNetResource.dwDisplayType = RESOURCEDISPLAYTYPE_GENERIC;
     nrNetResource.dwUsage       = RESOURCEUSAGE_CONTAINER;
-    nrNetResource.lpLocalName   = const_cast<tchar_t *>( csDestPath.c_str() );
-    nrNetResource.lpRemoteName  = const_cast<tchar_t *>( csSourcePath.c_str() );
+    nrNetResource.lpLocalName   = const_cast<tchar_t *>( a_csDestPath.c_str() );
+    nrNetResource.lpRemoteName  = const_cast<tchar_t *>( a_csSourcePath.c_str() );
     nrNetResource.lpComment     = NULL;
     nrNetResource.lpProvider    = NULL;
 
@@ -198,7 +198,7 @@ CxVolume::vUnMount(
 
 #if   xOS_ENV_WIN
     // TODO: CxVolume::bUnMount - is it correct?
-    DWORD dwRes = ::WNetCancelConnection2(a_csSourcePath.c_str(), CONNECT_UPDATE_PROFILE, cbIsForce);
+    DWORD dwRes = ::WNetCancelConnection2(a_csSourcePath.c_str(), CONNECT_UPDATE_PROFILE, a_cbIsForce);
     xTEST_EQ(static_cast<DWORD>( NO_ERROR ), dwRes);
 #elif xOS_ENV_UNIX
     #ifdef MNT_DETACH
