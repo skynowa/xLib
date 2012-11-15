@@ -71,7 +71,7 @@ CxTest_CxProcessInfo::vUnit(
         CxProcessInfo::vCurrentIds(&vidIds);
 
         xFOREACH_CONST(std::vector<CxProcess::id_t>, it, vidIds) {
-            m_ulRv = CxProcessInfo::ulIOBytes(*it);
+            m_ulRv = CxProcessInfo::ulIOBytes(/* *it */ CxCurrentProcess::ulId());
             #if xTEST_IGNORE
                 CxTracer() << xT("\tCxProcessInfo::ulIOBytes(): ") << m_ulRv;
             #endif
