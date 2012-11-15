@@ -139,7 +139,7 @@ CxPath::sDrive(
 {
     xTEST_EQ(false, a_csFilePath.empty());
 
-    size_t uiDriveDelimPos = csFilePath.find(CxConst::xCOLON);
+    size_t uiDriveDelimPos = a_csFilePath.find(CxConst::xCOLON);
     xTEST_DIFF(std::tstring_t::npos, uiDriveDelimPos);
     xTEST_EQ(1U, uiDriveDelimPos);
 
@@ -449,7 +449,7 @@ CxPath::bIsAbsolute(
 
 #if   xOS_ENV_WIN
     xCHECK_RET(1 == a_csFilePath.size(),                                                          false);
-    xCHECK_RET(CxChar::bIsAlpha(csFilePath.at(0)) && CxConst::xCOLON.at(0) == a_csFilePath.at(1), true);
+    xCHECK_RET(CxChar::bIsAlpha(a_csFilePath.at(0)) && CxConst::xCOLON.at(0) == a_csFilePath.at(1), true);
 #else
     xNA;
 #endif
