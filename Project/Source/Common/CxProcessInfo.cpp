@@ -275,12 +275,12 @@ CxProcessInfo::sCommandLine(
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
-    typedef NTSTATUS (NTAPI *NtQueryInformationProcess_t) (
-        HANDLE ProcessHandle,
-        DWORD  ProcessInformationClass,
-        PVOID  ProcessInformation,
-        DWORD  ProcessInformationLength,
-        PDWORD ReturnLength
+    typedef NTSTATUS (WINAPI *Dll_NtQueryInformationProcess_t) (
+        HANDLE           ProcessHandle,
+        PROCESSINFOCLASS ProcessInformationClass,
+        PVOID            ProcessInformation,
+        ULONG            ProcessInformationLength,
+        PULONG           ReturnLength
     );
 
     struct _SNested {
@@ -288,22 +288,37 @@ CxProcessInfo::sCommandLine(
         PVOID
         pvPebAddress(HANDLE hProcessHandle) {
             PVOID   pvRv    = NULL;
-            HMODULE hModule = ::GetModuleHandle(xT("ntdll.dll"));
-            xTEST_DIFF(static_cast<HMODULE>(NULL), hModule);
+            //HMODULE hModule = ::GetModuleHandle(xT("ntdll.dll"));
+            //xTEST_DIFF(static_cast<HMODULE>(NULL), hModule);
 
-            NtQueryInformationProcess_t
-            NtQueryInformationProcess = (NtQueryInformationProcess_t)::GetProcAddress(hModule, "NtQueryInformationProcess");
-            xTEST_PTR(NtQueryInformationProcess);
+            //NtQueryInformationProcess_t
+            //NtQueryInformationProcess = (NtQueryInformationProcess_t)::GetProcAddress(hModule, "NtQueryInformationProcess");
+            //xTEST_PTR(NtQueryInformationProcess);
 
-            PROCESS_BASIC_INFORMATION pbiBasicInfo     = {0};
-            const DWORD               cdwBasicInfoSize = sizeof(pbiBasicInfo);   // in bytes
+            CxDll dlDll;
+
+            dlDll.vLoad(xT("ntdll.dll"));
+
+            bool bRv = dlDll.bIsProcExists(xT("NtQueryInformationProcess"));
+            xTEST_EQ(true, bRv);
+
+            ULONG_PTR pulProcessInformation[6] = {0};
+            DWORD     dwReturnSize             = 0UL;   // in bytes
+
+            Dll_NtQueryInformationProcess_t 
+            DllNtQueryInformationProcess = (Dll_NtQueryInformationProcess_t)dlDll.fpProcAddress(xT("NtQueryInformationProcess"));
+            xTEST_PTR(DllNtQueryInformationProcess);
+
             const PROCESSINFOCLASS    cpicInfo86       = ProcessBasicInformation;
             const PROCESSINFOCLASS    cpicInfo64       = ProcessWow64Information;
+            PROCESS_BASIC_INFORMATION pbiBasicInfo     = {0};
+            const DWORD               cdwBasicInfoSize = sizeof(pbiBasicInfo);   // in bytes
             DWORD                     dwReturnLength   = 0UL;
 
-            NTSTATUS nsRv = NtQueryInformationProcess(hProcessHandle,
-                                                      cpicInfo86,
-                                                      &pbiBasicInfo, cdwBasicInfoSize, &dwReturnLength);
+            // TODO: ProcessBasicInformation (for x64)
+            NTSTATUS nsRv = DllNtQueryInformationProcess(hProcessHandle,
+                                                         cpicInfo86,
+                                                         &pbiBasicInfo, cdwBasicInfoSize, &dwReturnLength);
             xTEST_EQ(true, NT_SUCCESS(nsRv));
             xTEST_EQ(cdwBasicInfoSize, dwReturnLength);
             xTEST_PTR(pbiBasicInfo.PebBaseAddress);

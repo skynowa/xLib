@@ -92,14 +92,19 @@ CxCurrentProcess::ulParentId() {
     bool bRv = dlDll.bIsProcExists(xT("NtQueryInformationProcess"));
     xCHECK_RET(false == bRv, culInvalidId);
 
-    ULONG_PTR pulProcessInformation[6] = {0};
-    DWORD     dwReturnSize             = 0UL;   // in bytes
+    const PROCESSINFOCLASS    cpicInfo86               = ProcessBasicInformation;
+    const PROCESSINFOCLASS    cpicInfo64               = ProcessWow64Information;
+    ULONG_PTR                 pulProcessInformation[6] = {0};
+    DWORD                     dwReturnSize             = 0UL;   // in bytes
 
-    Dll_NtQueryInformationProcess_t DllNtQueryInformationProcess = (Dll_NtQueryInformationProcess_t)dlDll.fpProcAddress(xT("NtQueryInformationProcess"));
+    Dll_NtQueryInformationProcess_t 
+    DllNtQueryInformationProcess = (Dll_NtQueryInformationProcess_t)dlDll.fpProcAddress(xT("NtQueryInformationProcess"));
     xTEST_PTR(DllNtQueryInformationProcess);
 
     // TODO: ProcessBasicInformation (for x64)
-    NTSTATUS ntsRes = DllNtQueryInformationProcess(hHandle(), ProcessBasicInformation, &pulProcessInformation, sizeof(pulProcessInformation), &dwReturnSize);
+    NTSTATUS ntsRes = DllNtQueryInformationProcess(hHandle(),
+                                                   cpicInfo86, 
+                                                   &pulProcessInformation, sizeof(pulProcessInformation), &dwReturnSize);
     xTEST_EQ(true, NT_SUCCESS(ntsRes));
     xTEST_EQ(size_t(dwReturnSize), sizeof(pulProcessInformation));
 
