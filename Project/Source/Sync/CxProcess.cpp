@@ -52,7 +52,7 @@ CxProcess::~CxProcess() {
     blRes = ::CloseHandle(_m_hHandle);
     xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
-
+    xNA;
 #endif
 }
 //---------------------------------------------------------------------------
