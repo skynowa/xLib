@@ -22,7 +22,7 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-//NOTE: http://www.cplusplus.com/forum/general/11104/
+// FAQ: http://www.cplusplus.com/forum/general/11104/
 //      http://stackoverflow.com/questions/1023306/finding-current-executables-path-without-proc-self-exe
 //      http://libsylph.sourceforge.net/wiki/Full_path_to_binary
 //      http://h21007.www2.hp.com/portal/site/dspp/menuitem.863c3e4cbcdc3f3515b49c108973a801?ciid=88086d6e1de021106d6e1de02110275d6e10RCRD
@@ -76,8 +76,8 @@ CxPath::sExe() {
             std::vec_tstring_t vsArgs;
 
             bool bRv = CxCommandLine::bGetArgs(&vsArgs);
-            xTEST_EQ(true, bRv,                       std::tstring_t());
-            xTEST_EQ(false, vsArgs.empty(),            std::tstring_t());
+            xTEST_EQ(true,  bRv);
+            xTEST_EQ(false, vsArgs.empty());
             xTEST_EQ(false, bIsAbsolute(vsArgs.at(0)));
 
             sRv = sGetAbsolute(vsArgs.at(0));
@@ -111,8 +111,8 @@ CxPath::sDll() {
 
     sRv.resize(ulStored);
 #elif xOS_ENV_UNIX
-    Dl_info  diInfo        = {0};
-    void    *fpProcAddress = (void *)vFunction;
+    Dl_info     diInfo        = {0};
+    const void *fpProcAddress = reinterpret_cast<const void *>( vFunction );
 
     int iRv = ::dladdr(fpProcAddress, &diInfo);
     /*DEBUF*/xTEST_LESS(0, iRv);
@@ -129,7 +129,7 @@ CxPath::sExeDir() {
     return sDir(sExe());
 }
 //---------------------------------------------------------------------------
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
 
 /* static */
 std::tstring_t
@@ -255,7 +255,7 @@ CxPath::sStandartExt(
     return sRv;
 }
 //---------------------------------------------------------------------------
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
 
 /* static */
 std::tstring_t
@@ -448,7 +448,7 @@ CxPath::bIsAbsolute(
     xCHECK_RET(CxConst::xSLASH.at(0) == a_csFilePath.at(0),   true);
 
 #if   xOS_ENV_WIN
-    xCHECK_RET(1 == a_csFilePath.size(),                                                          false);
+    xCHECK_RET(1 == a_csFilePath.size(),                                                            false);
     xCHECK_RET(CxChar::bIsAlpha(a_csFilePath.at(0)) && CxConst::xCOLON.at(0) == a_csFilePath.at(1), true);
 #else
     xNA;
