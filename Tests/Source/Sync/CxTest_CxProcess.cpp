@@ -114,36 +114,8 @@ CxTest_CxProcess::vUnit(
 
     xTEST_CASE(CxProcess::bIsRunning, cullCaseLoops)
     {
-        #if   xOS_ENV_WIN
-            std::tstring_t sData[][2] = {
-                {xT("explorer.exe"),  xT("true") },
-                {xT("explorer.exe "), xT("false")},
-                {xT("explorer."),     xT("false")},
-                {xT("explorer"),      xT("false")},
-                {xT("explore"),       xT("false")},
-            };
-        #elif xOS_ENV_UNIX
-            // TODO: xTEST_CASE for CxProcess::bIsRunning
-        #endif
-
-        #if   xOS_ENV_WIN
-            for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-                const std::tstring_t csProcName = sData[i][0];
-                const bool           cbRv       = CxString::bStrToBool(sData[i][1]);
-
-                m_bRv = CxProcess::bIsRunning(csProcName);
-                xTEST_EQ(cbRv, cbRv);
-            }
-        #elif xOS_ENV_UNIX
-            // TODO: xTEST_CASE for CxProcess::bIsRunning
-        #endif
-
-        {
-            const std::tstring_t csProcName = CxPath::sFileName(CxPath::sExe());
-
-            m_bRv = CxProcess::bIsRunning(csProcName);
-            xTEST_EQ(true, m_bRv);
-        }
+        m_bRv = CxProcess::bIsRunning( CxCurrentProcess::ulId() );
+        xTEST_EQ(true, m_bRv);
     }
 }
 //---------------------------------------------------------------------------

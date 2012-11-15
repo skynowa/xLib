@@ -240,9 +240,11 @@ CxSystemInfo::sDesktopName() {
     std::string sRv;
 
 #if   xOS_ENV_WIN
-    const std::tstring_t csNativeDesktop = xT("explorer.exe");
 
-    bool bRv = CxProcess::bIsRunning(csNativeDesktop);
+    const std::tstring_t  csNativeDesktop = xT("explorer.exe");
+    const CxProcess::id_t culId           = CxProcess::ulIdByName(csNativeDesktop);
+
+    bool bRv = CxProcess::bIsRunning(culId);
     if (true == bRv) {
         sRv = csNativeDesktop;
     } else {

@@ -67,7 +67,7 @@ class CxProcess :
             ///< get handle by ID
         static id_t     ulIdByName     (const std::tstring_t &csProcessName);
             ///< get ID by name
-        static bool     bIsRunning     (const std::tstring_t &csProcessName);
+        static bool     bIsRunning     (const id_t &culId);
             ///< is process runnig by name (with extension)
 
     private:
