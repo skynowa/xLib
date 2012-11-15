@@ -8,6 +8,7 @@
 
 #include <xLib/Common/CxString.h>
 #include <xLib/Common/CxSystemInfo.h>
+#include <xLib/Common/CxProcessInfo.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Sync/CxCurrentThread.h>
@@ -363,31 +364,18 @@ CxProcess::ulIdByName(
 /* static */
 bool
 CxProcess::bIsRunning(
-    const std::tstring_t &a_csProcessName
+    const id_t &culId
 )
 {
-#if   xOS_ENV_WIN
-    CxHandle       hSnapshot;
-    PROCESSENTRY32 peProcess = {0};    peProcess.dwSize = sizeof(PROCESSENTRY32);
+    std::vector<CxProcess::id_t> vidIds;
 
-    hSnapshot = ::CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0UL);
-    xTEST_EQ(true, hSnapshot.bIsValid());
+    CxProcessInfo::vCurrentIds(&vidIds);
 
-    BOOL blRv = ::Process32First(hSnapshot.hGet(), &peProcess);
-    xTEST_DIFF(FALSE, blRv);
+    std::vector<CxProcess::id_t>::iterator it;
+    it = std::find(vidIds.begin(), vidIds.end(), culId);
+    xCHECK_RET(it == vidIds.end(), false);
 
-    for ( ; ; ) {
-        bool bRv = CxString::bCompareNoCase(a_csProcessName, peProcess.szExeFile);
-        xCHECK_RET(true == bRv, true);   // OK
-
-        blRv = ::Process32Next(hSnapshot.hGet(), &peProcess);
-        xCHECK_DO(FALSE == blRv, break);
-    }
-#elif xOS_ENV_UNIX
-    // TODO: CxProcess::bIsRunning
-#endif
-
-    return false;
+    return true;
 }
 //---------------------------------------------------------------------------
 
