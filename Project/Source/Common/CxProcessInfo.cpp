@@ -287,14 +287,6 @@ CxProcessInfo::sCommandLine(
         static
         PVOID
         pvPebAddress(HANDLE hProcessHandle) {
-            PVOID   pvRv    = NULL;
-            //HMODULE hModule = ::GetModuleHandle(xT("ntdll.dll"));
-            //xTEST_DIFF(static_cast<HMODULE>(NULL), hModule);
-
-            //NtQueryInformationProcess_t
-            //NtQueryInformationProcess = (NtQueryInformationProcess_t)::GetProcAddress(hModule, "NtQueryInformationProcess");
-            //xTEST_PTR(NtQueryInformationProcess);
-
             CxDll dlDll;
 
             dlDll.vLoad(xT("ntdll.dll"));
@@ -323,7 +315,7 @@ CxProcessInfo::sCommandLine(
             xTEST_EQ(cdwBasicInfoSize, dwReturnLength);
             xTEST_PTR(pbiBasicInfo.PebBaseAddress);
 
-            pvRv = pbiBasicInfo.PebBaseAddress;
+            PVOID pvRv = pbiBasicInfo.PebBaseAddress;
 
             return pvRv;
         }
