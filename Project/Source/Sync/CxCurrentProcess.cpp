@@ -75,27 +75,33 @@ CxCurrentProcess::ulParentId() {
         };
     #endif
 
-    typedef NTSTATUS (WINAPI *Dll_NtQueryInformationProcess_t)(HANDLE ProcessHandle, PROCESSINFOCLASS ProcessInformationClass, PVOID ProcessInformation, ULONG ProcessInformationLength, PULONG ReturnLength);
+    typedef NTSTATUS (WINAPI *Dll_NtQueryInformationProcess_t) (
+        HANDLE           ProcessHandle,
+        PROCESSINFOCLASS ProcessInformationClass,
+        PVOID            ProcessInformation,
+        ULONG            ProcessInformationLength,
+        PULONG           ReturnLength
+    );
 
-    const CxProcess::id_t culInvalidId = (ulong_t)- 1;
+    const CxProcess::id_t culInvalidId = (DWORD)- 1;
 
-    bool  bRv   = false;
     CxDll dlDll;
 
     dlDll.vLoad(xT("ntdll.dll"));
 
-    bRv = dlDll.bIsProcExists(xT("NtQueryInformationProcess"));
+    bool bRv = dlDll.bIsProcExists(xT("NtQueryInformationProcess"));
     xCHECK_RET(false == bRv, culInvalidId);
 
     ULONG_PTR pulProcessInformation[6] = {0};
-    ULONG     ulReturnLength           = 0UL;
+    DWORD     dwReturnSize             = 0UL;   // in bytes
 
     Dll_NtQueryInformationProcess_t DllNtQueryInformationProcess = (Dll_NtQueryInformationProcess_t)dlDll.fpProcAddress(xT("NtQueryInformationProcess"));
     xTEST_PTR(DllNtQueryInformationProcess);
 
-    NTSTATUS ntsRes = DllNtQueryInformationProcess(hHandle(), ProcessBasicInformation, &pulProcessInformation, sizeof(pulProcessInformation), &ulReturnLength);
-    bRv = (ntsRes >= 0 && ulReturnLength == sizeof(pulProcessInformation));
-    xTEST_EQ(true, bRv);
+    // TODO: ProcessBasicInformation (for x64)
+    NTSTATUS ntsRes = DllNtQueryInformationProcess(hHandle(), ProcessBasicInformation, &pulProcessInformation, sizeof(pulProcessInformation), &dwReturnSize);
+    xTEST_EQ(true, NT_SUCCESS(ntsRes));
+    xTEST_EQ(size_t(dwReturnSize), sizeof(pulProcessInformation));
 
     ulRv = pulProcessInformation[5];
 #elif xOS_ENV_UNIX
