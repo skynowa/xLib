@@ -51,7 +51,7 @@ CxPath::sExe() {
         int iReaded = - 1;
         sRv.resize(xPATH_MAX);
 
-        for ( ; ; ) {
+        xFOREVER {
             iReaded = ::readlink(csProcFile.c_str(), &sRv.at(0), sRv.size() * sizeof(std::tstring_t::value_type));
             xTEST_DIFF(- 1, iReaded);
 
@@ -848,15 +848,40 @@ CxPath::uiNameMaxSize() {
 /* static */
 void
 CxPath::vProc(
-    const std::tstring_t &csProcPath,
-    std::vec_tstring_t   *pvsData
+    const std::tstring_t &a_csProcPath,
+    std::vec_tstring_t   *a_pvsData
 )
 {
     std::vec_tstring_t vsRv;
 
+    // check for existance "/proc" directory
+    {
+        bool bRv = false;
 
+        bRv = CxDir::bIsExists(xT("/proc"));
+        xCHECK_DO(false == bRv,
+                  CxTracer() << xT("::: xLib: warning (/proc dir not mount) :::"); return);
 
+        bRv = CxDir::bIsEmpty(xT("/proc"));
+        xCHECK_DO(true == bRv,
+                  CxTracer() << xT("::: xLib: warning (/proc dir is empty) :::");  return);
+    }
 
+    std::tifstream_t ifsStream(csProcPath.c_str());
+    xTEST_EQ(true,  !! ifsStream);
+    xTEST_EQ(false, ifsStream.fail());
+    xTEST_EQ(true,  ifsStream.good());
+    xTEST_EQ(true,  ifsStream.is_open());
+    xTEST_EQ(false, ifsStream.eof());
+
+    for ( ; !ifsStream.eof(); ) {
+        std::tstring_t sLine;
+
+        std::getline(ifsStream, sLine);
+        vsRv.push_back(sLine);
+
+        break;
+    }
 
     // out
     (*pvsData).swap(vsRv);
@@ -873,7 +898,7 @@ CxPath::sProcValue(
     const std::tstring_t &csData        ///< target search data string
 )
 {
-    // check for existance "/proc/" directory
+    // check for existance "/proc" directory
     {
         bool bRv = false;
 
