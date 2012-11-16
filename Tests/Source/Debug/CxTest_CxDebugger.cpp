@@ -97,9 +97,7 @@ CxTest_CxDebugger::vUnit(
             CxErrorReport::rtMsgboxPlain,
             CxErrorReport::rtMsgboxFormated,
             CxErrorReport::rtStdoutPlain,
-            CxErrorReport::rtStdoutHtml,
-            CxErrorReport::rtLoggingPlain,
-            CxErrorReport::rtLoggingHtml
+            CxErrorReport::rtLoggingPlain
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(crtType); ++ i) {

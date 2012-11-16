@@ -24,9 +24,7 @@ class CxErrorReport :
             rtMsgboxPlain,      ///< as message box with plain text (GUI)
             rtMsgboxFormated,   ///< as message box with formated text (GUI)
             rtStdoutPlain,      ///< to std::cout with plain text
-            rtStdoutHtml,       ///< to std::cout with HTML text
             rtLoggingPlain,     ///< to log with plain text
-            rtLoggingHtml       ///< to log with HTML text
         };
 
 
@@ -86,8 +84,6 @@ class CxErrorReport :
             ///< initiate class members
         void          _vInitPlain   ();
             ///< initiate plain report
-        void          _vInitHtml    ();
-            ///< initiate HTML report
         void          _vInitFormated();
             ///< initiate formatrd report
 };

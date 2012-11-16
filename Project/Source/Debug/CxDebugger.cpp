@@ -174,9 +174,7 @@ CxDebugger::vReportMake(
         case CxErrorReport::rtMsgboxPlain:    { _vMsgboxPlain   (a_crpReport); } break;
         case CxErrorReport::rtMsgboxFormated: { _vMsgboxFormated(a_crpReport); } break;
         case CxErrorReport::rtStdoutPlain:    { _vStdoutPlain   (a_crpReport); } break;
-        case CxErrorReport::rtStdoutHtml:     { _vStdoutHtml    (a_crpReport); } break;
         case CxErrorReport::rtLoggingPlain:   { _vLoggingPlain  (a_crpReport); } break;
-        case CxErrorReport::rtLoggingHtml:    { _vLoggingHtml   (a_crpReport); } break;
 
         default:                              { _vStdoutPlain   (a_crpReport); } break;
     }
@@ -389,69 +387,6 @@ CxDebugger::_vStdoutPlain(
 }
 //---------------------------------------------------------------------------
 void
-CxDebugger::_vStdoutHtml(
-    const CxErrorReport &a_crpReport
-)
-{
-    xCHECK_DO(false == bIsEnabled(), return);
-
-    enum EConsoleCmd {
-        cmAbort  = xT('a'),
-        cmIgnore = xT('i'),
-        cmRetry  = xT('r')
-    };
-
-    std::tcout << xT("<pre>");
-    std::tcout << xT("\n####################################################################################################\n");
-    std::tcout << a_crpReport.m_sReport;
-    std::tcout << xT("\n####################################################################################################\n");
-    std::tcout << xT("\n");
-    std::tcout << xT("\nAbort (a), Ignore (i), Retry (r): ");
-    std::tcout.flush();
-
-#if xDEBUG_USE_PROMPT_DIALOG
-    EConsoleCmd cmRes = static_cast<EConsoleCmd>( std::tcin.get() );   std::tcin.ignore();
-#else
-    EConsoleCmd cmRes = cmIgnore;
-#endif
-    switch (cmRes) {
-        case cmAbort: {
-                std::tcout << xT("Abort...\n\n");  std::tcout.flush();
-
-                CxCurrentProcess::vExit(0U);
-            }
-            break;
-
-        default:
-        case cmIgnore: {
-                std::tcout << xT("Ignore...\n\n");  std::tcout.flush();
-            }
-            break;
-
-        case cmRetry: {
-                std::tcout << xT("Retry...\n\n");
-
-                if (true == bIsActive()) {
-                    vBreak();
-                } else {
-                    std::tcout << xT("\n####################################################################################################\n");
-                    std::tcout << xT("CxDebugger\n");
-                    std::tcout << xT("\n");
-                    std::tcout << xT("OS debugger is not present.\nThe application will be terminated.\n");
-                    std::tcout << xT("####################################################################################################\n");
-                    std::tcout << xT("\n\n");
-                    std::tcout.flush();
-
-                    CxCurrentProcess::vExit(0U);
-                }
-            }
-            break;
-    }
-
-    std::tcout << xT("</pre>");  std::tcout.flush();
-}
-//---------------------------------------------------------------------------
-void
 CxDebugger::_vLoggingPlain(
     const CxErrorReport &a_crpReport
 )
@@ -487,14 +422,6 @@ CxDebugger::_vLoggingPlain(
     catch (...) { }
 
     xFCLOSE(pFile);
-}
-//---------------------------------------------------------------------------
-void
-CxDebugger::_vLoggingHtml(
-    const CxErrorReport &a_crpReport
-)
-{
-    // TODO: bLoggingHtml
 }
 //---------------------------------------------------------------------------
 

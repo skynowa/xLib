@@ -53,12 +53,8 @@ class CxDebugger :
             ///< show message box with formated report, std::cerr
         void                  _vStdoutPlain   (const CxErrorReport &crpReport);
             ///< show plain report in std::cout
-        void                  _vStdoutHtml    (const CxErrorReport &crpReport);
-            ///< show html report in std::cout
         void                  _vLoggingPlain  (const CxErrorReport &crpReport);
             ///< log plain report to file
-        void                  _vLoggingHtml   (const CxErrorReport &crpReport);
-            ///< log html report to file
 };
 
 xNAMESPACE_END(NxLib)

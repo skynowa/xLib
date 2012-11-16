@@ -75,9 +75,7 @@ CxErrorReport::CxErrorReport(
         case rtMsgboxPlain:     { _vInitPlain();    } break;
         case rtMsgboxFormated:  { _vInitFormated(); } break;
         case rtStdoutPlain:     { _vInitPlain();    } break;
-        case rtStdoutHtml:      { _vInitHtml();     } break;
         case rtLoggingPlain:    { _vInitPlain();    } break;
-        case rtLoggingHtml:     { _vInitHtml();     } break;
 
         default:                { _vInitPlain();    } break;
     }

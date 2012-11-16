@@ -98,12 +98,8 @@
     ///< debug mode "message box with formated text"
 #define xDEBUG_MODE_STDOUT_PLAIN        1
     ///< debug mode "std::out with plain text"
-#define xDEBUG_MODE_STDOUT_HTML         0
-    ///< debug mode "std::out with HTML text"
 #define xDEBUG_MODE_LOGGING_PLAIN       0
     ///< debug mode "logging with plain text"
-#define xDEBUG_MODE_LOGGING_HTML        0
-    ///< debug mode "logging with HTML text"
 #define xDEBUG_MODE_NO                  0
     ///< debug mode "no debugging"
 
