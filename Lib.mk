@@ -54,8 +54,6 @@ SUBDIRS_SOURCE			:=	. \
 							Filesystem \
 							Gui \
 							Gui/Dialogs \
-							Gui/Win \
-							Gui/Win/Dialogs \
 							Log \
 							Net \
 							Patterns \
