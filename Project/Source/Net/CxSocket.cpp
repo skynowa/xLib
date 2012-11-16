@@ -195,7 +195,7 @@ CxSocket::vSendAll(
         iBuffOutSize = iLeftSize;
     }
 
-    for ( ; ; ) {        /*uiLeftSize > 0*/
+    xFOREVER {        /*uiLeftSize > 0*/
         int iRv = iSend(&a_csBuff.at(0) + iCurrPos, iBuffOutSize, a_ciFlags);
         xCHECK_DO(xSOCKET_ERROR == iRv, break);
         xCHECK_DO(0             == iRv, break);
@@ -286,7 +286,7 @@ CxSocket::sRecvAll(
 
     //-------------------------------------
     //read from socket by blocks, write to string
-    for ( ; ; ) {
+    xFOREVER {
         int iRv = iRecv(&sIn.at(0), cuiInSize, a_ciFlags);
         xCHECK_DO(xSOCKET_ERROR == iRv, break);
         xCHECK_DO(0             == iRv, break);

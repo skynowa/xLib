@@ -213,7 +213,7 @@ CxProcessInfo::sExeName(
         int iReaded = - 1;
         sRv.resize(xPATH_MAX);
 
-        for ( ; ; ) {
+        xFOREVER {
             iReaded = ::readlink(csProcFile.c_str(), &sRv.at(0), sRv.size() * sizeof(std::tstring_t::value_type));
             xTEST_DIFF(- 1, iReaded);
 

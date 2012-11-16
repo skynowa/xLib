@@ -152,7 +152,7 @@ CxProcess::vKill(
     BOOL blRes = ::TerminateProcess(_m_hHandle, _m_uiExitStatus);
     xTEST_DIFF(FALSE, blRes);
 
-    for ( ; ; ) {
+    xFOREVER {
         ulong_t ulRv = ulExitStatus();
         xCHECK_DO(STILL_ACTIVE != ulRv, break);
 

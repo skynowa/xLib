@@ -248,7 +248,7 @@ CxThread::vKill(
     BOOL blRes = ::TerminateThread(_m_hThread.hGet(), _m_uiExitStatus);
     xTEST_DIFF(FALSE, blRes);
 
-    for ( ; ; ) {
+    xFOREVER {
         ulRv = ulGetExitStatus();
         xCHECK_DO(STILL_ACTIVE != ulRv, break);
 
@@ -980,7 +980,7 @@ CxThread::uiOnRun(
     uint_t uiRes = 0U;
 
     #if xTEMP_DISABLED
-        for ( ; ; ) {
+        xFOREVER {
             bool bRv = bIsTimeToExit();
             xCHECK_DO(true == bRv, break);
 

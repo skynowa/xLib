@@ -899,7 +899,7 @@ CxFile::vCopy(
         const size_t cuiBuffSize         = 1024;
         uchar_t      ucBuff[cuiBuffSize] = {0};
 
-        for ( ; ; ) {
+        xFOREVER {
             const size_t uiReaded  = sfFrom.uiRead(ucBuff, cuiBuffSize);
             xCHECK_DO(0 >= uiReaded, break);
 

@@ -133,7 +133,7 @@ CxString::sReplaceAll(
 
     size_t uiPos = 0U;
 
-    for ( ; ; ) {
+    xFOREVER {
         uiPos = sRv.find(a_csOldStr, uiPos);
         xCHECK_DO(std::tstring_t::npos == uiPos, break);
 
@@ -193,7 +193,7 @@ CxString::vSplit(
     size_t             uiPrevPos = 0U;     //start of string
     size_t             uiPos     = 0U;
 
-    for ( ; ; ) {
+    xFOREVER {
         uiPos = a_csStr.find(a_csSep, uiPrevPos);
         xCHECK_DO(std::tstring_t::npos == uiPos, break);
 
@@ -460,7 +460,7 @@ CxString::sFormat(
         std::tstring_t sBuff(64, 0);
         int          iWrittenSize = - 1;
 
-        for ( ; ; ) {
+        xFOREVER {
             va_list _palArgs;
             xVA_COPY(_palArgs, a_palArgs);
 
