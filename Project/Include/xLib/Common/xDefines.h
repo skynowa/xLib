@@ -110,6 +110,15 @@
     ///< keyword "override"
 
 //--------------------------------------------------
+// xNEW
+#if xNEW_NO_STD_THROW
+    #define xNEW                        new (std::nothrow)
+#else
+    #define xNEW                        new
+#endif
+    ///< operator "new"
+
+//--------------------------------------------------
 // namespace
 #define xNAMESPACE_BEGIN(n)             namespace n {
             ///< begin namespace

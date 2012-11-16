@@ -118,5 +118,8 @@
 
 #define xTEST_BLOCK_WITH_TRACE_POINT    0
     ///< test block uses with trace point
+
+#define xNEW_NO_STD_THROW               0
+    ///< new with std::notrow
 //---------------------------------------------------------------------------
 #endif  //xLib_Common_xConfigH
