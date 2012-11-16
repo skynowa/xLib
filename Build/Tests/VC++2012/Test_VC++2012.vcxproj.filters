@@ -48,12 +48,6 @@
     <Filter Include="xLib\Gui\Dialogs">
       <UniqueIdentifier>{fba53620-e44a-45c0-a9f9-b237f60d1750}</UniqueIdentifier>
     </Filter>
-    <Filter Include="xLib\Gui\Win">
-      <UniqueIdentifier>{2bfc23fc-2fc5-4478-8796-e1335345c4e4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="xLib\Gui\Win\Dialogs">
-      <UniqueIdentifier>{74a22806-cde1-43d4-a64f-a9e63041f34a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="xLib\Log">
       <UniqueIdentifier>{23d94a76-6875-4303-b2ba-418f048a9e8b}</UniqueIdentifier>
     </Filter>
@@ -358,12 +352,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Gui\Dialogs\CxMsgBoxT.h">
       <Filter>xLib\Gui\Dialogs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Project\Include\xLib\Gui\Win\Dialogs\CxInputBox.h">
-      <Filter>xLib\Gui\Win\Dialogs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Project\Include\xLib\Gui\Win\Dialogs\CxMsgBoxRtf.h">
-      <Filter>xLib\Gui\Win\Dialogs</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Log\CxFileLog.h">
       <Filter>xLib\Log</Filter>
@@ -757,9 +745,6 @@
     <None Include="..\..\..\Project\Include\xLib\Gui\Dialogs\CxMsgBoxT.inl">
       <Filter>xLib\Gui\Dialogs</Filter>
     </None>
-    <None Include="..\..\..\Project\Include\xLib\Gui\Win\Dialogs\CxMsgBoxRtf.inl">
-      <Filter>xLib\Gui\Win\Dialogs</Filter>
-    </None>
     <None Include="..\..\..\Project\Include\xLib\Sync\CxThreadPool.inl">
       <Filter>xLib\Sync</Filter>
     </None>
@@ -923,9 +908,6 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Filesystem\CxVolume.cpp">
       <Filter>xLib\Filesystem</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Project\Source\Gui\Win\Dialogs\CxInputBox.cpp">
-      <Filter>xLib\Gui\Win\Dialogs</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Log\CxFileLog.cpp">
       <Filter>xLib\Log</Filter>
