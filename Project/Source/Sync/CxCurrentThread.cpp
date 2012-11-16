@@ -100,7 +100,7 @@ CxCurrentThread::vSleep(
     tsSleep.tv_sec  = a_culMsec / 1000;
     tsSleep.tv_nsec = (a_culMsec % 1000) * (1000 * 1000);
 
-    for ( ; ; ) {
+    xFOREVER {
         int iRv = ::nanosleep(&tsSleep, &tsRemain);
         // n/a
         xCHECK_DO(!(- 1 == iRv && EINTR == CxLastError::ulGet()), break);

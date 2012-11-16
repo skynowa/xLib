@@ -691,7 +691,7 @@ CxPath::sShort(
         vMake(std::tstring_t &a_cStr, size_t &a_uiNum) {
             size_t uiIndex = 0;
 
-            for ( ; ; ) {
+            xFOREVER {
                 size_t uiPos = a_cStr.find_first_of(CxConst::xWIN_SLASH + CxConst::xUNIX_SLASH);
 
                 a_cStr.erase(0, uiPos + CxConst::xSLASH.size());

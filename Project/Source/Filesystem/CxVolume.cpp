@@ -336,7 +336,7 @@ CxVolume::dtType(
         FILE *pfFile = ::setmntent(xT("/etc/mtab"), xT("r"));
         xTEST_PTR(pfFile);
 
-        for ( ; ; ) {
+        xFOREVER {
             const mntent *pmteMountPoint = ::getmntent(pfFile);
             xCHECK_DO(NULL == pmteMountPoint, break);
 

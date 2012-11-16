@@ -200,7 +200,7 @@ CxIpcSemaphore::vWait(
 #else
     int iLastError = 0;
 
-    for ( ; ; ) {
+    xFOREVER {
         iRv        = ::sem_timedwait(_m_hHandle, &tmsTimeout);
         iLastError = errno;
 

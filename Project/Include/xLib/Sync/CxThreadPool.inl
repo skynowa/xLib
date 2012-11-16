@@ -383,7 +383,7 @@ CxThreadPool<T>::uiOnRun(
     xTEST_EQ(true, _m_lthTasks.empty());
     _m_lthTasks.clear();
 
-    for ( ; ; ) {
+    xFOREVER {
         //-------------------------------------
         //�������� ���������� ������
         _m_semSemaphore.vWait(xTIMEOUT_INFINITE);
@@ -413,7 +413,7 @@ CxThreadPool<T>::uiOnRun(
     ////bRv = bWaitGroup(INFINITE/*5000*/);
     ////xTEST_EQ(true, bRv, 0);
 
-    for ( ; ; ) {
+    xFOREVER {
         xCHECK_DO(true == bIsEmpty(), break);
 
         CxCurrentThread::vSleep(500UL);

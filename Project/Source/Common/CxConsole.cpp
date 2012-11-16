@@ -215,10 +215,10 @@ CxConsole::vPrompt(
     xTEST_EQ(false, a_csPrompt.empty());
     xTEST_PTR(a_psAnswer);
 
-    for ( ; ; ) {
+    xFOREVER {
         vWrite(a_csPrompt + xT(": "));
 
-        for ( ; ; ) {
+        xFOREVER {
             const tchar_t chLetter = static_cast<tchar_t>( std::tcin.get() );
 
             // asterisks

@@ -223,7 +223,7 @@ CxEnvironment::sExpandStrings(
 
     sRv = a_csVar;
 
-    for ( ; ; ) {
+    xFOREVER {
         //--------------------------------------------------
         //find from left two first chars '%'
         const size_t cuiStartSepPos = sRv.find(csSep);
