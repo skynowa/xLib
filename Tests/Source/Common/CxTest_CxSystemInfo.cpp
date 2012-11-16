@@ -220,7 +220,7 @@ CxTest_CxSystemInfo::vUnit(
     {
         for (size_t i = 0; i < 10; ++ i) {
             m_ulRv = CxSystemInfo::ulCpuUsage();
-            xDEBUG_VAR_NA(m_ulRv);
+            xTEST_NA(m_ulRv);
 
             #if xTEST_IGNORE
                 xTRACEV(xT("\tCPU usage: %ld"), m_ulRv);
@@ -234,7 +234,7 @@ CxTest_CxSystemInfo::vUnit(
     {
         for (size_t i = 0; i < 10; ++ i) {
             m_ulRv = CxSystemInfo::ulRamUsage();
-            xDEBUG_VAR_NA(m_ulRv);
+            xTEST_NA(m_ulRv);
 
             #if xTEST_IGNORE
                 xTRACEV(xT("\tMemory usage: %ld"), m_ulRv);

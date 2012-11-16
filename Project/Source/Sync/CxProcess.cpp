@@ -223,7 +223,7 @@ CxProcess::ulIdByHandle(
 
 #if   xOS_ENV_WIN
     ulRv = ::GetProcessId(a_chHandle);
-    xDEBUG_VAR_NA(ulRv);
+    xTEST_NA(ulRv);
 #elif xOS_ENV_UNIX
     ulRv = static_cast<id_t>( a_chHandle );
 #endif
@@ -241,7 +241,7 @@ CxProcess::ulHandleById(
 
 #if   xOS_ENV_WIN
     hRv = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, a_culId);
-    xDEBUG_VAR_NA(hRv);
+    xTEST_NA(hRv);
 #elif xOS_ENV_UNIX
     hRv = static_cast<handle_t>( a_culId );
 #endif

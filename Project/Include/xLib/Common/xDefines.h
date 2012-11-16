@@ -193,9 +193,9 @@
     ///< code for review
 #define xCOMMENT                        0
     ///< comment for code
-#define xDEBUG_VAR_NA(var)              ;
+#define xTEST_NA(var)                   ;
     ///< at this point debug code for variable is not applicable
-#define xDEBUG_VARS_NA                  ;
+#define xTESTS_NA                       ;
     ///< at this point debug code for variables is not applicable
 #define xNA                             ;
     ///< at this point the code is not applicable

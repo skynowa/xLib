@@ -25,7 +25,7 @@ xNAMESPACE_BEGIN(NxLib)
 /* static */
 bool
 CxShell::bIsAvailable() {
-    xDEBUG_VARS_NA;
+    xTESTS_NA;
 
     int iRv = ::xTSYSTEM(NULL);
 
@@ -45,8 +45,8 @@ CxShell::vExecute(
     const std::tstring_t &a_csParams      ///< command line params for binary file
 )
 {
-    xDEBUG_VAR_NA(a_csFilePath);
-    xDEBUG_VAR_NA(a_csParams);
+    xTEST_NA(a_csFilePath);
+    xTEST_NA(a_csParams);
 
     xCHECK_DO(true  == a_csFilePath.empty(), return);
     xCHECK_DO(false == bIsAvailable(),       return);

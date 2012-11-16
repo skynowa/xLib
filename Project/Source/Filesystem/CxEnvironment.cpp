@@ -56,7 +56,7 @@ CxEnvironment::bIsVarValid(
     const std::tstring_t &a_csVarName
 )
 {
-    xDEBUG_VAR_NA(csVarName);
+    xTEST_NA(csVarName);
 
     xCHECK_RET(true              == a_csVarName.empty(),               false);
     xCHECK_RET(std::string::npos != a_csVarName.find(CxConst::xEQUAL), false);
@@ -70,7 +70,7 @@ CxEnvironment::bIsValueValid(
     const std::tstring_t &a_csVarValue
 )
 {
-    xDEBUG_VAR_NA(csVarValue);
+    xTEST_NA(csVarValue);
 
     xCHECK_RET(xENV_MAX < a_csVarValue.size(), false);
 

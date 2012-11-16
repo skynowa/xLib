@@ -34,9 +34,9 @@ CxInputBox::~CxInputBox() {
 //---------------------------------------------------------------------------
 CxInputBox::ExModalResult
 CxInputBox::mrShowModal(
-    const std::tstring_t &csCaption,
-    const std::tstring_t &csPrompt,
-    const std::tstring_t &csText
+    const std::tstring_t &a_csCaption,
+    const std::tstring_t &a_csPrompt,
+    const std::tstring_t &a_csText
 )
 {
     // csCaption - n/a
@@ -69,7 +69,7 @@ CxInputBox::mrShowModal(
 
     _m_hWndMain = ::CreateWindow(
                             xT("CxInputBox"),
-                            csCaption.c_str(),
+                            a_csCaption.c_str(),
                             WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME,
                             x - iWidth  / 2,
                             y - iHeight / 2,
@@ -87,7 +87,7 @@ CxInputBox::mrShowModal(
     //_m_hStaPrompt
     _m_hStaPrompt = ::CreateWindow(
                             xT("STATIC"),
-                            csPrompt.c_str(),
+                            a_csPrompt.c_str(),
                             WS_CHILD | WS_VISIBLE | ES_LEFT,
                             8,   8,
                             216, 20,
@@ -101,7 +101,7 @@ CxInputBox::mrShowModal(
     //_m_hEdtText
     _m_hEdtText = ::CreateWindow(
                             xT("EDIT"),
-                            csText.c_str(),
+                            a_csText.c_str(),
                             WS_CHILD | WS_VISIBLE | WS_BORDER | ES_LEFT | ES_PASSWORD,
                             8,   8+20+8,
                             216, 20,

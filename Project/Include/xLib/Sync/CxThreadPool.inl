@@ -69,8 +69,8 @@ CxThreadPool<T>::vGroupCreate(
 )
 {
     xTEST_LESS_EQ(0U, a_cuiStackSize);    // TODO: MaxValue
-     xDEBUG_VAR_NA(a_fpFuncPtr);
-     xDEBUG_VAR_NA(a_pvParam);
+     xTEST_NA(a_fpFuncPtr);
+     xTEST_NA(a_pvParam);
     xTEST_LESS_EQ(size_t(0), a_cuiNumTasks);
     xTEST_LESS_EQ(size_t(0), a_cuiMaxRunningTasks);
 
