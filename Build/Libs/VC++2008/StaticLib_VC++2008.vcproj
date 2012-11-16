@@ -1118,30 +1118,6 @@
 					>
 				</File>
 			</Filter>
-			<Filter
-				Name="Win"
-				>
-				<Filter
-					Name="Dialogs"
-					>
-					<File
-						RelativePath="..\..\..\Project\Source\Gui\Win\Dialogs\CxInputBox.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\..\..\Project\Include\xLib\Gui\Win\Dialogs\CxInputBox.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\..\Project\Include\xLib\Gui\Win\Dialogs\CxMsgBoxRtf.h"
-						>
-					</File>
-					<File
-						RelativePath="..\..\..\Project\Include\xLib\Gui\Win\Dialogs\CxMsgBoxRtf.inl"
-						>
-					</File>
-				</Filter>
-			</Filter>
 		</Filter>
 	</Files>
 	<Globals>

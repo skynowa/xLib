@@ -73,8 +73,8 @@ CxErrorReport::CxErrorReport(
 
     switch (a_crtType) {
         case rtMsgboxPlain:     { _vInitPlain();    } break;
-        case rtMsgboxFormated:  { _vInitFormated(); } break;
         case rtStdoutPlain:     { _vInitPlain();    } break;
+        case rtStdoutFormated:  { _vInitFormated(); } break;
         case rtLoggingPlain:    { _vInitPlain();    } break;
 
         default:                { _vInitPlain();    } break;

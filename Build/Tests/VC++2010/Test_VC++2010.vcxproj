@@ -280,8 +280,6 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Filesystem\CxPath.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Filesystem\CxVolume.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Gui\Dialogs\CxMsgBoxT.h" />
-    <ClInclude Include="..\..\..\Project\Include\xLib\Gui\Win\Dialogs\CxInputBox.h" />
-    <ClInclude Include="..\..\..\Project\Include\xLib\Gui\Win\Dialogs\CxMsgBoxRtf.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Log\CxFileLog.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Log\CxSystemLog.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Log\CxTracer.h" />
@@ -414,7 +412,6 @@
     <None Include="..\..\..\Project\Include\xLib\Debug\CxErrorReport.inl" />
     <None Include="..\..\..\Project\Include\xLib\Debug\CxException.inl" />
     <None Include="..\..\..\Project\Include\xLib\Gui\Dialogs\CxMsgBoxT.inl" />
-    <None Include="..\..\..\Project\Include\xLib\Gui\Win\Dialogs\CxMsgBoxRtf.inl" />
     <None Include="..\..\..\Project\Include\xLib\Sync\CxThreadPool.inl" />
     <None Include="..\..\..\TODO.txt" />
   </ItemGroup>
@@ -475,7 +472,6 @@
     <ClCompile Include="..\..\..\Project\Source\Filesystem\CxLocalStorage.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Filesystem\CxPath.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Filesystem\CxVolume.cpp" />
-    <ClCompile Include="..\..\..\Project\Source\Gui\Win\Dialogs\CxInputBox.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Log\CxFileLog.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Log\CxSystemLog.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Log\CxTracer.cpp" />

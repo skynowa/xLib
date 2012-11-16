@@ -31,6 +31,7 @@ xNAMESPACE_BEGIN(NxLib)
 CxErrorReport::~CxErrorReport() {
     
 }
+//---------------------------------------------------------------------------
 void
 CxErrorReport::_vConstruct(
     const ExType         &a_crtType,
@@ -51,7 +52,7 @@ CxErrorReport::_vConstruct(
 {
     
 
-    const size_t cuiReportWidthMax = 46U;
+    const size_t cuiReportWidthMax = 46U;   // MAGIC: cuiReportWidthMax
 
 
     m_rtType          = a_crtType;
@@ -124,58 +125,6 @@ CxErrorReport::_vInitPlain() {
 //---------------------------------------------------------------------------
 void
 CxErrorReport::_vInitFormated() {
-#if   xOS_ENV_WIN
-    m_sReport = CxString::sFormat(
-        xT("{\\rtf1\\ansi\\ansicpg1251\\deff0\\deflang1049{\\fonttbl{\\f0\\fswiss\\fcharset0 Arial;}{\\f1\\fnil DejaVu Sans Mono;}{\\f2\\fswiss\\fcharset204{\\*\\fname Arial;}Arial CYR;}{\\f3\\fswiss\\fprq2\\fcharset204{\\*\\fname Arial;}Arial CYR;}{\\f4\\fswiss\\fprq2\\fcharset0 Arial;}}")
-        xT("{\\colortbl ;\\red255\\green0\\blue0;\\red0\\green0\\blue0;\\red255\\green0\\blue255;\\red0\\green255\\blue255;\\red255\\green255\\blue0;}")
-        xT("\\viewkind4\\uc1\\pard\\lang1033\\ul\\b\\f0\\fs20 %s\\cf1\\lang1049\\ulnone\\b0\\f1\\fs16\\par")
-        xT("\\cf0\\b\\f2\\fs20\\par")
-        xT("\\cf2\\b\\f3 %s\\b0   \\lang1033\\f0  \\cf2 %s\\cf1\\lang1049\\f2\\par")
-        xT("\\cf2\\b\\f3 %s\\b0   \\lang1033\\f4   \\f0 %lu\\cf1\\lang1049\\f2\\par")
-        xT("\\cf2\\b\\f3 %s\\b0   \\lang1033\\f4   \\f0 %lu\\cf1\\lang1049\\f2\\par")
-        xT("\\cf2\\b\\f3 %s\\b0   \\lang1033\\f4     \\f0 %s\\par")
-        xT("\\cf1\\lang1049\\f2\\par")
-        xT("\\cf0\\b %s\\b0   \\lang1033\\f0   \\b %s\\cf1\\lang1049\\b0\\f2\\par")
-        xT("\\cf0\\b %s\\b0   \\lang1033\\f0  \\cf3\\b\\f4 %lu\\lang1049\\f3\\par")
-        xT("\\cf0\\f2 %s\\lang1033\\f0 \\cf4\\f4 %s\\lang1049\\f3\\par")
-        xT("\\cf0\\f2 %s\\b0   \\lang1033\\f0  \\cf5\\b\\f4 %s\\cf0\\lang1049\\b0\\f2\\par")
-        xT("\\b %s\\lang1033\\b0\\f0      \\cf1\\b\\f4 %s\\b0\\par")
-        xT("\\cf0\\lang1049\\f2\\par")
-        xT("\\b %s\\lang1033\\b0\\f0    %s\\lang1049\\f2\\par")
-        xT("\\b %s\\lang1033\\b0\\f0     %s\\lang1049\\f2\\par")
-        xT("\\b %s\\lang1033\\b0\\f0     %s\\lang1049\\f2\\par")
-        xT("\\b %s\\lang1033\\b0\\f0    %s\\lang1049\\f2\\par")
-        xT("\\b %s\\lang1033\\f0  \\b0 %s\\par")
-        xT("\\lang1049\\f2\\par")
-        xT("\\b %s\\b0  \\lang1033\\f0   %s\\lang1049\\f2\\par")
-        xT("\\lang1049\\f2\\par")
-        xT("\\b %s\\b0  \\lang1033\\f0   %s\\lang1049\\f2\\par")
-        xT("}"),
-
-        xT("CxErrorReport "),
-
-        xT("Program:         "), m_sProgram.c_str(),
-        xT("Process id:      "), m_ulProcessId,
-        xT("Thread id:       "), m_ulThreadId,
-        xT("File size:       "), m_sFileSize.c_str(),
-
-        xT("Source file:     "), m_sSourceFile.c_str(),
-        xT("Source line:     "), m_ulSourceLine,
-        xT("Function name:   "), m_sFunctionName.c_str(),
-        xT("Expression:      "), m_sExpression.c_str(),
-        xT("Last error:      "), m_sLastErrorStr.c_str(),
-
-        xT("Current date:    "), m_sCurrentDate.c_str(),
-        xT("Build date:      "), m_sBuildDate.c_str(),
-        xT("Build type:      "), m_sBuildType.c_str(),
-        xT("OS version:      "), m_sOsVersion.c_str(),
-        xT("OS architecture: "), m_sOsArchitecture.c_str(),
-
-        xT("Stack trace:     "), m_sStackTrace.c_str(),
-
-        xT("Comment:         "), m_sComment.c_str()
-    );
-#elif xOS_ENV_UNIX
     m_sReport = CxString::sFormat(
         xT("%s\n")        //CxErrorReport
         xT("#  \n")
@@ -228,7 +177,6 @@ CxErrorReport::_vInitFormated() {
 
         xT("#  Comment:         "), CxConsole().sSetTextColor( m_sComment,                             CxConsole::fgYellow_, false, false, CxConsole::bgBlue,  false ).c_str()
     );
-#endif
 }
 //---------------------------------------------------------------------------
 

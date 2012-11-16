@@ -95,8 +95,8 @@ CxTest_CxDebugger::vUnit(
     {
         const CxErrorReport::ExType crtType[] = {
             CxErrorReport::rtMsgboxPlain,
-            CxErrorReport::rtMsgboxFormated,
             CxErrorReport::rtStdoutPlain,
+            CxErrorReport::rtStdoutFormated,
             CxErrorReport::rtLoggingPlain
         };
 
