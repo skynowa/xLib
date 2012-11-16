@@ -184,8 +184,8 @@ CxTest_xDefines::vUnit(
         xTEST_EQ(1, xREVIEW);
         xTEST_EQ(0, xCOMMENT);
 
-        xDEBUG_VAR_NA(var);
-        xDEBUG_VARS_NA;
+        xTEST_NA(var);
+        xTESTS_NA;
         xNA;
     }
 

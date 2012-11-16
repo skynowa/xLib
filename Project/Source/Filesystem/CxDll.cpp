@@ -33,7 +33,7 @@ CxDll::~CxDll() {
 //---------------------------------------------------------------------------
 bool
 CxDll::bIsLoaded() const {
-    xDEBUG_VARS_NA;
+    xTESTS_NA;
 
     return (NULL != _m_hDll);
 }
@@ -43,7 +43,7 @@ CxDll::vLoad(
     const std::tstring_t &csDllPath
 )
 {
-    xDEBUG_VARS_NA;
+    xTESTS_NA;
     xTEST_EQ(false, csDllPath.empty());
 
     _vFree();
@@ -101,7 +101,7 @@ CxDll::fpProcAddress(
     xTEST_PTR_FAIL(pszError);
 
     fpRes = ::dlsym(_m_hDll, csProcName.c_str());
-    xDEBUG_VAR_NA(fpRes)
+    xTEST_NA(fpRes)
 
     pszError = ::dlerror();
     xTEST_PTR_FAIL(pszError);
@@ -120,7 +120,7 @@ CxDll::fpProcAddress(
 //---------------------------------------------------------------------------
 void
 CxDll::_vFree() {
-    xDEBUG_VARS_NA;
+    xTESTS_NA;
 
     xCHECK_DO(false == bIsLoaded(), return);
 

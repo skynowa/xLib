@@ -102,7 +102,7 @@ CxSystemInfo::sFormatOsType(
     const ExOsType &a_otOsType
 )
 {
-    xDEBUG_VAR_NA(otOsType);
+    xTEST_NA(otOsType);
 
     std::tstring_t sRv;
 
@@ -320,11 +320,11 @@ CxSystemInfo::bIsUserAnAdmin() {
     uid_t       uiUserId  = 0;
 
     uiUserId = ::getuid();
-    xDEBUG_VARS_NA;
+    xTESTS_NA;
     xCHECK_RET(cuiRootId != uiUserId, false);
 
     uiUserId = ::geteuid();
-    xDEBUG_VARS_NA;
+    xTESTS_NA;
     xCHECK_RET(cuiRootId != uiUserId, false);
 #endif
 
@@ -476,7 +476,7 @@ CxSystemInfo::ulCurrentCpuNum() {
     xTEST_PTR(DllGetCurrentProcessorNumber);
 
     ulRv = DllGetCurrentProcessorNumber();
-    xDEBUG_VAR_NA(ulRv);
+    xTEST_NA(ulRv);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         #if defined(SYS_getcpu)
@@ -1034,7 +1034,7 @@ CxSystemInfo::_passwordFileEntry(
     xTEST_PTR(a_pwdPasswd);
 
     const uid_t cuiUserId = ::getuid();
-    xDEBUG_VAR_NA(cuiUserId);
+    xTEST_NA(cuiUserId);
 
     long_t liBuffSize = - 1L;
 

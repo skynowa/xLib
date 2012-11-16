@@ -34,7 +34,7 @@ CxVolume::bIsValid(
     const std::tstring_t &a_csVolumePath
 )
 {
-    xDEBUG_VAR_NA(csVolumePath);
+    xTEST_NA(csVolumePath);
 
 #if   xOS_ENV_WIN
     bool bRv = CxDir::bIsRoot(a_csVolumePath);
@@ -330,7 +330,7 @@ CxVolume::dtType(
 
 #if   xOS_ENV_WIN
     dtRes = static_cast<ExType>( ::GetDriveType(CxPath::sSlashAppend(a_csVolumePath).c_str()) );
-    xDEBUG_VAR_NA(dtRes);
+    xTEST_NA(dtRes);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         FILE *pfFile = ::setmntent(xT("/etc/mtab"), xT("r"));

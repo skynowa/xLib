@@ -18,17 +18,17 @@ xNAMESPACE_BEGIN(NxLib)
 CxException::CxException() :
     _m_sMessage()
 {
-    xDEBUG_VARS_NA;
+    xTESTS_NA;
 }
 //---------------------------------------------------------------------------
 /* virtual */
 CxException::~CxException() {
-    xDEBUG_VARS_NA;
+    xTESTS_NA;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxException::sWhat() const {
-    xDEBUG_VARS_NA;
+    xTESTS_NA;
 
     return _m_sMessage;
 }
