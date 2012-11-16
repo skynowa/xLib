@@ -75,9 +75,7 @@ SUBDIRS_SOURCE				:=	. \
 								Filesystem/Win \
 								Gui \
 								Gui/Dialogs \
-								Gui/Win \
-								Gui/Win/Dialogs \
-								Log \
+.								Log \
 								Net \
 								Patterns \
 								Sync \
