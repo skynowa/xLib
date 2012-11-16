@@ -123,41 +123,6 @@ CxErrorReport::_vInitPlain() {
 }
 //---------------------------------------------------------------------------
 void
-CxErrorReport::_vInitHtml() {
-    std::tostringstream_t ossReport;
-
-    ossReport \
-        << xT("<pre>")                                         << std::endl
-        << xT("<b><u>CxErrorReport</u></b>")                   << std::endl
-                                                               << std::endl
-                                                               << std::endl
-        << xT("<b>Program:</b>         ") << m_sProgram        << std::endl
-        << xT("<b>Process id:</b>      ") << m_ulProcessId     << std::endl
-        << xT("<b>Thread id:</b>       ") << m_ulThreadId      << std::endl
-        << xT("<b>File size:</b>       ") << m_sFileSize       << std::endl
-                                                               << std::endl
-        << xT("<b>Source file:</b>     ") << m_sSourceFile     << std::endl
-        << xT("<b>Source line:</b>     ") << m_ulSourceLine    << std::endl
-        << xT("<b>Function name:</b>   ") << m_sFunctionName   << std::endl
-        << xT("<b>Expression:</b>      ") << m_sExpression     << std::endl
-        << xT("<b>Last error:</b>      ") << m_sLastErrorStr   << std::endl
-                                                               << std::endl
-        << xT("<b>Current date:</b>    ") << m_sCurrentDate    << std::endl
-        << xT("<b>Build date:</b>      ") << m_sBuildDate      << std::endl
-        << xT("<b>Build type:</b>      ") << m_sBuildType      << std::endl
-        << xT("<b>OS version:</b>      ") << m_sOsVersion      << std::endl
-        << xT("<b>OS architecture:</b> ") << m_sOsArchitecture << std::endl
-                                                               << std::endl
-        << xT("<b>Stack trace:</b>     ") << std::endl 
-                                          << m_sStackTrace     << std::endl
-                                                               << std::endl
-        << xT("<b>Comment:</b>         ") << m_sComment        << std::endl
-        << xT("<pre>")                                         << std::endl;
-
-    m_sReport = ossReport.str();
-}
-//---------------------------------------------------------------------------
-void
 CxErrorReport::_vInitFormated() {
 #if   xOS_ENV_WIN
     m_sReport = CxString::sFormat(
