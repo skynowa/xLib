@@ -103,7 +103,7 @@ class CxConsole :
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif //xLib_Common_CxConsoleH
+#endif // xLib_Common_CxConsoleH
 
 
 #if xTODO
