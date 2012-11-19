@@ -116,15 +116,11 @@ CxDebugger::bIsActive() {
 //---------------------------------------------------------------------------
 bool
 CxDebugger::bIsDebugBuild() {
-    bool bRv = false;
-
 #if xBUILD_DEBUG
-    bRv = true;
+    return true;
 #else
-    bRv = false;
+    return false;
 #endif
-
-    return bRv;
 }
 //---------------------------------------------------------------------------
 void
@@ -167,7 +163,7 @@ CxDebugger::vReportMake(
 )
 {
     //-------------------------------------
-    //never corrupt the last error value
+    // never corrupt the last error value
     const ulong_t culLastError = CxLastError::ulGet();
 
     switch (a_crpReport.m_rtType) {
@@ -180,7 +176,7 @@ CxDebugger::vReportMake(
     }
 
     //-------------------------------------
-    //never corrupt the last error value
+    // never corrupt the last error value
     CxLastError::vSet(culLastError);
 }
 //---------------------------------------------------------------------------
@@ -362,7 +358,7 @@ CxDebugger::_vLoggingPlain(
     xCHECK_DO(false == bIsEnabled(), return);
 
     //--------------------------------------------------
-    //get log file path
+    // get log file path
     std::tstring_t sFilePath;
 
     if (true == sLogPath().empty()) {
@@ -372,7 +368,7 @@ CxDebugger::_vLoggingPlain(
     }
 
     //--------------------------------------------------
-    //write to file
+    // write to file
     std::FILE *pFile = ::xTFOPEN(sFilePath.c_str(), xT("ab"));
     xTEST_PTR(pFile);
 
