@@ -17,9 +17,9 @@ class CxNonAssignable
     public:
 
     protected:
-         CxNonAssignable() { }
+                 CxNonAssignable() { ; }
             ///< constructor
-        ~CxNonAssignable() { }
+        virtual ~CxNonAssignable() { ; }
             ///< dectructor
 
     private:
@@ -29,4 +29,4 @@ class CxNonAssignable
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif    //xLib_CxNonAssignableH
+#endif    // xLib_Common_CxNonAssignableH

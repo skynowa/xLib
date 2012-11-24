@@ -20,10 +20,11 @@ CxTest_[CxTemplate]::~CxTest_[CxTemplate]() {
 void
 CxTest_[CxTemplate]::vUnit(
     const ulonglong_t &cullCaseLoops
-)  xOVERRIDE;
+)
 {
+    xTEST_CASE(, cullCaseLoops)
+    {
 
-
-    return true;
+    }
 }
 //---------------------------------------------------------------------------

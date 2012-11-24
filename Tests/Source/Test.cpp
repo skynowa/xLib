@@ -13,6 +13,8 @@
 #include <xLib/Test/CxTestManager.h>
 
 // Common
+#include <Test/Common/CxTest_CxNonHeap.h>
+#include <Test/Common/CxTest_CxNonArrayHeap.h>
 #include <Test/Common/CxTest_CxUtils.h>
 #include <Test/Common/CxTest_CxHandleT.h>
 #include <Test/Common/CxTest_CxType.h>
@@ -156,6 +158,8 @@ xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
         CxTestManager tmManager(bIsUseTracing);
 
         // Common
+        tmManager.vAdd(new CxTest_CxNonHeap);
+        tmManager.vAdd(new CxTest_CxNonArrayHeap);
         tmManager.vAdd(new CxTest_CxUtils);
         tmManager.vAdd(new CxTest_CxHandleT);
         tmManager.vAdd(new CxTest_CxType);

@@ -198,6 +198,8 @@
     ///< can remove code
 #define xTEST_IGNORE                    0
     ///< ignore test code
+#define xNOT_COMPILE                    0
+    ///< code not compile
 #define xREVIEW                         1
     ///< code for review
 #define xCOMMENT                        0
