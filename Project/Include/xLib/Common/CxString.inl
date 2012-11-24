@@ -21,7 +21,7 @@ operator << (
 {
     xTEST_NA(a_osOut);
     xTEST_NA(a_cusValue);
-    
+
     std::tstring_t sRv;
 
     sRv.assign( a_cusValue.begin(), a_cusValue.end() );
@@ -238,9 +238,9 @@ CxString::castA(
     xTEST_NA(a_csStr);
 
     struct _SNarrow {
-        char 
+        char
         operator () (const wchar_t &a_cchChar) {
-            return std::use_facet<std::ctype<wchar_t>>( std::locale() ).narrow(a_cchChar, '@');
+            return std::use_facet< std::ctype<wchar_t> >( std::locale() ).narrow(a_cchChar, '@');
         }
     };
 
@@ -260,9 +260,9 @@ CxString::castW(
     xTEST_NA(a_csStr);
 
     struct _SWiden {
-        wchar_t 
+        wchar_t
         operator () (const char &a_cchChar) {
-            return std::use_facet<std::ctype<char>>( std::locale() ).widen(a_cchChar);
+            return std::use_facet< std::ctype<char> >( std::locale() ).widen(a_cchChar);
         }
     };
 
