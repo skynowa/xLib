@@ -28,18 +28,25 @@ CxTest_CxNonCopyable::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    xTEST_CASE(CxNonCopyable::CxNonCopyable, cullCaseLoops)
-    {
-        A a;
-    }
-
-    xTEST_CASE(CxNonCopyable::CxNonCopyable, cullCaseLoops)
+    xTEST_CASE(CxNonCopyable::CxNonCopyable(const CxNonCopyable &), cullCaseLoops)
     {
         #if xNOT_COMPILE
-            A a;
-            A b;
+            {
+                A a;
+                A b(a);
+            }
+        #endif
+    }
 
-            a = b;
+    xTEST_CASE(const CxNonCopyable &operator =, cullCaseLoops)
+    {
+        #if xNOT_COMPILE                
+            {
+                A a;
+                A b;
+
+                a = b;
+            }
         #endif
     }
 }
