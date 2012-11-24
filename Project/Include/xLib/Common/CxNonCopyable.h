@@ -17,13 +17,13 @@ class CxNonCopyable
     public:
 
     protected:
-        CxNonCopyable() { ; }
+                 CxNonCopyable() { ; }
             ///< constructor
-       ~CxNonCopyable() { ; }
+        virtual ~CxNonCopyable() { ; }
             ///< dectructor
 
     private:
-        CxNonCopyable(const CxNonCopyable &);
+                 CxNonCopyable(const CxNonCopyable &);
             ///< constructor
         const CxNonCopyable &operator = (const CxNonCopyable &);
             ///< operator =
@@ -31,4 +31,4 @@ class CxNonCopyable
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif    //xLib_Common_CxNonCopyableH
+#endif    // xLib_Common_CxNonCopyableH

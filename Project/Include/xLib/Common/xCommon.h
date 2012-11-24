@@ -163,6 +163,9 @@ namespace NxLib { }
 #include <xLib/Common/xFunctions.h>
 #include <xLib/Common/CxConst.h>
 #include <xLib/Common/CxNonCopyable.h>
+#include <xLib/Common/CxNonAssignable.h>
+#include <xLib/Common/CxNonHeap.h>
+#include <xLib/Common/CxNonArrayHeap.h>
 #include <xLib/Common/CxUtils.h>
 #include <xLib/Debug/xDebug.h>
 #include <xLib/Debug/CxException.h>

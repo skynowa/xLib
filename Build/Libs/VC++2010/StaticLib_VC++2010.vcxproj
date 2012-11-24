@@ -21,8 +21,10 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxHandleErrorT.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxHandleT.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxLocale.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxNonArrayHeap.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxNonAssignable.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxNonCopyable.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxNonHeap.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxProcessInfo.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxShell.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxString.h" />

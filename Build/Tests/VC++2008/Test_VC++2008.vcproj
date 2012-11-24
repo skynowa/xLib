@@ -240,6 +240,22 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\..\Tests\Source\Common\CxTest_CxNonArrayHeap.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Include\Test\Common\CxTest_CxNonArrayHeap.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Source\Common\CxTest_CxNonHeap.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Include\Test\Common\CxTest_CxNonHeap.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\..\Tests\Source\Common\CxTest_CxProcessInfo.cpp"
 					>
 				</File>
@@ -960,11 +976,19 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\CxNonArrayHeap.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\..\Project\Include\xLib\Common\CxNonAssignable.h"
 					>
 				</File>
 				<File
 					RelativePath="..\..\..\Project\Include\xLib\Common\CxNonCopyable.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Common\CxNonHeap.h"
 					>
 				</File>
 				<File

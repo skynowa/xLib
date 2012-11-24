@@ -719,6 +719,18 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\Unix\CxCondition.h">
       <Filter>xLib\Sync\Unix</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxNonHeap.h">
+      <Filter>xLib\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxNonHeap.h">
+      <Filter>Test\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxNonArrayHeap.h">
+      <Filter>xLib\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxNonArrayHeap.h">
+      <Filter>Test\Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Project\Include\xLib\Common\CxArray.inl">
@@ -1262,6 +1274,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Common\xFunctions.cpp">
       <Filter>xLib\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxNonHeap.cpp">
+      <Filter>Test\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxNonArrayHeap.cpp">
+      <Filter>Test\Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

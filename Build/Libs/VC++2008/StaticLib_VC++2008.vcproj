@@ -223,11 +223,19 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\Project\Include\xLib\Common\CxNonArrayHeap.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\Project\Include\xLib\Common\CxNonAssignable.h"
 				>
 			</File>
 			<File
 				RelativePath="..\..\..\Project\Include\xLib\Common\CxNonCopyable.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Project\Include\xLib\Common\CxNonHeap.h"
 				>
 			</File>
 			<File

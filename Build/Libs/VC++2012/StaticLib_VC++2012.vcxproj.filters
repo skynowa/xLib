@@ -433,6 +433,12 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\Unix\CxCondition.h">
       <Filter>xLib\Sync\Unix</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxNonArrayHeap.h">
+      <Filter>xLib\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxNonHeap.h">
+      <Filter>xLib\Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Project\Include\xLib\Common\CxArray.inl">

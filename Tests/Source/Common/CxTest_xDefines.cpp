@@ -180,6 +180,7 @@ CxTest_xDefines::vUnit(
         xTEST_EQ(0, xDEPRECIATE);
         xTEST_EQ(0, xTODO);
         xTEST_EQ(0, xCAN_REMOVE);
+        xTEST_EQ(0, xNOT_COMPILE);
         xTEST_EQ(0, xTEST_IGNORE);
         xTEST_EQ(1, xREVIEW);
         xTEST_EQ(0, xCOMMENT);
