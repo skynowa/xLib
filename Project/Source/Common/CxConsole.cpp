@@ -224,8 +224,8 @@ CxConsole::sSetAttributes(
         xCHECK_DO(a_ciAttributes & CxConsole::atReverse,    /* wAttributes |= ciAttributeReverse */);      // not supported
         xCHECK_DO(a_ciAttributes & CxConsole::atConcealed,  /* wAttributes |= ciAttributeConcealed */);    // not supported
     #elif xOS_ENV_UNIX
-        sRv += CxString::sFormat(xT("\033[%im"), fgForegroundColor);
-        sRv += CxString::sFormat(xT("\033[%im"), bgBackgroundColor);
+        sAttributes += CxString::sFormat(xT("\033[%im"), fgForegroundColor);
+        sAttributes += CxString::sFormat(xT("\033[%im"), bgBackgroundColor);
 
         xCHECK_DO(a_ciAttributes & CxConsole::atAllOff,     sAttributes += CxString::sFormat(xT("\033[%im"), ciAttributeAllOff));
         xCHECK_DO(a_ciAttributes & CxConsole::atBold,       sAttributes += CxString::sFormat(xT("\033[%im"), ciAttributeBold));
