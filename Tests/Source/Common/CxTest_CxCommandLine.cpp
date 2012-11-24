@@ -22,14 +22,14 @@ CxTest_CxCommandLine::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    xTEST_CASE(CxCommandLine::liArgsMax, cullCaseLoops)
+    xTEST_CASE("CxCommandLine::liArgsMax", cullCaseLoops)
     {
         m_liRv = CxCommandLine::liArgsMax();
         xTEST_LESS(0L, m_liRv);
         //xTRACEV(xT("\tCxCommandLine::liArgsMax() = %li"), m_liRv);
     }
 
-    xTEST_CASE(CxCommandLine::sGet, cullCaseLoops)
+    xTEST_CASE("CxCommandLine::sGet", cullCaseLoops)
     {
         m_sRv = CxCommandLine::sGet();
         #if xTEST_IGNORE
@@ -38,13 +38,13 @@ CxTest_CxCommandLine::vUnit(
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE(CxCommandLine::vArgs, cullCaseLoops)
+    xTEST_CASE("CxCommandLine::vArgs", cullCaseLoops)
     {
         CxCommandLine::vArgs(&m_vsRv);
         xTEST_EQ(false, m_vsRv.empty());
     }
 
-    xTEST_CASE(CxCommandLine::vSetArgs, cullCaseLoops)
+    xTEST_CASE("CxCommandLine::vSetArgs", cullCaseLoops)
     {
         #if xTEST_IGNORE
             CxCommandLine::vSetArgs(0, NULL);

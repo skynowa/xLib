@@ -26,7 +26,7 @@ CxTest_CxAutoIpcMutex::vUnit(
 {
     const std::tstring_t csName = xT("mutex_name_a");
 
-    xTEST_CASE(CxAutoIpcMutex::CxAutoIpcMutex, cullCaseLoops)
+    xTEST_CASE("CxAutoIpcMutex::CxAutoIpcMutex", cullCaseLoops)
     {
         CxIpcMutex mtMutex;
 

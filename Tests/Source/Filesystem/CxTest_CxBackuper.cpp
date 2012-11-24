@@ -29,7 +29,7 @@ CxTest_CxBackuper::vUnit(
     const std::tstring_t csBackupDir = sTempDirPath() + CxConst::xSLASH + xT("Backup_dir");
 
 
-    xTEST_CASE(CxBackuper::vExecute, cullCaseLoops)
+    xTEST_CASE("CxBackuper::vExecute", cullCaseLoops)
     {
         const long_t cliFileSize = 100L;
 

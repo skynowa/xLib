@@ -22,7 +22,7 @@ CxTest_CxChar::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    xTEST_CASE(CxChar::bIsAlphaNum, cullCaseLoops)
+    xTEST_CASE("CxChar::bIsAlphaNum", cullCaseLoops)
     {
         //true
         {
@@ -45,7 +45,7 @@ CxTest_CxChar::vUnit(
         }
     }
 
-    xTEST_CASE(CxChar::bIsAlpha, cullCaseLoops)
+    xTEST_CASE("CxChar::bIsAlpha", cullCaseLoops)
     {
         //true
         {
@@ -68,7 +68,7 @@ CxTest_CxChar::vUnit(
         }
     }
 
-    xTEST_CASE(CxChar::bIsControl, cullCaseLoops)
+    xTEST_CASE("CxChar::bIsControl", cullCaseLoops)
     {
         //true
         {
@@ -91,7 +91,7 @@ CxTest_CxChar::vUnit(
         }
     }
 
-    xTEST_CASE(CxChar::bIsDigitDec, cullCaseLoops)
+    xTEST_CASE("CxChar::bIsDigitDec", cullCaseLoops)
     {
         //true
         {
@@ -114,7 +114,7 @@ CxTest_CxChar::vUnit(
         }
     }
 
-    xTEST_CASE(CxChar::bIsDigitHex, cullCaseLoops)
+    xTEST_CASE("CxChar::bIsDigitHex", cullCaseLoops)
     {
         //true
         {
@@ -137,7 +137,7 @@ CxTest_CxChar::vUnit(
         }
     }
 
-    xTEST_CASE(CxChar::bIsGraph, cullCaseLoops)
+    xTEST_CASE("CxChar::bIsGraph", cullCaseLoops)
     {
         //true
         {
@@ -160,7 +160,7 @@ CxTest_CxChar::vUnit(
         }
     }
 
-    xTEST_CASE(CxChar::bIsPrint, cullCaseLoops)
+    xTEST_CASE("CxChar::bIsPrint", cullCaseLoops)
     {
         //true
         {
@@ -185,7 +185,7 @@ CxTest_CxChar::vUnit(
         }
     }
 
-    xTEST_CASE(CxChar::bIsPunct, cullCaseLoops)
+    xTEST_CASE("CxChar::bIsPunct", cullCaseLoops)
     {
         //true
         {
@@ -208,7 +208,7 @@ CxTest_CxChar::vUnit(
         }
     }
 
-    xTEST_CASE(CxChar::bIsSpace, cullCaseLoops)
+    xTEST_CASE("CxChar::bIsSpace", cullCaseLoops)
     {
         //true
         {
@@ -231,7 +231,7 @@ CxTest_CxChar::vUnit(
         }
     }
 
-    xTEST_CASE(CxChar::bIsLower, cullCaseLoops)
+    xTEST_CASE("CxChar::bIsLower", cullCaseLoops)
     {
         //true
         {
@@ -254,7 +254,7 @@ CxTest_CxChar::vUnit(
         }
     }
 
-    xTEST_CASE(CxChar::bIsUpper, cullCaseLoops)
+    xTEST_CASE("CxChar::bIsUpper", cullCaseLoops)
     {
         //true
         {
@@ -277,7 +277,7 @@ CxTest_CxChar::vUnit(
         }
     }
 
-    xTEST_CASE(CxChar::chToLower, cullCaseLoops)
+    xTEST_CASE("CxChar::chToLower", cullCaseLoops)
     {
         const std::tstring_t sDataUpper = xT("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
         const std::tstring_t sDataLow   = xT("abcdefghijklmnopqrstuvwxyz");
@@ -288,7 +288,7 @@ CxTest_CxChar::vUnit(
         }
     }
 
-    xTEST_CASE(CxChar::chToUpper, cullCaseLoops)
+    xTEST_CASE("CxChar::chToUpper", cullCaseLoops)
     {
         const std::tstring_t sDataLow   = xT("abcdefghijklmnopqrstuvwxyz");
         const std::tstring_t sDataUpper = xT("ABCDEFGHIJKLMNOPQRSTUVWXYZ");

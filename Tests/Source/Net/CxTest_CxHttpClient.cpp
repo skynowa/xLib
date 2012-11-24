@@ -22,7 +22,7 @@ CxTest_CxHttpClient::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    xTEST_CASE(CxHttpClient::CxHttpClient, cullCaseLoops)
+    xTEST_CASE("CxHttpClient::CxHttpClient", cullCaseLoops)
     {
         CxHttpClient hcHttpClient;
     }

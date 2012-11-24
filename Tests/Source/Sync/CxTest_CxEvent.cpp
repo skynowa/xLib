@@ -22,7 +22,7 @@ CxTest_CxEvent::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    xTEST_CASE(CxEvent::hGet, cullCaseLoops)
+    xTEST_CASE("CxEvent::hGet", cullCaseLoops)
     {
         CxEvent objEvent(true, true);
 
@@ -35,7 +35,7 @@ CxTest_CxEvent::vUnit(
         #endif
     }
 
-    xTEST_CASE(CxEvent::bIsSignaled, cullCaseLoops)
+    xTEST_CASE("CxEvent::bIsSignaled", cullCaseLoops)
     {
         {
             CxEvent objEvent(true, true);
@@ -56,7 +56,7 @@ CxTest_CxEvent::vUnit(
         }
     }
 
-    xTEST_CASE(CxEvent::vSet, cullCaseLoops)
+    xTEST_CASE("CxEvent::vSet", cullCaseLoops)
     {
         const size_t cuiSpinCount = 3;
 
@@ -80,7 +80,7 @@ CxTest_CxEvent::vUnit(
         }
     }
 
-    xTEST_CASE(CxEvent::vReset, cullCaseLoops)
+    xTEST_CASE("CxEvent::vReset", cullCaseLoops)
     {
         const size_t cuiSpinCount = 3;
 
@@ -104,7 +104,7 @@ CxTest_CxEvent::vUnit(
         }
     }
 
-    xTEST_CASE(CxEvent::vWait, cullCaseLoops)
+    xTEST_CASE("CxEvent::vWait", cullCaseLoops)
     {
         {
             const bool cbIsAutoReset  = false;

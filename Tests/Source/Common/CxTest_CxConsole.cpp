@@ -22,7 +22,7 @@ CxTest_CxConsole::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    xTEST_CASE(CxConsole::sSetTextColor, cullCaseLoops)
+    xTEST_CASE("CxConsole::sSetTextColor", cullCaseLoops)
     {
         #if xTODO
             CxConsole cnConsole;
@@ -39,7 +39,7 @@ CxTest_CxConsole::vUnit(
         #endif
     }
 
-    xTEST_CASE(CxConsole::sRead, cullCaseLoops)
+    xTEST_CASE("CxConsole::sRead", cullCaseLoops)
     {
         #if xTEST_IGNORE
             CxConsole cnConsole;
@@ -49,7 +49,7 @@ CxTest_CxConsole::vUnit(
         #endif
     }
 
-    xTEST_CASE(CxConsole::vWrite, cullCaseLoops)
+    xTEST_CASE("CxConsole::vWrite", cullCaseLoops)
     {
         #if xTEST_IGNORE
             const std::tstring_t csStr = xT("\tConsole_test_string");
@@ -60,7 +60,7 @@ CxTest_CxConsole::vUnit(
         #endif
     }
 
-    xTEST_CASE(CxConsole::vWriteLine, cullCaseLoops)
+    xTEST_CASE("CxConsole::vWriteLine", cullCaseLoops)
     {
         #if xTEST_IGNORE
             const std::tstring_t csStr = xT("\tConsole_test_line");
@@ -71,7 +71,7 @@ CxTest_CxConsole::vUnit(
         #endif
     }
 
-    xTEST_CASE(CxConsole::vWriteLine, cullCaseLoops)
+    xTEST_CASE("CxConsole::vWriteLine", cullCaseLoops)
     {
         #if xTEST_IGNORE
             const std::tstring_t csStr = xT("\tConsole_test_error");
@@ -82,7 +82,7 @@ CxTest_CxConsole::vUnit(
         #endif
     }
 
-    xTEST_CASE(CxConsole::iMsgBox, cullCaseLoops)
+    xTEST_CASE("CxConsole::iMsgBox", cullCaseLoops)
     {
         #if xTEST_IGNORE
             const std::tstring_t csText  = xT("iMsgBox_text");
@@ -97,7 +97,7 @@ CxTest_CxConsole::vUnit(
         #endif
     }
 
-    xTEST_CASE(CxConsole::vPrompt, cullCaseLoops)
+    xTEST_CASE("CxConsole::vPrompt", cullCaseLoops)
     {
         #if xTEST_IGNORE
             const std::tstring_t csPrompt    = xT("bPrompt_simple_prompt");
@@ -110,7 +110,7 @@ CxTest_CxConsole::vUnit(
         #endif
     }
 
-    xTEST_CASE(CxConsole::vPause, cullCaseLoops)
+    xTEST_CASE("CxConsole::vPause", cullCaseLoops)
     {
         #if xTEST_IGNORE
             CxConsole cnConsole;
@@ -119,7 +119,7 @@ CxTest_CxConsole::vUnit(
         #endif
     }
 
-    xTEST_CASE(CxConsole::vClear, cullCaseLoops)
+    xTEST_CASE("CxConsole::vClear", cullCaseLoops)
     {
         #if xTEST_IGNORE
             CxConsole cnConsole;
@@ -128,7 +128,7 @@ CxTest_CxConsole::vUnit(
         #endif
     }
 
-    xTEST_CASE(CxConsole::sTitle, cullCaseLoops)
+    xTEST_CASE("CxConsole::sTitle", cullCaseLoops)
     {
         #if   xOS_ENV_WIN && xTEST_IGNORE
             std::tstring_t csTitle = xT("Title1");
@@ -142,7 +142,7 @@ CxTest_CxConsole::vUnit(
         #endif
     }
 
-    xTEST_CASE(CxConsole::vSetTitle, cullCaseLoops)
+    xTEST_CASE("CxConsole::vSetTitle", cullCaseLoops)
     {
         #if xTEST_IGNORE
             const std::tstring_t csTitle = xT("Title1");
@@ -159,7 +159,7 @@ CxTest_CxConsole::vUnit(
         #endif
     }
 
-    xTEST_CASE(CxConsole::vCenterWindow, cullCaseLoops)
+    xTEST_CASE("CxConsole::vCenterWindow", cullCaseLoops)
     {
         #if xTEST_IGNORE && xOS_ENV_WIN
             CxConsole cnConsole;
@@ -168,7 +168,7 @@ CxTest_CxConsole::vUnit(
         #endif
     }
 
-    xTEST_CASE(CxConsole::vSetFullScreen, cullCaseLoops)
+    xTEST_CASE("CxConsole::vSetFullScreen", cullCaseLoops)
     {
         #if   xOS_ENV_WIN && xTEST_IGNORE
             CxConsole cnConsole;
@@ -177,7 +177,7 @@ CxTest_CxConsole::vUnit(
         #endif
     }
 
-    xTEST_CASE(CxConsole::vEnableClose, cullCaseLoops)
+    xTEST_CASE("CxConsole::vEnableClose", cullCaseLoops)
     {
         #if  xOS_ENV_WIN && xTEST_IGNORE
             CxConsole cnConsole;

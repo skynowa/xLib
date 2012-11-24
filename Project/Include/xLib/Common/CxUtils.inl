@@ -22,9 +22,7 @@ CxUtils::ptrDeleteT(
     T * &a_pPtrT
 )
 {
-    if (NULL != a_pPtrT) {
-        delete a_pPtrT; a_pPtrT = NULL;
-    }
+    delete a_pPtrT; a_pPtrT = NULL;
 }
 //---------------------------------------------------------------------------
 template<typename T>
@@ -34,9 +32,7 @@ CxUtils::arrayDeleteT(
     T * &a_pPtrT
 )
 {
-    if (NULL != a_pPtrT) {
-        delete [] a_pPtrT;  a_pPtrT = NULL;
-    }
+    delete [] a_pPtrT;  a_pPtrT = NULL;
 }
 //---------------------------------------------------------------------------
 template<typename T>

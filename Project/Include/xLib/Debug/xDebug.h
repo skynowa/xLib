@@ -134,23 +134,23 @@
                                                          for (size_t _uiCaseLoops = 0U; _uiCaseLoops < (cuiLoops); ++ _uiCaseLoops)
         ///< test block with trace point
 #else
-    #define xTEST_CASE(case_name, cuiLoops)              /* CxTracer() << xT("\tCase name: ") << xLEX_TO_STR(case_name); */ \
+    #define xTEST_CASE(case_name, cuiLoops)              /* CxTracer() << xT("\tCase name: ") << case_name; */ \
                                                          for (size_t _uiCaseLoops = 0U; _uiCaseLoops < (cuiLoops); ++ _uiCaseLoops)
         ///< test block without trace point
 #endif
 //-------------------------------------------------------------------------
-#define xTRACE(msg)                                  { CxTracer() << (msg);                   }
+#define xTRACE(msg)                                      { CxTracer() << (msg); }
     ///< tracing
-#define xTRACE_VAR(v)                                ( std::tstring_t() \
-                                                            .append(xT(#v": ")) \
-                                                            .append(CxString::string_cast(v)) \
-                                                            .append(xT(" ")) \
-                                                     )
+#define xTRACE_VAR(v)                                    ( std::tstring_t() \
+                                                                .append(xT(#v": ")) \
+                                                                .append(CxString::string_cast(v)) \
+                                                                .append(xT(" ")) \
+                                                         )
     ///< trace variable, trace variable and value
-#define xTRACEV(...)                                 { CxTracer::vWrite(__VA_ARGS__); }
+#define xTRACEV(...)                                     { CxTracer::vWrite(__VA_ARGS__); }
     ///< tracing
-#define xTRACE_POINT                                 { CxTracer::vWrite(xT("Point: %lu (file: %s, function: %s, last error: %s, line: %lu)"), \
-                                                                        xCOUNTER, xFILE, xFUNCTION, CxLastError::sGet().c_str(), xLINE); }
+#define xTRACE_POINT                                     { CxTracer::vWrite(xT("Point: %lu (file: %s, function: %s, last error: %s, line: %lu)"), \
+                                                                            xCOUNTER, xFILE, xFUNCTION, CxLastError::sGet().c_str(), xLINE); }
     ///< trace point (use CxTracer)
 //---------------------------------------------------------------------------
 #endif //xLib_Debug_xDebugH

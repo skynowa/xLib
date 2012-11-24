@@ -90,7 +90,7 @@ CxTest::vUnit(
     // n/a
 
 #if xTODO
-    xTEST_CASE(CaseName, ca_ullCaseLoops)
+    xTEST_CASE("CaseName, ca_ullCaseLoops)
     {
         const std::tstring_t casData[][2] = {
             {xT("TEST_STRING_1"), xT("MUST_BE_1")},

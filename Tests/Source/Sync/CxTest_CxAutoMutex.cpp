@@ -24,7 +24,7 @@ CxTest_CxAutoMutex::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    xTEST_CASE(CxAutoMutex::CxAutoMutex, cullCaseLoops)
+    xTEST_CASE("CxAutoMutex::CxAutoMutex", cullCaseLoops)
     {
         size_t  uiCounter = 0;
         CxMutex mtMutex;
