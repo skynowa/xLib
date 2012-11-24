@@ -248,6 +248,22 @@
 					>
 				</File>
 				<File
+					RelativePath="..\..\..\Tests\Source\Common\CxTest_CxNonAssignable.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Include\Test\Common\CxTest_CxNonAssignable.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Source\Common\CxTest_CxNonCopyable.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Include\Test\Common\CxTest_CxNonCopyable.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\..\Tests\Source\Common\CxTest_CxNonHeap.cpp"
 					>
 				</File>

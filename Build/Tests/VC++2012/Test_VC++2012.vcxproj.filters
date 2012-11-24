@@ -731,6 +731,12 @@
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxNonArrayHeap.h">
       <Filter>Test\Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxNonAssignable.h">
+      <Filter>Test\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxNonCopyable.h">
+      <Filter>Test\Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Project\Include\xLib\Common\CxArray.inl">
@@ -1279,6 +1285,12 @@
       <Filter>Test\Common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxNonArrayHeap.cpp">
+      <Filter>Test\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxNonAssignable.cpp">
+      <Filter>Test\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxNonCopyable.cpp">
       <Filter>Test\Common</Filter>
     </ClCompile>
   </ItemGroup>

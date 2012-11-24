@@ -148,6 +148,8 @@
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxHandleT.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxLocale.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxNonArrayHeap.h" />
+    <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxNonAssignable.h" />
+    <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxNonCopyable.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxNonHeap.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxProcessInfo.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxShell.h" />
@@ -342,6 +344,8 @@
     <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxHandleT.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxLocale.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxNonArrayHeap.cpp" />
+    <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxNonAssignable.cpp" />
+    <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxNonCopyable.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxNonHeap.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxProcessInfo.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxShell.cpp" />
