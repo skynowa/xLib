@@ -28,12 +28,13 @@ CxTest_CxNonAssignable::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    xTEST_CASE(CxNonAssignable::CxNonAssignable, cullCaseLoops)
+    xTEST_CASE(CxNonAssignable::CxNonAssignable(const CxNonAssignable &), cullCaseLoops)
     {
         A a;
+        A b(a);
     }
 
-    xTEST_CASE(CxNonAssignable::CxNonAssignable, cullCaseLoops)
+    xTEST_CASE(CxNonAssignable &operator = , cullCaseLoops)
     {
         #if xNOT_COMPILE
             A a;
