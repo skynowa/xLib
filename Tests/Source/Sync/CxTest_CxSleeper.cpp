@@ -22,7 +22,7 @@ CxTest_CxSleeper::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    xTEST_CASE(CxSleeper::bIsSleeping, cullCaseLoops)
+    xTEST_CASE("CxSleeper::bIsSleeping", cullCaseLoops)
     {
         CxSleeper objSleeper;
 
@@ -30,7 +30,7 @@ CxTest_CxSleeper::vUnit(
         xTEST_EQ(false, m_bRv);
     }
 
-    xTEST_CASE(CxSleeper::vSleep, cullCaseLoops)
+    xTEST_CASE("CxSleeper::vSleep", cullCaseLoops)
     {
         CxSleeper objSleeper;
 
@@ -48,7 +48,7 @@ CxTest_CxSleeper::vUnit(
         }
     }
     
-    xTEST_CASE(CxSleeper::vWakeUp, cullCaseLoops)
+    xTEST_CASE("CxSleeper::vWakeUp", cullCaseLoops)
     {
         #if xTODO
             CxSleeper objSleeper;

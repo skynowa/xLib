@@ -37,7 +37,7 @@ CxTest_CxCookiePv1::vUnit(
                                         csName.c_str(), csValue.c_str(), csComment.c_str(), csDomain.c_str(), csPath.c_str(), ciMaxAge /*cbSecure = true, cbHttpOnly = true*/
                                     );
 
-    xTEST_CASE(CxCookiePv1::CxCookiePv1, cullCaseLoops)
+    xTEST_CASE("CxCookiePv1::CxCookiePv1", cullCaseLoops)
     {
         CxCookiePv1 ckCookiePv1;
 
@@ -93,7 +93,7 @@ CxTest_CxCookiePv1::vUnit(
         ckCookiePv1.vClear();
     }
 
-    xTEST_CASE(CxCookiePv1::CxCookiePv1(const std::tstring_t &), cullCaseLoops)
+    xTEST_CASE("CxCookiePv1::CxCookiePv1(const std::tstring_t &)", cullCaseLoops)
     {
         CxCookiePv1 ckCookiePv1(csRawCookie);
 

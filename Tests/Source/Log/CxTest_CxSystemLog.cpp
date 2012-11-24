@@ -22,19 +22,19 @@ CxTest_CxSystemLog::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    xTEST_CASE(CxSystemLog::CxSystemLog, cullCaseLoops)
+    xTEST_CASE("CxSystemLog::CxSystemLog", cullCaseLoops)
     {
         CxSystemLog slSytemLog;
     }
 
-    xTEST_CASE(CxSystemLog::CxSystemLog, cullCaseLoops)
+    xTEST_CASE("CxSystemLog::CxSystemLog", cullCaseLoops)
     {
         std::tstring_t sLogName = xT("Simple_programm_name");
 
         CxSystemLog slSytemLog(sLogName);
     }
 
-    xTEST_CASE(CxSystemLog::vSetEnabled, cullCaseLoops)
+    xTEST_CASE("CxSystemLog::vSetEnabled", cullCaseLoops)
     {
         CxSystemLog slSytemLog;
 
@@ -44,7 +44,7 @@ CxTest_CxSystemLog::vUnit(
         slSytemLog.vSetEnabled(false);
     }
 
-    xTEST_CASE(CxSystemLog::vWrite, cullCaseLoops)
+    xTEST_CASE("CxSystemLog::vWrite", cullCaseLoops)
     {
         CxSystemLog::ExLevel alvLogLevel[] = {
             CxSystemLog::lvEmerg, CxSystemLog::lvAlert, CxSystemLog::lvCritical,

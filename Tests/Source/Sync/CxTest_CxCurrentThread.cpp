@@ -24,7 +24,7 @@ CxTest_CxCurrentThread::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    xTEST_CASE(CxCurrentThread::bIsCurrent, cullCaseLoops)
+    xTEST_CASE("CxCurrentThread::bIsCurrent", cullCaseLoops)
     {
         CxThread::id_t aulData[5][2] = {{0}};
 
@@ -52,36 +52,36 @@ CxTest_CxCurrentThread::vUnit(
         }
     }
 
-    xTEST_CASE(CxCurrentThread::ulGetId, cullCaseLoops)
+    xTEST_CASE("CxCurrentThread::ulGetId", cullCaseLoops)
     {
         CxThread::id_t idRes = CxCurrentThread::ulId();
         xTEST_LESS(0UL, (ulong_t)idRes);
     }
 
-    xTEST_CASE(CxCurrentThread::hHandle, cullCaseLoops)
+    xTEST_CASE("CxCurrentThread::hHandle", cullCaseLoops)
     {
         CxThread::handle_t hRv = CxCurrentThread::hHandle();
         xTEST_DIFF(0UL, (ulong_t)hRv);
     }
 
-    xTEST_CASE(CxCurrentThread::ulGetId, cullCaseLoops)
+    xTEST_CASE("CxCurrentThread::ulGetId", cullCaseLoops)
     {
         CxThread::id_t idRes = CxCurrentThread::ulId();
         xTEST_LESS(0UL, (ulong_t)idRes);
     }
 
-    xTEST_CASE(CxCurrentThread::hHandle, cullCaseLoops)
+    xTEST_CASE("CxCurrentThread::hHandle", cullCaseLoops)
     {
         CxThread::handle_t hRv = CxCurrentThread::hHandle();
         xTEST_LESS((ulong_t)0, (ulong_t)hRv);
     }
 
-    xTEST_CASE(CxCurrentThread::vYield, cullCaseLoops)
+    xTEST_CASE("CxCurrentThread::vYield", cullCaseLoops)
     {
         CxCurrentThread::vYield();
     }
 
-    xTEST_CASE(CxCurrentThread::vSleep, cullCaseLoops)
+    xTEST_CASE("CxCurrentThread::vSleep", cullCaseLoops)
     {
         const ulong_t caulData[] = {
             0,

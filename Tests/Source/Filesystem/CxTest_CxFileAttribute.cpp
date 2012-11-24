@@ -48,7 +48,7 @@ CxTest_CxFileAttribute::vUnit(
         xTEST_EQ(true, m_bRv);
     }
 
-    xTEST_CASE(CxFileAttribute::vSet CxFileAttribute::atGet, cullCaseLoops)
+    xTEST_CASE("CxFileAttribute::vSet CxFileAttribute::atGet", cullCaseLoops)
     {
         CxFileAttribute::vSet(csFilePath, cfaValue);
 
@@ -58,7 +58,7 @@ CxTest_CxFileAttribute::vUnit(
         xTEST_EQ((int)cfaValue, (int)faRes);
     }
 
-    xTEST_CASE(CxFileAttribute::vAdd, cullCaseLoops)
+    xTEST_CASE("CxFileAttribute::vAdd", cullCaseLoops)
     {
         CxFileAttribute::vClear(csFilePath);
         CxFileAttribute::vAdd(csFilePath, cfaValue);
@@ -67,7 +67,7 @@ CxTest_CxFileAttribute::vUnit(
         xTEST_EQ(true, m_bRv);
     }
 
-    xTEST_CASE(CxFileAttribute::vRemove, cullCaseLoops)
+    xTEST_CASE("CxFileAttribute::vRemove", cullCaseLoops)
     {
         #if   xOS_ENV_WIN
             CxFileAttribute::ExAttribute faAttr  = CxFileAttribute::faHidden;
@@ -118,7 +118,7 @@ CxTest_CxFileAttribute::vUnit(
         #endif
     }
 
-    xTEST_CASE(CxFileAttribute::vModify, cullCaseLoops)
+    xTEST_CASE("CxFileAttribute::vModify", cullCaseLoops)
     {
         #if   xOS_ENV_WIN
             const CxFileAttribute::ExAttribute cfaRemoveValue = cfaValue;
@@ -131,7 +131,7 @@ CxTest_CxFileAttribute::vUnit(
         CxFileAttribute::vModify(csFilePath, cfaRemoveValue, cfaAddValue);
     }
 
-    xTEST_CASE(CxFileAttribute::bIsExists, cullCaseLoops)
+    xTEST_CASE("CxFileAttribute::bIsExists", cullCaseLoops)
     {
         #if   xOS_ENV_WIN
             CxFileAttribute::ExAttribute faAttr = CxFileAttribute::faNormal;
@@ -145,7 +145,7 @@ CxTest_CxFileAttribute::vUnit(
         xTEST_EQ(true, m_bRv);
     }
 
-    xTEST_CASE(CxFileAttribute::vClear, cullCaseLoops)
+    xTEST_CASE("CxFileAttribute::vClear", cullCaseLoops)
     {
         CxFileAttribute::vClear(csFilePath);
 

@@ -22,7 +22,7 @@ CxTest_CxThreadStorage::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    xTEST_CASE(CxThreadStorage::vSetValue CxThreadStorage::pvGetValue, cullCaseLoops)
+    xTEST_CASE("CxThreadStorage::vSetValue CxThreadStorage::pvGetValue", cullCaseLoops)
     {
         const ulong_t caulData[] = {0, 1, 2, 777};
 

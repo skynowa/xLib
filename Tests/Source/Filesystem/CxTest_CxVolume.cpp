@@ -23,7 +23,7 @@ CxTest_CxVolume::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    xTEST_CASE(CxVolume::bIsValid, cullCaseLoops)
+    xTEST_CASE("CxVolume::bIsValid", cullCaseLoops)
     {
         //true
         {
@@ -62,7 +62,7 @@ CxTest_CxVolume::vUnit(
         }
     }
 
-    xTEST_CASE(CxVolume::bIsReady, cullCaseLoops)
+    xTEST_CASE("CxVolume::bIsReady", cullCaseLoops)
     {
         //true
         {
@@ -99,7 +99,7 @@ CxTest_CxVolume::vUnit(
         }
     }
 
-    xTEST_CASE(CxVolume::bIsEmpty, cullCaseLoops)
+    xTEST_CASE("CxVolume::bIsEmpty", cullCaseLoops)
     {
         //true
         {
@@ -140,7 +140,7 @@ CxTest_CxVolume::vUnit(
         }
     }
 
-    xTEST_CASE(CxVolume::vGetSpace, cullCaseLoops)
+    xTEST_CASE("CxVolume::vGetSpace", cullCaseLoops)
     {
         std::vec_tstring_t vsData;
 
@@ -205,7 +205,7 @@ CxTest_CxVolume::vUnit(
         }
     }
 
-    xTEST_CASE(CxVolume::vMount vUnMount, cullCaseLoops)
+    xTEST_CASE("CxVolume::vMount vUnMount", cullCaseLoops)
     {
     #if xTEST_IGNORE
         #if   xOS_ENV_WIN
@@ -221,7 +221,7 @@ CxTest_CxVolume::vUnit(
     #endif
     }
 
-    xTEST_CASE(CxVolume::vGetPaths, cullCaseLoops)
+    xTEST_CASE("CxVolume::vGetPaths", cullCaseLoops)
     {
         std::vec_tstring_t vsVolumePaths;
 
@@ -229,7 +229,7 @@ CxTest_CxVolume::vUnit(
         xTEST_EQ(false, vsVolumePaths.empty());
     }
 
-    xTEST_CASE(CxVolume::sGetLabel, cullCaseLoops)
+    xTEST_CASE("CxVolume::sGetLabel", cullCaseLoops)
     {
         std::vec_tstring_t vsVolumePaths;
 
@@ -244,7 +244,7 @@ CxTest_CxVolume::vUnit(
         }
     }
 
-    xTEST_CASE(CxVolume::dtGetType, cullCaseLoops)
+    xTEST_CASE("CxVolume::dtGetType", cullCaseLoops)
     {
         #if   xOS_ENV_WIN
             const std::tstring_t csVolumePath = xT("C:");

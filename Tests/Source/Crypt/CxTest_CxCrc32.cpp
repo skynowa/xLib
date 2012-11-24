@@ -37,12 +37,12 @@ CxTest_CxCrc32::vUnit(
         flFile.vResize(1337LL);
     }
 
-    xTEST_CASE(CxCrc32::ulCalc, cullCaseLoops)
+    xTEST_CASE("CxCrc32::ulCalc", cullCaseLoops)
     {
 
     }
 
-    xTEST_CASE(CxCrc32::ulCalcFile sFormatHex, cullCaseLoops)
+    xTEST_CASE("CxCrc32::ulCalcFile sFormatHex", cullCaseLoops)
     {
         m_ulRv = CxCrc32::ulCalcFile(csFilePath);
         xTEST_LESS(0UL, m_ulRv);
@@ -52,12 +52,12 @@ CxTest_CxCrc32::vUnit(
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE(CxCrc32::ulCalcFast, cullCaseLoops)
+    xTEST_CASE("CxCrc32::ulCalcFast", cullCaseLoops)
     {
 
     }
 
-    xTEST_CASE(CxCrc32::ulCalcFileFast sFormatHex, cullCaseLoops)
+    xTEST_CASE("CxCrc32::ulCalcFileFast sFormatHex", cullCaseLoops)
     {
         m_ulRv = CxCrc32::ulCalcFileFast(csFilePath);
         xTEST_LESS(0UL, m_ulRv);

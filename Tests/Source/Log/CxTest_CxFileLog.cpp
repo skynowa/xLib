@@ -29,7 +29,7 @@ CxTest_CxFileLog::vUnit(
 
     CxFileLog flLog(1);
 
-    xTEST_CASE(CxFileLog::vSetFilePath FilePath, cullCaseLoops)
+    xTEST_CASE("CxFileLog::vSetFilePath FilePath", cullCaseLoops)
     {
         flLog.vSetFilePath(csFilePath);
 
@@ -37,7 +37,7 @@ CxTest_CxFileLog::vUnit(
         xTEST_EQ(csFilePath, m_sRv);
     }
 
-    xTEST_CASE(CxFileLog::vWrite, cullCaseLoops)
+    xTEST_CASE("CxFileLog::vWrite", cullCaseLoops)
     {
         for (size_t i = 0; i < 10; ++ i) {
             flLog.vWrite(xT("simple log string: %s"), xT("qwerty01234567890"));
@@ -45,13 +45,13 @@ CxTest_CxFileLog::vUnit(
         }
     }
 
-    xTEST_CASE(CxFileLog::vClear, cullCaseLoops)
+    xTEST_CASE("CxFileLog::vClear", cullCaseLoops)
     {
         flLog.vClear();
         xTEST_EQ(0LL, CxFile::llSize( flLog.sFilePath()) );
     }
 
-    xTEST_CASE(CxFileLog::vDelete, cullCaseLoops)
+    xTEST_CASE("CxFileLog::vDelete", cullCaseLoops)
     {
         flLog.vDelete();
         xTEST_EQ(false, CxFile::bIsExists( flLog.sFilePath()) );

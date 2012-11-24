@@ -103,7 +103,7 @@ CxTest_CxRandom::vUnit(
         }
     #endif
 
-    xTEST_CASE(CxRandom::vSetSeed liGetInt liGetIntEx, cullCaseLoops)
+    xTEST_CASE("CxRandom::vSetSeed liGetInt liGetIntEx", cullCaseLoops)
     {
         const long_t caliData[][2] = {
             {0, 100},
@@ -128,7 +128,7 @@ CxTest_CxRandom::vUnit(
         }
     }
 
-    xTEST_CASE(CxRandom::sGetString, cullCaseLoops)
+    xTEST_CASE("CxRandom::sGetString", cullCaseLoops)
     {
         const size_t cuiStrSize = 10;
 

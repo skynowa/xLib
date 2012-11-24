@@ -65,7 +65,7 @@ CxTest_CxMySql::vUnit(
         conConn.vOptions(moOption, cpvArg);
     }
 
-    xTEST_CASE(bIsExists, cullCaseLoops)
+    xTEST_CASE("bIsExists", cullCaseLoops)
     {
         const std::tstring_t casData[][2] = {
             { xT("000000"),     xT("false") },

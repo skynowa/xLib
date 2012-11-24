@@ -28,12 +28,12 @@ CxTest_CxNonHeap::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    xTEST_CASE(CxNonHeap::CxNonHeap, cullCaseLoops)
+    xTEST_CASE("CxNonHeap::CxNonHeap", cullCaseLoops)
     {
         A a;
     }
 
-    xTEST_CASE(CxNonHeap::CxNonHeap, cullCaseLoops)
+    xTEST_CASE("CxNonHeap::CxNonHeap", cullCaseLoops)
     {
         #if xNOT_COMPILE
             A *a = new A;
