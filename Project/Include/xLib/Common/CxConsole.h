@@ -1,4 +1,4 @@
-﻿/**
+/**
  * \file  CxConsole.h
  * \brief console
  */
