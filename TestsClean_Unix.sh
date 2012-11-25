@@ -38,6 +38,11 @@ else
     exit 1
 fi
 
+# override MAKE by colormake
+if [ ! -z "`which colormake`" ]; then
+    MAKE=colormake
+fi
+
 
 # execute
 echo -e
