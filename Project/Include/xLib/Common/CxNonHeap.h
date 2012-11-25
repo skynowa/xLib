@@ -22,9 +22,9 @@ class CxNonHeap
 
     protected:
         void *   operator new    (size_t) throw() { return NULL; }
-            ///< operator new []
+            ///< operator new
         void     operator delete (void *) { ; }
-            ///< operator delete []
+            ///< operator delete
 };
 
 xNAMESPACE_END(NxLib)

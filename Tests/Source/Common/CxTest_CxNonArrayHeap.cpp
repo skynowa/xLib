@@ -8,8 +8,8 @@
 
 
 //---------------------------------------------------------------------------
-class A : 
-    public CxNonArrayHeap 
+class CNonArrayHeap :
+    public CxNonArrayHeap
 {
 
 };
@@ -30,7 +30,7 @@ CxTest_CxNonArrayHeap::vUnit(
 {
     xTEST_CASE("CxNonArrayHeap::CxNonArrayHeap", cullCaseLoops)
     {
-        A a[10];
+        CNonArrayHeap a[2];
     }
 
     xTEST_CASE("CxNonArrayHeap::CxNonArrayHeap", cullCaseLoops)
