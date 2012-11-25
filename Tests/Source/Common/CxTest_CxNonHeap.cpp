@@ -8,8 +8,8 @@
 
 
 //---------------------------------------------------------------------------
-class A : 
-    public CxNonHeap 
+class CNonHeap :
+    public CxNonHeap
 {
 
 };
@@ -30,7 +30,7 @@ CxTest_CxNonHeap::vUnit(
 {
     xTEST_CASE("CxNonHeap::CxNonHeap", cullCaseLoops)
     {
-        A a;
+        CNonHeap a;
     }
 
     xTEST_CASE("CxNonHeap::CxNonHeap", cullCaseLoops)
