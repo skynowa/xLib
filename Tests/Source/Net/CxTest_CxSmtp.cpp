@@ -57,12 +57,12 @@ CxTest_CxSmtp::vUnit(
 
     //-------------------------------------
     //
-    ulong_t              ulSum      = 0;
-    ulong_t              ulSize     = 0;
-    ulong_t              ulMsgID    = 1;
+    ulong_t              ulSum      = 0;    xUNUSED(ulSum);
+    ulong_t              ulSize     = 0;    xUNUSED(ulSize);
+    ulong_t              ulMsgID    = 1;    xUNUSED(ulMsgID);
     std::vector<ulong_t> veculList;
-    ulong_t              ulIndex    = 1;
-    int                  iNum       = 1;
+    ulong_t              ulIndex    = 1;    xUNUSED(ulIndex);
+    int                  iNum       = 1;    xUNUSED(iNum);
     const std::tstring_t csText     = xT("HELO");
 
     CxSmtp objSmtp;
