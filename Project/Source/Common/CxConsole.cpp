@@ -1,4 +1,4 @@
-﻿/**
+/**
  * \file  CxConsole.cpp
  * \brief console
  */
