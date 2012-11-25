@@ -31,12 +31,13 @@ CxTest_CxNonHeap::vUnit(
     xTEST_CASE("CxNonHeap::CxNonHeap", cullCaseLoops)
     {
         CNonHeap a;
+        xUNUSED(a);
     }
 
     xTEST_CASE("CxNonHeap::CxNonHeap", cullCaseLoops)
     {
         #if xNOT_COMPILE
-            A *a = new A;
+            CNonHeap *a = new CNonHeap;
         #endif
     }
 }
