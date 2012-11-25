@@ -11,7 +11,8 @@
 class CNonArrayHeap :
     public CxNonArrayHeap
 {
-
+    public:
+        int m_a;
 };
 //---------------------------------------------------------------------------
 CxTest_CxNonArrayHeap::CxTest_CxNonArrayHeap() {
@@ -31,12 +32,14 @@ CxTest_CxNonArrayHeap::vUnit(
     xTEST_CASE("CxNonArrayHeap::CxNonArrayHeap", cullCaseLoops)
     {
         CNonArrayHeap a[2];
+        xUNUSED(a[0].m_a);
+        xUNUSED(a[1].m_a);
     }
 
     xTEST_CASE("CxNonArrayHeap::CxNonArrayHeap", cullCaseLoops)
     {
         #if xNOT_COMPILE
-            A *a = new A[10];
+            CNonArrayHeap *a = new CNonArrayHeap[10];
         #endif
     }
 }

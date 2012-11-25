@@ -108,7 +108,7 @@ CxString::sWStrToStr(
 
     typedef std::wstring::traits_type::state_type      state_type_t;
     typedef std::codecvt<wchar_t, char, state_type_t>  codecvt_t;
- 
+
     std::string      asRv(a_csStdWString.size(), std::wstring::value_type());
 
     const codecvt_t &cvt       = std::use_facet<codecvt_t>( a_clocLocale );
