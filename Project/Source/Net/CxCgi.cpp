@@ -110,7 +110,7 @@ CxCgi::vUriEncode(
 )
 {
     xFOREACH_CONST(std::tstring_t, it, a_csUri) {
-        char chChar = *it;
+        tchar_t chChar = *it;
 
         if ((chChar >= 'a' && chChar <= 'z') || (chChar >= 'A' && chChar <= 'Z') || (chChar >= '0' && chChar <= '9') ||
              chChar == '-' || chChar == '_'  || chChar == '.' || chChar == '~')
@@ -148,7 +148,7 @@ CxCgi::vUriDecode(
     std::tstring_t::const_iterator end = a_csUri.end();
 
     while (it != end) {
-        char chChar = *it++;
+        tchar_t chChar = *it++;
 
         if (chChar == '%') {
             if (it == end) {
@@ -156,13 +156,13 @@ CxCgi::vUriDecode(
                 xTEST_FAIL;
             }
 
-            char hi = *it++;
+            tchar_t hi = *it++;
             if (it == end) {
                 ////throw SyntaxException("URI encoding: two hex digits must follow percent sign", str);
                 xTEST_FAIL;
             }
 
-            char lo = *it++;
+            tchar_t lo = *it++;
             if (hi >= '0' && hi <= '9')
                 chChar = hi - '0';
             else if (hi >= 'A' && hi <= 'F')
