@@ -22,28 +22,28 @@ CxTest_CxMimeMessage::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    std::string m_sRv;
+    std::tstring_t m_sRv;
 
     CxPop3 objPop3;
 
     //-------------------------------------
     //CourierMS.exe
-    const std::string csUser   = "test_1@serg.com";
-    const std::string csPass   = "test_1";
-    const std::string csServer = "127.0.0.1";
-    const ushort_t    usPort   = 110;
+    const std::tstring_t csUser   = xT("test_1@serg.com");
+    const std::tstring_t csPass   = xT("test_1");
+    const std::tstring_t csServer = xT("127.0.0.1");
+    const ushort_t       usPort   = 110;
 
     //-------------------------------------
     //IPNET
-    //const std::string csUser   = "domen";
-    //const std::string csPass   = "control6";
-    //const std::string csServer = "mail.ipnet.kiev.ua";
-    //ushort_t          usPort     = 110;
+    //const std::tstring_t csUser   = "domen";
+    //const std::tstring_t csPass   = "control6";
+    //const std::tstring_t csServer = "mail.ipnet.kiev.ua";
+    //ushort_t             usPort     = 110;
 
-    const std::string csDirPath  = "C:/Temp";
-    const std::string csFilePath = "C:/Temp/1.eml";
-    ulong_t           ulSum      = 0;
-    ulong_t           ulSize     = 0;
+    const std::tstring_t csDirPath  = xT("C:/Temp");
+    const std::tstring_t csFilePath = xT("C:/Temp/1.eml");
+    ulong_t              ulSum      = 0;
+    ulong_t              ulSize     = 0;
 
 
 
@@ -75,23 +75,23 @@ CxTest_CxMimeMessage::vUnit(
 
     */
 
-    const std::string csRawHeader =
-        "+OK message 1 (570821 octets)\r\n"
-        "Date: Mon, 6 Apr 2009 20:14:51 +0400\r\n"
-        "From: Admin@localhost\r\n"
-        "X-Mailer: The Bat! (v2.12.00) Educational\r\n"
-        "Reply-To: Admin@localhost\r\n"
-        "X-Priority: 3 (Normal)\r\n"
-        "Message-ID: <431351461.20090406201451@localhost>\r\n"
-        "To: test_1@localhost, test_2@localhost, test_3@localhost, test_4@localhost\r\n"
-        "Subject: =?Windows-1251?B?0uXs4A==?=\r\n"
-        "MIME-Version: 1.0\r\n"
-        "Content-Type: multipart/mixed;\r\n"
-        "  boundary=\"----------544A15625820D78"
-        ""
-        ""
-        "."
-        "";
+    const std::tstring_t csRawHeader =
+        xT("+OK message 1 (570821 octets)\r\n")
+        xT("Date: Mon, 6 Apr 2009 20:14:51 +0400\r\n")
+        xT("From: Admin@localhost\r\n")
+        xT("X-Mailer: The Bat! (v2.12.00) Educational\r\n")
+        xT("Reply-To: Admin@localhost\r\n")
+        xT("X-Priority: 3 (Normal)\r\n")
+        xT("Message-ID: <431351461.20090406201451@localhost>\r\n")
+        xT("To: test_1@localhost, test_2@localhost, test_3@localhost, test_4@localhost\r\n")
+        xT("Subject: =?Windows-1251?B?0uXs4A==?=\r\n")
+        xT("MIME-Version: 1.0\r\n")
+        xT("Content-Type: multipart/mixed;\r\n")
+        xT("  boundary=\"----------544A15625820D78")
+        xT("")
+        xT("")
+        xT(".")
+        xT("");
 
     //-------------------------------------
     //sGenerateMessageID
@@ -120,7 +120,7 @@ CxTest_CxMimeMessage::vUnit(
 
     //-------------------------------------
     //bTop
-    std::string sRawHeader;
+    std::tstring_t sRawHeader;
 
     for (ulong_t i = 1; i <= ulSum; i ++) {
         //-------------------------------------
