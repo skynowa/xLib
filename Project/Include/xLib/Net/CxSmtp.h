@@ -20,28 +20,28 @@ class CxSmtp :
     /// SMTP (RFC 2821)
 {
     public:
-                            CxSmtp     ();
-                           ~CxSmtp     ();
+                       CxSmtp     ();
+                      ~CxSmtp     ();
 
-        void                vCreate    (const std::string &csUser, const std::string &csPass, const std::string &csServer, const ushort_t &cusPort);
-        void                vConnect   ();
-        void                vLogin     ();
-        void                vNoop      ();
-        void                vRset      ();
-        void                vSendRaw   (const std::string &csFilePath, const std::string &csFrom, const std::string &csTo);
-        void                vSend      (const std::string &csText, const std::string &sFrom, const std::string &sTo);
-        void                vDisconnect();
+        void           vCreate    (const std::tstring_t &csUser, const std::tstring_t &csPass, const std::tstring_t &csServer, const ushort_t &cusPort);
+        void           vConnect   ();
+        void           vLogin     ();
+        void           vNoop      ();
+        void           vRset      ();
+        void           vSendRaw   (const std::tstring_t &csFilePath, const std::tstring_t &csFrom, const std::tstring_t &csTo);
+        void           vSend      (const std::tstring_t &csText, const std::tstring_t &sFrom, const std::tstring_t &sTo);
+        void           vDisconnect();
 
     private:
-        CxTcpClient         _m_scktSocket;
-        std::string         _m_sUser;
-        std::string         _m_sPass;
-        std::string         _m_sServer;
-        ushort_t            _m_usPort;
-        bool                _m_bConnected;
+        CxTcpClient    _m_scktSocket;
+        std::tstring_t _m_sUser;
+        std::tstring_t _m_sPass;
+        std::tstring_t _m_sServer;
+        ushort_t       _m_usPort;
+        bool           _m_bConnected;
 
-        void                _vCommand   (const std::string &csCmd, const std::string &csReplyDelimiter, std::string &sReply); /*+*/
-        bool                _bIsError   (const std::string &csText);
+        void           _vCommand   (const std::tstring_t &csCmd, const std::tstring_t &csReplyDelimiter, std::tstring_t &sReply); /*+*/
+        bool           _bIsError   (const std::tstring_t &csText);
 };
 
 xNAMESPACE_END(NxLib)
@@ -59,9 +59,9 @@ RSET <CRLF>
 SEND <SP> FROM:<reverse-path> <CRLF>
 SOML <SP> FROM:<reverse-path> <CRLF>
 SAML <SP> FROM:<reverse-path> <CRLF>
-VRFY <SP> <string> <CRLF>
-EXPN <SP> <string> <CRLF>
-HELP [<SP> <string>] <CRLF>
+VRFY <SP> <std::tstring_t> <CRLF>
+EXPN <SP> <std::tstring_t> <CRLF>
+HELP [<SP> <std::tstring_t>] <CRLF>
 NOOP <CRLF>
 QUIT <CRLF>
 TURN <CRLF>
