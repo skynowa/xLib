@@ -23,31 +23,31 @@ CxHttpClient::~CxHttpClient() {
 //TODO: bHead ()
 void
 CxHttpClient::vHead(
-    const std::string &a_csUrl, 
-    std::string       *a_psResponse
+    const std::tstring_t &a_csUrl, 
+    std::tstring_t       *a_psResponse
 )
 {
     //csUrl = http://dn1.berloga.net/83841/zombie_baseball_2.swf
 
-    std::string sStartLine;
-    std::string sHeader;
-    std::string sBody;
+    std::tstring_t sStartLine;
+    std::tstring_t sHeader;
+    std::tstring_t sBody;
 
-    sStartLine = "HEAD /83841/zombie_baseball_2.swf HTTP/1.1"         + CxConst::xCRNL;
+    sStartLine = xT("HEAD /83841/zombie_baseball_2.swf HTTP/1.1")         + CxConst::xCRNL;
 
-    sHeader    = "Host: dn1.berloga.net"                              + CxConst::xCRNL +
-                 "Accept: text/html, */*"                             + CxConst::xCRNL +
-                 "Accept-Encoding: identity"                          + CxConst::xCRNL +
-                 "User-Agent: Mozilla/3.0 (compatible; Indy Library)" + CxConst::xCRNL + CxConst::xCRNL;
+    sHeader    = xT("Host: dn1.berloga.net")                              + CxConst::xCRNL +
+                 xT("Accept: text/html, */*")                             + CxConst::xCRNL +
+                 xT("Accept-Encoding: identity")                          + CxConst::xCRNL +
+                 xT("User-Agent: Mozilla/3.0 (compatible; Indy Library)") + CxConst::xCRNL + CxConst::xCRNL;
 
-    sBody      = "";
+    sBody      = xT("");
 }
 //---------------------------------------------------------------------------
 //TODO: bGet ()
 void
 CxHttpClient::vGet(
-    const std::string &a_csUrl,  
-    std::string       *a_psResponse
+    const std::tstring_t &a_csUrl,  
+    std::tstring_t       *a_psResponse
 )
 {
     xNOT_IMPLEMENTED;
@@ -56,9 +56,9 @@ CxHttpClient::vGet(
 //TODO: bPost ()
 void
 CxHttpClient::vPost(
-    const std::string &a_csUrl,  
-    const std::string &a_csParams, 
-    std::string       *a_psResponse
+    const std::tstring_t &a_csUrl,  
+    const std::tstring_t &a_csParams, 
+    std::tstring_t       *a_psResponse
 ) 
 {
     xNOT_IMPLEMENTED;
@@ -67,7 +67,7 @@ CxHttpClient::vPost(
 //TODO: bOptions ()
 void
 CxHttpClient::vOptions(
-    const std::string &a_csUrl
+    const std::tstring_t &a_csUrl
 )
 {
     xNOT_IMPLEMENTED;
@@ -76,7 +76,7 @@ CxHttpClient::vOptions(
 //TODO: bTrace ()
 void
 CxHttpClient::vTrace(
-    const std::string &a_csUrl
+    const std::tstring_t &a_csUrl
 )
 {
     xNOT_IMPLEMENTED;
@@ -85,7 +85,7 @@ CxHttpClient::vTrace(
 //TODO: bPut ()
 void
 CxHttpClient::vPut(
-    const std::string &a_csUrl
+    const std::tstring_t &a_csUrl
 )
 {
     xNOT_IMPLEMENTED;
@@ -94,7 +94,7 @@ CxHttpClient::vPut(
 //TODO: bDelete ()
 void
 CxHttpClient::vDelete(
-    const std::string &a_csUrl
+    const std::tstring_t &a_csUrl
 )
 {
     xNOT_IMPLEMENTED;
@@ -103,7 +103,7 @@ CxHttpClient::vDelete(
 //TODO: bConnect ()
 void
 CxHttpClient::vConnect(
-    const std::string &a_csUrl
+    const std::tstring_t &a_csUrl
 )
 {
     xNOT_IMPLEMENTED;
@@ -112,7 +112,7 @@ CxHttpClient::vConnect(
 //TODO: bPatch ()
 void
 CxHttpClient::vPatch(
-    const std::string &a_csUrl
+    const std::tstring_t &a_csUrl
 )
 {
     xNOT_IMPLEMENTED;
@@ -121,7 +121,7 @@ CxHttpClient::vPatch(
 //TODO: bLink ()
 void
 CxHttpClient::vLink(
-    const std::string &a_csUrl
+    const std::tstring_t &a_csUrl
 )
 {
     xNOT_IMPLEMENTED;
@@ -130,7 +130,7 @@ CxHttpClient::vLink(
 //TODO: bUnlink ()
 void
 CxHttpClient::vUnlink(
-    const std::string &a_csUrl
+    const std::tstring_t &a_csUrl
 )
 {
     xNOT_IMPLEMENTED;

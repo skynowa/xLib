@@ -48,17 +48,17 @@ class CxHttpClient :
             hmUnlink
         };
 
-        void     vHead   (const std::string &csUrl,  std::string *psResponse);
-        void     vGet    (const std::string &csUrl,  std::string *psResponse);
-        void     vPost   (const std::string &csUrl,  const std::string &csParams, std::string *psResponse);
-        void     vOptions(const std::string &csUrl);
-        void     vTrace  (const std::string &csUrl);
-        void     vPut    (const std::string &csUrl);
-        void     vDelete (const std::string &csUrl);
-        void     vConnect(const std::string &csUrl);
-        void     vPatch  (const std::string &csUrl);
-        void     vLink   (const std::string &csUrl);
-        void     vUnlink (const std::string &csUrl);
+        void     vHead   (const std::tstring_t &csUrl,  std::tstring_t *psResponse);
+        void     vGet    (const std::tstring_t &csUrl,  std::tstring_t *psResponse);
+        void     vPost   (const std::tstring_t &csUrl,  const std::tstring_t &csParams, std::tstring_t *psResponse);
+        void     vOptions(const std::tstring_t &csUrl);
+        void     vTrace  (const std::tstring_t &csUrl);
+        void     vPut    (const std::tstring_t &csUrl);
+        void     vDelete (const std::tstring_t &csUrl);
+        void     vConnect(const std::tstring_t &csUrl);
+        void     vPatch  (const std::tstring_t &csUrl);
+        void     vLink   (const std::tstring_t &csUrl);
+        void     vUnlink (const std::tstring_t &csUrl);
 
                  CxHttpClient();
         virtual ~CxHttpClient();
