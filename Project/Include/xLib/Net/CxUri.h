@@ -17,61 +17,61 @@ class CxUri :
 {
     public:
                            CxUri            ();
-        explicit           CxUri            (const std::string &csUri);
+        explicit           CxUri            (const std::tstring_t &csUri);
                           ~CxUri            ();
 
-        std::string        sUri          () const;
-        void               vSetUri          (const std::string &csScheme, const std::string &csAuthority, const std::string &csPath, const std::string &csQuery, const std::string &csFragment);
+        std::tstring_t        sUri          () const;
+        void               vSetUri          (const std::tstring_t &csScheme, const std::tstring_t &csAuthority, const std::tstring_t &csPath, const std::tstring_t &csQuery, const std::tstring_t &csFragment);
 
-        std::string        sScheme       () const;
-        void               vSetScheme       (const std::string &csScheme);
+        std::tstring_t        sScheme       () const;
+        void               vSetScheme       (const std::tstring_t &csScheme);
 
-        std::string        sAuthority    () const;
-        void               vSetAuthority    (const std::string &csAuthority);
+        std::tstring_t        sAuthority    () const;
+        void               vSetAuthority    (const std::tstring_t &csAuthority);
 
-        std::string        sUserInfo     () const;
-        void               vSetUserInfo     (const std::string &csUserInfo);
+        std::tstring_t        sUserInfo     () const;
+        void               vSetUserInfo     (const std::tstring_t &csUserInfo);
 
-        std::string        sHost         () const;
-        void               vSetHost         (const std::string &csHost);
+        std::tstring_t        sHost         () const;
+        void               vSetHost         (const std::tstring_t &csHost);
 
         ushort_t           usPort        ();
         void               vSetPort         (const ushort_t &cusPort);
 
-        std::string        sPath         () const;
-        void               vSetPath         (const std::string &csPath);
+        std::tstring_t        sPath         () const;
+        void               vSetPath         (const std::tstring_t &csPath);
 
-        std::string        sQuery        () const;
-        void               vSetQuery        (const std::string &csQuery);
+        std::tstring_t        sQuery        () const;
+        void               vSetQuery        (const std::tstring_t &csQuery);
 
-        std::string        sFragment     () const;
-        void               vSetFragment     (const std::string &csFragment);
+        std::tstring_t        sFragment     () const;
+        void               vSetFragment     (const std::tstring_t &csFragment);
 
-        static std::string sEscape          (const std::string &csUri);
-        static std::string sUnescape        (const std::string &csUri);
+        static std::tstring_t sEscape          (const std::tstring_t &csUri);
+        static std::tstring_t sUnescape        (const std::tstring_t &csUri);
 
-        static std::string sEncodeComponent (const std::string &csUri);
-        static std::string sDecodeComponent (const std::string &csUri);
+        static std::tstring_t sEncodeComponent (const std::tstring_t &csUri);
+        static std::tstring_t sDecodeComponent (const std::tstring_t &csUri);
 
         void               vClear           ();
 
     private:
-        static const std::string RESERVED_PATH;
-        static const std::string RESERVED_QUERY;
-        static const std::string RESERVED_FRAGMENT;
-        static const std::string ILLEGAL;
+        static const std::tstring_t RESERVED_PATH;
+        static const std::tstring_t RESERVED_QUERY;
+        static const std::tstring_t RESERVED_FRAGMENT;
+        static const std::tstring_t ILLEGAL;
 
-        std::string        _m_sScheme;
-        std::string        _m_sAuthority;
-        std::string        _m_sUserInfo;
-        std::string        _m_sHost;
+        std::tstring_t        _m_sScheme;
+        std::tstring_t        _m_sAuthority;
+        std::tstring_t        _m_sUserInfo;
+        std::tstring_t        _m_sHost;
         ushort_t           _m_usPort;
-        std::string        _m_sPath;
-        std::string        _m_sQuery;
-        std::string        _m_sFragment;
+        std::tstring_t        _m_sPath;
+        std::tstring_t        _m_sQuery;
+        std::tstring_t        _m_sFragment;
 
-        void               _vParse          (const std::string &csUri);
-        void               _vNormilize      (const std::string &csUri);
+        void               _vParse          (const std::tstring_t &csUri);
+        void               _vNormilize      (const std::tstring_t &csUri);
         ushort_t           _usDefaultPort() const;
         bool               _bIsDefaultPort  () const;
 };
