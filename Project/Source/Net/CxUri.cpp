@@ -33,7 +33,7 @@ CxUri::CxUri() :
 }
 //---------------------------------------------------------------------------
 //DONE: CxUri
-CxUri::CxUri(const std::string &a_csUri) :
+CxUri::CxUri(const std::tstring_t &a_csUri) :
     _m_sScheme   (),
     _m_sAuthority(),
     _m_sUserInfo (),
@@ -74,47 +74,47 @@ data   : text/plain;charset=iso-8859-7,%be%fg%be
 tel    : +1-816-555-1212
 telnet : //192.0.2.16:80/
 */
-std::string
+std::tstring_t
 CxUri::sUri() const {
     
 
-    std::string sRv;
-    std::string sTemp;
+    std::tstring_t sRv;
+    std::tstring_t sTemp;
 
     sTemp = sScheme();
     if (false == sTemp.empty()) {
-        sRv += "";
+        sRv += xT("");
         sRv += sTemp;
     }
 
     sTemp = sAuthority();
     if (false == sTemp.empty()) {
-        sRv += ":";
+        sRv += xT(":");
         sRv += sTemp;
     }
 
     sTemp = sPath();
     if (false == sTemp.empty()) {
-        sRv += "";
+        sRv += xT("");
         sRv += sTemp;
     }
 
     sTemp = sQuery();
     if (false == sTemp.empty()) {
-        sRv += "?";
+        sRv += xT("?");
         sRv += sTemp;
     }
 
     sTemp = sFragment();
     if (false == sTemp.empty()) {
-        sRv += "#";
+        sRv += xT("#");
         sRv += sTemp;
     }
 
     return sRv;
 }
 void
-CxUri::vSetUri(const std::string &a_csScheme, const std::string &a_csAuthority, const std::string &a_csPath, const std::string &a_csQuery, const std::string &a_csFragment) {
+CxUri::vSetUri(const std::tstring_t &a_csScheme, const std::tstring_t &a_csAuthority, const std::tstring_t &a_csPath, const std::tstring_t &a_csQuery, const std::tstring_t &a_csFragment) {
     
 
     vSetScheme   (a_csScheme);
@@ -125,25 +125,25 @@ CxUri::vSetUri(const std::string &a_csScheme, const std::string &a_csAuthority, 
 }
 //---------------------------------------------------------------------------
 //TODO: sScheme
-std::string
+std::tstring_t
 CxUri::sScheme() const {
     return sEncodeComponent(_m_sScheme);
 }
 void
-CxUri::vSetScheme(const std::string &csScheme) {
+CxUri::vSetScheme(const std::tstring_t &csScheme) {
     _m_sScheme = sDecodeComponent(csScheme);
 }
 //---------------------------------------------------------------------------
 //DONE: sAuthority
-std::string
+std::tstring_t
 CxUri::sAuthority() const {
-    std::string sTempAuthority;
+    std::tstring_t sTempAuthority;
 
-    sTempAuthority += "//";
+    sTempAuthority += xT("//");
 
     if (false == _m_sUserInfo.empty()) {
         sTempAuthority += _m_sUserInfo;
-        sTempAuthority += "@";
+        sTempAuthority += xT("@");
     }
 
     if (false == _m_sHost.empty()) {
@@ -151,36 +151,36 @@ CxUri::sAuthority() const {
     }
 
     if (0 < _m_usPort && false == _bIsDefaultPort()) {
-        sTempAuthority += ":";
+        sTempAuthority += xT(":");
         sTempAuthority += CxString::string_cast(_m_usPort);
     }
 
     return sEncodeComponent(sTempAuthority/*_m_sAuthority*/);
 }
 void
-CxUri::vSetAuthority(const std::string &csAuthority) {
+CxUri::vSetAuthority(const std::tstring_t &csAuthority) {
     _m_sAuthority = sDecodeComponent(csAuthority);
 }
 //---------------------------------------------------------------------------
 //DONE: sUserInfo
-std::string
+std::tstring_t
 CxUri::sUserInfo() const {
     return sEncodeComponent(_m_sUserInfo);
 }
 void
-CxUri::vSetUserInfo(const std::string &csUserInfo) {
+CxUri::vSetUserInfo(const std::tstring_t &csUserInfo) {
     _m_sUserInfo = sDecodeComponent(csUserInfo);
 
     //TODO: bSetAuthority
 }
 //---------------------------------------------------------------------------
 //DONE: sHost
-std::string
+std::tstring_t
 CxUri::sHost() const {
     return sEncodeComponent(_m_sHost);
 }
 void
-CxUri::vSetHost(const std::string &csHost) {
+CxUri::vSetHost(const std::tstring_t &csHost) {
     _m_sHost = sDecodeComponent(csHost);
 
     //TODO: bSetAuthority
@@ -199,32 +199,32 @@ CxUri::vSetPort(const ushort_t &cusPort) {
 }
 //---------------------------------------------------------------------------
 //DONE: sPath
-std::string
+std::tstring_t
 CxUri::sPath() const {
     return sEncodeComponent(_m_sPath);
 }
 void
-CxUri::vSetPath(const std::string &csPath) {
+CxUri::vSetPath(const std::tstring_t &csPath) {
     _m_sPath = sDecodeComponent(csPath);
 }
 //---------------------------------------------------------------------------
 //DONE: sQuery
-std::string
+std::tstring_t
 CxUri::sQuery() const {
     return sEncodeComponent(_m_sQuery);
 }
 void
-CxUri::vSetQuery(const std::string &csQuery) {
+CxUri::vSetQuery(const std::tstring_t &csQuery) {
     _m_sQuery = sDecodeComponent(csQuery);
 }
 //---------------------------------------------------------------------------
 //DONE: sFragment
-std::string
+std::tstring_t
 CxUri::sFragment() const {
     return sEncodeComponent(_m_sFragment);
 }
 void
-CxUri::vSetFragment(const std::string &csFragment) {
+CxUri::vSetFragment(const std::tstring_t &csFragment) {
     _m_sFragment = sDecodeComponent(csFragment);
 }
 //---------------------------------------------------------------------------
@@ -245,8 +245,8 @@ CxUri::vClear() {
 //---------------------------------------------------------------------------
 //TODO: sEscape ()
 /* static */
-std::string
-CxUri::sEscape(const std::string &csUri) {
+std::tstring_t
+CxUri::sEscape(const std::tstring_t &csUri) {
     
 
     /*
@@ -274,7 +274,7 @@ CxUri::sEscape(const std::string &csUri) {
     */
 
 
-    std::string sRv;
+    std::tstring_t sRv;
 
     sRv = csUri;
 
@@ -285,11 +285,11 @@ CxUri::sEscape(const std::string &csUri) {
 //---------------------------------------------------------------------------
 //TODO: sUnescape ()
 /* static */
-std::string
-CxUri::sUnescape(const std::string &csUri) {
+std::tstring_t
+CxUri::sUnescape(const std::tstring_t &csUri) {
     
 
-    std::string sRv;
+    std::tstring_t sRv;
 
     //TODO: sUnescape
 
@@ -297,14 +297,14 @@ CxUri::sUnescape(const std::string &csUri) {
 }
 //---------------------------------------------------------------------------
 //TODO: sEncodeComponent
-//void URI::encode(const std::string& str, const std::string& reserved, std::string& encodedStr)
+//void URI::encode(const std::tstring_t& str, const std::tstring_t& reserved, std::tstring_t& encodedStr)
 /* static */
-std::string
-CxUri::sEncodeComponent(const std::string &a_csUri) {
-    std::string sRv;
+std::tstring_t
+CxUri::sEncodeComponent(const std::tstring_t &a_csUri) {
+    std::tstring_t sRv;
 
-    xFOREACH_CONST(std::string, it, a_csUri) {
-        char c = *it;
+    xFOREACH_CONST(std::tstring_t, it, a_csUri) {
+        tchar_t c = *it;
 
         if (
             (c >= 'a' && c <= 'z') ||
@@ -323,7 +323,7 @@ CxUri::sEncodeComponent(const std::string &a_csUri) {
         RESERVED_FRAGMENT = "";
         ILLEGAL           = "%<>{}|\\\"^`";
         */
-        else if (c <= 0x20 || c >= 0x7F || ILLEGAL.find(c) != std::string::npos /*|| reserved.find(c) != std::string::npos*/) {
+        else if (c <= 0x20 || c >= 0x7F || ILLEGAL.find(c) != std::tstring_t::npos /*|| reserved.find(c) != std::tstring_t::npos*/) {
             //� -> %FF
             sRv += CxString::sFormat(xT("%%%02X"), (uint_t)(uchar_t)c);
         }
@@ -336,17 +336,17 @@ CxUri::sEncodeComponent(const std::string &a_csUri) {
 }
 //---------------------------------------------------------------------------
 //TODO: sDecodeComponent
-//void URI::decode(const std::string& str, std::string& decodedStr)
+//void URI::decode(const std::tstring_t& str, std::tstring_t& decodedStr)
 /* static */
-std::string
-CxUri::sDecodeComponent(const std::string &a_csUri) {
-    std::string sRv;
+std::tstring_t
+CxUri::sDecodeComponent(const std::tstring_t &a_csUri) {
+    std::tstring_t sRv;
 
-    std::string::const_iterator it  = a_csUri.begin();
-    std::string::const_iterator end = a_csUri.end();
+    std::tstring_t::const_iterator it  = a_csUri.begin();
+    std::tstring_t::const_iterator end = a_csUri.end();
 
     while (it != end) {
-        char c = *it ++;
+        tchar_t c = *it ++;
 
         if (c == '%') {
             if (it == end) {
@@ -354,14 +354,14 @@ CxUri::sDecodeComponent(const std::string &a_csUri) {
                 xTEST_FAIL;
             }
 
-            char hi = *it ++;
+            tchar_t hi = *it ++;
 
             if (it == end) {
                 //throw SyntaxException("URI encoding: two hex digits must follow percent sign", csUri);
                 xTEST_FAIL;
             }
 
-            char lo = *it ++;
+            tchar_t lo = *it ++;
 
             if (       hi >= '0' && hi <= '9') {
                 c = hi - '0';
@@ -402,10 +402,10 @@ CxUri::sDecodeComponent(const std::string &a_csUri) {
 *
 *****************************************************************************/
 
-const std::string CxUri::RESERVED_PATH     = "?#";
-const std::string CxUri::RESERVED_QUERY    = "#";
-const std::string CxUri::RESERVED_FRAGMENT = "";
-const std::string CxUri::ILLEGAL           = "%<>{}|\\\"^`";
+const std::tstring_t CxUri::RESERVED_PATH     = xT("?#");
+const std::tstring_t CxUri::RESERVED_QUERY    = xT("#");
+const std::tstring_t CxUri::RESERVED_FRAGMENT = xT("");
+const std::tstring_t CxUri::ILLEGAL           = xT("%<>{}|\\\"^`");
 
 
 //---------------------------------------------------------------------------
@@ -433,7 +433,7 @@ tel    : +1-816-555-1212
 telnet : //192.0.2.16:80/
 */
 void
-CxUri::_vParse(const std::string &a_csUri) {
+CxUri::_vParse(const std::tstring_t &a_csUri) {
     //Normilize();
 
     vClear();
@@ -443,7 +443,7 @@ CxUri::_vParse(const std::string &a_csUri) {
     //[INPUT]     - foo://userinfo@example.com:8042/over/there?name=ferret#nose
     size_t uiSchemeStart = 0;
     size_t uiSchemeEnd   = a_csUri.find_first_of(CxConst::xCOLON);
-    xTEST_DIFF(std::string::npos, uiSchemeEnd);
+    xTEST_DIFF(std::tstring_t::npos, uiSchemeEnd);
     xTEST_GR(size_t(7U)/*SCHEME_MAX_SIZE + 1*/, uiSchemeEnd);
 
     _m_sScheme = CxString::sCut(a_csUri, uiSchemeStart, uiSchemeEnd);
@@ -459,9 +459,9 @@ CxUri::_vParse(const std::string &a_csUri) {
         uiSlashCount ++;
     }
 
-    size_t uiAuthorityEnd = a_csUri.find_first_of("/?#", uiAuthorityStart + uiSlashCount); //or by the end
+    size_t uiAuthorityEnd = a_csUri.find_first_of(xT("/?#"), uiAuthorityStart + uiSlashCount); //or by the end
 
-    if (std::string::npos == uiAuthorityEnd) {
+    if (std::tstring_t::npos == uiAuthorityEnd) {
         uiAuthorityEnd = a_csUri.size();
     }
 
@@ -471,21 +471,21 @@ CxUri::_vParse(const std::string &a_csUri) {
     //[_m_sUserInfo] - [userinfo]
     //[INPUT]        - userinfo@example.com:8042
     size_t uiUserInfoStart = 0 + uiSlashCount;
-    size_t uiUserInfoEnd   = _m_sAuthority.find_first_of("@", uiUserInfoStart);
+    size_t uiUserInfoEnd   = _m_sAuthority.find_first_of(xT("@"), uiUserInfoStart);
 
-    if (std::string::npos != uiUserInfoEnd) {
+    if (std::tstring_t::npos != uiUserInfoEnd) {
         _m_sUserInfo = CxString::sCut(_m_sAuthority, uiUserInfoStart, uiUserInfoEnd);
     }
 
     //-------------------------------------
     //[_m_sHost] - [example.com]
     //[INPUT]    -  userinfo@example.com:8042
-    size_t uiHostStart = _m_sAuthority.find_first_of("@");
-    size_t uiHostEnd   = _m_sAuthority.find_first_of(":");
+    size_t uiHostStart = _m_sAuthority.find_first_of(xT("@"));
+    size_t uiHostEnd   = _m_sAuthority.find_first_of(xT(":"));
 
-    if (std::string::npos != uiHostStart) {
+    if (std::tstring_t::npos != uiHostStart) {
         //���� ��� �����
-        if (std::string::npos == uiHostEnd) {
+        if (std::tstring_t::npos == uiHostEnd) {
             uiHostEnd = _m_sAuthority.size();
         }
 
@@ -495,11 +495,11 @@ CxUri::_vParse(const std::string &a_csUri) {
     //-------------------------------------
     //[_sPort] - [8042]
     //[INPUT]  -  userinfo@example.com:8042
-    size_t uiPortStart = _m_sAuthority.find_first_of(":");
+    size_t uiPortStart = _m_sAuthority.find_first_of(xT(":"));
     size_t uiPortEnd   = _m_sAuthority.size();
 
-    if (std::string::npos != uiPortStart) {
-        std::string sPort = CxString::sCut(_m_sAuthority, uiPortStart + 1/*":"*/, uiPortEnd);
+    if (std::tstring_t::npos != uiPortStart) {
+        std::tstring_t sPort = CxString::sCut(_m_sAuthority, uiPortStart + 1/*":"*/, uiPortEnd);
         _m_usPort = CxString::string_cast<ushort_t>(sPort);
     }
     if (0 == _m_usPort) {
@@ -509,20 +509,20 @@ CxUri::_vParse(const std::string &a_csUri) {
     //-------------------------------------
     //[_m_sHost] - [example.com] - ������ ������
     //[INPUT]    -  userinfo@example.com:8042
-    size_t uiAuthorityChars = _m_sAuthority.find_first_of("@:");
+    size_t uiAuthorityChars = _m_sAuthority.find_first_of(xT("@:"));
 
     //���� � Authority ��� "@:" - _m_sHost ��� Authority ��� "//"
-    if (std::string::npos == uiAuthorityChars) {
-        _m_sHost = CxString::sTrimChars(_m_sAuthority, "/");
+    if (std::tstring_t::npos == uiAuthorityChars) {
+        _m_sHost = CxString::sTrimChars(_m_sAuthority, xT("/"));
     }
 
     //-------------------------------------
     //[_m_sPath] - [/over/there?]
     //[INPUT]     - foo://userinfo@example.com:8042/over/there?name=ferret#nose
     size_t uiPathStart = uiAuthorityEnd;
-    size_t uiPathEnd   = a_csUri.find_first_of("?#", uiPathStart);  //or by the end
+    size_t uiPathEnd   = a_csUri.find_first_of(xT("?#"), uiPathStart);  //or by the end
 
-    if (std::string::npos == uiPathEnd) {
+    if (std::tstring_t::npos == uiPathEnd) {
         uiPathEnd = a_csUri.size();
     }
 
@@ -532,9 +532,9 @@ CxUri::_vParse(const std::string &a_csUri) {
     //[_m_sQuery] - [name=ferret]
     //[INPUT]     - foo://userinfo@example.com:8042/over/there?name=ferret#nose
     size_t uiQueryStart = uiPathEnd;
-    size_t uiQueryEnd   = a_csUri.find_first_of("#", uiQueryStart);
+    size_t uiQueryEnd   = a_csUri.find_first_of(xT("#"), uiQueryStart);
 
-    if (std::string::npos == uiQueryEnd) {
+    if (std::tstring_t::npos == uiQueryEnd) {
         uiQueryEnd = a_csUri.size();
     }
 
@@ -543,7 +543,7 @@ CxUri::_vParse(const std::string &a_csUri) {
     //-------------------------------------
     //[_m_sFragment] - [nose]
     //[INPUT]     - foo://userinfo@example.com:8042/over/there?name=ferret#nose
-    size_t uiFragmentStart = uiQueryEnd + std::string("#").size();
+    size_t uiFragmentStart = uiQueryEnd + std::tstring_t(xT("#")).size();
     size_t uiFragmentEnd   = a_csUri.size();                        //by the end
 
     _m_sFragment = CxString::sCut(a_csUri, uiFragmentStart, uiFragmentEnd);
@@ -551,7 +551,7 @@ CxUri::_vParse(const std::string &a_csUri) {
 //---------------------------------------------------------------------------
 //TODO: _bNormilize ()
 void
-CxUri::_vNormilize(const std::string &a_csUri) {
+CxUri::_vNormilize(const std::tstring_t &a_csUri) {
     ////bool bRv = false;
 
     //trim
@@ -564,21 +564,21 @@ CxUri::_vNormilize(const std::string &a_csUri) {
 //TODO: _usDefaultPort ()
 ushort_t
 CxUri::_usDefaultPort() const {
-    if (       "ftp"    == _m_sScheme) {
+    if (       xT("ftp")    == _m_sScheme) {
         return 21;
-    } else if ("ssh"    == _m_sScheme) {
+    } else if (xT("ssh")    == _m_sScheme) {
         return 22;
-    } else if ("telnet" == _m_sScheme) {
+    } else if (xT("telnet") == _m_sScheme) {
         return 23;
-    } else if ("gopher" == _m_sScheme) {
+    } else if (xT("gopher") == _m_sScheme) {
         return 70;
-    } else if ("http"   == _m_sScheme) {
+    } else if (xT("http")   == _m_sScheme) {
         return 80;
-    } else if ("nntp"   == _m_sScheme) {
+    } else if (xT("nntp")   == _m_sScheme) {
         return 119;
-    } else if ("ldap"   == _m_sScheme) {
+    } else if (xT("ldap")   == _m_sScheme) {
         return 389;
-    } else if ("https"  == _m_sScheme) {
+    } else if (xT("https")  == _m_sScheme) {
         return 443;
     } else {
         return 0;

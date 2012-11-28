@@ -131,7 +131,7 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxTcpClient.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxTcpServer.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxUri.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Patterns\CxSingleton.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxAtomicLongInt.h" />
@@ -231,7 +231,7 @@
     <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxTcpClient.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxTcpServer.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxUri.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="..\..\..\Tests\Include\Test\Patterns\CxTest_CxSingleton.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxAtomicLongInt.h" />
@@ -357,7 +357,7 @@
     <ClCompile Include="..\..\..\Project\Source\Net\CxTcpClient.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Net\CxTcpServer.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Net\CxUri.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Sync\CxAtomicLongInt.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Sync\CxAutoIpcMutex.cpp" />
@@ -455,7 +455,7 @@
     <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxTcpClient.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxTcpServer.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxUri.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\Tests\Source\Patterns\CxTest_CxSingleton.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxAtomicLongInt.cpp" />
