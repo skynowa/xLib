@@ -283,7 +283,7 @@ CxShell::vCreateShortcut(
     xTEST_EQ(true, SUCCEEDED(hRv));
 
 #if xUNICODE
-    hRv = ppfPF->Save(csShortCutFilePath.c_str(), true);
+    hRv = ppfPF->Save(a_csShortCutFilePath.c_str(), true);
 #else
     wchar_t wszBuff[MAX_PATH + 1] = {0};
 

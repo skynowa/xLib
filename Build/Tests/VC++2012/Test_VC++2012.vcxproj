@@ -102,21 +102,37 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Log\CxSystemLog.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Log\CxTracer.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Log\xLogs.h" />
-    <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxCgi.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxCgi.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxCookiePv0.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxCookiePv1.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxDnsClient.h" />
-    <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxHttpClient.h" />
-    <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxMimeBody.h" />
-    <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxMimeHeader.h" />
-    <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxMimeMessage.h" />
-    <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxPop3.h" />
-    <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxSmtp.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxHttpClient.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxMimeBody.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxMimeHeader.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxMimeMessage.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxPop3.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxSmtp.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxSocket.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxSocketInit.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxTcpClient.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxTcpServer.h" />
-    <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxUri.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxUri.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Patterns\CxSingleton.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxAtomicLongInt.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxAutoIpcMutex.h" />
@@ -192,19 +208,31 @@
     <ClInclude Include="..\..\..\Tests\Include\Test\Log\CxTest_CxFileLog.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Log\CxTest_CxSystemLog.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Log\CxTest_CxTracer.h" />
-    <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxCgi.h" />
+    <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxCgi.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxCookiePv0.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxCookiePv1.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxDnsClient.h" />
-    <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxHttpClient.h" />
-    <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxMimeMessage.h" />
-    <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxPop3.h" />
-    <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxSmtp.h" />
+    <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxHttpClient.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxMimeMessage.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxPop3.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxSmtp.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxSocket.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxSocketInit.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxTcpClient.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxTcpServer.h" />
-    <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxUri.h" />
+    <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxUri.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="..\..\..\Tests\Include\Test\Patterns\CxTest_CxSingleton.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxAtomicLongInt.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxAutoIpcMutex.h" />
@@ -300,21 +328,37 @@
     <ClCompile Include="..\..\..\Project\Source\Log\CxFileLog.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Log\CxSystemLog.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Log\CxTracer.cpp" />
-    <ClCompile Include="..\..\..\Project\Source\Net\CxCgi.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Net\CxCgi.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Net\CxCookiePv0.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Net\CxCookiePv1.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Net\CxDnsClient.cpp" />
-    <ClCompile Include="..\..\..\Project\Source\Net\CxHttpClient.cpp" />
-    <ClCompile Include="..\..\..\Project\Source\Net\CxMimeBody.cpp" />
-    <ClCompile Include="..\..\..\Project\Source\Net\CxMimeHeader.cpp" />
-    <ClCompile Include="..\..\..\Project\Source\Net\CxMimeMessage.cpp" />
-    <ClCompile Include="..\..\..\Project\Source\Net\CxPop3.cpp" />
-    <ClCompile Include="..\..\..\Project\Source\Net\CxSmtp.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Net\CxHttpClient.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Project\Source\Net\CxMimeBody.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Project\Source\Net\CxMimeHeader.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Project\Source\Net\CxMimeMessage.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Project\Source\Net\CxPop3.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Project\Source\Net\CxSmtp.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Net\CxSocket.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Net\CxSocketInit.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Net\CxTcpClient.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Net\CxTcpServer.cpp" />
-    <ClCompile Include="..\..\..\Project\Source\Net\CxUri.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Net\CxUri.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Sync\CxAtomicLongInt.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Sync\CxAutoIpcMutex.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Sync\CxAutoMutex.cpp" />
@@ -388,19 +432,31 @@
     <ClCompile Include="..\..\..\Tests\Source\Log\CxTest_CxFileLog.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Log\CxTest_CxSystemLog.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Log\CxTest_CxTracer.cpp" />
-    <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxCgi.cpp" />
+    <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxCgi.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxCookiePv0.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxCookiePv1.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxDnsClient.cpp" />
-    <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxHttpClient.cpp" />
-    <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxMimeMessage.cpp" />
-    <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxPop3.cpp" />
-    <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxSmtp.cpp" />
+    <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxHttpClient.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxMimeMessage.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxPop3.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxSmtp.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxSocket.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxSocketInit.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxTcpClient.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxTcpServer.cpp" />
-    <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxUri.cpp" />
+    <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxUri.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\Tests\Source\Patterns\CxTest_CxSingleton.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxAtomicLongInt.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxAutoIpcMutex.cpp" />
@@ -438,7 +494,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v110</PlatformToolset>
-    <CharacterSet>NotSet</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>

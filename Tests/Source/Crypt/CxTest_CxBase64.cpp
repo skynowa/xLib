@@ -40,7 +40,7 @@ CxTest_CxBase64::vUnit(
 
             std::string sEncoded = CxBase64::sEncode(sSource);
             std::string sDecoded = CxBase64::sDecode(sEncoded);
-            xTEST_EQ(sSource, sDecoded);
+            xTEST_EQ(true, sSource == sDecoded);
         }
     }
 
@@ -62,11 +62,11 @@ CxTest_CxBase64::vUnit(
 
             const std::string csEncoded = CxBase64::sEncode(csSource);
             //xTRACEV("csEncoded: %s (%zu), csMustBe (%zu)", csEncoded.c_str(), csEncoded.size(), csMustBe.size());
-            xTEST_EQ(csMustBe, csEncoded);
+            xTEST_EQ(true, csMustBe == csEncoded);
 
             const std::string csDecoded = CxBase64::sDecode(csEncoded);
             //xTRACEV("csEncoded: %s (%zu), csSource (%zu)", csDecoded.c_str(), csDecoded.size(), csSource.size());
-            xTEST_EQ(csSource, csDecoded);
+            xTEST_EQ(true, csSource == csDecoded);
         }
     }
 

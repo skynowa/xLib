@@ -235,9 +235,9 @@ CxSystemInfo::sFormatOsArch(
 }
 //---------------------------------------------------------------------------
 /* static */
-std::string
+std::tstring_t
 CxSystemInfo::sDesktopName() {
-    std::string sRv;
+    std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
 
@@ -639,7 +639,13 @@ CxSystemInfo::sCpuModel() {
             (void)::__cpuid(reinterpret_cast<int *>( &szCpuName[16] ), 0x80000003);
             (void)::__cpuid(reinterpret_cast<int *>( &szCpuName[32] ), 0x80000004);
 
-            std::tstring_t sCpuName = CxString::sTrimSpace(szCpuName);
+            std::string asCpuName(szCpuName);
+
+        #if xUNICODE
+            std::tstring_t sCpuName = CxString::sTrimSpace( xS2TS(asCpuName) );
+        #else
+            std::tstring_t sCpuName = CxString::sTrimSpace(asCpuName);
+        #endif
 
             sRv = CxString::sFormat(xT("%s (%s)"), sCpuName.c_str(), szMan);
         } else {
