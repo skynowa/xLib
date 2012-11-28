@@ -140,7 +140,26 @@ CxMySQLConnection::vConnect(
     // csUnixSocket - n/a
     // ulClientFlag - n/a
 
-    MYSQL *pmsConnection = ::mysql_real_connect(_m_pmsConnection, a_csHost.c_str(), a_csUser.c_str(), a_csPassword.c_str(), a_csDb.c_str(), a_cuiPort, a_csUnixSocket.c_str(), a_culClientFlag);
+#if xUNICODE
+    std::string asHost       = xTS2S(a_csHost);
+    std::string asUser       = xTS2S(a_csUser);
+    std::string asPassword   = xTS2S(a_csPassword);
+    std::string asDb         = xTS2S(a_csDb);
+    std::string asUnixSocket = xTS2S(a_csUnixSocket);
+#else
+    std::string asHost       = a_csHost;
+    std::string asUser       = a_csUser;
+    std::string asPassword   = a_csPassword;
+    std::string asDb         = a_csDb;
+    std::string asUnixSocket = a_csUnixSocket;
+#endif
+
+    MYSQL *pmsConnection = ::mysql_real_connect(
+                                _m_pmsConnection, 
+                                asHost.c_str(), 
+                                asUser.c_str(), asPassword.c_str(), 
+                                asDb.c_str(),   a_cuiPort,     
+                                asUnixSocket.c_str(), a_culClientFlag);
 
     xTEST_MSG_PTR(pmsConnection, sLastErrorStr());
     xTEST_MSG_EQ(_m_pmsConnection, pmsConnection, sLastErrorStr());
@@ -156,14 +175,22 @@ CxMySQLConnection::vQuery(
     xTEST_EQ(true, bIsValid());
     xTEST_PTR(a_pcszSqlFormat);
 
-    std::tstring_t csSqlQuery;
+    std::tstring_t sSqlQuery;
     va_list        palArgs;
 
     xVA_START(palArgs, a_pcszSqlFormat);
-    csSqlQuery = CxString::sFormatV(a_pcszSqlFormat, palArgs);
+    sSqlQuery = CxString::sFormatV(a_pcszSqlFormat, palArgs);
     xVA_END(palArgs);
 
-    int iRv = ::mysql_real_query(_m_pmsConnection, csSqlQuery.data(), static_cast<ulong_t>( csSqlQuery.size() ));
+#if xUNICODE
+    std::string asSqlQuery = xTS2S(sSqlQuery);
+#else
+    std::string asSqlQuery = sSqlQuery;
+#endif
+
+    int iRv = ::mysql_real_query(_m_pmsConnection, 
+                                 asSqlQuery.data(), 
+                                 static_cast<ulong_t>( asSqlQuery.size() ));
     xTEST_MSG_EQ(0, iRv, sLastErrorStr());
 }
 //---------------------------------------------------------------------------
@@ -378,7 +405,14 @@ CxMySQLRecordset::vFetchRow(
         if (NULL == mrRow[i]) {
             sField = std::tstring_t();
         } else {
-            sField = std::tstring_t(mrRow[i], pulFieldLengths[i]);
+            #if xUNICODE
+                std::string asField = std::string(mrRow[i], pulFieldLengths[i]);
+                
+                sField = xS2TS(asField);
+            #else
+                sField = std::tstring_t(mrRow[i], pulFieldLengths[i]);
+            #endif
+
         }
 
         (*a_pvsRow).push_back(sField);
