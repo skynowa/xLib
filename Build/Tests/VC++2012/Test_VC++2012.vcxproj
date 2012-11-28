@@ -103,7 +103,7 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Log\CxTracer.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Log\xLogs.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxCgi.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxCookiePv0.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxCookiePv1.h" />
@@ -209,7 +209,7 @@
     <ClInclude Include="..\..\..\Tests\Include\Test\Log\CxTest_CxSystemLog.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Log\CxTest_CxTracer.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxCgi.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxCookiePv0.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxCookiePv1.h" />
@@ -329,7 +329,7 @@
     <ClCompile Include="..\..\..\Project\Source\Log\CxSystemLog.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Log\CxTracer.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Net\CxCgi.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Net\CxCookiePv0.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Net\CxCookiePv1.cpp" />
@@ -433,7 +433,7 @@
     <ClCompile Include="..\..\..\Tests\Source\Log\CxTest_CxSystemLog.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Log\CxTest_CxTracer.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxCgi.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxCookiePv0.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxCookiePv1.cpp" />

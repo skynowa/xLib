@@ -225,7 +225,7 @@ CxTest_CxCgi::vUnit(
             };
 
             for (std::size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-                const std::string ILLEGAL_CHARS("()[]/|\\',;");
+                const std::tstring_t ILLEGAL_CHARS(xT("()[]/|\\',;"));
 
 
                 std::tstring_t sUri        = sData[i];
@@ -250,7 +250,7 @@ CxTest_CxCgi::vUnit(
             };
 
             for (std::size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-                const std::string ILLEGAL_CHARS("()[]/|\\',;");
+                const std::tstring_t ILLEGAL_CHARS(xT("()[]/|\\',;"));
 
 
                 std::tstring_t sUri        = sData[i];
