@@ -38,7 +38,7 @@ CxTestManager::~CxTestManager() {
     }
 
     xCHECK_DO(_m_cbIsUseTracing, xTRACE(xT("CxTestManager: all tests destructed.")));
-    xCHECK_DO(_m_cbIsUseTracing, xTRACE (xT("\n")));
+    xCHECK_DO(_m_cbIsUseTracing, xTRACE(xT("\n")));
 }
 //---------------------------------------------------------------------------
 void
