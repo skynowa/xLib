@@ -43,7 +43,7 @@ CxSmtp::~CxSmtp() {
 //---------------------------------------------------------------------------
 //DONE: bCreate
 void
-CxSmtp::vCreate(const std::string &a_csUser, const std::string &a_csPass, const std::string &a_csServer, const ushort_t &a_cusPort) {
+CxSmtp::vCreate(const std::tstring_t &a_csUser, const std::tstring_t &a_csPass, const std::tstring_t &a_csServer, const ushort_t &a_cusPort) {
     xTEST_EQ(false, a_csUser.empty());
     ////xTEST_EQ(false, a_csPass.empty());
     xTEST_EQ(false, a_csServer.empty());
@@ -58,7 +58,7 @@ CxSmtp::vCreate(const std::string &a_csUser, const std::string &a_csPass, const 
 //DONE: bConnect
 void
 CxSmtp::vConnect() {
-    std::string sRv;
+    std::tstring_t sRv;
 
     //-------------------------------------
     //������� �����
@@ -66,7 +66,7 @@ CxSmtp::vConnect() {
 
     //-------------------------------------
     //������ �����
-    std::string sIpAddr;
+    std::tstring_t sIpAddr;
 
     CxDnsClient::vHostAddrByName(_m_sServer, &sIpAddr);
 
@@ -76,14 +76,14 @@ CxSmtp::vConnect() {
 
     //-------------------------------------
     //[welcome message]
-    sRv = _m_scktSocket.sRecvAll(0, "\r\n");
+    sRv = _m_scktSocket.sRecvAll(0, xT("\r\n"));
     xTEST_MSG_EQ(false, _bIsError(sRv), sRv);
 
     //-------------------------------------
     //[HELO\r\n]
-    const std::string sHelloCmd = "HELO HOST\r\n";        //const std::string sHelloCmd = "HELO\r\n";
+    const std::tstring_t sHelloCmd = xT("HELO HOST\r\n");        //const std::tstring_t sHelloCmd = "HELO\r\n";
 
-    _vCommand(sHelloCmd, "\r\n", /*ref*/sRv);
+    _vCommand(sHelloCmd, xT("\r\n"), /*ref*/sRv);
 
     _m_bConnected = true;
 }
@@ -101,25 +101,25 @@ CxSmtp::vLogin() {
     S: 235 Authentication succeeded
     */
 
-    std::string sRv;
+    std::tstring_t sRv;
 
     //-------------------------------------
     //[AUTH\r\n]
-    const std::string sAuthLoginCmd = "AUTH LOGIN\r\n";
+    const std::tstring_t sAuthLoginCmd = xT("AUTH LOGIN\r\n");
 
-    _vCommand(sAuthLoginCmd, "\r\n", /*ref*/sRv);
+    _vCommand(sAuthLoginCmd, xT("\r\n"), /*ref*/sRv);
 
     //-------------------------------------
     //[mylogin\r\n]
-    const std::string sLoginCmd = CxBase64::sEncode(_m_sUser) + "\r\n";
+    const std::tstring_t sLoginCmd = xS2TS( CxBase64::sEncode( xTS2S(_m_sUser) ) ) + xT("\r\n");
 
-    _vCommand(sLoginCmd, "\r\n", /*ref*/sRv);
+    _vCommand(sLoginCmd, xT("\r\n"), /*ref*/sRv);
 
     //-------------------------------------
     //[mypassword\r\n]
-    const std::string sPasswordCmd = CxBase64::sEncode(_m_sPass) + "\r\n";
+    const std::tstring_t sPasswordCmd = xS2TS( CxBase64::sEncode( xTS2S(_m_sPass) ) ) + xT("\r\n");
 
-    _vCommand(sPasswordCmd, "\r\n", /*ref*/sRv);
+    _vCommand(sPasswordCmd, xT("\r\n"), /*ref*/sRv);
 }
 //---------------------------------------------------------------------------
 //DONE: bNoop (�������� ��������� ���������� � ���������)
@@ -132,13 +132,13 @@ CxSmtp::vNoop() {
     S: +��
     */
 
-    std::string sRv;
+    std::tstring_t sRv;
 
     //-------------------------------------
     //[NOOP\r\n]
-    std::string sNoopCmd = "NOOP\r\n";
+    std::tstring_t sNoopCmd = xT("NOOP\r\n");
 
-    _vCommand(sNoopCmd, "\r\n", /*ref*/sRv);
+    _vCommand(sNoopCmd, xT("\r\n"), /*ref*/sRv);
 }
 //---------------------------------------------------------------------------
 //DONE: bRset (������ ����� �������� �����)
@@ -151,29 +151,29 @@ CxSmtp::vRset() {
     S: +OK maildrop has 2 messages (320 octets)
     */
 
-    std::string sRv;
+    std::tstring_t sRv;
 
     //-------------------------------------
     //[RSET\r\n]
-    std::string sRsetCmd = "RSET\r\n";
+    std::tstring_t sRsetCmd = xT("RSET\r\n");
 
-    _vCommand(sRsetCmd, "\r\n", /*ref*/sRv);
+    _vCommand(sRsetCmd, xT("\r\n"), /*ref*/sRv);
 }
 //---------------------------------------------------------------------------
 //DONE: bSendRaw
 void
-CxSmtp::vSendRaw(const std::string &a_csFilePath, const std::string &a_sFrom, const std::string &a_sTo) {
+CxSmtp::vSendRaw(const std::tstring_t &a_csFilePath, const std::tstring_t &a_sFrom, const std::tstring_t &a_sTo) {
     // TODO: xTEST_DIFF(xSOCKET_HANDLE_INVALID, _m_scktSocket,   false);
     xTEST_EQ(false, a_sFrom.empty());
     xTEST_EQ(false, a_sTo.empty());
 
-    std::string sRv;
+    std::tstring_t sRv;
 
-    /////////const std::string sHelloCmd = "HELO HOST\r\n";        //const std::string sHelloCmd = "HELO\r\n";
-    const std::string sFromCmd  = "MAIL FROM: <" + a_sFrom + ">\r\n";
-    const std::string sToCmd    = "RCPT TO: <"   + a_sTo   + ">\r\n";
-    const std::string sDataCmd  = "DATA\r\n";
-    const std::string sEndCmd   = "\r\n.\r\n";
+    /////////const std::tstring_t sHelloCmd = "HELO HOST\r\n";        //const std::tstring_t sHelloCmd = "HELO\r\n";
+    const std::tstring_t sFromCmd = xT("MAIL FROM: <") + a_sFrom + xT(">\r\n");
+    const std::tstring_t sToCmd   = xT("RCPT TO: <")   + a_sTo   + xT(">\r\n");
+    const std::tstring_t sDataCmd = xT("DATA\r\n");
+    const std::tstring_t sEndCmd  = xT("\r\n.\r\n");
 
     //////////-------------------------------------
     //////////[HELO\r\n]
@@ -182,41 +182,41 @@ CxSmtp::vSendRaw(const std::string &a_csFilePath, const std::string &a_sFrom, co
 
     //-------------------------------------
     //[MAIL FROM:<my_mail@mail.ru>\r\n]
-    _vCommand(sFromCmd, "\r\n", /*ref*/sRv);
+    _vCommand(sFromCmd, xT("\r\n"), /*ref*/sRv);
 
     //-------------------------------------
     //[RCPT TO:<your_mail@mail.ru>\r\n]
-    _vCommand(sToCmd, "\r\n", /*ref*/sRv);
+    _vCommand(sToCmd, xT("\r\n"), /*ref*/sRv);
 
     //-------------------------------------
     //[DATA\r\n]
-    _vCommand(sDataCmd, "\r\n", /*ref*/sRv);
+    _vCommand(sDataCmd, xT("\r\n"), /*ref*/sRv);
 
     //-------------------------------------
     //DONE: ������ �� ����� � ����� ����� � �����
-    std::string sText = "";
+    std::tstring_t sText;
 
     CxFile::vTextRead(a_csFilePath, &sText);
 
     //-------------------------------------
     //[DataText\r\n.\r\n]
-    _vCommand(sText + sEndCmd, "\r\n", /*ref*/sRv);
+    _vCommand(sText + sEndCmd, xT("\r\n"), /*ref*/sRv);
 }
 //---------------------------------------------------------------------------
 //DONE: bSend
 void
-CxSmtp::vSend(const std::string &a_csText, const std::string &a_sFrom, const std::string &a_sTo) {
+CxSmtp::vSend(const std::tstring_t &a_csText, const std::tstring_t &a_sFrom, const std::tstring_t &a_sTo) {
     // TODO: xTEST_DIFF(xSOCKET_HANDLE_INVALID, _m_scktSocket);
     xTEST_EQ(false, a_sFrom.empty());
     xTEST_EQ(false, a_sTo.empty());
 
-    std::string sRv;
+    std::tstring_t sRv;
 
-    const std::string sHelloCmd = "HELO HOST\r\n";
-    const std::string sFromCmd  = "MAIL FROM: <" + a_sFrom + ">\r\n";
-    const std::string sToCmd    = "RCPT TO: <"   + a_sTo   + ">\r\n";
-    const std::string sDataCmd  = "DATA\r\n";
-    const std::string sEndCmd   = "\r\n.\r\n";
+    const std::tstring_t sHelloCmd = xT("HELO HOST\r\n");
+    const std::tstring_t sFromCmd  = xT("MAIL FROM: <") + a_sFrom + xT(">\r\n");
+    const std::tstring_t sToCmd    = xT("RCPT TO: <")   + a_sTo   + xT(">\r\n");
+    const std::tstring_t sDataCmd  = xT("DATA\r\n");
+    const std::tstring_t sEndCmd   = xT("\r\n.\r\n");
 
     //////-------------------------------------
     //////[HELO DrWEB\r\n]
@@ -225,15 +225,15 @@ CxSmtp::vSend(const std::string &a_csText, const std::string &a_sFrom, const std
 
     //-------------------------------------
     //[MAIL FROM:<my_mail@mail.ru>\r\n]
-    _vCommand(sFromCmd, "\r\n", /*ref*/sRv);
+    _vCommand(sFromCmd, xT("\r\n"), /*ref*/sRv);
 
     //-------------------------------------
     //[RCPT TO:<your_mail@mail.ru>\r\n]
-    _vCommand(sToCmd, "\r\n", /*ref*/sRv);
+    _vCommand(sToCmd, xT("\r\n"), /*ref*/sRv);
 
     //-------------------------------------
     //[DATA\r\n]
-    _vCommand(sDataCmd, "\r\n", /*ref*/sRv);
+    _vCommand(sDataCmd, xT("\r\n"), /*ref*/sRv);
 
     //-------------------------------------
     //�������� �����
@@ -241,7 +241,7 @@ CxSmtp::vSend(const std::string &a_csText, const std::string &a_sFrom, const std
 
     //-------------------------------------
     //[\r\n.\r\n]
-    _vCommand(sEndCmd, "\r\n", /*ref*/sRv);
+    _vCommand(sEndCmd, xT("\r\n"), /*ref*/sRv);
 }
 //---------------------------------------------------------------------------
 //DONE: bDisconnect
@@ -256,13 +256,13 @@ CxSmtp::vDisconnect() {
     +�� dewey POP3 server signing off
     */
 
-    std::string sRv;
+    std::tstring_t sRv;
 
     //-------------------------------------
     //[QUIT]
-    const std::string sQuitCmd = "QUIT\r\n";
+    const std::tstring_t sQuitCmd = xT("QUIT\r\n");
 
-    _vCommand(sQuitCmd, "\r\n", /*ref*/sRv);
+    _vCommand(sQuitCmd, xT("\r\n"), /*ref*/sRv);
 
     _m_scktSocket.vClose();
 
@@ -280,11 +280,11 @@ CxSmtp::vDisconnect() {
 //---------------------------------------------------------------------------
 //DONE: _bCommand
 void
-CxSmtp::_vCommand(const std::string &a_csCmd, const std::string &a_csReplyDelimiter, std::string &a_sReply) {
+CxSmtp::_vCommand(const std::tstring_t &a_csCmd, const std::tstring_t &a_csReplyDelimiter, std::tstring_t &a_sReply) {
     xTEST_EQ(false, a_csCmd.empty());
     xTEST_EQ(false, a_csReplyDelimiter.empty());
 
-    std::string sRv;
+    std::tstring_t sRv;
 
     _m_scktSocket.vSendAll(a_csCmd, 0);
     _m_scktSocket.sRecvAll(0, a_csReplyDelimiter);
@@ -294,16 +294,16 @@ CxSmtp::_vCommand(const std::string &a_csCmd, const std::string &a_csReplyDelimi
 //---------------------------------------------------------------------------
 //DONE: _bIsError
 bool
-CxSmtp::_bIsError(const std::string &a_csText) {
+CxSmtp::_bIsError(const std::tstring_t &a_csText) {
     xTEST_EQ(false, a_csText.empty());
 
     bool bRv = (bool)!(
-            !std::memcmp(a_csText.c_str(), "334", 3) ||    //334 VXNlcm5hbWU6
-            !std::memcmp(a_csText.c_str(), "235", 3) ||    //235 2.0.0 Authentication successful
-            !std::memcmp(a_csText.c_str(), "220", 3) ||    //220 Sergey Kerio MailServer 6.7.0 patch 1 ESMTP ready
-            !std::memcmp(a_csText.c_str(), "250", 3) ||    //250 2.0.0 OK
-            !std::memcmp(a_csText.c_str(), "354", 3) ||    //354 Enter mail, end with CRLF.CRLF
-            !std::memcmp(a_csText.c_str(), "221", 3)       //221 221 2.0.0 SMTP closing connection
+            !std::memcmp(a_csText.c_str(), xT("334"), 3) ||    //334 VXNlcm5hbWU6
+            !std::memcmp(a_csText.c_str(), xT("235"), 3) ||    //235 2.0.0 Authentication successful
+            !std::memcmp(a_csText.c_str(), xT("220"), 3) ||    //220 Sergey Kerio MailServer 6.7.0 patch 1 ESMTP ready
+            !std::memcmp(a_csText.c_str(), xT("250"), 3) ||    //250 2.0.0 OK
+            !std::memcmp(a_csText.c_str(), xT("354"), 3) ||    //354 Enter mail, end with CRLF.CRLF
+            !std::memcmp(a_csText.c_str(), xT("221"), 3)       //221 221 2.0.0 SMTP closing connection
     );
 
     return bRv;

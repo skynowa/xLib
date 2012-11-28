@@ -24,36 +24,36 @@ CxTest_CxSmtp::vUnit(
 {
     //-------------------------------------
     //IPNET
-    //const std::string  csUser     = "domen";
-    //const std::string  csPass     = "control6";
-    //const std::string  csServer   = "mail.ipnet.kiev.ua";
+    //const std::tstring_t  csUser     = "domen";
+    //const std::tstring_t  csPass     = "control6";
+    //const std::tstring_t  csServer   = "mail.ipnet.kiev.ua";
     //ushort_t             usPort     = 25;
-    //const std::string  csFrom     = "domen@ipnet.kiev.ua";
-    //const std::string  csTo       = "skynowa@gmail.com";
-    //const std::string  csFilePath = "C:/Temp/test.eml";
-    //const std::string  csDirPath  = "C:/Temp";
+    //const std::tstring_t  csFrom     = "domen@ipnet.kiev.ua";
+    //const std::tstring_t  csTo       = "skynowa@gmail.com";
+    //const std::tstring_t  csFilePath = "C:/Temp/test.eml";
+    //const std::tstring_t  csDirPath  = "C:/Temp";
 
     //-------------------------------------
     //CourierMS
-    const std::string  csUser     = "test_1";
-    const std::string  csPass     = "test_1";
-    const std::string  csServer   = "127.0.0.1";
-    ushort_t           usPort     = 25;
-    const std::string  csFrom     = "test_1@serg.com";
-    const std::string  csTo       = "test_2@serg.com";
-    const std::string  csFilePath = "C:/Temp2/test.eml";
-    const std::string  csDirPath  = "C:/Temp";
+    const std::tstring_t  csUser     = xT("test_1");
+    const std::tstring_t  csPass     = xT("test_1");
+    const std::tstring_t  csServer   = xT("127.0.0.1");
+    ushort_t              usPort     = 25;
+    const std::tstring_t  csFrom     = xT("test_1@serg.com");
+    const std::tstring_t  csTo       = xT("test_2@serg.com");
+    const std::tstring_t  csFilePath = xT("C:/Temp2/test.eml");
+    const std::tstring_t  csDirPath  = xT("C:/Temp");
 
     //-------------------------------------
     //hMailServer
-    //const std::string  csUser     = "test_1@serg.com";
-    //const std::string  csPass     = "test_1";
-    //const std::string  csServer   = "127.0.0.1";
+    //const std::tstring_t  csUser     = "test_1@serg.com";
+    //const std::tstring_t  csPass     = "test_1";
+    //const std::tstring_t  csServer   = "127.0.0.1";
     //ushort_t             usPort     = 25;
-    //const std::string  csFrom     = "test_1@serg.com";
-    //const std::string  csTo       = "test_2@serg.com";
-    //const std::string  csFilePath = "C:/Temp2/test.eml";
-    //const std::string  csDirPath  = "C:/Temp";
+    //const std::tstring_t  csFrom     = "test_1@serg.com";
+    //const std::tstring_t  csTo       = "test_2@serg.com";
+    //const std::tstring_t  csFilePath = "C:/Temp2/test.eml";
+    //const std::tstring_t  csDirPath  = "C:/Temp";
 
     //-------------------------------------
     //
@@ -63,7 +63,7 @@ CxTest_CxSmtp::vUnit(
     std::vector<ulong_t> veculList;
     ulong_t              ulIndex    = 1;
     int                  iNum       = 1;
-    const std::string    csText     = "HELO";
+    const std::tstring_t csText     = xT("HELO");
 
     CxSmtp objSmtp;
 
