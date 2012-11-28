@@ -142,9 +142,9 @@
 #define xTRACE(msg)                                      { CxTracer() << (msg); }
     ///< tracing
 #define xTRACE_VAR(v)                                    ( std::tstring_t() \
-                                                                .append(xT(#v": ")) \
-                                                                .append(CxString::string_cast(v)) \
-                                                                .append(xT(" ")) \
+                                                                .append( xT(#v) xT(": ")          ) \
+                                                                .append( CxString::string_cast(v) ) \
+                                                                .append( xT(" ")                  ) \
                                                          )
     ///< trace variable, trace variable and value
 #define xTRACEV(...)                                     { CxTracer::vWrite(__VA_ARGS__); }

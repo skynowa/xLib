@@ -106,7 +106,7 @@ CxTest_CxDebugger::vUnit(
             ulong_t val1 = 10;
             ulong_t val2 = 20;
 
-            CxErrorReport rpReport(crtType[i], "val1", "val2", val1, val2, xT("=="),
+            CxErrorReport rpReport(crtType[i], xT("val1"), xT("val2"), val1, val2, xT("=="),
                                    ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME,
                                    CxStackTrace().sGet(), xT(""));
 

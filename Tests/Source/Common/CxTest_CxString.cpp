@@ -980,13 +980,13 @@ CxTest_CxString::vUnit(
 
         for (size_t i = 0; i < xARRAY_SIZE(csAnsiStr) - 1; i ++) {
             #if   xOS_ENV_WIN
-                //CP_ACP(ANSI) <-> CP_UTF8(UTF-8)
+                // CP_ACP(ANSI) <-> CP_UTF8(UTF-8)
                 std::string sAnsi;
                 std::string sUtf8;
 
                 sUtf8 = CxString::sConvertCodePage(csAnsiStr[i], CP_ACP,  CP_UTF8);
                 sAnsi = CxString::sConvertCodePage(sUtf8,        CP_UTF8, CP_ACP);
-                xTEST_EQ(csAnsiStr[i], sAnsi);
+                xTEST_EQ(true, csAnsiStr[i] == sAnsi);
 
 
                 //1251(WIN)  <-> 20866(KOI-8r)
@@ -995,10 +995,10 @@ CxTest_CxString::vUnit(
 
                 sKoiStr = CxString::sConvertCodePage(csAnsiStr[i], 1251,  20866);
                 sWinStr = CxString::sConvertCodePage(sKoiStr,      20866, 1251);
-                xTEST_EQ(csAnsiStr[i], sWinStr);
+                xTEST_EQ(true, csAnsiStr[i] == sWinStr);
             #elif xOS_ENV_UNIX
-                //TODO: sConvertCodePage
-                //xNOT_IMPLEMENTED_RET(RET_VALUE);
+                // TODO: sConvertCodePage
+                // xNOT_IMPLEMENTED_RET(RET_VALUE);
             #endif
         }
     }
@@ -1009,7 +1009,7 @@ CxTest_CxString::vUnit(
 
         #if   xOS_ENV_WIN
             sRv = CxString::asCharToOemBuff(xT("Boss, hello? "));
-            xTEST_EQ(std::string("Boss, hello? "), sRv);
+            xTEST_EQ(true, std::string("Boss, hello? ") == sRv);
         #elif xOS_ENV_UNIX
             //TODO: sCharToOemBuff
         #endif
@@ -1021,7 +1021,7 @@ CxTest_CxString::vUnit(
 
         #if   xOS_ENV_WIN
             sRv = CxString::sOemToCharBuff(("1111, hdbhjgjk hkl, jl.,kh."));
-            xTEST_EQ(std::tstring_t(xT("1111, hdbhjgjk hkl, jl.,kh.")), sRv);
+            xTEST_EQ(true, std::tstring_t(xT("1111, hdbhjgjk hkl, jl.,kh.")) == sRv);
         #elif xOS_ENV_UNIX
             //TODO: sOemToCharBuff
         #endif

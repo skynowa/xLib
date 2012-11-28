@@ -10,9 +10,9 @@
 
 //--------------------------------------------------
 // lexema utils
-#define xLEX_TO_STR(a)                  (#a)
+#define xLEX_TO_STR(a)                  xT(#a)
     ///< make as string
-#define xLEX_CAT(a, b)                  (a##b)
+#define xLEX_CAT(a, b)                  a##b
     ///< concatinate strings
 
 //--------------------------------------------------
@@ -131,7 +131,7 @@
             ///< end anonymous namespace
 
 //--------------------------------------------------
-// converters
+// TODO: converters
 #define xS2US(s)                        std::ustring_t( (s).begin(),  (s).begin()  + (s).size()  )
     ///< convert std::tstring_t to std::ustring_t
 #define xUS2S(us)                       std::tstring_t( (us).begin(), (us).begin() + (us).size() )

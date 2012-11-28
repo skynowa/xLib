@@ -28,23 +28,22 @@ CxTest_CxMimeMessage::vUnit(
 
     //-------------------------------------
     //CourierMS.exe
-    const std::string csUser     = "test_1@serg.com";
-    const std::string csPass     = "test_1";
-    const std::string csServer   = "127.0.0.1";
-    const ushort_t      usPort     = 110;
+    const std::string csUser   = "test_1@serg.com";
+    const std::string csPass   = "test_1";
+    const std::string csServer = "127.0.0.1";
+    const ushort_t    usPort   = 110;
 
     //-------------------------------------
     //IPNET
-    //const std::string csUser     = "domen";
-    //const std::string csPass     = "control6";
-    //const std::string csServer   = "mail.ipnet.kiev.ua";
-    //ushort_t            usPort     = 110;
-
+    //const std::string csUser   = "domen";
+    //const std::string csPass   = "control6";
+    //const std::string csServer = "mail.ipnet.kiev.ua";
+    //ushort_t          usPort     = 110;
 
     const std::string csDirPath  = "C:/Temp";
     const std::string csFilePath = "C:/Temp/1.eml";
-    ulong_t             ulSum      = 0;
-    ulong_t             ulSize     = 0;
+    ulong_t           ulSum      = 0;
+    ulong_t           ulSize     = 0;
 
 
 

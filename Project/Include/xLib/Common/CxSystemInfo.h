@@ -72,7 +72,7 @@ class CxSystemInfo :
         static std::tstring_t sFormatOsArch     (const ExOsArch &oaOsArch);
             ///< format get OS architecture
 
-        static std::string    sDesktopName      ();
+        static std::tstring_t sDesktopName      ();
             ///< desktop environments
 
         // users
@@ -84,7 +84,7 @@ class CxSystemInfo :
             ///< get the name of the user associated with the current thread
         static std::tstring_t sUseHomeDir       ();
             ///< get home directory of current user
-        static std::string    sUserShellPath    ();
+        static std::tstring_t sUserShellPath    ();
             ///< get shell path of current user
 
         // CPU

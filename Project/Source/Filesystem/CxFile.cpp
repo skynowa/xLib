@@ -312,7 +312,7 @@ CxFile::chReadChar() const {
     xTEST_EQ(true, bIsValid());
 
     int iRv = std::xTFGETC(pGet());
-    xTEST_LESS_EQ(xTEOF, iRv);
+    xTEST_LESS_EQ(static_cast<int>( xTEOF ), iRv);
 
     return static_cast<tchar_t>( iRv );
 }
@@ -326,7 +326,7 @@ CxFile::vWriteChar(
     xTEST_EQ(true, bIsValid());
 
     int iRv = xTFPUTC(static_cast<int>( a_ccChar ), pGet());
-    xTEST_DIFF(static_cast<int>( a_ccChar ), xTEOF);
+    xTEST_DIFF(static_cast<int>( xTEOF ), iRv);
     xTEST_EQ(static_cast<int>( a_ccChar ), iRv);
 }
 //---------------------------------------------------------------------------
@@ -339,7 +339,7 @@ CxFile::vUngetChar(
     xTEST_EQ(true, bIsValid());
 
     int iRv = std::xTUNGETC(a_ccChar, pGet());
-    xTEST_DIFF(iRv, xTEOF);
+    xTEST_DIFF(static_cast<int>( xTEOF ), iRv);
     xTEST_EQ(a_ccChar, static_cast<tchar_t>( iRv ));
 }
 //---------------------------------------------------------------------------
@@ -537,7 +537,7 @@ CxFile::vFlush() const {
     xTEST_EQ(true, bIsValid());
 
     int iRv = std::fflush(pGet());
-    xTEST_DIFF(xTEOF, iRv);
+    xTEST_DIFF(static_cast<int>( xTEOF ), iRv);
 }
 //---------------------------------------------------------------------------
 void
@@ -549,7 +549,7 @@ CxFile::vClose() {
     vErrorClear();
 
     int iRv = std::fclose(pGet());
-    xTEST_DIFF(xTEOF, iRv);
+    xTEST_DIFF(static_cast<int>( xTEOF ), iRv);
 
     _m_pFile = NULL;
 }

@@ -31,7 +31,7 @@ CxTest_xDebug::vUnit(
         {
             int iSimpleVar = 1;
             int iVeryVerySimpleVar = 1;
-            xTEST_MSG_EQ(iSimpleVar, iVeryVerySimpleVar, "Simple message");
+            xTEST_MSG_EQ(iSimpleVar, iVeryVerySimpleVar, xT("Simple message"));
 
             xTEST_EQ(1UL, 1UL);
         }

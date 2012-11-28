@@ -122,7 +122,7 @@ CxTest_xDefines::vUnit(
 
     xTEST_CASE("xDefines::xLEX_CAT_", cullCaseLoops)
     {
-        std::string sVal;
+        std::tstring_t sVal;
 
         xLEX_CAT(s, Val) = xT("XLIB_VAL");
         xTEST_EQ(std::tstring_t(xT("XLIB_VAL")), sVal);

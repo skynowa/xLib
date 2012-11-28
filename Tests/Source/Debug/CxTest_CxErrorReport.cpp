@@ -29,7 +29,7 @@ CxTest_CxErrorReport::vUnit(
         ulong_t val1 = 10;
         ulong_t val2 = 20;
 
-        CxErrorReport rpReport(CxErrorReport::rtMsgboxPlain, "val1", "val2", val1, val2, xT("=="),
+        CxErrorReport rpReport(CxErrorReport::rtMsgboxPlain, xT("val1"), xT("val2"), val1, val2, xT("=="),
                                ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME,
                                CxStackTrace().sGet(), xT(""));
     }
