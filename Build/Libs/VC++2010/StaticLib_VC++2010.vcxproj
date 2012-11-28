@@ -71,10 +71,7 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\SDK\4.53\pkcs11f.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\SDK\4.53\pkcs11t.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Db\CxConnectionString.h" />
-    <ClInclude Include="..\..\..\Project\Include\xLib\Db\CxMySql.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Db\CxMySql.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Db\Win\CxAdo.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Debug\CxAutoProfiler.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Debug\CxDebugger.h" />
@@ -185,10 +182,7 @@
     <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxSlot.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxVerify.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Db\CxConnectionString.cpp" />
-    <ClCompile Include="..\..\..\Project\Source\Db\CxMySql.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="..\..\..\Project\Source\Db\CxMySql.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Db\Win\CxAdo.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Debug\CxAutoProfiler.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Debug\CxDebugger.cpp" />
@@ -255,13 +249,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <CharacterSet>NotSet</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>NotSet</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
