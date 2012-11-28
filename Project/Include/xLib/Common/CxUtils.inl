@@ -65,7 +65,7 @@ CxUtils::bufferZeroT(
     T (&a_bufferT)[cuiArraySize]
 )
 {
-    (void *)std::memset(&a_bufferT[0], 0, cuiArraySize);
+    (void *)std::memset(&a_bufferT[0], 0, sizeof(a_bufferT));
 }
 //---------------------------------------------------------------------------
 template <typename T>
