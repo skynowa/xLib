@@ -887,18 +887,19 @@ CxTest_CxString::vUnit(
     {
         //1
         {
-            std::tstring_t asBuff[] = {
+            tchar_t aszBuff[][50] = {
                     xT("0123456789"),
                     xT("aaaaaaaaaaaaaaaaaa"),
                     xT("wo34875j0w9958u0342ku59u28934u5"),
             };
 
-            for (size_t i = 0; i < xARRAY_SIZE(asBuff); ++ i) {
-                m_pvRv = CxString::pvMemoryZeroSecure(&asBuff[i].at(0), asBuff[i].size() * sizeof(std::tstring_t::value_type));
+            for (size_t i = 0; i < xARRAY_SIZE(aszBuff); ++ i) {
+                m_pvRv = CxString::pvMemoryZeroSecure(aszBuff[i], sizeof(aszBuff[i]));
                 xTEST_PTR(m_pvRv);
 
-                for (size_t x = 0; x < asBuff[i].size() * sizeof(std::tstring_t::value_type); ++ x) {
-                    xTEST_EQ(true, 0 == asBuff[i].at(x));
+                std::cout << xARRAY_SIZE(aszBuff[i]) << std::endl;
+                for (size_t x = 0; x < xARRAY_SIZE(aszBuff[i]); ++ x) {
+                    xTEST_EQ(true, 0 == aszBuff[i][x]);
                 }
             }
         }
