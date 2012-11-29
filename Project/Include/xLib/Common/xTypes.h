@@ -51,7 +51,7 @@ xNAMESPACE_BEGIN(NxLib)
         typedef int                    native_handle_t;
     #endif
         ///< native handle
-   
+
     // socket_t
     #if   xOS_ENV_WIN
         typedef SOCKET                 socket_t;
@@ -81,14 +81,14 @@ xNAMESPACE_BEGIN(std)
     typedef basic_fstream < tchar_t, char_traits<tchar_t> >                          tfstream_t;
 
     // it's useful
-    typedef vector<tchar_t>                                                         vec_tchar_t;
-    typedef vector<uchar_t>                                                         vec_uchar_t;
+    typedef vector<tchar_t>                                                          vec_tchar_t;
+    typedef vector<uchar_t>                                                          vec_uchar_t;
 
-    typedef vector<tstring_t>                                                       vec_tstring_t;
-    typedef vector<ustring_t>                                                       vec_ustring_t;
+    typedef vector<tstring_t>                                                        vec_tstring_t;
+    typedef vector<ustring_t>                                                        vec_ustring_t;
 
-    typedef map<tstring_t, tstring_t>                                               map_tstring_t;
-    typedef multimap<tstring_t, tstring_t>                                          mmap_tstring_t;
+    typedef map<tstring_t, tstring_t>                                                map_tstring_t;
+    typedef multimap<tstring_t, tstring_t>                                           mmap_tstring_t;
 
 xNAMESPACE_END(std)
 //---------------------------------------------------------------------------
