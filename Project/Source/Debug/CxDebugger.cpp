@@ -303,9 +303,9 @@ CxDebugger::_vStdoutFormated(
         cmRetry  = xT('r')
     };
 
-    std::tcerr << CxConsole().sSetTextColor( xT("\n####################################################################################################\n"), CxConsole::fgWhite, true, false, CxConsole::bgBlack, false );
+    std::tcerr << CxConsole().sSetTextColor( CxConsole::fgWhite, true, false, CxConsole::bgBlack, false ) << xT("\n####################################################################################################\n") << CxConsole().sSetTextColorDef();
     std::tcerr << a_crpReport.m_sReport;
-    std::tcerr << CxConsole().sSetTextColor( xT("\n####################################################################################################\n"), CxConsole::fgWhite, true, false, CxConsole::bgBlack, false );
+    std::tcerr << CxConsole().sSetTextColor( CxConsole::fgWhite, true, false, CxConsole::bgBlack, false ) << xT("\n####################################################################################################\n") << CxConsole().sSetTextColorDef();
     std::tcerr << xT("\n");
     std::tcerr << xT("\nAbort (a), Ignore (i), Retry (r): ");
     std::tcerr.flush();
