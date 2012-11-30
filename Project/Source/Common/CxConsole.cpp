@@ -58,7 +58,6 @@ CxConsole::~CxConsole() {
 // NOTE: http://lifeforce4.wordpress.com/, http://lifeforce4.wordpress.com/
 std::tstring_t
 CxConsole::sSetTextColor(
-    const std::tstring_t &a_csText,
     const ExForeground   &a_cfgForeground,
     const bool           &a_cbIsBold,
     const bool           &a_cbIsUnderline,
@@ -76,10 +75,14 @@ CxConsole::sSetTextColor(
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
-    #if xTEMP_DISABLED
-        BOOL blRes = ::SetConsoleTextAttribute(_m_hStdOut.hGet(), a_cfgForeground | a_cbgBackground);
-        xTEST_DIFF(FALSE, blRes);
-    #endif
+    xCHECK_DO(true == a_cbIsUnderline, /* TODO: atUnderscore */);
+    xCHECK_DO(true == a_cbIsBlink,     /* TODO: atBlink */     );
+    xCHECK_DO(true == a_cbIsBold,      /* TODO: atBold */      );
+
+    BOOL blRes = ::SetConsoleTextAttribute(_m_hStdOut.hGet(), a_cfgForeground | a_cbgBackground);
+    xTEST_DIFF(FALSE, blRes);
+
+    xUNUSED(sRv);
 #elif xOS_ENV_UNIX
     xCHECK_DO(true == a_cbIsUnderline, sRv += CxString::sFormat(xT("\033[%im"), atUnderscore));
     xCHECK_DO(true == a_cbIsBlink,     sRv += CxString::sFormat(xT("\033[%im"), atBlink)     );
@@ -87,7 +90,26 @@ CxConsole::sSetTextColor(
 
     sRv += CxString::sFormat(xT("\033[%im"), a_cbgBackground);
     sRv += CxString::sFormat(xT("\033[%im"), a_cfgForeground);
-    sRv += a_csText;
+#endif
+
+    return sRv;
+}
+//---------------------------------------------------------------------------
+std::tstring_t
+CxConsole::sSetTextColorDef() {
+#if xOS_ENV_WIN
+    xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
+    xTEST_EQ(true, _m_hStdIn.bIsValid());
+    xTEST_EQ(true, _m_hStdOut.bIsValid());
+#endif
+    // n/a
+
+    std::tstring_t sRv;
+
+#if   xOS_ENV_WIN
+    BOOL blRes = ::SetConsoleTextAttribute(_m_hStdOut.hGet(), fgWhite | bgBlack);
+    xTEST_DIFF(FALSE, blRes);
+#elif xOS_ENV_UNIX
     sRv += xT("\033[0;0m");
 #endif
 

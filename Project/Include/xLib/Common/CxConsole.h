@@ -1,4 +1,4 @@
-/**
+﻿/**
  * \file  CxConsole.h
  * \brief console
  */
@@ -25,9 +25,9 @@ class CxConsole :
             mrRetry  = 4
         };
 
-                     CxConsole     ();
+                       CxConsole       ();
             ///< constructor
-        virtual     ~CxConsole     ();
+        virtual       ~CxConsole       ();
             ///< destructor
 
         enum ExAttribute
@@ -41,8 +41,8 @@ class CxConsole :
             /// foreground color
         {
         #if   xOS_ENV_WIN
-            fgBlack  = 0, fgRed  = FOREGROUND_RED, fgGreen  = FOREGROUND_GREEN, fgYellow  = 33, 
-            fgBlue  = FOREGROUND_BLUE, fgMagenta  = 35, fgCyan  = 36, fgWhite  = 37
+            fgBlack = 0x0000, fgRed = FOREGROUND_RED, fgGreen = FOREGROUND_GREEN, fgYellow = 0x0006, // Grey = 0×0007
+            fgBlue = FOREGROUND_BLUE, fgMagenta = 0x0005, fgCyan = 0x0003, fgWhite = 0x0008
         #elif xOS_ENV_UNIX
             fgBlack  = 30, fgRed  = 31, fgGreen  = 32, fgYellow  = 33, 
             fgBlue  = 34, fgMagenta  = 35, fgCyan  = 36, fgWhite  = 37,
@@ -65,34 +65,36 @@ class CxConsole :
         #endif
         };
 
-        std::tstring_t sSetTextColor (const std::tstring_t &csText, const ExForeground &cfgForeground, const bool &cbIsBold, const bool &cbIsUnderline, const ExBackground &cbgBackground, const bool &cbIsBlink);
+        std::tstring_t sSetTextColor   (const ExForeground &cfgForeground, const bool &cbIsBold, const bool &cbIsUnderline, const ExBackground &cbgBackground, const bool &cbIsBlink);
             ///< set text color
-        std::tstring_t sRead         ();
+        std::tstring_t sSetTextColorDef();
+            ///< set text color
+        std::tstring_t sRead           ();
             ///< read
-        void           vWrite        (const std::tstring_t &csStr);
+        void           vWrite          (const std::tstring_t &csStr);
             ///< write
-        void           vWriteLine    (const std::tstring_t &csStr = xT(""));
+        void           vWriteLine      (const std::tstring_t &csStr = xT(""));
             ///< write line
-        void           vWriteErrLine (const std::tstring_t &csStr);
+        void           vWriteErrLine   (const std::tstring_t &csStr);
             ///< write error message
-        ExModalResult  iMsgBox       (const std::tstring_t &csText, const std::tstring_t &csTitle, const uint_t &cuiType);
+        ExModalResult  iMsgBox         (const std::tstring_t &csText, const std::tstring_t &csTitle, const uint_t &cuiType);
             ///< show console message dialog
-        void           vPrompt       (const std::tstring_t &csPrompt, const bool &cbIsVisible, std::tstring_t *psAnswer);
+        void           vPrompt         (const std::tstring_t &csPrompt, const bool &cbIsVisible, std::tstring_t *psAnswer);
             ///< show console prompt dialog
-        void           vPause        ();
+        void           vPause          ();
             ///< pause
-        void           vClear        ();
+        void           vClear          ();
             ///< clear
 
-        std::tstring_t sTitle        ();
+        std::tstring_t sTitle          ();
             ///< get title string
-        void           vSetTitle     (const std::tstring_t &csTitle);
+        void           vSetTitle       (const std::tstring_t &csTitle);
             ///< set title string
-        void           vCenterWindow ();
+        void           vCenterWindow   ();
             ///< allign to center
-        void           vSetFullScreen ();
+        void           vSetFullScreen  ();
             ///< set full screen
-        void           vEnableClose  (const bool &cbFlag);
+        void           vEnableClose    (const bool &cbFlag);
             ///< enable close button
 
     private:
@@ -102,9 +104,9 @@ class CxConsole :
         CxFileHandle   _m_hStdIn;     ///< standart input handle
         CxFileHandle   _m_hStdOut;    ///< standart output handle
 
-        HWND           _hWndHandle    ();
+        HWND           _hWndHandle     ();
             ///< get console window handle
-        HMENU          _hMenuHandle   (const bool &cbRevert);
+        HMENU          _hMenuHandle    (const bool &cbRevert);
             ///< get console menu handle
     #elif xOS_ENV_UNIX
         xNA;
