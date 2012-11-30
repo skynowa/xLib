@@ -897,7 +897,6 @@ CxTest_CxString::vUnit(
                 m_pvRv = CxString::pvMemoryZeroSecure(aszBuff[i], sizeof(aszBuff[i]));
                 xTEST_PTR(m_pvRv);
 
-                std::cout << xARRAY_SIZE(aszBuff[i]) << std::endl;
                 for (size_t x = 0; x < xARRAY_SIZE(aszBuff[i]); ++ x) {
                     xTEST_EQ(true, 0 == aszBuff[i][x]);
                 }
