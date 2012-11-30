@@ -119,7 +119,7 @@ CxTest_CxFile::vUnit(
             CxFile F;
 
             F.vCreate(csFilePath, CxFile::omBinCreateReadWrite, true);
-            F.uiWrite(&sBuffWrite.at(0), sBuffWrite.size());
+            F.uiWrite(&sBuffWrite.at(0), sBuffWrite.size() * sizeof(std::tstring_t::value_type));
         }
 
         //uiRead
@@ -127,7 +127,7 @@ CxTest_CxFile::vUnit(
             CxFile F;
 
             F.vCreate(csFilePath, CxFile::omBinRead, true);
-            F.uiRead(&sBuffRead.at(0), sBuffWrite.size());
+            F.uiRead(&sBuffRead.at(0), sBuffWrite.size() * sizeof(std::tstring_t::value_type));
         }
 
         xTEST_EQ(sBuffWrite, sBuffRead);
