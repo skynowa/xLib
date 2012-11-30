@@ -40,19 +40,29 @@ class CxConsole :
         enum ExForeground
             /// foreground color
         {
+        #if   xOS_ENV_WIN
+            fgBlack  = 0, fgRed  = FOREGROUND_RED, fgGreen  = FOREGROUND_GREEN, fgYellow  = 33, 
+            fgBlue  = FOREGROUND_BLUE, fgMagenta  = 35, fgCyan  = 36, fgWhite  = 37
+        #elif xOS_ENV_UNIX
             fgBlack  = 30, fgRed  = 31, fgGreen  = 32, fgYellow  = 33, 
             fgBlue  = 34, fgMagenta  = 35, fgCyan  = 36, fgWhite  = 37,
             fgBlack_ = 90, fgRed_ = 91, fgGreen_ = 92, fgYellow_ = 93, 
             fgBlue_ = 94, fgMagenta_ = 95, fgCyan_ = 96, fgWhite_ = 97
+        #endif
         };
 
         enum ExBackground
             /// background color
         {
+        #if   xOS_ENV_WIN
+            bgBlack  = 0,  bgRed  = BACKGROUND_RED,  bgGreen  = BACKGROUND_GREEN,  bgYellow  = 43,  
+            bgBlue  = BACKGROUND_BLUE,  bgMagenta  = 45,  bgCyan  = 46,  bgWhite  = 47
+        #elif xOS_ENV_UNIX
             bgBlack  = 40,  bgRed  = 41,  bgGreen  = 42,  bgYellow  = 43,  
             bgBlue  = 44,  bgMagenta  = 45,  bgCyan  = 46,  bgWhite  = 47,
             bgBlack_ = 100, bgRed_ = 101, bgGreen_ = 102, bgYellow_ = 103, 
             bgBlue_ = 104, bgMagenta_ = 105, bgCyan_ = 106, bgWhite_ = 107
+        #endif
         };
 
         std::tstring_t sSetTextColor (const std::tstring_t &csText, const ExForeground &cfgForeground, const bool &cbIsBold, const bool &cbIsUnderline, const ExBackground &cbgBackground, const bool &cbIsBlink);

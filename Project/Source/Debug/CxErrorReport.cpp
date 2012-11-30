@@ -94,7 +94,7 @@ void
 CxErrorReport::_vInitPlain() {
     std::tostringstream_t ossReport;
 
-    ossReport \
+    ossReport
         << xT("CxErrorReport    ")                      << std::endl
                                                         << std::endl
                                                         << std::endl
@@ -115,7 +115,7 @@ CxErrorReport::_vInitPlain() {
         << xT("OS version:      ") << m_sOsVersion      << std::endl
         << xT("OS architecture: ") << m_sOsArchitecture << std::endl
                                                         << std::endl
-        << xT("Stack trace:     ") << std::endl 
+        << xT("Stack trace:     ")                      << std::endl
                                    << m_sStackTrace     << std::endl
                                                         << std::endl
         << xT("Comment:         ") << m_sComment        << std::endl;
@@ -125,58 +125,35 @@ CxErrorReport::_vInitPlain() {
 //---------------------------------------------------------------------------
 void
 CxErrorReport::_vInitFormated() {
-    m_sReport = CxString::sFormat(
-        xT("%s\n")        //CxErrorReport
-        xT("#  \n")
+    std::tostringstream_t ossReport;
 
-        xT("%s%s\n")      //Program
-        xT("%s%lu\n")     //Process id
-        xT("%s%lu\n")     //Thread id
-        xT("%s%s\n")      //file size
-        xT("#  \n")
+    ossReport
+        << xT("CxErrorReport    ")                      << std::endl
+                                                        << std::endl
+                                                        << std::endl
+        << xT("Program:         ") << m_sProgram        << std::endl
+        << xT("Process id:      ") << m_ulProcessId     << std::endl
+        << xT("Thread id:       ") << m_ulThreadId      << std::endl
+        << xT("File size:       ") << m_sFileSize       << std::endl
+                                                        << std::endl
+        << xT("Source file:     ") << CxConsole().sSetTextColor( m_sSourceFile,                         CxConsole::fgWhite,   true, false, CxConsole::bgBlack, false ) << std::endl
+        << xT("Source line:     ") << CxConsole().sSetTextColor( CxString::string_cast(m_ulSourceLine), CxConsole::fgMagenta, true, true,  CxConsole::bgBlack, false ) << std::endl
+        << xT("Function name:   ") << CxConsole().sSetTextColor( m_sFunctionName,                       CxConsole::fgCyan,    true, false, CxConsole::bgBlack, false ) << std::endl
+        << xT("Expression:      ") << CxConsole().sSetTextColor( m_sExpression,                         CxConsole::fgYellow,  true, false, CxConsole::bgBlack, false ) << std::endl
+        << xT("Last error:      ") << CxConsole().sSetTextColor( m_sLastErrorStr,                       CxConsole::fgRed,     true, false, CxConsole::bgBlack, false ) << std::endl
+                                                        << std::endl
+        << xT("Current date:    ") << m_sCurrentDate    << std::endl
+        << xT("Build date:      ") << m_sBuildDate      << std::endl
+        << xT("Build type:      ") << m_sBuildType      << std::endl
+        << xT("OS version:      ") << m_sOsVersion      << std::endl
+        << xT("OS architecture: ") << m_sOsArchitecture << std::endl
+                                                        << std::endl
+        << xT("Stack trace:     ")                      << std::endl
+                                   << m_sStackTrace     << std::endl
+                                                        << std::endl
+        << xT("Comment:         ") << CxConsole().sSetTextColor( m_sComment,                            CxConsole::fgYellow,  false, false, CxConsole::bgBlue,  false ) << std::endl;
 
-        xT("%s%s\n")      //Source file
-        xT("%s%s\n")      //Source line
-        xT("%s%s\n")      //Function name
-        xT("%s%s\n")      //Expression
-        xT("%s%s\n")      //Last error
-        xT("#  \n")
-
-        xT("%s%s\n")      //Current date
-        xT("%s%s\n")      //Build date
-        xT("%s%s\n")      //Build type
-        xT("%s%s\n")      //OS version
-        xT("%s%s\n")      //OS architecture
-        xT("#  \n")
-
-        xT("%s\n%s\n")    //stack trace
-        xT("#  \n")
-
-        xT("%s%s\n")      //Comment
-        xT("#  "),
-
-        xT("#  CxErrorReport    "),
-
-        xT("#  Program:         "), m_sProgram.c_str(),
-        xT("#  Process id:      "), m_ulProcessId,
-        xT("#  Thread id:       "), m_ulThreadId,
-        xT("#  File size:       "), m_sFileSize.c_str(),
-
-        xT("#  Source file:     "), CxConsole().sSetTextColor( m_sSourceFile,                         CxConsole::fgWhite,   true, false, CxConsole::bgBlack, false ).c_str(),
-        xT("#  Source line:     "), CxConsole().sSetTextColor( CxString::string_cast(m_ulSourceLine), CxConsole::fgMagenta, true, true,  CxConsole::bgBlack, false ).c_str(),
-        xT("#  Function name:   "), CxConsole().sSetTextColor( m_sFunctionName,                       CxConsole::fgCyan,    true, false, CxConsole::bgBlack, false ).c_str(),
-        xT("#  Expression:      "), CxConsole().sSetTextColor( m_sExpression,                         CxConsole::fgYellow,  true, false, CxConsole::bgBlack, false ).c_str(),
-        xT("#  Last error:      "), CxConsole().sSetTextColor( m_sLastErrorStr,                       CxConsole::fgRed,     true, false, CxConsole::bgBlack, false ).c_str(),
-
-        xT("#  Current date:    "), m_sCurrentDate.c_str(),
-        xT("#  Build date:      "), m_sBuildDate.c_str(),
-        xT("#  Build type:      "), m_sBuildType.c_str(),
-        xT("#  OS version:      "), m_sOsVersion.c_str(),
-        xT("#  OS architecture: "), m_sOsArchitecture.c_str(),
-        xT("#  Stack trace:     "), m_sStackTrace.c_str(),
-
-        xT("#  Comment:         "), CxConsole().sSetTextColor( m_sComment,                             CxConsole::fgYellow_, false, false, CxConsole::bgBlue,  false ).c_str()
-    );
+    m_sReport = ossReport.str();
 }
 //---------------------------------------------------------------------------
 

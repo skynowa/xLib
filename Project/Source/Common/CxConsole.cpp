@@ -76,8 +76,10 @@ CxConsole::sSetTextColor(
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
-    BOOL blRes = ::SetConsoleTextAttribute(_m_hStdOut.hGet(), a_cfgForeground);
-    xTEST_DIFF(FALSE, blRes);
+    #if xTEMP_DISABLED
+        BOOL blRes = ::SetConsoleTextAttribute(_m_hStdOut.hGet(), a_cfgForeground | a_cbgBackground);
+        xTEST_DIFF(FALSE, blRes);
+    #endif
 #elif xOS_ENV_UNIX
     xCHECK_DO(true == a_cbIsUnderline, sRv += CxString::sFormat(xT("\033[%im"), atUnderscore));
     xCHECK_DO(true == a_cbIsBlink,     sRv += CxString::sFormat(xT("\033[%im"), atBlink)     );

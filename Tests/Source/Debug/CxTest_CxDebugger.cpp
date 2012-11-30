@@ -116,7 +116,7 @@ CxTest_CxDebugger::vUnit(
             // xTEST_EQ(true, m_bRv);
         }
     }
-
+#if 0
     //--------------------------------------------------
     //like xTEST_EQ macroses
 
@@ -228,5 +228,6 @@ CxTest_CxDebugger::vUnit(
             xTEST_GR_EQ(sVar3, sVar4);
         }
     }
+#endif
 }
 //---------------------------------------------------------------------------
