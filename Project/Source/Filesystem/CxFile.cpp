@@ -281,13 +281,16 @@ CxFile::vReadLine(
         std::fill((*a_psStr).begin(), (*a_psStr).end(), std::tstring_t::value_type());
     #endif
 
-    (*a_psStr).clear();
-    (*a_psStr).resize(a_cuiMaxCount + 1);   //+ 1 for 0
+    std::tstring_t sStr;
+    sStr.resize(a_cuiMaxCount + 1);   // + 1 for 0
 
-    tchar_t *pszRes = std::xTFGETS(&(*a_psStr).at(0), (*a_psStr).size(), pGet());
+    tchar_t *pszRes = std::xTFGETS(&sStr.at(0), sStr.size(), pGet());
     xTEST_PTR(pszRes);
 
-    (*a_psStr).erase( (*a_psStr).end() - 1 );   //erase last char - 0
+    sStr.erase(sStr.end() - 1);   // erase last char - 0
+
+    // out
+    (*a_psStr).swap(sStr);
 }
 //---------------------------------------------------------------------------
 void
@@ -302,8 +305,8 @@ CxFile::vWriteLine(
     sLine = a_csStr;
     sLine.append(CxConst::xEOL);
 
-    size_t uiRes = uiWrite(&sLine.at(0), sLine.size());
-    xTEST_EQ(uiRes, sLine.size());
+    size_t uiRes = uiWrite(&sLine.at(0), sLine.size() * sizeof(std::tstring_t::value_type));
+    xTEST_EQ(uiRes, sLine.size() * sizeof(std::tstring_t::value_type));
 }
 //---------------------------------------------------------------------------
 //TODO: chReadChar
