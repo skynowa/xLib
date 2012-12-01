@@ -140,6 +140,16 @@ class CxString :
         static std::tstring_t sOemToCharBuff    (const std::string &csSrc);
             ///< convert oem to char
 
+        static std::wstring    wsStdStringToStdWString(
+            const std::string &csStdString,
+            const std::locale &clocLocale = std::locale()
+        );
+
+        static std::string      sStdWStringToStdString(
+            const std::wstring &csStdWString,
+            const std::locale  &clocLocale = std::locale()
+        );
+
 
         /****************************************************************************
         *    memory

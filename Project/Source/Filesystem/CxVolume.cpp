@@ -241,7 +241,7 @@ CxVolume::vPaths(
     ulRv = ::GetLogicalDriveStrings(sRv.size(), &sRv.at(0));
     xTEST_DIFF(0UL, ulRv);
 
-    for (const tchar_t *s = &sRv.at(0); 0 != *s; s += _tcslen(s) + sizeof(xT('\0'))) {
+    for (const tchar_t *s = &sRv.at(0); 0 != *s; s += sizeof(*s) + sizeof(xT('\0'))) {
         vsRes.push_back(s);
     }
 #elif xOS_ENV_UNIX
