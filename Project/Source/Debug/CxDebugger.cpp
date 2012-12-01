@@ -169,7 +169,6 @@ CxDebugger::vReportMake(
     switch (a_crpReport.m_rtType) {
         case CxErrorReport::rtMsgboxPlain:    { _vMsgboxPlain   (a_crpReport); } break;
         case CxErrorReport::rtStdoutPlain:    { _vStdoutPlain   (a_crpReport); } break;
-        case CxErrorReport::rtStdoutFormated: { _vStdoutFormated(a_crpReport); } break;
         case CxErrorReport::rtLoggingPlain:   { _vLoggingPlain  (a_crpReport); } break;
 
         default:                              { _vStdoutPlain   (a_crpReport); } break;
@@ -282,66 +281,6 @@ CxDebugger::_vStdoutPlain(
                     std::tcout << xT("####################################################################################################\n");
                     std::tcout << xT("\n\n");
                     std::tcout.flush();
-
-                    CxCurrentProcess::vExit(0U);
-                }
-            }
-            break;
-    }
-}
-//---------------------------------------------------------------------------
-void
-CxDebugger::_vStdoutFormated(
-    const CxErrorReport &a_crpReport
-)
-{
-    xCHECK_DO(false == bIsEnabled(), return);
-
-    enum EConsoleCmd {
-        cmAbort  = xT('a'),
-        cmIgnore = xT('i'),
-        cmRetry  = xT('r')
-    };
-
-    std::tcerr << CxConsole().sSetTextColor( CxConsole::fgWhite, true, false, CxConsole::bgBlack, false ) << xT("\n####################################################################################################\n") << CxConsole().sSetTextColorDef();
-    std::tcerr << a_crpReport.m_sReport;
-    std::tcerr << CxConsole().sSetTextColor( CxConsole::fgWhite, true, false, CxConsole::bgBlack, false ) << xT("\n####################################################################################################\n") << CxConsole().sSetTextColorDef();
-    std::tcerr << xT("\n");
-    std::tcerr << xT("\nAbort (a), Ignore (i), Retry (r): ");
-    std::tcerr.flush();
-
-    #if xDEBUG_USE_PROMPT_DIALOG
-        EConsoleCmd cmRes = static_cast<EConsoleCmd>( std::tcin.get() );   std::tcin.ignore();
-    #else
-        EConsoleCmd cmRes = cmIgnore;
-    #endif
-    switch (cmRes) {
-        case cmAbort: {
-                std::tcerr << xT("Abort...\n\n");  std::tcerr.flush();
-
-                CxCurrentProcess::vExit(0U);
-            }
-            break;
-
-        default:
-        case cmIgnore: {
-                std::tcerr << xT("Ignore...\n\n");  std::tcerr.flush();
-            }
-            break;
-
-        case cmRetry: {
-                std::tcerr << xT("Retry...\n\n");
-
-                if (true == bIsActive()) {
-                    vBreak();
-                } else {
-                    std::tcerr << xT("\n####################################################################################################\n");
-                    std::tcerr << xT("CxDebugger\n");
-                    std::tcerr << xT("\n");
-                    std::tcerr << xT("OS debugger is not present.\nThe application will be terminated.\n");
-                    std::tcerr << xT("####################################################################################################\n");
-                    std::tcerr << xT("\n\n");
-                    std::tcerr.flush();
 
                     CxCurrentProcess::vExit(0U);
                 }
