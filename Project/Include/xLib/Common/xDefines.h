@@ -132,9 +132,9 @@
 
 //--------------------------------------------------
 // TODO: converters
-#define xS2TS(s)                        CxString::wsStdStringToStdWString(s)
+#define xS2TS(s)                        CxString::sStrToWStr(s)
     ///< convert std::string to std::wstring
-#define xTS2S(ts)                       CxString::sStdWStringToStdString(ts)
+#define xTS2S(ts)                       CxString::sWStrToStr(ts)
     ///< convert std::wstring to std::string
 #define xS2US(s)                        std::ustring_t( (s).begin(),  (s).begin()  + (s).size()  )
     ///< convert std::tstring_t to std::ustring_t

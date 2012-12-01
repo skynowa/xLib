@@ -762,6 +762,42 @@ CxString::sWStrToStr(
 }
 //---------------------------------------------------------------------------
 /* static */
+std::wstring
+CxString::sStrToWStr(
+    const std::string &csStdString,
+    const std::locale &clocLocale /* = std::locale() */
+)
+{
+    std::wstring                swRv;
+    std::string::const_iterator itBegin( csStdString.begin() );
+    std::string::const_iterator itEnd  ( csStdString.end() );
+
+    for ( ; itBegin != itEnd; ++ itBegin) {
+        swRv += std::use_facet< std::ctype<wchar_t> >( clocLocale ).widen( *itBegin );
+    }
+
+    return swRv;
+}
+//---------------------------------------------------------------------------
+/* static */
+std::string
+CxString::sWStrToStr(
+    const std::wstring &csStdWString,
+    const std::locale  &clocLocale /* = std::locale() */
+)
+{
+    std::string                  sRv;
+    std::wstring::const_iterator itBegin( csStdWString.begin() );
+    std::wstring::const_iterator itEnd  ( csStdWString.end() );
+
+    for ( ; itBegin != itEnd; ++ itBegin) {
+        sRv += std::use_facet< std::ctype<char> >( clocLocale ).widen( *itBegin );
+    }
+
+    return sRv;
+}
+//---------------------------------------------------------------------------
+/* static */
 std::string
 CxString::sConvertCodePage(
     const std::string &a_csSource,
@@ -819,40 +855,6 @@ CxString::sOemToCharBuff(
 #endif
 
     return sDst;
-}
-//---------------------------------------------------------------------------
-std::wstring
-CxString::wsStdStringToStdWString(
-    const std::string &csStdString,
-    const std::locale &clocLocale /* = std::locale() */
-)
-{
-    std::wstring                swRv;
-    std::string::const_iterator itBegin( csStdString.begin() );
-    std::string::const_iterator itEnd  ( csStdString.end() );
-
-    for ( ; itBegin != itEnd; ++ itBegin) {
-        swRv += std::use_facet< std::ctype<wchar_t> >( clocLocale ).widen( *itBegin );
-    }
-
-    return swRv;
-}
-//---------------------------------------------------------------------------
-std::string
-CxString::sStdWStringToStdString(
-    const std::wstring &csStdWString,
-    const std::locale  &clocLocale /* = std::locale() */
-)
-{
-    std::string                  sRv;
-    std::wstring::const_iterator itBegin( csStdWString.begin() );
-    std::wstring::const_iterator itEnd  ( csStdWString.end() );
-
-    for ( ; itBegin != itEnd; ++ itBegin) {
-        sRv += std::use_facet< std::ctype<char> >( clocLocale ).widen( *itBegin );
-    }
-
-    return sRv;
 }
 //---------------------------------------------------------------------------
 
