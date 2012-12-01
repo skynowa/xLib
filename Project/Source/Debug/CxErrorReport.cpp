@@ -50,8 +50,6 @@ CxErrorReport::_vConstruct(
     const std::tstring_t &a_csComment
 )
 {
-    
-
     const size_t cuiReportWidthMax = 46U;   // MAGIC: cuiReportWidthMax
 
 
@@ -119,39 +117,6 @@ CxErrorReport::_vInitPlain() {
                                    << m_sStackTrace     << std::endl
                                                         << std::endl
         << xT("Comment:         ") << m_sComment        << std::endl;
-
-    m_sReport = ossReport.str();
-}
-//---------------------------------------------------------------------------
-void
-CxErrorReport::_vInitFormated() {
-    std::tostringstream_t ossReport;
-
-    ossReport
-        << xT("CxErrorReport    ")                      << std::endl
-                                                        << std::endl
-                                                        << std::endl
-        << xT("Program:         ") << m_sProgram        << std::endl
-        << xT("Process id:      ") << m_ulProcessId     << std::endl
-        << xT("Thread id:       ") << m_ulThreadId      << std::endl
-        << xT("File size:       ") << m_sFileSize       << std::endl
-                                                        << std::endl
-        << xT("Source file:     ") << CxConsole().sSetTextColor( CxConsole::fgWhite,   true, false, CxConsole::bgBlack, false ) << m_sSourceFile   << CxConsole().sSetTextColorDef() << std::endl
-        << xT("Source line:     ") << CxConsole().sSetTextColor( CxConsole::fgMagenta, true, true,  CxConsole::bgBlack, false ) << m_ulSourceLine  << CxConsole().sSetTextColorDef() << std::endl
-        << xT("Function name:   ") << CxConsole().sSetTextColor( CxConsole::fgCyan,    true, false, CxConsole::bgBlack, false ) << m_sFunctionName << CxConsole().sSetTextColorDef() << std::endl
-        << xT("Expression:      ") << CxConsole().sSetTextColor( CxConsole::fgYellow,  true, false, CxConsole::bgBlack, false ) << m_sExpression   << CxConsole().sSetTextColorDef() << std::endl
-        << xT("Last error:      ") << CxConsole().sSetTextColor( CxConsole::fgRed,     true, false, CxConsole::bgBlack, false ) << m_sLastErrorStr << CxConsole().sSetTextColorDef() << std::endl
-                                                        << std::endl
-        << xT("Current date:    ") << m_sCurrentDate    << std::endl
-        << xT("Build date:      ") << m_sBuildDate      << std::endl
-        << xT("Build type:      ") << m_sBuildType      << std::endl
-        << xT("OS version:      ") << m_sOsVersion      << std::endl
-        << xT("OS architecture: ") << m_sOsArchitecture << std::endl
-                                                        << std::endl
-        << xT("Stack trace:     ")                      << std::endl
-                                   << m_sStackTrace     << std::endl
-                                                        << std::endl
-        << xT("Comment:         ") << CxConsole().sSetTextColor( CxConsole::fgYellow,  false, false, CxConsole::bgBlue,  false ) << m_sComment     << CxConsole().sSetTextColorDef()  << std::endl;
 
     m_sReport = ossReport.str();
 }

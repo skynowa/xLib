@@ -23,7 +23,6 @@ class CxErrorReport :
             rtUnknown,          ///< unknown
             rtMsgboxPlain,      ///< as message box with plain text (GUI)
             rtStdoutPlain,      ///< to std::cout with plain text
-            rtStdoutFormated,   ///< to std::cout with formated text
             rtLoggingPlain,     ///< to log with plain text
         };
 
@@ -84,8 +83,6 @@ class CxErrorReport :
             ///< initiate class members
         void          _vInitPlain   ();
             ///< initiate plain report
-        void          _vInitFormated();
-            ///< initiate formated report
 };
 
 xNAMESPACE_END(NxLib)

@@ -22,21 +22,20 @@ CxTest_CxConsole::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    xTEST_CASE("CxConsole::sSetTextColor", cullCaseLoops)
+    xTEST_CASE("CxConsole::sSetAttributes", cullCaseLoops)
     {
-        #if xTODO
-            CxConsole cnConsole;
+        CxConsole cnConsole;
 
-            const std::tstring_t csText;
-            const EForeground    cfgForeground;
-            const bool           cbIsBold;
-            const bool           cbIsUnderline;
-            const EBackground    cbgBackground;
-            const bool           cbIsBlink;
+        std::tstring_t          sText;
+        CxConsole::ExForeground fgForeground = CxConsole::fgBlue;
+        CxConsole::ExBackground bgBackground = CxConsole::bgYellow;
+        int                     iAttributes  = CxConsole::atBold | CxConsole::atUnderscore | CxConsole::atReverse;
 
-            m_sRv = cnConsole.sSetTextColor(csText, cfgForeground, cbIsBold, cbIsUnderline, cbgBackground, cbIsBlink);
-            xTEST_EQ(true, m_bRv);
-        #endif
+        m_sRv = cnConsole.sSetAttributes(fgForeground, bgBackground, iAttributes);
+        xTEST_NA(m_sRv);
+
+        m_sRv = cnConsole.sSetAttributesDef();
+        xTEST_NA(m_sRv);
     }
 
     xTEST_CASE("CxConsole::sRead", cullCaseLoops)
@@ -45,7 +44,7 @@ CxTest_CxConsole::vUnit(
             CxConsole cnConsole;
 
             m_sRv = cnConsole.sRead();
-            // n/a
+            xTEST_NA(m_sRv);
         #endif
     }
 
@@ -100,7 +99,7 @@ CxTest_CxConsole::vUnit(
     xTEST_CASE("CxConsole::vPrompt", cullCaseLoops)
     {
         #if xTEST_IGNORE
-            const std::tstring_t csPrompt    = xT("bPrompt_simple_prompt");
+            const std::tstring_t csPrompt    = xT("vPrompt_simple_prompt");
             const bool           cbIsVisible = true;
             std::tstring_t       sAnswer     = xT("sAnswer_bla-bla-bla");
 
@@ -115,7 +114,8 @@ CxTest_CxConsole::vUnit(
         #if xTEST_IGNORE
             CxConsole cnConsole;
 
-            cnConsole.vPause();
+            cnConsole.vPause(3 * 1000UL);
+            cnConsole.vPause(xTIMEOUT_INFINITE);
         #endif
     }
 

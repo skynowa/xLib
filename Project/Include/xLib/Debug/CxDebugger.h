@@ -51,8 +51,6 @@ class CxDebugger :
             ///< show message box with plain report
         void           _vStdoutPlain   (const CxErrorReport &crpReport);
             ///< show plain report in std::cout
-        void           _vStdoutFormated(const CxErrorReport &crpReport);
-            ///< show formated report in std::cerr
         void           _vLoggingPlain  (const CxErrorReport &crpReport);
             ///< log plain report to file
 };
