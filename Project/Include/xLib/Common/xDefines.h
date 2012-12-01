@@ -136,10 +136,10 @@
     ///< convert std::tstring_t to std::ustring_t
 #define xUS2S(us)                       std::tstring_t( (us).begin(), (us).begin() + (us).size() )
     ///< convert std::ustring_t to std::tstring_t
-#define xS2TS(s)                        std::tstring_t( (s).begin(),  (s).begin()  + (s).size()  )
-    ///< convert std::string to std::tstring_t
-#define xTS2S(ts)                       std::string( (ts).begin(), (ts).begin() + (ts).size() )
-    ///< convert std::tstring_t to std::string
+#define xS2TS(s)                        CxString::wsStdStringToStdWString(s)
+    ///< convert std::string to std::wstring
+#define xTS2S(ts)                       CxString::sStdWStringToStdString(ts)
+    ///< convert std::wstring to std::string
 
 //--------------------------------------------------
 // utils
