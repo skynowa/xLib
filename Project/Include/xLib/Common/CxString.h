@@ -132,6 +132,11 @@ class CxString :
         static std::string    sWStrToStr        (const std::wstring &cwsStr, const uint_t &cuiCodePage);
             ///< std::wstring in std::string
 
+        static std::wstring   sStrToWStr        (const std::string  &csStdString,  const std::locale &clocLocale = std::locale());
+            ///< std::string in std::wstring
+        static std::string    sWStrToStr        (const std::wstring &csStdWString, const std::locale &clocLocale = std::locale());
+            ///< std::wstring in std::string
+
         static std::string    sConvertCodePage  (const std::string &csSource, const uint_t &cuiCodePageSource, const uint_t &cuiCodePageDest);
             ///< convert codepage
 
@@ -140,17 +145,6 @@ class CxString :
         static std::tstring_t sOemToCharBuff    (const std::string &csSrc);
             ///< convert oem to char
 
-        static std::wstring    wsStdStringToStdWString(
-            const std::string &csStdString,
-            const std::locale &clocLocale = std::locale()
-        );
-
-        static std::string      sStdWStringToStdString(
-            const std::wstring &csStdWString,
-            const std::locale  &clocLocale = std::locale()
-        );
-
-
         /****************************************************************************
         *    memory
         *
@@ -158,7 +152,6 @@ class CxString :
 
         static void *         pvMemoryZeroSecure(void *pvBuff, const size_t &cuiBuffSize);
             ///< secure zero memory
-
 
         /****************************************************************************
         *    other
