@@ -220,7 +220,7 @@ CxTest_CxCgi::vUnit(
             const std::tstring_t sData[] = {
                 xT("TEST_STRING_1"),
                 xT("http://forum.vingrad.ru/forum/topic-327003/anchor-entry2330816/0.html"),
-                xT("http://www.google.ru/search?hl=ru&source=hp&q=репозитарий&aq=f&aqi=g-s10&aql=&oq="),
+                xT("http://www.google.ru/search?hl=ru&source=hp&q=dddddddd&aq=f&aqi=g-s10&aql=&oq="),
                 xT("http://www.w3schools.com/jsref/jsref_obj_string.asp"),
             };
 
