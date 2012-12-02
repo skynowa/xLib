@@ -144,8 +144,6 @@
         ///< convert std::wstring to std::string
 #endif
 
-
-
 #define xS2US(s)                        std::ustring_t( (s).begin(),  (s).begin()  + (s).size()  )
     ///< convert std::tstring_t to std::ustring_t
 #define xUS2S(us)                       std::tstring_t( (us).begin(), (us).begin() + (us).size() )
