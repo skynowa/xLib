@@ -231,17 +231,17 @@ CxVolume::vPaths(
 
 #if   xOS_ENV_WIN
     std::tstring_t sRv;
-    DWORD          ulRv = 0UL;
+    DWORD          dwRv = 0UL;
 
-    ulRv = ::GetLogicalDriveStrings(0UL, NULL);
-    xTEST_DIFF(0UL, ulRv);
+    dwRv = ::GetLogicalDriveStrings(0UL, NULL);
+    xTEST_DIFF(0UL, dwRv);
 
-    sRv.resize(ulRv);
+    sRv.resize(dwRv);
 
-    ulRv = ::GetLogicalDriveStrings(sRv.size(), &sRv.at(0));
-    xTEST_DIFF(0UL, ulRv);
+    dwRv = ::GetLogicalDriveStrings(sRv.size(), &sRv.at(0));
+    xTEST_DIFF(0UL, dwRv);
 
-    for (const tchar_t *s = &sRv.at(0); 0 != *s; s += sizeof(*s) + sizeof(xT('\0'))) {
+    for (const tchar_t *s = &sRv.at(0); 0 != *s; s += xTSTRLEN(s) + sizeof(xT('\0'))) {
         vsRes.push_back(s);
     }
 #elif xOS_ENV_UNIX

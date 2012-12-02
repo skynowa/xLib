@@ -225,7 +225,7 @@ CxFile::vRead(
     (*a_psBuff).resize( static_cast<size_t>( llFileSize) );
     xCHECK_DO(0LL == llFileSize, return);
 
-    size_t uiRes =std::fread(&(*a_psBuff).at(0), sizeof(std::tstring_t::value_type), (*a_psBuff).size(), pGet());
+    size_t uiRes = std::fread(&(*a_psBuff).at(0), sizeof(std::tstring_t::value_type), (*a_psBuff).size(), pGet()); 
     xTEST_EQ((*a_psBuff).size(), uiRes);
 }
 //---------------------------------------------------------------------------
@@ -309,13 +309,17 @@ CxFile::vWriteLine(
     xTEST_EQ(uiRes, sLine.size() * sizeof(std::tstring_t::value_type));
 }
 //---------------------------------------------------------------------------
-//TODO: chReadChar
 tchar_t
 CxFile::chReadChar() const {
     xTEST_EQ(true, bIsValid());
 
+#if xUNICODE
+    wint_t iRv = std::xTFGETC(pGet());
+    xTEST_DIFF(static_cast<wint_t>( xTEOF ), iRv);
+#else
     int iRv = std::xTFGETC(pGet());
-    xTEST_LESS_EQ(static_cast<int>( xTEOF ), iRv);
+    xTEST_DIFF(static_cast<int>( xTEOF ), iRv);
+#endif
 
     return static_cast<tchar_t>( iRv );
 }
@@ -1177,6 +1181,7 @@ CxFile::vTextRead(
         sLine = CxString::sTrimRightChars(sLine, CxConst::xEOL);
 
         CxString::vSplit(sLine, a_csSeparator, &vsLine);
+        xTEST_EQ(size_t(2), vsLine.size());
 
         msRv.insert( std::pair<std::tstring_t, std::tstring_t>(vsLine.at(0), vsLine.at(1)) );
     }
