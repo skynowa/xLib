@@ -20,6 +20,182 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 /* static */
+std::wstring
+CxString::sStrToWStr(
+    const std::string &a_csStr,
+    const uint_t      &a_cuiCodePage
+)
+{
+    xTEST_NA(a_csStr);
+    xTEST_NA(a_cuiCodePage);
+
+    std::wstring wsRes;
+
+#if   xOS_ENV_WIN
+    int iSize = ::MultiByteToWideChar(a_cuiCodePage, 0UL, a_csStr.c_str(), - 1, NULL, 0);
+    xTEST_LESS(0, iSize);
+
+    wsRes.resize(iSize - 1);    // remove '\0'
+    iSize = ::MultiByteToWideChar(a_cuiCodePage, 0UL, a_csStr.c_str(), - 1, static_cast<LPWSTR>(&wsRes.at(0)), iSize);
+    xTEST_LESS(0, iSize);
+#elif xOS_ENV_UNIX
+    // TODO: sStrToWStr
+    xNOT_IMPLEMENTED;
+#endif
+
+    return wsRes;
+}
+//---------------------------------------------------------------------------
+/* static */
+std::string
+CxString::sWStrToStr(
+    const std::wstring &a_cwsStr,
+    const uint_t       &a_cuiCodePage
+)
+{
+    xTEST_NA(a_cwsStr);
+    xTEST_NA(a_cuiCodePage);
+
+    std::string asRes;
+
+#if   xOS_ENV_WIN
+    int iSize = ::WideCharToMultiByte(a_cuiCodePage, 0UL, a_cwsStr.c_str(), - 1, NULL, 0, NULL, NULL);
+    xTEST_LESS(0, iSize);
+
+    asRes.resize(iSize - 1);    // remove '\0'
+    iSize = ::WideCharToMultiByte(a_cuiCodePage, 0UL, a_cwsStr.c_str(), - 1, static_cast<LPSTR>(&asRes.at(0)), iSize, NULL, NULL);
+    xTEST_LESS(0, iSize);
+#elif xOS_ENV_UNIX
+    // TODO: (sWStrToStr)
+    xNOT_IMPLEMENTED;
+#endif
+
+    return asRes;
+}
+//---------------------------------------------------------------------------
+/* static */
+std::wstring
+CxString::sStrToWStr(
+    const std::string &a_csStdString,
+    const std::locale &a_clocLocale /* = std::locale() */
+)
+{
+    xTEST_NA(a_csStdString);
+    xTEST_NA(a_clocLocale);
+
+    std::wstring                swRv(a_csStdString.size(), std::wstring::value_type());
+
+    std::string::const_iterator itBegin( a_csStdString.begin() );
+    std::string::const_iterator itEnd  ( a_csStdString.end() );
+    std::wstring::iterator      itToBegin( swRv.begin() );
+
+    for ( ; itBegin != itEnd; ++ itBegin, ++ itToBegin) {
+        *itToBegin = std::use_facet< std::ctype<wchar_t> >( a_clocLocale ).widen( *itBegin );
+    }
+
+    return swRv;
+}
+//---------------------------------------------------------------------------
+/* static */
+std::string
+CxString::sWStrToStr(
+    const std::wstring &a_csStdWString,
+    const std::locale  &a_clocLocale /* = std::locale() */
+)
+{
+    xTEST_NA(a_csStdWString);
+    xTEST_NA(a_clocLocale);
+
+    typedef std::wstring::traits_type::state_type      state_type_t;
+    typedef std::codecvt<wchar_t, char, state_type_t>  codecvt_t;
+ 
+    std::string      asRv(a_csStdWString.size(), std::wstring::value_type());
+
+    const codecvt_t &cvt       = std::use_facet<codecvt_t>( a_clocLocale );
+    state_type_t     state     = state_type_t();
+
+    const wchar_t   *itBegin   = &a_csStdWString.at(0);
+    const wchar_t   *itEnd     = &a_csStdWString.at(0) + a_csStdWString.size();
+    const wchar_t   *itNext    = NULL;
+
+    char            *itToBegin = &asRv.at(0);
+    char            *itToEnd   = &asRv.at(0) + asRv.size();
+    char            *itToNext  = NULL;
+
+    cvt.out(state, itBegin, itEnd, itNext, itToBegin, itToEnd, itToNext);
+
+    return asRv;
+}
+//---------------------------------------------------------------------------
+/* static */
+std::string
+CxString::sConvertCodePage(
+    const std::string &a_csSource,
+    const uint_t      &a_cuiCodePageSource,
+    const uint_t      &a_cuiCodePageDest
+)
+{
+    xTEST_NA(a_csSource);
+    xTEST_NA(a_cuiCodePageSource);
+    xTEST_NA(a_cuiCodePageDest);
+
+//    xTEST_EQ(false, csSource.empty(), std::string());        //FIX: csStr    - n/a
+//    // uiCodePageSource
+//    // uiCodePageDest
+
+    //CP_ACP(ANSI) <-> CP_UTF8(UTF-8)
+    //1251  (WIN)  <-> 20866  (KOI-8r)
+
+    return sWStrToStr(sStrToWStr(a_csSource, a_cuiCodePageSource), a_cuiCodePageDest);
+}
+//---------------------------------------------------------------------------
+/* static */
+std::string
+CxString::asCharToOemBuff(
+    const std::tstring_t &a_csSrc
+)
+{
+    xTEST_NA(a_csSrc);
+
+    std::string asDst;
+
+#if   xOS_ENV_WIN
+    asDst.resize(a_csSrc.size());
+
+    BOOL blRv = ::CharToOemBuff(a_csSrc.c_str(), &asDst.at(0), asDst.size());
+    xTEST_DIFF(FALSE, blRv);
+#elif xOS_ENV_UNIX
+    // TODO: asCharToOemBuff
+    xNOT_IMPLEMENTED;
+#endif
+
+    return asDst;
+}
+//---------------------------------------------------------------------------
+/* static */
+std::tstring_t
+CxString::sOemToCharBuff(
+    const std::string &a_csSrc
+)
+{
+    xTEST_NA(a_csSrc);
+
+    std::tstring_t sDst;
+
+#if   xOS_ENV_WIN
+    sDst.resize(a_csSrc.size());
+
+    BOOL blRv = ::OemToCharBuff(a_csSrc.c_str(), &sDst.at(0), sDst.size());
+    xTEST_DIFF(FALSE, blRv);
+#elif xOS_ENV_UNIX
+    // TODO: sOemToCharBuff
+    xNOT_IMPLEMENTED;
+#endif
+
+    return sDst;
+}
+//---------------------------------------------------------------------------
+/* static */
 std::tstring_t
 CxString::sBoolToStr(
     const bool &a_cbBool
@@ -43,6 +219,89 @@ CxString::bStrToBool(
 
     return false;
 }
+//---------------------------------------------------------------------------
+/* static */
+std::tstring_t
+CxString::sToLowerCase(
+    const std::tstring_t &a_csStr
+)
+{
+    xTEST_NA(a_csStr);
+
+    return sToLowerCase(a_csStr, a_csStr.size());
+}
+//---------------------------------------------------------------------------
+/* static */
+std::tstring_t
+CxString::sToUpperCase(
+    const std::tstring_t &a_csStr
+)
+{
+    xTEST_NA(a_csStr);
+
+    return sToUpperCase(a_csStr, a_csStr.size());
+}
+//---------------------------------------------------------------------------
+/* static */
+std::tstring_t
+CxString::sToLowerCase(
+    const std::tstring_t &a_csStr,
+    const size_t         &a_cuiLength
+)
+{
+    xTEST_NA(a_csStr);
+    xTEST_NA(a_cuiLength);
+
+    size_t uiLength = a_cuiLength;
+
+    xCHECK_RET(true == a_csStr.empty(),   std::tstring_t());
+    xCHECK_DO (a_csStr.size() < uiLength, uiLength = a_csStr.size());
+
+    std::tstring_t sRv(a_csStr);
+
+#if   xOS_ENV_WIN
+    DWORD dwRv = ::CharLowerBuff(static_cast<LPTSTR>( &sRv[0] ), uiLength);
+    xTEST_EQ(uiLength, static_cast<size_t>( dwRv ));
+#elif xOS_ENV_UNIX
+    std::transform(sRv.begin(), sRv.begin() + uiLength, sRv.begin(), CxChar::chToLower);
+#endif
+
+    return sRv;
+}
+//---------------------------------------------------------------------------
+/* static */
+std::tstring_t
+CxString::sToUpperCase(
+    const std::tstring_t &a_csStr,
+    const size_t         &a_cuiLength
+)
+{
+    xTEST_NA(a_csStr);
+    xTEST_NA(a_cuiLength);
+
+    size_t uiLength = a_cuiLength;
+
+    xCHECK_RET(true == a_csStr.empty(),   std::tstring_t());
+    xCHECK_DO (a_csStr.size() < uiLength, uiLength = a_csStr.size());
+
+    std::tstring_t sRv(a_csStr);
+
+#if   xOS_ENV_WIN
+    DWORD dwRv = ::CharUpperBuff(static_cast<LPTSTR>( &sRv[0] ), uiLength);
+    xTEST_EQ(uiLength, static_cast<size_t>( dwRv ));
+#elif xOS_ENV_UNIX
+    std::transform(sRv.begin(), sRv.begin() + uiLength, sRv.begin(), CxChar::chToUpper);
+#endif
+
+    return sRv;
+}
+//---------------------------------------------------------------------------
+
+/****************************************************************************
+*   actions
+*
+*****************************************************************************/
+
 //---------------------------------------------------------------------------
 /* static */
 std::tstring_t
@@ -290,150 +549,6 @@ CxString::sCut(
 //---------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxString::sToLowerCase(
-    const std::tstring_t &a_csStr
-)
-{
-    xTEST_NA(a_csStr);
-
-    return sToLowerCase(a_csStr, a_csStr.size());
-}
-//---------------------------------------------------------------------------
-/* static */
-std::tstring_t
-CxString::sToUpperCase(
-    const std::tstring_t &a_csStr
-)
-{
-    xTEST_NA(a_csStr);
-
-    return sToUpperCase(a_csStr, a_csStr.size());
-}
-//---------------------------------------------------------------------------
-/* static */
-std::tstring_t
-CxString::sToLowerCase(
-    const std::tstring_t &a_csStr,
-    const size_t         &a_cuiLength
-)
-{
-    xTEST_NA(a_csStr);
-    xTEST_NA(a_cuiLength);
-
-    size_t uiLength = a_cuiLength;
-
-    xCHECK_RET(true == a_csStr.empty(),   std::tstring_t());
-    xCHECK_DO (a_csStr.size() < uiLength, uiLength = a_csStr.size());
-
-    std::tstring_t sRv(a_csStr);
-
-#if   xOS_ENV_WIN
-    DWORD dwRv = ::CharLowerBuff(static_cast<LPTSTR>( &sRv[0] ), uiLength);
-    xTEST_EQ(uiLength, static_cast<size_t>( dwRv ));
-#elif xOS_ENV_UNIX
-    std::transform(sRv.begin(), sRv.begin() + uiLength, sRv.begin(), CxChar::chToLower);
-#endif
-
-    return sRv;
-}
-//---------------------------------------------------------------------------
-/* static */
-std::tstring_t
-CxString::sToUpperCase(
-    const std::tstring_t &a_csStr,
-    const size_t         &a_cuiLength
-)
-{
-    xTEST_NA(a_csStr);
-    xTEST_NA(a_cuiLength);
-
-    size_t uiLength = a_cuiLength;
-
-    xCHECK_RET(true == a_csStr.empty(),   std::tstring_t());
-    xCHECK_DO (a_csStr.size() < uiLength, uiLength = a_csStr.size());
-
-    std::tstring_t sRv(a_csStr);
-
-#if   xOS_ENV_WIN
-    DWORD dwRv = ::CharUpperBuff(static_cast<LPTSTR>( &sRv[0] ), uiLength);
-    xTEST_EQ(uiLength, static_cast<size_t>( dwRv ));
-#elif xOS_ENV_UNIX
-    std::transform(sRv.begin(), sRv.begin() + uiLength, sRv.begin(), CxChar::chToUpper);
-#endif
-
-    return sRv;
-}
-//---------------------------------------------------------------------------
-/* static */
-bool
-CxString::bCompareNoCase(
-    const std::tstring_t &a_csStr1,
-    const std::tstring_t &a_csStr2
-)
-{
-    xTEST_NA(a_csStr1);
-    xTEST_NA(a_csStr2);
-
-    xCHECK_RET(a_csStr1.size() != a_csStr2.size(), false);
-
-#if   xOS_ENV_WIN
-    int iRv = ::lstrcmpi(a_csStr1.c_str(), a_csStr2.c_str());
-    // n/a
-    xCHECK_RET(0 != iRv, false);
-#elif xOS_ENV_UNIX
-    struct SCompare {
-        static bool
-        bNoCase(const std::tstring_t::value_type &cchChar1, const std::tstring_t::value_type &cchChar2) {
-            return CxChar::chToUpper(cchChar1) == CxChar::chToUpper(cchChar2);
-        }
-    };
-
-    bool bRv = std::equal(a_csStr1.begin(), a_csStr1.end(), a_csStr2.begin(), SCompare::bNoCase);
-    xCHECK_RET(false == bRv, false);
-#endif
-
-    return true;
-}
-//---------------------------------------------------------------------------
-
-
-/****************************************************************************
-*    memory
-*
-*****************************************************************************/
-
-//---------------------------------------------------------------------------
-void *
-CxString::pvMemoryZeroSecure(
-    void         *a_pvBuff,
-    const size_t &a_cuiBuffSize
-)
-{
-    xTEST_NA(a_pvBuff);
-    xTEST_NA(a_cuiBuffSize);
-
-    size_t uiBuffSize = a_cuiBuffSize;
-
-    for (volatile uchar_t *a_vpvBuff = static_cast<volatile uchar_t *>( a_pvBuff );
-         NULL != a_pvBuff && 0 != uiBuffSize;
-         ++ a_vpvBuff, -- uiBuffSize)
-    {
-        *a_vpvBuff = 0;
-    }
-
-    return a_pvBuff;
-}
-//---------------------------------------------------------------------------
-
-
-/****************************************************************************
-*    other
-*
-*****************************************************************************/
-
-//---------------------------------------------------------------------------
-/* static */
-std::tstring_t
 CxString::sFormat(
     const tchar_t *a_pcszFormat, ...
 )
@@ -572,7 +687,45 @@ CxString::sMinimize(
 //---------------------------------------------------------------------------
 
 /****************************************************************************
-*    coders
+*   compare
+*
+*****************************************************************************/
+
+//---------------------------------------------------------------------------
+/* static */
+bool
+CxString::bCompareNoCase(
+    const std::tstring_t &a_csStr1,
+    const std::tstring_t &a_csStr2
+)
+{
+    xTEST_NA(a_csStr1);
+    xTEST_NA(a_csStr2);
+
+    xCHECK_RET(a_csStr1.size() != a_csStr2.size(), false);
+
+#if   xOS_ENV_WIN
+    int iRv = ::lstrcmpi(a_csStr1.c_str(), a_csStr2.c_str());
+    // n/a
+    xCHECK_RET(0 != iRv, false);
+#elif xOS_ENV_UNIX
+    struct SCompare {
+        static bool
+        bNoCase(const std::tstring_t::value_type &cchChar1, const std::tstring_t::value_type &cchChar2) {
+            return CxChar::chToUpper(cchChar1) == CxChar::chToUpper(cchChar2);
+        }
+    };
+
+    bool bRv = std::equal(a_csStr1.begin(), a_csStr1.end(), a_csStr2.begin(), SCompare::bNoCase);
+    xCHECK_RET(false == bRv, false);
+#endif
+
+    return true;
+}
+//---------------------------------------------------------------------------
+
+/****************************************************************************
+*    formating
 *
 *****************************************************************************/
 
@@ -682,184 +835,35 @@ CxString::sFormatPercentage(
 
     return sRv;
 }
+//--------------------------------------------------------------------------
+
+/****************************************************************************
+*    memory
+*
+*****************************************************************************/
+
 //---------------------------------------------------------------------------
-/* static */
-std::wstring
-CxString::sStrToWStr(
-    const std::string &a_csStr,
-    const uint_t      &a_cuiCodePage
+void *
+CxString::pvMemoryZeroSecure(
+    void         *a_pvBuff,
+    const size_t &a_cuiBuffSize
 )
 {
-    xTEST_NA(a_csStr);
-    xTEST_NA(a_cuiCodePage);
+    xTEST_NA(a_pvBuff);
+    xTEST_NA(a_cuiBuffSize);
 
-    std::wstring wsRes;
+    size_t uiBuffSize = a_cuiBuffSize;
 
-#if   xOS_ENV_WIN
-    int iSize = ::MultiByteToWideChar(a_cuiCodePage, 0UL, a_csStr.c_str(), - 1, NULL, 0);
-    xTEST_LESS(0, iSize);
-
-    wsRes.resize(iSize - 1);    // remove '\0'
-    iSize = ::MultiByteToWideChar(a_cuiCodePage, 0UL, a_csStr.c_str(), - 1, static_cast<LPWSTR>(&wsRes.at(0)), iSize);
-    xTEST_LESS(0, iSize);
-#elif xOS_ENV_UNIX
-    // TODO: sStrToWStr
-    xNOT_IMPLEMENTED;
-#endif
-
-    return wsRes;
-}
-//---------------------------------------------------------------------------
-/* static */
-std::string
-CxString::sWStrToStr(
-    const std::wstring &a_cwsStr,
-    const uint_t       &a_cuiCodePage
-)
-{
-    xTEST_NA(a_cwsStr);
-    xTEST_NA(a_cuiCodePage);
-
-    std::string asRes;
-
-#if   xOS_ENV_WIN
-    int iSize = ::WideCharToMultiByte(a_cuiCodePage, 0UL, a_cwsStr.c_str(), - 1, NULL, 0, NULL, NULL);
-    xTEST_LESS(0, iSize);
-
-    asRes.resize(iSize - 1);    // remove '\0'
-    iSize = ::WideCharToMultiByte(a_cuiCodePage, 0UL, a_cwsStr.c_str(), - 1, static_cast<LPSTR>(&asRes.at(0)), iSize, NULL, NULL);
-    xTEST_LESS(0, iSize);
-#elif xOS_ENV_UNIX
-    // TODO: (sWStrToStr)
-    xNOT_IMPLEMENTED;
-#endif
-
-    return asRes;
-}
-//---------------------------------------------------------------------------
-/* static */
-std::wstring
-CxString::sStrToWStr(
-    const std::string &a_csStdString,
-    const std::locale &a_clocLocale /* = std::locale() */
-)
-{
-    xTEST_NA(a_csStdString);
-    xTEST_NA(a_clocLocale);
-
-    std::wstring                swRv(a_csStdString.size(), std::wstring::value_type());
-
-    std::string::const_iterator itBegin( a_csStdString.begin() );
-    std::string::const_iterator itEnd  ( a_csStdString.end() );
-    std::wstring::iterator      itToBegin( swRv.begin() );
-
-    for ( ; itBegin != itEnd; ++ itBegin, ++ itToBegin) {
-        *itToBegin = std::use_facet< std::ctype<wchar_t> >( a_clocLocale ).widen( *itBegin );
+    for (volatile uchar_t *a_vpvBuff = static_cast<volatile uchar_t *>( a_pvBuff );
+         NULL != a_pvBuff && 0 != uiBuffSize;
+         ++ a_vpvBuff, -- uiBuffSize)
+    {
+        *a_vpvBuff = 0;
     }
 
-    return swRv;
+    return a_pvBuff;
 }
 //---------------------------------------------------------------------------
-/* static */
-std::string
-CxString::sWStrToStr(
-    const std::wstring &a_csStdWString,
-    const std::locale  &a_clocLocale /* = std::locale() */
-)
-{
-    xTEST_NA(a_csStdWString);
-    xTEST_NA(a_clocLocale);
-
-    typedef std::wstring::traits_type::state_type      state_type_t;
-    typedef std::codecvt<wchar_t, char, state_type_t>  codecvt_t;
- 
-    std::string      asRv(a_csStdWString.size(), std::wstring::value_type());
-
-    const codecvt_t &cvt       = std::use_facet<codecvt_t>( a_clocLocale );
-    state_type_t     state     = state_type_t();
-
-    const wchar_t   *itBegin   = &a_csStdWString.at(0);
-    const wchar_t   *itEnd     = &a_csStdWString.at(0) + a_csStdWString.size();
-    const wchar_t   *itNext    = NULL;
-
-    char            *itToBegin = &asRv.at(0);
-    char            *itToEnd   = &asRv.at(0) + asRv.size();
-    char            *itToNext  = NULL;
-
-    cvt.out(state, itBegin, itEnd, itNext, itToBegin, itToEnd, itToNext);
-
-    return asRv;
-}
-//---------------------------------------------------------------------------
-/* static */
-std::string
-CxString::sConvertCodePage(
-    const std::string &a_csSource,
-    const uint_t      &a_cuiCodePageSource,
-    const uint_t      &a_cuiCodePageDest
-)
-{
-    xTEST_NA(a_csSource);
-    xTEST_NA(a_cuiCodePageSource);
-    xTEST_NA(a_cuiCodePageDest);
-
-//    xTEST_EQ(false, csSource.empty(), std::string());        //FIX: csStr    - n/a
-//    // uiCodePageSource
-//    // uiCodePageDest
-
-    //CP_ACP(ANSI) <-> CP_UTF8(UTF-8)
-    //1251  (WIN)  <-> 20866  (KOI-8r)
-
-    return sWStrToStr(sStrToWStr(a_csSource, a_cuiCodePageSource), a_cuiCodePageDest);
-}
-//---------------------------------------------------------------------------
-/* static */
-std::string
-CxString::asCharToOemBuff(
-    const std::tstring_t &a_csSrc
-)
-{
-    xTEST_NA(a_csSrc);
-
-    std::string asDst;
-
-#if   xOS_ENV_WIN
-    asDst.resize(a_csSrc.size());
-
-    BOOL blRv = ::CharToOemBuff(a_csSrc.c_str(), &asDst.at(0), asDst.size());
-    xTEST_DIFF(FALSE, blRv);
-#elif xOS_ENV_UNIX
-    // TODO: asCharToOemBuff
-    xNOT_IMPLEMENTED;
-#endif
-
-    return asDst;
-}
-//---------------------------------------------------------------------------
-/* static */
-std::tstring_t
-CxString::sOemToCharBuff(
-    const std::string &a_csSrc
-)
-{
-    xTEST_NA(a_csSrc);
-
-    std::tstring_t sDst;
-
-#if   xOS_ENV_WIN
-    sDst.resize(a_csSrc.size());
-
-    BOOL blRv = ::OemToCharBuff(a_csSrc.c_str(), &sDst.at(0), sDst.size());
-    xTEST_DIFF(FALSE, blRv);
-#elif xOS_ENV_UNIX
-    // TODO: sOemToCharBuff
-    xNOT_IMPLEMENTED;
-#endif
-
-    return sDst;
-}
-//---------------------------------------------------------------------------
-
 
 /****************************************************************************
 *    other
