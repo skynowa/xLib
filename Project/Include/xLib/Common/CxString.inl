@@ -229,6 +229,17 @@ CxString::string_cast(
     return ResT;
 }
 //---------------------------------------------------------------------------
+xNAMESPACE_ANONYM_BEGIN
+
+struct SNarrow {
+    std::string::value_type
+    operator () (const std::wstring::value_type &a_cchChar) {
+        return std::use_facet< std::ctype<std::wstring::value_type> >( std::locale() ).narrow(a_cchChar, '@');
+    }
+};
+
+xNAMESPACE_ANONYM_END
+
 /* static */
 inline std::string
 CxString::castA(
@@ -237,20 +248,24 @@ CxString::castA(
 {
     xTEST_NA(a_csStr);
 
-    struct _SNarrow {
-        char
-        operator () (const wchar_t &a_cchChar) {
-            return std::use_facet< std::ctype<wchar_t> >( std::locale() ).narrow(a_cchChar, '@');
-        }
-    };
-
     std::string asRv;
 
-    std::transform(a_csStr.begin(), a_csStr.end(), std::back_inserter(asRv), _SNarrow());
+    std::transform(a_csStr.begin(), a_csStr.end(), std::back_inserter(asRv), SNarrow());
 
     return asRv;
 }
 //---------------------------------------------------------------------------
+xNAMESPACE_ANONYM_BEGIN
+
+struct SWiden {
+    std::wstring::value_type
+    operator () (const std::string::value_type &a_cchChar) {
+        return std::use_facet< std::ctype<std::string::value_type> >( std::locale() ).widen(a_cchChar);
+    }
+};
+
+xNAMESPACE_ANONYM_END
+
 /* static */
 inline std::wstring
 CxString::castW(
@@ -259,16 +274,9 @@ CxString::castW(
 {
     xTEST_NA(a_csStr);
 
-    struct _SWiden {
-        wchar_t
-        operator () (const char &a_cchChar) {
-            return std::use_facet< std::ctype<char> >( std::locale() ).widen(a_cchChar);
-        }
-    };
-
     std::wstring wsRv;
 
-    std::transform(a_csStr.begin(), a_csStr.end(), std::back_inserter(wsRv), _SWiden());
+    std::transform(a_csStr.begin(), a_csStr.end(), std::back_inserter(wsRv), SWiden());
 
     return wsRv;
 }
