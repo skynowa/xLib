@@ -30,7 +30,7 @@ CxTest_CxString::vUnit(
 )
 {
     /****************************************************************************
-    *    convertation
+    *    converters
     *
     *****************************************************************************/
 
@@ -249,6 +249,103 @@ CxTest_CxString::vUnit(
         }
     }
 
+    xTEST_CASE("CxString::castA, CxString::castW", cullCaseLoops)
+    {
+        // TODO: tests for CxString::castA, CxString::castW
+    }
+
+    xTEST_CASE("CxString::sStrToWStr, CxString::sWStrToStr", cullCaseLoops)
+    {
+        const std::string csAnsiStr[] = {
+            "gnhjfgyhj ghj...",
+            "vhgnjhghjfgh 234563476 45674_+()_ (*?)casf,fjpo,e rfWAERCWER$%^*())_+)+*()BNVNH*",
+            "123 456 7890",
+            "!@#$% ^&*()_+|* /{}:@' \"?><",
+            "строка",
+            "_你_我_他_",
+            " ",
+            ""
+        };
+
+        for (size_t i = 0; i < xARRAY_SIZE(csAnsiStr) - 1; i ++) {
+            const std::string csTemplate = csAnsiStr[i];
+ 
+            std::wstring wsUnicode = CxString::sStrToWStr(csTemplate);
+            std::string  asAnsi    = CxString::sWStrToStr(wsUnicode);
+            xTEST_EQ(true, csTemplate == asAnsi);
+        }
+    }
+
+    xTEST_CASE("CxString::sStrToWStr", cullCaseLoops)
+    {
+
+    }
+
+    xTEST_CASE("CxString::sWStrToStr", cullCaseLoops)
+    {
+
+    }
+
+    xTEST_CASE("CxString::sConvertCodePage", cullCaseLoops)
+    {
+        const std::string csAnsiStr[] = {
+            "gnhjfgyhj ghj...",
+            "vhgnjhghjfgh 234563476 45674_+()_ (*?)casf,fjpo,e rfWAERCWER$%^*())_+)+*()BNVNH*",
+            "123 456 7890",
+            "!@#$% ^&*()_+|* /{}:@' \"?><",
+            " ",
+            ""
+        };
+
+        for (size_t i = 0; i < xARRAY_SIZE(csAnsiStr) - 1; i ++) {
+            #if   xOS_ENV_WIN
+                // CP_ACP(ANSI) <-> CP_UTF8(UTF-8)
+                std::string sAnsi;
+                std::string sUtf8;
+
+                sUtf8 = CxString::sConvertCodePage(csAnsiStr[i], CP_ACP,  CP_UTF8);
+                sAnsi = CxString::sConvertCodePage(sUtf8,        CP_UTF8, CP_ACP);
+                xTEST_EQ(true, csAnsiStr[i] == sAnsi);
+
+
+                //1251(WIN)  <-> 20866(KOI-8r)
+                std::string sKoiStr;
+                std::string sWinStr;
+
+                sKoiStr = CxString::sConvertCodePage(csAnsiStr[i], 1251,  20866);
+                sWinStr = CxString::sConvertCodePage(sKoiStr,      20866, 1251);
+                xTEST_EQ(true, csAnsiStr[i] == sWinStr);
+            #elif xOS_ENV_UNIX
+                // TODO: sConvertCodePage
+                // xNOT_IMPLEMENTED_RET(RET_VALUE);
+            #endif
+        }
+    }
+
+    xTEST_CASE("CxString::sCharToOemBuff", cullCaseLoops)
+    {
+        std::string sRv;
+
+        #if   xOS_ENV_WIN
+            sRv = CxString::asCharToOemBuff(xT("Boss, hello? "));
+            xTEST_EQ(true, std::string("Boss, hello? ") == sRv);
+        #elif xOS_ENV_UNIX
+            //TODO: sCharToOemBuff
+        #endif
+    }
+
+    xTEST_CASE("CxString::sOemToCharBuff", cullCaseLoops)
+    {
+        std::tstring_t sRv;
+
+        #if   xOS_ENV_WIN
+            sRv = CxString::sOemToCharBuff(("1111, hdbhjgjk hkl, jl.,kh."));
+            xTEST_EQ(true, std::tstring_t(xT("1111, hdbhjgjk hkl, jl.,kh.")) == sRv);
+        #elif xOS_ENV_UNIX
+            //TODO: sOemToCharBuff
+        #endif
+    }
+
     xTEST_CASE("CxString::bBoolToStr", cullCaseLoops)
     {
         m_sRv = CxString::sBoolToStr(true);
@@ -284,6 +381,91 @@ CxTest_CxString::vUnit(
         m_bRv = CxString::bStrToBool(xT("qwertyuiop[]"));
         xTEST_EQ(false, m_bRv);
     }
+
+    xTEST_CASE("CxString::sToLowerCase", cullCaseLoops)
+    {
+        const std::tstring_t sTestData[][2] = {
+            {xT("test_string_1"),       xT("TEST_string_1")},
+            {xT("test_string_1"),       xT("TEst_stRING_1")},
+            {xT("test_string_1\n"),     xT("TEST_STRing_1\n")},
+            {xT("test_string_1\n\r"),   xT("TEST_STring_1\n\r")}
+        };
+
+        for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
+            std::tstring_t sStr1 = CxString::sToLowerCase(sTestData[i][0]);
+            std::tstring_t sStr2 = CxString::sToLowerCase(sTestData[i][1]);
+            xTEST_EQ(sStr1, sStr2);
+
+            std::tstring_t sStr3 = CxString::sToLowerCase(sTestData[i][1]);
+            std::tstring_t sStr4 = sTestData[i][0];
+            xTEST_EQ(sStr3, sStr4);
+        }
+    }
+
+    xTEST_CASE("CxString::sToUpperCase", cullCaseLoops)
+    {
+        const std::tstring_t sTestData[][2] = {
+            {xT("TEST_STRING_1_A"),       xT("TEST_string_1_a")},
+            {xT("TEST_STRING_1_A"),       xT("TEst_stRING_1_A")},
+            {xT("TEST_STRING_1_A\n"),     xT("TEST_STRing_1_a\n")},
+            {xT("TEST_STRING_1_A\n\r"),   xT("TEST_STring_1_A\n\r")}
+        };
+
+        for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
+            std::tstring_t sStr1 = CxString::sToUpperCase(sTestData[i][0]);
+            std::tstring_t sStr2 = CxString::sToUpperCase(sTestData[i][1]);
+            xTEST_EQ(sStr1, sStr2);
+
+            std::tstring_t sStr3 = CxString::sToUpperCase(sTestData[i][1]);
+            std::tstring_t sStr4 = sTestData[i][0];
+            xTEST_EQ(sStr3, sStr4);
+        }
+    }
+
+    xTEST_CASE("CxString::sToLowerCase", cullCaseLoops)
+    {
+        const std::tstring_t sTestData[][2] = {
+            {xT("test_string_1_a"), xT("test_string_1_A")},
+            {xT("test_string_1_a"), xT("Test_strINg_1_a")},
+            {xT("test_string_1_a"), xT("test_STRING_1_A")},
+            {xT("test_string_1_a"), xT("Test_string_1_a")}
+        };
+
+        for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
+            std::tstring_t sStr1 = CxString::sToLowerCase(sTestData[i][0], sTestData[i][0].size());
+            std::tstring_t sStr2 = CxString::sToLowerCase(sTestData[i][1], sTestData[i][1].size());
+            xTEST_EQ(sStr1, sStr2);
+
+            std::tstring_t sStr3 = CxString::sToLowerCase(sTestData[i][1], sTestData[i][1].size() + 1000);
+            std::tstring_t sStr4 = sTestData[i][0];
+            xTEST_EQ(sStr3, sStr4);
+        }
+    }
+
+    xTEST_CASE("CxString::sToUpperCase", cullCaseLoops)
+    {
+        const std::tstring_t sTestData[][2] = {
+            {xT("TEST_STRING_1_A"), xT("tEST_string_1_A")},
+            {xT("TEST_STRING_1_A"), xT("tEst_stRING_1_a")},
+            {xT("TEST_STRING_1_A"), xT("TEST_STRing_1_a")},
+            {xT("TEST_STRING_1_A"), xT("tEST_STring_1_A")}
+        };
+
+        for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
+            std::tstring_t sStr1 = CxString::sToUpperCase(sTestData[i][0], sTestData[i][0].size());
+            std::tstring_t sStr2 = CxString::sToUpperCase(sTestData[i][1], sTestData[i][1].size());
+            xTEST_EQ(sStr1, sStr2);
+
+            std::tstring_t sStr3 = CxString::sToUpperCase(sTestData[i][1], sTestData[i][1].size() - 1000);
+            std::tstring_t sStr4 = sTestData[i][0];
+            xTEST_EQ(sStr3, sStr4);
+        }
+    }
+
+    /****************************************************************************
+    *   actions
+    *
+    *****************************************************************************/
 
     xTEST_CASE("CxString::sTrimLeftChars", cullCaseLoops)
     {
@@ -606,86 +788,6 @@ CxTest_CxString::vUnit(
         xTEST_EQ(std::tstring_t(xT("0123456789")), m_sRv);
     }
 
-    xTEST_CASE("CxString::sToLowerCase", cullCaseLoops)
-    {
-        const std::tstring_t sTestData[][2] = {
-            {xT("test_string_1"),       xT("TEST_string_1")},
-            {xT("test_string_1"),       xT("TEst_stRING_1")},
-            {xT("test_string_1\n"),     xT("TEST_STRing_1\n")},
-            {xT("test_string_1\n\r"),   xT("TEST_STring_1\n\r")}
-        };
-
-        for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
-            std::tstring_t sStr1 = CxString::sToLowerCase(sTestData[i][0]);
-            std::tstring_t sStr2 = CxString::sToLowerCase(sTestData[i][1]);
-            xTEST_EQ(sStr1, sStr2);
-
-            std::tstring_t sStr3 = CxString::sToLowerCase(sTestData[i][1]);
-            std::tstring_t sStr4 = sTestData[i][0];
-            xTEST_EQ(sStr3, sStr4);
-        }
-    }
-
-    xTEST_CASE("CxString::sToUpperCase", cullCaseLoops)
-    {
-        const std::tstring_t sTestData[][2] = {
-            {xT("TEST_STRING_1_A"),       xT("TEST_string_1_a")},
-            {xT("TEST_STRING_1_A"),       xT("TEst_stRING_1_A")},
-            {xT("TEST_STRING_1_A\n"),     xT("TEST_STRing_1_a\n")},
-            {xT("TEST_STRING_1_A\n\r"),   xT("TEST_STring_1_A\n\r")}
-        };
-
-        for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
-            std::tstring_t sStr1 = CxString::sToUpperCase(sTestData[i][0]);
-            std::tstring_t sStr2 = CxString::sToUpperCase(sTestData[i][1]);
-            xTEST_EQ(sStr1, sStr2);
-
-            std::tstring_t sStr3 = CxString::sToUpperCase(sTestData[i][1]);
-            std::tstring_t sStr4 = sTestData[i][0];
-            xTEST_EQ(sStr3, sStr4);
-        }
-    }
-
-    xTEST_CASE("CxString::sToLowerCase", cullCaseLoops)
-    {
-        const std::tstring_t sTestData[][2] = {
-            {xT("test_string_1_a"), xT("test_string_1_A")},
-            {xT("test_string_1_a"), xT("Test_strINg_1_a")},
-            {xT("test_string_1_a"), xT("test_STRING_1_A")},
-            {xT("test_string_1_a"), xT("Test_string_1_a")}
-        };
-
-        for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
-            std::tstring_t sStr1 = CxString::sToLowerCase(sTestData[i][0], sTestData[i][0].size());
-            std::tstring_t sStr2 = CxString::sToLowerCase(sTestData[i][1], sTestData[i][1].size());
-            xTEST_EQ(sStr1, sStr2);
-
-            std::tstring_t sStr3 = CxString::sToLowerCase(sTestData[i][1], sTestData[i][1].size() + 1000);
-            std::tstring_t sStr4 = sTestData[i][0];
-            xTEST_EQ(sStr3, sStr4);
-        }
-    }
-
-    xTEST_CASE("CxString::sToUpperCase", cullCaseLoops)
-    {
-        const std::tstring_t sTestData[][2] = {
-            {xT("TEST_STRING_1_A"), xT("tEST_string_1_A")},
-            {xT("TEST_STRING_1_A"), xT("tEst_stRING_1_a")},
-            {xT("TEST_STRING_1_A"), xT("TEST_STRing_1_a")},
-            {xT("TEST_STRING_1_A"), xT("tEST_STring_1_A")}
-        };
-
-        for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
-            std::tstring_t sStr1 = CxString::sToUpperCase(sTestData[i][0], sTestData[i][0].size());
-            std::tstring_t sStr2 = CxString::sToUpperCase(sTestData[i][1], sTestData[i][1].size());
-            xTEST_EQ(sStr1, sStr2);
-
-            std::tstring_t sStr3 = CxString::sToUpperCase(sTestData[i][1], sTestData[i][1].size() - 1000);
-            std::tstring_t sStr4 = sTestData[i][0];
-            xTEST_EQ(sStr3, sStr4);
-        }
-    }
-
     xTEST_CASE("CxString::sFormat", cullCaseLoops)
     {
         std::tstring_t sData;
@@ -759,6 +861,11 @@ CxTest_CxString::vUnit(
         xTEST_EQ(std::tstring_t(xT("55555wwwww00000")), m_sRv);
     }
 
+    /****************************************************************************
+    *   compare
+    *
+    *****************************************************************************/
+
     xTEST_CASE("CxString::bCompareNoCase", cullCaseLoops)
     {
         //must true
@@ -799,38 +906,11 @@ CxTest_CxString::vUnit(
 
 
     /****************************************************************************
-    *   �������������
+    *    formating
     *
     *****************************************************************************/
 
-    xTEST_CASE("CxString::sDecodeWinKoi", cullCaseLoops) {
-        //m_sRv = sDecodeWinKoi(int iFrom, int iTo, const std::tstring_t &sOldStr);
-    }
-
-    xTEST_CASE("CxString::sTranslitLatToRus", cullCaseLoops)
-    {
-        #if xTODO
-            m_sRv = CxString::sTranslitLatToRus(xT(""));
-            xTEST_EQ(std::tstring_t(), m_sRv);
-
-            m_sRv = CxString::sTranslitLatToRus(xT("ConsoleTest.exe': Loaded 'C:\\Program Files\\Kaspersky Lab\\Kaspersky Internet Security 2009\\adialhk.dll"));
-            xTEST_EQ(std::tstring_t(xT("ConsoleTest.exe': Loaded 'C:\\Program Files\\Kaspersky Lab\\Kaspersky Internet Security 2009\\adialhk.dll")), m_sRv);
-        #endif
-    }
-
-    xTEST_CASE("CxString::bCharToWide", cullCaseLoops) {
-        //m_bRv = CxString::bCharToWide(const char *pszSrc, WCHAR *pwszDest, int iDestSize);
-    }
-
-    xTEST_CASE("CxString::sStrToRtf", cullCaseLoops) {
-        //m_sRv = CxString::sStrToRtf(std::tstring_t sStr);
-    }
-
-    xTEST_CASE("CxString::sRtfToStr", cullCaseLoops) {
-        //m_sRv = CxString::sRtfToStr(std::tstring_t sStr);
-    }
-
-    xTEST_CASE("CxString::sBytesToStr(ulonglong_t)", cullCaseLoops)
+    xTEST_CASE("CxString::sFormatBytes(ulonglong_t)", cullCaseLoops)
     {
         const ulonglong_t caullULongLong[] = {
             0ULL,
@@ -865,17 +945,15 @@ CxTest_CxString::vUnit(
 
     }
 
-    xTEST_CASE("CxString::sFormatNixTerminal", cullCaseLoops)
+    xTEST_CASE("CxString::sTranslitLatToRus", cullCaseLoops)
     {
-    #if xTODO
-        for (int i = 0; i <= 120; ++ i) {
-            std::tstring_t sRv = sColorStr(xT("Linux Console Color"), (EForeground)i, false, false, bgBlack, false);
-            std::cout<< xT("Color: ") << i << xT(" ") << sRv << std::endl;
-        }
+        #if xTODO
+            m_sRv = CxString::sTranslitLatToRus(xT(""));
+            xTEST_EQ(std::tstring_t(), m_sRv);
 
-        std::tstring_t sRv = CxString::sFormatNixTerminal(xT("Linux Console Color"), CxString::fgYellow_, true, false, CxString::bgBlue_, false);
-        std::cout << sRv << std::endl;
-    #endif
+            m_sRv = CxString::sTranslitLatToRus(xT("ConsoleTest.exe': Loaded 'C:\\Program Files\\Kaspersky Lab\\Kaspersky Internet Security 2009\\adialhk.dll"));
+            xTEST_EQ(std::tstring_t(xT("ConsoleTest.exe': Loaded 'C:\\Program Files\\Kaspersky Lab\\Kaspersky Internet Security 2009\\adialhk.dll")), m_sRv);
+        #endif
     }
 
     /****************************************************************************
@@ -932,7 +1010,7 @@ CxTest_CxString::vUnit(
 
 
     /****************************************************************************
-    *    ������
+    *    other
     *
     *****************************************************************************/
 
@@ -959,72 +1037,6 @@ CxTest_CxString::vUnit(
 
         m_bRv = CxString::bIsRepeated(xT("000000000111111111"));
         xTEST_EQ(false, m_bRv);
-    }
-
-
-    /****************************************************************************
-    *   formating
-    *
-    *****************************************************************************/
-
-    xTEST_CASE("CxString::sConvertCodePage", cullCaseLoops)
-    {
-        const std::string csAnsiStr[] = {
-            "gnhjfgyhj ghj...",
-            "vhgnjhghjfgh 234563476 45674_+()_ (*?)casf,fjpo,e rfWAERCWER$%^*())_+)+*()BNVNH*",
-            "123 456 7890",
-            "!@#$% ^&*()_+|* /{}:@' \"?><",
-            " ",
-            ""
-        };
-
-        for (size_t i = 0; i < xARRAY_SIZE(csAnsiStr) - 1; i ++) {
-            #if   xOS_ENV_WIN
-                // CP_ACP(ANSI) <-> CP_UTF8(UTF-8)
-                std::string sAnsi;
-                std::string sUtf8;
-
-                sUtf8 = CxString::sConvertCodePage(csAnsiStr[i], CP_ACP,  CP_UTF8);
-                sAnsi = CxString::sConvertCodePage(sUtf8,        CP_UTF8, CP_ACP);
-                xTEST_EQ(true, csAnsiStr[i] == sAnsi);
-
-
-                //1251(WIN)  <-> 20866(KOI-8r)
-                std::string sKoiStr;
-                std::string sWinStr;
-
-                sKoiStr = CxString::sConvertCodePage(csAnsiStr[i], 1251,  20866);
-                sWinStr = CxString::sConvertCodePage(sKoiStr,      20866, 1251);
-                xTEST_EQ(true, csAnsiStr[i] == sWinStr);
-            #elif xOS_ENV_UNIX
-                // TODO: sConvertCodePage
-                // xNOT_IMPLEMENTED_RET(RET_VALUE);
-            #endif
-        }
-    }
-
-    xTEST_CASE("CxString::sCharToOemBuff", cullCaseLoops)
-    {
-        std::string sRv;
-
-        #if   xOS_ENV_WIN
-            sRv = CxString::asCharToOemBuff(xT("Boss, hello? "));
-            xTEST_EQ(true, std::string("Boss, hello? ") == sRv);
-        #elif xOS_ENV_UNIX
-            //TODO: sCharToOemBuff
-        #endif
-    }
-
-    xTEST_CASE("CxString::sOemToCharBuff", cullCaseLoops)
-    {
-        std::tstring_t sRv;
-
-        #if   xOS_ENV_WIN
-            sRv = CxString::sOemToCharBuff(("1111, hdbhjgjk hkl, jl.,kh."));
-            xTEST_EQ(true, std::tstring_t(xT("1111, hdbhjgjk hkl, jl.,kh.")) == sRv);
-        #elif xOS_ENV_UNIX
-            //TODO: sOemToCharBuff
-        #endif
     }
 }
 //---------------------------------------------------------------------------
