@@ -133,14 +133,14 @@
 //--------------------------------------------------
 // TODO: converters
 #if xUNICODE
-    #define xS2TS(s)                    CxString::sStrToWStr(s)
+    #define xS2TS(s)                    ( CxString::castW(s) )
         ///< convert std::string to std::wstring
-    #define xTS2S(ts)                   CxString::sWStrToStr(ts)
+    #define xTS2S(ts)                   ( CxString::castA(ts) )
         ///< convert std::wstring to std::string
 #else
-    #define xS2TS(s)                    (s)
+    #define xS2TS(s)                    ( s )
         ///< convert std::string to std::wstring
-    #define xTS2S(ts)                   (ts)
+    #define xTS2S(ts)                   ( ts )
         ///< convert std::wstring to std::string
 #endif
 

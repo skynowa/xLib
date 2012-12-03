@@ -15,86 +15,98 @@ xNAMESPACE_BEGIN(std)
 template<typename Traits>
 inline basic_ostream<tchar_t, Traits> &
 operator << (
-    basic_ostream<tchar_t, Traits> &osOut,
-    const std::ustring_t           &cusValue
+    basic_ostream<tchar_t, Traits> &a_osOut,
+    const std::ustring_t           &a_cusValue
 )
 {
+    xTEST_NA(a_osOut);
+    xTEST_NA(a_cusValue);
+    
     std::tstring_t sRv;
 
-    sRv.assign( cusValue.begin(), cusValue.end() );
+    sRv.assign( a_cusValue.begin(), a_cusValue.end() );
 
-    osOut << sRv << std::flush;
+    a_osOut << sRv << std::flush;
 
-    return osOut;
+    return a_osOut;
 }
 //---------------------------------------------------------------------------
 template<typename Traits, typename T>
 inline basic_ostream<tchar_t, Traits> &
 operator << (
-    basic_ostream<tchar_t, Traits> &osOut,
-    const vector<T>                &cvValueT
+    basic_ostream<tchar_t, Traits> &a_osOut,
+    const vector<T>                &a_cvValueT
 )
 {
-    osOut << std::endl;
-    osOut << xT("std::vector (") << cvValueT.size() << (" elements):") << std::endl;
-    osOut << std::endl;
+    xTEST_NA(a_osOut);
+    xTEST_NA(a_cvValueT);
+
+    a_osOut << std::endl;
+    a_osOut << xT("std::vector (") << a_cvValueT.size() << (" elements):") << std::endl;
+    a_osOut << std::endl;
 
     typename vector<T>::const_iterator it;
     size_t                             i = 0;
-    for (it = cvValueT.begin(), i = 0; it != cvValueT.end(); ++ it, ++ i) {
-        osOut << xT("Value[") << i << xT("]: ") << (*it) << std::endl;
+    for (it = a_cvValueT.begin(), i = 0; it != a_cvValueT.end(); ++ it, ++ i) {
+        a_osOut << xT("Value[") << i << xT("]: ") << (*it) << std::endl;
     }
 
-    osOut << std::endl;
-    osOut << std::endl;
+    a_osOut << std::endl;
+    a_osOut << std::endl;
 
-    return osOut;
+    return a_osOut;
 }
 //---------------------------------------------------------------------------
 template<typename Traits, typename T1, typename T2>
 inline basic_ostream<tchar_t, Traits> &
 operator << (
-    basic_ostream<tchar_t, Traits> &osOut,
-    const map<T1, T2>              &cmValueT
+    basic_ostream<tchar_t, Traits> &a_osOut,
+    const map<T1, T2>              &a_cmValueT
 )
 {
-    osOut << std::endl;
-    osOut << xT("std::map (") << cmValueT.size() << (" elements):") << std::endl;
-    osOut << std::endl;
+    xTEST_NA(a_osOut);
+    xTEST_NA(a_cmValueT);
+
+    a_osOut << std::endl;
+    a_osOut << xT("std::map (") << a_cmValueT.size() << (" elements):") << std::endl;
+    a_osOut << std::endl;
 
     typename map<T1, T2>::const_iterator it;
-    for (it = cmValueT.begin(); it != cmValueT.end(); ++ it) {
-        osOut << xT("Key: ")   << (*it).first  << xT("\t\t")
-              << xT("Value: ") << (*it).second << std::endl;
+    for (it = a_cmValueT.begin(); it != a_cmValueT.end(); ++ it) {
+        a_osOut << xT("Key: ")   << (*it).first  << xT("\t\t")
+                << xT("Value: ") << (*it).second << std::endl;
     }
 
-    osOut << std::endl;
-    osOut << std::endl;
+    a_osOut << std::endl;
+    a_osOut << std::endl;
 
-    return osOut;
+    return a_osOut;
 }
 //---------------------------------------------------------------------------
 template<typename Traits, typename T1, typename T2>
 inline basic_ostream<tchar_t, Traits> &
 operator << (
-    basic_ostream<tchar_t, Traits> &osOut,
-    const multimap<T1, T2>         &cmmValueT
+    basic_ostream<tchar_t, Traits> &a_osOut,
+    const multimap<T1, T2>         &a_cmmValueT
 )
 {
-    osOut << std::endl;
-    osOut << xT("std::multimap (") << cmmValueT.size() << (" elements):") << std::endl;
-    osOut << std::endl;
+    xTEST_NA(a_osOut);
+    xTEST_NA(a_cmmValueT);
+
+    a_osOut << std::endl;
+    a_osOut << xT("std::multimap (") << a_cmmValueT.size() << (" elements):") << std::endl;
+    a_osOut << std::endl;
 
     typename multimap<T1, T2>::const_iterator it;
-    for (it = cmmValueT.begin(); it != cmmValueT.end(); ++ it) {
-        osOut << xT("Key: ")   << (*it).first  << xT("\t\t")
-              << xT("Value: ") << (*it).second << std::endl;
+    for (it = a_cmmValueT.begin(); it != a_cmmValueT.end(); ++ it) {
+        a_osOut << xT("Key: ")   << (*it).first  << xT("\t\t")
+                << xT("Value: ") << (*it).second << std::endl;
     }
 
-    osOut << std::endl;
-    osOut << std::endl;
+    a_osOut << std::endl;
+    a_osOut << std::endl;
 
-    return osOut;
+    return a_osOut;
 }
 //---------------------------------------------------------------------------
 
@@ -113,10 +125,10 @@ xNAMESPACE_BEGIN(NxLib)
 template<typename T>
 inline std::tstring_t
 CxString::string_cast(
-    const T &cValueT
+    const T &a_cValueT
 )
 {
-    //cValueT - n/a
+    xTEST_NA(a_cValueT);
 
     std::tstring_t sRv;
 
@@ -124,7 +136,7 @@ CxString::string_cast(
         std::tostringstream_t ossRes;
 
         ossRes.exceptions(std::tostringstream_t::failbit | std::tostringstream_t::badbit);
-        ossRes << cValueT;
+        ossRes << a_cValueT;
 
         sRv = ossRes.str();
     } catch (const std::tostringstream_t::failure &e) {
@@ -140,12 +152,12 @@ CxString::string_cast(
 template<typename T>
 inline std::tstring_t
 CxString::string_cast(
-    const T   &cValueT,
-    const int &ciBase
+    const T   &a_cValueT,
+    const int &a_ciBase
 )
 {
-    //cValueT - n/a
-    //ciBase  - n/a
+    xTEST_NA(a_cValueT);
+    xTEST_NA(a_ciBase);
 
     std::tstring_t sRv;
 
@@ -153,7 +165,7 @@ CxString::string_cast(
         std::tostringstream_t ossRes;
 
         ossRes.exceptions(std::tostringstream_t::failbit | std::tostringstream_t::badbit);
-        ossRes << std::setbase(ciBase) << std::uppercase << cValueT;  //std::showbase
+        ossRes << std::setbase(a_ciBase) << std::uppercase << a_cValueT;  // std::showbase
 
         sRv = ossRes.str();
     } catch (const std::tostringstream_t::failure &e) {
@@ -169,15 +181,15 @@ CxString::string_cast(
 template<typename T>
 inline T
 CxString::string_cast(
-    const std::tstring_t &csStr
+    const std::tstring_t &a_csStr
 )
 {
-    //csStr - n/a
+    xTEST_NA(a_csStr);
 
     T ResT;
 
     try {
-        std::tistringstream_t issStream(csStr);
+        std::tistringstream_t issStream(a_csStr);
 
         issStream.exceptions(std::tistringstream_t::failbit | std::tistringstream_t::badbit);
         issStream >> ResT;
@@ -194,20 +206,20 @@ CxString::string_cast(
 template<typename T>
 inline T
 CxString::string_cast(
-    const std::tstring_t &csStr,
-    const int            &ciBase
+    const std::tstring_t &a_csStr,
+    const int            &a_ciBase
 )
 {
-    //csStr  - n/a
-    //ciBase - n/a
+    xTEST_NA(a_csStr);
+    xTEST_NA(a_ciBase);
 
     T ResT;
 
     try {
-        std::tistringstream_t issStream(csStr);
+        std::tistringstream_t issStream(a_csStr);
 
         issStream.exceptions(std::tistringstream_t::failbit | std::tistringstream_t::badbit);
-        issStream >> std::setbase(ciBase) >> ResT;
+        issStream >> std::setbase(a_ciBase) >> ResT;
     } catch (const std::tistringstream_t::failure &e) {
         return T();
     } catch (...) {
@@ -215,6 +227,50 @@ CxString::string_cast(
     }
 
     return ResT;
+}
+//---------------------------------------------------------------------------
+/* static */
+inline std::string
+CxString::castA(
+    const std::wstring &a_csStr
+)
+{
+    xTEST_NA(a_csStr);
+
+    struct _SNarrow {
+        char 
+        operator () (const wchar_t &a_cchChar) {
+            return std::use_facet<std::ctype<wchar_t>>( std::locale() ).narrow(a_cchChar, '@');
+        }
+    };
+
+    std::string asRv;
+
+    std::transform(a_csStr.begin(), a_csStr.end(), std::back_inserter(asRv), _SNarrow());
+
+    return asRv;
+}
+//---------------------------------------------------------------------------
+/* static */
+inline std::wstring
+CxString::castW(
+    const std::string &a_csStr
+)
+{
+    xTEST_NA(a_csStr);
+
+    struct _SWiden {
+        wchar_t 
+        operator () (const char &a_cchChar) {
+            return std::use_facet<std::ctype<char>>( std::locale() ).widen(a_cchChar);
+        }
+    };
+
+    std::wstring wsRv;
+
+    std::transform(a_csStr.begin(), a_csStr.end(), std::back_inserter(wsRv), _SWiden());
+
+    return wsRv;
 }
 //---------------------------------------------------------------------------
 
