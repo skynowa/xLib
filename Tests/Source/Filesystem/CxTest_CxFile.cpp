@@ -673,7 +673,7 @@ CxTest_CxFile::vUnit1(
             F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
 
             for (size_t i = 0; i < cullLinesNum; ++ i) {
-                F.vWriteLine( CxString::string_cast(i) );
+                F.vWriteLine( CxString::cast(i) );
             }
         }
 

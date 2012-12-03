@@ -1055,13 +1055,13 @@ CxDateTime::_vParse(
 
                 //CxString::vStdVectorPrintT(vsDates);
 
-                //                   = CxString::string_cast<ushort_t>( vsDates.at(0) );     //Wed(0),
-                (*a_pdtDT)._m_usDay    = CxString::string_cast<ushort_t>( vsDates.at(1) );   //23(1)
+                //                   = CxString::cast<ushort_t>( vsDates.at(0) );     //Wed(0),
+                (*a_pdtDT)._m_usDay    = CxString::cast<ushort_t>( vsDates.at(1) );   //23(1)
                 (*a_pdtDT)._m_usMonth  = usMonthNum(vsDates.at(2), true);                    //Mar(2)
-                (*a_pdtDT)._m_usYear   = CxString::string_cast<ushort_t>( vsDates.at(3) );   //2011(3)
-                (*a_pdtDT)._m_usHour   = CxString::string_cast<ushort_t>( vsDates.at(4) );   //15(4)
-                (*a_pdtDT)._m_usMinute = CxString::string_cast<ushort_t>( vsDates.at(5) );   //05(5)
-                (*a_pdtDT)._m_usSecond = CxString::string_cast<ushort_t>( vsDates.at(6) );   //49(6)
+                (*a_pdtDT)._m_usYear   = CxString::cast<ushort_t>( vsDates.at(3) );   //2011(3)
+                (*a_pdtDT)._m_usHour   = CxString::cast<ushort_t>( vsDates.at(4) );   //15(4)
+                (*a_pdtDT)._m_usMinute = CxString::cast<ushort_t>( vsDates.at(5) );   //05(5)
+                (*a_pdtDT)._m_usSecond = CxString::cast<ushort_t>( vsDates.at(6) );   //49(6)
 
                 #if xTEMP_DISABLED
                     xTRACE(xT("-----------------------------------"));

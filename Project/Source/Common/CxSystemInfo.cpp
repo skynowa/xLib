@@ -709,7 +709,7 @@ CxSystemInfo::ulCpuSpeed() {
         std::tstring_t sValue = CxPath::sProcValue(xT("/proc/cpuinfo"), xT("cpu MHz"));
         xTEST_EQ(false, sValue.empty());
 
-        double dCpuSpeedMHz = CxString::string_cast<double>( sValue );
+        double dCpuSpeedMHz = CxString::cast<double>( sValue );
 
         ulRv = static_cast<ulong_t>( CxUtils::round(dCpuSpeedMHz) );
     #elif xOS_FREEBSD

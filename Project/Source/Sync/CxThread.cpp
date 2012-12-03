@@ -198,7 +198,7 @@ CxThread::vResume() {
 void
 CxThread::vPause() {
 #if   xOS_ENV_WIN
-    xTEST_MSG_EQ(true, _m_hThread.bIsValid(), CxString::string_cast(_m_hThread.hGet()));
+    xTEST_MSG_EQ(true, _m_hThread.bIsValid(), CxString::cast(_m_hThread.hGet()));
 #elif xOS_ENV_UNIX
 
 #endif
