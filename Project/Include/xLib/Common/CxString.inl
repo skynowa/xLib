@@ -116,7 +116,7 @@ xNAMESPACE_END(std)
 xNAMESPACE_BEGIN(NxLib)
 
 /****************************************************************************
-*   string_cast
+*   casting
 *
 *****************************************************************************/
 
@@ -124,7 +124,7 @@ xNAMESPACE_BEGIN(NxLib)
 /* static */
 template<typename T>
 inline std::tstring_t
-CxString::string_cast(
+CxString::cast(
     const T &a_cValueT
 )
 {
@@ -151,7 +151,7 @@ CxString::string_cast(
 /* static */
 template<typename T>
 inline std::tstring_t
-CxString::string_cast(
+CxString::cast(
     const T   &a_cValueT,
     const int &a_ciBase
 )
@@ -180,7 +180,7 @@ CxString::string_cast(
 /* static */
 template<typename T>
 inline T
-CxString::string_cast(
+CxString::cast(
     const std::tstring_t &a_csStr
 )
 {
@@ -205,7 +205,7 @@ CxString::string_cast(
 /* static */
 template<typename T>
 inline T
-CxString::string_cast(
+CxString::cast(
     const std::tstring_t &a_csStr,
     const int            &a_ciBase
 )

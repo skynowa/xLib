@@ -168,14 +168,14 @@ CxProcessInfo::ulIOBytes(
     {
         std::tstring_t sValue = CxPath::sProcValue(sProcPath, xT("read_bytes"));
 
-        ulReadBytes = CxString::string_cast<ulong_t>( sValue );
+        ulReadBytes = CxString::cast<ulong_t>( sValue );
     }
 
     ulong_t ulWriteBytes = 0UL;
     {
         std::tstring_t sValue = CxPath::sProcValue(sProcPath, xT("write_bytes"));
 
-        ulWriteBytes = CxString::string_cast<ulong_t>( sValue );
+        ulWriteBytes = CxString::cast<ulong_t>( sValue );
     }
 
     ulRv = ulReadBytes + ulWriteBytes;

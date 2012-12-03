@@ -181,7 +181,7 @@ CxLocalStorage::iKeyReadInt(
     //csKey         - n/a
     //iDefaultValue - n/a
 
-    return CxString::string_cast<long_t>( sKeyReadString(a_csKey, CxString::string_cast(a_cliDefaultValue)) );
+    return CxString::cast<long_t>( sKeyReadString(a_csKey, CxString::cast(a_cliDefaultValue)) );
 }
 //-------------------------------------------------------------------------
 void
@@ -194,7 +194,7 @@ CxLocalStorage::vKeyWriteInt(
     //csKey     - n/a
     //iValue    - n/a
 
-    vKeyWriteString(a_csKey, CxString::string_cast(a_cliValue));
+    vKeyWriteString(a_csKey, CxString::cast(a_cliValue));
 }
 //-------------------------------------------------------------------------
 double
@@ -207,7 +207,7 @@ CxLocalStorage::dKeyReadFloat(
     //csKey         - n/a
     //dDefaultValue - n/a
 
-    return CxString::string_cast<double>( sKeyReadString(a_csKey, CxString::string_cast(a_cdDefaultValue)) );
+    return CxString::cast<double>( sKeyReadString(a_csKey, CxString::cast(a_cdDefaultValue)) );
 }
 //-------------------------------------------------------------------------
 void
@@ -220,7 +220,7 @@ CxLocalStorage::vKeyWriteFloat(
     //csKey     - n/a
     //dValue    - n/a
 
-    vKeyWriteString(a_csKey, CxString::string_cast(a_cdValue));
+    vKeyWriteString(a_csKey, CxString::cast(a_cdValue));
 }
 //-------------------------------------------------------------------------
 bool
@@ -275,7 +275,7 @@ CxLocalStorage::usKeyReadBin(
     std::tstring_t sHexStr = sKeyReadString(a_csKey, std::tstring_t(a_cusDefaultValue.begin(), a_cusDefaultValue.end()));
 
     //sHexStr -> usRv
-    sRv = CxString::string_cast(sHexStr, 16);
+    sRv = CxString::cast(sHexStr, 16);
 
     return std::ustring_t(sRv.begin(), sRv.end());
 }
@@ -293,7 +293,7 @@ CxLocalStorage::vKeyWriteBin(
     //cusValue (std::ustring_t) -> sHexStr (std::tstring_t)
     std::tstring_t sHexStr;
 
-    sHexStr = CxString::string_cast( std::tstring_t(a_cusValue.begin(), a_cusValue.end()), 16);
+    sHexStr = CxString::cast( std::tstring_t(a_cusValue.begin(), a_cusValue.end()), 16);
 
     vKeyWriteString(a_csKey, sHexStr);
 }

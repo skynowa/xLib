@@ -47,16 +47,16 @@ class CxString :
         *****************************************************************************/
 
         template<typename T>
-        static std::tstring_t string_cast       (const T &cValueT);
+        static std::tstring_t cast              (const T &cValueT);
             ///< convert type to std::tstring_t
         template<typename T>
-        static std::tstring_t string_cast       (const T &cValueT, const int &ciBase);
+        static std::tstring_t cast              (const T &cValueT, const int &ciBase);
             ///< convert type to std::tstring_t by base
         template<typename T>
-        static T              string_cast       (const std::tstring_t &csStr);
+        static T              cast              (const std::tstring_t &csStr);
             ///< convert std::tstring_t to type
         template<typename T>
-        static T              string_cast       (const std::tstring_t &csStr, const int &ciBase);
+        static T              cast              (const std::tstring_t &csStr, const int &ciBase);
             ///< convert std::tstring_t by base (8, 10, 16) to type
 
         static std::string    castA             (const std::wstring &csStr);

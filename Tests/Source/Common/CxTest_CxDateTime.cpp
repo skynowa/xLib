@@ -549,8 +549,8 @@ CxTest_CxDateTime::vUnit(
         };
 
         for (std::size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
-            std::tstring_t sStr1 = CxDateTime::sGetZodiacSign(CxString::string_cast<int>(sTestData[i][0]),
-                                                       CxString::string_cast<int>(sTestData[i][1]));
+            std::tstring_t sStr1 = CxDateTime::sGetZodiacSign(CxString::cast<int>(sTestData[i][0]),
+                                                       CxString::cast<int>(sTestData[i][1]));
             std::tstring_t sStr2 = sTestData[i][2];
             xTEST_EQ(sStr1, sStr2);
         }

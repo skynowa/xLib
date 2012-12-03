@@ -143,7 +143,7 @@
     ///< tracing
 #define xTRACE_VAR(v)                                    ( std::tstring_t() \
                                                                 .append( xT(#v) xT(": ")          ) \
-                                                                .append( CxString::string_cast(v) ) \
+                                                                .append( CxString::cast(v) ) \
                                                                 .append( xT(" ")                  ) \
                                                          )
     ///< trace variable, trace variable and value

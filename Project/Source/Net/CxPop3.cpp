@@ -250,7 +250,7 @@ CxPop3::vTop(int a_iNum, int a_iLines, std::tstring_t &a_sBuff) {
 
     //-------------------------------------
     //[TOP 1 10\r\n]
-    std::tstring_t sTopCmd = xT("TOP ") + CxString::string_cast(a_iNum) + xT(" ") + CxString::string_cast(a_iLines) + xT("\r\n");
+    std::tstring_t sTopCmd = xT("TOP ") + CxString::cast(a_iNum) + xT(" ") + CxString::cast(a_iLines) + xT("\r\n");
 
     _vCommand(sTopCmd, xT("\r\n.\r\n"), &_m_sRes);
 
@@ -275,7 +275,7 @@ CxPop3::vRetriveRaw(int a_iNum, const std::tstring_t &a_csDirPath, const std::ts
 
     //-------------------------------------
     //[RETR 3\r\n]
-    const std::tstring_t sRetrCmd = xT("RETR ") + CxString::string_cast(a_iNum) + xT("\r\n");
+    const std::tstring_t sRetrCmd = xT("RETR ") + CxString::cast(a_iNum) + xT("\r\n");
 
     _vCommand(sRetrCmd, xT("\r\n.\r\n"), &_m_sRes);
 
@@ -327,7 +327,7 @@ CxPop3::vRetriveRawAndBackup(int a_iNum, const std::tstring_t &a_csDirPath, cons
 
     //-------------------------------------
     //[RETR 3\r\n]
-    const std::tstring_t sRetrCmd = xT("RETR ") + CxString::string_cast(a_iNum) + xT("\r\n");
+    const std::tstring_t sRetrCmd = xT("RETR ") + CxString::cast(a_iNum) + xT("\r\n");
 
     _vCommand(sRetrCmd, xT("\r\n.\r\n"), &_m_sRes);
 
@@ -391,7 +391,7 @@ CxPop3::vRetrieveHeader(int a_iNum, CxMimeHeader &a_mhMimeHeader) {
 
     //-------------------------------------
     //[TOP 1 0\r\n]
-    std::tstring_t sTopCmd = xT("TOP ") + CxString::string_cast(a_iNum) + xT(" ") + xT("0") + xT("\r\n");
+    std::tstring_t sTopCmd = xT("TOP ") + CxString::cast(a_iNum) + xT(" ") + xT("0") + xT("\r\n");
 
     _vCommand(sTopCmd, xT("\r\n.\r\n"), &_m_sRes);
 
@@ -421,7 +421,7 @@ CxPop3::vDelete(int a_iNum) {
 
     //-------------------------------------
     //[DELE 2\r\n]
-    const std::tstring_t sDeleCmd = xT("DELE ") + CxString::string_cast(a_iNum) + xT("\r\n");
+    const std::tstring_t sDeleCmd = xT("DELE ") + CxString::cast(a_iNum) + xT("\r\n");
 
     _vCommand(sDeleCmd, xT("\r\n"), &_m_sRes);
 }
@@ -462,7 +462,7 @@ CxPop3::_ulMailsSum(const std::tstring_t &a_csServerAnswer) {
     CxString::vSplit(a_csServerAnswer, xT(" "), &vsRes);
 
     sSum  = vsRes.at(1);
-    ulSum = CxString::string_cast<ulong_t>( sSum );        // ul -> l
+    ulSum = CxString::cast<ulong_t>( sSum );        // ul -> l
 
     return ulSum;
 }
@@ -480,7 +480,7 @@ CxPop3::_ulMailsSize(const std::tstring_t &a_csServerAnswer) {
     CxString::vSplit(a_csServerAnswer, xT(" "), &vsRes);
 
     sSize  = vsRes.at(2);
-    ulSize = CxString::string_cast<ulong_t>( sSize );    // ul+\r\n -> l
+    ulSize = CxString::cast<ulong_t>( sSize );    // ul+\r\n -> l
 
     return ulSize;
 }

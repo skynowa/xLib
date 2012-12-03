@@ -675,7 +675,7 @@ CxString::sFormatPercentage(
 
     std::tstring_t sRv;
 
-    sRv = string_cast( a_ullCurrValue * 100ULL / a_ullMaxValue );
+    sRv = cast( a_ullCurrValue * 100ULL / a_ullMaxValue );
     xCHECK_RET(true == sRv.empty(), xT("0%"));
 
     sRv.append(xT("%"));

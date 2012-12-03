@@ -124,7 +124,7 @@ CxStackTrace::vGet(
                     sFileLine     = csDataNotFound;
                 } else {
                     sFilePath     = ihlImagehlpLine.FileName;
-                    sFileLine     = CxString::string_cast(ihlImagehlpLine.LineNumber);
+                    sFileLine     = CxString::cast(ihlImagehlpLine.LineNumber);
                 }
             }
 
@@ -163,7 +163,7 @@ CxStackTrace::vGet(
             {
                 std::vec_tstring_t vsStackLine;
 
-                vsStackLine.push_back( CxString::string_cast(iStackLineNum) );
+                vsStackLine.push_back( CxString::cast(iStackLineNum) );
                 vsStackLine.push_back(sModulePath);
                 vsStackLine.push_back(sFilePath);
                 vsStackLine.push_back(sFileLine);
@@ -227,7 +227,7 @@ CxStackTrace::vGet(
             iStackLineNum = i;
             sModulePath   = (NULL == dlinfo.dli_fname) ? csDataNotFound : dlinfo.dli_fname;
             sFilePath     = _sFilePath.empty()         ? csDataNotFound : _sFilePath;
-            sFileLine     = CxString::string_cast(_ulSourceLine);
+            sFileLine     = CxString::cast(_ulSourceLine);
             sByteOffset   = CxString::sFormat(xT("%p"), ptrdiff_t(dlinfo.dli_saddr));
             sFunctionName = (NULL == pcszSymbolName)   ? csDataNotFound : pcszSymbolName;
 
@@ -257,7 +257,7 @@ CxStackTrace::vGet(
         {
             std::vec_tstring_t vsStackLine;
 
-            vsStackLine.push_back( CxString::string_cast(iStackLineNum) );
+            vsStackLine.push_back( CxString::cast(iStackLineNum) );
             vsStackLine.push_back(sModulePath);
             vsStackLine.push_back(sFilePath);
             vsStackLine.push_back(sFileLine);
@@ -399,7 +399,7 @@ CxStackTrace::_vAddr2Line(
         xSTD_VERIFY(0 == std::feof(pflFile));
 
         *a_psFilePath    = vsLine.at(0);
-        *a_pulSourceLine = CxString::string_cast<ulong_t>( vsLine.at(1) );
+        *a_pulSourceLine = CxString::cast<ulong_t>( vsLine.at(1) );
     }
 
     int iRv =::pclose(pflFile);    pflFile = NULL;

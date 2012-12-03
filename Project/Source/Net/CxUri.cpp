@@ -152,7 +152,7 @@ CxUri::sAuthority() const {
 
     if (0 < _m_usPort && false == _bIsDefaultPort()) {
         sTempAuthority += xT(":");
-        sTempAuthority += CxString::string_cast(_m_usPort);
+        sTempAuthority += CxString::cast(_m_usPort);
     }
 
     return sEncodeComponent(sTempAuthority/*_m_sAuthority*/);
@@ -500,7 +500,7 @@ CxUri::_vParse(const std::tstring_t &a_csUri) {
 
     if (std::tstring_t::npos != uiPortStart) {
         std::tstring_t sPort = CxString::sCut(_m_sAuthority, uiPortStart + 1/*":"*/, uiPortEnd);
-        _m_usPort = CxString::string_cast<ushort_t>(sPort);
+        _m_usPort = CxString::cast<ushort_t>(sPort);
     }
     if (0 == _m_usPort) {
         _m_usPort = _usDefaultPort();
