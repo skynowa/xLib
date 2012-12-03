@@ -1,6 +1,6 @@
 /**
  * \file  CxString.h
- * \brief strings utils
+ * \brief string utils
  */
 
 
@@ -9,7 +9,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-//overload operators << for std::basic_ostream
+// overload operators << for std::basic_ostream
 xNAMESPACE_BEGIN(std)
 
     template<typename Traits>
@@ -41,26 +41,65 @@ class CxString :
     /// strings utils
 {
     public:
+        /****************************************************************************
+        *   converters
+        *
+        *****************************************************************************/
+
         template<typename T>
         static std::tstring_t string_cast       (const T &cValueT);
             ///< convert type to std::tstring_t
-
         template<typename T>
         static std::tstring_t string_cast       (const T &cValueT, const int &ciBase);
             ///< convert type to std::tstring_t by base
-
         template<typename T>
         static T              string_cast       (const std::tstring_t &csStr);
             ///< convert std::tstring_t to type
-
         template<typename T>
         static T              string_cast       (const std::tstring_t &csStr, const int &ciBase);
             ///< convert std::tstring_t by base (8, 10, 16) to type
+
+        static std::string    castA             (const std::wstring &csStr);
+            ///< std::wstring in std::string
+        static std::wstring   castW             (const std::string &csStr);
+            ///< std::string in std::wstring
+
+        static std::wstring   sStrToWStr        (const std::string  &csStr,  const uint_t &cuiCodePage);
+            ///< std::string in std::wstring
+        static std::string    sWStrToStr        (const std::wstring &cwsStr, const uint_t &cuiCodePage);
+            ///< std::wstring in std::string
+
+        static std::wstring   sStrToWStr        (const std::string  &csStdString,  const std::locale &clocLocale = std::locale());
+            ///< std::string in std::wstring
+        static std::string    sWStrToStr        (const std::wstring &csStdWString, const std::locale &clocLocale = std::locale());
+            ///< std::wstring in std::string
+
+        static std::string    sConvertCodePage  (const std::string &csSource, const uint_t &cuiCodePageSource, const uint_t &cuiCodePageDest);
+            ///< convert codepage
+
+        static std::string    asCharToOemBuff   (const std::tstring_t &csSrc);
+            ///< convert char to oem
+        static std::tstring_t sOemToCharBuff    (const std::string &csSrc);
+            ///< convert oem to char
 
         static std::tstring_t sBoolToStr        (const bool &cbBool);
             ///< bool to std::tstring_t
         static bool           bStrToBool        (const std::tstring_t &csStr);
             ///< convert std::tstring_t to bool
+
+        static std::tstring_t sToLowerCase      (const std::tstring_t &csStr);
+            ///< convert to lowcase
+        static std::tstring_t sToUpperCase      (const std::tstring_t &csStr);
+            ///< convert to uppercase
+        static std::tstring_t sToLowerCase      (const std::tstring_t &csStr, const size_t &cuiLength);
+            ///< convert to lowcase
+        static std::tstring_t sToUpperCase      (const std::tstring_t &csStr, const size_t &cuiLength);
+            ///< convert to uppercase
+
+        /****************************************************************************
+        *   xxxxxxxx
+        *
+        *****************************************************************************/
 
         static std::tstring_t sTrimLeftChars    (const std::tstring_t &csStr, const std::tstring_t &csChars);
             ///< trim left chars
@@ -90,16 +129,6 @@ class CxString :
             ///< cut using strings
         static std::tstring_t sCut              (const std::tstring_t &csStr, const size_t &cuiStartPos = 0, const size_t &cuiEndPos = std::tstring_t::npos);
             ///< cut using string positions
-
-        static std::tstring_t sToLowerCase      (const std::tstring_t &csStr);
-            ///< convert to lowcase
-        static std::tstring_t sToUpperCase      (const std::tstring_t &csStr);
-            ///< convert to uppercase
-        static std::tstring_t sToLowerCase      (const std::tstring_t &csStr, const size_t &cuiLength);
-            ///< convert to lowcase
-        static std::tstring_t sToUpperCase      (const std::tstring_t &csStr, const size_t &cuiLength);
-            ///< convert to uppercase
-
         static std::tstring_t sFormat           (const tchar_t *pcszFormat, ...);
             ///< format
         static std::tstring_t sFormatV          (const tchar_t *pcszFormat, va_list palArgs);
@@ -108,7 +137,7 @@ class CxString :
             ///< minimize
 
         /****************************************************************************
-        *
+        *   compare
         *
         *****************************************************************************/
 
@@ -120,30 +149,12 @@ class CxString :
         *
         *****************************************************************************/
 
-        static std::tstring_t sTranslitLatToRus (const std::tstring_t &csStr);
-            ///< translit
         static std::tstring_t sFormatBytes      (const ulonglong_t &cullBytes);
             ///< ormat bytes (like Bit(s), Byte(s), MB, GB, TB)
         static std::tstring_t sFormatPercentage (const ulonglong_t &cullMaxValue, const ulonglong_t &cullCurrValue);
             ///< formatting percentage
-
-        static std::wstring   sStrToWStr        (const std::string  &csStr,  const uint_t &cuiCodePage);
-            ///< std::string in std::wstring
-        static std::string    sWStrToStr        (const std::wstring &cwsStr, const uint_t &cuiCodePage);
-            ///< std::wstring in std::string
-
-        static std::wstring   sStrToWStr        (const std::string  &csStdString,  const std::locale &clocLocale = std::locale());
-            ///< std::string in std::wstring
-        static std::string    sWStrToStr        (const std::wstring &csStdWString, const std::locale &clocLocale = std::locale());
-            ///< std::wstring in std::string
-
-        static std::string    sConvertCodePage  (const std::string &csSource, const uint_t &cuiCodePageSource, const uint_t &cuiCodePageDest);
-            ///< convert codepage
-
-        static std::string    asCharToOemBuff   (const std::tstring_t &csSrc);
-            ///< convert char to oem
-        static std::tstring_t sOemToCharBuff    (const std::string &csSrc);
-            ///< convert oem to char
+        static std::tstring_t sTranslitLatToRus (const std::tstring_t &csStr);
+            ///< translit
 
         /****************************************************************************
         *    memory
@@ -174,4 +185,4 @@ xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #include "CxString.inl"
 //---------------------------------------------------------------------------
-#endif    //xLib_Common_CxStringH
+#endif    // xLib_Common_CxStringH

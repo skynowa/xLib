@@ -25,7 +25,7 @@ CxString::sBoolToStr(
     const bool &a_cbBool
 )
 {
-    // bBool - n/a
+    xTEST_NA(a_cbBool);
 
     return (false == a_cbBool) ? xT("false") : xT("true");
 }
@@ -36,7 +36,7 @@ CxString::bStrToBool(
     const std::tstring_t &a_csStr
 )
 {
-    // n/a
+    xTEST_NA(a_csStr);
 
     xCHECK_RET(false != bCompareNoCase(xT("true"),  a_csStr), true);
     xCHECK_RET(false != bCompareNoCase(xT("false"), a_csStr), false);
@@ -51,8 +51,8 @@ CxString::sTrimLeftChars(
     const std::tstring_t &a_csChars
 )
 {
-    // csStr   - n/a
-    // csChars - n/a
+    xTEST_NA(a_csStr);
+    xTEST_NA(a_csChars);
 
     std::tstring_t sRv(a_csStr);
 
@@ -66,8 +66,8 @@ CxString::sTrimRightChars(
     const std::tstring_t &a_csChars
 )
 {
-    // csStr   - n/a
-    // csChars - n/a
+    xTEST_NA(a_csStr);
+    xTEST_NA(a_csChars);
 
     std::tstring_t sRv(a_csStr);
 
@@ -81,8 +81,8 @@ CxString::sTrimChars(
     const std::tstring_t &a_csChars
 )
 {
-    // csStr   - n/a
-    // csChars - n/a
+    xTEST_NA(a_csStr);
+    xTEST_NA(a_csChars);
 
     std::tstring_t sRv(a_csStr);
 
@@ -98,7 +98,7 @@ CxString::sTrimSpace(
     const std::tstring_t &a_csStr
 )
 {
-    // csStr - n/a
+    xTEST_NA(a_csStr);
 
     return sTrimChars(a_csStr, CxConst::xWHITE_SPACES);
 }
@@ -109,7 +109,7 @@ CxString::sRemoveEol(
     const std::tstring_t &a_csStr
 )
 {
-    // csStr - n/a
+    xTEST_NA(a_csStr);
 
     return sTrimRightChars(a_csStr, CxConst::xEOL);
 }
@@ -122,9 +122,9 @@ CxString::sReplaceAll(
     const std::tstring_t &a_csNewStr
 )
 {
-    // csStr    - n/a
-    // csOldStr - n/a
-    // csNewStr - n/a
+    xTEST_NA(a_csStr);
+    xTEST_NA(a_csOldStr);
+    xTEST_NA(a_csNewStr);
 
     xCHECK_RET(true == a_csStr.empty(),    a_csStr);
     xCHECK_RET(true == a_csOldStr.empty(), a_csStr);
@@ -153,9 +153,9 @@ CxString::sReplaceAll(
     const tchar_t        &a_cchNewStr
 )
 {
-    // csStr    - n/a
-    // cchOldStr - n/a
-    // cchNewStr - n/a
+    xTEST_NA(a_csStr);
+    xTEST_NA(a_cchOldStr);
+    xTEST_NA(a_cchNewStr);
 
     return sReplaceAll(a_csStr, std::tstring_t(1, a_cchOldStr), std::tstring_t(1, a_cchNewStr));
 }
@@ -167,8 +167,8 @@ CxString::sRemoveAll(
     const std::tstring_t &a_csRemoveStr
 )
 {
-    // csStr      - n/a
-    // csRemoveStr - n/a
+    xTEST_NA(a_csStr);
+    xTEST_NA(a_csRemoveStr);
 
     return sReplaceAll(a_csStr, a_csRemoveStr, std::tstring_t());
 }
@@ -181,16 +181,16 @@ CxString::vSplit(
     std::vec_tstring_t   *a_pvsOut
 )
 {
-    // csStr    - n/a
-    // csSep    - n/a
-    // pvsOut - n/a
+    xTEST_NA(a_csStr);
+    xTEST_NA(a_csSep);
+    xTEST_NA(a_pvsOut);
 
     xCHECK_DO(true == a_csStr.empty(), return);
     xCHECK_DO(true == a_csSep.empty(), return);
     xTEST_PTR(a_pvsOut);
 
     std::vec_tstring_t vsRes;
-    size_t             uiPrevPos = 0U;     //start of string
+    size_t             uiPrevPos = 0U;     // start of string
     size_t             uiPos     = 0U;
 
     xFOREVER {
@@ -214,8 +214,8 @@ CxString::sJoin(
     const std::tstring_t     &a_csSep
 )
 {
-    // cvsVec - n/a
-    // csSep    - n/a
+    xTEST_NA(a_cvsVec);
+    xTEST_NA(a_csSep);
 
     std::tstring_t sRv;
 
@@ -235,8 +235,8 @@ CxString::sJoin(
     const tchar_t            &a_cchSep
 )
 {
-    // cvsVec - n/a
-    // csSep    - n/a
+    xTEST_NA(a_cvsVec);
+    xTEST_NA(a_cchSep);
 
     return sJoin(a_cvsVec, std::tstring_t(1, a_cchSep));
 }
@@ -249,9 +249,9 @@ CxString::sCut(
     const std::tstring_t &a_csRightSep
 )
 {
-    // csStr      - n/a
-    // csLeftSep  - n/a
-    // csRightSep - n/a
+    xTEST_NA(a_csStr);
+    xTEST_NA(a_csLeftSep);
+    xTEST_NA(a_csRightSep);
 
     size_t uiStartDelimPos = 0U;
     size_t uiStopDelimPos  = 0U;
@@ -276,6 +276,10 @@ CxString::sCut(
     const size_t         &a_cuiEndPos   /* = std::tstring_t:npos */
 )
 {
+    xTEST_NA(a_csStr);
+    xTEST_NA(a_cuiStartPos);
+    xTEST_NA(a_cuiEndPos);
+
     xCHECK_RET(true          == a_csStr.empty(), std::tstring_t());
     xCHECK_RET(a_cuiStartPos >  a_cuiEndPos,     std::tstring_t());
 
@@ -290,7 +294,7 @@ CxString::sToLowerCase(
     const std::tstring_t &a_csStr
 )
 {
-    // n/a
+    xTEST_NA(a_csStr);
 
     return sToLowerCase(a_csStr, a_csStr.size());
 }
@@ -301,7 +305,7 @@ CxString::sToUpperCase(
     const std::tstring_t &a_csStr
 )
 {
-    // n/a
+    xTEST_NA(a_csStr);
 
     return sToUpperCase(a_csStr, a_csStr.size());
 }
@@ -313,7 +317,8 @@ CxString::sToLowerCase(
     const size_t         &a_cuiLength
 )
 {
-    // n/a
+    xTEST_NA(a_csStr);
+    xTEST_NA(a_cuiLength);
 
     size_t uiLength = a_cuiLength;
 
@@ -323,8 +328,8 @@ CxString::sToLowerCase(
     std::tstring_t sRv(a_csStr);
 
 #if   xOS_ENV_WIN
-    ulong_t ulRv = ::CharLowerBuff(static_cast<LPTSTR>( &sRv[0] ), uiLength);
-    xTEST_EQ(uiLength, static_cast<size_t>( ulRv ));
+    DWORD dwRv = ::CharLowerBuff(static_cast<LPTSTR>( &sRv[0] ), uiLength);
+    xTEST_EQ(uiLength, static_cast<size_t>( dwRv ));
 #elif xOS_ENV_UNIX
     std::transform(sRv.begin(), sRv.begin() + uiLength, sRv.begin(), CxChar::chToLower);
 #endif
@@ -339,7 +344,8 @@ CxString::sToUpperCase(
     const size_t         &a_cuiLength
 )
 {
-    // n/a
+    xTEST_NA(a_csStr);
+    xTEST_NA(a_cuiLength);
 
     size_t uiLength = a_cuiLength;
 
@@ -349,8 +355,8 @@ CxString::sToUpperCase(
     std::tstring_t sRv(a_csStr);
 
 #if   xOS_ENV_WIN
-    ulong_t ulRv = ::CharUpperBuff(static_cast<LPTSTR>( &sRv[0] ), uiLength);
-    xTEST_EQ(uiLength, static_cast<size_t>( ulRv ));
+    DWORD dwRv = ::CharUpperBuff(static_cast<LPTSTR>( &sRv[0] ), uiLength);
+    xTEST_EQ(uiLength, static_cast<size_t>( dwRv ));
 #elif xOS_ENV_UNIX
     std::transform(sRv.begin(), sRv.begin() + uiLength, sRv.begin(), CxChar::chToUpper);
 #endif
@@ -365,8 +371,9 @@ CxString::bCompareNoCase(
     const std::tstring_t &a_csStr2
 )
 {
-    // csStr1 - n/a
-    // csStr2 - n/a
+    xTEST_NA(a_csStr1);
+    xTEST_NA(a_csStr2);
+
     xCHECK_RET(a_csStr1.size() != a_csStr2.size(), false);
 
 #if   xOS_ENV_WIN
@@ -402,12 +409,12 @@ CxString::pvMemoryZeroSecure(
     const size_t &a_cuiBuffSize
 )
 {
-    // pvBuff     - n/a
-    // uiBuffSize - n/a
+    xTEST_NA(a_pvBuff);
+    xTEST_NA(a_cuiBuffSize);
 
     size_t uiBuffSize = a_cuiBuffSize;
 
-    for (volatile char *a_vpvBuff = static_cast<volatile char *>( a_pvBuff );
+    for (volatile uchar_t *a_vpvBuff = static_cast<volatile uchar_t *>( a_pvBuff );
          NULL != a_pvBuff && 0 != uiBuffSize;
          ++ a_vpvBuff, -- uiBuffSize)
     {
@@ -431,7 +438,8 @@ CxString::sFormat(
     const tchar_t *a_pcszFormat, ...
 )
 {
-    // n/a
+    xTEST_NA(a_pcszFormat);
+
     xCHECK_RET(NULL == a_pcszFormat, std::tstring_t());
 
     std::tstring_t sRv;
@@ -448,82 +456,90 @@ CxString::sFormat(
 //---------------------------------------------------------------------------
 /* static */
 #if 1
-    std::tstring_t
-    CxString::sFormatV(
-        const tchar_t *a_pcszFormat,
-        va_list        a_palArgs
-    )
-    {
-        // n/a
-        xCHECK_RET(NULL == a_pcszFormat, std::tstring_t());
 
-        std::tstring_t sBuff(64, 0);
-        int          iWrittenSize = - 1;
+std::tstring_t
+CxString::sFormatV(
+    const tchar_t *a_pcszFormat,
+    va_list        a_palArgs
+)
+{
+    xTEST_NA(a_pcszFormat);
+    xTEST_NA(a_palArgs);
 
-        xFOREVER {
-            va_list _palArgs;
-            xVA_COPY(_palArgs, a_palArgs);
+    xCHECK_RET(NULL == a_pcszFormat, std::tstring_t());
 
-            {
-                iWrittenSize = ::xTVSNPRINTF(&sBuff.at(0), sBuff.size(), a_pcszFormat, _palArgs);
-                xCHECK_DO(iWrittenSize > - 1 && static_cast<size_t>( iWrittenSize ) < sBuff.size(), break);
+    std::tstring_t sBuff(64, 0);
+    int          iWrittenSize = - 1;
 
-                sBuff.resize(sBuff.size() * 2);
-            }
+    xFOREVER {
+        va_list _palArgs;
+        xVA_COPY(_palArgs, a_palArgs);
 
-            xVA_END(_palArgs);
-        }
-
-        sBuff.resize(iWrittenSize);
-
-        return sBuff;
-    }
-#else
-    std::tstring_t
-    CxString::sFormatV(
-        LPCTSTR a_pcszFormat,
-        va_list a_palArgs
-    )
-    {
-        // n/a
-        xCHECK_RET(NULL == pcszFormat, std::tstring_t());
-
-        std::tstring_t sBuff(64, 0);
-        int            iWrittenSize = - 1;
-
-        //--------------------------------------------------
-        //calc size
         {
-            va_list _palArgs;
-            xVA_COPY(_palArgs, palArgs);
-            iWrittenSize = ::xTVSNPRINTF(&sBuff.at(0), sBuff.size(), pcszFormat, _palArgs);
-            xVA_END(_palArgs);
+            iWrittenSize = ::xTVSNPRINTF(&sBuff.at(0), sBuff.size(), a_pcszFormat, _palArgs);
+            xCHECK_DO(iWrittenSize > - 1 && static_cast<size_t>( iWrittenSize ) < sBuff.size(), break);
 
-            assert(- 1 < iWrittenSize);
-            xCHECK_RET(0 >  iWrittenSize, std::tstring_t());
-            xCHECK_RET(0 == iWrittenSize, sBuff);
+            sBuff.resize(sBuff.size() * 2);
         }
 
-        //--------------------------------------------------
-        //format
-        if (sBuff.size() <= static_cast<size_t>( iWrittenSize )) {
-            sBuff.resize(iWrittenSize + 1);
-
-            va_list _palArgs;
-            xVA_COPY(_palArgs, palArgs);
-            iWrittenSize = std::xTVSNPRINTF(&sBuff.at(0), sBuff.size(), pcszFormat, _palArgs);
-            xVA_END(_palArgs);
-
-            assert(- 1          <  iWrittenSize);
-            assert(sBuff.size() == static_cast<size_t>( iWrittenSize ) + 1);
-            xCHECK_RET(0             >  iWrittenSize,                           std::tstring_t());
-            xCHECK_RET(sBuff.size() != static_cast<size_t>( iWrittenSize ) + 1, std::tstring_t());
-        }
-
-        sBuff.resize(iWrittenSize);
-
-        return sBuff;
+        xVA_END(_palArgs);
     }
+
+    sBuff.resize(iWrittenSize);
+
+    return sBuff;
+}
+
+#else
+
+std::tstring_t
+CxString::sFormatV(
+    LPCTSTR a_pcszFormat,
+    va_list a_palArgs
+)
+{
+    xTEST_NA(a_pcszFormat);
+    xTEST_NA(a_palArgs);
+
+    xCHECK_RET(NULL == pcszFormat, std::tstring_t());
+
+    std::tstring_t sBuff(64, 0);
+    int            iWrittenSize = - 1;
+
+    //--------------------------------------------------
+    // calc size
+    {
+        va_list _palArgs;
+        xVA_COPY(_palArgs, palArgs);
+        iWrittenSize = ::xTVSNPRINTF(&sBuff.at(0), sBuff.size(), pcszFormat, _palArgs);
+        xVA_END(_palArgs);
+
+        assert(- 1 < iWrittenSize);
+        xCHECK_RET(0 >  iWrittenSize, std::tstring_t());
+        xCHECK_RET(0 == iWrittenSize, sBuff);
+    }
+
+    //--------------------------------------------------
+    // format
+    if (sBuff.size() <= static_cast<size_t>( iWrittenSize )) {
+        sBuff.resize(iWrittenSize + 1);
+
+        va_list _palArgs;
+        xVA_COPY(_palArgs, palArgs);
+        iWrittenSize = std::xTVSNPRINTF(&sBuff.at(0), sBuff.size(), pcszFormat, _palArgs);
+        xVA_END(_palArgs);
+
+        assert(- 1          <  iWrittenSize);
+        assert(sBuff.size() == static_cast<size_t>( iWrittenSize ) + 1);
+        xCHECK_RET(0             >  iWrittenSize,                           std::tstring_t());
+        xCHECK_RET(sBuff.size() != static_cast<size_t>( iWrittenSize ) + 1, std::tstring_t());
+    }
+
+    sBuff.resize(iWrittenSize);
+
+    return sBuff;
+}
+
 #endif
 //---------------------------------------------------------------------------
 /* static */
@@ -533,7 +549,9 @@ CxString::sMinimize(
     const size_t         &a_cuiMaxLen
 )
 {
-    // n/a
+    xTEST_NA(a_csStr);
+    xTEST_NA(a_cuiMaxLen);
+
     xCHECK_RET(true == a_csStr.empty(), std::tstring_t());
     xCHECK_RET(0U   == a_cuiMaxLen,     std::tstring_t());
 
@@ -551,51 +569,7 @@ CxString::sMinimize(
 
     return sRv;
 }
-//--------------------------------------------------------------------------
-/* static */
-std::tstring_t
-CxString::sCreateGuid() {
-    // n/a
-
-    std::tstring_t sRv;
-
-#if   xOS_ENV_WIN
-    GUID    guidId = {0};
-    HRESULT hrGuid = S_FALSE;
-
-    hrGuid = CoCreateGuid(&guidId);
-    xTEST_EQ(true, SUCCEEDED(hrGuid));
-
-    sRv = sFormat(
-                xT("%08lX-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X"),
-                guidId.Data1,
-                guidId.Data2,
-                guidId.Data3,
-                guidId.Data4[0], guidId.Data4[1],
-                guidId.Data4[2], guidId.Data4[3], guidId.Data4[4], guidId.Data4[5], guidId.Data4[6], guidId.Data4[7]
-    );
-    xTEST_EQ(false, sRv.empty());
-#elif xOS_ENV_UNIX
-    //TODO: (sCreateGuid)
-    //#include <uuid/uuid.h>
-    xNOT_IMPLEMENTED;
-#endif
-
-    return sRv;
-}
 //---------------------------------------------------------------------------
-/* static */
-bool
-CxString::bIsRepeated(
-    const std::tstring_t &a_csStr
-)
-{
-    // n/a
-
-    return ( std::tstring_t::npos == a_csStr.find_first_not_of(a_csStr.at(0)) );
-}
-//---------------------------------------------------------------------------
-
 
 /****************************************************************************
 *    coders
@@ -609,7 +583,8 @@ CxString::sTranslitLatToRus(
     const std::tstring_t &a_csStr
 )
 {
-    // n/a
+    xTEST_NA(a_csStr);
+
     xCHECK_RET(true == a_csStr.empty(), std::tstring_t());
 
     //translit table
@@ -654,7 +629,7 @@ CxString::sFormatBytes(
     const ulonglong_t &a_cullBytes
 )
 {
-    // ulBytes - n/a
+    xTEST_NA(a_cullBytes);
 
     std::tstring_t sRv = xT("<uknown>");
 
@@ -693,8 +668,9 @@ CxString::sFormatPercentage(
     const ulonglong_t &a_ullCurrValue
 )
 {
-    // ullMaxValue  - n/a
-    // ullCurrValue - n/a
+    xTEST_NA(a_ullMaxValue);
+    xTEST_NA(a_ullCurrValue);
+
     xCHECK_RET(0ULL == a_ullMaxValue, xT("0%"));    // devision by zero
 
     std::tstring_t sRv;
@@ -714,20 +690,20 @@ CxString::sStrToWStr(
     const uint_t      &a_cuiCodePage
 )
 {
-    // csStr - n/a
-    // uiCodePage - n/a
+    xTEST_NA(a_csStr);
+    xTEST_NA(a_cuiCodePage);
 
     std::wstring wsRes;
 
 #if   xOS_ENV_WIN
-    int iSize = ::MultiByteToWideChar(a_cuiCodePage, 0, a_csStr.c_str(), - 1, NULL, 0);
+    int iSize = ::MultiByteToWideChar(a_cuiCodePage, 0UL, a_csStr.c_str(), - 1, NULL, 0);
     xTEST_LESS(0, iSize);
 
-    wsRes.resize(iSize - 1);    // '\0'
-    iSize = ::MultiByteToWideChar(a_cuiCodePage, 0, a_csStr.c_str(), - 1, static_cast<LPWSTR>(&wsRes.at(0)), iSize);
+    wsRes.resize(iSize - 1);    // remove '\0'
+    iSize = ::MultiByteToWideChar(a_cuiCodePage, 0UL, a_csStr.c_str(), - 1, static_cast<LPWSTR>(&wsRes.at(0)), iSize);
     xTEST_LESS(0, iSize);
 #elif xOS_ENV_UNIX
-    //TODO: (sStrToWStr)
+    // TODO: sStrToWStr
     xNOT_IMPLEMENTED;
 #endif
 
@@ -741,8 +717,8 @@ CxString::sWStrToStr(
     const uint_t       &a_cuiCodePage
 )
 {
-    // cwsStr - n/a
-    // uiCodePage - n/a
+    xTEST_NA(a_cwsStr);
+    xTEST_NA(a_cuiCodePage);
 
     std::string asRes;
 
@@ -750,11 +726,11 @@ CxString::sWStrToStr(
     int iSize = ::WideCharToMultiByte(a_cuiCodePage, 0UL, a_cwsStr.c_str(), - 1, NULL, 0, NULL, NULL);
     xTEST_LESS(0, iSize);
 
-    asRes.resize(iSize - 1);    //Р±РµР· '\0'
-    iSize = ::WideCharToMultiByte(a_cuiCodePage, 0, a_cwsStr.c_str(), - 1, static_cast<LPSTR>(&asRes.at(0)), iSize, NULL, NULL);
+    asRes.resize(iSize - 1);    // remove '\0'
+    iSize = ::WideCharToMultiByte(a_cuiCodePage, 0UL, a_cwsStr.c_str(), - 1, static_cast<LPSTR>(&asRes.at(0)), iSize, NULL, NULL);
     xTEST_LESS(0, iSize);
 #elif xOS_ENV_UNIX
-    //TODO: (sWStrToStr)
+    // TODO: (sWStrToStr)
     xNOT_IMPLEMENTED;
 #endif
 
@@ -764,16 +740,21 @@ CxString::sWStrToStr(
 /* static */
 std::wstring
 CxString::sStrToWStr(
-    const std::string &csStdString,
-    const std::locale &clocLocale /* = std::locale() */
+    const std::string &a_csStdString,
+    const std::locale &a_clocLocale /* = std::locale() */
 )
 {
-    std::wstring                swRv;
-    std::string::const_iterator itBegin( csStdString.begin() );
-    std::string::const_iterator itEnd  ( csStdString.end() );
+    xTEST_NA(a_csStdString);
+    xTEST_NA(a_clocLocale);
 
-    for ( ; itBegin != itEnd; ++ itBegin) {
-        swRv += std::use_facet< std::ctype<wchar_t> >( clocLocale ).widen( *itBegin );
+    std::wstring                swRv(a_csStdString.size(), std::wstring::value_type());
+
+    std::string::const_iterator itBegin( a_csStdString.begin() );
+    std::string::const_iterator itEnd  ( a_csStdString.end() );
+    std::wstring::iterator      itToBegin( swRv.begin() );
+
+    for ( ; itBegin != itEnd; ++ itBegin, ++ itToBegin) {
+        *itToBegin = std::use_facet< std::ctype<wchar_t> >( a_clocLocale ).widen( *itBegin );
     }
 
     return swRv;
@@ -782,19 +763,32 @@ CxString::sStrToWStr(
 /* static */
 std::string
 CxString::sWStrToStr(
-    const std::wstring &csStdWString,
-    const std::locale  &clocLocale /* = std::locale() */
+    const std::wstring &a_csStdWString,
+    const std::locale  &a_clocLocale /* = std::locale() */
 )
 {
-    std::string                  sRv;
-    std::wstring::const_iterator itBegin( csStdWString.begin() );
-    std::wstring::const_iterator itEnd  ( csStdWString.end() );
+    xTEST_NA(a_csStdWString);
+    xTEST_NA(a_clocLocale);
 
-    for ( ; itBegin != itEnd; ++ itBegin) {
-        sRv += std::use_facet< std::ctype<char> >( clocLocale ).widen( *itBegin );
-    }
+    typedef std::wstring::traits_type::state_type      state_type_t;
+    typedef std::codecvt<wchar_t, char, state_type_t>  codecvt_t;
+ 
+    std::string      asRv(a_csStdWString.size(), std::wstring::value_type());
 
-    return sRv;
+    const codecvt_t &cvt       = std::use_facet<codecvt_t>( a_clocLocale );
+    state_type_t     state     = state_type_t();
+
+    const wchar_t   *itBegin   = &a_csStdWString.at(0);
+    const wchar_t   *itEnd     = &a_csStdWString.at(0) + a_csStdWString.size();
+    const wchar_t   *itNext    = NULL;
+
+    char            *itToBegin = &asRv.at(0);
+    char            *itToEnd   = &asRv.at(0) + asRv.size();
+    char            *itToNext  = NULL;
+
+    cvt.out(state, itBegin, itEnd, itNext, itToBegin, itToEnd, itToNext);
+
+    return asRv;
 }
 //---------------------------------------------------------------------------
 /* static */
@@ -805,6 +799,10 @@ CxString::sConvertCodePage(
     const uint_t      &a_cuiCodePageDest
 )
 {
+    xTEST_NA(a_csSource);
+    xTEST_NA(a_cuiCodePageSource);
+    xTEST_NA(a_cuiCodePageDest);
+
 //    xTEST_EQ(false, csSource.empty(), std::string());        //FIX: csStr    - n/a
 //    // uiCodePageSource
 //    // uiCodePageDest
@@ -821,15 +819,17 @@ CxString::asCharToOemBuff(
     const std::tstring_t &a_csSrc
 )
 {
+    xTEST_NA(a_csSrc);
+
     std::string asDst;
 
 #if   xOS_ENV_WIN
     asDst.resize(a_csSrc.size());
 
-    BOOL bRv = ::CharToOemBuff(a_csSrc.c_str(), &asDst.at(0), asDst.size());
-    xTEST_DIFF(FALSE, bRv);
+    BOOL blRv = ::CharToOemBuff(a_csSrc.c_str(), &asDst.at(0), asDst.size());
+    xTEST_DIFF(FALSE, blRv);
 #elif xOS_ENV_UNIX
-    //TODO: asCharToOemBuff
+    // TODO: asCharToOemBuff
     xNOT_IMPLEMENTED;
 #endif
 
@@ -842,15 +842,17 @@ CxString::sOemToCharBuff(
     const std::string &a_csSrc
 )
 {
+    xTEST_NA(a_csSrc);
+
     std::tstring_t sDst;
 
 #if   xOS_ENV_WIN
     sDst.resize(a_csSrc.size());
 
-    BOOL bRv = ::OemToCharBuff(a_csSrc.c_str(), &sDst.at(0), sDst.size());
-    xTEST_DIFF(FALSE, bRv);
+    BOOL blRv = ::OemToCharBuff(a_csSrc.c_str(), &sDst.at(0), sDst.size());
+    xTEST_DIFF(FALSE, blRv);
 #elif xOS_ENV_UNIX
-    //TODO: sOemToCharBuff
+    // TODO: sOemToCharBuff
     xNOT_IMPLEMENTED;
 #endif
 
@@ -858,9 +860,53 @@ CxString::sOemToCharBuff(
 }
 //---------------------------------------------------------------------------
 
+
 /****************************************************************************
 *    other
 *
 *****************************************************************************/
+
+//--------------------------------------------------------------------------
+/* static */
+std::tstring_t
+CxString::sCreateGuid() {
+    std::tstring_t sRv;
+
+#if   xOS_ENV_WIN
+    GUID    guidId = {0};
+    HRESULT hrGuid = S_FALSE;
+
+    hrGuid = ::CoCreateGuid(&guidId);
+    xTEST_EQ(true, SUCCEEDED(hrGuid));
+
+    sRv = sFormat(
+                xT("%08lX-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X"),
+                guidId.Data1,
+                guidId.Data2,
+                guidId.Data3,
+                guidId.Data4[0], guidId.Data4[1],
+                guidId.Data4[2], guidId.Data4[3], guidId.Data4[4], guidId.Data4[5], guidId.Data4[6], guidId.Data4[7]
+    );
+    xTEST_EQ(false, sRv.empty());
+#elif xOS_ENV_UNIX
+    // TODO: (sCreateGuid)
+    // #include <uuid/uuid.h>
+    xNOT_IMPLEMENTED;
+#endif
+
+    return sRv;
+}
+//---------------------------------------------------------------------------
+/* static */
+bool
+CxString::bIsRepeated(
+    const std::tstring_t &a_csStr
+)
+{
+    xTEST_NA(a_csStr);
+
+    return ( std::tstring_t::npos == a_csStr.find_first_not_of(a_csStr.at(0)) );
+}
+//---------------------------------------------------------------------------
 
 xNAMESPACE_END(NxLib)
