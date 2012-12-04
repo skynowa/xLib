@@ -22,24 +22,22 @@ CxTest_CxCom::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    
-
 #if xOS_ENV_WIN
 
-    xTEST_CASE("CxCom::CxCom bIsInit", cullCaseLoops)
+    xTEST_CASE("CxCom::CxCom", cullCaseLoops)
     {
-        m_bRv = CxCom::bIsInit();
-        xTEST_EQ(false, m_bRv);
+        const COINIT ccmModel[] = {
+            COINIT_APARTMENTTHREADED,
+            COINIT_MULTITHREADED,
+            COINIT_DISABLE_OLE1DDE,
+            COINIT_SPEED_OVER_MEMORY
+        };
 
-        {
-            CxCom cmCom(CxCom::cmMultiThreaded);
-
-            m_bRv = CxCom::bIsInit();
-            xTEST_EQ(true, m_bRv);
+        for (size_t i = 0; i < xARRAY_SIZE(ccmModel) - 1; ++ i) {
+            CxCom cmCom1(ccmModel[i]);
+            CxCom cmCom2(ccmModel[i]);
+            CxCom cmCom3(ccmModel[i]);
         }
-
-        m_bRv = CxCom::bIsInit();
-        xTEST_EQ(false, m_bRv);
     }
 
 #endif

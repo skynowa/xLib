@@ -11,12 +11,9 @@
 #endif
 
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
 
 xNAMESPACE_BEGIN(NxLib)
-
-long_t CxCom::_ms_lInitCount = 0L;
-
 
 /****************************************************************************
 *    public
@@ -25,42 +22,17 @@ long_t CxCom::_ms_lInitCount = 0L;
 
 //---------------------------------------------------------------------------
 CxCom::CxCom(
-    const EConcurrencyModel &ccmCoModel /* = cmMultiThreaded*/
-) :
-    _m_ulConModel(static_cast<DWORD>( ccmCoModel ))
+    const COINIT &ccmCoModel
+)
 {
-    // n/a ?
+    xTEST_NA(ccmCoModel);
 
-    ////xCHECK_DO(true == CxCom::bIsInit(ccmCoModel), return);
-
-    ++ _ms_lInitCount;
-    if (0L == _ms_lInitCount) {
-        HRESULT hrRes = ::CoInitializeEx(NULL, _m_ulConModel);
-        xTEST_EQ(true, SUCCEEDED(hrRes));
-    }
+    HRESULT hrRes = ::CoInitializeEx(NULL, ccmCoModel);
+    xTEST_EQ(true, SUCCEEDED(hrRes));
 }
 //---------------------------------------------------------------------------
 CxCom::~CxCom() {
-    -- _ms_lInitCount;
-    if (0L == _ms_lInitCount) {
-        (void)::CoUninitialize();
-    }
-}
-//---------------------------------------------------------------------------
-
-
-/****************************************************************************
-*    public, static
-*
-*****************************************************************************/
-
-//---------------------------------------------------------------------------
-/* static */
-bool
-CxCom::bIsInit() {
-    // n/a
-
-    return (_ms_lInitCount > 0L);
+    (void)::CoUninitialize();
 }
 //---------------------------------------------------------------------------
 

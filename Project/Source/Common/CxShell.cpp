@@ -245,7 +245,7 @@ CxShell::vCreateShortcut(
 {
 
 
-    CxCom cmCom(CxCom::cmMultiThreaded);
+    CxCom cmCom(COINIT_MULTITHREADED);
 
     IShellLink *pslSL = NULL;
     HRESULT     hRv  = 0;
