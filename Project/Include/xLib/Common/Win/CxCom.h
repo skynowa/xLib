@@ -9,7 +9,7 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
 
 xNAMESPACE_BEGIN(NxLib)
 
@@ -18,29 +18,10 @@ class CxCom :
     /// Component Object Model (COM)
 {
     public:
-        enum EConcurrencyModel
-            /// concurrency model
-            /// the COINIT_APARTMENTTHREADED and COINIT_MULTITHREADED flags cannot both be set
-        {
-            cmApartmentThreaded = COINIT_APARTMENTTHREADED,
-            cmMultiThreaded     = COINIT_MULTITHREADED,
-            cmDisableOleIdde    = COINIT_DISABLE_OLE1DDE,
-            cmSpeedOverMemory   = COINIT_SPEED_OVER_MEMORY
-        };
-
-        explicit      CxCom  (const EConcurrencyModel &ccmCoModel /* = cmMultiThreaded*/);
+        explicit  CxCom(const COINIT &ccmCoModel);
             ///< constructor
-        virtual      ~CxCom  ();
+        virtual  ~CxCom();
             ///< destructor
-
-        //static
-        static bool   bIsInit();
-            ///< is initiated
-
-    private:
-        static long_t _ms_lInitCount; ///< init counter
-        DWORD         _m_ulConModel;  ///< COM model
-        
 };
 
 xNAMESPACE_END(NxLib)
