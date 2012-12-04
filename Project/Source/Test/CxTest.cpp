@@ -87,7 +87,7 @@ CxTest::vUnit(
     const ulonglong_t &cullCaseLoops
 ) /*= 0*/
 {
-    // n/a
+    xTEST_NA(cullCaseLoops);
 
 #if xTODO
     xTEST_CASE("CaseName", ca_ullCaseLoops)

@@ -29,7 +29,6 @@ CxTest_CxStdError::vUnit(
         (int)CxStdError::iGet();
         xTEST_EQ(0, CxStdError::iGet());
     }
-
    
     xTEST_CASE("CxStdError::sGet", cullCaseLoops)
     {

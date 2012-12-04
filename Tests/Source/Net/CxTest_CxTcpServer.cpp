@@ -25,8 +25,6 @@ CxTest_CxTcpServer::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    
-
     CxSocket::ExAddressFamily afAf       = CxSocket::afInet;
     CxSocket::ExType          tpType     = CxSocket::tpStream;
     CxSocket::ExProtocol      ptProtocol = CxSocket::ptIp;
