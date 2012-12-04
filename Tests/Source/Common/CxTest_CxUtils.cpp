@@ -30,7 +30,6 @@ CxTest_CxUtils::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-
     xTEST_CASE("CxUtils::ptrDeleteT", cullCaseLoops)
     {
         int *pPtr = new int();

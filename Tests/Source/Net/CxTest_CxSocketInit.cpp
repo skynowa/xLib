@@ -22,8 +22,6 @@ CxTest_CxSocketInit::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    
-
     xTEST_CASE("CxSocketInit::CxSocketInit", cullCaseLoops)
     {
         CxSocketInit siInit10(1, 0);
