@@ -92,7 +92,7 @@ CxTest_CxMySql::vUnit(
             std::tstring_t csDbDefaultName = xT("");
 
             conConn.vConnect(csHost, csUser, csPassword, csDbDefaultName, cuiPort, csUnixSocket, culClientFlag);
-            conConn.vQuery("CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET utf8", csDbName.c_str());
+            conConn.vQuery(xT("CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET utf8"), csDbName.c_str());
         } else {
             //connect to Db
             conConn.vConnect(csHost, csUser, csPassword, csDbName, cuiPort, csUnixSocket, culClientFlag);
@@ -109,25 +109,25 @@ CxTest_CxMySql::vUnit(
 
         //create table
         conConn.vQuery(
-                        xT("CREATE TABLE IF NOT EXISTS "
-                        "   `%s` ("
-                        "       `f_id`    int(11)     NOT NULL AUTO_INCREMENT,"
-                        "       `f_name`  char(30)    NOT NULL,"
-                        "       `f_age`   SMALLINT(6) NOT NULL"
-                        "   )"),
+                        xT("CREATE TABLE IF NOT EXISTS ")
+                        xT("   `%s` (")
+                        xT("       `f_id`    int(11)     NOT NULL AUTO_INCREMENT,")
+                        xT("       `f_name`  char(30)    NOT NULL,")
+                        xT("       `f_age`   SMALLINT(6) NOT NULL")
+                        xT("   )"),
                         sTableName.c_str());
         xTEST_EQ(true, m_bRv);
 
         //insert records
         conConn.vQuery(
-                        xT("INSERT INTO"
-                        "    `%s` (`f_name`, `f_age`)"
-                        "VALUES"
-                        "    ('Katya', 12),"
-                        "    ('Lena',  18),"
-                        "    ('Misha', 16),"
-                        "    ('Vasya', 24),"
-                        "    ('Sasha', 20)"),
+                        xT("INSERT INTO")
+                        xT("    `%s` (`f_name`, `f_age`)")
+                        xT("VALUES")
+                        xT("    ('Katya', 12),")
+                        xT("    ('Lena',  18),")
+                        xT("    ('Misha', 16),")
+                        xT("    ('Vasya', 24),")
+                        xT("    ('Sasha', 20)"),
                         sTableName.c_str());
 
         //select all records

@@ -182,11 +182,7 @@ CxMySQLConnection::vQuery(
     sSqlQuery = CxString::sFormatV(a_pcszSqlFormat, palArgs);
     xVA_END(palArgs);
 
-#if xUNICODE
     std::string asSqlQuery = xTS2S(sSqlQuery);
-#else
-    std::string asSqlQuery = sSqlQuery;
-#endif
 
     int iRv = ::mysql_real_query(_m_pmsConnection, 
                                  asSqlQuery.data(), 
