@@ -46,7 +46,6 @@ CxTest::CxTest() :
     _m_sWorkDirPath(),
     _m_sName       ()
 {
-    vCreateTempDir(xT("TestsTemp"));
 }
 //---------------------------------------------------------------------------
 /* virtual */
@@ -60,9 +59,12 @@ CxTest::vRun(
     const ulonglong_t &a_cullCaseLoops
 )
 {
-    
+    xTEST_NA(a_cullUnitLoops);
+    xTEST_NA(a_cullCaseLoops);
 
     try {
+        vCreateTempDir(xT("TestsTemp"));
+
         for (ulonglong_t i = 0ULL; i < a_cullUnitLoops; ++ i) {
             vUnit(a_cullCaseLoops);
             // TODO: xTEST_MSG_EQ(true, bRv, sGetName() + xT(": fail"));
@@ -85,7 +87,7 @@ CxTest::vRun(
 void
 CxTest::vUnit(
     const ulonglong_t &cullCaseLoops
-) /*= 0*/
+) /* = 0 */
 {
     xTEST_NA(cullCaseLoops);
 
@@ -111,7 +113,7 @@ CxTest::vCreateTempDir(
     const std::tstring_t &a_csDirName
 )
 {
-    // n/a
+    xTEST_NA(a_csDirName);
 
     if (true == a_csDirName.empty()) {
         _m_sWorkDirPath = CxDir::sTemp();
@@ -131,8 +133,6 @@ CxTest::sTempDirPath() const {
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxTest::sName() const {
-    
-
     return _m_sName;
 }
 //---------------------------------------------------------------------------
@@ -141,7 +141,7 @@ CxTest::vSetName(
     const std::tstring_t &a_csTestName
 )
 {
-    
+    xTEST_NA(a_csTestName);
 
     _m_sName = a_csTestName;
 }
