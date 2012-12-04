@@ -1,198 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="Debug|Win32">
-      <Configuration>Debug</Configuration>
+    <ProjectConfiguration Include="Debug_Unicode|Win32">
+      <Configuration>Debug_Unicode</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|Win32">
-      <Configuration>Release</Configuration>
+    <ProjectConfiguration Include="Debug_Ansi|Win32">
+      <Configuration>Debug_Ansi</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
-  </ItemGroup>
-  <PropertyGroup Label="Globals">
-    <ProjectGuid>{BD92A805-400C-4F61-B0EE-9A3605B34831}</ProjectGuid>
-    <RootNamespace>Test.VC++ 2008</RootNamespace>
-    <ProjectName>Test.VC++ 2010</ProjectName>
-  </PropertyGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <UseOfMfc>false</UseOfMfc>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <UseOfMfc>false</UseOfMfc>
-    <CharacterSet>Unicode</CharacterSet>
-    <UseIntelIPP>false</UseIntelIPP>
-  </PropertyGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <ImportGroup Label="ExtensionSettings">
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <PropertyGroup Label="UserMacros" />
-  <PropertyGroup>
-    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\Debug\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\Debug\</IntDir>
-    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\Release\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\Release\</IntDir>
-    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
-    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
-    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
-    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
-    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
-    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
-    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
-    <RunCodeAnalysis Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</RunCodeAnalysis>
-    <RunCodeAnalysis Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</RunCodeAnalysis>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IncludePath)</IncludePath>
-    <SourcePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SourcePath)</SourcePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IncludePath)</IncludePath>
-    <SourcePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SourcePath)</SourcePath>
-    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(LibraryPath)</LibraryPath>
-    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(LibraryPath)</LibraryPath>
-    <CodeAnalysisIgnoreGeneratedCode Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CodeAnalysisIgnoreGeneratedCode>
-  </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <BuildLog>
-      <Path>
-      </Path>
-    </BuildLog>
-    <Midl>
-      <TypeLibraryName>.\Debug/Test.VC++ 2008.tlb</TypeLibraryName>
-      <HeaderFileName>
-      </HeaderFileName>
-    </Midl>
-    <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <PrecompiledHeaderOutputFile>.\Debug/Test.VC++ 2010.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
-      <ObjectFileName>.\Debug/</ObjectFileName>
-      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
-      <WarningLevel>Level3</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <EnablePREfast>false</EnablePREfast>
-    </ClCompile>
-    <ResourceCompile>
-      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0419</Culture>
-    </ResourceCompile>
-    <Link>
-      <OutputFile>.\Debug/Test.VC++ 2010.exe</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>.\Debug/Test.VC++ 2010.pdb</ProgramDatabaseFile>
-      <SubSystem>Console</SubSystem>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
-      <TargetMachine>MachineX86</TargetMachine>
-      <ShowProgress>NotSet</ShowProgress>
-    </Link>
-    <Bscmake>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\Debug/Test.VC++ 2010.bsc</OutputFile>
-    </Bscmake>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <BuildLog>
-      <Path>
-      </Path>
-    </BuildLog>
-    <Midl>
-      <TypeLibraryName>.\Release/Test.VC++ 2008.tlb</TypeLibraryName>
-      <HeaderFileName>
-      </HeaderFileName>
-    </Midl>
-    <ClCompile>
-      <Optimization>MaxSpeed</Optimization>
-      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeaderOutputFile>.\Release/Test.VC++ 2010.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
-      <ObjectFileName>.\Release/</ObjectFileName>
-      <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
-      <WarningLevel>Level3</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <EnablePREfast>true</EnablePREfast>
-    </ClCompile>
-    <ResourceCompile>
-      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0419</Culture>
-    </ResourceCompile>
-    <Link>
-      <OutputFile>.\Release/Test.VC++ 2010.exe</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <ProgramDatabaseFile>.\Release/Test.VC++ 2010.pdb</ProgramDatabaseFile>
-      <SubSystem>Console</SubSystem>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <DataExecutionPrevention>
-      </DataExecutionPrevention>
-      <TargetMachine>MachineX86</TargetMachine>
-    </Link>
-    <Bscmake>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>.\Release/Test.VC++ 2010.bsc</OutputFile>
-    </Bscmake>
-  </ItemDefinitionGroup>
-  <ItemGroup>
-    <CustomBuildStep Include="..\..\Include\xLib\Crypt\CxBase64.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Crypt\CxCrc32.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Crypt\OpenSSL\CxBlowfish.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Filesystem\CxLocalStorage.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Filesystem\Win\CxIni.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Gui\Win\Dialogs\CxInputBox.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Gui\Win\Dialogs\CxMsgBoxRtf.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Gui\Win\Dialogs\CxMsgBoxT.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Gui\Win\GDI+\CxGdiplus.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Gui\Win\GDI+\CxImage.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Net\CxHttpClient.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </CustomBuildStep>
-    <CustomBuildStep Include="..\..\Include\xLib\Net\CxMimeBody.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </CustomBuildStep>
-    <CustomBuildStep Include="..\..\Include\xLib\Net\CxMimeHeader.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </CustomBuildStep>
-    <CustomBuildStep Include="..\..\Include\xLib\Net\CxMimeMessage.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </CustomBuildStep>
-    <CustomBuildStep Include="..\..\Include\xLib\Net\CxPop3.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </CustomBuildStep>
-    <CustomBuildStep Include="..\..\Include\xLib\Net\CxQueryList.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </CustomBuildStep>
-    <CustomBuildStep Include="..\..\Include\xLib\Net\CxSmtp.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-    </CustomBuildStep>
-    <CustomBuildStep Include="..\..\Include\xLib\Net\CxTcpClientSocket.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Net\CxTcpServerSocket.h" />
-    <CustomBuildStep Include="..\..\Include\xLib\Compress\Linux\CxGz.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </CustomBuildStep>
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuildStep Include="..\..\Source\Common\Win\CxHandle.inl">
-      <FileType>Document</FileType>
-    </CustomBuildStep>
+    <ProjectConfiguration Include="Release_Unicode|Win32">
+      <Configuration>Release_Unicode</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release_Ansi|Win32">
+      <Configuration>Release_Ansi</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxArray.h" />
@@ -258,8 +82,10 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\SDK\4.53\pkcs11t.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Db\CxConnectionString.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Db\CxMySql.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|Win32'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Db\Win\CxAdo.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Debug\CxAutoProfiler.h" />
@@ -309,9 +135,9 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxCurrentThread.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxEvent.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxIpcMutex.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxIpcSemaphore.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxMutex.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxProcess.h" />
-    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxIpcSemaphore.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxSemaphore.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxSharedMemory.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxSleeper.h" />
@@ -350,8 +176,10 @@
     <ClInclude Include="..\..\..\Tests\Include\Test\Crypt\Pkcs11\CxTest_CxPkcs11.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Db\CxTest_CxConnectionString.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Db\CxTest_CxMySql.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|Win32'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="..\..\..\Tests\Include\Test\Debug\CxTest_CxAutoProfiler.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Debug\CxTest_CxDebugger.h" />
@@ -395,10 +223,11 @@
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxAutoMutex.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxCurrentProcess.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxCurrentThread.h" />
+    <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxEvent.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxIpcMutex.h" />
+    <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxIpcSemaphore.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxMutex.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxProcess.h" />
-    <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxIpcSemaphore.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxSemaphore.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxSleeper.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxThread.h" />
@@ -419,7 +248,6 @@
     <None Include="..\..\..\Project\Include\xLib\Debug\CxException.inl" />
     <None Include="..\..\..\Project\Include\xLib\Gui\Dialogs\CxMsgBoxT.inl" />
     <None Include="..\..\..\Project\Include\xLib\Sync\CxThreadPool.inl" />
-    <None Include="..\..\..\TODO.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Project\Source\Common\CxChar.cpp" />
@@ -456,8 +284,10 @@
     <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxVerify.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Db\CxConnectionString.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Db\CxMySql.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Db\Win\CxAdo.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Debug\CxAutoProfiler.cpp" />
@@ -503,9 +333,9 @@
     <ClCompile Include="..\..\..\Project\Source\Sync\CxCurrentThread.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Sync\CxEvent.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Sync\CxIpcMutex.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Sync\CxIpcSemaphore.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Sync\CxMutex.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Sync\CxProcess.cpp" />
-    <ClCompile Include="..\..\..\Project\Source\Sync\CxIpcSemaphore.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Sync\CxSemaphore.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Sync\CxSharedMemory.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Sync\CxSleeper.cpp" />
@@ -543,8 +373,10 @@
     <ClCompile Include="..\..\..\Tests\Source\Crypt\Pkcs11\CxTest_CxPkcs11.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Db\CxTest_CxConnectionString.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Db\CxTest_CxMySql.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\Tests\Source\Debug\CxTest_CxAutoProfiler.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Debug\CxTest_CxDebugger.cpp" />
@@ -590,9 +422,9 @@
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxCurrentThread.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxEvent.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxIpcMutex.cpp" />
+    <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxIpcSemaphore.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxMutex.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxProcess.cpp" />
-    <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxIpcSemaphore.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxSemaphore.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxSleeper.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxThread.cpp" />
@@ -603,6 +435,128 @@
     <ClCompile Include="..\..\..\Tests\Source\Sync\Win\CxTest_CxCompletionPort.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Test.cpp" />
   </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{5CFD7383-EC1C-46F1-9A7F-8C7F3E305A24}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Test_VC2010</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
