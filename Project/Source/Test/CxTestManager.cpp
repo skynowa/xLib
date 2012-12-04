@@ -34,7 +34,7 @@ CxTestManager::CxTestManager(
 /* virtual */
 CxTestManager::~CxTestManager() {
     xFOREACH(container_t, it, _m_ctnTests) {
-        /*CxUtils::*/xPTR_DELETE(*it);
+        xPTR_DELETE(*it);
     }
 
     xCHECK_DO(_m_cbIsUseTracing, xTRACE(xT("CxTestManager: all tests destructed.")));
@@ -47,8 +47,8 @@ CxTestManager::vAdd(
     const std::tstring_t &a_csTestName /* = CxConst::xSTR_EMPTY */
 )
 {
-    
     xTEST_PTR(a_pvtTest)
+    xTEST_NA(a_csTestName);
 
     a_pvtTest->vSetName( CxType::sName(*a_pvtTest) );
 
@@ -66,7 +66,9 @@ CxTestManager::vRun(
     const ulonglong_t &a_cullCaseLoops
 )
 {
-    
+    xTEST_NA(a_cullAllLoops);
+    xTEST_NA(a_cullUnitLoops);
+    xTEST_NA(a_cullCaseLoops);
 
     xCHECK_DO(_m_cbIsUseTracing, xTRACE (xT("\n")));
     xCHECK_DO(_m_cbIsUseTracing, xTRACE (xT("CxTestManager: start all tests...")));
