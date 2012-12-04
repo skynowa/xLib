@@ -639,13 +639,7 @@ CxSystemInfo::sCpuModel() {
             (void)::__cpuid(reinterpret_cast<int *>( &szCpuName[16] ), 0x80000003);
             (void)::__cpuid(reinterpret_cast<int *>( &szCpuName[32] ), 0x80000004);
 
-            std::string asCpuName(szCpuName);
-
-        #if xUNICODE
-            std::tstring_t sCpuName = CxString::sTrimSpace( xS2TS(asCpuName) );
-        #else
-            std::tstring_t sCpuName = CxString::sTrimSpace(asCpuName);
-        #endif
+            std::tstring_t sCpuName = CxString::sTrimSpace( xS2TS(szCpuName) );
 
             sRv = CxString::sFormat(xT("%s (%s)"), sCpuName.c_str(), szMan);
         } else {

@@ -889,18 +889,18 @@ CxThread::vSetDebugName(
 
     #pragma pack(push, 8)
         struct tagTHREADNAME_INFO {
-            DWORD  dwType;      //must be 0x1000
-            LPCSTR pszName;     //pointer to name (in user addr space)
-            DWORD  dwThreadID;  //thread ID (-1 = caller thread)
-            DWORD  dwFlags;     //reserved for future use, must be zero
+            DWORD  dwType;      // must be 0x1000
+            LPCSTR pszName;     // pointer to name (in user addr space)
+            DWORD  dwThreadID;  // thread ID (-1 = caller thread)
+            DWORD  dwFlags;     // reserved for future use, must be zero
         };
     #pragma pack(pop)
 
         tagTHREADNAME_INFO tiInfo = {0};
         tiInfo.dwType     = 0x1000;
     #if xUNICODE
-        //TODO: bSetDebugName, convert from Unicode to Ansi
-        ////tiInfo.pszName    = xTS2S(csName).c_str();
+        // TODO: vSetDebugName, convert from Unicode to Ansi
+        //// tiInfo.pszName    = xTS2S(csName).c_str();
         tiInfo.pszName    = "[Unknown]";
     #else
         tiInfo.pszName    = a_csName.c_str();
@@ -915,9 +915,9 @@ CxThread::vSetDebugName(
             //n/a
         }
     #elif xCOMPILER_MINGW32
-        //TODO: bSetDebugName
+        // TODO: bSetDebugName
     #else
-        //TODO: bSetDebugName
+        // TODO: bSetDebugName
     #endif
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
