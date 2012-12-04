@@ -60,7 +60,7 @@ CxType::sName(
 #else
     asClassName.assign(typeid(cObjectT).name());
 
-    //or use UnDecorateSymbolName
+    // or use UnDecorateSymbolName
 #endif
 
     sRv = xS2TS(asClassName);

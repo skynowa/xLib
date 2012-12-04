@@ -38,7 +38,7 @@ CxMySQLConnection::CxMySQLConnection() :
 //---------------------------------------------------------------------------
 /* virtual */
 CxMySQLConnection::~CxMySQLConnection() {
-    
+
 
     vClose();
 }
@@ -96,10 +96,10 @@ CxMySQLConnection::bIsExists(
         xCHECK_RET(false == bRv, false);
 
         conConn.vConnect(a_csHost, a_csUser, a_csPassword, xT(""), a_cuiPort, a_csUnixSocket, a_culClientFlag);
-        conConn.vQuery(xT("SELECT IF (EXISTS(SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '%s'), 'true', 'false')"), 
+        conConn.vQuery(xT("SELECT IF (EXISTS(SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '%s'), 'true', 'false')"),
                        a_csDb.c_str());
     }
-    
+
     CxMySQLRecordset recRec(conConn, false);
 
     {
@@ -140,26 +140,12 @@ CxMySQLConnection::vConnect(
     // csUnixSocket - n/a
     // ulClientFlag - n/a
 
-#if xUNICODE
-    std::string asHost       = xTS2S(a_csHost);
-    std::string asUser       = xTS2S(a_csUser);
-    std::string asPassword   = xTS2S(a_csPassword);
-    std::string asDb         = xTS2S(a_csDb);
-    std::string asUnixSocket = xTS2S(a_csUnixSocket);
-#else
-    std::string asHost       = a_csHost;
-    std::string asUser       = a_csUser;
-    std::string asPassword   = a_csPassword;
-    std::string asDb         = a_csDb;
-    std::string asUnixSocket = a_csUnixSocket;
-#endif
-
     MYSQL *pmsConnection = ::mysql_real_connect(
-                                _m_pmsConnection, 
-                                asHost.c_str(), 
-                                asUser.c_str(), asPassword.c_str(), 
-                                asDb.c_str(),   a_cuiPort,     
-                                asUnixSocket.c_str(), a_culClientFlag);
+                                _m_pmsConnection,
+                                xTS2S(a_csHost).c_str(),
+                                xTS2S(a_csUser).c_str(), xTS2S(a_csPassword).c_str(),
+                                xTS2S(a_csDb).c_str(),   a_cuiPort,
+                                xTS2S(a_csUnixSocket).c_str(), a_culClientFlag);
 
     xTEST_MSG_PTR(pmsConnection, sLastErrorStr());
     xTEST_MSG_EQ(_m_pmsConnection, pmsConnection, sLastErrorStr());
@@ -184,8 +170,8 @@ CxMySQLConnection::vQuery(
 
     std::string asSqlQuery = xTS2S(sSqlQuery);
 
-    int iRv = ::mysql_real_query(_m_pmsConnection, 
-                                 asSqlQuery.data(), 
+    int iRv = ::mysql_real_query(_m_pmsConnection,
+                                 asSqlQuery.data(),
                                  static_cast<ulong_t>( asSqlQuery.size() ));
     xTEST_MSG_EQ(0, iRv, sLastErrorStr());
 }
@@ -384,31 +370,26 @@ CxMySQLRecordset::vFetchRow(
         ulong_t   *pulRowLengths = mysql_fetch_lengths(_m_pmrResult);   //TODO: maybe 64-bit bug
     #endif
 
-    //fields count
+    // fields count
     uiFieldsNum   = _m_pcmcConnection->uiFieldCount();
 
-    //fetch row
+    // fetch row
     _vFetchRow(&mrRow);
 
-    //field lengths
+    // field lengths
     _vFetchLengths(&pulFieldLengths);
     xTEST_PTR(pulFieldLengths);
 
-    //push to std::vector
+    // push to std::vector
     std::tstring_t sField;
 
     for (uint_t i = 0; i < uiFieldsNum; ++ i) {
         if (NULL == mrRow[i]) {
             sField = std::tstring_t();
         } else {
-            #if xUNICODE
-                std::string asField = std::string(mrRow[i], pulFieldLengths[i]);
-                
-                sField = xS2TS(asField);
-            #else
-                sField = std::tstring_t(mrRow[i], pulFieldLengths[i]);
-            #endif
+            std::string asField = std::string(mrRow[i], pulFieldLengths[i]);
 
+            sField = xS2TS(asField);
         }
 
         (*a_pvsRow).push_back(sField);
