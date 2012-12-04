@@ -28,4 +28,4 @@ xNAMESPACE_END(NxLib)
 
 #endif
 //---------------------------------------------------------------------------
-#endif    //xLib_Common_Win_CxComH
+#endif // xLib_Common_Win_CxComH
