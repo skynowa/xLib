@@ -40,7 +40,7 @@ class CxFile :
             omBinOpenReadAppend    ///< "ab+"
         };
 
-    #if   xOS_ENV_WIN
+    #if xOS_ENV_WIN
         enum ExTranslationMode
             /// translation mode
         {
@@ -117,14 +117,14 @@ class CxFile :
             #endif
         };
 
-        //constructors, destructor
+        // constructors, destructor
                                CxFile       ();
             ///< constructor
 
         virtual               ~CxFile       ();
             ///< destructor
 
-        //open, get
+        // open, get
         void                   vCreate      (const std::tstring_t &csFilePath, const ExOpenMode &omMode, const bool &cbIsUseBuffering);
             ///< open
         void                   vReopen      (const std::tstring_t &csFilePath, const ExOpenMode &omMode, const bool &cbIsUseBuffering);
@@ -138,7 +138,7 @@ class CxFile :
         std::tstring_t         sPath        () const;
             ///< get file path
 
-        //read, write
+        // read, write
         size_t                 uiRead       (void *pvBuff,        const size_t &cuiCount) const;
             ///< read block of data
         size_t                 uiWrite      (const void *pcvBuff, const size_t &cuiCount) const;
@@ -166,9 +166,9 @@ class CxFile :
         void                   vClear       () const;
             ///< clear
 
-        //times
+        // times
 
-        //other
+        // other
         void                   vLocking     (const ExLockingMode &clmMode, const long_t &cliBytes);
             ///< locks or unlocks bytes of a file
         void                   vSetPosition (const long_t &clOffset, const ExPointerPosition &cppPos) const;
@@ -178,7 +178,7 @@ class CxFile :
         void                   vSetVBuff    (char *pszBuff, const ExBufferingMode &cbmMode, const size_t &cuiSize) const;
             ///< change stream buffering
 
-    #if   xOS_ENV_WIN
+    #if xOS_ENV_WIN
         void                   vSetMode     (const ExTranslationMode &tmMode) const;
             ///< sets the file translation mode
     #endif
@@ -188,7 +188,7 @@ class CxFile :
         void                   vResize      (const longlong_t &cllSize) const;
             ///< changes the file size
 
-        //error handling
+        // error handling
         bool                   bIsValid     () const;
             ///< validating handle
         bool                   bIsOpen      () const;
@@ -202,13 +202,13 @@ class CxFile :
         void                   vErrorClear  () const;
             ///< clear error indicators
 
-        //closing
+        // closing
         void                   vFlush       () const;
             ///< flush
         void                   vClose       ();
             ///< close
 
-        //static
+        // static
         static bool            bIsFile      (const std::tstring_t &csFilePath);
             ///< check for file
         static bool            bIsExists    (const std::tstring_t &csFilePath);
@@ -244,7 +244,7 @@ class CxFile :
         static void            vSetTime     (const std::tstring_t &csFilePath, const time_t &ctmCreate, const time_t &ctmAccess, const time_t &ctmModified);
             ///< set time
 
-        //text
+        // text
         static void            vTextRead    (const std::tstring_t &csFilePath, std::tstring_t *psContent);
             ///< read to std::tstring_t
         static void            vTextWrite   (const std::tstring_t &csFilePath, const std::tstring_t &csContent);
@@ -258,13 +258,19 @@ class CxFile :
         static void            vTextWrite   (const std::tstring_t &csFilePath, const std::tstring_t &csSeparator, const std::map_tstring_t &cmsContent);
             ///< write text from std::map
 
-        //binary
+        // binary
         static void            vBinRead     (const std::tstring_t &csFilePath, std::ustring_t *pusContent);
             ///< read binary data
         static void            vBinWrite    (const std::tstring_t &csFilePath, const std::ustring_t &cusContent);
             ///< write binary data
 
     private:
+    #if xUNICODE
+        typedef wint_t         twint_t;
+    #else
+        typedef int            twint_t;
+    #endif
+
         std::FILE             *_m_pFile;      ///< file handle
         std::tstring_t         _m_sFilePath;  ///< file path
 

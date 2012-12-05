@@ -77,8 +77,6 @@ CxTest_CxFile::vUnit(
         xTEST_EQ(stdout, pFile);
     }
 
-    //--------------------------------------------------
-    //
     xTEST_CASE("CxFile::pGet", cullCaseLoops)
     {
         CxFile F;
@@ -89,8 +87,6 @@ CxTest_CxFile::vUnit(
         xTEST_PTR(pFile);
     }
 
-    //-------------------------------------
-    //
     xTEST_CASE("CxFile::sGetPath", cullCaseLoops)
     {
         CxFile F;
@@ -107,8 +103,6 @@ CxTest_CxFile::vUnit(
     *
     *****************************************************************************/
 
-    //-------------------------------------
-    //
     xTEST_CASE("CxFile::uiWrite CxFile::uiRead", cullCaseLoops)
     {
         std::tstring_t sBuffWrite = xT("<test1>\n<test2>\n<test3>\n\n<...>");
@@ -132,8 +126,6 @@ CxTest_CxFile::vUnit(
 
         xTEST_EQ(sBuffWrite, sBuffRead);
     }
-
-    //-------------------------------------
 
     xTEST_CASE("CxFile::vWrite CxFile::vRead", cullCaseLoops)
     {
@@ -182,7 +174,6 @@ CxTest_CxFile::vUnit(
         }
     }
 
-    //-------------------------------------
     xTEST_CASE("CxFile::vReadLine CxFile::vWriteLine", cullCaseLoops)
     {
         std::tstring_t sBuffWrite = xT("<test1><test2><test3><...>");
@@ -209,9 +200,7 @@ CxTest_CxFile::vUnit(
         // TODO: xTEST_EQ(sBuffWrite,        sBuffRead);
     }
 
-    //-------------------------------------
-
-    xTEST_CASE("CxFile::vWriteChar CxFile::chReadChar CxFile::vUngetChar", cullCaseLoops)
+    xTEST_CASE("CxFile::vWriteChar chReadChar vUngetChar", cullCaseLoops)
     {
         const tchar_t chChar = xT('W');
 
@@ -231,8 +220,6 @@ CxTest_CxFile::vUnit(
         F.vUngetChar(chChar);
     }
 
-    //--------------------------------------------------
-    //
     xTEST_CASE("CxFile::vClear", cullCaseLoops)
     {
         CxFile F;
@@ -241,14 +228,11 @@ CxTest_CxFile::vUnit(
         F.vClear();
     }
 
-
     /****************************************************************************
     *    times
     *
     *****************************************************************************/
 
-    //--------------------------------------------------
-    //, 
     xTEST_CASE("CxFile::vGetTime CxFile::vSetTime", cullCaseLoops)
     {
         {
@@ -285,11 +269,10 @@ CxTest_CxFile::vUnit(
     *
     *****************************************************************************/
 
-    //--------------------------------------------------
-    //
     xTEST_CASE("CxFile::vRead", cullCaseLoops)
     {
-        const std::tstring_t csTestContent = xT("sz dkfjhsld2345234kfjfsd\tfjklg    23hsd5467ml ksd\tfcsjklsecfgsjk drbf");
+        const std::tstring_t csTestContent = 
+            xT("sz dkfjhsld2345234kfjfsd\tfjklg    23hsd5467ml ksd\tfcsjklsecfgsjk drbf");
 
         {
             CxFile F;
@@ -297,7 +280,7 @@ CxTest_CxFile::vUnit(
             F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
 
             int iResFprintf = F.iWrite(csTestContent.c_str());
-            xTEST_LESS(0, iResFprintf);
+            xTEST_EQ(csTestContent.size(), size_t(iResFprintf));
         }
 
         std::tstring_t sContent;
@@ -312,20 +295,19 @@ CxTest_CxFile::vUnit(
         xTEST_EQ(csTestContent, sContent);
     }
 
-    //-------------------------------------
-    //
     xTEST_CASE("CxFile::iWrite", cullCaseLoops)
     {
+        const std::tstring_t csTestContent = 
+                xT("sz dkfjhsld2345234kfjfsd\tfjklg    23hsd5467ml ksd\tfcsjklsecfgsjk drbf");
+
         CxFile F;
 
         F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
 
-        int iResFprintf = F.iWrite(xT("%s"), xT("xxx"));
-        xTEST_LESS(0, iResFprintf);
+        int iResFprintf = F.iWrite(xT("%s"), csTestContent.c_str());
+        xTEST_EQ(csTestContent.size(), size_t(iResFprintf));
     }
 
-    //-------------------------------------
-    //
     xTEST_CASE("CxFile::iWriteV", cullCaseLoops)
     {
         struct SWriter {
@@ -344,18 +326,14 @@ CxTest_CxFile::vUnit(
         CxFile F;
 
         F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
-
         SWriter::DoV(F, xT("%s"), xT("zzz"));
     }
-
 
     /****************************************************************************
     *    other
     *
     *****************************************************************************/
 
-    //-------------------------------------
-    //
     xTEST_CASE("CxFile::vLocking", cullCaseLoops)
     {
         CxFile F;
@@ -366,8 +344,6 @@ CxTest_CxFile::vUnit(
         F.vLocking(CxFile::lmUnlock, 10);
     }
 
-    //-------------------------------------
-    //, 
     xTEST_CASE("CxFile::vSetPosition CxFile::liGetPosition", cullCaseLoops)
     {
         CxFile F;
@@ -379,8 +355,6 @@ CxTest_CxFile::vUnit(
         xTEST_EQ(0L, liRv);
     }
 
-    //-------------------------------------
-    //
     xTEST_CASE("CxFile::llGetSize", cullCaseLoops)
     {
         const longlong_t cllNewSize = 1024LL;
@@ -394,8 +368,6 @@ CxTest_CxFile::vUnit(
         xTEST_EQ(cllNewSize, llSize);
     }
 
-    //-------------------------------------
-    //
     xTEST_CASE("CxFile::vResize", cullCaseLoops)
     {
         CxFile F;
@@ -404,8 +376,6 @@ CxTest_CxFile::vUnit(
         F.vResize(0);
     }
 
-    //-------------------------------------
-    //
     xTEST_CASE("CxFile::vSetVBuff", cullCaseLoops)
     {
         std::string asBuffRead;       asBuffRead.resize(1024);
@@ -416,8 +386,6 @@ CxTest_CxFile::vUnit(
         F.vSetVBuff(&asBuffRead.at(0), CxFile::bmFull, asBuffRead.size() * 2);
     }
 
-    //-------------------------------------
-    //
     xTEST_CASE("CxFile::vSetMode", cullCaseLoops)
     {
         CxFile F;
@@ -432,8 +400,6 @@ CxTest_CxFile::vUnit(
         #endif
     }
 
-    //-------------------------------------
-    //
     xTEST_CASE("CxFile::vSetMode", cullCaseLoops)
     {
         CxFile F;
@@ -453,8 +419,6 @@ CxTest_CxFile::vUnit(
     *
     *****************************************************************************/
 
-    //--------------------------------------------------
-    //
     xTEST_CASE("CxFile::bIsValid", cullCaseLoops)
     {
         CxFile F;
@@ -470,8 +434,6 @@ CxTest_CxFile::vUnit(
         F.vClose();
     }
 
-    //--------------------------------------------------
-    //
     xTEST_CASE("CxFile::bIsOpen", cullCaseLoops)
     {
         CxFile F;
@@ -490,8 +452,6 @@ CxTest_CxFile::vUnit(
         xTEST_EQ(false, m_bRv);
     }
 
-    //--------------------------------------------------
-    //
     xTEST_CASE("CxFile::bIsEmpty", cullCaseLoops)
     {
         CxFile F;
@@ -513,8 +473,6 @@ CxTest_CxFile::vUnit(
         xTEST_EQ(true, m_bRv);
     }
 
-    //-------------------------------------
-    //
     xTEST_CASE("CxFile::bIsEof", cullCaseLoops)
     {
         CxFile F;
@@ -525,8 +483,6 @@ CxTest_CxFile::vUnit(
         xTEST_EQ(false, m_bRv);
     }
 
-    //-------------------------------------
-    //
     xTEST_CASE("CxFile::bIsError", cullCaseLoops)
     {
         CxFile F;
@@ -537,8 +493,6 @@ CxTest_CxFile::vUnit(
         xTEST_EQ(false, m_bRv);
     }
 
-    //-------------------------------------
-    //
     xTEST_CASE("CxFile::vErrorClear", cullCaseLoops)
     {
         CxFile F;
@@ -547,14 +501,11 @@ CxTest_CxFile::vUnit(
         F.vErrorClear();
     }
 
-
     /****************************************************************************
     *    closing
     *
     *****************************************************************************/
 
-    //-------------------------------------
-    //
     xTEST_CASE("CxFile::vFlush", cullCaseLoops)
     {
         CxFile F;
@@ -566,8 +517,6 @@ CxTest_CxFile::vUnit(
         xTEST_EQ(true, m_bRv);
     }
 
-    //-------------------------------------
-    //
     xTEST_CASE("CxFile::vClose", cullCaseLoops)
     {
         CxFile F;
@@ -579,10 +528,10 @@ CxTest_CxFile::vUnit(
         xTEST_EQ(false, m_bRv);
     }
 
-    //bUnit1
+    // vUnit1
     vUnit1(cullCaseLoops);
 
-    //bUnitePrivate
+    // vUnitPrivate
     vUnitPrivate(cullCaseLoops);
 }
 //---------------------------------------------------------------------------
