@@ -42,7 +42,7 @@ CxDecrypt::vInit(
     CK_OBJECT_HANDLE a_hKey         ///< handle of decryption key
 )
 {
-    
+
 
     CK_RV ulRv = _m_pFunc->C_DecryptInit(_m_hSession, a_pMechanism, a_hKey);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
@@ -56,7 +56,7 @@ CxDecrypt::vMake(
     CK_ULONG_PTR a_pulDataLen          ///< gets p-text size
 )
 {
-    
+
 
     CK_RV ulRv = _m_pFunc->C_Decrypt(_m_hSession, a_pEncryptedData, a_ulEncryptedDataLen, a_pData, a_pulDataLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
@@ -70,7 +70,7 @@ CxDecrypt::vUpdate(
     CK_ULONG_PTR a_pulPartLen           ///< p-text size
 )
 {
-    
+
 
     CK_RV ulRv = _m_pFunc->C_DecryptUpdate(_m_hSession, a_pEncryptedPart, a_ulEncryptedPartLen, a_pPart, a_pulPartLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
@@ -82,7 +82,7 @@ CxDecrypt::vFinal(
     CK_ULONG_PTR a_pulLastPartLen  ///< p-text size
 )
 {
-    
+
 
     CK_RV ulRv = _m_pFunc->C_DecryptFinal(_m_hSession, a_pLastPart, a_pulLastPartLen );
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
@@ -96,7 +96,7 @@ CxDecrypt::vDigestUpdate(
     CK_ULONG_PTR a_pulPartLen           ///< gets plaintext len
 )
 {
-    
+
 
     CK_RV ulRv = _m_pFunc->C_DecryptDigestUpdate(_m_hSession, a_pEncryptedPart, a_ulEncryptedPartLen, a_pPart, a_pulPartLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
@@ -110,7 +110,7 @@ CxDecrypt::vVerifyUpdate(
     CK_ULONG_PTR a_pulPartLen           ///< gets p-text length
 )
 {
-    
+
 
     CK_RV ulRv = _m_pFunc->C_DecryptVerifyUpdate(_m_hSession, a_pEncryptedPart, a_ulEncryptedPartLen, a_pPart, a_pulPartLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
@@ -135,7 +135,7 @@ CxDecrypt::vMakeFile(
     xTEST_EQ(false, a_csInFilePath.empty());
     xTEST_EQ(false, a_csOutFilePath.empty());
     xTEST_PTR(a_pMechanism);
-    xTEST_PTR(a_hKey);
+    xTEST_DIFF(0UL, a_hKey);
 
     //-------------------------------------
     //������ ����-����� � �����

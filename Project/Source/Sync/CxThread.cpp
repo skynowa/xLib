@@ -57,7 +57,7 @@ CxThread::CxThread(
 //---------------------------------------------------------------------------
 /* virtual */
 CxThread::~CxThread() {
-    
+
 
     //-------------------------------------
     // close thread, if it still running
@@ -751,7 +751,12 @@ CxThread::vSetCpuAffinity(
     dwMask = 1UL << a_ciProcNum;
 
     DWORD_PTR uiRes = ::SetThreadAffinityMask(_m_hThread.hGet(), dwMask);
-    xTEST_PTR(uiRes);
+    #if xCPU_64BIT
+        xTEST_PTR(uiRes);
+    #else
+        xTEST_DIFF(0UL, uiRes);
+    #endif
+
     xTEST_EQ(true, ERROR_INVALID_PARAMETER != uiRes);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
@@ -846,7 +851,7 @@ CxThread::ulGetId() const {
 //---------------------------------------------------------------------------
 bool
 CxThread::bIsCurrent() const {
-    
+
 
     return CxCurrentThread::bIsCurrent( CxCurrentThread::ulId() );
 }
@@ -1126,7 +1131,7 @@ CxThread::_s_uiJobEntry(
 //---------------------------------------------------------------------------
 bool
 CxThread::_bWaitResumption() {
-    
+
 
     //-------------------------------------
     // flags

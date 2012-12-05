@@ -20,12 +20,12 @@ xNAMESPACE_BEGIN(NxLib)
 CxCompletionPort::CxCompletionPort() :
     _m_hHandle()
 {
-    
+
 }
 //---------------------------------------------------------------------------
 /* virtual */
 CxCompletionPort::~CxCompletionPort() {
-    
+
 }
 //---------------------------------------------------------------------------
 void
@@ -48,7 +48,12 @@ CxCompletionPort::vAssociate(
 {
     xTEST_EQ(true, _m_hHandle.bIsValid());
     // hFile
+
+#if xCPU_64BIT
     xTEST_PTR(a_pulCompletionKey);
+#else
+    xTEST_DIFF(0UL, a_pulCompletionKey);
+#endif
 
     HANDLE hRv = ::CreateIoCompletionPort(a_chFile, _m_hHandle.hGet(), a_pulCompletionKey, 0);
     xTEST_EQ(xNATIVE_HANDLE_INVALID, hRv);

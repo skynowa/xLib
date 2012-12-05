@@ -42,7 +42,7 @@ CxEncrypt::vInit(
     CK_OBJECT_HANDLE a_hKey         ///< handle of encryption key
 )
 {
-    
+
 
     CK_RV ulRv = _m_pFunc->C_EncryptInit(_m_hSession, a_pMechanism, a_hKey);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
@@ -56,7 +56,7 @@ CxEncrypt::vMake(
     CK_ULONG_PTR a_pulEncryptedDataLen  ///< gets c-text size
 )
 {
-    
+
 
     CK_RV ulRv = _m_pFunc->C_Encrypt(_m_hSession, a_pData, a_ulDataLen, a_pEncryptedData, a_pulEncryptedDataLen  );
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
@@ -70,7 +70,7 @@ CxEncrypt::vUpdate(
     CK_ULONG_PTR a_pulEncryptedPartLen ///< gets c-text size
 )
 {
-    
+
 
     CK_RV ulRv = _m_pFunc->C_EncryptUpdate(_m_hSession, a_pPart, a_ulPartLen, a_pEncryptedPart, a_pulEncryptedPartLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
@@ -82,7 +82,7 @@ CxEncrypt::vFinal(
     CK_ULONG_PTR a_pulLastEncryptedPartLen  ///< gets last size
 )
 {
-    
+
 
     CK_RV ulRv = _m_pFunc->C_EncryptFinal(_m_hSession, a_pLastEncryptedPart, a_pulLastEncryptedPartLen );
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
@@ -107,7 +107,7 @@ CxEncrypt::vMakeFile(
     xTEST_EQ(false, a_csInFilePath.empty());
     xTEST_EQ(false, a_csOutFilePath.empty());
     xTEST_PTR(a_pMechanism);
-    xTEST_PTR(a_hKey);
+    xTEST_DIFF(0UL, a_hKey);
 
     //-------------------------------------
     //������ ����� � �����
