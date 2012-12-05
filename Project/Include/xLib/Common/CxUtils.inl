@@ -85,10 +85,10 @@ CxUtils::bufferFreeT(
     T * &a_pPtrT
 )
 {
-    if (NULL != a_pPtrT) { 
-        std::free(a_pPtrT); 
-        a_pPtrT = NULL; 
-    } 
+    xCHECK_DO(NULL == a_pPtrT, return);
+
+    std::free(a_pPtrT);
+    a_pPtrT = NULL;
 }
 //---------------------------------------------------------------------------
 /* static */ inline
@@ -97,16 +97,16 @@ CxUtils::fileClose(
     FILE * &a_pFile
 )
 {
-    if (NULL != a_pFile) { 
-        std::fclose(a_pFile); 
-        a_pFile = NULL; 
-    }
+    xCHECK_DO(NULL == a_pFile, return);
+
+    std::fclose(a_pFile);
+    a_pFile = NULL;
 }
 //---------------------------------------------------------------------------
 template <typename T>
-/* static */ inline 
+/* static */ inline
 bool
-CxUtils::intToBool(
+CxUtils::intToBoolT(
     const T &a_valueT
 )
 {
@@ -164,11 +164,42 @@ CxUtils::reinterpretCastT(
 //---------------------------------------------------------------------------
 /* static */ inline
 double
-CxUtils::round(
+CxUtils::roundDouble(
     const double &a_cdValue
 )
 {
-    return ::floor(a_cdValue + 0.5);
+    xTEST_NA(a_cdValue);
+
+    double dRv = 0.0;
+
+    if (a_cdValue > 0.0) {
+        dRv = ::floor(a_cdValue + 0.5);
+    } else {
+        dRv = ::ceil(a_cdValue - 0.5);
+    }
+
+    return dRv;
+}
+//---------------------------------------------------------------------------
+template <typename T>
+/* static */ inline
+T
+CxUtils::roundIntT(
+    const double &a_cdValue
+)
+{
+    assert(a_cdValue >= (std::numeric_limits<T>::min)() - 0.5);
+    assert(a_cdValue <= (std::numeric_limits<T>::max)() + 0.5);
+
+    T iRv = 0;
+
+    if (a_cdValue > 0.0) {
+        iRv = static_cast<T>( a_cdValue + 0.5 );
+    } else {
+        iRv = static_cast<T>( a_cdValue - 0.5 );
+    }
+
+    return iRv;
 }
 //---------------------------------------------------------------------------
 template <typename T1, typename T2>
@@ -191,21 +222,21 @@ CxUtils::safeDivT(
 }
 //---------------------------------------------------------------------------
 template <typename T>
-/* static */ inline T         
-CxUtils::enumInc(
-    const T &a_valueT
-)
-{ 
-    return static_cast<T>( static_cast<long_t>( a_valueT ) + 1 ); 
-}
-//---------------------------------------------------------------------------
-template <typename T>
-/* static */  inline T         
-CxUtils::enumDec(
+/* static */ inline T
+CxUtils::enumIncT(
     const T &a_valueT
 )
 {
-    return static_cast<T>( static_cast<long_t>( a_valueT ) - 1 ); 
+    return static_cast<T>( static_cast<long_t>( a_valueT ) + 1 );
+}
+//---------------------------------------------------------------------------
+template <typename T>
+/* static */  inline T
+CxUtils::enumDecT(
+    const T &a_valueT
+)
+{
+    return static_cast<T>( static_cast<long_t>( a_valueT ) - 1 );
 }
 //---------------------------------------------------------------------------
 

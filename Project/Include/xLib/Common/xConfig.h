@@ -20,6 +20,10 @@
         #define STRICT 1
     #endif
 
+    #if !defined(NOMINMAX) && xTEMP_DISABLED
+        #define NOMINMAX 1
+    #endif
+
     // Required for VS 2008 (fails on XP and Win2000 without this fix)
     #if xTEMP_DISABLED
         #if !defined(_WIN32_WINNT)

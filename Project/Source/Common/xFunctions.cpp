@@ -74,11 +74,12 @@ xNAMESPACE_BEGIN(NxLib)
             int iRv = ::getrusage(RUSAGE_SELF, &ruUsage);
             xTEST_DIFF(- 1, iRv);
 
-            std::clock_t liRv = static_cast<std::clock_t>( ruUsage.ru_utime.tv_sec  + ruUsage.ru_stime.tv_sec ) * 1000000 +
-                                ruUsage.ru_utime.tv_usec + 
-                                ruUsage.ru_stime.tv_usec;
+            std::clock_t clkRv =
+                static_cast<std::clock_t>( ruUsage.ru_utime.tv_sec  + ruUsage.ru_stime.tv_sec ) * 1000000 +
+                ruUsage.ru_utime.tv_usec +
+                ruUsage.ru_stime.tv_usec;
 
-            return liRv;
+            return clkRv;
         }
     #endif
 #endif

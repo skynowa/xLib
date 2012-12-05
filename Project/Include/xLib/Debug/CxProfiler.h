@@ -15,24 +15,10 @@ xNAMESPACE_BEGIN(NxLib)
 
 class CxProfiler :
     private CxNonCopyable
-    /// code profiling (msec)
+    /// code profiling
 {
     public:
-        enum ExMode
-            /// mode
-        {
-            pmStdClock,         ///< use std::clock
-            pmDateTime,         ///< use CxDateTime
-            pmGetTimeOfDay,     ///< use gettimeofday
-            pmSystemTicks       ///< use system ticks
-        #if   xOS_ENV_WIN
-            ,
-            pmPerformanceCount, ///< use ::QueryPerformanceFrequency
-            pmThreadTimes       ///< use ::GetThreadTime
-        #endif
-        };
-
-        explicit              CxProfiler (const ExMode &cpmMode);
+        explicit              CxProfiler ();
             ///< constructor
         virtual              ~CxProfiler ();
             ///< destructor
@@ -50,40 +36,12 @@ class CxProfiler :
             ///< stop, start measurement
 
     private:
-        const ExMode          _m_pmModeNow;           ///< which mode is running now
-        bool                  _m_bIsStarted;          ///< is started
-        CxFileLog             _flLog;                 ///< file log
+        bool                  _m_bIsStarted;    ///< is started
+        CxFileLog             _flLog;           ///< file log
 
-        // pmStdClock
-        std::clock_t          _m_ctClocksStart;       ///< start value
-        std::clock_t          _m_ctClocksStop;        ///< stop value
-
-        // pmDateTime
-        CxDateTime            _m_dtTimesStart;        ///< start value
-        CxDateTime            _m_dtTimesStop;         ///< stop value
-
-        // pmGetTimeOfDay
-        double                _m_dMicrosecStart;      ///< start value
-        double                _m_dMicrosecStop;       ///< stop value
-
-        // pmSystemTicks
-        ulong_t               _m_ulTicksStartMs;      ///< start value
-        ulong_t               _m_ulTicksStopMs;       ///< stop value
-
-    #if xOS_ENV_WIN
-        // pmPerformanceCount
-        LARGE_INTEGER         _m_liCountersPerfFreq;  ///< ticks per second
-        LARGE_INTEGER         _m_liCountersStart;     ///< start value
-        LARGE_INTEGER         _m_liCountersStop;      ///< stop value
-
-        // pmThreadTimes
-        FILETIME              _m_lpCreationTime;      ///< for private use
-        FILETIME              _m_lpExitTime;          ///< for private use
-        FILETIME              _m_lpKernelTimeStart;   ///< start value
-        FILETIME              _m_lpUserTimeStart;     ///< start value
-        FILETIME              _m_lpKernelTimeStop;    ///< stop value
-        FILETIME              _m_lpUserTimeStop;      ///< stop value
-    #endif
+        std::clock_t          _m_clkStart;      ///< start value
+        std::clock_t          _m_clkStop;       ///< stop value
+        std::clock_t          _m_clkDuration;   ///< duration value
 
         void                  _vDataReset();
             ///< reset all class data
@@ -91,7 +49,7 @@ class CxProfiler :
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif //xLib_Debug_CxProfilerH
+#endif // xLib_Debug_CxProfilerH
 
 
 // http://www.metalshell.com/source_code/133/Microsecond_Benchmark.html

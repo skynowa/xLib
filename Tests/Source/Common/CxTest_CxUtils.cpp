@@ -168,13 +168,13 @@ CxTest_CxUtils::vUnit(
         xTEST_PTR_FAIL(pFile);
     }
 
-    xTEST_CASE("CxUtils::intToBool", cullCaseLoops)
+    xTEST_CASE("CxUtils::intToBoolT", cullCaseLoops)
     {
         // false
         {
             const int iVal = 0;
 
-            m_bRv = CxUtils::intToBool(iVal);
+            m_bRv = CxUtils::intToBoolT(iVal);
             xTEST_EQ(false, m_bRv);
         }
 
@@ -185,7 +185,7 @@ CxTest_CxUtils::vUnit(
             for (size_t i = 0; i < CxUtils::arraySizeT(caiData); ++ i) {
                 const int iVal = caiData[i];
 
-                m_bRv = CxUtils::intToBool(iVal);
+                m_bRv = CxUtils::intToBoolT(iVal);
                 xTEST_EQ(true, m_bRv);
             }
         }
@@ -219,7 +219,7 @@ CxTest_CxUtils::vUnit(
         // TODO: test for CxUtils::reinterpretCastT
     }
 
-    xTEST_CASE("CxUtils::round", cullCaseLoops)
+    xTEST_CASE("CxUtils::roundDouble", cullCaseLoops)
     {
         const double cdData[][2] = {
             {10.5,   11.0},
@@ -227,14 +227,33 @@ CxTest_CxUtils::vUnit(
             {10.4,   10.0},
             {0.0,    0.0},
             {-10.4, -10.0},
-            //TODO: {-10.5, -11.0},
+            {-10.5, -11.0},
             {-10.6, -11.0}
         };
 
         for (size_t i = 0; i < CxUtils::arraySizeT(cdData); ++ i) {
-            double dRes0 = CxUtils::round(cdData[i][0]);
-            double dRes1 = cdData[i][1];
-            xTEST_EQ(dRes0, dRes1);
+            double dRv1 = CxUtils::roundDouble(cdData[i][0]);
+            double dRv2 = cdData[i][1];
+            xTEST_EQ(dRv1, dRv2);
+        }
+    }
+
+    xTEST_CASE("CxUtils::roundIntT", cullCaseLoops)
+    {
+        const double cdData[][2] = {
+            {10.5,   11.0},
+            {10.0,   10.0},
+            {10.4,   10.0},
+            {0.0,    0.0},
+            {-10.4, -10.0},
+            {-10.5, -11.0},
+            {-10.6, -11.0}
+        };
+
+        for (size_t i = 0; i < CxUtils::arraySizeT(cdData); ++ i) {
+            longlong_t liRv1 = CxUtils::roundIntT<longlong_t>(cdData[i][0]);
+            longlong_t liRv2 = static_cast<longlong_t>( cdData[i][1] );
+            xTEST_EQ(liRv1, liRv2);
         }
     }
 
@@ -246,12 +265,12 @@ CxTest_CxUtils::vUnit(
         CxUtils::safeDivT(1, 1);
     }
 
-    xTEST_CASE("CxUtils::enumInc enumDec", cullCaseLoops)
+    xTEST_CASE("CxUtils::enumIncT enumDecT", cullCaseLoops)
     {
         EData datData = datOne;
 
-        datData = CxUtils::enumInc(datData);
-        datData = CxUtils::enumDec(datData);
+        datData = CxUtils::enumIncT(datData);
+        datData = CxUtils::enumDecT(datData);
 
         xTEST_EQ(static_cast<long_t>( datOne ), static_cast<long_t>( datData ));
     }

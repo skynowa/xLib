@@ -200,8 +200,8 @@ xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
         tmManager.vAdd(new CxTest_CxStackTrace);
         tmManager.vAdd(new CxTest_CxDebugger);
         tmManager.vAdd(new CxTest_CxErrorReport);
-        //tmManager.vAdd(new CxTest_CxProfiler);
-        //tmManager.vAdd(new CxTest_CxAutoProfiler);
+        tmManager.vAdd(new CxTest_CxProfiler);
+        tmManager.vAdd(new CxTest_CxAutoProfiler);
 
         // Filesystem
         tmManager.vAdd(new CxTest_CxPath);

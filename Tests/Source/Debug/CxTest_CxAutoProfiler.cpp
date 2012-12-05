@@ -8,6 +8,7 @@
 
 #include <xLib/Common/CxConst.h>
 #include <xLib/Sync/CxCurrentThread.h>
+#include <xLib/Filesystem/CxFile.h>
 
 
 //---------------------------------------------------------------------------
@@ -25,27 +26,14 @@ CxTest_CxAutoProfiler::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    const CxProfiler::ExMode pmMode[] = {
-            CxProfiler::pmStdClock,
-            CxProfiler::pmDateTime,
-            CxProfiler::pmGetTimeOfDay,
-            CxProfiler::pmSystemTicks
-
-        #if   xOS_ENV_WIN
-            ,
-            CxProfiler::pmPerformanceCount,
-            CxProfiler::pmThreadTimes
-        #elif xOS_ENV_UNIX
-
-        #endif
-    };
-
-    for (size_t i = 0; i < xARRAY_SIZE(pmMode); ++ i) {
+    xTEST_CASE("CxAutoProfiler::CxAutoProfiler", cullCaseLoops)
+    {
         const std::tstring_t csFilePath = sTempDirPath() + CxConst::xSLASH + xT("CxAutoProfilerLog.log");
 
+        CxFile::vClear(csFilePath);
+
         for (size_t y = 0; y < 10; ++ y) {
-            CxAutoProfiler apfP(csFilePath, pmMode[i],
-                                xT("Variable y: %") xPR_SIZET, y);
+            CxAutoProfiler apfP(csFilePath, xT("\tVar y: %") xPR_SIZET, y);
 
             CxCurrentThread::vSleep(5UL);
         }
