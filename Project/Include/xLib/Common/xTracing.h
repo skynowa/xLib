@@ -9,19 +9,7 @@
 //---------------------------------------------------------------------------
 #if xIS_COMPILE_TIME_TRACING
     //--------------------------------------------------
-    //OS family
-    #if   xOS_WIN
-        #pragma message("xLib: xOS_WIN")
-    #elif xOS_LINUX
-        #pragma message("xLib: xOS_LINUX")
-    #elif xOS_FREEBSD
-        #pragma message("xLib: xOS_FREEBSD")
-    #else
-        #pragma message("xLib: unsupported OS")
-    #endif
-
-    //--------------------------------------------------
-    //OS environment
+    // OS environment
     #if   xOS_ENV_WIN
         #pragma message("xLib: xOS_ENV_WIN")
     #elif xOS_ENV_UNIX
@@ -33,7 +21,19 @@
     #endif
 
     //--------------------------------------------------
-    //OS architecture
+    // OS family
+    #if   xOS_WIN
+        #pragma message("xLib: xOS_WIN")
+    #elif xOS_LINUX
+        #pragma message("xLib: xOS_LINUX")
+    #elif xOS_FREEBSD
+        #pragma message("xLib: xOS_FREEBSD")
+    #else
+        #pragma message("xLib: unsupported OS")
+    #endif
+
+    //--------------------------------------------------
+    // OS architecture
     #if   xARCH_X86
         #pragma message("xLib: xARCH_X86")
     #elif xARCH_X64
@@ -43,7 +43,7 @@
     #endif
 
     //--------------------------------------------------
-    //Compilers
+    // Compilers
     #if   xCOMPILER_MINGW
         #pragma message("xLib: xCOMPILER_MINGW")
     #elif xCOMPILER_MS
@@ -57,7 +57,7 @@
     #endif
 
     //--------------------------------------------------
-    //standard C libraries
+    // standard C libraries
     #if   xSTD_LIBC_MSVCRT
         #pragma message("xLib: xSTD_LIBC_MSVCRT")
     #elif xSTD_LIBC_GNU
@@ -73,7 +73,7 @@
     #endif
 
     //--------------------------------------------------
-    //standard C++ libraries
+    // standard C++ libraries
     #if   xSTD_LIBCPP_GNUSTDCPP
         #pragma message("xLib: xSTD_LIBCPP_GNUSTDCPP")
     #elif XSTD_LIBCPP_DINKUMWARE
@@ -89,7 +89,17 @@
     #endif
 
     //--------------------------------------------------
-    //unicode, ansi
+    // static, share library
+    #if   xLIB
+        #pragma message("xLib: xLIB")
+    #elif xDLL
+        #pragma message("xLib: xDLL")
+    #else
+        #pragma message("xLib: unsupported library type")
+    #endif
+
+    //--------------------------------------------------
+    // unicode, ansi
     #if xUNICODE
         #pragma message("xLib: xUNICODE")
     #else
@@ -97,21 +107,13 @@
     #endif
 
     //--------------------------------------------------
-    //debug mode
+    // debug mode
     #if   xDEBUG_MODE_MSGBOX_PLAIN
         #pragma message("xLib: xDEBUG_MODE_MSGBOX_PLAIN")
-    #elif xDEBUG_MODE_MSGBOX_FORMATED
-        #pragma message("xLib: xDEBUG_MODE_MSGBOX_FORMATED")
     #elif xDEBUG_MODE_STDOUT_PLAIN
         #pragma message("xLib: xDEBUG_MODE_STDOUT_PLAIN")
-    #elif xDEBUG_MODE_STDOUT_HTML
-        #pragma message("xLib: xDEBUG_MODE_STDOUT_HTML")
     #elif xDEBUG_MODE_LOGGING_PLAIN
         #pragma message("xLib: xDEBUG_MODE_LOGGING_PLAIN")
-    #elif xDEBUG_MODE_LOGGING_HTML
-        #pragma message("xLib: xDEBUG_MODE_LOGGING_HTML")
-    #elif xDEBUG_MODE_NOLOGGING
-        #pragma message("xLib: xDEBUG_MODE_NOLOGGING")
     #elif xDEBUG_MODE_NO
         #pragma message("xLib: xDEBUG_MODE_NO")
     #else
@@ -119,7 +121,7 @@
     #endif
 
     //--------------------------------------------------
-    //debug mode
+    // build mode
     #if   xBUILD_DEBUG
         #pragma message("xLib: xBUILD_DEBUG")
     #elif xBUILD_RELEASE
