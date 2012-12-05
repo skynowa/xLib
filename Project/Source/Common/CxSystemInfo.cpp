@@ -705,7 +705,7 @@ CxSystemInfo::ulCpuSpeed() {
 
         double dCpuSpeedMHz = CxString::cast<double>( sValue );
 
-        ulRv = static_cast<ulong_t>( CxUtils::round(dCpuSpeedMHz) );
+        ulRv = CxUtils::roundIntT<ulong_t>( dCpuSpeedMHz );
     #elif xOS_FREEBSD
         ulong_t ulCpuSpeedMHz     = 0UL;
         size_t  uiCpuSpeedMHzSize = sizeof(ulCpuSpeedMHz);
