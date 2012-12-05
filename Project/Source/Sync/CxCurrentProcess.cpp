@@ -23,7 +23,7 @@ CxCurrentProcess::bIsCurrent(
     const CxProcess::id_t &a_culId
 )
 {
-    
+
 
     bool bRv = false;
 
@@ -93,17 +93,17 @@ CxCurrentProcess::ulParentId() {
     xCHECK_RET(false == bRv, culInvalidId);
 
     const PROCESSINFOCLASS    cpicInfo86               = ProcessBasicInformation;
-    const PROCESSINFOCLASS    cpicInfo64               = ProcessWow64Information;
+    const PROCESSINFOCLASS    cpicInfo64               = ProcessWow64Information;   xUNUSED(cpicInfo64);
     ULONG_PTR                 pulProcessInformation[6] = {0};
     DWORD                     dwReturnSize             = 0UL;   // in bytes
 
-    Dll_NtQueryInformationProcess_t 
+    Dll_NtQueryInformationProcess_t
     DllNtQueryInformationProcess = (Dll_NtQueryInformationProcess_t)dlDll.fpProcAddress(xT("NtQueryInformationProcess"));
     xTEST_PTR(DllNtQueryInformationProcess);
 
     // TODO: ProcessBasicInformation (for x64)
     NTSTATUS ntsRes = DllNtQueryInformationProcess(hHandle(),
-                                                   cpicInfo86, 
+                                                   cpicInfo86,
                                                    &pulProcessInformation, sizeof(pulProcessInformation), &dwReturnSize);
     xTEST_EQ(true, NT_SUCCESS(ntsRes));
     xTEST_EQ(size_t(dwReturnSize), sizeof(pulProcessInformation));
@@ -147,7 +147,7 @@ CxCurrentProcess::vExit(
     const uint_t &a_cuiExitCode
 )
 {
-    
+
 
 #if   xOS_ENV_WIN
     (void)::ExitProcess(a_cuiExitCode);

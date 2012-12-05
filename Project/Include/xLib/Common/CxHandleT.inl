@@ -43,7 +43,7 @@ CxHandleT<hvTag>::CxHandleT(
 ) :
     _m_hHandle( error_value_t::hGet() )
 {
-    
+
 
     _m_hHandle = chHandle.hDuplicate();
 }
@@ -105,7 +105,7 @@ CxHandleT<hvTag>::operator = (
 template<ExHandleValue hvTag>
 native_handle_t
 CxHandleT<hvTag>::hGet() const {
-    
+
 
     return _m_hHandle;
 }
@@ -116,7 +116,7 @@ CxHandleT<hvTag>::vSet(
     const native_handle_t &chHandle
 )
 {
-    
+
 
     _m_hHandle = chHandle;
 }
@@ -141,6 +141,8 @@ CxHandleT<hvTag>::hDuplicate() const {
                     FALSE,
                     DUPLICATE_SAME_ACCESS
     );
+    xUNUSED(blRes);
+
     ////xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     hRv = ::dup(_m_hHandle);
@@ -212,6 +214,8 @@ CxHandleT<hvTag>::vClose() {
 
 #if   xOS_ENV_WIN
     BOOL blRes = ::CloseHandle(_m_hHandle);
+    xUNUSED(blRes);
+
     ////xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     int iRv = ::close(_m_hHandle);
@@ -232,6 +236,8 @@ CxHandleT<hvTag>::ulInfo() const {
     DWORD dwFlags = 0UL;
 
     BOOL blRes = ::GetHandleInformation(_m_hHandle, &dwFlags);
+    xUNUSED(blRes);
+
     ////xTEST_DIFF(FALSE, blRes);
     ////xTEST_DIFF(0UL,   ulFlags);
 
@@ -254,6 +260,8 @@ CxHandleT<hvTag>::vSetInfo(
     //ulFlags - ????
 
     BOOL blRes = ::SetHandleInformation(_m_hHandle, culMask, culFlags);
+    xUNUSED(blRes);
+
     ////xTEST_DIFF(FALSE, blRes);
 }
 

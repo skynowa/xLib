@@ -164,18 +164,16 @@ CxEnvironment::vValues(
     std::vec_tstring_t vsArgs;
 
 #if   xOS_ENV_WIN
-    LPTSTR pszVar = NULL;
-    LPTCH  lpvEnv = NULL;
-
-    lpvEnv = ::GetEnvironmentStrings();
+    LPTCH lpvEnv = ::GetEnvironmentStrings();
     xTEST_PTR(lpvEnv);
 
-    //Variable strings are separated by NULL byte, and the block is terminated by a NULL byte
-    pszVar = static_cast<LPTSTR>( lpvEnv );
-
-    while (NULL != *pszVar)    {
+    // variable strings are separated by NULL byte, and the block is terminated by a NULL byte
+    for (
+        LPTSTR pszVar = static_cast<LPTSTR>( lpvEnv );
+        xT('\0') != *pszVar;
+        pszVar += ::lstrlen(pszVar) + 1)
+    {
         vsArgs.push_back(pszVar);
-        pszVar += ::lstrlen(pszVar) + 1;
     }
 
     BOOL blRes = ::FreeEnvironmentStrings(lpvEnv);
@@ -183,12 +181,12 @@ CxEnvironment::vValues(
 #elif xOS_ENV_UNIX
     xTEST_PTR(environ);
 
-    for (size_t i = 0; NULL != environ[i]; ++ i) {
+    for (size_t i = 0; 0 != environ[i]; ++ i) {
         vsArgs.push_back(environ[i]);
     }
 #endif
 
-    //out
+    // out
     std::swap(*a_pvsValues, vsArgs);
 }
 //--------------------------------------------------------------------------

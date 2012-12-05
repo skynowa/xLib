@@ -29,8 +29,7 @@ CxObject::CxObject(
 {
     xTEST_PTR(_m_pFunc);
     xTEST_DIFF(0UL, _m_hSession);
-    xTEST_PTR(_m_hObject);
-
+    xTEST_DIFF(0UL, _m_hObject);
 }
 //---------------------------------------------------------------------------
 /* virtual */
@@ -42,7 +41,7 @@ CK_OBJECT_HANDLE
 CxObject::hHandle() const {
     xTEST_PTR(_m_pFunc);
     xTEST_DIFF(0UL, _m_hSession);
-    xTEST_PTR(_m_hObject);
+    xTEST_DIFF(0UL, _m_hObject);
 
     return _m_hObject;
 }
@@ -67,7 +66,7 @@ CxObject::vCreate(
 {
     xTEST_PTR(_m_pFunc);
     xTEST_DIFF(0UL, _m_hSession);
-    xTEST_PTR_FAIL(_m_hObject);
+    xTEST_EQ(0UL, _m_hObject);
 
     CK_RV ulRv = _m_pFunc->C_CreateObject(_m_hSession, a_pTemplate, a_ulCount, &_m_hObject);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
@@ -80,7 +79,7 @@ CxObject::vGetSize(
 {
     xTEST_PTR(_m_pFunc);
     xTEST_DIFF(0UL, _m_hSession);
-    xTEST_PTR(_m_hObject);
+    xTEST_DIFF(0UL, _m_hObject);
 
     CK_RV ulRv = _m_pFunc->C_GetObjectSize(_m_hSession, _m_hObject, a_pulSize);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
@@ -95,7 +94,7 @@ CxObject::vCopy(
 {
     xTEST_PTR(_m_pFunc);
     xTEST_DIFF(0UL, _m_hSession);
-    xTEST_PTR(_m_hObject);
+    xTEST_DIFF(0UL, _m_hObject);
 
     CK_RV ulRv = _m_pFunc->C_CopyObject(_m_hSession, _m_hObject, a_pTemplate, a_ulCount, a_phNewObject);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
@@ -148,7 +147,7 @@ CxObject::vGetAttributeValue(
 {
     xTEST_PTR(_m_pFunc);
     xTEST_DIFF(0UL, _m_hSession);
-    xTEST_PTR(_m_hObject);
+    xTEST_DIFF(0UL, _m_hObject);
 
     CK_RV ulRv = _m_pFunc->C_GetAttributeValue(_m_hSession, _m_hObject, a_pTemplate, a_ulCount);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
@@ -162,7 +161,7 @@ CxObject::vSetAttributeValue(
 {
     xTEST_PTR(_m_pFunc);
     xTEST_DIFF(0UL, _m_hSession);
-    xTEST_PTR(_m_hObject);
+    xTEST_DIFF(0UL, _m_hObject);
 
     CK_RV ulRv = _m_pFunc->C_SetAttributeValue(_m_hSession, _m_hObject, a_pTemplate, a_ulCount);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
@@ -172,7 +171,7 @@ void
 CxObject::vDestroy() {
     xTEST_PTR(_m_pFunc);
     xTEST_DIFF(0UL, _m_hSession);
-    xTEST_PTR(_m_hObject);
+    xTEST_DIFF(0UL, _m_hObject);
 
     CK_RV ulRv = _m_pFunc->C_DestroyObject(_m_hSession, _m_hObject);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
@@ -188,7 +187,7 @@ CxObject::vData(
     std::ustring_t       *a_pusData
 )
 {
-    
+
 
     //-------------------------------------
     //CxPkcs11
@@ -358,7 +357,7 @@ CxObject::vSetData(
     const std::ustring_t &a_cusData
 )
 {
-    
+
 
     //-------------------------------------
     //CxPkcs11
@@ -410,7 +409,7 @@ CxObject::vSetData(
         //-------------------------------------
         //������ �� ���������� - ��������
         CK_OBJECT_CLASS ocData    = CKO_DATA;
-        CK_BBOOL        bFalse    = false;
+        CK_BBOOL        bFalse    = false;  xUNUSED(bFalse);
         CK_BBOOL        bTrue     = true;
         std::ustring_t         usApplication;
 

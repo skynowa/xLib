@@ -294,7 +294,7 @@ CxProcessInfo::sCommandLine(
 
 
     #if xCOMPILER_MINGW32 || xCOMPILER_CODEGEAR
-        //typedef __success(return >= 0) LONG NTSTATUS;
+        // typedef __success(return >= 0) LONG NTSTATUS;
         typedef LONG NTSTATUS;
 
         enum PROCESSINFOCLASS
@@ -324,25 +324,22 @@ CxProcessInfo::sCommandLine(
             bool bRv = dlDll.bIsProcExists(xT("NtQueryInformationProcess"));
             xTEST_EQ(true, bRv);
 
-            ULONG_PTR pulProcessInformation[6] = {0};
-            DWORD     dwReturnSize             = 0UL;   // in bytes
-
             Dll_NtQueryInformationProcess_t
             DllNtQueryInformationProcess = (Dll_NtQueryInformationProcess_t)dlDll.fpProcAddress(xT("NtQueryInformationProcess"));
             xTEST_PTR(DllNtQueryInformationProcess);
 
             const PROCESSINFOCLASS    cpicInfo86       = ProcessBasicInformation;
-            const PROCESSINFOCLASS    cpicInfo64       = ProcessWow64Information;
+            const PROCESSINFOCLASS    cpicInfo64       = ProcessWow64Information;   xUNUSED(cpicInfo64);
             PROCESS_BASIC_INFORMATION pbiBasicInfo     = {0};
             const DWORD               cdwBasicInfoSize = sizeof(pbiBasicInfo);   // in bytes
-            DWORD                     dwReturnLength   = 0UL;
+            DWORD                     dwReturnSize     = 0UL;   // in bytes
 
             // TODO: ProcessBasicInformation (for x64)
             NTSTATUS nsRv = DllNtQueryInformationProcess(hProcessHandle,
                                                          cpicInfo86,
-                                                         &pbiBasicInfo, cdwBasicInfoSize, &dwReturnLength);
+                                                         &pbiBasicInfo, cdwBasicInfoSize, &dwReturnSize);
             xTEST_EQ(true, NT_SUCCESS(nsRv));
-            xTEST_EQ(cdwBasicInfoSize, dwReturnLength);
+            xTEST_EQ(cdwBasicInfoSize, dwReturnSize);
             xTEST_PTR(pbiBasicInfo.PebBaseAddress);
 
             PVOID pvRv = pbiBasicInfo.PebBaseAddress;

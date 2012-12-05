@@ -51,7 +51,7 @@ CxSession::vOpen(
 )
 {
     xTEST_PTR(_m_pFunc);
-    xTEST_PTR_FAIL(_m_hSession);
+    xTEST_EQ(0UL, _m_hSession);
 
     CK_RV ulRv = _m_pFunc->C_OpenSession(a_slotID, a_flags, a_pApplication, a_Notify, &_m_hSession);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
@@ -106,7 +106,7 @@ CxSession::vClose() {
     CK_RV ulRv = _m_pFunc->C_CloseSession(_m_hSession);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
-    _m_hSession = NULL;
+    _m_hSession = 0UL;
 }
 //---------------------------------------------------------------------------
 void
@@ -120,7 +120,7 @@ CxSession::vCloseAll(
     CK_RV ulRv = _m_pFunc->C_CloseAllSessions(slotID);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
 
-    _m_hSession = NULL;
+    _m_hSession = 0UL;
 }
 //---------------------------------------------------------------------------
 
