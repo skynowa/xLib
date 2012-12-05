@@ -230,7 +230,7 @@ xNAMESPACE_BEGIN(NxLib)
 #elif xCOMPILER_CODEGEAR
     #define xLOCKING            locking
 #elif xCOMPILER_GNUC
-    #define xLOCKING            locking
+    #define xLOCKING            lockf   //-- locking
 #else
     #define xLOCKING            locking
 #endif
