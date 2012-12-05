@@ -11,21 +11,6 @@
 #include <limits.h>         // standard C libraries
 
 //--------------------------------------------------
-// OS family
-#if defined(_WIN32) || defined(_WIN64) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(__WINDOWS__)
-    #define xOS_WIN 1
-        ///< operating system Windows
-#elif defined(linux) || defined(__linux) || defined(__linux__)
-    #define xOS_LINUX 1
-        ///< operating system Linux
-#elif defined(__FreeBSD__)
-    #define xOS_FREEBSD 1
-        ///< operating system FreeBSD
-#else
-    #error xLib: unsupported OS
-#endif
-
-//--------------------------------------------------
 // OS environment
 #if defined(_WIN32) || defined(_WIN64) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(__WINDOWS__)
     #define xOS_ENV_WIN 1
@@ -38,6 +23,21 @@
         ///< BSD environment
 #else
     #error xLib: unsupported OS environment
+#endif
+
+//--------------------------------------------------
+// OS family
+#if defined(_WIN32) || defined(_WIN64) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(__WINDOWS__)
+    #define xOS_WIN 1
+        ///< operating system Windows
+#elif defined(linux) || defined(__linux) || defined(__linux__)
+    #define xOS_LINUX 1
+        ///< operating system Linux
+#elif defined(__FreeBSD__)
+    #define xOS_FREEBSD 1
+        ///< operating system FreeBSD
+#else
+    #error xLib: unsupported OS
 #endif
 
 //--------------------------------------------------
@@ -105,18 +105,6 @@
 #define xCOMPILER_GNUC_VER_PATCHLEVEL __GNUC_PATCHLEVEL__
 
 //--------------------------------------------------
-// xLIB, xDLL
-// NOTE: In Unix this defines (_LIB, _DLL) must be set from Makefile
-#if defined(_LIB)
-    #define  xLIB                     1
-#endif
-    ///< static labrary
-#if defined(_DLL)
-    #define  xDLL                     1
-#endif
-    ///< dynamic-link library
-
-//--------------------------------------------------
 // standard C libraries
 #if   xOS_ENV_WIN
     // TODO: standard C libraries
@@ -157,12 +145,12 @@
         #define xSTD_LIBC_ZOS    1
             ///< z/OS libc
     #else
-        //#warning xLib: unsupported standard C library
+        // #warning xLib: unsupported standard C library
     #endif
 #endif
 
 //--------------------------------------------------
-//TODO: standard C libraries versions
+// TODO: standard C libraries versions
 #define xSTD_LIBC_GNU_VER_MAJOR __GLIBC__
 #define xSTD_LIBC_GNU_VER_MINOR __GLIBC_MINOR__
 
@@ -195,11 +183,23 @@
 #endif
 
 //--------------------------------------------------
-//TODO: standard C++ libraries versions
+// TODO: standard C++ libraries versions
 #define xSTD_LIBCPP_GNU_VER 0
 #define xSTD_LIBCPP_UC_VER  0
 #define xSTD_LIBCPP_VMS_VER 0
 #define xSTD_LIBCPP_ZOS_VER 0
+
+//--------------------------------------------------
+// static, share library
+// NOTE: In Unix this defines (_LIB, _DLL) must be set from Makefile
+#if defined(_LIB)
+    #define  xLIB 1
+#endif
+    ///< static labrary
+#if defined(_DLL)
+    #define  xDLL 1
+#endif
+    ///< dynamic-link library
 
 //--------------------------------------------------
 // unicode, ansi
