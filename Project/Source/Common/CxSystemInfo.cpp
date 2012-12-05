@@ -848,7 +848,7 @@ CxSystemInfo::ulCpuUsage() {
         s_ulUsedOld  = ulUsed;
         s_ulTotalOld = ulTotal;
 
-        ulRv = static_cast<ulong_t>( CxUtils::round(dCpuUsage) );
+        ulRv = CxUtils::roundIntT<ulong_t>( dCpuUsage );
     #endif
 #endif
 

@@ -80,7 +80,7 @@ CxProfiler::vStop(
         xTEST_DIFF(static_cast<clock_t>( - 1 ), _m_clkStop);
 
         _m_clkDuration = _m_clkStop - _m_clkStart;
-        xTEST_LESS_EQ(0L, _m_clkDuration);
+        xTEST_LESS_EQ(static_cast<clock_t>( 0 ), _m_clkDuration);
     }
 
     const double         cdDurationMsec   = (static_cast<double>( _m_clkDuration ) / static_cast<double>( CLOCKS_PER_SEC )) * 1000.0;  // 1 sec = 1000 msec
