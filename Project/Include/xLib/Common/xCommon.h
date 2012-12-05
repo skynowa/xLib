@@ -129,6 +129,7 @@
 
 // STL
 #include <typeinfo>
+#include <limits>
 #include <string>
 #include <sstream>
 #include <iostream>

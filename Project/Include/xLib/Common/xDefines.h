@@ -171,7 +171,7 @@
     ///< get max value
 #define xMIN(a, b)                      ( CxUtils::minT( (a), (b) ) )
     ///< get min value
-#define xINT_TO_BOOL(i)                 ( CxUtils::intToBool(i) )
+#define xINT_TO_BOOL(i)                 ( CxUtils::intToBoolT(i) )
     ///< convert int to bool
 
 //--------------------------------------------------

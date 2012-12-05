@@ -48,7 +48,7 @@ class CxUtils :
             ///< close file stream (FILE *)
 
         template <typename T>
-        static inline bool      intToBool       (const T &valueT);
+        static inline bool      intToBoolT      (const T &valueT);
             ///< convert int to bool
 
         template <typename T>
@@ -67,19 +67,23 @@ class CxUtils :
         static inline ToT       reinterpretCastT(const FromT &pPtrT);
             ///< allows any pointer to be converted into any other pointer type
 
-        static inline double    round           (const double &cdValue);
+        static inline double    roundDouble     (const double &cdValue);
             ///< round double value to the integer part
+
+        template <typename T>
+        static inline T         roundIntT       (const double &cdValue);
+            ///< round double value to long_t
 
         template <typename T1, typename T2>
         static inline double    safeDivT        (const T1 &cValue1T, const T2 &cValue2T);
             ///< safe division
 
         template <typename T>
-        static inline T         enumInc         (const T &valueT);    
+        static inline T         enumIncT        (const T &valueT);
             ///< increment enumerator
 
         template <typename T>
-        static inline T         enumDec         (const T &valueT); 
+        static inline T         enumDecT        (const T &valueT);
             ///< decriment enumerator
 
     private:

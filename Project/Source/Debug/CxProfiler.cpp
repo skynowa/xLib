@@ -21,10 +21,7 @@ xNAMESPACE_BEGIN(NxLib)
 *****************************************************************************/
 
 //---------------------------------------------------------------------------
-CxProfiler::CxProfiler(
-    const ExMode &a_cpmMode
-) :
-    _m_pmModeNow (a_cpmMode),
+CxProfiler::CxProfiler() :
     _m_bIsStarted(false),
     _flLog       (CxFileLog::lsDefaultSize)
 {
@@ -42,15 +39,13 @@ CxProfiler::vSetLogPath(
     const std::tstring_t &a_csLogPath
 )
 {
-
+    xTEST_EQ(true, CxPath::bIsValid(a_csLogPath));
 
     _flLog.vSetFilePath(a_csLogPath);
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxProfiler::sLogPath() const {
-
-
     return _flLog.sFilePath();
 }
 //--------------------------------------------------------------------------
@@ -60,74 +55,13 @@ CxProfiler::vStart() {
 
     _vDataReset();
 
-    #if xTODO
-         // TODO: CxProcess::vSetPriority
-        CxProcess::vSetPriority(CxProcess::ulGetCurrId(), CxProcess::tpTimeCritical);
-    #endif
+    // TODO: set highest thread priority
+    {
 
-    CxCurrentThread::vSleep(10UL);
-
-    switch (_m_pmModeNow) {
-        case pmStdClock: {
-                _m_ctClocksStart = xSTD_CLOCK();
-                xTEST_DIFF(static_cast<clock_t>( - 1 ), _m_ctClocksStart);
-            }
-            break;
-
-        case pmDateTime: {
-                _m_dtTimesStart = CxDateTime::dtCurrent();
-                // n/a
-            }
-            break;
-
-        case pmGetTimeOfDay: {
-                timeval tv = {0};
-                /*::*/xGETTIMEOFDAY(&tv, NULL);
-
-                _m_dMicrosecStart = static_cast<double>( tv.tv_sec ) + static_cast<double>( tv.tv_usec ) * 0.000001;
-            }
-            break;
-
-
-        case pmSystemTicks: {
-                #if   xOS_ENV_WIN
-                    _m_ulTicksStartMs = ::GetTickCount();
-                    // n/a
-                #elif xOS_ENV_UNIX
-                    ulong_t        ulTicks = 0;
-	                struct timeval tvNow   = {0};
-
-                    xGETTIMEOFDAY(&tvNow, NULL);
-                    ulTicks =  tvNow.tv_sec  * 1000l;
-                    ulTicks += tvNow.tv_usec / 1000l;
-
-                    _m_ulTicksStartMs = ulTicks;
-                #endif
-            }
-            break;
-
-        #if xOS_ENV_WIN
-            case pmPerformanceCount: {
-                    BOOL blRes = ::QueryPerformanceFrequency(&_m_liCountersPerfFreq);
-                    xTEST_DIFF(FALSE, blRes);
-
-                    blRes = ::QueryPerformanceCounter(&_m_liCountersStart);
-                    xTEST_DIFF(FALSE, blRes);
-                }
-                break;
-
-            case pmThreadTimes: {    // BUG: pmThreadTimes
-                    BOOL blRes = ::GetThreadTimes(CxCurrentThread::hHandle(), &_m_lpCreationTime, &_m_lpExitTime, &_m_lpKernelTimeStart, &_m_lpUserTimeStart);
-                    xTEST_DIFF(FALSE, blRes);
-                }
-                break;
-        #endif
-
-        default: {
-                xTEST_FAIL;
-            }
-            break;
     }
+
+    _m_clkStart = xSTD_CLOCK();
+    xTEST_DIFF(static_cast<clock_t>( - 1 ), _m_clkStart);
 
     _m_bIsStarted = true;
 }
@@ -139,93 +73,32 @@ CxProfiler::vStop(
 {
     xTEST_EQ(true, _m_bIsStarted);
 
-    std::tstring_t sTimeString = xT("0:00:00:000");
+    //-------------------------------------
+    // stop, get duration
+    {
+        _m_clkStop = xSTD_CLOCK();
+        xTEST_DIFF(static_cast<clock_t>( - 1 ), _m_clkStop);
 
-    switch (_m_pmModeNow) {
-        case pmStdClock: {
-                _m_ctClocksStop = xSTD_CLOCK();
-                xTEST_DIFF(static_cast<clock_t>( - 1 ), _m_ctClocksStop);
-
-                sTimeString = CxDateTime( static_cast<double>((_m_ctClocksStop - _m_ctClocksStart)) / CLOCKS_PER_SEC ).sFormat(CxDateTime::ftTime);
-
-
-
-            }
-            break;
-
-        case pmDateTime: {
-                _m_dtTimesStop = CxDateTime::dtCurrent();
-                // n/a
-
-                sTimeString = (_m_dtTimesStop - _m_dtTimesStart).sFormat(CxDateTime::ftTime);
-            }
-            break;
-
-        case pmGetTimeOfDay: {
-                timeval tv = {0};
-                /*::*/xGETTIMEOFDAY(&tv, NULL);
-
-                _m_dMicrosecStop = static_cast<double>( tv.tv_sec ) + static_cast<double>( tv.tv_usec ) * 0.000001;
-
-                sTimeString = CxString::sFormat(xT("%.6lf (sec)"), _m_dMicrosecStop - _m_dMicrosecStart);
-            }
-            break;
-
-        case pmSystemTicks: {
-                    #if   xOS_ENV_WIN
-                        _m_ulTicksStopMs = ::GetTickCount();
-                        // n/a
-                    #elif xOS_ENV_UNIX
-                        ulong_t        ulTicks = 0;
-	                    struct timeval tvNow   = {0};
-
-                        xGETTIMEOFDAY(&tvNow, NULL);
-                        ulTicks =  tvNow.tv_sec  * 1000l;
-                        ulTicks += tvNow.tv_usec / 1000l;
-
-                        _m_ulTicksStopMs = ulTicks;
-                    #endif
-
-                    sTimeString = CxDateTime(_m_ulTicksStopMs - _m_ulTicksStartMs).sFormat(CxDateTime::ftTime);
-                }
-                break;
-
-        #if xOS_ENV_WIN
-            case pmPerformanceCount: {
-                    BOOL blRes = ::QueryPerformanceCounter(&_m_liCountersStop);
-                    xTEST_DIFF(FALSE, blRes);
-
-                    sTimeString = CxDateTime((_m_liCountersStop.QuadPart - _m_liCountersStart.QuadPart) * 1000 / _m_liCountersPerfFreq.QuadPart).sFormat(CxDateTime::ftTime);
-                }
-                break;
-
-            case pmThreadTimes: {    // BUG: pmThreadTimes
-                    BOOL blRes = ::GetThreadTimes(CxCurrentThread::hHandle(), &_m_lpCreationTime, &_m_lpExitTime, &_m_lpKernelTimeStop, &_m_lpUserTimeStop);
-                    xTEST_DIFF(FALSE, blRes);
-
-                    sTimeString = CxDateTime((CxDateTime::i64FiletimeToInt64(_m_lpUserTimeStop) - CxDateTime::i64FiletimeToInt64(_m_lpUserTimeStart)) / 10000).sFormat(CxDateTime::ftTime);
-                }
-                break;
-        #endif
-
-        default: {
-                xTEST_FAIL;
-            }
-            break;
+        _m_clkDuration = _m_clkStop - _m_clkStart;
+        xTEST_LESS_EQ(0L, _m_clkDuration);
     }
 
-    //-------------------------------------
-    // format comment
-    std::tstring_t sRv;
-
-    va_list palArgs;
-    xVA_START(palArgs, a_pcszComment);
-    sRv = CxString::sFormatV(a_pcszComment, palArgs);
-    xVA_END(palArgs);
+    const double         cdDurationMsec   = (static_cast<double>( _m_clkDuration ) / static_cast<double>( CLOCKS_PER_SEC )) * 1000.0;  // 1 sec = 1000 msec
+    const ulonglong_t    cullDurationMsec = CxUtils::roundIntT<ulonglong_t>( cdDurationMsec );
+    const std::tstring_t csDurationTime   = CxDateTime(cullDurationMsec).sFormat(CxDateTime::ftTime);
 
     //-------------------------------------
     // write to log
-    _flLog.vWrite(xT("%s: %s"), sTimeString.c_str(), sRv.c_str());
+    {
+        std::tstring_t sRv;
+
+        va_list palArgs;
+        xVA_START(palArgs, a_pcszComment);
+        sRv = CxString::sFormatV(a_pcszComment, palArgs);
+        xVA_END(palArgs);
+
+        _flLog.vWrite(xT("%s: %s"), csDurationTime.c_str(), sRv.c_str());
+    }
 
     _m_bIsStarted = false;
 }
@@ -260,51 +133,16 @@ CxProfiler::vPulse(
 //---------------------------------------------------------------------------
 void
 CxProfiler::_vDataReset() {
-    #if xTODO
-        // TODO: CxProcess::vSetPriority
-        CxProcess::vSetPriority(CxCurrentProcess::ulId(), CxProcess::tpNormal);
-    #endif
+    // TODO: set normal thread priority
+    {
 
-    _m_bIsStarted                       = false;
+    }
 
-    // pmStdClock
-    xSTRUCT_ZERO(_m_ctClocksStart);
-    xSTRUCT_ZERO(_m_ctClocksStop);
+    _m_bIsStarted = false;
 
-    // pmDateTime
-    _m_dtTimesStart                     = 0ULL;
-    _m_dtTimesStop                      = 0ULL;
-
-    // pmGetTimeOfDay
-    _m_dMicrosecStart                   = 0.0f;
-    _m_dMicrosecStop                    = 0.0f;
-
-#if   xOS_ENV_WIN
-    // pmGetTickCount
-    _m_ulTicksStartMs                   = 0UL;
-    _m_ulTicksStopMs                    = 0UL;
-
-    // pmPerformanceCount
-    _m_liCountersPerfFreq.QuadPart      = 0L;
-    _m_liCountersStart.QuadPart         = 0L;
-    _m_liCountersStop.QuadPart          = 0L;
-
-    // pmThreadTimes
-    _m_lpCreationTime.dwLowDateTime     = 0UL;
-    _m_lpCreationTime.dwHighDateTime    = 0UL;
-    _m_lpExitTime.dwLowDateTime         = 0UL;
-    _m_lpExitTime.dwHighDateTime        = 0UL;
-    _m_lpKernelTimeStart.dwLowDateTime  = 0UL;
-    _m_lpKernelTimeStart.dwHighDateTime = 0UL;
-    _m_lpUserTimeStart.dwLowDateTime    = 0UL;
-    _m_lpUserTimeStart.dwHighDateTime   = 0UL;
-    _m_lpKernelTimeStop.dwLowDateTime   = 0UL;
-    _m_lpKernelTimeStop.dwHighDateTime  = 0UL;
-    _m_lpUserTimeStop.dwLowDateTime     = 0UL;
-    _m_lpUserTimeStop.dwHighDateTime    = 0UL;
-#elif xOS_ENV_UNIX
-    xNA;
-#endif
+    _m_clkStart    = 0L;
+    _m_clkStop     = 0L;
+    _m_clkDuration = 0L;
 }
 //--------------------------------------------------------------------------
 

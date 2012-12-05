@@ -8,6 +8,7 @@
 
 #include <xLib/Common/CxConst.h>
 #include <xLib/Sync/CxCurrentThread.h>
+#include <xLib/Filesystem/CxFile.h>
 
 
 //---------------------------------------------------------------------------
@@ -25,25 +26,13 @@ CxTest_CxProfiler::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    const CxProfiler::ExMode pmMode[] = {
-            CxProfiler::pmStdClock,
-            CxProfiler::pmDateTime,
-            CxProfiler::pmGetTimeOfDay,
-            CxProfiler::pmSystemTicks
-
-        #if   xOS_ENV_WIN
-            ,
-            CxProfiler::pmPerformanceCount,
-            CxProfiler::pmThreadTimes
-        #elif xOS_ENV_UNIX
-
-        #endif
-    };
-
-    for (size_t i = 0; i < xARRAY_SIZE(pmMode); ++ i) {
+    xTEST_CASE("CxProfiler::CxProfiler", cullCaseLoops)
+    {
         const std::tstring_t csFilePath = sTempDirPath() + CxConst::xSLASH + xT("CxProfilerLog.log");
 
-        CxProfiler pfP(pmMode[i]);
+        CxFile::vClear(csFilePath);
+
+        CxProfiler pfP;
 
         pfP.vSetLogPath(csFilePath);
 
@@ -52,10 +41,10 @@ CxTest_CxProfiler::vUnit(
 
         pfP.vStart();
 
-        for (size_t y = 0; y < 10; ++ y) {
-            CxCurrentThread::vSleep(2000UL);
+        for (size_t i = 0; i < 10; ++ i) {
+            CxCurrentThread::vSleep(5UL);
 
-            pfP.vPulse(xT("Variable y: %") xPR_SIZET, y);
+            pfP.vPulse(xT("\tVar i: %") xPR_SIZET, i);
         }
 
         pfP.vStop(xT(""));
