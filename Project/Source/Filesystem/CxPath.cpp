@@ -515,10 +515,10 @@ CxPath::bIsNameValid(
     {
         const std::tstring_t casReservedNames[] = {
             xT("CON"),  xT("PRN"),  xT("AUX"),  xT("NUL"),
-            xT("COM0"), xT("COM1"), xT("COM2"), xT("COM3"),   xT("COM4"),
-            xT("COM5"), xT("COM6"), xT("COM7"), xT("COM8"),   xT("COM9"),
-            xT("LPT0"), xT("LPT1"), xT("LPT2"), xT("LPT3"),   xT("LPT4"),
-            xT("LPT5"), xT("LPT6"), xT("LPT7"), xT("LPT8"),   xT("LPT9"),
+            xT("COM0"), xT("COM1"), xT("COM2"), xT("COM3"), xT("COM4"),
+            xT("COM5"), xT("COM6"), xT("COM7"), xT("COM8"), xT("COM9"),
+            xT("LPT0"), xT("LPT1"), xT("LPT2"), xT("LPT3"), xT("LPT4"),
+            xT("LPT5"), xT("LPT6"), xT("LPT7"), xT("LPT8"), xT("LPT9"),
             xT("CLOCK$")
         };
 
@@ -538,6 +538,7 @@ CxPath::bIsNameValid(
         std::tstring_t sExceptedChars;
         sExceptedChars.push_back(xT('/'));
         sExceptedChars.push_back(xT('\0'));
+        xTEST_EQ(size_t(2), sExceptedChars.size());
 
         size_t uiPos = csFileName.find_first_of(sExceptedChars);
         xCHECK_RET(!csFileName.empty() && std::tstring_t::npos != uiPos, false);
@@ -545,8 +546,8 @@ CxPath::bIsNameValid(
 #elif xOS_ENV_MAC
     //-------------------------------------
     // check: excepted chars
-    // /  (forward slash)
-    // :  (colon)
+    // / (forward slash)
+    // : (colon)
 
     {
         const std::tstring_t csExceptedChars = xT("/:");
