@@ -1,6 +1,6 @@
 /**
  * \file   CxFileTemp.cpp
- * \brief
+ * \brief  temporary file
  */
 
 

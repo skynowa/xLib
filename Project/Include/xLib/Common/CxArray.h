@@ -12,7 +12,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 template<typename T, std::size_t N>
-class CxArray 
+class CxArray
     /// array
 {
     public:

@@ -439,15 +439,15 @@ CxDir::vDeleteForce(
     xTEST_EQ(false, bIsExists(a_csDirPath));
 }
 //--------------------------------------------------------------------------
-// TODO: bFindFiles
+// TODO: vFindFiles
 // http://www.metalshell.com/source_code/86/List_Contents_of_a_Directory.html
 /* static */
 void
 CxDir::vFindFiles(
-    const std::tstring_t &a_csDirPath,
-    const std::tstring_t &a_csPattern,
-    const bool           &a_cbIsRecursively,
-    std::vec_tstring_t   *a_pvsFilePathes    ///< \note must be empty
+    const std::tstring_t &a_csDirPath,          ///< directory path
+    const std::tstring_t &a_csPattern,          ///< pattern
+    const bool           &a_cbIsRecursively,    ///< recursively scan
+    std::vec_tstring_t   *a_pvsFilePathes       ///< output file pathes (must be empty)
 )
 {
     xTEST_EQ(false, a_csDirPath.empty());
@@ -593,10 +593,10 @@ CxDir::vFindFiles(
 /* static */
 void
 CxDir::vFindDirs(
-    const std::tstring_t &a_csDirPath,
-    const std::tstring_t &a_csPattern,
-    const bool           &a_cbIsRecursively,
-    std::vec_tstring_t   *a_pvsDirPathes    ///< \note must be empty
+    const std::tstring_t &a_csDirPath,          ///< directory path
+    const std::tstring_t &a_csPattern,          ///< pattern
+    const bool           &a_cbIsRecursively,    ///< recursively scan
+    std::vec_tstring_t   *a_pvsDirPathes        ///< output directory pathes (must be empty)
 )
 {
     xTEST_EQ(false, a_csDirPath.empty());

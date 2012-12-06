@@ -59,9 +59,9 @@ class CxErrorReport :
         std::tstring_t m_sComment;        ///< comment
 
                        template<typename T>
-                       CxErrorReport(const ExType         &crtType,      
+                       CxErrorReport(const ExType         &crtType,
                                      const std::tstring_t &csVar1,       const std::tstring_t &csVar2,
-                                     const T              &cVar1ValueT,  const T              &cVar2ValueT,       
+                                     const T              &cVar1ValueT,  const T              &cVar2ValueT,
                                      const std::tstring_t &csExprSign,
                                      const ulong_t        &culLastError, const std::tstring_t &csFile,
                                      const ulong_t        &culLine,      const std::tstring_t &csFunc,
@@ -72,7 +72,7 @@ class CxErrorReport :
             ///< destructor
 
     private:
-        void          _vConstruct   (const ExType         &crtType,      
+        void          _vConstruct   (const ExType         &crtType,
                                      const std::tstring_t &csVar1,       const std::tstring_t &csVar2,
                                      const std::tstring_t &csVar1Value,  const std::tstring_t &csVar2Value,
                                      const std::tstring_t &csExprSign,

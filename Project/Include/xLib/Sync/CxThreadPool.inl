@@ -37,7 +37,7 @@ CxThreadPool<T>::CxThreadPool(
     _m_uiNumTasks         (0U),
     _m_uiCurrTask         (0U)
 {
-    
+
 
     /*LOG*/_m_clLog.vWrite(xT("--------------------------------"));
     /*LOG*/_m_clLog.vWrite(xT("CxThreadPool: construct"));
@@ -45,7 +45,7 @@ CxThreadPool<T>::CxThreadPool(
 //---------------------------------------------------------------------------
 template<typename T>
 CxThreadPool<T>::~CxThreadPool() {
-    
+
 
     /*LOG*/_m_clLog.vWrite(xT("CxThreadPool: destroy"));
 }
@@ -92,7 +92,7 @@ CxThreadPool<T>::vGroupCreate(
 template<typename T>
 void
 CxThreadPool<T>::vGroupResume() {
-    
+
 
     xCHECK_DO(false == bIsRunning(), /*LOG*/_m_clLog.vWrite(xT("CxThreadPool: not running")); return);
 
@@ -116,7 +116,7 @@ CxThreadPool<T>::vGroupResume() {
 template<typename T>
 void
 CxThreadPool<T>::vGroupPause() {
-    
+
 
     xCHECK_DO(false == bIsRunning(), /*LOG*/_m_clLog.vWrite(xT("CxThreadPool: not running")); return);
 
@@ -143,7 +143,7 @@ CxThreadPool<T>::vGroupExit(
     const ulong_t &a_culTimeout
 )
 {
-    
+
 
     xCHECK_DO(false == bIsRunning(), /*LOG*/_m_clLog.vWrite(xT("CxThreadPool: not running")); return);
 
@@ -197,7 +197,7 @@ CxThreadPool<T>::vGroupWait(
     const ulong_t &a_culTimeout
 )
 {
-    
+
 
     xCHECK_DO(false == bIsRunning(), /*LOG*/_m_clLog.vWrite(xT("CxThreadPool: not running")); return);
 
@@ -318,7 +318,7 @@ CxThreadPool<T>::vSetNumTasks(
 template<typename T>
 bool
 CxThreadPool<T>::bIsEmpty() const {
-    
+
 
     CxAutoMutex amtMutex(&_m_mtList);
 
@@ -370,7 +370,7 @@ CxThreadPool<T>::uiOnRun(
     void *a_pvParam
 )
 {
-    
+
 
     uint_t uiRes = 0U;
 
@@ -440,7 +440,7 @@ CxThreadPool<T>::_vTaskAdd(
     CxThread *a_pvItem
 )
 {
-    
+
 
     T *pthTask = new T(_m_cbIsGroupAutoDelete);
     xTEST_PTR(pthTask);
@@ -493,7 +493,7 @@ CxThreadPool<T>::_vOnEnterTask(
     CxThread *a_pthSender
 )
 {
-    
+
     xTEST_PTR(a_pthSender);
     xTEST_EQ(true, a_pthSender->bIsRunning());
 
@@ -508,7 +508,7 @@ CxThreadPool<T>::_vOnExitTask(
     CxThread *a_pthSender
 )
 {
-    
+
     xTEST_PTR(a_pthSender);
     xTEST_EQ(true, a_pthSender->bIsRunning());
 

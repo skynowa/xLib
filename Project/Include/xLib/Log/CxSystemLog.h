@@ -41,8 +41,8 @@ class CxSystemLog :
         };
 
         #if xTEMP_DISABLED
-            EVENTLOG_AUDIT_FAILURE  //Failure Audit event
-            EVENTLOG_AUDIT_SUCCESS  //Success Audit event
+            EVENTLOG_AUDIT_FAILURE  // Failure Audit event
+            EVENTLOG_AUDIT_SUCCESS  // Success Audit event
         #endif
 
                  CxSystemLog();

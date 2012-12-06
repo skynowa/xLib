@@ -18,8 +18,8 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxEvent::CxEvent(
-    const bool &a_cbIsAutoReset,
-    const bool &a_cbIsSignaled     ///< false - wait, lock
+    const bool &a_cbIsAutoReset,    ///< is auto reset
+    const bool &a_cbIsSignaled      ///< is signaled (false - wait, lock)
 ) :
 #if   xOS_ENV_WIN
     _m_hEvent       (),

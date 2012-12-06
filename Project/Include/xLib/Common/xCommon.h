@@ -92,8 +92,6 @@
  *       bs[type]*    - std::bitset
  * </pre>
  *
- * \section sec_samples Samples
- * \ref     Units
  */
 
 

@@ -1,5 +1,5 @@
 /**
- * \file  CxCommon.cpp
+ * \file  xCommon.cpp
  * \brief pre-compiled header
  */
 

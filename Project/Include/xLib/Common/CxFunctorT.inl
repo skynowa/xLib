@@ -29,7 +29,7 @@ CxFunctorT<ClassT, ReturnT, ParamT>::CxFunctorT(
 //---------------------------------------------------------------------------
 template <typename ClassT, typename ReturnT, typename ParamT>
 CxFunctorT<ClassT, ReturnT, ParamT>::~CxFunctorT() {
-    
+
 }
 //---------------------------------------------------------------------------
 template <typename ClassT, typename ReturnT, typename ParamT>

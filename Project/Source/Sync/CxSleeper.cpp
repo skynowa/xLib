@@ -1,6 +1,6 @@
 /**
  * \file  CxSleeper.cpp
- * \brief like ::Sleep()
+ * \brief sleeper
  */
 
 
