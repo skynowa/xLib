@@ -10,7 +10,7 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Crypt/Pkcs11/Common.h>
 //---------------------------------------------------------------------------
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
 
 xNAMESPACE_BEGIN(NxLib)
 

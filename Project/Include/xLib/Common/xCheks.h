@@ -7,12 +7,12 @@
 #ifndef xLib_Common_xCheksH
 #define xLib_Common_xCheksH
 //---------------------------------------------------------------------------
-//check for C++ compilation
+// check for C++ compilation
 #if !defined(__cplusplus)
     #error xLib: require C++ compilation (use a .cpp suffix)
 #endif
 
-//check for supporting unicode
+// check for supporting unicode
 #if xOS_ENV_UNIX
     #if xUNICODE
         #error xLib: unicode unsupported for Linux and FreeBSD
@@ -23,16 +23,16 @@
     #endif
 #endif
 
-//TODO: for debug mode
+// TODO: for debug mode
 
 //--------------------------------------------------
-//Linux
+// Linux
 #if xOS_ENV_UNIX
 
 #endif
 
 //--------------------------------------------------
-//Win
+// Win
 #if   xOS_ENV_WIN
     #if !defined(MAX_PATH)
         #error xLib: MAX_PATH not defined

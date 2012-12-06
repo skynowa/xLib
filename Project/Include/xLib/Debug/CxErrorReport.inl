@@ -45,7 +45,7 @@ CxErrorReport::CxErrorReport(
     m_sStackTrace    (),
     m_sComment       ()
 {
-    
+
 
     // sVar1Value
     std::tstring_t sVar1Value;
@@ -65,7 +65,7 @@ CxErrorReport::CxErrorReport(
         sVar2Value = ossRes.str();
     }
 
-    _vConstruct(a_crtType, 
+    _vConstruct(a_crtType,
                 a_csVar1,   a_csVar2,
                 sVar1Value, sVar2Value,
                 a_csExprSign,

@@ -109,10 +109,10 @@
     #define  xDll                     _DLL
             ///<
 #elif xOS_ENV_UNIX
-    #define  xLib    
-            ///<                 
-    #define  xDll  
-            ///<                       
+    #define  xLib
+            ///<
+    #define  xDll
+            ///<
 #endif
 
 //--------------------------------------------------

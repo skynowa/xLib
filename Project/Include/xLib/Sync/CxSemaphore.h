@@ -9,8 +9,11 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
+xNAMESPACE_BEGIN(NxLib)
+
 class CxSemaphore :
     public CxNonCopyable
+    /// semaphore
 {
     public:
                  CxSemaphore();
@@ -21,5 +24,7 @@ class CxSemaphore :
     private:
 
 };
+
+xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #endif //xLib_CxSemaphoreH

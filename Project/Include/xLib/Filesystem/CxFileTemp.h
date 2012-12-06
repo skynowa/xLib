@@ -1,6 +1,6 @@
 /**
  * \file   CxFileTemp.h
- * \brief
+ * \brief  temporary file
  */
 
 
@@ -15,6 +15,7 @@ class CxFile;
 
 class CxFileTemp :
     private CxNonCopyable
+    /// temporary file
 {
     public:
         explicit        CxFileTemp(const bool &cbIsAutoDelete);

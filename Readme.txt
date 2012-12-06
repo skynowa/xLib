@@ -24,4 +24,5 @@ Dependencies:
         Ubuntu: sudo apt-get install libmysqlclient-dev 
         
     - Aladdin eToken RTE, SDK 4.53
+    - Doxygen 1.8.2
 

@@ -103,10 +103,10 @@ CxVolume::bIsEmpty(
 /* static */
 void
 CxVolume::vSpace(
-    const std::tstring_t &a_csDirPath,
-    ulonglong_t          *a_pullAvailable,   ///< for unprivileged users
-    ulonglong_t          *a_pullTotal,
-    ulonglong_t          *a_pullFree
+    const std::tstring_t &a_csDirPath,      ///< directory path
+    ulonglong_t          *a_pullAvailable,  ///< available space (for unprivileged users)
+    ulonglong_t          *a_pullTotal,      ///< total space
+    ulonglong_t          *a_pullFree        ///< free space
 )
 {
     // csDirPath     - n/a

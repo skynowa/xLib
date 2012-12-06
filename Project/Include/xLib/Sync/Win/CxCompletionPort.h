@@ -10,7 +10,7 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/CxHandleT.h>
 //---------------------------------------------------------------------------
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
 
 xNAMESPACE_BEGIN(NxLib)
 
