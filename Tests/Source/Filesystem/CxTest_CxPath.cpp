@@ -430,7 +430,7 @@ CxTest_CxPath::vUnit(
     xTEST_CASE("CxPath::bIsNameValid", cullCaseLoops)
     {
         struct SData {
-            std::tstring_t sFileName;
+            std::tstring_t sFilePath;
             bool           bIsValid;
         };
 
@@ -549,13 +549,14 @@ CxTest_CxPath::vUnit(
             {xT(""),           false},
             {xT("/opt/test/"), false},
             {xT("////////"),   false},
-            {xT("\\\\\\\\\\"),   true},
-            {xT("?V|||/:*?\"<>|||a:l/:*?\"<>|/:*?\"<>|/:*?\"<>|\\i?dT*e/:*?\"<>|stN////:*?\"<>|///ame"), false},
+            {xT("\\\\\\\\\\"), true},
+            {xT("?V|||/:*?\"<>|||a:l/:*?\"<>|/:*?\"<>|/:*?\"<>|\\i?dT*e/:*?\"<>|stN////:*?\"<>|///a\0me"), true},
+            {xT("?V|||/:*?\"<>|||a:l/:*?\"<>|/:*?\"<>|/:*?\"<>|\\i?dT*e/:*?\"<>|stN////:*?\"<>|///ame"),   true}
         };
     #endif
 
         for (size_t i = 0; i < xARRAY_SIZE2(cdData); ++ i) {
-            bool bRv1 = CxPath::bIsNameValid(cdData[i].sFileName);
+            bool bRv1 = CxPath::bIsNameValid(cdData[i].sFilePath);
             bool bRv2 = cdData[i].bIsValid;
             xTEST_EQ(bRv1, bRv2);
         }
