@@ -185,7 +185,7 @@
 #else
     #define xUNUSED(arg)                ( static_cast<void>( arg ) )
 #endif
-    /// < hide "unused variable" warnings
+    ///< hide "unused variable" warnings
 
 //--------------------------------------------------
 // xUNKNOWN_CSTRING
