@@ -128,13 +128,7 @@ CxDebugger::vBreak() {
     xCHECK_DO(false == bIsEnabled(), return);
 
 #if   xOS_ENV_WIN
-    #if xCOMPILER_MS || xCOMPILER_CODEGEAR
-        _asm {int 3}
-    #elif xCOMPILER_MINGW32
-        asm("int $3");
-    #else
-        (void)::abort();
-    #endif
+    (void)::DebugBreak();
 #elif xOS_ENV_UNIX
     int iRv = ::raise(SIGTRAP);
     xTEST_DIFF(- 1, iRv);
