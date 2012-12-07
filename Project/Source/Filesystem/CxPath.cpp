@@ -141,7 +141,7 @@ CxPath::sDrive(
 
     size_t uiDriveDelimPos = a_csFilePath.find(CxConst::xCOLON);
     xTEST_DIFF(std::tstring_t::npos, uiDriveDelimPos);
-    xTEST_EQ(1U, uiDriveDelimPos);
+    xTEST_EQ(size_t(1), uiDriveDelimPos);
 
     return a_csFilePath.substr(0, uiDriveDelimPos + CxConst::xCOLON.size());
 }
