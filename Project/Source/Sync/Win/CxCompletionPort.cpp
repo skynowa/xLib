@@ -49,10 +49,10 @@ CxCompletionPort::vAssociate(
     xTEST_EQ(true, _m_hHandle.bIsValid());
     // hFile
 
-#if xCPU_64BIT
-    xTEST_PTR(a_pulCompletionKey);
-#else
+#if xARCH_X86
     xTEST_DIFF(0UL, a_pulCompletionKey);
+#else
+    xTEST_PTR(a_pulCompletionKey);
 #endif
 
     HANDLE hRv = ::CreateIoCompletionPort(a_chFile, _m_hHandle.hGet(), a_pulCompletionKey, 0);

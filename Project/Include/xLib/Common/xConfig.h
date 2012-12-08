@@ -61,8 +61,8 @@
         #endif
     #endif
 
-    // xCOMPILER_MINGW32
-    #if xCOMPILER_MINGW32
+    // xCOMPILER_MINGW
+    #if xCOMPILER_MINGW
 
     #endif
 

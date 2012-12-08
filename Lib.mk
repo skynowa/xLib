@@ -96,7 +96,7 @@ DIR_INSTALL				:=	/usr/local/lib
 PROGRAM_NAME			:=	$(PROGRAM_PREFIX)$(PROGRAM_SHORT_NAME)$(PROGRAM_POSTFIX)$(PROGRAM_EXT)
 PROGRAM_PATH			:=	../../../../$(DIR_BIN)/$(PROGRAM_NAME)
 
-FLAGS_COMPILE			:=	$(CPPFLAGS) -Wall -pipe
+FLAGS_COMPILE			:=	$(CPPFLAGS) -Wall -pipe -D_LIB  # In Unix this defines (_LIB, _DLL) must be set from Makefile
 
 ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
 	FLAGS_LINK			:=	-pthread -O0 -g3

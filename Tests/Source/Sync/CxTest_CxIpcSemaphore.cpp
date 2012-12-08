@@ -59,10 +59,10 @@ CxTest_CxIpcSemaphore::vUnit(
 
 #if   xOS_ENV_WIN
     uintptr_t puiRv = ::_beginthreadex(NULL, 0U, &_SFunctor::uiJob, &semSemaphore, 0U, NULL);
-    #if xCPU_64BIT
-        xTEST_PTR(puiRv);
+    #if xARCH_X86
+        xTEST_DIFF(uintptr_t(0), puiRv);
     #else
-        xTEST_DIFF(uintptr_t(0UL), puiRv);
+        xTEST_PTR(puiRv);
     #endif
 #elif xOS_ENV_UNIX
     pthread_t ulId = 0UL;

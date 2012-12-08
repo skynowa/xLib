@@ -77,16 +77,16 @@ CxTest_CxUtils::vUnit(
     {
         {
             tchar_t szBuff[256] = {0};
-            m_uiRv = CxUtils::arraySizeT(szBuff);
-            xTEST_EQ(256U, m_uiRv);
+            m_stRv = CxUtils::arraySizeT(szBuff);
+            xTEST_EQ(size_t(256), m_stRv);
 
             int aiBuff[256] = {0};
-            m_uiRv = CxUtils::arraySizeT(aiBuff);
-            xTEST_EQ(256U, m_uiRv);
+            m_stRv = CxUtils::arraySizeT(aiBuff);
+            xTEST_EQ(size_t(256), m_stRv);
 
             std::tstring_t asBuff[256];
-            m_uiRv = CxUtils::arraySizeT(asBuff);
-            xTEST_EQ(256U, m_uiRv);
+            m_stRv = CxUtils::arraySizeT(asBuff);
+            xTEST_EQ(size_t(256), m_stRv);
         }
 
         // must compile-error

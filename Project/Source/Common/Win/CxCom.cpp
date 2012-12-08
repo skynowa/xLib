@@ -6,7 +6,7 @@
 
 #include <xLib/Common/Win/CxCom.h>
 
-#if xCOMPILER_MINGW32
+#if xCOMPILER_MINGW
     // lib: -lole32
 #endif
 

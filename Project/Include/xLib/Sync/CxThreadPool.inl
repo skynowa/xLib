@@ -376,7 +376,7 @@ CxThreadPool<T>::uiOnRun(
 
     //-------------------------------------
     //������ �������
-    _m_semSemaphore.vCreate(_m_uiMaxRunningTasks, xT(""));
+    _m_semSemaphore.vCreate(static_cast<long_t>( _m_uiMaxRunningTasks ), xT(""));
 
     //-------------------------------------
     //������ ����

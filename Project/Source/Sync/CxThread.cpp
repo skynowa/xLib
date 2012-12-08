@@ -746,18 +746,22 @@ CxThread::vSetCpuAffinity(
 #if   xOS_ENV_WIN
     xTEST_EQ(true, _m_hThread.bIsValid());
 
-    DWORD_PTR dwMask;
+    DWORD_PTR pdwMask = 0;
 
-    dwMask = 1UL << a_ciProcNum;
-
-    DWORD_PTR uiRes = ::SetThreadAffinityMask(_m_hThread.hGet(), dwMask);
-    #if xCPU_64BIT
-        xTEST_PTR(uiRes);
+    #if xARCH_X86
+        pdwMask = 1UL  << a_ciProcNum;
     #else
-        xTEST_DIFF(0UL, uiRes);
+        pdwMask = 1i64 << a_ciProcNum;
     #endif
 
-    xTEST_EQ(true, ERROR_INVALID_PARAMETER != uiRes);
+    DWORD_PTR pdwRv = ::SetThreadAffinityMask(_m_hThread.hGet(), pdwMask);
+    #if xARCH_X86
+        xTEST_DIFF(0UL, pdwRv);
+    #else
+        xTEST_PTR(pdwRv);
+    #endif
+
+    xTEST_EQ(true, ERROR_INVALID_PARAMETER != pdwRv);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         cpu_set_t csCpuSet;
@@ -919,7 +923,7 @@ CxThread::vSetDebugName(
         __except (EXCEPTION_EXECUTE_HANDLER) {
             //n/a
         }
-    #elif xCOMPILER_MINGW32
+    #elif xCOMPILER_MINGW
         // TODO: bSetDebugName
     #else
         // TODO: bSetDebugName

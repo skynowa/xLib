@@ -57,7 +57,7 @@
 
 //--------------------------------------------------
 // xFORCE_INLINE
-#if   xCOMPILER_MINGW32
+#if   xCOMPILER_MINGW
     #define xFORCE_INLINE               __attribute__((__always_inline__)) inline
 #elif xCOMPILER_MS
     #define xFORCE_INLINE               __forceinline
@@ -72,7 +72,7 @@
 
 //--------------------------------------------------
 // xNO_INLINE
-#if   xCOMPILER_MINGW32
+#if   xCOMPILER_MINGW
     #define xNO_INLINE                  __attribute__ ((noinline))
 #elif xCOMPILER_MS
     #define xNO_INLINE                  __declspec(noinline)
@@ -96,7 +96,7 @@
 
 //--------------------------------------------------
 // xOVERRIDE
-#if   xCOMPILER_MINGW32
+#if   xCOMPILER_MINGW
     #define xOVERRIDE
 #elif xCOMPILER_MS
     #define xOVERRIDE                    override
@@ -176,7 +176,7 @@
 
 //--------------------------------------------------
 // xUNUSED
-#if   xCOMPILER_MINGW32 || xCOMPILER_MS
+#if   xCOMPILER_MINGW || xCOMPILER_MS
     #define xUNUSED(arg)                ( static_cast<void>( arg ) )
 #elif xCOMPILER_CODEGEAR
     #define xUNUSED(arg)                ( static_cast<void>( arg ) )
@@ -243,7 +243,7 @@
     #define xFUNCTION                   xT(__FUNCTION__)
 #elif xCOMPILER_CODEGEAR
     #define xFUNCTION                   xT(__FUNC__)
-#elif xCOMPILER_GNUC || xCOMPILER_MINGW32
+#elif xCOMPILER_GNUC || xCOMPILER_MINGW
     #define xFUNCTION                   xT(__PRETTY_FUNCTION__)
 #else
     #define xFUNCTION                   xUNKNOWN_CSTRING
@@ -397,18 +397,7 @@
 //-------------------------------------
 // qualifiers
 #if   xOS_ENV_WIN
-    #ifdef xCPU_64BIT
-        #define xPR_SIZET               xT("I")
-            ///< qualifier for std::size_t
-        #define xPR_I64d                xT("I64d")
-            ///< qualifier for  long_t long_t int
-        #define xPR_I64u                xT("I64u")
-            ///< qualifier for unsigned long_t long_t int
-        #define xPR_I64x                xT("I64x")
-            ///< qualifier for long_t long_t int (hex)
-        #define xPR_I64X                xT("I64X")
-            ///< qualifier for long_t long_t int (hex)
-    #else
+    #ifdef xARCH_X86
         #define xPR_SIZET               xT("u")
             ///< qualifier for std::size_t
         #define xPR_I64d                xT("lld")
@@ -419,9 +408,20 @@
             ///< qualifier for long_t long_t int (hex)
         #define xPR_I64X                xT("llX")
             ///< qualifier for long_t long_t int (hex)
+    #else
+        #define xPR_SIZET               xT("I")
+            ///< qualifier for std::size_t
+        #define xPR_I64d                xT("I64d")
+            ///< qualifier for  long_t long_t int
+        #define xPR_I64u                xT("I64u")
+            ///< qualifier for unsigned long_t long_t int
+        #define xPR_I64x                xT("I64x")
+            ///< qualifier for long_t long_t int (hex)
+        #define xPR_I64X                xT("I64X")
+            ///< qualifier for long_t long_t int (hex)
     #endif
 #elif xOS_ENV_UNIX
-    #ifdef xCPU_64BIT
+    #ifdef xARCH_X86
         #define xPR_SIZET               xT("zu")
             ///< qualifier for std::size_t
         #define xPR_I64d                xT("lld")

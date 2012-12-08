@@ -914,8 +914,8 @@ CxDateTime::usMonthNum(
         xT("Dec")
     }};
 
-    for (size_t i = 0; i < casLongMonths.size(); ++ i) {
-        xCHECK_RET(false == a_cbIsShortName && true == CxString::bCompareNoCase(a_csMonth, casLongMonths[i]), i + 1);
+    for (ushort_t i = 0; i < static_cast<ushort_t>( casLongMonths.size() ); ++ i) {
+        xCHECK_RET(false == a_cbIsShortName && true == CxString::bCompareNoCase(a_csMonth, casLongMonths[i]),  i + 1);
         xCHECK_RET(true  == a_cbIsShortName && true == CxString::bCompareNoCase(a_csMonth, casShortMonths[i]), i + 1);
     }
 
@@ -998,8 +998,8 @@ CxDateTime::usWeekDayNum(
         xT("Sat")
     }};
 
-    for (size_t i = 0; i < casLongDays.size(); ++ i) {
-        xCHECK_RET(false == a_cbIsShortName && true == CxString::bCompareNoCase(a_csDay, casLongDays[i]), i);
+    for (ushort_t i = 0; i < static_cast<ushort_t>( casLongDays.size() ); ++ i) {
+        xCHECK_RET(false == a_cbIsShortName && true == CxString::bCompareNoCase(a_csDay, casLongDays[i]),  i);
         xCHECK_RET(true  == a_cbIsShortName && true == CxString::bCompareNoCase(a_csDay, casShortDays[i]), i);
     }
 

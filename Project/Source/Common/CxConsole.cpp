@@ -310,7 +310,10 @@ CxConsole::vWrite(
 #if   xOS_ENV_WIN
     DWORD dwWritten = 0UL;
 
-    BOOL blRes = ::WriteConsole(_m_hStdOut.hGet(), &a_csStr.at(0), a_csStr.size(), &dwWritten, NULL);
+    BOOL blRes = ::WriteConsole(
+                    _m_hStdOut.hGet(),
+                    &a_csStr.at(0), static_cast<DWORD>( a_csStr.size() ),
+                    &dwWritten, NULL);
     xTEST_DIFF(FALSE, blRes);
     xTEST_EQ(static_cast<size_t>( dwWritten ), a_csStr.size());
 #elif xOS_ENV_UNIX

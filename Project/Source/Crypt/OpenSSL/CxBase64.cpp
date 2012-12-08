@@ -52,7 +52,7 @@ CxBase64::sEncode(
     pbioContainer = ::BIO_push(pbioBase64, pbioMemory);
     // n/a
 
-    int iWritten = ::BIO_write(pbioContainer, &a_csStr.at(0), a_csStr.size());    (void)BIO_flush(pbioContainer);
+    int iWritten = ::BIO_write(pbioContainer, &a_csStr.at(0), static_cast<int>( a_csStr.size() ));    (void)BIO_flush(pbioContainer);
     xTEST_LESS(0, iWritten);
     xTEST_EQ(static_cast<int>( a_csStr.size() ), iWritten);
 
@@ -79,7 +79,7 @@ CxBase64::sDecode(
 
 
     //create a memory buffer containing base64 encoded data
-    pbioMemory = ::BIO_new_mem_buf((void *)&a_csStr.at(0), a_csStr.size());
+    pbioMemory = ::BIO_new_mem_buf((void *)&a_csStr.at(0), static_cast<int>( a_csStr.size() ));
     xTEST_PTR(pbioMemory);
 
     //create a base64 filter
@@ -93,7 +93,7 @@ CxBase64::sDecode(
 
     sRv.resize(a_csStr.size());
 
-    int iReaded = ::BIO_read(pbioContainer, &sRv.at(0), sRv.size());
+    int iReaded = ::BIO_read(pbioContainer, &sRv.at(0), static_cast<int>( sRv.size() ));
     xTEST_LESS(0, iReaded);
 
     sRv.resize(iReaded);

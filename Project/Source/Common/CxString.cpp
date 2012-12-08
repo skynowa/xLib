@@ -162,7 +162,7 @@ CxString::asCharToOemBuff(
 #if   xOS_ENV_WIN
     asDst.resize(a_csSrc.size());
 
-    BOOL blRv = ::CharToOemBuff(a_csSrc.c_str(), &asDst.at(0), asDst.size());
+    BOOL blRv = ::CharToOemBuff(a_csSrc.c_str(), &asDst.at(0), static_cast<DWORD>( asDst.size() ));
     xTEST_DIFF(FALSE, blRv);
 #elif xOS_ENV_UNIX
     // TODO: asCharToOemBuff
@@ -185,7 +185,7 @@ CxString::sOemToCharBuff(
 #if   xOS_ENV_WIN
     sDst.resize(a_csSrc.size());
 
-    BOOL blRv = ::OemToCharBuff(a_csSrc.c_str(), &sDst.at(0), sDst.size());
+    BOOL blRv = ::OemToCharBuff(a_csSrc.c_str(), &sDst.at(0), static_cast<DWORD>( sDst.size() ));
     xTEST_DIFF(FALSE, blRv);
 #elif xOS_ENV_UNIX
     // TODO: sOemToCharBuff
@@ -260,7 +260,7 @@ CxString::sToLowerCase(
     std::tstring_t sRv(a_csStr);
 
 #if   xOS_ENV_WIN
-    DWORD dwRv = ::CharLowerBuff(static_cast<LPTSTR>( &sRv[0] ), uiLength);
+    DWORD dwRv = ::CharLowerBuff(static_cast<LPTSTR>( &sRv[0] ), static_cast<DWORD>( uiLength ));
     xTEST_EQ(uiLength, static_cast<size_t>( dwRv ));
 #elif xOS_ENV_UNIX
     std::transform(sRv.begin(), sRv.begin() + uiLength, sRv.begin(), CxChar::chToLower);
@@ -287,7 +287,7 @@ CxString::sToUpperCase(
     std::tstring_t sRv(a_csStr);
 
 #if   xOS_ENV_WIN
-    DWORD dwRv = ::CharUpperBuff(static_cast<LPTSTR>( &sRv[0] ), uiLength);
+    DWORD dwRv = ::CharUpperBuff(static_cast<LPTSTR>( &sRv[0] ), static_cast<DWORD>( uiLength ));
     xTEST_EQ(uiLength, static_cast<size_t>( dwRv ));
 #elif xOS_ENV_UNIX
     std::transform(sRv.begin(), sRv.begin() + uiLength, sRv.begin(), CxChar::chToUpper);

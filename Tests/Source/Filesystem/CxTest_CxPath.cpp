@@ -796,14 +796,14 @@ CxTest_CxPath::vUnit(
 
     xTEST_CASE("CxPath::uiMaxSize", cullCaseLoops)
     {
-        m_uiRv = CxPath::uiMaxSize();
-        xTEST_LESS(0U, m_uiRv);
+        m_stRv = CxPath::uiMaxSize();
+        xTEST_LESS(size_t(0), m_stRv);
     }
 
     xTEST_CASE("CxPath::uiNameMaxSize", cullCaseLoops)
     {
-        m_uiRv = CxPath::uiNameMaxSize();
-        xTEST_LESS(0U, m_uiRv);
+        m_stRv = CxPath::uiNameMaxSize();
+        xTEST_LESS(size_t(0), m_stRv);
     }
 }
 //---------------------------------------------------------------------------

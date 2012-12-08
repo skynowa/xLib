@@ -29,10 +29,13 @@
 // OS environment
 #if defined(_WIN32) || defined(_WIN64) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(__WINDOWS__)
     #define xOS_ENV_WIN 1
+        ///< Windows environment
 #elif defined(__unix__) || defined(__unix)
     #define xOS_ENV_UNIX 1
+        ///< Unix environment
 #elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__bsdi__) || defined(__DragonFly__)
     #define xOS_ENV_BSD 1
+        ///< BSD environment
 #else
     #error xLib: unsupported OS environment
 #endif
@@ -57,13 +60,13 @@
 #if defined(i386) || defined(__i386__) || defined(__i486__) || defined(__i586__) || defined(__i686__) || defined(__i386) || defined(_M_IX86) || \
     defined(__X86__) || defined(_X86_) || defined(__THW_INTEL__) || defined(__I86__) || defined(__I86__) || defined(__INTEL__)
 
-    #define xCPU_32BIT 1
-        ///< architecture 32-bit
+    #define xARCH_X86 1
+        ///< architecture x86
 #elif defined(__amd64__) || defined(__amd64) || defined(__x86_64__) || defined(__x86_64) || defined(_M_X64) || defined(__ia64__) || \
       defined(_IA64) || defined(__IA64__) || defined(__ia64) || defined(_M_IA64 )
 
-    #define xCPU_64BIT 1
-        ///< architecture 64-bit
+    #define xARCH_X64 1
+        ///< architecture x64
 #else
     #error xLib: unsupported architectures
 #endif
@@ -71,7 +74,7 @@
 //--------------------------------------------------
 // compiler types
 #if   defined(__MINGW32__) || defined(__MINGW64__)
-    #define xCOMPILER_MINGW32  1
+    #define xCOMPILER_MINGW    1
         ///< compiler MinGW
 #elif defined(_MSC_VER) || defined(_MSC_FULL_VER) || defined(_MSC_BUILD)
     #define xCOMPILER_MS       1
@@ -102,24 +105,22 @@
 #define xCOMPILER_GNUC_VER_PATCHLEVEL __GNUC_PATCHLEVEL__
 
 //--------------------------------------------------
-// xLib, xDLL
-#if   xOS_ENV_WIN
-    #define  xLib                     _LIB
-            ///<
-    #define  xDll                     _DLL
-            ///<
-#elif xOS_ENV_UNIX
-    #define  xLib
-            ///<
-    #define  xDll
-            ///<
+// xLIB, xDLL
+// NOTE: In Unix this defines (_LIB, _DLL) must be set from Makefile
+#if defined(_LIB)
+    #define  xLIB                     1
 #endif
+    ///< static labrary
+#if defined(_DLL)
+    #define  xDLL                     1
+#endif
+    ///< dynamic-link library
 
 //--------------------------------------------------
 // standard C libraries
 #if   xOS_ENV_WIN
-    //TODO: standard C libraries
-    #if   xCOMPILER_MINGW32
+    // TODO: standard C libraries
+    #if   xCOMPILER_MINGW
         #include <bits/c++config.h> // standard C++ libraries
     #endif
 
@@ -220,4 +221,4 @@
         ///< debug build
 #endif
 //----------------------------------------------------------------------------------------------------
-#endif  //xLib_Common_xSysDefinesH
+#endif  // xLib_Common_xSysDefinesH

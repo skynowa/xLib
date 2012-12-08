@@ -4,7 +4,7 @@
  */
 
 
-#if xCOMPILER_GNUC || xCOMPILER_MINGW32
+#if xCOMPILER_GNUC || xCOMPILER_MINGW
     #include <cxxabi.h>
 #endif
 
@@ -50,7 +50,7 @@ CxType::sName(
 
     std::string asClassName;
 
-#if xCOMPILER_MINGW32 || xCOMPILER_GNUC
+#if xCOMPILER_MINGW || xCOMPILER_GNUC
     int  iStatus      = - 1;
     char *pszRealName = NULL;
 

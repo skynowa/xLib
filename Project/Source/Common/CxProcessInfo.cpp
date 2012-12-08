@@ -199,10 +199,10 @@ CxProcessInfo::sExeName(
 
     CxProcess::handle_t hHandle = CxProcess::ulHandleById(a_cidId);
 
-    DWORD ulStored = ::GetModuleFileNameEx(hHandle, NULL, &sRv.at(0), sRv.size());
-    xTEST_DIFF(0UL, ulStored);
+    DWORD dwStored = ::GetModuleFileNameEx(hHandle, NULL, &sRv.at(0), static_cast<DWORD>( sRv.size() ));
+    xTEST_DIFF(0UL, dwStored);
 
-    sRv.resize(ulStored);
+    sRv.resize(dwStored);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         const std::tstring_t csProcFile = CxString::sFormat(xT("/proc/%ld/exe"), a_cidId);
@@ -293,7 +293,7 @@ CxProcessInfo::sCommandLine(
     }
 
 
-    #if xCOMPILER_MINGW32 || xCOMPILER_CODEGEAR
+    #if xCOMPILER_MINGW || xCOMPILER_CODEGEAR
         // typedef __success(return >= 0) LONG NTSTATUS;
         typedef LONG NTSTATUS;
 
@@ -328,18 +328,21 @@ CxProcessInfo::sCommandLine(
             DllNtQueryInformationProcess = (Dll_NtQueryInformationProcess_t)dlDll.fpProcAddress(xT("NtQueryInformationProcess"));
             xTEST_PTR(DllNtQueryInformationProcess);
 
-            const PROCESSINFOCLASS    cpicInfo86       = ProcessBasicInformation;
-            const PROCESSINFOCLASS    cpicInfo64       = ProcessWow64Information;   xUNUSED(cpicInfo64);
-            PROCESS_BASIC_INFORMATION pbiBasicInfo     = {0};
-            const DWORD               cdwBasicInfoSize = sizeof(pbiBasicInfo);   // in bytes
-            DWORD                     dwReturnSize     = 0UL;   // in bytes
+        #if xARCH_X86
+            const PROCESSINFOCLASS    cpicInfo          = ProcessBasicInformation;
+        #else
+            const PROCESSINFOCLASS    cpicInfo          = ProcessWow64Information;
+        #endif
+            PROCESS_BASIC_INFORMATION pbiBasicInfo      = {0};
+            const DWORD               cdwBasicInfoSize  = sizeof(pbiBasicInfo);   // in bytes
+            DWORD                     dwReturnSizeBytes = 0UL;
 
             // TODO: ProcessBasicInformation (for x64)
             NTSTATUS nsRv = DllNtQueryInformationProcess(hProcessHandle,
-                                                         cpicInfo64,
-                                                         &pbiBasicInfo, cdwBasicInfoSize, &dwReturnSize);
+                                                         cpicInfo,
+                                                         &pbiBasicInfo, cdwBasicInfoSize, &dwReturnSizeBytes);
             xTEST_EQ(true, NT_SUCCESS(nsRv));
-            xTEST_EQ(cdwBasicInfoSize, dwReturnSize);
+            xTEST_EQ(cdwBasicInfoSize, dwReturnSizeBytes);
             xTEST_PTR(pbiBasicInfo.PebBaseAddress);
 
             PVOID pvRv = pbiBasicInfo.PebBaseAddress;
@@ -351,7 +354,7 @@ CxProcessInfo::sCommandLine(
 
     CxHandle processHandle;
 
-    processHandle = ::OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, a_cidId);
+    processHandle = ::OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, static_cast<DWORD>( a_cidId ));
     xTEST_EQ(true, processHandle.bIsValid());
 
     PVOID pebAddress               = _SNested::pvPebAddress(processHandle.hGet());

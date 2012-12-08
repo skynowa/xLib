@@ -60,7 +60,7 @@ CxBlowfish::vSetKey(
     xTEST_EQ(false, a_cusKey.empty());
     xTEST_GR_EQ(static_cast<size_t>( MAX_KEY_SIZE ), a_cusKey.size());
 
-    vSetKey(const_cast<uchar_t *>( a_cusKey.data() ), a_cusKey.size());
+    vSetKey(const_cast<uchar_t *>( a_cusKey.data() ), static_cast<int>( a_cusKey.size() ));
 }
 //---------------------------------------------------------------------------
 void
@@ -149,7 +149,9 @@ CxBlowfish::vEncryptCfb64(
 
     (*a_pusOut).resize( a_cusIn.size() );
 
-    vEncryptCfb64(const_cast<uchar_t *>( &a_cusIn.at(0) ), &(*a_pusOut).at(0), a_cusIn.size(), &iNum, a_cmMode);
+    vEncryptCfb64(
+        const_cast<uchar_t *>( &a_cusIn.at(0) ), &(*a_pusOut).at(0), 
+        static_cast<long_t>( a_cusIn.size() ), &iNum, a_cmMode);
     xTEST_LESS(- 1, iNum);
 }
 //---------------------------------------------------------------------------

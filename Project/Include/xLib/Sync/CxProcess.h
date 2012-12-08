@@ -18,11 +18,11 @@ class CxProcess :
 {
     public:
     #if   xOS_ENV_WIN
-        typedef HANDLE handle_t; ///< handle
-        typedef DWORD  id_t;     ///< ID
+        typedef HANDLE  handle_t; ///< handle
+        typedef DWORD   id_t;     ///< ID
     #elif xOS_ENV_UNIX
-        typedef pid_t  handle_t; ///< handle
-        typedef pid_t  id_t;     ///< ID
+        typedef pid_t   handle_t; ///< handle
+        typedef pid_t   id_t;     ///< ID
     #endif
 
         enum ExWaitResult

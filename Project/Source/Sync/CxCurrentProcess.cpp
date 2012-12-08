@@ -63,8 +63,8 @@ CxCurrentProcess::ulParentId() {
     CxProcess::id_t ulRv;
 
 #if   xOS_ENV_WIN
-    #if xCOMPILER_MINGW32 || xCOMPILER_CODEGEAR
-        //typedef __success(return >= 0) LONG NTSTATUS;
+    #if xCOMPILER_MINGW || xCOMPILER_CODEGEAR
+        // typedef __success(return >= 0) LONG NTSTATUS;
         typedef LONG NTSTATUS;
 
         enum PROCESSINFOCLASS
@@ -92,26 +92,29 @@ CxCurrentProcess::ulParentId() {
     bool bRv = dlDll.bIsProcExists(xT("NtQueryInformationProcess"));
     xCHECK_RET(false == bRv, culInvalidId);
 
-    const PROCESSINFOCLASS    cpicInfo86               = ProcessBasicInformation;
-    const PROCESSINFOCLASS    cpicInfo64               = ProcessWow64Information;   xUNUSED(cpicInfo64);
-    ULONG_PTR                 pulProcessInformation[6] = {0};
-    DWORD                     dwReturnSize             = 0UL;   // in bytes
-
+#if xARCH_X86    
+    const PROCESSINFOCLASS    cpicInfo                = ProcessBasicInformation;
+#else
+    const PROCESSINFOCLASS    cpicInfo                = ProcessWow64Information;
+#endif
+    ULONG                     ulProcessInformation[6] = {0};
+    DWORD                     dwReturnSizeBytes       = 0UL;
     Dll_NtQueryInformationProcess_t
     DllNtQueryInformationProcess = (Dll_NtQueryInformationProcess_t)dlDll.fpProcAddress(xT("NtQueryInformationProcess"));
     xTEST_PTR(DllNtQueryInformationProcess);
 
     // TODO: ProcessBasicInformation (for x64)
-    NTSTATUS ntsRes = DllNtQueryInformationProcess(hHandle(),
-                                                   cpicInfo86,
-                                                   &pulProcessInformation, sizeof(pulProcessInformation), &dwReturnSize);
+    NTSTATUS ntsRes = DllNtQueryInformationProcess(
+                            hHandle(),
+                            cpicInfo,
+                           &ulProcessInformation, sizeof(ulProcessInformation), &dwReturnSizeBytes);
     xTEST_EQ(true, NT_SUCCESS(ntsRes));
-    xTEST_EQ(size_t(dwReturnSize), sizeof(pulProcessInformation));
+    xTEST_EQ(size_t(dwReturnSizeBytes), sizeof(ulProcessInformation));
 
-    ulRv = pulProcessInformation[5];
+    ulRv = ulProcessInformation[5];
 #elif xOS_ENV_UNIX
     ulRv = ::getppid();
-    // n/a
+    xTEST_NA(ulRv);
 #endif
 
     return ulRv;

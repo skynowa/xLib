@@ -23,8 +23,8 @@ CxLocale::sCurrent() {
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
-    int  iRv = - 1;
-    LCID lcId   = 0;
+    int  iRv  = - 1;
+    LCID lcId = 0;
 
     lcId = ::GetSystemDefaultLCID();
     // n/a
@@ -34,7 +34,7 @@ CxLocale::sCurrent() {
     xTEST_DIFF(0, iRv);
 
     sRv.resize(iRv);
-    iRv = ::GetLocaleInfo(lcId, LOCALE_SENGLANGUAGE, &sRv.at(0), sRv.size());
+    iRv = ::GetLocaleInfo(lcId, LOCALE_SENGLANGUAGE, &sRv.at(0), static_cast<int>( sRv.size() ));
     xTEST_DIFF(0, iRv);
 
     sRv.resize(iRv - sizeof('\0'));    //delete from end '\0'

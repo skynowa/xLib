@@ -66,7 +66,7 @@ CxCrc32::ulCalcFile(
     if (true == usFile.empty()) {
         ulRv = 0;
     } else {
-        ulRv = ulCalc(&usFile.at(0), usFile.size());
+        ulRv = ulCalc(&usFile.at(0), static_cast<ulong_t>( usFile.size() ));
     }
 
     return ulRv;
@@ -191,7 +191,7 @@ CxCrc32::ulCalcFileFast(
     if (true == usFile.empty()) {
         ulRv = 0;
     } else {
-        ulRv = ulCalcFast(&usFile.at(0), usFile.size());
+        ulRv = ulCalcFast(&usFile.at(0), static_cast<ulong_t>( usFile.size() ));
     }
 
     return ulRv;

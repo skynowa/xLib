@@ -11,7 +11,7 @@
 #include <xLib/Filesystem/CxDir.h>
 
 #if   xOS_ENV_WIN
-    #if !xCOMPILER_MINGW32
+    #if !xCOMPILER_MINGW
         #pragma comment(lib, "mpr.lib")
     #endif
 #elif xOS_ENV_UNIX
@@ -238,10 +238,10 @@ CxVolume::vPaths(
 
     sRv.resize(dwRv);
 
-    dwRv = ::GetLogicalDriveStrings(sRv.size(), &sRv.at(0));
+    dwRv = ::GetLogicalDriveStrings(static_cast<DWORD>( sRv.size() ), &sRv.at(0));
     xTEST_DIFF(0UL, dwRv);
 
-    for (const tchar_t *s = &sRv.at(0); 0 != *s; s += xTSTRLEN(s) + sizeof(xT('\0'))) {
+    for (const tchar_t *s = sRv.c_str(); 0 != *s; s += ::lstrlen(s) + 1) {
         vsRes.push_back(s);
     }
 #elif xOS_ENV_UNIX
@@ -296,7 +296,7 @@ CxVolume::sLabel(
     BOOL blRes = ::GetVolumeInformation(
                         CxPath::sSlashAppend(a_csVolumePath).c_str(),
                         &szVolumeName[0],
-                        xARRAY_SIZE(szVolumeName),
+                        static_cast<DWORD>( xARRAY_SIZE(szVolumeName) ),
                         NULL,
                         NULL,
                         NULL,
