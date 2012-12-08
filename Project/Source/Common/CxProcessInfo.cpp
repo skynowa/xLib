@@ -336,7 +336,7 @@ CxProcessInfo::sCommandLine(
 
             // TODO: ProcessBasicInformation (for x64)
             NTSTATUS nsRv = DllNtQueryInformationProcess(hProcessHandle,
-                                                         cpicInfo86,
+                                                         cpicInfo64,
                                                          &pbiBasicInfo, cdwBasicInfoSize, &dwReturnSize);
             xTEST_EQ(true, NT_SUCCESS(nsRv));
             xTEST_EQ(cdwBasicInfoSize, dwReturnSize);

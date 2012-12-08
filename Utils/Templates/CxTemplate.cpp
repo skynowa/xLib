@@ -19,7 +19,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 }
 //---------------------------------------------------------------------------
-/*virtual*/
+/* virtual */
 [CxTemplate]::~[CxTemplate]() {
 
 }

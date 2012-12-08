@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug_Ansi|x64">
+      <Configuration>Debug_Ansi</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug_Unicode|Win32">
       <Configuration>Debug_Unicode</Configuration>
       <Platform>Win32</Platform>
@@ -9,6 +13,14 @@
       <Configuration>Debug_Ansi</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug_Unicode|x64">
+      <Configuration>Debug_Unicode</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release_Ansi|x64">
+      <Configuration>Release_Ansi</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Release_Unicode|Win32">
       <Configuration>Release_Unicode</Configuration>
       <Platform>Win32</Platform>
@@ -16,6 +28,10 @@
     <ProjectConfiguration Include="Release_Ansi|Win32">
       <Configuration>Release_Ansi</Configuration>
       <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release_Unicode|x64">
+      <Configuration>Release_Unicode</Configuration>
+      <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
@@ -83,9 +99,13 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Db\CxConnectionString.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Db\CxMySql.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Db\Win\CxAdo.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Debug\CxAutoProfiler.h" />
@@ -114,34 +134,48 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Log\xLogs.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxCgi.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxCookiePv0.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxCookiePv1.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxDnsClient.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxHttpClient.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxMimeBody.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxMimeHeader.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxMimeMessage.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxPop3.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxSmtp.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxSocket.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxSocketInit.h" />
@@ -149,7 +183,9 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxTcpServer.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxUri.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Patterns\CxSingleton.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxAtomicLongInt.h" />
@@ -201,9 +237,13 @@
     <ClInclude Include="..\..\..\Tests\Include\Test\Db\CxTest_CxConnectionString.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Db\CxTest_CxMySql.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="..\..\..\Tests\Include\Test\Debug\CxTest_CxAutoProfiler.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Debug\CxTest_CxDebugger.h" />
@@ -230,26 +270,36 @@
     <ClInclude Include="..\..\..\Tests\Include\Test\Log\CxTest_CxTracer.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxCgi.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxCookiePv0.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxCookiePv1.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxDnsClient.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxHttpClient.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxMimeMessage.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxPop3.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxSmtp.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxSocket.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxSocketInit.h" />
@@ -257,7 +307,9 @@
     <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxTcpServer.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Net\CxTest_CxUri.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="..\..\..\Tests\Include\Test\Patterns\CxTest_CxSingleton.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxAtomicLongInt.h" />
@@ -275,9 +327,13 @@
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxThread.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxThreadPool.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxThreadStorage.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxWaitableTimer.h" />
@@ -332,9 +388,13 @@
     <ClCompile Include="..\..\..\Project\Source\Db\CxConnectionString.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Db\CxMySql.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Db\Win\CxAdo.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Debug\CxAutoProfiler.cpp" />
@@ -360,34 +420,48 @@
     <ClCompile Include="..\..\..\Project\Source\Log\CxTracer.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Net\CxCgi.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Net\CxCookiePv0.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Net\CxCookiePv1.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Net\CxDnsClient.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Net\CxHttpClient.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Net\CxMimeBody.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Net\CxMimeHeader.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Net\CxMimeMessage.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Net\CxPop3.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Net\CxSmtp.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Net\CxSocket.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Net\CxSocketInit.cpp" />
@@ -395,7 +469,9 @@
     <ClCompile Include="..\..\..\Project\Source\Net\CxTcpServer.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Net\CxUri.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Sync\CxAtomicLongInt.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Sync\CxAutoIpcMutex.cpp" />
@@ -445,9 +521,13 @@
     <ClCompile Include="..\..\..\Tests\Source\Db\CxTest_CxConnectionString.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Db\CxTest_CxMySql.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\Tests\Source\Debug\CxTest_CxAutoProfiler.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Debug\CxTest_CxDebugger.cpp" />
@@ -474,26 +554,36 @@
     <ClCompile Include="..\..\..\Tests\Source\Log\CxTest_CxTracer.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxCgi.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxCookiePv0.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxCookiePv1.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxDnsClient.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxHttpClient.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxMimeMessage.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxPop3.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxSmtp.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxSocket.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxSocketInit.cpp" />
@@ -501,7 +591,9 @@
     <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxTcpServer.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Net\CxTest_CxUri.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\Tests\Source\Patterns\CxTest_CxSingleton.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxAtomicLongInt.cpp" />
@@ -519,9 +611,13 @@
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxThread.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxThreadPool.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxThreadStorage.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxWaitableTimer.cpp" />
@@ -544,13 +640,32 @@
     <PlatformToolset>v110</PlatformToolset>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v110</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v110</PlatformToolset>
@@ -564,26 +679,51 @@
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|Win32'">
@@ -591,7 +731,17 @@
     <CodeAnalysisRuleSet>MixedMinimumRules.ruleset</CodeAnalysisRuleSet>
     <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <CodeAnalysisRuleSet>MixedMinimumRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <CodeAnalysisRuleSet>MixedMinimumRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|x64'">
     <LinkIncremental>false</LinkIncremental>
     <CodeAnalysisRuleSet>MixedMinimumRules.ruleset</CodeAnalysisRuleSet>
     <RunCodeAnalysis>true</RunCodeAnalysis>
@@ -610,7 +760,35 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">
     <ClCompile>
       <PrecompiledHeader>
       </PrecompiledHeader>
@@ -643,7 +821,45 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|x64'">
+    <ClCompile>
+      <WarningLevel>EnableAllWarnings</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <EnablePREfast>true</EnablePREfast>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|Win32'">
+    <ClCompile>
+      <WarningLevel>EnableAllWarnings</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <EnablePREfast>true</EnablePREfast>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|x64'">
     <ClCompile>
       <WarningLevel>EnableAllWarnings</WarningLevel>
       <PrecompiledHeader>

@@ -13,6 +13,7 @@
 //---------------------------------------------------------------------------
 class CxTest_[CxTemplate] :
     public CxTest
+    ///< tests for [CxTemplate]
 {
     public:
                       CxTest_[CxTemplate]();
@@ -26,4 +27,4 @@ class CxTest_[CxTemplate] :
     private:
 };
 //---------------------------------------------------------------------------
-#endif //CxTest_[CxTemplate]H
+#endif // CxTest_[CxTemplate]H

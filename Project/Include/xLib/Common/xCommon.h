@@ -10,8 +10,13 @@
  * This library is cross-platform and can be compiled and used on
  * Linux, FreeBSD and Windows (x86, x64)
  *
- * \author  skynowa@gmail.com
- * \date    2008 - 2012
+ * \author  author:  skynowa \n
+ *          e-mail:  skynowa@gmail.com \n
+ *          jabber:  skynowa@jabber.ru \n
+ *          skype:   skynowa777 \n
+ *          web:     https://bitbucket.org/skynowa/xlib
+ *
+ * \date    2008 - 2013
  *
  * \section sec_code_convention Code conventions
  *
@@ -173,4 +178,4 @@ namespace NxLib { }
 #include <xLib/Common/xCheks.h>
 #include <xLib/Common/xLinking.h>
 //---------------------------------------------------------------------------
-#endif  //xLib_Common_xCommonH
+#endif  // xLib_Common_xCommonH

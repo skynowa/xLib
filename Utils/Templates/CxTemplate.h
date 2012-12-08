@@ -13,6 +13,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 class [CxTemplate] :
     public CxNonCopyable
+    ///< ??????????
 {
     public:
                  [CxTemplate]();
@@ -26,4 +27,4 @@ class [CxTemplate] :
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif //xLib_[CxTemplate]H
+#endif // xLib_[CxTemplate]H
