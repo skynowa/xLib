@@ -34,9 +34,9 @@
 #include <Test/Common/Win/CxTest_CxCom.h>
 
 // Crypt
-#include <Test/Crypt/CxTest_CxBase64.h>
+//#include <Test/Crypt/CxTest_CxBase64.h>
 #include <Test/Crypt/CxTest_CxCrc32.h>
-#include <Test/Crypt/CxTest_CxBlowfish.h>
+//#include <Test/Crypt/CxTest_CxBlowfish.h>
 #include <Test/Crypt/CxTest_CxRandom.h>
 #include <Test/Crypt/Pkcs11/CxTest_CxPkcs11.h>
 
@@ -184,8 +184,8 @@ xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
         tmManager.vAdd(new CxTest_CxCrc32);
         tmManager.vAdd(new CxTest_CxRandom);
     #if !xCOMPILER_MINGW32
-        tmManager.vAdd(new CxTest_CxBase64);
-        tmManager.vAdd(new CxTest_CxBlowfish);
+        //tmManager.vAdd(new CxTest_CxBase64);
+        //tmManager.vAdd(new CxTest_CxBlowfish);
     #endif
 
         // Db
