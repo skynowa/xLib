@@ -107,7 +107,7 @@ CxDnsClient::vLocalHostName(
 
     std::string asRes(xHOST_NAME_MAX, '0');
 
-    int iRv = ::gethostname(&asRes.at(0), asRes.size() * sizeof(std::string::value_type));
+    int iRv = ::gethostname(&asRes.at(0), static_cast<int>( asRes.size() * sizeof(std::string::value_type) ));
     xTEST_EQ(0, iRv);
 
     asRes.assign(asRes.c_str());    //delete '0' from end

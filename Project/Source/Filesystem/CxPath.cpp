@@ -37,7 +37,7 @@ CxPath::sExe() {
 
     sRv.resize(xPATH_MAX);
 
-    DWORD dwStored = ::GetModuleFileName(NULL, &sRv.at(0), sRv.size());
+    DWORD dwStored = ::GetModuleFileName(NULL, &sRv.at(0), static_cast<DWORD>( sRv.size() ));
     xTEST_DIFF(0UL, dwStored);
 
     sRv.resize(dwStored);
@@ -106,10 +106,12 @@ CxPath::sDll() {
 #if   xOS_ENV_WIN
     sRv.resize(xPATH_MAX);
 
-    DWORD ulStored = ::GetModuleFileName(reinterpret_cast<HINSTANCE>( &__ImageBase ), &sRv.at(0), sRv.size());
-    xTEST_DIFF(0UL, ulStored);
+    DWORD dwStored = ::GetModuleFileName(
+                            reinterpret_cast<HINSTANCE>( &__ImageBase ), 
+                            &sRv.at(0), static_cast<DWORD>( sRv.size() ));
+    xTEST_DIFF(0UL, dwStored);
 
-    sRv.resize(ulStored);
+    sRv.resize(dwStored);
 #elif xOS_ENV_UNIX
     Dl_info     diInfo        = {0};
     const void *fpProcAddress = reinterpret_cast<const void *>( vFunction );
@@ -610,18 +612,18 @@ CxPath::sAbsolute(
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
-    DWORD          ulRv = 0UL;
+    DWORD          dwRv = 0UL;
     std::tstring_t sBuff;
 
-    ulRv = ::GetFullPathName(&a_csFilePath.at(0), 0, NULL, NULL);
-    xTEST_DIFF(0UL, ulRv);
+    dwRv = ::GetFullPathName(&a_csFilePath.at(0), 0, NULL, NULL);
+    xTEST_DIFF(0UL, dwRv);
 
-    sBuff.resize(ulRv);
+    sBuff.resize(dwRv);
 
-    ulRv = ::GetFullPathName(&a_csFilePath.at(0), sBuff.size(), &sBuff.at(0), NULL);
-    xTEST_DIFF(0UL, ulRv);
+    dwRv = ::GetFullPathName(&a_csFilePath.at(0), static_cast<DWORD>( sBuff.size() ), &sBuff.at(0), NULL);
+    xTEST_DIFF(0UL, dwRv);
 
-    sBuff.resize(ulRv);
+    sBuff.resize(dwRv);
 
     sRv = sBuff;
 #elif xOS_ENV_UNIX

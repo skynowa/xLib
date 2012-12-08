@@ -12,7 +12,7 @@
 #include <xLib/Sync/CxCurrentProcess.h>
 
 #if   xOS_ENV_WIN
-    #if   xCOMPILER_MINGW32
+    #if   xCOMPILER_MINGW
         // TODO:
     #elif xCOMPILER_MS || xCOMPILER_CODEGEAR
         #ifdef xUNICODE
@@ -68,7 +68,7 @@ CxStackTrace::vGet(
     std::vector<std::vec_tstring_t> vvsStack;
 
 #if   xOS_ENV_WIN
-    #if   xCOMPILER_MINGW32
+    #if   xCOMPILER_MINGW
         // TODO: CxStackTrace::bGet
     #elif xCOMPILER_MS || xCOMPILER_CODEGEAR
         void        *pvStack[xSTACK_TRACE_FRAMES_MAX] = {0};

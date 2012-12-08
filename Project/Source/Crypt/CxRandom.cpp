@@ -252,8 +252,8 @@ CxRandom::sString(
         }
     }
 
-    const size_t cuiPossibilitiesNum = sAllPossible.length();
-    for (size_t i = 0; i < a_cuiLength; ++ i) {
+    const long_t cuiPossibilitiesNum = static_cast<long_t>( sAllPossible.size() );
+    for (ulong_t i = 0; i < a_cuiLength; ++ i) {
         sRv.push_back( sAllPossible.at( liInt(0, cuiPossibilitiesNum) ) );
     }
 

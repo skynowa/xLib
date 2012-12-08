@@ -284,7 +284,7 @@ CxFile::vReadLine(
     std::tstring_t sStr;
     sStr.resize(a_cuiMaxCount + 1);   // + 1 for 0
 
-    tchar_t *pszRes = std::xTFGETS(&sStr.at(0), sStr.size(), pGet());
+    tchar_t *pszRes = std::xTFGETS(&sStr.at(0), static_cast<int>( sStr.size() ), pGet());
     xTEST_PTR(pszRes);
 
     sStr.erase(sStr.end() - 1);   // erase last char - 0

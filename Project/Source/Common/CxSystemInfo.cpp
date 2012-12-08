@@ -156,10 +156,7 @@ CxSystemInfo::oaOsArch() {
     ExOsArch oaRes = oaUnknown;
 
 #if   xOS_ENV_WIN
-    #if xCPU_64BIT
-        oaRes = oa64bit;
-    #elif xCPU_32BIT
-        BOOL blIs64BitOs   = FALSE;
+    #if   xARCH_X86
         BOOL blIsFuncExist = FALSE;
         {
             CxDll dlDll;
@@ -167,9 +164,13 @@ CxSystemInfo::oaOsArch() {
             dlDll.vLoad(xT("kernel32.dll"));
             blIsFuncExist = dlDll.bIsProcExists(xT("IsWow64Process"));
         }
+
+        BOOL blIs64BitOs = FALSE;
         BOOL blIsWow64Process = ::IsWow64Process(CxCurrentProcess::hHandle(), &blIs64BitOs);
 
         oaRes = (blIsFuncExist && blIsWow64Process && blIs64BitOs) ? oa64bit : oa32bit;
+    #elif xARCH_X64
+        oaRes = oa64bit;
     #else
         // 64-bit Windows does not support Win16
         oaRes = oaUnknown;
@@ -527,7 +528,7 @@ CxSystemInfo::cvCpuVendor() {
     std::string sValue;
 
 #if   xOS_ENV_WIN
-    #if   xCOMPILER_MINGW32 || xCOMPILER_MS
+    #if   xCOMPILER_MINGW || xCOMPILER_MS
         int    aiCpuInfo[4]     = {0};
         char   szMan[13]        = {0};
 
@@ -610,7 +611,7 @@ CxSystemInfo::sCpuModel() {
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
-    #if   xCOMPILER_MINGW32 || xCOMPILER_MS
+    #if   xCOMPILER_MINGW || xCOMPILER_MS
         char szMan[13] = {0};
 
         // get highest feature

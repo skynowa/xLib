@@ -133,7 +133,7 @@ CxEncrypt::vMakeFile(
     CK_ULONG usEncryptedDataSize = g_culBuffSize;
 
     {
-        size_t uiDataSize = usPlainData.size();
+        ulong_t uiDataSize = static_cast<ulong_t>( usPlainData.size() );
         for (ulOffset = 0; ulOffset < uiDataSize; ulOffset += ulPadSize) {
             //������� ������
             if (ulPadSize > (uiDataSize - ulOffset)) {

@@ -63,7 +63,7 @@ CxStdError::sFormat(
     sRv = CxString::sFormat(xT("%lu - "), a_ciCode);
 
 #if   xOS_ENV_WIN
-    #if   xCOMPILER_MINGW32
+    #if   xCOMPILER_MINGW
         tchar_t *pcszError = ::xSTRERROR(a_ciCode);
         xCHECK_RET(NULL == pcszError, sRv.append(xT("[Cann't format error message]")));
 

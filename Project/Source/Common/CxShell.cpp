@@ -9,7 +9,7 @@
 #include <xLib/Common/CxString.h>
 #include <xLib/Common/Win/CxCom.h>
 
-#if xCOMPILER_MINGW32
+#if xCOMPILER_MINGW
     //  lib: -luuid (for IID_IPersistFile)
 #endif
 

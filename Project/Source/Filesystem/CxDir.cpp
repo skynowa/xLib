@@ -150,7 +150,7 @@ CxDir::sCurrent() {
     std::tstring_t sBuff(xPATH_MAX + 1, 0);
 
 #if   xOS_ENV_WIN
-    DWORD ulRv = ::GetCurrentDirectory(xPATH_MAX, &sBuff[0]);
+    DWORD ulRv = ::GetCurrentDirectory(static_cast<DWORD>( xPATH_MAX ), &sBuff[0]);
     xTEST_DIFF(0UL, ulRv);
     xTEST_LESS(ulRv, static_cast<ulong_t>( xPATH_MAX ));
 
@@ -195,7 +195,7 @@ CxDir::sTemp() {
 #if   xOS_ENV_WIN
     std::tstring_t sBuff(xPATH_MAX + 1, 0);
 
-    DWORD ulRv = ::GetTempPath(xPATH_MAX, &sBuff[0]);
+    DWORD ulRv = ::GetTempPath(static_cast<DWORD>( xPATH_MAX ), &sBuff[0]);
     xTEST_DIFF(0UL, ulRv);
     xTEST_LESS(ulRv, static_cast<ulong_t>( xPATH_MAX ));
 

@@ -21,7 +21,7 @@
 #include <psapi.h>
 #include <TlHelp32.h>
 
-#if   xCOMPILER_MINGW32
+#if   xCOMPILER_MINGW
     #include <winternl.h>
     #include <intrin.h>
 #elif xCOMPILER_MS

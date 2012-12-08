@@ -34,18 +34,18 @@
 
     //--------------------------------------------------
     //OS architecture
-    #if   xCPU_32BIT
-        #pragma message("xLib: xCPU_32BIT")
-    #elif xCPU_64BIT
-        #pragma message("xLib: xCPU_64BIT")
+    #if   xARCH_X86
+        #pragma message("xLib: xARCH_X86")
+    #elif xARCH_X64
+        #pragma message("xLib: xARCH_X64")
     #else
         #pragma message("xLib: unsupported architectures")
     #endif
 
     //--------------------------------------------------
     //Compilers
-    #if   xCOMPILER_MINGW32
-        #pragma message("xLib: xCOMPILER_MINGW32")
+    #if   xCOMPILER_MINGW
+        #pragma message("xLib: xCOMPILER_MINGW")
     #elif xCOMPILER_MS
         #pragma message("xLib: xCOMPILER_MS")
     #elif xCOMPILER_CODEGEAR

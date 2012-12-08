@@ -223,7 +223,7 @@ CxTest_CxThread::vUnit(
 
     xTEST_CASE("CxThread::vSetCpuAffinity", cullCaseLoops)
     {
-        for (size_t i = 0; i < CxSystemInfo::ulNumOfCpus(); ++ i) {
+        for (ulong_t i = 0; i < CxSystemInfo::ulNumOfCpus(); ++ i) {
             pthT->vSetCpuAffinity(i);
         }
     }

@@ -27,7 +27,7 @@ class CxSocket :
             afNetbios     = AF_NETBIOS,
             afInet6       = AF_INET6,
             afIrdA        = AF_IRDA
-            #if !xCOMPILER_MINGW32 && !xCOMPILER_CODEGEAR
+            #if !xCOMPILER_MINGW && !xCOMPILER_CODEGEAR
                 ,
                 afBluetooth   = AF_BTH
             #endif

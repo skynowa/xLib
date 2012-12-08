@@ -34,9 +34,14 @@
 #include <Test/Common/Win/CxTest_CxCom.h>
 
 // Crypt
-//#include <Test/Crypt/CxTest_CxBase64.h>
+#if xARCH_X86
+
+#include <Test/Crypt/CxTest_CxBase64.h>
+#include <Test/Crypt/CxTest_CxBlowfish.h>
+
+#endif
+
 #include <Test/Crypt/CxTest_CxCrc32.h>
-//#include <Test/Crypt/CxTest_CxBlowfish.h>
 #include <Test/Crypt/CxTest_CxRandom.h>
 #include <Test/Crypt/Pkcs11/CxTest_CxPkcs11.h>
 
@@ -88,7 +93,9 @@
 
 // Sync
 #if xOS_ENV_UNIX
+
 #include <Test/Sync/Unix/CxTest_CxCondition.h>
+
 #endif
 
 #include <Test/Sync/CxTest_CxAtomicLongInt.h>
@@ -183,9 +190,9 @@ xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
         // Crypt
         tmManager.vAdd(new CxTest_CxCrc32);
         tmManager.vAdd(new CxTest_CxRandom);
-    #if !xCOMPILER_MINGW32
-        //tmManager.vAdd(new CxTest_CxBase64);
-        //tmManager.vAdd(new CxTest_CxBlowfish);
+    #if xARCH_X86 && !xCOMPILER_MINGW
+        tmManager.vAdd(new CxTest_CxBase64);
+        tmManager.vAdd(new CxTest_CxBlowfish);
     #endif
 
         // Db
@@ -228,7 +235,7 @@ xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
         tmManager.vAdd(new CxTest_CxDnsClient);
         // tmManager.vAdd(new CxTest_CxTcpClient);
         // tmManager.vAdd(new CxTest_CxTcpServer);
-        // tmManager.vAdd(new CxTest_CxHttpClient);
+        tmManager.vAdd(new CxTest_CxHttpClient);
 
         // Patterns
         tmManager.vAdd(new CxTest_CxSingleton);
@@ -266,4 +273,4 @@ xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
     return EXIT_SUCCESS;
 }
 //---------------------------------------------------------------------------
-#endif //xLib_UnitTestH
+#endif // xLib_UnitTestH

@@ -123,7 +123,7 @@ CxObject::vFind(
     CK_OBJECT_HANDLE hList[culMaxFindedObjects] = {0};
     CK_ULONG         ulFound                    = 0;
 
-    ulRv = _m_pFunc->C_FindObjects(_m_hSession, &hList[0], xARRAY_SIZE(hList), &ulFound);
+    ulRv = _m_pFunc->C_FindObjects(_m_hSession, &hList[0], static_cast<CK_ULONG>( xARRAY_SIZE(hList) ), &ulFound);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
     xTEST_GR_EQ(static_cast<ulong_t>( xARRAY_SIZE(hList) ), ulFound);
 
@@ -203,19 +203,19 @@ CxObject::vData(
     //CxLogin
     CxLogin objLogin(objPkcs11, objSession);
 
-    objLogin.vLogin(CKU_USER, (CK_UTF8CHAR_PTR)&a_cusUserPin.at(0), a_cusUserPin.size());
+    objLogin.vLogin(CKU_USER, (CK_UTF8CHAR_PTR)&a_cusUserPin.at(0), static_cast<CK_ULONG>( a_cusUserPin.size() ));
 
     //-------------------------------------
     //CxObject
     std::vector<CK_OBJECT_HANDLE> vechData;
     {
         CK_ATTRIBUTE atDataTemplate [] = {
-            {CKA_LABEL, (CK_VOID_PTR)&a_cusDataLabel.at(0), a_cusDataLabel.size()}
+            {CKA_LABEL, (CK_VOID_PTR)&a_cusDataLabel.at(0), static_cast<CK_ULONG>( a_cusDataLabel.size() )}
         };
 
         CxObject objObject(objPkcs11, objSession);
 
-        objObject.vFind(atDataTemplate, xARRAY_SIZE(atDataTemplate), &vechData);
+        objObject.vFind(atDataTemplate, static_cast<CK_ULONG>( xARRAY_SIZE(atDataTemplate) ), &vechData);
         xTEST_EQ(false, vechData.empty());
     }
 
@@ -232,7 +232,7 @@ CxObject::vData(
     };
 
     //Get data issuer, subject, and value attributes
-    objData.vGetAttributeValue(atrTamplate, xARRAY_SIZE(atrTamplate));
+    objData.vGetAttributeValue(atrTamplate, static_cast<CK_ULONG>( xARRAY_SIZE(atrTamplate) ));
 
     ulong_t  ulValueLen = atrTamplate[0].ulValueLen;
     uchar_t *pucValue      = new uchar_t[ulValueLen];
@@ -241,7 +241,7 @@ CxObject::vData(
 
         atrTamplate[0].pValue = pucValue;
 
-        objData.vGetAttributeValue(atrTamplate, xARRAY_SIZE(atrTamplate));
+        objData.vGetAttributeValue(atrTamplate, static_cast<CK_ULONG>( xARRAY_SIZE(atrTamplate) ));
 
         std::ustring_t usValue = std::ustring_t(pucValue, ulValueLen);
 
@@ -283,7 +283,7 @@ CxObject::vData(
     //CxLogin
     CxLogin objLogin(objPkcs11, objSession);
 
-    objLogin.vLogin(CKU_USER, (CK_UTF8CHAR_PTR)&a_cusUserPin.at(0), a_cusUserPin.size());
+    objLogin.vLogin(CKU_USER, (CK_UTF8CHAR_PTR)&a_cusUserPin.at(0), static_cast<CK_ULONG>( a_cusUserPin.size() ));
 
     //-------------------------------------
     //CxObject
@@ -297,7 +297,7 @@ CxObject::vData(
 
         CxObject objObject(objPkcs11, objSession);
 
-        objObject.vFind(atDataTemplate, xARRAY_SIZE(atDataTemplate), &vechData);
+        objObject.vFind(atDataTemplate, static_cast<CK_ULONG>( xARRAY_SIZE(atDataTemplate) ), &vechData);
         xTEST_EQ(false, vechData.empty());
 
         ////CK_OBJECT_HANDLE hData = vechData.at(0);
@@ -321,7 +321,7 @@ CxObject::vData(
         };
 
         //Get data issuer, subject, and value attributes
-        objData.vGetAttributeValue(atrTamplate, xARRAY_SIZE(atrTamplate));
+        objData.vGetAttributeValue(atrTamplate, static_cast<CK_ULONG>( xARRAY_SIZE(atrTamplate) ));
 
         std::ustring_t usLabel;
         std::ustring_t usValue;
@@ -336,7 +336,7 @@ CxObject::vData(
             atrTamplate[1].pValue = &usValue.at(0);
         }
 
-        objData.vGetAttributeValue(atrTamplate, xARRAY_SIZE(atrTamplate));
+        objData.vGetAttributeValue(atrTamplate, static_cast<CK_ULONG>( xARRAY_SIZE(atrTamplate) ));
 
         //���������
         a_pusDataLabel->push_back(usLabel);
@@ -373,19 +373,19 @@ CxObject::vSetData(
     //CxLogin
     CxLogin objLogin(objPkcs11, objSession);
 
-    objLogin.vLogin(CKU_USER, (CK_UTF8CHAR_PTR)&a_cusUserPin.at(0), a_cusUserPin.size());
+    objLogin.vLogin(CKU_USER, (CK_UTF8CHAR_PTR)&a_cusUserPin.at(0), static_cast<CK_ULONG>( a_cusUserPin.size() ));
 
     //-------------------------------------
     //CxObject
     std::vector<CK_OBJECT_HANDLE> vechData;
     {
         CK_ATTRIBUTE atDataTemplate [] = {
-            {CKA_LABEL, (CK_VOID_PTR)&a_cusDataLabel.at(0), a_cusDataLabel.size()}
+            {CKA_LABEL, (CK_VOID_PTR)&a_cusDataLabel.at(0), static_cast<CK_ULONG>( a_cusDataLabel.size() )}
         };
 
         CxObject objObject(objPkcs11, objSession);
 
-        objObject.vFind(atDataTemplate, xARRAY_SIZE(atDataTemplate), &vechData);
+        objObject.vFind(atDataTemplate, static_cast<CK_ULONG>( xARRAY_SIZE(atDataTemplate) ), &vechData);
     }
 
     //-------------------------------------
@@ -400,10 +400,10 @@ CxObject::vSetData(
         //-------------------------------------
         //������ ������ � ������ ��������
         CK_ATTRIBUTE atrTamplate[] = {
-            {CKA_VALUE, (CK_VOID_PTR)&a_cusData.at(0), a_cusData.size()}
+            {CKA_VALUE, (CK_VOID_PTR)&a_cusData.at(0), static_cast<CK_ULONG>( a_cusData.size() )}
         };
 
-        objData.vSetAttributeValue(atrTamplate, xARRAY_SIZE(atrTamplate));
+        objData.vSetAttributeValue(atrTamplate, static_cast<CK_ULONG>( xARRAY_SIZE(atrTamplate) ));
     }
     else {
         //-------------------------------------
@@ -417,13 +417,13 @@ CxObject::vSetData(
             {CKA_CLASS,       &ocData,                             sizeof(ocData)         },
             {CKA_TOKEN,       &bTrue,                              sizeof(bTrue)          },
             {CKA_PRIVATE,     &bTrue,                              sizeof(bTrue)          },
-            {CKA_LABEL,        (CK_VOID_PTR)&a_cusDataLabel.at(0), a_cusDataLabel.size()  },
+            {CKA_LABEL,        (CK_VOID_PTR)&a_cusDataLabel.at(0), static_cast<CK_ULONG>( a_cusDataLabel.size() )  },
           /*{CKA_APPLICATION,  (CK_VOID_PTR)&a_usApplication.at(0),a_usApplication.size() },*/
-            {CKA_VALUE,        (CK_VOID_PTR)&a_cusData.at(0),      a_cusData.size()       },
+            {CKA_VALUE,        (CK_VOID_PTR)&a_cusData.at(0),      static_cast<CK_ULONG>( a_cusData.size() )       },
             {CKA_MODIFIABLE,  &bTrue,                              sizeof(bTrue)          }
         };
 
-        objData.vCreate(atrTamplate, xARRAY_SIZE(atrTamplate));
+        objData.vCreate(atrTamplate, static_cast<CK_ULONG>( xARRAY_SIZE(atrTamplate) ));
     }
 
     //-------------------------------------

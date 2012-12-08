@@ -185,7 +185,7 @@ CxSocket::vSendAll(
     //-------------------------------------
     //������ �� ������ ������� � ����� � ������
     int iCurrPos  = 0;
-    int iLeftSize = a_csBuff.size() * sizeof(tchar_t);            //TODO: !!!!!!  bSendAll (overflow)
+    int iLeftSize = static_cast<int>( a_csBuff.size() * sizeof(tchar_t) );            //TODO: !!!!!!  bSendAll (overflow)
 
     //if size of data more than size of buffer - sizeof buffer SOCKET_BUFF_SIZE
     int iBuffOutSize  = 0;

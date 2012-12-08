@@ -39,7 +39,7 @@ xNAMESPACE_BEGIN(NxLib)
         #define xTTMPNAM        _wtmpnam
 
         // xTMKSTEMP
-    #if   xCOMPILER_MINGW32
+    #if   xCOMPILER_MINGW
         #define xTMKSTEMP       _wmktemp
     #elif xCOMPILER_MS
         #define xTMKSTEMP       _tmktemp_s
@@ -63,7 +63,7 @@ xNAMESPACE_BEGIN(NxLib)
         #define xTSYSTEM        _wsystem
 
     // xTSTAT_STRUCT
-    #if   xCOMPILER_MINGW32
+    #if   xCOMPILER_MINGW
         #define xTSTAT_STRUCT   struct stat
     #elif xCOMPILER_MS
         #define xTSTAT_STRUCT   struct _tstat64
@@ -76,7 +76,7 @@ xNAMESPACE_BEGIN(NxLib)
     #endif
 
     // xTSTAT
-    #if   xCOMPILER_MINGW32
+    #if   xCOMPILER_MINGW
         #define xTSTAT          _wstat
     #elif xCOMPILER_MS
         #define xTSTAT          _tstat64
@@ -89,7 +89,7 @@ xNAMESPACE_BEGIN(NxLib)
     #endif
 
     // xSTRERROR
-    #if   xCOMPILER_MINGW32
+    #if   xCOMPILER_MINGW
         #define xSTRERROR       _tcserror
     #elif xCOMPILER_MS
         #define xSTRERROR       _tcserror_s
@@ -143,7 +143,7 @@ xNAMESPACE_BEGIN(NxLib)
         #define xTTMPNAM        tmpnam
 
         // xTMKSTEMP
-    #if   xCOMPILER_MINGW32
+    #if   xCOMPILER_MINGW
         #define xTMKSTEMP       _mktemp
     #elif xCOMPILER_MS
         #define xTMKSTEMP       _tmktemp_s
@@ -167,7 +167,7 @@ xNAMESPACE_BEGIN(NxLib)
         #define xTSYSTEM        system
 
     // xTSTAT_STRUCT
-    #if   xCOMPILER_MINGW32
+    #if   xCOMPILER_MINGW
         #define xTSTAT_STRUCT   struct stat
     #elif xCOMPILER_MS
         #define xTSTAT_STRUCT   struct _tstat64
@@ -180,7 +180,7 @@ xNAMESPACE_BEGIN(NxLib)
     #endif
 
     // xTSTAT
-    #if   xCOMPILER_MINGW32
+    #if   xCOMPILER_MINGW
         #define xTSTAT          stat
     #elif xCOMPILER_MS
         #define xTSTAT          _tstat64
@@ -193,7 +193,7 @@ xNAMESPACE_BEGIN(NxLib)
     #endif
 
     // xSTRERROR
-    #if   xCOMPILER_MINGW32
+    #if   xCOMPILER_MINGW
         #define xSTRERROR       _tcserror
     #elif xCOMPILER_MS
         #define xSTRERROR       _tcserror_s
@@ -223,7 +223,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 
 // xLOCKING
-#if   xCOMPILER_MINGW32
+#if   xCOMPILER_MINGW
     #define xLOCKING            _locking
 #elif xCOMPILER_MS
     #define xLOCKING            _locking
@@ -236,7 +236,7 @@ xNAMESPACE_BEGIN(NxLib)
 #endif
 
 // xCHSIZE
-#if   xCOMPILER_MINGW32
+#if   xCOMPILER_MINGW
     #define xCHSIZE             chsize
 #elif xCOMPILER_MS
     #define xCHSIZE             _chsize_s
@@ -249,7 +249,7 @@ xNAMESPACE_BEGIN(NxLib)
 #endif
 
 // xGETADDRINFO
-#if   xCOMPILER_MINGW32
+#if   xCOMPILER_MINGW
     #define xGETADDRINFO        getaddrinfo
 #elif xCOMPILER_MS
     #define xGETADDRINFO        GetAddrInfo
@@ -262,7 +262,7 @@ xNAMESPACE_BEGIN(NxLib)
 #endif
 
 // xGETNAMEINFO
-#if   xCOMPILER_MINGW32
+#if   xCOMPILER_MINGW
     #define xGETNAMEINFO        getnameinfo
 #elif xCOMPILER_MS
     #define xGETNAMEINFO        GetNameInfo

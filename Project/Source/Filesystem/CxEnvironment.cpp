@@ -34,13 +34,13 @@ CxEnvironment::bIsExists(
 
 #if   xOS_ENV_WIN
     std::tstring_t sRv;
-    DWORD          ulStored = 0UL;
+    DWORD          dwStored = 0UL;
 
     sRv.resize(xPATH_MAX);
 
-    ulStored = ::GetEnvironmentVariable(a_csVarName.c_str(), &sRv.at(0), sRv.size());
-    // n/a
-    xCHECK_RET(0UL == ulStored && ERROR_ENVVAR_NOT_FOUND == CxLastError::ulGet(), false);
+    dwStored = ::GetEnvironmentVariable(a_csVarName.c_str(), &sRv.at(0), static_cast<DWORD>( sRv.size() ));
+    xTEST_NA(dwStored);
+    xCHECK_RET(0UL == dwStored && ERROR_ENVVAR_NOT_FOUND == CxLastError::ulGet(), false);
 #elif xOS_ENV_UNIX
     const char *pcszRes = ::getenv(a_csVarName.c_str());
     // n/a
@@ -93,13 +93,13 @@ CxEnvironment::sVar(
 
     sRv.resize(xPATH_MAX);
 
-    ulStored = ::GetEnvironmentVariable(a_csVarName.c_str(), &sRv.at(0), sRv.size());
+    ulStored = ::GetEnvironmentVariable(a_csVarName.c_str(), &sRv.at(0), static_cast<DWORD>( sRv.size() ));
     xTEST_DIFF(0UL, ulStored);
 
     sRv.resize(ulStored);
 
     if (sRv.size() < ulStored) {
-        ulStored = ::GetEnvironmentVariable(a_csVarName.c_str(), &sRv.at(0), sRv.size());
+        ulStored = ::GetEnvironmentVariable(a_csVarName.c_str(), &sRv.at(0), static_cast<DWORD>( sRv.size() ));
         xTEST_DIFF(0UL, ulStored);
     }
 #elif xOS_ENV_UNIX
@@ -201,21 +201,21 @@ CxEnvironment::sExpandStrings(
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
-    DWORD ulStored = 0UL;
+    DWORD dwStored = 0UL;
 
     sRv.resize(xPATH_MAX);
 
-    ulStored = ::ExpandEnvironmentStrings(a_csVar.c_str(), &sRv.at(0), sRv.size());
-    xTEST_DIFF(0UL, ulStored);
+    dwStored = ::ExpandEnvironmentStrings(a_csVar.c_str(), &sRv.at(0), static_cast<DWORD>( sRv.size() ));
+    xTEST_DIFF(0UL, dwStored);
 
-    sRv.resize(ulStored);
+    sRv.resize(dwStored);
 
-    if (sRv.size() < ulStored) {
-        ulStored = ::ExpandEnvironmentStrings(a_csVar.c_str(), &sRv.at(0), sRv.size());
-        xTEST_DIFF(0UL, ulStored);
+    if (sRv.size() < dwStored) {
+        dwStored = ::ExpandEnvironmentStrings(a_csVar.c_str(), &sRv.at(0), static_cast<DWORD>( sRv.size() ));
+        xTEST_DIFF(0UL, dwStored);
     }
 
-    sRv.resize(ulStored - sizeof('\0'));
+    sRv.resize(dwStored - sizeof('\0'));
 #elif xOS_ENV_UNIX
     const std::tstring_t csSep = xT("%");
 

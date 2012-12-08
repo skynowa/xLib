@@ -60,7 +60,7 @@ CxFileTemp::vCreate(
     _m_sFilePath = CxPath::sSlashAppend(a_csDirPath) + CxPath::sFileName(a_csFilePath) + csFileNameTemplate;
 
 #if   xOS_ENV_WIN
-    #if xCOMPILER_MINGW32 || xCOMPILER_CODEGEAR
+    #if xCOMPILER_MINGW || xCOMPILER_CODEGEAR
         _m_sFilePath.resize(_m_sFilePath.size() + 1);
 
         tchar_t *pszFile = ::xTMKSTEMP(&_m_sFilePath.at(0));
