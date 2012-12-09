@@ -99,8 +99,6 @@ CxPath::sExe() {
 /* static */
 std::tstring_t
 CxPath::sDll() {
-
-
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
@@ -239,19 +237,19 @@ CxPath::sStandartExt(
 
     switch (a_cseFileExt) {
     #if   xOS_ENV_WIN
-        case seExe: { sRv = xT("exe"); }   break;
-        case seDll: { sRv = xT("dll"); }   break;
-        case seLib: { sRv = xT("lib"); }   break;
-        case seObj: { sRv = xT("obj"); }   break;
-        case seBat: { sRv = xT("bat"); }   break;
+        case seExe:   { sRv = xT("exe"); }   break;
+        case seDll:   { sRv = xT("dll"); }   break;
+        case seLib:   { sRv = xT("lib"); }   break;
+        case seObj:   { sRv = xT("obj"); }   break;
+        case seShell: { sRv = xT("bat"); }   break;
     #elif xOS_ENV_UNIX
-        case seExe: { sRv = xT("");    }   break;
-        case seDll: { sRv = xT("so");  }   break;
-        case seLib: { sRv = xT("a");   }   break;
-        case seObj: { sRv = xT("o");   }   break;
-        case seBat: { sRv = xT("sh");  }   break;
+        case seExe:   { sRv = xT("");    }   break;
+        case seDll:   { sRv = xT("so");  }   break;
+        case seLib:   { sRv = xT("a");   }   break;
+        case seObj:   { sRv = xT("o");   }   break;
+        case seShell: { sRv = xT("sh");  }   break;
     #endif
-        default:    { sRv = xT("");    }   break;
+        default:      { sRv = xT("");    }   break;
     }
 
     return sRv;
@@ -353,7 +351,7 @@ CxPath::sSetExt(
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
-    // csExt - n/a
+    xTEST_NA(a_csExt);
 
     return sRemoveExt(a_csFilePath) + CxConst::xDOT + a_csExt;
 }
@@ -392,50 +390,50 @@ CxPath::sRemoveExtIf(
     return a_csFilePath.substr(0, uiDotPos);
 }
 //---------------------------------------------------------------------------
-//TODO: bIsValid
+// TODO: bIsValid
 /* static */
 bool
 CxPath::bIsValid(
     const std::tstring_t &a_csFilePath
 )
 {
-    // csFileName - n/a
+    xTEST_NA(a_csFilePath);
 
     bool bRv = false;
 
-    //is empty
+    // is empty
     bRv = a_csFilePath.empty();
     xCHECK_RET(true == bRv, false);
 
-    //check for size
+    // check for size
     bRv = (xPATH_MAX < a_csFilePath.size());
     xCHECK_RET(true == bRv, false);
 
     return true;
 }
 //---------------------------------------------------------------------------
-//TODO: bIsNameValid
+// TODO: bIsNameValid
 /* static */
 bool
 CxPath::bIsNameValid(
     const std::tstring_t &a_csFilePath
 )
 {
-    // csFileName - n/a
+    xTEST_NA(a_csFilePath);
 
     bool bRv = false;
 
     const std::tstring_t csFileName = CxPath::sFileName(a_csFilePath);
 
-    //is empty
+    // is empty
     bRv = csFileName.empty();
     xCHECK_RET(true == bRv, false);
 
-    //check for name size
+    // check for name size
     bRv = (xNAME_MAX < csFileName.size());
     xCHECK_RET(true == bRv, false);
 
-    //cm. sSetValidName
+    // cm. sSetValidName
 
     return true;
 }
@@ -465,34 +463,35 @@ CxPath::sSetValidName(
     const std::tstring_t &a_csFileName
 )
 {
-    // n/a
+    xTEST_NA(a_csFileName);
 
     std::tstring_t sRv(a_csFileName);
 
     //-------------------------------------
-    //is empty
+    // is empty
     xCHECK_RET(true == sRv.empty(), std::tstring_t());
 
     //-------------------------------------
-    //check for name size
+    // check for name size
     xCHECK_RET(xNAME_MAX <= sRv.size(), std::tstring_t());
 
 #if   xOS_ENV_WIN
     //-------------------------------------
-    //if only dots
+    // if only dots
     size_t uiDotPos = sRv.find_first_not_of(CxConst::xDOT);
     xCHECK_RET(std::tstring_t::npos == uiDotPos, std::tstring_t());
 
     //-------------------------------------
-    //if the first character is a dot, the filename is okay or space
+    // if the first character is a dot, the filename is okay or space
     xCHECK_RET(CxConst::xDOT.at(0) == sRv.at(0), std::tstring_t());
 
     //-------------------------------------
-    //A device name was used. You can pass this value to GetIsValidFileNameErrStr to obtain a pointer to the name of this device.
+    // A device name was used. You can pass this value to GetIsValidFileNameErrStr 
+    // to obtain a pointer to the name of this device.
 
 
     //-------------------------------------
-    //All characters greater than ASCII 31 to be used except for the following:    "/*:<>?\|
+    // All characters greater than ASCII 31 to be used except for the following: "/*:<>?\|
     const std::tstring_t csFatalChars = xT("\\/:*<>|?\"\t\n\r");
 
     size_t uiFound = sRv.find_first_of(csFatalChars);
@@ -502,11 +501,11 @@ CxPath::sSetValidName(
     }
 
     //-------------------------------------
-    //The following device names cannot be used for a file name nor may they
-    //be used for the first segment of a file name (that part which precedes the  first dot):
-    //CLOCK$, AUX, CON, NUL, PRN, COM1, COM2, COM3, COM4, COM5, COM6, COM7, COM8,
-    //COM9, LPT1, LPT2, LPT3, LPT4, LPT5, LPT6, LPT7, LPT8, LPT9
-    //Device names are case insensitve. aux, AUX, Aux, etc. are identical.
+    // The following device names cannot be used for a file name nor may they
+    // be used for the first segment of a file name (that part which precedes the  first dot):
+    // CLOCK$, AUX, CON, NUL, PRN, COM1, COM2, COM3, COM4, COM5, COM6, COM7, COM8,
+    // COM9, LPT1, LPT2, LPT3, LPT4, LPT5, LPT6, LPT7, LPT8, LPT9
+    // Device names are case insensitve. aux, AUX, Aux, etc. are identical.
 
     const std::tstring_t csReservedNames[] = {
         xT("CON"),  xT("PRN"),  xT("AUX"),  xT("CLOCK$"), xT("NUL"),
@@ -522,7 +521,7 @@ CxPath::sSetValidName(
         xCHECK_RET(true == CxString::bCompareNoCase(sFileName, csReservedNames[i]), std::tstring_t());
     }
 #elif xOS_ENV_UNIX
-    //TODO: sSetValidName
+    // TODO: sSetValidName
 #endif
 
     return sRv;
@@ -536,7 +535,7 @@ CxPath::sToWin(
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
-    // bIsSlashAtEnd - n/a
+    xTEST_NA(a_cbIsSlashAtEnd);
 
     std::tstring_t sRv;
 
@@ -559,7 +558,7 @@ CxPath::sToUnix(
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
-    // bIsSlashAtEnd - n/a
+    xTEST_NA(a_cbIsSlashAtEnd);
 
     std::tstring_t sRv;
 
@@ -582,7 +581,7 @@ CxPath::sToCurrentOs(
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
-    // bIsSlashAtEnd - n/a
+    xTEST_NA(a_cbIsSlashAtEnd);
 
     std::tstring_t sRv;
 
@@ -607,8 +606,6 @@ CxPath::sAbsolute(
     const std::tstring_t &a_csFilePath
 )
 {
-
-
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
@@ -656,7 +653,6 @@ CxPath::sShortName(
 
     std::tstring_t sTildaDotExt;
 
-    //if file extension exists or not
     if (true == sExt(a_csFileName).empty()) {
         sTildaDotExt = xT("~");
     } else {
@@ -761,8 +757,6 @@ CxPath::sSlashRemove(
 /* static */
 size_t
 CxPath::uiMaxSize() {
-
-
     size_t uiRes = 0;
 
 #if   xOS_ENV_WIN
@@ -805,8 +799,6 @@ CxPath::uiMaxSize() {
 /* static */
 size_t
 CxPath::uiNameMaxSize() {
-
-
     size_t uiRes = 0;
 
 #if   xOS_ENV_WIN

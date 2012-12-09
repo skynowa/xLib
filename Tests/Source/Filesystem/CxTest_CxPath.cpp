@@ -211,7 +211,7 @@ CxTest_CxPath::vUnit(
             xTEST_EQ(std::tstring_t(xT("o")), m_sRv);
         #endif
 
-        m_sRv = CxPath::sStandartExt(CxPath::seBat);
+        m_sRv = CxPath::sStandartExt(CxPath::seShell);
         #if   xOS_ENV_WIN
             xTEST_EQ(std::tstring_t(xT("bat")), m_sRv);
         #elif xOS_ENV_UNIX
