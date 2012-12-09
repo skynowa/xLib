@@ -23,7 +23,7 @@ class CxPath :
             seDll,  ///< dynamically linked shared library
             seLib,  ///< static library
             seObj,  ///< object file
-            seBat   ///< shell script file
+            seShell ///< shell script file
         };
 
         static std::tstring_t sExe            ();
@@ -33,7 +33,7 @@ class CxPath :
         static std::tstring_t sDll            ();
             ///< get full path to dll
 
-    #if   xOS_ENV_WIN
+    #if xOS_ENV_WIN
         static std::tstring_t sDrive          (const std::tstring_t &csFilePath);
             ///< get drive
     #endif
@@ -50,7 +50,7 @@ class CxPath :
         static std::tstring_t sStandartExt    (const ExStandartExt &cseFileExt);
             ///< get standart extension
 
-    #if   xOS_ENV_WIN
+    #if xOS_ENV_WIN
         static std::tstring_t sSetDrive       (const std::tstring_t &csFilePath, const std::tstring_t &csDrivePath);
             ///< set drive
     #endif

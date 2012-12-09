@@ -6,19 +6,31 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug_Ansi|Win32 = Debug_Ansi|Win32
+		Debug_Ansi|x64 = Debug_Ansi|x64
 		Debug_Unicode|Win32 = Debug_Unicode|Win32
+		Debug_Unicode|x64 = Debug_Unicode|x64
 		Release_Ansi|Win32 = Release_Ansi|Win32
+		Release_Ansi|x64 = Release_Ansi|x64
 		Release_Unicode|Win32 = Release_Unicode|Win32
+		Release_Unicode|x64 = Release_Unicode|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{232852BF-0166-44FC-B016-1B2009C23F64}.Debug_Ansi|Win32.ActiveCfg = Debug_Ansi|Win32
 		{232852BF-0166-44FC-B016-1B2009C23F64}.Debug_Ansi|Win32.Build.0 = Debug_Ansi|Win32
+		{232852BF-0166-44FC-B016-1B2009C23F64}.Debug_Ansi|x64.ActiveCfg = Debug_Ansi|x64
+		{232852BF-0166-44FC-B016-1B2009C23F64}.Debug_Ansi|x64.Build.0 = Debug_Ansi|x64
 		{232852BF-0166-44FC-B016-1B2009C23F64}.Debug_Unicode|Win32.ActiveCfg = Debug_Unicode|Win32
 		{232852BF-0166-44FC-B016-1B2009C23F64}.Debug_Unicode|Win32.Build.0 = Debug_Unicode|Win32
+		{232852BF-0166-44FC-B016-1B2009C23F64}.Debug_Unicode|x64.ActiveCfg = Debug_Unicode|x64
+		{232852BF-0166-44FC-B016-1B2009C23F64}.Debug_Unicode|x64.Build.0 = Debug_Unicode|x64
 		{232852BF-0166-44FC-B016-1B2009C23F64}.Release_Ansi|Win32.ActiveCfg = Release_Ansi|Win32
 		{232852BF-0166-44FC-B016-1B2009C23F64}.Release_Ansi|Win32.Build.0 = Release_Ansi|Win32
+		{232852BF-0166-44FC-B016-1B2009C23F64}.Release_Ansi|x64.ActiveCfg = Release_Ansi|x64
+		{232852BF-0166-44FC-B016-1B2009C23F64}.Release_Ansi|x64.Build.0 = Release_Ansi|x64
 		{232852BF-0166-44FC-B016-1B2009C23F64}.Release_Unicode|Win32.ActiveCfg = Release_Unicode|Win32
 		{232852BF-0166-44FC-B016-1B2009C23F64}.Release_Unicode|Win32.Build.0 = Release_Unicode|Win32
+		{232852BF-0166-44FC-B016-1B2009C23F64}.Release_Unicode|x64.ActiveCfg = Release_Unicode|x64
+		{232852BF-0166-44FC-B016-1B2009C23F64}.Release_Unicode|x64.Build.0 = Release_Unicode|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
