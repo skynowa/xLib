@@ -90,11 +90,15 @@ CxPath::sExe() {
     return sRv;
 }
 //---------------------------------------------------------------------------
+xNAMESPACE_ANONYM_BEGIN
+
 #if   xOS_ENV_WIN
     extern "C" IMAGE_DOS_HEADER __ImageBase;
 #elif xOS_ENV_UNIX
     static void vFunction() { ; }
 #endif
+
+xNAMESPACE_ANONYM_END
 
 /* static */
 std::tstring_t
@@ -105,7 +109,7 @@ CxPath::sDll() {
     sRv.resize(xPATH_MAX);
 
     DWORD dwStored = ::GetModuleFileName(
-                            reinterpret_cast<HINSTANCE>( &__ImageBase ), 
+                            reinterpret_cast<HINSTANCE>( &__ImageBase ),
                             &sRv.at(0), static_cast<DWORD>( sRv.size() ));
     xTEST_DIFF(0UL, dwStored);
 
@@ -221,7 +225,7 @@ CxPath::sExt(
     xCHECK_RET(std::tstring_t::npos == uiDotPos, std::tstring_t());
 
     size_t uiSlashPos = a_csFilePath.rfind(CxConst::xSLASH, a_csFilePath.size());
-    //if dot after slash - extension not exists
+    // if dot after slash - extension not exists
     xCHECK_RET(uiDotPos < uiSlashPos && std::tstring_t::npos != uiSlashPos, std::tstring_t());
 
     return a_csFilePath.substr(uiDotPos + CxConst::xDOT.size());
@@ -412,7 +416,6 @@ CxPath::bIsValid(
     return true;
 }
 //---------------------------------------------------------------------------
-// TODO: bIsNameValid
 /* static */
 bool
 CxPath::bIsNameValid(
@@ -423,17 +426,110 @@ CxPath::bIsNameValid(
 
     bool bRv = false;
 
-    const std::tstring_t csFileName = CxPath::sFileName(a_csFilePath);
+    //-------------------------------------
+    // check: empty file path
+    {
+        bRv = a_csFilePath.empty();
+        xCHECK_RET(true == bRv, false);
+    }
 
-    // is empty
-    bRv = csFileName.empty();
-    xCHECK_RET(true == bRv, false);
+    const std::tstring_t csFileName = sFileName(a_csFilePath);
 
-    // check for name size
-    bRv = (xNAME_MAX < csFileName.size());
-    xCHECK_RET(true == bRv, false);
+    //-------------------------------------
+    // check: empty name
+    {
+        bRv = csFileName.empty();
+        xCHECK_RET(true == bRv, false);
+    }
 
-    // cm. sSetValidName
+    //-------------------------------------
+    // check: name size
+    {
+        bRv = (xNAME_MAX < csFileName.size());
+        xCHECK_RET(true == bRv, false);
+    }
+
+#if   xOS_ENV_WIN
+    // MSDN: http://msdn.microsoft.com/en-us/library/windows/desktop/aa365247(v=vs.85).aspx
+
+    //-------------------------------------
+    // MSDN: Do not end a file or directory name with a space or a period.
+    // Although the underlying file system may support such names,
+    // the Windows shell and user interface does not.
+    // However, it is acceptable to specify a period
+    // as the first character of a name. For example, ".temp".
+    {
+        const tchar_t cchBegin = *csFileName.cbegin();
+        const tchar_t cchEnd   = *(csFileName.cend() - 1);
+
+        xCHECK_RET(CxConst::xSPACE.at(0) == cchBegin, false);
+        xCHECK_RET(CxConst::xSPACE.at(0) == cchEnd,   false);
+
+        xCHECK_RET(CxConst::xDOT.at(0)   == cchBegin, false);
+        xCHECK_RET(CxConst::xDOT.at(0)   == cchEnd,   false);
+    }
+
+    //-------------------------------------
+    // check: excepted chars
+    // < (less than)
+    // > (greater than)
+    // : (colon)
+    // " (double quote)
+    // / (forward slash)
+    // \ (backslash)
+    // | (vertical bar or pipe)
+    // ? (question mark)
+    // * (asterisk)
+    {
+        const std::tstring_t csExceptedChars = xT("<>:\"/\\|?*");
+
+        size_t uiPos = csFileName.find_first_of(csExceptedChars);
+        xCHECK_RET(std::tstring_t::npos != uiPos, false);
+    }
+
+    //-------------------------------------
+    // check: control chars
+    // MAN: For the standard ASCII character set (used by the "C" locale),
+    // control characters are those between ASCII codes 0x00 (NUL) and 0x1f (US), plus 0x7f (DEL).
+    {
+        struct _SIsCharControl {
+            bool operator () (const std::tstring_t::value_type &cchChat) {
+                return CxChar::bIsControl(cchChat);
+            }
+        };
+
+        std::tstring_t::const_iterator cit;
+
+        cit = std::find_if(csFileName.begin(), csFileName.end(), _SIsCharControl());
+        xCHECK_RET(cit != csFileName.end(), false);
+    }
+
+    //-------------------------------------
+    // check: device names
+    // MSDN: Do not use the following reserved names for the name of a file:
+    // CON, PRN, AUX, NUL, COM1, COM2, COM3, COM4, COM5, COM6, COM7, COM8,
+    // COM9, LPT1, LPT2, LPT3, LPT4, LPT5, LPT6, LPT7, LPT8, and LPT9.
+    // Also avoid these names followed immediately by an extension;
+    // for example, NUL.txt is not recommended.
+    {
+        const std::tstring_t casReservedNames[] = {
+            xT("CON"),  xT("PRN"),  xT("AUX"),  xT("NUL"),
+            xT("COM0"), xT("COM1"), xT("COM2"), xT("COM3"),   xT("COM4"),
+            xT("COM5"), xT("COM6"), xT("COM7"), xT("COM8"),   xT("COM9"),
+            xT("LPT0"), xT("LPT1"), xT("LPT2"), xT("LPT3"),   xT("LPT4"),
+            xT("LPT5"), xT("LPT6"), xT("LPT7"), xT("LPT8"),   xT("LPT9"),
+            xT("CLOCK$")
+        };
+
+        const std::tstring_t csBaseFileName = sRemoveExt(csFileName);
+
+        for (size_t i = 0; i < xARRAY_SIZE(casReservedNames); ++ i) {
+            xCHECK_RET(true == CxString::bCompareNoCase(csBaseFileName, casReservedNames[i]), false);
+        }
+    }
+#elif xOS_ENV_UNIX
+    // TODO: sSetValidName
+#endif
 
     return true;
 }
@@ -450,7 +546,7 @@ CxPath::bIsAbsolute(
 #if   xOS_ENV_WIN
     xCHECK_RET(1 == a_csFilePath.size(),                                                            false);
     xCHECK_RET(CxChar::bIsAlpha(a_csFilePath.at(0)) && CxConst::xCOLON.at(0) == a_csFilePath.at(1), true);
-#else
+#elif xOS_ENV_UNIX
     xNA;
 #endif
 
@@ -473,7 +569,7 @@ CxPath::sSetValidName(
 
     //-------------------------------------
     // check for name size
-    xCHECK_RET(xNAME_MAX <= sRv.size(), std::tstring_t());
+    xCHECK_RET(xNAME_MAX < sRv.size(), std::tstring_t());
 
 #if   xOS_ENV_WIN
     //-------------------------------------
@@ -486,18 +582,31 @@ CxPath::sSetValidName(
     xCHECK_RET(CxConst::xDOT.at(0) == sRv.at(0), std::tstring_t());
 
     //-------------------------------------
-    // A device name was used. You can pass this value to GetIsValidFileNameErrStr 
+    // A device name was used. You can pass this value to GetIsValidFileNameErrStr
     // to obtain a pointer to the name of this device.
 
 
     //-------------------------------------
-    // All characters greater than ASCII 31 to be used except for the following: "/*:<>?\|
-    const std::tstring_t csFatalChars = xT("\\/:*<>|?\"\t\n\r");
+    // MSDN: Use any character in the current code page for a name,
+    // including Unicode characters and characters in the
+    // extended character set (128�255), except for the following:
+    // < (less than)
+    // > (greater than)
+    // : (colon)
+    // " (double quote)
+    // / (forward slash)
+    // \ (backslash)
+    // | (vertical bar or pipe)
+    // ? (question mark)
+    // * (asterisk)
+    {
+        const tchar_t cachFatalChars[] = {'<', '>', ':', '"', '/', '\\', '|', '?', '*'};
 
-    size_t uiFound = sRv.find_first_of(csFatalChars);
-    while (std::tstring_t::npos != uiFound) {
-        sRv.erase(uiFound, 1);
-        uiFound = sRv.find_first_of(csFatalChars, uiFound);
+        size_t uiFound = sRv.find_first_of(cachFatalChars);
+        while (std::tstring_t::npos != uiFound) {
+            sRv.erase(uiFound, 1);
+            uiFound = sRv.find_first_of(cachFatalChars, uiFound);
+        }
     }
 
     //-------------------------------------

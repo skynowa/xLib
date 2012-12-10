@@ -64,8 +64,7 @@ CxFunction::vCancel() {
 //---------------------------------------------------------------------------
 void
 CxFunction::vListEx() {
-    
-
+    // TODO: CxFunction::vListEx
     #if xTODO
         CK_RV ulRv = _m_pFunc->ETC_GetFunctionListEx();
         xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));

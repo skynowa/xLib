@@ -217,9 +217,11 @@ CxTest_CxLocalStorage::vUnit(
         iniIni.vKeyWriteBin(csKey1, cusValue);
 
         m_usRv = iniIni.usKeyReadBin(csKey1, cusDefaultValue);
-#if xTODO
+
+        // TEST: CxLocalStorage::vKeyWriteBin CxLocalStorage::usKeyReadBin
+    #if xTODO
         xTEST_EQ(cusValue, m_usRv);
-#endif
+    #endif
     }
 
     xTEST_CASE("CxLocalStorage::vKeyClear", cullCaseLoops)

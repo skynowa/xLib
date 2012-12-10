@@ -455,6 +455,7 @@ CxDir::vFindFiles(
     // a_cbIsRecursively - n/a
     xTEST_PTR(a_pvsFilePathes);
 
+    // TODO: CxDir::vFindFiles
     #if xTODO
         (*pvsFilePathes).clear();
     #endif
@@ -603,6 +604,7 @@ CxDir::vFindDirs(
     // a_cbIsRecursively - n/a
     xTEST_PTR(a_pvsDirPathes);
 
+    // TODO: CxDir::vFindDirs
     #if xTODO
         (*a_pvsDirPathes).clear();
     #endif

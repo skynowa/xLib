@@ -34,7 +34,7 @@ class CxPin :
         void                 vSetPIN       (CK_UTF8CHAR_PTR pOldPin, CK_ULONG ulOldLen, CK_UTF8CHAR_PTR pNewPin, CK_ULONG ulNewLen);
             ///< modifies the PIN of the user who is logged in
 
-        //Utils
+        // TODO: CxPin utils
     #if xTODO
         std::tstring_t       sChangeUserPin(const AnsiString &casOldUserPin, const AnsiString &casNewUserPin);
         std::tstring_t       sChangeSOPin  (const AnsiString &casOldSOPin,   const AnsiString &casNewSOPin);

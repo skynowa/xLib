@@ -84,7 +84,8 @@ CxTest_CxSmtp::vUnit(
     objSmtp.vSend(csText, csFrom, csTo);
 
     //-------------------------------------
-    //bSendRaw
+    // vSendRaw
+    // TEST: CxSmtp::vSendRaw
 #if xTODO
     g_vsRes = CxDir::vsListFiles(csDirPath, "*.eml");
     for (size_t i = 0; i < g_vsRes.size(); i ++) {

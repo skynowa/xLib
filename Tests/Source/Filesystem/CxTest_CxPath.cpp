@@ -32,21 +32,21 @@ CxTest_CxPath::vUnit(
         xTEST_EQ(true, CxFile::bIsExists(m_sRv));
     }
 
-    xTEST_CASE("CxPath::sDll", cullCaseLoops)
-    {
-        m_sRv = CxPath::sDll();
-        xTEST_EQ(true, CxFile::bIsExists(m_sRv));
-    }
-
     xTEST_CASE("CxPath::sExeDir", cullCaseLoops)
     {
         m_sRv = CxPath::sExeDir();
         xTEST_EQ(true, CxDir::bIsExists(m_sRv));
     }
 
+    xTEST_CASE("CxPath::sDll", cullCaseLoops)
+    {
+        m_sRv = CxPath::sDll();
+        xTEST_EQ(true, CxFile::bIsExists(m_sRv));
+    }
+
     xTEST_CASE("CxPath::sDrive", cullCaseLoops)
     {
-        #if   xOS_ENV_WIN
+        #if xOS_ENV_WIN
             std::tstring_t csFilePath = xT("C:\\Test.txt");
 
             m_sRv = CxPath::sDrive(csFilePath);
@@ -221,7 +221,7 @@ CxTest_CxPath::vUnit(
 
     xTEST_CASE("CxPath::sSetDrive", cullCaseLoops)
     {
-        #if   xOS_ENV_WIN
+        #if xOS_ENV_WIN
             const std::tstring_t sData[][3] = {
                 {xT("C:\\Test.doc"),                  xT("F:"),    xT("F:\\Test.doc")},
                 {xT("Z:\\okoval@winnerauto.ua.info"), xT("T:"),    xT("T:\\okoval@winnerauto.ua.info")},
@@ -395,14 +395,165 @@ CxTest_CxPath::vUnit(
         }
     }
 
+    xTEST_CASE("CxPath::sRemoveExtIf", cullCaseLoops)
+    {
+        // TEST: CxPath::sRemoveExtIf
+
+        //#if   xOS_ENV_WIN
+        //    const std::tstring_t sData[][2] = {
+        //        {xT("C:\\Test.111\\Test.txt"),                           xT("C:\\Test.111\\Test")},
+        //        {xT("C:\\Test"),                                         xT("C:\\Test")},
+        //        {xT("Test.txt"),                                         xT("Test")},
+        //        {xT("D:\\My projects\\Borland C++\\pLaunchProject.exe"), xT("D:\\My projects\\Borland C++\\pLaunchProject")}
+        //    };
+        //#elif xOS_ENV_UNIX
+        //    const std::tstring_t sData[][2] = {
+        //        {xT("/home/Test.111/Test.txt"),                          xT("/home/Test.111/Test")},
+        //        {xT("/home/Test"),                                       xT("/home/Test")},
+        //        {xT("Test.txt"),                                         xT("Test")},
+        //        {xT("/home/My projects/Borland C++/pLaunchProject.exe"), xT("/home/My projects/Borland C++/pLaunchProject")}
+        //    };
+        //#endif
+
+        //for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
+        //    std::tstring_t sStr1 = CxPath::sRemoveExtIf(sData[i][0]);
+        //    std::tstring_t sStr2 = sData[i][1];
+        //    xTEST_EQ(sStr1, sStr2);
+        //}
+    }
+
     xTEST_CASE("CxPath::bIsValid", cullCaseLoops)
     {
-        //TODO: bIsValid
+        // TEST: CxPath::bIsValid
     }
 
     xTEST_CASE("CxPath::bIsNameValid", cullCaseLoops)
     {
-        //TODO: bIsNameValid
+    #if   xOS_ENV_WIN
+        struct SData {
+            std::tstring_t sFileName;
+            bool           bIsValid;
+        };
+
+        const SData cdData[] =
+        {
+            {xT("CLOCK$"),       false},
+            {xT("AUX"),          false},
+            {xT("CON"),          false},
+            {xT("NUL"),          false},
+            {xT("PRN"),          false},
+            {xT("COM1"),         false},
+            {xT("COM2"),         false},
+            {xT("COM3"),         false},
+            {xT("COM4"),         false},
+            {xT("COM5"),         false},
+            {xT("COM6"),         false},
+            {xT("COM7"),         false},
+            {xT("COM8"),         false},
+            {xT("COM9"),         false},
+            {xT("LPT1"),         false},
+            {xT("LPT2"),         false},
+            {xT("LPT3"),         false},
+            {xT("LPT4"),         false},
+            {xT("LPT5"),         false},
+            {xT("LPT6"),         false},
+            {xT("LPT7"),         false},
+            {xT("LPT8"),         false},
+            {xT("LPT9"),         false},
+            {xT("clock$"),       false},
+            {xT("aux"),          false},
+            {xT("con"),          false},
+            {xT("nul"),          false},
+            {xT("prn"),          false},
+            {xT("com1"),         false},
+            {xT("com2"),         false},
+            {xT("com3"),         false},
+            {xT("com4"),         false},
+            {xT("com5"),         false},
+            {xT("com6"),         false},
+            {xT("com7"),         false},
+            {xT("com8"),         false},
+            {xT("com9"),         false},
+            {xT("LPT1"),         false},
+            {xT("LPT2"),         false},
+            {xT("LPT3"),         false},
+            {xT("LPT4"),         false},
+            {xT("LPT5"),         false},
+            {xT("LPT6"),         false},
+            {xT("LPT7"),         false},
+            {xT("LPT8"),         false},
+            {xT("LPT9"),         false},
+            {xT("clock$.txt"),   false},
+            {xT("aux.txt"),      false},
+            {xT("con.txt"),      false},
+            {xT("nul.txt"),      false},
+            {xT("prn.txt"),      false},
+            {xT("com1.txt"),     false},
+            {xT("com2.txt"),     false},
+            {xT("com3.txt"),     false},
+            {xT("com4.txt"),     false},
+            {xT("com5.txt"),     false},
+            {xT("com6.txt"),     false},
+            {xT("com7.txt"),     false},
+            {xT("com8.txt"),     false},
+            {xT("com9.txt"),     false},
+            {xT("LPT1.txt"),     false},
+            {xT("LPT2.txt"),     false},
+            {xT("LPT3.txt"),     false},
+            {xT("LPT4.txt"),     false},
+            {xT("LPT5.txt"),     false},
+            {xT("LPT6.txt"),     false},
+            {xT("LPT7.txt"),     false},
+            {xT("LPT8.txt"),     false},
+            {xT("LPT9.txt"),     false},
+            {xT("T\t"),          false},
+            {xT("T\n"),          false},
+            {xT("T\r"),          false},
+            {xT("T<"),           false},
+            {xT("T>"),           false},
+            {xT("T:"),           false},
+            {xT("T\""),          false},
+            {xT("T\\"),          false},
+            {xT("T/"),           false},
+            {xT("T*"),           false},
+            {xT("T?"),           false},
+            {xT("T|"),           false},
+            {xT("..."),          false},
+            {xT(" "),            false},
+            {xT("       "),      false},
+            {xT(". .."),         false},
+            {xT(".xxx."),        false},
+            {xT(" dd "),         false},
+            {xT("ff "),          false},
+            {xT("w "),           false},
+            {xT(".."),           false},
+            {xT("."),            false},
+            {xT("Good Data"),    true},
+            {xT("commit"),       true},
+            {xT("console"),      true},
+            {xT("LPT10"),        true},
+            {xT("clock"),        true},
+            {xT(".aux.txt"),     false},
+            {xT("auxx.aux.txt"), true},
+            {xT("NULL"),         true},
+            {xT("?V|||/:*?\"<>|||a:l/:*?\"<>|/:*?\"<>|/:*?\"<>|\\i?dT*e/:*?\"<>|stN////:*?\"<>|///ame"), false},
+            {xT(""),             false},
+            {xT("C:\\test\\"),   false},
+            // TEST: {xT("C:/test/"),     false},
+
+        };
+    #elif xOS_ENV_UNIX
+        const std::tstring_t sTestData[][2] =
+        {
+            {xT("xxxx"),       xT("xxxx")},
+        };
+    #endif
+
+        for (size_t i = 0; i < xARRAY_SIZE(cdData); ++ i) {
+            bool bRv1 = CxPath::bIsNameValid(cdData[i].sFileName);
+            bool bRv2 = cdData[i].bIsValid;
+            xTEST_EQ(bRv1, bRv2);
+        }
     }
 
     xTEST_CASE("CxPath::bIsAbsolute", cullCaseLoops)
@@ -453,121 +604,6 @@ CxTest_CxPath::vUnit(
                 m_bRv = CxPath::bIsAbsolute(casData[i]);
                 xTEST_EQ(false, m_bRv);
             }
-        }
-    }
-
-    xTEST_CASE("CxPath::sSetValidName", cullCaseLoops)
-    {
-    #if   xOS_ENV_WIN
-        const std::tstring_t sTestData[][2] =
-        {
-            {xT("CLOCK$"),       xT("")},
-            {xT("AUX"),          xT("")},
-            {xT("CON"),          xT("")},
-            {xT("NUL"),          xT("")},
-            {xT("PRN"),          xT("")},
-            {xT("COM1"),         xT("")},
-            {xT("COM2"),         xT("")},
-            {xT("COM3"),         xT("")},
-            {xT("COM4"),         xT("")},
-            {xT("COM5"),         xT("")},
-            {xT("COM6"),         xT("")},
-            {xT("COM7"),         xT("")},
-            {xT("COM8"),         xT("")},
-            {xT("COM9"),         xT("")},
-            {xT("LPT1"),         xT("")},
-            {xT("LPT2"),         xT("")},
-            {xT("LPT3"),         xT("")},
-            {xT("LPT4"),         xT("")},
-            {xT("LPT5"),         xT("")},
-            {xT("LPT6"),         xT("")},
-            {xT("LPT7"),         xT("")},
-            {xT("LPT8"),         xT("")},
-            {xT("LPT9"),         xT("")},
-            {xT("clock$"),       xT("")},
-            {xT("aux"),          xT("")},
-            {xT("con"),          xT("")},
-            {xT("nul"),          xT("")},
-            {xT("prn"),          xT("")},
-            {xT("com1"),         xT("")},
-            {xT("com2"),         xT("")},
-            {xT("com3"),         xT("")},
-            {xT("com4"),         xT("")},
-            {xT("com5"),         xT("")},
-            {xT("com6"),         xT("")},
-            {xT("com7"),         xT("")},
-            {xT("com8"),         xT("")},
-            {xT("com9"),         xT("")},
-            {xT("LPT1"),         xT("")},
-            {xT("LPT2"),         xT("")},
-            {xT("LPT3"),         xT("")},
-            {xT("LPT4"),         xT("")},
-            {xT("LPT5"),         xT("")},
-            {xT("LPT6"),         xT("")},
-            {xT("LPT7"),         xT("")},
-            {xT("LPT8"),         xT("")},
-            {xT("LPT9"),         xT("")},
-            {xT("clock$.txt"),   xT("")},
-            {xT("aux.txt"),      xT("")},
-            {xT("con.txt"),      xT("")},
-            {xT("nul.txt"),      xT("")},
-            {xT("prn.txt"),      xT("")},
-            {xT("com1.txt"),     xT("")},
-            {xT("com2.txt"),     xT("")},
-            {xT("com3.txt"),     xT("")},
-            {xT("com4.txt"),     xT("")},
-            {xT("com5.txt"),     xT("")},
-            {xT("com6.txt"),     xT("")},
-            {xT("com7.txt"),     xT("")},
-            {xT("com8.txt"),     xT("")},
-            {xT("com9.txt"),     xT("")},
-            {xT("LPT1.txt"),     xT("")},
-            {xT("LPT2.txt"),     xT("")},
-            {xT("LPT3.txt"),     xT("")},
-            {xT("LPT4.txt"),     xT("")},
-            {xT("LPT5.txt"),     xT("")},
-            {xT("LPT6.txt"),     xT("")},
-            {xT("LPT7.txt"),     xT("")},
-            {xT("LPT8.txt"),     xT("")},
-            {xT("LPT9.txt"),     xT("")},
-            {xT("T\t"),          xT("T")},
-            {xT("T\n"),          xT("T")},
-            {xT("T\r"),          xT("T")},
-            {xT("T<"),           xT("T")},
-            {xT("T>"),           xT("T")},
-            {xT("T:"),           xT("T")},
-            {xT("T\""),          xT("T")},
-            {xT("T\\"),          xT("T")},
-            {xT("T/"),           xT("T")},
-            {xT("T*"),           xT("T")},
-            {xT("T?"),           xT("T")},
-            {xT("T|"),           xT("T")},
-            {xT("..."),          xT("")},
-            {xT("Good Data"),    xT("Good Data")},
-            {xT("commit"),       xT("commit")},
-            {xT("console"),      xT("console")},
-            {xT("LPT10"),        xT("LPT10")},
-            {xT("clock"),        xT("clock")},
-            {xT(".aux.txt"),     xT("")},
-            {xT("auxx.aux.txt"), xT("auxx.aux.txt")},
-            {xT("NULL"),         xT("NULL")},
-            {xT("?V|||/:*?\"<>|||a:l/:*?\"<>|/:*?\"<>|/:*?\"<>|\\i?dT*e/:*?\"<>|stN////:*?\"<>|///ame"), xT("ValidTestName")},
-        };
-    #elif xOS_ENV_UNIX
-        const std::tstring_t sTestData[][2] =
-        {
-            {xT("xxxx"),       xT("xxxx")},
-        };
-    #endif
-
-        for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
-            std::tstring_t sStr1 = CxPath::sSetValidName(sTestData[i][0]);
-            std::tstring_t sStr2 = CxPath::sSetValidName(sTestData[i][1]);
-            xTEST_EQ(sStr1, sStr2);
-
-            std::tstring_t sStr3 = CxPath::sSetValidName(sTestData[i][0]);
-            std::tstring_t sStr4 = sTestData[i][1];
-            xTEST_EQ(sStr3, sStr4);
         }
     }
 
@@ -732,6 +768,121 @@ CxTest_CxPath::vUnit(
         }
     }
 
+    xTEST_CASE("CxPath::sSetValidName", cullCaseLoops)
+    {
+    #if   xOS_ENV_WIN
+        const std::tstring_t sTestData[][2] =
+        {
+            {xT("CLOCK$"),       xT("")},
+            {xT("AUX"),          xT("")},
+            {xT("CON"),          xT("")},
+            {xT("NUL"),          xT("")},
+            {xT("PRN"),          xT("")},
+            {xT("COM1"),         xT("")},
+            {xT("COM2"),         xT("")},
+            {xT("COM3"),         xT("")},
+            {xT("COM4"),         xT("")},
+            {xT("COM5"),         xT("")},
+            {xT("COM6"),         xT("")},
+            {xT("COM7"),         xT("")},
+            {xT("COM8"),         xT("")},
+            {xT("COM9"),         xT("")},
+            {xT("LPT1"),         xT("")},
+            {xT("LPT2"),         xT("")},
+            {xT("LPT3"),         xT("")},
+            {xT("LPT4"),         xT("")},
+            {xT("LPT5"),         xT("")},
+            {xT("LPT6"),         xT("")},
+            {xT("LPT7"),         xT("")},
+            {xT("LPT8"),         xT("")},
+            {xT("LPT9"),         xT("")},
+            {xT("clock$"),       xT("")},
+            {xT("aux"),          xT("")},
+            {xT("con"),          xT("")},
+            {xT("nul"),          xT("")},
+            {xT("prn"),          xT("")},
+            {xT("com1"),         xT("")},
+            {xT("com2"),         xT("")},
+            {xT("com3"),         xT("")},
+            {xT("com4"),         xT("")},
+            {xT("com5"),         xT("")},
+            {xT("com6"),         xT("")},
+            {xT("com7"),         xT("")},
+            {xT("com8"),         xT("")},
+            {xT("com9"),         xT("")},
+            {xT("LPT1"),         xT("")},
+            {xT("LPT2"),         xT("")},
+            {xT("LPT3"),         xT("")},
+            {xT("LPT4"),         xT("")},
+            {xT("LPT5"),         xT("")},
+            {xT("LPT6"),         xT("")},
+            {xT("LPT7"),         xT("")},
+            {xT("LPT8"),         xT("")},
+            {xT("LPT9"),         xT("")},
+            {xT("clock$.txt"),   xT("")},
+            {xT("aux.txt"),      xT("")},
+            {xT("con.txt"),      xT("")},
+            {xT("nul.txt"),      xT("")},
+            {xT("prn.txt"),      xT("")},
+            {xT("com1.txt"),     xT("")},
+            {xT("com2.txt"),     xT("")},
+            {xT("com3.txt"),     xT("")},
+            {xT("com4.txt"),     xT("")},
+            {xT("com5.txt"),     xT("")},
+            {xT("com6.txt"),     xT("")},
+            {xT("com7.txt"),     xT("")},
+            {xT("com8.txt"),     xT("")},
+            {xT("com9.txt"),     xT("")},
+            {xT("LPT1.txt"),     xT("")},
+            {xT("LPT2.txt"),     xT("")},
+            {xT("LPT3.txt"),     xT("")},
+            {xT("LPT4.txt"),     xT("")},
+            {xT("LPT5.txt"),     xT("")},
+            {xT("LPT6.txt"),     xT("")},
+            {xT("LPT7.txt"),     xT("")},
+            {xT("LPT8.txt"),     xT("")},
+            {xT("LPT9.txt"),     xT("")},
+            {xT("T\t"),          xT("T")},
+            {xT("T\n"),          xT("T")},
+            {xT("T\r"),          xT("T")},
+            {xT("T<"),           xT("T")},
+            {xT("T>"),           xT("T")},
+            {xT("T:"),           xT("T")},
+            {xT("T\""),          xT("T")},
+            {xT("T\\"),          xT("T")},
+            {xT("T/"),           xT("T")},
+            {xT("T*"),           xT("T")},
+            {xT("T?"),           xT("T")},
+            {xT("T|"),           xT("T")},
+            {xT("..."),          xT("")},
+            {xT("Good Data"),    xT("Good Data")},
+            {xT("commit"),       xT("commit")},
+            {xT("console"),      xT("console")},
+            {xT("LPT10"),        xT("LPT10")},
+            {xT("clock"),        xT("clock")},
+            {xT(".aux.txt"),     xT("")},
+            {xT("auxx.aux.txt"), xT("auxx.aux.txt")},
+            {xT("NULL"),         xT("NULL")},
+            {xT("?V|||/:*?\"<>|||a:l/:*?\"<>|/:*?\"<>|/:*?\"<>|\\i?dT*e/:*?\"<>|stN////:*?\"<>|///ame"), xT("ValidTestName")},
+        };
+    #elif xOS_ENV_UNIX
+        const std::tstring_t sTestData[][2] =
+        {
+            {xT("xxxx"),       xT("xxxx")},
+        };
+    #endif
+
+        for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
+            std::tstring_t sStr1 = CxPath::sSetValidName(sTestData[i][0]);
+            std::tstring_t sStr2 = CxPath::sSetValidName(sTestData[i][1]);
+            xTEST_EQ(sStr1, sStr2);
+
+            std::tstring_t sStr3 = CxPath::sSetValidName(sTestData[i][0]);
+            std::tstring_t sStr4 = sTestData[i][1];
+            xTEST_EQ(sStr3, sStr4);
+        }
+    }
+
     xTEST_CASE("CxPath::sSlashAppend", cullCaseLoops)
     {
         #if   xOS_ENV_WIN
@@ -805,5 +956,17 @@ CxTest_CxPath::vUnit(
         m_stRv = CxPath::uiNameMaxSize();
         xTEST_LESS(size_t(0), m_stRv);
     }
+
+#if xOS_ENV_UNIX
+    xTEST_CASE("CxPath::vProc", cullCaseLoops)
+    {
+        // TEST: CxPath::vProc
+    }
+
+    xTEST_CASE("CxPath::sProcValue", cullCaseLoops)
+    {
+        // TEST: CxPath::sProcValue
+    }
+#endif
 }
 //---------------------------------------------------------------------------

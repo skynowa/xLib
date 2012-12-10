@@ -39,7 +39,7 @@ CxTest_CxSleeper::vUnit(
             xTEST_EQ(false, m_bRv);
 
             objSleeper.vSleep(5);
- 
+
             m_bRv = objSleeper.bIsSleeping();
             xTEST_EQ(false, m_bRv);
 
@@ -47,9 +47,10 @@ CxTest_CxSleeper::vUnit(
             xTEST_EQ(false, m_bRv);
         }
     }
-    
+
     xTEST_CASE("CxSleeper::vWakeUp", cullCaseLoops)
     {
+        // TEST: CxSleeper::vWakeUp
         #if xTODO
             CxSleeper objSleeper;
 

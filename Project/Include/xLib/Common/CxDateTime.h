@@ -86,6 +86,8 @@ class CxDateTime
         // converting
         ulonglong_t           ullToMilliseconds   () const;
             ///< convert CxDateTime to milliseconds
+
+        // TODO: ToUniversalTime, ToLocalTime
         #if xTODO
             ToUniversalTime();
             ToLocalTime();

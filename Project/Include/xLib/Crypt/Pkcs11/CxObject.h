@@ -61,6 +61,7 @@ class CxObject :
         CK_SESSION_HANDLE    _m_hSession;   ///< session handle
         CK_OBJECT_HANDLE     _m_hObject;    ///< bject handle
 
+        // TODO: bFindInit, bFind, bFindFinal
     #if xTODO
         bool                 bFindInit         (CK_ATTRIBUTE_PTR  pTemplate, CK_ULONG ulCount);
             ///< initializes a search for token and session objects that match a template

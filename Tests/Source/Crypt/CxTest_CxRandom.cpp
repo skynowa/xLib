@@ -22,6 +22,8 @@ CxTest_CxRandom::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
+    // TEST: CxRandom
+
     #if xTODO
         CxRandom rndR;
 
