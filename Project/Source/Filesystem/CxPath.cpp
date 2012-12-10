@@ -493,15 +493,16 @@ CxPath::bIsNameValid(
     // MAN: For the standard ASCII character set (used by the "C" locale),
     // control characters are those between ASCII codes 0x00 (NUL) and 0x1f (US), plus 0x7f (DEL).
     {
-        struct _SIsCharControl {
-            bool operator () (const std::tstring_t::value_type &cchChat) {
+        struct _SNested {
+            static bool
+            bIsCharControl(const std::tstring_t::value_type &cchChat) {
                 return CxChar::bIsControl(cchChat);
             }
         };
 
         std::tstring_t::const_iterator cit;
 
-        cit = std::find_if(csFileName.begin(), csFileName.end(), _SIsCharControl());
+        cit = std::find_if(csFileName.begin(), csFileName.end(), _SNested::bIsCharControl);
         xCHECK_RET(cit != csFileName.end(), false);
     }
 
