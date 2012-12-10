@@ -151,6 +151,8 @@ CxTest_CxHandleT::vUnit(
 
     xTEST_CASE("CxHandleT::vSetInfo", cullCaseLoops)
     {
+        // TEST: CxHandleT::vSetInfo
+
     #if   xOS_ENV_WIN
         #if xTODO
             CxHandle hHandle;
@@ -170,6 +172,8 @@ CxTest_CxHandleT::vUnit(
 
     xTEST_CASE("CxHandleT::ulGetInfo", cullCaseLoops)
     {
+        // TEST: CxHandleT::ulGetInfo
+
     #if   xOS_ENV_WIN
         #if xTODO
             CxHandle hHandle;

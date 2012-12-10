@@ -684,6 +684,8 @@ CxTest_CxFile::vUnit1(
 
     xTEST_CASE("CxFile::vTryDelete", cullCaseLoops)
     {
+        // TEST: CxFile::vTryDelete
+
         #if xTODO
             const std::tstring_t csFilePath = sTempDirPath() + CxConst::xSLASH + xT("New.Test.txt");
 
@@ -930,10 +932,12 @@ CxTest_CxFile::vUnitPrivate(
         m_iRv = CxFile::_iHandle( sfFile.pGet() );
         xTEST_DIFF((int)CxFile::etError, m_iRv);
     }
-
-    #if xTODO
+   
     xTEST_CASE("CxFile::_pfHandle", cullCaseLoops)
     {
+        // TEST: CxFile::_pfHandle
+
+    #if xTODO
         const CxFile::ExOpenMode comMode = CxFile::omOpenReadWrite;
 
         CxFile sfFile;
@@ -945,8 +949,8 @@ CxTest_CxFile::vUnitPrivate(
 
         FILE *pfFile = CxFile::_pfHandle(iFile, comMode);
         xTEST_PTR(pfFile);
-    }
     #endif
+    }
 
     xTEST_CASE("CxFile::_sOpenMode", cullCaseLoops)
     {

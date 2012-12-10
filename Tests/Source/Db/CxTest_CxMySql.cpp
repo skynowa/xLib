@@ -223,24 +223,27 @@ CxTest_CxMySql::vUnit(
         recRec.vFetchFields(&mfField);
     }
 
-    #if xTODO
-        //--------------------------------------------------
-        //bFetchRow
-        {
-            MYSQL_ROW mrRow;
+    //--------------------------------------------------
+    // vFetchRow
+    {
+        // TEST: CxMysql::vFetchRow
 
-            recRec.vFetchRow(&mrRow);
-        }
+        //MYSQL_ROW mrRow;
 
-        //--------------------------------------------------
-        //bFetchLengths
-        {
-            ulong_t *pulFieldLengths = NULL;
+        //recRec.vFetchRow(&mrRow);
+    }
 
-            recRec.vFetchLengths(&pulFieldLengths);
-            xTEST_PTR(pulFieldLengths);
-        }
-    #endif
+    //--------------------------------------------------
+    // vFetchLengths
+    {
+        // TEST: CxMysql::vFetchLengths
+
+        //ulong_t *pulFieldLengths = NULL;
+
+        //recRec.vFetchLengths(&pulFieldLengths);
+        //xTEST_PTR(pulFieldLengths);
+    }
+
 
     //--------------------------------------------------
     //bFetchRow

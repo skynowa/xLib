@@ -363,11 +363,12 @@ CxMySQLRecordset::vFetchRow(
 
     (*a_pvsRow).clear();
 
+    // TODO: CxMySQLRecordset::vFetchRow
     #if xTODO
         //--uint_t   uiFieldsNum   = mysql_num_fields   (_m_pmrResult);
         uint_t     uiFieldsNum   = _m_pcmcConnection->uiFieldCount();
-        MYSQL_ROW  ppmrRow       = mysql_fetch_row    (_m_pmrResult);   //array of strings
-        ulong_t   *pulRowLengths = mysql_fetch_lengths(_m_pmrResult);   //TODO: maybe 64-bit bug
+        MYSQL_ROW  ppmrRow       = mysql_fetch_row    (_m_pmrResult);   // array of strings
+        ulong_t   *pulRowLengths = mysql_fetch_lengths(_m_pmrResult);   // TODO: may be 64-bit bug
     #endif
 
     // fields count

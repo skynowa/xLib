@@ -146,6 +146,7 @@ CxTest_CxThread::vUnit(
 
     xTEST_CASE("CxThread::messages", cullCaseLoops)
     {
+        // TEST: CxThread::messages
         #if xTODO
             m_bRv = pthT->bPostMessage(::GetDesktopWindow(), WM_CHAR, 0, 0);
             m_bRv = pthT->bSendMessage(::GetDesktopWindow(), WM_CHAR, 0, 0);
@@ -175,6 +176,7 @@ CxTest_CxThread::vUnit(
 
     xTEST_CASE("CxThread::sGetPriorityString", cullCaseLoops)
     {
+        // TEST: CxThread::sGetPriorityString
         #if xTODO
             m_sRv = pthT->sGetPriorityString();
             xTEST_EQ(std::tstring_t(xT("Lowest")), m_sRv);
@@ -280,6 +282,7 @@ CxTest_CxThread::vUnit(
 
     xTEST_CASE("CxThread::hOpen", cullCaseLoops)
     {
+        // TEST: CxThread::hOpen
         #if xTODO
             m_hRv = CxThread::hOpen(THREAD_ALL_ACCESS, false, CxThread::ulGetCurrentId());
             xTEST_PTR(m_hRv);
@@ -288,6 +291,7 @@ CxTest_CxThread::vUnit(
 
     xTEST_CASE("CxThread::hOpen", cullCaseLoops)
     {
+        // TEST: CxThread::hOpen
         #if xTODO
             THandle hRv = CxThread::hOpen(const ulong_t culAccess, const bool cbInheritHandle, const ulong_t culId);
         #endif
@@ -322,6 +326,7 @@ CxTest_CxThread::vUnit(
 
     xTEST_CASE("CxThread::vExit", cullCaseLoops)
     {
+        // TEST: CxThread::vExit
         #if xTODO
             m_bRv = pthT->vExit(xTIMEOUT_INFINITE);
             xTEST_EQ(true, m_bRv);
@@ -330,6 +335,7 @@ CxTest_CxThread::vUnit(
 
     xTEST_CASE("CxThread::vKill", cullCaseLoops)
     {
+        // TEST: CxThread::vKill
         #if xTODO
             pthT->vKill(xTIMEOUT_INFINITE);
         #endif

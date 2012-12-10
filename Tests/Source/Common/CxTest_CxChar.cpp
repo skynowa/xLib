@@ -178,9 +178,8 @@ CxTest_CxChar::vUnit(
 
             for (size_t i = 0; i < sDataFalse.size(); ++ i) {
                 m_bRv = CxChar::bIsPrint(sDataFalse.at(i));
-                #if xTODO
-                    xTEST_EQ(false, m_bRv);
-                #endif
+                // TEST: CxChar::bIsPrint
+                // xTEST_EQ(false, m_bRv);
             }
         }
     }

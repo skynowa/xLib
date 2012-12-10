@@ -488,9 +488,7 @@ CxTest_CxDateTime::vUnit(
             const FILETIME cftTime = {100, 200};
 
             m_ullRv = CxDateTime::i64FiletimeToInt64(cftTime);
-            #if xTODO
-                xTEST_EQ( , m_ullRv);
-            #endif
+            // TEST: xTEST_EQ( , m_ullRv);
         #endif
     }
 
@@ -523,6 +521,8 @@ CxTest_CxDateTime::vUnit(
 
     xTEST_CASE("CxDateTime::sGetZodiacSign", cullCaseLoops)
     {
+        // TEST: CxDateTime::sGetZodiacSign
+
     #if xTODO
         /*
         -----------------------------------------------------

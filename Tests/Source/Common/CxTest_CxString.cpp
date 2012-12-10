@@ -947,6 +947,8 @@ CxTest_CxString::vUnit(
 
     xTEST_CASE("CxString::sTranslitLatToRus", cullCaseLoops)
     {
+        // TEST: CxString::sTranslitLatToRus
+
         #if xTODO
             m_sRv = CxString::sTranslitLatToRus(xT(""));
             xTEST_EQ(std::tstring_t(), m_sRv);

@@ -100,7 +100,7 @@ class CxPath :
             ///< get max path length in symbols
         static size_t         uiNameMaxSize   ();
             ///< get max name length in symbols
-
+// TODO: CxPath
     #if xOS_ENV_UNIX
         static void           vProc           (const std::tstring_t &csProcPath, std::vec_tstring_t *pvsData);
             ///<
