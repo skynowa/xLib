@@ -484,7 +484,7 @@ CxPath::bIsNameValid(
         const std::tstring_t csExceptedChars = xT("<>:\"/\\|?*");
 
         size_t uiPos = csFileName.find_first_of(csExceptedChars);
-        xCHECK_RET(std::tstring_t::npos != uiPos, false);
+        xCHECK_RET(!csFileName.empty() && std::tstring_t::npos != uiPos, false);
     }
 
     //-------------------------------------
