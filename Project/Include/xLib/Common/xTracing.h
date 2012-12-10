@@ -16,6 +16,8 @@
         #pragma message("xLib: xOS_ENV_UNIX")
     #elif xOS_ENV_BSD
         #pragma message("xLib: xOS_ENV_BSD")
+    #elif xOS_ENV_MAC
+        #pragma message("xLib: xOS_ENV_MAC")
     #else
         #pragma message("xLib: unsupported OS environment")
     #endif
@@ -28,6 +30,8 @@
         #pragma message("xLib: xOS_LINUX")
     #elif xOS_FREEBSD
         #pragma message("xLib: xOS_FREEBSD")
+    #elif xOS_MACOS
+        #pragma message("xLib: xOS_MACOS")
     #else
         #pragma message("xLib: unsupported OS")
     #endif

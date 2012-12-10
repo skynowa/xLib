@@ -13,14 +13,17 @@
 //--------------------------------------------------
 // OS environment
 #if defined(_WIN32) || defined(_WIN64) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(__WINDOWS__)
-    #define xOS_ENV_WIN 1
+    #define xOS_ENV_WIN   1
         ///< Windows environment
 #elif defined(__unix__) || defined(__unix)
-    #define xOS_ENV_UNIX 1
+    #define xOS_ENV_UNIX  1
         ///< Unix environment
 #elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__bsdi__) || defined(__DragonFly__)
-    #define xOS_ENV_BSD 1
+    #define xOS_ENV_BSD   1
         ///< BSD environment
+#elif defined(macintosh) || defined(Macintosh) || defined(__APPLE__) || defined(__MACH__)
+    #define xOS_ENV_MAC   1
+        ///< MacOS environment
 #else
     #error xLib: unsupported OS environment
 #endif
@@ -28,14 +31,17 @@
 //--------------------------------------------------
 // OS family
 #if defined(_WIN32) || defined(_WIN64) || defined(__WIN32__) || defined(__TOS_WIN__) || defined(__WINDOWS__)
-    #define xOS_WIN 1
+    #define xOS_WIN     1
         ///< operating system Windows
 #elif defined(linux) || defined(__linux) || defined(__linux__)
-    #define xOS_LINUX 1
+    #define xOS_LINUX   1
         ///< operating system Linux
 #elif defined(__FreeBSD__)
     #define xOS_FREEBSD 1
         ///< operating system FreeBSD
+#elif defined(macintosh) || defined(Macintosh) || defined(__APPLE__) || defined(__MACH__)
+    #define xOS_MACOS   1
+        ///< operating system MacOS
 #else
     #error xLib: unsupported OS
 #endif

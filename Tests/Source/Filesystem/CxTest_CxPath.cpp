@@ -538,14 +538,19 @@ CxTest_CxPath::vUnit(
             {xT("NULL"),         true},
             {xT("?V|||/:*?\"<>|||a:l/:*?\"<>|/:*?\"<>|/:*?\"<>|\\i?dT*e/:*?\"<>|stN////:*?\"<>|///ame"), false},
             {xT(""),             false},
-            {xT("C:\\test\\"),   false},
-            // TEST: {xT("C:/test/"),     false},
+            {xT("C:\\test\\"),   false}
+            // TEST: {xT("C:/test/"),     false}
 
         };
     #elif xOS_ENV_UNIX
         const SData cdData[] =
         {
             {xT("xxxx"),       true},
+            {xT(""),           false},
+            {xT("/opt/test/"), false},
+            {xT("////////"),   false},
+            {xT("\\\\\\\\\\"),   true},
+            {xT("?V|||/:*?\"<>|||a:l/:*?\"<>|/:*?\"<>|/:*?\"<>|\\i?dT*e/:*?\"<>|stN////:*?\"<>|///ame"), false},
         };
     #endif
 
@@ -554,6 +559,18 @@ CxTest_CxPath::vUnit(
             bool bRv2 = cdData[i].bIsValid;
             xTEST_EQ(bRv1, bRv2);
         }
+
+    #if xOS_ENV_UNIX
+        {
+            std::string sData;
+            sData.push_back('x');
+            sData.push_back('\0');
+            sData.push_back('y');
+
+            m_bRv = CxPath::bIsNameValid(sData);
+            xTEST_EQ(false, m_bRv);
+        }
+    #endif
     }
 
     xTEST_CASE("CxPath::bIsAbsolute", cullCaseLoops)

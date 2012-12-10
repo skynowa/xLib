@@ -529,7 +529,31 @@ CxPath::bIsNameValid(
         }
     }
 #elif xOS_ENV_UNIX
-    xNA;
+    //-------------------------------------
+    // check: excepted chars
+    // /  (forward slash)
+    // \0 (NULL character)
+
+    {
+        std::tstring_t sExceptedChars;
+        sExceptedChars.push_back(xT('/'));
+        sExceptedChars.push_back(xT('\0'));
+
+        size_t uiPos = csFileName.find_first_of(sExceptedChars);
+        xCHECK_RET(!csFileName.empty() && std::tstring_t::npos != uiPos, false);
+    }
+#elif xOS_ENV_MAC
+    //-------------------------------------
+    // check: excepted chars
+    // /  (forward slash)
+    // :  (colon)
+
+    {
+        const std::tstring_t csExceptedChars = xT("/:");
+
+        size_t uiPos = csFileName.find_first_of(csExceptedChars);
+        xCHECK_RET(!csFileName.empty() && std::tstring_t::npos != uiPos, false);
+    }
 #endif
 
     return true;
