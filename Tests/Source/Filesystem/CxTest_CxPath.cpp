@@ -549,7 +549,7 @@ CxTest_CxPath::vUnit(
         };
     #endif
 
-        for (size_t i = 0; i < xARRAY_SIZE(cdData); ++ i) {
+        for (size_t i = 0; i < xARRAY_SIZE2(cdData); ++ i) {
             bool bRv1 = CxPath::bIsNameValid(cdData[i].sFileName);
             bool bRv2 = cdData[i].bIsValid;
             xTEST_EQ(bRv1, bRv2);
