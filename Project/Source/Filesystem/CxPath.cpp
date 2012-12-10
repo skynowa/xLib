@@ -451,6 +451,7 @@ CxPath::bIsNameValid(
 
 #if   xOS_ENV_WIN
     // MSDN: http://msdn.microsoft.com/en-us/library/windows/desktop/aa365247(v=vs.85).aspx
+    // FAQ:  Boost Path Name Portability Guide
 
     //-------------------------------------
     // MSDN: Do not end a file or directory name with a space or a period.
@@ -528,7 +529,7 @@ CxPath::bIsNameValid(
         }
     }
 #elif xOS_ENV_UNIX
-    // TODO: sSetValidName
+    xNA;
 #endif
 
     return true;
