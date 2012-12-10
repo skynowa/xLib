@@ -429,12 +429,12 @@ CxTest_CxPath::vUnit(
 
     xTEST_CASE("CxPath::bIsNameValid", cullCaseLoops)
     {
-    #if   xOS_ENV_WIN
         struct SData {
             std::tstring_t sFileName;
             bool           bIsValid;
         };
 
+    #if   xOS_ENV_WIN
         const SData cdData[] =
         {
             {xT("CLOCK$"),       false},
@@ -543,9 +543,9 @@ CxTest_CxPath::vUnit(
 
         };
     #elif xOS_ENV_UNIX
-        const std::tstring_t sTestData[][2] =
+        const SData cdData[] =
         {
-            {xT("xxxx"),       xT("xxxx")},
+            {xT("xxxx"),       true},
         };
     #endif
 
