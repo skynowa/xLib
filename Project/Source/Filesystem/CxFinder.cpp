@@ -111,9 +111,28 @@ CxFinder::bIsValid() const {
 }
 //---------------------------------------------------------------------------
 bool
-CxFinder::bMoveNext() {
-    xCHECK_RET(false == _m_bIsMoveFirstPassed, _bMoveFirst());
+CxFinder::bMoveFirst() {
+#if   xOS_ENV_WIN
+    _m_enEnrty.hHandle = ::FindFirstFile(
+                            (sRootDirPath() + CxConst::xSLASH + sFilter()).c_str(),
+                            &_m_enEnrty.fdData);
+    xCHECK_RET(xNATIVE_HANDLE_INVALID == _m_enEnrty.hHandle, false);
+#elif xOS_ENV_UNIX
+    _m_enEnrty.pHandle = ::opendir(sRootDirPath().c_str());
+    xTEST_PTR(_m_enEnrty.pHandle);
 
+    bool bRv = bMoveNext();
+    xCHECK_RET(false == bRv, false);
+#endif
+
+    // set flag
+    _m_bIsMoveFirstPassed = true;
+
+    return true;
+}
+//---------------------------------------------------------------------------
+bool
+CxFinder::bMoveNext() {
 #if   xOS_ENV_WIN
     BOOL blRv = ::FindNextFile(_m_enEnrty.hHandle, &_m_enEnrty.fdData);
     xCHECK_RET(FALSE == blRv, false);
@@ -139,7 +158,7 @@ CxFinder::vClose() {
     // reset flag
     _m_bIsMoveFirstPassed = false;
 
-    xCHECK_DO(false == bIsValid(), return);
+    ////xCHECK_DO(false == bIsValid(), return);
 
     // close handle
     {
@@ -164,34 +183,5 @@ CxFinder::vClose() {
     }
 }
 //--------------------------------------------------------------------------
-
-
-/****************************************************************************
-*   private
-*
-*****************************************************************************/
-
-//---------------------------------------------------------------------------
-bool
-CxFinder::_bMoveFirst() {
-#if   xOS_ENV_WIN
-    _m_enEnrty.hHandle = ::FindFirstFile(
-                            (sRootDirPath() + CxConst::xSLASH + sFilter()).c_str(),
-                            &_m_enEnrty.fdData);
-    xCHECK_RET(xNATIVE_HANDLE_INVALID == _m_enEnrty.hHandle, false);
-#elif xOS_ENV_UNIX
-    _m_enEnrty.pHandle = ::opendir(sRootDirPath().c_str());
-    xTEST_PTR(_m_enEnrty.pHandle);
-
-    bool bRv = bMoveNext();
-    xCHECK_RET(false == bRv, false);
-#endif
-
-    // set flag
-    _m_bIsMoveFirstPassed = true;
-
-    return true;
-}
-//---------------------------------------------------------------------------
 
 xNAMESPACE_END(NxLib)
