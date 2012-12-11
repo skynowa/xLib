@@ -555,8 +555,6 @@ CxTest_CxPath::vUnit(
     #endif
 
         for (size_t i = 0; i < xARRAY_SIZE2(cdData); ++ i) {
-            CxTracer() << cdData[i].sFileName;
-
             bool bRv1 = CxPath::bIsNameValid(cdData[i].sFileName);
             bool bRv2 = cdData[i].bIsValid;
             xTEST_EQ(bRv1, bRv2);
@@ -790,7 +788,7 @@ CxTest_CxPath::vUnit(
     xTEST_CASE("CxPath::sSetValidName", cullCaseLoops)
     {
     #if   xOS_ENV_WIN
-        const std::tstring_t sTestData[][2] =
+        const std::tstring_t asData[][2] =
         {
             {xT("CLOCK$"),       xT("")},
             {xT("AUX"),          xT("")},
@@ -885,19 +883,25 @@ CxTest_CxPath::vUnit(
             {xT("?V|||/:*?\"<>|||a:l/:*?\"<>|/:*?\"<>|/:*?\"<>|\\i?dT*e/:*?\"<>|stN////:*?\"<>|///ame"), xT("ValidTestName")},
         };
     #elif xOS_ENV_UNIX
-        const std::tstring_t sTestData[][2] =
+        const std::tstring_t asData[][2] =
         {
             {xT("xxxx"),       xT("xxxx")},
+            {xT(""),           xT("")},
+            {xT("/opt/test/"), xT("opttest")},
+            {xT("////////"),   xT("")},
+            {xT("\\\\\\\\\\"), xT("\\\\\\\\\\")},
+            {xT("?V|||/:*?\"<>|||a:l/:*?\"<>|/:*\0?\"<>|/:*?\"<>|\\i?dT*e/:*?\"<>|stN////:*?\"<>|///a\0me"), xT("V|||:*?\"<>|||a:l:*?\"<>|:*?\"<>|:*?\"<>|\\i?dT*e:*?\"<>|stN:*?\"<>|ame")},
+            {xT("?V|||/:*?\"<>|||a:l/:*?\"<>|/:*?\"<>|/:*?\"<>|\\i?dT*e/:*?\"<>|stN////:*?\"<>|///ame"),     xT("?V|||:*?\"<>|||a:l:*?\"<>|:*?\"<>|:*?\"<>|\\i?dT*e:*?\"<>|stN:*?\"<>|ame")}
         };
     #endif
 
-        for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
-            std::tstring_t sStr1 = CxPath::sSetValidName(sTestData[i][0]);
-            std::tstring_t sStr2 = CxPath::sSetValidName(sTestData[i][1]);
+        for (size_t i = 0; i < xARRAY_SIZE(asData); ++ i) {
+            std::tstring_t sStr1 = CxPath::sSetValidName(asData[i][0]);
+            std::tstring_t sStr2 = CxPath::sSetValidName(asData[i][1]);
             xTEST_EQ(sStr1, sStr2);
 
-            std::tstring_t sStr3 = CxPath::sSetValidName(sTestData[i][0]);
-            std::tstring_t sStr4 = sTestData[i][1];
+            std::tstring_t sStr3 = CxPath::sSetValidName(asData[i][0]);
+            std::tstring_t sStr4 = asData[i][1];
             xTEST_EQ(sStr3, sStr4);
         }
     }
