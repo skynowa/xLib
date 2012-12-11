@@ -24,24 +24,32 @@ class CxFinder :
             ///< destructor
 
         const std::tstring_t &       sRootDirPath() const;
+            ///< root directory path
         const std::tstring_t &       sFilter     () const;
-        std::tstring_t               sFileName   () const;
+            ///< shell wildcard pattern
+        std::tstring_t               sEntryName  () const;
+            ///< entry name
         CxFileAttribute::ExAttribute faAttributes() const;
+            ///< file attributes
 
         bool                         bIsValid    () const;
-        bool                         bFirst      ();
-        bool                         bNext       ();
+            ///< is valid handle
+        bool                         bMoveFirst  ();
+            ///< move first entry
+        bool                         bMoveNext   ();
+            ///< move next entry
         void                         vClose      ();
+            ///< close search
 
     private:
         struct _SEntry {
-            #if   xOS_ENV_WIN
-                HANDLE           hHandle;
-                WIN32_FIND_DATA  fdData;
-            #elif xOS_ENV_UNIX
-                DIR             *pHandle;
-                dirent          *pdrData;
-            #endif    
+        #if   xOS_ENV_WIN
+            HANDLE           hHandle;
+            WIN32_FIND_DATA  fdData;
+        #elif xOS_ENV_UNIX
+            DIR             *pHandle;
+            dirent          *pdrData;
+        #endif
         };
 
         typedef _SEntry _entry_t;

@@ -51,6 +51,7 @@ CxTest_CxFinder::vUnit(
             vsFiles.push_back( csRootDirPath + CxConst::xSLASH + xT("AAA.cpp") );
             vsFiles.push_back( csRootDirPath + CxConst::xSLASH + xT("BBB.cpp") );
             vsFiles.push_back( csRootDirPath + CxConst::xSLASH + xT("CCC.cpp") );
+            vsFiles.push_back( csRootDirPath + CxConst::xSLASH + xT("DDD.cpp") );
 
             xFOREACH_CONST(std::vec_tstring_t, cit, vsFiles) {
                 CxFile::vTextWrite(*cit, CxConst::xSTR_EMPTY);
@@ -61,36 +62,63 @@ CxTest_CxFinder::vUnit(
 
     xTEST_CASE("CxFinder::CxFinder", cullCaseLoops)
     {
-        std::vec_tstring_t   vsEntries;
-        const std::tstring_t csFilter = xT("*.h");
-        CxFinder             fnFinder(csRootDirPath, csFilter);
+        xTEST_EQ(size_t(3), vsDirs.size());
+        xTEST_EQ(size_t(7), vsFiles.size());
 
-        m_bRv = fnFinder.bFirst();
-        xTEST_EQ(true, m_bRv);
-        CxTracer() << "First: " << xTRACE_VAR(fnFinder.sFileName());
+        struct SData {
+            std::tstring_t sFilter;
+            size_t         uiEntriesNum;
+        };
 
-        while ( fnFinder.bNext() ) {
-            // filter by file type
-        #if   xOS_ENV_WIN
-            if (CxFileAttribute::faDirectory   != (fnFinder.faAttributes() & CxFileAttribute::faDirectory))
-        #elif xOS_ENV_UNIX
-            if (CxFileAttribute::faRegularFile == (fnFinder.faAttributes() & CxFileAttribute::faRegularFile))
-        #endif
-            
-            {
-                CxTracer() << xTRACE_VAR(fnFinder.sFileName());
+        SData adtData[] = {
+            {CxConst::xMASK_ALL_A,     7},
+            {CxConst::xMASK_FILES_ALL, 7},
+            {xT("*"),                  7},
+            {xT("*.*"),                7},
+            {xT("*.h"),                3},
+            {xT("*.cpp"),              4},
+            {xT("*.txt"),              0}
+        };
 
-                // skip "." ".."
-                xCHECK_DO(CxConst::xDOT  == fnFinder.sFileName(), continue);
-                xCHECK_DO(CxConst::x2DOT == fnFinder.sFileName(), continue);
+        for (size_t i = 0; i < xARRAY_SIZE2(adtData); ++ i) {
+            m_vsRv.clear();
 
-                std::tstring_t sDirPath = fnFinder.sRootDirPath() + CxConst::xSLASH + fnFinder.sFileName();
+            std::vec_tstring_t   vsEntries;
+            const std::tstring_t csFilter = adtData[i].sFilter;
+            CxFinder             fnFinder(csRootDirPath, csFilter);
 
-                vsEntries.push_back(sDirPath);
-            }
+            m_bRv = fnFinder.bMoveFirst();
+            if (0 == adtData[i].uiEntriesNum) {
+                xTEST_EQ(false, m_bRv);
+            } else {
+                xTEST_EQ(true, m_bRv);
+
+                m_vsRv.push_back(fnFinder.sEntryName());
+
+                for ( ; fnFinder.bMoveNext(); ) {
+                #if   xOS_ENV_WIN
+                    if (CxFileAttribute::faDirectory   != (fnFinder.faAttributes() & CxFileAttribute::faDirectory))
+                #elif xOS_ENV_UNIX
+                    if (CxFileAttribute::faRegularFile == (fnFinder.faAttributes() & CxFileAttribute::faRegularFile))
+                #endif
+
+                    {
+                        // CxTracer() << xTRACE_VAR(fnFinder.sEntryName()) << " " << xTRACE_VAR(fnFinder.sFilter());
+                        m_vsRv.push_back(fnFinder.sEntryName());
+
+                        xCHECK_DO(CxConst::xDOT  == fnFinder.sEntryName(), continue);
+                        xCHECK_DO(CxConst::x2DOT == fnFinder.sEntryName(), continue);
+
+                        std::tstring_t sDirPath = fnFinder.sRootDirPath() + CxConst::xSLASH + fnFinder.sEntryName();
+
+                        vsEntries.push_back(sDirPath);
+                    }
+                }
+            } // if (0 == adtData[i].uiEntriesNum)
+
+            xTEST_EQ(adtData[i].uiEntriesNum, m_vsRv.size());
         }
 
-        // xTEST_EQ(vsDirs, vsEntries);
     }
 }
 //---------------------------------------------------------------------------
