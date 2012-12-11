@@ -129,8 +129,8 @@ CxVolume::bIsValid() const {
     bool bRv = CxDir( sVolumePath() ).bIsRoot();
     xCHECK_RET(false == bRv, false);
 #elif xOS_ENV_UNIX
-    xCHECK_RET(true                  == a_csVolumePath.empty(), false);
-    xCHECK_RET(CxConst::xSLASH.at(0) != a_csVolumePath.at(0),   false);
+    xCHECK_RET(true                  == sVolumePath().empty(), false);
+    xCHECK_RET(CxConst::xSLASH.at(0) != sVolumePath().at(0),   false);
 #endif
 
     return true;
@@ -257,10 +257,10 @@ CxVolume::vSpace(
     ulonglong_t          *a_pullFree        ///< free space
 )
 {
-    // csDirPath     - n/a
-    // pullAvailable - n/a
-    // pullTotal     - n/a
-    // pullFree      - n/a
+    xTEST_EQ(false, a_csDirPath.empty());
+    xTEST_NA(a_pullAvailable);
+    xTEST_NA(a_pullTotal);
+    xTEST_NA(a_pullFree);
 
     //--------------------------------------------------
     //if csDirPath parameter is empty, uses the root of the current volume
