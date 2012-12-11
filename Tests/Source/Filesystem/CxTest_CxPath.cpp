@@ -785,7 +785,7 @@ CxTest_CxPath::vUnit(
         }
     }
 
-    xTEST_CASE("CxPath::sSetValidName", cullCaseLoops)
+    xTEST_CASE("CxPath::sSetNameValid", cullCaseLoops)
     {
     #if   xOS_ENV_WIN
         const std::tstring_t asData[][2] =
@@ -895,11 +895,11 @@ CxTest_CxPath::vUnit(
     #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(asData); ++ i) {
-            std::tstring_t sStr1 = CxPath::sSetValidName(asData[i][0]);
-            std::tstring_t sStr2 = CxPath::sSetValidName(asData[i][1]);
+            std::tstring_t sStr1 = CxPath::sSetNameValid(asData[i][0]);
+            std::tstring_t sStr2 = CxPath::sSetNameValid(asData[i][1]);
             xTEST_EQ(sStr1, sStr2);
 
-            std::tstring_t sStr3 = CxPath::sSetValidName(asData[i][0]);
+            std::tstring_t sStr3 = CxPath::sSetNameValid(asData[i][0]);
             std::tstring_t sStr4 = asData[i][1];
             xTEST_EQ(sStr3, sStr4);
         }
