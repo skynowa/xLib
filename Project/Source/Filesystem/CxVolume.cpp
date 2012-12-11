@@ -141,7 +141,7 @@ CxVolume::vSpace(
 #elif xOS_ENV_UNIX
     struct xSTATVFS stfInfo = {0};
 
-    int iRv = ::xSTATVFS(_sDirPath.c_str(), &stfInfo);
+    int iRv = ::xSTATVFS(sDirPath.c_str(), &stfInfo);
     xTEST_DIFF(- 1, iRv);
 
     CxUtils::ptrAssignT(a_pullAvailable, static_cast<ulonglong_t>( stfInfo.f_bavail * stfInfo.xSTATVFS_F_FRSIZE ));

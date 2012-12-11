@@ -1081,11 +1081,13 @@ CxPath::vProc(
     {
         bool bRv = false;
 
-        bRv = CxDir::bIsExists(xT("/proc"));
+        CxDir drProc(xT("/proc"));
+
+        bRv = drProc.bIsExists();
         xCHECK_DO(false == bRv,
                   CxTracer() << xT("::: xLib: warning (/proc dir not mount) :::"); return);
 
-        bRv = CxDir::bIsEmpty(xT("/proc"));
+        bRv = drProc.bIsEmpty();
         xCHECK_DO(true == bRv,
                   CxTracer() << xT("::: xLib: warning (/proc dir is empty) :::");  return);
     }
