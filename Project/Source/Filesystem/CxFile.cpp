@@ -354,7 +354,7 @@ CxFile::vLocking(
 #if   xOS_ENV_WIN
     const long_t cliBytes = a_cliBytes;
 #elif xOS_ENV_UNIX
-    const off_t  cliBytes = static_cast<off_t>( a_cliBytes )
+    const off_t  cliBytes = static_cast<off_t>( a_cliBytes );
 #endif
 
     int iRv = ::xLOCKING(_iHandle(pGet()), a_clmMode, cliBytes);
@@ -869,7 +869,7 @@ CxFile::vCopy(
         xTEST_FAIL;
     }
 #endif
-    
+
     // TODO: check file size
 
     {

@@ -37,12 +37,12 @@ CxFinder::~CxFinder() {
 
 }
 //--------------------------------------------------------------------------
-std::tstring_t 
+std::tstring_t
 CxFinder::sRootDirPath() {
     return _m_sRootDirPath;
 }
 //--------------------------------------------------------------------------
-std::tstring_t 
+std::tstring_t
 CxFinder::sFileName() {
     std::tstring_t sRv;
 
@@ -57,13 +57,13 @@ CxFinder::sFileName() {
 //--------------------------------------------------------------------------
 CxFileAttribute::ExAttribute
 CxFinder::faAttributes() {
-    CxFileAttribute::ExAttribute faAttr = CxFileAttribute::ExAttribute::faInvalid;
+    CxFileAttribute::ExAttribute faAttr = CxFileAttribute::faInvalid;
 
 #if   xOS_ENV_WIN
     faAttr = static_cast<CxFileAttribute::ExAttribute>( _m_enEnrty.fdData.dwFileAttributes );
 #elif xOS_ENV_UNIX
     int iRv = _m_enEnrty.pdrData->d_type;
-	switch (iRes) {
+	switch (iRv) {
     	case DT_BLK:     { faAttr = CxFileAttribute::faBlockDevice;     } break;  // block device
 		case DT_CHR:     { faAttr = CxFileAttribute::faCharacterDevice; } break;  // character device
 		case DT_DIR:     { faAttr = CxFileAttribute::faDirectory;       } break;  // directory
@@ -72,7 +72,7 @@ CxFinder::faAttributes() {
 		case DT_REG:     { faAttr = CxFileAttribute::faRegularFile;     } break;  // regular file
 		case DT_SOCK:    { faAttr = CxFileAttribute::faSocket;          } break;  // UNIX domain socket
 		case DT_UNKNOWN: { faAttr = CxFileAttribute::faInvalid;         } break;  // type is unknown
-    	
+
     	default:         { faAttr = CxFileAttribute::faInvalid;         } break;
     }
 #endif
@@ -80,23 +80,23 @@ CxFinder::faAttributes() {
     return faAttr;
 }
 //---------------------------------------------------------------------------
-bool 
+bool
 CxFinder::bFirst() {
 #if   xOS_ENV_WIN
     _m_enEnrty.hHandle = ::FindFirstFile(_m_sRootDirPath.c_str(), &_m_enEnrty.fdData);
     xCHECK_RET(xNATIVE_HANDLE_INVALID == _m_enEnrty.hHandle, false);
 #elif xOS_ENV_UNIX
-    _m_enEnrty.hHandle = ::opendir(_m_sRootDirPath.c_str());
-    xTEST_PTR(_m_enEnrty.hHandle);
+    _m_enEnrty.pHandle = ::opendir(_m_sRootDirPath.c_str());
+    xTEST_PTR(_m_enEnrty.pHandle);
 
-    _m_enEnrty.pdrData = ::readdir(_m_enEnrty.hHandle);
+    _m_enEnrty.pdrData = ::readdir(_m_enEnrty.pHandle);
     xCHECK_RET(NULL == _m_enEnrty.pdrData, false);
 #endif
 
     return true;
 }
 //---------------------------------------------------------------------------
-bool 
+bool
 CxFinder::bNext() {
 #if   xOS_ENV_WIN
     BOOL blRv = ::FindNextFile(_m_enEnrty.hHandle, &_m_enEnrty.fdData);
@@ -109,16 +109,20 @@ CxFinder::bNext() {
     return true;
 }
 //---------------------------------------------------------------------------
-void 
+void
 CxFinder::vClose() {
 #if   xOS_ENV_WIN
     BOOL blRes = ::FindClose(_m_enEnrty.hHandle);
     xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
-    int iRv = ::closedir(_m_enEnrty.hHandle); hHandle = NULL;
+    int iRv = ::closedir(_m_enEnrty.pHandle); _m_enEnrty.pHandle = NULL;
     xTEST_DIFF(- 1, iRv);
 #endif
 }
+//--------------------------------------------------------------------------
+
+
+
 //--------------------------------------------------------------------------
 /* static */
 void
