@@ -663,7 +663,7 @@ CxSystemInfo::sCpuModel() {
 
         iRv = ::sysctlbyname("hw.model", NULL, &uiValueSize, NULL, 0U);
         xTEST_DIFF(- 1, iRv);
-        xTEST_DIFF(0U, uiValueSize);
+        xTEST_DIFF(size_t(0), uiValueSize);
 
         sValue.resize(uiValueSize);
 
