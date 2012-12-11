@@ -418,11 +418,11 @@ CxDir::vFindFiles(
                 xCHECK_DO(CxConst::xDOT  == std::tstring_t(pdrEntry->d_name), continue);
                 xCHECK_DO(CxConst::x2DOT == std::tstring_t(pdrEntry->d_name), continue);
 
-                std::tstring_t sDirPath = CxPath::sSlashAppend(sDirPath()) + std::tstring_t(pdrEntry->d_name);
+                std::tstring_t _sDirPath = CxPath::sSlashAppend(sDirPath()) + std::tstring_t(pdrEntry->d_name);
 
                 // is search in subdirs ?
                 if (true == a_cbIsRecursively) {
-                    vFindFiles(sDirPath, a_csPattern, a_cbIsRecursively, a_pvsFilePathes); // recursion
+                    CxDir(_sDirPath).vFindFiles(a_csPattern, a_cbIsRecursively, a_pvsFilePathes); // recursion
                 }
             }
             // TODO: files
@@ -437,7 +437,7 @@ CxDir::vFindFiles(
                     xCHECK_DO(0 != iRv, continue);
                 }
 
-                std::tstring_t sFilePath = CxPath::sSlashAppend(a_csDirPath) + sFileName;
+                std::tstring_t sFilePath = CxPath::sSlashAppend(sDirPath()) + sFileName;
 
                 (*a_pvsFilePathes).push_back(sFilePath);
             }
@@ -551,13 +551,13 @@ CxDir::vFindDirs(
                 xCHECK_DO(0 != iRv, continue);
             }
 
-            std::tstring_t sDirPath = CxPath::sSlashAppend(sDirPath()) + sFileName;
+            std::tstring_t _sDirPath = CxPath::sSlashAppend(sDirPath()) + sFileName;
 
-            (*a_pvsDirPathes).push_back(sDirPath);
+            (*a_pvsDirPathes).push_back(_sDirPath);
 
             // is search in subdirs ?
             if (true == a_cbIsRecursively) {
-                vFindDirs(sDirPath, a_csPattern, a_cbIsRecursively, a_pvsDirPathes);  // recursion
+                CxDir(_sDirPath).vFindDirs(a_csPattern, a_cbIsRecursively, a_pvsDirPathes);  // recursion
             }
         }
         // files, etc
@@ -594,7 +594,7 @@ CxDir::sCurrent() {
 #elif xOS_ENV_UNIX
     tchar_t *pszRes = ::getcwd(&sBuff[0], xPATH_MAX);
     xTEST_PTR(pszRes);
-    xTEST_EQ(sBuff.c_str(), pszRes);
+    xTEST_EQ(sBuff.c_str(), const_cast<const tchar_t *>( pszRes ));
 
     sRv.assign(pszRes);
 #endif
