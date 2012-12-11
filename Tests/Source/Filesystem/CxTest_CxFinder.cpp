@@ -38,7 +38,7 @@ CxTest_CxFinder::vUnit(
         vsDirs.push_back( csRootDirPath + CxConst::xSLASH + xT("CCC") );
 
         xFOREACH_CONST(std::vec_tstring_t, cit, vsDirs) {
-            CxDir::vCreatePath(*cit);        
+            CxDir::vCreatePath(*cit);
         }
     }
 
@@ -54,6 +54,7 @@ CxTest_CxFinder::vUnit(
             // dirs
             if (CxFileAttribute::faDirectory == (fnFinder.faAttributes() & CxFileAttribute::faDirectory)) {
                 std::tstring_t sFileName = fnFinder.sFileName();
+                // CxTracer() << xTRACE_VAR(sFileName);
 
                 // skip "." ".."
                 xCHECK_DO(CxConst::xDOT  == sFileName, continue);
