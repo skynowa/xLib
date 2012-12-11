@@ -29,7 +29,7 @@ CxTest_CxHandleT::vUnit(
         CxHandle objNullHandle;
         xTEST_EQ(false, objNullHandle.bIsValid());
 
-        CxFileHandle objInvalidHandle;
+        CxHandleInvalid objInvalidHandle;
         xTEST_EQ(false, objInvalidHandle.bIsValid());
     }
 
