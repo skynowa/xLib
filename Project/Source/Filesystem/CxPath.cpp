@@ -419,7 +419,7 @@ CxPath::bIsValid(
 /* static */
 bool
 CxPath::bIsNameValid(
-    const std::tstring_t &a_csFilePath
+    const std::tstring_t &a_csFileName
 )
 {
     xTEST_NA(a_csFilePath);
@@ -427,25 +427,16 @@ CxPath::bIsNameValid(
     bool bRv = false;
 
     //-------------------------------------
-    // check: empty file path
-    {
-        bRv = a_csFilePath.empty();
-        xCHECK_RET(true == bRv, false);
-    }
-
-    const std::tstring_t csFileName = sFileName(a_csFilePath);
-
-    //-------------------------------------
     // check: empty name
     {
-        bRv = csFileName.empty();
+        bRv = a_csFileName.empty();
         xCHECK_RET(true == bRv, false);
     }
 
     //-------------------------------------
     // check: name size
     {
-        bRv = (xNAME_MAX < csFileName.size());
+        bRv = (xNAME_MAX < a_csFileName.size());
         xCHECK_RET(true == bRv, false);
     }
 
@@ -460,8 +451,8 @@ CxPath::bIsNameValid(
     // However, it is acceptable to specify a period
     // as the first character of a name. For example, ".temp".
     {
-        const tchar_t cchBegin = *csFileName.cbegin();
-        const tchar_t cchEnd   = *(csFileName.cend() - 1);
+        const tchar_t cchBegin = *a_csFileName.cbegin();
+        const tchar_t cchEnd   = *(a_csFileName.cend() - 1);
 
         xCHECK_RET(CxConst::xSPACE.at(0) == cchBegin, false);
         xCHECK_RET(CxConst::xSPACE.at(0) == cchEnd,   false);
@@ -484,8 +475,8 @@ CxPath::bIsNameValid(
     {
         const std::tstring_t csExceptedChars = xT("<>:\"/\\|?*");
 
-        size_t uiPos = csFileName.find_first_of(csExceptedChars);
-        xCHECK_RET(!csFileName.empty() && std::tstring_t::npos != uiPos, false);
+        size_t uiPos = a_csFileName.find_first_of(csExceptedChars);
+        xCHECK_RET(!a_csFileName.empty() && std::tstring_t::npos != uiPos, false);
     }
 
     //-------------------------------------
@@ -502,8 +493,8 @@ CxPath::bIsNameValid(
 
         std::tstring_t::const_iterator cit;
 
-        cit = std::find_if(csFileName.begin(), csFileName.end(), _SNested::bIsCharControl);
-        xCHECK_RET(cit != csFileName.end(), false);
+        cit = std::find_if(a_csFileName.begin(), a_csFileName.end(), _SNested::bIsCharControl);
+        xCHECK_RET(cit != a_csFileName.end(), false);
     }
 
     //-------------------------------------
@@ -523,7 +514,7 @@ CxPath::bIsNameValid(
             xT("CLOCK$")
         };
 
-        const std::tstring_t csBaseFileName = sRemoveExt(csFileName);
+        const std::tstring_t csBaseFileName = sRemoveExt(a_csFileName);
 
         for (size_t i = 0; i < xARRAY_SIZE(casReservedNames); ++ i) {
             xCHECK_RET(true == CxString::bCompareNoCase(csBaseFileName, casReservedNames[i]), false);
@@ -541,8 +532,8 @@ CxPath::bIsNameValid(
         sExceptedChars.push_back(xT('\0'));
         xTEST_EQ(size_t(2), sExceptedChars.size());
 
-        size_t uiPos = csFileName.find_first_of(sExceptedChars);
-        xCHECK_RET(!csFileName.empty() && std::tstring_t::npos != uiPos, false);
+        size_t uiPos = a_csFileName.find_first_of(sExceptedChars);
+        xCHECK_RET(!a_csFileName.empty() && std::tstring_t::npos != uiPos, false);
     }
 #elif xOS_ENV_MAC
     //-------------------------------------
@@ -553,8 +544,8 @@ CxPath::bIsNameValid(
     {
         const std::tstring_t csExceptedChars = xT("/:");
 
-        size_t uiPos = csFileName.find_first_of(csExceptedChars);
-        xCHECK_RET(!csFileName.empty() && std::tstring_t::npos != uiPos, false);
+        size_t uiPos = a_csFileName.find_first_of(csExceptedChars);
+        xCHECK_RET(!a_csFileName.empty() && std::tstring_t::npos != uiPos, false);
     }
 #endif
 
@@ -605,7 +596,7 @@ CxPath::sSetValidName(
     xCHECK_RET(std::tstring_t::npos == uiDotPos, std::tstring_t());
 
     //-------------------------------------
-    // if the first character is a dot, the filename is okay or space
+    // if the first character is a dot, the filename is ok or space
     xCHECK_RET(CxConst::xDOT.at(0) == sRv.at(0), std::tstring_t());
 
     //-------------------------------------

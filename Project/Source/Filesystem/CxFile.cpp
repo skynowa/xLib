@@ -55,7 +55,6 @@ CxFile::vCreate(
 {
     xTEST_EQ(false, bIsValid());
     xTEST_EQ(false, a_csFilePath.empty());
-    xTEST_EQ(true,  CxPath::bIsNameValid(a_csFilePath));
     xTEST_NA(a_comMode);
 
     // create force dirs
@@ -85,7 +84,6 @@ CxFile::vReopen(
 {
     // _m_pFile - n/a
     xTEST_EQ(false, a_csFilePath.empty());
-    xTEST_EQ(true,  CxPath::bIsNameValid(a_csFilePath));
     xTEST_NA(a_comMode);
 
     std::FILE *pFile = ::xTFREOPEN(a_csFilePath.c_str(), _sOpenMode(a_comMode).c_str(), _m_pFile);
