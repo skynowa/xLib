@@ -62,7 +62,7 @@ CxFinder::faAttributes() {
 #if   xOS_ENV_WIN
     faAttr = static_cast<CxFileAttribute::ExAttribute>( _m_enEnrty.fdData.dwFileAttributes );
 #elif xOS_ENV_UNIX
-    int iRv = _m_enEnrty.pdrData->d_type;
+    uchar_t iRv = _m_enEnrty.pdrData->d_type;
 	switch (iRv) {
     	case DT_BLK:     { faAttr = CxFileAttribute::faBlockDevice;     } break;  // block device
 		case DT_CHR:     { faAttr = CxFileAttribute::faCharacterDevice; } break;  // character device
