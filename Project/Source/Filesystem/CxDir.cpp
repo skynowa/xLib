@@ -418,7 +418,7 @@ CxDir::vFilesFind(
                 xCHECK_DO(CxConst::xDOT  == std::tstring_t(pdrEntry->d_name), continue);
                 xCHECK_DO(CxConst::x2DOT == std::tstring_t(pdrEntry->d_name), continue);
 
-                std::tstring_t _sDirPath = CxPath::sSlashAppend(sDirPath()) + std::tstring_t(pdrEntry->d_name);
+                std::tstring_t _sDirPath = CxPath(sDirPath()).sSlashAppend() + std::tstring_t(pdrEntry->d_name);
 
                 // is search in subdirs ?
                 if (true == a_cbIsRecursively) {
@@ -437,7 +437,7 @@ CxDir::vFilesFind(
                     xCHECK_DO(0 != iRv, continue);
                 }
 
-                std::tstring_t sFilePath = CxPath::sSlashAppend(sDirPath()) + sFileName;
+                std::tstring_t sFilePath = CxPath(sDirPath()).sSlashAppend() + sFileName;
 
                 (*a_pvsFilePathes).push_back(sFilePath);
             }
@@ -551,7 +551,7 @@ CxDir::vDirsFind(
                 xCHECK_DO(0 != iRv, continue);
             }
 
-            std::tstring_t _sDirPath = CxPath::sSlashAppend(sDirPath()) + sFileName;
+            std::tstring_t _sDirPath = CxPath(sDirPath()).sSlashAppend() + sFileName;
 
             (*a_pvsDirPathes).push_back(_sDirPath);
 

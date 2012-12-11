@@ -308,7 +308,7 @@ CxProcess::ulIdByName(
                 cmdLine = cmdLine.substr(0, uiPos);
             }
 
-            cmdLine = CxPath::sFileName(cmdLine);
+            cmdLine = CxPath(cmdLine).sFileName();
             if (a_csProcessName == cmdLine) {
                 iPid = iId;
                 break;
