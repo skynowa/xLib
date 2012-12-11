@@ -265,14 +265,9 @@ class CxFile :
             ///< write binary data
 
     private:
-    #if xUNICODE
-        typedef wint_t         twint_t;
-    #else
-        typedef int            twint_t;
-    #endif
-
         std::FILE             *_m_pFile;      ///< file handle
         std::tstring_t         _m_sFilePath;  ///< file path
+        friend class           CxFileTemp;    ///< temporary file
 
         static int             _iHandle     (std::FILE *pfFile);
             ///< gets the file descriptor associated with a stream
@@ -280,10 +275,8 @@ class CxFile :
             ///< get stream by handle
         static std::tstring_t  _sOpenMode   (const ExOpenMode &comMode);
             ///< get open mode as string, by default use "r"
-
-        friend class           CxFileTemp;
 };
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif  //xLib_Filesystem_CxFileH
+#endif  // xLib_Filesystem_CxFileH

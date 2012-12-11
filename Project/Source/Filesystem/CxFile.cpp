@@ -33,8 +33,6 @@ CxFile::CxFile() :
 //---------------------------------------------------------------------------
 /* virtual */
 CxFile::~CxFile() {
-    // n/a
-
     vClose();
 }
 //---------------------------------------------------------------------------
@@ -53,11 +51,11 @@ CxFile::vCreate(
     const bool           &a_cbIsUseBuffering
 )
 {
-    xTEST_EQ(false, bIsValid());
     xTEST_EQ(false, a_csFilePath.empty());
     xTEST_NA(a_comMode);
+    xTEST_NA(a_cbIsUseBuffering);
 
-    // create force dirs
+    // create dir
     CxDir::vCreateForce( CxPath::sDir(a_csFilePath) );
 
     // create, open file
@@ -82,11 +80,11 @@ CxFile::vReopen(
     const bool           &a_cbIsUseBuffering
 )
 {
-    // _m_pFile - n/a
     xTEST_EQ(false, a_csFilePath.empty());
     xTEST_NA(a_comMode);
+    xTEST_NA(a_cbIsUseBuffering);
 
-    std::FILE *pFile = ::xTFREOPEN(a_csFilePath.c_str(), _sOpenMode(a_comMode).c_str(), _m_pFile);
+    std::FILE *pFile = ::xTFREOPEN(a_csFilePath.c_str(), _sOpenMode(a_comMode).c_str(), pGet());
     xTEST_PTR(pFile);
 
     _m_pFile     = pFile;
@@ -105,7 +103,6 @@ CxFile::vAttach(
     std::FILE *a_pflFile
 )
 {
-    // _m_pFile - n/a
     xTEST_NA(a_pflFile);
 
     vClose();
@@ -116,7 +113,7 @@ CxFile::vAttach(
 //---------------------------------------------------------------------------
 std::FILE *
 CxFile::pDetach() {
-    std::FILE *pFile = _m_pFile;
+    std::FILE *pFile = pGet();
 
     _m_pFile = NULL;
 
@@ -132,7 +129,6 @@ CxFile::pGet() const {
 //---------------------------------------------------------------------------
 std::tstring_t
 CxFile::sPath() const {
-    xTEST_EQ(true,  bIsValid());
     xTEST_EQ(false, _m_sFilePath.empty());
     xTEST_EQ(true,  bIsExists(_m_sFilePath));
 
@@ -153,8 +149,8 @@ CxFile::uiRead(
     const size_t &a_cuiCount
 ) const
 {
-    xTEST_EQ(true, bIsValid());
     xTEST_PTR(a_pvBuff);
+    xTEST_NA(a_cuiCount);
 
     size_t uiRes = std::fread(a_pvBuff, 1, a_cuiCount, pGet());
     xTEST_GR_EQ(a_cuiCount, uiRes);
@@ -168,8 +164,8 @@ CxFile::uiWrite(
     const size_t &a_cuiCount
 ) const
 {
-    xTEST_EQ(true, bIsValid());
     xTEST_PTR(a_pcvBuff);
+    xTEST_NA(a_cuiCount);
 
     size_t uiRes = std::fwrite(a_pcvBuff, 1, a_cuiCount, pGet());
     xTEST_EQ(a_cuiCount, uiRes);
@@ -182,7 +178,6 @@ CxFile::vRead(
     std::ustring_t *a_psBuff
 ) const
 {
-    xTEST_EQ(true, bIsValid());
     xTEST_PTR(a_psBuff);
 
     longlong_t llFileSize = llSize();
@@ -201,7 +196,6 @@ CxFile::vWrite(
     const std::ustring_t &a_csBuff
 ) const
 {
-    xTEST_EQ(true, bIsValid());
     xTEST_NA(a_csBuff);
 
     size_t uiRes = std::fwrite(&a_csBuff.at(0), 1, a_csBuff.size() * sizeof(std::ustring_t::value_type), pGet());
@@ -213,7 +207,6 @@ CxFile::vRead(
     std::tstring_t *a_psBuff
 ) const
 {
-    xTEST_EQ(true, bIsValid());
     xTEST_PTR(a_psBuff);
 
     longlong_t llFileSize = llSize();
@@ -232,7 +225,6 @@ CxFile::iWrite(
     const tchar_t *a_pcszFormat, ...
 ) const
 {
-    xTEST_EQ(true, bIsValid());
     xTEST_PTR(a_pcszFormat);
 
     va_list vlArgs;
@@ -252,7 +244,6 @@ CxFile::iWriteV(
     va_list        a_vlArgs
 ) const
 {
-    xTEST_EQ(true, bIsValid());
     xTEST_PTR(a_pcszFormat);
     xTEST_PTR(a_vlArgs);
 
@@ -268,9 +259,8 @@ CxFile::vReadLine(
     const size_t   &a_cuiMaxCount
 ) const
 {
-    xTEST_EQ(true, bIsValid());
     xTEST_PTR(a_psStr);
-    xTEST_LESS(size_t(0U), a_cuiMaxCount);
+    xTEST_NA(a_cuiMaxCount);
 
     #if xTEMP_DISABLED
         if ((*psStr).size() != a_cuiMaxCount) {
@@ -296,7 +286,7 @@ CxFile::vWriteLine(
     const std::tstring_t &a_csStr
 ) const
 {
-    xTEST_EQ(true, bIsValid());
+    xTEST_NA(a_csStr);
 
     std::tstring_t sLine;
 
@@ -309,8 +299,6 @@ CxFile::vWriteLine(
 //---------------------------------------------------------------------------
 tchar_t
 CxFile::chReadChar() const {
-    xTEST_EQ(true, bIsValid());
-
     twint_t iRv = std::xTFGETC(pGet());
     xTEST_DIFF(xTEOF, iRv);
 
@@ -322,7 +310,7 @@ CxFile::vWriteChar(
     const tchar_t &a_ccChar
 ) const
 {
-    xTEST_EQ(true, bIsValid());
+    xTEST_NA(a_ccChar);
 
     twint_t iRv = xTFPUTC(a_ccChar, pGet());
     xTEST_DIFF(xTEOF, iRv);
@@ -334,7 +322,7 @@ CxFile::vUngetChar(
     const tchar_t &a_ccChar
 ) const
 {
-    xTEST_EQ(true, bIsValid());
+    xTEST_NA(a_ccChar);
 
     twint_t iRv = std::xTUNGETC(a_ccChar, pGet());
     xTEST_DIFF(xTEOF, iRv);
@@ -343,8 +331,6 @@ CxFile::vUngetChar(
 //---------------------------------------------------------------------------
 void
 CxFile::vClear() const {
-    xTEST_EQ(true, bIsValid());
-
     vResize(0L);
 }
 //---------------------------------------------------------------------------
@@ -362,13 +348,16 @@ CxFile::vLocking(
     const long_t        &a_cliBytes
 )
 {
-    int iRv = ::xLOCKING(_iHandle(pGet()), a_clmMode,
-        #if   xOS_ENV_WIN
-            a_cliBytes
-        #elif xOS_ENV_UNIX
-            static_cast<off_t>( a_cliBytes )
-        #endif
-    );
+    xTEST_NA(a_clmMode);
+    xTEST_NA(a_cliBytes);
+
+#if   xOS_ENV_WIN
+    const long_t cliBytes = a_cliBytes;
+#elif xOS_ENV_UNIX
+    const off_t  cliBytes = static_cast<off_t>( a_cliBytes )
+#endif
+
+    int iRv = ::xLOCKING(_iHandle(pGet()), a_clmMode, cliBytes);
 
     xTEST_DIFF(- 1, iRv);
 }
@@ -379,7 +368,8 @@ CxFile::vSetPosition(
     const ExPointerPosition &a_cppPos
 ) const
 {
-    xTEST_EQ(true, bIsValid());
+    xTEST_NA(a_clOffset);
+    xTEST_NA(a_cppPos);
 
     int iRv = std::fseek(pGet(), a_clOffset, a_cppPos);
     xTEST_DIFF(- 1, iRv);
@@ -387,8 +377,6 @@ CxFile::vSetPosition(
 //---------------------------------------------------------------------------
 long_t
 CxFile::liPosition() const {
-    xTEST_EQ(true, bIsValid());
-
     long_t liRv = std::ftell(pGet());
     xTEST_DIFF(- 1L, liRv);
 
@@ -403,7 +391,7 @@ CxFile::vSetVBuff(
 ) const
 {
     xTEST_NA(a_pszBuff);
-    xTEST_EQ(true, bIsValid());
+    xTEST_NA(a_cbmMode);
     xTEST_NA(a_cuiSize);
 
     int iRv = std::setvbuf(pGet(), a_pszBuff, a_cbmMode, a_cuiSize);
@@ -417,6 +405,8 @@ CxFile::vSetMode(
     const ExTranslationMode &a_ctmMode
 ) const
 {
+    xTEST_NA(a_ctmMode);
+
     int iRv = ::setmode(_iHandle(pGet()), a_ctmMode);
     xTEST_DIFF(- 1, iRv);
 }
@@ -426,8 +416,6 @@ CxFile::vSetMode(
 // NOTE: https://www.securecoding.cert.org/confluence/display/seccode/FIO19-C.+Do+not+use+fseek()+and+ftell()+to+compute+the+size+of+a+file
 longlong_t
 CxFile::llSize() const {
-    xTEST_EQ(true, bIsValid());
-
 #if xDEPRECIATE
     vFlush();
 
@@ -457,7 +445,7 @@ CxFile::vResize(
     const longlong_t &a_cllSize
 ) const
 {
-    // n/a
+    xTEST_NA(a_cllSize);
 
 #if   xOS_ENV_WIN
     int iRv = static_cast<int>( ::xCHSIZE(_iHandle(pGet()), a_cllSize) );
@@ -479,22 +467,16 @@ CxFile::vResize(
 //---------------------------------------------------------------------------
 bool
 CxFile::bIsValid() const {
-
-
     return (NULL != _m_pFile);
 }
 //---------------------------------------------------------------------------
 bool
 CxFile::bIsOpen() const {
-    // n/a
-
     return bIsValid();
 }
 //---------------------------------------------------------------------------
 bool
 CxFile::bIsEmpty() const {
-    xTEST_EQ(true, bIsValid());
-
     longlong_t llFileSize = llSize();
     xTEST_DIFF(- 1LL, llFileSize);
 
@@ -503,8 +485,6 @@ CxFile::bIsEmpty() const {
 //---------------------------------------------------------------------------
 bool
 CxFile::bIsEof() const {
-    xTEST_EQ(true, bIsValid());
-
     bool bRv = xINT_TO_BOOL( std::feof(pGet()) );
     xTEST_NA(bRv);
 
@@ -513,8 +493,6 @@ CxFile::bIsEof() const {
 //---------------------------------------------------------------------------
 bool
 CxFile::bIsError() const {
-    xTEST_EQ(true, bIsValid());
-
     bool bRv = xINT_TO_BOOL( std::ferror(pGet()) );
     xTEST_NA(bRv);
 
@@ -523,8 +501,6 @@ CxFile::bIsError() const {
 //---------------------------------------------------------------------------
 void
 CxFile::vErrorClear() const {
-    xTEST_EQ(true, bIsValid());
-
     (void)std::clearerr( pGet() );
 }
 //---------------------------------------------------------------------------
@@ -538,16 +514,12 @@ CxFile::vErrorClear() const {
 //---------------------------------------------------------------------------
 void
 CxFile::vFlush() const {
-    xTEST_EQ(true, bIsValid());
-
     int iRv = std::fflush(pGet());
     xTEST_DIFF(static_cast<int>( xTEOF ), iRv);
 }
 //---------------------------------------------------------------------------
 void
 CxFile::vClose() {
-    // _m_pFile - n/a
-
     xCHECK_DO(false == bIsValid(), _m_pFile = NULL; return);
 
     vErrorClear();
@@ -570,6 +542,8 @@ CxFile::bIsFile(
     const std::tstring_t &a_csFilePath
 )
 {
+    xTEST_NA(a_csFilePath);
+
     bool bRv = false;
 
     CxFileAttribute::ExAttribute atAttr = CxFileAttribute::atGet(a_csFilePath);
@@ -601,7 +575,8 @@ CxFile::bIsExists(
     const std::tstring_t &a_csFilePath
 )
 {
-    xTEST_NA(csFilePath);
+    xTEST_NA(a_csFilePath);
+
     xCHECK_RET(false == bIsFile(a_csFilePath), false);
 
     int iRv = ::xTACCESS(a_csFilePath.c_str(), amExistence);
@@ -648,7 +623,7 @@ CxFile::vAccess(
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
-    // iMode
+    xTEST_NA(a_camMode);
 
     int iRv = ::xTACCESS(a_csFilePath.c_str(), a_camMode);
     xTEST_DIFF(- 1, iRv);
@@ -662,7 +637,7 @@ CxFile::vChmod(
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
-    // iMode
+    xTEST_NA(a_cpmMode);
 
 #if   xOS_ENV_WIN
     int iRv = ::xTCHMOD(a_csFilePath.c_str(), static_cast<int>( a_cpmMode ));
@@ -694,6 +669,7 @@ CxFile::vDelete(
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
+
     xCHECK_DO(false == bIsExists(a_csFilePath), return);
 
     vChmod(a_csFilePath, pmWrite);
@@ -713,6 +689,7 @@ CxFile::vTryDelete(
 {
     xTEST_EQ(false, a_csFilePath.empty());
     xTEST_LESS(size_t(0U), a_cuiAttempts);
+    xTEST_NA(a_culTimeoutMsec);
 
     const size_t cuiMaxAttempts  = 100;  // MAGIC_NUMBER: cuiMaxAttempts
     const size_t cuiRealAttempts = (cuiMaxAttempts < a_cuiAttempts) ? cuiMaxAttempts : a_cuiAttempts;
@@ -738,7 +715,7 @@ CxFile::vWipe(
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
-    xTEST_NA(cuiPasses);
+    xTEST_NA(a_cuiPasses);
 
     xCHECK_DO(false == bIsExists(a_csFilePath), return);
 
@@ -881,15 +858,19 @@ CxFile::vCopy(
 {
     xTEST_EQ(false, a_csFilePathFrom.empty());
     xTEST_EQ(false, a_csFilePathTo.empty());
+    xTEST_NA(a_cbFailIfExists);
 
     bool bIsCopyOk = true;
 
     //--------------------------------------------------
     // TODO: fail if exists
-    /*if (true == cbFailIfExists && true == bIsExists(csFilePathTo)) {
+#if xTODO
+    if (true == cbFailIfExists && true == bIsExists(csFilePathTo)) {
         xTEST_FAIL;
-    }*/
-    // TODO: check filesize
+    }
+#endif
+    
+    // TODO: check file size
 
     {
         //--------------------------------------------------

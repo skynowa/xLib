@@ -60,6 +60,14 @@ xNAMESPACE_BEGIN(NxLib)
     #endif
         ///< socket native handle
 
+    // twint_t
+    #if xUNICODE
+        typedef wint_t                 twint_t;
+    #else
+        typedef int                    twint_t;
+    #endif
+        ///< twint_t
+
 xNAMESPACE_END(NxLib)
 
 
