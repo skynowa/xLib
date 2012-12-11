@@ -70,7 +70,7 @@ class CxPath :
 
         static bool           bIsValid        (const std::tstring_t &csFilePath);
             ///< path validation
-        static bool           bIsNameValid    (const std::tstring_t &csFilePath);
+        static bool           bIsNameValid    (const std::tstring_t &csFileName);
             ///< name validation
         static bool           bIsAbsolute     (const std::tstring_t &csFilePath);
             ///< is absolute
