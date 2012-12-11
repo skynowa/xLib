@@ -311,7 +311,7 @@ CxVolume::sLabel(
     if (CxConst::xUNIX_SLASH == a_csVolumePath) {
         sRv = CxConst::xUNIX_SLASH;
     } else {
-        sRv = CxPath::sFileName(a_csVolumePath);
+        sRv = CxPath(a_csVolumePath).sFileName();
     }
 #endif
 

@@ -58,7 +58,7 @@ CxProcessInfo::vCurrentIds(
         xFOREACH_CONST(std::vec_tstring_t, it, a_vsDirPathes) {
             int iPid = 0;
             {
-                std::tstring_t sDirName = CxPath::sFileName(*it);
+                std::tstring_t sDirName = CxPath(*it).sFileName();
 
                 iPid = ::atoi(sDirName.c_str());
                 xCHECK_DO(0 >= iPid, continue);

@@ -35,7 +35,7 @@ CxPath::~CxPath() {
 
 }
 //---------------------------------------------------------------------------
-const std::tstring_t & 
+const std::tstring_t &
 CxPath::sFilePath() const {
     xTEST_EQ(false, _m_sFilePath.empty());
 
@@ -141,7 +141,7 @@ CxPath::sDll() {
     int iRv = ::dladdr(fpProcAddress, &diInfo);
     /*DEBUF*/xTEST_LESS(0, iRv);
 
-    sRv = sAbsolute(diInfo.dli_fname);
+    sRv = CxPath(diInfo.dli_fname).sAbsolute();
 #endif
 
     return sRv;
