@@ -73,15 +73,15 @@ CxTest_CxFileAttribute::vUnit(
 
     xTEST_CASE("CxFileAttribute::vRemove", cullCaseLoops)
     {
-        CxFileAttribute faAttr(csFilePath);
-
         #if   xOS_ENV_WIN
+            CxFileAttribute faAttr(csFilePath);
+
             CxFileAttribute::ExAttribute faAttribute = CxFileAttribute::faHidden;
             CxFileAttribute::ExAttribute faValue     = CxFileAttribute::faReadOnly;
 
             faAttr.vClear();
             faAttr.vAdd(faAttribute);
-  
+
             m_bRv = faAttr.bIsExists(faAttribute);
             xTEST_EQ(true, m_bRv);
 
@@ -104,6 +104,8 @@ CxTest_CxFileAttribute::vUnit(
         #elif xOS_ENV_UNIX
             // file
             {
+                CxFileAttribute faAttr(csFilePath);
+
                 m_bRv = faAttr.bIsExists(CxFileAttribute::faRegularFile);
                 xTEST_EQ(true, m_bRv);
 
@@ -114,6 +116,8 @@ CxTest_CxFileAttribute::vUnit(
             // dir
             {
                 const std::tstring_t csDirPath = sTempDirPath();
+
+                CxFileAttribute faAttr(csDirPath);
 
                 m_bRv = faAttr.bIsExists(CxFileAttribute::faDirectory);
                 xTEST_EQ(true, m_bRv);
