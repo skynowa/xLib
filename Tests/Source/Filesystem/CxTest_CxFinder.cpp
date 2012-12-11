@@ -84,7 +84,7 @@ CxTest_CxFinder::vUnit(
             const std::tstring_t csFilter = adtData[i].sFilter;
             CxFinder             fnFinder(csRootDirPath, csFilter);
 
-            m_bRv = fnFinder.bMoveNext();
+            m_bRv = fnFinder.bMoveFirst();
             if (0 == adtData[i].uiEntriesNum) {
                 xTEST_EQ(false, m_bRv);
             } else {
