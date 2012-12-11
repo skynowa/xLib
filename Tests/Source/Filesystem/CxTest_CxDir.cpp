@@ -193,7 +193,7 @@ CxTest_CxDir::vUnit(
         #elif xOS_ENV_UNIX
             const std::tstring_t sTestData[][2] = {
                 {xT("TEST_STRING_1"), xT("false")},
-                {xT(""),              xT("false")},
+                {xT("vw4g56be56||||\a\n\t///lk;'"), xT("false")},
                 {xT("/"),             xT("true")},
                 {xT("\\"),            xT("false")},
                 {xT("A:"),            xT("false")},
