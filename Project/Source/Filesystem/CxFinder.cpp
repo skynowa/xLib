@@ -109,7 +109,7 @@ CxFinder::bFirst() {
                             &_m_enEnrty.fdData);
     xCHECK_RET(xNATIVE_HANDLE_INVALID == _m_enEnrty.hHandle, false);
 #elif xOS_ENV_UNIX
-    _m_enEnrty.pHandle = ::opendir(csRootDirPath().c_str());
+    _m_enEnrty.pHandle = ::opendir(sRootDirPath().c_str());
     xTEST_PTR(_m_enEnrty.pHandle);
 
     _m_enEnrty.pdrData = ::readdir(_m_enEnrty.pHandle);
@@ -133,7 +133,7 @@ CxFinder::bNext() {
         int iRv = ::fnmatch(sFilter().c_str(), sFileName().c_str(), 0);
         xTEST_EQ(true, (0 == iRv) || (FNM_NOMATCH == iRv));
 
-        xCHECK_DO(0 != iRv, bNext());
+        //  xCHECK_DO(0 != iRv, bNext());
     }
 #endif
 
