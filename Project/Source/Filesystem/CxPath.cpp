@@ -394,7 +394,6 @@ CxPath::sRemoveExtIf(
     return a_csFilePath.substr(0, uiDotPos);
 }
 //---------------------------------------------------------------------------
-// TODO: bIsValid
 /* static */
 bool
 CxPath::bIsValid(
@@ -412,6 +411,8 @@ CxPath::bIsValid(
     // check for size
     bRv = (xPATH_MAX < a_csFilePath.size());
     xCHECK_RET(true == bRv, false);
+
+    // TODO: bIsValid
 
     return true;
 }
@@ -586,7 +587,7 @@ CxPath::bIsAbsolute(
 //---------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxPath::sSetValidName(
+CxPath::sSetNameValid(
     const std::tstring_t &a_csFileName
 )
 {

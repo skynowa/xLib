@@ -17,7 +17,7 @@ class CxPath :
 {
     public:
         enum ExStandartExt
-            /// standart extension
+            /// standard extension
         {
             seExe,  ///< execute module
             seDll,  ///< dynamically linked shared library
@@ -48,7 +48,7 @@ class CxPath :
         static std::tstring_t sExt            (const std::tstring_t &csFilePath);
             ///< get extension
         static std::tstring_t sStandartExt    (const ExStandartExt &cseFileExt);
-            ///< get standart extension
+            ///< get standard extension
 
     #if xOS_ENV_WIN
         static std::tstring_t sSetDrive       (const std::tstring_t &csFilePath, const std::tstring_t &csDrivePath);
@@ -64,7 +64,7 @@ class CxPath :
             ///< set extension
 
         static std::tstring_t sRemoveExt      (const std::tstring_t &csFilePath);
-            ///< remove extention
+            ///< remove extension
         static std::tstring_t sRemoveExtIf    (const std::tstring_t &csFilePath, const std::tstring_t &csExt);
             ///< remove extension if it equal some string
 
@@ -88,7 +88,7 @@ class CxPath :
             ///< get short name
         static std::tstring_t sShort          (const std::tstring_t &csFilePath, const size_t &cuiMaxSize);
             ///< get short path
-        static std::tstring_t sSetValidName   (const std::tstring_t &csFileName);
+        static std::tstring_t sSetNameValid   (const std::tstring_t &csFileName);
             ///< set name as valid
 
         static std::tstring_t sSlashAppend    (const std::tstring_t &csDirPath);
@@ -100,10 +100,10 @@ class CxPath :
             ///< get max path length in symbols
         static size_t         uiNameMaxSize   ();
             ///< get max name length in symbols
-// TODO: CxPath
+
     #if xOS_ENV_UNIX
         static void           vProc           (const std::tstring_t &csProcPath, std::vec_tstring_t *pvsData);
-            ///<
+            ///< get from UNIX proc file content
         static std::tstring_t sProcValue      (const std::tstring_t &csProcPath, const std::tstring_t &csData);
             ///< get from UNIX proc file content value by data
     #endif
@@ -117,4 +117,4 @@ class CxPath :
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif //xLib_Filesystem_CxPathH
+#endif // xLib_Filesystem_CxPathH
