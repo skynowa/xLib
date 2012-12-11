@@ -984,7 +984,7 @@ CxFile::vTime(
     FILETIME ftAccess   = {0};
     FILETIME ftModified = {0};
 
-    CxFileHandle m_hHandle;
+    CxHandleInvalid m_hHandle;
 
     m_hHandle = ::CreateFile(a_csFilePath.c_str(), GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, CxFileAttribute::faNormal, NULL);
     xTEST_EQ(true, m_hHandle.bIsValid());
@@ -1031,7 +1031,7 @@ CxFile::vSetTime(
     FILETIME ftModified = {0};
     CxDateTime::vUnixTimeToFileTime(a_ctmModified, &ftModified);
 
-    CxFileHandle m_hHandle;
+    CxHandleInvalid m_hHandle;
 
     m_hHandle = ::CreateFile(a_csFilePath.c_str(), GENERIC_WRITE, FILE_SHARE_WRITE, NULL, OPEN_EXISTING, CxFileAttribute::faNormal, NULL);
     xTEST_EQ(true, m_hHandle.bIsValid());

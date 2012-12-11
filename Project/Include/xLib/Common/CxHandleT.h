@@ -76,7 +76,7 @@ xNAMESPACE_END(NxLib)
 xNAMESPACE_BEGIN(NxLib)
 
 typedef CxHandleT<hvNull>    CxHandle;
-typedef CxHandleT<hvInvalid> CxFileHandle;
+typedef CxHandleT<hvInvalid> CxHandleInvalid;
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
