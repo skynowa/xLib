@@ -99,9 +99,9 @@ CxTest_CxFinder::vUnit(
 
                 for ( ; fnFinder.bMoveNext(); ) {
                 #if   xOS_ENV_WIN
-                    if (CxFileAttribute::faDirectory   != (fnFinder.faAttributes() & CxFileAttribute::faDirectory))
+                    if (! (fnFinder.faAttributes() & CxFileAttribute::faDirectory))
                 #elif xOS_ENV_UNIX
-                    if (CxFileAttribute::faRegularFile == (fnFinder.faAttributes() & CxFileAttribute::faRegularFile))
+                    if (fnFinder.faAttributes() & CxFileAttribute::faRegularFile)
                 #endif
 
                     {
