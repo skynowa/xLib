@@ -81,8 +81,6 @@ CxTest_CxFinder::vUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE2(adtData); ++ i) {
-            m_vsRv.clear();
-
             std::vec_tstring_t   vsEntries;
             const std::tstring_t csFilter = adtData[i].sFilter;
             CxFinder             fnFinder(csRootDirPath, csFilter);
@@ -93,7 +91,11 @@ CxTest_CxFinder::vUnit(
             } else {
                 xTEST_EQ(true, m_bRv);
 
-                m_vsRv.push_back(fnFinder.sEntryName());
+                if (CxConst::xDOT  != fnFinder.sEntryName() &&
+                    CxConst::x2DOT != fnFinder.sEntryName())
+                {
+                    vsEntries.push_back(fnFinder.sEntryName());
+                }
 
                 for ( ; fnFinder.bMoveNext(); ) {
                 #if   xOS_ENV_WIN
@@ -104,19 +106,17 @@ CxTest_CxFinder::vUnit(
 
                     {
                         // CxTracer() << xTRACE_VAR(fnFinder.sEntryName()) << " " << xTRACE_VAR(fnFinder.sFilter());
-                        m_vsRv.push_back(fnFinder.sEntryName());
+                        std::tstring_t sDirPath = fnFinder.sRootDirPath() + CxConst::xSLASH + fnFinder.sEntryName();
 
                         xCHECK_DO(CxConst::xDOT  == fnFinder.sEntryName(), continue);
                         xCHECK_DO(CxConst::x2DOT == fnFinder.sEntryName(), continue);
-
-                        std::tstring_t sDirPath = fnFinder.sRootDirPath() + CxConst::xSLASH + fnFinder.sEntryName();
 
                         vsEntries.push_back(sDirPath);
                     }
                 }
             } // if (0 == adtData[i].uiEntriesNum)
 
-            xTEST_EQ(adtData[i].uiEntriesNum, m_vsRv.size());
+            xTEST_EQ(adtData[i].uiEntriesNum, vsEntries.size());
         }
 
     }
