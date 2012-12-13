@@ -34,7 +34,7 @@ class CxDir :
         static void           vCreate     (const std::tstring_t &csDirPath);
             ///< create
         static void           vCreatePath (const std::tstring_t &csDirPath);
-            ///< creation of all dirs that not exists in path
+            ///< creation of all directories that not exists in path
         static void           vCopy       (const std::tstring_t &csDirPathFrom, const std::tstring_t &csDirPathTo, const bool &cbFailIfExists);
             ///< copy
         static void           vMove       (const std::tstring_t &csDirPathFrom, const std::tstring_t &csDirPathTo, const bool &cbFailIfExists);
@@ -45,16 +45,16 @@ class CxDir :
         static void           vTryDelete  (const std::tstring_t &csDirPath, const size_t &cuiAttempts, const ulong_t &culTimeoutMsec);
             ///< try deleting, max 100 attempts
         static void           vClearForce (const std::tstring_t &csDirPath);
-            ///< detetion all content of dir
+            ///< deletion all content of dir
         static void           vDeleteForce(const std::tstring_t &csDirPath);
-            ///< detetion dir fnd all content of it
+            ///< deletion dir find all content of it
 
         static void           vFindFiles  (const std::tstring_t &csDirPath, const std::tstring_t &csPattern,
                                            const bool &cbIsRecursively, std::vec_tstring_t *pvsFilePathes);
             ///< search files
         static void           vFindDirs   (const std::tstring_t &csDirPath, const std::tstring_t &csPattern,
                                            const bool &cbIsRecursively, std::vec_tstring_t *pvsDirPathes);
-            ///< search subdirs
+            ///< search subdirectories
 
     private:
                               CxDir       ();
