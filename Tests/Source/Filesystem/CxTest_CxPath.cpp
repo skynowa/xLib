@@ -35,7 +35,7 @@ CxTest_CxPath::vUnit(
     xTEST_CASE("CxPath::sExeDir", cullCaseLoops)
     {
         m_sRv = CxPath::sExeDir();
-        xTEST_EQ(true, CxDir::bIsExists(m_sRv));
+        xTEST_EQ(true, CxDir(m_sRv).bIsExists());
     }
 
     xTEST_CASE("CxPath::sDll", cullCaseLoops)

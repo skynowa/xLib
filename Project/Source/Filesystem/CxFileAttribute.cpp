@@ -30,6 +30,8 @@ CxFileAttribute::~CxFileAttribute() {
  //---------------------------------------------------------------------------
 const std::tstring_t &
 CxFileAttribute::sFilePath() const {
+    xTEST_EQ(false, _m_csFilePath.empty());
+
     return _m_csFilePath;
 }
 //---------------------------------------------------------------------------
