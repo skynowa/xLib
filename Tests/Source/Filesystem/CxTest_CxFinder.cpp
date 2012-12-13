@@ -71,7 +71,13 @@ CxTest_CxFinder::vUnit(
 
         while ( fnFinder.bNext() ) {
             // filter by file type
-            if (CxFileAttribute::faRegularFile == (fnFinder.faAttributes() & CxFileAttribute::faRegularFile)) {
+        #if   xOS_ENV_WIN
+            if (CxFileAttribute::faDirectory   != (fnFinder.faAttributes() & CxFileAttribute::faDirectory))
+        #elif xOS_ENV_UNIX
+            if (CxFileAttribute::faRegularFile == (fnFinder.faAttributes() & CxFileAttribute::faRegularFile))
+        #endif
+            
+            {
                 CxTracer() << xTRACE_VAR(fnFinder.sFileName());
 
                 // skip "." ".."
