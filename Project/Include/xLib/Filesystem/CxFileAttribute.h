@@ -19,7 +19,6 @@ class CxFileAttribute :
         enum ExAttribute
             /// attribute
         {
-            //TODO: separate writable and readable attributes
             #if   xOS_ENV_WIN
                 faInvalid           = INVALID_FILE_ATTRIBUTES,
                 faNormal            = FILE_ATTRIBUTE_NORMAL,
@@ -74,4 +73,4 @@ class CxFileAttribute :
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif //xLib_Filesystem_CxFileAttributeH
+#endif // xLib_Filesystem_CxFileAttributeH

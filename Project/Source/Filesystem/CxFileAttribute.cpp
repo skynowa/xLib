@@ -23,10 +23,10 @@ CxFileAttribute::bIsExists(
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
-    // cfaValue
+    xTEST_NA(a_cfaValue);
 
 #if xTEMP_DISABLED
-    #if   xOS_ENV_WIN
+    #if xOS_ENV_WIN
         xCHECK_RET((atGet(a_csFilePath) & BS_TYPEMASK) == cfaValue, true);
     #endif
 #endif
@@ -42,18 +42,18 @@ CxFileAttribute::atGet(
     const std::tstring_t &a_csFilePath
 )
 {
-    // csFilePath - n/a
+    xTEST_EQ(false, a_csFilePath.empty());
 
     ExAttribute faRes = faInvalid;
 
 #if   xOS_ENV_WIN
     faRes = static_cast<ExAttribute>( ::GetFileAttributes(a_csFilePath.c_str()) );
-    // n/a
+    xTEST_NA(faRes);
 #elif xOS_ENV_UNIX
     xTSTAT_STRUCT stInfo = {0};
 
     int iRv = ::xTSTAT(a_csFilePath.c_str(), &stInfo);
-    // n/a
+    xTEST_NA(iRv);
     if (- 1 == iRv) {
         faRes = faInvalid;
     } else {
@@ -72,7 +72,7 @@ CxFileAttribute::vSet(
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
-    // cfaValue
+    xTEST_NA(a_cfaValue);
 
 #if   xOS_ENV_WIN
     BOOL blRes = ::SetFileAttributes(a_csFilePath.c_str(), static_cast<ulong_t>( a_cfaValue ));
@@ -91,7 +91,7 @@ CxFileAttribute::vAdd(
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
-    // cfaValue
+    xTEST_NA(a_cfaValue);
 
     vModify(a_csFilePath, static_cast<ExAttribute>( 0 ), a_cfaValue);
 }
@@ -104,7 +104,7 @@ CxFileAttribute::vRemove(
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
-    // cfaValue
+    xTEST_NA(a_cfaValue);
 
     vModify(a_csFilePath, a_cfaValue, static_cast<ExAttribute>( 0 ));
 }
@@ -118,10 +118,10 @@ CxFileAttribute::vModify(
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
-    // a_cfaRemoveValue
-    // a_cfaAddValue
+    xTEST_NA(a_cfaRemoveValue);
+    xTEST_NA(a_cfaValue);
 
-    // get the current attributes
+    // get current attributes
     ExAttribute cfaValue = atGet(a_csFilePath);
 
     // change bits
