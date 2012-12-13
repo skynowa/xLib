@@ -6,8 +6,9 @@ Architecture:   x86, x64
 
 Authors:        skynowa
 E-mail:         skynowa@gmail.com
-Jabber:         skynowa@jabber.ru
 Skype:          skynowa777
+Jabber:         skynowa@jabber.ru
+ICQ:            627713628
 Web:            https://bitbucket.org/skynowa/xlib/
                 https://github.com/skynowa/xLib
 

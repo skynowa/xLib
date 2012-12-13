@@ -12,8 +12,9 @@
  *
  * \author  author:  skynowa \n
  *          e-mail:  skynowa@gmail.com \n
- *          jabber:  skynowa@jabber.ru \n
  *          skype:   skynowa777 \n
+ *          jabber:  skynowa@jabber.ru \n
+ *          ICQ:     627713628 \n
  *          web:     https://bitbucket.org/skynowa/xlib
  *
  * \date    2008 - 2013

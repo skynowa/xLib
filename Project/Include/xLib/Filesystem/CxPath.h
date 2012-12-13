@@ -79,8 +79,8 @@ class CxPath :
             ///< convert slashes to Windows style
         static std::tstring_t sToUnix         (const std::tstring_t &csFilePath, const bool &cbIsSlashAtEnd);
             ///< convert slashes to Nix style
-        static std::tstring_t sToCurrentOs    (const std::tstring_t &csFilePath, const bool &cbIsSlashAtEnd);
-            ///< convert slashes to current OS style
+        static std::tstring_t sToNative       (const std::tstring_t &csFilePath, const bool &cbIsSlashAtEnd);
+            ///< convert slashes to native style
         static std::tstring_t sAbsolute       (const std::tstring_t &csFilePath);
             ///< get absolute path
 

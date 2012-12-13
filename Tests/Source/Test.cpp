@@ -66,6 +66,7 @@
 #include <Test/Filesystem/CxTest_CxFile.h>
 #include <Test/Filesystem/CxTest_CxFileTemp.h>
 #include <Test/Filesystem/CxTest_CxDll.h>
+#include <Test/Filesystem/CxTest_CxFinder.h>
 #include <Test/Filesystem/CxTest_CxDir.h>
 #include <Test/Filesystem/CxTest_CxVolume.h>
 #include <Test/Filesystem/CxTest_CxEnvironment.h>
@@ -120,7 +121,7 @@
 int
 xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
     //--------------------------------------------------
-    // set commandline args for xLib
+    // set command line args for xLib
     CxCommandLine::vSetArgs(iArgCount, paszArgs);
 
     //--------------------------------------------------
@@ -210,12 +211,13 @@ xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
         tmManager.vAdd(new CxTest_CxProfiler);
         tmManager.vAdd(new CxTest_CxAutoProfiler);
 
-        // Filesystem
+        // File system
         tmManager.vAdd(new CxTest_CxPath);
         tmManager.vAdd(new CxTest_CxFileAttribute);
-        tmManager.vAdd(new CxTest_CxFile);
+        // tmManager.vAdd(new CxTest_CxFile);
         tmManager.vAdd(new CxTest_CxFileTemp);
         tmManager.vAdd(new CxTest_CxDll);
+        tmManager.vAdd(new CxTest_CxFinder);
         tmManager.vAdd(new CxTest_CxDir);
         tmManager.vAdd(new CxTest_CxVolume);
         tmManager.vAdd(new CxTest_CxEnvironment);
