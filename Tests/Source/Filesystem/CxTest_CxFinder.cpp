@@ -45,7 +45,7 @@ CxTest_CxFinder::vUnit(
     xTEST_CASE("CxFinder::CxFinder", cullCaseLoops)
     {
         std::vec_tstring_t vsEntries;
-        CxFinder           fnFinder(csRootDirPath);
+        CxFinder           fnFinder(csRootDirPath, xT("*"));
 
         m_bRv = fnFinder.bFirst();
         xTEST_EQ(true, m_bRv);

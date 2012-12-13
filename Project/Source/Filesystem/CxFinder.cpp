@@ -24,22 +24,30 @@ xNAMESPACE_BEGIN(NxLib)
 
 //---------------------------------------------------------------------------
 CxFinder::CxFinder(
-    const std::tstring_t &a_csRootDirPath
+    const std::tstring_t &a_csRootDirPath,
+    const std::tstring_t &a_csFileFilter
 ) :
-    _m_enEnrty     (),
-    _m_sRootDirPath(a_csRootDirPath)
+    _m_enEnrty      (),
+    _m_csRootDirPath(a_csRootDirPath),
+    _m_csFilter     (a_csFileFilter)
 {
     xTEST_EQ(false, a_csRootDirPath.empty());
+    xTEST_EQ(false, a_csFileFilter.empty());
 }
 //---------------------------------------------------------------------------
 /* virtual */
 CxFinder::~CxFinder() {
-
+    vClose();
 }
 //--------------------------------------------------------------------------
-std::tstring_t
+const std::tstring_t &
 CxFinder::sRootDirPath() {
-    return _m_sRootDirPath;
+    return _m_csRootDirPath;
+}
+//--------------------------------------------------------------------------
+const std::tstring_t &
+CxFinder::sFilter() {
+    return _m_csFilter;
 }
 //--------------------------------------------------------------------------
 std::tstring_t
@@ -81,12 +89,27 @@ CxFinder::faAttributes() {
 }
 //---------------------------------------------------------------------------
 bool
+CxFinder::bIsValid() {
+#if   xOS_ENV_WIN
+    xCHECK_RET(xNATIVE_HANDLE_INVALID == _m_enEnrty.hHandle, false);
+    xCHECK_NA(_m_enEnrty.fdData);
+#elif xOS_ENV_UNIX
+    xCHECK_RET(NULL == _m_enEnrty.pHandle, false);
+    xCHECK_RET(NULL == _m_enEnrty.pdrData, false);
+#endif
+
+    return true;
+}
+//---------------------------------------------------------------------------
+bool
 CxFinder::bFirst() {
 #if   xOS_ENV_WIN
-    _m_enEnrty.hHandle = ::FindFirstFile(_m_sRootDirPath.c_str(), &_m_enEnrty.fdData);
+    _m_enEnrty.hHandle = ::FindFirstFile(
+                            (sRootDirPath() + CxConst::xSLASH + sFilter()).c_str(),
+                            &_m_enEnrty.fdData);
     xCHECK_RET(xNATIVE_HANDLE_INVALID == _m_enEnrty.hHandle, false);
 #elif xOS_ENV_UNIX
-    _m_enEnrty.pHandle = ::opendir(_m_sRootDirPath.c_str());
+    _m_enEnrty.pHandle = ::opendir(csRootDirPath().c_str());
     xTEST_PTR(_m_enEnrty.pHandle);
 
     _m_enEnrty.pdrData = ::readdir(_m_enEnrty.pHandle);
@@ -104,6 +127,14 @@ CxFinder::bNext() {
 #elif xOS_ENV_UNIX
     _m_enEnrty.pdrData = ::readdir(_m_enEnrty.pHandle);
     xCHECK_RET(NULL == _m_enEnrty.pdrData, false);
+
+    // filter by pattern
+    {
+        int iRv = ::fnmatch(sFilter().c_str(), sFileName().c_str(), 0);
+        xTEST_EQ(true, (0 == iRv) || (FNM_NOMATCH == iRv));
+
+        xCHECK_DO(0 != iRv, bNext());
+    }
 #endif
 
     return true;
@@ -111,13 +142,29 @@ CxFinder::bNext() {
 //---------------------------------------------------------------------------
 void
 CxFinder::vClose() {
-#if   xOS_ENV_WIN
-    BOOL blRes = ::FindClose(_m_enEnrty.hHandle);
-    xTEST_DIFF(FALSE, blRes);
-#elif xOS_ENV_UNIX
-    int iRv = ::closedir(_m_enEnrty.pHandle); _m_enEnrty.pHandle = NULL;
-    xTEST_DIFF(- 1, iRv);
-#endif
+    xCHECK_DO(false == bIsValid(), return);
+
+    // close handle
+    {
+    #if   xOS_ENV_WIN
+        BOOL blRes = ::FindClose(_m_enEnrty.hHandle);
+        xTEST_DIFF(FALSE, blRes);
+    #elif xOS_ENV_UNIX
+        int iRv = ::closedir(_m_enEnrty.pHandle);
+        xTEST_DIFF(- 1, iRv);
+    #endif
+    }
+
+    // clear data
+    {
+    #if   xOS_ENV_WIN
+        _m_enEnrty.hHandle = xNATIVE_HANDLE_INVALID;
+        xSTRUCT_ZERO(_m_enEnrty.fdData);
+    #elif xOS_ENV_UNIX
+        _m_enEnrty.pHandle = NULL;
+        _m_enEnrty.pdrData = NULL;
+    #endif
+    }
 }
 //--------------------------------------------------------------------------
 

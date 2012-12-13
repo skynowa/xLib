@@ -92,6 +92,11 @@
     #define xTEST_MSG_FAIL(msg)                          { xNA }
     #define xTEST_MSG(expr, msg)                         { xNA }
 #endif
+
+#define xTEST_NA(var)                                    ;
+    ///< at this point debug code for variable is not applicable
+#define xTESTS_NA                                        ;
+    ///< at this point debug code for variables is not applicable
 //-------------------------------------------------------------------------
 #define xSTD_VERIFY(expr)                                { \
                                                             if ( !(expr) )  { \
@@ -123,6 +128,10 @@
     ///< check expression, show message with comment and return value
 #define xCHECK_MSG_DO(expr, comment, do_expr)            { if ((expr)) { CxTracer() << (comment); do_expr;              } }
     ///< check expression, show message with comment and do instructions
+#define xCHECK_NA(var)                                   ;
+    ///< at this point check code for variable is not applicable
+#define xCHECKS_NA                                       ;
+    ///< at this point check code for variables is not applicable
 
 #define xTEST_STATIC(expr)                               { switch (0) {case 0: case (expr):;} }
     ///< static assert
@@ -153,4 +162,4 @@
                                                                             xCOUNTER, xFILE, xFUNCTION, CxLastError::sGet().c_str(), xLINE); }
     ///< trace point (use CxTracer)
 //---------------------------------------------------------------------------
-#endif //xLib_Debug_xDebugH
+#endif // xLib_Debug_xDebugH

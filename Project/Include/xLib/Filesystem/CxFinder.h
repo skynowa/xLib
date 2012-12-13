@@ -18,15 +18,17 @@ class CxFinder :
     ///< file system finder
 {
     public:
-        explicit                     CxFinder    (const std::tstring_t &a_csRootDirPath);
+        explicit                     CxFinder    (const std::tstring_t &a_csRootDirPath, const std::tstring_t &csFileFilter);
             ///< constructor
         virtual                     ~CxFinder    ();
             ///< destructor
 
-        std::tstring_t               sRootDirPath();
+        const std::tstring_t &       sRootDirPath();
+        const std::tstring_t &       sFilter     ();
         std::tstring_t               sFileName   ();
         CxFileAttribute::ExAttribute faAttributes();
 
+        bool                         bIsValid    ();
         bool                         bFirst      ();
         bool                         bNext       ();
         void                         vClose      ();
@@ -46,7 +48,8 @@ class CxFinder :
             ///< entry
 
         _entry_t                     _m_enEnrty;
-        std::tstring_t               _m_sRootDirPath;
+        const std::tstring_t         _m_csRootDirPath;
+        const std::tstring_t         _m_csFilter;
 
 };
 
