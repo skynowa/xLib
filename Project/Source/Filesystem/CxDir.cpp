@@ -34,10 +34,11 @@ CxDir::bIsExists(
 
     xCHECK_RET(true == a_csDirPath.empty(), false);
 
-    CxFileAttribute::ExAttribute atAttr = CxFileAttribute::atGet(a_csDirPath);
-    xCHECK_RET(CxFileAttribute::faInvalid == atAttr, false);
+    CxFileAttribute faAttr(a_csDirPath);
 
-    bool bRv = CxFileAttribute::bIsExists(a_csDirPath, CxFileAttribute::faDirectory);
+    xCHECK_RET(CxFileAttribute::faInvalid == faAttr.atGet(), false);
+
+    bool bRv = faAttr.bIsExists(CxFileAttribute::faDirectory);
     xCHECK_RET(false == bRv, false);
 
     return true;
@@ -135,7 +136,7 @@ CxDir::bIsDir(
 {
     xTEST_EQ(false, a_csDirPath.empty());
 
-    bool bRv = CxFileAttribute::bIsExists(a_csDirPath, CxFileAttribute::faDirectory);
+    bool bRv = CxFileAttribute(a_csDirPath).bIsExists(CxFileAttribute::faDirectory);
     xCHECK_RET(false == bRv, false);
 
     return true;
@@ -276,10 +277,10 @@ CxDir::vCopy(
     // sets attribute "normal"
     bool bRv = bIsExists(a_csDirPathTo);
     if (true == bRv) {
-        CxFileAttribute::vSet(a_csDirPathTo, CxFileAttribute::faNormal);
+        CxFileAttribute(a_csDirPathTo).vSet(CxFileAttribute::faNormal);
     }
 
-    CxFileAttribute::vSet(a_csDirPathFrom, CxFileAttribute::faNormal);
+    CxFileAttribute(a_csDirPathFrom).vSet(CxFileAttribute::faNormal);
 
     //--------------------------------------------------
     // get lists of files
@@ -335,7 +336,7 @@ CxDir::vDelete(
     bool bRv = bIsExists(a_csDirPath);
     xCHECK_DO(false == bRv, return);
 
-    CxFileAttribute::vSet(a_csDirPath, CxFileAttribute::faNormal);
+    CxFileAttribute(a_csDirPath).vSet(CxFileAttribute::faNormal);
 
 #if   xOS_ENV_WIN
     BOOL blRes = ::RemoveDirectory(a_csDirPath.c_str());

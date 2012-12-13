@@ -41,17 +41,17 @@ CxFinder::~CxFinder() {
 }
 //--------------------------------------------------------------------------
 const std::tstring_t &
-CxFinder::sRootDirPath() {
+CxFinder::sRootDirPath() const {
     return _m_csRootDirPath;
 }
 //--------------------------------------------------------------------------
 const std::tstring_t &
-CxFinder::sFilter() {
+CxFinder::sFilter() const {
     return _m_csFilter;
 }
 //--------------------------------------------------------------------------
 std::tstring_t
-CxFinder::sFileName() {
+CxFinder::sFileName() const {
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
@@ -64,7 +64,7 @@ CxFinder::sFileName() {
 }
 //--------------------------------------------------------------------------
 CxFileAttribute::ExAttribute
-CxFinder::faAttributes() {
+CxFinder::faAttributes() const {
     CxFileAttribute::ExAttribute faAttr = CxFileAttribute::faInvalid;
 
 #if   xOS_ENV_WIN
@@ -89,7 +89,7 @@ CxFinder::faAttributes() {
 }
 //---------------------------------------------------------------------------
 bool
-CxFinder::bIsValid() {
+CxFinder::bIsValid() const {
 #if   xOS_ENV_WIN
     xCHECK_RET(xNATIVE_HANDLE_INVALID == _m_enEnrty.hHandle, false);
     xCHECK_NA(_m_enEnrty.fdData);
