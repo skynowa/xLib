@@ -239,7 +239,7 @@ CxDir::vCreate(
 }
 //---------------------------------------------------------------------------
 void
-CxDir::vCreateForce(
+CxDir::vCreatePath(
     const std::tstring_t &a_csDirPath
 )
 {
@@ -302,7 +302,7 @@ CxDir::vCopy(
 
         sFilePathTo.replace(uiPosBegin, uiPosBegin + a_csDirPathFrom.size(), a_csDirPathTo);
 
-        vCreateForce(CxPath::sDir(sFilePathTo));
+        vCreatePath(CxPath::sDir(sFilePathTo));
 
         CxFile::vCopy(*it, sFilePathTo, a_cbFailIfExists);
     }

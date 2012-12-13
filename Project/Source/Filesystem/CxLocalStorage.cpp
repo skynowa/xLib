@@ -80,7 +80,7 @@ CxLocalStorage::vSetPath(
     //_m_sFilePath - n/a
     xTEST_EQ(false, a_csFilePath.empty());
 
-    CxDir::vCreateForce(CxPath::sDir(a_csFilePath));
+    CxDir::vCreatePath(CxPath::sDir(a_csFilePath));
 
     _m_sFilePath = a_csFilePath;
 }
