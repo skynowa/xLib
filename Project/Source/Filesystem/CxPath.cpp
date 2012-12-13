@@ -806,7 +806,7 @@ CxPath::sToUnix(
 //--------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxPath::sToCurrentOs(
+CxPath::sToNative(
     const std::tstring_t &a_csFilePath,
     const bool           &a_cbIsSlashAtEnd
 )
@@ -958,7 +958,7 @@ CxPath::sShort(
         -- uiNum;
     }
 
-    sRv = sToCurrentOs(sRv, false);
+    sRv = sToNative(sRv, false);
 
     return sRv;
 }

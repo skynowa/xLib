@@ -660,37 +660,37 @@ CxTest_CxPath::vUnit(
         xTEST_EQ(m_sRv, std::tstring_t(xT("/home/user/Soft/TestDir")));
     }
 
-    xTEST_CASE("CxPath::sToCurrentOs", cullCaseLoops)
+    xTEST_CASE("CxPath::sToNative", cullCaseLoops)
     {
         #if   xOS_ENV_WIN
             const std::tstring_t csUnixPath = xT("C:/TestDir");
             const std::tstring_t csWinPath  = xT("C:\\TestDir");
 
-            m_sRv = CxPath::sToCurrentOs(csWinPath,  false);
+            m_sRv = CxPath::sToNative(csWinPath,  false);
             xTEST_EQ(m_sRv, std::tstring_t(xT("C:\\TestDir")));
 
-            m_sRv = CxPath::sToCurrentOs(csWinPath,  true);
+            m_sRv = CxPath::sToNative(csWinPath,  true);
             xTEST_EQ(m_sRv, std::tstring_t(xT("C:\\TestDir\\")));
 
-            m_sRv = CxPath::sToCurrentOs(csWinPath,  true);
+            m_sRv = CxPath::sToNative(csWinPath,  true);
             xTEST_EQ(m_sRv, std::tstring_t(xT("C:\\TestDir\\")));
 
-            m_sRv = CxPath::sToCurrentOs(csWinPath,  false);
+            m_sRv = CxPath::sToNative(csWinPath,  false);
             xTEST_EQ(m_sRv, std::tstring_t(xT("C:\\TestDir")));
         #elif xOS_ENV_UNIX
             const std::tstring_t csUnixPath = xT("/home/user/Soft/TestDir");
             const std::tstring_t csWinPath  = xT("\\home\\user\\Soft\\TestDir");
 
-            m_sRv = CxPath::sToCurrentOs(csWinPath,  false);
+            m_sRv = CxPath::sToNative(csWinPath,  false);
             xTEST_EQ(m_sRv, std::tstring_t(xT("/home/user/Soft/TestDir")));
 
-            m_sRv = CxPath::sToCurrentOs(csWinPath,  true);
+            m_sRv = CxPath::sToNative(csWinPath,  true);
             xTEST_EQ(m_sRv, std::tstring_t(xT("/home/user/Soft/TestDir/")));
 
-            m_sRv = CxPath::sToCurrentOs(csWinPath,  true);
+            m_sRv = CxPath::sToNative(csWinPath,  true);
             xTEST_EQ(m_sRv, std::tstring_t(xT("/home/user/Soft/TestDir/")));
 
-            m_sRv = CxPath::sToCurrentOs(csWinPath,  false);
+            m_sRv = CxPath::sToNative(csWinPath,  false);
             xTEST_EQ(m_sRv, std::tstring_t(xT("/home/user/Soft/TestDir")));
         #endif
     }

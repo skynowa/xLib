@@ -55,11 +55,11 @@ CxDir::bIsEmpty(
 
     bool bRv = false;
 
-    // TODO: CxPath::sToCurrentOs + CxPath::sSlashAppend
+    // TODO: CxPath::sToNative + CxPath::sSlashAppend
 
 #if   xOS_ENV_WIN
     WIN32_FIND_DATA fdData   = {0};
-    std::tstring_t  sDirPath = CxPath::sToCurrentOs( CxPath::sSlashAppend(a_csDirPath) + a_csPattern, false );
+    std::tstring_t  sDirPath = CxPath::sToNative( CxPath::sSlashAppend(a_csDirPath) + a_csPattern, false );
 
     HANDLE hFile = ::FindFirstFile(sDirPath.c_str(), &fdData);
     xCHECK_RET(INVALID_HANDLE_VALUE == hFile, true);
@@ -246,7 +246,7 @@ CxDir::vCreatePath(
 
     //-------------------------------------
     // split csDirPath into parts
-     CxString::vSplit( CxPath::sToCurrentOs(a_csDirPath, false), CxConst::xSLASH, &vsPathParts );
+     CxString::vSplit( CxPath::sToNative(a_csDirPath, false), CxConst::xSLASH, &vsPathParts );
 
     //-------------------------------------
     // create dirs by steps
@@ -457,7 +457,7 @@ CxDir::vFindFiles(
     #endif
 
 #if   xOS_ENV_WIN
-    std::tstring_t  sFilePath     = CxPath::sToCurrentOs( CxPath::sSlashAppend(a_csDirPath) + a_csPattern, false );
+    std::tstring_t  sFilePath     = CxPath::sToNative( CxPath::sSlashAppend(a_csDirPath) + a_csPattern, false );
     std::tstring_t  sFileFullName = CxPath::sFileName(sFilePath);
     std::tstring_t  sPart;
     std::tstring_t  sTmpPath;
@@ -606,7 +606,7 @@ CxDir::vFindDirs(
     #endif
 
 #if   xOS_ENV_WIN
-    std::tstring_t  sRootDirPath = CxPath::sToCurrentOs( CxPath::sSlashAppend(a_csDirPath) + a_csPattern, false );
+    std::tstring_t  sRootDirPath = CxPath::sToNative( CxPath::sSlashAppend(a_csDirPath) + a_csPattern, false );
     WIN32_FIND_DATA fdData       = {0};
 
     HANDLE hFile = ::FindFirstFile(sRootDirPath.c_str(), &fdData);
