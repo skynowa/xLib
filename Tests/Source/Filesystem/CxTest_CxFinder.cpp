@@ -71,7 +71,7 @@ CxTest_CxFinder::vUnit(
         };
 
         SData adtData[] = {
-            {CxConst::xMASK_ALL_A,     7},
+            {CxConst::xMASK_ALL,       7},
             {CxConst::xMASK_FILES_ALL, 7},
             {xT("*"),                  7},
             {xT("*.*"),                7},
