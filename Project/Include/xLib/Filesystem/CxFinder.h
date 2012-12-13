@@ -23,12 +23,12 @@ class CxFinder :
         virtual                     ~CxFinder    ();
             ///< destructor
 
-        const std::tstring_t &       sRootDirPath();
-        const std::tstring_t &       sFilter     ();
-        std::tstring_t               sFileName   ();
-        CxFileAttribute::ExAttribute faAttributes();
+        const std::tstring_t &       sRootDirPath() const;
+        const std::tstring_t &       sFilter     () const;
+        std::tstring_t               sFileName   () const;
+        CxFileAttribute::ExAttribute faAttributes() const;
 
-        bool                         bIsValid    ();
+        bool                         bIsValid    () const;
         bool                         bFirst      ();
         bool                         bNext       ();
         void                         vClose      ();

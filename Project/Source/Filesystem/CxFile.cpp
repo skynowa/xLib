@@ -546,23 +546,25 @@ CxFile::bIsFile(
 
     bool bRv = false;
 
-    CxFileAttribute::ExAttribute atAttr = CxFileAttribute::atGet(a_csFilePath);
-    xCHECK_RET(CxFileAttribute::faInvalid == atAttr, false);
+    CxFileAttribute faAttr(a_csFilePath);
+
+    CxFileAttribute::ExAttribute atAttribute = faAttr.atGet();
+    xCHECK_RET(CxFileAttribute::faInvalid == atAttribute, false);
 
 #if   xOS_ENV_WIN
-    bRv = CxFileAttribute::bIsExists(a_csFilePath, CxFileAttribute::faDirectory);
+    bRv = faAttr.bIsExists(CxFileAttribute::faDirectory);
     xCHECK_RET(true == bRv, false);
 
-    bRv = CxFileAttribute::bIsExists(a_csFilePath, CxFileAttribute::faDevice);
+    bRv = faAttr.bIsExists(CxFileAttribute::faDevice);
     xCHECK_RET(true == bRv, false);
 
-    bRv = CxFileAttribute::bIsExists(a_csFilePath, CxFileAttribute::faReparsePoint);
+    bRv = faAttr.bIsExists(CxFileAttribute::faReparsePoint);
     xCHECK_RET(true == bRv, false);
 
-    bRv = CxFileAttribute::bIsExists(a_csFilePath, CxFileAttribute::faOffline);
+    bRv = faAttr.bIsExists(CxFileAttribute::faOffline);
     xCHECK_RET(true == bRv, false);
 #elif xOS_ENV_UNIX
-    bRv = CxFileAttribute::bIsExists(a_csFilePath, CxFileAttribute::faRegularFile);
+    bRv = faAttr.bIsExists(CxFileAttribute::faRegularFile);
     xCHECK_RET(false == bRv, false);
 #endif
 
@@ -724,7 +726,7 @@ CxFile::vWipe(
 
         //--------------------------------------------------
         // set normal file attributes
-        CxFileAttribute::vSet(a_csFilePath, CxFileAttribute::faNormal);
+        CxFileAttribute(a_csFilePath).vSet(CxFileAttribute::faNormal);
 
         //--------------------------------------------------
         // open

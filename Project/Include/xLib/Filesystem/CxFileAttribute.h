@@ -49,26 +49,32 @@ class CxFileAttribute :
             #endif
         };
 
-        static bool        bIsExists      (const std::tstring_t &csFilePath, const ExAttribute &cfaValue);
+        explicit               CxFileAttribute(const std::tstring_t &csFilePath);
+            ///< constructor
+        virtual               ~CxFileAttribute();
+            ///< destructor
+
+        const std::tstring_t & sFilePath      () const;
+            ///< file path
+
+        bool                   bIsExists      (const ExAttribute &cfaValue);
             ///< is exists
-        static ExAttribute atGet          (const std::tstring_t &csFilePath);
+        ExAttribute            atGet          ();
             ///< get
-        static void        vSet           (const std::tstring_t &csFilePath, const ExAttribute &cfaValue);
+        void                   vSet           (const ExAttribute &cfaValue);
             ///< set
-        static void        vAdd           (const std::tstring_t &csFilePath, const ExAttribute &cfaValue);
+        void                   vAdd           (const ExAttribute &cfaValue);
             ///< add
-        static void        vRemove        (const std::tstring_t &csFilePath, const ExAttribute &cfaValue);
+        void                   vRemove        (const ExAttribute &cfaValue);
             ///< remove
-        static void        vModify        (const std::tstring_t &csFilePath, const ExAttribute &cfaRemoveValue, const ExAttribute &cfaAddValue);
+        void                   vModify        (const ExAttribute &cfaRemoveValue, const ExAttribute &cfaAddValue);
             ///< modify
-        static void        vClear         (const std::tstring_t &csFilePath);
+        void                   vClear         ();
             ///< clear (set normal attributes)
 
     private:
-                           CxFileAttribute();
-            ///< constructor
-        virtual           ~CxFileAttribute();
-            ///< destructor
+        const std::tstring_t   _m_csFilePath;
+
 };
 
 xNAMESPACE_END(NxLib)

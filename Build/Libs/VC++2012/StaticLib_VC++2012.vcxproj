@@ -288,6 +288,7 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Filesystem\CxFile.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Filesystem\CxFileAttribute.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Filesystem\CxFileTemp.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Filesystem\CxFinder.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Filesystem\CxLocalStorage.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Filesystem\CxPath.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Filesystem\CxVolume.h" />
@@ -397,6 +398,7 @@
     <ClCompile Include="..\..\..\Project\Source\Filesystem\CxFile.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Filesystem\CxFileAttribute.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Filesystem\CxFileTemp.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Filesystem\CxFinder.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Filesystem\CxLocalStorage.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Filesystem\CxPath.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Filesystem\CxVolume.cpp" />
