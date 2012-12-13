@@ -120,7 +120,7 @@ CxTest::vCreateTempDir(
     } else {
         _m_sWorkDirPath = CxPath::sExeDir() + CxConst::xSLASH + a_csDirName;
 
-        CxDir::vCreateForce(_m_sWorkDirPath);
+        CxDir::vCreatePath(_m_sWorkDirPath);
     }
 }
 //---------------------------------------------------------------------------

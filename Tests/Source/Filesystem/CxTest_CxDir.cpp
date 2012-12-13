@@ -59,7 +59,7 @@ CxTest_CxDir::vUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(sDirPathes); ++ i) {
-            CxDir::vCreateForce(sDirPathes[i]);
+            CxDir::vCreatePath(sDirPathes[i]);
         }
 
         {
@@ -124,7 +124,7 @@ CxTest_CxDir::vUnit(
 
     {
         CxDir::vDeleteForce(csRootTestDirPath);
-        CxDir::vCreateForce(csDirPath);
+        CxDir::vCreatePath(csDirPath);
     }
 
     /****************************************************************************
@@ -232,9 +232,9 @@ CxTest_CxDir::vUnit(
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("CxDir::vCreateForce", cullCaseLoops)
+    xTEST_CASE("CxDir::vCreatePath", cullCaseLoops)
     {
-        CxDir::vCreateForce(csDirPath);
+        CxDir::vCreatePath(csDirPath);
     }
 
     xTEST_CASE("CxDir::vCopy", cullCaseLoops)
@@ -252,7 +252,7 @@ CxTest_CxDir::vUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(sDirPathes); ++ i) {
-            CxDir::vCreateForce(sDirPathes[i]);
+            CxDir::vCreatePath(sDirPathes[i]);
         }
 
         CxDir::vDeleteForce(csDirDest);
@@ -281,7 +281,7 @@ CxTest_CxDir::vUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(sDirPathes); ++ i) {
-            CxDir::vCreateForce(sDirPathes[i]);
+            CxDir::vCreatePath(sDirPathes[i]);
         }
 
         //-------------------------------------
@@ -302,13 +302,13 @@ CxTest_CxDir::vUnit(
 
     xTEST_CASE("CxDir::vTryDelete", cullCaseLoops)
     {
-        CxDir::vCreateForce(csDirPath2);
+        CxDir::vCreatePath(csDirPath2);
         CxDir::vTryDelete(csDirPath2, 10, 5);
     }
 
     xTEST_CASE("CxDir::vDeleteForce", cullCaseLoops)
     {
-        CxDir::vCreateForce(csDirPath);
+        CxDir::vCreatePath(csDirPath);
         CxDir::vDeleteForce(csDirPath);
     }
 }

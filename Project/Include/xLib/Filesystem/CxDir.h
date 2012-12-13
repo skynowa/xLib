@@ -33,7 +33,7 @@ class CxDir :
             ///< get path to system var %Temp%
         static void           vCreate     (const std::tstring_t &csDirPath);
             ///< create
-        static void           vCreateForce(const std::tstring_t &csDirPath);
+        static void           vCreatePath (const std::tstring_t &csDirPath);
             ///< creation of all dirs that not exists in path
         static void           vCopy       (const std::tstring_t &csDirPathFrom, const std::tstring_t &csDirPathTo, const bool &cbFailIfExists);
             ///< copy

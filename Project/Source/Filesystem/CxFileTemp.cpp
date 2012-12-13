@@ -55,7 +55,7 @@ CxFileTemp::vCreate(
 
     FILE *_pfStdFile = NULL;
 
-    CxDir::vCreateForce(a_csDirPath);
+    CxDir::vCreatePath(a_csDirPath);
 
     _m_sFilePath = CxPath::sSlashAppend(a_csDirPath) + CxPath::sFileName(a_csFilePath) + csFileNameTemplate;
 
