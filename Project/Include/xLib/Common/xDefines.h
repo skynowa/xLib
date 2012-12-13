@@ -9,11 +9,11 @@
 //----------------------------------------------------------------------------------------------------
 
 //--------------------------------------------------
-// lexema utils
+// lexeme utils
 #define xLEX_TO_STR(a)                  xT(#a)
     ///< make as string
 #define xLEX_CAT(a, b)                  a##b
-    ///< concatinate strings
+    ///< concatenate strings
 
 //--------------------------------------------------
 // xTEXT, xT
@@ -201,7 +201,7 @@
 #define xDEPRECIATE                     0
     ///< temporary code depreciate
 #define xTODO                           0
-    ///< todo code
+    ///< to do code
 #define xCAN_REMOVE                     0
     ///< can remove code
 #define xTEST_IGNORE                    0
@@ -212,15 +212,11 @@
     ///< code for review
 #define xCOMMENT                        0
     ///< comment for code
-#define xTEST_NA(var)                   ;
-    ///< at this point debug code for variable is not applicable
-#define xTESTS_NA                       ;
-    ///< at this point debug code for variables is not applicable
 #define xNA                             ;
     ///< at this point the code is not applicable
 
 //--------------------------------------------------
-// buildin macroses
+// build in macros
 
 // xFILE
 #if defined(__FILE__)
@@ -272,7 +268,7 @@
 #else
     #define xDATETIME                   xUNKNOWN_CSTRING
 #endif
-    ///< build source datetime stamp
+    ///< build source date time stamp
 
 // xCOUNTER
 #if defined(__COUNTER__)
@@ -280,16 +276,17 @@
 #else
     #define xCOUNTER                    0
 #endif
-    ///< Expands to an integer starting with 0 and incrementing by 1 every time it is used in a compiland
+    ///< Expands to an integer starting with 0 and 
+    ///< incrementing by 1 every time it is used in a compiland
 
 //-------------------------------------
 // function params
 #define xIN
     ///< incoming param
 #define xOUT
-    ///< outcoming param
+    ///< out coming param
 #define xIN_OUT
-    ///< incoming and outcoming param
+    ///< incoming and out coming param
 
 //-------------------------------------
 // xHOST_NAME_MAX
@@ -469,10 +466,10 @@
         #error xLib: xPAGE_SIZE not defined
     #endif
 #endif
-    ///< filesystem page size
+    ///< file system page size
 
 //-------------------------------------
-// xDIR_TEMP temprory directory
+// xDIR_TEMP temporary directory
 #if   xOS_ENV_WIN
     #if defined(P_tmpdir)
         #define xDIR_TEMP               xT(P_tmpdir)
@@ -486,7 +483,7 @@
         #define xDIR_TEMP               xT("/tmp")      // custom define
     #endif
 #endif
-    ///< temprory directory
+    ///< temporary directory
 
 //-------------------------------------
 // xNATIVE_HANDLE_NULL, xNATIVE_HANDLE_INVALID
@@ -582,4 +579,4 @@
 // etc
 
 //----------------------------------------------------------------------------------------------------
-#endif  //xLib_Common_xDefinesH
+#endif  // xLib_Common_xDefinesH
