@@ -17,52 +17,59 @@ class CxDir :
     /// directory
 {
     public:
-        static bool           bIsExists   (const std::tstring_t &csDirPath);
+        explicit               CxDir       (const std::tstring_t &csDirPath);
+            ///< constructor
+        virtual               ~CxDir       ();
+            ///< destructor
+
+        const std::tstring_t & sDirPath    () const;
+            ///< directory path
+
+        bool                   bIsExists   ();
             ///< check for existence
-        static bool           bIsEmpty    (const std::tstring_t &csDirPath, const std::tstring_t &csPattern = CxConst::xMASK_ALL);
+        bool                   bIsEmpty    (const std::tstring_t &csPattern = CxConst::xMASK_ALL);
             ///< is empty
-        static bool           bIsRoot     (const std::tstring_t &csDirPath);
+        bool                   bIsRoot     ();
             ///< is root
-        static bool           bIsDir      (const std::tstring_t &csDirPath);
+        bool                   bIsDir      ();
             ///< is dir
-        static std::tstring_t sCurrent    ();
-            ///< get current
-        static void           vSetCurrent (const std::tstring_t &csDirPath);
-            ///< set current
-        static std::tstring_t sTemp       ();
-            ///< get path to system var %Temp%
-        static void           vCreate     (const std::tstring_t &csDirPath);
+        void                   vCreate     ();
             ///< create
-        static void           vCreatePath (const std::tstring_t &csDirPath);
+        void                   vCreatePath ();
             ///< creation of all directories that not exists in path
-        static void           vCopy       (const std::tstring_t &csDirPathFrom, const std::tstring_t &csDirPathTo, const bool &cbFailIfExists);
+        void                   vCopy       (const std::tstring_t &csDirPathTo, const bool &cbFailIfExists);
             ///< copy
-        static void           vMove       (const std::tstring_t &csDirPathFrom, const std::tstring_t &csDirPathTo, const bool &cbFailIfExists);
+        void                   vMove       (const std::tstring_t &csDirPathTo, const bool &cbFailIfExists);
             ///< move
 
-        static void           vDelete     (const std::tstring_t &csDirPath);
+        void                   vDelete     ();
             ///< deletion dir which empty
-        static void           vTryDelete  (const std::tstring_t &csDirPath, const size_t &cuiAttempts, const ulong_t &culTimeoutMsec);
+        void                   vTryDelete  (const size_t &cuiAttempts, const ulong_t &culTimeoutMsec);
             ///< try deleting, max 100 attempts
-        static void           vClearForce (const std::tstring_t &csDirPath);
+        void                   vClearForce ();
             ///< deletion all content of dir
-        static void           vDeleteForce(const std::tstring_t &csDirPath);
+        void                   vDeleteForce();
             ///< deletion dir find all content of it
 
-        static void           vFindFiles  (const std::tstring_t &csDirPath, const std::tstring_t &csPattern,
-                                           const bool &cbIsRecursively, std::vec_tstring_t *pvsFilePathes);
+        void                   vFindFiles  (const std::tstring_t &csPattern,
+                                            const bool &cbIsRecursively, std::vec_tstring_t *pvsFilePathes);
             ///< search files
-        static void           vFindDirs   (const std::tstring_t &csDirPath, const std::tstring_t &csPattern,
-                                           const bool &cbIsRecursively, std::vec_tstring_t *pvsDirPathes);
+        void                   vFindDirs   (const std::tstring_t &csPattern,
+                                            const bool &cbIsRecursively, std::vec_tstring_t *pvsDirPathes);
             ///< search subdirectories
 
+        // static
+        static std::tstring_t  sCurrent    ();
+            ///< get current
+        static void            vSetCurrent (const std::tstring_t &csDirPath);
+            ///< set current
+        static std::tstring_t  sTemp       ();
+            ///< get path to system var %Temp%
+
     private:
-                              CxDir       ();
-            ///< constructor
-        virtual              ~CxDir       ();
-            ///< destructor
+        const std::tstring_t  _m_csDirPath;
 };
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif //xLib_Filesystem_CxDirH
+#endif // xLib_Filesystem_CxDirH

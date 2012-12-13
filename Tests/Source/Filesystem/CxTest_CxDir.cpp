@@ -59,13 +59,13 @@ CxTest_CxDir::vUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(sDirPathes); ++ i) {
-            CxDir::vCreatePath(sDirPathes[i]);
+            CxDir(sDirPathes[i]).vCreatePath();
         }
 
         {
             m_vsRv.clear();
 
-            CxDir::vFindDirs(csTempScanDirPath, CxConst::xMASK_ALL, false, &m_vsRv);
+            CxDir(csTempScanDirPath).vFindDirs(CxConst::xMASK_ALL, false, &m_vsRv);
             // TODO: CxString::vStdVectorPrintT(m_vsRv);
 
             xTEST_EQ((size_t)2, m_vsRv.size());
@@ -73,7 +73,7 @@ CxTest_CxDir::vUnit(
 
         {
             m_vsRv.clear();
-            CxDir::vFindDirs(csTempScanDirPath, CxConst::xMASK_ALL, true, &m_vsRv);
+            CxDir(csTempScanDirPath).vFindDirs(CxConst::xMASK_ALL, true, &m_vsRv);
             //CxString::vStdVectorPrintT(m_vsRv);
 
             xTEST_EQ(xARRAY_SIZE(sDirPathes), m_vsRv.size());
@@ -102,7 +102,7 @@ CxTest_CxDir::vUnit(
 
         {
             m_vsRv.clear();
-            CxDir::vFindFiles(csTempScanDirPath, CxConst::xMASK_ALL, false, &m_vsRv);
+            CxDir(csTempScanDirPath).vFindFiles(CxConst::xMASK_ALL, false, &m_vsRv);
             //CxString::vStdVectorPrintT(m_vsRv);
 
             xTEST_EQ((size_t)2, m_vsRv.size());
@@ -110,7 +110,7 @@ CxTest_CxDir::vUnit(
 
         {
             m_vsRv.clear();
-            CxDir::vFindFiles(csTempScanDirPath, CxConst::xMASK_ALL, true, &m_vsRv);
+            CxDir(csTempScanDirPath).vFindFiles(CxConst::xMASK_ALL, true, &m_vsRv);
             //CxString::vStdVectorPrintT(m_vsRv);
 
             xTEST_EQ(xARRAY_SIZE(g_sFilePathes), m_vsRv.size());
@@ -123,8 +123,8 @@ CxTest_CxDir::vUnit(
     *****************************************************************************/
 
     {
-        CxDir::vDeleteForce(csRootTestDirPath);
-        CxDir::vCreatePath(csDirPath);
+        CxDir(csRootTestDirPath).vDeleteForce();
+        CxDir(csDirPath).vCreatePath();
     }
 
     /****************************************************************************
@@ -134,42 +134,42 @@ CxTest_CxDir::vUnit(
 
     xTEST_CASE("CxDir::vCreate", cullCaseLoops)
     {
-        CxDir::vCreate(csDirPath2);
+        CxDir(csDirPath2).vCreate();
     }
 
     xTEST_CASE("CxDir::bIsDir", cullCaseLoops)
     {
-        m_bRv = CxDir::bIsDir(csDirPath2);
+        m_bRv = CxDir(csDirPath2).bIsDir();
         xTEST_EQ(true, m_bRv);
     }
 
     xTEST_CASE("CxDir::bIsExists", cullCaseLoops)
     {
-        m_bRv = CxDir::bIsExists(csDirPath);
+        m_bRv = CxDir(csDirPath).bIsExists();
         xTEST_EQ(true, m_bRv);
 
-        m_bRv = CxDir::bIsExists(xT("b:"));
+        m_bRv = CxDir(xT("b:")).bIsExists();
         xTEST_EQ(false, m_bRv);
 
-        m_bRv = CxDir::bIsExists(xT("sdfasdf:"));
+        m_bRv = CxDir(xT("sdfasdf:")).bIsExists();
         xTEST_EQ(false, m_bRv);
 
-        m_bRv = CxDir::bIsExists(xT("C:\\WINDOWS\\NOTEPAD.EXE"));
+        m_bRv = CxDir(xT("C:\\WINDOWS\\NOTEPAD.EXE")).bIsExists();
         xTEST_EQ(false, m_bRv);
 
-        m_bRv = CxDir::bIsExists(xT("C:\\pagefile.sys"));
+        m_bRv = CxDir(xT("C:\\pagefile.sys")).bIsExists();
         xTEST_EQ(false, m_bRv);
     }
 
     xTEST_CASE("CxDir::bIsEmpty", cullCaseLoops)
     {
-        m_bRv = CxDir::bIsEmpty(csDirPath, CxConst::xMASK_ALL);
+        m_bRv = CxDir(csDirPath).bIsEmpty(CxConst::xMASK_ALL);
         xTEST_EQ(false, m_bRv);
 
-        m_bRv = CxDir::bIsEmpty(csDirPath2, CxConst::xMASK_ALL);
+        m_bRv = CxDir(csDirPath2).bIsEmpty(CxConst::xMASK_ALL);
         xTEST_EQ(true, m_bRv);
 
-        m_bRv = CxDir::bIsEmpty(sTempDirPath(), CxConst::xMASK_ALL);
+        m_bRv = CxDir(sTempDirPath()).bIsEmpty(CxConst::xMASK_ALL);
         xTEST_EQ(false, m_bRv);
     }
 
@@ -178,7 +178,7 @@ CxTest_CxDir::vUnit(
         #if   xOS_ENV_WIN
             const std::tstring_t sTestData[][2] = {
                 {xT("TEST_STRING_1"), xT("false")},
-                {xT(""),              xT("false")},
+                {xT("vw4g56be56||||\a\n\t///lk;'"), xT("false")},
                 {xT("/"),             xT("false")},
                 {xT("\\"),            xT("false")},
                 {xT("A:\\"),          xT("true")},
@@ -202,7 +202,7 @@ CxTest_CxDir::vUnit(
         #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
-            bool bRes1 = CxDir::bIsRoot(sTestData[i][0]);
+            bool bRes1 = CxDir(sTestData[i][0]).bIsRoot();
             bool bRes2 = CxString::bStrToBool(sTestData[i][1]);
             xTEST_EQ(bRes1, bRes2);
         }
@@ -234,7 +234,7 @@ CxTest_CxDir::vUnit(
 
     xTEST_CASE("CxDir::vCreatePath", cullCaseLoops)
     {
-        CxDir::vCreatePath(csDirPath);
+        CxDir(csDirPath).vCreatePath();
     }
 
     xTEST_CASE("CxDir::vCopy", cullCaseLoops)
@@ -252,18 +252,18 @@ CxTest_CxDir::vUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(sDirPathes); ++ i) {
-            CxDir::vCreatePath(sDirPathes[i]);
+            CxDir(sDirPathes[i]).vCreatePath();
         }
 
-        CxDir::vDeleteForce(csDirDest);
+        CxDir(csDirDest).vDeleteForce();
 
         //-------------------------------------
         // vCopy
-        CxDir::vCopy(csDirSource, csDirDest, true);
-        CxDir::vDelete(csDirDest);
-        CxDir::vCopy(csDirSource, csDirDest, false);
-        CxDir::vDeleteForce(csDirDest);
-        CxDir::vDeleteForce(csDirSource);
+        CxDir(csDirSource).vCopy(csDirDest, true);
+        CxDir(csDirDest).vDelete();
+        CxDir(csDirSource).vCopy(csDirDest, false);
+        CxDir(csDirDest).vDeleteForce();
+        CxDir(csDirSource).vDeleteForce();
     }
 
     xTEST_CASE("CxDir::vMove", cullCaseLoops)
@@ -281,35 +281,35 @@ CxTest_CxDir::vUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(sDirPathes); ++ i) {
-            CxDir::vCreatePath(sDirPathes[i]);
+            CxDir(sDirPathes[i]).vCreatePath();
         }
 
         //-------------------------------------
         //bMove
-        CxDir::vMove(csDirSource, csDirDest, true);
-        CxDir::vDelete(csDirDest);
+        CxDir(csDirSource).vMove(csDirDest, true);
+        CxDir(csDirDest).vDelete();
     }
 
     xTEST_CASE("CxDir::vClearForce", cullCaseLoops)
     {
-        CxDir::vClearForce(csDirPath);
+        CxDir(csDirPath).vClearForce();
     }
 
     xTEST_CASE("CxDir::vDelete", cullCaseLoops)
     {
-        CxDir::vDelete(csDirPath2);
+        CxDir(csDirPath2).vDelete();
     }
 
     xTEST_CASE("CxDir::vTryDelete", cullCaseLoops)
     {
-        CxDir::vCreatePath(csDirPath2);
-        CxDir::vTryDelete(csDirPath2, 10, 5);
+        CxDir(csDirPath2).vCreatePath();
+        CxDir(csDirPath2).vTryDelete(10, 5);
     }
 
     xTEST_CASE("CxDir::vDeleteForce", cullCaseLoops)
     {
-        CxDir::vCreatePath(csDirPath);
-        CxDir::vDeleteForce(csDirPath);
+        CxDir(csDirPath).vCreatePath();
+        CxDir(csDirPath).vDeleteForce();
     }
 }
 //---------------------------------------------------------------------------

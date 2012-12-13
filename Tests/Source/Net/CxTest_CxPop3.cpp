@@ -142,7 +142,7 @@ CxTest_CxPop3::vUnit(
     //-------------------------------------
     //bRetriveRaw
     for (ulong_t i = 1; i <= ulSum; i ++) {
-        CxDir::vCreatePath(csDirPath);
+        CxDir(csDirPath).vCreatePath();
 
         objPop3.vRetriveRaw(i, csDirPath, csFileName + xT("_") + CxString::cast(i) + xT(".eml"));
         /*LOG*/printf("bRetriveRaw %lu\n", i);

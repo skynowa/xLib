@@ -42,11 +42,15 @@ CxFinder::~CxFinder() {
 //--------------------------------------------------------------------------
 const std::tstring_t &
 CxFinder::sRootDirPath() const {
+    xTEST_EQ(false, _m_csRootDirPath.empty());
+
     return _m_csRootDirPath;
 }
 //--------------------------------------------------------------------------
 const std::tstring_t &
 CxFinder::sFilter() const {
+    xTEST_EQ(false, _m_csFilter.empty());
+
     return _m_csFilter;
 }
 //--------------------------------------------------------------------------

@@ -40,7 +40,7 @@ CxTest_CxFinder::vUnit(
             vsDirs.push_back( csRootDirPath + CxConst::xSLASH + xT("CCC") );
 
             xFOREACH_CONST(std::vec_tstring_t, cit, vsDirs) {
-                CxDir::vCreatePath(*cit);
+                CxDir(*cit).vCreatePath();
             }
         }
 

@@ -56,7 +56,7 @@ CxFile::vCreate(
     xTEST_NA(a_cbIsUseBuffering);
 
     // create dir
-    CxDir::vCreatePath( CxPath::sDir(a_csFilePath) );
+    CxDir( CxPath::sDir(a_csFilePath) ).vCreatePath();
 
     // create, open file
     std::FILE *pFile = ::xTFOPEN(a_csFilePath.c_str(), _sOpenMode(a_comMode).c_str());

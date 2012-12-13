@@ -37,7 +37,7 @@ CxVolume::bIsValid(
     xTEST_NA(csVolumePath);
 
 #if   xOS_ENV_WIN
-    bool bRv = CxDir::bIsRoot(a_csVolumePath);
+    bool bRv = CxDir(a_csVolumePath).bIsRoot();
     xCHECK_RET(false == bRv, false);
 #elif xOS_ENV_UNIX
     xCHECK_RET(true                  == a_csVolumePath.empty(), false);
@@ -97,7 +97,7 @@ CxVolume::bIsEmpty(
 {
     xTEST_EQ(false, a_csVolumePath.empty());
 
-    return CxDir::bIsEmpty(a_csVolumePath, CxConst::xMASK_FILES_ALL);
+    return CxDir(a_csVolumePath).bIsEmpty(CxConst::xMASK_FILES_ALL);
 }
 //--------------------------------------------------------------------------
 /* static */
@@ -116,15 +116,15 @@ CxVolume::vSpace(
 
     //--------------------------------------------------
     //if csDirPath parameter is empty, uses the root of the current volume
-    std::tstring_t _sDirPath;
+    std::tstring_t sDirPath;
 
     if (true == a_csDirPath.empty()) {
-        _sDirPath = CxPath::sExeDir();
+        sDirPath = CxPath::sExeDir();
     } else {
-        _sDirPath = a_csDirPath;
+        sDirPath = a_csDirPath;
     }
 
-    bool bRv = CxDir::bIsExists(_sDirPath);
+    bool bRv = CxDir(sDirPath).bIsExists();
     xTEST_EQ(true, bRv);
 
 #if   xOS_ENV_WIN
@@ -132,7 +132,7 @@ CxVolume::vSpace(
     ULARGE_INTEGER ullTotal     = {{0}};
     ULARGE_INTEGER ullFree      = {{0}};
 
-    BOOL blRes = ::GetDiskFreeSpaceEx(_sDirPath.c_str(), &ullAvailable, &ullTotal, &ullFree);
+    BOOL blRes = ::GetDiskFreeSpaceEx(sDirPath.c_str(), &ullAvailable, &ullTotal, &ullFree);
     xTEST_DIFF(FALSE, blRes);
 
     CxUtils::ptrAssignT(a_pullAvailable, ullAvailable.QuadPart);

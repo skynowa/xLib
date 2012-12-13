@@ -50,7 +50,7 @@ CxTest::CxTest() :
 //---------------------------------------------------------------------------
 /* virtual */
 CxTest::~CxTest() /* = 0*/ {
-    CxDir::vDeleteForce( sTempDirPath() );
+    CxDir( sTempDirPath() ).vDeleteForce();
 }
 //---------------------------------------------------------------------------
 void
@@ -120,7 +120,7 @@ CxTest::vCreateTempDir(
     } else {
         _m_sWorkDirPath = CxPath::sExeDir() + CxConst::xSLASH + a_csDirName;
 
-        CxDir::vCreatePath(_m_sWorkDirPath);
+        CxDir(_m_sWorkDirPath).vCreatePath();
     }
 }
 //---------------------------------------------------------------------------

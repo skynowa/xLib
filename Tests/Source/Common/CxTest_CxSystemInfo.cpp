@@ -144,7 +144,7 @@ CxTest_CxSystemInfo::vUnit(
     {
         m_sRv = CxSystemInfo::sUseHomeDir();
         xTEST_EQ(false, m_sRv.empty());
-        xTEST_EQ(true,  CxDir::bIsExists(m_sRv));
+        xTEST_EQ(true,  CxDir(m_sRv).bIsExists());
         #if xTEST_IGNORE
             xTRACEV(xT("\tCxSystemInfo::sUseHomeDir(): %s"), m_sRv.c_str());
         #endif
