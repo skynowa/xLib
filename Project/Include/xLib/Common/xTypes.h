@@ -42,7 +42,7 @@ xNAMESPACE_BEGIN(NxLib)
     #elif xOS_ENV_UNIX
         typedef addrinfo               addrinfo_t;
     #endif
-        ///<  hold host address information
+        ///< hold host address information
 
     // native_handle_t
     #if   xOS_ENV_WIN
@@ -100,4 +100,4 @@ xNAMESPACE_BEGIN(std)
 
 xNAMESPACE_END(std)
 //---------------------------------------------------------------------------
-#endif  //xLib_Common_xTypesH
+#endif  // xLib_Common_xTypesH
