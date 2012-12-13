@@ -30,7 +30,7 @@ CxDir::bIsExists(
     const std::tstring_t &a_csDirPath
 )
 {
-    // n/a
+    xTEST_NA(a_csDirPath);
 
     xCHECK_RET(true == a_csDirPath.empty(), false);
 
@@ -110,7 +110,7 @@ CxDir::bIsRoot(
     const std::tstring_t &a_csDirPath
 )
 {
-    // n/a
+    xTEST_NA(a_csDirPath);
 
 #if   xOS_ENV_WIN
     xCHECK_RET(3 != a_csDirPath.size(), false);
@@ -144,8 +144,6 @@ CxDir::bIsDir(
 /* static */
 std::tstring_t
 CxDir::sCurrent() {
-    // n/a
-
     std::tstring_t sRv;
     std::tstring_t sBuff(xPATH_MAX + 1, 0);
 
@@ -188,8 +186,6 @@ CxDir::vSetCurrent(
 /* static */
 std::tstring_t
 CxDir::sTemp() {
-    // n/a
-
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
@@ -274,10 +270,10 @@ CxDir::vCopy(
     xTEST_EQ(false, a_csDirPathFrom.empty());
     xTEST_EQ(true,  bIsExists(a_csDirPathFrom));
     xTEST_EQ(false, a_csDirPathTo.empty());
-    // a_cbFailIfExists - n/a
+    xTEST_NA(a_cbFailIfExists);
 
     //-------------------------------------
-    // sets attr "normal"
+    // sets attribute "normal"
     bool bRv = bIsExists(a_csDirPathTo);
     if (true == bRv) {
         CxFileAttribute::vSet(a_csDirPathTo, CxFileAttribute::faNormal);
@@ -322,7 +318,7 @@ CxDir::vMove(
     xTEST_EQ(false, a_csDirPathFrom.empty());
     xTEST_EQ(true,  bIsExists(a_csDirPathFrom));
     xTEST_EQ(false, a_csDirPathTo.empty());
-    // a_cbFailIfExists - n/a
+    xTEST_NA(a_cbFailIfExists);
 
     vCopy(a_csDirPathFrom, a_csDirPathTo, a_cbFailIfExists);
     vDeleteForce(a_csDirPathFrom);
@@ -447,12 +443,12 @@ CxDir::vFindFiles(
     const std::tstring_t &a_csDirPath,          ///< directory path
     const std::tstring_t &a_csPattern,          ///< pattern
     const bool           &a_cbIsRecursively,    ///< recursively scan
-    std::vec_tstring_t   *a_pvsFilePathes       ///< output file pathes (must be empty)
+    std::vec_tstring_t   *a_pvsFilePathes       ///< output file paths (must be empty)
 )
 {
     xTEST_EQ(false, a_csDirPath.empty());
     xTEST_EQ(false, a_csPattern.empty());
-    // a_cbIsRecursively - n/a
+    xTEST_NA(a_cbIsRecursively);
     xTEST_PTR(a_pvsFilePathes);
 
     // TODO: CxDir::vFindFiles
@@ -497,7 +493,7 @@ CxDir::vFindFiles(
     }
 
     //-------------------------------------
-    // FIX: files (realy need)
+    // FIX: files (really need)
     HANDLE hFile = ::FindFirstFile(sFilePath.c_str(), &fdData);
     xCHECK_DO(INVALID_HANDLE_VALUE == hFile, return);
 
@@ -562,7 +558,7 @@ CxDir::vFindFiles(
     }
 
     //-------------------------------------
-    // FIX: files (!!!! krivo napisano !!!!)
+    // FIX: files (!!!! bad code !!!!)
     #if xTODO
         if (true != cbIsRecurse) {
             DIR    *pDir     = NULL;
@@ -597,11 +593,11 @@ CxDir::vFindDirs(
     const std::tstring_t &a_csDirPath,          ///< directory path
     const std::tstring_t &a_csPattern,          ///< pattern
     const bool           &a_cbIsRecursively,    ///< recursively scan
-    std::vec_tstring_t   *a_pvsDirPathes        ///< output directory pathes (must be empty)
+    std::vec_tstring_t   *a_pvsDirPathes        ///< output directory paths (must be empty)
 )
 {
     xTEST_EQ(false, a_csDirPath.empty());
-    // a_cbIsRecursively - n/a
+    xTEST_NA(a_cbIsRecursively);
     xTEST_PTR(a_pvsDirPathes);
 
     // TODO: CxDir::vFindDirs
