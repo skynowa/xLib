@@ -295,7 +295,7 @@ CxDebugger::_vLoggingPlain(
     std::tstring_t sFilePath;
 
     if (true == sLogPath().empty()) {
-        sFilePath = CxPath::sSetExt(CxPath::sExe(), xT("debug"));
+        sFilePath = CxPath( CxPath::sExe() ).sSetExt(xT("debug"));
     } else {
         sFilePath = sLogPath();
     }

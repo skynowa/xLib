@@ -31,7 +31,7 @@ CxSystemLog::CxSystemLog() :
     _m_SysLog   (NULL)
 #endif
 {
-    _vInit( CxPath::sFileBaseName(CxPath::sExe()) );
+    _vInit( CxPath( CxPath::sExe() ).sFileBaseName() );
 }
 //---------------------------------------------------------------------------
 CxSystemLog::CxSystemLog(

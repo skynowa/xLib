@@ -56,7 +56,7 @@ CxFile::vCreate(
     xTEST_NA(a_cbIsUseBuffering);
 
     // create dir
-    CxDir( CxPath::sDir(a_csFilePath) ).vPathCreate();
+    CxDir( CxPath(a_csFilePath).sDir() ).vPathCreate();
 
     // create, open file
     std::FILE *pFile = ::xTFOPEN(a_csFilePath.c_str(), _sOpenMode(a_comMode).c_str());
@@ -597,9 +597,11 @@ CxFile::sIsExists(
 
     std::tstring_t sRv;
 
-    std::tstring_t sFileDir  = CxPath::sDir(a_csFilePath);
-    std::tstring_t sFileName = CxPath::sFileBaseName(a_csFilePath);
-    std::tstring_t sFileExt  = CxPath::sExt(a_csFilePath);
+    CxPath ptPath(a_csFilePath);
+
+    std::tstring_t sFileDir  = ptPath.sDir();
+    std::tstring_t sFileName = ptPath.sFileBaseName();
+    std::tstring_t sFileExt  = ptPath.sExt();
 
     xCHECK_DO(false == sFileExt.empty(), sFileExt.insert(0, CxConst::xDOT));
 
@@ -801,7 +803,7 @@ CxFile::vWipe(
         sRndFileName = CxString::cast( CxDateTime().dtCurrent().ullToMilliseconds() );
         std::random_shuffle(sRndFileName.begin(), sRndFileName.end());
 
-        sRndFilePath = CxPath::sDir(a_csFilePath) + CxConst::xSLASH + sRndFileName;
+        sRndFilePath = CxPath(a_csFilePath).sDir() + CxConst::xSLASH + sRndFileName;
 
         vRename(a_csFilePath, sRndFilePath);
     }
@@ -847,7 +849,7 @@ CxFile::vMove(
     xTEST_EQ(false, a_csFilePath.empty());
     xTEST_EQ(false, a_csDirPath.empty());
 
-    vRename(a_csFilePath, CxPath::sSlashAppend(a_csDirPath) + CxPath::sFileName(a_csFilePath));
+    vRename(a_csFilePath, CxPath(a_csDirPath).sSlashAppend() + CxPath(a_csFilePath).sFileName());
 }
 //---------------------------------------------------------------------------
 /* static */

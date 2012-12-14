@@ -57,7 +57,7 @@ CxFileTemp::vCreate(
 
     CxDir(a_csDirPath).vPathCreate();
 
-    _m_sFilePath = CxPath::sSlashAppend(a_csDirPath) + CxPath::sFileName(a_csFilePath) + csFileNameTemplate;
+    _m_sFilePath = CxPath(a_csDirPath).sSlashAppend() + CxPath(a_csFilePath).sFileName() + csFileNameTemplate;
 
 #if   xOS_ENV_WIN
     #if xCOMPILER_MINGW || xCOMPILER_CODEGEAR

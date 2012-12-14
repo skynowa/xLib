@@ -52,7 +52,7 @@ CxFileLog::vSetFilePath(
     xTEST_EQ(false, a_csFilePath.empty());
 
     if (std::tstring_t::npos == a_csFilePath.find(CxConst::xSLASH)) {
-        _m_sFilePath = CxPath::sDir(CxPath::sExe()) + CxConst::xSLASH + a_csFilePath;
+        _m_sFilePath = CxPath(CxPath::sExe()).sDir() + CxConst::xSLASH + a_csFilePath;
     } else {
         _m_sFilePath = a_csFilePath;
     }

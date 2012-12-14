@@ -71,7 +71,7 @@ CxDir::bIsEmpty(
 
 #if   xOS_ENV_WIN
     WIN32_FIND_DATA fdData    = {0};
-    std::tstring_t  _sDirPath = CxPath::sToNative( CxPath::sSlashAppend(sDirPath()) + a_csPattern, false );
+    std::tstring_t  _sDirPath = CxPath( CxPath(sDirPath()).sSlashAppend() + a_csPattern ).sToNative(false );
 
     HANDLE hFile = ::FindFirstFile(_sDirPath.c_str(), &fdData);
     xCHECK_RET(INVALID_HANDLE_VALUE == hFile, true);
@@ -164,7 +164,7 @@ CxDir::vPathCreate() {
 
     //-------------------------------------
     // split csDirPath into parts
-     CxString::vSplit( CxPath::sToNative(sDirPath(), false), CxConst::xSLASH, &vsPathParts );
+     CxString::vSplit( CxPath(sDirPath()).sToNative(false), CxConst::xSLASH, &vsPathParts );
 
     //-------------------------------------
     // create dirs by steps
@@ -213,7 +213,7 @@ CxDir::vCopy(
 
         sFilePathTo.replace(uiPosBegin, uiPosBegin + sDirPath().size(), a_csDirPathTo);
 
-        CxDir( CxPath::sDir(sFilePathTo) ).vPathCreate();
+        CxDir( CxPath(sFilePathTo).sDir() ).vPathCreate();
 
         CxFile::vCopy(*it, sFilePathTo, a_cbFailIfExists);
     }
@@ -348,8 +348,8 @@ CxDir::vFilesFind(
     #endif
 
 #if   xOS_ENV_WIN
-    std::tstring_t  sFilePath     = CxPath::sToNative( CxPath::sSlashAppend(sDirPath()) + a_csPattern, false );
-    std::tstring_t  sFileFullName = CxPath::sFileName(sFilePath);
+    std::tstring_t  sFilePath     = CxPath(CxPath(sDirPath()).sSlashAppend() + a_csPattern).sToNative(false );
+    std::tstring_t  sFileFullName = CxPath(sFilePath).sFileName();
     std::tstring_t  sPart;
     std::tstring_t  sTmpPath;
     WIN32_FIND_DATA fdData        = {0};
@@ -358,7 +358,7 @@ CxDir::vFilesFind(
     // subdirs
     if (true == a_cbIsRecursively) {
         sPart    = CxConst::xMASK_ALL;
-        sTmpPath = CxPath::sSetFileName(sFilePath, sPart);
+        sTmpPath = CxPath(sFilePath).sSetFileName(sPart);
 
         // make search, if dir exists
         fdData.dwFileAttributes = CxFileAttribute::faDirectory;
@@ -372,7 +372,7 @@ CxDir::vFilesFind(
                 xCHECK_DO(CxConst::x2DOT == std::tstring_t(fdData.cFileName),        continue);
 
                 sPart    = fdData.cFileName;
-                sTmpPath = CxPath::sSetFileName(sTmpPath, sPart);
+                sTmpPath = CxPath(sTmpPath).sSetFileName(sPart);
 
                 CxDir(sTmpPath).vFilesFind(sFileFullName, true, a_pvsFilePathes);
             }
@@ -393,7 +393,7 @@ CxDir::vFilesFind(
         xCHECK_DO(fdData.dwFileAttributes & CxFileAttribute::faDirectory, continue);
 
         sPart    = fdData.cFileName;
-        sTmpPath = CxPath::sSetFileName(sFilePath /*sTmpPath*/, sPart);
+        sTmpPath = CxPath(sFilePath /*sTmpPath*/).sSetFileName(sPart);
 
         (*a_pvsFilePathes).push_back(sTmpPath);
     }
@@ -494,7 +494,7 @@ CxDir::vDirsFind(
     #endif
 
 #if   xOS_ENV_WIN
-    std::tstring_t  sRootDirPath = CxPath::sToNative( CxPath::sSlashAppend(sDirPath()) + a_csPattern, false );
+    std::tstring_t  sRootDirPath = CxPath( CxPath(sDirPath()).sSlashAppend() + a_csPattern ).sToNative(false );
     WIN32_FIND_DATA fdData       = {0};
 
     HANDLE hFile = ::FindFirstFile(sRootDirPath.c_str(), &fdData);
@@ -509,7 +509,7 @@ CxDir::vDirsFind(
             xCHECK_DO(CxConst::xDOT  == sFileName, continue);
             xCHECK_DO(CxConst::x2DOT == sFileName, continue);
 
-            std::tstring_t _sDirPath = CxPath::sSlashAppend(sDirPath()) + sFileName;
+            std::tstring_t _sDirPath = CxPath(sDirPath()).sSlashAppend() + sFileName;
 
             (*a_pvsDirPathes).push_back(_sDirPath);
 
@@ -606,7 +606,7 @@ void
 CxDir::vSetCurrent(
     const std::tstring_t &a_csDirPath
 ) {
-    std::tstring_t sDirPath = CxPath::sSlashAppend(a_csDirPath);
+    std::tstring_t sDirPath = CxPath(a_csDirPath).sSlashAppend();
 
 #if   xOS_ENV_WIN
     BOOL blRes = ::SetCurrentDirectory(sDirPath.c_str());

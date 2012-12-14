@@ -104,7 +104,7 @@ CxTest_CxProcess::vUnit(
 
     xTEST_CASE("CxProcess::ulIdByName", cullCaseLoops)
     {
-        const std::tstring_t csProcessName = CxPath::sFileName(CxPath::sExe());
+        const std::tstring_t csProcessName = CxPath( CxPath::sExe() ).sFileName();
 
         CxProcess::id_t ulId = CxProcess::ulIdByName(csProcessName);
         xTEST_DIFF(0UL, static_cast<ulong_t>( ulId ));

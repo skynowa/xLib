@@ -56,7 +56,7 @@ CxVolume::bIsReady(
     xTEST_EQ(false, a_csVolumePath.empty());
 
     bool           bRv        = false;
-    std::tstring_t sVolumePath = CxPath::sSlashAppend(a_csVolumePath);
+    std::tstring_t sVolumePath = CxPath(a_csVolumePath).sSlashAppend();
     std::tstring_t sOldDirPath;
 
 #if   xOS_ENV_WIN
@@ -294,7 +294,7 @@ CxVolume::sLabel(
     CxLastError::vReset();
 
     BOOL blRes = ::GetVolumeInformation(
-                        CxPath::sSlashAppend(a_csVolumePath).c_str(),
+                        CxPath(a_csVolumePath).sSlashAppend().c_str(),
                         &szVolumeName[0],
                         static_cast<DWORD>( xARRAY_SIZE(szVolumeName) ),
                         NULL,
@@ -329,7 +329,7 @@ CxVolume::dtType(
     ExType dtRes = dtUnknown;
 
 #if   xOS_ENV_WIN
-    dtRes = static_cast<ExType>( ::GetDriveType(CxPath::sSlashAppend(a_csVolumePath).c_str()) );
+    dtRes = static_cast<ExType>( ::GetDriveType( CxPath(a_csVolumePath).sSlashAppend().c_str() ) );
     xTEST_NA(dtRes);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
