@@ -27,7 +27,7 @@ CxTest_CxLocalStorage::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    const std::tstring_t csFilePath = CxPath::sSetExt( CxPath::sExe(), xT("ini") );
+    const std::tstring_t csFilePath = CxPath( CxPath::sExe() ).sSetExt(xT("ini") );
 
     const std::tstring_t csKey1     = xT("a");
     const std::tstring_t csValue1   = xT("1");

@@ -30,7 +30,7 @@ CxLocalStorage::CxLocalStorage() :
     xTEST_EQ(false, _m_csFileExt.empty());
     xTEST_EQ(true,  _m_sFilePath.empty());
 
-    vSetPath(CxPath::sSetExt( CxPath::sExe(), _m_csFileExt ));
+    vSetPath(CxPath( CxPath::sExe() ).sSetExt(_m_csFileExt ));
 }
 //-------------------------------------------------------------------------
 CxLocalStorage::CxLocalStorage(
@@ -46,7 +46,7 @@ CxLocalStorage::CxLocalStorage(
     xTEST_EQ(true,  _m_sFilePath.empty());
     xTEST_EQ(false, a_csFilePath.empty());
 
-    vSetPath(CxPath::sSetExt( a_csFilePath, _m_csFileExt ));
+    vSetPath(CxPath(a_csFilePath).sSetExt(_m_csFileExt));
 }
 //-------------------------------------------------------------------------
 /* virtual */
@@ -77,10 +77,10 @@ CxLocalStorage::vSetPath(
     const std::tstring_t &a_csFilePath
 )
 {
-    //_m_sFilePath - n/a
+    // _m_sFilePath - n/a
     xTEST_EQ(false, a_csFilePath.empty());
 
-    CxDir( CxPath::sDir(a_csFilePath) ).vPathCreate();
+    CxDir( CxPath(a_csFilePath).sDir() ).vPathCreate();
 
     _m_sFilePath = a_csFilePath;
 }

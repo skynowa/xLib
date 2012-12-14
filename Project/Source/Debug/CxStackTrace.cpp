@@ -140,10 +140,10 @@ CxStackTrace::vGet(
                 }
             }
 
-            // swap file pathes
+            // swap file paths
             if (true == _m_cbIsWrapFilePathes) {
-                sModulePath = CxPath::sFileName(sModulePath);
-                sFilePath   = CxPath::sFileName(sFilePath);
+                sModulePath = CxPath(sModulePath).sFileName();
+                sFilePath   = CxPath(sFilePath).sFileName();
             }
 
             // disable function params
