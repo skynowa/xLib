@@ -65,7 +65,7 @@ CxBackuper::vExecute(
     CxDir drDest(a_csDestDirPath);
 
     bRv = drDest.bIsExists();
-    xCHECK_DO(false == bRv, drDest.vCreatePath());
+    xCHECK_DO(false == bRv, drDest.vPathCreate());
 
     //-------------------------------------
     // process backup period

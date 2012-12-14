@@ -120,4 +120,4 @@
 #define xNEW_NO_STD_THROW               0
     ///< new with std::notrow
 //---------------------------------------------------------------------------
-#endif  //xLib_Common_xConfigH
+#endif  // xLib_Common_xConfigH

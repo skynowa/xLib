@@ -158,7 +158,7 @@ CxDir::vCreate() {
 }
 //---------------------------------------------------------------------------
 void
-CxDir::vCreatePath() {
+CxDir::vPathCreate() {
     std::vec_tstring_t vsPathParts;
     std::tstring_t     sBuildPath;
 
@@ -201,7 +201,7 @@ CxDir::vCopy(
     std::vec_tstring_t vsFilePathes;
 
     vsFilePathes.clear();
-    CxDir(sDirPath()).vFindFiles(CxConst::xMASK_ALL, true, &vsFilePathes);
+    CxDir(sDirPath()).vFilesFind(CxConst::xMASK_ALL, true, &vsFilePathes);
 
     //--------------------------------------------------
     // copy
@@ -213,7 +213,7 @@ CxDir::vCopy(
 
         sFilePathTo.replace(uiPosBegin, uiPosBegin + sDirPath().size(), a_csDirPathTo);
 
-        CxDir( CxPath::sDir(sFilePathTo) ).vCreatePath();
+        CxDir( CxPath::sDir(sFilePathTo) ).vPathCreate();
 
         CxFile::vCopy(*it, sFilePathTo, a_cbFailIfExists);
     }
@@ -235,7 +235,7 @@ CxDir::vMove(
     CxDir drDir(sDirPath());
 
     drDir.vCopy(a_csDirPathTo, a_cbFailIfExists);
-    drDir.vDeletePath();
+    drDir.vPathDelete();
 }
 //---------------------------------------------------------------------------
 void
@@ -281,7 +281,7 @@ CxDir::vTryDelete(
 }
 //---------------------------------------------------------------------------
 void
-CxDir::vClearPath() {
+CxDir::vPathClear() {
     xTEST_EQ(true, bIsExists());
 
     //-------------------------------------
@@ -295,7 +295,7 @@ CxDir::vClearPath() {
         std::vec_tstring_t vsFilePathes;
 
         vsFilePathes.clear();
-        vFindFiles(CxConst::xMASK_ALL, true, &vsFilePathes);
+        vFilesFind(CxConst::xMASK_ALL, true, &vsFilePathes);
 
         xFOREACH_R(std::vec_tstring_t, it, vsFilePathes) {
             CxFile::vDelete(*it);
@@ -308,7 +308,7 @@ CxDir::vClearPath() {
         std::vec_tstring_t vsDirPathes;
 
         vsDirPathes.clear();
-        vFindDirs(CxConst::xMASK_ALL, true, &vsDirPathes);
+        vDirsFind(CxConst::xMASK_ALL, true, &vsDirPathes);
 
         xFOREACH_R(std::vec_tstring_t, it, vsDirPathes) {
             CxDir(*it).vDelete();
@@ -319,20 +319,20 @@ CxDir::vClearPath() {
 }
 //---------------------------------------------------------------------------
 void
-CxDir::vDeletePath() {
+CxDir::vPathDelete() {
     bool bRv = bIsExists();
     xCHECK_DO(false == bRv, return);
 
-    vClearPath();
+    vPathClear();
     vDelete();
 
     xTEST_EQ(false, bIsExists());
 }
 //--------------------------------------------------------------------------
-// TODO: vFindFiles
+// TODO: vFilesFind
 // http://www.metalshell.com/source_code/86/List_Contents_of_a_Directory.html
 void
-CxDir::vFindFiles(
+CxDir::vFilesFind(
     const std::tstring_t &a_csPattern,          ///< pattern
     const bool           &a_cbIsRecursively,    ///< recursively scan
     std::vec_tstring_t   *a_pvsFilePathes       ///< output file paths (must be empty)
@@ -342,7 +342,7 @@ CxDir::vFindFiles(
     xTEST_NA(a_cbIsRecursively);
     xTEST_PTR(a_pvsFilePathes);
 
-    // TODO: CxDir::vFindFiles
+    // TODO: CxDir::vFilesFind
     #if xTODO
         (*pvsFilePathes).clear();
     #endif
@@ -374,7 +374,7 @@ CxDir::vFindFiles(
                 sPart    = fdData.cFileName;
                 sTmpPath = CxPath::sSetFileName(sTmpPath, sPart);
 
-                CxDir(sTmpPath).vFindFiles(sFileFullName, true, a_pvsFilePathes);
+                CxDir(sTmpPath).vFilesFind(sFileFullName, true, a_pvsFilePathes);
             }
             while (FALSE != ::FindNextFile(hFile, &fdData));
 
@@ -422,7 +422,7 @@ CxDir::vFindFiles(
 
                 // is search in subdirs ?
                 if (true == a_cbIsRecursively) {
-                    CxDir(_sDirPath).vFindFiles(a_csPattern, a_cbIsRecursively, a_pvsFilePathes); // recursion
+                    CxDir(_sDirPath).vFilesFind(a_csPattern, a_cbIsRecursively, a_pvsFilePathes); // recursion
                 }
             }
             // TODO: files
@@ -479,7 +479,7 @@ CxDir::vFindFiles(
 }
 //--------------------------------------------------------------------------
 void
-CxDir::vFindDirs(
+CxDir::vDirsFind(
     const std::tstring_t &a_csPattern,          ///< pattern
     const bool           &a_cbIsRecursively,    ///< recursively scan
     std::vec_tstring_t   *a_pvsDirPathes        ///< output directory paths (must be empty)
@@ -488,7 +488,7 @@ CxDir::vFindDirs(
     xTEST_NA(a_cbIsRecursively);
     xTEST_PTR(a_pvsDirPathes);
 
-    // TODO: CxDir::vFindDirs
+    // TODO: CxDir::vDirsFind
     #if xTODO
         (*a_pvsDirPathes).clear();
     #endif
@@ -515,7 +515,7 @@ CxDir::vFindDirs(
 
             // is search in subdirs ?
             if (true == a_cbIsRecursively) {
-                CxDir(_sDirPath).vFindDirs(a_csPattern, a_cbIsRecursively, a_pvsDirPathes);  // recursion
+                CxDir(_sDirPath).vDirsFind(a_csPattern, a_cbIsRecursively, a_pvsDirPathes);  // recursion
             }
         }
         // files, etc
@@ -557,7 +557,7 @@ CxDir::vFindDirs(
 
             // is search in subdirs ?
             if (true == a_cbIsRecursively) {
-                CxDir(_sDirPath).vFindDirs(a_csPattern, a_cbIsRecursively, a_pvsDirPathes);  // recursion
+                CxDir(_sDirPath).vDirsFind(a_csPattern, a_cbIsRecursively, a_pvsDirPathes);  // recursion
             }
         }
         // files, etc

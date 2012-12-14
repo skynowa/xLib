@@ -37,23 +37,23 @@
 //--------------------------------------------------
 // xDECL, xDECL_TEMPL
 #if xOS_ENV_WIN && xDLL
-    // TODO: xAPI_EXPORTS
 	#if xAPI_EXPORTS
 		#define xDECL                   __declspec(dllexport)
+            // export DLL information
 		#define xDECL_TEMPL
-
-        // #pragma warning (disable : 4018)
+            // export DLL information
 	#else
 		#define xDECL                   __declspec(dllimport)
+            ///< import DLL information
 		#define xDECL_TEMPL             extern
-
-        // #pragma warning (disable : 4018)
-	#endif // xLib_EXPORTS
+            ///< import DLL information
+	#endif
 #else
 	#define xDECL
+        // export, import DLL information
 	#define xDECL_TEMPL
+        // export, import DLL information
 #endif
-    ///< exporting from a DLL
 
 //--------------------------------------------------
 // xFORCE_INLINE

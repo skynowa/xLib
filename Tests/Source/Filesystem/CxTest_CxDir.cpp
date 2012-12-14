@@ -46,7 +46,7 @@ CxTest_CxDir::vUnit(
 #endif
 
 
-    xTEST_CASE("CxDir::vFindDirs", cullCaseLoops)
+    xTEST_CASE("CxDir::vDirsFind", cullCaseLoops)
     {
         //-------------------------------------
         //prepare for csTempScanDirPath (create dirs)
@@ -59,13 +59,13 @@ CxTest_CxDir::vUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(sDirPathes); ++ i) {
-            CxDir(sDirPathes[i]).vCreatePath();
+            CxDir(sDirPathes[i]).vPathCreate();
         }
 
         {
             m_vsRv.clear();
 
-            CxDir(csTempScanDirPath).vFindDirs(CxConst::xMASK_ALL, false, &m_vsRv);
+            CxDir(csTempScanDirPath).vDirsFind(CxConst::xMASK_ALL, false, &m_vsRv);
             // TODO: CxString::vStdVectorPrintT(m_vsRv);
 
             xTEST_EQ((size_t)2, m_vsRv.size());
@@ -73,14 +73,14 @@ CxTest_CxDir::vUnit(
 
         {
             m_vsRv.clear();
-            CxDir(csTempScanDirPath).vFindDirs(CxConst::xMASK_ALL, true, &m_vsRv);
+            CxDir(csTempScanDirPath).vDirsFind(CxConst::xMASK_ALL, true, &m_vsRv);
             //CxString::vStdVectorPrintT(m_vsRv);
 
             xTEST_EQ(xARRAY_SIZE(sDirPathes), m_vsRv.size());
         }
     }
 
-    xTEST_CASE("CxDir::vFindFiles", cullCaseLoops)
+    xTEST_CASE("CxDir::vFilesFind", cullCaseLoops)
     {
         //-------------------------------------
         // prepare for csTempScanDirPath (create files)
@@ -102,7 +102,7 @@ CxTest_CxDir::vUnit(
 
         {
             m_vsRv.clear();
-            CxDir(csTempScanDirPath).vFindFiles(CxConst::xMASK_ALL, false, &m_vsRv);
+            CxDir(csTempScanDirPath).vFilesFind(CxConst::xMASK_ALL, false, &m_vsRv);
             //CxString::vStdVectorPrintT(m_vsRv);
 
             xTEST_EQ((size_t)2, m_vsRv.size());
@@ -110,7 +110,7 @@ CxTest_CxDir::vUnit(
 
         {
             m_vsRv.clear();
-            CxDir(csTempScanDirPath).vFindFiles(CxConst::xMASK_ALL, true, &m_vsRv);
+            CxDir(csTempScanDirPath).vFilesFind(CxConst::xMASK_ALL, true, &m_vsRv);
             //CxString::vStdVectorPrintT(m_vsRv);
 
             xTEST_EQ(xARRAY_SIZE(g_sFilePathes), m_vsRv.size());
@@ -123,8 +123,8 @@ CxTest_CxDir::vUnit(
     *****************************************************************************/
 
     {
-        CxDir(csRootTestDirPath).vDeletePath();
-        CxDir(csDirPath).vCreatePath();
+        CxDir(csRootTestDirPath).vPathDelete();
+        CxDir(csDirPath).vPathCreate();
     }
 
     /****************************************************************************
@@ -232,9 +232,9 @@ CxTest_CxDir::vUnit(
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("CxDir::vCreatePath", cullCaseLoops)
+    xTEST_CASE("CxDir::vPathCreate", cullCaseLoops)
     {
-        CxDir(csDirPath).vCreatePath();
+        CxDir(csDirPath).vPathCreate();
     }
 
     xTEST_CASE("CxDir::vCopy", cullCaseLoops)
@@ -252,18 +252,18 @@ CxTest_CxDir::vUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(sDirPathes); ++ i) {
-            CxDir(sDirPathes[i]).vCreatePath();
+            CxDir(sDirPathes[i]).vPathCreate();
         }
 
-        CxDir(csDirDest).vDeletePath();
+        CxDir(csDirDest).vPathDelete();
 
         //-------------------------------------
         // vCopy
         CxDir(csDirSource).vCopy(csDirDest, true);
         CxDir(csDirDest).vDelete();
         CxDir(csDirSource).vCopy(csDirDest, false);
-        CxDir(csDirDest).vDeletePath();
-        CxDir(csDirSource).vDeletePath();
+        CxDir(csDirDest).vPathDelete();
+        CxDir(csDirSource).vPathDelete();
     }
 
     xTEST_CASE("CxDir::vMove", cullCaseLoops)
@@ -281,7 +281,7 @@ CxTest_CxDir::vUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(sDirPathes); ++ i) {
-            CxDir(sDirPathes[i]).vCreatePath();
+            CxDir(sDirPathes[i]).vPathCreate();
         }
 
         //-------------------------------------
@@ -290,9 +290,9 @@ CxTest_CxDir::vUnit(
         CxDir(csDirDest).vDelete();
     }
 
-    xTEST_CASE("CxDir::vClearPath", cullCaseLoops)
+    xTEST_CASE("CxDir::vPathClear", cullCaseLoops)
     {
-        CxDir(csDirPath).vClearPath();
+        CxDir(csDirPath).vPathClear();
     }
 
     xTEST_CASE("CxDir::vDelete", cullCaseLoops)
@@ -302,14 +302,14 @@ CxTest_CxDir::vUnit(
 
     xTEST_CASE("CxDir::vTryDelete", cullCaseLoops)
     {
-        CxDir(csDirPath2).vCreatePath();
+        CxDir(csDirPath2).vPathCreate();
         CxDir(csDirPath2).vTryDelete(10, 5);
     }
 
-    xTEST_CASE("CxDir::vDeletePath", cullCaseLoops)
+    xTEST_CASE("CxDir::vPathDelete", cullCaseLoops)
     {
-        CxDir(csDirPath).vCreatePath();
-        CxDir(csDirPath).vDeletePath();
+        CxDir(csDirPath).vPathCreate();
+        CxDir(csDirPath).vPathDelete();
     }
 }
 //---------------------------------------------------------------------------
