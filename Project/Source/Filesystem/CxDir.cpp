@@ -235,7 +235,7 @@ CxDir::vMove(
     CxDir drDir(sDirPath());
 
     drDir.vCopy(a_csDirPathTo, a_cbFailIfExists);
-    drDir.vDeleteForce();
+    drDir.vDeletePath();
 }
 //---------------------------------------------------------------------------
 void
@@ -281,7 +281,7 @@ CxDir::vTryDelete(
 }
 //---------------------------------------------------------------------------
 void
-CxDir::vClearForce() {
+CxDir::vClearPath() {
     xTEST_EQ(true, bIsExists());
 
     //-------------------------------------
@@ -319,11 +319,11 @@ CxDir::vClearForce() {
 }
 //---------------------------------------------------------------------------
 void
-CxDir::vDeleteForce() {
+CxDir::vDeletePath() {
     bool bRv = bIsExists();
     xCHECK_DO(false == bRv, return);
 
-    vClearForce();
+    vClearPath();
     vDelete();
 
     xTEST_EQ(false, bIsExists());

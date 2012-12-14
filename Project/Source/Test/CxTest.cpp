@@ -50,7 +50,7 @@ CxTest::CxTest() :
 //---------------------------------------------------------------------------
 /* virtual */
 CxTest::~CxTest() /* = 0*/ {
-    CxDir( sTempDirPath() ).vDeleteForce();
+    CxDir( sTempDirPath() ).vDeletePath();
 }
 //---------------------------------------------------------------------------
 void
