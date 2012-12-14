@@ -10,30 +10,25 @@
 #if   xOS_ENV_WIN
     #if !xLIB && xIS_AUTO_LINKING
         #if xBUILD_RELEASE
-            //release
             #if xUNICODE
                 #pragma comment(lib, "xLibW_Release.lib")
-                //#pragma message("  --- xLib: unicode, release ---")
             #else
                 #pragma comment(lib, "xLibA_Release.lib")
-                //#pragma message("  --- xLib: ansi, release ---")
             #endif
         #else
-            //debug
             #if xUNICODE
                 #pragma comment(lib, "xLibW_Debug.lib")
-                //#pragma message("  --- xLib: unicode, debug ---")
             #else
                 #pragma comment(lib, "xLibA_Debug.lib")
-                //#pragma message("  --- xLib: ansi, debug ---")
             #endif
         #endif
+
     #endif
 #elif xOS_ENV_UNIX
-    // n/a
+    xNA;
 #endif
 //---------------------------------------------------------------------------
-#endif //xLib_Common_xLinkingH
+#endif // xLib_Common_xLinkingH
 
 
 #if xTODO

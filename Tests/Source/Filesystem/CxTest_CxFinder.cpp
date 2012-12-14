@@ -40,7 +40,7 @@ CxTest_CxFinder::vUnit(
             vsDirs.push_back( csRootDirPath + CxConst::xSLASH + xT("CCC") );
 
             xFOREACH_CONST(std::vec_tstring_t, cit, vsDirs) {
-                CxDir(*cit).vCreatePath();
+                CxDir(*cit).vPathCreate();
             }
         }
 
@@ -85,17 +85,13 @@ CxTest_CxFinder::vUnit(
             const std::tstring_t csFilter = adtData[i].sFilter;
             CxFinder             fnFinder(csRootDirPath, csFilter);
 
-            m_bRv = fnFinder.bMoveFirst();
+            m_bRv = fnFinder.bMoveNext();
             if (0 == adtData[i].uiEntriesNum) {
                 xTEST_EQ(false, m_bRv);
             } else {
                 xTEST_EQ(true, m_bRv);
 
-                if (CxConst::xDOT  != fnFinder.sEntryName() &&
-                    CxConst::x2DOT != fnFinder.sEntryName())
-                {
-                    vsEntries.push_back(fnFinder.sEntryName());
-                }
+                vsEntries.push_back(fnFinder.sEntryName());
 
                 for ( ; fnFinder.bMoveNext(); ) {
                 #if   xOS_ENV_WIN
@@ -105,11 +101,14 @@ CxTest_CxFinder::vUnit(
                 #endif
 
                     {
+                        xCHECK_DO(CxConst::xDOT  == fnFinder.sEntryName(), continue);
+                        xCHECK_DO(CxConst::x2DOT == fnFinder.sEntryName(), continue);
+
                         // CxTracer() << xTRACE_VAR(fnFinder.sEntryName()) << " " << xTRACE_VAR(fnFinder.sFilter());
                         std::tstring_t sDirPath = fnFinder.sRootDirPath() + CxConst::xSLASH + fnFinder.sEntryName();
 
-                        xCHECK_DO(CxConst::xDOT  == fnFinder.sEntryName(), continue);
-                        xCHECK_DO(CxConst::x2DOT == fnFinder.sEntryName(), continue);
+                        //xCHECK_DO(CxConst::xDOT  == fnFinder.sEntryName(), continue);
+                        //xCHECK_DO(CxConst::x2DOT == fnFinder.sEntryName(), continue);
 
                         vsEntries.push_back(sDirPath);
                     }

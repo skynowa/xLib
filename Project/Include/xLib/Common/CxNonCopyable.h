@@ -20,7 +20,7 @@ class CxNonCopyable
                  CxNonCopyable() { ; }
             ///< constructor
         virtual ~CxNonCopyable() { ; }
-            ///< dectructor
+            ///< destructor
 
     private:
                  CxNonCopyable(const CxNonCopyable &);

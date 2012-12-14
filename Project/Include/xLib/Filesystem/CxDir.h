@@ -35,7 +35,7 @@ class CxDir :
             ///< is dir
         void                   vCreate    ();
             ///< create
-        void                   vCreatePath();
+        void                   vPathCreate();
             ///< creation of all directories that not exists in path
         void                   vCopy      (const std::tstring_t &csDirPathTo, const bool &cbFailIfExists);
             ///< copy
@@ -46,15 +46,15 @@ class CxDir :
             ///< deletion dir which empty
         void                   vTryDelete (const size_t &cuiAttempts, const ulong_t &culTimeoutMsec);
             ///< try deleting, max 100 attempts
-        void                   vClearPath ();
+        void                   vPathClear ();
             ///< deletion all content of dir
-        void                   vDeletePath();
+        void                   vPathDelete();
             ///< deletion dir find all content of it
 
-        void                   vFindFiles (const std::tstring_t &csPattern,
+        void                   vFilesFind (const std::tstring_t &csPattern,
                                            const bool &cbIsRecursively, std::vec_tstring_t *pvsFilePathes);
             ///< search files
-        void                   vFindDirs  (const std::tstring_t &csPattern,
+        void                   vDirsFind  (const std::tstring_t &csPattern,
                                            const bool &cbIsRecursively, std::vec_tstring_t *pvsDirPathes);
             ///< search subdirectories
 

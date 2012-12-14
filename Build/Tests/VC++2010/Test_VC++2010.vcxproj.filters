@@ -737,6 +737,12 @@
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxAtomicLongInt.h">
       <Filter>Tests\Sync</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Tests\Include\Test\Filesystem\CxTest_CxFinder.h">
+      <Filter>Tests\Filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Filesystem\CxFinder.h">
+      <Filter>xLib\Filesystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Project\Include\xLib\Common\CxArray.inl">
@@ -1292,6 +1298,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Tests\Source\Test.cpp">
       <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Tests\Source\Filesystem\CxTest_CxFinder.cpp">
+      <Filter>Tests\Filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Project\Source\Filesystem\CxFinder.cpp">
+      <Filter>xLib\Filesystem</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

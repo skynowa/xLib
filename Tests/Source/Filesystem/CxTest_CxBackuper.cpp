@@ -51,7 +51,7 @@ CxTest_CxBackuper::vUnit(
             xCATCH_ALL;
         }
 
-        CxDir(csBackupDir).vDeletePath();
+        CxDir(csBackupDir).vPathDelete();
     }
 }
 //---------------------------------------------------------------------------
