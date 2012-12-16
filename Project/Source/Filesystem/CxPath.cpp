@@ -411,8 +411,8 @@ CxPath::bIsNameValid(
     // However, it is acceptable to specify a period
     // as the first character of a name. For example, ".temp".
     {
-        const tchar_t cchBegin = *a_csFileName.cbegin();
-        const tchar_t cchEnd   = *(a_csFileName.cend() - 1);
+        const tchar_t cchBegin = *a_csFileName.begin();
+        const tchar_t cchEnd   = *(a_csFileName.end() - 1);
 
         // space
         bRv = (CxConst::xSPACE.at(0) == cchBegin);

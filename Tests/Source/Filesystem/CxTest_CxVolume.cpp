@@ -23,21 +23,51 @@ CxTest_CxVolume::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
+    xTEST_CASE("CxVolume::dtType", cullCaseLoops)
+    {
+        #if   xOS_ENV_WIN
+            const std::tstring_t csVolumePath = xT("C:");
+        #elif xOS_ENV_UNIX
+            const std::tstring_t csVolumePath = xT("/");
+        #endif
+
+        CxVolume::ExType dtRes = CxVolume(csVolumePath).dtType();
+        xUNUSED(dtRes);
+        // CxTracer() << xTRACE_VAR(dtRes);
+        // TEST: xTEST_EQ(CxVolume::dtFixed, dtRes);
+    }
+
+    xTEST_CASE("CxVolume::sLabel", cullCaseLoops)
+    {
+        std::vec_tstring_t vsVolumePaths;
+
+        CxVolume::vPaths(&vsVolumePaths);
+
+        xFOREACH(std::vec_tstring_t, it, vsVolumePaths) {
+            m_sRv = CxVolume(*it).sLabel();
+            xTEST_NA(m_sRv);
+
+            #if xTEST_IGNORE
+                std::tcout << m_sRv << std::endl;
+            #endif
+        }
+    }
+
     xTEST_CASE("CxVolume::bIsValid", cullCaseLoops)
     {
-        //true
+        // true
         {
             std::vec_tstring_t vsData;
 
             CxVolume::vPaths(&vsData);
 
             xFOREACH(std::vec_tstring_t, it, vsData) {
-                m_bRv = CxVolume::bIsValid(*it);
+                m_bRv = CxVolume(*it).bIsValid();
                 xTEST_EQ(true, m_bRv);
             }
         }
 
-        //false
+        // false
         {
             const std::tstring_t csData[] = {
                 #if   xOS_ENV_WIN
@@ -56,7 +86,7 @@ CxTest_CxVolume::vUnit(
             };
 
             for (size_t i = 0; i < xARRAY_SIZE(csData); ++ i) {
-                m_bRv = CxVolume::bIsValid(csData[i]);
+                m_bRv = CxVolume(csData[i]).bIsValid();
                 xTEST_EQ(false, m_bRv);
             }
         }
@@ -64,7 +94,7 @@ CxTest_CxVolume::vUnit(
 
     xTEST_CASE("CxVolume::bIsReady", cullCaseLoops)
     {
-        //true
+        // true
         {
             #if   xOS_ENV_WIN
                 const std::tstring_t  g_csVolumePathWithSlash     = xT("C:\\");
@@ -74,14 +104,14 @@ CxTest_CxVolume::vUnit(
                 const std::tstring_t  g_csVolumeePathWithoutSlash = xT("/");
             #endif
 
-            m_bRv = CxVolume::bIsReady(g_csVolumePathWithSlash);
+            m_bRv = CxVolume(g_csVolumePathWithSlash).bIsReady();
             xTEST_EQ(true, m_bRv);
 
-            m_bRv = CxVolume::bIsReady(g_csVolumeePathWithoutSlash);
+            m_bRv = CxVolume(g_csVolumeePathWithoutSlash).bIsReady();
             xTEST_EQ(true, m_bRv);
         }
 
-        //false
+        // false
         {
             #if   xOS_ENV_WIN
                 const std::tstring_t  g_csVolumePathWithSlash     = xT("B:\\");
@@ -91,10 +121,10 @@ CxTest_CxVolume::vUnit(
                 const std::tstring_t  g_csVolumeePathWithoutSlash = xT("/mnqwioe54oq389cp3qm49");
             #endif
 
-            m_bRv = CxVolume::bIsReady(g_csVolumePathWithSlash);
+            m_bRv = CxVolume(g_csVolumePathWithSlash).bIsReady();
             xTEST_EQ(false, m_bRv);
 
-            m_bRv = CxVolume::bIsReady(g_csVolumeePathWithoutSlash);
+            m_bRv = CxVolume(g_csVolumeePathWithoutSlash).bIsReady();
             xTEST_EQ(false, m_bRv);
         }
     }
@@ -113,10 +143,10 @@ CxTest_CxVolume::vUnit(
                     const std::tstring_t  g_csVolumeePathWithoutSlash = xT("/home/mnqwioe54oq389cp3qm49");
                 #endif
 
-                m_bRv = CxVolume::bIsEmpty(g_csVolumePathWithSlash);
+                m_bRv = CxVolume(g_csVolumePathWithSlash).bIsEmpty();
                 xTEST_EQ(true, m_bRv);
 
-                m_bRv = CxVolume::bIsEmpty(g_csVolumeePathWithoutSlash);
+                m_bRv = CxVolume(g_csVolumeePathWithoutSlash).bIsEmpty();
                 xTEST_EQ(true, m_bRv);
             #endif
         }
@@ -132,16 +162,32 @@ CxTest_CxVolume::vUnit(
             #endif
 
             #if xTEMP_DISABLED
-                m_bRv = CxVolume::bIsEmpty(g_csVolumePathWithSlash);
+                m_bRv = CxVolume(g_csVolumePathWithSlash).bIsEmpty();
                 xTEST_EQ(false, m_bRv);
 
-                m_bRv = CxVolume::bIsEmpty(g_csVolumeePathWithoutSlash);
+                m_bRv = CxVolume(g_csVolumeePathWithoutSlash).bIsEmpty();
                 xTEST_EQ(false, m_bRv);
             #endif
         }
     }
 
-    xTEST_CASE("CxVolume::vGetSpace", cullCaseLoops)
+    xTEST_CASE("CxVolume::vMount vUnMount", cullCaseLoops)
+    {
+    #if xTEST_IGNORE
+        #if   xOS_ENV_WIN
+            const std::tstring_t csSourcePath = xT("\\\\KSF\\Files\\INSTALL");
+            const std::tstring_t csDestPath   = xT("T:");
+        #elif xOS_ENV_UNIX
+            const std::tstring_t csSourcePath = xT("~");
+            const std::tstring_t csDestPath   = xT("~\test_volume");
+        #endif
+
+        CxVolume(csSourcePath).vMount(csDestPath);
+        CxVolume(csDestPath).vUnMount(true);
+    #endif
+    }
+
+    xTEST_CASE("CxVolume::vSpace", cullCaseLoops)
     {
         std::vec_tstring_t vsData;
 
@@ -152,7 +198,7 @@ CxTest_CxVolume::vUnit(
             ulonglong_t ullTotal     = 0ULL;
             ulonglong_t ullFree      = 0ULL;
 
-            xCHECK_DO(false == CxVolume::bIsReady(*it), continue);
+            xCHECK_DO(false == CxVolume(*it).bIsReady(), continue);
 
             CxVolume::vSpace(*it, &ullAvailable, &ullTotal, &ullFree);
             xTEST_LESS_EQ(0ULL, ullAvailable);
@@ -165,7 +211,7 @@ CxTest_CxVolume::vUnit(
             ulonglong_t ullTotal     = 0ULL;
             ulonglong_t ullFree      = 0ULL;
 
-            xCHECK_DO(false == CxVolume::bIsReady(*it), continue);
+            xCHECK_DO(false == CxVolume(*it).bIsReady(), continue);
 
             CxVolume::vSpace(*it, NULL, NULL, NULL);
             xTEST_LESS_EQ(0ULL, ullAvailable);
@@ -178,7 +224,7 @@ CxTest_CxVolume::vUnit(
             ulonglong_t ullTotal     = 0ULL;
             ulonglong_t ullFree      = 0ULL;
 
-            xCHECK_DO(false == CxVolume::bIsReady(*it), continue);
+            xCHECK_DO(false == CxVolume(*it).bIsReady(), continue);
 
             CxVolume::vSpace(*it, &ullAvailable, &ullTotal, &ullFree);
             xTEST_LESS_EQ(0ULL, ullAvailable);
@@ -206,57 +252,12 @@ CxTest_CxVolume::vUnit(
         }
     }
 
-    xTEST_CASE("CxVolume::vMount vUnMount", cullCaseLoops)
-    {
-    #if xTEST_IGNORE
-        #if   xOS_ENV_WIN
-            const std::tstring_t csSourcePath = xT("\\\\KSF\\Files\\INSTALL");
-            const std::tstring_t csDestPath   = xT("T:");
-        #elif xOS_ENV_UNIX
-            const std::tstring_t csSourcePath = xT("~");
-            const std::tstring_t csDestPath   = xT("~\test_volume");
-        #endif
-
-        CxVolume::vMount(csSourcePath, csDestPath);
-        CxVolume::vUnMount(csDestPath, true);
-    #endif
-    }
-
-    xTEST_CASE("CxVolume::vGetPaths", cullCaseLoops)
+    xTEST_CASE("CxVolume::vPaths", cullCaseLoops)
     {
         std::vec_tstring_t vsVolumePaths;
 
         CxVolume::vPaths(&vsVolumePaths);
         xTEST_EQ(false, vsVolumePaths.empty());
-    }
-
-    xTEST_CASE("CxVolume::sGetLabel", cullCaseLoops)
-    {
-        std::vec_tstring_t vsVolumePaths;
-
-        CxVolume::vPaths(&vsVolumePaths);
-
-        xFOREACH(std::vec_tstring_t, it, vsVolumePaths) {
-            m_sRv = CxVolume::sLabel(*it);
-            // n/a
-            #if xTEST_IGNORE
-                std::tcout << m_sRv << std::endl;
-            #endif
-        }
-    }
-
-    xTEST_CASE("CxVolume::dtGetType", cullCaseLoops)
-    {
-        #if   xOS_ENV_WIN
-            const std::tstring_t csVolumePath = xT("C:");
-        #elif xOS_ENV_UNIX
-            const std::tstring_t csVolumePath = xT("/");
-        #endif
-
-        CxVolume::ExType dtRes = CxVolume::dtType(csVolumePath);
-        xUNUSED(dtRes);
-        // CxTracer() << xTRACE_VAR(dtRes);
-        // TODO: xTEST_EQ(CxVolume::dtFixed, dtRes);
     }
 }
 //---------------------------------------------------------------------------

@@ -16,25 +16,8 @@ class CxVolume :
     /// volume
 {
     public:
-        static bool           bIsValid (const std::tstring_t &csVolumePath);
-            ///< is valid path
-        static bool           bIsReady (const std::tstring_t &csVolumePath);
-            ///< is ready
-        static bool           bIsEmpty (const std::tstring_t &csVolumePath);
-            ///< is empty
-        static void           vSpace   (const std::tstring_t &csDirPath, ulonglong_t *pullAvailable, ulonglong_t *pullTotal, ulonglong_t *pullFree);
-            ///< get free space
-        static void           vMount   (const std::tstring_t &csSourcePath, const std::tstring_t &csDestPath);
-            ///< mount
-        static void           vUnMount (const std::tstring_t &csSourcePath, const bool &cbIsForce);
-            ///< unmount
-        static void           vPaths   (std::vec_tstring_t *pvsVolumePaths);
-            ///< get paths
-        static std::tstring_t sLabel   (const std::tstring_t &csVolumePath);
-            ///< get label
-
         enum ExType
-            /// filesystem type
+            /// file system type
         {
             #if   xOS_ENV_WIN
                 dtUnknown   = DRIVE_UNKNOWN,
@@ -56,15 +39,41 @@ class CxVolume :
             #endif
         };
 
-        static ExType         dtType   (const std::tstring_t &csVolumePath);
+        explicit               CxVolume(const std::tstring_t &csVolumePath);
+            ///< constructor
+        virtual               ~CxVolume();
+            ///< destructor
+
+        const std::tstring_t & sVolumePath() const;
+            ///< volume path
+        ExType                 dtType  () const;
+            ///< drive type
+        std::tstring_t         sLabel  () const;
+            ///< get label
+        bool                   bIsValid() const;
+            ///< is valid path
+        bool                   bIsReady() const;
+            ///< is ready
+        bool                   bIsEmpty() const;
+            ///< is empty
+        void                   vMount  (const std::tstring_t &csDestPath) const;
+            ///< mount
+        void                   vUnMount(const bool &cbIsForce) const;
+            ///< unmount
+
+        // static
+        static void            vSpace  (const std::tstring_t &csDirPath,
+                                        ulonglong_t *pullAvailable,
+                                        ulonglong_t *pullTotal,
+                                        ulonglong_t *pullFree);
+            ///< get free space
+        static void            vPaths  (std::vec_tstring_t *pvsVolumePaths);
+            ///< get paths
 
     private:
-                              CxVolume ();
-            ///< constructor
-        virtual              ~CxVolume ();
-            ///< destructor
+        const std::tstring_t   _m_csVolumePath;  ///< volume path
 };
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif //xLib_Filesystem_CxVolumeH
+#endif // xLib_Filesystem_CxVolumeH
