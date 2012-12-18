@@ -18,27 +18,28 @@ class CxFinder :
     ///< file system finder
 {
     public:
-        explicit                     CxFinder    (const std::tstring_t &a_csRootDirPath, const std::tstring_t &csFileFilter);
+        explicit                     CxFinder      (const std::tstring_t &csRootDirPath, 
+                                                    const std::tstring_t &csFilterByShell);
             ///< constructor
-        virtual                     ~CxFinder    ();
+        virtual                     ~CxFinder      ();
             ///< destructor
 
-        const std::tstring_t &       sRootDirPath() const;
+        const std::tstring_t &       sRootDirPath  () const;
             ///< root directory path
-        const std::tstring_t &       sFilter     () const;
+        const std::tstring_t &       sFilterByShell() const;
             ///< shell wild card filter
-        std::tstring_t               sEntryName  () const;
+        std::tstring_t               sEntryName    () const;
             ///< entry name
-        CxFileAttribute::ExAttribute faAttributes() const;
+        CxFileAttribute::ExAttribute faAttributes  () const;
             ///< file attributes
 
-        bool                         bIsValid    () const;
+        bool                         bIsValid      () const;
             ///< is valid handle
-        bool                         bMoveFirst ();
+        bool                         bMoveFirst    ();
             ///< move first entry
-        bool                         bMoveNext   ();
+        bool                         bMoveNext     ();
             ///< move next entry
-        void                         vClose      ();
+        void                         vClose        ();
             ///< close search
 
     private:
@@ -61,7 +62,7 @@ class CxFinder :
 
         _entry_t                     _m_enEnrty;            ///< entry handle
         const std::tstring_t         _m_csRootDirPath;      ///< root directory path
-        const std::tstring_t         _m_csFilter;           ///< shell wild card filter
+        const std::tstring_t         _m_csFilterByShell;    ///< shell wild card filter
         bool                         _m_bIsMoveFirstPassed; ///< flag - first entry is not reached (false)
 
 
