@@ -99,7 +99,7 @@ CxFileLog::vWrite(
     sfFile.vCreate(sFilePath(), CxFile::omAppend, false);
 
     int iRv = sfFile.iWrite(xT("[%s] %s\n"), sTime.c_str(), sParam.c_str());
-    xTEST_DIFF(iRv, static_cast<int>( CxFile::etError ));
+    xTEST_DIFF(- 1, iRv);
 }
 //---------------------------------------------------------------------------
 void
