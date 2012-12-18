@@ -158,7 +158,7 @@ CxFinder::vClose() {
     // reset flag
     _m_bIsMoveFirstPassed = false;
 
-    ////xCHECK_DO(false == bIsValid(), return);
+    xCHECK_DO(false == bIsValid(), return);
 
     // close handle
     {
