@@ -25,16 +25,16 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 CxFinder::CxFinder(
     const std::tstring_t &a_csRootDirPath,
-    const std::tstring_t &a_csFilter
+    const std::tstring_t &a_csFilterByShell
 ) :
     _m_enEnrty           (),
     _m_csRootDirPath     (a_csRootDirPath),
-    _m_csFilter          (a_csFilter),
+    _m_csFilterByShell   (a_csFilterByShell),
     _m_bIsMoveFirstPassed(false)
 {
     xTEST_NA(bIsValid());
     xTEST_EQ(false, _m_csRootDirPath.empty());
-    xTEST_EQ(false, _m_csFilter.empty());
+    xTEST_EQ(false, _m_csFilterByShell.empty());
     xTEST_EQ(false, _m_bIsMoveFirstPassed);
 }
 //---------------------------------------------------------------------------
@@ -51,10 +51,10 @@ CxFinder::sRootDirPath() const {
 }
 //--------------------------------------------------------------------------
 const std::tstring_t &
-CxFinder::sFilter() const {
-    xTEST_EQ(false, _m_csFilter.empty());
+CxFinder::sFilterByShell() const {
+    xTEST_EQ(false, _m_csFilterByShell.empty());
 
-    return _m_csFilter;
+    return _m_csFilterByShell;
 }
 //--------------------------------------------------------------------------
 std::tstring_t
@@ -114,7 +114,7 @@ bool
 CxFinder::bMoveFirst() {
 #if   xOS_ENV_WIN
     _m_enEnrty.hHandle = ::FindFirstFile(
-                            (sRootDirPath() + CxConst::xSLASH + sFilter()).c_str(),
+                            (sRootDirPath() + CxConst::xSLASH + sFilterByShell()).c_str(),
                             &_m_enEnrty.fdData);
     xCHECK_RET(xNATIVE_HANDLE_INVALID == _m_enEnrty.hHandle, false);
 #elif xOS_ENV_UNIX
