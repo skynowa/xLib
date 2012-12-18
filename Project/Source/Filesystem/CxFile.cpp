@@ -262,20 +262,13 @@ CxFile::vReadLine(
     xTEST_PTR(a_psStr);
     xTEST_NA(a_cuiMaxCount);
 
-    #if xTEMP_DISABLED
-        if ((*psStr).size() != a_cuiMaxCount) {
-            (*psStr).resize(a_cuiMaxCount);
-        }
-        std::fill((*a_psStr).begin(), (*a_psStr).end(), std::tstring_t::value_type());
-    #endif
-
     std::tstring_t sStr;
-    sStr.resize(a_cuiMaxCount + 1);   // + 1 for 0
+    sStr.resize(a_cuiMaxCount + 1); // + 1 for 0
 
     tchar_t *pszRes = std::xTFGETS(&sStr.at(0), static_cast<int>( sStr.size() ), pGet());
     xTEST_PTR(pszRes);
 
-    sStr.erase(sStr.end() - 1);   // erase last char - 0
+    sStr.erase(sStr.end() - 1); // erase last char - 0
 
     // out
     (*a_psStr).swap(sStr);
@@ -288,13 +281,8 @@ CxFile::vWriteLine(
 {
     xTEST_NA(a_csStr);
 
-    std::tstring_t sLine;
-
-    sLine = a_csStr;
-    sLine.append(CxConst::xEOL);
-
-    size_t uiRes = uiWrite(&sLine.at(0), sLine.size() * sizeof(std::tstring_t::value_type));
-    xTEST_EQ(uiRes, sLine.size() * sizeof(std::tstring_t::value_type));
+    int iRv = xTFPUTS((a_csStr + CxConst::xEOL).c_str(), pGet());
+    xTEST_DIFF(- 1, iRv);
 }
 //---------------------------------------------------------------------------
 tchar_t
@@ -644,12 +632,13 @@ CxFile::vChmod(
     xTEST_NA(a_cpmMode);
 
 #if   xOS_ENV_WIN
-    int iRv = ::xTCHMOD(a_csFilePath.c_str(), static_cast<int>( a_cpmMode ));
-    xTEST_DIFF(- 1, iRv);
+    const int    cpmMode = static_cast<int>   ( a_cpmMode );
 #elif xOS_ENV_UNIX
-    int iRv = ::xTCHMOD(a_csFilePath.c_str(), static_cast<mode_t>( a_cpmMode ));
-    xTEST_DIFF(- 1, iRv);
+    const mode_t cpmMode = static_cast<mode_t>( a_cpmMode );
 #endif
+
+    int iRv = ::xTCHMOD(a_csFilePath.c_str(), cpmMode);
+    xTEST_DIFF(- 1, iRv);
 }
 //---------------------------------------------------------------------------
 /* static */
@@ -935,6 +924,8 @@ CxFile::ullLines(
     xTEST_EQ(false, a_csFilePath.empty());
     xTEST_EQ(true,  bIsExists(a_csFilePath));
 
+    std::locale::global(std::locale());
+
     ulonglong_t      ullRv = 0LL;
     std::tifstream_t ifsStream(a_csFilePath.c_str(), std::ios::in);
 
@@ -969,7 +960,8 @@ CxFile::vTime(
 
     CxHandleInvalid m_hHandle;
 
-    m_hHandle = ::CreateFile(a_csFilePath.c_str(), GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, CxFileAttribute::faNormal, NULL);
+    m_hHandle = ::CreateFile(a_csFilePath.c_str(), GENERIC_READ, FILE_SHARE_READ,
+                             NULL, OPEN_EXISTING, CxFileAttribute::faNormal, NULL);
     xTEST_EQ(true, m_hHandle.bIsValid());
 
     BOOL blRes = ::GetFileTime(m_hHandle.hGet(), &ftCreate, &ftAccess, &ftModified);
@@ -984,7 +976,7 @@ CxFile::vTime(
     int iRv = ::xTSTAT(a_csFilePath.c_str(), &stInfo);
     xTEST_DIFF(- 1, iRv);
 
-    //ctmCreate - n/a
+    // ctmCreate - n/a
     CxUtils::ptrAssignT(a_ptmAccess,   stInfo.st_atime);
     CxUtils::ptrAssignT(a_ptmModified, stInfo.st_mtime);
 #endif
@@ -1016,7 +1008,8 @@ CxFile::vSetTime(
 
     CxHandleInvalid m_hHandle;
 
-    m_hHandle = ::CreateFile(a_csFilePath.c_str(), GENERIC_WRITE, FILE_SHARE_WRITE, NULL, OPEN_EXISTING, CxFileAttribute::faNormal, NULL);
+    m_hHandle = ::CreateFile(a_csFilePath.c_str(), GENERIC_WRITE, FILE_SHARE_WRITE,
+                             NULL, OPEN_EXISTING, CxFileAttribute::faNormal, NULL);
     xTEST_EQ(true, m_hHandle.bIsValid());
 
     BOOL blRes = ::SetFileTime(m_hHandle.hGet(), &ftCreate, &ftAccess, &ftModified);
@@ -1147,6 +1140,8 @@ CxFile::vTextRead(
 
     // if file empty
     xCHECK_DO(0L == llSize(a_csFilePath), (*a_pmsContent).clear(); return);
+
+    std::locale::global(std::locale());
 
     std::tifstream_t ifsStream(a_csFilePath.c_str());
     xTEST_EQ(true,  !! ifsStream);

@@ -179,7 +179,7 @@ CxTest_CxFile::vUnit(
         std::tstring_t sBuffWrite = xT("<test1><test2><test3><...>");
         std::tstring_t sBuffRead  = xT("");
 
-        //bWriteLine
+        // vWriteLine
         {
             CxFile F;
 
@@ -187,7 +187,7 @@ CxTest_CxFile::vUnit(
             F.vWriteLine(sBuffWrite);
         }
 
-        //bReadLine
+        // vReadLine
         {
             CxFile F;
 
@@ -195,9 +195,8 @@ CxTest_CxFile::vUnit(
             F.vReadLine(&sBuffRead, sBuffWrite.size());
         }
 
-        //assert
         xTEST_EQ(sBuffWrite.size(), sBuffRead.size());
-        // TODO: xTEST_EQ(sBuffWrite,        sBuffRead);
+        xTEST_EQ(sBuffWrite,        sBuffRead);
     }
 
     xTEST_CASE("CxFile::vWriteChar chReadChar vUngetChar", cullCaseLoops)
@@ -548,8 +547,6 @@ CxTest_CxFile::vUnit1(
     const ulonglong_t &cullCaseLoops
 )
 {
-    
-
     const std::tstring_t csFilePath = sTempDirPath() + CxConst::xSLASH + xT("Test.txt");
 
     /****************************************************************************
@@ -562,9 +559,6 @@ CxTest_CxFile::vUnit1(
         m_bRv = CxFile::bIsFile(csFilePath);
         xTEST_EQ(true, m_bRv);
 
-        m_bRv = CxFile::bIsFile(xT(""));
-        xTEST_EQ(false, m_bRv);
-
         m_bRv = CxFile::bIsFile(sTempDirPath());
         xTEST_EQ(false, m_bRv);
     }
@@ -575,9 +569,6 @@ CxTest_CxFile::vUnit1(
         xTEST_EQ(true, m_bRv);
 
         m_bRv = CxFile::bIsExists(csFilePath + xT("wrong_path"));
-        xTEST_EQ(false, m_bRv);
-
-        m_bRv = CxFile::bIsExists(xT(""));
         xTEST_EQ(false, m_bRv);
 
         m_bRv = CxFile::bIsExists(sTempDirPath());
