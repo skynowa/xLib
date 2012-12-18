@@ -48,12 +48,18 @@ class CxFinder :
             HANDLE           hHandle;
             WIN32_FIND_DATA  fdData;
 
-            _SEntry() : hHandle(xNATIVE_HANDLE_INVALID), fdData() {}
+            _SEntry() : 
+                hHandle(xNATIVE_HANDLE_INVALID), 
+                fdData () 
+            {}
         #elif xOS_ENV_UNIX
             DIR             *pHandle;
             dirent          *pdrData;
 
-            _SEntry() : pHandle(NULL), pdrData(NULL) {}
+            _SEntry() : 
+                pHandle(NULL), 
+                pdrData(NULL) 
+            {}
         #endif
         };
 
@@ -63,9 +69,6 @@ class CxFinder :
         _entry_t                     _m_enEnrty;            ///< entry handle
         const std::tstring_t         _m_csRootDirPath;      ///< root directory path
         const std::tstring_t         _m_csFilterByShell;    ///< shell wild card filter
-        bool                         _m_bIsMoveFirstPassed; ///< flag - first entry is not reached (false)
-
-
 };
 
 xNAMESPACE_END(NxLib)

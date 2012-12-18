@@ -71,12 +71,12 @@ CxTest_CxFinder::vUnit(
         };
 
         SData adtData[] = {
-            {CxConst::xMASK_ALL,       7},
-            {xT("*"),                  7},
-            {xT("*.*"),                7},
-            {xT("*.h"),                3},
-            {xT("*.cpp"),              4},
-            {xT("*.txt"),              0}
+            {CxConst::xMASK_ALL, 7},
+            {xT("*"),            7},
+            {xT("*.*"),          7},
+            {xT("*.h"),          3},
+            {xT("*.cpp"),        4},
+            {xT("*.txt"),        0}
         };
 
         for (size_t i = 0; i < xARRAY_SIZE2(adtData); ++ i) {
