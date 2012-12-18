@@ -29,13 +29,11 @@ CxFinder::CxFinder(
 ) :
     _m_enEnrty           (),
     _m_csRootDirPath     (a_csRootDirPath),
-    _m_csFilterByShell   (a_csFilterByShell),
-    _m_bIsMoveFirstPassed(false)
+    _m_csFilterByShell   (a_csFilterByShell)
 {
     xTEST_NA(bIsValid());
     xTEST_EQ(false, _m_csRootDirPath.empty());
     xTEST_EQ(false, _m_csFilterByShell.empty());
-    xTEST_EQ(false, _m_bIsMoveFirstPassed);
 }
 //---------------------------------------------------------------------------
 /* virtual */
@@ -125,9 +123,6 @@ CxFinder::bMoveFirst() {
     xCHECK_RET(false == bRv, false);
 #endif
 
-    // set flag
-    _m_bIsMoveFirstPassed = true;
-
     return true;
 }
 //---------------------------------------------------------------------------
@@ -155,9 +150,6 @@ CxFinder::bMoveNext() {
 //---------------------------------------------------------------------------
 void
 CxFinder::vClose() {
-    // reset flag
-    _m_bIsMoveFirstPassed = false;
-
     xCHECK_DO(false == bIsValid(), return);
 
     // close handle
