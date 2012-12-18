@@ -91,7 +91,13 @@ CxTest_CxFinder::vUnit(
             } else {
                 xTEST_EQ(true, m_bRv);
 
-                vsEntries.push_back(fnFinder.sEntryName());
+                if (
+                    (CxConst::xDOT  != fnFinder.sEntryName()) &&
+                    (CxConst::x2DOT != fnFinder.sEntryName())
+                )
+                {
+                    vsEntries.push_back(fnFinder.sEntryName());
+                }
 
                 for ( ; fnFinder.bMoveNext(); ) {
                 #if   xOS_ENV_WIN
@@ -104,20 +110,15 @@ CxTest_CxFinder::vUnit(
                         xCHECK_DO(CxConst::xDOT  == fnFinder.sEntryName(), continue);
                         xCHECK_DO(CxConst::x2DOT == fnFinder.sEntryName(), continue);
 
-                        // CxTracer() << xTRACE_VAR(fnFinder.sEntryName()) << " " << xTRACE_VAR(fnFinder.sFilter());
-                        std::tstring_t sDirPath = fnFinder.sRootDirPath() + CxConst::xSLASH + fnFinder.sEntryName();
-
-                        //xCHECK_DO(CxConst::xDOT  == fnFinder.sEntryName(), continue);
-                        //xCHECK_DO(CxConst::x2DOT == fnFinder.sEntryName(), continue);
-
-                        vsEntries.push_back(sDirPath);
+                        vsEntries.push_back(fnFinder.sEntryName());
                     }
                 }
             } // if (0 == adtData[i].uiEntriesNum)
 
+            CxTracer() << adtData[i].sFilter;
             xTEST_EQ(adtData[i].uiEntriesNum, vsEntries.size());
         }
-
     }
+
 }
 //---------------------------------------------------------------------------
