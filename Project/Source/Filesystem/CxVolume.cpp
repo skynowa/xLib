@@ -257,7 +257,7 @@ CxVolume::vSpace(
     ulonglong_t          *a_pullFree        ///< free space
 )
 {
-    xTEST_EQ(false, a_csDirPath.empty());
+    xTEST_NA(a_csDirPath);
     xTEST_NA(a_pullAvailable);
     xTEST_NA(a_pullTotal);
     xTEST_NA(a_pullFree);
