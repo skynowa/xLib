@@ -14,7 +14,8 @@ Web:            https://bitbucket.org/skynowa/xlib/
 
 
 Prerequisites:
-    - bash-compatible Unix command shell
+    - bash-compatible Unix command shell (for Unix)
+    - Doxygen 1.8.2
 
 Dependencies:
     - OpenSSL
@@ -25,5 +26,3 @@ Dependencies:
         Ubuntu: sudo apt-get install libmysqlclient-dev 
         
     - Aladdin eToken RTE, SDK 4.53
-    - Doxygen 1.8.2
-

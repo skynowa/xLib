@@ -214,7 +214,7 @@ xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
         // File system
         tmManager.vAdd(new CxTest_CxPath);
         tmManager.vAdd(new CxTest_CxFileAttribute);
-        // tmManager.vAdd(new CxTest_CxFile);
+        tmManager.vAdd(new CxTest_CxFile);
         tmManager.vAdd(new CxTest_CxFileTemp);
         tmManager.vAdd(new CxTest_CxDll);
         tmManager.vAdd(new CxTest_CxFinder);
