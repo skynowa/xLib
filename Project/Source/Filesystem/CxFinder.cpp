@@ -112,7 +112,7 @@ CxFinder::bIsValid() const {
 //---------------------------------------------------------------------------
 bool
 CxFinder::bMoveNext() {
-    xCHECK_DO(false == _m_bIsMoveFirstPassed, _bMoveFirst());
+    xCHECK_RET(false == _m_bIsMoveFirstPassed, _bMoveFirst());
 
 #if   xOS_ENV_WIN
     BOOL blRv = ::FindNextFile(_m_enEnrty.hHandle, &_m_enEnrty.fdData);
