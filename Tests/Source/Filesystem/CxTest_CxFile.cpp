@@ -316,7 +316,7 @@ CxTest_CxFile::vUnit(
                 xVA_START(args, pcszFormat);
 
                 int iRv = csfFile.iWriteV(pcszFormat, args);
-                xTEST_DIFF((int)CxFile::etError, iRv);
+                xTEST_DIFF(- 1, iRv);
 
                 xVA_END(args);
             };
@@ -706,7 +706,7 @@ CxTest_CxFile::vUnit1(
 
             F.vCreate(csFilePath, CxFile::omBinCreateReadWrite, true);
             m_iRv = F.iWrite(xT("0123456789"));
-            xTEST_DIFF(static_cast<int>( CxFile::etError ), m_iRv);
+            xTEST_DIFF(- 1, m_iRv);
         }
 
         for (size_t i = 0; i < 3; ++ i) {

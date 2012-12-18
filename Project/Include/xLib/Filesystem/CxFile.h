@@ -16,12 +16,6 @@ class CxFile :
     /// file
 {
     public:
-        enum ExErrorType
-            /// error type
-        {
-            etError = - 1
-        };
-
         enum ExOpenMode
             /// open mode
         {
