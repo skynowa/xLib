@@ -119,14 +119,6 @@ class CxConst
         static const std::tstring_t x3DOT;
             ///< 3 dots (ansi or unicode)
 
-        // xMASK_FILES_ALL
-        static const std::string    xMASK_FILES_ALL_A;
-            ///< all files mask (ansi)
-        static const std::wstring   xMASK_FILES_ALL_W;
-            ///< all files mask (unicode)
-        static const std::tstring_t xMASK_FILES_ALL;
-            ///< all files mask (ansi or unicode)
-
         // xMASK_ALL
         static const std::string    xMASK_ALL_A;
             ///< all files mask (ansi)

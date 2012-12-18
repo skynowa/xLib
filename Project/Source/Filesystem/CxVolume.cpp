@@ -174,7 +174,7 @@ CxVolume::bIsReady() const {
 //--------------------------------------------------------------------------
 bool
 CxVolume::bIsEmpty() const {
-    return CxDir( sVolumePath() ).bIsEmpty(CxConst::xMASK_FILES_ALL);
+    return CxDir( sVolumePath() ).bIsEmpty(CxConst::xMASK_ALL);
 }
 //---------------------------------------------------------------------------
 void

@@ -92,11 +92,6 @@ const std::string    CxConst::x3DOT_A           ("...");
 const std::wstring   CxConst::x3DOT_W           (L"...");
 const std::tstring_t CxConst::x3DOT             (xT("..."));
 
-// xMASK_FILES_ALL
-const std::string    CxConst::xMASK_FILES_ALL_A ("*");
-const std::wstring   CxConst::xMASK_FILES_ALL_W (L"*");
-const std::tstring_t CxConst::xMASK_FILES_ALL   (xT("*"));
-
 // xMASK_ALL
 const std::string    CxConst::xMASK_ALL_A       ("*");
 const std::wstring   CxConst::xMASK_ALL_W       (L"*");

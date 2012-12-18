@@ -72,7 +72,6 @@ CxTest_CxFinder::vUnit(
 
         SData adtData[] = {
             {CxConst::xMASK_ALL,       7},
-            {CxConst::xMASK_FILES_ALL, 7},
             {xT("*"),                  7},
             {xT("*.*"),                7},
             {xT("*.h"),                3},
@@ -115,7 +114,6 @@ CxTest_CxFinder::vUnit(
                 }
             } // if (0 == adtData[i].uiEntriesNum)
 
-            CxTracer() << adtData[i].sFilter;
             xTEST_EQ(adtData[i].uiEntriesNum, vsEntries.size());
         }
     }
