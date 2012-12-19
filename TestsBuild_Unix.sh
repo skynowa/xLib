@@ -22,7 +22,6 @@
 
 # vars
 MAKE=
-TARGET_DIR=
 
 
 # prepare
@@ -43,8 +42,6 @@ fi
 if [ ! -z "`which colormake`" ]; then
     MAKE=colormake
 fi
-
-mkdir -p "$TARGET_DIR"
 
 
 # execute
