@@ -137,7 +137,7 @@ CxFinder::bMoveNext() {
         xCHECK_RET(NULL == _m_enEnrty.pdrData, false);
 
         // filter by pattern
-        int iRv = ::fnmatch(sFilter().c_str(), sEntryName().c_str(), 0);
+        int iRv = ::fnmatch(sFilterByShell().c_str(), sEntryName().c_str(), 0);
         xTEST_EQ(true, (0 == iRv) || (FNM_NOMATCH == iRv));
 
         xCHECK_DO(FNM_NOMATCH == iRv, continue);
