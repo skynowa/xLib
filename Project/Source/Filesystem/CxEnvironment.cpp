@@ -12,9 +12,7 @@
 
 
 #if xOS_ENV_UNIX
-    xNAMESPACE_ANONYM_BEGIN
     extern char **environ;  // from <env.h>
-    xNAMESPACE_ANONYM_END
 #endif
 
 xNAMESPACE_BEGIN(NxLib)
