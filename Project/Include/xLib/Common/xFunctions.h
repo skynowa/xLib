@@ -243,7 +243,7 @@ xNAMESPACE_BEGIN(NxLib)
 #elif xCOMPILER_CODEGEAR
     #define xCHSIZE             chsize
 #elif xCOMPILER_GNUC
-    xNA;
+    #define xCHSIZE             ftruncate
 #else
     #define xCHSIZE             chsize
 #endif

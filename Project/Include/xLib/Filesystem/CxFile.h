@@ -123,14 +123,14 @@ class CxFile :
             ///< open
         void                   vReopen      (const std::tstring_t &csFilePath, const ExOpenMode &omMode, const bool &cbIsUseBuffering);
             ///< reopen with different file or mode
+        std::FILE             *pGet         () const;
+            ///< get handle
+        const std::tstring_t & sPath        () const;
+            ///< get file path
         void                   vAttach      (std::FILE *pflFile);
             ///< attach to stream
         std::FILE *            pDetach      ();
             ///< detach from stream
-        std::FILE             *pGet         () const;
-            ///< get handle
-        std::tstring_t         sPath        () const;
-            ///< get file path
 
         // read, write
         size_t                 uiRead       (void *pvBuff,        const size_t &cuiCount) const;
@@ -259,9 +259,10 @@ class CxFile :
             ///< write binary data
 
     private:
+        friend class           CxFileTemp;    ///< temporary file
+
         std::FILE             *_m_pFile;      ///< file handle
         std::tstring_t         _m_sFilePath;  ///< file path
-        friend class           CxFileTemp;    ///< temporary file
 
         static int             _iHandle     (std::FILE *pfFile);
             ///< gets the file descriptor associated with a stream
