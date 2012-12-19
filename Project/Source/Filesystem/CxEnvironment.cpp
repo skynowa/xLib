@@ -40,6 +40,7 @@ CxEnvironment::bIsExists(
 
     DWORD dwLength = ::GetEnvironmentVariable(a_csVarName.c_str(), &sRv.at(0), static_cast<DWORD>( sRv.size() ));
     xTEST_NA(dwLength);
+
     xCHECK_RET(0UL == dwLength && ERROR_ENVVAR_NOT_FOUND == CxLastError::ulGet(), false);
 #elif xOS_ENV_UNIX
     const char *pcszRes = ::getenv(a_csVarName.c_str());
@@ -93,14 +94,14 @@ CxEnvironment::sVar(
 #if   xOS_ENV_WIN
     sRv.resize(xPATH_MAX);
 
-    DWORD ulLength = ::GetEnvironmentVariable(a_csVarName.c_str(), &sRv.at(0), static_cast<DWORD>( sRv.size() ));
-    xTEST_DIFF(0UL, ulLength);
+    DWORD dwLength = ::GetEnvironmentVariable(a_csVarName.c_str(), &sRv.at(0), static_cast<DWORD>( sRv.size() ));
+    xTEST_DIFF(0UL, dwLength);
 
-    sRv.resize(ulLength);
+    sRv.resize(dwLength);
 
-    if (sRv.size() < ulLength) {
-        ulLength = ::GetEnvironmentVariable(a_csVarName.c_str(), &sRv.at(0), static_cast<DWORD>( sRv.size() ));
-        xTEST_DIFF(0UL, ulLength);
+    if (sRv.size() < dwLength) {
+        dwLength = ::GetEnvironmentVariable(a_csVarName.c_str(), &sRv.at(0), static_cast<DWORD>( sRv.size() ));
+        xTEST_DIFF(0UL, dwLength);
     }
 #elif xOS_ENV_UNIX
     const char *pcszRes = ::getenv(a_csVarName.c_str());
@@ -168,7 +169,8 @@ CxEnvironment::vValues(
     LPTCH lpvEnv = ::GetEnvironmentStrings();
     xTEST_PTR(lpvEnv);
 
-    // variable strings are separated by NULL byte, and the block is terminated by a NULL byte
+    // variable strings are separated by NULL byte, 
+    // and the block is terminated by a NULL byte
     for (
         LPTSTR pszVar = static_cast<LPTSTR>( lpvEnv );
         xT('\0') != *pszVar;
