@@ -47,15 +47,9 @@ CxTest_CxLocalStorage::vUnit(
         CxLocalStorage iniIni;
     }
 
-
     CxFile::vDelete(csFilePath);
 
     CxLocalStorage iniIni(csFilePath);
-
-    /****************************************************************************
-    *    creation
-    *
-    *****************************************************************************/
 
     xTEST_CASE("CxLocalStorage::vCreateDefault", cullCaseLoops)
     {
@@ -78,7 +72,7 @@ CxTest_CxLocalStorage::vUnit(
 
     xTEST_CASE("CxLocalStorage::cmsGet CxLocalStorage::vFlush", cullCaseLoops)
     {
-        TLocalStorage &riniIni = iniIni.cmsGet();
+        local_storage_t &riniIni = iniIni.cmsGet();
         xTEST_EQ(true, riniIni.empty());
 
         riniIni[csKey1] = csValue1;
@@ -103,7 +97,7 @@ CxTest_CxLocalStorage::vUnit(
 
     xTEST_CASE("CxLocalStorage::bKeyIsExists", cullCaseLoops)
     {
-        TLocalStorage &riniIni = iniIni.cmsGet();
+        local_storage_t &riniIni = iniIni.cmsGet();
         xTEST_EQ(true, riniIni.empty());
 
         riniIni[csKey1] = csValue1;
@@ -112,7 +106,7 @@ CxTest_CxLocalStorage::vUnit(
 
         iniIni.vFlush();
 
-        //success
+        // true
         {
             std::vec_tstring_t vsPairs;
 
@@ -131,7 +125,7 @@ CxTest_CxLocalStorage::vUnit(
             }
         }
 
-        //fail
+        // false
         {
             std::vec_tstring_t vsPairs;
 
@@ -158,7 +152,7 @@ CxTest_CxLocalStorage::vUnit(
 
     xTEST_CASE("CxLocalStorage::vKeyWriteString CxLocalStorage::sKeyReadString", cullCaseLoops)
     {
-        //success
+        // true
         {
             const std::tstring_t csStr = csValue1;
 
@@ -168,7 +162,7 @@ CxTest_CxLocalStorage::vUnit(
             xTEST_EQ(csStr, m_sRv);
         }
 
-        //fail
+        // false
         {
             const std::tstring_t csStr = xT("sssssssssssss");
 

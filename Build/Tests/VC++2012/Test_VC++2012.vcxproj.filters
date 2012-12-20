@@ -743,6 +743,12 @@
     <ClInclude Include="..\..\..\Tests\Include\Test\Filesystem\CxTest_CxFinder.h">
       <Filter>Test\Filesystem</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxFlags.h">
+      <Filter>xLib\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxFlags.h">
+      <Filter>Test\Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Project\Include\xLib\Common\CxArray.inl">
@@ -1304,6 +1310,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Tests\Source\Filesystem\CxTest_CxFinder.cpp">
       <Filter>Test\Filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Project\Source\Common\CxFlags.cpp">
+      <Filter>xLib\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxFlags.cpp">
+      <Filter>Test\Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
