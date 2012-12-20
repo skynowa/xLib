@@ -9,9 +9,7 @@
 #include <xLib/Common/CxString.h>
 #include <xLib/Filesystem/CxPath.h>
 
-#if   xOS_ENV_WIN
-    xNA
-#elif xOS_ENV_UNIX
+#if xOS_ENV_UNIX
     #include <syslog.h>
 #endif
 
@@ -51,8 +49,8 @@ CxSystemLog::~CxSystemLog() {
 #if   xOS_ENV_WIN
     xTEST_PTR(_m_SysLog);
 
-    BOOL bRv = ::DeregisterEventSource(_m_SysLog);
-    xTEST_DIFF(FALSE, bRv);
+    BOOL blRv = ::DeregisterEventSource(_m_SysLog);
+    xTEST_DIFF(FALSE, blRv);
 
     _m_SysLog = NULL;
 #elif xOS_ENV_UNIX
@@ -62,12 +60,12 @@ CxSystemLog::~CxSystemLog() {
 //---------------------------------------------------------------------------
 void
 CxSystemLog::vSetEnabled(
-    const bool &cbFlag
+    const bool &a_cbFlag
 )
 {
-    // cbFlag - n/a
+    xTEST_NA(a_cbFlag);
 
-    _m_bIsEnable = cbFlag;
+    _m_bIsEnable = a_cbFlag;
 }
 //---------------------------------------------------------------------------
 void
@@ -77,14 +75,14 @@ CxSystemLog::vWrite(
 )
 {
     xTEST_PTR(a_pcszFormat);
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     xTEST_DIFF(xNATIVE_HANDLE_NULL, _m_SysLog);
 #endif
 
-    xCHECK_DO(false == _m_bIsEnable, return /* false */);  // TODO: CxSystemLog::vWrite
+    xCHECK_DO(false == _m_bIsEnable, return);
 
     //-------------------------------------
-    //comment
+    // comment
     std::tstring_t sMessage;
     va_list        alArgs;
 
@@ -93,7 +91,7 @@ CxSystemLog::vWrite(
     xVA_END(alArgs);
 
     //-------------------------------------
-    //write
+    // write
 #if   xOS_ENV_WIN
     LPCTSTR pcszStrings = sMessage.c_str();
 
