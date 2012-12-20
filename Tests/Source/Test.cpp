@@ -20,6 +20,7 @@
 #include <Test/Common/CxTest_CxUtils.h>
 #include <Test/Common/CxTest_CxHandleT.h>
 #include <Test/Common/CxTest_CxType.h>
+#include <Test/Common/CxTest_CxFlags.h>
 #include <Test/Common/CxTest_CxFunctorT.h>
 #include <Test/Common/CxTest_CxArray.h>
 #include <Test/Common/CxTest_CxChar.h>
@@ -175,6 +176,7 @@ xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
         tmManager.vAdd(new CxTest_CxUtils);
         tmManager.vAdd(new CxTest_CxHandleT);
         tmManager.vAdd(new CxTest_CxType);
+        tmManager.vAdd(new CxTest_CxFlags);
         tmManager.vAdd(new CxTest_CxFunctorT);
         tmManager.vAdd(new CxTest_CxArray);
         tmManager.vAdd(new CxTest_CxChar);

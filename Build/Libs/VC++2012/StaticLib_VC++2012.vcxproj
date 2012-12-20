@@ -215,6 +215,7 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxConsole.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxConst.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxDateTime.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxFlags.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxFunctorT.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxHandleErrorT.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxHandleT.h" />
@@ -353,6 +354,7 @@
     <ClCompile Include="..\..\..\Project\Source\Common\CxConsole.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Common\CxConst.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Common\CxDateTime.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Common\CxFlags.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Common\CxLocale.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Common\CxProcessInfo.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Common\CxShell.cpp" />

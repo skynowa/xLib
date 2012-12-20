@@ -41,6 +41,7 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxConsole.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxConst.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxDateTime.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxFlags.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxFunctorT.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxHandleErrorT.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxHandleT.h" />
@@ -227,6 +228,7 @@
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxCommandLine.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxConsole.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxDateTime.h" />
+    <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxFlags.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxFunctorT.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxHandleT.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxLocale.h" />
@@ -384,6 +386,7 @@
     <ClCompile Include="..\..\..\Project\Source\Common\CxConsole.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Common\CxConst.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Common\CxDateTime.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Common\CxFlags.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Common\CxLocale.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Common\CxProcessInfo.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Common\CxShell.cpp" />
@@ -537,6 +540,7 @@
     <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxCommandLine.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxConsole.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxDateTime.cpp" />
+    <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxFlags.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxFunctorT.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxHandleT.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxLocale.cpp" />

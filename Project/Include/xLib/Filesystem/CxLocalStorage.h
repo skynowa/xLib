@@ -11,7 +11,7 @@
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-typedef std::map_tstring_t TLocalStorage;
+typedef std::map_tstring_t local_storage_t;
 
 class CxLocalStorage :
     private CxNonCopyable
@@ -28,12 +28,12 @@ class CxLocalStorage :
         //creation
         void                   vCreateDefault (const std::tstring_t &csContent) const;
             ///< create default file
-        std::tstring_t         sPath          () const;
+        const std::tstring_t & sPath          () const;
             ///< get file path
         void                   vSetPath       (const std::tstring_t &csFilePath);
             ///< set file path
-        TLocalStorage &        cmsGet         ();
-            ///< get innner TLocalStorage, may be used with bFlush
+        local_storage_t &      cmsGet         ();
+            ///< get inner local_storage_t, may be used with bFlush
 
         void                   vFlush         () const;
             ///< flush
@@ -81,14 +81,14 @@ class CxLocalStorage :
         const std::tstring_t   _m_csFileExt;    ///< ini-file extension
 
         std::tstring_t         _m_sFilePath;    ///< file path to ini-file
-        TLocalStorage          _m_msIni;        ///< std::map of keys and values
+        local_storage_t        _m_msIni;        ///< std::map of keys and values
 
         void                   _vRead         (const std::tstring_t &csKey, const std::tstring_t &csDefaultValue, std::tstring_t *psValue);
             ///< parse file
         void                   _vWrite        (const std::tstring_t &csKey, const std::tstring_t &csValue);
-            ///< flush to TLocalStorage, file
+            ///< flush to local_storage_t, file
 };
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif //xLib_Filesystem_CxLocalStorageH
+#endif // xLib_Filesystem_CxLocalStorageH
