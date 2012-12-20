@@ -4,8 +4,8 @@
  */
 
 
-#ifndef xLib_Log_CxEventLogH
-#define xLib_Log_CxEventLogH
+#ifndef xLib_Log_CxSystemLogH
+#define xLib_Log_CxSystemLogH
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //---------------------------------------------------------------------------
@@ -61,13 +61,13 @@ class CxSystemLog :
         bool     _m_bIsEnable;  ///< is enabled
 
     #if   xOS_ENV_WIN
-        HANDLE   _m_SysLog;     ///< eventlog handle
+        HANDLE   _m_SysLog;     ///< event log handle
     #endif
 
         void     _vInit     (const std::tstring_t &csLogName);
-
+            ///< initiate data
 };
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif    //xLib_Log_CxEventLogH
+#endif // xLib_Log_CxSystemLogH
