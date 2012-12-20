@@ -4,11 +4,11 @@
  */
 
 
-#ifndef xLib_Logs_xLogH
-#define xLib_Logs_xLogH
+#ifndef xLib_Log_xLogsH
+#define xLib_Log_xLogsH
 //---------------------------------------------------------------------------
 #include <xLib/Log/CxFileLog.h>
 #include <xLib/Log/CxSystemLog.h>
 #include <xLib/Log/CxTracer.h>
 //---------------------------------------------------------------------------
-#endif    //xLib_Logs_xLogH
+#endif // xLib_Log_xLogsH
