@@ -27,7 +27,7 @@ class CxStackTrace :
 
         void                 vGet        (std::vector<std::vec_tstring_t> *pvvsStack);
             ///< get stack trace
-        std::tstring_t       sGet        () ;
+        std::tstring_t       sGet        ();
             ///< get stack trace with format output
 
     private:
@@ -48,4 +48,4 @@ class CxStackTrace :
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif //xLib_Debug_CxStackTraceH
+#endif // xLib_Debug_CxStackTraceH

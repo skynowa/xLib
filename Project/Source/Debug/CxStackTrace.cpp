@@ -62,14 +62,14 @@ CxStackTrace::vGet(
     std::vector<std::vec_tstring_t> *a_pvvsStack
 )
 {
-    xCHECK_DO(NULL == a_pvvsStack, return /* false */);
+    xCHECK_DO(NULL == a_pvvsStack, return);
 
     const std::tstring_t            csDataNotFound = xT("[???]");
     std::vector<std::vec_tstring_t> vvsStack;
 
 #if   xOS_ENV_WIN
     #if   xCOMPILER_MINGW
-        // TODO: CxStackTrace::bGet
+        // TODO: CxStackTrace::vGet
     #elif xCOMPILER_MS || xCOMPILER_CODEGEAR
         void        *pvStack[xSTACK_TRACE_FRAMES_MAX] = {0};
         SYMBOL_INFO *psiSymbol                        = NULL;
@@ -78,10 +78,10 @@ CxStackTrace::vGet(
         hProcess = CxCurrentProcess::hHandle();
 
         BOOL blRes = ::SymInitialize(hProcess, NULL, TRUE);
-        xCHECK_DO(FALSE == blRes, return /* false */);
+        xCHECK_DO(FALSE == blRes, return);
 
         ushort_t usFramesNum = ::CaptureStackBackTrace(0UL, xSTACK_TRACE_FRAMES_MAX, pvStack, NULL);
-        xCHECK_DO(usFramesNum == 0U, return /* false */);
+        xCHECK_DO(usFramesNum == 0U, return);
 
         psiSymbol               = new (std::nothrow) SYMBOL_INFO[ sizeof(SYMBOL_INFO) + (255UL + 1) * sizeof(tchar_t) ];
         xSTD_VERIFY(NULL != psiSymbol);
@@ -182,10 +182,10 @@ CxStackTrace::vGet(
     void *pvStack[xSTACK_TRACE_FRAMES_MAX] = {0};
 
     int iFramesNum = ::backtrace(pvStack, xSTACK_TRACE_FRAMES_MAX);
-    xCHECK_DO(iFramesNum <= 0, return /* false */);
+    xCHECK_DO(iFramesNum <= 0, return);
 
     tchar_t **ppszSymbols = ::backtrace_symbols(pvStack, iFramesNum);
-    xCHECK_DO(NULL == ppszSymbols, return /* false */);
+    xCHECK_DO(NULL == ppszSymbols, return);
 
     for (int i = 0; i < iFramesNum; ++ i) {
         int            iStackLineNum = 0;
@@ -234,7 +234,7 @@ CxStackTrace::vGet(
             xBUFF_FREE(pszDemangleName);
         }
 
-        // swap file pathes
+        // swap file paths
         if (true == _m_cbIsWrapFilePathes) {
             sModulePath = CxPath(sModulePath).sFileName();
             sFilePath   = CxPath(sFilePath).sFileName();
@@ -300,6 +300,8 @@ CxStackTrace::_sFormat(
     std::vector<std::vec_tstring_t> *a_pvvsStack
 )
 {
+    xCHECK_RET(NULL == a_pvvsStack, std::tstring_t());
+
     std::tstring_t      sRv;
 
     const size_t        cuiElementsNum = 6U;
