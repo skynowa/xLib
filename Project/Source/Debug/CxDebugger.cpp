@@ -106,7 +106,7 @@ CxDebugger::bIsActive() {
         int iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), &kiInfo, &uiInfoSize, NULL, 0);
         xCHECK_RET(- 1 == iRv, false);
 
-        // We're being debugged if the P_TRACED flag is set.
+        // we're being debugged if the P_TRACED flag is set.
         xCHECK_RET(0 == (kiInfo.ki_flag & P_TRACED), false);
     #endif
 #endif
@@ -161,11 +161,11 @@ CxDebugger::vReportMake(
     const ulong_t culLastError = CxLastError::ulGet();
 
     switch (a_crpReport.m_rtType) {
-        case CxErrorReport::rtMsgboxPlain:    { _vMsgboxPlain   (a_crpReport); } break;
-        case CxErrorReport::rtStdoutPlain:    { _vStdoutPlain   (a_crpReport); } break;
-        case CxErrorReport::rtLoggingPlain:   { _vLoggingPlain  (a_crpReport); } break;
+        case CxErrorReport::rtMsgboxPlain:  { _vMsgboxPlain (a_crpReport); } break;
+        case CxErrorReport::rtStdoutPlain:  { _vStdoutPlain (a_crpReport); } break;
+        case CxErrorReport::rtLoggingPlain: { _vLoggingPlain(a_crpReport); } break;
 
-        default:                              { _vStdoutPlain   (a_crpReport); } break;
+        default:                            { _vStdoutPlain (a_crpReport); } break;
     }
 
     //-------------------------------------
@@ -190,12 +190,12 @@ CxDebugger::_vMsgboxPlain(
 
 #if xDEBUG_USE_PROMPT_DIALOG
     #if   xOS_ENV_WIN
-        ulong_t ulType = MB_ABORTRETRYIGNORE | MB_ICONSTOP;
+        uint_t uiType = MB_ABORTRETRYIGNORE | MB_ICONSTOP;
     #elif xOS_ENV_UNIX
-        ulong_t ulType = 1UL;
+        uint_t uiType = 1U;
     #endif
 
-    CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::iShow(a_crpReport.m_sReport, CxPath::sExe(), ulType);
+    CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::iShow(a_crpReport.m_sReport, CxPath::sExe(), uiType);
 #else
     CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::mrIgnore;
 #endif

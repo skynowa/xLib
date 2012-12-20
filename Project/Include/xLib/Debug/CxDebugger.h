@@ -19,26 +19,26 @@ class CxDebugger :
     /// debugger
 {
     public:
-                       CxDebugger      ();
+                       CxDebugger    ();
             ///< constructor
-        virtual       ~CxDebugger      ();
+        virtual       ~CxDebugger    ();
             ///< destructor
 
-        bool           bIsEnabled      ();
+        bool           bIsEnabled    ();
             ///< is debugging enabled
-        void           vSetEnabled     (const bool &cbFlag);
+        void           vSetEnabled   (const bool &cbFlag);
             ///< set debugging mode on/off
-        bool           bIsActive       ();
+        bool           bIsActive     ();
             ///< is OS debugger presents
-        bool           bIsDebugBuild   ();
+        bool           bIsDebugBuild ();
             ///< is debug build (is NDEBUG macros is don't set)
-        void           vBreak          ();
+        void           vBreak        ();
             ///< attach to OS debugger
-        void           vSetLogPath     (const std::tstring_t &csFilePath);
+        void           vSetLogPath   (const std::tstring_t &csFilePath);
             ///< set log file path
-        std::tstring_t sLogPath        ();
+        std::tstring_t sLogPath      ();
             ///< get log file path
-        void           vReportMake     (const CxErrorReport &crpReport);
+        void           vReportMake   (const CxErrorReport &crpReport);
             ///< make report
 
     private:
@@ -47,11 +47,11 @@ class CxDebugger :
         std::tstring_t _m_sLogPath;
             ///< log path
 
-        void           _vMsgboxPlain   (const CxErrorReport &crpReport);
+        void           _vMsgboxPlain (const CxErrorReport &crpReport);
             ///< show message box with plain report
-        void           _vStdoutPlain   (const CxErrorReport &crpReport);
+        void           _vStdoutPlain (const CxErrorReport &crpReport);
             ///< show plain report in std::cout
-        void           _vLoggingPlain  (const CxErrorReport &crpReport);
+        void           _vLoggingPlain(const CxErrorReport &crpReport);
             ///< log plain report to file
 };
 
