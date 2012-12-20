@@ -20,9 +20,8 @@ class CxSingleton :
         static T &get()
             ///< get object instance
         {
-            static T instanceT;
-
-            return instanceT;
+            static T singletonT;
+            return singletonT;
         }
 
     private:
@@ -34,7 +33,7 @@ class CxSingleton :
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif //xLib_Patterns_CxSingletonH
+#endif // xLib_Patterns_CxSingletonH
 
 
 #if xTODO
@@ -45,39 +44,24 @@ xNAMESPACE_END(NxLib)
 
         private:
             CxSingleton();
-           ////~CxSingleton();
-
     };
+
     template <typename T>
     CxSingleton<T> &CxSingleton<T>::Instance() {
         static CxSingleton theSingleInstance;
 
         return theSingleInstance;
     }
+
     template <typename T>
-    T &Singleton<T>::Instance() {
+    T &CxSingleton<T>::Instance() {
         Create();
+
         T *p;
-        if (!Locked() && (p = Obj().p))
+        if (!Locked() && (p = Obj().p)) {
             return *p;
+        }
+
         throw E_AccessViolation("Uutl::Singleton<T>::Instance");
     }
-#endif
-
-#if xTODO
-    class OnlyOne {
-        private:
-            OnlyOne()
-            {
-            }
-
-        public:
-            static OnlyOne& Instance()
-            {
-                static OnlyOne theSingleInstance;
-                return theSingleInstance;
-            }
-
-            // ...
-    };
 #endif
