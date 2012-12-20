@@ -20,7 +20,7 @@ xNAMESPACE_BEGIN(NxLib)
 /* static */
 int
 CxStdError::iGet() {
-    int iCode = 0; /*= ciCodeSuccess*/;
+    int iCode = 0; /* = ciCodeSuccess */;
 
     iCode = errno;
 
