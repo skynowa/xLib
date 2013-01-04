@@ -10,11 +10,15 @@
 #include <xLib/Common/CxString.h>
 
 //---------------------------------------------------------------------------
+xNAMESPACE_ANONYM_BEGIN
+
 enum EData {
     datOne,
     datTwo,
     datTree
 };
+
+xNAMESPACE_ANONYM_END;
 //---------------------------------------------------------------------------
 CxTest_CxUtils::CxTest_CxUtils() {
 
@@ -96,14 +100,52 @@ CxTest_CxUtils::vUnit(
         }
     }
 
-    xTEST_CASE("CxUtils::bufferZeroT", cullCaseLoops)
+    xTEST_CASE("CxUtils::memoryZero", cullCaseLoops)
     {
-        tchar_t szBuff[255 + 1];
+        struct SData {
+            int     i;
+            tchar_t b[25];
+        };
 
-        CxUtils::bufferZeroT(szBuff);
+        SData datData;
 
-        for (size_t i = 0; i < CxUtils::arraySizeT(szBuff); ++ i) {
-            xTEST_EQ(xT('\0'), szBuff[i]);
+        CxUtils::memoryZero(&datData, sizeof(datData));
+
+        for (size_t i = 0; i < sizeof(datData); ++ i) {
+            xTEST_EQ(uchar_t(0), ((uchar_t *)( &datData ))[i]);
+        }
+    }
+
+    xTEST_CASE("CxUtils::arrayZeroT", cullCaseLoops)
+    {
+        {
+            tchar_t szBuff[255 + 1];
+
+            CxUtils::arrayZeroT(szBuff);
+
+            for (size_t i = 0; i < CxUtils::arraySizeT(szBuff); ++ i) {
+                xTEST_EQ(xT('\0'), szBuff[i]);
+            }
+        }
+
+        {
+            char szBuff[255 + 1];
+
+            CxUtils::arrayZeroT(szBuff);
+
+            for (size_t i = 0; i < CxUtils::arraySizeT(szBuff); ++ i) {
+                xTEST_EQ('\0', szBuff[i]);
+            }
+        }
+
+        {
+            int aiBuff[255 + 1];
+
+            CxUtils::arrayZeroT(aiBuff);
+
+            for (size_t i = 0; i < CxUtils::arraySizeT(aiBuff); ++ i) {
+                xTEST_EQ(0, aiBuff[i]);
+            }
         }
     }
 

@@ -1,6 +1,6 @@
 /**
  * \file  CxUtils.h
- * \brief functions like macroses
+ * \brief functions like macros
  */
 
 
@@ -13,18 +13,18 @@ xNAMESPACE_BEGIN(NxLib)
 
 class CxUtils :
     private CxNonCopyable
-    /// help macroses
+    /// help macros
 {
     public:
-        template<typename T>
+        template <typename T>
         static inline void      ptrDeleteT      (T * &pPtrT);
             ///< delete object by pointer
 
-        template<typename T>
+        template <typename T>
         static inline void      arrayDeleteT    (T * &pPtrT);
             ///< delete array by pointer
 
-        template<typename T>
+        template <typename T>
         static inline void      ptrAssignT      (T * &pPtrT, const T &valueT);
             ///< assign pointer
 
@@ -32,9 +32,12 @@ class CxUtils :
         static inline size_t    arraySizeT      (const T (&)[cuiArraySize]);
             ///< get array size
 
+        static inline void      memoryZero      (void *pPtr, const size_t &sizeBytes);
+            ///< zero memory
+
         template <typename T, const size_t cuiArraySize>
-        static inline void      bufferZeroT     (T (&bufferT)[cuiArraySize]);
-            ///< zero buffer memory
+        static inline void      arrayZeroT      (T (&arrayT)[cuiArraySize]);
+            ///< array zero
 
         template <typename T>
         static inline void      structZeroT     (T &structT);
@@ -84,7 +87,7 @@ class CxUtils :
 
         template <typename T>
         static inline T         enumDecT        (const T &valueT);
-            ///< decriment enumerator
+            ///< decrement enumerator
 
     private:
                                 CxUtils         ();

@@ -159,7 +159,9 @@
     ///< get array size
 #define xARRAY_SIZE2(a)                 ( sizeof(a) / sizeof((a)[0]) )
     ///< get array size
-#define xBUFF_ZERO(b)                   { CxUtils::bufferZeroT(b); }
+#define xMEMORY_ZERO(ptr, n)            { CxUtils::memoryZero(ptr, n); }
+    ///< zero buffer memory
+#define xARRAY_ZERO(a)                  { CxUtils::arrayZeroT(a); }
     ///< zero buffer memory
 #define xSTRUCT_ZERO(s)                 { CxUtils::structZeroT(s); }
     ///< zero struct memory
