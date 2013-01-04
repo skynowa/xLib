@@ -1,6 +1,6 @@
 /**
  * \file  CxUtils.inl
- * \brief functions like macroses
+ * \brief functions like macros
  */
 
 
@@ -43,9 +43,9 @@ CxUtils::ptrAssignT(
     const T &a_valueT
 )
 {
-    if (NULL != a_pPtrT) {
-        *a_pPtrT = a_valueT;
-    }
+    xCHECK_DO(NULL == a_pPtrT, return);
+
+    *a_pPtrT = a_valueT;
 }
 //---------------------------------------------------------------------------
 template <typename T, const size_t cuiArraySize>
@@ -58,14 +58,26 @@ CxUtils::arraySizeT(
     return cuiArraySize;
 }
 //---------------------------------------------------------------------------
-template <typename T, const size_t cuiArraySize>
 /* static */ inline
 void
-CxUtils::bufferZeroT(
-    T (&a_bufferT)[cuiArraySize]
+CxUtils::memoryZero(
+    void         *a_pPtr,
+    const size_t &a_sizeBytes
 )
 {
-    (void *)std::memset(&a_bufferT[0], 0, sizeof(a_bufferT));
+    xCHECK_DO(NULL == a_pPtr, return);
+
+    (void *)std::memset(a_pPtr, 0, a_sizeBytes);
+}
+//---------------------------------------------------------------------------
+template<class T, const size_t cuiArraySize>
+/* static */ inline
+void
+CxUtils::arrayZeroT(
+    T (&a_arrayT)[cuiArraySize]
+)
+{
+    (void)std::fill_n(&a_arrayT[0], cuiArraySize, T());
 }
 //---------------------------------------------------------------------------
 template <typename T>

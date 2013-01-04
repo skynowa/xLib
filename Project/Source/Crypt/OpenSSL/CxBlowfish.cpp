@@ -30,13 +30,13 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 CxBlowfish::CxBlowfish() {
     xSTRUCT_ZERO(_m_bfKey);
-    xBUFF_ZERO(_m_ucIvec);
+    xARRAY_ZERO(_m_ucIvec);
 }
 //---------------------------------------------------------------------------
 /* virtual */
 CxBlowfish::~CxBlowfish() {
     /*SECURE*/xSTRUCT_ZERO(_m_bfKey);
-    /*SECURE*/xBUFF_ZERO(_m_ucIvec);
+    /*SECURE*/xARRAY_ZERO(_m_ucIvec);
 }
 //---------------------------------------------------------------------------
 void
@@ -130,7 +130,7 @@ CxBlowfish::vEncryptCfb64(
     xTEST_LESS(- 1L, a_cliInSize);
     xTEST_PTR(a_piNum);
 
-    xBUFF_ZERO(_m_ucIvec);
+    xARRAY_ZERO(_m_ucIvec);
 
     (void)::BF_cfb64_encrypt(a_pucIn, a_pucOut, a_cliInSize, &_m_bfKey, _m_ucIvec, a_piNum, a_cmMode);
 }
