@@ -14,7 +14,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxThread :
-    private CxNonCopyable
+    public CxNonCopyable
     /// thread
 {
 public:
@@ -54,7 +54,7 @@ public:
 
                          CxThread            (const bool &cbAutoDelete);
         ///< constructor
-    virtual             ~CxThread            () = 0;
+    virtual             ~CxThread            () /* BUG: = 0*/;
         ///< destructor
 
     // actions
@@ -141,7 +141,7 @@ public:
 
 protected:
     // events
-    virtual uint_t       onRun               (void *pvParam) = 0;
+    virtual uint_t       onRun               (void *pvParam) /* BUG: = 0 */;
         ///< work thread function, must be override
     //--virtual void    vOnEnter              ();
     //--virtual void    vOnExit               ();

@@ -242,7 +242,7 @@ cgl_parsecgibuf(/*cgllist *cdata,*/ char *a_query) {
 //
 //    vUrlEscape(sRv, fw);
 //
-//    return 
+//    return
 //}
 ////----------------------------------------------------------------------------------------------------
 ////TODO: cgl_urldecode
@@ -679,9 +679,9 @@ CxCgiCookies::operator [] (
 )
 {
     xFOREACH_CONST(TCookies, it, items) {
-        xCHECK_DO(false == CxString::compareNoCase(a_csCookieName, (*it)->sValue()), continue);
+        xCHECK_DO(false == CxString::compareNoCase(a_csCookieName, (*it)->value()), continue);
 
-        return (*it)->sValue();
+        return (*it)->value();
     }
 
     return std::tstring_t();
@@ -702,13 +702,13 @@ CxCgiCookies::dump() const {
                 xT("Expires: %s\n")
                 xT("Secure: %s\n")
                 xT("HttpOnly: %s\n\n"),
-                (*it)->sName().c_str(),
-                (*it)->sValue().c_str(),
-                (*it)->sDomain().c_str(),
-                (*it)->sPath().c_str(),
-                (*it)->sExpires().c_str(),
-                CxString::boolToStr((*it)->bGetSecure()).c_str(),
-                CxString::boolToStr((*it)->bGetHttpOnly()).c_str()
+                (*it)->name().c_str(),
+                (*it)->value().c_str(),
+                (*it)->domain().c_str(),
+                (*it)->path().c_str(),
+                (*it)->expires().c_str(),
+                CxString::boolToStr((*it)->secure()).c_str(),
+                CxString::boolToStr((*it)->httpOnly()).c_str()
         );
 
         sRv.append( xT("[Item]:\n") );

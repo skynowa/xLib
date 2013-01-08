@@ -87,13 +87,13 @@ CxBlowfish::setFileKey(
 
     sfFile.create(a_csFilePath, CxFile::omBinRead, true);
 
-    longlong_t llFileSize = sfFile.llSize();
+    longlong_t llFileSize = sfFile.size();
     xTEST_LESS(0LL, llFileSize);
     xTEST_GR_EQ(static_cast<longlong_t>( MAX_KEY_SIZE ) >= llFileSize, false);
 
     usFile.resize( static_cast<size_t>( llFileSize ) );
 
-    uiRes = sfFile.uiRead(&usFile.at(0), usFile.size());
+    uiRes = sfFile.read(&usFile.at(0), usFile.size());
     xTEST_EQ(usFile.size(), uiRes);
 
     setKey(usFile);
@@ -150,7 +150,7 @@ CxBlowfish::encryptCfb64(
     (*a_pusOut).resize( a_cusIn.size() );
 
     encryptCfb64(
-        const_cast<uchar_t *>( &a_cusIn.at(0) ), &(*a_pusOut).at(0), 
+        const_cast<uchar_t *>( &a_cusIn.at(0) ), &(*a_pusOut).at(0),
         static_cast<long_t>( a_cusIn.size() ), &iNum, a_cmMode);
     xTEST_LESS(- 1, iNum);
 }
@@ -172,7 +172,7 @@ CxBlowfish::encryptFileCfb64(
         CxFile sfFileIn;
 
         sfFileIn.create(a_csFilePathIn, CxFile::omBinRead, true);
-        sfFileIn.vRead(&usIn);
+        sfFileIn.read(&usIn);
     }
 
     encryptCfb64(usIn, &usOut, a_cmMode);
@@ -181,7 +181,7 @@ CxBlowfish::encryptFileCfb64(
         CxFile sfFileOut;
 
         sfFileOut.create(a_csFilePathOut, CxFile::omBinCreateReadWrite, true);
-        sfFileOut.vWrite(usOut);
+        sfFileOut.write(usOut);
     }
 }
 //---------------------------------------------------------------------------

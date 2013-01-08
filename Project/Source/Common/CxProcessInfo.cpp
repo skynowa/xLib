@@ -52,13 +52,13 @@ CxProcessInfo::currentIds(
     #if   xOS_LINUX
         std::vec_tstring_t a_vsDirPathes;
 
-        CxDir(xT("/proc")).vDirsFind(CxConst::xMASK_ALL, false, &a_vsDirPathes);
+        CxDir(xT("/proc")).dirsFind(CxConst::xMASK_ALL, false, &a_vsDirPathes);
 
         // skip non-numeric entries
         xFOREACH_CONST(std::vec_tstring_t, it, a_vsDirPathes) {
             int iPid = 0;
             {
-                std::tstring_t sDirName = CxPath(*it).sFileName();
+                std::tstring_t sDirName = CxPath(*it).fileName();
 
                 iPid = ::atoi(sDirName.c_str());
                 xCHECK_DO(0 >= iPid, continue);
@@ -166,14 +166,14 @@ CxProcessInfo::ioBytes(
 
     ulong_t ulReadBytes = 0UL;
     {
-        std::tstring_t sValue = CxPath::sProcValue(sProcPath, xT("read_bytes"));
+        std::tstring_t sValue = CxPath::procValue(sProcPath, xT("read_bytes"));
 
         ulReadBytes = CxString::cast<ulong_t>( sValue );
     }
 
     ulong_t ulWriteBytes = 0UL;
     {
-        std::tstring_t sValue = CxPath::sProcValue(sProcPath, xT("write_bytes"));
+        std::tstring_t sValue = CxPath::procValue(sProcPath, xT("write_bytes"));
 
         ulWriteBytes = CxString::cast<ulong_t>( sValue );
     }
@@ -398,7 +398,7 @@ CxProcessInfo::commandLine(
 
         std::vec_tstring_t vsProcFile;
 
-        CxPath::vProc(csProcFile, &vsProcFile);
+        CxPath::proc(csProcFile, &vsProcFile);
         xTEST_EQ(size_t(1), vsProcFile.size())
 
         sRv = vsProcFile.at(0);

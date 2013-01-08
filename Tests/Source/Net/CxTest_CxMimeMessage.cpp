@@ -107,15 +107,15 @@ CxTest_CxMimeMessage::unit(
 
     //-------------------------------------
     //bConnect
-    objPop3.vConnect();
+    objPop3.connect();
 
     //-------------------------------------
     //bLogin
-    objPop3.vLogin();
+    objPop3.login();
 
     //-------------------------------------
     //bStat
-    objPop3.vStat(ulSum, ulSize);
+    objPop3.stat(ulSum, ulSize);
     /*LOG*/printf("Mails %lu\n", ulSum);
 
     //-------------------------------------
@@ -131,7 +131,7 @@ CxTest_CxMimeMessage::unit(
         //CxMimeHeader
         CxMimeHeader objHeader;
 
-        objPop3.vTop(i, 0, /*ref*/sRawHeader);
+        objPop3.top(i, 0, /*ref*/sRawHeader);
 
         //-------------------------------------
         //bParse
@@ -172,7 +172,7 @@ CxTest_CxMimeMessage::unit(
 
         //-------------------------------------
         //bRetrieveHeader
-        objPop3.vRetrieveHeader(y, objHeader);
+        objPop3.retrieveHeader(y, objHeader);
 
         //-------------------------------------
         //sGetField
@@ -204,6 +204,6 @@ CxTest_CxMimeMessage::unit(
 
     //-------------------------------------
     //bDisconnect
-    objPop3.vDisconnect();
+    objPop3.disconnect();
 }
 //---------------------------------------------------------------------------

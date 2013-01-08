@@ -102,7 +102,7 @@ CxTest_CxFinder::unit(
                 #if   xOS_ENV_WIN
                     if (! (fnFinder.attributes() & CxFileAttribute::faDirectory))
                 #elif xOS_ENV_UNIX
-                    if (fnFinder.faAttributes() & CxFileAttribute::faRegularFile)
+                    if (fnFinder.attributes() & CxFileAttribute::faRegularFile)
                 #endif
 
                     {

@@ -144,7 +144,7 @@ CxThread::create(
         xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
     }
 
-    iRv = ::pthread_create(&id, &paAttributes, &_s_jbEntry, this);
+    iRv = ::pthread_create(&id, &paAttributes, &_s_jobEntry, this);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
     xTEST_MSG_EQ(true, 0UL < id, CxLastError::format(iRv));
 
@@ -584,7 +584,7 @@ CxThread::setPriority(
     BOOL blRes = ::SetThreadPriority(_m_hThread.get(), a_ctpPriority);
     xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
-    if (false == CxSystemInfo::bIsUserAnAdmin()) {
+    if (false == CxSystemInfo::isUserAdmin()) {
         CxTracer() << xT("::: xLib: warning (CxThread::vSetPriority fail, need root) :::");
         return;
     }
@@ -1053,7 +1053,7 @@ CxThread::_s_jobEntry(
 
     //-------------------------------------
     // handle must be valid
-    ////CxCurrentThread::bSleep(500UL);
+    ////CxCurrentThread::sleep(500UL);
 
     CxEvent::ExObjectState osRes = pthThis->_m_pevStarter->wait(10000UL);   // not infinite timeout
     xTEST_EQ(CxEvent::osSignaled, osRes);
