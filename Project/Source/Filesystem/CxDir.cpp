@@ -418,11 +418,11 @@ CxDir::filesFind(
                 xCHECK_DO(CxConst::xDOT  == std::tstring_t(pdrEntry->d_name), continue);
                 xCHECK_DO(CxConst::x2DOT == std::tstring_t(pdrEntry->d_name), continue);
 
-                std::tstring_t _sDirPath = CxPath(dirPath()).sSlashAppend() + std::tstring_t(pdrEntry->d_name);
+                std::tstring_t _sDirPath = CxPath(dirPath()).slashAppend() + std::tstring_t(pdrEntry->d_name);
 
                 // is search in subdirs ?
                 if (true == a_cbIsRecursively) {
-                    CxDir(_sDirPath).vFilesFind(a_csPattern, a_cbIsRecursively, a_pvsFilePathes); // recursion
+                    CxDir(_sDirPath).filesFind(a_csPattern, a_cbIsRecursively, a_pvsFilePathes); // recursion
                 }
             }
             // TODO: files
@@ -437,7 +437,7 @@ CxDir::filesFind(
                     xCHECK_DO(0 != iRv, continue);
                 }
 
-                std::tstring_t sFilePath = CxPath(dirPath()).sSlashAppend() + sFileName;
+                std::tstring_t sFilePath = CxPath(dirPath()).slashAppend() + sFileName;
 
                 (*a_pvsFilePathes).push_back(sFilePath);
             }
@@ -551,13 +551,13 @@ CxDir::dirsFind(
                 xCHECK_DO(0 != iRv, continue);
             }
 
-            std::tstring_t _sDirPath = CxPath(dirPath()).sSlashAppend() + sFileName;
+            std::tstring_t _sDirPath = CxPath(dirPath()).slashAppend() + sFileName;
 
             (*a_pvsDirPathes).push_back(_sDirPath);
 
             // is search in subdirs ?
             if (true == a_cbIsRecursively) {
-                CxDir(_sDirPath).vDirsFind(a_csPattern, a_cbIsRecursively, a_pvsDirPathes);  // recursion
+                CxDir(_sDirPath).dirsFind(a_csPattern, a_cbIsRecursively, a_pvsDirPathes);  // recursion
             }
         }
         // files, etc
@@ -635,7 +635,7 @@ CxDir::temp() {
 
     bool bRv = CxEnvironment::isExists(csEnvDirTemp);
     if (true == bRv) {
-        sRv = CxEnvironment::sVar(csEnvDirTemp);
+        sRv = CxEnvironment::var(csEnvDirTemp);
     } else {
         sRv = xDIR_TEMP;
     }

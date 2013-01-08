@@ -160,8 +160,8 @@ CxHandleT<hvTag>::isValid() const {
 
     bRv = bCond1 && bCond2 && bCond3 && bCond4 && bCond5 && bCond6 && bCond7;
 #elif xOS_ENV_UNIX
-    bool bCond1 = (error_value_t::hGet()                         != _m_hHandle);   // compare with error handle value
-    bool bCond2 = (error_value_t::hGet()                         <  _m_hHandle);   // handle value is negative
+    bool bCond1 = (error_value_t::get()                          != _m_hHandle);   // compare with error handle value
+    bool bCond2 = (error_value_t::get()                          <  _m_hHandle);   // handle value is negative
 
     bRv = bCond1 && bCond2;
 #endif

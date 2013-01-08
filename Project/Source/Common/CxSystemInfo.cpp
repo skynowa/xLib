@@ -126,7 +126,7 @@ CxSystemInfo::formatOsType(
         default:                        { sRv = CxConst::xUNKNOWN_STRING;         }    break;
     }
 #elif xOS_ENV_UNIX
-    if (osOS() == a_otOsType) {
+    if (os() == a_otOsType) {
         // current OS type - get info about OS kernel
         utsname unKernelInfo= {{0}};
 
@@ -253,7 +253,7 @@ CxSystemInfo::desktopName() {
 
     xTEST_EQ(false, sRv.empty());
 #elif xOS_ENV_UNIX
-    sRv = CxEnvironment::sVar(xT("DESKTOP_SESSION"));
+    sRv = CxEnvironment::var(xT("DESKTOP_SESSION"));
     xTEST_EQ(false, sRv.empty());
 #endif
 
@@ -381,9 +381,9 @@ CxSystemInfo::useHomeDir() {
     * it is necessary to use getpwnam("username")->pw_dir or similar.
     */
 
-    bool bRv = CxEnvironment::bIsExists(xT("HOME"));
+    bool bRv = CxEnvironment::isExists(xT("HOME"));
     if (true == bRv) {
-        sRv = CxEnvironment::sVar(xT("HOME"));
+        sRv = CxEnvironment::var(xT("HOME"));
     } else {
         struct passwd pwdPasswd = {0};
 
@@ -546,7 +546,7 @@ CxSystemInfo::cpuVendor() {
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         // target proc line: "vendor_id : GenuineIntel"
-        sValue = CxPath::sProcValue(xT("/proc/cpuinfo"), xT("vendor_id"));
+        sValue = CxPath::procValue(xT("/proc/cpuinfo"), xT("vendor_id"));
         xTEST_EQ(false, sValue.empty());
     #elif xOS_FREEBSD
         // Use gcc 4.4 provided cpuid intrinsic
@@ -651,7 +651,7 @@ CxSystemInfo::cpuModel() {
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         // target proc line: "model name    : Intel(R) Xeon(R) CPU           E5620  @ 2.40GHz"
-        std::tstring_t sValue = CxPath::sProcValue(xT("/proc/cpuinfo"), xT("model name"));
+        std::tstring_t sValue = CxPath::procValue(xT("/proc/cpuinfo"), xT("model name"));
         xTEST_EQ(false, sValue.empty());
 
         sRv = sValue;
@@ -700,7 +700,7 @@ CxSystemInfo::cpuSpeed() {
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         // target proc line: "cpu MHz         : 2796.380"
-        std::tstring_t sValue = CxPath::sProcValue(xT("/proc/cpuinfo"), xT("cpu MHz"));
+        std::tstring_t sValue = CxPath::procValue(xT("/proc/cpuinfo"), xT("cpu MHz"));
         xTEST_EQ(false, sValue.empty());
 
         double dCpuSpeedMHz = CxString::cast<double>( sValue );

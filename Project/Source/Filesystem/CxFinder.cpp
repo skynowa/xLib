@@ -116,7 +116,7 @@ CxFinder::moveFirst() {
                             &_m_enEnrty.fdData);
     xCHECK_RET(xNATIVE_HANDLE_INVALID == _m_enEnrty.hHandle, false);
 #elif xOS_ENV_UNIX
-    _m_enEnrty.pHandle = ::opendir(sRootDirPath().c_str());
+    _m_enEnrty.pHandle = ::opendir(rootDirPath().c_str());
     xTEST_PTR(_m_enEnrty.pHandle);
 
     bool bRv = moveNext();
