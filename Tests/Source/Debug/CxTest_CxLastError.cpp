@@ -30,7 +30,8 @@ CxTest_CxLastError::unit(
 
     xTEST_CASE("CxLastError::get", cullCaseLoops)
     {
-        (void)CxLastError::get();
+        m_ulRv = CxLastError::get();
+        xUNUSED(m_ulRv);
         xTEST_EQ(0UL, CxLastError::get());
     }
 

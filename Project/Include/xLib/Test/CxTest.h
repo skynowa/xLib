@@ -55,9 +55,9 @@ public:
         ///< test unit
     void                   createTempDir(const std::tstring_t &csDirName);
         ///< create work dir
-    const std::tstring_t & tempDirPath  () const;
+    const std::tstring_t & tempDirPath  () const xWARN_UNUSED_RESULT;
         ///< get work dir path
-    const std::tstring_t & name         () const;
+    const std::tstring_t & name         () const xWARN_UNUSED_RESULT;
         ///< get name
     void                   setName      (const std::tstring_t &csTestName);
         ///< set name

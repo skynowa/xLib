@@ -842,7 +842,8 @@ CxCgiFormData::_init() {
 
                 _m_sFormData = sBuff;
 
-                (FILE *)sfFile.detach();
+                FILE *f = sfFile.detach();
+                xTEST_PTR(f);
             }
             break;
 

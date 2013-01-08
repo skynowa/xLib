@@ -26,13 +26,13 @@ public:
     virtual        ~CxDll       ();
         ///< destructor
 
-    bool            isLoaded    () const;
+    bool            isLoaded    () const xWARN_UNUSED_RESULT;
         ///< is loaded
     void            load        (const std::tstring_t &csDllPath);
         ///< load
-    bool            isProcExists(const std::tstring_t &csProcName) const;
+    bool            isProcExists(const std::tstring_t &csProcName) const xWARN_UNUSED_RESULT;
         ///< is function exists
-    proc_address_t  procAddress (const std::tstring_t &csProcName) const;
+    proc_address_t  procAddress (const std::tstring_t &csProcName) const xWARN_UNUSED_RESULT;
         ///< get address of an exported function or variable
 
 private:

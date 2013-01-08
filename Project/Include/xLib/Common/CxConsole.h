@@ -73,11 +73,11 @@ public:
         ///< destructor
 
     std::tstring_t  setAttributes   (const ExForeground &cfgForeground, const ExBackground &cbgBackground,
-                                     const int &ciAttributes);
+                                     const int &ciAttributes) xWARN_UNUSED_RESULT;
         ///< set text color
-    std::tstring_t  setAttributesDef();
+    std::tstring_t  setAttributesDef() xWARN_UNUSED_RESULT;
         ///< set text color
-    std::tstring_t  read            ();
+    std::tstring_t  read            () xWARN_UNUSED_RESULT;
         ///< read
     void            write           (const std::tstring_t &csStr);
         ///< write
@@ -85,7 +85,7 @@ public:
         ///< write line
     void            writeErrLine    (const std::tstring_t &csStr);
         ///< write error message
-    ExModalResult   msgBox          (const std::tstring_t &csText, const std::tstring_t &csTitle, const uint_t &cuiType);
+    ExModalResult   msgBox          (const std::tstring_t &csText, const std::tstring_t &csTitle, const uint_t &cuiType) xWARN_UNUSED_RESULT;
         ///< show console message dialog
     void            prompt          (const std::tstring_t &csPrompt, const bool &cbIsVisible, std::tstring_t *psAnswer);
         ///< show console prompt dialog
@@ -94,7 +94,7 @@ public:
     void            clear           ();
         ///< clear
 
-    std::tstring_t  title           ();
+    std::tstring_t  title           () xWARN_UNUSED_RESULT;
         ///< get title string
     void            setTitle        (const std::tstring_t &csTitle);
         ///< set title string
@@ -113,9 +113,9 @@ private:
     CxHandleInvalid _m_hStdOut;          ///< standard output handle
     WORD            _m_wAttributesDef;   ///< default console attributes
 
-    HWND            _wndHandle      ();
+    HWND            _wndHandle      () xWARN_UNUSED_RESULT;
         ///< get console window handle
-    HMENU           _menuHandle     (const bool &cbRevert);
+    HMENU           _menuHandle     (const bool &cbRevert) xWARN_UNUSED_RESULT;
         ///< get console menu handle
 #endif
 };

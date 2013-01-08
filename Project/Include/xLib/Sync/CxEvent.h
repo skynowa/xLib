@@ -43,7 +43,7 @@ public:
     virtual          ~CxEvent   ();
         ///< destructor
 
-    const handle_t &  handle    () const;
+    const handle_t &  handle    () const xWARN_UNUSED_RESULT;
         ///< get handle
     void              create    ();
         ///< create
@@ -51,9 +51,9 @@ public:
         ///< signal the event for the waiting thread (!!! unlock !!!)
     void              reset     ();
         ///< once signaled, the event class must be "reset" before responding to a new signal
-    ExObjectState     wait      (const ulong_t &culTimeout = xTIMEOUT_INFINITE);
+    ExObjectState     wait      (const ulong_t &culTimeout = xTIMEOUT_INFINITE) xWARN_UNUSED_RESULT;
         ///< wait either for the CxEvent to be signaled by another thread or for the specified timeout duration
-    bool              isSignaled();
+    bool              isSignaled() xWARN_UNUSED_RESULT;
         ///< is signaled
 
 private:

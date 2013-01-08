@@ -25,7 +25,8 @@ public:
                       CxPop3             ();
                      ~CxPop3             ();
 
-    void              create             (const std::tstring_t &csUser, const std::tstring_t &csPass, const std::tstring_t &csServer, ushort_t usPort);
+    void              create             (const std::tstring_t &csUser, const std::tstring_t &csPass,
+                                          const std::tstring_t &csServer, ushort_t usPort);
     void              connect            ();
     void              login              ();
 
@@ -38,7 +39,8 @@ public:
 
     void              retrive            (int iNum, const std::tstring_t &csRawMimeMessage);
     void              retriveRaw         (int iNum, const std::tstring_t &csDirPath, const std::tstring_t &csFileName);
-    void              retriveRawAndBackup(int iNum, const std::tstring_t &csDirPath, const std::tstring_t &csBackupDirPath, const std::tstring_t &csFileName);
+    void              retriveRawAndBackup(int iNum, const std::tstring_t &csDirPath, const std::tstring_t &csBackupDirPath,
+                                          const std::tstring_t &csFileName);
     void              retrieveHeader     (int iNum, CxMimeHeader &mhMimeHeader);
 
     void              del                (int iNum);
@@ -54,10 +56,11 @@ private:
     ushort_t          _m_usPort;
     bool              _m_bConnected;
 
-    void              _command           (const std::tstring_t &csCmd, const std::tstring_t &csReplyDelimiter, std::tstring_t *psReply);
-    bool              _isError           (const std::tstring_t &csText);
-    ulong_t           _mailsSum          (const std::tstring_t &csServerAnswer);
-    ulong_t           _mailsSize         (const std::tstring_t &csServerAnswer);
+    void              _command           (const std::tstring_t &csCmd, const std::tstring_t &csReplyDelimiter,
+                                          std::tstring_t *psReply);
+    bool              _isError           (const std::tstring_t &csText) xWARN_UNUSED_RESULT;
+    ulong_t           _mailsSum          (const std::tstring_t &csServerAnswer) xWARN_UNUSED_RESULT;
+    ulong_t           _mailsSize         (const std::tstring_t &csServerAnswer) xWARN_UNUSED_RESULT;
 };
 
 xNAMESPACE_END(NxLib)

@@ -44,17 +44,17 @@ public:
     virtual               ~CxVolume  ();
         ///< destructor
 
-    const std::tstring_t & volumePath() const;
+    const std::tstring_t & volumePath() const xWARN_UNUSED_RESULT;
         ///< volume path
-    ExType                 type      () const;
+    ExType                 type      () const xWARN_UNUSED_RESULT;
         ///< drive type
-    std::tstring_t         label     () const;
+    std::tstring_t         label     () const xWARN_UNUSED_RESULT;
         ///< get label
-    bool                   isValid   () const;
+    bool                   isValid   () const xWARN_UNUSED_RESULT;
         ///< is valid path
-    bool                   isReady   () const;
+    bool                   isReady   () const xWARN_UNUSED_RESULT;
         ///< is ready
-    bool                   isEmpty   () const;
+    bool                   isEmpty   () const xWARN_UNUSED_RESULT;
         ///< is empty
     void                   mount     (const std::tstring_t &csDestPath) const;
         ///< mount

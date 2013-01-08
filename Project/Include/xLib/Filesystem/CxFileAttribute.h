@@ -54,12 +54,12 @@ public:
     virtual               ~CxFileAttribute();
         ///< destructor
 
-    const std::tstring_t & filePath       () const;
+    const std::tstring_t & filePath       () const xWARN_UNUSED_RESULT;
         ///< file path
 
-    bool                   isExists       (const ExAttribute &cfaValue);
+    bool                   isExists       (const ExAttribute &cfaValue) xWARN_UNUSED_RESULT;
         ///< is exists
-    ExAttribute            get            ();
+    ExAttribute            get            () xWARN_UNUSED_RESULT;
         ///< get
     void                   set            (const ExAttribute &cfaValue);
         ///< set

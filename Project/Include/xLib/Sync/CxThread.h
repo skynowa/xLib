@@ -72,13 +72,13 @@ public:
         ///< wait
 
     // flags
-    bool                 isCreated           () const;
+    bool                 isCreated           () const xWARN_UNUSED_RESULT;
         ///< is created
-    bool                 isRunning           () const;
+    bool                 isRunning           () const xWARN_UNUSED_RESULT;
         ///< is running
-    bool                 isPaused            ();
+    bool                 isPaused            () xWARN_UNUSED_RESULT;
         ///< is paused
-    bool                 isExited            ();
+    bool                 isExited            () xWARN_UNUSED_RESULT;
         ///< is exited (is set flag "exit")
 
 #if   xOS_ENV_WIN
@@ -89,7 +89,7 @@ public:
         ///< send message from thread to window
     void                 postThreadMessage   (uint_t uiMsg, uint_t uiParam1, long_t liParam2) const;
         ///< post message from thread to thread
-    bool                 tryPostThreadMessage(uint_t uiMsg, uint_t uiParam1, long_t liParam2, ulong_t ulAttemps, ulong_t ulAttempTimeout) const;
+    bool                 tryPostThreadMessage(uint_t uiMsg, uint_t uiParam1, long_t liParam2, ulong_t ulAttemps, ulong_t ulAttempTimeout) const xWARN_UNUSED_RESULT;
         ///< try post message from thread to thread
     void                 messageWaitQueue    (uint_t uiMsg, uint_t *puiParam1, long_t *pliParam2) const;
         ///< waiting for message with params from other thread
@@ -100,15 +100,15 @@ public:
     // priority
     void                 setPriority         (const ExPriority &ctpPriority) const;
         ///< set priority (under Linux must use admin privilege)
-    ExPriority           priority            () const;
+    ExPriority           priority            () const xWARN_UNUSED_RESULT;
         ///< get priority
-    std::tstring_t       priorityString      () const;
+    std::tstring_t       priorityString      () const xWARN_UNUSED_RESULT;
         ///< get priority as string
     void                 priorityUp          () const;
         ///< increase priority on one level
     void                 priorityDown        () const;
         ///< decrease priority on one level
-    bool                 isPriorityBoost     () const;
+    bool                 isPriorityBoost     () const xWARN_UNUSED_RESULT;
         ///< get priority boost control state
     void                 setPriorityBoost    (const bool &cbIsEnabled) const;
         ///< disables or enables the ability of the system to temporarily boost the priority of a thread
@@ -118,35 +118,35 @@ public:
         ///< set processor affinity
     void                 setCpuIdeal         (const ulong_t &culIdealCpu) const;
         ///< sets preferred processor for a thread
-    ulong_t              cpuIdeal            () const;
+    ulong_t              cpuIdeal            () const xWARN_UNUSED_RESULT;
         ///< get current ideal processor without changing it
-    static ulong_t       cpuCount            ();
+    static ulong_t       cpuCount            () xWARN_UNUSED_RESULT;
         ///< get CPU count on machine
 
     // other
-    handle_t             handle              () const;
+    handle_t             handle              () const xWARN_UNUSED_RESULT;
         ///< get handle
-    id_t                 id                  () const;
+    id_t                 id                  () const xWARN_UNUSED_RESULT;
         ///< get ID
-    bool                 isCurrent           () const;
+    bool                 isCurrent           () const xWARN_UNUSED_RESULT;
         ///< is current
-    ulong_t              exitStatus          () const;
+    ulong_t              exitStatus          () const xWARN_UNUSED_RESULT;
         ///< get termination status
     void                 setDebugName        (const std::tstring_t &csName) const;
         ///< set name your threads in the debugger thread list
 
     // static
-    static handle_t      open                (const ulong_t &culAccess, const bool &cbInheritHandle, const ulong_t &culId);
+    static handle_t      open                (const ulong_t &culAccess, const bool &cbInheritHandle, const ulong_t &culId) xWARN_UNUSED_RESULT;
         ///< opens an existing thread object
 
 protected:
     // events
-    virtual uint_t       onRun               (void *pvParam) /* BUG: = 0 */;
+    virtual uint_t       onRun               (void *pvParam) /* BUG: = 0 */ xWARN_UNUSED_RESULT;
         ///< work thread function, must be override
     //--virtual void    vOnEnter              ();
     //--virtual void    vOnExit               ();
 
-    bool                 isTimeToExit        ();
+    bool                 isTimeToExit        () xWARN_UNUSED_RESULT;
         ///< is need to exit from work thread function
 
 private:
@@ -185,9 +185,9 @@ private:
 #endif
 
     static exit_status_t xSTDCALL
-                         _s_jobEntry         (void *pvParam);
+                         _s_jobEntry         (void *pvParam) xWARN_UNUSED_RESULT;
         ///< callback
-    bool                 _waitResumption     ();
+    bool                 _waitResumption     () xWARN_UNUSED_RESULT;
         ///< waiting for reset pause
     void                 _setStatesDefault   ();
         ///< set states as default

@@ -26,7 +26,7 @@ public:
         ///< sleep
     void     wakeUp    ();
         ///< wake up
-    bool     isSleeping();
+    bool     isSleeping() xWARN_UNUSED_RESULT;
         ///< check for sleeping
 
 private:

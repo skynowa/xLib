@@ -26,7 +26,7 @@ public:
                      CxIpcSemaphore();
     virtual         ~CxIpcSemaphore();
 
-    const handle_t & handle        () const;
+    const handle_t & handle        () const xWARN_UNUSED_RESULT;
         ///< get handle
     void             create        (const long_t &cliInitialValue, const std::tstring_t &csName);
         ///< create
@@ -36,14 +36,14 @@ public:
         ///< release
     void             wait          (const ulong_t &culTimeoutMsec) const;
         ///< wait
-    long_t           value         () const;
+    long_t           value         () const xWARN_UNUSED_RESULT;
         ///< get value
 
 private:
     handle_t         _m_hHandle;
     std::tstring_t   _m_sName;
 
-    bool             _isValid      () const;
+    bool             _isValid      () const xWARN_UNUSED_RESULT;
 };
 
 xNAMESPACE_END(NxLib)

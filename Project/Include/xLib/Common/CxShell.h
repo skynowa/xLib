@@ -22,7 +22,7 @@ class CxShell :
     /// shell
 {
 public:
-    static bool           isAvailable   ();
+    static bool           isAvailable   () xWARN_UNUSED_RESULT;
     static void           execute       (const std::tstring_t &csFilePath, const std::tstring_t &csParams);
 
 #if   xOS_ENV_WIN
@@ -118,9 +118,11 @@ public:
         sfWindows                = CSIDL_WINDOWS
     };
 
-    static std::tstring_t findExecutable(const std::tstring_t &csFileName, const std::tstring_t &csFindDirPath);
+    static std::tstring_t findExecutable(const std::tstring_t &csFileName, const std::tstring_t &csFindDirPath) xWARN_UNUSED_RESULT;
         ///< find executable file path
-    static void           execute       (const HWND &chOwner, const ExOperation &copOperation, const std::tstring_t &csFilePath, const std::tstring_t &csParams, const std::tstring_t &csDir, const EShowFlag &csfShowCmd);
+    static void           execute       (const HWND &chOwner, const ExOperation &copOperation,
+                                         const std::tstring_t &csFilePath, const std::tstring_t &csParams,
+                                         const std::tstring_t &csDir, const EShowFlag &csfShowCmd);
         ///< execute
     static void           executeEx     (SHELLEXECUTEINFO *peiInfo);
         ///< execute
@@ -130,7 +132,7 @@ public:
         ///< execute FTP
     static void           executeEmail  (const std::tstring_t &csToEmail, const std::tstring_t &csSubject, const std::tstring_t &csBody);
         ///< execute email
-    static std::tstring_t specialDirPath(const ESpecialDir &csfDir, const HANDLE &chToken);
+    static std::tstring_t specialDirPath(const ESpecialDir &csfDir, const HANDLE &chToken) xWARN_UNUSED_RESULT;
         ///< get special dir path
     static void           createShortcut(const std::tstring_t &csShortCutFilePath,
                                          const std::tstring_t &csFilePath,

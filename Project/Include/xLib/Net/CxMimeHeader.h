@@ -20,8 +20,8 @@ public:
                           ~CxMimeHeader     ();
 
     void                   parse            (const std::tstring_t &csRawHeader);
-    std::tstring_t         field            (const std::tstring_t &csName);
-    size_t                 count            ();
+    std::tstring_t         field            (const std::tstring_t &csName) xWARN_UNUSED_RESULT;
+    size_t                 count            () xWARN_UNUSED_RESULT;
     void                   loadFromFile     (const std::tstring_t &csRawMessageFilePath);
     void                   saveToFile       (const std::tstring_t &csFilePath);
 

@@ -16,15 +16,15 @@ class CxLastError :
     /// system last error
 {
 public:
-    static ulong_t        get        ();
+    static ulong_t        get        () xWARN_UNUSED_RESULT;
         ///< get the calling thread's last-error code value
-    static std::tstring_t toString   ();
+    static std::tstring_t toString   () xWARN_UNUSED_RESULT;
         ///< get as string
     static void           set        (const ulong_t &culCode);
         ///< set the last error code for the calling thread
     static void           reset      ();
         ///< set last error code to 0
-    static std::tstring_t format     (const ulong_t &culCode);
+    static std::tstring_t format     (const ulong_t &culCode) xWARN_UNUSED_RESULT;
         ///< get last error as string
 
 private:

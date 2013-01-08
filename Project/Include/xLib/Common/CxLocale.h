@@ -16,7 +16,7 @@ class CxLocale :
     /// locale
 {
 public:
-   static std::tstring_t current   ();
+   static std::tstring_t current   () xWARN_UNUSED_RESULT;
           ///< get current
    static void           setCurrent(const std::tstring_t &csLocale);
              ///< set current

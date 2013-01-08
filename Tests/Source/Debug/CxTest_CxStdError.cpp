@@ -26,10 +26,11 @@ CxTest_CxStdError::unit(
 
     xTEST_CASE("CxStdError::get", cullCaseLoops)
     {
-        (int)CxStdError::get();
+        m_iRv = CxStdError::get();
+        xUNUSED(m_iRv);
         xTEST_EQ(0, CxStdError::get());
     }
-   
+
     xTEST_CASE("CxStdError::toString", cullCaseLoops)
     {
         std::tstring_t sError = CxStdError::toString();
