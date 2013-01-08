@@ -102,7 +102,6 @@ SUBDIRS_TESTS_SOURCE		:=	. \
 								Patterns \
 								Sync \
 								Sync/Win \
-								Sync/Unix \
 								Test \
 								Units \
 								Units/Win
