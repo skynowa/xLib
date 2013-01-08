@@ -62,53 +62,53 @@ public:
     };
 
     // OS
-    static ExOsType       os              ();
+    static ExOsType       os              () xWARN_UNUSED_RESULT;
         ///< get information about the current OS
-    static std::tstring_t formatOsType    (const ExOsType &otOsType);
+    static std::tstring_t formatOsType    (const ExOsType &otOsType) xWARN_UNUSED_RESULT;
         ///< format OS type
 
-    static ExOsArch       osArch          ();
+    static ExOsArch       osArch          () xWARN_UNUSED_RESULT;
         ///< get OS architecture
-    static std::tstring_t formatOsArch    (const ExOsArch &oaOsArch);
+    static std::tstring_t formatOsArch    (const ExOsArch &oaOsArch) xWARN_UNUSED_RESULT;
         ///< format get OS architecture
 
-    static std::tstring_t desktopName     ();
+    static std::tstring_t desktopName     () xWARN_UNUSED_RESULT;
         ///< desktop environments
 
     // users
-    static std::tstring_t hostName        ();
+    static std::tstring_t hostName        () xWARN_UNUSED_RESULT;
         ///< get the NetBIOS name of the local computer
-    static bool           isUserAdmin     ();
+    static bool           isUserAdmin     () xWARN_UNUSED_RESULT;
         ///< is current user an admin
-    static std::tstring_t userName        ();
+    static std::tstring_t userName        () xWARN_UNUSED_RESULT;
         ///< get the name of the user associated with the current thread
-    static std::tstring_t useHomeDir      ();
+    static std::tstring_t useHomeDir      () xWARN_UNUSED_RESULT;
         ///< get home directory of current user
-    static std::tstring_t userShellPath   ();
+    static std::tstring_t userShellPath   () xWARN_UNUSED_RESULT;
         ///< get shell path of current user
 
     // CPU
-    static ulong_t        numOfCpus       ();
+    static ulong_t        numOfCpus       () xWARN_UNUSED_RESULT;
         ///< get num of CPUs
-    static ulong_t        currentCpuNum   ();
+    static ulong_t        currentCpuNum   () xWARN_UNUSED_RESULT;
         ///< get the number of the processor the current thread was running on during the call to this function
-    static ExCpuVendor    cpuVendor       ();
+    static ExCpuVendor    cpuVendor       () xWARN_UNUSED_RESULT;
         ///< get CPU vendor
-    static std::tstring_t cpuModel        ();
+    static std::tstring_t cpuModel        () xWARN_UNUSED_RESULT;
         ///< get CPU model name
-    static ulong_t        cpuSpeed        ();
+    static ulong_t        cpuSpeed        () xWARN_UNUSED_RESULT;
         ///< get CPU speed (MHz)
-    static ulong_t        cpuUsage        ();
+    static ulong_t        cpuUsage        () xWARN_UNUSED_RESULT;
         ///< get CPU usage (percentage)
 
     // RAM
-    static ulonglong_t    ramTotal        ();
+    static ulonglong_t    ramTotal        () xWARN_UNUSED_RESULT;
         ///< get total RAM (bytes)
-    static ulonglong_t    ramAvailable    ();
+    static ulonglong_t    ramAvailable    () xWARN_UNUSED_RESULT;
         ///< get available RAM (bytes)
-    static ulong_t        ramUsage        ();
+    static ulong_t        ramUsage        () xWARN_UNUSED_RESULT;
         ///< get RAM usage (percentage)
-    static ulong_t        pageSize        ();
+    static ulong_t        pageSize        () xWARN_UNUSED_RESULT;
         ///< get Size of a page (bytes)
 
 private:

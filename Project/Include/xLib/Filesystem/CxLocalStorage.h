@@ -25,14 +25,14 @@ public:
     virtual               ~CxLocalStorage();
         ///< destructor
 
-    //creation
+    // creation
     void                   createDefault (const std::tstring_t &csContent) const;
         ///< create default file
-    const std::tstring_t & path          () const;
+    const std::tstring_t & path          () const xWARN_UNUSED_RESULT;
         ///< get file path
     void                   setPath       (const std::tstring_t &csFilePath);
         ///< set file path
-    local_storage_t &      get           ();
+    local_storage_t &      get           () xWARN_UNUSED_RESULT;
         ///< get inner local_storage_t, may be used with bFlush
 
     void                   flush         () const;
@@ -42,31 +42,31 @@ public:
     void                   remove        ();
         ///< delete
 
-    //key
-    bool                   keyIsExists   (const std::tstring_t &csKey) const;
+    // key
+    bool                   keyIsExists   (const std::tstring_t &csKey) const xWARN_UNUSED_RESULT;
         ///< is exists
 
-    std::tstring_t         keyReadString (const std::tstring_t &csKey, const std::tstring_t &csDefaultValue);
+    std::tstring_t         keyReadString (const std::tstring_t &csKey, const std::tstring_t &csDefaultValue) xWARN_UNUSED_RESULT;
         ///< read std::tstring_t
     void                   keyWriteString(const std::tstring_t &csKey, const std::tstring_t &csValue);
         ///< write std::tstring_t
 
-    long_t                 keyReadInt    (const std::tstring_t &csKey, const long_t &cliDefaultValue);
+    long_t                 keyReadInt    (const std::tstring_t &csKey, const long_t &cliDefaultValue) xWARN_UNUSED_RESULT;
         ///< read int
     void                   keyWriteInt   (const std::tstring_t &csKey, const long_t &cliValue);
         ///< write int
 
-    double                 keyReadFloat  (const std::tstring_t &csKey, const double &cdDefaultValue);
+    double                 keyReadFloat  (const std::tstring_t &csKey, const double &cdDefaultValue) xWARN_UNUSED_RESULT;
         ///< read float
     void                   keyWriteFloat (const std::tstring_t &csKey, const double &cdValue);
         ///< write float
 
-    bool                   keyReadBool   (const std::tstring_t &csKey, const bool &cbDefaultValue);
+    bool                   keyReadBool   (const std::tstring_t &csKey, const bool &cbDefaultValue) xWARN_UNUSED_RESULT;
         ///< read bool
     void                   keyWriteBool  (const std::tstring_t &csKey, const bool &cbValue);
         ///< write bool
 
-    std::ustring_t         keyReadBin    (const std::tstring_t &csKey, const std::ustring_t &cusDefaultValue);
+    std::ustring_t         keyReadBin    (const std::tstring_t &csKey, const std::ustring_t &cusDefaultValue) xWARN_UNUSED_RESULT;
         ///< write std::ustring_t
     void                   keyWriteBin   (const std::tstring_t &csKey, const std::ustring_t &cusValue);
         ///< read std::ustring_t

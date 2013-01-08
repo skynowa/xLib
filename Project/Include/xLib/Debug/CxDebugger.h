@@ -24,19 +24,19 @@ public:
     virtual       ~CxDebugger   ();
         ///< destructor
 
-    bool           isEnabled    ();
+    bool           isEnabled    () xWARN_UNUSED_RESULT;
         ///< is debugging enabled
     void           setEnabled   (const bool &cbFlag);
         ///< set debugging mode on/off
-    bool           isActive     ();
+    bool           isActive     () xWARN_UNUSED_RESULT;
         ///< is OS debugger presents
-    bool           isDebugBuild ();
+    bool           isDebugBuild () xWARN_UNUSED_RESULT;
         ///< is debug build (is NDEBUG macros is don't set)
     void           breakPoint   ();
         ///< attach to OS debugger
     void           setLogPath   (const std::tstring_t &csFilePath);
         ///< set log file path
-    std::tstring_t logPath      ();
+    std::tstring_t logPath      () xWARN_UNUSED_RESULT;
         ///< get log file path
     void           reportMake   (const CxErrorReport &crpReport);
         ///< make report

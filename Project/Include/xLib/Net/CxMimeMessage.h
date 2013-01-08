@@ -22,7 +22,8 @@ public:
                    CxMimeMessage   ();
     virtual       ~CxMimeMessage   ();
 
-    static void    vParse          (const std::tstring_t &csRawMessage, CxMimeHeader &Header, CxMimeBody &Body);
+    static void    vParse          (const std::tstring_t &csRawMessage,
+                                    CxMimeHeader &Header, CxMimeBody &Body);
     static void    vLoadFromRawFile(const std::tstring_t &csFilePath);       //csFilePath - raw msg
     static void    vSaveToRawFile  (const std::tstring_t &csFilePath);       //csFilePath - raw msg
 

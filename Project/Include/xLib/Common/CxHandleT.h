@@ -40,24 +40,24 @@ public:
     CxHandleT &     operator = (const CxHandleT &chHandle);
         ///< operator =
 
-    native_handle_t get        () const;
+    native_handle_t get        () const xWARN_UNUSED_RESULT;
         ///< get
     void            set        (const native_handle_t &chHandle);
         ///< set
-    native_handle_t duplicate  () const;
+    native_handle_t duplicate  () const xWARN_UNUSED_RESULT;
         ///< duplicate handle
 
-    bool            isValid    () const;
+    bool            isValid    () const xWARN_UNUSED_RESULT;
         ///< is valid
     void            attach     (const native_handle_t &chHandle);
         ///< attach
-    native_handle_t detach     ();
+    native_handle_t detach     () xWARN_UNUSED_RESULT;
         ///< detach
     void            close      ();
         ///< close
 
 #if xOS_ENV_WIN
-    ulong_t         info       () const;
+    ulong_t         info       () const xWARN_UNUSED_RESULT;
         ///< get certain properties of an object handle
     void            setInfo    (const ulong_t &culMask, const ulong_t &culFlags);
         ///< set information

@@ -1062,7 +1062,10 @@ CxThread::_s_jobEntry(
 
     //-------------------------------------
     // if created suspended thread - wait for resumption
-    xCHECK_DO(true == pthThis->isPaused(), (void)pthThis->_waitResumption());
+    if (true == pthThis->isPaused()) {
+        bRv = pthThis->_waitResumption();
+        xTEST_EQ(true, bRv);
+    }
 
     {
         //-------------------------------------

@@ -26,44 +26,44 @@ public:
     void                   init       (const std::tstring_t &csRawCookie);
         ///< parsing raw cookie string
 
-    const std::tstring_t & name       () const;
+    const std::tstring_t & name       () const xWARN_UNUSED_RESULT;
         ///< get name
     void                   setName    (const std::tstring_t &csName);
         ///< set name
 
-    const std::tstring_t & value      () const;
+    const std::tstring_t & value      () const xWARN_UNUSED_RESULT;
         ///< get value
     void                   setValue   (const std::tstring_t &csValue);
         ///< set value
 
-    const std::tstring_t & domain     () const;
+    const std::tstring_t & domain     () const xWARN_UNUSED_RESULT;
         ///< get domain
     void                   setDomain  (const std::tstring_t &csDomain);
         ///< set domain
 
-    const std::tstring_t & path       () const;
+    const std::tstring_t & path       () const xWARN_UNUSED_RESULT;
         ///< get path
     void                   setPath    (const std::tstring_t &csPath);
         ///< set path
 
-    const std::tstring_t & expires    () const;
+    const std::tstring_t & expires    () const xWARN_UNUSED_RESULT;
         ///< get expire
     void                   setExpires (const std::tstring_t &csExpires);
         ///< set expire
 
-    bool                   secure     () const;
+    bool                   secure     () const xWARN_UNUSED_RESULT;
         ///< get secure
     void                   setSecure  (const bool &cbFlag);
         ///< set secure
 
-    bool                   httpOnly   () const;
+    bool                   httpOnly   () const xWARN_UNUSED_RESULT;
         ///< get http only
     void                   setHttpOnly(const bool &cbFlag);
         ///< set http only
 
-    std::tstring_t         toString   () const;
+    std::tstring_t         toString   () const xWARN_UNUSED_RESULT;
         ///< convert to string
-    std::tstring_t         dump       () const;
+    std::tstring_t         dump       () const xWARN_UNUSED_RESULT;
         ///< get dump
     void                   clear      ();
         ///< clear

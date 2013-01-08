@@ -113,7 +113,8 @@ CxTest_CxFile::unit(
             CxFile F;
 
             F.create(csFilePath, CxFile::omBinCreateReadWrite, true);
-            F.write((const void *)&sBuffWrite.at(0), sBuffWrite.size() * sizeof(std::tstring_t::value_type));
+            m_stRv = F.write((const void *)&sBuffWrite.at(0), sBuffWrite.size() * sizeof(std::tstring_t::value_type));
+            xUNUSED(m_stRv);
         }
 
         //uiRead
@@ -121,7 +122,8 @@ CxTest_CxFile::unit(
             CxFile F;
 
             F.create(csFilePath, CxFile::omBinRead, true);
-            F.read(&sBuffRead.at(0), sBuffWrite.size() * sizeof(std::tstring_t::value_type));
+            m_stRv = F.read(&sBuffRead.at(0), sBuffWrite.size() * sizeof(std::tstring_t::value_type));
+            xUNUSED(m_stRv);
         }
 
         xTEST_EQ(sBuffWrite, sBuffRead);
@@ -270,7 +272,7 @@ CxTest_CxFile::unit(
 
     xTEST_CASE("CxFile::read", cullCaseLoops)
     {
-        const std::tstring_t csTestContent = 
+        const std::tstring_t csTestContent =
             xT("sz dkfjhsld2345234kfjfsd\tfjklg    23hsd5467ml ksd\tfcsjklsecfgsjk drbf");
 
         {
@@ -296,7 +298,7 @@ CxTest_CxFile::unit(
 
     xTEST_CASE("CxFile::write", cullCaseLoops)
     {
-        const std::tstring_t csTestContent = 
+        const std::tstring_t csTestContent =
                 xT("sz dkfjhsld2345234kfjfsd\tfjklg    23hsd5467ml ksd\tfcsjklsecfgsjk drbf");
 
         CxFile F;
@@ -757,7 +759,7 @@ CxTest_CxFile::vUnit1(
 
         CxFile::textRead(csFilePath, &sFileContent);
         CxFile::textWrite(csFilePath, sFileContent);
-        
+
         std::tstring_t sStr;
         CxFile::textRead(csFilePath, &sStr);
 
@@ -812,7 +814,7 @@ CxTest_CxFile::vUnit1(
     }
 
     xTEST_CASE("CxFile::textRead CxFile::textWrite", cullCaseLoops)
-    {   
+    {
         // std::vector
         std::map_tstring_t   cmsFileContent;
         const std::tstring_t csSeparator = CxConst::xEQUAL;
@@ -860,7 +862,7 @@ CxTest_CxFile::vUnit1(
     }
 
     xTEST_CASE("CxFile::textRead CxFile::textWrite", cullCaseLoops)
-    {  
+    {
         // binary
         std::ustring_t usFileContent;   usFileContent.resize(1024 * 5);
 
@@ -885,7 +887,7 @@ CxTest_CxFile::vUnit1(
 
         xTEST_EQ(true, usFileContent == usStr);
     }
-    
+
     xTEST_CASE("CxFile::textRead CxFile::textWrite", cullCaseLoops)
     {
         // empty content
@@ -923,7 +925,7 @@ CxTest_CxFile::vUnitPrivate(
         m_iRv = CxFile::_nativeHandle( sfFile.get() );
         xTEST_DIFF((int)CxFile::etError, m_iRv);
     }
-   
+
     xTEST_CASE("CxFile::_stdHandle", cullCaseLoops)
     {
         // TEST: CxFile::_stdHandle

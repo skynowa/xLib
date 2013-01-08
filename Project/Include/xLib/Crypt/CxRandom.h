@@ -23,38 +23,38 @@ public:
 
     void                  vSetSeed     (const long_t &liSeed);
         ///< set seed
-    int                   iNextInt     ();
+    int                   iNextInt     () xWARN_UNUSED_RESULT;
         ///< next int
-    int                   iNextInt     (const int &max);
+    int                   iNextInt     (const int &max) xWARN_UNUSED_RESULT;
         ///< next int
-    int                   iNextInt     (const int &a, const int &b);
+    int                   iNextInt     (const int &a, const int &b) xWARN_UNUSED_RESULT;
         ///< next int
-    long_t                liNextLong   ();
+    long_t                liNextLong   () xWARN_UNUSED_RESULT;
         ///< next long_t
-    bool                  bNextBoolean ();
+    bool                  bNextBoolean () xWARN_UNUSED_RESULT;
         ///< next boolean
-    float                 fNextFloat   ();
+    float                 fNextFloat   () xWARN_UNUSED_RESULT;
         ///< next float
-    double                bNextDouble  ();
+    double                bNextDouble  () xWARN_UNUSED_RESULT;
         ///< next double
-    char                  chNextChar   ();
+    char                  chNextChar   () xWARN_UNUSED_RESULT;
         ///< next char
-    char                  chNextFigure ();
+    char                  chNextFigure () xWARN_UNUSED_RESULT;
         ///< next figure
-    double                dNextGaussian();
+    double                dNextGaussian() xWARN_UNUSED_RESULT;
         ///< next gaussian
 
     static void           vSetSeed     ();
         ///< set seed
-    static long_t         liInt        (const long_t &cliMin, const long_t &cliMax);
+    static long_t         liInt        (const long_t &cliMin, const long_t &cliMax) xWARN_UNUSED_RESULT;
         ///< generates a random number between specified min/max boundaries
-    static long_t         liIntEx      (const long_t &cliMin, const long_t &cliMax);
+    static long_t         liIntEx      (const long_t &cliMin, const long_t &cliMax) xWARN_UNUSED_RESULT;
         ///< generates a random number between specified min/max boundaries using a vector to shuffle
-    static std::tstring_t sString      (const size_t &cuiSize);
+    static std::tstring_t sString      (const size_t &cuiSize) xWARN_UNUSED_RESULT;
         ///< get random string
 
 protected:
-    long_t                liNext       ();
+    long_t                liNext       () xWARN_UNUSED_RESULT;
         ///< next long_t
 
 private:

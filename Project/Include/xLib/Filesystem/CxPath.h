@@ -31,80 +31,80 @@ public:
     virtual               ~CxPath         ();
         ///< destructor
 
-    const std::tstring_t & filePath       () const;
+    const std::tstring_t & filePath       () const xWARN_UNUSED_RESULT;
         ///< file path
 
 #if xOS_ENV_WIN
-    std::tstring_t         drive          () const;
+    std::tstring_t         drive          () const xWARN_UNUSED_RESULT;
         ///< get drive
 #endif
-    std::tstring_t         dir            () const;
+    std::tstring_t         dir            () const xWARN_UNUSED_RESULT;
         ///< get dir path, without a trailing backslash '\'
-    std::tstring_t         dirName        () const;
+    std::tstring_t         dirName        () const xWARN_UNUSED_RESULT;
         ///< get dir name
-    std::tstring_t         fileName       () const;
+    std::tstring_t         fileName       () const xWARN_UNUSED_RESULT;
         ///< get name.extension
-    std::tstring_t         fileBaseName   () const;
+    std::tstring_t         fileBaseName   () const xWARN_UNUSED_RESULT;
         ///< get name without extension
-    std::tstring_t         ext            () const;
+    std::tstring_t         ext            () const xWARN_UNUSED_RESULT;
         ///< get extension
 
 #if xOS_ENV_WIN
-    std::tstring_t         setDrive       (const std::tstring_t &csDrivePath);
+    std::tstring_t         setDrive       (const std::tstring_t &csDrivePath) xWARN_UNUSED_RESULT;
         ///< set drive
 #endif
-    std::tstring_t         setDir         (const std::tstring_t &csDirPath);
+    std::tstring_t         setDir         (const std::tstring_t &csDirPath) xWARN_UNUSED_RESULT;
         ///< set dir
-    std::tstring_t         setFileName    (const std::tstring_t &csFullName);
+    std::tstring_t         setFileName    (const std::tstring_t &csFullName) xWARN_UNUSED_RESULT;
         ///< set full name
-    std::tstring_t         setFileBaseName(const std::tstring_t &csName);
+    std::tstring_t         setFileBaseName(const std::tstring_t &csName) xWARN_UNUSED_RESULT;
         ///< set name
-    std::tstring_t         setExt         (const std::tstring_t &csExt);
+    std::tstring_t         setExt         (const std::tstring_t &csExt) xWARN_UNUSED_RESULT;
         ///< set extension
 
-    std::tstring_t         removeExt      ();
+    std::tstring_t         removeExt      () xWARN_UNUSED_RESULT;
         ///< remove extension
-    std::tstring_t         removeExtIf    (const std::tstring_t &csExt);
+    std::tstring_t         removeExtIf    (const std::tstring_t &csExt) xWARN_UNUSED_RESULT;
         ///< remove extension if it equal some string
 
 
-    bool                   isAbsolute     () const;
+    bool                   isAbsolute     () const xWARN_UNUSED_RESULT;
         ///< is absolute
 
-    std::tstring_t         toWin          (const bool &cbIsSlashAtEnd) const;
+    std::tstring_t         toWin          (const bool &cbIsSlashAtEnd) const xWARN_UNUSED_RESULT;
         ///< convert slashes to Windows style
-    std::tstring_t         toUnix         (const bool &cbIsSlashAtEnd) const;
+    std::tstring_t         toUnix         (const bool &cbIsSlashAtEnd) const xWARN_UNUSED_RESULT;
         ///< convert slashes to Nix style
-    std::tstring_t         toNative       (const bool &cbIsSlashAtEnd) const;
+    std::tstring_t         toNative       (const bool &cbIsSlashAtEnd) const xWARN_UNUSED_RESULT;
         ///< convert slashes to native style
-    std::tstring_t         absolute       () const;
+    std::tstring_t         absolute       () const xWARN_UNUSED_RESULT;
         ///< get absolute path
-    std::tstring_t         brief          (const size_t &cuiMaxSize) const;
+    std::tstring_t         brief          (const size_t &cuiMaxSize) const xWARN_UNUSED_RESULT;
         ///< get short path
 
-    std::tstring_t         slashAppend    () const;
+    std::tstring_t         slashAppend    () const xWARN_UNUSED_RESULT;
         ///< append slash
-    std::tstring_t         slashRemove    () const;
+    std::tstring_t         slashRemove    () const xWARN_UNUSED_RESULT;
         ///< remove slash
 
     // static
-    static std::tstring_t  exe            ();
+    static std::tstring_t  exe            () xWARN_UNUSED_RESULT;
         ///< get full path to exe
-    static std::tstring_t  exeDir         ();
+    static std::tstring_t  exeDir         () xWARN_UNUSED_RESULT;
         ///< get dir path to exe
-    static std::tstring_t  dll            ();
+    static std::tstring_t  dll            () xWARN_UNUSED_RESULT;
         ///< get full path to dll
-    static std::tstring_t  standartExt    (const ExStandartExt &cseFileExt);
+    static std::tstring_t  standartExt    (const ExStandartExt &cseFileExt) xWARN_UNUSED_RESULT;
         ///< get standard extension
 
-    static bool            isValid        (const std::tstring_t &csFilePath);
+    static bool            isValid        (const std::tstring_t &csFilePath) xWARN_UNUSED_RESULT;
         ///< path validation
-    static bool            isNameValid    (const std::tstring_t &csFileName);
+    static bool            isNameValid    (const std::tstring_t &csFileName) xWARN_UNUSED_RESULT;
         ///< name validation
 
-    static std::tstring_t  shortName      (const std::tstring_t &csFileName, const size_t &cuiMaxSize);
+    static std::tstring_t  shortName      (const std::tstring_t &csFileName, const size_t &cuiMaxSize) xWARN_UNUSED_RESULT;
         ///< get short name
-    static std::tstring_t  setNameValid   (const std::tstring_t &csFileName);
+    static std::tstring_t  setNameValid   (const std::tstring_t &csFileName) xWARN_UNUSED_RESULT;
         ///< set name as valid
 
     static size_t          maxSize        ();
@@ -115,7 +115,7 @@ public:
 #if xOS_ENV_UNIX
     static void            proc           (const std::tstring_t &csProcPath, std::vec_tstring_t *pvsData);
         ///< get from UNIX proc file content
-    static std::tstring_t  procValue      (const std::tstring_t &csProcPath, const std::tstring_t &csData);
+    static std::tstring_t  procValue      (const std::tstring_t &csProcPath, const std::tstring_t &csData) xWARN_UNUSED_RESULT;
         ///< get from UNIX proc file content value by data
 #endif
 

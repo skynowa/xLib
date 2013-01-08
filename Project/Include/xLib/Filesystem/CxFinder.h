@@ -24,20 +24,20 @@ public:
     virtual                     ~CxFinder     ();
         ///< destructor
 
-    const std::tstring_t &       rootDirPath  () const;
+    const std::tstring_t &       rootDirPath  () const xWARN_UNUSED_RESULT;
         ///< root directory path
-    const std::tstring_t &       filterByShell() const;
+    const std::tstring_t &       filterByShell() const xWARN_UNUSED_RESULT;
         ///< shell wild card filter
-    std::tstring_t               entryName    () const;
+    std::tstring_t               entryName    () const xWARN_UNUSED_RESULT;
         ///< entry name
-    CxFileAttribute::ExAttribute attributes   () const;
+    CxFileAttribute::ExAttribute attributes   () const xWARN_UNUSED_RESULT;
         ///< file attributes
 
-    bool                         isValid      () const;
+    bool                         isValid      () const xWARN_UNUSED_RESULT;
         ///< is valid handle
-    bool                         moveFirst    ();
+    bool                         moveFirst    () xWARN_UNUSED_RESULT;
         ///< move first entry
-    bool                         moveNext     ();
+    bool                         moveNext     () xWARN_UNUSED_RESULT;
         ///< move next entry
     void                         close        ();
         ///< close search

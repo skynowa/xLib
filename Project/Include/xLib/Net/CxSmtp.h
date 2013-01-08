@@ -23,13 +23,16 @@ public:
                    CxSmtp    ();
                   ~CxSmtp    ();
 
-    void           create    (const std::tstring_t &csUser, const std::tstring_t &csPass, const std::tstring_t &csServer, const ushort_t &cusPort);
+    void           create    (const std::tstring_t &csUser, const std::tstring_t &csPass,
+                              const std::tstring_t &csServer, const ushort_t &cusPort);
     void           connect   ();
     void           login     ();
     void           noop      ();
     void           rset      ();
-    void           sendRaw   (const std::tstring_t &csFilePath, const std::tstring_t &csFrom, const std::tstring_t &csTo);
-    void           send      (const std::tstring_t &csText, const std::tstring_t &sFrom, const std::tstring_t &sTo);
+    void           sendRaw   (const std::tstring_t &csFilePath, const std::tstring_t &csFrom,
+                              const std::tstring_t &csTo);
+    void           send      (const std::tstring_t &csText, const std::tstring_t &sFrom,
+                              const std::tstring_t &sTo);
     void           disconnect();
 
 private:
@@ -40,8 +43,9 @@ private:
     ushort_t       _m_usPort;
     bool           _m_bConnected;
 
-    void           _command  (const std::tstring_t &csCmd, const std::tstring_t &csReplyDelimiter, std::tstring_t &sReply); /*+*/
-    bool           _isError  (const std::tstring_t &csText);
+    void           _command  (const std::tstring_t &csCmd, const std::tstring_t &csReplyDelimiter,
+                              std::tstring_t &sReply);
+    bool           _isError  (const std::tstring_t &csText) xWARN_UNUSED_RESULT;
 };
 
 xNAMESPACE_END(NxLib)

@@ -29,7 +29,8 @@ CxRandom::CxRandom(
 {
     vSetSeed(a_liSeed);
 
-    liNext();
+    long_t liRv = liNext();
+    xUNUSED(liRv);
 }
 //---------------------------------------------------------------------------
 /* virtual */
@@ -210,7 +211,7 @@ CxRandom::sString(
     const size_t &a_cuiLength
 )
 {
-    
+
 
     xCHECK_RET(0U == a_cuiLength, std::tstring_t());
 

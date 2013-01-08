@@ -25,7 +25,9 @@ public:
 
     void       add          (CxTest *pvtTest, const std::tstring_t &csTestName = CxConst::xSTR_EMPTY);
         ///< add CxTest
-    void       run          (const ulonglong_t &cullAllLoops, const ulonglong_t &cullUnitLoops, const ulonglong_t &cullCaseLoops);
+    void       run          (const ulonglong_t &cullAllLoops,
+                             const ulonglong_t &cullUnitLoops,
+                             const ulonglong_t &cullCaseLoops);
         ///< run all tests
 
 private:

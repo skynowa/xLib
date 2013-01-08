@@ -24,23 +24,23 @@ CxTest_CxThreadPool::unit(
 )
 {
     const bool cbIsPaused            = true;
-    const bool cbIsAutoDelete        = true; 
-    const bool cbIsGroupPaused       = true; 
+    const bool cbIsAutoDelete        = true;
+    const bool cbIsGroupPaused       = true;
     const bool cbIsGroupAutoDelete   = true;
 
     CxThreadPool<CPoolThread> *tpPool = NULL;
-    
+
     {
         tpPool = new CxThreadPool<CPoolThread>(
-                        cbIsPaused, cbIsAutoDelete, 
-                        cbIsGroupPaused, cbIsGroupAutoDelete); 
+                        cbIsPaused, cbIsAutoDelete,
+                        cbIsGroupPaused, cbIsGroupAutoDelete);
         xTEST_PTR(tpPool);
     }
-    
+
     {
-        const uint_t  cuiStackSize       = 0UL; 
-        void         *pvParam            = NULL; 
-        const uint_t  cuiNumTasks        = 5; 
+        const uint_t  cuiStackSize       = 0UL;
+        void         *pvParam            = NULL;
+        const uint_t  cuiNumTasks        = 5;
         const uint_t  cuiMaxRunningTasks = 10U;
 
         tpPool->groupCreate(cuiStackSize, NULL, pvParam,
@@ -53,11 +53,15 @@ CxTest_CxThreadPool::unit(
     tpPool->groupKill(500UL);
     tpPool->groupWait(500UL);
 
-    tpPool->maxTasks();
-    tpPool->setMaxTasks (10);
+    m_stRv = tpPool->maxTasks();
+    xUNUSED(m_stRv);
 
-    tpPool->numTasks();
-    tpPool->setNumTasks (10);
+    tpPool->setMaxTasks(10);
+
+    m_stRv = tpPool->numTasks();
+    xUNUSED(m_stRv);
+
+    tpPool->setNumTasks(10);
 }
 //---------------------------------------------------------------------------
 
