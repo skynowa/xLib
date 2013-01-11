@@ -22,7 +22,7 @@ CxTest_CxType::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    xTEST_CASE("CxType::sGetName", cullCaseLoops)
+    xTEST_CASE("CxType::sName", cullCaseLoops)
     {
         std::tstring_t sObject;
 
@@ -30,7 +30,7 @@ CxTest_CxType::vUnit(
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("CxType::sGetRawName", cullCaseLoops)
+    xTEST_CASE("CxType::sRawName", cullCaseLoops)
     {
         std::tstring_t sObject;
 
@@ -41,9 +41,9 @@ CxTest_CxType::vUnit(
     xTEST_CASE("CxType::bIsEquals", cullCaseLoops)
     {
         std::string  sObject1;
-        std::wstring sObject2;
+        std::wstring wsObject2;
 
-        m_bRv = CxType::bIsEquals(sObject1, sObject2);
+        m_bRv = CxType::bIsEquals(sObject1, wsObject2);
         xTEST_EQ(false, m_bRv);
     }
 }
