@@ -24,14 +24,12 @@ CxType::sRawName(
     const T &cObjectT
 )
 {
-    // n/a
+    xTEST_NA(cObjectT);
 
     std::tstring_t sRv;
-
-    std::string asClassName;
+    std::string    asClassName;
 
     asClassName.assign( typeid(cObjectT).name() );
-
     sRv = xS2TS(asClassName);
 
     return sRv;
@@ -44,21 +42,20 @@ CxType::sName(
     const T &cObjectT
 )
 {
-    // n/a
+    xTEST_NA(cObjectT);
 
     std::tstring_t sRv;
-
-    std::string asClassName;
+    std::string    asClassName;
 
 #if xCOMPILER_MINGW || xCOMPILER_GNUC
-    int  iStatus      = - 1;
-    char *pszRealName = NULL;
+    int iStatus = - 1;
 
-    pszRealName = abi::__cxa_demangle(typeid(cObjectT).name(), NULL, NULL, &iStatus);
-    asClassName = (NULL != pszRealName) ? (pszRealName) : "<unknown test name>";
+    char *pszRealName = abi::__cxa_demangle(typeid(cObjectT).name(), NULL, NULL, &iStatus);
+    asClassName = (NULL != pszRealName) ? pszRealName : CxConst::xUNKNOWN_STRING_A;
+
     xBUFF_FREE(pszRealName);
 #else
-    asClassName.assign(typeid(cObjectT).name());
+    asClassName.assign( typeid(cObjectT).name() );
 
     // or use UnDecorateSymbolName
 #endif
@@ -76,7 +73,8 @@ CxType::bIsEquals(
     const T2 &cObjectT2
 )
 {
-    // n/a
+    xTEST_NA(cObjectT1);
+    xTEST_NA(cObjectT2);
 
     return ( sRawName(cObjectT1) == sRawName(cObjectT2) );
 }
