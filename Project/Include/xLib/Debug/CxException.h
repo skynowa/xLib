@@ -35,4 +35,4 @@ xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #include "CxException.inl"
 //---------------------------------------------------------------------------
-#endif //xLib_Debug_CxExceptionH
+#endif // xLib_Debug_CxExceptionH
