@@ -49,7 +49,7 @@ CxTest::CxTest() :
 }
 //---------------------------------------------------------------------------
 /* virtual */
-CxTest::~CxTest() /* = 0*/ {
+CxTest::~CxTest() /* = 0 */ {
     CxDir( sTempDirPath() ).vPathDelete();
 }
 //---------------------------------------------------------------------------
@@ -70,13 +70,13 @@ CxTest::vRun(
             // TODO: xTEST_MSG_EQ(true, bRv, sGetName() + xT(": fail"));
         }
     }
-    catch (const std::exception &cexE) {
-        std::string asMsg = cexE.what();
+    catch (const std::exception &a_cexE) {
+        std::string asMsg = a_cexE.what();
 
         xTEST_FAIL(sName() + xT(": ") + xS2TS(asMsg));
     }
-    catch (const CxException &e) {
-        xTEST_FAIL(sName() + xT(": ") + e.sWhat());
+    catch (const CxException &a_cexE) {
+        xTEST_FAIL(sName() + xT(": ") + a_cexE.sWhat());
     }
     catch (...) {
         xTEST_FAIL(sName() + xT(": Unknown test error"));
