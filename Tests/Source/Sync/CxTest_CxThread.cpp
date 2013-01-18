@@ -114,7 +114,6 @@ CxTest_CxThread::vUnit(
 
 
     CWorkThread *pthT = new CWorkThread(cbAutoDelete);
-    xTEST_PTR(pthT);
 
     pthT->m_ulTag = 0;
     ////pthT->vOnExit2  = vOnExitHandle;

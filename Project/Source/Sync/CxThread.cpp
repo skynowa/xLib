@@ -120,7 +120,7 @@ CxThread::vCreate(
     id_t ulId = 0UL;
 
     HANDLE hRv = reinterpret_cast<HANDLE>( ::_beginthreadex(NULL, a_cuiStackSize, _s_uiJobEntry, this, 0U, (uint_t *)&ulId) );
-    xTEST_DIFF(xNATIVE_HANDLE_INVALID, hRv);
+    xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
     xTEST_LESS(0UL, ulId);
 
     _m_hThread.vSet(hRv);
