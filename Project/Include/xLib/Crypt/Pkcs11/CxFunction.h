@@ -21,24 +21,24 @@ class CxFunction :
     private CxNonCopyable
     /// Pkcs11 function
 {
-    public:
-                             CxFunction(const CxPkcs11 &cPkcs11, const CxSession &cSession);
-            ///< constructor
-        virtual             ~CxFunction();
-            ///< destructor
+public:
+                         CxFunction(const CxPkcs11 &cPkcs11, const CxSession &cSession);
+        ///< constructor
+    virtual             ~CxFunction();
+        ///< destructor
 
-        void                 vList     (CK_FUNCTION_LIST_PTR_PTR ppFunctionList);
-            ///< returns the function list
-        void                 vStatus   ();
-            ///< is a legacy function; it obtains an updated status of a function running in parallel with an application
-        void                 vCancel   ();
-            ///< is a legacy function; it cancels a function running in parallel
-        void                 vListEx   ();
-            ///< SDK 4.53
+    void                 vList     (CK_FUNCTION_LIST_PTR_PTR ppFunctionList);
+        ///< returns the function list
+    void                 vStatus   ();
+        ///< is a legacy function; it obtains an updated status of a function running in parallel with an application
+    void                 vCancel   ();
+        ///< is a legacy function; it cancels a function running in parallel
+    void                 vListEx   ();
+        ///< SDK 4.53
 
-    private:
-        CK_FUNCTION_LIST_PTR _m_pFunc;        ///< pointer to dll's functions list
-        CK_SESSION_HANDLE    _m_hSession;    ///< session handle
+private:
+    CK_FUNCTION_LIST_PTR _m_pFunc;        ///< pointer to dll's functions list
+    CK_SESSION_HANDLE    _m_hSession;    ///< session handle
 };
 
 xNAMESPACE_END(NxLib)

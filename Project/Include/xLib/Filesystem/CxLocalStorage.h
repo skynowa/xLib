@@ -17,76 +17,76 @@ class CxLocalStorage :
     private CxNonCopyable
     /// local storage
 {
-    public:
-                               CxLocalStorage ();
-            ///< constructor, exe-file path
-        explicit               CxLocalStorage (const std::tstring_t &csFilePath);
-            ///< constructor, file path
-        virtual               ~CxLocalStorage ();
-            ///< destructor
+public:
+                           CxLocalStorage ();
+        ///< constructor, exe-file path
+    explicit               CxLocalStorage (const std::tstring_t &csFilePath);
+        ///< constructor, file path
+    virtual               ~CxLocalStorage ();
+        ///< destructor
 
-        //creation
-        void                   vCreateDefault (const std::tstring_t &csContent) const;
-            ///< create default file
-        const std::tstring_t & sPath          () const;
-            ///< get file path
-        void                   vSetPath       (const std::tstring_t &csFilePath);
-            ///< set file path
-        local_storage_t &      cmsGet         ();
-            ///< get inner local_storage_t, may be used with bFlush
+    //creation
+    void                   vCreateDefault (const std::tstring_t &csContent) const;
+        ///< create default file
+    const std::tstring_t & sPath          () const;
+        ///< get file path
+    void                   vSetPath       (const std::tstring_t &csFilePath);
+        ///< set file path
+    local_storage_t &      cmsGet         ();
+        ///< get inner local_storage_t, may be used with bFlush
 
-        void                   vFlush         () const;
-            ///< flush
-        void                   vClear         ();
-            ///< clear content
-        void                   vDelete        ();
-            ///< delete
+    void                   vFlush         () const;
+        ///< flush
+    void                   vClear         ();
+        ///< clear content
+    void                   vDelete        ();
+        ///< delete
 
-        //key
-        bool                   bKeyIsExists   (const std::tstring_t &csKey) const;
-            ///< is exists
+    //key
+    bool                   bKeyIsExists   (const std::tstring_t &csKey) const;
+        ///< is exists
 
-        std::tstring_t         sKeyReadString (const std::tstring_t &csKey, const std::tstring_t &csDefaultValue);
-            ///< read std::tstring_t
-        void                   vKeyWriteString(const std::tstring_t &csKey, const std::tstring_t &csValue);
-            ///< write std::tstring_t
+    std::tstring_t         sKeyReadString (const std::tstring_t &csKey, const std::tstring_t &csDefaultValue);
+        ///< read std::tstring_t
+    void                   vKeyWriteString(const std::tstring_t &csKey, const std::tstring_t &csValue);
+        ///< write std::tstring_t
 
-        long_t                 iKeyReadInt    (const std::tstring_t &csKey, const long_t &cliDefaultValue);
-            ///< read int
-        void                   vKeyWriteInt   (const std::tstring_t &csKey, const long_t &cliValue);
-            ///< write int
+    long_t                 iKeyReadInt    (const std::tstring_t &csKey, const long_t &cliDefaultValue);
+        ///< read int
+    void                   vKeyWriteInt   (const std::tstring_t &csKey, const long_t &cliValue);
+        ///< write int
 
-        double                 dKeyReadFloat  (const std::tstring_t &csKey, const double &cdDefaultValue);
-            ///< read float
-        void                   vKeyWriteFloat (const std::tstring_t &csKey, const double &cdValue);
-            ///< write float
+    double                 dKeyReadFloat  (const std::tstring_t &csKey, const double &cdDefaultValue);
+        ///< read float
+    void                   vKeyWriteFloat (const std::tstring_t &csKey, const double &cdValue);
+        ///< write float
 
-        bool                   bKeyReadBool   (const std::tstring_t &csKey, const bool &cbDefaultValue);
-            ///< read bool
-        void                   vKeyWriteBool  (const std::tstring_t &csKey, const bool &cbValue);
-            ///< write bool
+    bool                   bKeyReadBool   (const std::tstring_t &csKey, const bool &cbDefaultValue);
+        ///< read bool
+    void                   vKeyWriteBool  (const std::tstring_t &csKey, const bool &cbValue);
+        ///< write bool
 
-        std::ustring_t         usKeyReadBin   (const std::tstring_t &csKey, const std::ustring_t &cusDefaultValue);
-            ///< write std::ustring_t
-        void                   vKeyWriteBin   (const std::tstring_t &csKey, const std::ustring_t &cusValue);
-            ///< read std::ustring_t
+    std::ustring_t         usKeyReadBin   (const std::tstring_t &csKey, const std::ustring_t &cusDefaultValue);
+        ///< write std::ustring_t
+    void                   vKeyWriteBin   (const std::tstring_t &csKey, const std::ustring_t &cusValue);
+        ///< read std::ustring_t
 
-        void                   vKeyClear      (const std::tstring_t &csKey);
-            ///< clear value
-        void                   vKeyDelete     (const std::tstring_t &csKey);
-            ///< delete key and value
+    void                   vKeyClear      (const std::tstring_t &csKey);
+        ///< clear value
+    void                   vKeyDelete     (const std::tstring_t &csKey);
+        ///< delete key and value
 
-    private:
-        const std::tstring_t   _m_csSeparator;  ///< separator between key and value
-        const std::tstring_t   _m_csFileExt;    ///< ini-file extension
+private:
+    const std::tstring_t   _m_csSeparator;  ///< separator between key and value
+    const std::tstring_t   _m_csFileExt;    ///< ini-file extension
 
-        std::tstring_t         _m_sFilePath;    ///< file path to ini-file
-        local_storage_t        _m_msIni;        ///< std::map of keys and values
+    std::tstring_t         _m_sFilePath;    ///< file path to ini-file
+    local_storage_t        _m_msIni;        ///< std::map of keys and values
 
-        void                   _vRead         (const std::tstring_t &csKey, const std::tstring_t &csDefaultValue, std::tstring_t *psValue);
-            ///< parse file
-        void                   _vWrite        (const std::tstring_t &csKey, const std::tstring_t &csValue);
-            ///< flush to local_storage_t, file
+    void                   _vRead         (const std::tstring_t &csKey, const std::tstring_t &csDefaultValue, std::tstring_t *psValue);
+        ///< parse file
+    void                   _vWrite        (const std::tstring_t &csKey, const std::tstring_t &csValue);
+        ///< flush to local_storage_t, file
 };
 
 xNAMESPACE_END(NxLib)

@@ -15,23 +15,23 @@ template <typename ClassT, typename ReturnT, typename ParamT>
 class CxFunctorT
     /// function object
 {
-    public:
-        typedef  ReturnT     (ClassT::*Method)(ParamT);
-            ///< return type
+public:
+    typedef  ReturnT     (ClassT::*Method)(ParamT);
+        ///< return type
 
-                 CxFunctorT  (ClassT *pObject, Method method);
-            ///< constructor
-        virtual ~CxFunctorT  ();
-            ///< destructor
+             CxFunctorT  (ClassT *pObject, Method method);
+        ///< constructor
+    virtual ~CxFunctorT  ();
+        ///< destructor
 
-        ReturnT  operator () (ParamT Param);
-            ///< operator ()
-        ReturnT  Execute     (ParamT Param);
-            ///< execute operator ()
+    ReturnT  operator () (ParamT Param);
+        ///< operator ()
+    ReturnT  Execute     (ParamT Param);
+        ///< execute operator ()
 
-    private:
-        ClassT  *_m_pObject;
-        Method   _m_Method;
+private:
+    ClassT  *_m_pObject;
+    Method   _m_Method;
 };
 
 xNAMESPACE_END(NxLib)

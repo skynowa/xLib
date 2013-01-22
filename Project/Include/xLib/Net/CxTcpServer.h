@@ -16,21 +16,21 @@ class CxTcpServer :
     public CxSocket
     /// server socket
 {
-    public:
-                 CxTcpServer();
-            ///< constructor
-        virtual ~CxTcpServer();
-            ///< destructor
+public:
+             CxTcpServer();
+        ///< constructor
+    virtual ~CxTcpServer();
+        ///< destructor
 
-        void     vBind      (const ushort_t &cusPort);
-            ///< associates a local address with a socket
-        void     vListen    (const int &ciBacklog /* = SOMAXCONN*/);
-            ///< places a socket in a state in which it is listening for an incoming connection
-        void     vAccept    (CxTcpServer *pscktAcceptSocket, std::tstring_t *psFromIp);
-            ///< permits an incoming connection attempt on a socket
+    void     vBind      (const ushort_t &cusPort);
+        ///< associates a local address with a socket
+    void     vListen    (const int &ciBacklog /* = SOMAXCONN*/);
+        ///< places a socket in a state in which it is listening for an incoming connection
+    void     vAccept    (CxTcpServer *pscktAcceptSocket, std::tstring_t *psFromIp);
+        ///< permits an incoming connection attempt on a socket
 
-    protected:
-        timeval  _m_tvTimeout;  ///< timeout
+protected:
+    timeval  _m_tvTimeout;  ///< timeout
 };
 
 xNAMESPACE_END(NxLib)

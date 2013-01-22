@@ -15,23 +15,23 @@ class CxType :
     private CxNonCopyable
     /// type info
 {
-    public:
-        template<typename T>
-        static std::tstring_t sName    (const T &cObjectT);
-            ///< get name
+public:
+    template<typename T>
+    static std::tstring_t sName    (const T &cObjectT);
+        ///< get name
 
-        template<typename T>
-        static std::tstring_t sRawName (const T &cObjectT);
-            ///< get raw name
+    template<typename T>
+    static std::tstring_t sRawName (const T &cObjectT);
+        ///< get raw name
 
-        template<typename T1, class T2>
-        static bool           bIsEquals(const T1 &cObjectT1, const T2 &cObjectT2);
-            ///< is equals
-    private:
-                              CxType   ();
-            ///< constructor
-        virtual              ~CxType   ();
-            ///< destructor
+    template<typename T1, class T2>
+    static bool           bIsEquals(const T1 &cObjectT1, const T2 &cObjectT2);
+        ///< is equals
+private:
+                          CxType   ();
+        ///< constructor
+    virtual              ~CxType   ();
+        ///< destructor
 };
 
 xNAMESPACE_END(NxLib)

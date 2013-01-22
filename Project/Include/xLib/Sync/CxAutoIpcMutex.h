@@ -17,12 +17,12 @@ class CxAutoIpcMutex :
     private CxNonCopyable
     /// auto mutex
 {
-    public:
-                    CxAutoIpcMutex(CxIpcMutex &mtMutex, const std::tstring_t &csName);
-        virtual    ~CxAutoIpcMutex();
+public:
+                CxAutoIpcMutex(CxIpcMutex &mtMutex, const std::tstring_t &csName);
+    virtual    ~CxAutoIpcMutex();
 
-    private:
-        CxIpcMutex &_m_mtMutex;
+private:
+    CxIpcMutex &_m_mtMutex;
 };
 
 xNAMESPACE_END(NxLib)

@@ -15,16 +15,16 @@ class CxConnectionString :
     private CxNonCopyable
     /// DB connection string
 {
-    public:
-        static std::tstring_t sMSJetOleDb40     (const std::tstring_t &csDataSource, const std::tstring_t &csUserId,
-                                                 const std::tstring_t &csPassword,   const std::tstring_t &csDatabasePassword);
-            ///< Microsoft.Jet.OLEDB.4.0
+public:
+    static std::tstring_t sMSJetOleDb40     (const std::tstring_t &csDataSource, const std::tstring_t &csUserId,
+                                             const std::tstring_t &csPassword,   const std::tstring_t &csDatabasePassword);
+        ///< Microsoft.Jet.OLEDB.4.0
 
-    private:
-                              CxConnectionString();
-            ///< constructor
-        virtual              ~CxConnectionString();
-            ///< destructor
+private:
+                          CxConnectionString();
+        ///< constructor
+    virtual              ~CxConnectionString();
+        ///< destructor
 };
 
 xNAMESPACE_END(NxLib)

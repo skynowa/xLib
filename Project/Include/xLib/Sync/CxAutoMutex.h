@@ -17,14 +17,14 @@ class CxAutoMutex :
     private CxNonCopyable
     /// auto critical section
 {
-    public:
-        explicit CxAutoMutex(CxMutex *mtMutex);
-            ///< constructor
-        virtual ~CxAutoMutex();
-            ///< destructor
+public:
+    explicit CxAutoMutex(CxMutex *mtMutex);
+        ///< constructor
+    virtual ~CxAutoMutex();
+        ///< destructor
 
-    private:
-        CxMutex *_m_mtMutex;    ///< mutex
+private:
+    CxMutex *_m_mtMutex;    ///< mutex
 };
 
 xNAMESPACE_END(NxLib)

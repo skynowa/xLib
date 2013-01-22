@@ -17,34 +17,34 @@ class CxProfiler :
     private CxNonCopyable
     /// code profiling
 {
-    public:
-        explicit              CxProfiler ();
-            ///< constructor
-        virtual              ~CxProfiler ();
-            ///< destructor
+public:
+    explicit              CxProfiler ();
+        ///< constructor
+    virtual              ~CxProfiler ();
+        ///< destructor
 
-        void                  vSetLogPath(const std::tstring_t &csLogPath);
-            ///< set log path
-        const std::tstring_t &sLogPath   () const;
-            ///< get log path
+    void                  vSetLogPath(const std::tstring_t &csLogPath);
+        ///< set log path
+    const std::tstring_t &sLogPath   () const;
+        ///< get log path
 
-        void                  vStart     ();
-            ///< start measurement
-        void                  vStop      (const tchar_t *pcszComment, ...);
-            ///< stop measurement
-        void                  vPulse     (const tchar_t *pcszComment, ...);
-            ///< stop, start measurement
+    void                  vStart     ();
+        ///< start measurement
+    void                  vStop      (const tchar_t *pcszComment, ...);
+        ///< stop measurement
+    void                  vPulse     (const tchar_t *pcszComment, ...);
+        ///< stop, start measurement
 
-    private:
-        bool                  _m_bIsStarted;    ///< is started
-        CxFileLog             _flLog;           ///< file log
+private:
+    bool                  _m_bIsStarted;    ///< is started
+    CxFileLog             _flLog;           ///< file log
 
-        std::clock_t          _m_clkStart;      ///< start value
-        std::clock_t          _m_clkStop;       ///< stop value
-        std::clock_t          _m_clkDuration;   ///< duration value
+    std::clock_t          _m_clkStart;      ///< start value
+    std::clock_t          _m_clkStop;       ///< stop value
+    std::clock_t          _m_clkDuration;   ///< duration value
 
-        void                  _vDataReset();
-            ///< reset all class data
+    void                  _vDataReset();
+        ///< reset all class data
 };
 
 xNAMESPACE_END(NxLib)

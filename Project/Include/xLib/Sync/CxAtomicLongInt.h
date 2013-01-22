@@ -15,44 +15,44 @@ class CxAtomicLongInt :
     private CxNonCopyable
     /// atomic operartions with long_t
 {
-    public:
-                          CxAtomicLongInt();
-        virtual          ~CxAtomicLongInt();
+public:
+                      CxAtomicLongInt();
+    virtual          ~CxAtomicLongInt();
 
-        CxAtomicLongInt & operator +=    (const CxAtomicLongInt &calValue);
-        CxAtomicLongInt & operator +=    (const long_t &cliRight);
+    CxAtomicLongInt & operator +=    (const CxAtomicLongInt &calValue);
+    CxAtomicLongInt & operator +=    (const long_t &cliRight);
 
-        CxAtomicLongInt & operator -=    (const CxAtomicLongInt &calValue);
-        CxAtomicLongInt & operator -=    (const long_t &cliRight);
+    CxAtomicLongInt & operator -=    (const CxAtomicLongInt &calValue);
+    CxAtomicLongInt & operator -=    (const long_t &cliRight);
 
-        CxAtomicLongInt & operator =     (const CxAtomicLongInt &calValue);
-        CxAtomicLongInt & operator =     (const long_t &cliRight);
+    CxAtomicLongInt & operator =     (const CxAtomicLongInt &calValue);
+    CxAtomicLongInt & operator =     (const long_t &cliRight);
 
-        bool              operator ==    (const CxAtomicLongInt &calValue) const ;
-        bool              operator ==    (const long_t &cliRight) const ;
+    bool              operator ==    (const CxAtomicLongInt &calValue) const ;
+    bool              operator ==    (const long_t &cliRight) const ;
 
-        bool              operator !=    (const CxAtomicLongInt &calValue) const ;
-        bool              operator !=    (const long_t &cliRight) const ;
+    bool              operator !=    (const CxAtomicLongInt &calValue) const ;
+    bool              operator !=    (const long_t &cliRight) const ;
 
-        bool              operator <     (const long_t &cliValue) const;
-        bool              operator <     (const CxAtomicLongInt &calValue) const;
+    bool              operator <     (const long_t &cliValue) const;
+    bool              operator <     (const CxAtomicLongInt &calValue) const;
 
-        bool              operator <=    (const long_t &cliValue) const;
-        bool              operator <=    (const CxAtomicLongInt &calValue) const;
+    bool              operator <=    (const long_t &cliValue) const;
+    bool              operator <=    (const CxAtomicLongInt &calValue) const;
 
-        bool              operator >     (const long_t &cliValue) const;
-        bool              operator >     (const CxAtomicLongInt &calValue) const;
+    bool              operator >     (const long_t &cliValue) const;
+    bool              operator >     (const CxAtomicLongInt &calValue) const;
 
-        bool              operator >=    (const long_t &cliValue) const;
-        bool              operator >=    (const CxAtomicLongInt &calValue) const;
+    bool              operator >=    (const long_t &cliValue) const;
+    bool              operator >=    (const CxAtomicLongInt &calValue) const;
 
-        CxAtomicLongInt & operator ++    (const int ciValue);
-        CxAtomicLongInt & operator --    (const int ciValue);
+    CxAtomicLongInt & operator ++    (const int ciValue);
+    CxAtomicLongInt & operator --    (const int ciValue);
 
-        long_t            liValue        () const;
+    long_t            liValue        () const;
 
-    private:
-        volatile long_t  _m_liValue;
+private:
+    volatile long_t  _m_liValue;
 };
 
 xNAMESPACE_END(NxLib)

@@ -15,19 +15,19 @@ class CxLocale :
     private CxNonCopyable
     /// locale
 {
-    public:
-       static std::tstring_t sCurrent   ();
-              ///< get current
-       static void           vSetCurrent(const std::tstring_t &csLocale);
-                 ///< set current
-       static void           vSetDefault();
-                 ///< set default
+public:
+   static std::tstring_t sCurrent   ();
+          ///< get current
+   static void           vSetCurrent(const std::tstring_t &csLocale);
+             ///< set current
+   static void           vSetDefault();
+             ///< set default
 
-    private:
-                             CxLocale   ();
-           ///< constructor
-       virtual              ~CxLocale   ();
-                 ///< destructor
+private:
+                         CxLocale   ();
+       ///< constructor
+   virtual              ~CxLocale   ();
+             ///< destructor
 };
 
 xNAMESPACE_END(NxLib)

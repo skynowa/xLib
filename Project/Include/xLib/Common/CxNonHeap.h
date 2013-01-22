@@ -14,17 +14,17 @@ xNAMESPACE_BEGIN(NxLib)
 class CxNonHeap
     /// non heapable class
 {
-    public:
-                 CxNonHeap       () { ; }
-            ///< constructor
-        virtual ~CxNonHeap       () { ; }
-            ///< destructor
+public:
+             CxNonHeap       () { ; }
+        ///< constructor
+    virtual ~CxNonHeap       () { ; }
+        ///< destructor
 
-    protected:
-        void *   operator new    (size_t) throw() { return NULL; }
-            ///< operator new
-        void     operator delete (void *) { ; }
-            ///< operator delete
+protected:
+    void *   operator new    (size_t) throw() { return NULL; }
+        ///< operator new
+    void     operator delete (void *) { ; }
+        ///< operator delete
 };
 
 xNAMESPACE_END(NxLib)

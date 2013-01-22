@@ -14,21 +14,21 @@ xNAMESPACE_BEGIN(NxLib)
 class CxException
     /// exception
 {
-    public:
-                               CxException ();
-            ///< constructor
-        virtual               ~CxException ();
-            ///< destructor
+public:
+                           CxException ();
+        ///< constructor
+    virtual               ~CxException ();
+        ///< destructor
 
-        const std::tstring_t & sWhat       () const;
-            ///< get message
-        template<typename T>
-        CxException &          operator << (const T &cMessageT);
-            ///< put message
+    const std::tstring_t & sWhat       () const;
+        ///< get message
+    template<typename T>
+    CxException &          operator << (const T &cMessageT);
+        ///< put message
 
-    private:
-        std::tstring_t         _m_sMessage;
-            ///< message
+private:
+    std::tstring_t         _m_sMessage;
+        ///< message
 };
 
 xNAMESPACE_END(NxLib)

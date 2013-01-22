@@ -16,49 +16,49 @@ class CxBlowfish :
     private CxNonCopyable
     /// blowfish (openssl-1.0.0a)
 {
-    public:
-        enum ExCryptMode
-            /// crypt mode
-        {
-            cmUnknown = - 1,
-            cmEncrypt = BF_ENCRYPT,
-            cmDecrypt = BF_DECRYPT
-        };
+public:
+    enum ExCryptMode
+        /// crypt mode
+    {
+        cmUnknown = - 1,
+        cmEncrypt = BF_ENCRYPT,
+        cmDecrypt = BF_DECRYPT
+    };
 
-                      CxBlowfish          ();
-            ///< constructor
-        virtual      ~CxBlowfish          ();
-            ///< destructor
+                  CxBlowfish          ();
+        ///< constructor
+    virtual      ~CxBlowfish          ();
+        ///< destructor
 
-        void          vSetKey             (uchar_t *pucKey, const int &ciKeySize);
-            ///< set key
-        void          vSetKey             (const std::ustring_t &cusKey);
-            ///< set key
-        void          vSetKey             (const std::tstring_t &csKey);
-            ///< set key
-        void          vSetFileKey         (const std::tstring_t &csFilePath);
-            ///< set key as file
-        static size_t uiMaxKeySize        ();
-            ///< get maximum key size
+    void          vSetKey             (uchar_t *pucKey, const int &ciKeySize);
+        ///< set key
+    void          vSetKey             (const std::ustring_t &cusKey);
+        ///< set key
+    void          vSetKey             (const std::tstring_t &csKey);
+        ///< set key
+    void          vSetFileKey         (const std::tstring_t &csFilePath);
+        ///< set key as file
+    static size_t uiMaxKeySize        ();
+        ///< get maximum key size
 
-        //cfb64
-        void          vEncryptCfb64       (uchar_t *pucIn, uchar_t *pucOut, const long_t &cliInSize, int *piNum, const ExCryptMode &cmMode);
-            ///< encrypt buffer
-        void          vEncryptCfb64       (const std::ustring_t &cusIn, std::ustring_t *pusOut, const ExCryptMode &cmMode);
-            ///< encrypt std::ustring_t
-        void          vEncryptFileCfb64   (const std::tstring_t &csFilePathIn, const std::tstring_t &csFilePathOut, const ExCryptMode &cmMode);
-            ///< encrypt file
+    //cfb64
+    void          vEncryptCfb64       (uchar_t *pucIn, uchar_t *pucOut, const long_t &cliInSize, int *piNum, const ExCryptMode &cmMode);
+        ///< encrypt buffer
+    void          vEncryptCfb64       (const std::ustring_t &cusIn, std::ustring_t *pusOut, const ExCryptMode &cmMode);
+        ///< encrypt std::ustring_t
+    void          vEncryptFileCfb64   (const std::tstring_t &csFilePathIn, const std::tstring_t &csFilePathOut, const ExCryptMode &cmMode);
+        ///< encrypt file
 
-    private:
-        enum
-            /// constants
-        {
-            MAX_KEY_SIZE = 56,  ///< max key size 448 bit (56 byte)
-            IVEC_SIZE    = 8    ///< ivec size
-        };
+private:
+    enum
+        /// constants
+    {
+        MAX_KEY_SIZE = 56,  ///< max key size 448 bit (56 byte)
+        IVEC_SIZE    = 8    ///< ivec size
+    };
 
-        BF_KEY        _m_bfKey;             ///< crypt key
-        uchar_t       _m_ucIvec[IVEC_SIZE]; ///< ivec
+    BF_KEY        _m_bfKey;             ///< crypt key
+    uchar_t       _m_ucIvec[IVEC_SIZE]; ///< ivec
 };
 
 xNAMESPACE_END(NxLib)

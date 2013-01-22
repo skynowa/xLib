@@ -18,41 +18,41 @@ class CxDebugger :
     private CxNonCopyable
     /// debugger
 {
-    public:
-                       CxDebugger    ();
-            ///< constructor
-        virtual       ~CxDebugger    ();
-            ///< destructor
+public:
+                   CxDebugger    ();
+        ///< constructor
+    virtual       ~CxDebugger    ();
+        ///< destructor
 
-        bool           bIsEnabled    ();
-            ///< is debugging enabled
-        void           vSetEnabled   (const bool &cbFlag);
-            ///< set debugging mode on/off
-        bool           bIsActive     ();
-            ///< is OS debugger presents
-        bool           bIsDebugBuild ();
-            ///< is debug build (is NDEBUG macros is don't set)
-        void           vBreak        ();
-            ///< attach to OS debugger
-        void           vSetLogPath   (const std::tstring_t &csFilePath);
-            ///< set log file path
-        std::tstring_t sLogPath      ();
-            ///< get log file path
-        void           vReportMake   (const CxErrorReport &crpReport);
-            ///< make report
+    bool           bIsEnabled    ();
+        ///< is debugging enabled
+    void           vSetEnabled   (const bool &cbFlag);
+        ///< set debugging mode on/off
+    bool           bIsActive     ();
+        ///< is OS debugger presents
+    bool           bIsDebugBuild ();
+        ///< is debug build (is NDEBUG macros is don't set)
+    void           vBreak        ();
+        ///< attach to OS debugger
+    void           vSetLogPath   (const std::tstring_t &csFilePath);
+        ///< set log file path
+    std::tstring_t sLogPath      ();
+        ///< get log file path
+    void           vReportMake   (const CxErrorReport &crpReport);
+        ///< make report
 
-    private:
-        bool           _m_bIsEnabled;
-            ///< is debugger enabled
-        std::tstring_t _m_sLogPath;
-            ///< log path
+private:
+    bool           _m_bIsEnabled;
+        ///< is debugger enabled
+    std::tstring_t _m_sLogPath;
+        ///< log path
 
-        void           _vMsgboxPlain (const CxErrorReport &crpReport);
-            ///< show message box with plain report
-        void           _vStdoutPlain (const CxErrorReport &crpReport);
-            ///< show plain report in std::cout
-        void           _vLoggingPlain(const CxErrorReport &crpReport);
-            ///< log plain report to file
+    void           _vMsgboxPlain (const CxErrorReport &crpReport);
+        ///< show message box with plain report
+    void           _vStdoutPlain (const CxErrorReport &crpReport);
+        ///< show plain report in std::cout
+    void           _vLoggingPlain(const CxErrorReport &crpReport);
+        ///< log plain report to file
 };
 
 xNAMESPACE_END(NxLib)

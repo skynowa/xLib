@@ -16,15 +16,15 @@ class CxAutoProfiler :
     private CxNonCopyable
     /// auto code profiling
 {
-    public:
-                       CxAutoProfiler(const std::tstring_t &csFilePath, const tchar_t *pcszComment, ...);
-            ///< constructor
-        virtual       ~CxAutoProfiler();
-            ///< destructor
+public:
+                   CxAutoProfiler(const std::tstring_t &csFilePath, const tchar_t *pcszComment, ...);
+        ///< constructor
+    virtual       ~CxAutoProfiler();
+        ///< destructor
 
-    private:
-        CxProfiler     _m_pfProfiler; ///< profiler
-        std::tstring_t _m_sComment;   ///< comment
+private:
+    CxProfiler     _m_pfProfiler; ///< profiler
+    std::tstring_t _m_sComment;   ///< comment
 };
 
 xNAMESPACE_END(NxLib)

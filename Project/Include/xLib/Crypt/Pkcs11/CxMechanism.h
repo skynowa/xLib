@@ -20,19 +20,19 @@ class CxMechanism :
     private CxNonCopyable
     /// Pkcs11 mechanism
 {
-    public:
-                             CxMechanism(const CxPkcs11 &cPkcs11);
-            ///< constructor
-        virtual             ~CxMechanism();
-            ///< destructor
+public:
+                         CxMechanism(const CxPkcs11 &cPkcs11);
+        ///< constructor
+    virtual             ~CxMechanism();
+        ///< destructor
 
-        void                 vInfo      (CK_SLOT_ID slotID, CK_MECHANISM_TYPE type, CK_MECHANISM_INFO_PTR pInfo);
-            ///< obtains information about a particular mechanism possibly supported by a token
-        void                 vList      (CK_SLOT_ID slotID, CK_MECHANISM_TYPE_PTR pMechanismList, CK_ULONG_PTR pulCount);
-            ///< obtains a list of mechanism types supported by a token
+    void                 vInfo      (CK_SLOT_ID slotID, CK_MECHANISM_TYPE type, CK_MECHANISM_INFO_PTR pInfo);
+        ///< obtains information about a particular mechanism possibly supported by a token
+    void                 vList      (CK_SLOT_ID slotID, CK_MECHANISM_TYPE_PTR pMechanismList, CK_ULONG_PTR pulCount);
+        ///< obtains a list of mechanism types supported by a token
 
-    private:
-        CK_FUNCTION_LIST_PTR _m_pFunc;     ///< pointer to dll's functions list
+private:
+    CK_FUNCTION_LIST_PTR _m_pFunc;     ///< pointer to dll's functions list
 };
 
 xNAMESPACE_END(NxLib)

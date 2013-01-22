@@ -15,33 +15,33 @@ class CxThreadStorage :
     private CxNonCopyable
     /// thread local storage
 {
-    public:
-                 CxThreadStorage();
-            ///< constructor
-        virtual ~CxThreadStorage();
-            ///< destructor
+public:
+             CxThreadStorage();
+        ///< constructor
+    virtual ~CxThreadStorage();
+        ///< destructor
 
-        bool     bIsSet         () const;
+    bool     bIsSet         () const;
 
-        void    *pvValue        () const;
-            ///< get the value
-        void     vSetValue      (void *pvValue) const;
-            ///< set value
+    void    *pvValue        () const;
+        ///< get the value
+    void     vSetValue      (void *pvValue) const;
+        ///< set value
 
-    private:
-    #if   xOS_ENV_WIN
-        typedef ulong_t       index_t;
-    #elif xOS_ENV_UNIX
-        typedef pthread_key_t index_t;
-    #endif
+private:
+#if   xOS_ENV_WIN
+    typedef ulong_t       index_t;
+#elif xOS_ENV_UNIX
+    typedef pthread_key_t index_t;
+#endif
 
-        void     _vAlloc        ();
-            ///< allocates a thread storage index
-        void     _vFree         ();
-            ///< releases a thread storage index
+    void     _vAlloc        ();
+        ///< allocates a thread storage index
+    void     _vFree         ();
+        ///< releases a thread storage index
 
-        index_t  _m_indIndex;
-            ///< thread storage index
+    index_t  _m_indIndex;
+        ///< thread storage index
 };
 
 xNAMESPACE_END(NxLib)

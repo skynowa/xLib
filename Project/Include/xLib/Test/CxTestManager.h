@@ -17,22 +17,22 @@ class CxTestManager :
     private CxNonCopyable
     /// manage tests (CxTest)
 {
-    public:
-        explicit   CxTestManager(const bool &cbIsUseTracing);
-            ///< constructor
-        virtual   ~CxTestManager();
-            ///< destructor
+public:
+    explicit   CxTestManager(const bool &cbIsUseTracing);
+        ///< constructor
+    virtual   ~CxTestManager();
+        ///< destructor
 
-        void       vAdd         (CxTest *pvtTest, const std::tstring_t &csTestName = CxConst::xSTR_EMPTY);
-            ///< add CxTest
-        void       vRun         (const ulonglong_t &cullAllLoops, const ulonglong_t &cullUnitLoops, const ulonglong_t &cullCaseLoops);
-            ///< run all tests
+    void       vAdd         (CxTest *pvtTest, const std::tstring_t &csTestName = CxConst::xSTR_EMPTY);
+        ///< add CxTest
+    void       vRun         (const ulonglong_t &cullAllLoops, const ulonglong_t &cullUnitLoops, const ulonglong_t &cullCaseLoops);
+        ///< run all tests
 
-    private:
-        typedef std::vector<CxTest *> container_t;
+private:
+    typedef std::vector<CxTest *> container_t;
 
-        const bool  _m_cbIsUseTracing;   ///< is use tracing
-        container_t _m_ctnTests;         ///< CxTest's container
+    const bool  _m_cbIsUseTracing;   ///< is use tracing
+    container_t _m_ctnTests;         ///< CxTest's container
 };
 
 xNAMESPACE_END(NxLib)

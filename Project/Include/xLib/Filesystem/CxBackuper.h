@@ -15,28 +15,27 @@ class CxBackuper :
     private CxNonCopyable
     /// backup file
 {
-    public:
-        enum ExBackupPeriod
-            /// backup period
-        {
-            bpUnknown,
-            //TODO: bpHourly,
-            bpDaily
-            //TODO: bpWeekly,
-            //TODO: bpMonthly
-        };
+public:
+    enum ExBackupPeriod
+        /// backup period
+    {
+        bpUnknown,
+        //TODO: bpHourly,
+        bpDaily
+        //TODO: bpWeekly,
+        //TODO: bpMonthly
+    };
 
-        explicit             CxBackuper(const ExBackupPeriod &cbpPeriod);
-            ///< constructor
-        virtual             ~CxBackuper();
-            ///< destructor
+    explicit             CxBackuper(const ExBackupPeriod &cbpPeriod);
+        ///< constructor
+    virtual             ~CxBackuper();
+        ///< destructor
 
-        void                 vExecute  (const std::tstring_t &csFilePath, const std::tstring_t &csDestDirPath, std::tstring_t *psDestFilePath);
-            ///< backup
+    void                 vExecute  (const std::tstring_t &csFilePath, const std::tstring_t &csDestDirPath, std::tstring_t *psDestFilePath);
+        ///< backup
 
-    private:
-        const ExBackupPeriod _m_cbpPeriod;  ///< backup period
-
+private:
+    const ExBackupPeriod _m_cbpPeriod;  ///< backup period
 };
 
 xNAMESPACE_END(NxLib)

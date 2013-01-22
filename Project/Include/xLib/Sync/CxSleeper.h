@@ -16,21 +16,21 @@ class CxSleeper :
     private CxNonCopyable
     /// sleeper
 {
-    public:
-                 CxSleeper  ();
-            ///< constructor
-        virtual ~CxSleeper  ();
-            ///< destructor
+public:
+             CxSleeper  ();
+        ///< constructor
+    virtual ~CxSleeper  ();
+        ///< destructor
 
-        void     vSleep     (const ulong_t &culTimeout);
-            ///< sleep
-        void     vWakeUp    ();
-            ///< wake up
-        bool     bIsSleeping();
-            ///< check for sleeping
+    void     vSleep     (const ulong_t &culTimeout);
+        ///< sleep
+    void     vWakeUp    ();
+        ///< wake up
+    bool     bIsSleeping();
+        ///< check for sleeping
 
-    private:
-        CxEvent  _m_objEvent;    ///< event object
+private:
+    CxEvent  _m_objEvent;    ///< event object
 };
 
 xNAMESPACE_END(NxLib)

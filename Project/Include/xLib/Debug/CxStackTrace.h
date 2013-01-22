@@ -43,7 +43,6 @@ private:
     static void          _vAddr2Line (const void *pvSymbolAddress, std::tstring_t *psFilePath,
                                       std::tstring_t *psFunctionName, ulong_t *pulSourceLine);
 #endif
-
 };
 
 xNAMESPACE_END(NxLib)

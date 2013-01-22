@@ -16,31 +16,31 @@ class CxMutex :
     private CxNonCopyable
     /// critical section
 {
-    public:
-    #if   xOS_ENV_WIN
-        typedef CRITICAL_SECTION handle_t;
-    #elif xOS_ENV_UNIX
-        typedef pthread_mutex_t  handle_t;
-    #endif
+public:
+#if   xOS_ENV_WIN
+    typedef CRITICAL_SECTION handle_t;
+#elif xOS_ENV_UNIX
+    typedef pthread_mutex_t  handle_t;
+#endif
 
-                          CxMutex ();
-            ///< constructor
-        virtual          ~CxMutex ();
-            ///< destructor
+                      CxMutex ();
+        ///< constructor
+    virtual          ~CxMutex ();
+        ///< destructor
 
-        const handle_t &  hHandle () const;
-            ///< get handle
-        void              vCreate ();
-            ///< create
-        void              vLock   ();
-            ///< lock
-        bool              bTryLock();
-            ///< try lock
-        void              vUnlock ();
-            ///< unlock
+    const handle_t &  hHandle () const;
+        ///< get handle
+    void              vCreate ();
+        ///< create
+    void              vLock   ();
+        ///< lock
+    bool              bTryLock();
+        ///< try lock
+    void              vUnlock ();
+        ///< unlock
 
-    private:
-        handle_t          _m_hHandle;   ///< mutex native handle
+private:
+    handle_t          _m_hHandle;   ///< mutex native handle
 };
 
 xNAMESPACE_END(NxLib)

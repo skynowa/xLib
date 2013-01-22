@@ -14,17 +14,17 @@ xNAMESPACE_BEGIN(NxLib)
 class CxNonAssignable
     /// non assignable class
 {
-    public:
+public:
 
-    protected:
-                 CxNonAssignable() { ; }
-            ///< constructor
-        virtual ~CxNonAssignable() { ; }
-            ///< dectructor
+protected:
+             CxNonAssignable() { ; }
+        ///< constructor
+    virtual ~CxNonAssignable() { ; }
+        ///< dectructor
 
-    private:
-        const CxNonAssignable &operator = (const CxNonAssignable &);
-            ///< operator =
+private:
+    const CxNonAssignable &operator = (const CxNonAssignable &);
+        ///< operator =
 };
 
 xNAMESPACE_END(NxLib)
