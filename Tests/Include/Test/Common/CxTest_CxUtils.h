@@ -14,13 +14,11 @@
 class CxTest_CxUtils :
     public CxTest
 {
-    public:
-                       CxTest_CxUtils();
-        virtual       ~CxTest_CxUtils();
+public:
+                   CxTest_CxUtils();
+    virtual       ~CxTest_CxUtils();
 
-        virtual  void  vUnit          (const ulonglong_t &cullCaseLoops);
-
-    private:
+    virtual  void  vUnit          (const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxUtilsH

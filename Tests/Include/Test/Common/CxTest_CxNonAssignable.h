@@ -14,16 +14,14 @@
 class CxTest_CxNonAssignable :
     public CxTest
 {
-    public:
-                      CxTest_CxNonAssignable();
-            ///< constructor
-        virtual      ~CxTest_CxNonAssignable();
-            ///< destructor
+public:
+                  CxTest_CxNonAssignable();
+        ///< constructor
+    virtual      ~CxTest_CxNonAssignable();
+        ///< destructor
 
-        virtual void  vUnit(const ulonglong_t &cullCaseLoops) xOVERRIDE;
-            ///< unit test
-
-    private:
+    virtual void  vUnit(const ulonglong_t &cullCaseLoops) xOVERRIDE;
+        ///< unit test
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxNonAssignableH

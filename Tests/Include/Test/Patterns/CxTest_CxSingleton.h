@@ -14,13 +14,11 @@
 class CxTest_CxSingleton :
     public CxTest
 {
-    public:
-                     CxTest_CxSingleton();
-        virtual     ~CxTest_CxSingleton();
+public:
+                 CxTest_CxSingleton();
+    virtual     ~CxTest_CxSingleton();
 
-        virtual void vUnit(const ulonglong_t &cullCaseLoops);
-
-    private:
+    virtual void vUnit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxSingletonH

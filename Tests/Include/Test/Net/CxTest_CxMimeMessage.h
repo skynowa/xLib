@@ -17,13 +17,11 @@
 class CxTest_CxMimeMessage :
     public CxTest
 {
-    public:
-                     CxTest_CxMimeMessage();
-        virtual     ~CxTest_CxMimeMessage();
+public:
+                 CxTest_CxMimeMessage();
+    virtual     ~CxTest_CxMimeMessage();
 
-        virtual void vUnit(const ulonglong_t &cullCaseLoops);
-
-    private:
+    virtual void vUnit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxMimeMessageH

@@ -14,16 +14,14 @@
 class CxTest_CxNonCopyable :
     public CxTest
 {
-    public:
-                      CxTest_CxNonCopyable();
-            ///< constructor
-        virtual      ~CxTest_CxNonCopyable();
-            ///< destructor
+public:
+                  CxTest_CxNonCopyable();
+        ///< constructor
+    virtual      ~CxTest_CxNonCopyable();
+        ///< destructor
 
-        virtual void  vUnit(const ulonglong_t &cullCaseLoops) xOVERRIDE;
-            ///< unit test
-
-    private:
+    virtual void  vUnit(const ulonglong_t &cullCaseLoops) xOVERRIDE;
+        ///< unit test
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxNonCopyableH

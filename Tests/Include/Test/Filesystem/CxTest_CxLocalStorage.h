@@ -14,13 +14,11 @@
 class CxTest_CxLocalStorage :
     public CxTest
 {
-    public:
-                      CxTest_CxLocalStorage();
-        virtual      ~CxTest_CxLocalStorage();
+public:
+                  CxTest_CxLocalStorage();
+    virtual      ~CxTest_CxLocalStorage();
 
-        virtual  void vUnit(const ulonglong_t &cullCaseLoops) xOVERRIDE;
-
-    private:
+    virtual  void vUnit(const ulonglong_t &cullCaseLoops) xOVERRIDE;
 };
 //---------------------------------------------------------------------------
 #endif // CxTest_CxLocalStorageH

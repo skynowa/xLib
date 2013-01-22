@@ -14,16 +14,14 @@
 class CxTest_CxBackuper :
     public CxTest
 {
-    public:
-                      CxTest_CxBackuper();
-            ///< constructor
-        virtual      ~CxTest_CxBackuper();
-            ///< destructor
+public:
+                  CxTest_CxBackuper();
+        ///< constructor
+    virtual      ~CxTest_CxBackuper();
+        ///< destructor
 
-        virtual void vUnit(const ulonglong_t &cullCaseLoops);
-            ///< unit test
-
-    private:
+    virtual void vUnit(const ulonglong_t &cullCaseLoops);
+        ///< unit test
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxBackuperH

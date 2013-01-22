@@ -14,13 +14,11 @@
 class CxTest_CxLocale :
     public CxTest
 {
-    public:
-                     CxTest_CxLocale();
-        virtual     ~CxTest_CxLocale();
+public:
+                 CxTest_CxLocale();
+    virtual     ~CxTest_CxLocale();
 
-        virtual void vUnit(const ulonglong_t &cullCaseLoops);
-
-    private:
+    virtual void vUnit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxLocaleH

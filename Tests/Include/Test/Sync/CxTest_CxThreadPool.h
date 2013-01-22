@@ -14,29 +14,27 @@
 class CxTest_CxThreadPool :
     public CxTest
 {
-    public:
-                      CxTest_CxThreadPool();
-            ///< constructor
-        virtual      ~CxTest_CxThreadPool();
-            ///< destructor
+public:
+                  CxTest_CxThreadPool();
+        ///< constructor
+    virtual      ~CxTest_CxThreadPool();
+        ///< destructor
 
-        virtual void vUnit(const ulonglong_t &cullCaseLoops);
-            ///< unit test
-
-    private:
+    virtual void vUnit(const ulonglong_t &cullCaseLoops);
+        ///< unit test
 };
 //---------------------------------------------------------------------------
 class CPoolThread :
     public CxThread
 {
-    public:
-        size_t         m_uiIndex;
+public:
+    size_t         m_uiIndex;
 
-                       CPoolThread(const bool &cbAutoDelete);
-        virtual       ~CPoolThread();
+                   CPoolThread(const bool &cbAutoDelete);
+    virtual       ~CPoolThread();
 
-    protected:
-        virtual uint_t uiOnRun    (void *pData);
+protected:
+    virtual uint_t uiOnRun    (void *pData);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxThreadPoolH

@@ -14,16 +14,14 @@
 class CxTest_CxProcessInfo :
     public CxTest
 {
-    public:
-                      CxTest_CxProcessInfo();
-            ///< constructor
-        virtual      ~CxTest_CxProcessInfo();
-            ///< destructor
+public:
+                  CxTest_CxProcessInfo();
+        ///< constructor
+    virtual      ~CxTest_CxProcessInfo();
+        ///< destructor
 
-        virtual void vUnit(const ulonglong_t &cullCaseLoops);
-            ///< unit test
-
-    private:
+    virtual void vUnit(const ulonglong_t &cullCaseLoops);
+        ///< unit test
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_Common_CxProcessInfoH

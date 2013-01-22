@@ -14,13 +14,11 @@
 class CxTest_CxIpcSemaphore :
     public CxTest
 {
-    public:
-                     CxTest_CxIpcSemaphore();
-        virtual     ~CxTest_CxIpcSemaphore();
+public:
+                 CxTest_CxIpcSemaphore();
+    virtual     ~CxTest_CxIpcSemaphore();
 
-        virtual void vUnit             (const ulonglong_t &cullCaseLoops);
-
-    private:
+    virtual void vUnit             (const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxIpcSemaphoreH

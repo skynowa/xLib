@@ -14,13 +14,11 @@
 class CxTest_CxBase64 :
     public CxTest
 {
-    public:
-                     CxTest_CxBase64();
-        virtual     ~CxTest_CxBase64();
+public:
+                 CxTest_CxBase64();
+    virtual     ~CxTest_CxBase64();
 
-        virtual void vUnit(const ulonglong_t &cullCaseLoops);
-
-    private:
+    virtual void vUnit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxBase64H

@@ -14,13 +14,11 @@
 class CxTest_CxFileLog :
     public CxTest
 {
-    public:
-                      CxTest_CxFileLog();
-        virtual      ~CxTest_CxFileLog();
+public:
+                  CxTest_CxFileLog();
+    virtual      ~CxTest_CxFileLog();
 
-        virtual  void vUnit(const ulonglong_t &cullCaseLoops);
-
-    private:
+    virtual  void vUnit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxFileLogH

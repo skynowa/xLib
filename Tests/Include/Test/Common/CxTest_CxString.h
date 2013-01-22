@@ -14,13 +14,11 @@
 class CxTest_CxString :
     public CxTest
 {
-    public:
-                     CxTest_CxString();
-        virtual     ~CxTest_CxString();
+public:
+                 CxTest_CxString();
+    virtual     ~CxTest_CxString();
 
-        virtual     void vUnit(const ulonglong_t &cullCaseLoops);
-
-    private:
+    virtual     void vUnit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxStringH

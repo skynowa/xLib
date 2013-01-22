@@ -14,13 +14,11 @@
 class CxTest_CxDateTime :
     public CxTest
 {
-    public:
-                     CxTest_CxDateTime();
-        virtual     ~CxTest_CxDateTime();
+public:
+                 CxTest_CxDateTime();
+    virtual     ~CxTest_CxDateTime();
 
-        virtual void vUnit(const ulonglong_t &cullCaseLoops);
-
-    private:
+    virtual void vUnit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxDateTimeH

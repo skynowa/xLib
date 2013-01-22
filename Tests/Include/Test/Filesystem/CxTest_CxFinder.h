@@ -15,16 +15,14 @@ class CxTest_CxFinder :
     public CxTest
     ///< tests for CxFinder
 {
-    public:
-                      CxTest_CxFinder();
-            ///< constructor
-        virtual      ~CxTest_CxFinder();
-            ///< destructor
+public:
+                  CxTest_CxFinder();
+        ///< constructor
+    virtual      ~CxTest_CxFinder();
+        ///< destructor
 
-        virtual void  vUnit(const ulonglong_t &cullCaseLoops) xOVERRIDE;
-            ///< unit test
-
-    private:
+    virtual void  vUnit(const ulonglong_t &cullCaseLoops) xOVERRIDE;
+        ///< unit test
 };
 //---------------------------------------------------------------------------
 #endif // CxTest_CxFinderH

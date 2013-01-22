@@ -15,13 +15,11 @@
 class CxTest_CxCrc32 :
     public CxTest
 {
-    public:
-                     CxTest_CxCrc32();
-        virtual     ~CxTest_CxCrc32();
+public:
+                 CxTest_CxCrc32();
+    virtual     ~CxTest_CxCrc32();
 
-        virtual void vUnit(const ulonglong_t &cullCaseLoops);
-
-    private:
+    virtual void vUnit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxCrc32H

@@ -14,16 +14,14 @@
 class CxTest_xDebug :
     public CxTest
 {
-    public:
-                      CxTest_xDebug();
-            ///< constructor
-        virtual      ~CxTest_xDebug();
-            ///< destructor
+public:
+                  CxTest_xDebug();
+        ///< constructor
+    virtual      ~CxTest_xDebug();
+        ///< destructor
 
-        virtual void vUnit(const ulonglong_t &cullCaseLoops);
-            ///< unit test
-
-    private:
+    virtual void vUnit(const ulonglong_t &cullCaseLoops);
+        ///< unit test
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_xDebugH

@@ -14,16 +14,14 @@
 class CxTest_CxSemaphore :
     public CxTest
 {
-    public:
-                      CxTest_CxSemaphore();
-            ///< constructor
-        virtual      ~CxTest_CxSemaphore();
-            ///< destructor
+public:
+                  CxTest_CxSemaphore();
+        ///< constructor
+    virtual      ~CxTest_CxSemaphore();
+        ///< destructor
 
-        virtual void vUnit(const ulonglong_t &cullCaseLoops);
-            ///< unit test
-
-    private:
+    virtual void vUnit(const ulonglong_t &cullCaseLoops);
+        ///< unit test
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxSemaphoreH

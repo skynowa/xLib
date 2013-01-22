@@ -14,13 +14,11 @@
 class CxTest_CxSmtp :
     public CxTest
 {
-    public:
-                     CxTest_CxSmtp();
-        virtual     ~CxTest_CxSmtp();
+public:
+                 CxTest_CxSmtp();
+    virtual     ~CxTest_CxSmtp();
 
-        virtual void vUnit(const ulonglong_t &cullCaseLoops);
-
-    private:
+    virtual void vUnit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxSmtpH

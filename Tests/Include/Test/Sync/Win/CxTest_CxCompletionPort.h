@@ -14,13 +14,11 @@
 class CxTest_CxCompletionPort :
     public CxTest
 {
-    public:
-                     CxTest_CxCompletionPort();
-        virtual     ~CxTest_CxCompletionPort();
+public:
+                 CxTest_CxCompletionPort();
+    virtual     ~CxTest_CxCompletionPort();
 
-        virtual     void vUnit(const ulonglong_t &cullCaseLoops);
-
-    private:
+    virtual     void vUnit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxCompletionPortH

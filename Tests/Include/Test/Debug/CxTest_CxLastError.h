@@ -14,13 +14,11 @@
 class CxTest_CxLastError :
     public CxTest
 {
-    public:
-                     CxTest_CxLastError();
-        virtual     ~CxTest_CxLastError();
+public:
+                 CxTest_CxLastError();
+    virtual     ~CxTest_CxLastError();
 
-        virtual void vUnit(const ulonglong_t &cullCaseLoops);
-
-    private:
+    virtual void vUnit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxLastErrorH
