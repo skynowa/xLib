@@ -15,43 +15,43 @@ class CxMimeHeader :
     private CxNonCopyable
     /// MIME header (RFC 822)
 {
-    public:
-                               CxMimeHeader      ();
-                              ~CxMimeHeader      ();
+public:
+                           CxMimeHeader      ();
+                          ~CxMimeHeader      ();
 
-        void                   vParse            (const std::tstring_t &csRawHeader);
-        std::tstring_t         sField            (const std::tstring_t &csName);
-        size_t                 uiCount           ();
-        void                   vLoadFromFile     (const std::tstring_t &csRawMessageFilePath);
-        void                   vSaveToFile       (const std::tstring_t &csFilePath);
+    void                   vParse            (const std::tstring_t &csRawHeader);
+    std::tstring_t         sField            (const std::tstring_t &csName);
+    size_t                 uiCount           ();
+    void                   vLoadFromFile     (const std::tstring_t &csRawMessageFilePath);
+    void                   vSaveToFile       (const std::tstring_t &csFilePath);
 
-        static std::tstring_t  sGenerateMessageID();
+    static std::tstring_t  sGenerateMessageID();
 
-    private:
-        static const std::tstring_t _ms_csAttrDelimiter;
-        static const std::tstring_t _ms_csEndOfHeader;
-        static const std::tstring_t _ms_csEndOfLine;
+private:
+    static const std::tstring_t _ms_csAttrDelimiter;
+    static const std::tstring_t _ms_csEndOfHeader;
+    static const std::tstring_t _ms_csEndOfLine;
 
-        std::mmap_tstring_t    _m_mmsHeader;
+    std::mmap_tstring_t    _m_mmsHeader;
 
-        //Delivered-To:
-        //Return-Path:
-        //Received:
-        //From:
-        //To:
-        //CC:
-        //BCC:
-        //Subject:
-        //X-Priority:
-        //X-MSMail-Priority:
-        //X-Mailer:
-        //X-MimeOLE:
-        //Reply-To:
-        //MIME-Version:
-        //Content-Type:
-        //Content-Transfer-Encoding:
-        //Date:
-        //Message-ID:
+    //Delivered-To:
+    //Return-Path:
+    //Received:
+    //From:
+    //To:
+    //CC:
+    //BCC:
+    //Subject:
+    //X-Priority:
+    //X-MSMail-Priority:
+    //X-Mailer:
+    //X-MimeOLE:
+    //Reply-To:
+    //MIME-Version:
+    //Content-Type:
+    //Content-Transfer-Encoding:
+    //Date:
+    //Message-ID:
 };
 
 xNAMESPACE_END(NxLib)

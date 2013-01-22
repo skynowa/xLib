@@ -21,20 +21,20 @@ class CxLogin :
     private CxNonCopyable
     /// Pkcs11 login
 {
-    public:
-                             CxLogin(const CxPkcs11 &cPkcs11, const CxSession &cSession);
-            ///< constructor
-        virtual             ~CxLogin();
-            ///< constructor
+public:
+                         CxLogin(const CxPkcs11 &cPkcs11, const CxSession &cSession);
+        ///< constructor
+    virtual             ~CxLogin();
+        ///< constructor
 
-        void                 vLogin (CK_USER_TYPE userType, CK_UTF8CHAR_PTR pPin, CK_ULONG ulPinLen);
-            ///< login user into a token
-        void                 vLogout();
-            ///< logout user from a token
+    void                 vLogin (CK_USER_TYPE userType, CK_UTF8CHAR_PTR pPin, CK_ULONG ulPinLen);
+        ///< login user into a token
+    void                 vLogout();
+        ///< logout user from a token
 
-    private:
-        CK_FUNCTION_LIST_PTR _m_pFunc;        ///< pointer to dll's functions list
-        CK_SESSION_HANDLE    _m_hSession;    ///< session handle
+private:
+    CK_FUNCTION_LIST_PTR _m_pFunc;        ///< pointer to dll's functions list
+    CK_SESSION_HANDLE    _m_hSession;    ///< session handle
 };
 
 xNAMESPACE_END(NxLib)

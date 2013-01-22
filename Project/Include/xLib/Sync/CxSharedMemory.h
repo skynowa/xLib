@@ -15,11 +15,11 @@ class CxSharedMemory :
     private CxNonCopyable
     /// share memory
 {
-    public:
-                 CxSharedMemory();
-        virtual ~CxSharedMemory();
+public:
+             CxSharedMemory();
+    virtual ~CxSharedMemory();
 
-    private:
+private:
 
 };
 

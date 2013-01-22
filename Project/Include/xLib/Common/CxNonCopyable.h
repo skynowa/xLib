@@ -14,19 +14,19 @@ xNAMESPACE_BEGIN(NxLib)
 class CxNonCopyable
     /// non copyable class
 {
-    public:
+public:
 
-    protected:
-                 CxNonCopyable() { ; }
-            ///< constructor
-        virtual ~CxNonCopyable() { ; }
-            ///< destructor
+protected:
+             CxNonCopyable() { ; }
+        ///< constructor
+    virtual ~CxNonCopyable() { ; }
+        ///< destructor
 
-    private:
-                 CxNonCopyable(const CxNonCopyable &);
-            ///< constructor
-        const CxNonCopyable &operator = (const CxNonCopyable &);
-            ///< operator =
+private:
+             CxNonCopyable(const CxNonCopyable &);
+        ///< constructor
+    const CxNonCopyable &operator = (const CxNonCopyable &);
+        ///< operator =
 };
 
 xNAMESPACE_END(NxLib)

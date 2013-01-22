@@ -15,7 +15,7 @@ enum ExHandleValue
     /// error handle type
 {
     hvInvalid = - 1,    ///< like "invalid"
-    hvNull    = 0,      ///< like "null"
+    hvNull    = 0       ///< like "null"
 };
 
 template<ExHandleValue hvTag>

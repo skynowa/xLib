@@ -18,17 +18,17 @@ class CxCompletionPort :
     private CxNonCopyable
     /// completion port
 {
-    public:
-                 CxCompletionPort();
-        virtual ~CxCompletionPort();
+public:
+             CxCompletionPort();
+    virtual ~CxCompletionPort();
 
-        void     vCreate         (const ulong_t &culThreadsNum /* = 0UL */);
-        void     vAssociate      (const HANDLE &chFile, ULONG_PTR pulCompletionKey);
-        void     vStatus         (LPDWORD lpNumberOfBytes, PULONG_PTR lpCompletionKey, LPOVERLAPPED *lpOverlapped, const ulong_t &culMilliseconds);
-        void     vPostStatus     (const ulong_t &culNumberOfBytesTransferred, ULONG_PTR ulCompletionKey, LPOVERLAPPED lpOverlapped);
+    void     vCreate         (const ulong_t &culThreadsNum /* = 0UL */);
+    void     vAssociate      (const HANDLE &chFile, ULONG_PTR pulCompletionKey);
+    void     vStatus         (LPDWORD lpNumberOfBytes, PULONG_PTR lpCompletionKey, LPOVERLAPPED *lpOverlapped, const ulong_t &culMilliseconds);
+    void     vPostStatus     (const ulong_t &culNumberOfBytesTransferred, ULONG_PTR ulCompletionKey, LPOVERLAPPED lpOverlapped);
 
-    private:
-        CxHandle _m_hHandle;
+private:
+    CxHandle _m_hHandle;
 };
 
 xNAMESPACE_END(NxLib)

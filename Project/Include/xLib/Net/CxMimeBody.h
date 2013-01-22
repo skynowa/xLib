@@ -15,12 +15,12 @@ class CxMimeBody :
     private CxNonCopyable
     /// MIME body (RFC 822)
 {
-    public:
-                CxMimeBody();
-       virtual ~CxMimeBody();
+public:
+            CxMimeBody();
+   virtual ~CxMimeBody();
 
-    private:
-        std::mmap_tstring_t _m_mmsBody;
+private:
+    std::mmap_tstring_t _m_mmsBody;
 };
 
 xNAMESPACE_END(NxLib)

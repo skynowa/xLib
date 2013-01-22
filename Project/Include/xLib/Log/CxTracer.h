@@ -17,24 +17,23 @@ class CxTracer :
     private CxNonCopyable
     /// tracing
 {
-    public:
-                              CxTracer    ();
-            ///< constructor
-        virtual              ~CxTracer    ();
-            ///< destructor
+public:
+                          CxTracer    ();
+        ///< constructor
+    virtual              ~CxTracer    ();
+        ///< destructor
 
-        template<typename T>
-        CxTracer &            operator << (const T &cValueT);
-            ///< operator <<
+    template<typename T>
+    CxTracer &            operator << (const T &cValueT);
+        ///< operator <<
 
-        static void           vWrite      (const tchar_t *pcszFormat, ...);
-            ///< tracing to debugger, std::cout
-        static void           vWrite      (const std::tstring_t &csMsg);
-            ///< tracing to debugger, std::cout
+    static void           vWrite      (const tchar_t *pcszFormat, ...);
+        ///< tracing to debugger, std::cout
+    static void           vWrite      (const std::tstring_t &csMsg);
+        ///< tracing to debugger, std::cout
 
-    private:
-        std::tostringstream_t _m_ossStream;    ///< string stream
-
+private:
+    std::tostringstream_t _m_ossStream;    ///< string stream
 };
 
 xNAMESPACE_END(NxLib)

@@ -16,108 +16,108 @@ class CxConsole :
     private CxNonCopyable
     /// console
 {
-    public:
-        enum ExForeground
-            /// foreground color
-        {
-            fgUnknown,
-            fgBlack,
-            fgRed,
-            fgGreen,
-            fgYellow,
-            fgBlue,
-            fgMagenta,
-            fgCyan,
-            fgWhite,
-            fgGray
-        };
+public:
+    enum ExForeground
+        /// foreground color
+    {
+        fgUnknown,
+        fgBlack,
+        fgRed,
+        fgGreen,
+        fgYellow,
+        fgBlue,
+        fgMagenta,
+        fgCyan,
+        fgWhite,
+        fgGray
+    };
 
-        enum ExBackground
-            /// background color
-        {
-            bgUnknown,
-            bgBlack,
-            bgRed,
-            bgGreen,
-            bgYellow,
-            bgBlue,
-            bgMagenta,
-            bgCyan,
-            bgWhite,
-            bgGray
-        };
+    enum ExBackground
+        /// background color
+    {
+        bgUnknown,
+        bgBlack,
+        bgRed,
+        bgGreen,
+        bgYellow,
+        bgBlue,
+        bgMagenta,
+        bgCyan,
+        bgWhite,
+        bgGray
+    };
 
-        enum ExTextAttribute
-            /// text attribute
-        {
-            atUnknown,
-            atAllOff,
-            atBold,
-            atUnderscore,
-            atBlink,
-            atReverse,
-            atConcealed
-        };
+    enum ExTextAttribute
+        /// text attribute
+    {
+        atUnknown,
+        atAllOff,
+        atBold,
+        atUnderscore,
+        atBlink,
+        atReverse,
+        atConcealed
+    };
 
-        enum ExModalResult
-            /// modal result
-        {
-            mrAbort  = 3,
-            mrIgnore = 5,
-            mrRetry  = 4
-        };
+    enum ExModalResult
+        /// modal result
+    {
+        mrAbort  = 3,
+        mrIgnore = 5,
+        mrRetry  = 4
+    };
 
-                        CxConsole        ();
-            ///< constructor
-        virtual        ~CxConsole        ();
-            ///< destructor
+                    CxConsole        ();
+        ///< constructor
+    virtual        ~CxConsole        ();
+        ///< destructor
 
-        std::tstring_t  sSetAttributes   (const ExForeground &cfgForeground, const ExBackground &cbgBackground,
-                                         const int &ciAttributes);
-            ///< set text color
-        std::tstring_t  sSetAttributesDef();
-            ///< set text color
-        std::tstring_t  sRead            ();
-            ///< read
-        void            vWrite           (const std::tstring_t &csStr);
-            ///< write
-        void            vWriteLine       (const std::tstring_t &csStr = xT(""));
-            ///< write line
-        void            vWriteErrLine    (const std::tstring_t &csStr);
-            ///< write error message
-        ExModalResult   iMsgBox          (const std::tstring_t &csText, const std::tstring_t &csTitle, const uint_t &cuiType);
-            ///< show console message dialog
-        void            vPrompt          (const std::tstring_t &csPrompt, const bool &cbIsVisible, std::tstring_t *psAnswer);
-            ///< show console prompt dialog
-        void            vPause           (const ulong_t &culTimeoutMs);
-            ///< pause with timeout (msec)
-        void            vClear           ();
-            ///< clear
+    std::tstring_t  sSetAttributes   (const ExForeground &cfgForeground, const ExBackground &cbgBackground,
+                                     const int &ciAttributes);
+        ///< set text color
+    std::tstring_t  sSetAttributesDef();
+        ///< set text color
+    std::tstring_t  sRead            ();
+        ///< read
+    void            vWrite           (const std::tstring_t &csStr);
+        ///< write
+    void            vWriteLine       (const std::tstring_t &csStr = xT(""));
+        ///< write line
+    void            vWriteErrLine    (const std::tstring_t &csStr);
+        ///< write error message
+    ExModalResult   iMsgBox          (const std::tstring_t &csText, const std::tstring_t &csTitle, const uint_t &cuiType);
+        ///< show console message dialog
+    void            vPrompt          (const std::tstring_t &csPrompt, const bool &cbIsVisible, std::tstring_t *psAnswer);
+        ///< show console prompt dialog
+    void            vPause           (const ulong_t &culTimeoutMs);
+        ///< pause with timeout (msec)
+    void            vClear           ();
+        ///< clear
 
-        std::tstring_t  sTitle           ();
-            ///< get title string
-        void            vSetTitle        (const std::tstring_t &csTitle);
-            ///< set title string
-        void            vCenterWindow    ();
-            ///< allign to center
-        void            vSetFullScreen   ();
-            ///< set full screen
-        void            vEnableClose     (const bool &cbFlag);
-            ///< enable close button
+    std::tstring_t  sTitle           ();
+        ///< get title string
+    void            vSetTitle        (const std::tstring_t &csTitle);
+        ///< set title string
+    void            vCenterWindow    ();
+        ///< allign to center
+    void            vSetFullScreen   ();
+        ///< set full screen
+    void            vEnableClose     (const bool &cbFlag);
+        ///< enable close button
 
-    private:
-    #if xOS_ENV_WIN
-        HWND            _m_hWnd;             ///< console window handle
-        HMENU           _m_hMenu;            ///< console menu handle
-        CxHandleInvalid _m_hStdIn;           ///< standart input handle
-        CxHandleInvalid _m_hStdOut;          ///< standart output handle
-        WORD            _m_wAttributesDef;   ///< default console attributes
+private:
+#if xOS_ENV_WIN
+    HWND            _m_hWnd;             ///< console window handle
+    HMENU           _m_hMenu;            ///< console menu handle
+    CxHandleInvalid _m_hStdIn;           ///< standart input handle
+    CxHandleInvalid _m_hStdOut;          ///< standart output handle
+    WORD            _m_wAttributesDef;   ///< default console attributes
 
-        HWND            _hWndHandle      ();
-            ///< get console window handle
-        HMENU           _hMenuHandle     (const bool &cbRevert);
-            ///< get console menu handle
-    #endif
+    HWND            _hWndHandle      ();
+        ///< get console window handle
+    HMENU           _hMenuHandle     (const bool &cbRevert);
+        ///< get console menu handle
+#endif
 };
 
 xNAMESPACE_END(NxLib)

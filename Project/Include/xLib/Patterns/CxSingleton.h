@@ -16,19 +16,19 @@ class CxSingleton :
     private CxNonCopyable
     /// singleton
 {
-    public:
-        static T &get()
-            ///< get object instance
-        {
-            static T singletonT;
-            return singletonT;
-        }
+public:
+    static T &get()
+        ///< get object instance
+    {
+        static T singletonT;
+        return singletonT;
+    }
 
-    private:
-                 CxSingleton() { };
-            ///< constructor
-        virtual ~CxSingleton() { };
-            ///< destructor
+private:
+             CxSingleton() { };
+        ///< constructor
+    virtual ~CxSingleton() { };
+        ///< destructor
 };
 
 xNAMESPACE_END(NxLib)
@@ -39,11 +39,11 @@ xNAMESPACE_END(NxLib)
 #if xTODO
     template <typename T>
     class CxSingleton {
-        public:
-            static CxSingleton &Instance();
+    public:
+        static CxSingleton &Instance();
 
-        private:
-            CxSingleton();
+    private:
+        CxSingleton();
     };
 
     template <typename T>

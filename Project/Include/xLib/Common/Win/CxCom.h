@@ -17,11 +17,11 @@ class CxCom :
     private CxNonCopyable
     /// Component Object Model (COM)
 {
-    public:
-        explicit  CxCom(const COINIT &ccmCoModel);
-            ///< constructor
-        virtual  ~CxCom();
-            ///< destructor
+public:
+    explicit  CxCom(const COINIT &ccmCoModel);
+        ///< constructor
+    virtual  ~CxCom();
+        ///< destructor
 };
 
 xNAMESPACE_END(NxLib)

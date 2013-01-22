@@ -19,29 +19,29 @@ class CxSmtp :
     private CxNonCopyable
     /// SMTP (RFC 2821)
 {
-    public:
-                       CxSmtp     ();
-                      ~CxSmtp     ();
+public:
+                   CxSmtp     ();
+                  ~CxSmtp     ();
 
-        void           vCreate    (const std::tstring_t &csUser, const std::tstring_t &csPass, const std::tstring_t &csServer, const ushort_t &cusPort);
-        void           vConnect   ();
-        void           vLogin     ();
-        void           vNoop      ();
-        void           vRset      ();
-        void           vSendRaw   (const std::tstring_t &csFilePath, const std::tstring_t &csFrom, const std::tstring_t &csTo);
-        void           vSend      (const std::tstring_t &csText, const std::tstring_t &sFrom, const std::tstring_t &sTo);
-        void           vDisconnect();
+    void           vCreate    (const std::tstring_t &csUser, const std::tstring_t &csPass, const std::tstring_t &csServer, const ushort_t &cusPort);
+    void           vConnect   ();
+    void           vLogin     ();
+    void           vNoop      ();
+    void           vRset      ();
+    void           vSendRaw   (const std::tstring_t &csFilePath, const std::tstring_t &csFrom, const std::tstring_t &csTo);
+    void           vSend      (const std::tstring_t &csText, const std::tstring_t &sFrom, const std::tstring_t &sTo);
+    void           vDisconnect();
 
-    private:
-        CxTcpClient    _m_scktSocket;
-        std::tstring_t _m_sUser;
-        std::tstring_t _m_sPass;
-        std::tstring_t _m_sServer;
-        ushort_t       _m_usPort;
-        bool           _m_bConnected;
+private:
+    CxTcpClient    _m_scktSocket;
+    std::tstring_t _m_sUser;
+    std::tstring_t _m_sPass;
+    std::tstring_t _m_sServer;
+    ushort_t       _m_usPort;
+    bool           _m_bConnected;
 
-        void           _vCommand   (const std::tstring_t &csCmd, const std::tstring_t &csReplyDelimiter, std::tstring_t &sReply); /*+*/
-        bool           _bIsError   (const std::tstring_t &csText);
+    void           _vCommand   (const std::tstring_t &csCmd, const std::tstring_t &csReplyDelimiter, std::tstring_t &sReply); /*+*/
+    bool           _bIsError   (const std::tstring_t &csText);
 };
 
 xNAMESPACE_END(NxLib)

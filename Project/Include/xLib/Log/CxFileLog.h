@@ -21,42 +21,42 @@ class CxFileLog :
     private CxNonCopyable
     /// logging to file
 {
-    public:
-        enum ExLogSizes
-            /// log size
-        {
-            lsDefaultSize    = 20  * 1024 * 1024,
-            lsDefaultMaxSize = 200 * 1024 * 1024,
-            lsLimitSize      = 500 * 1024 * 1024
-        };
+public:
+    enum ExLogSizes
+        /// log size
+    {
+        lsDefaultSize    = 20  * 1024 * 1024,
+        lsDefaultMaxSize = 200 * 1024 * 1024,
+        lsLimitSize      = 500 * 1024 * 1024
+    };
 
-        explicit               CxFileLog     (const ulong_t &culMaxFileSizeBytes);
-            ///< constructor
-        virtual               ~CxFileLog     ();
-            ///< destructor
+    explicit               CxFileLog     (const ulong_t &culMaxFileSizeBytes);
+        ///< constructor
+    virtual               ~CxFileLog     ();
+        ///< destructor
 
-        void                   vSetFilePath  (const std::tstring_t &csFilePath);
-            ///< set log path
-        const std::tstring_t & sFilePath     () const;
-            ///< get log path
+    void                   vSetFilePath  (const std::tstring_t &csFilePath);
+        ///< set log path
+    const std::tstring_t & sFilePath     () const;
+        ///< get log path
 
-        void                   vWrite        (const tchar_t *pcszFormat, ...);
-            ///< write
-        void                   vClear        ();
-            ///< clear content
-        void                   vDelete       ();
-            ///< delete
+    void                   vWrite        (const tchar_t *pcszFormat, ...);
+        ///< write
+    void                   vClear        ();
+        ///< clear content
+    void                   vDelete       ();
+        ///< delete
 
-    private:
-        std::tstring_t         _m_sFilePath;            ///< file path
-        ulong_t                _m_ulMaxFileSizeBytes;   ///< maximum file size in bytes
+private:
+    std::tstring_t         _m_sFilePath;            ///< file path
+    ulong_t                _m_ulMaxFileSizeBytes;   ///< maximum file size in bytes
 
-    #if xTODO
-        CxAutoIpcMutex         _m_mtFile;
-    #endif
+#if xTODO
+    CxAutoIpcMutex         _m_mtFile;
+#endif
 
-        void                   _vDeleteIfFull();
-            ///< delete log, if full
+    void                   _vDeleteIfFull();
+        ///< delete log, if full
 };
 
 xNAMESPACE_END(NxLib)

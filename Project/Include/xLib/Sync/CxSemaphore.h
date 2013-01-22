@@ -15,13 +15,13 @@ class CxSemaphore :
     public CxNonCopyable
     /// semaphore
 {
-    public:
-                 CxSemaphore();
-            ///< constructor
-        virtual ~CxSemaphore();
-            ///< destructor
+public:
+             CxSemaphore();
+        ///< constructor
+    virtual ~CxSemaphore();
+        ///< destructor
 
-    private:
+private:
 
 };
 

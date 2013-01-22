@@ -18,16 +18,16 @@ class CxMimeMessage :
     private CxNonCopyable
     /// MIME message (RFC 822)
 {
-    public:
-                       CxMimeMessage   ();
-        virtual       ~CxMimeMessage   ();
+public:
+                   CxMimeMessage   ();
+    virtual       ~CxMimeMessage   ();
 
-        static void    vParse          (const std::tstring_t &csRawMessage, CxMimeHeader &Header, CxMimeBody &Body);
-        static void    vLoadFromRawFile(const std::tstring_t &csFilePath);       //csFilePath - raw msg
-        static void    vSaveToRawFile  (const std::tstring_t &csFilePath);       //csFilePath - raw msg
+    static void    vParse          (const std::tstring_t &csRawMessage, CxMimeHeader &Header, CxMimeBody &Body);
+    static void    vLoadFromRawFile(const std::tstring_t &csFilePath);       //csFilePath - raw msg
+    static void    vSaveToRawFile  (const std::tstring_t &csFilePath);       //csFilePath - raw msg
 
-    private:
-        std::tstring_t _m_csRawMessage;
+private:
+    std::tstring_t _m_csRawMessage;
 };
 
 xNAMESPACE_END(NxLib)

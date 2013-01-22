@@ -20,19 +20,19 @@ class CxInfo :
     private CxNonCopyable
     /// Pkcs11 info
 {
-    public:
-        explicit            CxInfo (const CxPkcs11 &cPkcs11);
-            ///< constructor
-        virtual             ~CxInfo();
-            ///< destructor
+public:
+    explicit            CxInfo (const CxPkcs11 &cPkcs11);
+        ///< constructor
+    virtual             ~CxInfo();
+        ///< destructor
 
-        void                 vGet  (CK_INFO_PTR pInfo);
-            ///< returns general information about Cryptoki
-        void                 vToken(CK_SLOT_ID slotID, CK_TOKEN_INFO_PTR pInfo);
-            ///< obtains information about a particular token in the system
+    void                 vGet  (CK_INFO_PTR pInfo);
+        ///< returns general information about Cryptoki
+    void                 vToken(CK_SLOT_ID slotID, CK_TOKEN_INFO_PTR pInfo);
+        ///< obtains information about a particular token in the system
 
-    private:
-        CK_FUNCTION_LIST_PTR _m_pFunc;    ///< pointer to dll's function list
+private:
+    CK_FUNCTION_LIST_PTR _m_pFunc;    ///< pointer to dll's function list
 };
 
 xNAMESPACE_END(NxLib)

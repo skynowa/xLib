@@ -15,237 +15,237 @@ class CxSocket :
     private CxNonCopyable
     /// socket
 {
-    public:
-        enum ExAddressFamily
-            /// address family
-        {
-        #if   xOS_ENV_WIN
-            afUnspecified = AF_UNSPEC,
-            afInet        = AF_INET,
-            afIpx         = AF_IPX,
-            afAppletalk   = AF_APPLETALK,
-            afNetbios     = AF_NETBIOS,
-            afInet6       = AF_INET6,
-            afIrdA        = AF_IRDA
-            #if !xCOMPILER_MINGW && !xCOMPILER_CODEGEAR
-                ,
-                afBluetooth   = AF_BTH
-            #endif
-        #elif xOS_ENV_UNIX
-            #if xOS_FREEBSD
-                afLocal     = PF_LOCAL,
-                afUnix      = PF_UNIX,
-                afInet      = PF_INET,
-                afPup       = PF_PUP,
-                afAppletalk = PF_APPLETALK,
-                afRoute     = PF_ROUTE,
-                afLink      = PF_LINK,
-                afIpx       = PF_IPX,
-                afRtip      = PF_RTIP,
-                afPip       = PF_PIP,
-                afIsdn      = PF_ISDN,
-                afKey       = PF_KEY,
-                afInet6     = PF_INET6,
-                afNatm      = PF_NATM,
-                afAtm       = PF_ATM,
-                afNetgraph  = PF_NETGRAPH,
-            #else
-                afUnix        = AF_UNIX,
-                afLocal       = AF_LOCAL,
-                afInet        = AF_INET,
-                afInet6       = AF_INET6,
-                afIpx         = AF_IPX,
-                afNetlink     = AF_NETLINK,
-                afX25         = AF_X25,
-                afAX25        = AF_AX25,
-                afAtmpvc      = AF_ATMPVC,
-                afAppletalk   = AF_APPLETALK,
-                afPacket      = AF_PACKET
-            #endif
+public:
+    enum ExAddressFamily
+        /// address family
+    {
+    #if   xOS_ENV_WIN
+        afUnspecified = AF_UNSPEC,
+        afInet        = AF_INET,
+        afIpx         = AF_IPX,
+        afAppletalk   = AF_APPLETALK,
+        afNetbios     = AF_NETBIOS,
+        afInet6       = AF_INET6,
+        afIrdA        = AF_IRDA
+        #if !xCOMPILER_MINGW && !xCOMPILER_CODEGEAR
+            ,
+            afBluetooth   = AF_BTH
         #endif
-        };
+    #elif xOS_ENV_UNIX
+        #if xOS_FREEBSD
+            afLocal     = PF_LOCAL,
+            afUnix      = PF_UNIX,
+            afInet      = PF_INET,
+            afPup       = PF_PUP,
+            afAppletalk = PF_APPLETALK,
+            afRoute     = PF_ROUTE,
+            afLink      = PF_LINK,
+            afIpx       = PF_IPX,
+            afRtip      = PF_RTIP,
+            afPip       = PF_PIP,
+            afIsdn      = PF_ISDN,
+            afKey       = PF_KEY,
+            afInet6     = PF_INET6,
+            afNatm      = PF_NATM,
+            afAtm       = PF_ATM,
+            afNetgraph  = PF_NETGRAPH,
+        #else
+            afUnix        = AF_UNIX,
+            afLocal       = AF_LOCAL,
+            afInet        = AF_INET,
+            afInet6       = AF_INET6,
+            afIpx         = AF_IPX,
+            afNetlink     = AF_NETLINK,
+            afX25         = AF_X25,
+            afAX25        = AF_AX25,
+            afAtmpvc      = AF_ATMPVC,
+            afAppletalk   = AF_APPLETALK,
+            afPacket      = AF_PACKET
+        #endif
+    #endif
+    };
 
-        enum ExType
-           /// type
-        {
-            tpStream      = SOCK_STREAM,
-            tpDgram       = SOCK_DGRAM,
-            tpRaw         = SOCK_RAW,
-            tpRdm         = SOCK_RDM,
-            tpSeqPacket   = SOCK_SEQPACKET
-        };
+    enum ExType
+       /// type
+    {
+        tpStream      = SOCK_STREAM,
+        tpDgram       = SOCK_DGRAM,
+        tpRaw         = SOCK_RAW,
+        tpRdm         = SOCK_RDM,
+        tpSeqPacket   = SOCK_SEQPACKET
+    };
 
-        enum ExProtocol
-            /// protocol
-        {
-        #if   xOS_ENV_WIN
+    enum ExProtocol
+        /// protocol
+    {
+    #if   xOS_ENV_WIN
+        ptIp          = IPPROTO_IP,
+        ptIcmp        = IPPROTO_ICMP,
+        ptIgmp        = IPPROTO_IGMP,
+        ////ptRfcomm      = BTHPROTO_RFCOMM,
+        ptTcp         = IPPROTO_TCP,
+        ptUdp         = IPPROTO_UDP,
+        #if !xCOMPILER_CODEGEAR
+        ptIcmpv6      = IPPROTO_ICMPV6,
+        #endif
+        ////ptRm          = IPPROTO_RM
+    #elif xOS_ENV_UNIX
+        #if xOS_FREEBSD
             ptIp          = IPPROTO_IP,
+            ptHopopts     = IPPROTO_HOPOPTS,
             ptIcmp        = IPPROTO_ICMP,
             ptIgmp        = IPPROTO_IGMP,
-            ////ptRfcomm      = BTHPROTO_RFCOMM,
+            ptIpip        = IPPROTO_IPIP,
             ptTcp         = IPPROTO_TCP,
+            ptEgp         = IPPROTO_EGP,
+            ptPup         = IPPROTO_PUP,
             ptUdp         = IPPROTO_UDP,
-            #if !xCOMPILER_CODEGEAR
-            ptIcmpv6      = IPPROTO_ICMPV6,
-            #endif
-            ////ptRm          = IPPROTO_RM
-        #elif xOS_ENV_UNIX
-            #if xOS_FREEBSD
-                ptIp          = IPPROTO_IP,
-                ptHopopts     = IPPROTO_HOPOPTS,
-                ptIcmp        = IPPROTO_ICMP,
-                ptIgmp        = IPPROTO_IGMP,
-                ptIpip        = IPPROTO_IPIP,
-                ptTcp         = IPPROTO_TCP,
-                ptEgp         = IPPROTO_EGP,
-                ptPup         = IPPROTO_PUP,
-                ptUdp         = IPPROTO_UDP,
-                ptIdp         = IPPROTO_IDP,
-                ptTp          = IPPROTO_TP,
-                ptIpv6        = IPPROTO_IPV6,
-                ptRouting     = IPPROTO_ROUTING,
-                ptFragment    = IPPROTO_FRAGMENT,
-                ptRsvp        = IPPROTO_RSVP,
-                ptGre         = IPPROTO_GRE,
-                ptEsp         = IPPROTO_ESP,
-                ptAH          = IPPROTO_AH,
-                ptICmpv6      = IPPROTO_ICMPV6,
-                ptNone        = IPPROTO_NONE,
-                ptDstopts     = IPPROTO_DSTOPTS,
-                ptMtp         = IPPROTO_MTP,
-                ptEncap       = IPPROTO_ENCAP,
-                ptPim         = IPPROTO_PIM,
-                ptRaw         = IPPROTO_RAW,
-                ptMax         = IPPROTO_MAX
-            #else
-                ptIp          = IPPROTO_IP,
-                ptHopopts     = IPPROTO_HOPOPTS,
-                ptIcmp        = IPPROTO_ICMP,
-                ptIgmp        = IPPROTO_IGMP,
-                ptIpip        = IPPROTO_IPIP,
-                ptTcp         = IPPROTO_TCP,
-                ptEgp         = IPPROTO_EGP,
-                ptPup         = IPPROTO_PUP,
-                ptUdp         = IPPROTO_UDP,
-                ptIdp         = IPPROTO_IDP,
-                ptTp          = IPPROTO_TP,
-                ////ptDccp        = IPPROTO_DCCP,
-                ptIpv6        = IPPROTO_IPV6,
-                ptRouting     = IPPROTO_ROUTING,
-                ptFragment    = IPPROTO_FRAGMENT,
-                ptRsvp        = IPPROTO_RSVP,
-                ptGre         = IPPROTO_GRE,
-                ptEsp         = IPPROTO_ESP,
-                ptAH          = IPPROTO_AH,
-                ptICmpv6      = IPPROTO_ICMPV6,
-                ptNone        = IPPROTO_NONE,
-                ptDstopts     = IPPROTO_DSTOPTS,
-                ptMtp         = IPPROTO_MTP,
-                ptEncap       = IPPROTO_ENCAP,
-                ptPim         = IPPROTO_PIM,
-                ptComp        = IPPROTO_COMP,
-                ptSctp        = IPPROTO_SCTP,
-                ////ptUdplite     = IPPROTO_UDPLITE,
-                ptRaw         = IPPROTO_RAW,
-                ptMax         = IPPROTO_MAX
-            #endif
+            ptIdp         = IPPROTO_IDP,
+            ptTp          = IPPROTO_TP,
+            ptIpv6        = IPPROTO_IPV6,
+            ptRouting     = IPPROTO_ROUTING,
+            ptFragment    = IPPROTO_FRAGMENT,
+            ptRsvp        = IPPROTO_RSVP,
+            ptGre         = IPPROTO_GRE,
+            ptEsp         = IPPROTO_ESP,
+            ptAH          = IPPROTO_AH,
+            ptICmpv6      = IPPROTO_ICMPV6,
+            ptNone        = IPPROTO_NONE,
+            ptDstopts     = IPPROTO_DSTOPTS,
+            ptMtp         = IPPROTO_MTP,
+            ptEncap       = IPPROTO_ENCAP,
+            ptPim         = IPPROTO_PIM,
+            ptRaw         = IPPROTO_RAW,
+            ptMax         = IPPROTO_MAX
+        #else
+            ptIp          = IPPROTO_IP,
+            ptHopopts     = IPPROTO_HOPOPTS,
+            ptIcmp        = IPPROTO_ICMP,
+            ptIgmp        = IPPROTO_IGMP,
+            ptIpip        = IPPROTO_IPIP,
+            ptTcp         = IPPROTO_TCP,
+            ptEgp         = IPPROTO_EGP,
+            ptPup         = IPPROTO_PUP,
+            ptUdp         = IPPROTO_UDP,
+            ptIdp         = IPPROTO_IDP,
+            ptTp          = IPPROTO_TP,
+            ////ptDccp        = IPPROTO_DCCP,
+            ptIpv6        = IPPROTO_IPV6,
+            ptRouting     = IPPROTO_ROUTING,
+            ptFragment    = IPPROTO_FRAGMENT,
+            ptRsvp        = IPPROTO_RSVP,
+            ptGre         = IPPROTO_GRE,
+            ptEsp         = IPPROTO_ESP,
+            ptAH          = IPPROTO_AH,
+            ptICmpv6      = IPPROTO_ICMPV6,
+            ptNone        = IPPROTO_NONE,
+            ptDstopts     = IPPROTO_DSTOPTS,
+            ptMtp         = IPPROTO_MTP,
+            ptEncap       = IPPROTO_ENCAP,
+            ptPim         = IPPROTO_PIM,
+            ptComp        = IPPROTO_COMP,
+            ptSctp        = IPPROTO_SCTP,
+            ////ptUdplite     = IPPROTO_UDPLITE,
+            ptRaw         = IPPROTO_RAW,
+            ptMax         = IPPROTO_MAX
         #endif
-        };
+    #endif
+    };
 
-        enum ExOptions
-            /// options
-        {
-            SOCKET_TIMEOUT   = 0,       ///< (1000000 / 10)
-            SOCKET_BUFF_SIZE = 32768    ///< 32 KB
-        };
+    enum ExOptions
+        /// options
+    {
+        SOCKET_TIMEOUT   = 0,       ///< (1000000 / 10)
+        SOCKET_BUFF_SIZE = 32768    ///< 32 KB
+    };
 
-                       CxSocket       ();
-            ///< constructor
-        virtual       ~CxSocket       () = 0;
-            ///< destructor
+                   CxSocket       ();
+        ///< constructor
+    virtual       ~CxSocket       () = 0;
+        ///< destructor
 
-        void           vAssign        (const socket_t &csktSocket);
-            ///< assign to another socket
+    void           vAssign        (const socket_t &csktSocket);
+        ///< assign to another socket
 
-        /****************************************************************************
-        * operators
-        *
-        *****************************************************************************/
+    /****************************************************************************
+    * operators
+    *
+    *****************************************************************************/
 
-        CxSocket &     operator =     (const socket_t &csktSocket);
-            ///< operator =
-                       operator socket_t();
-            ///< operator socket_t
-
-
-        /****************************************************************************
-        *
-        *
-        *****************************************************************************/
-
-        void           vCreate        (const ExAddressFamily &cafFamily, const ExType &ctpType, const ExProtocol &cptProtocol);
-            ///< creates a socket that is bound to a specific transport service provider
-        socket_t       iHandle        () const;
-            ///< get socket
-        bool           bIsValid       () const;
-            ///< checking for validness
-        void           vClose         ();
-            ///< close
+    CxSocket &     operator =     (const socket_t &csktSocket);
+        ///< operator =
+                   operator socket_t();
+        ///< operator socket_t
 
 
-        /****************************************************************************
-        * I/O
-        *
-        *****************************************************************************/
+    /****************************************************************************
+    *
+    *
+    *****************************************************************************/
 
-        //void *, std::tstring_t, std::ustring_t
-
-        int            iSend          (const tchar_t *pcszBuff, const int &ciBuffSize, const int &ciFlags);
-            ///< send data
-        void           vSendAll       (const std::tstring_t &csBuff, const int &ciFlags);
-            ///< send data by blocks
-
-        int            iRecv          (tchar_t *pszBuff,  const int &ciBuffSize, const int &ciFlags);
-            ///< recieve data
-        std::tstring_t sRecvAll       ( const int &ciFlags);
-            ///< recieve data
-        std::tstring_t sRecvAll       (const int &ciFlags, const std::tstring_t &csDelimiter);
-            ///< recive data to delimiter, includs it
-
-        int            iSendBytes     (char *pszBuff, const int &ciMessageLength);
-            ///< send bytes
-        int            iReceiveBytes  (char *pszBuff, const int &ciStillToReceive);
-            ///< recieve bytes
+    void           vCreate        (const ExAddressFamily &cafFamily, const ExType &ctpType, const ExProtocol &cptProtocol);
+        ///< creates a socket that is bound to a specific transport service provider
+    socket_t       iHandle        () const;
+        ///< get socket
+    bool           bIsValid       () const;
+        ///< checking for validness
+    void           vClose         ();
+        ///< close
 
 
-        /****************************************************************************
-        * Other
-        *
-        *****************************************************************************/
+    /****************************************************************************
+    * I/O
+    *
+    *****************************************************************************/
 
-        void           vPeerName      (std::tstring_t *psPeerAddr, ushort_t *pusPeerPort);
-            ///< get address of the peer to which a socket is connected
-        void           vSocketName    (std::tstring_t *psSocketAddr, ushort_t *pusSocketPort);
-            ///< get local name for a socket
+    //void *, std::tstring_t, std::ustring_t
 
-        /****************************************************************************
-        * static
-        *
-        *****************************************************************************/
+    int            iSend          (const tchar_t *pcszBuff, const int &ciBuffSize, const int &ciFlags);
+        ///< send data
+    void           vSendAll       (const std::tstring_t &csBuff, const int &ciFlags);
+        ///< send data by blocks
 
-        ////getsockopt
-        static int     iSelect        (int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, timeval *tvTimeout);
-            ///< determines the status of one or more sockets, waiting if necessary, to perform synchronous I/O
-        static int     iLastError     ();
-            ///< get error status for the last operation that failed
+    int            iRecv          (tchar_t *pszBuff,  const int &ciBuffSize, const int &ciFlags);
+        ///< recieve data
+    std::tstring_t sRecvAll       ( const int &ciFlags);
+        ///< recieve data
+    std::tstring_t sRecvAll       (const int &ciFlags, const std::tstring_t &csDelimiter);
+        ///< recive data to delimiter, includs it
 
-    protected:
-        socket_t       _m_sktSocket;  ///< handle to socket
-        short_t        _m_siFamily;   ///< family
-        std::tstring_t _m_sIp;        ///< IP
-        ushort_t       _m_usPort;     ///< port
+    int            iSendBytes     (char *pszBuff, const int &ciMessageLength);
+        ///< send bytes
+    int            iReceiveBytes  (char *pszBuff, const int &ciStillToReceive);
+        ///< recieve bytes
 
-    private:
+
+    /****************************************************************************
+    * Other
+    *
+    *****************************************************************************/
+
+    void           vPeerName      (std::tstring_t *psPeerAddr, ushort_t *pusPeerPort);
+        ///< get address of the peer to which a socket is connected
+    void           vSocketName    (std::tstring_t *psSocketAddr, ushort_t *pusSocketPort);
+        ///< get local name for a socket
+
+    /****************************************************************************
+    * static
+    *
+    *****************************************************************************/
+
+    ////getsockopt
+    static int     iSelect        (int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, timeval *tvTimeout);
+        ///< determines the status of one or more sockets, waiting if necessary, to perform synchronous I/O
+    static int     iLastError     ();
+        ///< get error status for the last operation that failed
+
+protected:
+    socket_t       _m_sktSocket;  ///< handle to socket
+    short_t        _m_siFamily;   ///< family
+    std::tstring_t _m_sIp;        ///< IP
+    ushort_t       _m_usPort;     ///< port
+
+private:
 };
 
 xNAMESPACE_END(NxLib)

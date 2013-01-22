@@ -25,38 +25,38 @@ class CxMySQLConnection :
     private CxNonCopyable
     /// MySQL connection
 {
-    public:
-                                 CxMySQLConnection();
-            ///< constructor
-        virtual                 ~CxMySQLConnection();
-            ///< destructor
+public:
+                             CxMySQLConnection();
+        ///< constructor
+    virtual                 ~CxMySQLConnection();
+        ///< destructor
 
-        MYSQL                   *pmsGet           () const;
-            ///< get handle
-        bool                     bIsValid         () const;
-            ///< validating handle
-        void                     vOptions         (const mysql_option &cmoOption, const void *cpvArg) const;
-            ///< set extra connect options and affect behavior
-        static bool              bIsExists        (const std::tstring_t &csHost, const std::tstring_t &csUser, const std::tstring_t &csPassword, const std::tstring_t &csDb, const uint_t &cuiPort, const std::tstring_t &csUnixSocket, const ulong_t &culClientFlag);
-            ///<
-        void                     vConnect         (const std::tstring_t &csHost, const std::tstring_t &csUser, const std::tstring_t &csPassword, const std::tstring_t &csDb, const uint_t &cuiPort, const std::tstring_t &csUnixSocket, const ulong_t &culClientFlag);
-            ///< attempts to establish a connection to a MySQL database engine running on host
-        void                     vQuery           (const tchar_t *pcszSqlFormat, ...) const;
-            ///< executes the SQL statement
-        uint_t                   uiFieldCount     () const;
-            ///< number of columns in a result set
-        void                     vClose           ();
-            ///< closes a previously opened connection
+    MYSQL                   *pmsGet           () const;
+        ///< get handle
+    bool                     bIsValid         () const;
+        ///< validating handle
+    void                     vOptions         (const mysql_option &cmoOption, const void *cpvArg) const;
+        ///< set extra connect options and affect behavior
+    static bool              bIsExists        (const std::tstring_t &csHost, const std::tstring_t &csUser, const std::tstring_t &csPassword, const std::tstring_t &csDb, const uint_t &cuiPort, const std::tstring_t &csUnixSocket, const ulong_t &culClientFlag);
+        ///<
+    void                     vConnect         (const std::tstring_t &csHost, const std::tstring_t &csUser, const std::tstring_t &csPassword, const std::tstring_t &csDb, const uint_t &cuiPort, const std::tstring_t &csUnixSocket, const ulong_t &culClientFlag);
+        ///< attempts to establish a connection to a MySQL database engine running on host
+    void                     vQuery           (const tchar_t *pcszSqlFormat, ...) const;
+        ///< executes the SQL statement
+    uint_t                   uiFieldCount     () const;
+        ///< number of columns in a result set
+    void                     vClose           ();
+        ///< closes a previously opened connection
 
-        //errors
-        uint_t                   uiLastError      () const;
-            ///< error code for the most recently invoked API function that can succeed or fail
-        std::tstring_t           sLastErrorStr    () const;
-            ///< error message for the most recently invoked API function that failed
+    //errors
+    uint_t                   uiLastError      () const;
+        ///< error code for the most recently invoked API function that can succeed or fail
+    std::tstring_t           sLastErrorStr    () const;
+        ///< error message for the most recently invoked API function that failed
 
-    private:
-        MYSQL                   *_m_pmsConnection;
-            ///< pointer to connection
+private:
+    MYSQL                   *_m_pmsConnection;
+        ///< pointer to connection
 };
 
 xNAMESPACE_END(NxLib)
@@ -67,40 +67,40 @@ class CxMySQLRecordset :
     private CxNonCopyable
     /// MySQL recordset
 {
-    public:
-                                 CxMySQLRecordset (const CxMySQLConnection &cmsConnection, const bool &cbIsUseResult);
-            ///< constructor
-        virtual                 ~CxMySQLRecordset ();
-            ///< destructor
+public:
+                             CxMySQLRecordset (const CxMySQLConnection &cmsConnection, const bool &cbIsUseResult);
+        ///< constructor
+    virtual                 ~CxMySQLRecordset ();
+        ///< destructor
 
-        MYSQL_RES               *pmrGet           () const;
-            ///< get handle
-        bool                     bIsValid         () const;
-            ///< validating handle
+    MYSQL_RES               *pmrGet           () const;
+        ///< get handle
+    bool                     bIsValid         () const;
+        ///< validating handle
 
-        uint_t                   uiFieldsNum      () const;
-            ///< number of columns in a result set
-        my_ulonglong             ullRowsNum       () const;
-            ///< number of rows in the result set
-        void                     vFetchField      (MYSQL_FIELD *pmfField) const;
-            ///< The MYSQL_FIELD structure for the current column
-        void                     vFetchFieldDirect(const uint_t &cuiFieldNumber, MYSQL_FIELD *pmfField) const;
-            ///< The MYSQL_FIELD structure for the specified column
-        void                     vFetchFields     (MYSQL_FIELD *pmfField) const;
-            ///< An array of MYSQL_FIELD structures for all columns of a result set
-        void                     vFetchRow        (std::vec_tstring_t *pvsRow) const;
-            ///< fetching row
+    uint_t                   uiFieldsNum      () const;
+        ///< number of columns in a result set
+    my_ulonglong             ullRowsNum       () const;
+        ///< number of rows in the result set
+    void                     vFetchField      (MYSQL_FIELD *pmfField) const;
+        ///< The MYSQL_FIELD structure for the current column
+    void                     vFetchFieldDirect(const uint_t &cuiFieldNumber, MYSQL_FIELD *pmfField) const;
+        ///< The MYSQL_FIELD structure for the specified column
+    void                     vFetchFields     (MYSQL_FIELD *pmfField) const;
+        ///< An array of MYSQL_FIELD structures for all columns of a result set
+    void                     vFetchRow        (std::vec_tstring_t *pvsRow) const;
+        ///< fetching row
 
-    private:
-        const CxMySQLConnection *_m_pcmcConnection;
-            ///< pointer to connection object
-        MYSQL_RES               *_m_pmrResult;
-            ///< for private use
+private:
+    const CxMySQLConnection *_m_pcmcConnection;
+        ///< pointer to connection object
+    MYSQL_RES               *_m_pmrResult;
+        ///< for private use
 
-        void                     _vFetchLengths   (ulong_t **ppulFieldLengths) const;
-            ///< An array of unsigned long_t integers representing the size of each column
-        void                     _vFetchRow       (MYSQL_ROW *pmrRow) const;
-            ///< A MYSQL_ROW structure for the next row
+    void                     _vFetchLengths   (ulong_t **ppulFieldLengths) const;
+        ///< An array of unsigned long_t integers representing the size of each column
+    void                     _vFetchRow       (MYSQL_ROW *pmrRow) const;
+        ///< A MYSQL_ROW structure for the next row
 };
 
 xNAMESPACE_END(NxLib)

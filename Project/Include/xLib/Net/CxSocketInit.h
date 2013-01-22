@@ -15,14 +15,11 @@ class CxSocketInit :
     private CxNonCopyable
     /// initiates use of the Winsock DLL by a process
 {
-    public:
-                  CxSocketInit(const ushort_t &cusHighVersion, const ushort_t &cusLowVersion);
-            ///< constructor (init winsock DLL)
-        virtual  ~CxSocketInit();
-            ///< destructor  (clean winsock DLL)
-
-    private:
-
+public:
+              CxSocketInit(const ushort_t &cusHighVersion, const ushort_t &cusLowVersion);
+        ///< constructor (init winsock DLL)
+    virtual  ~CxSocketInit();
+        ///< destructor  (clean winsock DLL)
 };
 
 xNAMESPACE_END(NxLib)

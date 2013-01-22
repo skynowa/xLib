@@ -15,25 +15,25 @@ class CxCrc32 :
     private CxNonCopyable
     /// Crc32
 {
-    public:
-        static ulong_t        ulCalc        (uchar_t *pucBuff, const ulong_t &culSize);
-            ///< calculate
-        static ulong_t        ulCalcFile    (const std::tstring_t &csFilePath);
-            ///< calculate
+public:
+    static ulong_t        ulCalc        (uchar_t *pucBuff, const ulong_t &culSize);
+        ///< calculate
+    static ulong_t        ulCalcFile    (const std::tstring_t &csFilePath);
+        ///< calculate
 
-        static ulong_t        ulCalcFast    (uchar_t *pucBuff, const ulong_t &culSize);
-            ///< fast calculate
-        static ulong_t        ulCalcFileFast(const std::tstring_t &csFilePath);
-            ///< fast calculate
+    static ulong_t        ulCalcFast    (uchar_t *pucBuff, const ulong_t &culSize);
+        ///< fast calculate
+    static ulong_t        ulCalcFileFast(const std::tstring_t &csFilePath);
+        ///< fast calculate
 
-        static std::tstring_t sFormatHex    (const ulong_t &culCrc32);
-            ///< format Crc32 like "0AADDEA0"
+    static std::tstring_t sFormatHex    (const ulong_t &culCrc32);
+        ///< format Crc32 like "0AADDEA0"
 
-    private:
-                              CxCrc32       ();
-            ///< constructor
-        virtual              ~CxCrc32       ();
-            ///< destructor
+private:
+                          CxCrc32       ();
+        ///< constructor
+    virtual              ~CxCrc32       ();
+        ///< destructor
 };
 
 xNAMESPACE_END(NxLib)

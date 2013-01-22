@@ -15,19 +15,19 @@ class CxBase64 :
     private CxNonCopyable
     /// Base64
 {
-    public:
-        static std::string sEncode     (const std::string &csStr);
-            ///< encoding
-        static std::string sDecode     (const std::string &csStr);
-            ///< decoding
-        static bool        bIsCharValid(const char &cchChar);
-            ///< is a valid Base64 char
+public:
+    static std::string sEncode     (const std::string &csStr);
+        ///< encoding
+    static std::string sDecode     (const std::string &csStr);
+        ///< decoding
+    static bool        bIsCharValid(const char &cchChar);
+        ///< is a valid Base64 char
 
-    private:
-                           CxBase64();
-            ///< constructor
-        virtual           ~CxBase64();
-            ///< destructor
+private:
+                       CxBase64();
+        ///< constructor
+    virtual           ~CxBase64();
+        ///< destructor
 };
 
 xNAMESPACE_END(NxLib)
