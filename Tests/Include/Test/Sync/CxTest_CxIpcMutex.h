@@ -14,13 +14,11 @@
 class CxTest_CxIpcMutex :
     public CxTest
 {
-    public:
-                     CxTest_CxIpcMutex();
-        virtual     ~CxTest_CxIpcMutex();
+public:
+                 CxTest_CxIpcMutex();
+    virtual     ~CxTest_CxIpcMutex();
 
-        virtual void vUnit(const ulonglong_t &cullCaseLoops);
-
-    private:
+    virtual void vUnit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxIpcMutexH

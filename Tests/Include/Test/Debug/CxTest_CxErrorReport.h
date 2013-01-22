@@ -14,13 +14,11 @@
 class CxTest_CxErrorReport :
     public CxTest
 {
-    public:
-                     CxTest_CxErrorReport();
-        virtual     ~CxTest_CxErrorReport();
+public:
+                 CxTest_CxErrorReport();
+    virtual     ~CxTest_CxErrorReport();
 
-        virtual void vUnit(const ulonglong_t &cullCaseLoops);
-
-    private:
+    virtual void vUnit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxReportH

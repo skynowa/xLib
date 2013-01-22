@@ -14,13 +14,11 @@
 class CxTest_CxEnvironment :
     public CxTest
 {
-    public:
-                     CxTest_CxEnvironment();
-        virtual     ~CxTest_CxEnvironment();
+public:
+                 CxTest_CxEnvironment();
+    virtual     ~CxTest_CxEnvironment();
 
-        virtual void vUnit(const ulonglong_t &cullCaseLoops);
-
-    private:
+    virtual void vUnit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxEnvironmentH

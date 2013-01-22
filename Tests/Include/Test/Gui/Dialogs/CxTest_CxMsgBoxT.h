@@ -14,16 +14,14 @@
 class CxTest_CxMsgBoxT :
     public CxTest
 {
-    public:
-                      CxTest_CxMsgBoxT();
-            ///< constructor
-        virtual      ~CxTest_CxMsgBoxT();
-            ///< destructor
+public:
+                  CxTest_CxMsgBoxT();
+        ///< constructor
+    virtual      ~CxTest_CxMsgBoxT();
+        ///< destructor
 
-        virtual void vUnit(const ulonglong_t &cullCaseLoops);
-            ///< test unit
-
-    private:
+    virtual void vUnit(const ulonglong_t &cullCaseLoops);
+        ///< test unit
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxMsgBoxTH

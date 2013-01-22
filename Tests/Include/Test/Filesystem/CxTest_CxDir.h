@@ -15,13 +15,11 @@
 class CxTest_CxDir :
     public CxTest
 {
-    public:
-                     CxTest_CxDir();
-        virtual     ~CxTest_CxDir();
+public:
+                 CxTest_CxDir();
+    virtual     ~CxTest_CxDir();
 
-        virtual void vUnit(const ulonglong_t &cullCaseLoops);
-
-    private:
+    virtual void vUnit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxDirH

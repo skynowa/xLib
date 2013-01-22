@@ -14,16 +14,14 @@
 class CxTest_CxTracer :
     public CxTest
 {
-    public:
-                      CxTest_CxTracer();
-            ///< constructor
-        virtual      ~CxTest_CxTracer();
-            ///< destructor
+public:
+                  CxTest_CxTracer();
+        ///< constructor
+    virtual      ~CxTest_CxTracer();
+        ///< destructor
 
-        virtual void vUnit(const ulonglong_t &cullCaseLoops);
-            ///< unit test
-
-    private:
+    virtual void vUnit(const ulonglong_t &cullCaseLoops);
+        ///< unit test
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_Log_CxTracerH

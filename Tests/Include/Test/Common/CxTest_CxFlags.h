@@ -15,16 +15,14 @@ class CxTest_CxFlags :
     public CxTest
     ///< tests for CxFlags
 {
-    public:
-                      CxTest_CxFlags();
-            ///< constructor
-        virtual      ~CxTest_CxFlags();
-            ///< destructor
+public:
+                  CxTest_CxFlags();
+        ///< constructor
+    virtual      ~CxTest_CxFlags();
+        ///< destructor
 
-        virtual void  vUnit(const ulonglong_t &cullCaseLoops) xOVERRIDE;
-            ///< unit test
-
-    private:
+    virtual void  vUnit(const ulonglong_t &cullCaseLoops) xOVERRIDE;
+        ///< unit test
 };
 //---------------------------------------------------------------------------
 #endif // CxTest_CxFlagsH

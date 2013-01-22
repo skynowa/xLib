@@ -14,13 +14,11 @@
 class CxTest_CxSocketInit :
     public CxTest
 {
-    public:
-                     CxTest_CxSocketInit();
-        virtual     ~CxTest_CxSocketInit();
+public:
+                 CxTest_CxSocketInit();
+    virtual     ~CxTest_CxSocketInit();
 
-        virtual void vUnit(const ulonglong_t &cullCaseLoops);
-
-    private:
+    virtual void vUnit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxSocketInitH

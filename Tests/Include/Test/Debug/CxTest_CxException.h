@@ -14,13 +14,11 @@
 class CxTest_CxException :
     public CxTest
 {
-    public:
-                     CxTest_CxException();
-        virtual     ~CxTest_CxException();
+public:
+                 CxTest_CxException();
+    virtual     ~CxTest_CxException();
 
-        virtual void vUnit(const ulonglong_t &cullCaseLoops);
-
-    private:
+    virtual void vUnit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxExceptionH

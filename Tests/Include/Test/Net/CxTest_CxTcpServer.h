@@ -14,13 +14,11 @@
 class CxTest_CxTcpServer :
     public CxTest
 {
-    public:
-                     CxTest_CxTcpServer();
-        virtual     ~CxTest_CxTcpServer();
+public:
+                 CxTest_CxTcpServer();
+    virtual     ~CxTest_CxTcpServer();
 
-        virtual void vUnit(const ulonglong_t &cullCaseLoops);
-
-    private:
+    virtual void vUnit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxTcpServerH

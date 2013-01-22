@@ -14,13 +14,11 @@
 class CxTest_CxFileAttribute :
     public CxTest
 {
-    public:
-                       CxTest_CxFileAttribute();
-        virtual       ~CxTest_CxFileAttribute();
+public:
+                   CxTest_CxFileAttribute();
+    virtual       ~CxTest_CxFileAttribute();
 
-        virtual  void  vUnit(const ulonglong_t &cullCaseLoops);
-
-    private:
+    virtual  void  vUnit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxFileAttributeH

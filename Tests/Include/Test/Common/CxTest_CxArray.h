@@ -14,13 +14,11 @@
 class CxTest_CxArray :
     public CxTest
 {
-    public:
-                     CxTest_CxArray();
-        virtual     ~CxTest_CxArray();
+public:
+                 CxTest_CxArray();
+    virtual     ~CxTest_CxArray();
 
-        virtual void vUnit(const ulonglong_t &cullCaseLoops);
-
-    private:
+    virtual void vUnit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxArrayH

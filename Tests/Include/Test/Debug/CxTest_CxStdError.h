@@ -14,16 +14,14 @@
 class CxTest_CxStdError :
     public CxTest
 {
-    public:
-                      CxTest_CxStdError();
-            ///< constructor
-        virtual      ~CxTest_CxStdError();
-            ///< destructor
+public:
+                  CxTest_CxStdError();
+        ///< constructor
+    virtual      ~CxTest_CxStdError();
+        ///< destructor
 
-        virtual void  vUnit            (const ulonglong_t &cullCaseLoops);
-            ///< unit test
-
-    private:
+    virtual void  vUnit            (const ulonglong_t &cullCaseLoops);
+        ///< unit test
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxStdErrorH

@@ -16,16 +16,14 @@
 class CxTest_CxCondition :
     public CxTest
 {
-    public:
-                      CxTest_CxCondition();
-            ///< constructor
-        virtual      ~CxTest_CxCondition();
-            ///< destructor
+public:
+                  CxTest_CxCondition();
+        ///< constructor
+    virtual      ~CxTest_CxCondition();
+        ///< destructor
 
-        virtual void  vUnit(const ulonglong_t &cullCaseLoops) xOVERRIDE;
-            ///< unit test
-
-    private:
+    virtual void  vUnit(const ulonglong_t &cullCaseLoops) xOVERRIDE;
+        ///< unit test
 };
 
 #endif

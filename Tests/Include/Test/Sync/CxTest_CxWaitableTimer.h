@@ -14,13 +14,11 @@
 class CxTest_CxWaitableTimer :
     public CxTest
 {
-    public:
-                     CxTest_CxWaitableTimer();
-        virtual     ~CxTest_CxWaitableTimer();
+public:
+                 CxTest_CxWaitableTimer();
+    virtual     ~CxTest_CxWaitableTimer();
 
-        virtual void vUnit(const ulonglong_t &cullCaseLoops);
-
-    private:
+    virtual void vUnit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxWaitableTimerH

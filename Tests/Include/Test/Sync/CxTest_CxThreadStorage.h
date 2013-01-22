@@ -14,13 +14,11 @@
 class CxTest_CxThreadStorage :
     public CxTest
 {
-    public:
-                     CxTest_CxThreadStorage();
-        virtual     ~CxTest_CxThreadStorage();
+public:
+                 CxTest_CxThreadStorage();
+    virtual     ~CxTest_CxThreadStorage();
 
-        virtual void vUnit(const ulonglong_t &cullCaseLoops);
-
-    private:
+    virtual void vUnit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxThreadStorageH

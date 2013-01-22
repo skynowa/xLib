@@ -14,13 +14,11 @@
 class CxTest_CxPop3 :
     public CxTest
 {
-    public:
-                     CxTest_CxPop3();
-        virtual     ~CxTest_CxPop3();
+public:
+                 CxTest_CxPop3();
+    virtual     ~CxTest_CxPop3();
 
-        virtual void vUnit(const ulonglong_t &cullCaseLoops);
-
-    private:
+    virtual void vUnit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxPop3H

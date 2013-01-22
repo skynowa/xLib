@@ -14,16 +14,14 @@
 class CxTest_CxCurrentProcess :
     public CxTest
 {
-    public:
-                      CxTest_CxCurrentProcess();
-            ///< constructor
-        virtual      ~CxTest_CxCurrentProcess();
-            ///< destructor
+public:
+                  CxTest_CxCurrentProcess();
+        ///< constructor
+    virtual      ~CxTest_CxCurrentProcess();
+        ///< destructor
 
-        virtual void vUnit(const ulonglong_t &cullCaseLoops);
-            ///< unit test
-
-    private:
+    virtual void vUnit(const ulonglong_t &cullCaseLoops);
+        ///< unit test
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxCurrentProcessH

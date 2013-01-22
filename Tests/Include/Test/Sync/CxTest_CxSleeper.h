@@ -14,13 +14,11 @@
 class CxTest_CxSleeper :
     public CxTest
 {
-    public:
-                     CxTest_CxSleeper();
-        virtual     ~CxTest_CxSleeper();
+public:
+                 CxTest_CxSleeper();
+    virtual     ~CxTest_CxSleeper();
 
-        virtual void vUnit(const ulonglong_t &cullCaseLoops);
-
-    private:
+    virtual void vUnit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxSleeperH

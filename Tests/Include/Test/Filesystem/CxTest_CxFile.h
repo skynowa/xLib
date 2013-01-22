@@ -14,16 +14,15 @@
 class CxTest_CxFile :
     public CxTest
 {
-    public:
-                       CxTest_CxFile();
-        virtual       ~CxTest_CxFile();
+public:
+                   CxTest_CxFile();
+    virtual       ~CxTest_CxFile();
 
-        virtual  void  vUnit        (const ulonglong_t &cullCaseLoops);
+    virtual  void  vUnit        (const ulonglong_t &cullCaseLoops);
 
-    private:
-        void           vUnit1       (const ulonglong_t &cullCaseLoops);
-        void           vUnitPrivate (const ulonglong_t &cullCaseLoops);
-
+private:
+    void           vUnit1       (const ulonglong_t &cullCaseLoops);
+    void           vUnitPrivate (const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxFileH

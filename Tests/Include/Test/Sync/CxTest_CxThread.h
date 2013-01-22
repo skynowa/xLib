@@ -15,13 +15,11 @@
 class CxTest_CxThread :
     public CxTest
 {
-    public:
-                     CxTest_CxThread();
-        virtual     ~CxTest_CxThread();
+public:
+                 CxTest_CxThread();
+    virtual     ~CxTest_CxThread();
 
-        virtual void vUnit          (const ulonglong_t &cullCaseLoops);
-
-    private:
+    virtual void vUnit          (const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxThreadH
