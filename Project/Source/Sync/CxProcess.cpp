@@ -369,7 +369,7 @@ CxProcess::bIsRunning(
 {
     std::vector<CxProcess::id_t> vidIds;
 
-    CxProcessInfo::vCurrentIds(&vidIds);
+    CxProcessInfo::currentIds(&vidIds);
 
     std::vector<CxProcess::id_t>::iterator it;
     it = std::find(vidIds.begin(), vidIds.end(), culId);

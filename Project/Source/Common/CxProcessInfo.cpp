@@ -24,7 +24,7 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 /* static */
 void
-CxProcessInfo::vCurrentIds(
+CxProcessInfo::currentIds(
     std::vector<CxProcess::id_t> *a_pvidIds
 )
 {
@@ -107,7 +107,7 @@ CxProcessInfo::vCurrentIds(
 //---------------------------------------------------------------------------
 /* static */
 ulong_t
-CxProcessInfo::ulCpuUsage(
+CxProcessInfo::cpuUsage(
     const CxProcess::id_t &a_cidId
 )
 {
@@ -124,7 +124,7 @@ CxProcessInfo::ulCpuUsage(
 //---------------------------------------------------------------------------
 /* static */
 ulong_t
-CxProcessInfo::ulRamUsage(
+CxProcessInfo::ramUsage(
     const CxProcess::id_t &a_cidId
 )
 {
@@ -141,7 +141,7 @@ CxProcessInfo::ulRamUsage(
 //---------------------------------------------------------------------------
 /* static */
 ulong_t
-CxProcessInfo::ulIOBytes(
+CxProcessInfo::ioBytes(
     const CxProcess::id_t &a_cidId
 )
 {
@@ -188,7 +188,7 @@ CxProcessInfo::ulIOBytes(
 //---------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxProcessInfo::sExeName(
+CxProcessInfo::exeName(
     const CxProcess::id_t &a_cidId
 )
 {
@@ -246,7 +246,7 @@ CxProcessInfo::sExeName(
 //----------------------------------------------------------------------------------------------------
 /* static */
 ulong_t
-CxProcessInfo::ulParentId(
+CxProcessInfo::parentId(
     const CxProcess::id_t &a_cidId
 )
 {
@@ -267,7 +267,7 @@ CxProcessInfo::ulParentId(
 //----------------------------------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxProcessInfo::sCommandLine(
+CxProcessInfo::commandLine(
     const CxProcess::id_t &a_cidId
 )
 {
