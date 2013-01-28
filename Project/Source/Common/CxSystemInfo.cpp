@@ -29,7 +29,7 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 /* static */
 CxSystemInfo::ExOsType
-CxSystemInfo::osOS() {
+CxSystemInfo::os() {
     ExOsType otRes = otUnknown;
 
 #if   xOS_ENV_WIN
@@ -98,11 +98,11 @@ CxSystemInfo::osOS() {
 //---------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxSystemInfo::sFormatOsType(
+CxSystemInfo::formatOsType(
     const ExOsType &a_otOsType
 )
 {
-    xTEST_NA(otOsType);
+    xTEST_NA(a_otOsType);
 
     std::tstring_t sRv;
 
@@ -152,7 +152,7 @@ CxSystemInfo::sFormatOsType(
 //---------------------------------------------------------------------------
 /* static */
 CxSystemInfo::ExOsArch
-CxSystemInfo::oaOsArch() {
+CxSystemInfo::osArch() {
     ExOsArch oaRes = oaUnknown;
 
 #if   xOS_ENV_WIN
@@ -218,7 +218,7 @@ CxSystemInfo::oaOsArch() {
 //---------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxSystemInfo::sFormatOsArch(
+CxSystemInfo::formatOsArch(
     const ExOsArch &a_oaOsArch
 )
 {
@@ -237,11 +237,10 @@ CxSystemInfo::sFormatOsArch(
 //---------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxSystemInfo::sDesktopName() {
+CxSystemInfo::desktopName() {
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
-
     const std::tstring_t  csNativeDesktop = xT("explorer.exe");
     const CxProcess::id_t culId           = CxProcess::ulIdByName(csNativeDesktop);
 
@@ -263,7 +262,7 @@ CxSystemInfo::sDesktopName() {
 //---------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxSystemInfo::sHostName() {
+CxSystemInfo::hostName() {
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
@@ -288,7 +287,7 @@ CxSystemInfo::sHostName() {
 //---------------------------------------------------------------------------
 /* static */
 bool
-CxSystemInfo::bIsUserAnAdmin() {
+CxSystemInfo::isUserAnAdmin() {
 #if   xOS_ENV_WIN
     bool                     bIsAdmin              = false;
     SID_IDENTIFIER_AUTHORITY siaNtAuthority        = { SECURITY_NT_AUTHORITY };
@@ -334,7 +333,7 @@ CxSystemInfo::bIsUserAnAdmin() {
 //---------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxSystemInfo::sUserName() {
+CxSystemInfo::userName() {
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
@@ -348,7 +347,7 @@ CxSystemInfo::sUserName() {
 #elif xOS_ENV_UNIX
     struct passwd pwdPasswd = {0};
 
-    _passwordFileEntry(&pwdPasswd);
+    _passwdFileEntry(&pwdPasswd);
     xTEST_PTR(pwdPasswd.pw_name);
 
     sRv.assign(pwdPasswd.pw_name);
@@ -359,7 +358,7 @@ CxSystemInfo::sUserName() {
 //---------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxSystemInfo::sUseHomeDir() {
+CxSystemInfo::useHomeDir() {
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
@@ -388,7 +387,7 @@ CxSystemInfo::sUseHomeDir() {
     } else {
         struct passwd pwdPasswd = {0};
 
-        _passwordFileEntry(&pwdPasswd);
+        _passwdFileEntry(&pwdPasswd);
         xTEST_PTR(pwdPasswd.pw_dir);
 
         sRv.assign(pwdPasswd.pw_dir);
@@ -400,7 +399,7 @@ CxSystemInfo::sUseHomeDir() {
 //---------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxSystemInfo::sUserShellPath() {
+CxSystemInfo::userShellPath() {
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
@@ -420,7 +419,7 @@ CxSystemInfo::sUserShellPath() {
 #elif xOS_ENV_UNIX
     struct passwd pwdPasswd = {0};
 
-    _passwordFileEntry(&pwdPasswd);
+    _passwdFileEntry(&pwdPasswd);
     xTEST_PTR(pwdPasswd.pw_shell);
 
     sRv.assign(pwdPasswd.pw_shell);
@@ -431,7 +430,7 @@ CxSystemInfo::sUserShellPath() {
 //---------------------------------------------------------------------------
 /* static */
 ulong_t
-CxSystemInfo::ulNumOfCpus() {
+CxSystemInfo::numOfCpus() {
     ulong_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN
@@ -460,7 +459,7 @@ CxSystemInfo::ulNumOfCpus() {
 //---------------------------------------------------------------------------
 /* static */
 ulong_t
-CxSystemInfo::ulCurrentCpuNum() {
+CxSystemInfo::currentCpuNum() {
     ulong_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN
@@ -523,7 +522,7 @@ CxSystemInfo::ulCurrentCpuNum() {
 //---------------------------------------------------------------------------
 /* static */
 CxSystemInfo::ExCpuVendor
-CxSystemInfo::cvCpuVendor() {
+CxSystemInfo::cpuVendor() {
     ExCpuVendor cvRes = cvUnknown;
     std::string sValue;
 
@@ -607,7 +606,7 @@ CxSystemInfo::cvCpuVendor() {
 //---------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxSystemInfo::sCpuModel() {
+CxSystemInfo::cpuModel() {
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
@@ -680,7 +679,7 @@ CxSystemInfo::sCpuModel() {
 //---------------------------------------------------------------------------
 /* static */
 ulong_t
-CxSystemInfo::ulCpuSpeed() {
+CxSystemInfo::cpuSpeed() {
     ulong_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN
@@ -723,7 +722,7 @@ CxSystemInfo::ulCpuSpeed() {
 //---------------------------------------------------------------------------
 /* static */
 ulong_t
-CxSystemInfo::ulCpuUsage() {
+CxSystemInfo::cpuUsage() {
     ulong_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN
@@ -858,7 +857,7 @@ CxSystemInfo::ulCpuUsage() {
 //----------------------------------------------------------------------------------------------------
 /* static */
 ulonglong_t
-CxSystemInfo::ullRamTotal() {
+CxSystemInfo::ramTotal() {
     ulonglong_t ullRv = 0ULL;
 
 #if   xOS_ENV_WIN
@@ -895,7 +894,7 @@ CxSystemInfo::ullRamTotal() {
 //----------------------------------------------------------------------------------------------------
 /* static */
 ulonglong_t
-CxSystemInfo::ullRamAvailable() {
+CxSystemInfo::ramAvailable() {
     ulonglong_t ullRv = 0ULL;
 
 #if   xOS_ENV_WIN
@@ -930,7 +929,7 @@ CxSystemInfo::ullRamAvailable() {
 //----------------------------------------------------------------------------------------------------
 /* static */
 ulong_t
-CxSystemInfo::ulRamUsage() {
+CxSystemInfo::ramUsage() {
     ulong_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN
@@ -985,7 +984,7 @@ CxSystemInfo::ulRamUsage() {
 //----------------------------------------------------------------------------------------------------
 /* static */
 ulong_t
-CxSystemInfo::ulPageSize() {
+CxSystemInfo::pageSize() {
     ulong_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN
@@ -1028,7 +1027,7 @@ CxSystemInfo::~CxSystemInfo() {
 
 /* static */
 void
-CxSystemInfo::_passwordFileEntry(
+CxSystemInfo::_passwdFileEntry(
     struct passwd *a_pwdPasswd
 )
 {

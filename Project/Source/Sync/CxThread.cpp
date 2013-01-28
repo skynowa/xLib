@@ -817,7 +817,7 @@ CxThread::ulCpuIdeal() const {
 /* static */
 ulong_t
 CxThread::ulCpuCount() {
-    ulong_t ulRv = CxSystemInfo::ulNumOfCpus();
+    ulong_t ulRv = CxSystemInfo::numOfCpus();
     xCHECK_RET(ulRv < 1UL || ulRv > 32UL, 1UL);
 
     return ulRv;
