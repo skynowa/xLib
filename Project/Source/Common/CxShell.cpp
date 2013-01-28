@@ -24,7 +24,7 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 /* static */
 bool
-CxShell::bIsAvailable() {
+CxShell::isAvailable() {
     xTESTS_NA;
 
     int iRv = ::xTSYSTEM(NULL);
@@ -40,7 +40,7 @@ CxShell::bIsAvailable() {
 //---------------------------------------------------------------------------
 /* static */
 void
-CxShell::vExecute(
+CxShell::execute(
     const std::tstring_t &a_csFilePath,   ///< file path to binary file
     const std::tstring_t &a_csParams      ///< command line params for binary file
 )
@@ -49,7 +49,7 @@ CxShell::vExecute(
     xTEST_NA(a_csParams);
 
     xCHECK_DO(true  == a_csFilePath.empty(), return);
-    xCHECK_DO(false == bIsAvailable(),       return);
+    xCHECK_DO(false == isAvailable(),        return);
 
     // REVIEW: security bug - xT("%s \"%s\"") or xT("\"%s\" \"%s\"") ??
     std::tstring_t sCommand = CxString::sFormat(xT("%s \"%s\""), a_csFilePath.c_str(), a_csParams.c_str());
@@ -65,7 +65,7 @@ CxShell::vExecute(
 //---------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxShell::sFindExecutable(
+CxShell::findExecutable(
     const std::tstring_t &a_csFileName,
     const std::tstring_t &a_csFindDirPath
 )
@@ -85,7 +85,7 @@ CxShell::sFindExecutable(
 //---------------------------------------------------------------------------
 /* static */
 void
-CxShell::vExecute(
+CxShell::execute(
     const HWND           &a_chOwner,
     const ExOperation    &a_copOperation,
     const std::tstring_t &a_csFilePath,
@@ -123,7 +123,7 @@ CxShell::vExecute(
 //---------------------------------------------------------------------------
 /* static */
 void
-CxShell::vExecuteEx(
+CxShell::executeEx(
     SHELLEXECUTEINFO *a_peiInfo
 )
 {
@@ -135,7 +135,7 @@ CxShell::vExecuteEx(
 //---------------------------------------------------------------------------
 /* static */
 void
-CxShell::vExecuteHttp(
+CxShell::executeHttp(
     const std::tstring_t &a_csUrl
 )
 {
@@ -145,12 +145,12 @@ CxShell::vExecuteHttp(
 
     xTEST_EQ(false, sUrl.empty());
 
-    vExecute(NULL, opOpen, xT("IEXPLORE.EXE"), sUrl, xT(""), sfShowNormal);
+    execute(NULL, opOpen, xT("IEXPLORE.EXE"), sUrl, xT(""), sfShowNormal);
 }
 //---------------------------------------------------------------------------
 /* static */
 void
-CxShell::vExecuteFtp(
+CxShell::executeFtp(
     const std::tstring_t &a_csUrl
 )
 {
@@ -160,12 +160,12 @@ CxShell::vExecuteFtp(
 
     xTEST_EQ(false, sUrl.empty());
 
-    vExecute(NULL, opOpen, xT("explorer.exe"), xT("/e, ") + sUrl, xT(""), sfShowNormal);
+    execute(NULL, opOpen, xT("explorer.exe"), xT("/e, ") + sUrl, xT(""), sfShowNormal);
 }
 //---------------------------------------------------------------------------
 /* static */
 void
-CxShell::vExecuteEmail(
+CxShell::executeEmail(
     const std::tstring_t &a_csToEmail,
     const std::tstring_t &a_csSubject,
     const std::tstring_t &a_csBody
@@ -194,12 +194,12 @@ CxShell::vExecuteEmail(
 
     //iMsgBox(sCmd);
 
-    vExecute(NULL, opOpen, sCmd, xT(""), xT(""), sfShowNormal);
+    execute(NULL, opOpen, sCmd, xT(""), xT(""), sfShowNormal);
 }
 //---------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxShell::sSpecialDirPath(
+CxShell::specialDirPath(
     const ESpecialDir &a_csfDir,
     const HANDLE      &a_chToken
 )
@@ -229,7 +229,7 @@ CxShell::sSpecialDirPath(
 
 /* static */
 void
-CxShell::vCreateShortcut(
+CxShell::createShortcut(
     const std::tstring_t &a_csShortCutFilePath, ///< путь и имя ярлыка, например, "C:\\Блокнот.lnk"
                                                 ///< Если не указан путь, ярлык будет создан в папке, указанной в следующем параметре.
                                                 ///< Прим.: Windows сама НЕ добавляет к имени расширение .lnk

@@ -22,13 +22,13 @@ CxTest_CxShell::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    xTEST_CASE("CxShell::bIsAvailable", cullCaseLoops)
+    xTEST_CASE("CxShell::isAvailable", cullCaseLoops)
     {
-        m_bRv = CxShell::bIsAvailable();
+        m_bRv = CxShell::isAvailable();
         xTEST_EQ(true, m_bRv);
     }
 
-    xTEST_CASE("CxShell::vExecute", cullCaseLoops)
+    xTEST_CASE("CxShell::execute", cullCaseLoops)
     {
         const std::tstring_t casData[][2] = {
             { xT("cd"), xT("./") },
@@ -46,47 +46,47 @@ CxTest_CxShell::vUnit(
             const std::tstring_t csFilePath = casData[i][0];
             const std::tstring_t csParams   = casData[i][1];
 
-            CxShell::vExecute(csFilePath, csParams);
+            CxShell::execute(csFilePath, csParams);
         }
     }
 
 #if   xOS_ENV_WIN
 
-    xTEST_CASE("CxShell::sFindExecutable", cullCaseLoops)
+    xTEST_CASE("CxShell::findExecutable", cullCaseLoops)
     {
-        m_sRv = CxShell::sFindExecutable(xT("win.ini"), xT("C:"));
+        m_sRv = CxShell::findExecutable(xT("win.ini"), xT("C:"));
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("CxShell::vExecuteEx", cullCaseLoops)
+    xTEST_CASE("CxShell::executeEx", cullCaseLoops)
     {
         // SHELLEXECUTEINFO eiExecInfo = {0};
-        // CxShell::vExecuteEx(&eiExecInfo);
+        // CxShell::executeEx(&eiExecInfo);
     }
 
-    xTEST_CASE("CxShell::vExecute", cullCaseLoops)
+    xTEST_CASE("CxShell::execute", cullCaseLoops)
     {
-        // CxShell::vExecute(HWND hWnd, LPCTSTR pcszOperation, LPCTSTR pcszFile, LPCTSTR pcszParams, LPCTSTR pcszDirectory, int iShowCmd);
+        // CxShell::execute(HWND hWnd, LPCTSTR pcszOperation, LPCTSTR pcszFile, LPCTSTR pcszParams, LPCTSTR pcszDirectory, int iShowCmd);
     }
 
-    xTEST_CASE("CxShell::vExecuteHttp", cullCaseLoops)
+    xTEST_CASE("CxShell::executeHttp", cullCaseLoops)
     {
-        // CxShell::vExecuteHttp(xT(" http://www.google.ru/ "));
+        // CxShell::executeHttp(xT(" http://www.google.ru/ "));
     }
 
-    xTEST_CASE("CxShell::", cullCaseLoops)
+    xTEST_CASE("CxShell::executeFtp", cullCaseLoops)
     {
-        // CxShell::vExecuteFtp(xT(" ftp://ftp.drweb.com/ "));
+        // CxShell::executeFtp(xT(" ftp://ftp.drweb.com/ "));
     }
 
-    xTEST_CASE("CxShell::vExecuteEmail", cullCaseLoops)
+    xTEST_CASE("CxShell::executeEmail", cullCaseLoops)
     {
-        // CxShell::vExecuteEmail(xT("  Sky_Nova@mail.ru "), xT("  Subject"), xT("  Body  "));
+        // CxShell::executeEmail(xT("  Sky_Nova@mail.ru "), xT("  Subject"), xT("  Body  "));
     }
 
-    xTEST_CASE("CxShell::sGetSpecialDirPath", cullCaseLoops) {
+    xTEST_CASE("CxShell::specialDirPath", cullCaseLoops) {
         #if (xWINVER >= xOS_WIN_2K)
-            m_sRv = CxShell::sGetSpecialDirPath(CxShell::sfFonts, NULL);
+            m_sRv = CxShell::specialDirPath(CxShell::sfFonts, NULL);
             xTEST_EQ(std::tstring_t(xT("C:\\WINDOWS\\Fonts")), m_sRv);
         #endif //xOS_WIN_2K
     }
