@@ -26,88 +26,88 @@ CxTest_CxProcessInfo::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    xTEST_CASE("CxProcessInfo::vCurrentIds", cullCaseLoops)
+    xTEST_CASE("CxProcessInfo::currentIds", cullCaseLoops)
     {
         std::vector<CxProcess::id_t> vidIds;
 
-        CxProcessInfo::vCurrentIds(&vidIds);
+        CxProcessInfo::currentIds(&vidIds);
         #if xTEST_IGNORE
             CxTracer() << vidIds;
         #endif
     }
 
-    xTEST_CASE("CxProcessInfo::ulCpuUsage", cullCaseLoops)
+    xTEST_CASE("CxProcessInfo::cpuUsage", cullCaseLoops)
     {
         std::vector<CxProcess::id_t> vidIds;
 
-        CxProcessInfo::vCurrentIds(&vidIds);
+        CxProcessInfo::currentIds(&vidIds);
 
         xFOREACH_CONST(std::vector<CxProcess::id_t>, it, vidIds) {
-            m_ulRv = CxProcessInfo::ulCpuUsage(*it);
+            m_ulRv = CxProcessInfo::cpuUsage(*it);
             #if xTEST_IGNORE
-                CxTracer() << xT("\tCxProcessInfo::ulCpuUsage(): ") << m_ulRv;
+                CxTracer() << xT("\tCxProcessInfo::cpuUsage(): ") << m_ulRv;
             #endif
         }
     }
 
-    xTEST_CASE("CxProcessInfo::ulRamUsage", cullCaseLoops)
+    xTEST_CASE("CxProcessInfo::ramUsage", cullCaseLoops)
     {
         std::vector<CxProcess::id_t> vidIds;
 
-        CxProcessInfo::vCurrentIds(&vidIds);
+        CxProcessInfo::currentIds(&vidIds);
 
         xFOREACH_CONST(std::vector<CxProcess::id_t>, it, vidIds) {
-            m_ulRv = CxProcessInfo::ulRamUsage(*it);
+            m_ulRv = CxProcessInfo::ramUsage(*it);
             #if xTEST_IGNORE
-                CxTracer() << xT("\tCxProcessInfo::ulRamUsage(): ") << m_ulRv;
+                CxTracer() << xT("\tCxProcessInfo::ramUsage(): ") << m_ulRv;
             #endif
         }
     }
 
-    xTEST_CASE("CxProcessInfo::ulIOBytes", cullCaseLoops)
+    xTEST_CASE("CxProcessInfo::ioBytes", cullCaseLoops)
     {
         std::vector<CxProcess::id_t> vidIds;
 
-        CxProcessInfo::vCurrentIds(&vidIds);
+        CxProcessInfo::currentIds(&vidIds);
 
         xFOREACH_CONST(std::vector<CxProcess::id_t>, it, vidIds) {
-            m_ulRv = CxProcessInfo::ulIOBytes(/* *it */ CxCurrentProcess::ulId());
+            m_ulRv = CxProcessInfo::ioBytes(/* *it */ CxCurrentProcess::ulId());
             #if xTEST_IGNORE
-                CxTracer() << xT("\tCxProcessInfo::ulIOBytes(): ") << m_ulRv;
+                CxTracer() << xT("\tCxProcessInfo::ioBytes(): ") << m_ulRv;
             #endif
         }
     }
 
-    xTEST_CASE("CxProcessInfo::sExeName", cullCaseLoops)
+    xTEST_CASE("CxProcessInfo::exeName", cullCaseLoops)
     {
         std::vector<CxProcess::id_t> vidIds;
 
-        CxProcessInfo::vCurrentIds(&vidIds);
+        CxProcessInfo::currentIds(&vidIds);
 
         xFOREACH_CONST(std::vector<CxProcess::id_t>, it, vidIds) {
-            m_sRv = CxProcessInfo::sExeName(/* *it */ CxCurrentProcess::ulId());
+            m_sRv = CxProcessInfo::exeName(/* *it */ CxCurrentProcess::ulId());
             xTEST_EQ(true,  CxFile::bIsExists(m_sRv));
             xTEST_EQ(m_sRv, CxPath::sExe());
         }
     }
 
-    xTEST_CASE("CxProcessInfo::ulParentId", cullCaseLoops)
+    xTEST_CASE("CxProcessInfo::parentId", cullCaseLoops)
     {
         std::vector<CxProcess::id_t> vidIds;
 
-        CxProcessInfo::vCurrentIds(&vidIds);
+        CxProcessInfo::currentIds(&vidIds);
 
         xFOREACH_CONST(std::vector<CxProcess::id_t>, it, vidIds) {
-            m_ulRv = CxProcessInfo::ulParentId(/* *it */ CxCurrentProcess::ulId());
+            m_ulRv = CxProcessInfo::parentId(/* *it */ CxCurrentProcess::ulId());
             // xTEST_DIFF(0UL, m_ulRv);
         }
     }
 
-    xTEST_CASE("CxProcessInfo::sCommandLine", cullCaseLoops)
+    xTEST_CASE("CxProcessInfo::commandLine", cullCaseLoops)
     {
         std::vector<CxProcess::id_t> vidIds;
 
-        CxProcessInfo::vCurrentIds(&vidIds);
+        CxProcessInfo::currentIds(&vidIds);
 
         xFOREACH_CONST(std::vector<CxProcess::id_t>, it, vidIds) {
         #if   xOS_ENV_WIN
@@ -117,7 +117,7 @@ CxTest_CxProcessInfo::vUnit(
 
         #endif
 
-            m_sRv = CxProcessInfo::sCommandLine(/* *it */ CxCurrentProcess::ulId());
+            m_sRv = CxProcessInfo::commandLine(/* *it */ CxCurrentProcess::ulId());
             #if xTEST_IGNORE
                 CxTracer() << m_sRv;
             #endif
