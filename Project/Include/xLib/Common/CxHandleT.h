@@ -40,26 +40,26 @@ public:
     CxHandleT &     operator = (const CxHandleT &chHandle);
         ///< operator =
 
-    native_handle_t hGet       () const;
+    native_handle_t get        () const;
         ///< get
-    void            vSet       (const native_handle_t &chHandle);
+    void            set        (const native_handle_t &chHandle);
         ///< set
-    native_handle_t hDuplicate () const;
+    native_handle_t duplicate  () const;
         ///< duplicate handle
 
-    bool            bIsValid   () const;
+    bool            isValid    () const;
         ///< is valid
-    void            vAttach    (const native_handle_t &chHandle);
+    void            attach     (const native_handle_t &chHandle);
         ///< attach
-    native_handle_t hDetach    ();
+    native_handle_t detach     ();
         ///< detach
-    void            vClose     ();
+    void            close      ();
         ///< close
 
 #if xOS_ENV_WIN
-    ulong_t         ulInfo     () const;
+    ulong_t         info       () const;
         ///< get certain properties of an object handle
-    void            vSetInfo   (const ulong_t &culMask, const ulong_t &culFlags);
+    void            setInfo    (const ulong_t &culMask, const ulong_t &culFlags);
         ///< set information
 #endif
 
@@ -80,4 +80,4 @@ typedef CxHandleT<hvInvalid> CxHandleInvalid;
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif    // xLib_Common_CxHandleTH
+#endif // xLib_Common_CxHandleTH

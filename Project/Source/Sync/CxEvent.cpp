@@ -61,13 +61,13 @@ CxEvent::hHandle() const {
 void
 CxEvent::vCreate() {
 #if   xOS_ENV_WIN
-    xTEST_EQ(false, _m_hEvent.bIsValid());
+    xTEST_EQ(false, _m_hEvent.isValid());
     
 
     HANDLE hRv = ::CreateEvent(NULL, ! _m_cbIsAutoReset, _m_cbInitState, NULL);
     xTEST_DIFF(static_cast<HANDLE>(NULL), hRv);
 
-    _m_hEvent.vSet(hRv);
+    _m_hEvent.set(hRv);
     // n/a
 #elif xOS_ENV_UNIX
     int iRv = - 1;
@@ -84,10 +84,10 @@ CxEvent::vCreate() {
 void
 CxEvent::vSet() {
 #if   xOS_ENV_WIN
-    xTEST_EQ(true, _m_hEvent.bIsValid());
+    xTEST_EQ(true, _m_hEvent.isValid());
     
 
-    BOOL blRes = ::SetEvent(hHandle().hGet());
+    BOOL blRes = ::SetEvent(hHandle().get());
     xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     int iRv = - 1;
@@ -115,10 +115,10 @@ CxEvent::vSet() {
 void
 CxEvent::vReset() {
 #if   xOS_ENV_WIN
-    xTEST_EQ(true, _m_hEvent.bIsValid());
+    xTEST_EQ(true, _m_hEvent.isValid());
     
 
-    BOOL blRes = ::ResetEvent(hHandle().hGet());
+    BOOL blRes = ::ResetEvent(hHandle().get());
     xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     int iRv = - 1;
@@ -145,9 +145,9 @@ CxEvent::osWait(
     ExObjectState osRes = osFailed;
 
 #if   xOS_ENV_WIN
-    xTEST_EQ(true, _m_hEvent.bIsValid());
+    xTEST_EQ(true, _m_hEvent.isValid());
 
-    osRes = static_cast<ExObjectState>( ::WaitForSingleObject(hHandle().hGet(), a_culTimeout) );
+    osRes = static_cast<ExObjectState>( ::WaitForSingleObject(hHandle().get(), a_culTimeout) );
 #elif xOS_ENV_UNIX
     int iRv = - 1;
 
@@ -235,10 +235,10 @@ CxEvent::bIsSignaled() {
     bool bRv = false;
 
 #if   xOS_ENV_WIN
-    DWORD dwRv = ::WaitForSingleObject(hHandle().hGet(), 0UL);
+    DWORD dwRv = ::WaitForSingleObject(hHandle().get(), 0UL);
     // n/a
 
-    bRv = (false != _m_hEvent.bIsValid() && osSignaled == dwRv);
+    bRv = (false != _m_hEvent.isValid() && osSignaled == dwRv);
 #elif xOS_ENV_UNIX
     bRv = _m_bIsSignaled;
 #endif

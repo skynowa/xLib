@@ -24,15 +24,15 @@ CxWaitableTimer::CxWaitableTimer() :
 }
 //---------------------------------------------------------------------------
 CxWaitableTimer::~CxWaitableTimer() {
-    xTEST_DIFF(false, _m_hHandle.bIsValid());
+    xTEST_DIFF(false, _m_hHandle.isValid());
 
 }
 //---------------------------------------------------------------------------
 HANDLE
 CxWaitableTimer::hHandle() const {
-    xTEST_EQ(true, _m_hHandle.bIsValid());
+    xTEST_EQ(true, _m_hHandle.isValid());
 
-    return _m_hHandle.hGet();
+    return _m_hHandle.get();
 }
 //---------------------------------------------------------------------------
 void
@@ -42,12 +42,12 @@ CxWaitableTimer::vCreate(
     const LPSECURITY_ATTRIBUTES  a_pcsaTimerAttributes
 )
 {
-    xTEST_EQ(false, _m_hHandle.bIsValid());
+    xTEST_EQ(false, _m_hHandle.isValid());
 
     HANDLE hRv = ::CreateWaitableTimer(a_pcsaTimerAttributes, a_bManualReset, a_csName.c_str());
     xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
 
-    _m_hHandle.vSet(hRv);
+    _m_hHandle.set(hRv);
 }
 //---------------------------------------------------------------------------
 void
@@ -57,7 +57,7 @@ CxWaitableTimer::vOpen(
     const bool           &a_cbInheritHandle
 )
 {
-    xTEST_EQ(true, _m_hHandle.bIsValid());
+    xTEST_EQ(true, _m_hHandle.isValid());
 
 //MinGW fix
 #if !defined(OpenWaitableTimer)
@@ -71,14 +71,14 @@ CxWaitableTimer::vOpen(
     HANDLE hRv = ::OpenWaitableTimer(a_culDesiredAccess, a_cbInheritHandle, a_csName.c_str());
     xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
 
-    _m_hHandle.vSet(hRv);
+    _m_hHandle.set(hRv);
 }
 //---------------------------------------------------------------------------
 void
 CxWaitableTimer::vCancel() const {
-    xTEST_EQ(true, _m_hHandle.bIsValid());
+    xTEST_EQ(true, _m_hHandle.isValid());
 
-    BOOL blRes = ::CancelWaitableTimer(_m_hHandle.hGet());
+    BOOL blRes = ::CancelWaitableTimer(_m_hHandle.get());
     xTEST_DIFF(FALSE, blRes);
 }
 //---------------------------------------------------------------------------
@@ -91,7 +91,7 @@ CxWaitableTimer::vSet(
     const bool       &a_cbResume
 ) const
 {
-    xTEST_EQ(true, _m_hHandle.bIsValid());
+    xTEST_EQ(true, _m_hHandle.isValid());
 
     /*
     #define _SECOND 10000000   // ���� ������� ��� ���������� �������
@@ -103,7 +103,7 @@ CxWaitableTimer::vSet(
     LARGE_INTEGER liDueTime = {{0}};
     liDueTime.QuadPart = a_cllDueTime;
 
-    BOOL blRes = ::SetWaitableTimer(_m_hHandle.hGet(), &liDueTime, a_cliPeriod, a_pfnCompletionRoutine, a_pvArgToCompletionRoutine, a_cbResume);
+    BOOL blRes = ::SetWaitableTimer(_m_hHandle.get(), &liDueTime, a_cliPeriod, a_pfnCompletionRoutine, a_pvArgToCompletionRoutine, a_cbResume);
     xTEST_DIFF(FALSE, blRes);
 }
 //---------------------------------------------------------------------------
@@ -112,9 +112,9 @@ CxWaitableTimer::vWait(
     const ulong_t &a_culTimeout
 ) const
 {
-    xTEST_EQ(true, _m_hHandle.bIsValid());
+    xTEST_EQ(true, _m_hHandle.isValid());
 
-    DWORD ulRv = ::WaitForSingleObject(_m_hHandle.hGet(), a_culTimeout);
+    DWORD ulRv = ::WaitForSingleObject(_m_hHandle.get(), a_culTimeout);
     xTEST_EQ(WAIT_OBJECT_0, ulRv);
 }
 //---------------------------------------------------------------------------
