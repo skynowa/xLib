@@ -67,55 +67,55 @@ public:
         mrRetry  = 4
     };
 
-                    CxConsole        ();
+                    CxConsole       ();
         ///< constructor
-    virtual        ~CxConsole        ();
+    virtual        ~CxConsole       ();
         ///< destructor
 
-    std::tstring_t  sSetAttributes   (const ExForeground &cfgForeground, const ExBackground &cbgBackground,
+    std::tstring_t  setAttributes   (const ExForeground &cfgForeground, const ExBackground &cbgBackground,
                                      const int &ciAttributes);
         ///< set text color
-    std::tstring_t  sSetAttributesDef();
+    std::tstring_t  setAttributesDef();
         ///< set text color
-    std::tstring_t  sRead            ();
+    std::tstring_t  read            ();
         ///< read
-    void            vWrite           (const std::tstring_t &csStr);
+    void            write           (const std::tstring_t &csStr);
         ///< write
-    void            vWriteLine       (const std::tstring_t &csStr = xT(""));
+    void            writeLine       (const std::tstring_t &csStr = xT(""));
         ///< write line
-    void            vWriteErrLine    (const std::tstring_t &csStr);
+    void            writeErrLine    (const std::tstring_t &csStr);
         ///< write error message
-    ExModalResult   iMsgBox          (const std::tstring_t &csText, const std::tstring_t &csTitle, const uint_t &cuiType);
+    ExModalResult   msgBox          (const std::tstring_t &csText, const std::tstring_t &csTitle, const uint_t &cuiType);
         ///< show console message dialog
-    void            vPrompt          (const std::tstring_t &csPrompt, const bool &cbIsVisible, std::tstring_t *psAnswer);
+    void            prompt          (const std::tstring_t &csPrompt, const bool &cbIsVisible, std::tstring_t *psAnswer);
         ///< show console prompt dialog
-    void            vPause           (const ulong_t &culTimeoutMs);
+    void            pause           (const ulong_t &culTimeoutMs);
         ///< pause with timeout (msec)
-    void            vClear           ();
+    void            clear           ();
         ///< clear
 
-    std::tstring_t  sTitle           ();
+    std::tstring_t  title           ();
         ///< get title string
-    void            vSetTitle        (const std::tstring_t &csTitle);
+    void            setTitle        (const std::tstring_t &csTitle);
         ///< set title string
-    void            vCenterWindow    ();
-        ///< allign to center
-    void            vSetFullScreen   ();
+    void            centerWindow    ();
+        ///< align to center
+    void            setFullScreen   ();
         ///< set full screen
-    void            vEnableClose     (const bool &cbFlag);
+    void            enableClose     (const bool &cbFlag);
         ///< enable close button
 
 private:
 #if xOS_ENV_WIN
     HWND            _m_hWnd;             ///< console window handle
     HMENU           _m_hMenu;            ///< console menu handle
-    CxHandleInvalid _m_hStdIn;           ///< standart input handle
-    CxHandleInvalid _m_hStdOut;          ///< standart output handle
+    CxHandleInvalid _m_hStdIn;           ///< standard input handle
+    CxHandleInvalid _m_hStdOut;          ///< standard output handle
     WORD            _m_wAttributesDef;   ///< default console attributes
 
-    HWND            _hWndHandle      ();
+    HWND            _wndHandle      ();
         ///< get console window handle
-    HMENU           _hMenuHandle     (const bool &cbRevert);
+    HMENU           _menuHandle     (const bool &cbRevert);
         ///< get console menu handle
 #endif
 };
