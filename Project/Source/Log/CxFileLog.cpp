@@ -85,7 +85,7 @@ CxFileLog::vWrite(
     va_list        palArgs;
 
     xVA_START(palArgs, a_pcszFormat);
-    sParam = CxString::sFormatV(a_pcszFormat, palArgs);
+    sParam = CxString::formatV(a_pcszFormat, palArgs);
     xVA_END(palArgs);
 
     //-------------------------------------

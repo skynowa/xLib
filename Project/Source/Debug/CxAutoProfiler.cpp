@@ -28,7 +28,7 @@ CxAutoProfiler::CxAutoProfiler(
     // format comment
     va_list palArgs;
     xVA_START(palArgs, a_pcszComment);
-    _m_sComment = CxString::sFormatV(a_pcszComment, palArgs);
+    _m_sComment = CxString::formatV(a_pcszComment, palArgs);
     xVA_END(palArgs);
 
     //-------------------------------------

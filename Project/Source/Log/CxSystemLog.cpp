@@ -87,7 +87,7 @@ CxSystemLog::vWrite(
     va_list        alArgs;
 
     xVA_START(alArgs, a_pcszFormat);
-    sMessage = CxString::sFormatV(a_pcszFormat, alArgs);
+    sMessage = CxString::formatV(a_pcszFormat, alArgs);
     xVA_END(alArgs);
 
     //-------------------------------------

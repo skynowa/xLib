@@ -62,7 +62,7 @@ CxTest_CxEnvironment::vUnit(
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
             bool bStr1 = CxEnvironment::bIsExists(sData[i][0]);
-            xTEST_EQ(CxString::bStrToBool(sData[i][1]), bStr1);
+            xTEST_EQ(CxString::strToBool(sData[i][1]), bStr1);
         }
     }
 
@@ -93,7 +93,7 @@ CxTest_CxEnvironment::vUnit(
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
             bool bStr1 = CxEnvironment::bIsVarValid(sData[i][0]);
-            xTEST_EQ(CxString::bStrToBool(sData[i][1]), bStr1);
+            xTEST_EQ(CxString::strToBool(sData[i][1]), bStr1);
         }
     }
 
@@ -122,7 +122,7 @@ CxTest_CxEnvironment::vUnit(
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
             bool bStr1 = CxEnvironment::bIsValueValid(sData[i][0]);
-            xTEST_EQ(CxString::bStrToBool(sData[i][1]), bStr1);
+            xTEST_EQ(CxString::strToBool(sData[i][1]), bStr1);
         }
     }
 
@@ -178,7 +178,7 @@ CxTest_CxEnvironment::vUnit(
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
             std::tstring_t sStr1 = CxEnvironment::sExpandStrings(sData[i][0]);
             std::tstring_t sStr2 = sData[i][1];
-            xTEST_EQ(true, CxString::bCompareNoCase(sStr1, sStr2));
+            xTEST_EQ(true, CxString::compareNoCase(sStr1, sStr2));
         }
     }
 

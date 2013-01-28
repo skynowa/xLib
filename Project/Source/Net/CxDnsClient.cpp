@@ -35,7 +35,7 @@ CxDnsClient::vHostAddrByName(
     hostent *pHostent = ::gethostbyname(casHostName.c_str());
     xTEST_PTR(pHostent);
 
-    sRv = CxString::sFormat(
+    sRv = CxString::format(
                 xT("%u.%u.%u.%u"),
                 static_cast<uchar_t>(pHostent->h_addr_list[0][0]),
                 static_cast<uchar_t>(pHostent->h_addr_list[0][1]),

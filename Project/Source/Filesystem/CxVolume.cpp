@@ -67,7 +67,7 @@ CxVolume::dtType() const {
             // printf("[name]: %s\n[path]: %s\n[type]: %s\n\n",
             //        pmteMountPoint->mnt_fsname, pmteMountPoint->mnt_dir, pmteMountPoint->mnt_type);
 
-            bool bRv = CxString::bCompareNoCase(sVolumePath(), std::tstring_t(pmteMountPoint->mnt_dir));
+            bool bRv = CxString::compareNoCase(sVolumePath(), std::tstring_t(pmteMountPoint->mnt_dir));
             xCHECK_DO(false == bRv, continue);
 
             // TODO: CxVolume::dtGetType

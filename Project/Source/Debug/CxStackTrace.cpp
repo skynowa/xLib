@@ -132,10 +132,10 @@ CxStackTrace::vGet(
             {
                 blRes = ::SymFromAddr(hProcess, reinterpret_cast<DWORD64>( pvStack[i] ), NULL, psiSymbol);
                 if (FALSE == blRes) {
-                    sByteOffset   = CxString::sFormat(xT("%p"), ptrdiff_t(0));
+                    sByteOffset   = CxString::format(xT("%p"), ptrdiff_t(0));
                     sFunctionName = csDataNotFound;
                 } else {
-                    sByteOffset   = CxString::sFormat(xT("%p"), static_cast<ptrdiff_t>( psiSymbol->Address ) );
+                    sByteOffset   = CxString::format(xT("%p"), static_cast<ptrdiff_t>( psiSymbol->Address ) );
                     sFunctionName = std::tstring_t(psiSymbol->Name);
                 }
             }
@@ -203,7 +203,7 @@ CxStackTrace::vGet(
             sModulePath   = (NULL == dlinfo.dli_fname) ? csDataNotFound : dlinfo.dli_fname;
             sFilePath     = csDataNotFound;
             sFileLine     = csDataNotFound;
-            sByteOffset   = CxString::sFormat(xT("%p"), ptrdiff_t(0));
+            sByteOffset   = CxString::format(xT("%p"), ptrdiff_t(0));
             sFunctionName = (NULL == ppszSymbols[i])   ? csDataNotFound : ppszSymbols[i];
         } else {
             const tchar_t *pcszSymbolName = NULL;
@@ -228,7 +228,7 @@ CxStackTrace::vGet(
             sModulePath   = (NULL == dlinfo.dli_fname) ? csDataNotFound : dlinfo.dli_fname;
             sFilePath     = _sFilePath.empty()         ? csDataNotFound : _sFilePath;
             sFileLine     = CxString::cast(_ulSourceLine);
-            sByteOffset   = CxString::sFormat(xT("%p"), ptrdiff_t(dlinfo.dli_saddr));
+            sByteOffset   = CxString::format(xT("%p"), ptrdiff_t(dlinfo.dli_saddr));
             sFunctionName = (NULL == pcszSymbolName)   ? csDataNotFound : pcszSymbolName;
 
             xBUFF_FREE(pszDemangleName);
@@ -394,7 +394,7 @@ CxStackTrace::_vAddr2Line(
         */
         std::vec_tstring_t vsLine;
 
-        CxString::vSplit(pcszFileAndLine, xT(":"), &vsLine);
+        CxString::split(pcszFileAndLine, xT(":"), &vsLine);
         xSTD_VERIFY(2U == vsLine.size());
 
         // out

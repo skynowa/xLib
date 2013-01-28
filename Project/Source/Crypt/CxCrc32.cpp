@@ -208,7 +208,7 @@ CxCrc32::sFormatHex(
     std::tstring_t      sRv;
     const size_t uiCrc32Size = 8;
 
-    sRv = CxString::sFormat(xT("%X"), a_culCrc32);    //0AADDEA0
+    sRv = CxString::format(xT("%X"), a_culCrc32);    //0AADDEA0
 
     size_t uiAdditionalZeros = uiCrc32Size - sRv.size();
     if (0 != uiAdditionalZeros) {

@@ -60,7 +60,7 @@ CxMsgBoxT::iShow(
                             CxString::cast(a_cTitle).c_str(),
                             a_cuiType) );
 #elif xOS_ENV_UNIX
-    std::tstring_t sMsg = CxString::sFormat(
+    std::tstring_t sMsg = CxString::format(
                             xT("xmessage -center \"%s\" -title \"%s\" -buttons \"%s\""),
                             CxString::cast(a_cText).c_str(),
                             CxString::cast(a_cTitle).c_str(),
@@ -89,7 +89,7 @@ CxMsgBoxT::iShow(
                             CxString::cast(a_cTitle).c_str(),
                             MB_OK) );
 #elif xOS_ENV_UNIX
-    std::tstring_t sMsg = CxString::sFormat(
+    std::tstring_t sMsg = CxString::format(
                             xT("xmessage -center \"%s\" -title \"%s\" -buttons \"%s\""),
                             CxString::cast(a_cText).c_str(),
                             CxString::cast(a_cTitle).c_str(),
@@ -117,7 +117,7 @@ CxMsgBoxT::iShow(
                             CxPath(CxPath::sExe()).sFileName().c_str(),
                             MB_OK) );
 #elif xOS_ENV_UNIX
-    std::tstring_t sMsg = CxString::sFormat(
+    std::tstring_t sMsg = CxString::format(
                             xT("xmessage -center \"%s\" -title \"%s\" -buttons \"%s\""),
                             CxString::cast(a_cText).c_str(),
                             xT("Message box"),

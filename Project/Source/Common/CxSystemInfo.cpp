@@ -82,10 +82,10 @@ CxSystemInfo::osOS() {
     int iRv = ::uname(&unKernelInfo);
     xTEST_DIFF(- 1, iRv);
 
-    if      (true == CxString::bCompareNoCase(xT("Linux"), unKernelInfo.sysname)) {
+    if      (true == CxString::compareNoCase(xT("Linux"), unKernelInfo.sysname)) {
         otRes = otLinux;
     }
-    else if (true == CxString::bCompareNoCase(xT("FreeBSD"), unKernelInfo.sysname)) {
+    else if (true == CxString::compareNoCase(xT("FreeBSD"), unKernelInfo.sysname)) {
         otRes = otFreeBSD;
     }
     else {
@@ -133,7 +133,7 @@ CxSystemInfo::sFormatOsType(
         int iRv = ::uname(&unKernelInfo);
         xTEST_DIFF(- 1, iRv);
 
-        sRv = CxString::sFormat(xT("%s %s (%s) %s"),
+        sRv = CxString::format(xT("%s %s (%s) %s"),
                                  unKernelInfo.sysname, unKernelInfo.release,
                                  unKernelInfo.version, unKernelInfo.machine);
     } else {
@@ -183,27 +183,27 @@ CxSystemInfo::oaOsArch() {
     // TODO: xTEST_DIFF(0,   strlen(unKernelInfo.machine));
 
     //32-bit checks
-    if      (true == CxString::bCompareNoCase(xT("i386"), unKernelInfo.machine)) {
+    if      (true == CxString::compareNoCase(xT("i386"), unKernelInfo.machine)) {
         oaRes = oa32bit;
     }
-    else if (true == CxString::bCompareNoCase(xT("i486"), unKernelInfo.machine)) {
+    else if (true == CxString::compareNoCase(xT("i486"), unKernelInfo.machine)) {
         oaRes = oa32bit;
     }
-    else if (true == CxString::bCompareNoCase(xT("i586"), unKernelInfo.machine)) {
+    else if (true == CxString::compareNoCase(xT("i586"), unKernelInfo.machine)) {
         oaRes = oa32bit;
     }
-    else if (true == CxString::bCompareNoCase(xT("i686"), unKernelInfo.machine)) {
+    else if (true == CxString::compareNoCase(xT("i686"), unKernelInfo.machine)) {
         oaRes = oa32bit;
     }
 
     //64-bit checks
-    else if (true == CxString::bCompareNoCase(xT("x86_64"), unKernelInfo.machine)) {
+    else if (true == CxString::compareNoCase(xT("x86_64"), unKernelInfo.machine)) {
         oaRes = oa64bit;
     }
-    else if (true == CxString::bCompareNoCase(xT("ia64"), unKernelInfo.machine)) {
+    else if (true == CxString::compareNoCase(xT("ia64"), unKernelInfo.machine)) {
         oaRes = oa64bit;
     }
-    else if (true == CxString::bCompareNoCase(xT("amd64"), unKernelInfo.machine)) {
+    else if (true == CxString::compareNoCase(xT("amd64"), unKernelInfo.machine)) {
         oaRes = oa64bit;
     }
 
@@ -640,11 +640,11 @@ CxSystemInfo::sCpuModel() {
             (void)::__cpuid(reinterpret_cast<int *>( &szCpuName[16] ), 0x80000003);
             (void)::__cpuid(reinterpret_cast<int *>( &szCpuName[32] ), 0x80000004);
 
-            std::tstring_t sCpuName = CxString::sTrimSpace( xS2TS(szCpuName) );
+            std::tstring_t sCpuName = CxString::trimSpace( xS2TS(szCpuName) );
 
-            sRv = CxString::sFormat(xT("%s (%s)"), sCpuName.c_str(), szMan);
+            sRv = CxString::format(xT("%s (%s)"), sCpuName.c_str(), szMan);
         } else {
-            sRv = CxString::sFormat(xT("%s"), szMan);
+            sRv = CxString::format(xT("%s"), szMan);
         }
     #elif xCOMPILER_CODEGEAR
         sRv = std::tstring_t();

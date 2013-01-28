@@ -325,7 +325,7 @@ CxUri::sEncodeComponent(const std::tstring_t &a_csUri) {
         */
         else if (c <= 0x20 || c >= 0x7F || ILLEGAL.find(c) != std::tstring_t::npos /*|| reserved.find(c) != std::tstring_t::npos*/) {
             //� -> %FF
-            sRv += CxString::sFormat(xT("%%%02X"), (uint_t)(uchar_t)c);
+            sRv += CxString::format(xT("%%%02X"), (uint_t)(uchar_t)c);
         }
         else {
             sRv += c;
@@ -446,7 +446,7 @@ CxUri::_vParse(const std::tstring_t &a_csUri) {
     xTEST_DIFF(std::tstring_t::npos, uiSchemeEnd);
     xTEST_GR(size_t(7U)/*SCHEME_MAX_SIZE + 1*/, uiSchemeEnd);
 
-    _m_sScheme = CxString::sCut(a_csUri, uiSchemeStart, uiSchemeEnd);
+    _m_sScheme = CxString::cut(a_csUri, uiSchemeStart, uiSchemeEnd);
 
     //-------------------------------------
     //[authority] - [example.com:8042]
@@ -465,7 +465,7 @@ CxUri::_vParse(const std::tstring_t &a_csUri) {
         uiAuthorityEnd = a_csUri.size();
     }
 
-    _m_sAuthority = CxString::sCut(a_csUri, uiAuthorityStart /*+ uiSlashCount*/, uiAuthorityEnd);
+    _m_sAuthority = CxString::cut(a_csUri, uiAuthorityStart /*+ uiSlashCount*/, uiAuthorityEnd);
 
     //-------------------------------------
     //[_m_sUserInfo] - [userinfo]
@@ -474,7 +474,7 @@ CxUri::_vParse(const std::tstring_t &a_csUri) {
     size_t uiUserInfoEnd   = _m_sAuthority.find_first_of(xT("@"), uiUserInfoStart);
 
     if (std::tstring_t::npos != uiUserInfoEnd) {
-        _m_sUserInfo = CxString::sCut(_m_sAuthority, uiUserInfoStart, uiUserInfoEnd);
+        _m_sUserInfo = CxString::cut(_m_sAuthority, uiUserInfoStart, uiUserInfoEnd);
     }
 
     //-------------------------------------
@@ -489,7 +489,7 @@ CxUri::_vParse(const std::tstring_t &a_csUri) {
             uiHostEnd = _m_sAuthority.size();
         }
 
-        _m_sHost = CxString::sCut(_m_sAuthority, uiHostStart + 1/*"@"*/, uiHostEnd);
+        _m_sHost = CxString::cut(_m_sAuthority, uiHostStart + 1/*"@"*/, uiHostEnd);
     }
 
     //-------------------------------------
@@ -499,7 +499,7 @@ CxUri::_vParse(const std::tstring_t &a_csUri) {
     size_t uiPortEnd   = _m_sAuthority.size();
 
     if (std::tstring_t::npos != uiPortStart) {
-        std::tstring_t sPort = CxString::sCut(_m_sAuthority, uiPortStart + 1/*":"*/, uiPortEnd);
+        std::tstring_t sPort = CxString::cut(_m_sAuthority, uiPortStart + 1/*":"*/, uiPortEnd);
         _m_usPort = CxString::cast<ushort_t>(sPort);
     }
     if (0 == _m_usPort) {
@@ -513,7 +513,7 @@ CxUri::_vParse(const std::tstring_t &a_csUri) {
 
     //���� � Authority ��� "@:" - _m_sHost ��� Authority ��� "//"
     if (std::tstring_t::npos == uiAuthorityChars) {
-        _m_sHost = CxString::sTrimChars(_m_sAuthority, xT("/"));
+        _m_sHost = CxString::trimChars(_m_sAuthority, xT("/"));
     }
 
     //-------------------------------------
@@ -526,7 +526,7 @@ CxUri::_vParse(const std::tstring_t &a_csUri) {
         uiPathEnd = a_csUri.size();
     }
 
-    _m_sPath = CxString::sCut(a_csUri, uiPathStart, uiPathEnd);
+    _m_sPath = CxString::cut(a_csUri, uiPathStart, uiPathEnd);
 
     //-------------------------------------
     //[_m_sQuery] - [name=ferret]
@@ -538,7 +538,7 @@ CxUri::_vParse(const std::tstring_t &a_csUri) {
         uiQueryEnd = a_csUri.size();
     }
 
-    _m_sQuery = CxString::sCut(a_csUri, uiQueryStart + 1/*"?"*/, uiQueryEnd);
+    _m_sQuery = CxString::cut(a_csUri, uiQueryStart + 1/*"?"*/, uiQueryEnd);
 
     //-------------------------------------
     //[_m_sFragment] - [nose]
@@ -546,7 +546,7 @@ CxUri::_vParse(const std::tstring_t &a_csUri) {
     size_t uiFragmentStart = uiQueryEnd + std::tstring_t(xT("#")).size();
     size_t uiFragmentEnd   = a_csUri.size();                        //by the end
 
-    _m_sFragment = CxString::sCut(a_csUri, uiFragmentStart, uiFragmentEnd);
+    _m_sFragment = CxString::cut(a_csUri, uiFragmentStart, uiFragmentEnd);
 }
 //---------------------------------------------------------------------------
 //TODO: _bNormilize ()

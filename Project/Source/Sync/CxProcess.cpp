@@ -71,7 +71,7 @@ CxProcess::vCreate(
 
     va_list palArgs;
     xVA_START(palArgs, a_pcszParams);
-    sCmdLine = CxString::sFormatV(a_pcszParams, palArgs);
+    sCmdLine = CxString::formatV(a_pcszParams, palArgs);
     xVA_END(palArgs);
 
     //xTRACEV(xT("sCmdLine: %s"), sCmdLine.c_str());
@@ -268,7 +268,7 @@ CxProcess::ulIdByName(
     xTEST_DIFF(FALSE, blRv);
 
     xFOREVER {
-        bool bRv = CxString::bCompareNoCase(a_csProcessName, peProcess.szExeFile);
+        bool bRv = CxString::compareNoCase(a_csProcessName, peProcess.szExeFile);
         xCHECK_DO(true == bRv, break);   // OK
 
         blRv = ::Process32Next(hSnapshot.get(), &peProcess);

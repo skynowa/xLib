@@ -459,7 +459,7 @@ CxPop3::_ulMailsSum(const std::tstring_t &a_csServerAnswer) {
     std::tstring_t     sSum;
     std::vec_tstring_t vsRes;
 
-    CxString::vSplit(a_csServerAnswer, xT(" "), &vsRes);
+    CxString::split(a_csServerAnswer, xT(" "), &vsRes);
 
     sSum  = vsRes.at(1);
     ulSum = CxString::cast<ulong_t>( sSum );        // ul -> l
@@ -477,7 +477,7 @@ CxPop3::_ulMailsSize(const std::tstring_t &a_csServerAnswer) {
     std::tstring_t     sSize;
     std::vec_tstring_t vsRes;
 
-    CxString::vSplit(a_csServerAnswer, xT(" "), &vsRes);
+    CxString::split(a_csServerAnswer, xT(" "), &vsRes);
 
     sSize  = vsRes.at(2);
     ulSize = CxString::cast<ulong_t>( sSize );    // ul+\r\n -> l

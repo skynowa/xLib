@@ -279,7 +279,7 @@ CxCookiePv1::vClear() {
 struct SCompareNoCase {
     bool
     operator() (const std::tstring_t &csStr1, const std::tstring_t &csStr2) const {
-        return !! CxString::bCompareNoCase(csStr1, csStr2);
+        return !! CxString::compareNoCase(csStr1, csStr2);
     }
 };
 //---------------------------------------------------------------------------
@@ -298,21 +298,21 @@ CxCookiePv1::vInit(
     std::tstring_t sCookie;
 
     sCookie = a_csRawCookie;
-    sCookie = CxString::sRemoveAll(sCookie, CxConst::xSQM);
-    sCookie = CxString::sRemoveAll(sCookie, CxConst::xDQM);
+    sCookie = CxString::removeAll(sCookie, CxConst::xSQM);
+    sCookie = CxString::removeAll(sCookie, CxConst::xDQM);
 
     //split into pairs (name1=value1; name2=value2; nameN=valueN)
     std::vec_tstring_t vsPairs;
 
-    CxString::vSplit(sCookie, CxConst::xSEMICOLON, &vsPairs);
+    CxString::split(sCookie, CxConst::xSEMICOLON, &vsPairs);
 
     for (size_t i = 0; i < vsPairs.size(); ++ i) {
         //split into name, value (name=value)
         std::vec_tstring_t vsTemp;
 
-        CxString::vSplit(vsPairs.at(i), CxConst::xEQUAL, &vsTemp);
+        CxString::split(vsPairs.at(i), CxConst::xEQUAL, &vsTemp);
 
-        std::tstring_t sCookieName  = CxString::sTrimSpace(vsTemp.at(0));
+        std::tstring_t sCookieName  = CxString::trimSpace(vsTemp.at(0));
         std::tstring_t sCookieValue = ( (1 == vsTemp.size()) ? std::tstring_t() : vsTemp.at(1) );
 
         if (0 == i) {

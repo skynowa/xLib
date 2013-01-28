@@ -26,7 +26,7 @@ CxConnectionString::sMSJetOleDb40(
     const std::tstring_t &a_csDatabasePassword
 )
 {
-    xTEST_EQ(false, CxString::sTrimSpace(a_csDataSource).empty());
+    xTEST_EQ(false, CxString::trimSpace(a_csDataSource).empty());
     xTEST_NA(a_csPassword);
     xTEST_NA(a_csUserId);
     xTEST_NA(a_csDatabasePassword);
@@ -36,12 +36,12 @@ CxConnectionString::sMSJetOleDb40(
     sRv =
         std::tstring_t() +
         xT("Provider                                 = Microsoft.Jet.OLEDB.4.0;")                                +
-        xT("Data Source                              = ") + CxString::sTrimSpace(a_csDataSource) + xT(";")       +
+        xT("Data Source                              = ") + CxString::trimSpace(a_csDataSource) + xT(";")       +
         xT("Extended Properties                      = ;")                                                       +
         xT("Jet OLEDB:Compact Without Replica Repair = False;")                                                  +
         xT("Jet OLEDB:Create System Database         = False;")                                                  +
         xT("Jet OLEDB:Database Locking Mode          = 1;")                                                      +
-        xT("Jet OLEDB:Database Password              = ") + CxString::sTrimSpace(a_csDatabasePassword) + xT(";") +
+        xT("Jet OLEDB:Database Password              = ") + CxString::trimSpace(a_csDatabasePassword) + xT(";") +
         xT("Jet OLEDB:Don't Copy Locale on Compact   = False;")                                                  +
         xT("Jet OLEDB:Encrypt Database               = False;")                                                  +
         xT("Jet OLEDB:Engine Type                    = 0;")                                                      +
@@ -53,9 +53,9 @@ CxConnectionString::sMSJetOleDb40(
         xT("Jet OLEDB:System database                = ;")                                                       +
         xT("Locale Identifier                        = 1033;")                                                   +
         xT("Mode                                     = ReadWrite;")                                              +
-        xT("Password                                 = ") + CxString::sTrimSpace(a_csPassword) + xT(";")         +
+        xT("Password                                 = ") + CxString::trimSpace(a_csPassword) + xT(";")         +
         xT("Persist Security Info                    = False;")                                                  +
-        xT("User ID                                  = ") + CxString::sTrimSpace(a_csUserId)   + xT(";");
+        xT("User ID                                  = ") + CxString::trimSpace(a_csUserId)   + xT(";");
 
     return sRv;
 }

@@ -63,7 +63,7 @@ CxPath::sExe() {
     sRv.resize(dwStored);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        const std::tstring_t csProcFile = CxString::sFormat(xT("/proc/%ld/exe"), CxCurrentProcess::ulId());
+        const std::tstring_t csProcFile = CxString::format(xT("/proc/%ld/exe"), CxCurrentProcess::ulId());
 
         bool bRv = CxFile::bIsExists(csProcFile);
         xCHECK_RET(false == bRv, std::tstring_t());
@@ -200,7 +200,7 @@ CxPath::sFileBaseName() const {
     size_t uiSlashPos = sFilePath().rfind(CxConst::xSLASH, sFilePath().size());
     size_t uiDotPos   = sFilePath().rfind(CxConst::xDOT,   sFilePath().size());
 
-    return CxString::sCut(sFilePath(), uiSlashPos + CxConst::xSLASH.size(), uiDotPos);
+    return CxString::cut(sFilePath(), uiSlashPos + CxConst::xSLASH.size(), uiDotPos);
 }
 //--------------------------------------------------------------------------
 std::tstring_t
@@ -487,7 +487,7 @@ CxPath::bIsNameValid(
         const std::tstring_t csBaseFileName = CxPath(a_csFileName).sRemoveExt();
 
         for (size_t i = 0; i < xARRAY_SIZE(casReservedNames); ++ i) {
-            bRv = CxString::bCompareNoCase(csBaseFileName, casReservedNames[i]);
+            bRv = CxString::compareNoCase(csBaseFileName, casReservedNames[i]);
             xCHECK_RET(true == bRv, false);
         }
     }
@@ -581,7 +581,7 @@ CxPath::sSetNameValid(
     // as the first character of a name. For example, ".temp".
     {
         // skip checks, trim right now
-        sRv = CxString::sTrimChars(sRv, CxConst::xSPACE + CxConst::xDOT);
+        sRv = CxString::trimChars(sRv, CxConst::xSPACE + CxConst::xDOT);
 
         xCHECK_RET(true == sRv.empty(), std::tstring_t());
     }
@@ -658,7 +658,7 @@ CxPath::sSetNameValid(
         const std::tstring_t csBaseFileName = CxPath(sRv).sRemoveExt();
 
         for (size_t i = 0; i < xARRAY_SIZE(casReservedNames); ++ i) {
-            bRv = CxString::bCompareNoCase(csBaseFileName, casReservedNames[i]);
+            bRv = CxString::compareNoCase(csBaseFileName, casReservedNames[i]);
             if (true == bRv) {
                 return std::tstring_t();
             }
@@ -728,7 +728,7 @@ CxPath::sToWin(
         sRv = sSlashRemove();
     }
 
-    sRv = CxString::sReplaceAll(sRv, CxConst::xUNIX_SLASH, CxConst::xWIN_SLASH);
+    sRv = CxString::replaceAll(sRv, CxConst::xUNIX_SLASH, CxConst::xWIN_SLASH);
 
     return sRv;
 }
@@ -748,7 +748,7 @@ CxPath::sToUnix(
         sRv = sSlashRemove();
     }
 
-    sRv = CxString::sReplaceAll(sRv, CxConst::xWIN_SLASH, CxConst::xUNIX_SLASH);
+    sRv = CxString::replaceAll(sRv, CxConst::xWIN_SLASH, CxConst::xUNIX_SLASH);
 
     return sRv;
 }
@@ -769,9 +769,9 @@ CxPath::sToNative(
     }
 
 #if   xOS_ENV_WIN
-    sRv = CxString::sReplaceAll(sRv, CxConst::xUNIX_SLASH, CxConst::xSLASH);
+    sRv = CxString::replaceAll(sRv, CxConst::xUNIX_SLASH, CxConst::xSLASH);
 #elif xOS_ENV_UNIX
-    sRv = CxString::sReplaceAll(sRv, CxConst::xWIN_SLASH,  CxConst::xSLASH);
+    sRv = CxString::replaceAll(sRv, CxConst::xWIN_SLASH,  CxConst::xSLASH);
 #endif
 
     return sRv;
@@ -904,12 +904,12 @@ CxPath::sShort(
 //--------------------------------------------------------------------------
 std::tstring_t
 CxPath::sSlashAppend() const {
-    return CxString::sTrimRightChars(sFilePath(), CxConst::xSLASH).append(CxConst::xSLASH);
+    return CxString::trimRightChars(sFilePath(), CxConst::xSLASH).append(CxConst::xSLASH);
 }
 //--------------------------------------------------------------------------
 std::tstring_t
 CxPath::sSlashRemove() const {
-    return CxString::sTrimRightChars(sFilePath(), CxConst::xSLASH);
+    return CxString::trimRightChars(sFilePath(), CxConst::xSLASH);
 }
 //--------------------------------------------------------------------------
 /* static */
@@ -1065,7 +1065,7 @@ CxPath::sProcValue(
         xTEST_DIFF(std::string::npos, uiDelimPos);
 
         sRv = (*it).substr(uiDelimPos + 1);
-        sRv = CxString::sTrimSpace(sRv);
+        sRv = CxString::trimSpace(sRv);
 
         break;
     }

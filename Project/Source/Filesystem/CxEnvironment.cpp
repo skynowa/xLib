@@ -235,12 +235,12 @@ CxEnvironment::sExpandStrings(
         // copy %var% to temp string
         std::tstring_t sRawEnvVar; // %var%
 
-        sRawEnvVar = CxString::sCut(sRv, cuiStartSepPos, cuiStopSepPos + csSep.size());
+        sRawEnvVar = CxString::cut(sRv, cuiStartSepPos, cuiStopSepPos + csSep.size());
         xTEST_EQ(false, sRawEnvVar.empty());
 
         std::tstring_t sEnvVar;    // var
 
-        sEnvVar = CxString::sTrimChars(sRawEnvVar, csSep);
+        sEnvVar = CxString::trimChars(sRawEnvVar, csSep);
 
         //--------------------------------------------------
         // expand var to temp string

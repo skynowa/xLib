@@ -60,7 +60,7 @@ CxStdError::sFormat(
 {
     std::tstring_t sRv;
 
-    sRv = CxString::sFormat(xT("%lu - "), a_ciCode);
+    sRv = CxString::format(xT("%lu - "), a_ciCode);
 
 #if   xOS_ENV_WIN
     #if   xCOMPILER_MINGW

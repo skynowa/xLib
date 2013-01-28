@@ -164,7 +164,7 @@ CxDir::vPathCreate() {
 
     //-------------------------------------
     // split csDirPath into parts
-     CxString::vSplit( CxPath(sDirPath()).sToNative(false), CxConst::xSLASH, &vsPathParts );
+     CxString::split( CxPath(sDirPath()).sToNative(false), CxConst::xSLASH, &vsPathParts );
 
     //-------------------------------------
     // create dirs by steps

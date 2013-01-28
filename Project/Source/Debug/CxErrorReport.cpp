@@ -58,12 +58,12 @@ CxErrorReport::_vConstruct(
     m_sProgram        = CxPath( CxPath(CxPath::sExe()).sShort(cuiReportWidthMax) ).sToUnix(false);
     m_ulProcessId     = (ulong_t)CxCurrentProcess::ulId();
     m_ulThreadId      = (ulong_t)CxCurrentThread::ulId();
-    m_sFileSize       = CxString::sFormatBytes( static_cast<ulonglong_t>( CxFile::llSize(CxPath::sExe())) );
+    m_sFileSize       = CxString::formatBytes( static_cast<ulonglong_t>( CxFile::llSize(CxPath::sExe())) );
 
     m_sSourceFile     = CxPath( CxPath(a_csFile).sShort(cuiReportWidthMax) ).sToUnix(false);
     m_ulSourceLine    = a_culLine;
     m_sFunctionName   = a_csFunc;
-    m_sExpression     = CxString::sFormat(xT("%s (%s) %s %s (%s)"), 
+    m_sExpression     = CxString::format(xT("%s (%s) %s %s (%s)"), 
                                           a_csVar1.c_str(), a_csVar1Value.c_str(), a_csExprSign.c_str(), 
                                           a_csVar2.c_str(), a_csVar2Value.c_str());
     m_sExprSign       = a_csExprSign;
@@ -71,7 +71,7 @@ CxErrorReport::_vConstruct(
     m_sLastErrorStr   = CxLastError::sFormat(a_culLastError);
 
     m_sCurrentDate    = CxDateTime::current().format(CxDateTime::ftDateTime);
-    m_sBuildDate      = CxString::sFormat(xT("%s/%s"), a_csDate.c_str(), a_csTime.c_str());
+    m_sBuildDate      = CxString::format(xT("%s/%s"), a_csDate.c_str(), a_csTime.c_str());
     m_sBuildType      = CxDebugger().bIsDebugBuild() ? xT("debug") : xT("release");
     m_sOsVersion      = CxSystemInfo::sFormatOsType( CxSystemInfo::osOS() );
     m_sOsArchitecture = CxSystemInfo::sFormatOsArch( CxSystemInfo::oaOsArch() );

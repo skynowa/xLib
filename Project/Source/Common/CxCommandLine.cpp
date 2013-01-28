@@ -45,9 +45,9 @@ CxCommandLine::get() {
     LPCTSTR pcszRes = ::GetCommandLine();
     xTEST_PTR(pcszRes);
 
-    sRv = CxString::sTrimSpace(pcszRes);
+    sRv = CxString::trimSpace(pcszRes);
 #elif xOS_ENV_UNIX
-    sRv = CxString::sJoin(_ms_vsArgs, CxConst::xSPACE);
+    sRv = CxString::join(_ms_vsArgs, CxConst::xSPACE);
 #endif
 
     return sRv;

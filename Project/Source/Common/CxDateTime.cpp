@@ -474,28 +474,28 @@ CxDateTime::format(
 
     switch (a_cftFormat) {
         case ftTime: {
-                sRv = CxString::sFormat(
+                sRv = CxString::format(
                         xT("%d:%.2d:%.2d:%.3d"),
                         _m_usHour, _m_usMinute, _m_usSecond, _m_usMillisecond);
             }
             break;
 
         case ftDate: {
-                sRv = CxString::sFormat(
+                sRv = CxString::format(
                         xT("%.2d.%.2d.%.4d"),
                         _m_usDay, _m_usMonth, _m_usYear);
             }
             break;
 
         case ftDateTime: {
-                sRv = CxString::sFormat(
+                sRv = CxString::format(
                         xT("%.2d.%.2d.%.4d %d:%.2d:%.2d:%.3d"),
                         _m_usDay, _m_usMonth, _m_usYear, _m_usHour, _m_usMinute, _m_usSecond, _m_usMillisecond);
             }
             break;
 
         case ftRFC1123: {
-                sRv = CxString::sFormat(
+                sRv = CxString::format(
                         xT("%s, %.2d %s %.4d %.2d:%.2d:%.2d GMT"),
                         weekDayStr(dayOfWeek(), true).c_str(), _m_usDay, CxDateTime::monthStr(_m_usMonth, true).c_str(), _m_usYear, _m_usHour, _m_usMinute, _m_usSecond);
             }
@@ -883,8 +883,8 @@ CxDateTime::monthNum(
     }};
 
     for (ushort_t i = 0; i < static_cast<ushort_t>( casLongMonths.size() ); ++ i) {
-        xCHECK_RET(false == a_cbIsShortName && true == CxString::bCompareNoCase(a_csMonth, casLongMonths[i]),  i + 1);
-        xCHECK_RET(true  == a_cbIsShortName && true == CxString::bCompareNoCase(a_csMonth, casShortMonths[i]), i + 1);
+        xCHECK_RET(false == a_cbIsShortName && true == CxString::compareNoCase(a_csMonth, casLongMonths[i]),  i + 1);
+        xCHECK_RET(true  == a_cbIsShortName && true == CxString::compareNoCase(a_csMonth, casShortMonths[i]), i + 1);
     }
 
     return static_cast<ushort_t>( - 1 );  //TODO: static_cast<ushort_t>( - 1 )
@@ -965,8 +965,8 @@ CxDateTime::weekDayNum(
     }};
 
     for (ushort_t i = 0; i < static_cast<ushort_t>( casLongDays.size() ); ++ i) {
-        xCHECK_RET(false == a_cbIsShortName && true == CxString::bCompareNoCase(a_csDay, casLongDays[i]),  i);
-        xCHECK_RET(true  == a_cbIsShortName && true == CxString::bCompareNoCase(a_csDay, casShortDays[i]), i);
+        xCHECK_RET(false == a_cbIsShortName && true == CxString::compareNoCase(a_csDay, casLongDays[i]),  i);
+        xCHECK_RET(true  == a_cbIsShortName && true == CxString::compareNoCase(a_csDay, casShortDays[i]), i);
     }
 
     return static_cast<ushort_t>( - 1 );  //TODO: static_cast<ushort_t>( - 1 )
@@ -1011,13 +1011,13 @@ CxDateTime::_parse(
                 std::tstring_t sDT;
 
                 sDT = a_csDT;
-                sDT = CxString::sReplaceAll(sDT, CxConst::xCOLON,  CxConst::xSPACE);
-                sDT = CxString::sReplaceAll(sDT, CxConst::xHYPHEN, CxConst::xSPACE);
+                sDT = CxString::replaceAll(sDT, CxConst::xCOLON,  CxConst::xSPACE);
+                sDT = CxString::replaceAll(sDT, CxConst::xHYPHEN, CxConst::xSPACE);
 
                 //split by separator " "
                 std::vec_tstring_t vsDates;
 
-                CxString::vSplit(sDT, CxConst::xSPACE, &vsDates);
+                CxString::split(sDT, CxConst::xSPACE, &vsDates);
 
                 //CxString::vStdVectorPrintT(vsDates);
 

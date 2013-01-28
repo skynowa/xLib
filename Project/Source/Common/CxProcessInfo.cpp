@@ -162,7 +162,7 @@ CxProcessInfo::ioBytes(
         1372    cancelled_write_bytes: 0
     #endif
 
-    std::tstring_t sProcPath  = CxString::sFormat(xT("/proc/%lu/io"), a_cidId);
+    std::tstring_t sProcPath  = CxString::format(xT("/proc/%lu/io"), a_cidId);
 
     ulong_t ulReadBytes = 0UL;
     {
@@ -205,7 +205,7 @@ CxProcessInfo::exeName(
     sRv.resize(dwStored);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        const std::tstring_t csProcFile = CxString::sFormat(xT("/proc/%ld/exe"), a_cidId);
+        const std::tstring_t csProcFile = CxString::format(xT("/proc/%ld/exe"), a_cidId);
 
         bool bRv = CxFile::bIsExists(csProcFile);
         xCHECK_RET(false == bRv, std::tstring_t());
@@ -386,7 +386,7 @@ CxProcessInfo::commandLine(
     #if xUNICODE
         sRv = wsRv;
     #else
-        sRv = CxString::sWStrToStr(wsRv, CP_ACP);
+        sRv = CxString::wstrToStr(wsRv, CP_ACP);
     #endif
 
         (void)::free(pCommandLineContents); pCommandLineContents = NULL;
@@ -394,7 +394,7 @@ CxProcessInfo::commandLine(
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         // FIX: content of "/proc/%ld/cmdline" - missing spaces
-        const std::tstring_t csProcFile = CxString::sFormat(xT("/proc/%ld/cmdline"), a_cidId);
+        const std::tstring_t csProcFile = CxString::format(xT("/proc/%ld/cmdline"), a_cidId);
 
         std::vec_tstring_t vsProcFile;
 

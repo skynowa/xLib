@@ -117,7 +117,7 @@ CxTest_CxLocalStorage::vUnit(
             for (size_t i = 0; i < vsPairs.size(); ++ i) {
                 std::vec_tstring_t vsPair;
 
-                CxString::vSplit(vsPairs.at(i), CxConst::xEQUAL, &vsPair);
+                CxString::split(vsPairs.at(i), CxConst::xEQUAL, &vsPair);
                 xTEST_EQ(false, vsPair.empty());
 
                 m_bRv = iniIni.bKeyIsExists( vsPair.at(0) );
@@ -138,7 +138,7 @@ CxTest_CxLocalStorage::vUnit(
             for (size_t i = 0; i < vsPairs.size(); ++ i) {
                 std::vec_tstring_t vsPair;
 
-                 CxString::vSplit(vsPairs.at(i), CxConst::xEQUAL, &vsPair);
+                 CxString::split(vsPairs.at(i), CxConst::xEQUAL, &vsPair);
 
                 m_bRv = iniIni.bKeyIsExists( vsPair.at(0) );
                 xTEST_EQ(false, m_bRv);
