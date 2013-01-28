@@ -699,7 +699,7 @@ CxTest_CxPath::vUnit(
     {
         std::vec_tstring_t vsArgs;
 
-        CxCommandLine::vArgs(&vsArgs);
+        CxCommandLine::args(&vsArgs);
 
         m_sRv = CxPath(vsArgs.at(0)).sAbsolute();
         xTEST_EQ(false, m_sRv.empty());

@@ -123,7 +123,7 @@ int
 xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
     //--------------------------------------------------
     // set command line args for xLib
-    CxCommandLine::vSetArgs(iArgCount, paszArgs);
+    CxCommandLine::setArgs(iArgCount, paszArgs);
 
     //--------------------------------------------------
     // options (default)
@@ -135,7 +135,7 @@ xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
     {
         std::vec_tstring_t vsArgs;
 
-        CxCommandLine::vArgs(&vsArgs);
+        CxCommandLine::args(&vsArgs);
 
         // usage
         if (2 == iArgCount) {
