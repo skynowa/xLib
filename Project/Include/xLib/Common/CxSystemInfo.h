@@ -62,70 +62,70 @@ public:
     };
 
     // OS
-    static ExOsType       osOS              ();
+    static ExOsType       os              ();
         ///< get information about the current OS
-    static std::tstring_t sFormatOsType     (const ExOsType &otOsType);
+    static std::tstring_t formatOsType    (const ExOsType &otOsType);
         ///< format OS type
 
-    static ExOsArch       oaOsArch          ();
+    static ExOsArch       osArch          ();
         ///< get OS architecture
-    static std::tstring_t sFormatOsArch     (const ExOsArch &oaOsArch);
+    static std::tstring_t formatOsArch    (const ExOsArch &oaOsArch);
         ///< format get OS architecture
 
-    static std::tstring_t sDesktopName      ();
+    static std::tstring_t desktopName     ();
         ///< desktop environments
 
     // users
-    static std::tstring_t sHostName         ();
+    static std::tstring_t hostName        ();
         ///< get the NetBIOS name of the local computer
-    static bool           bIsUserAnAdmin    ();
+    static bool           isUserAnAdmin   ();
         ///< is current user an admin
-    static std::tstring_t sUserName         ();
+    static std::tstring_t userName        ();
         ///< get the name of the user associated with the current thread
-    static std::tstring_t sUseHomeDir       ();
+    static std::tstring_t useHomeDir      ();
         ///< get home directory of current user
-    static std::tstring_t sUserShellPath    ();
+    static std::tstring_t userShellPath   ();
         ///< get shell path of current user
 
     // CPU
-    static ulong_t        ulNumOfCpus       ();
+    static ulong_t        numOfCpus       ();
         ///< get num of CPUs
-    static ulong_t        ulCurrentCpuNum   ();
+    static ulong_t        currentCpuNum   ();
         ///< get the number of the processor the current thread was running on during the call to this function
-    static ExCpuVendor    cvCpuVendor       ();
+    static ExCpuVendor    cpuVendor         ();
         ///< get CPU vendor
-    static std::tstring_t sCpuModel         ();
+    static std::tstring_t cpuModel        ();
         ///< get CPU model name
-    static ulong_t        ulCpuSpeed        ();
+    static ulong_t        cpuSpeed        ();
         ///< get CPU speed (MHz)
-    static ulong_t        ulCpuUsage        ();
+    static ulong_t        cpuUsage        ();
         ///< get CPU usage (percentage)
 
     // RAM
-    static ulonglong_t    ullRamTotal       ();
+    static ulonglong_t    ramTotal        ();
         ///< get total RAM (bytes)
-    static ulonglong_t    ullRamAvailable   ();
+    static ulonglong_t    ramAvailable    ();
         ///< get available RAM (bytes)
-    static ulong_t        ulRamUsage        ();
+    static ulong_t        ramUsage        ();
         ///< get RAM usage (percentage)
-    static ulong_t        ulPageSize        ();
+    static ulong_t        pageSize        ();
         ///< get Size of a page (bytes)
 
 private:
-                          CxSystemInfo      ();
+                          CxSystemInfo    ();
         ///< constructor
-    virtual              ~CxSystemInfo      ();
+    virtual              ~CxSystemInfo    ();
         ///< destructor
 
 #if xOS_ENV_UNIX
-    static void           _passwordFileEntry(struct passwd *pwdPasswd);
+    static void           _passwdFileEntry(struct passwd *pwdPasswd);
         ///< get password file entry
 #endif
 };
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif    //xLib_Common_CxSystemInfoH
+#endif // xLib_Common_CxSystemInfoH
 
 
 // https://github.com/joyent/node/blob/master/src/platform_linux.cc
