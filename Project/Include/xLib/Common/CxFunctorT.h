@@ -26,7 +26,7 @@ public:
 
     ReturnT  operator () (ParamT Param);
         ///< operator ()
-    ReturnT  Execute     (ParamT Param);
+    ReturnT  execute     (ParamT Param);
         ///< execute operator ()
 
 private:
@@ -38,7 +38,7 @@ xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #include "CxFunctorT.inl"
 //---------------------------------------------------------------------------
-#endif //xLib_Common_CxFunctorH
+#endif // xLib_Common_CxFunctorH
 
 
 #if xTODO

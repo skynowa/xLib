@@ -43,7 +43,7 @@ CxFunctorT<ClassT, ReturnT, ParamT>::operator()(
 //---------------------------------------------------------------------------
 template <typename ClassT, typename ReturnT, typename ParamT>
 ReturnT
-CxFunctorT<ClassT, ReturnT, ParamT>::Execute(
+CxFunctorT<ClassT, ReturnT, ParamT>::execute(
     ParamT Param
 )
 {
