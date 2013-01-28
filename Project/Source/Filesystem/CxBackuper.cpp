@@ -73,11 +73,11 @@ CxBackuper::vExecute(
 
     switch (_m_cbpPeriod) {
         // TODO: case bpHourly:  { ; }   break;
-        case bpDaily:   { sDateTimeStamp = CxDateTime().dtCurrent().sFormat(CxDateTime::ftDate);     }  break;
+        case bpDaily:   { sDateTimeStamp = CxDateTime().current().format(CxDateTime::ftDate);     }  break;
         // TODO: case bpWeekly:  { ; }   break;
         // TODO: case bpMonthly: { ; }   break;
 
-        default:        { sDateTimeStamp = CxDateTime().dtCurrent().sFormat(CxDateTime::ftDateTime); }  break;
+        default:        { sDateTimeStamp = CxDateTime().current().format(CxDateTime::ftDateTime); }  break;
     }
 
     sDateTimeStamp = CxString::sReplaceAll(sDateTimeStamp, xT(":"), xT("-"));

@@ -796,7 +796,7 @@ CxFile::vWipe(
     {
         std::tstring_t sRndFileName;
 
-        sRndFileName = CxString::cast( CxDateTime().dtCurrent().ullToMilliseconds() );
+        sRndFileName = CxString::cast( CxDateTime().current().toMilliseconds() );
         std::random_shuffle(sRndFileName.begin(), sRndFileName.end());
 
         sRndFilePath = CxPath(a_csFilePath).sDir() + CxConst::xSLASH + sRndFileName;
@@ -974,9 +974,9 @@ CxFile::vTime(
     BOOL blRes = ::GetFileTime(m_hHandle.hGet(), &ftCreate, &ftAccess, &ftModified);
     xTEST_DIFF(FALSE, blRes);
 
-    CxUtils::ptrAssignT(a_ptmCreate,   CxDateTime::tmFileTimeToUnixTime(ftCreate));
-    CxUtils::ptrAssignT(a_ptmAccess,   CxDateTime::tmFileTimeToUnixTime(ftAccess));
-    CxUtils::ptrAssignT(a_ptmModified, CxDateTime::tmFileTimeToUnixTime(ftModified));
+    CxUtils::ptrAssignT(a_ptmCreate,   CxDateTime::fileTimeToUnixTime(ftCreate));
+    CxUtils::ptrAssignT(a_ptmAccess,   CxDateTime::fileTimeToUnixTime(ftAccess));
+    CxUtils::ptrAssignT(a_ptmModified, CxDateTime::fileTimeToUnixTime(ftModified));
 #elif xOS_ENV_UNIX
     xTSTAT_STRUCT stInfo = {0};
 
@@ -1005,13 +1005,13 @@ CxFile::vSetTime(
 
 #if   xOS_ENV_WIN
     FILETIME ftCreate = {0};
-    CxDateTime::vUnixTimeToFileTime(a_ctmCreate, &ftCreate);
+    CxDateTime::unixTimeToFileTime(a_ctmCreate, &ftCreate);
 
     FILETIME ftAccess = {0};
-    CxDateTime::vUnixTimeToFileTime(a_ctmAccess, &ftAccess);
+    CxDateTime::unixTimeToFileTime(a_ctmAccess, &ftAccess);
 
     FILETIME ftModified = {0};
-    CxDateTime::vUnixTimeToFileTime(a_ctmModified, &ftModified);
+    CxDateTime::unixTimeToFileTime(a_ctmModified, &ftModified);
 
     CxHandleInvalid m_hHandle;
 

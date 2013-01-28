@@ -77,7 +77,7 @@ CxFileLog::vWrite(
     //-------------------------------------
     //time
     std::tstring_t sTime;
-    sTime = CxDateTime::dtCurrent().sFormat(CxDateTime::ftTime);
+    sTime = CxDateTime::current().format(CxDateTime::ftTime);
 
     //-------------------------------------
     //comment

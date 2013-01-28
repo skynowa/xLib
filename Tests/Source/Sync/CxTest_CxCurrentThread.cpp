@@ -95,15 +95,15 @@ CxTest_CxCurrentThread::vUnit(
 
             CxDateTime dtTime1;
             
-            dtTime1 = CxDateTime::dtCurrent();
+            dtTime1 = CxDateTime::current();
 
             CxCurrentThread::vSleep(cuiMsec);
 
             CxDateTime dtTime2;
             
-            dtTime2 = CxDateTime::dtCurrent();
+            dtTime2 = CxDateTime::current();
 
-            xTEST_GR_EQ(dtTime2.ullToMilliseconds(), dtTime1.ullToMilliseconds());
+            xTEST_GR_EQ(dtTime2.toMilliseconds(), dtTime1.toMilliseconds());
             //xTRACEV(xT("sNow1: %s,\nsNow2: %s"), dtTime1.sFormat(CxDateTime::ftTime).c_str(), dtTime2.sFormat(CxDateTime::ftTime).c_str());
         }
     }
