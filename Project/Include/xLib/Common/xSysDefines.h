@@ -219,7 +219,7 @@
 
 //--------------------------------------------------
 // debug, release build
-#if defined(NDEBUG)
+#if defined(NDEBUG) || defined(_NDEBUG)
     #define xBUILD_RELEASE 1
         ///< release build
 #else

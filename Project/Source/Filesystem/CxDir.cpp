@@ -121,7 +121,7 @@ CxDir::bIsRoot() {
 #if   xOS_ENV_WIN
     xCHECK_RET(3 != sDirPath().size(), false);
 
-    bool bRes1 = CxChar::bIsAlpha(sDirPath().at(0));
+    bool bRes1 = CxChar::isAlpha(sDirPath().at(0));
     bool bRes2 = (sDirPath().at(1) == CxConst::xCOLON.at(0));
     bool bRes3 = (sDirPath().at(2) == CxConst::xWIN_SLASH.at(0) || sDirPath().at(2) == CxConst::xUNIX_SLASH.at(0));
 

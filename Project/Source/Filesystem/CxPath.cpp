@@ -456,7 +456,7 @@ CxPath::bIsNameValid(
         struct _SNested {
             static bool
             bIsCharControl(const std::tstring_t::value_type &cchChat) {
-                return CxChar::bIsControl(cchChat);
+                return CxChar::isControl(cchChat);
             }
         };
 
@@ -532,7 +532,7 @@ CxPath::bIsAbsolute() const {
 
 #if   xOS_ENV_WIN
     xCHECK_RET(1 == sFilePath().size(),                                                           false);
-    xCHECK_RET(CxChar::bIsAlpha(sFilePath().at(0)) && CxConst::xCOLON.at(0) == sFilePath().at(1), true);
+    xCHECK_RET(CxChar::isAlpha(sFilePath().at(0)) && CxConst::xCOLON.at(0) == sFilePath().at(1), true);
 #elif xOS_ENV_UNIX
     xNA;
 #endif
@@ -620,7 +620,7 @@ CxPath::sSetNameValid(
         struct _SNested {
             static bool
             bIsCharControl(const std::tstring_t::value_type &cchChat) {
-                return CxChar::bIsControl(cchChat);
+                return CxChar::isControl(cchChat);
             }
         };
 
