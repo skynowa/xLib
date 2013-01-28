@@ -32,7 +32,7 @@ CxTest_CxCookiePv1::vUnit(
     const longlong_t  ciMaxAge    = 10 * 60 * 60;
     const bool      cbSecure    = true;
     const bool      cbHttpOnly  = true;
-    const std::tstring_t   csRawCookie = CxString::sFormat(
+    const std::tstring_t   csRawCookie = CxString::format(
                                         xT("%s=\"%s\"; Comment=\"%s\"; Domain=\"%s\"; Path=\"%s\"; Max-Age=\"%lli\"; Secure; HttpOnly; Version=\"1\""),
                                         csName.c_str(), csValue.c_str(), csComment.c_str(), csDomain.c_str(), csPath.c_str(), ciMaxAge /*cbSecure = true, cbHttpOnly = true*/
                                     );

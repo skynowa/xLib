@@ -203,7 +203,7 @@ CxTest_CxDir::vUnit(
 
         for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
             bool bRes1 = CxDir(sTestData[i][0]).bIsRoot();
-            bool bRes2 = CxString::bStrToBool(sTestData[i][1]);
+            bool bRes2 = CxString::strToBool(sTestData[i][1]);
             xTEST_EQ(bRes1, bRes2);
         }
     }

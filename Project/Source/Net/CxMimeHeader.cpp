@@ -113,8 +113,8 @@ CxMimeHeader::vParse(
         xTEST_EQ(false, vsLines.empty(), false);
 
         //????????? ? ?????? "????" ? "????????"
-        std::tstring_t sKey   = CxString::sTrimSpace(vsLines.at(0));
-        std::tstring_t sValue = CxString::sTrimSpace(vsLines.at(1));
+        std::tstring_t sKey   = CxString::trimSpace(vsLines.at(0));
+        std::tstring_t sValue = CxString::trimSpace(vsLines.at(1));
 
         _m_mmsHeader.insert(std::pair<std::tstring_t, std::tstring_t>(sKey, sValue));
     }
@@ -245,7 +245,7 @@ std::tstring_t
 CxMimeHeader::sGenerateMessageID() {
     std::tstring_t sRv;
 
-    sRv = CxString::sFormat(xT("%s@%s"), CxString::sCreateGuid().c_str(), CxSystemInfo::sHostName().c_str());
+    sRv = CxString::format(xT("%s@%s"), CxString::sCreateGuid().c_str(), CxSystemInfo::sHostName().c_str());
     xTEST_EQ(false, sRv.empty());
 
     return sRv;

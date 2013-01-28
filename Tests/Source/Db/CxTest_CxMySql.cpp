@@ -76,7 +76,7 @@ CxTest_CxMySql::vUnit(
 
         for (size_t i = 0; i < xARRAY_SIZE(casData); ++ i) {
             bool bRes1 = CxMySQLConnection::bIsExists(csHost, csUser, csPassword, casData[i][0], cuiPort, csUnixSocket, culClientFlag);
-            bool bRes2 = CxString::bStrToBool(casData[i][1]);
+            bool bRes2 = CxString::strToBool(casData[i][1]);
             xTEST_EQ(bRes1, bRes2);
         }
     }

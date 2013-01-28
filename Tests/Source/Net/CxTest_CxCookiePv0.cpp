@@ -29,12 +29,12 @@ CxTest_CxCookiePv0::vUnit(
     const std::tstring_t csDomain    = xT(".domain.com0");
     const std::tstring_t csPath      = xT("/0");
     const std::tstring_t csExpires   = xT("Wed, 13-Jan-2021 22:23:01 GMT");  //Thu, 22 Mar 2012 18:16:13 GMT
-    const bool    cbSecure    = true;
-    const bool    cbHttpOnly  = true;
-    const std::tstring_t csRawCookie = CxString::sFormat(
-                                    xT("%s=%s; Domain=%s; Path=%s; Expires=%s; Secure; HttpOnly"),
-                                    csName.c_str(), csValue.c_str(), csDomain.c_str(), csPath.c_str(), csExpires.c_str() /*cbSecure = true, cbHttpOnly = true*/
-                                );
+    const bool           cbSecure    = true;
+    const bool           cbHttpOnly  = true;
+    const std::tstring_t csRawCookie = CxString::format(
+                                            xT("%s=%s; Domain=%s; Path=%s; Expires=%s; Secure; HttpOnly"),
+                                            csName.c_str(), csValue.c_str(), csDomain.c_str(), 
+                                            csPath.c_str(), csExpires.c_str() /*cbSecure = true, cbHttpOnly = true*/);
 
     xTEST_CASE("CxCookiePv0::CxCookiePv0", cullCaseLoops)
     {

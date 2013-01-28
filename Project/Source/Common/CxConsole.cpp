@@ -224,15 +224,15 @@ CxConsole::setAttributes(
         xCHECK_DO(a_ciAttributes & CxConsole::atReverse,    /* wAttributes |= ciAttributeReverse */);      // not supported
         xCHECK_DO(a_ciAttributes & CxConsole::atConcealed,  /* wAttributes |= ciAttributeConcealed */);    // not supported
     #elif xOS_ENV_UNIX
-        sAttributes += CxString::sFormat(xT("\033[%im"), fgForegroundColor);
-        sAttributes += CxString::sFormat(xT("\033[%im"), bgBackgroundColor);
+        sAttributes += CxString::format(xT("\033[%im"), fgForegroundColor);
+        sAttributes += CxString::format(xT("\033[%im"), bgBackgroundColor);
 
-        xCHECK_DO(a_ciAttributes & CxConsole::atAllOff,     sAttributes += CxString::sFormat(xT("\033[%im"), ciAttributeAllOff));
-        xCHECK_DO(a_ciAttributes & CxConsole::atBold,       sAttributes += CxString::sFormat(xT("\033[%im"), ciAttributeBold));
-        xCHECK_DO(a_ciAttributes & CxConsole::atUnderscore, sAttributes += CxString::sFormat(xT("\033[%im"), ciAttributeUnderscore));
-        xCHECK_DO(a_ciAttributes & CxConsole::atBlink,      sAttributes += CxString::sFormat(xT("\033[%im"), ciAttributeBlink));
-        xCHECK_DO(a_ciAttributes & CxConsole::atReverse,    sAttributes += CxString::sFormat(xT("\033[%im"), ciAttributeReverse));
-        xCHECK_DO(a_ciAttributes & CxConsole::atConcealed,  sAttributes += CxString::sFormat(xT("\033[%im"), ciAttributeConcealed));
+        xCHECK_DO(a_ciAttributes & CxConsole::atAllOff,     sAttributes += CxString::format(xT("\033[%im"), ciAttributeAllOff));
+        xCHECK_DO(a_ciAttributes & CxConsole::atBold,       sAttributes += CxString::format(xT("\033[%im"), ciAttributeBold));
+        xCHECK_DO(a_ciAttributes & CxConsole::atUnderscore, sAttributes += CxString::format(xT("\033[%im"), ciAttributeUnderscore));
+        xCHECK_DO(a_ciAttributes & CxConsole::atBlink,      sAttributes += CxString::format(xT("\033[%im"), ciAttributeBlink));
+        xCHECK_DO(a_ciAttributes & CxConsole::atReverse,    sAttributes += CxString::format(xT("\033[%im"), ciAttributeReverse));
+        xCHECK_DO(a_ciAttributes & CxConsole::atConcealed,  sAttributes += CxString::format(xT("\033[%im"), ciAttributeConcealed));
     #endif
     }
 
@@ -382,7 +382,7 @@ CxConsole::msgBox(
     writeLine(xT("#"));
     writeLine(xT("################################################################################"));
     writeLine();
-    write(CxString::sFormat(xT("\nAbort (%c), Ignore (%c), Retry (%c): "), cmAbort, cmIgnore, cmRetry));
+    write(CxString::format(xT("\nAbort (%c), Ignore (%c), Retry (%c): "), cmAbort, cmIgnore, cmRetry));
 
     EConsoleCmd cmRes = static_cast<EConsoleCmd>( std::tcin.get() );   std::tcin.ignore();
     switch (cmRes) {
@@ -475,7 +475,7 @@ CxConsole::pause(
         std::cin.clear();
         std::cin.ignore();
 	} else {
-        sMsg = CxString::sFormat(xT("Pause, wait for %lu msec to continue..."), culTimeoutMs);
+        sMsg = CxString::format(xT("Pause, wait for %lu msec to continue..."), culTimeoutMs);
 
         writeLine(sMsg);
 
@@ -601,7 +601,7 @@ CxConsole::setTitle(
     xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     // TODO: vSetTitle
-    writeLine( CxString::sFormat(xT("%c]0;%s%c"), xT('\033'), a_csTitle.c_str(), xT('\007')) );
+    writeLine( CxString::format(xT("%c]0;%s%c"), xT('\033'), a_csTitle.c_str(), xT('\007')) );
 #endif
 }
 //---------------------------------------------------------------------------
@@ -693,7 +693,7 @@ CxConsole::_wndHandle() {
     xTEST_EQ(false, sOldWndTitle.empty());
 
     // format a "unique" szNewWndTitle.
-    sNewWndTitle = CxString::sFormat(xT("%lu/%lu"), ::GetTickCount(), CxCurrentProcess::ulId());
+    sNewWndTitle = CxString::format(xT("%lu/%lu"), ::GetTickCount(), CxCurrentProcess::ulId());
 
     // change current window title.
     setTitle(sNewWndTitle);

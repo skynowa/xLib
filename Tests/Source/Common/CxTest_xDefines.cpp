@@ -309,8 +309,8 @@ CxTest_xDefines::vUnit(
         const std::tstring_t csVal = xT("aaa");
         const int            ciVal = 100;
 
-        // CxString::sFormat use var args
-        m_sRv = CxString::sFormat(xT("%s, %d"), csVal.c_str(), ciVal);
+        // CxString::format use var args
+        m_sRv = CxString::format(xT("%s, %d"), csVal.c_str(), ciVal);
         xTEST_EQ(std::tstring_t(xT("aaa, 100")), m_sRv);
     }
 
@@ -320,7 +320,7 @@ CxTest_xDefines::vUnit(
         {
             const size_t cuiValue = 2356567U;
 
-            m_sRv = CxString::sFormat(xT("%")xPR_SIZET, cuiValue);
+            m_sRv = CxString::format(xT("%")xPR_SIZET, cuiValue);
             xTEST_EQ(CxString::cast(cuiValue), m_sRv);
         }
 
@@ -328,7 +328,7 @@ CxTest_xDefines::vUnit(
         {
             const longlong_t cllValue = 36745723LL;
 
-            m_sRv = CxString::sFormat(xT("%")xPR_I64d, cllValue);
+            m_sRv = CxString::format(xT("%")xPR_I64d, cllValue);
             xTEST_EQ(CxString::cast(cllValue), m_sRv);
         }
 
@@ -336,7 +336,7 @@ CxTest_xDefines::vUnit(
         {
             const ulonglong_t cullValue = 4767834ULL;
 
-            m_sRv = CxString::sFormat(xT("%")xPR_I64u, cullValue);
+            m_sRv = CxString::format(xT("%")xPR_I64u, cullValue);
             xTEST_EQ(CxString::cast(cullValue), m_sRv);
         }
 
@@ -344,8 +344,8 @@ CxTest_xDefines::vUnit(
         {
             const longlong_t cllValue = 57830LL;
 
-            m_sRv = CxString::sFormat(xT("%")xPR_I64x, cllValue);
-            xTEST_EQ(CxString::sToLowerCase( CxString::cast(cllValue, 16) ), m_sRv);
+            m_sRv = CxString::format(xT("%")xPR_I64x, cllValue);
+            xTEST_EQ(CxString::toLowerCase( CxString::cast(cllValue, 16) ), m_sRv);
         }
     }
 

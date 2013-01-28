@@ -52,7 +52,7 @@ CxShell::execute(
     xCHECK_DO(false == isAvailable(),        return);
 
     // REVIEW: security bug - xT("%s \"%s\"") or xT("\"%s\" \"%s\"") ??
-    std::tstring_t sCommand = CxString::sFormat(xT("%s \"%s\""), a_csFilePath.c_str(), a_csParams.c_str());
+    std::tstring_t sCommand = CxString::format(xT("%s \"%s\""), a_csFilePath.c_str(), a_csParams.c_str());
 
     int iRv = ::xTSYSTEM(sCommand.c_str());
     xTEST_DIFF(- 1, iRv);
@@ -101,9 +101,9 @@ CxShell::execute(
     // csDir        - n/a
     // csfShowCmd   - n/a
 
-    std::tstring_t sFilePath  = CxString::sTrimSpace(a_csFilePath);
-    std::tstring_t sParams    = CxString::sTrimSpace(a_csParams);
-    std::tstring_t sDir       = CxString::sTrimSpace(a_csDir);
+    std::tstring_t sFilePath  = CxString::trimSpace(a_csFilePath);
+    std::tstring_t sParams    = CxString::trimSpace(a_csParams);
+    std::tstring_t sDir       = CxString::trimSpace(a_csDir);
 
     std::tstring_t sOperation;
     switch (a_copOperation) {
@@ -141,7 +141,7 @@ CxShell::executeHttp(
 {
     // csUrl - n/a
 
-    std::tstring_t sUrl = CxString::sTrimSpace(a_csUrl);
+    std::tstring_t sUrl = CxString::trimSpace(a_csUrl);
 
     xTEST_EQ(false, sUrl.empty());
 
@@ -156,7 +156,7 @@ CxShell::executeFtp(
 {
     // csUrl - n/a
 
-    std::tstring_t sUrl = CxString::sTrimSpace(a_csUrl);
+    std::tstring_t sUrl = CxString::trimSpace(a_csUrl);
 
     xTEST_EQ(false, sUrl.empty());
 
@@ -175,9 +175,9 @@ CxShell::executeEmail(
     // csSubject - n/a
     // csBody    - n/a
 
-    std::tstring_t sToEmail = CxString::sTrimSpace(a_csToEmail);
-    std::tstring_t sSubject = CxString::sTrimSpace(a_csSubject);
-    std::tstring_t sBody    = CxString::sTrimSpace(a_csBody);
+    std::tstring_t sToEmail = CxString::trimSpace(a_csToEmail);
+    std::tstring_t sSubject = CxString::trimSpace(a_csSubject);
+    std::tstring_t sBody    = CxString::trimSpace(a_csBody);
 
     xTEST_EQ(false, a_csToEmail.empty());
 

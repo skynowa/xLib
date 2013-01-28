@@ -69,7 +69,7 @@ CxLastError::sFormat(
 {
     std::tstring_t sRv;
 
-    sRv = CxString::sFormat(xT("%lu - "), a_culCode);
+    sRv = CxString::format(xT("%lu - "), a_culCode);
 
 #if   xOS_ENV_WIN
     DWORD  dwRv   = 0UL;
@@ -90,8 +90,8 @@ CxLastError::sFormat(
     std::tstring_t sMessage;
 
     sMessage.assign( static_cast<LPCTSTR>( pvBuff ), dwRv );
-    sMessage = CxString::sRemoveEol(sMessage);
-    sMessage = CxString::sTrimRightChars(sMessage, CxConst::xDOT);
+    sMessage = CxString::removeEol(sMessage);
+    sMessage = CxString::trimRightChars(sMessage, CxConst::xDOT);
 
     sRv.append(sMessage);
 

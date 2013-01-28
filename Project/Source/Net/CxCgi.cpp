@@ -46,7 +46,7 @@ CxCgi::sDump()  const{
 
     std::tstring_t sRv;
 
-    sRv = CxString::sFormat(
+    sRv = CxString::format(
             xT("[CGI dump]\n\n")
             xT("%s\n")
             xT("%s\n")
@@ -69,7 +69,7 @@ CxCgi::vRedirect(
 
     std::tstring_t sHttpResponse;
 
-    sHttpResponse.append( CxString::sFormat(xT("Location: %s\n"), a_csUrl.c_str()) );
+    sHttpResponse.append( CxString::format(xT("Location: %s\n"), a_csUrl.c_str()) );
     sHttpResponse.append( CxConst::xNL );
 
     std::tcout << sHttpResponse << std::endl;
@@ -128,7 +128,7 @@ CxCgi::vUriEncode(
                 std::sprintf(buffer, "%0*X", width, value);
                 str.append(buffer);
              */
-            (*a_psEncodedStr) += CxString::sFormat(xT("%0*X"), 2, (uint_t)(uchar_t)chChar);
+            (*a_psEncodedStr) += CxString::format(xT("%0*X"), 2, (uint_t)(uchar_t)chChar);
         }
         else {
             (*a_psEncodedStr) += chChar;
@@ -240,7 +240,7 @@ cgl_parsecgibuf(/*cgllist *cdata,*/ char *a_query) {
 //        return 0;
 //
 //    //--cgl_charify(s, ' ', '+');
-//    std::tstring_t sRv = CxString::sReplaceAll(s, CxConst::xSPACE, xT("+"));
+//    std::tstring_t sRv = CxString::replaceAll(s, CxConst::xSPACE, xT("+"));
 //
 //    vUrlEscape(sRv, fw);
 //
@@ -253,7 +253,7 @@ cgl_parsecgibuf(/*cgllist *cdata,*/ char *a_query) {
 //    //--cgl_charify(s, '+', ' ');
 //    std::tstring_t sRv;
 //
-//    sRv = CxString::sReplaceAll(s, xT("+"), CxConst::xSPACE);
+//    sRv = CxString::replaceAll(s, xT("+"), CxConst::xSPACE);
 //
 //    vUrlUnescape(sRv);
 //}
@@ -583,7 +583,7 @@ CxCgiEnvironment::sDump() const {
 
     std::tstring_t sRv;
 
-    sRv = CxString::sFormat(
+    sRv = CxString::format(
             xT("[CxCgiEnvironment dump]\n\n")
             xT("AUTH_TYPE: %s\n")
             xT("CONTENT_LENGTH: %s\n")
@@ -701,9 +701,9 @@ CxCgiEnvironment::_bInit() {
 
     //--------------------------------------------------
     //is data from a GET or a POST?
-    if        (false != CxString::bCompareNoCase(xT("GET"), sRequestMethod()) ) {
+    if        (false != CxString::compareNoCase(xT("GET"), sRequestMethod()) ) {
         _m_rmRequestMethod = rmGet;
-    } else if (false != CxString::bCompareNoCase(xT("POST"), sRequestMethod()) ) {
+    } else if (false != CxString::compareNoCase(xT("POST"), sRequestMethod()) ) {
         _m_rmRequestMethod = rmPost;
     }
     else {
@@ -749,7 +749,7 @@ CxCgiCookies::operator [] (
     
 
     xFOREACH_CONST(TCookies, it, Items) {
-        xCHECK_DO(false == CxString::bCompareNoCase(a_csCookieName, (*it)->sValue()), continue);
+        xCHECK_DO(false == CxString::compareNoCase(a_csCookieName, (*it)->sValue()), continue);
 
         return (*it)->sValue();
     }
@@ -766,7 +766,7 @@ CxCgiCookies::sDump() const {
     sRv.append(xT("[CxCgiCookies dump]\n\n"));
 
     xFOREACH_CONST(TCookies, it, Items) {
-        std::tstring_t sItemN = CxString::sFormat(
+        std::tstring_t sItemN = CxString::format(
                 xT("Name: %s\n")
                 xT("Value: %s\n")
                 xT("Domain: %s\n")
@@ -779,8 +779,8 @@ CxCgiCookies::sDump() const {
                 (*it)->sDomain().c_str(),
                 (*it)->sPath().c_str(),
                 (*it)->sExpires().c_str(),
-                CxString::sBoolToStr((*it)->bGetSecure()).c_str(),
-                CxString::sBoolToStr((*it)->bGetHttpOnly()).c_str()
+                CxString::boolToStr((*it)->bGetSecure()).c_str(),
+                CxString::boolToStr((*it)->bGetHttpOnly()).c_str()
         );
 
         sRv.append( xT("[Item]:\n") );
@@ -806,7 +806,7 @@ CxCgiCookies::_vInit() {
     std::vec_tstring_t vsRawCookies;
     TCookies           vecckCookies;
 
-    CxString::vSplit(sRawCookies, CxConst::xSEMICOLON, &vsRawCookies);
+    CxString::split(sRawCookies, CxConst::xSEMICOLON, &vsRawCookies);
 
     xFOREACH_CONST(std::vec_tstring_t, it, vsRawCookies) {
         CxCookiePv0 *pckItem = new(std::nothrow) CxCookiePv0(*it);
@@ -859,7 +859,7 @@ CxCgiFormData::sDump() const {
 
     std::tstring_t sRv;
 
-    sRv = CxString::sFormat(
+    sRv = CxString::format(
             xT("[CxCgiFormData dump]\n\n")
             xT("Data: %s\n\n"),
             sRawData().c_str());
@@ -892,7 +892,7 @@ CxCgiFormData::_vInit() {
         case CxCgiEnvironment::rmPost: {
                 bool bRv = false;
 
-                bRv = CxString::bCompareNoCase(xT("application/x-www-form-urlencoded"), _m_ccgCgi.Environment.sContentType());
+                bRv = CxString::compareNoCase(xT("application/x-www-form-urlencoded"), _m_ccgCgi.Environment.sContentType());
                 xTEST_EQ(true, bRv);
 
                 //get content length

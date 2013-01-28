@@ -601,7 +601,7 @@ CxFile::sIsExists(
     xCHECK_DO(false == sFileExt.empty(), sFileExt.insert(0, CxConst::xDOT));
 
     for (ulong_t ulExistsIndex = 1; ; ++ ulExistsIndex) {
-        sRv = CxString::sFormat(xT("%s%s%s (%lu)%s"),
+        sRv = CxString::format(xT("%s%s%s (%lu)%s"),
                                 sFileDir.c_str(),
                                 CxConst::xSLASH.c_str(),
                                 sFileName.c_str(),
@@ -1108,7 +1108,7 @@ CxFile::vTextRead(
 
     vTextRead(a_csFilePath, &sFileContent);
 
-    CxString::vSplit(sFileContent, CxConst::xNL, &vsRes);
+    CxString::split(sFileContent, CxConst::xNL, &vsRes);
 
     // out
     std::swap((*a_pvsContent), vsRes);
@@ -1128,7 +1128,7 @@ CxFile::vTextWrite(
 
     std::tstring_t sFileContent;
 
-    sFileContent = CxString::sJoin(a_cvsContent, CxConst::xNL);
+    sFileContent = CxString::join(a_cvsContent, CxConst::xNL);
 
     vTextWrite(a_csFilePath, sFileContent);
 }
@@ -1164,9 +1164,9 @@ CxFile::vTextRead(
     for (size_t i = 0; !ifsStream.eof(); ++ i) {
         std::getline(ifsStream, sLine);
 
-        sLine = CxString::sTrimRightChars(sLine, CxConst::xEOL);
+        sLine = CxString::trimRightChars(sLine, CxConst::xEOL);
 
-        CxString::vSplit(sLine, a_csSeparator, &vsLine);
+        CxString::split(sLine, a_csSeparator, &vsLine);
         xTEST_EQ(size_t(2), vsLine.size());
 
         msRv.insert( std::pair<std::tstring_t, std::tstring_t>(vsLine.at(0), vsLine.at(1)) );
@@ -1187,7 +1187,7 @@ CxFile::vTextRead(
     for (it = vsRes.begin(); it != vsRes.end(); ++ it) {
         std::vec_tstring_t vsLine;
 
-        CxString::vSplit(vsRes.at(0), csSeparator, &vsLine);
+        CxString::split(vsRes.at(0), csSeparator, &vsLine);
         msRv.insert( std::pair<std::tstring_t, std::tstring_t>(vsLine.at(0), vsLine.at(1)) );
     }
 

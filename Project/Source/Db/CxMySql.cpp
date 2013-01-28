@@ -112,9 +112,9 @@ CxMySQLConnection::bIsExists(
         recRec.vFetchRow(&vsRow);
         xTEST_EQ(static_cast<size_t>( 1U ), vsRow.size());
 
-        xCHECK_RET(true == CxString::bCompareNoCase(xT("false"), vsRow.at(0)), false);
+        xCHECK_RET(true == CxString::compareNoCase(xT("false"), vsRow.at(0)), false);
 
-        xTEST_EQ(true, CxString::bCompareNoCase(xT("true"), vsRow.at(0)));
+        xTEST_EQ(true, CxString::compareNoCase(xT("true"), vsRow.at(0)));
     }
 
     return true;
@@ -165,7 +165,7 @@ CxMySQLConnection::vQuery(
     va_list        palArgs;
 
     xVA_START(palArgs, a_pcszSqlFormat);
-    sSqlQuery = CxString::sFormatV(a_pcszSqlFormat, palArgs);
+    sSqlQuery = CxString::formatV(a_pcszSqlFormat, palArgs);
     xVA_END(palArgs);
 
     std::string asSqlQuery = xTS2S(sSqlQuery);
@@ -227,9 +227,9 @@ CxMySQLConnection::sLastErrorStr() const {
     xTEST_PTR(cpszRes);
 
     if (0 == cuiLastError) {
-        sRv = CxString::sFormat(xT("%u - \"%s\""), cuiLastError, xT("Success"));
+        sRv = CxString::format(xT("%u - \"%s\""), cuiLastError, xT("Success"));
     } else {
-        sRv = CxString::sFormat(xT("%u - \"%s\""), cuiLastError, cpszRes);
+        sRv = CxString::format(xT("%u - \"%s\""), cuiLastError, cpszRes);
     }
 
     return sRv;

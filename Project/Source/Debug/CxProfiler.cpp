@@ -94,7 +94,7 @@ CxProfiler::vStop(
 
         va_list palArgs;
         xVA_START(palArgs, a_pcszComment);
-        sRv = CxString::sFormatV(a_pcszComment, palArgs);
+        sRv = CxString::formatV(a_pcszComment, palArgs);
         xVA_END(palArgs);
 
         _flLog.vWrite(xT("%s: %s"), csDurationTime.c_str(), sRv.c_str());
@@ -114,7 +114,7 @@ CxProfiler::vPulse(
 
     va_list palArgs;
     xVA_START(palArgs, a_pcszComment);
-    sRv = CxString::sFormatV(a_pcszComment, palArgs);
+    sRv = CxString::formatV(a_pcszComment, palArgs);
     xVA_END(palArgs);
 
     //-------------------------------------

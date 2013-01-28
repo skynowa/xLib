@@ -80,7 +80,7 @@ CxBackuper::vExecute(
         default:        { sDateTimeStamp = CxDateTime().current().format(CxDateTime::ftDateTime); }  break;
     }
 
-    sDateTimeStamp = CxString::sReplaceAll(sDateTimeStamp, xT(":"), xT("-"));
+    sDateTimeStamp = CxString::replaceAll(sDateTimeStamp, xT(":"), xT("-"));
 
     //-------------------------------------
     // format file full name

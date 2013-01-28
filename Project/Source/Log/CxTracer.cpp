@@ -40,7 +40,7 @@ CxTracer::vWrite(
 
     va_list palArgs;
     xVA_START(palArgs, a_pcszFormat);
-    sRv = CxString::sFormatV(a_pcszFormat, palArgs);
+    sRv = CxString::formatV(a_pcszFormat, palArgs);
     xVA_END(palArgs);
 
     vWrite(sRv);

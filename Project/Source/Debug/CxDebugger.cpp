@@ -306,7 +306,7 @@ CxDebugger::_vLoggingPlain(
     xTEST_PTR(pFile);
 
     try {
-        const std::tstring_t csMsg = CxString::sFormat(
+        const std::tstring_t csMsg = CxString::format(
             xT("\n")
             xT("####################################################################################################\n")
             xT("%s\n")
