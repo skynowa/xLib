@@ -50,7 +50,7 @@ CxTestManager::vAdd(
     xTEST_PTR(a_pvtTest)
     xTEST_NA(a_csTestName);
 
-    a_pvtTest->vSetName( CxType::sName(*a_pvtTest) );
+    a_pvtTest->vSetName( CxType::name(*a_pvtTest) );
 
     _m_ctnTests.push_back(a_pvtTest);
 
