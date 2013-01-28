@@ -262,16 +262,16 @@ CxProcess::ulIdByName(
     PROCESSENTRY32 peProcess = {0};    peProcess.dwSize = sizeof(PROCESSENTRY32);
 
     hSnapshot = ::CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0UL);
-    xTEST_EQ(true, hSnapshot.bIsValid());
+    xTEST_EQ(true, hSnapshot.isValid());
 
-    BOOL blRv = ::Process32First(hSnapshot.hGet(), &peProcess);
+    BOOL blRv = ::Process32First(hSnapshot.get(), &peProcess);
     xTEST_DIFF(FALSE, blRv);
 
     xFOREVER {
         bool bRv = CxString::bCompareNoCase(a_csProcessName, peProcess.szExeFile);
         xCHECK_DO(true == bRv, break);   // OK
 
-        blRv = ::Process32Next(hSnapshot.hGet(), &peProcess);
+        blRv = ::Process32Next(hSnapshot.get(), &peProcess);
         xCHECK_DO(FALSE == blRv, break);
     }
 

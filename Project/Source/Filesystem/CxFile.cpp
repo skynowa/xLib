@@ -969,9 +969,9 @@ CxFile::vTime(
 
     m_hHandle = ::CreateFile(a_csFilePath.c_str(), GENERIC_READ, FILE_SHARE_READ,
                              NULL, OPEN_EXISTING, CxFileAttribute::faNormal, NULL);
-    xTEST_EQ(true, m_hHandle.bIsValid());
+    xTEST_EQ(true, m_hHandle.isValid());
 
-    BOOL blRes = ::GetFileTime(m_hHandle.hGet(), &ftCreate, &ftAccess, &ftModified);
+    BOOL blRes = ::GetFileTime(m_hHandle.get(), &ftCreate, &ftAccess, &ftModified);
     xTEST_DIFF(FALSE, blRes);
 
     CxUtils::ptrAssignT(a_ptmCreate,   CxDateTime::fileTimeToUnixTime(ftCreate));
@@ -1017,9 +1017,9 @@ CxFile::vSetTime(
 
     m_hHandle = ::CreateFile(a_csFilePath.c_str(), GENERIC_WRITE, FILE_SHARE_WRITE,
                              NULL, OPEN_EXISTING, CxFileAttribute::faNormal, NULL);
-    xTEST_EQ(true, m_hHandle.bIsValid());
+    xTEST_EQ(true, m_hHandle.isValid());
 
-    BOOL blRes = ::SetFileTime(m_hHandle.hGet(), &ftCreate, &ftAccess, &ftModified);
+    BOOL blRes = ::SetFileTime(m_hHandle.get(), &ftCreate, &ftAccess, &ftModified);
     xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     utimbuf tbTimes = {0};

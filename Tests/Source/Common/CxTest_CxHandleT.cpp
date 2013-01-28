@@ -27,36 +27,36 @@ CxTest_CxHandleT::vUnit(
     xTEST_CASE("CxHandleT::CxHandleT", cullCaseLoops)
     {
         CxHandle objNullHandle;
-        xTEST_EQ(false, objNullHandle.bIsValid());
+        xTEST_EQ(false, objNullHandle.isValid());
 
         CxHandleInvalid objInvalidHandle;
-        xTEST_EQ(false, objInvalidHandle.bIsValid());
+        xTEST_EQ(false, objInvalidHandle.isValid());
     }
 
     xTEST_CASE("CxHandleT::CxHandleT(const HANDLE &chHandle)", cullCaseLoops)
     {
         CxHandle hHandle( CxCurrentProcess::hHandle() );
 
-        m_bRv = hHandle.bIsValid();
+        m_bRv = hHandle.isValid();
         xTEST_EQ(true, m_bRv);
 
-        m_hRv = hHandle.hDetach();
-        xTEST_EQ(false, hHandle.bIsValid());
+        m_hRv = hHandle.detach();
+        xTEST_EQ(false, hHandle.isValid());
     }
 
     xTEST_CASE("CxHandleT::CxHandleT(const CxHandleT &chHandle)", cullCaseLoops)
     {
         CxHandle hHandle1;
-        xTEST_EQ(false, hHandle1.bIsValid());
+        xTEST_EQ(false, hHandle1.isValid());
 
         CxHandle hHandle2( hHandle1 );
-        xTEST_EQ(false, hHandle2.bIsValid());
+        xTEST_EQ(false, hHandle2.isValid());
 
-        m_hRv = hHandle1.hDetach();
-        xTEST_EQ(false, hHandle1.bIsValid());
+        m_hRv = hHandle1.detach();
+        xTEST_EQ(false, hHandle1.isValid());
 
-        m_hRv = hHandle2.hDetach();
-        xTEST_EQ(false, hHandle2.bIsValid());
+        m_hRv = hHandle2.detach();
+        xTEST_EQ(false, hHandle2.isValid());
     }
 
     xTEST_CASE("CxHandleT::operator = (const native_handle_t &chHandle)", cullCaseLoops)
@@ -65,104 +65,104 @@ CxTest_CxHandleT::vUnit(
 
         hHandle = CxCurrentProcess::hHandle();
 
-        m_hRv = hHandle.hDetach();
-        xTEST_EQ(false, hHandle.bIsValid());
+        m_hRv = hHandle.detach();
+        xTEST_EQ(false, hHandle.isValid());
     }
 
     xTEST_CASE("CxHandleT::operator = (const CxHandleT &chHandle)", cullCaseLoops)
     {
         CxHandle hHandle1;
-        xTEST_EQ(false, hHandle1.bIsValid());
+        xTEST_EQ(false, hHandle1.isValid());
 
         CxHandle hHandle2;
-        xTEST_EQ(false, hHandle2.bIsValid());
+        xTEST_EQ(false, hHandle2.isValid());
 
         hHandle1 = hHandle2;
-        xTEST_EQ(false, hHandle1.bIsValid());
-        xTEST_EQ(false, hHandle2.bIsValid());
+        xTEST_EQ(false, hHandle1.isValid());
+        xTEST_EQ(false, hHandle2.isValid());
     }
 
-    xTEST_CASE("CxHandleT::hGet vSet", cullCaseLoops)
+    xTEST_CASE("CxHandleT::get set", cullCaseLoops)
     {
         CxHandle hHandle;
 
-        m_hRv = hHandle.hGet();
-        xTEST_EQ(false, hHandle.bIsValid());
+        m_hRv = hHandle.get();
+        xTEST_EQ(false, hHandle.isValid());
 
-        hHandle.vSet(native_handle_t());
+        hHandle.set(native_handle_t());
 
-        m_hRv = hHandle.hGet();
+        m_hRv = hHandle.get();
         xTEST_EQ(true, native_handle_t() == m_hRv);
 
-        hHandle.vSet(CxCurrentProcess::hHandle());
+        hHandle.set(CxCurrentProcess::hHandle());
 
-        m_hRv = hHandle.hGet();
+        m_hRv = hHandle.get();
         xTEST_EQ(CxCurrentProcess::hHandle(), m_hRv);
 
-        m_hRv = hHandle.hDetach();
-        xTEST_EQ(false, hHandle.bIsValid());
+        m_hRv = hHandle.detach();
+        xTEST_EQ(false, hHandle.isValid());
     }
 
-    xTEST_CASE("CxHandleT::hDuplicate", cullCaseLoops)
+    xTEST_CASE("CxHandleT::duplicate", cullCaseLoops)
     {
         CxHandle hHandle;
 
-        m_hRv = hHandle.hDuplicate();
-        xTEST_EQ(false, hHandle.bIsValid());
+        m_hRv = hHandle.duplicate();
+        xTEST_EQ(false, hHandle.isValid());
     }
 
-    xTEST_CASE("CxHandleT::bIsValid", cullCaseLoops)
+    xTEST_CASE("CxHandleT::isValid", cullCaseLoops)
     {
         CxHandle hHandle;
 
-        m_bRv = hHandle.bIsValid();
+        m_bRv = hHandle.isValid();
         xTEST_EQ(false, m_bRv);
 
-        hHandle.vSet(CxCurrentProcess::hHandle());
+        hHandle.set(CxCurrentProcess::hHandle());
 
-        m_hRv = hHandle.hDetach();
-        xTEST_EQ(false, hHandle.bIsValid());
+        m_hRv = hHandle.detach();
+        xTEST_EQ(false, hHandle.isValid());
     }
 
-    xTEST_CASE("CxHandleT::vAttach", cullCaseLoops)
+    xTEST_CASE("CxHandleT::attach", cullCaseLoops)
     {
         CxHandle hHandle;
 
-        hHandle.vAttach(CxCurrentProcess::hHandle());
+        hHandle.attach(CxCurrentProcess::hHandle());
     }
 
-    xTEST_CASE("CxHandleT::hDetach", cullCaseLoops)
+    xTEST_CASE("CxHandleT::detach", cullCaseLoops)
     {
         CxHandle hHandle;
 
-        m_hRv = hHandle.hDetach();
-        xTEST_EQ(false, hHandle.bIsValid());
+        m_hRv = hHandle.detach();
+        xTEST_EQ(false, hHandle.isValid());
     }
 
-    xTEST_CASE("CxHandleT::vClose", cullCaseLoops)
+    xTEST_CASE("CxHandleT::close", cullCaseLoops)
     {
         CxHandle hHandle;
 
-        hHandle.vClose();
+        hHandle.close();
 
-        m_bRv = hHandle.bIsValid();
+        m_bRv = hHandle.isValid();
         xTEST_EQ(false, m_bRv);
     }
 
-    xTEST_CASE("CxHandleT::vSetInfo", cullCaseLoops)
+    xTEST_CASE("CxHandleT::setInfo", cullCaseLoops)
     {
-        // TEST: CxHandleT::vSetInfo
+        // TEST: CxHandleT::setInfo
 
     #if   xOS_ENV_WIN
         #if xTODO
             CxHandle hHandle;
 
             hHandle = CxCurrentProcess::hHandle();
-            xTEST_EQ(true, hHandle.bIsValid());
+            xTEST_EQ(true, hHandle.isValid());
 
-            hHandle.vSetInfo(HANDLE_FLAG_INHERIT, 0);
+            hHandle.setInfo(HANDLE_FLAG_INHERIT, 0);
 
-            m_ulRv = hHandle.ulGetInfo();
+            m_ulRv = hHandle.info();
             xTEST_EQ((ulong_t)HANDLE_FLAG_INHERIT, m_ulRv);
         #endif
     #elif xOS_ENV_UNIX
@@ -170,20 +170,20 @@ CxTest_CxHandleT::vUnit(
     #endif
     }
 
-    xTEST_CASE("CxHandleT::ulGetInfo", cullCaseLoops)
+    xTEST_CASE("CxHandleT::info", cullCaseLoops)
     {
-        // TEST: CxHandleT::ulGetInfo
+        // TEST: CxHandleT::info
 
     #if   xOS_ENV_WIN
         #if xTODO
             CxHandle hHandle;
 
             hHandle = CxCurrentProcess::hHandle();
-            xTEST_EQ(true, hHandle.bIsValid());
+            xTEST_EQ(true, hHandle.isValid());
 
-            hHandle.vSetInfo(HANDLE_FLAG_PROTECT_FROM_CLOSE, 0);
+            hHandle.setInfo(HANDLE_FLAG_PROTECT_FROM_CLOSE, 0);
 
-            m_ulRv = hHandle.ulGetInfo();
+            m_ulRv = hHandle.info();
             xTEST_EQ((ulong_t)HANDLE_FLAG_PROTECT_FROM_CLOSE, m_ulRv);
         #endif
     #elif xOS_ENV_UNIX

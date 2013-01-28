@@ -29,7 +29,7 @@ CxTest_CxEvent::vUnit(
         objEvent.vCreate();
 
         #if   xOS_ENV_WIN
-            xTEST_EQ(true, objEvent.hHandle().bIsValid())
+            xTEST_EQ(true, objEvent.hHandle().isValid())
         #elif xOS_ENV_UNIX
             // TODO: hRv
         #endif

@@ -99,7 +99,7 @@ CxTest_CxProcess::vUnit(
     xTEST_CASE("CxProcess::ulGetHandleById", cullCaseLoops)
     {
         CxProcess::handle_t hHandle = CxProcess::ulHandleById( CxCurrentProcess::ulId() );
-        xTEST_EQ(true, CxHandle(hHandle).bIsValid());
+        xTEST_EQ(true, CxHandle(hHandle).isValid());
     }
 
     xTEST_CASE("CxProcess::ulIdByName", cullCaseLoops)

@@ -88,7 +88,7 @@ CxIpcSemaphore::vCreate(
     xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
     xTEST_DIFF(ulLastError, static_cast<ulong_t>( ERROR_ALREADY_EXISTS ));
 
-    _m_hHandle.vSet(hRv);
+    _m_hHandle.set(hRv);
     _m_sName = a_csName;
 #elif xOS_ENV_UNIX
     std::tstring_t sUnixName = CxConst::xUNIX_SLASH + a_csName;
@@ -123,7 +123,7 @@ CxIpcSemaphore::vOpen(
     HANDLE hRv = ::OpenSemaphore(SEMAPHORE_ALL_ACCESS, FALSE, pcszWinName);
     xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
 
-    _m_hHandle.vSet(hRv);
+    _m_hHandle.set(hRv);
     _m_sName = a_csName;
 #elif xOS_ENV_UNIX
     std::tstring_t sUnixName = CxConst::xUNIX_SLASH + a_csName;
@@ -143,7 +143,7 @@ CxIpcSemaphore::vPost() const {
 #if   xOS_ENV_WIN
    const LONG cliPostValue = 1L;
 
-   BOOL blRes = ::ReleaseSemaphore(_m_hHandle.hGet(), cliPostValue, NULL);
+   BOOL blRes = ::ReleaseSemaphore(_m_hHandle.get(), cliPostValue, NULL);
    xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     int iRv = ::sem_post(_m_hHandle);
@@ -160,7 +160,7 @@ CxIpcSemaphore::vWait(
     //ulTimeout - n/a
 
 #if   xOS_ENV_WIN
-    DWORD dwRv = ::WaitForSingleObject(_m_hHandle.hGet(), a_culTimeoutMsec);
+    DWORD dwRv = ::WaitForSingleObject(_m_hHandle.get(), a_culTimeoutMsec);
     xTEST_EQ(WAIT_OBJECT_0, dwRv);
 #elif xOS_ENV_UNIX
     struct _SFunctor {
@@ -228,7 +228,7 @@ CxIpcSemaphore::liValue() const {
 #if   xOS_ENV_WIN
     const LONG cliPostValue = 0L;
 
-    BOOL blRv = ::ReleaseSemaphore(_m_hHandle.hGet(), cliPostValue, &liRv);
+    BOOL blRv = ::ReleaseSemaphore(_m_hHandle.get(), cliPostValue, &liRv);
     xTEST_DIFF(FALSE, blRv);
 #elif xOS_ENV_UNIX
     int iValue = - 1;
@@ -253,7 +253,7 @@ CxIpcSemaphore::liValue() const {
 bool
 CxIpcSemaphore::_bIsValid() const {
 #if   xOS_ENV_WIN
-    return _m_hHandle.bIsValid();
+    return _m_hHandle.isValid();
 #elif xOS_ENV_UNIX
     return (NULL != _m_hHandle);
 #endif

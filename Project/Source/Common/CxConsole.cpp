@@ -33,18 +33,18 @@ CxConsole::CxConsole()
 {
 #if xOS_ENV_WIN
     _m_hStdIn = ::GetStdHandle(STD_INPUT_HANDLE);
-    xTEST_EQ(true, _m_hStdIn.bIsValid());
-    xTEST_DIFF(xNATIVE_HANDLE_NULL, _m_hStdIn.hGet());
+    xTEST_EQ(true, _m_hStdIn.isValid());
+    xTEST_DIFF(xNATIVE_HANDLE_NULL, _m_hStdIn.get());
 
     _m_hStdOut = ::GetStdHandle(STD_OUTPUT_HANDLE);
-    xTEST_EQ(true, _m_hStdOut.bIsValid());
-    xTEST_DIFF(xNATIVE_HANDLE_NULL, _m_hStdOut.hGet());
+    xTEST_EQ(true, _m_hStdOut.isValid());
+    xTEST_DIFF(xNATIVE_HANDLE_NULL, _m_hStdOut.get());
 
     // _m_wAttributesDef
     {
         CONSOLE_SCREEN_BUFFER_INFO csbInfo = {};
 
-        BOOL blRv = ::GetConsoleScreenBufferInfo(_m_hStdOut.hGet(), &csbInfo);
+        BOOL blRv = ::GetConsoleScreenBufferInfo(_m_hStdOut.get(), &csbInfo);
         xTEST_DIFF(FALSE, blRv);
 
         _m_wAttributesDef = csbInfo.wAttributes;
@@ -59,8 +59,8 @@ CxConsole::CxConsole()
 //---------------------------------------------------------------------------
 CxConsole::~CxConsole() {
 #if xOS_ENV_WIN
-    (native_handle_t)_m_hStdIn.hDetach();
-    (native_handle_t)_m_hStdOut.hDetach();
+    (native_handle_t)_m_hStdIn.detach();
+    (native_handle_t)_m_hStdOut.detach();
 #endif
 }
 //---------------------------------------------------------------------------
@@ -73,8 +73,8 @@ CxConsole::setAttributes(
 {
 #if xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
-    xTEST_EQ(true, _m_hStdIn.bIsValid());
-    xTEST_EQ(true, _m_hStdOut.bIsValid());
+    xTEST_EQ(true, _m_hStdIn.isValid());
+    xTEST_EQ(true, _m_hStdOut.isValid());
 #endif
     // n/a
 
@@ -237,7 +237,7 @@ CxConsole::setAttributes(
     }
 
 #if   xOS_ENV_WIN
-    BOOL blRes = ::SetConsoleTextAttribute(_m_hStdOut.hGet(), wAttributes);
+    BOOL blRes = ::SetConsoleTextAttribute(_m_hStdOut.get(), wAttributes);
     xTEST_DIFF(FALSE, blRes);
 
     return std::tstring_t();    // not need for Windows
@@ -250,15 +250,15 @@ std::tstring_t
 CxConsole::setAttributesDef() {
 #if xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
-    xTEST_EQ(true, _m_hStdIn.bIsValid());
-    xTEST_EQ(true, _m_hStdOut.bIsValid());
+    xTEST_EQ(true, _m_hStdIn.isValid());
+    xTEST_EQ(true, _m_hStdOut.isValid());
 #endif
     // n/a
 
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
-    BOOL blRes = ::SetConsoleTextAttribute(_m_hStdOut.hGet(), _m_wAttributesDef);
+    BOOL blRes = ::SetConsoleTextAttribute(_m_hStdOut.get(), _m_wAttributesDef);
     xTEST_DIFF(FALSE, blRes);
 
     xUNUSED(sRv);
@@ -273,8 +273,8 @@ std::tstring_t
 CxConsole::read() {
 #if xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
-    xTEST_EQ(true, _m_hStdIn.bIsValid());
-    xTEST_EQ(true, _m_hStdOut.bIsValid());
+    xTEST_EQ(true, _m_hStdIn.isValid());
+    xTEST_EQ(true, _m_hStdOut.isValid());
 #endif
 
     std::tstring_t sRv;
@@ -284,7 +284,7 @@ CxConsole::read() {
     const ulong_t culBuffSize             = 1024UL * 4UL;
     tchar_t       szBuff[culBuffSize + 1] = {0};
 
-    BOOL blRes = ::ReadConsole(_m_hStdIn.hGet(), &szBuff[0], culBuffSize, &ulRead, NULL);
+    BOOL blRes = ::ReadConsole(_m_hStdIn.get(), &szBuff[0], culBuffSize, &ulRead, NULL);
     xTEST_DIFF(FALSE, blRes);
 
     sRv.assign(szBuff, ulRead - CxConst::xCRNL.size());
@@ -303,15 +303,15 @@ CxConsole::write(
 {
 #if xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
-    xTEST_EQ(true, _m_hStdIn.bIsValid());
-    xTEST_EQ(true, _m_hStdOut.bIsValid());
+    xTEST_EQ(true, _m_hStdIn.isValid());
+    xTEST_EQ(true, _m_hStdOut.isValid());
 #endif
 
 #if   xOS_ENV_WIN
     DWORD dwWritten = 0UL;
 
     BOOL blRes = ::WriteConsole(
-                    _m_hStdOut.hGet(),
+                    _m_hStdOut.get(),
                     &a_csStr.at(0), static_cast<DWORD>( a_csStr.size() ),
                     &dwWritten, NULL);
     xTEST_DIFF(FALSE, blRes);
@@ -330,8 +330,8 @@ CxConsole::writeLine(
 {
 #if xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
-    xTEST_EQ(true, _m_hStdIn.bIsValid());
-    xTEST_EQ(true, _m_hStdOut.bIsValid());
+    xTEST_EQ(true, _m_hStdIn.isValid());
+    xTEST_EQ(true, _m_hStdOut.isValid());
 #endif
 
     write(a_csStr + CxConst::xNL);
@@ -344,8 +344,8 @@ CxConsole::writeErrLine(
 {
 #if xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
-    xTEST_EQ(true, _m_hStdIn.bIsValid());
-    xTEST_EQ(true, _m_hStdOut.bIsValid());
+    xTEST_EQ(true, _m_hStdIn.isValid());
+    xTEST_EQ(true, _m_hStdOut.isValid());
 #endif
 
     writeLine(xT("Error: ") + a_csStr);
@@ -362,8 +362,8 @@ CxConsole::msgBox(
 {
 #if xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
-    xTEST_EQ(true, _m_hStdIn.bIsValid());
-    xTEST_EQ(true, _m_hStdOut.bIsValid());
+    xTEST_EQ(true, _m_hStdIn.isValid());
+    xTEST_EQ(true, _m_hStdOut.isValid());
 #endif
 
     ExModalResult mrRes;
@@ -405,8 +405,8 @@ CxConsole::prompt(
 {
 #if xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
-    xTEST_EQ(true, _m_hStdIn.bIsValid());
-    xTEST_EQ(true, _m_hStdOut.bIsValid());
+    xTEST_EQ(true, _m_hStdIn.isValid());
+    xTEST_EQ(true, _m_hStdOut.isValid());
 #endif
 
     xTEST_EQ(false, a_csPrompt.empty());
@@ -445,8 +445,8 @@ CxConsole::pause(
 {
 #if xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
-    xTEST_EQ(true, _m_hStdIn.bIsValid());
-    xTEST_EQ(true, _m_hStdOut.bIsValid());
+    xTEST_EQ(true, _m_hStdIn.isValid());
+    xTEST_EQ(true, _m_hStdOut.isValid());
 #endif
 
     // TODO: CxConsole::pause
@@ -487,8 +487,8 @@ void
 CxConsole::clear() {
 #if xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
-    xTEST_EQ(true, _m_hStdIn.bIsValid());
-    xTEST_EQ(true, _m_hStdOut.bIsValid());
+    xTEST_EQ(true, _m_hStdIn.isValid());
+    xTEST_EQ(true, _m_hStdOut.isValid());
 #endif
 
 #if   xOS_ENV_WIN
@@ -498,25 +498,25 @@ CxConsole::clear() {
     DWORD                      ulConSize     = 0UL;     // number of character cells in the current buffer
 
     // get the number of character cells in the current buffer
-    BOOL blRes = ::GetConsoleScreenBufferInfo(_m_hStdOut.hGet(), &csbi);
+    BOOL blRes = ::GetConsoleScreenBufferInfo(_m_hStdOut.get(), &csbi);
     xTEST_DIFF(FALSE, blRes);
 
     ulConSize = csbi.dwSize.X * csbi.dwSize.Y;
 
     // fill the entire screen with blanks
-    blRes = ::FillConsoleOutputCharacter(_m_hStdOut.hGet(), xT(' '), ulConSize, coordScreen, &cCharsWritten);
+    blRes = ::FillConsoleOutputCharacter(_m_hStdOut.get(), xT(' '), ulConSize, coordScreen, &cCharsWritten);
     xTEST_DIFF(FALSE, blRes);
 
     // get the current text attribute
-    blRes = ::GetConsoleScreenBufferInfo(_m_hStdOut.hGet(), &csbi);
+    blRes = ::GetConsoleScreenBufferInfo(_m_hStdOut.get(), &csbi);
     xTEST_DIFF(FALSE, blRes);
 
     // now set the buffer's attributes accordingly
-    blRes = ::FillConsoleOutputAttribute(_m_hStdOut.hGet(), csbi.wAttributes, ulConSize, coordScreen, &cCharsWritten);
+    blRes = ::FillConsoleOutputAttribute(_m_hStdOut.get(), csbi.wAttributes, ulConSize, coordScreen, &cCharsWritten);
     xTEST_DIFF(FALSE, blRes);
 
     // put the cursor at (0, 0)
-    blRes = ::SetConsoleCursorPosition(_m_hStdOut.hGet(), coordScreen );
+    blRes = ::SetConsoleCursorPosition(_m_hStdOut.get(), coordScreen );
     xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     writeLine(CxConst::xFF);
@@ -530,8 +530,8 @@ CxConsole::enableClose(
 {
 #if xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
-    xTEST_EQ(true, _m_hStdIn.bIsValid());
-    xTEST_EQ(true, _m_hStdOut.bIsValid());
+    xTEST_EQ(true, _m_hStdIn.isValid());
+    xTEST_EQ(true, _m_hStdOut.isValid());
 #endif
 
 #if   xOS_ENV_WIN
@@ -562,8 +562,8 @@ std::tstring_t
 CxConsole::title() {
 #if xOS_ENV_WIN
     xTEST_NA(_m_hWnd);
-    xTEST_EQ(true, _m_hStdIn.bIsValid());
-    xTEST_EQ(true, _m_hStdOut.bIsValid());
+    xTEST_EQ(true, _m_hStdIn.isValid());
+    xTEST_EQ(true, _m_hStdOut.isValid());
 #endif
 
     std::tstring_t sRv;
@@ -592,8 +592,8 @@ CxConsole::setTitle(
 {
 #if xOS_ENV_WIN
     xTEST_NA(_m_hWnd);
-    xTEST_EQ(true, _m_hStdIn.bIsValid());
-    xTEST_EQ(true, _m_hStdOut.bIsValid());
+    xTEST_EQ(true, _m_hStdIn.isValid());
+    xTEST_EQ(true, _m_hStdOut.isValid());
 #endif
 
 #if   xOS_ENV_WIN
@@ -609,12 +609,12 @@ void
 CxConsole::setFullScreen() {
 #if xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
-    xTEST_EQ(true, _m_hStdIn.bIsValid());
-    xTEST_EQ(true, _m_hStdOut.bIsValid());
+    xTEST_EQ(true, _m_hStdIn.isValid());
+    xTEST_EQ(true, _m_hStdOut.isValid());
 #endif
 
 #if   xOS_ENV_WIN
-    COORD crdCoord = ::GetLargestConsoleWindowSize(_m_hStdOut.hGet());
+    COORD crdCoord = ::GetLargestConsoleWindowSize(_m_hStdOut.get());
     xTEST_EQ(true, 0 != crdCoord.X && 0 != crdCoord.Y);
 
     crdCoord.X -= 2;
@@ -626,10 +626,10 @@ CxConsole::setFullScreen() {
     recSmallRec.Right  = crdCoord.X - 2;
     recSmallRec.Bottom = crdCoord.Y - 2;
 
-    BOOL blRes = ::SetConsoleScreenBufferSize(_m_hStdOut.hGet(), crdCoord);
+    BOOL blRes = ::SetConsoleScreenBufferSize(_m_hStdOut.get(), crdCoord);
     xTEST_DIFF(FALSE, blRes);
 
-    blRes = ::SetConsoleWindowInfo(_m_hStdOut.hGet(), true, &recSmallRec);
+    blRes = ::SetConsoleWindowInfo(_m_hStdOut.get(), true, &recSmallRec);
     xTEST_DIFF(FALSE, blRes);
 
     centerWindow();
@@ -643,8 +643,8 @@ void
 CxConsole::centerWindow() {
 #if xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
-    xTEST_EQ(true, _m_hStdIn.bIsValid());
-    xTEST_EQ(true, _m_hStdOut.bIsValid());
+    xTEST_EQ(true, _m_hStdIn.isValid());
+    xTEST_EQ(true, _m_hStdOut.isValid());
 #endif
 
 #if   xOS_ENV_WIN

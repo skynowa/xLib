@@ -35,9 +35,9 @@ CxProcessInfo::vCurrentIds(
     PROCESSENTRY32 peProcess = {0};    peProcess.dwSize = sizeof(PROCESSENTRY32);
 
     hSnapshot = ::CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0UL);
-    xTEST_EQ(true, hSnapshot.bIsValid());
+    xTEST_EQ(true, hSnapshot.isValid());
 
-    BOOL blRv = ::Process32First(hSnapshot.hGet(), &peProcess);
+    BOOL blRv = ::Process32First(hSnapshot.get(), &peProcess);
     xTEST_DIFF(FALSE, blRv);
 
     xFOREVER {
@@ -45,7 +45,7 @@ CxProcessInfo::vCurrentIds(
 
         vidRv.push_back(dwPid);
 
-        blRv = ::Process32Next(hSnapshot.hGet(), &peProcess);
+        blRv = ::Process32Next(hSnapshot.get(), &peProcess);
         xCHECK_DO(FALSE == blRv, break);
     }
 #elif xOS_ENV_UNIX
@@ -355,19 +355,19 @@ CxProcessInfo::sCommandLine(
     CxHandle processHandle;
 
     processHandle = ::OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, static_cast<DWORD>( a_cidId ));
-    xTEST_EQ(true, processHandle.bIsValid());
+    xTEST_EQ(true, processHandle.isValid());
 
-    PVOID pebAddress               = _SNested::pvPebAddress(processHandle.hGet());
+    PVOID pebAddress               = _SNested::pvPebAddress(processHandle.get());
     PVOID rtlUserProcParamsAddress = NULL;
 
     // get the address of ProcessParameters
-    BOOL blRv = ::ReadProcessMemory(processHandle.hGet(), static_cast<PCHAR>(pebAddress) + 0x10,  &rtlUserProcParamsAddress, sizeof(PVOID), NULL);
+    BOOL blRv = ::ReadProcessMemory(processHandle.get(), static_cast<PCHAR>(pebAddress) + 0x10,  &rtlUserProcParamsAddress, sizeof(PVOID), NULL);
     xTEST_DIFF(FALSE, blRv);
 
     // read the usCommandLine UNICODE_STRING structure
     UNICODE_STRING usCommandLine = {0};
 
-    blRv = ::ReadProcessMemory(processHandle.hGet(), static_cast<PCHAR>(rtlUserProcParamsAddress) + 0x40, &usCommandLine, sizeof(usCommandLine), NULL);
+    blRv = ::ReadProcessMemory(processHandle.get(), static_cast<PCHAR>(rtlUserProcParamsAddress) + 0x40, &usCommandLine, sizeof(usCommandLine), NULL);
     xTEST_DIFF(FALSE, blRv);
 
     // allocate memory to hold the command line
@@ -376,7 +376,7 @@ CxProcessInfo::sCommandLine(
         xTEST_PTR(pCommandLineContents);
 
         // read the command line
-        blRv = ::ReadProcessMemory(processHandle.hGet(), usCommandLine.Buffer, pCommandLineContents, usCommandLine.Length, NULL);
+        blRv = ::ReadProcessMemory(processHandle.get(), usCommandLine.Buffer, pCommandLineContents, usCommandLine.Length, NULL);
         xTEST_DIFF(FALSE, blRv);
 
         // length specifier is in characters, but usCommandLine.Length is in bytes a WCHAR is 2 bytes

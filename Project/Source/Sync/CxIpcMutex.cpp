@@ -69,7 +69,7 @@ CxIpcMutex::vCreate(
     HANDLE hRv = ::CreateMutex(NULL, FALSE, pcszWinName);
     xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
 
-    _m_hHandle.vSet(hRv);
+    _m_hHandle.set(hRv);
     _m_sName = a_csName;
 #elif xOS_ENV_UNIX
     std::tstring_t sUnixName = CxConst::xUNIX_SLASH + a_csName;
@@ -103,7 +103,7 @@ CxIpcMutex::vOpen(
     HANDLE hRv = ::OpenMutex(MUTEX_ALL_ACCESS, FALSE, pcszWinName);
     xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
 
-    _m_hHandle.vSet(hRv);
+    _m_hHandle.set(hRv);
     _m_sName = a_csName;
 #elif xOS_ENV_UNIX
     std::tstring_t sUnixName = CxConst::xUNIX_SLASH + a_csName;
@@ -125,7 +125,7 @@ CxIpcMutex::vLock(
     //culTimeout - n/a
 
 #if   xOS_ENV_WIN
-    DWORD ulRv = ::WaitForSingleObject(_m_hHandle.hGet(), a_culTimeoutMsec);
+    DWORD ulRv = ::WaitForSingleObject(_m_hHandle.get(), a_culTimeoutMsec);
     xTEST_EQ(WAIT_OBJECT_0, ulRv);
     xTEST_DIFF(WAIT_ABANDONED, ulRv);
 #elif xOS_ENV_UNIX
@@ -179,7 +179,7 @@ CxIpcMutex::vUnlock() const {
     ////xTEST_EQ(true, _m_hHandle.bIsValid(), false);
 
 #if   xOS_ENV_WIN
-    BOOL blRes = ::ReleaseMutex(_m_hHandle.hGet());
+    BOOL blRes = ::ReleaseMutex(_m_hHandle.get());
     xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     int iRv = ::sem_post(_m_hHandle);
