@@ -263,7 +263,7 @@ CxString::sToLowerCase(
     DWORD dwRv = ::CharLowerBuff(static_cast<LPTSTR>( &sRv[0] ), static_cast<DWORD>( uiLength ));
     xTEST_EQ(uiLength, static_cast<size_t>( dwRv ));
 #elif xOS_ENV_UNIX
-    std::transform(sRv.begin(), sRv.begin() + uiLength, sRv.begin(), CxChar::chToLower);
+    std::transform(sRv.begin(), sRv.begin() + uiLength, sRv.begin(), CxChar::toLower);
 #endif
 
     return sRv;
@@ -290,7 +290,7 @@ CxString::sToUpperCase(
     DWORD dwRv = ::CharUpperBuff(static_cast<LPTSTR>( &sRv[0] ), static_cast<DWORD>( uiLength ));
     xTEST_EQ(uiLength, static_cast<size_t>( dwRv ));
 #elif xOS_ENV_UNIX
-    std::transform(sRv.begin(), sRv.begin() + uiLength, sRv.begin(), CxChar::chToUpper);
+    std::transform(sRv.begin(), sRv.begin() + uiLength, sRv.begin(), CxChar::toUpper);
 #endif
 
     return sRv;
@@ -712,7 +712,7 @@ CxString::bCompareNoCase(
     struct SCompare {
         static bool
         bNoCase(const std::tstring_t::value_type &cchChar1, const std::tstring_t::value_type &cchChar2) {
-            return CxChar::chToUpper(cchChar1) == CxChar::chToUpper(cchChar2);
+            return CxChar::toUpper(cchChar1) == CxChar::toUpper(cchChar2);
         }
     };
 

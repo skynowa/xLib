@@ -17,7 +17,7 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 /* static */
 bool
-CxChar::bIsAlphaNum(
+CxChar::isAlphaNum(
     const tchar_t &a_cchChar
 )
 {
@@ -26,7 +26,7 @@ CxChar::bIsAlphaNum(
 //---------------------------------------------------------------------------
 /* static */
 bool
-CxChar::bIsAlpha(
+CxChar::isAlpha(
     const tchar_t &a_cchChar
 )
 {
@@ -35,7 +35,7 @@ CxChar::bIsAlpha(
 //---------------------------------------------------------------------------
 /* static */
 bool
-CxChar::bIsControl(
+CxChar::isControl(
     const tchar_t &a_cchChar
 )
 {
@@ -44,7 +44,7 @@ CxChar::bIsControl(
 //---------------------------------------------------------------------------
 /* static */
 bool
-CxChar::bIsDigitDec(
+CxChar::isDigitDec(
     const tchar_t &a_cchChar
 )
 {
@@ -53,7 +53,7 @@ CxChar::bIsDigitDec(
 //---------------------------------------------------------------------------
 /* static */
 bool
-CxChar::bIsDigitHex(
+CxChar::isDigitHex(
     const tchar_t &a_cchChar
 )
 {
@@ -62,7 +62,7 @@ CxChar::bIsDigitHex(
 //---------------------------------------------------------------------------
 /* static */
 bool
-CxChar::bIsGraph(
+CxChar::isGraph(
     const tchar_t &a_cchChar
 )
 {
@@ -71,7 +71,7 @@ CxChar::bIsGraph(
 //---------------------------------------------------------------------------
 /* static */
 bool
-CxChar::bIsPrint(
+CxChar::isPrint(
     const tchar_t &a_cchChar
 )
 {
@@ -80,7 +80,7 @@ CxChar::bIsPrint(
 //---------------------------------------------------------------------------
 /* static */
 bool
-CxChar::bIsPunct(
+CxChar::isPunct(
     const tchar_t &a_cchChar
 )
 {
@@ -89,7 +89,7 @@ CxChar::bIsPunct(
 //---------------------------------------------------------------------------
 /* static */
 bool
-CxChar::bIsSpace(
+CxChar::isSpace(
     const tchar_t &a_cchChar
 )
 {
@@ -98,7 +98,7 @@ CxChar::bIsSpace(
 //---------------------------------------------------------------------------
 /* static */
 bool
-CxChar::bIsLower(
+CxChar::isLower(
     const tchar_t &a_cchChar
 )
 {
@@ -107,7 +107,7 @@ CxChar::bIsLower(
 //---------------------------------------------------------------------------
 /* static */
 bool
-CxChar::bIsUpper(
+CxChar::isUpper(
     const tchar_t &a_cchChar
 )
 {
@@ -116,7 +116,7 @@ CxChar::bIsUpper(
 //---------------------------------------------------------------------------
 /* static */
 tchar_t
-CxChar::chToLower(
+CxChar::toLower(
     const tchar_t &a_cchChar
 )
 {
@@ -125,7 +125,7 @@ CxChar::chToLower(
 //---------------------------------------------------------------------------
 /* static */
 tchar_t
-CxChar::chToUpper(
+CxChar::toUpper(
     const tchar_t &a_cchChar
 )
 {

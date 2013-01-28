@@ -22,14 +22,14 @@ CxTest_CxChar::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    xTEST_CASE("CxChar::bIsAlphaNum", cullCaseLoops)
+    xTEST_CASE("CxChar::isAlphaNum", cullCaseLoops)
     {
         //true
         {
             const std::tstring_t sDataTrue  = xT("sefasdf3456SDRFGW2345f235vdfs3e45v234624uhethQWER23141scvf");
 
             for (size_t i = 0; i < sDataTrue.size(); ++ i) {
-                m_bRv = CxChar::bIsAlphaNum(sDataTrue.at(i));
+                m_bRv = CxChar::isAlphaNum(sDataTrue.at(i));
                 xTEST_EQ(true, m_bRv);
             }
         }
@@ -39,20 +39,20 @@ CxTest_CxChar::vUnit(
             const std::tstring_t sDataFalse = xT(" !@$#%^%*&*(&*()*)+_=-) /*-+{}?><< :\"||");
 
             for (size_t i = 0; i < sDataFalse.size(); ++ i) {
-                m_bRv = CxChar::bIsAlphaNum(sDataFalse.at(i));
+                m_bRv = CxChar::isAlphaNum(sDataFalse.at(i));
                 xTEST_EQ(false, m_bRv);
             }
         }
     }
 
-    xTEST_CASE("CxChar::bIsAlpha", cullCaseLoops)
+    xTEST_CASE("CxChar::isAlpha", cullCaseLoops)
     {
         //true
         {
             const std::tstring_t sDataTrue  = xT("qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM");
 
             for (size_t i = 0; i < sDataTrue.size(); ++ i) {
-                m_bRv = CxChar::bIsAlpha(sDataTrue.at(i));
+                m_bRv = CxChar::isAlpha(sDataTrue.at(i));
                 xTEST_EQ(true, m_bRv);
             }
         }
@@ -62,20 +62,20 @@ CxTest_CxChar::vUnit(
             const std::tstring_t sDataFalse = xT(" !@$#%^%*1234567890-=&*(&*()*)+_) /*-+{}?><< :\"||");
 
             for (size_t i = 0; i < sDataFalse.size(); ++ i) {
-                m_bRv = CxChar::bIsAlpha(sDataFalse.at(i));
+                m_bRv = CxChar::isAlpha(sDataFalse.at(i));
                 xTEST_EQ(false, m_bRv);
             }
         }
     }
 
-    xTEST_CASE("CxChar::bIsControl", cullCaseLoops)
+    xTEST_CASE("CxChar::isControl", cullCaseLoops)
     {
         //true
         {
             const std::tstring_t sDataTrue  = xT("\t\n\a\t\r\n\v\b\f");
 
             for (size_t i = 0; i < sDataTrue.size(); ++ i) {
-                m_bRv = CxChar::bIsControl(sDataTrue.at(i));
+                m_bRv = CxChar::isControl(sDataTrue.at(i));
                 xTEST_EQ(true, m_bRv);
             }
         }
@@ -85,20 +85,20 @@ CxTest_CxChar::vUnit(
             const std::tstring_t sDataFalse = xT(" !@$#%^%*wert12345wecrtwe67WERTWE890-=&*(&*(wetf)*)+_) /*-+{}?><< :\"||");
 
             for (size_t i = 0; i < sDataFalse.size(); ++ i) {
-                m_bRv = CxChar::bIsControl(sDataFalse.at(i));
+                m_bRv = CxChar::isControl(sDataFalse.at(i));
                 xTEST_EQ(false, m_bRv);
             }
         }
     }
 
-    xTEST_CASE("CxChar::bIsDigitDec", cullCaseLoops)
+    xTEST_CASE("CxChar::isDigitDec", cullCaseLoops)
     {
         //true
         {
             const std::tstring_t sDataTrue  = xT("0123456789");
 
             for (size_t i = 0; i < sDataTrue.size(); ++ i) {
-                m_bRv = CxChar::bIsDigitDec(sDataTrue.at(i));
+                m_bRv = CxChar::isDigitDec(sDataTrue.at(i));
                 xTEST_EQ(true, m_bRv);
             }
         }
@@ -108,20 +108,20 @@ CxTest_CxChar::vUnit(
             const std::tstring_t sDataFalse = xT(" !@$#%^%*wertwecrtweWERTWE-=&*(&*(wetf)*)+_) /*-+{}?><< :\"||");
 
             for (size_t i = 0; i < sDataFalse.size(); ++ i) {
-                m_bRv = CxChar::bIsDigitDec(sDataFalse.at(i));
+                m_bRv = CxChar::isDigitDec(sDataFalse.at(i));
                 xTEST_EQ(false, m_bRv);
             }
         }
     }
 
-    xTEST_CASE("CxChar::bIsDigitHex", cullCaseLoops)
+    xTEST_CASE("CxChar::isDigitHex", cullCaseLoops)
     {
         //true
         {
             const std::tstring_t sDataTrue  = xT("0123456789abcdefABCDEF");
 
             for (size_t i = 0; i < sDataTrue.size(); ++ i) {
-                m_bRv = CxChar::bIsDigitHex(sDataTrue.at(i));
+                m_bRv = CxChar::isDigitHex(sDataTrue.at(i));
                 xTEST_EQ(true, m_bRv);
             }
         }
@@ -131,20 +131,20 @@ CxTest_CxChar::vUnit(
             const std::tstring_t sDataFalse = xT(" !@$#%^%*wrtwrtwWRTW-=&*(&*(wt)*)+_) /*-+{}?><< :\"||");
 
             for (size_t i = 0; i < sDataFalse.size(); ++ i) {
-                m_bRv = CxChar::bIsDigitHex(sDataFalse.at(i));
+                m_bRv = CxChar::isDigitHex(sDataFalse.at(i));
                 xTEST_EQ(false, m_bRv);
             }
         }
     }
 
-    xTEST_CASE("CxChar::bIsGraph", cullCaseLoops)
+    xTEST_CASE("CxChar::isGraph", cullCaseLoops)
     {
         //true
         {
             const std::tstring_t sDataTrue  = xT("1234567890QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm!@#$%^&*()_+*-+/{}|:;><?");
 
             for (size_t i = 0; i < sDataTrue.size(); ++ i) {
-                m_bRv = CxChar::bIsGraph(sDataTrue.at(i));
+                m_bRv = CxChar::isGraph(sDataTrue.at(i));
                 xTEST_EQ(true, m_bRv);
             }
         }
@@ -154,20 +154,20 @@ CxTest_CxChar::vUnit(
             const std::tstring_t sDataFalse = xT("\t\n\a\t\r\n\v\b\f ");
 
             for (size_t i = 0; i < sDataFalse.size(); ++ i) {
-                m_bRv = CxChar::bIsGraph(sDataFalse.at(i));
+                m_bRv = CxChar::isGraph(sDataFalse.at(i));
                 xTEST_EQ(false, m_bRv);
             }
         }
     }
 
-    xTEST_CASE("CxChar::bIsPrint", cullCaseLoops)
+    xTEST_CASE("CxChar::isPrint", cullCaseLoops)
     {
         //true
         {
             const std::tstring_t sDataTrue  = xT(" 1234567890QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm!@#$%^&*()_+*-+/{}|:;><?");
 
             for (size_t i = 0; i < sDataTrue.size(); ++ i) {
-                m_bRv = CxChar::bIsPrint(sDataTrue.at(i));
+                m_bRv = CxChar::isPrint(sDataTrue.at(i));
                 xTEST_EQ(true, m_bRv);
             }
         }
@@ -177,21 +177,21 @@ CxTest_CxChar::vUnit(
             const std::tstring_t sDataFalse = xT("\t\n\a\t\r\n\v\b\f");
 
             for (size_t i = 0; i < sDataFalse.size(); ++ i) {
-                m_bRv = CxChar::bIsPrint(sDataFalse.at(i));
-                // TEST: CxChar::bIsPrint
+                m_bRv = CxChar::isPrint(sDataFalse.at(i));
+                // TEST: CxChar::isPrint
                 // xTEST_EQ(false, m_bRv);
             }
         }
     }
 
-    xTEST_CASE("CxChar::bIsPunct", cullCaseLoops)
+    xTEST_CASE("CxChar::isPunct", cullCaseLoops)
     {
         //true
         {
             const std::tstring_t sDataTrue  = xT("!@#$%^&*()_+*-+/{}|:;><?");
 
             for (size_t i = 0; i < sDataTrue.size(); ++ i) {
-                m_bRv = CxChar::bIsPunct(sDataTrue.at(i));
+                m_bRv = CxChar::isPunct(sDataTrue.at(i));
                 xTEST_EQ(true, m_bRv);
             }
         }
@@ -201,20 +201,20 @@ CxTest_CxChar::vUnit(
             const std::tstring_t sDataFalse = xT(" qwcrqwerWETYRBTY125235645656fgderKUIOPMTYjcxz\t\n\a\t\r\n\v\b\f");
 
             for (size_t i = 0; i < sDataFalse.size(); ++ i) {
-                m_bRv = CxChar::bIsPunct(sDataFalse.at(i));
+                m_bRv = CxChar::isPunct(sDataFalse.at(i));
                 xTEST_EQ(false, m_bRv);
             }
         }
     }
 
-    xTEST_CASE("CxChar::bIsSpace", cullCaseLoops)
+    xTEST_CASE("CxChar::isSpace", cullCaseLoops)
     {
         //true
         {
             const std::tstring_t sDataTrue  = xT(" \t\n\v\f\r");
 
             for (size_t i = 0; i < sDataTrue.size(); ++ i) {
-                m_bRv = CxChar::bIsSpace(sDataTrue.at(i));
+                m_bRv = CxChar::isSpace(sDataTrue.at(i));
                 xTEST_EQ(true, m_bRv);
             }
         }
@@ -224,20 +224,20 @@ CxTest_CxChar::vUnit(
             const std::tstring_t sDataFalse = xT("qwcrqwerWETYRBTY125235645656fgderKUIOPMTYjcxz!@#$%^&*()_+*-+/{}|:;><?");
 
             for (size_t i = 0; i < sDataFalse.size(); ++ i) {
-                m_bRv = CxChar::bIsSpace(sDataFalse.at(i));
+                m_bRv = CxChar::isSpace(sDataFalse.at(i));
                 xTEST_EQ(false, m_bRv);
             }
         }
     }
 
-    xTEST_CASE("CxChar::bIsLower", cullCaseLoops)
+    xTEST_CASE("CxChar::isLower", cullCaseLoops)
     {
         //true
         {
             const std::tstring_t sDataTrue  = xT("abcdefghijklmnopqrstuvwxyz");
 
             for (size_t i = 0; i < sDataTrue.size(); ++ i) {
-                m_bRv = CxChar::bIsLower(sDataTrue.at(i));
+                m_bRv = CxChar::isLower(sDataTrue.at(i));
                 xTEST_EQ(true, m_bRv);
             }
         }
@@ -247,20 +247,20 @@ CxTest_CxChar::vUnit(
             const std::tstring_t sDataFalse = xT("WETYRBTY125235645656FGDERKUIOPMTY!@#$%^&*()_+*-+/{}|:;><?");
 
             for (size_t i = 0; i < sDataFalse.size(); ++ i) {
-                m_bRv = CxChar::bIsLower(sDataFalse.at(i));
+                m_bRv = CxChar::isLower(sDataFalse.at(i));
                 xTEST_EQ(false, m_bRv);
             }
         }
     }
 
-    xTEST_CASE("CxChar::bIsUpper", cullCaseLoops)
+    xTEST_CASE("CxChar::isUpper", cullCaseLoops)
     {
         //true
         {
             const std::tstring_t sDataTrue  = xT("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 
             for (size_t i = 0; i < sDataTrue.size(); ++ i) {
-                m_bRv = CxChar::bIsUpper(sDataTrue.at(i));
+                m_bRv = CxChar::isUpper(sDataTrue.at(i));
                 xTEST_EQ(true, m_bRv);
             }
         }
@@ -270,30 +270,30 @@ CxTest_CxChar::vUnit(
             const std::tstring_t sDataFalse = xT("wetyrbty125235645656fgderkuiopmty!@#$%^&*()_+*-+/{}|:;><?");
 
             for (size_t i = 0; i < sDataFalse.size(); ++ i) {
-                m_bRv = CxChar::bIsUpper(sDataFalse.at(i));
+                m_bRv = CxChar::isUpper(sDataFalse.at(i));
                 xTEST_EQ(false, m_bRv);
             }
         }
     }
 
-    xTEST_CASE("CxChar::chToLower", cullCaseLoops)
+    xTEST_CASE("CxChar::toLower", cullCaseLoops)
     {
         const std::tstring_t sDataUpper = xT("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
         const std::tstring_t sDataLow   = xT("abcdefghijklmnopqrstuvwxyz");
 
         for (size_t i = 0; i < sDataUpper.size(); ++ i) {
-            m_chRv = CxChar::chToLower(sDataUpper.at(i));
+            m_chRv = CxChar::toLower(sDataUpper.at(i));
             xTEST_EQ(sDataLow.at(i), m_chRv);
         }
     }
 
-    xTEST_CASE("CxChar::chToUpper", cullCaseLoops)
+    xTEST_CASE("CxChar::toUpper", cullCaseLoops)
     {
         const std::tstring_t sDataLow   = xT("abcdefghijklmnopqrstuvwxyz");
         const std::tstring_t sDataUpper = xT("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 
         for (size_t i = 0; i < sDataLow.size(); ++ i) {
-            m_chRv = CxChar::chToUpper(sDataLow.at(i));
+            m_chRv = CxChar::toUpper(sDataLow.at(i));
             xTEST_EQ(sDataUpper.at(i), m_chRv);
         }
     }
