@@ -16,17 +16,17 @@ class CxLocale :
     /// locale
 {
 public:
-   static std::tstring_t sCurrent   ();
+   static std::tstring_t current   ();
           ///< get current
-   static void           vSetCurrent(const std::tstring_t &csLocale);
+   static void           setCurrent(const std::tstring_t &csLocale);
              ///< set current
-   static void           vSetDefault();
+   static void           setDefault();
              ///< set default
 
 private:
-                         CxLocale   ();
+                         CxLocale  ();
        ///< constructor
-   virtual              ~CxLocale   ();
+   virtual              ~CxLocale  ();
              ///< destructor
 };
 
