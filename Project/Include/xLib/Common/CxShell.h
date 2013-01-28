@@ -22,8 +22,8 @@ class CxShell :
     /// shell
 {
 public:
-    static bool           bIsAvailable      ();
-    static void           vExecute          (const std::tstring_t &csFilePath, const std::tstring_t &csParams);
+    static bool           isAvailable   ();
+    static void           execute       (const std::tstring_t &csFilePath, const std::tstring_t &csParams);
 
 #if   xOS_ENV_WIN
     enum ExOperation
@@ -118,37 +118,36 @@ public:
         sfWindows                = CSIDL_WINDOWS
     };
 
-    static std::tstring_t sFindExecutable   (const std::tstring_t &csFileName, const std::tstring_t &csFindDirPath);
+    static std::tstring_t findExecutable(const std::tstring_t &csFileName, const std::tstring_t &csFindDirPath);
         ///< find executable file path
-    static void           vExecute          (const HWND &chOwner, const ExOperation &copOperation, const std::tstring_t &csFilePath, const std::tstring_t &csParams, const std::tstring_t &csDir, const EShowFlag &csfShowCmd);
+    static void           execute       (const HWND &chOwner, const ExOperation &copOperation, const std::tstring_t &csFilePath, const std::tstring_t &csParams, const std::tstring_t &csDir, const EShowFlag &csfShowCmd);
         ///< execute
-    static void           vExecuteEx        (SHELLEXECUTEINFO *peiInfo);
+    static void           executeEx     (SHELLEXECUTEINFO *peiInfo);
         ///< execute
-    static void           vExecuteHttp      (const std::tstring_t &csUrl);
+    static void           executeHttp   (const std::tstring_t &csUrl);
         ///< execute HTTP
-    static void           vExecuteFtp       (const std::tstring_t &csUrl);
+    static void           executeFtp    (const std::tstring_t &csUrl);
         ///< execute FTP
-    static void           vExecuteEmail     (const std::tstring_t &csToEmail, const std::tstring_t &csSubject, const std::tstring_t &csBody);
+    static void           executeEmail  (const std::tstring_t &csToEmail, const std::tstring_t &csSubject, const std::tstring_t &csBody);
         ///< execute email
-    static std::tstring_t sSpecialDirPath   (const ESpecialDir &csfDir, const HANDLE &chToken);
+    static std::tstring_t specialDirPath(const ESpecialDir &csfDir, const HANDLE &chToken);
         ///< get special dir path
-    static void           vCreateShortcut   (const std::tstring_t &csShortCutFilePath,
-                                             const std::tstring_t &csFilePath,
-                                             const std::tstring_t &csWorkingDirectory,
-                                             const std::tstring_t &csArguments,
-                                             const WORD           &cwHotKey,
-                                             const int            &ciCmdShow,
-                                             const std::tstring_t &csIconFilePath,
-                                             const int            &ciIconIndex,
-                                             const std::tstring_t &csDescription
-                                            );
+    static void           createShortcut(const std::tstring_t &csShortCutFilePath,
+                                         const std::tstring_t &csFilePath,
+                                         const std::tstring_t &csWorkingDirectory,
+                                         const std::tstring_t &csArguments,
+                                         const WORD           &cwHotKey,
+                                         const int            &ciCmdShow,
+                                         const std::tstring_t &csIconFilePath,
+                                         const int            &ciIconIndex,
+                                         const std::tstring_t &csDescription);
         ///< create shortcut
 #endif
 
 private:
-                          CxShell           ();
+                          CxShell       ();
         ///< constructor
-    virtual              ~CxShell           ();
+    virtual              ~CxShell       ();
         ///< destructor
 };
 
