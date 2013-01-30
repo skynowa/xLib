@@ -22,12 +22,12 @@ CxTest_CxStackTrace::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    xTEST_CASE("CxStackTrace::vGet", cullCaseLoops)
+    xTEST_CASE("CxStackTrace::get", cullCaseLoops)
     {
         CxStackTrace                    stStack;
         std::vector<std::vec_tstring_t> vvsStack;
 
-        stStack.vGet(&vvsStack);
+        stStack.get(&vvsStack);
         xTEST_EQ(false, vvsStack.empty());
 
         #if xTEST_IGNORE && 0
@@ -36,15 +36,15 @@ CxTest_CxStackTrace::vUnit(
         #endif
     }
 
-    xTEST_CASE("CxStackTrace::sGet", cullCaseLoops)
+    xTEST_CASE("CxStackTrace::toString", cullCaseLoops)
     {
         CxStackTrace stStack;
 
-        m_sRv = stStack.sGet();
+        m_sRv = stStack.toString();
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("CxStackTrace::sGet", cullCaseLoops)
+    xTEST_CASE("CxStackTrace::toString", cullCaseLoops)
     {
         #if xTEST_IGNORE
             xTEST_FAIL;

@@ -58,7 +58,7 @@ CxStackTrace::~CxStackTrace() {
 }
 //---------------------------------------------------------------------------
 void
-CxStackTrace::vGet(
+CxStackTrace::get(
     std::vector<std::vec_tstring_t> *a_pvvsStack
 )
 {
@@ -221,7 +221,7 @@ CxStackTrace::vGet(
             std::tstring_t _sFunctionName;
             ulong_t        _ulSourceLine = 0U;
 
-            _vAddr2Line(dlinfo.dli_saddr, &_sFilePath, &_sFunctionName, &_ulSourceLine);
+            _addr2Line(dlinfo.dli_saddr, &_sFilePath, &_sFunctionName, &_ulSourceLine);
             xUNUSED(_sFunctionName);
 
             iStackLineNum = i;
@@ -273,14 +273,14 @@ CxStackTrace::vGet(
 }
 //---------------------------------------------------------------------------
 std::tstring_t
-CxStackTrace::sGet()  {
+CxStackTrace::toString()  {
     std::tstring_t sRv;
 
     std::vector<std::vec_tstring_t> vvsStack;
 
-    vGet(&vvsStack);
+    get(&vvsStack);
 
-    sRv = _sFormat(&vvsStack);
+    sRv = _format(&vvsStack);
     xCHECK_RET(true == sRv.empty(), CxConst::xUNKNOWN_STRING);
 
     return sRv;
@@ -296,7 +296,7 @@ CxStackTrace::sGet()  {
 
 //---------------------------------------------------------------------------
 std::tstring_t
-CxStackTrace::_sFormat(
+CxStackTrace::_format(
     std::vector<std::vec_tstring_t> *a_pvvsStack
 )
 {
@@ -339,7 +339,7 @@ CxStackTrace::_sFormat(
 
 /* static */
 void
-CxStackTrace::_vAddr2Line(
+CxStackTrace::_addr2Line(
     const void     *a_pvSymbolAddress,
     std::tstring_t *a_psFilePath,
     std::tstring_t *a_psFunctionName,
