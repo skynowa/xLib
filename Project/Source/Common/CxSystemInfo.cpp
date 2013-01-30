@@ -289,21 +289,21 @@ CxSystemInfo::hostName() {
 bool
 CxSystemInfo::isUserAdmin() {
 #if   xOS_ENV_WIN
-    bool                     bIsAdmin              = false;
-    SID_IDENTIFIER_AUTHORITY siaNtAuthority        = { SECURITY_NT_AUTHORITY };
-    PSID                     psAdministratorsGroup = NULL;
+    bool                     bIsAdmin       = false;
+    SID_IDENTIFIER_AUTHORITY siaNtAuthority = { SECURITY_NT_AUTHORITY };
+    PSID                     psAdminiGroup  = NULL;
 
     BOOL blRes = ::AllocateAndInitializeSid(&siaNtAuthority, 2,
                                             SECURITY_BUILTIN_DOMAIN_RID,
                                             DOMAIN_ALIAS_RID_ADMINS,
                                             0UL, 0UL, 0UL, 0UL, 0UL, 0UL,
-                                            &psAdministratorsGroup);
+                                            &psAdminiGroup);
     xCHECK_RET(FALSE == blRes, false);
 
     {
         BOOL blIsMember = FALSE;
 
-        blRes = ::CheckTokenMembership(NULL, psAdministratorsGroup, &blIsMember);
+        blRes = ::CheckTokenMembership(NULL, psAdminiGroup, &blIsMember);
         if (FALSE == blRes || FALSE == blIsMember) {
             bIsAdmin = false;
         } else {
@@ -311,7 +311,7 @@ CxSystemInfo::isUserAdmin() {
         }
     }
 
-    (void)::FreeSid(psAdministratorsGroup);
+    (void)::FreeSid(psAdminiGroup);
 
     xCHECK_RET(false == bIsAdmin, false);
 #elif xOS_ENV_UNIX
