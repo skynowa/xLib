@@ -55,12 +55,12 @@ CxErrorReport::_construct(
 
     m_rtType          = a_crtType;
 
-    m_sProgram        = CxPath( CxPath(CxPath::sExe()).sShort(cuiReportWidthMax) ).sToUnix(false);
+    m_sProgram        = CxPath( CxPath(CxPath::exe()).brief(cuiReportWidthMax) ).toUnix(false);
     m_ulProcessId     = (ulong_t)CxCurrentProcess::ulId();
     m_ulThreadId      = (ulong_t)CxCurrentThread::ulId();
-    m_sFileSize       = CxString::formatBytes( static_cast<ulonglong_t>( CxFile::llSize(CxPath::sExe())) );
+    m_sFileSize       = CxString::formatBytes( static_cast<ulonglong_t>( CxFile::size(CxPath::exe())) );
 
-    m_sSourceFile     = CxPath( CxPath(a_csFile).sShort(cuiReportWidthMax) ).sToUnix(false);
+    m_sSourceFile     = CxPath( CxPath(a_csFile).brief(cuiReportWidthMax) ).toUnix(false);
     m_ulSourceLine    = a_culLine;
     m_sFunctionName   = a_csFunc;
     m_sExpression     = CxString::format(xT("%s (%s) %s %s (%s)"), 

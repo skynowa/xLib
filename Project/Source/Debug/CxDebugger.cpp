@@ -195,7 +195,7 @@ CxDebugger::_msgboxPlain(
         uint_t uiType = 1U;
     #endif
 
-    CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::iShow(a_crpReport.m_sReport, CxPath::sExe(), uiType);
+    CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::iShow(a_crpReport.m_sReport, CxPath::exe(), uiType);
 #else
     CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::mrIgnore;
 #endif
@@ -295,7 +295,7 @@ CxDebugger::_loggingPlain(
     std::tstring_t sFilePath;
 
     if (true == logPath().empty()) {
-        sFilePath = CxPath( CxPath::sExe() ).sSetExt(xT("debug"));
+        sFilePath = CxPath( CxPath::exe() ).setExt(xT("debug"));
     } else {
         sFilePath = logPath();
     }

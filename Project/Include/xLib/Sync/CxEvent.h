@@ -45,7 +45,7 @@ public:
 
     const handle_t &  hHandle    () const;
         ///< get handle
-    void              vCreate    ();
+    void              create    ();
         ///< create
     void              vSet       ();
         ///< signal the event for the waiting thread (!!! unlock !!!)

@@ -42,7 +42,7 @@ CxMutex::~CxMutex() {
 }
 //---------------------------------------------------------------------------
 void
-CxMutex::vCreate() {
+CxMutex::create() {
 #if   xOS_ENV_WIN
     bool bRv = false;
 
@@ -66,7 +66,7 @@ CxMutex::vCreate() {
     iRv = ::pthread_mutexattr_setpshared(&maAttr, PTHREAD_PROCESS_PRIVATE);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
-    // TODO: vCreate - PTHREAD_MUTEX_RECURSIVE
+    // TODO: create - PTHREAD_MUTEX_RECURSIVE
 #if 1
     iRv = ::pthread_mutexattr_settype(&maAttr, PTHREAD_MUTEX_RECURSIVE);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));

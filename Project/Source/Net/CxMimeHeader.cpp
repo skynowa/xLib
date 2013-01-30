@@ -153,7 +153,7 @@ CxMimeHeader::uiCount() {
     bool
     CxMimeHeader::bLoadFromFile(const std::tstring_t &csFilePath) {
      xTEST_EQ(false, csFilePath.empty(),                 false);
-     xTEST_EQ(true, CxFile::bIsExists(csFilePath), false);
+     xTEST_EQ(true, CxFile::isExists(csFilePath), false);
 
      std::tstring_t sUknownEmail("Uknown@Uknown.Uknown");
      std::tstring_t sLine("");
@@ -197,7 +197,7 @@ CxMimeHeader::vLoadFromFile(
 )
 {
     xTEST_EQ(false, a_csRawMessageFilePath.empty());
-    xTEST_EQ(true, CxFile::bIsExists(a_csRawMessageFilePath));
+    xTEST_EQ(true, CxFile::isExists(a_csRawMessageFilePath));
 
     std::tstring_t sRawHeader;
     std::tstring_t sLine;

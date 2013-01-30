@@ -114,7 +114,7 @@ CxMsgBoxT::iShow(
     mrRes = static_cast<ExModalResult>( ::MessageBox(
                             NULL,
                             CxString::cast(a_cText).c_str(),
-                            CxPath(CxPath::sExe()).sFileName().c_str(),
+                            CxPath(CxPath::exe()).sFileName().c_str(),
                             MB_OK) );
 #elif xOS_ENV_UNIX
     std::tstring_t sMsg = CxString::format(

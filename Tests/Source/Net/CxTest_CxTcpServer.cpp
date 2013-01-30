@@ -42,7 +42,7 @@ CxTest_CxTcpServer::vUnit(
 
     //-------------------------------------
     //bCreate
-    objListenSocket.vCreate(afAf, tpType, ptProtocol);
+    objListenSocket.create(afAf, tpType, ptProtocol);
 
     //-------------------------------------
     //bGetHostAddrByName

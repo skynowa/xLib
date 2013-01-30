@@ -142,8 +142,8 @@ CxStackTrace::get(
 
             // swap file paths
             if (true == _m_cbIsWrapFilePathes) {
-                sModulePath = CxPath(sModulePath).sFileName();
-                sFilePath   = CxPath(sFilePath).sFileName();
+                sModulePath = CxPath(sModulePath).fileName();
+                sFilePath   = CxPath(sFilePath).fileName();
             }
 
             // disable function params
@@ -364,7 +364,7 @@ CxStackTrace::_addr2Line(
 
     snprintf(szCmdLine, xARRAY_SIZE(szCmdLine) - 1,
              xT("addr2line -C -e %s -f %lx"),   /* xT("addr2line -C -e %s -f -i %lx") */
-             CxPath::sExe().c_str(), (ulong_t)a_pvSymbolAddress);
+             CxPath::exe().c_str(), (ulong_t)a_pvSymbolAddress);
 
     FILE *pflFile = ::popen(szCmdLine, xT("r"));
     xSTD_VERIFY(NULL != pflFile);

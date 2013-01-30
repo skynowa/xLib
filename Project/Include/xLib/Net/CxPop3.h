@@ -25,7 +25,7 @@ public:
                       CxPop3              ();
                      ~CxPop3              ();
 
-    void              vCreate             (const std::tstring_t &csUser, const std::tstring_t &csPass, const std::tstring_t &csServer, ushort_t usPort);
+    void              create             (const std::tstring_t &csUser, const std::tstring_t &csPass, const std::tstring_t &csServer, ushort_t usPort);
     void              vConnect            ();
     void              vLogin              ();
 

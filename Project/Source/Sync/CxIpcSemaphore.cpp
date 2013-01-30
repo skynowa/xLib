@@ -63,13 +63,13 @@ CxIpcSemaphore::hHandle() const {
 }
 //---------------------------------------------------------------------------
 void
-CxIpcSemaphore::vCreate(
+CxIpcSemaphore::create(
     const long_t         &a_cliInitialValue,
     const std::tstring_t &a_csName
 )
 {
     xTEST_EQ(false, _bIsValid());
-    xTEST_GR(CxPath::uiMaxSize(), a_csName.size());
+    xTEST_GR(CxPath::maxSize(), a_csName.size());
     xTEST_EQ(true, 0L <= a_cliInitialValue && a_cliInitialValue <= xSEMAPHORE_VALUE_MAX);
 
 #if   xOS_ENV_WIN

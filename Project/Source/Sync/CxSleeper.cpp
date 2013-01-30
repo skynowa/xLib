@@ -18,7 +18,7 @@ xNAMESPACE_BEGIN(NxLib)
 CxSleeper::CxSleeper() :
     _m_objEvent(false, false)
 {
-    _m_objEvent.vCreate();
+    _m_objEvent.create();
 }
 //---------------------------------------------------------------------------
 /* virtual */

@@ -32,15 +32,15 @@ CxFileTemp::CxFileTemp(
 //---------------------------------------------------------------------------
 /* virtual */
 CxFileTemp::~CxFileTemp() {
-    (*_m_pfFile).vClose();
+    (*_m_pfFile).close();
 
     if (false != _m_cbIsAutoDelete) {
-        CxFile::vDelete(_m_sFilePath);
+        CxFile::remove(_m_sFilePath);
     }
 }
 //---------------------------------------------------------------------------
 void
-CxFileTemp::vCreate(
+CxFileTemp::create(
     const std::tstring_t &a_csFilePath,
     const std::tstring_t &a_csDirPath,
     CxFile               *a_pfFile
@@ -48,16 +48,16 @@ CxFileTemp::vCreate(
 {
     xTEST_EQ(false, a_csFilePath.empty());
     xTEST_EQ(false, a_csDirPath.empty());
-    xTEST_EQ(false, a_pfFile->bIsValid());
+    xTEST_EQ(false, a_pfFile->isValid());
 
     const std::tstring_t csFileNameTemplate = xT("XXXXXX");
 
 
     FILE *_pfStdFile = NULL;
 
-    CxDir(a_csDirPath).vPathCreate();
+    CxDir(a_csDirPath).pathCreate();
 
-    _m_sFilePath = CxPath(a_csDirPath).sSlashAppend() + CxPath(a_csFilePath).sFileName() + csFileNameTemplate;
+    _m_sFilePath = CxPath(a_csDirPath).slashAppend() + CxPath(a_csFilePath).fileName() + csFileNameTemplate;
 
 #if   xOS_ENV_WIN
     #if xCOMPILER_MINGW || xCOMPILER_CODEGEAR
@@ -66,7 +66,7 @@ CxFileTemp::vCreate(
         tchar_t *pszFile = ::xTMKSTEMP(&_m_sFilePath.at(0));
         xTEST_PTR(pszFile);
 
-        _pfStdFile = std::xTFOPEN(pszFile, CxFile::_sOpenMode(CxFile::omBinCreateReadWrite).c_str());
+        _pfStdFile = std::xTFOPEN(pszFile, CxFile::_openMode(CxFile::omBinCreateReadWrite).c_str());
         xTEST_PTR(_pfStdFile);
     #else
         _m_sFilePath.resize(_m_sFilePath.size() + 1);
@@ -74,19 +74,19 @@ CxFileTemp::vCreate(
         errno_t iError = ::xTMKSTEMP(&_m_sFilePath.at(0), _m_sFilePath.size() + 1);
         xTEST_EQ(0, iError);
 
-        _pfStdFile = ::xTFOPEN(_m_sFilePath.c_str(), CxFile::_sOpenMode(CxFile::omBinCreateReadWrite).c_str());
+        _pfStdFile = ::xTFOPEN(_m_sFilePath.c_str(), CxFile::_openMode(CxFile::omBinCreateReadWrite).c_str());
         xTEST_PTR(_pfStdFile);
     #endif
 #elif xOS_ENV_UNIX
     int iFile = ::xTMKSTEMP(&_m_sFilePath.at(0));
     xTEST_DIFF(- 1, iFile);
 
-    _pfStdFile = ::xTFDOPEN(iFile, CxFile::_sOpenMode(CxFile::omBinCreateReadWrite).c_str());
+    _pfStdFile = ::xTFDOPEN(iFile, CxFile::_openMode(CxFile::omBinCreateReadWrite).c_str());
     xTEST_PTR(_pfStdFile);
 #endif
 
     //out
-    (*a_pfFile).vAttach(_pfStdFile);
+    (*a_pfFile).attach(_pfStdFile);
 
     _m_pfFile = a_pfFile;
 }

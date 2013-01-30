@@ -69,7 +69,7 @@ CxTest_CxSmtp::vUnit(
 
     //-------------------------------------
     //bCreate
-    objSmtp.vCreate(csUser, csPass, csServer, usPort);
+    objSmtp.create(csUser, csPass, csServer, usPort);
 
     //-------------------------------------
     //bConnect

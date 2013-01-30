@@ -26,7 +26,7 @@ CxTest_CxProcess::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    xTEST_CASE("CxProcess::vCreate CxProcess::ulWait", cullCaseLoops)
+    xTEST_CASE("CxProcess::create CxProcess::ulWait", cullCaseLoops)
     {
         #if 0
             #if   xOS_ENV_WIN
@@ -39,7 +39,7 @@ CxTest_CxProcess::vUnit(
 
             CxProcess prProc;
 
-            prProc.vCreate(csFilePath, xT("%s"), csCmdLine.c_str());
+            prProc.create(csFilePath, xT("%s"), csCmdLine.c_str());
 
             CxProcess::ExWaitResult wrRes = prProc.ulWait(xTIMEOUT_INFINITE);
             xTEST_EQ(CxProcess::wrObject0, wrRes);
@@ -59,7 +59,7 @@ CxTest_CxProcess::vUnit(
 
             CxProcess prProc;
 
-            prProc.vCreate(csFilePath, xT("%s"), csCmdLine.c_str());
+            prProc.create(csFilePath, xT("%s"), csCmdLine.c_str());
             prProc.vKill(10UL);
         #endif
     }
@@ -77,7 +77,7 @@ CxTest_CxProcess::vUnit(
 
             CxProcess prProc;
 
-            prProc.vCreate(csFilePath, xT("%s"), csCmdLine.c_str());
+            prProc.create(csFilePath, xT("%s"), csCmdLine.c_str());
 
             CxProcess::handle_t hHandle = prProc.hGet();
             xTEST_DIFF(static_cast<CxProcess::handle_t>( NULL ), hHandle);
@@ -104,7 +104,7 @@ CxTest_CxProcess::vUnit(
 
     xTEST_CASE("CxProcess::ulIdByName", cullCaseLoops)
     {
-        const std::tstring_t csProcessName = CxPath( CxPath::sExe() ).sFileName();
+        const std::tstring_t csProcessName = CxPath( CxPath::exe() ).fileName();
 
         CxProcess::id_t ulId = CxProcess::ulIdByName(csProcessName);
         xTEST_DIFF(0UL, static_cast<ulong_t>( ulId ));

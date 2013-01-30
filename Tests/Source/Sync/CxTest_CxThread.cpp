@@ -118,11 +118,11 @@ CxTest_CxThread::vUnit(
     pthT->m_ulTag = 0;
     ////pthT->vOnExit2  = vOnExitHandle;
 
-    xTEST_CASE("CxThread::vCreate", 1)
+    xTEST_CASE("CxThread::create", 1)
     {
         size_t uiParam = 1000;
 
-        pthT->vCreate(cbIsPaused, 0U, &uiParam);
+        pthT->create(cbIsPaused, 0U, &uiParam);
 
         m_bRv = pthT->bIsPaused();
         xTEST_EQ(cbIsPaused, m_bRv);

@@ -28,7 +28,7 @@ public:
 
     const handle_t &  hHandle   () const;
         ///< get handle
-    void              vCreate   (const std::tstring_t &csName);
+    void              create   (const std::tstring_t &csName);
         ///< create
     void              vOpen     (const std::tstring_t &csName);
         ///< open

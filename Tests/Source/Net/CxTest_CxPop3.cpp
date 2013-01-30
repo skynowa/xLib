@@ -72,7 +72,7 @@ CxTest_CxPop3::vUnit(
 
     //-------------------------------------
     //bCreate
-    objPop3.vCreate(csUser, csPass, csServer, cusPort);
+    objPop3.create(csUser, csPass, csServer, cusPort);
 
     //-------------------------------------
     //bConnect

@@ -29,7 +29,7 @@ CxFileAttribute::~CxFileAttribute() {
 }
  //---------------------------------------------------------------------------
 const std::tstring_t &
-CxFileAttribute::sFilePath() const {
+CxFileAttribute::filePath() const {
     xTEST_EQ(false, _m_csFilePath.empty());
 
     return _m_csFilePath;
@@ -37,37 +37,37 @@ CxFileAttribute::sFilePath() const {
 //---------------------------------------------------------------------------
 /* static */
 bool
-CxFileAttribute::bIsExists(
+CxFileAttribute::isExists(
     const ExAttribute &a_cfaValue
 )
 {
-    xTEST_EQ(false, sFilePath().empty());
+    xTEST_EQ(false, filePath().empty());
     xTEST_NA(a_cfaValue);
 
 #if xTEMP_DISABLED
     #if xOS_ENV_WIN
-        xCHECK_RET(cfaValue == (atGet() & BS_TYPEMASK), true);
+        xCHECK_RET(cfaValue == (get() & BS_TYPEMASK), true);
     #endif
 #endif
 
-    xCHECK_RET(a_cfaValue == (atGet() & a_cfaValue), true);
+    xCHECK_RET(a_cfaValue == (get() & a_cfaValue), true);
 
     return false;
 }
 //---------------------------------------------------------------------------
 CxFileAttribute::ExAttribute
-CxFileAttribute::atGet() {
-    xTEST_EQ(false, sFilePath().empty());
+CxFileAttribute::get() {
+    xTEST_EQ(false, filePath().empty());
 
     ExAttribute faRes = faInvalid;
 
 #if   xOS_ENV_WIN
-    faRes = static_cast<ExAttribute>( ::GetFileAttributes(sFilePath().c_str()) );
+    faRes = static_cast<ExAttribute>( ::GetFileAttributes(filePath().c_str()) );
     xTEST_NA(faRes);
 #elif xOS_ENV_UNIX
     xTSTAT_STRUCT stInfo = {0};
 
-    int iRv = ::xTSTAT(sFilePath().c_str(), &stInfo);
+    int iRv = ::xTSTAT(filePath().c_str(), &stInfo);
     xTEST_NA(iRv);
     if (- 1 == iRv) {
         faRes = faInvalid;
@@ -80,70 +80,70 @@ CxFileAttribute::atGet() {
 }
 //---------------------------------------------------------------------------
 void
-CxFileAttribute::vSet(
+CxFileAttribute::set(
     const ExAttribute &a_cfaValue
 )
 {
-    xTEST_EQ(false, sFilePath().empty());
+    xTEST_EQ(false, filePath().empty());
     xTEST_NA(a_cfaValue);
 
 #if   xOS_ENV_WIN
-    BOOL blRes = ::SetFileAttributes(sFilePath().c_str(), static_cast<ulong_t>( a_cfaValue ));
+    BOOL blRes = ::SetFileAttributes(filePath().c_str(), static_cast<ulong_t>( a_cfaValue ));
     xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
-    int iRv = ::xTCHMOD(sFilePath().c_str(), static_cast<mode_t>( a_cfaValue ));
+    int iRv = ::xTCHMOD(filePath().c_str(), static_cast<mode_t>( a_cfaValue ));
     xTEST_DIFF(- 1, iRv);
 #endif
 }
 //---------------------------------------------------------------------------
 void
-CxFileAttribute::vAdd(
+CxFileAttribute::add(
     const ExAttribute &a_cfaValue
 )
 {
-    xTEST_EQ(false, sFilePath().empty());
+    xTEST_EQ(false, filePath().empty());
     xTEST_NA(a_cfaValue);
 
-    vModify(static_cast<ExAttribute>( 0 ), a_cfaValue);
+    modify(static_cast<ExAttribute>( 0 ), a_cfaValue);
 }
 //---------------------------------------------------------------------------
 void
-CxFileAttribute::vRemove(
+CxFileAttribute::remove(
     const ExAttribute &a_cfaValue
 )
 {
-    xTEST_EQ(false, sFilePath().empty());
+    xTEST_EQ(false, filePath().empty());
     xTEST_NA(a_cfaValue);
 
-    vModify(a_cfaValue, static_cast<ExAttribute>( 0 ));
+    modify(a_cfaValue, static_cast<ExAttribute>( 0 ));
 }
 //---------------------------------------------------------------------------
 void
-CxFileAttribute::vModify(
+CxFileAttribute::modify(
     const ExAttribute &a_cfaRemoveValue,
     const ExAttribute &a_cfaAddValue
 )
 {
-    xTEST_EQ(false, sFilePath().empty());
+    xTEST_EQ(false, filePath().empty());
     xTEST_NA(a_cfaRemoveValue);
     xTEST_NA(a_cfaValue);
 
     // get current attributes
-    ExAttribute cfaValue = atGet();
+    ExAttribute cfaValue = get();
 
     // change bits
     cfaValue = static_cast<ExAttribute>( static_cast<ulong_t>( cfaValue ) & ~a_cfaRemoveValue );
     cfaValue = static_cast<ExAttribute>( static_cast<ulong_t>( cfaValue ) |  a_cfaAddValue    );
 
     // change the attributes
-    vSet(cfaValue);
+    set(cfaValue);
 }
 //---------------------------------------------------------------------------
 void
-CxFileAttribute::vClear() {
-    xTEST_EQ(false, sFilePath().empty());
+CxFileAttribute::clear() {
+    xTEST_EQ(false, filePath().empty());
 
-    vSet(faNormal);
+    set(faNormal);
 }
 //---------------------------------------------------------------------------
 

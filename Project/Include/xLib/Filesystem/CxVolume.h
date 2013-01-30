@@ -39,35 +39,35 @@ public:
         #endif
     };
 
-    explicit               CxVolume(const std::tstring_t &csVolumePath);
+    explicit               CxVolume  (const std::tstring_t &csVolumePath);
         ///< constructor
-    virtual               ~CxVolume();
+    virtual               ~CxVolume  ();
         ///< destructor
 
-    const std::tstring_t & sVolumePath() const;
+    const std::tstring_t & volumePath() const;
         ///< volume path
-    ExType                 dtType  () const;
+    ExType                 type      () const;
         ///< drive type
-    std::tstring_t         sLabel  () const;
+    std::tstring_t         label     () const;
         ///< get label
-    bool                   bIsValid() const;
+    bool                   isValid   () const;
         ///< is valid path
-    bool                   bIsReady() const;
+    bool                   isReady   () const;
         ///< is ready
-    bool                   bIsEmpty() const;
+    bool                   isEmpty   () const;
         ///< is empty
-    void                   vMount  (const std::tstring_t &csDestPath) const;
+    void                   mount     (const std::tstring_t &csDestPath) const;
         ///< mount
-    void                   vUnMount(const bool &cbIsForce) const;
+    void                   unMount   (const bool &cbIsForce) const;
         ///< unmount
 
     // static
-    static void            vSpace  (const std::tstring_t &csDirPath,
-                                    ulonglong_t *pullAvailable,
-                                    ulonglong_t *pullTotal,
-                                    ulonglong_t *pullFree);
+    static void            space     (const std::tstring_t &csDirPath,
+                                      ulonglong_t *pullAvailable,
+                                      ulonglong_t *pullTotal,
+                                      ulonglong_t *pullFree);
         ///< get free space
-    static void            vPaths  (std::vec_tstring_t *pvsVolumePaths);
+    static void            paths     (std::vec_tstring_t *pvsVolumePaths);
         ///< get paths
 
 private:

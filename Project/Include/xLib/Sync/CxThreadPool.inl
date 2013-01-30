@@ -86,7 +86,7 @@ CxThreadPool<T>::vGroupCreate(
 
     //-------------------------------------
     //
-    vCreate(false, 0U, NULL);
+    create(false, 0U, NULL);
 }
 //---------------------------------------------------------------------------
 template<typename T>
@@ -376,7 +376,7 @@ CxThreadPool<T>::uiOnRun(
 
     //-------------------------------------
     //������ �������
-    _m_semSemaphore.vCreate(static_cast<long_t>( _m_uiMaxRunningTasks ), xT(""));
+    _m_semSemaphore.create(static_cast<long_t>( _m_uiMaxRunningTasks ), xT(""));
 
     //-------------------------------------
     //������ ����
@@ -449,7 +449,7 @@ CxThreadPool<T>::_vTaskAdd(
     // TODO: pthTask->vAttachHandler_OnEnter( xCLOSURE(this, &CxThreadPool::_vOnEnterTask) );
     // TODO: pthTask->vAttachHandler_OnExit ( xCLOSURE(this, &CxThreadPool::_vOnExitTask ) );
 
-    pthTask->vCreate(_m_cbIsGroupPaused, _m_uiStackSize, _m_pvParam);
+    pthTask->create(_m_cbIsGroupPaused, _m_uiStackSize, _m_pvParam);
     pthTask->vResume();
 
     {

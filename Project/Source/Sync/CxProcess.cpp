@@ -58,13 +58,13 @@ CxProcess::~CxProcess() {
 }
 //---------------------------------------------------------------------------
 void
-CxProcess::vCreate(
+CxProcess::create(
     const std::tstring_t &a_csFilePath,
     const tchar_t        *a_pcszParams, ...
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
-    xTEST_EQ(true, CxFile::bIsExists(a_csFilePath));
+    xTEST_EQ(true, CxFile::isExists(a_csFilePath));
     xTEST_PTR(a_pcszParams);
 
     std::tstring_t sCmdLine;

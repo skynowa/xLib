@@ -31,8 +31,8 @@ CxTest_CxCrc32::vUnit(
     {
         CxFile flFile;
 
-        flFile.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
-        flFile.vResize(1337LL);
+        flFile.create(csFilePath, CxFile::omCreateReadWrite, true);
+        flFile.resize(1337LL);
     }
 
     xTEST_CASE("CxCrc32::calc", cullCaseLoops)

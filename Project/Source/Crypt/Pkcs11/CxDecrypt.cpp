@@ -144,8 +144,8 @@ CxDecrypt::makeFile(
     {
         CxFile sfFileRaw;
 
-        sfFileRaw.vCreate(a_csInFilePath, CxFile::omBinRead, true);
-        sfFileRaw.vRead(&usEncryptedData);
+        sfFileRaw.create(a_csInFilePath, CxFile::omBinRead, true);
+        sfFileRaw.read(&usEncryptedData);
     }
 
     //-------------------------------------
@@ -182,8 +182,8 @@ CxDecrypt::makeFile(
     {
         CxFile sfFileDecrypt;
 
-        sfFileDecrypt.vCreate(a_csOutFilePath, CxFile::omBinWrite, true);
-        sfFileDecrypt.vWrite(usDecryptedData);
+        sfFileDecrypt.create(a_csOutFilePath, CxFile::omBinWrite, true);
+        sfFileDecrypt.write(usDecryptedData);
     }
 }
 //---------------------------------------------------------------------------

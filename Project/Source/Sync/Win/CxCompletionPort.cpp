@@ -29,7 +29,7 @@ CxCompletionPort::~CxCompletionPort() {
 }
 //---------------------------------------------------------------------------
 void
-CxCompletionPort::vCreate(
+CxCompletionPort::create(
     const ulong_t &a_culThreadsNum
 )
 {

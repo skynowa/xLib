@@ -24,7 +24,7 @@ public:
         ///< get mutex handle
     const pthread_cond_t &  hHandle    () const;
         ///< get handle
-    void                    vCreate    ();
+    void                    create    ();
         ///< create
     void                    vWait      (const ulong_t &culTimeoutMs);
         ///< wait

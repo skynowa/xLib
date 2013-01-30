@@ -30,7 +30,7 @@ CxTest_CxAutoProfiler::vUnit(
     {
         const std::tstring_t csFilePath = sTempDirPath() + CxConst::xSLASH + xT("CxAutoProfilerLog.log");
 
-        CxFile::vClear(csFilePath);
+        CxFile::clear(csFilePath);
 
         for (size_t y = 0; y < 10; ++ y) {
             CxAutoProfiler apfP(csFilePath, xT("\tVar y: %") xPR_SIZET, y);

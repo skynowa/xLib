@@ -23,7 +23,7 @@ public:
                    CxSmtp     ();
                   ~CxSmtp     ();
 
-    void           vCreate    (const std::tstring_t &csUser, const std::tstring_t &csPass, const std::tstring_t &csServer, const ushort_t &cusPort);
+    void           create    (const std::tstring_t &csUser, const std::tstring_t &csPass, const std::tstring_t &csServer, const ushort_t &cusPort);
     void           vConnect   ();
     void           vLogin     ();
     void           vNoop      ();

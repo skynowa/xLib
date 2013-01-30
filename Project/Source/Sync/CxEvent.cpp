@@ -59,7 +59,7 @@ CxEvent::hHandle() const {
 }
 //---------------------------------------------------------------------------
 void
-CxEvent::vCreate() {
+CxEvent::create() {
 #if   xOS_ENV_WIN
     xTEST_EQ(false, _m_hEvent.isValid());
     

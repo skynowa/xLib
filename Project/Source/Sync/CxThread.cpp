@@ -88,7 +88,7 @@ CxThread::~CxThread() {
 
 //---------------------------------------------------------------------------
 void
-CxThread::vCreate(
+CxThread::create(
     const bool   &a_cbIsPaused,
     const uint_t &a_cuiStackSize,
     void         *a_pvParam
@@ -110,9 +110,9 @@ CxThread::vCreate(
     _m_pevStarter = new CxEvent(true, false);
     xTEST_PTR(_m_pevStarter);
 
-    _m_pevStarter->vCreate();
-    _m_evPause.vCreate();
-    _m_evExit.vCreate();
+    _m_pevStarter->create();
+    _m_evPause.create();
+    _m_evExit.create();
 
     //-------------------------------------
     // start

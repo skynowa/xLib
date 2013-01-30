@@ -41,20 +41,20 @@ CxTest_CxFileLog::vUnit(
     {
         for (size_t i = 0; i < 10; ++ i) {
             flLog.vWrite(xT("simple log string: %s"), xT("qwerty01234567890"));
-            xTEST_LESS(0LL, CxFile::llSize( flLog.sFilePath()) );
+            xTEST_LESS(0LL, CxFile::size( flLog.sFilePath()) );
         }
     }
 
     xTEST_CASE("CxFileLog::vClear", cullCaseLoops)
     {
         flLog.vClear();
-        xTEST_EQ(0LL, CxFile::llSize( flLog.sFilePath()) );
+        xTEST_EQ(0LL, CxFile::size( flLog.sFilePath()) );
     }
 
     xTEST_CASE("CxFileLog::vDelete", cullCaseLoops)
     {
         flLog.vDelete();
-        xTEST_EQ(false, CxFile::bIsExists( flLog.sFilePath()) );
+        xTEST_EQ(false, CxFile::isExists( flLog.sFilePath()) );
     }
 }
 //---------------------------------------------------------------------------

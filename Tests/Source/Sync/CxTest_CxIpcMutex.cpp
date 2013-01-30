@@ -35,18 +35,18 @@ CxTest_CxIpcMutex::vUnit(
         ////xTEST_EQ(false, hRv.bIsValid());
     }
 
-    xTEST_CASE("CxIpcMutex::vCreate", 1)
+    xTEST_CASE("CxIpcMutex::create", 1)
     {
         CxIpcMutex mtMutex;
 
-        mtMutex.vCreate(csName);
+        mtMutex.create(csName);
     }
 
     xTEST_CASE("CxIpcMutex::vOpen", 1)
     {
         CxIpcMutex mtMutex;
 
-        mtMutex.vCreate(csName);
+        mtMutex.create(csName);
         mtMutex.vOpen(csName);
     }
 
@@ -56,7 +56,7 @@ CxTest_CxIpcMutex::vUnit(
 
         CxIpcMutex mtMutex;
 
-        mtMutex.vCreate(csName);
+        mtMutex.create(csName);
         mtMutex.vLock(culTimeout);
         mtMutex.vUnlock();
     }

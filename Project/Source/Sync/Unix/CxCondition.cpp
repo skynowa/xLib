@@ -44,7 +44,7 @@ CxCondition::hHandle() const {
 }
 //---------------------------------------------------------------------------
 void
-CxCondition::vCreate() {
+CxCondition::create() {
     int iRv = - 1;
 
     iRv = ::pthread_mutex_init(&_m_mutex, NULL);    // mutex not recursive

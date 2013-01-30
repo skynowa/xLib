@@ -86,8 +86,8 @@ CxTest_CxProcessInfo::vUnit(
 
         xFOREACH_CONST(std::vector<CxProcess::id_t>, it, vidIds) {
             m_sRv = CxProcessInfo::exeName(/* *it */ CxCurrentProcess::ulId());
-            xTEST_EQ(true,  CxFile::bIsExists(m_sRv));
-            xTEST_EQ(m_sRv, CxPath::sExe());
+            xTEST_EQ(true,  CxFile::isExists(m_sRv));
+            xTEST_EQ(m_sRv, CxPath::exe());
         }
     }
 

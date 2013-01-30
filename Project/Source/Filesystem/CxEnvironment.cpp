@@ -25,7 +25,7 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 /* static */
 bool
-CxEnvironment::bIsExists(
+CxEnvironment::isExists(
     const std::tstring_t &a_csVarName
 )
 {
@@ -54,7 +54,7 @@ CxEnvironment::bIsExists(
 //---------------------------------------------------------------------------
 /* static */
 bool
-CxEnvironment::bIsVarValid(
+CxEnvironment::isVarValid(
     const std::tstring_t &a_csVarName
 )
 {
@@ -68,7 +68,7 @@ CxEnvironment::bIsVarValid(
 //---------------------------------------------------------------------------
 /* static */
 bool
-CxEnvironment::bIsValueValid(
+CxEnvironment::isValueValid(
     const std::tstring_t &a_csVarValue
 )
 {
@@ -81,13 +81,13 @@ CxEnvironment::bIsValueValid(
 //---------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxEnvironment::sVar(
+CxEnvironment::var(
     const std::tstring_t &a_csVarName
 )
 {
     xTEST_NA(a_csVarName);
 
-    xCHECK_RET(false == bIsExists(a_csVarName), std::tstring_t());
+    xCHECK_RET(false == isExists(a_csVarName), std::tstring_t());
 
     std::tstring_t sRv;
 
@@ -115,13 +115,13 @@ CxEnvironment::sVar(
 //--------------------------------------------------------------------------
 /* static */
 void
-CxEnvironment::vSetVar(
+CxEnvironment::setVar(
     const std::tstring_t &a_csVarName,
     const std::tstring_t &a_csValue
 )
 {
-    xTEST_EQ(true, bIsVarValid(a_csVarName));
-    xTEST_EQ(true, bIsVarValid(a_csValue));
+    xTEST_EQ(true, isVarValid(a_csVarName));
+    xTEST_EQ(true, isVarValid(a_csValue));
 
 #if   xOS_ENV_WIN
     BOOL blRes = ::SetEnvironmentVariable(a_csVarName.c_str(), a_csValue.c_str());
@@ -134,13 +134,13 @@ CxEnvironment::vSetVar(
 //---------------------------------------------------------------------------
 /* static */
 void
-CxEnvironment::vDeleteVar(
+CxEnvironment::deleteVar(
     const std::tstring_t &a_csVarName
 )
 {
     xTEST_NA(a_csVarName);
 
-    xCHECK_DO(false == bIsExists(a_csVarName), return);
+    xCHECK_DO(false == isExists(a_csVarName), return);
 
 #if   xOS_ENV_WIN
     BOOL blRes = ::SetEnvironmentVariable(a_csVarName.c_str(), NULL);
@@ -157,7 +157,7 @@ CxEnvironment::vDeleteVar(
 //--------------------------------------------------------------------------
 /* static */
 void
-CxEnvironment::vValues(
+CxEnvironment::values(
     std::vec_tstring_t *a_pvsValues
 )
 {
@@ -195,7 +195,7 @@ CxEnvironment::vValues(
 //--------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxEnvironment::sExpandStrings(
+CxEnvironment::expandStrings(
     const std::tstring_t &a_csVar
 )
 {
@@ -246,7 +246,7 @@ CxEnvironment::sExpandStrings(
         // expand var to temp string
         std::tstring_t sExpandedEnvVar;
 
-        sExpandedEnvVar = sVar(sEnvVar);
+        sExpandedEnvVar = var(sEnvVar);
 
         //--------------------------------------------------
         // replace sEnvVar(%var%) by sExpandedEnvVar

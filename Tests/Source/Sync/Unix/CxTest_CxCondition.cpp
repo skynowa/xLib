@@ -184,7 +184,7 @@ CxTest_CxCondition::vUnit(
 
     cond.hMutex();
     cond.hHandle();
-    cond.vCreate();
+    cond.create();
     cond.vWait(5000UL);
     cond.vSignal();
     cond.vBroadcast();

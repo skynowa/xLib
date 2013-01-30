@@ -29,15 +29,15 @@ CxTest_CxBackuper::vUnit(
     const std::tstring_t csBackupDir = sTempDirPath() + CxConst::xSLASH + xT("Backup_dir");
 
 
-    xTEST_CASE("CxBackuper::vExecute", cullCaseLoops)
+    xTEST_CASE("CxBackuper::execute", cullCaseLoops)
     {
         const long_t cliFileSize = 100L;
 
         {
             CxFile F;
 
-            F.vCreate(csFilePath, CxFile::omBinCreateReadWrite, true);
-            F.vResize(cliFileSize);
+            F.create(csFilePath, CxFile::omBinCreateReadWrite, true);
+            F.resize(cliFileSize);
         }
 
         for (size_t i = 0; i < 10; ++ i) {
@@ -51,7 +51,7 @@ CxTest_CxBackuper::vUnit(
             xCATCH_ALL;
         }
 
-        CxDir(csBackupDir).vPathDelete();
+        CxDir(csBackupDir).pathDelete();
     }
 }
 //---------------------------------------------------------------------------

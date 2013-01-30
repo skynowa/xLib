@@ -87,9 +87,9 @@ CxCurrentProcess::ulParentId() {
 
     CxDll dlDll;
 
-    dlDll.vLoad(xT("ntdll.dll"));
+    dlDll.load(xT("ntdll.dll"));
 
-    bool bRv = dlDll.bIsProcExists(xT("NtQueryInformationProcess"));
+    bool bRv = dlDll.isProcExists(xT("NtQueryInformationProcess"));
     xCHECK_RET(false == bRv, culInvalidId);
 
 #if xARCH_X86    
@@ -100,7 +100,7 @@ CxCurrentProcess::ulParentId() {
     ULONG                     ulProcessInformation[6] = {0};
     DWORD                     dwReturnSizeBytes       = 0UL;
     Dll_NtQueryInformationProcess_t
-    DllNtQueryInformationProcess = (Dll_NtQueryInformationProcess_t)dlDll.fpProcAddress(xT("NtQueryInformationProcess"));
+    DllNtQueryInformationProcess = (Dll_NtQueryInformationProcess_t)dlDll.procAddress(xT("NtQueryInformationProcess"));
     xTEST_PTR(DllNtQueryInformationProcess);
 
     // TODO: ProcessBasicInformation (for x64)

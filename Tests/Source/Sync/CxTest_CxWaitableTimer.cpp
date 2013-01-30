@@ -27,7 +27,7 @@ CxTest_CxWaitableTimer::vUnit(
 
     //-------------------------------------
     //создаем
-    WT.vCreate(false, xT(""), NULL);
+    WT.create(false, xT(""), NULL);
 
     //-------------------------------------
     //Устанавливаем

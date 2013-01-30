@@ -24,7 +24,7 @@ CxTest_CxEnvironment::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    xTEST_CASE("CxEnvironment::vSetVar", cullCaseLoops)
+    xTEST_CASE("CxEnvironment::setVar", cullCaseLoops)
     {
         const std::tstring_t sData[][2] = {
             {xT("ENV_TEST_1"), xT("value1")},
@@ -34,11 +34,11 @@ CxTest_CxEnvironment::vUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            CxEnvironment::vSetVar(sData[i][0], sData[i][1]);
+            CxEnvironment::setVar(sData[i][0], sData[i][1]);
         }
     }
 
-    xTEST_CASE("CxEnvironment::bIsExists", cullCaseLoops)
+    xTEST_CASE("CxEnvironment::isExists", cullCaseLoops)
     {
     #if   xOS_ENV_WIN
         const std::tstring_t sData[][2] = {
@@ -61,12 +61,12 @@ CxTest_CxEnvironment::vUnit(
     #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            bool bStr1 = CxEnvironment::bIsExists(sData[i][0]);
+            bool bStr1 = CxEnvironment::isExists(sData[i][0]);
             xTEST_EQ(CxString::strToBool(sData[i][1]), bStr1);
         }
     }
 
-    xTEST_CASE("CxEnvironment::bIsVarValid", cullCaseLoops)
+    xTEST_CASE("CxEnvironment::isVarValid", cullCaseLoops)
     {
     #if   xOS_ENV_WIN
         const std::tstring_t sData[][2] = {
@@ -92,12 +92,12 @@ CxTest_CxEnvironment::vUnit(
     #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            bool bStr1 = CxEnvironment::bIsVarValid(sData[i][0]);
+            bool bStr1 = CxEnvironment::isVarValid(sData[i][0]);
             xTEST_EQ(CxString::strToBool(sData[i][1]), bStr1);
         }
     }
 
-    xTEST_CASE("CxEnvironment::bIsValueValid", cullCaseLoops)
+    xTEST_CASE("CxEnvironment::isValueValid", cullCaseLoops)
     {
     #if   xOS_ENV_WIN
         const std::tstring_t sData[][2] = {
@@ -121,12 +121,12 @@ CxTest_CxEnvironment::vUnit(
     #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            bool bStr1 = CxEnvironment::bIsValueValid(sData[i][0]);
+            bool bStr1 = CxEnvironment::isValueValid(sData[i][0]);
             xTEST_EQ(CxString::strToBool(sData[i][1]), bStr1);
         }
     }
 
-    xTEST_CASE("CxEnvironment::sVar", cullCaseLoops)
+    xTEST_CASE("CxEnvironment::var", cullCaseLoops)
     {
     #if   xOS_ENV_WIN
         const std::tstring_t sData[][2] = {
@@ -145,21 +145,21 @@ CxTest_CxEnvironment::vUnit(
     #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            std::tstring_t sStr1 = CxEnvironment::sVar(sData[i][0]);
+            std::tstring_t sStr1 = CxEnvironment::var(sData[i][0]);
             std::tstring_t sStr2 = sData[i][1];
             xTEST_EQ(sStr1, sStr2);
         }
     }
 
-    xTEST_CASE("CxEnvironment::vValues", cullCaseLoops)
+    xTEST_CASE("CxEnvironment::values", cullCaseLoops)
     {
-        CxEnvironment::vValues(&m_vsRv);
+        CxEnvironment::values(&m_vsRv);
         xTEST_EQ(false, m_vsRv.empty());
 
         ////CxString::vStdVectorPrintT(m_vsRv);
     }
 
-    xTEST_CASE("CxEnvironment::sExpandStrings", cullCaseLoops)
+    xTEST_CASE("CxEnvironment::expandStrings", cullCaseLoops)
     {
     #if   xOS_ENV_WIN
         const std::tstring_t sData[][2] = {
@@ -176,13 +176,13 @@ CxTest_CxEnvironment::vUnit(
     #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            std::tstring_t sStr1 = CxEnvironment::sExpandStrings(sData[i][0]);
+            std::tstring_t sStr1 = CxEnvironment::expandStrings(sData[i][0]);
             std::tstring_t sStr2 = sData[i][1];
             xTEST_EQ(true, CxString::compareNoCase(sStr1, sStr2));
         }
     }
 
-    xTEST_CASE("CxEnvironment::vDeleteVar", cullCaseLoops)
+    xTEST_CASE("CxEnvironment::deleteVar", cullCaseLoops)
     {
         const std::tstring_t sData[][2] = {
             {xT("ENV_TEST_1"), xT("value1")},
@@ -192,7 +192,7 @@ CxTest_CxEnvironment::vUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-            CxEnvironment::vDeleteVar(sData[i][0]);
+            CxEnvironment::deleteVar(sData[i][0]);
         }
     }
 }
