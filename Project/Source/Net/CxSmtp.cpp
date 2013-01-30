@@ -111,13 +111,13 @@ CxSmtp::vLogin() {
 
     //-------------------------------------
     //[mylogin\r\n]
-    const std::tstring_t sLoginCmd = xS2TS( CxBase64::sEncode( xTS2S(_m_sUser) ) ) + xT("\r\n");
+    const std::tstring_t sLoginCmd = xS2TS( CxBase64::encode( xTS2S(_m_sUser) ) ) + xT("\r\n");
 
     _vCommand(sLoginCmd, xT("\r\n"), /*ref*/sRv);
 
     //-------------------------------------
     //[mypassword\r\n]
-    const std::tstring_t sPasswordCmd = xS2TS( CxBase64::sEncode( xTS2S(_m_sPass) ) ) + xT("\r\n");
+    const std::tstring_t sPasswordCmd = xS2TS( CxBase64::encode( xTS2S(_m_sPass) ) ) + xT("\r\n");
 
     _vCommand(sPasswordCmd, xT("\r\n"), /*ref*/sRv);
 }
