@@ -19,26 +19,26 @@ class CxDebugger :
     /// debugger
 {
 public:
-                   CxDebugger    ();
+                   CxDebugger   ();
         ///< constructor
-    virtual       ~CxDebugger    ();
+    virtual       ~CxDebugger   ();
         ///< destructor
 
-    bool           bIsEnabled    ();
+    bool           isEnabled    ();
         ///< is debugging enabled
-    void           vSetEnabled   (const bool &cbFlag);
+    void           setEnabled   (const bool &cbFlag);
         ///< set debugging mode on/off
-    bool           bIsActive     ();
+    bool           isActive     ();
         ///< is OS debugger presents
-    bool           bIsDebugBuild ();
+    bool           isDebugBuild ();
         ///< is debug build (is NDEBUG macros is don't set)
-    void           vBreak        ();
+    void           breakPoint   ();
         ///< attach to OS debugger
-    void           vSetLogPath   (const std::tstring_t &csFilePath);
+    void           setLogPath   (const std::tstring_t &csFilePath);
         ///< set log file path
-    std::tstring_t sLogPath      ();
+    std::tstring_t logPath      ();
         ///< get log file path
-    void           vReportMake   (const CxErrorReport &crpReport);
+    void           reportMake   (const CxErrorReport &crpReport);
         ///< make report
 
 private:
@@ -47,11 +47,11 @@ private:
     std::tstring_t _m_sLogPath;
         ///< log path
 
-    void           _vMsgboxPlain (const CxErrorReport &crpReport);
+    void           _msgboxPlain (const CxErrorReport &crpReport);
         ///< show message box with plain report
-    void           _vStdoutPlain (const CxErrorReport &crpReport);
+    void           _stdoutPlain (const CxErrorReport &crpReport);
         ///< show plain report in std::cout
-    void           _vLoggingPlain(const CxErrorReport &crpReport);
+    void           _loggingPlain(const CxErrorReport &crpReport);
         ///< log plain report to file
 };
 
