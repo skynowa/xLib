@@ -22,39 +22,39 @@ CxTest_CxDebugger::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    xTEST_CASE("CxDebugger::bGetEnabled vSetEnabled", cullCaseLoops)
+    xTEST_CASE("CxDebugger::isEnabled setEnabled", cullCaseLoops)
     {
         const bool cbTrue  = true;
         const bool cbFalse = false;
 
         CxDebugger dbgDebugger;
 
-        m_bRv = dbgDebugger.bIsEnabled();
+        m_bRv = dbgDebugger.isEnabled();
         xTEST_EQ(cbTrue, m_bRv);
 
-        dbgDebugger.vSetEnabled(cbFalse);
+        dbgDebugger.setEnabled(cbFalse);
 
-        m_bRv = dbgDebugger.bIsEnabled();
+        m_bRv = dbgDebugger.isEnabled();
         xTEST_EQ(cbFalse, m_bRv);
 
-        dbgDebugger.vSetEnabled(cbTrue);
+        dbgDebugger.setEnabled(cbTrue);
 
-        m_bRv = dbgDebugger.bIsEnabled();
+        m_bRv = dbgDebugger.isEnabled();
         xTEST_EQ(cbTrue, m_bRv);
     }
 
-    xTEST_CASE("CxDebugger::bIsActive", cullCaseLoops)
+    xTEST_CASE("CxDebugger::isActive", cullCaseLoops)
     {
         CxDebugger dbgDebugger;
 
-        m_bRv = dbgDebugger.bIsActive();
+        m_bRv = dbgDebugger.isActive();
     }
 
-    xTEST_CASE("CxDebugger::bIsDebugBuild", cullCaseLoops)
+    xTEST_CASE("CxDebugger::isDebugBuild", cullCaseLoops)
     {
         CxDebugger dbgDebugger;
 
-        m_bRv = dbgDebugger.bIsDebugBuild();
+        m_bRv = dbgDebugger.isDebugBuild();
         #if defined(NDEBUG)
             xTEST_EQ(false, m_bRv);
         #else
@@ -62,36 +62,36 @@ CxTest_CxDebugger::vUnit(
         #endif
     }
 
-    xTEST_CASE("CxDebugger::vBreak", cullCaseLoops)
+    xTEST_CASE("CxDebugger::breakPoint", cullCaseLoops)
     {
         CxDebugger dbgDebugger;
 
         #if xTEST_IGNORE
-            dbgDebugger.vBreak();
+            dbgDebugger.breakPoint();
         #endif
     }
 
-    xTEST_CASE("CxDebugger::vSetLogPath sGetLogPath", cullCaseLoops)
+    xTEST_CASE("CxDebugger::setLogPath logPath", cullCaseLoops)
     {
-        const std::tstring_t csFilePath = xT("");
+        const std::tstring_t csFilePath;
 
         CxDebugger dbgDebugger;
 
-        m_sRv = dbgDebugger.sLogPath();
+        m_sRv = dbgDebugger.logPath();
         xTEST_EQ(true, m_sRv.empty());
 
-        dbgDebugger.vSetLogPath(csFilePath);
+        dbgDebugger.setLogPath(csFilePath);
 
-        m_sRv = dbgDebugger.sLogPath();
+        m_sRv = dbgDebugger.logPath();
         xTEST_EQ(csFilePath, m_sRv);
 
-        dbgDebugger.vSetLogPath(xT(""));
+        dbgDebugger.setLogPath(xT(""));
 
-        m_sRv = dbgDebugger.sLogPath();
+        m_sRv = dbgDebugger.logPath();
         xTEST_EQ(true, m_sRv.empty());
     }
 
-    xTEST_CASE("CxDebugger::vReportMake", cullCaseLoops)
+    xTEST_CASE("CxDebugger::reportMake", cullCaseLoops)
     {
         const CxErrorReport::ExType crtType[] = {
             CxErrorReport::rtMsgboxPlain,
@@ -111,7 +111,7 @@ CxTest_CxDebugger::vUnit(
 
             CxDebugger dbgDebugger;
 
-            // m_bRv = dbgDebugger.bReportMake(rpReport);
+            // m_bRv = dbgDebugger.reportMake(rpReport);
             // xTEST_EQ(true, m_bRv);
         }
     }

@@ -72,7 +72,7 @@ CxErrorReport::_vConstruct(
 
     m_sCurrentDate    = CxDateTime::current().format(CxDateTime::ftDateTime);
     m_sBuildDate      = CxString::format(xT("%s/%s"), a_csDate.c_str(), a_csTime.c_str());
-    m_sBuildType      = CxDebugger().bIsDebugBuild() ? xT("debug") : xT("release");
+    m_sBuildType      = CxDebugger().isDebugBuild() ? xT("debug") : xT("release");
     m_sOsVersion      = CxSystemInfo::formatOsType( CxSystemInfo::os() );
     m_sOsArchitecture = CxSystemInfo::formatOsArch( CxSystemInfo::osArch() );
 

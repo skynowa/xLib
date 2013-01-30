@@ -59,12 +59,12 @@ CxDebugger::~CxDebugger() {
 
 //---------------------------------------------------------------------------
 bool
-CxDebugger::bIsEnabled() {
+CxDebugger::isEnabled() {
     return _m_bIsEnabled;
 }
 //---------------------------------------------------------------------------
 void
-CxDebugger::vSetEnabled(
+CxDebugger::setEnabled(
     const bool &a_cbFlag
 )
 {
@@ -72,7 +72,7 @@ CxDebugger::vSetEnabled(
 }
 //---------------------------------------------------------------------------
 bool
-CxDebugger::bIsActive() {
+CxDebugger::isActive() {
 #if   xOS_ENV_WIN
     // local debugger
     BOOL blRes = ::IsDebuggerPresent();
@@ -115,7 +115,7 @@ CxDebugger::bIsActive() {
 }
 //---------------------------------------------------------------------------
 bool
-CxDebugger::bIsDebugBuild() {
+CxDebugger::isDebugBuild() {
 #if xBUILD_DEBUG
     return true;
 #else
@@ -124,8 +124,8 @@ CxDebugger::bIsDebugBuild() {
 }
 //---------------------------------------------------------------------------
 void
-CxDebugger::vBreak() {
-    xCHECK_DO(false == bIsEnabled(), return);
+CxDebugger::breakPoint() {
+    xCHECK_DO(false == isEnabled(), return);
 
 #if   xOS_ENV_WIN
     (void)::DebugBreak();
@@ -139,7 +139,7 @@ CxDebugger::vBreak() {
 }
 //---------------------------------------------------------------------------
 void
-CxDebugger::vSetLogPath(
+CxDebugger::setLogPath(
     const std::tstring_t &a_csFilePath
 )
 {
@@ -147,12 +147,12 @@ CxDebugger::vSetLogPath(
 }
 //---------------------------------------------------------------------------
 std::tstring_t
-CxDebugger::sLogPath() {
+CxDebugger::logPath() {
     return _m_sLogPath;
 }
 //---------------------------------------------------------------------------
 void
-CxDebugger::vReportMake(
+CxDebugger::reportMake(
     const CxErrorReport &a_crpReport
 )
 {
@@ -161,11 +161,11 @@ CxDebugger::vReportMake(
     const ulong_t culLastError = CxLastError::ulGet();
 
     switch (a_crpReport.m_rtType) {
-        case CxErrorReport::rtMsgboxPlain:  { _vMsgboxPlain (a_crpReport); } break;
-        case CxErrorReport::rtStdoutPlain:  { _vStdoutPlain (a_crpReport); } break;
-        case CxErrorReport::rtLoggingPlain: { _vLoggingPlain(a_crpReport); } break;
+        case CxErrorReport::rtMsgboxPlain:  { _msgboxPlain (a_crpReport); } break;
+        case CxErrorReport::rtStdoutPlain:  { _stdoutPlain (a_crpReport); } break;
+        case CxErrorReport::rtLoggingPlain: { _loggingPlain(a_crpReport); } break;
 
-        default:                            { _vStdoutPlain (a_crpReport); } break;
+        default:                            { _stdoutPlain (a_crpReport); } break;
     }
 
     //-------------------------------------
@@ -182,11 +182,11 @@ CxDebugger::vReportMake(
 
 //---------------------------------------------------------------------------
 void
-CxDebugger::_vMsgboxPlain(
+CxDebugger::_msgboxPlain(
     const CxErrorReport &a_crpReport
 )
 {
-    xCHECK_DO(false == bIsEnabled(), return);
+    xCHECK_DO(false == isEnabled(), return);
 
 #if xDEBUG_USE_PROMPT_DIALOG
     #if   xOS_ENV_WIN
@@ -212,8 +212,8 @@ CxDebugger::_vMsgboxPlain(
             break;
 
         case CxMsgBoxT::mrRetry: {
-                if (true == bIsActive()) {
-                    vBreak();
+                if (true == isActive()) {
+                    breakPoint();
                 } else {
                     CxMsgBoxT::iShow(xT("Debugger is not present.\nThe application will be terminated."), xT("xLib"));
                     CxCurrentProcess::vExit(0U);
@@ -224,11 +224,11 @@ CxDebugger::_vMsgboxPlain(
 }
 //---------------------------------------------------------------------------
 void
-CxDebugger::_vStdoutPlain(
+CxDebugger::_stdoutPlain(
     const CxErrorReport &a_crpReport
 )
 {
-    xCHECK_DO(false == bIsEnabled(), return);
+    xCHECK_DO(false == isEnabled(), return);
 
     enum EConsoleCmd {
         cmAbort  = xT('a'),
@@ -265,8 +265,8 @@ CxDebugger::_vStdoutPlain(
         case cmRetry: {
                 std::tcout << xT("Retry...\n\n");
 
-                if (true == bIsActive()) {
-                    vBreak();
+                if (true == isActive()) {
+                    breakPoint();
                 } else {
                     std::tcout << xT("\n####################################################################################################\n");
                     std::tcout << xT("CxDebugger\n");
@@ -284,20 +284,20 @@ CxDebugger::_vStdoutPlain(
 }
 //---------------------------------------------------------------------------
 void
-CxDebugger::_vLoggingPlain(
+CxDebugger::_loggingPlain(
     const CxErrorReport &a_crpReport
 )
 {
-    xCHECK_DO(false == bIsEnabled(), return);
+    xCHECK_DO(false == isEnabled(), return);
 
     //--------------------------------------------------
     // get log file path
     std::tstring_t sFilePath;
 
-    if (true == sLogPath().empty()) {
+    if (true == logPath().empty()) {
         sFilePath = CxPath( CxPath::sExe() ).sSetExt(xT("debug"));
     } else {
-        sFilePath = sLogPath();
+        sFilePath = logPath();
     }
 
     //--------------------------------------------------
