@@ -109,7 +109,7 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\SDK\4.53\pkcs11t.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Db\CxConnectionString.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Db\CxMySql.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">true</ExcludedFromBuild>
@@ -426,7 +426,7 @@
     <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxVerify.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Db\CxConnectionString.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Db\CxMySql.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">true</ExcludedFromBuild>

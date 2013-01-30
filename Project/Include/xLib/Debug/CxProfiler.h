@@ -18,21 +18,21 @@ class CxProfiler :
     /// code profiling
 {
 public:
-    explicit              CxProfiler ();
+    explicit              CxProfiler();
         ///< constructor
-    virtual              ~CxProfiler ();
+    virtual              ~CxProfiler();
         ///< destructor
 
-    void                  vSetLogPath(const std::tstring_t &csLogPath);
+    void                  setLogPath(const std::tstring_t &csLogPath);
         ///< set log path
-    const std::tstring_t &sLogPath   () const;
+    const std::tstring_t &logPath   () const;
         ///< get log path
 
-    void                  vStart     ();
+    void                  start     ();
         ///< start measurement
-    void                  vStop      (const tchar_t *pcszComment, ...);
+    void                  stop      (const tchar_t *pcszComment, ...);
         ///< stop measurement
-    void                  vPulse     (const tchar_t *pcszComment, ...);
+    void                  pulse     (const tchar_t *pcszComment, ...);
         ///< stop, start measurement
 
 private:
@@ -43,7 +43,7 @@ private:
     std::clock_t          _m_clkStop;       ///< stop value
     std::clock_t          _m_clkDuration;   ///< duration value
 
-    void                  _vDataReset();
+    void                  _dataReset();
         ///< reset all class data
 };
 

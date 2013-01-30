@@ -33,13 +33,13 @@ CxAutoProfiler::CxAutoProfiler(
 
     //-------------------------------------
     // start
-    _m_pfProfiler.vSetLogPath(a_csFilePath);
-    _m_pfProfiler.vStart();
+    _m_pfProfiler.setLogPath(a_csFilePath);
+    _m_pfProfiler.start();
 }
 //---------------------------------------------------------------------------
 /* virtual */
 CxAutoProfiler::~CxAutoProfiler() {
-    _m_pfProfiler.vStop(xT("%s"), _m_sComment.c_str());
+    _m_pfProfiler.stop(xT("%s"), _m_sComment.c_str());
 }
 //---------------------------------------------------------------------------
 

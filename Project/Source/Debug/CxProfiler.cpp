@@ -25,7 +25,7 @@ CxProfiler::CxProfiler() :
     _m_bIsStarted(false),
     _flLog       (CxFileLog::lsDefaultSize)
 {
-    _vDataReset();
+    _dataReset();
 }
 //---------------------------------------------------------------------------
 CxProfiler::~CxProfiler() {
@@ -35,7 +35,7 @@ CxProfiler::~CxProfiler() {
 }
 //---------------------------------------------------------------------------
 void
-CxProfiler::vSetLogPath(
+CxProfiler::setLogPath(
     const std::tstring_t &a_csLogPath
 )
 {
@@ -45,15 +45,15 @@ CxProfiler::vSetLogPath(
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxProfiler::sLogPath() const {
+CxProfiler::logPath() const {
     return _flLog.sFilePath();
 }
 //--------------------------------------------------------------------------
 void
-CxProfiler::vStart() {
+CxProfiler::start() {
     xTEST_EQ(false, _m_bIsStarted);
 
-    _vDataReset();
+    _dataReset();
 
     // TODO: set highest thread priority
     {
@@ -67,7 +67,7 @@ CxProfiler::vStart() {
 }
 //--------------------------------------------------------------------------
 void
-CxProfiler::vStop(
+CxProfiler::stop(
     const tchar_t *a_pcszComment, ...
 )
 {
@@ -104,7 +104,7 @@ CxProfiler::vStop(
 }
 //--------------------------------------------------------------------------
 void
-CxProfiler::vPulse(
+CxProfiler::pulse(
     const tchar_t *a_pcszComment, ...
 )
 {
@@ -119,8 +119,8 @@ CxProfiler::vPulse(
 
     //-------------------------------------
     // stop, start
-    vStop(xT("%s"), sRv.c_str());
-    vStart();
+    stop(xT("%s"), sRv.c_str());
+    start();
 }
 //---------------------------------------------------------------------------
 
@@ -132,7 +132,7 @@ CxProfiler::vPulse(
 
 //---------------------------------------------------------------------------
 void
-CxProfiler::_vDataReset() {
+CxProfiler::_dataReset() {
     // TODO: set normal thread priority
     {
 

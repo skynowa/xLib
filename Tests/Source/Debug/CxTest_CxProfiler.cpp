@@ -34,20 +34,20 @@ CxTest_CxProfiler::vUnit(
 
         CxProfiler pfP;
 
-        pfP.vSetLogPath(csFilePath);
+        pfP.setLogPath(csFilePath);
 
-        m_sRv = pfP.sLogPath();
+        m_sRv = pfP.logPath();
         xTEST_EQ(csFilePath, m_sRv);
 
-        pfP.vStart();
+        pfP.start();
 
         for (size_t i = 0; i < 10; ++ i) {
             CxCurrentThread::vSleep(5UL);
 
-            pfP.vPulse(xT("\tVar i: %") xPR_SIZET, i);
+            pfP.pulse(xT("\tVar i: %") xPR_SIZET, i);
         }
 
-        pfP.vStop(xT(""));
+        pfP.stop(xT(""));
     }
 }
 //---------------------------------------------------------------------------
