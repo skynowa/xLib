@@ -577,7 +577,7 @@ CxFile::bIsExists(
     xCHECK_RET(false == bIsFile(a_csFilePath), false);
 
     int iRv = ::xTACCESS(a_csFilePath.c_str(), amExistence);
-    xCHECK_RET(- 1 == iRv && ENOENT == CxStdError::iGet(), false);
+    xCHECK_RET(- 1 == iRv && ENOENT == CxStdError::get(), false);
 
     return true;
 }
