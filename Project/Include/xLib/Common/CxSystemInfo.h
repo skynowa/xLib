@@ -78,7 +78,7 @@ public:
     // users
     static std::tstring_t hostName        ();
         ///< get the NetBIOS name of the local computer
-    static bool           isUserAnAdmin   ();
+    static bool           isUserAdmin     ();
         ///< is current user an admin
     static std::tstring_t userName        ();
         ///< get the name of the user associated with the current thread
@@ -92,7 +92,7 @@ public:
         ///< get num of CPUs
     static ulong_t        currentCpuNum   ();
         ///< get the number of the processor the current thread was running on during the call to this function
-    static ExCpuVendor    cpuVendor         ();
+    static ExCpuVendor    cpuVendor       ();
         ///< get CPU vendor
     static std::tstring_t cpuModel        ();
         ///< get CPU model name
