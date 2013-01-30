@@ -107,7 +107,7 @@ CxTest_CxDebugger::vUnit(
 
             CxErrorReport rpReport(crtType[i], xT("val1"), xT("val2"), val1, val2, xT("=="),
                                    ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME,
-                                   CxStackTrace().sGet(), xT(""));
+                                   CxStackTrace().toString(), xT(""));
 
             CxDebugger dbgDebugger;
 

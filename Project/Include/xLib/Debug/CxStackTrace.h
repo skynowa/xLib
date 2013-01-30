@@ -25,9 +25,9 @@ public:
     virtual             ~CxStackTrace();
         ///< destructor
 
-    void                 vGet        (std::vector<std::vec_tstring_t> *pvvsStack);
+    void                 get         (std::vector<std::vec_tstring_t> *pvvsStack);
         ///< get stack trace
-    std::tstring_t       sGet        ();
+    std::tstring_t       toString    ();
         ///< get stack trace with format output
 
 private:
@@ -37,10 +37,10 @@ private:
     const bool           _m_cbIsWrapFilePathes;
     const bool           _m_cbIsFuncParamsDisable;
 
-    std::tstring_t       _sFormat    (std::vector<std::vec_tstring_t> *pvvsStack);
+    std::tstring_t       _format     (std::vector<std::vec_tstring_t> *pvvsStack);
         ///< format stack trace
 #if xOS_ENV_UNIX
-    static void          _vAddr2Line (const void *pvSymbolAddress, std::tstring_t *psFilePath,
+    static void          _addr2Line  (const void *pvSymbolAddress, std::tstring_t *psFilePath,
                                       std::tstring_t *psFunctionName, ulong_t *pulSourceLine);
 #endif
 };
