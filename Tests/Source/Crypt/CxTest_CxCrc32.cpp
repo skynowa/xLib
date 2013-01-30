@@ -35,33 +35,33 @@ CxTest_CxCrc32::vUnit(
         flFile.vResize(1337LL);
     }
 
-    xTEST_CASE("CxCrc32::ulCalc", cullCaseLoops)
+    xTEST_CASE("CxCrc32::calc", cullCaseLoops)
     {
 
     }
 
-    xTEST_CASE("CxCrc32::ulCalcFile sFormatHex", cullCaseLoops)
+    xTEST_CASE("CxCrc32::calcFile formatHex", cullCaseLoops)
     {
-        m_ulRv = CxCrc32::ulCalcFile(csFilePath);
+        m_ulRv = CxCrc32::calcFile(csFilePath);
         xTEST_LESS(0UL, m_ulRv);
         //xTRACE(m_ulRv);
 
-        m_sRv = CxCrc32::sFormatHex(m_ulRv);
+        m_sRv = CxCrc32::formatHex(m_ulRv);
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("CxCrc32::ulCalcFast", cullCaseLoops)
+    xTEST_CASE("CxCrc32::calcFast", cullCaseLoops)
     {
 
     }
 
-    xTEST_CASE("CxCrc32::ulCalcFileFast sFormatHex", cullCaseLoops)
+    xTEST_CASE("CxCrc32::calcFileFast formatHex", cullCaseLoops)
     {
-        m_ulRv = CxCrc32::ulCalcFileFast(csFilePath);
+        m_ulRv = CxCrc32::calcFileFast(csFilePath);
         xTEST_LESS(0UL, m_ulRv);
         //xTRACE(m_ulRv);
 
-        m_sRv = CxCrc32::sFormatHex(m_ulRv);
+        m_sRv = CxCrc32::formatHex(m_ulRv);
         xTEST_EQ(false, m_sRv.empty());
     }
 }

@@ -20,7 +20,7 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 /* static */
 ulong_t
-CxCrc32::ulCalc(
+CxCrc32::calc(
     uchar_t       *a_pucBuff,
     const ulong_t &a_culSize
 )
@@ -52,7 +52,7 @@ CxCrc32::ulCalc(
 //---------------------------------------------------------------------------
 /* static */
 ulong_t
-CxCrc32::ulCalcFile(
+CxCrc32::calcFile(
     const std::tstring_t &a_csFilePath
 )
 {
@@ -66,7 +66,7 @@ CxCrc32::ulCalcFile(
     if (true == usFile.empty()) {
         ulRv = 0;
     } else {
-        ulRv = ulCalc(&usFile.at(0), static_cast<ulong_t>( usFile.size() ));
+        ulRv = calc(&usFile.at(0), static_cast<ulong_t>( usFile.size() ));
     }
 
     return ulRv;
@@ -74,7 +74,7 @@ CxCrc32::ulCalcFile(
 //---------------------------------------------------------------------------
 /* static */
 ulong_t
-CxCrc32::ulCalcFast(
+CxCrc32::calcFast(
     uchar_t       *a_pucBuff,
     const ulong_t &a_culSize
 )
@@ -177,7 +177,7 @@ CxCrc32::ulCalcFast(
 //---------------------------------------------------------------------------
 /* static */
 ulong_t
-CxCrc32::ulCalcFileFast(
+CxCrc32::calcFileFast(
     const std::tstring_t &a_csFilePath
 )
 {
@@ -191,7 +191,7 @@ CxCrc32::ulCalcFileFast(
     if (true == usFile.empty()) {
         ulRv = 0;
     } else {
-        ulRv = ulCalcFast(&usFile.at(0), static_cast<ulong_t>( usFile.size() ));
+        ulRv = calcFast(&usFile.at(0), static_cast<ulong_t>( usFile.size() ));
     }
 
     return ulRv;
@@ -199,7 +199,7 @@ CxCrc32::ulCalcFileFast(
 //---------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxCrc32::sFormatHex(
+CxCrc32::formatHex(
     const ulong_t &a_culCrc32
 )
 {
