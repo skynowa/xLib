@@ -120,7 +120,7 @@ CxBackuper::vExecute(
     // check for a valid backup
     xCHECK_DO(false                                 == CxFile::bIsExists(sBackupFilePath),       xTHROW() << csError_CopyingFail);
     xCHECK_DO(CxFile::llSize(a_csFilePath)          != CxFile::llSize(sBackupFilePath),          xTHROW() << csError_CopyingFail);
-    xCHECK_DO(CxCrc32::ulCalcFileFast(a_csFilePath) != CxCrc32::ulCalcFileFast(sBackupFilePath), xTHROW() << csError_CopyingFail);
+    xCHECK_DO(CxCrc32::calcFileFast(a_csFilePath) != CxCrc32::calcFileFast(sBackupFilePath), xTHROW() << csError_CopyingFail);
 
     // [out]
     std::swap(*a_psDestFilePath, sBackupFilePath);

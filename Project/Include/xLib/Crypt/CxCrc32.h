@@ -16,26 +16,26 @@ class CxCrc32 :
     /// Crc32
 {
 public:
-    static ulong_t        ulCalc        (uchar_t *pucBuff, const ulong_t &culSize);
+    static ulong_t        calc        (uchar_t *pucBuff, const ulong_t &culSize);
         ///< calculate
-    static ulong_t        ulCalcFile    (const std::tstring_t &csFilePath);
+    static ulong_t        calcFile    (const std::tstring_t &csFilePath);
         ///< calculate
 
-    static ulong_t        ulCalcFast    (uchar_t *pucBuff, const ulong_t &culSize);
+    static ulong_t        calcFast    (uchar_t *pucBuff, const ulong_t &culSize);
         ///< fast calculate
-    static ulong_t        ulCalcFileFast(const std::tstring_t &csFilePath);
+    static ulong_t        calcFileFast(const std::tstring_t &csFilePath);
         ///< fast calculate
 
-    static std::tstring_t sFormatHex    (const ulong_t &culCrc32);
+    static std::tstring_t formatHex   (const ulong_t &culCrc32);
         ///< format Crc32 like "0AADDEA0"
 
 private:
-                          CxCrc32       ();
+                          CxCrc32     ();
         ///< constructor
-    virtual              ~CxCrc32       ();
+    virtual              ~CxCrc32     ();
         ///< destructor
 };
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif //xLib_Crypt_CxCrc32H
+#endif // xLib_Crypt_CxCrc32H
