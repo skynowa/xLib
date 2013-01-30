@@ -35,4 +35,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif    //xLib_Sync_CxSleeperH
+#endif // xLib_Sync_CxSleeperH

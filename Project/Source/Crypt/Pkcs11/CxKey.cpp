@@ -24,10 +24,9 @@ CxKey::CxKey(
     const CxPkcs11  &a_cPkcs11,
     const CxSession &a_cSession
 ) :
-    _m_pFunc   (a_cPkcs11.pFuncList()),
-    _m_hSession(a_cSession.hHandle())
+    _m_pFunc   (a_cPkcs11.funcList()),
+    _m_hSession(a_cSession.handle())
 {
-
 }
 //---------------------------------------------------------------------------
 /* virtual */
@@ -36,21 +35,19 @@ CxKey::~CxKey() {
 }
 //---------------------------------------------------------------------------
 void
-CxKey::vGenerate(
+CxKey::generate(
     CK_MECHANISM_PTR     a_pMechanism,  ///< key generation mech.
     CK_ATTRIBUTE_PTR     a_pTemplate,   ///< template for new key
     CK_ULONG             a_ulCount,     ///< # of attrs in template
     CK_OBJECT_HANDLE_PTR a_phKey        ///< gets handle of new key
 )
 {
-    
-
     CK_RV ulRv = _m_pFunc->C_GenerateKey(_m_hSession, a_pMechanism, a_pTemplate, a_ulCount, a_phKey);
-    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
-CxKey::vGeneratePair(
+CxKey::generatePair(
     CK_MECHANISM_PTR     a_pMechanism,                  ///< key-gen mech.
     CK_ATTRIBUTE_PTR     a_pPublicKeyTemplate,          ///< template for pub key
     CK_ULONG             a_ulPublicKeyAttributeCount,   ///< # pub. attrs.
@@ -60,14 +57,12 @@ CxKey::vGeneratePair(
     CK_OBJECT_HANDLE_PTR a_phPrivateKey
 )
 {
-    
-
     CK_RV ulRv = _m_pFunc->C_GenerateKeyPair(_m_hSession, a_pMechanism, a_pPublicKeyTemplate, a_ulPublicKeyAttributeCount, a_pPrivateKeyTemplate, a_ulPrivateKeyAttributeCount, a_phPublicKey, a_phPrivateKey);
-    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
-CxKey::vDerive(
+CxKey::derive(
     CK_MECHANISM_PTR     a_pMechanism,        ///< key deriv. mech.
     CK_OBJECT_HANDLE     a_hBaseKey,          ///< base key
     CK_ATTRIBUTE_PTR     a_pTemplate,         ///< new key template
@@ -75,14 +70,12 @@ CxKey::vDerive(
     CK_OBJECT_HANDLE_PTR a_phKey
 )
 {
-    
-
     CK_RV ulRv = _m_pFunc->C_DeriveKey(_m_hSession, a_pMechanism, a_hBaseKey, a_pTemplate, a_ulAttributeCount, a_phKey);
-    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
-CxKey::vWrap(
+CxKey::wrap(
     CK_MECHANISM_PTR a_pMechanism,      ///< the wrapping mechanism
     CK_OBJECT_HANDLE a_hWrappingKey,    ///< wrapping key
     CK_OBJECT_HANDLE a_hKey,            ///< key to be wrapped
@@ -90,14 +83,12 @@ CxKey::vWrap(
     CK_ULONG_PTR     a_pulWrappedKeyLen ///< gets wrapped key size
 )
 {
-    
-
     CK_RV ulRv = _m_pFunc->C_WrapKey(_m_hSession, a_pMechanism, a_hWrappingKey, a_hKey, a_pWrappedKey, a_pulWrappedKeyLen);
-    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
-CxKey::vUnwrap(
+CxKey::unwrap(
     CK_MECHANISM_PTR     a_pMechanism,        ///< unwrapping mech.
     CK_OBJECT_HANDLE     a_hUnwrappingKey,    ///< unwrapping key
     CK_BYTE_PTR          a_pWrappedKey,       ///< the wrapped key
@@ -107,34 +98,28 @@ CxKey::vUnwrap(
     CK_OBJECT_HANDLE_PTR a_phKey
 )
 {
-    
-
     CK_RV ulRv = _m_pFunc->C_UnwrapKey(_m_hSession, a_pMechanism, a_hUnwrappingKey, a_pWrappedKey, a_ulWrappedKeyLen, a_pTemplate, a_ulAttributeCount, a_phKey);
-    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
-CxKey::vSeedRandom(
+CxKey::seedRandom(
     CK_BYTE_PTR pSeed,     ///< the seed material
     CK_ULONG    ulSeedLen  ///< length of seed material
 )
 {
-    
-
     CK_RV ulRv = _m_pFunc->C_SeedRandom(_m_hSession, pSeed, ulSeedLen);
-    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
-CxKey::vGenerateRandom(
+CxKey::generateRandom(
     CK_BYTE_PTR a_pRandomData,  ///< receives the random data
     CK_ULONG    a_ulRandomLen   ///< # of bytes to generate
 )
 {
-    
-
     CK_RV ulRv = _m_pFunc->C_GenerateRandom(_m_hSession, a_pRandomData, a_ulRandomLen);
-    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 

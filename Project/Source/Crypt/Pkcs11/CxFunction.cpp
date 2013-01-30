@@ -24,10 +24,9 @@ CxFunction::CxFunction(
     const CxPkcs11  &a_cPkcs11,
     const CxSession &a_cSession
 ) :
-    _m_pFunc   (a_cPkcs11.pFuncList()),
-    _m_hSession(a_cSession.hHandle())
+    _m_pFunc   (a_cPkcs11.funcList()),
+    _m_hSession(a_cSession.handle())
 {
-
 }
 //---------------------------------------------------------------------------
 /* virtual */
@@ -36,38 +35,32 @@ CxFunction::~CxFunction() {
 }
 //---------------------------------------------------------------------------
 void
-CxFunction::vList(
+CxFunction::list(
     CK_FUNCTION_LIST_PTR_PTR a_ppFunctionList  ///< receives pointer to function list
 )
 {
-    
-
     CK_RV ulRv = _m_pFunc->C_GetFunctionList(a_ppFunctionList);
-    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
-CxFunction::vStatus() {
-    
-
+CxFunction::status() {
     CK_RV ulRv = _m_pFunc->C_GetFunctionStatus(_m_hSession);
-    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
-CxFunction::vCancel() {
-    
-
+CxFunction::cancel() {
     CK_RV ulRv = _m_pFunc->C_CancelFunction(_m_hSession);
-    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
-CxFunction::vListEx() {
-    // TODO: CxFunction::vListEx
+CxFunction::listEx() {
+    // TODO: CxFunction::listEx
     #if xTODO
         CK_RV ulRv = _m_pFunc->ETC_GetFunctionListEx();
-        xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+        xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
     #endif
 }
 //---------------------------------------------------------------------------

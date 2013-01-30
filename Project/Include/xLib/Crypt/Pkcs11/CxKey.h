@@ -22,29 +22,29 @@ class CxKey :
     /// Pkcs11 key
 {
 public:
-                         CxKey          (const CxPkcs11 &cPkcs11, const CxSession &cSession);
+                         CxKey         (const CxPkcs11 &cPkcs11, const CxSession &cSession);
         ///< constructor
-    virtual             ~CxKey          ();
+    virtual             ~CxKey         ();
         ///< destructor
 
-    void                 vGenerate      (CK_MECHANISM_PTR pMechanism, CK_ATTRIBUTE_PTR pTemplate,          CK_ULONG         ulCount,                   CK_OBJECT_HANDLE_PTR phKey);
+    void                 generate      (CK_MECHANISM_PTR pMechanism, CK_ATTRIBUTE_PTR pTemplate,          CK_ULONG         ulCount,                   CK_OBJECT_HANDLE_PTR phKey);
         ///< generates a secret key, creating a new key object
-    void                 vGeneratePair  (CK_MECHANISM_PTR pMechanism, CK_ATTRIBUTE_PTR pPublicKeyTemplate, CK_ULONG         ulPublicKeyAttributeCount, CK_ATTRIBUTE_PTR     pPrivateKeyTemplate, CK_ULONG             ulPrivateKeyAttributeCount, CK_OBJECT_HANDLE_PTR phPublicKey,      CK_OBJECT_HANDLE_PTR phPrivateKey);
+    void                 generatePair  (CK_MECHANISM_PTR pMechanism, CK_ATTRIBUTE_PTR pPublicKeyTemplate, CK_ULONG         ulPublicKeyAttributeCount, CK_ATTRIBUTE_PTR     pPrivateKeyTemplate, CK_ULONG             ulPrivateKeyAttributeCount, CK_OBJECT_HANDLE_PTR phPublicKey,      CK_OBJECT_HANDLE_PTR phPrivateKey);
         ///< generates a public-key/private-key pair, creating new key objects
-    void                 vDerive        (CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hBaseKey,           CK_ATTRIBUTE_PTR pTemplate,                 CK_ULONG             ulAttributeCount,    CK_OBJECT_HANDLE_PTR phKey);
+    void                 derive        (CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hBaseKey,           CK_ATTRIBUTE_PTR pTemplate,                 CK_ULONG             ulAttributeCount,    CK_OBJECT_HANDLE_PTR phKey);
         ///< derives a key from a base key, creating a new key object
-    void                 vWrap          (CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hWrappingKey,       CK_OBJECT_HANDLE hKey,                      CK_BYTE_PTR          pWrappedKey,         CK_ULONG_PTR         pulWrappedKeyLen);
+    void                 wrap          (CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hWrappingKey,       CK_OBJECT_HANDLE hKey,                      CK_BYTE_PTR          pWrappedKey,         CK_ULONG_PTR         pulWrappedKeyLen);
         ///< wraps (i.e., encrypts) a key
-    void                 vUnwrap        (CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hUnwrappingKey,     CK_BYTE_PTR      pWrappedKey,               CK_ULONG             ulWrappedKeyLen,     CK_ATTRIBUTE_PTR     pTemplate,                  CK_ULONG             ulAttributeCount, CK_OBJECT_HANDLE_PTR phKey);
+    void                 unwrap        (CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hUnwrappingKey,     CK_BYTE_PTR      pWrappedKey,               CK_ULONG             ulWrappedKeyLen,     CK_ATTRIBUTE_PTR     pTemplate,                  CK_ULONG             ulAttributeCount, CK_OBJECT_HANDLE_PTR phKey);
         ///< unwraps (decrypts) a wrapped key, creating a new key object
 
-    void                 vSeedRandom    (CK_BYTE_PTR pSeed,       CK_ULONG ulSeedLen);
+    void                 seedRandom    (CK_BYTE_PTR pSeed,       CK_ULONG ulSeedLen);
         ///< mixes additional seed material into the token's random number generator
-    void                 vGenerateRandom(CK_BYTE_PTR pRandomData, CK_ULONG ulRandomLen);
+    void                 generateRandom(CK_BYTE_PTR pRandomData, CK_ULONG ulRandomLen);
         ///< generates random data
 
 private:
-    CK_FUNCTION_LIST_PTR _m_pFunc;      ///< pointerto dll's functions list
+    CK_FUNCTION_LIST_PTR _m_pFunc;      ///< pointer to dll functions list
     CK_SESSION_HANDLE    _m_hSession;   ///< session handle
 };
 
@@ -52,4 +52,4 @@ xNAMESPACE_END(NxLib)
 
 #endif
 //---------------------------------------------------------------------------
-#endif    //xLib_Pkcs11_CxKeyH
+#endif // xLib_Pkcs11_CxKeyH

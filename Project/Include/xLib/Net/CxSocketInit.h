@@ -24,4 +24,4 @@ public:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif //xLib_Net_CxSocketInitH
+#endif // xLib_Net_CxSocketInitH

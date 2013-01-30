@@ -34,4 +34,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif //xLib_CxFileTempH
+#endif // xLib_CxFileTempH

@@ -27,4 +27,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif //xLib_CxSemaphoreH
+#endif // xLib_CxSemaphoreH

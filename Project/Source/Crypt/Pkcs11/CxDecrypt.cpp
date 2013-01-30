@@ -25,8 +25,8 @@ CxDecrypt::CxDecrypt(
     const CxPkcs11  &a_cPkcs11,
     const CxSession &a_cSession
 ) :
-    _m_pFunc   (a_cPkcs11.pFuncList()),
-    _m_hSession(a_cSession.hHandle())
+    _m_pFunc   (a_cPkcs11.funcList()),
+    _m_hSession(a_cSession.handle())
 {
 
 }
@@ -37,7 +37,7 @@ CxDecrypt::~CxDecrypt() {
 }
 //---------------------------------------------------------------------------
 void
-CxDecrypt::vInit(
+CxDecrypt::init(
     CK_MECHANISM_PTR a_pMechanism,  ///< the decryption mechanism
     CK_OBJECT_HANDLE a_hKey         ///< handle of decryption key
 )
@@ -45,11 +45,11 @@ CxDecrypt::vInit(
 
 
     CK_RV ulRv = _m_pFunc->C_DecryptInit(_m_hSession, a_pMechanism, a_hKey);
-    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
-CxDecrypt::vMake(
+CxDecrypt::make(
     CK_BYTE_PTR  a_pEncryptedData,     ///< ciphertext
     CK_ULONG     a_ulEncryptedDataLen, ///< ciphertext length
     CK_BYTE_PTR  a_pData,              ///< gets plaintext
@@ -59,11 +59,11 @@ CxDecrypt::vMake(
 
 
     CK_RV ulRv = _m_pFunc->C_Decrypt(_m_hSession, a_pEncryptedData, a_ulEncryptedDataLen, a_pData, a_pulDataLen);
-    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
-CxDecrypt::vUpdate(
+CxDecrypt::update(
     CK_BYTE_PTR  a_pEncryptedPart,      ///< encrypted data
     CK_ULONG     a_ulEncryptedPartLen,  ///< input length
     CK_BYTE_PTR  a_pPart,               ///< gets plaintext
@@ -73,11 +73,11 @@ CxDecrypt::vUpdate(
 
 
     CK_RV ulRv = _m_pFunc->C_DecryptUpdate(_m_hSession, a_pEncryptedPart, a_ulEncryptedPartLen, a_pPart, a_pulPartLen);
-    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
-CxDecrypt::vFinal(
+CxDecrypt::final(
     CK_BYTE_PTR  a_pLastPart,      ///< gets plaintext
     CK_ULONG_PTR a_pulLastPartLen  ///< p-text size
 )
@@ -85,11 +85,11 @@ CxDecrypt::vFinal(
 
 
     CK_RV ulRv = _m_pFunc->C_DecryptFinal(_m_hSession, a_pLastPart, a_pulLastPartLen );
-    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
-CxDecrypt::vDigestUpdate(
+CxDecrypt::digestUpdate(
     CK_BYTE_PTR  a_pEncryptedPart,      ///< ciphertext
     CK_ULONG     a_ulEncryptedPartLen,  ///< ciphertext length
     CK_BYTE_PTR  a_pPart,               ///< gets plaintext
@@ -99,11 +99,11 @@ CxDecrypt::vDigestUpdate(
 
 
     CK_RV ulRv = _m_pFunc->C_DecryptDigestUpdate(_m_hSession, a_pEncryptedPart, a_ulEncryptedPartLen, a_pPart, a_pulPartLen);
-    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
-CxDecrypt::vVerifyUpdate(
+CxDecrypt::verifyUpdate(
     CK_BYTE_PTR  a_pEncryptedPart,      ///< ciphertext
     CK_ULONG     a_ulEncryptedPartLen,  ///< ciphertext length
     CK_BYTE_PTR  a_pPart,               ///< gets plaintext
@@ -113,7 +113,7 @@ CxDecrypt::vVerifyUpdate(
 
 
     CK_RV ulRv = _m_pFunc->C_DecryptVerifyUpdate(_m_hSession, a_pEncryptedPart, a_ulEncryptedPartLen, a_pPart, a_pulPartLen);
-    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 
@@ -125,7 +125,7 @@ CxDecrypt::vVerifyUpdate(
 
 //---------------------------------------------------------------------------
 void
-CxDecrypt::vMakeFile(
+CxDecrypt::makeFile(
     const std::tstring_t &a_csInFilePath,
     const std::tstring_t &a_csOutFilePath,
     CK_MECHANISM_PTR      a_pMechanism,
@@ -162,8 +162,8 @@ CxDecrypt::vMakeFile(
 
     {
         for (ulOffset = 0; ulOffset < usEncryptedData.size()/*ulResEncryptSize*//*usRawData.size()*/; ulOffset += ulPadSize) {
-            vInit(a_pMechanism, a_hKey);
-            vMake(&usEncryptedData[0] + ulOffset, ulPadSize, &usDecryptedData[0] + ulOffset2, &usDecryptedDataSize);
+            init(a_pMechanism, a_hKey);
+            make(&usEncryptedData[0] + ulOffset, ulPadSize, &usDecryptedData[0] + ulOffset2, &usDecryptedDataSize);
 
             ulOffset2 += usDecryptedDataSize;
         }

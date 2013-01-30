@@ -61,4 +61,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif    //xLib_Log_CxFileLogH
+#endif // xLib_Log_CxFileLogH

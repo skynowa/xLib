@@ -56,7 +56,7 @@ private:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif    //xLib_Net_CxMimeHeaderH
+#endif // xLib_Net_CxMimeHeaderH
 
 /*
 procedure TIdMessage.ClearHeader;

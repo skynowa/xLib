@@ -54,7 +54,7 @@ private:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif //xLib_Net_CxDnsClientH
+#endif // xLib_Net_CxDnsClientH
 
 
 #if xTODO

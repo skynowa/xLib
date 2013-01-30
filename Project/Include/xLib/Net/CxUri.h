@@ -78,4 +78,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif    //xLib_Net_CxUriH
+#endif // xLib_Net_CxUriH

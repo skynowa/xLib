@@ -22,44 +22,44 @@ class CxObject :
     /// Pkcs11 object
 {
 public:
-                         CxObject          (const CxPkcs11 &cPkcs11, const CxSession &cSession);
+                         CxObject         (const CxPkcs11 &cPkcs11, const CxSession &cSession);
         ///< constructor
-    virtual             ~CxObject          ();
+    virtual             ~CxObject         ();
         ///< destructor
 
-    CK_OBJECT_HANDLE     hHandle           () const;
+    CK_OBJECT_HANDLE     handle           () const;
         ///< get handle
-    void                 vSetHandle        (CK_OBJECT_HANDLE hHandle);
+    void                 setHandle        (CK_OBJECT_HANDLE hHandle);
         ///< assign object handle
-    void                 vCreate           (CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount);
+    void                 create           (CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount);
         ///< creates a new object
-    void                 vGetSize          (CK_ULONG_PTR pulSize);
+    void                 size             (CK_ULONG_PTR pulSize);
         ///< gets the size of an object in bytes
-    void                 vCopy             (CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount, CK_OBJECT_HANDLE_PTR phNewObject);
+    void                 copy             (CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount, CK_OBJECT_HANDLE_PTR phNewObject);
         ///< copies an object, creating a new object for the copy
-    void                 vFind             (CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount, std::vector<CK_OBJECT_HANDLE> *pvecObjectHandles);
+    void                 find             (CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount, std::vector<CK_OBJECT_HANDLE> *pvecObjectHandles);
         ///< search for token and session objects that match a template, obtaining additional object handles
 
-    void                 vGetAttributeValue(CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount);
+    void                 attributeValue   (CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount);
         ///< obtains the value of one or more object attributes
-    void                 vSetAttributeValue(CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount);
+    void                 setAttributeValue(CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount);
         ///< modifies the value of one or more object attributes
 
-    void                 vDestroy          ();
+    void                 destroy          ();
         ///< destroys an object
 
-    //Utils
-    static void          vData             (CK_SLOT_ID ulSlotId, const std::ustring_t &cusUserPin, const std::ustring_t &cusDataLabel, std::ustring_t *pusData);
+    // Utils
+    static void          data             (CK_SLOT_ID ulSlotId, const std::ustring_t &cusUserPin, const std::ustring_t &cusDataLabel, std::ustring_t *pusData);
         ///< get data
-    static void          vSetData          (CK_SLOT_ID ulSlotId, const std::ustring_t &cusUserPin, const std::ustring_t &cusDataLabel, const std::ustring_t &cusData);
+    static void          setData          (CK_SLOT_ID ulSlotId, const std::ustring_t &cusUserPin, const std::ustring_t &cusDataLabel, const std::ustring_t &cusData);
         ///< set data
-    static void          vData             (CK_SLOT_ID ulSlotId, const std::ustring_t &cusUserPin, std::vec_ustring_t *pusDataLabel, std::vec_ustring_t *pusDataValue);
+    static void          data             (CK_SLOT_ID ulSlotId, const std::ustring_t &cusUserPin, std::vec_ustring_t *pusDataLabel, std::vec_ustring_t *pusDataValue);
         ///< get data
 
 private:
-    CK_FUNCTION_LIST_PTR _m_pFunc;      ///< pointer to dll's functions list
+    CK_FUNCTION_LIST_PTR _m_pFunc;      ///< pointer to dll functions list
     CK_SESSION_HANDLE    _m_hSession;   ///< session handle
-    CK_OBJECT_HANDLE     _m_hObject;    ///< bject handle
+    CK_OBJECT_HANDLE     _m_hObject;    ///< object handle
 
     // TODO: bFindInit, bFind, bFindFinal
 #if xTODO
@@ -76,4 +76,4 @@ xNAMESPACE_END(NxLib)
 
 #endif
 //---------------------------------------------------------------------------
-#endif    //xLib_Pkcs11_CxObjectH
+#endif // xLib_Pkcs11_CxObjectH

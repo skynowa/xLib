@@ -32,4 +32,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif    //xLib_Common_CxLocaleH
+#endif // xLib_Common_CxLocaleH

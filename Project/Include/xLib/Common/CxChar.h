@@ -55,4 +55,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif //xLib_Common_CxCharH
+#endif // xLib_Common_CxCharH

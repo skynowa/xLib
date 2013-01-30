@@ -70,4 +70,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif    //xLib_Crypt_RandomH
+#endif // xLib_Crypt_RandomH

@@ -35,4 +35,4 @@
     #include <xLib/Crypt/Pkcs11/CxVerify.h>
 #endif
 //---------------------------------------------------------------------------
-#endif    //xLib_Pkcs11_AllH
+#endif // xLib_Pkcs11_AllH

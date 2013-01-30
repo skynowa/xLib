@@ -35,4 +35,4 @@ xNAMESPACE_END(NxLib)
 
 #endif
 //---------------------------------------------------------------------------
-#endif    //xLib_Sync_CxCompletionPortH
+#endif // xLib_Sync_CxCompletionPortH

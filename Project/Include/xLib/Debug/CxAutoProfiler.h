@@ -29,4 +29,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif //xLib_Debug_CxAutoProfilerH
+#endif // xLib_Debug_CxAutoProfilerH

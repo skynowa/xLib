@@ -31,4 +31,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif    // xLib_Common_CxNonCopyableH
+#endif // xLib_Common_CxNonCopyableH

@@ -36,4 +36,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif //xLib_Debug_CxStdErrorH
+#endif // xLib_Debug_CxStdErrorH

@@ -89,4 +89,4 @@ xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #include "CxErrorReport.inl"
 //---------------------------------------------------------------------------
-#endif //xLib_Debug_CxReportH
+#endif // xLib_Debug_CxReportH

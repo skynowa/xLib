@@ -26,17 +26,17 @@ public:
     virtual             ~CxMechanism();
         ///< destructor
 
-    void                 vInfo      (CK_SLOT_ID slotID, CK_MECHANISM_TYPE type, CK_MECHANISM_INFO_PTR pInfo);
+    void                 info       (CK_SLOT_ID slotID, CK_MECHANISM_TYPE type, CK_MECHANISM_INFO_PTR pInfo);
         ///< obtains information about a particular mechanism possibly supported by a token
-    void                 vList      (CK_SLOT_ID slotID, CK_MECHANISM_TYPE_PTR pMechanismList, CK_ULONG_PTR pulCount);
+    void                 list       (CK_SLOT_ID slotID, CK_MECHANISM_TYPE_PTR pMechanismList, CK_ULONG_PTR pulCount);
         ///< obtains a list of mechanism types supported by a token
 
 private:
-    CK_FUNCTION_LIST_PTR _m_pFunc;     ///< pointer to dll's functions list
+    CK_FUNCTION_LIST_PTR _m_pFunc;  ///< pointer to dll functions list
 };
 
 xNAMESPACE_END(NxLib)
 
 #endif
 //---------------------------------------------------------------------------
-#endif    //xLib_Pkcs11_CxMechanismH
+#endif // xLib_Pkcs11_CxMechanismH

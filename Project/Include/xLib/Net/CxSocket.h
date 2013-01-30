@@ -250,7 +250,7 @@ private:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif    //xLib_Net_CxSocket
+#endif // xLib_Net_CxSocket
 
 
 #if xTODO

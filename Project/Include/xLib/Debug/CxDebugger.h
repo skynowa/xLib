@@ -57,4 +57,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif    //xLib_Debug_CxDebuggerH
+#endif // xLib_Debug_CxDebuggerH

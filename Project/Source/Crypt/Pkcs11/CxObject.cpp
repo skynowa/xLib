@@ -23,8 +23,8 @@ CxObject::CxObject(
     const CxPkcs11  &a_cPkcs11,
     const CxSession &a_cSession
 ) :
-    _m_pFunc   (a_cPkcs11.pFuncList()),
-    _m_hSession(a_cSession.hHandle()),
+    _m_pFunc   (a_cPkcs11.funcList()),
+    _m_hSession(a_cSession.handle()),
     _m_hObject (0UL)
 {
     xTEST_PTR(_m_pFunc);
@@ -38,7 +38,7 @@ CxObject::~CxObject() {
 }
 //---------------------------------------------------------------------------
 CK_OBJECT_HANDLE
-CxObject::hHandle() const {
+CxObject::handle() const {
     xTEST_PTR(_m_pFunc);
     xTEST_DIFF(0UL, _m_hSession);
     xTEST_DIFF(0UL, _m_hObject);
@@ -47,7 +47,7 @@ CxObject::hHandle() const {
 }
 //---------------------------------------------------------------------------
 void
-CxObject::vSetHandle(
+CxObject::setHandle(
     CK_OBJECT_HANDLE a_hHandle
 )
 {
@@ -59,7 +59,7 @@ CxObject::vSetHandle(
 }
 //---------------------------------------------------------------------------
 void
-CxObject::vCreate(
+CxObject::create(
     CK_ATTRIBUTE_PTR a_pTemplate,   ///< the object's template
     CK_ULONG         a_ulCount      ///< attributes in template
 )
@@ -69,11 +69,11 @@ CxObject::vCreate(
     xTEST_EQ(0UL, _m_hObject);
 
     CK_RV ulRv = _m_pFunc->C_CreateObject(_m_hSession, a_pTemplate, a_ulCount, &_m_hObject);
-    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
-CxObject::vGetSize(
+CxObject::size(
     CK_ULONG_PTR a_pulSize    ///< receives size of object
 )
 {
@@ -82,11 +82,11 @@ CxObject::vGetSize(
     xTEST_DIFF(0UL, _m_hObject);
 
     CK_RV ulRv = _m_pFunc->C_GetObjectSize(_m_hSession, _m_hObject, a_pulSize);
-    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
-CxObject::vCopy(
+CxObject::copy(
     CK_ATTRIBUTE_PTR     a_pTemplate,   ///< template for new object
     CK_ULONG             a_ulCount,     ///< attributes in template
     CK_OBJECT_HANDLE_PTR a_phNewObject  ///< receives handle of copy
@@ -97,11 +97,11 @@ CxObject::vCopy(
     xTEST_DIFF(0UL, _m_hObject);
 
     CK_RV ulRv = _m_pFunc->C_CopyObject(_m_hSession, _m_hObject, a_pTemplate, a_ulCount, a_phNewObject);
-    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //--------------------------------------------------------------------------
 void
-CxObject::vFind(
+CxObject::find(
     CK_ATTRIBUTE_PTR               a_pTemplate,           ///< attribute values to match
     CK_ULONG                       a_ulCount,             ///< attrs in search template
     std::vector<CK_OBJECT_HANDLE> *a_pvecObjectHandles    ///< [out] handles to objects
@@ -117,18 +117,18 @@ CxObject::vFind(
     (*a_pvecObjectHandles).clear();
 
     CK_RV ulRv = _m_pFunc->C_FindObjectsInit(_m_hSession, a_pTemplate, a_ulCount);    // To find all attributes, set ulCount to 0.
-    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 
     const CK_ULONG   culMaxFindedObjects        = 512;
     CK_OBJECT_HANDLE hList[culMaxFindedObjects] = {0};
     CK_ULONG         ulFound                    = 0;
 
     ulRv = _m_pFunc->C_FindObjects(_m_hSession, &hList[0], static_cast<CK_ULONG>( xARRAY_SIZE(hList) ), &ulFound);
-    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
     xTEST_GR_EQ(static_cast<ulong_t>( xARRAY_SIZE(hList) ), ulFound);
 
     ulRv = _m_pFunc->C_FindObjectsFinal(_m_hSession);
-    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 
     xTEST_DIFF(0UL, ulFound);
 
@@ -140,7 +140,7 @@ CxObject::vFind(
 }
 //---------------------------------------------------------------------------
 void
-CxObject::vGetAttributeValue(
+CxObject::attributeValue(
     CK_ATTRIBUTE_PTR a_pTemplate,  ///< specifies attrs; gets vals
     CK_ULONG         a_ulCount     ///< attributes in template
 )
@@ -150,11 +150,11 @@ CxObject::vGetAttributeValue(
     xTEST_DIFF(0UL, _m_hObject);
 
     CK_RV ulRv = _m_pFunc->C_GetAttributeValue(_m_hSession, _m_hObject, a_pTemplate, a_ulCount);
-    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
-CxObject::vSetAttributeValue(
+CxObject::setAttributeValue(
     CK_ATTRIBUTE_PTR a_pTemplate,  ///< specifies attrs and values
     CK_ULONG         a_ulCount     ///< attributes in template
 )
@@ -164,31 +164,29 @@ CxObject::vSetAttributeValue(
     xTEST_DIFF(0UL, _m_hObject);
 
     CK_RV ulRv = _m_pFunc->C_SetAttributeValue(_m_hSession, _m_hObject, a_pTemplate, a_ulCount);
-    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
-CxObject::vDestroy() {
+CxObject::destroy() {
     xTEST_PTR(_m_pFunc);
     xTEST_DIFF(0UL, _m_hSession);
     xTEST_DIFF(0UL, _m_hObject);
 
     CK_RV ulRv = _m_pFunc->C_DestroyObject(_m_hSession, _m_hObject);
-    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 
     _m_hObject = 0UL;
 }
 //---------------------------------------------------------------------------
 void
-CxObject::vData(
+CxObject::data(
     CK_SLOT_ID            a_ulSlotId,
     const std::ustring_t &a_cusUserPin,
     const std::ustring_t &a_cusDataLabel,
     std::ustring_t       *a_pusData
 )
 {
-
-
     //-------------------------------------
     //CxPkcs11
     CxPkcs11 objPkcs11;
@@ -197,13 +195,13 @@ CxObject::vData(
     //CxSession
     CxSession objSession(objPkcs11);
 
-    objSession.vOpen(a_ulSlotId, CKF_SERIAL_SESSION | CKF_RW_SESSION, 0, 0);
+    objSession.open(a_ulSlotId, CKF_SERIAL_SESSION | CKF_RW_SESSION, 0, 0);
 
     //-------------------------------------
     //CxLogin
     CxLogin objLogin(objPkcs11, objSession);
 
-    objLogin.vLogin(CKU_USER, (CK_UTF8CHAR_PTR)&a_cusUserPin.at(0), static_cast<CK_ULONG>( a_cusUserPin.size() ));
+    objLogin.login(CKU_USER, (CK_UTF8CHAR_PTR)&a_cusUserPin.at(0), static_cast<CK_ULONG>( a_cusUserPin.size() ));
 
     //-------------------------------------
     //CxObject
@@ -215,7 +213,7 @@ CxObject::vData(
 
         CxObject objObject(objPkcs11, objSession);
 
-        objObject.vFind(atDataTemplate, static_cast<CK_ULONG>( xARRAY_SIZE(atDataTemplate) ), &vechData);
+        objObject.find(atDataTemplate, static_cast<CK_ULONG>( xARRAY_SIZE(atDataTemplate) ), &vechData);
         xTEST_EQ(false, vechData.empty());
     }
 
@@ -223,7 +221,7 @@ CxObject::vData(
     //CxObject
     CxObject objData(objPkcs11, objSession);
 
-    objData.vSetHandle(vechData.at(0));
+    objData.setHandle(vechData.at(0));
 
     //-------------------------------------
     //������ ������ � ������ ��������
@@ -232,7 +230,7 @@ CxObject::vData(
     };
 
     //Get data issuer, subject, and value attributes
-    objData.vGetAttributeValue(atrTamplate, static_cast<CK_ULONG>( xARRAY_SIZE(atrTamplate) ));
+    objData.attributeValue(atrTamplate, static_cast<CK_ULONG>( xARRAY_SIZE(atrTamplate) ));
 
     ulong_t  ulValueLen = atrTamplate[0].ulValueLen;
     uchar_t *pucValue      = new uchar_t[ulValueLen];
@@ -241,7 +239,7 @@ CxObject::vData(
 
         atrTamplate[0].pValue = pucValue;
 
-        objData.vGetAttributeValue(atrTamplate, static_cast<CK_ULONG>( xARRAY_SIZE(atrTamplate) ));
+        objData.attributeValue(atrTamplate, static_cast<CK_ULONG>( xARRAY_SIZE(atrTamplate) ));
 
         std::ustring_t usValue = std::ustring_t(pucValue, ulValueLen);
 
@@ -252,12 +250,12 @@ CxObject::vData(
 
     //-------------------------------------
     //
-    objLogin.vLogout();
-    objSession.vClose();
+    objLogin.logout();
+    objSession.close();
 }
 //--------------------------------------------------------------------------
 void
-CxObject::vData(
+CxObject::data(
     CK_SLOT_ID            a_ulSlotId,
     const std::ustring_t &a_cusUserPin,
     std::vec_ustring_t   *a_pusDataLabel,
@@ -277,13 +275,13 @@ CxObject::vData(
     //CxSession
     CxSession objSession(objPkcs11);
 
-    objSession.vOpen(a_ulSlotId, CKF_SERIAL_SESSION | CKF_RW_SESSION, 0, 0);
+    objSession.open(a_ulSlotId, CKF_SERIAL_SESSION | CKF_RW_SESSION, 0, 0);
 
     //-------------------------------------
     //CxLogin
     CxLogin objLogin(objPkcs11, objSession);
 
-    objLogin.vLogin(CKU_USER, (CK_UTF8CHAR_PTR)&a_cusUserPin.at(0), static_cast<CK_ULONG>( a_cusUserPin.size() ));
+    objLogin.login(CKU_USER, (CK_UTF8CHAR_PTR)&a_cusUserPin.at(0), static_cast<CK_ULONG>( a_cusUserPin.size() ));
 
     //-------------------------------------
     //CxObject
@@ -297,7 +295,7 @@ CxObject::vData(
 
         CxObject objObject(objPkcs11, objSession);
 
-        objObject.vFind(atDataTemplate, static_cast<CK_ULONG>( xARRAY_SIZE(atDataTemplate) ), &vechData);
+        objObject.find(atDataTemplate, static_cast<CK_ULONG>( xARRAY_SIZE(atDataTemplate) ), &vechData);
         xTEST_EQ(false, vechData.empty());
 
         ////CK_OBJECT_HANDLE hData = vechData.at(0);
@@ -311,7 +309,7 @@ CxObject::vData(
     for (size_t i = 0; i < vechData.size(); ++ i) {
         CxObject objData(objPkcs11, objSession);
 
-        objData.vSetHandle(vechData.at(i));
+        objData.setHandle(vechData.at(i));
 
         //-------------------------------------
         //������ ������ � ������ ��������
@@ -321,7 +319,7 @@ CxObject::vData(
         };
 
         //Get data issuer, subject, and value attributes
-        objData.vGetAttributeValue(atrTamplate, static_cast<CK_ULONG>( xARRAY_SIZE(atrTamplate) ));
+        objData.attributeValue(atrTamplate, static_cast<CK_ULONG>( xARRAY_SIZE(atrTamplate) ));
 
         std::ustring_t usLabel;
         std::ustring_t usValue;
@@ -336,7 +334,7 @@ CxObject::vData(
             atrTamplate[1].pValue = &usValue.at(0);
         }
 
-        objData.vGetAttributeValue(atrTamplate, static_cast<CK_ULONG>( xARRAY_SIZE(atrTamplate) ));
+        objData.attributeValue(atrTamplate, static_cast<CK_ULONG>( xARRAY_SIZE(atrTamplate) ));
 
         //���������
         a_pusDataLabel->push_back(usLabel);
@@ -345,12 +343,12 @@ CxObject::vData(
 
     //-------------------------------------
     //
-    objLogin.vLogout();
-    objSession.vClose();
+    objLogin.logout();
+    objSession.close();
 }
 //--------------------------------------------------------------------------
 void
-CxObject::vSetData(
+CxObject::setData(
     CK_SLOT_ID            a_ulSlotId,
     const std::ustring_t &a_cusUserPin,
     const std::ustring_t &a_cusDataLabel,
@@ -367,13 +365,13 @@ CxObject::vSetData(
     //CxSession
     CxSession objSession(objPkcs11);
 
-    objSession.vOpen(a_ulSlotId, CKF_SERIAL_SESSION | CKF_RW_SESSION, NULL_PTR, 0);
+    objSession.open(a_ulSlotId, CKF_SERIAL_SESSION | CKF_RW_SESSION, NULL_PTR, 0);
 
     //-------------------------------------
     //CxLogin
     CxLogin objLogin(objPkcs11, objSession);
 
-    objLogin.vLogin(CKU_USER, (CK_UTF8CHAR_PTR)&a_cusUserPin.at(0), static_cast<CK_ULONG>( a_cusUserPin.size() ));
+    objLogin.login(CKU_USER, (CK_UTF8CHAR_PTR)&a_cusUserPin.at(0), static_cast<CK_ULONG>( a_cusUserPin.size() ));
 
     //-------------------------------------
     //CxObject
@@ -385,7 +383,7 @@ CxObject::vSetData(
 
         CxObject objObject(objPkcs11, objSession);
 
-        objObject.vFind(atDataTemplate, static_cast<CK_ULONG>( xARRAY_SIZE(atDataTemplate) ), &vechData);
+        objObject.find(atDataTemplate, static_cast<CK_ULONG>( xARRAY_SIZE(atDataTemplate) ), &vechData);
     }
 
     //-------------------------------------
@@ -395,7 +393,7 @@ CxObject::vSetData(
     if (false == vechData.empty()) {
         //-------------------------------------
         //������ ���������� - ����������
-        objData.vSetHandle(vechData.at(0));
+        objData.setHandle(vechData.at(0));
 
         //-------------------------------------
         //������ ������ � ������ ��������
@@ -403,7 +401,7 @@ CxObject::vSetData(
             {CKA_VALUE, (CK_VOID_PTR)&a_cusData.at(0), static_cast<CK_ULONG>( a_cusData.size() )}
         };
 
-        objData.vSetAttributeValue(atrTamplate, static_cast<CK_ULONG>( xARRAY_SIZE(atrTamplate) ));
+        objData.setAttributeValue(atrTamplate, static_cast<CK_ULONG>( xARRAY_SIZE(atrTamplate) ));
     }
     else {
         //-------------------------------------
@@ -423,13 +421,13 @@ CxObject::vSetData(
             {CKA_MODIFIABLE,  &bTrue,                              sizeof(bTrue)          }
         };
 
-        objData.vCreate(atrTamplate, static_cast<CK_ULONG>( xARRAY_SIZE(atrTamplate) ));
+        objData.create(atrTamplate, static_cast<CK_ULONG>( xARRAY_SIZE(atrTamplate) ));
     }
 
     //-------------------------------------
     //
-    objLogin.vLogout();
-    objSession.vClose();
+    objLogin.logout();
+    objSession.close();
 }
 //--------------------------------------------------------------------------
 
@@ -452,7 +450,7 @@ CxObject::bFindInit(
     // _m_hObject - n/a
 
     CK_RV ulRv = _m_pFunc->C_FindObjectsInit(_m_hSession, pTemplate, ulCount);
-    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 
     return true;
 }
@@ -469,7 +467,7 @@ CxObject::bFind(
     // _m_hObject - n/a
 
     CK_RV ulRv = _m_pFunc->C_FindObjects(_m_hSession, phObject, ulMaxObjectCount, pulObjectCount);
-    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
     xTEST_GR_EQ(ulMaxObjectCount, *pulObjectCount);
 
     return true;
@@ -482,7 +480,7 @@ CxObject::bFindFinal() {
     // _m_hObject - n/a
 
     CK_RV ulRv = _m_pFunc->C_FindObjectsFinal(_m_hSession);
-    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 
     return true;
 }

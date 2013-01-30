@@ -24,19 +24,17 @@ CxPkcs11::CxPkcs11() :
     xTEST_PTR(_m_pFunc);
     // _m_dllETPkcs11 - n/a
 
-    _vLoadETPkcs11();
-    vInitialize();
+    _loadETPkcs11();
+    _initialize();
 }
 //---------------------------------------------------------------------------
 /* virtual */
 CxPkcs11::~CxPkcs11() {
-
-
-    vFinalize();
+    _finalize();
 }
 //---------------------------------------------------------------------------
 CK_FUNCTION_LIST_PTR
-CxPkcs11::pFuncList() const {
+CxPkcs11::funcList() const {
     xTEST_PTR(_m_pFunc);
 
     return _m_pFunc;
@@ -44,7 +42,7 @@ CxPkcs11::pFuncList() const {
 //---------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxPkcs11::sErrorStr(
+CxPkcs11::errorStr(
     const CK_RV a_culCode
 )
 {
@@ -165,7 +163,7 @@ CxPkcs11::sErrorStr(
 
 //---------------------------------------------------------------------------
 void
-CxPkcs11::_vLoadETPkcs11() {
+CxPkcs11::_loadETPkcs11() {
     _m_dllETPkcs11.vLoad(xT("eTPkcs11.dll"));
 
     CK_C_GetFunctionList pFunctionList = NULL;
@@ -174,24 +172,24 @@ CxPkcs11::_vLoadETPkcs11() {
     xTEST_PTR(pFunctionList);
 
     CK_RV ulRv = pFunctionList(&_m_pFunc);
-    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
     xTEST_PTR(_m_pFunc);
 }
 //---------------------------------------------------------------------------
 void
-CxPkcs11::vInitialize() {
+CxPkcs11::_initialize() {
     xTEST_PTR(_m_pFunc);
 
     CK_RV ulRv = _m_pFunc->C_Initialize(NULL_PTR);
-    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
-CxPkcs11::vFinalize() {
+CxPkcs11::_finalize() {
     xTEST_PTR(_m_pFunc);
 
     CK_RV ulRv = _m_pFunc->C_Finalize(NULL_PTR);
-    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 

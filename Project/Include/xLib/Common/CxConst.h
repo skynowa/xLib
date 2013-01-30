@@ -238,4 +238,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif //xLib_Common_CxConstH
+#endif // xLib_Common_CxConstH

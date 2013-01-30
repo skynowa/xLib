@@ -50,4 +50,4 @@ CxTracer::operator << (const T &cValueT) {
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif //xLib_CxTracerH
+#endif // xLib_CxTracerH

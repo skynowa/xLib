@@ -329,4 +329,4 @@ xNAMESPACE_BEGIN(NxLib)
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif  //xLib_Common_xFunctionsH
+#endif  // xLib_Common_xFunctionsH

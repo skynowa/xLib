@@ -22,36 +22,36 @@ class CxDecrypt :
     /// Pkcs11 decrypt
 {
 public:
-                         CxDecrypt    (const CxPkcs11 &cPkcs11, const CxSession &cSession);
+                         CxDecrypt   (const CxPkcs11 &cPkcs11, const CxSession &cSession);
         ///< constructor
-    virtual             ~CxDecrypt    ();
+    virtual             ~CxDecrypt   ();
         ///< destructor
 
-    void                 vInit        (CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
+    void                 init        (CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
         ///< initializes a decryption operation
-    void                 vMake        (CK_BYTE_PTR pEncryptedData, CK_ULONG ulEncryptedDataLen, CK_BYTE_PTR pData, CK_ULONG_PTR pulDataLen);
+    void                 make        (CK_BYTE_PTR pEncryptedData, CK_ULONG ulEncryptedDataLen, CK_BYTE_PTR pData, CK_ULONG_PTR pulDataLen);
         ///< decrypts encrypted data in a single part
-    void                 vUpdate      (CK_BYTE_PTR pEncryptedPart, CK_ULONG ulEncryptedPartLen, CK_BYTE_PTR pPart, CK_ULONG_PTR pulPartLen);
+    void                 update      (CK_BYTE_PTR pEncryptedPart, CK_ULONG ulEncryptedPartLen, CK_BYTE_PTR pPart, CK_ULONG_PTR pulPartLen);
         ///< continues a multiple-part decryption operation
-    void                 vFinal       (CK_BYTE_PTR pLastPart, CK_ULONG_PTR pulLastPartLen);
+    void                 final       (CK_BYTE_PTR pLastPart, CK_ULONG_PTR pulLastPartLen);
         ///< finishes a multiple-part decryption operation
 
-    void                 vDigestUpdate(CK_BYTE_PTR pEncryptedPart, CK_ULONG ulEncryptedPartLen, CK_BYTE_PTR pPart, CK_ULONG_PTR pulPartLen );
+    void                 digestUpdate(CK_BYTE_PTR pEncryptedPart, CK_ULONG ulEncryptedPartLen, CK_BYTE_PTR pPart, CK_ULONG_PTR pulPartLen );
         ///< continues a multiple-part decryption and digesting operation
-    void                 vVerifyUpdate(CK_BYTE_PTR pEncryptedPart, CK_ULONG ulEncryptedPartLen, CK_BYTE_PTR pPart, CK_ULONG_PTR pulPartLen );
+    void                 verifyUpdate(CK_BYTE_PTR pEncryptedPart, CK_ULONG ulEncryptedPartLen, CK_BYTE_PTR pPart, CK_ULONG_PTR pulPartLen );
         ///< continues a multiple-part decryption and verify operation
 
     //Utils
-    void                 vMakeFile    (const std::tstring_t &csInFilePath, const std::tstring_t &csOutFilePath, CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
+    void                 makeFile    (const std::tstring_t &csInFilePath, const std::tstring_t &csOutFilePath, CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
         ///< make file
 
 private:
-    CK_FUNCTION_LIST_PTR _m_pFunc;        ///< pointer to dll's functions list
-    CK_SESSION_HANDLE    _m_hSession;    ///< session handle
+    CK_FUNCTION_LIST_PTR _m_pFunc;      ///< pointer to dll functions list
+    CK_SESSION_HANDLE    _m_hSession;   ///< session handle
 };
 
 xNAMESPACE_END(NxLib)
 
 #endif
 //---------------------------------------------------------------------------
-#endif    //xLib_Pkcs11_CxDecryptH
+#endif // xLib_Pkcs11_CxDecryptH

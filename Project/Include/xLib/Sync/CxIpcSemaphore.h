@@ -48,7 +48,7 @@ private:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif    //xLib_Sync_CxIpcSemaphoreH
+#endif // xLib_Sync_CxIpcSemaphoreH
 
 /*
     SysV  semaphores are semget/semop/semctl

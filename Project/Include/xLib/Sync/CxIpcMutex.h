@@ -44,4 +44,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif    //xLib_Sync_CxIpcMutexH
+#endif // xLib_Sync_CxIpcMutexH
