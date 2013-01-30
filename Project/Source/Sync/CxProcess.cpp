@@ -126,7 +126,7 @@ CxProcess::ulWait(
     do {
         liRv = ::waitpid(_m_ulPid, &iStatus, 0);
     }
-    while (liRv < 0L && EINTR == CxLastError::ulGet());
+    while (liRv < 0L && EINTR == CxLastError::get());
     xTEST_EQ(liRv, _m_ulPid);
 
     _m_uiExitStatus = WEXITSTATUS(iStatus);

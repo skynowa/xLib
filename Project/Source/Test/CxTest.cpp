@@ -76,7 +76,7 @@ CxTest::vRun(
         xTEST_FAIL(sName() + xT(": ") + xS2TS(asMsg));
     }
     catch (const CxException &a_cexE) {
-        xTEST_FAIL(sName() + xT(": ") + a_cexE.sWhat());
+        xTEST_FAIL(sName() + xT(": ") + a_cexE.what());
     }
     catch (...) {
         xTEST_FAIL(sName() + xT(": Unknown test error"));
@@ -92,7 +92,7 @@ CxTest::vUnit(
     xTEST_NA(cullCaseLoops);
 
 #if xTODO
-    xTEST_CASE("CaseName", ca_ullCaseLoops)
+    xTEST_CASE("CaseName", a_cullCaseLoops)
     {
         const std::tstring_t casData[][2] = {
             {xT("TEST_STRING_1"), xT("MUST_BE_1")},

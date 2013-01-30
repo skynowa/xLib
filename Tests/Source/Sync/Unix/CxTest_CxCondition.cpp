@@ -40,12 +40,12 @@ pvWatch(
     */
 
     iRv = ::pthread_mutex_lock(&g_mtMutex);
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
     {
         while (g_uiCounter < g_cuiCounterMax) {
             iRv = ::pthread_cond_wait(&g_cndCondition, &g_mtMutex);
-            xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+            xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
             #if 0
                 CxTracer() << xT("pvCountWatch(): thread: ") << liId << xT(" Condition signal received");
@@ -60,7 +60,7 @@ pvWatch(
     }
 
     iRv = ::pthread_mutex_unlock(&g_mtMutex);
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
     return NULL;
 }
@@ -77,7 +77,7 @@ pvJob(
 
     for (size_t i = 0; i < 10 /* g_cuiJobLoops */; ++ i) {
         iRv = ::pthread_mutex_lock(&g_mtMutex);
-        xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+        xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
         {
             ++ g_uiCounter;
@@ -85,7 +85,7 @@ pvJob(
             // Check the value of count and signal waiting thread when condition is reached
             if (g_uiCounter == g_cuiCounterMax) {
                 iRv = ::pthread_cond_signal(&g_cndCondition);
-                xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+                xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
                 #if 0
                     CxTracer() << xT("pvJob(): thread: ") << liId << xT(" g_uiCounter: ")  << g_uiCounter << xT(" threshold reached");
@@ -97,7 +97,7 @@ pvJob(
         }
 
         iRv = ::pthread_mutex_unlock(&g_mtMutex);
-        xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+        xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
         // do some "work" so threads can alternate on mutex lock
         {
@@ -131,37 +131,37 @@ CxTest_CxCondition::vUnit(
     // initialize
     {
         iRv = ::pthread_mutex_init(&g_mtMutex, NULL);   // mutex not recursive
-        xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+        xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
         iRv = ::pthread_cond_init(&g_cndCondition, NULL);
-        xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+        xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
         // for portability, explicitly create threads in a joinable state
         pthread_attr_t atAttr /* = {{0}} */;
 
         iRv = ::pthread_attr_init(&atAttr);
-        xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+        xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
         iRv = ::pthread_attr_setdetachstate(&atAttr, PTHREAD_CREATE_JOINABLE);
-        xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+        xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
         iRv = ::pthread_create(&thThreads[0], &atAttr, pvWatch, (void *)&liId1);
-        xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+        xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
         iRv = ::pthread_create(&thThreads[1], &atAttr, pvJob,   (void *)&liId2);
-        xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+        xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
         iRv = ::pthread_create(&thThreads[2], &atAttr, pvJob,   (void *)&liId3);
-        xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+        xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
         iRv = ::pthread_attr_destroy(&atAttr);
-        xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+        xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
     }
 
     // wait for all threads to complete
     for (size_t i = 0; i < g_cuiThreadsNum; ++ i) {
         iRv = ::pthread_join(thThreads[i], NULL);
-        xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+        xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
     }
 
     #if 0
@@ -171,10 +171,10 @@ CxTest_CxCondition::vUnit(
     // clean up
     {
         iRv = ::pthread_cond_destroy(&g_cndCondition);
-        xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+        xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
         iRv = ::pthread_mutex_destroy(&g_mtMutex);
-        xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+        xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
     }
 
     // ::exit(0);

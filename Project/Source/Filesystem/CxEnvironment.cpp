@@ -41,7 +41,7 @@ CxEnvironment::bIsExists(
     DWORD dwLength = ::GetEnvironmentVariable(a_csVarName.c_str(), &sRv.at(0), static_cast<DWORD>( sRv.size() ));
     xTEST_NA(dwLength);
 
-    xCHECK_RET(0UL == dwLength && ERROR_ENVVAR_NOT_FOUND == CxLastError::ulGet(), false);
+    xCHECK_RET(0UL == dwLength && ERROR_ENVVAR_NOT_FOUND == CxLastError::get(), false);
 #elif xOS_ENV_UNIX
     const char *pcszRes = ::getenv(a_csVarName.c_str());
     xTEST_NA(pcszRes);

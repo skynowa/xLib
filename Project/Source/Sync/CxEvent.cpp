@@ -40,10 +40,10 @@ CxEvent::~CxEvent() {
     int iRv = - 1;
 
     iRv = ::pthread_cond_destroy(&_m_cndCond);
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
     iRv = ::pthread_mutex_destroy(&_m_mtMutex);
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 #endif
 }
 //---------------------------------------------------------------------------
@@ -73,10 +73,10 @@ CxEvent::vCreate() {
     int iRv = - 1;
 
     iRv = ::pthread_mutex_init(&_m_mtMutex, NULL);   // mutex not recursive
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
     iRv = ::pthread_cond_init(&_m_cndCond, NULL);
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 #endif
 }
 //---------------------------------------------------------------------------
@@ -93,22 +93,22 @@ CxEvent::vSet() {
     int iRv = - 1;
 
     iRv = ::pthread_mutex_lock(&_m_mtMutex);
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
     {
         if (true == _m_cbIsAutoReset) {
             int iRv = ::pthread_cond_signal(&_m_cndCond);
-            xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+            xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
         } else {
             int iRv = ::pthread_cond_broadcast(&_m_cndCond);
-            xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+            xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
         }
 
         _m_bIsSignaled = true;
     }
 
     iRv = ::pthread_mutex_unlock(&_m_mtMutex);
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 #endif
 }
 //---------------------------------------------------------------------------
@@ -124,14 +124,14 @@ CxEvent::vReset() {
     int iRv = - 1;
 
     iRv = ::pthread_mutex_lock(&_m_mtMutex);
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
     {
         _m_bIsSignaled = false;
     }
 
     iRv = ::pthread_mutex_unlock(&_m_mtMutex);
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 #endif
 }
 //---------------------------------------------------------------------------
@@ -152,7 +152,7 @@ CxEvent::osWait(
     int iRv = - 1;
 
     iRv = ::pthread_mutex_lock(&_m_mtMutex);
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
     {
         int iRv = 0;
@@ -220,10 +220,10 @@ CxEvent::osWait(
     }
 
     iRv = ::pthread_mutex_unlock(&_m_mtMutex);
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 #endif
 
-    xTEST_MSG_EQ(true, osSignaled == osRes || osTimeout == osRes, CxLastError::sFormat(osRes));
+    xTEST_MSG_EQ(true, osSignaled == osRes || osTimeout == osRes, CxLastError::format(osRes));
 
     return osRes;
 }

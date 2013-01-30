@@ -30,8 +30,8 @@ CxTest_CxException::vUnit(
             throw CxException();
         }
         catch (const CxException &e) {
-            xTEST_EQ(CxConst::xSTR_EMPTY, e.sWhat());
-            //xTRACEV( xT("std::what: %s"), e.sGetWhat().c_str() );
+            xTEST_EQ(CxConst::xSTR_EMPTY, e.what());
+            //xTRACEV( xT("std::what: %s"), e.what().c_str() );
         }
         catch (...) {
             //xTRACE(xT("CxException unknown error"));
@@ -52,8 +52,8 @@ CxTest_CxException::vUnit(
                 throw CxException() << sTestData[i][0].c_str() << xT(".");
             }
             catch (const CxException &e) {
-                xTEST_EQ(sTestData[i][1] + xT("."), e.sWhat());
-                //xTRACEV( xT("std::what: %s"), e.sGetWhat().c_str() );
+                xTEST_EQ(sTestData[i][1] + xT("."), e.what());
+                //xTRACEV( xT("std::what: %s"), e.what().c_str() );
             }
             catch (...) {
                 //xTRACE(xT("std::exception unknown error"));
@@ -67,7 +67,7 @@ CxTest_CxException::vUnit(
             throw CxException() << xT("CxException_test_exception");
         }
         catch (const CxException &e) {
-            //xTRACEV( xT("std::what: %s"), e.sGetWhat().c_str() );
+            //xTRACEV( xT("std::what: %s"), e.what().c_str() );
         }
         catch (...) {
             //xTRACE(xT("std::exception unknown error"));

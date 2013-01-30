@@ -158,7 +158,7 @@ CxDebugger::reportMake(
 {
     //-------------------------------------
     // never corrupt the last error value
-    const ulong_t culLastError = CxLastError::ulGet();
+    const ulong_t culLastError = CxLastError::get();
 
     switch (a_crpReport.m_rtType) {
         case CxErrorReport::rtMsgboxPlain:  { _msgboxPlain (a_crpReport); } break;
@@ -170,7 +170,7 @@ CxDebugger::reportMake(
 
     //-------------------------------------
     // never corrupt the last error value
-    CxLastError::vSet(culLastError);
+    CxLastError::set(culLastError);
 }
 //---------------------------------------------------------------------------
 

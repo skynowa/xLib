@@ -84,7 +84,7 @@ CxIpcSemaphore::vCreate(
     }
 
     HANDLE  hRv         = ::CreateSemaphore(NULL, a_cliInitialValue, xSEMAPHORE_VALUE_MAX, pcszWinName);
-    ulong_t ulLastError = CxLastError::ulGet();
+    ulong_t ulLastError = CxLastError::get();
     xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
     xTEST_DIFF(ulLastError, static_cast<ulong_t>( ERROR_ALREADY_EXISTS ));
 

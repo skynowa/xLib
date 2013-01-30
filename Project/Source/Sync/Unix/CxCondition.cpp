@@ -27,10 +27,10 @@ CxCondition::~CxCondition() {
     int iRv = - 1;
 
     iRv = ::pthread_cond_destroy(&_m_handle);
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
     iRv = ::pthread_mutex_destroy(&_m_mutex);
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 }
 //---------------------------------------------------------------------------
 const pthread_mutex_t &
@@ -48,10 +48,10 @@ CxCondition::vCreate() {
     int iRv = - 1;
 
     iRv = ::pthread_mutex_init(&_m_mutex, NULL);    // mutex not recursive
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
     iRv = ::pthread_cond_init(&_m_handle, NULL);
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 }
 //---------------------------------------------------------------------------
 void
@@ -63,7 +63,7 @@ CxCondition::vWait(
 
     // wait until condition thread returns control
     iRv = ::pthread_mutex_lock(&_m_mutex);
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
     {
         xFOREVER {
@@ -95,7 +95,7 @@ CxCondition::vWait(
     }
 
     iRv = ::pthread_mutex_unlock(&_m_mutex);
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
 }
 //---------------------------------------------------------------------------
@@ -104,15 +104,15 @@ CxCondition::vSignal() {
     int iRv = - 1;
 
     iRv = ::pthread_mutex_lock(&_m_mutex);
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
     {
         iRv = ::pthread_cond_signal(&_m_handle);
-        xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+        xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
     }
 
     iRv = ::pthread_mutex_unlock(&_m_mutex);
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 }
 //---------------------------------------------------------------------------
 void
@@ -120,15 +120,15 @@ CxCondition::vBroadcast() {
     int iRv = - 1;
 
     iRv = ::pthread_mutex_lock(&_m_mutex);
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
     {
         iRv = ::pthread_cond_broadcast(&_m_handle);
-        xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+        xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
     }
 
     iRv = ::pthread_mutex_unlock(&_m_mutex);
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 }
 //---------------------------------------------------------------------------
 
