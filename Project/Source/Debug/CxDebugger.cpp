@@ -195,7 +195,7 @@ CxDebugger::_msgboxPlain(
         uint_t uiType = 1U;
     #endif
 
-    CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::iShow(a_crpReport.m_sReport, CxPath::exe(), uiType);
+    CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::show(a_crpReport.m_sReport, CxPath::exe(), uiType);
 #else
     CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::mrIgnore;
 #endif
@@ -215,7 +215,7 @@ CxDebugger::_msgboxPlain(
                 if (true == isActive()) {
                     breakPoint();
                 } else {
-                    CxMsgBoxT::iShow(xT("Debugger is not present.\nThe application will be terminated."), xT("xLib"));
+                    CxMsgBoxT::show(xT("Debugger is not present.\nThe application will be terminated."), xT("xLib"));
                     CxCurrentProcess::vExit(0U);
                 }
             }
