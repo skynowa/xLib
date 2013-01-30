@@ -29,8 +29,8 @@ CxProfiler::CxProfiler() :
 }
 //---------------------------------------------------------------------------
 CxProfiler::~CxProfiler() {
-    if (false == _flLog.sFilePath().empty()) {
-        _flLog.vWrite(xT("----------------------------------------"));
+    if (false == _flLog.filePath().empty()) {
+        _flLog.write(xT("----------------------------------------"));
     }
 }
 //---------------------------------------------------------------------------
@@ -41,12 +41,12 @@ CxProfiler::setLogPath(
 {
     xTEST_EQ(true, CxPath::isValid(a_csLogPath));
 
-    _flLog.vSetFilePath(a_csLogPath);
+    _flLog.setFilePath(a_csLogPath);
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
 CxProfiler::logPath() const {
-    return _flLog.sFilePath();
+    return _flLog.filePath();
 }
 //--------------------------------------------------------------------------
 void
@@ -97,7 +97,7 @@ CxProfiler::stop(
         sRv = CxString::formatV(a_pcszComment, palArgs);
         xVA_END(palArgs);
 
-        _flLog.vWrite(xT("%s: %s"), csDurationTime.c_str(), sRv.c_str());
+        _flLog.write(xT("%s: %s"), csDurationTime.c_str(), sRv.c_str());
     }
 
     _m_bIsStarted = false;

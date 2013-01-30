@@ -35,16 +35,16 @@ public:
     virtual               ~CxFileLog     ();
         ///< destructor
 
-    void                   vSetFilePath  (const std::tstring_t &csFilePath);
+    void                   setFilePath   (const std::tstring_t &csFilePath);
         ///< set log path
-    const std::tstring_t & sFilePath     () const;
+    const std::tstring_t & filePath      () const;
         ///< get log path
 
-    void                   vWrite        (const tchar_t *pcszFormat, ...);
+    void                   write         (const tchar_t *pcszFormat, ...);
         ///< write
-    void                   vClear        ();
+    void                   clear         ();
         ///< clear content
-    void                   vDelete       ();
+    void                   remove        ();
         ///< delete
 
 private:
@@ -55,7 +55,7 @@ private:
     CxAutoIpcMutex         _m_mtFile;
 #endif
 
-    void                   _vDeleteIfFull();
+    void                   _vRemoveIfFull();
         ///< delete log, if full
 };
 

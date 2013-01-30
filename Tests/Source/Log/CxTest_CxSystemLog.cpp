@@ -34,28 +34,28 @@ CxTest_CxSystemLog::vUnit(
         CxSystemLog slSytemLog(sLogName);
     }
 
-    xTEST_CASE("CxSystemLog::vSetEnabled", cullCaseLoops)
+    xTEST_CASE("CxSystemLog::setEnabled", cullCaseLoops)
     {
         CxSystemLog slSytemLog;
 
-        slSytemLog.vSetEnabled(true);
-        slSytemLog.vSetEnabled(false);
-        slSytemLog.vSetEnabled(true);
-        slSytemLog.vSetEnabled(false);
+        slSytemLog.setEnabled(true);
+        slSytemLog.setEnabled(false);
+        slSytemLog.setEnabled(true);
+        slSytemLog.setEnabled(false);
     }
 
-    xTEST_CASE("CxSystemLog::vWrite", cullCaseLoops)
+    xTEST_CASE("CxSystemLog::write", cullCaseLoops)
     {
         CxSystemLog::ExLevel alvLogLevel[] = {
-            CxSystemLog::lvEmerg, CxSystemLog::lvAlert, CxSystemLog::lvCritical,
+            CxSystemLog::lvEmerg, CxSystemLog::lvAlert,   CxSystemLog::lvCritical,
             CxSystemLog::lvError, CxSystemLog::lvWarning, CxSystemLog::lvNotice,
-            CxSystemLog::lvInfo, CxSystemLog::lvDebug
+            CxSystemLog::lvInfo,  CxSystemLog::lvDebug
         };
 
         CxSystemLog slSytemLog;
 
         for (size_t i = 0; i < xARRAY_SIZE(alvLogLevel); ++ i) {
-            slSytemLog.vWrite(alvLogLevel[i], xT("%s%")xPR_SIZET, xT("This is test system log message #"), i);
+            slSytemLog.write(alvLogLevel[i], xT("%s%")xPR_SIZET, xT("This is test system log message #"), i);
         }
     }
 }

@@ -40,19 +40,19 @@ CxTest_CxTracer::vUnit(
     #endif
     }
 
-    xTEST_CASE("CxTracer::vWrite", cullCaseLoops)
+    xTEST_CASE("CxTracer::write", cullCaseLoops)
     {
     #if xTEST_IGNORE
-        CxTracer::vWrite(xT("\t%s: %d"), "test_str", 12345);
+        CxTracer::write(xT("\t%s: %d"), "test_str", 12345);
     #endif
     }
 
-    xTEST_CASE("CxTracer::vWrite", cullCaseLoops)
+    xTEST_CASE("CxTracer::write", cullCaseLoops)
     {
     #if xTEST_IGNORE
         std::tstring_t sData = xT("\ttest_str");
 
-        CxTracer::vWrite(sData);
+        CxTracer::write(sData);
     #endif
     }
 
