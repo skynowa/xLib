@@ -80,4 +80,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif //xLib_Net_CxCookiePv0H
+#endif // xLib_Net_CxCookiePv0H

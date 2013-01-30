@@ -44,4 +44,4 @@
 #endif
 
 //---------------------------------------------------------------------------
-#endif  //xLib_Common_xCheksH
+#endif  // xLib_Common_xCheksH

@@ -59,4 +59,4 @@ xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #include "CxMsgBoxT.inl"
 //---------------------------------------------------------------------------
-#endif    //xLib_Gui_CxMsgBoxTH
+#endif // xLib_Gui_CxMsgBoxTH

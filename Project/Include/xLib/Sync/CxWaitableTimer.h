@@ -37,4 +37,4 @@ xNAMESPACE_END(NxLib)
 
 #endif
 //---------------------------------------------------------------------------
-#endif    //xLib_Sync_CxWaitableTimerH
+#endif // xLib_Sync_CxWaitableTimerH

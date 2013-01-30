@@ -42,4 +42,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif //xLib_Filesystem_CxEnvironmentH
+#endif // xLib_Filesystem_CxEnvironmentH

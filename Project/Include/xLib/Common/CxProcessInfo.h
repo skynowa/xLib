@@ -40,4 +40,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif //xLib_CxProcessInfoH
+#endif // xLib_CxProcessInfoH

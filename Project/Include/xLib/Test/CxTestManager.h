@@ -42,4 +42,4 @@ xNAMESPACE_END(NxLib)
 // TODO: CxTestManager - busy CPU
 // TODO: CxTestManager - every macros wrapped by try-catch
 //---------------------------------------------------------------------------
-#endif //xLib_CxTestManager.H
+#endif // xLib_CxTestManager.H

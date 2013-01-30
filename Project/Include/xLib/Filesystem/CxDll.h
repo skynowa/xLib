@@ -50,4 +50,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif //xLib_Filesystem_CxDllH
+#endif // xLib_Filesystem_CxDllH

@@ -36,4 +36,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif //xLib_Sync_CxCurrentProcessH
+#endif // xLib_Sync_CxCurrentProcessH

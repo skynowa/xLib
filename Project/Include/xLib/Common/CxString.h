@@ -185,4 +185,4 @@ xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
 #include "CxString.inl"
 //---------------------------------------------------------------------------
-#endif    // xLib_Common_CxStringH
+#endif // xLib_Common_CxStringH

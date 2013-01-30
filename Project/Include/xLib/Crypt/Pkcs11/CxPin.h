@@ -27,11 +27,11 @@ public:
     virtual             ~CxPin         ();
          ///< destructor
 
-    void                 vInitToken    (CK_SLOT_ID slotID, CK_UTF8CHAR_PTR pPin, CK_ULONG ulPinLen, CK_UTF8CHAR_PTR pLabel);
+    void                 initToken     (CK_SLOT_ID slotID, CK_UTF8CHAR_PTR pPin, CK_ULONG ulPinLen, CK_UTF8CHAR_PTR pLabel);
         ///< initializes a token
-    void                 vInitPIN      (CK_UTF8CHAR_PTR pPin, CK_ULONG ulPinLen);
+    void                 initPIN       (CK_UTF8CHAR_PTR pPin, CK_ULONG ulPinLen);
         ///< initializes the normal user's PIN
-    void                 vSetPIN       (CK_UTF8CHAR_PTR pOldPin, CK_ULONG ulOldLen, CK_UTF8CHAR_PTR pNewPin, CK_ULONG ulNewLen);
+    void                 setPIN        (CK_UTF8CHAR_PTR pOldPin, CK_ULONG ulOldLen, CK_UTF8CHAR_PTR pNewPin, CK_ULONG ulNewLen);
         ///< modifies the PIN of the user who is logged in
 
     // TODO: CxPin utils
@@ -41,12 +41,12 @@ public:
 #endif
 
 private:
-    CK_FUNCTION_LIST_PTR _m_pFunc;         ///< pointer to dll's functions list
-    CK_SESSION_HANDLE    _m_hSession;    ///< session handle
+    CK_FUNCTION_LIST_PTR _m_pFunc;      ///< pointer to dll functions list
+    CK_SESSION_HANDLE    _m_hSession;   ///< session handle
 };
 
 xNAMESPACE_END(NxLib)
 
 #endif
 //---------------------------------------------------------------------------
-#endif    //xLib_Pkcs11_CxPinH
+#endif // xLib_Pkcs11_CxPinH

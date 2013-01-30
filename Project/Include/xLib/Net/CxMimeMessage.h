@@ -32,4 +32,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif    //xLib_Net_CxMimeMessageH
+#endif // xLib_Net_CxMimeMessageH

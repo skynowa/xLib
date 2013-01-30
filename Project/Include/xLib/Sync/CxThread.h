@@ -199,4 +199,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif    //xLib_Sync_CxThreadH
+#endif // xLib_Sync_CxThreadH

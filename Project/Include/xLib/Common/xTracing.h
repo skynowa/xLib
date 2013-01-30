@@ -136,4 +136,4 @@
 
 #endif
 //---------------------------------------------------------------------------
-#endif //xLib_Common_xTracingH
+#endif // xLib_Common_xTracingH

@@ -99,4 +99,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif    //xLib_Net_CxHttpClientH
+#endif // xLib_Net_CxHttpClientH

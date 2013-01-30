@@ -26,17 +26,17 @@ public:
     virtual             ~CxInfo();
         ///< destructor
 
-    void                 vGet  (CK_INFO_PTR pInfo);
+    void                 get   (CK_INFO_PTR pInfo);
         ///< returns general information about Cryptoki
-    void                 vToken(CK_SLOT_ID slotID, CK_TOKEN_INFO_PTR pInfo);
+    void                 token (CK_SLOT_ID slotID, CK_TOKEN_INFO_PTR pInfo);
         ///< obtains information about a particular token in the system
 
 private:
-    CK_FUNCTION_LIST_PTR _m_pFunc;    ///< pointer to dll's function list
+    CK_FUNCTION_LIST_PTR _m_pFunc;  ///< pointer to dll function list
 };
 
 xNAMESPACE_END(NxLib)
 
 #endif
 //---------------------------------------------------------------------------
-#endif    //xLib_Pkcs11_CxInfoH
+#endif // xLib_Pkcs11_CxInfoH

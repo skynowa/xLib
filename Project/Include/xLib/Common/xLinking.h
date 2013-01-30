@@ -71,9 +71,9 @@
 
     #  pragma message ( "VC 5.0 libraries only supported")
 
-    #endif    // _MSC_VER >= 1100
+    #endif // _MSC_VER >= 1100
 
-    #endif    //  _MSC_VER
+    #endif //  _MSC_VER
 
     #endif  // __libPerstStat_link_h__
 #endif

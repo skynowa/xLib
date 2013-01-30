@@ -15,4 +15,4 @@
     #include "SDK/4.53/otp-pkcs11.h"
 #endif
 //---------------------------------------------------------------------------
-#endif    //xLib_Pkcs11_CommonH
+#endif // xLib_Pkcs11_CommonH

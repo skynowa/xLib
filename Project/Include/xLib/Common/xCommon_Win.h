@@ -31,4 +31,4 @@
     #include <dir.h>
 #endif
 //---------------------------------------------------------------------------
-#endif  //xLib_Common_Win_xCommon_WinH
+#endif  // xLib_Common_Win_xCommon_WinH

@@ -20,25 +20,25 @@ class CxPkcs11 :
     /// Aladdin eToken, PKCS#11
 {
 public:
-                          CxPkcs11      ();
+                          CxPkcs11    ();
         ///< constructor
-    virtual              ~CxPkcs11      ();
+    virtual              ~CxPkcs11    ();
         ///< destructor
 
-    CK_FUNCTION_LIST_PTR  pFuncList     () const;
-        ///< get pointer to dll's functions list
-    static std::tstring_t sErrorStr     (const CK_RV culCode);
+    CK_FUNCTION_LIST_PTR  funcList    () const;
+        ///< get pointer to dll functions list
+    static std::tstring_t errorStr    (const CK_RV culCode);
         ///< get error string by code, SDK 4.53
 
 private:
-    CK_FUNCTION_LIST_PTR _m_pFunc;            ///< pointer to fumction
+    CK_FUNCTION_LIST_PTR _m_pFunc;            ///< pointer to function
     CxDll                _m_dllETPkcs11;    ///< Pkcs11 CxDll object
 
-    void                 _vLoadETPkcs11 ();
+    void                 _loadETPkcs11();
         ///< load eTPkcs11.dll
-    void                 vInitialize    ();
+    void                 _initialize  ();
         ///< initiate PKCS#11
-    void                 vFinalize      ();
+    void                 _finalize    ();
         ///< finalize PKCS#11
 };
 
@@ -46,4 +46,4 @@ xNAMESPACE_END(NxLib)
 
 #endif
 //---------------------------------------------------------------------------
-#endif    //xLib_Pkcs11_CxPkcs11H
+#endif // xLib_Pkcs11_CxPkcs11H

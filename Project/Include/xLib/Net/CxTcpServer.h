@@ -35,7 +35,7 @@ protected:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif    //xLib_Net_CxTcpServerH
+#endif // xLib_Net_CxTcpServerH
 
 
 /*

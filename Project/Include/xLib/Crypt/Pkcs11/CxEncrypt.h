@@ -27,26 +27,26 @@ public:
     virtual             ~CxEncrypt();
         ///< destructor
 
-    void                 vInit    (CK_MECHANISM_PTR  pMechanism, CK_OBJECT_HANDLE hKey);
+    void                 init     (CK_MECHANISM_PTR  pMechanism, CK_OBJECT_HANDLE hKey);
         ///< initializes an encryption operation
-    void                 vMake    (CK_BYTE_PTR pData, CK_ULONG ulDataLen, CK_BYTE_PTR pEncryptedData, CK_ULONG_PTR pulEncryptedDataLen);
+    void                 make     (CK_BYTE_PTR pData, CK_ULONG ulDataLen, CK_BYTE_PTR pEncryptedData, CK_ULONG_PTR pulEncryptedDataLen);
         ///< encrypts single-part data
-    void                 vUpdate  (CK_BYTE_PTR pPart, CK_ULONG ulPartLen, CK_BYTE_PTR  pEncryptedPart, CK_ULONG_PTR pulEncryptedPartLen);
+    void                 update   (CK_BYTE_PTR pPart, CK_ULONG ulPartLen, CK_BYTE_PTR  pEncryptedPart, CK_ULONG_PTR pulEncryptedPartLen);
         ///< continues a multiple-part encryption operation
-    void                 vFinal   (CK_BYTE_PTR pLastEncryptedPart, CK_ULONG_PTR pulLastEncryptedPartLen );
+    void                 final    (CK_BYTE_PTR pLastEncryptedPart, CK_ULONG_PTR pulLastEncryptedPartLen );
         ///< finishes a multiple-part encryption operation
 
-    //Utils
-    void                 vMakeFile(const std::tstring_t &csInFilePath, const std::tstring_t &csOutFilePath, CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
+    // Utils
+    void                 makeFile (const std::tstring_t &csInFilePath, const std::tstring_t &csOutFilePath, CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
         ///< make file
 
 private:
-    CK_FUNCTION_LIST_PTR _m_pFunc;        ///< pointer to dll's functions list
-    CK_SESSION_HANDLE    _m_hSession;    ///< session handle
+    CK_FUNCTION_LIST_PTR _m_pFunc;      ///< pointer to dll functions list
+    CK_SESSION_HANDLE    _m_hSession;   ///< session handle
 };
 
 xNAMESPACE_END(NxLib)
 
 #endif
 //---------------------------------------------------------------------------
-#endif    //xLib_Pkcs11_CxEncryptH
+#endif // xLib_Pkcs11_CxEncryptH

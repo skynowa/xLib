@@ -25,8 +25,8 @@ CxLogin::CxLogin(
     const CxPkcs11  &a_cPkcs11,
     const CxSession &a_cSession
 ) :
-    _m_pFunc   (a_cPkcs11.pFuncList()),
-    _m_hSession(a_cSession.hHandle())
+    _m_pFunc   (a_cPkcs11.funcList()),
+    _m_hSession(a_cSession.handle())
 {
     xTEST_PTR(_m_pFunc);
     xTEST_DIFF(0UL, _m_hSession);
@@ -38,7 +38,7 @@ CxLogin::~CxLogin() {
 }
 //---------------------------------------------------------------------------
 void
-CxLogin::vLogin(
+CxLogin::login(
     CK_USER_TYPE    a_userType,  ///< user type
     CK_UTF8CHAR_PTR a_pPin,      ///< user's PIN
     CK_ULONG        a_ulPinLen   ///< length of the PIN
@@ -53,16 +53,16 @@ CxLogin::vLogin(
         CxMsgBoxT::iShow(xT("Pin is incorrect"), xT("Pkcs11"), MB_OK + MB_ICONSTOP);
         return
     );
-    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
-CxLogin::vLogout() {
+CxLogin::logout() {
     xTEST_PTR(_m_pFunc);
     xTEST_DIFF(0UL, _m_hSession);
 
     CK_RV ulRv = _m_pFunc->C_Logout(_m_hSession);
-    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 

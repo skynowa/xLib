@@ -153,4 +153,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif //xLib_Common_Win_CxShellH
+#endif // xLib_Common_Win_CxShellH

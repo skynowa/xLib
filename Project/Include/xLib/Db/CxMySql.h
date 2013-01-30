@@ -105,7 +105,7 @@ private:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif //xLib_Db_CxMySqlH
+#endif // xLib_Db_CxMySqlH
 
 
 #if xTODO

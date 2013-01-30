@@ -62,7 +62,7 @@ private:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif    //xLib_Net_CxPop3H
+#endif // xLib_Net_CxPop3H
 
 /*
 RFC 1225

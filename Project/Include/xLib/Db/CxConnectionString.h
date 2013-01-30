@@ -29,4 +29,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif //xLib_Db_CxConnectionStringH
+#endif // xLib_Db_CxConnectionStringH

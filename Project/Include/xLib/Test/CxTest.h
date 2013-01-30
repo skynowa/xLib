@@ -69,4 +69,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif //xLib_Debug_CxTestH
+#endif // xLib_Debug_CxTestH

@@ -29,4 +29,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif    // xLib_Common_CxNonAssignableH
+#endif // xLib_Common_CxNonAssignableH

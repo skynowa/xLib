@@ -22,9 +22,8 @@ xNAMESPACE_BEGIN(NxLib)
 CxInfo::CxInfo(
     const CxPkcs11 &a_cPkcs11
 ) :
-    _m_pFunc(a_cPkcs11.pFuncList())
+    _m_pFunc(a_cPkcs11.funcList())
 {
-
 }
 //---------------------------------------------------------------------------
 CxInfo::~CxInfo() {
@@ -32,26 +31,22 @@ CxInfo::~CxInfo() {
 }
 //---------------------------------------------------------------------------
 void
-CxInfo::vGet(
+CxInfo::get(
     CK_INFO_PTR a_pInfo  ///< location that receives information
 )
 {
-    
-
     CK_RV ulRv = _m_pFunc->C_GetInfo(a_pInfo);
-    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 void
-CxInfo::vToken(
+CxInfo::token(
     CK_SLOT_ID        a_slotID,  ///< ID of the token's slot
     CK_TOKEN_INFO_PTR a_pInfo    ///< receives the token information
 )
 {
-    
-
     CK_RV ulRv = _m_pFunc->C_GetTokenInfo(a_slotID, a_pInfo);
-    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::sErrorStr(ulRv));
+    xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //---------------------------------------------------------------------------
 

@@ -46,4 +46,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif    //CxLib_Sync_CxThreadStorageH
+#endif //CxLib_Sync_CxThreadStorageH
