@@ -37,7 +37,7 @@ CxMutex::~CxMutex() {
     xTEST_EQ(true, bRv);
 #elif xOS_ENV_UNIX
     int iRv = ::pthread_mutex_destroy(&_m_hHandle);
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 #endif
 }
 //---------------------------------------------------------------------------
@@ -61,24 +61,24 @@ CxMutex::vCreate() {
     pthread_mutexattr_t maAttr;    // n/a {{0}}
 
     iRv = ::pthread_mutexattr_init(&maAttr);
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
     iRv = ::pthread_mutexattr_setpshared(&maAttr, PTHREAD_PROCESS_PRIVATE);
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
     // TODO: vCreate - PTHREAD_MUTEX_RECURSIVE
 #if 1
     iRv = ::pthread_mutexattr_settype(&maAttr, PTHREAD_MUTEX_RECURSIVE);
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 #endif
 
     {
         iRv = ::pthread_mutex_init(&_m_hHandle, &maAttr);
-        xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+        xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
     }
 
     iRv = ::pthread_mutexattr_destroy(&maAttr);
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 #endif
 }
 //---------------------------------------------------------------------------
@@ -103,7 +103,7 @@ CxMutex::vLock() {
     xTEST_EQ(true, bRv);
 #elif xOS_ENV_UNIX
     int iRv = ::pthread_mutex_lock(&_m_hHandle);
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 #endif
 }
 //---------------------------------------------------------------------------
@@ -136,7 +136,7 @@ CxMutex::vUnlock() {
     xTEST_EQ(true, bRv);
 #elif xOS_ENV_UNIX
     int iRv = ::pthread_mutex_unlock(&_m_hHandle);
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 #endif
 }
 //---------------------------------------------------------------------------

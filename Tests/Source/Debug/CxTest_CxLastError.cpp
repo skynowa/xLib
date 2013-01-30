@@ -28,20 +28,20 @@ CxTest_CxLastError::vUnit(
         const ulong_t cuiMaxErrors = 132;    /*0...132*/
     #endif
 
-    xTEST_CASE("CxLastError::ulGet", cullCaseLoops)
+    xTEST_CASE("CxLastError::get", cullCaseLoops)
     {
-        (void)CxLastError::ulGet();
-        xTEST_EQ(0UL, CxLastError::ulGet());
+        (void)CxLastError::get();
+        xTEST_EQ(0UL, CxLastError::get());
     }
 
-    xTEST_CASE("CxLastError::sGet", cullCaseLoops)
+    xTEST_CASE("CxLastError::toString", cullCaseLoops)
     {
-        m_sRv = CxLastError::sGet();
-        xTEST_EQ(0UL,   CxLastError::ulGet());
+        m_sRv = CxLastError::toString();
+        xTEST_EQ(0UL,   CxLastError::get());
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("CxLastError::vSet", cullCaseLoops)
+    xTEST_CASE("CxLastError::set", cullCaseLoops)
     {
         const ulong_t caulData[] = {
             0UL,
@@ -53,12 +53,12 @@ CxTest_CxLastError::vUnit(
         for (size_t i = 0; i < xARRAY_SIZE(caulData); ++ i) {
             const ulong_t culLasError = caulData[i];
 
-            CxLastError::vSet(culLasError);
-            xTEST_EQ(culLasError, CxLastError::ulGet());
+            CxLastError::set(culLasError);
+            xTEST_EQ(culLasError, CxLastError::get());
         }
     }
 
-    xTEST_CASE("CxLastError::vReset", cullCaseLoops)
+    xTEST_CASE("CxLastError::reset", cullCaseLoops)
     {
         const ulong_t caulData[] = {
             0UL,
@@ -70,13 +70,13 @@ CxTest_CxLastError::vUnit(
         for (size_t i = 0; i < xARRAY_SIZE(caulData); ++ i) {
             const ulong_t culLasError = caulData[i];
 
-            CxLastError::vSet(culLasError);
-            CxLastError::vReset();
-            xTEST_EQ(0UL, CxLastError::ulGet());
+            CxLastError::set(culLasError);
+            CxLastError::reset();
+            xTEST_EQ(0UL, CxLastError::get());
         }
     }
 
-    xTEST_CASE("CxLastError::sFormat", cullCaseLoops)
+    xTEST_CASE("CxLastError::format", cullCaseLoops)
     {
         const ulong_t caulData[] = {
             0UL,
@@ -88,7 +88,7 @@ CxTest_CxLastError::vUnit(
         for (size_t i = 0; i < xARRAY_SIZE(caulData); ++ i) {
             const ulong_t culLasError = caulData[i];
 
-            m_sRv = CxLastError::sFormat(culLasError);
+            m_sRv = CxLastError::format(culLasError);
             xTEST_EQ(false, m_sRv.empty());
         }
     }

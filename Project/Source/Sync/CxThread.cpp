@@ -133,23 +133,23 @@ CxThread::vCreate(
     pthread_attr_t paAttributes; // n/a - {{0}}
 
     iRv = ::pthread_attr_init(&paAttributes);
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
     iRv = ::pthread_attr_setdetachstate(&paAttributes, PTHREAD_CREATE_JOINABLE); //PTHREAD_CREATE_DETACHED
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
     if (0 != a_cuiStackSize) {
         //TODO: size_t size = PTHREAD_STACK_MIN + 0x4000;
         iRv = ::pthread_attr_setstacksize(&paAttributes, a_cuiStackSize);
-        xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+        xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
     }
 
     iRv = ::pthread_create(&ulId, &paAttributes, &_s_uiJobEntry, this);
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
-    xTEST_MSG_EQ(true, 0UL < ulId, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
+    xTEST_MSG_EQ(true, 0UL < ulId, CxLastError::format(iRv));
 
     iRv = ::pthread_attr_destroy(&paAttributes);
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
     _m_hThread = ulId;  // TODO: is it right?
     _m_ulId    = ulId;
@@ -256,7 +256,7 @@ CxThread::vKill(
     }
 #elif xOS_ENV_UNIX
     int iRv = ::pthread_kill(_m_ulId, SIGALRM);
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
     CxCurrentThread::vSleep(a_culTimeout);
 #endif
@@ -301,7 +301,7 @@ CxThread::vWait(
     // TODO: thread must not be detached
     // FIX:  a_culTimeout
     int iRv = ::pthread_join(_m_ulId, NULL);
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 #endif
 }
 //---------------------------------------------------------------------------
@@ -435,7 +435,7 @@ CxThread::vSendMessage(
     xTEST_DIFF(FALSE, ::IsWindow(a_hHwnd));
 
     (void)::SendMessage(a_hHwnd, a_uiMsg, static_cast<WPARAM>( a_uiParam1 ), static_cast<LPARAM>( a_liParam2 ));
-    xTEST_EQ(0UL, CxLastError::ulGet());
+    xTEST_EQ(0UL, CxLastError::get());
 }
 
 #endif
@@ -552,7 +552,7 @@ CxThread::_iPriorityMin() {
     iRv = THREAD_PRIORITY_IDLE;
 #elif xOS_ENV_UNIX
     iRv = ::sched_get_priority_min(SCHED_FIFO);
-    xTEST_MSG_DIFF(- 1, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_DIFF(- 1, iRv, CxLastError::format(iRv));
 #endif
 
     return iRv;
@@ -567,7 +567,7 @@ CxThread::_iPriorityMax() {
     iRv = THREAD_PRIORITY_TIME_CRITICAL;
 #elif xOS_ENV_UNIX
     iRv = ::sched_get_priority_max(SCHED_FIFO);
-    xTEST_MSG_DIFF(- 1, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_DIFF(- 1, iRv, CxLastError::format(iRv));
 #endif
 
     return iRv;
@@ -594,7 +594,7 @@ CxThread::vSetPriority(
     spParam.sched_priority = a_ctpPriority;
 
     int iRv = ::pthread_setschedparam(ulGetId(), SCHED_FIFO, &spParam);
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 #endif
 }
 //---------------------------------------------------------------------------
@@ -616,7 +616,7 @@ CxThread::tpPriority() const {
     int         iPolicy  = SCHED_FIFO;
 
     int iRv = ::pthread_getschedparam(ulGetId(), &iPolicy, &spParam);
-    xTEST_MSG_EQ(0, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
     tpRes = static_cast<ExPriority>( spParam.sched_priority );
 #endif
@@ -773,7 +773,7 @@ CxThread::vSetCpuAffinity(
     (void)CPU_SET(a_ciProcNum, &csCpuSet);
 
     int iRv = ::pthread_setaffinity_np(ulGetId(), sizeof(csCpuSet), &csCpuSet);
-    xTEST_MSG_DIFF(- 1, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_DIFF(- 1, iRv, CxLastError::format(iRv));
 #endif
 }
 //---------------------------------------------------------------------------

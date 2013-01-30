@@ -570,7 +570,7 @@
                 xTEST_MSG_FAIL(xS2TS(asMsg));        \
             }                                        \
             catch (const CxException &a_cexExp) {    \
-                xTEST_MSG_FAIL(a_cexExp.sWhat());    \
+                xTEST_MSG_FAIL(a_cexExp.what());    \
             }                                        \
             catch (...) {                            \
                 xTEST_MSG_FAIL(xT("unknown error")); \

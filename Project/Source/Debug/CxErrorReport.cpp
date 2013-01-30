@@ -33,7 +33,7 @@ CxErrorReport::~CxErrorReport() {
 }
 //---------------------------------------------------------------------------
 void
-CxErrorReport::_vConstruct(
+CxErrorReport::_construct(
     const ExType         &a_crtType,
     const std::tstring_t &a_csVar1,       
     const std::tstring_t &a_csVar2,
@@ -68,7 +68,7 @@ CxErrorReport::_vConstruct(
                                           a_csVar2.c_str(), a_csVar2Value.c_str());
     m_sExprSign       = a_csExprSign;
     m_ulLastError     = a_culLastError;
-    m_sLastErrorStr   = CxLastError::sFormat(a_culLastError);
+    m_sLastErrorStr   = CxLastError::format(a_culLastError);
 
     m_sCurrentDate    = CxDateTime::current().format(CxDateTime::ftDateTime);
     m_sBuildDate      = CxString::format(xT("%s/%s"), a_csDate.c_str(), a_csTime.c_str());
@@ -89,7 +89,7 @@ CxErrorReport::_vConstruct(
 
 //---------------------------------------------------------------------------
 void
-CxErrorReport::_vInitPlain() {
+CxErrorReport::_initPlain() {
     std::tostringstream_t ossReport;
 
     ossReport

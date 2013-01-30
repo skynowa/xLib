@@ -24,7 +24,7 @@ CxTest_CxErrorReport::vUnit(
 {
     xTEST_CASE("CxErrorReport::CxErrorReport", cullCaseLoops)
     {
-        ulong_t ulLastError = CxLastError::ulGet();
+        ulong_t ulLastError = CxLastError::get();
 
         ulong_t val1 = 10;
         ulong_t val2 = 20;

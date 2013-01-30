@@ -45,8 +45,6 @@ CxErrorReport::CxErrorReport(
     m_sStackTrace    (),
     m_sComment       ()
 {
-
-
     // sVar1Value
     std::tstring_t sVar1Value;
     {
@@ -65,18 +63,19 @@ CxErrorReport::CxErrorReport(
         sVar2Value = ossRes.str();
     }
 
-    _vConstruct(a_crtType,
-                a_csVar1,   a_csVar2,
-                sVar1Value, sVar2Value,
-                a_csExprSign,
-                a_culLastError, a_csFile, a_culLine, a_csFunc, a_csDate, a_csTime, a_csStackTrace, a_csComment);
+    _construct(a_crtType,
+               a_csVar1,   a_csVar2,
+               sVar1Value, sVar2Value,
+               a_csExprSign,
+               a_culLastError, a_csFile, a_culLine, a_csFunc, 
+               a_csDate, a_csTime, a_csStackTrace, a_csComment);
 
     switch (a_crtType) {
-        case rtMsgboxPlain:     { _vInitPlain();    } break;
-        case rtStdoutPlain:     { _vInitPlain();    } break;
-        case rtLoggingPlain:    { _vInitPlain();    } break;
+        case rtMsgboxPlain:  { _initPlain(); } break;
+        case rtStdoutPlain:  { _initPlain(); } break;
+        case rtLoggingPlain: { _initPlain(); } break;
 
-        default:                { _vInitPlain();    } break;
+        default:             { _initPlain(); } break;
     }
 }
 //---------------------------------------------------------------------------

@@ -28,7 +28,7 @@ public:
 
 
     ExType         m_rtType;          ///< report type
-    std::tstring_t m_sReport;         ///< repoer message
+    std::tstring_t m_sReport;         ///< report message
 
     // exe
     std::tstring_t m_sProgram;        ///< program name
@@ -72,7 +72,7 @@ public:
         ///< destructor
 
 private:
-    void          _vConstruct   (const ExType         &crtType,
+    void          _construct    (const ExType         &crtType,
                                  const std::tstring_t &csVar1,       const std::tstring_t &csVar2,
                                  const std::tstring_t &csVar1Value,  const std::tstring_t &csVar2Value,
                                  const std::tstring_t &csExprSign,
@@ -81,7 +81,7 @@ private:
                                  const std::tstring_t &csDate,       const std::tstring_t &csTime,
                                  const std::tstring_t &csStackTrace, const std::tstring_t &csComment);
         ///< initiate class members
-    void          _vInitPlain   ();
+    void          _initPlain    ();
         ///< initiate plain report
 };
 

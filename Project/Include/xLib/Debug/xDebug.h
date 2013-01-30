@@ -15,15 +15,15 @@
 #include <xLib/Debug/CxDebugger.h>
 #include <xLib/Log/CxTracer.h>
 //---------------------------------------------------------------------------
-#define _xTEST_MSG_EQ(report_type, val1, val2, msg)      { if ( !((val1) == (val2)) ) { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, xT(#val1),   xT(#val2), (val1),        (val2),         xT("=="), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), (msg));  CxDebugger().reportMake(rpReport); } }
-#define _xTEST_MSG_DIFF(report_type, val1, val2, msg)    { if ( !((val1) != (val2)) ) { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, xT(#val1),   xT(#val2), (val1),        (val2),         xT("!="), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), (msg));  CxDebugger().reportMake(rpReport); } }
-#define _xTEST_MSG_LESS(report_type, val1, val2, msg)    { if ( !((val1) <  (val2)) ) { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, xT(#val1),   xT(#val2), (val1),        (val2),         xT("<"),  ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), (msg));  CxDebugger().reportMake(rpReport); } }
-#define _xTEST_MSG_GR(report_type, val1, val2, msg)      { if ( !((val1) >  (val2)) ) { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, xT(#val1),   xT(#val2), (val1),        (val2),         xT(">"),  ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), (msg));  CxDebugger().reportMake(rpReport); } }
-#define _xTEST_MSG_LESS_EQ(report_type, val1, val2, msg) { if ( !((val1) <= (val2)) ) { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, xT(#val1),   xT(#val2), (val1),        (val2),         xT("<="), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), (msg));  CxDebugger().reportMake(rpReport); } }
-#define _xTEST_MSG_GR_EQ(report_type, val1, val2, msg)   { if ( !((val1) >= (val2)) ) { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, xT(#val1),   xT(#val2), (val1),        (val2),         xT(">="), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), (msg));  CxDebugger().reportMake(rpReport); } }
-#define _xTEST_MSG_PTR(report_type, ptr, msg)            { if ( NULL     == (ptr)   ) { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, xT("NULL"),  xT(#ptr),  (intptr_t)ptr, (intptr_t)NULL, xT("!="), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), (msg));  CxDebugger().reportMake(rpReport); } }
-#define _xTEST_MSG_PTR_FAIL(report_type, ptr, msg)       { if ( NULL     != (ptr)   ) { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, xT("NULL"),  xT(#ptr),  (intptr_t)ptr, (intptr_t)NULL, xT("=="), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), (msg));  CxDebugger().reportMake(rpReport); } }
-#define _xTEST_MSG_FAIL(report_type, msg)                { if ( true                ) { ulong_t ulLastError = CxLastError::ulGet(); CxErrorReport rpReport(report_type, xT("false"), xT(""),    xT(""),        xT(""),         xT(""),   ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), (msg));  CxDebugger().reportMake(rpReport); } }
+#define _xTEST_MSG_EQ(report_type, val1, val2, msg)      { if ( !((val1) == (val2)) ) { ulong_t ulLastError = CxLastError::get(); CxErrorReport rpReport(report_type, xT(#val1),   xT(#val2), (val1),        (val2),         xT("=="), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), (msg));  CxDebugger().reportMake(rpReport); } }
+#define _xTEST_MSG_DIFF(report_type, val1, val2, msg)    { if ( !((val1) != (val2)) ) { ulong_t ulLastError = CxLastError::get(); CxErrorReport rpReport(report_type, xT(#val1),   xT(#val2), (val1),        (val2),         xT("!="), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), (msg));  CxDebugger().reportMake(rpReport); } }
+#define _xTEST_MSG_LESS(report_type, val1, val2, msg)    { if ( !((val1) <  (val2)) ) { ulong_t ulLastError = CxLastError::get(); CxErrorReport rpReport(report_type, xT(#val1),   xT(#val2), (val1),        (val2),         xT("<"),  ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), (msg));  CxDebugger().reportMake(rpReport); } }
+#define _xTEST_MSG_GR(report_type, val1, val2, msg)      { if ( !((val1) >  (val2)) ) { ulong_t ulLastError = CxLastError::get(); CxErrorReport rpReport(report_type, xT(#val1),   xT(#val2), (val1),        (val2),         xT(">"),  ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), (msg));  CxDebugger().reportMake(rpReport); } }
+#define _xTEST_MSG_LESS_EQ(report_type, val1, val2, msg) { if ( !((val1) <= (val2)) ) { ulong_t ulLastError = CxLastError::get(); CxErrorReport rpReport(report_type, xT(#val1),   xT(#val2), (val1),        (val2),         xT("<="), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), (msg));  CxDebugger().reportMake(rpReport); } }
+#define _xTEST_MSG_GR_EQ(report_type, val1, val2, msg)   { if ( !((val1) >= (val2)) ) { ulong_t ulLastError = CxLastError::get(); CxErrorReport rpReport(report_type, xT(#val1),   xT(#val2), (val1),        (val2),         xT(">="), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), (msg));  CxDebugger().reportMake(rpReport); } }
+#define _xTEST_MSG_PTR(report_type, ptr, msg)            { if ( NULL     == (ptr)   ) { ulong_t ulLastError = CxLastError::get(); CxErrorReport rpReport(report_type, xT("NULL"),  xT(#ptr),  (intptr_t)ptr, (intptr_t)NULL, xT("!="), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), (msg));  CxDebugger().reportMake(rpReport); } }
+#define _xTEST_MSG_PTR_FAIL(report_type, ptr, msg)       { if ( NULL     != (ptr)   ) { ulong_t ulLastError = CxLastError::get(); CxErrorReport rpReport(report_type, xT("NULL"),  xT(#ptr),  (intptr_t)ptr, (intptr_t)NULL, xT("=="), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), (msg));  CxDebugger().reportMake(rpReport); } }
+#define _xTEST_MSG_FAIL(report_type, msg)                { if ( true                ) { ulong_t ulLastError = CxLastError::get(); CxErrorReport rpReport(report_type, xT("false"), xT(""),    xT(""),        xT(""),         xT(""),   ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().sGet(), (msg));  CxDebugger().reportMake(rpReport); } }
 
 #if xDEBUG_MODE_STDOUT_PLAIN
     #define xTEST_EQ(val1, val2)                         _xTEST_MSG_EQ      (CxErrorReport::rtStdoutPlain, val1, val2, xT(""))
@@ -100,7 +100,7 @@
 //-------------------------------------------------------------------------
 #define xSTD_VERIFY(expr)                                { \
                                                             if ( !(expr) )  { \
-                                                                const std::tstring_t csLastError = CxLastError::sGet(); \
+                                                                const std::tstring_t csLastError = CxLastError::toString(); \
                                                                 CxTracer::vWrite(xT("\n--------------------------------- xSTD_VERIFY ----------------------------------\n") \
                                                                                  xT("  Expression: %s\n") \
                                                                                  xT("  File:       %s\n") \
@@ -159,7 +159,7 @@
 #define xTRACEV(...)                                     { CxTracer::vWrite(__VA_ARGS__); }
     ///< tracing
 #define xTRACE_POINT                                     { CxTracer::vWrite(xT("Point: %lu (file: %s, function: %s, last error: %s, line: %lu)"), \
-                                                                            xCOUNTER, xFILE, xFUNCTION, CxLastError::sGet().c_str(), xLINE); }
+                                                                            xCOUNTER, xFILE, xFUNCTION, CxLastError::get().c_str(), xLINE); }
     ///< trace point (use CxTracer)
 //---------------------------------------------------------------------------
 #endif // xLib_Debug_xDebugH

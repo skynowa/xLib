@@ -96,7 +96,7 @@ CxVolume::sLabel() const {
 #if   xOS_ENV_WIN
     tchar_t szVolumeName[MAX_PATH + 1] = {0};
 
-    CxLastError::vReset();
+    CxLastError::reset();
 
     BOOL blRes = ::GetVolumeInformation(
                         CxPath( sVolumePath() ).sSlashAppend().c_str(),
@@ -108,7 +108,7 @@ CxVolume::sLabel() const {
                         NULL,
                         0
     );
-    xTEST_DIFF(false, blRes && 0UL == CxLastError::ulGet());
+    xTEST_DIFF(false, blRes && 0UL == CxLastError::get());
 
     sRv.assign(szVolumeName);
 #elif xOS_ENV_UNIX

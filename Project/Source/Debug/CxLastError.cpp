@@ -20,7 +20,7 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 /* static */
 ulong_t
-CxLastError::ulGet() {
+CxLastError::get() {
     ulong_t ulCode = 0UL; /* = culCodeSuccess */;
 
 #if   xOS_ENV_WIN
@@ -29,20 +29,20 @@ CxLastError::ulGet() {
     ulCode = static_cast<ulong_t>( errno );
 #endif
 
-    vReset();
+    reset();
 
     return ulCode;
 }
 //---------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxLastError::sGet() {
-    return sFormat(ulGet());
+CxLastError::toString() {
+    return format(get());
 }
 //---------------------------------------------------------------------------
 /* static */
 void
-CxLastError::vSet(
+CxLastError::set(
     const ulong_t &a_culCode
 )
 {
@@ -55,15 +55,15 @@ CxLastError::vSet(
 //---------------------------------------------------------------------------
 /* static */
 void
-CxLastError::vReset() {
+CxLastError::reset() {
     const ulong_t culCodeSuccess = 0UL;
 
-    vSet(culCodeSuccess);
+    set(culCodeSuccess);
 }
 //---------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxLastError::sFormat(
+CxLastError::format(
     const ulong_t &a_culCode
 )
 {
@@ -84,8 +84,8 @@ CxLastError::sFormat(
                     0UL,
                     NULL);
 
-    xCHECK_RET(ERROR_MR_MID_NOT_FOUND == ulGet(), sRv.append(xT("Unknown error")));
-    xCHECK_RET(0UL                    == dwRv,    sRv.append(xT("[Cann't format error message]")));
+    xCHECK_RET(ERROR_MR_MID_NOT_FOUND == get(), sRv.append(xT("Unknown error")));
+    xCHECK_RET(0UL                    == dwRv,  sRv.append(xT("[Cann't format error message]")));
 
     std::tstring_t sMessage;
 

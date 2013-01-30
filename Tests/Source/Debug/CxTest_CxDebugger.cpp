@@ -100,7 +100,7 @@ CxTest_CxDebugger::vUnit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(crtType); ++ i) {
-            ulong_t ulLastError = CxLastError::ulGet();
+            ulong_t ulLastError = CxLastError::get();
 
             ulong_t val1 = 10;
             ulong_t val2 = 20;

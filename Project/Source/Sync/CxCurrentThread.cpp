@@ -80,7 +80,7 @@ CxCurrentThread::vYield() {
     (void)::SwitchToThread();
 #elif xOS_ENV_UNIX
     int iRv = ::sched_yield();
-    xTEST_MSG_DIFF(- 1, iRv, CxLastError::sFormat(iRv));
+    xTEST_MSG_DIFF(- 1, iRv, CxLastError::format(iRv));
 #endif
 }
 //---------------------------------------------------------------------------
@@ -103,7 +103,7 @@ CxCurrentThread::vSleep(
     xFOREVER {
         int iRv = ::nanosleep(&tsSleep, &tsRemain);
         // n/a
-        xCHECK_DO(!(- 1 == iRv && EINTR == CxLastError::ulGet()), break);
+        xCHECK_DO(!(- 1 == iRv && EINTR == CxLastError::get()), break);
 
         tsSleep = tsRemain;
     }

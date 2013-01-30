@@ -27,7 +27,7 @@ CxException::~CxException() {
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxException::sWhat() const {
+CxException::what() const {
     xTESTS_NA;
 
     return _m_sMessage;
