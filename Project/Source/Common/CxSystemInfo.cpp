@@ -287,7 +287,7 @@ CxSystemInfo::hostName() {
 //---------------------------------------------------------------------------
 /* static */
 bool
-CxSystemInfo::isUserAnAdmin() {
+CxSystemInfo::isUserAdmin() {
 #if   xOS_ENV_WIN
     bool                     bIsAdmin              = false;
     SID_IDENTIFIER_AUTHORITY siaNtAuthority        = { SECURITY_NT_AUTHORITY };

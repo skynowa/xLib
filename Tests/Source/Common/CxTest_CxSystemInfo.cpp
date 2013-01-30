@@ -123,11 +123,11 @@ CxTest_CxSystemInfo::vUnit(
         #endif
     }
 
-    xTEST_CASE("CxSystemInfo::isUserAnAdmin", cullCaseLoops)
+    xTEST_CASE("CxSystemInfo::isUserAdmin", cullCaseLoops)
     {
-        m_bRv = CxSystemInfo::isUserAnAdmin();
+        m_bRv = CxSystemInfo::isUserAdmin();
         #if xTEST_IGNORE
-            xTRACEV(xT("\tCxSystemInfo::isUserAnAdmin(): %s"), CxString::boolToStr(m_bRv).c_str());
+            xTRACEV(xT("\tCxSystemInfo::isUserAdmin(): %s"), CxString::boolToStr(m_bRv).c_str());
         #endif
     }
 

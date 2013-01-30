@@ -9,8 +9,9 @@ E-mail:         skynowa@gmail.com
 Skype:          skynowa777
 Jabber:         skynowa@jabber.ru
 ICQ:            627713628
-Web:            https://bitbucket.org/skynowa/xlib/
+Web:            https://bitbucket.org/skynowa/xlib
                 https://github.com/skynowa/xLib
+                https://sourceforge.net/p/x-lib
 
 
 Prerequisites:
