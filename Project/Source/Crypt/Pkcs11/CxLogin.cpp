@@ -50,7 +50,7 @@ CxLogin::login(
     CK_RV ulRv = _m_pFunc->C_Login(_m_hSession, a_userType, a_pPin, a_ulPinLen);
     xCHECK_DO(
         CKR_PIN_INCORRECT == ulRv,
-        CxMsgBoxT::iShow(xT("Pin is incorrect"), xT("Pkcs11"), MB_OK + MB_ICONSTOP);
+        CxMsgBoxT::show(xT("Pin is incorrect"), xT("Pkcs11"), MB_OK + MB_ICONSTOP);
         return
     );
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));

@@ -22,7 +22,7 @@ xNAMESPACE_BEGIN(NxLib)
 template <typename TextT, class TitleT>
 /* static */
 CxMsgBoxT::ExModalResult
-CxMsgBoxT::iShow(
+CxMsgBoxT::show(
     const HWND   &a_chWnd,
     const TextT  &a_cText,
     const TitleT &a_cTitle,
@@ -45,7 +45,7 @@ CxMsgBoxT::iShow(
 template <typename TextT, class TitleT>
 /* static */
 CxMsgBoxT::ExModalResult
-CxMsgBoxT::iShow(
+CxMsgBoxT::show(
     const TextT  &a_cText,
     const TitleT &a_cTitle,
     const uint_t &a_cuiType
@@ -75,7 +75,7 @@ CxMsgBoxT::iShow(
 template <typename TextT, class TitleT>
 /* static */
 CxMsgBoxT::ExModalResult
-CxMsgBoxT::iShow(
+CxMsgBoxT::show(
     const TextT  &a_cText,
     const TitleT &a_cTitle
 )
@@ -104,7 +104,7 @@ CxMsgBoxT::iShow(
 template <typename TextT>
 /* static */
 CxMsgBoxT::ExModalResult
-CxMsgBoxT::iShow(
+CxMsgBoxT::show(
     const TextT &a_cText
 )
 {
