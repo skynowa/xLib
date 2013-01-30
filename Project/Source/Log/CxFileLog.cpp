@@ -52,7 +52,7 @@ CxFileLog::vSetFilePath(
     xTEST_EQ(false, a_csFilePath.empty());
 
     if (std::tstring_t::npos == a_csFilePath.find(CxConst::xSLASH)) {
-        _m_sFilePath = CxPath(CxPath::sExe()).sDir() + CxConst::xSLASH + a_csFilePath;
+        _m_sFilePath = CxPath(CxPath::exe()).dir() + CxConst::xSLASH + a_csFilePath;
     } else {
         _m_sFilePath = a_csFilePath;
     }
@@ -96,9 +96,9 @@ CxFileLog::vWrite(
 
     CxFile sfFile;
 
-    sfFile.vCreate(sFilePath(), CxFile::omAppend, false);
+    sfFile.create(sFilePath(), CxFile::omAppend, false);
 
-    int iRv = sfFile.iWrite(xT("[%s] %s\n"), sTime.c_str(), sParam.c_str());
+    int iRv = sfFile.write(xT("[%s] %s\n"), sTime.c_str(), sParam.c_str());
     xTEST_DIFF(- 1, iRv);
 }
 //---------------------------------------------------------------------------
@@ -108,7 +108,7 @@ CxFileLog::vClear() {
         CxAutoIpcMutex SL(_m_mtFile);
     #endif
 
-    CxFile::vClear(sFilePath());
+    CxFile::clear(sFilePath());
 }
 //---------------------------------------------------------------------------
 void
@@ -117,7 +117,7 @@ CxFileLog::vDelete() {
         CxAutoIpcMutex SL(_m_mtFile);
     #endif
 
-    CxFile::vDelete(sFilePath());
+    CxFile::remove(sFilePath());
 }
 //---------------------------------------------------------------------------
 
@@ -134,16 +134,16 @@ CxFileLog::_vDeleteIfFull() {
         CxAutoIpcMutex SL(_m_mtFile);
     #endif
 
-    bool bRv = CxFile::bIsExists(sFilePath());
+    bool bRv = CxFile::isExists(sFilePath());
     xCHECK_DO(false == bRv, return);
 
     //-------------------------------------
     //delete log, if full
-    ulong_t ulSize = static_cast<ulong_t>( CxFile::llSize(sFilePath()) );
+    ulong_t ulSize = static_cast<ulong_t>( CxFile::size(sFilePath()) );
 
     xCHECK_DO(ulSize < _m_ulMaxFileSizeBytes, return);
 
-    CxFile::vDelete(sFilePath());
+    CxFile::remove(sFilePath());
 }
 //---------------------------------------------------------------------------
 

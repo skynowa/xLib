@@ -85,7 +85,7 @@ CxBlowfish::setFileKey(
     std::ustring_t usFile;
     CxFile         sfFile;
 
-    sfFile.vCreate(a_csFilePath, CxFile::omBinRead, true);
+    sfFile.create(a_csFilePath, CxFile::omBinRead, true);
 
     longlong_t llFileSize = sfFile.llSize();
     xTEST_LESS(0LL, llFileSize);
@@ -171,7 +171,7 @@ CxBlowfish::encryptFileCfb64(
     {
         CxFile sfFileIn;
 
-        sfFileIn.vCreate(a_csFilePathIn, CxFile::omBinRead, true);
+        sfFileIn.create(a_csFilePathIn, CxFile::omBinRead, true);
         sfFileIn.vRead(&usIn);
     }
 
@@ -180,7 +180,7 @@ CxBlowfish::encryptFileCfb64(
     {
         CxFile sfFileOut;
 
-        sfFileOut.vCreate(a_csFilePathOut, CxFile::omBinCreateReadWrite, true);
+        sfFileOut.create(a_csFilePathOut, CxFile::omBinCreateReadWrite, true);
         sfFileOut.vWrite(usOut);
     }
 }

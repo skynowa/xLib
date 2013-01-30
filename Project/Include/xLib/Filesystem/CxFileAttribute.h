@@ -54,22 +54,22 @@ public:
     virtual               ~CxFileAttribute();
         ///< destructor
 
-    const std::tstring_t & sFilePath      () const;
+    const std::tstring_t & filePath       () const;
         ///< file path
 
-    bool                   bIsExists      (const ExAttribute &cfaValue);
+    bool                   isExists       (const ExAttribute &cfaValue);
         ///< is exists
-    ExAttribute            atGet          ();
+    ExAttribute            get            ();
         ///< get
-    void                   vSet           (const ExAttribute &cfaValue);
+    void                   set            (const ExAttribute &cfaValue);
         ///< set
-    void                   vAdd           (const ExAttribute &cfaValue);
+    void                   add            (const ExAttribute &cfaValue);
         ///< add
-    void                   vRemove        (const ExAttribute &cfaValue);
+    void                   remove         (const ExAttribute &cfaValue);
         ///< remove
-    void                   vModify        (const ExAttribute &cfaRemoveValue, const ExAttribute &cfaAddValue);
+    void                   modify         (const ExAttribute &cfaRemoveValue, const ExAttribute &cfaAddValue);
         ///< modify
-    void                   vClear         ();
+    void                   clear          ();
         ///< clear (set normal attributes)
 
 private:

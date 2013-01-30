@@ -183,7 +183,7 @@ CxTcpClient::bIsServerAlive(
 
     //-------------------------------------
     //bCreate
-    objSocket.vCreate(CxSocket::afInet, CxSocket::tpStream, CxSocket::ptIp);
+    objSocket.create(CxSocket::afInet, CxSocket::tpStream, CxSocket::ptIp);
 
     //-------------------------------------
     //bConnect

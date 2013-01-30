@@ -22,7 +22,7 @@ CxAutoMutex::CxAutoMutex(
 ) :
     _m_mtMutex(a_mtMutex)
 {
-    _m_mtMutex->vCreate();
+    _m_mtMutex->create();
     _m_mtMutex->vLock();
 }
 //---------------------------------------------------------------------------

@@ -17,53 +17,53 @@ class CxDir :
     /// directory
 {
 public:
-    explicit               CxDir      (const std::tstring_t &csDirPath);
+    explicit               CxDir     (const std::tstring_t &csDirPath);
         ///< constructor
-    virtual               ~CxDir      ();
+    virtual               ~CxDir     ();
         ///< destructor
 
-    const std::tstring_t & sDirPath   () const;
+    const std::tstring_t & dirPath   () const;
         ///< directory path
 
-    bool                   bIsExists  ();
+    bool                   isExists  ();
         ///< check for existence
-    bool                   bIsEmpty   (const std::tstring_t &csPattern = CxConst::xMASK_ALL);
+    bool                   isEmpty   (const std::tstring_t &csPattern = CxConst::xMASK_ALL);
         ///< is empty
-    bool                   bIsRoot    ();
+    bool                   isRoot    ();
         ///< is root
-    bool                   bIsDir     ();
+    bool                   isDir     ();
         ///< is dir
-    void                   vCreate    ();
+    void                   create    ();
         ///< create
-    void                   vPathCreate();
+    void                   pathCreate();
         ///< creation of all directories that not exists in path
-    void                   vCopy      (const std::tstring_t &csDirPathTo, const bool &cbFailIfExists);
+    void                   copy      (const std::tstring_t &csDirPathTo, const bool &cbFailIfExists);
         ///< copy
-    void                   vMove      (const std::tstring_t &csDirPathTo, const bool &cbFailIfExists);
+    void                   move      (const std::tstring_t &csDirPathTo, const bool &cbFailIfExists);
         ///< move
 
-    void                   vDelete    ();
+    void                   remove    ();
         ///< deletion dir which empty
-    void                   vTryDelete (const size_t &cuiAttempts, const ulong_t &culTimeoutMsec);
+    void                   tryRemove (const size_t &cuiAttempts, const ulong_t &culTimeoutMsec);
         ///< try deleting, max 100 attempts
-    void                   vPathClear ();
+    void                   pathClear ();
         ///< deletion all content of dir
-    void                   vPathDelete();
+    void                   pathDelete();
         ///< deletion dir find all content of it
 
-    void                   vFilesFind (const std::tstring_t &csPattern,
+    void                   filesFind (const std::tstring_t &csPattern,
                                        const bool &cbIsRecursively, std::vec_tstring_t *pvsFilePathes);
         ///< search files
-    void                   vDirsFind  (const std::tstring_t &csPattern,
+    void                   dirsFind  (const std::tstring_t &csPattern,
                                        const bool &cbIsRecursively, std::vec_tstring_t *pvsDirPathes);
         ///< search subdirectories
 
     // static
-    static std::tstring_t  sCurrent   ();
+    static std::tstring_t  current   ();
         ///< get current
-    static void            vSetCurrent(const std::tstring_t &csDirPath);
+    static void            setCurrent(const std::tstring_t &csDirPath);
         ///< set current
-    static std::tstring_t  sTemp      ();
+    static std::tstring_t  temp      ();
         ///< get path to system var %Temp%
 
 private:

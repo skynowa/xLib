@@ -45,7 +45,7 @@ public:
                     CxProcess      ();
     virtual        ~CxProcess      ();
 
-    void            vCreate        (const std::tstring_t &csFilePath, const tchar_t *pcszParams, ...);
+    void            create        (const std::tstring_t &csFilePath, const tchar_t *pcszParams, ...);
         ///< execute a file
     ExWaitResult    ulWait         (const ulong_t &culTimeout);
         ///< wait for termonation

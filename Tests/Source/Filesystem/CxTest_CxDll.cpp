@@ -44,28 +44,28 @@ CxTest_CxDll::vUnit(
     for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
         CxDll objDll;
 
-        m_bRv = objDll.bIsLoaded();
+        m_bRv = objDll.isLoaded();
         xTEST_EQ(false, m_bRv);
 
         //-------------------------------------
         //bLoad
-        objDll.vLoad(sData[i][0]);
+        objDll.load(sData[i][0]);
 
         //-------------------------------------
         //bIsLoaded
-        m_bRv = objDll.bIsLoaded();
+        m_bRv = objDll.isLoaded();
         xTEST_EQ(true, m_bRv);
 
         //-------------------------------------
         //bIsProcExists
-        m_bRv = objDll.bIsProcExists(sData[i][1]);
+        m_bRv = objDll.isProcExists(sData[i][1]);
         xTEST_EQ(true, m_bRv);
 
         //-------------------------------------
         //fpGetProcAddress
         CxDll::proc_address_t fpRes = NULL;
 
-        fpRes = objDll.fpProcAddress(sData[i][1]);
+        fpRes = objDll.procAddress(sData[i][1]);
         xTEST_PTR(fpRes);
 
     #if   xOS_ENV_WIN
@@ -89,7 +89,7 @@ CxTest_CxDll::vUnit(
 
         //-------------------------------------
         //bIsLoaded
-        m_bRv = objDll.bIsLoaded();
+        m_bRv = objDll.isLoaded();
         xTEST_EQ(true, m_bRv);
 
     } //for

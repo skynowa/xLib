@@ -39,7 +39,7 @@ CxProfiler::setLogPath(
     const std::tstring_t &a_csLogPath
 )
 {
-    xTEST_EQ(true, CxPath::bIsValid(a_csLogPath));
+    xTEST_EQ(true, CxPath::isValid(a_csLogPath));
 
     _flLog.vSetFilePath(a_csLogPath);
 }

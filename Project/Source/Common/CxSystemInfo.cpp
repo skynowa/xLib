@@ -161,8 +161,8 @@ CxSystemInfo::osArch() {
         {
             CxDll dlDll;
 
-            dlDll.vLoad(xT("kernel32.dll"));
-            blIsFuncExist = dlDll.bIsProcExists(xT("IsWow64Process"));
+            dlDll.load(xT("kernel32.dll"));
+            blIsFuncExist = dlDll.isProcExists(xT("IsWow64Process"));
         }
 
         BOOL blIs64BitOs = FALSE;
@@ -467,12 +467,12 @@ CxSystemInfo::currentCpuNum() {
 
     CxDll dlDll;
 
-    dlDll.vLoad(xT("kernel32.dll"));
+    dlDll.load(xT("kernel32.dll"));
 
-    bool bRv = dlDll.bIsProcExists(xT("GetCurrentProcessorNumber"));
+    bool bRv = dlDll.isProcExists(xT("GetCurrentProcessorNumber"));
     xCHECK_RET(false == bRv, 0UL);
 
-    DllGetCurrentProcessorNumber_t DllGetCurrentProcessorNumber = (DllGetCurrentProcessorNumber_t)dlDll.fpProcAddress(xT("GetCurrentProcessorNumber"));
+    DllGetCurrentProcessorNumber_t DllGetCurrentProcessorNumber = (DllGetCurrentProcessorNumber_t)dlDll.procAddress(xT("GetCurrentProcessorNumber"));
     xTEST_PTR(DllGetCurrentProcessorNumber);
 
     ulRv = DllGetCurrentProcessorNumber();

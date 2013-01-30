@@ -18,62 +18,62 @@ class CxLocalStorage :
     /// local storage
 {
 public:
-                           CxLocalStorage ();
+                           CxLocalStorage();
         ///< constructor, exe-file path
-    explicit               CxLocalStorage (const std::tstring_t &csFilePath);
+    explicit               CxLocalStorage(const std::tstring_t &csFilePath);
         ///< constructor, file path
-    virtual               ~CxLocalStorage ();
+    virtual               ~CxLocalStorage();
         ///< destructor
 
     //creation
-    void                   vCreateDefault (const std::tstring_t &csContent) const;
+    void                   createDefault (const std::tstring_t &csContent) const;
         ///< create default file
-    const std::tstring_t & sPath          () const;
+    const std::tstring_t & path          () const;
         ///< get file path
-    void                   vSetPath       (const std::tstring_t &csFilePath);
+    void                   setPath       (const std::tstring_t &csFilePath);
         ///< set file path
-    local_storage_t &      cmsGet         ();
+    local_storage_t &      get           ();
         ///< get inner local_storage_t, may be used with bFlush
 
-    void                   vFlush         () const;
+    void                   flush         () const;
         ///< flush
-    void                   vClear         ();
+    void                   clear         ();
         ///< clear content
-    void                   vDelete        ();
+    void                   remove        ();
         ///< delete
 
     //key
-    bool                   bKeyIsExists   (const std::tstring_t &csKey) const;
+    bool                   keyIsExists   (const std::tstring_t &csKey) const;
         ///< is exists
 
-    std::tstring_t         sKeyReadString (const std::tstring_t &csKey, const std::tstring_t &csDefaultValue);
+    std::tstring_t         keyReadString (const std::tstring_t &csKey, const std::tstring_t &csDefaultValue);
         ///< read std::tstring_t
-    void                   vKeyWriteString(const std::tstring_t &csKey, const std::tstring_t &csValue);
+    void                   keyWriteString(const std::tstring_t &csKey, const std::tstring_t &csValue);
         ///< write std::tstring_t
 
-    long_t                 iKeyReadInt    (const std::tstring_t &csKey, const long_t &cliDefaultValue);
+    long_t                 keyReadInt    (const std::tstring_t &csKey, const long_t &cliDefaultValue);
         ///< read int
-    void                   vKeyWriteInt   (const std::tstring_t &csKey, const long_t &cliValue);
+    void                   keyWriteInt   (const std::tstring_t &csKey, const long_t &cliValue);
         ///< write int
 
-    double                 dKeyReadFloat  (const std::tstring_t &csKey, const double &cdDefaultValue);
+    double                 keyReadFloat  (const std::tstring_t &csKey, const double &cdDefaultValue);
         ///< read float
-    void                   vKeyWriteFloat (const std::tstring_t &csKey, const double &cdValue);
+    void                   keyWriteFloat (const std::tstring_t &csKey, const double &cdValue);
         ///< write float
 
-    bool                   bKeyReadBool   (const std::tstring_t &csKey, const bool &cbDefaultValue);
+    bool                   keyReadBool   (const std::tstring_t &csKey, const bool &cbDefaultValue);
         ///< read bool
-    void                   vKeyWriteBool  (const std::tstring_t &csKey, const bool &cbValue);
+    void                   keyWriteBool  (const std::tstring_t &csKey, const bool &cbValue);
         ///< write bool
 
-    std::ustring_t         usKeyReadBin   (const std::tstring_t &csKey, const std::ustring_t &cusDefaultValue);
+    std::ustring_t         keyReadBin    (const std::tstring_t &csKey, const std::ustring_t &cusDefaultValue);
         ///< write std::ustring_t
-    void                   vKeyWriteBin   (const std::tstring_t &csKey, const std::ustring_t &cusValue);
+    void                   keyWriteBin   (const std::tstring_t &csKey, const std::ustring_t &cusValue);
         ///< read std::ustring_t
 
-    void                   vKeyClear      (const std::tstring_t &csKey);
+    void                   keyClear      (const std::tstring_t &csKey);
         ///< clear value
-    void                   vKeyDelete     (const std::tstring_t &csKey);
+    void                   keyDelete     (const std::tstring_t &csKey);
         ///< delete key and value
 
 private:
@@ -83,9 +83,9 @@ private:
     std::tstring_t         _m_sFilePath;    ///< file path to ini-file
     local_storage_t        _m_msIni;        ///< std::map of keys and values
 
-    void                   _vRead         (const std::tstring_t &csKey, const std::tstring_t &csDefaultValue, std::tstring_t *psValue);
+    void                   _read         (const std::tstring_t &csKey, const std::tstring_t &csDefaultValue, std::tstring_t *psValue);
         ///< parse file
-    void                   _vWrite        (const std::tstring_t &csKey, const std::tstring_t &csValue);
+    void                   _write        (const std::tstring_t &csKey, const std::tstring_t &csValue);
         ///< flush to local_storage_t, file
 };
 

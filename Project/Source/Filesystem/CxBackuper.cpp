@@ -59,13 +59,13 @@ CxBackuper::execute(
 
     (*a_psDestFilePath).clear();
 
-    bRv = CxFile::bIsExists(a_csFilePath);
+    bRv = CxFile::isExists(a_csFilePath);
     xCHECK_DO(false == bRv, xTHROW() << csError_DestFileNotExists);
 
     CxDir drDest(a_csDestDirPath);
 
-    bRv = drDest.bIsExists();
-    xCHECK_DO(false == bRv, drDest.vPathCreate());
+    bRv = drDest.isExists();
+    xCHECK_DO(false == bRv, drDest.pathCreate());
 
     //-------------------------------------
     // process backup period
@@ -85,11 +85,11 @@ CxBackuper::execute(
     //-------------------------------------
     // format file full name
     std::tstring_t sBackupFilePath =
-                        CxPath(a_csDestDirPath).sSlashAppend() +
-                        CxPath(a_csFilePath).sFileName()       +
+                        CxPath(a_csDestDirPath).slashAppend() +
+                        CxPath(a_csFilePath).fileName()       +
                         xT(".bak [") + sDateTimeStamp + xT("]");
 
-    bRv = CxFile::bIsExists(sBackupFilePath);
+    bRv = CxFile::isExists(sBackupFilePath);
     xCHECK_DO(true == bRv, *a_psDestFilePath = sBackupFilePath; return);
 
     //-------------------------------------
@@ -97,20 +97,20 @@ CxBackuper::execute(
     ulonglong_t ullTotalFreeBytes = 0ULL;
 
     try {
-        CxVolume::vSpace(a_csDestDirPath, NULL, NULL, &ullTotalFreeBytes);
+        CxVolume::space(a_csDestDirPath, NULL, NULL, &ullTotalFreeBytes);
     }
     catch (const CxException &) {
         xTHROW() << csError_Unknown;
     }
 
-    if (static_cast<ulonglong_t>( CxFile::llSize(a_csFilePath) ) > ullTotalFreeBytes) {
+    if (static_cast<ulonglong_t>( CxFile::size(a_csFilePath) ) > ullTotalFreeBytes) {
         xTHROW() << csError_NotEnoughFreeSpace;
     }
 
     //-------------------------------------
     // copy
     try {
-        CxFile::vCopy(a_csFilePath, sBackupFilePath, true);
+        CxFile::copy(a_csFilePath, sBackupFilePath, true);
     }
     catch (const CxException &) {
         xTHROW() << csError_CopyingFail;
@@ -118,8 +118,8 @@ CxBackuper::execute(
 
     //-------------------------------------
     // check for a valid backup
-    xCHECK_DO(false                                 == CxFile::bIsExists(sBackupFilePath),       xTHROW() << csError_CopyingFail);
-    xCHECK_DO(CxFile::llSize(a_csFilePath)          != CxFile::llSize(sBackupFilePath),          xTHROW() << csError_CopyingFail);
+    xCHECK_DO(false                                 == CxFile::isExists(sBackupFilePath),       xTHROW() << csError_CopyingFail);
+    xCHECK_DO(CxFile::size(a_csFilePath)          != CxFile::size(sBackupFilePath),          xTHROW() << csError_CopyingFail);
     xCHECK_DO(CxCrc32::calcFileFast(a_csFilePath) != CxCrc32::calcFileFast(sBackupFilePath), xTHROW() << csError_CopyingFail);
 
     // [out]

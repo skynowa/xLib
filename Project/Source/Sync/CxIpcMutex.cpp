@@ -44,7 +44,7 @@ CxIpcMutex::hHandle() const {
 }
 //---------------------------------------------------------------------------
 void
-CxIpcMutex::vCreate(
+CxIpcMutex::create(
     const std::tstring_t &a_csName
 )
 {

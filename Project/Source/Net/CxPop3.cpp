@@ -40,7 +40,7 @@ CxPop3::~CxPop3() {
 //---------------------------------------------------------------------------
 //DONE: bCreate
 void
-CxPop3::vCreate(const std::tstring_t &a_csUser, const std::tstring_t &a_csPass, const std::tstring_t &a_csServer, ushort_t a_usPort) {
+CxPop3::create(const std::tstring_t &a_csUser, const std::tstring_t &a_csPass, const std::tstring_t &a_csServer, ushort_t a_usPort) {
      xTEST_EQ(false, a_csUser.empty());
      xTEST_EQ(false, a_csPass.empty());
      xTEST_EQ(false, a_csServer.empty());
@@ -57,7 +57,7 @@ void
 CxPop3::vConnect() {
      //-------------------------------------
      //Create sock
-     _m_scktSocket.vCreate(CxSocket::afInet, CxSocket::tpStream, CxSocket::ptIp);
+     _m_scktSocket.create(CxSocket::afInet, CxSocket::tpStream, CxSocket::ptIp);
 
      //-------------------------------------
      //Parse domain
@@ -302,7 +302,7 @@ CxPop3::vRetriveRaw(int a_iNum, const std::tstring_t &a_csDirPath, const std::ts
     //��������� ���� �� ����
     CxFile stdFile;
 
-    stdFile.vCreate(a_csDirPath + xT("\\") + a_csFileName, CxFile::omBinWrite, true);
+    stdFile.create(a_csDirPath + xT("\\") + a_csFileName, CxFile::omBinWrite, true);
 
     size_t uiWriteSize = stdFile.uiWrite(&_m_sRes[0], _m_sRes.size());
     //???
@@ -355,7 +355,7 @@ CxPop3::vRetriveRawAndBackup(int a_iNum, const std::tstring_t &a_csDirPath, cons
     if (false == a_csDirPath.empty()) {
         CxFile stdfOriginal;
 
-        stdfOriginal.vCreate(a_csDirPath + xT("\\") + a_csFileName, CxFile::omBinWrite, true);
+        stdfOriginal.create(a_csDirPath + xT("\\") + a_csFileName, CxFile::omBinWrite, true);
 
         size_t uiOriginalWriteSize = stdfOriginal.uiWrite(&_m_sRes[0], _m_sRes.size());
         xTEST_DIFF(size_t(0), uiOriginalWriteSize);
@@ -366,7 +366,7 @@ CxPop3::vRetriveRawAndBackup(int a_iNum, const std::tstring_t &a_csDirPath, cons
     if (false == a_csBackupDirPath.empty()) {
         CxFile stdfBackup;
 
-        stdfBackup.vCreate(a_csBackupDirPath + xT("\\") + a_csFileName, CxFile::omBinWrite, true);
+        stdfBackup.create(a_csBackupDirPath + xT("\\") + a_csFileName, CxFile::omBinWrite, true);
 
         size_t uiBackupWriteSize = stdfBackup.uiWrite(&_m_sRes[0], _m_sRes.size());
         xTEST_DIFF(size_t(0), uiBackupWriteSize);

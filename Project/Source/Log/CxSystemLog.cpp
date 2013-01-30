@@ -29,7 +29,7 @@ CxSystemLog::CxSystemLog() :
     _m_SysLog   (NULL)
 #endif
 {
-    _vInit( CxPath( CxPath::sExe() ).sFileBaseName() );
+    _vInit( CxPath( CxPath::exe() ).fileBaseName() );
 }
 //---------------------------------------------------------------------------
 CxSystemLog::CxSystemLog(

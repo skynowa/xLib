@@ -30,7 +30,7 @@ public:
 
     const handle_t &  hHandle () const;
         ///< get handle
-    void              vCreate ();
+    void              create ();
         ///< create
     void              vLock   ();
         ///< lock

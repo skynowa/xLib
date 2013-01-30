@@ -40,7 +40,7 @@ CxTest_CxFinder::vUnit(
             vsDirs.push_back( csRootDirPath + CxConst::xSLASH + xT("CCC") );
 
             xFOREACH_CONST(std::vec_tstring_t, cit, vsDirs) {
-                CxDir(*cit).vPathCreate();
+                CxDir(*cit).pathCreate();
             }
         }
 
@@ -54,7 +54,7 @@ CxTest_CxFinder::vUnit(
             vsFiles.push_back( csRootDirPath + CxConst::xSLASH + xT("DDD.cpp") );
 
             xFOREACH_CONST(std::vec_tstring_t, cit, vsFiles) {
-                CxFile::vTextWrite(*cit, CxConst::xSTR_EMPTY);
+                CxFile::textWrite(*cit, CxConst::xSTR_EMPTY);
             }
         }
 
@@ -84,32 +84,32 @@ CxTest_CxFinder::vUnit(
             const std::tstring_t csFilter = adtData[i].sFilter;
             CxFinder             fnFinder(csRootDirPath, csFilter);
 
-            m_bRv = fnFinder.bMoveFirst();
+            m_bRv = fnFinder.moveFirst();
             if (0 == adtData[i].uiEntriesNum) {
                 xTEST_EQ(false, m_bRv);
             } else {
                 xTEST_EQ(true, m_bRv);
 
                 if (
-                    (CxConst::xDOT  != fnFinder.sEntryName()) &&
-                    (CxConst::x2DOT != fnFinder.sEntryName())
+                    (CxConst::xDOT  != fnFinder.entryName()) &&
+                    (CxConst::x2DOT != fnFinder.entryName())
                 )
                 {
-                    vsEntries.push_back(fnFinder.sEntryName());
+                    vsEntries.push_back(fnFinder.entryName());
                 }
 
-                for ( ; fnFinder.bMoveNext(); ) {
+                for ( ; fnFinder.moveNext(); ) {
                 #if   xOS_ENV_WIN
-                    if (! (fnFinder.faAttributes() & CxFileAttribute::faDirectory))
+                    if (! (fnFinder.attributes() & CxFileAttribute::faDirectory))
                 #elif xOS_ENV_UNIX
                     if (fnFinder.faAttributes() & CxFileAttribute::faRegularFile)
                 #endif
 
                     {
-                        xCHECK_DO(CxConst::xDOT  == fnFinder.sEntryName(), continue);
-                        xCHECK_DO(CxConst::x2DOT == fnFinder.sEntryName(), continue);
+                        xCHECK_DO(CxConst::xDOT  == fnFinder.entryName(), continue);
+                        xCHECK_DO(CxConst::x2DOT == fnFinder.entryName(), continue);
 
-                        vsEntries.push_back(fnFinder.sEntryName());
+                        vsEntries.push_back(fnFinder.entryName());
                     }
                 }
             } // if (0 == adtData[i].uiEntriesNum)

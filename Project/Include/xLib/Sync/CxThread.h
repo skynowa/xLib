@@ -58,7 +58,7 @@ public:
         ///< destructor
 
     // actions
-    void                 vCreate              (const bool &cbIsPaused, const uint_t &cuiStackSize, void *pvParam);
+    void                 create              (const bool &cbIsPaused, const uint_t &cuiStackSize, void *pvParam);
         ///< start
     void                 vResume              ();
         ///< resume

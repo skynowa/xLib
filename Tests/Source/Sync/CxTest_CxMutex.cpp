@@ -28,7 +28,7 @@ CxTest_CxMutex::vUnit(
     {
         CxMutex csCS;
 
-        csCS.vCreate();
+        csCS.create();
         csCS.vLock();
 
         ++ uiVal;
@@ -40,7 +40,7 @@ CxTest_CxMutex::vUnit(
     {
         CxMutex csCS;
 
-        csCS.vCreate();
+        csCS.create();
 
         m_bRv = csCS.bTryLock();
         xTEST_EQ(true, m_bRv);
@@ -56,7 +56,7 @@ CxTest_CxMutex::vUnit(
 
         const size_t cuiLocks = 10;
 
-        csCS.vCreate();
+        csCS.create();
 
         for (size_t i = 0; i < cuiLocks; ++ i) {
             csCS.vLock();
@@ -75,7 +75,7 @@ CxTest_CxMutex::vUnit(
 
         const size_t cuiLocks = 10;
 
-        csCS.vCreate();
+        csCS.create();
 
         for (size_t i = 0; i < cuiLocks; ++ i) {
             m_bRv = csCS.bTryLock();

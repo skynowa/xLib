@@ -36,7 +36,7 @@ CxWaitableTimer::hHandle() const {
 }
 //---------------------------------------------------------------------------
 void
-CxWaitableTimer::vCreate(
+CxWaitableTimer::create(
     const bool                  &a_bManualReset,
     const std::tstring_t        &a_csName,
     const LPSECURITY_ATTRIBUTES  a_pcsaTimerAttributes

@@ -311,12 +311,12 @@
 
 //-------------------------------------
 // xPATH_MAX
-#define xPATH_MAX                       ( CxPath::uiMaxSize() )
+#define xPATH_MAX                       ( CxPath::maxSize() )
     ///< max path length
 
 //-------------------------------------
 // xNAME_MAX
-#define xNAME_MAX                       ( CxPath::uiNameMaxSize() )
+#define xNAME_MAX                       ( CxPath::nameMaxSize() )
     ///< max file name length
 
 //-------------------------------------

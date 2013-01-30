@@ -55,7 +55,7 @@ CxTest_CxIpcSemaphore::vUnit(
     // bCreate
     CxIpcSemaphore semSemaphore;
 
-    semSemaphore.vCreate(4, xT("sema_name"));
+    semSemaphore.create(4, xT("sema_name"));
 
 #if   xOS_ENV_WIN
     uintptr_t puiRv = ::_beginthreadex(NULL, 0U, &_SFunctor::uiJob, &semSemaphore, 0U, NULL);

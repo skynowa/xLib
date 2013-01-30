@@ -42,7 +42,7 @@ CxTest_CxTcpClient::vUnit(
 
     //-------------------------------------
     //bCreate
-    objSocket.vCreate(afAf, tpType, ptProtocol);
+    objSocket.create(afAf, tpType, ptProtocol);
 
     //-------------------------------------
     //bIsServerAlive

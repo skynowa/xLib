@@ -21,18 +21,18 @@ public:
 #elif xOS_ENV_UNIX
     typedef void *  proc_address_t;
 #endif
-                    CxDll        ();
+                    CxDll       ();
         ///< constructor
-    virtual        ~CxDll        ();
+    virtual        ~CxDll       ();
         ///< destructor
 
-    bool            bIsLoaded    () const;
+    bool            isLoaded    () const;
         ///< is loaded
-    void            vLoad        (const std::tstring_t &csDllPath);
+    void            load        (const std::tstring_t &csDllPath);
         ///< load
-    bool            bIsProcExists(const std::tstring_t &csProcName) const;
+    bool            isProcExists(const std::tstring_t &csProcName) const;
         ///< is function exists
-    proc_address_t  fpProcAddress(const std::tstring_t &csProcName) const;
+    proc_address_t  procAddress (const std::tstring_t &csProcName) const;
         ///< get address of an exported function or variable
 
 private:
@@ -44,7 +44,7 @@ private:
 
     handle_t        _m_hDll;   ///< dll module handle
 
-    void            _vFree       ();
+    void            _free       ();
         ///< free
 };
 

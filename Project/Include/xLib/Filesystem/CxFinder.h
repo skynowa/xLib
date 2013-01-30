@@ -18,28 +18,28 @@ class CxFinder :
     ///< file system finder
 {
 public:
-    explicit                     CxFinder      (const std::tstring_t &csRootDirPath,
-                                                const std::tstring_t &csFilterByShell);
+    explicit                     CxFinder     (const std::tstring_t &csRootDirPath,
+                                               const std::tstring_t &csFilterByShell);
         ///< constructor
-    virtual                     ~CxFinder      ();
+    virtual                     ~CxFinder     ();
         ///< destructor
 
-    const std::tstring_t &       sRootDirPath  () const;
+    const std::tstring_t &       rootDirPath  () const;
         ///< root directory path
-    const std::tstring_t &       sFilterByShell() const;
+    const std::tstring_t &       filterByShell() const;
         ///< shell wild card filter
-    std::tstring_t               sEntryName    () const;
+    std::tstring_t               entryName    () const;
         ///< entry name
-    CxFileAttribute::ExAttribute faAttributes  () const;
+    CxFileAttribute::ExAttribute attributes   () const;
         ///< file attributes
 
-    bool                         bIsValid      () const;
+    bool                         isValid      () const;
         ///< is valid handle
-    bool                         bMoveFirst    ();
+    bool                         moveFirst    ();
         ///< move first entry
-    bool                         bMoveNext     ();
+    bool                         moveNext     ();
         ///< move next entry
-    void                         vClose        ();
+    void                         close        ();
         ///< close search
 
 private:

@@ -37,41 +37,41 @@ CxTest_CxFileAttribute::vUnit(
         cfaValue = CxFileAttribute::faRegularFile;
     #endif
 
-        CxFile::vDelete(csFilePath);
+        CxFile::remove(csFilePath);
 
         CxFile F;
 
-        F.vCreate(csFilePath, CxFile::omCreateReadWrite, true);
-        F.vClose();
+        F.create(csFilePath, CxFile::omCreateReadWrite, true);
+        F.close();
 
-        m_bRv = CxFile::bIsExists(csFilePath);
+        m_bRv = CxFile::isExists(csFilePath);
         xTEST_EQ(true, m_bRv);
     }
 
-    xTEST_CASE("CxFileAttribute::vSet CxFileAttribute::atGet", cullCaseLoops)
+    xTEST_CASE("CxFileAttribute::set CxFileAttribute::get", cullCaseLoops)
     {
         CxFileAttribute faAttr(csFilePath);
 
-        faAttr.vSet(cfaValue);
+        faAttr.set(cfaValue);
 
         CxFileAttribute::ExAttribute faRes;
 
-        faRes = faAttr.atGet();
+        faRes = faAttr.get();
         xTEST_EQ((ulong_t)cfaValue, (ulong_t)faRes);
     }
 
-    xTEST_CASE("CxFileAttribute::vAdd", cullCaseLoops)
+    xTEST_CASE("CxFileAttribute::add", cullCaseLoops)
     {
         CxFileAttribute faAttr(csFilePath);
 
-        faAttr.vClear();
-        faAttr.vAdd(cfaValue);
+        faAttr.clear();
+        faAttr.add(cfaValue);
 
-        m_bRv = faAttr.bIsExists(cfaValue);
+        m_bRv = faAttr.isExists(cfaValue);
         xTEST_EQ(true, m_bRv);
     }
 
-    xTEST_CASE("CxFileAttribute::vRemove", cullCaseLoops)
+    xTEST_CASE("CxFileAttribute::remove", cullCaseLoops)
     {
         #if   xOS_ENV_WIN
             CxFileAttribute faAttr(csFilePath);
@@ -79,37 +79,37 @@ CxTest_CxFileAttribute::vUnit(
             CxFileAttribute::ExAttribute faAttribute = CxFileAttribute::faHidden;
             CxFileAttribute::ExAttribute faValue     = CxFileAttribute::faReadOnly;
 
-            faAttr.vClear();
-            faAttr.vAdd(faAttribute);
+            faAttr.clear();
+            faAttr.add(faAttribute);
 
-            m_bRv = faAttr.bIsExists(faAttribute);
+            m_bRv = faAttr.isExists(faAttribute);
             xTEST_EQ(true, m_bRv);
 
-            faAttr.vAdd(faValue);
+            faAttr.add(faValue);
 
-            m_bRv = faAttr.bIsExists(faValue);
+            m_bRv = faAttr.isExists(faValue);
             xTEST_EQ(true, m_bRv);
 
             // remove
-            faAttr.vRemove(faValue);
+            faAttr.remove(faValue);
 
-            m_bRv = faAttr.bIsExists(faValue);
+            m_bRv = faAttr.isExists(faValue);
             xTEST_EQ(false, m_bRv);
 
-            m_bRv = faAttr.bIsExists(faAttribute);
+            m_bRv = faAttr.isExists(faAttribute);
             xTEST_EQ(true, m_bRv);
 
-            CxFileAttribute::ExAttribute faRes = faAttr.atGet();
+            CxFileAttribute::ExAttribute faRes = faAttr.get();
             xTEST_EQ((int)faAttribute, (int)faRes);
         #elif xOS_ENV_UNIX
             // file
             {
                 CxFileAttribute faAttr(csFilePath);
 
-                m_bRv = faAttr.bIsExists(CxFileAttribute::faRegularFile);
+                m_bRv = faAttr.isExists(CxFileAttribute::faRegularFile);
                 xTEST_EQ(true, m_bRv);
 
-                m_bRv = faAttr.bIsExists(CxFileAttribute::faRegularFile);
+                m_bRv = faAttr.isExists(CxFileAttribute::faRegularFile);
                 xTEST_EQ(true, m_bRv);
             }
 
@@ -119,16 +119,16 @@ CxTest_CxFileAttribute::vUnit(
 
                 CxFileAttribute faAttr(csDirPath);
 
-                m_bRv = faAttr.bIsExists(CxFileAttribute::faDirectory);
+                m_bRv = faAttr.isExists(CxFileAttribute::faDirectory);
                 xTEST_EQ(true, m_bRv);
 
-                m_bRv = faAttr.bIsExists(CxFileAttribute::faDirectory);
+                m_bRv = faAttr.isExists(CxFileAttribute::faDirectory);
                 xTEST_EQ(true, m_bRv);
             }
         #endif
     }
 
-    xTEST_CASE("CxFileAttribute::vModify", cullCaseLoops)
+    xTEST_CASE("CxFileAttribute::modify", cullCaseLoops)
     {
         CxFileAttribute faAttr(csFilePath);
 
@@ -140,10 +140,10 @@ CxTest_CxFileAttribute::vUnit(
             const CxFileAttribute::ExAttribute cfaAddValue    = CxFileAttribute::faSymbolicLink;
         #endif
 
-        faAttr.vModify(cfaRemoveValue, cfaAddValue);
+        faAttr.modify(cfaRemoveValue, cfaAddValue);
     }
 
-    xTEST_CASE("CxFileAttribute::bIsExists", cullCaseLoops)
+    xTEST_CASE("CxFileAttribute::isExists", cullCaseLoops)
     {
         CxFileAttribute faAttr(csFilePath);
 
@@ -153,21 +153,21 @@ CxTest_CxFileAttribute::vUnit(
             CxFileAttribute::ExAttribute faAttribute = CxFileAttribute::faRegularFile;
         #endif
 
-        faAttr.vClear();
+        faAttr.clear();
 
-        m_bRv = faAttr.bIsExists(faAttribute);
+        m_bRv = faAttr.isExists(faAttribute);
         xTEST_EQ(true, m_bRv);
     }
 
-    xTEST_CASE("CxFileAttribute::vClear", cullCaseLoops)
+    xTEST_CASE("CxFileAttribute::clear", cullCaseLoops)
     {
         CxFileAttribute faAttr(csFilePath);
 
-        faAttr.vClear();
+        faAttr.clear();
 
         CxFileAttribute::ExAttribute faRes;
 
-        faRes = faAttr.atGet();
+        faRes = faAttr.get();
         #if   xOS_ENV_WIN
             xTEST_EQ((ulong_t)CxFileAttribute::faNormal, (ulong_t)faRes);
         #elif xOS_ENV_UNIX

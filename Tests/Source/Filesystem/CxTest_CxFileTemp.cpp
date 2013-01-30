@@ -31,21 +31,21 @@ CxTest_CxFileTemp::vUnit(
         CxFileTemp ftFileTemp(true);
         CxFile     fJobber;
 
-        ftFileTemp.vCreate(CxPath::sExe(), sTempDirPath() + CxConst::xSLASH + xT("Temp"), &fJobber);
+        ftFileTemp.create(CxPath::exe(), sTempDirPath() + CxConst::xSLASH + xT("Temp"), &fJobber);
         #if 0
-            xTRACEV(xT("\tsTemp: %s"), fJobber.sGetPath().c_str());
+            xTRACEV(xT("\tsTemp: %s"), fJobber.path().c_str());
         #endif
 
-        m_llRv = fJobber.llSize();
+        m_llRv = fJobber.size();
         xTEST_EQ(0LL, m_llRv);
 
-        fJobber.vWriteLine(xT("qwertyuiop"));
+        fJobber.writeLine(xT("qwertyuiop"));
 
-        m_bRv = fJobber.bIsEmpty();
+        m_bRv = fJobber.isEmpty();
         xTEST_EQ(false, m_bRv);
 
-        fJobber.vClear();
-        fJobber.vClose();
+        fJobber.clear();
+        fJobber.close();
     }
 }
 //---------------------------------------------------------------------------

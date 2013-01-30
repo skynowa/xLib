@@ -43,7 +43,7 @@ CxSmtp::~CxSmtp() {
 //---------------------------------------------------------------------------
 //DONE: bCreate
 void
-CxSmtp::vCreate(const std::tstring_t &a_csUser, const std::tstring_t &a_csPass, const std::tstring_t &a_csServer, const ushort_t &a_cusPort) {
+CxSmtp::create(const std::tstring_t &a_csUser, const std::tstring_t &a_csPass, const std::tstring_t &a_csServer, const ushort_t &a_cusPort) {
     xTEST_EQ(false, a_csUser.empty());
     ////xTEST_EQ(false, a_csPass.empty());
     xTEST_EQ(false, a_csServer.empty());
@@ -62,7 +62,7 @@ CxSmtp::vConnect() {
 
     //-------------------------------------
     //������� �����
-    _m_scktSocket.vCreate(CxSocket::afInet, CxSocket::tpStream, CxSocket::ptIp);
+    _m_scktSocket.create(CxSocket::afInet, CxSocket::tpStream, CxSocket::ptIp);
 
     //-------------------------------------
     //������ �����

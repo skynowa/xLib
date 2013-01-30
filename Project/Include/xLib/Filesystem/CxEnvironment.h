@@ -16,27 +16,27 @@ class CxEnvironment :
     /// system environment variables
 {
 public:
-    static bool           bIsExists     (const std::tstring_t &csVarName);
+    static bool           isExists     (const std::tstring_t &csVarName);
         ///< check for existence
-    static bool           bIsVarValid   (const std::tstring_t &csVarName);
+    static bool           isVarValid   (const std::tstring_t &csVarName);
         ///< is valid environment variable name
-    static bool           bIsValueValid (const std::tstring_t &csVarValue);
+    static bool           isValueValid (const std::tstring_t &csVarValue);
         ///< is valid environment variable value
-    static std::tstring_t sVar          (const std::tstring_t &csVarName);
+    static std::tstring_t var          (const std::tstring_t &csVarName);
         ///< get value by name
-    static void           vSetVar       (const std::tstring_t &csVarName, const std::tstring_t &csValue);
+    static void           setVar       (const std::tstring_t &csVarName, const std::tstring_t &csValue);
         ///< set or change value by name
-    static void           vDeleteVar    (const std::tstring_t &csVarName);
+    static void           deleteVar    (const std::tstring_t &csVarName);
         ///< delete var
-    static void           vValues       (std::vec_tstring_t *pvsValues);
+    static void           values       (std::vec_tstring_t *pvsValues);
         ///< get all values
-    static std::tstring_t sExpandStrings(const std::tstring_t &csvVar);
+    static std::tstring_t expandStrings(const std::tstring_t &csvVar);
         ///< expands strings by separator "%"
 
 private:
-                          CxEnvironment ();
+                          CxEnvironment();
         ///< constructor
-    virtual              ~CxEnvironment ();
+    virtual              ~CxEnvironment();
         ///< destructor
 };
 

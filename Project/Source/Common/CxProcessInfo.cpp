@@ -207,7 +207,7 @@ CxProcessInfo::exeName(
     #if   xOS_LINUX
         const std::tstring_t csProcFile = CxString::format(xT("/proc/%ld/exe"), a_cidId);
 
-        bool bRv = CxFile::bIsExists(csProcFile);
+        bool bRv = CxFile::isExists(csProcFile);
         xCHECK_RET(false == bRv, std::tstring_t());
 
         int iReaded = - 1;
@@ -286,7 +286,7 @@ CxProcessInfo::commandLine(
         const CxProcess::id_t cidNtoskrnlId = 4UL;  // MAGIC: cidNtoskrnlId
 
         if (cidNtoskrnlId == a_cidId) {
-            sRv = CxEnvironment::sExpandStrings(xT("%SystemRoot%\\System32\\ntoskrnl.exe"));
+            sRv = CxEnvironment::expandStrings(xT("%SystemRoot%\\System32\\ntoskrnl.exe"));
 
             return sRv;
         }
@@ -319,13 +319,13 @@ CxProcessInfo::commandLine(
         pvPebAddress(HANDLE hProcessHandle) {
             CxDll dlDll;
 
-            dlDll.vLoad(xT("ntdll.dll"));
+            dlDll.load(xT("ntdll.dll"));
 
-            bool bRv = dlDll.bIsProcExists(xT("NtQueryInformationProcess"));
+            bool bRv = dlDll.isProcExists(xT("NtQueryInformationProcess"));
             xTEST_EQ(true, bRv);
 
             Dll_NtQueryInformationProcess_t
-            DllNtQueryInformationProcess = (Dll_NtQueryInformationProcess_t)dlDll.fpProcAddress(xT("NtQueryInformationProcess"));
+            DllNtQueryInformationProcess = (Dll_NtQueryInformationProcess_t)dlDll.procAddress(xT("NtQueryInformationProcess"));
             xTEST_PTR(DllNtQueryInformationProcess);
 
         #if xARCH_X86

@@ -183,7 +183,7 @@ public:
     *
     *****************************************************************************/
 
-    void           vCreate        (const ExAddressFamily &cafFamily, const ExType &ctpType, const ExProtocol &cptProtocol);
+    void           create        (const ExAddressFamily &cafFamily, const ExType &ctpType, const ExProtocol &cptProtocol);
         ///< creates a socket that is bound to a specific transport service provider
     socket_t       iHandle        () const;
         ///< get socket

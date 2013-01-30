@@ -164,11 +164,11 @@ CxPkcs11::errorStr(
 //---------------------------------------------------------------------------
 void
 CxPkcs11::_loadETPkcs11() {
-    _m_dllETPkcs11.vLoad(xT("eTPkcs11.dll"));
+    _m_dllETPkcs11.load(xT("eTPkcs11.dll"));
 
     CK_C_GetFunctionList pFunctionList = NULL;
 
-    (FARPROC &)pFunctionList = (FARPROC)_m_dllETPkcs11.fpProcAddress(xT("C_GetFunctionList"));
+    (FARPROC &)pFunctionList = (FARPROC)_m_dllETPkcs11.procAddress(xT("C_GetFunctionList"));
     xTEST_PTR(pFunctionList);
 
     CK_RV ulRv = pFunctionList(&_m_pFunc);

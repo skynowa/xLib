@@ -78,7 +78,7 @@ CxSocket::operator socket_t () {
 
 //---------------------------------------------------------------------------
 void
-CxSocket::vCreate(
+CxSocket::create(
     const ExAddressFamily &a_afFamily,
     const ExType          &a_tpType,
     const ExProtocol      &a_ptProtocol

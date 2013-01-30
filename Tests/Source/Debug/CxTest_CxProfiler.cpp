@@ -30,7 +30,7 @@ CxTest_CxProfiler::vUnit(
     {
         const std::tstring_t csFilePath = sTempDirPath() + CxConst::xSLASH + xT("CxProfilerLog.log");
 
-        CxFile::vClear(csFilePath);
+        CxFile::clear(csFilePath);
 
         CxProfiler pfP;
 

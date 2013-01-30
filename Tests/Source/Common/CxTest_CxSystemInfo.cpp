@@ -144,7 +144,7 @@ CxTest_CxSystemInfo::vUnit(
     {
         m_sRv = CxSystemInfo::useHomeDir();
         xTEST_EQ(false, m_sRv.empty());
-        xTEST_EQ(true,  CxDir(m_sRv).bIsExists());
+        xTEST_EQ(true,  CxDir(m_sRv).isExists());
         #if xTEST_IGNORE
             xTRACEV(xT("\tCxSystemInfo::useHomeDir(): %s"), m_sRv.c_str());
         #endif
@@ -154,7 +154,7 @@ CxTest_CxSystemInfo::vUnit(
     {
         m_sRv = CxSystemInfo::userShellPath();
         xTEST_EQ(false, m_sRv.empty());
-        xTEST_EQ(true,  CxFile::bIsExists(m_sRv));
+        xTEST_EQ(true,  CxFile::isExists(m_sRv));
         #if xTEST_IGNORE
             xTRACEV(xT("\tCxSystemInfo::userShellPath(): %s"), m_sRv.c_str());
         #endif

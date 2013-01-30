@@ -103,7 +103,7 @@ CxTest_CxMimeMessage::vUnit(
 
     //-------------------------------------
     //bCreate
-    objPop3.vCreate(csUser, csPass, csServer, usPort);
+    objPop3.create(csUser, csPass, csServer, usPort);
 
     //-------------------------------------
     //bConnect

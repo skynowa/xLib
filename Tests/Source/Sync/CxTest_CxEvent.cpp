@@ -26,7 +26,7 @@ CxTest_CxEvent::vUnit(
     {
         CxEvent objEvent(true, true);
 
-        objEvent.vCreate();
+        objEvent.create();
 
         #if   xOS_ENV_WIN
             xTEST_EQ(true, objEvent.hHandle().isValid())
@@ -40,7 +40,7 @@ CxTest_CxEvent::vUnit(
         {
             CxEvent objEvent(true, true);
 
-            objEvent.vCreate();
+            objEvent.create();
 
             m_bRv = objEvent.bIsSignaled();
             xTEST_EQ(true, m_bRv);
@@ -49,7 +49,7 @@ CxTest_CxEvent::vUnit(
         {
             CxEvent objEvent(true, false);
 
-            objEvent.vCreate();
+            objEvent.create();
 
             m_bRv = objEvent.bIsSignaled();
             xTEST_EQ(false, m_bRv);
@@ -63,7 +63,7 @@ CxTest_CxEvent::vUnit(
 
         CxEvent objEvent(true, true);
 
-        objEvent.vCreate();
+        objEvent.create();
 
         for (size_t i = 0; i < cuiSpinCount; ++ i) {
             objEvent.vReset();
@@ -87,7 +87,7 @@ CxTest_CxEvent::vUnit(
 
         CxEvent objEvent(true, true);
 
-        objEvent.vCreate();
+        objEvent.create();
 
         for (size_t i = 0; i < cuiSpinCount; ++ i) {
             objEvent.vSet();
@@ -113,7 +113,7 @@ CxTest_CxEvent::vUnit(
 
             CxEvent objEvent(cbIsAutoReset, cbInitialState);
 
-            objEvent.vCreate();
+            objEvent.create();
 
             m_bRv = objEvent.bIsSignaled();
             xTEST_EQ(cbInitialState, m_bRv);
@@ -132,7 +132,7 @@ CxTest_CxEvent::vUnit(
 
             CxEvent objEvent(cbIsAutoReset, cbInitialState);
 
-            objEvent.vCreate();
+            objEvent.create();
 
             m_bRv = objEvent.bIsSignaled();
             xTEST_EQ(cbInitialState, m_bRv);
@@ -150,7 +150,7 @@ CxTest_CxEvent::vUnit(
 
             CxEvent objEvent(cbIsAutoReset, cbInitialState);
 
-            objEvent.vCreate();
+            objEvent.create();
 
             m_bRv = objEvent.bIsSignaled();
             xTEST_EQ(cbInitialState, m_bRv);
@@ -168,7 +168,7 @@ CxTest_CxEvent::vUnit(
 
             CxEvent objEvent(cbIsAutoReset, cbInitialState);
 
-            objEvent.vCreate();
+            objEvent.create();
 
             m_bRv = objEvent.bIsSignaled();
             xTEST_EQ(cbInitialState, m_bRv);
