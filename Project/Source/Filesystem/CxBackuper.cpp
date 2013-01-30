@@ -39,7 +39,7 @@ CxBackuper::~CxBackuper() {
 }
 //---------------------------------------------------------------------------
 void
-CxBackuper::vExecute(
+CxBackuper::execute(
     const std::tstring_t &a_csFilePath,
     const std::tstring_t &a_csDestDirPath,
     std::tstring_t       *a_psDestFilePath
