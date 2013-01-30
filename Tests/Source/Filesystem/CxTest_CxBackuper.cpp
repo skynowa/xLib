@@ -46,7 +46,7 @@ CxTest_CxBackuper::vUnit(
             std::tstring_t sBackupFilePath;
 
             xTRY {
-                bkBackuper.vExecute(csFilePath, csBackupDir, &sBackupFilePath);
+                bkBackuper.execute(csFilePath, csBackupDir, &sBackupFilePath);
             }
             xCATCH_ALL;
         }
