@@ -30,7 +30,7 @@ CxShell::isAvailable() {
     int iRv = ::xTSYSTEM(NULL);
 
 #if   xOS_ENV_WIN
-    xCHECK_RET(0 == iRv && ENOENT == CxStdError::iGet(), false);
+    xCHECK_RET(0 == iRv && ENOENT == CxStdError::get(), false);
 #elif xOS_ENV_UNIX
     xCHECK_RET(0 == iRv, false);
 #endif

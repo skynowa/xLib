@@ -24,19 +24,19 @@ CxTest_CxStdError::vUnit(
 {
     const int ciMaxErrors = 132;  /*0...132*/;
 
-    xTEST_CASE("CxStdError::iGet", cullCaseLoops)
+    xTEST_CASE("CxStdError::get", cullCaseLoops)
     {
-        (int)CxStdError::iGet();
-        xTEST_EQ(0, CxStdError::iGet());
+        (int)CxStdError::get();
+        xTEST_EQ(0, CxStdError::get());
     }
    
-    xTEST_CASE("CxStdError::sGet", cullCaseLoops)
+    xTEST_CASE("CxStdError::toString", cullCaseLoops)
     {
-        std::tstring_t sError = CxStdError::sGet();
+        std::tstring_t sError = CxStdError::toString();
         xTEST_EQ(false, sError.empty());
     }
 
-    xTEST_CASE("CxStdError::vSet", cullCaseLoops)
+    xTEST_CASE("CxStdError::set", cullCaseLoops)
     {
         const int caiData[] = {
             0,
@@ -48,13 +48,13 @@ CxTest_CxStdError::vUnit(
         for (int i = 0; i < (int)xARRAY_SIZE(caiData); ++ i) {
             const int ciLastError = caiData[i];
 
-            CxStdError::vSet(ciLastError);
-            xTEST_EQ(ciLastError, CxStdError::iGet());
-            xTEST_EQ(0, CxStdError::iGet());
+            CxStdError::set(ciLastError);
+            xTEST_EQ(ciLastError, CxStdError::get());
+            xTEST_EQ(0, CxStdError::get());
         }
     }
 
-    xTEST_CASE("CxStdError::vReset", cullCaseLoops)
+    xTEST_CASE("CxStdError::reset", cullCaseLoops)
     {
         const int caiData[] = {
             0,
@@ -66,13 +66,13 @@ CxTest_CxStdError::vUnit(
         for (int i = 0; i < (int)xARRAY_SIZE(caiData); ++ i) {
             const int ciLastError = caiData[i];
 
-            CxStdError::vSet(ciLastError);
-            CxStdError::vReset();
-            xTEST_EQ(0, CxStdError::iGet());
+            CxStdError::set(ciLastError);
+            CxStdError::reset();
+            xTEST_EQ(0, CxStdError::get());
         }
     }
 
-    xTEST_CASE("CxStdError::sFormat", cullCaseLoops)
+    xTEST_CASE("CxStdError::format", cullCaseLoops)
     {
         const int caiData[] = {
             0,
@@ -84,10 +84,10 @@ CxTest_CxStdError::vUnit(
         for (int i = 0; i < (int)xARRAY_SIZE(caiData); ++ i) {
             const int ciLastError = caiData[i];
 
-            m_sRv = CxStdError::sFormat(ciLastError);
+            m_sRv = CxStdError::format(ciLastError);
             xTEST_EQ(false, m_sRv.empty());
 
-            //xTRACEV(xT("\CxStdError::sFormat(%lu) = %s (size = %lu)"), i, m_sRv.c_str(), m_sRv.size() - 4);
+            //xTRACEV(xT("\CxStdError::format(%lu) = %s (size = %lu)"), i, m_sRv.c_str(), m_sRv.size() - 4);
         }
     }
 }
