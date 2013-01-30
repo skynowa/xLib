@@ -40,7 +40,7 @@ CxBlowfish::~CxBlowfish() {
 }
 //---------------------------------------------------------------------------
 void
-CxBlowfish::vSetKey(
+CxBlowfish::setKey(
     uchar_t   *a_pucKey,
     const int &a_ciKeySize
 )
@@ -53,29 +53,29 @@ CxBlowfish::vSetKey(
 }
 //---------------------------------------------------------------------------
 void
-CxBlowfish::vSetKey(
+CxBlowfish::setKey(
     const std::ustring_t &a_cusKey
 )
 {
     xTEST_EQ(false, a_cusKey.empty());
     xTEST_GR_EQ(static_cast<size_t>( MAX_KEY_SIZE ), a_cusKey.size());
 
-    vSetKey(const_cast<uchar_t *>( a_cusKey.data() ), static_cast<int>( a_cusKey.size() ));
+    setKey(const_cast<uchar_t *>( a_cusKey.data() ), static_cast<int>( a_cusKey.size() ));
 }
 //---------------------------------------------------------------------------
 void
-CxBlowfish::vSetKey(
+CxBlowfish::setKey(
     const std::tstring_t &a_csKey
 )
 {
     xTEST_EQ(false, a_csKey.empty());
     xTEST_GR_EQ(static_cast<size_t>( MAX_KEY_SIZE ), a_csKey.size() * sizeof(std::tstring_t::value_type));
 
-    vSetKey(std::ustring_t(a_csKey.begin(), a_csKey.end()));
+    setKey(std::ustring_t(a_csKey.begin(), a_csKey.end()));
 }
 //---------------------------------------------------------------------------
 void
-CxBlowfish::vSetFileKey(
+CxBlowfish::setFileKey(
     const std::tstring_t &a_csFilePath
 )
 {
@@ -96,7 +96,7 @@ CxBlowfish::vSetFileKey(
     uiRes = sfFile.uiRead(&usFile.at(0), usFile.size());
     xTEST_EQ(usFile.size(), uiRes);
 
-    vSetKey(usFile);
+    setKey(usFile);
 
     // for security
     usFile.clear();
@@ -104,7 +104,7 @@ CxBlowfish::vSetFileKey(
 //---------------------------------------------------------------------------
 /* static */
 size_t
-CxBlowfish::uiMaxKeySize() {
+CxBlowfish::maxKeySize() {
     return MAX_KEY_SIZE;
 }
 //---------------------------------------------------------------------------
@@ -117,7 +117,7 @@ CxBlowfish::uiMaxKeySize() {
 
 //---------------------------------------------------------------------------
 void
-CxBlowfish::vEncryptCfb64(
+CxBlowfish::encryptCfb64(
     uchar_t           *a_pucIn,
     uchar_t           *a_pucOut,
     const long_t      &a_cliInSize,
@@ -136,7 +136,7 @@ CxBlowfish::vEncryptCfb64(
 }
 //---------------------------------------------------------------------------
 void
-CxBlowfish::vEncryptCfb64(
+CxBlowfish::encryptCfb64(
     const std::ustring_t &a_cusIn,
     std::ustring_t       *a_pusOut,
     const ExCryptMode    &a_cmMode
@@ -149,14 +149,14 @@ CxBlowfish::vEncryptCfb64(
 
     (*a_pusOut).resize( a_cusIn.size() );
 
-    vEncryptCfb64(
+    encryptCfb64(
         const_cast<uchar_t *>( &a_cusIn.at(0) ), &(*a_pusOut).at(0), 
         static_cast<long_t>( a_cusIn.size() ), &iNum, a_cmMode);
     xTEST_LESS(- 1, iNum);
 }
 //---------------------------------------------------------------------------
 void
-CxBlowfish::vEncryptFileCfb64(
+CxBlowfish::encryptFileCfb64(
     const std::tstring_t &a_csFilePathIn,
     const std::tstring_t &a_csFilePathOut,
     const ExCryptMode    &a_cmMode
@@ -175,7 +175,7 @@ CxBlowfish::vEncryptFileCfb64(
         sfFileIn.vRead(&usIn);
     }
 
-    vEncryptCfb64(usIn, &usOut, a_cmMode);
+    encryptCfb64(usIn, &usOut, a_cmMode);
 
     {
         CxFile sfFileOut;

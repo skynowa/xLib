@@ -25,28 +25,28 @@ public:
         cmDecrypt = BF_DECRYPT
     };
 
-                  CxBlowfish          ();
+                  CxBlowfish      ();
         ///< constructor
-    virtual      ~CxBlowfish          ();
+    virtual      ~CxBlowfish      ();
         ///< destructor
 
-    void          vSetKey             (uchar_t *pucKey, const int &ciKeySize);
+    void          setKey          (uchar_t *pucKey, const int &ciKeySize);
         ///< set key
-    void          vSetKey             (const std::ustring_t &cusKey);
+    void          setKey          (const std::ustring_t &cusKey);
         ///< set key
-    void          vSetKey             (const std::tstring_t &csKey);
+    void          setKey          (const std::tstring_t &csKey);
         ///< set key
-    void          vSetFileKey         (const std::tstring_t &csFilePath);
+    void          setFileKey      (const std::tstring_t &csFilePath);
         ///< set key as file
-    static size_t uiMaxKeySize        ();
+    static size_t maxKeySize      ();
         ///< get maximum key size
 
     //cfb64
-    void          vEncryptCfb64       (uchar_t *pucIn, uchar_t *pucOut, const long_t &cliInSize, int *piNum, const ExCryptMode &cmMode);
+    void          encryptCfb64    (uchar_t *pucIn, uchar_t *pucOut, const long_t &cliInSize, int *piNum, const ExCryptMode &cmMode);
         ///< encrypt buffer
-    void          vEncryptCfb64       (const std::ustring_t &cusIn, std::ustring_t *pusOut, const ExCryptMode &cmMode);
+    void          encryptCfb64    (const std::ustring_t &cusIn, std::ustring_t *pusOut, const ExCryptMode &cmMode);
         ///< encrypt std::ustring_t
-    void          vEncryptFileCfb64   (const std::tstring_t &csFilePathIn, const std::tstring_t &csFilePathOut, const ExCryptMode &cmMode);
+    void          encryptFileCfb64(const std::tstring_t &csFilePathIn, const std::tstring_t &csFilePathOut, const ExCryptMode &cmMode);
         ///< encrypt file
 
 private:
@@ -63,7 +63,7 @@ private:
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif //xLib_Crypt_OpenSSL_CxBlowfishH
+#endif // xLib_Crypt_OpenSSL_CxBlowfishH
 
 
 /*
