@@ -25,7 +25,7 @@ CxTest_CxBlowfish::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    xTEST_CASE("CxBlowfish::vEncryptCfb64", cullCaseLoops)
+    xTEST_CASE("CxBlowfish::encryptCfb64", cullCaseLoops)
     {
         const std::ustring_t usPlain[] = {
             std::ustring_t(1,  'a'),
@@ -47,15 +47,15 @@ CxTest_CxBlowfish::vUnit(
             std::ustring_t sEncrypted;
             std::ustring_t sDecrypted;
 
-            BF.vSetKey(sKey);
-            BF.vEncryptCfb64(usPlain[i], &sEncrypted, CxBlowfish::cmEncrypt);
-            BF.vEncryptCfb64(sEncrypted, &sDecrypted, CxBlowfish::cmDecrypt);
+            BF.setKey(sKey);
+            BF.encryptCfb64(usPlain[i], &sEncrypted, CxBlowfish::cmEncrypt);
+            BF.encryptCfb64(sEncrypted, &sDecrypted, CxBlowfish::cmDecrypt);
 
             xTEST_EQ(true, usPlain[i] == sDecrypted);
         }
     }
 
-    xTEST_CASE("CxBlowfish::vEncryptFileCfb64", cullCaseLoops)
+    xTEST_CASE("CxBlowfish::encryptFileCfb64", cullCaseLoops)
     {
         CxBlowfish BF;
         std::tstring_t sKey           = xT("888888888");
@@ -69,9 +69,9 @@ CxTest_CxBlowfish::vUnit(
         }
 
         //test
-        BF.vSetKey(sKey);
-        BF.vEncryptFileCfb64(sFilePlain, sFileEncrypted, CxBlowfish::cmEncrypt);
-        BF.vEncryptFileCfb64(sFileEncrypted, sFileDecrypted, CxBlowfish::cmDecrypt);
+        BF.setKey(sKey);
+        BF.encryptFileCfb64(sFilePlain, sFileEncrypted, CxBlowfish::cmEncrypt);
+        BF.encryptFileCfb64(sFileEncrypted, sFileDecrypted, CxBlowfish::cmDecrypt);
     }
 }
 //---------------------------------------------------------------------------
