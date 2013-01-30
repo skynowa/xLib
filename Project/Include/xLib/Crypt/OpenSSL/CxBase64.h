@@ -16,20 +16,20 @@ class CxBase64 :
     /// Base64
 {
 public:
-    static std::string sEncode     (const std::string &csStr);
+    static std::string encode     (const std::string &csStr);
         ///< encoding
-    static std::string sDecode     (const std::string &csStr);
+    static std::string decode     (const std::string &csStr);
         ///< decoding
-    static bool        bIsCharValid(const char &cchChar);
+    static bool        isCharValid(const char &cchChar);
         ///< is a valid Base64 char
 
 private:
-                       CxBase64();
+                       CxBase64   ();
         ///< constructor
-    virtual           ~CxBase64();
+    virtual           ~CxBase64   ();
         ///< destructor
 };
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif    //xLib_Crypt_CxBase64H
+#endif // xLib_Crypt_CxBase64H

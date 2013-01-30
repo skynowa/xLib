@@ -22,7 +22,7 @@ CxTest_CxBase64::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    xTEST_CASE("CxBase64::sEncode sDecode", cullCaseLoops)
+    xTEST_CASE("CxBase64::encode sDecode", cullCaseLoops)
     {
         const std::string sTestData[][1] = {
             {"ADP GmbH\nAnalyse Design & Programmierung\nGesellschaft mit beschrankter Haftung"},
@@ -38,13 +38,13 @@ CxTest_CxBase64::vUnit(
         for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
             std::string sSource = sTestData[i][0];
 
-            std::string sEncoded = CxBase64::sEncode(sSource);
-            std::string sDecoded = CxBase64::sDecode(sEncoded);
+            std::string sEncoded = CxBase64::encode(sSource);
+            std::string sDecoded = CxBase64::decode(sEncoded);
             xTEST_EQ(true, sSource == sDecoded);
         }
     }
 
-    xTEST_CASE("CxBase64::sEncode sDecode", cullCaseLoops)
+    xTEST_CASE("CxBase64::encode sDecode", cullCaseLoops)
     {
         const std::string casData[][2] = {
             {"YOYO!", "WU9ZTyE="},
@@ -60,23 +60,23 @@ CxTest_CxBase64::vUnit(
             const std::string csSource  = casData[i][0];
             const std::string csMustBe  = casData[i][1];
 
-            const std::string csEncoded = CxBase64::sEncode(csSource);
+            const std::string csEncoded = CxBase64::encode(csSource);
             //xTRACEV("csEncoded: %s (%zu), csMustBe (%zu)", csEncoded.c_str(), csEncoded.size(), csMustBe.size());
             xTEST_EQ(true, csMustBe == csEncoded);
 
-            const std::string csDecoded = CxBase64::sDecode(csEncoded);
+            const std::string csDecoded = CxBase64::decode(csEncoded);
             //xTRACEV("csEncoded: %s (%zu), csSource (%zu)", csDecoded.c_str(), csDecoded.size(), csSource.size());
             xTEST_EQ(true, csSource == csDecoded);
         }
     }
 
-    xTEST_CASE("CxBase64::bIsCharValid", cullCaseLoops)
+    xTEST_CASE("CxBase64::isCharValid", cullCaseLoops)
     {
         {
             const std::string csValidChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
             for (size_t i = 0; i < csValidChars.size(); ++ i) {
-                m_bRv = CxBase64::bIsCharValid(csValidChars.at(i));
+                m_bRv = CxBase64::isCharValid(csValidChars.at(i));
                 //xTRACEV(xT("csValidChars.at(i): %c"), csValidChars.at(i));
                 xTEST_EQ(true, m_bRv);
             }
@@ -86,7 +86,7 @@ CxTest_CxBase64::vUnit(
             const std::string csNonValidChars = "!@#$%^&*()_|:?";
 
             for (size_t i = 0; i < csNonValidChars.size(); ++ i) {
-                m_bRv = CxBase64::bIsCharValid(csNonValidChars.at(i));
+                m_bRv = CxBase64::isCharValid(csNonValidChars.at(i));
                 //xTRACEV(xT("csNonValidChars.at(i): %c"), csNonValidChars.at(i));
                 xTEST_EQ(false, m_bRv);
             }
