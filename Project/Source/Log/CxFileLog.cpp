@@ -45,7 +45,7 @@ CxFileLog::~CxFileLog() {
 }
 //---------------------------------------------------------------------------
 void
-CxFileLog::vSetFilePath(
+CxFileLog::setFilePath(
     const std::tstring_t &a_csFilePath
 )
 {
@@ -59,20 +59,18 @@ CxFileLog::vSetFilePath(
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxFileLog::sFilePath() const {
-    
-
+CxFileLog::filePath() const {
     return _m_sFilePath;
 }
 //---------------------------------------------------------------------------
 void
-CxFileLog::vWrite(
+CxFileLog::write(
     const tchar_t *a_pcszFormat, ...
 )
 {
     xTEST_PTR(a_pcszFormat);
 
-    _vDeleteIfFull();
+    _vRemoveIfFull();
 
     //-------------------------------------
     //time
@@ -96,28 +94,28 @@ CxFileLog::vWrite(
 
     CxFile sfFile;
 
-    sfFile.create(sFilePath(), CxFile::omAppend, false);
+    sfFile.create(filePath(), CxFile::omAppend, false);
 
     int iRv = sfFile.write(xT("[%s] %s\n"), sTime.c_str(), sParam.c_str());
     xTEST_DIFF(- 1, iRv);
 }
 //---------------------------------------------------------------------------
 void
-CxFileLog::vClear() {
+CxFileLog::clear() {
     #if xTODO
         CxAutoIpcMutex SL(_m_mtFile);
     #endif
 
-    CxFile::clear(sFilePath());
+    CxFile::clear(filePath());
 }
 //---------------------------------------------------------------------------
 void
-CxFileLog::vDelete() {
+CxFileLog::remove() {
     #if xTODO
         CxAutoIpcMutex SL(_m_mtFile);
     #endif
 
-    CxFile::remove(sFilePath());
+    CxFile::remove(filePath());
 }
 //---------------------------------------------------------------------------
 
@@ -129,21 +127,21 @@ CxFileLog::vDelete() {
 
 //---------------------------------------------------------------------------
 void
-CxFileLog::_vDeleteIfFull() {
+CxFileLog::_vRemoveIfFull() {
     #if xTODO
         CxAutoIpcMutex SL(_m_mtFile);
     #endif
 
-    bool bRv = CxFile::isExists(sFilePath());
+    bool bRv = CxFile::isExists(filePath());
     xCHECK_DO(false == bRv, return);
 
     //-------------------------------------
-    //delete log, if full
-    ulong_t ulSize = static_cast<ulong_t>( CxFile::size(sFilePath()) );
+    // remove log, if full
+    ulong_t ulSize = static_cast<ulong_t>( CxFile::size(filePath()) );
 
     xCHECK_DO(ulSize < _m_ulMaxFileSizeBytes, return);
 
-    CxFile::remove(sFilePath());
+    CxFile::remove(filePath());
 }
 //---------------------------------------------------------------------------
 

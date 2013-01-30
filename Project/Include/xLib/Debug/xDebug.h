@@ -101,18 +101,20 @@
 #define xSTD_VERIFY(expr)                                { \
                                                             if ( !(expr) )  { \
                                                                 const std::tstring_t csLastError = CxLastError::toString(); \
-                                                                CxTracer::vWrite(xT("\n--------------------------------- xSTD_VERIFY ----------------------------------\n") \
-                                                                                 xT("  Expression: %s\n") \
-                                                                                 xT("  File:       %s\n") \
-                                                                                 xT("  Function:   %s\n") \
-                                                                                 xT("  Line:       %lu\n") \
-                                                                                 xT("  Last error: %s\n") \
-                                                                                 xT("--------------------------------------------------------------------------------\n"), \
-                                                                                 xT(#expr), \
-                                                                                 xFILE, \
-                                                                                 xFUNCTION, \
-                                                                                 xLINE, \
-                                                                                 csLastError.c_str());  \
+                                                                CxTracer::write( \
+                                                                    xT("\n--------------------------------- xSTD_VERIFY ----------------------------------\n") \
+                                                                    xT("  Expression: %s\n") \
+                                                                    xT("  File:       %s\n") \
+                                                                    xT("  Function:   %s\n") \
+                                                                    xT("  Line:       %lu\n") \
+                                                                    xT("  Last error: %s\n") \
+                                                                    xT("--------------------------------------------------------------------------------\n"), \
+                                                                    xT(#expr), \
+                                                                    xFILE, \
+                                                                    xFUNCTION, \
+                                                                    xLINE, \
+                                                                    csLastError.c_str());  \
+                                                                \
                                                                 (void)::exit(EXIT_FAILURE); \
                                                             } \
                                                          }
@@ -156,10 +158,10 @@
                                                                 .append( xT(" ")                  ) \
                                                          )
     ///< trace variable, trace variable and value
-#define xTRACEV(...)                                     { CxTracer::vWrite(__VA_ARGS__); }
+#define xTRACEV(...)                                     { CxTracer::write(__VA_ARGS__); }
     ///< tracing
-#define xTRACE_POINT                                     { CxTracer::vWrite(xT("Point: %lu (file: %s, function: %s, last error: %s, line: %lu)"), \
-                                                                            xCOUNTER, xFILE, xFUNCTION, CxLastError::get().c_str(), xLINE); }
+#define xTRACE_POINT                                     { CxTracer::write(xT("Point: %lu (file: %s, function: %s, last error: %s, line: %lu)"), \
+                                                                           xCOUNTER, xFILE, xFUNCTION, CxLastError::get().c_str(), xLINE); }
     ///< trace point (use CxTracer)
 //---------------------------------------------------------------------------
 #endif // xLib_Debug_xDebugH

@@ -52,9 +52,9 @@ public:
     virtual ~CxSystemLog();
         ///< destructor
 
-    void     vSetEnabled(const bool &cbFlag);
+    void     setEnabled (const bool &cbFlag);
         ///< set enabled
-    void     vWrite     (const ExLevel &lvLevel, const tchar_t *pcszFormat, ...);
+    void     write      (const ExLevel &lvLevel, const tchar_t *pcszFormat, ...);
         ///< write to log
 
 private:
@@ -64,7 +64,7 @@ private:
     HANDLE   _m_SysLog;     ///< event log handle
 #endif
 
-    void     _vInit     (const std::tstring_t &csLogName);
+    void     _init      (const std::tstring_t &csLogName);
         ///< initiate data
 };
 

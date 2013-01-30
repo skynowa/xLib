@@ -29,7 +29,7 @@ CxSystemLog::CxSystemLog() :
     _m_SysLog   (NULL)
 #endif
 {
-    _vInit( CxPath( CxPath::exe() ).fileBaseName() );
+    _init( CxPath( CxPath::exe() ).fileBaseName() );
 }
 //---------------------------------------------------------------------------
 CxSystemLog::CxSystemLog(
@@ -41,7 +41,7 @@ CxSystemLog::CxSystemLog(
     _m_SysLog   (NULL)
 #endif
 {
-    _vInit(a_csLogName);
+    _init(a_csLogName);
 }
 //---------------------------------------------------------------------------
 /* virtual */
@@ -59,7 +59,7 @@ CxSystemLog::~CxSystemLog() {
 }
 //---------------------------------------------------------------------------
 void
-CxSystemLog::vSetEnabled(
+CxSystemLog::setEnabled(
     const bool &a_cbFlag
 )
 {
@@ -69,7 +69,7 @@ CxSystemLog::vSetEnabled(
 }
 //---------------------------------------------------------------------------
 void
-CxSystemLog::vWrite(
+CxSystemLog::write(
     const ExLevel &a_lvLevel,
     const tchar_t *a_pcszFormat, ...
 )
@@ -111,7 +111,7 @@ CxSystemLog::vWrite(
 
 //---------------------------------------------------------------------------
 void
-CxSystemLog::_vInit(
+CxSystemLog::_init(
     const std::tstring_t &a_csLogName
 )
 {
