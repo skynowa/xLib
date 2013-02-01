@@ -41,9 +41,7 @@ CxCgi::~CxCgi() {
 }
 //---------------------------------------------------------------------------
 std::tstring_t
-CxCgi::sDump()  const{
-    
-
+CxCgi::dump() const {
     std::tstring_t sRv;
 
     sRv = CxString::format(
@@ -51,9 +49,9 @@ CxCgi::sDump()  const{
             xT("%s\n")
             xT("%s\n")
             xT("%s\n"),
-            Environment.sDump().c_str(),
-            Cookies.sDump().c_str(),
-            Formdata.sDump().c_str()
+            Environment.dump().c_str(),
+            Cookies.dump().c_str(),
+            Formdata.dump().c_str()
     );
 
     return sRv;
@@ -61,7 +59,7 @@ CxCgi::sDump()  const{
 //---------------------------------------------------------------------------
 /* static */
 void
-CxCgi::vRedirect(
+CxCgi::redirect(
     const std::tstring_t &a_csUrl
 )
 {
@@ -77,13 +75,13 @@ CxCgi::vRedirect(
 //---------------------------------------------------------------------------
 /* static */
 void
-CxCgi::vPageShow(
+CxCgi::pageShow(
     const std::tstring_t &a_csFilePath
 )
 {
     std::tstring_t sFileContent;
 
-    CxFile::vTextRead(a_csFilePath, &sFileContent);
+    CxFile::textRead(a_csFilePath, &sFileContent);
 
     std::tcout << sFileContent << std::endl;
 }
@@ -103,7 +101,7 @@ namespace {
 //TODO: bUriEncode
 /* static */
 void
-CxCgi::vUriEncode(
+CxCgi::uriEncode(
     const std::tstring_t &a_csUri,
     const std::tstring_t &a_csReserved,
     std::tstring_t       *a_psEncodedStr
@@ -139,7 +137,7 @@ CxCgi::vUriEncode(
 //TODO: bUriDecode ()
 /* static */
 void
-CxCgi::vUriDecode(
+CxCgi::uriDecode(
     const std::tstring_t &a_csUri,
     std::tstring_t       *a_psDecodedStr
 )
@@ -260,7 +258,7 @@ cgl_parsecgibuf(/*cgllist *cdata,*/ char *a_query) {
 //----------------------------------------------------------------------------------------------------
 //TODO: bUrlEscape
 void
-CxCgi::vUrlEscape(char *a_s, FILE *a_fw) {
+CxCgi::urlEscape(char *a_s, FILE *a_fw) {
 //    register int    c;
 //
 //    while((c = *s++) != (char)0) {
@@ -285,7 +283,7 @@ CxCgi::vUrlEscape(char *a_s, FILE *a_fw) {
 //TODO: bUrlUnescape
 //modified from the Apache code. Code shrinks string, so can be done in place.
 void
-CxCgi::vUrlUnescape(char *a_s) {
+CxCgi::urlUnescape(char *a_s) {
 //    int    error;
 //    char    *p;
 //
@@ -349,9 +347,9 @@ CxCgiEnvironment::CxCgiEnvironment(
     CxCgi &a_ccgCgi
 ) :
     _m_ccgCgi         (a_ccgCgi),
-    _m_rmRequestMethod(rmUknown)
+    _m_rtRequestType(rtUknown)
 {
-    _bInit();
+    _init();
 }
 //---------------------------------------------------------------------------
 /* virtual */
@@ -361,226 +359,162 @@ CxCgiEnvironment::~CxCgiEnvironment() {
 //---------------------------------------------------------------------------
 //DONE: sGetAuthType
 const std::tstring_t &
-CxCgiEnvironment::sAuthType() const {
-    
-
+CxCgiEnvironment::authType() const {
     return _m_sAuthType;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCgiEnvironment::sContentLength() const {
-    
-
+CxCgiEnvironment::contentLength() const {
     return _m_sContentLength;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCgiEnvironment::sContentType() const {
-    
-
+CxCgiEnvironment::contentType() const {
     return _m_sContentType;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCgiEnvironment::sDocumentRoot() const {
-    
-
+CxCgiEnvironment::documentRoot() const {
     return _m_sDocumentRoot;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCgiEnvironment::sGatewayInterface() const {
-    
-
+CxCgiEnvironment::gatewayInterface() const {
     return _m_sGatewayInterface;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCgiEnvironment::sHttpAccept() const {
-    
-
+CxCgiEnvironment::httpAccept() const {
     return _m_sHttpAccept;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCgiEnvironment::sHttpCookie() const {
-    
-
+CxCgiEnvironment::httpCookie() const {
     return _m_sHttpCookie;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCgiEnvironment::sHttpPragma() const {
-    
-
+CxCgiEnvironment::httpPragma() const {
     return _m_sHttpPragma;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCgiEnvironment::sHttpUserAgent() const {
-    
-
+CxCgiEnvironment::httpUserAgent() const {
     return _m_sHttpUserAgent;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCgiEnvironment::sPathInfo() const {
-    
-
+CxCgiEnvironment::pathInfo() const {
     return _m_sPathInfo;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCgiEnvironment::sPathTranslated() const {
-    
-
+CxCgiEnvironment::pathTranslated() const {
     return _m_sPathTranslated;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCgiEnvironment::sQueryString() const {
-    
-
+CxCgiEnvironment::queryString() const {
     return _m_sQueryString;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCgiEnvironment::sRemoteAddr() const {
-    
-
+CxCgiEnvironment::remoteAddr() const {
     return _m_sRemoteAddr;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCgiEnvironment::sRemoteHost() const {
-    
-
+CxCgiEnvironment::remoteHost() const {
     return _m_sRemoteHost;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCgiEnvironment::sRemoteIdent() const {
-    
-
+CxCgiEnvironment::remoteIdent() const {
     return _m_sRemoteIdent;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCgiEnvironment::sRemotePort() const {
-    
-
+CxCgiEnvironment::remotePort() const {
     return _m_sRemotePort;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCgiEnvironment::sRemoteUser() const {
-    
-
+CxCgiEnvironment::remoteUser() const {
     return _m_sRemoteUser;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCgiEnvironment::sRequestMethod() const {
-    
-
+CxCgiEnvironment::requestMethod() const {
     return _m_sRequestMethod;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCgiEnvironment::sRequestUri() const {
-    
-
+CxCgiEnvironment::requestUri() const {
     return _m_sRequestUri;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCgiEnvironment::sScriptFilename() const {
-    
-
+CxCgiEnvironment::scriptFilename() const {
     return _m_sScriptFilename;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCgiEnvironment::sScriptName() const {
-    
-
+CxCgiEnvironment::scriptName() const {
     return _m_sScriptName;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCgiEnvironment::sServerAdmin() const {
-    
-
+CxCgiEnvironment::serverAdmin() const {
     return _m_sServerAdmin;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCgiEnvironment::sServerName() const {
-    
-
+CxCgiEnvironment::serverName() const {
     return _m_sServerName;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCgiEnvironment::sServerPort() const {
-    
-
+CxCgiEnvironment::serverPort() const {
     return _m_sServerPort;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCgiEnvironment::sServerProtocol() const {
-    
-
+CxCgiEnvironment::serverProtocol() const {
     return _m_sServerProtocol;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCgiEnvironment::sServerSoftware() const {
-    
-
+CxCgiEnvironment::serverSoftware() const {
     return _m_sServerSoftware;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCgiEnvironment::sHttpReferer() const {
-    
-
+CxCgiEnvironment::httpReferer() const {
     return _m_sHttpReferer;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCgiEnvironment::sHttpHost() const {
-    
-
+CxCgiEnvironment::httpHost() const {
     return _m_sHttpHost;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCgiEnvironment::sHttpAcceptLanguage() const {
-   
-
+CxCgiEnvironment::httpAcceptLanguage() const {
    return _m_sHttpAcceptLanguage;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCgiEnvironment::sCountryCode() const {
-    
-
+CxCgiEnvironment::countryCode() const {
     return _m_sCountryCode;
 }
 //---------------------------------------------------------------------------
-CxCgiEnvironment::ExRequestMethod
-CxCgiEnvironment::rmRequestMethod() const {
-    
-
-    return _m_rmRequestMethod;
+CxCgiEnvironment::ExRequestType
+CxCgiEnvironment::requestType() const {
+    return _m_rtRequestType;
 }
 //---------------------------------------------------------------------------
 std::tstring_t
-CxCgiEnvironment::sDump() const {
-    
-
+CxCgiEnvironment::dump() const {
     std::tstring_t sRv;
 
     sRv = CxString::format(
@@ -615,36 +549,36 @@ CxCgiEnvironment::sDump() const {
             xT("HTTP_HOST: %s\n")
             xT("HTTP_ACCEPT_LANGUAGE: %s\n")
             xT("GEOIP_COUNTRY_CODE: %s\n\n"),
-            sAuthType().c_str(),
-            sContentLength().c_str(),
-            sContentType().c_str(),
-            sDocumentRoot().c_str(),
-            sGatewayInterface().c_str(),
-            sHttpAccept().c_str(),
-            sHttpCookie().c_str(),
-            sHttpPragma().c_str(),
-            sHttpUserAgent().c_str(),
-            sPathInfo().c_str(),
-            sPathTranslated().c_str(),
-            sQueryString().c_str(),
-            sRemoteAddr().c_str(),
-            sRemoteHost().c_str(),
-            sRemoteIdent().c_str(),
-            sRemotePort().c_str(),
-            sRemoteUser().c_str(),
-            sRequestMethod().c_str(),
-            sRequestUri().c_str(),
-            sScriptFilename().c_str(),
-            sScriptName().c_str(),
-            sServerAdmin().c_str(),
-            sServerName().c_str(),
-            sServerPort().c_str(),
-            sServerProtocol().c_str(),
-            sServerSoftware().c_str(),
-            sHttpReferer().c_str(),
-            sHttpHost().c_str(),
-            sHttpAcceptLanguage().c_str(),
-            sCountryCode().c_str()
+            authType().c_str(),
+            contentLength().c_str(),
+            contentType().c_str(),
+            documentRoot().c_str(),
+            gatewayInterface().c_str(),
+            httpAccept().c_str(),
+            httpCookie().c_str(),
+            httpPragma().c_str(),
+            httpUserAgent().c_str(),
+            pathInfo().c_str(),
+            pathTranslated().c_str(),
+            queryString().c_str(),
+            remoteAddr().c_str(),
+            remoteHost().c_str(),
+            remoteIdent().c_str(),
+            remotePort().c_str(),
+            remoteUser().c_str(),
+            requestMethod().c_str(),
+            requestUri().c_str(),
+            scriptFilename().c_str(),
+            scriptName().c_str(),
+            serverAdmin().c_str(),
+            serverName().c_str(),
+            serverPort().c_str(),
+            serverProtocol().c_str(),
+            serverSoftware().c_str(),
+            httpReferer().c_str(),
+            httpHost().c_str(),
+            httpAcceptLanguage().c_str(),
+            countryCode().c_str()
     );
 
     return sRv;
@@ -658,56 +592,54 @@ CxCgiEnvironment::sDump() const {
 
 //---------------------------------------------------------------------------
 bool
-CxCgiEnvironment::_bInit() {
-    
-
-    _m_sAuthType           = CxEnvironment::sVar(xT("AUTH_TYPE"));
-    _m_sContentLength      = CxEnvironment::sVar(xT("CONTENT_LENGTH"));
-    _m_sContentType        = CxEnvironment::sVar(xT("CONTENT_TYPE"));
-    _m_sDocumentRoot       = CxEnvironment::sVar(xT("DOCUMENT_ROOT"));
-    _m_sGatewayInterface   = CxEnvironment::sVar(xT("GATEWAY_INTERFACE"));
-    _m_sHttpAccept         = CxEnvironment::sVar(xT("HTTP_ACCEPT"));
-    _m_sHttpCookie         = CxEnvironment::sVar(xT("HTTP_COOKIE"));
-    _m_sHttpPragma         = CxEnvironment::sVar(xT("HTTP_PRAGMA"));
-    _m_sHttpUserAgent      = CxEnvironment::sVar(xT("HTTP_USER_AGENT"));
-    _m_sPathInfo           = CxEnvironment::sVar(xT("PATH_INFO"));
-    _m_sPathTranslated     = CxEnvironment::sVar(xT("PATH_TRANSLATED"));
-    _m_sQueryString        = CxEnvironment::sVar(xT("QUERY_STRING"));
-    _m_sRemoteAddr         = CxEnvironment::sVar(xT("REMOTE_ADDR"));
-    _m_sRemoteHost         = CxEnvironment::sVar(xT("REMOTE_HOST"));
-    _m_sRemoteIdent        = CxEnvironment::sVar(xT("REMOTE_IDENT"));
-    _m_sRemotePort         = CxEnvironment::sVar(xT("REMOTE_PORT"));
-    _m_sRemoteUser         = CxEnvironment::sVar(xT("REMOTE_USER"));
-    _m_sRequestMethod      = CxEnvironment::sVar(xT("REQUEST_METHOD"));
-    _m_sRequestUri         = CxEnvironment::sVar(xT("REQUEST_URI"));
-    _m_sScriptFilename     = CxEnvironment::sVar(xT("SCRIPT_FILENAME"));
-    _m_sScriptName         = CxEnvironment::sVar(xT("SCRIPT_NAME"));
-    _m_sServerAdmin        = CxEnvironment::sVar(xT("SERVER_ADMIN"));
-    _m_sServerName         = CxEnvironment::sVar(xT("SERVER_NAME"));
-    _m_sServerPort         = CxEnvironment::sVar(xT("SERVER_PORT"));
-    _m_sServerProtocol     = CxEnvironment::sVar(xT("SERVER_PROTOCOL"));
-    _m_sServerSoftware     = CxEnvironment::sVar(xT("SERVER_SOFTWARE"));
-    _m_sHttpReferer        = CxEnvironment::sVar(xT("HTTP_REFERER"));
-    _m_sHttpHost           = CxEnvironment::sVar(xT("HTTP_HOST"));
-    _m_sHttpAcceptLanguage = CxEnvironment::sVar(xT("HTTP_ACCEPT_LANGUAGE"));
-    _m_sCountryCode        = CxEnvironment::sVar(xT("GEOIP_COUNTRY_CODE"));
+CxCgiEnvironment::_init() {
+    _m_sAuthType           = CxEnvironment::var(xT("AUTH_TYPE"));
+    _m_sContentLength      = CxEnvironment::var(xT("CONTENT_LENGTH"));
+    _m_sContentType        = CxEnvironment::var(xT("CONTENT_TYPE"));
+    _m_sDocumentRoot       = CxEnvironment::var(xT("DOCUMENT_ROOT"));
+    _m_sGatewayInterface   = CxEnvironment::var(xT("GATEWAY_INTERFACE"));
+    _m_sHttpAccept         = CxEnvironment::var(xT("HTTP_ACCEPT"));
+    _m_sHttpCookie         = CxEnvironment::var(xT("HTTP_COOKIE"));
+    _m_sHttpPragma         = CxEnvironment::var(xT("HTTP_PRAGMA"));
+    _m_sHttpUserAgent      = CxEnvironment::var(xT("HTTP_USER_AGENT"));
+    _m_sPathInfo           = CxEnvironment::var(xT("PATH_INFO"));
+    _m_sPathTranslated     = CxEnvironment::var(xT("PATH_TRANSLATED"));
+    _m_sQueryString        = CxEnvironment::var(xT("QUERY_STRING"));
+    _m_sRemoteAddr         = CxEnvironment::var(xT("REMOTE_ADDR"));
+    _m_sRemoteHost         = CxEnvironment::var(xT("REMOTE_HOST"));
+    _m_sRemoteIdent        = CxEnvironment::var(xT("REMOTE_IDENT"));
+    _m_sRemotePort         = CxEnvironment::var(xT("REMOTE_PORT"));
+    _m_sRemoteUser         = CxEnvironment::var(xT("REMOTE_USER"));
+    _m_sRequestMethod      = CxEnvironment::var(xT("REQUEST_METHOD"));
+    _m_sRequestUri         = CxEnvironment::var(xT("REQUEST_URI"));
+    _m_sScriptFilename     = CxEnvironment::var(xT("SCRIPT_FILENAME"));
+    _m_sScriptName         = CxEnvironment::var(xT("SCRIPT_NAME"));
+    _m_sServerAdmin        = CxEnvironment::var(xT("SERVER_ADMIN"));
+    _m_sServerName         = CxEnvironment::var(xT("SERVER_NAME"));
+    _m_sServerPort         = CxEnvironment::var(xT("SERVER_PORT"));
+    _m_sServerProtocol     = CxEnvironment::var(xT("SERVER_PROTOCOL"));
+    _m_sServerSoftware     = CxEnvironment::var(xT("SERVER_SOFTWARE"));
+    _m_sHttpReferer        = CxEnvironment::var(xT("HTTP_REFERER"));
+    _m_sHttpHost           = CxEnvironment::var(xT("HTTP_HOST"));
+    _m_sHttpAcceptLanguage = CxEnvironment::var(xT("HTTP_ACCEPT_LANGUAGE"));
+    _m_sCountryCode        = CxEnvironment::var(xT("GEOIP_COUNTRY_CODE"));
 
     if (true == _m_sCountryCode.empty()) {
-        _m_sCountryCode    = CxEnvironment::sVar(xT("HTTP_GEOIP_COUNTRY_CODE"));
+        _m_sCountryCode    = CxEnvironment::var(xT("HTTP_GEOIP_COUNTRY_CODE"));
     }
     if (true == _m_sCountryCode.empty()) {
-        _m_sCountryCode    = CxEnvironment::sVar(xT("HTTP_COUNTRY_CODE"));
+        _m_sCountryCode    = CxEnvironment::var(xT("HTTP_COUNTRY_CODE"));
     }
 
     //--------------------------------------------------
     //is data from a GET or a POST?
-    if        (false != CxString::compareNoCase(xT("GET"), sRequestMethod()) ) {
-        _m_rmRequestMethod = rmGet;
-    } else if (false != CxString::compareNoCase(xT("POST"), sRequestMethod()) ) {
-        _m_rmRequestMethod = rmPost;
+    if        (false != CxString::compareNoCase(xT("GET"), requestMethod()) ) {
+        _m_rtRequestType = rtGet;
+    } else if (false != CxString::compareNoCase(xT("POST"), requestMethod()) ) {
+        _m_rtRequestType = rtPost;
     }
     else {
-        _m_rmRequestMethod = rmUknown;
+        _m_rtRequestType = rtUknown;
     }
 
     return true;
@@ -731,12 +663,12 @@ CxCgiCookies::CxCgiCookies(
 ):
     _m_ccgCgi(a_ccgCgi)
 {
-    _vInit();
+    _init();
 }
 //---------------------------------------------------------------------------
 /* virtual */
 CxCgiCookies::~CxCgiCookies() {
-    xFOREACH(TCookies, it, Items) {
+    xFOREACH(TCookies, it, items) {
         xPTR_DELETE(*it);
     }
 }
@@ -746,9 +678,7 @@ CxCgiCookies::operator [] (
     const std::tstring_t &a_csCookieName
 )
 {
-    
-
-    xFOREACH_CONST(TCookies, it, Items) {
+    xFOREACH_CONST(TCookies, it, items) {
         xCHECK_DO(false == CxString::compareNoCase(a_csCookieName, (*it)->sValue()), continue);
 
         return (*it)->sValue();
@@ -758,14 +688,12 @@ CxCgiCookies::operator [] (
 }
 //---------------------------------------------------------------------------
 std::tstring_t
-CxCgiCookies::sDump() const {
-    
-
+CxCgiCookies::dump() const {
     std::tstring_t sRv;
 
     sRv.append(xT("[CxCgiCookies dump]\n\n"));
 
-    xFOREACH_CONST(TCookies, it, Items) {
+    xFOREACH_CONST(TCookies, it, items) {
         std::tstring_t sItemN = CxString::format(
                 xT("Name: %s\n")
                 xT("Value: %s\n")
@@ -799,10 +727,8 @@ CxCgiCookies::sDump() const {
 
 //---------------------------------------------------------------------------
 void
-CxCgiCookies::_vInit() {
-    
-
-    std::tstring_t     sRawCookies = _m_ccgCgi.Environment.sHttpCookie();
+CxCgiCookies::_init() {
+    std::tstring_t     sRawCookies = _m_ccgCgi.Environment.httpCookie();
     std::vec_tstring_t vsRawCookies;
     TCookies           vecckCookies;
 
@@ -815,7 +741,7 @@ CxCgiCookies::_vInit() {
         vecckCookies.push_back(pckItem);
     }
 
-    std::swap(vecckCookies, Items);
+    std::swap(vecckCookies, items);
 }
 //---------------------------------------------------------------------------
 
@@ -838,7 +764,7 @@ CxCgiFormData::CxCgiFormData(
     _m_cuiMaxData(a_cuiMaxSize),
     _m_ccgCgi    (a_ccgCgi)
 {
-    _vInit();
+    _init();
 }
 //---------------------------------------------------------------------------
 /* virtual */
@@ -847,22 +773,18 @@ CxCgiFormData::~CxCgiFormData() {
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCgiFormData::sRawData() const {
-    
-
+CxCgiFormData::rawData() const {
     return _m_sFormData;
 }
 //---------------------------------------------------------------------------
 std::tstring_t
-CxCgiFormData::sDump() const {
-    
-
+CxCgiFormData::dump() const {
     std::tstring_t sRv;
 
     sRv = CxString::format(
             xT("[CxCgiFormData dump]\n\n")
             xT("Data: %s\n\n"),
-            sRawData().c_str());
+            rawData().c_str());
 
     return sRv;
 }
@@ -875,33 +797,31 @@ CxCgiFormData::sDump() const {
 
 //---------------------------------------------------------------------------
 void
-CxCgiFormData::_vInit() {
-    
-
-    int iRv = _m_ccgCgi.Environment.rmRequestMethod();
+CxCgiFormData::_init() {
+    int iRv = _m_ccgCgi.Environment.requestType();
     switch (iRv) {
-        case CxCgiEnvironment::rmGet: {
-                xTEST_EQ(false, _m_ccgCgi.Environment.sQueryString().empty());
+        case CxCgiEnvironment::rtGet: {
+                xTEST_EQ(false, _m_ccgCgi.Environment.queryString().empty());
 
                 //TODO: cgl_parsecgibuf(cgl_Formdata, cgl_Buf)
 
-                _m_sFormData = _m_ccgCgi.Environment.sQueryString();
+                _m_sFormData = _m_ccgCgi.Environment.queryString();
             }
             break;
 
-        case CxCgiEnvironment::rmPost: {
+        case CxCgiEnvironment::rtPost: {
                 bool bRv = false;
 
-                bRv = CxString::compareNoCase(xT("application/x-www-form-urlencoded"), _m_ccgCgi.Environment.sContentType());
+                bRv = CxString::compareNoCase(xT("application/x-www-form-urlencoded"), _m_ccgCgi.Environment.contentType());
                 xTEST_EQ(true, bRv);
 
                 //get content length
                 size_t uiPostSize = 0;  // in bytes
-                if (true == _m_ccgCgi.Environment.sContentLength().empty()) {
+                if (true == _m_ccgCgi.Environment.contentLength().empty()) {
                     uiPostSize = 0;
                 }
                 else {
-                    uiPostSize = CxString::cast<size_t>( _m_ccgCgi.Environment.sContentLength() );
+                    uiPostSize = CxString::cast<size_t>( _m_ccgCgi.Environment.contentLength() );
                 }
                 xTEST_LESS(size_t(0U), uiPostSize);
                 xTEST_GR_EQ(_m_cuiMaxData, uiPostSize);  //secure
@@ -911,18 +831,18 @@ CxCgiFormData::_vInit() {
                 CxFile       sfFile;
                 std::tstring_t sBuff;
 
-                sfFile.vAttach(stdin);
+                sfFile.attach(stdin);
 
                 sBuff.resize(uiPostSize);
 
-                size_t uiRes = sfFile.uiRead(&sBuff.at(0), sBuff.size());
+                size_t uiRes = sfFile.read(&sBuff.at(0), sBuff.size());
                 xTEST_EQ(uiRes, sBuff.size());
 
                 //TODO: cgl_parsecgibuf(cgl_Formdata, cgl_Buf)
 
                 _m_sFormData = sBuff;
 
-                (void)sfFile.pDetach();
+                (FILE *)sfFile.detach();
             }
             break;
 
