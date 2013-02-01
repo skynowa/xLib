@@ -96,7 +96,7 @@ CxTest_CxMimeMessage::vUnit(
     //-------------------------------------
     //sGenerateMessageID
     {
-        m_sRv = CxMimeHeader::sGenerateMessageID();
+        m_sRv = CxMimeHeader::generateMessageID();
         xTEST_EQ(false, m_sRv.empty());
     }
 
@@ -135,7 +135,7 @@ CxTest_CxMimeMessage::vUnit(
 
         //-------------------------------------
         //bParse
-        objHeader.vParse(sRawHeader);
+        objHeader.parse(sRawHeader);
 
         //-------------------------------------
         //sGetField

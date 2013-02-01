@@ -33,7 +33,7 @@ CxMimeHeader::~CxMimeHeader () {
 //---------------------------------------------------------------------------
 //DONE: bParse (��������� ��������� ������� "TOP 10 0" �� ��������, ��������)
 void
-CxMimeHeader::vParse(
+CxMimeHeader::parse(
     const std::tstring_t &a_csRawHeader
 )
 {
@@ -123,7 +123,7 @@ CxMimeHeader::vParse(
 //---------------------------------------------------------------------------
 //DONE: sGetField
 std::tstring_t
-CxMimeHeader::sField(
+CxMimeHeader::field(
     const std::tstring_t &a_csName
 )
 {
@@ -144,7 +144,7 @@ CxMimeHeader::sField(
 //---------------------------------------------------------------------------
 //DONE: uiCount
 size_t
-CxMimeHeader::uiCount() {
+CxMimeHeader::count() {
     return _m_mmsHeader.size();
 }
 //---------------------------------------------------------------------------
@@ -192,7 +192,7 @@ CxMimeHeader::uiCount() {
 #endif
 
 void
-CxMimeHeader::vLoadFromFile(
+CxMimeHeader::loadFromFile(
     const std::tstring_t &a_csRawMessageFilePath
 )
 {
@@ -204,7 +204,7 @@ CxMimeHeader::vLoadFromFile(
 
     //-------------------------------------
     //������������� ��������� ������
-    CxLocale::vSetDefault();
+    CxLocale::setDefault();
 
     //-------------------------------------
     //������ ���������� ����� � ������ �� ����� ������ (\r\n\r\n - ������ ������)
@@ -227,12 +227,12 @@ CxMimeHeader::vLoadFromFile(
 
     //-------------------------------------
     //����������
-    vParse(sRawHeader);
+    parse(sRawHeader);
 }
 //---------------------------------------------------------------------------
 //TODO: bSaveToFile
 void
-CxMimeHeader::vSaveToFile(
+CxMimeHeader::saveToFile(
     const std::tstring_t &a_csFilePath
 )
 {
@@ -242,10 +242,10 @@ CxMimeHeader::vSaveToFile(
 //TODO: sGenerateMessageID (������� Message-ID ��� "<", ">")
 /* static */
 std::tstring_t
-CxMimeHeader::sGenerateMessageID() {
+CxMimeHeader::generateMessageID() {
     std::tstring_t sRv;
 
-    sRv = CxString::format(xT("%s@%s"), CxString::sCreateGuid().c_str(), CxSystemInfo::sHostName().c_str());
+    sRv = CxString::format(xT("%s@%s"), CxString::createGuid().c_str(), CxSystemInfo::hostName().c_str());
     xTEST_EQ(false, sRv.empty());
 
     return sRv;
