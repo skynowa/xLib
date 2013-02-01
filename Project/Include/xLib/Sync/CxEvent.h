@@ -38,22 +38,22 @@ public:
     };
 
 
-                      CxEvent    (const bool &cbIsAutoReset, const bool &cbIsSignaled);
+                      CxEvent   (const bool &cbIsAutoReset, const bool &cbIsSignaled);
         ///< constructor
-    virtual          ~CxEvent    ();
+    virtual          ~CxEvent   ();
         ///< destructor
 
-    const handle_t &  hHandle    () const;
+    const handle_t &  handle    () const;
         ///< get handle
     void              create    ();
         ///< create
-    void              vSet       ();
+    void              set       ();
         ///< signal the event for the waiting thread (!!! unlock !!!)
-    void              vReset     ();
+    void              reset     ();
         ///< once signaled, the event class must be "reset" before responding to a new signal
-    ExObjectState     osWait     (const ulong_t &culTimeout = xTIMEOUT_INFINITE);
-        ///< wait either for the cxevent to be signaled by another thread or for the specified timeout duration
-    bool              bIsSignaled();
+    ExObjectState     wait      (const ulong_t &culTimeout = xTIMEOUT_INFINITE);
+        ///< wait either for the CxEvent to be signaled by another thread or for the specified timeout duration
+    bool              isSignaled();
         ///< is signaled
 
 private:
@@ -66,7 +66,7 @@ private:
 #endif
 
     const bool        _m_cbIsAutoReset; ///< auto-reset flag
-    const bool        _m_cbInitState;   ///< initisl state
+    const bool        _m_cbInitState;   ///< initial state
 };
 
 xNAMESPACE_END(NxLib)

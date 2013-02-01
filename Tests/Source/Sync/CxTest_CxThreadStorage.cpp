@@ -22,7 +22,7 @@ CxTest_CxThreadStorage::unit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    xTEST_CASE("CxThreadStorage::vSetValue CxThreadStorage::pvGetValue", cullCaseLoops)
+    xTEST_CASE("CxThreadStorage::setValue CxThreadStorage::value", cullCaseLoops)
     {
         const ulong_t caulData[] = {0, 1, 2, 777};
 
@@ -34,19 +34,19 @@ CxTest_CxThreadStorage::unit(
 
             ulong_t *pulValue = new ulong_t(culData);
 
-            m_bRv = tlsTls.bIsSet();
+            m_bRv = tlsTls.isSet();
             xTEST_EQ(false, m_bRv);
 
-            tlsTls.vSetValue(static_cast<void *>( pulValue ));
+            tlsTls.setValue(static_cast<void *>( pulValue ));
 
-            m_bRv = tlsTls.bIsSet();
+            m_bRv = tlsTls.isSet();
             xTEST_EQ(true, m_bRv);
 
-            ulong_t *pulRes = static_cast<ulong_t *>( tlsTls.pvValue() );
+            ulong_t *pulRes = static_cast<ulong_t *>( tlsTls.value() );
             xTEST_PTR(pulRes);
             xTEST_EQ(culData, ulong_t(*pulRes));
 
-            m_bRv = tlsTls.bIsSet();
+            m_bRv = tlsTls.isSet();
             xTEST_EQ(true, m_bRv);
 
             delete pulRes;

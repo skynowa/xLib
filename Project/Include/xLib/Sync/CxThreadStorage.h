@@ -21,11 +21,11 @@ public:
     virtual ~CxThreadStorage();
         ///< destructor
 
-    bool     bIsSet         () const;
+    bool     isSet          () const;
 
-    void    *pvValue        () const;
+    void    *value          () const;
         ///< get the value
-    void     vSetValue      (void *pvValue) const;
+    void     setValue       (void *pvValue) const;
         ///< set value
 
 private:
@@ -35,9 +35,9 @@ private:
     typedef pthread_key_t index_t;
 #endif
 
-    void     _vAlloc        ();
+    void     _alloc         ();
         ///< allocates a thread storage index
-    void     _vFree         ();
+    void     _free          ();
         ///< releases a thread storage index
 
     index_t  _m_indIndex;

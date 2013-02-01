@@ -83,12 +83,12 @@ CxMutex::create() {
 }
 //---------------------------------------------------------------------------
 const CxMutex::handle_t &
-CxMutex::hHandle() const {
+CxMutex::handle() const {
     return _m_hHandle;
 }
 //---------------------------------------------------------------------------
 void
-CxMutex::vLock() {
+CxMutex::lock() {
 #if   xOS_ENV_WIN
     bool bRv = false;
 
@@ -108,7 +108,7 @@ CxMutex::vLock() {
 }
 //---------------------------------------------------------------------------
 bool
-CxMutex::bTryLock() {
+CxMutex::tryLock() {
 #if   xOS_ENV_WIN
     BOOL blRes = ::TryEnterCriticalSection(&_m_hHandle);
     xCHECK_RET(FALSE == blRes, false);
@@ -121,7 +121,7 @@ CxMutex::bTryLock() {
 }
 //---------------------------------------------------------------------------
 void
-CxMutex::vUnlock() {
+CxMutex::unlock() {
 #if   xOS_ENV_WIN
     bool bRv = false;
 

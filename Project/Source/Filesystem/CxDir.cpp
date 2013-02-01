@@ -276,7 +276,7 @@ CxDir::tryRemove(
             xNA;
         }
 
-        CxCurrentThread::vSleep(a_culTimeoutMsec);
+        CxCurrentThread::sleep(a_culTimeoutMsec);
     }
 }
 //---------------------------------------------------------------------------

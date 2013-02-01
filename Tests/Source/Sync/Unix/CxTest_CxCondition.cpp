@@ -182,12 +182,12 @@ CxTest_CxCondition::unit(
 #if xTEMP_DISABLED
     CxCondition cond;
 
-    cond.hMutex();
-    cond.hHandle();
+    cond.mutex();
+    cond.handle();
     cond.create();
-    cond.vWait(5000UL);
-    cond.vSignal();
-    cond.vBroadcast();
+    cond.wait(5000UL);
+    cond.signal();
+    cond.broadcast();
 #endif
 }
 //---------------------------------------------------------------------------

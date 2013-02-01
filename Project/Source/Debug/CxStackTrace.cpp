@@ -75,7 +75,7 @@ CxStackTrace::get(
         SYMBOL_INFO *psiSymbol                        = NULL;
         HANDLE       hProcess                         = NULL;
 
-        hProcess = CxCurrentProcess::hHandle();
+        hProcess = CxCurrentProcess::handle();
 
         BOOL blRes = ::SymInitialize(hProcess, NULL, TRUE);
         xCHECK_DO(FALSE == blRes, return);

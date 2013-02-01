@@ -35,13 +35,13 @@ CxTest_CxHandleT::unit(
 
     xTEST_CASE("CxHandleT::CxHandleT(const HANDLE &chHandle)", cullCaseLoops)
     {
-        CxHandle hHandle( CxCurrentProcess::hHandle() );
+        CxHandle handle( CxCurrentProcess::handle() );
 
-        m_bRv = hHandle.isValid();
+        m_bRv = handle.isValid();
         xTEST_EQ(true, m_bRv);
 
-        m_hRv = hHandle.detach();
-        xTEST_EQ(false, hHandle.isValid());
+        m_hRv = handle.detach();
+        xTEST_EQ(false, handle.isValid());
     }
 
     xTEST_CASE("CxHandleT::CxHandleT(const CxHandleT &chHandle)", cullCaseLoops)
@@ -61,12 +61,12 @@ CxTest_CxHandleT::unit(
 
     xTEST_CASE("CxHandleT::operator = (const native_handle_t &chHandle)", cullCaseLoops)
     {
-        CxHandle hHandle;
+        CxHandle handle;
 
-        hHandle = CxCurrentProcess::hHandle();
+        handle = CxCurrentProcess::handle();
 
-        m_hRv = hHandle.detach();
-        xTEST_EQ(false, hHandle.isValid());
+        m_hRv = handle.detach();
+        xTEST_EQ(false, handle.isValid());
     }
 
     xTEST_CASE("CxHandleT::operator = (const CxHandleT &chHandle)", cullCaseLoops)
@@ -84,68 +84,68 @@ CxTest_CxHandleT::unit(
 
     xTEST_CASE("CxHandleT::get set", cullCaseLoops)
     {
-        CxHandle hHandle;
+        CxHandle handle;
 
-        m_hRv = hHandle.get();
-        xTEST_EQ(false, hHandle.isValid());
+        m_hRv = handle.get();
+        xTEST_EQ(false, handle.isValid());
 
-        hHandle.set(native_handle_t());
+        handle.set(native_handle_t());
 
-        m_hRv = hHandle.get();
+        m_hRv = handle.get();
         xTEST_EQ(true, native_handle_t() == m_hRv);
 
-        hHandle.set(CxCurrentProcess::hHandle());
+        handle.set(CxCurrentProcess::handle());
 
-        m_hRv = hHandle.get();
-        xTEST_EQ(CxCurrentProcess::hHandle(), m_hRv);
+        m_hRv = handle.get();
+        xTEST_EQ(CxCurrentProcess::handle(), m_hRv);
 
-        m_hRv = hHandle.detach();
-        xTEST_EQ(false, hHandle.isValid());
+        m_hRv = handle.detach();
+        xTEST_EQ(false, handle.isValid());
     }
 
     xTEST_CASE("CxHandleT::duplicate", cullCaseLoops)
     {
-        CxHandle hHandle;
+        CxHandle handle;
 
-        m_hRv = hHandle.duplicate();
-        xTEST_EQ(false, hHandle.isValid());
+        m_hRv = handle.duplicate();
+        xTEST_EQ(false, handle.isValid());
     }
 
     xTEST_CASE("CxHandleT::isValid", cullCaseLoops)
     {
-        CxHandle hHandle;
+        CxHandle handle;
 
-        m_bRv = hHandle.isValid();
+        m_bRv = handle.isValid();
         xTEST_EQ(false, m_bRv);
 
-        hHandle.set(CxCurrentProcess::hHandle());
+        handle.set(CxCurrentProcess::handle());
 
-        m_hRv = hHandle.detach();
-        xTEST_EQ(false, hHandle.isValid());
+        m_hRv = handle.detach();
+        xTEST_EQ(false, handle.isValid());
     }
 
     xTEST_CASE("CxHandleT::attach", cullCaseLoops)
     {
-        CxHandle hHandle;
+        CxHandle handle;
 
-        hHandle.attach(CxCurrentProcess::hHandle());
+        handle.attach(CxCurrentProcess::handle());
     }
 
     xTEST_CASE("CxHandleT::detach", cullCaseLoops)
     {
-        CxHandle hHandle;
+        CxHandle handle;
 
-        m_hRv = hHandle.detach();
-        xTEST_EQ(false, hHandle.isValid());
+        m_hRv = handle.detach();
+        xTEST_EQ(false, handle.isValid());
     }
 
     xTEST_CASE("CxHandleT::close", cullCaseLoops)
     {
-        CxHandle hHandle;
+        CxHandle handle;
 
-        hHandle.close();
+        handle.close();
 
-        m_bRv = hHandle.isValid();
+        m_bRv = handle.isValid();
         xTEST_EQ(false, m_bRv);
     }
 
@@ -155,14 +155,14 @@ CxTest_CxHandleT::unit(
 
     #if   xOS_ENV_WIN
         #if xTODO
-            CxHandle hHandle;
+            CxHandle handle;
 
-            hHandle = CxCurrentProcess::hHandle();
-            xTEST_EQ(true, hHandle.isValid());
+            handle = CxCurrentProcess::handle();
+            xTEST_EQ(true, handle.isValid());
 
-            hHandle.setInfo(HANDLE_FLAG_INHERIT, 0);
+            handle.setInfo(HANDLE_FLAG_INHERIT, 0);
 
-            m_ulRv = hHandle.info();
+            m_ulRv = handle.info();
             xTEST_EQ((ulong_t)HANDLE_FLAG_INHERIT, m_ulRv);
         #endif
     #elif xOS_ENV_UNIX
@@ -176,14 +176,14 @@ CxTest_CxHandleT::unit(
 
     #if   xOS_ENV_WIN
         #if xTODO
-            CxHandle hHandle;
+            CxHandle handle;
 
-            hHandle = CxCurrentProcess::hHandle();
-            xTEST_EQ(true, hHandle.isValid());
+            handle = CxCurrentProcess::handle();
+            xTEST_EQ(true, handle.isValid());
 
-            hHandle.setInfo(HANDLE_FLAG_PROTECT_FROM_CLOSE, 0);
+            handle.setInfo(HANDLE_FLAG_PROTECT_FROM_CLOSE, 0);
 
-            m_ulRv = hHandle.info();
+            m_ulRv = handle.info();
             xTEST_EQ((ulong_t)HANDLE_FLAG_PROTECT_FROM_CLOSE, m_ulRv);
         #endif
     #elif xOS_ENV_UNIX

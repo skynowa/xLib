@@ -20,17 +20,17 @@ public:
     virtual                ~CxCondition();
         ///< destructor
 
-    const pthread_mutex_t & hMutex     () const;
+    const pthread_mutex_t & mutex      () const;
         ///< get mutex handle
-    const pthread_cond_t &  hHandle    () const;
+    const pthread_cond_t &  handle     () const;
         ///< get handle
-    void                    create    ();
+    void                    create     ();
         ///< create
-    void                    vWait      (const ulong_t &culTimeoutMs);
+    void                    wait       (const ulong_t &culTimeoutMs);
         ///< wait
-    void                    vSignal    ();
+    void                    signal     ();
         ///< signal one
-    void                    vBroadcast ();
+    void                    broadcast  ();
         ///< signal all
 
 private:

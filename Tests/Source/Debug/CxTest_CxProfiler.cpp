@@ -42,7 +42,7 @@ CxTest_CxProfiler::unit(
         pfP.start();
 
         for (size_t i = 0; i < 10; ++ i) {
-            CxCurrentThread::vSleep(5UL);
+            CxCurrentThread::sleep(5UL);
 
             pfP.pulse(xT("\tVar i: %") xPR_SIZET, i);
         }

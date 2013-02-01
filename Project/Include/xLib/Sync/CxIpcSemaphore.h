@@ -26,24 +26,24 @@ public:
                      CxIpcSemaphore();
     virtual         ~CxIpcSemaphore();
 
-    const handle_t & hHandle       () const;
+    const handle_t & handle        () const;
         ///< get handle
-    void             create       (const long_t &cliInitialValue, const std::tstring_t &csName);
+    void             create        (const long_t &cliInitialValue, const std::tstring_t &csName);
         ///< create
-    void             vOpen         (const std::tstring_t &csName);
+    void             open          (const std::tstring_t &csName);
         ///< open
-    void             vPost         () const;
+    void             post          () const;
         ///< release
-    void             vWait         (const ulong_t &culTimeoutMsec) const;
+    void             wait          (const ulong_t &culTimeoutMsec) const;
         ///< wait
-    long_t           liValue       () const;
+    long_t           value         () const;
         ///< get value
 
 private:
     handle_t         _m_hHandle;
     std::tstring_t   _m_sName;
 
-    bool             _bIsValid     () const;
+    bool             _isValid      () const;
 };
 
 xNAMESPACE_END(NxLib)

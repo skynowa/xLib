@@ -17,16 +17,16 @@ class CxSleeper :
     /// sleeper
 {
 public:
-             CxSleeper  ();
+             CxSleeper ();
         ///< constructor
-    virtual ~CxSleeper  ();
+    virtual ~CxSleeper ();
         ///< destructor
 
-    void     vSleep     (const ulong_t &culTimeout);
+    void     sleep     (const ulong_t &culTimeout);
         ///< sleep
-    void     vWakeUp    ();
+    void     wakeUp    ();
         ///< wake up
-    bool     bIsSleeping();
+    bool     isSleeping();
         ///< check for sleeping
 
 private:

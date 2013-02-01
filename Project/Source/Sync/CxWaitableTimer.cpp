@@ -29,7 +29,7 @@ CxWaitableTimer::~CxWaitableTimer() {
 }
 //---------------------------------------------------------------------------
 HANDLE
-CxWaitableTimer::hHandle() const {
+CxWaitableTimer::handle() const {
     xTEST_EQ(true, _m_hHandle.isValid());
 
     return _m_hHandle.get();
@@ -51,7 +51,7 @@ CxWaitableTimer::create(
 }
 //---------------------------------------------------------------------------
 void
-CxWaitableTimer::vOpen(
+CxWaitableTimer::open(
     const std::tstring_t &a_csName,
     const ulong_t        &a_culDesiredAccess,
     const bool           &a_cbInheritHandle
@@ -75,7 +75,7 @@ CxWaitableTimer::vOpen(
 }
 //---------------------------------------------------------------------------
 void
-CxWaitableTimer::vCancel() const {
+CxWaitableTimer::cancel() const {
     xTEST_EQ(true, _m_hHandle.isValid());
 
     BOOL blRes = ::CancelWaitableTimer(_m_hHandle.get());
@@ -83,7 +83,7 @@ CxWaitableTimer::vCancel() const {
 }
 //---------------------------------------------------------------------------
 void
-CxWaitableTimer::vSet(
+CxWaitableTimer::set(
     const longlong_t &a_cllDueTime,
     const long_t     &a_cliPeriod,
     PTIMERAPCROUTINE  a_pfnCompletionRoutine,
@@ -108,7 +108,7 @@ CxWaitableTimer::vSet(
 }
 //---------------------------------------------------------------------------
 void
-CxWaitableTimer::vWait(
+CxWaitableTimer::wait(
     const ulong_t &a_culTimeout
 ) const
 {

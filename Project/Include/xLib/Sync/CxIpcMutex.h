@@ -26,15 +26,15 @@ public:
                       CxIpcMutex();
     virtual          ~CxIpcMutex();
 
-    const handle_t &  hHandle   () const;
+    const handle_t &  handle    () const;
         ///< get handle
-    void              create   (const std::tstring_t &csName);
+    void              create    (const std::tstring_t &csName);
         ///< create
-    void              vOpen     (const std::tstring_t &csName);
+    void              open      (const std::tstring_t &csName);
         ///< open
-    void              vLock     (const ulong_t &culTimeoutMsec) const;
+    void              lock      (const ulong_t &culTimeoutMsec) const;
         ///< unlock by timeout in msec
-    void              vUnlock   () const;
+    void              unlock    () const;
         ///< lock
 
 private:

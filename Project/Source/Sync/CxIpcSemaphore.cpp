@@ -32,7 +32,7 @@ CxIpcSemaphore::CxIpcSemaphore() :
 #endif
     _m_sName  ()
 {
-    xTEST_EQ(false, _bIsValid());
+    xTEST_EQ(false, _isValid());
 
 #if   xOS_ENV_WIN
     xNA;
@@ -42,7 +42,7 @@ CxIpcSemaphore::CxIpcSemaphore() :
 }
 //---------------------------------------------------------------------------
 CxIpcSemaphore::~CxIpcSemaphore() {
-    xTEST_EQ(true, _bIsValid());
+    xTEST_EQ(true, _isValid());
 
 #if   xOS_ENV_WIN
     xNA;
@@ -56,8 +56,8 @@ CxIpcSemaphore::~CxIpcSemaphore() {
 }
 //---------------------------------------------------------------------------
 const CxIpcSemaphore::handle_t &
-CxIpcSemaphore::hHandle() const {
-    xTEST_EQ(true, _bIsValid());
+CxIpcSemaphore::handle() const {
+    xTEST_EQ(true, _isValid());
 
     return _m_hHandle;
 }
@@ -68,7 +68,7 @@ CxIpcSemaphore::create(
     const std::tstring_t &a_csName
 )
 {
-    xTEST_EQ(false, _bIsValid());
+    xTEST_EQ(false, _isValid());
     xTEST_GR(CxPath::maxSize(), a_csName.size());
     xTEST_EQ(true, 0L <= a_cliInitialValue && a_cliInitialValue <= xSEMAPHORE_VALUE_MAX);
 
@@ -93,20 +93,20 @@ CxIpcSemaphore::create(
 #elif xOS_ENV_UNIX
     std::tstring_t sUnixName = CxConst::xUNIX_SLASH + a_csName;
 
-    handle_t hHandle = ::sem_open(sUnixName.c_str(), O_CREAT | O_RDWR, 0777, a_cliInitialValue);
-    xTEST_DIFF(SEM_FAILED, hHandle);
+    handle_t handle = ::sem_open(sUnixName.c_str(), O_CREAT | O_RDWR, 0777, a_cliInitialValue);
+    xTEST_DIFF(SEM_FAILED, handle);
 
-    _m_hHandle = hHandle;
+    _m_hHandle = handle;
     _m_sName   = sUnixName;
 #endif
 }
 //---------------------------------------------------------------------------
 void
-CxIpcSemaphore::vOpen(
+CxIpcSemaphore::open(
     const std::tstring_t &a_csName
 )
 {
-    xTEST_EQ(true, _bIsValid());
+    xTEST_EQ(true, _isValid());
     //csName    - n/a
 
 #if   xOS_ENV_WIN
@@ -128,17 +128,17 @@ CxIpcSemaphore::vOpen(
 #elif xOS_ENV_UNIX
     std::tstring_t sUnixName = CxConst::xUNIX_SLASH + a_csName;
 
-    handle_t hHandle = ::sem_open(sUnixName.c_str(), O_RDWR, 0777, 0U);
-    xTEST_DIFF(SEM_FAILED, hHandle);
+    handle_t handle = ::sem_open(sUnixName.c_str(), O_RDWR, 0777, 0U);
+    xTEST_DIFF(SEM_FAILED, handle);
 
-    _m_hHandle = hHandle;
+    _m_hHandle = handle;
     _m_sName   = sUnixName;
 #endif
 }
 //---------------------------------------------------------------------------
 void
-CxIpcSemaphore::vPost() const {
-    xTEST_EQ(true, _bIsValid());
+CxIpcSemaphore::post() const {
+    xTEST_EQ(true, _isValid());
 
 #if   xOS_ENV_WIN
    const LONG cliPostValue = 1L;
@@ -152,11 +152,11 @@ CxIpcSemaphore::vPost() const {
 }
 //---------------------------------------------------------------------------
 void
-CxIpcSemaphore::vWait(
+CxIpcSemaphore::wait(
     const ulong_t &a_culTimeoutMsec
 ) const
 {
-    xTEST_EQ(true, _bIsValid());
+    xTEST_EQ(true, _isValid());
     //ulTimeout - n/a
 
 #if   xOS_ENV_WIN
@@ -220,8 +220,8 @@ CxIpcSemaphore::vWait(
 }
 //---------------------------------------------------------------------------
 long_t
-CxIpcSemaphore::liValue() const {
-    xTEST_EQ(true, _bIsValid());
+CxIpcSemaphore::value() const {
+    xTEST_EQ(true, _isValid());
 
     long_t liRv = - 1L;
 
@@ -251,7 +251,7 @@ CxIpcSemaphore::liValue() const {
 
 //---------------------------------------------------------------------------
 bool
-CxIpcSemaphore::_bIsValid() const {
+CxIpcSemaphore::_isValid() const {
 #if   xOS_ENV_WIN
     return _m_hHandle.isValid();
 #elif xOS_ENV_UNIX

@@ -24,14 +24,14 @@ CxTest_CxCurrentThread::unit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    xTEST_CASE("CxCurrentThread::bIsCurrent", cullCaseLoops)
+    xTEST_CASE("CxCurrentThread::isCurrent", cullCaseLoops)
     {
         CxThread::id_t aulData[5][2] = {{0}};
 
-        aulData[0][0] = (CxThread::id_t)CxCurrentThread::ulId();
+        aulData[0][0] = (CxThread::id_t)CxCurrentThread::id();
         aulData[0][1] = (CxThread::id_t)true;
 
-        aulData[1][0] = (CxThread::id_t)((ulong_t)CxCurrentThread::ulId() - 1);
+        aulData[1][0] = (CxThread::id_t)((ulong_t)CxCurrentThread::id() - 1);
         aulData[1][1] = (CxThread::id_t)false;
 
         aulData[2][0] = (CxThread::id_t)0;
@@ -47,41 +47,41 @@ CxTest_CxCurrentThread::unit(
             const CxThread::id_t culId = aulData[i][0];
             const bool           cbRes = xINT_TO_BOOL( (ulong_t)aulData[i][1] );
 
-            m_bRv = CxCurrentThread::bIsCurrent(culId);
+            m_bRv = CxCurrentThread::isCurrent(culId);
             xTEST_EQ(cbRes, m_bRv);
         }
     }
 
-    xTEST_CASE("CxCurrentThread::ulGetId", cullCaseLoops)
+    xTEST_CASE("CxCurrentThread::id", cullCaseLoops)
     {
-        CxThread::id_t idRes = CxCurrentThread::ulId();
+        CxThread::id_t idRes = CxCurrentThread::id();
         xTEST_LESS(0UL, (ulong_t)idRes);
     }
 
-    xTEST_CASE("CxCurrentThread::hHandle", cullCaseLoops)
+    xTEST_CASE("CxCurrentThread::handle", cullCaseLoops)
     {
-        CxThread::handle_t hRv = CxCurrentThread::hHandle();
+        CxThread::handle_t hRv = CxCurrentThread::handle();
         xTEST_DIFF(0UL, (ulong_t)hRv);
     }
 
-    xTEST_CASE("CxCurrentThread::ulGetId", cullCaseLoops)
+    xTEST_CASE("CxCurrentThread::id", cullCaseLoops)
     {
-        CxThread::id_t idRes = CxCurrentThread::ulId();
+        CxThread::id_t idRes = CxCurrentThread::id();
         xTEST_LESS(0UL, (ulong_t)idRes);
     }
 
-    xTEST_CASE("CxCurrentThread::hHandle", cullCaseLoops)
+    xTEST_CASE("CxCurrentThread::handle", cullCaseLoops)
     {
-        CxThread::handle_t hRv = CxCurrentThread::hHandle();
+        CxThread::handle_t hRv = CxCurrentThread::handle();
         xTEST_LESS((ulong_t)0, (ulong_t)hRv);
     }
 
-    xTEST_CASE("CxCurrentThread::vYield", cullCaseLoops)
+    xTEST_CASE("CxCurrentThread::yield", cullCaseLoops)
     {
-        CxCurrentThread::vYield();
+        CxCurrentThread::yield();
     }
 
-    xTEST_CASE("CxCurrentThread::vSleep", cullCaseLoops)
+    xTEST_CASE("CxCurrentThread::sleep", cullCaseLoops)
     {
         const ulong_t caulData[] = {
             0,
@@ -97,14 +97,14 @@ CxTest_CxCurrentThread::unit(
             
             dtTime1 = CxDateTime::current();
 
-            CxCurrentThread::vSleep(cuiMsec);
+            CxCurrentThread::sleep(cuiMsec);
 
             CxDateTime dtTime2;
             
             dtTime2 = CxDateTime::current();
 
             xTEST_GR_EQ(dtTime2.toMilliseconds(), dtTime1.toMilliseconds());
-            //xTRACEV(xT("sNow1: %s,\nsNow2: %s"), dtTime1.sFormat(CxDateTime::ftTime).c_str(), dtTime2.sFormat(CxDateTime::ftTime).c_str());
+            //xTRACEV(xT("sNow1: %s,\nsNow2: %s"), dtTime1.sormat(CxDateTime::ftTime).c_str(), dtTime2.sormat(CxDateTime::ftTime).c_str());
         }
     }
 }

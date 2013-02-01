@@ -22,16 +22,16 @@ CxThreadStorage::CxThreadStorage() :
     _m_indIndex(static_cast<pthread_key_t>( -1 ))
 #endif
 {
-    _vAlloc();
+    _alloc();
 }
 //---------------------------------------------------------------------------
 /* virtual */
 CxThreadStorage::~CxThreadStorage() {
-    _vFree();
+    _free();
 }
 //---------------------------------------------------------------------------
 bool
-CxThreadStorage::bIsSet() const {
+CxThreadStorage::isSet() const {
     void *pvRv = NULL;
 
 #if   xOS_ENV_WIN
@@ -46,7 +46,7 @@ CxThreadStorage::bIsSet() const {
 }
 //---------------------------------------------------------------------------
 void *
-CxThreadStorage::pvValue() const {
+CxThreadStorage::value() const {
     void *pvRv = NULL;
 
 #if   xOS_ENV_WIN
@@ -65,7 +65,7 @@ CxThreadStorage::pvValue() const {
 }
 //---------------------------------------------------------------------------
 void
-CxThreadStorage::vSetValue(
+CxThreadStorage::setValue(
     void *a_pvValue
 ) const
 {
@@ -93,7 +93,7 @@ CxThreadStorage::vSetValue(
 
 //---------------------------------------------------------------------------
 void
-CxThreadStorage::_vAlloc() {
+CxThreadStorage::_alloc() {
     index_t indRes = (index_t)- 1;
 
 #if   xOS_ENV_WIN
@@ -112,7 +112,7 @@ CxThreadStorage::_vAlloc() {
 }
 //---------------------------------------------------------------------------
 void
-CxThreadStorage::_vFree() {
+CxThreadStorage::_free() {
 #if   xOS_ENV_WIN
     xTEST_DIFF(TLS_OUT_OF_INDEXES, _m_indIndex);
 

@@ -225,7 +225,7 @@ CxTest_CxSystemInfo::unit(
             #if xTEST_IGNORE
                 xTRACEV(xT("\tcpuUsage: %ld"), m_ulRv);
 
-                CxCurrentThread::vSleep(1000UL);
+                CxCurrentThread::sleep(1000UL);
             #endif
         }
     }
@@ -239,7 +239,7 @@ CxTest_CxSystemInfo::unit(
             #if xTEST_IGNORE
                 xTRACEV(xT("\tramUsage: %ld"), m_ulRv);
 
-                CxCurrentThread::vSleep(1000UL);
+                CxCurrentThread::sleep(1000UL);
             #endif
         }
     }

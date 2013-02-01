@@ -81,7 +81,7 @@ CxDebugger::isActive() {
     // remote debugger
     BOOL blIsRemoteDebuggerPresent = FALSE;
 
-    blRes = ::CheckRemoteDebuggerPresent(CxCurrentProcess::hHandle(), &blIsRemoteDebuggerPresent);
+    blRes = ::CheckRemoteDebuggerPresent(CxCurrentProcess::handle(), &blIsRemoteDebuggerPresent);
     xCHECK_RET(FALSE == blRes || FALSE == blIsRemoteDebuggerPresent, false);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
@@ -96,7 +96,7 @@ CxDebugger::isActive() {
         aiMib[0] = CTL_KERN;
         aiMib[1] = KERN_PROC;
         aiMib[2] = KERN_PROC_PID;
-        aiMib[3] = CxCurrentProcess::ulId();
+        aiMib[3] = CxCurrentProcess::id();
 
         // if sysctl fails for some bizarre reason, we get a predictable result
         kiInfo.ki_flag = 0;
@@ -133,7 +133,7 @@ CxDebugger::breakPoint() {
     int iRv = ::raise(SIGTRAP);
     xTEST_DIFF(- 1, iRv);
 
-    //// int iRv = ::kill(CxCurrentProcess::ulId(), SIGALRM);
+    //// int iRv = ::kill(CxCurrentProcess::id(), SIGALRM);
     //// xTEST_DIFF(- 1, iRv);
 #endif
 }
@@ -201,7 +201,7 @@ CxDebugger::_msgboxPlain(
 #endif
     switch (mrRes) {
         case CxMsgBoxT::mrAbort: {
-                CxCurrentProcess::vExit(0U);
+                CxCurrentProcess::exit(0U);
             }
             break;
 
@@ -216,7 +216,7 @@ CxDebugger::_msgboxPlain(
                     breakPoint();
                 } else {
                     CxMsgBoxT::show(xT("Debugger is not present.\nThe application will be terminated."), xT("xLib"));
-                    CxCurrentProcess::vExit(0U);
+                    CxCurrentProcess::exit(0U);
                 }
             }
             break;
@@ -252,7 +252,7 @@ CxDebugger::_stdoutPlain(
         case cmAbort: {
                 std::tcout << xT("Abort...\n\n");  std::tcout.flush();
 
-                CxCurrentProcess::vExit(0U);
+                CxCurrentProcess::exit(0U);
             }
             break;
 
@@ -276,7 +276,7 @@ CxDebugger::_stdoutPlain(
                     std::tcout << xT("\n\n");
                     std::tcout.flush();
 
-                    CxCurrentProcess::vExit(0U);
+                    CxCurrentProcess::exit(0U);
                 }
             }
             break;

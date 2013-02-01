@@ -60,7 +60,7 @@ CxThreadPool<T>::~CxThreadPool() {
 //---------------------------------------------------------------------------
 template<typename T>
 void
-CxThreadPool<T>::vGroupCreate(
+CxThreadPool<T>::groupCreate(
     const uint_t     &a_cuiStackSize,
     const func_ptr_t  a_fpFuncPtr,
     void             *a_pvParam,
@@ -69,12 +69,12 @@ CxThreadPool<T>::vGroupCreate(
 )
 {
     xTEST_LESS_EQ(0U, a_cuiStackSize);    // TODO: MaxValue
-     xTEST_NA(a_fpFuncPtr);
-     xTEST_NA(a_pvParam);
+    xTEST_NA(a_fpFuncPtr);
+    xTEST_NA(a_pvParam);
     xTEST_LESS_EQ(size_t(0), a_cuiNumTasks);
     xTEST_LESS_EQ(size_t(0), a_cuiMaxRunningTasks);
 
-    xCHECK_DO(true == bIsRunning(), /*LOG*/_m_clLog.vWrite(xT("CxThreadPool: is running")); return);
+    xCHECK_DO(true == isRunning(), /*LOG*/_m_clLog.vWrite(xT("CxThreadPool: is running")); return);
 
     //-------------------------------------
     //
@@ -91,10 +91,8 @@ CxThreadPool<T>::vGroupCreate(
 //---------------------------------------------------------------------------
 template<typename T>
 void
-CxThreadPool<T>::vGroupResume() {
-
-
-    xCHECK_DO(false == bIsRunning(), /*LOG*/_m_clLog.vWrite(xT("CxThreadPool: not running")); return);
+CxThreadPool<T>::groupResume() {
+    xCHECK_DO(false == isRunning(), /*LOG*/_m_clLog.vWrite(xT("CxThreadPool: not running")); return);
 
     //-------------------------------------
     //
@@ -102,27 +100,25 @@ CxThreadPool<T>::vGroupResume() {
         CxAutoMutex amtMutex(&_m_mtList);
 
         xFOREACH_CONST(typename std::list<T *>, it, _m_lthTasks) {
-            xCHECK_DO(false == (*it)->bIsRunning(), /*LOG*/_m_clLog.vWrite(xT("Not running")); continue);
+            xCHECK_DO(false == (*it)->isRunning(), /*LOG*/_m_clLog.vWrite(xT("Not running")); continue);
 
-            (*it)->vResume();
+            (*it)->resume();
         }
     }
 
     //-------------------------------------
     //
-    vResume();
+    resume();
 }
 //---------------------------------------------------------------------------
 template<typename T>
 void
-CxThreadPool<T>::vGroupPause() {
-
-
-    xCHECK_DO(false == bIsRunning(), /*LOG*/_m_clLog.vWrite(xT("CxThreadPool: not running")); return);
+CxThreadPool<T>::groupPause() {
+    xCHECK_DO(false == isRunning(), /*LOG*/_m_clLog.vWrite(xT("CxThreadPool: not running")); return);
 
     //-------------------------------------
     //���
-    vPause();
+    pause();
 
     //-------------------------------------
     //������� ������
@@ -130,26 +126,24 @@ CxThreadPool<T>::vGroupPause() {
         CxAutoMutex amtMutex(&_m_mtList);
 
         xFOREACH_CONST(typename std::list<T *>, it, _m_lthTasks) {
-            xCHECK_DO(false == (*it)->bIsRunning(), /*LOG*/_m_clLog.vWrite(xT("Not running")); continue);
+            xCHECK_DO(false == (*it)->isRunning(), /*LOG*/_m_clLog.vWrite(xT("Not running")); continue);
 
-            (*it)->vPause();
+            (*it)->pause();
         }
     }
 }
 //---------------------------------------------------------------------------
 template<typename T>
 void
-CxThreadPool<T>::vGroupExit(
+CxThreadPool<T>::groupExit(
     const ulong_t &a_culTimeout
 )
 {
-
-
-    xCHECK_DO(false == bIsRunning(), /*LOG*/_m_clLog.vWrite(xT("CxThreadPool: not running")); return);
+    xCHECK_DO(false == isRunning(), /*LOG*/_m_clLog.vWrite(xT("CxThreadPool: not running")); return);
 
     //-------------------------------------
     //���
-    vExit(/* a_culTimeout */);
+    exit(/* a_culTimeout */);
 
     //-------------------------------------
     //������� ������
@@ -157,22 +151,22 @@ CxThreadPool<T>::vGroupExit(
         CxAutoMutex amtMutex(&_m_mtList);
 
         xFOREACH_CONST(typename std::list<T *>, it, _m_lthTasks)    {
-            xCHECK_DO(false == (*it)->bIsRunning(), /*LOG*/_m_clLog.vWrite(xT("CxThreadPool: not running")); continue);
+            xCHECK_DO(false == (*it)->isRunning(), /*LOG*/_m_clLog.vWrite(xT("CxThreadPool: not running")); continue);
 
-            (*it)->vExit(/* a_culTimeout */);
+            (*it)->exit(/* a_culTimeout */);
         }
     }
 }
 //---------------------------------------------------------------------------
 template<typename T>
 void
-CxThreadPool<T>::vGroupKill(
+CxThreadPool<T>::groupKill(
     const ulong_t &a_culTimeout
 )
 {
     xTEST_PTR(this);
 
-    xCHECK_DO(false == bIsRunning(), /*LOG*/_m_clLog.vWrite(xT("CxThreadPool: not running")); return);
+    xCHECK_DO(false == isRunning(), /*LOG*/_m_clLog.vWrite(xT("CxThreadPool: not running")); return);
 
     //-------------------------------------
     //������� ������
@@ -180,26 +174,24 @@ CxThreadPool<T>::vGroupKill(
         CxAutoMutex amtMutex(&_m_mtList);
 
         xFOREACH_CONST(typename std::list<T *>, it, _m_lthTasks)    {
-            xCHECK_DO(false == (*it)->bIsRunning(), /*LOG*/_m_clLog.vWrite(xT("Not running")); continue);
+            xCHECK_DO(false == (*it)->isRunning(), /*LOG*/_m_clLog.vWrite(xT("Not running")); continue);
 
-            (*it)->vKill(a_culTimeout);
+            (*it)->kill(a_culTimeout);
         }
     }
 
     //-------------------------------------
     //
-    vKill(a_culTimeout);
+    kill(a_culTimeout);
 }
 //---------------------------------------------------------------------------
 template<typename T>
 void
-CxThreadPool<T>::vGroupWait(
+CxThreadPool<T>::groupWait(
     const ulong_t &a_culTimeout
 )
 {
-
-
-    xCHECK_DO(false == bIsRunning(), /*LOG*/_m_clLog.vWrite(xT("CxThreadPool: not running")); return);
+    xCHECK_DO(false == isRunning(), /*LOG*/_m_clLog.write(xT("CxThreadPool: not running")); return);
 
     //-------------------------------------
     //������� ������
@@ -207,15 +199,15 @@ CxThreadPool<T>::vGroupWait(
         CxAutoMutex amtMutex(&_m_mtList);
 
         xFOREACH_CONST(typename std::list<T *>, it, _m_lthTasks)    {
-            xCHECK_DO(false == (*it)->bIsRunning(), /*LOG*/_m_clLog.vWrite(xT("Not running")); continue);
+            xCHECK_DO(false == (*it)->isRunning(), /*LOG*/_m_clLog.write(xT("Not running")); continue);
 
-            (*it)->vWait(a_culTimeout);
+            (*it)->wait(a_culTimeout);
         }
     }
 
     //-------------------------------------
     //��� - !�������� ������ ����!
-    //-- vWait(culTimeout);
+    //-- wait(culTimeout);
 }
 //---------------------------------------------------------------------------
 
@@ -228,7 +220,7 @@ CxThreadPool<T>::vGroupWait(
 //---------------------------------------------------------------------------
 template<typename T>
 size_t
-CxThreadPool<T>::uiMaxTasks() const {
+CxThreadPool<T>::maxTasks() const {
     // n/a
 
     return _m_uiMaxRunningTasks;
@@ -236,7 +228,7 @@ CxThreadPool<T>::uiMaxTasks() const {
 //---------------------------------------------------------------------------
 template<typename T>
 void
-CxThreadPool<T>::vSetMaxTasks(
+CxThreadPool<T>::setMaxTasks(
     const size_t &a_cuiNum
 )
 {
@@ -249,7 +241,7 @@ CxThreadPool<T>::vSetMaxTasks(
         size_t uiTasksForInc = a_cuiNum - _m_uiMaxRunningTasks;
 
         for (size_t i = 0U; i < uiTasksForInc; ++ i) {
-            _m_semSemaphore.vPost();
+            _m_semSemaphore.post();
         }
 
         _m_uiMaxRunningTasks = a_cuiNum;
@@ -266,7 +258,7 @@ CxThreadPool<T>::vSetMaxTasks(
         size_t uiTasksForDec = _m_uiMaxRunningTasks - a_cuiNum;
 
         xFOREACH_R_CONST(typename std::list<T *>, it, _m_lthTasks) {
-            xCHECK_DO(false == (*it)->bIsRunning(), /*LOG*/_m_clLog.vWrite(xT("Not running")); continue);
+            xCHECK_DO(false == (*it)->isRunning(), /*LOG*/_m_clLog.vWrite(xT("Not running")); continue);
 
             #if   xOS_ENV_WIN
                 ::InterlockedExchange(&((*it)->m_ulTag), 1UL);
@@ -274,7 +266,7 @@ CxThreadPool<T>::vSetMaxTasks(
 
             #endif
 
-            (*it)->vExit(/* ulTimeout */);
+            (*it)->exit(/* ulTimeout */);
 
             ++ uiCount;
             xCHECK_DO(uiCount >= uiTasksForDec, break);
@@ -298,7 +290,7 @@ CxThreadPool<T>::vSetMaxTasks(
 //---------------------------------------------------------------------------
 template<typename T>
 size_t
-CxThreadPool<T>::uiNumTasks() const {
+CxThreadPool<T>::numTasks() const {
     // n/a
 
     return _m_uiNumTasks;
@@ -306,7 +298,7 @@ CxThreadPool<T>::uiNumTasks() const {
 //---------------------------------------------------------------------------
 template<typename T>
 void
-CxThreadPool<T>::vSetNumTasks(
+CxThreadPool<T>::setNumTasks(
     const size_t &a_cuiNum
 )
 {
@@ -317,7 +309,7 @@ CxThreadPool<T>::vSetNumTasks(
 //---------------------------------------------------------------------------
 template<typename T>
 bool
-CxThreadPool<T>::bIsEmpty() const {
+CxThreadPool<T>::isEmpty() const {
 
 
     CxAutoMutex amtMutex(&_m_mtList);
@@ -330,7 +322,7 @@ CxThreadPool<T>::bIsEmpty() const {
 //---------------------------------------------------------------------------
 template<typename T>
 bool
-CxThreadPool<T>::bIsFull() const {
+CxThreadPool<T>::isFull() const {
     //xTEST_EQ(CONDITION);
 
     CxAutoMutex amtMutex(&_m_mtList, true);
@@ -345,7 +337,7 @@ CxThreadPool<T>::bIsFull() const {
 //---------------------------------------------------------------------------
 template<typename T>
 size_t
-CxThreadPool<T>::uiSize() const {
+CxThreadPool<T>::size() const {
     //xTEST_EQ(CONDITION);
 
     CxAutoMutex amtMutex(&_m_mtList, true);
@@ -366,12 +358,10 @@ CxThreadPool<T>::uiSize() const {
 //---------------------------------------------------------------------------
 template<typename T>
 uint_t
-CxThreadPool<T>::uiOnRun(
+CxThreadPool<T>::onRun(
     void *a_pvParam
 )
 {
-
-
     uint_t uiRes = 0U;
 
     //-------------------------------------
@@ -386,7 +376,7 @@ CxThreadPool<T>::uiOnRun(
     xFOREVER {
         //-------------------------------------
         //�������� ���������� ������
-        _m_semSemaphore.vWait(xTIMEOUT_INFINITE);
+        _m_semSemaphore.wait(xTIMEOUT_INFINITE);
 
         //-------------------------------------
         //��� �������� (���� ��������� ��� ������� - �����)
@@ -395,12 +385,12 @@ CxThreadPool<T>::uiOnRun(
 
         //-------------------------------------
         //�� ���� �� ����� ��� ���������������
-        bool bRv = bIsTimeToExit();
+        bool bRv = isTimeToExit();
         xCHECK_DO(true == bRv, break);
 
         //-------------------------------------
         //������ ����. ������
-        _vTaskAdd(NULL);                       //_m_semSemaphore.bWait(INFINITE);
+        _taskAdd(NULL);                       //_m_semSemaphore.bWait(INFINITE);
         xTEST_EQ(true, bRv);                //continue ???
 
         ++ _m_uiCurrTask;
@@ -414,9 +404,9 @@ CxThreadPool<T>::uiOnRun(
     ////xTEST_EQ(true, bRv, 0);
 
     xFOREVER {
-        xCHECK_DO(true == bIsEmpty(), break);
+        xCHECK_DO(true == isEmpty(), break);
 
-        CxCurrentThread::vSleep(500UL);
+        CxCurrentThread::sleep(500UL);
     }
     xTEST_EQ(true, _m_lthTasks.empty());
 
@@ -436,12 +426,10 @@ CxThreadPool<T>::uiOnRun(
 //---------------------------------------------------------------------------
 template<typename T>
 void
-CxThreadPool<T>::_vTaskAdd(
+CxThreadPool<T>::_taskAdd(
     CxThread *a_pvItem
 )
 {
-
-
     T *pthTask = new T(_m_cbIsGroupAutoDelete);
     xTEST_PTR(pthTask);
 
@@ -450,7 +438,7 @@ CxThreadPool<T>::_vTaskAdd(
     // TODO: pthTask->vAttachHandler_OnExit ( xCLOSURE(this, &CxThreadPool::_vOnExitTask ) );
 
     pthTask->create(_m_cbIsGroupPaused, _m_uiStackSize, _m_pvParam);
-    pthTask->vResume();
+    pthTask->resume();
 
     {
         CxAutoMutex amtMutex(&_m_mtList);
@@ -460,13 +448,13 @@ CxThreadPool<T>::_vTaskAdd(
 //---------------------------------------------------------------------------
 template<typename T>
 void
-CxThreadPool<T>::_vTaskRemove(
+CxThreadPool<T>::_taskRemove(
     CxThread *a_pvItem
 )
 {
     T *pthTask = static_cast<T *>( a_pvItem );
     xTEST_PTR(pthTask);
-    xTEST_EQ(true, pthTask->bIsRunning());
+    xTEST_EQ(true, pthTask->isRunning());
 
     //-------------------------------------
     //����������� _m_semSemaphore
@@ -489,13 +477,12 @@ CxThreadPool<T>::_vTaskRemove(
 //---------------------------------------------------------------------------
 template<typename T>
 void
-CxThreadPool<T>::_vOnEnterTask(
+CxThreadPool<T>::_onEnterTask(
     CxThread *a_pthSender
 )
 {
-
     xTEST_PTR(a_pthSender);
-    xTEST_EQ(true, a_pthSender->bIsRunning());
+    xTEST_EQ(true, a_pthSender->isRunning());
 
     //...
 
@@ -504,15 +491,14 @@ CxThreadPool<T>::_vOnEnterTask(
 //---------------------------------------------------------------------------
 template<typename T>
 void
-CxThreadPool<T>::_vOnExitTask(
+CxThreadPool<T>::_onExitTask(
     CxThread *a_pthSender
 )
 {
-
     xTEST_PTR(a_pthSender);
-    xTEST_EQ(true, a_pthSender->bIsRunning());
+    xTEST_EQ(true, a_pthSender->isRunning());
 
-    _vTaskRemove(a_pthSender);
+    _taskRemove(a_pthSender);
 
     /*LOG*///_m_clLog.vWrite(xT("_vOnExitTask stop: #%i"), a_pthTask->m_uiIndex);
 }

@@ -24,33 +24,33 @@ CxTest_CxMutex::unit(
 {
     size_t uiVal = 0;
 
-    xTEST_CASE("CxMutex::vLock CxMutex::vUnlock", cullCaseLoops)
+    xTEST_CASE("CxMutex::lock CxMutex::unlock", cullCaseLoops)
     {
         CxMutex csCS;
 
         csCS.create();
-        csCS.vLock();
+        csCS.lock();
 
         ++ uiVal;
 
-        csCS.vUnlock();
+        csCS.unlock();
     }
 
-    xTEST_CASE("CxMutex::vTryLock CxMutex::vUnlock", cullCaseLoops)
+    xTEST_CASE("CxMutex::tryLock CxMutex::unlock", cullCaseLoops)
     {
         CxMutex csCS;
 
         csCS.create();
 
-        m_bRv = csCS.bTryLock();
+        m_bRv = csCS.tryLock();
         xTEST_EQ(true, m_bRv);
 
         ++ uiVal;
 
-        csCS.vUnlock();
+        csCS.unlock();
     }
 
-    xTEST_CASE("CxMutex::vLock CxMutex::vUnlock", cullCaseLoops)
+    xTEST_CASE("CxMutex::lock CxMutex::unlock", cullCaseLoops)
     {
         CxMutex csCS;
 
@@ -59,17 +59,17 @@ CxTest_CxMutex::unit(
         csCS.create();
 
         for (size_t i = 0; i < cuiLocks; ++ i) {
-            csCS.vLock();
+            csCS.lock();
         }
 
         ++ uiVal;
 
         for (size_t i = 0; i < cuiLocks; ++ i) {
-            csCS.vUnlock();
+            csCS.unlock();
         }
     }
 
-    xTEST_CASE("CxMutex::vTryLock CxMutex::vUnlock", cullCaseLoops)
+    xTEST_CASE("CxMutex::tryLock CxMutex::unlock", cullCaseLoops)
     {
         CxMutex csCS;
 
@@ -78,14 +78,14 @@ CxTest_CxMutex::unit(
         csCS.create();
 
         for (size_t i = 0; i < cuiLocks; ++ i) {
-            m_bRv = csCS.bTryLock();
+            m_bRv = csCS.tryLock();
             xTEST_EQ(true, m_bRv);
         }
 
         ++ uiVal;
 
         for (size_t i = 0; i < cuiLocks; ++ i) {
-            csCS.vUnlock();
+            csCS.unlock();
         }
     }
 }
