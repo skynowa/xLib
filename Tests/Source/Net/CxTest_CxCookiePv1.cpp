@@ -24,107 +24,107 @@ CxTest_CxCookiePv1::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    const std::tstring_t   csName      = xT("Name1");
-    const std::tstring_t   csValue     = xT("Value1");
-    const std::tstring_t   csComment   = xT("Comment1");
-    const std::tstring_t   csDomain    = xT(".domain.com1");
-    const std::tstring_t   csPath      = xT("/1");
-    const longlong_t  ciMaxAge    = 10 * 60 * 60;
-    const bool      cbSecure    = true;
-    const bool      cbHttpOnly  = true;
-    const std::tstring_t   csRawCookie = CxString::format(
+    const std::tstring_t csName      = xT("Name1");
+    const std::tstring_t csValue     = xT("Value1");
+    const std::tstring_t csComment   = xT("Comment1");
+    const std::tstring_t csDomain    = xT(".domain.com1");
+    const std::tstring_t csPath      = xT("/1");
+    const longlong_t     ciMaxAge    = 10 * 60 * 60;
+    const bool           cbSecure    = true;
+    const bool           cbHttpOnly  = true;
+    const std::tstring_t csRawCookie = CxString::format(
                                         xT("%s=\"%s\"; Comment=\"%s\"; Domain=\"%s\"; Path=\"%s\"; Max-Age=\"%lli\"; Secure; HttpOnly; Version=\"1\""),
-                                        csName.c_str(), csValue.c_str(), csComment.c_str(), csDomain.c_str(), csPath.c_str(), ciMaxAge /*cbSecure = true, cbHttpOnly = true*/
-                                    );
+                                        csName.c_str(), csValue.c_str(), csComment.c_str(), csDomain.c_str(), 
+                                        csPath.c_str(), ciMaxAge /*cbSecure = true, cbHttpOnly = true*/);
 
     xTEST_CASE("CxCookiePv1::CxCookiePv1", cullCaseLoops)
     {
         CxCookiePv1 ckCookiePv1;
 
-        ckCookiePv1.vSetName(csName);
+        ckCookiePv1.setName(csName);
 
-        m_sRv = ckCookiePv1.sName();
+        m_sRv = ckCookiePv1.name();
         xTEST_EQ(csName, m_sRv);
 
-        ckCookiePv1.vSetValue(csValue);
+        ckCookiePv1.setValue(csValue);
 
-        m_sRv = ckCookiePv1.sValue();
+        m_sRv = ckCookiePv1.value();
         xTEST_EQ(csValue, m_sRv);
 
-        ckCookiePv1.vSetComment(csComment);
+        ckCookiePv1.setComment(csComment);
 
-        m_sRv = ckCookiePv1.sComment();
+        m_sRv = ckCookiePv1.comment();
         xTEST_EQ(csComment, m_sRv);
 
-        ckCookiePv1.vSetDomain(csDomain);
+        ckCookiePv1.setDomain(csDomain);
 
-        m_sRv = ckCookiePv1.sDomain();
+        m_sRv = ckCookiePv1.domain();
         xTEST_EQ(csDomain, m_sRv);
 
-        ckCookiePv1.vSetPath(csPath);
+        ckCookiePv1.setPath(csPath);
 
-        m_sRv = ckCookiePv1.sPath();
+        m_sRv = ckCookiePv1.path();
         xTEST_EQ(csPath, m_sRv);
 
-        ckCookiePv1.vSetMaxAge(ciMaxAge);
+        ckCookiePv1.setMaxAge(ciMaxAge);
 
-        m_llRv = ckCookiePv1.liGetMaxAge();
+        m_llRv = ckCookiePv1.maxAge();
         xTEST_EQ(ciMaxAge, m_llRv);
 
-        ckCookiePv1.vSetSecure(cbSecure);
+        ckCookiePv1.setSecure(cbSecure);
 
-        m_bRv = ckCookiePv1.bGetSecure();
+        m_bRv = ckCookiePv1.secure();
         xTEST_EQ(cbSecure, m_bRv);
 
-         ckCookiePv1.vSetHttpOnly(cbHttpOnly);
+         ckCookiePv1.setHttpOnly(cbHttpOnly);
 
-        m_bRv = ckCookiePv1.bGetHttpOnly();
+        m_bRv = ckCookiePv1.httpOnly();
         xTEST_EQ(cbHttpOnly, m_bRv);
 
-        m_sRv = ckCookiePv1.sToString();
+        m_sRv = ckCookiePv1.toString();
         xTEST_EQ(csRawCookie, m_sRv);
 
         {
-            CxCookiePv1 _ckCookiePv0(ckCookiePv1.sToString());
-            xTEST_EQ(_ckCookiePv0.sToString(), csRawCookie);
-            xTEST_EQ(ckCookiePv1.sToString() , _ckCookiePv0.sToString());
+            CxCookiePv1 _ckCookiePv0(ckCookiePv1.toString());
+            xTEST_EQ(_ckCookiePv0.toString(), csRawCookie);
+            xTEST_EQ(ckCookiePv1.toString() , _ckCookiePv0.toString());
         }
 
-        ckCookiePv1.vClear();
+        ckCookiePv1.clear();
     }
 
     xTEST_CASE("CxCookiePv1::CxCookiePv1(const std::tstring_t &)", cullCaseLoops)
     {
         CxCookiePv1 ckCookiePv1(csRawCookie);
 
-        m_sRv = ckCookiePv1.sName();
+        m_sRv = ckCookiePv1.name();
         xTEST_EQ(csName, m_sRv);
 
-        m_sRv = ckCookiePv1.sValue();
+        m_sRv = ckCookiePv1.value();
         xTEST_EQ(csValue, m_sRv);
 
-        m_sRv = ckCookiePv1.sComment();
+        m_sRv = ckCookiePv1.comment();
         xTEST_EQ(csComment, m_sRv);
 
-        m_sRv = ckCookiePv1.sDomain();
+        m_sRv = ckCookiePv1.domain();
         xTEST_EQ(csDomain, m_sRv);
 
-        m_sRv = ckCookiePv1.sPath();
+        m_sRv = ckCookiePv1.path();
         xTEST_EQ(csPath, m_sRv);
 
-        m_llRv = ckCookiePv1.liGetMaxAge();
+        m_llRv = ckCookiePv1.maxAge();
         xTEST_EQ(ciMaxAge, m_llRv);
 
-        m_bRv = ckCookiePv1.bGetSecure();
+        m_bRv = ckCookiePv1.secure();
         xTEST_EQ(cbSecure, m_bRv);
 
-        m_bRv = ckCookiePv1.bGetHttpOnly();
+        m_bRv = ckCookiePv1.httpOnly();
         xTEST_EQ(cbHttpOnly, m_bRv);
 
-        m_sRv = ckCookiePv1.sToString();
+        m_sRv = ckCookiePv1.toString();
         xTEST_EQ(csRawCookie, m_sRv);
 
-        ckCookiePv1.vClear();
+        ckCookiePv1.clear();
     }
 }
 //---------------------------------------------------------------------------

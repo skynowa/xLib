@@ -29,9 +29,7 @@ CxCookiePv0::CxCookiePv0() :
     _m_bSecure  (false),
     _m_bHttpOnly(false)
 {
-    
-
-    vInit(std::tstring_t());
+    init(std::tstring_t());
 }
 //---------------------------------------------------------------------------
 CxCookiePv0::CxCookiePv0(
@@ -45,43 +43,34 @@ CxCookiePv0::CxCookiePv0(
     _m_bSecure  (false),
     _m_bHttpOnly(false)
 {
-    
-
-    vInit(a_csRawCookie);
+    init(a_csRawCookie);
 }
 //---------------------------------------------------------------------------
 /* virtual */
 CxCookiePv0::~CxCookiePv0() {
-    
 
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCookiePv0::sName() const {
-    
-
+CxCookiePv0::name() const {
     return _m_sName;
 }
 //---------------------------------------------------------------------------
 void
-CxCookiePv0::vSetName(
+CxCookiePv0::setName(
     const std::tstring_t &a_csName
 )
 {
-    
-
     _m_sName = a_csName;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCookiePv0::sValue() const {
-    
-
+CxCookiePv0::value() const {
     return _m_sValue;
 }
 //---------------------------------------------------------------------------
 void
-CxCookiePv0::vSetValue(
+CxCookiePv0::setValue(
     const std::tstring_t &a_csValue
 )
 {
@@ -89,94 +78,72 @@ CxCookiePv0::vSetValue(
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCookiePv0::sDomain() const {
-    
-
+CxCookiePv0::domain() const {
     return _m_sDomain;
 }
 //---------------------------------------------------------------------------
 void
-CxCookiePv0::vSetDomain(
+CxCookiePv0::setDomain(
     const std::tstring_t &a_csDomain
 )
 {
-    
-
     _m_sDomain = a_csDomain;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCookiePv0::sPath() const {
-    
-
+CxCookiePv0::path() const {
     return _m_sPath;
 }
 //---------------------------------------------------------------------------
 void
-CxCookiePv0::vSetPath(
+CxCookiePv0::setPath(
     const std::tstring_t &a_csPath
 )
 {
-    
-
     _m_sPath = a_csPath;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxCookiePv0::sExpires() const {
-    
-
+CxCookiePv0::expires() const {
     return _m_sExpires;
 }
 //---------------------------------------------------------------------------
 void
-CxCookiePv0::vSetExpires(
+CxCookiePv0::setExpires(
     const std::tstring_t &a_csExpires
 )
 {
-    
-
     _m_sExpires = a_csExpires;
 }
 //---------------------------------------------------------------------------
 bool
-CxCookiePv0::bGetSecure() const {
-    
-
+CxCookiePv0::secure() const {
     return _m_bSecure;
 }
 //---------------------------------------------------------------------------
 void
-CxCookiePv0::vSetSecure(
+CxCookiePv0::setSecure(
     const bool &a_cbFlag
 )
 {
-    
-
     _m_bSecure = a_cbFlag;
 }
 //---------------------------------------------------------------------------
 bool
-CxCookiePv0::bGetHttpOnly() const {
-    
-
+CxCookiePv0::httpOnly() const {
     return _m_bHttpOnly;
 }
 //---------------------------------------------------------------------------
 void
-CxCookiePv0::vSetHttpOnly(
+CxCookiePv0::setHttpOnly(
     const bool &a_cbFlag
 )
 {
-    
-
     _m_bHttpOnly = a_cbFlag;
 }
 //---------------------------------------------------------------------------
 std::tstring_t
-CxCookiePv0::sToString() const {
-    
-
+CxCookiePv0::toString() const {
     std::tstring_t sRv;
 
     //name
@@ -218,9 +185,7 @@ CxCookiePv0::sToString() const {
 //---------------------------------------------------------------------------
 //TODO: sDump make tests
 std::tstring_t
-CxCookiePv0::sDump() const {
-    
-
+CxCookiePv0::dump() const {
     std::tstring_t sRv;
 
     sRv = CxString::format(
@@ -232,22 +197,20 @@ CxCookiePv0::sDump() const {
             xT("Expires: %s\n")
             xT("Secure: %s\n")
             xT("HttpOnly: %s\n\n"),
-            sName().c_str(),
-            sValue().c_str(),
-            sDomain().c_str(),
-            sPath().c_str(),
-            sExpires().c_str(),
-            CxString::boolToStr(bGetSecure()).c_str(),
-            CxString::boolToStr(bGetHttpOnly()).c_str()
+            name().c_str(),
+            value().c_str(),
+            domain().c_str(),
+            path().c_str(),
+            expires().c_str(),
+            CxString::boolToStr(secure()).c_str(),
+            CxString::boolToStr(httpOnly()).c_str()
     );
 
     return sRv;
 }
 //---------------------------------------------------------------------------
 void
-CxCookiePv0::vClear() {
-    
-
+CxCookiePv0::clear() {
     _m_sName.clear();
     _m_sValue.clear();
     _m_sDomain.clear();
@@ -273,7 +236,7 @@ struct SCompareNoCase {
 };
 //---------------------------------------------------------------------------
 void
-CxCookiePv0::vInit(
+CxCookiePv0::init(
     const std::tstring_t &a_csRawCookie
 )
 {

@@ -16,56 +16,56 @@ class CxCookiePv0 :
     /// cookie version 0
 {
 public:
-                           CxCookiePv0 ();
+                           CxCookiePv0();
         ///< constructor
-    explicit               CxCookiePv0 (const std::tstring_t &csRawCookie);
+    explicit               CxCookiePv0(const std::tstring_t &csRawCookie);
         ///< constructor
-    virtual               ~CxCookiePv0 ();
+    virtual               ~CxCookiePv0();
         ///< constructor
 
-    void                   vInit       (const std::tstring_t &csRawCookie);
+    void                   init       (const std::tstring_t &csRawCookie);
         ///< parsing raw cookie string
 
-    const std::tstring_t & sName       () const;
+    const std::tstring_t & name       () const;
         ///< get name
-    void                   vSetName    (const std::tstring_t &csName);
+    void                   setName    (const std::tstring_t &csName);
         ///< set name
 
-    const std::tstring_t & sValue   () const;
+    const std::tstring_t & value      () const;
         ///< get value
-    void                   vSetValue   (const std::tstring_t &csValue);
+    void                   setValue   (const std::tstring_t &csValue);
         ///< set value
 
-    const std::tstring_t & sDomain  () const;
+    const std::tstring_t & domain     () const;
         ///< get domain
-    void                   vSetDomain  (const std::tstring_t &csDomain);
+    void                   setDomain  (const std::tstring_t &csDomain);
         ///< set domain
 
-    const std::tstring_t & sPath    () const;
+    const std::tstring_t & path       () const;
         ///< get path
-    void                   vSetPath    (const std::tstring_t &csPath);
+    void                   setPath    (const std::tstring_t &csPath);
         ///< set path
 
-    const std::tstring_t & sExpires () const;
+    const std::tstring_t & expires    () const;
         ///< get expire
-    void                   vSetExpires (const std::tstring_t &csExpires);
+    void                   setExpires (const std::tstring_t &csExpires);
         ///< set expire
 
-    bool                   bGetSecure  () const;
+    bool                   secure     () const;
         ///< get secure
-    void                   vSetSecure  (const bool &cbFlag);
+    void                   setSecure  (const bool &cbFlag);
         ///< set secure
 
-    bool                   bGetHttpOnly() const;
+    bool                   httpOnly   () const;
         ///< get http only
-    void                   vSetHttpOnly(const bool &cbFlag);
+    void                   setHttpOnly(const bool &cbFlag);
         ///< set http only
 
-    std::tstring_t         sToString   () const;
+    std::tstring_t         toString   () const;
         ///< convert to string
-    std::tstring_t         sDump    () const;
+    std::tstring_t         dump       () const;
         ///< get dump
-    void                   vClear      ();
+    void                   clear      ();
         ///< clear
 
 private:
