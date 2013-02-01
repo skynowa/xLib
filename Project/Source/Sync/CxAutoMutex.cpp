@@ -23,11 +23,11 @@ CxAutoMutex::CxAutoMutex(
     _m_mtMutex(a_mtMutex)
 {
     _m_mtMutex->create();
-    _m_mtMutex->vLock();
+    _m_mtMutex->lock();
 }
 //---------------------------------------------------------------------------
 CxAutoMutex::~CxAutoMutex() {
-    _m_mtMutex->vUnlock();
+    _m_mtMutex->unlock();
 }
 //---------------------------------------------------------------------------
 

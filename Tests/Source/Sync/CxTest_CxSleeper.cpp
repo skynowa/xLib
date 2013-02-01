@@ -22,39 +22,39 @@ CxTest_CxSleeper::unit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    xTEST_CASE("CxSleeper::bIsSleeping", cullCaseLoops)
+    xTEST_CASE("CxSleeper::isSleeping", cullCaseLoops)
     {
         CxSleeper objSleeper;
 
-        m_bRv = objSleeper.bIsSleeping();
+        m_bRv = objSleeper.isSleeping();
         xTEST_EQ(false, m_bRv);
     }
 
-    xTEST_CASE("CxSleeper::vSleep", cullCaseLoops)
+    xTEST_CASE("CxSleeper::sleep", cullCaseLoops)
     {
         CxSleeper objSleeper;
 
         for (size_t i = 0; i < 3; ++ i) {
-            m_bRv = objSleeper.bIsSleeping();
+            m_bRv = objSleeper.isSleeping();
             xTEST_EQ(false, m_bRv);
 
-            objSleeper.vSleep(5);
+            objSleeper.sleep(5);
 
-            m_bRv = objSleeper.bIsSleeping();
+            m_bRv = objSleeper.isSleeping();
             xTEST_EQ(false, m_bRv);
 
-            m_bRv = objSleeper.bIsSleeping();
+            m_bRv = objSleeper.isSleeping();
             xTEST_EQ(false, m_bRv);
         }
     }
 
-    xTEST_CASE("CxSleeper::vWakeUp", cullCaseLoops)
+    xTEST_CASE("CxSleeper::wakeUp", cullCaseLoops)
     {
         // TEST: CxSleeper::vWakeUp
         #if xTODO
             CxSleeper objSleeper;
 
-            objSleeper.vWakeUp();
+            objSleeper.wakeUp();
         #endif
     }
 }

@@ -23,20 +23,20 @@ public:
     typedef pthread_mutex_t  handle_t;
 #endif
 
-                      CxMutex ();
+                      CxMutex();
         ///< constructor
-    virtual          ~CxMutex ();
+    virtual          ~CxMutex();
         ///< destructor
 
-    const handle_t &  hHandle () const;
+    const handle_t &  handle () const;
         ///< get handle
     void              create ();
         ///< create
-    void              vLock   ();
+    void              lock   ();
         ///< lock
-    bool              bTryLock();
+    bool              tryLock();
         ///< try lock
-    void              vUnlock ();
+    void              unlock ();
         ///< unlock
 
 private:

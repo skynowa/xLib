@@ -19,7 +19,6 @@ CxCondition::CxCondition() :
     _m_mutex (),
     _m_handle()
 {
-
 }
 //---------------------------------------------------------------------------
 /*virtual*/
@@ -34,12 +33,12 @@ CxCondition::~CxCondition() {
 }
 //---------------------------------------------------------------------------
 const pthread_mutex_t &
-CxCondition::hMutex() const {
+CxCondition::mutex() const {
     return _m_mutex;
 }
 //---------------------------------------------------------------------------
 const pthread_cond_t &
-CxCondition::hHandle() const {
+CxCondition::handle() const {
     return _m_handle;
 }
 //---------------------------------------------------------------------------
@@ -55,7 +54,7 @@ CxCondition::create() {
 }
 //---------------------------------------------------------------------------
 void
-CxCondition::vWait(
+CxCondition::wait(
     const ulong_t &a_culTimeoutMs
 )
 {
@@ -100,7 +99,7 @@ CxCondition::vWait(
 }
 //---------------------------------------------------------------------------
 void
-CxCondition::vSignal() {
+CxCondition::signal() {
     int iRv = - 1;
 
     iRv = ::pthread_mutex_lock(&_m_mutex);
@@ -116,7 +115,7 @@ CxCondition::vSignal() {
 }
 //---------------------------------------------------------------------------
 void
-CxCondition::vBroadcast() {
+CxCondition::broadcast() {
     int iRv = - 1;
 
     iRv = ::pthread_mutex_lock(&_m_mutex);

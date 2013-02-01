@@ -22,27 +22,27 @@ CxTest_CxEvent::unit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    xTEST_CASE("CxEvent::hGet", cullCaseLoops)
+    xTEST_CASE("CxEvent::handle", cullCaseLoops)
     {
         CxEvent objEvent(true, true);
 
         objEvent.create();
 
         #if   xOS_ENV_WIN
-            xTEST_EQ(true, objEvent.hHandle().isValid())
+            xTEST_EQ(true, objEvent.handle().isValid())
         #elif xOS_ENV_UNIX
             // TODO: hRv
         #endif
     }
 
-    xTEST_CASE("CxEvent::bIsSignaled", cullCaseLoops)
+    xTEST_CASE("CxEvent::isSignaled", cullCaseLoops)
     {
         {
             CxEvent objEvent(true, true);
 
             objEvent.create();
 
-            m_bRv = objEvent.bIsSignaled();
+            m_bRv = objEvent.isSignaled();
             xTEST_EQ(true, m_bRv);
         }
 
@@ -51,12 +51,12 @@ CxTest_CxEvent::unit(
 
             objEvent.create();
 
-            m_bRv = objEvent.bIsSignaled();
+            m_bRv = objEvent.isSignaled();
             xTEST_EQ(false, m_bRv);
         }
     }
 
-    xTEST_CASE("CxEvent::vSet", cullCaseLoops)
+    xTEST_CASE("CxEvent::set", cullCaseLoops)
     {
         const size_t cuiSpinCount = 3;
 
@@ -66,21 +66,21 @@ CxTest_CxEvent::unit(
         objEvent.create();
 
         for (size_t i = 0; i < cuiSpinCount; ++ i) {
-            objEvent.vReset();
+            objEvent.reset();
 
-            m_bRv = objEvent.bIsSignaled();
+            m_bRv = objEvent.isSignaled();
             xTEST_EQ(false, m_bRv);
         }
 
         for (size_t i = 0; i < cuiSpinCount; ++ i) {
-            objEvent.vSet();
+            objEvent.set();
 
-            m_bRv = objEvent.bIsSignaled();
+            m_bRv = objEvent.isSignaled();
             xTEST_EQ(true, m_bRv);
         }
     }
 
-    xTEST_CASE("CxEvent::vReset", cullCaseLoops)
+    xTEST_CASE("CxEvent::reset", cullCaseLoops)
     {
         const size_t cuiSpinCount = 3;
 
@@ -90,21 +90,21 @@ CxTest_CxEvent::unit(
         objEvent.create();
 
         for (size_t i = 0; i < cuiSpinCount; ++ i) {
-            objEvent.vSet();
+            objEvent.set();
 
-            m_bRv = objEvent.bIsSignaled();
+            m_bRv = objEvent.isSignaled();
             xTEST_EQ(true, m_bRv);
         }
 
         for (size_t i = 0; i < cuiSpinCount; ++ i) {
-            objEvent.vReset();
+            objEvent.reset();
 
-            m_bRv = objEvent.bIsSignaled();
+            m_bRv = objEvent.isSignaled();
             xTEST_EQ(false, m_bRv);
         }
     }
 
-    xTEST_CASE("CxEvent::vWait", cullCaseLoops)
+    xTEST_CASE("CxEvent::wait", cullCaseLoops)
     {
         {
             const bool cbIsAutoReset  = false;
@@ -115,13 +115,13 @@ CxTest_CxEvent::unit(
 
             objEvent.create();
 
-            m_bRv = objEvent.bIsSignaled();
+            m_bRv = objEvent.isSignaled();
             xTEST_EQ(cbInitialState, m_bRv);
 
-            CxEvent::ExObjectState osRes = objEvent.osWait(5);
+            CxEvent::ExObjectState osRes = objEvent.wait(5);
             xTEST_EQ(CxEvent::osTimeout, osRes);
 
-            m_bRv = objEvent.bIsSignaled();
+            m_bRv = objEvent.isSignaled();
             xTEST_EQ(cbInitialState, m_bRv);
         }
 
@@ -134,13 +134,13 @@ CxTest_CxEvent::unit(
 
             objEvent.create();
 
-            m_bRv = objEvent.bIsSignaled();
+            m_bRv = objEvent.isSignaled();
             xTEST_EQ(cbInitialState, m_bRv);
 
-            CxEvent::ExObjectState osRes = objEvent.osWait(10);
+            CxEvent::ExObjectState osRes = objEvent.wait(10);
             xTEST_EQ(CxEvent::osTimeout, osRes);
 
-            m_bRv = objEvent.bIsSignaled();
+            m_bRv = objEvent.isSignaled();
             xTEST_EQ(false, m_bRv);
         }
 
@@ -152,13 +152,13 @@ CxTest_CxEvent::unit(
 
             objEvent.create();
 
-            m_bRv = objEvent.bIsSignaled();
+            m_bRv = objEvent.isSignaled();
             xTEST_EQ(cbInitialState, m_bRv);
 
-            CxEvent::ExObjectState osRes = objEvent.osWait(10);
+            CxEvent::ExObjectState osRes = objEvent.wait(10);
             xTEST_EQ(CxEvent::osTimeout, osRes);
 
-            m_bRv = objEvent.bIsSignaled();
+            m_bRv = objEvent.isSignaled();
             xTEST_EQ(false, m_bRv);
         }
 
@@ -170,13 +170,13 @@ CxTest_CxEvent::unit(
 
             objEvent.create();
 
-            m_bRv = objEvent.bIsSignaled();
+            m_bRv = objEvent.isSignaled();
             xTEST_EQ(cbInitialState, m_bRv);
 
-            CxEvent::ExObjectState osRes = objEvent.osWait(10);
+            CxEvent::ExObjectState osRes = objEvent.wait(10);
             xTEST_EQ(CxEvent::osSignaled, osRes);
 
-            m_bRv = objEvent.bIsSignaled();
+            m_bRv = objEvent.isSignaled();
             xTEST_EQ(true, m_bRv);
         }
 

@@ -197,7 +197,7 @@ CxProcessInfo::exeName(
 #if   xOS_ENV_WIN
     sRv.resize(xPATH_MAX);
 
-    CxProcess::handle_t hHandle = CxProcess::ulHandleById(a_cidId);
+    CxProcess::handle_t hHandle = CxProcess::handleById(a_cidId);
 
     DWORD dwStored = ::GetModuleFileNameEx(hHandle, NULL, &sRv.at(0), static_cast<DWORD>( sRv.size() ));
     xTEST_DIFF(0UL, dwStored);

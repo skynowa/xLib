@@ -39,7 +39,7 @@ CxTest_CxIpcSemaphore::unit(
             xTEST_PTR(psemSem);
 
 	        for (int i = 0; i < 50; i ++) {
-	            psemSem->vWait(xTIMEOUT_INFINITE);
+	            psemSem->wait(xTIMEOUT_INFINITE);
 
 	            CxTracer() << xTRACE_VAR(i);
 	        }
@@ -65,22 +65,22 @@ CxTest_CxIpcSemaphore::unit(
         xTEST_PTR(puiRv);
     #endif
 #elif xOS_ENV_UNIX
-    pthread_t ulId = 0UL;
+    pthread_t id = 0UL;
 
-    int iRv = ::pthread_create(&ulId, NULL, &_SFunctor::uiJob, &semSemaphore);
+    int iRv = ::pthread_create(&id, NULL, &_SFunctor::uiJob, &semSemaphore);
     xTEST_EQ(0, iRv);
 #endif
 
     //-------------------------------------
     // vPost
     for (size_t i = 0; i < 50; ++ i) {
-        CxCurrentThread::vSleep(1);
+        CxCurrentThread::sleep(1);
 
         for (int x = 0; x < 2; x ++) {
-            semSemaphore.vPost();
+            semSemaphore.post();
         }
     }
 
-    //m_bRv = CxCurrentThread::bSleep(3000);
+    //m_bRv = CxCurrentThread::sleep(3000);
 }
 //---------------------------------------------------------------------------

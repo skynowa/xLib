@@ -19,16 +19,14 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 /* static */
 bool
-CxCurrentProcess::bIsCurrent(
+CxCurrentProcess::isCurrent(
     const CxProcess::id_t &a_culId
 )
 {
-
-
     bool bRv = false;
 
 #if   xOS_ENV_WIN
-    bRv = (ulId() == a_culId);
+    bRv = (id() == a_culId);
 #elif xOS_ENV_UNIX
     // TODO: If either thread1 or thread2 are not valid thread IDs, the behavior is undefined
     // bRv = ::pthread_equal(ulGetId(), a_culId);
@@ -39,7 +37,7 @@ CxCurrentProcess::bIsCurrent(
 //---------------------------------------------------------------------------
 /* static */
 CxProcess::id_t
-CxCurrentProcess::ulId() {
+CxCurrentProcess::id() {
     // n/a
 
     CxProcess::id_t ulRv;
@@ -57,7 +55,7 @@ CxCurrentProcess::ulId() {
 //---------------------------------------------------------------------------
 /* static */
 CxProcess::id_t
-CxCurrentProcess::ulParentId() {
+CxCurrentProcess::parentId() {
     // n/a
 
     CxProcess::id_t ulRv;
@@ -105,7 +103,7 @@ CxCurrentProcess::ulParentId() {
 
     // TODO: ProcessBasicInformation (for x64)
     NTSTATUS ntsRes = DllNtQueryInformationProcess(
-                            hHandle(),
+                            handle(),
                             cpicInfo,
                            &ulProcessInformation, sizeof(ulProcessInformation), &dwReturnSizeBytes);
     xTEST_EQ(true, NT_SUCCESS(ntsRes));
@@ -123,14 +121,14 @@ CxCurrentProcess::ulParentId() {
 // TODO: tests
 /* static */
 CxProcess::handle_t
-CxCurrentProcess::hHandle() {
+CxCurrentProcess::handle() {
     // n/a
 
     CxProcess::handle_t hRv;
 
 #if   xOS_ENV_WIN
     #if xDEPRECIATE
-        hRv = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, ulGetId());
+        hRv = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, id());
     #else
         hRv = ::GetCurrentProcess();
     #endif
@@ -146,12 +144,10 @@ CxCurrentProcess::hHandle() {
 // TODO: tests
 /* static */
 void
-CxCurrentProcess::vExit(
+CxCurrentProcess::exit(
     const uint_t &a_cuiExitCode
 )
 {
-
-
 #if   xOS_ENV_WIN
     (void)::ExitProcess(a_cuiExitCode);
 #elif xOS_ENV_UNIX

@@ -17,19 +17,17 @@ xNAMESPACE_BEGIN(NxLib)
 //---------------------------------------------------------------------------
 /* static */
 bool
-CxCurrentThread::bIsCurrent(
+CxCurrentThread::isCurrent(
     const CxThread::id_t &a_culId
 )
 {
-    
-
     bool bRv = false;
 
 #if   xOS_ENV_WIN
-    bRv = (ulId() == a_culId);
+    bRv = (id() == a_culId);
 #elif xOS_ENV_UNIX
     //TODO: If either thread1 or thread2 are not valid thread IDs, the behavior is undefined
-    bRv = ::pthread_equal(ulId(), a_culId);
+    bRv = ::pthread_equal(id(), a_culId);
 #endif
 
     return bRv;
@@ -37,7 +35,7 @@ CxCurrentThread::bIsCurrent(
 //---------------------------------------------------------------------------
 /* static */
 CxThread::id_t
-CxCurrentThread::ulId() {
+CxCurrentThread::id() {
     // n/a
 
     CxThread::id_t ulRv = 0UL;
@@ -55,7 +53,7 @@ CxCurrentThread::ulId() {
 //---------------------------------------------------------------------------
 /* static */
 CxThread::handle_t
-CxCurrentThread::hHandle() {
+CxCurrentThread::handle() {
     // n/a
 
     CxThread::handle_t hRv;
@@ -73,7 +71,7 @@ CxCurrentThread::hHandle() {
 //---------------------------------------------------------------------------
 /* static */
 void
-CxCurrentThread::vYield() {
+CxCurrentThread::yield() {
     // n/a
 
 #if   xOS_ENV_WIN
@@ -86,7 +84,7 @@ CxCurrentThread::vYield() {
 //---------------------------------------------------------------------------
 /* static */
 void
-CxCurrentThread::vSleep(
+CxCurrentThread::sleep(
     const ulong_t &a_culMsec
 ) {
     // n/a

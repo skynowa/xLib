@@ -28,7 +28,6 @@ CxIpcMutex::CxIpcMutex() :
     _m_hHandle(),
     _m_sName  ()
 {
-
 }
 //---------------------------------------------------------------------------
 /* virtual */
@@ -37,9 +36,7 @@ CxIpcMutex::~CxIpcMutex() {
 }
 //---------------------------------------------------------------------------
 const CxIpcMutex::handle_t &
-CxIpcMutex::hHandle() const {
-    
-
+CxIpcMutex::handle() const {
     return _m_hHandle;
 }
 //---------------------------------------------------------------------------
@@ -83,12 +80,10 @@ CxIpcMutex::create(
 }
 //---------------------------------------------------------------------------
 void
-CxIpcMutex::vOpen(
+CxIpcMutex::open(
     const std::tstring_t &a_csName
 )
 {
-    
-
 #if   xOS_ENV_WIN
     const tchar_t *pcszWinName = NULL;
     std::tstring_t _sWinName;
@@ -117,7 +112,7 @@ CxIpcMutex::vOpen(
 }
 //---------------------------------------------------------------------------
 void
-CxIpcMutex::vLock(
+CxIpcMutex::lock(
     const ulong_t &a_culTimeoutMsec
 ) const
 {
@@ -175,7 +170,7 @@ CxIpcMutex::vLock(
 }
 //---------------------------------------------------------------------------
 void
-CxIpcMutex::vUnlock() const {
+CxIpcMutex::unlock() const {
     ////xTEST_EQ(true, _m_hHandle.bIsValid(), false);
 
 #if   xOS_ENV_WIN

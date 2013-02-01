@@ -48,9 +48,7 @@ CxEvent::~CxEvent() {
 }
 //---------------------------------------------------------------------------
 const CxEvent::handle_t &
-CxEvent::hHandle() const {
-    
-
+CxEvent::handle() const {
 #if   xOS_ENV_WIN
     return _m_hEvent;
 #elif xOS_ENV_UNIX
@@ -62,7 +60,6 @@ void
 CxEvent::create() {
 #if   xOS_ENV_WIN
     xTEST_EQ(false, _m_hEvent.isValid());
-    
 
     HANDLE hRv = ::CreateEvent(NULL, ! _m_cbIsAutoReset, _m_cbInitState, NULL);
     xTEST_DIFF(static_cast<HANDLE>(NULL), hRv);
@@ -82,12 +79,11 @@ CxEvent::create() {
 //---------------------------------------------------------------------------
 // NOTE: unblock threads blocked on a condition variable
 void
-CxEvent::vSet() {
+CxEvent::set() {
 #if   xOS_ENV_WIN
     xTEST_EQ(true, _m_hEvent.isValid());
-    
 
-    BOOL blRes = ::SetEvent(hHandle().get());
+    BOOL blRes = ::SetEvent(handle().get());
     xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     int iRv = - 1;
@@ -113,12 +109,11 @@ CxEvent::vSet() {
 }
 //---------------------------------------------------------------------------
 void
-CxEvent::vReset() {
+CxEvent::reset() {
 #if   xOS_ENV_WIN
     xTEST_EQ(true, _m_hEvent.isValid());
-    
 
-    BOOL blRes = ::ResetEvent(hHandle().get());
+    BOOL blRes = ::ResetEvent(handle().get());
     xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     int iRv = - 1;
@@ -136,7 +131,7 @@ CxEvent::vReset() {
 }
 //---------------------------------------------------------------------------
 CxEvent::ExObjectState
-CxEvent::osWait(
+CxEvent::wait(
     const ulong_t &a_culTimeout /* = xTIMEOUT_INFINITE */  ///< in milliseconds
 )
 {
@@ -147,7 +142,7 @@ CxEvent::osWait(
 #if   xOS_ENV_WIN
     xTEST_EQ(true, _m_hEvent.isValid());
 
-    osRes = static_cast<ExObjectState>( ::WaitForSingleObject(hHandle().get(), a_culTimeout) );
+    osRes = static_cast<ExObjectState>( ::WaitForSingleObject(handle().get(), a_culTimeout) );
 #elif xOS_ENV_UNIX
     int iRv = - 1;
 
@@ -229,13 +224,13 @@ CxEvent::osWait(
 }
 //---------------------------------------------------------------------------
 bool
-CxEvent::bIsSignaled() {
+CxEvent::isSignaled() {
     // n/a
 
     bool bRv = false;
 
 #if   xOS_ENV_WIN
-    DWORD dwRv = ::WaitForSingleObject(hHandle().get(), 0UL);
+    DWORD dwRv = ::WaitForSingleObject(handle().get(), 0UL);
     // n/a
 
     bRv = (false != _m_hEvent.isValid() && osSignaled == dwRv);

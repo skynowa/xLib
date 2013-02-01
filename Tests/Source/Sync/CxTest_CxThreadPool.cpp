@@ -43,21 +43,21 @@ CxTest_CxThreadPool::unit(
         const uint_t  cuiNumTasks        = 5; 
         const uint_t  cuiMaxRunningTasks = 10U;
 
-        tpPool->vGroupCreate(cuiStackSize, NULL, pvParam,
+        tpPool->groupCreate(cuiStackSize, NULL, pvParam,
                              cuiNumTasks, cuiMaxRunningTasks);
     }
 
-    tpPool->vGroupResume();
-    tpPool->vGroupPause();
-    tpPool->vGroupExit(500UL);
-    tpPool->vGroupKill(500UL);
-    tpPool->vGroupWait(500UL);
+    tpPool->groupResume();
+    tpPool->groupPause();
+    tpPool->groupExit(500UL);
+    tpPool->groupKill(500UL);
+    tpPool->groupWait(500UL);
 
-    tpPool->uiMaxTasks();
-    tpPool->vSetMaxTasks (10);
+    tpPool->maxTasks();
+    tpPool->setMaxTasks (10);
 
-    tpPool->uiNumTasks();
-    tpPool->vSetNumTasks (10);
+    tpPool->numTasks();
+    tpPool->setNumTasks (10);
 }
 //---------------------------------------------------------------------------
 
@@ -92,12 +92,12 @@ CPoolThread::uiOnRun(
     uint_t uiRes = 0;
 
     // bIsCurrent
-    bool bRv = CxThread::bIsCurrent();
+    bool bRv = CxThread::isCurrent();
     xTEST_EQ(true, bRv);
 
     for (size_t i = 0; i < 10; ++ i) {
         // interrupt point
-        bRv = bIsTimeToExit();
+        bRv = isTimeToExit();
         #if xTEST_IGNORE
             xCHECK_DO(true == bRv, xTRACE(xT("\tCWorkThread: break")));
         #endif
@@ -109,8 +109,8 @@ CPoolThread::uiOnRun(
                 xTRACE(xT("\t*"));
             #endif
 
-            CxCurrentThread::vSleep(50UL);
-            CxCurrentThread::vYield();
+            CxCurrentThread::sleep(50UL);
+            CxCurrentThread::yield();
         }
     }
 

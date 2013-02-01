@@ -107,7 +107,7 @@ CxProcess::create(
 }
 //---------------------------------------------------------------------------
 CxProcess::ExWaitResult
-CxProcess::ulWait(
+CxProcess::wait(
     const ulong_t &a_culTimeout
 )
 {
@@ -137,12 +137,10 @@ CxProcess::ulWait(
 }
 //---------------------------------------------------------------------------
 void
-CxProcess::vKill(
+CxProcess::kill(
     const ulong_t &a_culTimeout    // FIX: culTimeout not used
 )
 {
-
-
 #if   xOS_ENV_WIN
     xTEST_DIFF(xNATIVE_HANDLE_NULL, _m_hHandle);
     // ulTimeout - n/a
@@ -153,46 +151,38 @@ CxProcess::vKill(
     xTEST_DIFF(FALSE, blRes);
 
     xFOREVER {
-        ulong_t ulRv = ulExitStatus();
+        ulong_t ulRv = exitStatus();
         xCHECK_DO(STILL_ACTIVE != ulRv, break);
 
-        CxCurrentThread::vSleep(a_culTimeout);
+        CxCurrentThread::sleep(a_culTimeout);
     }
 #elif xOS_ENV_UNIX
     int iRv = ::kill(_m_ulPid, SIGKILL);
     xTEST_DIFF(- 1, iRv);
 
-    CxCurrentThread::vSleep(a_culTimeout);
+    CxCurrentThread::sleep(a_culTimeout);
 
     _m_uiExitStatus = 0U;
 #endif
 }
 //---------------------------------------------------------------------------
 CxProcess::handle_t
-CxProcess::hHandle() const {
-
-
+CxProcess::handle() const {
     return _m_hHandle;
 }
 //---------------------------------------------------------------------------
 CxProcess::id_t
-CxProcess::ulId() const {
-
-
+CxProcess::id() const {
     return _m_ulPid;
 }
 //---------------------------------------------------------------------------
 bool
-CxProcess::bIsCurrent() const {
-
-
-    return CxCurrentProcess::bIsCurrent( CxCurrentProcess::ulId() );
+CxProcess::isCurrent() const {
+    return CxCurrentProcess::isCurrent( CxCurrentProcess::id() );
 }
 //---------------------------------------------------------------------------
 ulong_t
-CxProcess::ulExitStatus() const {
-
-
+CxProcess::exitStatus() const {
     ulong_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN
@@ -215,7 +205,7 @@ CxProcess::ulExitStatus() const {
 //---------------------------------------------------------------------------
 /* static */
 CxProcess::id_t
-CxProcess::ulIdByHandle(
+CxProcess::idByHandle(
     const handle_t &a_chHandle    ///< handle
 )
 {
@@ -233,7 +223,7 @@ CxProcess::ulIdByHandle(
 //---------------------------------------------------------------------------
 /* static */
 CxProcess::handle_t
-CxProcess::ulHandleById(
+CxProcess::handleById(
     const id_t &a_culId   ///< ID
 )
 {
@@ -251,7 +241,7 @@ CxProcess::ulHandleById(
 //---------------------------------------------------------------------------
 /* static */
 CxProcess::id_t
-CxProcess::ulIdByName(
+CxProcess::idByName(
     const std::tstring_t &a_csProcessName
 )
 {
@@ -363,7 +353,7 @@ CxProcess::ulIdByName(
 //--------------------------------------------------------------------------
 /* static */
 bool
-CxProcess::bIsRunning(
+CxProcess::isRunning(
     const id_t &culId
 )
 {

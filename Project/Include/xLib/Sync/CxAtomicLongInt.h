@@ -13,7 +13,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 class CxAtomicLongInt :
     private CxNonCopyable
-    /// atomic operartions with long_t
+    /// atomic operations with long_t
 {
 public:
                       CxAtomicLongInt();
@@ -49,10 +49,10 @@ public:
     CxAtomicLongInt & operator ++    (const int ciValue);
     CxAtomicLongInt & operator --    (const int ciValue);
 
-    long_t            liValue        () const;
+    long_t            value          () const;
 
 private:
-    volatile long_t  _m_liValue;
+    volatile long_t   _m_liValue;
 };
 
 xNAMESPACE_END(NxLib)

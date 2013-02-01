@@ -479,7 +479,7 @@ CxConsole::pause(
 
         writeLine(sMsg);
 
-		CxCurrentThread::vSleep(culTimeoutMs);
+		CxCurrentThread::sleep(culTimeoutMs);
 	}
 }
 //---------------------------------------------------------------------------
@@ -693,13 +693,13 @@ CxConsole::_wndHandle() {
     xTEST_EQ(false, sOldWndTitle.empty());
 
     // format a "unique" szNewWndTitle.
-    sNewWndTitle = CxString::format(xT("%lu/%lu"), ::GetTickCount(), CxCurrentProcess::ulId());
+    sNewWndTitle = CxString::format(xT("%lu/%lu"), ::GetTickCount(), CxCurrentProcess::id());
 
     // change current window title.
     setTitle(sNewWndTitle);
 
     // ensure window title has been updated.
-    CxCurrentThread::vSleep(50UL);
+    CxCurrentThread::sleep(50UL);
 
     // look for NewWindowTitle.
     hRv = ::FindWindow(NULL, sNewWndTitle.c_str());

@@ -25,13 +25,13 @@ CxTest_CxIpcMutex::unit(
     const std::tstring_t csName = xT("mutex_name_a");
 
 
-    xTEST_CASE("CxIpcMutex::hGet", cullCaseLoops)
+    xTEST_CASE("CxIpcMutex::handle", cullCaseLoops)
     {
         CxIpcMutex mtMutex;
 
         CxIpcMutex::handle_t hRv;
 
-        hRv = mtMutex.hHandle();
+        hRv = mtMutex.handle();
         ////xTEST_EQ(false, hRv.bIsValid());
     }
 
@@ -42,23 +42,23 @@ CxTest_CxIpcMutex::unit(
         mtMutex.create(csName);
     }
 
-    xTEST_CASE("CxIpcMutex::vOpen", 1)
+    xTEST_CASE("CxIpcMutex::open", 1)
     {
         CxIpcMutex mtMutex;
 
         mtMutex.create(csName);
-        mtMutex.vOpen(csName);
+        mtMutex.open(csName);
     }
 
-    xTEST_CASE("CxIpcMutex::vLock CxIpcMutex::vUnlock", cullCaseLoops)
+    xTEST_CASE("CxIpcMutex::lock CxIpcMutex::unlock", cullCaseLoops)
     {
         const ulong_t culTimeout = 1000UL;
 
         CxIpcMutex mtMutex;
 
         mtMutex.create(csName);
-        mtMutex.vLock(culTimeout);
-        mtMutex.vUnlock();
+        mtMutex.lock(culTimeout);
+        mtMutex.unlock();
     }
 }
 //---------------------------------------------------------------------------

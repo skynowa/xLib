@@ -56,8 +56,8 @@ CxErrorReport::_construct(
     m_rtType          = a_crtType;
 
     m_sProgram        = CxPath( CxPath(CxPath::exe()).brief(cuiReportWidthMax) ).toUnix(false);
-    m_ulProcessId     = (ulong_t)CxCurrentProcess::ulId();
-    m_ulThreadId      = (ulong_t)CxCurrentThread::ulId();
+    m_ulProcessId     = (ulong_t)CxCurrentProcess::id();
+    m_ulThreadId      = (ulong_t)CxCurrentThread::id();
     m_sFileSize       = CxString::formatBytes( static_cast<ulonglong_t>( CxFile::size(CxPath::exe())) );
 
     m_sSourceFile     = CxPath( CxPath(a_csFile).brief(cuiReportWidthMax) ).toUnix(false);

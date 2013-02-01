@@ -35,7 +35,7 @@ CxTest_CxAutoProfiler::unit(
         for (size_t y = 0; y < 10; ++ y) {
             CxAutoProfiler apfP(csFilePath, xT("\tVar y: %") xPR_SIZET, y);
 
-            CxCurrentThread::vSleep(5UL);
+            CxCurrentThread::sleep(5UL);
         }
     }
 }

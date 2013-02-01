@@ -32,31 +32,31 @@ public:
     typedef void (T::*func_ptr_t)(void *);
 
     // construct? destruct
-                           CxThreadPool (const bool &cbIsPaused, const bool &cbIsAutoDelete,
+                           CxThreadPool(const bool &cbIsPaused, const bool &cbIsAutoDelete,
                                          const bool &cbIsGroupPaused, const bool &cbIsGroupAutoDelete);
-    virtual               ~CxThreadPool ();
+    virtual               ~CxThreadPool();
 
     // groups
-    void                   vGroupCreate (const uint_t &cuiStackSize, const func_ptr_t fpFuncPtr, void *pvParam,
+    void                   groupCreate (const uint_t &cuiStackSize, const func_ptr_t fpFuncPtr, void *pvParam,
                                          const size_t &cuiNumTasks, const size_t &cuiMaxRunningTasks);
-    void                   vGroupResume ();
-    void                   vGroupPause  ();
-    void                   vGroupExit   (const ulong_t &culTimeout);
-    void                   vGroupKill   (const ulong_t &culTimeout);
-    void                   vGroupWait   (const ulong_t &culTimeout);
+    void                   groupResume ();
+    void                   groupPause  ();
+    void                   groupExit   (const ulong_t &culTimeout);
+    void                   groupKill   (const ulong_t &culTimeout);
+    void                   groupWait   (const ulong_t &culTimeout);
 
-    size_t                 uiMaxTasks   () const;
-    void                   vSetMaxTasks (const size_t &cuiNum);
+    size_t                 maxTasks    () const;
+    void                   setMaxTasks (const size_t &cuiNum);
 
-    size_t                 uiNumTasks   () const;
-    void                   vSetNumTasks (const size_t &cuiNum);
+    size_t                 numTasks    () const;
+    void                   setNumTasks (const size_t &cuiNum);
 
-    bool                   bIsEmpty     () const;
-    bool                   bIsFull      () const;
-    size_t                 uiSize       () const;
+    bool                   isEmpty     () const;
+    bool                   isFull      () const;
+    size_t                 size        () const;
 
 protected:
-    virtual uint_t         uiOnRun      (void *pvParam) xOVERRIDE;
+    virtual uint_t         onRun       (void *pvParam) xOVERRIDE;
 
 private:
     uint_t                 _m_uiStackSize;
@@ -77,11 +77,11 @@ private:
     static CxMutex         _m_mtList;
     static CxTracer        _m_clLog;
 
-    void                   _vTaskAdd    (CxThread *pvItem);
-    void                   _vTaskRemove (CxThread *pvItem);
+    void                   _taskAdd    (CxThread *pvItem);
+    void                   _taskRemove (CxThread *pvItem);
 
-    void                   _vOnEnterTask(CxThread *pthSender);
-    void                   _vOnExitTask (CxThread *pthSender);
+    void                   _onEnterTask(CxThread *pthSender);
+    void                   _onExitTask (CxThread *pthSender);
 
     //WatchDog
 };

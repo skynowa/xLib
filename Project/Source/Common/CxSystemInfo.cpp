@@ -166,7 +166,7 @@ CxSystemInfo::osArch() {
         }
 
         BOOL blIs64BitOs = FALSE;
-        BOOL blIsWow64Process = ::IsWow64Process(CxCurrentProcess::hHandle(), &blIs64BitOs);
+        BOOL blIsWow64Process = ::IsWow64Process(CxCurrentProcess::handle(), &blIs64BitOs);
 
         oaRes = (blIsFuncExist && blIsWow64Process && blIs64BitOs) ? oa64bit : oa32bit;
     #elif xARCH_X64
@@ -242,9 +242,9 @@ CxSystemInfo::desktopName() {
 
 #if   xOS_ENV_WIN
     const std::tstring_t  csNativeDesktop = xT("explorer.exe");
-    const CxProcess::id_t culId           = CxProcess::ulIdByName(csNativeDesktop);
+    const CxProcess::id_t culId           = CxProcess::idByName(csNativeDesktop);
 
-    bool bRv = CxProcess::bIsRunning(culId);
+    bool bRv = CxProcess::isRunning(culId);
     if (true == bRv) {
         sRv = csNativeDesktop;
     } else {

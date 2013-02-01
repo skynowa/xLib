@@ -27,28 +27,28 @@ CxSleeper::~CxSleeper() {
 }
 //---------------------------------------------------------------------------
 void
-CxSleeper::vSleep(
+CxSleeper::sleep(
     const ulong_t &a_culTimeout  ///< in milliseconds
 )
 {
     // n/a
 
-    CxEvent::ExObjectState osRes = _m_objEvent.osWait(a_culTimeout);
+    CxEvent::ExObjectState osRes = _m_objEvent.wait(a_culTimeout);
     xTEST_EQ(true, CxEvent::osSignaled == osRes || CxEvent::osTimeout == osRes);
 }
 //---------------------------------------------------------------------------
 void
-CxSleeper::vWakeUp() {
+CxSleeper::wakeUp() {
     // n/a
 
-    _m_objEvent.vSet();
+    _m_objEvent.set();
 }
 //---------------------------------------------------------------------------
 bool
-CxSleeper::bIsSleeping() {
+CxSleeper::isSleeping() {
     // n/a
 
-    return _m_objEvent.bIsSignaled();
+    return _m_objEvent.isSignaled();
 }
 //---------------------------------------------------------------------------
 

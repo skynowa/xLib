@@ -24,11 +24,11 @@ CxAutoIpcMutex::CxAutoIpcMutex(
     _m_mtMutex(a_mtMutex)
 {
     _m_mtMutex.create(a_csName);
-    _m_mtMutex.vLock(xTIMEOUT_INFINITE);
+    _m_mtMutex.lock(xTIMEOUT_INFINITE);
 }
 //---------------------------------------------------------------------------
 CxAutoIpcMutex::~CxAutoIpcMutex() {
-    _m_mtMutex.vUnlock();
+    _m_mtMutex.unlock();
 }
 //---------------------------------------------------------------------------
 

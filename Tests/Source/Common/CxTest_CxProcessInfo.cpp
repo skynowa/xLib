@@ -71,7 +71,7 @@ CxTest_CxProcessInfo::unit(
         CxProcessInfo::currentIds(&vidIds);
 
         xFOREACH_CONST(std::vector<CxProcess::id_t>, it, vidIds) {
-            m_ulRv = CxProcessInfo::ioBytes(/* *it */ CxCurrentProcess::ulId());
+            m_ulRv = CxProcessInfo::ioBytes(/* *it */ CxCurrentProcess::id());
             #if xTEST_IGNORE
                 CxTracer() << xT("\tCxProcessInfo::ioBytes(): ") << m_ulRv;
             #endif
@@ -85,7 +85,7 @@ CxTest_CxProcessInfo::unit(
         CxProcessInfo::currentIds(&vidIds);
 
         xFOREACH_CONST(std::vector<CxProcess::id_t>, it, vidIds) {
-            m_sRv = CxProcessInfo::exeName(/* *it */ CxCurrentProcess::ulId());
+            m_sRv = CxProcessInfo::exeName(/* *it */ CxCurrentProcess::id());
             xTEST_EQ(true,  CxFile::isExists(m_sRv));
             xTEST_EQ(m_sRv, CxPath::exe());
         }
@@ -98,7 +98,7 @@ CxTest_CxProcessInfo::unit(
         CxProcessInfo::currentIds(&vidIds);
 
         xFOREACH_CONST(std::vector<CxProcess::id_t>, it, vidIds) {
-            m_ulRv = CxProcessInfo::parentId(/* *it */ CxCurrentProcess::ulId());
+            m_ulRv = CxProcessInfo::parentId(/* *it */ CxCurrentProcess::id());
             // xTEST_DIFF(0UL, m_ulRv);
         }
     }
@@ -117,7 +117,7 @@ CxTest_CxProcessInfo::unit(
 
         #endif
 
-            m_sRv = CxProcessInfo::commandLine(/* *it */ CxCurrentProcess::ulId());
+            m_sRv = CxProcessInfo::commandLine(/* *it */ CxCurrentProcess::id());
             #if xTEST_IGNORE
                 CxTracer() << m_sRv;
             #endif

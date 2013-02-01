@@ -52,101 +52,101 @@ public:
 
     volatile long_t      m_ulTag;    ///< tag
 
-                         CxThread             (const bool &cbAutoDelete);
+                         CxThread            (const bool &cbAutoDelete);
         ///< constructor
-    virtual             ~CxThread             () = 0;
+    virtual             ~CxThread            () = 0;
         ///< destructor
 
     // actions
     void                 create              (const bool &cbIsPaused, const uint_t &cuiStackSize, void *pvParam);
         ///< start
-    void                 vResume              ();
+    void                 resume              ();
         ///< resume
-    void                 vPause               ();
+    void                 pause               ();
         ///< pause
-    void                 vExit                ();
+    void                 exit                ();
         ///< exit (set flag "exit")
-    void                 vKill                (const ulong_t &culTimeout);
+    void                 kill                (const ulong_t &culTimeout);
         ///< kill
-    void                 vWait                (const ulong_t &culTimeout) const;
+    void                 wait                (const ulong_t &culTimeout) const;
         ///< wait
 
     // flags
-    bool                 bIsCreated           () const;
+    bool                 isCreated           () const;
         ///< is created
-    bool                 bIsRunning           () const;
-        ///< is runnig
-    bool                 bIsPaused            ();
+    bool                 isRunning           () const;
+        ///< is running
+    bool                 isPaused            ();
         ///< is paused
-    bool                 bIsExited            ();
+    bool                 isExited            ();
         ///< is exited (is set flag "exit")
 
 #if   xOS_ENV_WIN
     // messages
-    void                 vPostMessage         (HWND hHwnd, uint_t uiMsg, uint_t uiParam1, long_t liParam2) const;
+    void                 postMessage         (HWND hHwnd, uint_t uiMsg, uint_t uiParam1, long_t liParam2) const;
         ///< post message from thread to window
-    void                 vSendMessage         (HWND hHwnd, uint_t uiMsg, uint_t uiParam1, long_t liParam2) const;
+    void                 sendMessage         (HWND hHwnd, uint_t uiMsg, uint_t uiParam1, long_t liParam2) const;
         ///< send message from thread to window
-    void                 vPostThreadMessage   (uint_t uiMsg, uint_t uiParam1, long_t liParam2) const;
+    void                 postThreadMessage   (uint_t uiMsg, uint_t uiParam1, long_t liParam2) const;
         ///< post message from thread to thread
-    bool                 bTryPostThreadMessage(uint_t uiMsg, uint_t uiParam1, long_t liParam2, ulong_t ulAttemps, ulong_t ulAttempTimeout) const;
+    bool                 tryPostThreadMessage(uint_t uiMsg, uint_t uiParam1, long_t liParam2, ulong_t ulAttemps, ulong_t ulAttempTimeout) const;
         ///< try post message from thread to thread
-    void                 vMessageWaitQueue    (uint_t uiMsg, uint_t *puiParam1, long_t *pliParam2) const;
+    void                 messageWaitQueue    (uint_t uiMsg, uint_t *puiParam1, long_t *pliParam2) const;
         ///< waiting for message with params from other thread
-    void                 vMessageWaitQueue    (const std::vector<uint_t> &cvuiMsg, uint_t *puiMsg, uint_t *puiParam1, long_t *pliParam2) const;
+    void                 messageWaitQueue    (const std::vector<uint_t> &cvuiMsg, uint_t *puiMsg, uint_t *puiParam1, long_t *pliParam2) const;
         ///< waiting for message with params from other thread
 #endif
 
     // priority
-    void                 vSetPriority         (const ExPriority &ctpPriority) const;
+    void                 setPriority         (const ExPriority &ctpPriority) const;
         ///< set priority (under Linux must use admin privilege)
-    ExPriority           tpPriority           () const;
-        ///< get priotity
-    std::tstring_t       sPriorityString      () const;
+    ExPriority           priority            () const;
+        ///< get priority
+    std::tstring_t       priorityString      () const;
         ///< get priority as string
-    void                 vPriorityUp          () const;
+    void                 priorityUp          () const;
         ///< increase priority on one level
-    void                 vPriorityDown        () const;
+    void                 priorityDown        () const;
         ///< decrease priority on one level
-    bool                 bIsPriorityBoost     () const;
+    bool                 isPriorityBoost     () const;
         ///< get priority boost control state
-    void                 vSetPriorityBoost    (const bool &cbIsEnabled) const;
+    void                 setPriorityBoost    (const bool &cbIsEnabled) const;
         ///< disables or enables the ability of the system to temporarily boost the priority of a thread
 
     // CPU
-    void                 vSetCpuAffinity      (const int &ciProcNum) const;
+    void                 setCpuAffinity      (const int &ciProcNum) const;
         ///< set processor affinity
-    void                 vSetCpuIdeal         (const ulong_t &culIdealCpu) const;
+    void                 setCpuIdeal         (const ulong_t &culIdealCpu) const;
         ///< sets preferred processor for a thread
-    ulong_t              ulCpuIdeal           () const;
+    ulong_t              cpuIdeal            () const;
         ///< get current ideal processor without changing it
-    static ulong_t       ulCpuCount           ();
+    static ulong_t       cpuCount            ();
         ///< get CPU count on machine
 
     // other
-    handle_t             hHandle              () const;
+    handle_t             handle              () const;
         ///< get handle
-    id_t                 ulGetId              () const;
+    id_t                 id                  () const;
         ///< get ID
-    bool                 bIsCurrent           () const;
+    bool                 isCurrent           () const;
         ///< is current
-    ulong_t              ulGetExitStatus      () const;
+    ulong_t              exitStatus          () const;
         ///< get termination status
-    void                 vSetDebugName        (const std::tstring_t &csName) const;
+    void                 setDebugName        (const std::tstring_t &csName) const;
         ///< set name your threads in the debugger thread list
 
     // static
-    static handle_t      hOpen                (const ulong_t &culAccess, const bool &cbInheritHandle, const ulong_t &culId);
+    static handle_t      open                (const ulong_t &culAccess, const bool &cbInheritHandle, const ulong_t &culId);
         ///< opens an existing thread object
 
 protected:
     // events
-    virtual uint_t       uiOnRun              (void *pvParam) = 0;
-        ///< work thread function, must be overrided
+    virtual uint_t       onRun               (void *pvParam) = 0;
+        ///< work thread function, must be override
     //--virtual void    vOnEnter              ();
     //--virtual void    vOnExit               ();
 
-    bool                 bIsTimeToExit        ();
+    bool                 isTimeToExit        ();
         ///< is need to exit from work thread function
 
 private:
@@ -164,7 +164,7 @@ private:
     id_t                 _m_ulId;                    ///< ID
     uint_t               _m_uiExitStatus;            ///< exit code
     void                *_m_pvParam;                 ///< param for job function
-    const bool           _m_cbIsAutoDelete;          ///< is autodelete thread object
+    const bool           _m_cbIsAutoDelete;          ///< is auto delete thread object
 
     // flags
     //TODO: make struct SFlags
@@ -185,16 +185,16 @@ private:
 #endif
 
     static exit_status_t xSTDCALL
-                         _s_uiJobEntry        (void *pvParam);
+                         _s_jobEntry         (void *pvParam);
         ///< callback
-    bool                 _bWaitResumption     ();
+    bool                 _waitResumption     ();
         ///< waiting for reset pause
-    void                 _vSetStatesDefault   ();
+    void                 _setStatesDefault   ();
         ///< set states as default
 
     // static
-    static int           _iPriorityMin        ();
-    static int           _iPriorityMax        ();
+    static int           _priorityMin        ();
+    static int           _priorityMax        ();
 };
 
 xNAMESPACE_END(NxLib)

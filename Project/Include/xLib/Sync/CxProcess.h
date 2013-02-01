@@ -41,34 +41,33 @@ public:
         #endif
     };
 
+                    CxProcess ();
+    virtual        ~CxProcess ();
 
-                    CxProcess      ();
-    virtual        ~CxProcess      ();
-
-    void            create        (const std::tstring_t &csFilePath, const tchar_t *pcszParams, ...);
+    void            create    (const std::tstring_t &csFilePath, const tchar_t *pcszParams, ...);
         ///< execute a file
-    ExWaitResult    ulWait         (const ulong_t &culTimeout);
-        ///< wait for termonation
-    void            vKill          (const ulong_t &culTimeout);
+    ExWaitResult    wait      (const ulong_t &culTimeout);
+        ///< wait for termination
+    void            kill      (const ulong_t &culTimeout);
         ///< kills the calling process and all of its threads
 
-    handle_t        hHandle        () const;
+    handle_t        handle    () const;
         ///< get handle
-    id_t            ulId           () const;
+    id_t            id        () const;
         ///< get ID
-    bool            bIsCurrent     () const;
+    bool            isCurrent () const;
         ///< is current
-    ulong_t         ulExitStatus   () const;
+    ulong_t         exitStatus() const;
         ///< get termination status
 
-    static id_t     ulIdByHandle   (const handle_t &chHandle);
+    static id_t     idByHandle(const handle_t &chHandle);
         ///< get ID by handle
-    static handle_t ulHandleById   (const id_t &culId);
+    static handle_t handleById(const id_t &culId);
         ///< get handle by ID
-    static id_t     ulIdByName     (const std::tstring_t &csProcessName);
+    static id_t     idByName  (const std::tstring_t &csProcessName);
         ///< get ID by name
-    static bool     bIsRunning     (const id_t &culId);
-        ///< is process runnig by name (with extension)
+    static bool     isRunning (const id_t &culId);
+        ///< is process running by name (with extension)
 
 private:
     handle_t        _m_hHandle;

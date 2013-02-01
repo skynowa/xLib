@@ -31,12 +31,12 @@ CxTest_CxWaitableTimer::unit(
 
     //-------------------------------------
     //Устанавливаем
-    WT.vSet(/*-30000000LL*/0, 2000, NULL, NULL, 0);
+    WT.set(/*-30000000LL*/0, 2000, NULL, NULL, 0);
 
     while (true) {
         //-------------------------------------
         //ждем
-        WT.vWait(INFINITE);
+        WT.wait(INFINITE);
     }
 #elif xOS_ENV_UNIX
 
