@@ -24,7 +24,7 @@ CxTest_CxNonAssignable::~CxTest_CxNonAssignable() {
 //---------------------------------------------------------------------------
 /*virtual*/
 void
-CxTest_CxNonAssignable::vUnit(
+CxTest_CxNonAssignable::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

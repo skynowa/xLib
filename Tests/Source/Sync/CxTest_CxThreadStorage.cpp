@@ -18,7 +18,7 @@ CxTest_CxThreadStorage::~CxTest_CxThreadStorage() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxThreadStorage::vUnit(
+CxTest_CxThreadStorage::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

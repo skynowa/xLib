@@ -20,7 +20,7 @@ CxTest_CxDnsClient::~CxTest_CxDnsClient() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxDnsClient::vUnit(
+CxTest_CxDnsClient::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

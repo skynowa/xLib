@@ -18,7 +18,7 @@ CxTest_CxErrorReport::~CxTest_CxErrorReport() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxErrorReport::vUnit(
+CxTest_CxErrorReport::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

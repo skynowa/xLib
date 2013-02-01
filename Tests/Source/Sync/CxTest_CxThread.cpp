@@ -105,7 +105,7 @@ CxTest_CxThread::~CxTest_CxThread() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxThread::vUnit(
+CxTest_CxThread::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

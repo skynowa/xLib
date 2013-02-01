@@ -20,7 +20,7 @@ public:
     virtual      ~CxTest_CxProcessInfo();
         ///< destructor
 
-    virtual void vUnit(const ulonglong_t &cullCaseLoops);
+    virtual void unit(const ulonglong_t &cullCaseLoops);
         ///< unit test
 };
 //---------------------------------------------------------------------------

@@ -50,11 +50,11 @@ CxTest::CxTest() :
 //---------------------------------------------------------------------------
 /* virtual */
 CxTest::~CxTest() /* = 0 */ {
-    CxDir( sTempDirPath() ).pathDelete();
+    CxDir( tempDirPath() ).pathDelete();
 }
 //---------------------------------------------------------------------------
 void
-CxTest::vRun(
+CxTest::run(
     const ulonglong_t &a_cullUnitLoops,
     const ulonglong_t &a_cullCaseLoops
 )
@@ -63,33 +63,33 @@ CxTest::vRun(
     xTEST_NA(a_cullCaseLoops);
 
     try {
-        vCreateTempDir(xT("TestsTemp"));
+        createTempDir(xT("TestsTemp"));
 
         for (ulonglong_t i = 0ULL; i < a_cullUnitLoops; ++ i) {
-            vUnit(a_cullCaseLoops);
+            unit(a_cullCaseLoops);
             // TODO: xTEST_MSG_EQ(true, bRv, sGetName() + xT(": fail"));
         }
     }
     catch (const std::exception &a_cexE) {
         std::string asMsg = a_cexE.what();
 
-        xTEST_FAIL(sName() + xT(": ") + xS2TS(asMsg));
+        xTEST_FAIL(name() + xT(": ") + xS2TS(asMsg));
     }
     catch (const CxException &a_cexE) {
-        xTEST_FAIL(sName() + xT(": ") + a_cexE.what());
+        xTEST_FAIL(name() + xT(": ") + a_cexE.what());
     }
     catch (...) {
-        xTEST_FAIL(sName() + xT(": Unknown test error"));
+        xTEST_FAIL(name() + xT(": Unknown test error"));
     }
 }
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest::vUnit(
-    const ulonglong_t &cullCaseLoops
+CxTest::unit(
+    const ulonglong_t &a_cullCaseLoops
 ) /* = 0 */
 {
-    xTEST_NA(cullCaseLoops);
+    xTEST_NA(a_cullCaseLoops);
 
 #if xTODO
     xTEST_CASE("CaseName", a_cullCaseLoops)
@@ -109,7 +109,7 @@ CxTest::vUnit(
 }
 //---------------------------------------------------------------------------
 void
-CxTest::vCreateTempDir(
+CxTest::createTempDir(
     const std::tstring_t &a_csDirName
 )
 {
@@ -125,19 +125,19 @@ CxTest::vCreateTempDir(
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxTest::sTempDirPath() const {
+CxTest::tempDirPath() const {
     xTEST_EQ(false, _m_sWorkDirPath.empty());
 
     return _m_sWorkDirPath;
 }
 //---------------------------------------------------------------------------
 const std::tstring_t &
-CxTest::sName() const {
+CxTest::name() const {
     return _m_sName;
 }
 //---------------------------------------------------------------------------
 void
-CxTest::vSetName(
+CxTest::setName(
     const std::tstring_t &a_csTestName
 )
 {

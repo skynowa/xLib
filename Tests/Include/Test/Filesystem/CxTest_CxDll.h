@@ -18,7 +18,7 @@ public:
                  CxTest_CxDll();
     virtual     ~CxTest_CxDll();
 
-    virtual void vUnit(const ulonglong_t &cullCaseLoops);
+    virtual void unit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxDllH

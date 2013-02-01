@@ -21,11 +21,11 @@ CxTest_CxFileLog::~CxTest_CxFileLog() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxFileLog::vUnit(
+CxTest_CxFileLog::unit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    const std::tstring_t csFilePath = sTempDirPath() + CxConst::xSLASH + xT("Test.log");
+    const std::tstring_t csFilePath = tempDirPath() + CxConst::xSLASH + xT("Test.log");
 
     CxFileLog flLog(1);
 

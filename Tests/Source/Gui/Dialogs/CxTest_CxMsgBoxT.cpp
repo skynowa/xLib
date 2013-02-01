@@ -18,7 +18,7 @@ CxTest_CxMsgBoxT::~CxTest_CxMsgBoxT() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxMsgBoxT::vUnit(
+CxTest_CxMsgBoxT::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

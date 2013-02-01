@@ -18,7 +18,7 @@ CxTest_CxBase64::~CxTest_CxBase64() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxBase64::vUnit(
+CxTest_CxBase64::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

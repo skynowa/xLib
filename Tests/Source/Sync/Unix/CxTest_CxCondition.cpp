@@ -118,7 +118,7 @@ CxTest_CxCondition::~CxTest_CxCondition() {
 //---------------------------------------------------------------------------
 /*virtual*/
 void
-CxTest_CxCondition::vUnit(
+CxTest_CxCondition::unit(
     const ulonglong_t &a_cullCaseLoops
 ) xOVERRIDE
 {

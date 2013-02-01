@@ -18,7 +18,7 @@ public:
                  CxTest_CxCompletionPort();
     virtual     ~CxTest_CxCompletionPort();
 
-    virtual     void vUnit(const ulonglong_t &cullCaseLoops);
+    virtual     void unit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxCompletionPortH

@@ -22,7 +22,7 @@ CxTest_CxProcessInfo::~CxTest_CxProcessInfo() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxProcessInfo::vUnit(
+CxTest_CxProcessInfo::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

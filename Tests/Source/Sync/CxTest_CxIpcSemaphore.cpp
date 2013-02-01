@@ -21,7 +21,7 @@ CxTest_CxIpcSemaphore::~CxTest_CxIpcSemaphore() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxIpcSemaphore::vUnit(
+CxTest_CxIpcSemaphore::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

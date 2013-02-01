@@ -18,7 +18,7 @@ CxTest_CxEvent::~CxTest_CxEvent() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxEvent::vUnit(
+CxTest_CxEvent::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

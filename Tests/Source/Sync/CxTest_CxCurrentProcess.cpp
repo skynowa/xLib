@@ -18,7 +18,7 @@ CxTest_CxCurrentProcess::~CxTest_CxCurrentProcess() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxCurrentProcess::vUnit(
+CxTest_CxCurrentProcess::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

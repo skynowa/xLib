@@ -22,13 +22,13 @@ CxTest_CxAutoProfiler::~CxTest_CxAutoProfiler() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxAutoProfiler::vUnit(
+CxTest_CxAutoProfiler::unit(
     const ulonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxAutoProfiler::CxAutoProfiler", cullCaseLoops)
     {
-        const std::tstring_t csFilePath = sTempDirPath() + CxConst::xSLASH + xT("CxAutoProfilerLog.log");
+        const std::tstring_t csFilePath = tempDirPath() + CxConst::xSLASH + xT("CxAutoProfilerLog.log");
 
         CxFile::clear(csFilePath);
 

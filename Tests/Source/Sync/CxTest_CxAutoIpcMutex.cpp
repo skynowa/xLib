@@ -20,7 +20,7 @@ CxTest_CxAutoIpcMutex::~CxTest_CxAutoIpcMutex() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxAutoIpcMutex::vUnit(
+CxTest_CxAutoIpcMutex::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

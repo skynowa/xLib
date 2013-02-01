@@ -19,7 +19,7 @@ CxTest_CxVolume::~CxTest_CxVolume() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxVolume::vUnit(
+CxTest_CxVolume::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

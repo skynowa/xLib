@@ -22,7 +22,7 @@ CxTest_CxFileTemp::~CxTest_CxFileTemp() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxFileTemp::vUnit(
+CxTest_CxFileTemp::unit(
     const ulonglong_t &cullCaseLoops
 )
 {
@@ -31,7 +31,7 @@ CxTest_CxFileTemp::vUnit(
         CxFileTemp ftFileTemp(true);
         CxFile     fJobber;
 
-        ftFileTemp.create(CxPath::exe(), sTempDirPath() + CxConst::xSLASH + xT("Temp"), &fJobber);
+        ftFileTemp.create(CxPath::exe(), tempDirPath() + CxConst::xSLASH + xT("Temp"), &fJobber);
         #if 0
             xTRACEV(xT("\tsTemp: %s"), fJobber.path().c_str());
         #endif

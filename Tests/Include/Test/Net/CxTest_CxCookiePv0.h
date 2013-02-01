@@ -18,7 +18,7 @@ public:
                  CxTest_CxCookiePv0();
     virtual     ~CxTest_CxCookiePv0();
 
-    virtual void vUnit(const ulonglong_t &cullCaseLoops);
+    virtual void unit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxCookiePv0H

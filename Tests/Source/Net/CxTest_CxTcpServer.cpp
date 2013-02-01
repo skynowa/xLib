@@ -21,7 +21,7 @@ CxTest_CxTcpServer::~CxTest_CxTcpServer() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxTcpServer::vUnit(
+CxTest_CxTcpServer::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

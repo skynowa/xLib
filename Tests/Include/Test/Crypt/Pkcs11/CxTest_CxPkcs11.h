@@ -21,7 +21,7 @@ public:
                  CxTest_CxPkcs11();
     virtual     ~CxTest_CxPkcs11();
 
-    virtual void vUnit(const ulonglong_t &cullCaseLoops);
+    virtual void unit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxPkcs11H

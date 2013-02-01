@@ -30,7 +30,7 @@ CxTest_CxUtils::~CxTest_CxUtils() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxUtils::vUnit(
+CxTest_CxUtils::unit(
     const ulonglong_t &cullCaseLoops
 )
 {
@@ -201,7 +201,7 @@ CxTest_CxUtils::vUnit(
 
     xTEST_CASE("CxUtils::fileClose", cullCaseLoops)
     {
-        const std::tstring_t csFilaPath = sTempDirPath() + CxConst::xSLASH + xT("test_fileclose.txt");
+        const std::tstring_t csFilaPath = tempDirPath() + CxConst::xSLASH + xT("test_fileclose.txt");
 
         FILE *pFile = xTFOPEN(csFilaPath.c_str(), xT("w"));
         xTEST_PTR(pFile);

@@ -22,7 +22,7 @@ CxTest_CxPath::~CxTest_CxPath() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxPath::vUnit(
+CxTest_CxPath::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

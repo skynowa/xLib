@@ -22,14 +22,14 @@ CxTest_CxCgi::~CxTest_CxCgi() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxCgi::vUnit(
+CxTest_CxCgi::unit(
     const ulonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxCgi::pageShow", cullCaseLoops)
     {
         #if xTEST_IGNORE
-            const std::tstring_t csFilePath = sTempDirPath() + CxConst::xSLASH + xT("Test.txt");
+            const std::tstring_t csFilePath = tempDirPath() + CxConst::xSLASH + xT("Test.txt");
 
             const std::tstring_t sFileContent =
                     xT("\t<html>")

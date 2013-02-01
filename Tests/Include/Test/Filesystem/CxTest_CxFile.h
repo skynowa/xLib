@@ -18,7 +18,7 @@ public:
                    CxTest_CxFile();
     virtual       ~CxTest_CxFile();
 
-    virtual  void  vUnit        (const ulonglong_t &cullCaseLoops);
+    virtual  void  unit        (const ulonglong_t &cullCaseLoops);
 
 private:
     void           vUnit1       (const ulonglong_t &cullCaseLoops);

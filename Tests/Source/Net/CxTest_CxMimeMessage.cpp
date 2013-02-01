@@ -18,7 +18,7 @@ CxTest_CxMimeMessage::~CxTest_CxMimeMessage() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxMimeMessage::vUnit(
+CxTest_CxMimeMessage::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

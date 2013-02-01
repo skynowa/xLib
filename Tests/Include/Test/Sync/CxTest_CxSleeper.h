@@ -18,7 +18,7 @@ public:
                  CxTest_CxSleeper();
     virtual     ~CxTest_CxSleeper();
 
-    virtual void vUnit(const ulonglong_t &cullCaseLoops);
+    virtual void unit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxSleeperH

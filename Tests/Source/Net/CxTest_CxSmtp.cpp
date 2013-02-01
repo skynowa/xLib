@@ -18,7 +18,7 @@ CxTest_CxSmtp::~CxTest_CxSmtp() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxSmtp::vUnit(
+CxTest_CxSmtp::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

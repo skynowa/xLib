@@ -20,7 +20,7 @@ CxTest_CxCookiePv0::~CxTest_CxCookiePv0() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxCookiePv0::vUnit(
+CxTest_CxCookiePv0::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

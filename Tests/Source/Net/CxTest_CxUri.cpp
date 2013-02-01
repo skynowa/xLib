@@ -18,7 +18,7 @@ CxTest_CxUri::~CxTest_CxUri() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxUri::vUnit(
+CxTest_CxUri::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

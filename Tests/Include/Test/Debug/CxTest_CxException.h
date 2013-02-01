@@ -18,7 +18,7 @@ public:
                  CxTest_CxException();
     virtual     ~CxTest_CxException();
 
-    virtual void vUnit(const ulonglong_t &cullCaseLoops);
+    virtual void unit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxExceptionH

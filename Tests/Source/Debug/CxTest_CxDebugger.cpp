@@ -18,7 +18,7 @@ CxTest_CxDebugger::~CxTest_CxDebugger() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxDebugger::vUnit(
+CxTest_CxDebugger::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

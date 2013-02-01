@@ -20,7 +20,7 @@ CxTest_CxEnvironment::~CxTest_CxEnvironment() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxEnvironment::vUnit(
+CxTest_CxEnvironment::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

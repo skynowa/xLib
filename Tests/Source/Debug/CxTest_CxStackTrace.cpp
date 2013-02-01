@@ -18,7 +18,7 @@ CxTest_CxStackTrace::~CxTest_CxStackTrace() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxStackTrace::vUnit(
+CxTest_CxStackTrace::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

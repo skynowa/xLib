@@ -18,7 +18,7 @@ CxTest_CxStdError::~CxTest_CxStdError() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxStdError::vUnit(
+CxTest_CxStdError::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

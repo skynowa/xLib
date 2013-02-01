@@ -22,11 +22,11 @@ CxTest_CxFileAttribute::~CxTest_CxFileAttribute() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxFileAttribute::vUnit(
+CxTest_CxFileAttribute::unit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    const std::tstring_t csFilePath = sTempDirPath() + CxConst::xSLASH + xT("Test.txt");
+    const std::tstring_t csFilePath = tempDirPath() + CxConst::xSLASH + xT("Test.txt");
     CxFileAttribute::ExAttribute cfaValue;
 
     // prepare
@@ -115,7 +115,7 @@ CxTest_CxFileAttribute::vUnit(
 
             // dir
             {
-                const std::tstring_t csDirPath = sTempDirPath();
+                const std::tstring_t csDirPath = tempDirPath();
 
                 CxFileAttribute faAttr(csDirPath);
 

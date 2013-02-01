@@ -18,7 +18,7 @@ public:
                  CxTest_CxFunctorT();
     virtual     ~CxTest_CxFunctorT();
 
-    virtual void vUnit(const ulonglong_t &cullCaseLoops);
+    virtual void unit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxFunctorTH
