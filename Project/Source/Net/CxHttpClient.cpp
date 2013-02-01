@@ -22,7 +22,7 @@ CxHttpClient::~CxHttpClient() {
 //---------------------------------------------------------------------------
 //TODO: bHead ()
 void
-CxHttpClient::vHead(
+CxHttpClient::head(
     const std::tstring_t &a_csUrl, 
     std::tstring_t       *a_psResponse
 )
@@ -45,7 +45,7 @@ CxHttpClient::vHead(
 //---------------------------------------------------------------------------
 //TODO: bGet ()
 void
-CxHttpClient::vGet(
+CxHttpClient::get(
     const std::tstring_t &a_csUrl,  
     std::tstring_t       *a_psResponse
 )
@@ -55,7 +55,7 @@ CxHttpClient::vGet(
 //---------------------------------------------------------------------------
 //TODO: bPost ()
 void
-CxHttpClient::vPost(
+CxHttpClient::post(
     const std::tstring_t &a_csUrl,  
     const std::tstring_t &a_csParams, 
     std::tstring_t       *a_psResponse
@@ -66,7 +66,7 @@ CxHttpClient::vPost(
 //---------------------------------------------------------------------------
 //TODO: bOptions ()
 void
-CxHttpClient::vOptions(
+CxHttpClient::options(
     const std::tstring_t &a_csUrl
 )
 {
@@ -75,7 +75,7 @@ CxHttpClient::vOptions(
 //---------------------------------------------------------------------------
 //TODO: bTrace ()
 void
-CxHttpClient::vTrace(
+CxHttpClient::trace(
     const std::tstring_t &a_csUrl
 )
 {
@@ -84,16 +84,16 @@ CxHttpClient::vTrace(
 //---------------------------------------------------------------------------
 //TODO: bPut ()
 void
-CxHttpClient::vPut(
+CxHttpClient::put(
     const std::tstring_t &a_csUrl
 )
 {
     xNOT_IMPLEMENTED;
 }
 //---------------------------------------------------------------------------
-//TODO: bDelete ()
+//TODO: del ()
 void
-CxHttpClient::vDelete(
+CxHttpClient::del(
     const std::tstring_t &a_csUrl
 )
 {
@@ -102,7 +102,7 @@ CxHttpClient::vDelete(
 //---------------------------------------------------------------------------
 //TODO: bConnect ()
 void
-CxHttpClient::vConnect(
+CxHttpClient::connect(
     const std::tstring_t &a_csUrl
 )
 {
@@ -111,7 +111,7 @@ CxHttpClient::vConnect(
 //---------------------------------------------------------------------------
 //TODO: bPatch ()
 void
-CxHttpClient::vPatch(
+CxHttpClient::patch(
     const std::tstring_t &a_csUrl
 )
 {
@@ -120,7 +120,7 @@ CxHttpClient::vPatch(
 //---------------------------------------------------------------------------
 //TODO: bLink ()
 void
-CxHttpClient::vLink(
+CxHttpClient::link(
     const std::tstring_t &a_csUrl
 )
 {
@@ -129,7 +129,7 @@ CxHttpClient::vLink(
 //---------------------------------------------------------------------------
 //TODO: bUnlink ()
 void
-CxHttpClient::vUnlink(
+CxHttpClient::unlink(
     const std::tstring_t &a_csUrl
 )
 {
