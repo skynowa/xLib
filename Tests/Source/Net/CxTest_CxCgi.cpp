@@ -26,7 +26,7 @@ CxTest_CxCgi::vUnit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    xTEST_CASE("CxCgi::vPageShow", cullCaseLoops)
+    xTEST_CASE("CxCgi::pageShow", cullCaseLoops)
     {
         #if xTEST_IGNORE
             const std::tstring_t csFilePath = sTempDirPath() + CxConst::xSLASH + xT("Test.txt");
@@ -41,22 +41,22 @@ CxTest_CxCgi::vUnit(
                     xT("</body>")
                     xT("</html>");
 
-            CxFile::vTextWrite(csFilePath, sFileContent);
-            CxCgi::vPageShow(csFilePath);
+            CxFile::textWrite(csFilePath, sFileContent);
+            CxCgi::pageShow(csFilePath);
         #endif
     }
 
-    xTEST_CASE("CxCgi::vRedirect", cullCaseLoops)
+    xTEST_CASE("CxCgi::redirect", cullCaseLoops)
     {
         #if xTEMP_DISABLED
-            CxCgi::vRedirect(xT("http://yandex.ru/"));
+            CxCgi::redirect(xT("http://yandex.ru/"));
         #endif
     }
 
     #if xTEMP_DISABLED
         CxCgi cgCgi(CxCgi::MAX_DATA_SIZE_DEFAULT);
 
-        cgCgi.Formdata.sDump();
+        cgCgi.Formdata.dump();
     #endif
 
     xTEST_CASE("CxCgi::env_vars", cullCaseLoops)
@@ -68,100 +68,100 @@ CxTest_CxCgi::vUnit(
         //--------------------------------------------------
         //CxCgi::CxCgiEnvironment
         {
-            m_sRv = cgCgi.Environment.sAuthType();
+            m_sRv = cgCgi.Environment.authType();
             //xTRACEV(xT("cgCgi.Environment.sAuthType(): %s"), m_sRv.c_str());
 
-            m_sRv = cgCgi.Environment.sContentLength();
+            m_sRv = cgCgi.Environment.contentLength();
             //xTRACEV(xT("cgCgi.Environment.sContentLength(): %s"), m_sRv.c_str());
 
-            m_sRv = cgCgi.Environment.sContentType();
+            m_sRv = cgCgi.Environment.contentType();
             //xTRACEV(xT("cgCgi.Environment.sContentType(): %s"), m_sRv.c_str());
 
-            m_sRv = cgCgi.Environment.sDocumentRoot();
+            m_sRv = cgCgi.Environment.documentRoot();
             //xTRACEV(xT("cgCgi.Environment.sDocumentRoot(): %s"), m_sRv.c_str());
 
-            m_sRv = cgCgi.Environment.sGatewayInterface();
+            m_sRv = cgCgi.Environment.gatewayInterface();
             //xTRACEV(xT("cgCgi.Environment.sGatewayInterface(): %s"), m_sRv.c_str());
 
-            m_sRv = cgCgi.Environment.sHttpAccept();
+            m_sRv = cgCgi.Environment.httpAccept();
             //xTRACEV(xT("cgCgi.Environment.sHttpAccept(): %s"), m_sRv.c_str());
 
-            m_sRv = cgCgi.Environment.sHttpCookie();
+            m_sRv = cgCgi.Environment.httpCookie();
             //xTRACEV(xT("cgCgi.Environment.sHttpCookie(): %s"), m_sRv.c_str());
 
-            m_sRv = cgCgi.Environment.sHttpPragma();
+            m_sRv = cgCgi.Environment.httpPragma();
             //xTRACEV(xT("cgCgi.Environment.sHttpPragma(): %s"), m_sRv.c_str());
 
-            m_sRv = cgCgi.Environment.sHttpUserAgent();
+            m_sRv = cgCgi.Environment.httpUserAgent();
             //xTRACEV(xT("cgCgi.Environment.sHttpUserAgent(): %s"), m_sRv.c_str());
 
-            m_sRv = cgCgi.Environment.sPathInfo();
+            m_sRv = cgCgi.Environment.pathInfo();
             //xTRACEV(xT("cgCgi.Environment.sPathInfo(): %s"), m_sRv.c_str());
 
-            m_sRv = cgCgi.Environment.sPathTranslated();
+            m_sRv = cgCgi.Environment.pathTranslated();
             //xTRACEV(xT("cgCgi.Environment.sPathTranslated(): %s"), m_sRv.c_str());
 
-            m_sRv = cgCgi.Environment.sQueryString();
+            m_sRv = cgCgi.Environment.queryString();
             //xTRACEV(xT("cgCgi.Environment.sQueryString(): %s"), m_sRv.c_str());
 
-            m_sRv = cgCgi.Environment.sRemoteAddr();
+            m_sRv = cgCgi.Environment.remoteAddr();
             //xTRACEV(xT("cgCgi.Environment.sRemoteAddr(): %s"), m_sRv.c_str());
 
-            m_sRv = cgCgi.Environment.sRemoteHost();
+            m_sRv = cgCgi.Environment.remoteHost();
             //xTRACEV(xT("cgCgi.Environment.sRemoteHost(): %s"), m_sRv.c_str());
 
-            m_sRv = cgCgi.Environment.sRemoteIdent();
+            m_sRv = cgCgi.Environment.remoteIdent();
             //xTRACEV(xT("cgCgi.Environment.sRemoteIdent(): %s"), m_sRv.c_str());
 
-            m_sRv = cgCgi.Environment.sRemotePort();
+            m_sRv = cgCgi.Environment.remotePort();
             //xTRACEV(xT("cgCgi.Environment.sRemotePort(): %s"), m_sRv.c_str());
 
-            m_sRv = cgCgi.Environment.sRemoteUser();
+            m_sRv = cgCgi.Environment.remoteUser();
             //xTRACEV(xT("cgCgi.Environment.sRemoteUser(): %s"), m_sRv.c_str());
 
-            m_sRv = cgCgi.Environment.sRequestMethod();
+            m_sRv = cgCgi.Environment.requestMethod();
             //xTRACEV(xT("cgCgi.Environment.sRequestMethod(): %s"), m_sRv.c_str());
 
-            m_sRv = cgCgi.Environment.sRequestUri();
+            m_sRv = cgCgi.Environment.requestUri();
             //xTRACEV(xT("cgCgi.Environment.sRequestUri(): %s"), m_sRv.c_str());
 
-            m_sRv = cgCgi.Environment.sScriptFilename();
+            m_sRv = cgCgi.Environment.scriptFilename();
             //xTRACEV(xT("cgCgi.Environment.sScriptFilename(): %s"), m_sRv.c_str());
 
-            m_sRv = cgCgi.Environment.sScriptName();
+            m_sRv = cgCgi.Environment.scriptName();
             //xTRACEV(xT("cgCgi.Environment.sScriptName(): %s"), m_sRv.c_str());
 
-            m_sRv = cgCgi.Environment.sServerAdmin();
+            m_sRv = cgCgi.Environment.serverAdmin();
             //xTRACEV(xT("cgCgi.Environment.sServerAdmin(): %s"), m_sRv.c_str());
 
-            m_sRv = cgCgi.Environment.sServerName();
+            m_sRv = cgCgi.Environment.serverName();
             //xTRACEV(xT("cgCgi.Environment.sServerName(): %s"), m_sRv.c_str());
 
-            m_sRv = cgCgi.Environment.sServerPort();
+            m_sRv = cgCgi.Environment.serverPort();
             //xTRACEV(xT("cgCgi.Environment.sServerPort(): %s"), m_sRv.c_str());
 
-            m_sRv = cgCgi.Environment.sServerProtocol();
+            m_sRv = cgCgi.Environment.serverProtocol();
             //xTRACEV(xT("cgCgi.Environment.sServerProtocol(): %s"), m_sRv.c_str());
 
-            m_sRv = cgCgi.Environment.sServerSoftware();
+            m_sRv = cgCgi.Environment.serverSoftware();
             //xTRACEV(xT("cgCgi.Environment.sServerSoftware(): %s"), m_sRv.c_str());
 
-            m_sRv = cgCgi.Environment.sHttpReferer();
+            m_sRv = cgCgi.Environment.httpReferer();
             //xTRACEV(xT("cgCgi.Environment.sHttpReferer(): %s"), m_sRv.c_str());
 
-            m_sRv = cgCgi.Environment.sHttpHost();
+            m_sRv = cgCgi.Environment.httpHost();
             //xTRACEV(xT("cgCgi.Environment.sHttpHost(): %s"), m_sRv.c_str());
 
-            m_sRv = cgCgi.Environment.sHttpAcceptLanguage();
+            m_sRv = cgCgi.Environment.httpAcceptLanguage();
             //xTRACEV(xT("cgCgi.Environment.sHttpAcceptLanguage(): %s"), m_sRv.c_str());
 
-            m_sRv = cgCgi.Environment.sCountryCode();
+            m_sRv = cgCgi.Environment.countryCode();
             //xTRACEV(xT("cgCgi.Environment.sCountryCode(): %s"), m_sRv.c_str());
 
-            m_iRv = static_cast<int>( cgCgi.Environment.rmRequestMethod() );
+            m_iRv = static_cast<int>( cgCgi.Environment.requestType() );
             //xTRACEV(xT("cgCgi.Environment.rmRequestMethod(): %i"), m_iRv);
 
-            m_sRv = cgCgi.Environment.sDump();
+            m_sRv = cgCgi.Environment.dump();
             //xTRACEV(xT("cgCgi.Environment.sDump(): %s"), m_sRv.c_str());
         }
 
@@ -172,7 +172,7 @@ CxTest_CxCgi::vUnit(
 
             //sDump
             {
-                m_sRv = cgCgi.Cookies.sDump();
+                m_sRv = cgCgi.Cookies.dump();
                 //xTRACEV(xT("cgCgi.Cookies.sDump(): %s"), m_sRv.c_str());
             }
 
@@ -184,8 +184,8 @@ CxTest_CxCgi::vUnit(
                 m_sRv = cgCgi.Cookies[xT("Valuea")];
                 //xTRACEV(xT("cgCgi.Cookies[xT(\"Valuea\")]= %s"), m_sRv.c_str());
 
-                if (false == cgCgi.Cookies.Items.empty()) {
-                    m_sRv = cgCgi.Cookies.Items.at(0)->sValue();
+                if (false == cgCgi.Cookies.items.empty()) {
+                    m_sRv = cgCgi.Cookies.items.at(0)->sValue();
                     //xTRACEV(xT("cgCgi.Cookies.Items.at(0)->sValue() = %s"), m_sRv.c_str());
                 }
             }
@@ -195,17 +195,17 @@ CxTest_CxCgi::vUnit(
         //CxCgi::CxCgiFormData
         {
 
-            m_sRv = cgCgi.Formdata.sRawData();
+            m_sRv = cgCgi.Formdata.rawData();
             //xTRACEV(xT("cgCgi.Formdata.sRawData(): %s"), m_sRv.c_str());
 
-            m_sRv = cgCgi.Formdata.sDump();
+            m_sRv = cgCgi.Formdata.dump();
             //xTRACEV(xT("cgCgi.Formdata.sDump(): %s"), m_sRv.c_str());
         }
 
         //--------------------------------------------------
         //sDump
         {
-            m_sRv = cgCgi.sDump();
+            m_sRv = cgCgi.dump();
             //xTRACEV(xT("cgCgi.sDump(): %s"), m_sRv.c_str());
         }
 
@@ -213,7 +213,7 @@ CxTest_CxCgi::vUnit(
         //std::tcout << std::endl;
     }
 
-    xTEST_CASE("CxCgi::bUriEncode CxCgi::sDecodedStr", cullCaseLoops)
+    xTEST_CASE("CxCgi::uriEncode CxCgi::decodedStr", cullCaseLoops)
     {
         //1
         {
@@ -231,12 +231,12 @@ CxTest_CxCgi::vUnit(
                 std::tstring_t sUri        = sData[i];
                 std::tstring_t sEncodedStr;
 
-                CxCgi::vUriEncode(sUri, ILLEGAL_CHARS, &sEncodedStr);
+                CxCgi::uriEncode(sUri, ILLEGAL_CHARS, &sEncodedStr);
                 xTEST_EQ(false, sEncodedStr.empty());
 
                 std::tstring_t sDecodedStr;
 
-                CxCgi::vUriDecode(sEncodedStr, &sDecodedStr);
+                CxCgi::uriDecode(sEncodedStr, &sDecodedStr);
                 xTEST_EQ(sUri, sDecodedStr);
             }
         }
@@ -256,12 +256,12 @@ CxTest_CxCgi::vUnit(
                 std::tstring_t sUri        = sData[i];
                 std::tstring_t sDecodedStr;
 
-                CxCgi::vUriDecode(sUri, &sDecodedStr);
+                CxCgi::uriDecode(sUri, &sDecodedStr);
                 xTEST_EQ(false, sDecodedStr.empty());
 
                 std::tstring_t sEncodedStr;
 
-                CxCgi::vUriEncode(sDecodedStr, ILLEGAL_CHARS, &sEncodedStr);
+                CxCgi::uriEncode(sDecodedStr, ILLEGAL_CHARS, &sEncodedStr);
                 xTEST_EQ(sUri,  sEncodedStr);
             }
         }
