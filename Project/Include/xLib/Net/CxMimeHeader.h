@@ -16,16 +16,16 @@ class CxMimeHeader :
     /// MIME header (RFC 822)
 {
 public:
-                           CxMimeHeader      ();
-                          ~CxMimeHeader      ();
+                           CxMimeHeader     ();
+                          ~CxMimeHeader     ();
 
-    void                   vParse            (const std::tstring_t &csRawHeader);
-    std::tstring_t         sField            (const std::tstring_t &csName);
-    size_t                 uiCount           ();
-    void                   vLoadFromFile     (const std::tstring_t &csRawMessageFilePath);
-    void                   vSaveToFile       (const std::tstring_t &csFilePath);
+    void                   parse            (const std::tstring_t &csRawHeader);
+    std::tstring_t         field            (const std::tstring_t &csName);
+    size_t                 count            ();
+    void                   loadFromFile     (const std::tstring_t &csRawMessageFilePath);
+    void                   saveToFile       (const std::tstring_t &csFilePath);
 
-    static std::tstring_t  sGenerateMessageID();
+    static std::tstring_t  generateMessageID();
 
 private:
     static const std::tstring_t _ms_csAttrDelimiter;
