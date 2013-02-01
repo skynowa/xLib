@@ -29,11 +29,11 @@ CxTest_CxTcpClient::vUnit(
     CxSocket::ExType          tpType         = CxSocket::tpStream;
     CxSocket::ExProtocol      ptProtocol     = CxSocket::ptIp;
 
-    const std::tstring_t             csDomain        = xT("127.0.0.1");
-    std::tstring_t                     sIp            = xT("127.0.0.1");
-    ushort_t                   usPort         = 80;
-    std::tstring_t                  sSendBuff      = xT("TEST_STRING");
-    ////char                     szRecvBuff[32] = {0};
+    const std::tstring_t      csDomain        = xT("127.0.0.1");
+    std::tstring_t            sIp            = xT("127.0.0.1");
+    ushort_t                  usPort         = 80;
+    std::tstring_t            sSendBuff      = xT("TEST_STRING");
+    ////char                  szRecvBuff[32] = {0};
 
     //-------------------------------------
     //�������������
@@ -51,20 +51,20 @@ CxTest_CxTcpClient::vUnit(
 
     //-------------------------------------
     //bDnsParse
-    CxDnsClient::vHostAddrByName(csDomain, &sIp);
+    CxDnsClient::hostAddrByName(csDomain, &sIp);
 
     //-------------------------------------
     //bConnect
-    objSocket.vConnect(sIp, usPort);
+    objSocket.connect(sIp, usPort);
 
     //-------------------------------------
     //bIsReadable
-    m_bRv = objSocket.bIsReadable();
+    m_bRv = objSocket.isReadable();
     xTEST_EQ(false, m_bRv);
 
     //-------------------------------------
     //bIsWritable
-    m_bRv = objSocket.bIsWritable();
+    m_bRv = objSocket.isWritable();
     xTEST_EQ(true, m_bRv);
 
     //-------------------------------------
@@ -73,7 +73,7 @@ CxTest_CxTcpClient::vUnit(
         std::tstring_t _sIp;
         ushort_t       _usPort = 0;
 
-        objSocket.vPeerName(&_sIp, &_usPort);
+        objSocket.peerName(&_sIp, &_usPort);
     }
 
     //-------------------------------------
@@ -82,7 +82,7 @@ CxTest_CxTcpClient::vUnit(
         std::tstring_t _sIp;
         ushort_t       _usPort = 0;
 
-        objSocket.vSocketName(&_sIp, &_usPort);
+        objSocket.socketName(&_sIp, &_usPort);
     }
 
     //-------------------------------------
@@ -100,7 +100,7 @@ CxTest_CxTcpClient::vUnit(
 
         //-------------------------------------
         //iSend
-        m_iRv = objSocket.iSend(sText.c_str(), static_cast<int>( sText.size() ), 0);
+        m_iRv = objSocket.send(sText.c_str(), static_cast<int>( sText.size() ), 0);
         xTEST_DIFF(xSOCKET_ERROR, m_iRv);
     }
 
@@ -111,11 +111,11 @@ CxTest_CxTcpClient::vUnit(
 
     //-------------------------------------
     //bClose
-    objSocket.vClose();
+    objSocket.close();
 
     //-------------------------------------
     //iGetLastError
-    m_iRv = CxTcpClient::iLastError();
+    m_iRv = CxTcpClient::lastError();
     //xTEST_EQ(true, m_bRv);
 }
 //---------------------------------------------------------------------------

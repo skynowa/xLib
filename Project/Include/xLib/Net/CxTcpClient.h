@@ -17,28 +17,28 @@ class CxTcpClient :
     /// client socket
 {
 public:
-                CxTcpClient  ();
+                CxTcpClient       ();
         ///< constructor
-    virtual    ~CxTcpClient  ();
+    virtual    ~CxTcpClient       ();
         ///< constructor
 
-    bool        bIsReadable        ();
+    bool        isReadable        ();
         ///< checking for readability
-    bool        bIsWritable        ();
+    bool        isWritable        ();
         ///< checking for writability
-    void        vConnect           (const std::tstring_t &csIp, const ushort_t &cusPort);
+    void        connect           (const std::tstring_t &csIp, const ushort_t &cusPort);
         ///< connecting
 
-    void        vIoctl             (const long_t &cliCmd, ulong_t *pulArgp);
+    void        ioctl             (const long_t &cliCmd, ulong_t *pulArgp);
         ///< controls the i/o mode
-    void        vSetNonBlockingMode(const bool &cbFlag);
+    void        setNonBlockingMode(const bool &cbFlag);
         ///< set nonblocking mode
-    void        vTimeout           (long_t *pliSec, long_t *pliMicroSec);
+    void        timeout           (long_t *pliSec, long_t *pliMicroSec);
         ///< get timeout
-    void        vSetTimeout        (const long_t &cliSec, const long_t &cliMicroSec);
+    void        setTimeout        (const long_t &cliSec, const long_t &cliMicroSec);
         ///< set timeout
 
-    static bool bIsServerAlive     (const std::tstring_t &csIp, const ushort_t &cusPort);
+    static bool isServerAlive     (const std::tstring_t &csIp, const ushort_t &cusPort);
         ///< is sever socket available
 
 protected:

@@ -20,17 +20,17 @@ class CxSmtp :
     /// SMTP (RFC 2821)
 {
 public:
-                   CxSmtp     ();
-                  ~CxSmtp     ();
+                   CxSmtp    ();
+                  ~CxSmtp    ();
 
     void           create    (const std::tstring_t &csUser, const std::tstring_t &csPass, const std::tstring_t &csServer, const ushort_t &cusPort);
-    void           vConnect   ();
-    void           vLogin     ();
-    void           vNoop      ();
-    void           vRset      ();
-    void           vSendRaw   (const std::tstring_t &csFilePath, const std::tstring_t &csFrom, const std::tstring_t &csTo);
-    void           vSend      (const std::tstring_t &csText, const std::tstring_t &sFrom, const std::tstring_t &sTo);
-    void           vDisconnect();
+    void           connect   ();
+    void           login     ();
+    void           noop      ();
+    void           rset      ();
+    void           sendRaw   (const std::tstring_t &csFilePath, const std::tstring_t &csFrom, const std::tstring_t &csTo);
+    void           send      (const std::tstring_t &csText, const std::tstring_t &sFrom, const std::tstring_t &sTo);
+    void           disconnect();
 
 private:
     CxTcpClient    _m_scktSocket;
@@ -40,8 +40,8 @@ private:
     ushort_t       _m_usPort;
     bool           _m_bConnected;
 
-    void           _vCommand   (const std::tstring_t &csCmd, const std::tstring_t &csReplyDelimiter, std::tstring_t &sReply); /*+*/
-    bool           _bIsError   (const std::tstring_t &csText);
+    void           _command  (const std::tstring_t &csCmd, const std::tstring_t &csReplyDelimiter, std::tstring_t &sReply); /*+*/
+    bool           _isError  (const std::tstring_t &csText);
 };
 
 xNAMESPACE_END(NxLib)

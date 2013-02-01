@@ -22,27 +22,27 @@ class CxPop3 :
     /// POP3 (RFC 2821)
 {
 public:
-                      CxPop3              ();
-                     ~CxPop3              ();
+                      CxPop3             ();
+                     ~CxPop3             ();
 
     void              create             (const std::tstring_t &csUser, const std::tstring_t &csPass, const std::tstring_t &csServer, ushort_t usPort);
-    void              vConnect            ();
-    void              vLogin              ();
+    void              connect            ();
+    void              login              ();
 
-    void              vStat               (ulong_t &ulSum, ulong_t &ulSize);
-    void              vList               (std::vector<ulong_t> &veculList);
-    void              vListAt             (ulong_t &ulIndex);
-    void              vNoop               ();
-    void              vRset               ();
-    void              vTop                (int iNum, int iLines, std::tstring_t &sBuff);
+    void              stat               (ulong_t &ulSum, ulong_t &ulSize);
+    void              list               (std::vector<ulong_t> &veculList);
+    void              listAt             (ulong_t &ulIndex);
+    void              noop               ();
+    void              rset               ();
+    void              top                (int iNum, int iLines, std::tstring_t &sBuff);
 
-    void              vRetrive            (int iNum, const std::tstring_t &csRawMimeMessage);
-    void              vRetriveRaw         (int iNum, const std::tstring_t &csDirPath, const std::tstring_t &csFileName);
-    void              vRetriveRawAndBackup(int iNum, const std::tstring_t &csDirPath, const std::tstring_t &csBackupDirPath, const std::tstring_t &csFileName);
-    void              vRetrieveHeader     (int iNum, CxMimeHeader &mhMimeHeader);
+    void              retrive            (int iNum, const std::tstring_t &csRawMimeMessage);
+    void              retriveRaw         (int iNum, const std::tstring_t &csDirPath, const std::tstring_t &csFileName);
+    void              retriveRawAndBackup(int iNum, const std::tstring_t &csDirPath, const std::tstring_t &csBackupDirPath, const std::tstring_t &csFileName);
+    void              retrieveHeader     (int iNum, CxMimeHeader &mhMimeHeader);
 
-    void              vDelete             (int iNum);
-    void              vDisconnect         ();
+    void              del                (int iNum);
+    void              disconnect         ();
 
 private:
     std::tstring_t    _m_sRes;
@@ -54,10 +54,10 @@ private:
     ushort_t          _m_usPort;
     bool              _m_bConnected;
 
-    void              _vCommand           (const std::tstring_t &csCmd, const std::tstring_t &csReplyDelimiter, std::tstring_t *psReply);
-    bool              _bIsError           (const std::tstring_t &csText);
-    ulong_t           _ulMailsSum         (const std::tstring_t &csServerAnswer);
-    ulong_t           _ulMailsSize        (const std::tstring_t &csServerAnswer);
+    void              _command           (const std::tstring_t &csCmd, const std::tstring_t &csReplyDelimiter, std::tstring_t *psReply);
+    bool              _isError           (const std::tstring_t &csText);
+    ulong_t           _mailsSum          (const std::tstring_t &csServerAnswer);
+    ulong_t           _mailsSize         (const std::tstring_t &csServerAnswer);
 };
 
 xNAMESPACE_END(NxLib)

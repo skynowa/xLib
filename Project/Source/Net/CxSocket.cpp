@@ -27,11 +27,11 @@ CxSocket::CxSocket() :
 CxSocket::~CxSocket() {
     // n/a
 
-    vClose();
+    close();
 }
 //---------------------------------------------------------------------------
 void
-CxSocket::vAssign(
+CxSocket::assign(
     const socket_t &a_csktSocket
 )
 {
@@ -93,14 +93,14 @@ CxSocket::create(
 }
 //---------------------------------------------------------------------------
 socket_t
-CxSocket::iHandle() const {
+CxSocket::handle() const {
     xTEST_DIFF(xSOCKET_HANDLE_INVALID, _m_sktSocket);
 
     return _m_sktSocket;
 }
 //---------------------------------------------------------------------------
 bool
-CxSocket::bIsValid() const {
+CxSocket::isValid() const {
     // n/a
 
 #if   xOS_ENV_WIN
@@ -111,8 +111,8 @@ CxSocket::bIsValid() const {
 }
 //---------------------------------------------------------------------------
 void
-CxSocket::vClose() {
-    xCHECK_DO(false == bIsValid(), return);
+CxSocket::close() {
+    xCHECK_DO(false == isValid(), return);
 
     xTEST_DIFF(xSOCKET_HANDLE_INVALID, _m_sktSocket);
 
@@ -144,7 +144,7 @@ CxSocket::vClose() {
 //TODO: iSend
 //TODO: LINUX: ssize_t send(int sockfd, const void *buf, size_t len, int flags);
 int
-CxSocket::iSend(
+CxSocket::send(
     const tchar_t *a_pcszBuff,
     const int     &a_ciBuffSize,
     const int     &a_ciFlags
@@ -156,7 +156,7 @@ CxSocket::iSend(
 
 #if   xOS_ENV_WIN
     int     iRv = ::send(_m_sktSocket, (LPCSTR)a_pcszBuff, a_ciBuffSize * sizeof(tchar_t), a_ciFlags);
-    xTEST_EQ(true, xSOCKET_ERROR != iRv && WSAEWOULDBLOCK != iLastError());
+    xTEST_EQ(true, xSOCKET_ERROR != iRv && WSAEWOULDBLOCK != lastError());
     xTEST_GR_EQ(a_ciBuffSize * (int)sizeof(tchar_t), iRv);
 #elif xOS_ENV_UNIX
     #if !defined(MSG_NOSIGNAL)
@@ -173,7 +173,7 @@ CxSocket::iSend(
 //---------------------------------------------------------------------------
 //TODO: bSendAll
 void
-CxSocket::vSendAll(
+CxSocket::sendAll(
     const std::tstring_t &a_csBuff,
     const int            &a_ciFlags
 )
@@ -196,7 +196,7 @@ CxSocket::vSendAll(
     }
 
     xFOREVER {        /*uiLeftSize > 0*/
-        int iRv = iSend(&a_csBuff.at(0) + iCurrPos, iBuffOutSize, a_ciFlags);
+        int iRv = send(&a_csBuff.at(0) + iCurrPos, iBuffOutSize, a_ciFlags);
         xCHECK_DO(xSOCKET_ERROR == iRv, break);
         xCHECK_DO(0             == iRv, break);
 
@@ -214,7 +214,7 @@ CxSocket::vSendAll(
 }
 //---------------------------------------------------------------------------
 int
-CxSocket::iRecv(
+CxSocket::recv(
     tchar_t   *a_pszBuff,
     const int &a_ciBuffSize,
     const int &a_ciFlags
@@ -228,7 +228,7 @@ CxSocket::iRecv(
 
 #if   xOS_ENV_WIN
     int     iRv = ::recv(_m_sktSocket, (LPSTR)a_pszBuff, a_ciBuffSize * sizeof(tchar_t), a_ciFlags);
-    xTEST_EQ(true, xSOCKET_ERROR != iRv && WSAEWOULDBLOCK != iLastError());
+    xTEST_EQ(true, xSOCKET_ERROR != iRv && WSAEWOULDBLOCK != lastError());
     xTEST_DIFF(0, iRv);  //gracefully closed
     xTEST_GR_EQ(a_ciBuffSize * (int)sizeof(tchar_t), iRv);
 #elif xOS_ENV_UNIX
@@ -242,7 +242,7 @@ CxSocket::iRecv(
 }
 //---------------------------------------------------------------------------
 std::tstring_t
-CxSocket::sRecvAll(
+CxSocket::recvAll(
     const int &a_ciFlags
 )
 {
@@ -275,7 +275,7 @@ CxSocket::sRecvAll(
 }
 //---------------------------------------------------------------------------
 std::tstring_t
-CxSocket::sRecvAll(
+CxSocket::recvAll(
     const int            &a_ciFlags,
     const std::tstring_t &a_csDelimiter
 )
@@ -287,13 +287,13 @@ CxSocket::sRecvAll(
     //-------------------------------------
     //read from socket by blocks, write to string
     xFOREVER {
-        int iRv = iRecv(&sIn.at(0), cuiInSize, a_ciFlags);
+        int iRv = recv(&sIn.at(0), cuiInSize, a_ciFlags);
         xCHECK_DO(xSOCKET_ERROR == iRv, break);
         xCHECK_DO(0             == iRv, break);
 
         sRv.append(sIn.begin(), sIn.begin() + iRv);
 
-        //if delimiter was finded - break
+        // if delimiter was find - break
         size_t uiDelimiterPos = sRv.find(a_csDelimiter);        //TODO: from unicode ???
         xCHECK_DO(std::tstring_t::npos != uiDelimiterPos, break);
     }
@@ -303,7 +303,7 @@ CxSocket::sRecvAll(
 //---------------------------------------------------------------------------
 //TODO: iSendBytes
 int
-CxSocket::iSendBytes(
+CxSocket::sendBytes(
     char      *a_pszBuff,
     const int &a_ciMessageLength
 )
@@ -328,13 +328,13 @@ CxSocket::iSendBytes(
         xCHECK_RET(!iRC, xSOCKET_ERROR);
 
         //An error occurred
-        xCHECK_RET(iRC < 0, iLastError());
+        xCHECK_RET(iRC < 0, lastError());
 
         //send a few bytes
         iSendStatus = ::send(_m_sktSocket, a_pszBuff, iMessageLength, 0);
 
         //An error occurred when sending data
-        xCHECK_RET(iSendStatus < 0, iLastError());
+        xCHECK_RET(iSendStatus < 0, lastError());
 
         //update the buffer and the counter
         iMessageLength -= iSendStatus;
@@ -346,7 +346,7 @@ CxSocket::iSendBytes(
 //---------------------------------------------------------------------------
 //TODO: ReceiveNBytes
 int
-CxSocket::iReceiveBytes(
+CxSocket::receiveBytes(
     char      *a_pszBuff,
     const int &a_ciStillToReceive
 )
@@ -371,13 +371,13 @@ CxSocket::iReceiveBytes(
         xCHECK_RET(!iRC, xSOCKET_ERROR);
 
         //An error occurred
-        xCHECK_RET(iRC < 0, iLastError());
+        xCHECK_RET(iRC < 0, lastError());
 
-        //recive a few bytes
+        //receive a few bytes
         iReceiveStatus = ::recv(_m_sktSocket, a_pszBuff, iStillToReceive, 0);
 
         //An error occurred when the function recv ()
-        xCHECK_RET(iReceiveStatus < 0, iLastError());
+        xCHECK_RET(iReceiveStatus < 0, lastError());
 
         //changed the value of the counter and the buffer
         iStillToReceive -= iReceiveStatus;
@@ -396,7 +396,7 @@ CxSocket::iReceiveBytes(
 
 //---------------------------------------------------------------------------
 void
-CxSocket::vPeerName(
+CxSocket::peerName(
     std::tstring_t *a_psPeerAddr,
     ushort_t       *a_pusPeerPort
 )
@@ -431,7 +431,7 @@ CxSocket::vPeerName(
 }
 //---------------------------------------------------------------------------
 void
-CxSocket::vSocketName(
+CxSocket::socketName(
     std::tstring_t *a_psSocketAddr,
     ushort_t       *a_pusSocketPort
 )
@@ -475,7 +475,7 @@ CxSocket::vSocketName(
 //---------------------------------------------------------------------------
 /* static */
 int
-CxSocket::iSelect(
+CxSocket::select(
     int      a_nfds,
     fd_set  *a_pReadfds,
     fd_set  *a_pWritefds,
@@ -497,7 +497,7 @@ CxSocket::iSelect(
 //---------------------------------------------------------------------------
 /* static */
 int
-CxSocket::iLastError() {
+CxSocket::lastError() {
     // n/a
 
 #if   xOS_ENV_WIN
