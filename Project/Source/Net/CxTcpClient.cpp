@@ -21,7 +21,7 @@ xNAMESPACE_BEGIN(NxLib)
 CxTcpClient::CxTcpClient() :
     _m_tvTimeout()
 {
-    vSetTimeout(0L, SOCKET_TIMEOUT);
+    setTimeout(0L, SOCKET_TIMEOUT);
 }
 //---------------------------------------------------------------------------
 CxTcpClient::~CxTcpClient() {
@@ -29,7 +29,7 @@ CxTcpClient::~CxTcpClient() {
 }
 //---------------------------------------------------------------------------
 bool
-CxTcpClient::bIsReadable() {
+CxTcpClient::isReadable() {
     timeval tvTimeout = {1, 0};     /*seconds, microseconds*/
     fd_set  fds;        FD_ZERO(&fds);
 
@@ -42,7 +42,7 @@ CxTcpClient::bIsReadable() {
 }
 //---------------------------------------------------------------------------
 bool
-CxTcpClient::bIsWritable() {
+CxTcpClient::isWritable() {
     timeval tvTimeout = {1, 0};     /*seconds, microseconds*/
     fd_set  fds;        FD_ZERO(&fds);
 
@@ -55,7 +55,7 @@ CxTcpClient::bIsWritable() {
 }
 //---------------------------------------------------------------------------
 void
-CxTcpClient::vConnect(
+CxTcpClient::connect(
     const std::tstring_t &a_csIp,
     const ushort_t       &a_cusPort
 )
@@ -77,7 +77,7 @@ CxTcpClient::vConnect(
 }
 //---------------------------------------------------------------------------
 void
-CxTcpClient::vIoctl(
+CxTcpClient::ioctl(
     const long_t &a_cliCmd,
     ulong_t      *a_pulArgp
 )
@@ -96,16 +96,14 @@ CxTcpClient::vIoctl(
 }
 //---------------------------------------------------------------------------
 void
-CxTcpClient::vSetNonBlockingMode(
+CxTcpClient::setNonBlockingMode(
     const bool &a_cbFlag
 )
 {
-    
-
 #if   xOS_ENV_WIN
     ulong_t ulNonBlockingMode = static_cast<ulong_t>(a_cbFlag);
 
-    vIoctl(FIONBIO, static_cast<ulong_t FAR *>(&ulNonBlockingMode));
+    ioctl(FIONBIO, static_cast<ulong_t FAR *>(&ulNonBlockingMode));
 
     /*
     int bOptVal = true;
@@ -131,12 +129,11 @@ CxTcpClient::vSetNonBlockingMode(
 }
 //---------------------------------------------------------------------------
 void
-CxTcpClient::vTimeout(
+CxTcpClient::timeout(
     long_t *a_pliSec,
     long_t *a_pliMicroSec
 )
 {
-    
     // pliSec      - n/a
     // pliMicroSec - n/a
 
@@ -146,12 +143,11 @@ CxTcpClient::vTimeout(
 }
 //---------------------------------------------------------------------------
 void
-CxTcpClient::vSetTimeout(
+CxTcpClient::setTimeout(
     const long_t &a_cliSec,
     const long_t &a_cliMicroSec
 )
 {
-    
     // liSec      - n/a
     // liMicroSec - n/a
 
@@ -169,7 +165,7 @@ CxTcpClient::vSetTimeout(
 //---------------------------------------------------------------------------
 /* static */
 bool
-CxTcpClient::bIsServerAlive(
+CxTcpClient::isServerAlive(
     const std::tstring_t &a_csIp,
     const ushort_t       &a_cusPort
 )
@@ -196,7 +192,7 @@ CxTcpClient::bIsServerAlive(
     saSockAddr.sin_port        = htons(a_cusPort); //TODO: htons
 
     //connect - [+] 0 [-] SOCKET_ERROR
-    iRv = ::connect(objSocket.iHandle(), CxUtils::reinterpretCastT<sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
+    iRv = ::connect(objSocket.handle(), CxUtils::reinterpretCastT<sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
     // n/a
 
     xCHECK_RET(0 != iRv, false);

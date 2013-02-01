@@ -19,7 +19,7 @@ CxTcpServer::~CxTcpServer() {
 }
 //---------------------------------------------------------------------------
 void
-CxTcpServer::vBind(
+CxTcpServer::bind(
     const ushort_t &a_cusPort
 )
 {
@@ -42,7 +42,7 @@ CxTcpServer::vBind(
 }
 //---------------------------------------------------------------------------
 void
-CxTcpServer::vListen(
+CxTcpServer::listen(
     const int &a_ciBacklog /*= SOMAXCONN*/
 )
 {
@@ -53,7 +53,7 @@ CxTcpServer::vListen(
 }
 //---------------------------------------------------------------------------
 void
-CxTcpServer::vAccept(
+CxTcpServer::accept(
     CxTcpServer    *a_pscktAcceptSocket,
     std::tstring_t *a_psFromIp
 )
@@ -80,7 +80,7 @@ CxTcpServer::vAccept(
 
     //TODO: bAccept
     ////scktAcceptSocket = scktClient;
-    (*a_pscktAcceptSocket).vAssign(scktClient);
+    (*a_pscktAcceptSocket).assign(scktClient);
 
     //конверт из UNICODE
     std::string asFromIp = ::inet_ntoa(cliaddr.sin_addr);

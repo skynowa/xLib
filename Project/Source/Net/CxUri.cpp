@@ -43,7 +43,7 @@ CxUri::CxUri(const std::tstring_t &a_csUri) :
     _m_sQuery    (),
     _m_sFragment ()
 {
-    _vParse(a_csUri);
+    _parse(a_csUri);
 }
 //---------------------------------------------------------------------------
 //DONE: ~CxUri
@@ -51,7 +51,7 @@ CxUri::~CxUri() {
 
 }
 //---------------------------------------------------------------------------
-//TODO: sUri
+//TODO: uri
 /*
 URI = scheme ":" hier-part [ "?" query ] [ "#" fragment ]
 
@@ -75,37 +75,37 @@ tel    : +1-816-555-1212
 telnet : //192.0.2.16:80/
 */
 std::tstring_t
-CxUri::sUri() const {
+CxUri::uri() const {
     
 
     std::tstring_t sRv;
     std::tstring_t sTemp;
 
-    sTemp = sScheme();
+    sTemp = scheme();
     if (false == sTemp.empty()) {
         sRv += xT("");
         sRv += sTemp;
     }
 
-    sTemp = sAuthority();
+    sTemp = authority();
     if (false == sTemp.empty()) {
         sRv += xT(":");
         sRv += sTemp;
     }
 
-    sTemp = sPath();
+    sTemp = path();
     if (false == sTemp.empty()) {
         sRv += xT("");
         sRv += sTemp;
     }
 
-    sTemp = sQuery();
+    sTemp = query();
     if (false == sTemp.empty()) {
         sRv += xT("?");
         sRv += sTemp;
     }
 
-    sTemp = sFragment();
+    sTemp = fragment();
     if (false == sTemp.empty()) {
         sRv += xT("#");
         sRv += sTemp;
@@ -114,29 +114,29 @@ CxUri::sUri() const {
     return sRv;
 }
 void
-CxUri::vSetUri(const std::tstring_t &a_csScheme, const std::tstring_t &a_csAuthority, const std::tstring_t &a_csPath, const std::tstring_t &a_csQuery, const std::tstring_t &a_csFragment) {
+CxUri::setUri(const std::tstring_t &a_csScheme, const std::tstring_t &a_csAuthority, const std::tstring_t &a_csPath, const std::tstring_t &a_csQuery, const std::tstring_t &a_csFragment) {
     
 
-    vSetScheme   (a_csScheme);
-    vSetAuthority(a_csAuthority);
-    vSetPath     (a_csPath);
-    vSetQuery    (a_csQuery);
-    vSetFragment (a_csFragment);
+    setScheme   (a_csScheme);
+    setAuthority(a_csAuthority);
+    setPath     (a_csPath);
+    setQuery    (a_csQuery);
+    setFragment (a_csFragment);
 }
 //---------------------------------------------------------------------------
-//TODO: sScheme
+//TODO: scheme
 std::tstring_t
-CxUri::sScheme() const {
-    return sEncodeComponent(_m_sScheme);
+CxUri::scheme() const {
+    return encodeComponent(_m_sScheme);
 }
 void
-CxUri::vSetScheme(const std::tstring_t &csScheme) {
-    _m_sScheme = sDecodeComponent(csScheme);
+CxUri::setScheme(const std::tstring_t &csScheme) {
+    _m_sScheme = decodeComponent(csScheme);
 }
 //---------------------------------------------------------------------------
-//DONE: sAuthority
+//DONE: authority
 std::tstring_t
-CxUri::sAuthority() const {
+CxUri::authority() const {
     std::tstring_t sTempAuthority;
 
     sTempAuthority += xT("//");
@@ -150,87 +150,87 @@ CxUri::sAuthority() const {
         sTempAuthority += _m_sHost;
     }
 
-    if (0 < _m_usPort && false == _bIsDefaultPort()) {
+    if (0 < _m_usPort && false == _isDefaultPort()) {
         sTempAuthority += xT(":");
         sTempAuthority += CxString::cast(_m_usPort);
     }
 
-    return sEncodeComponent(sTempAuthority/*_m_sAuthority*/);
+    return encodeComponent(sTempAuthority/*_m_sAuthority*/);
 }
 void
-CxUri::vSetAuthority(const std::tstring_t &csAuthority) {
-    _m_sAuthority = sDecodeComponent(csAuthority);
+CxUri::setAuthority(const std::tstring_t &csAuthority) {
+    _m_sAuthority = decodeComponent(csAuthority);
 }
 //---------------------------------------------------------------------------
-//DONE: sUserInfo
+//DONE: userInfo
 std::tstring_t
-CxUri::sUserInfo() const {
-    return sEncodeComponent(_m_sUserInfo);
+CxUri::userInfo() const {
+    return encodeComponent(_m_sUserInfo);
 }
 void
-CxUri::vSetUserInfo(const std::tstring_t &csUserInfo) {
-    _m_sUserInfo = sDecodeComponent(csUserInfo);
+CxUri::setUserInfo(const std::tstring_t &csUserInfo) {
+    _m_sUserInfo = decodeComponent(csUserInfo);
 
     //TODO: bSetAuthority
 }
 //---------------------------------------------------------------------------
-//DONE: sHost
+//DONE: host
 std::tstring_t
-CxUri::sHost() const {
-    return sEncodeComponent(_m_sHost);
+CxUri::host() const {
+    return encodeComponent(_m_sHost);
 }
 void
-CxUri::vSetHost(const std::tstring_t &csHost) {
-    _m_sHost = sDecodeComponent(csHost);
+CxUri::setHost(const std::tstring_t &csHost) {
+    _m_sHost = decodeComponent(csHost);
 
     //TODO: bSetAuthority
 }
 //---------------------------------------------------------------------------
-//DONE: usPort
+//DONE: port
 ushort_t
-CxUri::usPort() {
+CxUri::port() {
     return _m_usPort;
 }
 void
-CxUri::vSetPort(const ushort_t &cusPort) {
+CxUri::setPort(const ushort_t &cusPort) {
     _m_usPort = cusPort;
 
     //TODO: bSetAuthority
 }
 //---------------------------------------------------------------------------
-//DONE: sPath
+//DONE: path
 std::tstring_t
-CxUri::sPath() const {
-    return sEncodeComponent(_m_sPath);
+CxUri::path() const {
+    return encodeComponent(_m_sPath);
 }
 void
-CxUri::vSetPath(const std::tstring_t &csPath) {
-    _m_sPath = sDecodeComponent(csPath);
+CxUri::setPath(const std::tstring_t &csPath) {
+    _m_sPath = decodeComponent(csPath);
 }
 //---------------------------------------------------------------------------
-//DONE: sQuery
+//DONE: query
 std::tstring_t
-CxUri::sQuery() const {
-    return sEncodeComponent(_m_sQuery);
+CxUri::query() const {
+    return encodeComponent(_m_sQuery);
 }
 void
-CxUri::vSetQuery(const std::tstring_t &csQuery) {
-    _m_sQuery = sDecodeComponent(csQuery);
+CxUri::setQuery(const std::tstring_t &csQuery) {
+    _m_sQuery = decodeComponent(csQuery);
 }
 //---------------------------------------------------------------------------
-//DONE: sFragment
+//DONE: fragment
 std::tstring_t
-CxUri::sFragment() const {
-    return sEncodeComponent(_m_sFragment);
+CxUri::fragment() const {
+    return encodeComponent(_m_sFragment);
 }
 void
-CxUri::vSetFragment(const std::tstring_t &csFragment) {
-    _m_sFragment = sDecodeComponent(csFragment);
+CxUri::setFragment(const std::tstring_t &csFragment) {
+    _m_sFragment = decodeComponent(csFragment);
 }
 //---------------------------------------------------------------------------
 //DONE: bClear ()
 void
-CxUri::vClear() {
+CxUri::clear() {
     ////bool bRv = false;
 
     _m_sScheme.clear();
@@ -243,10 +243,10 @@ CxUri::vClear() {
     _m_sFragment.clear();
 }
 //---------------------------------------------------------------------------
-//TODO: sEscape ()
+//TODO: escape ()
 /* static */
 std::tstring_t
-CxUri::sEscape(const std::tstring_t &csUri) {
+CxUri::escape(const std::tstring_t &csUri) {
     
 
     /*
@@ -283,24 +283,24 @@ CxUri::sEscape(const std::tstring_t &csUri) {
     return sRv;
 }
 //---------------------------------------------------------------------------
-//TODO: sUnescape ()
+//TODO: unescape ()
 /* static */
 std::tstring_t
-CxUri::sUnescape(const std::tstring_t &csUri) {
+CxUri::unescape(const std::tstring_t &csUri) {
     
 
     std::tstring_t sRv;
 
-    //TODO: sUnescape
+    //TODO: unescape
 
     return sRv;
 }
 //---------------------------------------------------------------------------
-//TODO: sEncodeComponent
+//TODO: encodeComponent
 //void URI::encode(const std::tstring_t& str, const std::tstring_t& reserved, std::tstring_t& encodedStr)
 /* static */
 std::tstring_t
-CxUri::sEncodeComponent(const std::tstring_t &a_csUri) {
+CxUri::encodeComponent(const std::tstring_t &a_csUri) {
     std::tstring_t sRv;
 
     xFOREACH_CONST(std::tstring_t, it, a_csUri) {
@@ -335,11 +335,11 @@ CxUri::sEncodeComponent(const std::tstring_t &a_csUri) {
     return sRv;
 }
 //---------------------------------------------------------------------------
-//TODO: sDecodeComponent
+//TODO: decodeComponent
 //void URI::decode(const std::tstring_t& str, std::tstring_t& decodedStr)
 /* static */
 std::tstring_t
-CxUri::sDecodeComponent(const std::tstring_t &a_csUri) {
+CxUri::decodeComponent(const std::tstring_t &a_csUri) {
     std::tstring_t sRv;
 
     std::tstring_t::const_iterator it  = a_csUri.begin();
@@ -433,10 +433,10 @@ tel    : +1-816-555-1212
 telnet : //192.0.2.16:80/
 */
 void
-CxUri::_vParse(const std::tstring_t &a_csUri) {
+CxUri::_parse(const std::tstring_t &a_csUri) {
     //Normilize();
 
-    vClear();
+    clear();
 
     //-------------------------------------
     //[scheme] - [foo]
@@ -503,7 +503,7 @@ CxUri::_vParse(const std::tstring_t &a_csUri) {
         _m_usPort = CxString::cast<ushort_t>(sPort);
     }
     if (0 == _m_usPort) {
-        _m_usPort = _usDefaultPort();
+        _m_usPort = _defaultPort();
     }
 
     //-------------------------------------
@@ -551,7 +551,7 @@ CxUri::_vParse(const std::tstring_t &a_csUri) {
 //---------------------------------------------------------------------------
 //TODO: _bNormilize ()
 void
-CxUri::_vNormilize(const std::tstring_t &a_csUri) {
+CxUri::_normilize(const std::tstring_t &a_csUri) {
     ////bool bRv = false;
 
     //trim
@@ -561,9 +561,9 @@ CxUri::_vNormilize(const std::tstring_t &a_csUri) {
     xNOT_IMPLEMENTED;
 }
 //---------------------------------------------------------------------------
-//TODO: _usDefaultPort ()
+//TODO: _defaultPort ()
 ushort_t
-CxUri::_usDefaultPort() const {
+CxUri::_defaultPort() const {
     if (       xT("ftp")    == _m_sScheme) {
         return 21;
     } else if (xT("ssh")    == _m_sScheme) {
@@ -585,10 +585,10 @@ CxUri::_usDefaultPort() const {
     }
 }
 //---------------------------------------------------------------------------
-//TODO: _bIsDefaultPort ()
+//TODO: _isDefaultPort ()
 bool
-CxUri::_bIsDefaultPort() const {
-    return ( _m_usPort == _usDefaultPort() );
+CxUri::_isDefaultPort() const {
+    return ( _m_usPort == _defaultPort() );
 }
 //---------------------------------------------------------------------------
 

@@ -43,10 +43,10 @@ CxTest_CxPop3::vUnit(
 
     //-------------------------------------
     //IPNET
-    const std::tstring_t  csUser     = xT("domen");
-    const std::tstring_t  csPass     = xT("control6");
-    const std::tstring_t  csServer   = xT("mail.ipnet.kiev.ua");
-    const ushort_t   cusPort    = 110;
+    const std::tstring_t csUser     = xT("domen");
+    const std::tstring_t csPass     = xT("control6");
+    const std::tstring_t csServer   = xT("mail.ipnet.kiev.ua");
+    const ushort_t       cusPort    = 110;
 
     //-------------------------------------
     //hMailServer
@@ -76,37 +76,37 @@ CxTest_CxPop3::vUnit(
 
     //-------------------------------------
     //bConnect
-    objPop3.vConnect();
+    objPop3.connect();
 
     //-------------------------------------
     //bLogin
-    objPop3.vLogin();
+    objPop3.login();
 
     //-------------------------------------
     //bStat
-    objPop3.vStat(ulSum, ulSize);
+    objPop3.stat(ulSum, ulSize);
 
     //-------------------------------------
     //bList
-    ////m_bRv = objPop3.bList(veculList);
+    ////m_bRv = objPop3.list(veculList);
     ////xTEST_EQ(true, m_bRv);
 
     //-------------------------------------
     //bListAt
-    ////m_bRv = objPop3.bListAt(ulIndex);
+    ////m_bRv = objPop3.listAt(ulIndex);
     ////xTEST_EQ(true, m_bRv);
 
     //-------------------------------------
     //bNoop
-    objPop3.vNoop();
+    objPop3.noop();
 
     //-------------------------------------
     //bDelete
-    objPop3.vDelete(ulMsgID);
+    objPop3.del(ulMsgID);
 
     //-------------------------------------
     //bRset
-    objPop3.vRset();
+    objPop3.rset();
 
     //-------------------------------------
     //bTop
@@ -120,14 +120,14 @@ CxTest_CxPop3::vUnit(
         //////CxMimeHeader
         ////CxMimeHeader objHeader;
 
-        ////m_bRv = objPop3.bTop(iNum, 0, /*ref*/sRawHeader);
+        ////m_bRv = objPop3.top(iNum, 0, /*ref*/sRawHeader);
         ////xTEST_EQ(true, m_bRv);
         /////*LOG*/printf("bTop %i\n", i);
 
-        ////m_bRv = objHeader.bParse(sRawHeader);
+        ////m_bRv = objHeader.parse(sRawHeader);
         ////xTEST_EQ(true, m_bRv);
 
-        ////m_sRv = objHeader.sGetField(xT("Message-Id"));
+        ////m_sRv = objHeader.field(xT("Message-Id"));
         ////xTEST_EQ(false, m_sRv.empty());
 
 
@@ -135,17 +135,17 @@ CxTest_CxPop3::vUnit(
         //////CxMimeBody
         ////////CxMimeBody objBody;
 
-        //////m_bRv = m_Body.bParse(sRawMessage);
+        //////m_bRv = m_Body.parse(sRawMessage);
         //////xTEST_EQ(true, m_bRv);
     }
 
     //-------------------------------------
     //bRetriveRaw
     for (ulong_t i = 1; i <= ulSum; i ++) {
-        CxDir(csDirPath).vPathCreate();
+        CxDir(csDirPath).pathCreate();
 
-        objPop3.vRetriveRaw(i, csDirPath, csFileName + xT("_") + CxString::cast(i) + xT(".eml"));
-        /*LOG*/printf("bRetriveRaw %lu\n", i);
+        objPop3.retriveRaw(i, csDirPath, csFileName + xT("_") + CxString::cast(i) + xT(".eml"));
+        /*LOG*/printf("retriveRaw %lu\n", i);
     }
 
     //-------------------------------------
@@ -153,12 +153,12 @@ CxTest_CxPop3::vUnit(
     for (ulong_t i = 1; i <= ulSum; i ++) {
         CxMimeHeader mhMimeHeader;
 
-        objPop3.vRetrieveHeader(iNum, mhMimeHeader);
-        /*LOG*/printf("bRetrieveHeader %lu\n", i);
+        objPop3.retrieveHeader(iNum, mhMimeHeader);
+        /*LOG*/printf("retrieveHeader %lu\n", i);
     }
 
     //-------------------------------------
     //bDisconnect
-    objPop3.vDisconnect();
+    objPop3.disconnect();
 }
 //---------------------------------------------------------------------------

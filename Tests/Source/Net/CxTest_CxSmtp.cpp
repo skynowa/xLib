@@ -73,7 +73,7 @@ CxTest_CxSmtp::vUnit(
 
     //-------------------------------------
     //bConnect
-    objSmtp.vConnect();
+    objSmtp.connect();
 
     //-------------------------------------
     //bLogin
@@ -81,7 +81,7 @@ CxTest_CxSmtp::vUnit(
 
     //-------------------------------------
     //bSend
-    objSmtp.vSend(csText, csFrom, csTo);
+    objSmtp.send(csText, csFrom, csTo);
 
     //-------------------------------------
     // vSendRaw
@@ -96,14 +96,14 @@ CxTest_CxSmtp::vUnit(
 
     //-------------------------------------
     //bNoop
-    objSmtp.vNoop();
+    objSmtp.noop();
 
     //-------------------------------------
     //bRset
-    objSmtp.vRset();
+    objSmtp.rset();
 
     //-------------------------------------
     //bDisconnect
-    objSmtp.vDisconnect();
+    objSmtp.disconnect();
 }
 //---------------------------------------------------------------------------

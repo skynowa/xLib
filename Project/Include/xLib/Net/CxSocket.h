@@ -159,12 +159,12 @@ public:
         SOCKET_BUFF_SIZE = 32768    ///< 32 KB
     };
 
-                   CxSocket       ();
+                   CxSocket         ();
         ///< constructor
-    virtual       ~CxSocket       () = 0;
+    virtual       ~CxSocket         () = 0;
         ///< destructor
 
-    void           vAssign        (const socket_t &csktSocket);
+    void           assign           (const socket_t &csktSocket);
         ///< assign to another socket
 
     /****************************************************************************
@@ -172,7 +172,7 @@ public:
     *
     *****************************************************************************/
 
-    CxSocket &     operator =     (const socket_t &csktSocket);
+    CxSocket &     operator =       (const socket_t &csktSocket);
         ///< operator =
                    operator socket_t();
         ///< operator socket_t
@@ -183,13 +183,13 @@ public:
     *
     *****************************************************************************/
 
-    void           create        (const ExAddressFamily &cafFamily, const ExType &ctpType, const ExProtocol &cptProtocol);
+    void           create           (const ExAddressFamily &cafFamily, const ExType &ctpType, const ExProtocol &cptProtocol);
         ///< creates a socket that is bound to a specific transport service provider
-    socket_t       iHandle        () const;
+    socket_t       handle           () const;
         ///< get socket
-    bool           bIsValid       () const;
+    bool           isValid          () const;
         ///< checking for validness
-    void           vClose         ();
+    void           close            ();
         ///< close
 
 
@@ -200,22 +200,22 @@ public:
 
     //void *, std::tstring_t, std::ustring_t
 
-    int            iSend          (const tchar_t *pcszBuff, const int &ciBuffSize, const int &ciFlags);
+    int            send             (const tchar_t *pcszBuff, const int &ciBuffSize, const int &ciFlags);
         ///< send data
-    void           vSendAll       (const std::tstring_t &csBuff, const int &ciFlags);
+    void           sendAll          (const std::tstring_t &csBuff, const int &ciFlags);
         ///< send data by blocks
 
-    int            iRecv          (tchar_t *pszBuff,  const int &ciBuffSize, const int &ciFlags);
-        ///< recieve data
-    std::tstring_t sRecvAll       ( const int &ciFlags);
-        ///< recieve data
-    std::tstring_t sRecvAll       (const int &ciFlags, const std::tstring_t &csDelimiter);
-        ///< recive data to delimiter, includs it
+    int            recv             (tchar_t *pszBuff,  const int &ciBuffSize, const int &ciFlags);
+        ///< receive data
+    std::tstring_t recvAll          (const int &ciFlags);
+        ///< receive data
+    std::tstring_t recvAll          (const int &ciFlags, const std::tstring_t &csDelimiter);
+        ///< receive data to delimiter, includes it
 
-    int            iSendBytes     (char *pszBuff, const int &ciMessageLength);
+    int            sendBytes        (char *pszBuff, const int &ciMessageLength);
         ///< send bytes
-    int            iReceiveBytes  (char *pszBuff, const int &ciStillToReceive);
-        ///< recieve bytes
+    int            receiveBytes     (char *pszBuff, const int &ciStillToReceive);
+        ///< receive bytes
 
 
     /****************************************************************************
@@ -223,9 +223,9 @@ public:
     *
     *****************************************************************************/
 
-    void           vPeerName      (std::tstring_t *psPeerAddr, ushort_t *pusPeerPort);
+    void           peerName         (std::tstring_t *psPeerAddr, ushort_t *pusPeerPort);
         ///< get address of the peer to which a socket is connected
-    void           vSocketName    (std::tstring_t *psSocketAddr, ushort_t *pusSocketPort);
+    void           socketName       (std::tstring_t *psSocketAddr, ushort_t *pusSocketPort);
         ///< get local name for a socket
 
     /****************************************************************************
@@ -234,9 +234,9 @@ public:
     *****************************************************************************/
 
     ////getsockopt
-    static int     iSelect        (int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, timeval *tvTimeout);
+    static int     select           (int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, timeval *tvTimeout);
         ///< determines the status of one or more sockets, waiting if necessary, to perform synchronous I/O
-    static int     iLastError     ();
+    static int     lastError        ();
         ///< get error status for the last operation that failed
 
 protected:
@@ -244,8 +244,6 @@ protected:
     short_t        _m_siFamily;   ///< family
     std::tstring_t _m_sIp;        ///< IP
     ushort_t       _m_usPort;     ///< port
-
-private:
 };
 
 xNAMESPACE_END(NxLib)
