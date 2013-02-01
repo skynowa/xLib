@@ -41,7 +41,7 @@ CxCompletionPort::create(
 }
 //---------------------------------------------------------------------------
 void
-CxCompletionPort::vAssociate(
+CxCompletionPort::associate(
     const HANDLE  &a_chFile,
     ULONG_PTR      a_pulCompletionKey
 )
@@ -61,7 +61,7 @@ CxCompletionPort::vAssociate(
 }
 //---------------------------------------------------------------------------
 void
-CxCompletionPort::vStatus(
+CxCompletionPort::status(
     LPDWORD        a_lpNumberOfBytes,
     PULONG_PTR     a_lpCompletionKey,
     LPOVERLAPPED  *a_lpOverlapped,
@@ -79,7 +79,7 @@ CxCompletionPort::vStatus(
 }
 //---------------------------------------------------------------------------
 void
-CxCompletionPort::vPostStatus(
+CxCompletionPort::postStatus(
     const ulong_t &a_culNumberOfBytesTransferred,
     ULONG_PTR      a_ulCompletionKey,
     LPOVERLAPPED   a_lpOverlapped
