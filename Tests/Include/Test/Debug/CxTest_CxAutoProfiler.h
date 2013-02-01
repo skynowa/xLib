@@ -18,7 +18,7 @@ public:
                  CxTest_CxAutoProfiler();
     virtual     ~CxTest_CxAutoProfiler();
 
-    virtual void vUnit(const ulonglong_t &cullCaseLoops);
+    virtual void unit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxAutoProfilerH

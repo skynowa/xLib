@@ -18,7 +18,7 @@ CxTest_CxRandom::~CxTest_CxRandom() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxRandom::vUnit(
+CxTest_CxRandom::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

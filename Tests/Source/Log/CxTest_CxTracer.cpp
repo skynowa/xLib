@@ -20,7 +20,7 @@ CxTest_CxTracer::~CxTest_CxTracer() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxTracer::vUnit(
+CxTest_CxTracer::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

@@ -20,7 +20,7 @@ CxTest_CxMySql::~CxTest_CxMySql() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxMySql::vUnit(
+CxTest_CxMySql::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

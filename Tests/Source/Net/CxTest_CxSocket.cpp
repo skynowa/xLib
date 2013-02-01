@@ -21,7 +21,7 @@ CxTest_CxSocket::~CxTest_CxSocket() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxSocket::vUnit(
+CxTest_CxSocket::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

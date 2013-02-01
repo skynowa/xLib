@@ -18,7 +18,7 @@ public:
                  CxTest_CxHandleT();
     virtual     ~CxTest_CxHandleT();
 
-    virtual void vUnit(const ulonglong_t &cullCaseLoops);
+    virtual void unit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxHandleT_CxHandleTH

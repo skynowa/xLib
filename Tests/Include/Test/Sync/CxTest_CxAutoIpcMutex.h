@@ -18,7 +18,7 @@ public:
                  CxTest_CxAutoIpcMutex();
     virtual     ~CxTest_CxAutoIpcMutex();
 
-    virtual void vUnit(const ulonglong_t &cullCaseLoops);
+    virtual void unit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxAutoIpcMutexH

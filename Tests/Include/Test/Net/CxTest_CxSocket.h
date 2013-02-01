@@ -18,7 +18,7 @@ public:
                  CxTest_CxSocket();
     virtual     ~CxTest_CxSocket();
 
-    virtual void vUnit(const ulonglong_t &cullCaseLoops);
+    virtual void unit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxSocketH

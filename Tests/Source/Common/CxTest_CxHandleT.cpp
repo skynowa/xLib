@@ -20,7 +20,7 @@ CxTest_CxHandleT::~CxTest_CxHandleT() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxHandleT::vUnit(
+CxTest_CxHandleT::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

@@ -22,7 +22,7 @@ public:
     virtual      ~CxTest_CxCondition();
         ///< destructor
 
-    virtual void  vUnit(const ulonglong_t &cullCaseLoops) xOVERRIDE;
+    virtual void  unit(const ulonglong_t &cullCaseLoops) xOVERRIDE;
         ///< unit test
 };
 

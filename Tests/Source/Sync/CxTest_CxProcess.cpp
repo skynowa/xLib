@@ -22,7 +22,7 @@ CxTest_CxProcess::~CxTest_CxProcess() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxProcess::vUnit(
+CxTest_CxProcess::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

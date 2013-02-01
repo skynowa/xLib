@@ -18,7 +18,7 @@ public:
                  CxTest_CxProcess();
     virtual     ~CxTest_CxProcess();
 
-    virtual void vUnit(const ulonglong_t &cullCaseLoops);
+    virtual void unit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxTest_CxProcessH

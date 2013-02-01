@@ -18,7 +18,7 @@ public:
                  CxTest_CxTcpServer();
     virtual     ~CxTest_CxTcpServer();
 
-    virtual void vUnit(const ulonglong_t &cullCaseLoops);
+    virtual void unit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxTcpServerH

@@ -23,7 +23,7 @@ CxTest_CxPop3::~CxTest_CxPop3() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxPop3::vUnit(
+CxTest_CxPop3::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

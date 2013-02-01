@@ -25,7 +25,7 @@ RandomNumber () {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxString::vUnit(
+CxTest_CxString::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

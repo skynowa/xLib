@@ -21,7 +21,7 @@ CxTest_xDefines::~CxTest_xDefines() {
 //---------------------------------------------------------------------------
 /*virtual*/
 void
-CxTest_xDefines::vUnit(
+CxTest_xDefines::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

@@ -19,7 +19,7 @@ CxTest_CxThreadPool::~CxTest_CxThreadPool() {
 //---------------------------------------------------------------------------
 /*virtual*/
 void
-CxTest_CxThreadPool::vUnit(
+CxTest_CxThreadPool::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

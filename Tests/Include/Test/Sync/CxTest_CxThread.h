@@ -19,7 +19,7 @@ public:
                  CxTest_CxThread();
     virtual     ~CxTest_CxThread();
 
-    virtual void vUnit          (const ulonglong_t &cullCaseLoops);
+    virtual void unit          (const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxThreadH

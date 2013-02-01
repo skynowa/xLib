@@ -23,13 +23,13 @@ CxTest_CxFinder::~CxTest_CxFinder() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxFinder::vUnit(
+CxTest_CxFinder::unit(
     const ulonglong_t &cullCaseLoops
 )
 {
     //-------------------------------------
     // prepare
-    const std::tstring_t csRootDirPath = sTempDirPath() + CxConst::xSLASH + xT("CxFinder_Dir");
+    const std::tstring_t csRootDirPath = tempDirPath() + CxConst::xSLASH + xT("CxFinder_Dir");
     std::vec_tstring_t vsDirs;
     std::vec_tstring_t vsFiles;
 

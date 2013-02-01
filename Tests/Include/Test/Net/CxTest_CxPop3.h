@@ -18,7 +18,7 @@ public:
                  CxTest_CxPop3();
     virtual     ~CxTest_CxPop3();
 
-    virtual void vUnit(const ulonglong_t &cullCaseLoops);
+    virtual void unit(const ulonglong_t &cullCaseLoops);
 };
 //---------------------------------------------------------------------------
 #endif //CxTest_CxPop3H

@@ -21,12 +21,12 @@ CxTest_CxBackuper::~CxTest_CxBackuper() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxBackuper::vUnit(
+CxTest_CxBackuper::unit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    const std::tstring_t csFilePath  = sTempDirPath() + CxConst::xSLASH + xT("Test_backup.txt");
-    const std::tstring_t csBackupDir = sTempDirPath() + CxConst::xSLASH + xT("Backup_dir");
+    const std::tstring_t csFilePath  = tempDirPath() + CxConst::xSLASH + xT("Test_backup.txt");
+    const std::tstring_t csBackupDir = tempDirPath() + CxConst::xSLASH + xT("Backup_dir");
 
 
     xTEST_CASE("CxBackuper::execute", cullCaseLoops)

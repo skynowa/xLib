@@ -34,7 +34,7 @@ CxTest_CxSingleton::~CxTest_CxSingleton() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxSingleton::vUnit(
+CxTest_CxSingleton::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

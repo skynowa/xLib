@@ -20,7 +20,7 @@ CxTest_xDebug::~CxTest_xDebug() {
 //---------------------------------------------------------------------------
 /*virtual*/
 void
-CxTest_xDebug::vUnit(
+CxTest_xDebug::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

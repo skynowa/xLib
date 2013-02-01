@@ -86,7 +86,7 @@ CxTest_CxFunctorT::~CxTest_CxFunctorT() {
 }
 //---------------------------------------------------------------------------
 void
-CxTest_CxFunctorT::vUnit(
+CxTest_CxFunctorT::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

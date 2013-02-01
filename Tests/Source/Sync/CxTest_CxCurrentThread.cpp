@@ -20,7 +20,7 @@ CxTest_CxCurrentThread::~CxTest_CxCurrentThread() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxCurrentThread::vUnit(
+CxTest_CxCurrentThread::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

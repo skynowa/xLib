@@ -18,7 +18,7 @@ CxTest_CxShell::~CxTest_CxShell() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxShell::vUnit(
+CxTest_CxShell::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

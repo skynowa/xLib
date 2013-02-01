@@ -20,7 +20,7 @@ public:
     virtual      ~CxTest_CxNonCopyable();
         ///< destructor
 
-    virtual void  vUnit(const ulonglong_t &cullCaseLoops) xOVERRIDE;
+    virtual void  unit(const ulonglong_t &cullCaseLoops) xOVERRIDE;
         ///< unit test
 };
 //---------------------------------------------------------------------------

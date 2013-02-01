@@ -44,22 +44,22 @@ public:
 
 #endif
 
-                           CxTest        ();
+                           CxTest       ();
         ///< constructor
-    virtual               ~CxTest        () = 0;
+    virtual               ~CxTest       () = 0;
         ///< destructor
 
-    void                   vRun          (const ulonglong_t &cullUnitLoops, const ulonglong_t &cullCaseLoops);
+    void                   run          (const ulonglong_t &cullUnitLoops, const ulonglong_t &cullCaseLoops);
         ///< run test units
-    virtual void           vUnit         (const ulonglong_t &cullCaseLoops) = 0;
+    virtual void           unit         (const ulonglong_t &cullCaseLoops) = 0;
         ///< test unit
-    void                   vCreateTempDir(const std::tstring_t &csDirName);
+    void                   createTempDir(const std::tstring_t &csDirName);
         ///< create work dir
-    const std::tstring_t & sTempDirPath  () const;
+    const std::tstring_t & tempDirPath  () const;
         ///< get work dir path
-    const std::tstring_t & sName         () const;
+    const std::tstring_t & name         () const;
         ///< get name
-    void                   vSetName      (const std::tstring_t &csTestName);
+    void                   setName      (const std::tstring_t &csTestName);
         ///< set name
 
 private:

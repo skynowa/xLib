@@ -24,7 +24,7 @@ CxTest_CxNonCopyable::~CxTest_CxNonCopyable() {
 //---------------------------------------------------------------------------
 /*virtual*/
 void
-CxTest_CxNonCopyable::vUnit(
+CxTest_CxNonCopyable::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

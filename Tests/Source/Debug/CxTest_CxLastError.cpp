@@ -18,7 +18,7 @@ CxTest_CxLastError::~CxTest_CxLastError() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxLastError::vUnit(
+CxTest_CxLastError::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

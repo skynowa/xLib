@@ -18,7 +18,7 @@ CxTest_CxDll::~CxTest_CxDll() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxDll::vUnit(
+CxTest_CxDll::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

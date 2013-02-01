@@ -20,29 +20,29 @@ CxTest_CxDir::~CxTest_CxDir() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxDir::vUnit(
+CxTest_CxDir::unit(
     const ulonglong_t &cullCaseLoops
 )
 {
-    const std::tstring_t csTempScanDirPath = sTempDirPath() + CxConst::xSLASH + xT("Scan");
+    const std::tstring_t csTempScanDirPath = tempDirPath() + CxConst::xSLASH + xT("Scan");
     const std::tstring_t csMask            = xT("*.txt");
 
 #if   xOS_ENV_WIN
-    const std::tstring_t csFilePath        = sTempDirPath() + xT("\\Test.txt");
-    const std::tstring_t csRootTestDirPath = sTempDirPath() + xT("\\Test_Dir");
-    const std::tstring_t csDirPath         = sTempDirPath() + xT("\\Test_Dir\\1\\2\\3");
-    const std::tstring_t csDirPath2        = sTempDirPath() + xT("\\Test_Dir\\1\\2\\3\\4");
-    const std::tstring_t csNewFilePath     = sTempDirPath() + xT("\\New.Test.txt");
-    const std::tstring_t csBakFilePath     = sTempDirPath() + xT("\\Test_Static.txt.bak");
-    const std::tstring_t csFilePathSt      = sTempDirPath() + xT("\\Test_Static.txt");
+    const std::tstring_t csFilePath        = tempDirPath() + xT("\\Test.txt");
+    const std::tstring_t csRootTestDirPath = tempDirPath() + xT("\\Test_Dir");
+    const std::tstring_t csDirPath         = tempDirPath() + xT("\\Test_Dir\\1\\2\\3");
+    const std::tstring_t csDirPath2        = tempDirPath() + xT("\\Test_Dir\\1\\2\\3\\4");
+    const std::tstring_t csNewFilePath     = tempDirPath() + xT("\\New.Test.txt");
+    const std::tstring_t csBakFilePath     = tempDirPath() + xT("\\Test_Static.txt.bak");
+    const std::tstring_t csFilePathSt      = tempDirPath() + xT("\\Test_Static.txt");
 #elif xOS_ENV_UNIX
-    const std::tstring_t csFilePath        = sTempDirPath() + xT("/Test.txt");
-    const std::tstring_t csRootTestDirPath = sTempDirPath() + xT("/Test_Dir");
-    const std::tstring_t csDirPath         = sTempDirPath() + xT("/Test_Dir/1/2/3");
-    const std::tstring_t csDirPath2        = sTempDirPath() + xT("/Test_Dir/1/2/3/4");
-    const std::tstring_t csNewFilePath     = sTempDirPath() + xT("/New.Test.txt");
-    const std::tstring_t csBakFilePath     = sTempDirPath() + xT("/Test_Static.txt.bak");
-    const std::tstring_t csFilePathSt      = sTempDirPath() + xT("/Test_Static.txt");
+    const std::tstring_t csFilePath        = tempDirPath() + xT("/Test.txt");
+    const std::tstring_t csRootTestDirPath = tempDirPath() + xT("/Test_Dir");
+    const std::tstring_t csDirPath         = tempDirPath() + xT("/Test_Dir/1/2/3");
+    const std::tstring_t csDirPath2        = tempDirPath() + xT("/Test_Dir/1/2/3/4");
+    const std::tstring_t csNewFilePath     = tempDirPath() + xT("/New.Test.txt");
+    const std::tstring_t csBakFilePath     = tempDirPath() + xT("/Test_Static.txt.bak");
+    const std::tstring_t csFilePathSt      = tempDirPath() + xT("/Test_Static.txt");
 #endif
 
 
@@ -169,7 +169,7 @@ CxTest_CxDir::vUnit(
         m_bRv = CxDir(csDirPath2).isEmpty(CxConst::xMASK_ALL);
         xTEST_EQ(true, m_bRv);
 
-        m_bRv = CxDir(sTempDirPath()).isEmpty(CxConst::xMASK_ALL);
+        m_bRv = CxDir(tempDirPath()).isEmpty(CxConst::xMASK_ALL);
         xTEST_EQ(false, m_bRv);
     }
 
@@ -213,7 +213,7 @@ CxTest_CxDir::vUnit(
         m_sRv = CxDir::current();
         xTEST_EQ(false, m_sRv.empty());
 
-        CxDir::setCurrent( sTempDirPath() );
+        CxDir::setCurrent( tempDirPath() );
         CxDir::setCurrent(m_sRv);
     }
 
@@ -241,8 +241,8 @@ CxTest_CxDir::vUnit(
     {
         //-------------------------------------
         //prepare for csTempScanDirPath (create dirs)
-        const std::tstring_t csDirSource = sTempDirPath() + CxConst::xSLASH + xT("DirSource");
-        const std::tstring_t csDirDest   = sTempDirPath() + CxConst::xSLASH + xT("DirDest");
+        const std::tstring_t csDirSource = tempDirPath() + CxConst::xSLASH + xT("DirSource");
+        const std::tstring_t csDirDest   = tempDirPath() + CxConst::xSLASH + xT("DirDest");
 
         const std::tstring_t sDirPathes[] =
         {
@@ -270,8 +270,8 @@ CxTest_CxDir::vUnit(
     {
         //-------------------------------------
         // prepare for csTempScanDirPath (create dirs)
-        const std::tstring_t csDirSource = sTempDirPath() + CxConst::xSLASH + xT("Source");
-        const std::tstring_t csDirDest   = sTempDirPath() + CxConst::xSLASH + xT("Dest");
+        const std::tstring_t csDirSource = tempDirPath() + CxConst::xSLASH + xT("Source");
+        const std::tstring_t csDirDest   = tempDirPath() + CxConst::xSLASH + xT("Dest");
 
         const std::tstring_t sDirPathes[] =
         {

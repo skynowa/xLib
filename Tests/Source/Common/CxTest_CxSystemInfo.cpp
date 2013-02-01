@@ -23,7 +23,7 @@ CxTest_CxSystemInfo::~CxTest_CxSystemInfo() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxSystemInfo::vUnit(
+CxTest_CxSystemInfo::unit(
     const ulonglong_t &cullCaseLoops
 )
 {

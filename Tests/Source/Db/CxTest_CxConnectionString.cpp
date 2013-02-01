@@ -19,7 +19,7 @@ CxTest_CxConnectionString::~CxTest_CxConnectionString() {
 //---------------------------------------------------------------------------
 /* virtual */
 void
-CxTest_CxConnectionString::vUnit(
+CxTest_CxConnectionString::unit(
     const ulonglong_t &cullCaseLoops
 )
 {
