@@ -169,109 +169,109 @@ xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
         CxTestManager tmManager(bIsUseTracing);
 
         // Common
-        tmManager.vAdd(new CxTest_CxNonCopyable);
-        tmManager.vAdd(new CxTest_CxNonAssignable);
-        tmManager.vAdd(new CxTest_CxNonHeap);
-        tmManager.vAdd(new CxTest_CxNonArrayHeap);
-        tmManager.vAdd(new CxTest_CxUtils);
-        tmManager.vAdd(new CxTest_CxHandleT);
-        tmManager.vAdd(new CxTest_CxType);
-        tmManager.vAdd(new CxTest_CxFlags);
-        tmManager.vAdd(new CxTest_CxFunctorT);
-        tmManager.vAdd(new CxTest_CxArray);
-        tmManager.vAdd(new CxTest_CxChar);
-        tmManager.vAdd(new CxTest_CxLocale);
-        tmManager.vAdd(new CxTest_CxString);
-        tmManager.vAdd(new CxTest_CxDateTime);
-        tmManager.vAdd(new CxTest_CxSystemInfo);
-        tmManager.vAdd(new CxTest_CxProcessInfo);
-        tmManager.vAdd(new CxTest_CxConsole);
-        tmManager.vAdd(new CxTest_CxCommandLine);
-        tmManager.vAdd(new CxTest_CxShell);
-        tmManager.vAdd(new CxTest_CxCom);
+        tmManager.add(new CxTest_CxNonCopyable);
+        tmManager.add(new CxTest_CxNonAssignable);
+        tmManager.add(new CxTest_CxNonHeap);
+        tmManager.add(new CxTest_CxNonArrayHeap);
+        tmManager.add(new CxTest_CxUtils);
+        tmManager.add(new CxTest_CxHandleT);
+        tmManager.add(new CxTest_CxType);
+        tmManager.add(new CxTest_CxFlags);
+        tmManager.add(new CxTest_CxFunctorT);
+        tmManager.add(new CxTest_CxArray);
+        tmManager.add(new CxTest_CxChar);
+        tmManager.add(new CxTest_CxLocale);
+        tmManager.add(new CxTest_CxString);
+        tmManager.add(new CxTest_CxDateTime);
+        tmManager.add(new CxTest_CxSystemInfo);
+        tmManager.add(new CxTest_CxProcessInfo);
+        tmManager.add(new CxTest_CxConsole);
+        tmManager.add(new CxTest_CxCommandLine);
+        tmManager.add(new CxTest_CxShell);
+        tmManager.add(new CxTest_CxCom);
 
         // Crypt
-        tmManager.vAdd(new CxTest_CxCrc32);
-        tmManager.vAdd(new CxTest_CxRandom);
+        tmManager.add(new CxTest_CxCrc32);
+        tmManager.add(new CxTest_CxRandom);
     #if xARCH_X86 && !xCOMPILER_MINGW
-        tmManager.vAdd(new CxTest_CxBase64);
-        tmManager.vAdd(new CxTest_CxBlowfish);
+        tmManager.add(new CxTest_CxBase64);
+        tmManager.add(new CxTest_CxBlowfish);
     #endif
 
         // Db
-        tmManager.vAdd(new CxTest_CxConnectionString);
-        // tmManager.vAdd(new CxTest_CxMySql);
+        tmManager.add(new CxTest_CxConnectionString);
+        // tmManager.add(new CxTest_CxMySql);
 
         // Debug
-        tmManager.vAdd(new CxTest_xDebug);
-        tmManager.vAdd(new CxTest_CxStdError);
-        tmManager.vAdd(new CxTest_CxLastError);
-        tmManager.vAdd(new CxTest_CxException);
-        tmManager.vAdd(new CxTest_CxStackTrace);
-        tmManager.vAdd(new CxTest_CxDebugger);
-        tmManager.vAdd(new CxTest_CxErrorReport);
-        tmManager.vAdd(new CxTest_CxProfiler);
-        tmManager.vAdd(new CxTest_CxAutoProfiler);
+        tmManager.add(new CxTest_xDebug);
+        tmManager.add(new CxTest_CxStdError);
+        tmManager.add(new CxTest_CxLastError);
+        tmManager.add(new CxTest_CxException);
+        tmManager.add(new CxTest_CxStackTrace);
+        tmManager.add(new CxTest_CxDebugger);
+        tmManager.add(new CxTest_CxErrorReport);
+        tmManager.add(new CxTest_CxProfiler);
+        tmManager.add(new CxTest_CxAutoProfiler);
 
         // File system
-        tmManager.vAdd(new CxTest_CxPath);
-        tmManager.vAdd(new CxTest_CxFileAttribute);
-        tmManager.vAdd(new CxTest_CxFile);
-        tmManager.vAdd(new CxTest_CxFileTemp);
-        tmManager.vAdd(new CxTest_CxDll);
-        tmManager.vAdd(new CxTest_CxFinder);
-        tmManager.vAdd(new CxTest_CxDir);
-        tmManager.vAdd(new CxTest_CxVolume);
-        tmManager.vAdd(new CxTest_CxEnvironment);
-        tmManager.vAdd(new CxTest_CxLocalStorage);
-        tmManager.vAdd(new CxTest_CxBackuper);
+        tmManager.add(new CxTest_CxPath);
+        tmManager.add(new CxTest_CxFileAttribute);
+        tmManager.add(new CxTest_CxFile);
+        tmManager.add(new CxTest_CxFileTemp);
+        tmManager.add(new CxTest_CxDll);
+        tmManager.add(new CxTest_CxFinder);
+        tmManager.add(new CxTest_CxDir);
+        tmManager.add(new CxTest_CxVolume);
+        tmManager.add(new CxTest_CxEnvironment);
+        tmManager.add(new CxTest_CxLocalStorage);
+        tmManager.add(new CxTest_CxBackuper);
 
         // Log
-        tmManager.vAdd(new CxTest_CxTracer);
-        tmManager.vAdd(new CxTest_CxFileLog);
-        tmManager.vAdd(new CxTest_CxSystemLog);
+        tmManager.add(new CxTest_CxTracer);
+        tmManager.add(new CxTest_CxFileLog);
+        tmManager.add(new CxTest_CxSystemLog);
 
         // Net
-        tmManager.vAdd(new CxTest_CxCookiePv0);
-        tmManager.vAdd(new CxTest_CxCookiePv1);
-        tmManager.vAdd(new CxTest_CxCgi);
-        tmManager.vAdd(new CxTest_CxSocketInit);
-        tmManager.vAdd(new CxTest_CxDnsClient);
-        // tmManager.vAdd(new CxTest_CxTcpClient);
-        // tmManager.vAdd(new CxTest_CxTcpServer);
-        tmManager.vAdd(new CxTest_CxHttpClient);
+        tmManager.add(new CxTest_CxCookiePv0);
+        tmManager.add(new CxTest_CxCookiePv1);
+        tmManager.add(new CxTest_CxCgi);
+        tmManager.add(new CxTest_CxSocketInit);
+        tmManager.add(new CxTest_CxDnsClient);
+        // tmManager.add(new CxTest_CxTcpClient);
+        // tmManager.add(new CxTest_CxTcpServer);
+        tmManager.add(new CxTest_CxHttpClient);
 
         // Patterns
-        tmManager.vAdd(new CxTest_CxSingleton);
+        tmManager.add(new CxTest_CxSingleton);
 
         // Pkcs11
-        // tmManager.vAdd(new CxTest_CxPkcs11);
+        // tmManager.add(new CxTest_CxPkcs11);
 
         // Sync
 	#if xOS_ENV_UNIX
-        tmManager.vAdd(new CxTest_CxCondition);
+        tmManager.add(new CxTest_CxCondition);
 	#endif
 
-        tmManager.vAdd(new CxTest_CxAtomicLongInt);
-        tmManager.vAdd(new CxTest_CxThreadStorage);
-        tmManager.vAdd(new CxTest_CxMutex);
-        tmManager.vAdd(new CxTest_CxAutoMutex);
-        tmManager.vAdd(new CxTest_CxIpcMutex);
-        tmManager.vAdd(new CxTest_CxAutoIpcMutex);
-        tmManager.vAdd(new CxTest_CxEvent);
-        tmManager.vAdd(new CxTest_CxSemaphore);
-        tmManager.vAdd(new CxTest_CxIpcSemaphore);
-        tmManager.vAdd(new CxTest_CxSleeper);
-        tmManager.vAdd(new CxTest_CxCurrentThread);
-        tmManager.vAdd(new CxTest_CxThread);
-        // tmManager.vAdd(new CxTest_CxThreadPool);
-        tmManager.vAdd(new CxTest_CxCurrentProcess);
-        tmManager.vAdd(new CxTest_CxProcess);
+        tmManager.add(new CxTest_CxAtomicLongInt);
+        tmManager.add(new CxTest_CxThreadStorage);
+        tmManager.add(new CxTest_CxMutex);
+        tmManager.add(new CxTest_CxAutoMutex);
+        tmManager.add(new CxTest_CxIpcMutex);
+        tmManager.add(new CxTest_CxAutoIpcMutex);
+        tmManager.add(new CxTest_CxEvent);
+        tmManager.add(new CxTest_CxSemaphore);
+        tmManager.add(new CxTest_CxIpcSemaphore);
+        tmManager.add(new CxTest_CxSleeper);
+        tmManager.add(new CxTest_CxCurrentThread);
+        tmManager.add(new CxTest_CxThread);
+        // tmManager.add(new CxTest_CxThreadPool);
+        tmManager.add(new CxTest_CxCurrentProcess);
+        tmManager.add(new CxTest_CxProcess);
 
         // Gui
-        tmManager.vAdd(new CxTest_CxMsgBoxT);
+        tmManager.add(new CxTest_CxMsgBoxT);
 
-        tmManager.vRun(ullAllLoops, ullUnitLoops, ullCaseLoops);
+        tmManager.run(ullAllLoops, ullUnitLoops, ullCaseLoops);
     }
 
     return EXIT_SUCCESS;
