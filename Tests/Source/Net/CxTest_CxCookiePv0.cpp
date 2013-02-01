@@ -40,82 +40,82 @@ CxTest_CxCookiePv0::vUnit(
     {
         CxCookiePv0 ckCookiePv0;
 
-        ckCookiePv0.vSetName(csName);
+        ckCookiePv0.setName(csName);
 
-        m_sRv = ckCookiePv0.sName();
+        m_sRv = ckCookiePv0.name();
         xTEST_EQ(csName, m_sRv);
 
-        ckCookiePv0.vSetValue(csValue);
+        ckCookiePv0.setValue(csValue);
 
-        m_sRv = ckCookiePv0.sValue();
+        m_sRv = ckCookiePv0.value();
         xTEST_EQ(csValue, m_sRv);
 
-        ckCookiePv0.vSetDomain(csDomain);
+        ckCookiePv0.setDomain(csDomain);
 
-        m_sRv = ckCookiePv0.sDomain();
+        m_sRv = ckCookiePv0.domain();
         xTEST_EQ(csDomain, m_sRv);
 
-        ckCookiePv0.vSetPath(csPath);
+        ckCookiePv0.setPath(csPath);
 
-        m_sRv = ckCookiePv0.sPath();
+        m_sRv = ckCookiePv0.path();
         xTEST_EQ(csPath, m_sRv);
 
-        ckCookiePv0.vSetExpires(csExpires);
+        ckCookiePv0.setExpires(csExpires);
   
-        m_sRv = ckCookiePv0.sExpires();
+        m_sRv = ckCookiePv0.expires();
         xTEST_EQ(csExpires, m_sRv);
 
-        ckCookiePv0.vSetSecure(cbSecure);
+        ckCookiePv0.setSecure(cbSecure);
 
-        m_bRv = ckCookiePv0.bGetSecure();
+        m_bRv = ckCookiePv0.secure();
         xTEST_EQ(cbSecure, m_bRv);
 
-        ckCookiePv0.vSetHttpOnly(cbHttpOnly);
+        ckCookiePv0.setHttpOnly(cbHttpOnly);
 
-        m_bRv = ckCookiePv0.bGetHttpOnly();
+        m_bRv = ckCookiePv0.httpOnly();
         xTEST_EQ(cbHttpOnly, m_bRv);
 
-        m_sRv = ckCookiePv0.sToString();
+        m_sRv = ckCookiePv0.toString();
         xTEST_EQ(csRawCookie, m_sRv);
 
         {
-            CxCookiePv0 _ckCookiePv0(ckCookiePv0.sToString());
-            xTEST_EQ(_ckCookiePv0.sToString(), csRawCookie);
-            xTEST_EQ(ckCookiePv0.sToString() , _ckCookiePv0.sToString());
+            CxCookiePv0 _ckCookiePv0(ckCookiePv0.toString());
+            xTEST_EQ(_ckCookiePv0.toString(), csRawCookie);
+            xTEST_EQ(ckCookiePv0.toString() , _ckCookiePv0.toString());
         }
 
-        ckCookiePv0.vClear();
+        ckCookiePv0.clear();
     }
 
     xTEST_CASE("CxCookiePv1::CxCookiePv0(const std::tstring_t &)", cullCaseLoops)
     {
         CxCookiePv0 ckCookiePv0(csRawCookie);
 
-        m_sRv = ckCookiePv0.sName();
+        m_sRv = ckCookiePv0.name();
         xTEST_EQ(csName, m_sRv);
 
-        m_sRv = ckCookiePv0.sValue();
+        m_sRv = ckCookiePv0.value();
         xTEST_EQ(csValue, m_sRv);
 
-        m_sRv = ckCookiePv0.sDomain();
+        m_sRv = ckCookiePv0.domain();
         xTEST_EQ(csDomain, m_sRv);
 
-        m_sRv = ckCookiePv0.sPath();
+        m_sRv = ckCookiePv0.path();
         xTEST_EQ(csPath, m_sRv);
 
-        m_sRv = ckCookiePv0.sExpires();
+        m_sRv = ckCookiePv0.expires();
         xTEST_EQ(csExpires, m_sRv);
 
-        m_bRv = ckCookiePv0.bGetSecure();
+        m_bRv = ckCookiePv0.secure();
         xTEST_EQ(cbSecure, m_bRv);
 
-        m_bRv = ckCookiePv0.bGetHttpOnly();
+        m_bRv = ckCookiePv0.httpOnly();
         xTEST_EQ(cbHttpOnly, m_bRv);
 
-        m_sRv = ckCookiePv0.sToString();
+        m_sRv = ckCookiePv0.toString();
         xTEST_EQ(csRawCookie, m_sRv);
 
-        ckCookiePv0.vClear();
+        ckCookiePv0.clear();
     }
 }
 //---------------------------------------------------------------------------

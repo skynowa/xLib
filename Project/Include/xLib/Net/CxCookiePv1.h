@@ -16,61 +16,61 @@ class CxCookiePv1 :
     /// cookie version 1
 {
 public:
-                           CxCookiePv1 ();
+                           CxCookiePv1();
         ///< constructor
-    explicit               CxCookiePv1 (const std::tstring_t &csRawCookie);
+    explicit               CxCookiePv1(const std::tstring_t &csRawCookie);
         ///< constructor
-    virtual               ~CxCookiePv1 ();
+    virtual               ~CxCookiePv1();
         ///< destructor
 
-    void                   vInit       (const std::tstring_t &csRawCookie);
+    void                   init       (const std::tstring_t &csRawCookie);
         ///< parsing raw cookie string pv0
 
-    const std::tstring_t & sName    () const;
+    const std::tstring_t & name       () const;
         ///< get name
-    void                   vSetName    (const std::tstring_t &csName);
+    void                   setName    (const std::tstring_t &csName);
         ///< set name
 
-    const std::tstring_t & sValue   () const;
+    const std::tstring_t & value      () const;
         ///< get value
-    void                   vSetValue   (const std::tstring_t &csValue);
+    void                   setValue   (const std::tstring_t &csValue);
         ///< set value
 
-    const std::tstring_t & sComment () const;
+    const std::tstring_t & comment    () const;
         ///< get comment
-    void                   vSetComment (const std::tstring_t &csComment);
+    void                   setComment (const std::tstring_t &csComment);
         ///< set comment
 
-    const std::tstring_t & sDomain  () const;
+    const std::tstring_t & domain     () const;
         ///< get domain
-    void                   vSetDomain  (const std::tstring_t &csDomain);
+    void                   setDomain  (const std::tstring_t &csDomain);
         ///< set domain
 
-    const std::tstring_t & sPath    () const;
+    const std::tstring_t & path       () const;
         ///< get path
-    void                   vSetPath    (const std::tstring_t &csPath);
+    void                   setPath    (const std::tstring_t &csPath);
         ///< set path
 
-    longlong_t             liGetMaxAge () const;
+    longlong_t             maxAge     () const;
         ///< get max age
-    void                   vSetMaxAge  (const longlong_t &cliMaxAge);
+    void                   setMaxAge  (const longlong_t &cliMaxAge);
         ///< set max age
 
-    bool                   bGetSecure  () const;
+    bool                   secure     () const;
         ///< get secure
-    void                   vSetSecure  (const bool &cbFlag);
-        ///< set decure
+    void                   setSecure  (const bool &cbFlag);
+        ///< set secure
 
-    bool                   bGetHttpOnly() const;
+    bool                   httpOnly   () const;
         ///< get http only
-    void                   vSetHttpOnly(const bool &cbFlag);
+    void                   setHttpOnly(const bool &cbFlag);
         ///< set http only
 
-    std::tstring_t         sToString   () const;
+    std::tstring_t         toString   () const;
         ///< convert to string
-    std::tstring_t         sDump    () const;
+    std::tstring_t         dump       () const;
         ///< get dump
-    void                   vClear      ();
+    void                   clear      ();
         ///< clear
 
 private:
