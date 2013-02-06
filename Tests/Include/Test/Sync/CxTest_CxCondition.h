@@ -9,10 +9,8 @@
 //---------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
-#include <xLib/Sync/Unix/CxCondition.h>
+#include <xLib/Sync/CxCondition.h>
 //---------------------------------------------------------------------------
-#if xOS_ENV_UNIX
-
 class CxTest_CxCondition :
     public CxTest
 {
@@ -25,7 +23,5 @@ public:
     virtual void  unit(const ulonglong_t &cullCaseLoops) xOVERRIDE;
         ///< unit test
 };
-
-#endif
 //---------------------------------------------------------------------------
 #endif // CxTest_CxConditionH

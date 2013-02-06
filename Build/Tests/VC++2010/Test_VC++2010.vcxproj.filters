@@ -66,9 +66,6 @@
     <Filter Include="xLib\Sync\Win">
       <UniqueIdentifier>{bdac1d57-a669-49ac-9a41-203bd0acaa59}</UniqueIdentifier>
     </Filter>
-    <Filter Include="xLib\Sync\Unix">
-      <UniqueIdentifier>{9859a69e-e887-4067-8e9a-9fb1ffa74bfa}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Tests\Common">
       <UniqueIdentifier>{8e0f628e-9c02-458d-a4dc-20080ba1276f}</UniqueIdentifier>
     </Filter>
@@ -107,9 +104,6 @@
     </Filter>
     <Filter Include="Tests\Sync">
       <UniqueIdentifier>{ca608939-b19a-4397-952a-ab5c575ded82}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Tests\Sync\Unix">
-      <UniqueIdentifier>{202ced39-ef5b-4a11-8344-1b407cc1f1ff}</UniqueIdentifier>
     </Filter>
     <Filter Include="Tests\Sync\Win">
       <UniqueIdentifier>{27f97e31-95ef-4855-bf9e-70b611e1ea77}</UniqueIdentifier>
@@ -431,9 +425,6 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Test\CxTestManager.h">
       <Filter>xLib\Test</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\Unix\CxCondition.h">
-      <Filter>xLib\Sync\Unix</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\Win\CxCompletionPort.h">
       <Filter>xLib\Sync\Win</Filter>
     </ClInclude>
@@ -686,9 +677,6 @@
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\Win\CxTest_CxCompletionPort.h">
       <Filter>Tests\Sync\Win</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Tests\Include\Test\Sync\Unix\CxTest_CxCondition.h">
-      <Filter>Tests\Sync\Unix</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxAutoIpcMutex.h">
       <Filter>Tests\Sync</Filter>
     </ClInclude>
@@ -748,6 +736,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Tests\Include\Test\Common\CxTest_CxFlags.h">
       <Filter>Tests\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxCondition.h">
+      <Filter>xLib\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxCondition.h">
+      <Filter>Tests\Sync</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1002,9 +996,6 @@
     <ClCompile Include="..\..\..\Project\Source\Test\CxTestManager.cpp">
       <Filter>xLib\Test</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Project\Source\Sync\Unix\CxCondition.cpp">
-      <Filter>xLib\Sync\Unix</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Sync\Win\CxCompletionPort.cpp">
       <Filter>xLib\Sync\Win</Filter>
     </ClCompile>
@@ -1248,9 +1239,6 @@
     <ClCompile Include="..\..\..\Tests\Source\Patterns\CxTest_CxSingleton.cpp">
       <Filter>Tests\Patterns</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Tests\Source\Sync\Unix\CxTest_CxCondition.cpp">
-      <Filter>Tests\Sync\Unix</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Tests\Source\Sync\Win\CxTest_CxCompletionPort.cpp">
       <Filter>Tests\Sync\Win</Filter>
     </ClCompile>
@@ -1316,6 +1304,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxFlags.cpp">
       <Filter>Tests\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Project\Source\Sync\CxCondition.cpp">
+      <Filter>xLib\Sync</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxCondition.cpp">
+      <Filter>Tests\Sync</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

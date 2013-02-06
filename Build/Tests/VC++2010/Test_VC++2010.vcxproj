@@ -153,6 +153,7 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxAtomicLongInt.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxAutoIpcMutex.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxAutoMutex.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxCondition.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxCurrentProcess.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxCurrentThread.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxEvent.h" />
@@ -167,7 +168,6 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxThreadPool.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxThreadStorage.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxWaitableTimer.h" />
-    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\Unix\CxCondition.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\Win\CxCompletionPort.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Test\CxTest.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Test\CxTestManager.h" />
@@ -249,6 +249,7 @@
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxAtomicLongInt.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxAutoIpcMutex.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxAutoMutex.h" />
+    <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxCondition.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxCurrentProcess.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxCurrentThread.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxEvent.h" />
@@ -262,7 +263,6 @@
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxThreadPool.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxThreadStorage.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxWaitableTimer.h" />
-    <ClInclude Include="..\..\..\Tests\Include\Test\Sync\Unix\CxTest_CxCondition.h" />
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\Win\CxTest_CxCompletionPort.h" />
   </ItemGroup>
   <ItemGroup>
@@ -363,6 +363,7 @@
     <ClCompile Include="..\..\..\Project\Source\Sync\CxAtomicLongInt.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Sync\CxAutoIpcMutex.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Sync\CxAutoMutex.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Sync\CxCondition.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Sync\CxCurrentProcess.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Sync\CxCurrentThread.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Sync\CxEvent.cpp" />
@@ -376,7 +377,6 @@
     <ClCompile Include="..\..\..\Project\Source\Sync\CxThread.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Sync\CxThreadStorage.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Sync\CxWaitableTimer.cpp" />
-    <ClCompile Include="..\..\..\Project\Source\Sync\Unix\CxCondition.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Sync\Win\CxCompletionPort.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Test\CxTest.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Test\CxTestManager.cpp" />
@@ -458,6 +458,7 @@
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxAtomicLongInt.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxAutoIpcMutex.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxAutoMutex.cpp" />
+    <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxCondition.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxCurrentProcess.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxCurrentThread.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxEvent.cpp" />
@@ -471,7 +472,6 @@
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxThreadPool.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxThreadStorage.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxWaitableTimer.cpp" />
-    <ClCompile Include="..\..\..\Tests\Source\Sync\Unix\CxTest_CxCondition.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Sync\Win\CxTest_CxCompletionPort.cpp" />
     <ClCompile Include="..\..\..\Tests\Source\Test.cpp" />
   </ItemGroup>
