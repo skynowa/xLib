@@ -4,19 +4,23 @@
  */
 
 
-#include <Test/Sync/Unix/CxTest_CxCondition.h>
+#include <Test/Sync/CxTest_CxCondition.h>
 
 
+//--------------------------------------------------------------------------
 #if xOS_ENV_UNIX
 
-//---------------------------------------------------------------------------
 const size_t    g_cuiThreadsNum = 3;
 const size_t    g_cuiCounterMax = 12;
 size_t          g_uiCounter     = 0;
 
 pthread_mutex_t g_mtMutex      = PTHREAD_MUTEX_INITIALIZER;
 pthread_cond_t  g_cndCondition = PTHREAD_COND_INITIALIZER;
+
+#endif // xOS_ENV_UNIX
 //---------------------------------------------------------------------------
+#if xOS_ENV_UNIX
+
 static
 void *
 pvWatch(
@@ -64,7 +68,11 @@ pvWatch(
 
     return NULL;
 }
+
+#endif // xOS_ENV_UNIX
 //---------------------------------------------------------------------------
+#if xOS_ENV_UNIX
+
 static
 void *
 pvJob(
@@ -107,6 +115,8 @@ pvJob(
 
     return NULL;
 }
+
+#endif // xOS_ENV_UNIX
 //---------------------------------------------------------------------------
 CxTest_CxCondition::CxTest_CxCondition() {
 
@@ -120,8 +130,9 @@ CxTest_CxCondition::~CxTest_CxCondition() {
 void
 CxTest_CxCondition::unit(
     const ulonglong_t &a_cullCaseLoops
-) xOVERRIDE
+)
 {
+#if xOS_ENV_UNIX
     int          iRv          = - 1;
     pthread_t    thThreads[3] = {0};
     const long_t liId1        = 1L;
@@ -189,7 +200,7 @@ CxTest_CxCondition::unit(
     cond.signal();
     cond.broadcast();
 #endif
-}
-//---------------------------------------------------------------------------
 
 #endif // xOS_ENV_UNIX
+}
+//---------------------------------------------------------------------------

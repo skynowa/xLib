@@ -62,9 +62,6 @@
     <Filter Include="xLib\Sync\Win">
       <UniqueIdentifier>{83253b76-8571-4c54-9ade-1d89d44e9ca4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="xLib\Sync\Unix">
-      <UniqueIdentifier>{893b7844-4651-46df-ad2b-5a14ae39de0d}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\Win\CxCom.h">
@@ -430,9 +427,6 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\xSysDefines.h">
       <Filter>xLib\Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\Unix\CxCondition.h">
-      <Filter>xLib\Sync\Unix</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxNonArrayHeap.h">
       <Filter>xLib\Common</Filter>
     </ClInclude>
@@ -444,6 +438,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxFlags.h">
       <Filter>xLib\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxCondition.h">
+      <Filter>xLib\Sync</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -746,9 +743,6 @@
     <ClCompile Include="..\..\..\Project\Source\Sync\CxWaitableTimer.cpp">
       <Filter>xLib\Sync</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Project\Source\Sync\Unix\CxCondition.cpp">
-      <Filter>xLib\Sync\Unix</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Common\xFunctions.cpp">
       <Filter>xLib\Common</Filter>
     </ClCompile>
@@ -757,6 +751,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Common\CxFlags.cpp">
       <Filter>xLib\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Project\Source\Sync\CxCondition.cpp">
+      <Filter>xLib\Sync</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -94,12 +94,6 @@
 #include <Test/Patterns/CxTest_CxSingleton.h>
 
 // Sync
-#if xOS_ENV_UNIX
-
-#include <Test/Sync/Unix/CxTest_CxCondition.h>
-
-#endif
-
 #include <Test/Sync/CxTest_CxAtomicLongInt.h>
 #include <Test/Sync/CxTest_CxThreadStorage.h>
 #include <Test/Sync/CxTest_CxMutex.h>
@@ -107,6 +101,7 @@
 #include <Test/Sync/CxTest_CxIpcMutex.h>
 #include <Test/Sync/CxTest_CxAutoIpcMutex.h>
 #include <Test/Sync/CxTest_CxEvent.h>
+#include <Test/Sync/CxTest_CxCondition.h>
 #include <Test/Sync/CxTest_CxSleeper.h>
 #include <Test/Sync/CxTest_CxSemaphore.h>
 #include <Test/Sync/CxTest_CxIpcSemaphore.h>
@@ -261,10 +256,6 @@ xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
         // tmManager.add(new CxTest_CxPkcs11);
 
         // Sync
-	#if xOS_ENV_UNIX
-        tmManager.add(new CxTest_CxCondition);
-	#endif
-
         tmManager.add(new CxTest_CxAtomicLongInt);
         tmManager.add(new CxTest_CxThreadStorage);
         tmManager.add(new CxTest_CxMutex);
@@ -272,6 +263,7 @@ xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
         tmManager.add(new CxTest_CxIpcMutex);
         tmManager.add(new CxTest_CxAutoIpcMutex);
         tmManager.add(new CxTest_CxEvent);
+        tmManager.add(new CxTest_CxCondition);
         tmManager.add(new CxTest_CxSemaphore);
         tmManager.add(new CxTest_CxIpcSemaphore);
         tmManager.add(new CxTest_CxSleeper);
