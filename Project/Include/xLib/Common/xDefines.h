@@ -77,11 +77,11 @@
 #elif xCOMPILER_MS
     #define xNO_INLINE                  __declspec(noinline)
 #elif xCOMPILER_CODEGEAR
-    #define xNO_INLINE                  // TODO: xNO_INLINE
+    #define xNO_INLINE                  xNOT_AVAILABLE
 #elif xCOMPILER_GNUC
     #define xNO_INLINE                  __attribute__ ((noinline))
 #else
-    #define xNO_INLINE                  // TODO: xNO_INLINE
+    #define xNO_INLINE                  xNOT_AVAILABLE
 #endif
     ///< keyword "no inline"
 
@@ -90,22 +90,22 @@
 #if   xOS_ENV_WIN
     #define xSTDCALL                    __stdcall
 #elif xOS_ENV_UNIX
-    #define xSTDCALL
+    #define xSTDCALL                    xNOT_AVAILABLE
 #endif
     ///< calling convention
 
 //--------------------------------------------------
 // xOVERRIDE
 #if   xCOMPILER_MINGW
-    #define xOVERRIDE
+    #define xOVERRIDE                   xNOT_AVAILABLE
 #elif xCOMPILER_MS
-    #define xOVERRIDE                    override
+    #define xOVERRIDE                   override
 #elif xCOMPILER_CODEGEAR
-    #define xOVERRIDE
+    #define xOVERRIDE                   xNOT_AVAILABLE
 #elif xCOMPILER_GNUC
-    #define xOVERRIDE
+    #define xOVERRIDE                   xNOT_AVAILABLE
 #else
-
+    #define xOVERRIDE                   xNOT_AVAILABLE
 #endif
     ///< keyword "override"
 
@@ -117,6 +117,21 @@
     #define xNEW                        new
 #endif
     ///< operator "new"
+
+//--------------------------------------------------
+// xWARN_UNUSED_RESULT
+#if   xCOMPILER_MINGW
+    #define xWARN_UNUSED_RESULT         __attribute__((warn_unused_result))
+#elif xCOMPILER_MS
+    #define xWARN_UNUSED_RESULT         xNOT_AVAILABLE
+#elif xCOMPILER_CODEGEAR
+    #define xWARN_UNUSED_RESULT         xNOT_AVAILABLE
+#elif xCOMPILER_GNUC
+    #define xWARN_UNUSED_RESULT         __attribute__((warn_unused_result))
+#else
+
+#endif
+    ///< give a warning if the return value of function was not used
 
 //--------------------------------------------------
 // namespace
@@ -133,7 +148,7 @@
 //--------------------------------------------------
 // TODO: converters
 #if xUNICODE
-    #define xS2TS(s)                    ( CxString::sStrToWStr(s) )
+    #define xS2TS(s)                    ( CxString::strToWStr(s) )
         ///< convert std::string to std::wstring
     #define xTS2S(ts)                   ( CxString::wstrToStr(ts) )
         ///< convert std::wstring to std::string
@@ -216,6 +231,10 @@
     ///< comment for code
 #define xNA                             ;
     ///< at this point the code is not applicable
+#define xNOT_IMPL                       // n/a
+    ///< code not implemented
+#define xNOT_AVAILABLE                  // n/a
+    ///< code not available
 
 //--------------------------------------------------
 // build in macros
@@ -278,7 +297,7 @@
 #else
     #define xCOUNTER                    0
 #endif
-    ///< Expands to an integer starting with 0 and 
+    ///< Expands to an integer starting with 0 and
     ///< incrementing by 1 every time it is used in a compiland
 
 //-------------------------------------

@@ -37,8 +37,8 @@
 // Crypt
 #if xARCH_X86
 
-#include <Test/Crypt/CxTest_CxBase64.h>
-#include <Test/Crypt/CxTest_CxBlowfish.h>
+// #include <Test/Crypt/CxTest_CxBase64.h>
+// #include <Test/Crypt/CxTest_CxBlowfish.h>
 
 #endif
 
@@ -48,7 +48,7 @@
 
 // Db
 #include <Test/Db/CxTest_CxConnectionString.h>
-#include <Test/Db/CxTest_CxMySql.h>
+//#include <Test/Db/CxTest_CxMySql.h>
 
 // Debug
 #include <Test/Debug/CxTest_xDebug.h>
@@ -118,12 +118,25 @@
 
 // Gui
 #include <Test/Gui/Dialogs/CxTest_CxMsgBoxT.h>
+
+
+#include <xLib/Debug/CxReturnValueT.h>
+
+CxReturnValueT<bool>
+foo() {
+    return true;
+}
 //---------------------------------------------------------------------------
 int
 xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
     //--------------------------------------------------
     // set command line args for xLib
     CxCommandLine::setArgs(iArgCount, paszArgs);
+
+    {
+        /*bool rv2 =*/ ::foo();
+    
+    }
 
     //--------------------------------------------------
     // options (default)
@@ -194,8 +207,8 @@ xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
         tmManager.add(new CxTest_CxCrc32);
         tmManager.add(new CxTest_CxRandom);
     #if xARCH_X86 && !xCOMPILER_MINGW
-        tmManager.add(new CxTest_CxBase64);
-        tmManager.add(new CxTest_CxBlowfish);
+        // tmManager.add(new CxTest_CxBase64);
+        // tmManager.add(new CxTest_CxBlowfish);
     #endif
 
         // Db

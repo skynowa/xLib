@@ -201,7 +201,7 @@
 #if defined(_LIB)
     #define  xLIB 1
 #endif
-    ///< static labrary
+    ///< static library
 #if defined(_DLL)
     #define  xDLL 1
 #endif
