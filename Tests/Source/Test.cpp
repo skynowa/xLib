@@ -113,25 +113,12 @@
 
 // Gui
 #include <Test/Gui/Dialogs/CxTest_CxMsgBoxT.h>
-
-
-#include <xLib/Debug/CxReturnValueT.h>
-
-CxReturnValueT<bool>
-foo() {
-    return true;
-}
 //---------------------------------------------------------------------------
 int
 xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
     //--------------------------------------------------
     // set command line args for xLib
     CxCommandLine::setArgs(iArgCount, paszArgs);
-
-    {
-        /*bool rv2 =*/ ::foo();
-    
-    }
 
     //--------------------------------------------------
     // options (default)
