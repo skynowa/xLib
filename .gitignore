@@ -61,7 +61,7 @@ bin/*
 
 # Build results
 
-[Dd]ebug/
+#[Dd]ebug/
 [Rr]elease/
 
 [Dd]ebug_Ansi/
