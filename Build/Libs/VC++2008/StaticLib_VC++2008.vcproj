@@ -677,10 +677,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\Project\Include\xLib\Common\xCheks.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\Project\Source\Common\xCommon.cpp"
 				>
 			</File>

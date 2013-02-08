@@ -231,7 +231,6 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxType.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxUtils.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\Win\CxCom.h" />
-    <ClInclude Include="..\..\..\Project\Include\xLib\Common\xCheks.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\xCommon.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\xCommon_Unix.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\xCommon_Win.h" />
