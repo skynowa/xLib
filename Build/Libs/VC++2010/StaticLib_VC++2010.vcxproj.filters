@@ -121,9 +121,6 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxType.h">
       <Filter>xLib\Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Project\Include\xLib\Common\xCheks.h">
-      <Filter>xLib\Common</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\xCommon.h">
       <Filter>xLib\Common</Filter>
     </ClInclude>

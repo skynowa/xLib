@@ -57,7 +57,6 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxType.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\CxUtils.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\Win\CxCom.h" />
-    <ClInclude Include="..\..\..\Project\Include\xLib\Common\xCheks.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\xCommon.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\xCommon_Unix.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\xCommon_Win.h" />
@@ -69,8 +68,26 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\xTracing.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\xTypes.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Common\xVersion.h" />
-    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\OpenSSL\CxBase64.h" />
-    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\OpenSSL\CxBlowfish.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\OpenSSL\CxBase64.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\OpenSSL\CxBlowfish.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\All.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\Common.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\CxDecrypt.h" />
@@ -96,7 +113,16 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\SDK\4.53\pkcs11f.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Crypt\Pkcs11\SDK\4.53\pkcs11t.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Db\CxConnectionString.h" />
-    <ClInclude Include="..\..\..\Project\Include\xLib\Db\CxMySql.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Db\CxMySql.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Db\Win\CxAdo.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Debug\CxAutoProfiler.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Debug\CxDebugger.h" />
@@ -191,8 +217,26 @@
     <ClCompile Include="..\..\..\Project\Source\Common\xFunctions.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Crypt\CxCrc32.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Crypt\CxRandom.cpp" />
-    <ClCompile Include="..\..\..\Project\Source\Crypt\OpenSSL\CxBase64.cpp" />
-    <ClCompile Include="..\..\..\Project\Source\Crypt\OpenSSL\CxBlowfish.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Crypt\OpenSSL\CxBase64.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Project\Source\Crypt\OpenSSL\CxBlowfish.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxDecrypt.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxDigest.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxEncrypt.cpp" />
@@ -209,7 +253,16 @@
     <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxSlot.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Crypt\Pkcs11\CxVerify.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Db\CxConnectionString.cpp" />
-    <ClCompile Include="..\..\..\Project\Source\Db\CxMySql.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Db\CxMySql.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Db\Win\CxAdo.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Debug\CxAutoProfiler.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Debug\CxDebugger.cpp" />
