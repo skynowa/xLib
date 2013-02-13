@@ -1344,21 +1344,48 @@ CxFile::_openMode(
     std::tstring_t sRv;
 
     switch (a_comMode) {
-        case omRead:                { sRv = xT("r");   }   break;
-        case omWrite:               { sRv = xT("w");   }   break;
-        case omAppend:              { sRv = xT("a");   }   break;
-        case omOpenReadWrite:       { sRv = xT("r+");  }   break;
-        case omCreateReadWrite:     { sRv = xT("w+");  }   break;
-        case omOpenReadAppend:      { sRv = xT("a+");  }   break;
+        // text modes
+        case omRead:
+            sRv = xT("r");
+            break;
+        case omWrite:
+            sRv = xT("w");
+            break;
+        case omAppend:
+            sRv = xT("a");
+            break;
+        case omOpenReadWrite:
+            sRv = xT("r+");
+            break;
+        case omCreateReadWrite:
+            sRv = xT("w+");
+            break;
+        case omOpenReadAppend:
+            sRv = xT("a+");
+            break;
 
-        case omBinRead:             { sRv = xT("rb");  }   break;
-        case omBinWrite:            { sRv = xT("wb");  }   break;
-        case omBinAppend:           { sRv = xT("ab");  }   break;
-        case omBinOpenReadWrite:    { sRv = xT("rb+"); }   break;
-        case omBinCreateReadWrite:  { sRv = xT("wb+"); }   break;
-        case omBinOpenReadAppend:   { sRv = xT("ab+"); }   break;
-
-        default:                    { sRv = xT("r");   }   break;
+        // binaru modes
+        case omBinRead:
+            sRv = xT("rb");
+            break;
+        case omBinWrite:
+            sRv = xT("wb");
+            break;
+        case omBinAppend:
+            sRv = xT("ab");
+            break;
+        case omBinOpenReadWrite:
+            sRv = xT("rb+");
+            break;
+        case omBinCreateReadWrite:
+            sRv = xT("wb+");
+            break;
+        case omBinOpenReadAppend:
+            sRv = xT("ab+");
+            break;
+        default:
+            sRv = xT("r");
+            break;
     }
 
     return sRv;

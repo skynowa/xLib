@@ -64,34 +64,31 @@ CxDnsClient::hostNameByAddr(
     hostent *pHostent = NULL;
 
     switch (a_afFamily) {
-        case CxSocket::afInet6: {
-            #if (xWINVER >= xOS_WIN_VISTA)
-                #if xTODO
-                    IN6_ADDR iaAddr6 = {0};
+        case CxSocket::afInet6:
+        #if (xWINVER >= xOS_WIN_VISTA)
+            #if xTODO
+                IN6_ADDR iaAddr6 = {0};
 
-                    iRv = ::inet_pton(afInet6, a_casHostAddr.c_str(), &iaAddr6);
-                    xTEST_DIFF(0, iRv);
+                iRv = ::inet_pton(afInet6, a_casHostAddr.c_str(), &iaAddr6);
+                xTEST_DIFF(0, iRv);
 
-                    pHostent = ::gethostbyaddr((char *) &iaAddr6, 16, afInet6);
-                    xTEST_PTR(pHostent, false);
-                #endif
-            #endif //xOS_WIN_VISTA
-            }
+                pHostent = ::gethostbyaddr((char *) &iaAddr6, 16, afInet6);
+                xTEST_PTR(pHostent, false);
+            #endif
+        #endif // xOS_WIN_VISTA
             break;
+        default:
+            in_addr iaAddr;
 
-        default: {
-                in_addr iaAddr;
+            iaAddr.s_addr = ::inet_addr(casHostAddr.c_str());
+            xTEST_EQ(true, iaAddr.s_addr != INADDR_NONE);
 
-                iaAddr.s_addr = ::inet_addr(casHostAddr.c_str());
-                xTEST_EQ(true, iaAddr.s_addr != INADDR_NONE);
-
-                pHostent = ::gethostbyaddr((char *) &iaAddr, sizeof(iaAddr)/*4*/, CxSocket::afInet);
-                xTEST_PTR(pHostent);
-            }
+            pHostent = ::gethostbyaddr((char *) &iaAddr, sizeof(iaAddr)/*4*/, CxSocket::afInet);
+            xTEST_PTR(pHostent);
             break;
     }
 
-    //convert to UNICODE
+    // convert to UNICODE
     std::string sRv(pHostent->h_name);
 
     (*a_psHostName).assign(sRv.begin(), sRv.end());

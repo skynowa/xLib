@@ -107,14 +107,27 @@ CxShell::execute(
 
     std::tstring_t sOperation;
     switch (a_copOperation) {
-        case opEdit:    { sOperation = xT("edit");    } break;
-        case opExplore: { sOperation = xT("explore"); } break;
-        case opFind:    { sOperation = xT("find");    } break;
-        case opOpen:    { sOperation = xT("open");    } break;
-        case opPrint:   { sOperation = xT("print");   } break;
-        case opNull:    { sOperation = xT("");        } break;
-
-        default:        { sOperation = xT("");        } break;
+        case opEdit:
+            sOperation = xT("edit");
+            break;
+        case opExplore:
+            sOperation = xT("explore");
+            break;
+        case opFind:
+            sOperation = xT("find");
+            break;
+        case opOpen:
+            sOperation = xT("open");
+            break;
+        case opPrint:
+            sOperation = xT("print");
+            break;
+        case opNull:
+            sOperation = xT("");
+            break;
+        default:
+            sOperation = xT("");
+            break;
     }
 
     int iRv = reinterpret_cast<int>( ::ShellExecute(a_chOwner, sOperation.c_str(), sFilePath.c_str(), sParams.c_str(), sDir.c_str(), a_csfShowCmd) );

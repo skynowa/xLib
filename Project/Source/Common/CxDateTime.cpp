@@ -473,37 +473,31 @@ CxDateTime::format(
     std::tstring_t sRv;
 
     switch (a_cftFormat) {
-        case ftTime: {
-                sRv = CxString::format(
-                        xT("%d:%.2d:%.2d:%.3d"),
-                        _m_usHour, _m_usMinute, _m_usSecond, _m_usMillisecond);
-            }
+        case ftTime:
+            sRv = CxString::format(
+                    xT("%d:%.2d:%.2d:%.3d"),
+                    _m_usHour, _m_usMinute, _m_usSecond, _m_usMillisecond);
             break;
-
-        case ftDate: {
-                sRv = CxString::format(
-                        xT("%.2d.%.2d.%.4d"),
-                        _m_usDay, _m_usMonth, _m_usYear);
-            }
+        case ftDate:
+            sRv = CxString::format(
+                    xT("%.2d.%.2d.%.4d"),
+                    _m_usDay, _m_usMonth, _m_usYear);
             break;
-
-        case ftDateTime: {
-                sRv = CxString::format(
-                        xT("%.2d.%.2d.%.4d %d:%.2d:%.2d:%.3d"),
-                        _m_usDay, _m_usMonth, _m_usYear, _m_usHour, _m_usMinute, _m_usSecond, _m_usMillisecond);
-            }
+        case ftDateTime:
+            sRv = CxString::format(
+                    xT("%.2d.%.2d.%.4d %d:%.2d:%.2d:%.3d"),
+                    _m_usDay, _m_usMonth, _m_usYear,
+                    _m_usHour, _m_usMinute, _m_usSecond, _m_usMillisecond);
             break;
-
-        case ftRFC1123: {
-                sRv = CxString::format(
-                        xT("%s, %.2d %s %.4d %.2d:%.2d:%.2d GMT"),
-                        weekDayStr(dayOfWeek(), true).c_str(), _m_usDay, CxDateTime::monthStr(_m_usMonth, true).c_str(), _m_usYear, _m_usHour, _m_usMinute, _m_usSecond);
-            }
+        case ftRFC1123:
+            sRv = CxString::format(
+                    xT("%s, %.2d %s %.4d %.2d:%.2d:%.2d GMT"),
+                    weekDayStr(dayOfWeek(), true).c_str(), _m_usDay,
+                    CxDateTime::monthStr(_m_usMonth, true).c_str(), _m_usYear,
+                    _m_usHour, _m_usMinute, _m_usSecond);
             break;
-
-        default: {
-                xTEST_FAIL;
-            }
+        default:
+            xTEST_FAIL;
             break;
     }
 
@@ -986,66 +980,53 @@ CxDateTime::_parse(
     const std::tstring_t &a_csDT,
     const ExFormatType   &a_cftFormat,
     CxDateTime           *a_pdtDT
-) 
+)
 {
      switch (a_cftFormat) {
-        case ftTime: {
-                // TODO: ftTime
-            }
+        case ftTime:
+            // TODO: ftTime
             break;
-
-        case ftDate: {
-                // TODO: ftDate
-            }
+        case ftDate:
+            // TODO: ftDate
             break;
-
-        case ftDateTime: {
-                // TODO: ftDateTime
-            }
+        case ftDateTime:
+            // TODO: ftDateTime
             break;
-
         case ftRFC1123: {
-                // Wdy, DD Mon YYYY HH:MM:SS GMT (Wed, 23 Mar 2011 15:05:49 GMT)
+            // Wdy, DD Mon YYYY HH:MM:SS GMT (Wed, 23 Mar 2011 15:05:49 GMT)
 
-                // replace ":" to " ", "-" to " "
-                std::tstring_t sDT;
+            // replace ":" to " ", "-" to " "
+            std::tstring_t sDT = a_csDT;
+            sDT = CxString::replaceAll(sDT, CxConst::xCOLON,  CxConst::xSPACE);
+            sDT = CxString::replaceAll(sDT, CxConst::xHYPHEN, CxConst::xSPACE);
 
-                sDT = a_csDT;
-                sDT = CxString::replaceAll(sDT, CxConst::xCOLON,  CxConst::xSPACE);
-                sDT = CxString::replaceAll(sDT, CxConst::xHYPHEN, CxConst::xSPACE);
+            // split by separator " "
+            std::vec_tstring_t vsDates;
+            CxString::split(sDT, CxConst::xSPACE, &vsDates);
 
-                //split by separator " "
-                std::vec_tstring_t vsDates;
+            //                   = CxString::cast<ushort_t>( vsDates.at(0) );     //Wed(0),
+            (*a_pdtDT)._m_usDay    = CxString::cast<ushort_t>( vsDates.at(1) );   //23(1)
+            (*a_pdtDT)._m_usMonth  = monthNum(vsDates.at(2), true);               //Mar(2)
+            (*a_pdtDT)._m_usYear   = CxString::cast<ushort_t>( vsDates.at(3) );   //2011(3)
+            (*a_pdtDT)._m_usHour   = CxString::cast<ushort_t>( vsDates.at(4) );   //15(4)
+            (*a_pdtDT)._m_usMinute = CxString::cast<ushort_t>( vsDates.at(5) );   //05(5)
+            (*a_pdtDT)._m_usSecond = CxString::cast<ushort_t>( vsDates.at(6) );   //49(6)
 
-                CxString::split(sDT, CxConst::xSPACE, &vsDates);
-
-                //CxString::vStdVectorPrintT(vsDates);
-
-                //                   = CxString::cast<ushort_t>( vsDates.at(0) );     //Wed(0),
-                (*a_pdtDT)._m_usDay    = CxString::cast<ushort_t>( vsDates.at(1) );   //23(1)
-                (*a_pdtDT)._m_usMonth  = monthNum(vsDates.at(2), true);                    //Mar(2)
-                (*a_pdtDT)._m_usYear   = CxString::cast<ushort_t>( vsDates.at(3) );   //2011(3)
-                (*a_pdtDT)._m_usHour   = CxString::cast<ushort_t>( vsDates.at(4) );   //15(4)
-                (*a_pdtDT)._m_usMinute = CxString::cast<ushort_t>( vsDates.at(5) );   //05(5)
-                (*a_pdtDT)._m_usSecond = CxString::cast<ushort_t>( vsDates.at(6) );   //49(6)
-
-                #if xTEMP_DISABLED
-                    xTRACE(xT("-----------------------------------"));
-                    xTRACE(xFUNCTION);
-                    xTRACEV(xT("_m_usDay:    %i"), (*a_pdtDT)._m_usDay);
-                    xTRACEV(xT("_m_usMonth:  %i"), (*a_pdtDT)._m_usMonth);
-                    xTRACEV(xT("_m_usYear:   %i"), (*a_pdtDT)._m_usYear);
-                    xTRACEV(xT("_m_usHour:   %i"), (*a_pdtDT)._m_usHour);
-                    xTRACEV(xT("_m_usMinute: %i"), (*a_pdtDT)._m_usMinute);
-                    xTRACEV(xT("_m_usSecond: %i"), (*a_pdtDT)._m_usSecond);
-                    xTRACE(xT("-----------------------------------"));
-                #endif
-            }
+        #if xTEMP_DISABLED
+            xTRACE(xT("-----------------------------------"));
+            xTRACE(xFUNCTION);
+            xTRACEV(xT("_m_usDay:    %i"), (*a_pdtDT)._m_usDay);
+            xTRACEV(xT("_m_usMonth:  %i"), (*a_pdtDT)._m_usMonth);
+            xTRACEV(xT("_m_usYear:   %i"), (*a_pdtDT)._m_usYear);
+            xTRACEV(xT("_m_usHour:   %i"), (*a_pdtDT)._m_usHour);
+            xTRACEV(xT("_m_usMinute: %i"), (*a_pdtDT)._m_usMinute);
+            xTRACEV(xT("_m_usSecond: %i"), (*a_pdtDT)._m_usSecond);
+            xTRACE(xT("-----------------------------------"));
+        #endif
             break;
-
-        default: {
-                xTEST_FAIL;
-            }
+        }
+        default:
+            xTEST_FAIL;
             break;
     }
 }
