@@ -72,12 +72,15 @@ CxBackuper::execute(
     std::tstring_t sDateTimeStamp;
 
     switch (_m_cbpPeriod) {
-        // TODO: case bpHourly:  { ; }   break;
-        case bpDaily:   { sDateTimeStamp = CxDateTime().current().format(CxDateTime::ftDate);     }  break;
-        // TODO: case bpWeekly:  { ; }   break;
-        // TODO: case bpMonthly: { ; }   break;
-
-        default:        { sDateTimeStamp = CxDateTime().current().format(CxDateTime::ftDateTime); }  break;
+        // TODO: bpHourly:
+        case bpDaily:
+            sDateTimeStamp = CxDateTime().current().format(CxDateTime::ftDate);
+            break;
+        // TODO: bpWeekly:
+        // TODO: bpMonthly:
+        default:
+            sDateTimeStamp = CxDateTime().current().format(CxDateTime::ftDateTime);
+            break;
     }
 
     sDateTimeStamp = CxString::replaceAll(sDateTimeStamp, xT(":"), xT("-"));

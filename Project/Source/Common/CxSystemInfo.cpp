@@ -40,39 +40,32 @@ CxSystemInfo::os() {
     xTEST_DIFF(FALSE, blRes);
 
     switch (ovVer.dwPlatformId) {
-        case VER_PLATFORM_WIN32s: {
-                otRes = otWindows3;
-            }
+        case VER_PLATFORM_WIN32s:
+            otRes = otWindows3;
             break;
-
-        case VER_PLATFORM_WIN32_WINDOWS: {
-                xCHECK_DO(0UL  == ovVer.dwMinorVersion, otRes = otWindows95; break);
-                xCHECK_DO(10UL == ovVer.dwMinorVersion, otRes = otWindows98; break);
-                xCHECK_DO(90UL == ovVer.dwMinorVersion, otRes = otWindows98; break);
-            }
+        case VER_PLATFORM_WIN32_WINDOWS:
+            xCHECK_DO(0UL  == ovVer.dwMinorVersion, otRes = otWindows95; break);
+            xCHECK_DO(10UL == ovVer.dwMinorVersion, otRes = otWindows98; break);
+            xCHECK_DO(90UL == ovVer.dwMinorVersion, otRes = otWindows98; break);
             break;
+        case VER_PLATFORM_WIN32_NT:
+            xCHECK_DO(ovVer.dwMajorVersion <= 4UL,                                otRes = otWindowsNT;              break);
+            xCHECK_DO(5UL == ovVer.dwMajorVersion && 0UL == ovVer.dwMinorVersion, otRes = otWindows2000;            break);
+            xCHECK_DO(5UL == ovVer.dwMajorVersion && 1UL == ovVer.dwMinorVersion, otRes = otWindowsXP;              break);
+            xCHECK_DO(5UL == ovVer.dwMajorVersion && 2UL == ovVer.dwMinorVersion, otRes = otWindowsXPProx64Edition; break);
+            xCHECK_DO(5UL == ovVer.dwMajorVersion && 2UL == ovVer.dwMinorVersion, otRes = otWindowsServer2003;      break);
+            xCHECK_DO(5UL == ovVer.dwMajorVersion && 2UL == ovVer.dwMinorVersion, otRes = otWindowsHomeServer;      break);
+            xCHECK_DO(5UL == ovVer.dwMajorVersion && 2UL == ovVer.dwMinorVersion, otRes = otWindowsServer2003R2;    break);
+            xCHECK_DO(6UL == ovVer.dwMajorVersion && 0UL == ovVer.dwMinorVersion, otRes = otWindowsVista;           break);
+            xCHECK_DO(6UL == ovVer.dwMajorVersion && 0UL == ovVer.dwMinorVersion, otRes = otWindowsServer2008;      break);
+            xCHECK_DO(6UL == ovVer.dwMajorVersion && 1UL == ovVer.dwMinorVersion, otRes = otWindowsServer2008R2;    break);
+            xCHECK_DO(6UL == ovVer.dwMajorVersion && 1UL == ovVer.dwMinorVersion, otRes = otWindows7;               break);
 
-        case VER_PLATFORM_WIN32_NT: {
-                xCHECK_DO(ovVer.dwMajorVersion <= 4UL,                                otRes = otWindowsNT;              break);
-                xCHECK_DO(5UL == ovVer.dwMajorVersion && 0UL == ovVer.dwMinorVersion, otRes = otWindows2000;            break);
-                xCHECK_DO(5UL == ovVer.dwMajorVersion && 1UL == ovVer.dwMinorVersion, otRes = otWindowsXP;              break);
-                xCHECK_DO(5UL == ovVer.dwMajorVersion && 2UL == ovVer.dwMinorVersion, otRes = otWindowsXPProx64Edition; break);
-                xCHECK_DO(5UL == ovVer.dwMajorVersion && 2UL == ovVer.dwMinorVersion, otRes = otWindowsServer2003;      break);
-                xCHECK_DO(5UL == ovVer.dwMajorVersion && 2UL == ovVer.dwMinorVersion, otRes = otWindowsHomeServer;      break);
-                xCHECK_DO(5UL == ovVer.dwMajorVersion && 2UL == ovVer.dwMinorVersion, otRes = otWindowsServer2003R2;    break);
-                xCHECK_DO(6UL == ovVer.dwMajorVersion && 0UL == ovVer.dwMinorVersion, otRes = otWindowsVista;           break);
-                xCHECK_DO(6UL == ovVer.dwMajorVersion && 0UL == ovVer.dwMinorVersion, otRes = otWindowsServer2008;      break);
-                xCHECK_DO(6UL == ovVer.dwMajorVersion && 1UL == ovVer.dwMinorVersion, otRes = otWindowsServer2008R2;    break);
-                xCHECK_DO(6UL == ovVer.dwMajorVersion && 1UL == ovVer.dwMinorVersion, otRes = otWindows7;               break);
-
-                // for unknown windows/newest windows version
-                otRes = otUnknown;
-            }
+            // for unknown windows/newest windows version
+            otRes = otUnknown;
             break;
-
-        default: {
-                otRes = otUnknown;
-            }
+        default:
+            otRes = otUnknown;
             break;
     }
 
@@ -108,22 +101,51 @@ CxSystemInfo::formatOsType(
 
 #if   xOS_ENV_WIN
     switch (a_otOsType) {
-        case otWindows3:                { sRv = xT("Windows 3.1");                }    break;
-        case otWindows95:               { sRv = xT("Windows 95");                 }    break;
-        case otWindows98:               { sRv = xT("Windows 98");                 }    break;
-        case otWindowsNT:               { sRv = xT("Windows NT 4.0");             }    break;
-        case otWindows2000:             { sRv = xT("Windows 2000");               }    break;
-        case otWindowsXP:               { sRv = xT("Windows XP");                 }    break;
-        case otWindowsXPProx64Edition:  { sRv = xT("Windows XP Pro x64 Edition"); }    break;
-        case otWindowsServer2003:       { sRv = xT("Windows Server 2003");        }    break;
-        case otWindowsHomeServer:       { sRv = xT("Windows Home Server");        }    break;
-        case otWindowsServer2003R2:     { sRv = xT("Windows Server 2003 R2");     }    break;
-        case otWindowsVista:            { sRv = xT("Windows Vista");              }    break;
-        case otWindowsServer2008:       { sRv = xT("Windows Server 2008");        }    break;
-        case otWindowsServer2008R2:     { sRv = xT("Windows Server 2008 R2");     }    break;
-        case otWindows7:                { sRv = xT("Windows 7");                  }    break;
-
-        default:                        { sRv = CxConst::xUNKNOWN_STRING;         }    break;
+        case otWindows3:
+            sRv = xT("Windows 3.1");
+            break;
+        case otWindows95:
+            sRv = xT("Windows 95");
+            break;
+        case otWindows98:
+            sRv = xT("Windows 98");
+            break;
+        case otWindowsNT:
+            sRv = xT("Windows NT 4.0");
+            break;
+        case otWindows2000:
+            sRv = xT("Windows 2000");
+            break;
+        case otWindowsXP:
+            sRv = xT("Windows XP");
+            break;
+        case otWindowsXPProx64Edition:
+            sRv = xT("Windows XP Pro x64 Edition");
+            break;
+        case otWindowsServer2003:
+            sRv = xT("Windows Server 2003");
+            break;
+        case otWindowsHomeServer:
+            sRv = xT("Windows Home Server");
+            break;
+        case otWindowsServer2003R2:
+            sRv = xT("Windows Server 2003 R2");
+            break;
+        case otWindowsVista:
+            sRv = xT("Windows Vista");
+            break;
+        case otWindowsServer2008:
+            sRv = xT("Windows Server 2008");
+            break;
+        case otWindowsServer2008R2:
+            sRv = xT("Windows Server 2008 R2");
+            break;
+        case otWindows7:
+            sRv = xT("Windows 7");
+            break;
+        default:
+            sRv = CxConst::xUNKNOWN_STRING;
+            break;
     }
 #elif xOS_ENV_UNIX
     if (os() == a_otOsType) {
@@ -137,12 +159,18 @@ CxSystemInfo::formatOsType(
                                  unKernelInfo.sysname, unKernelInfo.release,
                                  unKernelInfo.version, unKernelInfo.machine);
     } else {
-        // not current OS type, can't get info about OS kernel - return simple-formatted string
+        // not current OS type, can't get info about OS kernel -
+        // return simple-formatted string
         switch (a_otOsType) {
-            case otLinux:   { sRv = xT("Linux");              } break;
-            case otFreeBSD: { sRv = xT("FreeBSD");            } break;
-
-            default:        { sRv = CxConst::xUNKNOWN_STRING; } break;
+            case otLinux:
+                sRv = xT("Linux");
+                break;
+            case otFreeBSD:
+                sRv = xT("FreeBSD");
+                break;
+            default:
+                sRv = CxConst::xUNKNOWN_STRING;
+                break;
         }
     }
 #endif
@@ -225,11 +253,18 @@ CxSystemInfo::formatOsArch(
     std::tstring_t sRv;
 
     switch (a_oaOsArch) {
-        case CxSystemInfo::oa32bit:     sRv = xT("32-bit");             break;
-        case CxSystemInfo::oa64bit:     sRv = xT("64-bit");             break;
-        case CxSystemInfo::oaUnknown:   sRv = CxConst::xUNKNOWN_STRING; break;
-
-        default:                        sRv = CxConst::xUNKNOWN_STRING; break;
+        case CxSystemInfo::oa32bit:
+            sRv = xT("32-bit");
+            break;
+        case CxSystemInfo::oa64bit:
+            sRv = xT("64-bit");
+            break;
+        case CxSystemInfo::oaUnknown:
+            sRv = CxConst::xUNKNOWN_STRING;
+            break;
+        default:
+            sRv = CxConst::xUNKNOWN_STRING;
+            break;
     }
 
     return sRv;

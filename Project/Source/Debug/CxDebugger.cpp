@@ -161,11 +161,18 @@ CxDebugger::reportMake(
     const ulong_t culLastError = CxLastError::get();
 
     switch (a_crpReport.m_rtType) {
-        case CxErrorReport::rtMsgboxPlain:  { _msgboxPlain (a_crpReport); } break;
-        case CxErrorReport::rtStdoutPlain:  { _stdoutPlain (a_crpReport); } break;
-        case CxErrorReport::rtLoggingPlain: { _loggingPlain(a_crpReport); } break;
-
-        default:                            { _stdoutPlain (a_crpReport); } break;
+        case CxErrorReport::rtMsgboxPlain:
+            _msgboxPlain(a_crpReport);
+            break;
+        case CxErrorReport::rtStdoutPlain:
+            _stdoutPlain(a_crpReport);
+            break;
+        case CxErrorReport::rtLoggingPlain:
+            _loggingPlain(a_crpReport);
+            break;
+        default:
+            _stdoutPlain(a_crpReport);
+            break;
     }
 
     //-------------------------------------
@@ -200,24 +207,19 @@ CxDebugger::_msgboxPlain(
     CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::mrIgnore;
 #endif
     switch (mrRes) {
-        case CxMsgBoxT::mrAbort: {
-                CxCurrentProcess::exit(0U);
-            }
+        case CxMsgBoxT::mrAbort:
+            CxCurrentProcess::exit(0U);
             break;
-
         default:
-        case CxMsgBoxT::mrIgnore: {
-                xNA;
-            }
+        case CxMsgBoxT::mrIgnore:
+            xNA;
             break;
-
-        case CxMsgBoxT::mrRetry: {
-                if (true == isActive()) {
-                    breakPoint();
-                } else {
-                    CxMsgBoxT::show(xT("Debugger is not present.\nThe application will be terminated."), xT("xLib"));
-                    CxCurrentProcess::exit(0U);
-                }
+        case CxMsgBoxT::mrRetry:
+            if (true == isActive()) {
+                breakPoint();
+            } else {
+                CxMsgBoxT::show(xT("Debugger is not present.\nThe application will be terminated."), xT("xLib"));
+                CxCurrentProcess::exit(0U);
             }
             break;
     }
@@ -249,35 +251,30 @@ CxDebugger::_stdoutPlain(
     EConsoleCmd cmRes = cmIgnore;
 #endif
     switch (cmRes) {
-        case cmAbort: {
-                std::tcout << xT("Abort...\n\n");  std::tcout.flush();
+        case cmAbort:
+            std::tcout << xT("Abort...\n\n");  std::tcout.flush();
+
+            CxCurrentProcess::exit(0U);
+            break;
+        default:
+        case cmIgnore:
+            std::tcout << xT("Ignore...\n\n");  std::tcout.flush();
+            break;
+        case cmRetry:
+            std::tcout << xT("Retry...\n\n");
+
+            if (true == isActive()) {
+                breakPoint();
+            } else {
+                std::tcout << xT("\n####################################################################################################\n");
+                std::tcout << xT("CxDebugger\n");
+                std::tcout << xT("\n");
+                std::tcout << xT("OS debugger is not present.\nThe application will be terminated.\n");
+                std::tcout << xT("####################################################################################################\n");
+                std::tcout << xT("\n\n");
+                std::tcout.flush();
 
                 CxCurrentProcess::exit(0U);
-            }
-            break;
-
-        default:
-        case cmIgnore: {
-                std::tcout << xT("Ignore...\n\n");  std::tcout.flush();
-            }
-            break;
-
-        case cmRetry: {
-                std::tcout << xT("Retry...\n\n");
-
-                if (true == isActive()) {
-                    breakPoint();
-                } else {
-                    std::tcout << xT("\n####################################################################################################\n");
-                    std::tcout << xT("CxDebugger\n");
-                    std::tcout << xT("\n");
-                    std::tcout << xT("OS debugger is not present.\nThe application will be terminated.\n");
-                    std::tcout << xT("####################################################################################################\n");
-                    std::tcout << xT("\n\n");
-                    std::tcout.flush();
-
-                    CxCurrentProcess::exit(0U);
-                }
             }
             break;
     }

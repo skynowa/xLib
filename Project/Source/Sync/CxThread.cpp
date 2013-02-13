@@ -630,13 +630,20 @@ CxThread::priorityString() const {
 
     int iRv = priority();
     switch (iRv) {
-        case tpIdle:            return xT("Idle");
-        case tpLowest:          return xT("Lowest");
-        case tpBelowNormal:     return xT("Below normal");
-        case tpNormal:          return xT("Normal");
-        case tpAboveNormal:     return xT("Above normal");
-        case tpHighest:         return xT("Highest");
-        case tpTimeCritical:    return xT("Time critical");
+        case tpIdle:
+            return xT("Idle");
+        case tpLowest:
+            return xT("Lowest");
+        case tpBelowNormal:
+            return xT("Below normal");
+        case tpNormal:
+            return xT("Normal");
+        case tpAboveNormal:
+            return xT("Above normal");
+        case tpHighest:
+            return xT("Highest");
+        case tpTimeCritical:
+            return xT("Time critical");
     }
 
     return xT("N/A");
@@ -655,15 +662,30 @@ CxThread::priorityUp() const {
 
     tpOldLevel = priority();
     switch (tpOldLevel) {
-        case tpIdle:            tpiNewLevel = tpLowest;         break;
-        case tpLowest:          tpiNewLevel = tpBelowNormal;    break;
-        case tpBelowNormal:     tpiNewLevel = tpNormal;         break;
-        case tpNormal:          tpiNewLevel = tpAboveNormal;    break;
-        case tpAboveNormal:     tpiNewLevel = tpHighest;        break;
-        case tpHighest:         tpiNewLevel = tpTimeCritical;   break;
-        case tpTimeCritical:    return;                         break;
-
-        default:                xTEST_FAIL;            break;
+        case tpIdle:
+            tpiNewLevel = tpLowest;
+            break;
+        case tpLowest:
+            tpiNewLevel = tpBelowNormal;
+            break;
+        case tpBelowNormal:
+            tpiNewLevel = tpNormal;
+            break;
+        case tpNormal:
+            tpiNewLevel = tpAboveNormal;
+            break;
+        case tpAboveNormal:
+            tpiNewLevel = tpHighest;
+            break;
+        case tpHighest:
+            tpiNewLevel = tpTimeCritical;
+            break;
+        case tpTimeCritical:
+            return;
+            break;
+        default:
+            xTEST_FAIL;
+            break;
     }
 
     setPriority(tpiNewLevel);
@@ -682,15 +704,30 @@ CxThread::priorityDown() const {
 
     tpOldLevel = priority();
     switch (tpOldLevel) {
-        case tpIdle:            return;                         break;
-        case tpLowest:          tpiNewLevel = tpIdle;           break;
-        case tpBelowNormal:     tpiNewLevel = tpLowest;         break;
-        case tpNormal:          tpiNewLevel = tpBelowNormal;    break;
-        case tpAboveNormal:     tpiNewLevel = tpNormal;         break;
-        case tpHighest:         tpiNewLevel = tpAboveNormal;    break;
-        case tpTimeCritical:    tpiNewLevel = tpHighest;        break;
-
-        default:                xTEST_FAIL;            break;
+        case tpIdle:
+            return;
+            break;
+        case tpLowest:
+            tpiNewLevel = tpIdle;
+            break;
+        case tpBelowNormal:
+            tpiNewLevel = tpLowest;
+            break;
+        case tpNormal:
+            tpiNewLevel = tpBelowNormal;
+            break;
+        case tpAboveNormal:
+            tpiNewLevel = tpNormal;
+            break;
+        case tpHighest:
+            tpiNewLevel = tpAboveNormal;
+            break;
+        case tpTimeCritical:
+            tpiNewLevel = tpHighest;
+            break;
+        default:
+            xTEST_FAIL;
+            break;
     }
 
     setPriority(tpiNewLevel);

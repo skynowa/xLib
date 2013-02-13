@@ -225,19 +225,42 @@ CxPath::standartExt(
 
     switch (a_cseFileExt) {
     #if   xOS_ENV_WIN
-        case seExe:   { sRv = xT("exe"); }   break;
-        case seDll:   { sRv = xT("dll"); }   break;
-        case seLib:   { sRv = xT("lib"); }   break;
-        case seObj:   { sRv = xT("obj"); }   break;
-        case seShell: { sRv = xT("bat"); }   break;
+        case seExe:
+            sRv = xT("exe");
+            break;
+        case seDll:
+            sRv = xT("dll");
+            break;
+        case seLib:
+            sRv = xT("lib");
+            break;
+        case seObj:
+            sRv = xT("obj");
+            break;
+        case seShell:
+            sRv = xT("bat");
+            break;
     #elif xOS_ENV_UNIX
-        case seExe:   { sRv = xT("");    }   break;
-        case seDll:   { sRv = xT("so");  }   break;
-        case seLib:   { sRv = xT("a");   }   break;
-        case seObj:   { sRv = xT("o");   }   break;
-        case seShell: { sRv = xT("sh");  }   break;
+        case seExe:
+            sRv = xT("");
+            break;
+        case seDll:
+            sRv = xT("so");
+            break;
+        case seLib:
+            sRv = xT("a");
+            break;
+        case seObj:
+            sRv = xT("o");
+            break;
+        case seShell:
+            sRv = xT("sh");
+            break;
     #endif
-        default:      { sRv = xT("");    }   break;
+
+        default:
+            sRv = xT("");
+            break;
     }
 
     return sRv;

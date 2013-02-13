@@ -196,20 +196,16 @@ CxEvent::wait(
 
                 osRes = osSignaled;
                 break;
-
             case ETIMEDOUT:
-                    osRes = osTimeout;
+                osRes = osTimeout;
 
-                    if (_m_cbIsAutoReset) {
-                        _m_bIsSignaled = false;
-                    } else {
-                        osRes = _m_cbInitState ? osSignaled : osTimeout;
-                        _m_bIsSignaled = _m_cbInitState;
-                    }
-
-
+                if (_m_cbIsAutoReset) {
+                    _m_bIsSignaled = false;
+                } else {
+                    osRes = _m_cbInitState ? osSignaled : osTimeout;
+                    _m_bIsSignaled = _m_cbInitState;
+                }
                 break;
-
         }
 
     }
