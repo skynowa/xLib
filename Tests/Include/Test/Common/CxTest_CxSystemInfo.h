@@ -6,11 +6,11 @@
 
 #ifndef CxTest_CxSystemInfoH
 #define CxTest_CxSystemInfoH
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Common/CxSystemInfo.h>
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 class CxTest_CxSystemInfo :
     public CxTest
 {
@@ -20,5 +20,5 @@ public:
 
     virtual void unit(const ulonglong_t &cullCaseLoops);
 };
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #endif //CxTest_CxSystemInfoH

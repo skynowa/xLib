@@ -6,7 +6,7 @@
 
 #ifndef xLib_Debug_xDebugH
 #define xLib_Debug_xDebugH
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Debug/CxLastError.h>
 #include <xLib/Debug/CxStdError.h>
@@ -14,7 +14,7 @@
 #include <xLib/Debug/CxErrorReport.h>
 #include <xLib/Debug/CxDebugger.h>
 #include <xLib/Log/CxTracer.h>
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #define _xTEST_MSG_EQ(report_type, val1, val2, msg)      { if ( !((val1) == (val2)) ) { ulong_t ulLastError = CxLastError::get(); CxErrorReport rpReport(report_type, xT(#val1),   xT(#val2), (val1),        (val2),         xT("=="), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().toString(), (msg));  CxDebugger().reportMake(rpReport); } }
 #define _xTEST_MSG_DIFF(report_type, val1, val2, msg)    { if ( !((val1) != (val2)) ) { ulong_t ulLastError = CxLastError::get(); CxErrorReport rpReport(report_type, xT(#val1),   xT(#val2), (val1),        (val2),         xT("!="), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().toString(), (msg));  CxDebugger().reportMake(rpReport); } }
 #define _xTEST_MSG_LESS(report_type, val1, val2, msg)    { if ( !((val1) <  (val2)) ) { ulong_t ulLastError = CxLastError::get(); CxErrorReport rpReport(report_type, xT(#val1),   xT(#val2), (val1),        (val2),         xT("<"),  ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().toString(), (msg));  CxDebugger().reportMake(rpReport); } }
@@ -163,5 +163,5 @@
 #define xTRACE_POINT                                     { CxTracer::write(xT("Point: %lu (file: %s, function: %s, last error: %s, line: %lu)"), \
                                                                            xCOUNTER, xFILE, xFUNCTION, CxLastError::get().c_str(), xLINE); }
     ///< trace point (use CxTracer)
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #endif // xLib_Debug_xDebugH

@@ -9,23 +9,23 @@
 
 xNAMESPACE_BEGIN(NxLib)
 
-/****************************************************************************
+/*******************************************************************************
 *    public
 *
-*****************************************************************************/
+*******************************************************************************/
 
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 CxAtomicLongInt::CxAtomicLongInt() :
     _m_liValue(0L)
 {
 
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 /* virtual */
 CxAtomicLongInt::~CxAtomicLongInt() {
 
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 CxAtomicLongInt &
 CxAtomicLongInt::operator += (
     const CxAtomicLongInt &a_calValue
@@ -39,7 +39,7 @@ CxAtomicLongInt::operator += (
 
     return *this;
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 CxAtomicLongInt &
 CxAtomicLongInt::operator += (
     const long_t &a_cliValue
@@ -53,7 +53,7 @@ CxAtomicLongInt::operator += (
 
     return *this;
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 CxAtomicLongInt &
 CxAtomicLongInt::operator -= (
     const CxAtomicLongInt &a_calValue
@@ -67,7 +67,7 @@ CxAtomicLongInt::operator -= (
 
     return *this;
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 CxAtomicLongInt &
 CxAtomicLongInt::operator -= (
     const long_t &a_cliValue
@@ -81,7 +81,7 @@ CxAtomicLongInt::operator -= (
 
     return *this;
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 CxAtomicLongInt &
 CxAtomicLongInt::operator = (
     const CxAtomicLongInt &a_calValue
@@ -95,7 +95,7 @@ CxAtomicLongInt::operator = (
 
     return *this;
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 CxAtomicLongInt &
 CxAtomicLongInt::operator = (
     const long_t &a_cliValue
@@ -109,7 +109,7 @@ CxAtomicLongInt::operator = (
 
     return *this;
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 bool
 CxAtomicLongInt::operator == (
     const CxAtomicLongInt &a_calValue
@@ -117,7 +117,7 @@ CxAtomicLongInt::operator == (
 {
     return (_m_liValue == a_calValue._m_liValue);
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 bool
 CxAtomicLongInt::operator == (
     const long_t &a_cliValue
@@ -125,7 +125,7 @@ CxAtomicLongInt::operator == (
 {
     return (_m_liValue == a_cliValue);
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 bool
 CxAtomicLongInt::operator != (
     const CxAtomicLongInt &a_calValue
@@ -133,7 +133,7 @@ CxAtomicLongInt::operator != (
 {
     return (_m_liValue != a_calValue._m_liValue);
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 bool
 CxAtomicLongInt::operator != (
     const long_t &a_cliValue
@@ -141,7 +141,7 @@ CxAtomicLongInt::operator != (
 {
     return (_m_liValue != a_cliValue);
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 bool
 CxAtomicLongInt::operator < (
     const long_t &a_cliValue
@@ -149,7 +149,7 @@ CxAtomicLongInt::operator < (
 {
     return (_m_liValue < a_cliValue);
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 bool
 CxAtomicLongInt::operator < (
     const CxAtomicLongInt &a_calValue
@@ -157,7 +157,7 @@ CxAtomicLongInt::operator < (
 {
     return (_m_liValue < a_calValue.value());
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 bool
 CxAtomicLongInt::operator <= (
     const long_t &a_cliValue
@@ -165,7 +165,7 @@ CxAtomicLongInt::operator <= (
 {
     return (_m_liValue <= a_cliValue);
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 bool
 CxAtomicLongInt::operator <= (
     const CxAtomicLongInt &a_calValue
@@ -173,7 +173,7 @@ CxAtomicLongInt::operator <= (
 {
     return (_m_liValue <= a_calValue.value());
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 bool
 CxAtomicLongInt::operator > (
     const long_t &a_cliValue
@@ -181,7 +181,7 @@ CxAtomicLongInt::operator > (
 {
     return (_m_liValue > a_cliValue);
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 bool
 CxAtomicLongInt::operator > (
     const CxAtomicLongInt &a_calValue
@@ -189,7 +189,7 @@ CxAtomicLongInt::operator > (
 {
     return (_m_liValue > a_calValue.value());
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 bool
 CxAtomicLongInt::operator >= (
     const long_t &cliValue
@@ -197,7 +197,7 @@ CxAtomicLongInt::operator >= (
 {
     return (_m_liValue >= cliValue);
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 bool
 CxAtomicLongInt::operator >= (
     const CxAtomicLongInt &a_calValue
@@ -205,7 +205,7 @@ CxAtomicLongInt::operator >= (
 {
     return (_m_liValue >= a_calValue.value());
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 CxAtomicLongInt &
 CxAtomicLongInt::operator ++ (
     const int a_ciValue
@@ -223,7 +223,7 @@ CxAtomicLongInt::operator ++ (
 
     return *this;
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 CxAtomicLongInt &
 CxAtomicLongInt::operator -- (
     const int a_ciValue
@@ -241,7 +241,7 @@ CxAtomicLongInt::operator -- (
 
     return *this;
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 long_t
 CxAtomicLongInt::value() const {
 #if   xOS_ENV_WIN
@@ -250,6 +250,6 @@ CxAtomicLongInt::value() const {
     return ::__sync_fetch_and_add(const_cast<volatile long_t *>( &_m_liValue ), 0L);
 #endif
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
 xNAMESPACE_END(NxLib)

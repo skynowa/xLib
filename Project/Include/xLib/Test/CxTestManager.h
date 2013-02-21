@@ -6,11 +6,11 @@
 
 #ifndef xLib_Debug_CxTestManagerH
 #define xLib_Debug_CxTestManagerH
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/CxConst.h>
 #include <xLib/Test/CxTest.h>
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
 class CxTestManager :
@@ -43,5 +43,5 @@ xNAMESPACE_END(NxLib)
 // TODO: CxTestManager - not enough HDD
 // TODO: CxTestManager - busy CPU
 // TODO: CxTestManager - every macros wrapped by try-catch
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #endif // xLib_CxTestManager.H

@@ -6,11 +6,11 @@
 
 #ifndef CxTest_Common_CxProcessInfoH
 #define CxTest_Common_CxProcessInfoH
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Common/CxProcessInfo.h>
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 class CxTest_CxProcessInfo :
     public CxTest
 {
@@ -23,5 +23,5 @@ public:
     virtual void unit(const ulonglong_t &cullCaseLoops);
         ///< unit test
 };
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #endif //CxTest_Common_CxProcessInfoH

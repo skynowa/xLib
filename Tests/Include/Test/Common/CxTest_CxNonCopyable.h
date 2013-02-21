@@ -6,11 +6,11 @@
 
 #ifndef CxTest_CxNonCopyableH
 #define CxTest_CxNonCopyableH
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Common/CxNonCopyable.h>
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 class CxTest_CxNonCopyable :
     public CxTest
 {
@@ -23,5 +23,5 @@ public:
     virtual void  unit(const ulonglong_t &cullCaseLoops) xOVERRIDE;
         ///< unit test
 };
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #endif //CxTest_CxNonCopyableH

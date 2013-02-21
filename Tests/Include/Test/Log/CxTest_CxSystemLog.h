@@ -6,11 +6,11 @@
 
 #ifndef CxTest_CxSystemLogH
 #define CxTest_CxSystemLogH
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Log/CxSystemLog.h>
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 class CxTest_CxSystemLog:
     public CxTest
 {
@@ -23,5 +23,5 @@ public:
     virtual void unit(const ulonglong_t &cullCaseLoops);
         ///< unit test
 };
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #endif //CxTest_CxSystemLogH

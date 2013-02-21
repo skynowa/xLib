@@ -14,12 +14,12 @@
 
 xNAMESPACE_BEGIN(NxLib)
 
-/****************************************************************************
+/*******************************************************************************
 *    public
 *
-*****************************************************************************/
+*******************************************************************************/
 
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 CxSign::CxSign(
     const CxPkcs11  &a_cPkcs11,
     const CxSession &a_cSession
@@ -28,12 +28,12 @@ CxSign::CxSign(
     _m_hSession(a_cSession.handle())
 {
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 /* virtual */
 CxSign::~CxSign() {
 
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxSign::init(
     CK_MECHANISM_PTR a_pMechanism,  ///< the signature mechanism
@@ -43,7 +43,7 @@ CxSign::init(
     CK_RV ulRv = _m_pFunc->C_SignInit(_m_hSession, a_pMechanism, a_hKey);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxSign::make(
     CK_BYTE_PTR  a_pData,           ///< the data to sign
@@ -55,7 +55,7 @@ CxSign::make(
     CK_RV ulRv = _m_pFunc->C_Sign(_m_hSession, a_pData, a_ulDataLen, a_pSignature, a_pulSignatureLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxSign::update(
     CK_BYTE_PTR pPart,     ///< the data to sign
@@ -65,7 +65,7 @@ CxSign::update(
     CK_RV ulRv = _m_pFunc->C_SignUpdate(_m_hSession, pPart, ulPartLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxSign::encryptUpdate(
     CK_BYTE_PTR  a_pPart,               ///< the plaintext data
@@ -77,7 +77,7 @@ CxSign::encryptUpdate(
     CK_RV ulRv = _m_pFunc->C_SignEncryptUpdate(_m_hSession, a_pPart, a_ulPartLen, a_pEncryptedPart, a_pulEncryptedPartLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxSign::final(
     CK_BYTE_PTR  a_pSignature,      ///< gets the signature
@@ -87,7 +87,7 @@ CxSign::final(
     CK_RV ulRv = _m_pFunc->C_SignFinal(_m_hSession, a_pSignature, a_pulSignatureLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxSign::recoverInit(
     CK_MECHANISM_PTR a_pMechanism, ///< the signature mechanism
@@ -97,7 +97,7 @@ CxSign::recoverInit(
     CK_RV ulRv = _m_pFunc->C_SignRecoverInit(_m_hSession, a_pMechanism, a_hKey);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxSign::recover(
     CK_BYTE_PTR  a_pData,           ///< the data to sign
@@ -109,7 +109,7 @@ CxSign::recover(
     CK_RV ulRv = _m_pFunc->C_SignRecover(_m_hSession, a_pData, a_ulDataLen, a_pSignature, a_pulSignatureLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
 xNAMESPACE_END(NxLib)
 

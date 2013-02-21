@@ -14,12 +14,12 @@
 
 xNAMESPACE_BEGIN(NxLib)
 
-/****************************************************************************
+/*******************************************************************************
 *    public
 *
-*****************************************************************************/
+*******************************************************************************/
 
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 CxDigest::CxDigest(
     const CxPkcs11  &a_cPkcs11,
     const CxSession &a_cSession
@@ -28,12 +28,12 @@ CxDigest::CxDigest(
     _m_hSession(a_cSession.handle())
 {
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 /* virtual */
 CxDigest::~CxDigest() {
 
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxDigest::make(
     CK_BYTE_PTR  a_pData,        ///< data to be digested
@@ -45,7 +45,7 @@ CxDigest::make(
     CK_RV ulRv = _m_pFunc->C_Digest(_m_hSession, a_pData, a_ulDataLen, a_pDigest, a_pulDigestLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxDigest::encryptUpdate(
     CK_BYTE_PTR  a_pPart,               ///< the plain text data
@@ -57,7 +57,7 @@ CxDigest::encryptUpdate(
     CK_RV ulRv = _m_pFunc->C_DigestEncryptUpdate(_m_hSession, a_pPart, a_ulPartLen, a_pEncryptedPart, a_pulEncryptedPartLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxDigest::final(
     CK_BYTE_PTR  a_pDigest,      ///< gets the message digest
@@ -67,7 +67,7 @@ CxDigest::final(
     CK_RV ulRv = _m_pFunc->C_DigestFinal(_m_hSession, a_pDigest, a_pulDigestLen );
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxDigest::init(
     CK_MECHANISM_PTR a_pMechanism  ///< the digesting mechanism
@@ -76,7 +76,7 @@ CxDigest::init(
     CK_RV ulRv = _m_pFunc->C_DigestInit(_m_hSession, a_pMechanism);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxDigest::key(
     CK_OBJECT_HANDLE a_hKey       ///< secret key to digest
@@ -85,7 +85,7 @@ CxDigest::key(
     CK_RV ulRv = _m_pFunc->C_DigestKey(_m_hSession, a_hKey);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxDigest::update(
     CK_BYTE_PTR a_pPart,     ///< data to be digested
@@ -95,7 +95,7 @@ CxDigest::update(
     CK_RV ulRv = _m_pFunc->C_DigestUpdate(_m_hSession, a_pPart, a_ulPartLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
 xNAMESPACE_END(NxLib)
 

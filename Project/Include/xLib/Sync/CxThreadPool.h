@@ -6,7 +6,7 @@
 
 #ifndef xLib_Sync_CxThreadPoolH
 #define xLib_Sync_CxThreadPoolH
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Sync/CxIpcSemaphore.h>
 #include <xLib/Sync/CxThread.h>
@@ -16,7 +16,7 @@
 ////#include <boost\function.hpp>
 ////#include <boost\bind.hpp>
 ////#include <functional>
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
 class CxMutex;
@@ -87,12 +87,12 @@ private:
 };
 
 xNAMESPACE_END(NxLib)
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #include <xLib/Sync/CxMutex.h>
 #include <xLib/Sync/CxAutoMutex.h>
 #include <xLib/Sync/CxThread.h>
 #include <xLib/Sync/CxCurrentThread.h>
 
 #include "CxThreadPool.inl"
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #endif // xLib_Sync_CxThreadPoolH

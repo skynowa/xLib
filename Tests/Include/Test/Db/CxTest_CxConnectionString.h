@@ -6,11 +6,11 @@
 
 #ifndef CxTest_CxConnectionStringH
 #define CxTest_CxConnectionStringH
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Db/CxConnectionString.h>
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 class CxTest_CxConnectionString :
     public CxTest
 {
@@ -20,5 +20,5 @@ public:
 
     virtual void unit(const ulonglong_t &cullCaseLoops);
 };
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #endif //CxTest_CxConnectionStringH

@@ -6,11 +6,11 @@
 
 #ifndef CxTest_CxCompletionPortH
 #define CxTest_CxCompletionPortH
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Sync/Win/CxCompletionPort.h>
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 class CxTest_CxCompletionPort :
     public CxTest
 {
@@ -20,5 +20,5 @@ public:
 
     virtual     void unit(const ulonglong_t &cullCaseLoops);
 };
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #endif //CxTest_CxCompletionPortH

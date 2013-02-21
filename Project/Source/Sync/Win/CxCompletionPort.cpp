@@ -11,23 +11,23 @@
 
 xNAMESPACE_BEGIN(NxLib)
 
-/****************************************************************************
+/*******************************************************************************
 *    public
 *
-*****************************************************************************/
+*******************************************************************************/
 
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 CxCompletionPort::CxCompletionPort() :
     _m_hHandle()
 {
 
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 /* virtual */
 CxCompletionPort::~CxCompletionPort() {
 
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxCompletionPort::create(
     const ulong_t &a_culThreadsNum
@@ -39,7 +39,7 @@ CxCompletionPort::create(
     _m_hHandle = ::CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, 0, a_culThreadsNum);
     xTEST_EQ(true, _m_hHandle.isValid());
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxCompletionPort::associate(
     const HANDLE  &a_chFile,
@@ -59,7 +59,7 @@ CxCompletionPort::associate(
     xTEST_EQ(xNATIVE_HANDLE_INVALID, hRv);
     xTEST_EQ(_m_hHandle.get(), hRv);
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxCompletionPort::status(
     LPDWORD        a_lpNumberOfBytes,
@@ -77,7 +77,7 @@ CxCompletionPort::status(
     BOOL blRes = ::GetQueuedCompletionStatus(_m_hHandle.get(), a_lpNumberOfBytes, a_lpCompletionKey, a_lpOverlapped, a_culMilliseconds);
     xTEST_DIFF(FALSE, blRes);
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxCompletionPort::postStatus(
     const ulong_t &a_culNumberOfBytesTransferred,
@@ -93,7 +93,7 @@ CxCompletionPort::postStatus(
     BOOL blRes = ::PostQueuedCompletionStatus(_m_hHandle.get(), a_culNumberOfBytesTransferred, a_ulCompletionKey, a_lpOverlapped);
     xTEST_DIFF(FALSE, blRes);
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
 xNAMESPACE_END(NxLib)
 
