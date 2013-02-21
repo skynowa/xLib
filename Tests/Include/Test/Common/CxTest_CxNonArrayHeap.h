@@ -6,11 +6,11 @@
 
 #ifndef CxTest_CxNonArrayHeapH
 #define CxTest_CxNonArrayHeapH
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Common/CxNonArrayHeap.h>
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 class CxTest_CxNonArrayHeap :
     public CxTest
 {
@@ -23,5 +23,5 @@ public:
     virtual void  unit(const ulonglong_t &cullCaseLoops) xOVERRIDE;
         ///< unit test
 };
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #endif //CxTest_CxNonArrayHeapH

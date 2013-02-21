@@ -6,11 +6,11 @@
 
 #ifndef CxTest_CxSemaphoreH
 #define CxTest_CxSemaphoreH
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Sync/CxSemaphore.h>
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 class CxTest_CxSemaphore :
     public CxTest
 {
@@ -23,5 +23,5 @@ public:
     virtual void unit(const ulonglong_t &cullCaseLoops);
         ///< unit test
 };
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #endif //CxTest_CxSemaphoreH

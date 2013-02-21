@@ -6,11 +6,11 @@
 
 #ifndef CxTest_CxCommandLineH
 #define CxTest_CxCommandLineH
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Common/CxCommandLine.h>
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 class CxTest_CxCommandLine :
     public CxTest
 {
@@ -20,5 +20,5 @@ public:
 
     virtual void unit(const ulonglong_t &cullCaseLoops);
 };
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #endif //CxTest_CxCommandLineH

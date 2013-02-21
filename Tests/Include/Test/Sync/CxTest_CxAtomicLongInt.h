@@ -6,11 +6,11 @@
 
 #ifndef CxTest_CxAtomicLongIntH
 #define CxTest_CxAtomicLongIntH
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Sync/CxAtomicLongInt.h>
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 class CxTest_CxAtomicLongInt :
     public CxTest
 {
@@ -20,5 +20,5 @@ public:
 
     virtual void unit(const ulonglong_t &cullCaseLoops);
 };
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #endif //CxTest_CxAtomicLongIntH

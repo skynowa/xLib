@@ -6,11 +6,11 @@
 
 #ifndef CxTest_CxLocalStorageH
 #define CxTest_CxLocalStorageH
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Filesystem/CxLocalStorage.h>
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 class CxTest_CxLocalStorage :
     public CxTest
 {
@@ -20,5 +20,5 @@ public:
 
     virtual  void unit(const ulonglong_t &cullCaseLoops) xOVERRIDE;
 };
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #endif // CxTest_CxLocalStorageH

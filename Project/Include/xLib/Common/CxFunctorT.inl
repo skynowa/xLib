@@ -6,12 +6,12 @@
 
 xNAMESPACE_BEGIN(NxLib)
 
-/****************************************************************************
+/*******************************************************************************
 *    public
 *
-*****************************************************************************/
+*******************************************************************************/
 
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 template <typename ClassT, typename ReturnT, typename ParamT>
 CxFunctorT<ClassT, ReturnT, ParamT>::CxFunctorT(
     ClassT *pObject,
@@ -26,12 +26,12 @@ CxFunctorT<ClassT, ReturnT, ParamT>::CxFunctorT(
     xTEST_DIFF(NULL, _m_Method);
 #endif
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 template <typename ClassT, typename ReturnT, typename ParamT>
 CxFunctorT<ClassT, ReturnT, ParamT>::~CxFunctorT() {
 
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 template <typename ClassT, typename ReturnT, typename ParamT>
 ReturnT
 CxFunctorT<ClassT, ReturnT, ParamT>::operator()(
@@ -40,7 +40,7 @@ CxFunctorT<ClassT, ReturnT, ParamT>::operator()(
 {
     return (_m_pObject->*_m_Method)(Param);
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 template <typename ClassT, typename ReturnT, typename ParamT>
 ReturnT
 CxFunctorT<ClassT, ReturnT, ParamT>::execute(
@@ -49,6 +49,6 @@ CxFunctorT<ClassT, ReturnT, ParamT>::execute(
 {
     return operator()(Param);
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
 xNAMESPACE_END(NxLib)

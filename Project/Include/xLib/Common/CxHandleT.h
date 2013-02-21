@@ -6,7 +6,7 @@
 
 #ifndef xLib_Common_CxHandleTH
 #define xLib_Common_CxHandleTH
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
 class CxLastError;
@@ -18,7 +18,7 @@ xNAMESPACE_END(NxLib)
 
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/CxHandleErrorT.h>
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
 template<ExHandleValue hvTag>
@@ -70,14 +70,14 @@ private:
 };
 
 xNAMESPACE_END(NxLib)
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #include "CxHandleT.inl"
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
 typedef CxHandleT<hvNull>    CxHandle;
 typedef CxHandleT<hvInvalid> CxHandleInvalid;
 
 xNAMESPACE_END(NxLib)
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #endif // xLib_Common_CxHandleTH

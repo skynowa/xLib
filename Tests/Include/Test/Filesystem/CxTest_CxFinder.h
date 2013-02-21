@@ -6,11 +6,11 @@
 
 #ifndef CxTest_CxFinderH
 #define CxTest_CxFinderH
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Filesystem/CxFinder.h>
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 class CxTest_CxFinder :
     public CxTest
     ///< tests for CxFinder
@@ -24,5 +24,5 @@ public:
     virtual void  unit(const ulonglong_t &cullCaseLoops) xOVERRIDE;
         ///< unit test
 };
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #endif // CxTest_CxFinderH

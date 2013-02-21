@@ -6,11 +6,11 @@
 
 #ifndef CxTest_CxEnvironmentH
 #define CxTest_CxEnvironmentH
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Filesystem/CxEnvironment.h>
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 class CxTest_CxEnvironment :
     public CxTest
 {
@@ -20,5 +20,5 @@ public:
 
     virtual void unit(const ulonglong_t &cullCaseLoops);
 };
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #endif //CxTest_CxEnvironmentH

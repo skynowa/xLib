@@ -15,12 +15,12 @@
 
 xNAMESPACE_BEGIN(NxLib)
 
-/****************************************************************************
+/*******************************************************************************
 *    public
 *
-*****************************************************************************/
+*******************************************************************************/
 
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 CxDecrypt::CxDecrypt(
     const CxPkcs11  &a_cPkcs11,
     const CxSession &a_cSession
@@ -30,12 +30,12 @@ CxDecrypt::CxDecrypt(
 {
 
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 /* virtual */
 CxDecrypt::~CxDecrypt() {
 
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxDecrypt::init(
     CK_MECHANISM_PTR a_pMechanism,  ///< the decryption mechanism
@@ -47,7 +47,7 @@ CxDecrypt::init(
     CK_RV ulRv = _m_pFunc->C_DecryptInit(_m_hSession, a_pMechanism, a_hKey);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxDecrypt::make(
     CK_BYTE_PTR  a_pEncryptedData,     ///< ciphertext
@@ -61,7 +61,7 @@ CxDecrypt::make(
     CK_RV ulRv = _m_pFunc->C_Decrypt(_m_hSession, a_pEncryptedData, a_ulEncryptedDataLen, a_pData, a_pulDataLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxDecrypt::update(
     CK_BYTE_PTR  a_pEncryptedPart,      ///< encrypted data
@@ -75,7 +75,7 @@ CxDecrypt::update(
     CK_RV ulRv = _m_pFunc->C_DecryptUpdate(_m_hSession, a_pEncryptedPart, a_ulEncryptedPartLen, a_pPart, a_pulPartLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxDecrypt::final(
     CK_BYTE_PTR  a_pLastPart,      ///< gets plaintext
@@ -87,7 +87,7 @@ CxDecrypt::final(
     CK_RV ulRv = _m_pFunc->C_DecryptFinal(_m_hSession, a_pLastPart, a_pulLastPartLen );
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxDecrypt::digestUpdate(
     CK_BYTE_PTR  a_pEncryptedPart,      ///< ciphertext
@@ -101,7 +101,7 @@ CxDecrypt::digestUpdate(
     CK_RV ulRv = _m_pFunc->C_DecryptDigestUpdate(_m_hSession, a_pEncryptedPart, a_ulEncryptedPartLen, a_pPart, a_pulPartLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxDecrypt::verifyUpdate(
     CK_BYTE_PTR  a_pEncryptedPart,      ///< ciphertext
@@ -115,15 +115,15 @@ CxDecrypt::verifyUpdate(
     CK_RV ulRv = _m_pFunc->C_DecryptVerifyUpdate(_m_hSession, a_pEncryptedPart, a_ulEncryptedPartLen, a_pPart, a_pulPartLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
 
-/****************************************************************************
+/*******************************************************************************
 *    Public utils
 *
-*****************************************************************************/
+*******************************************************************************/
 
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxDecrypt::makeFile(
     const std::tstring_t &a_csInFilePath,
@@ -186,7 +186,7 @@ CxDecrypt::makeFile(
         sfFileDecrypt.write(usDecryptedData);
     }
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
 xNAMESPACE_END(NxLib)
 

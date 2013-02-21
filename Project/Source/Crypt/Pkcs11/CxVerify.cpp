@@ -14,12 +14,12 @@
 
 xNAMESPACE_BEGIN(NxLib)
 
-/****************************************************************************
+/*******************************************************************************
 *    Public methods
 *
-*****************************************************************************/
+*******************************************************************************/
 
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 CxVerify::CxVerify(
     const CxPkcs11  &a_cPkcs11,
     const CxSession &a_cSession
@@ -28,12 +28,12 @@ CxVerify::CxVerify(
     _m_hSession(a_cSession.handle())
 {
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 /* virtual */
 CxVerify::~CxVerify() {
 
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxVerify::init(
     CK_MECHANISM_PTR a_pMechanism,  ///< the verification mechanism
@@ -43,7 +43,7 @@ CxVerify::init(
     CK_RV ulRv = _m_pFunc->C_VerifyInit(_m_hSession, a_pMechanism, a_hKey);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxVerify::make(
     CK_BYTE_PTR a_pData,          ///< signed data
@@ -55,7 +55,7 @@ CxVerify::make(
     CK_RV ulRv = _m_pFunc->C_Verify(_m_hSession, a_pData, a_ulDataLen, a_pSignature, a_ulSignatureLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxVerify::final(
     CK_BYTE_PTR a_pSignature,     ///< signature to verify
@@ -65,7 +65,7 @@ CxVerify::final(
     CK_RV ulRv = _m_pFunc->C_VerifyFinal(_m_hSession, a_pSignature, a_ulSignatureLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxVerify::recoverInit(
     CK_MECHANISM_PTR a_pMechanism,  ///< the verification mechanism
@@ -75,7 +75,7 @@ CxVerify::recoverInit(
     CK_RV ulRv = _m_pFunc->C_VerifyRecoverInit(_m_hSession, a_pMechanism, a_hKey);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxVerify::recover(
     CK_BYTE_PTR  a_pSignature,      ///< signature to verify
@@ -87,7 +87,7 @@ CxVerify::recover(
     CK_RV ulRv = _m_pFunc->C_VerifyRecover(_m_hSession, a_pSignature, a_ulSignatureLen, a_pData, a_pulDataLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxVerify::update(
     CK_BYTE_PTR a_pPart,     ///< signed data
@@ -97,7 +97,7 @@ CxVerify::update(
     CK_RV ulRv = _m_pFunc->C_VerifyUpdate(_m_hSession, a_pPart, a_ulPartLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
 xNAMESPACE_END(NxLib)
 

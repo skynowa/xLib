@@ -6,11 +6,11 @@
 
 #ifndef CxTest_CxFileTempH
 #define CxTest_CxFileTempH
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Filesystem/CxFileTemp.h>
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 class CxTest_CxFileTemp :
     public CxTest
 {
@@ -23,5 +23,5 @@ public:
     virtual void unit(const ulonglong_t &cullCaseLoops);
         ///< unit test
 };
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #endif //CxTest_CxFileTempH

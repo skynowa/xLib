@@ -6,11 +6,11 @@
 
 #ifndef CxTest_CxThreadPoolH
 #define CxTest_CxThreadPoolH
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Sync/CxThreadPool.h>
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 class CxTest_CxThreadPool :
     public CxTest
 {
@@ -23,7 +23,7 @@ public:
     virtual void unit(const ulonglong_t &cullCaseLoops);
         ///< unit test
 };
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 class CPoolThread :
     public CxThread
 {
@@ -36,5 +36,5 @@ public:
 protected:
     virtual uint_t uiOnRun    (void *pData);
 };
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #endif //CxTest_CxThreadPoolH

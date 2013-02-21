@@ -6,11 +6,11 @@
 
 #ifndef CxTest_CxFlagsH
 #define CxTest_CxFlagsH
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Common/CxFlags.h>
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 class CxTest_CxFlags :
     public CxTest
     ///< tests for CxFlags
@@ -24,5 +24,5 @@ public:
     virtual void  unit(const ulonglong_t &cullCaseLoops) xOVERRIDE;
         ///< unit test
 };
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #endif // CxTest_CxFlagsH

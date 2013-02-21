@@ -14,12 +14,12 @@
 
 xNAMESPACE_BEGIN(NxLib)
 
-/****************************************************************************
+/*******************************************************************************
 *    public
 *
-*****************************************************************************/
+*******************************************************************************/
 
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 CxKey::CxKey(
     const CxPkcs11  &a_cPkcs11,
     const CxSession &a_cSession
@@ -28,12 +28,12 @@ CxKey::CxKey(
     _m_hSession(a_cSession.handle())
 {
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 /* virtual */
 CxKey::~CxKey() {
 
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxKey::generate(
     CK_MECHANISM_PTR     a_pMechanism,  ///< key generation mech.
@@ -45,7 +45,7 @@ CxKey::generate(
     CK_RV ulRv = _m_pFunc->C_GenerateKey(_m_hSession, a_pMechanism, a_pTemplate, a_ulCount, a_phKey);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxKey::generatePair(
     CK_MECHANISM_PTR     a_pMechanism,                  ///< key-gen mech.
@@ -60,7 +60,7 @@ CxKey::generatePair(
     CK_RV ulRv = _m_pFunc->C_GenerateKeyPair(_m_hSession, a_pMechanism, a_pPublicKeyTemplate, a_ulPublicKeyAttributeCount, a_pPrivateKeyTemplate, a_ulPrivateKeyAttributeCount, a_phPublicKey, a_phPrivateKey);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxKey::derive(
     CK_MECHANISM_PTR     a_pMechanism,        ///< key deriv. mech.
@@ -73,7 +73,7 @@ CxKey::derive(
     CK_RV ulRv = _m_pFunc->C_DeriveKey(_m_hSession, a_pMechanism, a_hBaseKey, a_pTemplate, a_ulAttributeCount, a_phKey);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxKey::wrap(
     CK_MECHANISM_PTR a_pMechanism,      ///< the wrapping mechanism
@@ -86,7 +86,7 @@ CxKey::wrap(
     CK_RV ulRv = _m_pFunc->C_WrapKey(_m_hSession, a_pMechanism, a_hWrappingKey, a_hKey, a_pWrappedKey, a_pulWrappedKeyLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxKey::unwrap(
     CK_MECHANISM_PTR     a_pMechanism,        ///< unwrapping mech.
@@ -101,7 +101,7 @@ CxKey::unwrap(
     CK_RV ulRv = _m_pFunc->C_UnwrapKey(_m_hSession, a_pMechanism, a_hUnwrappingKey, a_pWrappedKey, a_ulWrappedKeyLen, a_pTemplate, a_ulAttributeCount, a_phKey);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxKey::seedRandom(
     CK_BYTE_PTR pSeed,     ///< the seed material
@@ -111,7 +111,7 @@ CxKey::seedRandom(
     CK_RV ulRv = _m_pFunc->C_SeedRandom(_m_hSession, pSeed, ulSeedLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxKey::generateRandom(
     CK_BYTE_PTR a_pRandomData,  ///< receives the random data
@@ -121,7 +121,7 @@ CxKey::generateRandom(
     CK_RV ulRv = _m_pFunc->C_GenerateRandom(_m_hSession, a_pRandomData, a_ulRandomLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
 xNAMESPACE_END(NxLib)
 

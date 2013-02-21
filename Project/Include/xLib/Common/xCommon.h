@@ -103,7 +103,7 @@
 
 #ifndef xLib_Common_xCommonH
 #define xLib_Common_xCommonH
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // config
 #include <xLib/Common/xSysDefines.h>
 #include <xLib/Common/xConfig.h>
@@ -177,5 +177,5 @@ namespace NxLib { }
 
 #include <xLib/Common/xTracing.h>
 #include <xLib/Common/xLinking.h>
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #endif  // xLib_Common_xCommonH

@@ -6,11 +6,11 @@
 
 #ifndef CxTest_CxNonAssignableH
 #define CxTest_CxNonAssignableH
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Common/CxNonAssignable.h>
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 class CxTest_CxNonAssignable :
     public CxTest
 {
@@ -23,5 +23,5 @@ public:
     virtual void  unit(const ulonglong_t &cullCaseLoops) xOVERRIDE;
         ///< unit test
 };
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #endif //CxTest_CxNonAssignableH

@@ -6,7 +6,7 @@
 
 #ifndef xLib_Common_xVersionH
 #define xLib_Common_xVersionH
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #define xLIB_NAME           xT("xLib")
     ///< xLib name
 #define xLIB_DESCRIPTION    xT("C++ cross-platform library")
@@ -29,5 +29,5 @@
 #define xLIB_SKYPE          xT("skynowa777")
     ///< xLib skype
 
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 #endif  // xLib_Common_xVersionH

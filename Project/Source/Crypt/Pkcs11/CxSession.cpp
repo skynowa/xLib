@@ -13,12 +13,12 @@
 
 xNAMESPACE_BEGIN(NxLib)
 
-/****************************************************************************
+/*******************************************************************************
 *    public
 *
-*****************************************************************************/
+*******************************************************************************/
 
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 CxSession::CxSession(
     const CxPkcs11 &a_cPkcs11
 ) :
@@ -28,12 +28,12 @@ CxSession::CxSession(
     xTEST_PTR(_m_pFunc);
     xTEST_DIFF(0UL, _m_hSession);
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 /* virtual */
 CxSession::~CxSession() {
 
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 CK_SESSION_HANDLE
 CxSession::handle() const {
     xTEST_PTR(_m_pFunc);
@@ -41,7 +41,7 @@ CxSession::handle() const {
 
     return _m_hSession;
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxSession::open(
     CK_SLOT_ID  a_slotID,        ///< the slot's ID
@@ -56,7 +56,7 @@ CxSession::open(
     CK_RV ulRv = _m_pFunc->C_OpenSession(a_slotID, a_flags, a_pApplication, a_Notify, &_m_hSession);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxSession::info(
     CK_SESSION_INFO_PTR a_pInfo      ///< receives session info
@@ -68,7 +68,7 @@ CxSession::info(
     CK_RV ulRv = _m_pFunc->C_GetSessionInfo(_m_hSession, a_pInfo);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxSession::setOperationState(
     CK_BYTE_PTR      a_pOperationState,      ///< holds state
@@ -83,7 +83,7 @@ CxSession::setOperationState(
     CK_RV ulRv = _m_pFunc->C_SetOperationState(_m_hSession, a_pOperationState, a_ulOperationStateLen, a_hEncryptionKey, a_hAuthenticationKey);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxSession::operationState(
     CK_BYTE_PTR  a_pOperationState,      ///< gets state
@@ -96,7 +96,7 @@ CxSession::operationState(
     CK_RV ulRv = _m_pFunc->C_GetOperationState(_m_hSession, a_pOperationState, a_pulOperationStateLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxSession::close() {
     xTEST_PTR(_m_pFunc);
@@ -108,7 +108,7 @@ CxSession::close() {
 
     _m_hSession = 0UL;
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 void
 CxSession::closeAll(
     CK_SLOT_ID slotID  ///< the token's slot
@@ -122,7 +122,7 @@ CxSession::closeAll(
 
     _m_hSession = 0UL;
 }
-//---------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
 xNAMESPACE_END(NxLib)
 
