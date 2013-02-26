@@ -49,14 +49,14 @@ ifeq ($(cOS), "MINGW32")
 		DIR_BIN		:=	./Build/Tests/MinGW/Release
 	endif
 else
-ifeq ($(cOS), "Linux")
+ifeq ($(cOS), "LINUX")
 	ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
 		DIR_BIN		:=	./Build/Tests/GCC_linux/Debug
 	else
 		DIR_BIN		:=	./Build/Tests/GCC_linux/Release
 	endif
 else
-ifeq ($(cOS), "FreeBSD")
+ifeq ($(cOS), "FREEBSD")
 	ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
 		DIR_BIN		:=	./Build/Tests/GCC_freebsd/Debug
 	else
@@ -75,12 +75,11 @@ SUBDIRS_SOURCE		:=	. \
 						Common \
 						Common/Win \
 						Crypt \
-						#Crypt/OpenSSL \
-						#Crypt/Pkcs11/Win \
+						Crypt/OpenSSL \
+						Crypt/Pkcs11 \
 						Db \
 						Debug \
 						Filesystem \
-						Filesystem/Win \
 						Gui \
 						Gui/Dialogs \
 						Log \
@@ -88,21 +87,18 @@ SUBDIRS_SOURCE		:=	. \
 						Patterns \
 						Sync \
 						Sync/Win \
-						Sync/Unix \
 						Test
 
 SUBDIRS_TESTS_SOURCE:=	. \
 						Common \
 						Common/Win \
-						#Crypt \
-						#Crypt/Pkcs11 \
+						Crypt \
+						Crypt/Pkcs11 \
 						Db \
 						Debug \
 						Filesystem \
 						Gui \
 						Gui/Dialogs \
-						Gui/Win \
-						Gui/Win/Dialogs \
 						Log \
 						Net \
 						Patterns \
@@ -128,10 +124,10 @@ FLAGS_COMPILE		:=	$(CPPFLAGS) -Wall -pipe $(DEFINES)
 ifeq ($(cOS), "MINGW32")
 	LIBS			:=	$(LDFLAGS) -lws2_32 -lpsapi -luuid -lole32 -lmpr
 else
-ifeq ($(cOS), "Linux")
+ifeq ($(cOS), "LINUX")
 	LIBS			:=	$(LDFLAGS) -lpthread -lrt -lmysqlclient -lm -lcrypto -lz -lssl -ldl
 else
-ifeq ($(cOS), "FreeBSD")
+ifeq ($(cOS), "FREEBSD")
 	LIBS			:=	$(LDFLAGS) -lpthread -lrt -lmysqlclient -lm -lcrypto -lz -lssl -lexecinfo # -lc only with out -static
 else
     $(error Unsupported OS: $(cOS))

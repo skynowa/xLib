@@ -47,7 +47,7 @@ SUBDIRS_SOURCE		:=	. \
 						Common \
 						Common/Win \
 						Crypt \
-						#Crypt/OpenSSL \
+						Crypt/OpenSSL \
 						Crypt/Pkcs11 \
 						Db \
 						Debug \
@@ -77,14 +77,14 @@ ifeq ($(cOS), "MINGW32")
 		DIR_BIN		:=	./Build/Libs/MinGW/Release
 	endif
 else
-ifeq ($(cOS), "Linux")
+ifeq ($(cOS), "LINUX")
 	ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
 		DIR_BIN		:=	./Build/Libs/GCC_linux/Debug
 	else
 		DIR_BIN		:=	./Build/Libs/GCC_linux/Release
 	endif
 else
-ifeq ($(cOS), "FreeBSD")
+ifeq ($(cOS), "FREEBSD")
 	ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
 		DIR_BIN		:=	./Build/Libs/GCC_freebsd/Debug
 	else
