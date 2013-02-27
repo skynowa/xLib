@@ -67,7 +67,7 @@ public:
         ///< get path to system var %Temp%
 
 private:
-    const std::tstring_t  _m_csDirPath;
+    const std::tstring_t   _m_csDirPath;
 };
 
 xNAMESPACE_END(NxLib)
