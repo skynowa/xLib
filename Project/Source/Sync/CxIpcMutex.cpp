@@ -129,7 +129,7 @@ CxIpcMutex::lock(
         void
         timespec_addms(
             struct timespec *ts,
-            const long       ms
+            long             ms
         )
         {
             int sec = 0;

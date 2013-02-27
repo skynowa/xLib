@@ -709,6 +709,21 @@ CxString::minimize(
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
+xNAMESPACE_ANONYM_BEGIN
+
+struct SCompareNoCase {
+    bool
+    operator () (
+        const std::tstring_t::value_type &a_cchChar1,
+        const std::tstring_t::value_type &a_cchChar2
+    )
+    {
+        return CxChar::toUpper(a_cchChar1) == CxChar::toUpper(a_cchChar2);
+    }
+};
+
+xNAMESPACE_ANONYM_END
+
 /* static */
 bool
 CxString::compareNoCase(
@@ -726,17 +741,6 @@ CxString::compareNoCase(
     // n/a
     xCHECK_RET(0 != iRv, false);
 #elif xOS_ENV_UNIX
-    struct SCompareNoCase {
-        bool
-        operator () (
-            const std::tstring_t::value_type &a_cchChar1,
-            const std::tstring_t::value_type &a_cchChar2
-        )
-        {
-            return CxChar::toUpper(a_cchChar1) == CxChar::toUpper(a_cchChar2);
-        }
-    };
-
     bool bRv = std::equal(a_csStr1.begin(), a_csStr1.end(), a_csStr2.begin(), SCompareNoCase());
     xCHECK_RET(false == bRv, false);
 #endif
