@@ -476,16 +476,19 @@ CxPath::isNameValid(
     // MAN: For the standard ASCII character set (used by the "C" locale),
     // control characters are those between ASCII codes 0x00 (NUL) and 0x1f (US), plus 0x7f (DEL).
     {
-        struct _SNested {
-            static bool
-            bIsCharControl(const std::tstring_t::value_type &cchChat) {
-                return CxChar::isControl(cchChat);
+        struct _SIsCharControl {
+            bool
+            operator () (
+                const std::tstring_t::value_type &a_cchChar
+            )
+            {
+                return CxChar::isControl(a_cchChar);
             }
         };
 
         std::tstring_t::const_iterator cit;
 
-        cit = std::find_if(a_csFileName.begin(), a_csFileName.end(), _SNested::bIsCharControl);
+        cit = std::find_if(a_csFileName.begin(), a_csFileName.end(), _SIsCharControl());
         bRv = (cit != a_csFileName.end());
         xCHECK_RET(true == bRv, false);
     }
@@ -640,21 +643,24 @@ CxPath::setNameValid(
     // MAN: For the standard ASCII character set (used by the "C" locale),
     // control characters are those between ASCII codes 0x00 (NUL) and 0x1f (US), plus 0x7f (DEL).
     {
-        struct _SNested {
-            static bool
-            bIsCharControl(const std::tstring_t::value_type &cchChat) {
-                return CxChar::isControl(cchChat);
+        struct _SIsCharControl {
+            bool
+            operator () (
+                const std::tstring_t::value_type &a_cchChar
+            )
+            {
+                return CxChar::isControl(a_cchChar);
             }
         };
 
         std::tstring_t::const_iterator cit;
 
-        cit = std::find_if(sRv.begin(), sRv.end(), _SNested::bIsCharControl);
+        cit = std::find_if(sRv.begin(), sRv.end(), _SIsCharControl());
         bRv = (cit != sRv.end());
         if (true == bRv) {
             std::tstring_t::iterator itNewEnd;
 
-            itNewEnd = std::remove_if(sRv.begin(), sRv.end(), _SNested::bIsCharControl);
+            itNewEnd = std::remove_if(sRv.begin(), sRv.end(), _SIsCharControl());
             sRv.erase(itNewEnd, sRv.end());
         }
 
@@ -878,8 +884,13 @@ CxPath::brief(
     // util function
     struct _SSlashes
     {
-        static void
-        vMake(std::tstring_t &a_cStr, size_t &a_uiNum) {
+        static
+        void
+        vMake(
+            std::tstring_t &a_cStr,
+            size_t         &a_uiNum
+        )
+        {
             size_t uiIndex = 0;
 
             xFOREVER {

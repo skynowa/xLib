@@ -316,7 +316,10 @@ CxProcessInfo::commandLine(
     struct _SNested {
         static
         PVOID
-        pvPebAddress(HANDLE hProcessHandle) {
+        pvPebAddress(
+            HANDLE hProcessHandle
+        )
+        {
             CxDll dlDll;
 
             dlDll.load(xT("ntdll.dll"));
