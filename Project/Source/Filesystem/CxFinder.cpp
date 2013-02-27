@@ -72,42 +72,42 @@ CxFinder::entryName() const {
 //--------------------------------------------------------------------------
 CxFileAttribute::ExAttribute
 CxFinder::attributes() const {
-    CxFileAttribute::ExAttribute faAttr = CxFileAttribute::faInvalid;
+    CxFileAttribute::ExAttribute faRv = CxFileAttribute::faInvalid;
 
 #if   xOS_ENV_WIN
-    faAttr = static_cast<CxFileAttribute::ExAttribute>( _m_enEnrty.fdData.dwFileAttributes );
+    faRv = static_cast<CxFileAttribute::ExAttribute>( _m_enEnrty.fdData.dwFileAttributes );
 #elif xOS_ENV_UNIX
     uchar_t iRv = _m_enEnrty.pdrData->d_type;
 	switch (iRv) {
     	case DT_BLK: // block device
-            faAttr = CxFileAttribute::faBlockDevice;
+            faRv = CxFileAttribute::faBlockDevice;
             break;
 		case DT_CHR: // character device
-            faAttr = CxFileAttribute::faCharacterDevice;
+            faRv = CxFileAttribute::faCharacterDevice;
             break;
 		case DT_DIR: // directory
-            faAttr = CxFileAttribute::faDirectory;
+            faRv = CxFileAttribute::faDirectory;
             break;
 		case DT_FIFO: // named pipe (FIFO)
-            faAttr = CxFileAttribute::faFifo;
+            faRv = CxFileAttribute::faFifo;
             break;
     	case DT_LNK: // symbolic link
-            faAttr = CxFileAttribute::faSymbolicLink;
+            faRv = CxFileAttribute::faSymbolicLink;
             break;
 		case DT_REG: // regular file
-            faAttr = CxFileAttribute::faRegularFile;
+            faRv = CxFileAttribute::faRegularFile;
             break;
 		case DT_SOCK: // UNIX domain socket
-            faAttr = CxFileAttribute::faSocket;
+            faRv = CxFileAttribute::faSocket;
             break;
 		case DT_UNKNOWN: // type is unknown
     	default:
-            faAttr = CxFileAttribute::faInvalid;
+            faRv = CxFileAttribute::faInvalid;
             break;
     }
 #endif
 
-    return faAttr;
+    return faRv;
 }
 //------------------------------------------------------------------------------
 bool
