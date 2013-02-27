@@ -16,7 +16,12 @@ cBIN_TYPE_LIB		:=	"static library"
 cBIN_TYPE_TESTS		:=	"tests"
 
 cCOMPILER			:=	$(CXX)
-cARCHIVER			:=	$(AR)
+cARCHIVER			:=	$(AR) -rc
+cMKDIR				:=	mkdir -p
+cCP_FILE			:=	cp -f
+cCP_DIR				:=	cp -f -R
+cRM_FILE			:=	rm -f
+cRM_DIR				:=	rm -rf
 
 ################################################################################
 # settings
@@ -160,7 +165,7 @@ $(APP_PATH): 		OBJ_DIRS $(OBJECTS) $(TESTS_OBJECTS) $(DIRS_REL_INCLUDE)
 					-o $@
 
 OBJ_DIRS:
-					mkdir -p $(DIRS_OBJECTS) $(TESTS_DIRS_OBJECTS)
+					$(cMKDIR) $(DIRS_OBJECTS) $(TESTS_DIRS_OBJECTS)
 
 VPATH 				:=	../../../../
 
@@ -174,14 +179,14 @@ VPATH 				:=	../../../../
 .PHONY:				all run clean help
 
 all:
-					mkdir -p $(DIR_BIN)
+					$(cMKDIR) $(DIR_BIN)
 					$(MAKE) --directory=$(DIR_BIN) --makefile=../../../../Tests.mk
 
 run:
 					$(DIR_BIN)/$(APP_NAME) 1 1 1 1
 
 clean:
-					if [ -d $(DIR_BIN) ]; then rm -rf $(DIR_BIN); fi
+					if [ -d $(DIR_BIN) ]; then $(cRM_DIR) $(DIR_BIN); fi
 
 help:
 					@echo -e ""

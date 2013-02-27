@@ -16,7 +16,12 @@ cBIN_TYPE_LIB		:=	"static library"
 cBIN_TYPE_TESTS		:=	"tests"
 
 cCOMPILER			:=	$(CXX)
-cARCHIVER			:=	$(AR)
+cARCHIVER			:=	$(AR) -rc
+cMKDIR				:=	mkdir -p
+cCP_FILE			:=	cp -f
+cCP_DIR				:=	cp -f -R
+cRM_FILE			:=	rm -f
+cRM_DIR				:=	rm -rf
 
 ################################################################################
 # settings
@@ -118,10 +123,10 @@ OBJECTS				:=	$(OBJECTS:.cpp=.o)
 
 
 $(APP_PATH):		OBJ_DIRS $(OBJECTS)
-					$(cARCHIVER) -rc $@ $(OBJECTS)
+					$(cARCHIVER) $@ $(OBJECTS)
 
 OBJ_DIRS:
-					mkdir -p $(DIRS_OBJECTS)
+					$(cMKDIR) $(DIRS_OBJECTS)
 
 VPATH				:= ../../../../
 
@@ -135,23 +140,23 @@ VPATH				:= ../../../../
 .PHONY:				all install uninstall clean help
 
 all:
-					mkdir -p $(DIR_BIN)
+					$(cMKDIR) $(DIR_BIN)
 					$(MAKE) --directory=$(DIR_BIN) --makefile=../../../../Lib.mk
 
 install:			uninstall
 
-					mkdir -p $(DIR_INSTALL)
-					cp $(DIR_BIN)/$(APP_NAME) $(DIR_INSTALL)/$(APP_NAME)
+					$(cMKDIR) $(DIR_INSTALL)
+					$(cCP_FILE) $(DIR_BIN)/$(APP_NAME) $(DIR_INSTALL)/$(APP_NAME)
 
-					mkdir -p $(DIR_INSTALL_INCLUDE)
-					cp -r $(DIR_ROOT_INCLUDE)/xLib $(DIR_INSTALL_INCLUDE)
+					$(cMKDIR) $(DIR_INSTALL_INCLUDE)
+					$(cCP_DIR) $(DIR_ROOT_INCLUDE)/xLib $(DIR_INSTALL_INCLUDE)
 
 uninstall:
-					if [ -f $(DIR_INSTALL)/$(APP_NAME)  ]; then rm     $(DIR_INSTALL)/$(APP_NAME);  fi
-					if [ -d $(DIR_INSTALL_INCLUDE)/xLib ]; then rm -rf $(DIR_INSTALL_INCLUDE)/xLib; fi
+					if [ -f $(DIR_INSTALL)/$(APP_NAME)  ]; then $(cRM_FILE) $(DIR_INSTALL)/$(APP_NAME);  fi
+					if [ -d $(DIR_INSTALL_INCLUDE)/xLib ]; then $(cRM_DIR)  $(DIR_INSTALL_INCLUDE)/xLib; fi
 
 clean:
-					if [ -d $(DIR_BIN) ]; then rm -rf $(DIR_BIN); fi
+					if [ -d $(DIR_BIN) ]; then $(cRM_DIR) $(DIR_BIN); fi
 
 help:
 					@echo -e ""
