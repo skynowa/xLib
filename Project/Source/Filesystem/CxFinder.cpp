@@ -31,7 +31,7 @@ CxFinder::CxFinder(
     _m_csRootDirPath     (a_csRootDirPath),
     _m_csFilterByShell   (a_csFilterByShell)
 {
-    xTEST_NA(bIsValid());
+    xTEST_NA(isValid());
     xTEST_EQ(false, _m_csRootDirPath.empty());
     xTEST_EQ(false, _m_csFilterByShell.empty());
 }
