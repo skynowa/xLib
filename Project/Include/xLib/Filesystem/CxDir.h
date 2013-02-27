@@ -52,10 +52,10 @@ public:
         ///< deletion dir find all content of it
 
     void                   filesFind (const std::tstring_t &csPattern,
-                                       const bool &cbIsRecursively, std::vec_tstring_t *pvsFilePathes);
+                                      const bool &cbIsRecursively, std::vec_tstring_t *pvsFilePathes);
         ///< search files
     void                   dirsFind  (const std::tstring_t &csPattern,
-                                       const bool &cbIsRecursively, std::vec_tstring_t *pvsDirPathes);
+                                      const bool &cbIsRecursively, std::vec_tstring_t *pvsDirPathes);
         ///< search subdirectories
 
     // static
