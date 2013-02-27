@@ -125,8 +125,13 @@ CxIpcMutex::lock(
     xTEST_DIFF(WAIT_ABANDONED, ulRv);
 #elif xOS_ENV_UNIX
     struct _SFunctor {
-        static void
-        timespec_addms(struct timespec *ts, long ms) {
+        static
+        void
+        timespec_addms(
+            struct timespec *ts,
+            const long       ms
+        )
+        {
             int sec = 0;
 
             sec = ms / 1000;
