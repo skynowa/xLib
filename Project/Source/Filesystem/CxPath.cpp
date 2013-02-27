@@ -480,7 +480,7 @@ CxPath::isNameValid(
             bool
             operator () (
                 const std::tstring_t::value_type &a_cchChar
-            )
+            ) const
             {
                 return CxChar::isControl(a_cchChar);
             }
@@ -647,7 +647,7 @@ CxPath::setNameValid(
             bool
             operator () (
                 const std::tstring_t::value_type &a_cchChar
-            )
+            ) const
             {
                 return CxChar::isControl(a_cchChar);
             }

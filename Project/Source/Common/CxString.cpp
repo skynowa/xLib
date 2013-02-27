@@ -716,7 +716,7 @@ struct SCompareNoCase {
     operator () (
         const std::tstring_t::value_type &a_cchChar1,
         const std::tstring_t::value_type &a_cchChar2
-    )
+    )  const
     {
         return CxChar::toUpper(a_cchChar1) == CxChar::toUpper(a_cchChar2);
     }
