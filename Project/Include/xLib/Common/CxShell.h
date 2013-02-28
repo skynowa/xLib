@@ -22,7 +22,7 @@ class CxShell :
     /// shell
 {
 public:
-    static bool           isAvailable   () xWARN_UNUSED_RESULT;
+    static bool           isAvailable   () xWARN_UNUSED_RV;
     static void           execute       (const std::tstring_t &csFilePath, const std::tstring_t &csParams);
 
 #if   xOS_ENV_WIN
@@ -118,7 +118,7 @@ public:
         sfWindows                = CSIDL_WINDOWS
     };
 
-    static std::tstring_t findExecutable(const std::tstring_t &csFileName, const std::tstring_t &csFindDirPath) xWARN_UNUSED_RESULT;
+    static std::tstring_t findExecutable(const std::tstring_t &csFileName, const std::tstring_t &csFindDirPath) xWARN_UNUSED_RV;
         ///< find executable file path
     static void           execute       (const HWND &chOwner, const ExOperation &copOperation,
                                          const std::tstring_t &csFilePath, const std::tstring_t &csParams,
@@ -132,7 +132,7 @@ public:
         ///< execute FTP
     static void           executeEmail  (const std::tstring_t &csToEmail, const std::tstring_t &csSubject, const std::tstring_t &csBody);
         ///< execute email
-    static std::tstring_t specialDirPath(const ESpecialDir &csfDir, const HANDLE &chToken) xWARN_UNUSED_RESULT;
+    static std::tstring_t specialDirPath(const ESpecialDir &csfDir, const HANDLE &chToken) xWARN_UNUSED_RV;
         ///< get special dir path
     static void           createShortcut(const std::tstring_t &csShortCutFilePath,
                                          const std::tstring_t &csFilePath,

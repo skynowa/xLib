@@ -17,7 +17,7 @@ class CxSingleton :
     /// singleton
 {
 public:
-    static T &get() xWARN_UNUSED_RESULT
+    static T &get() xWARN_UNUSED_RV
         ///< get object instance
     {
         static T singletonT;

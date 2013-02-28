@@ -17,7 +17,7 @@ class CxConnectionString :
 {
 public:
     static std::tstring_t msJetOleDb40      (const std::tstring_t &csDataSource, const std::tstring_t &csUserId,
-                                             const std::tstring_t &csPassword,   const std::tstring_t &csDatabasePassword) xWARN_UNUSED_RESULT;
+                                             const std::tstring_t &csPassword,   const std::tstring_t &csDatabasePassword) xWARN_UNUSED_RV;
         ///< Microsoft.Jet.OLEDB.4.0
 
 private:

@@ -27,7 +27,7 @@ public:
     virtual             ~CxObject         ();
         ///< destructor
 
-    CK_OBJECT_HANDLE     handle           () const xWARN_UNUSED_RESULT;
+    CK_OBJECT_HANDLE     handle           () const xWARN_UNUSED_RV;
         ///< get handle
     void                 setHandle        (CK_OBJECT_HANDLE hHandle);
         ///< assign object handle

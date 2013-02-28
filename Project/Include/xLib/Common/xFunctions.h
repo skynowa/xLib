@@ -303,7 +303,7 @@ xNAMESPACE_BEGIN(NxLib)
         int tz_dsttime;     ///< type of dst correction
     };
 
-    int                             iGetTimeOfDay(struct timeval *tv, struct timezone *tz) xWARN_UNUSED_RESULT;
+    int                             iGetTimeOfDay(struct timeval *tv, struct timezone *tz) xWARN_UNUSED_RV;
         ///< porting from Linux gettimeofday
 
     #define xGETTIMEOFDAY           iGetTimeOfDay
@@ -319,7 +319,7 @@ xNAMESPACE_BEGIN(NxLib)
     #if   xOS_LINUX
         #define xSTD_CLOCK          std::clock
     #elif xOS_FREEBSD
-        std::clock_t                liGetClock() xWARN_UNUSED_RESULT;
+        std::clock_t                liGetClock() xWARN_UNUSED_RV;
             ///< get std::clock_t (http://bugs.vcmi.eu/view.php?id=719)
 
         #define xSTD_CLOCK          liGetClock

@@ -16,15 +16,15 @@ class CxStdError :
     /// standard C library last error
 {
 public:
-    static int            get       () xWARN_UNUSED_RESULT;
+    static int            get       () xWARN_UNUSED_RV;
         ///< get the calling thread's last-error code value
-    static std::tstring_t toString  () xWARN_UNUSED_RESULT;
+    static std::tstring_t toString  () xWARN_UNUSED_RV;
         ///< get as string
     static void           set       (const int &ciCode);
         ///< set the last error code for the calling thread
     static void           reset     ();
         ///< set last error code to 0
-    static std::tstring_t format    (const int &ciCode) xWARN_UNUSED_RESULT;
+    static std::tstring_t format    (const int &ciCode) xWARN_UNUSED_RV;
         ///< get last error as string
 
 private:

@@ -22,9 +22,9 @@ public:
     virtual    ~CxTcpClient       ();
         ///< constructor
 
-    bool        isReadable        () xWARN_UNUSED_RESULT;
+    bool        isReadable        () xWARN_UNUSED_RV;
         ///< checking for readability
-    bool        isWritable        () xWARN_UNUSED_RESULT;
+    bool        isWritable        () xWARN_UNUSED_RV;
         ///< checking for writability
     void        connect           (const std::tstring_t &csIp, const ushort_t &cusPort);
         ///< connecting
@@ -38,7 +38,7 @@ public:
     void        setTimeout        (const long_t &cliSec, const long_t &cliMicroSec);
         ///< set timeout
 
-    static bool isServerAlive     (const std::tstring_t &csIp, const ushort_t &cusPort) xWARN_UNUSED_RESULT;
+    static bool isServerAlive     (const std::tstring_t &csIp, const ushort_t &cusPort) xWARN_UNUSED_RV;
         ///< is sever socket available
 
 protected:

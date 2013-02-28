@@ -49,7 +49,7 @@ public:
     CxAtomicLongInt & operator ++    (const int ciValue);
     CxAtomicLongInt & operator --    (const int ciValue);
 
-    long_t            value          () const xWARN_UNUSED_RESULT;
+    long_t            value          () const xWARN_UNUSED_RV;
 
 private:
     volatile long_t   _m_liValue;

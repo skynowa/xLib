@@ -21,9 +21,9 @@ public:
     virtual ~CxThreadStorage();
         ///< destructor
 
-    bool     isSet          () const xWARN_UNUSED_RESULT;
+    bool     isSet          () const xWARN_UNUSED_RV;
 
-    void    *value          () const xWARN_UNUSED_RESULT;
+    void    *value          () const xWARN_UNUSED_RV;
         ///< get the value
     void     setValue       (void *pvValue) const;
         ///< set value

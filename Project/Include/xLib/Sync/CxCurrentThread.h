@@ -16,11 +16,11 @@ class CxCurrentThread :
     private CxNonCopyable
 {
 public:
-    static bool               isCurrent      (const CxThread::id_t &culId) xWARN_UNUSED_RESULT;
+    static bool               isCurrent      (const CxThread::id_t &culId) xWARN_UNUSED_RV;
         ///< is current id
-    static CxThread::id_t     id             () xWARN_UNUSED_RESULT;
+    static CxThread::id_t     id             () xWARN_UNUSED_RV;
         ///< get the thread identifier of the calling thread
-    static CxThread::handle_t handle         () xWARN_UNUSED_RESULT;
+    static CxThread::handle_t handle         () xWARN_UNUSED_RV;
         ///< get pseudo handle for the calling thread
     static void               yield          ();
         ///< yield

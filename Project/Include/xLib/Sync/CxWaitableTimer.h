@@ -22,7 +22,7 @@ public:
              CxWaitableTimer();
     virtual ~CxWaitableTimer();
 
-    HANDLE   handle         () const xWARN_UNUSED_RESULT;
+    HANDLE   handle         () const xWARN_UNUSED_RV;
     void     create         (const bool &cbManualReset, const std::tstring_t &csName/* = NULL*/, const LPSECURITY_ATTRIBUTES pcsaTimerAttributes/* = NULL*/);
     void     open           (const std::tstring_t &csName, const ulong_t &culDesiredAccess = TIMER_ALL_ACCESS, const bool &cbInheritHandle = false);
     void     cancel         () const;

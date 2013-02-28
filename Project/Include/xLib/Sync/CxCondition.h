@@ -18,9 +18,9 @@ public:
     virtual                ~CxCondition();
         ///< destructor
 #if xOS_ENV_UNIX
-    const pthread_mutex_t & mutex      () const xWARN_UNUSED_RESULT;
+    const pthread_mutex_t & mutex      () const xWARN_UNUSED_RV;
         ///< get mutex handle
-    const pthread_cond_t &  handle     () const xWARN_UNUSED_RESULT;
+    const pthread_cond_t &  handle     () const xWARN_UNUSED_RV;
         ///< get handle
 #endif
 

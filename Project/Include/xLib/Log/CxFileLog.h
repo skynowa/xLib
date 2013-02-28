@@ -37,7 +37,7 @@ public:
 
     void                   setFilePath   (const std::tstring_t &csFilePath);
         ///< set log path
-    const std::tstring_t & filePath      () const xWARN_UNUSED_RESULT;
+    const std::tstring_t & filePath      () const xWARN_UNUSED_RV;
         ///< get log path
 
     void                   write         (const tchar_t *pcszFormat, ...);

@@ -16,13 +16,13 @@ class CxEnvironment :
     /// system environment variables
 {
 public:
-    static bool           isExists     (const std::tstring_t &csVarName) xWARN_UNUSED_RESULT;
+    static bool           isExists     (const std::tstring_t &csVarName) xWARN_UNUSED_RV;
         ///< check for existence
-    static bool           isVarValid   (const std::tstring_t &csVarName) xWARN_UNUSED_RESULT;
+    static bool           isVarValid   (const std::tstring_t &csVarName) xWARN_UNUSED_RV;
         ///< is valid environment variable name
-    static bool           isValueValid (const std::tstring_t &csVarValue) xWARN_UNUSED_RESULT;
+    static bool           isValueValid (const std::tstring_t &csVarValue) xWARN_UNUSED_RV;
         ///< is valid environment variable value
-    static std::tstring_t var          (const std::tstring_t &csVarName) xWARN_UNUSED_RESULT;
+    static std::tstring_t var          (const std::tstring_t &csVarName) xWARN_UNUSED_RV;
         ///< get value by name
     static void           setVar       (const std::tstring_t &csVarName, const std::tstring_t &csValue);
         ///< set or change value by name
@@ -30,7 +30,7 @@ public:
         ///< delete var
     static void           values       (std::vec_tstring_t *pvsValues);
         ///< get all values
-    static std::tstring_t expandStrings(const std::tstring_t &csvVar) xWARN_UNUSED_RESULT;
+    static std::tstring_t expandStrings(const std::tstring_t &csvVar) xWARN_UNUSED_RV;
         ///< expands strings by separator "%"
 
 private:

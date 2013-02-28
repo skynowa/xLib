@@ -80,7 +80,7 @@ public:
                                              ushort_t *pusHour, ushort_t *pusMinute,
                                              ushort_t *pusSecond, ushort_t *pusMillisecond) const;
         ///< get datetime data
-    ushort_t              dayOfWeek         () const xWARN_UNUSED_RESULT;
+    ushort_t              dayOfWeek         () const xWARN_UNUSED_RV;
         ///< get day of week, days since Sunday 0-6
     void                  set               (const ulonglong_t &ullMSec);
         ///< set CxDateTime by milliseconds
@@ -90,7 +90,7 @@ public:
         ///< set CxDateTime by datetime data
 
     // converting
-    ulonglong_t           toMilliseconds    () const xWARN_UNUSED_RESULT;
+    ulonglong_t           toMilliseconds    () const xWARN_UNUSED_RV;
         ///< convert CxDateTime to milliseconds
 
     // TODO: ToUniversalTime, ToLocalTime
@@ -100,44 +100,44 @@ public:
     #endif
 
     //formating
-    std::tstring_t        format            (const ExFormatType &cftFormat) const xWARN_UNUSED_RESULT;
+    std::tstring_t        format            (const ExFormatType &cftFormat) const xWARN_UNUSED_RV;
         ///< formating
 
     //static
     static bool           isValid           (const ushort_t &cusYear, const ushort_t &cusMonth, const ushort_t &cusDay,
                                              const ushort_t &cusHour, const ushort_t &cusMinute,
-                                             const ushort_t &cusSecond, const ushort_t &cusMillisecond) xWARN_UNUSED_RESULT;
+                                             const ushort_t &cusSecond, const ushort_t &cusMillisecond) xWARN_UNUSED_RV;
         ///< checking for a valid datetime
-    static bool           isValid           (const CxDateTime &cdtDT) xWARN_UNUSED_RESULT;
+    static bool           isValid           (const CxDateTime &cdtDT) xWARN_UNUSED_RV;
         ///< checking for a valid datetime
-           bool           isValid           () const xWARN_UNUSED_RESULT;
+           bool           isValid           () const xWARN_UNUSED_RV;
         ///< checking for a valid datetime
 
-    static CxDateTime     current           () xWARN_UNUSED_RESULT;
+    static CxDateTime     current           () xWARN_UNUSED_RV;
         ///< get current datetime
-    static ushort_t       daysInMonth       (const ushort_t &cusYear, const ushort_t &cusMonth) xWARN_UNUSED_RESULT;
+    static ushort_t       daysInMonth       (const ushort_t &cusYear, const ushort_t &cusMonth) xWARN_UNUSED_RV;
         ///< get number days in month
-    static bool           isLeapYear        (const ushort_t &cusYear) xWARN_UNUSED_RESULT;
+    static bool           isLeapYear        (const ushort_t &cusYear) xWARN_UNUSED_RV;
         ///< is leap year
 #if   xOS_ENV_WIN
-    static longlong_t     filetimeToInt64   (const FILETIME &cftTime) xWARN_UNUSED_RESULT;
+    static longlong_t     filetimeToInt64   (const FILETIME &cftTime) xWARN_UNUSED_RV;
         ///< convert FILETIME to longlong_t
     static void           unixTimeToFileTime(const time_t &ctmUnixTime, FILETIME *pftFileTime);
         ///< convert UNIX time_t to Win32 FILETIME
-    static time_t         fileTimeToUnixTime(const FILETIME &ftFileTime) xWARN_UNUSED_RESULT;
+    static time_t         fileTimeToUnixTime(const FILETIME &ftFileTime) xWARN_UNUSED_RV;
         ///< convert Win32 FILETIME to UNIX time_t
 #endif
 
     //other
-    static std::tstring_t zodiacSign        (const ushort_t &cusMonth, const ushort_t &cusDay) xWARN_UNUSED_RESULT;
+    static std::tstring_t zodiacSign        (const ushort_t &cusMonth, const ushort_t &cusDay) xWARN_UNUSED_RV;
         ///< sign of the zodiac by date
-    static std::tstring_t monthStr          (ushort_t usMonth, const bool &cbIsShortName) xWARN_UNUSED_RESULT;
+    static std::tstring_t monthStr          (ushort_t usMonth, const bool &cbIsShortName) xWARN_UNUSED_RV;
         ///< get month string
-    static ushort_t       monthNum          (const std::tstring_t &csMonth, const bool &cbIsShortName) xWARN_UNUSED_RESULT;
+    static ushort_t       monthNum          (const std::tstring_t &csMonth, const bool &cbIsShortName) xWARN_UNUSED_RV;
         ///< get month number by string
-    static std::tstring_t weekDayStr        (ushort_t usDay, const bool &cbIsShortName) xWARN_UNUSED_RESULT;
+    static std::tstring_t weekDayStr        (ushort_t usDay, const bool &cbIsShortName) xWARN_UNUSED_RV;
         ///< get week day string
-    static ushort_t       weekDayNum        (const std::tstring_t &csDay, const bool &cbIsShortName) xWARN_UNUSED_RESULT;
+    static ushort_t       weekDayNum        (const std::tstring_t &csDay, const bool &cbIsShortName) xWARN_UNUSED_RV;
         ///< get week day number by string
 
 private:
@@ -160,7 +160,7 @@ private:
     ushort_t              _m_usMillisecond;
         ///< 0-999, Win (0-99)
 
-    ulonglong_t           _toMilliseconds   () const xWARN_UNUSED_RESULT;
+    ulonglong_t           _toMilliseconds   () const xWARN_UNUSED_RV;
         ///< convert to milliseconds
     static void           _parse            (const std::tstring_t &csDT, const ExFormatType &cftFormat, CxDateTime *pdtDT);
         ///< parsing datetime string

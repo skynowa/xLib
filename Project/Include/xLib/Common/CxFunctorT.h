@@ -24,9 +24,9 @@ public:
     virtual ~CxFunctorT  ();
         ///< destructor
 
-    ReturnT  operator () (ParamT Param) xWARN_UNUSED_RESULT;
+    ReturnT  operator () (ParamT Param) xWARN_UNUSED_RV;
         ///< operator ()
-    ReturnT  execute     (ParamT Param) xWARN_UNUSED_RESULT;
+    ReturnT  execute     (ParamT Param) xWARN_UNUSED_RV;
         ///< execute operator ()
 
 private:

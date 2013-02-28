@@ -119,15 +119,15 @@
     ///< operator "new"
 
 //--------------------------------------------------
-// xWARN_UNUSED_RESULT
+// xWARN_UNUSED_RV
 #if   xCOMPILER_MINGW
-    #define xWARN_UNUSED_RESULT         __attribute__((warn_unused_result))
+    #define xWARN_UNUSED_RV             __attribute__((warn_unused_result))
 #elif xCOMPILER_MS
-    #define xWARN_UNUSED_RESULT         xNOT_AVAILABLE
+    #define xWARN_UNUSED_RV             xNOT_AVAILABLE
 #elif xCOMPILER_CODEGEAR
-    #define xWARN_UNUSED_RESULT         xNOT_AVAILABLE
+    #define xWARN_UNUSED_RV             xNOT_AVAILABLE
 #elif xCOMPILER_GNUC
-    #define xWARN_UNUSED_RESULT         __attribute__((warn_unused_result))
+    #define xWARN_UNUSED_RV             __attribute__((warn_unused_result))
 #else
 
 #endif

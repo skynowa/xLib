@@ -73,11 +73,11 @@ public:
         ///< destructor
 
     std::tstring_t  setAttributes   (const ExForeground &cfgForeground, const ExBackground &cbgBackground,
-                                     const int &ciAttributes) xWARN_UNUSED_RESULT;
+                                     const int &ciAttributes) xWARN_UNUSED_RV;
         ///< set text color
-    std::tstring_t  setAttributesDef() xWARN_UNUSED_RESULT;
+    std::tstring_t  setAttributesDef() xWARN_UNUSED_RV;
         ///< set text color
-    std::tstring_t  read            () xWARN_UNUSED_RESULT;
+    std::tstring_t  read            () xWARN_UNUSED_RV;
         ///< read
     void            write           (const std::tstring_t &csStr);
         ///< write
@@ -85,7 +85,7 @@ public:
         ///< write line
     void            writeErrLine    (const std::tstring_t &csStr);
         ///< write error message
-    ExModalResult   msgBox          (const std::tstring_t &csText, const std::tstring_t &csTitle, const uint_t &cuiType) xWARN_UNUSED_RESULT;
+    ExModalResult   msgBox          (const std::tstring_t &csText, const std::tstring_t &csTitle, const uint_t &cuiType) xWARN_UNUSED_RV;
         ///< show console message dialog
     void            prompt          (const std::tstring_t &csPrompt, const bool &cbIsVisible, std::tstring_t *psAnswer);
         ///< show console prompt dialog
@@ -94,7 +94,7 @@ public:
     void            clear           ();
         ///< clear
 
-    std::tstring_t  title           () xWARN_UNUSED_RESULT;
+    std::tstring_t  title           () xWARN_UNUSED_RV;
         ///< get title string
     void            setTitle        (const std::tstring_t &csTitle);
         ///< set title string
@@ -113,9 +113,9 @@ private:
     CxHandleInvalid _m_hStdOut;          ///< standard output handle
     WORD            _m_wAttributesDef;   ///< default console attributes
 
-    HWND            _wndHandle      () xWARN_UNUSED_RESULT;
+    HWND            _wndHandle      () xWARN_UNUSED_RV;
         ///< get console window handle
-    HMENU           _menuHandle     (const bool &cbRevert) xWARN_UNUSED_RESULT;
+    HMENU           _menuHandle     (const bool &cbRevert) xWARN_UNUSED_RV;
         ///< get console menu handle
 #endif
 };

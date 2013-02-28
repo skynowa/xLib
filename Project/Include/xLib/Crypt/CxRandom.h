@@ -23,38 +23,38 @@ public:
 
     void                  vSetSeed     (const long_t &liSeed);
         ///< set seed
-    int                   iNextInt     () xWARN_UNUSED_RESULT;
+    int                   iNextInt     () xWARN_UNUSED_RV;
         ///< next int
-    int                   iNextInt     (const int &max) xWARN_UNUSED_RESULT;
+    int                   iNextInt     (const int &max) xWARN_UNUSED_RV;
         ///< next int
-    int                   iNextInt     (const int &a, const int &b) xWARN_UNUSED_RESULT;
+    int                   iNextInt     (const int &a, const int &b) xWARN_UNUSED_RV;
         ///< next int
-    long_t                liNextLong   () xWARN_UNUSED_RESULT;
+    long_t                liNextLong   () xWARN_UNUSED_RV;
         ///< next long_t
-    bool                  bNextBoolean () xWARN_UNUSED_RESULT;
+    bool                  bNextBoolean () xWARN_UNUSED_RV;
         ///< next boolean
-    float                 fNextFloat   () xWARN_UNUSED_RESULT;
+    float                 fNextFloat   () xWARN_UNUSED_RV;
         ///< next float
-    double                bNextDouble  () xWARN_UNUSED_RESULT;
+    double                bNextDouble  () xWARN_UNUSED_RV;
         ///< next double
-    char                  chNextChar   () xWARN_UNUSED_RESULT;
+    char                  chNextChar   () xWARN_UNUSED_RV;
         ///< next char
-    char                  chNextFigure () xWARN_UNUSED_RESULT;
+    char                  chNextFigure () xWARN_UNUSED_RV;
         ///< next figure
-    double                dNextGaussian() xWARN_UNUSED_RESULT;
+    double                dNextGaussian() xWARN_UNUSED_RV;
         ///< next gaussian
 
     static void           vSetSeed     ();
         ///< set seed
-    static long_t         liInt        (const long_t &cliMin, const long_t &cliMax) xWARN_UNUSED_RESULT;
+    static long_t         liInt        (const long_t &cliMin, const long_t &cliMax) xWARN_UNUSED_RV;
         ///< generates a random number between specified min/max boundaries
-    static long_t         liIntEx      (const long_t &cliMin, const long_t &cliMax) xWARN_UNUSED_RESULT;
+    static long_t         liIntEx      (const long_t &cliMin, const long_t &cliMax) xWARN_UNUSED_RV;
         ///< generates a random number between specified min/max boundaries using a vector to shuffle
-    static std::tstring_t sString      (const size_t &cuiSize) xWARN_UNUSED_RESULT;
+    static std::tstring_t sString      (const size_t &cuiSize) xWARN_UNUSED_RV;
         ///< get random string
 
 protected:
-    long_t                liNext       () xWARN_UNUSED_RESULT;
+    long_t                liNext       () xWARN_UNUSED_RV;
         ///< next long_t
 
 private:

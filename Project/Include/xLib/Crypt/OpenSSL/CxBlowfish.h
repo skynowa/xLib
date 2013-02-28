@@ -38,7 +38,7 @@ public:
         ///< set key
     void          setFileKey      (const std::tstring_t &csFilePath);
         ///< set key as file
-    static size_t maxKeySize      () xWARN_UNUSED_RESULT;
+    static size_t maxKeySize      () xWARN_UNUSED_RV;
         ///< get maximum key size
 
     //cfb64

@@ -26,7 +26,7 @@ public:
                       CxIpcMutex();
     virtual          ~CxIpcMutex();
 
-    const handle_t &  handle    () const xWARN_UNUSED_RESULT;
+    const handle_t &  handle    () const xWARN_UNUSED_RV;
         ///< get handle
     void              create    (const std::tstring_t &csName);
         ///< create
