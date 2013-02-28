@@ -25,7 +25,7 @@ public:
 
     void                  setLogPath(const std::tstring_t &csLogPath);
         ///< set log path
-    const std::tstring_t &logPath   () const xWARN_UNUSED_RESULT;
+    const std::tstring_t &logPath   () const xWARN_UNUSED_RV;
         ///< get log path
 
     void                  start     ();

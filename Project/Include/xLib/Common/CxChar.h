@@ -16,34 +16,34 @@ class CxChar :
     /// character
 {
 public:
-    static bool    isAlphaNum(const tchar_t &cchChar) xWARN_UNUSED_RESULT;
+    static bool    isAlphaNum(const tchar_t &cchChar) xWARN_UNUSED_RV;
         ///< Check if character is alphanumeric
-    static bool    isAlpha   (const tchar_t &cchChar) xWARN_UNUSED_RESULT;
+    static bool    isAlpha   (const tchar_t &cchChar) xWARN_UNUSED_RV;
         ///< Check if character is alphabetic
-    static bool    isControl (const tchar_t &cchChar) xWARN_UNUSED_RESULT;
+    static bool    isControl (const tchar_t &cchChar) xWARN_UNUSED_RV;
         ///< Check if character is a control character
-    static bool    isDigitDec(const tchar_t &cchChar) xWARN_UNUSED_RESULT;
+    static bool    isDigitDec(const tchar_t &cchChar) xWARN_UNUSED_RV;
         ///< Check if character is decimal digit
-    static bool    isDigitHex(const tchar_t &cchChar) xWARN_UNUSED_RESULT;
+    static bool    isDigitHex(const tchar_t &cchChar) xWARN_UNUSED_RV;
         ///< Check if character is hexadecimal digit
 
-    static bool    isGraph   (const tchar_t &cchChar) xWARN_UNUSED_RESULT;
+    static bool    isGraph   (const tchar_t &cchChar) xWARN_UNUSED_RV;
         ///< Check if character has graphical representation
-    static bool    isPrint   (const tchar_t &cchChar) xWARN_UNUSED_RESULT;
+    static bool    isPrint   (const tchar_t &cchChar) xWARN_UNUSED_RV;
         ///< Check if character is printable
-    static bool    isPunct   (const tchar_t &cchChar) xWARN_UNUSED_RESULT;
+    static bool    isPunct   (const tchar_t &cchChar) xWARN_UNUSED_RV;
         ///< Check if character is a punctuation character
-    static bool    isSpace   (const tchar_t &cchChar) xWARN_UNUSED_RESULT;
+    static bool    isSpace   (const tchar_t &cchChar) xWARN_UNUSED_RV;
         ///< Check if character is a white-space
 
-    static bool    isLower   (const tchar_t &cchChar) xWARN_UNUSED_RESULT;
+    static bool    isLower   (const tchar_t &cchChar) xWARN_UNUSED_RV;
         ///< Check if character is lowercase letter
-    static bool    isUpper   (const tchar_t &cchChar) xWARN_UNUSED_RESULT;
+    static bool    isUpper   (const tchar_t &cchChar) xWARN_UNUSED_RV;
         ///< Check if character is uppercase letter
 
-    static tchar_t toLower   (const tchar_t &cchChar) xWARN_UNUSED_RESULT;
+    static tchar_t toLower   (const tchar_t &cchChar) xWARN_UNUSED_RV;
         ///< Convert uppercase letter to lowercase
-    static tchar_t toUpper   (const tchar_t &cchChar) xWARN_UNUSED_RESULT;
+    static tchar_t toUpper   (const tchar_t &cchChar) xWARN_UNUSED_RV;
         ///< Convert lowercase letter to uppercase
 
 private:
