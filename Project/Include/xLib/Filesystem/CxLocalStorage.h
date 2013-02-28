@@ -43,7 +43,7 @@ public:
         ///< delete
 
     // key
-    bool                   keyIsExists   (const std::tstring_t &csKey) const xWARN_UNUSED_RV;
+    bool_t                   keyIsExists   (const std::tstring_t &csKey) const xWARN_UNUSED_RV;
         ///< is exists
 
     std::tstring_t         keyReadString (const std::tstring_t &csKey, const std::tstring_t &csDefaultValue) xWARN_UNUSED_RV;
@@ -51,20 +51,20 @@ public:
     void                   keyWriteString(const std::tstring_t &csKey, const std::tstring_t &csValue);
         ///< write std::tstring_t
 
-    long_t                 keyReadInt    (const std::tstring_t &csKey, const long_t &cliDefaultValue) xWARN_UNUSED_RV;
-        ///< read int
-    void                   keyWriteInt   (const std::tstring_t &csKey, const long_t &cliValue);
-        ///< write int
+    long_t                 keyReadInt    (const std::tstring_t &csKey, clong_t &cliDefaultValue) xWARN_UNUSED_RV;
+        ///< read int_t
+    void                   keyWriteInt   (const std::tstring_t &csKey, clong_t &cliValue);
+        ///< write int_t
 
-    double                 keyReadFloat  (const std::tstring_t &csKey, const double &cdDefaultValue) xWARN_UNUSED_RV;
-        ///< read float
-    void                   keyWriteFloat (const std::tstring_t &csKey, const double &cdValue);
-        ///< write float
+    double_t                 keyReadFloat  (const std::tstring_t &csKey, cdouble_t &cdDefaultValue) xWARN_UNUSED_RV;
+        ///< read float_t
+    void                   keyWriteFloat (const std::tstring_t &csKey, cdouble_t &cdValue);
+        ///< write float_t
 
-    bool                   keyReadBool   (const std::tstring_t &csKey, const bool &cbDefaultValue) xWARN_UNUSED_RV;
-        ///< read bool
-    void                   keyWriteBool  (const std::tstring_t &csKey, const bool &cbValue);
-        ///< write bool
+    bool_t                   keyReadBool   (const std::tstring_t &csKey, cbool_t &cbDefaultValue) xWARN_UNUSED_RV;
+        ///< read bool_t
+    void                   keyWriteBool  (const std::tstring_t &csKey, cbool_t &cbValue);
+        ///< write bool_t
 
     std::ustring_t         keyReadBin    (const std::tstring_t &csKey, const std::ustring_t &cusDefaultValue) xWARN_UNUSED_RV;
         ///< write std::ustring_t

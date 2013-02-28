@@ -21,7 +21,7 @@ CxTest_CxHandleT::~CxTest_CxHandleT() {
 /* virtual */
 void
 CxTest_CxHandleT::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxHandleT::CxHandleT", cullCaseLoops)
@@ -59,7 +59,7 @@ CxTest_CxHandleT::unit(
         xTEST_EQ(false, hHandle2.isValid());
     }
 
-    xTEST_CASE("CxHandleT::operator = (const native_handle_t &chHandle)", cullCaseLoops)
+    xTEST_CASE("CxHandleT::operator = (cnative_handle_t &chHandle)", cullCaseLoops)
     {
         CxHandle handle;
 

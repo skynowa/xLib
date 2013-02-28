@@ -21,7 +21,7 @@ xNAMESPACE_BEGIN(NxLib)
 //------------------------------------------------------------------------------
 /*explicit*/
 CxFileTemp::CxFileTemp(
-    const bool &a_cbIsAutoDelete
+    cbool_t &a_cbIsAutoDelete
 ) :
     _m_cbIsAutoDelete(a_cbIsAutoDelete),
     _m_pfFile        (NULL),
@@ -78,7 +78,7 @@ CxFileTemp::create(
         xTEST_PTR(_pfStdFile);
     #endif
 #elif xOS_ENV_UNIX
-    int iFile = ::xTMKSTEMP(&_m_sFilePath.at(0));
+    int_t iFile = ::xTMKSTEMP(&_m_sFilePath.at(0));
     xTEST_DIFF(- 1, iFile);
 
     _pfStdFile = ::xTFDOPEN(iFile, CxFile::_openMode(CxFile::omBinCreateReadWrite).c_str());

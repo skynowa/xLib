@@ -52,9 +52,9 @@ CxBase64::encode(
     pbioContainer = ::BIO_push(pbioBase64, pbioMemory);
     // n/a
 
-    int iWritten = ::BIO_write(pbioContainer, &a_csStr.at(0), static_cast<int>( a_csStr.size() ));    (void)BIO_flush(pbioContainer);
+    int_t iWritten = ::BIO_write(pbioContainer, &a_csStr.at(0), static_cast<int_t>( a_csStr.size() ));    (void)BIO_flush(pbioContainer);
     xTEST_LESS(0, iWritten);
-    xTEST_EQ(static_cast<int>( a_csStr.size() ), iWritten);
+    xTEST_EQ(static_cast<int_t>( a_csStr.size() ), iWritten);
 
     long_t liRv = BIO_get_mem_ptr(pbioContainer, &pbmBuffMemory);
     xTEST_LESS(0L, liRv);
@@ -79,7 +79,7 @@ CxBase64::decode(
 
 
     //create a memory buffer containing base64 encoded data
-    pbioMemory = ::BIO_new_mem_buf((void *)&a_csStr.at(0), static_cast<int>( a_csStr.size() ));
+    pbioMemory = ::BIO_new_mem_buf((void *)&a_csStr.at(0), static_cast<int_t>( a_csStr.size() ));
     xTEST_PTR(pbioMemory);
 
     //create a base64 filter
@@ -93,7 +93,7 @@ CxBase64::decode(
 
     sRv.resize(a_csStr.size());
 
-    int iReaded = ::BIO_read(pbioContainer, &sRv.at(0), static_cast<int>( sRv.size() ));
+    int_t iReaded = ::BIO_read(pbioContainer, &sRv.at(0), static_cast<int_t>( sRv.size() ));
     xTEST_LESS(0, iReaded);
 
     sRv.resize(iReaded);
@@ -104,14 +104,14 @@ CxBase64::decode(
 }
 //------------------------------------------------------------------------------
 /* static */
-bool
+bool_t
 CxBase64::isCharValid(
 	const char &a_cchChar
 )
 {
     // n/a
 
-    bool bRv = ((false != CxChar::isAlphaNum(a_cchChar)) || 
+    bool_t bRv = ((false != CxChar::isAlphaNum(a_cchChar)) || 
                 ('+' == a_cchChar) || ('/' == a_cchChar));
 
     return bRv;

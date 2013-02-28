@@ -20,13 +20,13 @@ CxTest_CxThreadPool::~CxTest_CxThreadPool() {
 /*virtual*/
 void
 CxTest_CxThreadPool::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
-    const bool cbIsPaused            = true;
-    const bool cbIsAutoDelete        = true;
-    const bool cbIsGroupPaused       = true;
-    const bool cbIsGroupAutoDelete   = true;
+    cbool_t cbIsPaused            = true;
+    cbool_t cbIsAutoDelete        = true;
+    cbool_t cbIsGroupPaused       = true;
+    cbool_t cbIsGroupAutoDelete   = true;
 
     CxThreadPool<CPoolThread> *tpPool = NULL;
 
@@ -38,10 +38,10 @@ CxTest_CxThreadPool::unit(
     }
 
     {
-        const uint_t  cuiStackSize       = 0UL;
+        cuint_t  cuiStackSize       = 0UL;
         void         *pvParam            = NULL;
-        const uint_t  cuiNumTasks        = 5;
-        const uint_t  cuiMaxRunningTasks = 10U;
+        cuint_t  cuiNumTasks        = 5;
+        cuint_t  cuiMaxRunningTasks = 10U;
 
         tpPool->groupCreate(cuiStackSize, NULL, pvParam,
                              cuiNumTasks, cuiMaxRunningTasks);
@@ -73,7 +73,7 @@ CxTest_CxThreadPool::unit(
 
 //------------------------------------------------------------------------------
 CPoolThread::CPoolThread(
-    const bool &cbAutoDelete
+    cbool_t &cbAutoDelete
 ) :
     CxThread (cbAutoDelete),
     m_uiIndex(0U)
@@ -96,7 +96,7 @@ CPoolThread::uiOnRun(
     uint_t uiRes = 0;
 
     // bIsCurrent
-    bool bRv = CxThread::isCurrent();
+    bool_t bRv = CxThread::isCurrent();
     xTEST_EQ(true, bRv);
 
     for (size_t i = 0; i < 10; ++ i) {

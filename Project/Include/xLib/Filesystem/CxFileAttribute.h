@@ -57,7 +57,7 @@ public:
     const std::tstring_t & filePath       () const xWARN_UNUSED_RV;
         ///< file path
 
-    bool                   isExists       (const ExAttribute &cfaValue) xWARN_UNUSED_RV;
+    bool_t                   isExists       (const ExAttribute &cfaValue) xWARN_UNUSED_RV;
         ///< is exists
     ExAttribute            get            () xWARN_UNUSED_RV;
         ///< get

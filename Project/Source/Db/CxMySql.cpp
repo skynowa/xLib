@@ -48,7 +48,7 @@ CxMySQLConnection::get() const {
     return _m_pmsConnection;
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxMySQLConnection::isValid() const {
     // n/a
 
@@ -66,26 +66,26 @@ CxMySQLConnection::options(
     // cpvArg   - n/a
 
 #if MYSQL_VERSION_ID < 50154
-    int iRv = ::mysql_options(_m_pmsConnection, a_cmoOption, static_cast<const tchar_t *>( a_cpvArg ));
+    int_t iRv = ::mysql_options(_m_pmsConnection, a_cmoOption, static_cast<ctchar_t *>( a_cpvArg ));
 #else
-    int iRv = ::mysql_options(_m_pmsConnection, a_cmoOption, a_cpvArg);
+    int_t iRv = ::mysql_options(_m_pmsConnection, a_cmoOption, a_cpvArg);
 #endif
     xTEST_MSG_EQ(0, iRv, lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------------
 /* static */
-bool
+bool_t
 CxMySQLConnection::isExists(
     const std::tstring_t &a_csHost,
     const std::tstring_t &a_csUser,
     const std::tstring_t &a_csPassword,
     const std::tstring_t &a_csDb,
-    const uint_t         &a_cuiPort,
+    cuint_t         &a_cuiPort,
     const std::tstring_t &a_csUnixSocket,
-    const ulong_t        &a_culClientFlag
+    culong_t        &a_culClientFlag
 )
 {
-    bool bRv = false;
+    bool_t bRv = false;
 
     CxMySQLConnection conConn;
 
@@ -124,9 +124,9 @@ CxMySQLConnection::connect(
     const std::tstring_t &a_csUser,
     const std::tstring_t &a_csPassword,
     const std::tstring_t &a_csDb,
-    const uint_t         &a_cuiPort,
+    cuint_t         &a_cuiPort,
     const std::tstring_t &a_csUnixSocket,
-    const ulong_t        &a_culClientFlag
+    culong_t        &a_culClientFlag
 )
 {
     xTEST_EQ(true, isValid());
@@ -153,7 +153,7 @@ CxMySQLConnection::connect(
 //------------------------------------------------------------------------------
 void
 CxMySQLConnection::query(
-    const tchar_t *a_pcszSqlFormat, ...
+    ctchar_t *a_pcszSqlFormat, ...
 ) const
 {
     xTEST_EQ(true, isValid());
@@ -168,7 +168,7 @@ CxMySQLConnection::query(
 
     std::string asSqlQuery = xTS2S(sSqlQuery);
 
-    int iRv = ::mysql_real_query(_m_pmsConnection,
+    int_t iRv = ::mysql_real_query(_m_pmsConnection,
                                  asSqlQuery.data(),
                                  static_cast<ulong_t>( asSqlQuery.size() ));
     xTEST_MSG_EQ(0, iRv, lastErrorStr());
@@ -219,7 +219,7 @@ CxMySQLConnection::lastErrorStr() const {
 
     std::tstring_t sRv;
 
-    const uint_t  cuiLastError = lastError();
+    cuint_t  cuiLastError = lastError();
     const char   *cpszRes      = ::mysql_error(_m_pmsConnection);
     // n/a
     xTEST_PTR(cpszRes);
@@ -243,7 +243,7 @@ CxMySQLConnection::lastErrorStr() const {
 //------------------------------------------------------------------------------
 CxMySQLRecordset::CxMySQLRecordset(
     const CxMySQLConnection &a_cmcConnection, ///< connection
-    const bool              &a_cbIsUseResult  ///< use result or store result
+    cbool_t              &a_cbIsUseResult  ///< use result or store result
 ) :
     _m_pcmcConnection(&a_cmcConnection),
     _m_pmrResult     (NULL)
@@ -282,7 +282,7 @@ CxMySQLRecordset::get() const {
     return _m_pmrResult;
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxMySQLRecordset::isValid() const {
     // n/a
 
@@ -323,7 +323,7 @@ CxMySQLRecordset::fetchField(
 //------------------------------------------------------------------------------
 void
 CxMySQLRecordset::fetchFieldDirect(
-    const uint_t &a_cuiFieldNumber,
+    cuint_t &a_cuiFieldNumber,
     MYSQL_FIELD  *a_pmfField
 ) const
 {

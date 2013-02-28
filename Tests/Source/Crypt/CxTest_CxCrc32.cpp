@@ -21,7 +21,7 @@ CxTest_CxCrc32::~CxTest_CxCrc32() {
 /* virtual */
 void
 CxTest_CxCrc32::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     const std::tstring_t csFilePath = tempDirPath()  + CxConst::xSLASH + xT("Test.txt");;

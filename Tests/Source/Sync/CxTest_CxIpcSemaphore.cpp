@@ -22,7 +22,7 @@ CxTest_CxIpcSemaphore::~CxTest_CxIpcSemaphore() {
 /* virtual */
 void
 CxTest_CxIpcSemaphore::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     struct _SFunctor
@@ -38,7 +38,7 @@ CxTest_CxIpcSemaphore::unit(
             CxIpcSemaphore *psemSem = static_cast<CxIpcSemaphore *>(pArguments);
             xTEST_PTR(psemSem);
 
-	        for (int i = 0; i < 50; i ++) {
+	        for (int_t i = 0; i < 50; i ++) {
 	            psemSem->wait(xTIMEOUT_INFINITE);
 
 	            CxTracer() << xTRACE_VAR(i);
@@ -67,7 +67,7 @@ CxTest_CxIpcSemaphore::unit(
 #elif xOS_ENV_UNIX
     pthread_t id = 0UL;
 
-    int iRv = ::pthread_create(&id, NULL, &_SFunctor::uiJob, &semSemaphore);
+    int_t iRv = ::pthread_create(&id, NULL, &_SFunctor::uiJob, &semSemaphore);
     xTEST_EQ(0, iRv);
 #endif
 
@@ -76,7 +76,7 @@ CxTest_CxIpcSemaphore::unit(
     for (size_t i = 0; i < 50; ++ i) {
         CxCurrentThread::sleep(1);
 
-        for (int x = 0; x < 2; x ++) {
+        for (int_t x = 0; x < 2; x ++) {
             semSemaphore.post();
         }
     }

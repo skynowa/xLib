@@ -21,7 +21,7 @@ CxTest_CxFile::~CxTest_CxFile() {
 /* virtual */
 void
 CxTest_CxFile::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     const std::tstring_t csFilePath = tempDirPath() + CxConst::xSLASH + xT("Test.txt");
@@ -203,7 +203,7 @@ CxTest_CxFile::unit(
 
     xTEST_CASE("CxFile::writeChar chReadChar ungetChar", cullCaseLoops)
     {
-        const tchar_t chChar = xT('W');
+        ctchar_t chChar = xT('W');
 
         CxFile F;
 
@@ -280,7 +280,7 @@ CxTest_CxFile::unit(
 
             F.create(csFilePath, CxFile::omCreateReadWrite, true);
 
-            int iResFprintf = F.write(csTestContent.c_str());
+            int_t iResFprintf = F.write(csTestContent.c_str());
             xTEST_EQ(csTestContent.size(), size_t(iResFprintf));
         }
 
@@ -305,7 +305,7 @@ CxTest_CxFile::unit(
 
         F.create(csFilePath, CxFile::omCreateReadWrite, true);
 
-        int iResFprintf = F.write(xT("%s"), csTestContent.c_str());
+        int_t iResFprintf = F.write(xT("%s"), csTestContent.c_str());
         xTEST_EQ(csTestContent.size(), size_t(iResFprintf));
     }
 
@@ -313,11 +313,11 @@ CxTest_CxFile::unit(
     {
         struct SWriter {
             static void
-            DoV(const CxFile &csfFile, const tchar_t *pcszFormat, ...) {
+            DoV(const CxFile &csfFile, ctchar_t *pcszFormat, ...) {
                 va_list args;
                 xVA_START(args, pcszFormat);
 
-                int iRv = csfFile.writeV(pcszFormat, args);
+                int_t iRv = csfFile.writeV(pcszFormat, args);
                 xTEST_DIFF(- 1, iRv);
 
                 xVA_END(args);
@@ -358,7 +358,7 @@ CxTest_CxFile::unit(
 
     xTEST_CASE("CxFile::getSize", cullCaseLoops)
     {
-        const longlong_t cllNewSize = 1024LL;
+        clonglong_t cllNewSize = 1024LL;
 
         CxFile F;
 
@@ -546,7 +546,7 @@ CxTest_CxFile::unit(
 //------------------------------------------------------------------------------
 void
 CxTest_CxFile::vUnit1(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     const std::tstring_t csFilePath = tempDirPath() + CxConst::xSLASH + xT("Test.txt");
@@ -608,7 +608,7 @@ CxTest_CxFile::vUnit1(
 
     xTEST_CASE("CxFile::lines", cullCaseLoops)
     {
-        const ulonglong_t cullLinesNum = 17;
+        culonglong_t cullLinesNum = 17;
         {
             CxFile F;
 
@@ -910,7 +910,7 @@ CxTest_CxFile::vUnit1(
 //------------------------------------------------------------------------------
 void
 CxTest_CxFile::vUnitPrivate(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
 #if xTEST_PRIVATE_DATA
@@ -923,7 +923,7 @@ CxTest_CxFile::vUnitPrivate(
         sfFile.create(csFilePath, CxFile::omRead, true);
 
         m_iRv = CxFile::_nativeHandle( sfFile.get() );
-        xTEST_DIFF((int)CxFile::etError, m_iRv);
+        xTEST_DIFF((int_t)CxFile::etError, m_iRv);
     }
 
     xTEST_CASE("CxFile::_stdHandle", cullCaseLoops)
@@ -937,8 +937,8 @@ CxTest_CxFile::vUnitPrivate(
 
         sfFile.create(csFilePath, comMode, true);
 
-        int iFile = CxFile::_nativeHandle(sfFile.get());
-        xTEST_DIFF((int)CxFile::etError, iFile);
+        int_t iFile = CxFile::_nativeHandle(sfFile.get());
+        xTEST_DIFF((int_t)CxFile::etError, iFile);
 
         FILE *pfFile = CxFile::_stdHandle(iFile, comMode);
         xTEST_PTR(pfFile);

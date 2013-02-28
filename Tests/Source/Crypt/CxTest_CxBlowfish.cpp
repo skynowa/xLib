@@ -22,7 +22,7 @@ CxTest_CxBlowfish::~CxTest_CxBlowfish() {
 /* virtual */
 void
 CxTest_CxBlowfish::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxBlowfish::encryptCfb64", cullCaseLoops)

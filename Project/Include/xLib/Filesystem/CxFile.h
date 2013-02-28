@@ -118,9 +118,9 @@ public:
         ///< destructor
 
     // open, get
-    void                   create       (const std::tstring_t &csFilePath, const ExOpenMode &omMode, const bool &cbIsUseBuffering);
+    void                   create       (const std::tstring_t &csFilePath, const ExOpenMode &omMode, cbool_t &cbIsUseBuffering);
         ///< open
-    void                   reopen       (const std::tstring_t &csFilePath, const ExOpenMode &omMode, const bool &cbIsUseBuffering);
+    void                   reopen       (const std::tstring_t &csFilePath, const ExOpenMode &omMode, cbool_t &cbIsUseBuffering);
         ///< reopen with different file or mode
     std::FILE             *get          () const xWARN_UNUSED_RV;
         ///< get handle
@@ -142,9 +142,9 @@ public:
         ///< write from std::ustring_t
     void                   read         (std::tstring_t *psBuff) const;
         ///< read to std::tstring_t
-    int                    write        (const tchar_t *pcszFormat, ...) const xWARN_UNUSED_RV;
+    int_t                    write        (ctchar_t *pcszFormat, ...) const xWARN_UNUSED_RV;
         ///< write formatted output to stream
-    int                    writeV       (const tchar_t *pcszFormat, va_list arg) const xWARN_UNUSED_RV;
+    int_t                    writeV       (ctchar_t *pcszFormat, va_list arg) const xWARN_UNUSED_RV;
         ///< write formatted variable argument list to stream
     void                   readLine     (std::tstring_t *psStr, const size_t &cuiMaxCount) const;
         ///< read string to newline or to the end of file
@@ -152,9 +152,9 @@ public:
         ///< write string and end of line
     tchar_t                readChar     () const xWARN_UNUSED_RV;
         ///< get character
-    void                   writeChar    (const tchar_t &ccChar) const;
+    void                   writeChar    (ctchar_t &ccChar) const;
         ///< write character
-    void                   ungetChar    (const tchar_t &ccChar) const;
+    void                   ungetChar    (ctchar_t &ccChar) const;
         ///< unget character from stream
     void                   clear        () const;
         ///< clear
@@ -162,9 +162,9 @@ public:
     // times
 
     // other
-    void                   locking      (const ExLockingMode &clmMode, const long_t &cliBytes);
+    void                   locking      (const ExLockingMode &clmMode, clong_t &cliBytes);
         ///< locks or unlocks bytes of a file
-    void                   setPosition  (const long_t &clOffset, const ExPointerPosition &cppPos) const;
+    void                   setPosition  (clong_t &clOffset, const ExPointerPosition &cppPos) const;
         ///< set stream position indicator
     long_t                 position     () const xWARN_UNUSED_RV;
         ///< get current position in stream
@@ -178,19 +178,19 @@ public:
 
     longlong_t             size         () const xWARN_UNUSED_RV;
         ///< get file size
-    void                   resize       (const longlong_t &cllSize) const;
+    void                   resize       (clonglong_t &cllSize) const;
         ///< changes the file size
 
     // error handling
-    bool                   isValid      () const xWARN_UNUSED_RV;
+    bool_t                   isValid      () const xWARN_UNUSED_RV;
         ///< validating handle
-    bool                   isOpen       () const xWARN_UNUSED_RV;
+    bool_t                   isOpen       () const xWARN_UNUSED_RV;
         ///< is open
-    bool                   isEmpty      () const xWARN_UNUSED_RV;
+    bool_t                   isEmpty      () const xWARN_UNUSED_RV;
         ///< is empty
-    bool                   isEof        () const xWARN_UNUSED_RV;
+    bool_t                   isEof        () const xWARN_UNUSED_RV;
         ///< check end of file indicator
-    bool                   isError      () const xWARN_UNUSED_RV;
+    bool_t                   isError      () const xWARN_UNUSED_RV;
         ///< check error indicator
     void                   errorClear   () const;
         ///< clear error indicators
@@ -202,9 +202,9 @@ public:
         ///< close
 
     // static
-    static bool            isFile       (const std::tstring_t &csFilePath) xWARN_UNUSED_RV;
+    static bool_t            isFile       (const std::tstring_t &csFilePath) xWARN_UNUSED_RV;
         ///< check for file
-    static bool            isExists     (const std::tstring_t &csFilePath) xWARN_UNUSED_RV;
+    static bool_t            isExists     (const std::tstring_t &csFilePath) xWARN_UNUSED_RV;
         ///< check for existence
     static std::tstring_t  isExistsEx   (const std::tstring_t &csFilePath) xWARN_UNUSED_RV;
         ///< check for existence, if exists - generate new file name (file path), which not exists
@@ -216,7 +216,7 @@ public:
         ///< clear content
     static void            remove       (const std::tstring_t &csFilePath);
         ///< deleting
-    static void            tryRemove    (const std::tstring_t &csFilePath, const size_t &cuiAttempts, const ulong_t &culTimeoutMsec);
+    static void            tryRemove    (const std::tstring_t &csFilePath, const size_t &cuiAttempts, culong_t &culTimeoutMsec);
         ///< try deleting, max 100 attempts
     static void            wipe         (const std::tstring_t &csFilePath, const size_t &cuiPasses);
         ///< wipe
@@ -226,7 +226,7 @@ public:
         ///< renaming
     static void            move         (const std::tstring_t &csFilePath,     const std::tstring_t &csDirPath);
         ///< move
-    static void            copy         (const std::tstring_t &csFilePathFrom, const std::tstring_t &csFilePathTo, const bool &cbFailIfExists);
+    static void            copy         (const std::tstring_t &csFilePathFrom, const std::tstring_t &csFilePathTo, cbool_t &cbFailIfExists);
         ///< copy
     static longlong_t      size         (const std::tstring_t &csFilePath) xWARN_UNUSED_RV;
         ///< get size
@@ -263,9 +263,9 @@ private:
     std::FILE             *_m_pFile;      ///< file handle
     std::tstring_t         _m_sFilePath;  ///< file path
 
-    static int             _nativeHandle(std::FILE *pfFile) xWARN_UNUSED_RV;
+    static int_t             _nativeHandle(std::FILE *pfFile) xWARN_UNUSED_RV;
         ///< gets the file descriptor associated with a stream
-    static std::FILE *     _stdHandle   (int iFileHandle, const ExOpenMode &omMode) xWARN_UNUSED_RV;
+    static std::FILE *     _stdHandle   (int_t iFileHandle, const ExOpenMode &omMode) xWARN_UNUSED_RV;
         ///< get stream by handle
     static std::tstring_t  _openMode    (const ExOpenMode &comMode) xWARN_UNUSED_RV;
         ///< get open mode as string, by default use "r"

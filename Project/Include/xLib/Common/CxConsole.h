@@ -73,7 +73,7 @@ public:
         ///< destructor
 
     std::tstring_t  setAttributes   (const ExForeground &cfgForeground, const ExBackground &cbgBackground,
-                                     const int &ciAttributes) xWARN_UNUSED_RV;
+                                     cint_t &ciAttributes) xWARN_UNUSED_RV;
         ///< set text color
     std::tstring_t  setAttributesDef() xWARN_UNUSED_RV;
         ///< set text color
@@ -85,11 +85,11 @@ public:
         ///< write line
     void            writeErrLine    (const std::tstring_t &csStr);
         ///< write error message
-    ExModalResult   msgBox          (const std::tstring_t &csText, const std::tstring_t &csTitle, const uint_t &cuiType) xWARN_UNUSED_RV;
+    ExModalResult   msgBox          (const std::tstring_t &csText, const std::tstring_t &csTitle, cuint_t &cuiType) xWARN_UNUSED_RV;
         ///< show console message dialog
-    void            prompt          (const std::tstring_t &csPrompt, const bool &cbIsVisible, std::tstring_t *psAnswer);
+    void            prompt          (const std::tstring_t &csPrompt, cbool_t &cbIsVisible, std::tstring_t *psAnswer);
         ///< show console prompt dialog
-    void            pause           (const ulong_t &culTimeoutMs);
+    void            pause           (culong_t &culTimeoutMs);
         ///< pause with timeout (msec)
     void            clear           ();
         ///< clear
@@ -102,7 +102,7 @@ public:
         ///< align to center
     void            setFullScreen   ();
         ///< set full screen
-    void            enableClose     (const bool &cbFlag);
+    void            enableClose     (cbool_t &cbFlag);
         ///< enable close button
 
 private:
@@ -115,7 +115,7 @@ private:
 
     HWND            _wndHandle      () xWARN_UNUSED_RV;
         ///< get console window handle
-    HMENU           _menuHandle     (const bool &cbRevert) xWARN_UNUSED_RV;
+    HMENU           _menuHandle     (cbool_t &cbRevert) xWARN_UNUSED_RV;
         ///< get console menu handle
 #endif
 };
@@ -131,11 +131,11 @@ xNAMESPACE_END(NxLib)
     #include <stdio.h>
     #include <windows.h>
 
-    bool
+    bool_t
     create_console() {
       FreeConsole();
       if (AllocConsole()) {
-        int hCrt = _open_osfhandle((long_t) GetStdHandle(STD_OUTPUT_HANDLE), _O_TEXT);
+        int_t hCrt = _open_osfhandle((long_t) GetStdHandle(STD_OUTPUT_HANDLE), _O_TEXT);
         *stdout = *(::_fdopen(hCrt, "w"));
         ::setvbuf(stdout, NULL, _IONBF, 0);
 
@@ -162,9 +162,9 @@ xNAMESPACE_END(NxLib)
     #endif
 
     inline void
-    CtsConsole::promptPassword(char* const pwdBuffer, bool visible) {
+    CtsConsole::promptPassword(char* const pwdBuffer, bool_t visible) {
     #if __WIN32__ || _MSC_VER
-        bool     passwordEntered = false;
+        bool_t     passwordEntered = false;
         char     ch;
         size_t   idx = 0;
         while (passwordEntered == false) {
@@ -188,8 +188,8 @@ xNAMESPACE_END(NxLib)
         keypad(stdscr, true);  /* enable keyboard mapping */
         noecho();              /* turn off echoing */
 
-        int key = 0;
-        int idx = 0;
+        int_t key = 0;
+        int_t idx = 0;
         for (;;) {
           key = getch();
           if (key == CTS_KEYCODE_ENTER)  {

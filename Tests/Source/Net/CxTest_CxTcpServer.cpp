@@ -22,7 +22,7 @@ CxTest_CxTcpServer::~CxTest_CxTcpServer() {
 /* virtual */
 void
 CxTest_CxTcpServer::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     CxSocket::ExAddressFamily afAf       = CxSocket::afInet;
@@ -63,7 +63,7 @@ CxTest_CxTcpServer::unit(
     for (; ;) {
         //-------------------------------------
         //iRecv
-        m_iRv = objClientSocket.recv(&szRecvBuff[0], static_cast<int>( xARRAY_SIZE(szRecvBuff) ), 0);
+        m_iRv = objClientSocket.recv(&szRecvBuff[0], static_cast<int_t>( xARRAY_SIZE(szRecvBuff) ), 0);
         xTEST_DIFF(xSOCKET_ERROR, m_iRv);
 
         std::tcout << std::tstring_t(szRecvBuff, m_iRv) << std::endl;

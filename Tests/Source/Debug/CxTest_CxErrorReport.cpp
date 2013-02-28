@@ -19,7 +19,7 @@ CxTest_CxErrorReport::~CxTest_CxErrorReport() {
 /* virtual */
 void
 CxTest_CxErrorReport::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxErrorReport::CxErrorReport", cullCaseLoops)

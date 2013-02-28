@@ -70,7 +70,7 @@ CxCommandLine::args(
 /* static */
 void
 CxCommandLine::setArgs(
-    const int &a_ciArgsCount,
+    cint_t &a_ciArgsCount,
     tchar_t   *a_paszArgs[]
 )
 {
@@ -78,7 +78,7 @@ CxCommandLine::setArgs(
 
     std::vec_tstring_t vsArgs;
 
-    for (int i = 0; i < a_ciArgsCount; ++ i) {
+    for (int_t i = 0; i < a_ciArgsCount; ++ i) {
         vsArgs.push_back(a_paszArgs[i]);
     }
 

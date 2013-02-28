@@ -192,7 +192,7 @@ CxUri::port() {
     return _m_usPort;
 }
 void
-CxUri::setPort(const ushort_t &cusPort) {
+CxUri::setPort(cushort_t &cusPort) {
     _m_usPort = cusPort;
 
     //TODO: bSetAuthority
@@ -231,7 +231,7 @@ CxUri::setFragment(const std::tstring_t &csFragment) {
 //DONE: bClear ()
 void
 CxUri::clear() {
-    ////bool bRv = false;
+    ////bool_t bRv = false;
 
     _m_sScheme.clear();
     _m_sAuthority.clear();
@@ -250,7 +250,7 @@ CxUri::escape(const std::tstring_t &csUri) {
     
 
     /*
-    int    c;
+    int_t    c;
 
     while((c = *s++) != (char)0) {
         switch(c) {
@@ -552,7 +552,7 @@ CxUri::_parse(const std::tstring_t &a_csUri) {
 //TODO: _bNormilize ()
 void
 CxUri::_normilize(const std::tstring_t &a_csUri) {
-    ////bool bRv = false;
+    ////bool_t bRv = false;
 
     //trim
     //lowcase(_m_sScheme)
@@ -586,7 +586,7 @@ CxUri::_defaultPort() const {
 }
 //------------------------------------------------------------------------------
 //TODO: _isDefaultPort ()
-bool
+bool_t
 CxUri::_isDefaultPort() const {
     return ( _m_usPort == _defaultPort() );
 }

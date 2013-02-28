@@ -43,7 +43,7 @@ CxSmtp::~CxSmtp() {
 //------------------------------------------------------------------------------
 //DONE: bCreate
 void
-CxSmtp::create(const std::tstring_t &a_csUser, const std::tstring_t &a_csPass, const std::tstring_t &a_csServer, const ushort_t &a_cusPort) {
+CxSmtp::create(const std::tstring_t &a_csUser, const std::tstring_t &a_csPass, const std::tstring_t &a_csServer, cushort_t &a_cusPort) {
     xTEST_EQ(false, a_csUser.empty());
     ////xTEST_EQ(false, a_csPass.empty());
     xTEST_EQ(false, a_csServer.empty());
@@ -293,11 +293,11 @@ CxSmtp::_command(const std::tstring_t &a_csCmd, const std::tstring_t &a_csReplyD
 }
 //------------------------------------------------------------------------------
 //DONE: _isError
-bool
+bool_t
 CxSmtp::_isError(const std::tstring_t &a_csText) {
     xTEST_EQ(false, a_csText.empty());
 
-    bool bRv = (bool)!(
+    bool_t bRv = (bool_t)!(
             !std::memcmp(a_csText.c_str(), xT("334"), 3) ||    //334 VXNlcm5hbWU6
             !std::memcmp(a_csText.c_str(), xT("235"), 3) ||    //235 2.0.0 Authentication successful
             !std::memcmp(a_csText.c_str(), xT("220"), 3) ||    //220 Sergey Kerio MailServer 6.7.0 patch 1 ESMTP ready

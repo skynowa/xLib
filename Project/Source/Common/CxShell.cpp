@@ -23,11 +23,11 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 /* static */
-bool
+bool_t
 CxShell::isAvailable() {
     xTESTS_NA;
 
-    int iRv = ::xTSYSTEM(NULL);
+    int_t iRv = ::xTSYSTEM(NULL);
 
 #if   xOS_ENV_WIN
     xCHECK_RET(0 == iRv && ENOENT == CxStdError::get(), false);
@@ -54,7 +54,7 @@ CxShell::execute(
     // REVIEW: security bug - xT("%s \"%s\"") or xT("\"%s\" \"%s\"") ??
     std::tstring_t sCommand = CxString::format(xT("%s \"%s\""), a_csFilePath.c_str(), a_csParams.c_str());
 
-    int iRv = ::xTSYSTEM(sCommand.c_str());
+    int_t iRv = ::xTSYSTEM(sCommand.c_str());
     xTEST_DIFF(- 1, iRv);
 }
 //------------------------------------------------------------------------------
@@ -73,11 +73,11 @@ CxShell::findExecutable(
     xTEST_EQ(false, a_csFileName.empty());
     // csFindDirPath - n/a
 
-    int            iRv             = SE_ERR_FNF;
+    int_t            iRv             = SE_ERR_FNF;
     tchar_t        szRes[MAX_PATH] = {0};
-    const tchar_t *cpszFindDirPath = a_csFindDirPath.empty() ? NULL : a_csFindDirPath.c_str();
+    ctchar_t *cpszFindDirPath = a_csFindDirPath.empty() ? NULL : a_csFindDirPath.c_str();
 
-    iRv = reinterpret_cast<int>( ::FindExecutable(a_csFileName.c_str(), cpszFindDirPath, szRes) );
+    iRv = reinterpret_cast<int_t>( ::FindExecutable(a_csFileName.c_str(), cpszFindDirPath, szRes) );
     xTEST_LESS(32, iRv);
 
     return std::tstring_t(szRes);
@@ -130,7 +130,7 @@ CxShell::execute(
             break;
     }
 
-    int iRv = reinterpret_cast<int>( ::ShellExecute(a_chOwner, sOperation.c_str(), sFilePath.c_str(), sParams.c_str(), sDir.c_str(), a_csfShowCmd) );
+    int_t iRv = reinterpret_cast<int_t>( ::ShellExecute(a_chOwner, sOperation.c_str(), sFilePath.c_str(), sParams.c_str(), sDir.c_str(), a_csfShowCmd) );
     xTEST_LESS(32, iRv);
 }
 //------------------------------------------------------------------------------
@@ -250,9 +250,9 @@ CxShell::createShortcut(
     const std::tstring_t &a_csWorkingDirectory, ///< рабочий каталог, например, "C:\\Windows"
     const std::tstring_t &a_csArguments,        ///< аргументы командной строки, например, "C:\\Doc\\Text.txt"
     const WORD           &a_cwHotKey,           ///< горячая клавиша, например, для Ctrl+Alt+A HOTKEY(HOTKEYF_ALT|HOTKEYF_CONTROL,'A')
-    const int            &a_ciCmdShow,          ///< начальный вид, например, SW_SHOWNORMAL (см. параметр nCmdShow функции ShowWindow)
+    cint_t            &a_ciCmdShow,          ///< начальный вид, например, SW_SHOWNORMAL (см. параметр nCmdShow функции ShowWindow)
     const std::tstring_t &a_csIconFilePath,     ///< путь и имя файла, содержащего иконку, например, "C:\\Windows\\NotePad.Exe"
-    const int            &a_ciIconIndex,        ///< индекс иконки в файле, нумеруется с 0
+    cint_t            &a_ciIconIndex,        ///< индекс иконки в файле, нумеруется с 0
     const std::tstring_t &a_csDescription       ///< description
 )
 {

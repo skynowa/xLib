@@ -65,10 +65,10 @@ CxPath::exe() {
     #if   xOS_LINUX
         const std::tstring_t csProcFile = CxString::format(xT("/proc/%ld/exe"), CxCurrentProcess::id());
 
-        bool bRv = CxFile::isExists(csProcFile);
+        bool_t bRv = CxFile::isExists(csProcFile);
         xCHECK_RET(false == bRv, std::tstring_t());
 
-        int iReaded = - 1;
+        int_t iReaded = - 1;
         sRv.resize(xPATH_MAX);
 
         xFOREVER {
@@ -83,19 +83,19 @@ CxPath::exe() {
         sRv.resize(iReaded);
     #elif xOS_FREEBSD
         #if defined(KERN_PROC_PATHNAME)
-            int aiMib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, - 1};
+            int_t aiMib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, - 1};
 
             tchar_t szBuff[PATH_MAX + 1] = {0};
             size_t  uiBuffSize           = sizeof(szBuff) - 1;
 
-            int iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), szBuff, &uiBuffSize, NULL, 0U);
+            int_t iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), szBuff, &uiBuffSize, NULL, 0U);
             xTEST_DIFF(- 1, iRv);
 
             sRv.assign(szBuff);
         #else
             std::vec_tstring_t vsArgs;
 
-            bool bRv = CxCommandLine::args(&vsArgs);
+            bool_t bRv = CxCommandLine::args(&vsArgs);
             xTEST_EQ(true,  bRv);
             xTEST_EQ(false, vsArgs.empty());
             xTEST_EQ(false, bIsAbsolute(vsArgs.at(0)));
@@ -138,7 +138,7 @@ CxPath::dll() {
     Dl_info     diInfo        = {0};
     const void *fpProcAddress = reinterpret_cast<const void *>( vFunction );
 
-    int iRv = ::dladdr(fpProcAddress, &diInfo);
+    int_t iRv = ::dladdr(fpProcAddress, &diInfo);
     /*DEBUF*/xTEST_LESS(0, iRv);
 
     sRv = CxPath(diInfo.dli_fname).absolute();
@@ -377,14 +377,14 @@ CxPath::removeExtIf(
 }
 //------------------------------------------------------------------------------
 /* static */
-bool
+bool_t
 CxPath::isValid(
     const std::tstring_t &a_csFilePath
 )
 {
     xTEST_NA(a_csFilePath);
 
-    bool bRv = false;
+    bool_t bRv = false;
 
     // is empty
     bRv = a_csFilePath.empty();
@@ -400,14 +400,14 @@ CxPath::isValid(
 }
 //------------------------------------------------------------------------------
 /* static */
-bool
+bool_t
 CxPath::isNameValid(
     const std::tstring_t &a_csFileName
 )
 {
     xTEST_NA(a_csFilePath);
 
-    bool bRv = false;
+    bool_t bRv = false;
 
     //-------------------------------------
     // check: empty name
@@ -434,8 +434,8 @@ CxPath::isNameValid(
     // However, it is acceptable to specify a period
     // as the first character of a name. For example, ".temp".
     {
-        const tchar_t cchBegin = *a_csFileName.begin();
-        const tchar_t cchEnd   = *(a_csFileName.end() - 1);
+        ctchar_t cchBegin = *a_csFileName.begin();
+        ctchar_t cchEnd   = *(a_csFileName.end() - 1);
 
         // space
         bRv = (CxConst::xSPACE.at(0) == cchBegin);
@@ -457,7 +457,7 @@ CxPath::isNameValid(
     // < (less than)
     // > (greater than)
     // : (colon)
-    // " (double quote)
+    // " (double_t quote)
     // / (forward slash)
     // \ (backslash)
     // | (vertical bar or pipe)
@@ -477,7 +477,7 @@ CxPath::isNameValid(
     // control characters are those between ASCII codes 0x00 (NUL) and 0x1f (US), plus 0x7f (DEL).
     {
         struct _SIsCharControl {
-            bool
+            bool_t
             operator () (
                 const std::tstring_t::value_type &a_cchChar
             ) const
@@ -551,7 +551,7 @@ CxPath::isNameValid(
     return true;
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxPath::isAbsolute() const {
     xCHECK_RET(true                  == filePath().empty(), false);
     xCHECK_RET(CxConst::xSLASH.at(0) == filePath().at(0),   true);
@@ -575,7 +575,7 @@ CxPath::setNameValid(
     xTEST_NA(a_csFileName);
 
     std::tstring_t sRv(a_csFileName);
-    bool           bRv = false;
+    bool_t           bRv = false;
 
     //-------------------------------------
     // check: empty name
@@ -617,7 +617,7 @@ CxPath::setNameValid(
     // < (less than)
     // > (greater than)
     // : (colon)
-    // " (double quote)
+    // " (double_t quote)
     // / (forward slash)
     // \ (backslash)
     // | (vertical bar or pipe)
@@ -644,7 +644,7 @@ CxPath::setNameValid(
     // control characters are those between ASCII codes 0x00 (NUL) and 0x1f (US), plus 0x7f (DEL).
     {
         struct _SIsCharControl {
-            bool
+            bool_t
             operator () (
                 const std::tstring_t::value_type &a_cchChar
             ) const
@@ -744,7 +744,7 @@ CxPath::setNameValid(
 //--------------------------------------------------------------------------
 std::tstring_t
 CxPath::toWin(
-    const bool &a_cbIsSlashAtEnd
+    cbool_t &a_cbIsSlashAtEnd
 ) const
 {
     xTEST_NA(a_cbIsSlashAtEnd);
@@ -764,7 +764,7 @@ CxPath::toWin(
 //--------------------------------------------------------------------------
 std::tstring_t
 CxPath::toUnix(
-    const bool &a_cbIsSlashAtEnd
+    cbool_t &a_cbIsSlashAtEnd
 )  const
 {
     xTEST_NA(a_cbIsSlashAtEnd);
@@ -784,7 +784,7 @@ CxPath::toUnix(
 //--------------------------------------------------------------------------
 std::tstring_t
 CxPath::toNative(
-    const bool &a_cbIsSlashAtEnd
+    cbool_t &a_cbIsSlashAtEnd
 ) const
 {
     xTEST_NA(a_cbIsSlashAtEnd);
@@ -963,7 +963,7 @@ CxPath::maxSize() {
     #if defined(PATH_MAX)
         uiRes = PATH_MAX;
     #else
-        const ulong_t culSavedError = 0UL;
+        culong_t culSavedError = 0UL;
         long_t        liRv          = - 1L;
         ulong_t       ulLastError   = 0UL;
 
@@ -1005,7 +1005,7 @@ CxPath::nameMaxSize() {
     #if defined(NAME_MAX)
         uiRes = NAME_MAX;
     #else
-        const ulong_t culSavedError = 0UL;
+        culong_t culSavedError = 0UL;
         long_t        liRv          = - 1L;
         ulong_t       ulLastError   = 0UL;
 
@@ -1040,7 +1040,7 @@ CxPath::proc(
 {
     // check for existence "/proc" directory
     {
-        bool bRv = false;
+        bool_t bRv = false;
 
         CxDir drProc(xT("/proc"));
 

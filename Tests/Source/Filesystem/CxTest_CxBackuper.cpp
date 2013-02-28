@@ -22,7 +22,7 @@ CxTest_CxBackuper::~CxTest_CxBackuper() {
 /* virtual */
 void
 CxTest_CxBackuper::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     const std::tstring_t csFilePath  = tempDirPath() + CxConst::xSLASH + xT("Test_backup.txt");
@@ -31,7 +31,7 @@ CxTest_CxBackuper::unit(
 
     xTEST_CASE("CxBackuper::execute", cullCaseLoops)
     {
-        const long_t cliFileSize = 100L;
+        clong_t cliFileSize = 100L;
 
         {
             CxFile F;

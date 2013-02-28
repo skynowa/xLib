@@ -18,7 +18,7 @@ public:
                  CxTest_CxUri();
     virtual     ~CxTest_CxUri();
 
-    virtual void unit(const ulonglong_t &cullCaseLoops);
+    virtual void unit(culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------
 #endif //CxTest_CxUriH

@@ -20,7 +20,7 @@ public:
     virtual      ~CxTest_CxFileTemp();
         ///< destructor
 
-    virtual void unit(const ulonglong_t &cullCaseLoops);
+    virtual void unit(culonglong_t &cullCaseLoops);
         ///< unit test
 };
 //------------------------------------------------------------------------------

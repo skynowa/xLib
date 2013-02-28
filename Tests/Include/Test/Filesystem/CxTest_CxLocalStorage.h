@@ -18,7 +18,7 @@ public:
                   CxTest_CxLocalStorage();
     virtual      ~CxTest_CxLocalStorage();
 
-    virtual  void unit(const ulonglong_t &cullCaseLoops) xOVERRIDE;
+    virtual  void unit(culonglong_t &cullCaseLoops) xOVERRIDE;
 };
 //------------------------------------------------------------------------------
 #endif // CxTest_CxLocalStorageH

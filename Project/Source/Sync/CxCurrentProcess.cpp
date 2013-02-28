@@ -18,12 +18,12 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 /* static */
-bool
+bool_t
 CxCurrentProcess::isCurrent(
     const CxProcess::id_t &a_culId
 )
 {
-    bool bRv = false;
+    bool_t bRv = false;
 
 #if   xOS_ENV_WIN
     bRv = (id() == a_culId);
@@ -87,7 +87,7 @@ CxCurrentProcess::parentId() {
 
     dlDll.load(xT("ntdll.dll"));
 
-    bool bRv = dlDll.isProcExists(xT("NtQueryInformationProcess"));
+    bool_t bRv = dlDll.isProcExists(xT("NtQueryInformationProcess"));
     xCHECK_RET(false == bRv, culInvalidId);
 
 #if xARCH_X86    
@@ -145,13 +145,13 @@ CxCurrentProcess::handle() {
 /* static */
 void
 CxCurrentProcess::exit(
-    const uint_t &a_cuiExitCode
+    cuint_t &a_cuiExitCode
 )
 {
 #if   xOS_ENV_WIN
     (void)::ExitProcess(a_cuiExitCode);
 #elif xOS_ENV_UNIX
-    (void)::exit(static_cast<int>( a_cuiExitCode ));
+    (void)::exit(static_cast<int_t>( a_cuiExitCode ));
 #endif
 }
 //------------------------------------------------------------------------------

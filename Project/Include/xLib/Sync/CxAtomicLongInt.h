@@ -20,34 +20,34 @@ public:
     virtual          ~CxAtomicLongInt();
 
     CxAtomicLongInt & operator +=    (const CxAtomicLongInt &calValue);
-    CxAtomicLongInt & operator +=    (const long_t &cliRight);
+    CxAtomicLongInt & operator +=    (clong_t &cliRight);
 
     CxAtomicLongInt & operator -=    (const CxAtomicLongInt &calValue);
-    CxAtomicLongInt & operator -=    (const long_t &cliRight);
+    CxAtomicLongInt & operator -=    (clong_t &cliRight);
 
     CxAtomicLongInt & operator =     (const CxAtomicLongInt &calValue);
-    CxAtomicLongInt & operator =     (const long_t &cliRight);
+    CxAtomicLongInt & operator =     (clong_t &cliRight);
 
-    bool              operator ==    (const CxAtomicLongInt &calValue) const;
-    bool              operator ==    (const long_t &cliRight) const ;
+    bool_t              operator ==    (const CxAtomicLongInt &calValue) const;
+    bool_t              operator ==    (clong_t &cliRight) const ;
 
-    bool              operator !=    (const CxAtomicLongInt &calValue) const;
-    bool              operator !=    (const long_t &cliRight) const ;
+    bool_t              operator !=    (const CxAtomicLongInt &calValue) const;
+    bool_t              operator !=    (clong_t &cliRight) const ;
 
-    bool              operator <     (const long_t &cliValue) const;
-    bool              operator <     (const CxAtomicLongInt &calValue) const;
+    bool_t              operator <     (clong_t &cliValue) const;
+    bool_t              operator <     (const CxAtomicLongInt &calValue) const;
 
-    bool              operator <=    (const long_t &cliValue) const;
-    bool              operator <=    (const CxAtomicLongInt &calValue) const;
+    bool_t              operator <=    (clong_t &cliValue) const;
+    bool_t              operator <=    (const CxAtomicLongInt &calValue) const;
 
-    bool              operator >     (const long_t &cliValue) const;
-    bool              operator >     (const CxAtomicLongInt &calValue) const;
+    bool_t              operator >     (clong_t &cliValue) const;
+    bool_t              operator >     (const CxAtomicLongInt &calValue) const;
 
-    bool              operator >=    (const long_t &cliValue) const;
-    bool              operator >=    (const CxAtomicLongInt &calValue) const;
+    bool_t              operator >=    (clong_t &cliValue) const;
+    bool_t              operator >=    (const CxAtomicLongInt &calValue) const;
 
-    CxAtomicLongInt & operator ++    (const int ciValue);
-    CxAtomicLongInt & operator --    (const int ciValue);
+    CxAtomicLongInt & operator ++    (cint_t ciValue);
+    CxAtomicLongInt & operator --    (cint_t ciValue);
 
     long_t            value          () const xWARN_UNUSED_RV;
 

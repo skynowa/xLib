@@ -299,11 +299,11 @@ xNAMESPACE_BEGIN(NxLib)
     struct timezone
         /// for gettimeofday
     {
-        int tz_minuteswest; ///< minutes W of Greenwich
-        int tz_dsttime;     ///< type of dst correction
+        int_t tz_minuteswest; ///< minutes W of Greenwich
+        int_t tz_dsttime;     ///< type of dst correction
     };
 
-    int                             iGetTimeOfDay(struct timeval *tv, struct timezone *tz) xWARN_UNUSED_RV;
+    int_t                             iGetTimeOfDay(struct timeval *tv, struct timezone *tz) xWARN_UNUSED_RV;
         ///< porting from Linux gettimeofday
 
     #define xGETTIMEOFDAY           iGetTimeOfDay

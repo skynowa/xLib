@@ -22,7 +22,7 @@ class CWorkThread :
     public:
         size_t         m_uiIndex;
 
-                       CWorkThread(const bool &cbAutoDelete);
+                       CWorkThread(cbool_t &cbAutoDelete);
         virtual       ~CWorkThread();
 
     protected:
@@ -33,7 +33,7 @@ class CWorkThread :
 
 //------------------------------------------------------------------------------
 CWorkThread::CWorkThread(
-    const bool &cbAutoDelete
+    cbool_t &cbAutoDelete
 ) :
     CxThread (cbAutoDelete),
     m_uiIndex(0U)
@@ -55,7 +55,7 @@ CWorkThread::onRun(
     #endif
 
     uint_t uiRes = 0;
-    bool   bRv   = false;
+    bool_t   bRv   = false;
 
     // isCurrent
     bRv = CxThread::isCurrent();
@@ -106,11 +106,11 @@ CxTest_CxThread::~CxTest_CxThread() {
 /* virtual */
 void
 CxTest_CxThread::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
-    const bool cbIsPaused   = true;
-    const bool cbAutoDelete = false;
+    cbool_t cbIsPaused   = true;
+    cbool_t cbAutoDelete = false;
 
 
     CWorkThread *pthT = new CWorkThread(cbAutoDelete);
@@ -164,7 +164,7 @@ CxTest_CxThread::unit(
             pthT->setPriority(ctpPriority);
 
             m_iRv = pthT->priority();
-            xTEST_EQ((int)ctpPriority, (int)m_iRv);
+            xTEST_EQ((int_t)ctpPriority, (int_t)m_iRv);
         #elif xOS_ENV_UNIX
             pthT->setPriority(ctpPriority);
 
@@ -292,7 +292,7 @@ CxTest_CxThread::unit(
     {
         // TEST: CxThread::open
         #if xTODO
-            THandle hRv = CxThread::open(const ulong_t culAccess, const bool cbInheritHandle, const ulong_t culId);
+            THandle hRv = CxThread::open(culong_t culAccess, cbool_t cbInheritHandle, culong_t culId);
         #endif
     }
 

@@ -18,7 +18,7 @@ public:
                  CxTest_CxMutex();
     virtual     ~CxTest_CxMutex();
 
-    virtual void unit(const ulonglong_t &cullCaseLoops);
+    virtual void unit(culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------
 #endif //CxTest_CxMutexH

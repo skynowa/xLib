@@ -19,7 +19,7 @@ CxTest_CxMutex::~CxTest_CxMutex() {
 /* virtual */
 void
 CxTest_CxMutex::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     size_t uiVal = 0;

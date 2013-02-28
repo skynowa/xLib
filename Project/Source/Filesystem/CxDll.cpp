@@ -31,7 +31,7 @@ CxDll::~CxDll() {
     _free();
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxDll::isLoaded() const {
     xTESTS_NA;
 
@@ -57,7 +57,7 @@ CxDll::load(
 #endif
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxDll::isProcExists(
     const std::tstring_t &csProcName
 ) const
@@ -128,7 +128,7 @@ CxDll::_free() {
     BOOL blRes = ::FreeLibrary(_m_hDll);
     xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
-    int iRv = ::dlclose(_m_hDll);
+    int_t iRv = ::dlclose(_m_hDll);
     xTEST_EQ(0, iRv);
 #endif
 

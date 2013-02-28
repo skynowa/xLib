@@ -24,7 +24,7 @@ CxTest_CxFinder::~CxTest_CxFinder() {
 /* virtual */
 void
 CxTest_CxFinder::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     //-------------------------------------

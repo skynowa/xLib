@@ -42,7 +42,7 @@ CxAtomicLongInt::operator += (
 //------------------------------------------------------------------------------
 CxAtomicLongInt &
 CxAtomicLongInt::operator += (
-    const long_t &a_cliValue
+    clong_t &a_cliValue
 )
 {
 #if   xOS_ENV_WIN
@@ -70,7 +70,7 @@ CxAtomicLongInt::operator -= (
 //------------------------------------------------------------------------------
 CxAtomicLongInt &
 CxAtomicLongInt::operator -= (
-    const long_t &a_cliValue
+    clong_t &a_cliValue
 )
 {
 #if   xOS_ENV_WIN
@@ -98,7 +98,7 @@ CxAtomicLongInt::operator = (
 //------------------------------------------------------------------------------
 CxAtomicLongInt &
 CxAtomicLongInt::operator = (
-    const long_t &a_cliValue
+    clong_t &a_cliValue
 )
 {
 #if   xOS_ENV_WIN
@@ -110,7 +110,7 @@ CxAtomicLongInt::operator = (
     return *this;
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxAtomicLongInt::operator == (
     const CxAtomicLongInt &a_calValue
 ) const
@@ -118,15 +118,15 @@ CxAtomicLongInt::operator == (
     return (_m_liValue == a_calValue._m_liValue);
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxAtomicLongInt::operator == (
-    const long_t &a_cliValue
+    clong_t &a_cliValue
 ) const
 {
     return (_m_liValue == a_cliValue);
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxAtomicLongInt::operator != (
     const CxAtomicLongInt &a_calValue
 ) const
@@ -134,23 +134,23 @@ CxAtomicLongInt::operator != (
     return (_m_liValue != a_calValue._m_liValue);
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxAtomicLongInt::operator != (
-    const long_t &a_cliValue
+    clong_t &a_cliValue
 ) const
 {
     return (_m_liValue != a_cliValue);
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxAtomicLongInt::operator < (
-    const long_t &a_cliValue
+    clong_t &a_cliValue
 ) const
 {
     return (_m_liValue < a_cliValue);
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxAtomicLongInt::operator < (
     const CxAtomicLongInt &a_calValue
 ) const
@@ -158,15 +158,15 @@ CxAtomicLongInt::operator < (
     return (_m_liValue < a_calValue.value());
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxAtomicLongInt::operator <= (
-    const long_t &a_cliValue
+    clong_t &a_cliValue
 ) const
 {
     return (_m_liValue <= a_cliValue);
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxAtomicLongInt::operator <= (
     const CxAtomicLongInt &a_calValue
 ) const
@@ -174,15 +174,15 @@ CxAtomicLongInt::operator <= (
     return (_m_liValue <= a_calValue.value());
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxAtomicLongInt::operator > (
-    const long_t &a_cliValue
+    clong_t &a_cliValue
 ) const
 {
     return (_m_liValue > a_cliValue);
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxAtomicLongInt::operator > (
     const CxAtomicLongInt &a_calValue
 ) const
@@ -190,15 +190,15 @@ CxAtomicLongInt::operator > (
     return (_m_liValue > a_calValue.value());
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxAtomicLongInt::operator >= (
-    const long_t &cliValue
+    clong_t &cliValue
 ) const
 {
     return (_m_liValue >= cliValue);
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxAtomicLongInt::operator >= (
     const CxAtomicLongInt &a_calValue
 ) const
@@ -208,7 +208,7 @@ CxAtomicLongInt::operator >= (
 //------------------------------------------------------------------------------
 CxAtomicLongInt &
 CxAtomicLongInt::operator ++ (
-    const int a_ciValue
+    cint_t a_ciValue
 )
 {
 #if   xOS_ENV_WIN
@@ -226,7 +226,7 @@ CxAtomicLongInt::operator ++ (
 //------------------------------------------------------------------------------
 CxAtomicLongInt &
 CxAtomicLongInt::operator -- (
-    const int a_ciValue
+    cint_t a_ciValue
 )
 {
 #if   xOS_ENV_WIN

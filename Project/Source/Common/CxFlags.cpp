@@ -28,7 +28,7 @@ CxFlags::CxFlags(
 }
 //------------------------------------------------------------------------------
 CxFlags::CxFlags(
-    const int &a_ciFlag
+    cint_t &a_ciFlag
 ) : 
     _m_mFlags( mask_t(a_ciFlag) )
 {
@@ -46,15 +46,15 @@ CxFlags::~CxFlags() {
 
 }
 //---------------------------------------------------------------------------﻿  ﻿
-bool 
+bool_t 
 CxFlags::isSet(
-    const int &a_ciFlag
+    cint_t &a_ciFlag
 ) const
 {
     return (_m_mFlags & mask_t(a_ciFlag)) == mask_t(a_ciFlag);
 }
 //------------------------------------------------------------------------------        
-bool 
+bool_t 
 CxFlags::isSet(
     const mask_t &a_cmFlag
 ) const
@@ -62,7 +62,7 @@ CxFlags::isSet(
     return (_m_mFlags & a_cmFlag) == a_cmFlag;
 }
 //------------------------------------------------------------------------------        
-bool 
+bool_t 
 CxFlags::isAnySet(
     const mask_t &a_cmFlag
 ) const
@@ -70,9 +70,9 @@ CxFlags::isAnySet(
     return 0 != (_m_mFlags & a_cmFlag);
 }
 //------------------------------------------------------------------------------        
-bool 
+bool_t 
 CxFlags::isAnySet(
-    const int &a_ciFlag
+    cint_t &a_ciFlag
 ) const
 {
     return 0 != (_m_mFlags & mask_t(a_ciFlag)); 
@@ -88,7 +88,7 @@ CxFlags::setFlag(
 //------------------------------------------------------------------------------        
 void 
 CxFlags::setFlag(
-    const int &a_ciFlag
+    cint_t &a_ciFlag
 )
 {
     _m_mFlags |= mask_t(a_ciFlag);
@@ -104,7 +104,7 @@ CxFlags::unsetFlag(
 //------------------------------------------------------------------------------        
 void 
 CxFlags::unsetFlag(
-    const int &a_ciFlag
+    cint_t &a_ciFlag
 )
 {
     _m_mFlags &= ~mask_t(a_ciFlag);

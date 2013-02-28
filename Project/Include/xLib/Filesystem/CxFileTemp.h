@@ -18,7 +18,7 @@ class CxFileTemp :
     /// temporary file
 {
 public:
-    explicit        CxFileTemp(const bool &cbIsAutoDelete);
+    explicit        CxFileTemp(cbool_t &cbIsAutoDelete);
         ///< constructor
     virtual        ~CxFileTemp();
         ///< destructor
@@ -27,7 +27,7 @@ public:
         ///< create temporary file, open it
 
 private:
-    const bool      _m_cbIsAutoDelete;    ///< auto delete flag
+    cbool_t      _m_cbIsAutoDelete;    ///< auto delete flag
     CxFile         *_m_pfFile;            ///< temporary file handle
     std::tstring_t  _m_sFilePath;         ///< temporary file path
 };

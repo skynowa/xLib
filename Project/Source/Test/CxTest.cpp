@@ -55,8 +55,8 @@ CxTest::~CxTest() /* = 0 */ {
 //------------------------------------------------------------------------------
 void
 CxTest::run(
-    const ulonglong_t &a_cullUnitLoops,
-    const ulonglong_t &a_cullCaseLoops
+    culonglong_t &a_cullUnitLoops,
+    culonglong_t &a_cullCaseLoops
 )
 {
     xTEST_NA(a_cullUnitLoops);
@@ -86,7 +86,7 @@ CxTest::run(
 /* virtual */
 void
 CxTest::unit(
-    const ulonglong_t &a_cullCaseLoops
+    culonglong_t &a_cullCaseLoops
 ) /* = 0 */
 {
     xTEST_NA(a_cullCaseLoops);

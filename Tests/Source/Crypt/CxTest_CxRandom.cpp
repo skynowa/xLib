@@ -19,7 +19,7 @@ CxTest_CxRandom::~CxTest_CxRandom() {
 /* virtual */
 void
 CxTest_CxRandom::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     // TEST: CxRandom
@@ -107,7 +107,7 @@ CxTest_CxRandom::unit(
 
     xTEST_CASE("CxRandom::vSetSeed liGetInt liGetIntEx", cullCaseLoops)
     {
-        const long_t caliData[][2] = {
+        clong_t caliData[][2] = {
             {0, 100},
             {500, 1000},
             {50000, 100000},
@@ -117,8 +117,8 @@ CxTest_CxRandom::unit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(caliData); ++ i) {
-            const long_t cliMin = caliData[i][0];
-            const long_t cliMax = caliData[i][1];
+            clong_t cliMin = caliData[i][0];
+            clong_t cliMax = caliData[i][1];
 
             CxRandom::vSetSeed();
 

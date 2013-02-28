@@ -24,7 +24,7 @@ public:
                   ~CxSmtp    ();
 
     void           create    (const std::tstring_t &csUser, const std::tstring_t &csPass,
-                              const std::tstring_t &csServer, const ushort_t &cusPort);
+                              const std::tstring_t &csServer, cushort_t &cusPort);
     void           connect   ();
     void           login     ();
     void           noop      ();
@@ -41,11 +41,11 @@ private:
     std::tstring_t _m_sPass;
     std::tstring_t _m_sServer;
     ushort_t       _m_usPort;
-    bool           _m_bConnected;
+    bool_t           _m_bConnected;
 
     void           _command  (const std::tstring_t &csCmd, const std::tstring_t &csReplyDelimiter,
                               std::tstring_t &sReply);
-    bool           _isError  (const std::tstring_t &csText) xWARN_UNUSED_RV;
+    bool_t           _isError  (const std::tstring_t &csText) xWARN_UNUSED_RV;
 };
 
 xNAMESPACE_END(NxLib)

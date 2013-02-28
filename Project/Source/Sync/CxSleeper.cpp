@@ -28,7 +28,7 @@ CxSleeper::~CxSleeper() {
 //------------------------------------------------------------------------------
 void
 CxSleeper::sleep(
-    const ulong_t &a_culTimeout  ///< in milliseconds
+    culong_t &a_culTimeout  ///< in milliseconds
 )
 {
     // n/a
@@ -44,7 +44,7 @@ CxSleeper::wakeUp() {
     _m_objEvent.set();
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxSleeper::isSleeping() {
     // n/a
 

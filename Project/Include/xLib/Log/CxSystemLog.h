@@ -52,13 +52,13 @@ public:
     virtual ~CxSystemLog();
         ///< destructor
 
-    void     setEnabled (const bool &cbFlag);
+    void     setEnabled (cbool_t &cbFlag);
         ///< set enabled
-    void     write      (const ExLevel &lvLevel, const tchar_t *pcszFormat, ...);
+    void     write      (const ExLevel &lvLevel, ctchar_t *pcszFormat, ...);
         ///< write to log
 
 private:
-    bool     _m_bIsEnable;  ///< is enabled
+    bool_t     _m_bIsEnable;  ///< is enabled
 
 #if   xOS_ENV_WIN
     HANDLE   _m_SysLog;     ///< event log handle

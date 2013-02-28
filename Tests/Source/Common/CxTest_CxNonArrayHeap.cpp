@@ -12,7 +12,7 @@ class CNonArrayHeap :
     public CxNonArrayHeap
 {
     public:
-        int m_a;
+        int_t m_a;
 };
 //------------------------------------------------------------------------------
 CxTest_CxNonArrayHeap::CxTest_CxNonArrayHeap() {
@@ -26,7 +26,7 @@ CxTest_CxNonArrayHeap::~CxTest_CxNonArrayHeap() {
 /* virtual */
 void
 CxTest_CxNonArrayHeap::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxNonArrayHeap::CxNonArrayHeap", cullCaseLoops)

@@ -22,7 +22,7 @@ class CxShell :
     /// shell
 {
 public:
-    static bool           isAvailable   () xWARN_UNUSED_RV;
+    static bool_t           isAvailable   () xWARN_UNUSED_RV;
     static void           execute       (const std::tstring_t &csFilePath, const std::tstring_t &csParams);
 
 #if   xOS_ENV_WIN
@@ -139,9 +139,9 @@ public:
                                          const std::tstring_t &csWorkingDirectory,
                                          const std::tstring_t &csArguments,
                                          const WORD           &cwHotKey,
-                                         const int            &ciCmdShow,
+                                         cint_t            &ciCmdShow,
                                          const std::tstring_t &csIconFilePath,
-                                         const int            &ciIconIndex,
+                                         cint_t            &ciIconIndex,
                                          const std::tstring_t &csDescription);
         ///< create shortcut
 #endif

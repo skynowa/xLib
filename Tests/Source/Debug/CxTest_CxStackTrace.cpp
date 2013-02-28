@@ -19,7 +19,7 @@ CxTest_CxStackTrace::~CxTest_CxStackTrace() {
 /* virtual */
 void
 CxTest_CxStackTrace::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxStackTrace::get", cullCaseLoops)

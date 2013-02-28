@@ -21,7 +21,7 @@ CxTest_CxDnsClient::~CxTest_CxDnsClient() {
 /* virtual */
 void
 CxTest_CxDnsClient::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     CxSocketInit siInit(2, 2);
@@ -80,10 +80,10 @@ CxTest_CxDnsClient::unit(
         //xSTD_COUT(xT("[hostAddrInfo]: ") << sLocalHostName);
 
         {
-            ///*int*/                 paiList->ai_flags;       // AI_PASSIVE, AI_CANONNAME, AI_NUMERICHOST
-            ///*int*/                 paiList->ai_family;      // PF_xxx
-            ///*int*/                 paiList->ai_socktype;    // SOCK_xxx
-            ///*int*/                 paiList->ai_protocol;    // 0 or IPPROTO_xxx for IPv4 and IPv6
+            ///*int_t*/                 paiList->ai_flags;       // AI_PASSIVE, AI_CANONNAME, AI_NUMERICHOST
+            ///*int_t*/                 paiList->ai_family;      // PF_xxx
+            ///*int_t*/                 paiList->ai_socktype;    // SOCK_xxx
+            ///*int_t*/                 paiList->ai_protocol;    // 0 or IPPROTO_xxx for IPv4 and IPv6
             ///*size_t*/              paiList->ai_addrlen;     // Length of ai_addr
             ///*char **/              paiList->ai_canonname;   // Canonical name for nodename
             ///*__field_bcount(ai_addrlen) struct sockaddr **/   paiList->ai_addr;        // Binary address
@@ -104,7 +104,7 @@ CxTest_CxDnsClient::unit(
 
     xTEST_CASE("CxDnsClient::protocolByName", cullCaseLoops)
     {
-        const tchar_t cszProtocolNames[][10] =
+        ctchar_t cszProtocolNames[][10] =
         {
             xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"),
             xT("pup"), xT("udp"), xT("hmp"), xT("xns-idp"), xT("rdp")
@@ -130,7 +130,7 @@ CxTest_CxDnsClient::unit(
 
     xTEST_CASE("CxDnsClient::protocolByNumber", cullCaseLoops)
     {
-        const int ciProtocolNumbers[] = {
+        cint_t ciProtocolNumbers[] = {
             0, 1, 3, 6, 8, 12, 17, 20, 22, 27
         };
 
@@ -155,7 +155,7 @@ CxTest_CxDnsClient::unit(
     xTEST_CASE("CxDnsClient::serviceByName", cullCaseLoops)
     {
         std::tstring_t     csServiceName  = xT("http");
-        const tchar_t      cszProtocolNames[][10] = {xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"), xT("pup"), xT("udp"), xT("hmp"), xT("xns-idp"), xT("rdp") };
+        ctchar_t      cszProtocolNames[][10] = {xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"), xT("pup"), xT("udp"), xT("hmp"), xT("xns-idp"), xT("rdp") };
         std::tstring_t     sName;
         std::vec_tstring_t vsAliases;
         short_t            siPort;
@@ -177,7 +177,7 @@ CxTest_CxDnsClient::unit(
     xTEST_CASE("CxDnsClient::serviceByPort", cullCaseLoops)
     {
         short_t            csiPort  = 20480;
-        const tchar_t      cszProtocolNames[][10] = {xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"), xT("pup"), xT("udp"), xT("hmp"), xT("xns-idp"), xT("rdp") };
+        ctchar_t      cszProtocolNames[][10] = {xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"), xT("pup"), xT("udp"), xT("hmp"), xT("xns-idp"), xT("rdp") };
         std::tstring_t     sName;
         std::vec_tstring_t vsAliases;
         short_t            siPort = - 1;
@@ -198,12 +198,12 @@ CxTest_CxDnsClient::unit(
     
     xTEST_CASE("CxDnsClient::isOnLan", cullCaseLoops)
     {
-        //TODO: m_bRv = CxDnsClient::isOnLan(const ulong_t culIp);
+        //TODO: m_bRv = CxDnsClient::isOnLan(culong_t culIp);
     }
 
     xTEST_CASE("CxDnsClient::isBroadcast", cullCaseLoops)
     {
-        //TODO: m_bRv = CxDnsClient::isBroadcast(const ulong_t culIp);
+        //TODO: m_bRv = CxDnsClient::isBroadcast(culong_t culIp);
     }
 }
 //------------------------------------------------------------------------------

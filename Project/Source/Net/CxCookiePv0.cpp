@@ -116,27 +116,27 @@ CxCookiePv0::setExpires(
     _m_sExpires = a_csExpires;
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxCookiePv0::secure() const {
     return _m_bSecure;
 }
 //------------------------------------------------------------------------------
 void
 CxCookiePv0::setSecure(
-    const bool &a_cbFlag
+    cbool_t &a_cbFlag
 )
 {
     _m_bSecure = a_cbFlag;
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxCookiePv0::httpOnly() const {
     return _m_bHttpOnly;
 }
 //------------------------------------------------------------------------------
 void
 CxCookiePv0::setHttpOnly(
-    const bool &a_cbFlag
+    cbool_t &a_cbFlag
 )
 {
     _m_bHttpOnly = a_cbFlag;
@@ -229,7 +229,7 @@ CxCookiePv0::clear() {
 
 //------------------------------------------------------------------------------
 struct SCompareNoCase {
-    bool
+    bool_t
     operator() (const std::tstring_t &csStr1, const std::tstring_t &csStr2) const {
         return !! CxString::compareNoCase(csStr1, csStr2);
     }

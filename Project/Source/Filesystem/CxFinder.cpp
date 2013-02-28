@@ -110,7 +110,7 @@ CxFinder::attributes() const {
     return faRv;
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxFinder::isValid() const {
 #if   xOS_ENV_WIN
     xCHECK_RET(xNATIVE_HANDLE_INVALID == _m_enEnrty.hHandle, false);
@@ -123,7 +123,7 @@ CxFinder::isValid() const {
     return true;
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxFinder::moveFirst() {
 #if   xOS_ENV_WIN
     _m_enEnrty.hHandle = ::FindFirstFile(
@@ -134,14 +134,14 @@ CxFinder::moveFirst() {
     _m_enEnrty.pHandle = ::opendir(rootDirPath().c_str());
     xTEST_PTR(_m_enEnrty.pHandle);
 
-    bool bRv = moveNext();
+    bool_t bRv = moveNext();
     xCHECK_RET(false == bRv, false);
 #endif
 
     return true;
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxFinder::moveNext() {
 #if   xOS_ENV_WIN
     BOOL blRv = ::FindNextFile(_m_enEnrty.hHandle, &_m_enEnrty.fdData);
@@ -152,7 +152,7 @@ CxFinder::moveNext() {
         xCHECK_RET(NULL == _m_enEnrty.pdrData, false);
 
         // filter by pattern
-        int iRv = ::fnmatch(filterByShell().c_str(), entryName().c_str(), 0);
+        int_t iRv = ::fnmatch(filterByShell().c_str(), entryName().c_str(), 0);
         xTEST_EQ(true, (0 == iRv) || (FNM_NOMATCH == iRv));
 
         xCHECK_DO(FNM_NOMATCH == iRv, continue);
@@ -173,7 +173,7 @@ CxFinder::close() {
         BOOL blRes = ::FindClose(_m_enEnrty.hHandle);
         xTEST_DIFF(FALSE, blRes);
     #elif xOS_ENV_UNIX
-        int iRv = ::closedir(_m_enEnrty.pHandle);
+        int_t iRv = ::closedir(_m_enEnrty.pHandle);
         xTEST_DIFF(- 1, iRv);
     #endif
     }

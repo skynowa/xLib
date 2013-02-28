@@ -16,99 +16,99 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 /* static */
-bool
+bool_t
 CxChar::isAlphaNum(
-    const tchar_t &a_cchChar
+    ctchar_t &a_cchChar
 )
 {
     return xINT_TO_BOOL( ::xTISALNUM(a_cchChar) );
 }
 //------------------------------------------------------------------------------
 /* static */
-bool
+bool_t
 CxChar::isAlpha(
-    const tchar_t &a_cchChar
+    ctchar_t &a_cchChar
 )
 {
     return xINT_TO_BOOL( ::xTISALPHA(a_cchChar) );
 }
 //------------------------------------------------------------------------------
 /* static */
-bool
+bool_t
 CxChar::isControl(
-    const tchar_t &a_cchChar
+    ctchar_t &a_cchChar
 )
 {
     return xINT_TO_BOOL( ::xTISCNTRL(a_cchChar) );
 }
 //------------------------------------------------------------------------------
 /* static */
-bool
+bool_t
 CxChar::isDigitDec(
-    const tchar_t &a_cchChar
+    ctchar_t &a_cchChar
 )
 {
     return xINT_TO_BOOL( ::xTISDIGIT(a_cchChar) );
 }
 //------------------------------------------------------------------------------
 /* static */
-bool
+bool_t
 CxChar::isDigitHex(
-    const tchar_t &a_cchChar
+    ctchar_t &a_cchChar
 )
 {
     return xINT_TO_BOOL( ::xTISXDIGIT(a_cchChar) );
 }
 //------------------------------------------------------------------------------
 /* static */
-bool
+bool_t
 CxChar::isGraph(
-    const tchar_t &a_cchChar
+    ctchar_t &a_cchChar
 )
 {
     return xINT_TO_BOOL( ::xTISGRAPH(a_cchChar) );
 }
 //------------------------------------------------------------------------------
 /* static */
-bool
+bool_t
 CxChar::isPrint(
-    const tchar_t &a_cchChar
+    ctchar_t &a_cchChar
 )
 {
     return xINT_TO_BOOL( ::xTISPRINT(a_cchChar) );
 }
 //------------------------------------------------------------------------------
 /* static */
-bool
+bool_t
 CxChar::isPunct(
-    const tchar_t &a_cchChar
+    ctchar_t &a_cchChar
 )
 {
     return xINT_TO_BOOL( ::xTISPUNCT(a_cchChar) );
 }
 //------------------------------------------------------------------------------
 /* static */
-bool
+bool_t
 CxChar::isSpace(
-    const tchar_t &a_cchChar
+    ctchar_t &a_cchChar
 )
 {
     return xINT_TO_BOOL( ::xTISSPACE(a_cchChar) );
 }
 //------------------------------------------------------------------------------
 /* static */
-bool
+bool_t
 CxChar::isLower(
-    const tchar_t &a_cchChar
+    ctchar_t &a_cchChar
 )
 {
     return xINT_TO_BOOL( ::xTISLOWER(a_cchChar) );
 }
 //------------------------------------------------------------------------------
 /* static */
-bool
+bool_t
 CxChar::isUpper(
-    const tchar_t &a_cchChar
+    ctchar_t &a_cchChar
 )
 {
     return xINT_TO_BOOL( ::xTISUPPER(a_cchChar) );
@@ -117,7 +117,7 @@ CxChar::isUpper(
 /* static */
 tchar_t
 CxChar::toLower(
-    const tchar_t &a_cchChar
+    ctchar_t &a_cchChar
 )
 {
     return xTTOLOWER(a_cchChar);
@@ -126,7 +126,7 @@ CxChar::toLower(
 /* static */
 tchar_t
 CxChar::toUpper(
-    const tchar_t &a_cchChar
+    ctchar_t &a_cchChar
 )
 {
     return xTTOUPPER(a_cchChar);

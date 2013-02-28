@@ -37,7 +37,7 @@ class B : CxNonCopyable  {
             ////xSTD_COUT_FUNC;
         };
 
-        bool methodB(A a) {
+        bool_t methodB(A a) {
             ////xSTD_COUT_FUNC;
             a.vOutput();
 
@@ -87,7 +87,7 @@ CxTest_CxFunctorT::~CxTest_CxFunctorT() {
 //------------------------------------------------------------------------------
 void
 CxTest_CxFunctorT::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxFunctorT::operator ()", cullCaseLoops)
@@ -95,7 +95,7 @@ CxTest_CxFunctorT::unit(
         A a;
         B b;
 
-        CxFunctorT<B, bool, A> *pbF = new CxFunctorT<B, bool, A>(&b, &B::methodB);
+        CxFunctorT<B, bool_t, A> *pbF = new CxFunctorT<B, bool_t, A>(&b, &B::methodB);
         xTEST_PTR(pbF);
 
         m_bRv = (*pbF)(a);
@@ -109,7 +109,7 @@ CxTest_CxFunctorT::unit(
         A a;
         B b;
 
-        CxFunctorT<B, bool, A> *pbF = new CxFunctorT<B, bool, A>(&b, &B::methodB);
+        CxFunctorT<B, bool_t, A> *pbF = new CxFunctorT<B, bool_t, A>(&b, &B::methodB);
         xTEST_PTR(pbF);
 
         m_bRv = pbF->execute(a);
@@ -122,7 +122,7 @@ CxTest_CxFunctorT::unit(
     {
         A a;
         B b;
-        CxFunctorT<B, bool, A> bF(&b, &B::methodB);
+        CxFunctorT<B, bool_t, A> bF(&b, &B::methodB);
 
         m_bRv = bF(a);
         xTEST_EQ(true, m_bRv);
@@ -133,7 +133,7 @@ CxTest_CxFunctorT::unit(
         A a;
         B b;
 
-        CxFunctorT<B, bool, A> bF(&b, &B::methodB);
+        CxFunctorT<B, bool_t, A> bF(&b, &B::methodB);
 
         m_bRv = bF.execute(a);
         xTEST_EQ(true, m_bRv);

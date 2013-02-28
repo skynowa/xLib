@@ -21,7 +21,7 @@ CxTest_CxCurrentThread::~CxTest_CxCurrentThread() {
 /* virtual */
 void
 CxTest_CxCurrentThread::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxCurrentThread::isCurrent", cullCaseLoops)
@@ -45,7 +45,7 @@ CxTest_CxCurrentThread::unit(
 
         for (std::size_t i = 0; i < xARRAY_SIZE(aulData); ++ i) {
             const CxThread::id_t culId = aulData[i][0];
-            const bool           cbRes = xINT_TO_BOOL( (ulong_t)aulData[i][1] );
+            cbool_t           cbRes = xINT_TO_BOOL( (ulong_t)aulData[i][1] );
 
             m_bRv = CxCurrentThread::isCurrent(culId);
             xTEST_EQ(cbRes, m_bRv);
@@ -83,7 +83,7 @@ CxTest_CxCurrentThread::unit(
 
     xTEST_CASE("CxCurrentThread::sleep", cullCaseLoops)
     {
-        const ulong_t caulData[] = {
+        culong_t caulData[] = {
             0,
             1
             // ULONG_MIN,
@@ -91,7 +91,7 @@ CxTest_CxCurrentThread::unit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(caulData); ++ i) {
-            const uint_t cuiMsec = caulData[i];
+            cuint_t cuiMsec = caulData[i];
 
             CxDateTime dtTime1;
             

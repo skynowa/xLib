@@ -23,7 +23,7 @@ CxLocale::current() {
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
-    int  iRv  = - 1;
+    int_t  iRv  = - 1;
     LCID lcId = 0;
 
     lcId = ::GetSystemDefaultLCID();
@@ -34,12 +34,12 @@ CxLocale::current() {
     xTEST_DIFF(0, iRv);
 
     sRv.resize(iRv);
-    iRv = ::GetLocaleInfo(lcId, LOCALE_SENGLANGUAGE, &sRv.at(0), static_cast<int>( sRv.size() ));
+    iRv = ::GetLocaleInfo(lcId, LOCALE_SENGLANGUAGE, &sRv.at(0), static_cast<int_t>( sRv.size() ));
     xTEST_DIFF(0, iRv);
 
     sRv.resize(iRv - sizeof('\0'));    //delete from end '\0'
 #elif xOS_ENV_UNIX
-    const tchar_t *pcszLocale = NULL;
+    ctchar_t *pcszLocale = NULL;
 
     pcszLocale = std::xTSETLOCALE(LC_ALL, NULL);
     xTEST_PTR(pcszLocale);
@@ -58,9 +58,9 @@ CxLocale::setCurrent(
 {
     // csLocale - n/a
 
-    const tchar_t *pcszLocale = (true == csLocale.empty()) ? NULL : csLocale.c_str();
+    ctchar_t *pcszLocale = (true == csLocale.empty()) ? NULL : csLocale.c_str();
 
-    const tchar_t *pcszRes = NULL;
+    ctchar_t *pcszRes = NULL;
 
     pcszRes = ::xTSETLOCALE(LC_ALL, pcszLocale);
     xTEST_PTR(pcszRes);

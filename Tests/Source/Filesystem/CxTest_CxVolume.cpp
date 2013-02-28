@@ -20,7 +20,7 @@ CxTest_CxVolume::~CxTest_CxVolume() {
 /* virtual */
 void
 CxTest_CxVolume::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxVolume::type", cullCaseLoops)

@@ -23,7 +23,7 @@ CxTest_CxFileTemp::~CxTest_CxFileTemp() {
 /* virtual */
 void
 CxTest_CxFileTemp::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxFileTemp::all", cullCaseLoops)

@@ -19,7 +19,7 @@ CxTest_CxCom::~CxTest_CxCom() {
 /* virtual */
 void
 CxTest_CxCom::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
 #if xOS_ENV_WIN

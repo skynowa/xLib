@@ -40,8 +40,8 @@ CxStackTrace::CxStackTrace(
     const std::tstring_t &a_csLinePrefix,         /* = xT("\t") */
     const std::tstring_t &a_csElementSeparator,   /* = xT("  ") */
     const std::tstring_t &a_csLinesSeparator,     /* = xT("\n") */
-    const bool           &a_cbIsWrapFilePathes,   /* = true */
-    const bool           &a_cbIsFuncParamsDisable /* = true */
+    cbool_t           &a_cbIsWrapFilePathes,   /* = true */
+    cbool_t           &a_cbIsFuncParamsDisable /* = true */
 ) :
     _m_csLinePrefix         (a_csLinePrefix),
     _m_csElementSeparator   (a_csElementSeparator),
@@ -89,7 +89,7 @@ CxStackTrace::get(
         psiSymbol->MaxNameLen   = 255UL;
 
         for (ushort_t i = 1U; i < usFramesNum; ++ i) {
-            int            iStackLineNum = 0;
+            int_t            iStackLineNum = 0;
             std::tstring_t sModulePath;
             std::tstring_t sFilePath;
             std::tstring_t sFileLine;
@@ -181,14 +181,14 @@ CxStackTrace::get(
 #elif xOS_ENV_UNIX
     void *pvStack[xSTACK_TRACE_FRAMES_MAX] = {0};
 
-    int iFramesNum = ::backtrace(pvStack, xSTACK_TRACE_FRAMES_MAX);
+    int_t iFramesNum = ::backtrace(pvStack, xSTACK_TRACE_FRAMES_MAX);
     xCHECK_DO(iFramesNum <= 0, return);
 
     tchar_t **ppszSymbols = ::backtrace_symbols(pvStack, iFramesNum);
     xCHECK_DO(NULL == ppszSymbols, return);
 
-    for (int i = 0; i < iFramesNum; ++ i) {
-        int            iStackLineNum = 0;
+    for (int_t i = 0; i < iFramesNum; ++ i) {
+        int_t            iStackLineNum = 0;
         std::tstring_t sModulePath;
         std::tstring_t sFilePath;
         std::tstring_t sFileLine;
@@ -197,7 +197,7 @@ CxStackTrace::get(
 
         Dl_info dlinfo = {0};
 
-        int iRv = ::dladdr(pvStack[i], &dlinfo);
+        int_t iRv = ::dladdr(pvStack[i], &dlinfo);
         if (0 == iRv) {
             iStackLineNum = i;
             sModulePath   = (NULL == dlinfo.dli_fname) ? csDataNotFound : dlinfo.dli_fname;
@@ -206,8 +206,8 @@ CxStackTrace::get(
             sByteOffset   = CxString::format(xT("%p"), ptrdiff_t(0));
             sFunctionName = (NULL == ppszSymbols[i])   ? csDataNotFound : ppszSymbols[i];
         } else {
-            const tchar_t *pcszSymbolName = NULL;
-            int            iStatus        = - 1;
+            ctchar_t *pcszSymbolName = NULL;
+            int_t            iStatus        = - 1;
 
             tchar_t *pszDemangleName = abi::__cxa_demangle(dlinfo.dli_sname, NULL, NULL, &iStatus);
             if (NULL != pszDemangleName && 0 == iStatus) {
@@ -373,7 +373,7 @@ CxStackTrace::_addr2Line(
     {
         tchar_t szBuff[1024 + 1] = {0};
 
-        const tchar_t *pcszFunctionName = std::fgets(szBuff, xARRAY_SIZE(szBuff), pflFile);
+        ctchar_t *pcszFunctionName = std::fgets(szBuff, xARRAY_SIZE(szBuff), pflFile);
         xSTD_VERIFY(NULL != pcszFunctionName);
 
         (*a_psFunctionName).assign(pcszFunctionName);
@@ -383,7 +383,7 @@ CxStackTrace::_addr2Line(
     {
         tchar_t szBuff[1024 + 1] = {0};
 
-        const tchar_t *pcszFileAndLine = std::fgets(szBuff, xARRAY_SIZE(szBuff), pflFile);
+        ctchar_t *pcszFileAndLine = std::fgets(szBuff, xARRAY_SIZE(szBuff), pflFile);
         xSTD_VERIFY(NULL != pcszFileAndLine);
 
        /*
@@ -404,7 +404,7 @@ CxStackTrace::_addr2Line(
         *a_pulSourceLine = CxString::cast<ulong_t>( vsLine.at(1) );
     }
 
-    int iRv =::pclose(pflFile);    pflFile = NULL;
+    int_t iRv =::pclose(pflFile);    pflFile = NULL;
     xSTD_VERIFY(- 1 != iRv);
 }
 

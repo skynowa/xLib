@@ -128,7 +128,7 @@ CxEncrypt::makeFile(
     ulong_t ulResEncryptSize = 0;
 
     ////CK_BYTE  usEncryptedData[128]  = {0};
-    const ulong_t          g_culBuffSize    = 8192 * 4;  //FIX_ME:
+    culong_t          g_culBuffSize    = 8192 * 4;  //FIX_ME:
     std::ustring_t  usEncryptedData;    usEncryptedData.resize(g_culBuffSize);
     CK_ULONG usEncryptedDataSize = g_culBuffSize;
 

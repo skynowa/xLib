@@ -23,7 +23,7 @@ CxTest_CxCgi::~CxTest_CxCgi() {
 /* virtual */
 void
 CxTest_CxCgi::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxCgi::pageShow", cullCaseLoops)
@@ -158,7 +158,7 @@ CxTest_CxCgi::unit(
             m_sRv = cgCgi.Environment.countryCode();
             //xTRACEV(xT("cgCgi.Environment.sCountryCode(): %s"), m_sRv.c_str());
 
-            m_iRv = static_cast<int>( cgCgi.Environment.requestType() );
+            m_iRv = static_cast<int_t>( cgCgi.Environment.requestType() );
             //xTRACEV(xT("cgCgi.Environment.rmRequestMethod(): %i"), m_iRv);
 
             m_sRv = cgCgi.Environment.dump();

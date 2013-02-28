@@ -104,7 +104,7 @@ CxDnsClient::localHostName(
 
     std::string asRes(xHOST_NAME_MAX, '0');
 
-    int iRv = ::gethostname(&asRes.at(0), static_cast<int>( asRes.size() * sizeof(std::string::value_type) ));
+    int_t iRv = ::gethostname(&asRes.at(0), static_cast<int_t>( asRes.size() * sizeof(std::string::value_type) ));
     xTEST_EQ(0, iRv);
 
     asRes.assign(asRes.c_str());    //delete '0' from end
@@ -118,7 +118,7 @@ void
 CxDnsClient::nameInfo(
     CxSocket::ExAddressFamily &a_afFamily,
     const std::tstring_t      &a_csHostAddr,
-    const ushort_t            &a_usPort
+    cushort_t            &a_usPort
 )
 {
     //xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
@@ -137,7 +137,7 @@ CxDnsClient::nameInfo(
     tchar_t szServInfo[NI_MAXSERV + 1] = {0};
 
     //TODO: bGetNameInfo
-    int iRv = ::xGETNAMEINFO((struct sockaddr *)&saGNI, sizeof(saGNI), &szHostName[0], NI_MAXHOST, &szServInfo[0], NI_MAXSERV, NI_NUMERICSERV);
+    int_t iRv = ::xGETNAMEINFO((struct sockaddr *)&saGNI, sizeof(saGNI), &szHostName[0], NI_MAXHOST, &szServInfo[0], NI_MAXSERV, NI_NUMERICSERV);
     xTEST_EQ(0, iRv);
 
     //hostname
@@ -149,7 +149,7 @@ void
 CxDnsClient::hostAddrInfo(
     const std::tstring_t  &a_csHostName,
     const std::tstring_t  &a_csPort,
-    const addrinfo_t      *a_pHints,
+    caddrinfo_t      *a_pHints,
     addrinfo_t           **a_ppResult
 )
 {
@@ -158,7 +158,7 @@ CxDnsClient::hostAddrInfo(
     //xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
     //xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
 
-    int iRv = ::xGETADDRINFO(a_csHostName.c_str(), a_csPort.c_str(), a_pHints, a_ppResult);
+    int_t iRv = ::xGETADDRINFO(a_csHostName.c_str(), a_csPort.c_str(), a_pHints, a_ppResult);
     xTEST_EQ(0, iRv);
 }
 //------------------------------------------------------------------------------
@@ -215,7 +215,7 @@ CxDnsClient::protocolByName(
 /* static */
 void
 CxDnsClient::protocolByNumber(
-    const short_t      &a_siNumber,
+    cshort_t      &a_siNumber,
     std::tstring_t     *a_psName,
     std::vec_tstring_t *a_pvsAliases,
     short_t            *a_psiNumber
@@ -322,7 +322,7 @@ CxDnsClient::serviceByName(
 /* static */
 void
 CxDnsClient::serviceByPort(
-    const short_t        &a_siPort,
+    cshort_t        &a_siPort,
     const std::tstring_t &a_csProtocolName,
     std::tstring_t       *a_psName,
     std::vec_tstring_t   *a_pvsAliases,
@@ -380,24 +380,24 @@ CxDnsClient::serviceByPort(
 }
 //------------------------------------------------------------------------------
 /* static */
-bool
+bool_t
 CxDnsClient::isOnLan(
-    const ulong_t &a_culIp
+    culong_t &a_culIp
 )
 {
-    const ulong_t culMyIpAddress = INADDR_ANY;     //IP of local interface (network order)
-    const ulong_t culNetMask     = INADDR_NONE;    //netmask for IP (network order)
+    culong_t culMyIpAddress = INADDR_ANY;     //IP of local interface (network order)
+    culong_t culNetMask     = INADDR_NONE;    //netmask for IP (network order)
 
     return (0L == ((ntohl(a_culIp) ^ ntohl(culMyIpAddress)) & ntohl(culNetMask)));
 }
 //------------------------------------------------------------------------------
 /* static */
-bool
+bool_t
 CxDnsClient::isBroadcast(
-    const ulong_t &a_culIp
+    culong_t &a_culIp
 )
 {
-    const ulong_t culNetMask     = INADDR_NONE;    //netmask for IP (network order)
+    culong_t culNetMask     = INADDR_NONE;    //netmask for IP (network order)
 
     return (0L == (~ntohl(a_culIp) & ~ntohl(culNetMask)));
 }

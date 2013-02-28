@@ -30,7 +30,7 @@ CxCompletionPort::~CxCompletionPort() {
 //------------------------------------------------------------------------------
 void
 CxCompletionPort::create(
-    const ulong_t &a_culThreadsNum
+    culong_t &a_culThreadsNum
 )
 {
     // _m_hCP       - n/a
@@ -65,7 +65,7 @@ CxCompletionPort::status(
     LPDWORD        a_lpNumberOfBytes,
     PULONG_PTR     a_lpCompletionKey,
     LPOVERLAPPED  *a_lpOverlapped,
-    const ulong_t &a_culMilliseconds
+    culong_t &a_culMilliseconds
 )
 {
     xTEST_EQ(true, _m_hHandle.isValid());
@@ -80,7 +80,7 @@ CxCompletionPort::status(
 //------------------------------------------------------------------------------
 void
 CxCompletionPort::postStatus(
-    const ulong_t &a_culNumberOfBytesTransferred,
+    culong_t &a_culNumberOfBytesTransferred,
     ULONG_PTR      a_ulCompletionKey,
     LPOVERLAPPED   a_lpOverlapped
 )

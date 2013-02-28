@@ -22,11 +22,11 @@ public:
     virtual ~CxSleeper ();
         ///< destructor
 
-    void     sleep     (const ulong_t &culTimeout);
+    void     sleep     (culong_t &culTimeout);
         ///< sleep
     void     wakeUp    ();
         ///< wake up
-    bool     isSleeping() xWARN_UNUSED_RV;
+    bool_t     isSleeping() xWARN_UNUSED_RV;
         ///< check for sleeping
 
 private:

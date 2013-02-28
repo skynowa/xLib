@@ -22,7 +22,7 @@ CxTest_xDefines::~CxTest_xDefines() {
 /*virtual*/
 void
 CxTest_xDefines::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("xDefines::combinations of preprocessor defines", cullCaseLoops)
@@ -241,7 +241,7 @@ CxTest_xDefines::unit(
     {
         struct STest {
             std::tstring_t execute(
-                xIN     const int         &a_iVal,
+                xIN     cint_t         &a_iVal,
                 xOUT    const std::size_t &a_uiVal,
                 xIN_OUT tchar_t           *a_piVal)
             {
@@ -307,7 +307,7 @@ CxTest_xDefines::unit(
     xTEST_CASE("xDefines::var args", cullCaseLoops)
     {
         const std::tstring_t csVal = xT("aaa");
-        const int            ciVal = 100;
+        cint_t            ciVal = 100;
 
         // CxString::format use var args
         m_sRv = CxString::format(xT("%s, %d"), csVal.c_str(), ciVal);
@@ -326,7 +326,7 @@ CxTest_xDefines::unit(
 
         // xPR_I64d
         {
-            const longlong_t cllValue = 36745723LL;
+            clonglong_t cllValue = 36745723LL;
 
             m_sRv = CxString::format(xT("%")xPR_I64d, cllValue);
             xTEST_EQ(CxString::cast(cllValue), m_sRv);
@@ -334,7 +334,7 @@ CxTest_xDefines::unit(
 
         // xPR_I64u
         {
-            const ulonglong_t cullValue = 4767834ULL;
+            culonglong_t cullValue = 4767834ULL;
 
             m_sRv = CxString::format(xT("%")xPR_I64u, cullValue);
             xTEST_EQ(CxString::cast(cullValue), m_sRv);
@@ -342,7 +342,7 @@ CxTest_xDefines::unit(
 
         // xPR_I64x
         {
-            const longlong_t cllValue = 57830LL;
+            clonglong_t cllValue = 57830LL;
 
             m_sRv = CxString::format(xT("%")xPR_I64x, cllValue);
             xTEST_EQ(CxString::toLowerCase( CxString::cast(cllValue, 16) ), m_sRv);

@@ -60,7 +60,7 @@ CxProcess::~CxProcess() {
 void
 CxProcess::create(
     const std::tstring_t &a_csFilePath,
-    const tchar_t        *a_pcszParams, ...
+    ctchar_t        *a_pcszParams, ...
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
@@ -95,7 +95,7 @@ CxProcess::create(
     if (0L == liPid) {
         // TODO: csFilePath is executable
 
-        int iRv = ::execlp(a_csFilePath.c_str(), a_csFilePath.c_str(), sCmdLine.c_str(), static_cast<const tchar_t *>( NULL ));
+        int_t iRv = ::execlp(a_csFilePath.c_str(), a_csFilePath.c_str(), sCmdLine.c_str(), static_cast<ctchar_t *>( NULL ));
         xTEST_DIFF(- 1, iRv);
 
         (void)::_exit(EXIT_SUCCESS);  /* not exit() */
@@ -108,7 +108,7 @@ CxProcess::create(
 //------------------------------------------------------------------------------
 CxProcess::ExWaitResult
 CxProcess::wait(
-    const ulong_t &a_culTimeout
+    culong_t &a_culTimeout
 )
 {
     ExWaitResult wrStatus = wrFailed;
@@ -121,7 +121,7 @@ CxProcess::wait(
 #elif xOS_ENV_UNIX
     // TODO: a_culTimeout
     pid_t liRv    = - 1L;
-    int   iStatus = 0;
+    int_t   iStatus = 0;
 
     do {
         liRv = ::waitpid(_m_ulPid, &iStatus, 0);
@@ -138,7 +138,7 @@ CxProcess::wait(
 //------------------------------------------------------------------------------
 void
 CxProcess::kill(
-    const ulong_t &a_culTimeout    // FIX: culTimeout not used
+    culong_t &a_culTimeout    // FIX: culTimeout not used
 )
 {
 #if   xOS_ENV_WIN
@@ -157,7 +157,7 @@ CxProcess::kill(
         CxCurrentThread::sleep(a_culTimeout);
     }
 #elif xOS_ENV_UNIX
-    int iRv = ::kill(_m_ulPid, SIGKILL);
+    int_t iRv = ::kill(_m_ulPid, SIGKILL);
     xTEST_DIFF(- 1, iRv);
 
     CxCurrentThread::sleep(a_culTimeout);
@@ -176,7 +176,7 @@ CxProcess::id() const {
     return _m_ulPid;
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxProcess::isCurrent() const {
     return CxCurrentProcess::isCurrent( CxCurrentProcess::id() );
 }
@@ -258,7 +258,7 @@ CxProcess::idByName(
     xTEST_DIFF(FALSE, blRv);
 
     xFOREVER {
-        bool bRv = CxString::compareNoCase(a_csProcessName, peProcess.szExeFile);
+        bool_t bRv = CxString::compareNoCase(a_csProcessName, peProcess.szExeFile);
         xCHECK_DO(true == bRv, break);   // OK
 
         blRv = ::Process32Next(hSnapshot.get(), &peProcess);
@@ -269,7 +269,7 @@ CxProcess::idByName(
     xTEST_DIFF(0UL, ulRv);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        int iPid = -1;
+        int_t iPid = -1;
 
         // open the /proc directory
         DIR *pDir = ::opendir("/proc");
@@ -281,7 +281,7 @@ CxProcess::idByName(
             xCHECK_DO(NULL == dirp, break);
 
             // skip non-numeric entries
-            int iId = ::atoi(dirp->d_name);
+            int_t iId = ::atoi(dirp->d_name);
             xCHECK_DO(0 >= iId, continue);
 
             // read contents of virtual /proc/{pid}/cmdline file
@@ -305,15 +305,15 @@ CxProcess::idByName(
             }
         }
 
-        int iRv = ::closedir(pDir); pDir = NULL;
+        int_t iRv = ::closedir(pDir); pDir = NULL;
         xTEST_DIFF(- 1, iRv);
 
         ulRv = iPid;
     #elif xOS_FREEBSD
-        int    aiMib[3]   = {CTL_KERN, KERN_PROC, KERN_PROC_ALL};
+        int_t    aiMib[3]   = {CTL_KERN, KERN_PROC, KERN_PROC_ALL};
         size_t uiBuffSize = 0U;
 
-        int iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), NULL, &uiBuffSize, NULL, 0U);
+        int_t iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), NULL, &uiBuffSize, NULL, 0U);
         xTEST_DIFF(- 1, iRv);
 
         // allocate memory and populate info in the  processes structure
@@ -352,7 +352,7 @@ CxProcess::idByName(
 }
 //--------------------------------------------------------------------------
 /* static */
-bool
+bool_t
 CxProcess::isRunning(
     const id_t &culId
 )

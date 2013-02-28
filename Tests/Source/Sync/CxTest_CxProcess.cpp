@@ -23,7 +23,7 @@ CxTest_CxProcess::~CxTest_CxProcess() {
 /* virtual */
 void
 CxTest_CxProcess::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxProcess::create CxProcess::wait", cullCaseLoops)

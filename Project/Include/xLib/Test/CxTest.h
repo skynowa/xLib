@@ -18,8 +18,8 @@ class CxTest :
 public:
     void *                 m_pvRv;      ///< for global use
     tchar_t                m_chRv;      ///< for global use
-    bool                   m_bRv;       ///< for global use
-    int                    m_iRv;       ///< for global use
+    bool_t                   m_bRv;       ///< for global use
+    int_t                    m_iRv;       ///< for global use
     short_t                m_siRv;      ///< for global use
     ushort_t               m_usiRv;     ///< for global use
     uint_t                 m_uiRv;      ///< for global use
@@ -28,8 +28,8 @@ public:
     ulong_t                m_ulRv;      ///< for global use
     longlong_t             m_llRv;      ///< for global use
     ulonglong_t            m_ullRv;     ///< for global use
-    float                  m_fRv;       ///< for global use
-    double                 m_dRv;       ///< for global use
+    float_t                  m_fRv;       ///< for global use
+    double_t                 m_dRv;       ///< for global use
     std::tstring_t         m_sRv;       ///< for global use
     std::ustring_t         m_usRv;      ///< for global use
     std::vector<tchar_t>   m_vchRv;     ///< for global use
@@ -49,9 +49,9 @@ public:
     virtual               ~CxTest       () = 0;
         ///< destructor
 
-    void                   run          (const ulonglong_t &cullUnitLoops, const ulonglong_t &cullCaseLoops);
+    void                   run          (culonglong_t &cullUnitLoops, culonglong_t &cullCaseLoops);
         ///< run test units
-    virtual void           unit         (const ulonglong_t &cullCaseLoops) = 0;
+    virtual void           unit         (culonglong_t &cullCaseLoops) = 0;
         ///< test unit
     void                   createTempDir(const std::tstring_t &csDirName);
         ///< create work dir

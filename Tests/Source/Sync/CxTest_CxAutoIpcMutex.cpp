@@ -21,7 +21,7 @@ CxTest_CxAutoIpcMutex::~CxTest_CxAutoIpcMutex() {
 /* virtual */
 void
 CxTest_CxAutoIpcMutex::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     const std::tstring_t csName = xT("mutex_name_a");

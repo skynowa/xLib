@@ -156,7 +156,7 @@ CxDecrypt::makeFile(
     ulong_t ulResDecryptSize = 0;
 
     ////CK_BYTE  usDecryptedData[128]   = {0};
-    const ulong_t  g_culBuffSize       = 8192 * 4;  //FIX_ME:
+    culong_t  g_culBuffSize       = 8192 * 4;  //FIX_ME:
     std::ustring_t usDecryptedData;    usDecryptedData.resize(g_culBuffSize);
     CK_ULONG     usDecryptedDataSize = g_culBuffSize;
 

@@ -20,7 +20,7 @@ public:
     virtual      ~CxTest_CxThreadPool();
         ///< destructor
 
-    virtual void unit(const ulonglong_t &cullCaseLoops);
+    virtual void unit(culonglong_t &cullCaseLoops);
         ///< unit test
 };
 //------------------------------------------------------------------------------
@@ -30,7 +30,7 @@ class CPoolThread :
 public:
     size_t         m_uiIndex;
 
-                   CPoolThread(const bool &cbAutoDelete);
+                   CPoolThread(cbool_t &cbAutoDelete);
     virtual       ~CPoolThread();
 
 protected:

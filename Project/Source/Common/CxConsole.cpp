@@ -68,7 +68,7 @@ std::tstring_t
 CxConsole::setAttributes(
     const ExForeground   &a_cfgForeground,
     const ExBackground   &a_cbgBackground,
-    const int            &a_ciAttributes
+    cint_t            &a_ciAttributes
 )
 {
 #if xOS_ENV_WIN
@@ -112,18 +112,18 @@ CxConsole::setAttributes(
         const WORD ciForegroundColorWhite   = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE;
         const WORD ciForegroundColorGray	= FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE;
     #elif xOS_ENV_UNIX
-        const int  ciForegroundColorBlack   = 30;
-        const int  ciForegroundColorRed	    = 31;
-        const int  ciForegroundColorBlue	= 34;
-        const int  ciForegroundColorGreen   = 32;
-        const int  ciForegroundColorCyan	= 36;
-        const int  ciForegroundColorMagenta = 35;
-        const int  ciForegroundColorYellow  = 33;
-        const int  ciForegroundColorWhite   = 37;
-        const int  ciForegroundColorGray	= 37;    // TODO: ciForegroundColorGray
+        cint_t  ciForegroundColorBlack   = 30;
+        cint_t  ciForegroundColorRed	    = 31;
+        cint_t  ciForegroundColorBlue	= 34;
+        cint_t  ciForegroundColorGreen   = 32;
+        cint_t  ciForegroundColorCyan	= 36;
+        cint_t  ciForegroundColorMagenta = 35;
+        cint_t  ciForegroundColorYellow  = 33;
+        cint_t  ciForegroundColorWhite   = 37;
+        cint_t  ciForegroundColorGray	= 37;    // TODO: ciForegroundColorGray
     #endif
 
-        int iRv = - 1;
+        int_t iRv = - 1;
 
 	    switch (a_cfgForeground) {
     	    case fgBlack:
@@ -177,18 +177,18 @@ CxConsole::setAttributes(
         const WORD ciBackgroundColorWhite   = BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE;
         const WORD ciBackgroundColorGray	= BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE;
     #elif xOS_ENV_UNIX
-        const int  ciBackgroundColorBlack   = 40;
-        const int  ciBackgroundColorRed	    = 41;
-        const int  ciBackgroundColorBlue	= 44;
-        const int  ciBackgroundColorGreen   = 42;
-        const int  ciBackgroundColorCyan	= 46;
-        const int  ciBackgroundColorMagenta = 45;
-        const int  ciBackgroundColorYellow  = 43;
-        const int  ciBackgroundColorWhite   = 47;
-        const int  ciBackgroundColorGray	= 47;    // TODO: ciBackgroundColorGray
+        cint_t  ciBackgroundColorBlack   = 40;
+        cint_t  ciBackgroundColorRed	    = 41;
+        cint_t  ciBackgroundColorBlue	= 44;
+        cint_t  ciBackgroundColorGreen   = 42;
+        cint_t  ciBackgroundColorCyan	= 46;
+        cint_t  ciBackgroundColorMagenta = 45;
+        cint_t  ciBackgroundColorYellow  = 43;
+        cint_t  ciBackgroundColorWhite   = 47;
+        cint_t  ciBackgroundColorGray	= 47;    // TODO: ciBackgroundColorGray
     #endif
 
-        int iRv = - 1;
+        int_t iRv = - 1;
 
 	    switch (a_cbgBackground) {
     	    case fgBlack:
@@ -243,12 +243,12 @@ CxConsole::setAttributes(
         const WORD ciAttributeReverse    = COMMON_LVB_REVERSE_VIDEO;  xUNUSED(ciAttributeReverse);      // not supported
         const WORD ciAttributeConcealed  = - 1;                       xUNUSED(ciAttributeConcealed);    // not supported
     #elif xOS_ENV_UNIX
-        const int  ciAttributeAllOff     = 0;
-        const int  ciAttributeBold       = 1;
-        const int  ciAttributeUnderscore = 4;
-        const int  ciAttributeBlink      = 5;
-        const int  ciAttributeReverse    = 7;
-        const int  ciAttributeConcealed  = 8;
+        cint_t  ciAttributeAllOff     = 0;
+        cint_t  ciAttributeBold       = 1;
+        cint_t  ciAttributeUnderscore = 4;
+        cint_t  ciAttributeBlink      = 5;
+        cint_t  ciAttributeReverse    = 7;
+        cint_t  ciAttributeConcealed  = 8;
     #endif
 
     #if   xOS_ENV_WIN
@@ -319,7 +319,7 @@ CxConsole::read() {
 
 #if   xOS_ENV_WIN
     DWORD         ulRead                  = 0UL;
-    const ulong_t culBuffSize             = 1024UL * 4UL;
+    culong_t culBuffSize             = 1024UL * 4UL;
     tchar_t       szBuff[culBuffSize + 1] = {0};
 
     BOOL blRes = ::ReadConsole(_m_hStdIn.get(), &szBuff[0], culBuffSize, &ulRead, NULL);
@@ -395,7 +395,7 @@ CxConsole::ExModalResult
 CxConsole::msgBox(
     const std::tstring_t &a_csText,
     const std::tstring_t &a_csTitle,
-    const uint_t         &a_cuiType
+    cuint_t         &a_cuiType
 )
 {
 #if xOS_ENV_WIN
@@ -448,7 +448,7 @@ CxConsole::msgBox(
 void
 CxConsole::prompt(
     const std::tstring_t &a_csPrompt,
-    const bool           &a_cbIsVisible,
+    cbool_t           &a_cbIsVisible,
     std::tstring_t       *a_psAnswer
 )
 {
@@ -465,7 +465,7 @@ CxConsole::prompt(
         write(a_csPrompt + xT(": "));
 
         xFOREVER {
-            const tchar_t chLetter = static_cast<tchar_t>( std::tcin.get() );
+            ctchar_t chLetter = static_cast<tchar_t>( std::tcin.get() );
 
             // asterisks
             xCHECK_DO(true == a_cbIsVisible, write(xT("*")));
@@ -489,7 +489,7 @@ CxConsole::prompt(
 //------------------------------------------------------------------------------
 void
 CxConsole::pause(
-    const ulong_t &culTimeoutMs
+    culong_t &culTimeoutMs
 )
 {
 #if xOS_ENV_WIN
@@ -574,7 +574,7 @@ CxConsole::clear() {
 //------------------------------------------------------------------------------
 void
 CxConsole::enableClose(
-    const bool &a_cbFlag
+    cbool_t &a_cbFlag
 )
 {
 #if xOS_ENV_WIN
@@ -707,11 +707,11 @@ CxConsole::centerWindow() {
     blRes = ::SystemParametersInfo(SPI_GETWORKAREA, 0, &rcDesktop, 0);
     xTEST_DIFF(FALSE, blRes);
 
-    int iDesktopX  = (rcDesktop.right  - rcDesktop.left) / 2;
-    int iDesktopY  = (rcDesktop.bottom - rcDesktop.top)  / 2;
-    int iWndWidth  = (rcOrigin.right   - rcOrigin.left);
-    int iWndHeight = (rcOrigin.bottom  - rcOrigin.top);
-    int x          = iDesktopX - iWndWidth / 2;        if (x < 0) { x = 0; }
+    int_t iDesktopX  = (rcDesktop.right  - rcDesktop.left) / 2;
+    int_t iDesktopY  = (rcDesktop.bottom - rcDesktop.top)  / 2;
+    int_t iWndWidth  = (rcOrigin.right   - rcOrigin.left);
+    int_t iWndHeight = (rcOrigin.bottom  - rcOrigin.top);
+    int_t x          = iDesktopX - iWndWidth / 2;        if (x < 0) { x = 0; }
 
     blRes = ::MoveWindow(_m_hWnd, x, iDesktopY - iWndHeight / 2, iWndWidth, iWndHeight, true);
     xTEST_DIFF(FALSE, blRes);
@@ -766,7 +766,7 @@ CxConsole::_wndHandle() {
 
 HMENU
 CxConsole::_menuHandle(
-    const bool &a_cbRevert
+    cbool_t &a_cbRevert
 )
 {
     _m_hMenu = ::GetSystemMenu(_m_hWnd, a_cbRevert);

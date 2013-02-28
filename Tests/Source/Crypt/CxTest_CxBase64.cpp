@@ -19,7 +19,7 @@ CxTest_CxBase64::~CxTest_CxBase64() {
 /* virtual */
 void
 CxTest_CxBase64::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxBase64::encode sDecode", cullCaseLoops)

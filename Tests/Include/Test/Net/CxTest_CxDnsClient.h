@@ -18,7 +18,7 @@ public:
                  CxTest_CxDnsClient();
     virtual     ~CxTest_CxDnsClient();
 
-    virtual void unit(const ulonglong_t &cullCaseLoops);
+    virtual void unit(culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------
 #endif //CxTest_CxDnsClientH

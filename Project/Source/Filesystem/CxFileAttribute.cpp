@@ -36,7 +36,7 @@ CxFileAttribute::filePath() const {
 }
 //------------------------------------------------------------------------------
 /* static */
-bool
+bool_t
 CxFileAttribute::isExists(
     const ExAttribute &a_cfaValue
 )
@@ -67,7 +67,7 @@ CxFileAttribute::get() {
 #elif xOS_ENV_UNIX
     xTSTAT_STRUCT stInfo = {0};
 
-    int iRv = ::xTSTAT(filePath().c_str(), &stInfo);
+    int_t iRv = ::xTSTAT(filePath().c_str(), &stInfo);
     xTEST_NA(iRv);
     if (- 1 == iRv) {
         faRes = faInvalid;
@@ -91,7 +91,7 @@ CxFileAttribute::set(
     BOOL blRes = ::SetFileAttributes(filePath().c_str(), static_cast<ulong_t>( a_cfaValue ));
     xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
-    int iRv = ::xTCHMOD(filePath().c_str(), static_cast<mode_t>( a_cfaValue ));
+    int_t iRv = ::xTCHMOD(filePath().c_str(), static_cast<mode_t>( a_cfaValue ));
     xTEST_DIFF(- 1, iRv);
 #endif
 }

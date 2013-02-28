@@ -19,7 +19,7 @@ CxTest_CxUri::~CxTest_CxUri() {
 /* virtual */
 void
 CxTest_CxUri::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     std::tstring_t m_sRv;

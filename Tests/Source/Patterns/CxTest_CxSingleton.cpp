@@ -35,7 +35,7 @@ CxTest_CxSingleton::~CxTest_CxSingleton() {
 /* virtual */
 void
 CxTest_CxSingleton::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxSingleton::GetInstance", cullCaseLoops)

@@ -24,7 +24,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 /* static */
-bool
+bool_t
 CxEnvironment::isExists(
     const std::tstring_t &a_csVarName
 )
@@ -53,7 +53,7 @@ CxEnvironment::isExists(
 }
 //------------------------------------------------------------------------------
 /* static */
-bool
+bool_t
 CxEnvironment::isVarValid(
     const std::tstring_t &a_csVarName
 )
@@ -67,7 +67,7 @@ CxEnvironment::isVarValid(
 }
 //------------------------------------------------------------------------------
 /* static */
-bool
+bool_t
 CxEnvironment::isValueValid(
     const std::tstring_t &a_csVarValue
 )
@@ -127,7 +127,7 @@ CxEnvironment::setVar(
     BOOL blRes = ::SetEnvironmentVariable(a_csVarName.c_str(), a_csValue.c_str());
     xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
-    int iRv = ::setenv(a_csVarName.c_str(), a_csValue.c_str(), true);
+    int_t iRv = ::setenv(a_csVarName.c_str(), a_csValue.c_str(), true);
     xTEST_DIFF(- 1, iRv);
 #endif
 }
@@ -147,7 +147,7 @@ CxEnvironment::deleteVar(
     xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        int iRv = ::unsetenv(a_csVarName.c_str());
+        int_t iRv = ::unsetenv(a_csVarName.c_str());
         xTEST_DIFF(- 1, iRv);
     #elif xOS_FREEBSD
         (void)::unsetenv(a_csVarName.c_str());

@@ -23,11 +23,11 @@ public:
     virtual ~CxWaitableTimer();
 
     HANDLE   handle         () const xWARN_UNUSED_RV;
-    void     create         (const bool &cbManualReset, const std::tstring_t &csName/* = NULL*/, const LPSECURITY_ATTRIBUTES pcsaTimerAttributes/* = NULL*/);
-    void     open           (const std::tstring_t &csName, const ulong_t &culDesiredAccess = TIMER_ALL_ACCESS, const bool &cbInheritHandle = false);
+    void     create         (cbool_t &cbManualReset, const std::tstring_t &csName/* = NULL*/, const LPSECURITY_ATTRIBUTES pcsaTimerAttributes/* = NULL*/);
+    void     open           (const std::tstring_t &csName, culong_t &culDesiredAccess = TIMER_ALL_ACCESS, cbool_t &cbInheritHandle = false);
     void     cancel         () const;
-    void     set            (const longlong_t &cllDueTime/*milliseconds*/, const long_t &cliPeriod = 0L, PTIMERAPCROUTINE pfnCompletionRoutine = NULL, LPVOID pvArgToCompletionRoutine = NULL, const bool &cbResume = false) const;
-    void     wait           (const ulong_t &ulTimeout) const;
+    void     set            (clonglong_t &cllDueTime/*milliseconds*/, clong_t &cliPeriod = 0L, PTIMERAPCROUTINE pfnCompletionRoutine = NULL, LPVOID pvArgToCompletionRoutine = NULL, cbool_t &cbResume = false) const;
+    void     wait           (culong_t &ulTimeout) const;
 
 private:
     CxHandle _m_hHandle;

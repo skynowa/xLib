@@ -19,7 +19,7 @@ CxTest_CxCommandLine::~CxTest_CxCommandLine() {
 /* virtual */
 void
 CxTest_CxCommandLine::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxCommandLine::argsMax", cullCaseLoops)

@@ -22,7 +22,7 @@ CxTest_CxTcpClient::~CxTest_CxTcpClient() {
 /* virtual */
 void
 CxTest_CxTcpClient::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     CxSocket::ExAddressFamily afAf           = CxSocket::afInet;
@@ -100,7 +100,7 @@ CxTest_CxTcpClient::unit(
 
         //-------------------------------------
         //iSend
-        m_iRv = objSocket.send(sText.c_str(), static_cast<int>( sText.size() ), 0);
+        m_iRv = objSocket.send(sText.c_str(), static_cast<int_t>( sText.size() ), 0);
         xTEST_DIFF(xSOCKET_ERROR, m_iRv);
     }
 

@@ -43,20 +43,20 @@ CxLastError::toString() {
 /* static */
 void
 CxLastError::set(
-    const ulong_t &a_culCode
+    culong_t &a_culCode
 )
 {
 #if   xOS_ENV_WIN
     (void)::SetLastError(a_culCode);
 #elif xOS_ENV_UNIX
-    errno = static_cast<int>( a_culCode );
+    errno = static_cast<int_t>( a_culCode );
 #endif
 }
 //------------------------------------------------------------------------------
 /* static */
 void
 CxLastError::reset() {
-    const ulong_t culCodeSuccess = 0UL;
+    culong_t culCodeSuccess = 0UL;
 
     set(culCodeSuccess);
 }
@@ -64,7 +64,7 @@ CxLastError::reset() {
 /* static */
 std::tstring_t
 CxLastError::format(
-    const ulong_t &a_culCode
+    culong_t &a_culCode
 )
 {
     std::tstring_t sRv;
@@ -100,14 +100,14 @@ CxLastError::format(
     #if   xOS_LINUX
         char szBuff[64 + 1] = {0};
 
-        const tchar_t *pcszError = ::strerror_r(static_cast<int>( a_culCode ), &szBuff[0], xARRAY_SIZE(szBuff));
+        ctchar_t *pcszError = ::strerror_r(static_cast<int_t>( a_culCode ), &szBuff[0], xARRAY_SIZE(szBuff));
         xCHECK_RET(NULL == pcszError, sRv.append(xT("[Cann't format error message]")));
 
         sRv.append(pcszError);
     #elif xOS_FREEBSD
         char szBuff[64 + 1] = {0};
 
-        int iRv = ::strerror_r(static_cast<int>( a_culCode ), &szBuff[0], xARRAY_SIZE(szBuff));
+        int_t iRv = ::strerror_r(static_cast<int_t>( a_culCode ), &szBuff[0], xARRAY_SIZE(szBuff));
         xCHECK_RET(- 1 == iRv, sRv.append(xT("[Cann't format error message]")));
 
         sRv.append(&szBuff[0]);

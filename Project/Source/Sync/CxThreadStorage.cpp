@@ -30,7 +30,7 @@ CxThreadStorage::~CxThreadStorage() {
     _free();
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxThreadStorage::isSet() const {
     void *pvRv = NULL;
 
@@ -79,7 +79,7 @@ CxThreadStorage::setValue(
 #elif xOS_ENV_UNIX
     xTEST_EQ(true, 0 < _m_indIndex);
 
-    int iRv = ::pthread_setspecific(_m_indIndex, a_pvValue);
+    int_t iRv = ::pthread_setspecific(_m_indIndex, a_pvValue);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 #endif
 }
@@ -104,7 +104,7 @@ CxThreadStorage::_alloc() {
 #elif xOS_ENV_UNIX
     xTEST_EQ(static_cast<pthread_key_t>( - 1 ), _m_indIndex);
 
-    int iRv = ::pthread_key_create(&indRes, NULL);
+    int_t iRv = ::pthread_key_create(&indRes, NULL);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 #endif
 
@@ -123,7 +123,7 @@ CxThreadStorage::_free() {
 #elif xOS_ENV_UNIX
     xTEST_EQ(true, 0 < _m_indIndex);
 
-    int iRv = ::pthread_key_delete(_m_indIndex);
+    int_t iRv = ::pthread_key_delete(_m_indIndex);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
     _m_indIndex = static_cast<pthread_key_t>( -1 );

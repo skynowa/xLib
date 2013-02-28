@@ -19,7 +19,7 @@ CxTest_CxCurrentProcess::~CxTest_CxCurrentProcess() {
 /* virtual */
 void
 CxTest_CxCurrentProcess::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxCurrentProcess::id", cullCaseLoops)

@@ -22,23 +22,23 @@ public:
     virtual    ~CxTcpClient       ();
         ///< constructor
 
-    bool        isReadable        () xWARN_UNUSED_RV;
+    bool_t        isReadable        () xWARN_UNUSED_RV;
         ///< checking for readability
-    bool        isWritable        () xWARN_UNUSED_RV;
+    bool_t        isWritable        () xWARN_UNUSED_RV;
         ///< checking for writability
-    void        connect           (const std::tstring_t &csIp, const ushort_t &cusPort);
+    void        connect           (const std::tstring_t &csIp, cushort_t &cusPort);
         ///< connecting
 
-    void        ioctl             (const long_t &cliCmd, ulong_t *pulArgp);
+    void        ioctl             (clong_t &cliCmd, ulong_t *pulArgp);
         ///< controls the i/o mode
-    void        setNonBlockingMode(const bool &cbFlag);
+    void        setNonBlockingMode(cbool_t &cbFlag);
         ///< set nonblocking mode
     void        timeout           (long_t *pliSec, long_t *pliMicroSec);
         ///< get timeout
-    void        setTimeout        (const long_t &cliSec, const long_t &cliMicroSec);
+    void        setTimeout        (clong_t &cliSec, clong_t &cliMicroSec);
         ///< set timeout
 
-    static bool isServerAlive     (const std::tstring_t &csIp, const ushort_t &cusPort) xWARN_UNUSED_RV;
+    static bool_t isServerAlive     (const std::tstring_t &csIp, cushort_t &cusPort) xWARN_UNUSED_RV;
         ///< is sever socket available
 
 protected:

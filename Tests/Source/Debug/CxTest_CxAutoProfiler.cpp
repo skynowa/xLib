@@ -23,7 +23,7 @@ CxTest_CxAutoProfiler::~CxTest_CxAutoProfiler() {
 /* virtual */
 void
 CxTest_CxAutoProfiler::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxAutoProfiler::CxAutoProfiler", cullCaseLoops)

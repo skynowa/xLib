@@ -22,28 +22,28 @@ public:
         ///< constructor
     explicit  CxFlags    (const CxFlags &cfFlags);
         ///< constructor
-    explicit  CxFlags    (const int &ciFlag);
+    explicit  CxFlags    (cint_t &ciFlag);
         ///< constructor
     explicit  CxFlags    (const mask_t &cmFlag);
         ///< constructor
     virtual  ~CxFlags    ();
         ///< destructor
 
-    bool      isSet      (const int &ciFlag) const;
+    bool_t      isSet      (cint_t &ciFlag) const;
         ///<
-    bool      isSet      (const mask_t &cmFlag) const;
+    bool_t      isSet      (const mask_t &cmFlag) const;
         ///<
-    bool      isAnySet   (const mask_t &cmFlag) const;
+    bool_t      isAnySet   (const mask_t &cmFlag) const;
         ///<
-    bool      isAnySet   (const int &ciFlag) const;
+    bool_t      isAnySet   (cint_t &ciFlag) const;
         ///<
     void      setFlag    (const mask_t &cmFlag);
         ///<
-    void      setFlag    (const int &ciFlag);
+    void      setFlag    (cint_t &ciFlag);
         ///<
     void      unsetFlag  (const mask_t &cmFlag);
         ///<
-    void      unsetFlag  (const int &ciFlag);
+    void      unsetFlag  (cint_t &ciFlag);
         ///<
     void      setFlags   (const mask_t &cmFlag);
         ///<

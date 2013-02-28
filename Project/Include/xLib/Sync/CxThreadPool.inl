@@ -20,10 +20,10 @@ CxTracer  CxThreadPool<T>::_m_clLog;
 //------------------------------------------------------------------------------
 template<typename T>
 CxThreadPool<T>::CxThreadPool(
-    const bool &a_cbIsPaused,
-    const bool &a_cbIsAutoDelete,
-    const bool &a_cbIsGroupPaused,
-    const bool &a_cbIsGroupAutoDelete
+    cbool_t &a_cbIsPaused,
+    cbool_t &a_cbIsAutoDelete,
+    cbool_t &a_cbIsGroupPaused,
+    cbool_t &a_cbIsGroupAutoDelete
 ) :
     CxThread              (a_cbIsAutoDelete),
     _m_uiStackSize        (0U),
@@ -61,7 +61,7 @@ CxThreadPool<T>::~CxThreadPool() {
 template<typename T>
 void
 CxThreadPool<T>::groupCreate(
-    const uint_t     &a_cuiStackSize,
+    cuint_t     &a_cuiStackSize,
     const func_ptr_t  a_fpFuncPtr,
     void             *a_pvParam,
     const size_t     &a_cuiNumTasks,
@@ -136,7 +136,7 @@ CxThreadPool<T>::groupPause() {
 template<typename T>
 void
 CxThreadPool<T>::groupExit(
-    const ulong_t &a_culTimeout
+    culong_t &a_culTimeout
 )
 {
     xCHECK_DO(false == isRunning(), /*LOG*/_m_clLog.write(xT("CxThreadPool: not running")); return);
@@ -161,7 +161,7 @@ CxThreadPool<T>::groupExit(
 template<typename T>
 void
 CxThreadPool<T>::groupKill(
-    const ulong_t &a_culTimeout
+    culong_t &a_culTimeout
 )
 {
     xTEST_PTR(this);
@@ -188,7 +188,7 @@ CxThreadPool<T>::groupKill(
 template<typename T>
 void
 CxThreadPool<T>::groupWait(
-    const ulong_t &a_culTimeout
+    culong_t &a_culTimeout
 )
 {
     xCHECK_DO(false == isRunning(), /*LOG*/_m_clLog.write(xT("CxThreadPool: not running")); return);
@@ -308,20 +308,20 @@ CxThreadPool<T>::setNumTasks(
 }
 //------------------------------------------------------------------------------
 template<typename T>
-bool
+bool_t
 CxThreadPool<T>::isEmpty() const {
 
 
     CxAutoMutex amtMutex(&_m_mtList);
 
-    bool bRv = _m_lthTasks.empty();
+    bool_t bRv = _m_lthTasks.empty();
     // n/a
 
     return bRv;
 }
 //------------------------------------------------------------------------------
 template<typename T>
-bool
+bool_t
 CxThreadPool<T>::isFull() const {
     //xTEST_EQ(CONDITION);
 
@@ -329,7 +329,7 @@ CxThreadPool<T>::isFull() const {
 
     xTEST_LESS(_m_uiMaxRunningTasks, _m_lthTasks.size());
 
-    bool bRv = (_m_uiMaxRunningTasks == _m_lthTasks.size());
+    bool_t bRv = (_m_uiMaxRunningTasks == _m_lthTasks.size());
     // n/a
 
     return bRv;
@@ -385,7 +385,7 @@ CxThreadPool<T>::onRun(
 
         //-------------------------------------
         //�� ���� �� ����� ��� ���������������
-        bool bRv = isTimeToExit();
+        bool_t bRv = isTimeToExit();
         xCHECK_DO(true == bRv, break);
 
         //-------------------------------------

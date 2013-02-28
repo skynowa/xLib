@@ -32,18 +32,18 @@ public:
     typedef void (T::*func_ptr_t)(void *);
 
     // construct? destruct
-                           CxThreadPool(const bool &cbIsPaused, const bool &cbIsAutoDelete,
-                                         const bool &cbIsGroupPaused, const bool &cbIsGroupAutoDelete);
+                           CxThreadPool(cbool_t &cbIsPaused, cbool_t &cbIsAutoDelete,
+                                         cbool_t &cbIsGroupPaused, cbool_t &cbIsGroupAutoDelete);
     virtual               ~CxThreadPool();
 
     // groups
-    void                   groupCreate (const uint_t &cuiStackSize, const func_ptr_t fpFuncPtr, void *pvParam,
+    void                   groupCreate (cuint_t &cuiStackSize, const func_ptr_t fpFuncPtr, void *pvParam,
                                          const size_t &cuiNumTasks, const size_t &cuiMaxRunningTasks);
     void                   groupResume ();
     void                   groupPause  ();
-    void                   groupExit   (const ulong_t &culTimeout);
-    void                   groupKill   (const ulong_t &culTimeout);
-    void                   groupWait   (const ulong_t &culTimeout);
+    void                   groupExit   (culong_t &culTimeout);
+    void                   groupKill   (culong_t &culTimeout);
+    void                   groupWait   (culong_t &culTimeout);
 
     size_t                 maxTasks    () const xWARN_UNUSED_RV;
     void                   setMaxTasks (const size_t &cuiNum);
@@ -51,8 +51,8 @@ public:
     size_t                 numTasks    () const xWARN_UNUSED_RV;
     void                   setNumTasks (const size_t &cuiNum);
 
-    bool                   isEmpty     () const;
-    bool                   isFull      () const;
+    bool_t                   isEmpty     () const;
+    bool_t                   isFull      () const;
     size_t                 size        () const xWARN_UNUSED_RV;
 
 protected:
@@ -63,8 +63,8 @@ private:
     func_ptr_t             _m_fpFuncPtr;
     void                  *_m_pvParam;
 
-    const bool             _m_cbIsGroupPaused;
-    const bool             _m_cbIsGroupAutoDelete;
+    cbool_t             _m_cbIsGroupPaused;
+    cbool_t             _m_cbIsGroupAutoDelete;
 
     mutable CxIpcSemaphore _m_semSemaphore;
     std::list<T *>         _m_lthTasks;

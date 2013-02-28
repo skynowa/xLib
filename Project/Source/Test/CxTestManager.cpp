@@ -21,7 +21,7 @@ xNAMESPACE_BEGIN(NxLib)
 //------------------------------------------------------------------------------
 /*explicit*/
 CxTestManager::CxTestManager(
-    const bool &a_cbIsUseTracing
+    cbool_t &a_cbIsUseTracing
 ) :
     _m_cbIsUseTracing(a_cbIsUseTracing),
     _m_ctnTests      ()
@@ -61,9 +61,9 @@ CxTestManager::add(
 //------------------------------------------------------------------------------
 void
 CxTestManager::run(
-    const ulonglong_t &a_cullAllLoops,
-    const ulonglong_t &a_cullUnitLoops,
-    const ulonglong_t &a_cullCaseLoops
+    culonglong_t &a_cullAllLoops,
+    culonglong_t &a_cullUnitLoops,
+    culonglong_t &a_cullCaseLoops
 )
 {
     xTEST_NA(a_cullAllLoops);

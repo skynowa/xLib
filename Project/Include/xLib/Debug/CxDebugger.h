@@ -24,13 +24,13 @@ public:
     virtual       ~CxDebugger   ();
         ///< destructor
 
-    bool           isEnabled    () xWARN_UNUSED_RV;
+    bool_t           isEnabled    () xWARN_UNUSED_RV;
         ///< is debugging enabled
-    void           setEnabled   (const bool &cbFlag);
+    void           setEnabled   (cbool_t &cbFlag);
         ///< set debugging mode on/off
-    bool           isActive     () xWARN_UNUSED_RV;
+    bool_t           isActive     () xWARN_UNUSED_RV;
         ///< is OS debugger presents
-    bool           isDebugBuild () xWARN_UNUSED_RV;
+    bool_t           isDebugBuild () xWARN_UNUSED_RV;
         ///< is debug build (is NDEBUG macros is don't set)
     void           breakPoint   ();
         ///< attach to OS debugger
@@ -42,7 +42,7 @@ public:
         ///< make report
 
 private:
-    bool           _m_bIsEnabled;
+    bool_t           _m_bIsEnabled;
         ///< is debugger enabled
     std::tstring_t _m_sLogPath;
         ///< log path

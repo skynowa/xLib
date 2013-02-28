@@ -19,7 +19,7 @@ CxTest_CxIpcMutex::~CxTest_CxIpcMutex() {
 /* virtual */
 void
 CxTest_CxIpcMutex::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     const std::tstring_t csName = xT("mutex_name_a");
@@ -52,7 +52,7 @@ CxTest_CxIpcMutex::unit(
 
     xTEST_CASE("CxIpcMutex::lock CxIpcMutex::unlock", cullCaseLoops)
     {
-        const ulong_t culTimeout = 1000UL;
+        culong_t culTimeout = 1000UL;
 
         CxIpcMutex mtMutex;
 

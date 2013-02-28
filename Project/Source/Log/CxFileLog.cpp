@@ -26,7 +26,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 CxFileLog::CxFileLog(
-    const ulong_t &a_culMaxFileSizeBytes
+    culong_t &a_culMaxFileSizeBytes
 ) :
     _m_sFilePath         (),
     _m_ulMaxFileSizeBytes(a_culMaxFileSizeBytes)
@@ -65,7 +65,7 @@ CxFileLog::filePath() const {
 //------------------------------------------------------------------------------
 void
 CxFileLog::write(
-    const tchar_t *a_pcszFormat, ...
+    ctchar_t *a_pcszFormat, ...
 )
 {
     xTEST_PTR(a_pcszFormat);
@@ -96,7 +96,7 @@ CxFileLog::write(
 
     sfFile.create(filePath(), CxFile::omAppend, false);
 
-    int iRv = sfFile.write(xT("[%s] %s\n"), sTime.c_str(), sParam.c_str());
+    int_t iRv = sfFile.write(xT("[%s] %s\n"), sTime.c_str(), sParam.c_str());
     xTEST_DIFF(- 1, iRv);
 }
 //------------------------------------------------------------------------------
@@ -132,7 +132,7 @@ CxFileLog::_vRemoveIfFull() {
         CxAutoIpcMutex SL(_m_mtFile);
     #endif
 
-    bool bRv = CxFile::isExists(filePath());
+    bool_t bRv = CxFile::isExists(filePath());
     xCHECK_DO(false == bRv, return);
 
     //-------------------------------------

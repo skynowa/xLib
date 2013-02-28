@@ -101,7 +101,7 @@ public:
 
     // size is constant
     static size_type size    () { return N; }
-    static bool      empty   () { return false; }
+    static bool_t      empty   () { return false; }
     static size_type max_size() { return N; }
     enum { static_size = N };
 
@@ -158,27 +158,27 @@ public:
 // comparisons
 namespace NxArray {
     template<typename T, std::size_t N>
-    bool operator == (const CxArray<T, N> &x, const CxArray<T, N> &y) {
+    bool_t operator == (const CxArray<T, N> &x, const CxArray<T, N> &y) {
         return std::equal(x.begin(), x.end(), y.begin());
     }
     template<typename T, std::size_t N>
-    bool operator< (const CxArray<T, N> &x, const CxArray<T, N> &y) {
+    bool_t operator< (const CxArray<T, N> &x, const CxArray<T, N> &y) {
         return std::lexicographical_compare(x.begin(),x.end(),y.begin(),y.end());
     }
     template<typename T, std::size_t N>
-    bool operator != (const CxArray<T, N> &x, const CxArray<T, N> &y) {
+    bool_t operator != (const CxArray<T, N> &x, const CxArray<T, N> &y) {
         return !(x == y);
     }
     template<typename T, std::size_t N>
-    bool operator > (const CxArray<T, N> &x, const CxArray<T, N> &y) {
+    bool_t operator > (const CxArray<T, N> &x, const CxArray<T, N> &y) {
         return (y < x);
     }
     template<typename T, std::size_t N>
-    bool operator <= (const CxArray<T, N> &x, const CxArray<T, N> &y) {
+    bool_t operator <= (const CxArray<T, N> &x, const CxArray<T, N> &y) {
         return !(y < x);
     }
     template<typename T, std::size_t N>
-    bool operator >= (const CxArray<T, N> &x, const CxArray<T, N> &y) {
+    bool_t operator >= (const CxArray<T, N> &x, const CxArray<T, N> &y) {
         return !(x < y);
     }
 

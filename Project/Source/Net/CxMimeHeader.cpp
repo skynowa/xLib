@@ -150,7 +150,7 @@ CxMimeHeader::count() {
 //------------------------------------------------------------------------------
 //TODO:  bLoadFromFile
 #if xTODO
-    bool
+    bool_t
     CxMimeHeader::bLoadFromFile(const std::tstring_t &csFilePath) {
      xTEST_EQ(false, csFilePath.empty(),                 false);
      xTEST_EQ(true, CxFile::isExists(csFilePath), false);

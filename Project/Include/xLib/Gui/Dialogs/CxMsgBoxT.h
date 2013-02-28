@@ -33,12 +33,12 @@ public:
 #if xOS_ENV_WIN
     template <typename TextT, typename TitleT>
     static ExModalResult show    (const HWND &chWnd, const TextT &cText, const TitleT &cTitle,
-                                  const uint_t &cuiType) xWARN_UNUSED_RV;
+                                  cuint_t &cuiType) xWARN_UNUSED_RV;
         ///< message box has parent window, with custom text, custom title, custom type
 #endif
 
     template <typename TextT, typename TitleT>
-    static ExModalResult show    (const TextT &cText, const TitleT &cTitle, const uint_t &cuiType) xWARN_UNUSED_RV;
+    static ExModalResult show    (const TextT &cText, const TitleT &cTitle, cuint_t &cuiType) xWARN_UNUSED_RV;
         ///< message box with custom text, custom title, custom type
 
     template <typename TextT, typename TitleT>

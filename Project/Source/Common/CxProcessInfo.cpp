@@ -56,7 +56,7 @@ CxProcessInfo::currentIds(
 
         // skip non-numeric entries
         xFOREACH_CONST(std::vec_tstring_t, it, a_vsDirPathes) {
-            int iPid = 0;
+            int_t iPid = 0;
             {
                 std::tstring_t sDirName = CxPath(*it).fileName();
 
@@ -67,10 +67,10 @@ CxProcessInfo::currentIds(
             vidRv.push_back( static_cast<CxProcess::id_t>( iPid ));
         }
     #elif xOS_FREEBSD
-        int    aiMib[3]   = {CTL_KERN, KERN_PROC, KERN_PROC_ALL};
+        int_t    aiMib[3]   = {CTL_KERN, KERN_PROC, KERN_PROC_ALL};
         size_t uiBuffSize = 0U;
 
-        int iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), NULL, &uiBuffSize, NULL, 0U);
+        int_t iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), NULL, &uiBuffSize, NULL, 0U);
         xTEST_DIFF(- 1, iRv);
 
         // allocate memory and populate info in the  processes structure
@@ -207,10 +207,10 @@ CxProcessInfo::exeName(
     #if   xOS_LINUX
         const std::tstring_t csProcFile = CxString::format(xT("/proc/%ld/exe"), a_cidId);
 
-        bool bRv = CxFile::isExists(csProcFile);
+        bool_t bRv = CxFile::isExists(csProcFile);
         xCHECK_RET(false == bRv, std::tstring_t());
 
-        int iReaded = - 1;
+        int_t iReaded = - 1;
         sRv.resize(xPATH_MAX);
 
         xFOREVER {
@@ -225,12 +225,12 @@ CxProcessInfo::exeName(
         sRv.resize(iReaded);
     #elif xOS_FREEBSD
         #if defined(KERN_PROC_PATHNAME)
-            int aiMib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, a_cidId};
+            int_t aiMib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, a_cidId};
 
             tchar_t szBuff[PATH_MAX + 1] = {0};
             size_t  uiBuffSize           = sizeof(szBuff) - 1;
 
-            int iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), szBuff, &uiBuffSize, NULL, 0U);
+            int_t iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), szBuff, &uiBuffSize, NULL, 0U);
             xTEST_DIFF(- 1, iRv);
 
             sRv.assign(szBuff);
@@ -324,7 +324,7 @@ CxProcessInfo::commandLine(
 
             dlDll.load(xT("ntdll.dll"));
 
-            bool bRv = dlDll.isProcExists(xT("NtQueryInformationProcess"));
+            bool_t bRv = dlDll.isProcExists(xT("NtQueryInformationProcess"));
             xTEST_EQ(true, bRv);
 
             Dll_NtQueryInformationProcess_t
@@ -406,8 +406,8 @@ CxProcessInfo::commandLine(
 
         sRv = vsProcFile.at(0);
     #elif xOS_FREEBSD
-        int iRv      = - 1;
-        int aiMib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_ARGS, a_cidId};
+        int_t iRv      = - 1;
+        int_t aiMib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_ARGS, a_cidId};
 
         std::string sBuff;
         size_t      uiBuffSize = 0;

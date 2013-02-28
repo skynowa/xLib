@@ -23,7 +23,7 @@ CxTest_CxPath::~CxTest_CxPath() {
 /* virtual */
 void
 CxTest_CxPath::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxPath::exe", cullCaseLoops)
@@ -431,7 +431,7 @@ CxTest_CxPath::unit(
     {
         struct SData {
             std::tstring_t sFileName;
-            bool           bIsValid;
+            bool_t           bIsValid;
         };
 
     #if   xOS_ENV_WIN
@@ -555,8 +555,8 @@ CxTest_CxPath::unit(
     #endif
 
         for (size_t i = 0; i < xARRAY_SIZE2(cdData); ++ i) {
-            bool bRv1 = CxPath::isNameValid(cdData[i].sFileName);
-            bool bRv2 = cdData[i].bIsValid;
+            bool_t bRv1 = CxPath::isNameValid(cdData[i].sFileName);
+            bool_t bRv2 = cdData[i].bIsValid;
             xTEST_EQ(bRv1, bRv2);
         }
 

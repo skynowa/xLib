@@ -21,7 +21,7 @@ CxTest_CxTracer::~CxTest_CxTracer() {
 /* virtual */
 void
 CxTest_CxTracer::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxTracer::operator <<", cullCaseLoops)
@@ -61,8 +61,8 @@ CxTest_CxTracer::unit(
     #if xTEST_IGNORE
         std::tstring_t sData  = xT("data1");
         ulong_t        ulData = 777UL;
-        double         aData  = 4.4;
-        const tchar_t *szData = xT("data2");
+        double_t         aData  = 4.4;
+        ctchar_t *szData = xT("data2");
 
         CxTracer() << xT("\t") 
                    << xTRACE_VAR(sData) 

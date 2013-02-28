@@ -20,7 +20,7 @@ public:
     virtual      ~CxTest_CxStdError();
         ///< destructor
 
-    virtual void  unit            (const ulonglong_t &cullCaseLoops);
+    virtual void  unit            (culonglong_t &cullCaseLoops);
         ///< unit test
 };
 //------------------------------------------------------------------------------

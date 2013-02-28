@@ -27,7 +27,7 @@ CxHandleT<hvTag>::CxHandleT() :
 //------------------------------------------------------------------------------
 template<ExHandleValue hvTag>
 CxHandleT<hvTag>::CxHandleT(
-    const native_handle_t &a_chHandle
+    cnative_handle_t &a_chHandle
 ) :
     _m_hHandle(a_chHandle)
 {
@@ -61,7 +61,7 @@ CxHandleT<hvTag>::~CxHandleT() {
 template<ExHandleValue hvTag>
 CxHandleT<hvTag> &
 CxHandleT<hvTag>::operator = (
-    const native_handle_t &a_chHandle
+    cnative_handle_t &a_chHandle
 )
 {
     ////xTEST_EQ(false, isValid(), *this);
@@ -106,7 +106,7 @@ CxHandleT<hvTag>::get() const {
 template<ExHandleValue hvTag>
 void
 CxHandleT<hvTag>::set(
-    const native_handle_t &a_chHandle
+    cnative_handle_t &a_chHandle
 )
 {
     xTEST_NA(a_chHandle);
@@ -145,23 +145,23 @@ CxHandleT<hvTag>::duplicate() const {
 }
 //------------------------------------------------------------------------------
 template<ExHandleValue hvTag>
-bool
+bool_t
 CxHandleT<hvTag>::isValid() const {
-    bool bRv = false;
+    bool_t bRv = false;
 
 #if   xOS_ENV_WIN
-    bool bCond1 = (reinterpret_cast<native_handle_t>(0xCDCDCDCD) != _m_hHandle);   // created but not initialised
-    bool bCond2 = (reinterpret_cast<native_handle_t>(0xCCCCCCCC) != _m_hHandle);   // uninitialized locals in VC6 when you compile w/ /GZ
-    bool bCond3 = (reinterpret_cast<native_handle_t>(0xBAADF00D) != _m_hHandle);   // indicate an uninitialized variable
-    bool bCond4 = (reinterpret_cast<native_handle_t>(0xFDFDFDFD) != _m_hHandle);   // no man's land (normally outside of a process)
-    bool bCond5 = (reinterpret_cast<native_handle_t>(0xFEEEFEEE) != _m_hHandle);   // freed memory set by NT's heap manager
-    bool bCond6 = (reinterpret_cast<native_handle_t>(0xDDDDDDDD) != _m_hHandle);   // deleted
-    bool bCond7 = (error_value_t::get()                          != _m_hHandle);   // compare with error handle value
+    bool_t bCond1 = (reinterpret_cast<native_handle_t>(0xCDCDCDCD) != _m_hHandle);   // created but not initialised
+    bool_t bCond2 = (reinterpret_cast<native_handle_t>(0xCCCCCCCC) != _m_hHandle);   // uninitialized locals in VC6 when you compile w/ /GZ
+    bool_t bCond3 = (reinterpret_cast<native_handle_t>(0xBAADF00D) != _m_hHandle);   // indicate an uninitialized variable
+    bool_t bCond4 = (reinterpret_cast<native_handle_t>(0xFDFDFDFD) != _m_hHandle);   // no man's land (normally outside of a process)
+    bool_t bCond5 = (reinterpret_cast<native_handle_t>(0xFEEEFEEE) != _m_hHandle);   // freed memory set by NT's heap manager
+    bool_t bCond6 = (reinterpret_cast<native_handle_t>(0xDDDDDDDD) != _m_hHandle);   // deleted
+    bool_t bCond7 = (error_value_t::get()                          != _m_hHandle);   // compare with error handle value
 
     bRv = bCond1 && bCond2 && bCond3 && bCond4 && bCond5 && bCond6 && bCond7;
 #elif xOS_ENV_UNIX
-    bool bCond1 = (error_value_t::get()                          != _m_hHandle);   // compare with error handle value
-    bool bCond2 = (error_value_t::get()                          <  _m_hHandle);   // handle value is negative
+    bool_t bCond1 = (error_value_t::get()                          != _m_hHandle);   // compare with error handle value
+    bool_t bCond2 = (error_value_t::get()                          <  _m_hHandle);   // handle value is negative
 
     bRv = bCond1 && bCond2;
 #endif
@@ -172,7 +172,7 @@ CxHandleT<hvTag>::isValid() const {
 template<ExHandleValue hvTag>
 void
 CxHandleT<hvTag>::attach(
-    const native_handle_t &a_chHandle
+    cnative_handle_t &a_chHandle
 )
 {
     xTEST_NA(a_chHandle);
@@ -204,7 +204,7 @@ CxHandleT<hvTag>::close() {
 
     ////xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
-    int iRv = ::close(_m_hHandle);
+    int_t iRv = ::close(_m_hHandle);
     xUNUSED(iRv);
     ////xTEST_DIFF(- 1, iRv);
 #endif
@@ -237,8 +237,8 @@ CxHandleT<hvTag>::info() const {
 template<ExHandleValue hvTag>
 void
 CxHandleT<hvTag>::setInfo(
-    const ulong_t &a_culMask,
-    const ulong_t &a_culFlags
+    culong_t &a_culMask,
+    culong_t &a_culFlags
 )
 {
     ////xTEST_EQ(true, isValid(), false);

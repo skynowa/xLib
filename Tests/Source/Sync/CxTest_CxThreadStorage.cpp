@@ -19,18 +19,18 @@ CxTest_CxThreadStorage::~CxTest_CxThreadStorage() {
 /* virtual */
 void
 CxTest_CxThreadStorage::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxThreadStorage::setValue CxThreadStorage::value", cullCaseLoops)
     {
-        const ulong_t caulData[] = {0, 1, 2, 777};
+        culong_t caulData[] = {0, 1, 2, 777};
 
 
         for (size_t i = 0; i < xARRAY_SIZE(caulData); ++ i) {
             CxThreadStorage tlsTls;
 
-            const ulong_t culData = caulData[i];
+            culong_t culData = caulData[i];
 
             ulong_t *pulValue = new ulong_t(culData);
 
