@@ -40,9 +40,9 @@ public:
     static void serviceByPort   (const short_t &csiPort, const std::tstring_t &csProtocolName, std::tstring_t *psName, std::vec_tstring_t *pvsAliases, short_t *psiPort, std::tstring_t *psProtocolName);
         ///< get service by port
 
-    static bool isOnLan         (const ulong_t &culIp) xWARN_UNUSED_RESULT;
+    static bool isOnLan         (const ulong_t &culIp) xWARN_UNUSED_RV;
         ///< return true if IP is on this LAN
-    static bool isBroadcast     (const ulong_t &culIp) xWARN_UNUSED_RESULT;
+    static bool isBroadcast     (const ulong_t &culIp) xWARN_UNUSED_RV;
         ///< return true if IP is a (directed) IP-broadcast address
 
 private:

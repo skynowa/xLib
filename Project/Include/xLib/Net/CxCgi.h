@@ -36,70 +36,70 @@ public:
     virtual             ~CxCgiEnvironment   ();
         ///< destructor
 
-    const std::tstring_t &authType          () const xWARN_UNUSED_RESULT;
+    const std::tstring_t &authType          () const xWARN_UNUSED_RV;
         ///< get auth type
-    const std::tstring_t &contentLength     () const xWARN_UNUSED_RESULT;
+    const std::tstring_t &contentLength     () const xWARN_UNUSED_RV;
         ///< get content length
-    const std::tstring_t &contentType       () const xWARN_UNUSED_RESULT;
+    const std::tstring_t &contentType       () const xWARN_UNUSED_RV;
         ///< get content type
-    const std::tstring_t &documentRoot      () const xWARN_UNUSED_RESULT;
+    const std::tstring_t &documentRoot      () const xWARN_UNUSED_RV;
         ///< get document root
-    const std::tstring_t &gatewayInterface  () const xWARN_UNUSED_RESULT;
+    const std::tstring_t &gatewayInterface  () const xWARN_UNUSED_RV;
         ///< get gateway interface
-    const std::tstring_t &httpAccept        () const xWARN_UNUSED_RESULT;
+    const std::tstring_t &httpAccept        () const xWARN_UNUSED_RV;
         ///< get HTTP accept
-    const std::tstring_t &httpCookie        () const xWARN_UNUSED_RESULT;
+    const std::tstring_t &httpCookie        () const xWARN_UNUSED_RV;
         ///< get HTTP cookie
-    const std::tstring_t &httpPragma        () const xWARN_UNUSED_RESULT;
+    const std::tstring_t &httpPragma        () const xWARN_UNUSED_RV;
         ///< get HTTP pragma
-    const std::tstring_t &httpUserAgent     () const xWARN_UNUSED_RESULT;
+    const std::tstring_t &httpUserAgent     () const xWARN_UNUSED_RV;
         ///< get HTTP user agent
-    const std::tstring_t &pathInfo          () const xWARN_UNUSED_RESULT;
+    const std::tstring_t &pathInfo          () const xWARN_UNUSED_RV;
         ///< get path info
-    const std::tstring_t &pathTranslated    () const xWARN_UNUSED_RESULT;
+    const std::tstring_t &pathTranslated    () const xWARN_UNUSED_RV;
         ///< get path translated
-    const std::tstring_t &queryString       () const xWARN_UNUSED_RESULT;
+    const std::tstring_t &queryString       () const xWARN_UNUSED_RV;
         ///< get query string
-    const std::tstring_t &remoteAddr        () const xWARN_UNUSED_RESULT;
+    const std::tstring_t &remoteAddr        () const xWARN_UNUSED_RV;
         ///< get remote address
-    const std::tstring_t &remoteHost        () const xWARN_UNUSED_RESULT;
+    const std::tstring_t &remoteHost        () const xWARN_UNUSED_RV;
         ///< get remote host
-    const std::tstring_t &remoteIdent       () const xWARN_UNUSED_RESULT;
+    const std::tstring_t &remoteIdent       () const xWARN_UNUSED_RV;
         ///< et remote ident
-    const std::tstring_t &remotePort        () const xWARN_UNUSED_RESULT;
+    const std::tstring_t &remotePort        () const xWARN_UNUSED_RV;
         ///< get remote port
-    const std::tstring_t &remoteUser        () const xWARN_UNUSED_RESULT;
+    const std::tstring_t &remoteUser        () const xWARN_UNUSED_RV;
         ///< get remote user
-    const std::tstring_t &requestMethod     () const xWARN_UNUSED_RESULT;
+    const std::tstring_t &requestMethod     () const xWARN_UNUSED_RV;
         ///< get request method
-    const std::tstring_t &requestUri        () const xWARN_UNUSED_RESULT;
+    const std::tstring_t &requestUri        () const xWARN_UNUSED_RV;
         ///< get request URI
-    const std::tstring_t &scriptFilename    () const xWARN_UNUSED_RESULT;
+    const std::tstring_t &scriptFilename    () const xWARN_UNUSED_RV;
         ///< get script file name
-    const std::tstring_t &scriptName        () const xWARN_UNUSED_RESULT;
+    const std::tstring_t &scriptName        () const xWARN_UNUSED_RV;
         ///< get script name
-    const std::tstring_t &serverAdmin       () const xWARN_UNUSED_RESULT;
+    const std::tstring_t &serverAdmin       () const xWARN_UNUSED_RV;
         ///< get server admin
-    const std::tstring_t &serverName        () const xWARN_UNUSED_RESULT;
+    const std::tstring_t &serverName        () const xWARN_UNUSED_RV;
         ///< get server name
-    const std::tstring_t &serverPort        () const xWARN_UNUSED_RESULT;
+    const std::tstring_t &serverPort        () const xWARN_UNUSED_RV;
         ///< get server port
-    const std::tstring_t &serverProtocol    () const xWARN_UNUSED_RESULT;
+    const std::tstring_t &serverProtocol    () const xWARN_UNUSED_RV;
         ///< get server protocol
-    const std::tstring_t &serverSoftware    () const xWARN_UNUSED_RESULT;
+    const std::tstring_t &serverSoftware    () const xWARN_UNUSED_RV;
         ///< get server software
-    const std::tstring_t &httpReferer       () const xWARN_UNUSED_RESULT;
+    const std::tstring_t &httpReferer       () const xWARN_UNUSED_RV;
         ///< get HTTP referer
-    const std::tstring_t &httpHost          () const xWARN_UNUSED_RESULT;
+    const std::tstring_t &httpHost          () const xWARN_UNUSED_RV;
         ///< get HTTP host
-    const std::tstring_t &httpAcceptLanguage() const xWARN_UNUSED_RESULT;
+    const std::tstring_t &httpAcceptLanguage() const xWARN_UNUSED_RV;
         ///< get HTTP accept language
-    const std::tstring_t &countryCode       () const xWARN_UNUSED_RESULT;
+    const std::tstring_t &countryCode       () const xWARN_UNUSED_RV;
         ///< get country code
 
-    ExRequestType        requestType        () const xWARN_UNUSED_RESULT;
+    ExRequestType        requestType        () const xWARN_UNUSED_RV;
         ///< get request type
-    std::tstring_t       dump               () const xWARN_UNUSED_RESULT;
+    std::tstring_t       dump               () const xWARN_UNUSED_RV;
         ///< get dump
 
 private:
@@ -157,9 +157,9 @@ public:
     virtual        ~CxCgiCookies();
         ///< destructor
 
-    std::tstring_t  dump       () const xWARN_UNUSED_RESULT;
+    std::tstring_t  dump       () const xWARN_UNUSED_RV;
         ///< get dump
-    std::tstring_t  operator[]  (const std::tstring_t &csCookieName) xWARN_UNUSED_RESULT;
+    std::tstring_t  operator[]  (const std::tstring_t &csCookieName) xWARN_UNUSED_RV;
         ///< no case searching cookie value by name from list
 
 private:
@@ -182,9 +182,9 @@ public:
     virtual              ~CxCgiFormData();
         ///< destructor
 
-    const std::tstring_t &rawData     () const xWARN_UNUSED_RESULT;
+    const std::tstring_t &rawData     () const xWARN_UNUSED_RV;
         ///< get raw data
-    std::tstring_t        dump        () const xWARN_UNUSED_RESULT;
+    std::tstring_t        dump        () const xWARN_UNUSED_RV;
         ///< get dump
 
 private:
@@ -220,7 +220,7 @@ public:
     virtual                ~CxCgi          ();
         ///< destructor
 
-    std::tstring_t          dump          () const xWARN_UNUSED_RESULT;
+    std::tstring_t          dump          () const xWARN_UNUSED_RV;
         ///< get dump
     static void             redirect      (const std::tstring_t &csUrl);
         ///< redirect to URL
@@ -236,10 +236,10 @@ public:
 private:
     //--------------------------------------------------
     //encoding, decoding
-    int                     cgl_parsecgibuf(/*cgllist *cdata, */char *query) xWARN_UNUSED_RESULT;
+    int                     cgl_parsecgibuf(/*cgllist *cdata, */char *query) xWARN_UNUSED_RV;
         ///< cgl_parsecgibuf
 
-    int                     cgl_urlencode  (char *s, FILE *fw) xWARN_UNUSED_RESULT;
+    int                     cgl_urlencode  (char *s, FILE *fw) xWARN_UNUSED_RV;
         ///< cgl_urlencode
     void                    cgl_urldecode  (char *s);
         ///< cgl_urldecode
@@ -249,7 +249,7 @@ private:
     void                    urlUnescape   (char *s);
         ///< URL unescape
 
-    char                    cgl_hex2char   (char *what) xWARN_UNUSED_RESULT;
+    char                    cgl_hex2char   (char *what) xWARN_UNUSED_RV;
         ///< hex to char
 };
 

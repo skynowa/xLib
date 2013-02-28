@@ -27,7 +27,7 @@ public:
 
     void                 get         (std::vector<std::vec_tstring_t> *pvvsStack);
         ///< get stack trace
-    std::tstring_t       toString    () xWARN_UNUSED_RESULT;
+    std::tstring_t       toString    () xWARN_UNUSED_RV;
         ///< get stack trace with format output
 
 private:
@@ -37,7 +37,7 @@ private:
     const bool           _m_cbIsWrapFilePathes;
     const bool           _m_cbIsFuncParamsDisable;
 
-    std::tstring_t       _format     (std::vector<std::vec_tstring_t> *pvvsStack) xWARN_UNUSED_RESULT;
+    std::tstring_t       _format     (std::vector<std::vec_tstring_t> *pvvsStack) xWARN_UNUSED_RV;
         ///< format stack trace
 #if xOS_ENV_UNIX
     static void          _addr2Line  (const void *pvSymbolAddress, std::tstring_t *psFilePath,

@@ -22,16 +22,16 @@ public:
     virtual               ~CxDir     ();
         ///< destructor
 
-    const std::tstring_t & dirPath   () const xWARN_UNUSED_RESULT;
+    const std::tstring_t & dirPath   () const xWARN_UNUSED_RV;
         ///< directory path
 
-    bool                   isExists  () xWARN_UNUSED_RESULT;
+    bool                   isExists  () xWARN_UNUSED_RV;
         ///< check for existence
-    bool                   isEmpty   (const std::tstring_t &csPattern = CxConst::xMASK_ALL) xWARN_UNUSED_RESULT;
+    bool                   isEmpty   (const std::tstring_t &csPattern = CxConst::xMASK_ALL) xWARN_UNUSED_RV;
         ///< is empty
-    bool                   isRoot    () xWARN_UNUSED_RESULT;
+    bool                   isRoot    () xWARN_UNUSED_RV;
         ///< is root
-    bool                   isDir     () xWARN_UNUSED_RESULT;
+    bool                   isDir     () xWARN_UNUSED_RV;
         ///< is dir
     void                   create    ();
         ///< create
@@ -59,11 +59,11 @@ public:
         ///< search subdirectories
 
     // static
-    static std::tstring_t  current   () xWARN_UNUSED_RESULT;
+    static std::tstring_t  current   () xWARN_UNUSED_RV;
         ///< get current
     static void            setCurrent(const std::tstring_t &csDirPath);
         ///< set current
-    static std::tstring_t  temp      () xWARN_UNUSED_RESULT;
+    static std::tstring_t  temp      () xWARN_UNUSED_RV;
         ///< get path to system var %Temp%
 
 private:

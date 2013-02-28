@@ -46,27 +46,27 @@ public:
 
     void            create    (const std::tstring_t &csFilePath, const tchar_t *pcszParams, ...);
         ///< execute a file
-    ExWaitResult    wait      (const ulong_t &culTimeout) xWARN_UNUSED_RESULT;
+    ExWaitResult    wait      (const ulong_t &culTimeout) xWARN_UNUSED_RV;
         ///< wait for termination
     void            kill      (const ulong_t &culTimeout);
         ///< kills the calling process and all of its threads
 
-    handle_t        handle    () const xWARN_UNUSED_RESULT;
+    handle_t        handle    () const xWARN_UNUSED_RV;
         ///< get handle
-    id_t            id        () const xWARN_UNUSED_RESULT;
+    id_t            id        () const xWARN_UNUSED_RV;
         ///< get ID
-    bool            isCurrent () const xWARN_UNUSED_RESULT;
+    bool            isCurrent () const xWARN_UNUSED_RV;
         ///< is current
-    ulong_t         exitStatus() const xWARN_UNUSED_RESULT;
+    ulong_t         exitStatus() const xWARN_UNUSED_RV;
         ///< get termination status
 
-    static id_t     idByHandle(const handle_t &chHandle) xWARN_UNUSED_RESULT;
+    static id_t     idByHandle(const handle_t &chHandle) xWARN_UNUSED_RV;
         ///< get ID by handle
-    static handle_t handleById(const id_t &culId) xWARN_UNUSED_RESULT;
+    static handle_t handleById(const id_t &culId) xWARN_UNUSED_RV;
         ///< get handle by ID
-    static id_t     idByName  (const std::tstring_t &csProcessName) xWARN_UNUSED_RESULT;
+    static id_t     idByName  (const std::tstring_t &csProcessName) xWARN_UNUSED_RV;
         ///< get ID by name
-    static bool     isRunning (const id_t &culId) xWARN_UNUSED_RESULT;
+    static bool     isRunning (const id_t &culId) xWARN_UNUSED_RV;
         ///< is process running by name (with extension)
 
 private:

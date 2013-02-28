@@ -185,9 +185,9 @@ public:
 
     void           create           (const ExAddressFamily &cafFamily, const ExType &ctpType, const ExProtocol &cptProtocol);
         ///< creates a socket that is bound to a specific transport service provider
-    socket_t       handle           () const xWARN_UNUSED_RESULT;
+    socket_t       handle           () const xWARN_UNUSED_RV;
         ///< get socket
-    bool           isValid          () const xWARN_UNUSED_RESULT;
+    bool           isValid          () const xWARN_UNUSED_RV;
         ///< checking for validness
     void           close            ();
         ///< close
@@ -200,21 +200,21 @@ public:
 
     //void *, std::tstring_t, std::ustring_t
 
-    int            send             (const tchar_t *pcszBuff, const int &ciBuffSize, const int &ciFlags) xWARN_UNUSED_RESULT;
+    int            send             (const tchar_t *pcszBuff, const int &ciBuffSize, const int &ciFlags) xWARN_UNUSED_RV;
         ///< send data
     void           sendAll          (const std::tstring_t &csBuff, const int &ciFlags);
         ///< send data by blocks
 
-    int            recv             (tchar_t *pszBuff,  const int &ciBuffSize, const int &ciFlags) xWARN_UNUSED_RESULT;
+    int            recv             (tchar_t *pszBuff,  const int &ciBuffSize, const int &ciFlags) xWARN_UNUSED_RV;
         ///< receive data
-    std::tstring_t recvAll          (const int &ciFlags) xWARN_UNUSED_RESULT;
+    std::tstring_t recvAll          (const int &ciFlags) xWARN_UNUSED_RV;
         ///< receive data
-    std::tstring_t recvAll          (const int &ciFlags, const std::tstring_t &csDelimiter) xWARN_UNUSED_RESULT;
+    std::tstring_t recvAll          (const int &ciFlags, const std::tstring_t &csDelimiter) xWARN_UNUSED_RV;
         ///< receive data to delimiter, includes it
 
-    int            sendBytes        (char *pszBuff, const int &ciMessageLength) xWARN_UNUSED_RESULT;
+    int            sendBytes        (char *pszBuff, const int &ciMessageLength) xWARN_UNUSED_RV;
         ///< send bytes
-    int            receiveBytes     (char *pszBuff, const int &ciStillToReceive) xWARN_UNUSED_RESULT;
+    int            receiveBytes     (char *pszBuff, const int &ciStillToReceive) xWARN_UNUSED_RV;
         ///< receive bytes
 
 
@@ -235,9 +235,9 @@ public:
 
     ////getsockopt
     static int     select           (int nfds, fd_set *readfds, fd_set *writefds,
-                                     fd_set *exceptfds, timeval *tvTimeout) xWARN_UNUSED_RESULT;
+                                     fd_set *exceptfds, timeval *tvTimeout) xWARN_UNUSED_RV;
         ///< determines the status of one or more sockets, waiting if necessary, to perform synchronous I/O
-    static int     lastError        () xWARN_UNUSED_RESULT;
+    static int     lastError        () xWARN_UNUSED_RV;
         ///< get error status for the last operation that failed
 
 protected:

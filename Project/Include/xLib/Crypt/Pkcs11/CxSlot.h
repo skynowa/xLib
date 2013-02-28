@@ -38,7 +38,7 @@ public:
         ///< obtains a list of slots in the system
     void                 info        (CK_SLOT_ID slotID, CK_SLOT_INFO_PTR pInfo);
         ///< obtains information about a particular slot in the system
-    ENotification        waitForEvent(CK_FLAGS flags, CK_SLOT_ID_PTR pSlot, CK_VOID_PTR pRserved) xWARN_UNUSED_RESULT;
+    ENotification        waitForEvent(CK_FLAGS flags, CK_SLOT_ID_PTR pSlot, CK_VOID_PTR pRserved) xWARN_UNUSED_RV;
         ///< waits for a slot event (token insertion, removal, etc.) to occur
 
 private:

@@ -29,7 +29,7 @@ public:
         ///< assign pointer
 
     template <typename T, const size_t cuiArraySize>
-    static inline size_t    arraySizeT      (const T (&)[cuiArraySize]) xWARN_UNUSED_RESULT;
+    static inline size_t    arraySizeT      (const T (&)[cuiArraySize]) xWARN_UNUSED_RV;
         ///< get array size
 
     static inline void      memoryZero      (void *pPtr, const size_t &sizeBytes);
@@ -51,15 +51,15 @@ public:
         ///< close file stream (FILE *)
 
     template <typename T>
-    static inline bool      intToBoolT      (const T &valueT) xWARN_UNUSED_RESULT;
+    static inline bool      intToBoolT      (const T &valueT) xWARN_UNUSED_RV;
         ///< convert int to bool
 
     template <typename T>
-    static inline const T & maxT            (const T &cValue1T , const T &cValue2T) xWARN_UNUSED_RESULT;
+    static inline const T & maxT            (const T &cValue1T , const T &cValue2T) xWARN_UNUSED_RV;
         ///< get max value
 
     template <typename T>
-    static inline const T & minT            (const T &cValue1T , const T &cValue2T) xWARN_UNUSED_RESULT;
+    static inline const T & minT            (const T &cValue1T , const T &cValue2T) xWARN_UNUSED_RV;
         ///< get min value
 
     template <typename T>
@@ -67,26 +67,26 @@ public:
         ///< swap variables
 
     template <typename ToT, typename FromT>
-    static inline ToT       reinterpretCastT(const FromT &pPtrT) xWARN_UNUSED_RESULT;
+    static inline ToT       reinterpretCastT(const FromT &pPtrT) xWARN_UNUSED_RV;
         ///< allows any pointer to be converted into any other pointer type
 
-    static inline double    roundDouble     (const double &cdValue) xWARN_UNUSED_RESULT;
+    static inline double    roundDouble     (const double &cdValue) xWARN_UNUSED_RV;
         ///< round double value to the integer part
 
     template <typename T>
-    static inline T         roundIntT       (const double &cdValue) xWARN_UNUSED_RESULT;
+    static inline T         roundIntT       (const double &cdValue) xWARN_UNUSED_RV;
         ///< round double value to long_t
 
     template <typename T1, typename T2>
-    static inline double    safeDivT        (const T1 &cValue1T, const T2 &cValue2T) xWARN_UNUSED_RESULT;
+    static inline double    safeDivT        (const T1 &cValue1T, const T2 &cValue2T) xWARN_UNUSED_RV;
         ///< safe division
 
     template <typename T>
-    static inline T         enumIncT        (const T &valueT) xWARN_UNUSED_RESULT;
+    static inline T         enumIncT        (const T &valueT) xWARN_UNUSED_RV;
         ///< increment enumerator
 
     template <typename T>
-    static inline T         enumDecT        (const T &valueT) xWARN_UNUSED_RESULT;
+    static inline T         enumDecT        (const T &valueT) xWARN_UNUSED_RV;
         ///< decrement enumerator
 
 private:

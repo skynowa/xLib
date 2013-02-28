@@ -27,7 +27,7 @@ public:
 
     CK_FUNCTION_LIST_PTR  funcList    () const;
         ///< get pointer to dll functions list
-    static std::tstring_t errorStr    (const CK_RV culCode) xWARN_UNUSED_RESULT;
+    static std::tstring_t errorStr    (const CK_RV culCode) xWARN_UNUSED_RV;
         ///< get error string by code, SDK 4.53
 
 private:

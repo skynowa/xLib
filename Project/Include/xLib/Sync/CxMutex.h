@@ -28,13 +28,13 @@ public:
     virtual          ~CxMutex();
         ///< destructor
 
-    const handle_t &  handle () const xWARN_UNUSED_RESULT;
+    const handle_t &  handle () const xWARN_UNUSED_RV;
         ///< get handle
     void              create ();
         ///< create
     void              lock   ();
         ///< lock
-    bool              tryLock() xWARN_UNUSED_RESULT;
+    bool              tryLock() xWARN_UNUSED_RV;
         ///< try lock
     void              unlock ();
         ///< unlock

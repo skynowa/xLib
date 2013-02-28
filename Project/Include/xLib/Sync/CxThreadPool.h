@@ -45,18 +45,18 @@ public:
     void                   groupKill   (const ulong_t &culTimeout);
     void                   groupWait   (const ulong_t &culTimeout);
 
-    size_t                 maxTasks    () const xWARN_UNUSED_RESULT;
+    size_t                 maxTasks    () const xWARN_UNUSED_RV;
     void                   setMaxTasks (const size_t &cuiNum);
 
-    size_t                 numTasks    () const xWARN_UNUSED_RESULT;
+    size_t                 numTasks    () const xWARN_UNUSED_RV;
     void                   setNumTasks (const size_t &cuiNum);
 
     bool                   isEmpty     () const;
     bool                   isFull      () const;
-    size_t                 size        () const xWARN_UNUSED_RESULT;
+    size_t                 size        () const xWARN_UNUSED_RV;
 
 protected:
-    virtual uint_t         onRun       (void *pvParam) xOVERRIDE xWARN_UNUSED_RESULT;
+    virtual uint_t         onRun       (void *pvParam) xOVERRIDE xWARN_UNUSED_RV;
 
 private:
     uint_t                 _m_uiStackSize;

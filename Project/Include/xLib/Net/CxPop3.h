@@ -58,9 +58,9 @@ private:
 
     void              _command           (const std::tstring_t &csCmd, const std::tstring_t &csReplyDelimiter,
                                           std::tstring_t *psReply);
-    bool              _isError           (const std::tstring_t &csText) xWARN_UNUSED_RESULT;
-    ulong_t           _mailsSum          (const std::tstring_t &csServerAnswer) xWARN_UNUSED_RESULT;
-    ulong_t           _mailsSize         (const std::tstring_t &csServerAnswer) xWARN_UNUSED_RESULT;
+    bool              _isError           (const std::tstring_t &csText) xWARN_UNUSED_RV;
+    ulong_t           _mailsSum          (const std::tstring_t &csServerAnswer) xWARN_UNUSED_RV;
+    ulong_t           _mailsSize         (const std::tstring_t &csServerAnswer) xWARN_UNUSED_RV;
 };
 
 xNAMESPACE_END(NxLib)

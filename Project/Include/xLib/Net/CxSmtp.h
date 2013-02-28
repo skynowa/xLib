@@ -45,7 +45,7 @@ private:
 
     void           _command  (const std::tstring_t &csCmd, const std::tstring_t &csReplyDelimiter,
                               std::tstring_t &sReply);
-    bool           _isError  (const std::tstring_t &csText) xWARN_UNUSED_RESULT;
+    bool           _isError  (const std::tstring_t &csText) xWARN_UNUSED_RV;
 };
 
 xNAMESPACE_END(NxLib)

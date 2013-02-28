@@ -16,9 +16,9 @@ class CxCommandLine :
     /// command line
 {
 public:
-    static long_t         argsMax      () xWARN_UNUSED_RESULT;
+    static long_t         argsMax      () xWARN_UNUSED_RV;
         ///< get maximum length of command line arguments (in chars)
-    static std::tstring_t get          () xWARN_UNUSED_RESULT;
+    static std::tstring_t get          () xWARN_UNUSED_RV;
         ///< get command line string for the current process
     static void           args         (std::vec_tstring_t *pvsArgs);
         ///< get command line arguments

@@ -16,17 +16,17 @@ class CxCrc32 :
     /// Crc32
 {
 public:
-    static ulong_t        calc        (uchar_t *pucBuff, const ulong_t &culSize) xWARN_UNUSED_RESULT;
+    static ulong_t        calc        (uchar_t *pucBuff, const ulong_t &culSize) xWARN_UNUSED_RV;
         ///< calculate
-    static ulong_t        calcFile    (const std::tstring_t &csFilePath) xWARN_UNUSED_RESULT;
+    static ulong_t        calcFile    (const std::tstring_t &csFilePath) xWARN_UNUSED_RV;
         ///< calculate
 
-    static ulong_t        calcFast    (uchar_t *pucBuff, const ulong_t &culSize) xWARN_UNUSED_RESULT;
+    static ulong_t        calcFast    (uchar_t *pucBuff, const ulong_t &culSize) xWARN_UNUSED_RV;
         ///< fast calculate
-    static ulong_t        calcFileFast(const std::tstring_t &csFilePath) xWARN_UNUSED_RESULT;
+    static ulong_t        calcFileFast(const std::tstring_t &csFilePath) xWARN_UNUSED_RV;
         ///< fast calculate
 
-    static std::tstring_t formatHex   (const ulong_t &culCrc32) xWARN_UNUSED_RESULT;
+    static std::tstring_t formatHex   (const ulong_t &culCrc32) xWARN_UNUSED_RV;
         ///< format Crc32 like "0AADDEA0"
 
 private:

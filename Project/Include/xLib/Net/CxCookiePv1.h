@@ -26,49 +26,49 @@ public:
     void                   init       (const std::tstring_t &csRawCookie);
         ///< parsing raw cookie string pv0
 
-    const std::tstring_t & name       () const xWARN_UNUSED_RESULT;
+    const std::tstring_t & name       () const xWARN_UNUSED_RV;
         ///< get name
     void                   setName    (const std::tstring_t &csName);
         ///< set name
 
-    const std::tstring_t & value      () const xWARN_UNUSED_RESULT;
+    const std::tstring_t & value      () const xWARN_UNUSED_RV;
         ///< get value
     void                   setValue   (const std::tstring_t &csValue);
         ///< set value
 
-    const std::tstring_t & comment    () const xWARN_UNUSED_RESULT;
+    const std::tstring_t & comment    () const xWARN_UNUSED_RV;
         ///< get comment
     void                   setComment (const std::tstring_t &csComment);
         ///< set comment
 
-    const std::tstring_t & domain     () const xWARN_UNUSED_RESULT;
+    const std::tstring_t & domain     () const xWARN_UNUSED_RV;
         ///< get domain
     void                   setDomain  (const std::tstring_t &csDomain);
         ///< set domain
 
-    const std::tstring_t & path       () const xWARN_UNUSED_RESULT;
+    const std::tstring_t & path       () const xWARN_UNUSED_RV;
         ///< get path
     void                   setPath    (const std::tstring_t &csPath);
         ///< set path
 
-    longlong_t             maxAge     () const xWARN_UNUSED_RESULT;
+    longlong_t             maxAge     () const xWARN_UNUSED_RV;
         ///< get max age
     void                   setMaxAge  (const longlong_t &cliMaxAge);
         ///< set max age
 
-    bool                   secure     () const xWARN_UNUSED_RESULT;
+    bool                   secure     () const xWARN_UNUSED_RV;
         ///< get secure
     void                   setSecure  (const bool &cbFlag);
         ///< set secure
 
-    bool                   httpOnly   () const xWARN_UNUSED_RESULT;
+    bool                   httpOnly   () const xWARN_UNUSED_RV;
         ///< get http only
     void                   setHttpOnly(const bool &cbFlag);
         ///< set http only
 
-    std::tstring_t         toString   () const xWARN_UNUSED_RESULT;
+    std::tstring_t         toString   () const xWARN_UNUSED_RV;
         ///< convert to string
-    std::tstring_t         dump       () const xWARN_UNUSED_RESULT;
+    std::tstring_t         dump       () const xWARN_UNUSED_RV;
         ///< get dump
     void                   clear      ();
         ///< clear
