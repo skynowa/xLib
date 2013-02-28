@@ -122,19 +122,19 @@ public:
         ///< open
     void                   reopen       (const std::tstring_t &csFilePath, const ExOpenMode &omMode, const bool &cbIsUseBuffering);
         ///< reopen with different file or mode
-    std::FILE             *get          () const xWARN_UNUSED_RESULT;
+    std::FILE             *get          () const xWARN_UNUSED_RV;
         ///< get handle
-    const std::tstring_t & path         () const xWARN_UNUSED_RESULT;
+    const std::tstring_t & path         () const xWARN_UNUSED_RV;
         ///< get file path
     void                   attach       (std::FILE *pflFile);
         ///< attach to stream
-    std::FILE *            detach       () xWARN_UNUSED_RESULT;
+    std::FILE *            detach       () xWARN_UNUSED_RV;
         ///< detach from stream
 
     // read, write
-    size_t                 read         (void *pvBuff,        const size_t &cuiCount) const xWARN_UNUSED_RESULT;
+    size_t                 read         (void *pvBuff,        const size_t &cuiCount) const xWARN_UNUSED_RV;
         ///< read block of data
-    size_t                 write        (const void *pcvBuff, const size_t &cuiCount) const xWARN_UNUSED_RESULT;
+    size_t                 write        (const void *pcvBuff, const size_t &cuiCount) const xWARN_UNUSED_RV;
         ///< write block of data
     void                   read         (std::ustring_t *psBuff) const;
         ///< read to std::ustring_t
@@ -142,15 +142,15 @@ public:
         ///< write from std::ustring_t
     void                   read         (std::tstring_t *psBuff) const;
         ///< read to std::tstring_t
-    int                    write        (const tchar_t *pcszFormat, ...) const xWARN_UNUSED_RESULT;
+    int                    write        (const tchar_t *pcszFormat, ...) const xWARN_UNUSED_RV;
         ///< write formatted output to stream
-    int                    writeV       (const tchar_t *pcszFormat, va_list arg) const xWARN_UNUSED_RESULT;
+    int                    writeV       (const tchar_t *pcszFormat, va_list arg) const xWARN_UNUSED_RV;
         ///< write formatted variable argument list to stream
     void                   readLine     (std::tstring_t *psStr, const size_t &cuiMaxCount) const;
         ///< read string to newline or to the end of file
     void                   writeLine    (const std::tstring_t &csStr) const;
         ///< write string and end of line
-    tchar_t                readChar     () const xWARN_UNUSED_RESULT;
+    tchar_t                readChar     () const xWARN_UNUSED_RV;
         ///< get character
     void                   writeChar    (const tchar_t &ccChar) const;
         ///< write character
@@ -166,7 +166,7 @@ public:
         ///< locks or unlocks bytes of a file
     void                   setPosition  (const long_t &clOffset, const ExPointerPosition &cppPos) const;
         ///< set stream position indicator
-    long_t                 position     () const xWARN_UNUSED_RESULT;
+    long_t                 position     () const xWARN_UNUSED_RV;
         ///< get current position in stream
     void                   setVBuff     (char *pszBuff, const ExBufferingMode &cbmMode, const size_t &cuiSize) const;
         ///< change stream buffering
@@ -176,21 +176,21 @@ public:
         ///< sets the file translation mode
 #endif
 
-    longlong_t             size         () const xWARN_UNUSED_RESULT;
+    longlong_t             size         () const xWARN_UNUSED_RV;
         ///< get file size
     void                   resize       (const longlong_t &cllSize) const;
         ///< changes the file size
 
     // error handling
-    bool                   isValid      () const xWARN_UNUSED_RESULT;
+    bool                   isValid      () const xWARN_UNUSED_RV;
         ///< validating handle
-    bool                   isOpen       () const xWARN_UNUSED_RESULT;
+    bool                   isOpen       () const xWARN_UNUSED_RV;
         ///< is open
-    bool                   isEmpty      () const xWARN_UNUSED_RESULT;
+    bool                   isEmpty      () const xWARN_UNUSED_RV;
         ///< is empty
-    bool                   isEof        () const xWARN_UNUSED_RESULT;
+    bool                   isEof        () const xWARN_UNUSED_RV;
         ///< check end of file indicator
-    bool                   isError      () const xWARN_UNUSED_RESULT;
+    bool                   isError      () const xWARN_UNUSED_RV;
         ///< check error indicator
     void                   errorClear   () const;
         ///< clear error indicators
@@ -202,11 +202,11 @@ public:
         ///< close
 
     // static
-    static bool            isFile       (const std::tstring_t &csFilePath) xWARN_UNUSED_RESULT;
+    static bool            isFile       (const std::tstring_t &csFilePath) xWARN_UNUSED_RV;
         ///< check for file
-    static bool            isExists     (const std::tstring_t &csFilePath) xWARN_UNUSED_RESULT;
+    static bool            isExists     (const std::tstring_t &csFilePath) xWARN_UNUSED_RV;
         ///< check for existence
-    static std::tstring_t  isExistsEx   (const std::tstring_t &csFilePath) xWARN_UNUSED_RESULT;
+    static std::tstring_t  isExistsEx   (const std::tstring_t &csFilePath) xWARN_UNUSED_RV;
         ///< check for existence, if exists - generate new file name (file path), which not exists
     static void            access       (const std::tstring_t &csFilePath, const ExAccessMode &camMode);
         ///< determine file-access permission
@@ -228,9 +228,9 @@ public:
         ///< move
     static void            copy         (const std::tstring_t &csFilePathFrom, const std::tstring_t &csFilePathTo, const bool &cbFailIfExists);
         ///< copy
-    static longlong_t      size         (const std::tstring_t &csFilePath) xWARN_UNUSED_RESULT;
+    static longlong_t      size         (const std::tstring_t &csFilePath) xWARN_UNUSED_RV;
         ///< get size
-    static ulonglong_t     lines        (const std::tstring_t &csFilePath) xWARN_UNUSED_RESULT;
+    static ulonglong_t     lines        (const std::tstring_t &csFilePath) xWARN_UNUSED_RV;
         ///< get number of lines
     static void            time         (const std::tstring_t &csFilePath, time_t *ptmCreate, time_t *ptmAccess, time_t *ptmModified);
         ///< get time
@@ -263,11 +263,11 @@ private:
     std::FILE             *_m_pFile;      ///< file handle
     std::tstring_t         _m_sFilePath;  ///< file path
 
-    static int             _nativeHandle(std::FILE *pfFile) xWARN_UNUSED_RESULT;
+    static int             _nativeHandle(std::FILE *pfFile) xWARN_UNUSED_RV;
         ///< gets the file descriptor associated with a stream
-    static std::FILE *     _stdHandle   (int iFileHandle, const ExOpenMode &omMode) xWARN_UNUSED_RESULT;
+    static std::FILE *     _stdHandle   (int iFileHandle, const ExOpenMode &omMode) xWARN_UNUSED_RV;
         ///< get stream by handle
-    static std::tstring_t  _openMode    (const ExOpenMode &comMode) xWARN_UNUSED_RESULT;
+    static std::tstring_t  _openMode    (const ExOpenMode &comMode) xWARN_UNUSED_RV;
         ///< get open mode as string, by default use "r"
 };
 

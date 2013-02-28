@@ -31,16 +31,16 @@ public:
     virtual                 ~CxMySQLConnection();
         ///< destructor
 
-    MYSQL                   *get              () const xWARN_UNUSED_RESULT;
+    MYSQL                   *get              () const xWARN_UNUSED_RV;
         ///< get handle
-    bool                     isValid          () const xWARN_UNUSED_RESULT;
+    bool                     isValid          () const xWARN_UNUSED_RV;
         ///< validating handle
     void                     options          (const mysql_option &cmoOption, const void *cpvArg) const;
         ///< set extra connect options and affect behavior
     static bool              isExists         (const std::tstring_t &csHost, const std::tstring_t &csUser,
                                                const std::tstring_t &csPassword, const std::tstring_t &csDb,
                                                const uint_t &cuiPort, const std::tstring_t &csUnixSocket,
-                                               const ulong_t &culClientFlag) xWARN_UNUSED_RESULT;
+                                               const ulong_t &culClientFlag) xWARN_UNUSED_RV;
         ///<
     void                     connect          (const std::tstring_t &csHost, const std::tstring_t &csUser,
                                                const std::tstring_t &csPassword, const std::tstring_t &csDb,
@@ -49,15 +49,15 @@ public:
         ///< attempts to establish a connection to a MySQL database engine running on host
     void                     query            (const tchar_t *pcszSqlFormat, ...) const;
         ///< executes the SQL statement
-    uint_t                   fieldCount       () const xWARN_UNUSED_RESULT;
+    uint_t                   fieldCount       () const xWARN_UNUSED_RV;
         ///< number of columns in a result set
     void                     close            ();
         ///< closes a previously opened connection
 
     //errors
-    uint_t                   lastError        () const xWARN_UNUSED_RESULT;
+    uint_t                   lastError        () const xWARN_UNUSED_RV;
         ///< error code for the most recently invoked API function that can succeed or fail
-    std::tstring_t           lastErrorStr     () const xWARN_UNUSED_RESULT;
+    std::tstring_t           lastErrorStr     () const xWARN_UNUSED_RV;
         ///< error message for the most recently invoked API function that failed
 
 private:
@@ -79,14 +79,14 @@ public:
     virtual                 ~CxMySQLRecordset();
         ///< destructor
 
-    MYSQL_RES               *get             () const xWARN_UNUSED_RESULT;
+    MYSQL_RES               *get             () const xWARN_UNUSED_RV;
         ///< get handle
-    bool                     isValid         () const xWARN_UNUSED_RESULT;
+    bool                     isValid         () const xWARN_UNUSED_RV;
         ///< validating handle
 
-    uint_t                   fieldsNum       () const xWARN_UNUSED_RESULT;
+    uint_t                   fieldsNum       () const xWARN_UNUSED_RV;
         ///< number of columns in a result set
-    my_ulonglong             rowsNum         () const xWARN_UNUSED_RESULT;
+    my_ulonglong             rowsNum         () const xWARN_UNUSED_RV;
         ///< number of rows in the result set
     void                     fetchField      (MYSQL_FIELD *pmfField) const;
         ///< The MYSQL_FIELD structure for the current column
