@@ -706,7 +706,7 @@ CxPath::setNameValid(
         sExceptedChars.push_back(xT('\0'));
         xTEST_EQ(size_t(2), sExceptedChars.size());
 
-        std::csize_t uiPos = a_csFileName.find_first_of(sExceptedChars);
+        std::size_t uiPos = a_csFileName.find_first_of(sExceptedChars);
         bRv = (std::tstring_t::npos != uiPos);
         if (true == bRv) {
             while (std::tstring_t::npos != uiPos) {
