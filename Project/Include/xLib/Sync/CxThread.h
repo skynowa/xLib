@@ -52,13 +52,13 @@ public:
 
     volatile long_t      m_ulTag;    ///< tag
 
-                         CxThread            (const bool &cbAutoDelete);
+                         CxThread            (cbool_t &cbAutoDelete);
         ///< constructor
     virtual             ~CxThread            () /* BUG: = 0*/;
         ///< destructor
 
     // actions
-    void                 create              (const bool &cbIsPaused, const uint_t &cuiStackSize, void *pvParam);
+    void                 create              (cbool_t &cbIsPaused, cuint_t &cuiStackSize, void *pvParam);
         ///< start
     void                 resume              ();
         ///< resume
@@ -66,19 +66,19 @@ public:
         ///< pause
     void                 exit                ();
         ///< exit (set flag "exit")
-    void                 kill                (const ulong_t &culTimeout);
+    void                 kill                (culong_t &culTimeout);
         ///< kill
-    void                 wait                (const ulong_t &culTimeout) const;
+    void                 wait                (culong_t &culTimeout) const;
         ///< wait
 
     // flags
-    bool                 isCreated           () const xWARN_UNUSED_RV;
+    bool_t                 isCreated           () const xWARN_UNUSED_RV;
         ///< is created
-    bool                 isRunning           () const xWARN_UNUSED_RV;
+    bool_t                 isRunning           () const xWARN_UNUSED_RV;
         ///< is running
-    bool                 isPaused            () xWARN_UNUSED_RV;
+    bool_t                 isPaused            () xWARN_UNUSED_RV;
         ///< is paused
-    bool                 isExited            () xWARN_UNUSED_RV;
+    bool_t                 isExited            () xWARN_UNUSED_RV;
         ///< is exited (is set flag "exit")
 
 #if   xOS_ENV_WIN
@@ -89,7 +89,7 @@ public:
         ///< send message from thread to window
     void                 postThreadMessage   (uint_t uiMsg, uint_t uiParam1, long_t liParam2) const;
         ///< post message from thread to thread
-    bool                 tryPostThreadMessage(uint_t uiMsg, uint_t uiParam1, long_t liParam2, ulong_t ulAttemps, ulong_t ulAttempTimeout) const xWARN_UNUSED_RV;
+    bool_t                 tryPostThreadMessage(uint_t uiMsg, uint_t uiParam1, long_t liParam2, ulong_t ulAttemps, ulong_t ulAttempTimeout) const xWARN_UNUSED_RV;
         ///< try post message from thread to thread
     void                 messageWaitQueue    (uint_t uiMsg, uint_t *puiParam1, long_t *pliParam2) const;
         ///< waiting for message with params from other thread
@@ -108,15 +108,15 @@ public:
         ///< increase priority on one level
     void                 priorityDown        () const;
         ///< decrease priority on one level
-    bool                 isPriorityBoost     () const xWARN_UNUSED_RV;
+    bool_t                 isPriorityBoost     () const xWARN_UNUSED_RV;
         ///< get priority boost control state
-    void                 setPriorityBoost    (const bool &cbIsEnabled) const;
+    void                 setPriorityBoost    (cbool_t &cbIsEnabled) const;
         ///< disables or enables the ability of the system to temporarily boost the priority of a thread
 
     // CPU
-    void                 setCpuAffinity      (const int &ciProcNum) const;
+    void                 setCpuAffinity      (cint_t &ciProcNum) const;
         ///< set processor affinity
-    void                 setCpuIdeal         (const ulong_t &culIdealCpu) const;
+    void                 setCpuIdeal         (culong_t &culIdealCpu) const;
         ///< sets preferred processor for a thread
     ulong_t              cpuIdeal            () const xWARN_UNUSED_RV;
         ///< get current ideal processor without changing it
@@ -128,7 +128,7 @@ public:
         ///< get handle
     id_t                 id                  () const xWARN_UNUSED_RV;
         ///< get ID
-    bool                 isCurrent           () const xWARN_UNUSED_RV;
+    bool_t                 isCurrent           () const xWARN_UNUSED_RV;
         ///< is current
     ulong_t              exitStatus          () const xWARN_UNUSED_RV;
         ///< get termination status
@@ -136,7 +136,7 @@ public:
         ///< set name your threads in the debugger thread list
 
     // static
-    static handle_t      open                (const ulong_t &culAccess, const bool &cbInheritHandle, const ulong_t &culId) xWARN_UNUSED_RV;
+    static handle_t      open                (culong_t &culAccess, cbool_t &cbInheritHandle, culong_t &culId) xWARN_UNUSED_RV;
         ///< opens an existing thread object
 
 protected:
@@ -146,13 +146,13 @@ protected:
     //--virtual void    vOnEnter              ();
     //--virtual void    vOnExit               ();
 
-    bool                 isTimeToExit        () xWARN_UNUSED_RV;
+    bool_t                 isTimeToExit        () xWARN_UNUSED_RV;
         ///< is need to exit from work thread function
 
 private:
     // constants
-    static const ulong_t _ms_culStillActiveTimeout = 2UL;    ///< still active timeout (msec)
-    static const ulong_t _ms_culExitTimeout        = 5000UL; ///< exit timeout (msec)
+    static culong_t _ms_culStillActiveTimeout = 2UL;    ///< still active timeout (msec)
+    static culong_t _ms_culExitTimeout        = 5000UL; ///< exit timeout (msec)
 
     // thread data
 #if   xOS_ENV_WIN
@@ -164,14 +164,14 @@ private:
     id_t                 _m_ulId;                    ///< ID
     uint_t               _m_uiExitStatus;            ///< exit code
     void                *_m_pvParam;                 ///< param for job function
-    const bool           _m_cbIsAutoDelete;          ///< is auto delete thread object
+    cbool_t           _m_cbIsAutoDelete;          ///< is auto delete thread object
 
     // flags
     //TODO: make struct SFlags
-    bool                 _m_bIsCreated;              ///< is created
-    bool                 _m_bIsRunning;              ///< is running
-    /*bool               _m_bIsPaused;*/// n/a
-    /*bool               _m_bIsExited;*/// n/a
+    bool_t                 _m_bIsCreated;              ///< is created
+    bool_t                 _m_bIsRunning;              ///< is running
+    /*bool_t               _m_bIsPaused;*/// n/a
+    /*bool_t               _m_bIsExited;*/// n/a
 
     // other
     CxEvent             *_m_pevStarter;              ///< starter event
@@ -187,14 +187,14 @@ private:
     static exit_status_t xSTDCALL
                          _s_jobEntry         (void *pvParam) xWARN_UNUSED_RV;
         ///< callback
-    bool                 _waitResumption     () xWARN_UNUSED_RV;
+    bool_t                 _waitResumption     () xWARN_UNUSED_RV;
         ///< waiting for reset pause
     void                 _setStatesDefault   ();
         ///< set states as default
 
     // static
-    static int           _priorityMin        ();
-    static int           _priorityMax        ();
+    static int_t           _priorityMin        ();
+    static int_t           _priorityMax        ();
 };
 
 xNAMESPACE_END(NxLib)

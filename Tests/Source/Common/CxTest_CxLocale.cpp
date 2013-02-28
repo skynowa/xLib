@@ -19,7 +19,7 @@ CxTest_CxLocale::~CxTest_CxLocale() {
 /* virtual */
 void
 CxTest_CxLocale::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxLocale::current", cullCaseLoops)

@@ -23,7 +23,7 @@ xNAMESPACE_BEGIN(NxLib)
 std::wstring
 CxString::strToWStr(
     const std::string &a_csStr,
-    const uint_t      &a_cuiCodePage
+    cuint_t      &a_cuiCodePage
 )
 {
     xTEST_NA(a_csStr);
@@ -32,7 +32,7 @@ CxString::strToWStr(
     std::wstring wsRes;
 
 #if   xOS_ENV_WIN
-    int iSize = ::MultiByteToWideChar(a_cuiCodePage, 0UL, a_csStr.c_str(), - 1,
+    int_t iSize = ::MultiByteToWideChar(a_cuiCodePage, 0UL, a_csStr.c_str(), - 1,
                                       NULL, 0);
     xTEST_LESS(0, iSize);
 
@@ -52,7 +52,7 @@ CxString::strToWStr(
 std::string
 CxString::wstrToStr(
     const std::wstring &a_cwsStr,
-    const uint_t       &a_cuiCodePage
+    cuint_t       &a_cuiCodePage
 )
 {
     xTEST_NA(a_cwsStr);
@@ -61,7 +61,7 @@ CxString::wstrToStr(
     std::string asRes;
 
 #if   xOS_ENV_WIN
-    int iSize = ::WideCharToMultiByte(a_cuiCodePage, 0UL, a_cwsStr.c_str(), - 1,
+    int_t iSize = ::WideCharToMultiByte(a_cuiCodePage, 0UL, a_cwsStr.c_str(), - 1,
                                       NULL, 0, NULL, NULL);
     xTEST_LESS(0, iSize);
 
@@ -137,8 +137,8 @@ CxString::wstrToStr(
 std::string
 CxString::convertCodePage(
     const std::string &a_csSource,
-    const uint_t      &a_cuiCodePageSource,
-    const uint_t      &a_cuiCodePageDest
+    cuint_t      &a_cuiCodePageSource,
+    cuint_t      &a_cuiCodePageDest
 )
 {
     xTEST_NA(a_csSource);
@@ -206,7 +206,7 @@ CxString::oemToCharBuff(
 /* static */
 std::tstring_t
 CxString::boolToStr(
-    const bool &a_cbBool
+    cbool_t &a_cbBool
 )
 {
     xTEST_NA(a_cbBool);
@@ -215,7 +215,7 @@ CxString::boolToStr(
 }
 //------------------------------------------------------------------------------
 /* static */
-bool
+bool_t
 CxString::strToBool(
     const std::tstring_t &a_csStr
 )
@@ -418,8 +418,8 @@ CxString::replaceAll(
 std::tstring_t
 CxString::replaceAll(
     const std::tstring_t &a_csStr,
-    const tchar_t        &a_cchOldStr,
-    const tchar_t        &a_cchNewStr
+    ctchar_t        &a_cchOldStr,
+    ctchar_t        &a_cchNewStr
 )
 {
     xTEST_NA(a_csStr);
@@ -501,7 +501,7 @@ CxString::join(
 std::tstring_t
 CxString::join(
     const std::vec_tstring_t &a_cvsVec,
-    const tchar_t            &a_cchSep
+    ctchar_t            &a_cchSep
 )
 {
     xTEST_NA(a_cvsVec);
@@ -566,7 +566,7 @@ CxString::cut(
 /* static */
 std::tstring_t
 CxString::format(
-    const tchar_t *a_pcszFormat, ...
+    ctchar_t *a_pcszFormat, ...
 )
 {
     xTEST_NA(a_pcszFormat);
@@ -590,7 +590,7 @@ CxString::format(
 
 std::tstring_t
 CxString::formatV(
-    const tchar_t *a_pcszFormat,
+    ctchar_t *a_pcszFormat,
     va_list        a_palArgs
 )
 {
@@ -600,7 +600,7 @@ CxString::formatV(
     xCHECK_RET(NULL == a_pcszFormat, std::tstring_t());
 
     std::tstring_t sBuff(64, 0);
-    int          iWrittenSize = - 1;
+    int_t          iWrittenSize = - 1;
 
     xFOREVER {
         va_list _palArgs;
@@ -635,7 +635,7 @@ CxString::formatV(
     xCHECK_RET(NULL == pcszFormat, std::tstring_t());
 
     std::tstring_t sBuff(64, 0);
-    int            iWrittenSize = - 1;
+    int_t            iWrittenSize = - 1;
 
     //--------------------------------------------------
     // calc size
@@ -712,7 +712,7 @@ CxString::minimize(
 xNAMESPACE_ANONYM_BEGIN
 
 struct SCompareNoCase {
-    bool
+    bool_t
     operator () (
         const std::tstring_t::value_type &a_cchChar1,
         const std::tstring_t::value_type &a_cchChar2
@@ -725,7 +725,7 @@ struct SCompareNoCase {
 xNAMESPACE_ANONYM_END
 
 /* static */
-bool
+bool_t
 CxString::compareNoCase(
     const std::tstring_t &a_csStr1,
     const std::tstring_t &a_csStr2
@@ -737,11 +737,11 @@ CxString::compareNoCase(
     xCHECK_RET(a_csStr1.size() != a_csStr2.size(), false);
 
 #if   xOS_ENV_WIN
-    int iRv = ::lstrcmpi(a_csStr1.c_str(), a_csStr2.c_str());
+    int_t iRv = ::lstrcmpi(a_csStr1.c_str(), a_csStr2.c_str());
     // n/a
     xCHECK_RET(0 != iRv, false);
 #elif xOS_ENV_UNIX
-    bool bRv = std::equal(a_csStr1.begin(), a_csStr1.end(), a_csStr2.begin(), SCompareNoCase());
+    bool_t bRv = std::equal(a_csStr1.begin(), a_csStr1.end(), a_csStr2.begin(), SCompareNoCase());
     xCHECK_RET(false == bRv, false);
 #endif
 
@@ -804,42 +804,42 @@ CxString::translitLatToRus(
 /* static */
 std::tstring_t
 CxString::formatBytes(
-    const ulonglong_t &a_cullBytes
+    culonglong_t &a_cullBytes
 )
 {
     xTEST_NA(a_cullBytes);
 
     std::tstring_t sRv = xT("<uknown>");
 
-    const ulonglong_t cullTB   = 1024ULL * 1024ULL * 1024ULL * 1024ULL;
-    const ulonglong_t cullGB   = 1024ULL * 1024ULL * 1024ULL;
-    const ulonglong_t cullMB   = 1024ULL * 1024ULL;
-    const ulonglong_t cullKB   = 1024ULL;
-    const ulonglong_t cullByte = 1ULL;
+    culonglong_t cullTB   = 1024ULL * 1024ULL * 1024ULL * 1024ULL;
+    culonglong_t cullGB   = 1024ULL * 1024ULL * 1024ULL;
+    culonglong_t cullMB   = 1024ULL * 1024ULL;
+    culonglong_t cullKB   = 1024ULL;
+    culonglong_t cullByte = 1ULL;
 
     if (     a_cullBytes / cullTB > 0ULL) {
         sRv = format(xT("%.2f TB"),
-                static_cast<double>(a_cullBytes) / static_cast<double>(cullTB));
+                static_cast<double_t>(a_cullBytes) / static_cast<double_t>(cullTB));
     }
     else if (a_cullBytes / cullGB > 0ULL) {
         sRv = format(xT("%.2f GB"),
-                static_cast<double>(a_cullBytes) / static_cast<double>(cullGB));
+                static_cast<double_t>(a_cullBytes) / static_cast<double_t>(cullGB));
     }
     else if (a_cullBytes / cullMB > 0ULL) {
         sRv = format(xT("%.2f MB"),
-                static_cast<double>(a_cullBytes) / static_cast<double>(cullMB));
+                static_cast<double_t>(a_cullBytes) / static_cast<double_t>(cullMB));
     }
     else if (a_cullBytes / cullKB > 0ULL) {
         sRv = format(xT("%.2f KB"),
-                static_cast<double>(a_cullBytes) / static_cast<double>(cullKB));
+                static_cast<double_t>(a_cullBytes) / static_cast<double_t>(cullKB));
     }
     else if (a_cullBytes / cullByte > 0ULL) {
         sRv = format(xT("%.2f Byte(s)"),
-                static_cast<double>(a_cullBytes) / static_cast<double>(cullByte));
+                static_cast<double_t>(a_cullBytes) / static_cast<double_t>(cullByte));
     }
     else {
         sRv = format(xT("%.2f Bit(s)"),
-                static_cast<double>(a_cullBytes));
+                static_cast<double_t>(a_cullBytes));
     }
 
     return sRv;
@@ -848,8 +848,8 @@ CxString::formatBytes(
 /* static */
 std::tstring_t
 CxString::formatPercentage(
-    const ulonglong_t &a_ullMaxValue,
-    const ulonglong_t &a_ullCurrValue
+    culonglong_t &a_ullMaxValue,
+    culonglong_t &a_ullCurrValue
 )
 {
     xTEST_NA(a_ullMaxValue);
@@ -935,7 +935,7 @@ CxString::createGuid() {
 }
 //------------------------------------------------------------------------------
 /* static */
-bool
+bool_t
 CxString::isRepeated(
     const std::tstring_t &a_csStr
 )

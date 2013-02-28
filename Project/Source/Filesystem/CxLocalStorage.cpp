@@ -115,7 +115,7 @@ CxLocalStorage::remove() {
 *******************************************************************************/
 
 //-------------------------------------------------------------------------
-bool
+bool_t
 CxLocalStorage::keyIsExists(
     const std::tstring_t &a_csKey
 ) const
@@ -160,7 +160,7 @@ CxLocalStorage::keyWriteString(
 long_t
 CxLocalStorage::keyReadInt(
     const std::tstring_t &a_csKey,
-    const long_t         &a_cliDefaultValue
+    clong_t         &a_cliDefaultValue
 )
 {
     xTEST_NA(a_csKey);
@@ -172,7 +172,7 @@ CxLocalStorage::keyReadInt(
 void
 CxLocalStorage::keyWriteInt(
     const std::tstring_t &a_csKey,
-    const long_t         &a_cliValue
+    clong_t         &a_cliValue
 )
 {
     xTEST_NA(a_csKey);
@@ -181,22 +181,22 @@ CxLocalStorage::keyWriteInt(
     keyWriteString(a_csKey, CxString::cast(a_cliValue));
 }
 //-------------------------------------------------------------------------
-double
+double_t
 CxLocalStorage::keyReadFloat(
     const std::tstring_t &a_csKey,
-    const double         &a_cdDefaultValue
+    cdouble_t         &a_cdDefaultValue
 )
 {
     xTEST_NA(a_csKey);
     xTEST_NA(a_cdDefaultValue);
 
-    return CxString::cast<double>( keyReadString(a_csKey, CxString::cast(a_cdDefaultValue)) );
+    return CxString::cast<double_t>( keyReadString(a_csKey, CxString::cast(a_cdDefaultValue)) );
 }
 //-------------------------------------------------------------------------
 void
 CxLocalStorage::keyWriteFloat(
     const std::tstring_t &a_csKey,
-    const double         &a_cdValue
+    cdouble_t         &a_cdValue
 )
 {
     xTEST_NA(a_csKey);
@@ -205,10 +205,10 @@ CxLocalStorage::keyWriteFloat(
     keyWriteString(a_csKey, CxString::cast(a_cdValue));
 }
 //-------------------------------------------------------------------------
-bool
+bool_t
 CxLocalStorage::keyReadBool(
     const std::tstring_t &a_csKey,
-    const bool           &a_cbDefaultValue
+    cbool_t           &a_cbDefaultValue
 )
 {
     xTEST_NA(a_csKey);
@@ -218,7 +218,7 @@ CxLocalStorage::keyReadBool(
 
     sStr = keyReadString(a_csKey, CxString::boolToStr(a_cbDefaultValue));
 
-    bool bRv = CxString::strToBool(sStr);
+    bool_t bRv = CxString::strToBool(sStr);
 
     return bRv;
 }
@@ -226,7 +226,7 @@ CxLocalStorage::keyReadBool(
 void
 CxLocalStorage::keyWriteBool(
     const std::tstring_t &a_csKey,
-    const bool           &a_cbValue
+    cbool_t           &a_cbValue
 )
 {
     xTEST_NA(a_csKey);

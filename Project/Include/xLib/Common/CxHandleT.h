@@ -28,28 +28,28 @@ class CxHandleT
 public:
                     CxHandleT  ();
         ///< constructor
-    explicit        CxHandleT  (const native_handle_t &chHandle);
+    explicit        CxHandleT  (cnative_handle_t &chHandle);
         ///< constructor
     explicit        CxHandleT  (const CxHandleT &chHandle);
         ///< constructor
     virtual        ~CxHandleT  ();
         ///< destructor
 
-    CxHandleT &     operator = (const native_handle_t &chHandle);
+    CxHandleT &     operator = (cnative_handle_t &chHandle);
         ///< operator =
     CxHandleT &     operator = (const CxHandleT &chHandle);
         ///< operator =
 
     native_handle_t get        () const xWARN_UNUSED_RV;
         ///< get
-    void            set        (const native_handle_t &chHandle);
+    void            set        (cnative_handle_t &chHandle);
         ///< set
     native_handle_t duplicate  () const xWARN_UNUSED_RV;
         ///< duplicate handle
 
-    bool            isValid    () const xWARN_UNUSED_RV;
+    bool_t            isValid    () const xWARN_UNUSED_RV;
         ///< is valid
-    void            attach     (const native_handle_t &chHandle);
+    void            attach     (cnative_handle_t &chHandle);
         ///< attach
     native_handle_t detach     () xWARN_UNUSED_RV;
         ///< detach
@@ -59,7 +59,7 @@ public:
 #if xOS_ENV_WIN
     ulong_t         info       () const xWARN_UNUSED_RV;
         ///< get certain properties of an object handle
-    void            setInfo    (const ulong_t &culMask, const ulong_t &culFlags);
+    void            setInfo    (culong_t &culMask, culong_t &culFlags);
         ///< set information
 #endif
 

@@ -19,7 +19,7 @@ CxTest_CxArray::~CxTest_CxArray() {
 /* virtual */
 void
 CxTest_CxArray::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     const size_t cuiArraySize = 5;

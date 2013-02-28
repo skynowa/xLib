@@ -31,7 +31,7 @@ CxTracer::~CxTracer() {
 /* static */
 void
 CxTracer::write(
-    const tchar_t *a_pcszFormat, ...
+    ctchar_t *a_pcszFormat, ...
 )
 {
     xCHECK_DO(a_pcszFormat == NULL, return);

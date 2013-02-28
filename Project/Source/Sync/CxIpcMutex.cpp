@@ -53,7 +53,7 @@ CxIpcMutex::create(
 #endif
 
 #if   xOS_ENV_WIN
-    const tchar_t *pcszWinName = NULL;
+    ctchar_t *pcszWinName = NULL;
     std::tstring_t _sWinName;
 
     if (true == a_csName.empty()) {
@@ -85,7 +85,7 @@ CxIpcMutex::open(
 )
 {
 #if   xOS_ENV_WIN
-    const tchar_t *pcszWinName = NULL;
+    ctchar_t *pcszWinName = NULL;
     std::tstring_t _sWinName;
 
     if (true == a_csName.empty()) {
@@ -113,7 +113,7 @@ CxIpcMutex::open(
 //------------------------------------------------------------------------------
 void
 CxIpcMutex::lock(
-    const ulong_t &a_culTimeoutMsec
+    culong_t &a_culTimeoutMsec
 ) const
 {
     ////xTEST_EQ(true, _m_hHandle.bIsValid(), false);
@@ -132,7 +132,7 @@ CxIpcMutex::lock(
             long             ms
         )
         {
-            int sec = 0;
+            int_t sec = 0;
 
             sec = ms / 1000;
             ms  = ms - sec * 1000;
@@ -147,7 +147,7 @@ CxIpcMutex::lock(
     };
 
 
-    int             iRv        = - 1;
+    int_t             iRv        = - 1;
     struct timespec tmsTimeout = {0};
 
     // add msec to struct timespec
@@ -182,7 +182,7 @@ CxIpcMutex::unlock() const {
     BOOL blRes = ::ReleaseMutex(_m_hHandle.get());
     xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
-    int iRv = ::sem_post(_m_hHandle);
+    int_t iRv = ::sem_post(_m_hHandle);
     xTEST_DIFF(- 1, iRv);
 #endif
 }

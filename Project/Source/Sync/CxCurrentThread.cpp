@@ -16,12 +16,12 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 /* static */
-bool
+bool_t
 CxCurrentThread::isCurrent(
     const CxThread::id_t &a_culId
 )
 {
-    bool bRv = false;
+    bool_t bRv = false;
 
 #if   xOS_ENV_WIN
     bRv = (id() == a_culId);
@@ -77,7 +77,7 @@ CxCurrentThread::yield() {
 #if   xOS_ENV_WIN
     (void)::SwitchToThread();
 #elif xOS_ENV_UNIX
-    int iRv = ::sched_yield();
+    int_t iRv = ::sched_yield();
     xTEST_MSG_DIFF(- 1, iRv, CxLastError::format(iRv));
 #endif
 }
@@ -85,7 +85,7 @@ CxCurrentThread::yield() {
 /* static */
 void
 CxCurrentThread::sleep(
-    const ulong_t &a_culMsec
+    culong_t &a_culMsec
 ) {
     // n/a
 
@@ -99,7 +99,7 @@ CxCurrentThread::sleep(
     tsSleep.tv_nsec = (a_culMsec % 1000) * (1000 * 1000);
 
     xFOREVER {
-        int iRv = ::nanosleep(&tsSleep, &tsRemain);
+        int_t iRv = ::nanosleep(&tsSleep, &tsRemain);
         // n/a
         xCHECK_DO(!(- 1 == iRv && EINTR == CxLastError::get()), break);
 

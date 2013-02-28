@@ -63,8 +63,8 @@ public:
                                  const std::tstring_t &csVar1,       const std::tstring_t &csVar2,
                                  const T              &cVar1ValueT,  const T              &cVar2ValueT,
                                  const std::tstring_t &csExprSign,
-                                 const ulong_t        &culLastError, const std::tstring_t &csFile,
-                                 const ulong_t        &culLine,      const std::tstring_t &csFunc,
+                                 culong_t        &culLastError, const std::tstring_t &csFile,
+                                 culong_t        &culLine,      const std::tstring_t &csFunc,
                                  const std::tstring_t &csDate,       const std::tstring_t &csTime,
                                  const std::tstring_t &csStackTrace, const std::tstring_t &csComment);
         ///< constructor
@@ -76,8 +76,8 @@ private:
                                  const std::tstring_t &csVar1,       const std::tstring_t &csVar2,
                                  const std::tstring_t &csVar1Value,  const std::tstring_t &csVar2Value,
                                  const std::tstring_t &csExprSign,
-                                 const ulong_t        &culLastError, const std::tstring_t &csFile,
-                                 const ulong_t        &culLine,      const std::tstring_t &csFunc,
+                                 culong_t        &culLastError, const std::tstring_t &csFile,
+                                 culong_t        &culLine,      const std::tstring_t &csFunc,
                                  const std::tstring_t &csDate,       const std::tstring_t &csTime,
                                  const std::tstring_t &csStackTrace, const std::tstring_t &csComment);
         ///< initiate class members

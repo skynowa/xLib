@@ -233,7 +233,7 @@ CxPop3::rset() {
 //------------------------------------------------------------------------------
 //DONE: bTop (�������� ��������� ������)
 void
-CxPop3::top(int a_iNum, int a_iLines, std::tstring_t &a_sBuff) {
+CxPop3::top(int_t a_iNum, int_t a_iLines, std::tstring_t &a_sBuff) {
     xTEST_GR(a_iNum, 0);
     xTEST_GR(a_iLines,- 1);
 
@@ -259,7 +259,7 @@ CxPop3::top(int a_iNum, int a_iLines, std::tstring_t &a_sBuff) {
 //------------------------------------------------------------------------------
 //DONE: bRetriveRaw ()
 void
-CxPop3::retriveRaw(int a_iNum, const std::tstring_t &a_csDirPath, const std::tstring_t &a_csFileName) {  //csDirPath ��� �����
+CxPop3::retriveRaw(int_t a_iNum, const std::tstring_t &a_csDirPath, const std::tstring_t &a_csFileName) {  //csDirPath ��� �����
     xTEST_GR(a_iNum, 0);
     xTEST_EQ(false, a_csDirPath.empty());
     xTEST_EQ(false, a_csFileName.empty());
@@ -311,7 +311,7 @@ CxPop3::retriveRaw(int a_iNum, const std::tstring_t &a_csDirPath, const std::tst
 //------------------------------------------------------------------------------
 //DONE: bRetriveRawAndBackup ()
 void
-CxPop3::retriveRawAndBackup(int a_iNum, const std::tstring_t &a_csDirPath, const std::tstring_t &a_csBackupDirPath, const std::tstring_t &a_csFileName) {
+CxPop3::retriveRawAndBackup(int_t a_iNum, const std::tstring_t &a_csDirPath, const std::tstring_t &a_csBackupDirPath, const std::tstring_t &a_csFileName) {
     xTEST_GR(a_iNum, 0);
     xTEST_EQ(false, (true == a_csDirPath.empty() && true == a_csBackupDirPath.empty()));
     xTEST_EQ(false, a_csFileName.empty());
@@ -375,7 +375,7 @@ CxPop3::retriveRawAndBackup(int a_iNum, const std::tstring_t &a_csDirPath, const
 //------------------------------------------------------------------------------
 //DONE: bRetrieveHeader ()
 void
-CxPop3::retrieveHeader(int a_iNum, CxMimeHeader &a_mhMimeHeader) {
+CxPop3::retrieveHeader(int_t a_iNum, CxMimeHeader &a_mhMimeHeader) {
     xTEST_LESS(a_iNum, 0);
 
     //-------------------------------------
@@ -402,7 +402,7 @@ CxPop3::retrieveHeader(int a_iNum, CxMimeHeader &a_mhMimeHeader) {
 //------------------------------------------------------------------------------
 //DONE: bDelete (������� ������)
 void
-CxPop3::del(int a_iNum) {
+CxPop3::del(int_t a_iNum) {
     xTEST_GR(a_iNum, 0);
 
     //-------------------------------------
@@ -516,7 +516,7 @@ CxPop3::_command(const std::tstring_t &csCmd, const std::tstring_t &csReplyDelim
 }
 //------------------------------------------------------------------------------
 //DONE: _bIsError ()
-bool
+bool_t
 CxPop3::_isError(const std::tstring_t &csText) {
     xTEST_EQ(false, csText.empty());
 

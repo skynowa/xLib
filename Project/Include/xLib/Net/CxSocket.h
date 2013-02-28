@@ -164,7 +164,7 @@ public:
     virtual       ~CxSocket         () = 0;
         ///< destructor
 
-    void           assign           (const socket_t &csktSocket);
+    void           assign           (csocket_t &csktSocket);
         ///< assign to another socket
 
     /*******************************************************************************
@@ -172,7 +172,7 @@ public:
     *
     *******************************************************************************/
 
-    CxSocket &     operator =       (const socket_t &csktSocket);
+    CxSocket &     operator =       (csocket_t &csktSocket);
         ///< operator =
                    operator socket_t();
         ///< operator socket_t
@@ -187,7 +187,7 @@ public:
         ///< creates a socket that is bound to a specific transport service provider
     socket_t       handle           () const xWARN_UNUSED_RV;
         ///< get socket
-    bool           isValid          () const xWARN_UNUSED_RV;
+    bool_t           isValid          () const xWARN_UNUSED_RV;
         ///< checking for validness
     void           close            ();
         ///< close
@@ -200,21 +200,21 @@ public:
 
     //void *, std::tstring_t, std::ustring_t
 
-    int            send             (const tchar_t *pcszBuff, const int &ciBuffSize, const int &ciFlags) xWARN_UNUSED_RV;
+    int_t            send             (ctchar_t *pcszBuff, cint_t &ciBuffSize, cint_t &ciFlags) xWARN_UNUSED_RV;
         ///< send data
-    void           sendAll          (const std::tstring_t &csBuff, const int &ciFlags);
+    void           sendAll          (const std::tstring_t &csBuff, cint_t &ciFlags);
         ///< send data by blocks
 
-    int            recv             (tchar_t *pszBuff,  const int &ciBuffSize, const int &ciFlags) xWARN_UNUSED_RV;
+    int_t            recv             (tchar_t *pszBuff,  cint_t &ciBuffSize, cint_t &ciFlags) xWARN_UNUSED_RV;
         ///< receive data
-    std::tstring_t recvAll          (const int &ciFlags) xWARN_UNUSED_RV;
+    std::tstring_t recvAll          (cint_t &ciFlags) xWARN_UNUSED_RV;
         ///< receive data
-    std::tstring_t recvAll          (const int &ciFlags, const std::tstring_t &csDelimiter) xWARN_UNUSED_RV;
+    std::tstring_t recvAll          (cint_t &ciFlags, const std::tstring_t &csDelimiter) xWARN_UNUSED_RV;
         ///< receive data to delimiter, includes it
 
-    int            sendBytes        (char *pszBuff, const int &ciMessageLength) xWARN_UNUSED_RV;
+    int_t            sendBytes        (char *pszBuff, cint_t &ciMessageLength) xWARN_UNUSED_RV;
         ///< send bytes
-    int            receiveBytes     (char *pszBuff, const int &ciStillToReceive) xWARN_UNUSED_RV;
+    int_t            receiveBytes     (char *pszBuff, cint_t &ciStillToReceive) xWARN_UNUSED_RV;
         ///< receive bytes
 
 
@@ -234,10 +234,10 @@ public:
     *******************************************************************************/
 
     ////getsockopt
-    static int     select           (int nfds, fd_set *readfds, fd_set *writefds,
+    static int_t     select           (int_t nfds, fd_set *readfds, fd_set *writefds,
                                      fd_set *exceptfds, timeval *tvTimeout) xWARN_UNUSED_RV;
         ///< determines the status of one or more sockets, waiting if necessary, to perform synchronous I/O
-    static int     lastError        () xWARN_UNUSED_RV;
+    static int_t     lastError        () xWARN_UNUSED_RV;
         ///< get error status for the last operation that failed
 
 protected:
@@ -283,9 +283,9 @@ xNAMESPACE_END(NxLib)
 #endif
 
 #if xTODO
-    int
+    int_t
     CxSocket::WaitForData(SOCKET *pSocketForReceiving, SOCKET *pSocketForSending, SOCKET *pSocketForExceptions) {
-        int nSocketsReady = 0;
+        int_t nSocketsReady = 0;
 
         fd_set FdSetReceive;    FD_ZERO(&FdSetReceive);
         fd_set FdSetSend;       FD_ZERO(&FdSetSend);

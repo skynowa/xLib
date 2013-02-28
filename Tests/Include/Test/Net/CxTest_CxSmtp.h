@@ -18,7 +18,7 @@ public:
                  CxTest_CxSmtp();
     virtual     ~CxTest_CxSmtp();
 
-    virtual void unit(const ulonglong_t &cullCaseLoops);
+    virtual void unit(culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------
 #endif //CxTest_CxSmtpH

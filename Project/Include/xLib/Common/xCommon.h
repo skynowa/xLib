@@ -48,22 +48,22 @@
  *       a*           - array
  *
  *       v*           - void
- *       b*           - bool
+ *       b*           - bool_t
  *
- *       i*           - int
- *       ui*          - unsigned int
+ *       i*           - int_t
+ *       ui*          - unsigned int_t
  *       uc*          - uchar_t                  (unsigned char)
- *       si*          - short_t                  (short int)
- *       li*          - long_t                   (long int)
- *       lli*         - longlong_t               (long long int)
- *       ui*          - uint_t                   (unsigned int)
- *       us*          - ushort_t                 (unsigned short int)
- *       ul*          - ulong_t                  (unsigned long int)
- *       ull*         - ulonglong_t              (unsigned long long int)
+ *       si*          - short_t                  (short int_t)
+ *       li*          - long_t                   (long int_t)
+ *       lli*         - longlong_t               (long long int_t)
+ *       ui*          - uint_t                   (unsigned int_t)
+ *       us*          - ushort_t                 (unsigned short int_t)
+ *       ul*          - ulong_t                  (unsigned long int_t)
+ *       ull*         - ulonglong_t              (unsigned long long int_t)
  *
- *       f*           - float
- *       d*           - double
- *       ld*          - long double
+ *       f*           - float_t
+ *       d*           - double_t
+ *       ld*          - long double_t
  *
  *       sz*          - C-string
  *

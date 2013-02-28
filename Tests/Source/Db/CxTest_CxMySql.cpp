@@ -21,17 +21,17 @@ CxTest_CxMySql::~CxTest_CxMySql() {
 /* virtual */
 void
 CxTest_CxMySql::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     const std::tstring_t csHost        = xT("127.0.0.1");
     const std::tstring_t csUser        = xT("root");
     const std::tstring_t csPassword    = xT("root");
     const std::tstring_t csDbName      = xT("db_test");
-    const uint_t         cuiPort       = 0U;
+    cuint_t         cuiPort       = 0U;
     const std::tstring_t sTableName    = xT("t_main");
     const std::tstring_t csUnixSocket;
-    const ulong_t        culClientFlag = 0UL;
+    culong_t        culClientFlag = 0UL;
 
 
     /*******************************************************************************
@@ -75,8 +75,8 @@ CxTest_CxMySql::unit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(casData); ++ i) {
-            bool bRes1 = CxMySQLConnection::isExists(csHost, csUser, csPassword, casData[i][0], cuiPort, csUnixSocket, culClientFlag);
-            bool bRes2 = CxString::strToBool(casData[i][1]);
+            bool_t bRes1 = CxMySQLConnection::isExists(csHost, csUser, csPassword, casData[i][0], cuiPort, csUnixSocket, culClientFlag);
+            bool_t bRes2 = CxString::strToBool(casData[i][1]);
             xTEST_EQ(bRes1, bRes2);
         }
     }
@@ -84,7 +84,7 @@ CxTest_CxMySql::unit(
     //--------------------------------------------------
     //bConnect
     {
-        bool bIsDbExists = false;
+        bool_t bIsDbExists = false;
 
         bIsDbExists = CxMySQLConnection::isExists(csHost, csUser, csPassword, csDbName, cuiPort, csUnixSocket, culClientFlag);
         if (false == bIsDbExists) {
@@ -111,7 +111,7 @@ CxTest_CxMySql::unit(
         conConn.query(
                         xT("CREATE TABLE IF NOT EXISTS ")
                         xT("   `%s` (")
-                        xT("       `f_id`    int(11)     NOT NULL AUTO_INCREMENT,")
+                        xT("       `f_id`    int_t(11)     NOT NULL AUTO_INCREMENT,")
                         xT("       `f_name`  char(30)    NOT NULL,")
                         xT("       `f_age`   SMALLINT(6) NOT NULL")
                         xT("   )"),

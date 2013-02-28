@@ -26,7 +26,7 @@ public:
 
     void                    create     ();
         ///< create
-    void                    wait       (const ulong_t &culTimeoutMs);
+    void                    wait       (culong_t &culTimeoutMs);
         ///< wait
     void                    signal     ();
         ///< signal one

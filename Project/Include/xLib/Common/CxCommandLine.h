@@ -22,7 +22,7 @@ public:
         ///< get command line string for the current process
     static void           args         (std::vec_tstring_t *pvsArgs);
         ///< get command line arguments
-    static void           setArgs      (const int &ciArgsCount, tchar_t *paszArgs[]);
+    static void           setArgs      (cint_t &ciArgsCount, tchar_t *paszArgs[]);
         ///< set command line arguments
 
 private:

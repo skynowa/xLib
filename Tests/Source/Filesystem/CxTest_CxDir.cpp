@@ -21,7 +21,7 @@ CxTest_CxDir::~CxTest_CxDir() {
 /* virtual */
 void
 CxTest_CxDir::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     const std::tstring_t csTempScanDirPath = tempDirPath() + CxConst::xSLASH + xT("Scan");
@@ -202,8 +202,8 @@ CxTest_CxDir::unit(
         #endif
 
         for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
-            bool bRes1 = CxDir(sTestData[i][0]).isRoot();
-            bool bRes2 = CxString::strToBool(sTestData[i][1]);
+            bool_t bRes1 = CxDir(sTestData[i][0]).isRoot();
+            bool_t bRes2 = CxString::strToBool(sTestData[i][1]);
             xTEST_EQ(bRes1, bRes2);
         }
     }

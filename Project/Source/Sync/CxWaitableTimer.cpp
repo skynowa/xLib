@@ -37,7 +37,7 @@ CxWaitableTimer::handle() const {
 //------------------------------------------------------------------------------
 void
 CxWaitableTimer::create(
-    const bool                  &a_bManualReset,
+    cbool_t                  &a_bManualReset,
     const std::tstring_t        &a_csName,
     const LPSECURITY_ATTRIBUTES  a_pcsaTimerAttributes
 )
@@ -53,8 +53,8 @@ CxWaitableTimer::create(
 void
 CxWaitableTimer::open(
     const std::tstring_t &a_csName,
-    const ulong_t        &a_culDesiredAccess,
-    const bool           &a_cbInheritHandle
+    culong_t        &a_culDesiredAccess,
+    cbool_t           &a_cbInheritHandle
 )
 {
     xTEST_EQ(true, _m_hHandle.isValid());
@@ -84,11 +84,11 @@ CxWaitableTimer::cancel() const {
 //------------------------------------------------------------------------------
 void
 CxWaitableTimer::set(
-    const longlong_t &a_cllDueTime,
-    const long_t     &a_cliPeriod,
+    clonglong_t &a_cllDueTime,
+    clong_t     &a_cliPeriod,
     PTIMERAPCROUTINE  a_pfnCompletionRoutine,
     LPVOID            a_pvArgToCompletionRoutine,
-    const bool       &a_cbResume
+    cbool_t       &a_cbResume
 ) const
 {
     xTEST_EQ(true, _m_hHandle.isValid());
@@ -109,7 +109,7 @@ CxWaitableTimer::set(
 //------------------------------------------------------------------------------
 void
 CxWaitableTimer::wait(
-    const ulong_t &a_culTimeout
+    culong_t &a_culTimeout
 ) const
 {
     xTEST_EQ(true, _m_hHandle.isValid());

@@ -20,7 +20,7 @@ public:
         ///< encoding
     static std::string decode     (const std::string &csStr) xWARN_UNUSED_RV;
         ///< decoding
-    static bool        isCharValid(const char &cchChar) xWARN_UNUSED_RV;
+    static bool_t        isCharValid(const char &cchChar) xWARN_UNUSED_RV;
         ///< is a valid Base64 char
 
 private:

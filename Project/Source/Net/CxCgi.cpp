@@ -190,7 +190,7 @@ CxCgi::uriDecode(
 }
 //-------------------------------------------------------------------------------------------------------
 //TODO: cgl_parsecgibuf
-int
+int_t
 cgl_parsecgibuf(/*cgllist *cdata,*/ char *a_query) {
 //    char *s;
 //    char *np;
@@ -232,7 +232,7 @@ cgl_parsecgibuf(/*cgllist *cdata,*/ char *a_query) {
 }
 //-------------------------------------------------------------------------------------------------------
 //TODO: cgl_urlencode
-//int
+//int_t
 //CxCgi::cgl_urlencode(char *s, FILE *fw) {
 //    if (!s)
 //        return 0;
@@ -259,7 +259,7 @@ cgl_parsecgibuf(/*cgllist *cdata,*/ char *a_query) {
 //TODO: bUrlEscape
 void
 CxCgi::urlEscape(char *a_s, FILE *a_fw) {
-//    register int    c;
+//    register int_t    c;
 //
 //    while((c = *s++) != (char)0) {
 //        switch(c) {
@@ -284,7 +284,7 @@ CxCgi::urlEscape(char *a_s, FILE *a_fw) {
 //modified from the Apache code. Code shrinks string, so can be done in place.
 void
 CxCgi::urlUnescape(char *a_s) {
-//    int    error;
+//    int_t    error;
 //    char    *p;
 //
 //    if (!s)
@@ -591,7 +591,7 @@ CxCgiEnvironment::dump() const {
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxCgiEnvironment::_init() {
     _m_sAuthType           = CxEnvironment::var(xT("AUTH_TYPE"));
     _m_sContentLength      = CxEnvironment::var(xT("CONTENT_LENGTH"));
@@ -798,7 +798,7 @@ CxCgiFormData::dump() const {
 //------------------------------------------------------------------------------
 void
 CxCgiFormData::_init() {
-    int iRv = _m_ccgCgi.Environment.requestType();
+    int_t iRv = _m_ccgCgi.Environment.requestType();
     switch (iRv) {
         case CxCgiEnvironment::rtGet:
             xTEST_EQ(false, _m_ccgCgi.Environment.queryString().empty());
@@ -808,7 +808,7 @@ CxCgiFormData::_init() {
             _m_sFormData = _m_ccgCgi.Environment.queryString();
             break;
         case CxCgiEnvironment::rtPost: {
-            bool bRv = false;
+            bool_t bRv = false;
 
             bRv = CxString::compareNoCase(xT("application/x-www-form-urlencoded"), _m_ccgCgi.Environment.contentType());
             xTEST_EQ(true, bRv);

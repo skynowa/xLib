@@ -31,12 +31,12 @@ CxTest_CxUtils::~CxTest_CxUtils() {
 /* virtual */
 void
 CxTest_CxUtils::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxUtils::ptrDeleteT", cullCaseLoops)
     {
-        int *pPtr = new int();
+        int_t *pPtr = new int_t();
         xTEST_PTR(pPtr);
 
         CxUtils::ptrDeleteT(pPtr);
@@ -45,7 +45,7 @@ CxTest_CxUtils::unit(
 
     xTEST_CASE("CxUtils::arrayDeleteT", cullCaseLoops)
     {
-        int *pPtr = new int[5];
+        int_t *pPtr = new int_t[5];
         xTEST_PTR(pPtr);
 
         CxUtils::arrayDeleteT(pPtr);
@@ -54,11 +54,11 @@ CxTest_CxUtils::unit(
 
     xTEST_CASE("CxUtils::ptrAssignT", cullCaseLoops)
     {
-        const int ciVal = 10;
+        cint_t ciVal = 10;
 
         // true
         {
-            int *piData = new int;
+            int_t *piData = new int_t;
             xTEST_PTR(piData);
 
             CxUtils::ptrAssignT(piData, ciVal);
@@ -70,7 +70,7 @@ CxTest_CxUtils::unit(
 
         // false
         {
-            int *piData = NULL;
+            int_t *piData = NULL;
 
             CxUtils::ptrAssignT(piData, ciVal);
             xTEST_PTR_FAIL(piData);
@@ -84,7 +84,7 @@ CxTest_CxUtils::unit(
             m_stRv = CxUtils::arraySizeT(szBuff);
             xTEST_EQ(size_t(256), m_stRv);
 
-            int aiBuff[256] = {0};
+            int_t aiBuff[256] = {0};
             m_stRv = CxUtils::arraySizeT(aiBuff);
             xTEST_EQ(size_t(256), m_stRv);
 
@@ -103,7 +103,7 @@ CxTest_CxUtils::unit(
     xTEST_CASE("CxUtils::memoryZero", cullCaseLoops)
     {
         struct SData {
-            int     i;
+            int_t     i;
             tchar_t b[25];
         };
 
@@ -139,7 +139,7 @@ CxTest_CxUtils::unit(
         }
 
         {
-            int aiBuff[255 + 1];
+            int_t aiBuff[255 + 1];
 
             CxUtils::arrayZeroT(aiBuff);
 
@@ -152,14 +152,14 @@ CxTest_CxUtils::unit(
     xTEST_CASE("CxUtils::structZeroT", cullCaseLoops)
     {
         struct SData {
-            int            m_iValue;
-            double         m_dValue;
+            int_t            m_iValue;
+            double_t         m_dValue;
             std::tstring_t m_sValue;
         };
 
 
-        const int            ciValue = 10;
-        const double         cdValue = 20.0;
+        cint_t            ciValue = 10;
+        cdouble_t         cdValue = 20.0;
         const std::tstring_t csValue = xT("30");
 
         SData datData = {0};
@@ -214,7 +214,7 @@ CxTest_CxUtils::unit(
     {
         // false
         {
-            const int iVal = 0;
+            cint_t iVal = 0;
 
             m_bRv = CxUtils::intToBoolT(iVal);
             xTEST_EQ(false, m_bRv);
@@ -222,10 +222,10 @@ CxTest_CxUtils::unit(
 
         // true
         {
-            const int caiData[] = { -1000, -100, -1, 1, 100, 1000};
+            cint_t caiData[] = { -1000, -100, -1, 1, 100, 1000};
 
             for (size_t i = 0; i < CxUtils::arraySizeT(caiData); ++ i) {
-                const int iVal = caiData[i];
+                cint_t iVal = caiData[i];
 
                 m_bRv = CxUtils::intToBoolT(iVal);
                 xTEST_EQ(true, m_bRv);
@@ -247,8 +247,8 @@ CxTest_CxUtils::unit(
 
     xTEST_CASE("CxUtils::swapT", cullCaseLoops)
     {
-        int iVal1 = 1;
-        int iVal2 = 2;
+        int_t iVal1 = 1;
+        int_t iVal2 = 2;
 
         CxUtils::swapT(iVal1, iVal2);
 
@@ -263,7 +263,7 @@ CxTest_CxUtils::unit(
 
     xTEST_CASE("CxUtils::roundDouble", cullCaseLoops)
     {
-        const double cdData[][2] = {
+        cdouble_t cdData[][2] = {
             {10.5,   11.0},
             {10.0,   10.0},
             {10.4,   10.0},
@@ -274,15 +274,15 @@ CxTest_CxUtils::unit(
         };
 
         for (size_t i = 0; i < CxUtils::arraySizeT(cdData); ++ i) {
-            double dRv1 = CxUtils::roundDouble(cdData[i][0]);
-            double dRv2 = cdData[i][1];
+            double_t dRv1 = CxUtils::roundDouble(cdData[i][0]);
+            double_t dRv2 = cdData[i][1];
             xTEST_EQ(dRv1, dRv2);
         }
     }
 
     xTEST_CASE("CxUtils::roundIntT", cullCaseLoops)
     {
-        const double cdData[][2] = {
+        cdouble_t cdData[][2] = {
             {10.5,   11.0},
             {10.0,   10.0},
             {10.4,   10.0},

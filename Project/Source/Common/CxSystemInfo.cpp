@@ -72,7 +72,7 @@ CxSystemInfo::os() {
 #elif xOS_ENV_UNIX
     utsname unKernelInfo= {{0}};
 
-    int iRv = ::uname(&unKernelInfo);
+    int_t iRv = ::uname(&unKernelInfo);
     xTEST_DIFF(- 1, iRv);
 
     if      (true == CxString::compareNoCase(xT("Linux"), unKernelInfo.sysname)) {
@@ -152,7 +152,7 @@ CxSystemInfo::formatOsType(
         // current OS type - get info about OS kernel
         utsname unKernelInfo= {{0}};
 
-        int iRv = ::uname(&unKernelInfo);
+        int_t iRv = ::uname(&unKernelInfo);
         xTEST_DIFF(- 1, iRv);
 
         sRv = CxString::format(xT("%s %s (%s) %s"),
@@ -206,7 +206,7 @@ CxSystemInfo::osArch() {
 #elif xOS_ENV_UNIX
     utsname unKernelInfo= {{0}};
 
-    int iRv = ::uname(&unKernelInfo);
+    int_t iRv = ::uname(&unKernelInfo);
     xTEST_DIFF(- 1, iRv);
     // TODO: xTEST_DIFF(0,   strlen(unKernelInfo.machine));
 
@@ -279,7 +279,7 @@ CxSystemInfo::desktopName() {
     const std::tstring_t  csNativeDesktop = xT("explorer.exe");
     const CxProcess::id_t culId           = CxProcess::idByName(csNativeDesktop);
 
-    bool bRv = CxProcess::isRunning(culId);
+    bool_t bRv = CxProcess::isRunning(culId);
     if (true == bRv) {
         sRv = csNativeDesktop;
     } else {
@@ -311,7 +311,7 @@ CxSystemInfo::hostName() {
 #elif xOS_ENV_UNIX
     utsname unKernelInfo= {{0}};
 
-    int iRv = ::uname(&unKernelInfo);
+    int_t iRv = ::uname(&unKernelInfo);
     xTEST_DIFF(- 1, iRv);
 
     sRv.assign(unKernelInfo.nodename);
@@ -321,10 +321,10 @@ CxSystemInfo::hostName() {
 }
 //------------------------------------------------------------------------------
 /* static */
-bool
+bool_t
 CxSystemInfo::isUserAdmin() {
 #if   xOS_ENV_WIN
-    bool                     bIsAdmin       = false;
+    bool_t                     bIsAdmin       = false;
     SID_IDENTIFIER_AUTHORITY siaNtAuthority = { SECURITY_NT_AUTHORITY };
     PSID                     psAdminiGroup  = NULL;
 
@@ -416,7 +416,7 @@ CxSystemInfo::useHomeDir() {
     * it is necessary to use getpwnam("username")->pw_dir or similar.
     */
 
-    bool bRv = CxEnvironment::isExists(xT("HOME"));
+    bool_t bRv = CxEnvironment::isExists(xT("HOME"));
     if (true == bRv) {
         sRv = CxEnvironment::var(xT("HOME"));
     } else {
@@ -481,10 +481,10 @@ CxSystemInfo::numOfCpus() {
 
         ulRv = static_cast<ulong_t>( liRv );
     #elif xOS_FREEBSD
-        int    aiMib[]   = {CTL_HW, HW_NCPU};
+        int_t    aiMib[]   = {CTL_HW, HW_NCPU};
         size_t uiResSize = sizeof(ulRv);
 
-        int iRv = ::sysctl(aiMib, static_cast<u_int>( xARRAY_SIZE(aiMib) ), &ulRv, &uiResSize, NULL, 0);
+        int_t iRv = ::sysctl(aiMib, static_cast<u_int>( xARRAY_SIZE(aiMib) ), &ulRv, &uiResSize, NULL, 0);
         xTEST_DIFF(- 1, iRv);
     #endif
 #endif
@@ -504,7 +504,7 @@ CxSystemInfo::currentCpuNum() {
 
     dlDll.load(xT("kernel32.dll"));
 
-    bool bRv = dlDll.isProcExists(xT("GetCurrentProcessorNumber"));
+    bool_t bRv = dlDll.isProcExists(xT("GetCurrentProcessorNumber"));
     xCHECK_RET(false == bRv, 0UL);
 
     DllGetCurrentProcessorNumber_t DllGetCurrentProcessorNumber = (DllGetCurrentProcessorNumber_t)dlDll.procAddress(xT("GetCurrentProcessorNumber"));
@@ -517,7 +517,7 @@ CxSystemInfo::currentCpuNum() {
         #if defined(SYS_getcpu)
             ulong_t ulCpu = 0UL;
 
-            int iRv = ::syscall(SYS_getcpu, &ulCpu, NULL, NULL);
+            int_t iRv = ::syscall(SYS_getcpu, &ulCpu, NULL, NULL);
             xTEST_DIFF(- 1, iRv);
 
             ulRv = ulCpu;
@@ -526,7 +526,7 @@ CxSystemInfo::currentCpuNum() {
                 (xSTD_LIBC_GNU_VER_MAJOR == 2 && xSTD_LIBC_GNU_VER_MINOR > 6)
 
                 // ::sched_getcpu() function is available since glibc 2.6, it is glibc specific
-                int iRv = ::sched_getcpu();
+                int_t iRv = ::sched_getcpu();
                 xTEST_DIFF(- 1, iRv);
 
                 ulRv = static_cast<ulong_t>( iRv );
@@ -539,7 +539,7 @@ CxSystemInfo::currentCpuNum() {
                 // ::getcpu() was added in kernel 2.6.19 for x86_64 and i386
                 uint_t uiCpu = 0U;
 
-                int iRv = ::getcpu(&uiCpu, NULL, NULL);
+                int_t iRv = ::getcpu(&uiCpu, NULL, NULL);
                 xTEST_DIFF(- 1, iRv);
 
                 ulRv = uiCpu;
@@ -563,14 +563,14 @@ CxSystemInfo::cpuVendor() {
 
 #if   xOS_ENV_WIN
     #if   xCOMPILER_MINGW || xCOMPILER_MS
-        int    aiCpuInfo[4]     = {0};
+        int_t    aiCpuInfo[4]     = {0};
         char   szMan[13]        = {0};
 
         (void)::__cpuid(aiCpuInfo, 0);
 
-        *reinterpret_cast<int *>( &szMan[0] ) = aiCpuInfo[1];
-        *reinterpret_cast<int *>( &szMan[4] ) = aiCpuInfo[3];
-        *reinterpret_cast<int *>( &szMan[8] ) = aiCpuInfo[2];
+        *reinterpret_cast<int_t *>( &szMan[0] ) = aiCpuInfo[1];
+        *reinterpret_cast<int_t *>( &szMan[4] ) = aiCpuInfo[3];
+        *reinterpret_cast<int_t *>( &szMan[8] ) = aiCpuInfo[2];
 
         sValue = std::string(szMan);
         xTEST_EQ(false, sValue.empty());
@@ -589,7 +589,7 @@ CxSystemInfo::cpuVendor() {
         struct _SFunctor {
             #if (defined(__pic__) || defined(__APPLE__)) && defined(__i386__)
                 static inline void
-                __cpuid(int aiCpuInfo[4], int iInfoType) {
+                __cpuid(int_t aiCpuInfo[4], int_t iInfoType) {
                     __asm__ volatile (
                         "mov %%ebx, %%edi\n"
                         "cpuid\n"
@@ -600,7 +600,7 @@ CxSystemInfo::cpuVendor() {
                 }
             #elif defined(__i386__) || defined(__x86_64__)
                 static inline void
-                __cpuid(int aiCpuInfo[4], int iInfoType) {
+                __cpuid(int_t aiCpuInfo[4], int_t iInfoType) {
                     __asm__ volatile (
                         "cpuid\n"
                         : "=a"(aiCpuInfo[0]), "=b"(aiCpuInfo[1]), "=c"(aiCpuInfo[2]), "=d"(aiCpuInfo[3])
@@ -613,7 +613,7 @@ CxSystemInfo::cpuVendor() {
             #endif
         };
 
-        int aiCpuInfo[4] = {0};
+        int_t aiCpuInfo[4] = {0};
 
         (void)_SFunctor::__cpuid(aiCpuInfo, 0);
 
@@ -650,17 +650,17 @@ CxSystemInfo::cpuModel() {
 
         // get highest feature
         {
-            int aiCpuInfo[4] = {0};
+            int_t aiCpuInfo[4] = {0};
 
             (void)::__cpuid(aiCpuInfo, 0);
 
-            *reinterpret_cast<int *>( &szMan[0] ) = aiCpuInfo[1];
-            *reinterpret_cast<int *>( &szMan[4] ) = aiCpuInfo[3];
-            *reinterpret_cast<int *>( &szMan[8] ) = aiCpuInfo[2];
+            *reinterpret_cast<int_t *>( &szMan[0] ) = aiCpuInfo[1];
+            *reinterpret_cast<int_t *>( &szMan[4] ) = aiCpuInfo[3];
+            *reinterpret_cast<int_t *>( &szMan[8] ) = aiCpuInfo[2];
         }
 
         // get highest extended feature
-        int aiCpuInfo[4] = {0};
+        int_t aiCpuInfo[4] = {0};
 
         (void)::__cpuid(aiCpuInfo, 0x80000000);
 
@@ -670,9 +670,9 @@ CxSystemInfo::cpuModel() {
         if (uiHighestFeatureEx >= 0x80000004) {
             char szCpuName[49] = {0};
 
-            (void)::__cpuid(reinterpret_cast<int *>( &szCpuName[0]  ), 0x80000002);
-            (void)::__cpuid(reinterpret_cast<int *>( &szCpuName[16] ), 0x80000003);
-            (void)::__cpuid(reinterpret_cast<int *>( &szCpuName[32] ), 0x80000004);
+            (void)::__cpuid(reinterpret_cast<int_t *>( &szCpuName[0]  ), 0x80000002);
+            (void)::__cpuid(reinterpret_cast<int_t *>( &szCpuName[16] ), 0x80000003);
+            (void)::__cpuid(reinterpret_cast<int_t *>( &szCpuName[32] ), 0x80000004);
 
             std::tstring_t sCpuName = CxString::trimSpace( xS2TS(szCpuName) );
 
@@ -691,7 +691,7 @@ CxSystemInfo::cpuModel() {
 
         sRv = sValue;
     #elif xOS_FREEBSD
-        int         iRv         = - 1;
+        int_t         iRv         = - 1;
         std::string sValue;
         size_t      uiValueSize = 0;
 
@@ -738,14 +738,14 @@ CxSystemInfo::cpuSpeed() {
         std::tstring_t sValue = CxPath::procValue(xT("/proc/cpuinfo"), xT("cpu MHz"));
         xTEST_EQ(false, sValue.empty());
 
-        double dCpuSpeedMHz = CxString::cast<double>( sValue );
+        double_t dCpuSpeedMHz = CxString::cast<double_t>( sValue );
 
         ulRv = CxUtils::roundIntT<ulong_t>( dCpuSpeedMHz );
     #elif xOS_FREEBSD
         ulong_t ulCpuSpeedMHz     = 0UL;
         size_t  uiCpuSpeedMHzSize = sizeof(ulCpuSpeedMHz);
 
-        int iRv = ::sysctlbyname("hw.clockrate", &ulCpuSpeedMHz, &uiCpuSpeedMHzSize, NULL, 0);
+        int_t iRv = ::sysctlbyname("hw.clockrate", &ulCpuSpeedMHz, &uiCpuSpeedMHzSize, NULL, 0);
         xTEST_DIFF(- 1, iRv);
 
         ulRv = ulCpuSpeedMHz;
@@ -761,7 +761,7 @@ CxSystemInfo::cpuUsage() {
     ulong_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN
-    double                dRv              = 0.0;
+    double_t                dRv              = 0.0;
 
     FILETIME              ftSysIdle        = {0};
     FILETIME              ftSysKernel      = {0};
@@ -799,10 +799,10 @@ CxSystemInfo::cpuUsage() {
     ulRv = static_cast<ulong_t>( dRv );
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        double             dRv                = 0.0;
-        int                iRv                = - 1;
+        double_t             dRv                = 0.0;
+        int_t                iRv                = - 1;
 
-        static bool        bIsFirstRun        = true;
+        static bool_t        bIsFirstRun        = true;
 
         static ulonglong_t ullUserTotalOld    = 0ULL;
         static ulonglong_t ullUserTotalLowOld = 0ULL;
@@ -861,7 +861,7 @@ CxSystemInfo::cpuUsage() {
 
         ulRv = static_cast<ulong_t>( dRv );
     #elif xOS_FREEBSD
-        double         dCpuUsage            = 0.0;
+        double_t         dCpuUsage            = 0.0;
 
         static ulong_t s_ulTotalOld         = - 1UL;
         static ulong_t s_ulUsedOld          = - 1UL;
@@ -872,7 +872,7 @@ CxSystemInfo::cpuUsage() {
         ulong_t        aulCpIime[CPUSTATES] = {0};
         size_t         uiCpTimeSize         = sizeof(aulCpIime);
 
-        int iRv = ::sysctlbyname("kern.cp_time", &aulCpIime, &uiCpTimeSize, NULL, 0);
+        int_t iRv = ::sysctlbyname("kern.cp_time", &aulCpIime, &uiCpTimeSize, NULL, 0);
         xTEST_DIFF(- 1, iRv);
 
         ulUsed       = aulCpIime[CP_USER] + aulCpIime[CP_NICE] + aulCpIime[CP_SYS];
@@ -907,17 +907,17 @@ CxSystemInfo::ramTotal() {
     #if   xOS_LINUX
         struct sysinfo siInfo = {0};
 
-        int iRv = ::sysinfo(&siInfo);
+        int_t iRv = ::sysinfo(&siInfo);
         xTEST_DIFF(- 1, iRv);
 
         ullRv = siInfo.totalram * siInfo.mem_unit;
     #elif xOS_FREEBSD
         ulonglong_t ullRamTotal    = 0ULL;
 
-        int         aiMib[]        = {CTL_HW, HW_PHYSMEM};
+        int_t         aiMib[]        = {CTL_HW, HW_PHYSMEM};
         size_t      uiRamTotalSize = sizeof(ullRamTotal);
 
-        int iRv = ::sysctl(aiMib, 2, &ullRamTotal, &uiRamTotalSize, NULL, 0);
+        int_t iRv = ::sysctl(aiMib, 2, &ullRamTotal, &uiRamTotalSize, NULL, 0);
         xTEST_DIFF(- 1, iRv);
 
         ullRv = ullRamTotal;
@@ -944,7 +944,7 @@ CxSystemInfo::ramAvailable() {
     #if   xOS_LINUX
         struct sysinfo siInfo = {0};
 
-        int iRv = ::sysinfo(&siInfo);
+        int_t iRv = ::sysinfo(&siInfo);
         xTEST_DIFF(- 1, iRv);
 
         ullRv = siInfo.freeram * siInfo.mem_unit;
@@ -952,7 +952,7 @@ CxSystemInfo::ramAvailable() {
         ulonglong_t ullAvailPhysPages     = 0ULL;
         size_t      ullAvailPhysPagesSize = sizeof(ullAvailPhysPages);
 
-        int iRv = ::sysctlbyname("vm.stats.vm.v_free_count", &ullAvailPhysPages, &ullAvailPhysPagesSize, NULL, 0);
+        int_t iRv = ::sysctlbyname("vm.stats.vm.v_free_count", &ullAvailPhysPages, &ullAvailPhysPagesSize, NULL, 0);
         xTEST_DIFF(- 1, iRv);
 
         ullRv = ullAvailPhysPages * pageSize();
@@ -979,7 +979,7 @@ CxSystemInfo::ramUsage() {
     #if   xOS_LINUX
         struct sysinfo siInfo = {0};
 
-        int iRv = ::sysinfo(&siInfo);
+        int_t iRv = ::sysinfo(&siInfo);
         xTEST_DIFF(- 1, iRv);
 
         ulong_t ulUsage = siInfo.totalram - siInfo.freeram;
@@ -989,10 +989,10 @@ CxSystemInfo::ramUsage() {
     #elif xOS_FREEBSD
         ulonglong_t ullRamTotal = 0ULL;
         {
-            int     aiMib[]        = {CTL_HW, HW_PHYSMEM};
+            int_t     aiMib[]        = {CTL_HW, HW_PHYSMEM};
             size_t  uiRamTotalSize = sizeof(ullRamTotal);
 
-            int iRv = ::sysctl(aiMib, 2, &ullRamTotal, &uiRamTotalSize, NULL, 0);
+            int_t iRv = ::sysctl(aiMib, 2, &ullRamTotal, &uiRamTotalSize, NULL, 0);
             xTEST_DIFF(- 1, iRv);
         }
 
@@ -1001,7 +1001,7 @@ CxSystemInfo::ramUsage() {
             ulonglong_t ullAvailPhysPages     = 0ULL;
             size_t      ullAvailPhysPagesSize = sizeof(ullAvailPhysPages);
 
-            int iRv = ::sysctlbyname("vm.stats.vm.v_free_count", &ullAvailPhysPages, &ullAvailPhysPagesSize, NULL, 0);
+            int_t iRv = ::sysctlbyname("vm.stats.vm.v_free_count", &ullAvailPhysPages, &ullAvailPhysPagesSize, NULL, 0);
             xTEST_DIFF(- 1, iRv);
 
             ullRamFree = ullAvailPhysPages * pageSize();
@@ -1029,7 +1029,7 @@ CxSystemInfo::pageSize() {
 
     ulRv = siSysInfo.dwPageSize;
 #elif xOS_ENV_UNIX
-    int iRv = ::sysconf(xPAGE_SIZE);
+    int_t iRv = ::sysconf(xPAGE_SIZE);
     xTEST_DIFF(- 1, iRv);
     xTEST_LESS(0, iRv);
 
@@ -1077,7 +1077,7 @@ CxSystemInfo::_passwdFileEntry(
     {
         liBuffSize = ::sysconf(_SC_GETPW_R_SIZE_MAX);
         if (- 1L == liBuffSize) {
-            const long_t cliPwRSizeMax = 1024L;    // CUSTOM: 1024L - custom value
+            clong_t cliPwRSizeMax = 1024L;    // CUSTOM: 1024L - custom value
 
             liBuffSize = cliPwRSizeMax;
         }
@@ -1088,7 +1088,7 @@ CxSystemInfo::_passwdFileEntry(
     struct passwd *pwdResult = NULL;
     char           szBuff[ liBuffSize ];   (void *)std::memset(&szBuff[0], 0, sizeof(szBuff));
 
-    int iRv = ::getpwuid_r(cuiUserId, a_pwdPasswd, szBuff, sizeof(szBuff), &pwdResult);
+    int_t iRv = ::getpwuid_r(cuiUserId, a_pwdPasswd, szBuff, sizeof(szBuff), &pwdResult);
     xTEST_EQ(0, iRv);
     xTEST_PTR(pwdResult);
 

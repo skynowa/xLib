@@ -53,17 +53,17 @@ public:
 
     longlong_t             maxAge     () const xWARN_UNUSED_RV;
         ///< get max age
-    void                   setMaxAge  (const longlong_t &cliMaxAge);
+    void                   setMaxAge  (clonglong_t &cliMaxAge);
         ///< set max age
 
-    bool                   secure     () const xWARN_UNUSED_RV;
+    bool_t                   secure     () const xWARN_UNUSED_RV;
         ///< get secure
-    void                   setSecure  (const bool &cbFlag);
+    void                   setSecure  (cbool_t &cbFlag);
         ///< set secure
 
-    bool                   httpOnly   () const xWARN_UNUSED_RV;
+    bool_t                   httpOnly   () const xWARN_UNUSED_RV;
         ///< get http only
-    void                   setHttpOnly(const bool &cbFlag);
+    void                   setHttpOnly(cbool_t &cbFlag);
         ///< set http only
 
     std::tstring_t         toString   () const xWARN_UNUSED_RV;
@@ -80,8 +80,8 @@ private:
     std::tstring_t         _m_sDomain;    ///< domain
     std::tstring_t         _m_sPath;      ///< path
     longlong_t             _m_liMaxAge;   ///< max age (in seconds)
-    bool                   _m_bSecure;    ///< secure
-    bool                   _m_bHttpOnly;  ///< http only
+    bool_t                   _m_bSecure;    ///< secure
+    bool_t                   _m_bHttpOnly;  ///< http only
 };
 
 xNAMESPACE_END(NxLib)

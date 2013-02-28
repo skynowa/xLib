@@ -19,7 +19,7 @@ CxTest_CxSocketInit::~CxTest_CxSocketInit() {
 /* virtual */
 void
 CxTest_CxSocketInit::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxSocketInit::CxSocketInit", cullCaseLoops)

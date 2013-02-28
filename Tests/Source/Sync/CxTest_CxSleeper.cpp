@@ -19,7 +19,7 @@ CxTest_CxSleeper::~CxTest_CxSleeper() {
 /* virtual */
 void
 CxTest_CxSleeper::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxSleeper::isSleeping", cullCaseLoops)

@@ -19,7 +19,7 @@ CxTest_CxConsole::~CxTest_CxConsole() {
 /* virtual */
 void
 CxTest_CxConsole::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxConsole::setAttributes", cullCaseLoops)
@@ -29,7 +29,7 @@ CxTest_CxConsole::unit(
         std::tstring_t          sText;
         CxConsole::ExForeground fgForeground = CxConsole::fgBlue;
         CxConsole::ExBackground bgBackground = CxConsole::bgYellow;
-        int                     iAttributes  = CxConsole::atBold | CxConsole::atUnderscore | CxConsole::atReverse;
+        int_t                     iAttributes  = CxConsole::atBold | CxConsole::atUnderscore | CxConsole::atReverse;
 
         m_sRv = cnConsole.setAttributes(fgForeground, bgBackground, iAttributes);
         xTEST_NA(m_sRv);
@@ -86,7 +86,7 @@ CxTest_CxConsole::unit(
         #if xTEST_IGNORE
             const std::tstring_t csText  = xT("iMsgBox_text");
             const std::tstring_t csTitle = xT("iMsgBox_title");
-            const uint_t         cuiType = 0U;
+            cuint_t         cuiType = 0U;
 
 
             CxConsole cnConsole;
@@ -100,7 +100,7 @@ CxTest_CxConsole::unit(
     {
         #if xTEST_IGNORE
             const std::tstring_t csPrompt    = xT("vPrompt_simple_prompt");
-            const bool           cbIsVisible = true;
+            cbool_t           cbIsVisible = true;
             std::tstring_t       sAnswer     = xT("sAnswer_bla-bla-bla");
 
             CxConsole cnConsole;

@@ -24,7 +24,7 @@ CxTest_CxSystemInfo::~CxTest_CxSystemInfo() {
 /* virtual */
 void
 CxTest_CxSystemInfo::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxSystemInfo::os", cullCaseLoops)

@@ -19,7 +19,7 @@ CxTest_CxType::~CxTest_CxType() {
 /* virtual */
 void
 CxTest_CxType::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxType::name", cullCaseLoops)

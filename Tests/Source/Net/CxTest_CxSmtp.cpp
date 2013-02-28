@@ -19,7 +19,7 @@ CxTest_CxSmtp::~CxTest_CxSmtp() {
 /* virtual */
 void
 CxTest_CxSmtp::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     //-------------------------------------
@@ -62,7 +62,7 @@ CxTest_CxSmtp::unit(
     ulong_t              ulMsgID    = 1;    xUNUSED(ulMsgID);
     std::vector<ulong_t> veculList;
     ulong_t              ulIndex    = 1;    xUNUSED(ulIndex);
-    int                  iNum       = 1;    xUNUSED(iNum);
+    int_t                  iNum       = 1;    xUNUSED(iNum);
     const std::tstring_t csText     = xT("HELO");
 
     CxSmtp objSmtp;

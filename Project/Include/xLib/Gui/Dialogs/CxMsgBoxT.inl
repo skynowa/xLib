@@ -26,7 +26,7 @@ CxMsgBoxT::show(
     const HWND   &a_chWnd,
     const TextT  &a_cText,
     const TitleT &a_cTitle,
-    const uint_t &a_cuiType
+    cuint_t &a_cuiType
 )
 {
     ExModalResult mrRes = mrAbort;
@@ -48,7 +48,7 @@ CxMsgBoxT::ExModalResult
 CxMsgBoxT::show(
     const TextT  &a_cText,
     const TitleT &a_cTitle,
-    const uint_t &a_cuiType
+    cuint_t &a_cuiType
 )
 {
     ExModalResult mrRes = mrAbort;

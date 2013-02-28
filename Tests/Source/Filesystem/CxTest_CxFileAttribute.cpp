@@ -23,7 +23,7 @@ CxTest_CxFileAttribute::~CxTest_CxFileAttribute() {
 /* virtual */
 void
 CxTest_CxFileAttribute::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     const std::tstring_t csFilePath = tempDirPath() + CxConst::xSLASH + xT("Test.txt");
@@ -100,7 +100,7 @@ CxTest_CxFileAttribute::unit(
             xTEST_EQ(true, m_bRv);
 
             CxFileAttribute::ExAttribute faRes = faAttr.get();
-            xTEST_EQ((int)faAttribute, (int)faRes);
+            xTEST_EQ((int_t)faAttribute, (int_t)faRes);
         #elif xOS_ENV_UNIX
             // file
             {

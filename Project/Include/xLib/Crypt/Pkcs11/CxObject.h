@@ -63,11 +63,11 @@ private:
 
     // TODO: bFindInit, bFind, bFindFinal
 #if xTODO
-    bool                 bFindInit         (CK_ATTRIBUTE_PTR  pTemplate, CK_ULONG ulCount);
+    bool_t                 bFindInit         (CK_ATTRIBUTE_PTR  pTemplate, CK_ULONG ulCount);
         ///< initializes a search for token and session objects that match a template
-    bool                 bFind             (CK_OBJECT_HANDLE_PTR phObject, CK_ULONG ulMaxObjectCount, CK_ULONG_PTR pulObjectCount);
+    bool_t                 bFind             (CK_OBJECT_HANDLE_PTR phObject, CK_ULONG ulMaxObjectCount, CK_ULONG_PTR pulObjectCount);
         ///< continues a search for token and session objects that match a template, obtaining additional object handles
-    bool                 bFindFinal        ();
+    bool_t                 bFindFinal        ();
         ///< finishes a search for token and session objects
 #endif
 };

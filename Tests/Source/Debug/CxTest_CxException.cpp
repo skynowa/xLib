@@ -21,7 +21,7 @@ CxTest_CxException::~CxTest_CxException() {
 /* virtual */
 void
 CxTest_CxException::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxException::CxException", cullCaseLoops)

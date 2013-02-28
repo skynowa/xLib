@@ -30,13 +30,13 @@ public:
 
     void                  start     ();
         ///< start measurement
-    void                  stop      (const tchar_t *pcszComment, ...);
+    void                  stop      (ctchar_t *pcszComment, ...);
         ///< stop measurement
-    void                  pulse     (const tchar_t *pcszComment, ...);
+    void                  pulse     (ctchar_t *pcszComment, ...);
         ///< stop, start measurement
 
 private:
-    bool                  _m_bIsStarted;    ///< is started
+    bool_t                  _m_bIsStarted;    ///< is started
     CxFileLog             _flLog;           ///< file log
 
     std::clock_t          _m_clkStart;      ///< start value
@@ -59,14 +59,14 @@ xNAMESPACE_END(NxLib)
     #ifndef SYSTEM_H_INCLUDED
     #define SYSTEM_H_INCLUDED
 
-    double time_in_seconds();
+    double_t time_in_seconds();
 
 
     // system_posix.cpp:
     #include "system.h"
     #include <sys/time.h>
 
-    double time_in_seconds() {
+    double_t time_in_seconds() {
         struct timeval tp;
         gettimeofday(&tp,0);
         return tp.tv_sec+.000001*tp.tv_usec;
@@ -77,14 +77,14 @@ xNAMESPACE_END(NxLib)
     #include "system.h"
     #include <ctime>
 
-    double time_in_seconds() {
-      return std::clock()/(double)CLOCKS_PER_SEC;
+    double_t time_in_seconds() {
+      return std::clock()/(double_t)CLOCKS_PER_SEC;
     }
 
 
     #include <time.h>
 
-    double time_in_seconds() {
+    double_t time_in_seconds() {
       struct timespec tp;
       clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &tp);
       return tp.tv_sec + .000000001 * tp.tv_nsec;

@@ -21,7 +21,7 @@ CxTest_CxAutoMutex::~CxTest_CxAutoMutex() {
 /* virtual */
 void
 CxTest_CxAutoMutex::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxAutoMutex::CxAutoMutex", cullCaseLoops)

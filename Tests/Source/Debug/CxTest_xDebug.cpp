@@ -21,7 +21,7 @@ CxTest_xDebug::~CxTest_xDebug() {
 /*virtual*/
 void
 CxTest_xDebug::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     //--------------------------------------------------
@@ -29,8 +29,8 @@ CxTest_xDebug::unit(
     xTEST_CASE("xDebug::xTEST_*_", cullCaseLoops)
     {
         {
-            int iSimpleVar = 1;
-            int iVeryVerySimpleVar = 1;
+            int_t iSimpleVar = 1;
+            int_t iVeryVerySimpleVar = 1;
             xTEST_MSG_EQ(iSimpleVar, iVeryVerySimpleVar, xT("Simple message"));
 
             xTEST_EQ(1UL, 1UL);
@@ -114,10 +114,10 @@ CxTest_xDebug::unit(
     {
         class STest {
             public:
-                const ulong_t culVal0;
-                const ulong_t culVal1;
-                const ulong_t culVal2;
-                const ulong_t culVal3;
+                culong_t culVal0;
+                culong_t culVal1;
+                culong_t culVal2;
+                culong_t culVal3;
 
                 STest() :
                     culVal0(0UL),
@@ -127,7 +127,7 @@ CxTest_xDebug::unit(
                 {
                 }
 
-                long_t exec(const bool &cbFlag) {
+                long_t exec(cbool_t &cbFlag) {
                     if (cbFlag) {
                         xCHECK_DO(!cbFlag, return culVal0; );
                         xCHECK_DO( cbFlag, return culVal1; );
@@ -167,7 +167,7 @@ CxTest_xDebug::unit(
     // 
     xTEST_CASE("xDebug::xCHECK_MSG_DO_", cullCaseLoops)
     {
-        xCHECK_MSG_DO(false, xT("xxx"), int i = 0; ++ i;);
+        xCHECK_MSG_DO(false, xT("xxx"), int_t i = 0; ++ i;);
     }
 
     //--------------------------------------------------
@@ -195,7 +195,7 @@ CxTest_xDebug::unit(
     xTEST_CASE("xDebug::xTEST_CASE_", cullCaseLoops)
     {
         xTEST_CASE("case_name", 3U) {
-            int iVal = 0; ++ iVal;
+            int_t iVal = 0; ++ iVal;
         }
     }
 

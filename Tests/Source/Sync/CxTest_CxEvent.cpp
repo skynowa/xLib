@@ -19,7 +19,7 @@ CxTest_CxEvent::~CxTest_CxEvent() {
 /* virtual */
 void
 CxTest_CxEvent::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxEvent::handle", cullCaseLoops)
@@ -107,8 +107,8 @@ CxTest_CxEvent::unit(
     xTEST_CASE("CxEvent::wait", cullCaseLoops)
     {
         {
-            const bool cbIsAutoReset  = false;
-            const bool cbInitialState = false;
+            cbool_t cbIsAutoReset  = false;
+            cbool_t cbInitialState = false;
 
 
             CxEvent objEvent(cbIsAutoReset, cbInitialState);
@@ -126,8 +126,8 @@ CxTest_CxEvent::unit(
         }
 
         {
-            const bool cbIsAutoReset  = true;
-            const bool cbInitialState = true;
+            cbool_t cbIsAutoReset  = true;
+            cbool_t cbInitialState = true;
 
 
             CxEvent objEvent(cbIsAutoReset, cbInitialState);
@@ -145,8 +145,8 @@ CxTest_CxEvent::unit(
         }
 
         {
-            const bool cbIsAutoReset  = true;
-            const bool cbInitialState = false;
+            cbool_t cbIsAutoReset  = true;
+            cbool_t cbInitialState = false;
 
             CxEvent objEvent(cbIsAutoReset, cbInitialState);
 
@@ -163,8 +163,8 @@ CxTest_CxEvent::unit(
         }
 
         {
-            const bool cbIsAutoReset  = false;
-            const bool cbInitialState = true;
+            cbool_t cbIsAutoReset  = false;
+            cbool_t cbInitialState = true;
 
             CxEvent objEvent(cbIsAutoReset, cbInitialState);
 

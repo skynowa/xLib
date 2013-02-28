@@ -33,7 +33,7 @@ CxSlot::~CxSlot() {
 }
 //------------------------------------------------------------------------------
 #if xTEMP_DISABLED
-    bool CxSlot::bGetList(
+    bool_t CxSlot::bGetList(
         CK_BBOOL       a_bTokenPresent,  ///< only slots with tokens?
         CK_SLOT_ID_PTR a_pSlotList,      ///< receives array of slot IDs
         CK_ULONG_PTR   a_pulCount        ///< receives number of slots

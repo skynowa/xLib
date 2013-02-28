@@ -44,7 +44,7 @@ CxDir::dirPath() const {
     return _m_csDirPath;
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxDir::isExists() {
     xCHECK_RET(true == dirPath().empty(), false);
 
@@ -52,20 +52,20 @@ CxDir::isExists() {
 
     xCHECK_RET(CxFileAttribute::faInvalid == faAttr.get(), false);
 
-    bool bRv = faAttr.isExists(CxFileAttribute::faDirectory);
+    bool_t bRv = faAttr.isExists(CxFileAttribute::faDirectory);
     xCHECK_RET(false == bRv, false);
 
     return true;
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxDir::isEmpty(
     const std::tstring_t &a_csPattern
 )
 {
     xTEST_EQ(false, a_csPattern.empty());
 
-    bool bRv = false;
+    bool_t bRv = false;
 
     // TODO: CxPath::sToNative + CxPath::sSlashAppend
 
@@ -109,21 +109,21 @@ CxDir::isEmpty(
     }
     while (NULL != (pdrEntry = ::readdir(pDir)));
 
-    int iRv = ::closedir(pDir); pDir = NULL;
+    int_t iRv = ::closedir(pDir); pDir = NULL;
     xTEST_DIFF(- 1, iRv);
 #endif
 
     return bRv;
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxDir::isRoot() {
 #if   xOS_ENV_WIN
     xCHECK_RET(3 != dirPath().size(), false);
 
-    bool bRes1 = CxChar::isAlpha(dirPath().at(0));
-    bool bRes2 = (dirPath().at(1) == CxConst::xCOLON.at(0));
-    bool bRes3 = (dirPath().at(2) == CxConst::xWIN_SLASH.at(0) || dirPath().at(2) == CxConst::xUNIX_SLASH.at(0));
+    bool_t bRes1 = CxChar::isAlpha(dirPath().at(0));
+    bool_t bRes2 = (dirPath().at(1) == CxConst::xCOLON.at(0));
+    bool_t bRes3 = (dirPath().at(2) == CxConst::xWIN_SLASH.at(0) || dirPath().at(2) == CxConst::xUNIX_SLASH.at(0));
 
     xCHECK_RET(false == bRes1 || false == bRes2 || false == bRes3, false);
 #elif xOS_ENV_UNIX
@@ -133,9 +133,9 @@ CxDir::isRoot() {
     return true;
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxDir::isDir() {
-    bool bRv = CxFileAttribute(dirPath()).isExists(CxFileAttribute::faDirectory);
+    bool_t bRv = CxFileAttribute(dirPath()).isExists(CxFileAttribute::faDirectory);
     xCHECK_RET(false == bRv, false);
 
     return true;
@@ -143,14 +143,14 @@ CxDir::isDir() {
 //--------------------------------------------------------------------------
 void
 CxDir::create() {
-    bool bRv = isExists();
+    bool_t bRv = isExists();
     xCHECK_DO(true == bRv, return);
 
 #if   xOS_ENV_WIN
     BOOL blRes = ::CreateDirectory(dirPath().c_str(), NULL);
     xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
-    int iRv = ::mkdir(dirPath().c_str(), 0755);
+    int_t iRv = ::mkdir(dirPath().c_str(), 0755);
     xTEST_DIFF(- 1, iRv);
 #endif
 
@@ -180,7 +180,7 @@ CxDir::pathCreate() {
 void
 CxDir::copy(
     const std::tstring_t &a_csDirPathTo,
-    const bool           &a_cbFailIfExists
+    cbool_t           &a_cbFailIfExists
 )
 {
     xTEST_EQ(true,  isExists());
@@ -189,7 +189,7 @@ CxDir::copy(
 
     //-------------------------------------
     // sets attribute "normal"
-    bool bRv = CxDir(a_csDirPathTo).isExists();
+    bool_t bRv = CxDir(a_csDirPathTo).isExists();
     if (true == bRv) {
         CxFileAttribute(a_csDirPathTo).set(CxFileAttribute::faNormal);
     }
@@ -225,7 +225,7 @@ CxDir::copy(
 void
 CxDir::move(
     const std::tstring_t &a_csDirPathTo,
-    const bool           &a_cbFailIfExists
+    cbool_t           &a_cbFailIfExists
 )
 {
     xTEST_EQ(true,  isExists());
@@ -240,7 +240,7 @@ CxDir::move(
 //------------------------------------------------------------------------------
 void
 CxDir::remove() {
-    bool bRv = isExists();
+    bool_t bRv = isExists();
     xCHECK_DO(false == bRv, return);
 
     CxFileAttribute(dirPath()).set(CxFileAttribute::faNormal);
@@ -249,7 +249,7 @@ CxDir::remove() {
     BOOL blRes = ::RemoveDirectory(dirPath().c_str());
     xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
-    int iRv = ::rmdir(dirPath().c_str());
+    int_t iRv = ::rmdir(dirPath().c_str());
     xTEST_DIFF(- 1, iRv);
 #endif
 
@@ -259,7 +259,7 @@ CxDir::remove() {
 void
 CxDir::tryRemove(
     const size_t  &a_cuiAttempts,
-    const ulong_t &a_culTimeoutMsec
+    culong_t &a_culTimeoutMsec
 )
 {
     xTEST_LESS(size_t(0U), a_cuiAttempts);
@@ -286,7 +286,7 @@ CxDir::pathClear() {
 
     //-------------------------------------
     // checks
-    bool bRv = isEmpty(CxConst::xMASK_ALL);
+    bool_t bRv = isEmpty(CxConst::xMASK_ALL);
     xCHECK_DO(true == bRv, return);
 
     //-------------------------------------
@@ -320,7 +320,7 @@ CxDir::pathClear() {
 //------------------------------------------------------------------------------
 void
 CxDir::pathDelete() {
-    bool bRv = isExists();
+    bool_t bRv = isExists();
     xCHECK_DO(false == bRv, return);
 
     pathClear();
@@ -334,7 +334,7 @@ CxDir::pathDelete() {
 void
 CxDir::filesFind(
     const std::tstring_t &a_csPattern,          ///< pattern
-    const bool           &a_cbIsRecursively,    ///< recursively scan
+    cbool_t           &a_cbIsRecursively,    ///< recursively scan
     std::vec_tstring_t   *a_pvsFilePathes       ///< output file paths (must be empty)
 )
 {
@@ -431,7 +431,7 @@ CxDir::filesFind(
 
                 // filter by pattern
                 {
-                    int iRv = ::fnmatch(a_csPattern.c_str(), sFileName.c_str(), 0);
+                    int_t iRv = ::fnmatch(a_csPattern.c_str(), sFileName.c_str(), 0);
                     xTEST_EQ(true, (0 == iRv) || (FNM_NOMATCH == iRv));
 
                     xCHECK_DO(0 != iRv, continue);
@@ -444,7 +444,7 @@ CxDir::filesFind(
         }
         while ( NULL != (pdrEntry = ::readdir(pDir)) );
 
-        int iRv = ::closedir(pDir); pDir = NULL;
+        int_t iRv = ::closedir(pDir); pDir = NULL;
         xTEST_DIFF(- 1, iRv);
     }
 
@@ -471,7 +471,7 @@ CxDir::filesFind(
             }
             while ( NULL != (pdrEntry = readdir(pDir)) );
 
-            int iRv = closedir(pDir); pDir = NULL;
+            int_t iRv = closedir(pDir); pDir = NULL;
             xTEST_DIFF(- 1, iRv);
         }
     #endif
@@ -481,7 +481,7 @@ CxDir::filesFind(
 void
 CxDir::dirsFind(
     const std::tstring_t &a_csPattern,          ///< pattern
-    const bool           &a_cbIsRecursively,    ///< recursively scan
+    cbool_t           &a_cbIsRecursively,    ///< recursively scan
     std::vec_tstring_t   *a_pvsDirPathes        ///< output directory paths (must be empty)
 )
 {
@@ -545,7 +545,7 @@ CxDir::dirsFind(
 
             // filter by pattern
             {
-                int iRv = ::fnmatch(a_csPattern.c_str(), sFileName.c_str(), 0);
+                int_t iRv = ::fnmatch(a_csPattern.c_str(), sFileName.c_str(), 0);
                 xTEST_EQ(true, (0 == iRv) || (FNM_NOMATCH == iRv));
 
                 xCHECK_DO(0 != iRv, continue);
@@ -567,7 +567,7 @@ CxDir::dirsFind(
     }
     while ( NULL != (pdrEntry = ::readdir(pDir)) );
 
-    int iRv = ::closedir(pDir); pDir = NULL;
+    int_t iRv = ::closedir(pDir); pDir = NULL;
     xTEST_DIFF(- 1, iRv);
 #endif
 }
@@ -594,7 +594,7 @@ CxDir::current() {
 #elif xOS_ENV_UNIX
     tchar_t *pszRes = ::getcwd(&sBuff[0], xPATH_MAX);
     xTEST_PTR(pszRes);
-    xTEST_EQ(sBuff.c_str(), const_cast<const tchar_t *>( pszRes ));
+    xTEST_EQ(sBuff.c_str(), const_cast<ctchar_t *>( pszRes ));
 
     sRv.assign(pszRes);
 #endif
@@ -612,7 +612,7 @@ CxDir::setCurrent(
     BOOL blRes = ::SetCurrentDirectory(dirPath.c_str());
     xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
-    int iRv = ::chdir(a_csDirPath.c_str());
+    int_t iRv = ::chdir(a_csDirPath.c_str());
     xTEST_DIFF(- 1, iRv);
 #endif
 }
@@ -633,7 +633,7 @@ CxDir::temp() {
 #elif xOS_ENV_UNIX
     const std::tstring_t csEnvDirTemp = xT("TMPDIR");
 
-    bool bRv = CxEnvironment::isExists(csEnvDirTemp);
+    bool_t bRv = CxEnvironment::isExists(csEnvDirTemp);
     if (true == bRv) {
         sRv = CxEnvironment::var(csEnvDirTemp);
     } else {

@@ -68,14 +68,14 @@ public:
         ///< remove extension if it equal some string
 
 
-    bool                   isAbsolute     () const xWARN_UNUSED_RV;
+    bool_t                   isAbsolute     () const xWARN_UNUSED_RV;
         ///< is absolute
 
-    std::tstring_t         toWin          (const bool &cbIsSlashAtEnd) const xWARN_UNUSED_RV;
+    std::tstring_t         toWin          (cbool_t &cbIsSlashAtEnd) const xWARN_UNUSED_RV;
         ///< convert slashes to Windows style
-    std::tstring_t         toUnix         (const bool &cbIsSlashAtEnd) const xWARN_UNUSED_RV;
+    std::tstring_t         toUnix         (cbool_t &cbIsSlashAtEnd) const xWARN_UNUSED_RV;
         ///< convert slashes to Nix style
-    std::tstring_t         toNative       (const bool &cbIsSlashAtEnd) const xWARN_UNUSED_RV;
+    std::tstring_t         toNative       (cbool_t &cbIsSlashAtEnd) const xWARN_UNUSED_RV;
         ///< convert slashes to native style
     std::tstring_t         absolute       () const xWARN_UNUSED_RV;
         ///< get absolute path
@@ -97,9 +97,9 @@ public:
     static std::tstring_t  standartExt    (const ExStandartExt &cseFileExt) xWARN_UNUSED_RV;
         ///< get standard extension
 
-    static bool            isValid        (const std::tstring_t &csFilePath) xWARN_UNUSED_RV;
+    static bool_t            isValid        (const std::tstring_t &csFilePath) xWARN_UNUSED_RV;
         ///< path validation
-    static bool            isNameValid    (const std::tstring_t &csFileName) xWARN_UNUSED_RV;
+    static bool_t            isNameValid    (const std::tstring_t &csFileName) xWARN_UNUSED_RV;
         ///< name validation
 
     static std::tstring_t  shortName      (const std::tstring_t &csFileName, const size_t &cuiMaxSize) xWARN_UNUSED_RV;

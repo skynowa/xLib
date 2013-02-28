@@ -439,7 +439,7 @@ CxObject::setData(
 
 #if xTODO
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxObject::bFindInit(
     CK_ATTRIBUTE_PTR pTemplate,  ///< attribute values to match
     CK_ULONG         ulCount     ///< attrs in search template
@@ -455,7 +455,7 @@ CxObject::bFindInit(
     return true;
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxObject::bFind(
     CK_OBJECT_HANDLE_PTR phObject,          ///< gets obj. handles
     CK_ULONG             ulMaxObjectCount,  ///< max handles to get
@@ -473,7 +473,7 @@ CxObject::bFind(
     return true;
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxObject::bFindFinal() {
     xTEST_PTR(_m_pFunc);
     xTEST_DIFF(0UL, _m_hSession);

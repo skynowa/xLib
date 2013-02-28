@@ -58,20 +58,20 @@ CxDebugger::~CxDebugger() {
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxDebugger::isEnabled() {
     return _m_bIsEnabled;
 }
 //------------------------------------------------------------------------------
 void
 CxDebugger::setEnabled(
-    const bool &a_cbFlag
+    cbool_t &a_cbFlag
 )
 {
     _m_bIsEnabled = a_cbFlag;
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxDebugger::isActive() {
 #if   xOS_ENV_WIN
     // local debugger
@@ -86,10 +86,10 @@ CxDebugger::isActive() {
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         // if ppid != sid, some process spawned our app, probably a debugger
-        bool bRv = ( ::getsid(::getpid()) != ::getppid() );
+        bool_t bRv = ( ::getsid(::getpid()) != ::getppid() );
         xCHECK_RET(false == bRv, false);
     #elif xOS_FREEBSD
-        int               aiMib[4]   = {0};
+        int_t               aiMib[4]   = {0};
         struct kinfo_proc kiInfo     = {0};
         size_t            uiInfoSize = 0;
 
@@ -103,7 +103,7 @@ CxDebugger::isActive() {
 
         uiInfoSize = sizeof(kiInfo);
 
-        int iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), &kiInfo, &uiInfoSize, NULL, 0);
+        int_t iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), &kiInfo, &uiInfoSize, NULL, 0);
         xCHECK_RET(- 1 == iRv, false);
 
         // we're being debugged if the P_TRACED flag is set.
@@ -114,7 +114,7 @@ CxDebugger::isActive() {
     return true;
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxDebugger::isDebugBuild() {
 #if xBUILD_DEBUG
     return true;
@@ -130,10 +130,10 @@ CxDebugger::breakPoint() {
 #if   xOS_ENV_WIN
     (void)::DebugBreak();
 #elif xOS_ENV_UNIX
-    int iRv = ::raise(SIGTRAP);
+    int_t iRv = ::raise(SIGTRAP);
     xTEST_DIFF(- 1, iRv);
 
-    //// int iRv = ::kill(CxCurrentProcess::id(), SIGALRM);
+    //// int_t iRv = ::kill(CxCurrentProcess::id(), SIGALRM);
     //// xTEST_DIFF(- 1, iRv);
 #endif
 }
@@ -158,7 +158,7 @@ CxDebugger::reportMake(
 {
     //-------------------------------------
     // never corrupt the last error value
-    const ulong_t culLastError = CxLastError::get();
+    culong_t culLastError = CxLastError::get();
 
     switch (a_crpReport.m_rtType) {
         case CxErrorReport::rtMsgboxPlain:

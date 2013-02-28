@@ -19,7 +19,7 @@ CxTest_CxHttpClient::~CxTest_CxHttpClient() {
 /* virtual */
 void
 CxTest_CxHttpClient::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxHttpClient::CxHttpClient", cullCaseLoops)

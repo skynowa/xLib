@@ -19,7 +19,7 @@ CxTest_CxChar::~CxTest_CxChar() {
 /* virtual */
 void
 CxTest_CxChar::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxChar::isAlphaNum", cullCaseLoops)

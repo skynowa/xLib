@@ -34,7 +34,7 @@ public:
         ///< create
     void              lock   ();
         ///< lock
-    bool              tryLock() xWARN_UNUSED_RV;
+    bool_t              tryLock() xWARN_UNUSED_RV;
         ///< try lock
     void              unlock ();
         ///< unlock

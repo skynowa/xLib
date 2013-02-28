@@ -189,7 +189,7 @@
 #define xMIN(a, b)                      ( CxUtils::minT( (a), (b) ) )
     ///< get min value
 #define xINT_TO_BOOL(i)                 ( CxUtils::intToBoolT(i) )
-    ///< convert int to bool
+    ///< convert int_t to bool_t
 
 //--------------------------------------------------
 // xUNUSED
@@ -387,7 +387,7 @@
 #if   xOS_ENV_WIN
     #define xSEMAPHORE_VALUE_MAX        ( LONG_MAX )         // LONG, custom define (tested on Win7 x64)
 #elif xOS_ENV_UNIX
-    #define xSEMAPHORE_VALUE_MAX        ( SEM_VALUE_MAX )    // int
+    #define xSEMAPHORE_VALUE_MAX        ( SEM_VALUE_MAX )    // int_t
 #endif
     ///< semaphore maximum value
 
@@ -419,48 +419,48 @@
         #define xPR_SIZET               xT("u")
             ///< qualifier for std::size_t
         #define xPR_I64d                xT("lld")
-            ///< qualifier for  long_t long_t int
+            ///< qualifier for  long_t long_t int_t
         #define xPR_I64u                xT("llu")
             ///< qualifier for unsigned long_t long_t in
         #define xPR_I64x                xT("llx")
-            ///< qualifier for long_t long_t int (hex)
+            ///< qualifier for long_t long_t int_t (hex)
         #define xPR_I64X                xT("llX")
-            ///< qualifier for long_t long_t int (hex)
+            ///< qualifier for long_t long_t int_t (hex)
     #else
         #define xPR_SIZET               xT("I")
             ///< qualifier for std::size_t
         #define xPR_I64d                xT("I64d")
-            ///< qualifier for  long_t long_t int
+            ///< qualifier for  long_t long_t int_t
         #define xPR_I64u                xT("I64u")
-            ///< qualifier for unsigned long_t long_t int
+            ///< qualifier for unsigned long_t long_t int_t
         #define xPR_I64x                xT("I64x")
-            ///< qualifier for long_t long_t int (hex)
+            ///< qualifier for long_t long_t int_t (hex)
         #define xPR_I64X                xT("I64X")
-            ///< qualifier for long_t long_t int (hex)
+            ///< qualifier for long_t long_t int_t (hex)
     #endif
 #elif xOS_ENV_UNIX
     #ifdef xARCH_X86
         #define xPR_SIZET               xT("zu")
             ///< qualifier for std::size_t
         #define xPR_I64d                xT("lld")
-            ///< qualifier for  long_t long_t int
+            ///< qualifier for  long_t long_t int_t
         #define xPR_I64u                xT("llu")
-            ///< qualifier for unsigned long_t long_t int
+            ///< qualifier for unsigned long_t long_t int_t
         #define xPR_I64x                xT("llx")
-            ///< qualifier for long_t long_t int (hex)
+            ///< qualifier for long_t long_t int_t (hex)
         #define xPR_I64X                xT("llX")
-            ///< qualifier for long_t long_t int (hex)
+            ///< qualifier for long_t long_t int_t (hex)
     #else
         #define xPR_SIZET               xT("zu")
             ///< qualifier for std::size_t
         #define xPR_I64d                xT("lld")
-            ///< qualifier for  long_t long_t int
+            ///< qualifier for  long_t long_t int_t
         #define xPR_I64u                xT("llu")
-            ///< qualifier for unsigned long_t long_t int
+            ///< qualifier for unsigned long_t long_t int_t
         #define xPR_I64x                xT("llx")
-            ///< qualifier for long_t long_t int (hex)
+            ///< qualifier for long_t long_t int_t (hex)
         #define xPR_I64X                xT("llX")
-            ///< qualifier for long_t long_t int (hex)
+            ///< qualifier for long_t long_t int_t (hex)
     #endif
 #endif
     ///< qualifiers

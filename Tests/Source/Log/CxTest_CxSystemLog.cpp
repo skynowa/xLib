@@ -19,7 +19,7 @@ CxTest_CxSystemLog::~CxTest_CxSystemLog() {
 /* virtual */
 void
 CxTest_CxSystemLog::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxSystemLog::CxSystemLog", cullCaseLoops)

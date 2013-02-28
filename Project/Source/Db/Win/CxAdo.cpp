@@ -32,11 +32,11 @@ CADORecordset::~CADORecordset() {
     }
 }
 //------------------------------------------------------------------------------
-bool CADORecordset::IsCreated() const {
-    return ((bool)m_pRecordset);
+bool_t CADORecordset::IsCreated() const {
+    return ((bool_t)m_pRecordset);
 }
 //------------------------------------------------------------------------------
-bool CADORecordset::IsOpen() const {
+bool_t CADORecordset::IsOpen() const {
     if (!IsCreated()) {
         throw CADORecordsetException(CADORecordsetException::reRecordsetNotCreated);
     }
@@ -71,7 +71,7 @@ void CADORecordset::AddParam(DataTypeEnum prmType, const _variant_t &vtPrm) {
     m_lstParam.push_back(sp);
 }
 //------------------------------------------------------------------------------
-void CADORecordset::SetOpenMode(bool bDynamicOpen) {
+void CADORecordset::SetOpenMode(bool_t bDynamicOpen) {
     if (IsCreated() && IsOpen()) {
         throw CADORecordsetException(CADORecordsetException::reRecordsetNotClosed);
     }
@@ -87,7 +87,7 @@ void CADORecordset::Open() {
     if (!IsCreated() && FAILED(m_pCommand.CreateInstance(__uuidof(Command)))) {
         throw CADORecordsetException(CADORecordsetException::reCannotCreateCmd);
     }
-    if (!(bool)m_pRecordset && FAILED(m_pRecordset.CreateInstance(__uuidof(Recordset)))) {
+    if (!(bool_t)m_pRecordset && FAILED(m_pRecordset.CreateInstance(__uuidof(Recordset)))) {
         throw CADORecordsetException(CADORecordsetException::reCannotCreateRecordset);
     }
     if (IsOpen()) {
@@ -100,7 +100,7 @@ void CADORecordset::Open() {
         m_pCommand->ActiveConnection = GetAdoConnection();
         m_pCommand->CommandText      = m_strSQL;
         if (m_lstParam.size()) {
-            int nPrm = 0;
+            int_t nPrm = 0;
             for (list<SQL_PARAMS>::iterator it = m_lstParam.begin(); it != m_lstParam.end(); ++it) {
                 char szBuf[MAX_PATH + 1] = {0};
                 sprintf(szBuf, "prm%d", nPrm++);
@@ -173,7 +173,7 @@ void CADORecordset::Prev() {
     }
 }
 //------------------------------------------------------------------------------
-bool CADORecordset::IsEoF() {
+bool_t CADORecordset::IsEoF() {
     CheckOpen();
 
     try {
@@ -183,7 +183,7 @@ bool CADORecordset::IsEoF() {
     }
 }
 //------------------------------------------------------------------------------
-bool CADORecordset::IsBoF() {
+bool_t CADORecordset::IsBoF() {
     CheckOpen();
 
     try {
@@ -193,7 +193,7 @@ bool CADORecordset::IsBoF() {
     }
 }
 //------------------------------------------------------------------------------
-bool CADORecordset::IsEmpty() {
+bool_t CADORecordset::IsEmpty() {
     CheckOpen();
 
     return (IsEoF() && IsBoF());
@@ -280,7 +280,7 @@ void CADORecordset::SetField(const char *pFieldName, const _variant_t &vtValue) 
     }
 }
 //------------------------------------------------------------------------------
-void CADORecordset::SetArrayField(const char *pFieldName, const void *pBuf, int nBytes) {
+void CADORecordset::SetArrayField(const char *pFieldName, const void *pBuf, int_t nBytes) {
     VARIANT var;
     ::VariantInit(&var);
     SAFEARRAY sar;
@@ -296,7 +296,7 @@ void CADORecordset::SetArrayField(const char *pFieldName, const void *pBuf, int 
     SetField(pFieldName, _variant_t(var, true));
 }
 //------------------------------------------------------------------------------
-void CADORecordset::SetArrayField(short nNumField, const void *pBuf, int nBytes) {
+void CADORecordset::SetArrayField(short nNumField, const void *pBuf, int_t nBytes) {
     VARIANT var;
     ::VariantInit(&var);
     SAFEARRAY sar;
@@ -312,9 +312,9 @@ void CADORecordset::SetArrayField(short nNumField, const void *pBuf, int nBytes)
     SetField(nNumField, _variant_t(var, true));
 }
 //------------------------------------------------------------------------------
-int CADORecordset::GetFieldsCount() const {
+int_t CADORecordset::GetFieldsCount() const {
     try {
-        return static_cast<int>(m_pRecordset->GetFields()->GetCount());
+        return static_cast<int_t>(m_pRecordset->GetFields()->GetCount());
     } catch (_com_error &e) {
         throw CADORecordsetException(CADORecordsetException::reErrGetFieldsCount, (const char *)e.Description(), true);
     }
@@ -362,11 +362,11 @@ long CADORecordset::GetCountRecs() {
     return 0;
 }
 //------------------------------------------------------------------------------
-bool CADORecordset::IsNewRecord() const {
+bool_t CADORecordset::IsNewRecord() const {
     return m_bNewRecond;
 }
 //------------------------------------------------------------------------------
-bool CADORecordset::IsEditing() const {
+bool_t CADORecordset::IsEditing() const {
     return m_bEditing;
 }
 //-------------------------------------------------------------------
@@ -383,7 +383,7 @@ CADOConnection::CADOConnection() {
 
 }
 //------------------------------------------------------------------------------
-CADOConnection::CADOConnection(const char *pStrConnection, const char *pStrUserID, const char *pStrPassword, bool bOpen) {
+CADOConnection::CADOConnection(const char *pStrConnection, const char *pStrUserID, const char *pStrPassword, bool_t bOpen) {
     SetConnectionParam(pStrConnection, pStrUserID, pStrPassword);
 
     if (bOpen) {
@@ -391,7 +391,7 @@ CADOConnection::CADOConnection(const char *pStrConnection, const char *pStrUserI
     }
 }
 //------------------------------------------------------------------------------
-CADOConnection::CADOConnection(int nJetVer, int nJetVerEx, const char *pStrFileName, const char *pStrUserID, const char *pStrPassword, bool bOpen) {
+CADOConnection::CADOConnection(int_t nJetVer, int_t nJetVerEx, const char *pStrFileName, const char *pStrUserID, const char *pStrPassword, bool_t bOpen) {
     SetMSAccessConnectionParam(nJetVer, nJetVerEx, pStrFileName, pStrUserID, pStrPassword);
 
     if (bOpen) {
@@ -409,11 +409,11 @@ CADOConnection::~CADOConnection() {
     }
 }
 //------------------------------------------------------------------------------
-bool CADOConnection::IsCreated() const {
-    return ((bool)m_pConnection);
+bool_t CADOConnection::IsCreated() const {
+    return ((bool_t)m_pConnection);
 }
 //------------------------------------------------------------------------------
-bool CADOConnection::IsOpen() const {
+bool_t CADOConnection::IsOpen() const {
     if (!IsCreated()) {
         throw CADOConnectionException(CADOConnectionException::ceConnectionNotExists);
     }
@@ -467,12 +467,12 @@ void CADOConnection::SetConnectionParam(const char *pStrConnection, const char *
     m_strPassword   = pStrPassword;
 }
 //------------------------------------------------------------------------------
-void CADOConnection::SetMSAccessConnectionParam(int nJetVer, int nJetVerEx, const char *pStrFileName, const char *pStrUserID, const char *pStrPassword) {
+void CADOConnection::SetMSAccessConnectionParam(int_t nJetVer, int_t nJetVerEx, const char *pStrFileName, const char *pStrUserID, const char *pStrPassword) {
     char szBuf[MAX_PATH + 1] = {0};
     sprintf(szBuf, "Provider='Microsoft.Jet.OLEDB.%d.%d';Data Source='%s'", nJetVer, nJetVerEx, pStrFileName);
     SetConnectionParam(szBuf, pStrUserID, pStrPassword);
 }
-////void CADOConnection::SetMSSqlServerConnectionParam(int nJetVer, int nJetVerEx, const char *pStrFileName,
+////void CADOConnection::SetMSSqlServerConnectionParam(int_t nJetVer, int_t nJetVerEx, const char *pStrFileName,
 ////                                                const char *pStrUserID, const char *pStrPassword) {
 ////    char szBuf[MAX_PATH + 1] = {0};
 ////    sprintf(szBuf, "Provider='Microsoft.Jet.OLEDB.%d.%d';Data Source='%s'", nJetVer, nJetVerEx, pStrFileName);

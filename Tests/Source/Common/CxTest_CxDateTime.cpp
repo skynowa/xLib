@@ -19,7 +19,7 @@ CxTest_CxDateTime::~CxTest_CxDateTime() {
 /* virtual */
 void
 CxTest_CxDateTime::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     /*******************************************************************************
@@ -71,28 +71,28 @@ CxTest_CxDateTime::unit(
         xTEST_EQ(std::tstring_t(xT("14.01.2010 17:00:55:666")), m_sRv);
     }
 
-    xTEST_CASE("CxDateTime::CxDateTime(const ulonglong_t &)", cullCaseLoops)
+    xTEST_CASE("CxDateTime::CxDateTime(culonglong_t &)", cullCaseLoops)
     {
         CxDateTime dtDT(1000 * 60 * 60);
         m_sRv = dtDT.format(CxDateTime::ftDateTime);
         xTEST_EQ(std::tstring_t(xT("00.00.0000 1:00:00:000")), m_sRv);
     }
 
-    xTEST_CASE("CxDateTime::CxDateTime(const ushort_t &, const ushort_t &, const ushort_t &, const ushort_t &)", cullCaseLoops)
+    xTEST_CASE("CxDateTime::CxDateTime(cushort_t &, cushort_t &, cushort_t &, cushort_t &)", cullCaseLoops)
     {
         CxDateTime dtDT(12, 20, 37, 555);
         m_sRv = dtDT.format(CxDateTime::ftDateTime);
         xTEST_EQ(std::tstring_t(xT("00.00.0000 12:20:37:555")), m_sRv);
     }
 
-    xTEST_CASE("CxDateTime::CxDateTime(const ushort_t &, const ushort_t &, const ushort_t &)", cullCaseLoops)
+    xTEST_CASE("CxDateTime::CxDateTime(cushort_t &, cushort_t &, cushort_t &)", cullCaseLoops)
     {
         CxDateTime dtDT(2010, 7, 8);
         m_sRv = dtDT.format(CxDateTime::ftDateTime);
         xTEST_EQ(std::tstring_t(xT("08.07.2010 0:00:00:000")), m_sRv);
     }
 
-    xTEST_CASE("CxDateTime::CxDateTime(const ushort_t &, const ushort_t &, const ushort_t &, const ushort_t &, const ushort_t &, const ushort_t &, const ushort_t &)", cullCaseLoops)
+    xTEST_CASE("CxDateTime::CxDateTime(cushort_t &, cushort_t &, cushort_t &, cushort_t &, cushort_t &, cushort_t &, cushort_t &)", cullCaseLoops)
     {
         CxDateTime dtDT(2010, 8, 18, 14, 0, 5, 777);
         m_sRv = dtDT.format(CxDateTime::ftDateTime);
@@ -248,7 +248,7 @@ CxTest_CxDateTime::unit(
 
         //2
         {
-            const ulonglong_t caullMsec[] = {
+            culonglong_t caullMsec[] = {
                     12234567890ULL, 2234567890ULL, 32345657890ULL, 4294567890ULL, 5234567890ULL,
                     63565474567ULL, 7354234523ULL, 83451467547ULL, 9234436577ULL, 5354362463ULL
             };
@@ -341,7 +341,7 @@ CxTest_CxDateTime::unit(
     {
         //valid data
         {
-            const ushort_t causiValid[][7] = {
+            cushort_t causiValid[][7] = {
                     //usYear, usMonth, usDay, usHour, usMinute, usSecond, usMSec
                     { 2011,     3,       24,    13,     21,       56,       999 },
                     { 1978,     7,       31,    4,      0,        0,        0   },
@@ -371,7 +371,7 @@ CxTest_CxDateTime::unit(
 
         //non valid data
         {
-            const ushort_t causiNonValid[][7] = {
+            cushort_t causiNonValid[][7] = {
                     //usYear, usMonth, usDay, usHour, usMinute, usSecond, usMSec
                     { 10000,    3,       24,    13,     21,       56,       999 },
                     { 2011,     13,      24,    13,     21,       56,       999 },
@@ -424,9 +424,9 @@ CxTest_CxDateTime::unit(
 
             _m_dtTimesStart = CxDateTime::current();
             {
-                for (int x = 0; x < 100; ++ x) {
-                    for (int y = 0; y < 20; ++ y) {
-                        int z = 0;
+                for (int_t x = 0; x < 100; ++ x) {
+                    for (int_t y = 0; y < 20; ++ y) {
+                        int_t z = 0;
 
                         z++; --z;
                     }
@@ -459,7 +459,7 @@ CxTest_CxDateTime::unit(
     {
         //valid
         {
-            ////const ushort_t causValid[] = {
+            ////cushort_t causValid[] = {
             ////        //TODO: bIsLeapYear
             ////};
 
@@ -471,7 +471,7 @@ CxTest_CxDateTime::unit(
 
         //non valid
         {
-            ////const ushort_t causNonValid[] = {
+            ////cushort_t causNonValid[] = {
             ////        //TODO: isLeapYear
             ////};
 
@@ -549,8 +549,8 @@ CxTest_CxDateTime::unit(
         };
 
         for (std::size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
-            std::tstring_t sStr1 = CxDateTime::zodiacSign(CxString::cast<int>(sTestData[i][0]),
-                                                          CxString::cast<int>(sTestData[i][1]));
+            std::tstring_t sStr1 = CxDateTime::zodiacSign(CxString::cast<int_t>(sTestData[i][0]),
+                                                          CxString::cast<int_t>(sTestData[i][1]));
             std::tstring_t sStr2 = sTestData[i][2];
             xTEST_EQ(sStr1, sStr2);
         }

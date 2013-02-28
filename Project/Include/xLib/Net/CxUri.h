@@ -38,7 +38,7 @@ public:
     void                  setHost        (const std::tstring_t &csHost);
 
     ushort_t              port           () xWARN_UNUSED_RV;
-    void                  setPort        (const ushort_t &cusPort);
+    void                  setPort        (cushort_t &cusPort);
 
     std::tstring_t        path           () const xWARN_UNUSED_RV;
     void                  setPath        (const std::tstring_t &csPath);
@@ -75,7 +75,7 @@ private:
     void                  _parse         (const std::tstring_t &csUri);
     void                  _normilize     (const std::tstring_t &csUri);
     ushort_t              _defaultPort   () const xWARN_UNUSED_RV;
-    bool                  _isDefaultPort () const xWARN_UNUSED_RV;
+    bool_t                  _isDefaultPort () const xWARN_UNUSED_RV;
 };
 
 xNAMESPACE_END(NxLib)

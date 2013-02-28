@@ -68,7 +68,7 @@ CxProfiler::start() {
 //--------------------------------------------------------------------------
 void
 CxProfiler::stop(
-    const tchar_t *a_pcszComment, ...
+    ctchar_t *a_pcszComment, ...
 )
 {
     xTEST_EQ(true, _m_bIsStarted);
@@ -83,8 +83,8 @@ CxProfiler::stop(
         xTEST_LESS_EQ(static_cast<clock_t>( 0 ), _m_clkDuration);
     }
 
-    const double         cdDurationMsec   = (static_cast<double>( _m_clkDuration ) / static_cast<double>( CLOCKS_PER_SEC )) * 1000.0;  // 1 sec = 1000 msec
-    const ulonglong_t    cullDurationMsec = CxUtils::roundIntT<ulonglong_t>( cdDurationMsec );
+    cdouble_t         cdDurationMsec   = (static_cast<double_t>( _m_clkDuration ) / static_cast<double_t>( CLOCKS_PER_SEC )) * 1000.0;  // 1 sec = 1000 msec
+    culonglong_t    cullDurationMsec = CxUtils::roundIntT<ulonglong_t>( cdDurationMsec );
     const std::tstring_t csDurationTime   = CxDateTime(cullDurationMsec).format(CxDateTime::ftTime);
 
     //-------------------------------------
@@ -105,7 +105,7 @@ CxProfiler::stop(
 //--------------------------------------------------------------------------
 void
 CxProfiler::pulse(
-    const tchar_t *a_pcszComment, ...
+    ctchar_t *a_pcszComment, ...
 )
 {
     //-------------------------------------

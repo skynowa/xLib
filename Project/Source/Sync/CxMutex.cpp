@@ -24,7 +24,7 @@ CxMutex::CxMutex() :
 /* virtual */
 CxMutex::~CxMutex() {
 #if   xOS_ENV_WIN
-    bool bRv = false;
+    bool_t bRv = false;
 
     try {
         (void)::DeleteCriticalSection(&_m_hHandle);
@@ -36,7 +36,7 @@ CxMutex::~CxMutex() {
 
     xTEST_EQ(true, bRv);
 #elif xOS_ENV_UNIX
-    int iRv = ::pthread_mutex_destroy(&_m_hHandle);
+    int_t iRv = ::pthread_mutex_destroy(&_m_hHandle);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 #endif
 }
@@ -44,7 +44,7 @@ CxMutex::~CxMutex() {
 void
 CxMutex::create() {
 #if   xOS_ENV_WIN
-    bool bRv = false;
+    bool_t bRv = false;
 
     try {
         (void)::InitializeCriticalSection(&_m_hHandle);
@@ -56,7 +56,7 @@ CxMutex::create() {
 
     xTEST_EQ(true, bRv);
 #elif xOS_ENV_UNIX
-    int iRv = - 1;
+    int_t iRv = - 1;
 
     pthread_mutexattr_t maAttr;    // n/a {{0}}
 
@@ -90,7 +90,7 @@ CxMutex::handle() const {
 void
 CxMutex::lock() {
 #if   xOS_ENV_WIN
-    bool bRv = false;
+    bool_t bRv = false;
 
     try {
         (void)::EnterCriticalSection(&_m_hHandle);
@@ -102,18 +102,18 @@ CxMutex::lock() {
 
     xTEST_EQ(true, bRv);
 #elif xOS_ENV_UNIX
-    int iRv = ::pthread_mutex_lock(&_m_hHandle);
+    int_t iRv = ::pthread_mutex_lock(&_m_hHandle);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 #endif
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxMutex::tryLock() {
 #if   xOS_ENV_WIN
     BOOL blRes = ::TryEnterCriticalSection(&_m_hHandle);
     xCHECK_RET(FALSE == blRes, false);
 #elif xOS_ENV_UNIX
-    int iRv = ::pthread_mutex_trylock(&_m_hHandle);
+    int_t iRv = ::pthread_mutex_trylock(&_m_hHandle);
     xCHECK_RET(0 != iRv, false);
 #endif
 
@@ -123,7 +123,7 @@ CxMutex::tryLock() {
 void
 CxMutex::unlock() {
 #if   xOS_ENV_WIN
-    bool bRv = false;
+    bool_t bRv = false;
 
     try {
         (void)::LeaveCriticalSection(&_m_hHandle);
@@ -135,7 +135,7 @@ CxMutex::unlock() {
 
     xTEST_EQ(true, bRv);
 #elif xOS_ENV_UNIX
-    int iRv = ::pthread_mutex_unlock(&_m_hHandle);
+    int_t iRv = ::pthread_mutex_unlock(&_m_hHandle);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 #endif
 }

@@ -21,7 +21,7 @@ CxTest_CxCookiePv1::~CxTest_CxCookiePv1() {
 /* virtual */
 void
 CxTest_CxCookiePv1::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     const std::tstring_t csName      = xT("Name1");
@@ -29,9 +29,9 @@ CxTest_CxCookiePv1::unit(
     const std::tstring_t csComment   = xT("Comment1");
     const std::tstring_t csDomain    = xT(".domain.com1");
     const std::tstring_t csPath      = xT("/1");
-    const longlong_t     ciMaxAge    = 10 * 60 * 60;
-    const bool           cbSecure    = true;
-    const bool           cbHttpOnly  = true;
+    clonglong_t     ciMaxAge    = 10 * 60 * 60;
+    cbool_t           cbSecure    = true;
+    cbool_t           cbHttpOnly  = true;
     const std::tstring_t csRawCookie = CxString::format(
                                         xT("%s=\"%s\"; Comment=\"%s\"; Domain=\"%s\"; Path=\"%s\"; Max-Age=\"%lli\"; Secure; HttpOnly; Version=\"1\""),
                                         csName.c_str(), csValue.c_str(), csComment.c_str(), csDomain.c_str(), 

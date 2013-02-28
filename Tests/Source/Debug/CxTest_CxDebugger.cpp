@@ -19,13 +19,13 @@ CxTest_CxDebugger::~CxTest_CxDebugger() {
 /* virtual */
 void
 CxTest_CxDebugger::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxDebugger::isEnabled setEnabled", cullCaseLoops)
     {
-        const bool cbTrue  = true;
-        const bool cbFalse = false;
+        cbool_t cbTrue  = true;
+        cbool_t cbFalse = false;
 
         CxDebugger dbgDebugger;
 
@@ -119,55 +119,55 @@ CxTest_CxDebugger::unit(
     //--------------------------------------------------
     //like xTEST_EQ macroses
 
-    //with int
+    //with int_t
     {
         xTEST_CASE("CxDebugger::xTEST_EQ_", cullCaseLoops)
         {
-            int iVar1 = 1;
-            int iVar2 = 1;
+            int_t iVar1 = 1;
+            int_t iVar2 = 1;
             xTEST_EQ(iVar1, iVar2);
         }
 
         xTEST_CASE("CxDebugger::xTEST_DIFF_", cullCaseLoops)
         {
-            int iVar1 = 0;
-            int iVar2 = 1;
+            int_t iVar1 = 0;
+            int_t iVar2 = 1;
             xTEST_DIFF(iVar1, iVar2);
         }
 
         xTEST_CASE("CxDebugger::xTEST_LESS_", cullCaseLoops)
         {
-            int iVar1 = 1;
-            int iVar2 = 122;
+            int_t iVar1 = 1;
+            int_t iVar2 = 122;
             xTEST_LESS(iVar1, iVar2);
         }
 
         xTEST_CASE("CxDebugger::xTEST_GR_", cullCaseLoops)
         {
-            int iVar1 = 110;
-            int iVar2 = 10;
+            int_t iVar1 = 110;
+            int_t iVar2 = 10;
             xTEST_GR(iVar1, iVar2);
         }
 
         xTEST_CASE("CxDebugger::xTEST_LESS_EQ_", cullCaseLoops)
         {
-            int iVar1 = 50;
-            int iVar2 = 122;
+            int_t iVar1 = 50;
+            int_t iVar2 = 122;
             xTEST_LESS_EQ(iVar1, iVar2);
 
-            int iVar3 = 200;
-            int iVar4 = 200;
+            int_t iVar3 = 200;
+            int_t iVar4 = 200;
             xTEST_LESS_EQ(iVar3, iVar4);
         }
 
         xTEST_CASE("CxDebugger::xTEST_GR_EQ_", cullCaseLoops)
         {
-            int iVar1 = 500;
-            int iVar2 = 147;
+            int_t iVar1 = 500;
+            int_t iVar2 = 147;
             xTEST_GR_EQ(iVar1, iVar2);
 
-            int iVar3 = 77777;
-            int iVar4 = 77777;
+            int_t iVar3 = 77777;
+            int_t iVar4 = 77777;
             xTEST_GR_EQ(iVar3, iVar4);
         }
     }

@@ -48,7 +48,7 @@ CxType::name(
     std::string    asClassName;
 
 #if xCOMPILER_MINGW || xCOMPILER_GNUC
-    int iStatus = - 1;
+    int_t iStatus = - 1;
 
     char *pszRealName = abi::__cxa_demangle(typeid(cObjectT).name(), NULL, NULL, &iStatus);
     asClassName = (NULL != pszRealName) ? pszRealName : CxConst::xUNKNOWN_STRING_A;
@@ -67,7 +67,7 @@ CxType::name(
 //------------------------------------------------------------------------------
 template<typename T1, class T2>
 /* static */
-bool
+bool_t
 CxType::isEquals(
     const T1 &cObjectT1,
     const T2 &cObjectT2

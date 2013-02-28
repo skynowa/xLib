@@ -19,7 +19,7 @@ CxTest_CxMsgBoxT::~CxTest_CxMsgBoxT() {
 /* virtual */
 void
 CxTest_CxMsgBoxT::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
 #if xTEST_IGNORE
@@ -30,7 +30,7 @@ CxTest_CxMsgBoxT::unit(
         const HWND           chWnd   = NULL;
         const std::tstring_t csText  = xT("\nmessage box with 3 params...\n");
         const std::tstring_t csTitle = xT("Simple title");
-        const uint_t         cuiType = 0;
+        cuint_t         cuiType = 0;
 
         CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::show(chWnd, csText, csTitle, cuiType);
         xUNUSED(mrRes);
@@ -41,7 +41,7 @@ CxTest_CxMsgBoxT::unit(
     {
         const std::tstring_t csText  = xT("\nmessage box with 3 params...\n");
         const std::tstring_t csTitle = xT("Simple title");
-        const uint_t         cuiType = 0;
+        cuint_t         cuiType = 0;
 
         CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::show(csText, csTitle, cuiType);
         xUNUSED(mrRes);

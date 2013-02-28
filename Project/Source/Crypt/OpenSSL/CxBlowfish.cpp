@@ -42,11 +42,11 @@ CxBlowfish::~CxBlowfish() {
 void
 CxBlowfish::setKey(
     uchar_t   *a_pucKey,
-    const int &a_ciKeySize
+    cint_t &a_ciKeySize
 )
 {
     xTEST_PTR(a_pucKey);
-    xTEST_GR_EQ(static_cast<int>( MAX_KEY_SIZE ), a_ciKeySize);
+    xTEST_GR_EQ(static_cast<int_t>( MAX_KEY_SIZE ), a_ciKeySize);
     xTEST_LESS(0, a_ciKeySize);
 
     (void)::BF_set_key(&_m_bfKey, a_ciKeySize, a_pucKey);
@@ -60,7 +60,7 @@ CxBlowfish::setKey(
     xTEST_EQ(false, a_cusKey.empty());
     xTEST_GR_EQ(static_cast<size_t>( MAX_KEY_SIZE ), a_cusKey.size());
 
-    setKey(const_cast<uchar_t *>( a_cusKey.data() ), static_cast<int>( a_cusKey.size() ));
+    setKey(const_cast<uchar_t *>( a_cusKey.data() ), static_cast<int_t>( a_cusKey.size() ));
 }
 //------------------------------------------------------------------------------
 void
@@ -120,8 +120,8 @@ void
 CxBlowfish::encryptCfb64(
     uchar_t           *a_pucIn,
     uchar_t           *a_pucOut,
-    const long_t      &a_cliInSize,
-    int               *a_piNum,
+    clong_t      &a_cliInSize,
+    int_t               *a_piNum,
     const ExCryptMode &a_cmMode
 )
 {
@@ -145,7 +145,7 @@ CxBlowfish::encryptCfb64(
     xTEST_EQ(false, a_cusIn.empty());
     xTEST_PTR(a_pusOut);
 
-    int iNum = 0;    //This integer must be initialized to zero when ivec is initialized
+    int_t iNum = 0;    //This integer must be initialized to zero when ivec is initialized
 
     (*a_pusOut).resize( a_cusIn.size() );
 

@@ -28,7 +28,7 @@ CxCondition::~CxCondition() {
 #if   xOS_ENV_WIN
 
 #elif xOS_ENV_UNIX
-    int iRv = - 1;
+    int_t iRv = - 1;
 
     iRv = ::pthread_cond_destroy(&_m_handle);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
@@ -61,7 +61,7 @@ CxCondition::create() {
 #if   xOS_ENV_WIN
 
 #elif xOS_ENV_UNIX
-    int iRv = - 1;
+    int_t iRv = - 1;
 
     iRv = ::pthread_mutex_init(&_m_mutex, NULL);    // mutex not recursive
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
@@ -73,13 +73,13 @@ CxCondition::create() {
 //------------------------------------------------------------------------------
 void
 CxCondition::wait(
-    const ulong_t &a_culTimeoutMs
+    culong_t &a_culTimeoutMs
 )
 {
 #if   xOS_ENV_WIN
 
 #elif xOS_ENV_UNIX
-    int iRv = - 1;
+    int_t iRv = - 1;
 
     // wait until condition thread returns control
     iRv = ::pthread_mutex_lock(&_m_mutex);
@@ -124,7 +124,7 @@ CxCondition::signal() {
 #if   xOS_ENV_WIN
 
 #elif xOS_ENV_UNIX
-    int iRv = - 1;
+    int_t iRv = - 1;
 
     iRv = ::pthread_mutex_lock(&_m_mutex);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
@@ -144,7 +144,7 @@ CxCondition::broadcast() {
 #if   xOS_ENV_WIN
 
 #elif xOS_ENV_UNIX
-     int iRv = - 1;
+     int_t iRv = - 1;
 
     iRv = ::pthread_mutex_lock(&_m_mutex);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));

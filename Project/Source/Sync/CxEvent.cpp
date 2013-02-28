@@ -18,8 +18,8 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 CxEvent::CxEvent(
-    const bool &a_cbIsAutoReset,    ///< is auto reset
-    const bool &a_cbIsSignaled      ///< is signaled (false - wait, lock)
+    cbool_t &a_cbIsAutoReset,    ///< is auto reset
+    cbool_t &a_cbIsSignaled      ///< is signaled (false - wait, lock)
 ) :
 #if   xOS_ENV_WIN
     _m_hEvent       (),
@@ -37,7 +37,7 @@ CxEvent::~CxEvent() {
 #if   xOS_ENV_WIN
     xNA;
 #elif xOS_ENV_UNIX
-    int iRv = - 1;
+    int_t iRv = - 1;
 
     iRv = ::pthread_cond_destroy(&_m_cndCond);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
@@ -67,7 +67,7 @@ CxEvent::create() {
     _m_hEvent.set(hRv);
     // n/a
 #elif xOS_ENV_UNIX
-    int iRv = - 1;
+    int_t iRv = - 1;
 
     iRv = ::pthread_mutex_init(&_m_mtMutex, NULL);   // mutex not recursive
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
@@ -86,17 +86,17 @@ CxEvent::set() {
     BOOL blRes = ::SetEvent(handle().get());
     xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
-    int iRv = - 1;
+    int_t iRv = - 1;
 
     iRv = ::pthread_mutex_lock(&_m_mtMutex);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
     {
         if (true == _m_cbIsAutoReset) {
-            int iRv = ::pthread_cond_signal(&_m_cndCond);
+            int_t iRv = ::pthread_cond_signal(&_m_cndCond);
             xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
         } else {
-            int iRv = ::pthread_cond_broadcast(&_m_cndCond);
+            int_t iRv = ::pthread_cond_broadcast(&_m_cndCond);
             xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
         }
 
@@ -116,7 +116,7 @@ CxEvent::reset() {
     BOOL blRes = ::ResetEvent(handle().get());
     xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
-    int iRv = - 1;
+    int_t iRv = - 1;
 
     iRv = ::pthread_mutex_lock(&_m_mtMutex);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
@@ -132,7 +132,7 @@ CxEvent::reset() {
 //------------------------------------------------------------------------------
 CxEvent::ExObjectState
 CxEvent::wait(
-    const ulong_t &a_culTimeout /* = xTIMEOUT_INFINITE */  ///< in milliseconds
+    culong_t &a_culTimeout /* = xTIMEOUT_INFINITE */  ///< in milliseconds
 )
 {
     // culTimeout - n/a
@@ -144,13 +144,13 @@ CxEvent::wait(
 
     osRes = static_cast<ExObjectState>( ::WaitForSingleObject(handle().get(), a_culTimeout) );
 #elif xOS_ENV_UNIX
-    int iRv = - 1;
+    int_t iRv = - 1;
 
     iRv = ::pthread_mutex_lock(&_m_mtMutex);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
     {
-        int iRv = 0;
+        int_t iRv = 0;
 
         // if (false == _m_bIsSignaled) {
             timespec tsTimeoutMs = {0};
@@ -219,11 +219,11 @@ CxEvent::wait(
     return osRes;
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxEvent::isSignaled() {
     // n/a
 
-    bool bRv = false;
+    bool_t bRv = false;
 
 #if   xOS_ENV_WIN
     DWORD dwRv = ::WaitForSingleObject(handle().get(), 0UL);

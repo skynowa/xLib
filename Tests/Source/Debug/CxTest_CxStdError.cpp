@@ -19,10 +19,10 @@ CxTest_CxStdError::~CxTest_CxStdError() {
 /* virtual */
 void
 CxTest_CxStdError::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
-    const int ciMaxErrors = 132;  /*0...132*/;
+    cint_t ciMaxErrors = 132;  /*0...132*/;
 
     xTEST_CASE("CxStdError::get", cullCaseLoops)
     {
@@ -39,15 +39,15 @@ CxTest_CxStdError::unit(
 
     xTEST_CASE("CxStdError::set", cullCaseLoops)
     {
-        const int caiData[] = {
+        cint_t caiData[] = {
             0,
             ciMaxErrors - 10,
             ciMaxErrors,
             ciMaxErrors + 10
         };
 
-        for (int i = 0; i < (int)xARRAY_SIZE(caiData); ++ i) {
-            const int ciLastError = caiData[i];
+        for (int_t i = 0; i < (int_t)xARRAY_SIZE(caiData); ++ i) {
+            cint_t ciLastError = caiData[i];
 
             CxStdError::set(ciLastError);
             xTEST_EQ(ciLastError, CxStdError::get());
@@ -57,15 +57,15 @@ CxTest_CxStdError::unit(
 
     xTEST_CASE("CxStdError::reset", cullCaseLoops)
     {
-        const int caiData[] = {
+        cint_t caiData[] = {
             0,
             ciMaxErrors - 10,
             ciMaxErrors,
             ciMaxErrors + 10
         };
 
-        for (int i = 0; i < (int)xARRAY_SIZE(caiData); ++ i) {
-            const int ciLastError = caiData[i];
+        for (int_t i = 0; i < (int_t)xARRAY_SIZE(caiData); ++ i) {
+            cint_t ciLastError = caiData[i];
 
             CxStdError::set(ciLastError);
             CxStdError::reset();
@@ -75,15 +75,15 @@ CxTest_CxStdError::unit(
 
     xTEST_CASE("CxStdError::format", cullCaseLoops)
     {
-        const int caiData[] = {
+        cint_t caiData[] = {
             0,
             ciMaxErrors - 10,
             ciMaxErrors,
             ciMaxErrors + 10
         };
 
-        for (int i = 0; i < (int)xARRAY_SIZE(caiData); ++ i) {
-            const int ciLastError = caiData[i];
+        for (int_t i = 0; i < (int_t)xARRAY_SIZE(caiData); ++ i) {
+            cint_t ciLastError = caiData[i];
 
             m_sRv = CxStdError::format(ciLastError);
             xTEST_EQ(false, m_sRv.empty());

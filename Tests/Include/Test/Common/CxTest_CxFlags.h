@@ -21,7 +21,7 @@ public:
     virtual      ~CxTest_CxFlags();
         ///< destructor
 
-    virtual void  unit(const ulonglong_t &cullCaseLoops) xOVERRIDE;
+    virtual void  unit(culonglong_t &cullCaseLoops) xOVERRIDE;
         ///< unit test
 };
 //------------------------------------------------------------------------------

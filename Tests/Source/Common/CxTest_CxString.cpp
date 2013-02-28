@@ -26,7 +26,7 @@ RandomNumber () {
 /* virtual */
 void
 CxTest_CxString::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     /*******************************************************************************
@@ -131,7 +131,7 @@ CxTest_CxString::unit(
         m_sRv = CxString::cast<std::tstring_t>(xT("String"));
         xTEST_EQ(std::tstring_t(xT("String")), m_sRv);
 
-        m_iRv = CxString::cast<int>(xT("7"));
+        m_iRv = CxString::cast<int_t>(xT("7"));
         xTEST_EQ(7, m_iRv);
 
         m_ulRv = CxString::cast<ulong_t>(xT("123"));
@@ -140,13 +140,13 @@ CxTest_CxString::unit(
         m_ullRv = CxString::cast<ulonglong_t>(xT("123"));
         xTEST_EQ(123ULL, m_ullRv);
 
-        m_dRv = CxString::cast<double>(xT("5.3"));
+        m_dRv = CxString::cast<double_t>(xT("5.3"));
         xTEST_EQ(5.3, m_dRv);
 
-        ////m_bRv = cast<bool>(xT("true"));
+        ////m_bRv = cast<bool_t>(xT("true"));
         ////xTEST_EQ(5.3, m_dRv);
 
-        ////m_bRv = cast<bool>(xT("false"));
+        ////m_bRv = cast<bool_t>(xT("false"));
         ////xTEST_EQ(5.3, m_dRv);
 
         ////m_uiRv = CxString::cast<size_t>( std::tstring_t() );
@@ -227,7 +227,7 @@ CxTest_CxString::unit(
 
     xTEST_CASE("cast (from, to string by base)", cullCaseLoops)
     {
-        const int caiBases[] = {8, 10, 16};
+        cint_t caiBases[] = {8, 10, 16};
 
         const std::tstring_t casData[] = {
                 xT("01234567890ABC"),
@@ -912,7 +912,7 @@ CxTest_CxString::unit(
 
     xTEST_CASE("CxString::formatBytes(ulonglong_t)", cullCaseLoops)
     {
-        const ulonglong_t caullULongLong[] = {
+        culonglong_t caullULongLong[] = {
             0ULL,
             10ULL,
             100ULL,

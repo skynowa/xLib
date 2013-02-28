@@ -22,7 +22,7 @@ xNAMESPACE_BEGIN(NxLib)
 ulong_t
 CxCrc32::calc(
     uchar_t       *a_pucBuff,
-    const ulong_t &a_culSize
+    culong_t &a_culSize
 )
 {
     xTEST_PTR(a_pucBuff);
@@ -32,9 +32,9 @@ CxCrc32::calc(
     ulong_t crc_table[256] = {0};
     ulong_t ulSize         = a_culSize;
 
-    for (int i = 0; i < 256; ++ i) {
+    for (int_t i = 0; i < 256; ++ i) {
         crc = i;
-        for (int j = 0; j < 8; ++ j) {
+        for (int_t j = 0; j < 8; ++ j) {
             crc = crc & 1 ? (crc >> 1) ^ 0xEDB88320UL : crc >> 1;
         }
 
@@ -76,7 +76,7 @@ CxCrc32::calcFile(
 ulong_t
 CxCrc32::calcFast(
     uchar_t       *a_pucBuff,
-    const ulong_t &a_culSize
+    culong_t &a_culSize
 )
 {
     xTEST_PTR(a_pucBuff);
@@ -200,7 +200,7 @@ CxCrc32::calcFileFast(
 /* static */
 std::tstring_t
 CxCrc32::formatHex(
-    const ulong_t &a_culCrc32
+    culong_t &a_culCrc32
 )
 {
     

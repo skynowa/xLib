@@ -31,37 +31,37 @@ public:
         ///< constructor
     /*explicit*/          CxDateTime        (const CxDateTime &cdtDT);
         ///< constructor
-    explicit              CxDateTime        (const ulonglong_t &cullMilliseconds);
+    explicit              CxDateTime        (culonglong_t &cullMilliseconds);
         ///< constructor
-                          CxDateTime        (const ushort_t &cusHour, const ushort_t &cusMinute, const ushort_t &cusSecond, const ushort_t &cusMillisecond);
+                          CxDateTime        (cushort_t &cusHour, cushort_t &cusMinute, cushort_t &cusSecond, cushort_t &cusMillisecond);
         ///< constructor
-                          CxDateTime        (const ushort_t &cusYear, const ushort_t &cusMonth, const ushort_t &cusDay);
+                          CxDateTime        (cushort_t &cusYear, cushort_t &cusMonth, cushort_t &cusDay);
         ///< constructor
-                          CxDateTime        (const ushort_t &cusYear, const ushort_t &cusMonth, const ushort_t &cusDay,
-                                             const ushort_t &cusHour, const ushort_t &cusMinute,
-                                             const ushort_t &cusSecond, const ushort_t &cusMillisecond);
+                          CxDateTime        (cushort_t &cusYear, cushort_t &cusMonth, cushort_t &cusDay,
+                                             cushort_t &cusHour, cushort_t &cusMinute,
+                                             cushort_t &cusSecond, cushort_t &cusMillisecond);
         ///< constructor
     virtual              ~CxDateTime        ();
         ///< destructor
 
     // comparison operators
-    bool                  operator ==       (const CxDateTime &cdtDT) const;
+    bool_t                  operator ==       (const CxDateTime &cdtDT) const;
         ///< operator ==
-    bool                  operator !=       (const CxDateTime &cdtDT) const;
+    bool_t                  operator !=       (const CxDateTime &cdtDT) const;
         ///< operator !=
-    bool                  operator <        (const CxDateTime &cdtDT) const;
+    bool_t                  operator <        (const CxDateTime &cdtDT) const;
         ///< operator <
-    bool                  operator <=       (const CxDateTime &cdtDT) const;
+    bool_t                  operator <=       (const CxDateTime &cdtDT) const;
         ///< operator <=
-    bool                  operator >        (const CxDateTime &cdtDT) const;
+    bool_t                  operator >        (const CxDateTime &cdtDT) const;
         ///< operator >
-    bool                  operator >=       (const CxDateTime &cdtDT) const;
+    bool_t                  operator >=       (const CxDateTime &cdtDT) const;
         ///< operator >=
 
     // assignment operators
     const CxDateTime     &operator =        (const CxDateTime &cdtDT);
         ///< operator =
-    const CxDateTime     &operator =        (const ulonglong_t &cullMillisecond);
+    const CxDateTime     &operator =        (culonglong_t &cullMillisecond);
         ///< operator =
 
     CxDateTime            operator +        (const CxDateTime &cdtDT) const;
@@ -82,11 +82,11 @@ public:
         ///< get datetime data
     ushort_t              dayOfWeek         () const xWARN_UNUSED_RV;
         ///< get day of week, days since Sunday 0-6
-    void                  set               (const ulonglong_t &ullMSec);
+    void                  set               (culonglong_t &ullMSec);
         ///< set CxDateTime by milliseconds
-    void                  set               (const ushort_t &cusYear, const ushort_t &cusMonth, const ushort_t &cusDay,
-                                             const ushort_t &cusHour, const ushort_t &cusMinute,
-                                             const ushort_t &cusSecond, const ushort_t &cusMillisecond);
+    void                  set               (cushort_t &cusYear, cushort_t &cusMonth, cushort_t &cusDay,
+                                             cushort_t &cusHour, cushort_t &cusMinute,
+                                             cushort_t &cusSecond, cushort_t &cusMillisecond);
         ///< set CxDateTime by datetime data
 
     // converting
@@ -104,20 +104,20 @@ public:
         ///< formating
 
     //static
-    static bool           isValid           (const ushort_t &cusYear, const ushort_t &cusMonth, const ushort_t &cusDay,
-                                             const ushort_t &cusHour, const ushort_t &cusMinute,
-                                             const ushort_t &cusSecond, const ushort_t &cusMillisecond) xWARN_UNUSED_RV;
+    static bool_t           isValid           (cushort_t &cusYear, cushort_t &cusMonth, cushort_t &cusDay,
+                                             cushort_t &cusHour, cushort_t &cusMinute,
+                                             cushort_t &cusSecond, cushort_t &cusMillisecond) xWARN_UNUSED_RV;
         ///< checking for a valid datetime
-    static bool           isValid           (const CxDateTime &cdtDT) xWARN_UNUSED_RV;
+    static bool_t           isValid           (const CxDateTime &cdtDT) xWARN_UNUSED_RV;
         ///< checking for a valid datetime
-           bool           isValid           () const xWARN_UNUSED_RV;
+           bool_t           isValid           () const xWARN_UNUSED_RV;
         ///< checking for a valid datetime
 
     static CxDateTime     current           () xWARN_UNUSED_RV;
         ///< get current datetime
-    static ushort_t       daysInMonth       (const ushort_t &cusYear, const ushort_t &cusMonth) xWARN_UNUSED_RV;
+    static ushort_t       daysInMonth       (cushort_t &cusYear, cushort_t &cusMonth) xWARN_UNUSED_RV;
         ///< get number days in month
-    static bool           isLeapYear        (const ushort_t &cusYear) xWARN_UNUSED_RV;
+    static bool_t           isLeapYear        (cushort_t &cusYear) xWARN_UNUSED_RV;
         ///< is leap year
 #if   xOS_ENV_WIN
     static longlong_t     filetimeToInt64   (const FILETIME &cftTime) xWARN_UNUSED_RV;
@@ -129,15 +129,15 @@ public:
 #endif
 
     //other
-    static std::tstring_t zodiacSign        (const ushort_t &cusMonth, const ushort_t &cusDay) xWARN_UNUSED_RV;
+    static std::tstring_t zodiacSign        (cushort_t &cusMonth, cushort_t &cusDay) xWARN_UNUSED_RV;
         ///< sign of the zodiac by date
-    static std::tstring_t monthStr          (ushort_t usMonth, const bool &cbIsShortName) xWARN_UNUSED_RV;
+    static std::tstring_t monthStr          (ushort_t usMonth, cbool_t &cbIsShortName) xWARN_UNUSED_RV;
         ///< get month string
-    static ushort_t       monthNum          (const std::tstring_t &csMonth, const bool &cbIsShortName) xWARN_UNUSED_RV;
+    static ushort_t       monthNum          (const std::tstring_t &csMonth, cbool_t &cbIsShortName) xWARN_UNUSED_RV;
         ///< get month number by string
-    static std::tstring_t weekDayStr        (ushort_t usDay, const bool &cbIsShortName) xWARN_UNUSED_RV;
+    static std::tstring_t weekDayStr        (ushort_t usDay, cbool_t &cbIsShortName) xWARN_UNUSED_RV;
         ///< get week day string
-    static ushort_t       weekDayNum        (const std::tstring_t &csDay, const bool &cbIsShortName) xWARN_UNUSED_RV;
+    static ushort_t       weekDayNum        (const std::tstring_t &csDay, cbool_t &cbIsShortName) xWARN_UNUSED_RV;
         ///< get week day number by string
 
 private:

@@ -16,7 +16,7 @@ class CxCurrentThread :
     private CxNonCopyable
 {
 public:
-    static bool               isCurrent      (const CxThread::id_t &culId) xWARN_UNUSED_RV;
+    static bool_t               isCurrent      (const CxThread::id_t &culId) xWARN_UNUSED_RV;
         ///< is current id
     static CxThread::id_t     id             () xWARN_UNUSED_RV;
         ///< get the thread identifier of the calling thread
@@ -24,7 +24,7 @@ public:
         ///< get pseudo handle for the calling thread
     static void               yield          ();
         ///< yield
-    static void               sleep          (const ulong_t &culMsec);
+    static void               sleep          (culong_t &culMsec);
         ///< sleep
 private:
                               CxCurrentThread();

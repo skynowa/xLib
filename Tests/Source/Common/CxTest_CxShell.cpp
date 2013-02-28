@@ -19,7 +19,7 @@ CxTest_CxShell::~CxTest_CxShell() {
 /* virtual */
 void
 CxTest_CxShell::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxShell::isAvailable", cullCaseLoops)
@@ -66,7 +66,7 @@ CxTest_CxShell::unit(
 
     xTEST_CASE("CxShell::execute", cullCaseLoops)
     {
-        // CxShell::execute(HWND hWnd, LPCTSTR pcszOperation, LPCTSTR pcszFile, LPCTSTR pcszParams, LPCTSTR pcszDirectory, int iShowCmd);
+        // CxShell::execute(HWND hWnd, LPCTSTR pcszOperation, LPCTSTR pcszFile, LPCTSTR pcszParams, LPCTSTR pcszDirectory, int_t iShowCmd);
     }
 
     xTEST_CASE("CxShell::executeHttp", cullCaseLoops)

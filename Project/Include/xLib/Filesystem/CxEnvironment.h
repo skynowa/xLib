@@ -16,11 +16,11 @@ class CxEnvironment :
     /// system environment variables
 {
 public:
-    static bool           isExists     (const std::tstring_t &csVarName) xWARN_UNUSED_RV;
+    static bool_t           isExists     (const std::tstring_t &csVarName) xWARN_UNUSED_RV;
         ///< check for existence
-    static bool           isVarValid   (const std::tstring_t &csVarName) xWARN_UNUSED_RV;
+    static bool_t           isVarValid   (const std::tstring_t &csVarName) xWARN_UNUSED_RV;
         ///< is valid environment variable name
-    static bool           isValueValid (const std::tstring_t &csVarValue) xWARN_UNUSED_RV;
+    static bool_t           isValueValid (const std::tstring_t &csVarValue) xWARN_UNUSED_RV;
         ///< is valid environment variable value
     static std::tstring_t var          (const std::tstring_t &csVarName) xWARN_UNUSED_RV;
         ///< get value by name

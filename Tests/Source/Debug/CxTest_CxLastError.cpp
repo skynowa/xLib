@@ -19,13 +19,13 @@ CxTest_CxLastError::~CxTest_CxLastError() {
 /* virtual */
 void
 CxTest_CxLastError::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     #if   xOS_ENV_WIN
-        const ulong_t cuiMaxErrors = 15999;  /*0...15999*/;
+        culong_t cuiMaxErrors = 15999;  /*0...15999*/;
     #elif xOS_ENV_UNIX
-        const ulong_t cuiMaxErrors = 132;    /*0...132*/
+        culong_t cuiMaxErrors = 132;    /*0...132*/
     #endif
 
     xTEST_CASE("CxLastError::get", cullCaseLoops)
@@ -44,7 +44,7 @@ CxTest_CxLastError::unit(
 
     xTEST_CASE("CxLastError::set", cullCaseLoops)
     {
-        const ulong_t caulData[] = {
+        culong_t caulData[] = {
             0UL,
             cuiMaxErrors - 10UL,
             cuiMaxErrors,
@@ -52,7 +52,7 @@ CxTest_CxLastError::unit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(caulData); ++ i) {
-            const ulong_t culLasError = caulData[i];
+            culong_t culLasError = caulData[i];
 
             CxLastError::set(culLasError);
             xTEST_EQ(culLasError, CxLastError::get());
@@ -61,7 +61,7 @@ CxTest_CxLastError::unit(
 
     xTEST_CASE("CxLastError::reset", cullCaseLoops)
     {
-        const ulong_t caulData[] = {
+        culong_t caulData[] = {
             0UL,
             cuiMaxErrors - 10UL,
             cuiMaxErrors,
@@ -69,7 +69,7 @@ CxTest_CxLastError::unit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(caulData); ++ i) {
-            const ulong_t culLasError = caulData[i];
+            culong_t culLasError = caulData[i];
 
             CxLastError::set(culLasError);
             CxLastError::reset();
@@ -79,7 +79,7 @@ CxTest_CxLastError::unit(
 
     xTEST_CASE("CxLastError::format", cullCaseLoops)
     {
-        const ulong_t caulData[] = {
+        culong_t caulData[] = {
             0UL,
             cuiMaxErrors - 10UL,
             cuiMaxErrors,
@@ -87,7 +87,7 @@ CxTest_CxLastError::unit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(caulData); ++ i) {
-            const ulong_t culLasError = caulData[i];
+            culong_t culLasError = caulData[i];
 
             m_sRv = CxLastError::format(culLasError);
             xTEST_EQ(false, m_sRv.empty());

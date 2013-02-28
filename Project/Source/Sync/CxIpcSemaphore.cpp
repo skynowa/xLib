@@ -47,7 +47,7 @@ CxIpcSemaphore::~CxIpcSemaphore() {
 #if   xOS_ENV_WIN
     xNA;
 #elif xOS_ENV_UNIX
-    int iRv = ::sem_close(_m_hHandle);  _m_hHandle = NULL;
+    int_t iRv = ::sem_close(_m_hHandle);  _m_hHandle = NULL;
     xTEST_DIFF(- 1, iRv);
 
     // sem_destroy
@@ -64,7 +64,7 @@ CxIpcSemaphore::handle() const {
 //------------------------------------------------------------------------------
 void
 CxIpcSemaphore::create(
-    const long_t         &a_cliInitialValue,
+    clong_t         &a_cliInitialValue,
     const std::tstring_t &a_csName
 )
 {
@@ -73,7 +73,7 @@ CxIpcSemaphore::create(
     xTEST_EQ(true, 0L <= a_cliInitialValue && a_cliInitialValue <= xSEMAPHORE_VALUE_MAX);
 
 #if   xOS_ENV_WIN
-    const tchar_t  *pcszWinName = NULL;
+    ctchar_t  *pcszWinName = NULL;
     std::tstring_t  _sWinName;
 
     if (true == a_csName.empty()) {
@@ -110,7 +110,7 @@ CxIpcSemaphore::open(
     //csName    - n/a
 
 #if   xOS_ENV_WIN
-    const tchar_t *pcszWinName = NULL;
+    ctchar_t *pcszWinName = NULL;
     std::tstring_t _sWinName;
 
     if (true == a_csName.empty()) {
@@ -146,14 +146,14 @@ CxIpcSemaphore::post() const {
    BOOL blRes = ::ReleaseSemaphore(_m_hHandle.get(), cliPostValue, NULL);
    xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
-    int iRv = ::sem_post(_m_hHandle);
+    int_t iRv = ::sem_post(_m_hHandle);
     xTEST_DIFF(- 1, iRv);
 #endif
 }
 //------------------------------------------------------------------------------
 void
 CxIpcSemaphore::wait(
-    const ulong_t &a_culTimeoutMsec
+    culong_t &a_culTimeoutMsec
 ) const
 {
     xTEST_EQ(true, _isValid());
@@ -171,7 +171,7 @@ CxIpcSemaphore::wait(
             long             ms
         )
         {
-            int sec = 0;
+            int_t sec = 0;
 
             sec = ms / 1000;
             ms  = ms - sec * 1000;
@@ -186,7 +186,7 @@ CxIpcSemaphore::wait(
     };
 
 
-    int             iRv        = - 1;
+    int_t             iRv        = - 1;
     struct timespec tmsTimeout = {0};
 
     // add msec to struct timespec
@@ -203,7 +203,7 @@ CxIpcSemaphore::wait(
         continue;
     }
 #else
-    int iLastError = 0;
+    int_t iLastError = 0;
 
     xFOREVER {
         iRv        = ::sem_timedwait(_m_hHandle, &tmsTimeout);
@@ -236,9 +236,9 @@ CxIpcSemaphore::value() const {
     BOOL blRv = ::ReleaseSemaphore(_m_hHandle.get(), cliPostValue, &liRv);
     xTEST_DIFF(FALSE, blRv);
 #elif xOS_ENV_UNIX
-    int iValue = - 1;
+    int_t iValue = - 1;
 
-    int iRv = ::sem_getvalue(_m_hHandle, &iValue);
+    int_t iRv = ::sem_getvalue(_m_hHandle, &iValue);
     xTEST_DIFF(- 1, iRv);
 
     liRv = iValue;
@@ -255,7 +255,7 @@ CxIpcSemaphore::value() const {
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxIpcSemaphore::_isValid() const {
 #if   xOS_ENV_WIN
     return _m_hHandle.isValid();

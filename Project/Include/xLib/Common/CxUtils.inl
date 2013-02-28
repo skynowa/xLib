@@ -117,7 +117,7 @@ CxUtils::fileClose(
 //------------------------------------------------------------------------------
 template <typename T>
 /* static */ inline
-bool
+bool_t
 CxUtils::intToBoolT(
     const T &a_valueT
 )
@@ -175,14 +175,14 @@ CxUtils::reinterpretCastT(
 }
 //------------------------------------------------------------------------------
 /* static */ inline
-double
+double_t
 CxUtils::roundDouble(
-    const double &a_cdValue
+    cdouble_t &a_cdValue
 )
 {
     xTEST_NA(a_cdValue);
 
-    double dRv = 0.0;
+    double_t dRv = 0.0;
 
     if (a_cdValue > 0.0) {
         dRv = ::floor(a_cdValue + 0.5);
@@ -197,7 +197,7 @@ template <typename T>
 /* static */ inline
 T
 CxUtils::roundIntT(
-    const double &a_cdValue
+    cdouble_t &a_cdValue
 )
 {
     assert(a_cdValue >= (std::numeric_limits<T>::min)() - 0.5);
@@ -216,18 +216,18 @@ CxUtils::roundIntT(
 //------------------------------------------------------------------------------
 template <typename T1, typename T2>
 /* static */ inline
-double
+double_t
 CxUtils::safeDivT(
     const T1 &a_cValue1T,
     const T2 &a_cValue2T
 )
 {
-    double dRv = 0.0;
+    double_t dRv = 0.0;
 
     if (static_cast<T2>( 0 ) == a_cValue2T) {
         dRv = 0.0;
     } else {
-        dRv = static_cast<double>( a_cValue1T ) / static_cast<double>( a_cValue2T );
+        dRv = static_cast<double_t>( a_cValue1T ) / static_cast<double_t>( a_cValue2T );
     }
 
     return dRv;

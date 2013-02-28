@@ -55,7 +55,7 @@ CxBackuper::execute(
     const std::tstring_t csError_NotEnoughFreeSpace = xT("Not enough free space");
     const std::tstring_t csError_CopyingFail        = xT("Copying fail");
 
-    bool bRv = false;
+    bool_t bRv = false;
 
     (*a_psDestFilePath).clear();
 

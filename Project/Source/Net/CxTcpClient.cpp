@@ -28,27 +28,27 @@ CxTcpClient::~CxTcpClient() {
 
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxTcpClient::isReadable() {
     timeval tvTimeout = {1, 0};     /*seconds, microseconds*/
     fd_set  fds;        FD_ZERO(&fds);
 
     FD_SET(_m_sktSocket, &fds);
 
-    int iRv = ::select(0, &fds, NULL, NULL, &tvTimeout);
+    int_t iRv = ::select(0, &fds, NULL, NULL, &tvTimeout);
     xCHECK_RET(iRv <= 0 || !FD_ISSET(_m_sktSocket, &fds), false);
 
     return true;
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxTcpClient::isWritable() {
     timeval tvTimeout = {1, 0};     /*seconds, microseconds*/
     fd_set  fds;        FD_ZERO(&fds);
 
     FD_SET(_m_sktSocket, &fds);
 
-    int iRv = ::select(0, NULL, &fds, NULL, &tvTimeout);
+    int_t iRv = ::select(0, NULL, &fds, NULL, &tvTimeout);
     xCHECK_RET(iRv <= 0 || !FD_ISSET(_m_sktSocket, &fds), false);
 
     return true;
@@ -57,7 +57,7 @@ CxTcpClient::isWritable() {
 void
 CxTcpClient::connect(
     const std::tstring_t &a_csIp,
-    const ushort_t       &a_cusPort
+    cushort_t       &a_cusPort
 )
 {
     xTEST_DIFF(xSOCKET_HANDLE_INVALID, _m_sktSocket);
@@ -72,19 +72,19 @@ CxTcpClient::connect(
     saSockAddr.sin_addr.s_addr = ::inet_addr(asIp.c_str());
     saSockAddr.sin_port        = htons(a_cusPort); //???????
 
-    int iRv = ::connect(_m_sktSocket, CxUtils::reinterpretCastT<sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
+    int_t iRv = ::connect(_m_sktSocket, CxUtils::reinterpretCastT<sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
     xTEST_DIFF(xSOCKET_ERROR, iRv);
 }
 //------------------------------------------------------------------------------
 void
 CxTcpClient::ioctl(
-    const long_t &a_cliCmd,
+    clong_t &a_cliCmd,
     ulong_t      *a_pulArgp
 )
 {
     xTEST_DIFF(xSOCKET_HANDLE_INVALID, _m_sktSocket);
 
-    int iRv = xSOCKET_ERROR;
+    int_t iRv = xSOCKET_ERROR;
 
 #if   xOS_ENV_WIN
     iRv = ioctlsocket(_m_sktSocket, a_cliCmd, a_pulArgp);
@@ -97,7 +97,7 @@ CxTcpClient::ioctl(
 //------------------------------------------------------------------------------
 void
 CxTcpClient::setNonBlockingMode(
-    const bool &a_cbFlag
+    cbool_t &a_cbFlag
 )
 {
 #if   xOS_ENV_WIN
@@ -106,13 +106,13 @@ CxTcpClient::setNonBlockingMode(
     ioctl(FIONBIO, static_cast<ulong_t FAR *>(&ulNonBlockingMode));
 
     /*
-    int bOptVal = true;
-    int bOptLen = sizeof(int);
+    int_t bOptVal = true;
+    int_t bOptLen = sizeof(int_t);
 
     setsockopt(sock, IPPROTO_TCP, TCP_NODELAY, (char*)&bOptVal, bOptLen);
     */
 #elif xOS_ENV_UNIX
-    int iFlags = - 1;
+    int_t iFlags = - 1;
 
     iFlags = ::fcntl(_m_sktSocket, F_GETFL);
     xTEST_DIFF(xSOCKET_ERROR, iFlags);
@@ -144,8 +144,8 @@ CxTcpClient::timeout(
 //------------------------------------------------------------------------------
 void
 CxTcpClient::setTimeout(
-    const long_t &a_cliSec,
-    const long_t &a_cliMicroSec
+    clong_t &a_cliSec,
+    clong_t &a_cliMicroSec
 )
 {
     // liSec      - n/a
@@ -164,16 +164,16 @@ CxTcpClient::setTimeout(
 
 //------------------------------------------------------------------------------
 /* static */
-bool
+bool_t
 CxTcpClient::isServerAlive(
     const std::tstring_t &a_csIp,
-    const ushort_t       &a_cusPort
+    cushort_t       &a_cusPort
 )
 {
     xTEST_EQ(false, a_csIp.empty());
     xTEST_EQ(true, (65535 > a_cusPort) && (0 < a_cusPort));
 
-    int iRv = - 1;
+    int_t iRv = - 1;
 
     CxTcpClient objSocket;
 

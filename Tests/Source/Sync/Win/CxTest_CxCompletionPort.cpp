@@ -19,7 +19,7 @@ CxTest_CxCompletionPort::~CxTest_CxCompletionPort() {
 /* virtual */
 void
 CxTest_CxCompletionPort::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     // TODO: CxTest_CxCompletionPort

@@ -50,15 +50,15 @@ public:
         ///< drive type
     std::tstring_t         label     () const xWARN_UNUSED_RV;
         ///< get label
-    bool                   isValid   () const xWARN_UNUSED_RV;
+    bool_t                   isValid   () const xWARN_UNUSED_RV;
         ///< is valid path
-    bool                   isReady   () const xWARN_UNUSED_RV;
+    bool_t                   isReady   () const xWARN_UNUSED_RV;
         ///< is ready
-    bool                   isEmpty   () const xWARN_UNUSED_RV;
+    bool_t                   isEmpty   () const xWARN_UNUSED_RV;
         ///< is empty
     void                   mount     (const std::tstring_t &csDestPath) const;
         ///< mount
-    void                   unMount   (const bool &cbIsForce) const;
+    void                   unMount   (cbool_t &cbIsForce) const;
         ///< unmount
 
     // static

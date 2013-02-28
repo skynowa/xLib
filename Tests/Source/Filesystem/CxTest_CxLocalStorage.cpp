@@ -24,7 +24,7 @@ CxTest_CxLocalStorage::~CxTest_CxLocalStorage() {
 /* virtual */
 void
 CxTest_CxLocalStorage::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     const std::tstring_t csFilePath = CxPath( CxPath::exe() ).setExt(xT("ini") );
@@ -175,7 +175,7 @@ CxTest_CxLocalStorage::unit(
 
     xTEST_CASE("CxLocalStorage::keyReadInt CxLocalStorage::keyWriteInt", cullCaseLoops)
     {
-        const long_t cliValue = 10L;
+        clong_t cliValue = 10L;
 
         iniIni.keyWriteInt(csKey1, cliValue);
 
@@ -185,7 +185,7 @@ CxTest_CxLocalStorage::unit(
 
     xTEST_CASE("CxLocalStorage::keyReadFloat CxLocalStorage::keyWriteFloat", cullCaseLoops)
     {
-        const double cdValue = 777.0f;
+        cdouble_t cdValue = 777.0f;
 
         iniIni.keyWriteFloat(csKey1, cdValue);
 
@@ -195,7 +195,7 @@ CxTest_CxLocalStorage::unit(
 
     xTEST_CASE("CxLocalStorage::keyReadBool CxLocalStorage::keyWriteBool", cullCaseLoops)
     {
-        const bool cbValue = false;
+        cbool_t cbValue = false;
 
         iniIni.keyWriteBool(csKey1, cbValue);
 

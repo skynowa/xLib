@@ -19,7 +19,7 @@ CxTest_CxSemaphore::~CxTest_CxSemaphore() {
 /* virtual */
 void
 CxTest_CxSemaphore::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
 

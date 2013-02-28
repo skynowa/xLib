@@ -32,7 +32,7 @@ public:
         ///< create
     void              open      (const std::tstring_t &csName);
         ///< open
-    void              lock      (const ulong_t &culTimeoutMsec) const;
+    void              lock      (culong_t &culTimeoutMsec) const;
         ///< unlock by timeout in msec
     void              unlock    () const;
         ///< lock

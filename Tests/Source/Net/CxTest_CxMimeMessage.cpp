@@ -19,7 +19,7 @@ CxTest_CxMimeMessage::~CxTest_CxMimeMessage() {
 /* virtual */
 void
 CxTest_CxMimeMessage::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
     std::tstring_t m_sRv;
@@ -31,7 +31,7 @@ CxTest_CxMimeMessage::unit(
     const std::tstring_t csUser   = xT("test_1@serg.com");
     const std::tstring_t csPass   = xT("test_1");
     const std::tstring_t csServer = xT("127.0.0.1");
-    const ushort_t       usPort   = 110;
+    cushort_t       usPort   = 110;
 
     //-------------------------------------
     //IPNET

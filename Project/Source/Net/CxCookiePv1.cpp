@@ -125,33 +125,33 @@ CxCookiePv1::maxAge() const {
 //------------------------------------------------------------------------------
 void
 CxCookiePv1::setMaxAge(
-    const longlong_t &a_cliMaxAge
+    clonglong_t &a_cliMaxAge
 )
 {
     _m_liMaxAge = a_cliMaxAge;
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxCookiePv1::secure() const {
     return _m_bSecure;
 }
 //------------------------------------------------------------------------------
 void
 CxCookiePv1::setSecure(
-    const bool &a_cbFlag
+    cbool_t &a_cbFlag
 )
 {
     _m_bSecure = a_cbFlag;
 }
 //------------------------------------------------------------------------------
-bool
+bool_t
 CxCookiePv1::httpOnly() const {
     return _m_bHttpOnly;
 }
 //------------------------------------------------------------------------------
 void
 CxCookiePv1::setHttpOnly(
-    const bool &a_cbFlag
+    cbool_t &a_cbFlag
 )
 {
     _m_bHttpOnly = a_cbFlag;
@@ -236,7 +236,7 @@ CxCookiePv1::clear() {
 
 //------------------------------------------------------------------------------
 struct SCompareNoCase {
-    bool
+    bool_t
     operator() (const std::tstring_t &csStr1, const std::tstring_t &csStr2) const {
         return !! CxString::compareNoCase(csStr1, csStr2);
     }

@@ -33,21 +33,21 @@ public:
 
     MYSQL                   *get              () const xWARN_UNUSED_RV;
         ///< get handle
-    bool                     isValid          () const xWARN_UNUSED_RV;
+    bool_t                     isValid          () const xWARN_UNUSED_RV;
         ///< validating handle
     void                     options          (const mysql_option &cmoOption, const void *cpvArg) const;
         ///< set extra connect options and affect behavior
-    static bool              isExists         (const std::tstring_t &csHost, const std::tstring_t &csUser,
+    static bool_t              isExists         (const std::tstring_t &csHost, const std::tstring_t &csUser,
                                                const std::tstring_t &csPassword, const std::tstring_t &csDb,
-                                               const uint_t &cuiPort, const std::tstring_t &csUnixSocket,
-                                               const ulong_t &culClientFlag) xWARN_UNUSED_RV;
+                                               cuint_t &cuiPort, const std::tstring_t &csUnixSocket,
+                                               culong_t &culClientFlag) xWARN_UNUSED_RV;
         ///<
     void                     connect          (const std::tstring_t &csHost, const std::tstring_t &csUser,
                                                const std::tstring_t &csPassword, const std::tstring_t &csDb,
-                                               const uint_t &cuiPort, const std::tstring_t &csUnixSocket,
-                                               const ulong_t &culClientFlag);
+                                               cuint_t &cuiPort, const std::tstring_t &csUnixSocket,
+                                               culong_t &culClientFlag);
         ///< attempts to establish a connection to a MySQL database engine running on host
-    void                     query            (const tchar_t *pcszSqlFormat, ...) const;
+    void                     query            (ctchar_t *pcszSqlFormat, ...) const;
         ///< executes the SQL statement
     uint_t                   fieldCount       () const xWARN_UNUSED_RV;
         ///< number of columns in a result set
@@ -74,14 +74,14 @@ class CxMySQLRecordset :
     /// MySQL recordset
 {
 public:
-                             CxMySQLRecordset(const CxMySQLConnection &cmsConnection, const bool &cbIsUseResult);
+                             CxMySQLRecordset(const CxMySQLConnection &cmsConnection, cbool_t &cbIsUseResult);
         ///< constructor
     virtual                 ~CxMySQLRecordset();
         ///< destructor
 
     MYSQL_RES               *get             () const xWARN_UNUSED_RV;
         ///< get handle
-    bool                     isValid         () const xWARN_UNUSED_RV;
+    bool_t                     isValid         () const xWARN_UNUSED_RV;
         ///< validating handle
 
     uint_t                   fieldsNum       () const xWARN_UNUSED_RV;
@@ -90,7 +90,7 @@ public:
         ///< number of rows in the result set
     void                     fetchField      (MYSQL_FIELD *pmfField) const;
         ///< The MYSQL_FIELD structure for the current column
-    void                     fetchFieldDirect(const uint_t &cuiFieldNumber, MYSQL_FIELD *pmfField) const;
+    void                     fetchFieldDirect(cuint_t &cuiFieldNumber, MYSQL_FIELD *pmfField) const;
         ///< The MYSQL_FIELD structure for the specified column
     void                     fetchFields     (MYSQL_FIELD *pmfField) const;
         ///< An array of MYSQL_FIELD structures for all columns of a result set
@@ -117,8 +117,8 @@ xNAMESPACE_END(NxLib)
 #if xTODO
     MYSQL_ROW row;
     unsigned long_t *lengths;
-    unsigned int num_fields;
-    unsigned int i;
+    unsigned int_t num_fields;
+    unsigned int_t i;
 
     row = mysql_fetch_row(result);
     if (row)

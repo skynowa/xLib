@@ -18,7 +18,7 @@ public:
                    CxTest_CxUtils();
     virtual       ~CxTest_CxUtils();
 
-    virtual  void  unit          (const ulonglong_t &cullCaseLoops);
+    virtual  void  unit          (culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------
 #endif //CxTest_CxUtilsH

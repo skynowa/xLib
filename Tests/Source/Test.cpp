@@ -114,15 +114,15 @@
 // Gui
 #include <Test/Gui/Dialogs/CxTest_CxMsgBoxT.h>
 //------------------------------------------------------------------------------
-int
-xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
+int_t
+xTMAIN(int_t iArgCount, tchar_t *paszArgs[]) {
     //--------------------------------------------------
     // set command line args for xLib
     CxCommandLine::setArgs(iArgCount, paszArgs);
 
     //--------------------------------------------------
     // options (default)
-    bool        bIsUseTracing = true;
+    bool_t        bIsUseTracing = true;
     ulonglong_t ullAllLoops   = 1UL;
     ulonglong_t ullUnitLoops  = 1UL;
     ulonglong_t ullCaseLoops  = 1UL;
@@ -134,7 +134,7 @@ xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
 
         // usage
         if (2 == iArgCount) {
-            bool bRv = CxString::compareNoCase(xT("-h"), vsArgs.at(1));
+            bool_t bRv = CxString::compareNoCase(xT("-h"), vsArgs.at(1));
             if (true == bRv) {
                 std::tcout << xT("\nUsage: xlib_r is_tracing all_loops unit_loops\n")
                               xT("  - xlib_r      (binary file path)\n")
@@ -151,7 +151,7 @@ xTMAIN(int iArgCount, tchar_t *paszArgs[]) {
 
         // loops number
         if (5 == iArgCount) {
-            bIsUseTracing = CxString::cast<bool>       ( vsArgs.at(1) );
+            bIsUseTracing = CxString::cast<bool_t>       ( vsArgs.at(1) );
             ullAllLoops   = CxString::cast<ulonglong_t>( vsArgs.at(2) );
             ullUnitLoops  = CxString::cast<ulonglong_t>( vsArgs.at(3) );
             ullCaseLoops  = CxString::cast<ulonglong_t>( vsArgs.at(4) );

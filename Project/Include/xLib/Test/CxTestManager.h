@@ -18,22 +18,22 @@ class CxTestManager :
     /// manage tests (CxTest)
 {
 public:
-    explicit   CxTestManager(const bool &cbIsUseTracing);
+    explicit   CxTestManager(cbool_t &cbIsUseTracing);
         ///< constructor
     virtual   ~CxTestManager();
         ///< destructor
 
     void       add          (CxTest *pvtTest, const std::tstring_t &csTestName = CxConst::xSTR_EMPTY);
         ///< add CxTest
-    void       run          (const ulonglong_t &cullAllLoops,
-                             const ulonglong_t &cullUnitLoops,
-                             const ulonglong_t &cullCaseLoops);
+    void       run          (culonglong_t &cullAllLoops,
+                             culonglong_t &cullUnitLoops,
+                             culonglong_t &cullCaseLoops);
         ///< run all tests
 
 private:
     typedef std::vector<CxTest *> container_t;
 
-    const bool  _m_cbIsUseTracing;   ///< is use tracing
+    cbool_t  _m_cbIsUseTracing;   ///< is use tracing
     container_t _m_ctnTests;         ///< CxTest's container
 };
 

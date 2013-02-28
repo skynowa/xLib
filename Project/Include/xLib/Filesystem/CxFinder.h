@@ -33,11 +33,11 @@ public:
     CxFileAttribute::ExAttribute attributes   () const xWARN_UNUSED_RV;
         ///< file attributes
 
-    bool                         isValid      () const xWARN_UNUSED_RV;
+    bool_t                         isValid      () const xWARN_UNUSED_RV;
         ///< is valid handle
-    bool                         moveFirst    () xWARN_UNUSED_RV;
+    bool_t                         moveFirst    () xWARN_UNUSED_RV;
         ///< move first entry
-    bool                         moveNext     () xWARN_UNUSED_RV;
+    bool_t                         moveNext     () xWARN_UNUSED_RV;
         ///< move next entry
     void                         close        ();
         ///< close search

@@ -11,7 +11,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 #if   xOS_ENV_WIN
-    int
+    int_t
     iGetTimeOfDay(
         struct timeval  *a_tv,
         struct timezone *a_tz
@@ -25,7 +25,7 @@ xNAMESPACE_BEGIN(NxLib)
 
         FILETIME    ftTime    = {0};
         ulonglong_t ullRv    = 0ULL;
-        static int  s_iTzFlag = 0;
+        static int_t  s_iTzFlag = 0;
 
         if (NULL != a_tv) {
             (void)::GetSystemTimeAsFileTime(&ftTime);
@@ -71,7 +71,7 @@ xNAMESPACE_BEGIN(NxLib)
         liGetClock() {
             rusage ruUsage = {{0}};
 
-            int iRv = ::getrusage(RUSAGE_SELF, &ruUsage);
+            int_t iRv = ::getrusage(RUSAGE_SELF, &ruUsage);
             xTEST_DIFF(- 1, iRv);
 
             std::clock_t clkRv =

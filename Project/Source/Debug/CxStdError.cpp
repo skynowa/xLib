@@ -18,9 +18,9 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 /* static */
-int
+int_t
 CxStdError::get() {
-    int iCode = 0; /* = ciCodeSuccess */;
+    int_t iCode = 0; /* = ciCodeSuccess */;
 
     iCode = errno;
 
@@ -38,7 +38,7 @@ CxStdError::toString() {
 /* static */
 void
 CxStdError::set(
-    const int &a_ciCode
+    cint_t &a_ciCode
 )
 {
     errno = a_ciCode;
@@ -47,7 +47,7 @@ CxStdError::set(
 /* static */
 void
 CxStdError::reset() {
-    const int ciCodeSuccess = 0;
+    cint_t ciCodeSuccess = 0;
 
     set(ciCodeSuccess);
 }
@@ -55,7 +55,7 @@ CxStdError::reset() {
 /* static */
 std::tstring_t
 CxStdError::format(
-    const int &a_ciCode
+    cint_t &a_ciCode
 )
 {
     std::tstring_t sRv;
@@ -80,14 +80,14 @@ CxStdError::format(
     #if   xOS_LINUX
         char szBuff[64 + 1] = {0};
 
-        const tchar_t *pcszError = ::strerror_r(a_ciCode, &szBuff[0], xARRAY_SIZE(szBuff));
+        ctchar_t *pcszError = ::strerror_r(a_ciCode, &szBuff[0], xARRAY_SIZE(szBuff));
         xCHECK_RET(NULL == pcszError, sRv.append(xT("[Cann't format error message]")));
 
         sRv.append(pcszError);
     #elif xOS_FREEBSD
         char szBuff[64 + 1] = {0};
 
-        int iRv = ::strerror_r(static_cast<int>( a_ciCode ), &szBuff[0], xARRAY_SIZE(szBuff));
+        int_t iRv = ::strerror_r(static_cast<int_t>( a_ciCode ), &szBuff[0], xARRAY_SIZE(szBuff));
         xCHECK_RET(- 1 == iRv, sRv.append(xT("[Cann't format error message]")));
 
         sRv.append(&szBuff[0]);

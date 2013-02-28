@@ -136,7 +136,7 @@ private:
     std::tstring_t        _m_sCountryCode;          ///< country code
     ExRequestType         _m_rtRequestType;         ///< request method
 
-    bool                  _init              ();
+    bool_t                  _init              ();
         ///< initiate class data
 };
 //------------------------------------------------------------------------------
@@ -236,10 +236,10 @@ public:
 private:
     //--------------------------------------------------
     //encoding, decoding
-    int                     cgl_parsecgibuf(/*cgllist *cdata, */char *query) xWARN_UNUSED_RV;
+    int_t                     cgl_parsecgibuf(/*cgllist *cdata, */char *query) xWARN_UNUSED_RV;
         ///< cgl_parsecgibuf
 
-    int                     cgl_urlencode  (char *s, FILE *fw) xWARN_UNUSED_RV;
+    int_t                     cgl_urlencode  (char *s, FILE *fw) xWARN_UNUSED_RV;
         ///< cgl_urlencode
     void                    cgl_urldecode  (char *s);
         ///< cgl_urldecode

@@ -30,7 +30,7 @@ public:
         lsLimitSize      = 500 * 1024 * 1024
     };
 
-    explicit               CxFileLog     (const ulong_t &culMaxFileSizeBytes);
+    explicit               CxFileLog     (culong_t &culMaxFileSizeBytes);
         ///< constructor
     virtual               ~CxFileLog     ();
         ///< destructor
@@ -40,7 +40,7 @@ public:
     const std::tstring_t & filePath      () const xWARN_UNUSED_RV;
         ///< get log path
 
-    void                   write         (const tchar_t *pcszFormat, ...);
+    void                   write         (ctchar_t *pcszFormat, ...);
         ///< write
     void                   clear         ();
         ///< clear content

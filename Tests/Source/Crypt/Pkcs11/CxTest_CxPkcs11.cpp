@@ -19,7 +19,7 @@ CxTest_CxPkcs11::~CxTest_CxPkcs11() {
 /* virtual */
 void
 CxTest_CxPkcs11::unit(
-    const ulonglong_t &cullCaseLoops
+    culonglong_t &cullCaseLoops
 )
 {
 #if   xOS_ENV_WIN

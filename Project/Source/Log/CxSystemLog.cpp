@@ -60,7 +60,7 @@ CxSystemLog::~CxSystemLog() {
 //------------------------------------------------------------------------------
 void
 CxSystemLog::setEnabled(
-    const bool &a_cbFlag
+    cbool_t &a_cbFlag
 )
 {
     xTEST_NA(a_cbFlag);
@@ -71,7 +71,7 @@ CxSystemLog::setEnabled(
 void
 CxSystemLog::write(
     const ExLevel &a_lvLevel,
-    const tchar_t *a_pcszFormat, ...
+    ctchar_t *a_pcszFormat, ...
 )
 {
     xTEST_PTR(a_pcszFormat);

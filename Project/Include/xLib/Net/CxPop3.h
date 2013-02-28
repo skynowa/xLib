@@ -35,15 +35,15 @@ public:
     void              listAt             (ulong_t &ulIndex);
     void              noop               ();
     void              rset               ();
-    void              top                (int iNum, int iLines, std::tstring_t &sBuff);
+    void              top                (int_t iNum, int_t iLines, std::tstring_t &sBuff);
 
-    void              retrive            (int iNum, const std::tstring_t &csRawMimeMessage);
-    void              retriveRaw         (int iNum, const std::tstring_t &csDirPath, const std::tstring_t &csFileName);
-    void              retriveRawAndBackup(int iNum, const std::tstring_t &csDirPath, const std::tstring_t &csBackupDirPath,
+    void              retrive            (int_t iNum, const std::tstring_t &csRawMimeMessage);
+    void              retriveRaw         (int_t iNum, const std::tstring_t &csDirPath, const std::tstring_t &csFileName);
+    void              retriveRawAndBackup(int_t iNum, const std::tstring_t &csDirPath, const std::tstring_t &csBackupDirPath,
                                           const std::tstring_t &csFileName);
-    void              retrieveHeader     (int iNum, CxMimeHeader &mhMimeHeader);
+    void              retrieveHeader     (int_t iNum, CxMimeHeader &mhMimeHeader);
 
-    void              del                (int iNum);
+    void              del                (int_t iNum);
     void              disconnect         ();
 
 private:
@@ -54,11 +54,11 @@ private:
     std::tstring_t    _m_sPass;
     std::tstring_t    _m_sServer;
     ushort_t          _m_usPort;
-    bool              _m_bConnected;
+    bool_t              _m_bConnected;
 
     void              _command           (const std::tstring_t &csCmd, const std::tstring_t &csReplyDelimiter,
                                           std::tstring_t *psReply);
-    bool              _isError           (const std::tstring_t &csText) xWARN_UNUSED_RV;
+    bool_t              _isError           (const std::tstring_t &csText) xWARN_UNUSED_RV;
     ulong_t           _mailsSum          (const std::tstring_t &csServerAnswer) xWARN_UNUSED_RV;
     ulong_t           _mailsSize         (const std::tstring_t &csServerAnswer) xWARN_UNUSED_RV;
 };

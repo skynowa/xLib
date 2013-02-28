@@ -27,7 +27,7 @@ pvWatch(
     void *a_pvParam
 )
 {
-    int    iRv  = - 1;
+    int_t    iRv  = - 1;
     long_t liId = *(static_cast<long *>( a_pvParam ));
     xUNUSED(liId);
 
@@ -79,7 +79,7 @@ pvJob(
     void *a_pvParam
 )
 {
-    int    iRv  = - 1;
+    int_t    iRv  = - 1;
     long_t liId = *(static_cast<long *>( a_pvParam ));
     xUNUSED(liId);
 
@@ -129,15 +129,15 @@ CxTest_CxCondition::~CxTest_CxCondition() {
 /*virtual*/
 void
 CxTest_CxCondition::unit(
-    const ulonglong_t &a_cullCaseLoops
+    culonglong_t &a_cullCaseLoops
 )
 {
 #if xOS_ENV_UNIX
-    int          iRv          = - 1;
+    int_t          iRv          = - 1;
     pthread_t    thThreads[3] = {0};
-    const long_t liId1        = 1L;
-    const long_t liId2        = 2L;
-    const long_t liId3        = 3L;
+    clong_t liId1        = 1L;
+    clong_t liId2        = 2L;
+    clong_t liId3        = 3L;
 
     // initialize
     {
