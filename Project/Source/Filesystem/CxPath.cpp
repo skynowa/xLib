@@ -23,7 +23,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 CxPath::CxPath(
-    const std::tstring_t &a_csFilePath
+    std::ctstring_t &a_csFilePath
 ) :
     _m_sFilePath(a_csFilePath)
 {
@@ -35,7 +35,7 @@ CxPath::~CxPath() {
 
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxPath::filePath() const {
     xTEST_EQ(false, _m_sFilePath.empty());
 
@@ -63,7 +63,7 @@ CxPath::exe() {
     sRv.resize(dwStored);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        const std::tstring_t csProcFile = CxString::format(xT("/proc/%ld/exe"), CxCurrentProcess::id());
+        std::ctstring_t csProcFile = CxString::format(xT("/proc/%ld/exe"), CxCurrentProcess::id());
 
         bool_t bRv = CxFile::isExists(csProcFile);
         xCHECK_RET(false == bRv, std::tstring_t());
@@ -270,7 +270,7 @@ CxPath::standartExt(
 
 std::tstring_t
 CxPath::setDrive(
-    const std::tstring_t &a_csDrivePath
+    std::ctstring_t &a_csDrivePath
 )
 {
     // csDrivePath
@@ -290,7 +290,7 @@ CxPath::setDrive(
 //------------------------------------------------------------------------------
 std::tstring_t
 CxPath::setDir(
-    const std::tstring_t &a_csDirPath
+    std::ctstring_t &a_csDirPath
 )
 {
     // csDirPath
@@ -308,7 +308,7 @@ CxPath::setDir(
 //------------------------------------------------------------------------------
 std::tstring_t
 CxPath::setFileName(
-    const std::tstring_t &a_csFullName
+    std::ctstring_t &a_csFullName
 )
 {
     // csFullName
@@ -326,7 +326,7 @@ CxPath::setFileName(
 //------------------------------------------------------------------------------
 std::tstring_t
 CxPath::setFileBaseName(
-    const std::tstring_t &a_csName
+    std::ctstring_t &a_csName
 )
 {
     // csName
@@ -344,7 +344,7 @@ CxPath::setFileBaseName(
 //------------------------------------------------------------------------------
 std::tstring_t
 CxPath::setExt(
-    const std::tstring_t &a_csExt
+    std::ctstring_t &a_csExt
 )
 {
     xTEST_NA(a_csExt);
@@ -364,7 +364,7 @@ CxPath::removeExt() {
 //--------------------------------------------------------------------------
 std::tstring_t
 CxPath::removeExtIf(
-    const std::tstring_t &a_csExt
+    std::ctstring_t &a_csExt
 )
 {
     size_t uiExtPos = filePath().rfind(CxConst::xDOT + a_csExt);
@@ -379,7 +379,7 @@ CxPath::removeExtIf(
 /* static */
 bool_t
 CxPath::isValid(
-    const std::tstring_t &a_csFilePath
+    std::ctstring_t &a_csFilePath
 )
 {
     xTEST_NA(a_csFilePath);
@@ -402,7 +402,7 @@ CxPath::isValid(
 /* static */
 bool_t
 CxPath::isNameValid(
-    const std::tstring_t &a_csFileName
+    std::ctstring_t &a_csFileName
 )
 {
     xTEST_NA(a_csFilePath);
@@ -464,7 +464,7 @@ CxPath::isNameValid(
     // ? (question mark)
     // * (asterisk)
     {
-        const std::tstring_t csExceptedChars = xT("<>:\"/\\|?*");
+        std::ctstring_t csExceptedChars = xT("<>:\"/\\|?*");
 
         size_t uiPos = a_csFileName.find_first_of(csExceptedChars);
         bRv = (std::tstring_t::npos != uiPos);
@@ -501,7 +501,7 @@ CxPath::isNameValid(
     // Also avoid these names followed immediately by an extension;
     // for example, NUL.txt is not recommended.
     {
-        const std::tstring_t casReservedNames[] = {
+        std::ctstring_t casReservedNames[] = {
             xT("CON"),  xT("PRN"),  xT("AUX"),  xT("NUL"),
             xT("COM0"), xT("COM1"), xT("COM2"), xT("COM3"), xT("COM4"),
             xT("COM5"), xT("COM6"), xT("COM7"), xT("COM8"), xT("COM9"),
@@ -510,7 +510,7 @@ CxPath::isNameValid(
             xT("CLOCK$")
         };
 
-        const std::tstring_t csBaseFileName = CxPath(a_csFileName).removeExt();
+        std::ctstring_t csBaseFileName = CxPath(a_csFileName).removeExt();
 
         for (size_t i = 0; i < xARRAY_SIZE(casReservedNames); ++ i) {
             bRv = CxString::compareNoCase(csBaseFileName, casReservedNames[i]);
@@ -540,7 +540,7 @@ CxPath::isNameValid(
     // : (colon)
 
     {
-        const std::tstring_t csExceptedChars = xT("/:");
+        std::ctstring_t csExceptedChars = xT("/:");
 
         size_t uiPos = a_csFileName.find_first_of(csExceptedChars);
         bRv = (std::tstring_t::npos != uiPos);
@@ -569,7 +569,7 @@ CxPath::isAbsolute() const {
 /* static */
 std::tstring_t
 CxPath::setNameValid(
-    const std::tstring_t &a_csFileName
+    std::ctstring_t &a_csFileName
 )
 {
     xTEST_NA(a_csFileName);
@@ -624,7 +624,7 @@ CxPath::setNameValid(
     // ? (question mark)
     // * (asterisk)
     {
-        const std::tstring_t csExceptedChars = xT("<>:\"/\\|?*");
+        std::ctstring_t csExceptedChars = xT("<>:\"/\\|?*");
 
         size_t uiPos = sRv.find_first_of(csExceptedChars);
         bRv = (std::tstring_t::npos != uiPos);
@@ -646,7 +646,7 @@ CxPath::setNameValid(
         struct _SIsCharControl {
             bool_t
             operator () (
-                const std::tstring_t::value_type &a_cchChar
+                std::ctstring_t::value_type &a_cchChar
             ) const
             {
                 return CxChar::isControl(a_cchChar);
@@ -675,7 +675,7 @@ CxPath::setNameValid(
     // Also avoid these names followed immediately by an extension;
     // for example, NUL.txt is not recommended.
     {
-        const std::tstring_t casReservedNames[] = {
+        std::ctstring_t casReservedNames[] = {
             xT("CON"),  xT("PRN"),  xT("AUX"),  xT("NUL"),
             xT("COM0"), xT("COM1"), xT("COM2"), xT("COM3"), xT("COM4"),
             xT("COM5"), xT("COM6"), xT("COM7"), xT("COM8"), xT("COM9"),
@@ -684,7 +684,7 @@ CxPath::setNameValid(
             xT("CLOCK$")
         };
 
-        const std::tstring_t csBaseFileName = CxPath(sRv).removeExt();
+        std::ctstring_t csBaseFileName = CxPath(sRv).removeExt();
 
         for (size_t i = 0; i < xARRAY_SIZE(casReservedNames); ++ i) {
             bRv = CxString::compareNoCase(csBaseFileName, casReservedNames[i]);
@@ -724,7 +724,7 @@ CxPath::setNameValid(
     // : (colon)
 
     {
-        const std::tstring_t csExceptedChars = xT("/:");
+        std::ctstring_t csExceptedChars = xT("/:");
 
         size_t uiPos = a_csFileName.find_first_of(csExceptedChars);
         bRv = (std::tstring_t::npos != uiPos);
@@ -844,7 +844,7 @@ CxPath::absolute() const {
 /* static */
 std::tstring_t
 CxPath::shortName(
-    const std::tstring_t &a_csFileName,
+    std::ctstring_t &a_csFileName,
     const size_t         &a_cuiMaxSize
 )
 {
@@ -1034,7 +1034,7 @@ CxPath::nameMaxSize() {
 /* static */
 void
 CxPath::proc(
-    const std::tstring_t &a_csProcPath,
+    std::ctstring_t &a_csProcPath,
     std::vec_tstring_t   *a_pvsData
 )
 {
@@ -1080,8 +1080,8 @@ CxPath::proc(
 /* static */
 std::tstring_t
 CxPath::procValue(
-    const std::tstring_t &a_csProcPath,   ///< file path to proc-file
-    const std::tstring_t &a_csData        ///< target search data string
+    std::ctstring_t &a_csProcPath,   ///< file path to proc-file
+    std::ctstring_t &a_csData        ///< target search data string
 )
 {
     std::tstring_t     sRv;

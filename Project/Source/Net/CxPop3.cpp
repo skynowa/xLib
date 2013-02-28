@@ -40,7 +40,7 @@ CxPop3::~CxPop3() {
 //------------------------------------------------------------------------------
 //DONE: bCreate
 void
-CxPop3::create(const std::tstring_t &a_csUser, const std::tstring_t &a_csPass, const std::tstring_t &a_csServer, ushort_t a_usPort) {
+CxPop3::create(std::ctstring_t &a_csUser, std::ctstring_t &a_csPass, std::ctstring_t &a_csServer, ushort_t a_usPort) {
      xTEST_EQ(false, a_csUser.empty());
      xTEST_EQ(false, a_csPass.empty());
      xTEST_EQ(false, a_csServer.empty());
@@ -108,7 +108,7 @@ CxPop3::login() {
 
     //-------------------------------------
     //[USER user\r\n]
-    const std::tstring_t sUserCmd = xT("USER ") + _m_sUser + xT("\r\n");
+    std::ctstring_t sUserCmd = xT("USER ") + _m_sUser + xT("\r\n");
 
     _command(sUserCmd, xT("\r\n"), &_m_sRes);
 
@@ -131,7 +131,7 @@ CxPop3::stat(ulong_t &a_ulSum, ulong_t &a_ulSize) {
 
     //-------------------------------------
     //[LIST\r\n]
-    const std::tstring_t sStatCmd = xT("STAT\r\n");
+    std::ctstring_t sStatCmd = xT("STAT\r\n");
 
     _command(sStatCmd, xT("\r\n"), &_m_sRes);
 
@@ -259,7 +259,7 @@ CxPop3::top(int_t a_iNum, int_t a_iLines, std::tstring_t &a_sBuff) {
 //------------------------------------------------------------------------------
 //DONE: bRetriveRaw ()
 void
-CxPop3::retriveRaw(int_t a_iNum, const std::tstring_t &a_csDirPath, const std::tstring_t &a_csFileName) {  //csDirPath ��� �����
+CxPop3::retriveRaw(int_t a_iNum, std::ctstring_t &a_csDirPath, std::ctstring_t &a_csFileName) {  //csDirPath ��� �����
     xTEST_GR(a_iNum, 0);
     xTEST_EQ(false, a_csDirPath.empty());
     xTEST_EQ(false, a_csFileName.empty());
@@ -275,7 +275,7 @@ CxPop3::retriveRaw(int_t a_iNum, const std::tstring_t &a_csDirPath, const std::t
 
     //-------------------------------------
     //[RETR 3\r\n]
-    const std::tstring_t sRetrCmd = xT("RETR ") + CxString::cast(a_iNum) + xT("\r\n");
+    std::ctstring_t sRetrCmd = xT("RETR ") + CxString::cast(a_iNum) + xT("\r\n");
 
     _command(sRetrCmd, xT("\r\n.\r\n"), &_m_sRes);
 
@@ -311,7 +311,7 @@ CxPop3::retriveRaw(int_t a_iNum, const std::tstring_t &a_csDirPath, const std::t
 //------------------------------------------------------------------------------
 //DONE: bRetriveRawAndBackup ()
 void
-CxPop3::retriveRawAndBackup(int_t a_iNum, const std::tstring_t &a_csDirPath, const std::tstring_t &a_csBackupDirPath, const std::tstring_t &a_csFileName) {
+CxPop3::retriveRawAndBackup(int_t a_iNum, std::ctstring_t &a_csDirPath, std::ctstring_t &a_csBackupDirPath, std::ctstring_t &a_csFileName) {
     xTEST_GR(a_iNum, 0);
     xTEST_EQ(false, (true == a_csDirPath.empty() && true == a_csBackupDirPath.empty()));
     xTEST_EQ(false, a_csFileName.empty());
@@ -327,7 +327,7 @@ CxPop3::retriveRawAndBackup(int_t a_iNum, const std::tstring_t &a_csDirPath, con
 
     //-------------------------------------
     //[RETR 3\r\n]
-    const std::tstring_t sRetrCmd = xT("RETR ") + CxString::cast(a_iNum) + xT("\r\n");
+    std::ctstring_t sRetrCmd = xT("RETR ") + CxString::cast(a_iNum) + xT("\r\n");
 
     _command(sRetrCmd, xT("\r\n.\r\n"), &_m_sRes);
 
@@ -421,7 +421,7 @@ CxPop3::del(int_t a_iNum) {
 
     //-------------------------------------
     //[DELE 2\r\n]
-    const std::tstring_t sDeleCmd = xT("DELE ") + CxString::cast(a_iNum) + xT("\r\n");
+    std::ctstring_t sDeleCmd = xT("DELE ") + CxString::cast(a_iNum) + xT("\r\n");
 
     _command(sDeleCmd, xT("\r\n"), &_m_sRes);
 }
@@ -440,7 +440,7 @@ CxPop3::disconnect() {
 
     //-------------------------------------
     //[QUIT\r\n]
-    const std::tstring_t sQuitCmd = xT("QUIT\r\n");
+    std::ctstring_t sQuitCmd = xT("QUIT\r\n");
 
     _command(sQuitCmd, xT("\r\n"), &_m_sRes);
 
@@ -451,7 +451,7 @@ CxPop3::disconnect() {
 //------------------------------------------------------------------------------
 //DONE: _mailsSum (������� ����� �����)
 ulong_t
-CxPop3::_mailsSum(const std::tstring_t &a_csServerAnswer) {
+CxPop3::_mailsSum(std::ctstring_t &a_csServerAnswer) {
     xTEST_EQ(false, a_csServerAnswer.empty());
 
     //+OK 2 1141841
@@ -469,7 +469,7 @@ CxPop3::_mailsSum(const std::tstring_t &a_csServerAnswer) {
 //------------------------------------------------------------------------------
 //DONE: _mailsSize (����� ������ ����� � ������)
 ulong_t
-CxPop3::_mailsSize(const std::tstring_t &a_csServerAnswer) {
+CxPop3::_mailsSize(std::ctstring_t &a_csServerAnswer) {
     xTEST_EQ(false, a_csServerAnswer.empty());
 
     //+OK 2 1141841
@@ -496,7 +496,7 @@ CxPop3::_mailsSize(const std::tstring_t &a_csServerAnswer) {
 //------------------------------------------------------------------------------
 //DONE: _bCommand ()
 void
-CxPop3::_command(const std::tstring_t &csCmd, const std::tstring_t &csReplyDelimiter, std::tstring_t *psReply) {
+CxPop3::_command(std::ctstring_t &csCmd, std::ctstring_t &csReplyDelimiter, std::tstring_t *psReply) {
     xTEST_EQ(false, csCmd.empty());
     xTEST_EQ(false, csReplyDelimiter.empty());
     xTEST_PTR(psReply);
@@ -517,7 +517,7 @@ CxPop3::_command(const std::tstring_t &csCmd, const std::tstring_t &csReplyDelim
 //------------------------------------------------------------------------------
 //DONE: _bIsError ()
 bool_t
-CxPop3::_isError(const std::tstring_t &csText) {
+CxPop3::_isError(std::ctstring_t &csText) {
     xTEST_EQ(false, csText.empty());
 
     if (0 == std::memcmp(csText.c_str(), xT("+OK"), 3)) {

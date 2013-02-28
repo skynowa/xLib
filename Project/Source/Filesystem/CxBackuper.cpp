@@ -40,8 +40,8 @@ CxBackuper::~CxBackuper() {
 //------------------------------------------------------------------------------
 void
 CxBackuper::execute(
-    const std::tstring_t &a_csFilePath,
-    const std::tstring_t &a_csDestDirPath,
+    std::ctstring_t &a_csFilePath,
+    std::ctstring_t &a_csDestDirPath,
     std::tstring_t       *a_psDestFilePath
 )
 {
@@ -50,10 +50,10 @@ CxBackuper::execute(
     xTEST_PTR(a_psDestFilePath);
 
     // errors
-    const std::tstring_t csError_DestFileNotExists  = xT("Destination file not exists");
-    const std::tstring_t csError_Unknown            = xT("Unknown error");
-    const std::tstring_t csError_NotEnoughFreeSpace = xT("Not enough free space");
-    const std::tstring_t csError_CopyingFail        = xT("Copying fail");
+    std::ctstring_t csError_DestFileNotExists  = xT("Destination file not exists");
+    std::ctstring_t csError_Unknown            = xT("Unknown error");
+    std::ctstring_t csError_NotEnoughFreeSpace = xT("Not enough free space");
+    std::ctstring_t csError_CopyingFail        = xT("Copying fail");
 
     bool_t bRv = false;
 

@@ -18,37 +18,37 @@ class CxCookiePv0 :
 public:
                            CxCookiePv0();
         ///< constructor
-    explicit               CxCookiePv0(const std::tstring_t &csRawCookie);
+    explicit               CxCookiePv0(std::ctstring_t &csRawCookie);
         ///< constructor
     virtual               ~CxCookiePv0();
         ///< constructor
 
-    void                   init       (const std::tstring_t &csRawCookie);
+    void                   init       (std::ctstring_t &csRawCookie);
         ///< parsing raw cookie string
 
-    const std::tstring_t & name       () const xWARN_UNUSED_RV;
+    std::ctstring_t & name       () const xWARN_UNUSED_RV;
         ///< get name
-    void                   setName    (const std::tstring_t &csName);
+    void                   setName    (std::ctstring_t &csName);
         ///< set name
 
-    const std::tstring_t & value      () const xWARN_UNUSED_RV;
+    std::ctstring_t & value      () const xWARN_UNUSED_RV;
         ///< get value
-    void                   setValue   (const std::tstring_t &csValue);
+    void                   setValue   (std::ctstring_t &csValue);
         ///< set value
 
-    const std::tstring_t & domain     () const xWARN_UNUSED_RV;
+    std::ctstring_t & domain     () const xWARN_UNUSED_RV;
         ///< get domain
-    void                   setDomain  (const std::tstring_t &csDomain);
+    void                   setDomain  (std::ctstring_t &csDomain);
         ///< set domain
 
-    const std::tstring_t & path       () const xWARN_UNUSED_RV;
+    std::ctstring_t & path       () const xWARN_UNUSED_RV;
         ///< get path
-    void                   setPath    (const std::tstring_t &csPath);
+    void                   setPath    (std::ctstring_t &csPath);
         ///< set path
 
-    const std::tstring_t & expires    () const xWARN_UNUSED_RV;
+    std::ctstring_t & expires    () const xWARN_UNUSED_RV;
         ///< get expire
-    void                   setExpires (const std::tstring_t &csExpires);
+    void                   setExpires (std::ctstring_t &csExpires);
         ///< set expire
 
     bool_t                   secure     () const xWARN_UNUSED_RV;

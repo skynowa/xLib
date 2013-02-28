@@ -25,8 +25,8 @@ public:
                       CxPop3             ();
                      ~CxPop3             ();
 
-    void              create             (const std::tstring_t &csUser, const std::tstring_t &csPass,
-                                          const std::tstring_t &csServer, ushort_t usPort);
+    void              create             (std::ctstring_t &csUser, std::ctstring_t &csPass,
+                                          std::ctstring_t &csServer, ushort_t usPort);
     void              connect            ();
     void              login              ();
 
@@ -37,10 +37,10 @@ public:
     void              rset               ();
     void              top                (int_t iNum, int_t iLines, std::tstring_t &sBuff);
 
-    void              retrive            (int_t iNum, const std::tstring_t &csRawMimeMessage);
-    void              retriveRaw         (int_t iNum, const std::tstring_t &csDirPath, const std::tstring_t &csFileName);
-    void              retriveRawAndBackup(int_t iNum, const std::tstring_t &csDirPath, const std::tstring_t &csBackupDirPath,
-                                          const std::tstring_t &csFileName);
+    void              retrive            (int_t iNum, std::ctstring_t &csRawMimeMessage);
+    void              retriveRaw         (int_t iNum, std::ctstring_t &csDirPath, std::ctstring_t &csFileName);
+    void              retriveRawAndBackup(int_t iNum, std::ctstring_t &csDirPath, std::ctstring_t &csBackupDirPath,
+                                          std::ctstring_t &csFileName);
     void              retrieveHeader     (int_t iNum, CxMimeHeader &mhMimeHeader);
 
     void              del                (int_t iNum);
@@ -56,11 +56,11 @@ private:
     ushort_t          _m_usPort;
     bool_t              _m_bConnected;
 
-    void              _command           (const std::tstring_t &csCmd, const std::tstring_t &csReplyDelimiter,
+    void              _command           (std::ctstring_t &csCmd, std::ctstring_t &csReplyDelimiter,
                                           std::tstring_t *psReply);
-    bool_t              _isError           (const std::tstring_t &csText) xWARN_UNUSED_RV;
-    ulong_t           _mailsSum          (const std::tstring_t &csServerAnswer) xWARN_UNUSED_RV;
-    ulong_t           _mailsSize         (const std::tstring_t &csServerAnswer) xWARN_UNUSED_RV;
+    bool_t              _isError           (std::ctstring_t &csText) xWARN_UNUSED_RV;
+    ulong_t           _mailsSum          (std::ctstring_t &csServerAnswer) xWARN_UNUSED_RV;
+    ulong_t           _mailsSize         (std::ctstring_t &csServerAnswer) xWARN_UNUSED_RV;
 };
 
 xNAMESPACE_END(NxLib)

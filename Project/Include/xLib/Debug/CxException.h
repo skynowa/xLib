@@ -20,7 +20,7 @@ public:
     virtual               ~CxException ();
         ///< destructor
 
-    const std::tstring_t & what        () const xWARN_UNUSED_RV;
+    std::ctstring_t & what        () const xWARN_UNUSED_RV;
         ///< get message
     template<typename T>
     CxException &          operator << (const T &cMessageT);

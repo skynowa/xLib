@@ -37,14 +37,14 @@ public:
         ///< validating handle
     void                     options          (const mysql_option &cmoOption, const void *cpvArg) const;
         ///< set extra connect options and affect behavior
-    static bool_t              isExists         (const std::tstring_t &csHost, const std::tstring_t &csUser,
-                                               const std::tstring_t &csPassword, const std::tstring_t &csDb,
-                                               cuint_t &cuiPort, const std::tstring_t &csUnixSocket,
+    static bool_t              isExists         (std::ctstring_t &csHost, std::ctstring_t &csUser,
+                                               std::ctstring_t &csPassword, std::ctstring_t &csDb,
+                                               cuint_t &cuiPort, std::ctstring_t &csUnixSocket,
                                                culong_t &culClientFlag) xWARN_UNUSED_RV;
         ///<
-    void                     connect          (const std::tstring_t &csHost, const std::tstring_t &csUser,
-                                               const std::tstring_t &csPassword, const std::tstring_t &csDb,
-                                               cuint_t &cuiPort, const std::tstring_t &csUnixSocket,
+    void                     connect          (std::ctstring_t &csHost, std::ctstring_t &csUser,
+                                               std::ctstring_t &csPassword, std::ctstring_t &csDb,
+                                               cuint_t &cuiPort, std::ctstring_t &csUnixSocket,
                                                culong_t &culClientFlag);
         ///< attempts to establish a connection to a MySQL database engine running on host
     void                     query            (ctchar_t *pcszSqlFormat, ...) const;

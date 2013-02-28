@@ -29,7 +29,7 @@ public:
 
     static void           write       (ctchar_t *pcszFormat, ...);
         ///< tracing to debugger, std::cout
-    static void           write       (const std::tstring_t &csMsg);
+    static void           write       (std::ctstring_t &csMsg);
         ///< tracing to debugger, std::cout
 
 private:

@@ -79,15 +79,15 @@ public:
         ///< set text color
     std::tstring_t  read            () xWARN_UNUSED_RV;
         ///< read
-    void            write           (const std::tstring_t &csStr);
+    void            write           (std::ctstring_t &csStr);
         ///< write
-    void            writeLine       (const std::tstring_t &csStr = xT(""));
+    void            writeLine       (std::ctstring_t &csStr = xT(""));
         ///< write line
-    void            writeErrLine    (const std::tstring_t &csStr);
+    void            writeErrLine    (std::ctstring_t &csStr);
         ///< write error message
-    ExModalResult   msgBox          (const std::tstring_t &csText, const std::tstring_t &csTitle, cuint_t &cuiType) xWARN_UNUSED_RV;
+    ExModalResult   msgBox          (std::ctstring_t &csText, std::ctstring_t &csTitle, cuint_t &cuiType) xWARN_UNUSED_RV;
         ///< show console message dialog
-    void            prompt          (const std::tstring_t &csPrompt, cbool_t &cbIsVisible, std::tstring_t *psAnswer);
+    void            prompt          (std::ctstring_t &csPrompt, cbool_t &cbIsVisible, std::tstring_t *psAnswer);
         ///< show console prompt dialog
     void            pause           (culong_t &culTimeoutMs);
         ///< pause with timeout (msec)
@@ -96,7 +96,7 @@ public:
 
     std::tstring_t  title           () xWARN_UNUSED_RV;
         ///< get title string
-    void            setTitle        (const std::tstring_t &csTitle);
+    void            setTitle        (std::ctstring_t &csTitle);
         ///< set title string
     void            centerWindow    ();
         ///< align to center

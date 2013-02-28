@@ -60,26 +60,26 @@ public:
 
                    template<typename T>
                    CxErrorReport(const ExType         &crtType,
-                                 const std::tstring_t &csVar1,       const std::tstring_t &csVar2,
+                                 std::ctstring_t &csVar1,       std::ctstring_t &csVar2,
                                  const T              &cVar1ValueT,  const T              &cVar2ValueT,
-                                 const std::tstring_t &csExprSign,
-                                 culong_t        &culLastError, const std::tstring_t &csFile,
-                                 culong_t        &culLine,      const std::tstring_t &csFunc,
-                                 const std::tstring_t &csDate,       const std::tstring_t &csTime,
-                                 const std::tstring_t &csStackTrace, const std::tstring_t &csComment);
+                                 std::ctstring_t &csExprSign,
+                                 culong_t        &culLastError, std::ctstring_t &csFile,
+                                 culong_t        &culLine,      std::ctstring_t &csFunc,
+                                 std::ctstring_t &csDate,       std::ctstring_t &csTime,
+                                 std::ctstring_t &csStackTrace, std::ctstring_t &csComment);
         ///< constructor
     virtual       ~CxErrorReport();
         ///< destructor
 
 private:
     void          _construct    (const ExType         &crtType,
-                                 const std::tstring_t &csVar1,       const std::tstring_t &csVar2,
-                                 const std::tstring_t &csVar1Value,  const std::tstring_t &csVar2Value,
-                                 const std::tstring_t &csExprSign,
-                                 culong_t        &culLastError, const std::tstring_t &csFile,
-                                 culong_t        &culLine,      const std::tstring_t &csFunc,
-                                 const std::tstring_t &csDate,       const std::tstring_t &csTime,
-                                 const std::tstring_t &csStackTrace, const std::tstring_t &csComment);
+                                 std::ctstring_t &csVar1,       std::ctstring_t &csVar2,
+                                 std::ctstring_t &csVar1Value,  std::ctstring_t &csVar2Value,
+                                 std::ctstring_t &csExprSign,
+                                 culong_t        &culLastError, std::ctstring_t &csFile,
+                                 culong_t        &culLine,      std::ctstring_t &csFunc,
+                                 std::ctstring_t &csDate,       std::ctstring_t &csTime,
+                                 std::ctstring_t &csStackTrace, std::ctstring_t &csComment);
         ///< initiate class members
     void          _initPlain    ();
         ///< initiate plain report

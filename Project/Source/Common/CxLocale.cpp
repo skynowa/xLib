@@ -53,7 +53,7 @@ CxLocale::current() {
 /* static */
 void
 CxLocale::setCurrent(
-    const std::tstring_t &csLocale
+    std::ctstring_t &csLocale
 )
 {
     // csLocale - n/a

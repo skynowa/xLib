@@ -18,7 +18,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 CxAutoProfiler::CxAutoProfiler(
-    const std::tstring_t     &a_csFilePath,
+    std::ctstring_t     &a_csFilePath,
     ctchar_t            *a_pcszComment, ...
 ) :
     _m_pfProfiler(),

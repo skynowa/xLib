@@ -32,7 +32,7 @@ CxDateTime::CxDateTime() :
 }
 //------------------------------------------------------------------------------
 CxDateTime::CxDateTime(
-    const std::tstring_t &a_csDT,
+    std::ctstring_t &a_csDT,
     const ExFormatType   &a_cftFormat
 ) :
     _m_ullDateTimeInMSec(0ULL),
@@ -838,7 +838,7 @@ CxDateTime::monthStr(
 /* static */
 ushort_t
 CxDateTime::monthNum(
-    const std::tstring_t &a_csMonth,
+    std::ctstring_t &a_csMonth,
     cbool_t           &a_cbIsShortName
 )
 {
@@ -932,7 +932,7 @@ CxDateTime::weekDayStr(
 /* static */
 ushort_t
 CxDateTime::weekDayNum(
-    const std::tstring_t &a_csDay,
+    std::ctstring_t &a_csDay,
     cbool_t           &a_cbIsShortName
 )
 {
@@ -977,7 +977,7 @@ CxDateTime::weekDayNum(
 /* static */
 void
 CxDateTime::_parse(
-    const std::tstring_t &a_csDT,
+    std::ctstring_t &a_csDT,
     const ExFormatType   &a_cftFormat,
     CxDateTime           *a_pdtDT
 )

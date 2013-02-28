@@ -26,12 +26,12 @@ public:
         seShell ///< shell script file
     };
 
-    explicit               CxPath         (const std::tstring_t &csFilePath);
+    explicit               CxPath         (std::ctstring_t &csFilePath);
         ///< constructor
     virtual               ~CxPath         ();
         ///< destructor
 
-    const std::tstring_t & filePath       () const xWARN_UNUSED_RV;
+    std::ctstring_t & filePath       () const xWARN_UNUSED_RV;
         ///< file path
 
 #if xOS_ENV_WIN
@@ -50,21 +50,21 @@ public:
         ///< get extension
 
 #if xOS_ENV_WIN
-    std::tstring_t         setDrive       (const std::tstring_t &csDrivePath) xWARN_UNUSED_RV;
+    std::tstring_t         setDrive       (std::ctstring_t &csDrivePath) xWARN_UNUSED_RV;
         ///< set drive
 #endif
-    std::tstring_t         setDir         (const std::tstring_t &csDirPath) xWARN_UNUSED_RV;
+    std::tstring_t         setDir         (std::ctstring_t &csDirPath) xWARN_UNUSED_RV;
         ///< set dir
-    std::tstring_t         setFileName    (const std::tstring_t &csFullName) xWARN_UNUSED_RV;
+    std::tstring_t         setFileName    (std::ctstring_t &csFullName) xWARN_UNUSED_RV;
         ///< set full name
-    std::tstring_t         setFileBaseName(const std::tstring_t &csName) xWARN_UNUSED_RV;
+    std::tstring_t         setFileBaseName(std::ctstring_t &csName) xWARN_UNUSED_RV;
         ///< set name
-    std::tstring_t         setExt         (const std::tstring_t &csExt) xWARN_UNUSED_RV;
+    std::tstring_t         setExt         (std::ctstring_t &csExt) xWARN_UNUSED_RV;
         ///< set extension
 
     std::tstring_t         removeExt      () xWARN_UNUSED_RV;
         ///< remove extension
-    std::tstring_t         removeExtIf    (const std::tstring_t &csExt) xWARN_UNUSED_RV;
+    std::tstring_t         removeExtIf    (std::ctstring_t &csExt) xWARN_UNUSED_RV;
         ///< remove extension if it equal some string
 
 
@@ -97,14 +97,14 @@ public:
     static std::tstring_t  standartExt    (const ExStandartExt &cseFileExt) xWARN_UNUSED_RV;
         ///< get standard extension
 
-    static bool_t            isValid        (const std::tstring_t &csFilePath) xWARN_UNUSED_RV;
+    static bool_t            isValid        (std::ctstring_t &csFilePath) xWARN_UNUSED_RV;
         ///< path validation
-    static bool_t            isNameValid    (const std::tstring_t &csFileName) xWARN_UNUSED_RV;
+    static bool_t            isNameValid    (std::ctstring_t &csFileName) xWARN_UNUSED_RV;
         ///< name validation
 
-    static std::tstring_t  shortName      (const std::tstring_t &csFileName, const size_t &cuiMaxSize) xWARN_UNUSED_RV;
+    static std::tstring_t  shortName      (std::ctstring_t &csFileName, const size_t &cuiMaxSize) xWARN_UNUSED_RV;
         ///< get short name
-    static std::tstring_t  setNameValid   (const std::tstring_t &csFileName) xWARN_UNUSED_RV;
+    static std::tstring_t  setNameValid   (std::ctstring_t &csFileName) xWARN_UNUSED_RV;
         ///< set name as valid
 
     static size_t          maxSize        ();
@@ -113,9 +113,9 @@ public:
         ///< get max name length in symbols
 
 #if xOS_ENV_UNIX
-    static void            proc           (const std::tstring_t &csProcPath, std::vec_tstring_t *pvsData);
+    static void            proc           (std::ctstring_t &csProcPath, std::vec_tstring_t *pvsData);
         ///< get from UNIX proc file content
-    static std::tstring_t  procValue      (const std::tstring_t &csProcPath, const std::tstring_t &csData) xWARN_UNUSED_RV;
+    static std::tstring_t  procValue      (std::ctstring_t &csProcPath, std::ctstring_t &csData) xWARN_UNUSED_RV;
         ///< get from UNIX proc file content value by data
 #endif
 

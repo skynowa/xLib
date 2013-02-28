@@ -16,9 +16,9 @@ class CxStackTrace :
     /// stack trace
 {
 public:
-    explicit             CxStackTrace(const std::tstring_t &csLinePrefix          = xT("\t\t"),
-                                      const std::tstring_t &csElementSeparator    = xT("  "),
-                                      const std::tstring_t &csLinesSeparator      = xT("\n"),
+    explicit             CxStackTrace(std::ctstring_t &csLinePrefix          = xT("\t\t"),
+                                      std::ctstring_t &csElementSeparator    = xT("  "),
+                                      std::ctstring_t &csLinesSeparator      = xT("\n"),
                                       cbool_t           &cbIsWrapFilePathes    = true,
                                       cbool_t           &cbIsFuncParamsDisable = true);
         ///< constructor
@@ -31,9 +31,9 @@ public:
         ///< get stack trace with format output
 
 private:
-    const std::tstring_t _m_csLinePrefix;
-    const std::tstring_t _m_csElementSeparator;
-    const std::tstring_t _m_csLineSeparator;
+    std::ctstring_t _m_csLinePrefix;
+    std::ctstring_t _m_csElementSeparator;
+    std::ctstring_t _m_csLineSeparator;
     cbool_t           _m_cbIsWrapFilePathes;
     cbool_t           _m_cbIsFuncParamsDisable;
 

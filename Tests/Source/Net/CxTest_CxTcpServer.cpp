@@ -29,7 +29,7 @@ CxTest_CxTcpServer::unit(
     CxSocket::ExType          tpType     = CxSocket::tpStream;
     CxSocket::ExProtocol      ptProtocol = CxSocket::ptIp;
 
-    const std::tstring_t      csDomain        = xT("127.0.0.1");
+    std::ctstring_t      csDomain        = xT("127.0.0.1");
     std::tstring_t            sIp             = xT("");
     ushort_t                  usPort          = 80;
 

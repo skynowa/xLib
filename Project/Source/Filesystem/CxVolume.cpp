@@ -29,7 +29,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 CxVolume::CxVolume(
-    const std::tstring_t &csVolumePath
+    std::ctstring_t &csVolumePath
 ) :
     _m_csVolumePath(csVolumePath)
 {
@@ -41,7 +41,7 @@ CxVolume::~CxVolume() {
 
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxVolume::volumePath() const {
     xTEST_EQ(false, _m_csVolumePath.empty());
 
@@ -179,7 +179,7 @@ CxVolume::isEmpty() const {
 //------------------------------------------------------------------------------
 void
 CxVolume::mount(
-    const std::tstring_t &a_csDestPath    ///< destination path
+    std::ctstring_t &a_csDestPath    ///< destination path
 ) const
 {
     xTEST_EQ(false, a_csDestPath.empty());
@@ -251,7 +251,7 @@ CxVolume::unMount(
 /* static */
 void
 CxVolume::space(
-    const std::tstring_t &a_csDirPath,      ///< directory path
+    std::ctstring_t &a_csDirPath,      ///< directory path
     ulonglong_t          *a_pullAvailable,  ///< available space (for unprivileged users)
     ulonglong_t          *a_pullTotal,      ///< total space
     ulonglong_t          *a_pullFree        ///< free space

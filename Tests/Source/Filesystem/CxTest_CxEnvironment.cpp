@@ -26,7 +26,7 @@ CxTest_CxEnvironment::unit(
 {
     xTEST_CASE("CxEnvironment::setVar", cullCaseLoops)
     {
-        const std::tstring_t sData[][2] = {
+        std::ctstring_t sData[][2] = {
             {xT("ENV_TEST_1"), xT("value1")},
             {xT("ENV_TEST_2"), xT("value2")},
             {xT("ENV_TEST_3"), xT("value3")},
@@ -41,7 +41,7 @@ CxTest_CxEnvironment::unit(
     xTEST_CASE("CxEnvironment::isExists", cullCaseLoops)
     {
     #if   xOS_ENV_WIN
-        const std::tstring_t sData[][2] = {
+        std::ctstring_t sData[][2] = {
             {xT("ENV_TEST_1"), xT("true")},
             {xT("ENV_TEST_2"), xT("true")},
             {xT("ENV_TEST_3"), xT("true")},
@@ -52,7 +52,7 @@ CxTest_CxEnvironment::unit(
             {xT("windir"),     xT("true") }
         };
     #elif xOS_ENV_UNIX
-        const std::tstring_t sData[][2] = {
+        std::ctstring_t sData[][2] = {
             {xT("ENV_TEST_1"), xT("true")},
             {xT("ENV_TEST_2"), xT("true")},
             {xT("ENV_TEST_3"), xT("true")},
@@ -69,7 +69,7 @@ CxTest_CxEnvironment::unit(
     xTEST_CASE("CxEnvironment::isVarValid", cullCaseLoops)
     {
     #if   xOS_ENV_WIN
-        const std::tstring_t sData[][2] = {
+        std::ctstring_t sData[][2] = {
             {xT("ENV_TEST_1"), xT("true")},
             {xT("ENV_TEST_2"), xT("true")},
             {xT("ENV_TEST_3"), xT("true")},
@@ -80,7 +80,7 @@ CxTest_CxEnvironment::unit(
             {xT(""),           xT("false")}
         };
     #elif xOS_ENV_UNIX
-        const std::tstring_t sData[][2] = {
+        std::ctstring_t sData[][2] = {
             {xT("OS="),        xT("false")},
             {xT("XX=XL"),      xT("false")},
             {xT("=windir"),    xT("false")},
@@ -100,7 +100,7 @@ CxTest_CxEnvironment::unit(
     xTEST_CASE("CxEnvironment::isValueValid", cullCaseLoops)
     {
     #if   xOS_ENV_WIN
-        const std::tstring_t sData[][2] = {
+        std::ctstring_t sData[][2] = {
             {xT("ENV_TEST_1"), xT("true")},
             {xT("ENV_TEST_2"), xT("true")},
             {xT("ENV_TEST_3"), xT("true")},
@@ -111,7 +111,7 @@ CxTest_CxEnvironment::unit(
             {xT(""),           xT("true")}
         };
     #elif xOS_ENV_UNIX
-        const std::tstring_t sData[][2] = {
+        std::ctstring_t sData[][2] = {
             {xT("ENV_TEST_1"), xT("true")},
             {xT("ENV_TEST_2"), xT("true")},
             {xT("ENV_TEST_3"), xT("true")},
@@ -129,14 +129,14 @@ CxTest_CxEnvironment::unit(
     xTEST_CASE("CxEnvironment::var", cullCaseLoops)
     {
     #if   xOS_ENV_WIN
-        const std::tstring_t sData[][2] = {
+        std::ctstring_t sData[][2] = {
             {xT("ENV_TEST_1"), xT("value1")},
             {xT("ENV_TEST_2"), xT("value2")},
             {xT("ENV_TEST_3"), xT("value3")},
             {xT("ENV_TEST_4"), xT("value4")},
         };
     #elif xOS_ENV_UNIX
-        const std::tstring_t sData[][2] = {
+        std::ctstring_t sData[][2] = {
             {xT("ENV_TEST_1"), xT("value1")},
             {xT("ENV_TEST_2"), xT("value2")},
             {xT("ENV_TEST_3"), xT("value3")},
@@ -162,12 +162,12 @@ CxTest_CxEnvironment::unit(
     xTEST_CASE("CxEnvironment::expandStrings", cullCaseLoops)
     {
     #if   xOS_ENV_WIN
-        const std::tstring_t sData[][2] = {
+        std::ctstring_t sData[][2] = {
             {xT(" System root: %SystemRoot%"),  xT(" System root: C:\\Windows")},
             {xT("Windows Dir: %windir% "),      xT("Windows Dir: C:\\Windows ")}
         };
     #elif xOS_ENV_UNIX
-        const std::tstring_t sData[][2] = {
+        std::ctstring_t sData[][2] = {
             {xT("111%ENV_TEST_1%"),    xT("111value1")},
             {xT("%ENV_TEST_2%111"),    xT("value2111")},
             {xT("ttt%ENV_TEST_3%"),    xT("tttvalue3")},
@@ -184,7 +184,7 @@ CxTest_CxEnvironment::unit(
 
     xTEST_CASE("CxEnvironment::deleteVar", cullCaseLoops)
     {
-        const std::tstring_t sData[][2] = {
+        std::ctstring_t sData[][2] = {
             {xT("ENV_TEST_1"), xT("value1")},
             {xT("ENV_TEST_2"), xT("value2")},
             {xT("ENV_TEST_3"), xT("value3")},

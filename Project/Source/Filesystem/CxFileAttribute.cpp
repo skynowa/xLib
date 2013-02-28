@@ -16,7 +16,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 CxFileAttribute::CxFileAttribute(
-    const std::tstring_t &csFilePath
+    std::ctstring_t &csFilePath
 ) :
     _m_csFilePath(csFilePath)
 {
@@ -28,7 +28,7 @@ CxFileAttribute::~CxFileAttribute() {
 
 }
  //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxFileAttribute::filePath() const {
     xTEST_EQ(false, _m_csFilePath.empty());
 

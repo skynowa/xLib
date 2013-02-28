@@ -24,7 +24,7 @@ CxTest_CxCrc32::unit(
     culonglong_t &cullCaseLoops
 )
 {
-    const std::tstring_t csFilePath = tempDirPath()  + CxConst::xSLASH + xT("Test.txt");;
+    std::ctstring_t csFilePath = tempDirPath()  + CxConst::xSLASH + xT("Test.txt");;
 
     //-------------------------------------
     // Prepare

@@ -35,9 +35,9 @@ public:
     virtual               ~CxFileLog     ();
         ///< destructor
 
-    void                   setFilePath   (const std::tstring_t &csFilePath);
+    void                   setFilePath   (std::ctstring_t &csFilePath);
         ///< set log path
-    const std::tstring_t & filePath      () const xWARN_UNUSED_RV;
+    std::ctstring_t & filePath      () const xWARN_UNUSED_RV;
         ///< get log path
 
     void                   write         (ctchar_t *pcszFormat, ...);

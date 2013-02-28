@@ -28,7 +28,7 @@ CxTest_CxProfiler::unit(
 {
     xTEST_CASE("CxProfiler::CxProfiler", cullCaseLoops)
     {
-        const std::tstring_t csFilePath = tempDirPath() + CxConst::xSLASH + xT("CxProfilerLog.log");
+        std::ctstring_t csFilePath = tempDirPath() + CxConst::xSLASH + xT("CxProfilerLog.log");
 
         CxFile::clear(csFilePath);
 

@@ -33,7 +33,7 @@ CxSystemLog::CxSystemLog() :
 }
 //------------------------------------------------------------------------------
 CxSystemLog::CxSystemLog(
-    const std::tstring_t &a_csLogName
+    std::ctstring_t &a_csLogName
 ) :
     _m_bIsEnable(true)
 #if   xOS_ENV_WIN
@@ -112,7 +112,7 @@ CxSystemLog::write(
 //------------------------------------------------------------------------------
 void
 CxSystemLog::_init(
-    const std::tstring_t &a_csLogName
+    std::ctstring_t &a_csLogName
 )
 {
 #if   xOS_ENV_WIN

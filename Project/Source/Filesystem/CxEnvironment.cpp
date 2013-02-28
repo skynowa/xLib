@@ -26,7 +26,7 @@ xNAMESPACE_BEGIN(NxLib)
 /* static */
 bool_t
 CxEnvironment::isExists(
-    const std::tstring_t &a_csVarName
+    std::ctstring_t &a_csVarName
 )
 {
     xTEST_NA(a_csVarName);
@@ -55,7 +55,7 @@ CxEnvironment::isExists(
 /* static */
 bool_t
 CxEnvironment::isVarValid(
-    const std::tstring_t &a_csVarName
+    std::ctstring_t &a_csVarName
 )
 {
     xTEST_NA(a_csVarName);
@@ -69,7 +69,7 @@ CxEnvironment::isVarValid(
 /* static */
 bool_t
 CxEnvironment::isValueValid(
-    const std::tstring_t &a_csVarValue
+    std::ctstring_t &a_csVarValue
 )
 {
     xTEST_NA(a_csVarValue);
@@ -82,7 +82,7 @@ CxEnvironment::isValueValid(
 /* static */
 std::tstring_t
 CxEnvironment::var(
-    const std::tstring_t &a_csVarName
+    std::ctstring_t &a_csVarName
 )
 {
     xTEST_NA(a_csVarName);
@@ -116,8 +116,8 @@ CxEnvironment::var(
 /* static */
 void
 CxEnvironment::setVar(
-    const std::tstring_t &a_csVarName,
-    const std::tstring_t &a_csValue
+    std::ctstring_t &a_csVarName,
+    std::ctstring_t &a_csValue
 )
 {
     xTEST_EQ(true, isVarValid(a_csVarName));
@@ -135,7 +135,7 @@ CxEnvironment::setVar(
 /* static */
 void
 CxEnvironment::deleteVar(
-    const std::tstring_t &a_csVarName
+    std::ctstring_t &a_csVarName
 )
 {
     xTEST_NA(a_csVarName);
@@ -196,7 +196,7 @@ CxEnvironment::values(
 /* static */
 std::tstring_t
 CxEnvironment::expandStrings(
-    const std::tstring_t &a_csVar
+    std::ctstring_t &a_csVar
 )
 {
     xTEST_EQ(false, a_csVar.empty());
@@ -218,7 +218,7 @@ CxEnvironment::expandStrings(
 
     sRv.resize(dwLength - 1);   // remove '\0'
 #elif xOS_ENV_UNIX
-    const std::tstring_t csSep = xT("%");
+    std::ctstring_t csSep = xT("%");
 
     sRv = a_csVar;
 

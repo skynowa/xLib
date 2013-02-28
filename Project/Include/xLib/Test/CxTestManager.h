@@ -23,7 +23,7 @@ public:
     virtual   ~CxTestManager();
         ///< destructor
 
-    void       add          (CxTest *pvtTest, const std::tstring_t &csTestName = CxConst::xSTR_EMPTY);
+    void       add          (CxTest *pvtTest, std::ctstring_t &csTestName = CxConst::xSTR_EMPTY);
         ///< add CxTest
     void       run          (culonglong_t &cullAllLoops,
                              culonglong_t &cullUnitLoops,

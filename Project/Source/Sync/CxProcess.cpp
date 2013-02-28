@@ -59,7 +59,7 @@ CxProcess::~CxProcess() {
 //------------------------------------------------------------------------------
 void
 CxProcess::create(
-    const std::tstring_t &a_csFilePath,
+    std::ctstring_t &a_csFilePath,
     ctchar_t        *a_pcszParams, ...
 )
 {
@@ -242,7 +242,7 @@ CxProcess::handleById(
 /* static */
 CxProcess::id_t
 CxProcess::idByName(
-    const std::tstring_t &a_csProcessName
+    std::ctstring_t &a_csProcessName
 )
 {
     id_t ulRv;

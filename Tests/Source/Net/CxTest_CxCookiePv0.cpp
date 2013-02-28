@@ -24,14 +24,14 @@ CxTest_CxCookiePv0::unit(
     culonglong_t &cullCaseLoops
 )
 {
-    const std::tstring_t csName      = xT("Name0");
-    const std::tstring_t csValue     = xT("Value0");
-    const std::tstring_t csDomain    = xT(".domain.com0");
-    const std::tstring_t csPath      = xT("/0");
-    const std::tstring_t csExpires   = xT("Wed, 13-Jan-2021 22:23:01 GMT");  //Thu, 22 Mar 2012 18:16:13 GMT
+    std::ctstring_t csName      = xT("Name0");
+    std::ctstring_t csValue     = xT("Value0");
+    std::ctstring_t csDomain    = xT(".domain.com0");
+    std::ctstring_t csPath      = xT("/0");
+    std::ctstring_t csExpires   = xT("Wed, 13-Jan-2021 22:23:01 GMT");  //Thu, 22 Mar 2012 18:16:13 GMT
     cbool_t           cbSecure    = true;
     cbool_t           cbHttpOnly  = true;
-    const std::tstring_t csRawCookie = CxString::format(
+    std::ctstring_t csRawCookie = CxString::format(
                                             xT("%s=%s; Domain=%s; Path=%s; Expires=%s; Secure; HttpOnly"),
                                             csName.c_str(), csValue.c_str(), csDomain.c_str(), 
                                             csPath.c_str(), csExpires.c_str() /*cbSecure = true, cbHttpOnly = true*/);
@@ -87,7 +87,7 @@ CxTest_CxCookiePv0::unit(
         ckCookiePv0.clear();
     }
 
-    xTEST_CASE("CxCookiePv1::CxCookiePv0(const std::tstring_t &)", cullCaseLoops)
+    xTEST_CASE("CxCookiePv1::CxCookiePv0(std::ctstring_t &)", cullCaseLoops)
     {
         CxCookiePv0 ckCookiePv0(csRawCookie);
 

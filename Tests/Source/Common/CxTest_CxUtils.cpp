@@ -160,7 +160,7 @@ CxTest_CxUtils::unit(
 
         cint_t            ciValue = 10;
         cdouble_t         cdValue = 20.0;
-        const std::tstring_t csValue = xT("30");
+        std::ctstring_t csValue = xT("30");
 
         SData datData = {0};
 
@@ -201,7 +201,7 @@ CxTest_CxUtils::unit(
 
     xTEST_CASE("CxUtils::fileClose", cullCaseLoops)
     {
-        const std::tstring_t csFilaPath = tempDirPath() + CxConst::xSLASH + xT("test_fileclose.txt");
+        std::ctstring_t csFilaPath = tempDirPath() + CxConst::xSLASH + xT("test_fileclose.txt");
 
         FILE *pFile = xTFOPEN(csFilaPath.c_str(), xT("w"));
         xTEST_PTR(pFile);

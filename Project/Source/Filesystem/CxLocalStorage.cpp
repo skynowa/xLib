@@ -34,7 +34,7 @@ CxLocalStorage::CxLocalStorage() :
 }
 //-------------------------------------------------------------------------
 CxLocalStorage::CxLocalStorage(
-    const std::tstring_t &a_csFilePath
+    std::ctstring_t &a_csFilePath
 ) :
     _m_csSeparator(CxConst::xEQUAL),
     _m_csFileExt  (xT("ini")),
@@ -56,7 +56,7 @@ CxLocalStorage::~CxLocalStorage() {
 //-------------------------------------------------------------------------
 void
 CxLocalStorage::createDefault(
-    const std::tstring_t &a_csContent
+    std::ctstring_t &a_csContent
 ) const
 {
     xTEST_NA(a_csContent);
@@ -64,7 +64,7 @@ CxLocalStorage::createDefault(
     CxFile::textWrite(path(), a_csContent);
 }
 //-------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxLocalStorage::path() const {
     xTEST_EQ(false, _m_sFilePath.empty());
 
@@ -73,7 +73,7 @@ CxLocalStorage::path() const {
 //------------------------------------------------------------------------------
 void
 CxLocalStorage::setPath(
-    const std::tstring_t &a_csFilePath
+    std::ctstring_t &a_csFilePath
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
@@ -117,7 +117,7 @@ CxLocalStorage::remove() {
 //-------------------------------------------------------------------------
 bool_t
 CxLocalStorage::keyIsExists(
-    const std::tstring_t &a_csKey
+    std::ctstring_t &a_csKey
 ) const
 {
     local_storage_t mmsIni;
@@ -131,8 +131,8 @@ CxLocalStorage::keyIsExists(
 //-------------------------------------------------------------------------
 std::tstring_t
 CxLocalStorage::keyReadString(
-    const std::tstring_t &a_csKey,
-    const std::tstring_t &a_csDefaultValue
+    std::ctstring_t &a_csKey,
+    std::ctstring_t &a_csDefaultValue
 )
 {
     xTEST_EQ(false, a_csKey.empty());
@@ -147,8 +147,8 @@ CxLocalStorage::keyReadString(
 //-------------------------------------------------------------------------
 void
 CxLocalStorage::keyWriteString(
-    const std::tstring_t &a_csKey,
-    const std::tstring_t &a_csValue
+    std::ctstring_t &a_csKey,
+    std::ctstring_t &a_csValue
 )
 {
     xTEST_EQ(false, a_csKey.empty());
@@ -159,7 +159,7 @@ CxLocalStorage::keyWriteString(
 //------------------------------------------------------------------------------
 long_t
 CxLocalStorage::keyReadInt(
-    const std::tstring_t &a_csKey,
+    std::ctstring_t &a_csKey,
     clong_t         &a_cliDefaultValue
 )
 {
@@ -171,7 +171,7 @@ CxLocalStorage::keyReadInt(
 //-------------------------------------------------------------------------
 void
 CxLocalStorage::keyWriteInt(
-    const std::tstring_t &a_csKey,
+    std::ctstring_t &a_csKey,
     clong_t         &a_cliValue
 )
 {
@@ -183,7 +183,7 @@ CxLocalStorage::keyWriteInt(
 //-------------------------------------------------------------------------
 double_t
 CxLocalStorage::keyReadFloat(
-    const std::tstring_t &a_csKey,
+    std::ctstring_t &a_csKey,
     cdouble_t         &a_cdDefaultValue
 )
 {
@@ -195,7 +195,7 @@ CxLocalStorage::keyReadFloat(
 //-------------------------------------------------------------------------
 void
 CxLocalStorage::keyWriteFloat(
-    const std::tstring_t &a_csKey,
+    std::ctstring_t &a_csKey,
     cdouble_t         &a_cdValue
 )
 {
@@ -207,7 +207,7 @@ CxLocalStorage::keyWriteFloat(
 //-------------------------------------------------------------------------
 bool_t
 CxLocalStorage::keyReadBool(
-    const std::tstring_t &a_csKey,
+    std::ctstring_t &a_csKey,
     cbool_t           &a_cbDefaultValue
 )
 {
@@ -225,7 +225,7 @@ CxLocalStorage::keyReadBool(
 //-------------------------------------------------------------------------
 void
 CxLocalStorage::keyWriteBool(
-    const std::tstring_t &a_csKey,
+    std::ctstring_t &a_csKey,
     cbool_t           &a_cbValue
 )
 {
@@ -241,8 +241,8 @@ CxLocalStorage::keyWriteBool(
 //------------------------------------------------------------------------------
 std::ustring_t
 CxLocalStorage::keyReadBin(
-    const std::tstring_t &a_csKey,
-    const std::ustring_t &a_cusDefaultValue
+    std::ctstring_t &a_csKey,
+    std::custring_t &a_cusDefaultValue
 )
 {
     xTEST_NA(a_csKey);
@@ -260,8 +260,8 @@ CxLocalStorage::keyReadBin(
 //-------------------------------------------------------------------------
 void
 CxLocalStorage::keyWriteBin(
-    const std::tstring_t &a_csKey,
-    const std::ustring_t &a_cusValue
+    std::ctstring_t &a_csKey,
+    std::custring_t &a_cusValue
 )
 {
     xTEST_NA(a_csKey);
@@ -277,7 +277,7 @@ CxLocalStorage::keyWriteBin(
 //-------------------------------------------------------------------------
 void
 CxLocalStorage::keyClear(
-    const std::tstring_t &a_csKey
+    std::ctstring_t &a_csKey
 )
 {
     xTEST_EQ(false, a_csKey.empty());
@@ -287,7 +287,7 @@ CxLocalStorage::keyClear(
 //------------------------------------------------------------------------------
 void
 CxLocalStorage::keyDelete(
-   const std::tstring_t &a_csKey
+   std::ctstring_t &a_csKey
 )
 {
     xTEST_EQ(false, a_csKey.empty());
@@ -314,8 +314,8 @@ CxLocalStorage::keyDelete(
 //------------------------------------------------------------------------------
 void
 CxLocalStorage::_read(
-    const std::tstring_t &a_csKey,
-    const std::tstring_t &a_csDefaultValue,
+    std::ctstring_t &a_csKey,
+    std::ctstring_t &a_csDefaultValue,
     std::tstring_t       *a_psValue
 )
 {
@@ -339,8 +339,8 @@ CxLocalStorage::_read(
 //------------------------------------------------------------------------------
 void
 CxLocalStorage::_write(
-    const std::tstring_t &a_csKey,
-    const std::tstring_t &a_csValue
+    std::ctstring_t &a_csKey,
+    std::ctstring_t &a_csValue
 )
 {
     xTEST_EQ(false, a_csKey.empty());

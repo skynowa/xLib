@@ -33,9 +33,9 @@ CxTest_CxPkcs11::unit(
 
     xTEST_CASE("CxPkcs11::setData", cullCaseLoops)
     {
-    //    const std::tstring_t csUserPin   = xT("1111");
-    //    const std::tstring_t csDataLabel = xT("Label_Id");
-    //    const std::tstring_t csData      = xT("1203456789");
+    //    std::ctstring_t csUserPin   = xT("1111");
+    //    std::ctstring_t csDataLabel = xT("Label_Id");
+    //    std::ctstring_t csData      = xT("1203456789");
     //    std::ustring_t       usData      = xS2US(csData);
 
     //    m_bRv = CxObject::setData(xS2US(csUserPin), xS2US(csDataLabel), usData);
@@ -44,8 +44,8 @@ CxTest_CxPkcs11::unit(
 
     xTEST_CASE("CxPkcs11::data", cullCaseLoops)
     {
-    //    const std::tstring_t csUserPin   = xT("1111");
-    //    const std::tstring_t csDataLabel = xT("Label_Id");
+    //    std::ctstring_t csUserPin   = xT("1111");
+    //    std::ctstring_t csDataLabel = xT("Label_Id");
     //    std::ustring_t       usData;
 
     //    m_bRv = CxObject::data(xS2US(csUserPin), xS2US(csDataLabel), &usData);
@@ -54,9 +54,9 @@ CxTest_CxPkcs11::unit(
 
     xTEST_CASE("CxPkcs11::setData", cullCaseLoops)
     {
-        const std::tstring_t csUserPin   = xT("1111");
-        const std::tstring_t csDataLabel = xT("Key1.tkey");
-        const std::tstring_t csData      = xT("1203456789");
+        std::ctstring_t csUserPin   = xT("1111");
+        std::ctstring_t csDataLabel = xT("Key1.tkey");
+        std::ctstring_t csData      = xT("1203456789");
         std::ustring_t       usData      = xS2US(csData);
 
         CxObject::setData(ulSlot, xS2US(csUserPin), xS2US(csDataLabel), usData);

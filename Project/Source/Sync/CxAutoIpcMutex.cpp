@@ -19,7 +19,7 @@ xNAMESPACE_BEGIN(NxLib)
 //------------------------------------------------------------------------------
 CxAutoIpcMutex::CxAutoIpcMutex(
     CxIpcMutex           &a_mtMutex,
-    const std::tstring_t &a_csName
+    std::ctstring_t &a_csName
 ) :
     _m_mtMutex(a_mtMutex)
 {

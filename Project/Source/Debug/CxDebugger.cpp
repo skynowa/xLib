@@ -140,7 +140,7 @@ CxDebugger::breakPoint() {
 //------------------------------------------------------------------------------
 void
 CxDebugger::setLogPath(
-    const std::tstring_t &a_csFilePath
+    std::ctstring_t &a_csFilePath
 )
 {
     _m_sLogPath = a_csFilePath;
@@ -303,7 +303,7 @@ CxDebugger::_loggingPlain(
     xTEST_PTR(pFile);
 
     try {
-        const std::tstring_t csMsg = CxString::format(
+        std::ctstring_t csMsg = CxString::format(
             xT("\n")
             xT("####################################################################################################\n")
             xT("%s\n")

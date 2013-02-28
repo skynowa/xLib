@@ -17,51 +17,51 @@ class CxUri :
 {
 public:
                           CxUri          ();
-    explicit              CxUri          (const std::tstring_t &csUri);
+    explicit              CxUri          (std::ctstring_t &csUri);
                          ~CxUri          ();
 
     std::tstring_t        uri            () const xWARN_UNUSED_RV;
-    void                  setUri         (const std::tstring_t &csScheme, const std::tstring_t &csAuthority,
-                                          const std::tstring_t &csPath, const std::tstring_t &csQuery,
-                                          const std::tstring_t &csFragment);
+    void                  setUri         (std::ctstring_t &csScheme, std::ctstring_t &csAuthority,
+                                          std::ctstring_t &csPath, std::ctstring_t &csQuery,
+                                          std::ctstring_t &csFragment);
 
     std::tstring_t        scheme         () const xWARN_UNUSED_RV;
-    void                  setScheme      (const std::tstring_t &csScheme);
+    void                  setScheme      (std::ctstring_t &csScheme);
 
     std::tstring_t        authority      () const xWARN_UNUSED_RV;
-    void                  setAuthority   (const std::tstring_t &csAuthority);
+    void                  setAuthority   (std::ctstring_t &csAuthority);
 
     std::tstring_t        userInfo       () const xWARN_UNUSED_RV;
-    void                  setUserInfo    (const std::tstring_t &csUserInfo);
+    void                  setUserInfo    (std::ctstring_t &csUserInfo);
 
     std::tstring_t        host           () const xWARN_UNUSED_RV;
-    void                  setHost        (const std::tstring_t &csHost);
+    void                  setHost        (std::ctstring_t &csHost);
 
     ushort_t              port           () xWARN_UNUSED_RV;
     void                  setPort        (cushort_t &cusPort);
 
     std::tstring_t        path           () const xWARN_UNUSED_RV;
-    void                  setPath        (const std::tstring_t &csPath);
+    void                  setPath        (std::ctstring_t &csPath);
 
     std::tstring_t        query          () const xWARN_UNUSED_RV;
-    void                  setQuery       (const std::tstring_t &csQuery);
+    void                  setQuery       (std::ctstring_t &csQuery);
 
     std::tstring_t        fragment       () const xWARN_UNUSED_RV;
-    void                  setFragment    (const std::tstring_t &csFragment);
+    void                  setFragment    (std::ctstring_t &csFragment);
 
-    static std::tstring_t escape         (const std::tstring_t &csUri) xWARN_UNUSED_RV;
-    static std::tstring_t unescape       (const std::tstring_t &csUri) xWARN_UNUSED_RV;
+    static std::tstring_t escape         (std::ctstring_t &csUri) xWARN_UNUSED_RV;
+    static std::tstring_t unescape       (std::ctstring_t &csUri) xWARN_UNUSED_RV;
 
-    static std::tstring_t encodeComponent(const std::tstring_t &csUri) xWARN_UNUSED_RV;
-    static std::tstring_t decodeComponent(const std::tstring_t &csUri) xWARN_UNUSED_RV;
+    static std::tstring_t encodeComponent(std::ctstring_t &csUri) xWARN_UNUSED_RV;
+    static std::tstring_t decodeComponent(std::ctstring_t &csUri) xWARN_UNUSED_RV;
 
     void                  clear          ();
 
 private:
-    static const std::tstring_t RESERVED_PATH;
-    static const std::tstring_t RESERVED_QUERY;
-    static const std::tstring_t RESERVED_FRAGMENT;
-    static const std::tstring_t ILLEGAL;
+    static std::ctstring_t RESERVED_PATH;
+    static std::ctstring_t RESERVED_QUERY;
+    static std::ctstring_t RESERVED_FRAGMENT;
+    static std::ctstring_t ILLEGAL;
 
     std::tstring_t        _m_sScheme;
     std::tstring_t        _m_sAuthority;
@@ -72,8 +72,8 @@ private:
     std::tstring_t        _m_sQuery;
     std::tstring_t        _m_sFragment;
 
-    void                  _parse         (const std::tstring_t &csUri);
-    void                  _normilize     (const std::tstring_t &csUri);
+    void                  _parse         (std::ctstring_t &csUri);
+    void                  _normilize     (std::ctstring_t &csUri);
     ushort_t              _defaultPort   () const xWARN_UNUSED_RV;
     bool_t                  _isDefaultPort () const xWARN_UNUSED_RV;
 };

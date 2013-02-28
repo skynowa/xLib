@@ -28,11 +28,11 @@ public:
 
     bool_t            isLoaded    () const xWARN_UNUSED_RV;
         ///< is loaded
-    void            load        (const std::tstring_t &csDllPath);
+    void            load        (std::ctstring_t &csDllPath);
         ///< load
-    bool_t            isProcExists(const std::tstring_t &csProcName) const xWARN_UNUSED_RV;
+    bool_t            isProcExists(std::ctstring_t &csProcName) const xWARN_UNUSED_RV;
         ///< is function exists
-    proc_address_t  procAddress (const std::tstring_t &csProcName) const xWARN_UNUSED_RV;
+    proc_address_t  procAddress (std::ctstring_t &csProcName) const xWARN_UNUSED_RV;
         ///< get address of an exported function or variable
 
 private:

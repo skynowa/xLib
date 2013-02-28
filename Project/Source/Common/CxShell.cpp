@@ -41,8 +41,8 @@ CxShell::isAvailable() {
 /* static */
 void
 CxShell::execute(
-    const std::tstring_t &a_csFilePath,   ///< file path to binary file
-    const std::tstring_t &a_csParams      ///< command line params for binary file
+    std::ctstring_t &a_csFilePath,   ///< file path to binary file
+    std::ctstring_t &a_csParams      ///< command line params for binary file
 )
 {
     xTEST_NA(a_csFilePath);
@@ -66,8 +66,8 @@ CxShell::execute(
 /* static */
 std::tstring_t
 CxShell::findExecutable(
-    const std::tstring_t &a_csFileName,
-    const std::tstring_t &a_csFindDirPath
+    std::ctstring_t &a_csFileName,
+    std::ctstring_t &a_csFindDirPath
 )
 {
     xTEST_EQ(false, a_csFileName.empty());
@@ -88,9 +88,9 @@ void
 CxShell::execute(
     const HWND           &a_chOwner,
     const ExOperation    &a_copOperation,
-    const std::tstring_t &a_csFilePath,
-    const std::tstring_t &a_csParams,
-    const std::tstring_t &a_csDir,
+    std::ctstring_t &a_csFilePath,
+    std::ctstring_t &a_csParams,
+    std::ctstring_t &a_csDir,
     const EShowFlag      &a_csfShowCmd
 )
 {
@@ -149,7 +149,7 @@ CxShell::executeEx(
 /* static */
 void
 CxShell::executeHttp(
-    const std::tstring_t &a_csUrl
+    std::ctstring_t &a_csUrl
 )
 {
     // csUrl - n/a
@@ -164,7 +164,7 @@ CxShell::executeHttp(
 /* static */
 void
 CxShell::executeFtp(
-    const std::tstring_t &a_csUrl
+    std::ctstring_t &a_csUrl
 )
 {
     // csUrl - n/a
@@ -179,9 +179,9 @@ CxShell::executeFtp(
 /* static */
 void
 CxShell::executeEmail(
-    const std::tstring_t &a_csToEmail,
-    const std::tstring_t &a_csSubject,
-    const std::tstring_t &a_csBody
+    std::ctstring_t &a_csToEmail,
+    std::ctstring_t &a_csSubject,
+    std::ctstring_t &a_csBody
 )
 {
     // csToEmail - n/a
@@ -243,17 +243,17 @@ CxShell::specialDirPath(
 /* static */
 void
 CxShell::createShortcut(
-    const std::tstring_t &a_csShortCutFilePath, ///< путь и имя ярлыка, например, "C:\\Блокнот.lnk"
+    std::ctstring_t &a_csShortCutFilePath, ///< путь и имя ярлыка, например, "C:\\Блокнот.lnk"
                                                 ///< Если не указан путь, ярлык будет создан в папке, указанной в следующем параметре.
                                                 ///< Прим.: Windows сама НЕ добавляет к имени расширение .lnk
-    const std::tstring_t &a_csFilePath,         ///< путь и имя программы/файла, например, "C:\\Windows\\NotePad.Exe" или "C:\\Мои документы\\Файл.doc"
-    const std::tstring_t &a_csWorkingDirectory, ///< рабочий каталог, например, "C:\\Windows"
-    const std::tstring_t &a_csArguments,        ///< аргументы командной строки, например, "C:\\Doc\\Text.txt"
+    std::ctstring_t &a_csFilePath,         ///< путь и имя программы/файла, например, "C:\\Windows\\NotePad.Exe" или "C:\\Мои документы\\Файл.doc"
+    std::ctstring_t &a_csWorkingDirectory, ///< рабочий каталог, например, "C:\\Windows"
+    std::ctstring_t &a_csArguments,        ///< аргументы командной строки, например, "C:\\Doc\\Text.txt"
     const WORD           &a_cwHotKey,           ///< горячая клавиша, например, для Ctrl+Alt+A HOTKEY(HOTKEYF_ALT|HOTKEYF_CONTROL,'A')
     cint_t            &a_ciCmdShow,          ///< начальный вид, например, SW_SHOWNORMAL (см. параметр nCmdShow функции ShowWindow)
-    const std::tstring_t &a_csIconFilePath,     ///< путь и имя файла, содержащего иконку, например, "C:\\Windows\\NotePad.Exe"
+    std::ctstring_t &a_csIconFilePath,     ///< путь и имя файла, содержащего иконку, например, "C:\\Windows\\NotePad.Exe"
     cint_t            &a_ciIconIndex,        ///< индекс иконки в файле, нумеруется с 0
-    const std::tstring_t &a_csDescription       ///< description
+    std::ctstring_t &a_csDescription       ///< description
 )
 {
 

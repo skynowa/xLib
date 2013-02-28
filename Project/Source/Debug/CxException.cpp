@@ -26,7 +26,7 @@ CxException::~CxException() {
     xTESTS_NA;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxException::what() const {
     xTESTS_NA;
 

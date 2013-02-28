@@ -53,7 +53,7 @@ CxCrc32::calc(
 /* static */
 ulong_t
 CxCrc32::calcFile(
-    const std::tstring_t &a_csFilePath
+    std::ctstring_t &a_csFilePath
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
@@ -178,7 +178,7 @@ CxCrc32::calcFast(
 /* static */
 ulong_t
 CxCrc32::calcFileFast(
-    const std::tstring_t &a_csFilePath
+    std::ctstring_t &a_csFilePath
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());

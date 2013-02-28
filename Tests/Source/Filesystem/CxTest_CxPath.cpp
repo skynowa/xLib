@@ -57,14 +57,14 @@ CxTest_CxPath::unit(
     xTEST_CASE("CxPath::dir", cullCaseLoops)
     {
         #if   xOS_ENV_WIN
-            const std::tstring_t sData[][2] = {
+            std::ctstring_t sData[][2] = {
                 {xT("C:\\Test111\\Test.txt"),                            xT("C:\\Test111")},
                 {xT("C:\\Test.txt"),                                     xT("C:")},
                 {xT("Test.txt"),                                         xT("")},
                 {xT("D:\\My projects\\Borland C++\\pLaunchProject.exe"), xT("D:\\My projects\\Borland C++")}
             };
         #elif xOS_ENV_UNIX
-            const std::tstring_t sData[][2] = {
+            std::ctstring_t sData[][2] = {
                 {xT("/home/user/Soft/eclipse/Test.txt"),           xT("/home/user/Soft/eclipse")},
                 {xT("/home/Test.txt"),                             xT("/home")},
                 {xT("Test.txt"),                                   xT("")},
@@ -82,14 +82,14 @@ CxTest_CxPath::unit(
     xTEST_CASE("CxPath::dirName", cullCaseLoops)
     {
         #if   xOS_ENV_WIN
-            const std::tstring_t sData[][2] = {
+            std::ctstring_t sData[][2] = {
                 {xT("C:\\Test111\\Test.txt"),                            xT("Test111")},
                 {xT("C:\\Test.txt"),                                     xT("C:")},
                 {xT("Test.txt"),                                         xT("")},
                 {xT("D:\\My projects\\Borland C++\\pLaunchProject.exe"), xT("Borland C++")}
             };
         #elif xOS_ENV_UNIX
-            const std::tstring_t sData[][2] = {
+            std::ctstring_t sData[][2] = {
                 {xT("/home/user/Soft/eclipse/Test.txt"),           xT("eclipse")},
                 {xT("/home/Test.txt"),                             xT("home")},
                 {xT("Test.txt"),                                   xT("")},
@@ -107,14 +107,14 @@ CxTest_CxPath::unit(
     xTEST_CASE("CxPath::fileName", cullCaseLoops)
     {
         #if   xOS_ENV_WIN
-            const std::tstring_t sData[][2] = {
+            std::ctstring_t sData[][2] = {
                 {xT("C:\\Test111\\Test.txt"),                            xT("Test.txt")},
                 {xT("C:\\Test"),                                         xT("Test")},
                 {xT("Test.txt"),                                         xT("Test.txt")},
                 {xT("D:\\My projects\\Borland C++\\pLaunchProject.exe"), xT("pLaunchProject.exe")}
             };
         #elif xOS_ENV_UNIX
-            const std::tstring_t sData[][2] = {
+            std::ctstring_t sData[][2] = {
                 {xT("/home/Test111/Test.txt"),                           xT("Test.txt")},
                 {xT("/home/Test"),                                       xT("Test")},
                 {xT("Test.txt"),                                         xT("Test.txt")},
@@ -132,14 +132,14 @@ CxTest_CxPath::unit(
     xTEST_CASE("CxPath::fileBaseName", cullCaseLoops)
     {
         #if   xOS_ENV_WIN
-            const std::tstring_t sData[][2] = {
+            std::ctstring_t sData[][2] = {
                 {xT("C:\\Test111\\Test.txt"),                            xT("Test")},
                 {xT("C:\\Test"),                                         xT("Test")},
                 {xT("Test.txt"),                                         xT("Test")},
                 {xT("D:\\My projects\\Borland C++\\pLaunchProject.exe"), xT("pLaunchProject")}
             };
         #elif xOS_ENV_UNIX
-            const std::tstring_t sData[][2] = {
+            std::ctstring_t sData[][2] = {
                 {xT("/home/Test111/Test.txt"),                           xT("Test")},
                 {xT("/home/Test"),                                       xT("Test")},
                 {xT("Test.txt"),                                         xT("Test")},
@@ -157,7 +157,7 @@ CxTest_CxPath::unit(
     xTEST_CASE("CxPath::ext", cullCaseLoops)
     {
         #if   xOS_ENV_WIN
-            const std::tstring_t sData[][2] = {
+            std::ctstring_t sData[][2] = {
                 {xT("C:\\Test111\\Test.txt"),                            xT("txt")},
                 {xT("C:\\Test"),                                         xT("")},
                 {xT("Test.txt"),                                         xT("txt")},
@@ -165,7 +165,7 @@ CxTest_CxPath::unit(
                 {xT("D:\\My projects\\Borlan.d C++\\pLaunchProject"),    xT("")},
             };
         #elif xOS_ENV_UNIX
-            const std::tstring_t sData[][2] = {
+            std::ctstring_t sData[][2] = {
                 {xT("/home/Test111/Test.txt"),                           xT("txt")},
                 {xT("/home/Test"),                                       xT("")},
                 {xT("Test.txt"),                                         xT("txt")},
@@ -222,7 +222,7 @@ CxTest_CxPath::unit(
     xTEST_CASE("CxPath::setDrive", cullCaseLoops)
     {
         #if xOS_ENV_WIN
-            const std::tstring_t sData[][3] = {
+            std::ctstring_t sData[][3] = {
                 {xT("C:\\Test.doc"),                  xT("F:"),    xT("F:\\Test.doc")},
                 {xT("Z:\\okoval@winnerauto.ua.info"), xT("T:"),    xT("T:\\okoval@winnerauto.ua.info")},
                 ////{xT("TEST_STRING_3.doc"),             xT("R:"),    xT("")},
@@ -245,7 +245,7 @@ CxTest_CxPath::unit(
     xTEST_CASE("CxPath::setDir", cullCaseLoops)
     {
         #if   xOS_ENV_WIN
-            const std::tstring_t sData[][3] = {
+            std::ctstring_t sData[][3] = {
                 {xT("C:\\Test.doc"),                  xT("F:\\"),      xT("F:\\Test.doc")},
                 {xT("Z:\\okoval@winnerauto.ua.info"), xT("T:\\"),      xT("T:\\okoval@winnerauto.ua.info")},
                 ////{xT("TEST_STRING_3.doc"),         xT("R:\\"),      xT("")},
@@ -256,7 +256,7 @@ CxTest_CxPath::unit(
 
             };
         #elif xOS_ENV_UNIX
-            const std::tstring_t sData[][3] = {
+            std::ctstring_t sData[][3] = {
                 {xT("/home/Test.doc"),                  xT("/job"),              xT("/job/Test.doc")},
                 {xT("/home/okoval@winnerauto.ua.info"), xT("/job/room"),         xT("/job/room/okoval@winnerauto.ua.info")},
                 ////{xT("TEST_STRING_3.doc"),           xT("R:\\"),              xT("")},
@@ -281,7 +281,7 @@ CxTest_CxPath::unit(
     xTEST_CASE("CxPath::setFileName", cullCaseLoops)
     {
         #if   xOS_ENV_WIN
-            const std::tstring_t sData[][3] = {
+            std::ctstring_t sData[][3] = {
                 /*FilePath*/                          /*NewFileName*/   /*MustBe*/
                 {xT("C:\\Test.doc"),                  xT("aaaa.xls"),    xT("C:\\aaaa.xls")},
                 {xT("Z:\\okoval@winnerauto.ua.info"), xT("qwerty.fdm"),    xT("Z:\\qwerty.fdm")},
@@ -290,7 +290,7 @@ CxTest_CxPath::unit(
                 ////{xT("TEST_STRING_3.f"),           xT("fff.qq"),        xT("fff.qq")}
             };
         #elif xOS_ENV_UNIX
-            const std::tstring_t sData[][3] = {
+            std::ctstring_t sData[][3] = {
                 /*FilePath*/                            /*NewFileName*/   /*MustBe*/
                 {xT("/home/Test.doc"),                  xT("aaaa.xls"),   xT("/home/aaaa.xls")},
                 {xT("/home/okoval@winnerauto.ua.info"), xT("qwerty.fdm"), xT("/home/qwerty.fdm")},
@@ -314,7 +314,7 @@ CxTest_CxPath::unit(
     xTEST_CASE("CxPath::setFileBaseName", cullCaseLoops)
     {
         #if   xOS_ENV_WIN
-            const std::tstring_t sData[][3] = {
+            std::ctstring_t sData[][3] = {
                 {xT("C:\\Test.doc"),                  xT("xxx"),      xT("C:\\xxx.doc")},
                 {xT("Z:\\okoval@winnerauto.ua.info"), xT("qwerty"),      xT("Z:\\qwerty.info")},
                 ////{xT("TEST_STRING_3.doc"),         xT(""),          xT("")},
@@ -325,7 +325,7 @@ CxTest_CxPath::unit(
 
             };
         #elif xOS_ENV_UNIX
-            const std::tstring_t sData[][3] = {
+            std::ctstring_t sData[][3] = {
                 {xT("/home/Test.doc"),                  xT("xxx"),      xT("/home/xxx.doc")},
                 {xT("/home/okoval@winnerauto.ua.info"), xT("qwerty"),   xT("/home/qwerty.info")},
                 ////{xT("TEST_STRING_3.doc"),           xT(""),           xT("")},
@@ -349,7 +349,7 @@ CxTest_CxPath::unit(
 
     xTEST_CASE("CxPath::setExt", cullCaseLoops)
     {
-        const std::tstring_t sData[][3] = {
+        std::ctstring_t sData[][3] = {
             {xT("C:\\Test.doc"),                  xT("xls"),    xT("C:\\Test.xls")},
             {xT("C:\\Test"),                      xT("xls"),    xT("C:\\Test.xls")},
             {xT("Z:\\okoval@winnerauto.ua.info"), xT("fdm"),    xT("Z:\\okoval@winnerauto.ua.fdm")},
@@ -373,14 +373,14 @@ CxTest_CxPath::unit(
     xTEST_CASE("CxPath::removeExt", cullCaseLoops)
     {
         #if   xOS_ENV_WIN
-            const std::tstring_t sData[][2] = {
+            std::ctstring_t sData[][2] = {
                 {xT("C:\\Test.111\\Test.txt"),                           xT("C:\\Test.111\\Test")},
                 {xT("C:\\Test"),                                         xT("C:\\Test")},
                 {xT("Test.txt"),                                         xT("Test")},
                 {xT("D:\\My projects\\Borland C++\\pLaunchProject.exe"), xT("D:\\My projects\\Borland C++\\pLaunchProject")}
             };
         #elif xOS_ENV_UNIX
-            const std::tstring_t sData[][2] = {
+            std::ctstring_t sData[][2] = {
                 {xT("/home/Test.111/Test.txt"),                          xT("/home/Test.111/Test")},
                 {xT("/home/Test"),                                       xT("/home/Test")},
                 {xT("Test.txt"),                                         xT("Test")},
@@ -400,14 +400,14 @@ CxTest_CxPath::unit(
         // TEST: CxPath::sRemoveExtIf
 
         //#if   xOS_ENV_WIN
-        //    const std::tstring_t sData[][2] = {
+        //    std::ctstring_t sData[][2] = {
         //        {xT("C:\\Test.111\\Test.txt"),                           xT("C:\\Test.111\\Test")},
         //        {xT("C:\\Test"),                                         xT("C:\\Test")},
         //        {xT("Test.txt"),                                         xT("Test")},
         //        {xT("D:\\My projects\\Borland C++\\pLaunchProject.exe"), xT("D:\\My projects\\Borland C++\\pLaunchProject")}
         //    };
         //#elif xOS_ENV_UNIX
-        //    const std::tstring_t sData[][2] = {
+        //    std::ctstring_t sData[][2] = {
         //        {xT("/home/Test.111/Test.txt"),                          xT("/home/Test.111/Test")},
         //        {xT("/home/Test"),                                       xT("/home/Test")},
         //        {xT("Test.txt"),                                         xT("Test")},
@@ -577,7 +577,7 @@ CxTest_CxPath::unit(
     {
         // true
         {
-            const std::tstring_t casData[] = {
+            std::ctstring_t casData[] = {
                 #if   xOS_ENV_WIN
                     xT("C:\\"),
                     xT("D:\\Downloads\\XXL\\I_am_a_Champion_-_coach_speech_[RUS_subtitles].flv"),
@@ -599,7 +599,7 @@ CxTest_CxPath::unit(
 
         // false
         {
-            const std::tstring_t casData[] = {
+            std::ctstring_t casData[] = {
                 #if   xOS_ENV_WIN
                     xT("../../../Source/Debug/CxTest.cpp"),
                     xT("../../../Source/Filesystem/CxPath"),
@@ -626,8 +626,8 @@ CxTest_CxPath::unit(
 
     xTEST_CASE("CxPath::toWin", cullCaseLoops)
     {
-        const std::tstring_t csUnixPath = xT("C:/TestDir");
-        const std::tstring_t csWinPath  = xT("C:\\TestDir");
+        std::ctstring_t csUnixPath = xT("C:/TestDir");
+        std::ctstring_t csWinPath  = xT("C:\\TestDir");
 
         m_sRv = CxPath(csUnixPath).toWin(false);
         xTEST_EQ(m_sRv, std::tstring_t(xT("C:\\TestDir")));
@@ -644,8 +644,8 @@ CxTest_CxPath::unit(
 
     xTEST_CASE("CxPath::toUnix", cullCaseLoops)
     {
-        const std::tstring_t csUnixPath = xT("/home/user/Soft/TestDir");
-        const std::tstring_t csWinPath  = xT("\\home\\user\\Soft\\TestDir");
+        std::ctstring_t csUnixPath = xT("/home/user/Soft/TestDir");
+        std::ctstring_t csWinPath  = xT("\\home\\user\\Soft\\TestDir");
 
         m_sRv = CxPath(csUnixPath).toUnix(false);
         xTEST_EQ(m_sRv, std::tstring_t(xT("/home/user/Soft/TestDir")));
@@ -663,8 +663,8 @@ CxTest_CxPath::unit(
     xTEST_CASE("CxPath::toNative", cullCaseLoops)
     {
         #if   xOS_ENV_WIN
-            const std::tstring_t csUnixPath = xT("C:/TestDir");
-            const std::tstring_t csWinPath  = xT("C:\\TestDir");
+            std::ctstring_t csUnixPath = xT("C:/TestDir");
+            std::ctstring_t csWinPath  = xT("C:\\TestDir");
 
             m_sRv = CxPath(csWinPath).toNative(false);
             xTEST_EQ(m_sRv, std::tstring_t(xT("C:\\TestDir")));
@@ -678,8 +678,8 @@ CxTest_CxPath::unit(
             m_sRv = CxPath(csWinPath).toNative(false);
             xTEST_EQ(m_sRv, std::tstring_t(xT("C:\\TestDir")));
         #elif xOS_ENV_UNIX
-            const std::tstring_t csUnixPath = xT("/home/user/Soft/TestDir");
-            const std::tstring_t csWinPath  = xT("\\home\\user\\Soft\\TestDir");
+            std::ctstring_t csUnixPath = xT("/home/user/Soft/TestDir");
+            std::ctstring_t csWinPath  = xT("\\home\\user\\Soft\\TestDir");
 
             m_sRv = CxPath(csWinPath).toNative(false);
             xTEST_EQ(m_sRv, std::tstring_t(xT("/home/user/Soft/TestDir")));
@@ -707,7 +707,7 @@ CxTest_CxPath::unit(
 
     xTEST_CASE("CxPath::shortName", cullCaseLoops)
     {
-        const std::tstring_t sData[][2] = {
+        std::ctstring_t sData[][2] = {
             {xT("Name"),                   xT("Name")},
             {xT("full name"),              xT("ful~")},
             {xT("file name with ext"),     xT("fil~")},
@@ -788,7 +788,7 @@ CxTest_CxPath::unit(
     xTEST_CASE("CxPath::setNameValid", cullCaseLoops)
     {
     #if   xOS_ENV_WIN
-        const std::tstring_t asData[][2] =
+        std::ctstring_t asData[][2] =
         {
             {xT("CLOCK$"),       xT("")},
             {xT("AUX"),          xT("")},
@@ -883,7 +883,7 @@ CxTest_CxPath::unit(
             {xT("?V|||/:*?\"<>|||a:l/:*?\"<>|/:*?\"<>|/:*?\"<>|\\i?dT*e/:*?\"<>|stN////:*?\"<>|///ame"), xT("ValidTestName")},
         };
     #elif xOS_ENV_UNIX
-        const std::tstring_t asData[][2] =
+        std::ctstring_t asData[][2] =
         {
             {xT("xxxx"),       xT("xxxx")},
             {xT(""),           xT("")},
@@ -908,7 +908,7 @@ CxTest_CxPath::unit(
     xTEST_CASE("CxPath::slashAppend", cullCaseLoops)
     {
         #if   xOS_ENV_WIN
-            const std::tstring_t sData[][3] = {
+            std::ctstring_t sData[][3] = {
                 {xT("C:\\Test.doc"),                  xT("C:\\Test.doc\\")},
                 {xT("Z:\\okoval@winnerauto.ua.info"), xT("Z:\\okoval@winnerauto.ua.info\\")},
                 {xT("TEST_STRING_3.doc\\"),           xT("TEST_STRING_3.doc\\")},
@@ -916,7 +916,7 @@ CxTest_CxPath::unit(
                 {xT("TEST_STRING_3.f\\"),             xT("TEST_STRING_3.f\\")}
             };
         #elif xOS_ENV_UNIX
-            const std::tstring_t sData[][3] = {
+            std::ctstring_t sData[][3] = {
                 {xT("/home/Test.doc"),                  xT("/home/Test.doc/")},
                 {xT("/home/okoval@winnerauto.ua.info"), xT("/home/okoval@winnerauto.ua.info/")},
                 {xT("TEST_STRING_3.doc//"),             xT("TEST_STRING_3.doc/")},
@@ -939,7 +939,7 @@ CxTest_CxPath::unit(
     xTEST_CASE("CxPath::slashRemove", cullCaseLoops)
     {
         #if   xOS_ENV_WIN
-            const std::tstring_t sData[][3] = {
+            std::ctstring_t sData[][3] = {
                 {xT("C:\\Test.doc"),                  xT("C:\\Test.doc")},
                 {xT("Z:\\okoval@winnerauto.ua.info"), xT("Z:\\okoval@winnerauto.ua.info")},
                 {xT("TEST_STRING_3.doc\\"),           xT("TEST_STRING_3.doc")},
@@ -947,7 +947,7 @@ CxTest_CxPath::unit(
                 {xT("TEST_STRING_3.f\\"),             xT("TEST_STRING_3.f")}
             };
         #elif xOS_ENV_UNIX
-            const std::tstring_t sData[][3] = {
+            std::ctstring_t sData[][3] = {
                 {xT("/home/Test.doc"),                  xT("/home/Test.doc")},
                 {xT("/home/okoval@winnerauto.ua.info"), xT("/home/okoval@winnerauto.ua.info")},
                 {xT("TEST_STRING_3.doc//"),             xT("TEST_STRING_3.doc")},

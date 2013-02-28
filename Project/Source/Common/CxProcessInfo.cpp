@@ -205,7 +205,7 @@ CxProcessInfo::exeName(
     sRv.resize(dwStored);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        const std::tstring_t csProcFile = CxString::format(xT("/proc/%ld/exe"), a_cidId);
+        std::ctstring_t csProcFile = CxString::format(xT("/proc/%ld/exe"), a_cidId);
 
         bool_t bRv = CxFile::isExists(csProcFile);
         xCHECK_RET(false == bRv, std::tstring_t());
@@ -397,7 +397,7 @@ CxProcessInfo::commandLine(
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         // FIX: content of "/proc/%ld/cmdline" - missing spaces
-        const std::tstring_t csProcFile = CxString::format(xT("/proc/%ld/cmdline"), a_cidId);
+        std::ctstring_t csProcFile = CxString::format(xT("/proc/%ld/cmdline"), a_cidId);
 
         std::vec_tstring_t vsProcFile;
 

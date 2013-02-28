@@ -182,8 +182,8 @@ CxObject::destroy() {
 void
 CxObject::data(
     CK_SLOT_ID            a_ulSlotId,
-    const std::ustring_t &a_cusUserPin,
-    const std::ustring_t &a_cusDataLabel,
+    std::custring_t &a_cusUserPin,
+    std::custring_t &a_cusDataLabel,
     std::ustring_t       *a_pusData
 )
 {
@@ -257,7 +257,7 @@ CxObject::data(
 void
 CxObject::data(
     CK_SLOT_ID            a_ulSlotId,
-    const std::ustring_t &a_cusUserPin,
+    std::custring_t &a_cusUserPin,
     std::vec_ustring_t   *a_pusDataLabel,
     std::vec_ustring_t   *a_pusDataValue
 )
@@ -350,9 +350,9 @@ CxObject::data(
 void
 CxObject::setData(
     CK_SLOT_ID            a_ulSlotId,
-    const std::ustring_t &a_cusUserPin,
-    const std::ustring_t &a_cusDataLabel,
-    const std::ustring_t &a_cusData
+    std::custring_t &a_cusUserPin,
+    std::custring_t &a_cusDataLabel,
+    std::custring_t &a_cusData
 )
 {
 

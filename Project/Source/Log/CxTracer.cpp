@@ -49,7 +49,7 @@ CxTracer::write(
 /* static */
 void
 CxTracer::write(
-    const std::tstring_t &a_csMsg
+    std::ctstring_t &a_csMsg
 )
 {
 #if   xOS_ENV_WIN

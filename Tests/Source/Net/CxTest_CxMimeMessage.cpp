@@ -28,20 +28,20 @@ CxTest_CxMimeMessage::unit(
 
     //-------------------------------------
     //CourierMS.exe
-    const std::tstring_t csUser   = xT("test_1@serg.com");
-    const std::tstring_t csPass   = xT("test_1");
-    const std::tstring_t csServer = xT("127.0.0.1");
+    std::ctstring_t csUser   = xT("test_1@serg.com");
+    std::ctstring_t csPass   = xT("test_1");
+    std::ctstring_t csServer = xT("127.0.0.1");
     cushort_t       usPort   = 110;
 
     //-------------------------------------
     //IPNET
-    //const std::tstring_t csUser   = "domen";
-    //const std::tstring_t csPass   = "control6";
-    //const std::tstring_t csServer = "mail.ipnet.kiev.ua";
+    //std::ctstring_t csUser   = "domen";
+    //std::ctstring_t csPass   = "control6";
+    //std::ctstring_t csServer = "mail.ipnet.kiev.ua";
     //ushort_t             usPort     = 110;
 
-    const std::tstring_t csDirPath  = xT("C:/Temp");
-    const std::tstring_t csFilePath = xT("C:/Temp/1.eml");
+    std::ctstring_t csDirPath  = xT("C:/Temp");
+    std::ctstring_t csFilePath = xT("C:/Temp/1.eml");
     ulong_t              ulSum      = 0;
     ulong_t              ulSize     = 0;
 
@@ -75,7 +75,7 @@ CxTest_CxMimeMessage::unit(
 
     */
 
-    const std::tstring_t csRawHeader =
+    std::ctstring_t csRawHeader =
         xT("+OK message 1 (570821 octets)\r\n")
         xT("Date: Mon, 6 Apr 2009 20:14:51 +0400\r\n")
         xT("From: Admin@localhost\r\n")

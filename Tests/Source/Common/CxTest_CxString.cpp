@@ -229,7 +229,7 @@ CxTest_CxString::unit(
     {
         cint_t caiBases[] = {8, 10, 16};
 
-        const std::tstring_t casData[] = {
+        std::ctstring_t casData[] = {
                 xT("01234567890ABC"),
                 xT("01234567890"),
                 xT("ABCDEF"),
@@ -239,10 +239,10 @@ CxTest_CxString::unit(
 
         for (size_t b = 0; b < xARRAY_SIZE(caiBases); ++ b) {
             for (size_t i = 0; i < xARRAY_SIZE(casData); ++ i) {
-                const std::tstring_t sRv    = casData[i];
+                std::ctstring_t sRv    = casData[i];
 
-                const std::tstring_t sHexStr = CxString::cast(sRv, caiBases[b]);
-                const std::tstring_t sStdStr = CxString::cast(sHexStr, caiBases[b]);
+                std::ctstring_t sHexStr = CxString::cast(sRv, caiBases[b]);
+                std::ctstring_t sStdStr = CxString::cast(sHexStr, caiBases[b]);
 
                 xTEST_EQ(sRv, sStdStr);
             }
@@ -384,7 +384,7 @@ CxTest_CxString::unit(
 
     xTEST_CASE("CxString::toLowerCase", cullCaseLoops)
     {
-        const std::tstring_t sTestData[][2] = {
+        std::ctstring_t sTestData[][2] = {
             {xT("test_string_1"),       xT("TEST_string_1")},
             {xT("test_string_1"),       xT("TEst_stRING_1")},
             {xT("test_string_1\n"),     xT("TEST_STRing_1\n")},
@@ -404,7 +404,7 @@ CxTest_CxString::unit(
 
     xTEST_CASE("CxString::toUpperCase", cullCaseLoops)
     {
-        const std::tstring_t sTestData[][2] = {
+        std::ctstring_t sTestData[][2] = {
             {xT("TEST_STRING_1_A"),       xT("TEST_string_1_a")},
             {xT("TEST_STRING_1_A"),       xT("TEst_stRING_1_A")},
             {xT("TEST_STRING_1_A\n"),     xT("TEST_STRing_1_a\n")},
@@ -424,7 +424,7 @@ CxTest_CxString::unit(
 
     xTEST_CASE("CxString::toLowerCase", cullCaseLoops)
     {
-        const std::tstring_t sTestData[][2] = {
+        std::ctstring_t sTestData[][2] = {
             {xT("test_string_1_a"), xT("test_string_1_A")},
             {xT("test_string_1_a"), xT("Test_strINg_1_a")},
             {xT("test_string_1_a"), xT("test_STRING_1_A")},
@@ -444,7 +444,7 @@ CxTest_CxString::unit(
 
     xTEST_CASE("CxString::toUpperCase", cullCaseLoops)
     {
-        const std::tstring_t sTestData[][2] = {
+        std::ctstring_t sTestData[][2] = {
             {xT("TEST_STRING_1_A"), xT("tEST_string_1_A")},
             {xT("TEST_STRING_1_A"), xT("tEst_stRING_1_a")},
             {xT("TEST_STRING_1_A"), xT("TEST_STRing_1_a")},
@@ -552,13 +552,13 @@ CxTest_CxString::unit(
     xTEST_CASE("CxString::removeEol", cullCaseLoops)
     {
         #if   xOS_ENV_WIN
-            const std::tstring_t sTestData[][2] = {
+            std::ctstring_t sTestData[][2] = {
                 {xT("TEST_STRING_1"), xT("TEST_STRING_1\r\n")},
                 {xT("TEST_STRING_1"), xT("TEST_STRING_1\r")},
                 {xT("TEST_STRING_1"), xT("TEST_STRING_1\n")}
             };
         #elif xOS_ENV_UNIX
-            const std::tstring_t sTestData[][2] = {
+            std::ctstring_t sTestData[][2] = {
                 {xT("TEST_STRING_1"), xT("TEST_STRING_1\n")},
                 {xT("TEST_STRING_1"), xT("TEST_STRING_1\n\n")},
                 {xT("TEST_STRING_1"), xT("TEST_STRING_1\n")}

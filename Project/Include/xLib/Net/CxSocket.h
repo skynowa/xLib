@@ -202,14 +202,14 @@ public:
 
     int_t            send             (ctchar_t *pcszBuff, cint_t &ciBuffSize, cint_t &ciFlags) xWARN_UNUSED_RV;
         ///< send data
-    void           sendAll          (const std::tstring_t &csBuff, cint_t &ciFlags);
+    void           sendAll          (std::ctstring_t &csBuff, cint_t &ciFlags);
         ///< send data by blocks
 
     int_t            recv             (tchar_t *pszBuff,  cint_t &ciBuffSize, cint_t &ciFlags) xWARN_UNUSED_RV;
         ///< receive data
     std::tstring_t recvAll          (cint_t &ciFlags) xWARN_UNUSED_RV;
         ///< receive data
-    std::tstring_t recvAll          (cint_t &ciFlags, const std::tstring_t &csDelimiter) xWARN_UNUSED_RV;
+    std::tstring_t recvAll          (cint_t &ciFlags, std::ctstring_t &csDelimiter) xWARN_UNUSED_RV;
         ///< receive data to delimiter, includes it
 
     int_t            sendBytes        (char *pszBuff, cint_t &ciMessageLength) xWARN_UNUSED_RV;

@@ -23,7 +23,7 @@ public:
     virtual        ~CxFileTemp();
         ///< destructor
 
-    void            create    (const std::tstring_t &csFilePath, const std::tstring_t &csDirPath, CxFile *pfFile);
+    void            create    (std::ctstring_t &csFilePath, std::ctstring_t &csDirPath, CxFile *pfFile);
         ///< create temporary file, open it
 
 private:

@@ -25,7 +25,7 @@ CxTest_CxFileLog::unit(
     culonglong_t &cullCaseLoops
 )
 {
-    const std::tstring_t csFilePath = tempDirPath() + CxConst::xSLASH + xT("Test.log");
+    std::ctstring_t csFilePath = tempDirPath() + CxConst::xSLASH + xT("Test.log");
 
     CxFileLog flLog(1);
 

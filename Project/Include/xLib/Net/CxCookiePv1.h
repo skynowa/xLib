@@ -18,37 +18,37 @@ class CxCookiePv1 :
 public:
                            CxCookiePv1();
         ///< constructor
-    explicit               CxCookiePv1(const std::tstring_t &csRawCookie);
+    explicit               CxCookiePv1(std::ctstring_t &csRawCookie);
         ///< constructor
     virtual               ~CxCookiePv1();
         ///< destructor
 
-    void                   init       (const std::tstring_t &csRawCookie);
+    void                   init       (std::ctstring_t &csRawCookie);
         ///< parsing raw cookie string pv0
 
-    const std::tstring_t & name       () const xWARN_UNUSED_RV;
+    std::ctstring_t & name       () const xWARN_UNUSED_RV;
         ///< get name
-    void                   setName    (const std::tstring_t &csName);
+    void                   setName    (std::ctstring_t &csName);
         ///< set name
 
-    const std::tstring_t & value      () const xWARN_UNUSED_RV;
+    std::ctstring_t & value      () const xWARN_UNUSED_RV;
         ///< get value
-    void                   setValue   (const std::tstring_t &csValue);
+    void                   setValue   (std::ctstring_t &csValue);
         ///< set value
 
-    const std::tstring_t & comment    () const xWARN_UNUSED_RV;
+    std::ctstring_t & comment    () const xWARN_UNUSED_RV;
         ///< get comment
-    void                   setComment (const std::tstring_t &csComment);
+    void                   setComment (std::ctstring_t &csComment);
         ///< set comment
 
-    const std::tstring_t & domain     () const xWARN_UNUSED_RV;
+    std::ctstring_t & domain     () const xWARN_UNUSED_RV;
         ///< get domain
-    void                   setDomain  (const std::tstring_t &csDomain);
+    void                   setDomain  (std::ctstring_t &csDomain);
         ///< set domain
 
-    const std::tstring_t & path       () const xWARN_UNUSED_RV;
+    std::ctstring_t & path       () const xWARN_UNUSED_RV;
         ///< get path
-    void                   setPath    (const std::tstring_t &csPath);
+    void                   setPath    (std::ctstring_t &csPath);
         ///< set path
 
     longlong_t             maxAge     () const xWARN_UNUSED_RV;

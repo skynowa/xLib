@@ -23,7 +23,7 @@ CxHttpClient::~CxHttpClient() {
 //TODO: bHead ()
 void
 CxHttpClient::head(
-    const std::tstring_t &a_csUrl, 
+    std::ctstring_t &a_csUrl, 
     std::tstring_t       *a_psResponse
 )
 {
@@ -46,7 +46,7 @@ CxHttpClient::head(
 //TODO: bGet ()
 void
 CxHttpClient::get(
-    const std::tstring_t &a_csUrl,  
+    std::ctstring_t &a_csUrl,  
     std::tstring_t       *a_psResponse
 )
 {
@@ -56,8 +56,8 @@ CxHttpClient::get(
 //TODO: bPost ()
 void
 CxHttpClient::post(
-    const std::tstring_t &a_csUrl,  
-    const std::tstring_t &a_csParams, 
+    std::ctstring_t &a_csUrl,  
+    std::ctstring_t &a_csParams, 
     std::tstring_t       *a_psResponse
 ) 
 {
@@ -67,7 +67,7 @@ CxHttpClient::post(
 //TODO: bOptions ()
 void
 CxHttpClient::options(
-    const std::tstring_t &a_csUrl
+    std::ctstring_t &a_csUrl
 )
 {
     xNOT_IMPLEMENTED;
@@ -76,7 +76,7 @@ CxHttpClient::options(
 //TODO: bTrace ()
 void
 CxHttpClient::trace(
-    const std::tstring_t &a_csUrl
+    std::ctstring_t &a_csUrl
 )
 {
     xNOT_IMPLEMENTED;
@@ -85,7 +85,7 @@ CxHttpClient::trace(
 //TODO: bPut ()
 void
 CxHttpClient::put(
-    const std::tstring_t &a_csUrl
+    std::ctstring_t &a_csUrl
 )
 {
     xNOT_IMPLEMENTED;
@@ -94,7 +94,7 @@ CxHttpClient::put(
 //TODO: del ()
 void
 CxHttpClient::del(
-    const std::tstring_t &a_csUrl
+    std::ctstring_t &a_csUrl
 )
 {
     xNOT_IMPLEMENTED;
@@ -103,7 +103,7 @@ CxHttpClient::del(
 //TODO: bConnect ()
 void
 CxHttpClient::connect(
-    const std::tstring_t &a_csUrl
+    std::ctstring_t &a_csUrl
 )
 {
     xNOT_IMPLEMENTED;
@@ -112,7 +112,7 @@ CxHttpClient::connect(
 //TODO: bPatch ()
 void
 CxHttpClient::patch(
-    const std::tstring_t &a_csUrl
+    std::ctstring_t &a_csUrl
 )
 {
     xNOT_IMPLEMENTED;
@@ -121,7 +121,7 @@ CxHttpClient::patch(
 //TODO: bLink ()
 void
 CxHttpClient::link(
-    const std::tstring_t &a_csUrl
+    std::ctstring_t &a_csUrl
 )
 {
     xNOT_IMPLEMENTED;
@@ -130,7 +130,7 @@ CxHttpClient::link(
 //TODO: bUnlink ()
 void
 CxHttpClient::unlink(
-    const std::tstring_t &a_csUrl
+    std::ctstring_t &a_csUrl
 )
 {
     xNOT_IMPLEMENTED;

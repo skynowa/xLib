@@ -28,9 +28,9 @@ public:
 
     const handle_t &  handle    () const xWARN_UNUSED_RV;
         ///< get handle
-    void              create    (const std::tstring_t &csName);
+    void              create    (std::ctstring_t &csName);
         ///< create
-    void              open      (const std::tstring_t &csName);
+    void              open      (std::ctstring_t &csName);
         ///< open
     void              lock      (culong_t &culTimeoutMsec) const;
         ///< unlock by timeout in msec

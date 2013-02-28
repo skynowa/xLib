@@ -10,19 +10,19 @@ xNAMESPACE_BEGIN(NxLib)
 template<typename T>
 CxErrorReport::CxErrorReport(
     const ExType         &a_crtType,
-    const std::tstring_t &a_csVar1,
-    const std::tstring_t &a_csVar2,
+    std::ctstring_t &a_csVar1,
+    std::ctstring_t &a_csVar2,
     const T              &a_cVar1ValueT,
     const T              &a_cVar2ValueT,
-    const std::tstring_t &a_csExprSign,
+    std::ctstring_t &a_csExprSign,
     culong_t        &a_culLastError,
-    const std::tstring_t &a_csFile,
+    std::ctstring_t &a_csFile,
     culong_t        &a_culLine,
-    const std::tstring_t &a_csFunc,
-    const std::tstring_t &a_csDate,
-    const std::tstring_t &a_csTime,
-    const std::tstring_t &a_csStackTrace,
-    const std::tstring_t &a_csComment
+    std::ctstring_t &a_csFunc,
+    std::ctstring_t &a_csDate,
+    std::ctstring_t &a_csTime,
+    std::ctstring_t &a_csStackTrace,
+    std::ctstring_t &a_csComment
 ) :
     m_rtType         (rtUnknown),
     m_sReport        (),

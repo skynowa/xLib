@@ -44,7 +44,7 @@ CxTestManager::~CxTestManager() {
 void
 CxTestManager::add(
     CxTest               *a_pvtTest,
-    const std::tstring_t &a_csTestName /* = CxConst::xSTR_EMPTY */
+    std::ctstring_t &a_csTestName /* = CxConst::xSTR_EMPTY */
 )
 {
     xTEST_PTR(a_pvtTest)

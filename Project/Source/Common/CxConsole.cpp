@@ -336,7 +336,7 @@ CxConsole::read() {
 //------------------------------------------------------------------------------
 void
 CxConsole::write(
-    const std::tstring_t &a_csStr
+    std::ctstring_t &a_csStr
 )
 {
 #if xOS_ENV_WIN
@@ -363,7 +363,7 @@ CxConsole::write(
 //------------------------------------------------------------------------------
 void
 CxConsole::writeLine(
-    const std::tstring_t &a_csStr /* = xT("") */
+    std::ctstring_t &a_csStr /* = xT("") */
 )
 {
 #if xOS_ENV_WIN
@@ -377,7 +377,7 @@ CxConsole::writeLine(
 //------------------------------------------------------------------------------
 void
 CxConsole::writeErrLine(
-    const std::tstring_t &a_csStr
+    std::ctstring_t &a_csStr
 )
 {
 #if xOS_ENV_WIN
@@ -393,8 +393,8 @@ CxConsole::writeErrLine(
 //------------------------------------------------------------------------------
 CxConsole::ExModalResult
 CxConsole::msgBox(
-    const std::tstring_t &a_csText,
-    const std::tstring_t &a_csTitle,
+    std::ctstring_t &a_csText,
+    std::ctstring_t &a_csTitle,
     cuint_t         &a_cuiType
 )
 {
@@ -447,7 +447,7 @@ CxConsole::msgBox(
 //------------------------------------------------------------------------------
 void
 CxConsole::prompt(
-    const std::tstring_t &a_csPrompt,
+    std::ctstring_t &a_csPrompt,
     cbool_t           &a_cbIsVisible,
     std::tstring_t       *a_psAnswer
 )
@@ -636,7 +636,7 @@ CxConsole::title() {
 //------------------------------------------------------------------------------
 void
 CxConsole::setTitle(
-    const std::tstring_t &a_csTitle
+    std::ctstring_t &a_csTitle
 )
 {
 #if xOS_ENV_WIN

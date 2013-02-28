@@ -73,7 +73,7 @@ CxTest_CxDebugger::unit(
 
     xTEST_CASE("CxDebugger::setLogPath logPath", cullCaseLoops)
     {
-        const std::tstring_t csFilePath;
+        std::ctstring_t csFilePath;
 
         CxDebugger dbgDebugger;
 

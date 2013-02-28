@@ -27,7 +27,7 @@ public:
     // constructors, destructor
                           CxDateTime        ();
         ///< constructor
-    explicit              CxDateTime        (const std::tstring_t &csDT, const ExFormatType &cftFormat);
+    explicit              CxDateTime        (std::ctstring_t &csDT, const ExFormatType &cftFormat);
         ///< constructor
     /*explicit*/          CxDateTime        (const CxDateTime &cdtDT);
         ///< constructor
@@ -133,11 +133,11 @@ public:
         ///< sign of the zodiac by date
     static std::tstring_t monthStr          (ushort_t usMonth, cbool_t &cbIsShortName) xWARN_UNUSED_RV;
         ///< get month string
-    static ushort_t       monthNum          (const std::tstring_t &csMonth, cbool_t &cbIsShortName) xWARN_UNUSED_RV;
+    static ushort_t       monthNum          (std::ctstring_t &csMonth, cbool_t &cbIsShortName) xWARN_UNUSED_RV;
         ///< get month number by string
     static std::tstring_t weekDayStr        (ushort_t usDay, cbool_t &cbIsShortName) xWARN_UNUSED_RV;
         ///< get week day string
-    static ushort_t       weekDayNum        (const std::tstring_t &csDay, cbool_t &cbIsShortName) xWARN_UNUSED_RV;
+    static ushort_t       weekDayNum        (std::ctstring_t &csDay, cbool_t &cbIsShortName) xWARN_UNUSED_RV;
         ///< get week day number by string
 
 private:
@@ -162,7 +162,7 @@ private:
 
     ulonglong_t           _toMilliseconds   () const xWARN_UNUSED_RV;
         ///< convert to milliseconds
-    static void           _parse            (const std::tstring_t &csDT, const ExFormatType &cftFormat, CxDateTime *pdtDT);
+    static void           _parse            (std::ctstring_t &csDT, const ExFormatType &cftFormat, CxDateTime *pdtDT);
         ///< parsing datetime string
 };
 

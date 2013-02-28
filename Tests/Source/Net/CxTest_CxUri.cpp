@@ -250,7 +250,7 @@ CxTest_CxUri::unit(
 
     xTEST_CASE("CxUri::sEncodeComponent CxUri::sDecodeComponent", cullCaseLoops)
     {
-        const std::tstring_t uri[] = {
+        std::ctstring_t uri[] = {
             xT("http://dn1.berloga.net/83841/xxxxx.swf"),
             xT("http://dn1.berloga.net/83841/yyyyyy.swf"),
             xT("foo://userinfo@example.com:8042/over/there?name=ferret#nose"),

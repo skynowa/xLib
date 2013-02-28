@@ -38,7 +38,7 @@ CxWaitableTimer::handle() const {
 void
 CxWaitableTimer::create(
     cbool_t                  &a_bManualReset,
-    const std::tstring_t        &a_csName,
+    std::ctstring_t        &a_csName,
     const LPSECURITY_ATTRIBUTES  a_pcsaTimerAttributes
 )
 {
@@ -52,7 +52,7 @@ CxWaitableTimer::create(
 //------------------------------------------------------------------------------
 void
 CxWaitableTimer::open(
-    const std::tstring_t &a_csName,
+    std::ctstring_t &a_csName,
     culong_t        &a_culDesiredAccess,
     cbool_t           &a_cbInheritHandle
 )
