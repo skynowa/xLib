@@ -11,16 +11,16 @@
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-    typedef const bool             bool_t;
+    typedef bool                   bool_t;
     typedef const bool_t           cbool_t;
 
-    typedef const int              int_t;
+    typedef int                    int_t;
     typedef const int_t            cint_t;
 
-    typedef const float            float_t;
+    typedef float                  float_t;
     typedef const float_t          cfloat_t;
 
-    typedef const double           double_t;
+    typedef double                 double_t;
     typedef const double_t         cdouble_t;
 
     typedef unsigned char          uchar_t;
