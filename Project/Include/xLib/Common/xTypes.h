@@ -20,8 +20,8 @@ xNAMESPACE_BEGIN(NxLib)
     typedef float                  float_t;
     typedef const float_t          cfloat_t;
 
-    typedef double                 double_t;
-    typedef const double_t         cdouble_t;
+    // typedef double                 double_t;
+    typedef const double           cdouble_t;
 
     typedef unsigned char          uchar_t;
     typedef const uchar_t          cuchar_t;

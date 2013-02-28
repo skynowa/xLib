@@ -97,9 +97,9 @@ CxRandom::fNextFloat() {
     return static_cast<float_t>( iNextInt() / float_t(M) );
 }
 //------------------------------------------------------------------------------
-double_t
+double
 CxRandom::bNextDouble() {
-    return static_cast<double_t>( iNextInt() / double_t(M) );
+    return static_cast<double>( iNextInt() / double(M) );
 }
 //------------------------------------------------------------------------------
 char
@@ -112,17 +112,17 @@ CxRandom::chNextFigure() {
     return char(('9' - '0' + 1) * bNextDouble() + '0');
 }
 //------------------------------------------------------------------------------
-double_t
+double
 CxRandom::dNextGaussian() {
     // See Knuth, ACP, Section 3.4.1 Algorithm C.
     if (_m_bHaveNextNextGaussian) {
         _m_bHaveNextNextGaussian = false;
 
-        return static_cast<double_t>( _m_dNextNextGaussian );
+        return static_cast<double>( _m_dNextNextGaussian );
     } else {
-        double_t v1 = 0.0;
-        double_t v2 = 0.0;
-        double_t s  = 0.0;
+        double v1 = 0.0;
+        double v2 = 0.0;
+        double s  = 0.0;
 
         do {
             v1 = 2 * bNextDouble() - 1; // between - 1 and 1
@@ -131,12 +131,12 @@ CxRandom::dNextGaussian() {
         }
         while (s >= 1 || s == 0);
 
-        double_t multiplier = ::sqrt(-2 * ::log(s)/s);
+        double multiplier = ::sqrt(-2 * ::log(s)/s);
 
         _m_dNextNextGaussian     = v2 * multiplier;
         _m_bHaveNextNextGaussian = true;
 
-        return static_cast<double_t>( v1 * multiplier );
+        return static_cast<double>( v1 * multiplier );
     }
 }
 //------------------------------------------------------------------------------
@@ -177,7 +177,7 @@ CxRandom::liInt(
 #if 1
     liRv = (::rand() % (a_cliMax - a_cliMin))  + a_cliMin;
 #else
-    liRv = (::rand() * (double_t)(a_cliMax - a_cliMin) / RAND_MAX) + a_cliMin;
+    liRv = (::rand() * (double)(a_cliMax - a_cliMin) / RAND_MAX) + a_cliMin;
 #endif
 
     return liRv;

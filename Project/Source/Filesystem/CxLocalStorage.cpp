@@ -181,7 +181,7 @@ CxLocalStorage::keyWriteInt(
     keyWriteString(a_csKey, CxString::cast(a_cliValue));
 }
 //-------------------------------------------------------------------------
-double_t
+double
 CxLocalStorage::keyReadFloat(
     std::ctstring_t &a_csKey,
     cdouble_t         &a_cdDefaultValue
@@ -190,7 +190,7 @@ CxLocalStorage::keyReadFloat(
     xTEST_NA(a_csKey);
     xTEST_NA(a_cdDefaultValue);
 
-    return CxString::cast<double_t>( keyReadString(a_csKey, CxString::cast(a_cdDefaultValue)) );
+    return CxString::cast<double>( keyReadString(a_csKey, CxString::cast(a_cdDefaultValue)) );
 }
 //-------------------------------------------------------------------------
 void

@@ -140,7 +140,7 @@ CxTest_CxString::unit(
         m_ullRv = CxString::cast<ulonglong_t>(xT("123"));
         xTEST_EQ(123ULL, m_ullRv);
 
-        m_dRv = CxString::cast<double_t>(xT("5.3"));
+        m_dRv = CxString::cast<double>(xT("5.3"));
         xTEST_EQ(5.3, m_dRv);
 
         ////m_bRv = cast<bool_t>(xT("true"));

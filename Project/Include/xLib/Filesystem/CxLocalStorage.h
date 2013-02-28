@@ -56,7 +56,7 @@ public:
     void                   keyWriteInt   (std::ctstring_t &csKey, clong_t &cliValue);
         ///< write int_t
 
-    double_t                 keyReadFloat  (std::ctstring_t &csKey, cdouble_t &cdDefaultValue) xWARN_UNUSED_RV;
+    double                 keyReadFloat  (std::ctstring_t &csKey, cdouble_t &cdDefaultValue) xWARN_UNUSED_RV;
         ///< read float_t
     void                   keyWriteFloat (std::ctstring_t &csKey, cdouble_t &cdValue);
         ///< write float_t

@@ -62,8 +62,8 @@
  *       ull*         - ulonglong_t              (unsigned long long int_t)
  *
  *       f*           - float_t
- *       d*           - double_t
- *       ld*          - long double_t
+ *       d*           - double
+ *       ld*          - long double
  *
  *       sz*          - C-string
  *

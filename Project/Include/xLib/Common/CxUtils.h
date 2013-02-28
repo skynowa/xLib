@@ -70,15 +70,15 @@ public:
     static inline ToT       reinterpretCastT(const FromT &pPtrT) xWARN_UNUSED_RV;
         ///< allows any pointer to be converted into any other pointer type
 
-    static inline double_t    roundDouble     (cdouble_t &cdValue) xWARN_UNUSED_RV;
-        ///< round double_t value to the integer part
+    static inline double    roundDouble     (cdouble_t &cdValue) xWARN_UNUSED_RV;
+        ///< round double value to the integer part
 
     template <typename T>
     static inline T         roundIntT       (cdouble_t &cdValue) xWARN_UNUSED_RV;
-        ///< round double_t value to long_t
+        ///< round double value to long_t
 
     template <typename T1, typename T2>
-    static inline double_t    safeDivT        (const T1 &cValue1T, const T2 &cValue2T) xWARN_UNUSED_RV;
+    static inline double    safeDivT        (const T1 &cValue1T, const T2 &cValue2T) xWARN_UNUSED_RV;
         ///< safe division
 
     template <typename T>

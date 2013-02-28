@@ -35,13 +35,13 @@ public:
         ///< next boolean
     float_t                 fNextFloat   () xWARN_UNUSED_RV;
         ///< next float_t
-    double_t                bNextDouble  () xWARN_UNUSED_RV;
-        ///< next double_t
+    double                bNextDouble  () xWARN_UNUSED_RV;
+        ///< next double
     char                  chNextChar   () xWARN_UNUSED_RV;
         ///< next char
     char                  chNextFigure () xWARN_UNUSED_RV;
         ///< next figure
-    double_t                dNextGaussian() xWARN_UNUSED_RV;
+    double                dNextGaussian() xWARN_UNUSED_RV;
         ///< next gaussian
 
     static void           vSetSeed     ();
@@ -64,7 +64,7 @@ private:
     static cint_t      R;  ///< for private use
 
     long_t                _m_liSeed;                  ///< for private use
-    double_t                _m_dNextNextGaussian;       ///< for private use
+    double                _m_dNextNextGaussian;       ///< for private use
     bool_t                  _m_bHaveNextNextGaussian;   ///< for private use
 };
 
