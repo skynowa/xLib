@@ -60,7 +60,7 @@ CxCgi::dump() const {
 /* static */
 void
 CxCgi::redirect(
-    const std::tstring_t &a_csUrl
+    std::ctstring_t &a_csUrl
 )
 {
     xTEST_EQ(false, a_csUrl.empty())
@@ -76,7 +76,7 @@ CxCgi::redirect(
 /* static */
 void
 CxCgi::pageShow(
-    const std::tstring_t &a_csFilePath
+    std::ctstring_t &a_csFilePath
 )
 {
     std::tstring_t sFileContent;
@@ -94,16 +94,16 @@ CxCgi::pageShow(
 *******************************************************************************/
 
 namespace {
-    static const std::tstring_t URI_ILLEGAL   = xT("%<>{}|\\\"^`");
-    ////static const std::tstring_t ILLEGAL_CHARS = xT("()[]/|\\',;");     //for cookie
+    static std::ctstring_t URI_ILLEGAL   = xT("%<>{}|\\\"^`");
+    ////static std::ctstring_t ILLEGAL_CHARS = xT("()[]/|\\',;");     //for cookie
 }
 //------------------------------------------------------------------------------
 //TODO: bUriEncode
 /* static */
 void
 CxCgi::uriEncode(
-    const std::tstring_t &a_csUri,
-    const std::tstring_t &a_csReserved,
+    std::ctstring_t &a_csUri,
+    std::ctstring_t &a_csReserved,
     std::tstring_t       *a_psEncodedStr
 )
 {
@@ -138,7 +138,7 @@ CxCgi::uriEncode(
 /* static */
 void
 CxCgi::uriDecode(
-    const std::tstring_t &a_csUri,
+    std::ctstring_t &a_csUri,
     std::tstring_t       *a_psDecodedStr
 )
 {
@@ -358,152 +358,152 @@ CxCgiEnvironment::~CxCgiEnvironment() {
 }
 //------------------------------------------------------------------------------
 //DONE: sGetAuthType
-const std::tstring_t &
+std::ctstring_t &
 CxCgiEnvironment::authType() const {
     return _m_sAuthType;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxCgiEnvironment::contentLength() const {
     return _m_sContentLength;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxCgiEnvironment::contentType() const {
     return _m_sContentType;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxCgiEnvironment::documentRoot() const {
     return _m_sDocumentRoot;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxCgiEnvironment::gatewayInterface() const {
     return _m_sGatewayInterface;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxCgiEnvironment::httpAccept() const {
     return _m_sHttpAccept;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxCgiEnvironment::httpCookie() const {
     return _m_sHttpCookie;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxCgiEnvironment::httpPragma() const {
     return _m_sHttpPragma;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxCgiEnvironment::httpUserAgent() const {
     return _m_sHttpUserAgent;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxCgiEnvironment::pathInfo() const {
     return _m_sPathInfo;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxCgiEnvironment::pathTranslated() const {
     return _m_sPathTranslated;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxCgiEnvironment::queryString() const {
     return _m_sQueryString;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxCgiEnvironment::remoteAddr() const {
     return _m_sRemoteAddr;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxCgiEnvironment::remoteHost() const {
     return _m_sRemoteHost;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxCgiEnvironment::remoteIdent() const {
     return _m_sRemoteIdent;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxCgiEnvironment::remotePort() const {
     return _m_sRemotePort;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxCgiEnvironment::remoteUser() const {
     return _m_sRemoteUser;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxCgiEnvironment::requestMethod() const {
     return _m_sRequestMethod;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxCgiEnvironment::requestUri() const {
     return _m_sRequestUri;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxCgiEnvironment::scriptFilename() const {
     return _m_sScriptFilename;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxCgiEnvironment::scriptName() const {
     return _m_sScriptName;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxCgiEnvironment::serverAdmin() const {
     return _m_sServerAdmin;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxCgiEnvironment::serverName() const {
     return _m_sServerName;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxCgiEnvironment::serverPort() const {
     return _m_sServerPort;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxCgiEnvironment::serverProtocol() const {
     return _m_sServerProtocol;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxCgiEnvironment::serverSoftware() const {
     return _m_sServerSoftware;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxCgiEnvironment::httpReferer() const {
     return _m_sHttpReferer;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxCgiEnvironment::httpHost() const {
     return _m_sHttpHost;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxCgiEnvironment::httpAcceptLanguage() const {
    return _m_sHttpAcceptLanguage;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxCgiEnvironment::countryCode() const {
     return _m_sCountryCode;
 }
@@ -675,7 +675,7 @@ CxCgiCookies::~CxCgiCookies() {
 //------------------------------------------------------------------------------
 std::tstring_t
 CxCgiCookies::operator [] (
-    const std::tstring_t &a_csCookieName
+    std::ctstring_t &a_csCookieName
 )
 {
     xFOREACH_CONST(TCookies, it, items) {
@@ -772,7 +772,7 @@ CxCgiFormData::~CxCgiFormData() {
 
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxCgiFormData::rawData() const {
     return _m_sFormData;
 }

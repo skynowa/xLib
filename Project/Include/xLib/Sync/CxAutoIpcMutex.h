@@ -18,7 +18,7 @@ class CxAutoIpcMutex :
     /// auto mutex
 {
 public:
-                CxAutoIpcMutex(CxIpcMutex &mtMutex, const std::tstring_t &csName);
+                CxAutoIpcMutex(CxIpcMutex &mtMutex, std::ctstring_t &csName);
     virtual    ~CxAutoIpcMutex();
 
 private:

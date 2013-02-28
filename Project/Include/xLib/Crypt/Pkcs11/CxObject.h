@@ -49,11 +49,11 @@ public:
         ///< destroys an object
 
     // Utils
-    static void          data             (CK_SLOT_ID ulSlotId, const std::ustring_t &cusUserPin, const std::ustring_t &cusDataLabel, std::ustring_t *pusData);
+    static void          data             (CK_SLOT_ID ulSlotId, std::custring_t &cusUserPin, std::custring_t &cusDataLabel, std::ustring_t *pusData);
         ///< get data
-    static void          setData          (CK_SLOT_ID ulSlotId, const std::ustring_t &cusUserPin, const std::ustring_t &cusDataLabel, const std::ustring_t &cusData);
+    static void          setData          (CK_SLOT_ID ulSlotId, std::custring_t &cusUserPin, std::custring_t &cusDataLabel, std::custring_t &cusData);
         ///< set data
-    static void          data             (CK_SLOT_ID ulSlotId, const std::ustring_t &cusUserPin, std::vec_ustring_t *pusDataLabel, std::vec_ustring_t *pusDataValue);
+    static void          data             (CK_SLOT_ID ulSlotId, std::custring_t &cusUserPin, std::vec_ustring_t *pusDataLabel, std::vec_ustring_t *pusDataValue);
         ///< get data
 
 private:

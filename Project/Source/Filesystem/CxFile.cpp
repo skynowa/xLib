@@ -46,7 +46,7 @@ CxFile::~CxFile() {
 //------------------------------------------------------------------------------
 void
 CxFile::create(
-    const std::tstring_t &a_csFilePath,
+    std::ctstring_t &a_csFilePath,
     const ExOpenMode     &a_comMode,
     cbool_t           &a_cbIsUseBuffering
 )
@@ -77,7 +77,7 @@ CxFile::create(
 //------------------------------------------------------------------------------
 void
 CxFile::reopen(
-    const std::tstring_t &a_csFilePath,
+    std::ctstring_t &a_csFilePath,
     const ExOpenMode     &a_comMode,
     cbool_t           &a_cbIsUseBuffering
 )
@@ -113,7 +113,7 @@ CxFile::get() const {
     return _m_pFile;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxFile::path() const {
     xTEST_EQ(false, _m_sFilePath.empty());
     xTEST_EQ(true,  isExists(_m_sFilePath));
@@ -201,7 +201,7 @@ CxFile::read(
 //------------------------------------------------------------------------------
 void
 CxFile::write(
-    const std::ustring_t &a_csBuff
+    std::custring_t &a_csBuff
 ) const
 {
     xTEST_NA(a_csBuff);
@@ -284,7 +284,7 @@ CxFile::readLine(
 //------------------------------------------------------------------------------
 void
 CxFile::writeLine(
-    const std::tstring_t &a_csStr
+    std::ctstring_t &a_csStr
 ) const
 {
     xTEST_NA(a_csStr);
@@ -534,7 +534,7 @@ CxFile::close() {
 /* static */
 bool_t
 CxFile::isFile(
-    const std::tstring_t &a_csFilePath
+    std::ctstring_t &a_csFilePath
 )
 {
     xTEST_NA(a_csFilePath);
@@ -569,7 +569,7 @@ CxFile::isFile(
 /* static */
 bool_t
 CxFile::isExists(
-    const std::tstring_t &a_csFilePath
+    std::ctstring_t &a_csFilePath
 )
 {
     xTEST_NA(a_csFilePath);
@@ -585,7 +585,7 @@ CxFile::isExists(
 /* static */
 std::tstring_t
 CxFile::isExistsEx(
-    const std::tstring_t &a_csFilePath
+    std::ctstring_t &a_csFilePath
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
@@ -617,7 +617,7 @@ CxFile::isExistsEx(
 /* static */
 void
 CxFile::access(
-    const std::tstring_t &a_csFilePath,
+    std::ctstring_t &a_csFilePath,
     const ExAccessMode   &a_camMode
 )
 {
@@ -631,7 +631,7 @@ CxFile::access(
 /* static */
 void
 CxFile::chmod(
-    const std::tstring_t   &a_csFilePath,
+    std::ctstring_t   &a_csFilePath,
     const ExPermissionMode &a_cpmMode
 )
 {
@@ -651,7 +651,7 @@ CxFile::chmod(
 /* static */
 void
 CxFile::clear(
-    const std::tstring_t &a_csFilePath
+    std::ctstring_t &a_csFilePath
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
@@ -665,7 +665,7 @@ CxFile::clear(
 /* static */
 void
 CxFile::remove(
-    const std::tstring_t &a_csFilePath
+    std::ctstring_t &a_csFilePath
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
@@ -682,7 +682,7 @@ CxFile::remove(
 /* static */
 void
 CxFile::tryRemove(
-    const std::tstring_t &a_csFilePath,
+    std::ctstring_t &a_csFilePath,
     const size_t         &a_cuiAttempts,
     culong_t        &a_culTimeoutMsec
 )
@@ -710,7 +710,7 @@ CxFile::tryRemove(
 /* static */
 void
 CxFile::wipe(
-    const std::tstring_t &a_csFilePath,
+    std::ctstring_t &a_csFilePath,
     const size_t         &a_cuiPasses
 )
 {
@@ -812,7 +812,7 @@ CxFile::wipe(
 /* static */
 void
 CxFile::unlink(
-    const std::tstring_t &a_csFilePath
+    std::ctstring_t &a_csFilePath
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
@@ -824,8 +824,8 @@ CxFile::unlink(
 /* static */
 void
 CxFile::rename(
-    const std::tstring_t &a_csOldFilePath,
-    const std::tstring_t &a_csNewFilePath
+    std::ctstring_t &a_csOldFilePath,
+    std::ctstring_t &a_csNewFilePath
 )
 {
     xTEST_EQ(false, a_csOldFilePath.empty());
@@ -838,8 +838,8 @@ CxFile::rename(
 /* static */
 void
 CxFile::move(
-    const std::tstring_t &a_csFilePath,
-    const std::tstring_t &a_csDirPath
+    std::ctstring_t &a_csFilePath,
+    std::ctstring_t &a_csDirPath
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
@@ -851,8 +851,8 @@ CxFile::move(
 /* static */
 void
 CxFile::copy(
-    const std::tstring_t &a_csFilePathFrom,
-    const std::tstring_t &a_csFilePathTo,
+    std::ctstring_t &a_csFilePathFrom,
+    std::ctstring_t &a_csFilePathTo,
     cbool_t           &a_cbFailIfExists
 )
 {
@@ -907,7 +907,7 @@ CxFile::copy(
 /* static */
 longlong_t
 CxFile::size(
-    const std::tstring_t &a_csFilePath
+    std::ctstring_t &a_csFilePath
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
@@ -925,7 +925,7 @@ CxFile::size(
 /* static */
 ulonglong_t
 CxFile::lines(
-    const std::tstring_t &a_csFilePath
+    std::ctstring_t &a_csFilePath
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
@@ -949,7 +949,7 @@ CxFile::lines(
 /* static */
 void
 CxFile::time(
-    const std::tstring_t &a_csFilePath,
+    std::ctstring_t &a_csFilePath,
     time_t               *a_ptmCreate,
     time_t               *a_ptmAccess,
     time_t               *a_ptmModified
@@ -992,7 +992,7 @@ CxFile::time(
 /*static */
 void
 CxFile::setTime(
-    const std::tstring_t &a_csFilePath,
+    std::ctstring_t &a_csFilePath,
     const time_t         &a_ctmCreate,
     const time_t         &a_ctmAccess,
     const time_t         &a_ctmModified
@@ -1044,7 +1044,7 @@ CxFile::setTime(
 /* static */
 void
 CxFile::textRead(
-    const std::tstring_t &a_csFilePath,
+    std::ctstring_t &a_csFilePath,
     std::tstring_t       *a_psContent
 )
 {
@@ -1073,8 +1073,8 @@ CxFile::textRead(
 /* static */
 void
 CxFile::textWrite(
-    const std::tstring_t &a_csFilePath,
-    const std::tstring_t &a_csContent
+    std::ctstring_t &a_csFilePath,
+    std::ctstring_t &a_csContent
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
@@ -1095,7 +1095,7 @@ CxFile::textWrite(
 /* static */
 void
 CxFile::textRead(
-    const std::tstring_t &a_csFilePath,
+    std::ctstring_t &a_csFilePath,
     std::vec_tstring_t   *a_pvsContent
 )
 {
@@ -1117,8 +1117,8 @@ CxFile::textRead(
 /* static */
 void
 CxFile::textWrite(
-    const std::tstring_t     &a_csFilePath,
-    const std::vec_tstring_t &a_cvsContent
+    std::ctstring_t     &a_csFilePath,
+    std::cvec_tstring_t &a_cvsContent
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
@@ -1136,8 +1136,8 @@ CxFile::textWrite(
 /* static */
 void
 CxFile::textRead(
-    const std::tstring_t &a_csFilePath,
-    const std::tstring_t &a_csSeparator,
+    std::ctstring_t &a_csFilePath,
+    std::ctstring_t &a_csSeparator,
     std::map_tstring_t   *a_pmsContent
 )
 {
@@ -1199,9 +1199,9 @@ CxFile::textRead(
 /* static */
 void
 CxFile::textWrite(
-    const std::tstring_t     &a_csFilePath,
-    const std::tstring_t     &a_csSeparator,
-    const std::map_tstring_t &a_cmsContent
+    std::ctstring_t     &a_csFilePath,
+    std::ctstring_t     &a_csSeparator,
+    std::cmap_tstring_t &a_cmsContent
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
@@ -1247,7 +1247,7 @@ CxFile::textWrite(
 /* static */
 void
 CxFile::binRead(
-    const std::tstring_t &a_csFilePath,
+    std::ctstring_t &a_csFilePath,
     std::ustring_t       *a_pusContent
 )
 {
@@ -1276,8 +1276,8 @@ CxFile::binRead(
 /* static */
 void
 CxFile::binWrite(
-    const std::tstring_t &a_csFilePath,
-    const std::ustring_t &a_cusContent
+    std::ctstring_t &a_csFilePath,
+    std::custring_t &a_cusContent
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());

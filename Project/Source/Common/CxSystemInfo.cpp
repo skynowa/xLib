@@ -276,7 +276,7 @@ CxSystemInfo::desktopName() {
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
-    const std::tstring_t  csNativeDesktop = xT("explorer.exe");
+    std::ctstring_t  csNativeDesktop = xT("explorer.exe");
     const CxProcess::id_t culId           = CxProcess::idByName(csNativeDesktop);
 
     bool_t bRv = CxProcess::isRunning(culId);

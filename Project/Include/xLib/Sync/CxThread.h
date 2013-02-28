@@ -132,7 +132,7 @@ public:
         ///< is current
     ulong_t              exitStatus          () const xWARN_UNUSED_RV;
         ///< get termination status
-    void                 setDebugName        (const std::tstring_t &csName) const;
+    void                 setDebugName        (std::ctstring_t &csName) const;
         ///< set name your threads in the debugger thread list
 
     // static

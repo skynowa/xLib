@@ -39,12 +39,12 @@ public:
         #endif
     };
 
-    explicit               CxVolume  (const std::tstring_t &csVolumePath);
+    explicit               CxVolume  (std::ctstring_t &csVolumePath);
         ///< constructor
     virtual               ~CxVolume  ();
         ///< destructor
 
-    const std::tstring_t & volumePath() const xWARN_UNUSED_RV;
+    std::ctstring_t & volumePath() const xWARN_UNUSED_RV;
         ///< volume path
     ExType                 type      () const xWARN_UNUSED_RV;
         ///< drive type
@@ -56,13 +56,13 @@ public:
         ///< is ready
     bool_t                   isEmpty   () const xWARN_UNUSED_RV;
         ///< is empty
-    void                   mount     (const std::tstring_t &csDestPath) const;
+    void                   mount     (std::ctstring_t &csDestPath) const;
         ///< mount
     void                   unMount   (cbool_t &cbIsForce) const;
         ///< unmount
 
     // static
-    static void            space     (const std::tstring_t &csDirPath,
+    static void            space     (std::ctstring_t &csDirPath,
                                       ulonglong_t *pullAvailable,
                                       ulonglong_t *pullTotal,
                                       ulonglong_t *pullFree);
@@ -71,7 +71,7 @@ public:
         ///< get paths
 
 private:
-    const std::tstring_t   _m_csVolumePath;  ///< volume path
+    std::ctstring_t   _m_csVolumePath;  ///< volume path
 };
 
 xNAMESPACE_END(NxLib)

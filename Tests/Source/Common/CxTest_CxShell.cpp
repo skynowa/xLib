@@ -30,7 +30,7 @@ CxTest_CxShell::unit(
 
     xTEST_CASE("CxShell::execute", cullCaseLoops)
     {
-        const std::tstring_t casData[][2] = {
+        std::ctstring_t casData[][2] = {
             { xT("cd"), xT("./") },
             { xT("cd"), xT(".")  },
             { xT(""),   xT("")   }
@@ -43,8 +43,8 @@ CxTest_CxShell::unit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(casData); ++ i) {
-            const std::tstring_t csFilePath = casData[i][0];
-            const std::tstring_t csParams   = casData[i][1];
+            std::ctstring_t csFilePath = casData[i][0];
+            std::ctstring_t csParams   = casData[i][1];
 
             CxShell::execute(csFilePath, csParams);
         }

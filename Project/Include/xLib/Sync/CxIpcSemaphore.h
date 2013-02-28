@@ -28,9 +28,9 @@ public:
 
     const handle_t & handle        () const xWARN_UNUSED_RV;
         ///< get handle
-    void             create        (clong_t &cliInitialValue, const std::tstring_t &csName);
+    void             create        (clong_t &cliInitialValue, std::ctstring_t &csName);
         ///< create
-    void             open          (const std::tstring_t &csName);
+    void             open          (std::ctstring_t &csName);
         ///< open
     void             post          () const;
         ///< release

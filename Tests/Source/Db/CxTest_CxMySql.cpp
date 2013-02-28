@@ -24,13 +24,13 @@ CxTest_CxMySql::unit(
     culonglong_t &cullCaseLoops
 )
 {
-    const std::tstring_t csHost        = xT("127.0.0.1");
-    const std::tstring_t csUser        = xT("root");
-    const std::tstring_t csPassword    = xT("root");
-    const std::tstring_t csDbName      = xT("db_test");
+    std::ctstring_t csHost        = xT("127.0.0.1");
+    std::ctstring_t csUser        = xT("root");
+    std::ctstring_t csPassword    = xT("root");
+    std::ctstring_t csDbName      = xT("db_test");
     cuint_t         cuiPort       = 0U;
-    const std::tstring_t sTableName    = xT("t_main");
-    const std::tstring_t csUnixSocket;
+    std::ctstring_t sTableName    = xT("t_main");
+    std::ctstring_t csUnixSocket;
     culong_t        culClientFlag = 0UL;
 
 
@@ -67,7 +67,7 @@ CxTest_CxMySql::unit(
 
     xTEST_CASE("bIsExists", cullCaseLoops)
     {
-        const std::tstring_t casData[][2] = {
+        std::ctstring_t casData[][2] = {
             { xT("000000"),     xT("false") },
             { xT("1111111"),    xT("false") },
             { xT("222222222"),  xT("false") },

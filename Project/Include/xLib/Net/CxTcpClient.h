@@ -26,7 +26,7 @@ public:
         ///< checking for readability
     bool_t        isWritable        () xWARN_UNUSED_RV;
         ///< checking for writability
-    void        connect           (const std::tstring_t &csIp, cushort_t &cusPort);
+    void        connect           (std::ctstring_t &csIp, cushort_t &cusPort);
         ///< connecting
 
     void        ioctl             (clong_t &cliCmd, ulong_t *pulArgp);
@@ -38,7 +38,7 @@ public:
     void        setTimeout        (clong_t &cliSec, clong_t &cliMicroSec);
         ///< set timeout
 
-    static bool_t isServerAlive     (const std::tstring_t &csIp, cushort_t &cusPort) xWARN_UNUSED_RV;
+    static bool_t isServerAlive     (std::ctstring_t &csIp, cushort_t &cusPort) xWARN_UNUSED_RV;
         ///< is sever socket available
 
 protected:

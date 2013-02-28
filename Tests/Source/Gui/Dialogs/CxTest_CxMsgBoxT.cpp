@@ -28,8 +28,8 @@ CxTest_CxMsgBoxT::unit(
     xTEST_CASE("CxMsgBoxT::show", cullCaseLoops)
     {
         const HWND           chWnd   = NULL;
-        const std::tstring_t csText  = xT("\nmessage box with 3 params...\n");
-        const std::tstring_t csTitle = xT("Simple title");
+        std::ctstring_t csText  = xT("\nmessage box with 3 params...\n");
+        std::ctstring_t csTitle = xT("Simple title");
         cuint_t         cuiType = 0;
 
         CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::show(chWnd, csText, csTitle, cuiType);
@@ -39,8 +39,8 @@ CxTest_CxMsgBoxT::unit(
 
     xTEST_CASE("CxMsgBoxT::show (3 params)", cullCaseLoops)
     {
-        const std::tstring_t csText  = xT("\nmessage box with 3 params...\n");
-        const std::tstring_t csTitle = xT("Simple title");
+        std::ctstring_t csText  = xT("\nmessage box with 3 params...\n");
+        std::ctstring_t csTitle = xT("Simple title");
         cuint_t         cuiType = 0;
 
         CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::show(csText, csTitle, cuiType);
@@ -49,8 +49,8 @@ CxTest_CxMsgBoxT::unit(
 
     xTEST_CASE("CxMsgBoxT::show (2 params)", cullCaseLoops)
     {
-        const std::tstring_t csText  = xT("\nmessage box with 2 params...\n");
-        const std::tstring_t csTitle = xT("Simple title");
+        std::ctstring_t csText  = xT("\nmessage box with 2 params...\n");
+        std::ctstring_t csTitle = xT("Simple title");
 
         CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::show(csText, csTitle);
         xUNUSED(mrRes);
@@ -58,7 +58,7 @@ CxTest_CxMsgBoxT::unit(
 
     xTEST_CASE("CxMsgBoxT::show (1 param)", cullCaseLoops)
     {
-        const std::tstring_t csText  = xT("\nmessage box with 1 param...\n");
+        std::ctstring_t csText  = xT("\nmessage box with 1 param...\n");
 
         CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::show(csText);
         xUNUSED(mrRes);

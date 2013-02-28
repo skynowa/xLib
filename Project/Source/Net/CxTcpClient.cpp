@@ -56,7 +56,7 @@ CxTcpClient::isWritable() {
 //------------------------------------------------------------------------------
 void
 CxTcpClient::connect(
-    const std::tstring_t &a_csIp,
+    std::ctstring_t &a_csIp,
     cushort_t       &a_cusPort
 )
 {
@@ -166,7 +166,7 @@ CxTcpClient::setTimeout(
 /* static */
 bool_t
 CxTcpClient::isServerAlive(
-    const std::tstring_t &a_csIp,
+    std::ctstring_t &a_csIp,
     cushort_t       &a_cusPort
 )
 {

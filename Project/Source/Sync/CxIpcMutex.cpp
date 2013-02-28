@@ -42,7 +42,7 @@ CxIpcMutex::handle() const {
 //------------------------------------------------------------------------------
 void
 CxIpcMutex::create(
-    const std::tstring_t &a_csName
+    std::ctstring_t &a_csName
 )
 {
     ////xTEST_EQ(false, _m_hHandle.bIsValid(), false);
@@ -81,7 +81,7 @@ CxIpcMutex::create(
 //------------------------------------------------------------------------------
 void
 CxIpcMutex::open(
-    const std::tstring_t &a_csName
+    std::ctstring_t &a_csName
 )
 {
 #if   xOS_ENV_WIN

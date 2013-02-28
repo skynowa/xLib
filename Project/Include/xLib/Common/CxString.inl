@@ -16,7 +16,7 @@ template<typename Traits>
 inline basic_ostream<tchar_t, Traits> &
 operator << (
     basic_ostream<tchar_t, Traits> &a_osOut,
-    const std::ustring_t           &a_cusValue
+    std::custring_t           &a_cusValue
 )
 {
     xTEST_NA(a_osOut);
@@ -139,7 +139,7 @@ CxString::cast(
         ossRes << a_cValueT;
 
         sRv = ossRes.str();
-    } catch (const std::tostringstream_t::failure &e) {
+    } catch (std::ctostringstream_t::failure &e) {
         sRv.clear();
     } catch (...) {
         sRv.clear();
@@ -168,7 +168,7 @@ CxString::cast(
         ossRes << std::setbase(a_ciBase) << std::uppercase << a_cValueT;  // std::showbase
 
         sRv = ossRes.str();
-    } catch (const std::tostringstream_t::failure &e) {
+    } catch (std::ctostringstream_t::failure &e) {
         sRv.clear();
     } catch (...) {
         sRv.clear();
@@ -181,7 +181,7 @@ CxString::cast(
 template<typename T>
 inline T
 CxString::cast(
-    const std::tstring_t &a_csStr
+    std::ctstring_t &a_csStr
 )
 {
     xTEST_NA(a_csStr);
@@ -193,7 +193,7 @@ CxString::cast(
 
         issStream.exceptions(std::tistringstream_t::failbit | std::tistringstream_t::badbit);
         issStream >> ResT;
-    } catch (const std::tistringstream_t::failure &e) {
+    } catch (std::ctistringstream_t::failure &e) {
         return T();
     } catch (...) {
         return T();
@@ -206,7 +206,7 @@ CxString::cast(
 template<typename T>
 inline T
 CxString::cast(
-    const std::tstring_t &a_csStr,
+    std::ctstring_t &a_csStr,
     cint_t            &a_ciBase
 )
 {
@@ -220,7 +220,7 @@ CxString::cast(
 
         issStream.exceptions(std::tistringstream_t::failbit | std::tistringstream_t::badbit);
         issStream >> std::setbase(a_ciBase) >> ResT;
-    } catch (const std::tistringstream_t::failure &e) {
+    } catch (std::ctistringstream_t::failure &e) {
         return T();
     } catch (...) {
         return T();

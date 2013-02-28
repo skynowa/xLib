@@ -41,8 +41,8 @@ CxFileTemp::~CxFileTemp() {
 //------------------------------------------------------------------------------
 void
 CxFileTemp::create(
-    const std::tstring_t &a_csFilePath,
-    const std::tstring_t &a_csDirPath,
+    std::ctstring_t &a_csFilePath,
+    std::ctstring_t &a_csDirPath,
     CxFile               *a_pfFile
 )
 {
@@ -50,7 +50,7 @@ CxFileTemp::create(
     xTEST_EQ(false, a_csDirPath.empty());
     xTEST_EQ(false, a_pfFile->isValid());
 
-    const std::tstring_t csFileNameTemplate = xT("XXXXXX");
+    std::ctstring_t csFileNameTemplate = xT("XXXXXX");
 
 
     FILE *_pfStdFile = NULL;

@@ -36,7 +36,7 @@ CxProfiler::~CxProfiler() {
 //------------------------------------------------------------------------------
 void
 CxProfiler::setLogPath(
-    const std::tstring_t &a_csLogPath
+    std::ctstring_t &a_csLogPath
 )
 {
     xTEST_EQ(true, CxPath::isValid(a_csLogPath));
@@ -44,7 +44,7 @@ CxProfiler::setLogPath(
     _flLog.setFilePath(a_csLogPath);
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxProfiler::logPath() const {
     return _flLog.filePath();
 }
@@ -85,7 +85,7 @@ CxProfiler::stop(
 
     cdouble_t         cdDurationMsec   = (static_cast<double_t>( _m_clkDuration ) / static_cast<double_t>( CLOCKS_PER_SEC )) * 1000.0;  // 1 sec = 1000 msec
     culonglong_t    cullDurationMsec = CxUtils::roundIntT<ulonglong_t>( cdDurationMsec );
-    const std::tstring_t csDurationTime   = CxDateTime(cullDurationMsec).format(CxDateTime::ftTime);
+    std::ctstring_t csDurationTime   = CxDateTime(cullDurationMsec).format(CxDateTime::ftTime);
 
     //-------------------------------------
     // write to log

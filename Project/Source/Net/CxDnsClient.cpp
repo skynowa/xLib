@@ -20,7 +20,7 @@ xNAMESPACE_BEGIN(NxLib)
 /* static */
 void
 CxDnsClient::hostAddrByName(
-    const std::tstring_t &a_csHostName,
+    std::ctstring_t &a_csHostName,
     std::tstring_t       *a_psHostAddr
 )
 {
@@ -50,7 +50,7 @@ CxDnsClient::hostAddrByName(
 /* static */
 void
 CxDnsClient::hostNameByAddr(
-    const std::tstring_t            &a_csHostAddr,
+    std::ctstring_t            &a_csHostAddr,
     const CxSocket::ExAddressFamily &a_afFamily,
     std::tstring_t                  *a_psHostName
 )
@@ -117,7 +117,7 @@ CxDnsClient::localHostName(
 void
 CxDnsClient::nameInfo(
     CxSocket::ExAddressFamily &a_afFamily,
-    const std::tstring_t      &a_csHostAddr,
+    std::ctstring_t      &a_csHostAddr,
     cushort_t            &a_usPort
 )
 {
@@ -147,8 +147,8 @@ CxDnsClient::nameInfo(
 /* static */
 void
 CxDnsClient::hostAddrInfo(
-    const std::tstring_t  &a_csHostName,
-    const std::tstring_t  &a_csPort,
+    std::ctstring_t  &a_csHostName,
+    std::ctstring_t  &a_csPort,
     caddrinfo_t      *a_pHints,
     addrinfo_t           **a_ppResult
 )
@@ -165,7 +165,7 @@ CxDnsClient::hostAddrInfo(
 /* static */
 void
 CxDnsClient::protocolByName(
-    const std::tstring_t &a_csProtocolName,
+    std::ctstring_t &a_csProtocolName,
     std::tstring_t       *a_psName,
     std::vec_tstring_t   *a_pvsAliases,
     short_t              *a_psiNumber
@@ -262,8 +262,8 @@ CxDnsClient::protocolByNumber(
 /* static */
 void
 CxDnsClient::serviceByName(
-    const std::tstring_t &a_csServiceName,
-    const std::tstring_t &a_csProtocolName,
+    std::ctstring_t &a_csServiceName,
+    std::ctstring_t &a_csProtocolName,
     std::tstring_t       *a_psName,
     std::vec_tstring_t   *a_pvsAliases,
     short_t              *a_psiPort,
@@ -323,7 +323,7 @@ CxDnsClient::serviceByName(
 void
 CxDnsClient::serviceByPort(
     cshort_t        &a_siPort,
-    const std::tstring_t &a_csProtocolName,
+    std::ctstring_t &a_csProtocolName,
     std::tstring_t       *a_psName,
     std::vec_tstring_t   *a_pvsAliases,
     short_t              *a_psiPort,

@@ -26,9 +26,9 @@ CxTest_CxVolume::unit(
     xTEST_CASE("CxVolume::type", cullCaseLoops)
     {
         #if   xOS_ENV_WIN
-            const std::tstring_t csVolumePath = xT("C:");
+            std::ctstring_t csVolumePath = xT("C:");
         #elif xOS_ENV_UNIX
-            const std::tstring_t csVolumePath = xT("/");
+            std::ctstring_t csVolumePath = xT("/");
         #endif
 
         CxVolume::ExType dtRes = CxVolume(csVolumePath).type();
@@ -69,7 +69,7 @@ CxTest_CxVolume::unit(
 
         // false
         {
-            const std::tstring_t csData[] = {
+            std::ctstring_t csData[] = {
                 #if   xOS_ENV_WIN
                     xT("1"),
                     xT("0"),
@@ -97,11 +97,11 @@ CxTest_CxVolume::unit(
         // true
         {
             #if   xOS_ENV_WIN
-                const std::tstring_t  g_csVolumePathWithSlash     = xT("C:\\");
-                const std::tstring_t  g_csVolumeePathWithoutSlash = xT("C:");
+                std::ctstring_t  g_csVolumePathWithSlash     = xT("C:\\");
+                std::ctstring_t  g_csVolumeePathWithoutSlash = xT("C:");
             #elif xOS_ENV_UNIX
-                const std::tstring_t  g_csVolumePathWithSlash     = xT("/");
-                const std::tstring_t  g_csVolumeePathWithoutSlash = xT("/");
+                std::ctstring_t  g_csVolumePathWithSlash     = xT("/");
+                std::ctstring_t  g_csVolumeePathWithoutSlash = xT("/");
             #endif
 
             m_bRv = CxVolume(g_csVolumePathWithSlash).isReady();
@@ -114,11 +114,11 @@ CxTest_CxVolume::unit(
         // false
         {
             #if   xOS_ENV_WIN
-                const std::tstring_t  g_csVolumePathWithSlash     = xT("B:\\");
-                const std::tstring_t  g_csVolumeePathWithoutSlash = xT("B:");
+                std::ctstring_t  g_csVolumePathWithSlash     = xT("B:\\");
+                std::ctstring_t  g_csVolumeePathWithoutSlash = xT("B:");
             #elif xOS_ENV_UNIX
-                const std::tstring_t  g_csVolumePathWithSlash     = xT("/mnqwioe54oq389cp3qm49/");
-                const std::tstring_t  g_csVolumeePathWithoutSlash = xT("/mnqwioe54oq389cp3qm49");
+                std::ctstring_t  g_csVolumePathWithSlash     = xT("/mnqwioe54oq389cp3qm49/");
+                std::ctstring_t  g_csVolumeePathWithoutSlash = xT("/mnqwioe54oq389cp3qm49");
             #endif
 
             m_bRv = CxVolume(g_csVolumePathWithSlash).isReady();
@@ -136,11 +136,11 @@ CxTest_CxVolume::unit(
             // TEST: CxVolume::bIsEmpty
             #if xTODO
                 #if   xOS_ENV_WIN
-                    const std::tstring_t  g_csVolumePathWithSlash     = xT("B:\\");
-                    const std::tstring_t  g_csVolumeePathWithoutSlash = xT("B:");
+                    std::ctstring_t  g_csVolumePathWithSlash     = xT("B:\\");
+                    std::ctstring_t  g_csVolumeePathWithoutSlash = xT("B:");
                 #elif xOS_ENV_UNIX
-                    const std::tstring_t  g_csVolumePathWithSlash     = xT("/home/mnqwioe54oq389cp3qm49/");
-                    const std::tstring_t  g_csVolumeePathWithoutSlash = xT("/home/mnqwioe54oq389cp3qm49");
+                    std::ctstring_t  g_csVolumePathWithSlash     = xT("/home/mnqwioe54oq389cp3qm49/");
+                    std::ctstring_t  g_csVolumeePathWithoutSlash = xT("/home/mnqwioe54oq389cp3qm49");
                 #endif
 
                 m_bRv = CxVolume(g_csVolumePathWithSlash).bIsEmpty();
@@ -154,11 +154,11 @@ CxTest_CxVolume::unit(
         // false
         {
             #if   xOS_ENV_WIN
-                const std::tstring_t  g_csVolumePathWithSlash     = xT("C:\\");
-                const std::tstring_t  g_csVolumeePathWithoutSlash = xT("C:");
+                std::ctstring_t  g_csVolumePathWithSlash     = xT("C:\\");
+                std::ctstring_t  g_csVolumeePathWithoutSlash = xT("C:");
             #elif xOS_ENV_UNIX
-                const std::tstring_t  g_csVolumePathWithSlash     = xT("/");
-                const std::tstring_t  g_csVolumeePathWithoutSlash = xT("/FLASH_4GB/");
+                std::ctstring_t  g_csVolumePathWithSlash     = xT("/");
+                std::ctstring_t  g_csVolumeePathWithoutSlash = xT("/FLASH_4GB/");
             #endif
 
             #if xTEMP_DISABLED
@@ -175,11 +175,11 @@ CxTest_CxVolume::unit(
     {
     #if xTEST_IGNORE
         #if   xOS_ENV_WIN
-            const std::tstring_t csSourcePath = xT("\\\\KSF\\Files\\INSTALL");
-            const std::tstring_t csDestPath   = xT("T:");
+            std::ctstring_t csSourcePath = xT("\\\\KSF\\Files\\INSTALL");
+            std::ctstring_t csDestPath   = xT("T:");
         #elif xOS_ENV_UNIX
-            const std::tstring_t csSourcePath = xT("~");
-            const std::tstring_t csDestPath   = xT("~\test_volume");
+            std::ctstring_t csSourcePath = xT("~");
+            std::ctstring_t csDestPath   = xT("~\test_volume");
         #endif
 
         CxVolume(csSourcePath).vMount(csDestPath);

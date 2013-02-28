@@ -40,7 +40,7 @@ CxDll::isLoaded() const {
 //------------------------------------------------------------------------------
 void
 CxDll::load(
-    const std::tstring_t &csDllPath
+    std::ctstring_t &csDllPath
 )
 {
     xTESTS_NA;
@@ -59,7 +59,7 @@ CxDll::load(
 //------------------------------------------------------------------------------
 bool_t
 CxDll::isProcExists(
-    const std::tstring_t &csProcName
+    std::ctstring_t &csProcName
 ) const
 {
     xTEST_PTR(_m_hDll);
@@ -84,7 +84,7 @@ CxDll::isProcExists(
 //------------------------------------------------------------------------------
 CxDll::proc_address_t
 CxDll::procAddress(
-    const std::tstring_t &csProcName
+    std::ctstring_t &csProcName
 ) const
 {
     xTEST_PTR(_m_hDll);

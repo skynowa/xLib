@@ -47,7 +47,7 @@ public:
 
              CxSystemLog();
         ///< constructor
-    explicit CxSystemLog(const std::tstring_t &csLogName);
+    explicit CxSystemLog(std::ctstring_t &csLogName);
         ///< constructor
     virtual ~CxSystemLog();
         ///< destructor
@@ -64,7 +64,7 @@ private:
     HANDLE   _m_SysLog;     ///< event log handle
 #endif
 
-    void     _init      (const std::tstring_t &csLogName);
+    void     _init      (std::ctstring_t &csLogName);
         ///< initiate data
 };
 

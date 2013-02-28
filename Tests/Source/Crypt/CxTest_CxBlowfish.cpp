@@ -27,7 +27,7 @@ CxTest_CxBlowfish::unit(
 {
     xTEST_CASE("CxBlowfish::encryptCfb64", cullCaseLoops)
     {
-        const std::ustring_t usPlain[] = {
+        std::custring_t usPlain[] = {
             std::ustring_t(1,  'a'),
             std::ustring_t(2,  'b'),
             std::ustring_t(3,  'c'),

@@ -65,7 +65,7 @@ CxIpcSemaphore::handle() const {
 void
 CxIpcSemaphore::create(
     clong_t         &a_cliInitialValue,
-    const std::tstring_t &a_csName
+    std::ctstring_t &a_csName
 )
 {
     xTEST_EQ(false, _isValid());
@@ -103,7 +103,7 @@ CxIpcSemaphore::create(
 //------------------------------------------------------------------------------
 void
 CxIpcSemaphore::open(
-    const std::tstring_t &a_csName
+    std::ctstring_t &a_csName
 )
 {
     xTEST_EQ(true, _isValid());

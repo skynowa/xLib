@@ -30,11 +30,11 @@ CxTest_CxProcess::unit(
     {
         #if 0
             #if   xOS_ENV_WIN
-                const std::tstring_t csFilePath = xT("C:\\Windows\\System32\\attrib.exe");
-                const std::tstring_t csCmdLine  = xT("");
+                std::ctstring_t csFilePath = xT("C:\\Windows\\System32\\attrib.exe");
+                std::ctstring_t csCmdLine  = xT("");
             #elif xOS_ENV_UNIX
-                const std::tstring_t csFilePath = xT("/usr/ls");
-                const std::tstring_t csCmdLine  = xT("-la");
+                std::ctstring_t csFilePath = xT("/usr/ls");
+                std::ctstring_t csCmdLine  = xT("-la");
             #endif
 
             CxProcess prProc;
@@ -50,11 +50,11 @@ CxTest_CxProcess::unit(
     {
         #if 0
             #if   xOS_ENV_WIN
-                const std::tstring_t csFilePath = xT("C:\\Windows\\System32\\attrib.exe");
-                const std::tstring_t csCmdLine  = xT("/?");
+                std::ctstring_t csFilePath = xT("C:\\Windows\\System32\\attrib.exe");
+                std::ctstring_t csCmdLine  = xT("/?");
             #elif xOS_ENV_UNIX
-                const std::tstring_t csFilePath = xT("/usr/ls");
-                const std::tstring_t csCmdLine  = xT("-la");
+                std::ctstring_t csFilePath = xT("/usr/ls");
+                std::ctstring_t csCmdLine  = xT("-la");
             #endif
 
             CxProcess prProc;
@@ -68,11 +68,11 @@ CxTest_CxProcess::unit(
     {
         #if 0
             #if   xOS_ENV_WIN
-                const std::tstring_t csFilePath = xT("C:\\Windows\\System32\\attrib.exe");
-                const std::tstring_t csCmdLine  = xT("/?");
+                std::ctstring_t csFilePath = xT("C:\\Windows\\System32\\attrib.exe");
+                std::ctstring_t csCmdLine  = xT("/?");
             #elif xOS_ENV_UNIX
-                const std::tstring_t csFilePath = xT("/usr/bin/nautilus");
-                const std::tstring_t csCmdLine  = xT(">");
+                std::ctstring_t csFilePath = xT("/usr/bin/nautilus");
+                std::ctstring_t csCmdLine  = xT(">");
             #endif
 
             CxProcess prProc;
@@ -104,7 +104,7 @@ CxTest_CxProcess::unit(
 
     xTEST_CASE("CxProcess::idByName", cullCaseLoops)
     {
-        const std::tstring_t csProcessName = CxPath( CxPath::exe() ).fileName();
+        std::ctstring_t csProcessName = CxPath( CxPath::exe() ).fileName();
 
         CxProcess::id_t id = CxProcess::idByName(csProcessName);
         xTEST_DIFF(0UL, static_cast<ulong_t>( id ));

@@ -46,7 +46,7 @@ CxFileLog::~CxFileLog() {
 //------------------------------------------------------------------------------
 void
 CxFileLog::setFilePath(
-    const std::tstring_t &a_csFilePath
+    std::ctstring_t &a_csFilePath
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
@@ -58,7 +58,7 @@ CxFileLog::setFilePath(
     }
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxFileLog::filePath() const {
     return _m_sFilePath;
 }

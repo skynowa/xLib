@@ -132,7 +132,7 @@ CxTest_xDefines::unit(
 
     xTEST_CASE("xDefines::xTEXT_ xT_", cullCaseLoops)
     {
-        const std::tstring_t csStr(xT("xxx"));
+        std::ctstring_t csStr(xT("xxx"));
 
         m_sRv = xTEXT("xxx");
         xTEST_EQ(csStr, m_sRv);
@@ -306,7 +306,7 @@ CxTest_xDefines::unit(
 
     xTEST_CASE("xDefines::var args", cullCaseLoops)
     {
-        const std::tstring_t csVal = xT("aaa");
+        std::ctstring_t csVal = xT("aaa");
         cint_t            ciVal = 100;
 
         // CxString::format use var args
@@ -382,7 +382,7 @@ CxTest_xDefines::unit(
     {
         // xFOREACH
         {
-            const std::tstring_t csNew = xT("xxxxxx");
+            std::ctstring_t csNew = xT("xxxxxx");
 
             std::vec_tstring_t vsData;
             vsData.push_back(xT("aaaaaa"));
@@ -400,7 +400,7 @@ CxTest_xDefines::unit(
 
         // xFOREACH_CONST
         {
-            const std::tstring_t csNew = xT("xxxxxx");
+            std::ctstring_t csNew = xT("xxxxxx");
             std::vec_tstring_t   vsDataNew;
 
             std::vec_tstring_t   vsData;
@@ -419,7 +419,7 @@ CxTest_xDefines::unit(
 
         // xFOREACH_R
         {
-            const std::tstring_t csNew = xT("xxxxxx");
+            std::ctstring_t csNew = xT("xxxxxx");
 
             std::vec_tstring_t vsData;
             vsData.push_back(xT("aaaaaa"));
@@ -437,7 +437,7 @@ CxTest_xDefines::unit(
 
         // xFOREACH_R_CONST
         {
-            const std::tstring_t csNew = xT("xxxxxx");
+            std::ctstring_t csNew = xT("xxxxxx");
             std::vec_tstring_t   vsDataNew;
 
             std::vec_tstring_t   vsData;

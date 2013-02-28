@@ -94,7 +94,7 @@ CxTest::unit(
 #if xTODO
     xTEST_CASE("CaseName", a_cullCaseLoops)
     {
-        const std::tstring_t casData[][2] = {
+        std::ctstring_t casData[][2] = {
             {xT("TEST_STRING_1"), xT("MUST_BE_1")},
             {xT("TEST_STRING_2"), xT("MUST_BE_2")},
             {xT("TEST_STRING_3"), xT("MUST_BE_3")},
@@ -110,7 +110,7 @@ CxTest::unit(
 //------------------------------------------------------------------------------
 void
 CxTest::createTempDir(
-    const std::tstring_t &a_csDirName
+    std::ctstring_t &a_csDirName
 )
 {
     xTEST_NA(a_csDirName);
@@ -124,21 +124,21 @@ CxTest::createTempDir(
     }
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxTest::tempDirPath() const {
     xTEST_EQ(false, _m_sWorkDirPath.empty());
 
     return _m_sWorkDirPath;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxTest::name() const {
     return _m_sName;
 }
 //------------------------------------------------------------------------------
 void
 CxTest::setName(
-    const std::tstring_t &a_csTestName
+    std::ctstring_t &a_csTestName
 )
 {
     xTEST_NA(a_csTestName);

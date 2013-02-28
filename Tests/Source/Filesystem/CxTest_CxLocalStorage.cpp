@@ -27,18 +27,18 @@ CxTest_CxLocalStorage::unit(
     culonglong_t &cullCaseLoops
 )
 {
-    const std::tstring_t csFilePath = CxPath( CxPath::exe() ).setExt(xT("ini") );
+    std::ctstring_t csFilePath = CxPath( CxPath::exe() ).setExt(xT("ini") );
 
-    const std::tstring_t csKey1     = xT("a");
-    const std::tstring_t csValue1   = xT("1");
+    std::ctstring_t csKey1     = xT("a");
+    std::ctstring_t csValue1   = xT("1");
 
-    const std::tstring_t csKey2     = xT("b");
-    const std::tstring_t csValue2   = xT("2");
+    std::ctstring_t csKey2     = xT("b");
+    std::ctstring_t csValue2   = xT("2");
 
-    const std::tstring_t csKey3     = xT("c");
-    const std::tstring_t csValue3   = xT("3");
+    std::ctstring_t csKey3     = xT("c");
+    std::ctstring_t csValue3   = xT("3");
 
-    const std::tstring_t csContent  = csKey1 + CxConst::xEQUAL + csValue1 + CxConst::xNL +
+    std::ctstring_t csContent  = csKey1 + CxConst::xEQUAL + csValue1 + CxConst::xNL +
                                       csKey2 + CxConst::xEQUAL + csValue2 + CxConst::xNL +
                                       csKey3 + CxConst::xEQUAL + csValue3 + CxConst::xNL;
 
@@ -154,7 +154,7 @@ CxTest_CxLocalStorage::unit(
     {
         // true
         {
-            const std::tstring_t csStr = csValue1;
+            std::ctstring_t csStr = csValue1;
 
             iniIni.keyWriteString(csKey1, csStr);
 
@@ -164,7 +164,7 @@ CxTest_CxLocalStorage::unit(
 
         // false
         {
-            const std::tstring_t csStr = xT("sssssssssssss");
+            std::ctstring_t csStr = xT("sssssssssssss");
 
             iniIni.keyWriteString(csKey1, csStr);
 
@@ -205,8 +205,8 @@ CxTest_CxLocalStorage::unit(
 
     xTEST_CASE("CxLocalStorage::keyWriteBin CxLocalStorage::keyReadBin", cullCaseLoops)
     {
-        const std::ustring_t cusValue(10, 'z');
-        const std::ustring_t cusDefaultValue(10, 'd');
+        std::custring_t cusValue(10, 'z');
+        std::custring_t cusDefaultValue(10, 'd');
 
         iniIni.keyWriteBin(csKey1, cusValue);
 
@@ -229,8 +229,8 @@ CxTest_CxLocalStorage::unit(
 
     xTEST_CASE("CxLocalStorage::keyDelete", cullCaseLoops)
     {
-        const std::tstring_t csKey   = xT("Key");
-        const std::tstring_t csValue = xT("");
+        std::ctstring_t csKey   = xT("Key");
+        std::ctstring_t csValue = xT("");
 
         iniIni.keyWriteString(csKey, csValue);
         xTEST_EQ(true, iniIni.keyIsExists(csKey));

@@ -126,8 +126,8 @@ CxDecrypt::verifyUpdate(
 //------------------------------------------------------------------------------
 void
 CxDecrypt::makeFile(
-    const std::tstring_t &a_csInFilePath,
-    const std::tstring_t &a_csOutFilePath,
+    std::ctstring_t &a_csInFilePath,
+    std::ctstring_t &a_csOutFilePath,
     CK_MECHANISM_PTR      a_pMechanism,
     CK_OBJECT_HANDLE      a_hKey
 )

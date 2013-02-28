@@ -37,9 +37,9 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 CxStackTrace::CxStackTrace(
-    const std::tstring_t &a_csLinePrefix,         /* = xT("\t") */
-    const std::tstring_t &a_csElementSeparator,   /* = xT("  ") */
-    const std::tstring_t &a_csLinesSeparator,     /* = xT("\n") */
+    std::ctstring_t &a_csLinePrefix,         /* = xT("\t") */
+    std::ctstring_t &a_csElementSeparator,   /* = xT("  ") */
+    std::ctstring_t &a_csLinesSeparator,     /* = xT("\n") */
     cbool_t           &a_cbIsWrapFilePathes,   /* = true */
     cbool_t           &a_cbIsFuncParamsDisable /* = true */
 ) :
@@ -64,7 +64,7 @@ CxStackTrace::get(
 {
     xCHECK_DO(NULL == a_pvvsStack, return);
 
-    const std::tstring_t            csDataNotFound = xT("[???]");
+    std::ctstring_t            csDataNotFound = xT("[???]");
     std::vector<std::vec_tstring_t> vvsStack;
 
 #if   xOS_ENV_WIN

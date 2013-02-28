@@ -24,8 +24,8 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 CxFinder::CxFinder(
-    const std::tstring_t &a_csRootDirPath,
-    const std::tstring_t &a_csFilterByShell
+    std::ctstring_t &a_csRootDirPath,
+    std::ctstring_t &a_csFilterByShell
 ) :
     _m_enEnrty           (),
     _m_csRootDirPath     (a_csRootDirPath),
@@ -41,14 +41,14 @@ CxFinder::~CxFinder() {
     close();
 }
 //--------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxFinder::rootDirPath() const {
     xTEST_EQ(false, _m_csRootDirPath.empty());
 
     return _m_csRootDirPath;
 }
 //--------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxFinder::filterByShell() const {
     xTEST_EQ(false, _m_csFilterByShell.empty());
 

@@ -53,13 +53,13 @@ public:
         ///< run test units
     virtual void           unit         (culonglong_t &cullCaseLoops) = 0;
         ///< test unit
-    void                   createTempDir(const std::tstring_t &csDirName);
+    void                   createTempDir(std::ctstring_t &csDirName);
         ///< create work dir
-    const std::tstring_t & tempDirPath  () const xWARN_UNUSED_RV;
+    std::ctstring_t & tempDirPath  () const xWARN_UNUSED_RV;
         ///< get work dir path
-    const std::tstring_t & name         () const xWARN_UNUSED_RV;
+    std::ctstring_t & name         () const xWARN_UNUSED_RV;
         ///< get name
-    void                   setName      (const std::tstring_t &csTestName);
+    void                   setName      (std::ctstring_t &csTestName);
         ///< set name
 
 private:

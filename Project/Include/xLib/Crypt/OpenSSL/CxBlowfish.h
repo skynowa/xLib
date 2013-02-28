@@ -32,11 +32,11 @@ public:
 
     void          setKey          (uchar_t *pucKey, cint_t &ciKeySize);
         ///< set key
-    void          setKey          (const std::ustring_t &cusKey);
+    void          setKey          (std::custring_t &cusKey);
         ///< set key
-    void          setKey          (const std::tstring_t &csKey);
+    void          setKey          (std::ctstring_t &csKey);
         ///< set key
-    void          setFileKey      (const std::tstring_t &csFilePath);
+    void          setFileKey      (std::ctstring_t &csFilePath);
         ///< set key as file
     static size_t maxKeySize      () xWARN_UNUSED_RV;
         ///< get maximum key size
@@ -44,9 +44,9 @@ public:
     //cfb64
     void          encryptCfb64    (uchar_t *pucIn, uchar_t *pucOut, clong_t &cliInSize, int_t *piNum, const ExCryptMode &cmMode);
         ///< encrypt buffer
-    void          encryptCfb64    (const std::ustring_t &cusIn, std::ustring_t *pusOut, const ExCryptMode &cmMode);
+    void          encryptCfb64    (std::custring_t &cusIn, std::ustring_t *pusOut, const ExCryptMode &cmMode);
         ///< encrypt std::ustring_t
-    void          encryptFileCfb64(const std::tstring_t &csFilePathIn, const std::tstring_t &csFilePathOut, const ExCryptMode &cmMode);
+    void          encryptFileCfb64(std::ctstring_t &csFilePathIn, std::ctstring_t &csFilePathOut, const ExCryptMode &cmMode);
         ///< encrypt file
 
 private:

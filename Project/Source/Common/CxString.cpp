@@ -158,7 +158,7 @@ CxString::convertCodePage(
 /* static */
 std::string
 CxString::charToOemBuff(
-    const std::tstring_t &a_csSrc
+    std::ctstring_t &a_csSrc
 )
 {
     xTEST_NA(a_csSrc);
@@ -217,7 +217,7 @@ CxString::boolToStr(
 /* static */
 bool_t
 CxString::strToBool(
-    const std::tstring_t &a_csStr
+    std::ctstring_t &a_csStr
 )
 {
     xTEST_NA(a_csStr);
@@ -231,7 +231,7 @@ CxString::strToBool(
 /* static */
 std::tstring_t
 CxString::toLowerCase(
-    const std::tstring_t &a_csStr
+    std::ctstring_t &a_csStr
 )
 {
     xTEST_NA(a_csStr);
@@ -242,7 +242,7 @@ CxString::toLowerCase(
 /* static */
 std::tstring_t
 CxString::toUpperCase(
-    const std::tstring_t &a_csStr
+    std::ctstring_t &a_csStr
 )
 {
     xTEST_NA(a_csStr);
@@ -253,7 +253,7 @@ CxString::toUpperCase(
 /* static */
 std::tstring_t
 CxString::toLowerCase(
-    const std::tstring_t &a_csStr,
+    std::ctstring_t &a_csStr,
     const size_t         &a_cuiLength
 )
 {
@@ -281,7 +281,7 @@ CxString::toLowerCase(
 /* static */
 std::tstring_t
 CxString::toUpperCase(
-    const std::tstring_t &a_csStr,
+    std::ctstring_t &a_csStr,
     const size_t         &a_cuiLength
 )
 {
@@ -316,8 +316,8 @@ CxString::toUpperCase(
 /* static */
 std::tstring_t
 CxString::trimLeftChars(
-    const std::tstring_t &a_csStr,
-    const std::tstring_t &a_csChars
+    std::ctstring_t &a_csStr,
+    std::ctstring_t &a_csChars
 )
 {
     xTEST_NA(a_csStr);
@@ -331,8 +331,8 @@ CxString::trimLeftChars(
 /* static */
 std::tstring_t
 CxString::trimRightChars(
-    const std::tstring_t &a_csStr,
-    const std::tstring_t &a_csChars
+    std::ctstring_t &a_csStr,
+    std::ctstring_t &a_csChars
 )
 {
     xTEST_NA(a_csStr);
@@ -346,8 +346,8 @@ CxString::trimRightChars(
 /* static */
 std::tstring_t
 CxString::trimChars(
-    const std::tstring_t &a_csStr,
-    const std::tstring_t &a_csChars
+    std::ctstring_t &a_csStr,
+    std::ctstring_t &a_csChars
 )
 {
     xTEST_NA(a_csStr);
@@ -364,7 +364,7 @@ CxString::trimChars(
 /* static */
 std::tstring_t
 CxString::trimSpace(
-    const std::tstring_t &a_csStr
+    std::ctstring_t &a_csStr
 )
 {
     xTEST_NA(a_csStr);
@@ -375,7 +375,7 @@ CxString::trimSpace(
 /* static */
 std::tstring_t
 CxString::removeEol(
-    const std::tstring_t &a_csStr
+    std::ctstring_t &a_csStr
 )
 {
     xTEST_NA(a_csStr);
@@ -386,9 +386,9 @@ CxString::removeEol(
 /* static */
 std::tstring_t
 CxString::replaceAll(
-    const std::tstring_t &a_csStr,
-    const std::tstring_t &a_csOldStr,
-    const std::tstring_t &a_csNewStr
+    std::ctstring_t &a_csStr,
+    std::ctstring_t &a_csOldStr,
+    std::ctstring_t &a_csNewStr
 )
 {
     xTEST_NA(a_csStr);
@@ -417,7 +417,7 @@ CxString::replaceAll(
 /* static */
 std::tstring_t
 CxString::replaceAll(
-    const std::tstring_t &a_csStr,
+    std::ctstring_t &a_csStr,
     ctchar_t        &a_cchOldStr,
     ctchar_t        &a_cchNewStr
 )
@@ -432,8 +432,8 @@ CxString::replaceAll(
 /* static */
 std::tstring_t
 CxString::removeAll(
-    const std::tstring_t &a_csStr,
-    const std::tstring_t &a_csRemoveStr
+    std::ctstring_t &a_csStr,
+    std::ctstring_t &a_csRemoveStr
 )
 {
     xTEST_NA(a_csStr);
@@ -445,8 +445,8 @@ CxString::removeAll(
 /* static */
 void
 CxString::split(
-    const std::tstring_t &a_csStr,
-    const std::tstring_t &a_csSep,
+    std::ctstring_t &a_csStr,
+    std::ctstring_t &a_csSep,
     std::vec_tstring_t   *a_pvsOut
 )
 {
@@ -479,8 +479,8 @@ CxString::split(
 /* static */
 std::tstring_t
 CxString::join(
-    const std::vec_tstring_t &a_cvsVec,
-    const std::tstring_t     &a_csSep
+    std::cvec_tstring_t &a_cvsVec,
+    std::ctstring_t     &a_csSep
 )
 {
     xTEST_NA(a_cvsVec);
@@ -500,7 +500,7 @@ CxString::join(
 /* static */
 std::tstring_t
 CxString::join(
-    const std::vec_tstring_t &a_cvsVec,
+    std::cvec_tstring_t &a_cvsVec,
     ctchar_t            &a_cchSep
 )
 {
@@ -513,9 +513,9 @@ CxString::join(
 /* static */
 std::tstring_t
 CxString::cut(
-    const std::tstring_t &a_csStr,
-    const std::tstring_t &a_csLeftSep,
-    const std::tstring_t &a_csRightSep
+    std::ctstring_t &a_csStr,
+    std::ctstring_t &a_csLeftSep,
+    std::ctstring_t &a_csRightSep
 )
 {
     xTEST_NA(a_csStr);
@@ -540,7 +540,7 @@ CxString::cut(
 /* static */
 std::tstring_t
 CxString::cut(
-    const std::tstring_t &a_csStr,
+    std::ctstring_t &a_csStr,
     const size_t         &a_cuiStartPos /* = 0 */,
     const size_t         &a_cuiEndPos   /* = std::tstring_t:npos */
 )
@@ -676,7 +676,7 @@ CxString::formatV(
 /* static */
 std::tstring_t
 CxString::minimize(
-    const std::tstring_t &a_csStr,
+    std::ctstring_t &a_csStr,
     const size_t         &a_cuiMaxLen
 )
 {
@@ -714,8 +714,8 @@ xNAMESPACE_ANONYM_BEGIN
 struct SCompareNoCase {
     bool_t
     operator () (
-        const std::tstring_t::value_type &a_cchChar1,
-        const std::tstring_t::value_type &a_cchChar2
+        std::ctstring_t::value_type &a_cchChar1,
+        std::ctstring_t::value_type &a_cchChar2
     )  const
     {
         return CxChar::toUpper(a_cchChar1) == CxChar::toUpper(a_cchChar2);
@@ -727,8 +727,8 @@ xNAMESPACE_ANONYM_END
 /* static */
 bool_t
 CxString::compareNoCase(
-    const std::tstring_t &a_csStr1,
-    const std::tstring_t &a_csStr2
+    std::ctstring_t &a_csStr1,
+    std::ctstring_t &a_csStr2
 )
 {
     xTEST_NA(a_csStr1);
@@ -758,7 +758,7 @@ CxString::compareNoCase(
 /* static */
 std::tstring_t
 CxString::translitLatToRus(
-    const std::tstring_t &a_csStr
+    std::ctstring_t &a_csStr
 )
 {
     xTEST_NA(a_csStr);
@@ -766,7 +766,7 @@ CxString::translitLatToRus(
     xCHECK_RET(true == a_csStr.empty(), std::tstring_t());
 
     // translit table
-    const std::tstring_t csDict[][2] = {
+    std::ctstring_t csDict[][2] = {
         {xT("Й"), xT("Y")},   {xT("Ц"), xT("C")},  {xT("У"), xT("U")},
         {xT("К"), xT("K")},   {xT("Е"), xT("E")},  {xT("Ё"), xT("E")},
         {xT("Н"), xT("N")},   {xT("Г"), xT("G")},  {xT("Ш"), xT("SH")},
@@ -937,7 +937,7 @@ CxString::createGuid() {
 /* static */
 bool_t
 CxString::isRepeated(
-    const std::tstring_t &a_csStr
+    std::ctstring_t &a_csStr
 )
 {
     xTEST_NA(a_csStr);

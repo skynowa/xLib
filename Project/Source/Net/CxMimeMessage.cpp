@@ -25,7 +25,7 @@ CxMimeMessage::~CxMimeMessage() {
 /* static */
 void
 CxMimeMessage::vParse(
-    const std::tstring_t &a_csRawMessage,
+    std::ctstring_t &a_csRawMessage,
     CxMimeHeader         &a_Header,
     CxMimeBody           &a_Body
 )
@@ -36,7 +36,7 @@ CxMimeMessage::vParse(
 /* static */
 void
 CxMimeMessage::vLoadFromRawFile(
-    const std::tstring_t &a_csFilePath
+    std::ctstring_t &a_csFilePath
 )
 {
     xNOT_IMPLEMENTED;
@@ -45,7 +45,7 @@ CxMimeMessage::vLoadFromRawFile(
 /* static */
 void
 CxMimeMessage::vSaveToRawFile(
-    const std::tstring_t &a_csFilePath
+    std::ctstring_t &a_csFilePath
 )
 {
     xNOT_IMPLEMENTED;

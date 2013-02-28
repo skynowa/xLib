@@ -34,7 +34,7 @@ CxCookiePv1::CxCookiePv1() :
 }
 //------------------------------------------------------------------------------
 CxCookiePv1::CxCookiePv1(
-    const std::tstring_t &a_csRawCookie
+    std::ctstring_t &a_csRawCookie
 ) :
     _m_sName    (),
     _m_sValue   (),
@@ -53,66 +53,66 @@ CxCookiePv1::~CxCookiePv1() {
 
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxCookiePv1::name() const {
     return _m_sName;
 }
 //------------------------------------------------------------------------------
 void
 CxCookiePv1::setName(
-    const std::tstring_t &a_csName
+    std::ctstring_t &a_csName
 )
 {
     _m_sName = a_csName;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxCookiePv1::value() const {
     return _m_sValue;
 }
 //------------------------------------------------------------------------------
 void
 CxCookiePv1::setValue(
-    const std::tstring_t &a_csValue
+    std::ctstring_t &a_csValue
 )
 {
     _m_sValue = a_csValue;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxCookiePv1::comment() const {
     return _m_sComment;
 }
 //------------------------------------------------------------------------------
 void
 CxCookiePv1::setComment(
-    const std::tstring_t &a_csComment
+    std::ctstring_t &a_csComment
 )
 {
     _m_sComment = a_csComment;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxCookiePv1::domain() const {
     return _m_sDomain;
 }
 //------------------------------------------------------------------------------
 void
 CxCookiePv1::setDomain(
-    const std::tstring_t &a_csDomain
+    std::ctstring_t &a_csDomain
 )
 {
     _m_sDomain = a_csDomain;
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxCookiePv1::path() const {
     return _m_sPath;
 }
 //------------------------------------------------------------------------------
 void
 CxCookiePv1::setPath(
-    const std::tstring_t &a_csPath
+    std::ctstring_t &a_csPath
 )
 {
     _m_sPath = a_csPath;
@@ -237,14 +237,14 @@ CxCookiePv1::clear() {
 //------------------------------------------------------------------------------
 struct SCompareNoCase {
     bool_t
-    operator() (const std::tstring_t &csStr1, const std::tstring_t &csStr2) const {
+    operator() (std::ctstring_t &csStr1, std::ctstring_t &csStr2) const {
         return !! CxString::compareNoCase(csStr1, csStr2);
     }
 };
 //------------------------------------------------------------------------------
 void
 CxCookiePv1::init(
-    const std::tstring_t &a_csRawCookie
+    std::ctstring_t &a_csRawCookie
 )
 {
     // _m_msCookie - n/a

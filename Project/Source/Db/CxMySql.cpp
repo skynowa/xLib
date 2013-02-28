@@ -76,12 +76,12 @@ CxMySQLConnection::options(
 /* static */
 bool_t
 CxMySQLConnection::isExists(
-    const std::tstring_t &a_csHost,
-    const std::tstring_t &a_csUser,
-    const std::tstring_t &a_csPassword,
-    const std::tstring_t &a_csDb,
+    std::ctstring_t &a_csHost,
+    std::ctstring_t &a_csUser,
+    std::ctstring_t &a_csPassword,
+    std::ctstring_t &a_csDb,
     cuint_t         &a_cuiPort,
-    const std::tstring_t &a_csUnixSocket,
+    std::ctstring_t &a_csUnixSocket,
     culong_t        &a_culClientFlag
 )
 {
@@ -120,12 +120,12 @@ CxMySQLConnection::isExists(
 //------------------------------------------------------------------------------
 void
 CxMySQLConnection::connect(
-    const std::tstring_t &a_csHost,
-    const std::tstring_t &a_csUser,
-    const std::tstring_t &a_csPassword,
-    const std::tstring_t &a_csDb,
+    std::ctstring_t &a_csHost,
+    std::ctstring_t &a_csUser,
+    std::ctstring_t &a_csPassword,
+    std::ctstring_t &a_csDb,
     cuint_t         &a_cuiPort,
-    const std::tstring_t &a_csUnixSocket,
+    std::ctstring_t &a_csUnixSocket,
     culong_t        &a_culClientFlag
 )
 {

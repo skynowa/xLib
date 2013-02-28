@@ -44,7 +44,7 @@ public:
                     CxProcess ();
     virtual        ~CxProcess ();
 
-    void            create    (const std::tstring_t &csFilePath, ctchar_t *pcszParams, ...);
+    void            create    (std::ctstring_t &csFilePath, ctchar_t *pcszParams, ...);
         ///< execute a file
     ExWaitResult    wait      (culong_t &culTimeout) xWARN_UNUSED_RV;
         ///< wait for termination
@@ -64,7 +64,7 @@ public:
         ///< get ID by handle
     static handle_t handleById(const id_t &culId) xWARN_UNUSED_RV;
         ///< get handle by ID
-    static id_t     idByName  (const std::tstring_t &csProcessName) xWARN_UNUSED_RV;
+    static id_t     idByName  (std::ctstring_t &csProcessName) xWARN_UNUSED_RV;
         ///< get ID by name
     static bool_t     isRunning (const id_t &culId) xWARN_UNUSED_RV;
         ///< is process running by name (with extension)

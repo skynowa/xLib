@@ -29,7 +29,7 @@ CxTest_CxFinder::unit(
 {
     //-------------------------------------
     // prepare
-    const std::tstring_t csRootDirPath = tempDirPath() + CxConst::xSLASH + xT("CxFinder_Dir");
+    std::ctstring_t csRootDirPath = tempDirPath() + CxConst::xSLASH + xT("CxFinder_Dir");
     std::vec_tstring_t vsDirs;
     std::vec_tstring_t vsFiles;
 
@@ -81,7 +81,7 @@ CxTest_CxFinder::unit(
 
         for (size_t i = 0; i < xARRAY_SIZE2(adtData); ++ i) {
             std::vec_tstring_t   vsEntries;
-            const std::tstring_t csFilter = adtData[i].sFilter;
+            std::ctstring_t csFilter = adtData[i].sFilter;
             CxFinder             fnFinder(csRootDirPath, csFilter);
 
             m_bRv = fnFinder.moveFirst();

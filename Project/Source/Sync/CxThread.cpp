@@ -919,7 +919,7 @@ CxThread::exitStatus() const {
 //------------------------------------------------------------------------------
 void
 CxThread::setDebugName(
-    const std::tstring_t &a_csName
+    std::ctstring_t &a_csName
 ) const
 {
     ////xTEST_LESS(0, _m_ulId);

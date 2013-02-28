@@ -51,7 +51,7 @@ CxTest_CxConsole::unit(
     xTEST_CASE("CxConsole::write", cullCaseLoops)
     {
         #if xTEST_IGNORE
-            const std::tstring_t csStr = xT("\tConsole_test_string");
+            std::ctstring_t csStr = xT("\tConsole_test_string");
 
             CxConsole cnConsole;
 
@@ -62,7 +62,7 @@ CxTest_CxConsole::unit(
     xTEST_CASE("CxConsole::writeLine", cullCaseLoops)
     {
         #if xTEST_IGNORE
-            const std::tstring_t csStr = xT("\tConsole_test_line");
+            std::ctstring_t csStr = xT("\tConsole_test_line");
 
             CxConsole cnConsole;
 
@@ -73,7 +73,7 @@ CxTest_CxConsole::unit(
     xTEST_CASE("CxConsole::writeLine", cullCaseLoops)
     {
         #if xTEST_IGNORE
-            const std::tstring_t csStr = xT("\tConsole_test_error");
+            std::ctstring_t csStr = xT("\tConsole_test_error");
 
             CxConsole cnConsole;
 
@@ -84,8 +84,8 @@ CxTest_CxConsole::unit(
     xTEST_CASE("CxConsole::msgBox", cullCaseLoops)
     {
         #if xTEST_IGNORE
-            const std::tstring_t csText  = xT("iMsgBox_text");
-            const std::tstring_t csTitle = xT("iMsgBox_title");
+            std::ctstring_t csText  = xT("iMsgBox_text");
+            std::ctstring_t csTitle = xT("iMsgBox_title");
             cuint_t         cuiType = 0U;
 
 
@@ -99,7 +99,7 @@ CxTest_CxConsole::unit(
     xTEST_CASE("CxConsole::prompt", cullCaseLoops)
     {
         #if xTEST_IGNORE
-            const std::tstring_t csPrompt    = xT("vPrompt_simple_prompt");
+            std::ctstring_t csPrompt    = xT("vPrompt_simple_prompt");
             cbool_t           cbIsVisible = true;
             std::tstring_t       sAnswer     = xT("sAnswer_bla-bla-bla");
 
@@ -145,7 +145,7 @@ CxTest_CxConsole::unit(
     xTEST_CASE("CxConsole::setTitle", cullCaseLoops)
     {
         #if xTEST_IGNORE
-            const std::tstring_t csTitle = xT("Title1");
+            std::ctstring_t csTitle = xT("Title1");
 
 
             CxConsole cnConsole;

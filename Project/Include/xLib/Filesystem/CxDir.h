@@ -17,17 +17,17 @@ class CxDir :
     /// directory
 {
 public:
-    explicit               CxDir     (const std::tstring_t &csDirPath);
+    explicit               CxDir     (std::ctstring_t &csDirPath);
         ///< constructor
     virtual               ~CxDir     ();
         ///< destructor
 
-    const std::tstring_t & dirPath   () const xWARN_UNUSED_RV;
+    std::ctstring_t & dirPath   () const xWARN_UNUSED_RV;
         ///< directory path
 
     bool_t                   isExists  () xWARN_UNUSED_RV;
         ///< check for existence
-    bool_t                   isEmpty   (const std::tstring_t &csPattern = CxConst::xMASK_ALL) xWARN_UNUSED_RV;
+    bool_t                   isEmpty   (std::ctstring_t &csPattern = CxConst::xMASK_ALL) xWARN_UNUSED_RV;
         ///< is empty
     bool_t                   isRoot    () xWARN_UNUSED_RV;
         ///< is root
@@ -37,9 +37,9 @@ public:
         ///< create
     void                   pathCreate();
         ///< creation of all directories that not exists in path
-    void                   copy      (const std::tstring_t &csDirPathTo, cbool_t &cbFailIfExists);
+    void                   copy      (std::ctstring_t &csDirPathTo, cbool_t &cbFailIfExists);
         ///< copy
-    void                   move      (const std::tstring_t &csDirPathTo, cbool_t &cbFailIfExists);
+    void                   move      (std::ctstring_t &csDirPathTo, cbool_t &cbFailIfExists);
         ///< move
 
     void                   remove    ();
@@ -51,23 +51,23 @@ public:
     void                   pathDelete();
         ///< deletion dir find all content of it
 
-    void                   filesFind (const std::tstring_t &csPattern,
+    void                   filesFind (std::ctstring_t &csPattern,
                                       cbool_t &cbIsRecursively, std::vec_tstring_t *pvsFilePathes);
         ///< search files
-    void                   dirsFind  (const std::tstring_t &csPattern,
+    void                   dirsFind  (std::ctstring_t &csPattern,
                                       cbool_t &cbIsRecursively, std::vec_tstring_t *pvsDirPathes);
         ///< search subdirectories
 
     // static
     static std::tstring_t  current   () xWARN_UNUSED_RV;
         ///< get current
-    static void            setCurrent(const std::tstring_t &csDirPath);
+    static void            setCurrent(std::ctstring_t &csDirPath);
         ///< set current
     static std::tstring_t  temp      () xWARN_UNUSED_RV;
         ///< get path to system var %Temp%
 
 private:
-    const std::tstring_t   _m_csDirPath;
+    std::ctstring_t   _m_csDirPath;
 };
 
 xNAMESPACE_END(NxLib)

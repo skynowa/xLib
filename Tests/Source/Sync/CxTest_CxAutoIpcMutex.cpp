@@ -24,7 +24,7 @@ CxTest_CxAutoIpcMutex::unit(
     culonglong_t &cullCaseLoops
 )
 {
-    const std::tstring_t csName = xT("mutex_name_a");
+    std::ctstring_t csName = xT("mutex_name_a");
 
     xTEST_CASE("CxAutoIpcMutex::CxAutoIpcMutex", cullCaseLoops)
     {

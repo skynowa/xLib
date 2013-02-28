@@ -22,10 +22,10 @@ public:
                    CxMimeMessage   ();
     virtual       ~CxMimeMessage   ();
 
-    static void    vParse          (const std::tstring_t &csRawMessage,
+    static void    vParse          (std::ctstring_t &csRawMessage,
                                     CxMimeHeader &Header, CxMimeBody &Body);
-    static void    vLoadFromRawFile(const std::tstring_t &csFilePath);       //csFilePath - raw msg
-    static void    vSaveToRawFile  (const std::tstring_t &csFilePath);       //csFilePath - raw msg
+    static void    vLoadFromRawFile(std::ctstring_t &csFilePath);       //csFilePath - raw msg
+    static void    vSaveToRawFile  (std::ctstring_t &csFilePath);       //csFilePath - raw msg
 
 private:
     std::tstring_t _m_csRawMessage;

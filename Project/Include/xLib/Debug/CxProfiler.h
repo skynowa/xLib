@@ -23,9 +23,9 @@ public:
     virtual              ~CxProfiler();
         ///< destructor
 
-    void                  setLogPath(const std::tstring_t &csLogPath);
+    void                  setLogPath(std::ctstring_t &csLogPath);
         ///< set log path
-    const std::tstring_t &logPath   () const xWARN_UNUSED_RV;
+    std::ctstring_t &logPath   () const xWARN_UNUSED_RV;
         ///< get log path
 
     void                  start     ();

@@ -54,7 +54,7 @@ CxBlowfish::setKey(
 //------------------------------------------------------------------------------
 void
 CxBlowfish::setKey(
-    const std::ustring_t &a_cusKey
+    std::custring_t &a_cusKey
 )
 {
     xTEST_EQ(false, a_cusKey.empty());
@@ -65,7 +65,7 @@ CxBlowfish::setKey(
 //------------------------------------------------------------------------------
 void
 CxBlowfish::setKey(
-    const std::tstring_t &a_csKey
+    std::ctstring_t &a_csKey
 )
 {
     xTEST_EQ(false, a_csKey.empty());
@@ -76,7 +76,7 @@ CxBlowfish::setKey(
 //------------------------------------------------------------------------------
 void
 CxBlowfish::setFileKey(
-    const std::tstring_t &a_csFilePath
+    std::ctstring_t &a_csFilePath
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
@@ -137,7 +137,7 @@ CxBlowfish::encryptCfb64(
 //------------------------------------------------------------------------------
 void
 CxBlowfish::encryptCfb64(
-    const std::ustring_t &a_cusIn,
+    std::custring_t &a_cusIn,
     std::ustring_t       *a_pusOut,
     const ExCryptMode    &a_cmMode
 )
@@ -157,8 +157,8 @@ CxBlowfish::encryptCfb64(
 //------------------------------------------------------------------------------
 void
 CxBlowfish::encryptFileCfb64(
-    const std::tstring_t &a_csFilePathIn,
-    const std::tstring_t &a_csFilePathOut,
+    std::ctstring_t &a_csFilePathIn,
+    std::ctstring_t &a_csFilePathOut,
     const ExCryptMode    &a_cmMode
 )
 {

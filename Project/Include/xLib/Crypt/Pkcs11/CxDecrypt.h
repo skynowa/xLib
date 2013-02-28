@@ -42,7 +42,7 @@ public:
         ///< continues a multiple-part decryption and verify operation
 
     //Utils
-    void                 makeFile    (const std::tstring_t &csInFilePath, const std::tstring_t &csOutFilePath, CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
+    void                 makeFile    (std::ctstring_t &csInFilePath, std::ctstring_t &csOutFilePath, CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
         ///< make file
 
 private:

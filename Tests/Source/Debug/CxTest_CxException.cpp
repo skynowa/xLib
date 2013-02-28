@@ -40,7 +40,7 @@ CxTest_CxException::unit(
 
     xTEST_CASE("CxException::CxException(std::tstring_t)", cullCaseLoops)
     {
-        const std::tstring_t sTestData[][2] = {
+        std::ctstring_t sTestData[][2] = {
             {xT("TEST_STRING_1"),        xT("TEST_STRING_1")},
             {xT("TEST_STRING_2"),        xT("TEST_STRING_2")},
             {xT("TEST_STRING_3"),        xT("TEST_STRING_3")},

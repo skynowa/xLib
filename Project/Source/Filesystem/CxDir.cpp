@@ -25,7 +25,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 CxDir::CxDir(
-    const std::tstring_t &a_csDirPath
+    std::ctstring_t &a_csDirPath
 ) :
     _m_csDirPath(a_csDirPath)
 {
@@ -37,7 +37,7 @@ CxDir::~CxDir() {
 
 }
 //------------------------------------------------------------------------------
-const std::tstring_t &
+std::ctstring_t &
 CxDir::dirPath() const {
     xTEST_EQ(false, _m_csDirPath.empty());
 
@@ -60,7 +60,7 @@ CxDir::isExists() {
 //------------------------------------------------------------------------------
 bool_t
 CxDir::isEmpty(
-    const std::tstring_t &a_csPattern
+    std::ctstring_t &a_csPattern
 )
 {
     xTEST_EQ(false, a_csPattern.empty());
@@ -179,7 +179,7 @@ CxDir::pathCreate() {
 //------------------------------------------------------------------------------
 void
 CxDir::copy(
-    const std::tstring_t &a_csDirPathTo,
+    std::ctstring_t &a_csDirPathTo,
     cbool_t           &a_cbFailIfExists
 )
 {
@@ -224,7 +224,7 @@ CxDir::copy(
 //------------------------------------------------------------------------------
 void
 CxDir::move(
-    const std::tstring_t &a_csDirPathTo,
+    std::ctstring_t &a_csDirPathTo,
     cbool_t           &a_cbFailIfExists
 )
 {
@@ -333,7 +333,7 @@ CxDir::pathDelete() {
 // http://www.metalshell.com/source_code/86/List_Contents_of_a_Directory.html
 void
 CxDir::filesFind(
-    const std::tstring_t &a_csPattern,          ///< pattern
+    std::ctstring_t &a_csPattern,          ///< pattern
     cbool_t           &a_cbIsRecursively,    ///< recursively scan
     std::vec_tstring_t   *a_pvsFilePathes       ///< output file paths (must be empty)
 )
@@ -480,7 +480,7 @@ CxDir::filesFind(
 //--------------------------------------------------------------------------
 void
 CxDir::dirsFind(
-    const std::tstring_t &a_csPattern,          ///< pattern
+    std::ctstring_t &a_csPattern,          ///< pattern
     cbool_t           &a_cbIsRecursively,    ///< recursively scan
     std::vec_tstring_t   *a_pvsDirPathes        ///< output directory paths (must be empty)
 )
@@ -604,7 +604,7 @@ CxDir::current() {
 //--------------------------------------------------------------------------
 void
 CxDir::setCurrent(
-    const std::tstring_t &a_csDirPath
+    std::ctstring_t &a_csDirPath
 ) {
     std::tstring_t dirPath = CxPath(a_csDirPath).slashAppend();
 
@@ -631,7 +631,7 @@ CxDir::temp() {
 
     sRv.assign(sBuff, 0, ulRv);
 #elif xOS_ENV_UNIX
-    const std::tstring_t csEnvDirTemp = xT("TMPDIR");
+    std::ctstring_t csEnvDirTemp = xT("TMPDIR");
 
     bool_t bRv = CxEnvironment::isExists(csEnvDirTemp);
     if (true == bRv) {

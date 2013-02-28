@@ -20,10 +20,10 @@ xNAMESPACE_BEGIN(NxLib)
 /* static */
 std::tstring_t
 CxConnectionString::msJetOleDb40(
-    const std::tstring_t &a_csDataSource,
-    const std::tstring_t &a_csUserId,
-    const std::tstring_t &a_csPassword,
-    const std::tstring_t &a_csDatabasePassword
+    std::ctstring_t &a_csDataSource,
+    std::ctstring_t &a_csUserId,
+    std::ctstring_t &a_csPassword,
+    std::ctstring_t &a_csDatabasePassword
 )
 {
     xTEST_EQ(false, CxString::trimSpace(a_csDataSource).empty());

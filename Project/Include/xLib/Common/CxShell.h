@@ -23,7 +23,7 @@ class CxShell :
 {
 public:
     static bool_t           isAvailable   () xWARN_UNUSED_RV;
-    static void           execute       (const std::tstring_t &csFilePath, const std::tstring_t &csParams);
+    static void           execute       (std::ctstring_t &csFilePath, std::ctstring_t &csParams);
 
 #if   xOS_ENV_WIN
     enum ExOperation
@@ -118,31 +118,31 @@ public:
         sfWindows                = CSIDL_WINDOWS
     };
 
-    static std::tstring_t findExecutable(const std::tstring_t &csFileName, const std::tstring_t &csFindDirPath) xWARN_UNUSED_RV;
+    static std::tstring_t findExecutable(std::ctstring_t &csFileName, std::ctstring_t &csFindDirPath) xWARN_UNUSED_RV;
         ///< find executable file path
     static void           execute       (const HWND &chOwner, const ExOperation &copOperation,
-                                         const std::tstring_t &csFilePath, const std::tstring_t &csParams,
-                                         const std::tstring_t &csDir, const EShowFlag &csfShowCmd);
+                                         std::ctstring_t &csFilePath, std::ctstring_t &csParams,
+                                         std::ctstring_t &csDir, const EShowFlag &csfShowCmd);
         ///< execute
     static void           executeEx     (SHELLEXECUTEINFO *peiInfo);
         ///< execute
-    static void           executeHttp   (const std::tstring_t &csUrl);
+    static void           executeHttp   (std::ctstring_t &csUrl);
         ///< execute HTTP
-    static void           executeFtp    (const std::tstring_t &csUrl);
+    static void           executeFtp    (std::ctstring_t &csUrl);
         ///< execute FTP
-    static void           executeEmail  (const std::tstring_t &csToEmail, const std::tstring_t &csSubject, const std::tstring_t &csBody);
+    static void           executeEmail  (std::ctstring_t &csToEmail, std::ctstring_t &csSubject, std::ctstring_t &csBody);
         ///< execute email
     static std::tstring_t specialDirPath(const ESpecialDir &csfDir, const HANDLE &chToken) xWARN_UNUSED_RV;
         ///< get special dir path
-    static void           createShortcut(const std::tstring_t &csShortCutFilePath,
-                                         const std::tstring_t &csFilePath,
-                                         const std::tstring_t &csWorkingDirectory,
-                                         const std::tstring_t &csArguments,
+    static void           createShortcut(std::ctstring_t &csShortCutFilePath,
+                                         std::ctstring_t &csFilePath,
+                                         std::ctstring_t &csWorkingDirectory,
+                                         std::ctstring_t &csArguments,
                                          const WORD           &cwHotKey,
                                          cint_t            &ciCmdShow,
-                                         const std::tstring_t &csIconFilePath,
+                                         std::ctstring_t &csIconFilePath,
                                          cint_t            &ciIconIndex,
-                                         const std::tstring_t &csDescription);
+                                         std::ctstring_t &csDescription);
         ///< create shortcut
 #endif
 

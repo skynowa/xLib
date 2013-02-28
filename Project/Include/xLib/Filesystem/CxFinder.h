@@ -18,15 +18,15 @@ class CxFinder :
     ///< file system finder
 {
 public:
-    explicit                     CxFinder     (const std::tstring_t &csRootDirPath,
-                                               const std::tstring_t &csFilterByShell);
+    explicit                     CxFinder     (std::ctstring_t &csRootDirPath,
+                                               std::ctstring_t &csFilterByShell);
         ///< constructor
     virtual                     ~CxFinder     ();
         ///< destructor
 
-    const std::tstring_t &       rootDirPath  () const xWARN_UNUSED_RV;
+    std::ctstring_t &       rootDirPath  () const xWARN_UNUSED_RV;
         ///< root directory path
-    const std::tstring_t &       filterByShell() const xWARN_UNUSED_RV;
+    std::ctstring_t &       filterByShell() const xWARN_UNUSED_RV;
         ///< shell wild card filter
     std::tstring_t               entryName    () const xWARN_UNUSED_RV;
         ///< entry name
@@ -67,8 +67,8 @@ private:
         ///< entry
 
     _entry_t                     _m_enEnrty;            ///< entry handle
-    const std::tstring_t         _m_csRootDirPath;      ///< root directory path
-    const std::tstring_t         _m_csFilterByShell;    ///< shell wild card filter
+    std::ctstring_t         _m_csRootDirPath;      ///< root directory path
+    std::ctstring_t         _m_csFilterByShell;    ///< shell wild card filter
 };
 
 xNAMESPACE_END(NxLib)

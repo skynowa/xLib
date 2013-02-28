@@ -34,7 +34,7 @@ CxTest_CxDateTime::unit(
         xTEST_EQ(std::tstring_t(xT("00.00.0000 0:00:00:000")), m_sRv);
     }
 
-    xTEST_CASE("CxDateTime::CxDateTime(const std::tstring_t &, EFormatType)", cullCaseLoops)
+    xTEST_CASE("CxDateTime::CxDateTime(std::ctstring_t &, EFormatType)", cullCaseLoops)
     {
         const CxDateTime::ExFormatType caftFormats[] = {
             ////CxDateTime::ftTime,     //HH.MM.SS.MMM
@@ -43,7 +43,7 @@ CxTest_CxDateTime::unit(
             CxDateTime::ftRFC1123   //Wdy, DD Mon YYYY HH:MM:SS GMT
         };
 
-        const std::tstring_t casDateTime[] = {
+        std::ctstring_t casDateTime[] = {
             ////xT("23.05.33.555"),             //HH.MM.SS.MMM
             ////xT("31.07.1978"),               //DD.MM.YYYY
             ////xT("24.01.1977 12.12.12.222"),  //DD.MM.YYYY HH.MM.SS.MMM
@@ -543,7 +543,7 @@ CxTest_CxDateTime::unit(
         -----------------------------------------------------
         */
 
-        const std::tstring_t sTestData[][3] = {
+        std::ctstring_t sTestData[][3] = {
             {xT("7"), xT("31"), xT("Лев")},
             {xT("5"), xT("18"), xT("Телец")},
         };
@@ -626,7 +626,7 @@ CxTest_CxDateTime::unit(
 
     xTEST_CASE("CxDateTime::monthNum", cullCaseLoops)
     {
-        const std::tstring_t casMonths[12][2] = {
+        std::ctstring_t casMonths[12][2] = {
             { xT("January"),    xT("Jan") },
             { xT("February"),   xT("Feb") },
             { xT("March"),      xT("Mar") },
@@ -705,7 +705,7 @@ CxTest_CxDateTime::unit(
 
     xTEST_CASE("CxDateTime::weekDayNum", cullCaseLoops)
     {
-        const std::tstring_t casDays[7][2] = {
+        std::ctstring_t casDays[7][2] = {
             { xT("Sunday"),     xT("Sun") },
             { xT("Monday"),     xT("Mon") },
             { xT("Tuesday"),    xT("Tue"} ),

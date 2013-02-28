@@ -49,12 +49,12 @@ public:
         #endif
     };
 
-    explicit               CxFileAttribute(const std::tstring_t &csFilePath);
+    explicit               CxFileAttribute(std::ctstring_t &csFilePath);
         ///< constructor
     virtual               ~CxFileAttribute();
         ///< destructor
 
-    const std::tstring_t & filePath       () const xWARN_UNUSED_RV;
+    std::ctstring_t & filePath       () const xWARN_UNUSED_RV;
         ///< file path
 
     bool_t                   isExists       (const ExAttribute &cfaValue) xWARN_UNUSED_RV;
@@ -73,7 +73,7 @@ public:
         ///< clear (set normal attributes)
 
 private:
-    const std::tstring_t   _m_csFilePath;
+    std::ctstring_t   _m_csFilePath;
 };
 
 xNAMESPACE_END(NxLib)

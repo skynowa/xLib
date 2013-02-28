@@ -34,7 +34,7 @@ public:
         ///< is debug build (is NDEBUG macros is don't set)
     void           breakPoint   ();
         ///< attach to OS debugger
-    void           setLogPath   (const std::tstring_t &csFilePath);
+    void           setLogPath   (std::ctstring_t &csFilePath);
         ///< set log file path
     std::tstring_t logPath      () xWARN_UNUSED_RV;
         ///< get log file path

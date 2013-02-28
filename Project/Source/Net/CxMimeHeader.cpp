@@ -15,9 +15,9 @@
 xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
-const std::tstring_t CxMimeHeader::_ms_csAttrDelimiter = xT(":");
-const std::tstring_t CxMimeHeader::_ms_csEndOfHeader   = xT("\r\n\r\n");
-const std::tstring_t CxMimeHeader::_ms_csEndOfLine     = xT("\r\n");
+std::ctstring_t CxMimeHeader::_ms_csAttrDelimiter = xT(":");
+std::ctstring_t CxMimeHeader::_ms_csEndOfHeader   = xT("\r\n\r\n");
+std::ctstring_t CxMimeHeader::_ms_csEndOfLine     = xT("\r\n");
 //------------------------------------------------------------------------------
 //DONE: CxMimeHeader
 CxMimeHeader::CxMimeHeader() :
@@ -34,7 +34,7 @@ CxMimeHeader::~CxMimeHeader () {
 //DONE: bParse (��������� ��������� ������� "TOP 10 0" �� ��������, ��������)
 void
 CxMimeHeader::parse(
-    const std::tstring_t &a_csRawHeader
+    std::ctstring_t &a_csRawHeader
 )
 {
 #if xTODO
@@ -124,7 +124,7 @@ CxMimeHeader::parse(
 //DONE: sGetField
 std::tstring_t
 CxMimeHeader::field(
-    const std::tstring_t &a_csName
+    std::ctstring_t &a_csName
 )
 {
     xTEST_EQ(false, _m_mmsHeader.empty());
@@ -151,7 +151,7 @@ CxMimeHeader::count() {
 //TODO:  bLoadFromFile
 #if xTODO
     bool_t
-    CxMimeHeader::bLoadFromFile(const std::tstring_t &csFilePath) {
+    CxMimeHeader::bLoadFromFile(std::ctstring_t &csFilePath) {
      xTEST_EQ(false, csFilePath.empty(),                 false);
      xTEST_EQ(true, CxFile::isExists(csFilePath), false);
 
@@ -193,7 +193,7 @@ CxMimeHeader::count() {
 
 void
 CxMimeHeader::loadFromFile(
-    const std::tstring_t &a_csRawMessageFilePath
+    std::ctstring_t &a_csRawMessageFilePath
 )
 {
     xTEST_EQ(false, a_csRawMessageFilePath.empty());
@@ -233,7 +233,7 @@ CxMimeHeader::loadFromFile(
 //TODO: bSaveToFile
 void
 CxMimeHeader::saveToFile(
-    const std::tstring_t &a_csFilePath
+    std::ctstring_t &a_csFilePath
 )
 {
     xNOT_IMPLEMENTED;

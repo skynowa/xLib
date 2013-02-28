@@ -174,7 +174,7 @@ CxSocket::send(
 //TODO: bSendAll
 void
 CxSocket::sendAll(
-    const std::tstring_t &a_csBuff,
+    std::ctstring_t &a_csBuff,
     cint_t            &a_ciFlags
 )
 {
@@ -277,7 +277,7 @@ CxSocket::recvAll(
 std::tstring_t
 CxSocket::recvAll(
     cint_t            &a_ciFlags,
-    const std::tstring_t &a_csDelimiter
+    std::ctstring_t &a_csDelimiter
 )
 {
     std::tstring_t sRv;
