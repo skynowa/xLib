@@ -193,11 +193,11 @@ public:
 
     // xDQM
     static const std::string    xDQM_A;
-        ///< double_t quotation mark (ansi)
+        ///< double quotation mark (ansi)
     static const std::wstring   xDQM_W;
-        ///< double_t quotation mark (unicode)
+        ///< double quotation mark (unicode)
     static std::ctstring_t xDQM;
-        ///< double_t quotation mark (ansi or unicode)
+        ///< double quotation mark (ansi or unicode)
 
     // xWHITE_SPACES
     static const std::string    xWHITE_SPACES_A;

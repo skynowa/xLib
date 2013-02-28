@@ -76,12 +76,12 @@ CxTest_CxDll::unit(
         pLoadBeepFunc = (pDllFunc)fpRes;
         pLoadBeepFunc(1, 1);
     #elif xOS_ENV_UNIX
-        typedef double_t (*pDllFunc)(double_t);
+        typedef double (*pDllFunc)(double);
 
         pDllFunc pCosine = NULL;
 
         pCosine = (pDllFunc)fpRes;
-        double_t m_dRv = pCosine(2.0);
+        double m_dRv = pCosine(2.0);
         xUNUSED(m_dRv);
         //xTEST_EQ(-0.416147, m_dRv);
         //xTRACEV(xT("\tpCosine(2.0): %f"), m_dRv);

@@ -153,7 +153,7 @@ CxTest_CxUtils::unit(
     {
         struct SData {
             int_t            m_iValue;
-            double_t         m_dValue;
+            double         m_dValue;
             std::tstring_t m_sValue;
         };
 
@@ -274,8 +274,8 @@ CxTest_CxUtils::unit(
         };
 
         for (size_t i = 0; i < CxUtils::arraySizeT(cdData); ++ i) {
-            double_t dRv1 = CxUtils::roundDouble(cdData[i][0]);
-            double_t dRv2 = cdData[i][1];
+            double dRv1 = CxUtils::roundDouble(cdData[i][0]);
+            double dRv2 = cdData[i][1];
             xTEST_EQ(dRv1, dRv2);
         }
     }

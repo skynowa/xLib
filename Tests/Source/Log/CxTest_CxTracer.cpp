@@ -61,7 +61,7 @@ CxTest_CxTracer::unit(
     #if xTEST_IGNORE
         std::tstring_t sData  = xT("data1");
         ulong_t        ulData = 777UL;
-        double_t         aData  = 4.4;
+        double         aData  = 4.4;
         ctchar_t *szData = xT("data2");
 
         CxTracer() << xT("\t") 

@@ -175,14 +175,14 @@ CxUtils::reinterpretCastT(
 }
 //------------------------------------------------------------------------------
 /* static */ inline
-double_t
+double
 CxUtils::roundDouble(
     cdouble_t &a_cdValue
 )
 {
     xTEST_NA(a_cdValue);
 
-    double_t dRv = 0.0;
+    double dRv = 0.0;
 
     if (a_cdValue > 0.0) {
         dRv = ::floor(a_cdValue + 0.5);
@@ -216,18 +216,18 @@ CxUtils::roundIntT(
 //------------------------------------------------------------------------------
 template <typename T1, typename T2>
 /* static */ inline
-double_t
+double
 CxUtils::safeDivT(
     const T1 &a_cValue1T,
     const T2 &a_cValue2T
 )
 {
-    double_t dRv = 0.0;
+    double dRv = 0.0;
 
     if (static_cast<T2>( 0 ) == a_cValue2T) {
         dRv = 0.0;
     } else {
-        dRv = static_cast<double_t>( a_cValue1T ) / static_cast<double_t>( a_cValue2T );
+        dRv = static_cast<double>( a_cValue1T ) / static_cast<double>( a_cValue2T );
     }
 
     return dRv;

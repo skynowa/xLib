@@ -819,27 +819,27 @@ CxString::formatBytes(
 
     if (     a_cullBytes / cullTB > 0ULL) {
         sRv = format(xT("%.2f TB"),
-                static_cast<double_t>(a_cullBytes) / static_cast<double_t>(cullTB));
+                static_cast<double>(a_cullBytes) / static_cast<double>(cullTB));
     }
     else if (a_cullBytes / cullGB > 0ULL) {
         sRv = format(xT("%.2f GB"),
-                static_cast<double_t>(a_cullBytes) / static_cast<double_t>(cullGB));
+                static_cast<double>(a_cullBytes) / static_cast<double>(cullGB));
     }
     else if (a_cullBytes / cullMB > 0ULL) {
         sRv = format(xT("%.2f MB"),
-                static_cast<double_t>(a_cullBytes) / static_cast<double_t>(cullMB));
+                static_cast<double>(a_cullBytes) / static_cast<double>(cullMB));
     }
     else if (a_cullBytes / cullKB > 0ULL) {
         sRv = format(xT("%.2f KB"),
-                static_cast<double_t>(a_cullBytes) / static_cast<double_t>(cullKB));
+                static_cast<double>(a_cullBytes) / static_cast<double>(cullKB));
     }
     else if (a_cullBytes / cullByte > 0ULL) {
         sRv = format(xT("%.2f Byte(s)"),
-                static_cast<double_t>(a_cullBytes) / static_cast<double_t>(cullByte));
+                static_cast<double>(a_cullBytes) / static_cast<double>(cullByte));
     }
     else {
         sRv = format(xT("%.2f Bit(s)"),
-                static_cast<double_t>(a_cullBytes));
+                static_cast<double>(a_cullBytes));
     }
 
     return sRv;

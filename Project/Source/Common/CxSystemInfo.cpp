@@ -738,7 +738,7 @@ CxSystemInfo::cpuSpeed() {
         std::tstring_t sValue = CxPath::procValue(xT("/proc/cpuinfo"), xT("cpu MHz"));
         xTEST_EQ(false, sValue.empty());
 
-        double_t dCpuSpeedMHz = CxString::cast<double_t>( sValue );
+        double dCpuSpeedMHz = CxString::cast<double>( sValue );
 
         ulRv = CxUtils::roundIntT<ulong_t>( dCpuSpeedMHz );
     #elif xOS_FREEBSD
@@ -761,7 +761,7 @@ CxSystemInfo::cpuUsage() {
     ulong_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN
-    double_t                dRv              = 0.0;
+    double                dRv              = 0.0;
 
     FILETIME              ftSysIdle        = {0};
     FILETIME              ftSysKernel      = {0};
@@ -799,7 +799,7 @@ CxSystemInfo::cpuUsage() {
     ulRv = static_cast<ulong_t>( dRv );
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        double_t             dRv                = 0.0;
+        double             dRv                = 0.0;
         int_t                iRv                = - 1;
 
         static bool_t        bIsFirstRun        = true;
@@ -861,7 +861,7 @@ CxSystemInfo::cpuUsage() {
 
         ulRv = static_cast<ulong_t>( dRv );
     #elif xOS_FREEBSD
-        double_t         dCpuUsage            = 0.0;
+        double         dCpuUsage            = 0.0;
 
         static ulong_t s_ulTotalOld         = - 1UL;
         static ulong_t s_ulUsedOld          = - 1UL;
