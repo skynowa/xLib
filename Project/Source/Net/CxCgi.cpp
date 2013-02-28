@@ -19,6 +19,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 using namespace NxCgi;
 
+std::csize_t CxCgi::MAX_DATA_SIZE_DEFAULT = 1024 * 1024;
 
 /*******************************************************************************
 *    public
