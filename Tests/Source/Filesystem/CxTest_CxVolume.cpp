@@ -198,7 +198,7 @@ CxTest_CxVolume::unit(
             ulonglong_t ullTotal     = 0ULL;
             ulonglong_t ullFree      = 0ULL;
 
-            xCHECK_DO(false == CxVolume(*it).isReady(), continue);
+            xCHECK_DO(!CxVolume(*it).isReady(), continue);
 
             CxVolume::space(*it, &ullAvailable, &ullTotal, &ullFree);
             xTEST_LESS_EQ(0ULL, ullAvailable);
@@ -211,7 +211,7 @@ CxTest_CxVolume::unit(
             ulonglong_t ullTotal     = 0ULL;
             ulonglong_t ullFree      = 0ULL;
 
-            xCHECK_DO(false == CxVolume(*it).isReady(), continue);
+            xCHECK_DO(!CxVolume(*it).isReady(), continue);
 
             CxVolume::space(*it, NULL, NULL, NULL);
             xTEST_LESS_EQ(0ULL, ullAvailable);
@@ -224,7 +224,7 @@ CxTest_CxVolume::unit(
             ulonglong_t ullTotal     = 0ULL;
             ulonglong_t ullFree      = 0ULL;
 
-            xCHECK_DO(false == CxVolume(*it).isReady(), continue);
+            xCHECK_DO(!CxVolume(*it).isReady(), continue);
 
             CxVolume::space(*it, &ullAvailable, &ullTotal, &ullFree);
             xTEST_LESS_EQ(0ULL, ullAvailable);

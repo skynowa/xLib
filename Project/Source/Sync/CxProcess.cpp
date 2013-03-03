@@ -259,7 +259,7 @@ CxProcess::idByName(
 
     xFOREVER {
         bool_t bRv = CxString::compareNoCase(a_csProcessName, peProcess.szExeFile);
-        xCHECK_DO(true == bRv, break);   // OK
+        xCHECK_DO(bRv, break);   // OK
 
         blRv = ::Process32Next(hSnapshot.get(), &peProcess);
         xCHECK_DO(FALSE == blRv, break);
@@ -290,7 +290,7 @@ CxProcess::idByName(
             std::string   cmdLine;
 
             std::getline(cmdFile, cmdLine);
-            xCHECK_DO(true == cmdLine.empty(), continue);
+            xCHECK_DO(cmdLine.empty(), continue);
 
             // keep first cmdline item which contains the program path
             size_t uiPos = cmdLine.find('\0');

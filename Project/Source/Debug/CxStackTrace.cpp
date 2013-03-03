@@ -141,13 +141,13 @@ CxStackTrace::get(
             }
 
             // swap file paths
-            if (true == _m_cbIsWrapFilePathes) {
+            if (_m_cbIsWrapFilePathes) {
                 sModulePath = CxPath(sModulePath).fileName();
                 sFilePath   = CxPath(sFilePath).fileName();
             }
 
             // disable function params
-            if (true == _m_cbIsFuncParamsDisable) {
+            if (_m_cbIsFuncParamsDisable) {
                 std::csize_t cuiPos1 = sFunctionName.find(xT("("));
                 std::csize_t cuiPos2 = sFunctionName.find(xT(")"));
 
@@ -235,13 +235,13 @@ CxStackTrace::get(
         }
 
         // swap file paths
-        if (true == _m_cbIsWrapFilePathes) {
+        if (_m_cbIsWrapFilePathes) {
             sModulePath = CxPath(sModulePath).fileName();
             sFilePath   = CxPath(sFilePath).fileName();
         }
 
         // disable function params
-        if (true == _m_cbIsFuncParamsDisable) {
+        if (_m_cbIsFuncParamsDisable) {
             std::csize_t cuiPos1 = sFunctionName.find(xT("("));
             std::csize_t cuiPos2 = sFunctionName.find(xT(")"));
 
@@ -281,7 +281,7 @@ CxStackTrace::toString()  {
     get(&vvsStack);
 
     sRv = _format(&vvsStack);
-    xCHECK_RET(true == sRv.empty(), CxConst::xUNKNOWN_STRING);
+    xCHECK_RET(sRv.empty(), CxConst::xUNKNOWN_STRING);
 
     return sRv;
 }

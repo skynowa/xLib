@@ -66,7 +66,7 @@ CxPath::exe() {
         std::ctstring_t csProcFile = CxString::format(xT("/proc/%ld/exe"), CxCurrentProcess::id());
 
         bool_t bRv = CxFile::isExists(csProcFile);
-        xCHECK_RET(false == bRv, std::tstring_t());
+        xCHECK_RET(!bRv, std::tstring_t());
 
         int_t iReaded = - 1;
         sRv.resize(xPATH_MAX);
@@ -388,11 +388,11 @@ CxPath::isValid(
 
     // is empty
     bRv = a_csFilePath.empty();
-    xCHECK_RET(true == bRv, false);
+    xCHECK_RET(bRv, false);
 
     // check for size
     bRv = (xPATH_MAX < a_csFilePath.size());
-    xCHECK_RET(true == bRv, false);
+    xCHECK_RET(bRv, false);
 
     // TODO: bIsValid
 
@@ -413,14 +413,14 @@ CxPath::isNameValid(
     // check: empty name
     {
         bRv = a_csFileName.empty();
-        xCHECK_RET(true == bRv, false);
+        xCHECK_RET(bRv, false);
     }
 
     //-------------------------------------
     // check: name size
     {
         bRv = (xNAME_MAX < a_csFileName.size());
-        xCHECK_RET(true == bRv, false);
+        xCHECK_RET(bRv, false);
     }
 
 #if   xOS_ENV_WIN
@@ -439,17 +439,17 @@ CxPath::isNameValid(
 
         // space
         bRv = (CxConst::xSPACE.at(0) == cchBegin);
-        xCHECK_RET(true == bRv, false);
+        xCHECK_RET(bRv, false);
 
         bRv = (CxConst::xSPACE.at(0) == cchEnd);
-        xCHECK_RET(true == bRv, false);
+        xCHECK_RET(bRv, false);
 
         // dot
         bRv = (CxConst::xDOT.at(0)   == cchBegin);
-        xCHECK_RET(true == bRv, false);
+        xCHECK_RET(bRv, false);
 
         bRv = (CxConst::xDOT.at(0)   == cchEnd);
-        xCHECK_RET(true == bRv, false);
+        xCHECK_RET(bRv, false);
     }
 
     //-------------------------------------
@@ -468,7 +468,7 @@ CxPath::isNameValid(
 
         std::csize_t uiPos = a_csFileName.find_first_of(csExceptedChars);
         bRv = (std::tstring_t::npos != uiPos);
-        xCHECK_RET(true == bRv, false);
+        xCHECK_RET(bRv, false);
     }
 
     //-------------------------------------
@@ -490,7 +490,7 @@ CxPath::isNameValid(
 
         cit = std::find_if(a_csFileName.begin(), a_csFileName.end(), _SIsCharControl());
         bRv = (cit != a_csFileName.end());
-        xCHECK_RET(true == bRv, false);
+        xCHECK_RET(bRv, false);
     }
 
     //-------------------------------------
@@ -514,7 +514,7 @@ CxPath::isNameValid(
 
         for (size_t i = 0; i < xARRAY_SIZE(casReservedNames); ++ i) {
             bRv = CxString::compareNoCase(csBaseFileName, casReservedNames[i]);
-            xCHECK_RET(true == bRv, false);
+            xCHECK_RET(bRv, false);
         }
     }
 #elif xOS_ENV_UNIX
@@ -531,7 +531,7 @@ CxPath::isNameValid(
 
         std::csize_t uiPos = a_csFileName.find_first_of(sExceptedChars);
         bRv = (std::tstring_t::npos != uiPos);
-        xCHECK_RET(true == bRv, false);
+        xCHECK_RET(bRv, false);
     }
 #elif xOS_ENV_MAC
     //-------------------------------------
@@ -544,7 +544,7 @@ CxPath::isNameValid(
 
         std::csize_t uiPos = a_csFileName.find_first_of(csExceptedChars);
         bRv = (std::tstring_t::npos != uiPos);
-        xCHECK_RET(true == bRv, false);
+        xCHECK_RET(bRv, false);
     }
 #endif
 
@@ -581,7 +581,7 @@ CxPath::setNameValid(
     // check: empty name
     {
         bRv = sRv.empty();
-        if (true == bRv) {
+        if (bRv) {
             return std::tstring_t();
         }
     }
@@ -590,7 +590,7 @@ CxPath::setNameValid(
     // check: name size
     {
         bRv = (xNAME_MAX < sRv.size());
-        if (true == bRv) {
+        if (bRv) {
             sRv.resize(xNAME_MAX);
         }
     }
@@ -609,7 +609,7 @@ CxPath::setNameValid(
         // skip checks, trim right now
         sRv = CxString::trimChars(sRv, CxConst::xSPACE + CxConst::xDOT);
 
-        xCHECK_RET(true == sRv.empty(), std::tstring_t());
+        xCHECK_RET(sRv.empty(), std::tstring_t());
     }
 
     //-------------------------------------
@@ -628,14 +628,14 @@ CxPath::setNameValid(
 
         std::size_t uiPos = sRv.find_first_of(csExceptedChars);
         bRv = (std::tstring_t::npos != uiPos);
-        if (true == bRv) {
+        if (bRv) {
             while (std::tstring_t::npos != uiPos) {
                 sRv.erase(uiPos, 1);
                 uiPos = sRv.find_first_of(csExceptedChars, uiPos);
             }
         }
 
-        xCHECK_RET(true == sRv.empty(), std::tstring_t());
+        xCHECK_RET(sRv.empty(), std::tstring_t());
     }
 
     //-------------------------------------
@@ -657,14 +657,14 @@ CxPath::setNameValid(
 
         cit = std::find_if(sRv.begin(), sRv.end(), _SIsCharControl());
         bRv = (cit != sRv.end());
-        if (true == bRv) {
+        if (bRv) {
             std::tstring_t::iterator itNewEnd;
 
             itNewEnd = std::remove_if(sRv.begin(), sRv.end(), _SIsCharControl());
             sRv.erase(itNewEnd, sRv.end());
         }
 
-        xCHECK_RET(true == sRv.empty(), std::tstring_t());
+        xCHECK_RET(sRv.empty(), std::tstring_t());
     }
 
     //-------------------------------------
@@ -688,7 +688,7 @@ CxPath::setNameValid(
 
         for (size_t i = 0; i < xARRAY_SIZE(casReservedNames); ++ i) {
             bRv = CxString::compareNoCase(csBaseFileName, casReservedNames[i]);
-            if (true == bRv) {
+            if (bRv) {
                 return std::tstring_t();
             }
         }
@@ -708,14 +708,14 @@ CxPath::setNameValid(
 
         std::size_t uiPos = a_csFileName.find_first_of(sExceptedChars);
         bRv = (std::tstring_t::npos != uiPos);
-        if (true == bRv) {
+        if (bRv) {
             while (std::tstring_t::npos != uiPos) {
                 sRv.erase(uiPos, 1);
                 uiPos = sRv.find_first_of(sExceptedChars, uiPos);
             }
         }
 
-        xCHECK_RET(true == sRv.empty(), std::tstring_t());
+        xCHECK_RET(sRv.empty(), std::tstring_t());
     }
 #elif xOS_ENV_MAC
     //-------------------------------------
@@ -728,14 +728,14 @@ CxPath::setNameValid(
 
         std::csize_t uiPos = a_csFileName.find_first_of(csExceptedChars);
         bRv = (std::tstring_t::npos != uiPos);
-        if (true == bRv) {
+        if (bRv) {
             while (std::tstring_t::npos != uiPos) {
                 sRv.erase(uiPos, 1);
                 uiPos = sRv.find_first_of(csExceptedChars, uiPos);
             }
         }
 
-        xCHECK_RET(true == sRv.empty(), std::tstring_t());
+        xCHECK_RET(sRv.empty(), std::tstring_t());
     }
 #endif
 
@@ -751,7 +751,7 @@ CxPath::toWin(
 
     std::tstring_t sRv;
 
-    if (true == a_cbIsSlashAtEnd) {
+    if (a_cbIsSlashAtEnd) {
         sRv = slashAppend();
     } else {
         sRv = slashRemove();
@@ -771,7 +771,7 @@ CxPath::toUnix(
 
     std::tstring_t sRv;
 
-    if (true == a_cbIsSlashAtEnd) {
+    if (a_cbIsSlashAtEnd) {
         sRv = slashAppend();
     } else {
         sRv = slashRemove();
@@ -791,7 +791,7 @@ CxPath::toNative(
 
     std::tstring_t sRv;
 
-    if (true == a_cbIsSlashAtEnd) {
+    if (a_cbIsSlashAtEnd) {
         sRv = slashAppend();
     } else {
         sRv = slashRemove();
@@ -855,7 +855,7 @@ CxPath::shortName(
 
     std::tstring_t sTildaDotExt;
 
-    if (true == CxPath(a_csFileName).ext().empty()) {
+    if (CxPath(a_csFileName).ext().empty()) {
         sTildaDotExt = xT("~");
     } else {
         sTildaDotExt = xT("~") + CxConst::xDOT + CxPath(a_csFileName).ext();
@@ -1045,11 +1045,11 @@ CxPath::proc(
         CxDir drProc(xT("/proc"));
 
         bRv = drProc.isExists();
-        xCHECK_DO(false == bRv,
+        xCHECK_DO(!bRv,
                   CxTracer() << xT("::: xLib: warning (/proc dir not mount) :::"); return);
 
         bRv = drProc.isEmpty();
-        xCHECK_DO(true == bRv,
+        xCHECK_DO(bRv,
                   CxTracer() << xT("::: xLib: warning (/proc dir is empty) :::");  return);
     }
 

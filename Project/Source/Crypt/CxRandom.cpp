@@ -220,20 +220,20 @@ CxRandom::sString(
     std::tstring_t sRv;
     std::tstring_t sAllPossible;
 
-    if (true == cbIsLetters) {
+    if (cbIsLetters) {
         for (int_t i = 65; i <= 90; ++ i) {
             sAllPossible.push_back( static_cast<tchar_t>(i) );         //upper case
             sAllPossible.push_back( static_cast<tchar_t>(i + 32) );    //lower case
         }
     }
 
-    if (true == cbIsNumbers) {
+    if (cbIsNumbers) {
         for (int_t i = 48; i <= 57; ++ i) {
             sAllPossible.push_back( static_cast<tchar_t>(i) );
         }
     }
 
-    if (true == cbIsAsciiSymbols) {
+    if (cbIsAsciiSymbols) {
         for (int_t i = 33; i <= 47; ++ i) {
             sAllPossible.push_back( static_cast<tchar_t>(i) );
         }

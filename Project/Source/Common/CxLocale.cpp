@@ -58,7 +58,7 @@ CxLocale::setCurrent(
 {
     // csLocale - n/a
 
-    ctchar_t *pcszLocale = (true == csLocale.empty()) ? NULL : csLocale.c_str();
+    ctchar_t *pcszLocale = (csLocale.empty()) ? NULL : csLocale.c_str();
 
     ctchar_t *pcszRes = NULL;
 

@@ -31,7 +31,7 @@ CxEnvironment::isExists(
 {
     xTEST_NA(a_csVarName);
 
-    xCHECK_RET(true == a_csVarName.empty(), false);
+    xCHECK_RET(a_csVarName.empty(), false);
 
 #if   xOS_ENV_WIN
     std::tstring_t sRv;
@@ -87,7 +87,7 @@ CxEnvironment::var(
 {
     xTEST_NA(a_csVarName);
 
-    xCHECK_RET(false == isExists(a_csVarName), std::tstring_t());
+    xCHECK_RET(!isExists(a_csVarName), std::tstring_t());
 
     std::tstring_t sRv;
 
@@ -140,7 +140,7 @@ CxEnvironment::deleteVar(
 {
     xTEST_NA(a_csVarName);
 
-    xCHECK_DO(false == isExists(a_csVarName), return);
+    xCHECK_DO(!isExists(a_csVarName), return);
 
 #if   xOS_ENV_WIN
     BOOL blRes = ::SetEnvironmentVariable(a_csVarName.c_str(), NULL);

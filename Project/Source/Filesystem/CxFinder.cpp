@@ -135,7 +135,7 @@ CxFinder::moveFirst() {
     xTEST_PTR(_m_enEnrty.pHandle);
 
     bool_t bRv = moveNext();
-    xCHECK_RET(false == bRv, false);
+    xCHECK_RET(!bRv, false);
 #endif
 
     return true;
@@ -165,7 +165,7 @@ CxFinder::moveNext() {
 //------------------------------------------------------------------------------
 void_t
 CxFinder::close() {
-    xCHECK_DO(false == isValid(), return);
+    xCHECK_DO(!isValid(), return);
 
     // close handle
     {

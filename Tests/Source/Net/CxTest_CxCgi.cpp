@@ -184,7 +184,7 @@ CxTest_CxCgi::unit(
                 m_sRv = cgCgi.Cookies[xT("Valuea")];
                 //xTRACEV(xT("cgCgi.Cookies[xT(\"Valuea\")]= %s"), m_sRv.c_str());
 
-                if (false == cgCgi.Cookies.items.empty()) {
+                if (!cgCgi.Cookies.items.empty()) {
                     m_sRv = cgCgi.Cookies.items.at(0)->value();
                     //xTRACEV(xT("cgCgi.Cookies.Items.at(0)->sValue() = %s"), m_sRv.c_str());
                 }

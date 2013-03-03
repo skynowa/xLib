@@ -68,7 +68,7 @@ CxFile::create(
     }
 
     // buffering
-    if (false == a_cbIsUseBuffering) {
+    if (!a_cbIsUseBuffering) {
         setVBuff(NULL, bmNo,   0);
     } else {
         setVBuff(NULL, bmFull, BUFSIZ);
@@ -99,7 +99,7 @@ CxFile::reopen(
     }
 
     // buffering
-    if (false == a_cbIsUseBuffering) {
+    if (!a_cbIsUseBuffering) {
         setVBuff(NULL, bmNo,   0);
     } else {
         setVBuff(NULL, bmFull, BUFSIZ);
@@ -515,7 +515,7 @@ CxFile::flush() const {
 //------------------------------------------------------------------------------
 void_t
 CxFile::close() {
-    xCHECK_DO(false == isValid(), return);
+    xCHECK_DO(!isValid(), return);
 
     errorClear();
 
@@ -548,19 +548,19 @@ CxFile::isFile(
 
 #if   xOS_ENV_WIN
     bRv = faAttr.isExists(CxFileAttribute::faDirectory);
-    xCHECK_RET(true == bRv, false);
+    xCHECK_RET(bRv, false);
 
     bRv = faAttr.isExists(CxFileAttribute::faDevice);
-    xCHECK_RET(true == bRv, false);
+    xCHECK_RET(bRv, false);
 
     bRv = faAttr.isExists(CxFileAttribute::faReparsePoint);
-    xCHECK_RET(true == bRv, false);
+    xCHECK_RET(bRv, false);
 
     bRv = faAttr.isExists(CxFileAttribute::faOffline);
-    xCHECK_RET(true == bRv, false);
+    xCHECK_RET(bRv, false);
 #elif xOS_ENV_UNIX
     bRv = faAttr.isExists(CxFileAttribute::faRegularFile);
-    xCHECK_RET(false == bRv, false);
+    xCHECK_RET(!bRv, false);
 #endif
 
     return true;
@@ -574,7 +574,7 @@ CxFile::isExists(
 {
     xTEST_NA(a_csFilePath);
 
-    xCHECK_RET(false == isFile(a_csFilePath), false);
+    xCHECK_RET(!isFile(a_csFilePath), false);
 
     int_t iRv = ::xTACCESS(a_csFilePath.c_str(), amExistence);
     xCHECK_RET(- 1 == iRv && ENOENT == CxStdError::get(), false);
@@ -598,7 +598,7 @@ CxFile::isExistsEx(
     std::tstring_t sFileName = ptPath.fileBaseName();
     std::tstring_t sFileExt  = ptPath.ext();
 
-    xCHECK_DO(false == sFileExt.empty(), sFileExt.insert(0, CxConst::xDOT));
+    xCHECK_DO(!sFileExt.empty(), sFileExt.insert(0, CxConst::xDOT));
 
     for (ulong_t ulExistsIndex = 1; ; ++ ulExistsIndex) {
         sRv = CxString::format(xT("%s%s%s (%lu)%s"),
@@ -608,7 +608,7 @@ CxFile::isExistsEx(
                                ulExistsIndex,
                                sFileExt.c_str());
 
-        xCHECK_DO(false == isExists(sRv), break);
+        xCHECK_DO(!isExists(sRv), break);
     }
 
     return sRv;
@@ -670,7 +670,7 @@ CxFile::remove(
 {
     xTEST_EQ(false, a_csFilePath.empty());
 
-    xCHECK_DO(false == isExists(a_csFilePath), return);
+    xCHECK_DO(!isExists(a_csFilePath), return);
 
     chmod(a_csFilePath, pmWrite);
 
@@ -717,7 +717,7 @@ CxFile::wipe(
     xTEST_EQ(false, a_csFilePath.empty());
     xTEST_NA(a_cuiPasses);
 
-    xCHECK_DO(false == isExists(a_csFilePath), return);
+    xCHECK_DO(!isExists(a_csFilePath), return);
 
     {
         CxFile sfFile;
@@ -865,7 +865,7 @@ CxFile::copy(
     //--------------------------------------------------
     // TODO: fail if exists
 #if xTODO
-    if (true == cbFailIfExists && true == bIsExists(csFilePathTo)) {
+    if (cbFailIfExists && bIsExists(csFilePathTo)) {
         xTEST_FAIL;
     }
 #endif
@@ -897,7 +897,7 @@ CxFile::copy(
 
     //--------------------------------------------------
     // if copy fail - delete out file
-    xCHECK_DO(false == bIsCopyOk, remove(a_csFilePathTo); return /* false */);
+    xCHECK_DO(!bIsCopyOk, remove(a_csFilePathTo); return /* false */);
 
     //--------------------------------------------------
     // test for size, maybe CRC
@@ -1086,7 +1086,7 @@ CxFile::textWrite(
 
     sfFile.create(a_csFilePath, omBinWrite, true);
 
-    xCHECK_DO(true == a_csContent.empty(), return);
+    xCHECK_DO(a_csContent.empty(), return);
 
     size_t uiWriteLen = sfFile.write((void_t *)&a_csContent.at(0), a_csContent.size());
     xTEST_EQ(a_csContent.size(), uiWriteLen);
@@ -1289,7 +1289,7 @@ CxFile::binWrite(
 
     sfFile.create(a_csFilePath, omBinWrite, true);
 
-    xCHECK_DO(true == a_cusContent.empty(), return);
+    xCHECK_DO(a_cusContent.empty(), return);
 
     size_t uiWriteLen = sfFile.write((void_t *)&a_cusContent.at(0), a_cusContent.size());
     xTEST_EQ(a_cusContent.size(), uiWriteLen);

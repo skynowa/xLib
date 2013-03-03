@@ -46,14 +46,14 @@ CxDir::dirPath() const {
 //------------------------------------------------------------------------------
 bool_t
 CxDir::isExists() {
-    xCHECK_RET(true == dirPath().empty(), false);
+    xCHECK_RET(dirPath().empty(), false);
 
     CxFileAttribute faAttr(dirPath());
 
     xCHECK_RET(CxFileAttribute::faInvalid == faAttr.get(), false);
 
     bool_t bRv = faAttr.isExists(CxFileAttribute::faDirectory);
-    xCHECK_RET(false == bRv, false);
+    xCHECK_RET(!bRv, false);
 
     return true;
 }
@@ -125,7 +125,7 @@ CxDir::isRoot() {
     bool_t bRes2 = (dirPath().at(1) == CxConst::xCOLON.at(0));
     bool_t bRes3 = (dirPath().at(2) == CxConst::xWIN_SLASH.at(0) || dirPath().at(2) == CxConst::xUNIX_SLASH.at(0));
 
-    xCHECK_RET(false == bRes1 || false == bRes2 || false == bRes3, false);
+    xCHECK_RET(!bRes1 || !bRes2 || !bRes3, false);
 #elif xOS_ENV_UNIX
     xCHECK_RET(CxConst::xSLASH != dirPath(), false);
 #endif
@@ -136,7 +136,7 @@ CxDir::isRoot() {
 bool_t
 CxDir::isDir() {
     bool_t bRv = CxFileAttribute(dirPath()).isExists(CxFileAttribute::faDirectory);
-    xCHECK_RET(false == bRv, false);
+    xCHECK_RET(!bRv, false);
 
     return true;
 }
@@ -144,7 +144,7 @@ CxDir::isDir() {
 void_t
 CxDir::create() {
     bool_t bRv = isExists();
-    xCHECK_DO(true == bRv, return);
+    xCHECK_DO(bRv, return);
 
 #if   xOS_ENV_WIN
     BOOL blRes = ::CreateDirectory(dirPath().c_str(), NULL);
@@ -190,7 +190,7 @@ CxDir::copy(
     //-------------------------------------
     // sets attribute "normal"
     bool_t bRv = CxDir(a_csDirPathTo).isExists();
-    if (true == bRv) {
+    if (bRv) {
         CxFileAttribute(a_csDirPathTo).set(CxFileAttribute::faNormal);
     }
 
@@ -241,7 +241,7 @@ CxDir::move(
 void_t
 CxDir::remove() {
     bool_t bRv = isExists();
-    xCHECK_DO(false == bRv, return);
+    xCHECK_DO(!bRv, return);
 
     CxFileAttribute(dirPath()).set(CxFileAttribute::faNormal);
 
@@ -287,7 +287,7 @@ CxDir::pathClear() {
     //-------------------------------------
     // checks
     bool_t bRv = isEmpty(CxConst::xMASK_ALL);
-    xCHECK_DO(true == bRv, return);
+    xCHECK_DO(bRv, return);
 
     //-------------------------------------
     // delete files
@@ -321,7 +321,7 @@ CxDir::pathClear() {
 void_t
 CxDir::pathDelete() {
     bool_t bRv = isExists();
-    xCHECK_DO(false == bRv, return);
+    xCHECK_DO(!bRv, return);
 
     pathClear();
     remove();
@@ -356,7 +356,7 @@ CxDir::filesFind(
 
     //-------------------------------------
     // subdirs
-    if (true == a_cbIsRecursively) {
+    if (a_cbIsRecursively) {
         sPart    = CxConst::xMASK_ALL;
         sTmpPath = CxPath(sFilePath).setFileName(sPart);
 
@@ -404,7 +404,7 @@ CxDir::filesFind(
 #elif xOS_ENV_UNIX
     //-------------------------------------
     // subdirs
-    /*if (true == cbIsRecursively)*/ {
+    /*if (cbIsRecursively)*/ {
         DIR *pDir = ::opendir(dirPath().c_str());
         xTEST_PTR(pDir);
 
@@ -421,7 +421,7 @@ CxDir::filesFind(
                 std::tstring_t _sDirPath = CxPath(dirPath()).slashAppend() + std::tstring_t(pdrEntry->d_name);
 
                 // is search in subdirs ?
-                if (true == a_cbIsRecursively) {
+                if (a_cbIsRecursively) {
                     CxDir(_sDirPath).filesFind(a_csPattern, a_cbIsRecursively, a_pvsFilePathes); // recursion
                 }
             }
@@ -451,7 +451,7 @@ CxDir::filesFind(
     //-------------------------------------
     // FIX: files (!!!! bad code !!!!)
     #if xTODO
-        if (true != cbIsRecurse) {
+        if (!cbIsRecurse) {
             DIR    *pDir     = NULL;
             dirent *pdrEntry = {0};
 
@@ -514,7 +514,7 @@ CxDir::dirsFind(
             (*a_pvsDirPathes).push_back(_sDirPath);
 
             // is search in subdirs ?
-            if (true == a_cbIsRecursively) {
+            if (a_cbIsRecursively) {
                 CxDir(_sDirPath).dirsFind(a_csPattern, a_cbIsRecursively, a_pvsDirPathes);  // recursion
             }
         }
@@ -556,7 +556,7 @@ CxDir::dirsFind(
             (*a_pvsDirPathes).push_back(_sDirPath);
 
             // is search in subdirs ?
-            if (true == a_cbIsRecursively) {
+            if (a_cbIsRecursively) {
                 CxDir(_sDirPath).dirsFind(a_csPattern, a_cbIsRecursively, a_pvsDirPathes);  // recursion
             }
         }
@@ -634,7 +634,7 @@ CxDir::temp() {
     std::ctstring_t csEnvDirTemp = xT("TMPDIR");
 
     bool_t bRv = CxEnvironment::isExists(csEnvDirTemp);
-    if (true == bRv) {
+    if (bRv) {
         sRv = CxEnvironment::var(csEnvDirTemp);
     } else {
         sRv = xDIR_TEMP;

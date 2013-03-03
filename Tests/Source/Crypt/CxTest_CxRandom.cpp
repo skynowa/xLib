@@ -66,7 +66,7 @@ CxTest_CxRandom::unit(
         //bNextBoolean
         {
             m_blRes = rndR.bNextBoolean();
-            xTEST_EQ(true, true == m_blRes || false == m_blRes);
+            xTEST_EQ(true, m_blRes || !m_blRes);
         }
 
         //--------------------------------------------------

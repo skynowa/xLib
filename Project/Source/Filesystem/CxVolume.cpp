@@ -68,7 +68,7 @@ CxVolume::type() const {
             //        pmteMountPoint->mnt_fsname, pmteMountPoint->mnt_dir, pmteMountPoint->mnt_type);
 
             bool_t bRv = CxString::compareNoCase(volumePath(), std::tstring_t(pmteMountPoint->mnt_dir));
-            xCHECK_DO(false == bRv, continue);
+            xCHECK_DO(!bRv, continue);
 
             // TODO: CxVolume::dtGetType
             dtRes = (NULL == pmteMountPoint->mnt_type) ? dtUnknown : dtOther;
@@ -91,7 +91,7 @@ CxVolume::label() const {
     std::tstring_t sRv;
 
     bool_t bRv = isReady();
-    xCHECK_RET(false == bRv, std::tstring_t());
+    xCHECK_RET(!bRv, std::tstring_t());
 
 #if   xOS_ENV_WIN
     tchar_t szVolumeName[MAX_PATH + 1] = {0};
@@ -127,7 +127,7 @@ bool_t
 CxVolume::isValid() const {
 #if   xOS_ENV_WIN
     bool_t bRv = CxDir( volumePath() ).isRoot();
-    xCHECK_RET(false == bRv, false);
+    xCHECK_RET(!bRv, false);
 #elif xOS_ENV_UNIX
     xCHECK_RET(true                  == volumePath().empty(), false);
     xCHECK_RET(CxConst::xSLASH.at(0) != volumePath().at(0),   false);
@@ -266,7 +266,7 @@ CxVolume::space(
     //if csDirPath parameter is empty, uses the root of the current volume
     std::tstring_t sDirPath;
 
-    if (true == a_csDirPath.empty()) {
+    if (a_csDirPath.empty()) {
         sDirPath = CxPath::exeDir();
     } else {
         sDirPath = a_csDirPath;
@@ -342,7 +342,7 @@ CxVolume::paths(
 
             fsProcMounts >> mntMounts.m_sDevice  >> mntMounts.m_sDestination >> mntMounts.m_sFsType >>
                             mntMounts.m_sOptions >> mntMounts.m_iDump        >> mntMounts.m_iPass;
-            xCHECK_DO(true == mntMounts.m_sDevice.empty(), continue);
+            xCHECK_DO(mntMounts.m_sDevice.empty(), continue);
 
             vsRes.push_back(mntMounts.m_sDestination);
         }

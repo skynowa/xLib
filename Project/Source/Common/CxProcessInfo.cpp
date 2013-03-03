@@ -208,7 +208,7 @@ CxProcessInfo::exeName(
         std::ctstring_t csProcFile = CxString::format(xT("/proc/%ld/exe"), a_cidId);
 
         bool_t bRv = CxFile::isExists(csProcFile);
-        xCHECK_RET(false == bRv, std::tstring_t());
+        xCHECK_RET(!bRv, std::tstring_t());
 
         int_t iReaded = - 1;
         sRv.resize(xPATH_MAX);

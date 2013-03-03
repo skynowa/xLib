@@ -87,7 +87,7 @@ CxDebugger::isActive() {
     #if   xOS_LINUX
         // if ppid != sid, some process spawned our app, probably a debugger
         bool_t bRv = ( ::getsid(::getpid()) != ::getppid() );
-        xCHECK_RET(false == bRv, false);
+        xCHECK_RET(!bRv, false);
     #elif xOS_FREEBSD
         int_t               aiMib[4]   = {0};
         struct kinfo_proc kiInfo     = {0};
@@ -125,7 +125,7 @@ CxDebugger::isDebugBuild() {
 //------------------------------------------------------------------------------
 void_t
 CxDebugger::breakPoint() {
-    xCHECK_DO(false == isEnabled(), return);
+    xCHECK_DO(!isEnabled(), return);
 
 #if   xOS_ENV_WIN
     (void_t)::DebugBreak();
@@ -193,7 +193,7 @@ CxDebugger::_msgboxPlain(
     const CxErrorReport &a_crpReport
 )
 {
-    xCHECK_DO(false == isEnabled(), return);
+    xCHECK_DO(!isEnabled(), return);
 
 #if xDEBUG_USE_PROMPT_DIALOG
     #if   xOS_ENV_WIN
@@ -215,7 +215,7 @@ CxDebugger::_msgboxPlain(
             xNA;
             break;
         case CxMsgBoxT::mrRetry:
-            if (true == isActive()) {
+            if (isActive()) {
                 breakPoint();
             } else {
                 CxMsgBoxT::show(xT("Debugger is not present.\nThe application will be terminated."), xT("xLib"));
@@ -230,7 +230,7 @@ CxDebugger::_stdoutPlain(
     const CxErrorReport &a_crpReport
 )
 {
-    xCHECK_DO(false == isEnabled(), return);
+    xCHECK_DO(!isEnabled(), return);
 
     enum EConsoleCmd {
         cmAbort  = xT('a'),
@@ -263,7 +263,7 @@ CxDebugger::_stdoutPlain(
         case cmRetry:
             std::tcout << xT("Retry...\n\n");
 
-            if (true == isActive()) {
+            if (isActive()) {
                 breakPoint();
             } else {
                 std::tcout << xT("\n####################################################################################################\n");
@@ -285,13 +285,13 @@ CxDebugger::_loggingPlain(
     const CxErrorReport &a_crpReport
 )
 {
-    xCHECK_DO(false == isEnabled(), return);
+    xCHECK_DO(!isEnabled(), return);
 
     //--------------------------------------------------
     // get log file path
     std::tstring_t sFilePath;
 
-    if (true == logPath().empty()) {
+    if (logPath().empty()) {
         sFilePath = CxPath( CxPath::exe() ).setExt(xT("debug"));
     } else {
         sFilePath = logPath();

@@ -103,9 +103,9 @@ CPoolThread::uiOnRun(
         // interrupt point
         bRv = isTimeToExit();
         #if xTEST_IGNORE
-            xCHECK_DO(true == bRv, xTRACE(xT("\tCWorkThread: break")));
+            xCHECK_DO(bRv, xTRACE(xT("\tCWorkThread: break")));
         #endif
-        xCHECK_DO(true == bRv, break);
+        xCHECK_DO(bRv, break);
 
         // jobs
         {

@@ -49,7 +49,7 @@ CxShell::execute(
     xTEST_NA(a_csParams);
 
     xCHECK_DO(true  == a_csFilePath.empty(), return);
-    xCHECK_DO(false == isAvailable(),        return);
+    xCHECK_DO(!isAvailable(),        return);
 
     // REVIEW: security bug - xT("%s \"%s\"") or xT("\"%s\" \"%s\"") ??
     std::tstring_t sCommand = CxString::format(xT("%s \"%s\""), a_csFilePath.c_str(), a_csParams.c_str());
@@ -201,9 +201,9 @@ CxShell::executeEmail(
 
     sCmd.append(xT("mailto:")  + sToEmail);
 
-    xCHECK_DO(false == sSubject.empty() || false == sBody.empty(), sCmd.append(xT("?")                  ));
-    xCHECK_DO(false == sSubject.empty(),                           sCmd.append(xT("subject=") + sSubject));
-    xCHECK_DO(false == sBody.empty(),                              sCmd.append(xT("&body=")    + sBody  ));
+    xCHECK_DO(!sSubject.empty() || !sBody.empty(), sCmd.append(xT("?")                  ));
+    xCHECK_DO(!sSubject.empty(),                           sCmd.append(xT("subject=") + sSubject));
+    xCHECK_DO(!sBody.empty(),                              sCmd.append(xT("&body=")    + sBody  ));
 
     //iMsgBox(sCmd);
 

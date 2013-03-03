@@ -168,19 +168,19 @@ CxCookiePv1::toString() const {
     sRv.append(_m_sValue);
     sRv.append(xT("\""));
 
-    if (false == _m_sComment.empty()) {
+    if (!_m_sComment.empty()) {
         sRv.append(xT("; Comment=\""));
         sRv.append(_m_sComment);
         sRv.append(xT("\""));
     }
 
-    if (false == _m_sDomain.empty()) {
+    if (!_m_sDomain.empty()) {
         sRv.append(xT("; Domain=\""));
         sRv.append(_m_sDomain);
         sRv.append(xT("\""));
     }
 
-    if (false == _m_sPath.empty()) {
+    if (!_m_sPath.empty()) {
         sRv.append(xT("; Path=\""));
         sRv.append(_m_sPath);
         sRv.append(xT("\""));
@@ -192,11 +192,11 @@ CxCookiePv1::toString() const {
         sRv.append(xT("\""));
     }
 
-    if (true == _m_bSecure) {
+    if (_m_bSecure) {
         sRv.append(xT("; Secure"));
     }
 
-    if (true == _m_bHttpOnly) {
+    if (_m_bHttpOnly) {
         sRv.append(xT("; HttpOnly"));
     }
 

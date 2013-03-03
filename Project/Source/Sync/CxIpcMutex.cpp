@@ -56,7 +56,7 @@ CxIpcMutex::create(
     ctchar_t *pcszWinName = NULL;
     std::tstring_t _sWinName;
 
-    if (true == a_csName.empty()) {
+    if (a_csName.empty()) {
         pcszWinName = NULL;
     } else {
         _sWinName   = xT("Global\\") + a_csName;
@@ -88,7 +88,7 @@ CxIpcMutex::open(
     ctchar_t *pcszWinName = NULL;
     std::tstring_t _sWinName;
 
-    if (true == a_csName.empty()) {
+    if (a_csName.empty()) {
         pcszWinName = NULL;
     } else {
         _sWinName   = xT("Global\\") + a_csName;

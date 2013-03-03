@@ -117,7 +117,7 @@ CxTcpClient::setNonBlockingMode(
     iFlags = ::fcntl(_m_sktSocket, F_GETFL);
     xTEST_DIFF(xSOCKET_ERROR, iFlags);
 
-    if (true == a_cbFlag) {
+    if (a_cbFlag) {
         iFlags = (iFlags |  O_NONBLOCK);
     } else {
         iFlags = (iFlags & ~O_NONBLOCK);

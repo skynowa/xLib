@@ -345,7 +345,7 @@ CxPop3::retriveRawAndBackup(
 )
 {
     xTEST_GR(a_iNum, 0);
-    xTEST_EQ(false, (true == a_csDirPath.empty() && true == a_csBackupDirPath.empty()));
+    xTEST_EQ(false, (a_csDirPath.empty() && a_csBackupDirPath.empty()));
     xTEST_EQ(false, a_csFileName.empty());
 
     //-------------------------------------
@@ -384,7 +384,7 @@ CxPop3::retriveRawAndBackup(
 
     //-------------------------------------
     //��������� ���� �� ���� (��������), ���� ���� ���� - �� ���������
-    if (false == a_csDirPath.empty()) {
+    if (!a_csDirPath.empty()) {
         CxFile stdfOriginal;
 
         stdfOriginal.create(a_csDirPath + xT("\\") + a_csFileName, CxFile::omBinWrite, true);
@@ -395,7 +395,7 @@ CxPop3::retriveRawAndBackup(
 
     //-------------------------------------
     //��������� ���� �� ���� (�����), ���� ���� ���� - �� ���������
-    if (false == a_csBackupDirPath.empty()) {
+    if (!a_csBackupDirPath.empty()) {
         CxFile stdfBackup;
 
         stdfBackup.create(a_csBackupDirPath + xT("\\") + a_csFileName, CxFile::omBinWrite, true);
@@ -468,7 +468,7 @@ CxPop3::del(
 //DONE: bDisconnect (������������� �� �������)
 void_t
 CxPop3::disconnect() {
-    xCHECK_DO(false == _m_bConnected, return);
+    xCHECK_DO(!_m_bConnected, return);
 
     //-------------------------------------
     //RFC

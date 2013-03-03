@@ -211,7 +211,7 @@ CxString::boolToStr(
 {
     xTEST_NA(a_cbBool);
 
-    return (false == a_cbBool) ? xT("false") : xT("true");
+    return (!a_cbBool) ? xT("false") : xT("true");
 }
 //------------------------------------------------------------------------------
 /* static */
@@ -222,8 +222,8 @@ CxString::strToBool(
 {
     xTEST_NA(a_csStr);
 
-    xCHECK_RET(false != compareNoCase(xT("true"),  a_csStr), true);
-    xCHECK_RET(false != compareNoCase(xT("false"), a_csStr), false);
+    xCHECK_RET(compareNoCase(xT("true"),  a_csStr), true);
+    xCHECK_RET(compareNoCase(xT("false"), a_csStr), false);
 
     return false;
 }
@@ -262,7 +262,7 @@ CxString::toLowerCase(
 
     size_t uiLength = a_cuiLength;
 
-    xCHECK_RET(true == a_csStr.empty(),   std::tstring_t());
+    xCHECK_RET(a_csStr.empty(),   std::tstring_t());
     xCHECK_DO (a_csStr.size() < uiLength, uiLength = a_csStr.size());
 
     std::tstring_t sRv(a_csStr);
@@ -290,7 +290,7 @@ CxString::toUpperCase(
 
     size_t uiLength = a_cuiLength;
 
-    xCHECK_RET(true == a_csStr.empty(),   std::tstring_t());
+    xCHECK_RET(a_csStr.empty(),   std::tstring_t());
     xCHECK_DO (a_csStr.size() < uiLength, uiLength = a_csStr.size());
 
     std::tstring_t sRv(a_csStr);
@@ -395,8 +395,8 @@ CxString::replaceAll(
     xTEST_NA(a_csOldStr);
     xTEST_NA(a_csNewStr);
 
-    xCHECK_RET(true == a_csStr.empty(),    a_csStr);
-    xCHECK_RET(true == a_csOldStr.empty(), a_csStr);
+    xCHECK_RET(a_csStr.empty(),    a_csStr);
+    xCHECK_RET(a_csOldStr.empty(), a_csStr);
 
     std::tstring_t sRv(a_csStr);
 
@@ -454,8 +454,8 @@ CxString::split(
     xTEST_NA(a_csSep);
     xTEST_NA(a_pvsOut);
 
-    xCHECK_DO(true == a_csStr.empty(), return);
-    xCHECK_DO(true == a_csSep.empty(), return);
+    xCHECK_DO(a_csStr.empty(), return);
+    xCHECK_DO(a_csSep.empty(), return);
     xTEST_PTR(a_pvsOut);
 
     std::vec_tstring_t vsRes;
@@ -683,7 +683,7 @@ CxString::minimize(
     xTEST_NA(a_csStr);
     xTEST_NA(a_cuiMaxLen);
 
-    xCHECK_RET(true == a_csStr.empty(), std::tstring_t());
+    xCHECK_RET(a_csStr.empty(), std::tstring_t());
     xCHECK_RET(0U   == a_cuiMaxLen,     std::tstring_t());
 
     std::tstring_t sRv;
@@ -742,7 +742,7 @@ CxString::compareNoCase(
     xCHECK_RET(0 != iRv, false);
 #elif xOS_ENV_UNIX
     bool_t bRv = std::equal(a_csStr1.begin(), a_csStr1.end(), a_csStr2.begin(), SCompareNoCase());
-    xCHECK_RET(false == bRv, false);
+    xCHECK_RET(!bRv, false);
 #endif
 
     return true;
@@ -763,7 +763,7 @@ CxString::translitLatToRus(
 {
     xTEST_NA(a_csStr);
 
-    xCHECK_RET(true == a_csStr.empty(), std::tstring_t());
+    xCHECK_RET(a_csStr.empty(), std::tstring_t());
 
     // translit table
     std::ctstring_t csDict[][2] = {
@@ -860,7 +860,7 @@ CxString::formatPercentage(
     std::tstring_t sRv;
 
     sRv = cast( a_ullCurrValue * 100ULL / a_ullMaxValue );
-    xCHECK_RET(true == sRv.empty(), xT("0%"));
+    xCHECK_RET(sRv.empty(), xT("0%"));
 
     sRv.append(xT("%"));
 

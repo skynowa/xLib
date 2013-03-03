@@ -112,7 +112,7 @@ CxSocket::isValid() const {
 //------------------------------------------------------------------------------
 void_t
 CxSocket::close() {
-    xCHECK_DO(false == isValid(), return);
+    xCHECK_DO(!isValid(), return);
 
     xTEST_DIFF(xSOCKET_HANDLE_INVALID, _m_sktSocket);
 

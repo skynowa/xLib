@@ -189,7 +189,7 @@ CxSmtp::sendRaw(
     //////////-------------------------------------
     //////////[HELO\r\n]
     ////////////bRv = _bCommand(sHelloCmd, "\r\n", /*ref*/sRv);
-    ////////////xCHECK_RET(false == bRv, false);
+    ////////////xCHECK_RET(!bRv, false);
 
     //-------------------------------------
     //[MAIL FROM:<my_mail@mail.ru>\r\n]
@@ -237,7 +237,7 @@ CxSmtp::send(
     //////-------------------------------------
     //////[HELO DrWEB\r\n]
     ////bRv = _bCommand(sHelloCmd, "\r\n", /*ref*/sRv);
-    ////xCHECK_RET(false == bRv, false);
+    ////xCHECK_RET(!bRv, false);
 
     //-------------------------------------
     //[MAIL FROM:<my_mail@mail.ru>\r\n]
@@ -263,7 +263,7 @@ CxSmtp::send(
 //DONE: bDisconnect
 void_t
 CxSmtp::disconnect() {
-    xCHECK_DO(false == _m_bConnected, disconnect());
+    xCHECK_DO(!_m_bConnected, disconnect());
 
     //-------------------------------------
     //RFC

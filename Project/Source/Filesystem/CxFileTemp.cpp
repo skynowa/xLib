@@ -34,7 +34,7 @@ CxFileTemp::CxFileTemp(
 CxFileTemp::~CxFileTemp() {
     (*_m_pfFile).close();
 
-    if (false != _m_cbIsAutoDelete) {
+    if (_m_cbIsAutoDelete) {
         CxFile::remove(_m_sFilePath);
     }
 }

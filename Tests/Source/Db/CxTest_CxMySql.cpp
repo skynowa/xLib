@@ -87,7 +87,7 @@ CxTest_CxMySql::unit(
         bool_t bIsDbExists = false;
 
         bIsDbExists = CxMySQLConnection::isExists(csHost, csUser, csPassword, csDbName, cuiPort, csUnixSocket, culClientFlag);
-        if (false == bIsDbExists) {
+        if (!bIsDbExists) {
             //create Db
             std::tstring_t csDbDefaultName = xT("");
 
