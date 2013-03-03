@@ -17,9 +17,9 @@ class CxDll :
 {
 public:
 #if   xOS_ENV_WIN
-    typedef FARPROC proc_address_t;
+    typedef FARPROC  proc_address_t;
 #elif xOS_ENV_UNIX
-    typedef void_t *  proc_address_t;
+    typedef void_t * proc_address_t;
 #endif
                     CxDll       ();
         ///< constructor
@@ -44,7 +44,7 @@ private:
 
     handle_t        _m_hDll;   ///< dll module handle
 
-    void_t          _free       ();
+    void_t          _destruct   ();
         ///< free
 };
 

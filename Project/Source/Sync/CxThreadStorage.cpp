@@ -22,12 +22,12 @@ CxThreadStorage::CxThreadStorage() :
     _m_indIndex(static_cast<pthread_key_t>( -1 ))
 #endif
 {
-    _alloc();
+    _construct();
 }
 //------------------------------------------------------------------------------
 /* virtual */
 CxThreadStorage::~CxThreadStorage() {
-    _free();
+    _destruct();
 }
 //------------------------------------------------------------------------------
 bool_t
@@ -93,7 +93,7 @@ CxThreadStorage::setValue(
 
 //------------------------------------------------------------------------------
 void_t
-CxThreadStorage::_alloc() {
+CxThreadStorage::_construct() {
     index_t indRes = (index_t)- 1;
 
 #if   xOS_ENV_WIN
@@ -112,7 +112,7 @@ CxThreadStorage::_alloc() {
 }
 //------------------------------------------------------------------------------
 void_t
-CxThreadStorage::_free() {
+CxThreadStorage::_destruct() {
 #if   xOS_ENV_WIN
     xTEST_DIFF(TLS_OUT_OF_INDEXES, _m_indIndex);
 

@@ -64,7 +64,7 @@ private:
     HANDLE   _m_SysLog;     ///< event log handle
 #endif
 
-    void_t   _init      (std::ctstring_t &csLogName);
+    void_t   _construct (std::ctstring_t &csLogName);
         ///< initiate data
 };
 

@@ -136,7 +136,7 @@ private:
     std::tstring_t    _m_sCountryCode;          ///< country code
     ExRequestType     _m_rtRequestType;         ///< request method
 
-    bool_t            _init              ();
+    bool_t            _construct         ();
         ///< initiate class data
 };
 //------------------------------------------------------------------------------
@@ -165,7 +165,7 @@ public:
 private:
     CxCgi          &_m_ccgCgi;    ///< CxCgi object
 
-    void_t          _init       ();
+    void_t          _construct  ();
         ///< initiate class data
 };
 //------------------------------------------------------------------------------
@@ -194,7 +194,7 @@ private:
     CxCgi           &_m_ccgCgi;        ///< CxCgi object
     std::tstring_t   _m_sFormData;     ///< form data
 
-    void_t           _init       ();
+    void_t           _construct   ();
         ///< initiate class data
 };
 //------------------------------------------------------------------------------

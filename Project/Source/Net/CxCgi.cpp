@@ -350,7 +350,7 @@ CxCgiEnvironment::CxCgiEnvironment(
     _m_ccgCgi         (a_ccgCgi),
     _m_rtRequestType(rtUknown)
 {
-    _init();
+    _construct();
 }
 //------------------------------------------------------------------------------
 /* virtual */
@@ -593,7 +593,7 @@ CxCgiEnvironment::dump() const {
 
 //------------------------------------------------------------------------------
 bool_t
-CxCgiEnvironment::_init() {
+CxCgiEnvironment::_construct() {
     _m_sAuthType           = CxEnvironment::var(xT("AUTH_TYPE"));
     _m_sContentLength      = CxEnvironment::var(xT("CONTENT_LENGTH"));
     _m_sContentType        = CxEnvironment::var(xT("CONTENT_TYPE"));
@@ -664,7 +664,7 @@ CxCgiCookies::CxCgiCookies(
 ):
     _m_ccgCgi(a_ccgCgi)
 {
-    _init();
+    _construct();
 }
 //------------------------------------------------------------------------------
 /* virtual */
@@ -728,7 +728,7 @@ CxCgiCookies::dump() const {
 
 //------------------------------------------------------------------------------
 void_t
-CxCgiCookies::_init() {
+CxCgiCookies::_construct() {
     std::tstring_t     sRawCookies = _m_ccgCgi.Environment.httpCookie();
     std::vec_tstring_t vsRawCookies;
     TCookies           vecckCookies;
@@ -765,7 +765,7 @@ CxCgiFormData::CxCgiFormData(
     _m_cuiMaxData(a_cuiMaxSize),
     _m_ccgCgi    (a_ccgCgi)
 {
-    _init();
+    _construct();
 }
 //------------------------------------------------------------------------------
 /* virtual */
@@ -798,7 +798,7 @@ CxCgiFormData::dump() const {
 
 //------------------------------------------------------------------------------
 void_t
-CxCgiFormData::_init() {
+CxCgiFormData::_construct() {
     int_t iRv = _m_ccgCgi.Environment.requestType();
     switch (iRv) {
         case CxCgiEnvironment::rtGet:
