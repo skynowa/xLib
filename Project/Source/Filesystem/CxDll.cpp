@@ -28,7 +28,7 @@ CxDll::CxDll() :
 //------------------------------------------------------------------------------
 /* virtual */
 CxDll::~CxDll() {
-    _free();
+    _destruct();
 }
 //------------------------------------------------------------------------------
 bool_t
@@ -46,7 +46,7 @@ CxDll::load(
     xTESTS_NA;
     xTEST_EQ(false, csDllPath.empty());
 
-    _free();
+    _destruct();
 
 #if   xOS_ENV_WIN
     _m_hDll = ::LoadLibrary(csDllPath.c_str());
@@ -119,7 +119,7 @@ CxDll::procAddress(
 
 //------------------------------------------------------------------------------
 void_t
-CxDll::_free() {
+CxDll::_destruct() {
     xTESTS_NA;
 
     xCHECK_DO(false == isLoaded(), return);

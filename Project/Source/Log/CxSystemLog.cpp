@@ -29,7 +29,7 @@ CxSystemLog::CxSystemLog() :
     _m_SysLog   (NULL)
 #endif
 {
-    _init( CxPath( CxPath::exe() ).fileBaseName() );
+    _construct( CxPath( CxPath::exe() ).fileBaseName() );
 }
 //------------------------------------------------------------------------------
 CxSystemLog::CxSystemLog(
@@ -41,7 +41,7 @@ CxSystemLog::CxSystemLog(
     _m_SysLog   (NULL)
 #endif
 {
-    _init(a_csLogName);
+    _construct(a_csLogName);
 }
 //------------------------------------------------------------------------------
 /* virtual */
@@ -111,7 +111,7 @@ CxSystemLog::write(
 
 //------------------------------------------------------------------------------
 void_t
-CxSystemLog::_init(
+CxSystemLog::_construct(
     std::ctstring_t &a_csLogName
 )
 {
