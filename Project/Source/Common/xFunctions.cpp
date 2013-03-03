@@ -28,7 +28,7 @@ xNAMESPACE_BEGIN(NxLib)
         static int_t  s_iTzFlag = 0;
 
         if (NULL != a_tv) {
-            (void)::GetSystemTimeAsFileTime(&ftTime);
+            (void_t)::GetSystemTimeAsFileTime(&ftTime);
 
             ullRv |= ftTime.dwHighDateTime;
             ullRv <<= 32ULL;

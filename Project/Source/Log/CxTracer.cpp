@@ -29,7 +29,7 @@ CxTracer::~CxTracer() {
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxTracer::write(
     ctchar_t *a_pcszFormat, ...
 )
@@ -47,13 +47,13 @@ CxTracer::write(
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxTracer::write(
     std::ctstring_t &a_csMsg
 )
 {
 #if   xOS_ENV_WIN
-    (void)::OutputDebugString((a_csMsg + CxConst::xNL).c_str());
+    (void_t)::OutputDebugString((a_csMsg + CxConst::xNL).c_str());
 #elif xOS_ENV_UNIX
     xNA;
 #endif

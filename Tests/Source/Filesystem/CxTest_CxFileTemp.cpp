@@ -21,7 +21,7 @@ CxTest_CxFileTemp::~CxTest_CxFileTemp() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxFileTemp::unit(
     culonglong_t &cullCaseLoops
 )

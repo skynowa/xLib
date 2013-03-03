@@ -24,7 +24,7 @@ RandomNumber () {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxString::unit(
     culonglong_t &cullCaseLoops
 )
@@ -256,7 +256,7 @@ CxTest_CxString::unit(
 
     xTEST_CASE("CxString::strToWStr, CxString::wstrToStr", cullCaseLoops)
     {
-        const std::string csAnsiStr[] = {
+        std::cstring_t csAnsiStr[] = {
             "gnhjfgyhj ghj...",
             "vhgnjhghjfgh 234563476 45674_+()_ (*?)casf,fjpo,e rfWAERCWER$%^*())_+)+*()BNVNH*",
             "123 456 7890",
@@ -268,7 +268,7 @@ CxTest_CxString::unit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(csAnsiStr) - 1; i ++) {
-            const std::string csTemplate = csAnsiStr[i];
+            std::cstring_t csTemplate = csAnsiStr[i];
 
             std::wstring wsUnicode = CxString::strToWStr(csTemplate);
             std::string  asAnsi    = CxString::wstrToStr(wsUnicode);
@@ -288,7 +288,7 @@ CxTest_CxString::unit(
 
     xTEST_CASE("CxString::convertCodePage", cullCaseLoops)
     {
-        const std::string csAnsiStr[] = {
+        std::cstring_t csAnsiStr[] = {
             "gnhjfgyhj ghj...",
             "vhgnjhghjfgh 234563476 45674_+()_ (*?)casf,fjpo,e rfWAERCWER$%^*())_+)+*()BNVNH*",
             "123 456 7890",
@@ -985,7 +985,7 @@ CxTest_CxString::unit(
 
         //2
         {
-            const size_t cauiSizes[] = {1, 0, 10, 100000000};
+            std::csize_t cauiSizes[] = {1, 0, 10, 100000000};
 
             for (size_t i = 0; i < xARRAY_SIZE(cauiSizes); ++ i) {
                 m_pvRv = CxString::memoryZeroSecure(NULL, cauiSizes[i]);

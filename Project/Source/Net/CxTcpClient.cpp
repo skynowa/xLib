@@ -54,7 +54,7 @@ CxTcpClient::isWritable() {
     return true;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxTcpClient::connect(
     std::ctstring_t &a_csIp,
     cushort_t       &a_cusPort
@@ -76,10 +76,10 @@ CxTcpClient::connect(
     xTEST_DIFF(xSOCKET_ERROR, iRv);
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxTcpClient::ioctl(
     clong_t &a_cliCmd,
-    ulong_t      *a_pulArgp
+    ulong_t *a_pulArgp
 )
 {
     xTEST_DIFF(xSOCKET_HANDLE_INVALID, _m_sktSocket);
@@ -95,7 +95,7 @@ CxTcpClient::ioctl(
 #endif
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxTcpClient::setNonBlockingMode(
     cbool_t &a_cbFlag
 )
@@ -128,7 +128,7 @@ CxTcpClient::setNonBlockingMode(
 #endif
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxTcpClient::timeout(
     long_t *a_pliSec,
     long_t *a_pliMicroSec
@@ -142,7 +142,7 @@ CxTcpClient::timeout(
     CxUtils::ptrAssignT(a_pliMicroSec, static_cast<long_t>( _m_tvTimeout.tv_usec ));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxTcpClient::setTimeout(
     clong_t &a_cliSec,
     clong_t &a_cliMicroSec

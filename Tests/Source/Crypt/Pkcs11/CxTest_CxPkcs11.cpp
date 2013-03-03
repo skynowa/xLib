@@ -17,7 +17,7 @@ CxTest_CxPkcs11::~CxTest_CxPkcs11() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxPkcs11::unit(
     culonglong_t &cullCaseLoops
 )

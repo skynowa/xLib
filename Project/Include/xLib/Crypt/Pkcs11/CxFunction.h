@@ -27,13 +27,13 @@ public:
     virtual             ~CxFunction();
         ///< destructor
 
-    void                 list      (CK_FUNCTION_LIST_PTR_PTR ppFunctionList);
+    void_t               list      (CK_FUNCTION_LIST_PTR_PTR ppFunctionList);
         ///< returns the function list
-    void                 status    ();
+    void_t               status    ();
         ///< is a legacy function; it obtains an updated status of a function running in parallel with an application
-    void                 cancel    ();
+    void_t               cancel    ();
         ///< is a legacy function; it cancels a function running in parallel
-    void                 listEx    ();
+    void_t               listEx    ();
         ///< SDK 4.53
 
 private:

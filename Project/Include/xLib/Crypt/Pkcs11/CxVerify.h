@@ -27,17 +27,17 @@ public:
     virtual             ~CxVerify   ();
         ///< destructor
 
-    void                 init       (CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
+    void_t               init       (CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
         ///< initializes a verification operation, where the signature is an appendix to the data, and plaintext cannot cannot be recovered from the signature (e.g. DSA)
-    void                 make       (CK_BYTE_PTR pData, CK_ULONG ulDataLen, CK_BYTE_PTR pSignature, CK_ULONG ulSignatureLen);
+    void_t               make       (CK_BYTE_PTR pData, CK_ULONG ulDataLen, CK_BYTE_PTR pSignature, CK_ULONG ulSignatureLen);
         ///< verifies a signature in a single-part operation,  where the signature is an appendix to the data, and plaintext cannot be recovered from the signature
-    void                 final      (CK_BYTE_PTR pSignature, CK_ULONG ulSignatureLen);
+    void_t               final      (CK_BYTE_PTR pSignature, CK_ULONG ulSignatureLen);
         ///< finishes a multiple-part verification operation, checking the signature
-    void                 recoverInit(CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
+    void_t               recoverInit(CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
         ///< initializes a signature verification operation, where the data is recovered from the signature
-    void                 recover    (CK_BYTE_PTR pSignature, CK_ULONG ulSignatureLen, CK_BYTE_PTR pData, CK_ULONG_PTR pulDataLen);
+    void_t               recover    (CK_BYTE_PTR pSignature, CK_ULONG ulSignatureLen, CK_BYTE_PTR pData, CK_ULONG_PTR pulDataLen);
         ///< verifies a signature in a single-part operation, where the data is recovered from the signature
-    void                 update     (CK_BYTE_PTR pPart, CK_ULONG ulPartLen);
+    void_t               update     (CK_BYTE_PTR pPart, CK_ULONG ulPartLen);
         ///< continues a multiple-part verification operation, where the signature is an appendix to the data, and plaintext cannot be recovered from the signature
 
 private:

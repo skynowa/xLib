@@ -17,7 +17,7 @@ CxTest_CxDateTime::~CxTest_CxDateTime() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxDateTime::unit(
     culonglong_t &cullCaseLoops
 )

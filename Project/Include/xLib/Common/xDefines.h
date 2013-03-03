@@ -194,13 +194,13 @@
 //--------------------------------------------------
 // xUNUSED
 #if   xCOMPILER_MINGW || xCOMPILER_MS
-    #define xUNUSED(arg)                ( static_cast<void>( arg ) )
+    #define xUNUSED(arg)                ( static_cast<void_t>( arg ) )
 #elif xCOMPILER_CODEGEAR
-    #define xUNUSED(arg)                ( static_cast<void>( arg ) )
+    #define xUNUSED(arg)                ( static_cast<void_t>( arg ) )
 #elif xCOMPILER_GNUC
-    #define xUNUSED(arg)                { static_cast<void>( (arg) = ((true) ? (arg) : (arg)) ); }
+    #define xUNUSED(arg)                { static_cast<void_t>( (arg) = ((true) ? (arg) : (arg)) ); }
 #else
-    #define xUNUSED(arg)                ( static_cast<void>( arg ) )
+    #define xUNUSED(arg)                ( static_cast<void_t>( arg ) )
 #endif
     ///< hide "unused variable" warnings
 
@@ -403,7 +403,7 @@
 #elif defined(__va_copy)
     #define xVA_COPY(dest, src)         ( __va_copy(dest, src) )
 #else
-    #define xVA_COPY(dest, src)         ( (void *)std::memcpy(&dest, &src, sizeof(va_list)) )
+    #define xVA_COPY(dest, src)         ( (void_t *)std::memcpy(&dest, &src, sizeof(va_list)) )
 #endif
     ///< copy xVA_LIST
 

@@ -29,23 +29,23 @@ public:
     virtual  ~CxFlags    ();
         ///< destructor
 
-    bool_t      isSet      (cint_t &ciFlag) const;
+    bool_t    isSet      (cint_t &ciFlag) const;
         ///<
-    bool_t      isSet      (const mask_t &cmFlag) const;
+    bool_t    isSet      (const mask_t &cmFlag) const;
         ///<
-    bool_t      isAnySet   (const mask_t &cmFlag) const;
+    bool_t    isAnySet   (const mask_t &cmFlag) const;
         ///<
-    bool_t      isAnySet   (cint_t &ciFlag) const;
+    bool_t    isAnySet   (cint_t &ciFlag) const;
         ///<
-    void      setFlag    (const mask_t &cmFlag);
+    void_t    setFlag    (const mask_t &cmFlag);
         ///<
-    void      setFlag    (cint_t &ciFlag);
+    void_t    setFlag    (cint_t &ciFlag);
         ///<
-    void      unsetFlag  (const mask_t &cmFlag);
+    void_t    unsetFlag  (const mask_t &cmFlag);
         ///<
-    void      unsetFlag  (cint_t &ciFlag);
+    void_t    unsetFlag  (cint_t &ciFlag);
         ///<
-    void      setFlags   (const mask_t &cmFlag);
+    void_t    setFlags   (const mask_t &cmFlag);
         ///<
     mask_t    getFlags   () const;
         ///<

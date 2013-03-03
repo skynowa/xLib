@@ -30,13 +30,13 @@ public:
 
     const handle_t &  handle () const xWARN_UNUSED_RV;
         ///< get handle
-    void              create ();
+    void_t            create ();
         ///< create
-    void              lock   ();
+    void_t            lock   ();
         ///< lock
-    bool_t              tryLock() xWARN_UNUSED_RV;
+    bool_t            tryLock() xWARN_UNUSED_RV;
         ///< try lock
-    void              unlock ();
+    void_t            unlock ();
         ///< unlock
 
 private:

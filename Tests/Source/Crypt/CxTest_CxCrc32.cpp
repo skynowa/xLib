@@ -19,7 +19,7 @@ CxTest_CxCrc32::~CxTest_CxCrc32() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxCrc32::unit(
     culonglong_t &cullCaseLoops
 )

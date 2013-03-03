@@ -34,11 +34,11 @@ private:
     CK_FUNCTION_LIST_PTR _m_pFunc;            ///< pointer to function
     CxDll                _m_dllETPkcs11;    ///< Pkcs11 CxDll object
 
-    void                 _loadETPkcs11();
+    void_t               _loadETPkcs11();
         ///< load eTPkcs11.dll
-    void                 _initialize  ();
+    void_t               _initialize  ();
         ///< initiate PKCS#11
-    void                 _finalize    ();
+    void_t               _finalize    ();
         ///< finalize PKCS#11
 };
 

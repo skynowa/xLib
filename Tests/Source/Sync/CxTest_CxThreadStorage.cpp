@@ -17,7 +17,7 @@ CxTest_CxThreadStorage::~CxTest_CxThreadStorage() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxThreadStorage::unit(
     culonglong_t &cullCaseLoops
 )
@@ -37,7 +37,7 @@ CxTest_CxThreadStorage::unit(
             m_bRv = tlsTls.isSet();
             xTEST_EQ(false, m_bRv);
 
-            tlsTls.setValue(static_cast<void *>( pulValue ));
+            tlsTls.setValue(static_cast<void_t *>( pulValue ));
 
             m_bRv = tlsTls.isSet();
             xTEST_EQ(true, m_bRv);

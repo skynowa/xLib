@@ -39,8 +39,14 @@ CxPop3::~CxPop3() {
 }
 //------------------------------------------------------------------------------
 //DONE: bCreate
-void
-CxPop3::create(std::ctstring_t &a_csUser, std::ctstring_t &a_csPass, std::ctstring_t &a_csServer, ushort_t a_usPort) {
+void_t
+CxPop3::create(
+    std::ctstring_t &a_csUser, 
+    std::ctstring_t &a_csPass, 
+    std::ctstring_t &a_csServer, 
+    ushort_t         a_usPort
+)
+{
      xTEST_EQ(false, a_csUser.empty());
      xTEST_EQ(false, a_csPass.empty());
      xTEST_EQ(false, a_csServer.empty());
@@ -53,7 +59,7 @@ CxPop3::create(std::ctstring_t &a_csUser, std::ctstring_t &a_csPass, std::ctstri
 }
 //------------------------------------------------------------------------------
 //DONE: bConnect
-void
+void_t
 CxPop3::connect() {
      //-------------------------------------
      //Create sock
@@ -78,7 +84,7 @@ CxPop3::connect() {
  }
 //------------------------------------------------------------------------------
 //DONE: bLogin
-void
+void_t
 CxPop3::login() {
     //-------------------------------------
     //RFC
@@ -120,8 +126,12 @@ CxPop3::login() {
 }
 //------------------------------------------------------------------------------
 //DONE: bStat
-void
-CxPop3::stat(ulong_t &a_ulSum, ulong_t &a_ulSize) {
+void_t
+CxPop3::stat(
+    ulong_t &a_ulSum, 
+    ulong_t &a_ulSize
+)
+{
     //-------------------------------------
     //RFC
     /*
@@ -146,8 +156,11 @@ CxPop3::stat(ulong_t &a_ulSum, ulong_t &a_ulSize) {
 }
 //------------------------------------------------------------------------------
 //TODO: bList (������ ��������, ������ �� �������)
-void
-CxPop3::list(std::vector<ulong_t> &a_veculList) {
+void_t
+CxPop3::list(
+    std::vector<ulong_t> &a_veculList
+)
+{
     //-------------------------------------
     //RFC
     /*
@@ -172,8 +185,11 @@ CxPop3::list(std::vector<ulong_t> &a_veculList) {
 }
 //------------------------------------------------------------------------------
 //TODO: bListAt (������ ������ � �������� ulIndex)
-void
-CxPop3::listAt(ulong_t &a_ulIndex) {
+void_t
+CxPop3::listAt(
+    ulong_t &a_ulIndex
+)
+{
     //-------------------------------------
     //RFC
     /*
@@ -198,7 +214,7 @@ CxPop3::listAt(ulong_t &a_ulIndex) {
 }
 //------------------------------------------------------------------------------
 //DONE: bNoop (�������� ��������� ���������� � ����)
-void
+void_t
 CxPop3::noop() {
     //-------------------------------------
     //RFC
@@ -215,7 +231,7 @@ CxPop3::noop() {
 }
 //------------------------------------------------------------------------------
 //DONE: bRset (������ ����� �������� �����)
-void
+void_t
 CxPop3::rset() {
     //-------------------------------------
     //RFC
@@ -232,8 +248,13 @@ CxPop3::rset() {
 }
 //------------------------------------------------------------------------------
 //DONE: bTop (�������� ��������� ������)
-void
-CxPop3::top(int_t a_iNum, int_t a_iLines, std::tstring_t &a_sBuff) {
+void_t
+CxPop3::top(
+    int_t           a_iNum, 
+    int_t           a_iLines, 
+    std::tstring_t &a_sBuff
+)
+{
     xTEST_GR(a_iNum, 0);
     xTEST_GR(a_iLines,- 1);
 
@@ -258,8 +279,13 @@ CxPop3::top(int_t a_iNum, int_t a_iLines, std::tstring_t &a_sBuff) {
 }
 //------------------------------------------------------------------------------
 //DONE: bRetriveRaw ()
-void
-CxPop3::retriveRaw(int_t a_iNum, std::ctstring_t &a_csDirPath, std::ctstring_t &a_csFileName) {  //csDirPath ��� �����
+void_t
+CxPop3::retriveRaw(
+    int_t            a_iNum, 
+    std::ctstring_t &a_csDirPath, 
+    std::ctstring_t &a_csFileName
+)
+{  //csDirPath ��� �����
     xTEST_GR(a_iNum, 0);
     xTEST_EQ(false, a_csDirPath.empty());
     xTEST_EQ(false, a_csFileName.empty());
@@ -304,14 +330,20 @@ CxPop3::retriveRaw(int_t a_iNum, std::ctstring_t &a_csDirPath, std::ctstring_t &
 
     stdFile.create(a_csDirPath + xT("\\") + a_csFileName, CxFile::omBinWrite, true);
 
-    size_t uiWriteSize = stdFile.write((const void *)&_m_sRes[0], _m_sRes.size());
+    size_t uiWriteSize = stdFile.write((cvoid_t *)&_m_sRes[0], _m_sRes.size());
     //???
     xUNUSED(uiWriteSize);
 }
 //------------------------------------------------------------------------------
 //DONE: bRetriveRawAndBackup ()
-void
-CxPop3::retriveRawAndBackup(int_t a_iNum, std::ctstring_t &a_csDirPath, std::ctstring_t &a_csBackupDirPath, std::ctstring_t &a_csFileName) {
+void_t
+CxPop3::retriveRawAndBackup(
+    int_t            a_iNum, 
+    std::ctstring_t &a_csDirPath, 
+    std::ctstring_t &a_csBackupDirPath, 
+    std::ctstring_t &a_csFileName
+)
+{
     xTEST_GR(a_iNum, 0);
     xTEST_EQ(false, (true == a_csDirPath.empty() && true == a_csBackupDirPath.empty()));
     xTEST_EQ(false, a_csFileName.empty());
@@ -357,7 +389,7 @@ CxPop3::retriveRawAndBackup(int_t a_iNum, std::ctstring_t &a_csDirPath, std::cts
 
         stdfOriginal.create(a_csDirPath + xT("\\") + a_csFileName, CxFile::omBinWrite, true);
 
-        size_t uiOriginalWriteSize = stdfOriginal.write((const void *)&_m_sRes[0], _m_sRes.size());
+        size_t uiOriginalWriteSize = stdfOriginal.write((cvoid_t *)&_m_sRes[0], _m_sRes.size());
         xTEST_DIFF(size_t(0), uiOriginalWriteSize);
     }
 
@@ -368,14 +400,18 @@ CxPop3::retriveRawAndBackup(int_t a_iNum, std::ctstring_t &a_csDirPath, std::cts
 
         stdfBackup.create(a_csBackupDirPath + xT("\\") + a_csFileName, CxFile::omBinWrite, true);
 
-        size_t uiBackupWriteSize = stdfBackup.write((const void *)&_m_sRes[0], _m_sRes.size());
+        size_t uiBackupWriteSize = stdfBackup.write((cvoid_t *)&_m_sRes[0], _m_sRes.size());
         xTEST_DIFF(size_t(0), uiBackupWriteSize);
     }
 }
 //------------------------------------------------------------------------------
 //DONE: bRetrieveHeader ()
-void
-CxPop3::retrieveHeader(int_t a_iNum, CxMimeHeader &a_mhMimeHeader) {
+void_t
+CxPop3::retrieveHeader(
+    int_t         a_iNum, 
+    CxMimeHeader &a_mhMimeHeader
+)
+{
     xTEST_LESS(a_iNum, 0);
 
     //-------------------------------------
@@ -401,8 +437,11 @@ CxPop3::retrieveHeader(int_t a_iNum, CxMimeHeader &a_mhMimeHeader) {
 }
 //------------------------------------------------------------------------------
 //DONE: bDelete (������� ������)
-void
-CxPop3::del(int_t a_iNum) {
+void_t
+CxPop3::del(
+    int_t a_iNum
+)
+{
     xTEST_GR(a_iNum, 0);
 
     //-------------------------------------
@@ -427,7 +466,7 @@ CxPop3::del(int_t a_iNum) {
 }
 //------------------------------------------------------------------------------
 //DONE: bDisconnect (������������� �� �������)
-void
+void_t
 CxPop3::disconnect() {
     xCHECK_DO(false == _m_bConnected, return);
 
@@ -451,7 +490,10 @@ CxPop3::disconnect() {
 //------------------------------------------------------------------------------
 //DONE: _mailsSum (������� ����� �����)
 ulong_t
-CxPop3::_mailsSum(std::ctstring_t &a_csServerAnswer) {
+CxPop3::_mailsSum(
+    std::ctstring_t &a_csServerAnswer
+)
+{
     xTEST_EQ(false, a_csServerAnswer.empty());
 
     //+OK 2 1141841
@@ -469,7 +511,10 @@ CxPop3::_mailsSum(std::ctstring_t &a_csServerAnswer) {
 //------------------------------------------------------------------------------
 //DONE: _mailsSize (����� ������ ����� � ������)
 ulong_t
-CxPop3::_mailsSize(std::ctstring_t &a_csServerAnswer) {
+CxPop3::_mailsSize(
+    std::ctstring_t &a_csServerAnswer
+)
+{
     xTEST_EQ(false, a_csServerAnswer.empty());
 
     //+OK 2 1141841
@@ -495,8 +540,13 @@ CxPop3::_mailsSize(std::ctstring_t &a_csServerAnswer) {
 
 //------------------------------------------------------------------------------
 //DONE: _bCommand ()
-void
-CxPop3::_command(std::ctstring_t &csCmd, std::ctstring_t &csReplyDelimiter, std::tstring_t *psReply) {
+void_t
+CxPop3::_command(
+    std::ctstring_t &csCmd, 
+    std::ctstring_t &csReplyDelimiter, 
+    std::tstring_t  *psReply
+)
+{
     xTEST_EQ(false, csCmd.empty());
     xTEST_EQ(false, csReplyDelimiter.empty());
     xTEST_PTR(psReply);
@@ -517,7 +567,10 @@ CxPop3::_command(std::ctstring_t &csCmd, std::ctstring_t &csReplyDelimiter, std:
 //------------------------------------------------------------------------------
 //DONE: _bIsError ()
 bool_t
-CxPop3::_isError(std::ctstring_t &csText) {
+CxPop3::_isError(
+    std::ctstring_t &csText
+)
+{
     xTEST_EQ(false, csText.empty());
 
     if (0 == std::memcmp(csText.c_str(), xT("+OK"), 3)) {

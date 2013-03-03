@@ -308,7 +308,7 @@ CxDateTime::operator -= (
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-void
+void_t
 CxDateTime::get(
     ushort_t *a_pusYear,
     ushort_t *a_pusMonth,
@@ -359,7 +359,7 @@ CxDateTime::toMilliseconds() const {
     return _m_ullDateTimeInMSec;
 }
 //--------------------------------------------------------------------------
-void
+void_t
 CxDateTime::set(
     culonglong_t &a_cullMilliseconds
 )
@@ -397,7 +397,7 @@ CxDateTime::set(
     _m_usMillisecond  = static_cast<ushort_t>( ullMilliseconds );
 }
 //--------------------------------------------------------------------------
-void
+void_t
 CxDateTime::set(
     cushort_t &a_cusYear,
     cushort_t &a_cusMonth,
@@ -439,7 +439,6 @@ CxDateTime::set(
 ulonglong_t
 CxDateTime::_toMilliseconds() const {
     xTEST_EQ(true, isValid());
-
 
     ulonglong_t ullRv = 0ULL;
 
@@ -570,7 +569,7 @@ CxDateTime::current() {
 #if   xOS_ENV_WIN
     SYSTEMTIME stDateTime = {0};
 
-    (void)::GetLocalTime(&stDateTime);
+    (void_t)::GetLocalTime(&stDateTime);
     xTEST_EQ(true, isValid(stDateTime.wYear, stDateTime.wMonth, stDateTime.wDay, stDateTime.wHour, stDateTime.wMinute, stDateTime.wSecond, stDateTime.wMilliseconds));
 
     return CxDateTime(stDateTime.wYear, stDateTime.wMonth, stDateTime.wDay, stDateTime.wHour, stDateTime.wMinute, stDateTime.wSecond, stDateTime.wMilliseconds);
@@ -618,7 +617,7 @@ CxDateTime::filetimeToInt64(
 #if   xOS_ENV_WIN
 
 /* static */
-void
+void_t
 CxDateTime::unixTimeToFileTime(
     const time_t &a_ctmUnixTime,
     FILETIME     *a_pftFileTime
@@ -781,8 +780,8 @@ CxDateTime::zodiacSign(
 /* static */
 std::tstring_t
 CxDateTime::monthStr(
-    ushort_t    a_usMonth,
-    cbool_t &a_cbIsShortName
+    ushort_t  a_usMonth,
+    cbool_t  &a_cbIsShortName
 )
 {
     // usMonth      - n/a
@@ -839,7 +838,7 @@ CxDateTime::monthStr(
 ushort_t
 CxDateTime::monthNum(
     std::ctstring_t &a_csMonth,
-    cbool_t           &a_cbIsShortName
+    cbool_t         &a_cbIsShortName
 )
 {
 
@@ -887,8 +886,8 @@ CxDateTime::monthNum(
 /* static */
 std::tstring_t
 CxDateTime::weekDayStr(
-    ushort_t    a_usDay,
-    cbool_t &a_cbIsShortName
+    ushort_t  a_usDay,
+    cbool_t  &a_cbIsShortName
 )
 {
     // cusDay       - n/a
@@ -933,7 +932,7 @@ CxDateTime::weekDayStr(
 ushort_t
 CxDateTime::weekDayNum(
     std::ctstring_t &a_csDay,
-    cbool_t           &a_cbIsShortName
+    cbool_t         &a_cbIsShortName
 )
 {
     //days numbering: 0-6
@@ -975,11 +974,11 @@ CxDateTime::weekDayNum(
 
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxDateTime::_parse(
-    std::ctstring_t &a_csDT,
-    const ExFormatType   &a_cftFormat,
-    CxDateTime           *a_pdtDT
+    std::ctstring_t    &a_csDT,
+    const ExFormatType &a_cftFormat,
+    CxDateTime         *a_pdtDT
 )
 {
      switch (a_cftFormat) {

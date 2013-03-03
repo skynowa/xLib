@@ -20,7 +20,7 @@ public:
     virtual      ~CxTest_CxThreadPool();
         ///< destructor
 
-    virtual void unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &cullCaseLoops);
         ///< unit test
 };
 //------------------------------------------------------------------------------
@@ -34,7 +34,7 @@ public:
     virtual       ~CPoolThread();
 
 protected:
-    virtual uint_t uiOnRun    (void *pData);
+    virtual uint_t uiOnRun    (void_t *pData);
 };
 //------------------------------------------------------------------------------
 #endif //CxTest_CxThreadPoolH

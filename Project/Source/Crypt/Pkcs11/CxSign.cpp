@@ -34,7 +34,7 @@ CxSign::~CxSign() {
 
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxSign::init(
     CK_MECHANISM_PTR a_pMechanism,  ///< the signature mechanism
     CK_OBJECT_HANDLE a_hKey         ///< handle of signature key
@@ -44,7 +44,7 @@ CxSign::init(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxSign::make(
     CK_BYTE_PTR  a_pData,           ///< the data to sign
     CK_ULONG     a_ulDataLen,       ///< count of bytes to sign
@@ -56,7 +56,7 @@ CxSign::make(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxSign::update(
     CK_BYTE_PTR pPart,     ///< the data to sign
     CK_ULONG    ulPartLen  ///< count of bytes to sign
@@ -66,7 +66,7 @@ CxSign::update(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxSign::encryptUpdate(
     CK_BYTE_PTR  a_pPart,               ///< the plaintext data
     CK_ULONG     a_ulPartLen,           ///< plaintext length
@@ -78,7 +78,7 @@ CxSign::encryptUpdate(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxSign::final(
     CK_BYTE_PTR  a_pSignature,      ///< gets the signature
     CK_ULONG_PTR a_pulSignatureLen  ///< gets signature length
@@ -88,7 +88,7 @@ CxSign::final(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxSign::recoverInit(
     CK_MECHANISM_PTR a_pMechanism, ///< the signature mechanism
     CK_OBJECT_HANDLE a_hKey        ///< handle of the signature key
@@ -98,7 +98,7 @@ CxSign::recoverInit(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxSign::recover(
     CK_BYTE_PTR  a_pData,           ///< the data to sign
     CK_ULONG     a_ulDataLen,       ///< count of bytes to sign

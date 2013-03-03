@@ -10,6 +10,8 @@
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
+    typedef void                   void_t;
+    typedef const void_t           cvoid_t;
 
     typedef bool                   bool_t;
     typedef const bool_t           cbool_t;
@@ -108,6 +110,8 @@ xNAMESPACE_END(NxLib)
 xNAMESPACE_BEGIN(std)
 
     typedef const size_t           csize_t;
+    typedef const string           cstring_t;
+    typedef const wstring          cwstring_t;
 
     typedef basic_string< tchar_t, char_traits<tchar_t>, allocator<tchar_t> >
                                    tstring_t;

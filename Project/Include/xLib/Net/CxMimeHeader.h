@@ -19,11 +19,11 @@ public:
                            CxMimeHeader     ();
                           ~CxMimeHeader     ();
 
-    void                   parse            (std::ctstring_t &csRawHeader);
+    void_t                 parse            (std::ctstring_t &csRawHeader);
     std::tstring_t         field            (std::ctstring_t &csName) xWARN_UNUSED_RV;
     size_t                 count            () xWARN_UNUSED_RV;
-    void                   loadFromFile     (std::ctstring_t &csRawMessageFilePath);
-    void                   saveToFile       (std::ctstring_t &csFilePath);
+    void_t                 loadFromFile     (std::ctstring_t &csRawMessageFilePath);
+    void_t                 saveToFile       (std::ctstring_t &csFilePath);
 
     static std::tstring_t  generateMessageID();
 

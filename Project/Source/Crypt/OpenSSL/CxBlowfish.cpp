@@ -39,20 +39,20 @@ CxBlowfish::~CxBlowfish() {
     /*SECURE*/xARRAY_ZERO(_m_ucIvec);
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxBlowfish::setKey(
-    uchar_t   *a_pucKey,
-    cint_t &a_ciKeySize
+    uchar_t *a_pucKey,
+    cint_t  &a_ciKeySize
 )
 {
     xTEST_PTR(a_pucKey);
     xTEST_GR_EQ(static_cast<int_t>( MAX_KEY_SIZE ), a_ciKeySize);
     xTEST_LESS(0, a_ciKeySize);
 
-    (void)::BF_set_key(&_m_bfKey, a_ciKeySize, a_pucKey);
+    (void_t)::BF_set_key(&_m_bfKey, a_ciKeySize, a_pucKey);
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxBlowfish::setKey(
     std::custring_t &a_cusKey
 )
@@ -63,7 +63,7 @@ CxBlowfish::setKey(
     setKey(const_cast<uchar_t *>( a_cusKey.data() ), static_cast<int_t>( a_cusKey.size() ));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxBlowfish::setKey(
     std::ctstring_t &a_csKey
 )
@@ -74,7 +74,7 @@ CxBlowfish::setKey(
     setKey(std::ustring_t(a_csKey.begin(), a_csKey.end()));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxBlowfish::setFileKey(
     std::ctstring_t &a_csFilePath
 )
@@ -116,12 +116,12 @@ CxBlowfish::maxKeySize() {
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-void
+void_t
 CxBlowfish::encryptCfb64(
     uchar_t           *a_pucIn,
     uchar_t           *a_pucOut,
-    clong_t      &a_cliInSize,
-    int_t               *a_piNum,
+    clong_t           &a_cliInSize,
+    int_t             *a_piNum,
     const ExCryptMode &a_cmMode
 )
 {
@@ -132,10 +132,10 @@ CxBlowfish::encryptCfb64(
 
     xARRAY_ZERO(_m_ucIvec);
 
-    (void)::BF_cfb64_encrypt(a_pucIn, a_pucOut, a_cliInSize, &_m_bfKey, _m_ucIvec, a_piNum, a_cmMode);
+    (void_t)::BF_cfb64_encrypt(a_pucIn, a_pucOut, a_cliInSize, &_m_bfKey, _m_ucIvec, a_piNum, a_cmMode);
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxBlowfish::encryptCfb64(
     std::custring_t &a_cusIn,
     std::ustring_t       *a_pusOut,
@@ -155,11 +155,11 @@ CxBlowfish::encryptCfb64(
     xTEST_LESS(- 1, iNum);
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxBlowfish::encryptFileCfb64(
-    std::ctstring_t &a_csFilePathIn,
-    std::ctstring_t &a_csFilePathOut,
-    const ExCryptMode    &a_cmMode
+    std::ctstring_t   &a_csFilePathIn,
+    std::ctstring_t   &a_csFilePathOut,
+    const ExCryptMode &a_cmMode
 )
 {
     xTEST_EQ(false, a_csFilePathIn.empty());

@@ -36,7 +36,7 @@ CxStdError::toString() {
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxStdError::set(
     cint_t &a_ciCode
 )
@@ -45,7 +45,7 @@ CxStdError::set(
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxStdError::reset() {
     cint_t ciCodeSuccess = 0;
 

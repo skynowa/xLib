@@ -18,9 +18,9 @@ class CLogger {
             //xSTD_COUT_FUNC;
         };
 
-       void  vOpen  () { /*xSTD_COUT_FUNC;*/ };
-       void  vWrite () { /*xSTD_COUT_FUNC;*/ };
-       void  vClose () { /*xSTD_COUT_FUNC;*/ };
+       void_t  vOpen  () { /*xSTD_COUT_FUNC;*/ };
+       void_t  vWrite () { /*xSTD_COUT_FUNC;*/ };
+       void_t  vClose () { /*xSTD_COUT_FUNC;*/ };
 };
 
 //------------------------------------------------------------------------------
@@ -33,7 +33,7 @@ CxTest_CxSingleton::~CxTest_CxSingleton() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxSingleton::unit(
     culonglong_t &cullCaseLoops
 )

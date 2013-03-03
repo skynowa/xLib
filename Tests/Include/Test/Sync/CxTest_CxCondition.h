@@ -20,7 +20,7 @@ public:
     virtual      ~CxTest_CxCondition();
         ///< destructor
 
-    virtual void  unit(culonglong_t &cullCaseLoops) xOVERRIDE;
+    virtual void_t  unit(culonglong_t &cullCaseLoops) xOVERRIDE;
         ///< unit test
 };
 //------------------------------------------------------------------------------

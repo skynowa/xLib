@@ -18,11 +18,11 @@ public:
                    CxTest_CxFile();
     virtual       ~CxTest_CxFile();
 
-    virtual  void  unit        (culonglong_t &cullCaseLoops);
+    virtual  void_t  unit        (culonglong_t &cullCaseLoops);
 
 private:
-    void           vUnit1       (culonglong_t &cullCaseLoops);
-    void           vUnitPrivate (culonglong_t &cullCaseLoops);
+    void_t           vUnit1       (culonglong_t &cullCaseLoops);
+    void_t           vUnitPrivate (culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------
 #endif //CxTest_CxFileH

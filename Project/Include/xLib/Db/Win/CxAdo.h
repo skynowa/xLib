@@ -263,31 +263,31 @@ public:
     virtual    ~CADORecordset();
     bool_t       IsCreated() const;
     bool_t       IsOpen() const;
-    void       SetConnection(CADOConnection *pConnection);
-    void       SetSQL(const char *pStrSQL);
-    void       AddParam(DataTypeEnum prmType, const _variant_t &vtPrm);
-    void       SetOpenMode(bool_t bDynamicOpen);
-    void       Open();
-    void       Close();
-    void       First();
-    void       Last();
-    void       Next();
-    void       Prev();
+    void_t       SetConnection(CADOConnection *pConnection);
+    void_t       SetSQL(const char *pStrSQL);
+    void_t       AddParam(DataTypeEnum prmType, const _variant_t &vtPrm);
+    void_t       SetOpenMode(bool_t bDynamicOpen);
+    void_t       Open();
+    void_t       Close();
+    void_t       First();
+    void_t       Last();
+    void_t       Next();
+    void_t       Prev();
     bool_t       IsEoF();
     bool_t       IsBoF();
     bool_t       IsEmpty();
     _variant_t GetField(short nNumField);
     _variant_t GetField(const char *pFieldName);
-    void       AddNew();
-    void       Update();
-    void       Cancel();
-    void       SetField(short nNumField, const _variant_t &vtValue);
-    void       SetField(const char *pFieldName, const _variant_t &vtValue);
-    void       SetArrayField(const char *pFieldName, const void *pBuf, int_t nBytes);
-    void       SetArrayField(short nNumField, const void *pBuf, int_t nBytes);
+    void_t       AddNew();
+    void_t       Update();
+    void_t       Cancel();
+    void_t       SetField(short nNumField, const _variant_t &vtValue);
+    void_t       SetField(const char *pFieldName, const _variant_t &vtValue);
+    void_t       SetArrayField(const char *pFieldName, cvoid_t *pBuf, int_t nBytes);
+    void_t       SetArrayField(short nNumField, cvoid_t *pBuf, int_t nBytes);
     int_t        GetFieldsCount() const;
-    void       SafeBookmark();
-    void       GoToBookmark();
+    void_t       SafeBookmark();
+    void_t       GoToBookmark();
     long       GetCountRecs();
     bool_t       IsNewRecord() const;
     bool_t       IsEditing() const;
@@ -307,7 +307,7 @@ private:
     _variant_t       m_vtBookmark;
     bool_t             m_bNewRecond;
     bool_t             m_bEditing;
-    void             CheckOpen();
+    void_t             CheckOpen();
 };
 //------------------------------------------------------------------------------
 
@@ -328,16 +328,16 @@ public:
     virtual ~CADOConnection();
     bool_t IsCreated() const;
     bool_t IsOpen() const;
-    void SetConnectionParam(const char *pStrConnection, const char *pStrUserID = "", const char *pStrPassword = "");
-    void SetMSAccessConnectionParam(int_t nJetVer, int_t nJetVerEx, const char *pStrFileName, const char *pStrUserID = "", const char *pStrPassword = "");
-    void Open();
-    void Close();
-    void Destroy();
-    void Execute(const char *pStrCmd);
+    void_t SetConnectionParam(const char *pStrConnection, const char *pStrUserID = "", const char *pStrPassword = "");
+    void_t SetMSAccessConnectionParam(int_t nJetVer, int_t nJetVerEx, const char *pStrFileName, const char *pStrUserID = "", const char *pStrPassword = "");
+    void_t Open();
+    void_t Close();
+    void_t Destroy();
+    void_t Execute(const char *pStrCmd);
 
 private:
     CADOConnection(const CADOConnection &) {}
-    void operator = (const CADOConnection &) {}
+    void_t operator = (const CADOConnection &) {}
     _ConnectionPtr m_pConnection;
     _bstr_t        m_strConnection;
     _bstr_t        m_strUserID;

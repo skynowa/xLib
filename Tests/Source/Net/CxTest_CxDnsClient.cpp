@@ -19,7 +19,7 @@ CxTest_CxDnsClient::~CxTest_CxDnsClient() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxDnsClient::unit(
     culonglong_t &cullCaseLoops
 )

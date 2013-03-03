@@ -16,7 +16,7 @@ template<typename Traits>
 inline basic_ostream<tchar_t, Traits> &
 operator << (
     basic_ostream<tchar_t, Traits> &a_osOut,
-    std::custring_t           &a_cusValue
+    std::custring_t                &a_cusValue
 )
 {
     xTEST_NA(a_osOut);
@@ -152,8 +152,8 @@ CxString::cast(
 template<typename T>
 inline std::tstring_t
 CxString::cast(
-    const T   &a_cValueT,
-    cint_t &a_ciBase
+    const T &a_cValueT,
+    cint_t  &a_ciBase
 )
 {
     xTEST_NA(a_cValueT);
@@ -207,7 +207,7 @@ template<typename T>
 inline T
 CxString::cast(
     std::ctstring_t &a_csStr,
-    cint_t            &a_ciBase
+    cint_t          &a_ciBase
 )
 {
     xTEST_NA(a_csStr);
@@ -233,8 +233,12 @@ xNAMESPACE_ANONYM_BEGIN
 
 struct SNarrow {
     std::string::value_type
-    operator () (const std::wstring::value_type &a_cchChar) {
-        return std::use_facet< std::ctype<std::wstring::value_type> >( std::locale() ).narrow(a_cchChar, '@');
+    operator () (
+        const std::wstring::value_type &a_cchChar
+    )
+    {
+        return std::use_facet< std::ctype<std::wstring::value_type> >( std::locale() )
+                    .narrow(a_cchChar, '@');
     }
 };
 
@@ -243,7 +247,7 @@ xNAMESPACE_ANONYM_END
 /* static */
 inline std::string
 CxString::castA(
-    const std::wstring &a_csStr
+    std::cwstring_t &a_csStr
 )
 {
     xTEST_NA(a_csStr);
@@ -259,8 +263,12 @@ xNAMESPACE_ANONYM_BEGIN
 
 struct SWiden {
     std::wstring::value_type
-    operator () (const std::string::value_type &a_cchChar) {
-        return std::use_facet< std::ctype<std::string::value_type> >( std::locale() ).widen(a_cchChar);
+    operator () (
+        const std::string::value_type &a_cchChar
+    )
+    {
+        return std::use_facet< std::ctype<std::string::value_type> >( std::locale() )
+                    .widen(a_cchChar);
     }
 };
 
@@ -269,7 +277,7 @@ xNAMESPACE_ANONYM_END
 /* static */
 inline std::wstring
 CxString::castW(
-    const std::string &a_csStr
+    std::cstring_t &a_csStr
 )
 {
     xTEST_NA(a_csStr);

@@ -18,7 +18,7 @@ CxTest_CxConnectionString::~CxTest_CxConnectionString() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxConnectionString::unit(
     culonglong_t &cullCaseLoops
 )

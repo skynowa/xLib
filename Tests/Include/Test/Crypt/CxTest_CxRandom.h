@@ -18,7 +18,7 @@ public:
                  CxTest_CxRandom();
     virtual     ~CxTest_CxRandom();
 
-    virtual void unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------
 #endif //CxTest_CxRandomH

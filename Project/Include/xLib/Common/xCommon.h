@@ -47,7 +47,7 @@
  *   Types:
  *       a*           - array
  *
- *       v*           - void
+ *       v*           - void_t
  *       b*           - bool_t
  *
  *       i*           - int_t

@@ -18,10 +18,10 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxDnsClient::hostAddrByName(
     std::ctstring_t &a_csHostName,
-    std::tstring_t       *a_psHostAddr
+    std::tstring_t  *a_psHostAddr
 )
 {
     xTEST_EQ(false, a_csHostName.empty());
@@ -48,9 +48,9 @@ CxDnsClient::hostAddrByName(
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxDnsClient::hostNameByAddr(
-    std::ctstring_t            &a_csHostAddr,
+    std::ctstring_t                 &a_csHostAddr,
     const CxSocket::ExAddressFamily &a_afFamily,
     std::tstring_t                  *a_psHostName
 )
@@ -95,7 +95,7 @@ CxDnsClient::hostNameByAddr(
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxDnsClient::localHostName(
     std::tstring_t *a_psHostName
 )
@@ -114,11 +114,11 @@ CxDnsClient::localHostName(
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxDnsClient::nameInfo(
     CxSocket::ExAddressFamily &a_afFamily,
-    std::ctstring_t      &a_csHostAddr,
-    cushort_t            &a_usPort
+    std::ctstring_t           &a_csHostAddr,
+    cushort_t                 &a_usPort
 )
 {
     //xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
@@ -145,12 +145,12 @@ CxDnsClient::nameInfo(
 //------------------------------------------------------------------------------
 //NOTE: http://www.geekpage.jp/en/programming/linux-network/getaddrinfo-0.php
 /* static */
-void
+void_t
 CxDnsClient::hostAddrInfo(
     std::ctstring_t  &a_csHostName,
     std::ctstring_t  &a_csPort,
     caddrinfo_t      *a_pHints,
-    addrinfo_t           **a_ppResult
+    addrinfo_t      **a_ppResult
 )
 {
     //xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
@@ -163,12 +163,12 @@ CxDnsClient::hostAddrInfo(
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxDnsClient::protocolByName(
-    std::ctstring_t &a_csProtocolName,
-    std::tstring_t       *a_psName,
-    std::vec_tstring_t   *a_pvsAliases,
-    short_t              *a_psiNumber
+    std::ctstring_t    &a_csProtocolName,
+    std::tstring_t     *a_psName,
+    std::vec_tstring_t *a_pvsAliases,
+    short_t            *a_psiNumber
 )
 {
     xTEST_EQ(false, a_csProtocolName.empty());
@@ -213,9 +213,9 @@ CxDnsClient::protocolByName(
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxDnsClient::protocolByNumber(
-    cshort_t      &a_siNumber,
+    cshort_t           &a_siNumber,
     std::tstring_t     *a_psName,
     std::vec_tstring_t *a_pvsAliases,
     short_t            *a_psiNumber
@@ -260,14 +260,14 @@ CxDnsClient::protocolByNumber(
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxDnsClient::serviceByName(
-    std::ctstring_t &a_csServiceName,
-    std::ctstring_t &a_csProtocolName,
-    std::tstring_t       *a_psName,
-    std::vec_tstring_t   *a_pvsAliases,
-    short_t              *a_psiPort,
-    std::tstring_t       *a_psProtocolName
+    std::ctstring_t    &a_csServiceName,
+    std::ctstring_t    &a_csProtocolName,
+    std::tstring_t     *a_psName,
+    std::vec_tstring_t *a_pvsAliases,
+    short_t            *a_psiPort,
+    std::tstring_t     *a_psProtocolName
 )
 {
     xTEST_EQ(false, a_csServiceName.empty());
@@ -320,14 +320,14 @@ CxDnsClient::serviceByName(
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxDnsClient::serviceByPort(
-    cshort_t        &a_siPort,
-    std::ctstring_t &a_csProtocolName,
-    std::tstring_t       *a_psName,
-    std::vec_tstring_t   *a_pvsAliases,
-    short_t              *a_psiPort,
-    std::tstring_t       *a_psProtocolName
+    cshort_t           &a_siPort,
+    std::ctstring_t    &a_csProtocolName,
+    std::tstring_t     *a_psName,
+    std::vec_tstring_t *a_pvsAliases,
+    short_t            *a_psiPort,
+    std::tstring_t     *a_psProtocolName
 )
 {
     //TODO: siPort
@@ -385,8 +385,8 @@ CxDnsClient::isOnLan(
     culong_t &a_culIp
 )
 {
-    culong_t culMyIpAddress = INADDR_ANY;     //IP of local interface (network order)
-    culong_t culNetMask     = INADDR_NONE;    //netmask for IP (network order)
+    culong_t culMyIpAddress = INADDR_ANY;     // IP of local interface (network order)
+    culong_t culNetMask     = INADDR_NONE;    // net mask for IP (network order)
 
     return (0L == ((ntohl(a_culIp) ^ ntohl(culMyIpAddress)) & ntohl(culNetMask)));
 }
@@ -397,7 +397,7 @@ CxDnsClient::isBroadcast(
     culong_t &a_culIp
 )
 {
-    culong_t culNetMask     = INADDR_NONE;    //netmask for IP (network order)
+    culong_t culNetMask = INADDR_NONE;    // net mask for IP (network order)
 
     return (0L == (~ntohl(a_culIp) & ~ntohl(culNetMask)));
 }

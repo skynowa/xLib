@@ -27,7 +27,7 @@ CxMutex::~CxMutex() {
     bool_t bRv = false;
 
     try {
-        (void)::DeleteCriticalSection(&_m_hHandle);
+        (void_t)::DeleteCriticalSection(&_m_hHandle);
 
         bRv = true;
     } catch (...) {
@@ -41,13 +41,13 @@ CxMutex::~CxMutex() {
 #endif
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxMutex::create() {
 #if   xOS_ENV_WIN
     bool_t bRv = false;
 
     try {
-        (void)::InitializeCriticalSection(&_m_hHandle);
+        (void_t)::InitializeCriticalSection(&_m_hHandle);
 
         bRv = true;
     } catch (...) {
@@ -87,13 +87,13 @@ CxMutex::handle() const {
     return _m_hHandle;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxMutex::lock() {
 #if   xOS_ENV_WIN
     bool_t bRv = false;
 
     try {
-        (void)::EnterCriticalSection(&_m_hHandle);
+        (void_t)::EnterCriticalSection(&_m_hHandle);
 
         bRv = true;
     } catch (...) {
@@ -120,13 +120,13 @@ CxMutex::tryLock() {
     return true;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxMutex::unlock() {
 #if   xOS_ENV_WIN
     bool_t bRv = false;
 
     try {
-        (void)::LeaveCriticalSection(&_m_hHandle);
+        (void_t)::LeaveCriticalSection(&_m_hHandle);
 
         bRv = true;
     } catch (...) {

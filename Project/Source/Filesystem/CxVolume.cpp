@@ -138,7 +138,7 @@ CxVolume::isValid() const {
 //--------------------------------------------------------------------------
 bool_t
 CxVolume::isReady() const {
-    bool_t           bRv          = false;
+    bool_t         bRv          = false;
     std::tstring_t _sVolumePath = CxPath( volumePath() ).slashAppend();
     std::tstring_t sOldDirPath;
 
@@ -157,7 +157,7 @@ CxVolume::isReady() const {
 
     CxDir::setCurrent(sOldDirPath);
 
-    (void)::SetErrorMode(uiOldErrorMode);
+    (void_t)::SetErrorMode(uiOldErrorMode);
 #elif xOS_ENV_UNIX
     sOldDirPath  = CxDir::current();
     xTEST_NA(sOldDirPath);
@@ -177,7 +177,7 @@ CxVolume::isEmpty() const {
     return CxDir( volumePath() ).isEmpty(CxConst::xMASK_ALL);
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxVolume::mount(
     std::ctstring_t &a_csDestPath    ///< destination path
 ) const
@@ -210,7 +210,7 @@ CxVolume::mount(
 #endif
 }
 //--------------------------------------------------------------------------
-void
+void_t
 CxVolume::unMount(
     cbool_t &a_cbIsForce     ///< force unmount even if busy
 ) const
@@ -249,12 +249,12 @@ CxVolume::unMount(
 
 //--------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxVolume::space(
     std::ctstring_t &a_csDirPath,      ///< directory path
-    ulonglong_t          *a_pullAvailable,  ///< available space (for unprivileged users)
-    ulonglong_t          *a_pullTotal,      ///< total space
-    ulonglong_t          *a_pullFree        ///< free space
+    ulonglong_t     *a_pullAvailable,  ///< available space (for unprivileged users)
+    ulonglong_t     *a_pullTotal,      ///< total space
+    ulonglong_t     *a_pullFree        ///< free space
 )
 {
     xTEST_NA(a_csDirPath);
@@ -299,7 +299,7 @@ CxVolume::space(
 }
 //--------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxVolume::paths(
     std::vec_tstring_t *a_pvsVolumePaths    ///< volume paths
 )

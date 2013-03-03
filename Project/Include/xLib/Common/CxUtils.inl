@@ -17,7 +17,7 @@ xNAMESPACE_BEGIN(NxLib)
 //------------------------------------------------------------------------------
 template<typename T>
 /* static */ inline
-void
+void_t
 CxUtils::ptrDeleteT(
     T * &a_pPtrT
 )
@@ -27,7 +27,7 @@ CxUtils::ptrDeleteT(
 //------------------------------------------------------------------------------
 template<typename T>
 /* static */ inline
-void
+void_t
 CxUtils::arrayDeleteT(
     T * &a_pPtrT
 )
@@ -37,7 +37,7 @@ CxUtils::arrayDeleteT(
 //------------------------------------------------------------------------------
 template<typename T>
 /* static */ inline
-void
+void_t
 CxUtils::ptrAssignT(
     T *     &a_pPtrT,
     const T &a_valueT
@@ -48,7 +48,7 @@ CxUtils::ptrAssignT(
     *a_pPtrT = a_valueT;
 }
 //------------------------------------------------------------------------------
-template <typename T, const size_t cuiArraySize>
+template <typename T, std::csize_t cuiArraySize>
 /* static */ inline
 size_t
 CxUtils::arraySizeT(
@@ -59,40 +59,40 @@ CxUtils::arraySizeT(
 }
 //------------------------------------------------------------------------------
 /* static */ inline
-void
+void_t
 CxUtils::memoryZero(
-    void         *a_pPtr,
-    const size_t &a_sizeBytes
+    void_t         *a_pPtr,
+    std::csize_t &a_sizeBytes
 )
 {
     xCHECK_DO(NULL == a_pPtr, return);
 
-    (void *)std::memset(a_pPtr, 0, a_sizeBytes);
+    (void_t *)std::memset(a_pPtr, 0, a_sizeBytes);
 }
 //------------------------------------------------------------------------------
-template<class T, const size_t cuiArraySize>
+template<class T, std::csize_t cuiArraySize>
 /* static */ inline
-void
+void_t
 CxUtils::arrayZeroT(
     T (&a_arrayT)[cuiArraySize]
 )
 {
-    (void)std::fill_n(&a_arrayT[0], cuiArraySize, T());
+    (void_t)std::fill_n(&a_arrayT[0], cuiArraySize, T());
 }
 //------------------------------------------------------------------------------
 template <typename T>
 /* static */ inline
-void
+void_t
 CxUtils::structZeroT(
     T &a_structT
 )
 {
-    (void *)std::memset(&a_structT, 0, sizeof(a_structT));
+    (void_t *)std::memset(&a_structT, 0, sizeof(a_structT));
 }
 //------------------------------------------------------------------------------
 template <typename T>
 /* static */ inline
-void
+void_t
 CxUtils::bufferFreeT(
     T * &a_pPtrT
 )
@@ -104,7 +104,7 @@ CxUtils::bufferFreeT(
 }
 //------------------------------------------------------------------------------
 /* static */ inline
-void
+void_t
 CxUtils::fileClose(
     FILE * &a_pFile
 )
@@ -149,7 +149,7 @@ CxUtils::minT(
 //------------------------------------------------------------------------------
 template <typename T>
 /* static */ inline
-void
+void_t
 CxUtils::swapT(
     T &a_value1T,
     T &a_value2T
@@ -168,7 +168,7 @@ CxUtils::reinterpretCastT(
     const FromT &a_pPtrT
 )
 {
-    void *pvVoidCast = static_cast<void *>( a_pPtrT );
+    void_t *pvVoidCast = static_cast<void_t *>( a_pPtrT );
     ToT   ResT       = static_cast<ToT>( pvVoidCast );
 
     return ResT;

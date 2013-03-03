@@ -40,8 +40,8 @@ CxStackTrace::CxStackTrace(
     std::ctstring_t &a_csLinePrefix,         /* = xT("\t") */
     std::ctstring_t &a_csElementSeparator,   /* = xT("  ") */
     std::ctstring_t &a_csLinesSeparator,     /* = xT("\n") */
-    cbool_t           &a_cbIsWrapFilePathes,   /* = true */
-    cbool_t           &a_cbIsFuncParamsDisable /* = true */
+    cbool_t         &a_cbIsWrapFilePathes,   /* = true */
+    cbool_t         &a_cbIsFuncParamsDisable /* = true */
 ) :
     _m_csLinePrefix         (a_csLinePrefix),
     _m_csElementSeparator   (a_csElementSeparator),
@@ -57,7 +57,7 @@ CxStackTrace::~CxStackTrace() {
 
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxStackTrace::get(
     std::vector<std::vec_tstring_t> *a_pvvsStack
 )
@@ -71,7 +71,7 @@ CxStackTrace::get(
     #if   xCOMPILER_MINGW
         // TODO: CxStackTrace::vGet
     #elif xCOMPILER_MS || xCOMPILER_CODEGEAR
-        void        *pvStack[xSTACK_TRACE_FRAMES_MAX] = {0};
+        void_t        *pvStack[xSTACK_TRACE_FRAMES_MAX] = {0};
         SYMBOL_INFO *psiSymbol                        = NULL;
         HANDLE       hProcess                         = NULL;
 
@@ -148,8 +148,8 @@ CxStackTrace::get(
 
             // disable function params
             if (true == _m_cbIsFuncParamsDisable) {
-                const size_t cuiPos1 = sFunctionName.find(xT("("));
-                const size_t cuiPos2 = sFunctionName.find(xT(")"));
+                std::csize_t cuiPos1 = sFunctionName.find(xT("("));
+                std::csize_t cuiPos2 = sFunctionName.find(xT(")"));
 
                 if (std::tstring_t::npos != cuiPos1 && std::tstring_t::npos != cuiPos2) {
                     xSTD_VERIFY(cuiPos1 < cuiPos2);
@@ -176,10 +176,10 @@ CxStackTrace::get(
 
         xARRAY_DELETE(psiSymbol);
 
-        (void)::SymCleanup(hProcess);   hProcess = NULL;
+        (void_t)::SymCleanup(hProcess);   hProcess = NULL;
     #endif
 #elif xOS_ENV_UNIX
-    void *pvStack[xSTACK_TRACE_FRAMES_MAX] = {0};
+    void_t *pvStack[xSTACK_TRACE_FRAMES_MAX] = {0};
 
     int_t iFramesNum = ::backtrace(pvStack, xSTACK_TRACE_FRAMES_MAX);
     xCHECK_DO(iFramesNum <= 0, return);
@@ -242,8 +242,8 @@ CxStackTrace::get(
 
         // disable function params
         if (true == _m_cbIsFuncParamsDisable) {
-            const size_t cuiPos1 = sFunctionName.find(xT("("));
-            const size_t cuiPos2 = sFunctionName.find(xT(")"));
+            std::csize_t cuiPos1 = sFunctionName.find(xT("("));
+            std::csize_t cuiPos2 = sFunctionName.find(xT(")"));
 
             if (std::tstring_t::npos != cuiPos1 && std::tstring_t::npos != cuiPos2) {
                 xSTD_VERIFY(cuiPos1 < cuiPos2);
@@ -304,13 +304,13 @@ CxStackTrace::_format(
 
     std::tstring_t      sRv;
 
-    const size_t        cuiElementsNum = 6U;
+    std::csize_t        cuiElementsNum = 6U;
     std::vector<size_t> vuiMaxs(cuiElementsNum, 0U);
 
     // get elements max sizes
     for (size_t i = 0; i < cuiElementsNum; ++ i) {
         xFOREACH_CONST(std::vector<std::vec_tstring_t>, it, *a_pvvsStack) {
-            const size_t uiCurr = it->at(i).size();
+            std::csize_t uiCurr = it->at(i).size();
 
             xCHECK_DO(uiCurr > vuiMaxs[i], vuiMaxs[i] = uiCurr);
         }
@@ -338,9 +338,9 @@ CxStackTrace::_format(
 #if xOS_ENV_UNIX
 
 /* static */
-void
+void_t
 CxStackTrace::_addr2Line(
-    const void     *a_pvSymbolAddress,
+    cvoid_t        *a_pvSymbolAddress,
     std::tstring_t *a_psFilePath,
     std::tstring_t *a_psFunctionName,
     ulong_t        *a_pulSourceLine

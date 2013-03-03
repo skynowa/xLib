@@ -17,7 +17,7 @@ CxTest_CxLocale::~CxTest_CxLocale() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxLocale::unit(
     culonglong_t &cullCaseLoops
 )

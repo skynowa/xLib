@@ -18,7 +18,7 @@ CxTest_CxThreadPool::~CxTest_CxThreadPool() {
 }
 //------------------------------------------------------------------------------
 /*virtual*/
-void
+void_t
 CxTest_CxThreadPool::unit(
     culonglong_t &cullCaseLoops
 )
@@ -39,7 +39,7 @@ CxTest_CxThreadPool::unit(
 
     {
         cuint_t  cuiStackSize       = 0UL;
-        void         *pvParam            = NULL;
+        void_t         *pvParam            = NULL;
         cuint_t  cuiNumTasks        = 5;
         cuint_t  cuiMaxRunningTasks = 10U;
 
@@ -86,7 +86,7 @@ CPoolThread::~CPoolThread() {
 //------------------------------------------------------------------------------
 uint_t
 CPoolThread::uiOnRun(
-    void *pvData
+    void_t *pvData
 )
 {
     #if xTEST_IGNORE

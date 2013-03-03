@@ -20,9 +20,9 @@ public:
         ///< get the calling thread's last-error code value
     static std::tstring_t toString   () xWARN_UNUSED_RV;
         ///< get as string
-    static void           set        (culong_t &culCode);
+    static void_t         set        (culong_t &culCode);
         ///< set the last error code for the calling thread
-    static void           reset      ();
+    static void_t         reset      ();
         ///< set last error code to 0
     static std::tstring_t format     (culong_t &culCode) xWARN_UNUSED_RV;
         ///< get last error as string

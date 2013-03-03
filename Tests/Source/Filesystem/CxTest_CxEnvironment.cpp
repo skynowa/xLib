@@ -19,7 +19,7 @@ CxTest_CxEnvironment::~CxTest_CxEnvironment() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxEnvironment::unit(
     culonglong_t &cullCaseLoops
 )

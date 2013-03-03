@@ -17,7 +17,7 @@ CxTest_CxSleeper::~CxTest_CxSleeper() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxSleeper::unit(
     culonglong_t &cullCaseLoops
 )

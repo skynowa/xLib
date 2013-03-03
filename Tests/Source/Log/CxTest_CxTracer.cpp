@@ -19,7 +19,7 @@ CxTest_CxTracer::~CxTest_CxTracer() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxTracer::unit(
     culonglong_t &cullCaseLoops
 )

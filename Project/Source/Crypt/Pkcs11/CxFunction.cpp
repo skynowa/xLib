@@ -34,7 +34,7 @@ CxFunction::~CxFunction() {
 
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxFunction::list(
     CK_FUNCTION_LIST_PTR_PTR a_ppFunctionList  ///< receives pointer to function list
 )
@@ -43,19 +43,19 @@ CxFunction::list(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxFunction::status() {
     CK_RV ulRv = _m_pFunc->C_GetFunctionStatus(_m_hSession);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxFunction::cancel() {
     CK_RV ulRv = _m_pFunc->C_CancelFunction(_m_hSession);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxFunction::listEx() {
     // TODO: CxFunction::listEx
     #if xTODO

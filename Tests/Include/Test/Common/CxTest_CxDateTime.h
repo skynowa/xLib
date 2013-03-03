@@ -18,7 +18,7 @@ public:
                  CxTest_CxDateTime();
     virtual     ~CxTest_CxDateTime();
 
-    virtual void unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------
 #endif //CxTest_CxDateTimeH

@@ -18,7 +18,7 @@ public:
                  CxTest_CxIpcSemaphore();
     virtual     ~CxTest_CxIpcSemaphore();
 
-    virtual void unit             (culonglong_t &cullCaseLoops);
+    virtual void_t unit             (culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------
 #endif //CxTest_CxIpcSemaphoreH

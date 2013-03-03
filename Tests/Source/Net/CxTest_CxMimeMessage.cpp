@@ -17,7 +17,7 @@ CxTest_CxMimeMessage::~CxTest_CxMimeMessage() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxMimeMessage::unit(
     culonglong_t &cullCaseLoops
 )

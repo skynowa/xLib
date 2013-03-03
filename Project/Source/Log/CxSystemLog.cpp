@@ -54,11 +54,11 @@ CxSystemLog::~CxSystemLog() {
 
     _m_SysLog = NULL;
 #elif xOS_ENV_UNIX
-    (void)::closelog();
+    (void_t)::closelog();
 #endif
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxSystemLog::setEnabled(
     cbool_t &a_cbFlag
 )
@@ -68,10 +68,10 @@ CxSystemLog::setEnabled(
     _m_bIsEnable = a_cbFlag;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxSystemLog::write(
     const ExLevel &a_lvLevel,
-    ctchar_t *a_pcszFormat, ...
+    ctchar_t      *a_pcszFormat, ...
 )
 {
     xTEST_PTR(a_pcszFormat);
@@ -98,7 +98,7 @@ CxSystemLog::write(
     BOOL bRv = ::ReportEvent(_m_SysLog, a_lvLevel, 0, 0UL, NULL, 1, 0UL, &pcszStrings, NULL);
     xTEST_DIFF(FALSE, bRv);
 #elif xOS_ENV_UNIX
-    (void)::syslog(a_lvLevel, xT("%s"), sMessage.c_str());
+    (void_t)::syslog(a_lvLevel, xT("%s"), sMessage.c_str());
 #endif
 }
 //------------------------------------------------------------------------------
@@ -110,7 +110,7 @@ CxSystemLog::write(
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-void
+void_t
 CxSystemLog::_init(
     std::ctstring_t &a_csLogName
 )
@@ -119,7 +119,7 @@ CxSystemLog::_init(
     _m_SysLog = ::RegisterEventSource(NULL, a_csLogName.c_str());
     xTEST_DIFF(xNATIVE_HANDLE_NULL, _m_SysLog);
 #elif xOS_ENV_UNIX
-    (void)::openlog(a_csLogName.c_str(), LOG_PID | LOG_NDELAY | LOG_NOWAIT, LOG_USER);
+    (void_t)::openlog(a_csLogName.c_str(), LOG_PID | LOG_NDELAY | LOG_NOWAIT, LOG_USER);
 #endif
 }
 //------------------------------------------------------------------------------

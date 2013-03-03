@@ -18,7 +18,7 @@ public:
                  CxTest_CxIpcMutex();
     virtual     ~CxTest_CxIpcMutex();
 
-    virtual void unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------
 #endif //CxTest_CxIpcMutexH

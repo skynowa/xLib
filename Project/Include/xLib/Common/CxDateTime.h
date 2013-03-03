@@ -45,17 +45,17 @@ public:
         ///< destructor
 
     // comparison operators
-    bool_t                  operator ==       (const CxDateTime &cdtDT) const;
+    bool_t                operator ==     (const CxDateTime &cdtDT) const;
         ///< operator ==
-    bool_t                  operator !=       (const CxDateTime &cdtDT) const;
+    bool_t                operator !=     (const CxDateTime &cdtDT) const;
         ///< operator !=
-    bool_t                  operator <        (const CxDateTime &cdtDT) const;
+    bool_t                operator <      (const CxDateTime &cdtDT) const;
         ///< operator <
-    bool_t                  operator <=       (const CxDateTime &cdtDT) const;
+    bool_t                operator <=     (const CxDateTime &cdtDT) const;
         ///< operator <=
-    bool_t                  operator >        (const CxDateTime &cdtDT) const;
+    bool_t                operator >      (const CxDateTime &cdtDT) const;
         ///< operator >
-    bool_t                  operator >=       (const CxDateTime &cdtDT) const;
+    bool_t                operator >=     (const CxDateTime &cdtDT) const;
         ///< operator >=
 
     // assignment operators
@@ -76,15 +76,15 @@ public:
     //--
 
     // get/set
-    void                  get               (ushort_t *pusYear, ushort_t *pusMonth, ushort_t *pusDay,
+    void_t                get               (ushort_t *pusYear, ushort_t *pusMonth, ushort_t *pusDay,
                                              ushort_t *pusHour, ushort_t *pusMinute,
                                              ushort_t *pusSecond, ushort_t *pusMillisecond) const;
         ///< get datetime data
     ushort_t              dayOfWeek         () const xWARN_UNUSED_RV;
         ///< get day of week, days since Sunday 0-6
-    void                  set               (culonglong_t &ullMSec);
+    void_t                set               (culonglong_t &ullMSec);
         ///< set CxDateTime by milliseconds
-    void                  set               (cushort_t &cusYear, cushort_t &cusMonth, cushort_t &cusDay,
+    void_t                set               (cushort_t &cusYear, cushort_t &cusMonth, cushort_t &cusDay,
                                              cushort_t &cusHour, cushort_t &cusMinute,
                                              cushort_t &cusSecond, cushort_t &cusMillisecond);
         ///< set CxDateTime by datetime data
@@ -104,25 +104,25 @@ public:
         ///< formating
 
     //static
-    static bool_t           isValid           (cushort_t &cusYear, cushort_t &cusMonth, cushort_t &cusDay,
+    static bool_t         isValid         (cushort_t &cusYear, cushort_t &cusMonth, cushort_t &cusDay,
                                              cushort_t &cusHour, cushort_t &cusMinute,
                                              cushort_t &cusSecond, cushort_t &cusMillisecond) xWARN_UNUSED_RV;
         ///< checking for a valid datetime
-    static bool_t           isValid           (const CxDateTime &cdtDT) xWARN_UNUSED_RV;
+    static bool_t         isValid         (const CxDateTime &cdtDT) xWARN_UNUSED_RV;
         ///< checking for a valid datetime
-           bool_t           isValid           () const xWARN_UNUSED_RV;
+           bool_t         isValid         () const xWARN_UNUSED_RV;
         ///< checking for a valid datetime
 
     static CxDateTime     current           () xWARN_UNUSED_RV;
         ///< get current datetime
     static ushort_t       daysInMonth       (cushort_t &cusYear, cushort_t &cusMonth) xWARN_UNUSED_RV;
         ///< get number days in month
-    static bool_t           isLeapYear        (cushort_t &cusYear) xWARN_UNUSED_RV;
+    static bool_t         isLeapYear      (cushort_t &cusYear) xWARN_UNUSED_RV;
         ///< is leap year
 #if   xOS_ENV_WIN
     static longlong_t     filetimeToInt64   (const FILETIME &cftTime) xWARN_UNUSED_RV;
         ///< convert FILETIME to longlong_t
-    static void           unixTimeToFileTime(const time_t &ctmUnixTime, FILETIME *pftFileTime);
+    static void_t         unixTimeToFileTime(const time_t &ctmUnixTime, FILETIME *pftFileTime);
         ///< convert UNIX time_t to Win32 FILETIME
     static time_t         fileTimeToUnixTime(const FILETIME &ftFileTime) xWARN_UNUSED_RV;
         ///< convert Win32 FILETIME to UNIX time_t
@@ -162,7 +162,7 @@ private:
 
     ulonglong_t           _toMilliseconds   () const xWARN_UNUSED_RV;
         ///< convert to milliseconds
-    static void           _parse            (std::ctstring_t &csDT, const ExFormatType &cftFormat, CxDateTime *pdtDT);
+    static void_t         _parse            (std::ctstring_t &csDT, const ExFormatType &cftFormat, CxDateTime *pdtDT);
         ///< parsing datetime string
 };
 

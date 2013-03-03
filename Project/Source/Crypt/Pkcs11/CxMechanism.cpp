@@ -31,7 +31,7 @@ CxMechanism::~CxMechanism() {
 
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxMechanism::info(
     CK_SLOT_ID            a_slotID,  ///< ID of the token's slot
     CK_MECHANISM_TYPE     a_type,    ///< type of mechanism
@@ -42,7 +42,7 @@ CxMechanism::info(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxMechanism::list(
     CK_SLOT_ID            a_slotID,          ///< ID of token's slot
     CK_MECHANISM_TYPE_PTR a_pMechanismList,  ///< gets mech. array

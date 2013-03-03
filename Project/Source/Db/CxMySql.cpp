@@ -55,10 +55,10 @@ CxMySQLConnection::isValid() const {
     return (NULL != _m_pmsConnection);
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxMySQLConnection::options(
     const mysql_option &a_cmoOption,
-    const void         *a_cpvArg
+    cvoid_t            *a_cpvArg
 ) const
 {
     xTEST_EQ(true, isValid());
@@ -118,7 +118,7 @@ CxMySQLConnection::isExists(
     return true;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxMySQLConnection::connect(
     std::ctstring_t &a_csHost,
     std::ctstring_t &a_csUser,
@@ -151,7 +151,7 @@ CxMySQLConnection::connect(
     _m_pmsConnection = pmsConnection;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxMySQLConnection::query(
     ctchar_t *a_pcszSqlFormat, ...
 ) const
@@ -184,12 +184,12 @@ CxMySQLConnection::fieldCount() const {
     return uiRes;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxMySQLConnection::close() {
     // _m_pmsConnection - n/a
 
     if (false != isValid()) {
-        (void)::mysql_close(_m_pmsConnection);
+        (void_t)::mysql_close(_m_pmsConnection);
 
         _m_pmsConnection = NULL;
     }
@@ -243,7 +243,7 @@ CxMySQLConnection::lastErrorStr() const {
 //------------------------------------------------------------------------------
 CxMySQLRecordset::CxMySQLRecordset(
     const CxMySQLConnection &a_cmcConnection, ///< connection
-    cbool_t              &a_cbIsUseResult  ///< use result or store result
+    cbool_t                 &a_cbIsUseResult  ///< use result or store result
 ) :
     _m_pcmcConnection(&a_cmcConnection),
     _m_pmrResult     (NULL)
@@ -269,7 +269,7 @@ CxMySQLRecordset::~CxMySQLRecordset() {
     // _m_pmrResult - n/a
 
     if (false != isValid()) {
-        (void)::mysql_free_result(_m_pmrResult);
+        (void_t)::mysql_free_result(_m_pmrResult);
 
         _m_pmrResult = NULL;
     }
@@ -309,7 +309,7 @@ CxMySQLRecordset::rowsNum() const {
     return ullRv;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxMySQLRecordset::fetchField(
     MYSQL_FIELD *a_pmfField
 ) const
@@ -321,7 +321,7 @@ CxMySQLRecordset::fetchField(
     xTEST_MSG_PTR(a_pmfField, _m_pcmcConnection->lastErrorStr());
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxMySQLRecordset::fetchFieldDirect(
     cuint_t &a_cuiFieldNumber,
     MYSQL_FIELD  *a_pmfField
@@ -335,7 +335,7 @@ CxMySQLRecordset::fetchFieldDirect(
     xTEST_MSG_PTR(a_pmfField, _m_pcmcConnection->lastErrorStr());
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxMySQLRecordset::fetchFields(
     MYSQL_FIELD *a_pmfField
 ) const
@@ -347,7 +347,7 @@ CxMySQLRecordset::fetchFields(
     xTEST_MSG_PTR(a_pmfField, _m_pcmcConnection->lastErrorStr());
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxMySQLRecordset::fetchRow(
     std::vec_tstring_t *a_pvsRow
 ) const
@@ -403,7 +403,7 @@ CxMySQLRecordset::fetchRow(
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-void
+void_t
 CxMySQLRecordset::_fetchRow(
     MYSQL_ROW *a_pmrRow
 ) const
@@ -416,7 +416,7 @@ CxMySQLRecordset::_fetchRow(
     xTEST_PTR(*a_pmrRow);
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxMySQLRecordset::_fetchLengths(
     ulong_t **a_ppulFieldLengths
 ) const

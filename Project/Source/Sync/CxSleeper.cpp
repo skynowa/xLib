@@ -26,7 +26,7 @@ CxSleeper::~CxSleeper() {
 
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxSleeper::sleep(
     culong_t &a_culTimeout  ///< in milliseconds
 )
@@ -37,7 +37,7 @@ CxSleeper::sleep(
     xTEST_EQ(true, CxEvent::osSignaled == osRes || CxEvent::osTimeout == osRes);
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxSleeper::wakeUp() {
     // n/a
 

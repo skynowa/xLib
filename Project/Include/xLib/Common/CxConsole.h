@@ -79,30 +79,30 @@ public:
         ///< set text color
     std::tstring_t  read            () xWARN_UNUSED_RV;
         ///< read
-    void            write           (std::ctstring_t &csStr);
+    void_t          write           (std::ctstring_t &csStr);
         ///< write
-    void            writeLine       (std::ctstring_t &csStr = xT(""));
+    void_t          writeLine       (std::ctstring_t &csStr = xT(""));
         ///< write line
-    void            writeErrLine    (std::ctstring_t &csStr);
+    void_t          writeErrLine    (std::ctstring_t &csStr);
         ///< write error message
     ExModalResult   msgBox          (std::ctstring_t &csText, std::ctstring_t &csTitle, cuint_t &cuiType) xWARN_UNUSED_RV;
         ///< show console message dialog
-    void            prompt          (std::ctstring_t &csPrompt, cbool_t &cbIsVisible, std::tstring_t *psAnswer);
+    void_t          prompt          (std::ctstring_t &csPrompt, cbool_t &cbIsVisible, std::tstring_t *psAnswer);
         ///< show console prompt dialog
-    void            pause           (culong_t &culTimeoutMs);
+    void_t          pause           (culong_t &culTimeoutMs);
         ///< pause with timeout (msec)
-    void            clear           ();
+    void_t          clear           ();
         ///< clear
 
     std::tstring_t  title           () xWARN_UNUSED_RV;
         ///< get title string
-    void            setTitle        (std::ctstring_t &csTitle);
+    void_t          setTitle        (std::ctstring_t &csTitle);
         ///< set title string
-    void            centerWindow    ();
+    void_t          centerWindow    ();
         ///< align to center
-    void            setFullScreen   ();
+    void_t          setFullScreen   ();
         ///< set full screen
-    void            enableClose     (cbool_t &cbFlag);
+    void_t          enableClose     (cbool_t &cbFlag);
         ///< enable close button
 
 private:
@@ -161,7 +161,7 @@ xNAMESPACE_END(NxLib)
         #include <conio.h>
     #endif
 
-    inline void
+    inline void_t
     CtsConsole::promptPassword(char* const pwdBuffer, bool_t visible) {
     #if __WIN32__ || _MSC_VER
         bool_t     passwordEntered = false;

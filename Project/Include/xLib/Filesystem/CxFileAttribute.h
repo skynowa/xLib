@@ -49,27 +49,27 @@ public:
         #endif
     };
 
-    explicit               CxFileAttribute(std::ctstring_t &csFilePath);
+    explicit          CxFileAttribute(std::ctstring_t &csFilePath);
         ///< constructor
-    virtual               ~CxFileAttribute();
+    virtual          ~CxFileAttribute();
         ///< destructor
 
     std::ctstring_t & filePath       () const xWARN_UNUSED_RV;
         ///< file path
 
-    bool_t                   isExists       (const ExAttribute &cfaValue) xWARN_UNUSED_RV;
+    bool_t            isExists       (const ExAttribute &cfaValue) xWARN_UNUSED_RV;
         ///< is exists
-    ExAttribute            get            () xWARN_UNUSED_RV;
+    ExAttribute       get            () xWARN_UNUSED_RV;
         ///< get
-    void                   set            (const ExAttribute &cfaValue);
+    void_t            set            (const ExAttribute &cfaValue);
         ///< set
-    void                   add            (const ExAttribute &cfaValue);
+    void_t            add            (const ExAttribute &cfaValue);
         ///< add
-    void                   remove         (const ExAttribute &cfaValue);
+    void_t            remove         (const ExAttribute &cfaValue);
         ///< remove
-    void                   modify         (const ExAttribute &cfaRemoveValue, const ExAttribute &cfaAddValue);
+    void_t            modify         (const ExAttribute &cfaRemoveValue, const ExAttribute &cfaAddValue);
         ///< modify
-    void                   clear          ();
+    void_t            clear          ();
         ///< clear (set normal attributes)
 
 private:

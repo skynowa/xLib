@@ -34,7 +34,7 @@ CxDigest::~CxDigest() {
 
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxDigest::make(
     CK_BYTE_PTR  a_pData,        ///< data to be digested
     CK_ULONG     a_ulDataLen,    ///< bytes of data to digest
@@ -46,7 +46,7 @@ CxDigest::make(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxDigest::encryptUpdate(
     CK_BYTE_PTR  a_pPart,               ///< the plain text data
     CK_ULONG     a_ulPartLen,           ///< plain text length
@@ -58,7 +58,7 @@ CxDigest::encryptUpdate(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxDigest::final(
     CK_BYTE_PTR  a_pDigest,      ///< gets the message digest
     CK_ULONG_PTR a_pulDigestLen  ///< gets byte count of digest
@@ -68,7 +68,7 @@ CxDigest::final(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxDigest::init(
     CK_MECHANISM_PTR a_pMechanism  ///< the digesting mechanism
 )
@@ -77,7 +77,7 @@ CxDigest::init(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxDigest::key(
     CK_OBJECT_HANDLE a_hKey       ///< secret key to digest
 )
@@ -86,7 +86,7 @@ CxDigest::key(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxDigest::update(
     CK_BYTE_PTR a_pPart,     ///< data to be digested
     CK_ULONG    a_ulPartLen  ///< bytes of data to be digested

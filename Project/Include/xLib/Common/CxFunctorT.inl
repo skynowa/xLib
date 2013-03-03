@@ -14,8 +14,8 @@ xNAMESPACE_BEGIN(NxLib)
 //------------------------------------------------------------------------------
 template <typename ClassT, typename ReturnT, typename ParamT>
 CxFunctorT<ClassT, ReturnT, ParamT>::CxFunctorT(
-    ClassT *pObject,
-    Method  method
+    ClassT   *pObject,
+    method_t  method
 ) :
     _m_pObject(pObject),
     _m_Method (method)

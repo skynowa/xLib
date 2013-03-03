@@ -24,34 +24,34 @@ public:
     virtual       ~CxDebugger   ();
         ///< destructor
 
-    bool_t           isEnabled    () xWARN_UNUSED_RV;
+    bool_t         isEnabled    () xWARN_UNUSED_RV;
         ///< is debugging enabled
-    void           setEnabled   (cbool_t &cbFlag);
+    void_t         setEnabled   (cbool_t &cbFlag);
         ///< set debugging mode on/off
-    bool_t           isActive     () xWARN_UNUSED_RV;
+    bool_t         isActive     () xWARN_UNUSED_RV;
         ///< is OS debugger presents
-    bool_t           isDebugBuild () xWARN_UNUSED_RV;
+    bool_t         isDebugBuild () xWARN_UNUSED_RV;
         ///< is debug build (is NDEBUG macros is don't set)
-    void           breakPoint   ();
+    void_t         breakPoint   ();
         ///< attach to OS debugger
-    void           setLogPath   (std::ctstring_t &csFilePath);
+    void_t         setLogPath   (std::ctstring_t &csFilePath);
         ///< set log file path
     std::tstring_t logPath      () xWARN_UNUSED_RV;
         ///< get log file path
-    void           reportMake   (const CxErrorReport &crpReport);
+    void_t         reportMake   (const CxErrorReport &crpReport);
         ///< make report
 
 private:
-    bool_t           _m_bIsEnabled;
+    bool_t         _m_bIsEnabled;
         ///< is debugger enabled
     std::tstring_t _m_sLogPath;
         ///< log path
 
-    void           _msgboxPlain (const CxErrorReport &crpReport);
+    void_t         _msgboxPlain (const CxErrorReport &crpReport);
         ///< show message box with plain report
-    void           _stdoutPlain (const CxErrorReport &crpReport);
+    void_t         _stdoutPlain (const CxErrorReport &crpReport);
         ///< show plain report in std::cout
-    void           _loggingPlain(const CxErrorReport &crpReport);
+    void_t         _loggingPlain(const CxErrorReport &crpReport);
         ///< log plain report to file
 };
 

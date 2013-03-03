@@ -18,7 +18,7 @@ public:
                  CxTest_CxBase64();
     virtual     ~CxTest_CxBase64();
 
-    virtual void unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------
 #endif //CxTest_CxBase64H

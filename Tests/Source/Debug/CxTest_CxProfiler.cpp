@@ -21,7 +21,7 @@ CxTest_CxProfiler::~CxTest_CxProfiler() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxProfiler::unit(
     culonglong_t &cullCaseLoops
 )

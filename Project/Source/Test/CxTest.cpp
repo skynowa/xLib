@@ -53,7 +53,7 @@ CxTest::~CxTest() /* = 0 */ {
     CxDir( tempDirPath() ).pathDelete();
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxTest::run(
     culonglong_t &a_cullUnitLoops,
     culonglong_t &a_cullCaseLoops
@@ -84,7 +84,7 @@ CxTest::run(
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest::unit(
     culonglong_t &a_cullCaseLoops
 ) /* = 0 */
@@ -108,7 +108,7 @@ CxTest::unit(
 #endif
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxTest::createTempDir(
     std::ctstring_t &a_csDirName
 )
@@ -136,7 +136,7 @@ CxTest::name() const {
     return _m_sName;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxTest::setName(
     std::ctstring_t &a_csTestName
 )

@@ -30,32 +30,32 @@ public:
         lsLimitSize      = 500 * 1024 * 1024
     };
 
-    explicit               CxFileLog     (culong_t &culMaxFileSizeBytes);
+    explicit          CxFileLog     (culong_t &culMaxFileSizeBytes);
         ///< constructor
-    virtual               ~CxFileLog     ();
+    virtual          ~CxFileLog     ();
         ///< destructor
 
-    void                   setFilePath   (std::ctstring_t &csFilePath);
+    void_t            setFilePath   (std::ctstring_t &csFilePath);
         ///< set log path
     std::ctstring_t & filePath      () const xWARN_UNUSED_RV;
         ///< get log path
 
-    void                   write         (ctchar_t *pcszFormat, ...);
+    void_t            write         (ctchar_t *pcszFormat, ...);
         ///< write
-    void                   clear         ();
+    void_t            clear         ();
         ///< clear content
-    void                   remove        ();
+    void_t            remove        ();
         ///< delete
 
 private:
-    std::tstring_t         _m_sFilePath;            ///< file path
-    ulong_t                _m_ulMaxFileSizeBytes;   ///< maximum file size in bytes
+    std::tstring_t    _m_sFilePath;            ///< file path
+    ulong_t           _m_ulMaxFileSizeBytes;   ///< maximum file size in bytes
 
 #if xTODO
-    CxAutoIpcMutex         _m_mtFile;
+    CxAutoIpcMutex    _m_mtFile;
 #endif
 
-    void                   _vRemoveIfFull();
+    void_t            _vRemoveIfFull();
         ///< delete log, if full
 };
 

@@ -28,23 +28,23 @@ public:
     CxAtomicLongInt & operator =     (const CxAtomicLongInt &calValue);
     CxAtomicLongInt & operator =     (clong_t &cliRight);
 
-    bool_t              operator ==    (const CxAtomicLongInt &calValue) const;
-    bool_t              operator ==    (clong_t &cliRight) const ;
+    bool_t            operator ==    (const CxAtomicLongInt &calValue) const;
+    bool_t            operator ==    (clong_t &cliRight) const ;
 
-    bool_t              operator !=    (const CxAtomicLongInt &calValue) const;
-    bool_t              operator !=    (clong_t &cliRight) const ;
+    bool_t            operator !=    (const CxAtomicLongInt &calValue) const;
+    bool_t            operator !=    (clong_t &cliRight) const ;
 
-    bool_t              operator <     (clong_t &cliValue) const;
-    bool_t              operator <     (const CxAtomicLongInt &calValue) const;
+    bool_t            operator <     (clong_t &cliValue) const;
+    bool_t            operator <     (const CxAtomicLongInt &calValue) const;
 
-    bool_t              operator <=    (clong_t &cliValue) const;
-    bool_t              operator <=    (const CxAtomicLongInt &calValue) const;
+    bool_t            operator <=    (clong_t &cliValue) const;
+    bool_t            operator <=    (const CxAtomicLongInt &calValue) const;
 
-    bool_t              operator >     (clong_t &cliValue) const;
-    bool_t              operator >     (const CxAtomicLongInt &calValue) const;
+    bool_t            operator >     (clong_t &cliValue) const;
+    bool_t            operator >     (const CxAtomicLongInt &calValue) const;
 
-    bool_t              operator >=    (clong_t &cliValue) const;
-    bool_t              operator >=    (const CxAtomicLongInt &calValue) const;
+    bool_t            operator >=    (clong_t &cliValue) const;
+    bool_t            operator >=    (const CxAtomicLongInt &calValue) const;
 
     CxAtomicLongInt & operator ++    (cint_t ciValue);
     CxAtomicLongInt & operator --    (cint_t ciValue);

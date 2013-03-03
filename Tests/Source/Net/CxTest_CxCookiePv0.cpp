@@ -19,7 +19,7 @@ CxTest_CxCookiePv0::~CxTest_CxCookiePv0() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxCookiePv0::unit(
     culonglong_t &cullCaseLoops
 )

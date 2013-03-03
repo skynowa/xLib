@@ -17,41 +17,41 @@ class CxUtils :
 {
 public:
     template <typename T>
-    static inline void      ptrDeleteT      (T * &pPtrT);
+    static inline void_t    ptrDeleteT      (T * &pPtrT);
         ///< delete object by pointer
 
     template <typename T>
-    static inline void      arrayDeleteT    (T * &pPtrT);
+    static inline void_t    arrayDeleteT    (T * &pPtrT);
         ///< delete array by pointer
 
     template <typename T>
-    static inline void      ptrAssignT      (T * &pPtrT, const T &valueT);
+    static inline void_t    ptrAssignT      (T * &pPtrT, const T &valueT);
         ///< assign pointer
 
-    template <typename T, const size_t cuiArraySize>
+    template <typename T, std::csize_t cuiArraySize>
     static inline size_t    arraySizeT      (const T (&)[cuiArraySize]) xWARN_UNUSED_RV;
         ///< get array size
 
-    static inline void      memoryZero      (void *pPtr, const size_t &sizeBytes);
+    static inline void_t    memoryZero      (void_t *pPtr, std::csize_t &sizeBytes);
         ///< zero memory
 
-    template <typename T, const size_t cuiArraySize>
-    static inline void      arrayZeroT      (T (&arrayT)[cuiArraySize]);
+    template <typename T, std::csize_t cuiArraySize>
+    static inline void_t    arrayZeroT      (T (&arrayT)[cuiArraySize]);
         ///< array zero
 
     template <typename T>
-    static inline void      structZeroT     (T &structT);
+    static inline void_t    structZeroT     (T &structT);
         ///< zero buffer memory
 
     template <typename T>
-    static inline void      bufferFreeT     (T * &pPtrT);
+    static inline void_t    bufferFreeT     (T * &pPtrT);
         ///< free buffer memory
 
-    static inline void      fileClose       (FILE * &pFile);
+    static inline void_t    fileClose       (FILE * &pFile);
         ///< close file stream (FILE *)
 
     template <typename T>
-    static inline bool_t      intToBoolT      (const T &valueT) xWARN_UNUSED_RV;
+    static inline bool_t    intToBoolT      (const T &valueT) xWARN_UNUSED_RV;
         ///< convert int_t to bool_t
 
     template <typename T>
@@ -63,7 +63,7 @@ public:
         ///< get min value
 
     template <typename T>
-    static inline void      swapT           (T &value1T, T &value2T);
+    static inline void_t    swapT           (T &value1T, T &value2T);
         ///< swap variables
 
     template <typename ToT, typename FromT>

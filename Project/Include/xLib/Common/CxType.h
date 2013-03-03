@@ -25,7 +25,7 @@ public:
         ///< get raw name
 
     template<typename T1, class T2>
-    static bool_t           isEquals(const T1 &cObjectT1, const T2 &cObjectT2) xWARN_UNUSED_RV;
+    static bool_t         isEquals(const T1 &cObjectT1, const T2 &cObjectT2) xWARN_UNUSED_RV;
         ///< is equals
 private:
                           CxType  ();

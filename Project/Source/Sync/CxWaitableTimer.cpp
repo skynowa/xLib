@@ -35,10 +35,10 @@ CxWaitableTimer::handle() const {
     return _m_hHandle.get();
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxWaitableTimer::create(
-    cbool_t                  &a_bManualReset,
-    std::ctstring_t        &a_csName,
+    cbool_t                     &a_bManualReset,
+    std::ctstring_t             &a_csName,
     const LPSECURITY_ATTRIBUTES  a_pcsaTimerAttributes
 )
 {
@@ -50,11 +50,11 @@ CxWaitableTimer::create(
     _m_hHandle.set(hRv);
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxWaitableTimer::open(
     std::ctstring_t &a_csName,
     culong_t        &a_culDesiredAccess,
-    cbool_t           &a_cbInheritHandle
+    cbool_t         &a_cbInheritHandle
 )
 {
     xTEST_EQ(true, _m_hHandle.isValid());
@@ -74,7 +74,7 @@ CxWaitableTimer::open(
     _m_hHandle.set(hRv);
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxWaitableTimer::cancel() const {
     xTEST_EQ(true, _m_hHandle.isValid());
 
@@ -82,13 +82,13 @@ CxWaitableTimer::cancel() const {
     xTEST_DIFF(FALSE, blRes);
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxWaitableTimer::set(
-    clonglong_t &a_cllDueTime,
-    clong_t     &a_cliPeriod,
+    clonglong_t      &a_cllDueTime,
+    clong_t          &a_cliPeriod,
     PTIMERAPCROUTINE  a_pfnCompletionRoutine,
     LPVOID            a_pvArgToCompletionRoutine,
-    cbool_t       &a_cbResume
+    cbool_t          &a_cbResume
 ) const
 {
     xTEST_EQ(true, _m_hHandle.isValid());
@@ -107,7 +107,7 @@ CxWaitableTimer::set(
     xTEST_DIFF(FALSE, blRes);
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxWaitableTimer::wait(
     culong_t &a_culTimeout
 ) const

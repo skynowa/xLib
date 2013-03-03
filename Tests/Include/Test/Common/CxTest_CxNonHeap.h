@@ -15,12 +15,12 @@ class CxTest_CxNonHeap :
     public CxTest
 {
 public:
-                  CxTest_CxNonHeap();
+                   CxTest_CxNonHeap();
         ///< constructor
-    virtual      ~CxTest_CxNonHeap();
+    virtual       ~CxTest_CxNonHeap();
         ///< destructor
 
-    virtual void  unit(culonglong_t &cullCaseLoops) xOVERRIDE;
+    virtual void_t unit(culonglong_t &cullCaseLoops) xOVERRIDE;
         ///< unit test
 };
 //------------------------------------------------------------------------------

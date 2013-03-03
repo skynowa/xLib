@@ -17,7 +17,7 @@ CxTest_CxChar::~CxTest_CxChar() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxChar::unit(
     culonglong_t &cullCaseLoops
 )

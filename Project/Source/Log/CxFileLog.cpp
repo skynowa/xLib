@@ -44,7 +44,7 @@ CxFileLog::~CxFileLog() {
 
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxFileLog::setFilePath(
     std::ctstring_t &a_csFilePath
 )
@@ -63,7 +63,7 @@ CxFileLog::filePath() const {
     return _m_sFilePath;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxFileLog::write(
     ctchar_t *a_pcszFormat, ...
 )
@@ -100,7 +100,7 @@ CxFileLog::write(
     xTEST_DIFF(- 1, iRv);
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxFileLog::clear() {
     #if xTODO
         CxAutoIpcMutex SL(_m_mtFile);
@@ -109,7 +109,7 @@ CxFileLog::clear() {
     CxFile::clear(filePath());
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxFileLog::remove() {
     #if xTODO
         CxAutoIpcMutex SL(_m_mtFile);
@@ -126,7 +126,7 @@ CxFileLog::remove() {
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-void
+void_t
 CxFileLog::_vRemoveIfFull() {
     #if xTODO
         CxAutoIpcMutex SL(_m_mtFile);

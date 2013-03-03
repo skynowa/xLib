@@ -46,7 +46,7 @@ CxObject::handle() const {
     return _m_hObject;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxObject::setHandle(
     CK_OBJECT_HANDLE a_hHandle
 )
@@ -58,7 +58,7 @@ CxObject::setHandle(
     _m_hObject = a_hHandle;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxObject::create(
     CK_ATTRIBUTE_PTR a_pTemplate,   ///< the object's template
     CK_ULONG         a_ulCount      ///< attributes in template
@@ -72,7 +72,7 @@ CxObject::create(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxObject::size(
     CK_ULONG_PTR a_pulSize    ///< receives size of object
 )
@@ -85,7 +85,7 @@ CxObject::size(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxObject::copy(
     CK_ATTRIBUTE_PTR     a_pTemplate,   ///< template for new object
     CK_ULONG             a_ulCount,     ///< attributes in template
@@ -100,7 +100,7 @@ CxObject::copy(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //--------------------------------------------------------------------------
-void
+void_t
 CxObject::find(
     CK_ATTRIBUTE_PTR               a_pTemplate,           ///< attribute values to match
     CK_ULONG                       a_ulCount,             ///< attrs in search template
@@ -139,7 +139,7 @@ CxObject::find(
     }
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxObject::attributeValue(
     CK_ATTRIBUTE_PTR a_pTemplate,  ///< specifies attrs; gets vals
     CK_ULONG         a_ulCount     ///< attributes in template
@@ -153,7 +153,7 @@ CxObject::attributeValue(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxObject::setAttributeValue(
     CK_ATTRIBUTE_PTR a_pTemplate,  ///< specifies attrs and values
     CK_ULONG         a_ulCount     ///< attributes in template
@@ -167,7 +167,7 @@ CxObject::setAttributeValue(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxObject::destroy() {
     xTEST_PTR(_m_pFunc);
     xTEST_DIFF(0UL, _m_hSession);
@@ -179,12 +179,12 @@ CxObject::destroy() {
     _m_hObject = 0UL;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxObject::data(
-    CK_SLOT_ID            a_ulSlotId,
+    CK_SLOT_ID       a_ulSlotId,
     std::custring_t &a_cusUserPin,
     std::custring_t &a_cusDataLabel,
-    std::ustring_t       *a_pusData
+    std::ustring_t  *a_pusData
 )
 {
     //-------------------------------------
@@ -254,12 +254,12 @@ CxObject::data(
     objSession.close();
 }
 //--------------------------------------------------------------------------
-void
+void_t
 CxObject::data(
-    CK_SLOT_ID            a_ulSlotId,
-    std::custring_t &a_cusUserPin,
-    std::vec_ustring_t   *a_pusDataLabel,
-    std::vec_ustring_t   *a_pusDataValue
+    CK_SLOT_ID          a_ulSlotId,
+    std::custring_t    &a_cusUserPin,
+    std::vec_ustring_t *a_pusDataLabel,
+    std::vec_ustring_t *a_pusDataValue
 )
 {
     // ulSlotId - n/a
@@ -347,9 +347,9 @@ CxObject::data(
     objSession.close();
 }
 //--------------------------------------------------------------------------
-void
+void_t
 CxObject::setData(
-    CK_SLOT_ID            a_ulSlotId,
+    CK_SLOT_ID       a_ulSlotId,
     std::custring_t &a_cusUserPin,
     std::custring_t &a_cusDataLabel,
     std::custring_t &a_cusData

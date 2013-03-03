@@ -25,26 +25,26 @@ public:
                       CxPop3             ();
                      ~CxPop3             ();
 
-    void              create             (std::ctstring_t &csUser, std::ctstring_t &csPass,
+    void_t            create             (std::ctstring_t &csUser, std::ctstring_t &csPass,
                                           std::ctstring_t &csServer, ushort_t usPort);
-    void              connect            ();
-    void              login              ();
+    void_t            connect            ();
+    void_t            login              ();
 
-    void              stat               (ulong_t &ulSum, ulong_t &ulSize);
-    void              list               (std::vector<ulong_t> &veculList);
-    void              listAt             (ulong_t &ulIndex);
-    void              noop               ();
-    void              rset               ();
-    void              top                (int_t iNum, int_t iLines, std::tstring_t &sBuff);
+    void_t            stat               (ulong_t &ulSum, ulong_t &ulSize);
+    void_t            list               (std::vector<ulong_t> &veculList);
+    void_t            listAt             (ulong_t &ulIndex);
+    void_t            noop               ();
+    void_t            rset               ();
+    void_t            top                (int_t iNum, int_t iLines, std::tstring_t &sBuff);
 
-    void              retrive            (int_t iNum, std::ctstring_t &csRawMimeMessage);
-    void              retriveRaw         (int_t iNum, std::ctstring_t &csDirPath, std::ctstring_t &csFileName);
-    void              retriveRawAndBackup(int_t iNum, std::ctstring_t &csDirPath, std::ctstring_t &csBackupDirPath,
+    void_t            retrive            (int_t iNum, std::ctstring_t &csRawMimeMessage);
+    void_t            retriveRaw         (int_t iNum, std::ctstring_t &csDirPath, std::ctstring_t &csFileName);
+    void_t            retriveRawAndBackup(int_t iNum, std::ctstring_t &csDirPath, std::ctstring_t &csBackupDirPath,
                                           std::ctstring_t &csFileName);
-    void              retrieveHeader     (int_t iNum, CxMimeHeader &mhMimeHeader);
+    void_t            retrieveHeader     (int_t iNum, CxMimeHeader &mhMimeHeader);
 
-    void              del                (int_t iNum);
-    void              disconnect         ();
+    void_t            del                (int_t iNum);
+    void_t            disconnect         ();
 
 private:
     std::tstring_t    _m_sRes;
@@ -54,11 +54,11 @@ private:
     std::tstring_t    _m_sPass;
     std::tstring_t    _m_sServer;
     ushort_t          _m_usPort;
-    bool_t              _m_bConnected;
+    bool_t            _m_bConnected;
 
-    void              _command           (std::ctstring_t &csCmd, std::ctstring_t &csReplyDelimiter,
+    void_t            _command           (std::ctstring_t &csCmd, std::ctstring_t &csReplyDelimiter,
                                           std::tstring_t *psReply);
-    bool_t              _isError           (std::ctstring_t &csText) xWARN_UNUSED_RV;
+    bool_t            _isError           (std::ctstring_t &csText) xWARN_UNUSED_RV;
     ulong_t           _mailsSum          (std::ctstring_t &csServerAnswer) xWARN_UNUSED_RV;
     ulong_t           _mailsSize         (std::ctstring_t &csServerAnswer) xWARN_UNUSED_RV;
 };

@@ -20,7 +20,7 @@ CxTest_CxTcpClient::~CxTest_CxTcpClient() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxTcpClient::unit(
     culonglong_t &cullCaseLoops
 )

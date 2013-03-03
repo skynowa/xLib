@@ -39,11 +39,11 @@ CxFileTemp::~CxFileTemp() {
     }
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxFileTemp::create(
     std::ctstring_t &a_csFilePath,
     std::ctstring_t &a_csDirPath,
-    CxFile               *a_pfFile
+    CxFile          *a_pfFile
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());

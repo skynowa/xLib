@@ -27,22 +27,22 @@ public:
     virtual             ~CxDecrypt   ();
         ///< destructor
 
-    void                 init        (CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
+    void_t               init        (CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
         ///< initializes a decryption operation
-    void                 make        (CK_BYTE_PTR pEncryptedData, CK_ULONG ulEncryptedDataLen, CK_BYTE_PTR pData, CK_ULONG_PTR pulDataLen);
+    void_t               make        (CK_BYTE_PTR pEncryptedData, CK_ULONG ulEncryptedDataLen, CK_BYTE_PTR pData, CK_ULONG_PTR pulDataLen);
         ///< decrypts encrypted data in a single part
-    void                 update      (CK_BYTE_PTR pEncryptedPart, CK_ULONG ulEncryptedPartLen, CK_BYTE_PTR pPart, CK_ULONG_PTR pulPartLen);
+    void_t               update      (CK_BYTE_PTR pEncryptedPart, CK_ULONG ulEncryptedPartLen, CK_BYTE_PTR pPart, CK_ULONG_PTR pulPartLen);
         ///< continues a multiple-part decryption operation
-    void                 final       (CK_BYTE_PTR pLastPart, CK_ULONG_PTR pulLastPartLen);
+    void_t               final       (CK_BYTE_PTR pLastPart, CK_ULONG_PTR pulLastPartLen);
         ///< finishes a multiple-part decryption operation
 
-    void                 digestUpdate(CK_BYTE_PTR pEncryptedPart, CK_ULONG ulEncryptedPartLen, CK_BYTE_PTR pPart, CK_ULONG_PTR pulPartLen );
+    void_t               digestUpdate(CK_BYTE_PTR pEncryptedPart, CK_ULONG ulEncryptedPartLen, CK_BYTE_PTR pPart, CK_ULONG_PTR pulPartLen );
         ///< continues a multiple-part decryption and digesting operation
-    void                 verifyUpdate(CK_BYTE_PTR pEncryptedPart, CK_ULONG ulEncryptedPartLen, CK_BYTE_PTR pPart, CK_ULONG_PTR pulPartLen );
+    void_t               verifyUpdate(CK_BYTE_PTR pEncryptedPart, CK_ULONG ulEncryptedPartLen, CK_BYTE_PTR pPart, CK_ULONG_PTR pulPartLen );
         ///< continues a multiple-part decryption and verify operation
 
     //Utils
-    void                 makeFile    (std::ctstring_t &csInFilePath, std::ctstring_t &csOutFilePath, CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
+    void_t               makeFile    (std::ctstring_t &csInFilePath, std::ctstring_t &csOutFilePath, CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
         ///< make file
 
 private:

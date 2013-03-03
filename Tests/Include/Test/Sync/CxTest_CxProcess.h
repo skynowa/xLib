@@ -18,7 +18,7 @@ public:
                  CxTest_CxProcess();
     virtual     ~CxTest_CxProcess();
 
-    virtual void unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------
 #endif //CxTest_CxTest_CxProcessH

@@ -141,7 +141,7 @@ CxDir::isDir() {
     return true;
 }
 //--------------------------------------------------------------------------
-void
+void_t
 CxDir::create() {
     bool_t bRv = isExists();
     xCHECK_DO(true == bRv, return);
@@ -157,7 +157,7 @@ CxDir::create() {
     xTEST_EQ(true, isExists());
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxDir::pathCreate() {
     std::vec_tstring_t vsPathParts;
     std::tstring_t     sBuildPath;
@@ -177,10 +177,10 @@ CxDir::pathCreate() {
     xTEST_EQ(true, isExists());
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxDir::copy(
     std::ctstring_t &a_csDirPathTo,
-    cbool_t           &a_cbFailIfExists
+    cbool_t         &a_cbFailIfExists
 )
 {
     xTEST_EQ(true,  isExists());
@@ -222,10 +222,10 @@ CxDir::copy(
     // TODO: rollback
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxDir::move(
     std::ctstring_t &a_csDirPathTo,
-    cbool_t           &a_cbFailIfExists
+    cbool_t         &a_cbFailIfExists
 )
 {
     xTEST_EQ(true,  isExists());
@@ -238,7 +238,7 @@ CxDir::move(
     drDir.pathDelete();
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxDir::remove() {
     bool_t bRv = isExists();
     xCHECK_DO(false == bRv, return);
@@ -256,16 +256,16 @@ CxDir::remove() {
     xTEST_EQ(false, isExists());
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxDir::tryRemove(
-    const size_t  &a_cuiAttempts,
-    culong_t &a_culTimeoutMsec
+    std::csize_t &a_cuiAttempts,
+    culong_t     &a_culTimeoutMsec
 )
 {
     xTEST_LESS(size_t(0U), a_cuiAttempts);
 
-    const size_t cuiMaxAttempts  = 100;  // MAGIC_NUMBER: cuiMaxAttempts
-    const size_t cuiRealAttempts = (cuiMaxAttempts < a_cuiAttempts) ? cuiMaxAttempts : a_cuiAttempts;
+    std::csize_t cuiMaxAttempts  = 100;  // MAGIC_NUMBER: cuiMaxAttempts
+    std::csize_t cuiRealAttempts = (cuiMaxAttempts < a_cuiAttempts) ? cuiMaxAttempts : a_cuiAttempts;
 
     for (size_t i = 0; i < cuiRealAttempts; ++ i) {
         try {
@@ -280,7 +280,7 @@ CxDir::tryRemove(
     }
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxDir::pathClear() {
     xTEST_EQ(true, isExists());
 
@@ -318,7 +318,7 @@ CxDir::pathClear() {
     xTEST_EQ(true, isEmpty());
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxDir::pathDelete() {
     bool_t bRv = isExists();
     xCHECK_DO(false == bRv, return);
@@ -331,11 +331,11 @@ CxDir::pathDelete() {
 //--------------------------------------------------------------------------
 // TODO: vFilesFind
 // http://www.metalshell.com/source_code/86/List_Contents_of_a_Directory.html
-void
+void_t
 CxDir::filesFind(
-    std::ctstring_t &a_csPattern,          ///< pattern
-    cbool_t           &a_cbIsRecursively,    ///< recursively scan
-    std::vec_tstring_t   *a_pvsFilePathes       ///< output file paths (must be empty)
+    std::ctstring_t    &a_csPattern,          ///< pattern
+    cbool_t            &a_cbIsRecursively,    ///< recursively scan
+    std::vec_tstring_t *a_pvsFilePathes       ///< output file paths (must be empty)
 )
 {
     xTEST_EQ(false, a_csPattern.empty());
@@ -478,11 +478,11 @@ CxDir::filesFind(
 #endif
 }
 //--------------------------------------------------------------------------
-void
+void_t
 CxDir::dirsFind(
-    std::ctstring_t &a_csPattern,          ///< pattern
-    cbool_t           &a_cbIsRecursively,    ///< recursively scan
-    std::vec_tstring_t   *a_pvsDirPathes        ///< output directory paths (must be empty)
+    std::ctstring_t    &a_csPattern,          ///< pattern
+    cbool_t            &a_cbIsRecursively,    ///< recursively scan
+    std::vec_tstring_t *a_pvsDirPathes        ///< output directory paths (must be empty)
 )
 {
     xTEST_NA(a_cbIsRecursively);
@@ -602,7 +602,7 @@ CxDir::current() {
     return sRv;
 }
 //--------------------------------------------------------------------------
-void
+void_t
 CxDir::setCurrent(
     std::ctstring_t &a_csDirPath
 ) {

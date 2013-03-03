@@ -78,7 +78,7 @@ CxFlags::isAnySet(
     return 0 != (_m_mFlags & mask_t(a_ciFlag)); 
 }
 //------------------------------------------------------------------------------        
-void 
+void_t 
 CxFlags::setFlag(
     const mask_t &a_cmFlag
 )
@@ -86,7 +86,7 @@ CxFlags::setFlag(
     _m_mFlags |= a_cmFlag;
 }
 //------------------------------------------------------------------------------        
-void 
+void_t 
 CxFlags::setFlag(
     cint_t &a_ciFlag
 )
@@ -94,7 +94,7 @@ CxFlags::setFlag(
     _m_mFlags |= mask_t(a_ciFlag);
 }
 //------------------------------------------------------------------------------        
-void 
+void_t 
 CxFlags::unsetFlag(
     const mask_t &a_cmFlag
 )
@@ -102,7 +102,7 @@ CxFlags::unsetFlag(
     _m_mFlags &= ~a_cmFlag;
 }
 //------------------------------------------------------------------------------        
-void 
+void_t 
 CxFlags::unsetFlag(
     cint_t &a_ciFlag
 )
@@ -110,7 +110,7 @@ CxFlags::unsetFlag(
     _m_mFlags &= ~mask_t(a_ciFlag);
 }
 //------------------------------------------------------------------------------        
-void 
+void_t 
 CxFlags::setFlags(
     const mask_t &a_cmFlag
 )

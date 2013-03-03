@@ -29,7 +29,7 @@ CxTest_CxUtils::~CxTest_CxUtils() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxUtils::unit(
     culonglong_t &cullCaseLoops
 )

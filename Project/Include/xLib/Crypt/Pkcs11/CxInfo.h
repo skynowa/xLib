@@ -26,9 +26,9 @@ public:
     virtual             ~CxInfo();
         ///< destructor
 
-    void                 get   (CK_INFO_PTR pInfo);
+    void_t               get   (CK_INFO_PTR pInfo);
         ///< returns general information about Cryptoki
-    void                 token (CK_SLOT_ID slotID, CK_TOKEN_INFO_PTR pInfo);
+    void_t               token (CK_SLOT_ID slotID, CK_TOKEN_INFO_PTR pInfo);
         ///< obtains information about a particular token in the system
 
 private:

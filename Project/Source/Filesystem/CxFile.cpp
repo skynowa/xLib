@@ -44,11 +44,11 @@ CxFile::~CxFile() {
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-void
+void_t
 CxFile::create(
-    std::ctstring_t &a_csFilePath,
-    const ExOpenMode     &a_comMode,
-    cbool_t           &a_cbIsUseBuffering
+    std::ctstring_t  &a_csFilePath,
+    const ExOpenMode &a_comMode,
+    cbool_t          &a_cbIsUseBuffering
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
@@ -75,11 +75,11 @@ CxFile::create(
     }
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxFile::reopen(
-    std::ctstring_t &a_csFilePath,
-    const ExOpenMode     &a_comMode,
-    cbool_t           &a_cbIsUseBuffering
+    std::ctstring_t  &a_csFilePath,
+    const ExOpenMode &a_comMode,
+    cbool_t          &a_cbIsUseBuffering
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
@@ -121,7 +121,7 @@ CxFile::path() const {
     return _m_sFilePath;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxFile::attach(
     std::FILE *a_pflFile
 )
@@ -153,8 +153,8 @@ CxFile::detach() {
 //------------------------------------------------------------------------------
 size_t
 CxFile::read(
-    void         *a_pvBuff,
-    const size_t &a_cuiCount
+    void_t       *a_pvBuff,
+    std::csize_t &a_cuiCount
 ) const
 {
     xTEST_PTR(a_pvBuff);
@@ -168,8 +168,8 @@ CxFile::read(
 //------------------------------------------------------------------------------
 size_t
 CxFile::write(
-    const void   *a_pcvBuff,
-    const size_t &a_cuiCount
+    cvoid_t      *a_pcvBuff,
+    std::csize_t &a_cuiCount
 ) const
 {
     xTEST_PTR(a_pcvBuff);
@@ -181,7 +181,7 @@ CxFile::write(
     return uiRes;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxFile::read(
     std::ustring_t *a_psBuff
 ) const
@@ -199,7 +199,7 @@ CxFile::read(
     xTEST_EQ((*a_psBuff).size(), uiRes);
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxFile::write(
     std::custring_t &a_csBuff
 ) const
@@ -210,7 +210,7 @@ CxFile::write(
     xTEST_EQ(a_csBuff.size(), uiRes);
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxFile::read(
     std::tstring_t *a_psBuff
 ) const
@@ -249,7 +249,7 @@ CxFile::write(
 int_t
 CxFile::writeV(
     ctchar_t *a_pcszFormat,
-    va_list        a_vlArgs
+    va_list   a_vlArgs
 ) const
 {
     xTEST_PTR(a_pcszFormat);
@@ -261,10 +261,10 @@ CxFile::writeV(
     return iRv;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxFile::readLine(
     std::tstring_t *a_psStr,
-    const size_t   &a_cuiMaxCount
+    std::csize_t   &a_cuiMaxCount
 ) const
 {
     xTEST_PTR(a_psStr);
@@ -282,7 +282,7 @@ CxFile::readLine(
     (*a_psStr).swap(sStr);
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxFile::writeLine(
     std::ctstring_t &a_csStr
 ) const
@@ -301,7 +301,7 @@ CxFile::readChar() const {
     return static_cast<tchar_t>( iRv );
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxFile::writeChar(
     ctchar_t &a_ccChar
 ) const
@@ -313,7 +313,7 @@ CxFile::writeChar(
     xTEST_EQ(a_ccChar, static_cast<tchar_t>( iRv ));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxFile::ungetChar(
     ctchar_t &a_ccChar
 ) const
@@ -325,7 +325,7 @@ CxFile::ungetChar(
     xTEST_EQ(a_ccChar, static_cast<tchar_t>( iRv ));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxFile::clear() const {
     resize(0L);
 }
@@ -338,10 +338,10 @@ CxFile::clear() const {
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-void
+void_t
 CxFile::locking(
     const ExLockingMode &a_clmMode,
-    clong_t        &a_cliBytes
+    clong_t             &a_cliBytes
 )
 {
     xTEST_NA(a_clmMode);
@@ -357,9 +357,9 @@ CxFile::locking(
     xTEST_DIFF(- 1, iRv);
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxFile::setPosition(
-    clong_t            &a_clOffset,
+    clong_t                 &a_clOffset,
     const ExPointerPosition &a_cppPos
 ) const
 {
@@ -378,11 +378,11 @@ CxFile::position() const {
     return liRv;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxFile::setVBuff(
     char                  *a_pszBuff,
     const ExBufferingMode &a_cbmMode,
-    const size_t          &a_cuiSize
+    std::csize_t          &a_cuiSize
 ) const
 {
     xTEST_NA(a_pszBuff);
@@ -395,7 +395,7 @@ CxFile::setVBuff(
 //------------------------------------------------------------------------------
 #if xOS_ENV_WIN
 
-void
+void_t
 CxFile::setMode(
     const ExTranslationMode &a_ctmMode
 ) const
@@ -435,7 +435,7 @@ CxFile::size() const {
 #endif
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxFile::resize(
     clonglong_t &a_cllSize
 ) const
@@ -494,9 +494,9 @@ CxFile::isError() const {
     return bRv;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxFile::errorClear() const {
-    (void)std::clearerr( get() );
+    (void_t)std::clearerr( get() );
 }
 //------------------------------------------------------------------------------
 
@@ -507,13 +507,13 @@ CxFile::errorClear() const {
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-void
+void_t
 CxFile::flush() const {
     int_t iRv = std::fflush(get());
     xTEST_DIFF(EOF, iRv);
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxFile::close() {
     xCHECK_DO(false == isValid(), return);
 
@@ -615,10 +615,10 @@ CxFile::isExistsEx(
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxFile::access(
-    std::ctstring_t &a_csFilePath,
-    const ExAccessMode   &a_camMode
+    std::ctstring_t    &a_csFilePath,
+    const ExAccessMode &a_camMode
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
@@ -629,9 +629,9 @@ CxFile::access(
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxFile::chmod(
-    std::ctstring_t   &a_csFilePath,
+    std::ctstring_t        &a_csFilePath,
     const ExPermissionMode &a_cpmMode
 )
 {
@@ -649,7 +649,7 @@ CxFile::chmod(
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxFile::clear(
     std::ctstring_t &a_csFilePath
 )
@@ -663,7 +663,7 @@ CxFile::clear(
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxFile::remove(
     std::ctstring_t &a_csFilePath
 )
@@ -680,10 +680,10 @@ CxFile::remove(
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxFile::tryRemove(
     std::ctstring_t &a_csFilePath,
-    const size_t         &a_cuiAttempts,
+    std::csize_t    &a_cuiAttempts,
     culong_t        &a_culTimeoutMsec
 )
 {
@@ -691,8 +691,8 @@ CxFile::tryRemove(
     xTEST_LESS(size_t(0U), a_cuiAttempts);
     xTEST_NA(a_culTimeoutMsec);
 
-    const size_t cuiMaxAttempts  = 100;  // MAGIC_NUMBER: cuiMaxAttempts
-    const size_t cuiRealAttempts = (cuiMaxAttempts < a_cuiAttempts) ? cuiMaxAttempts : a_cuiAttempts;
+    std::csize_t cuiMaxAttempts  = 100;  // MAGIC_NUMBER: cuiMaxAttempts
+    std::csize_t cuiRealAttempts = (cuiMaxAttempts < a_cuiAttempts) ? cuiMaxAttempts : a_cuiAttempts;
 
     for (size_t i = 0; i < cuiRealAttempts; ++ i) {
         try {
@@ -708,10 +708,10 @@ CxFile::tryRemove(
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxFile::wipe(
     std::ctstring_t &a_csFilePath,
-    const size_t         &a_cuiPasses
+    std::csize_t    &a_cuiPasses
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
@@ -810,7 +810,7 @@ CxFile::wipe(
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxFile::unlink(
     std::ctstring_t &a_csFilePath
 )
@@ -822,7 +822,7 @@ CxFile::unlink(
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxFile::rename(
     std::ctstring_t &a_csOldFilePath,
     std::ctstring_t &a_csNewFilePath
@@ -836,7 +836,7 @@ CxFile::rename(
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxFile::move(
     std::ctstring_t &a_csFilePath,
     std::ctstring_t &a_csDirPath
@@ -849,11 +849,11 @@ CxFile::move(
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxFile::copy(
     std::ctstring_t &a_csFilePathFrom,
     std::ctstring_t &a_csFilePathTo,
-    cbool_t           &a_cbFailIfExists
+    cbool_t         &a_cbFailIfExists
 )
 {
     xTEST_EQ(false, a_csFilePathFrom.empty());
@@ -883,14 +883,14 @@ CxFile::copy(
 
         //--------------------------------------------------
         // copy files
-        const size_t cuiBuffSize         = 1024;
+        std::csize_t cuiBuffSize         = 1024;
         uchar_t      ucBuff[cuiBuffSize] = {0};
 
         xFOREVER {
-            const size_t uiReaded  = sfFrom.read(ucBuff, cuiBuffSize);
+            std::csize_t uiReaded  = sfFrom.read(ucBuff, cuiBuffSize);
             xCHECK_DO(0 >= uiReaded, break);
 
-            const size_t uiWritten = sfTo.write(ucBuff, uiReaded);
+            std::csize_t uiWritten = sfTo.write(ucBuff, uiReaded);
             xCHECK_DO(uiReaded != uiWritten, bIsCopyOk = false; break);
         }
     }
@@ -947,12 +947,12 @@ CxFile::lines(
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxFile::time(
     std::ctstring_t &a_csFilePath,
-    time_t               *a_ptmCreate,
-    time_t               *a_ptmAccess,
-    time_t               *a_ptmModified
+    time_t          *a_ptmCreate,
+    time_t          *a_ptmAccess,
+    time_t          *a_ptmModified
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
@@ -990,12 +990,12 @@ CxFile::time(
 }
 //------------------------------------------------------------------------------
 /*static */
-void
+void_t
 CxFile::setTime(
     std::ctstring_t &a_csFilePath,
-    const time_t         &a_ctmCreate,
-    const time_t         &a_ctmAccess,
-    const time_t         &a_ctmModified
+    const time_t    &a_ctmCreate,
+    const time_t    &a_ctmAccess,
+    const time_t    &a_ctmModified
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
@@ -1042,10 +1042,10 @@ CxFile::setTime(
 
 //--------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxFile::textRead(
     std::ctstring_t &a_csFilePath,
-    std::tstring_t       *a_psContent
+    std::tstring_t  *a_psContent
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
@@ -1063,7 +1063,7 @@ CxFile::textRead(
 
     sRv.resize( static_cast<size_t>( llFileSize) );
 
-    size_t uiReadLen = sfFile.read((void *)&sRv.at(0), sRv.size());
+    size_t uiReadLen = sfFile.read((void_t *)&sRv.at(0), sRv.size());
     xTEST_EQ(sRv.size(), uiReadLen);
 
     // out
@@ -1071,7 +1071,7 @@ CxFile::textRead(
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxFile::textWrite(
     std::ctstring_t &a_csFilePath,
     std::ctstring_t &a_csContent
@@ -1088,15 +1088,15 @@ CxFile::textWrite(
 
     xCHECK_DO(true == a_csContent.empty(), return);
 
-    size_t uiWriteLen = sfFile.write((void *)&a_csContent.at(0), a_csContent.size());
+    size_t uiWriteLen = sfFile.write((void_t *)&a_csContent.at(0), a_csContent.size());
     xTEST_EQ(a_csContent.size(), uiWriteLen);
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxFile::textRead(
-    std::ctstring_t &a_csFilePath,
-    std::vec_tstring_t   *a_pvsContent
+    std::ctstring_t    &a_csFilePath,
+    std::vec_tstring_t *a_pvsContent
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
@@ -1115,7 +1115,7 @@ CxFile::textRead(
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxFile::textWrite(
     std::ctstring_t     &a_csFilePath,
     std::cvec_tstring_t &a_cvsContent
@@ -1134,11 +1134,11 @@ CxFile::textWrite(
 }
 //--------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxFile::textRead(
-    std::ctstring_t &a_csFilePath,
-    std::ctstring_t &a_csSeparator,
-    std::map_tstring_t   *a_pmsContent
+    std::ctstring_t    &a_csFilePath,
+    std::ctstring_t    &a_csSeparator,
+    std::map_tstring_t *a_pmsContent
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
@@ -1197,7 +1197,7 @@ CxFile::textRead(
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxFile::textWrite(
     std::ctstring_t     &a_csFilePath,
     std::ctstring_t     &a_csSeparator,
@@ -1245,10 +1245,10 @@ CxFile::textWrite(
 
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxFile::binRead(
     std::ctstring_t &a_csFilePath,
-    std::ustring_t       *a_pusContent
+    std::ustring_t  *a_pusContent
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
@@ -1266,7 +1266,7 @@ CxFile::binRead(
 
     usRv.resize( static_cast<size_t>( llFileSize ) );
 
-    size_t uiReadLen = sfFile.read((void *)&usRv.at(0), usRv.size());
+    size_t uiReadLen = sfFile.read((void_t *)&usRv.at(0), usRv.size());
     xTEST_EQ(usRv.size(), uiReadLen);
 
     // out
@@ -1274,7 +1274,7 @@ CxFile::binRead(
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxFile::binWrite(
     std::ctstring_t &a_csFilePath,
     std::custring_t &a_cusContent
@@ -1291,7 +1291,7 @@ CxFile::binWrite(
 
     xCHECK_DO(true == a_cusContent.empty(), return);
 
-    size_t uiWriteLen = sfFile.write((void *)&a_cusContent.at(0), a_cusContent.size());
+    size_t uiWriteLen = sfFile.write((void_t *)&a_cusContent.at(0), a_cusContent.size());
     xTEST_EQ(a_cusContent.size(), uiWriteLen);
 }
 //------------------------------------------------------------------------------
@@ -1320,7 +1320,7 @@ CxFile::_nativeHandle(
 /* static */
 std::FILE *
 CxFile::_stdHandle(
-    int_t               a_iFileHandle,
+    int_t             a_iFileHandle,
     const ExOpenMode &a_omMode
 )
 {
@@ -1364,7 +1364,7 @@ CxFile::_openMode(
             sRv = xT("a+");
             break;
 
-        // binaru modes
+        // binary modes
         case omBinRead:
             sRv = xT("rb");
             break;

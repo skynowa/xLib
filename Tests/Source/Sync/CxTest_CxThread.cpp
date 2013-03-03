@@ -26,7 +26,7 @@ class CWorkThread :
         virtual       ~CWorkThread();
 
     protected:
-        virtual uint_t onRun      (void *pData) xOVERRIDE;
+        virtual uint_t onRun      (void_t *pData) xOVERRIDE;
 };
 //------------------------------------------------------------------------------
 
@@ -47,7 +47,7 @@ CWorkThread::~CWorkThread() {
 //------------------------------------------------------------------------------
 uint_t
 CWorkThread::onRun(
-    void *pvData
+    void_t *pvData
 )
 {
     #if xTEST_IGNORE
@@ -104,7 +104,7 @@ CxTest_CxThread::~CxTest_CxThread() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxThread::unit(
     culonglong_t &cullCaseLoops
 )

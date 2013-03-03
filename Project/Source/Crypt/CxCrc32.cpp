@@ -21,7 +21,7 @@ xNAMESPACE_BEGIN(NxLib)
 /* static */
 ulong_t
 CxCrc32::calc(
-    uchar_t       *a_pucBuff,
+    uchar_t  *a_pucBuff,
     culong_t &a_culSize
 )
 {
@@ -75,7 +75,7 @@ CxCrc32::calcFile(
 /* static */
 ulong_t
 CxCrc32::calcFast(
-    uchar_t       *a_pucBuff,
+    uchar_t  *a_pucBuff,
     culong_t &a_culSize
 )
 {
@@ -203,10 +203,8 @@ CxCrc32::formatHex(
     culong_t &a_culCrc32
 )
 {
-    
-
-    std::tstring_t      sRv;
-    const size_t uiCrc32Size = 8;
+    std::tstring_t sRv;
+    std::csize_t   uiCrc32Size = 8;
 
     sRv = CxString::format(xT("%X"), a_culCrc32);    //0AADDEA0
 

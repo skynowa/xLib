@@ -41,20 +41,20 @@ CxLastError::toString() {
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxLastError::set(
     culong_t &a_culCode
 )
 {
 #if   xOS_ENV_WIN
-    (void)::SetLastError(a_culCode);
+    (void_t)::SetLastError(a_culCode);
 #elif xOS_ENV_UNIX
     errno = static_cast<int_t>( a_culCode );
 #endif
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxLastError::reset() {
     culong_t culCodeSuccess = 0UL;
 
@@ -95,7 +95,7 @@ CxLastError::format(
 
     sRv.append(sMessage);
 
-    (void)::LocalFree(pvBuff);
+    (void_t)::LocalFree(pvBuff);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         char szBuff[64 + 1] = {0};

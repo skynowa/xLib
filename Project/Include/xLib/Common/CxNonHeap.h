@@ -21,9 +21,9 @@ public:
         ///< destructor
 
 protected:
-    void *   operator new    (size_t) throw() { return NULL; }
+    void_t * operator new    (size_t) throw() { return NULL; }
         ///< operator new
-    void     operator delete (void *) { ; }
+    void_t   operator delete (void_t *) { ; }
         ///< operator delete
 };
 

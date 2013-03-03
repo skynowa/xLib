@@ -15,10 +15,10 @@ class CxTest_CxUtils :
     public CxTest
 {
 public:
-                   CxTest_CxUtils();
-    virtual       ~CxTest_CxUtils();
+                    CxTest_CxUtils();
+    virtual        ~CxTest_CxUtils();
 
-    virtual  void  unit          (culonglong_t &cullCaseLoops);
+    virtual  void_t unit          (culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------
 #endif //CxTest_CxUtilsH

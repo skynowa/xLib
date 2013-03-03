@@ -17,7 +17,7 @@ CxTest_CxFlags::~CxTest_CxFlags() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxFlags::unit(
     culonglong_t &cullCaseLoops
 )

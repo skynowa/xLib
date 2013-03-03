@@ -45,15 +45,15 @@ public:
 
     const handle_t &  handle    () const xWARN_UNUSED_RV;
         ///< get handle
-    void              create    ();
+    void_t            create    ();
         ///< create
-    void              set       ();
+    void_t            set       ();
         ///< signal the event for the waiting thread (!!! unlock !!!)
-    void              reset     ();
+    void_t            reset     ();
         ///< once signaled, the event class must be "reset" before responding to a new signal
     ExObjectState     wait      (culong_t &culTimeout = xTIMEOUT_INFINITE) xWARN_UNUSED_RV;
         ///< wait either for the CxEvent to be signaled by another thread or for the specified timeout duration
-    bool_t              isSignaled() xWARN_UNUSED_RV;
+    bool_t            isSignaled() xWARN_UNUSED_RV;
         ///< is signaled
 
 private:
@@ -62,11 +62,11 @@ private:
 #elif xOS_ENV_UNIX
     pthread_mutex_t   _m_mtMutex;       ///< mutex
     handle_t          _m_cndCond;       ///< condition variable
-    bool_t              _m_bIsSignaled;   ///< is signaled flag
+    bool_t            _m_bIsSignaled;   ///< is signaled flag
 #endif
 
-    cbool_t        _m_cbIsAutoReset; ///< auto-reset flag
-    cbool_t        _m_cbInitState;   ///< initial state
+    cbool_t           _m_cbIsAutoReset; ///< auto-reset flag
+    cbool_t           _m_cbInitState;   ///< initial state
 };
 
 xNAMESPACE_END(NxLib)

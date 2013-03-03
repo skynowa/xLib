@@ -23,7 +23,7 @@ CxTest_CxNonAssignable::~CxTest_CxNonAssignable() {
 }
 //------------------------------------------------------------------------------
 /*virtual*/
-void
+void_t
 CxTest_CxNonAssignable::unit(
     culonglong_t &cullCaseLoops
 )

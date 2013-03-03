@@ -104,7 +104,7 @@ CxHandleT<hvTag>::get() const {
 }
 //------------------------------------------------------------------------------
 template<ExHandleValue hvTag>
-void
+void_t
 CxHandleT<hvTag>::set(
     cnative_handle_t &a_chHandle
 )
@@ -170,7 +170,7 @@ CxHandleT<hvTag>::isValid() const {
 }
 //------------------------------------------------------------------------------
 template<ExHandleValue hvTag>
-void
+void_t
 CxHandleT<hvTag>::attach(
     cnative_handle_t &a_chHandle
 )
@@ -194,7 +194,7 @@ CxHandleT<hvTag>::detach() {
 }
 //------------------------------------------------------------------------------
 template<ExHandleValue hvTag>
-void
+void_t
 CxHandleT<hvTag>::close() {
     xCHECK_DO(false == isValid(), _m_hHandle = error_value_t::get(); return);
 
@@ -235,7 +235,7 @@ CxHandleT<hvTag>::info() const {
 #if xOS_ENV_WIN
 
 template<ExHandleValue hvTag>
-void
+void_t
 CxHandleT<hvTag>::setInfo(
     culong_t &a_culMask,
     culong_t &a_culFlags

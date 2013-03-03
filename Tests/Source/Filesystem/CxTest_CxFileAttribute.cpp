@@ -21,7 +21,7 @@ CxTest_CxFileAttribute::~CxTest_CxFileAttribute() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxFileAttribute::unit(
     culonglong_t &cullCaseLoops
 )

@@ -106,7 +106,7 @@ public:
     enum { static_size = N };
 
     // swap (note: linear complexity)
-    void swap (CxArray<T, N> &y) {
+    void_t swap (CxArray<T, N> &y) {
         for (size_type i = 0; i < N; ++ i) {
             /*boost*/std::swap(elems[i], y.elems[i]);
         }
@@ -133,20 +133,20 @@ public:
     }
 
     // assign one value to all elements
-    void assign(const T &value) {
+    void_t assign(const T &value) {
         fill(value);
     }    // A synonym for fill
 
-    void fill(const T &value) {
+    void_t fill(const T &value) {
         std::fill_n(begin(),size(),value);
     }
 
-    void clear() {
+    void_t clear() {
         fill(0);
     }
 
     // check range (may be private because it is static)
-    static void rangecheck (size_type i) {
+    static void_t rangecheck (size_type i) {
         if (i >= size()) {
             std::out_of_range e("array<>: index out of range");
             ////boost::throw_exception(e);
@@ -184,7 +184,7 @@ namespace NxArray {
 
     // global swap()
     template<typename T, std::size_t N>
-    inline void swap(CxArray<T, N> &x, CxArray<T, N> &y) {
+    inline void_t swap(CxArray<T, N> &x, CxArray<T, N> &y) {
         x.swap(y);
     }
 }

@@ -34,7 +34,7 @@ CxProfiler::~CxProfiler() {
     }
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxProfiler::setLogPath(
     std::ctstring_t &a_csLogPath
 )
@@ -49,7 +49,7 @@ CxProfiler::logPath() const {
     return _flLog.filePath();
 }
 //--------------------------------------------------------------------------
-void
+void_t
 CxProfiler::start() {
     xTEST_EQ(false, _m_bIsStarted);
 
@@ -66,7 +66,7 @@ CxProfiler::start() {
     _m_bIsStarted = true;
 }
 //--------------------------------------------------------------------------
-void
+void_t
 CxProfiler::stop(
     ctchar_t *a_pcszComment, ...
 )
@@ -103,7 +103,7 @@ CxProfiler::stop(
     _m_bIsStarted = false;
 }
 //--------------------------------------------------------------------------
-void
+void_t
 CxProfiler::pulse(
     ctchar_t *a_pcszComment, ...
 )
@@ -131,7 +131,7 @@ CxProfiler::pulse(
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-void
+void_t
 CxProfiler::_dataReset() {
     // TODO: set normal thread priority
     {

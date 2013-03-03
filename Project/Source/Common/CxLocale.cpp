@@ -51,7 +51,7 @@ CxLocale::current() {
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxLocale::setCurrent(
     std::ctstring_t &csLocale
 )
@@ -67,7 +67,7 @@ CxLocale::setCurrent(
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxLocale::setDefault() {
     // n/a
 

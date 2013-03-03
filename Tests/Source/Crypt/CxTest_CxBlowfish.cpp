@@ -20,7 +20,7 @@ CxTest_CxBlowfish::~CxTest_CxBlowfish() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxBlowfish::unit(
     culonglong_t &cullCaseLoops
 )

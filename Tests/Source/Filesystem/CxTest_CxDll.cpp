@@ -17,7 +17,7 @@ CxTest_CxDll::~CxTest_CxDll() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxDll::unit(
     culonglong_t &cullCaseLoops
 )
@@ -69,7 +69,7 @@ CxTest_CxDll::unit(
         xTEST_PTR(fpRes);
 
     #if   xOS_ENV_WIN
-        typedef void (__stdcall *pDllFunc)(ulong_t, ulong_t);
+        typedef void_t (__stdcall *pDllFunc)(ulong_t, ulong_t);
 
         pDllFunc pLoadBeepFunc = NULL;
 

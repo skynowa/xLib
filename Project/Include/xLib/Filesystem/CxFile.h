@@ -112,162 +112,162 @@ public:
     };
 
     // constructors, destructor
-                           CxFile       ();
+                          CxFile       ();
         ///< constructor
-    virtual               ~CxFile       ();
+    virtual              ~CxFile       ();
         ///< destructor
 
     // open, get
-    void                   create       (std::ctstring_t &csFilePath, const ExOpenMode &omMode, cbool_t &cbIsUseBuffering);
+    void_t                create       (std::ctstring_t &csFilePath, const ExOpenMode &omMode, cbool_t &cbIsUseBuffering);
         ///< open
-    void                   reopen       (std::ctstring_t &csFilePath, const ExOpenMode &omMode, cbool_t &cbIsUseBuffering);
+    void_t                reopen       (std::ctstring_t &csFilePath, const ExOpenMode &omMode, cbool_t &cbIsUseBuffering);
         ///< reopen with different file or mode
-    std::FILE             *get          () const xWARN_UNUSED_RV;
+    std::FILE            *get          () const xWARN_UNUSED_RV;
         ///< get handle
-    std::ctstring_t & path         () const xWARN_UNUSED_RV;
+    std::ctstring_t &     path         () const xWARN_UNUSED_RV;
         ///< get file path
-    void                   attach       (std::FILE *pflFile);
+    void_t                attach       (std::FILE *pflFile);
         ///< attach to stream
-    std::FILE *            detach       () xWARN_UNUSED_RV;
+    std::FILE *           detach       () xWARN_UNUSED_RV;
         ///< detach from stream
 
     // read, write
-    size_t                 read         (void *pvBuff,        const size_t &cuiCount) const xWARN_UNUSED_RV;
+    size_t                read         (void_t *pvBuff,        std::csize_t &cuiCount) const xWARN_UNUSED_RV;
         ///< read block of data
-    size_t                 write        (const void *pcvBuff, const size_t &cuiCount) const xWARN_UNUSED_RV;
+    size_t                write        (cvoid_t *pcvBuff, std::csize_t &cuiCount) const xWARN_UNUSED_RV;
         ///< write block of data
-    void                   read         (std::ustring_t *psBuff) const;
+    void_t                read         (std::ustring_t *psBuff) const;
         ///< read to std::ustring_t
-    void                   write        (std::custring_t &csBuff) const;
+    void_t                write        (std::custring_t &csBuff) const;
         ///< write from std::ustring_t
-    void                   read         (std::tstring_t *psBuff) const;
+    void_t                read         (std::tstring_t *psBuff) const;
         ///< read to std::tstring_t
-    int_t                    write        (ctchar_t *pcszFormat, ...) const xWARN_UNUSED_RV;
+    int_t                 write        (ctchar_t *pcszFormat, ...) const xWARN_UNUSED_RV;
         ///< write formatted output to stream
-    int_t                    writeV       (ctchar_t *pcszFormat, va_list arg) const xWARN_UNUSED_RV;
+    int_t                 writeV       (ctchar_t *pcszFormat, va_list arg) const xWARN_UNUSED_RV;
         ///< write formatted variable argument list to stream
-    void                   readLine     (std::tstring_t *psStr, const size_t &cuiMaxCount) const;
+    void_t                readLine     (std::tstring_t *psStr, std::csize_t &cuiMaxCount) const;
         ///< read string to newline or to the end of file
-    void                   writeLine    (std::ctstring_t &csStr) const;
+    void_t                writeLine    (std::ctstring_t &csStr) const;
         ///< write string and end of line
-    tchar_t                readChar     () const xWARN_UNUSED_RV;
+    tchar_t               readChar     () const xWARN_UNUSED_RV;
         ///< get character
-    void                   writeChar    (ctchar_t &ccChar) const;
+    void_t                writeChar    (ctchar_t &ccChar) const;
         ///< write character
-    void                   ungetChar    (ctchar_t &ccChar) const;
+    void_t                ungetChar    (ctchar_t &ccChar) const;
         ///< unget character from stream
-    void                   clear        () const;
+    void_t                clear        () const;
         ///< clear
 
     // times
 
     // other
-    void                   locking      (const ExLockingMode &clmMode, clong_t &cliBytes);
+    void_t                locking      (const ExLockingMode &clmMode, clong_t &cliBytes);
         ///< locks or unlocks bytes of a file
-    void                   setPosition  (clong_t &clOffset, const ExPointerPosition &cppPos) const;
+    void_t                setPosition  (clong_t &clOffset, const ExPointerPosition &cppPos) const;
         ///< set stream position indicator
-    long_t                 position     () const xWARN_UNUSED_RV;
+    long_t                position     () const xWARN_UNUSED_RV;
         ///< get current position in stream
-    void                   setVBuff     (char *pszBuff, const ExBufferingMode &cbmMode, const size_t &cuiSize) const;
+    void_t                setVBuff     (char *pszBuff, const ExBufferingMode &cbmMode, std::csize_t &cuiSize) const;
         ///< change stream buffering
 
 #if xOS_ENV_WIN
-    void                   setMode      (const ExTranslationMode &tmMode) const;
+    void_t                setMode      (const ExTranslationMode &tmMode) const;
         ///< sets the file translation mode
 #endif
 
-    longlong_t             size         () const xWARN_UNUSED_RV;
+    longlong_t            size         () const xWARN_UNUSED_RV;
         ///< get file size
-    void                   resize       (clonglong_t &cllSize) const;
+    void_t                resize       (clonglong_t &cllSize) const;
         ///< changes the file size
 
     // error handling
-    bool_t                   isValid      () const xWARN_UNUSED_RV;
+    bool_t                isValid      () const xWARN_UNUSED_RV;
         ///< validating handle
-    bool_t                   isOpen       () const xWARN_UNUSED_RV;
+    bool_t                isOpen       () const xWARN_UNUSED_RV;
         ///< is open
-    bool_t                   isEmpty      () const xWARN_UNUSED_RV;
+    bool_t                isEmpty      () const xWARN_UNUSED_RV;
         ///< is empty
-    bool_t                   isEof        () const xWARN_UNUSED_RV;
+    bool_t                isEof        () const xWARN_UNUSED_RV;
         ///< check end of file indicator
-    bool_t                   isError      () const xWARN_UNUSED_RV;
+    bool_t                isError      () const xWARN_UNUSED_RV;
         ///< check error indicator
-    void                   errorClear   () const;
+    void_t                errorClear   () const;
         ///< clear error indicators
 
     // closing
-    void                   flush        () const;
+    void_t                flush        () const;
         ///< flush
-    void                   close        ();
+    void_t                close        ();
         ///< close
 
     // static
-    static bool_t            isFile       (std::ctstring_t &csFilePath) xWARN_UNUSED_RV;
+    static bool_t         isFile       (std::ctstring_t &csFilePath) xWARN_UNUSED_RV;
         ///< check for file
-    static bool_t            isExists     (std::ctstring_t &csFilePath) xWARN_UNUSED_RV;
+    static bool_t         isExists     (std::ctstring_t &csFilePath) xWARN_UNUSED_RV;
         ///< check for existence
-    static std::tstring_t  isExistsEx   (std::ctstring_t &csFilePath) xWARN_UNUSED_RV;
+    static std::tstring_t isExistsEx   (std::ctstring_t &csFilePath) xWARN_UNUSED_RV;
         ///< check for existence, if exists - generate new file name (file path), which not exists
-    static void            access       (std::ctstring_t &csFilePath, const ExAccessMode &camMode);
+    static void_t         access       (std::ctstring_t &csFilePath, const ExAccessMode &camMode);
         ///< determine file-access permission
-    static void            chmod        (std::ctstring_t &csFilePath, const ExPermissionMode &cpmMode);
+    static void_t         chmod        (std::ctstring_t &csFilePath, const ExPermissionMode &cpmMode);
         ///< change the file-permission settings
-    static void            clear        (std::ctstring_t &csFilePath);
+    static void_t         clear        (std::ctstring_t &csFilePath);
         ///< clear content
-    static void            remove       (std::ctstring_t &csFilePath);
+    static void_t         remove       (std::ctstring_t &csFilePath);
         ///< deleting
-    static void            tryRemove    (std::ctstring_t &csFilePath, const size_t &cuiAttempts, culong_t &culTimeoutMsec);
+    static void_t         tryRemove    (std::ctstring_t &csFilePath, std::csize_t &cuiAttempts, culong_t &culTimeoutMsec);
         ///< try deleting, max 100 attempts
-    static void            wipe         (std::ctstring_t &csFilePath, const size_t &cuiPasses);
+    static void_t         wipe         (std::ctstring_t &csFilePath, std::csize_t &cuiPasses);
         ///< wipe
-    static void            unlink       (std::ctstring_t &csFilePath);
+    static void_t         unlink       (std::ctstring_t &csFilePath);
         ///< deleting
-    static void            rename       (std::ctstring_t &csOldFilePath,  std::ctstring_t &csNewFilePath);
+    static void_t         rename       (std::ctstring_t &csOldFilePath,  std::ctstring_t &csNewFilePath);
         ///< renaming
-    static void            move         (std::ctstring_t &csFilePath,     std::ctstring_t &csDirPath);
+    static void_t         move         (std::ctstring_t &csFilePath,     std::ctstring_t &csDirPath);
         ///< move
-    static void            copy         (std::ctstring_t &csFilePathFrom, std::ctstring_t &csFilePathTo, cbool_t &cbFailIfExists);
+    static void_t         copy         (std::ctstring_t &csFilePathFrom, std::ctstring_t &csFilePathTo, cbool_t &cbFailIfExists);
         ///< copy
-    static longlong_t      size         (std::ctstring_t &csFilePath) xWARN_UNUSED_RV;
+    static longlong_t     size         (std::ctstring_t &csFilePath) xWARN_UNUSED_RV;
         ///< get size
-    static ulonglong_t     lines        (std::ctstring_t &csFilePath) xWARN_UNUSED_RV;
+    static ulonglong_t    lines        (std::ctstring_t &csFilePath) xWARN_UNUSED_RV;
         ///< get number of lines
-    static void            time         (std::ctstring_t &csFilePath, time_t *ptmCreate, time_t *ptmAccess, time_t *ptmModified);
+    static void_t         time         (std::ctstring_t &csFilePath, time_t *ptmCreate, time_t *ptmAccess, time_t *ptmModified);
         ///< get time
-    static void            setTime      (std::ctstring_t &csFilePath, const time_t &ctmCreate, const time_t &ctmAccess, const time_t &ctmModified);
+    static void_t         setTime      (std::ctstring_t &csFilePath, const time_t &ctmCreate, const time_t &ctmAccess, const time_t &ctmModified);
         ///< set time
 
     // text
-    static void            textRead     (std::ctstring_t &csFilePath, std::tstring_t *psContent);
+    static void_t         textRead     (std::ctstring_t &csFilePath, std::tstring_t *psContent);
         ///< read to std::tstring_t
-    static void            textWrite    (std::ctstring_t &csFilePath, std::ctstring_t &csContent);
+    static void_t         textWrite    (std::ctstring_t &csFilePath, std::ctstring_t &csContent);
         ///< write std::tstring_t
-    static void            textRead     (std::ctstring_t &csFilePath, std::vec_tstring_t *pvsContent);
+    static void_t         textRead     (std::ctstring_t &csFilePath, std::vec_tstring_t *pvsContent);
         ///< read to std::vector
-    static void            textWrite    (std::ctstring_t &csFilePath, std::cvec_tstring_t &cvsContent);
+    static void_t         textWrite    (std::ctstring_t &csFilePath, std::cvec_tstring_t &cvsContent);
         ///< write std::vector
-    static void            textRead     (std::ctstring_t &csFilePath, std::ctstring_t &csSeparator, std::map_tstring_t *pmsContent);
+    static void_t         textRead     (std::ctstring_t &csFilePath, std::ctstring_t &csSeparator, std::map_tstring_t *pmsContent);
         ///< read text to std::map
-    static void            textWrite    (std::ctstring_t &csFilePath, std::ctstring_t &csSeparator, std::cmap_tstring_t &cmsContent);
+    static void_t         textWrite    (std::ctstring_t &csFilePath, std::ctstring_t &csSeparator, std::cmap_tstring_t &cmsContent);
         ///< write text from std::map
 
     // binary
-    static void            binRead      (std::ctstring_t &csFilePath, std::ustring_t *pusContent);
+    static void_t         binRead      (std::ctstring_t &csFilePath, std::ustring_t *pusContent);
         ///< read binary data
-    static void            binWrite     (std::ctstring_t &csFilePath, std::custring_t &cusContent);
+    static void_t         binWrite     (std::ctstring_t &csFilePath, std::custring_t &cusContent);
         ///< write binary data
 
 private:
-    friend class           CxFileTemp;    ///< temporary file
+    friend class          CxFileTemp;    ///< temporary file
 
-    std::FILE             *_m_pFile;      ///< file handle
-    std::tstring_t         _m_sFilePath;  ///< file path
+    std::FILE            *_m_pFile;      ///< file handle
+    std::tstring_t        _m_sFilePath;  ///< file path
 
-    static int_t             _nativeHandle(std::FILE *pfFile) xWARN_UNUSED_RV;
+    static int_t          _nativeHandle(std::FILE *pfFile) xWARN_UNUSED_RV;
         ///< gets the file descriptor associated with a stream
-    static std::FILE *     _stdHandle   (int_t iFileHandle, const ExOpenMode &omMode) xWARN_UNUSED_RV;
+    static std::FILE     *_stdHandle   (int_t iFileHandle, const ExOpenMode &omMode) xWARN_UNUSED_RV;
         ///< get stream by handle
-    static std::tstring_t  _openMode    (const ExOpenMode &comMode) xWARN_UNUSED_RV;
+    static std::tstring_t _openMode    (const ExOpenMode &comMode) xWARN_UNUSED_RV;
         ///< get open mode as string, by default use "r"
 };
 

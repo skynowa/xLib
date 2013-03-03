@@ -58,7 +58,7 @@ CxCookiePv1::name() const {
     return _m_sName;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxCookiePv1::setName(
     std::ctstring_t &a_csName
 )
@@ -71,7 +71,7 @@ CxCookiePv1::value() const {
     return _m_sValue;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxCookiePv1::setValue(
     std::ctstring_t &a_csValue
 )
@@ -84,7 +84,7 @@ CxCookiePv1::comment() const {
     return _m_sComment;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxCookiePv1::setComment(
     std::ctstring_t &a_csComment
 )
@@ -97,7 +97,7 @@ CxCookiePv1::domain() const {
     return _m_sDomain;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxCookiePv1::setDomain(
     std::ctstring_t &a_csDomain
 )
@@ -110,7 +110,7 @@ CxCookiePv1::path() const {
     return _m_sPath;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxCookiePv1::setPath(
     std::ctstring_t &a_csPath
 )
@@ -123,7 +123,7 @@ CxCookiePv1::maxAge() const {
     return _m_liMaxAge;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxCookiePv1::setMaxAge(
     clonglong_t &a_cliMaxAge
 )
@@ -136,7 +136,7 @@ CxCookiePv1::secure() const {
     return _m_bSecure;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxCookiePv1::setSecure(
     cbool_t &a_cbFlag
 )
@@ -149,7 +149,7 @@ CxCookiePv1::httpOnly() const {
     return _m_bHttpOnly;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxCookiePv1::setHttpOnly(
     cbool_t &a_cbFlag
 )
@@ -215,7 +215,7 @@ CxCookiePv1::dump() const {
     return sRv;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxCookiePv1::clear() {
     _m_sName.clear();
     _m_sValue.clear();
@@ -242,7 +242,7 @@ struct SCompareNoCase {
     }
 };
 //------------------------------------------------------------------------------
-void
+void_t
 CxCookiePv1::init(
     std::ctstring_t &a_csRawCookie
 )

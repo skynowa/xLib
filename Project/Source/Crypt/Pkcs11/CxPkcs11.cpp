@@ -355,7 +355,7 @@ CxPkcs11::errorStr(
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-void
+void_t
 CxPkcs11::_loadETPkcs11() {
     _m_dllETPkcs11.load(xT("eTPkcs11.dll"));
 
@@ -369,7 +369,7 @@ CxPkcs11::_loadETPkcs11() {
     xTEST_PTR(_m_pFunc);
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxPkcs11::_initialize() {
     xTEST_PTR(_m_pFunc);
 
@@ -377,7 +377,7 @@ CxPkcs11::_initialize() {
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxPkcs11::_finalize() {
     xTEST_PTR(_m_pFunc);
 

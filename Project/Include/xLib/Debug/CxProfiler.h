@@ -18,32 +18,32 @@ class CxProfiler :
     /// code profiling
 {
 public:
-    explicit              CxProfiler();
+    explicit         CxProfiler();
         ///< constructor
-    virtual              ~CxProfiler();
+    virtual         ~CxProfiler();
         ///< destructor
 
-    void                  setLogPath(std::ctstring_t &csLogPath);
+    void_t           setLogPath(std::ctstring_t &csLogPath);
         ///< set log path
     std::ctstring_t &logPath   () const xWARN_UNUSED_RV;
         ///< get log path
 
-    void                  start     ();
+    void_t           start     ();
         ///< start measurement
-    void                  stop      (ctchar_t *pcszComment, ...);
+    void_t           stop      (ctchar_t *pcszComment, ...);
         ///< stop measurement
-    void                  pulse     (ctchar_t *pcszComment, ...);
+    void_t           pulse     (ctchar_t *pcszComment, ...);
         ///< stop, start measurement
 
 private:
-    bool_t                  _m_bIsStarted;    ///< is started
-    CxFileLog             _flLog;           ///< file log
+    bool_t           _m_bIsStarted;    ///< is started
+    CxFileLog        _flLog;           ///< file log
 
-    std::clock_t          _m_clkStart;      ///< start value
-    std::clock_t          _m_clkStop;       ///< stop value
-    std::clock_t          _m_clkDuration;   ///< duration value
+    std::clock_t     _m_clkStart;      ///< start value
+    std::clock_t     _m_clkStop;       ///< stop value
+    std::clock_t     _m_clkDuration;   ///< duration value
 
-    void                  _dataReset();
+    void_t           _dataReset();
         ///< reset all class data
 };
 

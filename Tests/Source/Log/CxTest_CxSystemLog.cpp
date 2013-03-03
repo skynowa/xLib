@@ -17,7 +17,7 @@ CxTest_CxSystemLog::~CxTest_CxSystemLog() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxSystemLog::unit(
     culonglong_t &cullCaseLoops
 )

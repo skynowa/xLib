@@ -32,7 +32,7 @@ CxMimeHeader::~CxMimeHeader () {
 }
 //------------------------------------------------------------------------------
 //DONE: bParse (��������� ��������� ������� "TOP 10 0" �� ��������, ��������)
-void
+void_t
 CxMimeHeader::parse(
     std::ctstring_t &a_csRawHeader
 )
@@ -191,7 +191,7 @@ CxMimeHeader::count() {
     }
 #endif
 
-void
+void_t
 CxMimeHeader::loadFromFile(
     std::ctstring_t &a_csRawMessageFilePath
 )
@@ -231,7 +231,7 @@ CxMimeHeader::loadFromFile(
 }
 //------------------------------------------------------------------------------
 //TODO: bSaveToFile
-void
+void_t
 CxMimeHeader::saveToFile(
     std::ctstring_t &a_csFilePath
 )

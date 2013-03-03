@@ -34,7 +34,7 @@ CxPin::~CxPin() {
 
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxPin::initToken(
     CK_SLOT_ID      a_slotID,    ///< ID of the token's slot
     CK_UTF8CHAR_PTR a_pPin,      ///< the SO's initial PIN
@@ -46,7 +46,7 @@ CxPin::initToken(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxPin::initPIN(
     CK_UTF8CHAR_PTR a_pPin,      ///< the normal user's PIN
     CK_ULONG        a_ulPinLen   ///< length in bytes of the PIN
@@ -56,7 +56,7 @@ CxPin::initPIN(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxPin::setPIN(
     CK_UTF8CHAR_PTR a_pOldPin,   ///< the old PIN
     CK_ULONG        a_ulOldLen,  ///< length of the old PIN

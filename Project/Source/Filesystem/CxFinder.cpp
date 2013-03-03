@@ -27,9 +27,9 @@ CxFinder::CxFinder(
     std::ctstring_t &a_csRootDirPath,
     std::ctstring_t &a_csFilterByShell
 ) :
-    _m_enEnrty           (),
-    _m_csRootDirPath     (a_csRootDirPath),
-    _m_csFilterByShell   (a_csFilterByShell)
+    _m_enEnrty        (),
+    _m_csRootDirPath  (a_csRootDirPath),
+    _m_csFilterByShell(a_csFilterByShell)
 {
     xTEST_NA(isValid());
     xTEST_EQ(false, _m_csRootDirPath.empty());
@@ -163,7 +163,7 @@ CxFinder::moveNext() {
     return true;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxFinder::close() {
     xCHECK_DO(false == isValid(), return);
 

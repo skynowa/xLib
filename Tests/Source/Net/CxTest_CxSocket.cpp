@@ -20,7 +20,7 @@ CxTest_CxSocket::~CxTest_CxSocket() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxSocket::unit(
     culonglong_t &cullCaseLoops
 )

@@ -24,7 +24,7 @@ CxTest_CxNonArrayHeap::~CxTest_CxNonArrayHeap() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxNonArrayHeap::unit(
     culonglong_t &cullCaseLoops
 )

@@ -31,7 +31,7 @@ xNAMESPACE_BEGIN(NxLib)
 /* static */
 std::string
 CxBase64::encode(
-    const std::string &a_csStr
+    std::cstring_t &a_csStr
 )
 {
     std::string  sRv;
@@ -44,7 +44,7 @@ CxBase64::encode(
     pbioBase64 = ::BIO_new(BIO_f_base64());
     xTEST_PTR(pbioBase64);
 
-    (void)BIO_set_flags(pbioBase64, BIO_FLAGS_BASE64_NO_NL);
+    (void_t)BIO_set_flags(pbioBase64, BIO_FLAGS_BASE64_NO_NL);
 
     pbioMemory = ::BIO_new(::BIO_s_mem());
     xTEST_PTR(pbioMemory);
@@ -52,7 +52,7 @@ CxBase64::encode(
     pbioContainer = ::BIO_push(pbioBase64, pbioMemory);
     // n/a
 
-    int_t iWritten = ::BIO_write(pbioContainer, &a_csStr.at(0), static_cast<int_t>( a_csStr.size() ));    (void)BIO_flush(pbioContainer);
+    int_t iWritten = ::BIO_write(pbioContainer, &a_csStr.at(0), static_cast<int_t>( a_csStr.size() ));    (void_t)BIO_flush(pbioContainer);
     xTEST_LESS(0, iWritten);
     xTEST_EQ(static_cast<int_t>( a_csStr.size() ), iWritten);
 
@@ -61,7 +61,7 @@ CxBase64::encode(
 
     sRv.assign(pbmBuffMemory->data, pbmBuffMemory->length);
 
-    (void)::BIO_free_all(pbioContainer);
+    (void_t)::BIO_free_all(pbioContainer);
 
     return sRv;
 }
@@ -69,7 +69,7 @@ CxBase64::encode(
 /* static */
 std::string
 CxBase64::decode(
-    const std::string &a_csStr
+    std::cstring_t &a_csStr
 )
 {
     std::string  sRv;
@@ -79,14 +79,14 @@ CxBase64::decode(
 
 
     //create a memory buffer containing base64 encoded data
-    pbioMemory = ::BIO_new_mem_buf((void *)&a_csStr.at(0), static_cast<int_t>( a_csStr.size() ));
+    pbioMemory = ::BIO_new_mem_buf((void_t *)&a_csStr.at(0), static_cast<int_t>( a_csStr.size() ));
     xTEST_PTR(pbioMemory);
 
     //create a base64 filter
     pbioBase64 = ::BIO_new(BIO_f_base64());
     xTEST_PTR(pbioBase64);
 
-    (void)BIO_set_flags(pbioBase64, BIO_FLAGS_BASE64_NO_NL);
+    (void_t)BIO_set_flags(pbioBase64, BIO_FLAGS_BASE64_NO_NL);
 
     //push a Base64 filter so that reading from buffer decodes it
     pbioContainer = ::BIO_push(pbioBase64, pbioMemory);
@@ -98,7 +98,7 @@ CxBase64::decode(
 
     sRv.resize(iReaded);
 
-    (void)::BIO_free_all(pbioContainer);
+    (void_t)::BIO_free_all(pbioContainer);
 
     return sRv;
 }

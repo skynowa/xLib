@@ -22,7 +22,7 @@ CxTest_CxFinder::~CxTest_CxFinder() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxFinder::unit(
     culonglong_t &cullCaseLoops
 )
