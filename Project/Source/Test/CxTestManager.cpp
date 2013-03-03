@@ -41,9 +41,9 @@ CxTestManager::~CxTestManager() {
     xCHECK_DO(_m_cbIsUseTracing, xTRACE(xT("\n")));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxTestManager::add(
-    CxTest               *a_pvtTest,
+    CxTest          *a_pvtTest,
     std::ctstring_t &a_csTestName /* = CxConst::xSTR_EMPTY */
 )
 {
@@ -59,7 +59,7 @@ CxTestManager::add(
     #endif
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxTestManager::run(
     culonglong_t &a_cullAllLoops,
     culonglong_t &a_cullUnitLoops,

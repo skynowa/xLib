@@ -20,7 +20,7 @@ CxTest_CxIpcSemaphore::~CxTest_CxIpcSemaphore() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxIpcSemaphore::unit(
     culonglong_t &cullCaseLoops
 )
@@ -30,9 +30,9 @@ CxTest_CxIpcSemaphore::unit(
     #if   xOS_ENV_WIN
         static uint_t xSTDCALL
     #elif xOS_ENV_UNIX
-        static void * xSTDCALL
+        static void_t * xSTDCALL
     #endif
-	    uiJob(void *pArguments) {
+	    uiJob(void_t *pArguments) {
 	        CxTracer() << xT("Start");
 
             CxIpcSemaphore *psemSem = static_cast<CxIpcSemaphore *>(pArguments);

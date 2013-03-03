@@ -56,7 +56,7 @@ CxEvent::handle() const {
 #endif
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxEvent::create() {
 #if   xOS_ENV_WIN
     xTEST_EQ(false, _m_hEvent.isValid());
@@ -78,7 +78,7 @@ CxEvent::create() {
 }
 //------------------------------------------------------------------------------
 // NOTE: unblock threads blocked on a condition variable
-void
+void_t
 CxEvent::set() {
 #if   xOS_ENV_WIN
     xTEST_EQ(true, _m_hEvent.isValid());
@@ -108,7 +108,7 @@ CxEvent::set() {
 #endif
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxEvent::reset() {
 #if   xOS_ENV_WIN
     xTEST_EQ(true, _m_hEvent.isValid());

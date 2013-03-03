@@ -21,7 +21,7 @@ CxTest_CxProcessInfo::~CxTest_CxProcessInfo() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxProcessInfo::unit(
     culonglong_t &cullCaseLoops
 )

@@ -19,7 +19,7 @@ CxTest_CxCurrentThread::~CxTest_CxCurrentThread() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxCurrentThread::unit(
     culonglong_t &cullCaseLoops
 )

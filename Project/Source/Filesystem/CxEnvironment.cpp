@@ -114,7 +114,7 @@ CxEnvironment::var(
 }
 //--------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxEnvironment::setVar(
     std::ctstring_t &a_csVarName,
     std::ctstring_t &a_csValue
@@ -133,7 +133,7 @@ CxEnvironment::setVar(
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxEnvironment::deleteVar(
     std::ctstring_t &a_csVarName
 )
@@ -150,13 +150,13 @@ CxEnvironment::deleteVar(
         int_t iRv = ::unsetenv(a_csVarName.c_str());
         xTEST_DIFF(- 1, iRv);
     #elif xOS_FREEBSD
-        (void)::unsetenv(a_csVarName.c_str());
+        (void_t)::unsetenv(a_csVarName.c_str());
     #endif
 #endif
 }
 //--------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxEnvironment::values(
     std::vec_tstring_t *a_pvsValues
 )
@@ -225,10 +225,10 @@ CxEnvironment::expandStrings(
     xFOREVER {
         //--------------------------------------------------
         // find from left two first chars '%'
-        const size_t cuiStartSepPos = sRv.find(csSep);
+        std::csize_t cuiStartSepPos = sRv.find(csSep);
         xCHECK_DO(std::tstring_t::npos == cuiStartSepPos, break);
 
-        const size_t cuiStopSepPos  = sRv.find(csSep, cuiStartSepPos + csSep.size());
+        std::csize_t cuiStopSepPos  = sRv.find(csSep, cuiStartSepPos + csSep.size());
         xCHECK_DO(std::tstring_t::npos == cuiStopSepPos, break);
 
         //--------------------------------------------------

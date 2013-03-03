@@ -70,12 +70,12 @@ CxCurrentThread::handle() {
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxCurrentThread::yield() {
     // n/a
 
 #if   xOS_ENV_WIN
-    (void)::SwitchToThread();
+    (void_t)::SwitchToThread();
 #elif xOS_ENV_UNIX
     int_t iRv = ::sched_yield();
     xTEST_MSG_DIFF(- 1, iRv, CxLastError::format(iRv));
@@ -83,14 +83,14 @@ CxCurrentThread::yield() {
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxCurrentThread::sleep(
     culong_t &a_culMsec
 ) {
     // n/a
 
 #if   xOS_ENV_WIN
-    (void)::Sleep(a_culMsec);
+    (void_t)::Sleep(a_culMsec);
 #elif xOS_ENV_UNIX
     timespec tsSleep  = {0};
     timespec tsRemain = {0};

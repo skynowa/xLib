@@ -22,7 +22,7 @@ CxTest_CxPop3::~CxTest_CxPop3() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxPop3::unit(
     culonglong_t &cullCaseLoops
 )

@@ -19,7 +19,7 @@ CxTest_CxHandleT::~CxTest_CxHandleT() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxHandleT::unit(
     culonglong_t &cullCaseLoops
 )

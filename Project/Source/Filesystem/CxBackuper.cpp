@@ -38,11 +38,11 @@ CxBackuper::~CxBackuper() {
 
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxBackuper::execute(
     std::ctstring_t &a_csFilePath,
     std::ctstring_t &a_csDestDirPath,
-    std::tstring_t       *a_psDestFilePath
+    std::tstring_t  *a_psDestFilePath
 )
 {
     xTEST_EQ(false, a_csFilePath.empty());
@@ -121,7 +121,7 @@ CxBackuper::execute(
 
     //-------------------------------------
     // check for a valid backup
-    xCHECK_DO(false                                 == CxFile::isExists(sBackupFilePath),       xTHROW() << csError_CopyingFail);
+    xCHECK_DO(false                               == CxFile::isExists(sBackupFilePath),      xTHROW() << csError_CopyingFail);
     xCHECK_DO(CxFile::size(a_csFilePath)          != CxFile::size(sBackupFilePath),          xTHROW() << csError_CopyingFail);
     xCHECK_DO(CxCrc32::calcFileFast(a_csFilePath) != CxCrc32::calcFileFast(sBackupFilePath), xTHROW() << csError_CopyingFail);
 

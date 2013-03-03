@@ -23,7 +23,7 @@ CxTest_CxNonCopyable::~CxTest_CxNonCopyable() {
 }
 //------------------------------------------------------------------------------
 /*virtual*/
-void
+void_t
 CxTest_CxNonCopyable::unit(
     culonglong_t &cullCaseLoops
 )

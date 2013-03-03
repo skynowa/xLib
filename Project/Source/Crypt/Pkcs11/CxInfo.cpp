@@ -30,7 +30,7 @@ CxInfo::~CxInfo() {
 
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxInfo::get(
     CK_INFO_PTR a_pInfo  ///< location that receives information
 )
@@ -39,7 +39,7 @@ CxInfo::get(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxInfo::token(
     CK_SLOT_ID        a_slotID,  ///< ID of the token's slot
     CK_TOKEN_INFO_PTR a_pInfo    ///< receives the token information

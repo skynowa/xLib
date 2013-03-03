@@ -15,19 +15,19 @@ class CxException
     /// exception
 {
 public:
-                           CxException ();
+                      CxException ();
         ///< constructor
-    virtual               ~CxException ();
+    virtual          ~CxException ();
         ///< destructor
 
     std::ctstring_t & what        () const xWARN_UNUSED_RV;
         ///< get message
     template<typename T>
-    CxException &          operator << (const T &cMessageT);
+    CxException &     operator << (const T &cMessageT);
         ///< put message
 
 private:
-    std::tstring_t         _m_sMessage;
+    std::tstring_t    _m_sMessage;
         ///< message
 };
 

@@ -27,19 +27,19 @@ public:
     virtual             ~CxSign       ();
         ///< destructor
 
-    void                 init         (CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
+    void_t               init         (CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
         ///< initializes a signature (private key encryption) operation, where the signature is (will be) an appendix to the data, and plaintext cannot be recovered from the signature
-    void                 make         (CK_BYTE_PTR pData, CK_ULONG ulDataLen, CK_BYTE_PTR pSignature, CK_ULONG_PTR pulSignatureLen);
+    void_t               make         (CK_BYTE_PTR pData, CK_ULONG ulDataLen, CK_BYTE_PTR pSignature, CK_ULONG_PTR pulSignatureLen);
         ///< signs (encrypts with private key) data in a single part, where the signature is (will be) an appendix to the data, and plaintext cannot be recovered from the signature
-    void                 update       (CK_BYTE_PTR pPart, CK_ULONG ulPartLen);
+    void_t               update       (CK_BYTE_PTR pPart, CK_ULONG ulPartLen);
         ///< continues a multiple-part signature operation,where the signature is (will be) an appendix to the data, and plaintext cannot be recovered from the signature
-    void                 encryptUpdate(CK_BYTE_PTR pPart, CK_ULONG ulPartLen, CK_BYTE_PTR pEncryptedPart, CK_ULONG_PTR pulEncryptedPartLen);
+    void_t               encryptUpdate(CK_BYTE_PTR pPart, CK_ULONG ulPartLen, CK_BYTE_PTR pEncryptedPart, CK_ULONG_PTR pulEncryptedPartLen);
         ///< continues a multiple-part signing and encryption operation
-    void                 final        (CK_BYTE_PTR pSignature, CK_ULONG_PTR pulSignatureLen);
+    void_t               final        (CK_BYTE_PTR pSignature, CK_ULONG_PTR pulSignatureLen);
         ///< finishes a multiple-part signature operation, returning the signature
-    void                 recoverInit  (CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
+    void_t               recoverInit  (CK_MECHANISM_PTR pMechanism, CK_OBJECT_HANDLE hKey);
         ///< initializes a signature operation, where the data can be recovered from the signature
-    void                 recover      (CK_BYTE_PTR pData, CK_ULONG ulDataLen, CK_BYTE_PTR pSignature, CK_ULONG_PTR pulSignatureLen);
+    void_t               recover      (CK_BYTE_PTR pData, CK_ULONG ulDataLen, CK_BYTE_PTR pSignature, CK_ULONG_PTR pulSignatureLen);
         ///< signs data in a single operation, where the data can be recovered from the signature
 
 private:

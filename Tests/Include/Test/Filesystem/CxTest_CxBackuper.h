@@ -20,7 +20,7 @@ public:
     virtual      ~CxTest_CxBackuper();
         ///< destructor
 
-    virtual void unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &cullCaseLoops);
         ///< unit test
 };
 //------------------------------------------------------------------------------

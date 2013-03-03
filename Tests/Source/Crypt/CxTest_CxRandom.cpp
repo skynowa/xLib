@@ -17,7 +17,7 @@ CxTest_CxRandom::~CxTest_CxRandom() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxRandom::unit(
     culonglong_t &cullCaseLoops
 )
@@ -132,7 +132,7 @@ CxTest_CxRandom::unit(
 
     xTEST_CASE("CxRandom::sGetString", cullCaseLoops)
     {
-        const size_t cuiStrSize = 10;
+        std::csize_t cuiStrSize = 10;
 
         for (size_t i = 0; i < 10; ++ i) {
             CxRandom::vSetSeed();

@@ -16,7 +16,7 @@ class CxProcessInfo :
     public CxNonCopyable
 {
 public:
-    static void           currentIds   (std::vector<CxProcess::id_t> *pvidIds);
+    static void_t         currentIds   (std::vector<CxProcess::id_t> *pvidIds);
         ///< get all IDs of current processes
     static ulong_t        cpuUsage     (const CxProcess::id_t &cidId) xWARN_UNUSED_RV;
         ///< get CPU usage (percentage)

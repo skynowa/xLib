@@ -143,15 +143,15 @@ CxCurrentProcess::handle() {
 //------------------------------------------------------------------------------
 // TODO: tests
 /* static */
-void
+void_t
 CxCurrentProcess::exit(
     cuint_t &a_cuiExitCode
 )
 {
 #if   xOS_ENV_WIN
-    (void)::ExitProcess(a_cuiExitCode);
+    (void_t)::ExitProcess(a_cuiExitCode);
 #elif xOS_ENV_UNIX
-    (void)::exit(static_cast<int_t>( a_cuiExitCode ));
+    (void_t)::exit(static_cast<int_t>( a_cuiExitCode ));
 #endif
 }
 //------------------------------------------------------------------------------

@@ -19,7 +19,7 @@ CxTest_CxDir::~CxTest_CxDir() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxDir::unit(
     culonglong_t &cullCaseLoops
 )

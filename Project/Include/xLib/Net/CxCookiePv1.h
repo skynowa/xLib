@@ -16,72 +16,72 @@ class CxCookiePv1 :
     /// cookie version 1
 {
 public:
-                           CxCookiePv1();
+                      CxCookiePv1();
         ///< constructor
-    explicit               CxCookiePv1(std::ctstring_t &csRawCookie);
+    explicit          CxCookiePv1(std::ctstring_t &csRawCookie);
         ///< constructor
-    virtual               ~CxCookiePv1();
+    virtual          ~CxCookiePv1();
         ///< destructor
 
-    void                   init       (std::ctstring_t &csRawCookie);
+    void_t            init       (std::ctstring_t &csRawCookie);
         ///< parsing raw cookie string pv0
 
     std::ctstring_t & name       () const xWARN_UNUSED_RV;
         ///< get name
-    void                   setName    (std::ctstring_t &csName);
+    void_t            setName    (std::ctstring_t &csName);
         ///< set name
 
     std::ctstring_t & value      () const xWARN_UNUSED_RV;
         ///< get value
-    void                   setValue   (std::ctstring_t &csValue);
+    void_t            setValue   (std::ctstring_t &csValue);
         ///< set value
 
     std::ctstring_t & comment    () const xWARN_UNUSED_RV;
         ///< get comment
-    void                   setComment (std::ctstring_t &csComment);
+    void_t            setComment (std::ctstring_t &csComment);
         ///< set comment
 
     std::ctstring_t & domain     () const xWARN_UNUSED_RV;
         ///< get domain
-    void                   setDomain  (std::ctstring_t &csDomain);
+    void_t            setDomain  (std::ctstring_t &csDomain);
         ///< set domain
 
     std::ctstring_t & path       () const xWARN_UNUSED_RV;
         ///< get path
-    void                   setPath    (std::ctstring_t &csPath);
+    void_t            setPath    (std::ctstring_t &csPath);
         ///< set path
 
-    longlong_t             maxAge     () const xWARN_UNUSED_RV;
+    longlong_t        maxAge     () const xWARN_UNUSED_RV;
         ///< get max age
-    void                   setMaxAge  (clonglong_t &cliMaxAge);
+    void_t            setMaxAge  (clonglong_t &cliMaxAge);
         ///< set max age
 
-    bool_t                   secure     () const xWARN_UNUSED_RV;
+    bool_t            secure     () const xWARN_UNUSED_RV;
         ///< get secure
-    void                   setSecure  (cbool_t &cbFlag);
+    void_t            setSecure  (cbool_t &cbFlag);
         ///< set secure
 
-    bool_t                   httpOnly   () const xWARN_UNUSED_RV;
+    bool_t            httpOnly   () const xWARN_UNUSED_RV;
         ///< get http only
-    void                   setHttpOnly(cbool_t &cbFlag);
+    void_t            setHttpOnly(cbool_t &cbFlag);
         ///< set http only
 
-    std::tstring_t         toString   () const xWARN_UNUSED_RV;
+    std::tstring_t    toString   () const xWARN_UNUSED_RV;
         ///< convert to string
-    std::tstring_t         dump       () const xWARN_UNUSED_RV;
+    std::tstring_t    dump       () const xWARN_UNUSED_RV;
         ///< get dump
-    void                   clear      ();
+    void_t            clear      ();
         ///< clear
 
 private:
-    std::tstring_t         _m_sName;      ///< name
-    std::tstring_t         _m_sValue;     ///< value
-    std::tstring_t         _m_sComment;   ///< comment
-    std::tstring_t         _m_sDomain;    ///< domain
-    std::tstring_t         _m_sPath;      ///< path
-    longlong_t             _m_liMaxAge;   ///< max age (in seconds)
-    bool_t                   _m_bSecure;    ///< secure
-    bool_t                   _m_bHttpOnly;  ///< http only
+    std::tstring_t    _m_sName;      ///< name
+    std::tstring_t    _m_sValue;     ///< value
+    std::tstring_t    _m_sComment;   ///< comment
+    std::tstring_t    _m_sDomain;    ///< domain
+    std::tstring_t    _m_sPath;      ///< path
+    longlong_t        _m_liMaxAge;   ///< max age (in seconds)
+    bool_t            _m_bSecure;    ///< secure
+    bool_t            _m_bHttpOnly;  ///< http only
 };
 
 xNAMESPACE_END(NxLib)

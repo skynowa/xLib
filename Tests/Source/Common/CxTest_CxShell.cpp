@@ -17,7 +17,7 @@ CxTest_CxShell::~CxTest_CxShell() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxShell::unit(
     culonglong_t &cullCaseLoops
 )

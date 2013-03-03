@@ -34,7 +34,7 @@ CxVerify::~CxVerify() {
 
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxVerify::init(
     CK_MECHANISM_PTR a_pMechanism,  ///< the verification mechanism
     CK_OBJECT_HANDLE a_hKey         ///< verification key
@@ -44,7 +44,7 @@ CxVerify::init(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxVerify::make(
     CK_BYTE_PTR a_pData,          ///< signed data
     CK_ULONG    a_ulDataLen,      ///< length of signed data
@@ -56,7 +56,7 @@ CxVerify::make(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxVerify::final(
     CK_BYTE_PTR a_pSignature,     ///< signature to verify
     CK_ULONG    a_ulSignatureLen  ///< signature length
@@ -66,7 +66,7 @@ CxVerify::final(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxVerify::recoverInit(
     CK_MECHANISM_PTR a_pMechanism,  ///< the verification mechanism
     CK_OBJECT_HANDLE a_hKey         ///< verification key
@@ -76,7 +76,7 @@ CxVerify::recoverInit(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxVerify::recover(
     CK_BYTE_PTR  a_pSignature,      ///< signature to verify
     CK_ULONG     a_ulSignatureLen,  ///< signature length
@@ -88,7 +88,7 @@ CxVerify::recover(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxVerify::update(
     CK_BYTE_PTR a_pPart,     ///< signed data
     CK_ULONG    a_ulPartLen  ///< length of signed data

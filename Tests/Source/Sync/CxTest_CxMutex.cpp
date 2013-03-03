@@ -17,7 +17,7 @@ CxTest_CxMutex::~CxTest_CxMutex() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxMutex::unit(
     culonglong_t &cullCaseLoops
 )
@@ -54,7 +54,7 @@ CxTest_CxMutex::unit(
     {
         CxMutex csCS;
 
-        const size_t cuiLocks = 10;
+        std::csize_t cuiLocks = 10;
 
         csCS.create();
 
@@ -73,7 +73,7 @@ CxTest_CxMutex::unit(
     {
         CxMutex csCS;
 
-        const size_t cuiLocks = 10;
+        std::csize_t cuiLocks = 10;
 
         csCS.create();
 

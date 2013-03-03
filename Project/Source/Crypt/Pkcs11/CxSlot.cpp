@@ -40,7 +40,7 @@ CxSlot::~CxSlot() {
     )
 #endif
 
-void
+void_t
 CxSlot::list(
     CK_BBOOL                 a_bTokenPresent,     ///< only slots with tokens?
     std::vector<CK_SLOT_ID> *a_pvecSlotList       ///< receives array of slot IDs
@@ -66,7 +66,7 @@ CxSlot::list(
     xTEST_EQ(static_cast<ulong_t>( (*a_pvecSlotList).size() ), ulCount);
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxSlot::info(
     CK_SLOT_ID       a_slotID,  ///< the ID of the slot
     CK_SLOT_INFO_PTR a_pInfo    ///< receives the slot information

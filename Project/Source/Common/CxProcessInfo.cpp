@@ -23,7 +23,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxProcessInfo::currentIds(
     std::vector<CxProcess::id_t> *a_pvidIds
 )
@@ -89,7 +89,7 @@ CxProcessInfo::currentIds(
         }
 
         // search for the given process name and return its pid
-        const size_t cuiProcsNum = uiBuffSize / sizeof(kinfo_proc);
+        std::csize_t cuiProcsNum = uiBuffSize / sizeof(kinfo_proc);
 
         for (size_t i = 0; i < cuiProcsNum; ++ i) {
             pid_t iPid = pkpProcesses[i].ki_pid;
@@ -392,7 +392,7 @@ CxProcessInfo::commandLine(
         sRv = CxString::wstrToStr(wsRv, CP_ACP);
     #endif
 
-        (void)::free(pCommandLineContents); pCommandLineContents = NULL;
+        (void_t)::free(pCommandLineContents); pCommandLineContents = NULL;
     }
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX

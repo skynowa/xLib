@@ -17,7 +17,7 @@ CxTest_CxEvent::~CxTest_CxEvent() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxEvent::unit(
     culonglong_t &cullCaseLoops
 )
@@ -58,7 +58,7 @@ CxTest_CxEvent::unit(
 
     xTEST_CASE("CxEvent::set", cullCaseLoops)
     {
-        const size_t cuiSpinCount = 3;
+        std::csize_t cuiSpinCount = 3;
 
 
         CxEvent objEvent(true, true);
@@ -82,7 +82,7 @@ CxTest_CxEvent::unit(
 
     xTEST_CASE("CxEvent::reset", cullCaseLoops)
     {
-        const size_t cuiSpinCount = 3;
+        std::csize_t cuiSpinCount = 3;
 
 
         CxEvent objEvent(true, true);

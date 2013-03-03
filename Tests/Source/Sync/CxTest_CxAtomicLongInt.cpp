@@ -17,7 +17,7 @@ CxTest_CxAtomicLongInt::~CxTest_CxAtomicLongInt() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxAtomicLongInt::unit(
     culonglong_t &cullCaseLoops
 )

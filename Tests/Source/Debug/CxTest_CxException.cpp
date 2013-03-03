@@ -19,7 +19,7 @@ CxTest_CxException::~CxTest_CxException() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxException::unit(
     culonglong_t &cullCaseLoops
 )

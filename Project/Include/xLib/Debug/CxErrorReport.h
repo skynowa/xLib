@@ -59,9 +59,9 @@ public:
     std::tstring_t m_sComment;        ///< comment
 
                    template<typename T>
-                   CxErrorReport(const ExType         &crtType,
+                   CxErrorReport(const ExType    &crtType,
                                  std::ctstring_t &csVar1,       std::ctstring_t &csVar2,
-                                 const T              &cVar1ValueT,  const T              &cVar2ValueT,
+                                 const T         &cVar1ValueT,  const T         &cVar2ValueT,
                                  std::ctstring_t &csExprSign,
                                  culong_t        &culLastError, std::ctstring_t &csFile,
                                  culong_t        &culLine,      std::ctstring_t &csFunc,
@@ -72,7 +72,7 @@ public:
         ///< destructor
 
 private:
-    void          _construct    (const ExType         &crtType,
+    void_t        _construct    (const ExType    &crtType,
                                  std::ctstring_t &csVar1,       std::ctstring_t &csVar2,
                                  std::ctstring_t &csVar1Value,  std::ctstring_t &csVar2Value,
                                  std::ctstring_t &csExprSign,
@@ -81,7 +81,7 @@ private:
                                  std::ctstring_t &csDate,       std::ctstring_t &csTime,
                                  std::ctstring_t &csStackTrace, std::ctstring_t &csComment);
         ///< initiate class members
-    void          _initPlain    ();
+    void_t        _initPlain    ();
         ///< initiate plain report
 };
 

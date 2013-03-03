@@ -28,13 +28,13 @@ public:
 
     const handle_t & handle        () const xWARN_UNUSED_RV;
         ///< get handle
-    void             create        (clong_t &cliInitialValue, std::ctstring_t &csName);
+    void_t           create        (clong_t &cliInitialValue, std::ctstring_t &csName);
         ///< create
-    void             open          (std::ctstring_t &csName);
+    void_t           open          (std::ctstring_t &csName);
         ///< open
-    void             post          () const;
+    void_t           post          () const;
         ///< release
-    void             wait          (culong_t &culTimeoutMsec) const;
+    void_t           wait          (culong_t &culTimeoutMsec) const;
         ///< wait
     long_t           value         () const xWARN_UNUSED_RV;
         ///< get value
@@ -43,7 +43,7 @@ private:
     handle_t         _m_hHandle;
     std::tstring_t   _m_sName;
 
-    bool_t             _isValid      () const xWARN_UNUSED_RV;
+    bool_t           _isValid      () const xWARN_UNUSED_RV;
 };
 
 xNAMESPACE_END(NxLib)

@@ -27,7 +27,7 @@ using namespace NxCgi;
 
 //------------------------------------------------------------------------------
 CxCgi::CxCgi(
-    const size_t a_cuiMaxSize
+    std::csize_t &a_cuiMaxSize
 ) :
     Environment(*this),
     Cookies    (*this),
@@ -58,7 +58,7 @@ CxCgi::dump() const {
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxCgi::redirect(
     std::ctstring_t &a_csUrl
 )
@@ -74,7 +74,7 @@ CxCgi::redirect(
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxCgi::pageShow(
     std::ctstring_t &a_csFilePath
 )
@@ -100,11 +100,11 @@ namespace {
 //------------------------------------------------------------------------------
 //TODO: bUriEncode
 /* static */
-void
+void_t
 CxCgi::uriEncode(
     std::ctstring_t &a_csUri,
     std::ctstring_t &a_csReserved,
-    std::tstring_t       *a_psEncodedStr
+    std::tstring_t  *a_psEncodedStr
 )
 {
     xFOREACH_CONST(std::tstring_t, it, a_csUri) {
@@ -136,10 +136,10 @@ CxCgi::uriEncode(
 //------------------------------------------------------------------------------
 //TODO: bUriDecode ()
 /* static */
-void
+void_t
 CxCgi::uriDecode(
     std::ctstring_t &a_csUri,
-    std::tstring_t       *a_psDecodedStr
+    std::tstring_t  *a_psDecodedStr
 )
 {
     std::tstring_t::const_iterator it  = a_csUri.begin();
@@ -246,7 +246,7 @@ cgl_parsecgibuf(/*cgllist *cdata,*/ char *a_query) {
 //}
 ////-------------------------------------------------------------------------------------------------------
 ////TODO: cgl_urldecode
-//void
+//void_t
 //CxCgi::cgl_urldecode(char *s) {
 //    //--cgl_charify(s, '+', ' ');
 //    std::tstring_t sRv;
@@ -257,7 +257,7 @@ cgl_parsecgibuf(/*cgllist *cdata,*/ char *a_query) {
 //}
 //-------------------------------------------------------------------------------------------------------
 //TODO: bUrlEscape
-void
+void_t
 CxCgi::urlEscape(char *a_s, FILE *a_fw) {
 //    register int_t    c;
 //
@@ -282,7 +282,7 @@ CxCgi::urlEscape(char *a_s, FILE *a_fw) {
 //-------------------------------------------------------------------------------------------------------
 //TODO: bUrlUnescape
 //modified from the Apache code. Code shrinks string, so can be done in place.
-void
+void_t
 CxCgi::urlUnescape(char *a_s) {
 //    int_t    error;
 //    char    *p;
@@ -726,7 +726,7 @@ CxCgiCookies::dump() const {
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-void
+void_t
 CxCgiCookies::_init() {
     std::tstring_t     sRawCookies = _m_ccgCgi.Environment.httpCookie();
     std::vec_tstring_t vsRawCookies;
@@ -759,7 +759,7 @@ CxCgiCookies::_init() {
 //------------------------------------------------------------------------------
 CxCgiFormData::CxCgiFormData(
     CxCgi        &a_ccgCgi,
-    const size_t  a_cuiMaxSize
+    std::csize_t &a_cuiMaxSize
 ) :
     _m_cuiMaxData(a_cuiMaxSize),
     _m_ccgCgi    (a_ccgCgi)
@@ -796,7 +796,7 @@ CxCgiFormData::dump() const {
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-void
+void_t
 CxCgiFormData::_init() {
     int_t iRv = _m_ccgCgi.Environment.requestType();
     switch (iRv) {

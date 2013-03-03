@@ -36,7 +36,7 @@ CxEncrypt::~CxEncrypt() {
 
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxEncrypt::init(
     CK_MECHANISM_PTR a_pMechanism,  ///< the encryption mechanism
     CK_OBJECT_HANDLE a_hKey         ///< handle of encryption key
@@ -48,7 +48,7 @@ CxEncrypt::init(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxEncrypt::make(
     CK_BYTE_PTR  a_pData,               ///< the plaintext data
     CK_ULONG     a_ulDataLen,           ///< bytes of plaintext
@@ -62,7 +62,7 @@ CxEncrypt::make(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxEncrypt::update(
     CK_BYTE_PTR  a_pPart,              ///< the plaintext data
     CK_ULONG     a_ulPartLen,          ///< plaintext data len
@@ -76,7 +76,7 @@ CxEncrypt::update(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxEncrypt::final(
     CK_BYTE_PTR  a_pLastEncryptedPart,      ///< last c-text
     CK_ULONG_PTR a_pulLastEncryptedPartLen  ///< gets last size
@@ -96,12 +96,12 @@ CxEncrypt::final(
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-void
+void_t
 CxEncrypt::makeFile(
-    std::ctstring_t &a_csInFilePath,
-    std::ctstring_t &a_csOutFilePath,
-    CK_MECHANISM_PTR      a_pMechanism,
-    CK_OBJECT_HANDLE      a_hKey
+    std::ctstring_t  &a_csInFilePath,
+    std::ctstring_t  &a_csOutFilePath,
+    CK_MECHANISM_PTR  a_pMechanism,
+    CK_OBJECT_HANDLE  a_hKey
 )
 {
     xTEST_EQ(false, a_csInFilePath.empty());

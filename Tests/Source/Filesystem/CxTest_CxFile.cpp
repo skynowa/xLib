@@ -19,7 +19,7 @@ CxTest_CxFile::~CxTest_CxFile() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxFile::unit(
     culonglong_t &cullCaseLoops
 )
@@ -113,7 +113,7 @@ CxTest_CxFile::unit(
             CxFile F;
 
             F.create(csFilePath, CxFile::omBinCreateReadWrite, true);
-            m_stRv = F.write((const void *)&sBuffWrite.at(0), sBuffWrite.size() * sizeof(std::tstring_t::value_type));
+            m_stRv = F.write((cvoid_t *)&sBuffWrite.at(0), sBuffWrite.size() * sizeof(std::tstring_t::value_type));
             xUNUSED(m_stRv);
         }
 
@@ -312,7 +312,7 @@ CxTest_CxFile::unit(
     xTEST_CASE("CxFile::writeV", cullCaseLoops)
     {
         struct SWriter {
-            static void
+            static void_t
             DoV(const CxFile &csfFile, ctchar_t *pcszFormat, ...) {
                 va_list args;
                 xVA_START(args, pcszFormat);
@@ -544,7 +544,7 @@ CxTest_CxFile::unit(
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-void
+void_t
 CxTest_CxFile::vUnit1(
     culonglong_t &cullCaseLoops
 )
@@ -908,7 +908,7 @@ CxTest_CxFile::vUnit1(
     }
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxTest_CxFile::vUnitPrivate(
     culonglong_t &cullCaseLoops
 )

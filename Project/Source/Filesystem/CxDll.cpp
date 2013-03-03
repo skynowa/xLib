@@ -38,7 +38,7 @@ CxDll::isLoaded() const {
     return (NULL != _m_hDll);
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxDll::load(
     std::ctstring_t &csDllPath
 )
@@ -73,7 +73,7 @@ CxDll::isProcExists(
     pszError = ::dlerror();
     xTEST_PTR_FAIL(pszError);
 
-    (void)::dlsym(_m_hDll, csProcName.c_str());
+    (void_t)::dlsym(_m_hDll, csProcName.c_str());
 
     pszError = ::dlerror();
     xCHECK_RET(NULL != pszError, false);
@@ -118,7 +118,7 @@ CxDll::procAddress(
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-void
+void_t
 CxDll::_free() {
     xTESTS_NA;
 

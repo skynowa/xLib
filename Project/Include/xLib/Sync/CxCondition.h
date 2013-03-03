@@ -24,13 +24,13 @@ public:
         ///< get handle
 #endif
 
-    void                    create     ();
+    void_t                  create     ();
         ///< create
-    void                    wait       (culong_t &culTimeoutMs);
+    void_t                  wait       (culong_t &culTimeoutMs);
         ///< wait
-    void                    signal     ();
+    void_t                  signal     ();
         ///< signal one
-    void                    broadcast  ();
+    void_t                  broadcast  ();
         ///< signal all
 
 private:

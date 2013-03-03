@@ -10,8 +10,8 @@
 //--------------------------------------------------------------------------
 #if xOS_ENV_UNIX
 
-const size_t    g_cuiThreadsNum = 3;
-const size_t    g_cuiCounterMax = 12;
+std::csize_t    g_cuiThreadsNum = 3;
+std::csize_t    g_cuiCounterMax = 12;
 size_t          g_uiCounter     = 0;
 
 pthread_mutex_t g_mtMutex      = PTHREAD_MUTEX_INITIALIZER;
@@ -22,9 +22,9 @@ pthread_cond_t  g_cndCondition = PTHREAD_COND_INITIALIZER;
 #if xOS_ENV_UNIX
 
 static
-void *
+void_t *
 pvWatch(
-    void *a_pvParam
+    void_t *a_pvParam
 )
 {
     int_t    iRv  = - 1;
@@ -74,9 +74,9 @@ pvWatch(
 #if xOS_ENV_UNIX
 
 static
-void *
+void_t *
 pvJob(
-    void *a_pvParam
+    void_t *a_pvParam
 )
 {
     int_t    iRv  = - 1;
@@ -127,7 +127,7 @@ CxTest_CxCondition::~CxTest_CxCondition() {
 }
 //------------------------------------------------------------------------------
 /*virtual*/
-void
+void_t
 CxTest_CxCondition::unit(
     culonglong_t &a_cullCaseLoops
 )
@@ -156,13 +156,13 @@ CxTest_CxCondition::unit(
         iRv = ::pthread_attr_setdetachstate(&atAttr, PTHREAD_CREATE_JOINABLE);
         xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
-        iRv = ::pthread_create(&thThreads[0], &atAttr, pvWatch, (void *)&liId1);
+        iRv = ::pthread_create(&thThreads[0], &atAttr, pvWatch, (void_t *)&liId1);
         xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
-        iRv = ::pthread_create(&thThreads[1], &atAttr, pvJob,   (void *)&liId2);
+        iRv = ::pthread_create(&thThreads[1], &atAttr, pvJob,   (void_t *)&liId2);
         xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
-        iRv = ::pthread_create(&thThreads[2], &atAttr, pvJob,   (void *)&liId3);
+        iRv = ::pthread_create(&thThreads[2], &atAttr, pvJob,   (void_t *)&liId3);
         xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
         iRv = ::pthread_attr_destroy(&atAttr);

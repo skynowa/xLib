@@ -27,9 +27,9 @@ public:
     virtual             ~CxLogin();
         ///< constructor
 
-    void                 login  (CK_USER_TYPE userType, CK_UTF8CHAR_PTR pPin, CK_ULONG ulPinLen);
+    void_t               login  (CK_USER_TYPE userType, CK_UTF8CHAR_PTR pPin, CK_ULONG ulPinLen);
         ///< login user into a token
-    void                 logout ();
+    void_t               logout ();
         ///< logout user from a token
 
 private:

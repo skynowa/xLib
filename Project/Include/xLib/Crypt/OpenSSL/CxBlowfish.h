@@ -30,23 +30,23 @@ public:
     virtual      ~CxBlowfish      ();
         ///< destructor
 
-    void          setKey          (uchar_t *pucKey, cint_t &ciKeySize);
+    void_t        setKey          (uchar_t *pucKey, cint_t &ciKeySize);
         ///< set key
-    void          setKey          (std::custring_t &cusKey);
+    void_t        setKey          (std::custring_t &cusKey);
         ///< set key
-    void          setKey          (std::ctstring_t &csKey);
+    void_t        setKey          (std::ctstring_t &csKey);
         ///< set key
-    void          setFileKey      (std::ctstring_t &csFilePath);
+    void_t        setFileKey      (std::ctstring_t &csFilePath);
         ///< set key as file
     static size_t maxKeySize      () xWARN_UNUSED_RV;
         ///< get maximum key size
 
     //cfb64
-    void          encryptCfb64    (uchar_t *pucIn, uchar_t *pucOut, clong_t &cliInSize, int_t *piNum, const ExCryptMode &cmMode);
+    void_t        encryptCfb64    (uchar_t *pucIn, uchar_t *pucOut, clong_t &cliInSize, int_t *piNum, const ExCryptMode &cmMode);
         ///< encrypt buffer
-    void          encryptCfb64    (std::custring_t &cusIn, std::ustring_t *pusOut, const ExCryptMode &cmMode);
+    void_t        encryptCfb64    (std::custring_t &cusIn, std::ustring_t *pusOut, const ExCryptMode &cmMode);
         ///< encrypt std::ustring_t
-    void          encryptFileCfb64(std::ctstring_t &csFilePathIn, std::ctstring_t &csFilePathOut, const ExCryptMode &cmMode);
+    void_t        encryptFileCfb64(std::ctstring_t &csFilePathIn, std::ctstring_t &csFilePathOut, const ExCryptMode &cmMode);
         ///< encrypt file
 
 private:
@@ -74,7 +74,7 @@ void  BF_decrypt      (BF_LONG *data, BF_KEY *key);
 void  BF_cbc_encrypt  (unsigned char *in, unsigned char *out, long_t length, BF_KEY *ks,       unsigned char *iv,             int_t enc);
 void  BF_cfb64_encrypt(unsigned char *in, unsigned char *out, long_t length, BF_KEY *schedule, unsigned char *ivec, int_t *num, int_t enc);
 void  BF_ofb64_encrypt(unsigned char *in, unsigned char *out, long_t length, BF_KEY *schedule, unsigned char *ivec, int_t *num);
-char *BF_options      (void);
+char *BF_options      (void_t);
 */
 
 

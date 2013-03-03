@@ -34,7 +34,7 @@ CxKey::~CxKey() {
 
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxKey::generate(
     CK_MECHANISM_PTR     a_pMechanism,  ///< key generation mech.
     CK_ATTRIBUTE_PTR     a_pTemplate,   ///< template for new key
@@ -46,7 +46,7 @@ CxKey::generate(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxKey::generatePair(
     CK_MECHANISM_PTR     a_pMechanism,                  ///< key-gen mech.
     CK_ATTRIBUTE_PTR     a_pPublicKeyTemplate,          ///< template for pub key
@@ -61,7 +61,7 @@ CxKey::generatePair(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxKey::derive(
     CK_MECHANISM_PTR     a_pMechanism,        ///< key deriv. mech.
     CK_OBJECT_HANDLE     a_hBaseKey,          ///< base key
@@ -74,7 +74,7 @@ CxKey::derive(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxKey::wrap(
     CK_MECHANISM_PTR a_pMechanism,      ///< the wrapping mechanism
     CK_OBJECT_HANDLE a_hWrappingKey,    ///< wrapping key
@@ -87,7 +87,7 @@ CxKey::wrap(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxKey::unwrap(
     CK_MECHANISM_PTR     a_pMechanism,        ///< unwrapping mech.
     CK_OBJECT_HANDLE     a_hUnwrappingKey,    ///< unwrapping key
@@ -102,7 +102,7 @@ CxKey::unwrap(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxKey::seedRandom(
     CK_BYTE_PTR pSeed,     ///< the seed material
     CK_ULONG    ulSeedLen  ///< length of seed material
@@ -112,7 +112,7 @@ CxKey::seedRandom(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxKey::generateRandom(
     CK_BYTE_PTR a_pRandomData,  ///< receives the random data
     CK_ULONG    a_ulRandomLen   ///< # of bytes to generate

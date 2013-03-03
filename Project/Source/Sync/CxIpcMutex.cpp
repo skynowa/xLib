@@ -40,7 +40,7 @@ CxIpcMutex::handle() const {
     return _m_hHandle;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxIpcMutex::create(
     std::ctstring_t &a_csName
 )
@@ -79,7 +79,7 @@ CxIpcMutex::create(
 #endif
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxIpcMutex::open(
     std::ctstring_t &a_csName
 )
@@ -111,7 +111,7 @@ CxIpcMutex::open(
 #endif
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxIpcMutex::lock(
     culong_t &a_culTimeoutMsec
 ) const
@@ -126,7 +126,7 @@ CxIpcMutex::lock(
 #elif xOS_ENV_UNIX
     struct _SFunctor {
         static
-        void
+        void_t
         timespec_addms(
             struct timespec *ts,
             long             ms
@@ -155,7 +155,7 @@ CxIpcMutex::lock(
         iRv = ::clock_gettime(CLOCK_REALTIME, &tmsTimeout);
         xTEST_DIFF(- 1, iRv);
 
-        (void)_SFunctor::timespec_addms(&tmsTimeout, a_culTimeoutMsec);
+        (void_t)_SFunctor::timespec_addms(&tmsTimeout, a_culTimeoutMsec);
     }
 
     while (- 1 == (iRv = ::sem_timedwait(_m_hHandle, &tmsTimeout)) && (EINTR == errno)) {
@@ -174,7 +174,7 @@ CxIpcMutex::lock(
 #endif
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxIpcMutex::unlock() const {
     ////xTEST_EQ(true, _m_hHandle.bIsValid(), false);
 

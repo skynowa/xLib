@@ -324,7 +324,7 @@ CxSystemInfo::hostName() {
 bool_t
 CxSystemInfo::isUserAdmin() {
 #if   xOS_ENV_WIN
-    bool_t                     bIsAdmin       = false;
+    bool_t                   bIsAdmin       = false;
     SID_IDENTIFIER_AUTHORITY siaNtAuthority = { SECURITY_NT_AUTHORITY };
     PSID                     psAdminiGroup  = NULL;
 
@@ -346,7 +346,7 @@ CxSystemInfo::isUserAdmin() {
         }
     }
 
-    (void)::FreeSid(psAdminiGroup);
+    (void_t)::FreeSid(psAdminiGroup);
 
     xCHECK_RET(false == bIsAdmin, false);
 #elif xOS_ENV_UNIX
@@ -471,7 +471,7 @@ CxSystemInfo::numOfCpus() {
 #if   xOS_ENV_WIN
     SYSTEM_INFO siSysInfo = {{0}};
 
-    (void)::GetNativeSystemInfo(&siSysInfo);
+    (void_t)::GetNativeSystemInfo(&siSysInfo);
 
     ulRv = siSysInfo.dwNumberOfProcessors;
 #elif xOS_ENV_UNIX
@@ -498,7 +498,7 @@ CxSystemInfo::currentCpuNum() {
     ulong_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN
-    typedef DWORD (WINAPI *DllGetCurrentProcessorNumber_t)(void);
+    typedef DWORD (WINAPI *DllGetCurrentProcessorNumber_t)(void_t);
 
     CxDll dlDll;
 
@@ -563,10 +563,10 @@ CxSystemInfo::cpuVendor() {
 
 #if   xOS_ENV_WIN
     #if   xCOMPILER_MINGW || xCOMPILER_MS
-        int_t    aiCpuInfo[4]     = {0};
-        char   szMan[13]        = {0};
+        int_t  aiCpuInfo[4] = {0};
+        char   szMan[13]    = {0};
 
-        (void)::__cpuid(aiCpuInfo, 0);
+        (void_t)::__cpuid(aiCpuInfo, 0);
 
         *reinterpret_cast<int_t *>( &szMan[0] ) = aiCpuInfo[1];
         *reinterpret_cast<int_t *>( &szMan[4] ) = aiCpuInfo[3];
@@ -588,7 +588,7 @@ CxSystemInfo::cpuVendor() {
         // 32 bit fpic requires ebx be preserved
         struct _SFunctor {
             #if (defined(__pic__) || defined(__APPLE__)) && defined(__i386__)
-                static inline void
+                static inline void_t
                 __cpuid(int_t aiCpuInfo[4], int_t iInfoType) {
                     __asm__ volatile (
                         "mov %%ebx, %%edi\n"
@@ -599,7 +599,7 @@ CxSystemInfo::cpuVendor() {
                     );
                 }
             #elif defined(__i386__) || defined(__x86_64__)
-                static inline void
+                static inline void_t
                 __cpuid(int_t aiCpuInfo[4], int_t iInfoType) {
                     __asm__ volatile (
                         "cpuid\n"
@@ -615,7 +615,7 @@ CxSystemInfo::cpuVendor() {
 
         int_t aiCpuInfo[4] = {0};
 
-        (void)_SFunctor::__cpuid(aiCpuInfo, 0);
+        (void_t)_SFunctor::__cpuid(aiCpuInfo, 0);
 
         aiCpuInfo[0] = aiCpuInfo[1];  // Reorder output
         aiCpuInfo[1] = aiCpuInfo[3];
@@ -652,7 +652,7 @@ CxSystemInfo::cpuModel() {
         {
             int_t aiCpuInfo[4] = {0};
 
-            (void)::__cpuid(aiCpuInfo, 0);
+            (void_t)::__cpuid(aiCpuInfo, 0);
 
             *reinterpret_cast<int_t *>( &szMan[0] ) = aiCpuInfo[1];
             *reinterpret_cast<int_t *>( &szMan[4] ) = aiCpuInfo[3];
@@ -662,7 +662,7 @@ CxSystemInfo::cpuModel() {
         // get highest extended feature
         int_t aiCpuInfo[4] = {0};
 
-        (void)::__cpuid(aiCpuInfo, 0x80000000);
+        (void_t)::__cpuid(aiCpuInfo, 0x80000000);
 
         uint_t uiHighestFeatureEx = static_cast<uint_t>( aiCpuInfo[0] );
 
@@ -670,9 +670,9 @@ CxSystemInfo::cpuModel() {
         if (uiHighestFeatureEx >= 0x80000004) {
             char szCpuName[49] = {0};
 
-            (void)::__cpuid(reinterpret_cast<int_t *>( &szCpuName[0]  ), 0x80000002);
-            (void)::__cpuid(reinterpret_cast<int_t *>( &szCpuName[16] ), 0x80000003);
-            (void)::__cpuid(reinterpret_cast<int_t *>( &szCpuName[32] ), 0x80000004);
+            (void_t)::__cpuid(reinterpret_cast<int_t *>( &szCpuName[0]  ), 0x80000002);
+            (void_t)::__cpuid(reinterpret_cast<int_t *>( &szCpuName[16] ), 0x80000003);
+            (void_t)::__cpuid(reinterpret_cast<int_t *>( &szCpuName[32] ), 0x80000004);
 
             std::tstring_t sCpuName = CxString::trimSpace( xS2TS(szCpuName) );
 
@@ -779,9 +779,9 @@ CxSystemInfo::cpuUsage() {
     BOOL blRes = ::GetSystemTimes(&ftSysIdle, &ftSysKernel, &ftSysUser);
     xTEST_DIFF(FALSE, blRes);
 
-    (void)::CopyMemory(&ulSysIdle,   &ftSysIdle,   sizeof(ftSysIdle));
-    (void)::CopyMemory(&ulSysKernel, &ftSysKernel, sizeof(ftSysKernel));
-    (void)::CopyMemory(&ulSysUser,   &ftSysUser,   sizeof(ftSysUser));
+    (void_t)::CopyMemory(&ulSysIdle,   &ftSysIdle,   sizeof(ftSysIdle));
+    (void_t)::CopyMemory(&ulSysKernel, &ftSysKernel, sizeof(ftSysKernel));
+    (void_t)::CopyMemory(&ulSysUser,   &ftSysUser,   sizeof(ftSysUser));
 
     dRv = CxUtils::safeDivT(
                 (ulSysKernel.QuadPart - s_ulSysKernelOld.QuadPart) +
@@ -1025,7 +1025,7 @@ CxSystemInfo::pageSize() {
 #if   xOS_ENV_WIN
     SYSTEM_INFO siSysInfo = {{0}};
 
-    (void)::GetNativeSystemInfo(&siSysInfo);
+    (void_t)::GetNativeSystemInfo(&siSysInfo);
 
     ulRv = siSysInfo.dwPageSize;
 #elif xOS_ENV_UNIX
@@ -1061,7 +1061,7 @@ CxSystemInfo::~CxSystemInfo() {
 #if xOS_ENV_UNIX
 
 /* static */
-void
+void_t
 CxSystemInfo::_passwdFileEntry(
     struct passwd *a_pwdPasswd
 )
@@ -1086,7 +1086,7 @@ CxSystemInfo::_passwdFileEntry(
     }
 
     struct passwd *pwdResult = NULL;
-    char           szBuff[ liBuffSize ];   (void *)std::memset(&szBuff[0], 0, sizeof(szBuff));
+    char           szBuff[ liBuffSize ];   (void_t *)std::memset(&szBuff[0], 0, sizeof(szBuff));
 
     int_t iRv = ::getpwuid_r(cuiUserId, a_pwdPasswd, szBuff, sizeof(szBuff), &pwdResult);
     xTEST_EQ(0, iRv);

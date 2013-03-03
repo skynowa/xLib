@@ -21,10 +21,10 @@ CxHttpClient::~CxHttpClient() {
 }
 //------------------------------------------------------------------------------
 //TODO: bHead ()
-void
+void_t
 CxHttpClient::head(
     std::ctstring_t &a_csUrl, 
-    std::tstring_t       *a_psResponse
+    std::tstring_t  *a_psResponse
 )
 {
     //csUrl = http://dn1.berloga.net/83841/zombie_baseball_2.swf
@@ -44,28 +44,28 @@ CxHttpClient::head(
 }
 //------------------------------------------------------------------------------
 //TODO: bGet ()
-void
+void_t
 CxHttpClient::get(
     std::ctstring_t &a_csUrl,  
-    std::tstring_t       *a_psResponse
+    std::tstring_t  *a_psResponse
 )
 {
     xNOT_IMPLEMENTED;
 }
 //------------------------------------------------------------------------------
 //TODO: bPost ()
-void
+void_t
 CxHttpClient::post(
     std::ctstring_t &a_csUrl,  
     std::ctstring_t &a_csParams, 
-    std::tstring_t       *a_psResponse
+    std::tstring_t  *a_psResponse
 ) 
 {
     xNOT_IMPLEMENTED;
 }
 //------------------------------------------------------------------------------
 //TODO: bOptions ()
-void
+void_t
 CxHttpClient::options(
     std::ctstring_t &a_csUrl
 )
@@ -74,7 +74,7 @@ CxHttpClient::options(
 }
 //------------------------------------------------------------------------------
 //TODO: bTrace ()
-void
+void_t
 CxHttpClient::trace(
     std::ctstring_t &a_csUrl
 )
@@ -83,7 +83,7 @@ CxHttpClient::trace(
 }
 //------------------------------------------------------------------------------
 //TODO: bPut ()
-void
+void_t
 CxHttpClient::put(
     std::ctstring_t &a_csUrl
 )
@@ -92,7 +92,7 @@ CxHttpClient::put(
 }
 //------------------------------------------------------------------------------
 //TODO: del ()
-void
+void_t
 CxHttpClient::del(
     std::ctstring_t &a_csUrl
 )
@@ -101,7 +101,7 @@ CxHttpClient::del(
 }
 //------------------------------------------------------------------------------
 //TODO: bConnect ()
-void
+void_t
 CxHttpClient::connect(
     std::ctstring_t &a_csUrl
 )
@@ -110,7 +110,7 @@ CxHttpClient::connect(
 }
 //------------------------------------------------------------------------------
 //TODO: bPatch ()
-void
+void_t
 CxHttpClient::patch(
     std::ctstring_t &a_csUrl
 )
@@ -119,7 +119,7 @@ CxHttpClient::patch(
 }
 //------------------------------------------------------------------------------
 //TODO: bLink ()
-void
+void_t
 CxHttpClient::link(
     std::ctstring_t &a_csUrl
 )
@@ -128,7 +128,7 @@ CxHttpClient::link(
 }
 //------------------------------------------------------------------------------
 //TODO: bUnlink ()
-void
+void_t
 CxHttpClient::unlink(
     std::ctstring_t &a_csUrl
 )
@@ -170,14 +170,6 @@ CxHttpClient::CxStatusLine::~CxStatusLine() {
 /*******************************************************************************
 * Class name:  CxHeader
 * Description: protocol HTTP/1.0 (RFC 1945)  HTTP/1.1 (...)
-* File name:   CxHttpClient.cpp
-
-
-
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.02.2011
-
 *
 *******************************************************************************/
 
@@ -199,14 +191,6 @@ CxHttpClient::CxHeader::~CxHeader() {
 /*******************************************************************************
 * Class name:  CxBody
 * Description: protocol HTTP/1.0 (RFC 1945)  HTTP/1.1 (...)
-* File name:   CxHttpClient.cpp
-
-
-
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.02.2011
-
 *
 *******************************************************************************/
 

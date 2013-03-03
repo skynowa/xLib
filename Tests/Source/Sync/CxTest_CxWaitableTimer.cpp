@@ -17,7 +17,7 @@ CxTest_CxWaitableTimer::~CxTest_CxWaitableTimer() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxWaitableTimer::unit(
     culonglong_t &cullCaseLoops
 )

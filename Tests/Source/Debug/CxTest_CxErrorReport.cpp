@@ -17,7 +17,7 @@ CxTest_CxErrorReport::~CxTest_CxErrorReport() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxErrorReport::unit(
     culonglong_t &cullCaseLoops
 )

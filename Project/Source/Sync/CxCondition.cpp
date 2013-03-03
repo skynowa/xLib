@@ -56,7 +56,7 @@ CxCondition::handle() const {
 
 #endif
 //------------------------------------------------------------------------------
-void
+void_t
 CxCondition::create() {
 #if   xOS_ENV_WIN
 
@@ -71,7 +71,7 @@ CxCondition::create() {
 #endif
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxCondition::wait(
     culong_t &a_culTimeoutMs
 )
@@ -119,7 +119,7 @@ CxCondition::wait(
 #endif
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxCondition::signal() {
 #if   xOS_ENV_WIN
 
@@ -139,7 +139,7 @@ CxCondition::signal() {
 #endif
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxCondition::broadcast() {
 #if   xOS_ENV_WIN
 

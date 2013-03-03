@@ -17,12 +17,12 @@ CxTest_CxArray::~CxTest_CxArray() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxArray::unit(
     culonglong_t &cullCaseLoops
 )
 {
-    const size_t cuiArraySize = 5;
+    std::csize_t cuiArraySize = 5;
 
 
     CxArray<size_t, cuiArraySize> aszArray = {{0, 1, 2, 3, 4}};

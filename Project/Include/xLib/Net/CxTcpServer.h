@@ -22,11 +22,11 @@ public:
     virtual ~CxTcpServer();
         ///< destructor
 
-    void     bind       (cushort_t &cusPort);
+    void_t   bind       (cushort_t &cusPort);
         ///< associates a local address with a socket
-    void     listen     (cint_t &ciBacklog /* = SOMAXCONN*/);
+    void_t   listen     (cint_t &ciBacklog /* = SOMAXCONN*/);
         ///< places a socket in a state in which it is listening for an incoming connection
-    void     accept     (CxTcpServer *pscktAcceptSocket, std::tstring_t *psFromIp);
+    void_t   accept     (CxTcpServer *pscktAcceptSocket, std::tstring_t *psFromIp);
         ///< permits an incoming connection attempt on a socket
 
 protected:

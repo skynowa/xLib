@@ -16,29 +16,29 @@ class CxChar :
     /// character
 {
 public:
-    static bool_t    isAlphaNum(ctchar_t &cchChar) xWARN_UNUSED_RV;
+    static bool_t  isAlphaNum(ctchar_t &cchChar) xWARN_UNUSED_RV;
         ///< Check if character is alphanumeric
-    static bool_t    isAlpha   (ctchar_t &cchChar) xWARN_UNUSED_RV;
+    static bool_t  isAlpha   (ctchar_t &cchChar) xWARN_UNUSED_RV;
         ///< Check if character is alphabetic
-    static bool_t    isControl (ctchar_t &cchChar) xWARN_UNUSED_RV;
+    static bool_t  isControl (ctchar_t &cchChar) xWARN_UNUSED_RV;
         ///< Check if character is a control character
-    static bool_t    isDigitDec(ctchar_t &cchChar) xWARN_UNUSED_RV;
+    static bool_t  isDigitDec(ctchar_t &cchChar) xWARN_UNUSED_RV;
         ///< Check if character is decimal digit
-    static bool_t    isDigitHex(ctchar_t &cchChar) xWARN_UNUSED_RV;
+    static bool_t  isDigitHex(ctchar_t &cchChar) xWARN_UNUSED_RV;
         ///< Check if character is hexadecimal digit
 
-    static bool_t    isGraph   (ctchar_t &cchChar) xWARN_UNUSED_RV;
+    static bool_t  isGraph   (ctchar_t &cchChar) xWARN_UNUSED_RV;
         ///< Check if character has graphical representation
-    static bool_t    isPrint   (ctchar_t &cchChar) xWARN_UNUSED_RV;
+    static bool_t  isPrint   (ctchar_t &cchChar) xWARN_UNUSED_RV;
         ///< Check if character is printable
-    static bool_t    isPunct   (ctchar_t &cchChar) xWARN_UNUSED_RV;
+    static bool_t  isPunct   (ctchar_t &cchChar) xWARN_UNUSED_RV;
         ///< Check if character is a punctuation character
-    static bool_t    isSpace   (ctchar_t &cchChar) xWARN_UNUSED_RV;
+    static bool_t  isSpace   (ctchar_t &cchChar) xWARN_UNUSED_RV;
         ///< Check if character is a white-space
 
-    static bool_t    isLower   (ctchar_t &cchChar) xWARN_UNUSED_RV;
+    static bool_t  isLower   (ctchar_t &cchChar) xWARN_UNUSED_RV;
         ///< Check if character is lowercase letter
-    static bool_t    isUpper   (ctchar_t &cchChar) xWARN_UNUSED_RV;
+    static bool_t  isUpper   (ctchar_t &cchChar) xWARN_UNUSED_RV;
         ///< Check if character is uppercase letter
 
     static tchar_t toLower   (ctchar_t &cchChar) xWARN_UNUSED_RV;

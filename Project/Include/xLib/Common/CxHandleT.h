@@ -42,24 +42,24 @@ public:
 
     native_handle_t get        () const xWARN_UNUSED_RV;
         ///< get
-    void            set        (cnative_handle_t &chHandle);
+    void_t          set        (cnative_handle_t &chHandle);
         ///< set
     native_handle_t duplicate  () const xWARN_UNUSED_RV;
         ///< duplicate handle
 
-    bool_t            isValid    () const xWARN_UNUSED_RV;
+    bool_t          isValid    () const xWARN_UNUSED_RV;
         ///< is valid
-    void            attach     (cnative_handle_t &chHandle);
+    void_t          attach     (cnative_handle_t &chHandle);
         ///< attach
     native_handle_t detach     () xWARN_UNUSED_RV;
         ///< detach
-    void            close      ();
+    void_t          close      ();
         ///< close
 
 #if xOS_ENV_WIN
     ulong_t         info       () const xWARN_UNUSED_RV;
         ///< get certain properties of an object handle
-    void            setInfo    (culong_t &culMask, culong_t &culFlags);
+    void_t          setInfo    (culong_t &culMask, culong_t &culFlags);
         ///< set information
 #endif
 

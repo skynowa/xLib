@@ -303,7 +303,7 @@ xNAMESPACE_BEGIN(NxLib)
         int_t tz_dsttime;     ///< type of dst correction
     };
 
-    int_t                             iGetTimeOfDay(struct timeval *tv, struct timezone *tz) xWARN_UNUSED_RV;
+    int_t                           iGetTimeOfDay(struct timeval *tv, struct timezone *tz) xWARN_UNUSED_RV;
         ///< porting from Linux gettimeofday
 
     #define xGETTIMEOFDAY           iGetTimeOfDay

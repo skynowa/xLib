@@ -17,7 +17,7 @@ CxTest_CxCompletionPort::~CxTest_CxCompletionPort() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxCompletionPort::unit(
     culonglong_t &cullCaseLoops
 )

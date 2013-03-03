@@ -19,7 +19,7 @@ CxTest_CxMySql::~CxTest_CxMySql() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxMySql::unit(
     culonglong_t &cullCaseLoops
 )
@@ -59,8 +59,8 @@ CxTest_CxMySql::unit(
     //--------------------------------------------------
     //bOptions
     {
-        mysql_option moOption = MYSQL_OPT_COMPRESS;
-        const void  *cpvArg   = NULL;
+        mysql_option  moOption = MYSQL_OPT_COMPRESS;
+        cvoid_t      *cpvArg   = NULL;
 
         conConn.options(moOption, cpvArg);
     }

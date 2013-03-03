@@ -20,7 +20,7 @@ CxTest_xDefines::~CxTest_xDefines() {
 }
 //------------------------------------------------------------------------------
 /*virtual*/
-void
+void_t
 CxTest_xDefines::unit(
     culonglong_t &cullCaseLoops
 )
@@ -241,9 +241,9 @@ CxTest_xDefines::unit(
     {
         struct STest {
             std::tstring_t execute(
-                xIN     cint_t         &a_iVal,
-                xOUT    const std::size_t &a_uiVal,
-                xIN_OUT tchar_t           *a_piVal)
+                xIN     cint_t       &a_iVal,
+                xOUT    std::csize_t &a_uiVal,
+                xIN_OUT tchar_t      *a_piVal)
             {
                 std::tstringstream_t sstStream;
 
@@ -318,7 +318,7 @@ CxTest_xDefines::unit(
     {
         // xPR_SIZET
         {
-            const size_t cuiValue = 2356567U;
+            std::csize_t cuiValue = 2356567U;
 
             m_sRv = CxString::format(xT("%")xPR_SIZET, cuiValue);
             xTEST_EQ(CxString::cast(cuiValue), m_sRv);

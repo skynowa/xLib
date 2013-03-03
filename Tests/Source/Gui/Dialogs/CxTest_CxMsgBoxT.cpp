@@ -17,7 +17,7 @@ CxTest_CxMsgBoxT::~CxTest_CxMsgBoxT() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxMsgBoxT::unit(
     culonglong_t &cullCaseLoops
 )

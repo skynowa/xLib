@@ -32,9 +32,9 @@ CxErrorReport::~CxErrorReport() {
     
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxErrorReport::_construct(
-    const ExType         &a_crtType,
+    const ExType    &a_crtType,
     std::ctstring_t &a_csVar1,       
     std::ctstring_t &a_csVar2,
     std::ctstring_t &a_csVar1Value,  
@@ -50,7 +50,7 @@ CxErrorReport::_construct(
     std::ctstring_t &a_csComment
 )
 {
-    const size_t cuiReportWidthMax = 46U;   // MAGIC: cuiReportWidthMax
+    std::csize_t cuiReportWidthMax = 46U;   // MAGIC: cuiReportWidthMax
 
 
     m_rtType          = a_crtType;
@@ -88,7 +88,7 @@ CxErrorReport::_construct(
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-void
+void_t
 CxErrorReport::_initPlain() {
     std::tostringstream_t ossReport;
 

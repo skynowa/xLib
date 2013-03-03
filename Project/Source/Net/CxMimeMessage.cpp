@@ -23,19 +23,19 @@ CxMimeMessage::~CxMimeMessage() {
 }
 //------------------------------------------------------------------------------
 /* static */
-void
-CxMimeMessage::vParse(
+void_t
+CxMimeMessage::parse(
     std::ctstring_t &a_csRawMessage,
-    CxMimeHeader         &a_Header,
-    CxMimeBody           &a_Body
+    CxMimeHeader    &a_Header,
+    CxMimeBody      &a_Body
 )
 {
     xNOT_IMPLEMENTED;
 }
 //------------------------------------------------------------------------------
 /* static */
-void
-CxMimeMessage::vLoadFromRawFile(
+void_t
+CxMimeMessage::loadFromRawFile(
     std::ctstring_t &a_csFilePath
 )
 {
@@ -43,8 +43,8 @@ CxMimeMessage::vLoadFromRawFile(
 }
 //------------------------------------------------------------------------------
 /* static */
-void
-CxMimeMessage::vSaveToRawFile(
+void_t
+CxMimeMessage::saveToRawFile(
     std::ctstring_t &a_csFilePath
 )
 {

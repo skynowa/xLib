@@ -28,7 +28,7 @@ CxCompletionPort::~CxCompletionPort() {
 
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxCompletionPort::create(
     culong_t &a_culThreadsNum
 )
@@ -40,7 +40,7 @@ CxCompletionPort::create(
     xTEST_EQ(true, _m_hHandle.isValid());
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxCompletionPort::associate(
     const HANDLE  &a_chFile,
     ULONG_PTR      a_pulCompletionKey
@@ -60,7 +60,7 @@ CxCompletionPort::associate(
     xTEST_EQ(_m_hHandle.get(), hRv);
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxCompletionPort::status(
     LPDWORD        a_lpNumberOfBytes,
     PULONG_PTR     a_lpCompletionKey,
@@ -78,7 +78,7 @@ CxCompletionPort::status(
     xTEST_DIFF(FALSE, blRes);
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxCompletionPort::postStatus(
     culong_t &a_culNumberOfBytesTransferred,
     ULONG_PTR      a_ulCompletionKey,

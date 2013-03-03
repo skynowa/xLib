@@ -17,7 +17,7 @@ CxTest_CxCurrentProcess::~CxTest_CxCurrentProcess() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxCurrentProcess::unit(
     culonglong_t &cullCaseLoops
 )

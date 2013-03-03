@@ -20,7 +20,7 @@ CxTest_CxFileLog::~CxTest_CxFileLog() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxFileLog::unit(
     culonglong_t &cullCaseLoops
 )

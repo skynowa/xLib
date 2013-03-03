@@ -29,31 +29,31 @@ public:
 
     CK_OBJECT_HANDLE     handle           () const xWARN_UNUSED_RV;
         ///< get handle
-    void                 setHandle        (CK_OBJECT_HANDLE hHandle);
+    void_t               setHandle        (CK_OBJECT_HANDLE hHandle);
         ///< assign object handle
-    void                 create           (CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount);
+    void_t               create           (CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount);
         ///< creates a new object
-    void                 size             (CK_ULONG_PTR pulSize);
+    void_t               size             (CK_ULONG_PTR pulSize);
         ///< gets the size of an object in bytes
-    void                 copy             (CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount, CK_OBJECT_HANDLE_PTR phNewObject);
+    void_t               copy             (CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount, CK_OBJECT_HANDLE_PTR phNewObject);
         ///< copies an object, creating a new object for the copy
-    void                 find             (CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount, std::vector<CK_OBJECT_HANDLE> *pvecObjectHandles);
+    void_t               find             (CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount, std::vector<CK_OBJECT_HANDLE> *pvecObjectHandles);
         ///< search for token and session objects that match a template, obtaining additional object handles
 
-    void                 attributeValue   (CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount);
+    void_t               attributeValue   (CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount);
         ///< obtains the value of one or more object attributes
-    void                 setAttributeValue(CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount);
+    void_t               setAttributeValue(CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount);
         ///< modifies the value of one or more object attributes
 
-    void                 destroy          ();
+    void_t               destroy          ();
         ///< destroys an object
 
     // Utils
-    static void          data             (CK_SLOT_ID ulSlotId, std::custring_t &cusUserPin, std::custring_t &cusDataLabel, std::ustring_t *pusData);
+    static void_t        data             (CK_SLOT_ID ulSlotId, std::custring_t &cusUserPin, std::custring_t &cusDataLabel, std::ustring_t *pusData);
         ///< get data
-    static void          setData          (CK_SLOT_ID ulSlotId, std::custring_t &cusUserPin, std::custring_t &cusDataLabel, std::custring_t &cusData);
+    static void_t        setData          (CK_SLOT_ID ulSlotId, std::custring_t &cusUserPin, std::custring_t &cusDataLabel, std::custring_t &cusData);
         ///< set data
-    static void          data             (CK_SLOT_ID ulSlotId, std::custring_t &cusUserPin, std::vec_ustring_t *pusDataLabel, std::vec_ustring_t *pusDataValue);
+    static void_t        data             (CK_SLOT_ID ulSlotId, std::custring_t &cusUserPin, std::vec_ustring_t *pusDataLabel, std::vec_ustring_t *pusDataValue);
         ///< get data
 
 private:

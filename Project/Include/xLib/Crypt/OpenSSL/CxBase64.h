@@ -16,11 +16,11 @@ class CxBase64 :
     /// Base64
 {
 public:
-    static std::string encode     (const std::string &csStr) xWARN_UNUSED_RV;
+    static std::string encode     (std::cstring_t &csStr) xWARN_UNUSED_RV;
         ///< encoding
-    static std::string decode     (const std::string &csStr) xWARN_UNUSED_RV;
+    static std::string decode     (std::cstring_t &csStr) xWARN_UNUSED_RV;
         ///< decoding
-    static bool_t        isCharValid(const char &cchChar) xWARN_UNUSED_RV;
+    static bool_t      isCharValid(const char &cchChar) xWARN_UNUSED_RV;
         ///< is a valid Base64 char
 
 private:

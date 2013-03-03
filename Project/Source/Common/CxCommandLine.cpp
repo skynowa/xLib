@@ -54,7 +54,7 @@ CxCommandLine::get() {
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxCommandLine::args(
     std::vec_tstring_t *a_pvsArgs
 )
@@ -68,10 +68,10 @@ CxCommandLine::args(
 }
 //------------------------------------------------------------------------------
 /* static */
-void
+void_t
 CxCommandLine::setArgs(
-    cint_t &a_ciArgsCount,
-    tchar_t   *a_paszArgs[]
+    cint_t  &a_ciArgsCount,
+    tchar_t *a_paszArgs[]
 )
 {
     // n/a (because we'll have a recursion)

@@ -24,22 +24,22 @@ public:
     virtual                     ~CxFinder     ();
         ///< destructor
 
-    std::ctstring_t &       rootDirPath  () const xWARN_UNUSED_RV;
+    std::ctstring_t &            rootDirPath  () const xWARN_UNUSED_RV;
         ///< root directory path
-    std::ctstring_t &       filterByShell() const xWARN_UNUSED_RV;
+    std::ctstring_t &            filterByShell() const xWARN_UNUSED_RV;
         ///< shell wild card filter
     std::tstring_t               entryName    () const xWARN_UNUSED_RV;
         ///< entry name
     CxFileAttribute::ExAttribute attributes   () const xWARN_UNUSED_RV;
         ///< file attributes
 
-    bool_t                         isValid      () const xWARN_UNUSED_RV;
+    bool_t                       isValid      () const xWARN_UNUSED_RV;
         ///< is valid handle
-    bool_t                         moveFirst    () xWARN_UNUSED_RV;
+    bool_t                       moveFirst    () xWARN_UNUSED_RV;
         ///< move first entry
-    bool_t                         moveNext     () xWARN_UNUSED_RV;
+    bool_t                       moveNext     () xWARN_UNUSED_RV;
         ///< move next entry
-    void                         close        ();
+    void_t                       close        ();
         ///< close search
 
 private:
@@ -67,8 +67,8 @@ private:
         ///< entry
 
     _entry_t                     _m_enEnrty;            ///< entry handle
-    std::ctstring_t         _m_csRootDirPath;      ///< root directory path
-    std::ctstring_t         _m_csFilterByShell;    ///< shell wild card filter
+    std::ctstring_t              _m_csRootDirPath;      ///< root directory path
+    std::ctstring_t              _m_csFilterByShell;    ///< shell wild card filter
 };
 
 xNAMESPACE_END(NxLib)

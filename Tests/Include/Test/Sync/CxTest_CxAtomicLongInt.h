@@ -18,7 +18,7 @@ public:
                  CxTest_CxAtomicLongInt();
     virtual     ~CxTest_CxAtomicLongInt();
 
-    virtual void unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------
 #endif //CxTest_CxAtomicLongIntH

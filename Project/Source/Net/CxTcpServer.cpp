@@ -18,7 +18,7 @@ CxTcpServer::~CxTcpServer() {
 
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxTcpServer::bind(
     cushort_t &a_cusPort
 )
@@ -41,7 +41,7 @@ CxTcpServer::bind(
     ////}
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxTcpServer::listen(
     cint_t &a_ciBacklog /*= SOMAXCONN*/
 )
@@ -52,7 +52,7 @@ CxTcpServer::listen(
     xTEST_DIFF(xSOCKET_ERROR, iRv);
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxTcpServer::accept(
     CxTcpServer    *a_pscktAcceptSocket,
     std::tstring_t *a_psFromIp

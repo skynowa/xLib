@@ -62,7 +62,7 @@ CxIpcSemaphore::handle() const {
     return _m_hHandle;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxIpcSemaphore::create(
     clong_t         &a_cliInitialValue,
     std::ctstring_t &a_csName
@@ -101,7 +101,7 @@ CxIpcSemaphore::create(
 #endif
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxIpcSemaphore::open(
     std::ctstring_t &a_csName
 )
@@ -136,7 +136,7 @@ CxIpcSemaphore::open(
 #endif
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxIpcSemaphore::post() const {
     xTEST_EQ(true, _isValid());
 
@@ -151,7 +151,7 @@ CxIpcSemaphore::post() const {
 #endif
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxIpcSemaphore::wait(
     culong_t &a_culTimeoutMsec
 ) const
@@ -165,7 +165,7 @@ CxIpcSemaphore::wait(
 #elif xOS_ENV_UNIX
     struct _SFunctor {
         static
-        void
+        void_t
         timespec_addms(
             struct timespec *ts,
             long             ms
@@ -186,7 +186,7 @@ CxIpcSemaphore::wait(
     };
 
 
-    int_t             iRv        = - 1;
+    int_t           iRv        = - 1;
     struct timespec tmsTimeout = {0};
 
     // add msec to struct timespec
@@ -194,7 +194,7 @@ CxIpcSemaphore::wait(
         iRv = ::clock_gettime(CLOCK_REALTIME, &tmsTimeout);
         xTEST_DIFF(- 1, iRv);
 
-        (void)_SFunctor::timespec_addms(&tmsTimeout, a_culTimeoutMsec);
+        (void_t)_SFunctor::timespec_addms(&tmsTimeout, a_culTimeoutMsec);
     }
 
 #if xC99_OLD

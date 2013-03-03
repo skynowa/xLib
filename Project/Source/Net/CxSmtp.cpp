@@ -25,10 +25,10 @@ xNAMESPACE_BEGIN(NxLib)
 //DONE: CxSmtp
 CxSmtp::CxSmtp() :
     _m_scktSocket(),
-    _m_sUser(),
-    _m_sPass(),
-    _m_sServer(),
-    _m_usPort(0),
+    _m_sUser     (),
+    _m_sPass     (),
+    _m_sServer   (),
+    _m_usPort    (0),
     _m_bConnected(false)
 {
 ////--    CxSocket::bInit();
@@ -42,8 +42,14 @@ CxSmtp::~CxSmtp() {
 }
 //------------------------------------------------------------------------------
 //DONE: bCreate
-void
-CxSmtp::create(std::ctstring_t &a_csUser, std::ctstring_t &a_csPass, std::ctstring_t &a_csServer, cushort_t &a_cusPort) {
+void_t
+CxSmtp::create(
+    std::ctstring_t &a_csUser, 
+    std::ctstring_t &a_csPass, 
+    std::ctstring_t &a_csServer, 
+    cushort_t       &a_cusPort
+)
+{
     xTEST_EQ(false, a_csUser.empty());
     ////xTEST_EQ(false, a_csPass.empty());
     xTEST_EQ(false, a_csServer.empty());
@@ -56,7 +62,7 @@ CxSmtp::create(std::ctstring_t &a_csUser, std::ctstring_t &a_csPass, std::ctstri
 }
 //------------------------------------------------------------------------------
 //DONE: bConnect
-void
+void_t
 CxSmtp::connect() {
     std::tstring_t sRv;
 
@@ -89,7 +95,7 @@ CxSmtp::connect() {
 }
 //------------------------------------------------------------------------------
 //DONE: bLogin (��������� �� ������)
-void
+void_t
 CxSmtp::login() {
     //-------------------------------------
     //RFC
@@ -123,7 +129,7 @@ CxSmtp::login() {
 }
 //------------------------------------------------------------------------------
 //DONE: bNoop (�������� ��������� ���������� � ���������)
-void
+void_t
 CxSmtp::noop() {
     //-------------------------------------
     //RFC
@@ -142,7 +148,7 @@ CxSmtp::noop() {
 }
 //------------------------------------------------------------------------------
 //DONE: bRset (������ ����� �������� �����)
-void
+void_t
 CxSmtp::rset() {
     //-------------------------------------
     //RFC
@@ -161,8 +167,13 @@ CxSmtp::rset() {
 }
 //------------------------------------------------------------------------------
 //DONE: bSendRaw
-void
-CxSmtp::sendRaw(std::ctstring_t &a_csFilePath, std::ctstring_t &a_sFrom, std::ctstring_t &a_sTo) {
+void_t
+CxSmtp::sendRaw(
+    std::ctstring_t &a_csFilePath, 
+    std::ctstring_t &a_sFrom, 
+    std::ctstring_t &a_sTo
+)
+{
     // TODO: xTEST_DIFF(xSOCKET_HANDLE_INVALID, _m_scktSocket,   false);
     xTEST_EQ(false, a_sFrom.empty());
     xTEST_EQ(false, a_sTo.empty());
@@ -204,8 +215,13 @@ CxSmtp::sendRaw(std::ctstring_t &a_csFilePath, std::ctstring_t &a_sFrom, std::ct
 }
 //------------------------------------------------------------------------------
 //DONE: bSend
-void
-CxSmtp::send(std::ctstring_t &a_csText, std::ctstring_t &a_sFrom, std::ctstring_t &a_sTo) {
+void_t
+CxSmtp::send(
+    std::ctstring_t &a_csText, 
+    std::ctstring_t &a_sFrom, 
+    std::ctstring_t &a_sTo
+)
+{
     // TODO: xTEST_DIFF(xSOCKET_HANDLE_INVALID, _m_scktSocket);
     xTEST_EQ(false, a_sFrom.empty());
     xTEST_EQ(false, a_sTo.empty());
@@ -245,7 +261,7 @@ CxSmtp::send(std::ctstring_t &a_csText, std::ctstring_t &a_sFrom, std::ctstring_
 }
 //------------------------------------------------------------------------------
 //DONE: bDisconnect
-void
+void_t
 CxSmtp::disconnect() {
     xCHECK_DO(false == _m_bConnected, disconnect());
 
@@ -279,7 +295,7 @@ CxSmtp::disconnect() {
 
 //------------------------------------------------------------------------------
 //DONE: _bCommand
-void
+void_t
 CxSmtp::_command(std::ctstring_t &a_csCmd, std::ctstring_t &a_csReplyDelimiter, std::tstring_t &a_sReply) {
     xTEST_EQ(false, a_csCmd.empty());
     xTEST_EQ(false, a_csReplyDelimiter.empty());

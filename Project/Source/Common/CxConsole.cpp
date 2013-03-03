@@ -66,9 +66,9 @@ CxConsole::~CxConsole() {
 //------------------------------------------------------------------------------
 std::tstring_t
 CxConsole::setAttributes(
-    const ExForeground   &a_cfgForeground,
-    const ExBackground   &a_cbgBackground,
-    cint_t            &a_ciAttributes
+    const ExForeground &a_cfgForeground,
+    const ExBackground &a_cbgBackground,
+    cint_t             &a_ciAttributes
 )
 {
 #if xOS_ENV_WIN
@@ -177,15 +177,15 @@ CxConsole::setAttributes(
         const WORD ciBackgroundColorWhite   = BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE;
         const WORD ciBackgroundColorGray	= BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE;
     #elif xOS_ENV_UNIX
-        cint_t  ciBackgroundColorBlack   = 40;
+        cint_t  ciBackgroundColorBlack      = 40;
         cint_t  ciBackgroundColorRed	    = 41;
-        cint_t  ciBackgroundColorBlue	= 44;
-        cint_t  ciBackgroundColorGreen   = 42;
-        cint_t  ciBackgroundColorCyan	= 46;
-        cint_t  ciBackgroundColorMagenta = 45;
-        cint_t  ciBackgroundColorYellow  = 43;
-        cint_t  ciBackgroundColorWhite   = 47;
-        cint_t  ciBackgroundColorGray	= 47;    // TODO: ciBackgroundColorGray
+        cint_t  ciBackgroundColorBlue	    = 44;
+        cint_t  ciBackgroundColorGreen      = 42;
+        cint_t  ciBackgroundColorCyan	    = 46;
+        cint_t  ciBackgroundColorMagenta    = 45;
+        cint_t  ciBackgroundColorYellow     = 43;
+        cint_t  ciBackgroundColorWhite      = 47;
+        cint_t  ciBackgroundColorGray	    = 47;    // TODO: ciBackgroundColorGray
     #endif
 
         int_t iRv = - 1;
@@ -334,7 +334,7 @@ CxConsole::read() {
     return sRv;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxConsole::write(
     std::ctstring_t &a_csStr
 )
@@ -361,7 +361,7 @@ CxConsole::write(
     std::tcout.flush();
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxConsole::writeLine(
     std::ctstring_t &a_csStr /* = xT("") */
 )
@@ -375,7 +375,7 @@ CxConsole::writeLine(
     write(a_csStr + CxConst::xNL);
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxConsole::writeErrLine(
     std::ctstring_t &a_csStr
 )
@@ -445,11 +445,11 @@ CxConsole::msgBox(
     return mrRes;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxConsole::prompt(
     std::ctstring_t &a_csPrompt,
-    cbool_t           &a_cbIsVisible,
-    std::tstring_t       *a_psAnswer
+    cbool_t         &a_cbIsVisible,
+    std::tstring_t  *a_psAnswer
 )
 {
 #if xOS_ENV_WIN
@@ -487,9 +487,9 @@ CxConsole::prompt(
     }
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxConsole::pause(
-    culong_t &culTimeoutMs
+    culong_t &a_culTimeoutMs
 )
 {
 #if xOS_ENV_WIN
@@ -516,7 +516,7 @@ CxConsole::pause(
 
     std::tstring_t sMsg;
 
-	if (xTIMEOUT_INFINITE == culTimeoutMs) {
+	if (xTIMEOUT_INFINITE == a_culTimeoutMs) {
         sMsg = xT("Pause, press [ENTER] to continue...");
 
         writeLine(sMsg);
@@ -524,15 +524,15 @@ CxConsole::pause(
         std::cin.clear();
         std::cin.ignore();
 	} else {
-        sMsg = CxString::format(xT("Pause, wait for %lu msec to continue..."), culTimeoutMs);
+        sMsg = CxString::format(xT("Pause, wait for %lu msec to continue..."), a_culTimeoutMs);
 
         writeLine(sMsg);
 
-		CxCurrentThread::sleep(culTimeoutMs);
+		CxCurrentThread::sleep(a_culTimeoutMs);
 	}
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxConsole::clear() {
 #if xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
@@ -572,7 +572,7 @@ CxConsole::clear() {
 #endif
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxConsole::enableClose(
     cbool_t &a_cbFlag
 )
@@ -634,7 +634,7 @@ CxConsole::title() {
     return sRv;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxConsole::setTitle(
     std::ctstring_t &a_csTitle
 )
@@ -654,7 +654,7 @@ CxConsole::setTitle(
 #endif
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxConsole::setFullScreen() {
 #if xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);
@@ -688,7 +688,7 @@ CxConsole::setFullScreen() {
 #endif
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxConsole::centerWindow() {
 #if xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _m_hWnd);

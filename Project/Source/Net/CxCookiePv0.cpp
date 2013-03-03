@@ -56,7 +56,7 @@ CxCookiePv0::name() const {
     return _m_sName;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxCookiePv0::setName(
     std::ctstring_t &a_csName
 )
@@ -69,7 +69,7 @@ CxCookiePv0::value() const {
     return _m_sValue;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxCookiePv0::setValue(
     std::ctstring_t &a_csValue
 )
@@ -82,7 +82,7 @@ CxCookiePv0::domain() const {
     return _m_sDomain;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxCookiePv0::setDomain(
     std::ctstring_t &a_csDomain
 )
@@ -95,7 +95,7 @@ CxCookiePv0::path() const {
     return _m_sPath;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxCookiePv0::setPath(
     std::ctstring_t &a_csPath
 )
@@ -108,7 +108,7 @@ CxCookiePv0::expires() const {
     return _m_sExpires;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxCookiePv0::setExpires(
     std::ctstring_t &a_csExpires
 )
@@ -121,7 +121,7 @@ CxCookiePv0::secure() const {
     return _m_bSecure;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxCookiePv0::setSecure(
     cbool_t &a_cbFlag
 )
@@ -134,7 +134,7 @@ CxCookiePv0::httpOnly() const {
     return _m_bHttpOnly;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxCookiePv0::setHttpOnly(
     cbool_t &a_cbFlag
 )
@@ -209,7 +209,7 @@ CxCookiePv0::dump() const {
     return sRv;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxCookiePv0::clear() {
     _m_sName.clear();
     _m_sValue.clear();
@@ -235,7 +235,7 @@ struct SCompareNoCase {
     }
 };
 //------------------------------------------------------------------------------
-void
+void_t
 CxCookiePv0::init(
     std::ctstring_t &a_csRawCookie
 )

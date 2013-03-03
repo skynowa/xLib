@@ -21,7 +21,7 @@ CxTest_CxCgi::~CxTest_CxCgi() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxCgi::unit(
     culonglong_t &cullCaseLoops
 )

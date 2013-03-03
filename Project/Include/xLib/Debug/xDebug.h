@@ -115,7 +115,7 @@
                                                                     xLINE, \
                                                                     csLastError.c_str());  \
                                                                 \
-                                                                (void)::exit(EXIT_FAILURE); \
+                                                                (void_t)::exit(EXIT_FAILURE); \
                                                             } \
                                                          }
     ///< check expression (work in debug and release modes)

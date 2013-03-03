@@ -57,7 +57,7 @@ CxProcess::~CxProcess() {
 #endif
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxProcess::create(
     std::ctstring_t &a_csFilePath,
     ctchar_t        *a_pcszParams, ...
@@ -98,7 +98,7 @@ CxProcess::create(
         int_t iRv = ::execlp(a_csFilePath.c_str(), a_csFilePath.c_str(), sCmdLine.c_str(), static_cast<ctchar_t *>( NULL ));
         xTEST_DIFF(- 1, iRv);
 
-        (void)::_exit(EXIT_SUCCESS);  /* not exit() */
+        (void_t)::_exit(EXIT_SUCCESS);  /* not exit() */
     }
 
     _m_hHandle = liPid;
@@ -136,7 +136,7 @@ CxProcess::wait(
     return wrStatus;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxProcess::kill(
     culong_t &a_culTimeout    // FIX: culTimeout not used
 )

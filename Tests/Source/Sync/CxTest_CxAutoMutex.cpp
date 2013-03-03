@@ -19,7 +19,7 @@ CxTest_CxAutoMutex::~CxTest_CxAutoMutex() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxAutoMutex::unit(
     culonglong_t &cullCaseLoops
 )

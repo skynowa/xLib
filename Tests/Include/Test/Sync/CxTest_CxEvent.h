@@ -18,7 +18,7 @@ public:
                  CxTest_CxEvent();
     virtual     ~CxTest_CxEvent();
 
-    virtual void unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------
 #endif //CxTest_CxEventH

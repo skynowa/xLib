@@ -23,11 +23,11 @@ public:
     virtual        ~CxFileTemp();
         ///< destructor
 
-    void            create    (std::ctstring_t &csFilePath, std::ctstring_t &csDirPath, CxFile *pfFile);
+    void_t          create    (std::ctstring_t &csFilePath, std::ctstring_t &csDirPath, CxFile *pfFile);
         ///< create temporary file, open it
 
 private:
-    cbool_t      _m_cbIsAutoDelete;    ///< auto delete flag
+    cbool_t         _m_cbIsAutoDelete;    ///< auto delete flag
     CxFile         *_m_pfFile;            ///< temporary file handle
     std::tstring_t  _m_sFilePath;         ///< temporary file path
 };

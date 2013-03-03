@@ -15,12 +15,12 @@ class CxTest_CxNonAssignable :
     public CxTest
 {
 public:
-                  CxTest_CxNonAssignable();
+                   CxTest_CxNonAssignable();
         ///< constructor
-    virtual      ~CxTest_CxNonAssignable();
+    virtual       ~CxTest_CxNonAssignable();
         ///< destructor
 
-    virtual void  unit(culonglong_t &cullCaseLoops) xOVERRIDE;
+    virtual void_t unit(culonglong_t &cullCaseLoops) xOVERRIDE;
         ///< unit test
 };
 //------------------------------------------------------------------------------

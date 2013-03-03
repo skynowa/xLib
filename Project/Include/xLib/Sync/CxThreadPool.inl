@@ -59,13 +59,13 @@ CxThreadPool<T>::~CxThreadPool() {
 
 //------------------------------------------------------------------------------
 template<typename T>
-void
+void_t
 CxThreadPool<T>::groupCreate(
-    cuint_t     &a_cuiStackSize,
+    cuint_t          &a_cuiStackSize,
     const func_ptr_t  a_fpFuncPtr,
-    void             *a_pvParam,
-    const size_t     &a_cuiNumTasks,
-    const size_t     &a_cuiMaxRunningTasks
+    void_t           *a_pvParam,
+    std::csize_t     &a_cuiNumTasks,
+    std::csize_t     &a_cuiMaxRunningTasks
 )
 {
     xTEST_LESS_EQ(0U, a_cuiStackSize);    // TODO: MaxValue
@@ -90,7 +90,7 @@ CxThreadPool<T>::groupCreate(
 }
 //------------------------------------------------------------------------------
 template<typename T>
-void
+void_t
 CxThreadPool<T>::groupResume() {
     xCHECK_DO(false == isRunning(), /*LOG*/_m_clLog.write(xT("CxThreadPool: not running")); return);
 
@@ -112,7 +112,7 @@ CxThreadPool<T>::groupResume() {
 }
 //------------------------------------------------------------------------------
 template<typename T>
-void
+void_t
 CxThreadPool<T>::groupPause() {
     xCHECK_DO(false == isRunning(), /*LOG*/_m_clLog.write(xT("CxThreadPool: not running")); return);
 
@@ -134,7 +134,7 @@ CxThreadPool<T>::groupPause() {
 }
 //------------------------------------------------------------------------------
 template<typename T>
-void
+void_t
 CxThreadPool<T>::groupExit(
     culong_t &a_culTimeout
 )
@@ -159,7 +159,7 @@ CxThreadPool<T>::groupExit(
 }
 //------------------------------------------------------------------------------
 template<typename T>
-void
+void_t
 CxThreadPool<T>::groupKill(
     culong_t &a_culTimeout
 )
@@ -186,7 +186,7 @@ CxThreadPool<T>::groupKill(
 }
 //------------------------------------------------------------------------------
 template<typename T>
-void
+void_t
 CxThreadPool<T>::groupWait(
     culong_t &a_culTimeout
 )
@@ -227,9 +227,9 @@ CxThreadPool<T>::maxTasks() const {
 }
 //------------------------------------------------------------------------------
 template<typename T>
-void
+void_t
 CxThreadPool<T>::setMaxTasks(
-    const size_t &a_cuiNum
+    std::csize_t &a_cuiNum
 )
 {
     // n/a
@@ -297,9 +297,9 @@ CxThreadPool<T>::numTasks() const {
 }
 //------------------------------------------------------------------------------
 template<typename T>
-void
+void_t
 CxThreadPool<T>::setNumTasks(
-    const size_t &a_cuiNum
+    std::csize_t &a_cuiNum
 )
 {
     // n/a
@@ -359,7 +359,7 @@ CxThreadPool<T>::size() const {
 template<typename T>
 uint_t
 CxThreadPool<T>::onRun(
-    void *a_pvParam
+    void_t *a_pvParam
 )
 {
     uint_t uiRes = 0U;
@@ -425,7 +425,7 @@ CxThreadPool<T>::onRun(
 
 //------------------------------------------------------------------------------
 template<typename T>
-void
+void_t
 CxThreadPool<T>::_taskAdd(
     CxThread *a_pvItem
 )
@@ -447,7 +447,7 @@ CxThreadPool<T>::_taskAdd(
 }
 //------------------------------------------------------------------------------
 template<typename T>
-void
+void_t
 CxThreadPool<T>::_taskRemove(
     CxThread *a_pvItem
 )
@@ -476,7 +476,7 @@ CxThreadPool<T>::_taskRemove(
 }
 //------------------------------------------------------------------------------
 template<typename T>
-void
+void_t
 CxThreadPool<T>::_onEnterTask(
     CxThread *a_pthSender
 )
@@ -490,7 +490,7 @@ CxThreadPool<T>::_onEnterTask(
 }
 //------------------------------------------------------------------------------
 template<typename T>
-void
+void_t
 CxThreadPool<T>::_onExitTask(
     CxThread *a_pthSender
 )

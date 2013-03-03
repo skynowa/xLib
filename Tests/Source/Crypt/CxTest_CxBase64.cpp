@@ -17,14 +17,14 @@ CxTest_CxBase64::~CxTest_CxBase64() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxBase64::unit(
     culonglong_t &cullCaseLoops
 )
 {
     xTEST_CASE("CxBase64::encode sDecode", cullCaseLoops)
     {
-        const std::string sTestData[][1] = {
+        std::cstring_t sTestData[][1] = {
             {"ADP GmbH\nAnalyse Design & Programmierung\nGesellschaft mit beschrankter Haftung"},
             {"TEST_STRING_2"},
             {"evrtvertre=-430956=-lmj';l'654"},
@@ -46,7 +46,7 @@ CxTest_CxBase64::unit(
 
     xTEST_CASE("CxBase64::encode sDecode", cullCaseLoops)
     {
-        const std::string casData[][2] = {
+        std::cstring_t casData[][2] = {
             {"YOYO!", "WU9ZTyE="},
             {"111111111111111", "MTExMTExMTExMTExMTEx"},
             {"!@#$%^&*()_+", "IUAjJCVeJiooKV8r"},
@@ -57,14 +57,14 @@ CxTest_CxBase64::unit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(casData); ++ i) {
-            const std::string csSource  = casData[i][0];
-            const std::string csMustBe  = casData[i][1];
+            std::cstring_t csSource  = casData[i][0];
+            std::cstring_t csMustBe  = casData[i][1];
 
-            const std::string csEncoded = CxBase64::encode(csSource);
+            std::cstring_t csEncoded = CxBase64::encode(csSource);
             //xTRACEV("csEncoded: %s (%zu), csMustBe (%zu)", csEncoded.c_str(), csEncoded.size(), csMustBe.size());
             xTEST_EQ(true, csMustBe == csEncoded);
 
-            const std::string csDecoded = CxBase64::decode(csEncoded);
+            std::cstring_t csDecoded = CxBase64::decode(csEncoded);
             //xTRACEV("csEncoded: %s (%zu), csSource (%zu)", csDecoded.c_str(), csDecoded.size(), csSource.size());
             xTEST_EQ(true, csSource == csDecoded);
         }
@@ -73,7 +73,7 @@ CxTest_CxBase64::unit(
     xTEST_CASE("CxBase64::isCharValid", cullCaseLoops)
     {
         {
-            const std::string csValidChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+            std::cstring_t csValidChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
             for (size_t i = 0; i < csValidChars.size(); ++ i) {
                 m_bRv = CxBase64::isCharValid(csValidChars.at(i));
@@ -83,7 +83,7 @@ CxTest_CxBase64::unit(
         }
 
         {
-            const std::string csNonValidChars = "!@#$%^&*()_|:?";
+            std::cstring_t csNonValidChars = "!@#$%^&*()_|:?";
 
             for (size_t i = 0; i < csNonValidChars.size(); ++ i) {
                 m_bRv = CxBase64::isCharValid(csNonValidChars.at(i));

@@ -17,7 +17,7 @@ CxTest_CxHttpClient::~CxTest_CxHttpClient() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxHttpClient::unit(
     culonglong_t &cullCaseLoops
 )

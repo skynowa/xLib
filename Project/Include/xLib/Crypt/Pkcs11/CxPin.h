@@ -27,11 +27,11 @@ public:
     virtual             ~CxPin         ();
          ///< destructor
 
-    void                 initToken     (CK_SLOT_ID slotID, CK_UTF8CHAR_PTR pPin, CK_ULONG ulPinLen, CK_UTF8CHAR_PTR pLabel);
+    void_t               initToken     (CK_SLOT_ID slotID, CK_UTF8CHAR_PTR pPin, CK_ULONG ulPinLen, CK_UTF8CHAR_PTR pLabel);
         ///< initializes a token
-    void                 initPIN       (CK_UTF8CHAR_PTR pPin, CK_ULONG ulPinLen);
+    void_t               initPIN       (CK_UTF8CHAR_PTR pPin, CK_ULONG ulPinLen);
         ///< initializes the normal user's PIN
-    void                 setPIN        (CK_UTF8CHAR_PTR pOldPin, CK_ULONG ulOldLen, CK_UTF8CHAR_PTR pNewPin, CK_ULONG ulNewLen);
+    void_t               setPIN        (CK_UTF8CHAR_PTR pOldPin, CK_ULONG ulOldLen, CK_UTF8CHAR_PTR pNewPin, CK_ULONG ulNewLen);
         ///< modifies the PIN of the user who is logged in
 
     // TODO: CxPin utils

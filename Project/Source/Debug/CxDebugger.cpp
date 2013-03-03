@@ -63,7 +63,7 @@ CxDebugger::isEnabled() {
     return _m_bIsEnabled;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxDebugger::setEnabled(
     cbool_t &a_cbFlag
 )
@@ -123,12 +123,12 @@ CxDebugger::isDebugBuild() {
 #endif
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxDebugger::breakPoint() {
     xCHECK_DO(false == isEnabled(), return);
 
 #if   xOS_ENV_WIN
-    (void)::DebugBreak();
+    (void_t)::DebugBreak();
 #elif xOS_ENV_UNIX
     int_t iRv = ::raise(SIGTRAP);
     xTEST_DIFF(- 1, iRv);
@@ -138,7 +138,7 @@ CxDebugger::breakPoint() {
 #endif
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxDebugger::setLogPath(
     std::ctstring_t &a_csFilePath
 )
@@ -151,7 +151,7 @@ CxDebugger::logPath() {
     return _m_sLogPath;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxDebugger::reportMake(
     const CxErrorReport &a_crpReport
 )
@@ -188,7 +188,7 @@ CxDebugger::reportMake(
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-void
+void_t
 CxDebugger::_msgboxPlain(
     const CxErrorReport &a_crpReport
 )
@@ -225,7 +225,7 @@ CxDebugger::_msgboxPlain(
     }
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxDebugger::_stdoutPlain(
     const CxErrorReport &a_crpReport
 )
@@ -280,7 +280,7 @@ CxDebugger::_stdoutPlain(
     }
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxDebugger::_loggingPlain(
     const CxErrorReport &a_crpReport
 )

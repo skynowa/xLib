@@ -18,7 +18,7 @@ public:
                  CxTest_CxCommandLine();
     virtual     ~CxTest_CxCommandLine();
 
-    virtual void unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------
 #endif //CxTest_CxCommandLineH

@@ -18,7 +18,7 @@ CxTest_CxVolume::~CxTest_CxVolume() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxVolume::unit(
     culonglong_t &cullCaseLoops
 )

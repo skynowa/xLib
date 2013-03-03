@@ -16,11 +16,11 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 CxFileAttribute::CxFileAttribute(
-    std::ctstring_t &csFilePath
+    std::ctstring_t &a_csFilePath
 ) :
-    _m_csFilePath(csFilePath)
+    _m_csFilePath(a_csFilePath)
 {
-    xTEST_EQ(false, csFilePath.empty());
+    xTEST_EQ(false, a_csFilePath.empty());
 }
 //------------------------------------------------------------------------------
 /* virtual */
@@ -79,7 +79,7 @@ CxFileAttribute::get() {
     return faRes;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxFileAttribute::set(
     const ExAttribute &a_cfaValue
 )
@@ -96,7 +96,7 @@ CxFileAttribute::set(
 #endif
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxFileAttribute::add(
     const ExAttribute &a_cfaValue
 )
@@ -107,7 +107,7 @@ CxFileAttribute::add(
     modify(static_cast<ExAttribute>( 0 ), a_cfaValue);
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxFileAttribute::remove(
     const ExAttribute &a_cfaValue
 )
@@ -118,7 +118,7 @@ CxFileAttribute::remove(
     modify(a_cfaValue, static_cast<ExAttribute>( 0 ));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxFileAttribute::modify(
     const ExAttribute &a_cfaRemoveValue,
     const ExAttribute &a_cfaAddValue
@@ -139,7 +139,7 @@ CxFileAttribute::modify(
     set(cfaValue);
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxFileAttribute::clear() {
     xTEST_EQ(false, filePath().empty());
 

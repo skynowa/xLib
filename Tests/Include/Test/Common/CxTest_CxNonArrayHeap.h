@@ -15,12 +15,12 @@ class CxTest_CxNonArrayHeap :
     public CxTest
 {
 public:
-                  CxTest_CxNonArrayHeap();
+                   CxTest_CxNonArrayHeap();
         ///< constructor
-    virtual      ~CxTest_CxNonArrayHeap();
+    virtual       ~CxTest_CxNonArrayHeap();
         ///< destructor
 
-    virtual void  unit(culonglong_t &cullCaseLoops) xOVERRIDE;
+    virtual void_t unit(culonglong_t &cullCaseLoops) xOVERRIDE;
         ///< unit test
 };
 //------------------------------------------------------------------------------

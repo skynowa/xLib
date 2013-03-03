@@ -78,7 +78,7 @@ public:
     // users
     static std::tstring_t hostName        () xWARN_UNUSED_RV;
         ///< get the NetBIOS name of the local computer
-    static bool_t           isUserAdmin     () xWARN_UNUSED_RV;
+    static bool_t         isUserAdmin     () xWARN_UNUSED_RV;
         ///< is current user an admin
     static std::tstring_t userName        () xWARN_UNUSED_RV;
         ///< get the name of the user associated with the current thread
@@ -118,7 +118,7 @@ private:
         ///< destructor
 
 #if xOS_ENV_UNIX
-    static void           _passwdFileEntry(struct passwd *pwdPasswd);
+    static void_t         _passwdFileEntry(struct passwd *pwdPasswd);
         ///< get password file entry
 #endif
 };

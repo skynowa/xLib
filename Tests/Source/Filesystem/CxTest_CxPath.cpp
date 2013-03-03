@@ -21,7 +21,7 @@ CxTest_CxPath::~CxTest_CxPath() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxPath::unit(
     culonglong_t &cullCaseLoops
 )

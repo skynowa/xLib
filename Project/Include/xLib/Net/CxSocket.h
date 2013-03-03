@@ -164,7 +164,7 @@ public:
     virtual       ~CxSocket         () = 0;
         ///< destructor
 
-    void           assign           (csocket_t &csktSocket);
+    void_t         assign           (csocket_t &csktSocket);
         ///< assign to another socket
 
     /*******************************************************************************
@@ -183,13 +183,13 @@ public:
     *
     *******************************************************************************/
 
-    void           create           (const ExAddressFamily &cafFamily, const ExType &ctpType, const ExProtocol &cptProtocol);
+    void_t           create           (const ExAddressFamily &cafFamily, const ExType &ctpType, const ExProtocol &cptProtocol);
         ///< creates a socket that is bound to a specific transport service provider
     socket_t       handle           () const xWARN_UNUSED_RV;
         ///< get socket
-    bool_t           isValid          () const xWARN_UNUSED_RV;
+    bool_t         isValid          () const xWARN_UNUSED_RV;
         ///< checking for validness
-    void           close            ();
+    void_t           close            ();
         ///< close
 
 
@@ -198,23 +198,23 @@ public:
     *
     *******************************************************************************/
 
-    //void *, std::tstring_t, std::ustring_t
+    //void_t *, std::tstring_t, std::ustring_t
 
-    int_t            send             (ctchar_t *pcszBuff, cint_t &ciBuffSize, cint_t &ciFlags) xWARN_UNUSED_RV;
+    int_t          send             (ctchar_t *pcszBuff, cint_t &ciBuffSize, cint_t &ciFlags) xWARN_UNUSED_RV;
         ///< send data
-    void           sendAll          (std::ctstring_t &csBuff, cint_t &ciFlags);
+    void_t           sendAll          (std::ctstring_t &csBuff, cint_t &ciFlags);
         ///< send data by blocks
 
-    int_t            recv             (tchar_t *pszBuff,  cint_t &ciBuffSize, cint_t &ciFlags) xWARN_UNUSED_RV;
+    int_t          recv             (tchar_t *pszBuff,  cint_t &ciBuffSize, cint_t &ciFlags) xWARN_UNUSED_RV;
         ///< receive data
     std::tstring_t recvAll          (cint_t &ciFlags) xWARN_UNUSED_RV;
         ///< receive data
     std::tstring_t recvAll          (cint_t &ciFlags, std::ctstring_t &csDelimiter) xWARN_UNUSED_RV;
         ///< receive data to delimiter, includes it
 
-    int_t            sendBytes        (char *pszBuff, cint_t &ciMessageLength) xWARN_UNUSED_RV;
+    int_t          sendBytes        (char *pszBuff, cint_t &ciMessageLength) xWARN_UNUSED_RV;
         ///< send bytes
-    int_t            receiveBytes     (char *pszBuff, cint_t &ciStillToReceive) xWARN_UNUSED_RV;
+    int_t          receiveBytes     (char *pszBuff, cint_t &ciStillToReceive) xWARN_UNUSED_RV;
         ///< receive bytes
 
 
@@ -223,9 +223,9 @@ public:
     *
     *******************************************************************************/
 
-    void           peerName         (std::tstring_t *psPeerAddr, ushort_t *pusPeerPort);
+    void_t           peerName         (std::tstring_t *psPeerAddr, ushort_t *pusPeerPort);
         ///< get address of the peer to which a socket is connected
-    void           socketName       (std::tstring_t *psSocketAddr, ushort_t *pusSocketPort);
+    void_t           socketName       (std::tstring_t *psSocketAddr, ushort_t *pusSocketPort);
         ///< get local name for a socket
 
     /*******************************************************************************
@@ -234,17 +234,17 @@ public:
     *******************************************************************************/
 
     ////getsockopt
-    static int_t     select           (int_t nfds, fd_set *readfds, fd_set *writefds,
+    static int_t     select         (int_t nfds, fd_set *readfds, fd_set *writefds,
                                      fd_set *exceptfds, timeval *tvTimeout) xWARN_UNUSED_RV;
         ///< determines the status of one or more sockets, waiting if necessary, to perform synchronous I/O
-    static int_t     lastError        () xWARN_UNUSED_RV;
+    static int_t     lastError      () xWARN_UNUSED_RV;
         ///< get error status for the last operation that failed
 
 protected:
-    socket_t       _m_sktSocket;  ///< handle to socket
-    short_t        _m_siFamily;   ///< family
-    std::tstring_t _m_sIp;        ///< IP
-    ushort_t       _m_usPort;     ///< port
+    socket_t         _m_sktSocket;  ///< handle to socket
+    short_t          _m_siFamily;   ///< family
+    std::tstring_t   _m_sIp;        ///< IP
+    ushort_t         _m_usPort;     ///< port
 };
 
 xNAMESPACE_END(NxLib)

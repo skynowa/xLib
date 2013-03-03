@@ -37,7 +37,7 @@ CxLogin::~CxLogin() {
 
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxLogin::login(
     CK_USER_TYPE    a_userType,  ///< user type
     CK_UTF8CHAR_PTR a_pPin,      ///< user's PIN
@@ -56,7 +56,7 @@ CxLogin::login(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxLogin::logout() {
     xTEST_PTR(_m_pFunc);
     xTEST_DIFF(0UL, _m_hSession);

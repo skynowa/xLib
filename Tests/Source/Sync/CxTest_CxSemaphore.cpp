@@ -17,7 +17,7 @@ CxTest_CxSemaphore::~CxTest_CxSemaphore() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxSemaphore::unit(
     culonglong_t &cullCaseLoops
 )

@@ -30,7 +30,7 @@ CxSocket::~CxSocket() {
     close();
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxSocket::assign(
     csocket_t &a_csktSocket
 )
@@ -77,7 +77,7 @@ CxSocket::operator socket_t () {
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-void
+void_t
 CxSocket::create(
     const ExAddressFamily &a_afFamily,
     const ExType          &a_tpType,
@@ -110,7 +110,7 @@ CxSocket::isValid() const {
 #endif
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxSocket::close() {
     xCHECK_DO(false == isValid(), return);
 
@@ -142,12 +142,12 @@ CxSocket::close() {
 
 //------------------------------------------------------------------------------
 //TODO: iSend
-//TODO: LINUX: ssize_t send(int_t sockfd, const void *buf, size_t len, int_t flags);
+//TODO: LINUX: ssize_t send(int_t sockfd, cvoid_t *buf, size_t len, int_t flags);
 int_t
 CxSocket::send(
     ctchar_t *a_pcszBuff,
-    cint_t     &a_ciBuffSize,
-    cint_t     &a_ciFlags
+    cint_t   &a_ciBuffSize,
+    cint_t   &a_ciFlags
 )
 {
     xTEST_DIFF(xSOCKET_HANDLE_INVALID, _m_sktSocket);
@@ -155,7 +155,7 @@ CxSocket::send(
     /////xTEST_LESS(0, ::lstrlen(pcszBuff));
 
 #if   xOS_ENV_WIN
-    int_t     iRv = ::send(_m_sktSocket, (LPCSTR)a_pcszBuff, a_ciBuffSize * sizeof(tchar_t), a_ciFlags);
+    int_t iRv = ::send(_m_sktSocket, (LPCSTR)a_pcszBuff, a_ciBuffSize * sizeof(tchar_t), a_ciFlags);
     xTEST_EQ(true, xSOCKET_ERROR != iRv && WSAEWOULDBLOCK != lastError());
     xTEST_GR_EQ(a_ciBuffSize * (int_t)sizeof(tchar_t), iRv);
 #elif xOS_ENV_UNIX
@@ -172,10 +172,10 @@ CxSocket::send(
 }
 //------------------------------------------------------------------------------
 //TODO: bSendAll
-void
+void_t
 CxSocket::sendAll(
     std::ctstring_t &a_csBuff,
-    cint_t            &a_ciFlags
+    cint_t          &a_ciFlags
 )
 {
     xTEST_DIFF(xSOCKET_HANDLE_INVALID, _m_sktSocket);
@@ -215,9 +215,9 @@ CxSocket::sendAll(
 //------------------------------------------------------------------------------
 int_t
 CxSocket::recv(
-    tchar_t   *a_pszBuff,
-    cint_t &a_ciBuffSize,
-    cint_t &a_ciFlags
+    tchar_t *a_pszBuff,
+    cint_t  &a_ciBuffSize,
+    cint_t  &a_ciFlags
 )
 {
     xTEST_DIFF(xSOCKET_HANDLE_INVALID, _m_sktSocket);
@@ -248,7 +248,7 @@ CxSocket::recvAll(
 {
     std::tstring_t sRv;
 
-    const size_t   cuiBuffSize             = 1024 * sizeof(tchar_t);
+    std::csize_t   cuiBuffSize             = 1024 * sizeof(tchar_t);
     tchar_t        szBuff[cuiBuffSize + 1] = {0};
 
     for (;;) {
@@ -276,12 +276,12 @@ CxSocket::recvAll(
 //------------------------------------------------------------------------------
 std::tstring_t
 CxSocket::recvAll(
-    cint_t            &a_ciFlags,
+    cint_t          &a_ciFlags,
     std::ctstring_t &a_csDelimiter
 )
 {
     std::tstring_t sRv;
-    const size_t   cuiInSize = SOCKET_BUFF_SIZE * sizeof(tchar_t);
+    std::csize_t   cuiInSize = SOCKET_BUFF_SIZE * sizeof(tchar_t);
     std::tstring_t sIn(cuiInSize, xT('\0'));
 
     //-------------------------------------
@@ -304,14 +304,14 @@ CxSocket::recvAll(
 //TODO: iSendBytes
 int_t
 CxSocket::sendBytes(
-    char      *a_pszBuff,
+    char   *a_pszBuff,
     cint_t &a_ciMessageLength
 )
 {
-    int_t     iRC            = 0;
-    int_t     iSendStatus    = 0;
+    int_t   iRC            = 0;
+    int_t   iSendStatus    = 0;
     timeval SendTimeout    = {0};
-    int_t     iMessageLength = a_ciMessageLength;
+    int_t   iMessageLength = a_ciMessageLength;
 
     //sSetting the timeout
     SendTimeout.tv_sec  = 0;
@@ -347,14 +347,14 @@ CxSocket::sendBytes(
 //TODO: ReceiveNBytes
 int_t
 CxSocket::receiveBytes(
-    char      *a_pszBuff,
+    char   *a_pszBuff,
     cint_t &a_ciStillToReceive
 )
 {
-    int_t     iRC             = 0;
-    int_t     iReceiveStatus  = 0;
+    int_t   iRC             = 0;
+    int_t   iReceiveStatus  = 0;
     timeval ReceiveTimeout  = {0};
-    int_t     iStillToReceive = a_ciStillToReceive;
+    int_t   iStillToReceive = a_ciStillToReceive;
 
     //Setting the timeout
     ReceiveTimeout.tv_sec  = 0;
@@ -395,7 +395,7 @@ CxSocket::receiveBytes(
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-void
+void_t
 CxSocket::peerName(
     std::tstring_t *a_psPeerAddr,
     ushort_t       *a_pusPeerPort
@@ -406,7 +406,7 @@ CxSocket::peerName(
 
 #if   xOS_ENV_WIN
     SOCKADDR_IN sockAddr     = {0};
-    int_t         iSockAddrLen = sizeof(sockAddr);
+    int_t       iSockAddrLen = sizeof(sockAddr);
 
     int_t iRv = ::getpeername(_m_sktSocket, CxUtils::reinterpretCastT<SOCKADDR *>( &sockAddr ), &iSockAddrLen);
     xTEST_DIFF(xSOCKET_ERROR, iRv);
@@ -430,7 +430,7 @@ CxSocket::peerName(
     }
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxSocket::socketName(
     std::tstring_t *a_psSocketAddr,
     ushort_t       *a_pusSocketPort
@@ -476,7 +476,7 @@ CxSocket::socketName(
 /* static */
 int_t
 CxSocket::select(
-    int_t      a_nfds,
+    int_t    a_nfds,
     fd_set  *a_pReadfds,
     fd_set  *a_pWritefds,
     fd_set  *a_pExceptfds,

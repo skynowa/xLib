@@ -42,7 +42,7 @@ CxSession::handle() const {
     return _m_hSession;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxSession::open(
     CK_SLOT_ID  a_slotID,        ///< the slot's ID
     CK_FLAGS    a_flags,         ///< from CK_SESSION_INFO
@@ -57,7 +57,7 @@ CxSession::open(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxSession::info(
     CK_SESSION_INFO_PTR a_pInfo      ///< receives session info
 )
@@ -69,7 +69,7 @@ CxSession::info(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxSession::setOperationState(
     CK_BYTE_PTR      a_pOperationState,      ///< holds state
     CK_ULONG         a_ulOperationStateLen,  ///< holds state length
@@ -84,7 +84,7 @@ CxSession::setOperationState(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxSession::operationState(
     CK_BYTE_PTR  a_pOperationState,      ///< gets state
     CK_ULONG_PTR a_pulOperationStateLen  ///< gets state length
@@ -97,7 +97,7 @@ CxSession::operationState(
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxSession::close() {
     xTEST_PTR(_m_pFunc);
     xTEST_DIFF(0UL, _m_hSession);
@@ -109,7 +109,7 @@ CxSession::close() {
     _m_hSession = 0UL;
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxSession::closeAll(
     CK_SLOT_ID slotID  ///< the token's slot
 )

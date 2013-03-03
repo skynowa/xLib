@@ -19,7 +19,7 @@ CxTest_CxAutoIpcMutex::~CxTest_CxAutoIpcMutex() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxAutoIpcMutex::unit(
     culonglong_t &cullCaseLoops
 )

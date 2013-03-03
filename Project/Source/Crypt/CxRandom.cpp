@@ -38,7 +38,7 @@ CxRandom::~CxRandom() {
 
 }
 //------------------------------------------------------------------------------
-void
+void_t
 CxRandom::vSetSeed(
     clong_t &a_liSeed
 )
@@ -148,7 +148,7 @@ CxRandom::dNextGaussian() {
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-void
+void_t
 CxRandom::vSetSeed() {
     // n/a
 
@@ -160,7 +160,7 @@ CxRandom::vSetSeed() {
     uiSeed = static_cast<uint_t>( std::time(NULL) );
 #endif
 
-    (void)std::srand(uiSeed);
+    (void_t)std::srand(uiSeed);
 }
 //------------------------------------------------------------------------------
 /* static */
@@ -208,11 +208,9 @@ CxRandom::liIntEx(
 /* static */
 std::tstring_t
 CxRandom::sString(
-    const size_t &a_cuiLength
+    std::csize_t &a_cuiLength
 )
 {
-
-
     xCHECK_RET(0U == a_cuiLength, std::tstring_t());
 
     cbool_t cbIsLetters      = true;

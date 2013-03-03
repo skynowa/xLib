@@ -20,7 +20,7 @@ CxTest_CxBackuper::~CxTest_CxBackuper() {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-void
+void_t
 CxTest_CxBackuper::unit(
     culonglong_t &cullCaseLoops
 )
