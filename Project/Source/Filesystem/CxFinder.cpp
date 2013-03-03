@@ -191,4 +191,33 @@ CxFinder::close() {
 }
 //--------------------------------------------------------------------------
 
+/*******************************************************************************
+*   public static
+*
+*******************************************************************************/
+
+//--------------------------------------------------------------------------
+/* static */
+void_t
+CxFinder::filesFind(
+    std::ctstring_t    &csPattern,
+    cbool_t            &cbIsRecursively,
+    std::vec_tstring_t *pvsFilePathes
+)
+{
+    // TODO: CxFinder::filesFind
+}
+//--------------------------------------------------------------------------
+/* static */
+void_t
+CxFinder::dirsFind(
+    std::ctstring_t    &csPattern,
+    cbool_t            &cbIsRecursively,
+    std::vec_tstring_t *pvsDirPathes
+)
+{
+    // TODO: CxFinder::dirsFind
+}
+//--------------------------------------------------------------------------
+
 xNAMESPACE_END(NxLib)
