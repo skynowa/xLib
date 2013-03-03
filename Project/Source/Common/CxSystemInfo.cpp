@@ -75,10 +75,10 @@ CxSystemInfo::os() {
     int_t iRv = ::uname(&unKernelInfo);
     xTEST_DIFF(- 1, iRv);
 
-    if      (true == CxString::compareNoCase(xT("Linux"), unKernelInfo.sysname)) {
+    if      (CxString::compareNoCase(xT("Linux"), unKernelInfo.sysname)) {
         otRes = otLinux;
     }
-    else if (true == CxString::compareNoCase(xT("FreeBSD"), unKernelInfo.sysname)) {
+    else if (CxString::compareNoCase(xT("FreeBSD"), unKernelInfo.sysname)) {
         otRes = otFreeBSD;
     }
     else {
@@ -211,27 +211,27 @@ CxSystemInfo::osArch() {
     // TODO: xTEST_DIFF(0,   strlen(unKernelInfo.machine));
 
     //32-bit checks
-    if      (true == CxString::compareNoCase(xT("i386"), unKernelInfo.machine)) {
+    if      (CxString::compareNoCase(xT("i386"), unKernelInfo.machine)) {
         oaRes = oa32bit;
     }
-    else if (true == CxString::compareNoCase(xT("i486"), unKernelInfo.machine)) {
+    else if (CxString::compareNoCase(xT("i486"), unKernelInfo.machine)) {
         oaRes = oa32bit;
     }
-    else if (true == CxString::compareNoCase(xT("i586"), unKernelInfo.machine)) {
+    else if (CxString::compareNoCase(xT("i586"), unKernelInfo.machine)) {
         oaRes = oa32bit;
     }
-    else if (true == CxString::compareNoCase(xT("i686"), unKernelInfo.machine)) {
+    else if (CxString::compareNoCase(xT("i686"), unKernelInfo.machine)) {
         oaRes = oa32bit;
     }
 
     //64-bit checks
-    else if (true == CxString::compareNoCase(xT("x86_64"), unKernelInfo.machine)) {
+    else if (CxString::compareNoCase(xT("x86_64"), unKernelInfo.machine)) {
         oaRes = oa64bit;
     }
-    else if (true == CxString::compareNoCase(xT("ia64"), unKernelInfo.machine)) {
+    else if (CxString::compareNoCase(xT("ia64"), unKernelInfo.machine)) {
         oaRes = oa64bit;
     }
-    else if (true == CxString::compareNoCase(xT("amd64"), unKernelInfo.machine)) {
+    else if (CxString::compareNoCase(xT("amd64"), unKernelInfo.machine)) {
         oaRes = oa64bit;
     }
 
@@ -280,7 +280,7 @@ CxSystemInfo::desktopName() {
     const CxProcess::id_t culId           = CxProcess::idByName(csNativeDesktop);
 
     bool_t bRv = CxProcess::isRunning(culId);
-    if (true == bRv) {
+    if (bRv) {
         sRv = csNativeDesktop;
     } else {
         // TODO: implement some checks for detecting Windows shell
@@ -348,7 +348,7 @@ CxSystemInfo::isUserAdmin() {
 
     (void_t)::FreeSid(psAdminiGroup);
 
-    xCHECK_RET(false == bIsAdmin, false);
+    xCHECK_RET(!bIsAdmin, false);
 #elif xOS_ENV_UNIX
     const uid_t cuiRootId = 0;
 
@@ -417,7 +417,7 @@ CxSystemInfo::useHomeDir() {
     */
 
     bool_t bRv = CxEnvironment::isExists(xT("HOME"));
-    if (true == bRv) {
+    if (bRv) {
         sRv = CxEnvironment::var(xT("HOME"));
     } else {
         struct passwd pwdPasswd = {0};
@@ -505,7 +505,7 @@ CxSystemInfo::currentCpuNum() {
     dlDll.load(xT("kernel32.dll"));
 
     bool_t bRv = dlDll.isProcExists(xT("GetCurrentProcessorNumber"));
-    xCHECK_RET(false == bRv, 0UL);
+    xCHECK_RET(!bRv, 0UL);
 
     DllGetCurrentProcessorNumber_t DllGetCurrentProcessorNumber = (DllGetCurrentProcessorNumber_t)dlDll.procAddress(xT("GetCurrentProcessorNumber"));
     xTEST_PTR(DllGetCurrentProcessorNumber);
@@ -816,7 +816,7 @@ CxSystemInfo::cpuUsage() {
         ulonglong_t        ullTotal           = 0ULL;
 
         // read proc file for the first time
-        if (true == bIsFirstRun) {
+        if (bIsFirstRun) {
             FILE *pFile = fopen("/proc/stat", "r");
             xTEST_PTR(pFile);
 

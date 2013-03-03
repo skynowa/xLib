@@ -29,7 +29,7 @@ CxProfiler::CxProfiler() :
 }
 //------------------------------------------------------------------------------
 CxProfiler::~CxProfiler() {
-    if (false == _flLog.filePath().empty()) {
+    if (!_flLog.filePath().empty()) {
         _flLog.write(xT("----------------------------------------"));
     }
 }

@@ -133,7 +133,7 @@ CxFileLog::_vRemoveIfFull() {
     #endif
 
     bool_t bRv = CxFile::isExists(filePath());
-    xCHECK_DO(false == bRv, return);
+    xCHECK_DO(!bRv, return);
 
     //-------------------------------------
     // remove log, if full

@@ -544,7 +544,7 @@ CxDateTime::isValid(
     bool_t bMillisecond = (/*cusMillisecond >= 0 &&*/ a_cusMillisecond   <= 999U);
     xTEST_EQ(true, bMillisecond);
 
-    xCHECK_RET(false == (bYear && bMonth && bDay && bHour && bMinute && bSecond && bMillisecond), false);
+    xCHECK_RET(!(bYear && bMonth && bDay && bHour && bMinute && bSecond && bMillisecond), false);
 
     return true;
 }
@@ -792,7 +792,7 @@ CxDateTime::monthStr(
 
     std::tstring_t sRv;
 
-    if (false == a_cbIsShortName) {
+    if (!a_cbIsShortName) {
         // months numbering: 1-12
         const CxArray<std::tstring_t, 12> casLongMonths = {{
             xT("January"),
@@ -876,8 +876,8 @@ CxDateTime::monthNum(
     }};
 
     for (ushort_t i = 0; i < static_cast<ushort_t>( casLongMonths.size() ); ++ i) {
-        xCHECK_RET(false == a_cbIsShortName && true == CxString::compareNoCase(a_csMonth, casLongMonths[i]),  i + 1);
-        xCHECK_RET(true  == a_cbIsShortName && true == CxString::compareNoCase(a_csMonth, casShortMonths[i]), i + 1);
+        xCHECK_RET(!a_cbIsShortName && CxString::compareNoCase(a_csMonth, casLongMonths[i]),  i + 1);
+        xCHECK_RET(true  == a_cbIsShortName && CxString::compareNoCase(a_csMonth, casShortMonths[i]), i + 1);
     }
 
     return static_cast<ushort_t>( - 1 );  //TODO: static_cast<ushort_t>( - 1 )
@@ -897,7 +897,7 @@ CxDateTime::weekDayStr(
 
     std::tstring_t sRv;
 
-    if (false == a_cbIsShortName) {
+    if (!a_cbIsShortName) {
         //days numbering: 0-6
         const CxArray<std::tstring_t, 7> casLongDays = {{
             xT("Sunday"),
@@ -958,8 +958,8 @@ CxDateTime::weekDayNum(
     }};
 
     for (ushort_t i = 0; i < static_cast<ushort_t>( casLongDays.size() ); ++ i) {
-        xCHECK_RET(false == a_cbIsShortName && true == CxString::compareNoCase(a_csDay, casLongDays[i]),  i);
-        xCHECK_RET(true  == a_cbIsShortName && true == CxString::compareNoCase(a_csDay, casShortDays[i]), i);
+        xCHECK_RET(!a_cbIsShortName && CxString::compareNoCase(a_csDay, casLongDays[i]),  i);
+        xCHECK_RET(true  == a_cbIsShortName && CxString::compareNoCase(a_csDay, casShortDays[i]), i);
     }
 
     return static_cast<ushort_t>( - 1 );  //TODO: static_cast<ushort_t>( - 1 )

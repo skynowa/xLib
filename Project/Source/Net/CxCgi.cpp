@@ -625,18 +625,18 @@ CxCgiEnvironment::_construct() {
     _m_sHttpAcceptLanguage = CxEnvironment::var(xT("HTTP_ACCEPT_LANGUAGE"));
     _m_sCountryCode        = CxEnvironment::var(xT("GEOIP_COUNTRY_CODE"));
 
-    if (true == _m_sCountryCode.empty()) {
+    if (_m_sCountryCode.empty()) {
         _m_sCountryCode    = CxEnvironment::var(xT("HTTP_GEOIP_COUNTRY_CODE"));
     }
-    if (true == _m_sCountryCode.empty()) {
+    if (_m_sCountryCode.empty()) {
         _m_sCountryCode    = CxEnvironment::var(xT("HTTP_COUNTRY_CODE"));
     }
 
     //--------------------------------------------------
     //is data from a GET or a POST?
-    if        (false != CxString::compareNoCase(xT("GET"), requestMethod()) ) {
+    if        (CxString::compareNoCase(xT("GET"), requestMethod())) {
         _m_rtRequestType = rtGet;
-    } else if (false != CxString::compareNoCase(xT("POST"), requestMethod()) ) {
+    } else if (CxString::compareNoCase(xT("POST"), requestMethod())) {
         _m_rtRequestType = rtPost;
     }
     else {
@@ -680,7 +680,7 @@ CxCgiCookies::operator [] (
 )
 {
     xFOREACH_CONST(TCookies, it, items) {
-        xCHECK_DO(false == CxString::compareNoCase(a_csCookieName, (*it)->value()), continue);
+        xCHECK_DO(!CxString::compareNoCase(a_csCookieName, (*it)->value()), continue);
 
         return (*it)->value();
     }
@@ -816,7 +816,7 @@ CxCgiFormData::_construct() {
 
             //get content length
             size_t uiPostSize = 0;  // in bytes
-            if (true == _m_ccgCgi.Environment.contentLength().empty()) {
+            if (_m_ccgCgi.Environment.contentLength().empty()) {
                 uiPostSize = 0;
             }
             else {

@@ -84,31 +84,31 @@ CxUri::uri() const {
     std::tstring_t sTemp;
 
     sTemp = scheme();
-    if (false == sTemp.empty()) {
+    if (!sTemp.empty()) {
         sRv += xT("");
         sRv += sTemp;
     }
 
     sTemp = authority();
-    if (false == sTemp.empty()) {
+    if (!sTemp.empty()) {
         sRv += xT(":");
         sRv += sTemp;
     }
 
     sTemp = path();
-    if (false == sTemp.empty()) {
+    if (!sTemp.empty()) {
         sRv += xT("");
         sRv += sTemp;
     }
 
     sTemp = query();
-    if (false == sTemp.empty()) {
+    if (!sTemp.empty()) {
         sRv += xT("?");
         sRv += sTemp;
     }
 
     sTemp = fragment();
-    if (false == sTemp.empty()) {
+    if (!sTemp.empty()) {
         sRv += xT("#");
         sRv += sTemp;
     }
@@ -153,16 +153,16 @@ CxUri::authority() const {
 
     sTempAuthority += xT("//");
 
-    if (false == _m_sUserInfo.empty()) {
+    if (!_m_sUserInfo.empty()) {
         sTempAuthority += _m_sUserInfo;
         sTempAuthority += xT("@");
     }
 
-    if (false == _m_sHost.empty()) {
+    if (!_m_sHost.empty()) {
         sTempAuthority += _m_sHost;
     }
 
-    if (0 < _m_usPort && false == _isDefaultPort()) {
+    if (0 < _m_usPort && !_isDefaultPort()) {
         sTempAuthority += xT(":");
         sTempAuthority += CxString::cast(_m_usPort);
     }

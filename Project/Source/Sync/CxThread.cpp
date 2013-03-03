@@ -62,13 +62,13 @@ CxThread::~CxThread() {
     //-------------------------------------
     // close thread, if it still running
     bool_t bRv = isRunning();
-    if (true == bRv) {
+    if (bRv) {
         exit();
 
         // TODO: CxThread::~CxThread()
-        //if (false == bRv) {
+        //if (!bRv) {
         //    vKill(_ms_culExitTimeout);
-        //    if (false == bRv) {
+        //    if (!bRv) {
         //        xTEST_FAIL;
         //    }
         //}
@@ -163,7 +163,7 @@ CxThread::create(
         _m_bIsRunning = true;
         /*_m_bIsPaused*/// n/a
 
-        if (false != a_cbIsPaused) {
+        if (a_cbIsPaused) {
             pause();
         } else {
             resume();
@@ -228,7 +228,7 @@ CxThread::exit() {
     /*_m_bIsExited*///  n/a
     /*_m_bIsCreated*/// n/a
     /*_m_bIsRunning*/// n/a
-    /*_m_bIsPaused*/    xCHECK_DO(true == isPaused(), resume()); //если поток приостановленный (bPause) - возобновляем
+    /*_m_bIsPaused*/    xCHECK_DO(isPaused(), resume()); //если поток приостановленный (bPause) - возобновляем
                                                                    //если ожидает чего-то
 }
 //------------------------------------------------------------------------------
@@ -320,9 +320,9 @@ CxThread::isCreated() const {
     bool_t bRv = false;
 
 #if   xOS_ENV_WIN
-    bRv = (true == _m_bIsCreated) && (false != _m_hThread.isValid());
+    bRv = (_m_bIsCreated) && (_m_hThread.isValid());
 #elif xOS_ENV_UNIX
-    bRv = (true == _m_bIsCreated) && (0UL   != _m_hThread);
+    bRv = (_m_bIsCreated) && (0UL   != _m_hThread);
 #endif
 
     return bRv;
@@ -369,9 +369,9 @@ CxThread::isPaused() {
     bool_t bRv = false;
 
 #if   xOS_ENV_WIN
-    bRv = (!_m_evPause.isSignaled()) && (false != _m_hThread.isValid());
+    bRv = !_m_evPause.isSignaled() && _m_hThread.isValid();
 #elif xOS_ENV_UNIX
-    bRv = (!_m_evPause.isSignaled()) /*&& (0UL   != _m_hThread)*/;
+    bRv = !_m_evPause.isSignaled() /*&& (0UL   != _m_hThread)*/;
 #endif
 
     return bRv;
@@ -384,9 +384,9 @@ CxThread::isExited() {
     bool_t bRv = false;
 
 #if   xOS_ENV_WIN
-    bRv = (true == _m_evExit.isSignaled()) && (false != _m_hThread.isValid());
+    bRv = _m_evExit.isSignaled() && _m_hThread.isValid();
 #elif xOS_ENV_UNIX
-    bRv = (true == _m_evExit.isSignaled()) && (0UL   != _m_hThread);
+    bRv = _m_evExit.isSignaled() && (0UL   != _m_hThread);
 #endif
 
     return bRv;
@@ -584,7 +584,7 @@ CxThread::setPriority(
     BOOL blRes = ::SetThreadPriority(_m_hThread.get(), a_ctpPriority);
     xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
-    if (false == CxSystemInfo::isUserAdmin()) {
+    if (!CxSystemInfo::isUserAdmin()) {
         CxTracer() << xT("::: xLib: warning (CxThread::vSetPriority fail, need root) :::");
         return;
     }
@@ -925,7 +925,7 @@ CxThread::setDebugName(
     ////xTEST_LESS(0, _m_ulId);
     ////xTEST_GR(32, a_csName.size()); //MAX_NAME_SIZE 32
 
-    //// TODO: xCHECK_RET(false == CxDebugger().bIsActive(), true);
+    //// TODO: xCHECK_RET(!CxDebugger().bIsActive(), true);
 
 #if   xOS_ENV_WIN
     #if xCOMPILER_MS || xCOMPILER_CODEGEAR
@@ -1026,7 +1026,7 @@ CxThread::onRun(
     #if xTEMP_DISABLED
         xFOREVER {
             bool_t bRv = isTimeToExit();
-            xCHECK_DO(true == bRv, break);
+            xCHECK_DO(bRv, break);
 
             //...
         }
@@ -1052,12 +1052,12 @@ CxThread::isTimeToExit() {
     //-------------------------------------
     //exit
     bRv = isExited();
-    xCHECK_RET(true == bRv, true);
+    xCHECK_RET(bRv, true);
 
     //-------------------------------------
     //pause / resume
     bRv = isPaused();
-    xCHECK_RET(true == bRv, ! _waitResumption());
+    xCHECK_RET(bRv, ! _waitResumption());
 
     //-------------------------------------
     //flags
@@ -1099,7 +1099,7 @@ CxThread::_s_jobEntry(
 
     //-------------------------------------
     // if created suspended thread - wait for resumption
-    if (true == pthThis->isPaused()) {
+    if (pthThis->isPaused()) {
         bRv = pthThis->_waitResumption();
         xTEST_EQ(true, bRv);
     }
@@ -1166,7 +1166,7 @@ CxThread::_s_jobEntry(
 
     //-------------------------------------
     // auto delete oneself
-    xCHECK_DO(true == pthThis->_m_cbIsAutoDelete, xPTR_DELETE(pthThis));
+    xCHECK_DO(pthThis->_m_cbIsAutoDelete, xPTR_DELETE(pthThis));
 
     return esExitStatus;
 }

@@ -117,7 +117,7 @@ CxHandleT<hvTag>::set(
 template<ExHandleValue hvTag>
 native_handle_t
 CxHandleT<hvTag>::duplicate() const {
-    xCHECK_RET(false == isValid(), error_value_t::get());
+    xCHECK_RET(!isValid(), error_value_t::get());
 
     native_handle_t hRv = error_value_t::get();
 
@@ -138,7 +138,7 @@ CxHandleT<hvTag>::duplicate() const {
     ////xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     hRv = ::dup(_m_hHandle);
-    ////xTEST_EQ(true == error_value_t::hGet() != hRv);
+    ////xTEST_EQ(error_value_t::hGet() != hRv);
 #endif
 
     return hRv;
@@ -176,7 +176,7 @@ CxHandleT<hvTag>::attach(
 )
 {
     xTEST_NA(a_chHandle);
-    xCHECK_DO(false == isValid(), return);
+    xCHECK_DO(!isValid(), return);
 
     close();
 
@@ -196,7 +196,7 @@ CxHandleT<hvTag>::detach() {
 template<ExHandleValue hvTag>
 void_t
 CxHandleT<hvTag>::close() {
-    xCHECK_DO(false == isValid(), _m_hHandle = error_value_t::get(); return);
+    xCHECK_DO(!isValid(), _m_hHandle = error_value_t::get(); return);
 
 #if   xOS_ENV_WIN
     BOOL blRes = ::CloseHandle(_m_hHandle);

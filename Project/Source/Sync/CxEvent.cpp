@@ -92,7 +92,7 @@ CxEvent::set() {
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
     {
-        if (true == _m_cbIsAutoReset) {
+        if (_m_cbIsAutoReset) {
             int_t iRv = ::pthread_cond_signal(&_m_cndCond);
             xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
         } else {
@@ -152,7 +152,7 @@ CxEvent::wait(
     {
         int_t iRv = 0;
 
-        // if (false == _m_bIsSignaled) {
+        // if (!_m_bIsSignaled) {
             timespec tsTimeoutMs = {0};
 
             if (xTIMEOUT_INFINITE != a_culTimeout) {
@@ -229,7 +229,7 @@ CxEvent::isSignaled() {
     DWORD dwRv = ::WaitForSingleObject(handle().get(), 0UL);
     // n/a
 
-    bRv = (false != _m_hEvent.isValid() && osSignaled == dwRv);
+    bRv = (_m_hEvent.isValid() && osSignaled == dwRv);
 #elif xOS_ENV_UNIX
     bRv = _m_bIsSignaled;
 #endif

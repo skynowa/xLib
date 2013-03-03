@@ -79,7 +79,7 @@ CxSystemLog::write(
     xTEST_DIFF(xNATIVE_HANDLE_NULL, _m_SysLog);
 #endif
 
-    xCHECK_DO(false == _m_bIsEnable, return);
+    xCHECK_DO(!_m_bIsEnable, return);
 
     //-------------------------------------
     // comment

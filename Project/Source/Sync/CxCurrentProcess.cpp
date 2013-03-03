@@ -88,7 +88,7 @@ CxCurrentProcess::parentId() {
     dlDll.load(xT("ntdll.dll"));
 
     bool_t bRv = dlDll.isProcExists(xT("NtQueryInformationProcess"));
-    xCHECK_RET(false == bRv, culInvalidId);
+    xCHECK_RET(!bRv, culInvalidId);
 
 #if xARCH_X86    
     const PROCESSINFOCLASS    cpicInfo                = ProcessBasicInformation;

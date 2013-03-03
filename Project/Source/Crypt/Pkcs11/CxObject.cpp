@@ -390,7 +390,7 @@ CxObject::setData(
     //CxObject
     CxObject objData(objPkcs11, objSession);
 
-    if (false == vechData.empty()) {
+    if (!vechData.empty()) {
         //-------------------------------------
         //������ ���������� - ����������
         objData.setHandle(vechData.at(0));

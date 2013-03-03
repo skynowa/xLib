@@ -135,7 +135,7 @@ xTMAIN(int_t iArgCount, tchar_t *paszArgs[]) {
         // usage
         if (2 == iArgCount) {
             bool_t bRv = CxString::compareNoCase(xT("-h"), vsArgs.at(1));
-            if (true == bRv) {
+            if (bRv) {
                 std::tcout << xT("\nUsage: xlib_r is_tracing all_loops unit_loops\n")
                               xT("  - xlib_r      (binary file path)\n")
                               xT("  - is_tracing  (is tracing)\n")

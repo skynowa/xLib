@@ -152,31 +152,31 @@ CxCookiePv0::toString() const {
     sRv.append(_m_sValue);
 
     //domain
-    if (false == _m_sDomain.empty()) {
+    if (!_m_sDomain.empty()) {
         sRv.append(xT("; Domain="));
         sRv.append(_m_sDomain);
     }
 
     //path
-    if (false == _m_sPath.empty()) {
+    if (!_m_sPath.empty()) {
         sRv.append(xT("; Path="));
         sRv.append(_m_sPath);
     }
 
     //expires
-    if (false == _m_sExpires.empty()) {
+    if (!_m_sExpires.empty()) {
         //[Wdy, DD-Mon-YYYY HH:MM:SS GMT]
         sRv.append(xT("; Expires="));
         sRv.append(_m_sExpires);
     }
 
     //secure
-    if (true == _m_bSecure) {
+    if (_m_bSecure) {
         sRv.append(xT("; Secure"));
     }
 
     //HttpOmly
-    if (true == _m_bHttpOnly) {
+    if (_m_bHttpOnly) {
         sRv.append(xT("; HttpOnly"));
     }
 

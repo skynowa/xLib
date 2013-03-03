@@ -111,8 +111,8 @@ CxBase64::isCharValid(
 {
     // n/a
 
-    bool_t bRv = ((false != CxChar::isAlphaNum(a_cchChar)) || 
-                ('+' == a_cchChar) || ('/' == a_cchChar));
+    bool_t bRv = (CxChar::isAlphaNum(a_cchChar) || 
+                 ('+' == a_cchChar) || ('/' == a_cchChar));
 
     return bRv;
 }

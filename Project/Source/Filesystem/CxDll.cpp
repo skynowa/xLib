@@ -122,7 +122,7 @@ void_t
 CxDll::_destruct() {
     xTESTS_NA;
 
-    xCHECK_DO(false == isLoaded(), return);
+    xCHECK_DO(!isLoaded(), return);
 
 #if   xOS_ENV_WIN
     BOOL blRes = ::FreeLibrary(_m_hDll);

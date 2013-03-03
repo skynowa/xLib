@@ -60,12 +60,12 @@ CxBackuper::execute(
     (*a_psDestFilePath).clear();
 
     bRv = CxFile::isExists(a_csFilePath);
-    xCHECK_DO(false == bRv, xTHROW() << csError_DestFileNotExists);
+    xCHECK_DO(!bRv, xTHROW() << csError_DestFileNotExists);
 
     CxDir drDest(a_csDestDirPath);
 
     bRv = drDest.isExists();
-    xCHECK_DO(false == bRv, drDest.pathCreate());
+    xCHECK_DO(!bRv, drDest.pathCreate());
 
     //-------------------------------------
     // process backup period
@@ -93,7 +93,7 @@ CxBackuper::execute(
                         xT(".bak [") + sDateTimeStamp + xT("]");
 
     bRv = CxFile::isExists(sBackupFilePath);
-    xCHECK_DO(true == bRv, *a_psDestFilePath = sBackupFilePath; return);
+    xCHECK_DO(bRv, *a_psDestFilePath = sBackupFilePath; return);
 
     //-------------------------------------
     // check for enough space

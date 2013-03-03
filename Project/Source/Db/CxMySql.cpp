@@ -91,7 +91,7 @@ CxMySQLConnection::isExists(
 
     {
         bRv = conConn.isValid();
-        xCHECK_RET(false == bRv, false);
+        xCHECK_RET(!bRv, false);
 
         conConn.connect(a_csHost, a_csUser, a_csPassword, xT(""), a_cuiPort, a_csUnixSocket, a_culClientFlag);
         conConn.query(xT("SELECT IF (EXISTS(SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '%s'), 'true', 'false')"),
@@ -110,7 +110,7 @@ CxMySQLConnection::isExists(
         recRec.fetchRow(&vsRow);
         xTEST_EQ(static_cast<size_t>( 1U ), vsRow.size());
 
-        xCHECK_RET(true == CxString::compareNoCase(xT("false"), vsRow.at(0)), false);
+        xCHECK_RET(CxString::compareNoCase(xT("false"), vsRow.at(0)), false);
 
         xTEST_EQ(true, CxString::compareNoCase(xT("true"), vsRow.at(0)));
     }
@@ -188,7 +188,7 @@ void_t
 CxMySQLConnection::close() {
     // _m_pmsConnection - n/a
 
-    if (false != isValid()) {
+    if (isValid()) {
         (void_t)::mysql_close(_m_pmsConnection);
 
         _m_pmsConnection = NULL;
@@ -253,7 +253,7 @@ CxMySQLRecordset::CxMySQLRecordset(
 
     MYSQL_RES *pmrResult = NULL;
 
-    if (false != a_cbIsUseResult) {
+    if (a_cbIsUseResult) {
         pmrResult = ::mysql_use_result  (_m_pcmcConnection->get());
         xTEST_MSG_PTR(pmrResult, _m_pcmcConnection->lastErrorStr());
     } else {
@@ -268,7 +268,7 @@ CxMySQLRecordset::CxMySQLRecordset(
 CxMySQLRecordset::~CxMySQLRecordset() {
     // _m_pmrResult - n/a
 
-    if (false != isValid()) {
+    if (isValid()) {
         (void_t)::mysql_free_result(_m_pmrResult);
 
         _m_pmrResult = NULL;

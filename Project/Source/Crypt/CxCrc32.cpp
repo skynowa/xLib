@@ -63,7 +63,7 @@ CxCrc32::calcFile(
     std::ustring_t usFile;
 
     CxFile::binRead(a_csFilePath, &usFile);
-    if (true == usFile.empty()) {
+    if (usFile.empty()) {
         ulRv = 0;
     } else {
         ulRv = calc(&usFile.at(0), static_cast<ulong_t>( usFile.size() ));
@@ -188,7 +188,7 @@ CxCrc32::calcFileFast(
     std::ustring_t usFile;
 
     CxFile::binRead(a_csFilePath, &usFile);
-    if (true == usFile.empty()) {
+    if (usFile.empty()) {
         ulRv = 0;
     } else {
         ulRv = calcFast(&usFile.at(0), static_cast<ulong_t>( usFile.size() ));

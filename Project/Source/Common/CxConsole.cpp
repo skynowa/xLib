@@ -468,7 +468,7 @@ CxConsole::prompt(
             ctchar_t chLetter = static_cast<tchar_t>( std::tcin.get() );
 
             // asterisks
-            xCHECK_DO(true == a_cbIsVisible, write(xT("*")));
+            xCHECK_DO(a_cbIsVisible, write(xT("*")));
 
             // ENTER
             xCHECK_DO(10 == chLetter, break);
@@ -481,7 +481,7 @@ CxConsole::prompt(
 
         writeLine(CxConst::xSTR_EMPTY);
 
-        xCHECK_DO(true == (*a_psAnswer).empty(), continue);
+        xCHECK_DO((*a_psAnswer).empty(), continue);
 
         break;
     }
@@ -587,7 +587,7 @@ CxConsole::enableClose(
     _m_hMenu = _menuHandle(false);
     xTEST_EQ(true, NULL != _m_hMenu);
 
-    if (false == a_cbFlag) {
+    if (!a_cbFlag) {
         BOOL blRv = ::DeleteMenu(_m_hMenu, SC_CLOSE, MF_BYCOMMAND);
         xTEST_DIFF(FALSE, blRv);
     } else {
@@ -770,7 +770,7 @@ CxConsole::_menuHandle(
 )
 {
     _m_hMenu = ::GetSystemMenu(_m_hWnd, a_cbRevert);
-    if (false == a_cbRevert) {
+    if (!a_cbRevert) {
         xTEST_EQ(true, NULL != _m_hMenu);
     }
     if (true  == a_cbRevert) {
