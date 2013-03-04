@@ -42,10 +42,10 @@ public:
     void_t                       close        ();
         ///< close search
 
-    static void_t                filesFind    (std::ctstring_t &csPattern,
+    static void_t                files        (std::ctstring_t &csRootDirPath, std::ctstring_t &csPattern,
                                                cbool_t &cbIsRecursively, std::vec_tstring_t *pvsFilePathes);
         ///< search files
-    static void_t                dirsFind     (std::ctstring_t &csPattern,
+    static void_t                dirs         (std::ctstring_t &csRootDirPath, std::ctstring_t &csPattern,
                                                cbool_t &cbIsRecursively, std::vec_tstring_t *pvsDirPathes);
         ///< search subdirectories
 

@@ -199,24 +199,26 @@ CxFinder::close() {
 //--------------------------------------------------------------------------
 /* static */
 void_t
-CxFinder::filesFind(
+CxFinder::files(
+    std::ctstring_t    &csRootDirPath,
     std::ctstring_t    &csPattern,
     cbool_t            &cbIsRecursively,
     std::vec_tstring_t *pvsFilePathes
 )
 {
-    // TODO: CxFinder::filesFind
+    // TODO: CxFinder::files
 }
 //--------------------------------------------------------------------------
 /* static */
 void_t
-CxFinder::dirsFind(
+CxFinder::dirs(
+    std::ctstring_t    &csRootDirPath,
     std::ctstring_t    &csPattern,
     cbool_t            &cbIsRecursively,
     std::vec_tstring_t *pvsDirPathes
 )
 {
-    // TODO: CxFinder::dirsFind
+    // TODO: CxFinder::dirs
 }
 //--------------------------------------------------------------------------
 

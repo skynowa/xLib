@@ -118,5 +118,89 @@ CxTest_CxFinder::unit(
         }
     }
 
+
+    std::ctstring_t csTempScanDirPath = tempDirPath() + CxConst::xSLASH + xT("Scan");
+    std::ctstring_t csMask            = xT("*.txt");
+
+#if   xOS_ENV_WIN
+    std::ctstring_t csFilePath        = tempDirPath() + xT("\\Test.txt");
+    std::ctstring_t csRootTestDirPath = tempDirPath() + xT("\\Test_Dir");
+    std::ctstring_t csDirPath         = tempDirPath() + xT("\\Test_Dir\\1\\2\\3");
+    std::ctstring_t csDirPath2        = tempDirPath() + xT("\\Test_Dir\\1\\2\\3\\4");
+    std::ctstring_t csNewFilePath     = tempDirPath() + xT("\\New.Test.txt");
+    std::ctstring_t csBakFilePath     = tempDirPath() + xT("\\Test_Static.txt.bak");
+    std::ctstring_t csFilePathSt      = tempDirPath() + xT("\\Test_Static.txt");
+#elif xOS_ENV_UNIX
+    std::ctstring_t csFilePath        = tempDirPath() + xT("/Test.txt");
+    std::ctstring_t csRootTestDirPath = tempDirPath() + xT("/Test_Dir");
+    std::ctstring_t csDirPath         = tempDirPath() + xT("/Test_Dir/1/2/3");
+    std::ctstring_t csDirPath2        = tempDirPath() + xT("/Test_Dir/1/2/3/4");
+    std::ctstring_t csNewFilePath     = tempDirPath() + xT("/New.Test.txt");
+    std::ctstring_t csBakFilePath     = tempDirPath() + xT("/Test_Static.txt.bak");
+    std::ctstring_t csFilePathSt      = tempDirPath() + xT("/Test_Static.txt");
+#endif
+
+    xTEST_CASE("CxFinder::dirsFind", cullCaseLoops)
+    {
+        //-------------------------------------
+        //prepare for csTempScanDirPath (create dirs)
+        std::ctstring_t sDirPathes[] =
+        {
+            csTempScanDirPath + CxConst::xSLASH + xT("A"),
+            csTempScanDirPath + CxConst::xSLASH + xT("B"),
+            csTempScanDirPath + CxConst::xSLASH + xT("A") + CxConst::xSLASH + xT("AA"),
+            csTempScanDirPath + CxConst::xSLASH + xT("A") + CxConst::xSLASH + xT("AA") + CxConst::xSLASH + xT("AAA")
+        };
+
+        for (size_t i = 0; i < xARRAY_SIZE(sDirPathes); ++ i) {
+            CxDir(sDirPathes[i]).pathCreate();
+        }
+
+        {
+            m_vsRv.clear();
+
+            CxFinder::dirs(csTempScanDirPath, CxConst::xMASK_ALL, false, &m_vsRv);
+            xTEST_EQ(size_t(2), m_vsRv.size());
+        }
+
+        {
+            m_vsRv.clear();
+            CxFinder::dirs(csTempScanDirPath, CxConst::xMASK_ALL, true, &m_vsRv);
+            xTEST_EQ(xARRAY_SIZE(sDirPathes), m_vsRv.size());
+        }
+    }
+
+    xTEST_CASE("CxFinder::filesFind", cullCaseLoops)
+    {
+        //-------------------------------------
+        // prepare for csTempScanDirPath (create files)
+        std::ctstring_t g_sFilePathes[] =
+        {
+            csTempScanDirPath + CxConst::xSLASH + xT("File_1"),
+            csTempScanDirPath + CxConst::xSLASH + xT("File_2"),
+            csTempScanDirPath + CxConst::xSLASH + xT("A") + CxConst::xSLASH + xT("File_3"),
+            csTempScanDirPath + CxConst::xSLASH + xT("B") + CxConst::xSLASH + xT("File_4"),
+            csTempScanDirPath + CxConst::xSLASH + xT("A") + CxConst::xSLASH + xT("AA") + CxConst::xSLASH + xT("File_5"),
+            csTempScanDirPath + CxConst::xSLASH + xT("A") + CxConst::xSLASH + xT("AA") + CxConst::xSLASH + xT("AAA") + CxConst::xSLASH + xT("File_6")
+        };
+
+        for (size_t i = 0; i < xARRAY_SIZE(g_sFilePathes); ++ i) {
+            CxFile sfFile;
+
+            sfFile.create(g_sFilePathes[i], CxFile::omWrite, true);
+        }
+
+        {
+            m_vsRv.clear();
+            CxFinder::files(csTempScanDirPath, CxConst::xMASK_ALL, false, &m_vsRv);
+            xTEST_EQ(size_t(2), m_vsRv.size());
+        }
+
+        {
+            m_vsRv.clear();
+            CxFinder::files(csTempScanDirPath, CxConst::xMASK_ALL, true, &m_vsRv);
+            xTEST_EQ(xARRAY_SIZE(g_sFilePathes), m_vsRv.size());
+        }
+    }
 }
 //------------------------------------------------------------------------------
