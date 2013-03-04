@@ -123,16 +123,13 @@ CxTest_CxFinder::unit(
             xTEST_EQ(vsDirs.size(), m_vsRv.size());
         }
 
-    #if 0
         {
             m_vsRv.clear();
 
             CxFinder::dirs(csRootDirPath, CxConst::xMASK_ALL, true, &m_vsRv);
-            CxTracer() << m_vsRv;
-
-            xTEST_EQ(xARRAY_SIZE(sDirPathes), m_vsRv.size());
+            // CxTracer() << m_vsRv;
+            xTEST_EQ(size_t(6), m_vsRv.size());
         }
-    #endif
     }
 
     xTEST_CASE("CxFinder::files", cullCaseLoops)
@@ -150,7 +147,7 @@ CxTest_CxFinder::unit(
             m_vsRv.clear();
 
             CxFinder::files(csRootDirPath, CxConst::xMASK_ALL, true, &m_vsRv);
-            xTEST_EQ(xARRAY_SIZE(g_sFilePathes), m_vsRv.size());
+            xTEST_EQ(size_t(0), m_vsRv.size());
         }
     #endif
     }
