@@ -28,12 +28,12 @@ CxFinder::CxFinder(
     std::ctstring_t &a_csFilterByShell
 ) :
     _m_enEnrty        (),
-    _m_csRootDirPath  (a_csRootDirPath),
+    _m_csRootDirPath  ( CxPath(a_csRootDirPath).toNative(true) ),
     _m_csFilterByShell(a_csFilterByShell)
 {
     xTEST_NA(isValid());
-    xTEST_EQ(false, _m_csRootDirPath.empty());
-    xTEST_EQ(false, _m_csFilterByShell.empty());
+    xTEST_EQ(false, a_csRootDirPath.empty());
+    xTEST_EQ(false, a_csFilterByShell.empty());
 }
 //------------------------------------------------------------------------------
 /* virtual */
