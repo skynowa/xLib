@@ -9,6 +9,12 @@
 # dirs
 Docs/html/
 
+!Project/Include/xLib/Debug
+!Project/Source/Debug
+
+!Tests/Include/Test/Debug
+!Tests/Source/Debug
+
 
 ################################################################################
 # files
@@ -63,7 +69,7 @@ bin/*
 
 # Build results
 
-#[Dd]ebug/
+[Dd]ebug/
 [Rr]elease/
 
 [Dd]ebug_Ansi/

@@ -29,9 +29,10 @@ CxFinder::CxFinder(
 ) :
     _m_enEnrty        (),
     _m_csRootDirPath  ( CxPath(a_csRootDirPath).toNative(true) ),
-    _m_csFilterByShell(a_csFilterByShell)
+    _m_csFilterByShell(a_csFilterByShell),
+    _m_bIsMoveFirst   (true)
 {
-    xTEST_NA(isValid());
+    xTEST_EQ(false, isValid());
     xTEST_EQ(false, a_csRootDirPath.empty());
     xTEST_EQ(false, a_csFilterByShell.empty());
 }
@@ -40,23 +41,25 @@ CxFinder::CxFinder(
 CxFinder::~CxFinder() {
     close();
 }
-//--------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 std::ctstring_t &
 CxFinder::rootDirPath() const {
     xTEST_EQ(false, _m_csRootDirPath.empty());
 
     return _m_csRootDirPath;
 }
-//--------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 std::ctstring_t &
 CxFinder::filterByShell() const {
     xTEST_EQ(false, _m_csFilterByShell.empty());
 
     return _m_csFilterByShell;
 }
-//--------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 std::tstring_t
 CxFinder::entryName() const {
+    xTEST_EQ(true, isValid());
+
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
@@ -69,9 +72,11 @@ CxFinder::entryName() const {
 
     return sRv;
 }
-//--------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 CxFileAttribute::ExAttribute
 CxFinder::attributes() const {
+    xTEST_EQ(true, isValid());
+
     CxFileAttribute::ExAttribute faRv = CxFileAttribute::faInvalid;
 
 #if   xOS_ENV_WIN
@@ -124,47 +129,38 @@ CxFinder::isValid() const {
 }
 //------------------------------------------------------------------------------
 bool_t
-CxFinder::moveFirst() {
-#if   xOS_ENV_WIN
-    _m_enEnrty.hHandle = ::FindFirstFile(
-                            (rootDirPath() + CxConst::xSLASH + filterByShell()).c_str(),
-                            &_m_enEnrty.fdData);
-    xCHECK_RET(xNATIVE_HANDLE_INVALID == _m_enEnrty.hHandle, false);
-#elif xOS_ENV_UNIX
-    _m_enEnrty.pHandle = ::opendir(rootDirPath().c_str());
-    xTEST_PTR(_m_enEnrty.pHandle);
-
-    bool_t bRv = moveNext();
-    xCHECK_RET(!bRv, false);
-#endif
-
-    return true;
-}
-//------------------------------------------------------------------------------
-bool_t
 CxFinder::moveNext() {
-#if   xOS_ENV_WIN
-    BOOL blRv = ::FindNextFile(_m_enEnrty.hHandle, &_m_enEnrty.fdData);
-    xCHECK_RET(FALSE == blRv, false);
-#elif xOS_ENV_UNIX
-    xFOREVER {
-        _m_enEnrty.pdrData = ::readdir(_m_enEnrty.pHandle);
-        xCHECK_RET(NULL == _m_enEnrty.pdrData, false);
+    // xTEST_EQ(true, isValid());
 
-        // filter by pattern
-        int_t iRv = ::fnmatch(filterByShell().c_str(), entryName().c_str(), 0);
-        xTEST_EQ(true, (0 == iRv) || (FNM_NOMATCH == iRv));
+    if (_m_bIsMoveFirst) {
+        bool_t bRv = _moveFirst();
+        xCHECK_RET(!bRv, false);
+    } else {
+    #if   xOS_ENV_WIN
+        BOOL blRv = ::FindNextFile(_m_enEnrty.hHandle, &_m_enEnrty.fdData);
+        xCHECK_RET(FALSE == blRv, false);
+    #elif xOS_ENV_UNIX
+        xFOREVER {
+            _m_enEnrty.pdrData = ::readdir(_m_enEnrty.pHandle);
+            xCHECK_RET(NULL == _m_enEnrty.pdrData, false);
 
-        xCHECK_DO(FNM_NOMATCH == iRv, continue);
-        xCHECK_DO(0           == iRv, break);
+            // filter by pattern
+            int_t iRv = ::fnmatch(filterByShell().c_str(), entryName().c_str(), 0);
+            xTEST_EQ(true, (0 == iRv) || (FNM_NOMATCH == iRv));
+
+            xCHECK_DO(FNM_NOMATCH == iRv, continue);
+            xCHECK_DO(0           == iRv, break);
+        }
+    #endif
     }
-#endif
 
     return true;
 }
 //------------------------------------------------------------------------------
 void_t
 CxFinder::close() {
+    _m_bIsMoveFirst = true;
+
     xCHECK_DO(!isValid(), return);
 
     // close handle
@@ -189,26 +185,15 @@ CxFinder::close() {
     #endif
     }
 }
-//--------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+
 
 /*******************************************************************************
 *   public static
 *
 *******************************************************************************/
 
-//--------------------------------------------------------------------------
-/* static */
-void_t
-CxFinder::files(
-    std::ctstring_t    &a_csRootDirPath,
-    std::ctstring_t    &a_csPattern,
-    cbool_t            &a_cbIsRecursively,
-    std::vec_tstring_t *a_pvsFilePathes
-)
-{
-    // TODO: CxFinder::files
-}
-//--------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 /* static */
 void_t
 CxFinder::dirs(
@@ -223,8 +208,85 @@ CxFinder::dirs(
     xTEST_NA(a_cbIsRecursively);
     xTEST_PTR(a_pvsDirPathes);
 
-    // TODO: CxFinder::dirs
+    std::vec_tstring_t vsRv;
+    CxFinder           fnFinder(a_csRootDirPath, a_csPattern);
+
+    xFOREVER {
+        bool_t bRv = fnFinder.moveNext();
+        xCHECK_DO(!bRv, break);
+
+        xCHECK_DO(CxFileAttribute::faDirectory != fnFinder.attributes(), continue);
+        xCHECK_DO(CxConst::xDOT  == fnFinder.entryName(), continue);
+        xCHECK_DO(CxConst::x2DOT == fnFinder.entryName(), continue);
+
+        vsRv.push_back(fnFinder.entryName());
+    }
+
+    // out
+    a_pvsDirPathes->swap(vsRv);
 }
-//--------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+/* static */
+void_t
+CxFinder::files(
+    std::ctstring_t    &a_csRootDirPath,
+    std::ctstring_t    &a_csPattern,
+    cbool_t            &a_cbIsRecursively,
+    std::vec_tstring_t *a_pvsFilePathes
+)
+{
+    xTEST_EQ(false, a_csRootDirPath.empty());
+    xTEST_EQ(false, a_csPattern.empty());
+    xTEST_NA(a_cbIsRecursively);
+    xTEST_PTR(a_pvsFilePathes);
+
+    std::vec_tstring_t vsRv;
+    CxFinder           fnFinder(a_csRootDirPath, a_csPattern);
+
+    xFOREVER {
+        bool_t bRv = fnFinder.moveNext();
+        xCHECK_DO(!bRv, break);
+
+        xCHECK_DO(CxFileAttribute::faRegularFile != fnFinder.attributes(), continue);
+        xCHECK_DO(CxConst::xDOT  == fnFinder.entryName(), continue);
+        xCHECK_DO(CxConst::x2DOT == fnFinder.entryName(), continue);
+
+        vsRv.push_back(fnFinder.entryName());
+    }
+
+    // out
+    a_pvsFilePathes->swap(vsRv);
+}
+//------------------------------------------------------------------------------
+
+
+/*******************************************************************************
+*   private
+*
+*******************************************************************************/
+
+//------------------------------------------------------------------------------
+bool_t
+CxFinder::_moveFirst() {
+    xTEST_EQ(false, isValid());
+
+    _m_bIsMoveFirst = false;
+
+#if   xOS_ENV_WIN
+    _m_enEnrty.hHandle = ::FindFirstFile(
+                            (rootDirPath() + CxConst::xSLASH + filterByShell()).c_str(),
+                            &_m_enEnrty.fdData);
+    xCHECK_RET(xNATIVE_HANDLE_INVALID == _m_enEnrty.hHandle, false);
+#elif xOS_ENV_UNIX
+    _m_enEnrty.pHandle = ::opendir(rootDirPath().c_str());
+    xTEST_PTR(_m_enEnrty.pHandle);
+
+    bool_t bRv = moveNext();
+    xCHECK_RET(!bRv, false);
+#endif
+
+    return true;
+}
+//------------------------------------------------------------------------------
 
 xNAMESPACE_END(NxLib)
