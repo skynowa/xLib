@@ -200,10 +200,10 @@ CxFinder::close() {
 /* static */
 void_t
 CxFinder::files(
-    std::ctstring_t    &csRootDirPath,
-    std::ctstring_t    &csPattern,
-    cbool_t            &cbIsRecursively,
-    std::vec_tstring_t *pvsFilePathes
+    std::ctstring_t    &a_csRootDirPath,
+    std::ctstring_t    &a_csPattern,
+    cbool_t            &a_cbIsRecursively,
+    std::vec_tstring_t *a_pvsFilePathes
 )
 {
     // TODO: CxFinder::files
@@ -212,12 +212,17 @@ CxFinder::files(
 /* static */
 void_t
 CxFinder::dirs(
-    std::ctstring_t    &csRootDirPath,
-    std::ctstring_t    &csPattern,
-    cbool_t            &cbIsRecursively,
-    std::vec_tstring_t *pvsDirPathes
+    std::ctstring_t    &a_csRootDirPath,
+    std::ctstring_t    &a_csPattern,
+    cbool_t            &a_cbIsRecursively,
+    std::vec_tstring_t *a_pvsDirPathes
 )
 {
+    xTEST_EQ(false, a_csRootDirPath.empty());
+    xTEST_EQ(false, a_csPattern.empty());
+    xTEST_NA(a_cbIsRecursively);
+    xTEST_PTR(a_pvsDirPathes);
+
     // TODO: CxFinder::dirs
 }
 //--------------------------------------------------------------------------
