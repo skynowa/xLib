@@ -208,8 +208,7 @@ CxFinder::dirs(
     xTEST_NA(a_cbIsRecursively);
     xTEST_PTR(a_pvsDirPathes);
 
-    std::vec_tstring_t vsRv;
-    CxFinder           fnFinder(a_csRootDirPath, a_csPattern);
+    CxFinder fnFinder(a_csRootDirPath, a_csPattern);
 
     xFOREVER {
         bool_t bRv = fnFinder.moveNext();
@@ -219,11 +218,17 @@ CxFinder::dirs(
         xCHECK_DO(CxConst::xDOT  == fnFinder.entryName(), continue);
         xCHECK_DO(CxConst::x2DOT == fnFinder.entryName(), continue);
 
-        vsRv.push_back(fnFinder.entryName());
-    }
+        std::ctstring_t csDirPath = CxPath(a_csRootDirPath).slashAppend() +
+                                    fnFinder.entryName();
 
-    // out
-    a_pvsDirPathes->swap(vsRv);
+        a_pvsDirPathes->push_back(csDirPath);
+
+        // is search in subdirs
+        if (a_cbIsRecursively) {
+            // recursion
+            CxFinder::dirs(csDirPath, a_csPattern, a_cbIsRecursively, a_pvsDirPathes);
+        }
+    }
 }
 //------------------------------------------------------------------------------
 /* static */
@@ -240,8 +245,7 @@ CxFinder::files(
     xTEST_NA(a_cbIsRecursively);
     xTEST_PTR(a_pvsFilePathes);
 
-    std::vec_tstring_t vsRv;
-    CxFinder           fnFinder(a_csRootDirPath, a_csPattern);
+    CxFinder fnFinder(a_csRootDirPath, a_csPattern);
 
     xFOREVER {
         bool_t bRv = fnFinder.moveNext();
@@ -251,11 +255,11 @@ CxFinder::files(
         xCHECK_DO(CxConst::xDOT  == fnFinder.entryName(), continue);
         xCHECK_DO(CxConst::x2DOT == fnFinder.entryName(), continue);
 
-        vsRv.push_back(fnFinder.entryName());
-    }
+        std::ctstring_t csDirPath = CxPath(a_csRootDirPath).slashAppend() +
+                                    fnFinder.entryName();
 
-    // out
-    a_pvsFilePathes->swap(vsRv);
+        a_pvsFilePathes->push_back(csDirPath);
+    }
 }
 //------------------------------------------------------------------------------
 
