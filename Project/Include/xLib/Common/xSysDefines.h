@@ -7,9 +7,8 @@
 #ifndef xLib_Common_xSysDefinesH
 #define xLib_Common_xSysDefinesH
 //------------------------------------------------------------------------------
-#include <stdlib.h>         // compilers
-#include <limits.h>         // standard C libraries
-
+#include <stdlib.h> // compilers
+#include <limits.h> // standard C libraries
 //------------------------------------------------------------------------------
 // OS environment
 #if defined(_WIN32) || defined(_WIN64) || defined(__WIN32__) || \
@@ -135,10 +134,10 @@
     #if xOS_FREEBSD
         //TODO: standard C libraries
     #else
-        #include <features.h>   // standard C libraries
+        #include <features.h> // standard C libraries
     #endif
 
-    #include <bits/c++config.h>    // standard C++ libraries
+    #include <bits/c++config.h> // standard C++ libraries
 #endif
 
 #if   xOS_ENV_WIN
@@ -218,7 +217,6 @@
         ///< executable binary
 #endif
 
-
 //------------------------------------------------------------------------------
 // unicode, ansi
 #if defined(UNICODE) || defined(_UNICODE)
@@ -238,5 +236,6 @@
     #define xBUILD_DEBUG   1
         ///< debug build
 #endif
+
 //------------------------------------------------------------------------------
 #endif  // xLib_Common_xSysDefinesH
