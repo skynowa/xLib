@@ -93,13 +93,15 @@
     #endif
 
     //--------------------------------------------------
-    // static, share library
+    // static, share library, executable
     #if   xLIB
         #pragma message("xLib: xLIB")
     #elif xDLL
         #pragma message("xLib: xDLL")
+    #elif xEXE
+        #pragma message("xLib: xEXE")
     #else
-        #pragma message("xLib: binary")
+        #pragma message("xLib: unsupported binary type")
     #endif
 
     //--------------------------------------------------
