@@ -99,7 +99,7 @@
     #elif xDLL
         #pragma message("xLib: xDLL")
     #else
-        #pragma message("xLib: unsupported library type")
+        #pragma message("xLib: binary")
     #endif
 
     //--------------------------------------------------
