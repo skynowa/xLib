@@ -198,14 +198,17 @@
 //--------------------------------------------------
 // static, share library
 // NOTE: In Unix this defines (_LIB, _DLL) must be set from Makefile
-#if defined(_LIB)
+#if   defined(_LIB)
     #define  xLIB 1
-#endif
-    ///< static library
-#if defined(_DLL)
+        ///< static library
+#elif defined(_DLL)
     #define  xDLL 1
+        ///< dynamic-link library
+#else
+    #define  xEXE 1
+        ///< executable binary
 #endif
-    ///< dynamic-link library
+
 
 //--------------------------------------------------
 // unicode, ansi
