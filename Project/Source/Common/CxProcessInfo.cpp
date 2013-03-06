@@ -12,6 +12,7 @@
 #include <xLib/Filesystem/CxDir.h>
 #include <xLib/Filesystem/CxDll.h>
 #include <xLib/Filesystem/CxEnvironment.h>
+#include <xLib/Filesystem/CxFinder.h>
 
 
 xNAMESPACE_BEGIN(NxLib)
@@ -52,7 +53,7 @@ CxProcessInfo::currentIds(
     #if   xOS_LINUX
         std::vec_tstring_t a_vsDirPathes;
 
-        CxDir(xT("/proc")).dirsFind(CxConst::xMASK_ALL, false, &a_vsDirPathes);
+        CxFinder::dirs(xT("/proc"), CxConst::xMASK_ALL, false, &a_vsDirPathes);
 
         // skip non-numeric entries
         xFOREACH_CONST(std::vec_tstring_t, it, a_vsDirPathes) {
