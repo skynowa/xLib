@@ -29,7 +29,7 @@ CxTest_CxBackuper::unit(
     std::ctstring_t csBackupDir = tempDirPath() + CxConst::xSLASH + xT("Backup_dir");
 
 
-    xTEST_CASE("CxBackuper::execute", cullCaseLoops)
+    xTEST_CASE("CxBackuper::fileExec", cullCaseLoops)
     {
         clong_t cliFileSize = 100L;
 
@@ -46,7 +46,7 @@ CxTest_CxBackuper::unit(
             std::tstring_t sBackupFilePath;
 
             xTRY {
-                bkBackuper.execute(csFilePath, csBackupDir, &sBackupFilePath);
+                bkBackuper.fileExec(csFilePath, csBackupDir, &sBackupFilePath);
             }
             xCATCH_ALL;
         }
