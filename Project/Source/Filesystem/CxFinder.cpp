@@ -214,9 +214,11 @@ CxFinder::dirs(
         bool_t bRv = fnFinder.moveNext();
         xCHECK_DO(!bRv, break);
 
-        xCHECK_DO(CxFileAttribute::faDirectory != fnFinder.attributes(), continue);
         xCHECK_DO(CxConst::xDOT  == fnFinder.entryName(), continue);
         xCHECK_DO(CxConst::x2DOT == fnFinder.entryName(), continue);
+
+        // set filter for dirs
+        xCHECK_DO(CxFileAttribute::faDirectory != fnFinder.attributes(), continue);
 
         std::ctstring_t csDirPath = CxPath(a_csRootDirPath).slashAppend() +
                                     fnFinder.entryName();
@@ -225,8 +227,7 @@ CxFinder::dirs(
 
         // is search in subdirs
         if (a_cbIsRecursively) {
-            // recursion
-            CxFinder::dirs(csDirPath, a_csPattern, a_cbIsRecursively, a_pvsDirPathes);
+            CxFinder::dirs(csDirPath, a_csPattern, true, a_pvsDirPathes);
         }
     }
 }
@@ -251,14 +252,26 @@ CxFinder::files(
         bool_t bRv = fnFinder.moveNext();
         xCHECK_DO(!bRv, break);
 
-        xCHECK_DO(CxFileAttribute::faRegularFile != fnFinder.attributes(), continue);
         xCHECK_DO(CxConst::xDOT  == fnFinder.entryName(), continue);
         xCHECK_DO(CxConst::x2DOT == fnFinder.entryName(), continue);
 
-        std::ctstring_t csDirPath = CxPath(a_csRootDirPath).slashAppend() +
-                                    fnFinder.entryName();
+        // is search in subdirs
+        if (a_cbIsRecursively &&
+            CxFileAttribute::faDirectory == fnFinder.attributes())
+        {
+            std::ctstring_t csDirPath = CxPath(a_csRootDirPath).slashAppend() +
+                                        fnFinder.entryName();
 
-        a_pvsFilePathes->push_back(csDirPath);
+            CxFinder::files(csDirPath, a_csPattern, true, a_pvsFilePathes);
+        }
+
+        // set filter for files
+        xCHECK_DO(CxFileAttribute::faRegularFile != fnFinder.attributes(), continue);
+
+        std::ctstring_t csFilePath = CxPath(a_csRootDirPath).slashAppend() +
+                                     fnFinder.entryName();
+
+        a_pvsFilePathes->push_back(csFilePath);
     }
 }
 //------------------------------------------------------------------------------
