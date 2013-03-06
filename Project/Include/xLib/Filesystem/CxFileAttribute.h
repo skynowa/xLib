@@ -37,15 +37,13 @@ public:
             faEncrypted         = FILE_ATTRIBUTE_ENCRYPTED
         #elif xOS_ENV_UNIX
             faInvalid           = - 1,
-            faNormal            = 0755,
-            faReadOnly          = 0444,
             faDirectory         = S_IFDIR,
-            faBlockDevice       = S_IFBLK,
-            faSocket            = S_IFSOCK,
-            faSymbolicLink      = S_IFLNK,
-            faRegularFile       = S_IFREG,
             faCharacterDevice   = S_IFCHR,
-            faFifo              = S_IFIFO
+            faBlockDevice       = S_IFBLK,
+            faRegularFile       = S_IFREG,
+            faFifo              = S_IFIFO,
+            faSymbolicLink      = S_IFLNK,
+            faSocket            = S_IFSOCK
         #endif
     };
 

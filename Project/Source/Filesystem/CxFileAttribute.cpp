@@ -143,7 +143,9 @@ void_t
 CxFileAttribute::clear() {
     xTEST_EQ(false, filePath().empty());
 
+#if xOS_ENV_WIN
     set(faNormal);
+#endif
 }
 //------------------------------------------------------------------------------
 
