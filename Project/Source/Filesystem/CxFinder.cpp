@@ -246,32 +246,35 @@ CxFinder::files(
     xTEST_NA(a_cbIsRecursively);
     xTEST_PTR(a_pvsFilePathes);
 
-    CxFinder fnFinder(a_csRootDirPath, a_csPattern);
+    if (!a_cbIsRecursively) {
+        CxFinder fnFinder(a_csRootDirPath, a_csPattern);
 
-    xFOREVER {
-        bool_t bRv = fnFinder.moveNext();
-        xCHECK_DO(!bRv, break);
+        xFOREVER {
+            bool_t bRv = fnFinder.moveNext();
+            xCHECK_DO(!bRv, break);
 
-        xCHECK_DO(CxConst::xDOT  == fnFinder.entryName(), continue);
-        xCHECK_DO(CxConst::x2DOT == fnFinder.entryName(), continue);
+            xCHECK_DO(CxConst::xDOT  == fnFinder.entryName(), continue);
+            xCHECK_DO(CxConst::x2DOT == fnFinder.entryName(), continue);
 
-        // is search in subdirs
-        if (a_cbIsRecursively &&
-            CxFileAttribute::faDirectory == fnFinder.attributes())
-        {
-            std::ctstring_t csDirPath = CxPath(a_csRootDirPath).slashAppend() +
-                                        fnFinder.entryName();
+            // set filter for files
+            xCHECK_DO(CxFileAttribute::faRegularFile != fnFinder.attributes(), continue);
 
-            CxFinder::files(csDirPath, a_csPattern, true, a_pvsFilePathes);
+            std::ctstring_t csFilePath = CxPath(a_csRootDirPath).slashAppend() +
+                                         fnFinder.entryName();
+
+            a_pvsFilePathes->push_back(csFilePath);
         }
+    } else {
+        // subdirs
+        std::vec_tstring_t m_vsDirPaths;
+        dirs(a_csRootDirPath, CxConst::xMASK_ALL, true, &m_vsDirPaths);
 
-        // set filter for files
-        xCHECK_DO(CxFileAttribute::faRegularFile != fnFinder.attributes(), continue);
+        // files in root dir and each subdir
+        files(a_csRootDirPath, a_csPattern, false, a_pvsFilePathes);
 
-        std::ctstring_t csFilePath = CxPath(a_csRootDirPath).slashAppend() +
-                                     fnFinder.entryName();
-
-        a_pvsFilePathes->push_back(csFilePath);
+        xFOREACH_CONST(std::vec_tstring_t, it, m_vsDirPaths) {
+            files(*it, a_csPattern, false, a_pvsFilePathes);
+        }
     }
 }
 //------------------------------------------------------------------------------

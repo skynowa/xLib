@@ -173,7 +173,7 @@ CxTest_CxFinder::unit(
                 m_vsRv.clear();
 
                 CxFinder::files(csRootDirPath, adtData[i].sFilter, true, &m_vsRv);
-                 CxTracer() << m_vsRv;
+                // CxTracer() << m_vsRv;
                 xTEST_EQ(adtData[i].uiEntriesNum, m_vsRv.size());
             }
         }
