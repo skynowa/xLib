@@ -29,6 +29,11 @@ CxTest_CxFinder::unit(
 {
     //-------------------------------------
     // prepare
+    struct SData {
+        std::tstring_t sFilter;
+        size_t         uiEntriesNum;
+    };
+
     std::ctstring_t    csRootDirPath = tempDirPath() + CxConst::xSLASH + xT("CxFinder_Dir");
     std::vec_tstring_t vsDirs;
     std::vec_tstring_t vsFiles;
@@ -58,7 +63,7 @@ CxTest_CxFinder::unit(
             vsFiles.push_back( csRootDirPath + CxConst::xSLASH + xT("CCC.cpp") );
             vsFiles.push_back( csRootDirPath + CxConst::xSLASH + xT("DDD.cpp") );
 
-            vsFiles.push_back( csRootDirPath + CxConst::xSLASH + xT("File_1.log") );
+            vsFiles.push_back( csRootDirPath + CxConst::xSLASH + xT("File_1") );
             vsFiles.push_back( csRootDirPath + CxConst::xSLASH + xT("File_2.log") );
             vsFiles.push_back( csRootDirPath + CxConst::xSLASH + xT("AAA") +
                                CxConst::xSLASH + xT("AA") +
@@ -78,15 +83,10 @@ CxTest_CxFinder::unit(
 
     xTEST_CASE("CxFinder::CxFinder", cullCaseLoops)
     {
-        struct SData {
-            std::tstring_t sFilter;
-            size_t         uiEntriesNum;
-        };
-
         SData adtData[] = {
             {CxConst::xMASK_ALL, 12 - 2},
             {xT("*"),            12 - 2},
-            {xT("*.*"),          12 - 2},
+            {xT("*.*"),          12 - 3},
             {xT("*.h"),          4},
             {xT("*.cpp"),        4},
             {xT("*.txt"),        0}
@@ -101,9 +101,11 @@ CxTest_CxFinder::unit(
                 m_bRv = fnFinder.moveNext();
                 xCHECK_DO(!m_bRv, break);
 
-                xCHECK_DO(CxFileAttribute::faRegularFile != fnFinder.attributes(), continue);
                 xCHECK_DO(CxConst::xDOT  == fnFinder.entryName(), continue);
                 xCHECK_DO(CxConst::x2DOT == fnFinder.entryName(), continue);
+
+                // set filter for files
+                xCHECK_DO(CxFileAttribute::faRegularFile != fnFinder.attributes(), continue);
 
                 vsEntries.push_back(fnFinder.entryName());
             }
@@ -115,6 +117,7 @@ CxTest_CxFinder::unit(
 
     xTEST_CASE("CxFinder::dirs", cullCaseLoops)
     {
+        // non recursive
         {
             m_vsRv.clear();
 
@@ -123,6 +126,7 @@ CxTest_CxFinder::unit(
             xTEST_EQ(vsDirs.size(), m_vsRv.size());
         }
 
+        // recursive
         {
             m_vsRv.clear();
 
@@ -134,22 +138,46 @@ CxTest_CxFinder::unit(
 
     xTEST_CASE("CxFinder::files", cullCaseLoops)
     {
+        // non recursive
         {
-            m_vsRv.clear();
+            SData adtData[] = {
+                {CxConst::xMASK_ALL, 12 - 2},
+                {xT("*"),            12 - 2},
+                {xT("*.*"),          12 - 3},
+                {xT("*.h"),          4},
+                {xT("*.cpp"),        4},
+                {xT("*.txt"),        0}
+            };
 
-            CxFinder::files(csRootDirPath, CxConst::xMASK_ALL, false, &m_vsRv);
-            // CxTracer() << m_vsRv;
-            xTEST_EQ(vsFiles.size() - 2, m_vsRv.size());
+            for (size_t i = 0; i < xARRAY_SIZE2(adtData); ++ i) {
+                m_vsRv.clear();
+
+                CxFinder::files(csRootDirPath, adtData[i].sFilter, false, &m_vsRv);
+                // CxTracer() << m_vsRv;
+                xTEST_EQ(adtData[i].uiEntriesNum, m_vsRv.size());
+            }
         }
 
-    #if 0
+        // recursive
         {
-            m_vsRv.clear();
+            SData adtData[] = {
+                {CxConst::xMASK_ALL, 12},
+                {xT("*"),            12},
+                {xT("*.*"),          12 - 1},
+                {xT("*.h"),          4},
+                {xT("*.cpp"),        4},
+                {xT("*.txt"),        0}
+            };
 
-            CxFinder::files(csRootDirPath, CxConst::xMASK_ALL, true, &m_vsRv);
-            xTEST_EQ(size_t(0), m_vsRv.size());
+            for (size_t i = 0; i < xARRAY_SIZE2(adtData); ++ i) {
+                m_vsRv.clear();
+
+                CxFinder::files(csRootDirPath, adtData[i].sFilter, true, &m_vsRv);
+                 CxTracer() << m_vsRv;
+                xTEST_EQ(adtData[i].uiEntriesNum, m_vsRv.size());
+            }
         }
-    #endif
     }
+
 }
 //------------------------------------------------------------------------------
