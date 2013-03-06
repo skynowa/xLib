@@ -722,9 +722,11 @@ CxFile::wipe(
     {
         CxFile sfFile;
 
+    #if xOS_ENV_WIN
         //--------------------------------------------------
         // set normal file attributes
         CxFileAttribute(a_csFilePath).set(CxFileAttribute::faNormal);
+    #endif
 
         //--------------------------------------------------
         // open

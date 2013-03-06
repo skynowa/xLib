@@ -158,11 +158,15 @@ CxDir::copy(
     //-------------------------------------
     // sets attribute "normal"
     bool_t bRv = CxDir(a_csDirPathTo).isExists();
+#if   xOS_ENV_WIN
     if (bRv) {
         CxFileAttribute(a_csDirPathTo).set(CxFileAttribute::faNormal);
     }
 
     CxFileAttribute(dirPath()).set(CxFileAttribute::faNormal);
+#elif xOS_ENV_UNIX
+    xUNUSED(bRv);
+#endif
 
     //--------------------------------------------------
     // get lists of files
@@ -211,9 +215,9 @@ CxDir::remove() {
     bool_t bRv = isExists();
     xCHECK_DO(!bRv, return);
 
+#if   xOS_ENV_WIN
     CxFileAttribute(dirPath()).set(CxFileAttribute::faNormal);
 
-#if   xOS_ENV_WIN
     BOOL blRes = ::RemoveDirectory(dirPath().c_str());
     xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
@@ -240,9 +244,9 @@ CxDir::tryRemove(
         bool_t bRv = isExists();
         xCHECK_DO(!bRv, break);
 
+    #if   xOS_ENV_WIN
         CxFileAttribute(dirPath()).set(CxFileAttribute::faNormal);
 
-    #if   xOS_ENV_WIN
         BOOL blRes = ::RemoveDirectory(dirPath().c_str());
         xCHECK_DO(FALSE != blRes, break);
     #elif xOS_ENV_UNIX
