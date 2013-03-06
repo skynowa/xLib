@@ -110,11 +110,12 @@ CxBackuper::fileExec(
     // check for enough space
     {
         ulonglong_t ullTotalFreeBytes = 0ULL;
-
         CxVolume::space(a_csDestDirPath, NULL, NULL, &ullTotalFreeBytes);
 
-        bRv = (static_cast<ulonglong_t>( CxFile::size(a_csFilePath) ) <= ullTotalFreeBytes);
-        xCHECK_DO(!bRv, xTHROW() << csError_NotEnoughFreeSpace);
+        ulonglong_t ullFileSizeBytes  = 0ULL;
+        ullFileSizeBytes = static_cast<ulonglong_t>( CxFile::size(a_csFilePath) );
+
+        xCHECK_DO(ullFileSizeBytes > ullTotalFreeBytes, xTHROW() << csError_NotEnoughFreeSpace);
     }
 
     //-------------------------------------
