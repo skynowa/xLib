@@ -34,8 +34,8 @@ public:
 
     void_t          fileExec  (std::ctstring_t &csFilePath,
                                std::ctstring_t &csDestDirPath,
-                               std::tstring_t  *psDestFilePath) const throw (CxException);
-        ///< backup
+                               std::tstring_t  *psDestFilePath) const;
+        ///< backup, throws CxException
 
 private:
     cExBackupPeriod _m_cbpPeriod;  ///< backup period
