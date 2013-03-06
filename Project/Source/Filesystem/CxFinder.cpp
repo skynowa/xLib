@@ -25,16 +25,16 @@ xNAMESPACE_BEGIN(NxLib)
 //------------------------------------------------------------------------------
 CxFinder::CxFinder(
     std::ctstring_t &a_csRootDirPath,
-    std::ctstring_t &a_csFilterByShell
+    std::ctstring_t &a_csShellFilter
 ) :
-    _m_enEnrty        (),
-    _m_csRootDirPath  ( CxPath(a_csRootDirPath).toNative(false) ),
-    _m_csFilterByShell(a_csFilterByShell),
-    _m_bIsMoveFirst   (true)
+    _m_enEnrty      (),
+    _m_csRootDirPath( CxPath(a_csRootDirPath).toNative(false) ),
+    _m_csShellFilter(a_csShellFilter),
+    _m_bIsMoveFirst (true)
 {
     xTEST_EQ(false, isValid());
     xTEST_EQ(false, a_csRootDirPath.empty());
-    xTEST_EQ(false, a_csFilterByShell.empty());
+    xTEST_EQ(false, a_csShellFilter.empty());
 }
 //------------------------------------------------------------------------------
 /* virtual */
@@ -50,10 +50,10 @@ CxFinder::rootDirPath() const {
 }
 //------------------------------------------------------------------------------
 std::ctstring_t &
-CxFinder::filterByShell() const {
-    xTEST_EQ(false, _m_csFilterByShell.empty());
+CxFinder::shellFilter() const {
+    xTEST_EQ(false, _m_csShellFilter.empty());
 
-    return _m_csFilterByShell;
+    return _m_csShellFilter;
 }
 //------------------------------------------------------------------------------
 std::tstring_t
@@ -145,7 +145,7 @@ CxFinder::moveNext() {
             xCHECK_RET(NULL == _m_enEnrty.pdrData, false);
 
             // filter by pattern
-            int_t iRv = ::fnmatch(filterByShell().c_str(), entryName().c_str(), 0);
+            int_t iRv = ::fnmatch(shellFilter().c_str(), entryName().c_str(), 0);
             xTEST_EQ(true, (0 == iRv) || (FNM_NOMATCH == iRv));
 
             xCHECK_DO(FNM_NOMATCH == iRv, continue);
@@ -291,7 +291,7 @@ CxFinder::_moveFirst() {
 
 #if   xOS_ENV_WIN
     _m_enEnrty.hHandle = ::FindFirstFile(
-                            (rootDirPath() + CxConst::xSLASH + filterByShell()).c_str(),
+                            (rootDirPath() + CxConst::xSLASH + shellFilter()).c_str(),
                             &_m_enEnrty.fdData);
     xCHECK_RET(xNATIVE_HANDLE_INVALID == _m_enEnrty.hHandle, false);
 #elif xOS_ENV_UNIX

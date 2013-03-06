@@ -18,33 +18,37 @@ class CxFinder :
     ///< file system finder
 {
 public:
-                                 CxFinder     (std::ctstring_t &csRootDirPath,
-                                               std::ctstring_t &csFilterByShell);
+                                 CxFinder   (std::ctstring_t &csRootDirPath,
+                                             std::ctstring_t &csShellFilter);
         ///< constructor
-    virtual                     ~CxFinder     ();
+    virtual                     ~CxFinder   ();
         ///< destructor
 
-    std::ctstring_t &            rootDirPath  () const xWARN_UNUSED_RV;
+    std::ctstring_t &            rootDirPath() const xWARN_UNUSED_RV;
         ///< root directory path
-    std::ctstring_t &            filterByShell() const xWARN_UNUSED_RV;
+    std::ctstring_t &            shellFilter() const xWARN_UNUSED_RV;
         ///< shell wild card filter
-    std::tstring_t               entryName    () const xWARN_UNUSED_RV;
+    std::tstring_t               entryName  () const xWARN_UNUSED_RV;
         ///< entry name
-    CxFileAttribute::ExAttribute attributes   () const xWARN_UNUSED_RV;
+    CxFileAttribute::ExAttribute attributes () const xWARN_UNUSED_RV;
         ///< file attributes
 
-    bool_t                       isValid      () const xWARN_UNUSED_RV;
+    bool_t                       isValid    () const xWARN_UNUSED_RV;
         ///< is valid handle
-    bool_t                       moveNext     () xWARN_UNUSED_RV;
+    bool_t                       moveNext   () xWARN_UNUSED_RV;
         ///< move next entry
-    void_t                       close        ();
+    void_t                       close      ();
         ///< close search
 
-    static void_t                dirs         (std::ctstring_t &csRootDirPath, std::ctstring_t &csPattern,
-                                               cbool_t &cbIsRecursively, std::vec_tstring_t *pvsDirPathes);
+    static void_t                dirs       (std::ctstring_t    &csRootDirPath,
+                                             std::ctstring_t    &csPattern,
+                                             cbool_t            &cbIsRecursively,
+                                             std::vec_tstring_t *pvsDirPathes);
         ///< search subdirectories
-    static void_t                files        (std::ctstring_t &csRootDirPath, std::ctstring_t &csPattern,
-                                               cbool_t &cbIsRecursively, std::vec_tstring_t *pvsFilePathes);
+    static void_t                files      (std::ctstring_t    &csRootDirPath,
+                                             std::ctstring_t    &csPattern,
+                                             cbool_t            &cbIsRecursively,
+                                             std::vec_tstring_t *pvsFilePathes);
         ///< search files
 
 private:
@@ -71,12 +75,12 @@ private:
     typedef _SEntry _entry_t;
         ///< entry
 
-    _entry_t                     _m_enEnrty;            ///< entry handle
-    std::ctstring_t              _m_csRootDirPath;      ///< root directory path
-    std::ctstring_t              _m_csFilterByShell;    ///< shell wild card filter
-    bool_t                       _m_bIsMoveFirst;       ///< is first movement
+    _entry_t                     _m_enEnrty;        ///< entry handle
+    std::ctstring_t              _m_csRootDirPath;  ///< root directory path
+    std::ctstring_t              _m_csShellFilter;  ///< shell wild card filter
+    bool_t                       _m_bIsMoveFirst;   ///< is first movement
 
-    bool_t                       _moveFirst   () xWARN_UNUSED_RV;
+    bool_t                       _moveFirst () xWARN_UNUSED_RV;
         ///< move first entry
 };
 
