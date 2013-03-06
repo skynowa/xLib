@@ -198,17 +198,17 @@ CxFinder::close() {
 void_t
 CxFinder::dirs(
     std::ctstring_t    &a_csRootDirPath,
-    std::ctstring_t    &a_csPattern,
+    std::ctstring_t    &a_csShellFilter,
     cbool_t            &a_cbIsRecursively,
     std::vec_tstring_t *a_pvsDirPathes
 )
 {
     xTEST_EQ(false, a_csRootDirPath.empty());
-    xTEST_EQ(false, a_csPattern.empty());
+    xTEST_EQ(false, a_csShellFilter.empty());
     xTEST_NA(a_cbIsRecursively);
     xTEST_PTR(a_pvsDirPathes);
 
-    CxFinder fnFinder(a_csRootDirPath, a_csPattern);
+    CxFinder fnFinder(a_csRootDirPath, a_csShellFilter);
 
     xFOREVER {
         bool_t bRv = fnFinder.moveNext();
@@ -227,7 +227,7 @@ CxFinder::dirs(
 
         // is search in subdirs
         if (a_cbIsRecursively) {
-            CxFinder::dirs(csDirPath, a_csPattern, true, a_pvsDirPathes);
+            CxFinder::dirs(csDirPath, a_csShellFilter, true, a_pvsDirPathes);
         }
     }
 }
@@ -236,18 +236,18 @@ CxFinder::dirs(
 void_t
 CxFinder::files(
     std::ctstring_t    &a_csRootDirPath,
-    std::ctstring_t    &a_csPattern,
+    std::ctstring_t    &a_csShellFilter,
     cbool_t            &a_cbIsRecursively,
     std::vec_tstring_t *a_pvsFilePathes
 )
 {
     xTEST_EQ(false, a_csRootDirPath.empty());
-    xTEST_EQ(false, a_csPattern.empty());
+    xTEST_EQ(false, a_csShellFilter.empty());
     xTEST_NA(a_cbIsRecursively);
     xTEST_PTR(a_pvsFilePathes);
 
     if (!a_cbIsRecursively) {
-        CxFinder fnFinder(a_csRootDirPath, a_csPattern);
+        CxFinder fnFinder(a_csRootDirPath, a_csShellFilter);
 
         xFOREVER {
             bool_t bRv = fnFinder.moveNext();
@@ -270,10 +270,10 @@ CxFinder::files(
         dirs(a_csRootDirPath, CxConst::xMASK_ALL, true, &m_vsDirPaths);
 
         // files in root dir and each subdir
-        files(a_csRootDirPath, a_csPattern, false, a_pvsFilePathes);
+        files(a_csRootDirPath, a_csShellFilter, false, a_pvsFilePathes);
 
         xFOREACH_CONST(std::vec_tstring_t, it, m_vsDirPaths) {
-            files(*it, a_csPattern, false, a_pvsFilePathes);
+            files(*it, a_csShellFilter, false, a_pvsFilePathes);
         }
     }
 }
