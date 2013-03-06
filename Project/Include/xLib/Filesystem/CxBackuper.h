@@ -25,19 +25,20 @@ public:
         //TODO: bpWeekly,
         //TODO: bpMonthly
     };
+    typedef const ExBackupPeriod cExBackupPeriod;
 
-    explicit             CxBackuper(const ExBackupPeriod &cbpPeriod);
+    explicit        CxBackuper(cExBackupPeriod &cbpPeriod);
         ///< constructor
-    virtual             ~CxBackuper();
+    virtual        ~CxBackuper();
         ///< destructor
 
-    void_t               execute   (std::ctstring_t &csFilePath,
-                                    std::ctstring_t &csDestDirPath,
-                                    std::tstring_t *psDestFilePath);
+    void_t          fileExec  (std::ctstring_t &csFilePath,
+                               std::ctstring_t &csDestDirPath,
+                               std::tstring_t  *psDestFilePath) const throw (CxException);
         ///< backup
 
 private:
-    const ExBackupPeriod _m_cbpPeriod;  ///< backup period
+    cExBackupPeriod _m_cbpPeriod;  ///< backup period
 };
 
 xNAMESPACE_END(NxLib)
