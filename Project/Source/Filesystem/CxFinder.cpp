@@ -28,7 +28,7 @@ CxFinder::CxFinder(
     std::ctstring_t &a_csFilterByShell
 ) :
     _m_enEnrty        (),
-    _m_csRootDirPath  ( CxPath(a_csRootDirPath).toNative(true) ),
+    _m_csRootDirPath  ( CxPath(a_csRootDirPath).toNative(false) ),
     _m_csFilterByShell(a_csFilterByShell),
     _m_bIsMoveFirst   (true)
 {
