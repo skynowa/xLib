@@ -43,7 +43,7 @@ CxBackuper::fileExec(
     std::ctstring_t &a_csFilePath,
     std::ctstring_t &a_csDestDirPath,
     std::tstring_t  *a_psDestFilePath
-) const throw (CxException)
+) const
 {
     xTEST_EQ(false, a_csFilePath.empty());
     xTEST_EQ(false, a_csDestDirPath.empty());
