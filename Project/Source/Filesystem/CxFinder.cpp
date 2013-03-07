@@ -24,8 +24,8 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 CxFinder::CxFinder(
-    std::ctstring_t &a_csRootDirPath,
-    std::ctstring_t &a_csShellFilter
+    std::ctstring_t &a_csRootDirPath,   ///< target root dir
+    std::ctstring_t &a_csShellFilter    ///< shell wildcard pattern
 ) :
     _m_enEnrty      (),
     _m_csRootDirPath( CxPath(a_csRootDirPath).toNative(false) ),
@@ -197,10 +197,10 @@ CxFinder::close() {
 /* static */
 void_t
 CxFinder::dirs(
-    std::ctstring_t    &a_csRootDirPath,
-    std::ctstring_t    &a_csShellFilter,
-    cbool_t            &a_cbIsRecursively,
-    std::vec_tstring_t *a_pvsDirPathes
+    std::ctstring_t    &a_csRootDirPath,    ///< target root dir
+    std::ctstring_t    &a_csShellFilter,    ///< shell wildcard pattern
+    cbool_t            &a_cbIsRecursively,  ///< is recursive search
+    std::vec_tstring_t *a_pvsDirPathes      ///< result dir paths
 )
 {
     xTEST_EQ(false, a_csRootDirPath.empty());
@@ -235,10 +235,10 @@ CxFinder::dirs(
 /* static */
 void_t
 CxFinder::files(
-    std::ctstring_t    &a_csRootDirPath,
-    std::ctstring_t    &a_csShellFilter,
-    cbool_t            &a_cbIsRecursively,
-    std::vec_tstring_t *a_pvsFilePathes
+    std::ctstring_t    &a_csRootDirPath,    ///< target root dir
+    std::ctstring_t    &a_csShellFilter,    ///< shell wildcard pattern
+    cbool_t            &a_cbIsRecursively,  ///< is recursive search
+    std::vec_tstring_t *a_pvsFilePathes     ///< result file paths
 )
 {
     xTEST_EQ(false, a_csRootDirPath.empty());
@@ -257,7 +257,8 @@ CxFinder::files(
             xCHECK_DO(CxConst::x2DOT == fnFinder.entryName(), continue);
 
             // set filter for files
-            xCHECK_DO(CxFileAttribute::faRegularFile != fnFinder.attributes(), continue);
+            // BUG: != faRegularFile
+            xCHECK_DO(CxFileAttribute::faDirectory == fnFinder.attributes(), continue);
 
             std::ctstring_t csFilePath = CxPath(a_csRootDirPath).slashAppend() +
                                          fnFinder.entryName();
