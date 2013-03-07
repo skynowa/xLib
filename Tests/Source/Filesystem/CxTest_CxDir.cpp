@@ -173,15 +173,15 @@ CxTest_CxDir::unit(
         std::ctstring_t csDirSource = tempDirPath() + CxConst::xSLASH + xT("DirSource");
         std::ctstring_t csDirDest   = tempDirPath() + CxConst::xSLASH + xT("DirDest");
 
-        std::ctstring_t sDirPathes[] =
+        std::ctstring_t sDirPaths[] =
         {
             csDirSource,
             csDirSource + CxConst::xSLASH + xT("AA"),
             csDirSource + CxConst::xSLASH + xT("AA") + CxConst::xSLASH + xT("AAA")
         };
 
-        for (size_t i = 0; i < xARRAY_SIZE(sDirPathes); ++ i) {
-            CxDir(sDirPathes[i]).pathCreate();
+        for (size_t i = 0; i < xARRAY_SIZE(sDirPaths); ++ i) {
+            CxDir(sDirPaths[i]).pathCreate();
         }
 
         CxDir(csDirDest).pathDelete();
@@ -202,15 +202,15 @@ CxTest_CxDir::unit(
         std::ctstring_t csDirSource = tempDirPath() + CxConst::xSLASH + xT("Source");
         std::ctstring_t csDirDest   = tempDirPath() + CxConst::xSLASH + xT("Dest");
 
-        std::ctstring_t sDirPathes[] =
+        std::ctstring_t sDirPaths[] =
         {
             csDirSource,
             csDirSource + CxConst::xSLASH + xT("dd"),
             csDirSource + CxConst::xSLASH + xT("XX") + CxConst::xSLASH + xT("111")
         };
 
-        for (size_t i = 0; i < xARRAY_SIZE(sDirPathes); ++ i) {
-            CxDir(sDirPathes[i]).pathCreate();
+        for (size_t i = 0; i < xARRAY_SIZE(sDirPaths); ++ i) {
+            CxDir(sDirPaths[i]).pathCreate();
         }
 
         //-------------------------------------

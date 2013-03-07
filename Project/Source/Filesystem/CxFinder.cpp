@@ -200,13 +200,13 @@ CxFinder::dirs(
     std::ctstring_t    &a_csRootDirPath,    ///< target root dir
     std::ctstring_t    &a_csShellFilter,    ///< shell wildcard pattern
     cbool_t            &a_cbIsRecursively,  ///< is recursive search
-    std::vec_tstring_t *a_pvsDirPathes      ///< result dir paths
+    std::vec_tstring_t *a_pvsDirPaths       ///< result dir paths
 )
 {
     xTEST_EQ(false, a_csRootDirPath.empty());
     xTEST_EQ(false, a_csShellFilter.empty());
     xTEST_NA(a_cbIsRecursively);
-    xTEST_PTR(a_pvsDirPathes);
+    xTEST_PTR(a_pvsDirPaths);
 
     CxFinder fnFinder(a_csRootDirPath, a_csShellFilter);
 
@@ -223,11 +223,11 @@ CxFinder::dirs(
         std::ctstring_t csDirPath = CxPath(a_csRootDirPath).slashAppend() +
                                     fnFinder.entryName();
 
-        a_pvsDirPathes->push_back(csDirPath);
+        a_pvsDirPaths->push_back(csDirPath);
 
         // is search in subdirs
         if (a_cbIsRecursively) {
-            CxFinder::dirs(csDirPath, a_csShellFilter, true, a_pvsDirPathes);
+            CxFinder::dirs(csDirPath, a_csShellFilter, true, a_pvsDirPaths);
         }
     }
 }
@@ -238,13 +238,13 @@ CxFinder::files(
     std::ctstring_t    &a_csRootDirPath,    ///< target root dir
     std::ctstring_t    &a_csShellFilter,    ///< shell wildcard pattern
     cbool_t            &a_cbIsRecursively,  ///< is recursive search
-    std::vec_tstring_t *a_pvsFilePathes     ///< result file paths
+    std::vec_tstring_t *a_pvsFilePaths      ///< result file paths
 )
 {
     xTEST_EQ(false, a_csRootDirPath.empty());
     xTEST_EQ(false, a_csShellFilter.empty());
     xTEST_NA(a_cbIsRecursively);
-    xTEST_PTR(a_pvsFilePathes);
+    xTEST_PTR(a_pvsFilePaths);
 
     if (!a_cbIsRecursively) {
         CxFinder fnFinder(a_csRootDirPath, a_csShellFilter);
@@ -263,7 +263,7 @@ CxFinder::files(
             std::ctstring_t csFilePath = CxPath(a_csRootDirPath).slashAppend() +
                                          fnFinder.entryName();
 
-            a_pvsFilePathes->push_back(csFilePath);
+            a_pvsFilePaths->push_back(csFilePath);
         }
     } else {
         // subdirs
@@ -271,10 +271,10 @@ CxFinder::files(
         dirs(a_csRootDirPath, CxConst::xMASK_ALL, true, &m_vsDirPaths);
 
         // files in root dir and each subdir
-        files(a_csRootDirPath, a_csShellFilter, false, a_pvsFilePathes);
+        files(a_csRootDirPath, a_csShellFilter, false, a_pvsFilePaths);
 
         xFOREACH_CONST(std::vec_tstring_t, it, m_vsDirPaths) {
-            files(*it, a_csShellFilter, false, a_pvsFilePathes);
+            files(*it, a_csShellFilter, false, a_pvsFilePaths);
         }
     }
 }

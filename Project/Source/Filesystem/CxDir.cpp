@@ -166,14 +166,14 @@ CxDir::copy(
 
     //--------------------------------------------------
     // get lists of files
-    std::vec_tstring_t vsFilePathes;
+    std::vec_tstring_t vsFilePaths;
 
-    vsFilePathes.clear();
-    CxFinder::files(dirPath(), CxConst::xMASK_ALL, true, &vsFilePathes);
+    vsFilePaths.clear();
+    CxFinder::files(dirPath(), CxConst::xMASK_ALL, true, &vsFilePaths);
 
     //--------------------------------------------------
     // copy
-    xFOREACH_R_CONST(std::vec_tstring_t, it, vsFilePathes) {
+    xFOREACH_R_CONST(std::vec_tstring_t, it, vsFilePaths) {
         std::tstring_t sFilePathTo = *it;
 
         size_t uiPosBegin = sFilePathTo.find(dirPath());
@@ -268,12 +268,12 @@ CxDir::pathClear() {
     //-------------------------------------
     // delete files
     {
-        std::vec_tstring_t vsFilePathes;
+        std::vec_tstring_t vsFilePaths;
 
-        vsFilePathes.clear();
-        CxFinder::files(dirPath(), CxConst::xMASK_ALL, true, &vsFilePathes);
+        vsFilePaths.clear();
+        CxFinder::files(dirPath(), CxConst::xMASK_ALL, true, &vsFilePaths);
 
-        xFOREACH_R(std::vec_tstring_t, it, vsFilePathes) {
+        xFOREACH_R(std::vec_tstring_t, it, vsFilePaths) {
             CxFile::remove(*it);
         }
     }
@@ -281,12 +281,12 @@ CxDir::pathClear() {
     //-------------------------------------
     // delete subdirs
     {
-        std::vec_tstring_t vsDirPathes;
+        std::vec_tstring_t vsDirPaths;
 
-        vsDirPathes.clear();
-        CxFinder::dirs(dirPath(), CxConst::xMASK_ALL, true, &vsDirPathes);
+        vsDirPaths.clear();
+        CxFinder::dirs(dirPath(), CxConst::xMASK_ALL, true, &vsDirPaths);
 
-        xFOREACH_R(std::vec_tstring_t, it, vsDirPathes) {
+        xFOREACH_R(std::vec_tstring_t, it, vsDirPaths) {
             CxDir(*it).remove();
         }
     }

@@ -43,12 +43,12 @@ public:
     static void_t                dirs       (std::ctstring_t    &csRootDirPath,
                                              std::ctstring_t    &csShellFilter,
                                              cbool_t            &cbIsRecursively,
-                                             std::vec_tstring_t *pvsDirPathes);
+                                             std::vec_tstring_t *pvsDirPaths);
         ///< search subdirectories
     static void_t                files      (std::ctstring_t    &csRootDirPath,
                                              std::ctstring_t    &csShellFilter,
                                              cbool_t            &cbIsRecursively,
-                                             std::vec_tstring_t *pvsFilePathes);
+                                             std::vec_tstring_t *pvsFilePaths);
         ///< search files
 
 private:

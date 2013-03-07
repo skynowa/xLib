@@ -40,13 +40,13 @@ CxStackTrace::CxStackTrace(
     std::ctstring_t &a_csLinePrefix,         /* = xT("\t") */
     std::ctstring_t &a_csElementSeparator,   /* = xT("  ") */
     std::ctstring_t &a_csLinesSeparator,     /* = xT("\n") */
-    cbool_t         &a_cbIsWrapFilePathes,   /* = true */
+    cbool_t         &a_cbIsWrapFilePaths,   /* = true */
     cbool_t         &a_cbIsFuncParamsDisable /* = true */
 ) :
     _m_csLinePrefix         (a_csLinePrefix),
     _m_csElementSeparator   (a_csElementSeparator),
     _m_csLineSeparator      (a_csLinesSeparator),
-    _m_cbIsWrapFilePathes   (a_cbIsWrapFilePathes),
+    _m_cbIsWrapFilePaths    (a_cbIsWrapFilePaths),
     _m_cbIsFuncParamsDisable(a_cbIsFuncParamsDisable)
 {
 
@@ -141,7 +141,7 @@ CxStackTrace::get(
             }
 
             // swap file paths
-            if (_m_cbIsWrapFilePathes) {
+            if (_m_cbIsWrapFilePaths) {
                 sModulePath = CxPath(sModulePath).fileName();
                 sFilePath   = CxPath(sFilePath).fileName();
             }
@@ -235,7 +235,7 @@ CxStackTrace::get(
         }
 
         // swap file paths
-        if (_m_cbIsWrapFilePathes) {
+        if (_m_cbIsWrapFilePaths) {
             sModulePath = CxPath(sModulePath).fileName();
             sFilePath   = CxPath(sFilePath).fileName();
         }
