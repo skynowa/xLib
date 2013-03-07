@@ -93,7 +93,8 @@ CxTest_CxFinder::unit(
         #endif
             {xT("*.h"),          4},
             {xT("*.cpp"),        4},
-            {xT("*.txt"),        0}
+            {xT("*.txt"),        0},
+            {xT("*.log"),        1}
         };
 
         for (size_t i = 0; i < xARRAY_SIZE2(adtData); ++ i) {
@@ -155,7 +156,8 @@ CxTest_CxFinder::unit(
             #endif
                 {xT("*.h"),          4},
                 {xT("*.cpp"),        4},
-                {xT("*.txt"),        0}
+                {xT("*.txt"),        0},
+                {xT("*.log"),        1}
             };
 
             for (size_t i = 0; i < xARRAY_SIZE2(adtData); ++ i) {
@@ -179,7 +181,8 @@ CxTest_CxFinder::unit(
             #endif
                 {xT("*.h"),          4},
                 {xT("*.cpp"),        4},
-                {xT("*.txt"),        0}
+                {xT("*.txt"),        0},
+                {xT("*.log"),        3}
             };
 
             for (size_t i = 0; i < xARRAY_SIZE2(adtData); ++ i) {
