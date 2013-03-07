@@ -87,7 +87,7 @@ CxTest_CxFinder::unit(
             {CxConst::xMASK_ALL, 12 - 2},
             {xT("*"),            12 - 2},
         #if xOS_ENV_WIN
-            // TEST: {xT("*.*"),          12 - 3},
+            {xT("*.*"),          12 - 2},
         #else
             {xT("*.*"),          12 - 3},
         #endif
@@ -150,7 +150,7 @@ CxTest_CxFinder::unit(
                 {CxConst::xMASK_ALL, 12 - 2},
                 {xT("*"),            12 - 2},
             #if xOS_ENV_WIN
-                // TEST: {xT("*.*"),          12 - 3},
+                {xT("*.*"),          12 - 2},
             #else
                 {xT("*.*"),          12 - 3},
             #endif
@@ -175,7 +175,7 @@ CxTest_CxFinder::unit(
                 {CxConst::xMASK_ALL, 12},
                 {xT("*"),            12},
             #if xOS_ENV_WIN
-                // TEST: {xT("*.*"),          12 - 1},
+                {xT("*.*"),          12},
             #else
                 {xT("*.*"),          12 - 1},
             #endif
