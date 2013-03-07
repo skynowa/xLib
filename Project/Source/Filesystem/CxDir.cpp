@@ -61,58 +61,24 @@ CxDir::isExists() {
 //------------------------------------------------------------------------------
 bool_t
 CxDir::isEmpty(
-    std::ctstring_t &a_csPattern
+    std::ctstring_t &a_csShellFilter /* = CxConst::xMASK_ALL */
 )
 {
-    xTEST_EQ(false, a_csPattern.empty());
+    xTEST_EQ(false, a_csShellFilter.empty());
 
-    bool_t bRv = false;
+    bool_t bRv = true;
 
-    // TODO: CxPath::sToNative + CxPath::sSlashAppend
+    CxFinder fnFinder(dirPath(), a_csShellFilter);
 
-#if   xOS_ENV_WIN
-    WIN32_FIND_DATA fdData    = {0};
-    std::tstring_t  _sDirPath = CxPath( CxPath(dirPath()).slashAppend() + a_csPattern ).toNative(false );
+    xFOREVER {
+        xCHECK_DO(!fnFinder.moveNext(), break);
 
-    HANDLE hFile = ::FindFirstFile(_sDirPath.c_str(), &fdData);
-    xCHECK_RET(INVALID_HANDLE_VALUE == hFile, true);
+        xCHECK_DO(CxConst::xDOT  == fnFinder.entryName(), continue);
+        xCHECK_DO(CxConst::x2DOT == fnFinder.entryName(), continue);
 
-    do {
-        std::tstring_t sFileName = fdData.cFileName;
-
-        if (CxConst::xDOT != sFileName && CxConst::x2DOT != sFileName) {
-            bRv = false;    // not empty
-            break;
-        } else {
-            bRv = true;     // empty
-        }
+        bRv = false;
+        break;
     }
-    while (FALSE != ::FindNextFile(hFile, &fdData));
-
-    BOOL blRes = ::FindClose(hFile);
-    xTEST_DIFF(FALSE, blRes);
-#elif xOS_ENV_UNIX
-    DIR *pDir = ::opendir(dirPath().c_str());
-    xTEST_PTR(pDir);
-
-    dirent *pdrEntry = ::readdir(pDir);
-    xCHECK_RET(NULL == pdrEntry, true);
-
-    do {
-        std::tstring_t sFileName = pdrEntry->d_name;
-
-        if (CxConst::xDOT != sFileName && CxConst::x2DOT != sFileName) {
-            bRv = false;   // not empty
-            break;
-        } else {
-            bRv = true;    // empty
-        }
-    }
-    while (NULL != (pdrEntry = ::readdir(pDir)));
-
-    int_t iRv = ::closedir(pDir); pDir = NULL;
-    xTEST_DIFF(- 1, iRv);
-#endif
 
     return bRv;
 }
