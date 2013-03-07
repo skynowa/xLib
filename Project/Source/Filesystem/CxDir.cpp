@@ -90,7 +90,8 @@ CxDir::isRoot() {
 
     bool_t bRes1 = CxChar::isAlpha(dirPath().at(0));
     bool_t bRes2 = (dirPath().at(1) == CxConst::xCOLON.at(0));
-    bool_t bRes3 = (dirPath().at(2) == CxConst::xWIN_SLASH.at(0) || dirPath().at(2) == CxConst::xUNIX_SLASH.at(0));
+    bool_t bRes3 = (dirPath().at(2) == CxConst::xWIN_SLASH.at(0) ||
+                    dirPath().at(2) == CxConst::xUNIX_SLASH.at(0));
 
     xCHECK_RET(!bRes1 || !bRes2 || !bRes3, false);
 #elif xOS_ENV_UNIX
@@ -186,7 +187,7 @@ CxDir::copy(
     }
 
     //--------------------------------------------------
-    // TODO: rollback
+    // TODO: rollback copy
 }
 //------------------------------------------------------------------------------
 void_t
@@ -232,19 +233,27 @@ CxDir::tryRemove(
     xTEST_LESS(size_t(0U), a_cuiAttempts);
 
     std::csize_t cuiMaxAttempts  = 100;  // MAGIC_NUMBER: cuiMaxAttempts
-    std::csize_t cuiRealAttempts = (cuiMaxAttempts < a_cuiAttempts) ? cuiMaxAttempts : a_cuiAttempts;
+    std::csize_t cuiRealAttempts = (cuiMaxAttempts < a_cuiAttempts) ?
+                                    cuiMaxAttempts : a_cuiAttempts;
 
     for (size_t i = 0; i < cuiRealAttempts; ++ i) {
-        try {
-            remove();
-            break;
-        }
-        catch (const CxException &) {
-            xNA;
-        }
+        bool_t bRv = isExists();
+        xCHECK_DO(!bRv, break);
+
+        CxFileAttribute(dirPath()).set(CxFileAttribute::faNormal);
+
+    #if   xOS_ENV_WIN
+        BOOL blRes = ::RemoveDirectory(dirPath().c_str());
+        xCHECK_DO(FALSE != blRes, break);
+    #elif xOS_ENV_UNIX
+        int_t iRv = ::rmdir(dirPath().c_str());
+        xCHECK_DO(- 1 != iRv, break);
+    #endif
 
         CxCurrentThread::sleep(a_culTimeoutMsec);
     }
+
+    xTEST_EQ(false, isExists());
 }
 //------------------------------------------------------------------------------
 void_t
@@ -329,7 +338,8 @@ CxDir::current() {
 void_t
 CxDir::setCurrent(
     std::ctstring_t &a_csDirPath
-) {
+)
+{
     std::tstring_t dirPath = CxPath(a_csDirPath).slashAppend();
 
 #if   xOS_ENV_WIN
