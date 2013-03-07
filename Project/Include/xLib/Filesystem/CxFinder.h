@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 
-#include <xLib/Filesystem/CxFileAttribute.h>
+#include <xLib/Filesystem/CxFileType.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
@@ -30,7 +30,7 @@ public:
         ///< shell wild card filter
     std::tstring_t               entryName  () const xWARN_UNUSED_RV;
         ///< entry name
-    CxFileAttribute::ExAttribute attributes () const xWARN_UNUSED_RV;
+    CxFileType::ExAttribute attributes () const xWARN_UNUSED_RV;
         ///< file attributes
 
     bool_t                       isValid    () const xWARN_UNUSED_RV;

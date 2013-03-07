@@ -1449,19 +1449,19 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\Project\Source\Filesystem\CxFileAttribute.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\Project\Include\xLib\Filesystem\CxFileAttribute.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\Project\Source\Filesystem\CxFileTemp.cpp"
 				>
 			</File>
 			<File
 				RelativePath="..\..\..\Project\Include\xLib\Filesystem\CxFileTemp.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Project\Source\Filesystem\CxFileType.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\Project\Include\xLib\Filesystem\CxFileType.h"
 				>
 			</File>
 			<File
