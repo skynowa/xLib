@@ -51,13 +51,6 @@ public:
     void_t                pathDelete();
         ///< deletion dir find all content of it
 
-    void_t                filesFind (std::ctstring_t &csPattern,
-                                     cbool_t &cbIsRecursively, std::vec_tstring_t *pvsFilePathes);
-        ///< search files
-    void_t                dirsFind  (std::ctstring_t &csPattern,
-                                     cbool_t &cbIsRecursively, std::vec_tstring_t *pvsDirPathes);
-        ///< search subdirectories
-
     // static
     static std::tstring_t current   () xWARN_UNUSED_RV;
         ///< get current

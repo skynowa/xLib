@@ -13,6 +13,7 @@
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Filesystem/CxFileAttribute.h>
 #include <xLib/Filesystem/CxEnvironment.h>
+#include <xLib/Filesystem/CxFinder.h>
 #include <xLib/Sync/CxCurrentThread.h>
 
 
@@ -201,7 +202,7 @@ CxDir::copy(
     std::vec_tstring_t vsFilePathes;
 
     vsFilePathes.clear();
-    CxDir(dirPath()).filesFind(CxConst::xMASK_ALL, true, &vsFilePathes);
+    CxFinder::files(dirPath(), CxConst::xMASK_ALL, true, &vsFilePathes);
 
     //--------------------------------------------------
     // copy
@@ -295,7 +296,7 @@ CxDir::pathClear() {
         std::vec_tstring_t vsFilePathes;
 
         vsFilePathes.clear();
-        filesFind(CxConst::xMASK_ALL, true, &vsFilePathes);
+        CxFinder::files(dirPath(), CxConst::xMASK_ALL, true, &vsFilePathes);
 
         xFOREACH_R(std::vec_tstring_t, it, vsFilePathes) {
             CxFile::remove(*it);
@@ -308,7 +309,7 @@ CxDir::pathClear() {
         std::vec_tstring_t vsDirPathes;
 
         vsDirPathes.clear();
-        dirsFind(CxConst::xMASK_ALL, true, &vsDirPathes);
+        CxFinder::dirs(dirPath(), CxConst::xMASK_ALL, true, &vsDirPathes);
 
         xFOREACH_R(std::vec_tstring_t, it, vsDirPathes) {
             CxDir(*it).remove();
@@ -328,249 +329,6 @@ CxDir::pathDelete() {
 
     xTEST_EQ(false, isExists());
 }
-//--------------------------------------------------------------------------
-// TODO: vFilesFind
-// http://www.metalshell.com/source_code/86/List_Contents_of_a_Directory.html
-void_t
-CxDir::filesFind(
-    std::ctstring_t    &a_csPattern,          ///< pattern
-    cbool_t            &a_cbIsRecursively,    ///< recursively scan
-    std::vec_tstring_t *a_pvsFilePathes       ///< output file paths (must be empty)
-)
-{
-    xTEST_EQ(false, a_csPattern.empty());
-    xTEST_NA(a_cbIsRecursively);
-    xTEST_PTR(a_pvsFilePathes);
-
-    // TODO: CxDir::vFilesFind
-    #if xTODO
-        (*pvsFilePathes).clear();
-    #endif
-
-#if   xOS_ENV_WIN
-    std::tstring_t  sFilePath     = CxPath(CxPath(dirPath()).slashAppend() + a_csPattern).toNative(false );
-    std::tstring_t  sFileFullName = CxPath(sFilePath).fileName();
-    std::tstring_t  sPart;
-    std::tstring_t  sTmpPath;
-    WIN32_FIND_DATA fdData        = {0};
-
-    //-------------------------------------
-    // subdirs
-    if (a_cbIsRecursively) {
-        sPart    = CxConst::xMASK_ALL;
-        sTmpPath = CxPath(sFilePath).setFileName(sPart);
-
-        // make search, if dir exists
-        fdData.dwFileAttributes = CxFileAttribute::faDirectory;
-
-        HANDLE hFile = ::FindFirstFile(sTmpPath.c_str(), &fdData);
-        if (INVALID_HANDLE_VALUE != hFile) {
-            do {
-                // skip files, dirs "." and ".."
-                xCHECK_DO(!(fdData.dwFileAttributes & CxFileAttribute::faDirectory), continue);
-                xCHECK_DO(CxConst::xDOT  == std::tstring_t(fdData.cFileName),        continue);
-                xCHECK_DO(CxConst::x2DOT == std::tstring_t(fdData.cFileName),        continue);
-
-                sPart    = fdData.cFileName;
-                sTmpPath = CxPath(sTmpPath).setFileName(sPart);
-
-                CxDir(sTmpPath).filesFind(sFileFullName, true, a_pvsFilePathes);
-            }
-            while (FALSE != ::FindNextFile(hFile, &fdData));
-
-            BOOL blRes = ::FindClose(hFile);
-            xTEST_DIFF(FALSE, blRes);
-        }
-    }
-
-    //-------------------------------------
-    // FIX: files (really need)
-    HANDLE hFile = ::FindFirstFile(sFilePath.c_str(), &fdData);
-    xCHECK_DO(INVALID_HANDLE_VALUE == hFile, return);
-
-    do {
-        // skip dirs
-        xCHECK_DO(fdData.dwFileAttributes & CxFileAttribute::faDirectory, continue);
-
-        sPart    = fdData.cFileName;
-        sTmpPath = CxPath(sFilePath /*sTmpPath*/).setFileName(sPart);
-
-        (*a_pvsFilePathes).push_back(sTmpPath);
-    }
-    while ( FALSE != ::FindNextFile(hFile, &fdData) );
-
-    BOOL blRes = ::FindClose(hFile);
-    xTEST_DIFF(FALSE, blRes);
-#elif xOS_ENV_UNIX
-    //-------------------------------------
-    // subdirs
-    /*if (cbIsRecursively)*/ {
-        DIR *pDir = ::opendir(dirPath().c_str());
-        xTEST_PTR(pDir);
-
-        dirent *pdrEntry = ::readdir(pDir);
-        xTEST_PTR(pdrEntry);
-
-        do {
-            // dirs
-            if (DT_DIR == pdrEntry->d_type) {
-                // skipping "." ".."
-                xCHECK_DO(CxConst::xDOT  == std::tstring_t(pdrEntry->d_name), continue);
-                xCHECK_DO(CxConst::x2DOT == std::tstring_t(pdrEntry->d_name), continue);
-
-                std::tstring_t _sDirPath = CxPath(dirPath()).slashAppend() + std::tstring_t(pdrEntry->d_name);
-
-                // is search in subdirs ?
-                if (a_cbIsRecursively) {
-                    CxDir(_sDirPath).filesFind(a_csPattern, a_cbIsRecursively, a_pvsFilePathes); // recursion
-                }
-            }
-            // TODO: files
-            else if (DT_REG == pdrEntry->d_type) {
-                std::tstring_t sFileName = pdrEntry->d_name;
-
-                // filter by pattern
-                {
-                    int_t iRv = ::fnmatch(a_csPattern.c_str(), sFileName.c_str(), 0);
-                    xTEST_EQ(true, (0 == iRv) || (FNM_NOMATCH == iRv));
-
-                    xCHECK_DO(0 != iRv, continue);
-                }
-
-                std::tstring_t sFilePath = CxPath(dirPath()).slashAppend() + sFileName;
-
-                (*a_pvsFilePathes).push_back(sFilePath);
-            }
-        }
-        while ( NULL != (pdrEntry = ::readdir(pDir)) );
-
-        int_t iRv = ::closedir(pDir); pDir = NULL;
-        xTEST_DIFF(- 1, iRv);
-    }
-
-    //-------------------------------------
-    // FIX: files (!!!! bad code !!!!)
-    #if xTODO
-        if (!cbIsRecurse) {
-            DIR    *pDir     = NULL;
-            dirent *pdrEntry = {0};
-
-            pDir = opendir(dirPath().c_str());
-            xTEST_PTR(pDir, false);
-
-            pdrEntry = readdir(pDir);
-            xCHECK_RET(NULL == pdrEntry, false);
-
-            do {
-                // skip dirs
-                xCHECK_DO(DT_DIR == pdrEntry->d_type, continue);
-
-                std::tstring_t sFilePath = CxPath::sSlashAppend(dirPath()) + pdrEntry->d_name;
-
-                (*pvsFilePathes).push_back(sFilePath);
-            }
-            while ( NULL != (pdrEntry = readdir(pDir)) );
-
-            int_t iRv = closedir(pDir); pDir = NULL;
-            xTEST_DIFF(- 1, iRv);
-        }
-    #endif
-#endif
-}
-//--------------------------------------------------------------------------
-void_t
-CxDir::dirsFind(
-    std::ctstring_t    &a_csPattern,          ///< pattern
-    cbool_t            &a_cbIsRecursively,    ///< recursively scan
-    std::vec_tstring_t *a_pvsDirPathes        ///< output directory paths (must be empty)
-)
-{
-    xTEST_NA(a_cbIsRecursively);
-    xTEST_PTR(a_pvsDirPathes);
-
-    // TODO: CxDir::vDirsFind
-    #if xTODO
-        (*a_pvsDirPathes).clear();
-    #endif
-
-#if   xOS_ENV_WIN
-    std::tstring_t  sRootDirPath = CxPath( CxPath(dirPath()).slashAppend() + a_csPattern ).toNative(false );
-    WIN32_FIND_DATA fdData       = {0};
-
-    HANDLE hFile = ::FindFirstFile(sRootDirPath.c_str(), &fdData);
-    xTEST_DIFF(xNATIVE_HANDLE_INVALID, hFile);
-
-    do {
-        // dirs
-        if (CxFileAttribute::faDirectory == (fdData.dwFileAttributes & CxFileAttribute::faDirectory)) {
-            std::tstring_t sFileName = fdData.cFileName;
-
-            // skip "." ".."
-            xCHECK_DO(CxConst::xDOT  == sFileName, continue);
-            xCHECK_DO(CxConst::x2DOT == sFileName, continue);
-
-            std::tstring_t _sDirPath = CxPath(dirPath()).slashAppend() + sFileName;
-
-            (*a_pvsDirPathes).push_back(_sDirPath);
-
-            // is search in subdirs ?
-            if (a_cbIsRecursively) {
-                CxDir(_sDirPath).dirsFind(a_csPattern, a_cbIsRecursively, a_pvsDirPathes);  // recursion
-            }
-        }
-        // files, etc
-        else {
-            xNA;
-        }
-    }
-    while ( FALSE != ::FindNextFile(hFile, &fdData) );
-
-    BOOL blRes = ::FindClose(hFile);
-    xTEST_DIFF(FALSE, blRes);
-#elif xOS_ENV_UNIX
-    DIR *pDir = ::opendir(dirPath().c_str());
-    xTEST_PTR(pDir);
-
-    dirent *pdrEntry = ::readdir(pDir);
-    xTEST_PTR(pdrEntry);
-
-    do {
-        // dirs
-        if (DT_DIR == pdrEntry->d_type) {
-            std::tstring_t sFileName = pdrEntry->d_name;
-
-            // skip "." ".."
-            xCHECK_DO(CxConst::xDOT  == sFileName, continue);
-            xCHECK_DO(CxConst::x2DOT == sFileName, continue);
-
-            // filter by pattern
-            {
-                int_t iRv = ::fnmatch(a_csPattern.c_str(), sFileName.c_str(), 0);
-                xTEST_EQ(true, (0 == iRv) || (FNM_NOMATCH == iRv));
-
-                xCHECK_DO(0 != iRv, continue);
-            }
-
-            std::tstring_t _sDirPath = CxPath(dirPath()).slashAppend() + sFileName;
-
-            (*a_pvsDirPathes).push_back(_sDirPath);
-
-            // is search in subdirs ?
-            if (a_cbIsRecursively) {
-                CxDir(_sDirPath).dirsFind(a_csPattern, a_cbIsRecursively, a_pvsDirPathes);  // recursion
-            }
-        }
-        // files, etc
-        else {
-            xNA;
-        }
-    }
-    while ( NULL != (pdrEntry = ::readdir(pDir)) );
-
-    int_t iRv = ::closedir(pDir); pDir = NULL;
-    xTEST_DIFF(- 1, iRv);
-#endif
-}
 //------------------------------------------------------------------------------
 
 
@@ -579,7 +337,7 @@ CxDir::dirsFind(
 *
 *******************************************************************************/
 
-//--------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 std::tstring_t
 CxDir::current() {
     std::tstring_t sRv;
