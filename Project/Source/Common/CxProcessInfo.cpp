@@ -51,12 +51,12 @@ CxProcessInfo::currentIds(
     }
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        std::vec_tstring_t a_vsDirPathes;
+        std::vec_tstring_t a_vsDirPaths;
 
-        CxFinder::dirs(xT("/proc"), CxConst::xMASK_ALL, false, &a_vsDirPathes);
+        CxFinder::dirs(xT("/proc"), CxConst::xMASK_ALL, false, &a_vsDirPaths);
 
         // skip non-numeric entries
-        xFOREACH_CONST(std::vec_tstring_t, it, a_vsDirPathes) {
+        xFOREACH_CONST(std::vec_tstring_t, it, a_vsDirPaths) {
             int_t iPid = 0;
             {
                 std::tstring_t sDirName = CxPath(*it).fileName();

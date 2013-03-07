@@ -19,7 +19,7 @@ public:
     explicit        CxStackTrace(std::ctstring_t &csLinePrefix          = xT("\t\t"),
                                  std::ctstring_t &csElementSeparator    = xT("  "),
                                  std::ctstring_t &csLinesSeparator      = xT("\n"),
-                                 cbool_t         &cbIsWrapFilePathes    = true,
+                                 cbool_t         &cbIsWrapFilePaths     = true,
                                  cbool_t         &cbIsFuncParamsDisable = true);
         ///< constructor
     virtual        ~CxStackTrace();
@@ -34,7 +34,7 @@ private:
     std::ctstring_t _m_csLinePrefix;
     std::ctstring_t _m_csElementSeparator;
     std::ctstring_t _m_csLineSeparator;
-    cbool_t         _m_cbIsWrapFilePathes;
+    cbool_t         _m_cbIsWrapFilePaths;
     cbool_t         _m_cbIsFuncParamsDisable;
 
     std::tstring_t  _format     (std::vector<std::vec_tstring_t> *pvvsStack) xWARN_UNUSED_RV;
