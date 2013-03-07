@@ -8,7 +8,7 @@
 
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
-#include <xLib/Filesystem/CxFileAttribute.h>
+#include <xLib/Filesystem/CxFileType.h>
 #include <xLib/Filesystem/CxDir.h>
 
 
@@ -111,7 +111,7 @@ CxTest_CxFinder::unit(
 
                 // set filter for files
                 // BUG: != faRegularFile
-                xCHECK_DO(CxFileAttribute::faDirectory == fnFinder.attributes(), continue);
+                xCHECK_DO(CxFileType::faDirectory == fnFinder.attributes(), continue);
 
                 vsEntries.push_back(fnFinder.entryName());
             }

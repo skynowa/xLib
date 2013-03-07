@@ -1,0 +1,152 @@
+/**
+ * \file  CxFileType.cpp
+ * \brief file type
+ */
+
+
+#include <xLib/Filesystem/CxFileType.h>
+
+
+xNAMESPACE_BEGIN(NxLib)
+
+/*******************************************************************************
+*    public
+*
+*******************************************************************************/
+
+//------------------------------------------------------------------------------
+CxFileType::CxFileType(
+    std::ctstring_t &a_csFilePath
+) :
+    _m_csFilePath(a_csFilePath)
+{
+    xTEST_EQ(false, a_csFilePath.empty());
+}
+//------------------------------------------------------------------------------
+/* virtual */
+CxFileType::~CxFileType() {
+
+}
+ //------------------------------------------------------------------------------
+std::ctstring_t &
+CxFileType::filePath() const {
+    xTEST_EQ(false, _m_csFilePath.empty());
+
+    return _m_csFilePath;
+}
+//------------------------------------------------------------------------------
+/* static */
+bool_t
+CxFileType::isExists(
+    const ExAttribute &a_cfaValue
+)
+{
+    xTEST_EQ(false, filePath().empty());
+    xTEST_NA(a_cfaValue);
+
+#if xTEMP_DISABLED
+    #if xOS_ENV_WIN
+        xCHECK_RET(cfaValue == (get() & BS_TYPEMASK), true);
+    #endif
+#endif
+
+    xCHECK_RET(a_cfaValue == (get() & a_cfaValue), true);
+
+    return false;
+}
+//------------------------------------------------------------------------------
+CxFileType::ExAttribute
+CxFileType::get() {
+    xTEST_EQ(false, filePath().empty());
+
+    ExAttribute faRes = faInvalid;
+
+#if   xOS_ENV_WIN
+    faRes = static_cast<ExAttribute>( ::GetFileAttributes(filePath().c_str()) );
+    xTEST_NA(faRes);
+#elif xOS_ENV_UNIX
+    xTSTAT_STRUCT stInfo = {0};
+
+    int_t iRv = ::xTSTAT(filePath().c_str(), &stInfo);
+    xTEST_NA(iRv);
+    if (- 1 == iRv) {
+        faRes = faInvalid;
+    } else {
+        faRes = static_cast<ExAttribute>( stInfo.st_mode & S_IFMT );
+    }
+#endif
+
+    return faRes;
+}
+//------------------------------------------------------------------------------
+void_t
+CxFileType::set(
+    const ExAttribute &a_cfaValue
+)
+{
+    xTEST_EQ(false, filePath().empty());
+    xTEST_NA(a_cfaValue);
+
+#if   xOS_ENV_WIN
+    BOOL blRes = ::SetFileAttributes(filePath().c_str(), static_cast<ulong_t>( a_cfaValue ));
+    xTEST_DIFF(FALSE, blRes);
+#elif xOS_ENV_UNIX
+    int_t iRv = ::xTCHMOD(filePath().c_str(), static_cast<mode_t>( a_cfaValue ));
+    xTEST_DIFF(- 1, iRv);
+#endif
+}
+//------------------------------------------------------------------------------
+void_t
+CxFileType::add(
+    const ExAttribute &a_cfaValue
+)
+{
+    xTEST_EQ(false, filePath().empty());
+    xTEST_NA(a_cfaValue);
+
+    modify(static_cast<ExAttribute>( 0 ), a_cfaValue);
+}
+//------------------------------------------------------------------------------
+void_t
+CxFileType::remove(
+    const ExAttribute &a_cfaValue
+)
+{
+    xTEST_EQ(false, filePath().empty());
+    xTEST_NA(a_cfaValue);
+
+    modify(a_cfaValue, static_cast<ExAttribute>( 0 ));
+}
+//------------------------------------------------------------------------------
+void_t
+CxFileType::modify(
+    const ExAttribute &a_cfaRemoveValue,
+    const ExAttribute &a_cfaAddValue
+)
+{
+    xTEST_EQ(false, filePath().empty());
+    xTEST_NA(a_cfaRemoveValue);
+    xTEST_NA(a_cfaValue);
+
+    // get current attributes
+    ExAttribute cfaValue = get();
+
+    // change bits
+    cfaValue = static_cast<ExAttribute>( static_cast<ulong_t>( cfaValue ) & ~a_cfaRemoveValue );
+    cfaValue = static_cast<ExAttribute>( static_cast<ulong_t>( cfaValue ) |  a_cfaAddValue    );
+
+    // change the attributes
+    set(cfaValue);
+}
+//------------------------------------------------------------------------------
+void_t
+CxFileType::clear() {
+    xTEST_EQ(false, filePath().empty());
+
+#if xOS_ENV_WIN
+    set(faNormal);
+#endif
+}
+//------------------------------------------------------------------------------
+
+xNAMESPACE_END(NxLib)

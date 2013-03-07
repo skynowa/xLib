@@ -63,7 +63,7 @@
 
 // Filesystem
 #include <Test/Filesystem/CxTest_CxPath.h>
-#include <Test/Filesystem/CxTest_CxFileAttribute.h>
+#include <Test/Filesystem/CxTest_CxFileType.h>
 #include <Test/Filesystem/CxTest_CxFile.h>
 #include <Test/Filesystem/CxTest_CxFileTemp.h>
 #include <Test/Filesystem/CxTest_CxDll.h>
@@ -210,7 +210,7 @@ xTMAIN(int_t iArgCount, tchar_t *paszArgs[]) {
 
         // File system
         tmManager.add(new CxTest_CxPath);
-        tmManager.add(new CxTest_CxFileAttribute);
+        tmManager.add(new CxTest_CxFileType);
         tmManager.add(new CxTest_CxFile);
         tmManager.add(new CxTest_CxFileTemp);
         tmManager.add(new CxTest_CxDll);

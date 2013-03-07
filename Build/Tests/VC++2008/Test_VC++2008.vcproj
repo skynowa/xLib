@@ -1022,19 +1022,19 @@
 					>
 				</File>
 				<File
-					RelativePath="..\..\..\Tests\Source\Filesystem\CxTest_CxFileAttribute.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\Tests\Include\Test\Filesystem\CxTest_CxFileAttribute.h"
-					>
-				</File>
-				<File
 					RelativePath="..\..\..\Tests\Source\Filesystem\CxTest_CxFileTemp.cpp"
 					>
 				</File>
 				<File
 					RelativePath="..\..\..\Tests\Include\Test\Filesystem\CxTest_CxFileTemp.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Source\Filesystem\CxTest_CxFileType.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Tests\Include\Test\Filesystem\CxTest_CxFileType.h"
 					>
 				</File>
 				<File
@@ -2178,19 +2178,19 @@
 					>
 				</File>
 				<File
-					RelativePath="..\..\..\Project\Source\Filesystem\CxFileAttribute.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\..\..\Project\Include\xLib\Filesystem\CxFileAttribute.h"
-					>
-				</File>
-				<File
 					RelativePath="..\..\..\Project\Source\Filesystem\CxFileTemp.cpp"
 					>
 				</File>
 				<File
 					RelativePath="..\..\..\Project\Include\xLib\Filesystem\CxFileTemp.h"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Source\Filesystem\CxFileType.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\..\..\Project\Include\xLib\Filesystem\CxFileType.h"
 					>
 				</File>
 				<File

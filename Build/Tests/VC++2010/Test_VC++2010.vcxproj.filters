@@ -341,9 +341,6 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Filesystem\CxFile.h">
       <Filter>xLib\Filesystem</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Project\Include\xLib\Filesystem\CxFileAttribute.h">
-      <Filter>xLib\Filesystem</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Filesystem\CxFileTemp.h">
       <Filter>xLib\Filesystem</Filter>
     </ClInclude>
@@ -602,9 +599,6 @@
     <ClInclude Include="..\..\..\Tests\Include\Test\Filesystem\CxTest_CxFile.h">
       <Filter>Tests\Filesystem</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Tests\Include\Test\Filesystem\CxTest_CxFileAttribute.h">
-      <Filter>Tests\Filesystem</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Tests\Include\Test\Filesystem\CxTest_CxFileTemp.h">
       <Filter>Tests\Filesystem</Filter>
     </ClInclude>
@@ -739,6 +733,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Tests\Include\Test\Sync\CxTest_CxCondition.h">
       <Filter>Tests\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Filesystem\CxFileType.h">
+      <Filter>xLib\Filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Tests\Include\Test\Filesystem\CxTest_CxFileType.h">
+      <Filter>Tests\Filesystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -916,9 +916,6 @@
       <Filter>xLib\Filesystem</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Filesystem\CxFile.cpp">
-      <Filter>xLib\Filesystem</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Project\Source\Filesystem\CxFileAttribute.cpp">
       <Filter>xLib\Filesystem</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Filesystem\CxFileTemp.cpp">
@@ -1167,9 +1164,6 @@
     <ClCompile Include="..\..\..\Tests\Source\Filesystem\CxTest_CxFile.cpp">
       <Filter>Tests\Filesystem</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Tests\Source\Filesystem\CxTest_CxFileAttribute.cpp">
-      <Filter>Tests\Filesystem</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Tests\Source\Filesystem\CxTest_CxFileTemp.cpp">
       <Filter>Tests\Filesystem</Filter>
     </ClCompile>
@@ -1307,6 +1301,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Tests\Source\Sync\CxTest_CxCondition.cpp">
       <Filter>Tests\Sync</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Project\Source\Filesystem\CxFileType.cpp">
+      <Filter>xLib\Filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Tests\Source\Filesystem\CxTest_CxFileType.cpp">
+      <Filter>Tests\Filesystem</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

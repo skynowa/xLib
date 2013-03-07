@@ -12,7 +12,7 @@
 #include <xLib/Debug/CxException.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxDir.h>
-#include <xLib/Filesystem/CxFileAttribute.h>
+#include <xLib/Filesystem/CxFileType.h>
 #include <xLib/Crypt/CxRandom.h>
 #include <xLib/Sync/CxCurrentThread.h>
 
@@ -541,25 +541,25 @@ CxFile::isFile(
 
     bool_t bRv = false;
 
-    CxFileAttribute faAttr(a_csFilePath);
+    CxFileType faAttr(a_csFilePath);
 
-    CxFileAttribute::ExAttribute atAttribute = faAttr.get();
-    xCHECK_RET(CxFileAttribute::faInvalid == atAttribute, false);
+    CxFileType::ExAttribute atAttribute = faAttr.get();
+    xCHECK_RET(CxFileType::faInvalid == atAttribute, false);
 
 #if   xOS_ENV_WIN
-    bRv = faAttr.isExists(CxFileAttribute::faDirectory);
+    bRv = faAttr.isExists(CxFileType::faDirectory);
     xCHECK_RET(bRv, false);
 
-    bRv = faAttr.isExists(CxFileAttribute::faDevice);
+    bRv = faAttr.isExists(CxFileType::faDevice);
     xCHECK_RET(bRv, false);
 
-    bRv = faAttr.isExists(CxFileAttribute::faReparsePoint);
+    bRv = faAttr.isExists(CxFileType::faReparsePoint);
     xCHECK_RET(bRv, false);
 
-    bRv = faAttr.isExists(CxFileAttribute::faOffline);
+    bRv = faAttr.isExists(CxFileType::faOffline);
     xCHECK_RET(bRv, false);
 #elif xOS_ENV_UNIX
-    bRv = faAttr.isExists(CxFileAttribute::faRegularFile);
+    bRv = faAttr.isExists(CxFileType::faRegularFile);
     xCHECK_RET(!bRv, false);
 #endif
 
@@ -722,11 +722,9 @@ CxFile::wipe(
     {
         CxFile sfFile;
 
-    #if xOS_ENV_WIN
         //--------------------------------------------------
         // set normal file attributes
-        CxFileAttribute(a_csFilePath).set(CxFileAttribute::faNormal);
-    #endif
+        CxFileType(a_csFilePath).clear();
 
         //--------------------------------------------------
         // open
@@ -970,7 +968,7 @@ CxFile::time(
     CxHandleInvalid m_hHandle;
 
     m_hHandle = ::CreateFile(a_csFilePath.c_str(), GENERIC_READ, FILE_SHARE_READ,
-                             NULL, OPEN_EXISTING, CxFileAttribute::faNormal, NULL);
+                             NULL, OPEN_EXISTING, CxFileType::faNormal, NULL);
     xTEST_EQ(true, m_hHandle.isValid());
 
     BOOL blRes = ::GetFileTime(m_hHandle.get(), &ftCreate, &ftAccess, &ftModified);
@@ -1018,7 +1016,7 @@ CxFile::setTime(
     CxHandleInvalid m_hHandle;
 
     m_hHandle = ::CreateFile(a_csFilePath.c_str(), GENERIC_WRITE, FILE_SHARE_WRITE,
-                             NULL, OPEN_EXISTING, CxFileAttribute::faNormal, NULL);
+                             NULL, OPEN_EXISTING, CxFileType::faNormal, NULL);
     xTEST_EQ(true, m_hHandle.isValid());
 
     BOOL blRes = ::SetFileTime(m_hHandle.get(), &ftCreate, &ftAccess, &ftModified);

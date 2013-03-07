@@ -280,9 +280,6 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Filesystem\CxFile.h">
       <Filter>xLib\Filesystem</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Project\Include\xLib\Filesystem\CxFileAttribute.h">
-      <Filter>xLib\Filesystem</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Filesystem\CxFileTemp.h">
       <Filter>xLib\Filesystem</Filter>
     </ClInclude>
@@ -438,6 +435,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Sync\CxCondition.h">
       <Filter>xLib\Sync</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Filesystem\CxFileType.h">
+      <Filter>xLib\Filesystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -614,9 +614,6 @@
     <ClCompile Include="..\..\..\Project\Source\Filesystem\CxFile.cpp">
       <Filter>xLib\Filesystem</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Project\Source\Filesystem\CxFileAttribute.cpp">
-      <Filter>xLib\Filesystem</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Filesystem\CxFileTemp.cpp">
       <Filter>xLib\Filesystem</Filter>
     </ClCompile>
@@ -751,6 +748,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Sync\CxCondition.cpp">
       <Filter>xLib\Sync</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Project\Source\Filesystem\CxFileType.cpp">
+      <Filter>xLib\Filesystem</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
