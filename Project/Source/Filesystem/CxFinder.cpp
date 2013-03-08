@@ -277,7 +277,6 @@ CxFinder::files(
             xCHECK_DO(CxConst::x2DOT == fnFinder.entryName(), continue);
 
             // set filter for files
-            // BUG: != faRegularFile
             xCHECK_DO(CxFileType::faDirectory & fnFinder.fileTypes(), continue);
 
             a_pvsFilePaths->push_back(fnFinder.entryPath());
