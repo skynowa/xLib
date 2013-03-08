@@ -110,7 +110,6 @@ CxTest_CxFinder::unit(
                 xCHECK_DO(CxConst::x2DOT == fnFinder.entryName(), continue);
 
                 // set filter for files
-                // BUG: != faRegularFile
                 xCHECK_DO(CxFileType::faDirectory & fnFinder.fileTypes(), continue);
                 xTEST_EQ(true, CxFile::isExists( fnFinder.entryPath() ));
 
