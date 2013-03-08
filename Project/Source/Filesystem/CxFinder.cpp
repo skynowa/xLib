@@ -74,40 +74,39 @@ CxFinder::entryName() const {
 }
 //------------------------------------------------------------------------------
 CxFileType::types_t
-CxFinder::fileType() const {
+CxFinder::fileTypes() const {
     xTEST_EQ(true, isValid());
 
-    CxFileType::ExType ftRv = CxFileType::faInvalid;
+    CxFileType::types_t ftRv = CxFileType::faInvalid;
 
 #if   xOS_ENV_WIN
-    CxFileType::types_t dwRv = _m_enEnrty.fdData.dwFileAttributes;
-    // TODO: ftRv
+    ftRv = _m_enEnrty.fdData.dwFileAttributes;
 #elif xOS_ENV_UNIX
     uchar_t ucRv = _m_enEnrty.pdrData->d_type;
-	switch (ucRv) {
-    	case DT_BLK: // block device
-            ftRv = CxFileType::faBlockDevice;
+    switch (ucRv) {
+        case DT_BLK: // block device
+            ftRv |= CxFileType::faBlockDevice;
             break;
-		case DT_CHR: // character device
-            ftRv = CxFileType::faCharacterDevice;
+        case DT_CHR: // character device
+            ftRv |= CxFileType::faCharacterDevice;
             break;
-		case DT_DIR: // directory
-            ftRv = CxFileType::faDirectory;
+        case DT_DIR: // directory
+            ftRv |= CxFileType::faDirectory;
             break;
-		case DT_FIFO: // named pipe (FIFO)
-            ftRv = CxFileType::faFifo;
+        case DT_FIFO: // named pipe (FIFO)
+            ftRv |= CxFileType::faFifo;
             break;
-    	case DT_LNK: // symbolic link
-            ftRv = CxFileType::faSymbolicLink;
+        case DT_LNK: // symbolic link
+            ftRv |= CxFileType::faSymbolicLink;
             break;
-		case DT_REG: // regular file
-            ftRv = CxFileType::faRegularFile;
+        case DT_REG: // regular file
+            ftRv |= CxFileType::faRegularFile;
             break;
-		case DT_SOCK: // UNIX domain socket
-            ftRv = CxFileType::faSocket;
+        case DT_SOCK: // UNIX domain socket
+            ftRv |= CxFileType::faSocket;
             break;
-		case DT_UNKNOWN: // type is unknown
-    	default:
+        case DT_UNKNOWN: // type is unknown
+        default:
             ftRv = CxFileType::faInvalid;
             break;
     }
@@ -138,12 +137,22 @@ CxFinder::moveNext() {
         xCHECK_RET(!bRv, false);
     } else {
     #if   xOS_ENV_WIN
-        BOOL blRv = ::FindNextFile(_m_enEnrty.hHandle, &_m_enEnrty.fdData);
-        xCHECK_RET(FALSE == blRv, false);
+        BOOL blRv = ::FindNextFile(_m_enEnrty.hHandle, &_m_e1nEnrty.fdData);
+        if (FALSE == blRv) {
+            xCHECK_RET(ERROR_NO_MORE_FILES == CxLastError::get(), false);
+
+            xTEST_FAIL;
+        }
     #elif xOS_ENV_UNIX
         xFOREVER {
+            CxLastError::reset();
+
             _m_enEnrty.pdrData = ::readdir(_m_enEnrty.pHandle);
-            xCHECK_RET(NULL == _m_enEnrty.pdrData, false);
+            if (NULL == _m_enEnrty.pdrData) {
+                xCHECK_RET(CxLastError::isSuccess(), false);
+
+                xTEST_FAIL;
+            }
 
             // filter by pattern
             int_t iRv = ::fnmatch(shellFilter().c_str(), entryName().c_str(), 0);
@@ -219,7 +228,7 @@ CxFinder::dirs(
         xCHECK_DO(CxConst::x2DOT == fnFinder.entryName(), continue);
 
         // set filter for dirs
-        xCHECK_DO(CxFileType::faDirectory != fnFinder.fileType(), continue);
+        xCHECK_DO(!(CxFileType::faDirectory & fnFinder.fileTypes()), continue);
 
         std::ctstring_t csDirPath = CxPath(a_csRootDirPath).slashAppend() +
                                     fnFinder.entryName();
@@ -259,7 +268,7 @@ CxFinder::files(
 
             // set filter for files
             // BUG: != faRegularFile
-            xCHECK_DO(CxFileType::faDirectory == fnFinder.fileType(), continue);
+            xCHECK_DO(CxFileType::faDirectory & fnFinder.fileTypes(), continue);
 
             std::ctstring_t csFilePath = CxPath(a_csRootDirPath).slashAppend() +
                                          fnFinder.entryName();

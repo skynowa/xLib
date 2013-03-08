@@ -36,7 +36,7 @@ public:
             faNotContentIndexed = FILE_ATTRIBUTE_NOT_CONTENT_INDEXED,
             faEncrypted         = FILE_ATTRIBUTE_ENCRYPTED
         #elif xOS_ENV_UNIX
-            faInvalid           = - 1,
+            faInvalid           = (mode_t)- 1,
             faDirectory         = S_IFDIR,
             faCharacterDevice   = S_IFCHR,
             faBlockDevice       = S_IFBLK,
