@@ -112,6 +112,7 @@ CxTest_CxFinder::unit(
                 // set filter for files
                 // BUG: != faRegularFile
                 xCHECK_DO(CxFileType::faDirectory & fnFinder.fileTypes(), continue);
+                xTEST_EQ(true, CxFile::isExists( fnFinder.entryPath() ));
 
                 vsEntries.push_back(fnFinder.entryName());
             }

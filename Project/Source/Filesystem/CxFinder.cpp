@@ -73,6 +73,17 @@ CxFinder::entryName() const {
     return sRv;
 }
 //------------------------------------------------------------------------------
+std::tstring_t
+CxFinder::entryPath() const {
+    xTEST_EQ(true, isValid());
+
+    std::tstring_t sRv;
+
+    sRv = CxPath(rootDirPath()).slashAppend() + entryName();
+
+    return sRv;
+}
+//------------------------------------------------------------------------------
 CxFileType::types_t
 CxFinder::fileTypes() const {
     xTEST_EQ(true, isValid());
@@ -232,14 +243,11 @@ CxFinder::dirs(
         // set filter for dirs
         xCHECK_DO(!(CxFileType::faDirectory & fnFinder.fileTypes()), continue);
 
-        std::ctstring_t csDirPath = CxPath(a_csRootDirPath).slashAppend() +
-                                    fnFinder.entryName();
-
-        a_pvsDirPaths->push_back(csDirPath);
+        a_pvsDirPaths->push_back( fnFinder.entryPath() );
 
         // is search in subdirs
         if (a_cbIsRecursively) {
-            CxFinder::dirs(csDirPath, a_csShellFilter, true, a_pvsDirPaths);
+            CxFinder::dirs(fnFinder.entryPath(), a_csShellFilter, true, a_pvsDirPaths);
         }
     }
 }
@@ -272,10 +280,7 @@ CxFinder::files(
             // BUG: != faRegularFile
             xCHECK_DO(CxFileType::faDirectory & fnFinder.fileTypes(), continue);
 
-            std::ctstring_t csFilePath = CxPath(a_csRootDirPath).slashAppend() +
-                                         fnFinder.entryName();
-
-            a_pvsFilePaths->push_back(csFilePath);
+            a_pvsFilePaths->push_back(fnFinder.entryPath());
         }
     } else {
         // subdirs

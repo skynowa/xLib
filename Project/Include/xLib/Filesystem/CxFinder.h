@@ -30,6 +30,8 @@ public:
         ///< shell wild card filter
     std::tstring_t      entryName  () const xWARN_UNUSED_RV;
         ///< entry name
+    std::tstring_t      entryPath  () const xWARN_UNUSED_RV;
+        ///< entry path
     CxFileType::types_t fileTypes  () const xWARN_UNUSED_RV;
         ///< file attributes
 
