@@ -30,7 +30,7 @@ public:
         ///< shell wild card filter
     std::tstring_t      entryName  () const xWARN_UNUSED_RV;
         ///< entry name
-    CxFileType::types_t fileType  () const xWARN_UNUSED_RV;
+    CxFileType::types_t fileTypes  () const xWARN_UNUSED_RV;
         ///< file attributes
 
     bool_t              isValid    () const xWARN_UNUSED_RV;
