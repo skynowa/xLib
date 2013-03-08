@@ -77,11 +77,13 @@ CxFileType::types_t
 CxFinder::fileTypes() const {
     xTEST_EQ(true, isValid());
 
+#if   xOS_ENV_WIN
     CxFileType::types_t ftRv = CxFileType::faInvalid;
 
-#if   xOS_ENV_WIN
     ftRv = _m_enEnrty.fdData.dwFileAttributes;
 #elif xOS_ENV_UNIX
+    CxFileType::types_t ftRv = 0;
+
     uchar_t ucRv = _m_enEnrty.pdrData->d_type;
     switch (ucRv) {
         case DT_BLK: // block device
