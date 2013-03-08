@@ -36,7 +36,7 @@ CxLastError::isSuccess() {
 #if   xOS_ENV_WIN
     bRv = (g_culCodeSuccess == ::GetLastError());
 #elif xOS_ENV_UNIX
-    bRv = (g_culCodeSuccess == errno);
+    bRv = (g_culCodeSuccess == static_cast<ulong_t>( errno ));
 #endif
 
     return bRv;
