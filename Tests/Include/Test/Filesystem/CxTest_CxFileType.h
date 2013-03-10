@@ -15,8 +15,8 @@ class CxTest_CxFileType :
     public CxTest
 {
 public:
-                   CxTest_CxFileType();
-    virtual       ~CxTest_CxFileType();
+                     CxTest_CxFileType();
+    virtual         ~CxTest_CxFileType();
 
     virtual  void_t  unit(culonglong_t &cullCaseLoops);
 };

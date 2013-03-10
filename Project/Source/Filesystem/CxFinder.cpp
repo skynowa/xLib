@@ -73,46 +73,47 @@ CxFinder::entryName() const {
     return sRv;
 }
 //------------------------------------------------------------------------------
-CxFileType::ExAttribute
-CxFinder::attributes() const {
+CxFileType::types_t
+CxFinder::fileType() const {
     xTEST_EQ(true, isValid());
 
-    CxFileType::ExAttribute faRv = CxFileType::faInvalid;
+    CxFileType::ExType ftRv = CxFileType::faInvalid;
 
 #if   xOS_ENV_WIN
-    faRv = static_cast<CxFileType::ExAttribute>( _m_enEnrty.fdData.dwFileAttributes );
+    CxFileType::types_t dwRv = _m_enEnrty.fdData.dwFileAttributes;
+    // TODO: ftRv
 #elif xOS_ENV_UNIX
-    uchar_t iRv = _m_enEnrty.pdrData->d_type;
-	switch (iRv) {
+    uchar_t ucRv = _m_enEnrty.pdrData->d_type;
+	switch (ucRv) {
     	case DT_BLK: // block device
-            faRv = CxFileType::faBlockDevice;
+            ftRv = CxFileType::faBlockDevice;
             break;
 		case DT_CHR: // character device
-            faRv = CxFileType::faCharacterDevice;
+            ftRv = CxFileType::faCharacterDevice;
             break;
 		case DT_DIR: // directory
-            faRv = CxFileType::faDirectory;
+            ftRv = CxFileType::faDirectory;
             break;
 		case DT_FIFO: // named pipe (FIFO)
-            faRv = CxFileType::faFifo;
+            ftRv = CxFileType::faFifo;
             break;
     	case DT_LNK: // symbolic link
-            faRv = CxFileType::faSymbolicLink;
+            ftRv = CxFileType::faSymbolicLink;
             break;
 		case DT_REG: // regular file
-            faRv = CxFileType::faRegularFile;
+            ftRv = CxFileType::faRegularFile;
             break;
 		case DT_SOCK: // UNIX domain socket
-            faRv = CxFileType::faSocket;
+            ftRv = CxFileType::faSocket;
             break;
 		case DT_UNKNOWN: // type is unknown
     	default:
-            faRv = CxFileType::faInvalid;
+            ftRv = CxFileType::faInvalid;
             break;
     }
 #endif
 
-    return faRv;
+    return ftRv;
 }
 //------------------------------------------------------------------------------
 bool_t
@@ -218,7 +219,7 @@ CxFinder::dirs(
         xCHECK_DO(CxConst::x2DOT == fnFinder.entryName(), continue);
 
         // set filter for dirs
-        xCHECK_DO(CxFileType::faDirectory != fnFinder.attributes(), continue);
+        xCHECK_DO(CxFileType::faDirectory != fnFinder.fileType(), continue);
 
         std::ctstring_t csDirPath = CxPath(a_csRootDirPath).slashAppend() +
                                     fnFinder.entryName();
@@ -258,7 +259,7 @@ CxFinder::files(
 
             // set filter for files
             // BUG: != faRegularFile
-            xCHECK_DO(CxFileType::faDirectory == fnFinder.attributes(), continue);
+            xCHECK_DO(CxFileType::faDirectory == fnFinder.fileType(), continue);
 
             std::ctstring_t csFilePath = CxPath(a_csRootDirPath).slashAppend() +
                                          fnFinder.entryName();

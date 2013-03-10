@@ -38,105 +38,99 @@ CxFileType::filePath() const {
 /* static */
 bool_t
 CxFileType::isExists(
-    const ExAttribute &a_cfaValue
+    cExType &a_cftValue
 )
 {
     xTEST_EQ(false, filePath().empty());
-    xTEST_NA(a_cfaValue);
+    xTEST_NA(a_cftValue);
 
-#if xTEMP_DISABLED
-    #if xOS_ENV_WIN
-        xCHECK_RET(cfaValue == (get() & BS_TYPEMASK), true);
-    #endif
-#endif
-
-    xCHECK_RET(a_cfaValue == (get() & a_cfaValue), true);
+    xCHECK_RET(a_cftValue == (get() & a_cftValue), true);
 
     return false;
 }
 //------------------------------------------------------------------------------
-CxFileType::ExAttribute
+CxFileType::types_t
 CxFileType::get() {
     xTEST_EQ(false, filePath().empty());
 
-    ExAttribute faRes = faInvalid;
+    types_t ftRv = faInvalid;
 
 #if   xOS_ENV_WIN
-    faRes = static_cast<ExAttribute>( ::GetFileAttributes(filePath().c_str()) );
-    xTEST_NA(faRes);
+    ftRv = ::GetFileAttributes(filePath().c_str());
+    xTEST_NA(ftRv);
 #elif xOS_ENV_UNIX
     xTSTAT_STRUCT stInfo = {0};
 
     int_t iRv = ::xTSTAT(filePath().c_str(), &stInfo);
     xTEST_NA(iRv);
     if (- 1 == iRv) {
-        faRes = faInvalid;
+        ftRv = faInvalid;
     } else {
-        faRes = static_cast<ExAttribute>( stInfo.st_mode & S_IFMT );
+        ftRv = (stInfo.st_mode & S_IFMT);
     }
 #endif
 
-    return faRes;
+    return ftRv;
 }
 //------------------------------------------------------------------------------
 void_t
 CxFileType::set(
-    const ExAttribute &a_cfaValue
+    ctypes_t &a_cftValues
 )
 {
     xTEST_EQ(false, filePath().empty());
-    xTEST_NA(a_cfaValue);
+    xTEST_NA(a_cftValue);
 
 #if   xOS_ENV_WIN
-    BOOL blRes = ::SetFileAttributes(filePath().c_str(), static_cast<ulong_t>( a_cfaValue ));
+    BOOL blRes = ::SetFileAttributes(filePath().c_str(), a_cftValues);
     xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
-    int_t iRv = ::xTCHMOD(filePath().c_str(), static_cast<mode_t>( a_cfaValue ));
+    int_t iRv = ::xTCHMOD(filePath().c_str(), a_cftValues);
     xTEST_DIFF(- 1, iRv);
 #endif
 }
 //------------------------------------------------------------------------------
 void_t
 CxFileType::add(
-    const ExAttribute &a_cfaValue
+    cExType &a_cftValue
 )
 {
     xTEST_EQ(false, filePath().empty());
-    xTEST_NA(a_cfaValue);
+    xTEST_NA(a_cftValue);
 
-    modify(static_cast<ExAttribute>( 0 ), a_cfaValue);
+    modify(static_cast<ExType>( 0 ), a_cftValue);
 }
 //------------------------------------------------------------------------------
 void_t
 CxFileType::remove(
-    const ExAttribute &a_cfaValue
+    cExType &a_cftValue
 )
 {
     xTEST_EQ(false, filePath().empty());
-    xTEST_NA(a_cfaValue);
+    xTEST_NA(a_cftValue);
 
-    modify(a_cfaValue, static_cast<ExAttribute>( 0 ));
+    modify(a_cftValue, static_cast<ExType>( 0 ));
 }
 //------------------------------------------------------------------------------
 void_t
 CxFileType::modify(
-    const ExAttribute &a_cfaRemoveValue,
-    const ExAttribute &a_cfaAddValue
+    cExType &a_cftRemoveValue,
+    cExType &a_cftAddValue
 )
 {
     xTEST_EQ(false, filePath().empty());
-    xTEST_NA(a_cfaRemoveValue);
-    xTEST_NA(a_cfaValue);
+    xTEST_NA(a_cftRemoveValue);
+    xTEST_NA(a_cftAddValue);
 
     // get current attributes
-    ExAttribute cfaValue = get();
+    types_t cfaValues = get();
 
     // change bits
-    cfaValue = static_cast<ExAttribute>( static_cast<ulong_t>( cfaValue ) & ~a_cfaRemoveValue );
-    cfaValue = static_cast<ExAttribute>( static_cast<ulong_t>( cfaValue ) |  a_cfaAddValue    );
+    cfaValues &= ~a_cftRemoveValue;
+    cfaValues |= a_cftAddValue;
 
     // change the attributes
-    set(cfaValue);
+    set(cfaValues);
 }
 //------------------------------------------------------------------------------
 void_t

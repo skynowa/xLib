@@ -49,11 +49,11 @@ bool_t
 CxDir::isExists() {
     xCHECK_RET(dirPath().empty(), false);
 
-    CxFileType faAttr(dirPath());
+    CxFileType ftType(dirPath());
 
-    xCHECK_RET(CxFileType::faInvalid == faAttr.get(), false);
+    xCHECK_RET(CxFileType::faInvalid == ftType.get(), false);
 
-    bool_t bRv = faAttr.isExists(CxFileType::faDirectory);
+    bool_t bRv = ftType.isExists(CxFileType::faDirectory);
     xCHECK_RET(!bRv, false);
 
     return true;
