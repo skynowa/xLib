@@ -16,7 +16,7 @@ class CxFileType :
     /// file attribute
 {
 public:
-    enum ExAttribute
+    enum ExType
         /// attribute
     {
         #if   xOS_ENV_WIN
@@ -46,6 +46,16 @@ public:
             faSocket            = S_IFSOCK
         #endif
     };
+    typedef const ExType cExType;
+
+#if   xOS_ENV_WIN
+    typedef DWORD  types_t;
+#elif xOS_ENV_UNIX
+    typedef mode_t types_t;
+#endif
+
+    typedef const types_t ctypes_t;
+        ///< all types
 
     explicit          CxFileType(std::ctstring_t &csFilePath);
         ///< constructor
@@ -55,17 +65,17 @@ public:
     std::ctstring_t & filePath  () const xWARN_UNUSED_RV;
         ///< file path
 
-    bool_t            isExists  (const ExAttribute &cfaValue) xWARN_UNUSED_RV;
+    bool_t            isExists  (cExType &cftValue) xWARN_UNUSED_RV;
         ///< is exists
-    ExAttribute       get       () xWARN_UNUSED_RV;
+    types_t           get       () xWARN_UNUSED_RV;
         ///< get
-    void_t            set       (const ExAttribute &cfaValue);
+    void_t            set       (ctypes_t &cftValues);
         ///< set
-    void_t            add       (const ExAttribute &cfaValue);
+    void_t            add       (cExType &cftValue);
         ///< add
-    void_t            remove    (const ExAttribute &cfaValue);
+    void_t            remove    (cExType &cftValue);
         ///< remove
-    void_t            modify    (const ExAttribute &cfaRemoveValue, const ExAttribute &cfaAddValue);
+    void_t            modify    (cExType &cftRemoveValue, cExType &cftAddValue);
         ///< modify
     void_t            clear     ();
         ///< clear (set normal attributes, only for Windows)

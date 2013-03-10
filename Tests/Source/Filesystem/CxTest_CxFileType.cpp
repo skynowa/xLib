@@ -26,8 +26,8 @@ CxTest_CxFileType::unit(
     culonglong_t &cullCaseLoops
 )
 {
-    std::ctstring_t csFilePath = tempDirPath() + CxConst::xSLASH + xT("Test.txt");
-    CxFileType::ExAttribute cfaValue;
+    std::ctstring_t    csFilePath = tempDirPath() + CxConst::xSLASH + xT("Test.txt");
+    CxFileType::ExType cfaValue;
 
     // prepare
     {
@@ -50,66 +50,66 @@ CxTest_CxFileType::unit(
 
     xTEST_CASE("CxFileType::set CxFileType::get", cullCaseLoops)
     {
-        CxFileType faAttr(csFilePath);
+        CxFileType ftType(csFilePath);
 
-        faAttr.set(cfaValue);
+        ftType.set(cfaValue);
 
-        CxFileType::ExAttribute faRes;
+        CxFileType::types_t faRes;
 
-        faRes = faAttr.get();
+        faRes = ftType.get();
         xTEST_EQ((ulong_t)cfaValue, (ulong_t)faRes);
     }
 
     xTEST_CASE("CxFileType::add", cullCaseLoops)
     {
-        CxFileType faAttr(csFilePath);
+        CxFileType ftType(csFilePath);
 
-        faAttr.clear();
-        faAttr.add(cfaValue);
+        ftType.clear();
+        ftType.add(cfaValue);
 
-        m_bRv = faAttr.isExists(cfaValue);
+        m_bRv = ftType.isExists(cfaValue);
         xTEST_EQ(true, m_bRv);
     }
 
     xTEST_CASE("CxFileType::remove", cullCaseLoops)
     {
         #if   xOS_ENV_WIN
-            CxFileType faAttr(csFilePath);
+            CxFileType ftType(csFilePath);
 
-            CxFileType::ExAttribute faAttribute = CxFileType::faHidden;
-            CxFileType::ExAttribute faValue     = CxFileType::faReadOnly;
+            CxFileType::ExType faAttribute = CxFileType::faHidden;
+            CxFileType::ExType faValue     = CxFileType::faReadOnly;
 
-            faAttr.clear();
-            faAttr.add(faAttribute);
+            ftType.clear();
+            ftType.add(faAttribute);
 
-            m_bRv = faAttr.isExists(faAttribute);
+            m_bRv = ftType.isExists(faAttribute);
             xTEST_EQ(true, m_bRv);
 
-            faAttr.add(faValue);
+            ftType.add(faValue);
 
-            m_bRv = faAttr.isExists(faValue);
+            m_bRv = ftType.isExists(faValue);
             xTEST_EQ(true, m_bRv);
 
             // remove
-            faAttr.remove(faValue);
+            ftType.remove(faValue);
 
-            m_bRv = faAttr.isExists(faValue);
+            m_bRv = ftType.isExists(faValue);
             xTEST_EQ(false, m_bRv);
 
-            m_bRv = faAttr.isExists(faAttribute);
+            m_bRv = ftType.isExists(faAttribute);
             xTEST_EQ(true, m_bRv);
 
-            CxFileType::ExAttribute faRes = faAttr.get();
-            xTEST_EQ((int_t)faAttribute, (int_t)faRes);
+            CxFileType::types_t faRv = ftType.get();
+            xTEST_EQ((int_t)faAttribute, (int_t)faRv);
         #elif xOS_ENV_UNIX
             // file
             {
-                CxFileType faAttr(csFilePath);
+                CxFileType ftType(csFilePath);
 
-                m_bRv = faAttr.isExists(CxFileType::faRegularFile);
+                m_bRv = ftType.isExists(CxFileType::faRegularFile);
                 xTEST_EQ(true, m_bRv);
 
-                m_bRv = faAttr.isExists(CxFileType::faRegularFile);
+                m_bRv = ftType.isExists(CxFileType::faRegularFile);
                 xTEST_EQ(true, m_bRv);
             }
 
@@ -117,12 +117,12 @@ CxTest_CxFileType::unit(
             {
                 std::ctstring_t csDirPath = tempDirPath();
 
-                CxFileType faAttr(csDirPath);
+                CxFileType ftType(csDirPath);
 
-                m_bRv = faAttr.isExists(CxFileType::faDirectory);
+                m_bRv = ftType.isExists(CxFileType::faDirectory);
                 xTEST_EQ(true, m_bRv);
 
-                m_bRv = faAttr.isExists(CxFileType::faDirectory);
+                m_bRv = ftType.isExists(CxFileType::faDirectory);
                 xTEST_EQ(true, m_bRv);
             }
         #endif
@@ -130,48 +130,48 @@ CxTest_CxFileType::unit(
 
     xTEST_CASE("CxFileType::modify", cullCaseLoops)
     {
-        CxFileType faAttr(csFilePath);
+        CxFileType ftType(csFilePath);
 
         #if   xOS_ENV_WIN
-            const CxFileType::ExAttribute cfaRemoveValue = cfaValue;
-            const CxFileType::ExAttribute cfaAddValue    = CxFileType::faHidden;
+            const CxFileType::ExType cfaRemoveValue = cfaValue;
+            const CxFileType::ExType cfaAddValue    = CxFileType::faHidden;
         #elif xOS_ENV_UNIX
-            const CxFileType::ExAttribute cfaRemoveValue = cfaValue;
-            const CxFileType::ExAttribute cfaAddValue    = CxFileType::faSymbolicLink;
+            const CxFileType::ExType cfaRemoveValue = cfaValue;
+            const CxFileType::ExType cfaAddValue    = CxFileType::faSymbolicLink;
         #endif
 
-        faAttr.modify(cfaRemoveValue, cfaAddValue);
+        ftType.modify(cfaRemoveValue, cfaAddValue);
     }
 
     xTEST_CASE("CxFileType::isExists", cullCaseLoops)
     {
-        CxFileType faAttr(csFilePath);
+        CxFileType ftType(csFilePath);
 
         #if   xOS_ENV_WIN
-            CxFileType::ExAttribute faAttribute = CxFileType::faNormal;
+            CxFileType::ExType faAttribute = CxFileType::faNormal;
         #elif xOS_ENV_UNIX
-            CxFileType::ExAttribute faAttribute = CxFileType::faRegularFile;
+            CxFileType::ExType faAttribute = CxFileType::faRegularFile;
         #endif
 
-        faAttr.clear();
+        ftType.clear();
 
-        m_bRv = faAttr.isExists(faAttribute);
+        m_bRv = ftType.isExists(faAttribute);
         xTEST_EQ(true, m_bRv);
     }
 
     xTEST_CASE("CxFileType::clear", cullCaseLoops)
     {
-        CxFileType faAttr(csFilePath);
+        CxFileType ftType(csFilePath);
 
-        faAttr.clear();
+        ftType.clear();
 
-        CxFileType::ExAttribute faRes;
+        CxFileType::types_t faRv;
 
-        faRes = faAttr.get();
+        faRv = ftType.get();
         #if   xOS_ENV_WIN
-            xTEST_EQ((ulong_t)CxFileType::faNormal, (ulong_t)faRes);
+            xTEST_EQ((ulong_t)CxFileType::faNormal, (ulong_t)faRv);
         #elif xOS_ENV_UNIX
-            xTEST_EQ((ulong_t)CxFileType::faRegularFile, (ulong_t)faRes);
+            xTEST_EQ((ulong_t)CxFileType::faRegularFile, (ulong_t)faRv);
         #endif
     }
 }

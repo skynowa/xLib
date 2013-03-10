@@ -541,25 +541,24 @@ CxFile::isFile(
 
     bool_t bRv = false;
 
-    CxFileType faAttr(a_csFilePath);
+    CxFileType ftType(a_csFilePath);
 
-    CxFileType::ExAttribute atAttribute = faAttr.get();
-    xCHECK_RET(CxFileType::faInvalid == atAttribute, false);
+    xCHECK_RET(CxFileType::faInvalid == ftType.get(), false);
 
 #if   xOS_ENV_WIN
-    bRv = faAttr.isExists(CxFileType::faDirectory);
+    bRv = ftType.isExists(CxFileType::faDirectory);
     xCHECK_RET(bRv, false);
 
-    bRv = faAttr.isExists(CxFileType::faDevice);
+    bRv = ftType.isExists(CxFileType::faDevice);
     xCHECK_RET(bRv, false);
 
-    bRv = faAttr.isExists(CxFileType::faReparsePoint);
+    bRv = ftType.isExists(CxFileType::faReparsePoint);
     xCHECK_RET(bRv, false);
 
-    bRv = faAttr.isExists(CxFileType::faOffline);
+    bRv = ftType.isExists(CxFileType::faOffline);
     xCHECK_RET(bRv, false);
 #elif xOS_ENV_UNIX
-    bRv = faAttr.isExists(CxFileType::faRegularFile);
+    bRv = ftType.isExists(CxFileType::faRegularFile);
     xCHECK_RET(!bRv, false);
 #endif
 
