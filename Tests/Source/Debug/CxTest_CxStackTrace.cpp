@@ -19,10 +19,10 @@ CxTest_CxStackTrace::~CxTest_CxStackTrace() {
 /* virtual */
 void_t
 CxTest_CxStackTrace::unit(
-    culonglong_t &cullCaseLoops
+    culonglong_t &a_cullCaseLoops
 )
 {
-    xTEST_CASE("CxStackTrace::get", cullCaseLoops)
+    xTEST_CASE("CxStackTrace::get", a_cullCaseLoops)
     {
         CxStackTrace                    stStack;
         std::vector<std::vec_tstring_t> vvsStack;
@@ -36,7 +36,7 @@ CxTest_CxStackTrace::unit(
         #endif
     }
 
-    xTEST_CASE("CxStackTrace::toString", cullCaseLoops)
+    xTEST_CASE("CxStackTrace::toString", a_cullCaseLoops)
     {
         CxStackTrace stStack;
 
@@ -44,7 +44,7 @@ CxTest_CxStackTrace::unit(
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("CxStackTrace::toString", cullCaseLoops)
+    xTEST_CASE("CxStackTrace::toString", a_cullCaseLoops)
     {
         #if xTEST_IGNORE
             xTEST_FAIL;

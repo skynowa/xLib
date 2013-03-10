@@ -23,10 +23,10 @@ CxTest_CxProfiler::~CxTest_CxProfiler() {
 /* virtual */
 void_t
 CxTest_CxProfiler::unit(
-    culonglong_t &cullCaseLoops
+    culonglong_t &a_cullCaseLoops
 )
 {
-    xTEST_CASE("CxProfiler::CxProfiler", cullCaseLoops)
+    xTEST_CASE("CxProfiler::CxProfiler", a_cullCaseLoops)
     {
         std::ctstring_t csFilePath = tempDirPath() + CxConst::xSLASH + xT("CxProfilerLog.log");
 

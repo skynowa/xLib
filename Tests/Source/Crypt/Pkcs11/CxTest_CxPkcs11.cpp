@@ -19,7 +19,7 @@ CxTest_CxPkcs11::~CxTest_CxPkcs11() {
 /* virtual */
 void_t
 CxTest_CxPkcs11::unit(
-    culonglong_t &cullCaseLoops
+    culonglong_t &a_cullCaseLoops
 )
 {
 #if   xOS_ENV_WIN
@@ -31,7 +31,7 @@ CxTest_CxPkcs11::unit(
 
     /////nfNotif    = objSlot.nfWaitForEvent(0, &ulSlot, NULL_PTR);
 
-    xTEST_CASE("CxPkcs11::setData", cullCaseLoops)
+    xTEST_CASE("CxPkcs11::setData", a_cullCaseLoops)
     {
     //    std::ctstring_t csUserPin   = xT("1111");
     //    std::ctstring_t csDataLabel = xT("Label_Id");
@@ -42,7 +42,7 @@ CxTest_CxPkcs11::unit(
     //    xTEST_EQ(true, m_bRv);
     }
 
-    xTEST_CASE("CxPkcs11::data", cullCaseLoops)
+    xTEST_CASE("CxPkcs11::data", a_cullCaseLoops)
     {
     //    std::ctstring_t csUserPin   = xT("1111");
     //    std::ctstring_t csDataLabel = xT("Label_Id");
@@ -52,7 +52,7 @@ CxTest_CxPkcs11::unit(
     //    xTEST_EQ(true, m_bRv);
     }
 
-    xTEST_CASE("CxPkcs11::setData", cullCaseLoops)
+    xTEST_CASE("CxPkcs11::setData", a_cullCaseLoops)
     {
         std::ctstring_t csUserPin   = xT("1111");
         std::ctstring_t csDataLabel = xT("Key1.tkey");

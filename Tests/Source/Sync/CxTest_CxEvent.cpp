@@ -19,10 +19,10 @@ CxTest_CxEvent::~CxTest_CxEvent() {
 /* virtual */
 void_t
 CxTest_CxEvent::unit(
-    culonglong_t &cullCaseLoops
+    culonglong_t &a_cullCaseLoops
 )
 {
-    xTEST_CASE("CxEvent::handle", cullCaseLoops)
+    xTEST_CASE("CxEvent::handle", a_cullCaseLoops)
     {
         CxEvent objEvent(true, true);
 
@@ -35,7 +35,7 @@ CxTest_CxEvent::unit(
         #endif
     }
 
-    xTEST_CASE("CxEvent::isSignaled", cullCaseLoops)
+    xTEST_CASE("CxEvent::isSignaled", a_cullCaseLoops)
     {
         {
             CxEvent objEvent(true, true);
@@ -56,7 +56,7 @@ CxTest_CxEvent::unit(
         }
     }
 
-    xTEST_CASE("CxEvent::set", cullCaseLoops)
+    xTEST_CASE("CxEvent::set", a_cullCaseLoops)
     {
         std::csize_t cuiSpinCount = 3;
 
@@ -80,7 +80,7 @@ CxTest_CxEvent::unit(
         }
     }
 
-    xTEST_CASE("CxEvent::reset", cullCaseLoops)
+    xTEST_CASE("CxEvent::reset", a_cullCaseLoops)
     {
         std::csize_t cuiSpinCount = 3;
 
@@ -104,7 +104,7 @@ CxTest_CxEvent::unit(
         }
     }
 
-    xTEST_CASE("CxEvent::wait", cullCaseLoops)
+    xTEST_CASE("CxEvent::wait", a_cullCaseLoops)
     {
         {
             cbool_t cbIsAutoReset  = false;

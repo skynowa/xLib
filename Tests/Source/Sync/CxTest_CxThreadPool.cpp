@@ -20,7 +20,7 @@ CxTest_CxThreadPool::~CxTest_CxThreadPool() {
 /*virtual*/
 void_t
 CxTest_CxThreadPool::unit(
-    culonglong_t &cullCaseLoops
+    culonglong_t &a_cullCaseLoops
 )
 {
     cbool_t cbIsPaused            = true;

@@ -21,7 +21,7 @@ CxTest_CxCookiePv0::~CxTest_CxCookiePv0() {
 /* virtual */
 void_t
 CxTest_CxCookiePv0::unit(
-    culonglong_t &cullCaseLoops
+    culonglong_t &a_cullCaseLoops
 )
 {
     std::ctstring_t csName      = xT("Name0");
@@ -36,7 +36,7 @@ CxTest_CxCookiePv0::unit(
                                             csName.c_str(), csValue.c_str(), csDomain.c_str(), 
                                             csPath.c_str(), csExpires.c_str() /*cbSecure = true, cbHttpOnly = true*/);
 
-    xTEST_CASE("CxCookiePv0::CxCookiePv0", cullCaseLoops)
+    xTEST_CASE("CxCookiePv0::CxCookiePv0", a_cullCaseLoops)
     {
         CxCookiePv0 ckCookiePv0;
 
@@ -87,7 +87,7 @@ CxTest_CxCookiePv0::unit(
         ckCookiePv0.clear();
     }
 
-    xTEST_CASE("CxCookiePv1::CxCookiePv0(std::ctstring_t &)", cullCaseLoops)
+    xTEST_CASE("CxCookiePv1::CxCookiePv0(std::ctstring_t &)", a_cullCaseLoops)
     {
         CxCookiePv0 ckCookiePv0(csRawCookie);
 

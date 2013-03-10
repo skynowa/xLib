@@ -106,7 +106,7 @@ CxTest_CxThread::~CxTest_CxThread() {
 /* virtual */
 void_t
 CxTest_CxThread::unit(
-    culonglong_t &cullCaseLoops
+    culonglong_t &a_cullCaseLoops
 )
 {
     cbool_t cbIsPaused   = true;
@@ -128,7 +128,7 @@ CxTest_CxThread::unit(
         xTEST_EQ(cbIsPaused, m_bRv);
     }
 
-    xTEST_CASE("CxThread::flags", cullCaseLoops)
+    xTEST_CASE("CxThread::flags", a_cullCaseLoops)
     {
         m_bRv = pthT->isCreated();
         xTEST_EQ(true, m_bRv);
@@ -143,7 +143,7 @@ CxTest_CxThread::unit(
         xTEST_EQ(false, m_bRv);
     }
 
-    xTEST_CASE("CxThread::messages", cullCaseLoops)
+    xTEST_CASE("CxThread::messages", a_cullCaseLoops)
     {
         // TEST: CxThread::messages
         #if xTODO
@@ -156,7 +156,7 @@ CxTest_CxThread::unit(
     //-------------------------------------
     //priority
 
-    xTEST_CASE("CxThread::vSetPriority CxThread::tpGetPriority", cullCaseLoops)
+    xTEST_CASE("CxThread::vSetPriority CxThread::tpGetPriority", a_cullCaseLoops)
     {
         const CxThread::ExPriority ctpPriority = CxThread::tpLowest;
 
@@ -173,7 +173,7 @@ CxTest_CxThread::unit(
         #endif
     }
 
-    xTEST_CASE("CxThread::priorityString", cullCaseLoops)
+    xTEST_CASE("CxThread::priorityString", a_cullCaseLoops)
     {
         // TEST: CxThread::priorityString
         #if xTODO
@@ -182,7 +182,7 @@ CxTest_CxThread::unit(
         #endif
     }
 
-    xTEST_CASE("CxThread::priorityUp CxThread::priorityDown", cullCaseLoops)
+    xTEST_CASE("CxThread::priorityUp CxThread::priorityDown", a_cullCaseLoops)
     {
         #if   xOS_ENV_WIN
             pthT->priorityUp();
@@ -192,7 +192,7 @@ CxTest_CxThread::unit(
         #endif
     }
 
-    xTEST_CASE("CxThread::isPriorityBoost", cullCaseLoops)
+    xTEST_CASE("CxThread::isPriorityBoost", a_cullCaseLoops)
     {
         #if   xOS_ENV_WIN
             m_bRv = pthT->isPriorityBoost();
@@ -202,7 +202,7 @@ CxTest_CxThread::unit(
         #endif
     }
 
-    xTEST_CASE("CxThread::setPriorityBoost", cullCaseLoops)
+    xTEST_CASE("CxThread::setPriorityBoost", a_cullCaseLoops)
     {
         #if   xOS_ENV_WIN
             pthT->setPriorityBoost(false);
@@ -222,14 +222,14 @@ CxTest_CxThread::unit(
     //-------------------------------------
     // CPU
 
-    xTEST_CASE("CxThread::setCpuAffinity", cullCaseLoops)
+    xTEST_CASE("CxThread::setCpuAffinity", a_cullCaseLoops)
     {
         for (ulong_t i = 0; i < CxSystemInfo::numOfCpus(); ++ i) {
             pthT->setCpuAffinity(i);
         }
     }
 
-    xTEST_CASE("CxThread::setCpuIdeal CxThread::cpuIdeal", cullCaseLoops)
+    xTEST_CASE("CxThread::setCpuIdeal CxThread::cpuIdeal", a_cullCaseLoops)
     {
         #if   xOS_ENV_WIN
             pthT->setCpuIdeal(0);
@@ -241,7 +241,7 @@ CxTest_CxThread::unit(
         #endif
     }
 
-    xTEST_CASE("CxThread::cpuCount", cullCaseLoops)
+    xTEST_CASE("CxThread::cpuCount", a_cullCaseLoops)
     {
         m_ulRv = CxThread::cpuCount();
         xTEST_LESS(0UL, m_ulRv);
@@ -250,36 +250,36 @@ CxTest_CxThread::unit(
     //-------------------------------------
     // other
 
-    xTEST_CASE("CxThread::handle", cullCaseLoops)
+    xTEST_CASE("CxThread::handle", a_cullCaseLoops)
     {
         CxThread::handle_t hRv = pthT->handle();
         xTEST_DIFF(0UL, (ulong_t)hRv);
     }
 
-    xTEST_CASE("CxThread::id", cullCaseLoops)
+    xTEST_CASE("CxThread::id", a_cullCaseLoops)
     {
         CxThread::id_t idRes = pthT->id();
         xTEST_DIFF(0UL, (ulong_t)idRes);
     }
 
-    xTEST_CASE("CxThread::isCurrent", cullCaseLoops)
+    xTEST_CASE("CxThread::isCurrent", a_cullCaseLoops)
     {
         m_bRv = pthT->isCurrent();
         xTEST_EQ(true, m_bRv);
     }
 
-    xTEST_CASE("CxThread::exitStatus", cullCaseLoops)
+    xTEST_CASE("CxThread::exitStatus", a_cullCaseLoops)
     {
         m_ulRv = pthT->exitStatus();
         // n/a
     }
 
-    xTEST_CASE("CxThread::setDebugName", cullCaseLoops)
+    xTEST_CASE("CxThread::setDebugName", a_cullCaseLoops)
     {
         pthT->setDebugName(xT("CxThread_Test_Name"));
     }
 
-    xTEST_CASE("CxThread::open", cullCaseLoops)
+    xTEST_CASE("CxThread::open", a_cullCaseLoops)
     {
         // TEST: CxThread::open
         #if xTODO
@@ -288,7 +288,7 @@ CxTest_CxThread::unit(
         #endif
     }
 
-    xTEST_CASE("CxThread::open", cullCaseLoops)
+    xTEST_CASE("CxThread::open", a_cullCaseLoops)
     {
         // TEST: CxThread::open
         #if xTODO
@@ -297,7 +297,7 @@ CxTest_CxThread::unit(
     }
 
     //-------------------------------------
-    xTEST_CASE("CxThread::resume", cullCaseLoops)
+    xTEST_CASE("CxThread::resume", a_cullCaseLoops)
     {
         pthT->resume();
 
@@ -305,7 +305,7 @@ CxTest_CxThread::unit(
         xTEST_EQ(false, m_bRv);
     }
 
-    xTEST_CASE("CxThread::vPause", cullCaseLoops)
+    xTEST_CASE("CxThread::vPause", a_cullCaseLoops)
     {
         #if 1
             m_bRv = pthT->isPaused();
@@ -323,7 +323,7 @@ CxTest_CxThread::unit(
         #endif
     }
 
-    xTEST_CASE("CxThread::exit", cullCaseLoops)
+    xTEST_CASE("CxThread::exit", a_cullCaseLoops)
     {
         // TEST: CxThread::exit
         #if xTODO
@@ -332,7 +332,7 @@ CxTest_CxThread::unit(
         #endif
     }
 
-    xTEST_CASE("CxThread::kill", cullCaseLoops)
+    xTEST_CASE("CxThread::kill", a_cullCaseLoops)
     {
         // TEST: CxThread::kill
         #if xTODO
@@ -340,7 +340,7 @@ CxTest_CxThread::unit(
         #endif
     }
 
-    xTEST_CASE("CxThread::exitStatus", cullCaseLoops)
+    xTEST_CASE("CxThread::exitStatus", a_cullCaseLoops)
     {
         ulong_t ulRv = pthT->exitStatus();
         xUNUSED(ulRv);

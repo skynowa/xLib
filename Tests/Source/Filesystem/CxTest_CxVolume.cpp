@@ -20,10 +20,10 @@ CxTest_CxVolume::~CxTest_CxVolume() {
 /* virtual */
 void_t
 CxTest_CxVolume::unit(
-    culonglong_t &cullCaseLoops
+    culonglong_t &a_cullCaseLoops
 )
 {
-    xTEST_CASE("CxVolume::type", cullCaseLoops)
+    xTEST_CASE("CxVolume::type", a_cullCaseLoops)
     {
         #if   xOS_ENV_WIN
             std::ctstring_t csVolumePath = xT("C:");
@@ -37,7 +37,7 @@ CxTest_CxVolume::unit(
         // TEST: xTEST_EQ(CxVolume::dtFixed, dtRes);
     }
 
-    xTEST_CASE("CxVolume::label", cullCaseLoops)
+    xTEST_CASE("CxVolume::label", a_cullCaseLoops)
     {
         std::vec_tstring_t vsVolumePaths;
 
@@ -53,7 +53,7 @@ CxTest_CxVolume::unit(
         }
     }
 
-    xTEST_CASE("CxVolume::isValid", cullCaseLoops)
+    xTEST_CASE("CxVolume::isValid", a_cullCaseLoops)
     {
         // true
         {
@@ -92,7 +92,7 @@ CxTest_CxVolume::unit(
         }
     }
 
-    xTEST_CASE("CxVolume::isReady", cullCaseLoops)
+    xTEST_CASE("CxVolume::isReady", a_cullCaseLoops)
     {
         // true
         {
@@ -129,7 +129,7 @@ CxTest_CxVolume::unit(
         }
     }
 
-    xTEST_CASE("CxVolume::isEmpty", cullCaseLoops)
+    xTEST_CASE("CxVolume::isEmpty", a_cullCaseLoops)
     {
         // true
         {
@@ -171,7 +171,7 @@ CxTest_CxVolume::unit(
         }
     }
 
-    xTEST_CASE("CxVolume::mount unMount", cullCaseLoops)
+    xTEST_CASE("CxVolume::mount unMount", a_cullCaseLoops)
     {
     #if xTEST_IGNORE
         #if   xOS_ENV_WIN
@@ -187,7 +187,7 @@ CxTest_CxVolume::unit(
     #endif
     }
 
-    xTEST_CASE("CxVolume::space", cullCaseLoops)
+    xTEST_CASE("CxVolume::space", a_cullCaseLoops)
     {
         std::vec_tstring_t vsData;
 
@@ -252,7 +252,7 @@ CxTest_CxVolume::unit(
         }
     }
 
-    xTEST_CASE("CxVolume::paths", cullCaseLoops)
+    xTEST_CASE("CxVolume::paths", a_cullCaseLoops)
     {
         std::vec_tstring_t vsVolumePaths;
 

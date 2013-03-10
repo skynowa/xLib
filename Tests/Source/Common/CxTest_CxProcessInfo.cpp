@@ -23,10 +23,10 @@ CxTest_CxProcessInfo::~CxTest_CxProcessInfo() {
 /* virtual */
 void_t
 CxTest_CxProcessInfo::unit(
-    culonglong_t &cullCaseLoops
+    culonglong_t &a_cullCaseLoops
 )
 {
-    xTEST_CASE("CxProcessInfo::currentIds", cullCaseLoops)
+    xTEST_CASE("CxProcessInfo::currentIds", a_cullCaseLoops)
     {
         std::vector<CxProcess::id_t> vidIds;
 
@@ -36,7 +36,7 @@ CxTest_CxProcessInfo::unit(
         #endif
     }
 
-    xTEST_CASE("CxProcessInfo::cpuUsage", cullCaseLoops)
+    xTEST_CASE("CxProcessInfo::cpuUsage", a_cullCaseLoops)
     {
         std::vector<CxProcess::id_t> vidIds;
 
@@ -50,7 +50,7 @@ CxTest_CxProcessInfo::unit(
         }
     }
 
-    xTEST_CASE("CxProcessInfo::ramUsage", cullCaseLoops)
+    xTEST_CASE("CxProcessInfo::ramUsage", a_cullCaseLoops)
     {
         std::vector<CxProcess::id_t> vidIds;
 
@@ -64,7 +64,7 @@ CxTest_CxProcessInfo::unit(
         }
     }
 
-    xTEST_CASE("CxProcessInfo::ioBytes", cullCaseLoops)
+    xTEST_CASE("CxProcessInfo::ioBytes", a_cullCaseLoops)
     {
         std::vector<CxProcess::id_t> vidIds;
 
@@ -78,7 +78,7 @@ CxTest_CxProcessInfo::unit(
         }
     }
 
-    xTEST_CASE("CxProcessInfo::exeName", cullCaseLoops)
+    xTEST_CASE("CxProcessInfo::exeName", a_cullCaseLoops)
     {
         std::vector<CxProcess::id_t> vidIds;
 
@@ -91,7 +91,7 @@ CxTest_CxProcessInfo::unit(
         }
     }
 
-    xTEST_CASE("CxProcessInfo::parentId", cullCaseLoops)
+    xTEST_CASE("CxProcessInfo::parentId", a_cullCaseLoops)
     {
         std::vector<CxProcess::id_t> vidIds;
 
@@ -103,7 +103,7 @@ CxTest_CxProcessInfo::unit(
         }
     }
 
-    xTEST_CASE("CxProcessInfo::commandLine", cullCaseLoops)
+    xTEST_CASE("CxProcessInfo::commandLine", a_cullCaseLoops)
     {
         std::vector<CxProcess::id_t> vidIds;
 

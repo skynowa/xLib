@@ -31,10 +31,10 @@ CxTest_CxUtils::~CxTest_CxUtils() {
 /* virtual */
 void_t
 CxTest_CxUtils::unit(
-    culonglong_t &cullCaseLoops
+    culonglong_t &a_cullCaseLoops
 )
 {
-    xTEST_CASE("CxUtils::ptrDeleteT", cullCaseLoops)
+    xTEST_CASE("CxUtils::ptrDeleteT", a_cullCaseLoops)
     {
         int_t *pPtr = new int_t();
         xTEST_PTR(pPtr);
@@ -43,7 +43,7 @@ CxTest_CxUtils::unit(
         xTEST_PTR_FAIL(pPtr);
     }
 
-    xTEST_CASE("CxUtils::arrayDeleteT", cullCaseLoops)
+    xTEST_CASE("CxUtils::arrayDeleteT", a_cullCaseLoops)
     {
         int_t *pPtr = new int_t[5];
         xTEST_PTR(pPtr);
@@ -52,7 +52,7 @@ CxTest_CxUtils::unit(
         xTEST_PTR_FAIL(pPtr);
     }
 
-    xTEST_CASE("CxUtils::ptrAssignT", cullCaseLoops)
+    xTEST_CASE("CxUtils::ptrAssignT", a_cullCaseLoops)
     {
         cint_t ciVal = 10;
 
@@ -77,7 +77,7 @@ CxTest_CxUtils::unit(
         }
     }
 
-    xTEST_CASE("CxUtils::arraySizeT", cullCaseLoops)
+    xTEST_CASE("CxUtils::arraySizeT", a_cullCaseLoops)
     {
         {
             tchar_t szBuff[256] = {0};
@@ -100,7 +100,7 @@ CxTest_CxUtils::unit(
         }
     }
 
-    xTEST_CASE("CxUtils::memoryZero", cullCaseLoops)
+    xTEST_CASE("CxUtils::memoryZero", a_cullCaseLoops)
     {
         struct SData {
             int_t     i;
@@ -116,7 +116,7 @@ CxTest_CxUtils::unit(
         }
     }
 
-    xTEST_CASE("CxUtils::arrayZeroT", cullCaseLoops)
+    xTEST_CASE("CxUtils::arrayZeroT", a_cullCaseLoops)
     {
         {
             tchar_t szBuff[255 + 1];
@@ -149,7 +149,7 @@ CxTest_CxUtils::unit(
         }
     }
 
-    xTEST_CASE("CxUtils::structZeroT", cullCaseLoops)
+    xTEST_CASE("CxUtils::structZeroT", a_cullCaseLoops)
     {
         struct SData {
             int_t            m_iValue;
@@ -179,7 +179,7 @@ CxTest_CxUtils::unit(
         // xTEST_EQ(size_t(0U),  datData.m_sValue.size());
     }
 
-    xTEST_CASE("CxUtils::bufferFreeT", cullCaseLoops)
+    xTEST_CASE("CxUtils::bufferFreeT", a_cullCaseLoops)
     {
         // true
         {
@@ -199,7 +199,7 @@ CxTest_CxUtils::unit(
         }
     }
 
-    xTEST_CASE("CxUtils::fileClose", cullCaseLoops)
+    xTEST_CASE("CxUtils::fileClose", a_cullCaseLoops)
     {
         std::ctstring_t csFilaPath = tempDirPath() + CxConst::xSLASH + xT("test_fileclose.txt");
 
@@ -210,7 +210,7 @@ CxTest_CxUtils::unit(
         xTEST_PTR_FAIL(pFile);
     }
 
-    xTEST_CASE("CxUtils::intToBoolT", cullCaseLoops)
+    xTEST_CASE("CxUtils::intToBoolT", a_cullCaseLoops)
     {
         // false
         {
@@ -233,19 +233,19 @@ CxTest_CxUtils::unit(
         }
     }
 
-    xTEST_CASE("CxUtils::maxT", cullCaseLoops)
+    xTEST_CASE("CxUtils::maxT", a_cullCaseLoops)
     {
         m_uiRv = CxUtils::maxT(0, 1);
         xTEST_EQ(1U, m_uiRv);
     }
 
-    xTEST_CASE("CxUtils::minT", cullCaseLoops)
+    xTEST_CASE("CxUtils::minT", a_cullCaseLoops)
     {
         m_uiRv = CxUtils::minT(5, 8);
         xTEST_EQ(5U, m_uiRv);
     }
 
-    xTEST_CASE("CxUtils::swapT", cullCaseLoops)
+    xTEST_CASE("CxUtils::swapT", a_cullCaseLoops)
     {
         int_t iVal1 = 1;
         int_t iVal2 = 2;
@@ -256,12 +256,12 @@ CxTest_CxUtils::unit(
         xTEST_EQ(1, iVal2);
     }
 
-    xTEST_CASE("CxUtils::reinterpretCastT", cullCaseLoops)
+    xTEST_CASE("CxUtils::reinterpretCastT", a_cullCaseLoops)
     {
         // TODO: test for CxUtils::reinterpretCastT
     }
 
-    xTEST_CASE("CxUtils::roundDouble", cullCaseLoops)
+    xTEST_CASE("CxUtils::roundDouble", a_cullCaseLoops)
     {
         cdouble_t cdData[][2] = {
             {10.5,   11.0},
@@ -280,7 +280,7 @@ CxTest_CxUtils::unit(
         }
     }
 
-    xTEST_CASE("CxUtils::roundIntT", cullCaseLoops)
+    xTEST_CASE("CxUtils::roundIntT", a_cullCaseLoops)
     {
         cdouble_t cdData[][2] = {
             {10.5,   11.0},
@@ -299,7 +299,7 @@ CxTest_CxUtils::unit(
         }
     }
 
-    xTEST_CASE("CxUtils::safeDivT", cullCaseLoops)
+    xTEST_CASE("CxUtils::safeDivT", a_cullCaseLoops)
     {
         CxUtils::safeDivT(0, 0);
         CxUtils::safeDivT(0, 1);
@@ -307,7 +307,7 @@ CxTest_CxUtils::unit(
         CxUtils::safeDivT(1, 1);
     }
 
-    xTEST_CASE("CxUtils::enumIncT enumDecT", cullCaseLoops)
+    xTEST_CASE("CxUtils::enumIncT enumDecT", a_cullCaseLoops)
     {
         EData datData = datOne;
 

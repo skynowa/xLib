@@ -19,7 +19,7 @@ CxTest_CxWaitableTimer::~CxTest_CxWaitableTimer() {
 /* virtual */
 void_t
 CxTest_CxWaitableTimer::unit(
-    culonglong_t &cullCaseLoops
+    culonglong_t &a_cullCaseLoops
 )
 {
 #if   xOS_ENV_WIN

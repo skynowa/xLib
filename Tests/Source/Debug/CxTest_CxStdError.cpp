@@ -19,12 +19,12 @@ CxTest_CxStdError::~CxTest_CxStdError() {
 /* virtual */
 void_t
 CxTest_CxStdError::unit(
-    culonglong_t &cullCaseLoops
+    culonglong_t &a_cullCaseLoops
 )
 {
     cint_t ciMaxErrors = 132;  /*0...132*/;
 
-    xTEST_CASE("CxStdError::isSuccess", cullCaseLoops)
+    xTEST_CASE("CxStdError::isSuccess", a_cullCaseLoops)
     {
         CxStdError::reset();
         m_bRv = CxStdError::isSuccess();
@@ -41,20 +41,20 @@ CxTest_CxStdError::unit(
         xTEST_EQ(false, m_bRv);
     }
 
-    xTEST_CASE("CxStdError::get", cullCaseLoops)
+    xTEST_CASE("CxStdError::get", a_cullCaseLoops)
     {
         m_iRv = CxStdError::get();
         xUNUSED(m_iRv);
         xTEST_EQ(0, CxStdError::get());
     }
 
-    xTEST_CASE("CxStdError::format", cullCaseLoops)
+    xTEST_CASE("CxStdError::format", a_cullCaseLoops)
     {
         std::tstring_t sError = CxStdError::format();
         xTEST_EQ(false, sError.empty());
     }
 
-    xTEST_CASE("CxStdError::set", cullCaseLoops)
+    xTEST_CASE("CxStdError::set", a_cullCaseLoops)
     {
         cint_t caiData[] = {
             0,
@@ -72,7 +72,7 @@ CxTest_CxStdError::unit(
         }
     }
 
-    xTEST_CASE("CxStdError::reset", cullCaseLoops)
+    xTEST_CASE("CxStdError::reset", a_cullCaseLoops)
     {
         cint_t caiData[] = {
             0,
@@ -90,7 +90,7 @@ CxTest_CxStdError::unit(
         }
     }
 
-    xTEST_CASE("CxStdError::format", cullCaseLoops)
+    xTEST_CASE("CxStdError::format", a_cullCaseLoops)
     {
         cint_t caiData[] = {
             0,
