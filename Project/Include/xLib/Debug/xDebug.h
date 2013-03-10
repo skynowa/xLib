@@ -100,7 +100,7 @@
 //-------------------------------------------------------------------------
 #define xSTD_VERIFY(expr)                                { \
                                                             if ( !(expr) )  { \
-                                                                std::ctstring_t csLastError = CxLastError::toString(); \
+                                                                std::ctstring_t csLastError = CxLastError::format(); \
                                                                 CxTracer::write( \
                                                                     xT("\n--------------------------------- xSTD_VERIFY ----------------------------------\n") \
                                                                     xT("  Expression: %s\n") \

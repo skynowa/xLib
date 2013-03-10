@@ -17,11 +17,35 @@ xNAMESPACE_BEGIN(NxLib)
 *
 *******************************************************************************/
 
+xNAMESPACE_ANONYM_BEGIN
+
+#if   xOS_ENV_WIN
+    culong_t g_culCodeSuccess = ERROR_SUCCESS;
+#elif xOS_ENV_UNIX
+    culong_t g_culCodeSuccess = 0;
+#endif
+
+xNAMESPACE_ANONYM_END
+
+//------------------------------------------------------------------------------
+/* static */
+bool_t
+CxLastError::isSuccess() {
+    bool_t bRv = false;
+
+#if   xOS_ENV_WIN
+    bRv = (g_culCodeSuccess == ::GetLastError());
+#elif xOS_ENV_UNIX
+    bRv = (g_culCodeSuccess == errno);
+#endif
+
+    return bRv;
+}
 //------------------------------------------------------------------------------
 /* static */
 ulong_t
 CxLastError::get() {
-    ulong_t ulCode = 0UL; /* = culCodeSuccess */;
+    ulong_t ulCode = g_culCodeSuccess;
 
 #if   xOS_ENV_WIN
     ulCode = ::GetLastError();
@@ -32,12 +56,6 @@ CxLastError::get() {
     reset();
 
     return ulCode;
-}
-//------------------------------------------------------------------------------
-/* static */
-std::tstring_t
-CxLastError::toString() {
-    return format(get());
 }
 //------------------------------------------------------------------------------
 /* static */
@@ -56,9 +74,13 @@ CxLastError::set(
 /* static */
 void_t
 CxLastError::reset() {
-    culong_t culCodeSuccess = 0UL;
-
-    set(culCodeSuccess);
+    set(g_culCodeSuccess);
+}
+//------------------------------------------------------------------------------
+/* static */
+std::tstring_t
+CxLastError::format() {
+    return format(get());
 }
 //------------------------------------------------------------------------------
 /* static */
