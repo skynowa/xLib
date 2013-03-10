@@ -19,7 +19,7 @@ CxTest_CxMimeMessage::~CxTest_CxMimeMessage() {
 /* virtual */
 void_t
 CxTest_CxMimeMessage::unit(
-    culonglong_t &cullCaseLoops
+    culonglong_t &a_cullCaseLoops
 )
 {
     std::tstring_t m_sRv;

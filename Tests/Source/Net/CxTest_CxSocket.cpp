@@ -22,10 +22,10 @@ CxTest_CxSocket::~CxTest_CxSocket() {
 /* virtual */
 void_t
 CxTest_CxSocket::unit(
-    culonglong_t &cullCaseLoops
+    culonglong_t &a_cullCaseLoops
 )
 {
-    xTEST_CASE("CxSocketInit::CxSocketInit", cullCaseLoops)
+    xTEST_CASE("CxSocketInit::CxSocketInit", a_cullCaseLoops)
     {
         CxSocketInit siInit22(2, 2);
     }

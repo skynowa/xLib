@@ -24,7 +24,7 @@ CxTest_CxPop3::~CxTest_CxPop3() {
 /* virtual */
 void_t
 CxTest_CxPop3::unit(
-    culonglong_t &cullCaseLoops
+    culonglong_t &a_cullCaseLoops
 )
 {
     //-------------------------------------

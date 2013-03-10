@@ -21,10 +21,10 @@ CxTest_CxEnvironment::~CxTest_CxEnvironment() {
 /* virtual */
 void_t
 CxTest_CxEnvironment::unit(
-    culonglong_t &cullCaseLoops
+    culonglong_t &a_cullCaseLoops
 )
 {
-    xTEST_CASE("CxEnvironment::setVar", cullCaseLoops)
+    xTEST_CASE("CxEnvironment::setVar", a_cullCaseLoops)
     {
         std::ctstring_t sData[][2] = {
             {xT("ENV_TEST_1"), xT("value1")},
@@ -38,7 +38,7 @@ CxTest_CxEnvironment::unit(
         }
     }
 
-    xTEST_CASE("CxEnvironment::isExists", cullCaseLoops)
+    xTEST_CASE("CxEnvironment::isExists", a_cullCaseLoops)
     {
     #if   xOS_ENV_WIN
         std::ctstring_t sData[][2] = {
@@ -66,7 +66,7 @@ CxTest_CxEnvironment::unit(
         }
     }
 
-    xTEST_CASE("CxEnvironment::isVarValid", cullCaseLoops)
+    xTEST_CASE("CxEnvironment::isVarValid", a_cullCaseLoops)
     {
     #if   xOS_ENV_WIN
         std::ctstring_t sData[][2] = {
@@ -97,7 +97,7 @@ CxTest_CxEnvironment::unit(
         }
     }
 
-    xTEST_CASE("CxEnvironment::isValueValid", cullCaseLoops)
+    xTEST_CASE("CxEnvironment::isValueValid", a_cullCaseLoops)
     {
     #if   xOS_ENV_WIN
         std::ctstring_t sData[][2] = {
@@ -126,7 +126,7 @@ CxTest_CxEnvironment::unit(
         }
     }
 
-    xTEST_CASE("CxEnvironment::var", cullCaseLoops)
+    xTEST_CASE("CxEnvironment::var", a_cullCaseLoops)
     {
     #if   xOS_ENV_WIN
         std::ctstring_t sData[][2] = {
@@ -151,7 +151,7 @@ CxTest_CxEnvironment::unit(
         }
     }
 
-    xTEST_CASE("CxEnvironment::values", cullCaseLoops)
+    xTEST_CASE("CxEnvironment::values", a_cullCaseLoops)
     {
         CxEnvironment::values(&m_vsRv);
         xTEST_EQ(false, m_vsRv.empty());
@@ -159,7 +159,7 @@ CxTest_CxEnvironment::unit(
         ////CxString::vStdVectorPrintT(m_vsRv);
     }
 
-    xTEST_CASE("CxEnvironment::expandStrings", cullCaseLoops)
+    xTEST_CASE("CxEnvironment::expandStrings", a_cullCaseLoops)
     {
     #if   xOS_ENV_WIN
         std::ctstring_t sData[][2] = {
@@ -182,7 +182,7 @@ CxTest_CxEnvironment::unit(
         }
     }
 
-    xTEST_CASE("CxEnvironment::deleteVar", cullCaseLoops)
+    xTEST_CASE("CxEnvironment::deleteVar", a_cullCaseLoops)
     {
         std::ctstring_t sData[][2] = {
             {xT("ENV_TEST_1"), xT("value1")},

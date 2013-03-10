@@ -25,10 +25,10 @@ CxTest_CxNonCopyable::~CxTest_CxNonCopyable() {
 /*virtual*/
 void_t
 CxTest_CxNonCopyable::unit(
-    culonglong_t &cullCaseLoops
+    culonglong_t &a_cullCaseLoops
 )
 {
-    xTEST_CASE("CxNonCopyable::CxNonCopyable(const CxNonCopyable &)", cullCaseLoops)
+    xTEST_CASE("CxNonCopyable::CxNonCopyable(const CxNonCopyable &)", a_cullCaseLoops)
     {
         #if xNOT_COMPILE
             {
@@ -38,7 +38,7 @@ CxTest_CxNonCopyable::unit(
         #endif
     }
 
-    xTEST_CASE("const CxNonCopyable &operator =", cullCaseLoops)
+    xTEST_CASE("const CxNonCopyable &operator =", a_cullCaseLoops)
     {
         #if xNOT_COMPILE                
             {

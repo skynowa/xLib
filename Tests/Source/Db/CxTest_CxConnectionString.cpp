@@ -20,7 +20,7 @@ CxTest_CxConnectionString::~CxTest_CxConnectionString() {
 /* virtual */
 void_t
 CxTest_CxConnectionString::unit(
-    culonglong_t &cullCaseLoops
+    culonglong_t &a_cullCaseLoops
 )
 {
     

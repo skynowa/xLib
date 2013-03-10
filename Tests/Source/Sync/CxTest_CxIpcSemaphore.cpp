@@ -22,7 +22,7 @@ CxTest_CxIpcSemaphore::~CxTest_CxIpcSemaphore() {
 /* virtual */
 void_t
 CxTest_CxIpcSemaphore::unit(
-    culonglong_t &cullCaseLoops
+    culonglong_t &a_cullCaseLoops
 )
 {
     struct _SFunctor

@@ -23,28 +23,28 @@ CxTest_CxPath::~CxTest_CxPath() {
 /* virtual */
 void_t
 CxTest_CxPath::unit(
-    culonglong_t &cullCaseLoops
+    culonglong_t &a_cullCaseLoops
 )
 {
-    xTEST_CASE("CxPath::exe", cullCaseLoops)
+    xTEST_CASE("CxPath::exe", a_cullCaseLoops)
     {
         m_sRv = CxPath::exe();
         xTEST_EQ(true, CxFile::isExists(m_sRv));
     }
 
-    xTEST_CASE("CxPath::exeDir", cullCaseLoops)
+    xTEST_CASE("CxPath::exeDir", a_cullCaseLoops)
     {
         m_sRv = CxPath::exeDir();
         xTEST_EQ(true, CxDir(m_sRv).isExists());
     }
 
-    xTEST_CASE("CxPath::dll", cullCaseLoops)
+    xTEST_CASE("CxPath::dll", a_cullCaseLoops)
     {
         m_sRv = CxPath::dll();
         xTEST_EQ(true, CxFile::isExists(m_sRv));
     }
 
-    xTEST_CASE("CxPath::drive", cullCaseLoops)
+    xTEST_CASE("CxPath::drive", a_cullCaseLoops)
     {
         #if xOS_ENV_WIN
             std::tstring_t csFilePath = xT("C:\\Test.txt");
@@ -54,7 +54,7 @@ CxTest_CxPath::unit(
         #endif
     }
 
-    xTEST_CASE("CxPath::dir", cullCaseLoops)
+    xTEST_CASE("CxPath::dir", a_cullCaseLoops)
     {
         #if   xOS_ENV_WIN
             std::ctstring_t sData[][2] = {
@@ -79,7 +79,7 @@ CxTest_CxPath::unit(
         }
     }
 
-    xTEST_CASE("CxPath::dirName", cullCaseLoops)
+    xTEST_CASE("CxPath::dirName", a_cullCaseLoops)
     {
         #if   xOS_ENV_WIN
             std::ctstring_t sData[][2] = {
@@ -104,7 +104,7 @@ CxTest_CxPath::unit(
         }
     }
 
-    xTEST_CASE("CxPath::fileName", cullCaseLoops)
+    xTEST_CASE("CxPath::fileName", a_cullCaseLoops)
     {
         #if   xOS_ENV_WIN
             std::ctstring_t sData[][2] = {
@@ -129,7 +129,7 @@ CxTest_CxPath::unit(
         }
     }
 
-    xTEST_CASE("CxPath::fileBaseName", cullCaseLoops)
+    xTEST_CASE("CxPath::fileBaseName", a_cullCaseLoops)
     {
         #if   xOS_ENV_WIN
             std::ctstring_t sData[][2] = {
@@ -154,7 +154,7 @@ CxTest_CxPath::unit(
         }
     }
 
-    xTEST_CASE("CxPath::ext", cullCaseLoops)
+    xTEST_CASE("CxPath::ext", a_cullCaseLoops)
     {
         #if   xOS_ENV_WIN
             std::ctstring_t sData[][2] = {
@@ -181,7 +181,7 @@ CxTest_CxPath::unit(
         }
     }
 
-    xTEST_CASE("CxPath::standartExt", cullCaseLoops)
+    xTEST_CASE("CxPath::standartExt", a_cullCaseLoops)
     {
         m_sRv = CxPath::standartExt(CxPath::seExe);
         #if   xOS_ENV_WIN
@@ -219,7 +219,7 @@ CxTest_CxPath::unit(
         #endif
     }
 
-    xTEST_CASE("CxPath::setDrive", cullCaseLoops)
+    xTEST_CASE("CxPath::setDrive", a_cullCaseLoops)
     {
         #if xOS_ENV_WIN
             std::ctstring_t sData[][3] = {
@@ -242,7 +242,7 @@ CxTest_CxPath::unit(
         #endif
     }
 
-    xTEST_CASE("CxPath::setDir", cullCaseLoops)
+    xTEST_CASE("CxPath::setDir", a_cullCaseLoops)
     {
         #if   xOS_ENV_WIN
             std::ctstring_t sData[][3] = {
@@ -278,7 +278,7 @@ CxTest_CxPath::unit(
         }
     }
 
-    xTEST_CASE("CxPath::setFileName", cullCaseLoops)
+    xTEST_CASE("CxPath::setFileName", a_cullCaseLoops)
     {
         #if   xOS_ENV_WIN
             std::ctstring_t sData[][3] = {
@@ -311,7 +311,7 @@ CxTest_CxPath::unit(
         }
     }
 
-    xTEST_CASE("CxPath::setFileBaseName", cullCaseLoops)
+    xTEST_CASE("CxPath::setFileBaseName", a_cullCaseLoops)
     {
         #if   xOS_ENV_WIN
             std::ctstring_t sData[][3] = {
@@ -347,7 +347,7 @@ CxTest_CxPath::unit(
         }
     }
 
-    xTEST_CASE("CxPath::setExt", cullCaseLoops)
+    xTEST_CASE("CxPath::setExt", a_cullCaseLoops)
     {
         std::ctstring_t sData[][3] = {
             {xT("C:\\Test.doc"),                  xT("xls"),    xT("C:\\Test.xls")},
@@ -370,7 +370,7 @@ CxTest_CxPath::unit(
         }
     }
 
-    xTEST_CASE("CxPath::removeExt", cullCaseLoops)
+    xTEST_CASE("CxPath::removeExt", a_cullCaseLoops)
     {
         #if   xOS_ENV_WIN
             std::ctstring_t sData[][2] = {
@@ -395,7 +395,7 @@ CxTest_CxPath::unit(
         }
     }
 
-    xTEST_CASE("CxPath::removeExtIf", cullCaseLoops)
+    xTEST_CASE("CxPath::removeExtIf", a_cullCaseLoops)
     {
         // TEST: CxPath::sRemoveExtIf
 
@@ -422,12 +422,12 @@ CxTest_CxPath::unit(
         //}
     }
 
-    xTEST_CASE("CxPath::isValid", cullCaseLoops)
+    xTEST_CASE("CxPath::isValid", a_cullCaseLoops)
     {
         // TEST: CxPath::isValid
     }
 
-    xTEST_CASE("CxPath::isNameValid", cullCaseLoops)
+    xTEST_CASE("CxPath::isNameValid", a_cullCaseLoops)
     {
         struct SData {
             std::tstring_t sFileName;
@@ -573,7 +573,7 @@ CxTest_CxPath::unit(
     #endif
     }
 
-    xTEST_CASE("CxPath::isAbsolute", cullCaseLoops)
+    xTEST_CASE("CxPath::isAbsolute", a_cullCaseLoops)
     {
         // true
         {
@@ -624,7 +624,7 @@ CxTest_CxPath::unit(
         }
     }
 
-    xTEST_CASE("CxPath::toWin", cullCaseLoops)
+    xTEST_CASE("CxPath::toWin", a_cullCaseLoops)
     {
         std::ctstring_t csUnixPath = xT("C:/TestDir");
         std::ctstring_t csWinPath  = xT("C:\\TestDir");
@@ -642,7 +642,7 @@ CxTest_CxPath::unit(
         xTEST_EQ(m_sRv, std::tstring_t(xT("C:\\TestDir")));
     }
 
-    xTEST_CASE("CxPath::toUnix", cullCaseLoops)
+    xTEST_CASE("CxPath::toUnix", a_cullCaseLoops)
     {
         std::ctstring_t csUnixPath = xT("/home/user/Soft/TestDir");
         std::ctstring_t csWinPath  = xT("\\home\\user\\Soft\\TestDir");
@@ -660,7 +660,7 @@ CxTest_CxPath::unit(
         xTEST_EQ(m_sRv, std::tstring_t(xT("/home/user/Soft/TestDir")));
     }
 
-    xTEST_CASE("CxPath::toNative", cullCaseLoops)
+    xTEST_CASE("CxPath::toNative", a_cullCaseLoops)
     {
         #if   xOS_ENV_WIN
             std::ctstring_t csUnixPath = xT("C:/TestDir");
@@ -695,7 +695,7 @@ CxTest_CxPath::unit(
         #endif
     }
 
-    xTEST_CASE("CxPath::absolute", cullCaseLoops)
+    xTEST_CASE("CxPath::absolute", a_cullCaseLoops)
     {
         std::vec_tstring_t vsArgs;
 
@@ -705,7 +705,7 @@ CxTest_CxPath::unit(
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("CxPath::shortName", cullCaseLoops)
+    xTEST_CASE("CxPath::shortName", a_cullCaseLoops)
     {
         std::ctstring_t sData[][2] = {
             {xT("Name"),                   xT("Name")},
@@ -726,7 +726,7 @@ CxTest_CxPath::unit(
         }
     }
 
-    xTEST_CASE("CxPath::brief", cullCaseLoops)
+    xTEST_CASE("CxPath::brief", a_cullCaseLoops)
     {
         {
             #if   xOS_ENV_WIN
@@ -785,7 +785,7 @@ CxTest_CxPath::unit(
         }
     }
 
-    xTEST_CASE("CxPath::setNameValid", cullCaseLoops)
+    xTEST_CASE("CxPath::setNameValid", a_cullCaseLoops)
     {
     #if   xOS_ENV_WIN
         std::ctstring_t asData[][2] =
@@ -905,7 +905,7 @@ CxTest_CxPath::unit(
         }
     }
 
-    xTEST_CASE("CxPath::slashAppend", cullCaseLoops)
+    xTEST_CASE("CxPath::slashAppend", a_cullCaseLoops)
     {
         #if   xOS_ENV_WIN
             std::ctstring_t sData[][3] = {
@@ -936,7 +936,7 @@ CxTest_CxPath::unit(
         }
     }
 
-    xTEST_CASE("CxPath::slashRemove", cullCaseLoops)
+    xTEST_CASE("CxPath::slashRemove", a_cullCaseLoops)
     {
         #if   xOS_ENV_WIN
             std::ctstring_t sData[][3] = {
@@ -967,25 +967,25 @@ CxTest_CxPath::unit(
         }
     }
 
-    xTEST_CASE("CxPath::maxSize", cullCaseLoops)
+    xTEST_CASE("CxPath::maxSize", a_cullCaseLoops)
     {
         m_stRv = CxPath::maxSize();
         xTEST_LESS(size_t(0), m_stRv);
     }
 
-    xTEST_CASE("CxPath::nameMaxSize", cullCaseLoops)
+    xTEST_CASE("CxPath::nameMaxSize", a_cullCaseLoops)
     {
         m_stRv = CxPath::nameMaxSize();
         xTEST_LESS(size_t(0), m_stRv);
     }
 
 #if xOS_ENV_UNIX
-    xTEST_CASE("CxPath::proc", cullCaseLoops)
+    xTEST_CASE("CxPath::proc", a_cullCaseLoops)
     {
         // TEST: CxPath::proc
     }
 
-    xTEST_CASE("CxPath::procValue", cullCaseLoops)
+    xTEST_CASE("CxPath::procValue", a_cullCaseLoops)
     {
         // TEST: CxPath::procValue
     }

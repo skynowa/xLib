@@ -25,16 +25,16 @@ CxTest_CxNonAssignable::~CxTest_CxNonAssignable() {
 /*virtual*/
 void_t
 CxTest_CxNonAssignable::unit(
-    culonglong_t &cullCaseLoops
+    culonglong_t &a_cullCaseLoops
 )
 {
-    xTEST_CASE("CxNonAssignable::CxNonAssignable(const CxNonAssignable &)", cullCaseLoops)
+    xTEST_CASE("CxNonAssignable::CxNonAssignable(const CxNonAssignable &)", a_cullCaseLoops)
     {
         A a;
         A b(a);
     }
 
-    xTEST_CASE("CxNonAssignable &operator = ", cullCaseLoops)
+    xTEST_CASE("CxNonAssignable &operator = ", a_cullCaseLoops)
     {
         #if xNOT_COMPILE
             A a;

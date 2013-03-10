@@ -24,7 +24,7 @@ CxTest_CxFinder::~CxTest_CxFinder() {
 /* virtual */
 void_t
 CxTest_CxFinder::unit(
-    culonglong_t &cullCaseLoops
+    culonglong_t &a_cullCaseLoops
 )
 {
     //-------------------------------------
@@ -81,7 +81,7 @@ CxTest_CxFinder::unit(
         }
     }
 
-    xTEST_CASE("CxFinder::CxFinder", cullCaseLoops)
+    xTEST_CASE("CxFinder::CxFinder", a_cullCaseLoops)
     {
         SData adtData[] = {
             {CxConst::xMASK_ALL, 12 - 2},
@@ -121,7 +121,7 @@ CxTest_CxFinder::unit(
         }
     }
 
-    xTEST_CASE("CxFinder::dirs", cullCaseLoops)
+    xTEST_CASE("CxFinder::dirs", a_cullCaseLoops)
     {
         // non recursive
         {
@@ -142,7 +142,7 @@ CxTest_CxFinder::unit(
         }
     }
 
-    xTEST_CASE("CxFinder::files", cullCaseLoops)
+    xTEST_CASE("CxFinder::files", a_cullCaseLoops)
     {
         // non recursive
         {

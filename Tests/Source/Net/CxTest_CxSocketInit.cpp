@@ -19,10 +19,10 @@ CxTest_CxSocketInit::~CxTest_CxSocketInit() {
 /* virtual */
 void_t
 CxTest_CxSocketInit::unit(
-    culonglong_t &cullCaseLoops
+    culonglong_t &a_cullCaseLoops
 )
 {
-    xTEST_CASE("CxSocketInit::CxSocketInit", cullCaseLoops)
+    xTEST_CASE("CxSocketInit::CxSocketInit", a_cullCaseLoops)
     {
         CxSocketInit siInit10(1, 0);
         CxSocketInit siInit11(1, 1);

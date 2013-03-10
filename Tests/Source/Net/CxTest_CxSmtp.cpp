@@ -19,7 +19,7 @@ CxTest_CxSmtp::~CxTest_CxSmtp() {
 /* virtual */
 void_t
 CxTest_CxSmtp::unit(
-    culonglong_t &cullCaseLoops
+    culonglong_t &a_cullCaseLoops
 )
 {
     //-------------------------------------

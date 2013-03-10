@@ -21,10 +21,10 @@ CxTest_CxCurrentThread::~CxTest_CxCurrentThread() {
 /* virtual */
 void_t
 CxTest_CxCurrentThread::unit(
-    culonglong_t &cullCaseLoops
+    culonglong_t &a_cullCaseLoops
 )
 {
-    xTEST_CASE("CxCurrentThread::isCurrent", cullCaseLoops)
+    xTEST_CASE("CxCurrentThread::isCurrent", a_cullCaseLoops)
     {
         CxThread::id_t aulData[5][2] = {{0}};
 
@@ -52,36 +52,36 @@ CxTest_CxCurrentThread::unit(
         }
     }
 
-    xTEST_CASE("CxCurrentThread::id", cullCaseLoops)
+    xTEST_CASE("CxCurrentThread::id", a_cullCaseLoops)
     {
         CxThread::id_t idRes = CxCurrentThread::id();
         xTEST_LESS(0UL, (ulong_t)idRes);
     }
 
-    xTEST_CASE("CxCurrentThread::handle", cullCaseLoops)
+    xTEST_CASE("CxCurrentThread::handle", a_cullCaseLoops)
     {
         CxThread::handle_t hRv = CxCurrentThread::handle();
         xTEST_DIFF(0UL, (ulong_t)hRv);
     }
 
-    xTEST_CASE("CxCurrentThread::id", cullCaseLoops)
+    xTEST_CASE("CxCurrentThread::id", a_cullCaseLoops)
     {
         CxThread::id_t idRes = CxCurrentThread::id();
         xTEST_LESS(0UL, (ulong_t)idRes);
     }
 
-    xTEST_CASE("CxCurrentThread::handle", cullCaseLoops)
+    xTEST_CASE("CxCurrentThread::handle", a_cullCaseLoops)
     {
         CxThread::handle_t hRv = CxCurrentThread::handle();
         xTEST_LESS((ulong_t)0, (ulong_t)hRv);
     }
 
-    xTEST_CASE("CxCurrentThread::yield", cullCaseLoops)
+    xTEST_CASE("CxCurrentThread::yield", a_cullCaseLoops)
     {
         CxCurrentThread::yield();
     }
 
-    xTEST_CASE("CxCurrentThread::sleep", cullCaseLoops)
+    xTEST_CASE("CxCurrentThread::sleep", a_cullCaseLoops)
     {
         culong_t caulData[] = {
             0,

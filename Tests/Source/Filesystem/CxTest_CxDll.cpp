@@ -19,7 +19,7 @@ CxTest_CxDll::~CxTest_CxDll() {
 /* virtual */
 void_t
 CxTest_CxDll::unit(
-    culonglong_t &cullCaseLoops
+    culonglong_t &a_cullCaseLoops
 )
 {
     #if   xOS_ENV_WIN

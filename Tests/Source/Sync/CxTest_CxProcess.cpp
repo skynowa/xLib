@@ -23,10 +23,10 @@ CxTest_CxProcess::~CxTest_CxProcess() {
 /* virtual */
 void_t
 CxTest_CxProcess::unit(
-    culonglong_t &cullCaseLoops
+    culonglong_t &a_cullCaseLoops
 )
 {
-    xTEST_CASE("CxProcess::create CxProcess::wait", cullCaseLoops)
+    xTEST_CASE("CxProcess::create CxProcess::wait", a_cullCaseLoops)
     {
         #if 0
             #if   xOS_ENV_WIN
@@ -46,7 +46,7 @@ CxTest_CxProcess::unit(
         #endif
     }
 
-    xTEST_CASE("CxProcess::kill", cullCaseLoops)
+    xTEST_CASE("CxProcess::kill", a_cullCaseLoops)
     {
         #if 0
             #if   xOS_ENV_WIN
@@ -64,7 +64,7 @@ CxTest_CxProcess::unit(
         #endif
     }
 
-    xTEST_CASE("CxProcess::handle CxProcess::id", cullCaseLoops)
+    xTEST_CASE("CxProcess::handle CxProcess::id", a_cullCaseLoops)
     {
         #if 0
             #if   xOS_ENV_WIN
@@ -90,19 +90,19 @@ CxTest_CxProcess::unit(
         #endif
     }
 
-    xTEST_CASE("CxProcess::idByHandle", cullCaseLoops)
+    xTEST_CASE("CxProcess::idByHandle", a_cullCaseLoops)
     {
         CxProcess::id_t id = CxProcess::idByHandle( CxCurrentProcess::handle() );
         xTEST_DIFF(0UL, static_cast<ulong_t>( id ));
     }
 
-    xTEST_CASE("CxProcess::handleById", cullCaseLoops)
+    xTEST_CASE("CxProcess::handleById", a_cullCaseLoops)
     {
         CxProcess::handle_t hHandle = CxProcess::handleById( CxCurrentProcess::id() );
         xTEST_EQ(true, CxHandle(hHandle).isValid());
     }
 
-    xTEST_CASE("CxProcess::idByName", cullCaseLoops)
+    xTEST_CASE("CxProcess::idByName", a_cullCaseLoops)
     {
         std::ctstring_t csProcessName = CxPath( CxPath::exe() ).fileName();
 
@@ -112,7 +112,7 @@ CxTest_CxProcess::unit(
         // CxTracer() << xTRACE_VAR(id);
     }
 
-    xTEST_CASE("CxProcess::isRunning", cullCaseLoops)
+    xTEST_CASE("CxProcess::isRunning", a_cullCaseLoops)
     {
         m_bRv = CxProcess::isRunning( CxCurrentProcess::id() );
         xTEST_EQ(true, m_bRv);

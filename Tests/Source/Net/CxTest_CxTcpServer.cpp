@@ -22,7 +22,7 @@ CxTest_CxTcpServer::~CxTest_CxTcpServer() {
 /* virtual */
 void_t
 CxTest_CxTcpServer::unit(
-    culonglong_t &cullCaseLoops
+    culonglong_t &a_cullCaseLoops
 )
 {
     CxSocket::ExAddressFamily afAf       = CxSocket::afInet;

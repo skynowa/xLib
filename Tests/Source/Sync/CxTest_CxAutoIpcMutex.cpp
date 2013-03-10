@@ -21,12 +21,12 @@ CxTest_CxAutoIpcMutex::~CxTest_CxAutoIpcMutex() {
 /* virtual */
 void_t
 CxTest_CxAutoIpcMutex::unit(
-    culonglong_t &cullCaseLoops
+    culonglong_t &a_cullCaseLoops
 )
 {
     std::ctstring_t csName = xT("mutex_name_a");
 
-    xTEST_CASE("CxAutoIpcMutex::CxAutoIpcMutex", cullCaseLoops)
+    xTEST_CASE("CxAutoIpcMutex::CxAutoIpcMutex", a_cullCaseLoops)
     {
         CxIpcMutex mtMutex;
 

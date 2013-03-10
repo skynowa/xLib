@@ -19,7 +19,7 @@ CxTest_CxDateTime::~CxTest_CxDateTime() {
 /* virtual */
 void_t
 CxTest_CxDateTime::unit(
-    culonglong_t &cullCaseLoops
+    culonglong_t &a_cullCaseLoops
 )
 {
     /*******************************************************************************
@@ -27,14 +27,14 @@ CxTest_CxDateTime::unit(
     *
     *******************************************************************************/
 
-    xTEST_CASE("CxDateTime::CxDateTime", cullCaseLoops)
+    xTEST_CASE("CxDateTime::CxDateTime", a_cullCaseLoops)
     {
         CxDateTime dtDT;
         m_sRv = dtDT.format(CxDateTime::ftDateTime);
         xTEST_EQ(std::tstring_t(xT("00.00.0000 0:00:00:000")), m_sRv);
     }
 
-    xTEST_CASE("CxDateTime::CxDateTime(std::ctstring_t &, EFormatType)", cullCaseLoops)
+    xTEST_CASE("CxDateTime::CxDateTime(std::ctstring_t &, EFormatType)", a_cullCaseLoops)
     {
         const CxDateTime::ExFormatType caftFormats[] = {
             ////CxDateTime::ftTime,     //HH.MM.SS.MMM
@@ -59,7 +59,7 @@ CxTest_CxDateTime::unit(
         }
     }
 
-    xTEST_CASE("CxDateTime::CxDateTime(const CxDateTime &)", cullCaseLoops)
+    xTEST_CASE("CxDateTime::CxDateTime(const CxDateTime &)", a_cullCaseLoops)
     {
         CxDateTime dtDT1(2010, 7, 8, 3, 15, 6, 111);
         CxDateTime dtDT2(dtDT1);
@@ -71,28 +71,28 @@ CxTest_CxDateTime::unit(
         xTEST_EQ(std::tstring_t(xT("14.01.2010 17:00:55:666")), m_sRv);
     }
 
-    xTEST_CASE("CxDateTime::CxDateTime(culonglong_t &)", cullCaseLoops)
+    xTEST_CASE("CxDateTime::CxDateTime(culonglong_t &)", a_cullCaseLoops)
     {
         CxDateTime dtDT(1000 * 60 * 60);
         m_sRv = dtDT.format(CxDateTime::ftDateTime);
         xTEST_EQ(std::tstring_t(xT("00.00.0000 1:00:00:000")), m_sRv);
     }
 
-    xTEST_CASE("CxDateTime::CxDateTime(cushort_t &, cushort_t &, cushort_t &, cushort_t &)", cullCaseLoops)
+    xTEST_CASE("CxDateTime::CxDateTime(cushort_t &, cushort_t &, cushort_t &, cushort_t &)", a_cullCaseLoops)
     {
         CxDateTime dtDT(12, 20, 37, 555);
         m_sRv = dtDT.format(CxDateTime::ftDateTime);
         xTEST_EQ(std::tstring_t(xT("00.00.0000 12:20:37:555")), m_sRv);
     }
 
-    xTEST_CASE("CxDateTime::CxDateTime(cushort_t &, cushort_t &, cushort_t &)", cullCaseLoops)
+    xTEST_CASE("CxDateTime::CxDateTime(cushort_t &, cushort_t &, cushort_t &)", a_cullCaseLoops)
     {
         CxDateTime dtDT(2010, 7, 8);
         m_sRv = dtDT.format(CxDateTime::ftDateTime);
         xTEST_EQ(std::tstring_t(xT("08.07.2010 0:00:00:000")), m_sRv);
     }
 
-    xTEST_CASE("CxDateTime::CxDateTime(cushort_t &, cushort_t &, cushort_t &, cushort_t &, cushort_t &, cushort_t &, cushort_t &)", cullCaseLoops)
+    xTEST_CASE("CxDateTime::CxDateTime(cushort_t &, cushort_t &, cushort_t &, cushort_t &, cushort_t &, cushort_t &, cushort_t &)", a_cullCaseLoops)
     {
         CxDateTime dtDT(2010, 8, 18, 14, 0, 5, 777);
         m_sRv = dtDT.format(CxDateTime::ftDateTime);
@@ -105,7 +105,7 @@ CxTest_CxDateTime::unit(
     *
     *******************************************************************************/
 
-    xTEST_CASE("CxDateTime::operator ==", cullCaseLoops)
+    xTEST_CASE("CxDateTime::operator ==", a_cullCaseLoops)
     {
         CxDateTime dtDt1;
         CxDateTime dtDt2;
@@ -114,7 +114,7 @@ CxTest_CxDateTime::unit(
         xTEST_EQ(true, m_bRv);
     }
 
-    xTEST_CASE("CxDateTime::operator !=", cullCaseLoops)
+    xTEST_CASE("CxDateTime::operator !=", a_cullCaseLoops)
     {
         CxDateTime dtDt1;
         CxDateTime dtDt2;
@@ -123,7 +123,7 @@ CxTest_CxDateTime::unit(
         xTEST_EQ(false, m_bRv);
     }
 
-    xTEST_CASE("CxDateTime::operator <", cullCaseLoops)
+    xTEST_CASE("CxDateTime::operator <", a_cullCaseLoops)
     {
         CxDateTime dtDt1;
         CxDateTime dtDt2;
@@ -132,7 +132,7 @@ CxTest_CxDateTime::unit(
         xTEST_EQ(false, m_bRv);
     }
 
-    xTEST_CASE("CxDateTime::operator <=", cullCaseLoops)
+    xTEST_CASE("CxDateTime::operator <=", a_cullCaseLoops)
     {
         CxDateTime dtDt1;
         CxDateTime dtDt2;
@@ -141,7 +141,7 @@ CxTest_CxDateTime::unit(
         xTEST_EQ(true, m_bRv);
     }
 
-    xTEST_CASE("CxDateTime::operator >", cullCaseLoops)
+    xTEST_CASE("CxDateTime::operator >", a_cullCaseLoops)
     {
         CxDateTime dtDt1;
         CxDateTime dtDt2;
@@ -150,7 +150,7 @@ CxTest_CxDateTime::unit(
         xTEST_EQ(false, m_bRv);
     }
 
-    xTEST_CASE("CxDateTime::operator >=", cullCaseLoops)
+    xTEST_CASE("CxDateTime::operator >=", a_cullCaseLoops)
     {
         CxDateTime dtDt1;
         CxDateTime dtDt2;
@@ -165,7 +165,7 @@ CxTest_CxDateTime::unit(
     *
     *******************************************************************************/
 
-    xTEST_CASE("CxDateTime::operator +=", cullCaseLoops)
+    xTEST_CASE("CxDateTime::operator +=", a_cullCaseLoops)
     {
         CxDateTime dtDt(0, 30, 0, 0);
         ulonglong_t  ullMSec = (1000 * 60) * 60; //1 hour
@@ -175,7 +175,7 @@ CxTest_CxDateTime::unit(
         xTEST_EQ(std::tstring_t(xT("00.00.0000 1:00:00:000")), m_sRv);
     }
 
-    xTEST_CASE("CxDateTime::operator (=, +, -)", cullCaseLoops)
+    xTEST_CASE("CxDateTime::operator (=, +, -)", a_cullCaseLoops)
     {
         CxDateTime dtDT;
 
@@ -188,7 +188,7 @@ CxTest_CxDateTime::unit(
         xTEST_EQ(std::tstring_t(xT("00.00.0000 0:30:00:000")), m_sRv);
     }
 
-    xTEST_CASE("CxDateTime::operator +=", cullCaseLoops)
+    xTEST_CASE("CxDateTime::operator +=", a_cullCaseLoops)
     {
         CxDateTime dtDt1(1, 0, 0, 0);
         CxDateTime dtDt2(1, 30, 0, 0);
@@ -198,7 +198,7 @@ CxTest_CxDateTime::unit(
         xTEST_EQ(std::tstring_t(xT("00.00.0000 2:30:00:000")), m_sRv);
     }
 
-    xTEST_CASE("CxDateTime::operator -=", cullCaseLoops)
+    xTEST_CASE("CxDateTime::operator -=", a_cullCaseLoops)
     {
         CxDateTime dtDt1(1, 50, 0, 0);
         CxDateTime dtDt2(1, 30, 0, 0);
@@ -214,7 +214,7 @@ CxTest_CxDateTime::unit(
     *
     *******************************************************************************/
 
-    xTEST_CASE("CxDateTime::set get", cullCaseLoops)
+    xTEST_CASE("CxDateTime::set get", a_cullCaseLoops)
     {
         CxDateTime dtDT;
 
@@ -238,7 +238,7 @@ CxTest_CxDateTime::unit(
         xTEST_EQ((ushort_t)666,  usMSec);
     }
 
-    xTEST_CASE("CxDateTime::toMilliseconds", cullCaseLoops)
+    xTEST_CASE("CxDateTime::toMilliseconds", a_cullCaseLoops)
     {
         //1
         {
@@ -260,7 +260,7 @@ CxTest_CxDateTime::unit(
         }
     }
 
-    xTEST_CASE("CxDateTime::set", cullCaseLoops)
+    xTEST_CASE("CxDateTime::set", a_cullCaseLoops)
     {
         CxDateTime dtDT;
 
@@ -286,7 +286,7 @@ CxTest_CxDateTime::unit(
         xTEST_EQ((ushort_t)0, usMSec);
     }
 
-    xTEST_CASE("CxDateTime::dayOfWeek", cullCaseLoops)
+    xTEST_CASE("CxDateTime::dayOfWeek", a_cullCaseLoops)
     {
         m_usiRv = CxDateTime(2011, 7, 25, 13, 0, 0, 0).dayOfWeek();
         xTEST_EQ((ushort_t)1, m_usiRv);
@@ -303,28 +303,28 @@ CxTest_CxDateTime::unit(
     *
     *******************************************************************************/
 
-    xTEST_CASE("CxDateTime::format", cullCaseLoops)
+    xTEST_CASE("CxDateTime::format", a_cullCaseLoops)
     {
         CxDateTime dtDT(2010, 1, 14, 17, 0, 55, 666);
         m_sRv = dtDT.format(CxDateTime::ftTime);
         xTEST_EQ(std::tstring_t(xT("17:00:55:666")), m_sRv);
     }
 
-    xTEST_CASE("CxDateTime::format", cullCaseLoops)
+    xTEST_CASE("CxDateTime::format", a_cullCaseLoops)
     {
         CxDateTime dtDT(2010, 1, 14, 17, 0, 55, 666);
         m_sRv = dtDT.format(CxDateTime::ftDate);
         xTEST_EQ(std::tstring_t(xT("14.01.2010")), m_sRv);
     }
 
-    xTEST_CASE("CxDateTime::format", cullCaseLoops)
+    xTEST_CASE("CxDateTime::format", a_cullCaseLoops)
     {
         CxDateTime dtDT(2010, 1, 14, 17, 0, 55, 666);
         m_sRv = dtDT.format(CxDateTime::ftDateTime);
         xTEST_EQ(std::tstring_t(xT("14.01.2010 17:00:55:666")), m_sRv);
     }
 
-    xTEST_CASE("CxDateTime::format", cullCaseLoops)
+    xTEST_CASE("CxDateTime::format", a_cullCaseLoops)
     {
         CxDateTime dtDT(2011, 3, 19, 1, 35, 55, 666);
         m_sRv = dtDT.format(CxDateTime::ftRFC1123);
@@ -337,7 +337,7 @@ CxTest_CxDateTime::unit(
     *
     *******************************************************************************/
 
-    xTEST_CASE("CxDateTime::isValid", cullCaseLoops)
+    xTEST_CASE("CxDateTime::isValid", a_cullCaseLoops)
     {
         //valid data
         {
@@ -397,17 +397,17 @@ CxTest_CxDateTime::unit(
         }
     }
 
-    xTEST_CASE("CxDateTime::isValid(const CxDateTime &)", cullCaseLoops)
+    xTEST_CASE("CxDateTime::isValid(const CxDateTime &)", a_cullCaseLoops)
     {
         //TODO: tests bIsValid
     }
 
-    xTEST_CASE("CxDateTime::isValid", cullCaseLoops)
+    xTEST_CASE("CxDateTime::isValid", a_cullCaseLoops)
     {
         //TODO: tests bIsValid
     }
 
-    xTEST_CASE("CxDateTime::current", cullCaseLoops)
+    xTEST_CASE("CxDateTime::current", a_cullCaseLoops)
     {
         //1
         {
@@ -438,7 +438,7 @@ CxTest_CxDateTime::unit(
         }
     }
 
-    xTEST_CASE("CxDateTime::daysInMonth", cullCaseLoops)
+    xTEST_CASE("CxDateTime::daysInMonth", a_cullCaseLoops)
     {
         for (ushort_t y = 0; y < 3000; ++ y) {
             for (ushort_t m = 1; m < 13; ++ m) {
@@ -455,7 +455,7 @@ CxTest_CxDateTime::unit(
         } //y
     }
 
-    xTEST_CASE("CxDateTime::isLeapYear", cullCaseLoops)
+    xTEST_CASE("CxDateTime::isLeapYear", a_cullCaseLoops)
     {
         //valid
         {
@@ -482,7 +482,7 @@ CxTest_CxDateTime::unit(
         }
     }
 
-    xTEST_CASE("CxDateTime::filetimeToInt64", cullCaseLoops)
+    xTEST_CASE("CxDateTime::filetimeToInt64", a_cullCaseLoops)
     {
         #if   xOS_ENV_WIN
             const FILETIME cftTime = {100, 200};
@@ -492,7 +492,7 @@ CxTest_CxDateTime::unit(
         #endif
     }
 
-    xTEST_CASE("CxDateTime::unixTimeToFileTime", cullCaseLoops)
+    xTEST_CASE("CxDateTime::unixTimeToFileTime", a_cullCaseLoops)
     {
         #if   xOS_ENV_WIN
             const time_t ctmUnixTime = 1000;
@@ -502,7 +502,7 @@ CxTest_CxDateTime::unit(
         #endif
     }
 
-    xTEST_CASE("CxDateTime::fileTimeToUnixTime", cullCaseLoops)
+    xTEST_CASE("CxDateTime::fileTimeToUnixTime", a_cullCaseLoops)
     {
         #if   xOS_ENV_WIN
             time_t   tmUnixTime = 0;
@@ -519,7 +519,7 @@ CxTest_CxDateTime::unit(
     *
     *******************************************************************************/
 
-    xTEST_CASE("CxDateTime::zodiacSign", cullCaseLoops)
+    xTEST_CASE("CxDateTime::zodiacSign", a_cullCaseLoops)
     {
         // TEST: CxDateTime::zodiacSign
 
@@ -557,7 +557,7 @@ CxTest_CxDateTime::unit(
     #endif
     }
 
-    xTEST_CASE("CxDateTime::monthStr", cullCaseLoops)
+    xTEST_CASE("CxDateTime::monthStr", a_cullCaseLoops)
     {
         //bIsShortName = false
         m_sRv = CxDateTime::monthStr((ushort_t)- 1, false);
@@ -624,7 +624,7 @@ CxTest_CxDateTime::unit(
         xTEST_EQ(std::tstring_t(xT("Dec")), m_sRv);
     }
 
-    xTEST_CASE("CxDateTime::monthNum", cullCaseLoops)
+    xTEST_CASE("CxDateTime::monthNum", a_cullCaseLoops)
     {
         std::ctstring_t casMonths[12][2] = {
             { xT("January"),    xT("Jan") },
@@ -664,7 +664,7 @@ CxTest_CxDateTime::unit(
         }
     }
 
-    xTEST_CASE("CxDateTime::weekDayStr", cullCaseLoops)
+    xTEST_CASE("CxDateTime::weekDayStr", a_cullCaseLoops)
     {
         //bIsShortName = false
         m_sRv = CxDateTime::weekDayStr(0, false);
@@ -703,7 +703,7 @@ CxTest_CxDateTime::unit(
         xTEST_EQ(std::tstring_t(xT("Sat")), m_sRv);
     }
 
-    xTEST_CASE("CxDateTime::weekDayNum", cullCaseLoops)
+    xTEST_CASE("CxDateTime::weekDayNum", a_cullCaseLoops)
     {
         std::ctstring_t casDays[7][2] = {
             { xT("Sunday"),     xT("Sun") },

@@ -21,7 +21,7 @@ CxTest_CxMySql::~CxTest_CxMySql() {
 /* virtual */
 void_t
 CxTest_CxMySql::unit(
-    culonglong_t &cullCaseLoops
+    culonglong_t &a_cullCaseLoops
 )
 {
     std::ctstring_t csHost        = xT("127.0.0.1");
@@ -65,7 +65,7 @@ CxTest_CxMySql::unit(
         conConn.options(moOption, cpvArg);
     }
 
-    xTEST_CASE("bIsExists", cullCaseLoops)
+    xTEST_CASE("bIsExists", a_cullCaseLoops)
     {
         std::ctstring_t casData[][2] = {
             { xT("000000"),     xT("false") },
