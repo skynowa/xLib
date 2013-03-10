@@ -24,6 +24,23 @@ CxTest_CxStdError::unit(
 {
     cint_t ciMaxErrors = 132;  /*0...132*/;
 
+    xTEST_CASE("CxStdError::isSuccess", cullCaseLoops)
+    {
+        CxStdError::reset();
+        m_bRv = CxStdError::isSuccess();
+        xTEST_EQ(true, m_bRv);
+
+        m_bRv = CxStdError::isSuccess();
+        xTEST_EQ(true, m_bRv);
+
+        CxStdError::set(10);
+        m_bRv = CxStdError::isSuccess();
+        xTEST_EQ(false, m_bRv);
+
+        m_bRv = CxStdError::isSuccess();
+        xTEST_EQ(false, m_bRv);
+    }
+
     xTEST_CASE("CxStdError::get", cullCaseLoops)
     {
         m_iRv = CxStdError::get();
@@ -31,9 +48,9 @@ CxTest_CxStdError::unit(
         xTEST_EQ(0, CxStdError::get());
     }
 
-    xTEST_CASE("CxStdError::toString", cullCaseLoops)
+    xTEST_CASE("CxStdError::format", cullCaseLoops)
     {
-        std::tstring_t sError = CxStdError::toString();
+        std::tstring_t sError = CxStdError::format();
         xTEST_EQ(false, sError.empty());
     }
 

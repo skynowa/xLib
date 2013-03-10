@@ -28,6 +28,17 @@ CxTest_CxLastError::unit(
         culong_t cuiMaxErrors = 132;    /*0...132*/
     #endif
 
+    xTEST_CASE("CxLastError::isSuccess", cullCaseLoops)
+    {
+        CxLastError::reset();
+        m_bRv = CxLastError::isSuccess();
+        xTEST_EQ(true, m_bRv);
+
+        CxLastError::set(10UL);
+        m_bRv = CxLastError::isSuccess();
+        xTEST_EQ(false, m_bRv);
+    }
+
     xTEST_CASE("CxLastError::get", cullCaseLoops)
     {
         m_ulRv = CxLastError::get();
@@ -35,9 +46,9 @@ CxTest_CxLastError::unit(
         xTEST_EQ(0UL, CxLastError::get());
     }
 
-    xTEST_CASE("CxLastError::toString", cullCaseLoops)
+    xTEST_CASE("CxLastError::format", cullCaseLoops)
     {
-        m_sRv = CxLastError::toString();
+        m_sRv = CxLastError::format();
         xTEST_EQ(0UL,   CxLastError::get());
         xTEST_EQ(false, m_sRv.empty());
     }

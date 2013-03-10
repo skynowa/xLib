@@ -8,6 +8,12 @@
 
 #include <xLib/Common/CxString.h>
 
+xNAMESPACE_ANONYM_BEGIN
+
+cint_t g_ciCodeSuccess = 0;
+
+xNAMESPACE_ANONYM_END
+                     
 
 xNAMESPACE_BEGIN(NxLib)
 
@@ -18,21 +24,21 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 /* static */
+bool_t
+CxStdError::isSuccess() {
+    bool_t bRv = (g_ciCodeSuccess == errno);
+
+    return bRv;
+}
+//------------------------------------------------------------------------------
+/* static */
 int_t
 CxStdError::get() {
-    int_t iCode = 0; /* = ciCodeSuccess */;
-
-    iCode = errno;
+    int_t iCode = errno;
 
     reset();
 
     return iCode;
-}
-//------------------------------------------------------------------------------
-/* static */
-std::tstring_t
-CxStdError::toString() {
-    return format(get());
 }
 //------------------------------------------------------------------------------
 /* static */
@@ -47,9 +53,13 @@ CxStdError::set(
 /* static */
 void_t
 CxStdError::reset() {
-    cint_t ciCodeSuccess = 0;
-
-    set(ciCodeSuccess);
+    set(g_ciCodeSuccess);
+}
+//------------------------------------------------------------------------------
+/* static */
+std::tstring_t
+CxStdError::format() {
+    return format(get());
 }
 //------------------------------------------------------------------------------
 /* static */
@@ -60,7 +70,7 @@ CxStdError::format(
 {
     std::tstring_t sRv;
 
-    sRv = CxString::format(xT("%lu - "), a_ciCode);
+    sRv = CxString::format(xT("%d - "), a_ciCode);
 
 #if   xOS_ENV_WIN
     #if   xCOMPILER_MINGW
@@ -87,7 +97,7 @@ CxStdError::format(
     #elif xOS_FREEBSD
         char szBuff[64 + 1] = {0};
 
-        int_t iRv = ::strerror_r(static_cast<int_t>( a_ciCode ), &szBuff[0], xARRAY_SIZE(szBuff));
+        int_t iRv = ::strerror_r(a_ciCode, &szBuff[0], xARRAY_SIZE(szBuff));
         xCHECK_RET(- 1 == iRv, sRv.append(xT("[Cann't format error message]")));
 
         sRv.append(&szBuff[0]);
