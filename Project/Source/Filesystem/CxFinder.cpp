@@ -137,7 +137,7 @@ CxFinder::moveNext() {
         xCHECK_RET(!bRv, false);
     } else {
     #if   xOS_ENV_WIN
-        BOOL blRv = ::FindNextFile(_m_enEnrty.hHandle, &_m_e1nEnrty.fdData);
+        BOOL blRv = ::FindNextFile(_m_enEnrty.hHandle, &_m_enEnrty.fdData);
         if (FALSE == blRv) {
             xCHECK_RET(ERROR_NO_MORE_FILES == CxLastError::get(), false);
 
