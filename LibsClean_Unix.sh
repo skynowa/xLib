@@ -38,6 +38,8 @@ if   [ `uname` = "Linux" ]; then
     MAKE=make
 elif [ `uname` = "FreeBSD" ]; then
     MAKE=gmake
+elif [ `uname` = "Darwin" ]; then
+    MAKE=make
 else
     echo -e "Unknown OS"
     exit 1
