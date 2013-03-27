@@ -96,7 +96,15 @@ ifeq ($(cOS), "FREEBSD")
 		DIR_BIN		:=	./Build/Libs/GCC_freebsd/Release
 	endif
 else
+ifeq ($(cOS), "DARWIN")
+	ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
+		DIR_BIN		:=	./Build/Libs/GCC_darwin/Debug
+	else
+		DIR_BIN		:=	./Build/Libs/GCC_darwin/Release
+	endif
+else
     $(error Unsupported OS: $(cOS))
+endif
 endif
 endif
 endif

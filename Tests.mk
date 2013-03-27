@@ -68,7 +68,15 @@ ifeq ($(cOS), "FREEBSD")
 		DIR_BIN		:=	./Build/Tests/GCC_freebsd/Release
 	endif
 else
+ifeq ($(cOS), "DARWIN")
+	ifeq ($(BUILD_TYPE), $(cBUILD_TYPE_DEBUG))
+		DIR_BIN		:=	./Build/Tests/GCC_darwin/Debug
+	else
+		DIR_BIN		:=	./Build/Tests/GCC_darwin/Release
+	endif
+else
     $(error Unsupported OS: $(cOS))
+endif
 endif
 endif
 endif
@@ -135,7 +143,11 @@ else
 ifeq ($(cOS), "FREEBSD")
 	LIBS			:=	$(LDFLAGS) -lpthread -lrt -lmysqlclient -lm -lcrypto -lz -lssl -lexecinfo # -lc only with out -static
 else
+ifeq ($(cOS), "DARWIN")
+	LIBS			:=	$(LDFLAGS) -lpthread -lrt -lmysqlclient -lm -lcrypto -lz -lssl -lexecinfo # -lc only with out -static
+else
     $(error Unsupported OS: $(cOS))
+endif
 endif
 endif
 endif
