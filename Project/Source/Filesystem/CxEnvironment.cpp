@@ -145,7 +145,7 @@ CxEnvironment::deleteVar(
 #if     xOS_ENV_WIN
     BOOL blRes = ::SetEnvironmentVariable(a_csVarName.c_str(), NULL);
     xTEST_DIFF(FALSE, blRes);
-#elseif xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     #if   xOS_LINUX
         int_t iRv = ::unsetenv(a_csVarName.c_str());
         xTEST_DIFF(- 1, iRv);
