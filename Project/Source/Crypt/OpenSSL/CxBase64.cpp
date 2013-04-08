@@ -11,11 +11,11 @@
 #include <openssl/bio.h>
 #include <openssl/buffer.h>
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     #if xCOMPILER_MS
         #pragma comment(lib, "libeay32.lib")
     #endif
-#elif xOS_ENV_UNIX
+#else
     // -lcrypt -lssl -lcrypto
 #endif
 
@@ -111,7 +111,7 @@ CxBase64::isCharValid(
 {
     // n/a
 
-    bool_t bRv = (CxChar::isAlphaNum(a_cchChar) || 
+    bool_t bRv = (CxChar::isAlphaNum(a_cchChar) ||
                  ('+' == a_cchChar) || ('/' == a_cchChar));
 
     return bRv;
@@ -126,12 +126,12 @@ CxBase64::isCharValid(
 
 //------------------------------------------------------------------------------
 CxBase64::CxBase64() {
-    
+
 }
 //------------------------------------------------------------------------------
 /* virtual */
 CxBase64::~CxBase64() {
-    
+
 }
 //------------------------------------------------------------------------------
 

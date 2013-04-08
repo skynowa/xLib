@@ -566,14 +566,14 @@ CxDateTime::isValid() const {
 /* static */
 CxDateTime
 CxDateTime::current() {
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     SYSTEMTIME stDateTime = {0};
 
     (void_t)::GetLocalTime(&stDateTime);
     xTEST_EQ(true, isValid(stDateTime.wYear, stDateTime.wMonth, stDateTime.wDay, stDateTime.wHour, stDateTime.wMinute, stDateTime.wSecond, stDateTime.wMilliseconds));
 
     return CxDateTime(stDateTime.wYear, stDateTime.wMonth, stDateTime.wDay, stDateTime.wHour, stDateTime.wMinute, stDateTime.wSecond, stDateTime.wMilliseconds);
-#elif xOS_ENV_UNIX
+#else
     // get milliseconds
     timeval tvTime = {0};
 
@@ -601,7 +601,7 @@ CxDateTime::current() {
 #endif
 }
 //------------------------------------------------------------------------------
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
 
 /* static */
 longlong_t
@@ -614,7 +614,7 @@ CxDateTime::filetimeToInt64(
 
 #endif
 //--------------------------------------------------------------------------
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
 
 /* static */
 void_t
@@ -636,7 +636,7 @@ CxDateTime::unixTimeToFileTime(
 #endif
 
 //------------------------------------------------------------------------------
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
 
 //TODO: make tests tmFileTimeToUnixTime
 /* static */

@@ -67,7 +67,8 @@ CxUtils::memoryZero(
 {
     xCHECK_DO(NULL == a_pPtr, return);
 
-    (void_t *)std::memset(a_pPtr, 0, a_sizeBytes);
+    void_t *pvRv = std::memset(a_pPtr, 0, a_sizeBytes);
+    xUNUSED(pvRv);
 }
 //------------------------------------------------------------------------------
 template<class T, std::csize_t cuiArraySize>
@@ -87,7 +88,8 @@ CxUtils::structZeroT(
     T &a_structT
 )
 {
-    (void_t *)std::memset(&a_structT, 0, sizeof(a_structT));
+    void_t *pvRv = std::memset(&a_structT, 0, sizeof(a_structT));
+    xUNUSED(pvRv);
 }
 //------------------------------------------------------------------------------
 template <typename T>
@@ -169,7 +171,7 @@ CxUtils::reinterpretCastT(
 )
 {
     void_t *pvVoidCast = static_cast<void_t *>( a_pPtrT );
-    ToT   ResT       = static_cast<ToT>( pvVoidCast );
+    ToT   ResT         = static_cast<ToT>( pvVoidCast );
 
     return ResT;
 }

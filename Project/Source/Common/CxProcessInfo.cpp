@@ -100,6 +100,8 @@ CxProcessInfo::currentIds(
 
         xBUFF_FREE(pkpProcesses);
     #endif
+#elif xOS_ENV_MAC
+    xNOT_IMPLEMENTED
 #endif
 
     // out
@@ -118,6 +120,8 @@ CxProcessInfo::cpuUsage(
     // TODO: CxProcessInfo::ulCpuUsage
 #elif xOS_ENV_UNIX
     // TODO: CxProcessInfo::ulCpuUsage
+#elif xOS_ENV_MAC
+    xNOT_IMPLEMENTED
 #endif
 
     return ulRv;
@@ -135,6 +139,8 @@ CxProcessInfo::ramUsage(
     // TODO: CxProcessInfo::ulRamUsage
 #elif xOS_ENV_UNIX
     // TODO: CxProcessInfo::ulRamUsage
+#elif xOS_ENV_MAC
+    xNOT_IMPLEMENTED
 #endif
 
     return ulRv;
@@ -182,6 +188,8 @@ CxProcessInfo::ioBytes(
     ulRv = ulReadBytes + ulWriteBytes;
 
     // xTRACEV("\tulReadBytes: %lu, ulWriteBytes: %lu", ulReadBytes, ulWriteBytes);
+#elif xOS_ENV_MAC
+    xNOT_IMPLEMENTED
 #endif
 
     return ulRv;
@@ -240,6 +248,8 @@ CxProcessInfo::exeName(
             xNOT_IMPLEMENTED_RET(std::tstring_t());
         #endif
     #endif
+#elif xOS_ENV_MAC
+    xNOT_IMPLEMENTED
 #endif
 
     return sRv;
@@ -261,6 +271,8 @@ CxProcessInfo::parentId(
     #elif xOS_FREEBSD
         // TODO: CxProcessInfo::ulParentProcessId
     #endif
+#elif xOS_ENV_MAC
+    xNOT_IMPLEMENTED
 #endif
 
     return ulRv;
@@ -424,6 +436,8 @@ CxProcessInfo::commandLine(
 
         sRv = sBuff;    // BUG: sBuff or sBuff.c_str() - FreeBSD crazy!!!
     #endif
+#elif xOS_ENV_MAC
+    xNOT_IMPLEMENTED
 #endif
 
 

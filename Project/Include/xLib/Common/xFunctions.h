@@ -313,9 +313,9 @@ xNAMESPACE_BEGIN(NxLib)
     ///< implementation gettimeofday
 
 // xSTD_CLOCK
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #define xSTD_CLOCK              std::clock
-#else
+#elif xOS_ENV_UNIX
     #if   xOS_LINUX
         #define xSTD_CLOCK          std::clock
     #elif xOS_FREEBSD
@@ -324,6 +324,8 @@ xNAMESPACE_BEGIN(NxLib)
 
         #define xSTD_CLOCK          liGetClock
     #endif
+#elif xOS_ENV_MAC
+    #define xSTD_CLOCK              std::clock
 #endif
     ///< implementation std::clock
 

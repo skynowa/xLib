@@ -6,6 +6,8 @@
 
 #include <Test/Db/CxTest_CxMySql.h>
 
+#if xCXMYSQL_IS_USE
+
 #include <xLib/Common/CxString.h>
 
 
@@ -272,3 +274,5 @@ CxTest_CxMySql::unit(
     conConn.close();
 }
 //------------------------------------------------------------------------------
+
+#endif // CXMYSQL_IS_USE

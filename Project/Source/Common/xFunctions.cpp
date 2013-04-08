@@ -10,60 +10,58 @@
 xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
-#if   xOS_ENV_WIN
-    int_t
-    iGetTimeOfDay(
-        struct timeval  *a_tv,
-        struct timezone *a_tz
-    )
-    {
-    #if xCOMPILER_MS || defined(_MSC_EXTENSIONS)
-        ulonglong_t DELTA_EPOCH_IN_MICROSECS = 11644473600000000Ui64;
-    #else
-        ulonglong_t DELTA_EPOCH_IN_MICROSECS = 11644473600000000ULL;
-    #endif
+#if xOS_ENV_WIN
 
-        FILETIME    ftTime    = {0};
-        ulonglong_t ullRv    = 0ULL;
-        static int_t  s_iTzFlag = 0;
+int_t
+iGetTimeOfDay(
+    struct timeval  *a_tv,
+    struct timezone *a_tz
+)
+{
+#if xCOMPILER_MS || defined(_MSC_EXTENSIONS)
+    ulonglong_t DELTA_EPOCH_IN_MICROSECS = 11644473600000000Ui64;
+#else
+    ulonglong_t DELTA_EPOCH_IN_MICROSECS = 11644473600000000ULL;
+#endif
 
-        if (NULL != a_tv) {
-            (void_t)::GetSystemTimeAsFileTime(&ftTime);
+    FILETIME    ftTime    = {0};
+    ulonglong_t ullRv    = 0ULL;
+    static int_t  s_iTzFlag = 0;
 
-            ullRv |= ftTime.dwHighDateTime;
-            ullRv <<= 32ULL;
-            ullRv |= ftTime.dwLowDateTime;
+    if (NULL != a_tv) {
+        (void_t)::GetSystemTimeAsFileTime(&ftTime);
 
-            //convert into microseconds
-            ullRv /= 10ULL;
+        ullRv |= ftTime.dwHighDateTime;
+        ullRv <<= 32ULL;
+        ullRv |= ftTime.dwLowDateTime;
 
-            //converting file time to unix epoch
-            ullRv -= DELTA_EPOCH_IN_MICROSECS;
+        //convert into microseconds
+        ullRv /= 10ULL;
 
-            a_tv->tv_sec  = static_cast<long_t>( ullRv / 1000000UL );
-            a_tv->tv_usec = static_cast<long_t>( ullRv % 1000000UL );
-        }
+        //converting file time to unix epoch
+        ullRv -= DELTA_EPOCH_IN_MICROSECS;
 
-        if (NULL != a_tz) {
-            if (!s_iTzFlag) {
-                _tzset();
-                ++ s_iTzFlag;
-            }
-
-            a_tz->tz_minuteswest = _timezone / 60;
-            a_tz->tz_dsttime     = _daylight;
-        }
-
-        return 0;
+        a_tv->tv_sec  = static_cast<long_t>( ullRv / 1000000UL );
+        a_tv->tv_usec = static_cast<long_t>( ullRv % 1000000UL );
     }
-#elif xOS_ENV_UNIX
-    xNA;
+
+    if (NULL != a_tz) {
+        if (!s_iTzFlag) {
+            _tzset();
+            ++ s_iTzFlag;
+        }
+
+        a_tz->tz_minuteswest = _timezone / 60;
+        a_tz->tz_dsttime     = _daylight;
+    }
+
+    return 0;
+}
+
 #endif
 
 //------------------------------------------------------------------------------
-#if   xOS_ENV_WIN
-        xNA;
-#elif xOS_ENV_UNIX
+#if xOS_ENV_UNIX
     #if   xOS_LINUX
         xNA;
     #elif xOS_FREEBSD

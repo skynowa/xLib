@@ -7,13 +7,15 @@
 #ifndef xLib_Db_CxMySqlH
 #define xLib_Db_CxMySqlH
 //------------------------------------------------------------------------------
+#if xCXMYSQL_IS_USE
+
 #include <xLib/Common/xCommon.h>
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     #include <mysql.h>
     #include <errmsg.h>
     #include <mysqld_error.h>
-#elif xOS_ENV_UNIX
+#else
     #include <mysql/mysql.h>
     #include <mysql/errmsg.h>
     #include <mysql/mysqld_error.h>
@@ -110,6 +112,8 @@ private:
 };
 
 xNAMESPACE_END(NxLib)
+
+#endif // CXMYSQL_IS_USE
 //------------------------------------------------------------------------------
 #endif // xLib_Db_CxMySqlH
 

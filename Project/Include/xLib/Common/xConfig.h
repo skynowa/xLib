@@ -119,5 +119,8 @@
 
 #define xNEW_NO_STD_THROW               0
     ///< new with std::notrow
+
+#define xCXMYSQL_IS_USE                 0
+    ///< is use CxMySql
 //------------------------------------------------------------------------------
 #endif  // xLib_Common_xConfigH

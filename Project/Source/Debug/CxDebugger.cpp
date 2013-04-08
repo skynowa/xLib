@@ -15,9 +15,7 @@
 #include <xLib/Sync/CxCurrentProcess.h>
 #include <xLib/Gui/Dialogs/CxMsgBoxT.h>
 
-#if   xOS_ENV_WIN
-    xNA
-#elif xOS_ENV_UNIX
+#if xOS_ENV_UNIX
     #if   xOS_LINUX
         #if xTEMP_DISABLED
             #include <linux/kd.h>   //bBeep
@@ -89,7 +87,7 @@ CxDebugger::isActive() {
         bool_t bRv = ( ::getsid(::getpid()) != ::getppid() );
         xCHECK_RET(!bRv, false);
     #elif xOS_FREEBSD
-        int_t               aiMib[4]   = {0};
+        int_t             aiMib[4]   = {0};
         struct kinfo_proc kiInfo     = {0};
         size_t            uiInfoSize = 0;
 
@@ -109,6 +107,8 @@ CxDebugger::isActive() {
         // we're being debugged if the P_TRACED flag is set.
         xCHECK_RET(0 == (kiInfo.ki_flag & P_TRACED), false);
     #endif
+#elif xOS_ENV_MAC
+    xNOT_IMPLEMENTED
 #endif
 
     return true;
@@ -127,9 +127,9 @@ void_t
 CxDebugger::breakPoint() {
     xCHECK_DO(!isEnabled(), return);
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     (void_t)::DebugBreak();
-#elif xOS_ENV_UNIX
+#else
     int_t iRv = ::raise(SIGTRAP);
     xTEST_DIFF(- 1, iRv);
 
@@ -196,9 +196,9 @@ CxDebugger::_msgboxPlain(
     xCHECK_DO(!isEnabled(), return);
 
 #if xDEBUG_USE_PROMPT_DIALOG
-    #if   xOS_ENV_WIN
+    #if xOS_ENV_WIN
         uint_t uiType = MB_ABORTRETRYIGNORE | MB_ICONSTOP;
-    #elif xOS_ENV_UNIX
+    #else
         uint_t uiType = 1U;
     #endif
 
@@ -218,7 +218,8 @@ CxDebugger::_msgboxPlain(
             if (isActive()) {
                 breakPoint();
             } else {
-                CxMsgBoxT::show(xT("Debugger is not present.\nThe application will be terminated."), xT("xLib"));
+                CxMsgBoxT::ExModalResult nrRv = CxMsgBoxT::show(xT("Debugger is not present.\nThe application will be terminated."), xT("xLib"));
+                xUNUSED(nrRv);
                 CxCurrentProcess::exit(0U);
             }
             break;

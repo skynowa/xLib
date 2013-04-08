@@ -31,7 +31,7 @@ CxString::strToWStr(
 
     std::wstring wsRes;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     int_t iSize = ::MultiByteToWideChar(a_cuiCodePage, 0UL, a_csStr.c_str(), - 1,
                                       NULL, 0);
     xTEST_LESS(0, iSize);
@@ -40,7 +40,7 @@ CxString::strToWStr(
     iSize = ::MultiByteToWideChar(a_cuiCodePage, 0UL, a_csStr.c_str(), - 1,
                                   static_cast<LPWSTR>(&wsRes.at(0)), iSize);
     xTEST_LESS(0, iSize);
-#elif xOS_ENV_UNIX
+#else
     // TODO: strToWStr
     xNOT_IMPLEMENTED;
 #endif
@@ -60,7 +60,7 @@ CxString::wstrToStr(
 
     std::string asRes;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     int_t iSize = ::WideCharToMultiByte(a_cuiCodePage, 0UL, a_cwsStr.c_str(), - 1,
                                       NULL, 0, NULL, NULL);
     xTEST_LESS(0, iSize);
@@ -70,7 +70,7 @@ CxString::wstrToStr(
                                   static_cast<LPSTR>(&asRes.at(0)), iSize, NULL,
                                   NULL);
     xTEST_LESS(0, iSize);
-#elif xOS_ENV_UNIX
+#else
     // TODO: (wstrToStr)
     xNOT_IMPLEMENTED;
 #endif
@@ -165,13 +165,13 @@ CxString::charToOemBuff(
 
     std::string asDst;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     asDst.resize(a_csSrc.size());
 
     BOOL blRv = ::CharToOemBuff(a_csSrc.c_str(), &asDst.at(0),
                                 static_cast<DWORD>( asDst.size() ));
     xTEST_DIFF(FALSE, blRv);
-#elif xOS_ENV_UNIX
+#else
     // TODO: charToOemBuff
     xNOT_IMPLEMENTED;
 #endif
@@ -189,13 +189,13 @@ CxString::oemToCharBuff(
 
     std::tstring_t sDst;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     sDst.resize(a_csSrc.size());
 
     BOOL blRv = ::OemToCharBuff(a_csSrc.c_str(), &sDst.at(0),
                                 static_cast<DWORD>( sDst.size() ));
     xTEST_DIFF(FALSE, blRv);
-#elif xOS_ENV_UNIX
+#else
     // TODO: sOemToCharBuffoemToCharBuff
     xNOT_IMPLEMENTED;
 #endif
@@ -267,11 +267,11 @@ CxString::toLowerCase(
 
     std::tstring_t sRv(a_csStr);
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     DWORD dwRv = ::CharLowerBuff(static_cast<LPTSTR>( &sRv[0] ),
                                  static_cast<DWORD>( uiLength ));
     xTEST_EQ(uiLength, static_cast<size_t>( dwRv ));
-#elif xOS_ENV_UNIX
+#else
     std::transform(sRv.begin(), sRv.begin() + uiLength, sRv.begin(), CxChar::toLower);
 #endif
 
@@ -295,11 +295,11 @@ CxString::toUpperCase(
 
     std::tstring_t sRv(a_csStr);
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     DWORD dwRv = ::CharUpperBuff(static_cast<LPTSTR>( &sRv[0] ),
                                  static_cast<DWORD>( uiLength ));
     xTEST_EQ(uiLength, static_cast<size_t>( dwRv ));
-#elif xOS_ENV_UNIX
+#else
     std::transform(sRv.begin(), sRv.begin() + uiLength, sRv.begin(), CxChar::toUpper);
 #endif
 
@@ -907,7 +907,7 @@ std::tstring_t
 CxString::createGuid() {
     std::tstring_t sRv;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     GUID    guidId = {0};
     HRESULT hrGuid = S_FALSE;
 
@@ -925,7 +925,7 @@ CxString::createGuid() {
             guidId.Data4[6], guidId.Data4[7]
     );
     xTEST_EQ(false, sRv.empty());
-#elif xOS_ENV_UNIX
+#else
     // TODO: createGuid
     // #include <uuid/uuid.h>
     xNOT_IMPLEMENTED;

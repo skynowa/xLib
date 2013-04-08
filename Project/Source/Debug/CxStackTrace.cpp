@@ -25,6 +25,9 @@
 #elif xOS_ENV_UNIX
     #include <execinfo.h>   // lib: -lexecinfo (FreeBSD)
     #include <cxxabi.h>
+#elif xOS_ENV_MAC
+    #include <execinfo.h>   // lib: -lexecinfo (FreeBSD)
+    #include <cxxabi.h>
 #endif
 
 
@@ -267,6 +270,8 @@ CxStackTrace::get(
             vvsStack.push_back(vsStackLine);
         }
     } // for
+#elif xOS_ENV_MAC
+    xNOT_IMPLEMENTED
 #endif
 
     std::swap(*a_pvvsStack, vvsStack);

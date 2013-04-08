@@ -51,22 +51,22 @@ std::cwstring_t CxConst::xUNIX_SLASH_W     (L"/");
 std::ctstring_t CxConst::xUNIX_SLASH       (xT("/"));
 
 // xSLASH
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
 std::cstring_t  CxConst::xSLASH_A          (CxConst::xWIN_SLASH_A);
 std::cwstring_t CxConst::xSLASH_W          (CxConst::xWIN_SLASH_W);
 std::ctstring_t CxConst::xSLASH            (CxConst::xWIN_SLASH);
-#elif xOS_ENV_UNIX
+#else
 std::cstring_t  CxConst::xSLASH_A          (CxConst::xUNIX_SLASH_A);
 std::cwstring_t CxConst::xSLASH_W          (CxConst::xUNIX_SLASH_W);
 std::ctstring_t CxConst::xSLASH            (CxConst::xUNIX_SLASH);
 #endif
 
 // xEOL
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
 std::cstring_t  CxConst::xEOL_A            (xCRNL_A);
 std::cwstring_t CxConst::xEOL_W            (xCRNL_W);
 std::ctstring_t CxConst::xEOL              (xCRNL);
-#elif xOS_ENV_UNIX
+#else
 std::cstring_t  CxConst::xEOL_A            (xNL_A);
 std::cwstring_t CxConst::xEOL_W            (xNL_W);
 std::ctstring_t CxConst::xEOL              (xNL);
