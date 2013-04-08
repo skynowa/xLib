@@ -103,6 +103,8 @@ CxPath::exe() {
             sRv = absolute(vsArgs.at(0));
         #endif
     #endif
+#elif xOS_ENV_MAC
+    xNOT_IMPLEMENTED
 #endif
 
     xTEST_EQ(true, CxFile::isExists(sRv));
@@ -112,9 +114,9 @@ CxPath::exe() {
 //------------------------------------------------------------------------------
 xNAMESPACE_ANONYM_BEGIN
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     extern "C" IMAGE_DOS_HEADER __ImageBase;
-#elif xOS_ENV_UNIX
+#else
     static void_t vFunction() { ; }
 #endif
 
@@ -134,7 +136,7 @@ CxPath::dll() {
     xTEST_DIFF(0UL, dwStored);
 
     sRv.resize(dwStored);
-#elif xOS_ENV_UNIX
+#else
     Dl_info  diInfo        = {0};
     cvoid_t *fpProcAddress = reinterpret_cast<cvoid_t *>( vFunction );
 
@@ -556,10 +558,10 @@ CxPath::isAbsolute() const {
     xCHECK_RET(true                  == filePath().empty(), false);
     xCHECK_RET(CxConst::xSLASH.at(0) == filePath().at(0),   true);
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     xCHECK_RET(1 == filePath().size(),                                                         false);
     xCHECK_RET(CxChar::isAlpha(filePath().at(0)) && CxConst::xCOLON.at(0) == filePath().at(1), true);
-#elif xOS_ENV_UNIX
+#else
     xNA;
 #endif
 
@@ -726,7 +728,7 @@ CxPath::setNameValid(
     {
         std::ctstring_t csExceptedChars = xT("/:");
 
-        std::csize_t uiPos = a_csFileName.find_first_of(csExceptedChars);
+        std::size_t uiPos = a_csFileName.find_first_of(csExceptedChars);
         bRv = (std::tstring_t::npos != uiPos);
         if (bRv) {
             while (std::tstring_t::npos != uiPos) {
@@ -797,9 +799,9 @@ CxPath::toNative(
         sRv = slashRemove();
     }
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     sRv = CxString::replaceAll(sRv, CxConst::xUNIX_SLASH, CxConst::xSLASH);
-#elif xOS_ENV_UNIX
+#else
     sRv = CxString::replaceAll(sRv, CxConst::xWIN_SLASH,  CxConst::xSLASH);
 #endif
 
@@ -810,7 +812,7 @@ std::tstring_t
 CxPath::absolute() const {
     std::tstring_t sRv;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     DWORD          dwRv = 0UL;
     std::tstring_t sBuff;
 
@@ -825,7 +827,7 @@ CxPath::absolute() const {
     sBuff.resize(dwRv);
 
     sRv = sBuff;
-#elif xOS_ENV_UNIX
+#else
     std::tstring_t sBuff;
 
     sBuff.resize(xPATH_MAX);
@@ -951,7 +953,7 @@ size_t
 CxPath::maxSize() {
     size_t uiRes = 0;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     #if defined(MAX_PATH)
         uiRes = MAX_PATH;
     #else
@@ -959,7 +961,7 @@ CxPath::maxSize() {
 
         uiRes = cuiDefaultSize;
     #endif
-#elif xOS_ENV_UNIX
+#else
     #if defined(PATH_MAX)
         uiRes = PATH_MAX;
     #else
@@ -993,7 +995,7 @@ size_t
 CxPath::nameMaxSize() {
     size_t uiRes = 0;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     #if defined(FILENAME_MAX)
         uiRes = FILENAME_MAX;
     #else
@@ -1001,13 +1003,13 @@ CxPath::nameMaxSize() {
 
         uiRes = cuiDefaultSize;
     #endif
-#elif xOS_ENV_UNIX
+#else
     #if defined(NAME_MAX)
         uiRes = NAME_MAX;
     #else
         culong_t culSavedError = 0UL;
-        long_t        liRv          = - 1L;
-        ulong_t       ulLastError   = 0UL;
+        long_t   liRv          = - 1L;
+        ulong_t  ulLastError   = 0UL;
 
         CxLastError::set(culSavedError);
 
@@ -1034,8 +1036,8 @@ CxPath::nameMaxSize() {
 /* static */
 void_t
 CxPath::proc(
-    std::ctstring_t &a_csProcPath,
-    std::vec_tstring_t   *a_pvsData
+    std::ctstring_t    &a_csProcPath,
+    std::vec_tstring_t *a_pvsData
 )
 {
     // check for existence "/proc" directory

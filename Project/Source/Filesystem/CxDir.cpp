@@ -85,7 +85,7 @@ CxDir::isEmpty(
 //------------------------------------------------------------------------------
 bool_t
 CxDir::isRoot() {
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     xCHECK_RET(3 != dirPath().size(), false);
 
     bool_t bRes1 = CxChar::isAlpha(dirPath().at(0));
@@ -94,7 +94,7 @@ CxDir::isRoot() {
                     dirPath().at(2) == CxConst::xUNIX_SLASH.at(0));
 
     xCHECK_RET(!bRes1 || !bRes2 || !bRes3, false);
-#elif xOS_ENV_UNIX
+#else
     xCHECK_RET(CxConst::xSLASH != dirPath(), false);
 #endif
 
@@ -114,10 +114,10 @@ CxDir::create() {
     bool_t bRv = isExists();
     xCHECK_DO(bRv, return);
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     BOOL blRes = ::CreateDirectory(dirPath().c_str(), NULL);
     xTEST_DIFF(FALSE, blRes);
-#elif xOS_ENV_UNIX
+#else
     int_t iRv = ::mkdir(dirPath().c_str(), 0755);
     xTEST_DIFF(- 1, iRv);
 #endif
@@ -213,10 +213,10 @@ CxDir::remove() {
 
     CxFileType(dirPath()).clear();
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     BOOL blRes = ::RemoveDirectory(dirPath().c_str());
     xTEST_DIFF(FALSE, blRes);
-#elif xOS_ENV_UNIX
+#else
     int_t iRv = ::rmdir(dirPath().c_str());
     xTEST_DIFF(- 1, iRv);
 #endif
@@ -242,10 +242,10 @@ CxDir::tryRemove(
 
         CxFileType(dirPath()).clear();
 
-    #if   xOS_ENV_WIN
+    #if xOS_ENV_WIN
         BOOL blRes = ::RemoveDirectory(dirPath().c_str());
         xCHECK_DO(FALSE != blRes, break);
-    #elif xOS_ENV_UNIX
+    #else
         int_t iRv = ::rmdir(dirPath().c_str());
         xCHECK_DO(- 1 != iRv, break);
     #endif
@@ -318,13 +318,13 @@ CxDir::current() {
     std::tstring_t sRv;
     std::tstring_t sBuff(xPATH_MAX + 1, 0);
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     DWORD ulRv = ::GetCurrentDirectory(static_cast<DWORD>( xPATH_MAX ), &sBuff[0]);
     xTEST_DIFF(0UL, ulRv);
     xTEST_LESS(ulRv, static_cast<ulong_t>( xPATH_MAX ));
 
     sRv.assign(sBuff, 0, ulRv);
-#elif xOS_ENV_UNIX
+#else
     tchar_t *pszRes = ::getcwd(&sBuff[0], xPATH_MAX);
     xTEST_PTR(pszRes);
     xTEST_EQ(sBuff.c_str(), const_cast<ctchar_t *>( pszRes ));
@@ -342,10 +342,10 @@ CxDir::setCurrent(
 {
     std::tstring_t dirPath = CxPath(a_csDirPath).slashAppend();
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     BOOL blRes = ::SetCurrentDirectory(dirPath.c_str());
     xTEST_DIFF(FALSE, blRes);
-#elif xOS_ENV_UNIX
+#else
     int_t iRv = ::chdir(a_csDirPath.c_str());
     xTEST_DIFF(- 1, iRv);
 #endif
@@ -356,7 +356,7 @@ std::tstring_t
 CxDir::temp() {
     std::tstring_t sRv;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     std::tstring_t sBuff(xPATH_MAX + 1, 0);
 
     DWORD ulRv = ::GetTempPath(static_cast<DWORD>( xPATH_MAX ), &sBuff[0]);
@@ -364,7 +364,7 @@ CxDir::temp() {
     xTEST_LESS(ulRv, static_cast<ulong_t>( xPATH_MAX ));
 
     sRv.assign(sBuff, 0, ulRv);
-#elif xOS_ENV_UNIX
+#else
     std::ctstring_t csEnvDirTemp = xT("TMPDIR");
 
     bool_t bRv = CxEnvironment::isExists(csEnvDirTemp);

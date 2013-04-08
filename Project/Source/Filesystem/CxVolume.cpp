@@ -10,11 +10,11 @@
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxDir.h>
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     #if !xCOMPILER_MINGW
         #pragma comment(lib, "mpr.lib")
     #endif
-#elif xOS_ENV_UNIX
+#else
     #include <sys/param.h>
     #include <sys/mount.h>
 #endif
@@ -81,6 +81,8 @@ CxVolume::type() const {
     #elif xOS_FREEBSD
         // TODO: CxVolume::dtGetType
     #endif
+#elif xOS_ENV_MAC
+    xNOT_IMPLEMENTED
 #endif
 
     return dtRes;
@@ -93,7 +95,7 @@ CxVolume::label() const {
     bool_t bRv = isReady();
     xCHECK_RET(!bRv, std::tstring_t());
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     tchar_t szVolumeName[MAX_PATH + 1] = {0};
 
     CxLastError::reset();
@@ -111,7 +113,7 @@ CxVolume::label() const {
     xTEST_DIFF(false, blRes && 0UL == CxLastError::get());
 
     sRv.assign(szVolumeName);
-#elif xOS_ENV_UNIX
+#else
     // REVIEW: just get the dir name ??
     if (CxConst::xUNIX_SLASH == volumePath()) {
         sRv = CxConst::xUNIX_SLASH;
@@ -125,10 +127,10 @@ CxVolume::label() const {
 //--------------------------------------------------------------------------
 bool_t
 CxVolume::isValid() const {
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     bool_t bRv = CxDir( volumePath() ).isRoot();
     xCHECK_RET(!bRv, false);
-#elif xOS_ENV_UNIX
+#else
     xCHECK_RET(true                  == volumePath().empty(), false);
     xCHECK_RET(CxConst::xSLASH.at(0) != volumePath().at(0),   false);
 #endif
@@ -142,7 +144,7 @@ CxVolume::isReady() const {
     std::tstring_t _sVolumePath = CxPath( volumePath() ).slashAppend();
     std::tstring_t sOldDirPath;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     std::tstring_t sRv;
     UINT           uiOldErrorMode = 0U;
 
@@ -158,7 +160,7 @@ CxVolume::isReady() const {
     CxDir::setCurrent(sOldDirPath);
 
     (void_t)::SetErrorMode(uiOldErrorMode);
-#elif xOS_ENV_UNIX
+#else
     sOldDirPath  = CxDir::current();
     xTEST_NA(sOldDirPath);
 
@@ -207,6 +209,8 @@ CxVolume::mount(
         int_t iRv = ::mount(volumePath().c_str(), a_csDestPath.c_str(), MNT_UPDATE, NULL);
         xTEST_DIFF(- 1, iRv);
     #endif
+#elif xOS_ENV_MAC
+    xNOT_IMPLEMENTED
 #endif
 }
 //--------------------------------------------------------------------------
@@ -237,6 +241,8 @@ CxVolume::unMount(
         int_t iRv = ::unmount(volumePath().c_str(), ciFlag);
         xTEST_DIFF(- 1, iRv);
     #endif
+#elif xOS_ENV_MAC
+    xNOT_IMPLEMENTED
 #endif
 }
 //--------------------------------------------------------------------------
@@ -275,7 +281,7 @@ CxVolume::space(
     bool_t bRv = CxDir(sDirPath).isExists();
     xTEST_EQ(true, bRv);
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     ULARGE_INTEGER ullAvailable = {{0}};
     ULARGE_INTEGER ullTotal     = {{0}};
     ULARGE_INTEGER ullFree      = {{0}};
@@ -286,7 +292,7 @@ CxVolume::space(
     CxUtils::ptrAssignT(a_pullAvailable, ullAvailable.QuadPart);
     CxUtils::ptrAssignT(a_pullTotal,     ullTotal.QuadPart);
     CxUtils::ptrAssignT(a_pullFree,      ullFree.QuadPart);
-#elif xOS_ENV_UNIX
+#else
     struct xSTATVFS stfInfo = {0};
 
     int_t iRv = ::xSTATVFS(sDirPath.c_str(), &stfInfo);
@@ -349,6 +355,8 @@ CxVolume::paths(
     #elif xOS_FREEBSD
         // TODO: CxVolume::paths
     #endif
+#elif xOS_ENV_MAC
+    xNOT_IMPLEMENTED
 #endif
 
     // out

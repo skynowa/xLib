@@ -11,7 +11,7 @@
 #include <xLib/Filesystem/CxPath.h>
 
 
-#if xOS_ENV_UNIX
+#if !xOS_ENV_WIN
     extern char **environ;  // from <env.h>
 #endif
 
@@ -33,7 +33,7 @@ CxEnvironment::isExists(
 
     xCHECK_RET(a_csVarName.empty(), false);
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     std::tstring_t sRv;
 
     sRv.resize(xPATH_MAX);
@@ -42,7 +42,7 @@ CxEnvironment::isExists(
     xTEST_NA(dwLength);
 
     xCHECK_RET(0UL == dwLength && ERROR_ENVVAR_NOT_FOUND == CxLastError::get(), false);
-#elif xOS_ENV_UNIX
+#else
     const char *pcszRes = ::getenv(a_csVarName.c_str());
     xTEST_NA(pcszRes);
 
@@ -91,7 +91,7 @@ CxEnvironment::var(
 
     std::tstring_t sRv;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     sRv.resize(xPATH_MAX);
 
     DWORD dwLength = ::GetEnvironmentVariable(a_csVarName.c_str(), &sRv.at(0), static_cast<DWORD>( sRv.size() ));
@@ -103,7 +103,7 @@ CxEnvironment::var(
         dwLength = ::GetEnvironmentVariable(a_csVarName.c_str(), &sRv.at(0), static_cast<DWORD>( sRv.size() ));
         xTEST_DIFF(0UL, dwLength);
     }
-#elif xOS_ENV_UNIX
+#else
     const char *pcszRes = ::getenv(a_csVarName.c_str());
     xTEST_PTR(pcszRes);
 
@@ -123,10 +123,10 @@ CxEnvironment::setVar(
     xTEST_EQ(true, isVarValid(a_csVarName));
     xTEST_EQ(true, isVarValid(a_csValue));
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     BOOL blRes = ::SetEnvironmentVariable(a_csVarName.c_str(), a_csValue.c_str());
     xTEST_DIFF(FALSE, blRes);
-#elif xOS_ENV_UNIX
+#else
     int_t iRv = ::setenv(a_csVarName.c_str(), a_csValue.c_str(), true);
     xTEST_DIFF(- 1, iRv);
 #endif
@@ -142,16 +142,19 @@ CxEnvironment::deleteVar(
 
     xCHECK_DO(!isExists(a_csVarName), return);
 
-#if   xOS_ENV_WIN
+#if     xOS_ENV_WIN
     BOOL blRes = ::SetEnvironmentVariable(a_csVarName.c_str(), NULL);
     xTEST_DIFF(FALSE, blRes);
-#elif xOS_ENV_UNIX
+#elseif xOS_ENV_UNIX
     #if   xOS_LINUX
         int_t iRv = ::unsetenv(a_csVarName.c_str());
         xTEST_DIFF(- 1, iRv);
     #elif xOS_FREEBSD
         (void_t)::unsetenv(a_csVarName.c_str());
     #endif
+#elif xOS_ENV_MAC
+    int_t iRv = ::unsetenv(a_csVarName.c_str());
+    xTEST_DIFF(- 1, iRv);
 #endif
 }
 //--------------------------------------------------------------------------
@@ -165,11 +168,11 @@ CxEnvironment::values(
 
     std::vec_tstring_t vsArgs;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     LPTCH lpvEnv = ::GetEnvironmentStrings();
     xTEST_PTR(lpvEnv);
 
-    // variable strings are separated by NULL byte, 
+    // variable strings are separated by NULL byte,
     // and the block is terminated by a NULL byte
     for (
         LPTSTR pszVar = static_cast<LPTSTR>( lpvEnv );
@@ -181,7 +184,7 @@ CxEnvironment::values(
 
     BOOL blRes = ::FreeEnvironmentStrings(lpvEnv);
     xTEST_DIFF(FALSE, blRes);
-#elif xOS_ENV_UNIX
+#else
     xTEST_PTR(environ);
 
     for (size_t i = 0; 0 != environ[i]; ++ i) {
@@ -203,7 +206,7 @@ CxEnvironment::expandStrings(
 
     std::tstring_t sRv;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     sRv.resize(xPATH_MAX);
 
     DWORD dwLength = ::ExpandEnvironmentStrings(a_csVar.c_str(), &sRv.at(0), static_cast<DWORD>( sRv.size() ));
@@ -217,7 +220,7 @@ CxEnvironment::expandStrings(
     }
 
     sRv.resize(dwLength - 1);   // remove '\0'
-#elif xOS_ENV_UNIX
+#else
     std::ctstring_t csSep = xT("%");
 
     sRv = a_csVar;
