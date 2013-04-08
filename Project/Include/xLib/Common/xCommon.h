@@ -161,6 +161,10 @@ namespace NxLib { }
     #include <xLib/Common/xCommon_Win.h>
 #elif xOS_ENV_UNIX
     #include <xLib/Common/xCommon_Unix.h>
+#elif xOS_ENV_MAC
+    #include <xLib/Common/xCommon_Darwin.h>
+#else
+
 #endif
 
 #include <xLib/Common/xVersion.h>
