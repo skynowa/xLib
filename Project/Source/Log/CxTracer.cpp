@@ -52,10 +52,8 @@ CxTracer::write(
     std::ctstring_t &a_csMsg
 )
 {
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     (void_t)::OutputDebugString((a_csMsg + CxConst::xNL).c_str());
-#elif xOS_ENV_UNIX
-    xNA;
 #endif
 
     std::tcout << a_csMsg << std::endl;
