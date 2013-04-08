@@ -777,9 +777,9 @@ CxTest_CxPath::unit(
             std::tstring_t sFilePath = xT("D:/xVCL\\Include/xVCL\\Units/Gui/Tools/LoadDrives.cpp");
 
             m_sRv = CxPath(sFilePath).brief(15);
-            #if defined(xOS_ENV_WIN)
+            #if   xOS_ENV_WIN
                 xTEST_EQ(std::tstring_t(xT("D:\\...\\LoadDrives.cpp")), m_sRv);
-            #elif defined(xOS_ENV_UNIX)
+            #elif xOS_ENV_UNIX
                 xTEST_EQ(std::tstring_t(xT("D:/.../LoadDrives.cpp")), m_sRv);
             #endif
         }
