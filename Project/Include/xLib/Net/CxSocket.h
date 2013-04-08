@@ -31,7 +31,7 @@ public:
             ,
             afBluetooth   = AF_BTH
         #endif
-    #else
+    #elif xOS_ENV_UNIX
         #if xOS_FREEBSD
             afLocal     = PF_LOCAL,
             afUnix      = PF_UNIX,
@@ -62,6 +62,15 @@ public:
             afAppletalk   = AF_APPLETALK,
             afPacket      = AF_PACKET
         #endif
+    #elif xOS_ENV_MAC
+        afUnix        = AF_UNIX,
+        afLocal       = AF_LOCAL,
+        afInet        = AF_INET,
+        afInet6       = AF_INET6,
+        afIpx         = AF_IPX,
+        afAppletalk   = AF_APPLETALK
+
+        // TODO: add AP-*
     #endif
     };
 
@@ -89,7 +98,7 @@ public:
         ptIcmpv6      = IPPROTO_ICMPV6,
         #endif
         ////ptRm          = IPPROTO_RM
-    #else
+    #elif xOS_ENV_UNIX
         #if xOS_FREEBSD
             ptIp          = IPPROTO_IP,
             ptHopopts     = IPPROTO_HOPOPTS,
@@ -149,6 +158,35 @@ public:
             ptRaw         = IPPROTO_RAW,
             ptMax         = IPPROTO_MAX
         #endif
+    #elif xOS_ENV_MAC
+        ptIp          = IPPROTO_IP,
+        ptHopopts     = IPPROTO_HOPOPTS,
+        ptIcmp        = IPPROTO_ICMP,
+        ptIgmp        = IPPROTO_IGMP,
+        ptIpip        = IPPROTO_IPIP,
+        ptTcp         = IPPROTO_TCP,
+        ptEgp         = IPPROTO_EGP,
+        ptPup         = IPPROTO_PUP,
+        ptUdp         = IPPROTO_UDP,
+        ptIdp         = IPPROTO_IDP,
+        ptTp          = IPPROTO_TP,
+        ptIpv6        = IPPROTO_IPV6,
+        ptRouting     = IPPROTO_ROUTING,
+        ptFragment    = IPPROTO_FRAGMENT,
+        ptRsvp        = IPPROTO_RSVP,
+        ptGre         = IPPROTO_GRE,
+        ptEsp         = IPPROTO_ESP,
+        ptAH          = IPPROTO_AH,
+        ptICmpv6      = IPPROTO_ICMPV6,
+        ptNone        = IPPROTO_NONE,
+        ptDstopts     = IPPROTO_DSTOPTS,
+        ptMtp         = IPPROTO_MTP,
+        ptEncap       = IPPROTO_ENCAP,
+        ptPim         = IPPROTO_PIM,
+        ptSctp        = IPPROTO_SCTP,
+        ptRaw         = IPPROTO_RAW,
+        ptMax         = IPPROTO_MAX
+        // TODO: add IPPROTO-*
     #endif
     };
 
@@ -183,13 +221,13 @@ public:
     *
     *******************************************************************************/
 
-    void_t           create           (const ExAddressFamily &cafFamily, const ExType &ctpType, const ExProtocol &cptProtocol);
+    void_t         create           (const ExAddressFamily &cafFamily, const ExType &ctpType, const ExProtocol &cptProtocol);
         ///< creates a socket that is bound to a specific transport service provider
     socket_t       handle           () const xWARN_UNUSED_RV;
         ///< get socket
     bool_t         isValid          () const xWARN_UNUSED_RV;
         ///< checking for validness
-    void_t           close            ();
+    void_t         close            ();
         ///< close
 
 
@@ -202,7 +240,7 @@ public:
 
     int_t          send             (ctchar_t *pcszBuff, cint_t &ciBuffSize, cint_t &ciFlags) xWARN_UNUSED_RV;
         ///< send data
-    void_t           sendAll          (std::ctstring_t &csBuff, cint_t &ciFlags);
+    void_t         sendAll          (std::ctstring_t &csBuff, cint_t &ciFlags);
         ///< send data by blocks
 
     int_t          recv             (tchar_t *pszBuff,  cint_t &ciBuffSize, cint_t &ciFlags) xWARN_UNUSED_RV;

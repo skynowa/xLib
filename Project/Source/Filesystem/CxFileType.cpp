@@ -55,10 +55,10 @@ CxFileType::get() {
 
     types_t ftRv = faInvalid;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     ftRv = ::GetFileAttributes(filePath().c_str());
     xTEST_NA(ftRv);
-#elif xOS_ENV_UNIX
+#else
     xTSTAT_STRUCT stInfo = {0};
 
     int_t iRv = ::xTSTAT(filePath().c_str(), &stInfo);
@@ -81,10 +81,10 @@ CxFileType::set(
     xTEST_EQ(false, filePath().empty());
     xTEST_NA(a_cftValue);
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     BOOL blRes = ::SetFileAttributes(filePath().c_str(), a_cftValues);
     xTEST_DIFF(FALSE, blRes);
-#elif xOS_ENV_UNIX
+#else
     int_t iRv = ::xTCHMOD(filePath().c_str(), a_cftValues);
     xTEST_DIFF(- 1, iRv);
 #endif

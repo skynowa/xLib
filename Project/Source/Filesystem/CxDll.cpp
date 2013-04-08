@@ -6,9 +6,9 @@
 
 #include <xLib/Filesystem/CxDll.h>
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     // lib: n/a
-#elif xOS_ENV_UNIX
+#else
     // lib: -ldl, -lc (FreeBSD)
 #endif
 
@@ -48,10 +48,10 @@ CxDll::load(
 
     _destruct();
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     _m_hDll = ::LoadLibrary(csDllPath.c_str());
     xTEST_PTR(_m_hDll);
-#elif xOS_ENV_UNIX
+#else
     _m_hDll = ::dlopen(csDllPath.c_str(), RTLD_LAZY | RTLD_GLOBAL);
     xTEST_PTR(_m_hDll);
 #endif
@@ -64,10 +64,10 @@ CxDll::isProcExists(
 {
     xTEST_PTR(_m_hDll);
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     proc_address_t fpRes = ::GetProcAddress(_m_hDll, xTS2S(csProcName).c_str());
     xCHECK_RET(NULL == fpRes, false);
-#elif xOS_ENV_UNIX
+#else
     const char *pszError = NULL;
 
     pszError = ::dlerror();
@@ -91,10 +91,10 @@ CxDll::procAddress(
 
     proc_address_t fpRes = NULL;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     fpRes = ::GetProcAddress(_m_hDll, xTS2S(csProcName).c_str());
     xTEST_PTR(fpRes);
-#elif xOS_ENV_UNIX
+#else
     const char *pszError = NULL;
 
     pszError = ::dlerror();

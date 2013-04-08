@@ -59,7 +59,7 @@ CxFileTemp::create(
 
     _m_sFilePath = CxPath(a_csDirPath).slashAppend() + CxPath(a_csFilePath).fileName() + csFileNameTemplate;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     #if xCOMPILER_MINGW || xCOMPILER_CODEGEAR
         _m_sFilePath.resize(_m_sFilePath.size() + 1);
 
@@ -77,7 +77,7 @@ CxFileTemp::create(
         _pfStdFile = ::xTFOPEN(_m_sFilePath.c_str(), CxFile::_openMode(CxFile::omBinCreateReadWrite).c_str());
         xTEST_PTR(_pfStdFile);
     #endif
-#elif xOS_ENV_UNIX
+#else
     int_t iFile = ::xTMKSTEMP(&_m_sFilePath.at(0));
     xTEST_DIFF(- 1, iFile);
 

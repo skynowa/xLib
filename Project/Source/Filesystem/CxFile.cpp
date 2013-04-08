@@ -347,10 +347,10 @@ CxFile::locking(
     xTEST_NA(a_clmMode);
     xTEST_NA(a_cliBytes);
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     clong_t cliBytes = a_cliBytes;
-#elif xOS_ENV_UNIX
-    const off_t  cliBytes = static_cast<off_t>( a_cliBytes );
+#else
+    const off_t cliBytes = static_cast<off_t>( a_cliBytes );
 #endif
 
     int_t iRv = ::xLOCKING(_nativeHandle(get()), a_clmMode, cliBytes);
@@ -442,10 +442,10 @@ CxFile::resize(
 {
     xTEST_NA(a_cllSize);
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     clonglong_t cllSize = a_cllSize;
-#elif xOS_ENV_UNIX
-    const off_t      cllSize = static_cast<off_t>( a_cllSize );
+#else
+    const off_t cllSize = static_cast<off_t>( a_cllSize );
 #endif
 
     int_t iRv = ::xCHSIZE(_nativeHandle(get()), cllSize);
@@ -545,7 +545,7 @@ CxFile::isFile(
 
     xCHECK_RET(CxFileType::faInvalid == ftType.get(), false);
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     bRv = ftType.isExists(CxFileType::faDirectory);
     xCHECK_RET(bRv, false);
 
@@ -557,7 +557,7 @@ CxFile::isFile(
 
     bRv = ftType.isExists(CxFileType::faOffline);
     xCHECK_RET(bRv, false);
-#elif xOS_ENV_UNIX
+#else
     bRv = ftType.isExists(CxFileType::faRegularFile);
     xCHECK_RET(!bRv, false);
 #endif
@@ -637,9 +637,9 @@ CxFile::chmod(
     xTEST_EQ(false, a_csFilePath.empty());
     xTEST_NA(a_cpmMode);
 
-#if   xOS_ENV_WIN
-    cint_t    cpmMode = static_cast<int_t>   ( a_cpmMode );
-#elif xOS_ENV_UNIX
+#if xOS_ENV_WIN
+    cint_t       cpmMode = static_cast<int_t> ( a_cpmMode );
+#else
     const mode_t cpmMode = static_cast<mode_t>( a_cpmMode );
 #endif
 
@@ -959,7 +959,7 @@ CxFile::time(
     xTEST_NA(a_ptmAccess);
     xTEST_NA(a_ptmModified);
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     FILETIME ftCreate   = {0};
     FILETIME ftAccess   = {0};
     FILETIME ftModified = {0};
@@ -976,7 +976,7 @@ CxFile::time(
     CxUtils::ptrAssignT(a_ptmCreate,   CxDateTime::fileTimeToUnixTime(ftCreate));
     CxUtils::ptrAssignT(a_ptmAccess,   CxDateTime::fileTimeToUnixTime(ftAccess));
     CxUtils::ptrAssignT(a_ptmModified, CxDateTime::fileTimeToUnixTime(ftModified));
-#elif xOS_ENV_UNIX
+#else
     xTSTAT_STRUCT stInfo = {0};
 
     int_t iRv = ::xTSTAT(a_csFilePath.c_str(), &stInfo);
@@ -1002,7 +1002,7 @@ CxFile::setTime(
     xTEST_NA(a_ctmAccess);
     xTEST_NA(a_ctmModified);
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     FILETIME ftCreate = {0};
     CxDateTime::unixTimeToFileTime(a_ctmCreate, &ftCreate);
 
@@ -1020,7 +1020,7 @@ CxFile::setTime(
 
     BOOL blRes = ::SetFileTime(m_hHandle.get(), &ftCreate, &ftAccess, &ftModified);
     xTEST_DIFF(FALSE, blRes);
-#elif xOS_ENV_UNIX
+#else
     utimbuf tbTimes = {0};
 
     // ctmCreate - n/a
