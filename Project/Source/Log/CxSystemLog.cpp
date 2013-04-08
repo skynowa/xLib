@@ -9,7 +9,7 @@
 #include <xLib/Common/CxString.h>
 #include <xLib/Filesystem/CxPath.h>
 
-#if xOS_ENV_UNIX
+#if !xOS_ENV_WIN
     #include <syslog.h>
 #endif
 
@@ -24,7 +24,7 @@ xNAMESPACE_BEGIN(NxLib)
 //------------------------------------------------------------------------------
 CxSystemLog::CxSystemLog() :
     _m_bIsEnable(true)
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     ,
     _m_SysLog   (NULL)
 #endif
@@ -36,7 +36,7 @@ CxSystemLog::CxSystemLog(
     std::ctstring_t &a_csLogName
 ) :
     _m_bIsEnable(true)
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     ,
     _m_SysLog   (NULL)
 #endif
@@ -46,14 +46,14 @@ CxSystemLog::CxSystemLog(
 //------------------------------------------------------------------------------
 /* virtual */
 CxSystemLog::~CxSystemLog() {
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     xTEST_PTR(_m_SysLog);
 
     BOOL blRv = ::DeregisterEventSource(_m_SysLog);
     xTEST_DIFF(FALSE, blRv);
 
     _m_SysLog = NULL;
-#elif xOS_ENV_UNIX
+#else
     (void_t)::closelog();
 #endif
 }
@@ -92,12 +92,12 @@ CxSystemLog::write(
 
     //-------------------------------------
     // write
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     LPCTSTR pcszStrings = sMessage.c_str();
 
     BOOL bRv = ::ReportEvent(_m_SysLog, a_lvLevel, 0, 0UL, NULL, 1, 0UL, &pcszStrings, NULL);
     xTEST_DIFF(FALSE, bRv);
-#elif xOS_ENV_UNIX
+#else
     (void_t)::syslog(a_lvLevel, xT("%s"), sMessage.c_str());
 #endif
 }
@@ -115,10 +115,10 @@ CxSystemLog::_construct(
     std::ctstring_t &a_csLogName
 )
 {
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     _m_SysLog = ::RegisterEventSource(NULL, a_csLogName.c_str());
     xTEST_DIFF(xNATIVE_HANDLE_NULL, _m_SysLog);
-#elif xOS_ENV_UNIX
+#else
     (void_t)::openlog(a_csLogName.c_str(), LOG_PID | LOG_NDELAY | LOG_NOWAIT, LOG_USER);
 #endif
 }
