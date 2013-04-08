@@ -38,10 +38,8 @@ public:
     std::mmap_tstring_t  m_mmsRv;     ///< for global use
     native_handle_t      m_hRv;       ///< for global use
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     HWND                 m_hwndRv;    ///< for global use
-#elif xOS_ENV_UNIX
-
 #endif
 
                          CxTest       ();

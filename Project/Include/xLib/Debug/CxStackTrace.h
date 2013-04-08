@@ -39,7 +39,7 @@ private:
 
     std::tstring_t  _format     (std::vector<std::vec_tstring_t> *pvvsStack) xWARN_UNUSED_RV;
         ///< format stack trace
-#if xOS_ENV_UNIX
+#if !xOS_ENV_WIN
     static void_t   _addr2Line  (cvoid_t *pvSymbolAddress, std::tstring_t *psFilePath,
                                  std::tstring_t *psFunctionName, ulong_t *pulSourceLine);
 #endif

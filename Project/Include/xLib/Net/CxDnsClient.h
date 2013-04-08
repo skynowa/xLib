@@ -28,13 +28,13 @@ public:
     static void_t hostAddrInfo    (std::ctstring_t &csHostName, std::ctstring_t &csPort, caddrinfo_t *pHints, addrinfo_t **ppResult);
         ///< get host addr info
 
-    //protocol
+    // protocol
     static void_t protocolByName  (std::ctstring_t &csProtocolName, std::tstring_t *psName, std::vec_tstring_t *pvsAliases, short_t *psiNumber);
         ///< get protocol by name
     static void_t protocolByNumber(cshort_t &csiNumber, std::tstring_t *psName, std::vec_tstring_t *pvsAliases, short_t *psiNum);
         ///< get protocol by number
 
-    //service
+    // service
     static void_t serviceByName   (std::ctstring_t &csServiceName, std::ctstring_t &csProtocolName, std::tstring_t *psName, std::vec_tstring_t *pvsAliases, short_t *psiPort,  std::tstring_t *psProtocolName);
         ///< get service by name
     static void_t serviceByPort   (cshort_t &csiPort, std::ctstring_t &csProtocolName, std::tstring_t *psName, std::vec_tstring_t *pvsAliases, short_t *psiPort, std::tstring_t *psProtocolName);
@@ -48,7 +48,7 @@ public:
 private:
                   CxDnsClient     ();
         ///< constructor
-    virtual      ~CxDnsClient   ();
+    virtual      ~CxDnsClient     ();
         ///< destructor
 };
 

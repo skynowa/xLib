@@ -120,7 +120,7 @@
 
 //------------------------------------------------------------------------------
 // standard C libraries
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     // TODO: standard C libraries
     #if   xCOMPILER_MINGW
         #include <bits/c++config.h> // standard C++ libraries
@@ -132,20 +132,22 @@
     #endif
 #elif xOS_ENV_UNIX
     #if xOS_FREEBSD
-        //TODO: standard C libraries
+        // TODO: standard C libraries
     #else
         #include <features.h> // standard C libraries
     #endif
 
     #include <bits/c++config.h> // standard C++ libraries
+#elif xOS_ENV_MAC
+    #include <bits/c++config.h> // standard C++ libraries
 #endif
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     #if defined(__GLIBCXX__)
         #define xSTD_LIBCPP_GNUSTDCPP 1
             ///< GNU libstdc++
     #endif
-#elif xOS_ENV_UNIX
+#else
     #if   defined(__GNU_LIBRARY__) || defined(__GLIBC__)
         #define xSTD_LIBC_GNU    1
             ///< GNU glibc
@@ -174,11 +176,11 @@
 
 //------------------------------------------------------------------------------
 // standard C++ libraries
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     #if   defined(__GLIBCXX__)
         #define xSTD_LIBCPP_GNUSTDCPP  1
     #endif
-#elif xOS_ENV_UNIX
+#else
     #if   defined(__CPPLIB_VER)
         #define XSTD_LIBCPP_DINKUMWARE 1
             ///< Dinkumware

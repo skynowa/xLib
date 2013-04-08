@@ -275,9 +275,9 @@ xNAMESPACE_BEGIN(NxLib)
 #endif
 
 // xSTATVFS (struct and function)
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     xNA
-#elif xOS_ENV_UNIX
+#else
     #if xOS_FREEBSD
         #define xSTATVFS            statvfs
         #define xSTATVFS_F_FRSIZE   f_frsize
@@ -295,7 +295,7 @@ xNAMESPACE_BEGIN(NxLib)
 *******************************************************************************/
 
 // xGETTIMEOFDAY
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     struct timezone
         /// for gettimeofday
     {
@@ -307,15 +307,15 @@ xNAMESPACE_BEGIN(NxLib)
         ///< porting from Linux gettimeofday
 
     #define xGETTIMEOFDAY           iGetTimeOfDay
-#elif xOS_ENV_UNIX
+#else
     #define xGETTIMEOFDAY           gettimeofday
 #endif
     ///< implementation gettimeofday
 
 // xSTD_CLOCK
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     #define xSTD_CLOCK              std::clock
-#elif xOS_ENV_UNIX
+#else
     #if   xOS_LINUX
         #define xSTD_CLOCK          std::clock
     #elif xOS_FREEBSD

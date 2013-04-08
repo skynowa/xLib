@@ -7,7 +7,7 @@
 #ifndef xLib_Common_xConfigH
 #define xLib_Common_xConfigH
 //------------------------------------------------------------------------------
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     #if xCOMPILER_MS
         #include <SDKDDKVer.h>
     #endif
@@ -80,11 +80,7 @@
 
     #define _SCL_SECURE_NO_WARNINGS         1
         ///< disable Win SCL warnings
-#elif xOS_ENV_UNIX
-    #if !defined(_GNU_SOURCE)
-        #define _GNU_SOURCE 1
-    #endif
-#elif xOS_ENV_MAC
+#else
     #if !defined(_GNU_SOURCE)
         #define _GNU_SOURCE 1
     #endif

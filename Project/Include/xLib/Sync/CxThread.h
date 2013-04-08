@@ -21,7 +21,7 @@ public:
     enum ExPriority
         /// priotity
     {
-        #if   xOS_ENV_WIN
+        #if xOS_ENV_WIN
             tpError        = THREAD_PRIORITY_ERROR_RETURN,
             tpIdle         = THREAD_PRIORITY_IDLE,
             tpLowest       = THREAD_PRIORITY_LOWEST,
@@ -30,7 +30,7 @@ public:
             tpAboveNormal  = THREAD_PRIORITY_ABOVE_NORMAL,
             tpHighest      = THREAD_PRIORITY_HIGHEST,
             tpTimeCritical = THREAD_PRIORITY_TIME_CRITICAL
-        #elif xOS_ENV_UNIX
+        #else
             tpError        = - 1,
             tpIdle         ,
             tpLowest       = 10,
@@ -42,10 +42,10 @@ public:
         #endif
     };
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     typedef HANDLE    handle_t; ///< handle
     typedef DWORD     id_t;     ///< ID
-#elif xOS_ENV_UNIX
+#else
     typedef pthread_t handle_t; ///< handle
     typedef pthread_t id_t;     ///< ID
 #endif
@@ -81,7 +81,7 @@ public:
     bool_t               isExited            () xWARN_UNUSED_RV;
         ///< is exited (is set flag "exit")
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     // messages
     void_t               postMessage         (HWND hHwnd, uint_t uiMsg, uint_t uiParam1, long_t liParam2) const;
         ///< post message from thread to window
@@ -155,9 +155,9 @@ private:
     static culong_t      _ms_culExitTimeout        = 5000UL; ///< exit timeout (msec)
 
     // thread data
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     CxHandle             _m_hThread;                 ///< native handle
-#elif xOS_ENV_UNIX
+#else
     handle_t             _m_hThread;                 ///< native handle
 #endif
 
@@ -178,10 +178,10 @@ private:
     CxEvent              _m_evPause;                 ///< pause event
     CxEvent              _m_evExit;                  ///< exit event
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     typedef uint_t       exit_status_t;
-#elif xOS_ENV_UNIX
-    typedef void_t *       exit_status_t;
+#else
+    typedef void_t *     exit_status_t;
 #endif
 
     static exit_status_t xSTDCALL

@@ -19,7 +19,7 @@ public:
     enum ExType
         /// file system type
     {
-        #if   xOS_ENV_WIN
+        #if xOS_ENV_WIN
             dtUnknown   = DRIVE_UNKNOWN,
             dtNoRoot    = DRIVE_NO_ROOT_DIR,
             dtRemovable = DRIVE_REMOVABLE,
@@ -27,7 +27,7 @@ public:
             dtRemote    = DRIVE_REMOTE,
             dtCdRom     = DRIVE_CDROM,
             dtRam       = DRIVE_RAMDISK
-        #elif xOS_ENV_UNIX
+        #else
             dtUnknown   = 0,
             dtNoRoot    = 1,
             dtRemovable = 2,
@@ -56,18 +56,18 @@ public:
         ///< is ready
     bool_t            isEmpty   () const xWARN_UNUSED_RV;
         ///< is empty
-    void_t              mount     (std::ctstring_t &csDestPath) const;
+    void_t            mount     (std::ctstring_t &csDestPath) const;
         ///< mount
-    void_t              unMount   (cbool_t &cbIsForce) const;
+    void_t            unMount   (cbool_t &cbIsForce) const;
         ///< unmount
 
     // static
-    static void_t       space     (std::ctstring_t &csDirPath,
+    static void_t     space     (std::ctstring_t &csDirPath,
                                  ulonglong_t *pullAvailable,
                                  ulonglong_t *pullTotal,
                                  ulonglong_t *pullFree);
         ///< get free space
-    static void_t       paths     (std::vec_tstring_t *pvsVolumePaths);
+    static void_t     paths     (std::vec_tstring_t *pvsVolumePaths);
         ///< get paths
 
 private:
