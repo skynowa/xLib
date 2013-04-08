@@ -14,7 +14,7 @@
 
 //------------------------------------------------------------------------------
 CxCondition::CxCondition()
-#if xOS_ENV_WIN
+#if !xOS_ENV_WIN
     :
     _m_mutex (),
     _m_handle()
