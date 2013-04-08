@@ -31,9 +31,9 @@ CxAtomicLongInt::operator += (
     const CxAtomicLongInt &a_calValue
 )
 {
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     (void_t)::InterlockedExchangeAdd(&_m_liValue, a_calValue._m_liValue);
-#elif xOS_ENV_UNIX
+#else
     (void_t)::__sync_add_and_fetch(&_m_liValue, a_calValue._m_liValue);
 #endif
 
@@ -45,9 +45,9 @@ CxAtomicLongInt::operator += (
     clong_t &a_cliValue
 )
 {
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     (void_t)::InterlockedExchangeAdd(&_m_liValue, a_cliValue);
-#elif xOS_ENV_UNIX
+#else
     (void_t)::__sync_add_and_fetch(&_m_liValue, a_cliValue);
 #endif
 
@@ -59,9 +59,9 @@ CxAtomicLongInt::operator -= (
     const CxAtomicLongInt &a_calValue
 )
 {
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     (void_t)::InterlockedExchangeAdd(&_m_liValue, - a_calValue._m_liValue);
-#elif xOS_ENV_UNIX
+#else
     (void_t)::__sync_sub_and_fetch(&_m_liValue, a_calValue._m_liValue);
 #endif
 
@@ -73,9 +73,9 @@ CxAtomicLongInt::operator -= (
     clong_t &a_cliValue
 )
 {
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     (void_t)::InterlockedExchangeAdd(&_m_liValue, - a_cliValue);
-#elif xOS_ENV_UNIX
+#else
     (void_t)::__sync_sub_and_fetch(&_m_liValue, a_cliValue);
 #endif
 
@@ -87,9 +87,9 @@ CxAtomicLongInt::operator = (
     const CxAtomicLongInt &a_calValue
 )
 {
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     (void_t)::InterlockedExchange(&_m_liValue, a_calValue._m_liValue);
-#elif xOS_ENV_UNIX
+#else
     (void_t)::__sync_lock_test_and_set (&_m_liValue, a_calValue._m_liValue);
 #endif
 
@@ -101,9 +101,9 @@ CxAtomicLongInt::operator = (
     clong_t &a_cliValue
 )
 {
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     (void_t)::InterlockedExchange(&_m_liValue, a_cliValue);
-#elif xOS_ENV_UNIX
+#else
     (void_t)::__sync_lock_test_and_set (&_m_liValue, a_cliValue);
 #endif
 
@@ -211,13 +211,13 @@ CxAtomicLongInt::operator ++ (
     cint_t a_ciValue
 )
 {
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     if (0 == a_ciValue) {
         (void_t)::InterlockedIncrement(&_m_liValue);
     } else {
         (void_t)::InterlockedExchangeAdd(&_m_liValue, a_ciValue + 1);
     }
-#elif xOS_ENV_UNIX
+#else
     (void_t)::__sync_add_and_fetch(&_m_liValue, 1);
 #endif
 
@@ -229,13 +229,13 @@ CxAtomicLongInt::operator -- (
     cint_t a_ciValue
 )
 {
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     if (0 == a_ciValue) {
         (void_t)::InterlockedDecrement(&_m_liValue);
     } else {
         (void_t)::InterlockedExchangeAdd(&_m_liValue, - (a_ciValue + 1));
     }
-#elif xOS_ENV_UNIX
+#else
     (void_t)::__sync_sub_and_fetch(&_m_liValue, 1);
 #endif
 
@@ -244,9 +244,9 @@ CxAtomicLongInt::operator -- (
 //------------------------------------------------------------------------------
 long_t
 CxAtomicLongInt::value() const {
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     return _m_liValue;
-#elif xOS_ENV_UNIX
+#else
     return ::__sync_fetch_and_add(const_cast<volatile long_t *>( &_m_liValue ), 0L);
 #endif
 }
