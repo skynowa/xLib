@@ -84,6 +84,10 @@
     #if !defined(_GNU_SOURCE)
         #define _GNU_SOURCE 1
     #endif
+#elif xOS_ENV_MAC
+    #if !defined(_GNU_SOURCE)
+        #define _GNU_SOURCE 1
+    #endif
 #endif
 
 

@@ -89,7 +89,7 @@
 // xSTDCALL
 #if   xOS_ENV_WIN
     #define xSTDCALL                    __stdcall
-#elif xOS_ENV_UNIX
+#else
     #define xSTDCALL                    xNOT_AVAILABLE
 #endif
     ///< calling convention
@@ -317,13 +317,13 @@
     #else
         #define xHOST_NAME_MAX          ( 15 ) // custom define
     #endif
-#elif xOS_ENV_UNIX
+#else
     #if   defined(HOST_NAME_MAX)
         #define xHOST_NAME_MAX          ( HOST_NAME_MAX )
     #elif defined(MAXHOSTNAMELEN)
         #define xHOST_NAME_MAX          ( MAXHOSTNAMELEN )
     #else
-        #define xHOST_NAME_MAX          ( 256 ) //custom define
+        #define xHOST_NAME_MAX          ( 256 ) // custom define
     #endif
 #endif
     ///< max host name length
@@ -342,7 +342,7 @@
 // xLINE_MAX
 #if   xOS_ENV_WIN
     #define xLINE_MAX                   ( 2048 ) // custom define
-#elif xOS_ENV_UNIX
+#else
     #if   defined(LINE_MAX)
         #define xLINE_MAX               ( LINE_MAX )
     #elif defined(_SC_LINE_MAX)
@@ -361,7 +361,7 @@
     #else
         #define xENV_MAX                ( 32767 ) // custom define
     #endif
-#elif xOS_ENV_UNIX
+#else
     #define xENV_MAX                    ( 32767 ) // custom define
 #endif
     ///< maximum permissible string length of an environmental variable
@@ -377,7 +377,7 @@
     #else
         #define xSTACK_TRACE_FRAMES_MAX ( USHRT_MAX )
     #endif
-#elif xOS_ENV_UNIX
+#else
     #define xSTACK_TRACE_FRAMES_MAX     ( 256 )     // custom define, this should be enough
 #endif
     ///< maximum frames for stack trace
@@ -386,7 +386,7 @@
 // xSEMAPHORE_VALUE_MAX
 #if   xOS_ENV_WIN
     #define xSEMAPHORE_VALUE_MAX        ( LONG_MAX )         // LONG, custom define (tested on Win7 x64)
-#elif xOS_ENV_UNIX
+#else
     #define xSEMAPHORE_VALUE_MAX        ( SEM_VALUE_MAX )    // int_t
 #endif
     ///< semaphore maximum value
@@ -438,7 +438,7 @@
         #define xPR_I64X                xT("I64X")
             ///< qualifier for long_t long_t int_t (hex)
     #endif
-#elif xOS_ENV_UNIX
+#else
     #ifdef xARCH_X86
         #define xPR_SIZET               xT("zu")
             ///< qualifier for std::size_t
@@ -469,7 +469,7 @@
 // xTIMEOUT_INFINITE
 #if   xOS_ENV_WIN
     #define xTIMEOUT_INFINITE           ( INFINITE )
-#elif xOS_ENV_UNIX
+#else
     #define xTIMEOUT_INFINITE           ( ~(0UL) )
 #endif
     ///< infinite timeout
@@ -478,7 +478,7 @@
 // xPAGE_SIZE
 #if   xOS_ENV_WIN
     xNA
-#elif xOS_ENV_UNIX
+#else
     #if   defined(_SC_PAGESIZE)
         #define xPAGE_SIZE              ( _SC_PAGESIZE )
     #elif defined(_SC_PAGE_SIZE)
@@ -497,7 +497,7 @@
     #else
         #define xDIR_TEMP               xT("C:\\Temp")  // custom define
     #endif
-#elif xOS_ENV_UNIX
+#else
     #if defined(P_tmpdir)
         #define xDIR_TEMP               xT(P_tmpdir)
     #else
@@ -511,7 +511,7 @@
 #if   xOS_ENV_WIN
     #define xNATIVE_HANDLE_NULL         ( static_cast<native_handle_t>( NULL ) )                    ///< native handle value "null"
     #define xNATIVE_HANDLE_INVALID      ( static_cast<native_handle_t>( INVALID_HANDLE_VALUE ) )    ///< native handle value "invalid"
-#elif xOS_ENV_UNIX
+#else
     #define xNATIVE_HANDLE_NULL         ( static_cast<native_handle_t>( 0 ) )                       ///< native handle value "null"
     #define xNATIVE_HANDLE_INVALID      ( static_cast<native_handle_t>( - 1 ) )                     ///< native handle value "invalid"
 #endif
@@ -521,7 +521,7 @@
 #if   xOS_ENV_WIN
     #define xSOCKET_ERROR               ( SOCKET_ERROR )                                            ///< socket native handle value "error"
     #define xSOCKET_HANDLE_INVALID      ( static_cast<socket_t>( INVALID_SOCKET ) )                 ///< socket native handle value "null"
-#elif xOS_ENV_UNIX
+#else
     #define xSOCKET_ERROR               ( - 1 )                                                     ///< socket native handle value "error"
     #define xSOCKET_HANDLE_INVALID      ( static_cast<socket_t>( - 1 ) )                            ///< socket native handle value "null"
 #endif
