@@ -6,13 +6,15 @@
 
 #include <xLib/Db/CxMySql.h>
 
+#if xCXMYSQL_IS_USE
+
 #include <xLib/Common/CxString.h>
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     #if !xCOMPILER_MINGW
         #pragma comment(lib, "mysqlclient.lib")
     #endif
-#elif xOS_ENV_UNIX
+#else
     // lib: -lmysqlclient
 #endif
 
@@ -430,3 +432,5 @@ CxMySQLRecordset::_fetchLengths(
 //------------------------------------------------------------------------------
 
 xNAMESPACE_END(NxLib)
+
+#endif // CXMYSQL_IS_USE

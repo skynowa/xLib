@@ -13,7 +13,7 @@ xNAMESPACE_ANONYM_BEGIN
 cint_t g_ciCodeSuccess = 0;
 
 xNAMESPACE_ANONYM_END
-                     
+
 
 xNAMESPACE_BEGIN(NxLib)
 
@@ -102,6 +102,8 @@ CxStdError::format(
 
         sRv.append(&szBuff[0]);
     #endif
+#elif xOS_ENV_MAC
+    xNOT_IMPLEMENTED
 #endif
 
     return sRv;

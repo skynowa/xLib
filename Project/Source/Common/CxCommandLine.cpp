@@ -24,9 +24,9 @@ long_t
 CxCommandLine::argsMax() {
     long_t liRv = 0L;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     liRv = 32L * 1024L;
-#elif xOS_ENV_UNIX
+#else
     liRv = ::sysconf(_SC_ARG_MAX) / sizeof(std::tstring_t::value_type);
     xTEST_DIFF(- 1L, liRv);
 #endif
@@ -41,12 +41,12 @@ CxCommandLine::get() {
 
     std::tstring_t sRv;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     LPCTSTR pcszRes = ::GetCommandLine();
     xTEST_PTR(pcszRes);
 
     sRv = CxString::trimSpace(pcszRes);
-#elif xOS_ENV_UNIX
+#else
     sRv = CxString::join(_ms_vsArgs, CxConst::xSPACE);
 #endif
 
@@ -82,7 +82,7 @@ CxCommandLine::setArgs(
         vsArgs.push_back(a_paszArgs[i]);
     }
 
-    //out
+    // out
     std::swap(_ms_vsArgs, vsArgs);
 
     xCHECK_DO(_ms_vsArgs.empty(), CxTracer::write(xT("xLib: warning (command line is empty)")));

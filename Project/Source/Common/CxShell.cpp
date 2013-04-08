@@ -29,9 +29,9 @@ CxShell::isAvailable() {
 
     int_t iRv = ::xTSYSTEM(NULL);
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     xCHECK_RET(0 == iRv && ENOENT == CxStdError::get(), false);
-#elif xOS_ENV_UNIX
+#else
     xCHECK_RET(0 == iRv, false);
 #endif
 
@@ -60,7 +60,7 @@ CxShell::execute(
 //------------------------------------------------------------------------------
 
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
 
 //------------------------------------------------------------------------------
 /* static */

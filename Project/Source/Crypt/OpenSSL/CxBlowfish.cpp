@@ -11,11 +11,11 @@
 #include <xLib/Debug/CxProfiler.h>
 #include <xLib/Crypt/CxCrc32.h>
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     #if xCOMPILER_MS
         #pragma comment(lib, "libeay32.lib")
     #endif
-#elif xOS_ENV_UNIX
+#else
     // -lssl
 #endif
 

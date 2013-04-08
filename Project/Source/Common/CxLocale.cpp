@@ -22,7 +22,7 @@ CxLocale::current() {
 
     std::tstring_t sRv;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     int_t  iRv  = - 1;
     LCID lcId = 0;
 
@@ -38,7 +38,7 @@ CxLocale::current() {
     xTEST_DIFF(0, iRv);
 
     sRv.resize(iRv - sizeof('\0'));    //delete from end '\0'
-#elif xOS_ENV_UNIX
+#else
     ctchar_t *pcszLocale = NULL;
 
     pcszLocale = std::xTSETLOCALE(LC_ALL, NULL);

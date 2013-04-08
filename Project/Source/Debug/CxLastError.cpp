@@ -19,9 +19,9 @@ xNAMESPACE_BEGIN(NxLib)
 
 xNAMESPACE_ANONYM_BEGIN
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     culong_t g_culCodeSuccess = ERROR_SUCCESS;
-#elif xOS_ENV_UNIX
+#else
     culong_t g_culCodeSuccess = 0;
 #endif
 
@@ -33,9 +33,9 @@ bool_t
 CxLastError::isSuccess() {
     bool_t bRv = false;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     bRv = (g_culCodeSuccess == ::GetLastError());
-#elif xOS_ENV_UNIX
+#else
     bRv = (g_culCodeSuccess == static_cast<ulong_t>( errno ));
 #endif
 
@@ -47,9 +47,9 @@ ulong_t
 CxLastError::get() {
     ulong_t ulCode = g_culCodeSuccess;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     ulCode = ::GetLastError();
-#elif xOS_ENV_UNIX
+#else
     ulCode = static_cast<ulong_t>( errno );
 #endif
 
@@ -64,9 +64,9 @@ CxLastError::set(
     culong_t &a_culCode
 )
 {
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     (void_t)::SetLastError(a_culCode);
-#elif xOS_ENV_UNIX
+#else
     errno = static_cast<int_t>( a_culCode );
 #endif
 }
@@ -93,7 +93,7 @@ CxLastError::format(
 
     sRv = CxString::format(xT("%lu - "), a_culCode);
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     DWORD  dwRv   = 0UL;
     LPVOID pvBuff = NULL;
 
@@ -134,6 +134,8 @@ CxLastError::format(
 
         sRv.append(&szBuff[0]);
     #endif
+#elif xOS_ENV_MAC
+    xNOT_IMPLEMENTED
 #endif
 
     return sRv;
