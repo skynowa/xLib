@@ -16,9 +16,9 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 CxThreadStorage::CxThreadStorage() :
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     _m_indIndex(TLS_OUT_OF_INDEXES)
-#elif xOS_ENV_UNIX
+#else
     _m_indIndex(static_cast<pthread_key_t>( -1 ))
 #endif
 {
@@ -34,10 +34,10 @@ bool_t
 CxThreadStorage::isSet() const {
     void_t *pvRv = NULL;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     pvRv = ::TlsGetValue(_m_indIndex);
     xCHECK_RET(NULL == pvRv, false);
-#elif xOS_ENV_UNIX
+#else
     pvRv = ::pthread_getspecific(_m_indIndex);
     xCHECK_RET(NULL == pvRv, false);
 #endif
@@ -49,12 +49,12 @@ void_t *
 CxThreadStorage::value() const {
     void_t *pvRv = NULL;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     xTEST_DIFF(TLS_OUT_OF_INDEXES, _m_indIndex);
 
     pvRv = ::TlsGetValue(_m_indIndex);
     xTEST_EQ(true, (NULL != pvRv) && (ERROR_SUCCESS == CxLastError::get()));
-#elif xOS_ENV_UNIX
+#else
     xTEST_EQ(true, 0 < _m_indIndex);
 
     pvRv = ::pthread_getspecific(_m_indIndex);
@@ -71,12 +71,12 @@ CxThreadStorage::setValue(
 {
     xTEST_PTR(a_pvValue);
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     xTEST_DIFF(TLS_OUT_OF_INDEXES, _m_indIndex);
 
     BOOL blRes = ::TlsSetValue(_m_indIndex, a_pvValue);
     xTEST_DIFF(FALSE, blRes);
-#elif xOS_ENV_UNIX
+#else
     xTEST_EQ(true, 0 < _m_indIndex);
 
     int_t iRv = ::pthread_setspecific(_m_indIndex, a_pvValue);
@@ -96,12 +96,12 @@ void_t
 CxThreadStorage::_construct() {
     index_t indRes = (index_t)- 1;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     xTEST_EQ(TLS_OUT_OF_INDEXES, _m_indIndex);
 
     indRes = ::TlsAlloc();
     xTEST_DIFF(TLS_OUT_OF_INDEXES, indRes);
-#elif xOS_ENV_UNIX
+#else
     xTEST_EQ(static_cast<pthread_key_t>( - 1 ), _m_indIndex);
 
     int_t iRv = ::pthread_key_create(&indRes, NULL);
@@ -113,14 +113,14 @@ CxThreadStorage::_construct() {
 //------------------------------------------------------------------------------
 void_t
 CxThreadStorage::_destruct() {
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     xTEST_DIFF(TLS_OUT_OF_INDEXES, _m_indIndex);
 
     BOOL blRes = ::TlsFree(_m_indIndex);
     xTEST_DIFF(FALSE, blRes);
 
     _m_indIndex = TLS_OUT_OF_INDEXES;
-#elif xOS_ENV_UNIX
+#else
     xTEST_EQ(true, 0 < _m_indIndex);
 
     int_t iRv = ::pthread_key_delete(_m_indIndex);

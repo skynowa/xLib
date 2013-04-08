@@ -6,9 +6,9 @@
 
 #include <xLib/Sync/CxIpcMutex.h>
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     // lib: n/a
-#elif xOS_ENV_UNIX
+#else
     // lib: -lrt
 #endif
 
@@ -46,13 +46,13 @@ CxIpcMutex::create(
 )
 {
     ////xTEST_EQ(false, _m_hHandle.bIsValid(), false);
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     // csName
-#elif xOS_ENV_UNIX
+#else
     xTEST_GR(xNAME_MAX - 4, a_csName.size());
 #endif
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     ctchar_t *pcszWinName = NULL;
     std::tstring_t _sWinName;
 
@@ -68,7 +68,7 @@ CxIpcMutex::create(
 
     _m_hHandle.set(hRv);
     _m_sName = a_csName;
-#elif xOS_ENV_UNIX
+#else
     std::tstring_t sUnixName = CxConst::xUNIX_SLASH + a_csName;
 
     handle_t hHandle = ::sem_open(sUnixName.c_str(), O_CREAT | O_RDWR, 0777, 1U);
@@ -84,7 +84,7 @@ CxIpcMutex::open(
     std::ctstring_t &a_csName
 )
 {
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     ctchar_t *pcszWinName = NULL;
     std::tstring_t _sWinName;
 
@@ -100,7 +100,7 @@ CxIpcMutex::open(
 
     _m_hHandle.set(hRv);
     _m_sName = a_csName;
-#elif xOS_ENV_UNIX
+#else
     std::tstring_t sUnixName = CxConst::xUNIX_SLASH + a_csName;
 
     handle_t hHandle = ::sem_open(sUnixName.c_str(), O_RDWR, 0777, 1U);
@@ -171,6 +171,8 @@ CxIpcMutex::lock(
             xTEST_FAIL;
         }
     }
+#elif xOS_ENV_MAC
+    xNOT_IMPLEMENTED
 #endif
 }
 //------------------------------------------------------------------------------
@@ -178,10 +180,10 @@ void_t
 CxIpcMutex::unlock() const {
     ////xTEST_EQ(true, _m_hHandle.bIsValid(), false);
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     BOOL blRes = ::ReleaseMutex(_m_hHandle.get());
     xTEST_DIFF(FALSE, blRes);
-#elif xOS_ENV_UNIX
+#else
     int_t iRv = ::sem_post(_m_hHandle);
     xTEST_DIFF(- 1, iRv);
 #endif

@@ -21,9 +21,9 @@ CxEvent::CxEvent(
     cbool_t &a_cbIsAutoReset,    ///< is auto reset
     cbool_t &a_cbIsSignaled      ///< is signaled (false - wait, lock)
 ) :
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     _m_hEvent       (),
-#elif xOS_ENV_UNIX
+#else
     _m_mtMutex      (),
     _m_cndCond      (),
     _m_bIsSignaled  (a_cbIsSignaled),
@@ -34,9 +34,9 @@ CxEvent::CxEvent(
 }
 //------------------------------------------------------------------------------
 CxEvent::~CxEvent() {
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     xNA;
-#elif xOS_ENV_UNIX
+#else
     int_t iRv = - 1;
 
     iRv = ::pthread_cond_destroy(&_m_cndCond);
@@ -49,16 +49,16 @@ CxEvent::~CxEvent() {
 //------------------------------------------------------------------------------
 const CxEvent::handle_t &
 CxEvent::handle() const {
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     return _m_hEvent;
-#elif xOS_ENV_UNIX
+#else
     return _m_cndCond;
 #endif
 }
 //------------------------------------------------------------------------------
 void_t
 CxEvent::create() {
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     xTEST_EQ(false, _m_hEvent.isValid());
 
     HANDLE hRv = ::CreateEvent(NULL, ! _m_cbIsAutoReset, _m_cbInitState, NULL);
@@ -66,7 +66,7 @@ CxEvent::create() {
 
     _m_hEvent.set(hRv);
     // n/a
-#elif xOS_ENV_UNIX
+#else
     int_t iRv = - 1;
 
     iRv = ::pthread_mutex_init(&_m_mtMutex, NULL);   // mutex not recursive
@@ -80,12 +80,12 @@ CxEvent::create() {
 // NOTE: unblock threads blocked on a condition variable
 void_t
 CxEvent::set() {
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     xTEST_EQ(true, _m_hEvent.isValid());
 
     BOOL blRes = ::SetEvent(handle().get());
     xTEST_DIFF(FALSE, blRes);
-#elif xOS_ENV_UNIX
+#else
     int_t iRv = - 1;
 
     iRv = ::pthread_mutex_lock(&_m_mtMutex);
@@ -110,12 +110,12 @@ CxEvent::set() {
 //------------------------------------------------------------------------------
 void_t
 CxEvent::reset() {
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     xTEST_EQ(true, _m_hEvent.isValid());
 
     BOOL blRes = ::ResetEvent(handle().get());
     xTEST_DIFF(FALSE, blRes);
-#elif xOS_ENV_UNIX
+#else
     int_t iRv = - 1;
 
     iRv = ::pthread_mutex_lock(&_m_mtMutex);
@@ -139,11 +139,11 @@ CxEvent::wait(
 
     ExObjectState osRes = osFailed;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     xTEST_EQ(true, _m_hEvent.isValid());
 
     osRes = static_cast<ExObjectState>( ::WaitForSingleObject(handle().get(), a_culTimeout) );
-#elif xOS_ENV_UNIX
+#else
     int_t iRv = - 1;
 
     iRv = ::pthread_mutex_lock(&_m_mtMutex);
@@ -225,12 +225,12 @@ CxEvent::isSignaled() {
 
     bool_t bRv = false;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     DWORD dwRv = ::WaitForSingleObject(handle().get(), 0UL);
     // n/a
 
     bRv = (_m_hEvent.isValid() && osSignaled == dwRv);
-#elif xOS_ENV_UNIX
+#else
     bRv = _m_bIsSignaled;
 #endif
 

@@ -25,9 +25,9 @@ CxCurrentProcess::isCurrent(
 {
     bool_t bRv = false;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     bRv = (id() == a_culId);
-#elif xOS_ENV_UNIX
+#else
     // TODO: If either thread1 or thread2 are not valid thread IDs, the behavior is undefined
     // bRv = ::pthread_equal(ulGetId(), a_culId);
 #endif
@@ -42,10 +42,10 @@ CxCurrentProcess::id() {
 
     CxProcess::id_t ulRv;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     ulRv = ::GetCurrentProcessId();
     // n/a
-#elif xOS_ENV_UNIX
+#else
     ulRv = ::getpid();
     // n/a
 #endif
@@ -60,7 +60,7 @@ CxCurrentProcess::parentId() {
 
     CxProcess::id_t ulRv;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     #if xCOMPILER_MINGW || xCOMPILER_CODEGEAR
         // typedef __success(return >= 0) LONG NTSTATUS;
         typedef LONG NTSTATUS;
@@ -90,7 +90,7 @@ CxCurrentProcess::parentId() {
     bool_t bRv = dlDll.isProcExists(xT("NtQueryInformationProcess"));
     xCHECK_RET(!bRv, culInvalidId);
 
-#if xARCH_X86    
+#if xARCH_X86
     const PROCESSINFOCLASS    cpicInfo                = ProcessBasicInformation;
 #else
     const PROCESSINFOCLASS    cpicInfo                = ProcessWow64Information;
@@ -110,7 +110,7 @@ CxCurrentProcess::parentId() {
     xTEST_EQ(size_t(dwReturnSizeBytes), sizeof(ulProcessInformation));
 
     ulRv = ulProcessInformation[5];
-#elif xOS_ENV_UNIX
+#else
     ulRv = ::getppid();
     xTEST_NA(ulRv);
 #endif
@@ -126,14 +126,14 @@ CxCurrentProcess::handle() {
 
     CxProcess::handle_t hRv;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     #if xDEPRECIATE
         hRv = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, id());
     #else
         hRv = ::GetCurrentProcess();
     #endif
     xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
-#elif xOS_ENV_UNIX
+#else
     hRv = ::getpid();
     // n/a
 #endif
@@ -148,9 +148,9 @@ CxCurrentProcess::exit(
     cuint_t &a_cuiExitCode
 )
 {
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     (void_t)::ExitProcess(a_cuiExitCode);
-#elif xOS_ENV_UNIX
+#else
     (void_t)::exit(static_cast<int_t>( a_cuiExitCode ));
 #endif
 }
