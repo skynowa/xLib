@@ -64,13 +64,13 @@ CxTcpServer::accept(
 
     socket_t scktClient = xSOCKET_HANDLE_INVALID;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     struct sockaddr_in cliaddr  = {0};
-    int_t                iAddrlen = sizeof(cliaddr);
+    int_t              iAddrlen = sizeof(cliaddr);
 
     scktClient = ::accept(_m_sktSocket, CxUtils::reinterpretCastT<struct sockaddr *>( &cliaddr ), &iAddrlen);
     xTEST_DIFF(xSOCKET_HANDLE_INVALID, scktClient);
-#elif xOS_ENV_UNIX
+#else
     struct sockaddr_in cliaddr  = {0};
     socklen_t          iAddrlen = sizeof(cliaddr);
 
