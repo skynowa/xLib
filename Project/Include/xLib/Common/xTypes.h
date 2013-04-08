@@ -16,17 +16,21 @@ xNAMESPACE_BEGIN(NxLib)
     typedef bool                   bool_t;
     typedef const bool_t           cbool_t;
 
-    typedef int                    int_t;
-    typedef const int_t            cint_t;
+// tchar_t
+#if xUNICODE
+    typedef wchar_t                tchar_t;
+#else
+    typedef char                   tchar_t;
+#endif
 
-    typedef float                  float_t;
-    typedef const float_t          cfloat_t;
-
-    // TODO: typedef double                 double_t;
-    typedef const double           cdouble_t;
+    typedef const tchar_t          ctchar_t;
+        ///< char
 
     typedef unsigned char          uchar_t;
     typedef const uchar_t          cuchar_t;
+
+    typedef int                    int_t;
+    typedef const int_t            cint_t;
 
     typedef signed short int       short_t;
     typedef const short_t          cshort_t;
@@ -49,15 +53,11 @@ xNAMESPACE_BEGIN(NxLib)
     typedef unsigned long long int ulonglong_t;
     typedef const ulonglong_t      culonglong_t;
 
-// tchar_t
-#if xUNICODE
-    typedef wchar_t                tchar_t;
-#else
-    typedef char                   tchar_t;
-#endif
+    typedef float                  float_t;
+    typedef const float_t          cfloat_t;
 
-    typedef const tchar_t          ctchar_t;
-        ///< char
+    // TODO: typedef double                 double_t;
+    typedef const double           cdouble_t;
 
 // addrinfo_t
 #if   xOS_ENV_WIN
