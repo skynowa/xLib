@@ -14,12 +14,10 @@
 #include <xLib/Sync/CxCurrentThread.h>
 #include <xLib/Sync/CxCurrentProcess.h>
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     #if !xCOMPILER_MINGW
         #pragma comment(lib, "psapi.lib")
     #endif
-#elif xOS_ENV_UNIX
-    xNA
 #endif
 
 
@@ -33,7 +31,7 @@ xNAMESPACE_BEGIN(NxLib)
 //------------------------------------------------------------------------------
 CxProcess::CxProcess() :
     _m_hHandle     (0),
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     _m_hThread     (NULL),
 #endif
     _m_ulPid       (0UL),
@@ -44,7 +42,7 @@ CxProcess::CxProcess() :
 //------------------------------------------------------------------------------
 /* virtual */
 CxProcess::~CxProcess() {
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     BOOL blRes = FALSE;
 
     blRes = ::CloseHandle(_m_hThread);
@@ -52,8 +50,6 @@ CxProcess::~CxProcess() {
 
     blRes = ::CloseHandle(_m_hHandle);
     xTEST_DIFF(FALSE, blRes);
-#elif xOS_ENV_UNIX
-    xNA;
 #endif
 }
 //------------------------------------------------------------------------------
@@ -76,7 +72,7 @@ CxProcess::create(
 
     //xTRACEV(xT("sCmdLine: %s"), sCmdLine.c_str());
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     STARTUPINFO         siInfo = {0};   siInfo.cb = sizeof(siInfo);
     PROCESS_INFORMATION piInfo = {0};
 
@@ -88,7 +84,7 @@ CxProcess::create(
     _m_hHandle = piInfo.hProcess;
     _m_hThread = piInfo.hThread;
     _m_ulPid   = piInfo.dwProcessId;
-#elif xOS_ENV_UNIX
+#else
     pid_t liPid = ::fork();
     xTEST_EQ(true, - 1L != liPid);
 
@@ -113,12 +109,12 @@ CxProcess::wait(
 {
     ExWaitResult wrStatus = wrFailed;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     DWORD ulRv = ::WaitForSingleObject(_m_hHandle, a_culTimeout);
     xTEST_EQ(WAIT_OBJECT_0, ulRv);
 
     wrStatus = static_cast<ExWaitResult>( ulRv );
-#elif xOS_ENV_UNIX
+#else
     // TODO: a_culTimeout
     pid_t liRv    = - 1L;
     int_t   iStatus = 0;
@@ -141,7 +137,7 @@ CxProcess::kill(
     culong_t &a_culTimeout    // FIX: culTimeout not used
 )
 {
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     xTEST_DIFF(xNATIVE_HANDLE_NULL, _m_hHandle);
     // ulTimeout - n/a
 
@@ -156,7 +152,7 @@ CxProcess::kill(
 
         CxCurrentThread::sleep(a_culTimeout);
     }
-#elif xOS_ENV_UNIX
+#else
     int_t iRv = ::kill(_m_ulPid, SIGKILL);
     xTEST_DIFF(- 1, iRv);
 
@@ -185,10 +181,10 @@ ulong_t
 CxProcess::exitStatus() const {
     ulong_t ulRv = 0UL;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     BOOL blRes = ::GetExitCodeProcess(_m_hHandle, &ulRv);
     xTEST_DIFF(FALSE, blRes);
-#elif xOS_ENV_UNIX
+#else
     ulRv = _m_uiExitStatus;
 #endif
 
@@ -211,10 +207,10 @@ CxProcess::idByHandle(
 {
     id_t ulRv;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     ulRv = ::GetProcessId(a_chHandle);
     xTEST_NA(ulRv);
-#elif xOS_ENV_UNIX
+#else
     ulRv = static_cast<id_t>( a_chHandle );
 #endif
 
@@ -229,10 +225,10 @@ CxProcess::handleById(
 {
     handle_t hRv;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     hRv = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, a_culId);
     xTEST_NA(hRv);
-#elif xOS_ENV_UNIX
+#else
     hRv = static_cast<handle_t>( a_culId );
 #endif
 
@@ -247,7 +243,7 @@ CxProcess::idByName(
 {
     id_t ulRv;
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     CxHandle       hSnapshot;
     PROCESSENTRY32 peProcess = {0};    peProcess.dwSize = sizeof(PROCESSENTRY32);
 
@@ -346,6 +342,8 @@ CxProcess::idByName(
 
         xBUFF_FREE(pkpProcesses);
     #endif
+#elif xOS_ENV_MAC
+    xNOT_IMPLEMENTED
 #endif
 
     return ulRv;

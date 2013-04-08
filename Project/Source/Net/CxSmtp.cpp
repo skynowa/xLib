@@ -44,9 +44,9 @@ CxSmtp::~CxSmtp() {
 //DONE: bCreate
 void_t
 CxSmtp::create(
-    std::ctstring_t &a_csUser, 
-    std::ctstring_t &a_csPass, 
-    std::ctstring_t &a_csServer, 
+    std::ctstring_t &a_csUser,
+    std::ctstring_t &a_csPass,
+    std::ctstring_t &a_csServer,
     cushort_t       &a_cusPort
 )
 {
@@ -169,8 +169,8 @@ CxSmtp::rset() {
 //DONE: bSendRaw
 void_t
 CxSmtp::sendRaw(
-    std::ctstring_t &a_csFilePath, 
-    std::ctstring_t &a_sFrom, 
+    std::ctstring_t &a_csFilePath,
+    std::ctstring_t &a_sFrom,
     std::ctstring_t &a_sTo
 )
 {
@@ -217,8 +217,8 @@ CxSmtp::sendRaw(
 //DONE: bSend
 void_t
 CxSmtp::send(
-    std::ctstring_t &a_csText, 
-    std::ctstring_t &a_sFrom, 
+    std::ctstring_t &a_csText,
+    std::ctstring_t &a_sFrom,
     std::ctstring_t &a_sTo
 )
 {
@@ -303,9 +303,9 @@ CxSmtp::_command(std::ctstring_t &a_csCmd, std::ctstring_t &a_csReplyDelimiter, 
     std::tstring_t sRv;
 
     _m_scktSocket.sendAll(a_csCmd, 0);
-    _m_scktSocket.recvAll(0, a_csReplyDelimiter);
+    sRv = _m_scktSocket.recvAll(0, a_csReplyDelimiter);
 
-    a_sReply = sRv;
+    a_sReply.swap(sRv);
 }
 //------------------------------------------------------------------------------
 //DONE: _isError

@@ -13,21 +13,20 @@
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-#if   xOS_ENV_WIN
-
-#elif xOS_ENV_UNIX
-CxCondition::CxCondition() :
+CxCondition::CxCondition()
+#if xOS_ENV_WIN
+    :
     _m_mutex (),
     _m_handle()
+#endif
 {
 }
-#endif
 //------------------------------------------------------------------------------
 /*virtual*/
 CxCondition::~CxCondition() {
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
 
-#elif xOS_ENV_UNIX
+#else
     int_t iRv = - 1;
 
     iRv = ::pthread_cond_destroy(&_m_handle);
@@ -58,9 +57,9 @@ CxCondition::handle() const {
 //------------------------------------------------------------------------------
 void_t
 CxCondition::create() {
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
 
-#elif xOS_ENV_UNIX
+#else
     int_t iRv = - 1;
 
     iRv = ::pthread_mutex_init(&_m_mutex, NULL);    // mutex not recursive
@@ -76,9 +75,9 @@ CxCondition::wait(
     culong_t &a_culTimeoutMs
 )
 {
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
 
-#elif xOS_ENV_UNIX
+#else
     int_t iRv = - 1;
 
     // wait until condition thread returns control
@@ -121,9 +120,9 @@ CxCondition::wait(
 //------------------------------------------------------------------------------
 void_t
 CxCondition::signal() {
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
 
-#elif xOS_ENV_UNIX
+#else
     int_t iRv = - 1;
 
     iRv = ::pthread_mutex_lock(&_m_mutex);
@@ -141,9 +140,9 @@ CxCondition::signal() {
 //------------------------------------------------------------------------------
 void_t
 CxCondition::broadcast() {
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
 
-#elif xOS_ENV_UNIX
+#else
      int_t iRv = - 1;
 
     iRv = ::pthread_mutex_lock(&_m_mutex);

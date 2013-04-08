@@ -34,7 +34,7 @@ public:
         ///< signal all
 
 private:
-#if xOS_ENV_UNIX
+#if !xOS_ENV_WIN
     pthread_mutex_t         _m_mutex;
     pthread_cond_t          _m_handle;
 #endif
