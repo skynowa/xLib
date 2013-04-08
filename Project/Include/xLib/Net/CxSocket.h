@@ -31,7 +31,7 @@ public:
             ,
             afBluetooth   = AF_BTH
         #endif
-    #elif xOS_ENV_UNIX
+    #else
         #if xOS_FREEBSD
             afLocal     = PF_LOCAL,
             afUnix      = PF_UNIX,
@@ -78,7 +78,7 @@ public:
     enum ExProtocol
         /// protocol
     {
-    #if   xOS_ENV_WIN
+    #if xOS_ENV_WIN
         ptIp          = IPPROTO_IP,
         ptIcmp        = IPPROTO_ICMP,
         ptIgmp        = IPPROTO_IGMP,
@@ -89,7 +89,7 @@ public:
         ptIcmpv6      = IPPROTO_ICMPV6,
         #endif
         ////ptRm          = IPPROTO_RM
-    #elif xOS_ENV_UNIX
+    #else
         #if xOS_FREEBSD
             ptIp          = IPPROTO_IP,
             ptHopopts     = IPPROTO_HOPOPTS,

@@ -17,7 +17,7 @@ public:
         ///< constructor
     virtual                ~CxCondition();
         ///< destructor
-#if xOS_ENV_UNIX
+#if !xOS_ENV_WIN
     const pthread_mutex_t & mutex      () const xWARN_UNUSED_RV;
         ///< get mutex handle
     const pthread_cond_t &  handle     () const xWARN_UNUSED_RV;

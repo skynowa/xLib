@@ -19,11 +19,11 @@ public:
     enum ExModalResult
         /// modal result
     {
-        #if   xOS_ENV_WIN
+        #if xOS_ENV_WIN
             mrAbort  = IDABORT,
             mrIgnore = IDIGNORE,
             mrRetry  = IDRETRY
-        #elif xOS_ENV_UNIX
+        #else
             mrAbort  = 25856,
             mrIgnore = 26112,
             mrRetry  = 26368

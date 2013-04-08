@@ -42,6 +42,8 @@ public:
         otLinux,
         // BSD family
         otFreeBSD
+    #elif xOS_ENV_MAC
+        otMac
     #endif
     };
 
@@ -117,7 +119,7 @@ private:
     virtual              ~CxSystemInfo    ();
         ///< destructor
 
-#if xOS_ENV_UNIX
+#if !xOS_ENV_WIN
     static void_t         _passwdFileEntry(struct passwd *pwdPasswd);
         ///< get password file entry
 #endif

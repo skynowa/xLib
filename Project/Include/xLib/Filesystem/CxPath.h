@@ -112,7 +112,7 @@ public:
     static size_t         nameMaxSize    ();
         ///< get max name length in symbols
 
-#if xOS_ENV_UNIX
+#if !xOS_ENV_WIN
     static void_t         proc           (std::ctstring_t &csProcPath, std::vec_tstring_t *pvsData);
         ///< get from UNIX proc file content
     static std::tstring_t procValue      (std::ctstring_t &csProcPath, std::ctstring_t &csData) xWARN_UNUSED_RV;

@@ -55,7 +55,7 @@ public:
 
 private:
     struct _SEntry {
-    #if   xOS_ENV_WIN
+    #if xOS_ENV_WIN
         HANDLE           hHandle;
         WIN32_FIND_DATA  fdData;
 
@@ -63,7 +63,7 @@ private:
             hHandle(xNATIVE_HANDLE_INVALID),
             fdData ()
         {}
-    #elif xOS_ENV_UNIX
+    #else
         DIR             *pHandle;
         dirent          *pdrData;
 

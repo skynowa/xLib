@@ -311,7 +311,7 @@
 
 //-------------------------------------
 // xHOST_NAME_MAX
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     #if defined(MAX_COMPUTERNAME_LENGTH)
         #define xHOST_NAME_MAX          ( MAX_COMPUTERNAME_LENGTH )
     #else
@@ -340,7 +340,7 @@
 
 //-------------------------------------
 // xLINE_MAX
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     #define xLINE_MAX                   ( 2048 ) // custom define
 #else
     #if   defined(LINE_MAX)
@@ -355,7 +355,7 @@
 
 //-------------------------------------
 // xENV_MAX
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     #if   xCOMPILER_MS
         #define xENV_MAX                ( _MAX_ENV )
     #else
@@ -368,7 +368,7 @@
 
 //-------------------------------------
 // xSTACK_TRACE_FRAMES_MAX
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     #if (xOS_WIN_VER <= xOS_WIN_S03)
         // MSDN: Windows Server 2003 and Windows XP:
         //       The sum of the FramesToSkip and FramesToCapture
@@ -384,7 +384,7 @@
 
 //-------------------------------------
 // xSEMAPHORE_VALUE_MAX
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     #define xSEMAPHORE_VALUE_MAX        ( LONG_MAX )         // LONG, custom define (tested on Win7 x64)
 #else
     #define xSEMAPHORE_VALUE_MAX        ( SEM_VALUE_MAX )    // int_t
@@ -414,7 +414,7 @@
 
 //-------------------------------------
 // qualifiers
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     #ifdef xARCH_X86
         #define xPR_SIZET               xT("u")
             ///< qualifier for std::size_t
@@ -467,7 +467,7 @@
 
 //-------------------------------------
 // xTIMEOUT_INFINITE
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     #define xTIMEOUT_INFINITE           ( INFINITE )
 #else
     #define xTIMEOUT_INFINITE           ( ~(0UL) )
@@ -476,7 +476,7 @@
 
 //-------------------------------------
 // xPAGE_SIZE
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     xNA
 #else
     #if   defined(_SC_PAGESIZE)
@@ -491,7 +491,7 @@
 
 //-------------------------------------
 // xDIR_TEMP temporary directory
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     #if defined(P_tmpdir)
         #define xDIR_TEMP               xT(P_tmpdir)
     #else
@@ -508,7 +508,7 @@
 
 //-------------------------------------
 // xNATIVE_HANDLE_NULL, xNATIVE_HANDLE_INVALID
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     #define xNATIVE_HANDLE_NULL         ( static_cast<native_handle_t>( NULL ) )                    ///< native handle value "null"
     #define xNATIVE_HANDLE_INVALID      ( static_cast<native_handle_t>( INVALID_HANDLE_VALUE ) )    ///< native handle value "invalid"
 #else
@@ -518,7 +518,7 @@
 
 //-------------------------------------
 // xSOCKET_ERROR, xSOCKET_HANDLE_INVALID
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     #define xSOCKET_ERROR               ( SOCKET_ERROR )                                            ///< socket native handle value "error"
     #define xSOCKET_HANDLE_INVALID      ( static_cast<socket_t>( INVALID_SOCKET ) )                 ///< socket native handle value "null"
 #else

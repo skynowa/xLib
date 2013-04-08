@@ -29,9 +29,9 @@ public:
         ///< set value
 
 private:
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     typedef ulong_t       index_t;
-#elif xOS_ENV_UNIX
+#else
     typedef pthread_key_t index_t;
 #endif
 

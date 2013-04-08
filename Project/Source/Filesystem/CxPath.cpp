@@ -1029,7 +1029,7 @@ CxPath::nameMaxSize() {
     return uiRes;
 }
 //------------------------------------------------------------------------------
-#if xOS_ENV_UNIX
+#if !xOS_ENV_WIN
 
 /* static */
 void_t
@@ -1075,7 +1075,7 @@ CxPath::proc(
 
 #endif
 //------------------------------------------------------------------------------
-#if xOS_ENV_UNIX
+#if !xOS_ENV_WIN
 
 /* static */
 std::tstring_t

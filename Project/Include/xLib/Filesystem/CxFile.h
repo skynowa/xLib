@@ -72,11 +72,11 @@ public:
     enum ExLockingMode
         /// locking mode
     {
-        #if   xOS_ENV_WIN
+        #if xOS_ENV_WIN
             lmLock    = LK_NBLCK,
             lmTryLock = LK_LOCK,
             lmUnlock  = LK_UNLCK
-        #elif xOS_ENV_UNIX
+        #else
             lmLock    = F_LOCK,
             lmTlock   = F_TLOCK,
             lmTryLock = F_TEST,
@@ -87,11 +87,11 @@ public:
     enum ExPermissionMode
         /// permission mode
     {
-        #if   xOS_ENV_WIN
+        #if xOS_ENV_WIN
             pmRead             = _S_IREAD,
             pmWrite            = _S_IWRITE,
             pmReadWrite        = (_S_IREAD | _S_IWRITE)
-        #elif xOS_ENV_UNIX
+        #else
             pmSetUserId        = S_ISUID,
             pmSetGroupId       = S_ISGID,
             pmStickyBit        = S_ISVTX,

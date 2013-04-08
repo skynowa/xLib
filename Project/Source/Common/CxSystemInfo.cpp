@@ -1058,7 +1058,7 @@ CxSystemInfo::~CxSystemInfo() {
 
 }
 //------------------------------------------------------------------------------
-#if xOS_ENV_UNIX
+#if !xOS_ENV_WIN
 
 /* static */
 void_t
