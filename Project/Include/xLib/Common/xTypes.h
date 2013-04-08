@@ -70,6 +70,8 @@ xNAMESPACE_BEGIN(NxLib)
     #endif
 #elif xOS_ENV_UNIX
     typedef addrinfo               addrinfo_t;
+#elif xOS_ENV_MAC
+    typedef addrinfo               addrinfo_t;
 #endif
 
     typedef const addrinfo_t       caddrinfo_t;
@@ -80,6 +82,8 @@ xNAMESPACE_BEGIN(NxLib)
     typedef HANDLE                 native_handle_t;
 #elif xOS_ENV_UNIX
     typedef int                    native_handle_t;
+#elif xOS_ENV_MAC
+    typedef int                    native_handle_t;
 #endif
 
     typedef const native_handle_t  cnative_handle_t;
@@ -89,6 +93,8 @@ xNAMESPACE_BEGIN(NxLib)
 #if   xOS_ENV_WIN
     typedef SOCKET                 socket_t;
 #elif xOS_ENV_UNIX
+    typedef int                    socket_t;
+#elif xOS_ENV_MAC
     typedef int                    socket_t;
 #endif
 
