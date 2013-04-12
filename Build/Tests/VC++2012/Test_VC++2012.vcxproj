@@ -133,6 +133,7 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Debug\CxLastError.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Debug\CxProfiler.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Debug\CxStackTrace.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Debug\CxStdDebug.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Debug\CxStdError.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Debug\xDebug.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Filesystem\CxBackuper.h" />

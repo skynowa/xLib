@@ -1393,6 +1393,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\Project\Include\xLib\Debug\CxStdDebug.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\Project\Source\Debug\CxStdError.cpp"
 				>
 			</File>
