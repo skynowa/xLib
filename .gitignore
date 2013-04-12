@@ -9,12 +9,6 @@
 # dirs
 Docs/html/
 
-!Project/Include/xLib/Debug
-!Project/Source/Debug
-
-!Tests/Include/Test/Debug
-!Tests/Source/Debug
-
 
 ################################################################################
 # files
@@ -68,16 +62,6 @@ bin/*
 *.sln.docstates
 
 # Build results
-
-[Dd]ebug/
-[Rr]elease/
-
-[Dd]ebug_Ansi/
-[Dd]ebug_Unicode/
-
-[Rr]elease_Ansi/
-[Rr]elease_Unicode/
-
 
 [Tt]est[Rr]esult
 [Bb]uild[Ll]og.*
@@ -174,6 +158,14 @@ UpgradeLog*.XML
 # NuGet
 packages/
 
+# Etc
+*.lastbuildstate
+*.unsuccessfulbuild
+*.manifest
+*.exp
+*.rc
+*.res
+*.ini
 
 ################################################################################
 # MinGW

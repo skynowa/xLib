@@ -740,6 +740,9 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Filesystem\CxFileType.h">
       <Filter>xLib\Filesystem</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Project\Include\xLib\Debug\CxStdDebug.h">
+      <Filter>xLib\Debug</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Project\Include\xLib\Common\CxArray.inl">
