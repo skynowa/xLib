@@ -474,6 +474,9 @@
     <None Include="..\..\..\Project\Include\xLib\Common\CxUtils.inl">
       <Filter>xLib\Common</Filter>
     </None>
+    <None Include="..\..\..\Project\Include\xLib\Common\CxFlags.inl">
+      <Filter>xLib\Common</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Project\Source\Common\Win\CxCom.cpp">
@@ -745,9 +748,6 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Filesystem\CxFinder.cpp">
       <Filter>xLib\Filesystem</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Project\Source\Common\CxFlags.cpp">
-      <Filter>xLib\Common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Sync\CxCondition.cpp">
       <Filter>xLib\Sync</Filter>

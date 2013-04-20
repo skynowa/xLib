@@ -1518,11 +1518,11 @@
 					>
 				</File>
 				<File
-					RelativePath="..\..\..\Project\Source\Common\CxFlags.cpp"
+					RelativePath="..\..\..\Project\Include\xLib\Common\CxFlags.h"
 					>
 				</File>
 				<File
-					RelativePath="..\..\..\Project\Include\xLib\Common\CxFlags.h"
+					RelativePath="..\..\..\Project\Include\xLib\Common\CxFlags.inl"
 					>
 				</File>
 				<File
