@@ -11,50 +11,48 @@
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
+template <class T>
 class CxFlags :
     private CxNonCopyable
     /// bit mask flags
 {
 public:
-    typedef ulong_t mask_t; ///< mask type
-
-              CxFlags    ();
+              CxFlags     ();
         ///< constructor
-    explicit  CxFlags    (const CxFlags &cfFlags);
+    explicit  CxFlags     (const CxFlags &cfValues);
         ///< constructor
-    explicit  CxFlags    (cint_t &ciFlag);
+    explicit  CxFlags     (const T &valuesT);
         ///< constructor
-    explicit  CxFlags    (const mask_t &cmFlag);
-        ///< constructor
-    virtual  ~CxFlags    ();
+    virtual  ~CxFlags     ();
         ///< destructor
 
-    bool_t    isSet      (cint_t &ciFlag) const;
-        ///<
-    bool_t    isSet      (const mask_t &cmFlag) const;
-        ///<
-    bool_t    isAnySet   (const mask_t &cmFlag) const;
-        ///<
-    bool_t    isAnySet   (cint_t &ciFlag) const;
-        ///<
-    void_t    setFlag    (const mask_t &cmFlag);
-        ///<
-    void_t    setFlag    (cint_t &ciFlag);
-        ///<
-    void_t    unsetFlag  (const mask_t &cmFlag);
-        ///<
-    void_t    unsetFlag  (cint_t &ciFlag);
-        ///<
-    void_t    setFlags   (const mask_t &cmFlag);
-        ///<
-    mask_t    getFlags   () const;
-        ///<
-    CxFlags & operator = (const CxFlags &cfFlags);
+    CxFlags & operator =  (const CxFlags &cfValues);
+        ///< operator =
+
+    size_t  & get         () const;
+        ///< get all flags
+    void_t    set         (const T &valuesT);
+        ///< set all flags
+    void_t    clear       ();
+        ///< reset all flags
+
+    bool_t    isSetFlag   (const T &valueT) const;
+        ///< flag is set
+    bool_t    isSetAnyFlag(const T &valueT) const;
+        ///< is any flag set
+    void_t    setFlag     (const T &valueT);
+        ///< set flag
+    void_t    unsetFlag   (const T &valueT);
+        ///< unset flag
+    void_t    toggleFlag  (const T &valueT);
+        ///< toggle flag
 
 private:
-    mask_t    _m_mFlags;
+    size_t    _m_mFlags;
 };
-
+//-------------------------------------------------------------------------
 xNAMESPACE_END(NxLib)
+//-------------------------------------------------------------------------
+#include <xLib/Common/CxFlags.inl>
 //-------------------------------------------------------------------------
 #endif // xLib_Common_CxFlagsH

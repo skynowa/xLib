@@ -390,6 +390,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Project\Include\xLib\Common\CxArray.inl" />
+    <None Include="..\..\..\Project\Include\xLib\Common\CxFlags.inl" />
     <None Include="..\..\..\Project\Include\xLib\Common\CxFunctorT.inl" />
     <None Include="..\..\..\Project\Include\xLib\Common\CxHandleT.inl" />
     <None Include="..\..\..\Project\Include\xLib\Common\CxString.inl" />
@@ -406,7 +407,6 @@
     <ClCompile Include="..\..\..\Project\Source\Common\CxConsole.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Common\CxConst.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Common\CxDateTime.cpp" />
-    <ClCompile Include="..\..\..\Project\Source\Common\CxFlags.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Common\CxLocale.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Common\CxProcessInfo.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Common\CxShell.cpp" />

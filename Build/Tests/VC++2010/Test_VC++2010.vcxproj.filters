@@ -775,6 +775,9 @@
     <None Include="..\..\..\Project\Include\xLib\Sync\CxThreadPool.inl">
       <Filter>xLib\Sync</Filter>
     </None>
+    <None Include="..\..\..\Project\Include\xLib\Common\CxFlags.inl">
+      <Filter>xLib\Common</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Project\Source\Common\Win\CxCom.cpp">
@@ -1292,9 +1295,6 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Filesystem\CxFinder.cpp">
       <Filter>xLib\Filesystem</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Project\Source\Common\CxFlags.cpp">
-      <Filter>xLib\Common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Tests\Source\Common\CxTest_CxFlags.cpp">
       <Filter>Tests\Common</Filter>
