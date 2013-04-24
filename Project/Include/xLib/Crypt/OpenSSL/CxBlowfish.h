@@ -8,6 +8,9 @@
 #define xLib_Crypt_OpenSSL_CxBlowfishH
 //------------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
+
+#if xOPENSSL_IS_USE
+
 #include <openssl/blowfish.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -62,6 +65,8 @@ private:
 };
 
 xNAMESPACE_END(NxLib)
+
+#endif // xOPENSSL_IS_USE
 //------------------------------------------------------------------------------
 #endif // xLib_Crypt_OpenSSL_CxBlowfishH
 

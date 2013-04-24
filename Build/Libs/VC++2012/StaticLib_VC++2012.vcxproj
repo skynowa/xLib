@@ -119,7 +119,19 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">
+    <IncludePath>
+    </IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|x64'">
+    <IncludePath />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">
+    <IncludePath />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|x64'">
+    <IncludePath />
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -307,7 +319,12 @@
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxMimeHeader.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxMimeMessage.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxPop3.h" />
-    <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxSmtp.h" />
+    <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxSmtp.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxSocket.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxSocketInit.h" />
     <ClInclude Include="..\..\..\Project\Include\xLib\Net\CxTcpClient.h" />
@@ -416,7 +433,12 @@
     <ClCompile Include="..\..\..\Project\Source\Net\CxMimeHeader.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Net\CxMimeMessage.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Net\CxPop3.cpp" />
-    <ClCompile Include="..\..\..\Project\Source\Net\CxSmtp.cpp" />
+    <ClCompile Include="..\..\..\Project\Source\Net\CxSmtp.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Unicode|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Ansi|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug_Unicode|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_Ansi|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\Project\Source\Net\CxSocket.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Net\CxSocketInit.cpp" />
     <ClCompile Include="..\..\..\Project\Source\Net\CxTcpClient.cpp" />

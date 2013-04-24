@@ -9,6 +9,8 @@
 //------------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
+#if xOPENSSL_IS_USE
+
 xNAMESPACE_BEGIN(NxLib)
 
 class CxBase64 :
@@ -31,5 +33,7 @@ private:
 };
 
 xNAMESPACE_END(NxLib)
+
+#endif // xOPENSSL_IS_USE
 //------------------------------------------------------------------------------
 #endif // xLib_Crypt_CxBase64H

@@ -120,7 +120,9 @@
 #define xNEW_NO_STD_THROW               0
     ///< new with std::notrow
 
-#define xCXMYSQL_IS_USE                 0
+#define xCXMYSQL_IS_USE                 1
     ///< is use CxMySql
+#define xOPENSSL_IS_USE                 0
+    ///< is use OpenSSL
 //------------------------------------------------------------------------------
 #endif  // xLib_Common_xConfigH
