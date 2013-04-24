@@ -7,9 +7,9 @@
 #ifndef xLib_Db_CxMySqlH
 #define xLib_Db_CxMySqlH
 //------------------------------------------------------------------------------
-#if xCXMYSQL_IS_USE
-
 #include <xLib/Common/xCommon.h>
+
+#if xCXMYSQL_IS_USE
 
 #if xOS_ENV_WIN
     #include <mysql.h>

@@ -6,6 +6,8 @@
 
 #include <xLib/Crypt/OpenSSL/CxBase64.h>
 
+#if xOPENSSL_IS_USE
+
 #include <xLib/Common/CxChar.h>
 #include <openssl/evp.h>
 #include <openssl/bio.h>
@@ -136,3 +138,5 @@ CxBase64::~CxBase64() {
 //------------------------------------------------------------------------------
 
 xNAMESPACE_END(NxLib)
+
+#endif // xOPENSSL_IS_USE
