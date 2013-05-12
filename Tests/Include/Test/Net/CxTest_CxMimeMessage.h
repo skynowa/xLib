@@ -14,6 +14,8 @@
 #include <xLib/Net/CxSmtp.h>
 #include <xLib/Net/CxMimeHeader.h>
 //------------------------------------------------------------------------------
+#if xOPENSSL_IS_USE
+
 class CxTest_CxMimeMessage :
     public CxTest
 {
@@ -23,5 +25,7 @@ public:
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };
+
+#endif // xOPENSSL_IS_USE
 //------------------------------------------------------------------------------
 #endif //CxTest_CxMimeMessageH

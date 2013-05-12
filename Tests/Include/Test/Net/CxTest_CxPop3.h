@@ -11,6 +11,8 @@
 #include <xLib/Test/CxTest.h>
 #include <xLib/Net/CxPop3.h>
 //------------------------------------------------------------------------------
+#if xOPENSSL_IS_USE
+
 class CxTest_CxPop3 :
     public CxTest
 {
@@ -20,5 +22,7 @@ public:
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };
+
+#endif // xOPENSSL_IS_USE
 //------------------------------------------------------------------------------
 #endif //CxTest_CxPop3H

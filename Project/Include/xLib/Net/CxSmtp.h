@@ -10,6 +10,8 @@
 #include <xLib/Common/xCommon.h>
 #include <xLib/Net/CxTcpClient.h>
 //------------------------------------------------------------------------------
+#if xOPENSSL_IS_USE
+
 xNAMESPACE_BEGIN(NxLib)
 
 class CxMimeHeader;
@@ -49,6 +51,8 @@ private:
 };
 
 xNAMESPACE_END(NxLib)
+
+#endif // xOPENSSL_IS_USE
 //------------------------------------------------------------------------------
 #endif
 

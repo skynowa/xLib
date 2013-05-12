@@ -10,6 +10,8 @@
 #include <xLib/Filesystem/CxFile.h>
 
 
+#if xOPENSSL_IS_USE
+
 //------------------------------------------------------------------------------
 CxTest_CxBlowfish::CxTest_CxBlowfish() {
 
@@ -75,3 +77,5 @@ CxTest_CxBlowfish::unit(
     }
 }
 //------------------------------------------------------------------------------
+
+#endif // xOPENSSL_IS_USE

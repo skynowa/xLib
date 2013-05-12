@@ -7,6 +7,8 @@
 #include <Test/Net/CxTest_CxSmtp.h>
 
 
+#if xOPENSSL_IS_USE
+
 //------------------------------------------------------------------------------
 CxTest_CxSmtp::CxTest_CxSmtp() {
 
@@ -107,3 +109,5 @@ CxTest_CxSmtp::unit(
     objSmtp.disconnect();
 }
 //------------------------------------------------------------------------------
+
+#endif // xOPENSSL_IS_USE

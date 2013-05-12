@@ -7,6 +7,8 @@
 #include <Test/Net/CxTest_CxMimeMessage.h>
 
 
+#if xOPENSSL_IS_USE
+
 //------------------------------------------------------------------------------
 CxTest_CxMimeMessage::CxTest_CxMimeMessage() {
 
@@ -207,3 +209,5 @@ CxTest_CxMimeMessage::unit(
     objPop3.disconnect();
 }
 //------------------------------------------------------------------------------
+
+#endif // xOPENSSL_IS_USE
