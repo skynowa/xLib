@@ -12,6 +12,8 @@
 #include <xLib/Net/CxMimeBody.h>
 
 
+#if xOPENSSL_IS_USE
+
 //------------------------------------------------------------------------------
 CxTest_CxPop3::CxTest_CxPop3() {
 
@@ -162,3 +164,5 @@ CxTest_CxPop3::unit(
     objPop3.disconnect();
 }
 //------------------------------------------------------------------------------
+
+#endif // xOPENSSL_IS_USE

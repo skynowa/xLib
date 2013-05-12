@@ -12,6 +12,8 @@
 #include <xLib/Net/CxMimeBody.h>
 
 
+#if xOPENSSL_IS_USE
+
 xNAMESPACE_BEGIN(NxLib)
 
 /*******************************************************************************
@@ -41,9 +43,9 @@ CxPop3::~CxPop3() {
 //DONE: bCreate
 void_t
 CxPop3::create(
-    std::ctstring_t &a_csUser, 
-    std::ctstring_t &a_csPass, 
-    std::ctstring_t &a_csServer, 
+    std::ctstring_t &a_csUser,
+    std::ctstring_t &a_csPass,
+    std::ctstring_t &a_csServer,
     ushort_t         a_usPort
 )
 {
@@ -128,7 +130,7 @@ CxPop3::login() {
 //DONE: bStat
 void_t
 CxPop3::stat(
-    ulong_t &a_ulSum, 
+    ulong_t &a_ulSum,
     ulong_t &a_ulSize
 )
 {
@@ -250,8 +252,8 @@ CxPop3::rset() {
 //DONE: bTop (�������� ��������� ������)
 void_t
 CxPop3::top(
-    int_t           a_iNum, 
-    int_t           a_iLines, 
+    int_t           a_iNum,
+    int_t           a_iLines,
     std::tstring_t &a_sBuff
 )
 {
@@ -281,8 +283,8 @@ CxPop3::top(
 //DONE: bRetriveRaw ()
 void_t
 CxPop3::retriveRaw(
-    int_t            a_iNum, 
-    std::ctstring_t &a_csDirPath, 
+    int_t            a_iNum,
+    std::ctstring_t &a_csDirPath,
     std::ctstring_t &a_csFileName
 )
 {  //csDirPath ��� �����
@@ -338,9 +340,9 @@ CxPop3::retriveRaw(
 //DONE: bRetriveRawAndBackup ()
 void_t
 CxPop3::retriveRawAndBackup(
-    int_t            a_iNum, 
-    std::ctstring_t &a_csDirPath, 
-    std::ctstring_t &a_csBackupDirPath, 
+    int_t            a_iNum,
+    std::ctstring_t &a_csDirPath,
+    std::ctstring_t &a_csBackupDirPath,
     std::ctstring_t &a_csFileName
 )
 {
@@ -408,7 +410,7 @@ CxPop3::retriveRawAndBackup(
 //DONE: bRetrieveHeader ()
 void_t
 CxPop3::retrieveHeader(
-    int_t         a_iNum, 
+    int_t         a_iNum,
     CxMimeHeader &a_mhMimeHeader
 )
 {
@@ -542,8 +544,8 @@ CxPop3::_mailsSize(
 //DONE: _bCommand ()
 void_t
 CxPop3::_command(
-    std::ctstring_t &csCmd, 
-    std::ctstring_t &csReplyDelimiter, 
+    std::ctstring_t &csCmd,
+    std::ctstring_t &csReplyDelimiter,
     std::tstring_t  *psReply
 )
 {
@@ -587,3 +589,5 @@ CxPop3::_isError(
 //------------------------------------------------------------------------------
 
 xNAMESPACE_END(NxLib)
+
+#endif // xOPENSSL_IS_USE

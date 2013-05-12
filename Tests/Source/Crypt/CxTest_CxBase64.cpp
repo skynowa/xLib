@@ -7,6 +7,8 @@
 #include <Test/Crypt/CxTest_CxBase64.h>
 
 
+#if xOPENSSL_IS_USE
+
 //------------------------------------------------------------------------------
 CxTest_CxBase64::CxTest_CxBase64() {
 
@@ -94,3 +96,5 @@ CxTest_CxBase64::unit(
     }
 }
 //------------------------------------------------------------------------------
+
+#endif // xOPENSSL_IS_USE
