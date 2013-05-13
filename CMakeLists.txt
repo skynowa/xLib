@@ -43,11 +43,10 @@ include_directories("${CMAKE_SOURCE_DIR}/Tests/Include")
 include_directories(${XLib_TESTS_INCLUDE_DIRS})
 include_directories(${XLib_PROJECT_INCLUDE_DIRS})
 
-add_definitions(-Wall -pipe)
+add_definitions(-lpthread -Wall -pipe)
 
-set(
-    CMAKE_EXE_LINKER_FLAGS
-    "-lpthread -lrt -lmysqlclient -lm -lcrypto -lz -lssl -ldl"
+set(CMAKE_EXE_LINKER_FLAGS
+    "-lrt -lmysqlclient -lm -lcrypto -lz -lssl -ldl -pthread"
 )
 
 #-------------------------------------------------------------------------------
