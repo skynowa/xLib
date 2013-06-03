@@ -12,8 +12,6 @@
 #include <xLib/Net/CxMimeBody.h>
 
 
-#if xOPENSSL_IS_USE
-
 xNAMESPACE_BEGIN(NxLib)
 
 /*******************************************************************************
@@ -589,5 +587,3 @@ CxPop3::_isError(
 //------------------------------------------------------------------------------
 
 xNAMESPACE_END(NxLib)
-
-#endif // xOPENSSL_IS_USE

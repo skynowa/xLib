@@ -7,15 +7,11 @@
 //------------------------------------------------------------------------------
 #include <xLib/Net/CxSmtp.h>
 
-#include <xLib/Crypt/OpenSSL/CxBase64.h>
+#include <xLib/Crypt/CxBase64.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Net/CxDnsClient.h>
 //------------------------------------------------------------------------------
-
-
-#if xOPENSSL_IS_USE
-
 xNAMESPACE_BEGIN(NxLib)
 
 /*******************************************************************************
@@ -329,5 +325,3 @@ CxSmtp::_isError(std::ctstring_t &a_csText) {
 //------------------------------------------------------------------------------
 
 xNAMESPACE_END(NxLib)
-
-#endif // xOPENSSL_IS_USE

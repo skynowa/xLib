@@ -12,8 +12,6 @@
 #include <xLib/Net/CxDnsClient.h>
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
-#if xOPENSSL_IS_USE
-
 xNAMESPACE_BEGIN(NxLib)
 
 class CxMimeHeader;
@@ -66,8 +64,6 @@ private:
 };
 
 xNAMESPACE_END(NxLib)
-
-#endif // xOPENSSL_IS_USE
 //------------------------------------------------------------------------------
 #endif // xLib_Net_CxPop3H
 
