@@ -37,7 +37,7 @@
 // Crypt
 #if xARCH_X86
 
-// #include <Test/Crypt/CxTest_CxBase64.h>
+#include <Test/Crypt/CxTest_CxBase64.h>
 // #include <Test/Crypt/CxTest_CxBlowfish.h>
 
 #endif
@@ -188,8 +188,9 @@ xTMAIN(int_t iArgCount, tchar_t *paszArgs[]) {
         // Crypt
         tmManager.add(new CxTest_CxCrc32);
         tmManager.add(new CxTest_CxRandom);
+        tmManager.add(new CxTest_CxBase64);
+
     #if xARCH_X86 && !xCOMPILER_MINGW
-        // tmManager.add(new CxTest_CxBase64);
         // tmManager.add(new CxTest_CxBlowfish);
     #endif
 

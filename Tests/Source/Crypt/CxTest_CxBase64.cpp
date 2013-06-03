@@ -7,8 +7,6 @@
 #include <Test/Crypt/CxTest_CxBase64.h>
 
 
-#if xOPENSSL_IS_USE
-
 //------------------------------------------------------------------------------
 CxTest_CxBase64::CxTest_CxBase64() {
 
@@ -72,13 +70,14 @@ CxTest_CxBase64::unit(
         }
     }
 
+#if 0
     xTEST_CASE("CxBase64::isCharValid", a_cullCaseLoops)
     {
         {
             std::cstring_t csValidChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
             for (size_t i = 0; i < csValidChars.size(); ++ i) {
-                m_bRv = CxBase64::isCharValid(csValidChars.at(i));
+                m_bRv = CxBase64::_isValid(csValidChars.at(i));
                 //xTRACEV(xT("csValidChars.at(i): %c"), csValidChars.at(i));
                 xTEST_EQ(true, m_bRv);
             }
@@ -88,13 +87,12 @@ CxTest_CxBase64::unit(
             std::cstring_t csNonValidChars = "!@#$%^&*()_|:?";
 
             for (size_t i = 0; i < csNonValidChars.size(); ++ i) {
-                m_bRv = CxBase64::isCharValid(csNonValidChars.at(i));
+                m_bRv = CxBase64::_isValid(csNonValidChars.at(i));
                 //xTRACEV(xT("csNonValidChars.at(i): %c"), csNonValidChars.at(i));
                 xTEST_EQ(false, m_bRv);
             }
         }
     }
+#endif
 }
 //------------------------------------------------------------------------------
-
-#endif // xOPENSSL_IS_USE
