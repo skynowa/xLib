@@ -35,9 +35,10 @@
 #include <Test/Common/Win/CxTest_CxCom.h>
 
 // Crypt
+#include <Test/Crypt/CxTest_CxBase64.h>
+
 #if xARCH_X86
 
-#include <Test/Crypt/CxTest_CxBase64.h>
 // #include <Test/Crypt/CxTest_CxBlowfish.h>
 
 #endif

@@ -37,22 +37,44 @@ endforeach()
 list(REMOVE_DUPLICATES XLib_TESTS_INCLUDE_DIRS)
 
 #-------------------------------------------------------------------------------
-# flags
+# source directories
 include_directories("${CMAKE_SOURCE_DIR}/Project/Include")
 include_directories("${CMAKE_SOURCE_DIR}/Tests/Include")
 include_directories(${XLib_TESTS_INCLUDE_DIRS})
 include_directories(${XLib_PROJECT_INCLUDE_DIRS})
-
-add_definitions(-Wall -pipe)
-
-# Libs Linux: "-lrt -lmysqlclient -lm -lcrypto -lz -lssl -pthread"
-## link_libraries(rt m z crypto ssl mysqlclient ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS})
-
-# Libs Windows: "-lmysqlclient -lm -lcrypto -lz -lssl -pthread"
-link_libraries(mysqlclient ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS})
 
 #-------------------------------------------------------------------------------
 # targets
 add_library   (xLib_static STATIC ${xLib_SOURCES})
 add_library   (xLib_shared SHARED ${xLib_SOURCES})
 add_executable(xLib_test ${xLib_SOURCES} ${xLib_tests_SOURCES})
+
+#-------------------------------------------------------------------------------
+# flags
+if (MSVC)
+    set_target_properties(
+        xLib_test
+        PROPERTIES
+            # COMPILE_DEFINITIONS
+            COMPILE_FLAGS "/W3"
+    )
+
+    target_link_libraries(
+        xLib_test
+        mysqlclient ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS}
+    )
+elseif (CMAKE_COMPILER_IS_GNUCXX)
+    set_target_properties(
+        xLib_test
+        PROPERTIES
+            # COMPILE_DEFINITIONS
+            COMPILE_FLAGS "-Wall -pipe"
+    )
+
+    target_link_libraries(
+        xLib_test
+        rt m z crypto ssl mysqlclient ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS}
+    )
+else()
+    message("xLib: unknown compiler")
+endif()
