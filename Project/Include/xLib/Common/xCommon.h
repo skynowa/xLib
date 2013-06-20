@@ -126,13 +126,16 @@
 #include <limits.h>
 #include <assert.h>
 
+#if !xOS_WIN
+    #include <unistd.h>
+#endif
+
 #if xUNICODE
     #include <wchar.h>
     #include <wctype.h>
 #endif
 
 // STL
-#include <unistd.h>
 #include <typeinfo>
 #include <limits>
 #include <string>
