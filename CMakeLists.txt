@@ -79,3 +79,8 @@ elseif (CMAKE_COMPILER_IS_GNUCXX)
 else()
     message("xLib: unknown compiler")
 endif()
+
+#-------------------------------------------------------------------------------
+# add the install targets
+install (TARGETS xLib_static DESTINATION "bin")
+install (DIRECTORY ${XLib_PROJECT_INCLUDE_DIRS} DESTINATION "include/xLib")

@@ -40,3 +40,6 @@ Repositories:
         git clone https://skynowa@git.code.sf.net/p/x-lib/code x-lib-code
         git clone git://git.code.sf.net/p/x-lib/code x-lib-code
 
+CMake:
+    cmake ../xLib -G"Eclipse CDT4 - Unix Makefiles" -D_ECLIPSE_VERSION=3.7.2
+
