@@ -109,6 +109,10 @@
 #include <xLib/Common/xConfig.h>
 
 // POSIX
+#if !xOS_WIN
+    #include <unistd.h>
+#endif
+
 #include <sys/types.h>  // must be at the top (it's portable)
 #include <fcntl.h>
 #include <sys/stat.h>
@@ -125,10 +129,7 @@
 #include <math.h>
 #include <limits.h>
 #include <assert.h>
-
-#if !xOS_WIN
-    #include <unistd.h>
-#endif
+#include <locale.h>
 
 #if xUNICODE
     #include <wchar.h>
@@ -150,7 +151,6 @@
 #include <iomanip>
 #include <cerrno>
 #include <stdexcept>
-#include <locale.h>
 
 // xLib
 namespace NxLib { }

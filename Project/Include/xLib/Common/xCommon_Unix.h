@@ -17,7 +17,6 @@
 #include <pwd.h>
 #include <tar.h>
 #include <termios.h>
-#include <unistd.h>
 #include <utime.h>
 #include <signal.h>
 #include <sys/ipc.h>
