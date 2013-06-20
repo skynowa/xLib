@@ -132,6 +132,7 @@
 #endif
 
 // STL
+#include <unistd.h>
 #include <typeinfo>
 #include <limits>
 #include <string>

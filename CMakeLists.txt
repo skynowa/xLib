@@ -71,9 +71,10 @@ elseif (CMAKE_COMPILER_IS_GNUCXX)
             COMPILE_FLAGS "-Wall -pipe"
     )
 
+    # mysqlclient crypto ssl
     target_link_libraries(
         xLib_test
-        rt m z crypto ssl mysqlclient ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS}
+        pthread rt m z ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS}
     )
 else()
     message("xLib: unknown compiler")
