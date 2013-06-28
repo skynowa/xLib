@@ -52,35 +52,37 @@ add_executable(xLib_test ${xLib_SOURCES} ${xLib_tests_SOURCES})
 #-------------------------------------------------------------------------------
 # flags
 if (MSVC)
-    set_target_properties(
-        xLib_test
-        PROPERTIES
-            # COMPILE_DEFINITIONS
-            COMPILE_FLAGS "/W3"
-    )
-
-    target_link_libraries(
-        xLib_test
-        mysqlclient ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS}
-    )
+    set(LIBS mysqlclient)
+    set(FLAGS "/W3")
+elseif (MINGW)
+    set(LIBS ws2_32 psapi uuid ole32 mpr)
+    set(FLAGS "-Wall -pipe")
 elseif (CMAKE_COMPILER_IS_GNUCXX)
-    set_target_properties(
-        xLib_test
-        PROPERTIES
-            # COMPILE_DEFINITIONS
-            COMPILE_FLAGS "-Wall -pipe"
-    )
-
-    # mysqlclient crypto ssl
-    target_link_libraries(
-        xLib_test
-        pthread rt m z ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS}
-    )
+    set(LIBS pthread rt m z mysqlclient)
+    set(FLAGS "-Wall -pipe")
 else()
     message("xLib: unknown compiler")
 endif()
 
+set_target_properties(
+    xLib_test
+    PROPERTIES
+        # COMPILE_DEFINITIONS
+        COMPILE_FLAGS ${FLAGS}
+)
+
+target_link_libraries(
+    xLib_test
+    ${LIBS} ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS}
+)
+
+target_link_libraries(
+    xLib_shared
+    ${LIBS} ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS}
+)
+
 #-------------------------------------------------------------------------------
 # add the install targets
 install (TARGETS xLib_static DESTINATION "bin")
+install (TARGETS xLib_shared DESTINATION "bin")
 install (DIRECTORY ${XLib_PROJECT_INCLUDE_DIRS} DESTINATION "include/xLib")
