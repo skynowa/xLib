@@ -177,6 +177,18 @@ CxUtils::reinterpretCastT(
 }
 //------------------------------------------------------------------------------
 /* static */ inline
+bool
+CxUtils::doubleIsEqual(
+    const double &x,
+    const double &y
+)
+{
+    const double epsilon = std::numeric_limits<double>::epsilon();
+
+    return ::abs(x - y) <= epsilon * ::abs(x);
+}
+//------------------------------------------------------------------------------
+/* static */ inline
 double
 CxUtils::roundDouble(
     cdouble_t &a_cdValue

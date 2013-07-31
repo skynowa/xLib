@@ -70,6 +70,9 @@ public:
     static inline ToT       reinterpretCastT(const FromT &pPtrT) xWARN_UNUSED_RV;
         ///< allows any pointer to be converted into any other pointer type
 
+    static inline bool      doubleIsEqual   (const double &x, const double &y);
+        ///< compare double values
+
     static inline double    roundDouble     (cdouble_t &cdValue) xWARN_UNUSED_RV;
         ///< round double value to the integer part
 
