@@ -13,7 +13,7 @@ Docs/html/
 ################################################################################
 # files
 !.gitignore
-TODO.txt
+todo.txt
 xlib_d
 xlib_r
 
