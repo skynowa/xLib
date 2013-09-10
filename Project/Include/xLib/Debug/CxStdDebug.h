@@ -49,9 +49,9 @@
     }
 
 #define xSTD_TEST(expr) \
-    xTEST_DO(expr, exit(EXIT_FAILURE))
+    xSTD_TEST_DO(expr, exit(EXIT_FAILURE))
 
 #define xSTD_TEST_RET(expr, ret_expr) \
-    xTEST_DO(expr, return (ret_expr))
+    xSTD_TEST_DO(expr, return (ret_expr))
 //------------------------------------------------------------------------------
 #endif // xLib_Debug_CxStdDebugH
