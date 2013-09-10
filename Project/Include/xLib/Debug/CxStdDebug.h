@@ -24,11 +24,11 @@
 //------------------------------------------------------------------------------
 #define xSTD_TRACE_POINT \
     { \
-        printf("    ::::: #%d in %s:%d, func: %s :::::\n", \
-               __COUNTER__, __FILE__, __LINE__, __FUNCTION__, ::GetLastError()); \
+        printf("    ::::: #%d in %s:%d, func: %s, error: %ld :::::\n", \
+               __COUNTER__, __FILE__, __LINE__, __FUNCTION__, errno); \
     }
 
-#define xSTD_TEST(expr) \
+#define xSTD_TEST_DO(expr, do_expr) \
     if ( !(expr) )  { \
         fprintf(stderr, \
                 "\n------------------ xSTD_TEST --------------------\n" \
@@ -36,14 +36,22 @@
                 " File:       %s\n" \
                 " Function:   %s\n" \
                 " Line:       %d\n" \
-                " Last error: %lu\n" \
+                " Last error: %d\n" \
                 "--------------------------------------------------\n", \
                 #expr, \
                 __FILE__, \
                 __FUNCTION__, \
                 __LINE__, \
-                ::GetLastError()); \
-        exit(EXIT_FAILURE); \
+                errno); \
+        { \
+            do_expr; \
+        } \
     }
+
+#define xSTD_TEST(expr) \
+    xTEST_DO(expr, exit(EXIT_FAILURE))
+
+#define xSTD_TEST_RET(expr, ret_expr) \
+    xTEST_DO(expr, return (ret_expr))
 //------------------------------------------------------------------------------
 #endif // xLib_Debug_CxStdDebugH
