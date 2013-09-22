@@ -4,9 +4,8 @@
  */
 
 
-#ifndef CxTest_CxFinderH
-#define CxTest_CxFinderH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Filesystem/CxFinder.h>
@@ -16,13 +15,13 @@ class CxTest_CxFinder :
     ///< tests for CxFinder
 {
 public:
-                  CxTest_CxFinder();
+                   CxTest_CxFinder();
         ///< constructor
-    virtual      ~CxTest_CxFinder();
+    virtual       ~CxTest_CxFinder();
         ///< destructor
 
-    virtual void_t  unit(culonglong_t &cullCaseLoops) xOVERRIDE;
+    virtual void_t unit(culonglong_t &cullCaseLoops) xOVERRIDE;
         ///< unit test
 };
 //------------------------------------------------------------------------------
-#endif // CxTest_CxFinderH
+

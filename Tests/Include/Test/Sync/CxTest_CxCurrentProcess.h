@@ -4,9 +4,8 @@
  */
 
 
-#ifndef CxTest_CxCurrentProcessH
-#define CxTest_CxCurrentProcessH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Sync/CxCurrentProcess.h>
@@ -15,13 +14,12 @@ class CxTest_CxCurrentProcess :
     public CxTest
 {
 public:
-                  CxTest_CxCurrentProcess();
+                   CxTest_CxCurrentProcess();
         ///< constructor
-    virtual      ~CxTest_CxCurrentProcess();
+    virtual       ~CxTest_CxCurrentProcess();
         ///< destructor
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
         ///< unit test
 };
 //------------------------------------------------------------------------------
-#endif //CxTest_CxCurrentProcessH

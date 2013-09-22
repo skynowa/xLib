@@ -4,9 +4,8 @@
  */
 
 
-#ifndef CxTest_CxCgiH
-#define CxTest_CxCgiH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Net/CxCgi.h>
@@ -15,10 +14,9 @@ class CxTest_CxCgi :
     public CxTest
 {
 public:
-                 CxTest_CxCgi();
-    virtual     ~CxTest_CxCgi();
+                   CxTest_CxCgi();
+    virtual       ~CxTest_CxCgi();
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------
-#endif //CxTest_CxCgiH

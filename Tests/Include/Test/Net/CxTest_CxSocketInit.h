@@ -4,9 +4,8 @@
  */
 
 
-#ifndef CxTest_CxSocketInitH
-#define CxTest_CxSocketInitH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Net/CxSocketInit.h>
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
@@ -15,10 +14,9 @@ class CxTest_CxSocketInit :
     public CxTest
 {
 public:
-                 CxTest_CxSocketInit();
-    virtual     ~CxTest_CxSocketInit();
+                   CxTest_CxSocketInit();
+    virtual       ~CxTest_CxSocketInit();
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------
-#endif //CxTest_CxSocketInitH

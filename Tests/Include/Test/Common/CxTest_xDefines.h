@@ -4,9 +4,8 @@
  */
 
 
-#ifndef CxTest_xDefinesH
-#define CxTest_xDefinesH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Common/xDefines.h>
@@ -24,4 +23,3 @@ public:
         ///< unit test
 };
 //------------------------------------------------------------------------------
-#endif //CxTest_xDefinesH

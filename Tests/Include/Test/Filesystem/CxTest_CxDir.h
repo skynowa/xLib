@@ -4,9 +4,8 @@
  */
 
 
-#ifndef CxTest_CxDirH
-#define CxTest_CxDirH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Filesystem/CxDir.h>
@@ -16,10 +15,9 @@ class CxTest_CxDir :
     public CxTest
 {
 public:
-                 CxTest_CxDir();
-    virtual     ~CxTest_CxDir();
+                   CxTest_CxDir();
+    virtual       ~CxTest_CxDir();
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------
-#endif //CxTest_CxDirH

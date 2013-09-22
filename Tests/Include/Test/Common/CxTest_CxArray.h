@@ -4,9 +4,8 @@
  */
 
 
-#ifndef CxTest_CxArrayH
-#define CxTest_CxArrayH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Common/CxArray.h>
@@ -15,10 +14,9 @@ class CxTest_CxArray :
     public CxTest
 {
 public:
-                 CxTest_CxArray();
-    virtual     ~CxTest_CxArray();
+                   CxTest_CxArray();
+    virtual       ~CxTest_CxArray();
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------
-#endif //CxTest_CxArrayH

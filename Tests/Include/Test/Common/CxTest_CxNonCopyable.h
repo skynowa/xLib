@@ -4,9 +4,8 @@
  */
 
 
-#ifndef CxTest_CxNonCopyableH
-#define CxTest_CxNonCopyableH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Common/CxNonCopyable.h>
@@ -24,4 +23,3 @@ public:
         ///< unit test
 };
 //------------------------------------------------------------------------------
-#endif //CxTest_CxNonCopyableH

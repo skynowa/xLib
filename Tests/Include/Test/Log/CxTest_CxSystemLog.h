@@ -4,9 +4,8 @@
  */
 
 
-#ifndef CxTest_CxSystemLogH
-#define CxTest_CxSystemLogH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Log/CxSystemLog.h>
@@ -15,13 +14,13 @@ class CxTest_CxSystemLog:
     public CxTest
 {
 public:
-                  CxTest_CxSystemLog();
+                   CxTest_CxSystemLog();
         ///< constructor
-    virtual      ~CxTest_CxSystemLog();
+    virtual       ~CxTest_CxSystemLog();
         ///< destructor
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
         ///< unit test
 };
 //------------------------------------------------------------------------------
-#endif //CxTest_CxSystemLogH
+

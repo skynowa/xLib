@@ -4,9 +4,8 @@
  */
 
 
-#ifndef CxTest_CxThreadPoolH
-#define CxTest_CxThreadPoolH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Sync/CxThreadPool.h>
@@ -15,9 +14,9 @@ class CxTest_CxThreadPool :
     public CxTest
 {
 public:
-                  CxTest_CxThreadPool();
+                   CxTest_CxThreadPool();
         ///< constructor
-    virtual      ~CxTest_CxThreadPool();
+    virtual       ~CxTest_CxThreadPool();
         ///< destructor
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
@@ -34,7 +33,6 @@ public:
     virtual       ~CPoolThread();
 
 protected:
-    virtual uint_t uiOnRun    (void_t *pData);
+    virtual uint_t uiOnRun(void_t *pData);
 };
 //------------------------------------------------------------------------------
-#endif //CxTest_CxThreadPoolH

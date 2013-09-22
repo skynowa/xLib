@@ -4,9 +4,8 @@
  */
 
 
-#ifndef CxTest_CxPop3H
-#define CxTest_CxPop3H
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Net/CxPop3.h>
@@ -17,12 +16,11 @@ class CxTest_CxPop3 :
     public CxTest
 {
 public:
-                 CxTest_CxPop3();
-    virtual     ~CxTest_CxPop3();
+                   CxTest_CxPop3();
+    virtual       ~CxTest_CxPop3();
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };
 
 #endif // xOPENSSL_IS_USE
 //------------------------------------------------------------------------------
-#endif //CxTest_CxPop3H

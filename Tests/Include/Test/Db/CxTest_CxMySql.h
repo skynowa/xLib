@@ -4,9 +4,8 @@
  */
 
 
-#ifndef CxTest_CxMySqlH
-#define CxTest_CxMySqlH
-//------------------------------------------------------------------------------
+#pragma once
+
 #if xCXMYSQL_IS_USE
 
 #include <xLib/Common/xCommon.h>
@@ -17,12 +16,11 @@ class CxTest_CxMySql :
     public CxTest
 {
 public:
-                 CxTest_CxMySql();
-    virtual     ~CxTest_CxMySql();
+                   CxTest_CxMySql();
+    virtual       ~CxTest_CxMySql();
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };
+//------------------------------------------------------------------------------
 
 #endif // CXMYSQL_IS_USE
-//------------------------------------------------------------------------------
-#endif //CxTest_CxMySqlH

@@ -4,9 +4,8 @@
  */
 
 
-#ifndef CxTest_CxBase64H
-#define CxTest_CxBase64H
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Crypt/CxBase64.h>
@@ -21,4 +20,3 @@ public:
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------
-#endif //CxTest_CxBase64H

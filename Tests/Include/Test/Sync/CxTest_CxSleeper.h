@@ -4,9 +4,8 @@
  */
 
 
-#ifndef CxTest_CxSleeperH
-#define CxTest_CxSleeperH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Sync/CxSleeper.h>
@@ -15,10 +14,9 @@ class CxTest_CxSleeper :
     public CxTest
 {
 public:
-                 CxTest_CxSleeper();
-    virtual     ~CxTest_CxSleeper();
+                   CxTest_CxSleeper();
+    virtual       ~CxTest_CxSleeper();
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------
-#endif //CxTest_CxSleeperH

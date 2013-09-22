@@ -4,9 +4,8 @@
  */
 
 
-#ifndef CxTest_CxCrc32H
-#define CxTest_CxCrc32H
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Crypt/CxCrc32.h>
@@ -16,10 +15,9 @@ class CxTest_CxCrc32 :
     public CxTest
 {
 public:
-                 CxTest_CxCrc32();
-    virtual     ~CxTest_CxCrc32();
+                   CxTest_CxCrc32();
+    virtual       ~CxTest_CxCrc32();
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------
-#endif //CxTest_CxCrc32H

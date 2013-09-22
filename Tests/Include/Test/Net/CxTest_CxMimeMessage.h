@@ -4,9 +4,8 @@
  */
 
 
-#ifndef CxTest_CxMimeMessageH
-#define CxTest_CxMimeMessageH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Net/CxMimeMessage.h>
@@ -20,12 +19,11 @@ class CxTest_CxMimeMessage :
     public CxTest
 {
 public:
-                 CxTest_CxMimeMessage();
-    virtual     ~CxTest_CxMimeMessage();
+                   CxTest_CxMimeMessage();
+    virtual       ~CxTest_CxMimeMessage();
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };
 
 #endif // xOPENSSL_IS_USE
 //------------------------------------------------------------------------------
-#endif //CxTest_CxMimeMessageH

@@ -4,9 +4,8 @@
  */
 
 
-#ifndef CxTest_CxDebuggerH
-#define CxTest_CxDebuggerH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Debug/CxDebugger.h>
@@ -15,10 +14,10 @@ class CxTest_CxDebugger :
     public CxTest
 {
 public:
-                 CxTest_CxDebugger();
-    virtual     ~CxTest_CxDebugger();
+                   CxTest_CxDebugger();
+    virtual       ~CxTest_CxDebugger();
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------
-#endif //CxTest_CxDebuggerH
+

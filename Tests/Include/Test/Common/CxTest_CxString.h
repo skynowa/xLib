@@ -4,9 +4,8 @@
  */
 
 
-#ifndef CxTest_CxStringH
-#define CxTest_CxStringH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Common/CxString.h>
@@ -15,10 +14,10 @@ class CxTest_CxString :
     public CxTest
 {
 public:
-                 CxTest_CxString();
-    virtual     ~CxTest_CxString();
+                   CxTest_CxString();
+    virtual       ~CxTest_CxString();
 
-    virtual     void_t unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------
-#endif //CxTest_CxStringH
+
