@@ -4,9 +4,8 @@
  */
 
 
-#ifndef CxTest_CxStackTraceH
-#define CxTest_CxStackTraceH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Debug/CxStackTrace.h>
@@ -15,13 +14,13 @@ class CxTest_CxStackTrace :
     public CxTest
 {
 public:
-                  CxTest_CxStackTrace();
+                   CxTest_CxStackTrace();
         ///< constructor
-    virtual      ~CxTest_CxStackTrace();
+    virtual       ~CxTest_CxStackTrace();
         ///< destructor
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
         ///< unit test
 };
 //------------------------------------------------------------------------------
-#endif //CxTest_CxStackTraceH
+

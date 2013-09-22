@@ -4,9 +4,8 @@
  */
 
 
-#ifndef CxTest_CxHttpClientH
-#define CxTest_CxHttpClientH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Net/CxHttpClient.h>
@@ -15,10 +14,10 @@ class CxTest_CxHttpClient :
     public CxTest
 {
 public:
-                 CxTest_CxHttpClient();
-    virtual     ~CxTest_CxHttpClient();
+                   CxTest_CxHttpClient();
+    virtual       ~CxTest_CxHttpClient();
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------
-#endif //CxTest_CxHttpClientH
+

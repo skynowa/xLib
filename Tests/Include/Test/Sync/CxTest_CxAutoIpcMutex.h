@@ -4,9 +4,8 @@
  */
 
 
-#ifndef CxTest_CxAutoIpcMutexH
-#define CxTest_CxAutoIpcMutexH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Sync/CxAutoIpcMutex.h>
@@ -15,10 +14,9 @@ class CxTest_CxAutoIpcMutex :
     public CxTest
 {
 public:
-                 CxTest_CxAutoIpcMutex();
-    virtual     ~CxTest_CxAutoIpcMutex();
+                   CxTest_CxAutoIpcMutex();
+    virtual       ~CxTest_CxAutoIpcMutex();
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------
-#endif //CxTest_CxAutoIpcMutexH

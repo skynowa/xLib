@@ -4,9 +4,8 @@
  */
 
 
-#ifndef CxTest_CxNonArrayHeapH
-#define CxTest_CxNonArrayHeapH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Common/CxNonArrayHeap.h>
@@ -24,4 +23,3 @@ public:
         ///< unit test
 };
 //------------------------------------------------------------------------------
-#endif //CxTest_CxNonArrayHeapH

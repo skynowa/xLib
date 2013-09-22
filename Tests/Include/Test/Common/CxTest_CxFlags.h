@@ -4,9 +4,8 @@
  */
 
 
-#ifndef CxTest_CxFlagsH
-#define CxTest_CxFlagsH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Common/CxFlags.h>
@@ -25,4 +24,3 @@ public:
         ///< unit test
 };
 //------------------------------------------------------------------------------
-#endif // CxTest_CxFlagsH

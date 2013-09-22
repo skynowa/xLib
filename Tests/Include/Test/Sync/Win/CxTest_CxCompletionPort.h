@@ -4,9 +4,8 @@
  */
 
 
-#ifndef CxTest_CxCompletionPortH
-#define CxTest_CxCompletionPortH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Sync/Win/CxCompletionPort.h>
@@ -15,10 +14,9 @@ class CxTest_CxCompletionPort :
     public CxTest
 {
 public:
-                 CxTest_CxCompletionPort();
-    virtual     ~CxTest_CxCompletionPort();
+                   CxTest_CxCompletionPort();
+    virtual       ~CxTest_CxCompletionPort();
 
-    virtual     void_t unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------
-#endif //CxTest_CxCompletionPortH

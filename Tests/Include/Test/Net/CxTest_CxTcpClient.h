@@ -4,9 +4,8 @@
  */
 
 
-#ifndef CxTest_CxTcpClientH
-#define CxTest_CxTcpClientH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Net/CxTcpClient.h>
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
@@ -15,10 +14,10 @@ class CxTest_CxTcpClient :
     public CxTest
 {
 public:
-                 CxTest_CxTcpClient();
-    virtual     ~CxTest_CxTcpClient();
+                   CxTest_CxTcpClient();
+    virtual       ~CxTest_CxTcpClient();
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------
-#endif //CxTest_CxTcpClientH
+

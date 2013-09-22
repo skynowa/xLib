@@ -4,9 +4,8 @@
  */
 
 
-#ifndef CxTest_CxSingletonH
-#define CxTest_CxSingletonH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Patterns/CxSingleton.h>
@@ -15,10 +14,9 @@ class CxTest_CxSingleton :
     public CxTest
 {
 public:
-                 CxTest_CxSingleton();
-    virtual     ~CxTest_CxSingleton();
+                   CxTest_CxSingleton();
+    virtual       ~CxTest_CxSingleton();
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------
-#endif //CxTest_CxSingletonH

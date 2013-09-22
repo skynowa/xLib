@@ -4,9 +4,8 @@
  */
 
 
-#ifndef CxTest_CxThreadH
-#define CxTest_CxThreadH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Sync/CxThread.h>
@@ -16,10 +15,9 @@ class CxTest_CxThread :
     public CxTest
 {
 public:
-                 CxTest_CxThread();
-    virtual     ~CxTest_CxThread();
+                   CxTest_CxThread();
+    virtual       ~CxTest_CxThread();
 
-    virtual void_t unit          (culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------
-#endif //CxTest_CxThreadH

@@ -4,9 +4,8 @@
  */
 
 
-#ifndef CxTest_CxEventH
-#define CxTest_CxEventH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Sync/CxEvent.h>
@@ -15,10 +14,9 @@ class CxTest_CxEvent :
     public CxTest
 {
 public:
-                 CxTest_CxEvent();
-    virtual     ~CxTest_CxEvent();
+                   CxTest_CxEvent();
+    virtual       ~CxTest_CxEvent();
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };
-//------------------------------------------------------------------------------
-#endif //CxTest_CxEventH
+

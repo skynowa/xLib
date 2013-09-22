@@ -4,9 +4,8 @@
  */
 
 
-#ifndef CxTest_CxProfilerH
-#define CxTest_CxProfilerH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Debug/CxProfiler.h>
@@ -15,10 +14,10 @@ class CxTest_CxProfiler :
     public CxTest
 {
 public:
-                 CxTest_CxProfiler();
-    virtual     ~CxTest_CxProfiler();
+                   CxTest_CxProfiler();
+    virtual       ~CxTest_CxProfiler();
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------
-#endif //CxTest_CxProfilerH
+

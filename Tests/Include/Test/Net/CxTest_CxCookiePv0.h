@@ -4,9 +4,8 @@
  */
 
 
-#ifndef CxTest_CxCookiePv0H
-#define CxTest_CxCookiePv0H
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Net/CxCookiePv0.h>
@@ -15,10 +14,9 @@ class CxTest_CxCookiePv0 :
     public CxTest
 {
 public:
-                 CxTest_CxCookiePv0();
-    virtual     ~CxTest_CxCookiePv0();
+                   CxTest_CxCookiePv0();
+    virtual       ~CxTest_CxCookiePv0();
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------
-#endif //CxTest_CxCookiePv0H

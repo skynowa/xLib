@@ -4,9 +4,8 @@
  */
 
 
-#ifndef CxTest_CxNonAssignableH
-#define CxTest_CxNonAssignableH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Common/CxNonAssignable.h>
@@ -24,4 +23,3 @@ public:
         ///< unit test
 };
 //------------------------------------------------------------------------------
-#endif //CxTest_CxNonAssignableH

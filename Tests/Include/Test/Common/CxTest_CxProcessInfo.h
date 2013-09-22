@@ -4,9 +4,8 @@
  */
 
 
-#ifndef CxTest_Common_CxProcessInfoH
-#define CxTest_Common_CxProcessInfoH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Common/CxProcessInfo.h>
@@ -24,4 +23,3 @@ public:
         ///< unit test
 };
 //------------------------------------------------------------------------------
-#endif //CxTest_Common_CxProcessInfoH

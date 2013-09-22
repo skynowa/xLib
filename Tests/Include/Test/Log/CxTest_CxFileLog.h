@@ -4,9 +4,8 @@
  */
 
 
-#ifndef CxTest_CxFileLogH
-#define CxTest_CxFileLogH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Log/CxFileLog.h>
@@ -15,10 +14,10 @@ class CxTest_CxFileLog :
     public CxTest
 {
 public:
-                  CxTest_CxFileLog();
-    virtual      ~CxTest_CxFileLog();
+                   CxTest_CxFileLog();
+    virtual       ~CxTest_CxFileLog();
 
-    virtual  void_t unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------
-#endif //CxTest_CxFileLogH
+
