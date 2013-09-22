@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Common_Win_CxComH
-#define xLib_Common_Win_CxComH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
 #if xOS_ENV_WIN
@@ -28,4 +27,3 @@ xNAMESPACE_END(NxLib)
 
 #endif
 //------------------------------------------------------------------------------
-#endif // xLib_Common_Win_CxComH

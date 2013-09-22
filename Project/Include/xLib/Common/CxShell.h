@@ -4,8 +4,8 @@
  */
 
 
-#ifndef xLib_Common_Win_CxShellH
-#define xLib_Common_Win_CxShellH
+#pragma once
+
 //------------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 
@@ -155,4 +155,3 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Common_Win_CxShellH

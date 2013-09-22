@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Crypt_CxCrc32H
-#define xLib_Crypt_CxCrc32H
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -38,4 +37,3 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Crypt_CxCrc32H

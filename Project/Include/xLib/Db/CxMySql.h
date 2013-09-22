@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Db_CxMySqlH
-#define xLib_Db_CxMySqlH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 
 #if xCXMYSQL_IS_USE
@@ -115,7 +114,6 @@ xNAMESPACE_END(NxLib)
 
 #endif // CXMYSQL_IS_USE
 //------------------------------------------------------------------------------
-#endif // xLib_Db_CxMySqlH
 
 
 #if xTODO

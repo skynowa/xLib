@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Net_CxDnsClientH
-#define xLib_Net_CxDnsClientH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Net/CxSocket.h>
 //------------------------------------------------------------------------------
@@ -54,7 +53,6 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Net_CxDnsClientH
 
 
 #if xTODO

@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Sync_CxSharedMemoryH
-#define xLib_Sync_CxSharedMemoryH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -25,4 +24,3 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif //CxSharedMemoryH

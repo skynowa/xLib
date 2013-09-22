@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Debug_xDebugH
-#define xLib_Debug_xDebugH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Debug/CxLastError.h>
 #include <xLib/Debug/CxStdError.h>
@@ -164,4 +163,3 @@
                                                                            xCOUNTER, xFILE, xFUNCTION, CxLastError::get().c_str(), xLINE); }
     ///< trace point (use CxTracer)
 //------------------------------------------------------------------------------
-#endif // xLib_Debug_xDebugH

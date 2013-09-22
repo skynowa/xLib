@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Sync_CxProcessH
-#define xLib_Sync_CxProcessH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/CxHandleT.h>
 //------------------------------------------------------------------------------
@@ -80,4 +79,3 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Sync_CxProcessH

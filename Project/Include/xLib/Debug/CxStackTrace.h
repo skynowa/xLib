@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Debug_CxStackTraceH
-#define xLib_Debug_CxStackTraceH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -47,4 +46,3 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Debug_CxStackTraceH

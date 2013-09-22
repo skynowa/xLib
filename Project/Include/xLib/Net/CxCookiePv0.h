@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Net_CxCookiePv0H
-#define xLib_Net_CxCookiePv0H
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -80,4 +79,3 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Net_CxCookiePv0H

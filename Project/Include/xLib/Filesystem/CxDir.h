@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Filesystem_CxDirH
-#define xLib_Filesystem_CxDirH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/CxConst.h>
 //------------------------------------------------------------------------------
@@ -65,4 +64,3 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Filesystem_CxDirH

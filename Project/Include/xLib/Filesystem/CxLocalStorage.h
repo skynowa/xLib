@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Filesystem_CxLocalStorageH
-#define xLib_Filesystem_CxLocalStorageH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -91,4 +90,3 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Filesystem_CxLocalStorageH

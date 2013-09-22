@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Debug_CxExceptionH
-#define xLib_Debug_CxExceptionH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -35,4 +34,3 @@ xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
 #include "CxException.inl"
 //------------------------------------------------------------------------------
-#endif // xLib_Debug_CxExceptionH

@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Common_xSysDefinesH
-#define xLib_Common_xSysDefinesH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <stdlib.h> // compilers
 #include <limits.h> // standard C libraries
 //------------------------------------------------------------------------------
@@ -240,4 +239,3 @@
 #endif
 
 //------------------------------------------------------------------------------
-#endif  // xLib_Common_xSysDefinesH

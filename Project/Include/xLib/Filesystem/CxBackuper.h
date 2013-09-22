@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Filesystem_CxBackuperH
-#define xLib_Filesystem_CxBackuperH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -43,4 +42,3 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_CxBackuperH

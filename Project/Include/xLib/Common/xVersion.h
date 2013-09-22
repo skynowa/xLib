@@ -4,8 +4,8 @@
  */
 
 
-#ifndef xLib_Common_xVersionH
-#define xLib_Common_xVersionH
+#pragma once
+
 //------------------------------------------------------------------------------
 #define xLIB_NAME           xT("xLib")
     ///< xLib name
@@ -28,6 +28,4 @@
     ///< xLib jabber
 #define xLIB_SKYPE          xT("skynowa777")
     ///< xLib skype
-
 //------------------------------------------------------------------------------
-#endif  // xLib_Common_xVersionH

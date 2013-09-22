@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Common_xTypesH
-#define xLib_Common_xTypesH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -180,4 +179,3 @@ xNAMESPACE_BEGIN(std)
 
 xNAMESPACE_END(std)
 //------------------------------------------------------------------------------
-#endif  // xLib_Common_xTypesH

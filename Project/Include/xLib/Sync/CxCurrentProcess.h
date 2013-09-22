@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Sync_CxCurrentProcessH
-#define xLib_Sync_CxCurrentProcessH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Sync/CxProcess.h>
 //------------------------------------------------------------------------------
@@ -36,4 +35,3 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Sync_CxCurrentProcessH

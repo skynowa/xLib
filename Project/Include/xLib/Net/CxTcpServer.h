@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Net_CxTcpServerH
-#define xLib_Net_CxTcpServerH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Net/CxSocket.h>
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
@@ -35,7 +34,6 @@ protected:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Net_CxTcpServerH
 
 
 /*

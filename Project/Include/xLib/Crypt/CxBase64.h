@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Crypt_CxBase64H
-#define xLib_Crypt_CxBase64H
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -34,4 +33,3 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Crypt_CxBase64H

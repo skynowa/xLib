@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Log_CxSystemLogH
-#define xLib_Log_CxSystemLogH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -70,4 +69,3 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Log_CxSystemLogH

@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Log_CxFileLogH
-#define xLib_Log_CxFileLogH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 
 #if   xOS_ENV_WIN
@@ -61,4 +60,3 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Log_CxFileLogH

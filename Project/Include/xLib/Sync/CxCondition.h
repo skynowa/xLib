@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Sync_CxConditionH
-#define xLib_Sync_CxConditionH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
 class CxCondition :
@@ -40,4 +39,3 @@ private:
 #endif
 };
 //------------------------------------------------------------------------------
-#endif // xLib_Sync_CxConditionH

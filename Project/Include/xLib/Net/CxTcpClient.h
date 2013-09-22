@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Net_CxTcpClientH
-#define xLib_Net_CxTcpClientH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Net/CxSocket.h>
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
@@ -44,12 +43,12 @@ public:
 protected:
     timeval       _m_tvTimeout;    ///< timeout
 };
+
 //TODO: bIsWritable repeats from CxSocket
 //TODO: bIsReadable repeats from CxSocket
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Net_CxTcpClientH
 
 
 /*

@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Sync_CxIpcSemaphoreH
-#define xLib_Sync_CxIpcSemaphoreH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/CxHandleT.h>
 //------------------------------------------------------------------------------
@@ -48,10 +47,8 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Sync_CxIpcSemaphoreH
 
 /*
     SysV  semaphores are semget/semop/semctl
     POSIX semaphores are sem_open/sem_close/sem_*
-
 */

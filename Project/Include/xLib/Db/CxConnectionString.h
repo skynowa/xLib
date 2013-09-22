@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Db_CxConnectionStringH
-#define xLib_Db_CxConnectionStringH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -29,4 +28,3 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Db_CxConnectionStringH
