@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Patterns_CxSingletonH
-#define xLib_Patterns_CxSingletonH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -33,7 +32,6 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Patterns_CxSingletonH
 
 
 #if xTODO

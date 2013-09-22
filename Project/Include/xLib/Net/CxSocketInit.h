@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Net_CxSocketInitH
-#define xLib_Net_CxSocketInitH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -24,4 +23,3 @@ public:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Net_CxSocketInitH

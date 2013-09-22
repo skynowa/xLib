@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Filesystem_CxFileH
-#define xLib_Filesystem_CxFileH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -273,4 +272,3 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif  // xLib_Filesystem_CxFileH

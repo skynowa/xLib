@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Common_CxCharH
-#define xLib_Common_CxCharH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -55,4 +54,3 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Common_CxCharH

@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Common_CxDateTimeH
-#define xLib_Common_CxDateTimeH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -168,7 +167,6 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Common_CxDateTimeH
 
 
 #if xTODO

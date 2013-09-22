@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Sync_CxIpcMutexH
-#define xLib_Sync_CxIpcMutexH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/CxHandleT.h>
 //------------------------------------------------------------------------------
@@ -44,4 +43,3 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Sync_CxIpcMutexH

@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Common_CxFunctorH
-#define xLib_Common_CxFunctorH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -36,9 +35,8 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
+
 #include "CxFunctorT.inl"
-//------------------------------------------------------------------------------
-#endif // xLib_Common_CxFunctorH
 
 
 #if xTODO

@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Sync_CxSleeperH
-#define xLib_Sync_CxSleeperH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Sync/CxEvent.h>
 //------------------------------------------------------------------------------
@@ -35,4 +34,3 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Sync_CxSleeperH

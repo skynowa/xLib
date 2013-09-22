@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Debug_CxDebuggerH
-#define xLib_Debug_CxDebuggerH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/CxNonCopyable.h>
 //------------------------------------------------------------------------------
@@ -57,4 +56,3 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Debug_CxDebuggerH

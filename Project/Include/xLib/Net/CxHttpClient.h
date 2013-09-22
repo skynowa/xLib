@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Net_CxHttpClientH
-#define xLib_Net_CxHttpClientH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -99,4 +98,3 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Net_CxHttpClientH

@@ -4,10 +4,10 @@
  */
 
 
-#ifndef xLib_Common_xLinkingH
-#define xLib_Common_xLinkingH
+#pragma once
+
 //------------------------------------------------------------------------------
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     #if !xLIB && xIS_AUTO_LINKING
         #if xBUILD_RELEASE
             #if xUNICODE
@@ -28,7 +28,6 @@
     xNA;
 #endif
 //------------------------------------------------------------------------------
-#endif // xLib_Common_xLinkingH
 
 
 #if xTODO

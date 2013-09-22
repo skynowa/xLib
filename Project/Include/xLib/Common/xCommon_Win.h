@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Common_Win_xCommon_WinH
-#define xLib_Common_Win_xCommon_WinH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #include <windows.h>
@@ -30,5 +29,3 @@
 #elif xCOMPILER_CODEGEAR
     #include <dir.h>
 #endif
-//------------------------------------------------------------------------------
-#endif  // xLib_Common_Win_xCommon_WinH

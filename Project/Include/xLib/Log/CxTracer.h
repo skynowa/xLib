@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Debug_CxTracerH
-#define xLib_Debug_CxTracerH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -50,4 +49,3 @@ CxTracer::operator << (const T &cValueT) {
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_CxTracerH

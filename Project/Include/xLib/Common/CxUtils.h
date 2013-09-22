@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Common_CxUtilsH
-#define xLib_Common_CxUtilsH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -101,6 +100,5 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
+
 #include "CxUtils.inl"
-//------------------------------------------------------------------------------
-#endif // xLib_Common_CxUtilsH

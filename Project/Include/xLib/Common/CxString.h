@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Common_CxStringH
-#define xLib_Common_CxStringH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
 // overload operators << for std::basic_ostream
@@ -183,6 +182,5 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
+
 #include "CxString.inl"
-//------------------------------------------------------------------------------
-#endif // xLib_Common_CxStringH

@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Net_CxSmtpH
-#define xLib_Net_CxSmtpH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Net/CxTcpClient.h>
 //------------------------------------------------------------------------------
@@ -50,7 +49,7 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif
+
 
 /*
 RFC 821

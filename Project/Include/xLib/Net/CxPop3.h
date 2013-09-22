@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Net_CxPop3H
-#define xLib_Net_CxPop3H
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Net/CxSocketInit.h>
 #include <xLib/Net/CxTcpClient.h>
 #include <xLib/Net/CxDnsClient.h>
@@ -65,7 +64,7 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Net_CxPop3H
+
 
 /*
 RFC 1225

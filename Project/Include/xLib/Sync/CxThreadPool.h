@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Sync_CxThreadPoolH
-#define xLib_Sync_CxThreadPoolH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Sync/CxIpcSemaphore.h>
 #include <xLib/Sync/CxThread.h>
@@ -83,7 +82,7 @@ private:
     void_t                 _onEnterTask(CxThread *pthSender);
     void_t                 _onExitTask (CxThread *pthSender);
 
-    //WatchDog
+    // WatchDog
 };
 
 xNAMESPACE_END(NxLib)
@@ -95,4 +94,3 @@ xNAMESPACE_END(NxLib)
 
 #include "CxThreadPool.inl"
 //------------------------------------------------------------------------------
-#endif // xLib_Sync_CxThreadPoolH

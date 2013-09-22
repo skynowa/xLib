@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Net_CxCgiH
-#define xLib_Net_CxCgiH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -255,4 +254,3 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Net_CxCgiH

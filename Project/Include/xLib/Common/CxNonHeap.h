@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Common_CxNonHeapH
-#define xLib_Common_CxNonHeapH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -29,4 +28,3 @@ protected:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Common_CxNonHeapH

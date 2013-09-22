@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Net_CxSocket
-#define xLib_Net_CxSocket
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -287,7 +286,6 @@ protected:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Net_CxSocket
 
 
 #if xTODO

@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_CxCommandLineH
-#define xLib_CxCommandLineH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -36,4 +35,3 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_CxCommandLineH

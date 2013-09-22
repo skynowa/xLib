@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Debug_CxAutoProfilerH
-#define xLib_Debug_CxAutoProfilerH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Debug/CxProfiler.h>
 //------------------------------------------------------------------------------
@@ -29,4 +28,3 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Debug_CxAutoProfilerH

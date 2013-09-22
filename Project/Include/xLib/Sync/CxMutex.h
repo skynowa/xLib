@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Sync_CxMutexH
-#define xLib_Sync_CxMutexH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/CxNonCopyable.h>
 //------------------------------------------------------------------------------
@@ -42,7 +41,5 @@ public:
 private:
     handle_t          _m_hHandle;   ///< mutex native handle
 };
-
-xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Sync_CxMutexH
+xNAMESPACE_END(NxLib)

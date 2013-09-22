@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Common_CxSystemInfoH
-#define xLib_Common_CxSystemInfoH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -127,7 +126,6 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Common_CxSystemInfoH
 
 
 // https://github.com/joyent/node/blob/master/src/platform_linux.cc

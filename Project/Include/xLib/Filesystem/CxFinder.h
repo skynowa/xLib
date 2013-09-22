@@ -4,11 +4,9 @@
  */
 
 
-#ifndef xLib_Filesystem_CxFinderH
-#define xLib_Filesystem_CxFinderH
-//------------------------------------------------------------------------------
-#include <xLib/Common/xCommon.h>
+#pragma once
 
+#include <xLib/Common/xCommon.h>
 #include <xLib/Filesystem/CxFileType.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -88,4 +86,3 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Filesystem_CxFinderH

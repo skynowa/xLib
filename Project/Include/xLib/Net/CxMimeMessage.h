@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Net_CxMimeMessageH
-#define xLib_Net_CxMimeMessageH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -33,4 +32,3 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Net_CxMimeMessageH

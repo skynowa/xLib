@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Sync_CxThreadH
-#define xLib_Sync_CxThreadH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/CxHandleT.h>
 #include <xLib/Sync/CxEvent.h>
@@ -199,4 +198,3 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Sync_CxThreadH

@@ -4,8 +4,8 @@
  */
 
 
-#ifndef xLib_Common_CxHandleTH
-#define xLib_Common_CxHandleTH
+#pragma once
+
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
@@ -15,7 +15,7 @@ class CxErrorReport;
 class CxDebugger;
 
 xNAMESPACE_END(NxLib)
-
+//------------------------------------------------------------------------------
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/CxHandleErrorT.h>
 //------------------------------------------------------------------------------
@@ -80,4 +80,3 @@ typedef CxHandleT<hvInvalid> CxHandleInvalid;
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Common_CxHandleTH

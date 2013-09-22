@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Debug_CxReportH
-#define xLib_Debug_CxReportH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/CxNonCopyable.h>
 //------------------------------------------------------------------------------
@@ -89,4 +88,3 @@ xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
 #include "CxErrorReport.inl"
 //------------------------------------------------------------------------------
-#endif // xLib_Debug_CxReportH

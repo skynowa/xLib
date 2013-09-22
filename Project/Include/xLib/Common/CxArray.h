@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Common_CxArrayH
-#define xLib_Common_CxArrayH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -241,6 +240,5 @@ namespace NxArray {
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
+
 #include "CxArray.inl"
-//------------------------------------------------------------------------------
-#endif // xLib_Common_CxArrayH

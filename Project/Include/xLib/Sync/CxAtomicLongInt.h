@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Sync_CxAtomicLongIntH
-#define xLib_Sync_CxAtomicLongIntH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -57,4 +56,3 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif // xLib_Sync_CxAtomicLongIntH

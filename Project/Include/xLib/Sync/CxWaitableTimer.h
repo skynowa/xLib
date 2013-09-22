@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Sync_CxWaitableTimerH
-#define xLib_Sync_CxWaitableTimerH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 #include <xLib/Common/CxHandleT.h>
 //------------------------------------------------------------------------------
@@ -37,4 +36,3 @@ xNAMESPACE_END(NxLib)
 
 #endif
 //------------------------------------------------------------------------------
-#endif // xLib_Sync_CxWaitableTimerH

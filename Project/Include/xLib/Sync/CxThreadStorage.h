@@ -4,9 +4,8 @@
  */
 
 
-#ifndef CxLib_Sync_CxThreadStorageH
-#define CxLib_Sync_CxThreadStorageH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Common/xCommon.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -46,4 +45,3 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#endif //CxLib_Sync_CxThreadStorageH
