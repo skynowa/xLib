@@ -4,8 +4,8 @@
  */
 
 
-#include <xLib/Common/CxString.h>
-#include <xLib/Common/CxConsole.h>
+#include <xLib/Core/CxString.h>
+#include <xLib/Core/CxConsole.h>
 #include <xLib/Filesystem/CxPath.h>
 
 

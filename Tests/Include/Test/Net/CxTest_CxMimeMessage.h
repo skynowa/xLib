@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include <xLib/Common/xCommon.h>
+#include <xLib/Core/xCore.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Net/CxMimeMessage.h>
 #include <xLib/Net/CxPop3.h>

@@ -6,9 +6,9 @@
 
 #include <xLib/Sync/CxProcess.h>
 
-#include <xLib/Common/CxString.h>
-#include <xLib/Common/CxSystemInfo.h>
-#include <xLib/Common/CxProcessInfo.h>
+#include <xLib/Core/CxString.h>
+#include <xLib/Core/CxSystemInfo.h>
+#include <xLib/Core/CxProcessInfo.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Sync/CxCurrentThread.h>

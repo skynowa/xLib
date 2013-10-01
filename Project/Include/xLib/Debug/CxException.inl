@@ -4,7 +4,7 @@
  */
 
 
-#include <xLib/Common/CxString.h>
+#include <xLib/Core/CxString.h>
 
 
 xNAMESPACE_BEGIN(NxLib)

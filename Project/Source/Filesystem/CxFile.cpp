@@ -6,9 +6,9 @@
 
 #include <xLib/Filesystem/CxFile.h>
 
-#include <xLib/Common/CxString.h>
-#include <xLib/Common/CxLocale.h>
-#include <xLib/Common/CxDateTime.h>
+#include <xLib/Core/CxString.h>
+#include <xLib/Core/CxLocale.h>
+#include <xLib/Core/CxDateTime.h>
 #include <xLib/Debug/CxException.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxDir.h>

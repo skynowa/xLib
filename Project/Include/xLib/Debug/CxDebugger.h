@@ -6,8 +6,8 @@
 
 #pragma once
 
-#include <xLib/Common/xCommon.h>
-#include <xLib/Common/CxNonCopyable.h>
+#include <xLib/Core/xCore.h>
+#include <xLib/Core/CxNonCopyable.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 

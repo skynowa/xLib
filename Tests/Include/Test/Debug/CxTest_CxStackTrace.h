@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include <xLib/Common/xCommon.h>
+#include <xLib/Core/xCore.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Debug/CxStackTrace.h>
 //------------------------------------------------------------------------------

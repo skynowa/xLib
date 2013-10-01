@@ -6,7 +6,7 @@
 
 #include <xLib/Log/CxSystemLog.h>
 
-#include <xLib/Common/CxString.h>
+#include <xLib/Core/CxString.h>
 #include <xLib/Filesystem/CxPath.h>
 
 #if !xOS_ENV_WIN

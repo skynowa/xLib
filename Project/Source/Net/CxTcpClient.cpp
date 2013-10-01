@@ -6,7 +6,7 @@
 
 #include <xLib/Net/CxTcpClient.h>
 
-#include <xLib/Common/CxUtils.h>
+#include <xLib/Core/CxUtils.h>
 
 
 xNAMESPACE_BEGIN(NxLib)

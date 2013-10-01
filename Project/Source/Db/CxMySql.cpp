@@ -8,7 +8,7 @@
 
 #if xCXMYSQL_IS_USE
 
-#include <xLib/Common/CxString.h>
+#include <xLib/Core/CxString.h>
 
 #if xOS_ENV_WIN
     #if !xCOMPILER_MINGW

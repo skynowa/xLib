@@ -6,11 +6,11 @@
 
 #include <xLib/Debug/CxErrorReport.h>
 
-#include <xLib/Common/CxConst.h>
-#include <xLib/Common/CxString.h>
-#include <xLib/Common/CxDateTime.h>
-#include <xLib/Common/CxSystemInfo.h>
-#include <xLib/Common/CxConsole.h>
+#include <xLib/Core/CxConst.h>
+#include <xLib/Core/CxString.h>
+#include <xLib/Core/CxDateTime.h>
+#include <xLib/Core/CxSystemInfo.h>
+#include <xLib/Core/CxConsole.h>
 #include <xLib/Debug/CxException.h>
 #include <xLib/Debug/CxDebugger.h>
 #include <xLib/Filesystem/CxPath.h>
@@ -29,15 +29,15 @@ xNAMESPACE_BEGIN(NxLib)
 //------------------------------------------------------------------------------
 /* virtual */
 CxErrorReport::~CxErrorReport() {
-    
+
 }
 //------------------------------------------------------------------------------
 void_t
 CxErrorReport::_construct(
     const ExType    &a_crtType,
-    std::ctstring_t &a_csVar1,       
+    std::ctstring_t &a_csVar1,
     std::ctstring_t &a_csVar2,
-    std::ctstring_t &a_csVar1Value,  
+    std::ctstring_t &a_csVar1Value,
     std::ctstring_t &a_csVar2Value,
     std::ctstring_t &a_csExprSign,
     culong_t        &a_culLastError,
@@ -63,8 +63,8 @@ CxErrorReport::_construct(
     m_sSourceFile     = CxPath( CxPath(a_csFile).brief(cuiReportWidthMax) ).toUnix(false);
     m_ulSourceLine    = a_culLine;
     m_sFunctionName   = a_csFunc;
-    m_sExpression     = CxString::format(xT("%s (%s) %s %s (%s)"), 
-                                          a_csVar1.c_str(), a_csVar1Value.c_str(), a_csExprSign.c_str(), 
+    m_sExpression     = CxString::format(xT("%s (%s) %s %s (%s)"),
+                                          a_csVar1.c_str(), a_csVar1Value.c_str(), a_csExprSign.c_str(),
                                           a_csVar2.c_str(), a_csVar2Value.c_str());
     m_sExprSign       = a_csExprSign;
     m_ulLastError     = a_culLastError;

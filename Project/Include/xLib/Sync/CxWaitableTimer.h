@@ -6,8 +6,8 @@
 
 #pragma once
 
-#include <xLib/Common/xCommon.h>
-#include <xLib/Common/CxHandleT.h>
+#include <xLib/Core/xCore.h>
+#include <xLib/Core/CxHandleT.h>
 //------------------------------------------------------------------------------
 #if xOS_ENV_WIN
 

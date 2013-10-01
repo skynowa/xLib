@@ -6,9 +6,9 @@
 
 #include <xLib/Filesystem/CxPath.h>
 
-#include <xLib/Common/CxChar.h>
-#include <xLib/Common/CxString.h>
-#include <xLib/Common/CxCommandLine.h>
+#include <xLib/Core/CxChar.h>
+#include <xLib/Core/CxString.h>
+#include <xLib/Core/CxCommandLine.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Filesystem/CxDir.h>
 #include <xLib/Sync/CxCurrentProcess.h>

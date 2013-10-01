@@ -6,7 +6,7 @@
 
 #include <Test/Filesystem/CxTest_CxVolume.h>
 
-#include <xLib/Common/CxConst.h>
+#include <xLib/Core/CxConst.h>
 
 //------------------------------------------------------------------------------
 CxTest_CxVolume::CxTest_CxVolume() {

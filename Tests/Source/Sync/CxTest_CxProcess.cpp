@@ -6,7 +6,7 @@
 
 #include <Test/Sync/CxTest_CxProcess.h>
 
-#include <xLib/Common/CxString.h>
+#include <xLib/Core/CxString.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Sync/CxCurrentProcess.h>
 

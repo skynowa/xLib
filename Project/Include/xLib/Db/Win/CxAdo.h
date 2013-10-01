@@ -12,7 +12,7 @@
 
 xNAMESPACE_BEGIN(NxLib)
 
-#import "C:/Program Files/Common Files/System/ado/msado15.dll" no_namespace rename("EOF","EoF")
+#import "C:/Program Files/Core Files/System/ado/msado15.dll" no_namespace rename("EOF","EoF")
 
 #include <string>
 #include <list>

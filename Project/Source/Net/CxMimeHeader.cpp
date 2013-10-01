@@ -6,10 +6,10 @@
 
 #include <xLib/Net/CxMimeHeader.h>
 
-#include <xLib/Common/CxString.h>
+#include <xLib/Core/CxString.h>
 #include <xLib/Filesystem/CxFile.h>
-#include <xLib/Common/CxSystemInfo.h>
-#include <xLib/Common/CxLocale.h>
+#include <xLib/Core/CxSystemInfo.h>
+#include <xLib/Core/CxLocale.h>
 
 
 xNAMESPACE_BEGIN(NxLib)

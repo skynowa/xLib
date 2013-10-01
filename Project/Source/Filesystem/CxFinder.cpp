@@ -6,8 +6,8 @@
 
 #include <xLib/Filesystem/CxFinder.h>
 
-#include <xLib/Common/CxChar.h>
-#include <xLib/Common/CxString.h>
+#include <xLib/Core/CxChar.h>
+#include <xLib/Core/CxString.h>
 #include <xLib/Debug/CxException.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>

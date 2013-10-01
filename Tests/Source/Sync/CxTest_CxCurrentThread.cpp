@@ -6,7 +6,7 @@
 
 #include <Test/Sync/CxTest_CxCurrentThread.h>
 
-#include <xLib/Common/CxDateTime.h>
+#include <xLib/Core/CxDateTime.h>
 
 
 //------------------------------------------------------------------------------
@@ -94,13 +94,13 @@ CxTest_CxCurrentThread::unit(
             cuint_t cuiMsec = caulData[i];
 
             CxDateTime dtTime1;
-            
+
             dtTime1 = CxDateTime::current();
 
             CxCurrentThread::sleep(cuiMsec);
 
             CxDateTime dtTime2;
-            
+
             dtTime2 = CxDateTime::current();
 
             xTEST_GR_EQ(dtTime2.toMilliseconds(), dtTime1.toMilliseconds());

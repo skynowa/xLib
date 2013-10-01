@@ -4,35 +4,32 @@
  */
 
 
-#ifndef xLib_UnitTestH
-#define xLib_UnitTestH
-//------------------------------------------------------------------------------
-#include <xLib/Common/xCommon.h>
-#include <xLib/Common/CxConsole.h>
-#include <xLib/Common/CxCommandLine.h>
+#include <xLib/Core/xCore.h>
+#include <xLib/Core/CxConsole.h>
+#include <xLib/Core/CxCommandLine.h>
 #include <xLib/Test/CxTestManager.h>
 
-// Common
-#include <Test/Common/CxTest_CxNonCopyable.h>
-#include <Test/Common/CxTest_CxNonAssignable.h>
-#include <Test/Common/CxTest_CxNonHeap.h>
-#include <Test/Common/CxTest_CxNonArrayHeap.h>
-#include <Test/Common/CxTest_CxUtils.h>
-#include <Test/Common/CxTest_CxHandleT.h>
-#include <Test/Common/CxTest_CxType.h>
-#include <Test/Common/CxTest_CxFlags.h>
-#include <Test/Common/CxTest_CxFunctorT.h>
-#include <Test/Common/CxTest_CxArray.h>
-#include <Test/Common/CxTest_CxChar.h>
-#include <Test/Common/CxTest_CxLocale.h>
-#include <Test/Common/CxTest_CxString.h>
-#include <Test/Common/CxTest_CxDateTime.h>
-#include <Test/Common/CxTest_CxSystemInfo.h>
-#include <Test/Common/CxTest_CxProcessInfo.h>
-#include <Test/Common/CxTest_CxConsole.h>
-#include <Test/Common/CxTest_CxCommandLine.h>
-#include <Test/Common/CxTest_CxShell.h>
-#include <Test/Common/Win/CxTest_CxCom.h>
+// Core
+#include <Test/Core/CxTest_CxNonCopyable.h>
+#include <Test/Core/CxTest_CxNonAssignable.h>
+#include <Test/Core/CxTest_CxNonHeap.h>
+#include <Test/Core/CxTest_CxNonArrayHeap.h>
+#include <Test/Core/CxTest_CxUtils.h>
+#include <Test/Core/CxTest_CxHandleT.h>
+#include <Test/Core/CxTest_CxType.h>
+#include <Test/Core/CxTest_CxFlags.h>
+#include <Test/Core/CxTest_CxFunctorT.h>
+#include <Test/Core/CxTest_CxArray.h>
+#include <Test/Core/CxTest_CxChar.h>
+#include <Test/Core/CxTest_CxLocale.h>
+#include <Test/Core/CxTest_CxString.h>
+#include <Test/Core/CxTest_CxDateTime.h>
+#include <Test/Core/CxTest_CxSystemInfo.h>
+#include <Test/Core/CxTest_CxProcessInfo.h>
+#include <Test/Core/CxTest_CxConsole.h>
+#include <Test/Core/CxTest_CxCommandLine.h>
+#include <Test/Core/CxTest_CxShell.h>
+#include <Test/Core/Win/CxTest_CxCom.h>
 
 // Crypt
 #include <Test/Crypt/CxTest_CxBase64.h>
@@ -164,7 +161,7 @@ xTMAIN(int_t iArgCount, tchar_t *paszArgs[]) {
     {
         CxTestManager tmManager(bIsUseTracing);
 
-        // Common
+        // Core
         tmManager.add(new CxTest_CxNonCopyable);
         tmManager.add(new CxTest_CxNonAssignable);
         tmManager.add(new CxTest_CxNonHeap);
@@ -271,4 +268,3 @@ xTMAIN(int_t iArgCount, tchar_t *paszArgs[]) {
     return EXIT_SUCCESS;
 }
 //------------------------------------------------------------------------------
-#endif // xLib_UnitTestH

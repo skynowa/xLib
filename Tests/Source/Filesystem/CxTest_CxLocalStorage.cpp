@@ -6,8 +6,8 @@
 
 #include <Test/Filesystem/CxTest_CxLocalStorage.h>
 
-#include <xLib/Common/CxConst.h>
-#include <xLib/Common/CxString.h>
+#include <xLib/Core/CxConst.h>
+#include <xLib/Core/CxString.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Filesystem/CxPath.h>
 

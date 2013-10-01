@@ -4,11 +4,10 @@
  */
 
 
-#ifndef xLib_Sync_CxCompletionPortH
-#define xLib_Sync_CxCompletionPortH
-//------------------------------------------------------------------------------
-#include <xLib/Common/xCommon.h>
-#include <xLib/Common/CxHandleT.h>
+#pragma once
+
+#include <xLib/Core/xCore.h>
+#include <xLib/Core/CxHandleT.h>
 //------------------------------------------------------------------------------
 #if xOS_ENV_WIN
 
@@ -37,4 +36,3 @@ xNAMESPACE_END(NxLib)
 
 #endif
 //------------------------------------------------------------------------------
-#endif // xLib_Sync_CxCompletionPortH

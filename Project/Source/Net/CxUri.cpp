@@ -6,8 +6,8 @@
 
 #include <xLib/Net/CxUri.h>
 
-#include <xLib/Common/CxConst.h>
-#include <xLib/Common/CxString.h>
+#include <xLib/Core/CxConst.h>
+#include <xLib/Core/CxString.h>
 
 
 xNAMESPACE_BEGIN(NxLib)
@@ -78,7 +78,7 @@ telnet : //192.0.2.16:80/
 */
 std::tstring_t
 CxUri::uri() const {
-    
+
 
     std::tstring_t sRv;
     std::tstring_t sTemp;
@@ -117,14 +117,14 @@ CxUri::uri() const {
 }
 void_t
 CxUri::setUri(
-    std::ctstring_t &a_csScheme, 
-    std::ctstring_t &a_csAuthority, 
-    std::ctstring_t &a_csPath, 
-    std::ctstring_t &a_csQuery, 
+    std::ctstring_t &a_csScheme,
+    std::ctstring_t &a_csAuthority,
+    std::ctstring_t &a_csPath,
+    std::ctstring_t &a_csQuery,
     std::ctstring_t &a_csFragment
 )
 {
-    
+
 
     setScheme   (a_csScheme);
     setAuthority(a_csAuthority);
@@ -262,7 +262,7 @@ CxUri::escape(
     std::ctstring_t &csUri
 )
 {
-    
+
 
     /*
     int_t    c;
@@ -305,7 +305,7 @@ CxUri::unescape(
     std::ctstring_t &csUri
 )
 {
-    
+
 
     std::tstring_t sRv;
 

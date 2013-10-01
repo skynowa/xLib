@@ -6,7 +6,7 @@
 
 #include <Test/Debug/CxTest_CxException.h>
 
-#include <xLib/Common/CxConst.h>
+#include <xLib/Core/CxConst.h>
 
 
 //------------------------------------------------------------------------------

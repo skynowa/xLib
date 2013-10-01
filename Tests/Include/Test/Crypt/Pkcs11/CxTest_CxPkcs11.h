@@ -7,7 +7,7 @@
 #ifndef CxTest_CxPkcs11H
 #define CxTest_CxPkcs11H
 //------------------------------------------------------------------------------
-#include <xLib/Common/xCommon.h>
+#include <xLib/Core/xCore.h>
 #include <xLib/Test/CxTest.h>
 
 #if   xOS_ENV_WIN
