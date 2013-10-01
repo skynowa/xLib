@@ -117,22 +117,22 @@
 #include <sys/stat.h>
 
 // C library
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdio>
+#include <cstdlib>
 #include <cctype>
 #include <cstring>
 #include <ctime>
-#include <errno.h>
-#include <stdarg.h>
-#include <stddef.h>
-#include <math.h>
-#include <limits.h>
-#include <assert.h>
-#include <locale.h>
+#include <cerrno>
+#include <cstdarg>
+#include <cstddef>
+#include <cmath>
+#include <climits>
+#include <cassert>
+#include <clocale>
 
 #if xUNICODE
-    #include <wchar.h>
-    #include <wctype.h>
+    #include <cwchar>
+    #include <cwctype>
 #endif
 
 // STL
