@@ -6,9 +6,9 @@
 
 #pragma once
 
-#include <xLib/Common/xCommon.h>
+#include <xLib/Core/xCore.h>
 #include <xLib/Log/CxFileLog.h>
-#include <xLib/Common/CxDateTime.h>
+#include <xLib/Core/CxDateTime.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 

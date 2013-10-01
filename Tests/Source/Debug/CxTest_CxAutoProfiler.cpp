@@ -6,7 +6,7 @@
 
 #include <Test/Debug/CxTest_CxAutoProfiler.h>
 
-#include <xLib/Common/CxConst.h>
+#include <xLib/Core/CxConst.h>
 #include <xLib/Sync/CxCurrentThread.h>
 #include <xLib/Filesystem/CxFile.h>
 

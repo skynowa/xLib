@@ -6,7 +6,7 @@
 
 #include <Test/Net/CxTest_CxCookiePv1.h>
 
-#include <xLib/Common/CxString.h>
+#include <xLib/Core/CxString.h>
 
 
 //------------------------------------------------------------------------------
@@ -34,7 +34,7 @@ CxTest_CxCookiePv1::unit(
     cbool_t           cbHttpOnly  = true;
     std::ctstring_t csRawCookie = CxString::format(
                                         xT("%s=\"%s\"; Comment=\"%s\"; Domain=\"%s\"; Path=\"%s\"; Max-Age=\"%lli\"; Secure; HttpOnly; Version=\"1\""),
-                                        csName.c_str(), csValue.c_str(), csComment.c_str(), csDomain.c_str(), 
+                                        csName.c_str(), csValue.c_str(), csComment.c_str(), csDomain.c_str(),
                                         csPath.c_str(), ciMaxAge /*cbSecure = true, cbHttpOnly = true*/);
 
     xTEST_CASE("CxCookiePv1::CxCookiePv1", a_cullCaseLoops)

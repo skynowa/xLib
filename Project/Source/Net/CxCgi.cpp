@@ -6,9 +6,9 @@
 
 #include <xLib/Net/CxCgi.h>
 
-#include <xLib/Common/CxUtils.h>
-#include <xLib/Common/CxConst.h>
-#include <xLib/Common/CxString.h>
+#include <xLib/Core/CxUtils.h>
+#include <xLib/Core/CxConst.h>
+#include <xLib/Core/CxString.h>
 #include <xLib/Filesystem/CxEnvironment.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Net/CxCookiePv0.h>

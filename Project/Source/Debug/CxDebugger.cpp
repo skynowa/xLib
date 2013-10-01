@@ -6,9 +6,9 @@
 
 #include <xLib/Debug/CxDebugger.h>
 
-#include <xLib/Common/CxDateTime.h>
-#include <xLib/Common/CxSystemInfo.h>
-#include <xLib/Common/CxConsole.h>
+#include <xLib/Core/CxDateTime.h>
+#include <xLib/Core/CxSystemInfo.h>
+#include <xLib/Core/CxConsole.h>
 #include <xLib/Debug/CxErrorReport.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxEnvironment.h>

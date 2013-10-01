@@ -6,7 +6,7 @@
 
 #include <Test/Filesystem/CxTest_CxPath.h>
 
-#include <xLib/Common/CxCommandLine.h>
+#include <xLib/Core/CxCommandLine.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Filesystem/CxDir.h>
 
@@ -604,14 +604,14 @@ CxTest_CxPath::unit(
                     xT("../../../Source/Debug/CxTest.cpp"),
                     xT("../../../Source/Filesystem/CxPath"),
                     xT("CxTest_CxPath.cpp"),
-                    xT("Tests/Source/Common/CxTest_CxSystemInfo.cpp"),
+                    xT("Tests/Source/Core/CxTest_CxSystemInfo.cpp"),
                     xT("p"),
                     xT("1"),
                 #elif xOS_ENV_UNIX
                     xT("../../../Source/Debug/CxTest.cpp"),
                     xT("../../../Source/Filesystem/CxPath"),
                     xT("CxTest_CxPath.cpp"),
-                    xT("Tests/Source/Common/CxTest_CxSystemInfo.cpp"),
+                    xT("Tests/Source/Core/CxTest_CxSystemInfo.cpp"),
                     xT("p"),
                     xT("1"),
                 #endif

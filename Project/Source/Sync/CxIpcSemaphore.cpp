@@ -6,7 +6,7 @@
 
 #include <xLib/Sync/CxIpcSemaphore.h>
 
-#include <xLib/Common/CxConst.h>
+#include <xLib/Core/CxConst.h>
 #include <xLib/Filesystem/CxPath.h>
 
 #if xOS_ENV_WIN

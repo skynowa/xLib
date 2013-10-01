@@ -6,7 +6,7 @@
 
 #include <xLib/Net/CxHttpClient.h>  //65536
 
-#include <xLib/Common/CxConst.h>
+#include <xLib/Core/CxConst.h>
 
 
 xNAMESPACE_BEGIN(NxLib)
@@ -23,7 +23,7 @@ CxHttpClient::~CxHttpClient() {
 //TODO: bHead ()
 void_t
 CxHttpClient::head(
-    std::ctstring_t &a_csUrl, 
+    std::ctstring_t &a_csUrl,
     std::tstring_t  *a_psResponse
 )
 {
@@ -46,7 +46,7 @@ CxHttpClient::head(
 //TODO: bGet ()
 void_t
 CxHttpClient::get(
-    std::ctstring_t &a_csUrl,  
+    std::ctstring_t &a_csUrl,
     std::tstring_t  *a_psResponse
 )
 {
@@ -56,10 +56,10 @@ CxHttpClient::get(
 //TODO: bPost ()
 void_t
 CxHttpClient::post(
-    std::ctstring_t &a_csUrl,  
-    std::ctstring_t &a_csParams, 
+    std::ctstring_t &a_csUrl,
+    std::ctstring_t &a_csParams,
     std::tstring_t  *a_psResponse
-) 
+)
 {
     xNOT_IMPLEMENTED;
 }
@@ -155,13 +155,13 @@ CxHttpClient::unlink(
 //------------------------------------------------------------------------------
 //TODO: CxStatusLine ()
 CxHttpClient::CxStatusLine::CxStatusLine() {
-    
+
 
 }
 //------------------------------------------------------------------------------
 //TODO: ~CxStatusLine ()
 CxHttpClient::CxStatusLine::~CxStatusLine() {
-    
+
 
 }
 //------------------------------------------------------------------------------
@@ -176,13 +176,13 @@ CxHttpClient::CxStatusLine::~CxStatusLine() {
 //------------------------------------------------------------------------------
 //TODO: CxHeader ()
 CxHttpClient::CxHeader::CxHeader() {
-    
+
 
 }
 //------------------------------------------------------------------------------
 //TODO: ~CxHeader ()
 CxHttpClient::CxHeader::~CxHeader() {
-    
+
 
 }
 //------------------------------------------------------------------------------
@@ -197,13 +197,13 @@ CxHttpClient::CxHeader::~CxHeader() {
 //------------------------------------------------------------------------------
 //TODO: CxBody ()
 CxHttpClient::CxBody::CxBody() {
-    
+
 
 }
 //------------------------------------------------------------------------------
 //TODO: ~CxBody ()
 CxHttpClient::CxBody::~CxBody() {
-    
+
 
 }
 //------------------------------------------------------------------------------

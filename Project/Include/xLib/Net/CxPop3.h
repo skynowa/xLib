@@ -9,7 +9,7 @@
 #include <xLib/Net/CxSocketInit.h>
 #include <xLib/Net/CxTcpClient.h>
 #include <xLib/Net/CxDnsClient.h>
-#include <xLib/Common/xCommon.h>
+#include <xLib/Core/xCore.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 

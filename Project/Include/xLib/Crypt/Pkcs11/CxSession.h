@@ -7,8 +7,8 @@
 #ifndef xLib_Pkcs11_CxSessionH
 #define xLib_Pkcs11_CxSessionH
 //------------------------------------------------------------------------------
-#include <xLib/Common/xCommon.h>
-#include <xLib/Crypt/Pkcs11/Common.h>
+#include <xLib/Core/xCore.h>
+#include <xLib/Crypt/Pkcs11/Core.h>
 //------------------------------------------------------------------------------
 #if   xOS_ENV_WIN
 

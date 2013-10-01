@@ -6,7 +6,7 @@
 
 #include <Test/Filesystem/CxTest_CxEnvironment.h>
 
-#include <xLib/Common/CxString.h>
+#include <xLib/Core/CxString.h>
 
 
 //------------------------------------------------------------------------------

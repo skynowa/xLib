@@ -7,7 +7,7 @@
 #pragma once
 
 #include <xLib/Net/CxSocket.h>
-#include <xLib/Common/xCommon.h>
+#include <xLib/Core/xCore.h>
 #include <xLib/Test/CxTest.h>
 //------------------------------------------------------------------------------
 class CxTest_CxSocket :

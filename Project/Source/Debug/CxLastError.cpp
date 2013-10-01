@@ -6,8 +6,8 @@
 
 #include <xLib/Debug/CxLastError.h>
 
-#include <xLib/Common/CxConst.h>
-#include <xLib/Common/CxString.h>
+#include <xLib/Core/CxConst.h>
+#include <xLib/Core/CxString.h>
 
 
 xNAMESPACE_BEGIN(NxLib)

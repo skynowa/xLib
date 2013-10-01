@@ -12,7 +12,7 @@
     // lib: -lrt
 #endif
 
-#include <xLib/Common/CxConst.h>
+#include <xLib/Core/CxConst.h>
 #include <xLib/Filesystem/CxPath.h>
 
 

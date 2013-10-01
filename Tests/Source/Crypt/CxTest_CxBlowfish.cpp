@@ -6,7 +6,7 @@
 
 #include <Test/Crypt/CxTest_CxBlowfish.h>
 
-#include <xLib/Common/CxConst.h>
+#include <xLib/Core/CxConst.h>
 #include <xLib/Filesystem/CxFile.h>
 
 

@@ -8,7 +8,7 @@
 
 #if xCXMYSQL_IS_USE
 
-#include <xLib/Common/xCommon.h>
+#include <xLib/Core/xCore.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Db/CxMySql.h>
 //------------------------------------------------------------------------------

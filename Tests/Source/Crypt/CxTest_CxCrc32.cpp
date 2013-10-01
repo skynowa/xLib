@@ -6,7 +6,7 @@
 
 #include <Test/Crypt/CxTest_CxCrc32.h>
 
-#include <xLib/Common/CxConst.h>
+#include <xLib/Core/CxConst.h>
 
 
 //------------------------------------------------------------------------------

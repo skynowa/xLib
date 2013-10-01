@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include <xLib/Common/xCommon.h>
+#include <xLib/Core/xCore.h>
 #include <xLib/Debug/CxProfiler.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)

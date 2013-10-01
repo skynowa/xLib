@@ -6,8 +6,8 @@
 
 #include <xLib/Test/CxTestManager.h>
 
-#include <xLib/Common/CxType.h>
-#include <xLib/Common/CxString.h>
+#include <xLib/Core/CxType.h>
+#include <xLib/Core/CxString.h>
 #include <xLib/Filesystem/CxPath.h>
 
 
@@ -26,7 +26,7 @@ CxTestManager::CxTestManager(
     _m_cbIsUseTracing(a_cbIsUseTracing),
     _m_ctnTests      ()
 {
-    xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("\n\nCxTestManager: *** %s v.%s %s (author: %s date: %s) ***"), 
+    xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("\n\nCxTestManager: *** %s v.%s %s (author: %s date: %s) ***"),
                                          xLIB_NAME, xLIB_VERSION, xLIB_VERSION_SUFFIX, xLIB_AUTHOR, xLIB_DATE));
     xCHECK_DO(_m_cbIsUseTracing, xTRACE (xT("\n")));
 }
@@ -73,10 +73,10 @@ CxTestManager::run(
     xCHECK_DO(_m_cbIsUseTracing, xTRACE (xT("\n")));
     xCHECK_DO(_m_cbIsUseTracing, xTRACE (xT("CxTestManager: start all tests...")));
     xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: module path: %s"), CxPath::exe().c_str()));
-    xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: all loops: %") xPR_I64u 
-                                         xT(", unit loops: %") xPR_I64u 
-                                         xT(", case loops: %") xPR_I64u 
-                                         xT(", unit number: %") xPR_SIZET xT("\n"), 
+    xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: all loops: %") xPR_I64u
+                                         xT(", unit loops: %") xPR_I64u
+                                         xT(", case loops: %") xPR_I64u
+                                         xT(", unit number: %") xPR_SIZET xT("\n"),
                                          a_cullAllLoops, a_cullUnitLoops, a_cullCaseLoops, _m_ctnTests.size()));
 
     for (ulonglong_t i = 0ULL; i < a_cullAllLoops; ++ i) {

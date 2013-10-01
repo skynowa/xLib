@@ -6,12 +6,12 @@
 
 #include <xLib/Crypt/CxBase64.h>
 
-#include <xLib/Common/CxChar.h>
+#include <xLib/Core/CxChar.h>
 
 
 xNAMESPACE_ANONYM_BEGIN
 
-std::cstring_t g_csBase64Chars = 
+std::cstring_t g_csBase64Chars =
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         "abcdefghijklmnopqrstuvwxyz"
         "0123456789+/";
@@ -79,7 +79,7 @@ CxBase64::encode(
 }
 //------------------------------------------------------------------------------
 /* static */
-std::string 
+std::string
 CxBase64::encode(
     std::cstring_t &a_csStr
 )
