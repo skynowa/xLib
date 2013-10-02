@@ -74,7 +74,7 @@ inline std::string
 currentDateTime()
 {
     char       srv[80 + 1] = {};
-    time_t     now         = ::time(nullptr);
+    time_t     now         = ::time(NULL);
     struct tm *tms         = ::localtime(&now);
 
     size_t urv = ::strftime(srv, sizeof(srv), "%Y-%m-%d.%X", tms);
