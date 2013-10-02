@@ -66,6 +66,10 @@
 
 #define xSTD_TEST_NA(expr) ;
     ///< test macros
+
+#define xSTD_ARRAY_SIZE(a) \
+    ( sizeof(a) / sizeof((a)[0]) )
+    ///< get array size
 //------------------------------------------------------------------------------
 /**
  * current date/time, format is YYYY-MM-DD.HH:mm:ss
