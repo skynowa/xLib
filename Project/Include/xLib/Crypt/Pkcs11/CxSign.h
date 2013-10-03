@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Pkcs11_CxSignH
-#define xLib_Pkcs11_CxSignH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Core/xCore.h>
 #include <xLib/Crypt/Pkcs11/Core.h>
 //------------------------------------------------------------------------------
@@ -51,4 +50,3 @@ xNAMESPACE_END(NxLib)
 
 #endif
 //------------------------------------------------------------------------------
-#endif // xLib_Pkcs11_CxSignH

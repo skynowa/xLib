@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Pkcs11_CxSlotH
-#define xLib_Pkcs11_CxSlotH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Core/xCore.h>
 #include <xLib/Crypt/Pkcs11/Core.h>
 //------------------------------------------------------------------------------
@@ -49,4 +48,3 @@ xNAMESPACE_END(NxLib)
 
 #endif
 //------------------------------------------------------------------------------
-#endif // xLib_Pkcs11_CxSlotH

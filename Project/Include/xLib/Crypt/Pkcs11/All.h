@@ -4,11 +4,10 @@
  */
 
 
-#ifndef xLib_Pkcs11_AllH
-#define xLib_Pkcs11_AllH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Core/xCore.h>
-//------------------------------------------------------------------------------
+
 #if xOS_ENV_WIN
     #include <xLib/Crypt/Pkcs11/Core.h>
 
@@ -34,5 +33,3 @@
     #include <xLib/Crypt/Pkcs11/CxSign.h>
     #include <xLib/Crypt/Pkcs11/CxVerify.h>
 #endif
-//------------------------------------------------------------------------------
-#endif // xLib_Pkcs11_AllH
