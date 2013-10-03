@@ -4,9 +4,8 @@
  */
 
 
-#ifndef xLib_Pkcs11_CxMechanismH
-#define xLib_Pkcs11_CxMechanismH
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Core/xCore.h>
 #include <xLib/Crypt/Pkcs11/Core.h>
 //------------------------------------------------------------------------------
@@ -39,4 +38,3 @@ xNAMESPACE_END(NxLib)
 
 #endif
 //------------------------------------------------------------------------------
-#endif // xLib_Pkcs11_CxMechanismH

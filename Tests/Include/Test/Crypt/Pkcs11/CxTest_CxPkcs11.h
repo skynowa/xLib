@@ -4,9 +4,8 @@
  */
 
 
-#ifndef CxTest_CxPkcs11H
-#define CxTest_CxPkcs11H
-//------------------------------------------------------------------------------
+#pragma once
+
 #include <xLib/Core/xCore.h>
 #include <xLib/Test/CxTest.h>
 
@@ -24,4 +23,3 @@ public:
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------
-#endif //CxTest_CxPkcs11H
