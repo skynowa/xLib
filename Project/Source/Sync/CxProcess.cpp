@@ -7,8 +7,8 @@
 #include <xLib/Sync/CxProcess.h>
 
 #include <xLib/Core/CxString.h>
-#include <xLib/Core/CxSystemInfo.h>
-#include <xLib/Core/CxProcessInfo.h>
+#include <xLib/System/CxSystemInfo.h>
+#include <xLib/System/CxProcessInfo.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Sync/CxCurrentThread.h>

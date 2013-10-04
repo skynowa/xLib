@@ -11,7 +11,7 @@
 #include <xLib/Debug/CxException.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
-#include <xLib/Filesystem/CxEnvironment.h>
+#include <xLib/System/CxEnvironment.h>
 #include <xLib/Sync/CxCurrentThread.h>
 
 

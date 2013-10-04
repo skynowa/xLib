@@ -9,8 +9,8 @@
 #include <xLib/Core/CxConst.h>
 #include <xLib/Core/CxString.h>
 #include <xLib/Core/CxDateTime.h>
-#include <xLib/Core/CxSystemInfo.h>
-#include <xLib/Core/CxConsole.h>
+#include <xLib/System/CxSystemInfo.h>
+#include <xLib/System/CxConsole.h>
 #include <xLib/Debug/CxException.h>
 #include <xLib/Debug/CxDebugger.h>
 #include <xLib/Filesystem/CxPath.h>

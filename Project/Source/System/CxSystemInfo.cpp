@@ -4,13 +4,13 @@
  */
 
 
-#include <xLib/Core/CxSystemInfo.h>
+#include <xLib/System/CxSystemInfo.h>
 
 #include <xLib/Core/CxConst.h>
 #include <xLib/Core/CxString.h>
-#include <xLib/Core/CxShell.h>
+#include <xLib/System/CxShell.h>
+#include <xLib/System/CxEnvironment.h>
 #include <xLib/Filesystem/CxPath.h>
-#include <xLib/Filesystem/CxEnvironment.h>
 #include <xLib/Filesystem/CxDll.h>
 #include <xLib/Sync/CxCurrentProcess.h>
 

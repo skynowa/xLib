@@ -9,7 +9,7 @@
 #include <xLib/Core/CxUtils.h>
 #include <xLib/Core/CxConst.h>
 #include <xLib/Core/CxString.h>
-#include <xLib/Filesystem/CxEnvironment.h>
+#include <xLib/System/CxEnvironment.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Net/CxCookiePv0.h>
 #include <xLib/Net/CxCookiePv1.h>
