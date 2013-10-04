@@ -8,7 +8,7 @@
 
 #include <xLib/Core/CxString.h>
 #include <xLib/Filesystem/CxFile.h>
-#include <xLib/Core/CxSystemInfo.h>
+#include <xLib/System/CxSystemInfo.h>
 #include <xLib/Core/CxLocale.h>
 
 

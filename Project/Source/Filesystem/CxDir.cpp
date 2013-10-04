@@ -12,7 +12,7 @@
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Filesystem/CxFileType.h>
-#include <xLib/Filesystem/CxEnvironment.h>
+#include <xLib/System/CxEnvironment.h>
 #include <xLib/Filesystem/CxFinder.h>
 #include <xLib/Sync/CxCurrentThread.h>
 

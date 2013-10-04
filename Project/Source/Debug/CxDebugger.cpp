@@ -7,11 +7,11 @@
 #include <xLib/Debug/CxDebugger.h>
 
 #include <xLib/Core/CxDateTime.h>
-#include <xLib/Core/CxSystemInfo.h>
-#include <xLib/Core/CxConsole.h>
+#include <xLib/System/CxSystemInfo.h>
+#include <xLib/System/CxConsole.h>
 #include <xLib/Debug/CxErrorReport.h>
 #include <xLib/Filesystem/CxPath.h>
-#include <xLib/Filesystem/CxEnvironment.h>
+#include <xLib/System/CxEnvironment.h>
 #include <xLib/Sync/CxCurrentProcess.h>
 #include <xLib/Gui/Dialogs/CxMsgBoxT.h>
 

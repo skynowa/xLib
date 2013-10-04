@@ -4,7 +4,7 @@
  */
 
 
-#include <xLib/Core/CxConsole.h>
+#include <xLib/System/CxConsole.h>
 
 #include <xLib/Core/CxConst.h>
 #include <xLib/Core/CxString.h>

@@ -24,11 +24,7 @@
 #include <Test/Core/CxTest_CxLocale.h>
 #include <Test/Core/CxTest_CxString.h>
 #include <Test/Core/CxTest_CxDateTime.h>
-#include <Test/Core/CxTest_CxSystemInfo.h>
-#include <Test/Core/CxTest_CxProcessInfo.h>
-#include <Test/Core/CxTest_CxConsole.h>
 #include <Test/Core/CxTest_CxCommandLine.h>
-#include <Test/Core/CxTest_CxShell.h>
 #include <Test/Core/Win/CxTest_CxCom.h>
 
 // Crypt
@@ -67,7 +63,6 @@
 #include <Test/Filesystem/CxTest_CxFinder.h>
 #include <Test/Filesystem/CxTest_CxDir.h>
 #include <Test/Filesystem/CxTest_CxVolume.h>
-#include <Test/Filesystem/CxTest_CxEnvironment.h>
 #include <Test/Filesystem/CxTest_CxLocalStorage.h>
 #include <Test/Filesystem/CxTest_CxBackuper.h>
 
@@ -110,6 +105,13 @@
 
 // Gui
 #include <Test/Gui/Dialogs/CxTest_CxMsgBoxT.h>
+
+// System
+#include <Test/System/CxTest_CxEnvironment.h>
+#include <Test/System/CxTest_CxSystemInfo.h>
+#include <Test/System/CxTest_CxProcessInfo.h>
+#include <Test/System/CxTest_CxConsole.h>
+#include <Test/System/CxTest_CxShell.h>
 //------------------------------------------------------------------------------
 int_t
 xTMAIN(int_t iArgCount, tchar_t *paszArgs[]) {
@@ -175,11 +177,7 @@ xTMAIN(int_t iArgCount, tchar_t *paszArgs[]) {
         tmManager.add(new CxTest_CxLocale);
         tmManager.add(new CxTest_CxString);
         tmManager.add(new CxTest_CxDateTime);
-        tmManager.add(new CxTest_CxSystemInfo);
-        tmManager.add(new CxTest_CxProcessInfo);
-        tmManager.add(new CxTest_CxConsole);
         tmManager.add(new CxTest_CxCommandLine);
-        tmManager.add(new CxTest_CxShell);
         tmManager.add(new CxTest_CxCom);
 
         // Crypt
@@ -214,7 +212,6 @@ xTMAIN(int_t iArgCount, tchar_t *paszArgs[]) {
         tmManager.add(new CxTest_CxFinder);
         tmManager.add(new CxTest_CxDir);
         tmManager.add(new CxTest_CxVolume);
-        tmManager.add(new CxTest_CxEnvironment);
         tmManager.add(new CxTest_CxLocalStorage);
         tmManager.add(new CxTest_CxBackuper);
 
@@ -259,6 +256,13 @@ xTMAIN(int_t iArgCount, tchar_t *paszArgs[]) {
 
         // Gui
         tmManager.add(new CxTest_CxMsgBoxT);
+
+        // System
+        tmManager.add(new CxTest_CxEnvironment);
+        tmManager.add(new CxTest_CxSystemInfo);
+        tmManager.add(new CxTest_CxProcessInfo);
+        tmManager.add(new CxTest_CxConsole);
+        tmManager.add(new CxTest_CxShell);
 
         tmManager.run(ullAllLoops, ullUnitLoops, ullCaseLoops);
     }
