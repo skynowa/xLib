@@ -7,7 +7,7 @@
 #include <Test/Sync/CxTest_CxThread.h>
 
 #include <xLib/Core/CxDateTime.h>
-#include <xLib/Core/CxSystemInfo.h>
+#include <xLib/System/CxSystemInfo.h>
 
 
 /*******************************************************************************

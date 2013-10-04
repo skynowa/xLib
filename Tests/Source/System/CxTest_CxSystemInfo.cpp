@@ -4,7 +4,7 @@
  */
 
 
-#include <Test/Core/CxTest_CxSystemInfo.h>
+#include <Test/System/CxTest_CxSystemInfo.h>
 
 #include <xLib/Core/CxString.h>
 #include <xLib/Filesystem/CxFile.h>

@@ -8,7 +8,7 @@
 
 #include <xLib/Core/xCore.h>
 #include <xLib/Test/CxTest.h>
-#include <xLib/Filesystem/CxEnvironment.h>
+#include <xLib/System/CxEnvironment.h>
 //------------------------------------------------------------------------------
 class CxTest_CxEnvironment :
     public CxTest

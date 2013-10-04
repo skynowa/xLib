@@ -5,8 +5,8 @@
 
 
 #include <xLib/Core/xCore.h>
-#include <xLib/Core/CxConsole.h>
 #include <xLib/Core/CxCommandLine.h>
+#include <xLib/System/CxConsole.h>
 #include <xLib/Test/CxTestManager.h>
 
 // Core
