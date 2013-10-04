@@ -4,7 +4,7 @@
  */
 
 
-#include <Test/Core/CxTest_CxShell.h>
+#include <Test/System/CxTest_CxShell.h>
 
 
 //------------------------------------------------------------------------------

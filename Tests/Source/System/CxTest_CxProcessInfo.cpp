@@ -4,7 +4,7 @@
  */
 
 
-#include <Test/Core/CxTest_CxProcessInfo.h>
+#include <Test/System/CxTest_CxProcessInfo.h>
 
 #include <xLib/Sync/CxCurrentProcess.h>
 #include <xLib/Filesystem/CxPath.h>

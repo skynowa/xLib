@@ -8,7 +8,7 @@
 
 #include <xLib/Core/xCore.h>
 #include <xLib/Test/CxTest.h>
-#include <xLib/Core/CxConsole.h>
+#include <xLib/System/CxConsole.h>
 //------------------------------------------------------------------------------
 class CxTest_CxConsole :
     public CxTest

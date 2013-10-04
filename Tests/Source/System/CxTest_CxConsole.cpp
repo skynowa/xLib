@@ -4,7 +4,7 @@
  */
 
 
-#include <Test/Core/CxTest_CxConsole.h>
+#include <Test/System/CxTest_CxConsole.h>
 
 
 //------------------------------------------------------------------------------
