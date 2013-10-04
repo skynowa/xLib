@@ -45,7 +45,6 @@
 #include <Test/Crypt/Pkcs11/CxTest_CxPkcs11.h>
 
 // Db
-#include <Test/Db/CxTest_CxConnectionString.h>
 //#include <Test/Db/CxTest_CxMySql.h>
 
 // Debug
@@ -193,7 +192,6 @@ xTMAIN(int_t iArgCount, tchar_t *paszArgs[]) {
     #endif
 
         // Db
-        tmManager.add(new CxTest_CxConnectionString);
         // tmManager.add(new CxTest_CxMySql);
 
         // Debug
