@@ -26,13 +26,13 @@ class CxHandleT
     /// handle
 {
 public:
-                    CxHandleT  ();
+                    CxHandleT();
         ///< constructor
-    explicit        CxHandleT  (cnative_handle_t &chHandle);
+    explicit        CxHandleT(cnative_handle_t &chHandle);
         ///< constructor
-    explicit        CxHandleT  (const CxHandleT &chHandle);
+    explicit        CxHandleT(const CxHandleT &chHandle);
         ///< constructor
-    virtual        ~CxHandleT  ();
+    virtual        ~CxHandleT();
         ///< destructor
 
     CxHandleT &     operator = (cnative_handle_t &chHandle);
@@ -40,31 +40,31 @@ public:
     CxHandleT &     operator = (const CxHandleT &chHandle);
         ///< operator =
 
-    native_handle_t get        () const xWARN_UNUSED_RV;
+    native_handle_t get() const xWARN_UNUSED_RV;
         ///< get
-    void_t          set        (cnative_handle_t &chHandle);
+    void_t          set(cnative_handle_t &chHandle);
         ///< set
-    native_handle_t duplicate  () const xWARN_UNUSED_RV;
+    native_handle_t duplicate() const xWARN_UNUSED_RV;
         ///< duplicate handle
 
-    bool_t          isValid    () const xWARN_UNUSED_RV;
+    bool_t          isValid() const xWARN_UNUSED_RV;
         ///< is valid
-    void_t          attach     (cnative_handle_t &chHandle);
+    void_t          attach(cnative_handle_t &chHandle);
         ///< attach
-    native_handle_t detach     () xWARN_UNUSED_RV;
+    native_handle_t detach() xWARN_UNUSED_RV;
         ///< detach
-    void_t          close      ();
+    void_t          close();
         ///< close
 
 #if xOS_ENV_WIN
-    ulong_t         info       () const xWARN_UNUSED_RV;
+    ulong_t         info() const xWARN_UNUSED_RV;
         ///< get certain properties of an object handle
-    void_t          setInfo    (culong_t &culMask, culong_t &culFlags);
+    void_t          setInfo(culong_t &culMask, culong_t &culFlags);
         ///< set information
 #endif
 
 private:
-    typedef CxHandleErrorT<hvTag>  error_value_t;
+    typedef CxHandleErrorT<hvTag> error_value_t;
 
     native_handle_t _m_hHandle;    ///< handle
 };

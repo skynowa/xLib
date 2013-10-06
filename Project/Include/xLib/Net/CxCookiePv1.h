@@ -22,54 +22,54 @@ public:
     virtual          ~CxCookiePv1();
         ///< destructor
 
-    void_t            init       (std::ctstring_t &csRawCookie);
+    void_t            init(std::ctstring_t &csRawCookie);
         ///< parsing raw cookie string pv0
 
-    std::ctstring_t & name       () const xWARN_UNUSED_RV;
+    std::ctstring_t & name() const xWARN_UNUSED_RV;
         ///< get name
-    void_t            setName    (std::ctstring_t &csName);
+    void_t            setName(std::ctstring_t &csName);
         ///< set name
 
-    std::ctstring_t & value      () const xWARN_UNUSED_RV;
+    std::ctstring_t & value() const xWARN_UNUSED_RV;
         ///< get value
-    void_t            setValue   (std::ctstring_t &csValue);
+    void_t            setValue(std::ctstring_t &csValue);
         ///< set value
 
-    std::ctstring_t & comment    () const xWARN_UNUSED_RV;
+    std::ctstring_t & comment() const xWARN_UNUSED_RV;
         ///< get comment
-    void_t            setComment (std::ctstring_t &csComment);
+    void_t            setComment(std::ctstring_t &csComment);
         ///< set comment
 
-    std::ctstring_t & domain     () const xWARN_UNUSED_RV;
+    std::ctstring_t & domain() const xWARN_UNUSED_RV;
         ///< get domain
-    void_t            setDomain  (std::ctstring_t &csDomain);
+    void_t            setDomain(std::ctstring_t &csDomain);
         ///< set domain
 
-    std::ctstring_t & path       () const xWARN_UNUSED_RV;
+    std::ctstring_t & path() const xWARN_UNUSED_RV;
         ///< get path
-    void_t            setPath    (std::ctstring_t &csPath);
+    void_t            setPath(std::ctstring_t &csPath);
         ///< set path
 
-    longlong_t        maxAge     () const xWARN_UNUSED_RV;
+    longlong_t        maxAge() const xWARN_UNUSED_RV;
         ///< get max age
-    void_t            setMaxAge  (clonglong_t &cliMaxAge);
+    void_t            setMaxAge(clonglong_t &cliMaxAge);
         ///< set max age
 
-    bool_t            secure     () const xWARN_UNUSED_RV;
+    bool_t            secure() const xWARN_UNUSED_RV;
         ///< get secure
-    void_t            setSecure  (cbool_t &cbFlag);
+    void_t            setSecure(cbool_t &cbFlag);
         ///< set secure
 
-    bool_t            httpOnly   () const xWARN_UNUSED_RV;
+    bool_t            httpOnly() const xWARN_UNUSED_RV;
         ///< get http only
     void_t            setHttpOnly(cbool_t &cbFlag);
         ///< set http only
 
-    std::tstring_t    toString   () const xWARN_UNUSED_RV;
+    std::tstring_t    toString() const xWARN_UNUSED_RV;
         ///< convert to string
-    std::tstring_t    dump       () const xWARN_UNUSED_RV;
+    std::tstring_t    dump() const xWARN_UNUSED_RV;
         ///< get dump
-    void_t            clear      ();
+    void_t            clear();
         ///< clear
 
 private:

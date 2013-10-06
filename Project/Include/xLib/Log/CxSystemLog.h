@@ -51,9 +51,9 @@ public:
     virtual ~CxSystemLog();
         ///< destructor
 
-    void_t   setEnabled (cbool_t &cbFlag);
+    void_t   setEnabled(cbool_t &cbFlag);
         ///< set enabled
-    void_t   write      (const ExLevel &lvLevel, ctchar_t *pcszFormat, ...);
+    void_t   write(const ExLevel &lvLevel, ctchar_t *pcszFormat, ...);
         ///< write to log
 
 private:
@@ -63,7 +63,7 @@ private:
     HANDLE   _m_SysLog;     ///< event log handle
 #endif
 
-    void_t   _construct (std::ctstring_t &csLogName);
+    void_t   _construct(std::ctstring_t &csLogName);
         ///< initiate data
 };
 

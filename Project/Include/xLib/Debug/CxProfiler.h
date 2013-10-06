@@ -24,14 +24,14 @@ public:
 
     void_t           setLogPath(std::ctstring_t &csLogPath);
         ///< set log path
-    std::ctstring_t &logPath   () const xWARN_UNUSED_RV;
+    std::ctstring_t &logPath() const xWARN_UNUSED_RV;
         ///< get log path
 
-    void_t           start     ();
+    void_t           start();
         ///< start measurement
-    void_t           stop      (ctchar_t *pcszComment, ...);
+    void_t           stop(ctchar_t *pcszComment, ...);
         ///< stop measurement
-    void_t           pulse     (ctchar_t *pcszComment, ...);
+    void_t           pulse(ctchar_t *pcszComment, ...);
         ///< stop, start measurement
 
 private:

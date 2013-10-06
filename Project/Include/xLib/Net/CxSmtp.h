@@ -19,19 +19,18 @@ class CxSmtp :
     /// SMTP (RFC 2821)
 {
 public:
-                   CxSmtp    ();
-                  ~CxSmtp    ();
+                   CxSmtp();
+                  ~CxSmtp();
 
-    void_t         create    (std::ctstring_t &csUser, std::ctstring_t &csPass,
-                              std::ctstring_t &csServer, cushort_t &cusPort);
-    void_t         connect   ();
-    void_t         login     ();
-    void_t         noop      ();
-    void_t         rset      ();
-    void_t         sendRaw   (std::ctstring_t &csFilePath, std::ctstring_t &csFrom,
-                              std::ctstring_t &csTo);
-    void_t         send      (std::ctstring_t &csText, std::ctstring_t &sFrom,
-                              std::ctstring_t &sTo);
+    void_t         create(std::ctstring_t &csUser, std::ctstring_t &csPass,
+                       std::ctstring_t &csServer, cushort_t &cusPort);
+    void_t         connect();
+    void_t         login();
+    void_t         noop();
+    void_t         rset();
+    void_t         sendRaw(std::ctstring_t &csFilePath, std::ctstring_t &csFrom,
+                       std::ctstring_t &csTo);
+    void_t         send(std::ctstring_t &csText, std::ctstring_t &sFrom, std::ctstring_t &sTo);
     void_t         disconnect();
 
 private:
@@ -42,9 +41,9 @@ private:
     ushort_t       _m_usPort;
     bool_t         _m_bConnected;
 
-    void_t         _command  (std::ctstring_t &csCmd, std::ctstring_t &csReplyDelimiter,
-                              std::tstring_t &sReply);
-    bool_t         _isError  (std::ctstring_t &csText) xWARN_UNUSED_RV;
+    void_t         _command(std::ctstring_t &csCmd, std::ctstring_t &csReplyDelimiter,
+                       std::tstring_t &sReply);
+    bool_t         _isError(std::ctstring_t &csText) xWARN_UNUSED_RV;
 };
 
 xNAMESPACE_END(NxLib)

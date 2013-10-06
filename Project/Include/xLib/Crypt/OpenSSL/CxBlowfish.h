@@ -27,28 +27,31 @@ public:
         cmDecrypt = BF_DECRYPT
     };
 
-                  CxBlowfish      ();
+                  CxBlowfish();
         ///< constructor
-    virtual      ~CxBlowfish      ();
+    virtual      ~CxBlowfish();
         ///< destructor
 
-    void_t        setKey          (uchar_t *pucKey, cint_t &ciKeySize);
+    void_t        setKey(uchar_t *pucKey, cint_t &ciKeySize);
         ///< set key
-    void_t        setKey          (std::custring_t &cusKey);
+    void_t        setKey(std::custring_t &cusKey);
         ///< set key
-    void_t        setKey          (std::ctstring_t &csKey);
+    void_t        setKey(std::ctstring_t &csKey);
         ///< set key
-    void_t        setFileKey      (std::ctstring_t &csFilePath);
+    void_t        setFileKey(std::ctstring_t &csFilePath);
         ///< set key as file
-    static size_t maxKeySize      () xWARN_UNUSED_RV;
+    static size_t maxKeySize() xWARN_UNUSED_RV;
         ///< get maximum key size
 
     //cfb64
-    void_t        encryptCfb64    (uchar_t *pucIn, uchar_t *pucOut, clong_t &cliInSize, int_t *piNum, const ExCryptMode &cmMode);
+    void_t        encryptCfb64(uchar_t *pucIn, uchar_t *pucOut, clong_t &cliInSize, int_t *piNum,
+                      const ExCryptMode &cmMode);
         ///< encrypt buffer
-    void_t        encryptCfb64    (std::custring_t &cusIn, std::ustring_t *pusOut, const ExCryptMode &cmMode);
+    void_t        encryptCfb64(std::custring_t &cusIn, std::ustring_t *pusOut,
+                      const ExCryptMode &cmMode);
         ///< encrypt std::ustring_t
-    void_t        encryptFileCfb64(std::ctstring_t &csFilePathIn, std::ctstring_t &csFilePathOut, const ExCryptMode &cmMode);
+    void_t        encryptFileCfb64(std::ctstring_t &csFilePathIn, std::ctstring_t &csFilePathOut,
+                      const ExCryptMode &cmMode);
         ///< encrypt file
 
 private:

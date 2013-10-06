@@ -37,21 +37,22 @@ public:
     };
 
 
-                      CxEvent   (cbool_t &cbIsAutoReset, cbool_t &cbIsSignaled);
+                      CxEvent(cbool_t &cbIsAutoReset, cbool_t &cbIsSignaled);
         ///< constructor
-    virtual          ~CxEvent   ();
+    virtual          ~CxEvent();
         ///< destructor
 
-    const handle_t &  handle    () const xWARN_UNUSED_RV;
+    const handle_t &  handle() const xWARN_UNUSED_RV;
         ///< get handle
-    void_t            create    ();
+    void_t            create();
         ///< create
-    void_t            set       ();
+    void_t            set();
         ///< signal the event for the waiting thread (!!! unlock !!!)
-    void_t            reset     ();
+    void_t            reset();
         ///< once signaled, the event class must be "reset" before responding to a new signal
-    ExObjectState     wait      (culong_t &culTimeout = xTIMEOUT_INFINITE) xWARN_UNUSED_RV;
-        ///< wait either for the CxEvent to be signaled by another thread or for the specified timeout duration
+    ExObjectState     wait(culong_t &culTimeout = xTIMEOUT_INFINITE) xWARN_UNUSED_RV;
+        ///< wait either for the CxEvent to be signaled by another thread or for the specified
+        ///< timeout duration
     bool_t            isSignaled() xWARN_UNUSED_RV;
         ///< is signaled
 

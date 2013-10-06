@@ -16,14 +16,14 @@ class CxSleeper :
     /// sleeper
 {
 public:
-             CxSleeper ();
+             CxSleeper();
         ///< constructor
-    virtual ~CxSleeper ();
+    virtual ~CxSleeper();
         ///< destructor
 
-    void_t   sleep     (culong_t &culTimeout);
+    void_t   sleep(culong_t &culTimeout);
         ///< sleep
-    void_t   wakeUp    ();
+    void_t   wakeUp();
         ///< wake up
     bool_t   isSleeping() xWARN_UNUSED_RV;
         ///< check for sleeping

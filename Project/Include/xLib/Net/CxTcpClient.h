@@ -16,28 +16,28 @@ class CxTcpClient :
     /// client socket
 {
 public:
-                  CxTcpClient       ();
+                  CxTcpClient();
         ///< constructor
-    virtual      ~CxTcpClient       ();
+    virtual      ~CxTcpClient();
         ///< constructor
 
-    bool_t        isReadable        () xWARN_UNUSED_RV;
+    bool_t        isReadable() xWARN_UNUSED_RV;
         ///< checking for readability
-    bool_t        isWritable        () xWARN_UNUSED_RV;
+    bool_t        isWritable() xWARN_UNUSED_RV;
         ///< checking for writability
-    void_t        connect           (std::ctstring_t &csIp, cushort_t &cusPort);
+    void_t        connect(std::ctstring_t &csIp, cushort_t &cusPort);
         ///< connecting
 
-    void_t        ioctl             (clong_t &cliCmd, ulong_t *pulArgp);
+    void_t        ioctl(clong_t &cliCmd, ulong_t *pulArgp);
         ///< controls the i/o mode
     void_t        setNonBlockingMode(cbool_t &cbFlag);
         ///< set nonblocking mode
-    void_t        timeout           (long_t *pliSec, long_t *pliMicroSec);
+    void_t        timeout(long_t *pliSec, long_t *pliMicroSec);
         ///< get timeout
-    void_t        setTimeout        (clong_t &cliSec, clong_t &cliMicroSec);
+    void_t        setTimeout(clong_t &cliSec, clong_t &cliMicroSec);
         ///< set timeout
 
-    static bool_t isServerAlive     (std::ctstring_t &csIp, cushort_t &cusPort) xWARN_UNUSED_RV;
+    static bool_t isServerAlive(std::ctstring_t &csIp, cushort_t &cusPort) xWARN_UNUSED_RV;
         ///< is sever socket available
 
 protected:

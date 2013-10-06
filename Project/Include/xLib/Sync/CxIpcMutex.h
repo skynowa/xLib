@@ -17,28 +17,28 @@ class CxIpcMutex :
 {
 public:
 #if xOS_ENV_WIN
-    typedef CxHandle  handle_t;
+    typedef CxHandle handle_t;
 #else
-    typedef sem_t *   handle_t;
+    typedef sem_t *  handle_t;
 #endif
 
-                      CxIpcMutex();
-    virtual          ~CxIpcMutex();
+                     CxIpcMutex();
+    virtual         ~CxIpcMutex();
 
-    const handle_t &  handle    () const xWARN_UNUSED_RV;
+    const handle_t & handle() const xWARN_UNUSED_RV;
         ///< get handle
-    void_t            create    (std::ctstring_t &csName);
+    void_t           create(std::ctstring_t &csName);
         ///< create
-    void_t            open      (std::ctstring_t &csName);
+    void_t           open(std::ctstring_t &csName);
         ///< open
-    void_t            lock      (culong_t &culTimeoutMsec) const;
+    void_t           lock(culong_t &culTimeoutMsec) const;
         ///< unlock by timeout in msec
-    void_t            unlock    () const;
+    void_t           unlock() const;
         ///< lock
 
 private:
-    handle_t          _m_hHandle;   ///< mutex native handle
-    std::tstring_t    _m_sName;     ///< mutex name
+    handle_t         _m_hHandle;   ///< mutex native handle
+    std::tstring_t   _m_sName;     ///< mutex name
 };
 
 xNAMESPACE_END(NxLib)

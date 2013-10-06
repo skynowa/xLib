@@ -31,9 +31,8 @@ public:
     virtual        ~CxBackuper();
         ///< destructor
 
-    void_t          fileExec  (std::ctstring_t &csFilePath,
-                               std::ctstring_t &csDestDirPath,
-                               std::tstring_t  *psDestFilePath) const;
+    void_t          fileExec(std::ctstring_t &csFilePath, std::ctstring_t &csDestDirPath,
+                        std::tstring_t *psDestFilePath) const;
         ///< backup, throws CxException
 
 private:
