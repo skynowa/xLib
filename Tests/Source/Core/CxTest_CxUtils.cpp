@@ -264,18 +264,18 @@ CxTest_CxUtils::unit(
     xTEST_CASE("CxUtils::doubleIsEqual", a_cullCaseLoops)
     {
         cdouble_t cdData[][3] = {
-            {10.5,   11.0, 0},
-            {10.0,   10.0, 1},
-            {10.4,   10.0, 0},
-            {0.0,    0.0,  1},
-            {-10.4, -10.0, 0},
-            {-10.4, -10.4, 1},
-            {-10.5, -11.0, 0},
-            {-10.6, -11.0, 0}
+            {10.5,   11.0, 0.0},
+            {10.0,   10.0, 1.0},
+            {10.4,   10.0, 0.0},
+            {0.0,    0.0,  1.0},
+            {-10.4, -10.0, 0.0},
+            {-10.4, -10.4, 1.0},
+            {-10.5, -11.0, 0.0},
+            {-10.6, -11.0, 0.0}
         };
 
         for (size_t i = 0; i < CxUtils::arraySizeT(cdData); ++ i) {
-            cbool_t bRv  = cdData[i][2];
+            cbool_t bRv  = (cbool_t)( cdData[i][2] );
             m_bRv = CxUtils::doubleIsEqual(cdData[i][0], cdData[i][1]);
             xTEST_EQ(m_bRv, bRv);
         }
