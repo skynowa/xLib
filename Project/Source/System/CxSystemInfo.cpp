@@ -521,7 +521,7 @@ CxSystemInfo::currentCpuNum() {
     ulong_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN
-    typedef DWORD (WINAPI *DllGetCurrentProcessorNumber_t)(void_t);
+    typedef DWORD (WINAPI *DllGetCurrentProcessorNumber_t)(void);
 
     CxDll dlDll;
 

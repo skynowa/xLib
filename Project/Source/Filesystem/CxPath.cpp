@@ -478,19 +478,9 @@ CxPath::isNameValid(
     // MAN: For the standard ASCII character set (used by the "C" locale),
     // control characters are those between ASCII codes 0x00 (NUL) and 0x1f (US), plus 0x7f (DEL).
     {
-        struct _SIsCharControl {
-            bool_t
-            operator () (
-                const std::tstring_t::value_type &a_cchChar
-            ) const
-            {
-                return CxChar::isControl(a_cchChar);
-            }
-        };
-
         std::tstring_t::const_iterator cit;
 
-        cit = std::find_if(a_csFileName.begin(), a_csFileName.end(), _SIsCharControl());
+        cit = std::find_if(a_csFileName.begin(), a_csFileName.end(), CxChar::isControl);
         bRv = (cit != a_csFileName.end());
         xCHECK_RET(bRv, false);
     }
@@ -645,24 +635,14 @@ CxPath::setNameValid(
     // MAN: For the standard ASCII character set (used by the "C" locale),
     // control characters are those between ASCII codes 0x00 (NUL) and 0x1f (US), plus 0x7f (DEL).
     {
-        struct _SIsCharControl {
-            bool_t
-            operator () (
-                std::ctstring_t::value_type &a_cchChar
-            ) const
-            {
-                return CxChar::isControl(a_cchChar);
-            }
-        };
-
         std::tstring_t::const_iterator cit;
 
-        cit = std::find_if(sRv.begin(), sRv.end(), _SIsCharControl());
+        cit = std::find_if(sRv.begin(), sRv.end(), CxChar::isControl);
         bRv = (cit != sRv.end());
         if (bRv) {
             std::tstring_t::iterator itNewEnd;
 
-            itNewEnd = std::remove_if(sRv.begin(), sRv.end(), _SIsCharControl());
+            itNewEnd = std::remove_if(sRv.begin(), sRv.end(), CxChar::isControl);
             sRv.erase(itNewEnd, sRv.end());
         }
 

@@ -238,10 +238,10 @@ CxConsole::setAttributes(
     #if xOS_ENV_WIN
         const WORD ciAttributeAllOff     = 0;
         const WORD ciAttributeBold       = FOREGROUND_INTENSITY;
-        const WORD ciAttributeUnderscore = Core_LVB_UNDERSCORE;     xUNUSED(ciAttributeUnderscore);   // not supported
-        const WORD ciAttributeBlink      = - 1;                       xUNUSED(ciAttributeBlink);        // not supported
-        const WORD ciAttributeReverse    = Core_LVB_REVERSE_VIDEO;  xUNUSED(ciAttributeReverse);      // not supported
-        const WORD ciAttributeConcealed  = - 1;                       xUNUSED(ciAttributeConcealed);    // not supported
+        const WORD ciAttributeUnderscore = - 1; xUNUSED(ciAttributeUnderscore);   // not supported
+        const WORD ciAttributeBlink      = - 1; xUNUSED(ciAttributeBlink);        // not supported
+        const WORD ciAttributeReverse    = - 1; xUNUSED(ciAttributeReverse);      // not supported
+        const WORD ciAttributeConcealed  = - 1; xUNUSED(ciAttributeConcealed);    // not supported
     #else
         cint_t  ciAttributeAllOff     = 0;
         cint_t  ciAttributeBold       = 1;
