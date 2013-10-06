@@ -32,33 +32,33 @@ public:
     virtual                 ~CxMySQLConnection();
         ///< destructor
 
-    MYSQL                   *get              () const xWARN_UNUSED_RV;
+    MYSQL                   *get() const xWARN_UNUSED_RV;
         ///< get handle
-    bool_t                   isValid          () const xWARN_UNUSED_RV;
+    bool_t                   isValid() const xWARN_UNUSED_RV;
         ///< validating handle
-    void_t                   options          (const mysql_option &cmoOption, cvoid_t *cpvArg) const;
+    void_t                   options(const mysql_option &cmoOption, cvoid_t *cpvArg) const;
         ///< set extra connect options and affect behavior
-    static bool_t            isExists         (std::ctstring_t &csHost, std::ctstring_t &csUser,
-                                               std::ctstring_t &csPassword, std::ctstring_t &csDb,
-                                               cuint_t &cuiPort, std::ctstring_t &csUnixSocket,
-                                               culong_t &culClientFlag) xWARN_UNUSED_RV;
+    static bool_t            isExists(std::ctstring_t &csHost, std::ctstring_t &csUser,
+                                 std::ctstring_t &csPassword, std::ctstring_t &csDb,
+                                 cuint_t &cuiPort, std::ctstring_t &csUnixSocket,
+                                 culong_t &culClientFlag) xWARN_UNUSED_RV;
         ///<
-    void_t                   connect          (std::ctstring_t &csHost, std::ctstring_t &csUser,
-                                               std::ctstring_t &csPassword, std::ctstring_t &csDb,
-                                               cuint_t &cuiPort, std::ctstring_t &csUnixSocket,
-                                               culong_t &culClientFlag);
+    void_t                   connect(std::ctstring_t &csHost, std::ctstring_t &csUser,
+                                 std::ctstring_t &csPassword, std::ctstring_t &csDb,
+                                 cuint_t &cuiPort, std::ctstring_t &csUnixSocket,
+                                 culong_t &culClientFlag);
         ///< attempts to establish a connection to a MySQL database engine running on host
-    void_t                   query            (ctchar_t *pcszSqlFormat, ...) const;
+    void_t                   query(ctchar_t *pcszSqlFormat, ...) const;
         ///< executes the SQL statement
-    uint_t                   fieldCount       () const xWARN_UNUSED_RV;
+    uint_t                   fieldCount() const xWARN_UNUSED_RV;
         ///< number of columns in a result set
-    void_t                   close            ();
+    void_t                   close();
         ///< closes a previously opened connection
 
     //errors
-    uint_t                   lastError        () const xWARN_UNUSED_RV;
+    uint_t                   lastError() const xWARN_UNUSED_RV;
         ///< error code for the most recently invoked API function that can succeed or fail
-    std::tstring_t           lastErrorStr     () const xWARN_UNUSED_RV;
+    std::tstring_t           lastErrorStr() const xWARN_UNUSED_RV;
         ///< error message for the most recently invoked API function that failed
 
 private:
@@ -75,27 +75,28 @@ class CxMySQLRecordset :
     /// MySQL recordset
 {
 public:
-                             CxMySQLRecordset(const CxMySQLConnection &cmsConnection, cbool_t &cbIsUseResult);
+                             CxMySQLRecordset(const CxMySQLConnection &cmsConnection,
+                                 cbool_t &cbIsUseResult);
         ///< constructor
     virtual                 ~CxMySQLRecordset();
         ///< destructor
 
-    MYSQL_RES               *get             () const xWARN_UNUSED_RV;
+    MYSQL_RES               *get() const xWARN_UNUSED_RV;
         ///< get handle
-    bool_t                   isValid         () const xWARN_UNUSED_RV;
+    bool_t                   isValid() const xWARN_UNUSED_RV;
         ///< validating handle
 
-    uint_t                   fieldsNum       () const xWARN_UNUSED_RV;
+    uint_t                   fieldsNum() const xWARN_UNUSED_RV;
         ///< number of columns in a result set
-    my_ulonglong             rowsNum         () const xWARN_UNUSED_RV;
+    my_ulonglong             rowsNum() const xWARN_UNUSED_RV;
         ///< number of rows in the result set
-    void_t                   fetchField      (MYSQL_FIELD *pmfField) const;
+    void_t                   fetchField(MYSQL_FIELD *pmfField) const;
         ///< The MYSQL_FIELD structure for the current column
     void_t                   fetchFieldDirect(cuint_t &cuiFieldNumber, MYSQL_FIELD *pmfField) const;
         ///< The MYSQL_FIELD structure for the specified column
-    void_t                   fetchFields     (MYSQL_FIELD *pmfField) const;
+    void_t                   fetchFields(MYSQL_FIELD *pmfField) const;
         ///< An array of MYSQL_FIELD structures for all columns of a result set
-    void_t                   fetchRow        (std::vec_tstring_t *pvsRow) const;
+    void_t                   fetchRow(std::vec_tstring_t *pvsRow) const;
         ///< fetching row
 
 private:
@@ -104,9 +105,9 @@ private:
     MYSQL_RES               *_m_pmrResult;
         ///< for private use
 
-    void_t                   _fetchLengths   (ulong_t **ppulFieldLengths) const;
+    void_t                   _fetchLengths(ulong_t **ppulFieldLengths) const;
         ///< An array of unsigned long_t integers representing the size of each column
-    void_t                   _fetchRow       (MYSQL_ROW *pmrRow) const;
+    void_t                   _fetchRow(MYSQL_ROW *pmrRow) const;
         ///< A MYSQL_ROW structure for the next row
 };
 

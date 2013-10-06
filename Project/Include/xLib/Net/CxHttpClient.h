@@ -47,17 +47,17 @@ public:
         hmUnlink
     };
 
-    void_t     head        (std::ctstring_t &csUrl, std::tstring_t *psResponse);
-    void_t     get         (std::ctstring_t &csUrl, std::tstring_t *psResponse);
-    void_t     post        (std::ctstring_t &csUrl, std::ctstring_t &csParams, std::tstring_t *psResponse);
-    void_t     options     (std::ctstring_t &csUrl);
-    void_t     trace       (std::ctstring_t &csUrl);
-    void_t     put         (std::ctstring_t &csUrl);
-    void_t     del         (std::ctstring_t &csUrl);
-    void_t     connect     (std::ctstring_t &csUrl);
-    void_t     patch       (std::ctstring_t &csUrl);
-    void_t     link        (std::ctstring_t &csUrl);
-    void_t     unlink      (std::ctstring_t &csUrl);
+    void_t   head(std::ctstring_t &csUrl, std::tstring_t *psResponse);
+    void_t   get(std::ctstring_t &csUrl, std::tstring_t *psResponse);
+    void_t   post(std::ctstring_t &csUrl, std::ctstring_t &csParams, std::tstring_t *psResponse);
+    void_t   options(std::ctstring_t &csUrl);
+    void_t   trace(std::ctstring_t &csUrl);
+    void_t   put(std::ctstring_t &csUrl);
+    void_t   del(std::ctstring_t &csUrl);
+    void_t   connect(std::ctstring_t &csUrl);
+    void_t   patch(std::ctstring_t &csUrl);
+    void_t   link(std::ctstring_t &csUrl);
+    void_t   unlink(std::ctstring_t &csUrl);
 
              CxHttpClient();
     virtual ~CxHttpClient();

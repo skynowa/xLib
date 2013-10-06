@@ -9,7 +9,7 @@
 #include <xLib/Core/xCore.h>
 #include <xLib/Crypt/Pkcs11/Core.h>
 //------------------------------------------------------------------------------
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
 
 xNAMESPACE_BEGIN(NxLib)
 
@@ -26,13 +26,14 @@ public:
     virtual             ~CxFunction();
         ///< destructor
 
-    void_t               list      (CK_FUNCTION_LIST_PTR_PTR ppFunctionList);
+    void_t               list(CK_FUNCTION_LIST_PTR_PTR ppFunctionList);
         ///< returns the function list
-    void_t               status    ();
-        ///< is a legacy function; it obtains an updated status of a function running in parallel with an application
-    void_t               cancel    ();
+    void_t               status();
+        ///< is a legacy function; it obtains an updated status of a function running in parallel
+        ///< with an application
+    void_t               cancel();
         ///< is a legacy function; it cancels a function running in parallel
-    void_t               listEx    ();
+    void_t               listEx();
         ///< SDK 4.53
 
 private:

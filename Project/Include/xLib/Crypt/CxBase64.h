@@ -15,11 +15,11 @@ class CxBase64 :
     /// Base64
 {
 public:
-    static std::string encode  (cuchar_t *cucBytes, std::csize_t &cuiSize) xWARN_UNUSED_RV;
+    static std::string encode(cuchar_t *cucBytes, std::csize_t &cuiSize) xWARN_UNUSED_RV;
         ///< encoding
-    static std::string encode  (std::cstring_t &csStr) xWARN_UNUSED_RV;
+    static std::string encode(std::cstring_t &csStr) xWARN_UNUSED_RV;
         ///< encoding
-    static std::string decode  (std::cstring_t &csStr) xWARN_UNUSED_RV;
+    static std::string decode(std::cstring_t &csStr) xWARN_UNUSED_RV;
         ///< decoding
 private:
                        CxBase64();

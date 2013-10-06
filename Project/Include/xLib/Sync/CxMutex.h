@@ -22,24 +22,24 @@ public:
     typedef pthread_mutex_t  handle_t;
 #endif
 
-                      CxMutex();
+                     CxMutex();
         ///< constructor
-    virtual          ~CxMutex();
+    virtual         ~CxMutex();
         ///< destructor
 
-    const handle_t &  handle () const xWARN_UNUSED_RV;
+    const handle_t & handle() const xWARN_UNUSED_RV;
         ///< get handle
-    void_t            create ();
+    void_t           create();
         ///< create
-    void_t            lock   ();
+    void_t           lock();
         ///< lock
-    bool_t            tryLock() xWARN_UNUSED_RV;
+    bool_t           tryLock() xWARN_UNUSED_RV;
         ///< try lock
-    void_t            unlock ();
+    void_t           unlock();
         ///< unlock
 
 private:
-    handle_t          _m_hHandle;   ///< mutex native handle
+    handle_t         _m_hHandle;   ///< mutex native handle
 };
 //------------------------------------------------------------------------------
 xNAMESPACE_END(NxLib)

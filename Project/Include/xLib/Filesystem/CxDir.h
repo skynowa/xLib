@@ -16,46 +16,46 @@ class CxDir :
     /// directory
 {
 public:
-    explicit              CxDir     (std::ctstring_t &csDirPath);
+    explicit              CxDir(std::ctstring_t &csDirPath);
         ///< constructor
-    virtual              ~CxDir     ();
+    virtual              ~CxDir();
         ///< destructor
 
-    std::ctstring_t &     dirPath   () const xWARN_UNUSED_RV;
+    std::ctstring_t &     dirPath() const xWARN_UNUSED_RV;
         ///< directory path
 
-    bool_t                isExists  () xWARN_UNUSED_RV;
+    bool_t                isExists() xWARN_UNUSED_RV;
         ///< check for existence
-    bool_t                isEmpty   (std::ctstring_t &csShellFilter = CxConst::xMASK_ALL) xWARN_UNUSED_RV;
+    bool_t                isEmpty(std::ctstring_t &csShellFilter = CxConst::xMASK_ALL) xWARN_UNUSED_RV;
         ///< is empty
-    bool_t                isRoot    () xWARN_UNUSED_RV;
+    bool_t                isRoot() xWARN_UNUSED_RV;
         ///< is root
-    bool_t                isDir     () xWARN_UNUSED_RV;
+    bool_t                isDir() xWARN_UNUSED_RV;
         ///< is dir
-    void_t                create    ();
+    void_t                create();
         ///< create
     void_t                pathCreate();
         ///< creation of all directories that not exists in path
-    void_t                copy      (std::ctstring_t &csDirPathTo, cbool_t &cbFailIfExists);
+    void_t                copy(std::ctstring_t &csDirPathTo, cbool_t &cbFailIfExists);
         ///< copy
-    void_t                move      (std::ctstring_t &csDirPathTo, cbool_t &cbFailIfExists);
+    void_t                move(std::ctstring_t &csDirPathTo, cbool_t &cbFailIfExists);
         ///< move
 
-    void_t                remove    ();
+    void_t                remove();
         ///< deletion dir which empty
-    void_t                tryRemove (std::csize_t &cuiAttempts, culong_t &culTimeoutMsec);
+    void_t                tryRemove(std::csize_t &cuiAttempts, culong_t &culTimeoutMsec);
         ///< try deleting, max 100 attempts
-    void_t                pathClear ();
+    void_t                pathClear();
         ///< deletion all content of dir
     void_t                pathDelete();
         ///< deletion dir find all content of it
 
     // static
-    static std::tstring_t current   () xWARN_UNUSED_RV;
+    static std::tstring_t current() xWARN_UNUSED_RV;
         ///< get current
     static void_t         setCurrent(std::ctstring_t &csDirPath);
         ///< set current
-    static std::tstring_t temp      () xWARN_UNUSED_RV;
+    static std::tstring_t temp() xWARN_UNUSED_RV;
         ///< get path to system var %Temp%
 
 private:

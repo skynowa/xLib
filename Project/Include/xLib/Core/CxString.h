@@ -46,53 +46,58 @@ public:
     *******************************************************************************/
 
     template<typename T>
-    static std::tstring_t cast            (const T &cValueT) xWARN_UNUSED_RV;
+    static std::tstring_t cast(const T &cValueT) xWARN_UNUSED_RV;
         ///< convert type to std::tstring_t
     template<typename T>
-    static std::tstring_t cast            (const T &cValueT, cint_t &ciBase) xWARN_UNUSED_RV;
+    static std::tstring_t cast(const T &cValueT, cint_t &ciBase) xWARN_UNUSED_RV;
         ///< convert type to std::tstring_t by base
     template<typename T>
-    static T              cast            (std::ctstring_t &csStr) xWARN_UNUSED_RV;
+    static T              cast(std::ctstring_t &csStr) xWARN_UNUSED_RV;
         ///< convert std::tstring_t to type
     template<typename T>
-    static T              cast            (std::ctstring_t &csStr, cint_t &ciBase) xWARN_UNUSED_RV;
+    static T              cast(std::ctstring_t &csStr, cint_t &ciBase) xWARN_UNUSED_RV;
         ///< convert std::tstring_t by base (8, 10, 16) to type
 
-    static std::string    castA           (std::cwstring_t &csStr) xWARN_UNUSED_RV;
+    static std::string    castA(std::cwstring_t &csStr) xWARN_UNUSED_RV;
         ///< std::wstring in std::string
-    static std::wstring   castW           (std::cstring_t &csStr) xWARN_UNUSED_RV;
+    static std::wstring   castW(std::cstring_t &csStr) xWARN_UNUSED_RV;
         ///< std::string in std::wstring
 
-    static std::wstring   strToWStr       (std::cstring_t  &csStr,  cuint_t &cuiCodePage) xWARN_UNUSED_RV;
+    static std::wstring   strToWStr(std::cstring_t  &csStr,  cuint_t &cuiCodePage) xWARN_UNUSED_RV;
         ///< std::string in std::wstring
-    static std::string    wstrToStr       (std::cwstring_t &cwsStr, cuint_t &cuiCodePage) xWARN_UNUSED_RV;
+    static std::string    wstrToStr(std::cwstring_t &cwsStr, cuint_t &cuiCodePage) xWARN_UNUSED_RV;
         ///< std::wstring in std::string
 
-    static std::wstring   strToWStr       (std::cstring_t  &csStdString,  const std::locale &clocLocale = std::locale()) xWARN_UNUSED_RV;
+    static std::wstring   strToWStr(std::cstring_t  &csStdString,
+                              const std::locale &clocLocale = std::locale()) xWARN_UNUSED_RV;
         ///< std::string in std::wstring
-    static std::string    wstrToStr       (std::cwstring_t &csStdWString, const std::locale &clocLocale = std::locale()) xWARN_UNUSED_RV;
+    static std::string    wstrToStr(std::cwstring_t &csStdWString,
+                              const std::locale &clocLocale = std::locale()) xWARN_UNUSED_RV;
         ///< std::wstring in std::string
 
-    static std::string    convertCodePage (std::cstring_t &csSource, cuint_t &cuiCodePageSource, cuint_t &cuiCodePageDest) xWARN_UNUSED_RV;
+    static std::string    convertCodePage(std::cstring_t &csSource, cuint_t &cuiCodePageSource,
+                              cuint_t &cuiCodePageDest) xWARN_UNUSED_RV;
         ///< convert codepage
 
-    static std::string    charToOemBuff   (std::ctstring_t &csSrc) xWARN_UNUSED_RV;
+    static std::string    charToOemBuff(std::ctstring_t &csSrc) xWARN_UNUSED_RV;
         ///< convert char to oem
-    static std::tstring_t oemToCharBuff   (std::cstring_t &csSrc) xWARN_UNUSED_RV;
+    static std::tstring_t oemToCharBuff(std::cstring_t &csSrc) xWARN_UNUSED_RV;
         ///< convert oem to char
 
-    static std::tstring_t boolToStr       (cbool_t &cbBool) xWARN_UNUSED_RV;
+    static std::tstring_t boolToStr(cbool_t &cbBool) xWARN_UNUSED_RV;
         ///< bool_t to std::tstring_t
-    static bool_t         strToBool       (std::ctstring_t &csStr) xWARN_UNUSED_RV;
+    static bool_t         strToBool(std::ctstring_t &csStr) xWARN_UNUSED_RV;
         ///< convert std::tstring_t to bool_t
 
-    static std::tstring_t toLowerCase     (std::ctstring_t &csStr) xWARN_UNUSED_RV;
+    static std::tstring_t toLowerCase(std::ctstring_t &csStr) xWARN_UNUSED_RV;
         ///< convert to low case
-    static std::tstring_t toUpperCase     (std::ctstring_t &csStr) xWARN_UNUSED_RV;
+    static std::tstring_t toUpperCase(std::ctstring_t &csStr) xWARN_UNUSED_RV;
         ///< convert to uppercase
-    static std::tstring_t toLowerCase     (std::ctstring_t &csStr, std::csize_t &cuiLength) xWARN_UNUSED_RV;
+    static std::tstring_t toLowerCase(std::ctstring_t &csStr, std::csize_t &cuiLength)
+                              xWARN_UNUSED_RV;
         ///< convert to low case
-    static std::tstring_t toUpperCase     (std::ctstring_t &csStr, std::csize_t &cuiLength) xWARN_UNUSED_RV;
+    static std::tstring_t toUpperCase(std::ctstring_t &csStr, std::csize_t &cuiLength)
+                              xWARN_UNUSED_RV;
         ///< convert to uppercase
 
     /*******************************************************************************
@@ -100,39 +105,48 @@ public:
     *
     *******************************************************************************/
 
-    static std::tstring_t trimLeftChars   (std::ctstring_t &csStr, std::ctstring_t &csChars) xWARN_UNUSED_RV;
+    static std::tstring_t trimLeftChars(std::ctstring_t &csStr, std::ctstring_t &csChars)
+                              xWARN_UNUSED_RV;
         ///< trim left chars
-    static std::tstring_t trimRightChars  (std::ctstring_t &csStr, std::ctstring_t &csChars) xWARN_UNUSED_RV;
+    static std::tstring_t trimRightChars(std::ctstring_t &csStr, std::ctstring_t &csChars)
+                              xWARN_UNUSED_RV;
         ///< trim left chars
-    static std::tstring_t trimChars       (std::ctstring_t &csStr, std::ctstring_t &csChars) xWARN_UNUSED_RV;
+    static std::tstring_t trimChars(std::ctstring_t &csStr, std::ctstring_t &csChars)
+                              xWARN_UNUSED_RV;
         ///< trim left, right chars
-    static std::tstring_t trimSpace       (std::ctstring_t &csStr) xWARN_UNUSED_RV;
+    static std::tstring_t trimSpace(std::ctstring_t &csStr) xWARN_UNUSED_RV;
         ///< trim left, right spaces
-    static std::tstring_t removeEol       (std::ctstring_t &csStr) xWARN_UNUSED_RV;
+    static std::tstring_t removeEol(std::ctstring_t &csStr) xWARN_UNUSED_RV;
         ///< remove end of line from end of string
 
-    static std::tstring_t replaceAll      (std::ctstring_t &csStr, std::ctstring_t &csOldStr, std::ctstring_t &csNewStr) xWARN_UNUSED_RV;
+    static std::tstring_t replaceAll(std::ctstring_t &csStr, std::ctstring_t &csOldStr,
+                              std::ctstring_t &csNewStr) xWARN_UNUSED_RV;
         ///< replace all strings
-    static std::tstring_t replaceAll      (std::ctstring_t &csStr, ctchar_t &ccOldStr, ctchar_t &ccNewStr) xWARN_UNUSED_RV;
+    static std::tstring_t replaceAll(std::ctstring_t &csStr, ctchar_t &ccOldStr, ctchar_t &ccNewStr)
+                              xWARN_UNUSED_RV;
         ///< replace all chars
-    static std::tstring_t removeAll       (std::ctstring_t &csStr, std::ctstring_t &csRemoveStr) xWARN_UNUSED_RV;
+    static std::tstring_t removeAll(std::ctstring_t &csStr, std::ctstring_t &csRemoveStr)
+                              xWARN_UNUSED_RV;
         ///< remove all strings
 
-    static void_t         split           (std::ctstring_t &csStr, std::ctstring_t &csSep, std::vec_tstring_t *pvsOut);
+    static void_t         split(std::ctstring_t &csStr, std::ctstring_t &csSep,
+                              std::vec_tstring_t *pvsOut);
         ///< split by separator
-    static std::tstring_t join            (std::cvec_tstring_t &cvsVec, ctchar_t &cchSep) xWARN_UNUSED_RV;
+    static std::tstring_t join(std::cvec_tstring_t &cvsVec, ctchar_t &cchSep) xWARN_UNUSED_RV;
         ///< join with char separator
-    static std::tstring_t join            (std::cvec_tstring_t &cvsVec, std::ctstring_t &csSep) xWARN_UNUSED_RV;
+    static std::tstring_t join(std::cvec_tstring_t &cvsVec, std::ctstring_t &csSep) xWARN_UNUSED_RV;
         ///< join with string separator
-    static std::tstring_t cut             (std::ctstring_t &csStr, std::ctstring_t &csLeftSep, std::ctstring_t &csRightSep) xWARN_UNUSED_RV;
+    static std::tstring_t cut(std::ctstring_t &csStr, std::ctstring_t &csLeftSep,
+                              std::ctstring_t &csRightSep) xWARN_UNUSED_RV;
         ///< cut using strings
-    static std::tstring_t cut             (std::ctstring_t &csStr, std::csize_t &cuiStartPos = 0, std::csize_t &cuiEndPos = std::tstring_t::npos) xWARN_UNUSED_RV;
+    static std::tstring_t cut(std::ctstring_t &csStr, std::csize_t &cuiStartPos = 0,
+                              std::csize_t &cuiEndPos = std::tstring_t::npos) xWARN_UNUSED_RV;
         ///< cut using string positions
-    static std::tstring_t format          (ctchar_t *pcszFormat, ...) xWARN_UNUSED_RV;
+    static std::tstring_t format(ctchar_t *pcszFormat, ...) xWARN_UNUSED_RV;
         ///< format
-    static std::tstring_t formatV         (ctchar_t *pcszFormat, va_list palArgs) xWARN_UNUSED_RV;
+    static std::tstring_t formatV(ctchar_t *pcszFormat, va_list palArgs) xWARN_UNUSED_RV;
         ///< format
-    static std::tstring_t minimize        (std::ctstring_t &csStr, std::csize_t &cuiMaxLen) xWARN_UNUSED_RV;
+    static std::tstring_t minimize(std::ctstring_t &csStr, std::csize_t &cuiMaxLen) xWARN_UNUSED_RV;
         ///< minimize
 
     /*******************************************************************************
@@ -140,7 +154,8 @@ public:
     *
     *******************************************************************************/
 
-    static bool_t         compareNoCase   (std::ctstring_t &csStr1, std::ctstring_t &csStr2) xWARN_UNUSED_RV;
+    static bool_t         compareNoCase(std::ctstring_t &csStr1, std::ctstring_t &csStr2)
+                              xWARN_UNUSED_RV;
         ///< no case compare
 
     /*******************************************************************************
@@ -148,9 +163,10 @@ public:
     *
     *******************************************************************************/
 
-    static std::tstring_t formatBytes     (culonglong_t &cullBytes) xWARN_UNUSED_RV;
+    static std::tstring_t formatBytes(culonglong_t &cullBytes) xWARN_UNUSED_RV;
         ///< format bytes (like Bit(s), Byte(s), MB, GB, TB)
-    static std::tstring_t formatPercentage(culonglong_t &cullMaxValue, culonglong_t &cullCurrValue) xWARN_UNUSED_RV;
+    static std::tstring_t formatPercentage(culonglong_t &cullMaxValue, culonglong_t &cullCurrValue)
+                              xWARN_UNUSED_RV;
         ///< formatting percentage
     static std::tstring_t translitLatToRus(std::ctstring_t &csStr) xWARN_UNUSED_RV;
         ///< translit
@@ -160,7 +176,8 @@ public:
     *
     *******************************************************************************/
 
-    static void_t *       memoryZeroSecure(void_t *pvBuff, std::csize_t &cuiBuffSize) xWARN_UNUSED_RV;
+    static void_t *       memoryZeroSecure(void_t *pvBuff, std::csize_t &cuiBuffSize)
+                              xWARN_UNUSED_RV;
         ///< secure zero memory
 
     /*******************************************************************************
@@ -168,15 +185,15 @@ public:
     *
     *******************************************************************************/
 
-    static std::tstring_t createGuid      () xWARN_UNUSED_RV;
+    static std::tstring_t createGuid() xWARN_UNUSED_RV;
         ///< generate GUID
-    static bool_t         isRepeated      (std::ctstring_t &csStr) xWARN_UNUSED_RV;
+    static bool_t         isRepeated(std::ctstring_t &csStr) xWARN_UNUSED_RV;
         ///< is repeated
 
 private:
-                          CxString        ();
+                          CxString();
         ///< constructor
-    virtual              ~CxString        ();
+    virtual              ~CxString();
         ///< destructor
 };
 

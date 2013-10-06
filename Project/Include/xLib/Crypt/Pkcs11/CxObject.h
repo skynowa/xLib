@@ -9,7 +9,7 @@
 #include <xLib/Core/xCore.h>
 #include <xLib/Crypt/Pkcs11/Core.h>
 //------------------------------------------------------------------------------
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
 
 xNAMESPACE_BEGIN(NxLib)
 
@@ -21,38 +21,44 @@ class CxObject :
     /// Pkcs11 object
 {
 public:
-                         CxObject         (const CxPkcs11 &cPkcs11, const CxSession &cSession);
+                         CxObject(const CxPkcs11 &cPkcs11, const CxSession &cSession);
         ///< constructor
-    virtual             ~CxObject         ();
+    virtual             ~CxObject();
         ///< destructor
 
-    CK_OBJECT_HANDLE     handle           () const xWARN_UNUSED_RV;
+    CK_OBJECT_HANDLE     handle() const xWARN_UNUSED_RV;
         ///< get handle
-    void_t               setHandle        (CK_OBJECT_HANDLE hHandle);
+    void_t               setHandle(CK_OBJECT_HANDLE hHandle);
         ///< assign object handle
-    void_t               create           (CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount);
+    void_t               create(CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount);
         ///< creates a new object
-    void_t               size             (CK_ULONG_PTR pulSize);
+    void_t               size(CK_ULONG_PTR pulSize);
         ///< gets the size of an object in bytes
-    void_t               copy             (CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount, CK_OBJECT_HANDLE_PTR phNewObject);
+    void_t               copy(CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount,
+                             CK_OBJECT_HANDLE_PTR phNewObject);
         ///< copies an object, creating a new object for the copy
-    void_t               find             (CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount, std::vector<CK_OBJECT_HANDLE> *pvecObjectHandles);
-        ///< search for token and session objects that match a template, obtaining additional object handles
+    void_t               find(CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount,
+                             std::vector<CK_OBJECT_HANDLE> *pvecObjectHandles);
+        ///< search for token and session objects that match a template,
+        ///< obtaining additional object handles
 
-    void_t               attributeValue   (CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount);
+    void_t               attributeValue(CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount);
         ///< obtains the value of one or more object attributes
     void_t               setAttributeValue(CK_ATTRIBUTE_PTR pTemplate, CK_ULONG ulCount);
         ///< modifies the value of one or more object attributes
 
-    void_t               destroy          ();
+    void_t               destroy();
         ///< destroys an object
 
     // Utils
-    static void_t        data             (CK_SLOT_ID ulSlotId, std::custring_t &cusUserPin, std::custring_t &cusDataLabel, std::ustring_t *pusData);
+    static void_t        data(CK_SLOT_ID ulSlotId, std::custring_t &cusUserPin,
+                             std::custring_t &cusDataLabel, std::ustring_t *pusData);
         ///< get data
-    static void_t        setData          (CK_SLOT_ID ulSlotId, std::custring_t &cusUserPin, std::custring_t &cusDataLabel, std::custring_t &cusData);
+    static void_t        setData(CK_SLOT_ID ulSlotId, std::custring_t &cusUserPin,
+                             std::custring_t &cusDataLabel, std::custring_t &cusData);
         ///< set data
-    static void_t        data             (CK_SLOT_ID ulSlotId, std::custring_t &cusUserPin, std::vec_ustring_t *pusDataLabel, std::vec_ustring_t *pusDataValue);
+    static void_t        data(CK_SLOT_ID ulSlotId, std::custring_t &cusUserPin,
+                             std::vec_ustring_t *pusDataLabel, std::vec_ustring_t *pusDataValue);
         ///< get data
 
 private:
@@ -62,11 +68,13 @@ private:
 
     // TODO: bFindInit, bFind, bFindFinal
 #if xTODO
-    bool_t                 bFindInit         (CK_ATTRIBUTE_PTR  pTemplate, CK_ULONG ulCount);
+    bool_t                 bFindInit(CK_ATTRIBUTE_PTR  pTemplate, CK_ULONG ulCount);
         ///< initializes a search for token and session objects that match a template
-    bool_t                 bFind             (CK_OBJECT_HANDLE_PTR phObject, CK_ULONG ulMaxObjectCount, CK_ULONG_PTR pulObjectCount);
-        ///< continues a search for token and session objects that match a template, obtaining additional object handles
-    bool_t                 bFindFinal        ();
+    bool_t                 bFind(CK_OBJECT_HANDLE_PTR phObject, CK_ULONG ulMaxObjectCount,
+                               CK_ULONG_PTR pulObjectCount);
+        ///< continues a search for token and session objects that match a template, obtaining
+        ///< additional object handles
+    bool_t                 bFindFinal();
         ///< finishes a search for token and session objects
 #endif
 };

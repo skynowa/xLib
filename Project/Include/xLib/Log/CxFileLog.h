@@ -29,21 +29,21 @@ public:
         lsLimitSize      = 500 * 1024 * 1024
     };
 
-    explicit          CxFileLog     (culong_t &culMaxFileSizeBytes);
+    explicit          CxFileLog(culong_t &culMaxFileSizeBytes);
         ///< constructor
-    virtual          ~CxFileLog     ();
+    virtual          ~CxFileLog();
         ///< destructor
 
-    void_t            setFilePath   (std::ctstring_t &csFilePath);
+    void_t            setFilePath(std::ctstring_t &csFilePath);
         ///< set log path
-    std::ctstring_t & filePath      () const xWARN_UNUSED_RV;
+    std::ctstring_t & filePath() const xWARN_UNUSED_RV;
         ///< get log path
 
-    void_t            write         (ctchar_t *pcszFormat, ...);
+    void_t            write(ctchar_t *pcszFormat, ...);
         ///< write
-    void_t            clear         ();
+    void_t            clear();
         ///< clear content
-    void_t            remove        ();
+    void_t            remove();
         ///< delete
 
 private:

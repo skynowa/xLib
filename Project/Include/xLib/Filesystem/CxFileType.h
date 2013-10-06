@@ -61,22 +61,22 @@ public:
     virtual          ~CxFileType();
         ///< destructor
 
-    std::ctstring_t & filePath  () const xWARN_UNUSED_RV;
+    std::ctstring_t & filePath() const xWARN_UNUSED_RV;
         ///< file path
 
-    bool_t            isExists  (cExType &cftValue) xWARN_UNUSED_RV;
+    bool_t            isExists(cExType &cftValue) xWARN_UNUSED_RV;
         ///< is exists
-    types_t           get       () xWARN_UNUSED_RV;
+    types_t           get() xWARN_UNUSED_RV;
         ///< get
-    void_t            set       (ctypes_t &cftValues);
+    void_t            set(ctypes_t &cftValues);
         ///< set
-    void_t            add       (cExType &cftValue);
+    void_t            add(cExType &cftValue);
         ///< add
-    void_t            remove    (cExType &cftValue);
+    void_t            remove(cExType &cftValue);
         ///< remove
-    void_t            modify    (cExType &cftRemoveValue, cExType &cftAddValue);
+    void_t            modify(cExType &cftRemoveValue, cExType &cftAddValue);
         ///< modify
-    void_t            clear     ();
+    void_t            clear();
         ///< clear (set normal attributes, only for Windows)
 
 private:

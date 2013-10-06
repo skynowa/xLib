@@ -9,7 +9,7 @@
 #include <xLib/Core/xCore.h>
 #include <xLib/Crypt/Pkcs11/Core.h>
 //------------------------------------------------------------------------------
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
 
 xNAMESPACE_BEGIN(NxLib)
 
@@ -26,9 +26,9 @@ public:
     virtual             ~CxLogin();
         ///< constructor
 
-    void_t               login  (CK_USER_TYPE userType, CK_UTF8CHAR_PTR pPin, CK_ULONG ulPinLen);
+    void_t               login(CK_USER_TYPE userType, CK_UTF8CHAR_PTR pPin, CK_ULONG ulPinLen);
         ///< login user into a token
-    void_t               logout ();
+    void_t               logout();
         ///< logout user from a token
 
 private:

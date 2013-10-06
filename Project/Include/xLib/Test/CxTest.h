@@ -41,22 +41,22 @@ public:
     HWND                 m_hwndRv;    ///< for global use
 #endif
 
-                         CxTest       ();
+                         CxTest();
         ///< constructor
-    virtual             ~CxTest       () = 0;
+    virtual             ~CxTest() = 0;
         ///< destructor
 
-    void_t               run          (culonglong_t &cullUnitLoops, culonglong_t &cullCaseLoops);
+    void_t               run(culonglong_t &cullUnitLoops, culonglong_t &cullCaseLoops);
         ///< run test units
-    virtual void_t       unit         (culonglong_t &cullCaseLoops) = 0;
+    virtual void_t       unit(culonglong_t &cullCaseLoops) = 0;
         ///< test unit
     void_t               createTempDir(std::ctstring_t &csDirName);
         ///< create work dir
-    std::ctstring_t &    tempDirPath  () const xWARN_UNUSED_RV;
+    std::ctstring_t &    tempDirPath() const xWARN_UNUSED_RV;
         ///< get work dir path
-    std::ctstring_t &    name         () const xWARN_UNUSED_RV;
+    std::ctstring_t &    name() const xWARN_UNUSED_RV;
         ///< get name
-    void_t               setName      (std::ctstring_t &csTestName);
+    void_t               setName(std::ctstring_t &csTestName);
         ///< set name
 
 private:

@@ -15,45 +15,45 @@ class CxRandom :
     /// random
 {
 public:
-    explicit              CxRandom     (clong_t &liSeed = std::time(NULL));
+    explicit              CxRandom(clong_t &liSeed = std::time(NULL));
         ///< constructor
-    virtual              ~CxRandom     ();
+    virtual              ~CxRandom();
         ///< destructor
 
-    void_t                vSetSeed     (clong_t &liSeed);
+    void_t                vSetSeed(clong_t &liSeed);
         ///< set seed
-    int_t                 iNextInt     () xWARN_UNUSED_RV;
+    int_t                 iNextInt() xWARN_UNUSED_RV;
         ///< next int_t
-    int_t                 iNextInt     (cint_t &max) xWARN_UNUSED_RV;
+    int_t                 iNextInt(cint_t &max) xWARN_UNUSED_RV;
         ///< next int_t
-    int_t                 iNextInt     (cint_t &a, cint_t &b) xWARN_UNUSED_RV;
+    int_t                 iNextInt(cint_t &a, cint_t &b) xWARN_UNUSED_RV;
         ///< next int_t
-    long_t                liNextLong   () xWARN_UNUSED_RV;
+    long_t                liNextLong() xWARN_UNUSED_RV;
         ///< next long_t
-    bool_t                bNextBoolean () xWARN_UNUSED_RV;
+    bool_t                bNextBoolean() xWARN_UNUSED_RV;
         ///< next boolean
-    float_t               fNextFloat   () xWARN_UNUSED_RV;
+    float_t               fNextFloat() xWARN_UNUSED_RV;
         ///< next float_t
-    double                bNextDouble  () xWARN_UNUSED_RV;
+    double                bNextDouble() xWARN_UNUSED_RV;
         ///< next double
-    char                  chNextChar   () xWARN_UNUSED_RV;
+    char                  chNextChar() xWARN_UNUSED_RV;
         ///< next char
-    char                  chNextFigure () xWARN_UNUSED_RV;
+    char                  chNextFigure() xWARN_UNUSED_RV;
         ///< next figure
     double                dNextGaussian() xWARN_UNUSED_RV;
         ///< next gaussian
 
-    static void_t         vSetSeed     ();
+    static void_t         vSetSeed();
         ///< set seed
-    static long_t         liInt        (clong_t &cliMin, clong_t &cliMax) xWARN_UNUSED_RV;
+    static long_t         liInt(clong_t &cliMin, clong_t &cliMax) xWARN_UNUSED_RV;
         ///< generates a random number between specified min/max boundaries
-    static long_t         liIntEx      (clong_t &cliMin, clong_t &cliMax) xWARN_UNUSED_RV;
+    static long_t         liIntEx(clong_t &cliMin, clong_t &cliMax) xWARN_UNUSED_RV;
         ///< generates a random number between specified min/max boundaries using a vector to shuffle
-    static std::tstring_t sString      (std::csize_t &cuiSize) xWARN_UNUSED_RV;
+    static std::tstring_t sString(std::csize_t &cuiSize) xWARN_UNUSED_RV;
         ///< get random string
 
 protected:
-    long_t                liNext       () xWARN_UNUSED_RV;
+    long_t                liNext() xWARN_UNUSED_RV;
         ///< next long_t
 
 private:

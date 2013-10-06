@@ -16,34 +16,34 @@ class CxFlags :
     /// bit mask flags
 {
 public:
-              CxFlags     ();
+              CxFlags();
         ///< constructor
-    explicit  CxFlags     (const CxFlags &cfValues);
+    explicit  CxFlags(const CxFlags &cfValues);
         ///< constructor
-    explicit  CxFlags     (const T &valuesT);
+    explicit  CxFlags(const T &valuesT);
         ///< constructor
-    virtual  ~CxFlags     ();
+    virtual  ~CxFlags();
         ///< destructor
 
-    CxFlags & operator =  (const CxFlags &cfValues);
+    CxFlags & operator = (const CxFlags &cfValues);
         ///< operator =
 
-    size_t  & get         () const;
+    size_t  & get() const;
         ///< get all flags
-    void_t    set         (const T &valuesT);
+    void_t    set(const T &valuesT);
         ///< set all flags
-    void_t    clear       ();
+    void_t    clear();
         ///< reset all flags
 
-    bool_t    isSetFlag   (const T &valueT) const;
+    bool_t    isSetFlag(const T &valueT) const;
         ///< flag is set
     bool_t    isSetAnyFlag(const T &valueT) const;
         ///< is any flag set
-    void_t    setFlag     (const T &valueT);
+    void_t    setFlag(const T &valueT);
         ///< set flag
-    void_t    unsetFlag   (const T &valueT);
+    void_t    unsetFlag(const T &valueT);
         ///< unset flag
-    void_t    toggleFlag  (const T &valueT);
+    void_t    toggleFlag(const T &valueT);
         ///< toggle flag
 
 private:

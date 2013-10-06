@@ -14,15 +14,15 @@ class CxNonArrayHeap
     /// non heapable class for arrays
 {
 public:
-             CxNonArrayHeap     () { ; }
+             CxNonArrayHeap() { ; }
         ///< constructor
-    virtual ~CxNonArrayHeap     () { ; }
+    virtual ~CxNonArrayHeap() { ; }
         ///< destructor
 
 protected:
-    void_t * operator new []    (size_t) throw() { return NULL; }
+    void_t * operator new [](size_t) throw() { return NULL; }
         ///< operator new []
-    void_t   operator delete [] (void_t *) { ; }
+    void_t   operator delete [](void_t *) { ; }
         ///< operator delete []
 };
 

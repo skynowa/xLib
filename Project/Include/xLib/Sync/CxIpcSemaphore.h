@@ -25,24 +25,24 @@ public:
                      CxIpcSemaphore();
     virtual         ~CxIpcSemaphore();
 
-    const handle_t & handle        () const xWARN_UNUSED_RV;
+    const handle_t & handle() const xWARN_UNUSED_RV;
         ///< get handle
-    void_t           create        (clong_t &cliInitialValue, std::ctstring_t &csName);
+    void_t           create(clong_t &cliInitialValue, std::ctstring_t &csName);
         ///< create
-    void_t           open          (std::ctstring_t &csName);
+    void_t           open(std::ctstring_t &csName);
         ///< open
-    void_t           post          () const;
+    void_t           post() const;
         ///< release
-    void_t           wait          (culong_t &culTimeoutMsec) const;
+    void_t           wait(culong_t &culTimeoutMsec) const;
         ///< wait
-    long_t           value         () const xWARN_UNUSED_RV;
+    long_t           value() const xWARN_UNUSED_RV;
         ///< get value
 
 private:
     handle_t         _m_hHandle;
     std::tstring_t   _m_sName;
 
-    bool_t           _isValid      () const xWARN_UNUSED_RV;
+    bool_t           _isValid() const xWARN_UNUSED_RV;
 };
 
 xNAMESPACE_END(NxLib)

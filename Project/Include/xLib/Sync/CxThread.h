@@ -51,91 +51,97 @@ public:
 
     volatile long_t      m_ulTag;    ///< tag
 
-                         CxThread            (cbool_t &cbAutoDelete);
+                         CxThread(cbool_t &cbAutoDelete);
         ///< constructor
-    virtual             ~CxThread            () /* BUG: = 0*/;
+    virtual             ~CxThread() /* BUG: = 0*/;
         ///< destructor
 
     // actions
-    void_t               create              (cbool_t &cbIsPaused, cuint_t &cuiStackSize, void_t *pvParam);
+    void_t               create(cbool_t &cbIsPaused, cuint_t &cuiStackSize, void_t *pvParam);
         ///< start
-    void_t               resume              ();
+    void_t               resume();
         ///< resume
-    void_t               pause               ();
+    void_t               pause();
         ///< pause
-    void_t               exit                ();
+    void_t               exit();
         ///< exit (set flag "exit")
-    void_t               kill                (culong_t &culTimeout);
+    void_t               kill(culong_t &culTimeout);
         ///< kill
-    void_t               wait                (culong_t &culTimeout) const;
+    void_t               wait(culong_t &culTimeout) const;
         ///< wait
 
     // flags
-    bool_t               isCreated           () const xWARN_UNUSED_RV;
+    bool_t               isCreated() const xWARN_UNUSED_RV;
         ///< is created
-    bool_t               isRunning           () const xWARN_UNUSED_RV;
+    bool_t               isRunning() const xWARN_UNUSED_RV;
         ///< is running
-    bool_t               isPaused            () xWARN_UNUSED_RV;
+    bool_t               isPaused() xWARN_UNUSED_RV;
         ///< is paused
-    bool_t               isExited            () xWARN_UNUSED_RV;
+    bool_t               isExited() xWARN_UNUSED_RV;
         ///< is exited (is set flag "exit")
 
 #if xOS_ENV_WIN
     // messages
-    void_t               postMessage         (HWND hHwnd, uint_t uiMsg, uint_t uiParam1, long_t liParam2) const;
+    void_t               postMessage(HWND hHwnd, uint_t uiMsg, uint_t uiParam1, long_t liParam2)
+                             const;
         ///< post message from thread to window
-    void_t               sendMessage         (HWND hHwnd, uint_t uiMsg, uint_t uiParam1, long_t liParam2) const;
+    void_t               sendMessage(HWND hHwnd, uint_t uiMsg, uint_t uiParam1, long_t liParam2)
+                             const;
         ///< send message from thread to window
-    void_t               postThreadMessage   (uint_t uiMsg, uint_t uiParam1, long_t liParam2) const;
+    void_t               postThreadMessage(uint_t uiMsg, uint_t uiParam1, long_t liParam2) const;
         ///< post message from thread to thread
-    bool_t               tryPostThreadMessage(uint_t uiMsg, uint_t uiParam1, long_t liParam2, ulong_t ulAttemps, ulong_t ulAttempTimeout) const xWARN_UNUSED_RV;
+    bool_t               tryPostThreadMessage(uint_t uiMsg, uint_t uiParam1, long_t liParam2,
+                             ulong_t ulAttemps, ulong_t ulAttempTimeout) const xWARN_UNUSED_RV;
         ///< try post message from thread to thread
-    void_t               messageWaitQueue    (uint_t uiMsg, uint_t *puiParam1, long_t *pliParam2) const;
+    void_t               messageWaitQueue(uint_t uiMsg, uint_t *puiParam1, long_t *pliParam2) const;
         ///< waiting for message with params from other thread
-    void_t               messageWaitQueue    (const std::vector<uint_t> &cvuiMsg, uint_t *puiMsg, uint_t *puiParam1, long_t *pliParam2) const;
+    void_t               messageWaitQueue(const std::vector<uint_t> &cvuiMsg, uint_t *puiMsg,
+                             uint_t *puiParam1, long_t *pliParam2) const;
         ///< waiting for message with params from other thread
 #endif
 
     // priority
-    void_t               setPriority         (const ExPriority &ctpPriority) const;
+    void_t               setPriority(const ExPriority &ctpPriority) const;
         ///< set priority (under Linux must use admin privilege)
-    ExPriority           priority            () const xWARN_UNUSED_RV;
+    ExPriority           priority() const xWARN_UNUSED_RV;
         ///< get priority
-    std::tstring_t       priorityString      () const xWARN_UNUSED_RV;
+    std::tstring_t       priorityString() const xWARN_UNUSED_RV;
         ///< get priority as string
-    void_t               priorityUp          () const;
+    void_t               priorityUp() const;
         ///< increase priority on one level
-    void_t               priorityDown        () const;
+    void_t               priorityDown() const;
         ///< decrease priority on one level
-    bool_t               isPriorityBoost     () const xWARN_UNUSED_RV;
+    bool_t               isPriorityBoost() const xWARN_UNUSED_RV;
         ///< get priority boost control state
-    void_t               setPriorityBoost    (cbool_t &cbIsEnabled) const;
-        ///< disables or enables the ability of the system to temporarily boost the priority of a thread
+    void_t               setPriorityBoost(cbool_t &cbIsEnabled) const;
+        ///< disables or enables the ability of the system to temporarily boost
+        ///< the priority of a thread
 
     // CPU
-    void_t               setCpuAffinity      (cint_t &ciProcNum) const;
+    void_t               setCpuAffinity(cint_t &ciProcNum) const;
         ///< set processor affinity
-    void_t               setCpuIdeal         (culong_t &culIdealCpu) const;
+    void_t               setCpuIdeal(culong_t &culIdealCpu) const;
         ///< sets preferred processor for a thread
-    ulong_t              cpuIdeal            () const xWARN_UNUSED_RV;
+    ulong_t              cpuIdeal() const xWARN_UNUSED_RV;
         ///< get current ideal processor without changing it
-    static ulong_t       cpuCount            () xWARN_UNUSED_RV;
+    static ulong_t       cpuCount() xWARN_UNUSED_RV;
         ///< get CPU count on machine
 
     // other
-    handle_t             handle              () const xWARN_UNUSED_RV;
+    handle_t             handle() const xWARN_UNUSED_RV;
         ///< get handle
-    id_t                 id                  () const xWARN_UNUSED_RV;
+    id_t                 id() const xWARN_UNUSED_RV;
         ///< get ID
-    bool_t               isCurrent           () const xWARN_UNUSED_RV;
+    bool_t               isCurrent() const xWARN_UNUSED_RV;
         ///< is current
-    ulong_t              exitStatus          () const xWARN_UNUSED_RV;
+    ulong_t              exitStatus() const xWARN_UNUSED_RV;
         ///< get termination status
-    void_t               setDebugName        (std::ctstring_t &csName) const;
+    void_t               setDebugName(std::ctstring_t &csName) const;
         ///< set name your threads in the debugger thread list
 
     // static
-    static handle_t      open                (culong_t &culAccess, cbool_t &cbInheritHandle, culong_t &culId) xWARN_UNUSED_RV;
+    static handle_t      open(culong_t &culAccess, cbool_t &cbInheritHandle, culong_t &culId)
+                             xWARN_UNUSED_RV;
         ///< opens an existing thread object
 
 protected:
@@ -145,7 +151,7 @@ protected:
     //--virtual void_t    vOnEnter              ();
     //--virtual void_t    vOnExit               ();
 
-    bool_t               isTimeToExit        () xWARN_UNUSED_RV;
+    bool_t               isTimeToExit() xWARN_UNUSED_RV;
         ///< is need to exit from work thread function
 
 private:
@@ -184,16 +190,16 @@ private:
 #endif
 
     static exit_status_t xSTDCALL
-                         _s_jobEntry         (void_t *pvParam) xWARN_UNUSED_RV;
+                         _s_jobEntry(void_t *pvParam) xWARN_UNUSED_RV;
         ///< callback
-    bool_t               _waitResumption     () xWARN_UNUSED_RV;
+    bool_t               _waitResumption() xWARN_UNUSED_RV;
         ///< waiting for reset pause
-    void_t               _setStatesDefault   ();
+    void_t               _setStatesDefault();
         ///< set states as default
 
     // static
-    static int_t         _priorityMin        ();
-    static int_t         _priorityMax        ();
+    static int_t         _priorityMin();
+    static int_t         _priorityMax();
 };
 
 xNAMESPACE_END(NxLib)

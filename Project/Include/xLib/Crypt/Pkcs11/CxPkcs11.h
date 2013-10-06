@@ -10,7 +10,7 @@
 #include <xLib/Crypt/Pkcs11/Core.h>
 #include <xLib/Filesystem/CxDll.h>
 //------------------------------------------------------------------------------
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
 
 xNAMESPACE_BEGIN(NxLib)
 
@@ -19,25 +19,25 @@ class CxPkcs11 :
     /// Aladdin eToken, PKCS#11
 {
 public:
-                          CxPkcs11    ();
+                          CxPkcs11();
         ///< constructor
-    virtual              ~CxPkcs11    ();
+    virtual              ~CxPkcs11();
         ///< destructor
 
-    CK_FUNCTION_LIST_PTR  funcList    () const;
+    CK_FUNCTION_LIST_PTR  funcList() const;
         ///< get pointer to dll functions list
-    static std::tstring_t errorStr    (const CK_RV culCode) xWARN_UNUSED_RV;
+    static std::tstring_t errorStr(const CK_RV culCode) xWARN_UNUSED_RV;
         ///< get error string by code, SDK 4.53
 
 private:
-    CK_FUNCTION_LIST_PTR _m_pFunc;            ///< pointer to function
-    CxDll                _m_dllETPkcs11;    ///< Pkcs11 CxDll object
+    CK_FUNCTION_LIST_PTR  _m_pFunc;            ///< pointer to function
+    CxDll                 _m_dllETPkcs11;    ///< Pkcs11 CxDll object
 
-    void_t               _loadETPkcs11();
+    void_t                _loadETPkcs11();
         ///< load eTPkcs11.dll
-    void_t               _initialize  ();
+    void_t                _initialize();
         ///< initiate PKCS#11
-    void_t               _finalize    ();
+    void_t                _finalize();
         ///< finalize PKCS#11
 };
 

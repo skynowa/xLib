@@ -9,7 +9,7 @@
 #include <xLib/Core/xCore.h>
 #include <xLib/Crypt/Pkcs11/Core.h>
 //------------------------------------------------------------------------------
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
 
 xNAMESPACE_BEGIN(NxLib)
 
@@ -28,16 +28,17 @@ public:
         nfRemoval
     };
 
-    explicit             CxSlot      (const CxPkcs11 &cPkcs11);
+    explicit             CxSlot(const CxPkcs11 &cPkcs11);
         ///< constructor
-    virtual             ~CxSlot      ();
+    virtual             ~CxSlot();
         ///< destructor
 
-    void_t               list        (CK_BBOOL bTokenPresent, std::vector<CK_SLOT_ID> *pvecSlotList);
+    void_t               list(CK_BBOOL bTokenPresent, std::vector<CK_SLOT_ID> *pvecSlotList);
         ///< obtains a list of slots in the system
-    void_t               info        (CK_SLOT_ID slotID, CK_SLOT_INFO_PTR pInfo);
+    void_t               info(CK_SLOT_ID slotID, CK_SLOT_INFO_PTR pInfo);
         ///< obtains information about a particular slot in the system
-    ENotification        waitForEvent(CK_FLAGS flags, CK_SLOT_ID_PTR pSlot, CK_VOID_PTR pRserved) xWARN_UNUSED_RV;
+    ENotification        waitForEvent(CK_FLAGS flags, CK_SLOT_ID_PTR pSlot, CK_VOID_PTR pRserved)
+                             xWARN_UNUSED_RV;
         ///< waits for a slot event (token insertion, removal, etc.) to occur
 
 private:
