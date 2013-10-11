@@ -39,7 +39,8 @@ CxAutoProfiler::CxAutoProfiler(
 //------------------------------------------------------------------------------
 /* virtual */
 CxAutoProfiler::~CxAutoProfiler() {
-    _m_pfProfiler.stop(xT("%s"), _m_sComment.c_str());
+    size_t uiRv = _m_pfProfiler.stop(xT("%s"), _m_sComment.c_str());
+    xUNUSED(uiRv);
 }
 //------------------------------------------------------------------------------
 
