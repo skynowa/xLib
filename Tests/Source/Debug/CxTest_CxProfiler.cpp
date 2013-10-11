@@ -44,10 +44,25 @@ CxTest_CxProfiler::unit(
         for (size_t i = 0; i < 10; ++ i) {
             CxCurrentThread::sleep(5UL);
 
-            pfP.pulse(xT("\tVar i: %") xPR_SIZET, i);
+            m_uiRv = pfP.restart(xT("\tVar i: %") xPR_SIZET, i);
         }
 
-        pfP.stop(xT(""));
+        m_uiRv = pfP.stop(xT(""));
+    }
+
+    xTEST_CASE("CxProfiler::CxProfiler", a_cullCaseLoops)
+    {
+        CxProfiler pfP;
+
+        pfP.start();
+
+        for (size_t i = 0; i < 10; ++ i) {
+            CxCurrentThread::sleep(5UL);
+
+            m_uiRv = pfP.restart(xT("\tVar i: %") xPR_SIZET, i);
+        }
+
+        m_uiRv = pfP.stop(xT(""));
     }
 }
 //------------------------------------------------------------------------------

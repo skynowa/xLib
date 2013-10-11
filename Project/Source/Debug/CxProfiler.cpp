@@ -29,7 +29,7 @@ CxProfiler::CxProfiler() :
 }
 //------------------------------------------------------------------------------
 CxProfiler::~CxProfiler() {
-    if (!_flLog.filePath().empty()) {
+    if ( !_flLog.filePath().empty() ) {
         _flLog.write(xT("----------------------------------------"));
     }
 }
@@ -66,7 +66,7 @@ CxProfiler::start() {
     _m_bIsStarted = true;
 }
 //--------------------------------------------------------------------------
-void_t
+size_t
 CxProfiler::stop(
     ctchar_t *a_pcszComment, ...
 )
@@ -84,13 +84,13 @@ CxProfiler::stop(
     }
 
     cdouble_t       cdDurationMsec   = (static_cast<double>( _m_clkDuration ) / static_cast<double>( CLOCKS_PER_SEC )) * 1000.0;  // 1 sec = 1000 msec
-    culonglong_t    cullDurationMsec = CxUtils::roundIntT<ulonglong_t>( cdDurationMsec );
-    std::ctstring_t csDurationTime   = CxDateTime(cullDurationMsec).format(CxDateTime::ftTime);
+    std::size_t     cullDurationMsec = CxUtils::roundIntT<std::size_t>( cdDurationMsec );
 
     //-------------------------------------
     // write to log
-    {
-        std::tstring_t sRv;
+    if ( !_flLog.filePath().empty() ) {
+        std::tstring_t  sRv;
+        std::ctstring_t csDurationTime = CxDateTime(cullDurationMsec).format(CxDateTime::ftTime);
 
         va_list palArgs;
         xVA_START(palArgs, a_pcszComment);
@@ -101,26 +101,34 @@ CxProfiler::stop(
     }
 
     _m_bIsStarted = false;
+
+    return cullDurationMsec;
 }
 //--------------------------------------------------------------------------
-void_t
-CxProfiler::pulse(
+size_t
+CxProfiler::restart(
     ctchar_t *a_pcszComment, ...
 )
 {
+    size_t uiRV = 0;
+
     //-------------------------------------
     // format comment
     std::tstring_t sRv;
 
-    va_list palArgs;
-    xVA_START(palArgs, a_pcszComment);
-    sRv = CxString::formatV(a_pcszComment, palArgs);
-    xVA_END(palArgs);
+    if ( !_flLog.filePath().empty() ) {
+        va_list palArgs;
+        xVA_START(palArgs, a_pcszComment);
+        sRv = CxString::formatV(a_pcszComment, palArgs);
+        xVA_END(palArgs);
+    }
 
     //-------------------------------------
     // stop, start
-    stop(xT("%s"), sRv.c_str());
+    uiRV = stop(xT("%s"), sRv.c_str());
     start();
+
+    return uiRV;
 }
 //------------------------------------------------------------------------------
 
