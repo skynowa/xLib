@@ -83,8 +83,8 @@ CxProfiler::stop(
         xTEST_LESS_EQ(static_cast<clock_t>( 0 ), _m_clkDuration);
     }
 
-    cdouble_t       cdDurationMsec   = (static_cast<double>( _m_clkDuration ) / static_cast<double>( CLOCKS_PER_SEC )) * 1000.0;  // 1 sec = 1000 msec
-    std::size_t     cullDurationMsec = CxUtils::roundIntT<std::size_t>( cdDurationMsec );
+    cdouble_t   cdDurationMsec   = (static_cast<double>( _m_clkDuration ) / static_cast<double>( CLOCKS_PER_SEC )) * 1000.0;  // 1 sec = 1000 msec
+    std::size_t cullDurationMsec = CxUtils::roundIntT<std::size_t>( cdDurationMsec );
 
     //-------------------------------------
     // write to log
