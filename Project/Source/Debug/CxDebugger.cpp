@@ -300,10 +300,10 @@ CxDebugger::_loggingPlain(
 
     //--------------------------------------------------
     // write to file
-    std::FILE *pFile = ::xTFOPEN(sFilePath.c_str(), xT("ab"));
-    xTEST_PTR(pFile);
-
     try {
+        std::ofstream ofs(sFilePath.c_str(), std::ofstream::out);
+        xCHECK_DO(ofs.fail(), return);
+
         std::ctstring_t csMsg = CxString::format(
             xT("\n")
             xT("####################################################################################################\n")
@@ -312,11 +312,11 @@ CxDebugger::_loggingPlain(
             a_crpReport.m_sReport.c_str()
         );
 
-        std::xTFPRINTF(pFile, xT("%s"), csMsg.data());
+        ofs << csMsg;
+        ofs.close();
     }
-    catch (...) { }
-
-    xFCLOSE(pFile);
+    catch (...) {
+    }
 }
 //------------------------------------------------------------------------------
 
