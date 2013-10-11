@@ -208,7 +208,7 @@ CxDebugger::_msgboxPlain(
 #endif
     switch (mrRes) {
         case CxMsgBoxT::mrAbort:
-            CxCurrentProcess::exit(0U);
+            CxCurrentProcess::exit(EXIT_FAILURE);
             break;
         default:
         case CxMsgBoxT::mrIgnore:
@@ -220,7 +220,7 @@ CxDebugger::_msgboxPlain(
             } else {
                 CxMsgBoxT::ExModalResult nrRv = CxMsgBoxT::show(xT("Debugger is not present.\nThe application will be terminated."), xT("xLib"));
                 xUNUSED(nrRv);
-                CxCurrentProcess::exit(0U);
+                CxCurrentProcess::exit(EXIT_FAILURE);
             }
             break;
     }
@@ -255,7 +255,7 @@ CxDebugger::_stdoutPlain(
         case cmAbort:
             std::tcout << xT("Abort...\n\n");  std::tcout.flush();
 
-            CxCurrentProcess::exit(0U);
+            CxCurrentProcess::exit(EXIT_FAILURE);
             break;
         default:
         case cmIgnore:
@@ -275,7 +275,7 @@ CxDebugger::_stdoutPlain(
                 std::tcout << xT("\n\n");
                 std::tcout.flush();
 
-                CxCurrentProcess::exit(0U);
+                CxCurrentProcess::exit(EXIT_FAILURE);
             }
             break;
     }
