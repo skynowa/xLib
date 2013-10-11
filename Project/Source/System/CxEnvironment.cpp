@@ -193,7 +193,7 @@ CxEnvironment::values(
 #endif
 
     // out
-    std::swap(*a_pvsValues, vsArgs);
+    a_pvsValues->swap(vsArgs);
 }
 //--------------------------------------------------------------------------
 /* static */

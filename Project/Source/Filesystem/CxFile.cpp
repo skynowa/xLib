@@ -1066,7 +1066,7 @@ CxFile::textRead(
     xTEST_EQ(sRv.size(), uiReadLen);
 
     // out
-    std::swap((*a_psContent), sRv);
+    a_psContent->swap(sRv);
 }
 //------------------------------------------------------------------------------
 /* static */
@@ -1110,7 +1110,7 @@ CxFile::textRead(
     CxString::split(sFileContent, CxConst::xNL, &vsRes);
 
     // out
-    std::swap((*a_pvsContent), vsRes);
+    a_pvsContent->swap(vsRes);
 }
 //------------------------------------------------------------------------------
 /* static */
@@ -1191,7 +1191,7 @@ CxFile::textRead(
     }
 
     //out
-    std::swap((*pmsContent), msRv);
+    pmsContent.swap(msRv);
 #endif
 }
 //------------------------------------------------------------------------------
@@ -1269,7 +1269,7 @@ CxFile::binRead(
     xTEST_EQ(usRv.size(), uiReadLen);
 
     // out
-    std::swap((*a_pusContent), usRv);
+    a_pusContent->swap(usRv);
 }
 //------------------------------------------------------------------------------
 /* static */
