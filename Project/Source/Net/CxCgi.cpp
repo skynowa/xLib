@@ -742,7 +742,7 @@ CxCgiCookies::_construct() {
         vecckCookies.push_back(pckItem);
     }
 
-    std::swap(vecckCookies, items);
+    vecckCookies.swap(items);
 }
 //------------------------------------------------------------------------------
 

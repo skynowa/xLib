@@ -360,7 +360,7 @@ CxVolume::paths(
 #endif
 
     // out
-    std::swap(*a_pvsVolumePaths, vsRes);
+    a_pvsVolumePaths->swap(vsRes);
 }
 //--------------------------------------------------------------------------
 
