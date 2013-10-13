@@ -43,20 +43,18 @@ CxTestManager::~CxTestManager() {
 //------------------------------------------------------------------------------
 void_t
 CxTestManager::add(
-    CxTest          *a_pvtTest,
-    std::ctstring_t &a_csTestName /* = CxConst::xSTR_EMPTY */
+    CxTest *a_pvtTest
 )
 {
     xTEST_PTR(a_pvtTest)
-    xTEST_NA(a_csTestName);
 
     a_pvtTest->setName( CxType::name(*a_pvtTest) );
 
     _m_ctnTests.push_back(a_pvtTest);
 
-    #if xTEMP_DISABLED
-        xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: added test \"%s\""), a_pvtTest->sName().c_str()));
-    #endif
+#if xTEMP_DISABLED
+    xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: added test \"%s\""), a_pvtTest->name().c_str()));
+#endif
 }
 //------------------------------------------------------------------------------
 void_t
