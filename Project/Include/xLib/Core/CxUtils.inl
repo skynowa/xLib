@@ -5,6 +5,7 @@
 
 
 #include <xLib/Debug/xDebug.h>
+#include <xLib/Test/xTest.h>
 
 
 xNAMESPACE_BEGIN(NxLib)
