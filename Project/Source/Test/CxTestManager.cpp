@@ -32,7 +32,8 @@ CxTestManager::CxTestManager(
 }
 //------------------------------------------------------------------------------
 /* virtual */
-CxTestManager::~CxTestManager() {
+CxTestManager::~CxTestManager()
+{
     xFOREACH(container_t, it, _m_ctnTests) {
         xPTR_DELETE(*it);
     }

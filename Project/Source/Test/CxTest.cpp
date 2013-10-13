@@ -125,14 +125,16 @@ CxTest::createTempDir(
 }
 //------------------------------------------------------------------------------
 std::ctstring_t &
-CxTest::tempDirPath() const {
+CxTest::tempDirPath() const
+{
     xTEST_EQ(false, _m_sWorkDirPath.empty());
 
     return _m_sWorkDirPath;
 }
 //------------------------------------------------------------------------------
 std::ctstring_t &
-CxTest::name() const {
+CxTest::name() const
+{
     return _m_sName;
 }
 //------------------------------------------------------------------------------
