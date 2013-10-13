@@ -179,6 +179,7 @@ namespace NxLib { }
 #include <xLib/Core/CxUtils.h>
 #include <xLib/Debug/xDebug.h>
 #include <xLib/Debug/CxException.h>
+#include <xLib/Test/xTest.h>
 
 #include <xLib/Core/xTracing.h>
 #include <xLib/Core/xLinking.h>
