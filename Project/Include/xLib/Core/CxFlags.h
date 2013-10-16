@@ -18,32 +18,32 @@ class CxFlags :
 public:
               CxFlags();
         ///< constructor
-    explicit  CxFlags(const CxFlags &cfValues);
+    explicit  CxFlags(const CxFlags &values);
         ///< constructor
-    explicit  CxFlags(const T &valuesT);
+    explicit  CxFlags(const T &values);
         ///< constructor
     virtual  ~CxFlags();
         ///< destructor
 
-    CxFlags & operator = (const CxFlags &cfValues);
+    CxFlags & operator = (const CxFlags &values);
         ///< operator =
 
     size_t  & get() const;
         ///< get all flags
-    void_t    set(const T &valuesT);
+    void_t    set(const T &values);
         ///< set all flags
     void_t    clear();
         ///< reset all flags
 
-    bool_t    isSetFlag(const T &valueT) const;
+    bool_t    isSetFlag(const T &value) const;
         ///< flag is set
-    bool_t    isSetAnyFlag(const T &valueT) const;
+    bool_t    isSetAnyFlag(const T &value) const;
         ///< is any flag set
-    void_t    setFlag(const T &valueT);
+    void_t    setFlag(const T &value);
         ///< set flag
-    void_t    unsetFlag(const T &valueT);
+    void_t    unsetFlag(const T &value);
         ///< unset flag
-    void_t    toggleFlag(const T &valueT);
+    void_t    toggleFlag(const T &value);
         ///< toggle flag
 
 private:

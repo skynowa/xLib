@@ -17,7 +17,7 @@ class CxCom :
     /// Component Object Model (COM)
 {
 public:
-    explicit  CxCom(const COINIT &ccmCoModel);
+    explicit  CxCom(const COINIT &concurrencyModel);
         ///< constructor
     virtual  ~CxCom();
         ///< destructor

@@ -19,9 +19,9 @@ public:
         ///< get maximum length of command line arguments (in chars)
     static std::tstring_t get() xWARN_UNUSED_RV;
         ///< get command line string for the current process
-    static void_t         args(std::vec_tstring_t *pvsArgs);
+    static void_t         args(std::vec_tstring_t *args);
         ///< get command line arguments
-    static void_t         setArgs(cint_t &ciArgsCount, tchar_t *paszArgs[]);
+    static void_t         setArgs(cint_t &argsNum, tchar_t *args[]);
         ///< set command line arguments
 
 private:

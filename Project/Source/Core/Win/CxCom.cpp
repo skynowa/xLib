@@ -22,16 +22,17 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 CxCom::CxCom(
-    const COINIT &ccmCoModel
+    const COINIT &a_concurrencyModel
 )
 {
-    xTEST_NA(ccmCoModel);
+    xTEST_NA(a_concurrencyModel);
 
-    HRESULT hrRes = ::CoInitializeEx(NULL, ccmCoModel);
-    xTEST_EQ(true, SUCCEEDED(hrRes));
+    HRESULT hrRv = ::CoInitializeEx(NULL, a_concurrencyModel);
+    xTEST_EQ(true, SUCCEEDED(hrRv));
 }
 //------------------------------------------------------------------------------
-CxCom::~CxCom() {
+CxCom::~CxCom()
+{
     (void_t)::CoUninitialize();
 }
 //------------------------------------------------------------------------------
