@@ -15,12 +15,12 @@ class CxRandom :
     /// random
 {
 public:
-    explicit              CxRandom(clong_t &liSeed = std::time(NULL));
+    explicit              CxRandom(clong_t &seed = std::time(NULL));
         ///< constructor
     virtual              ~CxRandom();
         ///< destructor
 
-    void_t                vSetSeed(clong_t &liSeed);
+    void_t                vSetSeed(clong_t &seed);
         ///< set seed
     int_t                 iNextInt() xWARN_UNUSED_RV;
         ///< next int_t
@@ -45,11 +45,11 @@ public:
 
     static void_t         vSetSeed();
         ///< set seed
-    static long_t         liInt(clong_t &cliMin, clong_t &cliMax) xWARN_UNUSED_RV;
+    static long_t         liInt(clong_t &min, clong_t &max) xWARN_UNUSED_RV;
         ///< generates a random number between specified min/max boundaries
-    static long_t         liIntEx(clong_t &cliMin, clong_t &cliMax) xWARN_UNUSED_RV;
+    static long_t         liIntEx(clong_t &min, clong_t &max) xWARN_UNUSED_RV;
         ///< generates a random number between specified min/max boundaries using a vector to shuffle
-    static std::tstring_t sString(std::csize_t &cuiSize) xWARN_UNUSED_RV;
+    static std::tstring_t sString(std::csize_t &size) xWARN_UNUSED_RV;
         ///< get random string
 
 protected:
@@ -62,9 +62,9 @@ private:
     static cint_t         Q;  ///< for private use
     static cint_t         R;  ///< for private use
 
-    long_t                _m_liSeed;                  ///< for private use
-    double                _m_dNextNextGaussian;       ///< for private use
-    bool_t                _m_bHaveNextNextGaussian;   ///< for private use
+    long_t                _seed;                  ///< for private use
+    double                _nextNextGaussian;       ///< for private use
+    bool_t                _isHaveNextNextGaussian;   ///< for private use
 };
 
 xNAMESPACE_END(NxLib)

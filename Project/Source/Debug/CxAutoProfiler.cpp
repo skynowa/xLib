@@ -18,28 +18,29 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 CxAutoProfiler::CxAutoProfiler(
-    std::ctstring_t     &a_csFilePath,
-    ctchar_t            *a_pcszComment, ...
+    std::ctstring_t &a_filePath,
+    ctchar_t        *a_comment, ...
 ) :
-    _m_pfProfiler(),
-    _m_sComment  ()
+    _profiler(),
+    _comment ()
 {
     //-------------------------------------
     // format comment
     va_list palArgs;
-    xVA_START(palArgs, a_pcszComment);
-    _m_sComment = CxString::formatV(a_pcszComment, palArgs);
+    xVA_START(palArgs, a_comment);
+    _comment = CxString::formatV(a_comment, palArgs);
     xVA_END(palArgs);
 
     //-------------------------------------
     // start
-    _m_pfProfiler.setLogPath(a_csFilePath);
-    _m_pfProfiler.start();
+    _profiler.setLogPath(a_filePath);
+    _profiler.start();
 }
 //------------------------------------------------------------------------------
 /* virtual */
-CxAutoProfiler::~CxAutoProfiler() {
-    size_t uiRv = _m_pfProfiler.stop(xT("%s"), _m_sComment.c_str());
+CxAutoProfiler::~CxAutoProfiler()
+{
+    size_t uiRv = _profiler.stop(xT("%s"), _comment.c_str());
     xUNUSED(uiRv);
 }
 //------------------------------------------------------------------------------

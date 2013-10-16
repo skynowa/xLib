@@ -8,7 +8,7 @@
 
 #include <xLib/Core/xCore.h>
 
-#if xCXMYSQL_IS_USE
+#if xCXMYSQL_IS_USE || 1
 
 #if xOS_ENV_WIN
     #include <mysql.h>
@@ -36,19 +36,19 @@ public:
         ///< get handle
     bool_t                   isValid() const xWARN_UNUSED_RV;
         ///< validating handle
-    void_t                   options(const mysql_option &cmoOption, cvoid_t *cpvArg) const;
+    void_t                   options(const mysql_option &option, cvoid_t *arg) const;
         ///< set extra connect options and affect behavior
-    static bool_t            isExists(std::ctstring_t &csHost, std::ctstring_t &csUser,
-                                 std::ctstring_t &csPassword, std::ctstring_t &csDb,
-                                 cuint_t &cuiPort, std::ctstring_t &csUnixSocket,
-                                 culong_t &culClientFlag) xWARN_UNUSED_RV;
+    static bool_t            isExists(std::ctstring_t &host, std::ctstring_t &user,
+                                 std::ctstring_t &password, std::ctstring_t &db,
+                                 cuint_t &port, std::ctstring_t &unixSocket,
+                                 culong_t &clientFlag) xWARN_UNUSED_RV;
         ///<
-    void_t                   connect(std::ctstring_t &csHost, std::ctstring_t &csUser,
-                                 std::ctstring_t &csPassword, std::ctstring_t &csDb,
-                                 cuint_t &cuiPort, std::ctstring_t &csUnixSocket,
-                                 culong_t &culClientFlag);
+    void_t                   connect(std::ctstring_t &host, std::ctstring_t &user,
+                                 std::ctstring_t &password, std::ctstring_t &db,
+                                 cuint_t &port, std::ctstring_t &unixSocket,
+                                 culong_t &clientFlag);
         ///< attempts to establish a connection to a MySQL database engine running on host
-    void_t                   query(ctchar_t *pcszSqlFormat, ...) const;
+    void_t                   query(ctchar_t *sqlFormat, ...) const;
         ///< executes the SQL statement
     uint_t                   fieldCount() const xWARN_UNUSED_RV;
         ///< number of columns in a result set
@@ -62,7 +62,7 @@ public:
         ///< error message for the most recently invoked API function that failed
 
 private:
-    MYSQL                   *_m_pmsConnection;
+    MYSQL                   *_connection;
         ///< pointer to connection
 };
 
@@ -75,8 +75,8 @@ class CxMySQLRecordset :
     /// MySQL recordset
 {
 public:
-                             CxMySQLRecordset(const CxMySQLConnection &cmsConnection,
-                                 cbool_t &cbIsUseResult);
+                             CxMySQLRecordset(const CxMySQLConnection &connection,
+                                 cbool_t &isUseResult);
         ///< constructor
     virtual                 ~CxMySQLRecordset();
         ///< destructor
@@ -90,24 +90,24 @@ public:
         ///< number of columns in a result set
     my_ulonglong             rowsNum() const xWARN_UNUSED_RV;
         ///< number of rows in the result set
-    void_t                   fetchField(MYSQL_FIELD *pmfField) const;
+    void_t                   fetchField(MYSQL_FIELD *field) const;
         ///< The MYSQL_FIELD structure for the current column
-    void_t                   fetchFieldDirect(cuint_t &cuiFieldNumber, MYSQL_FIELD *pmfField) const;
+    void_t                   fetchFieldDirect(cuint_t &fieldNumber, MYSQL_FIELD *field) const;
         ///< The MYSQL_FIELD structure for the specified column
-    void_t                   fetchFields(MYSQL_FIELD *pmfField) const;
+    void_t                   fetchFields(MYSQL_FIELD *field) const;
         ///< An array of MYSQL_FIELD structures for all columns of a result set
-    void_t                   fetchRow(std::vec_tstring_t *pvsRow) const;
+    void_t                   fetchRow(std::vec_tstring_t *row) const;
         ///< fetching row
 
 private:
-    const CxMySQLConnection *_m_pcmcConnection;
+    const CxMySQLConnection *_connection;
         ///< pointer to connection object
-    MYSQL_RES               *_m_pmrResult;
+    MYSQL_RES               *_result;
         ///< for private use
 
-    void_t                   _fetchLengths(ulong_t **ppulFieldLengths) const;
+    void_t                   _fetchLengths(ulong_t **fieldLengths) const;
         ///< An array of unsigned long_t integers representing the size of each column
-    void_t                   _fetchRow(MYSQL_ROW *pmrRow) const;
+    void_t                   _fetchRow(MYSQL_ROW *row) const;
         ///< A MYSQL_ROW structure for the next row
 };
 

@@ -53,31 +53,31 @@ CxErrorReport::_construct(
     std::csize_t cuiReportWidthMax = 46U;   // MAGIC: cuiReportWidthMax
 
 
-    m_rtType          = a_crtType;
+    type          = a_crtType;
 
-    m_sProgram        = CxPath( CxPath(CxPath::exe()).brief(cuiReportWidthMax) ).toUnix(false);
-    m_ulProcessId     = (ulong_t)CxCurrentProcess::id();
-    m_ulThreadId      = (ulong_t)CxCurrentThread::id();
-    m_sFileSize       = CxString::formatBytes( static_cast<ulonglong_t>( CxFile::size(CxPath::exe())) );
+    program        = CxPath( CxPath(CxPath::exe()).brief(cuiReportWidthMax) ).toUnix(false);
+    processId     = (ulong_t)CxCurrentProcess::id();
+    threadId      = (ulong_t)CxCurrentThread::id();
+    fileSize       = CxString::formatBytes( static_cast<ulonglong_t>( CxFile::size(CxPath::exe())) );
 
-    m_sSourceFile     = CxPath( CxPath(a_csFile).brief(cuiReportWidthMax) ).toUnix(false);
-    m_ulSourceLine    = a_culLine;
-    m_sFunctionName   = a_csFunc;
-    m_sExpression     = CxString::format(xT("%s (%s) %s %s (%s)"),
+    sourceFile     = CxPath( CxPath(a_csFile).brief(cuiReportWidthMax) ).toUnix(false);
+    sourceLine    = a_culLine;
+    functionName   = a_csFunc;
+    expression     = CxString::format(xT("%s (%s) %s %s (%s)"),
                                           a_csVar1.c_str(), a_csVar1Value.c_str(), a_csExprSign.c_str(),
                                           a_csVar2.c_str(), a_csVar2Value.c_str());
-    m_sExprSign       = a_csExprSign;
-    m_ulLastError     = a_culLastError;
-    m_sLastErrorStr   = CxLastError::format(a_culLastError);
+    exprSign       = a_csExprSign;
+    lastError     = a_culLastError;
+    lastErrorStr   = CxLastError::format(a_culLastError);
 
-    m_sCurrentDate    = CxDateTime::current().format(CxDateTime::ftDateTime);
-    m_sBuildDate      = CxString::format(xT("%s/%s"), a_csDate.c_str(), a_csTime.c_str());
-    m_sBuildType      = CxDebugger().isDebugBuild() ? xT("debug") : xT("release");
-    m_sOsVersion      = CxSystemInfo::formatOsType( CxSystemInfo::os() );
-    m_sOsArchitecture = CxSystemInfo::formatOsArch( CxSystemInfo::osArch() );
+    currentDate    = CxDateTime::current().format(CxDateTime::ftDateTime);
+    buildDate      = CxString::format(xT("%s/%s"), a_csDate.c_str(), a_csTime.c_str());
+    buildType      = CxDebugger().isDebugBuild() ? xT("debug") : xT("release");
+    osVersion      = CxSystemInfo::formatOsType( CxSystemInfo::os() );
+    osArchitecture = CxSystemInfo::formatOsArch( CxSystemInfo::osArch() );
 
-    m_sStackTrace     = a_csStackTrace;
-    m_sComment        = a_csComment.empty() ? CxConst::xHYPHEN : a_csComment;
+    stackTrace     = a_csStackTrace;
+    comment        = a_csComment.empty() ? CxConst::xHYPHEN : a_csComment;
 }
 //------------------------------------------------------------------------------
 
@@ -93,32 +93,32 @@ CxErrorReport::_initPlain() {
     std::tostringstream_t ossReport;
 
     ossReport
-        << xT("CxErrorReport    ")                      << std::endl
-                                                        << std::endl
-                                                        << std::endl
-        << xT("Program:         ") << m_sProgram        << std::endl
-        << xT("Process id:      ") << m_ulProcessId     << std::endl
-        << xT("Thread id:       ") << m_ulThreadId      << std::endl
-        << xT("File size:       ") << m_sFileSize       << std::endl
-                                                        << std::endl
-        << xT("Source file:     ") << m_sSourceFile     << std::endl
-        << xT("Source line:     ") << m_ulSourceLine    << std::endl
-        << xT("Function name:   ") << m_sFunctionName   << std::endl
-        << xT("Expression:      ") << m_sExpression     << std::endl
-        << xT("Last error:      ") << m_sLastErrorStr   << std::endl
-                                                        << std::endl
-        << xT("Current date:    ") << m_sCurrentDate    << std::endl
-        << xT("Build date:      ") << m_sBuildDate      << std::endl
-        << xT("Build type:      ") << m_sBuildType      << std::endl
-        << xT("OS version:      ") << m_sOsVersion      << std::endl
-        << xT("OS architecture: ") << m_sOsArchitecture << std::endl
-                                                        << std::endl
-        << xT("Stack trace:     ")                      << std::endl
-                                   << m_sStackTrace     << std::endl
-                                                        << std::endl
-        << xT("Comment:         ") << m_sComment        << std::endl;
+        << xT("CxErrorReport    ")                   << std::endl
+                                                     << std::endl
+                                                     << std::endl
+        << xT("Program:         ") << program        << std::endl
+        << xT("Process id:      ") << processId      << std::endl
+        << xT("Thread id:       ") << threadId       << std::endl
+        << xT("File size:       ") << fileSize       << std::endl
+                                                     << std::endl
+        << xT("Source file:     ") << sourceFile     << std::endl
+        << xT("Source line:     ") << sourceLine     << std::endl
+        << xT("Function name:   ") << functionName   << std::endl
+        << xT("Expression:      ") << expression     << std::endl
+        << xT("Last error:      ") << lastErrorStr   << std::endl
+                                                     << std::endl
+        << xT("Current date:    ") << currentDate    << std::endl
+        << xT("Build date:      ") << buildDate      << std::endl
+        << xT("Build type:      ") << buildType      << std::endl
+        << xT("OS version:      ") << osVersion      << std::endl
+        << xT("OS architecture: ") << osArchitecture << std::endl
+                                                     << std::endl
+        << xT("Stack trace:     ")                   << std::endl
+                                   << stackTrace     << std::endl
+                                                     << std::endl
+        << xT("Comment:         ") << comment        << std::endl;
 
-    m_sReport = ossReport.str();
+    report = ossReport.str();
 }
 //------------------------------------------------------------------------------
 
