@@ -189,7 +189,8 @@ CxHandleT<hvTag>::attach(
 //------------------------------------------------------------------------------
 template<ExHandleValue hvTag>
 native_handle_t
-CxHandleT<hvTag>::detach() {
+CxHandleT<hvTag>::detach()
+{
     native_handle_t hHandle = _m_hHandle;
 
     _m_hHandle = error_value_t::get();
@@ -199,7 +200,8 @@ CxHandleT<hvTag>::detach() {
 //------------------------------------------------------------------------------
 template<ExHandleValue hvTag>
 void_t
-CxHandleT<hvTag>::close() {
+CxHandleT<hvTag>::close()
+{
     xCHECK_DO(!isValid(), _m_hHandle = error_value_t::get(); return);
 
 #if   xOS_ENV_WIN

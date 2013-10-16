@@ -180,7 +180,7 @@
     ///< zero buffer memory
 #define xSTRUCT_ZERO(s)                 { CxUtils::structZeroT(s); }
     ///< zero struct memory
-#define xBUFF_FREE(pvBuff)              { CxUtils::bufferFreeT(pvBuff); }
+#define xBUFF_FREE(buff)                { CxUtils::bufferFreeT(buff); }
     ///< free buffer memory
 #define xFCLOSE(f)                      { CxUtils::fileClose(f); }
     ///< close file stream (FILE *)
