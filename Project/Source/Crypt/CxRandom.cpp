@@ -21,43 +21,44 @@ cint_t CxRandom::Q = M / A;
 cint_t CxRandom::R = M % A;
 //------------------------------------------------------------------------------
 CxRandom::CxRandom(
-    clong_t &a_liSeed
+    clong_t &a_seed
 ) :
-    _m_liSeed               (0),
-    _m_dNextNextGaussian    (false),
-    _m_bHaveNextNextGaussian(false)
+    _seed               (0),
+    _nextNextGaussian    (false),
+    _isHaveNextNextGaussian(false)
 {
-    vSetSeed(a_liSeed);
+    vSetSeed(a_seed);
 
     long_t liRv = liNext();
     xUNUSED(liRv);
 }
 //------------------------------------------------------------------------------
 /* virtual */
-CxRandom::~CxRandom() {
+CxRandom::~CxRandom()
+{
 
 }
 //------------------------------------------------------------------------------
 void_t
 CxRandom::vSetSeed(
-    clong_t &a_liSeed
+    clong_t &a_seed
 )
 {
-    std::srand(a_liSeed);
+    std::srand(a_seed);
 
     #if xTEMP_DISABLED
-        if (a_liSeed < 0)    {
-            a_liSeed = a_liSeed + (M + 1);
+        if (a_seed < 0)    {
+            a_seed = a_seed + (M + 1);
         }
     #endif
 
-    _m_liSeed = a_liSeed;
+    _seed = a_seed;
 
-    if (0L == _m_liSeed) {
-        _m_liSeed = 1L;
+    if (0L == _seed) {
+        _seed = 1L;
     }
 
-    _m_bHaveNextNextGaussian = false;
+    _isHaveNextNextGaussian = false;
 }
 //------------------------------------------------------------------------------
 int_t
@@ -83,42 +84,49 @@ CxRandom::iNextInt(
 }
 //------------------------------------------------------------------------------
 long_t
-CxRandom::liNextLong() {
+CxRandom::liNextLong()
+{
     return liNext();
 }
 //------------------------------------------------------------------------------
 bool_t
-CxRandom::bNextBoolean() {
+CxRandom::bNextBoolean()
+{
     return ( 0 == (liNext() % 2) );
 }
 //------------------------------------------------------------------------------
 float_t
-CxRandom::fNextFloat() {
+CxRandom::fNextFloat()
+{
     return static_cast<float_t>( iNextInt() / float_t(M) );
 }
 //------------------------------------------------------------------------------
 double
-CxRandom::bNextDouble() {
+CxRandom::bNextDouble()
+{
     return static_cast<double>( iNextInt() / double(M) );
 }
 //------------------------------------------------------------------------------
 char
-CxRandom::chNextChar() {
+CxRandom::chNextChar()
+{
     return char(('z' - 'a' + 1) * bNextDouble() + 'a');
 }
 //------------------------------------------------------------------------------
 char
-CxRandom::chNextFigure() {
+CxRandom::chNextFigure()
+{
     return char(('9' - '0' + 1) * bNextDouble() + '0');
 }
 //------------------------------------------------------------------------------
 double
-CxRandom::dNextGaussian() {
+CxRandom::dNextGaussian()
+{
     // See Knuth, ACP, Section 3.4.1 Algorithm C.
-    if (_m_bHaveNextNextGaussian) {
-        _m_bHaveNextNextGaussian = false;
+    if (_isHaveNextNextGaussian) {
+        _isHaveNextNextGaussian = false;
 
-        return static_cast<double>( _m_dNextNextGaussian );
+        return static_cast<double>( _nextNextGaussian );
     } else {
         double v1 = 0.0;
         double v2 = 0.0;
@@ -133,8 +141,8 @@ CxRandom::dNextGaussian() {
 
         double multiplier = ::sqrt(-2 * ::log(s)/s);
 
-        _m_dNextNextGaussian     = v2 * multiplier;
-        _m_bHaveNextNextGaussian = true;
+        _nextNextGaussian     = v2 * multiplier;
+        _isHaveNextNextGaussian = true;
 
         return static_cast<double>( v1 * multiplier );
     }
@@ -149,7 +157,8 @@ CxRandom::dNextGaussian() {
 
 //------------------------------------------------------------------------------
 void_t
-CxRandom::vSetSeed() {
+CxRandom::vSetSeed()
+{
     // n/a
 
     uint_t uiSeed = 0U;
@@ -166,18 +175,18 @@ CxRandom::vSetSeed() {
 /* static */
 long_t
 CxRandom::liInt(
-    clong_t &a_cliMin,
-    clong_t &a_cliMax
+    clong_t &a_min,
+    clong_t &a_max
 )
 {
-    xTEST_LESS(a_cliMin, a_cliMax);
+    xTEST_LESS(a_min, a_max);
 
     long_t liRv = 0L;
 
 #if 1
-    liRv = (::rand() % (a_cliMax - a_cliMin))  + a_cliMin;
+    liRv = (::rand() % (a_max - a_min))  + a_min;
 #else
-    liRv = (::rand() * (double)(a_cliMax - a_cliMin) / RAND_MAX) + a_cliMin;
+    liRv = (::rand() * (double)(a_max - a_min) / RAND_MAX) + a_min;
 #endif
 
     return liRv;
@@ -186,15 +195,15 @@ CxRandom::liInt(
 /* static */
 long_t
 CxRandom::liIntEx(
-    clong_t &a_cliMin,
-    clong_t &a_cliMax
+    clong_t &a_min,
+    clong_t &a_max
 )
 {
-    xTEST_LESS(a_cliMin, a_cliMax);
+    xTEST_LESS(a_min, a_max);
 
     std::vector<long_t> vliRes;
 
-    for (long_t i = a_cliMin; i < a_cliMax; ++ i) {
+    for (long_t i = a_min; i < a_max; ++ i) {
         vliRes.push_back(i);
     }
 
@@ -268,13 +277,14 @@ CxRandom::sString(
 
 //------------------------------------------------------------------------------
 long_t
-CxRandom::liNext() {
+CxRandom::liNext()
+{
     #if xTEMP_DISABLED
-        int_t tmp = A * (_m_liSeed % Q) - R * (_m_liSeed / Q);
-        if(tmp>=0)  _m_liSeed = tmp;
-        else        _m_liSeed = tmp + M;
+        int_t tmp = A * (_seed % Q) - R * (_seed / Q);
+        if(tmp>=0)  _seed = tmp;
+        else        _seed = tmp + M;
 
-        return _m_liSeed;
+        return _seed;
     #endif
 
     return ::rand();

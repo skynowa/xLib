@@ -37,15 +37,14 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 CxDebugger::CxDebugger() :
-    _m_bIsEnabled(true),
-    _m_sLogPath  ()
+    _isEnabled(true),
+    _logPath  ()
 {
-
 }
 //------------------------------------------------------------------------------
 /* virtual */
-CxDebugger::~CxDebugger() {
-
+CxDebugger::~CxDebugger()
+{
 }
 //------------------------------------------------------------------------------
 
@@ -57,20 +56,22 @@ CxDebugger::~CxDebugger() {
 
 //------------------------------------------------------------------------------
 bool_t
-CxDebugger::isEnabled() {
-    return _m_bIsEnabled;
+CxDebugger::isEnabled()
+{
+    return _isEnabled;
 }
 //------------------------------------------------------------------------------
 void_t
 CxDebugger::setEnabled(
-    cbool_t &a_cbFlag
+    cbool_t &a_flag
 )
 {
-    _m_bIsEnabled = a_cbFlag;
+    _isEnabled = a_flag;
 }
 //------------------------------------------------------------------------------
 bool_t
-CxDebugger::isActive() {
+CxDebugger::isActive()
+{
 #if   xOS_ENV_WIN
     // local debugger
     BOOL blRes = ::IsDebuggerPresent();
@@ -115,7 +116,8 @@ CxDebugger::isActive() {
 }
 //------------------------------------------------------------------------------
 bool_t
-CxDebugger::isDebugBuild() {
+CxDebugger::isDebugBuild()
+{
 #if xBUILD_DEBUG
     return true;
 #else
@@ -124,7 +126,8 @@ CxDebugger::isDebugBuild() {
 }
 //------------------------------------------------------------------------------
 void_t
-CxDebugger::breakPoint() {
+CxDebugger::breakPoint()
+{
     xCHECK_DO(!isEnabled(), return);
 
 #if xOS_ENV_WIN
@@ -140,38 +143,39 @@ CxDebugger::breakPoint() {
 //------------------------------------------------------------------------------
 void_t
 CxDebugger::setLogPath(
-    std::ctstring_t &a_csFilePath
+    std::ctstring_t &a_filePath
 )
 {
-    _m_sLogPath = a_csFilePath;
+    _logPath = a_filePath;
 }
 //------------------------------------------------------------------------------
 std::tstring_t
-CxDebugger::logPath() {
-    return _m_sLogPath;
+CxDebugger::logPath()
+{
+    return _logPath;
 }
 //------------------------------------------------------------------------------
 void_t
 CxDebugger::reportMake(
-    const CxErrorReport &a_crpReport
+    const CxErrorReport &a_report
 )
 {
     //-------------------------------------
     // never corrupt the last error value
     culong_t culLastError = CxLastError::get();
 
-    switch (a_crpReport.m_rtType) {
+    switch (a_report.m_rtType) {
         case CxErrorReport::rtMsgboxPlain:
-            _msgboxPlain(a_crpReport);
+            _msgboxPlain(a_report);
             break;
         case CxErrorReport::rtStdoutPlain:
-            _stdoutPlain(a_crpReport);
+            _stdoutPlain(a_report);
             break;
         case CxErrorReport::rtLoggingPlain:
-            _loggingPlain(a_crpReport);
+            _loggingPlain(a_report);
             break;
         default:
-            _stdoutPlain(a_crpReport);
+            _stdoutPlain(a_report);
             break;
     }
 
@@ -190,7 +194,7 @@ CxDebugger::reportMake(
 //------------------------------------------------------------------------------
 void_t
 CxDebugger::_msgboxPlain(
-    const CxErrorReport &a_crpReport
+    const CxErrorReport &a_report
 )
 {
     xCHECK_DO(!isEnabled(), return);
@@ -202,7 +206,7 @@ CxDebugger::_msgboxPlain(
         uint_t uiType = 1U;
     #endif
 
-    CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::show(a_crpReport.m_sReport, CxPath::exe(), uiType);
+    CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::show(a_report.m_sReport, CxPath::exe(), uiType);
 #else
     CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::mrIgnore;
 #endif
@@ -228,7 +232,7 @@ CxDebugger::_msgboxPlain(
 //------------------------------------------------------------------------------
 void_t
 CxDebugger::_stdoutPlain(
-    const CxErrorReport &a_crpReport
+    const CxErrorReport &a_report
 )
 {
     xCHECK_DO(!isEnabled(), return);
@@ -240,7 +244,7 @@ CxDebugger::_stdoutPlain(
     };
 
     std::tcout << xT("\n####################################################################################################\n");
-    std::tcout << a_crpReport.m_sReport;
+    std::tcout << a_report.m_sReport;
     std::tcout << xT("\n####################################################################################################\n");
     std::tcout << xT("\n");
     std::tcout << xT("\nAbort (a), Ignore (i), Retry (r): ");
@@ -283,7 +287,7 @@ CxDebugger::_stdoutPlain(
 //------------------------------------------------------------------------------
 void_t
 CxDebugger::_loggingPlain(
-    const CxErrorReport &a_crpReport
+    const CxErrorReport &a_report
 )
 {
     xCHECK_DO(!isEnabled(), return);
@@ -309,7 +313,7 @@ CxDebugger::_loggingPlain(
             xT("####################################################################################################\n")
             xT("%s\n")
             xT("####################################################################################################\n"),
-            a_crpReport.m_sReport.c_str()
+            a_report.m_sReport.c_str()
         );
 
         ofs << csMsg;

@@ -21,16 +21,16 @@ xNAMESPACE_BEGIN(NxLib)
 /* static */
 ulong_t
 CxCrc32::calc(
-    uchar_t  *a_pucBuff,
-    culong_t &a_culSize
+    uchar_t  *a_buff,
+    culong_t &a_size
 )
 {
-    xTEST_PTR(a_pucBuff);
-    xTEST_LESS(0UL, a_culSize);
+    xTEST_PTR(a_buff);
+    xTEST_LESS(0UL, a_size);
 
     ulong_t crc            = 0;
     ulong_t crc_table[256] = {0};
-    ulong_t ulSize         = a_culSize;
+    ulong_t ulSize         = a_size;
 
     for (int_t i = 0; i < 256; ++ i) {
         crc = i;
@@ -44,7 +44,7 @@ CxCrc32::calc(
     crc = 0xFFFFFFFFUL;
 
     while (-- ulSize) {
-        crc = crc_table[(crc ^ ++ (*a_pucBuff)) & 0xFF] ^ (crc >> 8);
+        crc = crc_table[(crc ^ ++ (*a_buff)) & 0xFF] ^ (crc >> 8);
     }
 
     return crc ^ 0xFFFFFFFFUL;
@@ -53,16 +53,16 @@ CxCrc32::calc(
 /* static */
 ulong_t
 CxCrc32::calcFile(
-    std::ctstring_t &a_csFilePath
+    std::ctstring_t &a_filePath
 )
 {
-    xTEST_EQ(false, a_csFilePath.empty());
+    xTEST_EQ(false, a_filePath.empty());
 
     ulong_t ulRv = 0;
 
     std::ustring_t usFile;
 
-    CxFile::binRead(a_csFilePath, &usFile);
+    CxFile::binRead(a_filePath, &usFile);
     if (usFile.empty()) {
         ulRv = 0;
     } else {
@@ -75,12 +75,12 @@ CxCrc32::calcFile(
 /* static */
 ulong_t
 CxCrc32::calcFast(
-    uchar_t  *a_pucBuff,
-    culong_t &a_culSize
+    uchar_t  *a_buff,
+    culong_t &a_size
 )
 {
-    xTEST_PTR(a_pucBuff);
-    xTEST_LESS(0UL, a_culSize);
+    xTEST_PTR(a_buff);
+    xTEST_LESS(0UL, a_size);
 
     ulong_t crc            = 0;
     ulong_t crc_table[256] = {
@@ -164,12 +164,12 @@ CxCrc32::calcFast(
         0xB3667A2E, 0xC4614AB8, 0x5D681B02, 0x2A6F2B94,
         0xB40BBE37, 0xC30C8EA1, 0x5A05DF1B, 0x2D02EF8D
     };
-    ulong_t ulSize = a_culSize;
+    ulong_t ulSize = a_size;
 
     crc = 0xFFFFFFFFUL;
 
     while (ulSize --) {
-        crc = crc_table[(crc ^ *a_pucBuff ++) & 0xFF] ^ (crc >> 8);
+        crc = crc_table[(crc ^ *a_buff ++) & 0xFF] ^ (crc >> 8);
     }
 
     return crc ^ 0xFFFFFFFFUL;
@@ -178,16 +178,16 @@ CxCrc32::calcFast(
 /* static */
 ulong_t
 CxCrc32::calcFileFast(
-    std::ctstring_t &a_csFilePath
+    std::ctstring_t &a_filePath
 )
 {
-    xTEST_EQ(false, a_csFilePath.empty());
+    xTEST_EQ(false, a_filePath.empty());
 
     ulong_t ulRv = 0;
 
     std::ustring_t usFile;
 
-    CxFile::binRead(a_csFilePath, &usFile);
+    CxFile::binRead(a_filePath, &usFile);
     if (usFile.empty()) {
         ulRv = 0;
     } else {
@@ -200,13 +200,13 @@ CxCrc32::calcFileFast(
 /* static */
 std::tstring_t
 CxCrc32::formatHex(
-    culong_t &a_culCrc32
+    culong_t &a_crc32
 )
 {
     std::tstring_t sRv;
     std::csize_t   uiCrc32Size = 8;
 
-    sRv = CxString::format(xT("%X"), a_culCrc32);    //0AADDEA0
+    sRv = CxString::format(xT("%X"), a_crc32);    // 0AADDEA0
 
     size_t uiAdditionalZeros = uiCrc32Size - sRv.size();
     if (0 != uiAdditionalZeros) {
@@ -225,13 +225,13 @@ CxCrc32::formatHex(
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-CxCrc32::CxCrc32() {
-
+CxCrc32::CxCrc32()
+{
 }
 //------------------------------------------------------------------------------
 /* virtual */
-CxCrc32::~CxCrc32() {
-
+CxCrc32::~CxCrc32()
+{
 }
 //------------------------------------------------------------------------------
 

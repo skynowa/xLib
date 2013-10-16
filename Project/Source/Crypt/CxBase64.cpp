@@ -29,19 +29,19 @@ xNAMESPACE_BEGIN(NxLib)
 /* static */
 std::string
 CxBase64::encode(
-    cuchar_t     *a_cucBytes,
-    std::csize_t &a_cuiSize
+    cuchar_t     *a_bytes,
+    std::csize_t &a_size
 )
 {
     std::string sRv;
-    std::size_t uiSize = a_cuiSize;
+    std::size_t uiSize = a_size;
     int         i = 0;
     int         j = 0;
     uchar_t     char_array_3[3] = {0};
     uchar_t     char_array_4[4] = {0};
 
     while (uiSize--) {
-        char_array_3[i++] = *(a_cucBytes++);
+        char_array_3[i++] = *(a_bytes++);
         if (i == 3) {
             char_array_4[0] = (char_array_3[0] & 0xfc) >> 2;
             char_array_4[1] = ((char_array_3[0] & 0x03) << 4) + ((char_array_3[1] & 0xf0) >> 4);
@@ -81,30 +81,30 @@ CxBase64::encode(
 /* static */
 std::string
 CxBase64::encode(
-    std::cstring_t &a_csStr
+    std::cstring_t &a_str
 )
 {
-    xTEST_NA(a_csStr);
+    xTEST_NA(a_str);
 
-    return encode(reinterpret_cast<cuchar_t  *>( a_csStr.data() ), a_csStr.size());
+    return encode(reinterpret_cast<cuchar_t  *>( a_str.data() ), a_str.size());
 }
 //------------------------------------------------------------------------------
 /* static */
 std::string
 CxBase64::decode(
-    std::cstring_t &a_csStr
+    std::cstring_t &a_str
 )
 {
     std::string sRv;
-    int         in_len = a_csStr.size();
+    int         in_len = a_str.size();
     int         i = 0;
     int         j = 0;
     int         in_ = 0;
     uchar_t     char_array_4[4] = {0};
     uchar_t     char_array_3[3] = {0};
 
-    while (in_len-- && ( a_csStr[in_] != '=') && _isValid(a_csStr[in_])) {
-        char_array_4[i++] = a_csStr[in_]; in_++;
+    while (in_len-- && ( a_str[in_] != '=') && _isValid(a_str[in_])) {
+        char_array_4[i++] = a_str[in_]; in_++;
         if (i == 4) {
             for (i = 0; i <4; i++) {
                 char_array_4[i] = g_csBase64Chars.find(char_array_4[i]);
@@ -151,24 +151,24 @@ CxBase64::decode(
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-CxBase64::CxBase64() {
-
+CxBase64::CxBase64()
+{
 }
 //------------------------------------------------------------------------------
 /* virtual */
-CxBase64::~CxBase64() {
-
+CxBase64::~CxBase64()
+{
 }
 //------------------------------------------------------------------------------
 /* static */
 bool
 CxBase64::_isValid(
-    cuchar_t &a_cchChar
+    cuchar_t &a_ch
 )
 {
-    xTEST_NA(a_cchChar);
+    xTEST_NA(a_ch);
 
-    bool_t bRv = isalnum(a_cchChar) || ('+' == a_cchChar) || ('/' == a_cchChar);
+    bool_t bRv = isalnum(a_ch) || ('+' == a_ch) || ('/' == a_ch);
 
     return bRv;
 }
