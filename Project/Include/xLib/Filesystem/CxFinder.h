@@ -16,7 +16,7 @@ class CxFinder :
     ///< file system finder
 {
 public:
-                        CxFinder(std::ctstring_t &csRootDirPath, std::ctstring_t &csShellFilter);
+                        CxFinder(std::ctstring_t &rootDirPath, std::ctstring_t &shellFilter);
         ///< constructor
     virtual            ~CxFinder();
         ///< destructor
@@ -39,30 +39,30 @@ public:
     void_t              close();
         ///< close search
 
-    static void_t       dirs(std::ctstring_t &csRootDirPath, std::ctstring_t &csShellFilter,
-                            cbool_t &cbIsRecursively, std::vec_tstring_t *pvsDirPaths);
+    static void_t       dirs(std::ctstring_t &rootDirPath, std::ctstring_t &shellFilter,
+                            cbool_t &isRecursively, std::vec_tstring_t *dirPaths);
         ///< search subdirectories
-    static void_t       files(std::ctstring_t &csRootDirPath, std::ctstring_t &csShellFilter,
-                            cbool_t &cbIsRecursively, std::vec_tstring_t *pvsFilePaths);
+    static void_t       files(std::ctstring_t &rootDirPath, std::ctstring_t &shellFilter,
+                            cbool_t &isRecursively, std::vec_tstring_t *filePaths);
         ///< search files
 
 private:
     struct _SEntry {
     #if xOS_ENV_WIN
-        HANDLE           hHandle;
-        WIN32_FIND_DATA  fdData;
+        HANDLE          handle;
+        WIN32_FIND_DATA data;
 
         _SEntry() :
-            hHandle(xNATIVE_HANDLE_INVALID),
-            fdData ()
+            handle(xNATIVE_HANDLE_INVALID),
+            data  ()
         {}
     #else
-        DIR             *pHandle;
-        dirent          *pdrData;
+        DIR    *handle;
+        dirent *data;
 
         _SEntry() :
-            pHandle(NULL),
-            pdrData(NULL)
+            handle(NULL),
+            data  (NULL)
         {}
     #endif
     };
@@ -70,10 +70,10 @@ private:
     typedef _SEntry _entry_t;
         ///< entry
 
-    _entry_t            _m_enEnrty;        ///< entry handle
-    std::ctstring_t     _m_csRootDirPath;  ///< root directory path
-    std::ctstring_t     _m_csShellFilter;  ///< shell wild card filter
-    bool_t              _m_bIsMoveFirst;   ///< is first movement
+    _entry_t            _enrty;        ///< entry handle
+    std::ctstring_t     _rootDirPath;  ///< root directory path
+    std::ctstring_t     _shellFilter;  ///< shell wild card filter
+    bool_t              _isMoveFirst;   ///< is first movement
 
     bool_t              _moveFirst() xWARN_UNUSED_RV;
         ///< move first entry

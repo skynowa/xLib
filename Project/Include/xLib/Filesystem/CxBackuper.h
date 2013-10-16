@@ -26,17 +26,17 @@ public:
     };
     typedef const ExBackupPeriod cExBackupPeriod;
 
-    explicit        CxBackuper(cExBackupPeriod &cbpPeriod);
+    explicit        CxBackuper(cExBackupPeriod &period);
         ///< constructor
     virtual        ~CxBackuper();
         ///< destructor
 
-    void_t          fileExec(std::ctstring_t &csFilePath, std::ctstring_t &csDestDirPath,
-                        std::tstring_t *psDestFilePath) const;
+    void_t          fileExec(std::ctstring_t &filePath, std::ctstring_t &destDirPath,
+                        std::tstring_t *destFilePath) const;
         ///< backup, throws CxException
 
 private:
-    cExBackupPeriod _m_cbpPeriod;  ///< backup period
+    cExBackupPeriod _period;  ///< backup period
 };
 
 xNAMESPACE_END(NxLib)

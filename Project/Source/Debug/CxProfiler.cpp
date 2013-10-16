@@ -22,36 +22,39 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 CxProfiler::CxProfiler() :
-    _m_bIsStarted(false),
-    _flLog       (CxFileLog::lsDefaultSize)
+    _isStarted(false),
+    _log       (CxFileLog::lsDefaultSize)
 {
     _dataReset();
 }
 //------------------------------------------------------------------------------
-CxProfiler::~CxProfiler() {
-    if ( !_flLog.filePath().empty() ) {
-        _flLog.write(xT("----------------------------------------"));
+CxProfiler::~CxProfiler()
+{
+    if ( !_log.filePath().empty() ) {
+        _log.write(xT("----------------------------------------"));
     }
 }
 //------------------------------------------------------------------------------
 void_t
 CxProfiler::setLogPath(
-    std::ctstring_t &a_csLogPath
+    std::ctstring_t &a_logPath
 )
 {
-    xTEST_EQ(true, CxPath::isValid(a_csLogPath));
+    xTEST_EQ(true, CxPath::isValid(a_logPath));
 
-    _flLog.setFilePath(a_csLogPath);
+    _log.setFilePath(a_logPath);
 }
 //------------------------------------------------------------------------------
 std::ctstring_t &
-CxProfiler::logPath() const {
-    return _flLog.filePath();
+CxProfiler::logPath() const
+{
+    return _log.filePath();
 }
 //--------------------------------------------------------------------------
 void_t
-CxProfiler::start() {
-    xTEST_EQ(false, _m_bIsStarted);
+CxProfiler::start()
+{
+    xTEST_EQ(false, _isStarted);
 
     _dataReset();
 
@@ -60,54 +63,54 @@ CxProfiler::start() {
 
     }
 
-    _m_clkStart = xSTD_CLOCK();
-    xTEST_DIFF(static_cast<clock_t>( - 1 ), _m_clkStart);
+    _start = xSTD_CLOCK();
+    xTEST_DIFF(static_cast<clock_t>( - 1 ), _start);
 
-    _m_bIsStarted = true;
+    _isStarted = true;
 }
 //--------------------------------------------------------------------------
 size_t
 CxProfiler::stop(
-    ctchar_t *a_pcszComment, ...
+    ctchar_t *a_comment, ...
 )
 {
-    xTEST_EQ(true, _m_bIsStarted);
+    xTEST_EQ(true, _isStarted);
 
     //-------------------------------------
     // stop, get duration
     {
-        _m_clkStop = xSTD_CLOCK();
-        xTEST_DIFF(static_cast<clock_t>( - 1 ), _m_clkStop);
+        _stop = xSTD_CLOCK();
+        xTEST_DIFF(static_cast<clock_t>( - 1 ), _stop);
 
-        _m_clkDuration = _m_clkStop - _m_clkStart;
-        xTEST_LESS_EQ(static_cast<clock_t>( 0 ), _m_clkDuration);
+        _duration = _stop - _start;
+        xTEST_LESS_EQ(static_cast<clock_t>( 0 ), _duration);
     }
 
-    cdouble_t   cdDurationMsec   = (static_cast<double>( _m_clkDuration ) / static_cast<double>( CLOCKS_PER_SEC )) * 1000.0;  // 1 sec = 1000 msec
+    cdouble_t   cdDurationMsec   = (static_cast<double>( _duration ) / static_cast<double>( CLOCKS_PER_SEC )) * 1000.0;  // 1 sec = 1000 msec
     std::size_t cullDurationMsec = CxUtils::roundIntT<std::size_t>( cdDurationMsec );
 
     //-------------------------------------
     // write to log
-    if ( !_flLog.filePath().empty() ) {
+    if ( !_log.filePath().empty() ) {
         std::tstring_t  sRv;
         std::ctstring_t csDurationTime = CxDateTime(cullDurationMsec).format(CxDateTime::ftTime);
 
         va_list palArgs;
-        xVA_START(palArgs, a_pcszComment);
-        sRv = CxString::formatV(a_pcszComment, palArgs);
+        xVA_START(palArgs, a_comment);
+        sRv = CxString::formatV(a_comment, palArgs);
         xVA_END(palArgs);
 
-        _flLog.write(xT("%s: %s"), csDurationTime.c_str(), sRv.c_str());
+        _log.write(xT("%s: %s"), csDurationTime.c_str(), sRv.c_str());
     }
 
-    _m_bIsStarted = false;
+    _isStarted = false;
 
     return cullDurationMsec;
 }
 //--------------------------------------------------------------------------
 size_t
 CxProfiler::restart(
-    ctchar_t *a_pcszComment, ...
+    ctchar_t *a_comment, ...
 )
 {
     size_t uiRV = 0;
@@ -116,10 +119,10 @@ CxProfiler::restart(
     // format comment
     std::tstring_t sRv;
 
-    if ( !_flLog.filePath().empty() ) {
+    if ( !_log.filePath().empty() ) {
         va_list palArgs;
-        xVA_START(palArgs, a_pcszComment);
-        sRv = CxString::formatV(a_pcszComment, palArgs);
+        xVA_START(palArgs, a_comment);
+        sRv = CxString::formatV(a_comment, palArgs);
         xVA_END(palArgs);
     }
 
@@ -140,17 +143,18 @@ CxProfiler::restart(
 
 //------------------------------------------------------------------------------
 void_t
-CxProfiler::_dataReset() {
+CxProfiler::_dataReset()
+{
     // TODO: set normal thread priority
     {
 
     }
 
-    _m_bIsStarted = false;
+    _isStarted = false;
 
-    _m_clkStart    = 0L;
-    _m_clkStop     = 0L;
-    _m_clkDuration = 0L;
+    _start    = 0L;
+    _stop     = 0L;
+    _duration = 0L;
 }
 //--------------------------------------------------------------------------
 

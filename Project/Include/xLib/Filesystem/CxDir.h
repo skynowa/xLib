@@ -16,7 +16,7 @@ class CxDir :
     /// directory
 {
 public:
-    explicit              CxDir(std::ctstring_t &csDirPath);
+    explicit              CxDir(std::ctstring_t &dirPath);
         ///< constructor
     virtual              ~CxDir();
         ///< destructor
@@ -26,7 +26,7 @@ public:
 
     bool_t                isExists() xWARN_UNUSED_RV;
         ///< check for existence
-    bool_t                isEmpty(std::ctstring_t &csShellFilter = CxConst::xMASK_ALL) xWARN_UNUSED_RV;
+    bool_t                isEmpty(std::ctstring_t &shellFilter = CxConst::xMASK_ALL) xWARN_UNUSED_RV;
         ///< is empty
     bool_t                isRoot() xWARN_UNUSED_RV;
         ///< is root
@@ -36,14 +36,14 @@ public:
         ///< create
     void_t                pathCreate();
         ///< creation of all directories that not exists in path
-    void_t                copy(std::ctstring_t &csDirPathTo, cbool_t &cbFailIfExists);
+    void_t                copy(std::ctstring_t &dirPathTo, cbool_t &failIfExists);
         ///< copy
-    void_t                move(std::ctstring_t &csDirPathTo, cbool_t &cbFailIfExists);
+    void_t                move(std::ctstring_t &dirPathTo, cbool_t &failIfExists);
         ///< move
 
     void_t                remove();
         ///< deletion dir which empty
-    void_t                tryRemove(std::csize_t &cuiAttempts, culong_t &culTimeoutMsec);
+    void_t                tryRemove(std::csize_t &attempts, culong_t &timeoutMsec);
         ///< try deleting, max 100 attempts
     void_t                pathClear();
         ///< deletion all content of dir
@@ -53,13 +53,13 @@ public:
     // static
     static std::tstring_t current() xWARN_UNUSED_RV;
         ///< get current
-    static void_t         setCurrent(std::ctstring_t &csDirPath);
+    static void_t         setCurrent(std::ctstring_t &dirPath);
         ///< set current
     static std::tstring_t temp() xWARN_UNUSED_RV;
         ///< get path to system var %Temp%
 
 private:
-    std::ctstring_t       _m_csDirPath;
+    std::ctstring_t       _dirPath;
 };
 
 xNAMESPACE_END(NxLib)

@@ -22,25 +22,25 @@ public:
     virtual         ~CxProfiler();
         ///< destructor
 
-    void_t           setLogPath(std::ctstring_t &csLogPath);
+    void_t           setLogPath(std::ctstring_t &logPath);
         ///< set log path
     std::ctstring_t &logPath() const xWARN_UNUSED_RV;
         ///< get log path
 
     void_t           start();
         ///< start measurement
-    size_t           stop(ctchar_t *pcszComment, ...) xWARN_UNUSED_RV;
+    size_t           stop(ctchar_t *comment, ...) xWARN_UNUSED_RV;
         ///< stop measurement
-    size_t           restart(ctchar_t *pcszComment, ...) xWARN_UNUSED_RV;
+    size_t           restart(ctchar_t *comment, ...) xWARN_UNUSED_RV;
         ///< stop, start measurement
 
 private:
-    bool_t           _m_bIsStarted;    ///< is started
-    CxFileLog        _flLog;           ///< file log
+    bool_t           _isStarted;    ///< is started
+    CxFileLog        _log;          ///< file log
 
-    std::clock_t     _m_clkStart;      ///< start value
-    std::clock_t     _m_clkStop;       ///< stop value
-    std::clock_t     _m_clkDuration;   ///< duration value
+    std::clock_t     _start;        ///< start value
+    std::clock_t     _stop;         ///< stop value
+    std::clock_t     _duration;     ///< duration value
 
     void_t           _dataReset();
         ///< reset all class data

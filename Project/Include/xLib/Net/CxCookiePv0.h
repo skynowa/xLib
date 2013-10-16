@@ -17,47 +17,47 @@ class CxCookiePv0 :
 public:
                       CxCookiePv0();
         ///< constructor
-    explicit          CxCookiePv0(std::ctstring_t &csRawCookie);
+    explicit          CxCookiePv0(std::ctstring_t &rawCookie);
         ///< constructor
     virtual          ~CxCookiePv0();
         ///< constructor
 
-    void_t            init(std::ctstring_t &csRawCookie);
+    void_t            init(std::ctstring_t &rawCookie);
         ///< parsing raw cookie string
 
     std::ctstring_t & name() const xWARN_UNUSED_RV;
         ///< get name
-    void_t            setName(std::ctstring_t &csName);
+    void_t            setName(std::ctstring_t &name);
         ///< set name
 
     std::ctstring_t & value() const xWARN_UNUSED_RV;
         ///< get value
-    void_t            setValue(std::ctstring_t &csValue);
+    void_t            setValue(std::ctstring_t &value);
         ///< set value
 
     std::ctstring_t & domain() const xWARN_UNUSED_RV;
         ///< get domain
-    void_t            setDomain(std::ctstring_t &csDomain);
+    void_t            setDomain(std::ctstring_t &domain);
         ///< set domain
 
     std::ctstring_t & path() const xWARN_UNUSED_RV;
         ///< get path
-    void_t            setPath(std::ctstring_t &csPath);
+    void_t            setPath(std::ctstring_t &path);
         ///< set path
 
     std::ctstring_t & expires() const xWARN_UNUSED_RV;
         ///< get expire
-    void_t            setExpires(std::ctstring_t &csExpires);
+    void_t            setExpires(std::ctstring_t &expires);
         ///< set expire
 
     bool_t            secure() const xWARN_UNUSED_RV;
         ///< get secure
-    void_t            setSecure(cbool_t &cbFlag);
+    void_t            setSecure(cbool_t &flag);
         ///< set secure
 
     bool_t            httpOnly() const xWARN_UNUSED_RV;
         ///< get http only
-    void_t            setHttpOnly(cbool_t &cbFlag);
+    void_t            setHttpOnly(cbool_t &flag);
         ///< set http only
 
     std::tstring_t    toString() const xWARN_UNUSED_RV;
@@ -68,13 +68,13 @@ public:
         ///< clear
 
 private:
-    std::tstring_t    _m_sName;        ///< name
-    std::tstring_t    _m_sValue;       ///< value
-    std::tstring_t    _m_sDomain;      ///< domain
-    std::tstring_t    _m_sPath;        ///< path
-    std::tstring_t    _m_sExpires;     ///< expire
-    bool_t            _m_bSecure;      ///< secure
-    bool_t            _m_bHttpOnly;    ///< http only
+    std::tstring_t    _name;        ///< name
+    std::tstring_t    _value;       ///< value
+    std::tstring_t    _domain;      ///< domain
+    std::tstring_t    _path;        ///< path
+    std::tstring_t    _expires;     ///< expire
+    bool_t            _isSecure;      ///< secure
+    bool_t            _isHttpOnly;    ///< http only
 };
 
 xNAMESPACE_END(NxLib)

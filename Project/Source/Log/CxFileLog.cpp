@@ -26,17 +26,17 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 CxFileLog::CxFileLog(
-    culong_t &a_culMaxFileSizeBytes
+    culong_t &a_maxFileSizeBytes
 ) :
-    _m_sFilePath         (),
-    _m_ulMaxFileSizeBytes(a_culMaxFileSizeBytes)
+    _filePath         (),
+    _maxFileSizeBytes(a_maxFileSizeBytes)
     #if xTODO
         CxAutoIpcMutex
     #endif
 {
-    xTEST_EQ(true, _m_sFilePath.empty());
+    xTEST_EQ(true, _filePath.empty());
     xTEST_GR(lsLimitSize, lsDefaultMaxSize);
-    xTEST_GR(static_cast<ulong_t>( lsLimitSize ), a_culMaxFileSizeBytes);
+    xTEST_GR(static_cast<ulong_t>( lsLimitSize ), a_maxFileSizeBytes);
 }
 //------------------------------------------------------------------------------
 /* virtual */
@@ -46,31 +46,32 @@ CxFileLog::~CxFileLog() {
 //------------------------------------------------------------------------------
 void_t
 CxFileLog::setFilePath(
-    std::ctstring_t &a_csFilePath
+    std::ctstring_t &a_filePath
 )
 {
-    xTEST_EQ(false, a_csFilePath.empty());
+    xTEST_EQ(false, a_filePath.empty());
 
-    if (std::tstring_t::npos == a_csFilePath.find(CxConst::xSLASH)) {
-        _m_sFilePath = CxPath(CxPath::exe()).dir() + CxConst::xSLASH + a_csFilePath;
+    if (std::tstring_t::npos == a_filePath.find(CxConst::xSLASH)) {
+        _filePath = CxPath(CxPath::exe()).dir() + CxConst::xSLASH + a_filePath;
     } else {
-        _m_sFilePath = a_csFilePath;
+        _filePath = a_filePath;
     }
 }
 //------------------------------------------------------------------------------
 std::ctstring_t &
-CxFileLog::filePath() const {
-    return _m_sFilePath;
+CxFileLog::filePath() const
+{
+    return _filePath;
 }
 //------------------------------------------------------------------------------
 void_t
 CxFileLog::write(
-    ctchar_t *a_pcszFormat, ...
+    ctchar_t *a_format, ...
 )
 {
-    xTEST_PTR(a_pcszFormat);
+    xTEST_PTR(a_format);
 
-    _vRemoveIfFull();
+    _removeIfFull();
 
     //-------------------------------------
     //time
@@ -82,14 +83,14 @@ CxFileLog::write(
     std::tstring_t sParam;
     va_list        palArgs;
 
-    xVA_START(palArgs, a_pcszFormat);
-    sParam = CxString::formatV(a_pcszFormat, palArgs);
+    xVA_START(palArgs, a_format);
+    sParam = CxString::formatV(a_format, palArgs);
     xVA_END(palArgs);
 
     //-------------------------------------
     //write to file
     #if xTODO
-        CxAutoIpcMutex SL(_m_mtFile);
+        CxAutoIpcMutex SL(_mutex);
     #endif
 
     CxFile sfFile;
@@ -101,18 +102,20 @@ CxFileLog::write(
 }
 //------------------------------------------------------------------------------
 void_t
-CxFileLog::clear() {
+CxFileLog::clear()
+{
     #if xTODO
-        CxAutoIpcMutex SL(_m_mtFile);
+        CxAutoIpcMutex SL(_mutex);
     #endif
 
     CxFile::clear(filePath());
 }
 //------------------------------------------------------------------------------
 void_t
-CxFileLog::remove() {
+CxFileLog::remove()
+{
     #if xTODO
-        CxAutoIpcMutex SL(_m_mtFile);
+        CxAutoIpcMutex SL(_mutex);
     #endif
 
     CxFile::remove(filePath());
@@ -127,9 +130,10 @@ CxFileLog::remove() {
 
 //------------------------------------------------------------------------------
 void_t
-CxFileLog::_vRemoveIfFull() {
+CxFileLog::_removeIfFull()
+{
     #if xTODO
-        CxAutoIpcMutex SL(_m_mtFile);
+        CxAutoIpcMutex SL(_mutex);
     #endif
 
     bool_t bRv = CxFile::isExists(filePath());
@@ -139,7 +143,7 @@ CxFileLog::_vRemoveIfFull() {
     // remove log, if full
     ulong_t ulSize = static_cast<ulong_t>( CxFile::size(filePath()) );
 
-    xCHECK_DO(ulSize < _m_ulMaxFileSizeBytes, return);
+    xCHECK_DO(ulSize < _maxFileSizeBytes, return);
 
     CxFile::remove(filePath());
 }

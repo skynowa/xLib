@@ -40,32 +40,31 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 CxStackTrace::CxStackTrace(
-    std::ctstring_t &a_csLinePrefix,         /* = xT("\t") */
-    std::ctstring_t &a_csElementSeparator,   /* = xT("  ") */
-    std::ctstring_t &a_csLinesSeparator,     /* = xT("\n") */
-    cbool_t         &a_cbIsWrapFilePaths,   /* = true */
-    cbool_t         &a_cbIsFuncParamsDisable /* = true */
+    std::ctstring_t &a_linePrefix,         /* = xT("\t") */
+    std::ctstring_t &a_elementSeparator,   /* = xT("  ") */
+    std::ctstring_t &a_lineSeparator,     /* = xT("\n") */
+    cbool_t         &a_isWrapFilePaths,   /* = true */
+    cbool_t         &a_isFuncParamsDisable /* = true */
 ) :
-    _m_csLinePrefix         (a_csLinePrefix),
-    _m_csElementSeparator   (a_csElementSeparator),
-    _m_csLineSeparator      (a_csLinesSeparator),
-    _m_cbIsWrapFilePaths    (a_cbIsWrapFilePaths),
-    _m_cbIsFuncParamsDisable(a_cbIsFuncParamsDisable)
+    _linePrefix         (a_linePrefix),
+    _elementSeparator   (a_elementSeparator),
+    _lineSeparator      (a_lineSeparator),
+    _isWrapFilePaths    (a_isWrapFilePaths),
+    _isFuncParamsDisable(a_isFuncParamsDisable)
 {
-
 }
 //------------------------------------------------------------------------------
 /* virtual */
-CxStackTrace::~CxStackTrace() {
-
+CxStackTrace::~CxStackTrace()
+{
 }
 //------------------------------------------------------------------------------
 void_t
 CxStackTrace::get(
-    std::vector<std::vec_tstring_t> *a_pvvsStack
+    std::vector<std::vec_tstring_t> *a_stack
 )
 {
-    xCHECK_DO(NULL == a_pvvsStack, return);
+    xCHECK_DO(NULL == a_stack, return);
 
     std::ctstring_t            csDataNotFound = xT("[???]");
     std::vector<std::vec_tstring_t> vvsStack;
@@ -144,13 +143,13 @@ CxStackTrace::get(
             }
 
             // swap file paths
-            if (_m_cbIsWrapFilePaths) {
+            if (_isWrapFilePaths) {
                 sModulePath = CxPath(sModulePath).fileName();
                 sFilePath   = CxPath(sFilePath).fileName();
             }
 
             // disable function params
-            if (_m_cbIsFuncParamsDisable) {
+            if (_isFuncParamsDisable) {
                 std::csize_t cuiPos1 = sFunctionName.find(xT("("));
                 std::csize_t cuiPos2 = sFunctionName.find(xT(")"));
 
@@ -238,13 +237,13 @@ CxStackTrace::get(
         }
 
         // swap file paths
-        if (_m_cbIsWrapFilePaths) {
+        if (_isWrapFilePaths) {
             sModulePath = CxPath(sModulePath).fileName();
             sFilePath   = CxPath(sFilePath).fileName();
         }
 
         // disable function params
-        if (_m_cbIsFuncParamsDisable) {
+        if (_isFuncParamsDisable) {
             std::csize_t cuiPos1 = sFunctionName.find(xT("("));
             std::csize_t cuiPos2 = sFunctionName.find(xT(")"));
 
@@ -274,11 +273,12 @@ CxStackTrace::get(
     xNOT_IMPLEMENTED
 #endif
 
-    std::swap(*a_pvvsStack, vvsStack);
+    std::swap(*a_stack, vvsStack);
 }
 //------------------------------------------------------------------------------
 std::tstring_t
-CxStackTrace::toString()  {
+CxStackTrace::toString()
+{
     std::tstring_t sRv;
 
     std::vector<std::vec_tstring_t> vvsStack;
@@ -302,10 +302,10 @@ CxStackTrace::toString()  {
 //------------------------------------------------------------------------------
 std::tstring_t
 CxStackTrace::_format(
-    std::vector<std::vec_tstring_t> *a_pvvsStack
+    std::vector<std::vec_tstring_t> *a_stack
 )
 {
-    xCHECK_RET(NULL == a_pvvsStack, std::tstring_t());
+    xCHECK_RET(NULL == a_stack, std::tstring_t());
 
     std::tstring_t      sRv;
 
@@ -314,7 +314,7 @@ CxStackTrace::_format(
 
     // get elements max sizes
     for (size_t i = 0; i < cuiElementsNum; ++ i) {
-        xFOREACH_CONST(std::vector<std::vec_tstring_t>, it, *a_pvvsStack) {
+        xFOREACH_CONST(std::vector<std::vec_tstring_t>, it, *a_stack) {
             std::csize_t uiCurr = it->at(i).size();
 
             xCHECK_DO(uiCurr > vuiMaxs[i], vuiMaxs[i] = uiCurr);
@@ -322,17 +322,17 @@ CxStackTrace::_format(
     }
 
     // formating
-    xFOREACH_CONST(std::vector<std::vec_tstring_t>, it, *a_pvvsStack) {
+    xFOREACH_CONST(std::vector<std::vec_tstring_t>, it, *a_stack) {
         std::tstringstream_t ssStackLine;
 
-        ssStackLine << _m_csLinePrefix
-                    << std::setw(vuiMaxs[0]) << std::right << it->at(0) << _m_csElementSeparator
-                    << std::setw(vuiMaxs[1]) << std::left  << it->at(1) << _m_csElementSeparator
-                    << std::setw(vuiMaxs[2]) << std::left  << it->at(2) << _m_csElementSeparator
-                    << std::setw(vuiMaxs[3]) << std::right << it->at(3) << _m_csElementSeparator
-                    << std::setw(vuiMaxs[4]) << std::left  << it->at(4) << _m_csElementSeparator
+        ssStackLine << _linePrefix
+                    << std::setw(vuiMaxs[0]) << std::right << it->at(0) << _elementSeparator
+                    << std::setw(vuiMaxs[1]) << std::left  << it->at(1) << _elementSeparator
+                    << std::setw(vuiMaxs[2]) << std::left  << it->at(2) << _elementSeparator
+                    << std::setw(vuiMaxs[3]) << std::right << it->at(3) << _elementSeparator
+                    << std::setw(vuiMaxs[4]) << std::left  << it->at(4) << _elementSeparator
                     << std::setw(vuiMaxs[5]) << std::left  << it->at(5)
-                    << _m_csLineSeparator;
+                    << _lineSeparator;
 
         sRv.append(ssStackLine.str());
     }
@@ -345,10 +345,10 @@ CxStackTrace::_format(
 /* static */
 void_t
 CxStackTrace::_addr2Line(
-    cvoid_t        *a_pvSymbolAddress,
-    std::tstring_t *a_psFilePath,
-    std::tstring_t *a_psFunctionName,
-    ulong_t        *a_pulSourceLine
+    cvoid_t        *a_symbolAddress,
+    std::tstring_t *a_filePath,
+    std::tstring_t *a_functionName,
+    ulong_t        *a_sourceLine
 )
 {
     tchar_t szCmdLine[1024 + 1] = {0};
@@ -369,7 +369,7 @@ CxStackTrace::_addr2Line(
 
     snprintf(szCmdLine, xARRAY_SIZE(szCmdLine) - 1,
              xT("addr2line -C -e %s -f %lx"),   /* xT("addr2line -C -e %s -f -i %lx") */
-             CxPath::exe().c_str(), (ulong_t)a_pvSymbolAddress);
+             CxPath::exe().c_str(), (ulong_t)a_symbolAddress);
 
     FILE *pflFile = ::popen(szCmdLine, xT("r"));
     xSTD_VERIFY(NULL != pflFile);
@@ -381,7 +381,7 @@ CxStackTrace::_addr2Line(
         ctchar_t *pcszFunctionName = std::fgets(szBuff, xARRAY_SIZE(szBuff), pflFile);
         xSTD_VERIFY(NULL != pcszFunctionName);
 
-        (*a_psFunctionName).assign(pcszFunctionName);
+        (*a_functionName).assign(pcszFunctionName);
     }
 
     // get file and line
@@ -405,8 +405,8 @@ CxStackTrace::_addr2Line(
         // out
         xSTD_VERIFY(0 == std::feof(pflFile));
 
-        *a_psFilePath    = vsLine.at(0);
-        *a_pulSourceLine = CxString::cast<ulong_t>( vsLine.at(1) );
+        *a_filePath   = vsLine.at(0);
+        *a_sourceLine = CxString::cast<ulong_t>( vsLine.at(1) );
     }
 
     int_t iRv =::pclose(pflFile);    pflFile = NULL;

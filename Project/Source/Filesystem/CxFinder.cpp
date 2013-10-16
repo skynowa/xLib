@@ -24,17 +24,17 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 CxFinder::CxFinder(
-    std::ctstring_t &a_csRootDirPath,   ///< target root dir
-    std::ctstring_t &a_csShellFilter    ///< shell wildcard pattern
+    std::ctstring_t &a_rootDirPath,   ///< target root dir
+    std::ctstring_t &a_shellFilter    ///< shell wildcard pattern
 ) :
-    _m_enEnrty      (),
-    _m_csRootDirPath( CxPath(a_csRootDirPath).toNative(false) ),
-    _m_csShellFilter(a_csShellFilter),
-    _m_bIsMoveFirst (true)
+    _enrty      (),
+    _rootDirPath( CxPath(a_rootDirPath).toNative(false) ),
+    _shellFilter(a_shellFilter),
+    _isMoveFirst (true)
 {
     xTEST_EQ(false, isValid());
-    xTEST_EQ(false, a_csRootDirPath.empty());
-    xTEST_EQ(false, a_csShellFilter.empty());
+    xTEST_EQ(false, a_rootDirPath.empty());
+    xTEST_EQ(false, a_shellFilter.empty());
 }
 //------------------------------------------------------------------------------
 /* virtual */
@@ -44,16 +44,16 @@ CxFinder::~CxFinder() {
 //------------------------------------------------------------------------------
 std::ctstring_t &
 CxFinder::rootDirPath() const {
-    xTEST_EQ(false, _m_csRootDirPath.empty());
+    xTEST_EQ(false, _rootDirPath.empty());
 
-    return _m_csRootDirPath;
+    return _rootDirPath;
 }
 //------------------------------------------------------------------------------
 std::ctstring_t &
 CxFinder::shellFilter() const {
-    xTEST_EQ(false, _m_csShellFilter.empty());
+    xTEST_EQ(false, _shellFilter.empty());
 
-    return _m_csShellFilter;
+    return _shellFilter;
 }
 //------------------------------------------------------------------------------
 std::tstring_t
@@ -63,9 +63,9 @@ CxFinder::entryName() const {
     std::tstring_t sRv;
 
 #if xOS_ENV_WIN
-    sRv.assign( _m_enEnrty.fdData.cFileName );
+    sRv.assign( _enrty.data.cFileName );
 #else
-    sRv.assign( _m_enEnrty.pdrData->d_name );
+    sRv.assign( _enrty.data->d_name );
 #endif
 
     xTEST_EQ(false, sRv.empty());
@@ -91,11 +91,11 @@ CxFinder::fileTypes() const {
 #if xOS_ENV_WIN
     CxFileType::types_t ftRv = CxFileType::faInvalid;
 
-    ftRv = _m_enEnrty.fdData.dwFileAttributes;
+    ftRv = _enrty.data.dwFileAttributes;
 #else
     CxFileType::types_t ftRv = 0;
 
-    uchar_t ucRv = _m_enEnrty.pdrData->d_type;
+    uchar_t ucRv = _enrty.data->d_type;
     switch (ucRv) {
         case DT_BLK: // block device
             ftRv |= CxFileType::faBlockDevice;
@@ -131,11 +131,11 @@ CxFinder::fileTypes() const {
 bool_t
 CxFinder::isValid() const {
 #if xOS_ENV_WIN
-    xCHECK_RET(xNATIVE_HANDLE_INVALID == _m_enEnrty.hHandle, false);
-    xCHECK_NA(_m_enEnrty.fdData);
+    xCHECK_RET(xNATIVE_HANDLE_INVALID == _enrty.handle, false);
+    xCHECK_NA(_enrty.data);
 #else
-    xCHECK_RET(NULL == _m_enEnrty.pHandle, false);
-    xCHECK_RET(NULL == _m_enEnrty.pdrData, false);
+    xCHECK_RET(NULL == _enrty.handle, false);
+    xCHECK_RET(NULL == _enrty.data, false);
 #endif
 
     return true;
@@ -145,12 +145,12 @@ bool_t
 CxFinder::moveNext() {
     // xTEST_EQ(true, isValid());
 
-    if (_m_bIsMoveFirst) {
+    if (_isMoveFirst) {
         bool_t bRv = _moveFirst();
         xCHECK_RET(!bRv, false);
     } else {
     #if xOS_ENV_WIN
-        BOOL blRv = ::FindNextFile(_m_enEnrty.hHandle, &_m_enEnrty.fdData);
+        BOOL blRv = ::FindNextFile(_enrty.handle, &_enrty.data);
         if (FALSE == blRv) {
             xCHECK_RET(ERROR_NO_MORE_FILES == CxLastError::get(), false);
 
@@ -160,8 +160,8 @@ CxFinder::moveNext() {
         xFOREVER {
             CxLastError::reset();
 
-            _m_enEnrty.pdrData = ::readdir(_m_enEnrty.pHandle);
-            if (NULL == _m_enEnrty.pdrData) {
+            _enrty.data = ::readdir(_enrty.handle);
+            if (NULL == _enrty.data) {
                 xCHECK_RET(CxLastError::isSuccess(), false);
 
                 xTEST_FAIL;
@@ -182,17 +182,17 @@ CxFinder::moveNext() {
 //------------------------------------------------------------------------------
 void_t
 CxFinder::close() {
-    _m_bIsMoveFirst = true;
+    _isMoveFirst = true;
 
     xCHECK_DO(!isValid(), return);
 
     // close handle
     {
     #if xOS_ENV_WIN
-        BOOL blRes = ::FindClose(_m_enEnrty.hHandle);
+        BOOL blRes = ::FindClose(_enrty.handle);
         xTEST_DIFF(FALSE, blRes);
     #else
-        int_t iRv = ::closedir(_m_enEnrty.pHandle);
+        int_t iRv = ::closedir(_enrty.handle);
         xTEST_DIFF(- 1, iRv);
     #endif
     }
@@ -200,11 +200,11 @@ CxFinder::close() {
     // clear data
     {
     #if xOS_ENV_WIN
-        _m_enEnrty.hHandle = xNATIVE_HANDLE_INVALID;
-        xSTRUCT_ZERO(_m_enEnrty.fdData);
+        _enrty.handle = xNATIVE_HANDLE_INVALID;
+        xSTRUCT_ZERO(_enrty.data);
     #else
-        _m_enEnrty.pHandle = NULL;
-        _m_enEnrty.pdrData = NULL;
+        _enrty.handle = NULL;
+        _enrty.data = NULL;
     #endif
     }
 }
@@ -220,18 +220,18 @@ CxFinder::close() {
 /* static */
 void_t
 CxFinder::dirs(
-    std::ctstring_t    &a_csRootDirPath,    ///< target root dir
-    std::ctstring_t    &a_csShellFilter,    ///< shell wildcard pattern
-    cbool_t            &a_cbIsRecursively,  ///< is recursive search
-    std::vec_tstring_t *a_pvsDirPaths       ///< result dir paths
+    std::ctstring_t    &a_rootDirPath,    ///< target root dir
+    std::ctstring_t    &a_shellFilter,    ///< shell wildcard pattern
+    cbool_t            &a_isRecursively,  ///< is recursive search
+    std::vec_tstring_t *a_dirPaths       ///< result dir paths
 )
 {
-    xTEST_EQ(false, a_csRootDirPath.empty());
-    xTEST_EQ(false, a_csShellFilter.empty());
-    xTEST_NA(a_cbIsRecursively);
-    xTEST_PTR(a_pvsDirPaths);
+    xTEST_EQ(false, a_rootDirPath.empty());
+    xTEST_EQ(false, a_shellFilter.empty());
+    xTEST_NA(a_isRecursively);
+    xTEST_PTR(a_dirPaths);
 
-    CxFinder fnFinder(a_csRootDirPath, a_csShellFilter);
+    CxFinder fnFinder(a_rootDirPath, a_shellFilter);
 
     xFOREVER {
         bool_t bRv = fnFinder.moveNext();
@@ -243,11 +243,11 @@ CxFinder::dirs(
         // set filter for dirs
         xCHECK_DO(!(CxFileType::faDirectory & fnFinder.fileTypes()), continue);
 
-        a_pvsDirPaths->push_back( fnFinder.entryPath() );
+        a_dirPaths->push_back( fnFinder.entryPath() );
 
         // is search in subdirs
-        if (a_cbIsRecursively) {
-            CxFinder::dirs(fnFinder.entryPath(), a_csShellFilter, true, a_pvsDirPaths);
+        if (a_isRecursively) {
+            CxFinder::dirs(fnFinder.entryPath(), a_shellFilter, true, a_dirPaths);
         }
     }
 }
@@ -255,19 +255,19 @@ CxFinder::dirs(
 /* static */
 void_t
 CxFinder::files(
-    std::ctstring_t    &a_csRootDirPath,    ///< target root dir
-    std::ctstring_t    &a_csShellFilter,    ///< shell wildcard pattern
-    cbool_t            &a_cbIsRecursively,  ///< is recursive search
-    std::vec_tstring_t *a_pvsFilePaths      ///< result file paths
+    std::ctstring_t    &a_rootDirPath,    ///< target root dir
+    std::ctstring_t    &a_shellFilter,    ///< shell wildcard pattern
+    cbool_t            &a_isRecursively,  ///< is recursive search
+    std::vec_tstring_t *a_filePaths      ///< result file paths
 )
 {
-    xTEST_EQ(false, a_csRootDirPath.empty());
-    xTEST_EQ(false, a_csShellFilter.empty());
-    xTEST_NA(a_cbIsRecursively);
-    xTEST_PTR(a_pvsFilePaths);
+    xTEST_EQ(false, a_rootDirPath.empty());
+    xTEST_EQ(false, a_shellFilter.empty());
+    xTEST_NA(a_isRecursively);
+    xTEST_PTR(a_filePaths);
 
-    if (!a_cbIsRecursively) {
-        CxFinder fnFinder(a_csRootDirPath, a_csShellFilter);
+    if (!a_isRecursively) {
+        CxFinder fnFinder(a_rootDirPath, a_shellFilter);
 
         xFOREVER {
             bool_t bRv = fnFinder.moveNext();
@@ -279,18 +279,18 @@ CxFinder::files(
             // set filter for files
             xCHECK_DO(CxFileType::faDirectory & fnFinder.fileTypes(), continue);
 
-            a_pvsFilePaths->push_back(fnFinder.entryPath());
+            a_filePaths->push_back(fnFinder.entryPath());
         }
     } else {
         // subdirs
         std::vec_tstring_t m_vsDirPaths;
-        dirs(a_csRootDirPath, CxConst::xMASK_ALL, true, &m_vsDirPaths);
+        dirs(a_rootDirPath, CxConst::xMASK_ALL, true, &m_vsDirPaths);
 
         // files in root dir and each subdir
-        files(a_csRootDirPath, a_csShellFilter, false, a_pvsFilePaths);
+        files(a_rootDirPath, a_shellFilter, false, a_filePaths);
 
         xFOREACH_CONST(std::vec_tstring_t, it, m_vsDirPaths) {
-            files(*it, a_csShellFilter, false, a_pvsFilePaths);
+            files(*it, a_shellFilter, false, a_filePaths);
         }
     }
 }
@@ -307,16 +307,16 @@ bool_t
 CxFinder::_moveFirst() {
     xTEST_EQ(false, isValid());
 
-    _m_bIsMoveFirst = false;
+    _isMoveFirst = false;
 
 #if xOS_ENV_WIN
-    _m_enEnrty.hHandle = ::FindFirstFile(
+    _enrty.handle = ::FindFirstFile(
                             (rootDirPath() + CxConst::xSLASH + shellFilter()).c_str(),
-                            &_m_enEnrty.fdData);
-    xCHECK_RET(xNATIVE_HANDLE_INVALID == _m_enEnrty.hHandle, false);
+                            &_enrty.data);
+    xCHECK_RET(xNATIVE_HANDLE_INVALID == _enrty.handle, false);
 #else
-    _m_enEnrty.pHandle = ::opendir(rootDirPath().c_str());
-    xTEST_PTR(_m_enEnrty.pHandle);
+    _enrty.handle = ::opendir(rootDirPath().c_str());
+    xTEST_PTR(_enrty.handle);
 
     bool_t bRv = moveNext();
     xCHECK_RET(!bRv, false);

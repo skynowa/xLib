@@ -21,76 +21,76 @@ xNAMESPACE_BEGIN(NxLib)
 //------------------------------------------------------------------------------
 /*explicit*/
 CxTestManager::CxTestManager(
-    cbool_t &a_cbIsUseTracing
+    cbool_t &a_isUseTracing
 ) :
-    _m_cbIsUseTracing(a_cbIsUseTracing),
-    _m_ctnTests      ()
+    _isUseTracing(a_isUseTracing),
+    _tests      ()
 {
-    xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("\n\nCxTestManager: *** %s v.%s %s (author: %s date: %s) ***"),
+    xCHECK_DO(_isUseTracing, xTRACEV(xT("\n\nCxTestManager: *** %s v.%s %s (author: %s date: %s) ***"),
                                          xLIB_NAME, xLIB_VERSION, xLIB_VERSION_SUFFIX, xLIB_AUTHOR, xLIB_DATE));
-    xCHECK_DO(_m_cbIsUseTracing, xTRACE (xT("\n")));
+    xCHECK_DO(_isUseTracing, xTRACE (xT("\n")));
 }
 //------------------------------------------------------------------------------
 /* virtual */
 CxTestManager::~CxTestManager()
 {
-    xFOREACH(container_t, it, _m_ctnTests) {
+    xFOREACH(container_t, it, _tests) {
         xPTR_DELETE(*it);
     }
 
-    xCHECK_DO(_m_cbIsUseTracing, xTRACE(xT("CxTestManager: all tests destructed.")));
-    xCHECK_DO(_m_cbIsUseTracing, xTRACE(xT("\n")));
+    xCHECK_DO(_isUseTracing, xTRACE(xT("CxTestManager: all tests destructed.")));
+    xCHECK_DO(_isUseTracing, xTRACE(xT("\n")));
 }
 //------------------------------------------------------------------------------
 void_t
 CxTestManager::add(
-    CxTest *a_pvtTest
+    CxTest *a_test
 )
 {
-    xTEST_PTR(a_pvtTest)
+    xTEST_PTR(a_test)
 
-    a_pvtTest->setName( CxType::name(*a_pvtTest) );
+    a_test->setName( CxType::name(*a_test) );
 
-    _m_ctnTests.push_back(a_pvtTest);
+    _tests.push_back(a_test);
 
 #if xTEMP_DISABLED
-    xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: added test \"%s\""), a_pvtTest->name().c_str()));
+    xCHECK_DO(_isUseTracing, xTRACEV(xT("CxTestManager: added test \"%s\""), a_test->name().c_str()));
 #endif
 }
 //------------------------------------------------------------------------------
 void_t
 CxTestManager::run(
-    culonglong_t &a_cullAllLoops,
-    culonglong_t &a_cullUnitLoops,
-    culonglong_t &a_cullCaseLoops
+    culonglong_t &a_allLoops,
+    culonglong_t &a_unitLoops,
+    culonglong_t &a_caseLoops
 )
 {
-    xTEST_NA(a_cullAllLoops);
-    xTEST_NA(a_cullUnitLoops);
-    xTEST_NA(a_cullCaseLoops);
+    xTEST_NA(a_allLoops);
+    xTEST_NA(a_unitLoops);
+    xTEST_NA(a_caseLoops);
 
-    xCHECK_DO(_m_cbIsUseTracing, xTRACE (xT("\n")));
-    xCHECK_DO(_m_cbIsUseTracing, xTRACE (xT("CxTestManager: start all tests...")));
-    xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: module path: %s"), CxPath::exe().c_str()));
-    xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: all loops: %") xPR_I64u
+    xCHECK_DO(_isUseTracing, xTRACE (xT("\n")));
+    xCHECK_DO(_isUseTracing, xTRACE (xT("CxTestManager: start all tests...")));
+    xCHECK_DO(_isUseTracing, xTRACEV(xT("CxTestManager: module path: %s"), CxPath::exe().c_str()));
+    xCHECK_DO(_isUseTracing, xTRACEV(xT("CxTestManager: all loops: %") xPR_I64u
                                          xT(", unit loops: %") xPR_I64u
                                          xT(", case loops: %") xPR_I64u
                                          xT(", unit number: %") xPR_SIZET xT("\n"),
-                                         a_cullAllLoops, a_cullUnitLoops, a_cullCaseLoops, _m_ctnTests.size()));
+                                         a_allLoops, a_unitLoops, a_caseLoops, _tests.size()));
 
-    for (ulonglong_t i = 0ULL; i < a_cullAllLoops; ++ i) {
-        xFOREACH_CONST(container_t, it, _m_ctnTests) {
-            xCHECK_DO(_m_cbIsUseTracing, xTRACEV(xT("CxTestManager: run test \"%s\""), (*it)->name().c_str()));
+    for (ulonglong_t i = 0ULL; i < a_allLoops; ++ i) {
+        xFOREACH_CONST(container_t, it, _tests) {
+            xCHECK_DO(_isUseTracing, xTRACEV(xT("CxTestManager: run test \"%s\""), (*it)->name().c_str()));
 
-            (*it)->run(a_cullUnitLoops, a_cullCaseLoops);
+            (*it)->run(a_unitLoops, a_caseLoops);
             // TODO: xTEST_MSG_EQ(true, bRv, CxString::format(xT("CxTestManager: test \"%s\" not complete"), (*it)->sName().c_str()));
 
-            //xCHECK_DO(_m_cbIsUseTracing, xTRACE(xT("...Ok")));
+            //xCHECK_DO(_isUseTracing, xTRACE(xT("...Ok")));
         }
     }
 
-    xCHECK_DO(_m_cbIsUseTracing, xTRACE(xT("CxTestManager: all tests successful done.")));
-    xCHECK_DO(_m_cbIsUseTracing, xTRACE(xT("\n")));
+    xCHECK_DO(_isUseTracing, xTRACE(xT("CxTestManager: all tests successful done.")));
+    xCHECK_DO(_isUseTracing, xTRACE(xT("\n")));
 }
 //------------------------------------------------------------------------------
 

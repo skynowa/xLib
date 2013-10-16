@@ -46,24 +46,24 @@ public:
 
              CxSystemLog();
         ///< constructor
-    explicit CxSystemLog(std::ctstring_t &csLogName);
+    explicit CxSystemLog(std::ctstring_t &logName);
         ///< constructor
     virtual ~CxSystemLog();
         ///< destructor
 
-    void_t   setEnabled(cbool_t &cbFlag);
+    void_t   setEnabled(cbool_t &flag);
         ///< set enabled
-    void_t   write(const ExLevel &lvLevel, ctchar_t *pcszFormat, ...);
+    void_t   write(const ExLevel &level, ctchar_t *format, ...);
         ///< write to log
 
 private:
-    bool_t   _m_bIsEnable;  ///< is enabled
+    bool_t   _isEnable;  ///< is enabled
 
 #if xOS_ENV_WIN
-    HANDLE   _m_SysLog;     ///< event log handle
+    HANDLE   _sysLog;     ///< event log handle
 #endif
 
-    void_t   _construct(std::ctstring_t &csLogName);
+    void_t   _construct(std::ctstring_t &logName);
         ///< initiate data
 };
 
