@@ -56,7 +56,7 @@ public:
     typedef const types_t ctypes_t;
         ///< all types
 
-    explicit          CxFileType(std::ctstring_t &csFilePath);
+    explicit          CxFileType(std::ctstring_t &filePath);
         ///< constructor
     virtual          ~CxFileType();
         ///< destructor
@@ -64,23 +64,23 @@ public:
     std::ctstring_t & filePath() const xWARN_UNUSED_RV;
         ///< file path
 
-    bool_t            isExists(cExType &cftValue) xWARN_UNUSED_RV;
+    bool_t            isExists(cExType &value) xWARN_UNUSED_RV;
         ///< is exists
     types_t           get() xWARN_UNUSED_RV;
         ///< get
-    void_t            set(ctypes_t &cftValues);
+    void_t            set(ctypes_t &values);
         ///< set
-    void_t            add(cExType &cftValue);
+    void_t            add(cExType &value);
         ///< add
-    void_t            remove(cExType &cftValue);
+    void_t            remove(cExType &value);
         ///< remove
-    void_t            modify(cExType &cftRemoveValue, cExType &cftAddValue);
+    void_t            modify(cExType &valueRemove, cExType &valueAdd);
         ///< modify
     void_t            clear();
         ///< clear (set normal attributes, only for Windows)
 
 private:
-    std::ctstring_t   _m_csFilePath;
+    std::ctstring_t   _filePath;
 };
 
 xNAMESPACE_END(NxLib)

@@ -19,17 +19,17 @@ class CxLocalStorage :
 public:
                       CxLocalStorage();
         ///< constructor, exe-file path
-    explicit          CxLocalStorage(std::ctstring_t &csFilePath);
+    explicit          CxLocalStorage(std::ctstring_t &filePath);
         ///< constructor, file path
     virtual          ~CxLocalStorage();
         ///< destructor
 
     // creation
-    void_t            createDefault(std::ctstring_t &csContent) const;
+    void_t            createDefault(std::ctstring_t &content) const;
         ///< create default file
     std::ctstring_t & path() const xWARN_UNUSED_RV;
         ///< get file path
-    void_t            setPath(std::ctstring_t &csFilePath);
+    void_t            setPath(std::ctstring_t &filePath);
         ///< set file path
     local_storage_t & get() xWARN_UNUSED_RV;
         ///< get inner local_storage_t, may be used with bFlush
@@ -42,53 +42,53 @@ public:
         ///< delete
 
     // key
-    bool_t            keyIsExists(std::ctstring_t &csKey) const xWARN_UNUSED_RV;
+    bool_t            keyIsExists(std::ctstring_t &key) const xWARN_UNUSED_RV;
         ///< is exists
 
-    std::tstring_t    keyReadString(std::ctstring_t &csKey, std::ctstring_t &csDefaultValue)
+    std::tstring_t    keyReadString(std::ctstring_t &key, std::ctstring_t &defaultValue)
                           xWARN_UNUSED_RV;
         ///< read std::tstring_t
-    void_t            keyWriteString(std::ctstring_t &csKey, std::ctstring_t &csValue);
+    void_t            keyWriteString(std::ctstring_t &key, std::ctstring_t &value);
         ///< write std::tstring_t
 
-    long_t            keyReadInt(std::ctstring_t &csKey, clong_t &cliDefaultValue) xWARN_UNUSED_RV;
+    long_t            keyReadInt(std::ctstring_t &key, clong_t &defaultValue) xWARN_UNUSED_RV;
         ///< read int_t
-    void_t            keyWriteInt(std::ctstring_t &csKey, clong_t &cliValue);
+    void_t            keyWriteInt(std::ctstring_t &key, clong_t &value);
         ///< write int_t
 
-    double            keyReadFloat(std::ctstring_t &csKey, cdouble_t &cdDefaultValue)
+    double            keyReadFloat(std::ctstring_t &key, cdouble_t &defaultValue)
                           xWARN_UNUSED_RV;
         ///< read float_t
-    void_t            keyWriteFloat(std::ctstring_t &csKey, cdouble_t &cdValue);
+    void_t            keyWriteFloat(std::ctstring_t &key, cdouble_t &value);
         ///< write float_t
 
-    bool_t            keyReadBool(std::ctstring_t &csKey, cbool_t &cbDefaultValue) xWARN_UNUSED_RV;
+    bool_t            keyReadBool(std::ctstring_t &key, cbool_t &defaultValue) xWARN_UNUSED_RV;
         ///< read bool_t
-    void_t            keyWriteBool(std::ctstring_t &csKey, cbool_t &cbValue);
+    void_t            keyWriteBool(std::ctstring_t &key, cbool_t &value);
         ///< write bool_t
 
-    std::ustring_t    keyReadBin(std::ctstring_t &csKey, std::custring_t &cusDefaultValue)
+    std::ustring_t    keyReadBin(std::ctstring_t &key, std::custring_t &defaultValue)
                           xWARN_UNUSED_RV;
         ///< write std::ustring_t
-    void_t            keyWriteBin(std::ctstring_t &csKey, std::custring_t &cusValue);
+    void_t            keyWriteBin(std::ctstring_t &key, std::custring_t &value);
         ///< read std::ustring_t
 
-    void_t            keyClear(std::ctstring_t &csKey);
+    void_t            keyClear(std::ctstring_t &key);
         ///< clear value
-    void_t            keyDelete(std::ctstring_t &csKey);
+    void_t            keyDelete(std::ctstring_t &key);
         ///< delete key and value
 
 private:
-    std::ctstring_t   _m_csSeparator;  ///< separator between key and value
-    std::ctstring_t   _m_csFileExt;    ///< ini-file extension
+    std::ctstring_t   _separator;  ///< separator between key and value
+    std::ctstring_t   _fileExt;    ///< ini-file extension
 
-    std::tstring_t    _m_sFilePath;    ///< file path to ini-file
-    local_storage_t   _m_msIni;        ///< std::map of keys and values
+    std::tstring_t    _filePath;    ///< file path to ini-file
+    local_storage_t   _ini;        ///< std::map of keys and values
 
-    void_t            _read(std::ctstring_t &csKey, std::ctstring_t &csDefaultValue,
-                          std::tstring_t *psValue);
+    void_t            _read(std::ctstring_t &key, std::ctstring_t &defaultValue,
+                          std::tstring_t *value);
         ///< parse file
-    void_t            _write(std::ctstring_t &csKey, std::ctstring_t &csValue);
+    void_t            _write(std::ctstring_t &key, std::ctstring_t &value);
         ///< flush to local_storage_t, file
 };
 

@@ -17,52 +17,52 @@ class CxCookiePv1 :
 public:
                       CxCookiePv1();
         ///< constructor
-    explicit          CxCookiePv1(std::ctstring_t &csRawCookie);
+    explicit          CxCookiePv1(std::ctstring_t &rawCookie);
         ///< constructor
     virtual          ~CxCookiePv1();
         ///< destructor
 
-    void_t            init(std::ctstring_t &csRawCookie);
+    void_t            init(std::ctstring_t &rawCookie);
         ///< parsing raw cookie string pv0
 
     std::ctstring_t & name() const xWARN_UNUSED_RV;
         ///< get name
-    void_t            setName(std::ctstring_t &csName);
+    void_t            setName(std::ctstring_t &name);
         ///< set name
 
     std::ctstring_t & value() const xWARN_UNUSED_RV;
         ///< get value
-    void_t            setValue(std::ctstring_t &csValue);
+    void_t            setValue(std::ctstring_t &value);
         ///< set value
 
     std::ctstring_t & comment() const xWARN_UNUSED_RV;
         ///< get comment
-    void_t            setComment(std::ctstring_t &csComment);
+    void_t            setComment(std::ctstring_t &comment);
         ///< set comment
 
     std::ctstring_t & domain() const xWARN_UNUSED_RV;
         ///< get domain
-    void_t            setDomain(std::ctstring_t &csDomain);
+    void_t            setDomain(std::ctstring_t &domain);
         ///< set domain
 
     std::ctstring_t & path() const xWARN_UNUSED_RV;
         ///< get path
-    void_t            setPath(std::ctstring_t &csPath);
+    void_t            setPath(std::ctstring_t &path);
         ///< set path
 
     longlong_t        maxAge() const xWARN_UNUSED_RV;
         ///< get max age
-    void_t            setMaxAge(clonglong_t &cliMaxAge);
+    void_t            setMaxAge(clonglong_t &maxAge);
         ///< set max age
 
     bool_t            secure() const xWARN_UNUSED_RV;
         ///< get secure
-    void_t            setSecure(cbool_t &cbFlag);
+    void_t            setSecure(cbool_t &flag);
         ///< set secure
 
     bool_t            httpOnly() const xWARN_UNUSED_RV;
         ///< get http only
-    void_t            setHttpOnly(cbool_t &cbFlag);
+    void_t            setHttpOnly(cbool_t &flag);
         ///< set http only
 
     std::tstring_t    toString() const xWARN_UNUSED_RV;
@@ -73,14 +73,14 @@ public:
         ///< clear
 
 private:
-    std::tstring_t    _m_sName;      ///< name
-    std::tstring_t    _m_sValue;     ///< value
+    std::tstring_t    _name;      ///< name
+    std::tstring_t    _value;     ///< value
     std::tstring_t    _m_sComment;   ///< comment
-    std::tstring_t    _m_sDomain;    ///< domain
-    std::tstring_t    _m_sPath;      ///< path
-    longlong_t        _m_liMaxAge;   ///< max age (in seconds)
-    bool_t            _m_bSecure;    ///< secure
-    bool_t            _m_bHttpOnly;  ///< http only
+    std::tstring_t    _domain;    ///< domain
+    std::tstring_t    _path;      ///< path
+    longlong_t        _maxAge;   ///< max age (in seconds)
+    bool_t            _isSecure;    ///< secure
+    bool_t            _isHttpOnly;  ///< http only
 };
 
 xNAMESPACE_END(NxLib)

@@ -8,7 +8,7 @@
 
 #include <xLib/Core/xCore.h>
 
-#if xCXMYSQL_IS_USE || 1
+#if xCXMYSQL_IS_USE
 
 #if xOS_ENV_WIN
     #include <mysql.h>

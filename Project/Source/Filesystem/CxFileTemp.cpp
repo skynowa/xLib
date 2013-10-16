@@ -21,64 +21,64 @@ xNAMESPACE_BEGIN(NxLib)
 //------------------------------------------------------------------------------
 /*explicit*/
 CxFileTemp::CxFileTemp(
-    cbool_t &a_cbIsAutoDelete
+    cbool_t &a_isAutoDelete
 ) :
-    _m_cbIsAutoDelete(a_cbIsAutoDelete),
-    _m_pfFile        (NULL),
-    _m_sFilePath     ()
+    _isAutoDelete(a_isAutoDelete),
+    _file        (NULL),
+    _filePath    ()
 {
-
 }
 //------------------------------------------------------------------------------
 /* virtual */
-CxFileTemp::~CxFileTemp() {
-    (*_m_pfFile).close();
+CxFileTemp::~CxFileTemp()
+{
+    (*_file).close();
 
-    if (_m_cbIsAutoDelete) {
-        CxFile::remove(_m_sFilePath);
+    if (_isAutoDelete) {
+        CxFile::remove(_filePath);
     }
 }
 //------------------------------------------------------------------------------
 void_t
 CxFileTemp::create(
-    std::ctstring_t &a_csFilePath,
-    std::ctstring_t &a_csDirPath,
-    CxFile          *a_pfFile
+    std::ctstring_t &a_filePath,
+    std::ctstring_t &a_dirPath,
+    CxFile          *a_file
 )
 {
-    xTEST_EQ(false, a_csFilePath.empty());
-    xTEST_EQ(false, a_csDirPath.empty());
-    xTEST_EQ(false, a_pfFile->isValid());
+    xTEST_EQ(false, a_filePath.empty());
+    xTEST_EQ(false, a_dirPath.empty());
+    xTEST_EQ(false, a_file->isValid());
 
     std::ctstring_t csFileNameTemplate = xT("XXXXXX");
 
 
     FILE *_pfStdFile = NULL;
 
-    CxDir(a_csDirPath).pathCreate();
+    CxDir(a_dirPath).pathCreate();
 
-    _m_sFilePath = CxPath(a_csDirPath).slashAppend() + CxPath(a_csFilePath).fileName() + csFileNameTemplate;
+    _filePath = CxPath(a_dirPath).slashAppend() + CxPath(a_filePath).fileName() + csFileNameTemplate;
 
 #if xOS_ENV_WIN
     #if xCOMPILER_MINGW || xCOMPILER_CODEGEAR
-        _m_sFilePath.resize(_m_sFilePath.size() + 1);
+        _filePath.resize(_filePath.size() + 1);
 
-        tchar_t *pszFile = ::xTMKSTEMP(&_m_sFilePath.at(0));
+        tchar_t *pszFile = ::xTMKSTEMP(&_filePath.at(0));
         xTEST_PTR(pszFile);
 
         _pfStdFile = std::xTFOPEN(pszFile, CxFile::_openMode(CxFile::omBinCreateReadWrite).c_str());
         xTEST_PTR(_pfStdFile);
     #else
-        _m_sFilePath.resize(_m_sFilePath.size() + 1);
+        _filePath.resize(_filePath.size() + 1);
 
-        errno_t iError = ::xTMKSTEMP(&_m_sFilePath.at(0), _m_sFilePath.size() + 1);
+        errno_t iError = ::xTMKSTEMP(&_filePath.at(0), _filePath.size() + 1);
         xTEST_EQ(0, iError);
 
-        _pfStdFile = ::xTFOPEN(_m_sFilePath.c_str(), CxFile::_openMode(CxFile::omBinCreateReadWrite).c_str());
+        _pfStdFile = ::xTFOPEN(_filePath.c_str(), CxFile::_openMode(CxFile::omBinCreateReadWrite).c_str());
         xTEST_PTR(_pfStdFile);
     #endif
 #else
-    int_t iFile = ::xTMKSTEMP(&_m_sFilePath.at(0));
+    int_t iFile = ::xTMKSTEMP(&_filePath.at(0));
     xTEST_DIFF(- 1, iFile);
 
     _pfStdFile = ::xTFDOPEN(iFile, CxFile::_openMode(CxFile::omBinCreateReadWrite).c_str());
@@ -86,9 +86,9 @@ CxFileTemp::create(
 #endif
 
     //out
-    (*a_pfFile).attach(_pfStdFile);
+    (*a_file).attach(_pfStdFile);
 
-    _m_pfFile = a_pfFile;
+    _file = a_file;
 }
 //------------------------------------------------------------------------------
 

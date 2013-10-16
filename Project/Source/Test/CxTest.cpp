@@ -43,8 +43,8 @@ CxTest::CxTest() :
 #if xOS_ENV_WIN
     m_hwndRv       (NULL),
 #endif
-    _m_sWorkDirPath(),
-    _m_sName       ()
+    _workDirPath(),
+    _name       ()
 {
 }
 //------------------------------------------------------------------------------
@@ -56,18 +56,18 @@ CxTest::~CxTest() /* = 0 */
 //------------------------------------------------------------------------------
 void_t
 CxTest::run(
-    culonglong_t &a_cullUnitLoops,
-    culonglong_t &a_cullCaseLoops
+    culonglong_t &a_unitLoops,
+    culonglong_t &a_caseLoops
 )
 {
-    xTEST_NA(a_cullUnitLoops);
-    xTEST_NA(a_cullCaseLoops);
+    xTEST_NA(a_unitLoops);
+    xTEST_NA(a_caseLoops);
 
     try {
         createTempDir(xT("TestsTemp"));
 
-        for (ulonglong_t i = 0ULL; i < a_cullUnitLoops; ++ i) {
-            unit(a_cullCaseLoops);
+        for (ulonglong_t i = 0ULL; i < a_unitLoops; ++ i) {
+            unit(a_caseLoops);
             // TODO: xTEST_MSG_EQ(true, bRv, sGetName() + xT(": fail"));
         }
     }
@@ -87,13 +87,13 @@ CxTest::run(
 /* virtual */
 void_t
 CxTest::unit(
-    culonglong_t &a_cullCaseLoops
+    culonglong_t &a_caseLoops
 ) /* = 0 */
 {
-    xTEST_NA(a_cullCaseLoops);
+    xTEST_NA(a_caseLoops);
 
 #if xTODO
-    xTEST_CASE("CaseName", a_cullCaseLoops)
+    xTEST_CASE("CaseName", a_caseLoops)
     {
         std::ctstring_t casData[][2] = {
             {xT("TEST_STRING_1"), xT("MUST_BE_1")},
@@ -111,32 +111,32 @@ CxTest::unit(
 //------------------------------------------------------------------------------
 void_t
 CxTest::createTempDir(
-    std::ctstring_t &a_csDirName
+    std::ctstring_t &a_dirName
 )
 {
-    xTEST_NA(a_csDirName);
+    xTEST_NA(a_dirName);
 
-    if (a_csDirName.empty()) {
-        _m_sWorkDirPath = CxDir::temp();
+    if (a_dirName.empty()) {
+        _workDirPath = CxDir::temp();
     } else {
-        _m_sWorkDirPath = CxPath::exeDir() + CxConst::xSLASH + a_csDirName;
+        _workDirPath = CxPath::exeDir() + CxConst::xSLASH + a_dirName;
 
-        CxDir(_m_sWorkDirPath).pathCreate();
+        CxDir(_workDirPath).pathCreate();
     }
 }
 //------------------------------------------------------------------------------
 std::ctstring_t &
 CxTest::tempDirPath() const
 {
-    xTEST_EQ(false, _m_sWorkDirPath.empty());
+    xTEST_EQ(false, _workDirPath.empty());
 
-    return _m_sWorkDirPath;
+    return _workDirPath;
 }
 //------------------------------------------------------------------------------
 std::ctstring_t &
 CxTest::name() const
 {
-    return _m_sName;
+    return _name;
 }
 //------------------------------------------------------------------------------
 void_t
@@ -146,7 +146,7 @@ CxTest::setName(
 {
     xTEST_NA(a_csTestName);
 
-    _m_sName = a_csTestName;
+    _name = a_csTestName;
 }
 //------------------------------------------------------------------------------
 

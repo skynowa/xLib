@@ -17,18 +17,18 @@ class CxFileTemp :
     /// temporary file
 {
 public:
-    explicit        CxFileTemp(cbool_t &cbIsAutoDelete);
+    explicit        CxFileTemp(cbool_t &isAutoDelete);
         ///< constructor
     virtual        ~CxFileTemp();
         ///< destructor
 
-    void_t          create(std::ctstring_t &csFilePath, std::ctstring_t &csDirPath, CxFile *pfFile);
+    void_t          create(std::ctstring_t &filePath, std::ctstring_t &dirPath, CxFile *file);
         ///< create temporary file, open it
 
 private:
-    cbool_t         _m_cbIsAutoDelete;    ///< auto delete flag
-    CxFile         *_m_pfFile;            ///< temporary file handle
-    std::tstring_t  _m_sFilePath;         ///< temporary file path
+    cbool_t         _isAutoDelete;  ///< auto delete flag
+    CxFile         *_file;          ///< temporary file handle
+    std::tstring_t  _filePath;      ///< temporary file path
 };
 
 xNAMESPACE_END(NxLib)

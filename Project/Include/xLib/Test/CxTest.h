@@ -47,11 +47,11 @@ public:
     virtual             ~CxTest() = 0;
         ///< destructor
 
-    void_t               run(culonglong_t &cullUnitLoops, culonglong_t &cullCaseLoops);
+    void_t               run(culonglong_t &unitLoops, culonglong_t &caseLoops);
         ///< run test units
-    virtual void_t       unit(culonglong_t &cullCaseLoops) = 0;
+    virtual void_t       unit(culonglong_t &caseLoops) = 0;
         ///< test unit
-    void_t               createTempDir(std::ctstring_t &csDirName);
+    void_t               createTempDir(std::ctstring_t &dirName);
         ///< create work dir
     std::ctstring_t &    tempDirPath() const xWARN_UNUSED_RV;
         ///< get work dir path
@@ -61,8 +61,8 @@ public:
         ///< set name
 
 private:
-    std::tstring_t       _m_sWorkDirPath; ///< work dir path
-    std::tstring_t       _m_sName;        ///< test name
+    std::tstring_t       _workDirPath; ///< work dir path
+    std::tstring_t       _name;        ///< test name
 };
 
 xNAMESPACE_END(NxLib)

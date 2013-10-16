@@ -26,28 +26,27 @@ xNAMESPACE_BEGIN(NxLib)
 //------------------------------------------------------------------------------
 //explicit
 CxBackuper::CxBackuper(
-    cExBackupPeriod &a_cbpPeriod
+    cExBackupPeriod &a_period
 ) :
-    _m_cbpPeriod(a_cbpPeriod)
+    _period(a_period)
 {
-
 }
 //------------------------------------------------------------------------------
 /* virtual */
-CxBackuper::~CxBackuper() {
-
+CxBackuper::~CxBackuper()
+{
 }
 //------------------------------------------------------------------------------
 void_t
 CxBackuper::fileExec(
-    std::ctstring_t &a_csFilePath,
-    std::ctstring_t &a_csDestDirPath,
-    std::tstring_t  *a_psDestFilePath
+    std::ctstring_t &a_filePath,
+    std::ctstring_t &a_destDirPath,
+    std::tstring_t  *a_destFilePath
 ) const
 {
-    xTEST_EQ(false, a_csFilePath.empty());
-    xTEST_EQ(false, a_csDestDirPath.empty());
-    xTEST_PTR(a_psDestFilePath);
+    xTEST_EQ(false, a_filePath.empty());
+    xTEST_EQ(false, a_destDirPath.empty());
+    xTEST_PTR(a_destFilePath);
 
     bool_t bRv = false;
 
@@ -59,12 +58,12 @@ CxBackuper::fileExec(
 
     // prepare
     {
-        (*a_psDestFilePath).clear();
+        (*a_destFilePath).clear();
 
-        bool_t bRv = CxFile::isExists(a_csFilePath);
+        bool_t bRv = CxFile::isExists(a_filePath);
         xCHECK_DO(!bRv, xTHROW() << csError_DestFileNotExists);
 
-        CxDir drDest(a_csDestDirPath);
+        CxDir drDest(a_destDirPath);
 
         bRv = drDest.isExists();
         xCHECK_DO(!bRv, drDest.pathCreate());
@@ -75,7 +74,7 @@ CxBackuper::fileExec(
     std::tstring_t sDateTimeStamp;
 
     {
-        switch (_m_cbpPeriod) {
+        switch (_period) {
             // TODO: bpHourly:
             case bpDaily:
                 sDateTimeStamp = CxDateTime().current()
@@ -95,25 +94,25 @@ CxBackuper::fileExec(
     //-------------------------------------
     // format file full name
     std::tstring_t sBackupFilePath =
-                        CxPath(a_csDestDirPath).slashAppend() +
-                        CxPath(a_csFilePath).fileName()       +
+                        CxPath(a_destDirPath).slashAppend() +
+                        CxPath(a_filePath).fileName()       +
                         xT(".bak [") + sDateTimeStamp + xT("]");
 
     //-------------------------------------
     // check for existence source file
     {
         bRv = CxFile::isExists(sBackupFilePath);
-        xCHECK_DO(bRv, *a_psDestFilePath = sBackupFilePath; return);
+        xCHECK_DO(bRv, *a_destFilePath = sBackupFilePath; return);
     }
 
     //-------------------------------------
     // check for enough space
     {
         ulonglong_t ullTotalFreeBytes = 0ULL;
-        CxVolume::space(a_csDestDirPath, NULL, NULL, &ullTotalFreeBytes);
+        CxVolume::space(a_destDirPath, NULL, NULL, &ullTotalFreeBytes);
 
         ulonglong_t ullFileSizeBytes  = 0ULL;
-        ullFileSizeBytes = static_cast<ulonglong_t>( CxFile::size(a_csFilePath) );
+        ullFileSizeBytes = static_cast<ulonglong_t>( CxFile::size(a_filePath) );
 
         xCHECK_DO(ullFileSizeBytes > ullTotalFreeBytes, xTHROW() << csError_NotEnoughFreeSpace);
     }
@@ -121,7 +120,7 @@ CxBackuper::fileExec(
     //-------------------------------------
     // copy
     {
-        CxFile::copy(a_csFilePath, sBackupFilePath, true);
+        CxFile::copy(a_filePath, sBackupFilePath, true);
     }
 
     //-------------------------------------
@@ -130,15 +129,15 @@ CxBackuper::fileExec(
         bRv = CxFile::isExists(sBackupFilePath);
         xCHECK_DO(!bRv, xTHROW() << csError_CopyingFail);
 
-        bRv = (CxFile::size(a_csFilePath) == CxFile::size(sBackupFilePath));
+        bRv = (CxFile::size(a_filePath) == CxFile::size(sBackupFilePath));
         xCHECK_DO(!bRv, xTHROW() << csError_CopyingFail);
 
-        bRv = (CxCrc32::calcFileFast(a_csFilePath) == CxCrc32::calcFileFast(sBackupFilePath));
+        bRv = (CxCrc32::calcFileFast(a_filePath) == CxCrc32::calcFileFast(sBackupFilePath));
         xCHECK_DO(!bRv, xTHROW() << csError_CopyingFail);
     }
 
     // out
-    std::swap(*a_psDestFilePath, sBackupFilePath);
+    std::swap(*a_destFilePath, sBackupFilePath);
 }
 //------------------------------------------------------------------------------
 

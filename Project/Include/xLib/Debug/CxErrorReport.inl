@@ -9,48 +9,48 @@ xNAMESPACE_BEGIN(NxLib)
 //------------------------------------------------------------------------------
 template<typename T>
 CxErrorReport::CxErrorReport(
-    const ExType    &a_crtType,
-    std::ctstring_t &a_csVar1,
-    std::ctstring_t &a_csVar2,
-    const T         &a_cVar1ValueT,
-    const T         &a_cVar2ValueT,
-    std::ctstring_t &a_csExprSign,
-    culong_t        &a_culLastError,
-    std::ctstring_t &a_csFile,
-    culong_t        &a_culLine,
-    std::ctstring_t &a_csFunc,
-    std::ctstring_t &a_csDate,
-    std::ctstring_t &a_csTime,
-    std::ctstring_t &a_csStackTrace,
-    std::ctstring_t &a_csComment
+    const ExType    &a_type,
+    std::ctstring_t &a_var1,
+    std::ctstring_t &a_var2,
+    const T         &a_var1Value,
+    const T         &a_var2Value,
+    std::ctstring_t &a_exprSign,
+    culong_t        &a_lastError,
+    std::ctstring_t &a_file,
+    culong_t        &a_line,
+    std::ctstring_t &a_func,
+    std::ctstring_t &a_date,
+    std::ctstring_t &a_time,
+    std::ctstring_t &a_stackTrace,
+    std::ctstring_t &a_comment
 ) :
-    m_rtType         (rtUnknown),
-    m_sReport        (),
-    m_sProgram       (),
-    m_ulProcessId    (0UL),
-    m_ulThreadId     (0UL),
-    m_sFileSize      (),
-    m_sSourceFile    (),
-    m_ulSourceLine   (0UL),
-    m_sFunctionName  (),
-    m_sExpression    (),
-    m_sExprSign      (),
-    m_ulLastError    (0UL),
-    m_sLastErrorStr  (),
-    m_sCurrentDate   (),
-    m_sBuildDate     (),
-    m_sBuildType     (),
-    m_sOsVersion     (),
-    m_sOsArchitecture(),
-    m_sStackTrace    (),
-    m_sComment       ()
+    type          (rtUnknown),
+    report        (),
+    program       (),
+    processId     (0UL),
+    threadId      (0UL),
+    fileSize      (),
+    sourceFile    (),
+    sourceLine    (0UL),
+    functionName  (),
+    expression    (),
+    exprSign      (),
+    lastError     (0UL),
+    lastErrorStr  (),
+    currentDate   (),
+    buildDate     (),
+    buildType     (),
+    osVersion     (),
+    osArchitecture(),
+    stackTrace    (),
+    comment       ()
 {
     // sVar1Value
     std::tstring_t sVar1Value;
     {
         std::tostringstream_t ossRes;
 
-        ossRes << a_cVar1ValueT;
+        ossRes << a_var1Value;
         sVar1Value = ossRes.str();
     }
 
@@ -59,18 +59,18 @@ CxErrorReport::CxErrorReport(
     {
         std::tostringstream_t ossRes;
 
-        ossRes << a_cVar2ValueT;
+        ossRes << a_var2Value;
         sVar2Value = ossRes.str();
     }
 
-    _construct(a_crtType,
-               a_csVar1,   a_csVar2,
+    _construct(a_type,
+               a_var1,     a_var2,
                sVar1Value, sVar2Value,
-               a_csExprSign,
-               a_culLastError, a_csFile, a_culLine, a_csFunc, 
-               a_csDate, a_csTime, a_csStackTrace, a_csComment);
+               a_exprSign,
+               a_lastError, a_file, a_line, a_func,
+               a_date, a_time, a_stackTrace, a_comment);
 
-    switch (a_crtType) {
+    switch (a_type) {
         case rtMsgboxPlain:  { _initPlain(); } break;
         case rtStdoutPlain:  { _initPlain(); } break;
         case rtLoggingPlain: { _initPlain(); } break;

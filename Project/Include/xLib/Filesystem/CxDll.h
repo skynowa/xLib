@@ -27,11 +27,11 @@ public:
 
     bool_t          isLoaded() const xWARN_UNUSED_RV;
         ///< is loaded
-    void_t          load(std::ctstring_t &csDllPath);
+    void_t          load(std::ctstring_t &dllPath);
         ///< load
-    bool_t          isProcExists(std::ctstring_t &csProcName) const xWARN_UNUSED_RV;
+    bool_t          isProcExists(std::ctstring_t &procName) const xWARN_UNUSED_RV;
         ///< is function exists
-    proc_address_t  procAddress(std::ctstring_t &csProcName) const xWARN_UNUSED_RV;
+    proc_address_t  procAddress(std::ctstring_t &procName) const xWARN_UNUSED_RV;
         ///< get address of an exported function or variable
 
 private:
@@ -41,7 +41,7 @@ private:
     typedef void_t * handle_t;
 #endif
 
-    handle_t        _m_hDll;   ///< dll module handle
+    handle_t        _dll;   ///< dll module handle
 
     void_t          _destruct();
         ///< free

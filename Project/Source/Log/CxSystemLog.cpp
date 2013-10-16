@@ -23,36 +23,37 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 CxSystemLog::CxSystemLog() :
-    _m_bIsEnable(true)
+    _isEnable(true)
 #if xOS_ENV_WIN
     ,
-    _m_SysLog   (NULL)
+    _sysLog  (NULL)
 #endif
 {
     _construct( CxPath( CxPath::exe() ).fileBaseName() );
 }
 //------------------------------------------------------------------------------
 CxSystemLog::CxSystemLog(
-    std::ctstring_t &a_csLogName
+    std::ctstring_t &a_logName
 ) :
-    _m_bIsEnable(true)
+    _isEnable(true)
 #if xOS_ENV_WIN
     ,
-    _m_SysLog   (NULL)
+    _sysLog   (NULL)
 #endif
 {
-    _construct(a_csLogName);
+    _construct(a_logName);
 }
 //------------------------------------------------------------------------------
 /* virtual */
-CxSystemLog::~CxSystemLog() {
+CxSystemLog::~CxSystemLog()
+{
 #if xOS_ENV_WIN
-    xTEST_PTR(_m_SysLog);
+    xTEST_PTR(_sysLog);
 
-    BOOL blRv = ::DeregisterEventSource(_m_SysLog);
+    BOOL blRv = ::DeregisterEventSource(_sysLog);
     xTEST_DIFF(FALSE, blRv);
 
-    _m_SysLog = NULL;
+    _sysLog = NULL;
 #else
     (void_t)::closelog();
 #endif
@@ -60,34 +61,34 @@ CxSystemLog::~CxSystemLog() {
 //------------------------------------------------------------------------------
 void_t
 CxSystemLog::setEnabled(
-    cbool_t &a_cbFlag
+    cbool_t &a_flag
 )
 {
-    xTEST_NA(a_cbFlag);
+    xTEST_NA(a_flag);
 
-    _m_bIsEnable = a_cbFlag;
+    _isEnable = a_flag;
 }
 //------------------------------------------------------------------------------
 void_t
 CxSystemLog::write(
-    const ExLevel &a_lvLevel,
-    ctchar_t      *a_pcszFormat, ...
+    const ExLevel &a_level,
+    ctchar_t      *a_format, ...
 )
 {
-    xTEST_PTR(a_pcszFormat);
+    xTEST_PTR(a_format);
 #if xOS_ENV_WIN
-    xTEST_DIFF(xNATIVE_HANDLE_NULL, _m_SysLog);
+    xTEST_DIFF(xNATIVE_HANDLE_NULL, _sysLog);
 #endif
 
-    xCHECK_DO(!_m_bIsEnable, return);
+    xCHECK_DO(!_isEnable, return);
 
     //-------------------------------------
     // comment
     std::tstring_t sMessage;
     va_list        alArgs;
 
-    xVA_START(alArgs, a_pcszFormat);
-    sMessage = CxString::formatV(a_pcszFormat, alArgs);
+    xVA_START(alArgs, a_format);
+    sMessage = CxString::formatV(a_format, alArgs);
     xVA_END(alArgs);
 
     //-------------------------------------
@@ -95,10 +96,10 @@ CxSystemLog::write(
 #if xOS_ENV_WIN
     LPCTSTR pcszStrings = sMessage.c_str();
 
-    BOOL bRv = ::ReportEvent(_m_SysLog, a_lvLevel, 0, 0UL, NULL, 1, 0UL, &pcszStrings, NULL);
+    BOOL bRv = ::ReportEvent(_sysLog, a_level, 0, 0UL, NULL, 1, 0UL, &pcszStrings, NULL);
     xTEST_DIFF(FALSE, bRv);
 #else
-    (void_t)::syslog(a_lvLevel, xT("%s"), sMessage.c_str());
+    (void_t)::syslog(a_level, xT("%s"), sMessage.c_str());
 #endif
 }
 //------------------------------------------------------------------------------
@@ -112,14 +113,14 @@ CxSystemLog::write(
 //------------------------------------------------------------------------------
 void_t
 CxSystemLog::_construct(
-    std::ctstring_t &a_csLogName
+    std::ctstring_t &a_logName
 )
 {
 #if xOS_ENV_WIN
-    _m_SysLog = ::RegisterEventSource(NULL, a_csLogName.c_str());
-    xTEST_DIFF(xNATIVE_HANDLE_NULL, _m_SysLog);
+    _sysLog = ::RegisterEventSource(NULL, a_logName.c_str());
+    xTEST_DIFF(xNATIVE_HANDLE_NULL, _sysLog);
 #else
-    (void_t)::openlog(a_csLogName.c_str(), LOG_PID | LOG_NDELAY | LOG_NOWAIT, LOG_USER);
+    (void_t)::openlog(a_logName.c_str(), LOG_PID | LOG_NDELAY | LOG_NOWAIT, LOG_USER);
 #endif
 }
 //------------------------------------------------------------------------------

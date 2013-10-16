@@ -22,50 +22,52 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 CxDll::CxDll() :
-    _m_hDll(NULL)
+    _dll(NULL)
 {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-CxDll::~CxDll() {
+CxDll::~CxDll()
+{
     _destruct();
 }
 //------------------------------------------------------------------------------
 bool_t
-CxDll::isLoaded() const {
+CxDll::isLoaded() const
+{
     xTESTS_NA;
 
-    return (NULL != _m_hDll);
+    return (NULL != _dll);
 }
 //------------------------------------------------------------------------------
 void_t
 CxDll::load(
-    std::ctstring_t &csDllPath
+    std::ctstring_t &a_dllPath
 )
 {
     xTESTS_NA;
-    xTEST_EQ(false, csDllPath.empty());
+    xTEST_EQ(false, a_dllPath.empty());
 
     _destruct();
 
 #if xOS_ENV_WIN
-    _m_hDll = ::LoadLibrary(csDllPath.c_str());
-    xTEST_PTR(_m_hDll);
+    _dll = ::LoadLibrary(dllPath.c_str());
+    xTEST_PTR(_dll);
 #else
-    _m_hDll = ::dlopen(csDllPath.c_str(), RTLD_LAZY | RTLD_GLOBAL);
-    xTEST_PTR(_m_hDll);
+    _dll = ::dlopen(a_dllPath.c_str(), RTLD_LAZY | RTLD_GLOBAL);
+    xTEST_PTR(_dll);
 #endif
 }
 //------------------------------------------------------------------------------
 bool_t
 CxDll::isProcExists(
-    std::ctstring_t &csProcName
+    std::ctstring_t &a_procName
 ) const
 {
-    xTEST_PTR(_m_hDll);
+    xTEST_PTR(_dll);
 
 #if xOS_ENV_WIN
-    proc_address_t fpRes = ::GetProcAddress(_m_hDll, xTS2S(csProcName).c_str());
+    proc_address_t fpRes = ::GetProcAddress(_dll, xTS2S(a_procName).c_str());
     xCHECK_RET(NULL == fpRes, false);
 #else
     const char *pszError = NULL;
@@ -73,7 +75,7 @@ CxDll::isProcExists(
     pszError = ::dlerror();
     xTEST_PTR_FAIL(pszError);
 
-    (void_t)::dlsym(_m_hDll, csProcName.c_str());
+    (void_t)::dlsym(_dll, a_procName.c_str());
 
     pszError = ::dlerror();
     xCHECK_RET(NULL != pszError, false);
@@ -84,15 +86,15 @@ CxDll::isProcExists(
 //------------------------------------------------------------------------------
 CxDll::proc_address_t
 CxDll::procAddress(
-    std::ctstring_t &csProcName
+    std::ctstring_t &a_procName
 ) const
 {
-    xTEST_PTR(_m_hDll);
+    xTEST_PTR(_dll);
 
     proc_address_t fpRes = NULL;
 
 #if xOS_ENV_WIN
-    fpRes = ::GetProcAddress(_m_hDll, xTS2S(csProcName).c_str());
+    fpRes = ::GetProcAddress(_dll, xTS2S(a_procName).c_str());
     xTEST_PTR(fpRes);
 #else
     const char *pszError = NULL;
@@ -100,7 +102,7 @@ CxDll::procAddress(
     pszError = ::dlerror();
     xTEST_PTR_FAIL(pszError);
 
-    fpRes = ::dlsym(_m_hDll, csProcName.c_str());
+    fpRes = ::dlsym(_dll, a_procName.c_str());
     xTEST_NA(fpRes)
 
     pszError = ::dlerror();
@@ -119,20 +121,21 @@ CxDll::procAddress(
 
 //------------------------------------------------------------------------------
 void_t
-CxDll::_destruct() {
+CxDll::_destruct()
+{
     xTESTS_NA;
 
     xCHECK_DO(!isLoaded(), return);
 
 #if   xOS_ENV_WIN
-    BOOL blRes = ::FreeLibrary(_m_hDll);
+    BOOL blRes = ::FreeLibrary(_dll);
     xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
-    int_t iRv = ::dlclose(_m_hDll);
+    int_t iRv = ::dlclose(_dll);
     xTEST_EQ(0, iRv);
 #endif
 
-    _m_hDll = NULL;
+    _dll = NULL;
 }
 //------------------------------------------------------------------------------
 

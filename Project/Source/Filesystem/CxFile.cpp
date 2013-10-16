@@ -26,13 +26,14 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 CxFile::CxFile() :
-    _m_pFile    (NULL),
-    _m_sFilePath()
+    _file    (NULL),
+    _filePath()
 {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-CxFile::~CxFile() {
+CxFile::~CxFile()
+{
     close();
 }
 //------------------------------------------------------------------------------
@@ -46,29 +47,29 @@ CxFile::~CxFile() {
 //------------------------------------------------------------------------------
 void_t
 CxFile::create(
-    std::ctstring_t  &a_csFilePath,
-    const ExOpenMode &a_comMode,
-    cbool_t          &a_cbIsUseBuffering
+    std::ctstring_t  &a_filePath,
+    const ExOpenMode &a_mode,
+    cbool_t          &a_isUseBuffering
 )
 {
-    xTEST_EQ(false, a_csFilePath.empty());
-    xTEST_NA(a_comMode);
-    xTEST_NA(a_cbIsUseBuffering);
+    xTEST_EQ(false, a_filePath.empty());
+    xTEST_NA(a_mode);
+    xTEST_NA(a_isUseBuffering);
 
     // create dir
-    CxDir( CxPath(a_csFilePath).dir() ).pathCreate();
+    CxDir( CxPath(a_filePath).dir() ).pathCreate();
 
     // create, open file
     {
-        std::FILE *pFile = ::xTFOPEN(a_csFilePath.c_str(), _openMode(a_comMode).c_str());
+        std::FILE *pFile = ::xTFOPEN(a_filePath.c_str(), _openMode(a_mode).c_str());
         xTEST_PTR(pFile);
 
-        _m_pFile     = pFile;
-        _m_sFilePath = a_csFilePath;
+        _file     = pFile;
+        _filePath = a_filePath;
     }
 
     // buffering
-    if (!a_cbIsUseBuffering) {
+    if (!a_isUseBuffering) {
         setVBuff(NULL, bmNo,   0);
     } else {
         setVBuff(NULL, bmFull, BUFSIZ);
@@ -77,29 +78,29 @@ CxFile::create(
 //------------------------------------------------------------------------------
 void_t
 CxFile::reopen(
-    std::ctstring_t  &a_csFilePath,
-    const ExOpenMode &a_comMode,
-    cbool_t          &a_cbIsUseBuffering
+    std::ctstring_t  &a_filePath,
+    const ExOpenMode &a_mode,
+    cbool_t          &a_isUseBuffering
 )
 {
-    xTEST_EQ(false, a_csFilePath.empty());
-    xTEST_NA(a_comMode);
-    xTEST_NA(a_cbIsUseBuffering);
+    xTEST_EQ(false, a_filePath.empty());
+    xTEST_NA(a_mode);
+    xTEST_NA(a_isUseBuffering);
 
     // create dir
-    CxDir( CxPath(a_csFilePath).dir() ).pathCreate();
+    CxDir( CxPath(a_filePath).dir() ).pathCreate();
 
     // create, reopen file
     {
-        std::FILE *pFile = ::xTFREOPEN(a_csFilePath.c_str(), _openMode(a_comMode).c_str(), get());
+        std::FILE *pFile = ::xTFREOPEN(a_filePath.c_str(), _openMode(a_mode).c_str(), get());
         xTEST_PTR(pFile);
 
-        _m_pFile     = pFile;
-        _m_sFilePath = a_csFilePath;
+        _file     = pFile;
+        _filePath = a_filePath;
     }
 
     // buffering
-    if (!a_cbIsUseBuffering) {
+    if (!a_isUseBuffering) {
         setVBuff(NULL, bmNo,   0);
     } else {
         setVBuff(NULL, bmFull, BUFSIZ);
@@ -107,38 +108,41 @@ CxFile::reopen(
 }
 //------------------------------------------------------------------------------
 std::FILE *
-CxFile::get() const {
+CxFile::get() const
+{
     xTEST_EQ(true, isValid());
 
-    return _m_pFile;
+    return _file;
 }
 //------------------------------------------------------------------------------
 std::ctstring_t &
-CxFile::path() const {
-    xTEST_EQ(false, _m_sFilePath.empty());
-    xTEST_EQ(true,  isExists(_m_sFilePath));
+CxFile::path() const
+{
+    xTEST_EQ(false, _filePath.empty());
+    xTEST_EQ(true,  isExists(_filePath));
 
-    return _m_sFilePath;
+    return _filePath;
 }
 //------------------------------------------------------------------------------
 void_t
 CxFile::attach(
-    std::FILE *a_pflFile
+    std::FILE *a_file
 )
 {
-    xTEST_NA(a_pflFile);
+    xTEST_NA(a_file);
 
     close();
 
-    _m_pFile     = a_pflFile;
-    _m_sFilePath = CxConst::xSTR_EMPTY;
+    _file     = a_file;
+    _filePath = CxConst::xSTR_EMPTY;
 }
 //------------------------------------------------------------------------------
 std::FILE *
-CxFile::detach() {
+CxFile::detach()
+{
     std::FILE *pFile = get();
 
-    _m_pFile = NULL;
+    _file = NULL;
 
     return pFile;
 }
@@ -153,92 +157,92 @@ CxFile::detach() {
 //------------------------------------------------------------------------------
 size_t
 CxFile::read(
-    void_t       *a_pvBuff,
-    std::csize_t &a_cuiCount
+    void_t       *a_buff,
+    std::csize_t &a_count
 ) const
 {
-    xTEST_PTR(a_pvBuff);
-    xTEST_NA(a_cuiCount);
+    xTEST_PTR(a_buff);
+    xTEST_NA(a_count);
 
-    size_t uiRes = std::fread(a_pvBuff, 1, a_cuiCount, get());
-    xTEST_GR_EQ(a_cuiCount, uiRes);
+    size_t uiRes = std::fread(a_buff, 1, a_count, get());
+    xTEST_GR_EQ(a_count, uiRes);
 
     return uiRes;
 }
 //------------------------------------------------------------------------------
 size_t
 CxFile::write(
-    cvoid_t      *a_pcvBuff,
-    std::csize_t &a_cuiCount
+    cvoid_t      *a_buff,
+    std::csize_t &a_count
 ) const
 {
-    xTEST_PTR(a_pcvBuff);
-    xTEST_NA(a_cuiCount);
+    xTEST_PTR(a_buff);
+    xTEST_NA(a_count);
 
-    size_t uiRes = std::fwrite(a_pcvBuff, 1, a_cuiCount, get());
-    xTEST_EQ(a_cuiCount, uiRes);
+    size_t uiRes = std::fwrite(a_buff, 1, a_count, get());
+    xTEST_EQ(a_count, uiRes);
 
     return uiRes;
 }
 //------------------------------------------------------------------------------
 void_t
 CxFile::read(
-    std::ustring_t *a_psBuff
+    std::ustring_t *a_buff
 ) const
 {
-    xTEST_PTR(a_psBuff);
+    xTEST_PTR(a_buff);
 
     longlong_t llFileSize = size();
     xTEST_DIFF(static_cast<longlong_t>( ppError ), llFileSize);
 
-    (*a_psBuff).clear();
-    (*a_psBuff).resize( static_cast<size_t>( llFileSize ) );
+    (*a_buff).clear();
+    (*a_buff).resize( static_cast<size_t>( llFileSize ) );
     xCHECK_DO(0LL == llFileSize, return);
 
-    size_t uiRes = std::fread(&(*a_psBuff).at(0), 1, (*a_psBuff).size() * sizeof(std::ustring_t::value_type), get());
-    xTEST_EQ((*a_psBuff).size(), uiRes);
+    size_t uiRes = std::fread(&(*a_buff).at(0), 1, (*a_buff).size() * sizeof(std::ustring_t::value_type), get());
+    xTEST_EQ((*a_buff).size(), uiRes);
 }
 //------------------------------------------------------------------------------
 void_t
 CxFile::write(
-    std::custring_t &a_csBuff
+    std::custring_t &a_buff
 ) const
 {
-    xTEST_NA(a_csBuff);
+    xTEST_NA(a_buff);
 
-    size_t uiRes = std::fwrite(&a_csBuff.at(0), 1, a_csBuff.size() * sizeof(std::ustring_t::value_type), get());
-    xTEST_EQ(a_csBuff.size(), uiRes);
+    size_t uiRes = std::fwrite(&a_buff.at(0), 1, a_buff.size() * sizeof(std::ustring_t::value_type), get());
+    xTEST_EQ(a_buff.size(), uiRes);
 }
 //------------------------------------------------------------------------------
 void_t
 CxFile::read(
-    std::tstring_t *a_psBuff
+    std::tstring_t *a_buff
 ) const
 {
-    xTEST_PTR(a_psBuff);
+    xTEST_PTR(a_buff);
 
     longlong_t llFileSize = size();
     xTEST_DIFF(static_cast<longlong_t>( ppError ), llFileSize);
 
-    (*a_psBuff).clear();
-    (*a_psBuff).resize( static_cast<size_t>( llFileSize) );
+    (*a_buff).clear();
+    (*a_buff).resize( static_cast<size_t>( llFileSize) );
     xCHECK_DO(0LL == llFileSize, return);
 
-    size_t uiRes = std::fread(&(*a_psBuff).at(0), 1, (*a_psBuff).size() * sizeof(std::tstring_t::value_type), get());
-    xTEST_EQ((*a_psBuff).size(), uiRes);
+    size_t uiRes = std::fread(&(*a_buff).at(0), 1, (*a_buff).size() * sizeof(std::tstring_t::value_type), get());
+    xTEST_EQ((*a_buff).size(), uiRes);
 }
 //------------------------------------------------------------------------------
 int_t
 CxFile::write(
-    ctchar_t *a_pcszFormat, ...
+    ctchar_t *a_format, ...
 ) const
 {
-    xTEST_PTR(a_pcszFormat);
+    xTEST_PTR(a_format);
 
     va_list vlArgs;
-    xVA_START(vlArgs, a_pcszFormat);
+    xVA_START(vlArgs, a_format);
 
-    int_t iRv = std::xTVFPRINTF(get(), a_pcszFormat, vlArgs);
+    int_t iRv = std::xTVFPRINTF(get(), a_format, vlArgs);
     xTEST_LESS(- 1, iRv);
 
     xVA_END(vlArgs);
@@ -248,14 +252,14 @@ CxFile::write(
 //------------------------------------------------------------------------------
 int_t
 CxFile::writeV(
-    ctchar_t *a_pcszFormat,
-    va_list   a_vlArgs
+    ctchar_t *a_format,
+    va_list   a_args
 ) const
 {
-    xTEST_PTR(a_pcszFormat);
-    xTEST_PTR(a_vlArgs);
+    xTEST_PTR(a_format);
+    xTEST_PTR(a_args);
 
-    int_t iRv = std::xTVFPRINTF(get(), a_pcszFormat, a_vlArgs);
+    int_t iRv = std::xTVFPRINTF(get(), a_format, a_args);
     xTEST_LESS(- 1, iRv);
 
     return iRv;
@@ -263,15 +267,15 @@ CxFile::writeV(
 //------------------------------------------------------------------------------
 void_t
 CxFile::readLine(
-    std::tstring_t *a_psStr,
-    std::csize_t   &a_cuiMaxCount
+    std::tstring_t *a_str,
+    std::csize_t   &a_maxCount
 ) const
 {
-    xTEST_PTR(a_psStr);
-    xTEST_NA(a_cuiMaxCount);
+    xTEST_PTR(a_str);
+    xTEST_NA(a_maxCount);
 
     std::tstring_t sStr;
-    sStr.resize(a_cuiMaxCount + 1); // + 1 for 0
+    sStr.resize(a_maxCount + 1); // + 1 for 0
 
     tchar_t *pszRes = std::xTFGETS(&sStr.at(0), static_cast<int_t>( sStr.size() ), get());
     xTEST_PTR(pszRes);
@@ -279,22 +283,23 @@ CxFile::readLine(
     sStr.erase(sStr.end() - 1); // erase last char - 0
 
     // out
-    (*a_psStr).swap(sStr);
+    (*a_str).swap(sStr);
 }
 //------------------------------------------------------------------------------
 void_t
 CxFile::writeLine(
-    std::ctstring_t &a_csStr
+    std::ctstring_t &a_str
 ) const
 {
-    xTEST_NA(a_csStr);
+    xTEST_NA(a_str);
 
-    int_t iRv = xTFPUTS((a_csStr + CxConst::xEOL).c_str(), get());
+    int_t iRv = xTFPUTS((a_str + CxConst::xEOL).c_str(), get());
     xTEST_DIFF(- 1, iRv);
 }
 //------------------------------------------------------------------------------
 tchar_t
-CxFile::readChar() const {
+CxFile::readChar() const
+{
     twint_t iRv = std::xTFGETC(get());
     xTEST_DIFF(xTEOF, iRv);
 
@@ -303,30 +308,31 @@ CxFile::readChar() const {
 //------------------------------------------------------------------------------
 void_t
 CxFile::writeChar(
-    ctchar_t &a_ccChar
+    ctchar_t &a_ch
 ) const
 {
-    xTEST_NA(a_ccChar);
+    xTEST_NA(a_ch);
 
-    twint_t iRv = xTFPUTC(a_ccChar, get());
+    twint_t iRv = xTFPUTC(a_ch, get());
     xTEST_DIFF(xTEOF, iRv);
-    xTEST_EQ(a_ccChar, static_cast<tchar_t>( iRv ));
+    xTEST_EQ(a_ch, static_cast<tchar_t>( iRv ));
 }
 //------------------------------------------------------------------------------
 void_t
 CxFile::ungetChar(
-    ctchar_t &a_ccChar
+    ctchar_t &a_ch
 ) const
 {
-    xTEST_NA(a_ccChar);
+    xTEST_NA(a_ch);
 
-    twint_t iRv = std::xTUNGETC(a_ccChar, get());
+    twint_t iRv = std::xTUNGETC(a_ch, get());
     xTEST_DIFF(xTEOF, iRv);
-    xTEST_EQ(a_ccChar, static_cast<tchar_t>( iRv ));
+    xTEST_EQ(a_ch, static_cast<tchar_t>( iRv ));
 }
 //------------------------------------------------------------------------------
 void_t
-CxFile::clear() const {
+CxFile::clear() const
+{
     resize(0L);
 }
 //------------------------------------------------------------------------------
@@ -340,33 +346,33 @@ CxFile::clear() const {
 //------------------------------------------------------------------------------
 void_t
 CxFile::locking(
-    const ExLockingMode &a_clmMode,
-    clong_t             &a_cliBytes
+    const ExLockingMode &a_mode,
+    clong_t             &a_bytes
 )
 {
-    xTEST_NA(a_clmMode);
-    xTEST_NA(a_cliBytes);
+    xTEST_NA(a_mode);
+    xTEST_NA(a_bytes);
 
 #if xOS_ENV_WIN
-    clong_t cliBytes = a_cliBytes;
+    clong_t bytes = a_bytes;
 #else
-    const off_t cliBytes = static_cast<off_t>( a_cliBytes );
+    const off_t bytes = static_cast<off_t>( a_bytes );
 #endif
 
-    int_t iRv = ::xLOCKING(_nativeHandle(get()), a_clmMode, cliBytes);
+    int_t iRv = ::xLOCKING(_nativeHandle(get()), a_mode, bytes);
     xTEST_DIFF(- 1, iRv);
 }
 //------------------------------------------------------------------------------
 void_t
 CxFile::setPosition(
-    clong_t                 &a_clOffset,
-    const ExPointerPosition &a_cppPos
+    clong_t                 &a_offset,
+    const ExPointerPosition &a_pos
 ) const
 {
-    xTEST_NA(a_clOffset);
-    xTEST_NA(a_cppPos);
+    xTEST_NA(a_offset);
+    xTEST_NA(a_pos);
 
-    int_t iRv = std::fseek(get(), a_clOffset, a_cppPos);
+    int_t iRv = std::fseek(get(), a_offset, a_pos);
     xTEST_DIFF(- 1, iRv);
 }
 //------------------------------------------------------------------------------
@@ -380,16 +386,16 @@ CxFile::position() const {
 //------------------------------------------------------------------------------
 void_t
 CxFile::setVBuff(
-    char                  *a_pszBuff,
-    const ExBufferingMode &a_cbmMode,
-    std::csize_t          &a_cuiSize
+    char                  *a_buff,
+    const ExBufferingMode &a_mode,
+    std::csize_t          &a_size
 ) const
 {
-    xTEST_NA(a_pszBuff);
-    xTEST_NA(a_cbmMode);
-    xTEST_NA(a_cuiSize);
+    xTEST_NA(a_buff);
+    xTEST_NA(a_mode);
+    xTEST_NA(a_size);
 
-    int_t iRv = std::setvbuf(get(), a_pszBuff, a_cbmMode, a_cuiSize);
+    int_t iRv = std::setvbuf(get(), a_buff, a_mode, a_size);
     xTEST_DIFF(- 1, iRv);
 }
 //------------------------------------------------------------------------------
@@ -397,12 +403,12 @@ CxFile::setVBuff(
 
 void_t
 CxFile::setMode(
-    const ExTranslationMode &a_ctmMode
+    const ExTranslationMode &a_mode
 ) const
 {
-    xTEST_NA(a_ctmMode);
+    xTEST_NA(a_mode);
 
-    int_t iRv = ::setmode(_nativeHandle(get()), a_ctmMode);
+    int_t iRv = ::setmode(_nativeHandle(get()), a_mode);
     xTEST_DIFF(- 1, iRv);
 }
 
@@ -410,14 +416,15 @@ CxFile::setMode(
 //------------------------------------------------------------------------------
 // NOTE: https://www.securecoding.cert.org/confluence/display/seccode/FIO19-C.+Do+not+use+fseek()+and+ftell()+to+compute+the+size+of+a+file
 longlong_t
-CxFile::size() const {
+CxFile::size() const
+{
 #if xDEPRECIATE
     vFlush();
 
     xTSTAT_STRUCT stStat = {0};
 
     // TODO: fstat
-    int_t iRv = ::xTSTAT(_m_sFilePath.c_str(), &stStat);
+    int_t iRv = ::xTSTAT(_filePath.c_str(), &stStat);
     xTEST_DIFF(- 1, iRv);
 
     return stStat.st_size;
@@ -437,20 +444,20 @@ CxFile::size() const {
 //------------------------------------------------------------------------------
 void_t
 CxFile::resize(
-    clonglong_t &a_cllSize
+    clonglong_t &a_size
 ) const
 {
-    xTEST_NA(a_cllSize);
+    xTEST_NA(a_size);
 
 #if xOS_ENV_WIN
-    clonglong_t cllSize = a_cllSize;
+    clonglong_t _size = a_size;
 #else
-    const off_t cllSize = static_cast<off_t>( a_cllSize );
+    const off_t _size = static_cast<off_t>( a_size );
 #endif
 
-    int_t iRv = ::xCHSIZE(_nativeHandle(get()), cllSize);
+    int_t iRv = ::xCHSIZE(_nativeHandle(get()), _size);
     xTEST_EQ(0, iRv);
-    xTEST_EQ(a_cllSize, size());
+    xTEST_EQ(a_size, size());
 }
 //------------------------------------------------------------------------------
 
@@ -461,17 +468,20 @@ CxFile::resize(
 
 //------------------------------------------------------------------------------
 bool_t
-CxFile::isValid() const {
-    return (NULL != _m_pFile);
+CxFile::isValid() const
+{
+    return (NULL != _file);
 }
 //------------------------------------------------------------------------------
 bool_t
-CxFile::isOpen() const {
+CxFile::isOpen() const
+{
     return isValid();
 }
 //------------------------------------------------------------------------------
 bool_t
-CxFile::isEmpty() const {
+CxFile::isEmpty() const
+{
     longlong_t llFileSize = size();
     xTEST_DIFF(- 1LL, llFileSize);
 
@@ -479,7 +489,8 @@ CxFile::isEmpty() const {
 }
 //------------------------------------------------------------------------------
 bool_t
-CxFile::isEof() const {
+CxFile::isEof() const
+{
     bool_t bRv = xINT_TO_BOOL( std::feof(get()) );
     xTEST_NA(bRv);
 
@@ -487,7 +498,8 @@ CxFile::isEof() const {
 }
 //------------------------------------------------------------------------------
 bool_t
-CxFile::isError() const {
+CxFile::isError() const
+{
     bool_t bRv = xINT_TO_BOOL( std::ferror(get()) );
     xTEST_NA(bRv);
 
@@ -495,7 +507,8 @@ CxFile::isError() const {
 }
 //------------------------------------------------------------------------------
 void_t
-CxFile::errorClear() const {
+CxFile::errorClear() const
+{
     (void_t)std::clearerr( get() );
 }
 //------------------------------------------------------------------------------
@@ -508,18 +521,20 @@ CxFile::errorClear() const {
 
 //------------------------------------------------------------------------------
 void_t
-CxFile::flush() const {
+CxFile::flush() const
+{
     int_t iRv = std::fflush(get());
     xTEST_DIFF(EOF, iRv);
 }
 //------------------------------------------------------------------------------
 void_t
-CxFile::close() {
+CxFile::close()
+{
     xCHECK_DO(!isValid(), return);
 
     errorClear();
 
-    int_t iRv = std::fclose(get()); _m_pFile = NULL;
+    int_t iRv = std::fclose(get()); _file = NULL;
     xTEST_DIFF(EOF, iRv);
 }
 //------------------------------------------------------------------------------
@@ -534,14 +549,14 @@ CxFile::close() {
 /* static */
 bool_t
 CxFile::isFile(
-    std::ctstring_t &a_csFilePath
+    std::ctstring_t &a_filePath
 )
 {
-    xTEST_NA(a_csFilePath);
+    xTEST_NA(a_filePath);
 
     bool_t bRv = false;
 
-    CxFileType ftType(a_csFilePath);
+    CxFileType ftType(a_filePath);
 
     xCHECK_RET(CxFileType::faInvalid == ftType.get(), false);
 
@@ -568,14 +583,14 @@ CxFile::isFile(
 /* static */
 bool_t
 CxFile::isExists(
-    std::ctstring_t &a_csFilePath
+    std::ctstring_t &a_filePath
 )
 {
-    xTEST_NA(a_csFilePath);
+    xTEST_NA(a_filePath);
 
-    xCHECK_RET(!isFile(a_csFilePath), false);
+    xCHECK_RET(!isFile(a_filePath), false);
 
-    int_t iRv = ::xTACCESS(a_csFilePath.c_str(), amExistence);
+    int_t iRv = ::xTACCESS(a_filePath.c_str(), amExistence);
     xCHECK_RET(- 1 == iRv && ENOENT == CxStdError::get(), false);
 
     return true;
@@ -584,14 +599,14 @@ CxFile::isExists(
 /* static */
 std::tstring_t
 CxFile::isExistsEx(
-    std::ctstring_t &a_csFilePath
+    std::ctstring_t &a_filePath
 )
 {
-    xTEST_EQ(false, a_csFilePath.empty());
+    xTEST_EQ(false, a_filePath.empty());
 
     std::tstring_t sRv;
 
-    CxPath ptPath(a_csFilePath);
+    CxPath ptPath(a_filePath);
 
     std::tstring_t sFileDir  = ptPath.dir();
     std::tstring_t sFileName = ptPath.fileBaseName();
@@ -616,124 +631,124 @@ CxFile::isExistsEx(
 /* static */
 void_t
 CxFile::access(
-    std::ctstring_t    &a_csFilePath,
-    const ExAccessMode &a_camMode
+    std::ctstring_t    &a_filePath,
+    const ExAccessMode &a_mode
 )
 {
-    xTEST_EQ(false, a_csFilePath.empty());
-    xTEST_NA(a_camMode);
+    xTEST_EQ(false, a_filePath.empty());
+    xTEST_NA(a_mode);
 
-    int_t iRv = ::xTACCESS(a_csFilePath.c_str(), a_camMode);
+    int_t iRv = ::xTACCESS(a_filePath.c_str(), a_mode);
     xTEST_DIFF(- 1, iRv);
 }
 //------------------------------------------------------------------------------
 /* static */
 void_t
 CxFile::chmod(
-    std::ctstring_t        &a_csFilePath,
-    const ExPermissionMode &a_cpmMode
+    std::ctstring_t        &a_filePath,
+    const ExPermissionMode &a_mode
 )
 {
-    xTEST_EQ(false, a_csFilePath.empty());
-    xTEST_NA(a_cpmMode);
+    xTEST_EQ(false, a_filePath.empty());
+    xTEST_NA(a_mode);
 
 #if xOS_ENV_WIN
-    cint_t       cpmMode = static_cast<int_t> ( a_cpmMode );
+    cint_t       mode = static_cast<int_t> ( a_mode );
 #else
-    const mode_t cpmMode = static_cast<mode_t>( a_cpmMode );
+    const mode_t mode = static_cast<mode_t>( a_mode );
 #endif
 
-    int_t iRv = ::xTCHMOD(a_csFilePath.c_str(), cpmMode);
+    int_t iRv = ::xTCHMOD(a_filePath.c_str(), mode);
     xTEST_DIFF(- 1, iRv);
 }
 //------------------------------------------------------------------------------
 /* static */
 void_t
 CxFile::clear(
-    std::ctstring_t &a_csFilePath
+    std::ctstring_t &a_filePath
 )
 {
-    xTEST_EQ(false, a_csFilePath.empty());
+    xTEST_EQ(false, a_filePath.empty());
 
     CxFile sfFile;
 
-    sfFile.create(a_csFilePath, omWrite, true);
+    sfFile.create(a_filePath, omWrite, true);
     sfFile.clear();
 }
 //------------------------------------------------------------------------------
 /* static */
 void_t
 CxFile::remove(
-    std::ctstring_t &a_csFilePath
+    std::ctstring_t &a_filePath
 )
 {
-    xTEST_EQ(false, a_csFilePath.empty());
+    xTEST_EQ(false, a_filePath.empty());
 
-    xCHECK_DO(!isExists(a_csFilePath), return);
+    xCHECK_DO(!isExists(a_filePath), return);
 
-    chmod(a_csFilePath, pmWrite);
+    chmod(a_filePath, pmWrite);
 
-    int_t iRv = ::xTREMOVE(a_csFilePath.c_str());
+    int_t iRv = ::xTREMOVE(a_filePath.c_str());
     xTEST_DIFF(- 1, iRv);
-    xTEST_EQ(false, isExists(a_csFilePath));
+    xTEST_EQ(false, isExists(a_filePath));
 }
 //------------------------------------------------------------------------------
 /* static */
 void_t
 CxFile::tryRemove(
-    std::ctstring_t &a_csFilePath,
-    std::csize_t    &a_cuiAttempts,
-    culong_t        &a_culTimeoutMsec
+    std::ctstring_t &a_filePath,
+    std::csize_t    &a_attempts,
+    culong_t        &a_timeoutMsec
 )
 {
-    xTEST_EQ(false, a_csFilePath.empty());
-    xTEST_LESS(size_t(0U), a_cuiAttempts);
-    xTEST_NA(a_culTimeoutMsec);
+    xTEST_EQ(false, a_filePath.empty());
+    xTEST_LESS(size_t(0U), a_attempts);
+    xTEST_NA(a_timeoutMsec);
 
     std::csize_t cuiMaxAttempts  = 100;  // MAGIC_NUMBER: cuiMaxAttempts
-    std::csize_t cuiRealAttempts = (cuiMaxAttempts < a_cuiAttempts) ? cuiMaxAttempts : a_cuiAttempts;
+    std::csize_t cuiRealAttempts = (cuiMaxAttempts < a_attempts) ? cuiMaxAttempts : a_attempts;
 
     for (size_t i = 0; i < cuiRealAttempts; ++ i) {
         try {
-            remove(a_csFilePath);
+            remove(a_filePath);
             break;
         }
         catch (const CxException &) {
             xNA;
         }
 
-        CxCurrentThread::sleep(a_culTimeoutMsec);
+        CxCurrentThread::sleep(a_timeoutMsec);
     }
 }
 //------------------------------------------------------------------------------
 /* static */
 void_t
 CxFile::wipe(
-    std::ctstring_t &a_csFilePath,
-    std::csize_t    &a_cuiPasses
+    std::ctstring_t &a_filePath,
+    std::csize_t    &a_passes
 )
 {
-    xTEST_EQ(false, a_csFilePath.empty());
-    xTEST_NA(a_cuiPasses);
+    xTEST_EQ(false, a_filePath.empty());
+    xTEST_NA(a_passes);
 
-    xCHECK_DO(!isExists(a_csFilePath), return);
+    xCHECK_DO(!isExists(a_filePath), return);
 
     {
         CxFile sfFile;
 
         //--------------------------------------------------
         // set normal file attributes
-        CxFileType(a_csFilePath).clear();
+        CxFileType(a_filePath).clear();
 
         //--------------------------------------------------
         // open
-        sfFile.create(a_csFilePath, omBinWrite, true);
+        sfFile.create(a_filePath, omBinWrite, true);
 
         longlong_t llSize = sfFile.size();
         if (0LL < llSize) {
             //--------------------------------------------------
             // fill by 0x55, 0xAA, random char
-            for (size_t p = 0; p < a_cuiPasses; ++ p) {
+            for (size_t p = 0; p < a_passes; ++ p) {
                 CxRandom::vSetSeed();
 
                 cuchar_t chRand  = static_cast<uchar_t>(CxRandom::liInt(0, 255) + 1);
@@ -781,11 +796,11 @@ CxFile::wipe(
     //--------------------------------------------------
     // reset file time
     {
-        const time_t ctmCreate   = 0;
-        const time_t ctmAccess   = 0;
-        const time_t ctmModified = 0;
+        const time_t create   = 0;
+        const time_t access   = 0;
+        const time_t modified = 0;
 
-        setTime(a_csFilePath, ctmCreate, ctmAccess, ctmModified);
+        setTime(a_filePath, create, access, modified);
     }
 
     //--------------------------------------------------
@@ -798,9 +813,9 @@ CxFile::wipe(
         sRndFileName = CxString::cast( CxDateTime().current().toMilliseconds() );
         std::random_shuffle(sRndFileName.begin(), sRndFileName.end());
 
-        sRndFilePath = CxPath(a_csFilePath).dir() + CxConst::xSLASH + sRndFileName;
+        sRndFilePath = CxPath(a_filePath).dir() + CxConst::xSLASH + sRndFileName;
 
-        rename(a_csFilePath, sRndFilePath);
+        rename(a_filePath, sRndFilePath);
     }
 
     //--------------------------------------------------
@@ -811,60 +826,60 @@ CxFile::wipe(
 /* static */
 void_t
 CxFile::unlink(
-    std::ctstring_t &a_csFilePath
+    std::ctstring_t &a_filePath
 )
 {
-    xTEST_EQ(false, a_csFilePath.empty());
+    xTEST_EQ(false, a_filePath.empty());
 
-    int_t iRv = ::xTUNLINK(a_csFilePath.c_str());
+    int_t iRv = ::xTUNLINK(a_filePath.c_str());
     xTEST_DIFF(- 1, iRv);
 }
 //------------------------------------------------------------------------------
 /* static */
 void_t
 CxFile::rename(
-    std::ctstring_t &a_csOldFilePath,
-    std::ctstring_t &a_csNewFilePath
+    std::ctstring_t &a_filePathOld,
+    std::ctstring_t &a_filePathNew
 )
 {
-    xTEST_EQ(false, a_csOldFilePath.empty());
-    xTEST_EQ(false, a_csNewFilePath.empty());
+    xTEST_EQ(false, a_filePathOld.empty());
+    xTEST_EQ(false, a_filePathNew.empty());
 
-    int_t iRv = ::xTRENAME(a_csOldFilePath.c_str(), a_csNewFilePath.c_str());
+    int_t iRv = ::xTRENAME(a_filePathOld.c_str(), a_filePathNew.c_str());
     xTEST_DIFF(- 1, iRv);
 }
 //------------------------------------------------------------------------------
 /* static */
 void_t
 CxFile::move(
-    std::ctstring_t &a_csFilePath,
-    std::ctstring_t &a_csDirPath
+    std::ctstring_t &a_filePath,
+    std::ctstring_t &a_dirPath
 )
 {
-    xTEST_EQ(false, a_csFilePath.empty());
-    xTEST_EQ(false, a_csDirPath.empty());
+    xTEST_EQ(false, a_filePath.empty());
+    xTEST_EQ(false, a_dirPath.empty());
 
-    rename(a_csFilePath, CxPath(a_csDirPath).slashAppend() + CxPath(a_csFilePath).fileName());
+    rename(a_filePath, CxPath(a_dirPath).slashAppend() + CxPath(a_filePath).fileName());
 }
 //------------------------------------------------------------------------------
 /* static */
 void_t
 CxFile::copy(
-    std::ctstring_t &a_csFilePathFrom,
-    std::ctstring_t &a_csFilePathTo,
-    cbool_t         &a_cbFailIfExists
+    std::ctstring_t &a_filePathFrom,
+    std::ctstring_t &a_filePathTo,
+    cbool_t         &a_isFailIfExists
 )
 {
-    xTEST_EQ(false, a_csFilePathFrom.empty());
-    xTEST_EQ(false, a_csFilePathTo.empty());
-    xTEST_NA(a_cbFailIfExists);
+    xTEST_EQ(false, a_filePathFrom.empty());
+    xTEST_EQ(false, a_filePathTo.empty());
+    xTEST_NA(a_isFailIfExists);
 
     bool_t bIsCopyOk = true;
 
     //--------------------------------------------------
     // TODO: fail if exists
 #if xTODO
-    if (cbFailIfExists && bIsExists(csFilePathTo)) {
+    if (isFailIfExists && bIsExists(filePathTo)) {
         xTEST_FAIL;
     }
 #endif
@@ -875,10 +890,10 @@ CxFile::copy(
         //--------------------------------------------------
         // open files
         CxFile sfFrom;
-        sfFrom.create(a_csFilePathFrom, omBinRead, true);
+        sfFrom.create(a_filePathFrom, omBinRead, true);
 
         CxFile sfTo;
-        sfTo.create(a_csFilePathTo, omBinWrite, true);
+        sfTo.create(a_filePathTo, omBinWrite, true);
 
         //--------------------------------------------------
         // copy files
@@ -896,25 +911,25 @@ CxFile::copy(
 
     //--------------------------------------------------
     // if copy fail - delete out file
-    xCHECK_DO(!bIsCopyOk, remove(a_csFilePathTo); return /* false */);
+    xCHECK_DO(!bIsCopyOk, remove(a_filePathTo); return /* false */);
 
     //--------------------------------------------------
     // test for size, maybe CRC
-    xCHECK_DO(size(a_csFilePathFrom) != size(a_csFilePathTo), remove(a_csFilePathTo); return /* false */);
+    xCHECK_DO(size(a_filePathFrom) != size(a_filePathTo), remove(a_filePathTo); return /* false */);
 }
 //--------------------------------------------------------------------------
 /* static */
 longlong_t
 CxFile::size(
-    std::ctstring_t &a_csFilePath
+    std::ctstring_t &a_filePath
 )
 {
-    xTEST_EQ(false, a_csFilePath.empty());
-    xTEST_EQ(true,  isExists(a_csFilePath));
+    xTEST_EQ(false, a_filePath.empty());
+    xTEST_EQ(true,  isExists(a_filePath));
 
     CxFile sfFile;
 
-    sfFile.create(a_csFilePath, omRead, true);
+    sfFile.create(a_filePath, omRead, true);
     longlong_t liRv = sfFile.size();
     xTEST_LESS_EQ(0LL, liRv);
 
@@ -924,16 +939,16 @@ CxFile::size(
 /* static */
 ulonglong_t
 CxFile::lines(
-    std::ctstring_t &a_csFilePath
+    std::ctstring_t &a_filePath
 )
 {
-    xTEST_EQ(false, a_csFilePath.empty());
-    xTEST_EQ(true,  isExists(a_csFilePath));
+    xTEST_EQ(false, a_filePath.empty());
+    xTEST_EQ(true,  isExists(a_filePath));
 
     std::locale::global(std::locale());
 
     ulonglong_t      ullRv = 0LL;
-    std::tifstream_t ifsStream(a_csFilePath.c_str(), std::ios::in);
+    std::tifstream_t ifsStream(a_filePath.c_str(), std::ios::in);
 
     xCHECK_RET(!ifsStream || ifsStream.fail() || !ifsStream.good() || !ifsStream.is_open() || ifsStream.eof(), 0LL);
 
@@ -948,16 +963,16 @@ CxFile::lines(
 /* static */
 void_t
 CxFile::time(
-    std::ctstring_t &a_csFilePath,
-    time_t          *a_ptmCreate,
-    time_t          *a_ptmAccess,
-    time_t          *a_ptmModified
+    std::ctstring_t &a_filePath,
+    time_t          *a_create,
+    time_t          *a_access,
+    time_t          *a_modified
 )
 {
-    xTEST_EQ(false, a_csFilePath.empty());
-    xTEST_NA(a_ptmCreate);
-    xTEST_NA(a_ptmAccess);
-    xTEST_NA(a_ptmModified);
+    xTEST_EQ(false, a_filePath.empty());
+    xTEST_NA(a_create);
+    xTEST_NA(a_access);
+    xTEST_NA(a_modified);
 
 #if xOS_ENV_WIN
     FILETIME ftCreate   = {0};
@@ -966,55 +981,55 @@ CxFile::time(
 
     CxHandleInvalid m_hHandle;
 
-    m_hHandle = ::CreateFile(a_csFilePath.c_str(), GENERIC_READ, FILE_SHARE_READ,
+    m_hHandle = ::CreateFile(a_filePath.c_str(), GENERIC_READ, FILE_SHARE_READ,
                              NULL, OPEN_EXISTING, CxFileType::faNormal, NULL);
     xTEST_EQ(true, m_hHandle.isValid());
 
     BOOL blRes = ::GetFileTime(m_hHandle.get(), &ftCreate, &ftAccess, &ftModified);
     xTEST_DIFF(FALSE, blRes);
 
-    CxUtils::ptrAssignT(a_ptmCreate,   CxDateTime::fileTimeToUnixTime(ftCreate));
-    CxUtils::ptrAssignT(a_ptmAccess,   CxDateTime::fileTimeToUnixTime(ftAccess));
-    CxUtils::ptrAssignT(a_ptmModified, CxDateTime::fileTimeToUnixTime(ftModified));
+    CxUtils::ptrAssignT(a_create,   CxDateTime::fileTimeToUnixTime(ftCreate));
+    CxUtils::ptrAssignT(a_access,   CxDateTime::fileTimeToUnixTime(ftAccess));
+    CxUtils::ptrAssignT(a_modified, CxDateTime::fileTimeToUnixTime(ftModified));
 #else
     xTSTAT_STRUCT stInfo = {0};
 
-    int_t iRv = ::xTSTAT(a_csFilePath.c_str(), &stInfo);
+    int_t iRv = ::xTSTAT(a_filePath.c_str(), &stInfo);
     xTEST_DIFF(- 1, iRv);
 
-    // ctmCreate - n/a
-    CxUtils::ptrAssignT(a_ptmAccess,   stInfo.st_atime);
-    CxUtils::ptrAssignT(a_ptmModified, stInfo.st_mtime);
+    // create - n/a
+    CxUtils::ptrAssignT(a_access,   stInfo.st_atime);
+    CxUtils::ptrAssignT(a_modified, stInfo.st_mtime);
 #endif
 }
 //------------------------------------------------------------------------------
 /*static */
 void_t
 CxFile::setTime(
-    std::ctstring_t &a_csFilePath,
-    const time_t    &a_ctmCreate,
-    const time_t    &a_ctmAccess,
-    const time_t    &a_ctmModified
+    std::ctstring_t &a_filePath,
+    const time_t    &a_create,
+    const time_t    &a_access,
+    const time_t    &a_modified
 )
 {
-    xTEST_EQ(false, a_csFilePath.empty());
-    xTEST_NA(a_ctmCreate);
-    xTEST_NA(a_ctmAccess);
-    xTEST_NA(a_ctmModified);
+    xTEST_EQ(false, a_filePath.empty());
+    xTEST_NA(a_create);
+    xTEST_NA(a_access);
+    xTEST_NA(a_modified);
 
 #if xOS_ENV_WIN
     FILETIME ftCreate = {0};
-    CxDateTime::unixTimeToFileTime(a_ctmCreate, &ftCreate);
+    CxDateTime::unixTimeToFileTime(a_create, &ftCreate);
 
     FILETIME ftAccess = {0};
-    CxDateTime::unixTimeToFileTime(a_ctmAccess, &ftAccess);
+    CxDateTime::unixTimeToFileTime(a_access, &ftAccess);
 
     FILETIME ftModified = {0};
-    CxDateTime::unixTimeToFileTime(a_ctmModified, &ftModified);
+    CxDateTime::unixTimeToFileTime(a_modified, &ftModified);
 
     CxHandleInvalid m_hHandle;
 
-    m_hHandle = ::CreateFile(a_csFilePath.c_str(), GENERIC_WRITE, FILE_SHARE_WRITE,
+    m_hHandle = ::CreateFile(a_filePath.c_str(), GENERIC_WRITE, FILE_SHARE_WRITE,
                              NULL, OPEN_EXISTING, CxFileType::faNormal, NULL);
     xTEST_EQ(true, m_hHandle.isValid());
 
@@ -1023,11 +1038,11 @@ CxFile::setTime(
 #else
     utimbuf tbTimes = {0};
 
-    // ctmCreate - n/a
-    tbTimes.actime  = a_ctmAccess;
-    tbTimes.modtime = a_ctmModified;
+    // create - n/a
+    tbTimes.actime  = a_access;
+    tbTimes.modtime = a_modified;
 
-    int_t iRv = ::utime(a_csFilePath.c_str(), &tbTimes);
+    int_t iRv = ::utime(a_filePath.c_str(), &tbTimes);
     xTEST_DIFF(- 1, iRv);
 #endif
 }
@@ -1043,22 +1058,22 @@ CxFile::setTime(
 /* static */
 void_t
 CxFile::textRead(
-    std::ctstring_t &a_csFilePath,
-    std::tstring_t  *a_psContent
+    std::ctstring_t &a_filePath,
+    std::tstring_t  *a_content
 )
 {
-    xTEST_EQ(false, a_csFilePath.empty());
-    xTEST_PTR(a_psContent);
+    xTEST_EQ(false, a_filePath.empty());
+    xTEST_PTR(a_content);
 
     CxFile         sfFile;
     std::tstring_t sRv;
 
-    sfFile.create(a_csFilePath, omBinRead, true);
+    sfFile.create(a_filePath, omBinRead, true);
 
     longlong_t llFileSize = sfFile.size();
     xTEST_DIFF(static_cast<longlong_t>( ppError ), llFileSize);
 
-    xCHECK_DO(0LL == llFileSize, (*a_psContent).clear(); return);
+    xCHECK_DO(0LL == llFileSize, (*a_content).clear(); return);
 
     sRv.resize( static_cast<size_t>( llFileSize) );
 
@@ -1066,90 +1081,90 @@ CxFile::textRead(
     xTEST_EQ(sRv.size(), uiReadLen);
 
     // out
-    a_psContent->swap(sRv);
+    a_content->swap(sRv);
 }
 //------------------------------------------------------------------------------
 /* static */
 void_t
 CxFile::textWrite(
-    std::ctstring_t &a_csFilePath,
-    std::ctstring_t &a_csContent
+    std::ctstring_t &a_filePath,
+    std::ctstring_t &a_content
 )
 {
-    xTEST_EQ(false, a_csFilePath.empty());
-    xTEST_NA(a_csContent);
+    xTEST_EQ(false, a_filePath.empty());
+    xTEST_NA(a_content);
 
-    // TODO: if csContent.empty()
+    // TODO: if content.empty()
 
     CxFile sfFile;
 
-    sfFile.create(a_csFilePath, omBinWrite, true);
+    sfFile.create(a_filePath, omBinWrite, true);
 
-    xCHECK_DO(a_csContent.empty(), return);
+    xCHECK_DO(a_content.empty(), return);
 
-    size_t uiWriteLen = sfFile.write((void_t *)&a_csContent.at(0), a_csContent.size());
-    xTEST_EQ(a_csContent.size(), uiWriteLen);
+    size_t uiWriteLen = sfFile.write((void_t *)&a_content.at(0), a_content.size());
+    xTEST_EQ(a_content.size(), uiWriteLen);
 }
 //------------------------------------------------------------------------------
 /* static */
 void_t
 CxFile::textRead(
-    std::ctstring_t    &a_csFilePath,
-    std::vec_tstring_t *a_pvsContent
+    std::ctstring_t    &a_filePath,
+    std::vec_tstring_t *a_content
 )
 {
-    xTEST_EQ(false, a_csFilePath.empty());
-    xTEST_EQ(true,  isExists(a_csFilePath));
-    xTEST_PTR(a_pvsContent);
+    xTEST_EQ(false, a_filePath.empty());
+    xTEST_EQ(true,  isExists(a_filePath));
+    xTEST_PTR(a_content);
 
     std::vec_tstring_t vsRes;
     std::tstring_t     sFileContent;
 
-    textRead(a_csFilePath, &sFileContent);
+    textRead(a_filePath, &sFileContent);
 
     CxString::split(sFileContent, CxConst::xNL, &vsRes);
 
     // out
-    a_pvsContent->swap(vsRes);
+    a_content->swap(vsRes);
 }
 //------------------------------------------------------------------------------
 /* static */
 void_t
 CxFile::textWrite(
-    std::ctstring_t     &a_csFilePath,
-    std::cvec_tstring_t &a_cvsContent
+    std::ctstring_t     &a_filePath,
+    std::cvec_tstring_t &a_content
 )
 {
-    xTEST_EQ(false, a_csFilePath.empty());
-    xTEST_NA(a_cvsContent);
+    xTEST_EQ(false, a_filePath.empty());
+    xTEST_NA(a_content);
 
-    // TODO: if cvsContent.empty()
+    // TODO: if content.empty()
 
     std::tstring_t sFileContent;
 
-    sFileContent = CxString::join(a_cvsContent, CxConst::xNL);
+    sFileContent = CxString::join(a_content, CxConst::xNL);
 
-    textWrite(a_csFilePath, sFileContent);
+    textWrite(a_filePath, sFileContent);
 }
 //--------------------------------------------------------------------------
 /* static */
 void_t
 CxFile::textRead(
-    std::ctstring_t    &a_csFilePath,
-    std::ctstring_t    &a_csSeparator,
-    std::map_tstring_t *a_pmsContent
+    std::ctstring_t    &a_filePath,
+    std::ctstring_t    &a_separator,
+    std::map_tstring_t *a_content
 )
 {
-    xTEST_EQ(false, a_csFilePath.empty());
-    xTEST_EQ(true,  isExists(a_csFilePath));
-    xTEST_PTR(a_pmsContent);
+    xTEST_EQ(false, a_filePath.empty());
+    xTEST_EQ(true,  isExists(a_filePath));
+    xTEST_PTR(a_content);
 
     // if file empty
-    xCHECK_DO(0L == size(a_csFilePath), (*a_pmsContent).clear(); return);
+    xCHECK_DO(0L == size(a_filePath), (*a_content).clear(); return);
 
     std::locale::global(std::locale());
 
-    std::tifstream_t ifsStream(a_csFilePath.c_str());
+    std::tifstream_t ifsStream(a_filePath.c_str());
     xTEST_EQ(true,  !! ifsStream);
     xTEST_EQ(false, ifsStream.fail());
     xTEST_EQ(true,  ifsStream.good());
@@ -1165,73 +1180,73 @@ CxFile::textRead(
 
         sLine = CxString::trimRightChars(sLine, CxConst::xEOL);
 
-        CxString::split(sLine, a_csSeparator, &vsLine);
+        CxString::split(sLine, a_separator, &vsLine);
         xTEST_EQ(size_t(2), vsLine.size());
 
         msRv.insert( std::pair<std::tstring_t, std::tstring_t>(vsLine.at(0), vsLine.at(1)) );
     }
 
     // out
-    (*a_pmsContent).swap(msRv);
+    (*a_content).swap(msRv);
 
 #if xTODO
     bool_t               bRv = false;
     std::map_tstring_t msRv;
     std::vec_tstring_t vsRes;
 
-    bRv = textRead(csFilePath, &vsRes);
+    bRv = textRead(filePath, &vsRes);
     xTEST_EQ(true, bRv);
 
     std::vec_tstring_t::_const_iterator it;
     for (it = vsRes.begin(); it != vsRes.end(); ++ it) {
         std::vec_tstring_t vsLine;
 
-        CxString::split(vsRes.at(0), csSeparator, &vsLine);
+        CxString::split(vsRes.at(0), separator, &vsLine);
         msRv.insert( std::pair<std::tstring_t, std::tstring_t>(vsLine.at(0), vsLine.at(1)) );
     }
 
     //out
-    pmsContent.swap(msRv);
+    content.swap(msRv);
 #endif
 }
 //------------------------------------------------------------------------------
 /* static */
 void_t
 CxFile::textWrite(
-    std::ctstring_t     &a_csFilePath,
-    std::ctstring_t     &a_csSeparator,
-    std::cmap_tstring_t &a_cmsContent
+    std::ctstring_t     &a_filePath,
+    std::ctstring_t     &a_separator,
+    std::cmap_tstring_t &a_content
 )
 {
-    xTEST_EQ(false, a_csFilePath.empty());
-    xTEST_EQ(false, a_csSeparator.empty());
-    xTEST_NA(a_cmsContent);
+    xTEST_EQ(false, a_filePath.empty());
+    xTEST_EQ(false, a_separator.empty());
+    xTEST_NA(a_content);
 
     // TODO: if cmsFile.empty()
 
     CxFile stdFile;
 
-    stdFile.create(a_csFilePath, omWrite, true);
+    stdFile.create(a_filePath, omWrite, true);
 
     typedef std::map_tstring_t TContent;
 
-    xFOREACH_CONST(TContent, it, a_cmsContent) {
-        stdFile.writeLine((*it).first + a_csSeparator + (*it).second);
+    xFOREACH_CONST(TContent, it, a_content) {
+        stdFile.writeLine((*it).first + a_separator + (*it).second);
     }
 
 #if xTODO
     std::tstring_t sRv;
 
-    xFOREACH_CONST(TContent, it, cmsContent) {
+    xFOREACH_CONST(TContent, it, content) {
         sRv.append((*it).first);
-        sRv.append(csSeparator);
+        sRv.append(separator);
         sRv.append((*it).second);
         sRv.append(CxConst::xNL);
 
-        xCHECK_DO(it != cmsContent.end(), sRv.append(CxConst::xNL));
+        xCHECK_DO(it != content.end(), sRv.append(CxConst::xNL));
     }
 
-    textWrite(csFilePath, sRv);
+    textWrite(filePath, sRv);
 #endif
 }
 //------------------------------------------------------------------------------
@@ -1246,22 +1261,22 @@ CxFile::textWrite(
 /* static */
 void_t
 CxFile::binRead(
-    std::ctstring_t &a_csFilePath,
-    std::ustring_t  *a_pusContent
+    std::ctstring_t &a_filePath,
+    std::ustring_t  *a_content
 )
 {
-    xTEST_EQ(false, a_csFilePath.empty());
-    xTEST_PTR(a_pusContent);
+    xTEST_EQ(false, a_filePath.empty());
+    xTEST_PTR(a_content);
 
     CxFile         sfFile;
     std::ustring_t usRv;
 
-    sfFile.create(a_csFilePath, omBinRead, true);
+    sfFile.create(a_filePath, omBinRead, true);
 
     longlong_t llFileSize = sfFile.size();
     xTEST_DIFF(static_cast<longlong_t>( ppError ), llFileSize);
 
-    xCHECK_DO(0LL == llFileSize, (*a_pusContent).clear(); return);
+    xCHECK_DO(0LL == llFileSize, (*a_content).clear(); return);
 
     usRv.resize( static_cast<size_t>( llFileSize ) );
 
@@ -1269,29 +1284,29 @@ CxFile::binRead(
     xTEST_EQ(usRv.size(), uiReadLen);
 
     // out
-    a_pusContent->swap(usRv);
+    a_content->swap(usRv);
 }
 //------------------------------------------------------------------------------
 /* static */
 void_t
 CxFile::binWrite(
-    std::ctstring_t &a_csFilePath,
-    std::custring_t &a_cusContent
+    std::ctstring_t &a_filePath,
+    std::custring_t &a_content
 )
 {
-    xTEST_EQ(false, a_csFilePath.empty());
-    xTEST_NA(a_cusContent);
+    xTEST_EQ(false, a_filePath.empty());
+    xTEST_NA(a_content);
 
-    // TODO: if cusContent.empty()
+    // TODO: if content.empty()
 
     CxFile sfFile;
 
-    sfFile.create(a_csFilePath, omBinWrite, true);
+    sfFile.create(a_filePath, omBinWrite, true);
 
-    xCHECK_DO(a_cusContent.empty(), return);
+    xCHECK_DO(a_content.empty(), return);
 
-    size_t uiWriteLen = sfFile.write((void_t *)&a_cusContent.at(0), a_cusContent.size());
-    xTEST_EQ(a_cusContent.size(), uiWriteLen);
+    size_t uiWriteLen = sfFile.write((void_t *)&a_content.at(0), a_content.size());
+    xTEST_EQ(a_content.size(), uiWriteLen);
 }
 //------------------------------------------------------------------------------
 
@@ -1305,12 +1320,12 @@ CxFile::binWrite(
 /* static */
 int_t
 CxFile::_nativeHandle(
-    std::FILE *a_pfFile
+    std::FILE *a_file
 )
 {
-    xTEST_PTR(a_pfFile);
+    xTEST_PTR(a_file);
 
-    int_t iRv = /*::*/fileno(a_pfFile);
+    int_t iRv = /*::*/fileno(a_file);
     xTEST_DIFF(- 1, iRv);
 
     return iRv;
@@ -1319,14 +1334,14 @@ CxFile::_nativeHandle(
 /* static */
 std::FILE *
 CxFile::_stdHandle(
-    int_t             a_iFileHandle,
-    const ExOpenMode &a_omMode
+    int_t             a_fileHandle,
+    const ExOpenMode &a_mode
 )
 {
-    xTEST_NA(a_iFileHandle);
-    xTEST_NA(a_omMode);
+    xTEST_NA(a_fileHandle);
+    xTEST_NA(a_mode);
 
-    std::FILE *pfRes = ::xTFDOPEN(a_iFileHandle, _openMode(a_omMode).c_str());
+    std::FILE *pfRes = ::xTFDOPEN(a_fileHandle, _openMode(a_mode).c_str());
     xTEST_PTR(pfRes);
 
     return pfRes;
@@ -1335,14 +1350,14 @@ CxFile::_stdHandle(
 /* static */
 std::tstring_t
 CxFile::_openMode(
-    const ExOpenMode &a_comMode
+    const ExOpenMode &a_mode
 )
 {
-    xTEST_NA(a_comMode);
+    xTEST_NA(a_mode);
 
     std::tstring_t sRv;
 
-    switch (a_comMode) {
+    switch (a_mode) {
         // text modes
         case omRead:
             sRv = xT("r");

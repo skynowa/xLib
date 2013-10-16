@@ -30,7 +30,7 @@ public:
         rtPost
     };
 
-                      CxCgiEnvironment(CxCgi &ccgCgi);
+                      CxCgiEnvironment(CxCgi &cgi);
         ///< constructor
     virtual          ~CxCgiEnvironment();
         ///< destructor
@@ -102,38 +102,38 @@ public:
         ///< get dump
 
 private:
-    CxCgi           & _m_ccgCgi;                ///< CxCgi object
-    std::tstring_t    _m_sAuthType;             ///< auth type
-    std::tstring_t    _m_sContentLength;        ///< content length
-    std::tstring_t    _m_sContentType;          ///< content type
-    std::tstring_t    _m_sDocumentRoot;         ///< document root
-    std::tstring_t    _m_sGatewayInterface;     ///< gateway interface
-    std::tstring_t    _m_sHttpAccept;           ///< HTTP accept
-    std::tstring_t    _m_sHttpCookie;           ///< HTTP cookie
-    std::tstring_t    _m_sHttpPragma;           ///< HTTP pragma
-    std::tstring_t    _m_sHttpUserAgent;        ///< HTTP user agent
-    std::tstring_t    _m_sPathInfo;             ///< path info
-    std::tstring_t    _m_sPathTranslated;       ///< path translated
-    std::tstring_t    _m_sQueryString;          ///< query string
-    std::tstring_t    _m_sRemoteAddr;           ///< remote address
-    std::tstring_t    _m_sRemoteHost;           ///< remote host
-    std::tstring_t    _m_sRemoteIdent;          ///< remote ident
-    std::tstring_t    _m_sRemotePort;           ///< remote port
-    std::tstring_t    _m_sRemoteUser;           ///< remote user
-    std::tstring_t    _m_sRequestMethod;        ///< request method
-    std::tstring_t    _m_sRequestUri;           ///< request URI
-    std::tstring_t    _m_sScriptFilename;       ///< script file name
-    std::tstring_t    _m_sScriptName;           ///< script name
-    std::tstring_t    _m_sServerAdmin;          ///< server admin
-    std::tstring_t    _m_sServerName;           ///< server name
-    std::tstring_t    _m_sServerPort;           ///< server port
-    std::tstring_t    _m_sServerProtocol;       ///< server protocol
-    std::tstring_t    _m_sServerSoftware;       ///< server software
-    std::tstring_t    _m_sHttpReferer;          ///< HTTP referrer
-    std::tstring_t    _m_sHttpHost;             ///< HTTP host
-    std::tstring_t    _m_sHttpAcceptLanguage;   ///< HTTP accept language
-    std::tstring_t    _m_sCountryCode;          ///< country code
-    ExRequestType     _m_rtRequestType;         ///< request method
+    CxCgi           & _cgi;                ///< CxCgi object
+    std::tstring_t    _authType;             ///< auth type
+    std::tstring_t    _contentLength;        ///< content length
+    std::tstring_t    _contentType;          ///< content type
+    std::tstring_t    _documentRoot;         ///< document root
+    std::tstring_t    _gatewayInterface;     ///< gateway interface
+    std::tstring_t    _httpAccept;           ///< HTTP accept
+    std::tstring_t    _httpCookie;           ///< HTTP cookie
+    std::tstring_t    _httpPragma;           ///< HTTP pragma
+    std::tstring_t    _httpUserAgent;        ///< HTTP user agent
+    std::tstring_t    _pathInfo;             ///< path info
+    std::tstring_t    _pathTranslated;       ///< path translated
+    std::tstring_t    _queryString;          ///< query string
+    std::tstring_t    _remoteAddr;           ///< remote address
+    std::tstring_t    _remoteHost;           ///< remote host
+    std::tstring_t    _remoteIdent;          ///< remote ident
+    std::tstring_t    _remotePort;           ///< remote port
+    std::tstring_t    _remoteUser;           ///< remote user
+    std::tstring_t    _requestMethod;        ///< request method
+    std::tstring_t    _requestUri;           ///< request URI
+    std::tstring_t    _scriptFilename;       ///< script file name
+    std::tstring_t    _scriptName;           ///< script name
+    std::tstring_t    _serverAdmin;          ///< server admin
+    std::tstring_t    _serverName;           ///< server name
+    std::tstring_t    _serverPort;           ///< server port
+    std::tstring_t    _serverProtocol;       ///< server protocol
+    std::tstring_t    _serverSoftware;       ///< server software
+    std::tstring_t    _httpReferer;          ///< HTTP referrer
+    std::tstring_t    _httpHost;             ///< HTTP host
+    std::tstring_t    _httpAcceptLanguage;   ///< HTTP accept language
+    std::tstring_t    _countryCode;          ///< country code
+    ExRequestType     _requestType;          ///< request method
 
     bool_t            _construct();
         ///< initiate class data
@@ -151,18 +151,18 @@ public:
 
     TCookies        items;    ///< cookie items
 
-                    CxCgiCookies(CxCgi &ccgCgi);
+                    CxCgiCookies(CxCgi &cgi);
         ///< constructor
     virtual        ~CxCgiCookies();
         ///< destructor
 
     std::tstring_t  dump() const xWARN_UNUSED_RV;
         ///< get dump
-    std::tstring_t  operator[](std::ctstring_t &csCookieName) xWARN_UNUSED_RV;
+    std::tstring_t  operator[](std::ctstring_t &cookieName) xWARN_UNUSED_RV;
         ///< no case searching cookie value by name from list
 
 private:
-    CxCgi          &_m_ccgCgi;    ///< CxCgi object
+    CxCgi          &_cgi;    ///< CxCgi object
 
     void_t          _construct();
         ///< initiate class data
@@ -176,7 +176,7 @@ class CxCgiFormData :
     /// CGI form data
 {
 public:
-                     CxCgiFormData(CxCgi &ccgCgi, std::csize_t &cuiMaxSize);
+                     CxCgiFormData(CxCgi &cgi, std::csize_t &maxSize);
         ///< constructor
     virtual         ~CxCgiFormData();
         ///< destructor
@@ -188,10 +188,10 @@ public:
 
 private:
     // consts
-    std::csize_t     _m_cuiMaxData;    ///< maximum data size
+    std::csize_t     _maxData;    ///< maximum data size
 
-    CxCgi           &_m_ccgCgi;        ///< CxCgi object
-    std::tstring_t   _m_sFormData;     ///< form data
+    CxCgi           &_cgi;        ///< CxCgi object
+    std::tstring_t   _formData;     ///< form data
 
     void_t           _construct();
         ///< initiate class data
@@ -214,23 +214,23 @@ public:
     NxCgi::CxCgiCookies     Cookies;        ///< CxCgiCookies object
     NxCgi::CxCgiFormData    Formdata;       ///< CxCgiFormData object
 
-    explicit                CxCgi(std::csize_t &cuiMaxSize);
+    explicit                CxCgi(std::csize_t &maxSize);
         ///< constructor
     virtual                ~CxCgi();
         ///< destructor
 
     std::tstring_t          dump() const xWARN_UNUSED_RV;
         ///< get dump
-    static void_t           redirect(std::ctstring_t &csUrl);
+    static void_t           redirect(std::ctstring_t &url);
         ///< redirect to URL
-    static void_t           pageShow(std::ctstring_t &csFilePath);
+    static void_t           pageShow(std::ctstring_t &filePath);
         ///< show page from file
 
     //encoding, decoding
-    static void_t           uriEncode(std::ctstring_t &csUri, std::ctstring_t &csReserved,
-                                std::tstring_t *psEncodedStr);
+    static void_t           uriEncode(std::ctstring_t &uri, std::ctstring_t &reserved,
+                                std::tstring_t *encodedStr);
         ///< encode URI
-    static void_t           uriDecode(std::ctstring_t &csUri, std::tstring_t *psDecodedStr);
+    static void_t           uriDecode(std::ctstring_t &uri, std::tstring_t *decodedStr);
         ///< decode URI
 
 private:

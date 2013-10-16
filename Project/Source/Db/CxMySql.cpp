@@ -6,7 +6,7 @@
 
 #include <xLib/Db/CxMySql.h>
 
-#if xCXMYSQL_IS_USE || 1
+#if xCXMYSQL_IS_USE
 
 #include <xLib/Core/CxString.h>
 

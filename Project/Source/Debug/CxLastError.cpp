@@ -30,7 +30,8 @@ xNAMESPACE_ANONYM_END
 //------------------------------------------------------------------------------
 /* static */
 bool_t
-CxLastError::isSuccess() {
+CxLastError::isSuccess()
+{
     bool_t bRv = false;
 
 #if xOS_ENV_WIN
@@ -44,7 +45,8 @@ CxLastError::isSuccess() {
 //------------------------------------------------------------------------------
 /* static */
 ulong_t
-CxLastError::get() {
+CxLastError::get()
+{
     ulong_t ulCode = g_culCodeSuccess;
 
 #if xOS_ENV_WIN
@@ -61,37 +63,39 @@ CxLastError::get() {
 /* static */
 void_t
 CxLastError::set(
-    culong_t &a_culCode
+    culong_t &a_code
 )
 {
 #if xOS_ENV_WIN
-    (void_t)::SetLastError(a_culCode);
+    (void_t)::SetLastError(a_code);
 #else
-    errno = static_cast<int_t>( a_culCode );
+    errno = static_cast<int_t>( a_code );
 #endif
 }
 //------------------------------------------------------------------------------
 /* static */
 void_t
-CxLastError::reset() {
+CxLastError::reset()
+{
     set(g_culCodeSuccess);
 }
 //------------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxLastError::format() {
-    return format(get());
+CxLastError::format()
+{
+    return format( get() );
 }
 //------------------------------------------------------------------------------
 /* static */
 std::tstring_t
 CxLastError::format(
-    culong_t &a_culCode
+    culong_t &a_code
 )
 {
     std::tstring_t sRv;
 
-    sRv = CxString::format(xT("%lu - "), a_culCode);
+    sRv = CxString::format(xT("%lu - "), a_code);
 
 #if xOS_ENV_WIN
     DWORD  dwRv   = 0UL;
@@ -100,7 +104,7 @@ CxLastError::format(
     dwRv = ::FormatMessage(
                     FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
                     NULL,
-                    a_culCode,
+                    a_code,
                     MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
                     reinterpret_cast<LPTSTR>( &pvBuff ),
                     0UL,
@@ -122,14 +126,14 @@ CxLastError::format(
     #if   xOS_LINUX
         char szBuff[64 + 1] = {0};
 
-        ctchar_t *pcszError = ::strerror_r(static_cast<int_t>( a_culCode ), &szBuff[0], xARRAY_SIZE(szBuff));
+        ctchar_t *pcszError = ::strerror_r(static_cast<int_t>( a_code ), &szBuff[0], xARRAY_SIZE(szBuff));
         xCHECK_RET(NULL == pcszError, sRv.append(xT("[Cann't format error message]")));
 
         sRv.append(pcszError);
     #elif xOS_FREEBSD
         char szBuff[64 + 1] = {0};
 
-        int_t iRv = ::strerror_r(static_cast<int_t>( a_culCode ), &szBuff[0], xARRAY_SIZE(szBuff));
+        int_t iRv = ::strerror_r(static_cast<int_t>( a_code ), &szBuff[0], xARRAY_SIZE(szBuff));
         xCHECK_RET(- 1 == iRv, sRv.append(xT("[Cann't format error message]")));
 
         sRv.append(&szBuff[0]);
@@ -149,13 +153,13 @@ CxLastError::format(
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-CxLastError::CxLastError() {
-
+CxLastError::CxLastError()
+{
 }
 //------------------------------------------------------------------------------
 /* virtual */
-CxLastError::~CxLastError() {
-
+CxLastError::~CxLastError()
+{
 }
 //------------------------------------------------------------------------------
 

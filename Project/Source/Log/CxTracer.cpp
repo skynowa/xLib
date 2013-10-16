@@ -19,28 +19,29 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 CxTracer::CxTracer() :
-    _m_ossStream()
+    _oss()
 {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-CxTracer::~CxTracer() {
-    write(_m_ossStream.str());
+CxTracer::~CxTracer()
+{
+    write(_oss.str());
 }
 //------------------------------------------------------------------------------
 /* static */
 void_t
 CxTracer::write(
-    ctchar_t *a_pcszFormat, ...
+    ctchar_t *a_format, ...
 )
 {
-    xCHECK_DO(a_pcszFormat == NULL, return);
+    xCHECK_DO(a_format == NULL, return);
 
     std::tstring_t sRv;
 
     va_list palArgs;
-    xVA_START(palArgs, a_pcszFormat);
-    sRv = CxString::formatV(a_pcszFormat, palArgs);
+    xVA_START(palArgs, a_format);
+    sRv = CxString::formatV(a_format, palArgs);
     xVA_END(palArgs);
 
     write(sRv);
@@ -49,14 +50,14 @@ CxTracer::write(
 /* static */
 void_t
 CxTracer::write(
-    std::ctstring_t &a_csMsg
+    std::ctstring_t &a_msg
 )
 {
 #if xOS_ENV_WIN
-    (void_t)::OutputDebugString((a_csMsg + CxConst::xNL).c_str());
+    (void_t)::OutputDebugString((a_msg + CxConst::xNL).c_str());
 #endif
 
-    std::tcout << a_csMsg << std::endl;
+    std::tcout << a_msg << std::endl;
 }
 //------------------------------------------------------------------------------
 

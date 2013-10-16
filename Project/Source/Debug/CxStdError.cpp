@@ -25,7 +25,8 @@ xNAMESPACE_BEGIN(NxLib)
 //------------------------------------------------------------------------------
 /* static */
 bool_t
-CxStdError::isSuccess() {
+CxStdError::isSuccess()
+{
     bool_t bRv = (g_ciCodeSuccess == errno);
 
     return bRv;
@@ -33,7 +34,8 @@ CxStdError::isSuccess() {
 //------------------------------------------------------------------------------
 /* static */
 int_t
-CxStdError::get() {
+CxStdError::get()
+{
     int_t iCode = errno;
 
     reset();
@@ -44,44 +46,46 @@ CxStdError::get() {
 /* static */
 void_t
 CxStdError::set(
-    cint_t &a_ciCode
+    cint_t &a_code
 )
 {
-    errno = a_ciCode;
+    errno = a_code;
 }
 //------------------------------------------------------------------------------
 /* static */
 void_t
-CxStdError::reset() {
+CxStdError::reset()
+{
     set(g_ciCodeSuccess);
 }
 //------------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxStdError::format() {
+CxStdError::format()
+{
     return format(get());
 }
 //------------------------------------------------------------------------------
 /* static */
 std::tstring_t
 CxStdError::format(
-    cint_t &a_ciCode
+    cint_t &a_code
 )
 {
     std::tstring_t sRv;
 
-    sRv = CxString::format(xT("%d - "), a_ciCode);
+    sRv = CxString::format(xT("%d - "), a_code);
 
 #if   xOS_ENV_WIN
     #if   xCOMPILER_MINGW
-        tchar_t *pcszError = ::xSTRERROR(a_ciCode);
+        tchar_t *pcszError = ::xSTRERROR(a_code);
         xCHECK_RET(NULL == pcszError, sRv.append(xT("[Cann't format error message]")));
 
         sRv.append(pcszError);
     #elif xCOMPILER_MS || xCOMPILER_CODEGEAR
         tchar_t szBuff[64 + 1] = {0};
 
-        errno_t iError = ::xSTRERROR(szBuff, xARRAY_SIZE(szBuff), a_ciCode);
+        errno_t iError = ::xSTRERROR(szBuff, xARRAY_SIZE(szBuff), a_code);
         xCHECK_RET(0 != iError, sRv.append(xT("[Cann't format error message]")));
 
         sRv.append(szBuff);
@@ -90,14 +94,14 @@ CxStdError::format(
     #if   xOS_LINUX
         char szBuff[64 + 1] = {0};
 
-        ctchar_t *pcszError = ::strerror_r(a_ciCode, &szBuff[0], xARRAY_SIZE(szBuff));
+        ctchar_t *pcszError = ::strerror_r(a_code, &szBuff[0], xARRAY_SIZE(szBuff));
         xCHECK_RET(NULL == pcszError, sRv.append(xT("[Cann't format error message]")));
 
         sRv.append(pcszError);
     #elif xOS_FREEBSD
         char szBuff[64 + 1] = {0};
 
-        int_t iRv = ::strerror_r(a_ciCode, &szBuff[0], xARRAY_SIZE(szBuff));
+        int_t iRv = ::strerror_r(a_code, &szBuff[0], xARRAY_SIZE(szBuff));
         xCHECK_RET(- 1 == iRv, sRv.append(xT("[Cann't format error message]")));
 
         sRv.append(&szBuff[0]);
@@ -117,12 +121,14 @@ CxStdError::format(
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-CxStdError::CxStdError() {
+CxStdError::CxStdError()
+{
 
 }
 //------------------------------------------------------------------------------
 /* virtual */
-CxStdError::~CxStdError() {
+CxStdError::~CxStdError()
+{
 
 }
 //------------------------------------------------------------------------------

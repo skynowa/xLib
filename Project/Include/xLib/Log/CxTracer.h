@@ -23,16 +23,16 @@ public:
         ///< destructor
 
     template<typename T>
-    CxTracer &            operator << (const T &cValueT);
+    CxTracer &            operator << (const T &value);
         ///< operator <<
 
-    static void_t         write(ctchar_t *pcszFormat, ...);
+    static void_t         write(ctchar_t *format, ...);
         ///< tracing to debugger, std::cout
-    static void_t         write(std::ctstring_t &csMsg);
+    static void_t         write(std::ctstring_t &msg);
         ///< tracing to debugger, std::cout
 
 private:
-    std::tostringstream_t _m_ossStream;    ///< string stream
+    std::tostringstream_t _oss;    ///< string stream
 };
 
 xNAMESPACE_END(NxLib)
@@ -41,8 +41,8 @@ xNAMESPACE_BEGIN(NxLib)
 
 template<typename T>
 CxTracer &
-CxTracer::operator << (const T &cValueT) {
-    _m_ossStream << cValueT;
+CxTracer::operator << (const T &value) {
+    _oss << value;
 
     return *this;
 }

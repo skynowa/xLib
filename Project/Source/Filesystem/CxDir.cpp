@@ -26,27 +26,29 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 CxDir::CxDir(
-    std::ctstring_t &a_csDirPath
+    std::ctstring_t &a_dirPath
 ) :
-    _m_csDirPath(a_csDirPath)
+    _dirPath(a_dirPath)
 {
-    xTEST_EQ(false, a_csDirPath.empty());
+    xTEST_EQ(false, a_dirPath.empty());
 }
 //------------------------------------------------------------------------------
 /* virtual */
-CxDir::~CxDir() {
-
+CxDir::~CxDir()
+{
 }
 //------------------------------------------------------------------------------
 std::ctstring_t &
-CxDir::dirPath() const {
-    xTEST_EQ(false, _m_csDirPath.empty());
+CxDir::dirPath() const
+{
+    xTEST_EQ(false, _dirPath.empty());
 
-    return _m_csDirPath;
+    return _dirPath;
 }
 //------------------------------------------------------------------------------
 bool_t
-CxDir::isExists() {
+CxDir::isExists()
+{
     xCHECK_RET(dirPath().empty(), false);
 
     CxFileType ftType(dirPath());
@@ -61,14 +63,14 @@ CxDir::isExists() {
 //------------------------------------------------------------------------------
 bool_t
 CxDir::isEmpty(
-    std::ctstring_t &a_csShellFilter /* = CxConst::xMASK_ALL */
+    std::ctstring_t &a_shellFilter /* = CxConst::xMASK_ALL */
 )
 {
-    xTEST_EQ(false, a_csShellFilter.empty());
+    xTEST_EQ(false, a_shellFilter.empty());
 
     bool_t bRv = true;
 
-    CxFinder fnFinder(dirPath(), a_csShellFilter);
+    CxFinder fnFinder(dirPath(), a_shellFilter);
 
     xFOREVER {
         xCHECK_DO(!fnFinder.moveNext(), break);
@@ -84,7 +86,8 @@ CxDir::isEmpty(
 }
 //------------------------------------------------------------------------------
 bool_t
-CxDir::isRoot() {
+CxDir::isRoot()
+{
 #if xOS_ENV_WIN
     xCHECK_RET(3 != dirPath().size(), false);
 
@@ -102,7 +105,8 @@ CxDir::isRoot() {
 }
 //------------------------------------------------------------------------------
 bool_t
-CxDir::isDir() {
+CxDir::isDir()
+{
     bool_t bRv = CxFileType(dirPath()).isExists(CxFileType::faDirectory);
     xCHECK_RET(!bRv, false);
 
@@ -110,7 +114,8 @@ CxDir::isDir() {
 }
 //--------------------------------------------------------------------------
 void_t
-CxDir::create() {
+CxDir::create()
+{
     bool_t bRv = isExists();
     xCHECK_DO(bRv, return);
 
@@ -126,12 +131,13 @@ CxDir::create() {
 }
 //------------------------------------------------------------------------------
 void_t
-CxDir::pathCreate() {
+CxDir::pathCreate()
+{
     std::vec_tstring_t vsPathParts;
     std::tstring_t     sBuildPath;
 
     //-------------------------------------
-    // split csDirPath into parts
+    // split dirPath into parts
      CxString::split( CxPath(dirPath()).toNative(false), CxConst::xSLASH, &vsPathParts );
 
     //-------------------------------------
@@ -147,19 +153,19 @@ CxDir::pathCreate() {
 //------------------------------------------------------------------------------
 void_t
 CxDir::copy(
-    std::ctstring_t &a_csDirPathTo,
-    cbool_t         &a_cbFailIfExists
+    std::ctstring_t &a_dirPathTo,
+    cbool_t         &a_failIfExists
 )
 {
     xTEST_EQ(true,  isExists());
-    xTEST_EQ(false, a_csDirPathTo.empty());
-    xTEST_NA(a_cbFailIfExists);
+    xTEST_EQ(false, a_dirPathTo.empty());
+    xTEST_NA(a_failIfExists);
 
     //-------------------------------------
     // sets attribute "normal"
-    bool_t bRv = CxDir(a_csDirPathTo).isExists();
+    bool_t bRv = CxDir(a_dirPathTo).isExists();
     if (bRv) {
-        CxFileType(a_csDirPathTo).clear();
+        CxFileType(a_dirPathTo).clear();
     }
 
     CxFileType(dirPath()).clear();
@@ -179,11 +185,11 @@ CxDir::copy(
         size_t uiPosBegin = sFilePathTo.find(dirPath());
         xTEST_DIFF(std::tstring_t::npos, uiPosBegin);
 
-        sFilePathTo.replace(uiPosBegin, uiPosBegin + dirPath().size(), a_csDirPathTo);
+        sFilePathTo.replace(uiPosBegin, uiPosBegin + dirPath().size(), a_dirPathTo);
 
         CxDir( CxPath(sFilePathTo).dir() ).pathCreate();
 
-        CxFile::copy(*it, sFilePathTo, a_cbFailIfExists);
+        CxFile::copy(*it, sFilePathTo, a_failIfExists);
     }
 
     //--------------------------------------------------
@@ -192,22 +198,23 @@ CxDir::copy(
 //------------------------------------------------------------------------------
 void_t
 CxDir::move(
-    std::ctstring_t &a_csDirPathTo,
-    cbool_t         &a_cbFailIfExists
+    std::ctstring_t &a_dirPathTo,
+    cbool_t         &a_failIfExists
 )
 {
     xTEST_EQ(true,  isExists());
-    xTEST_EQ(false, a_csDirPathTo.empty());
-    xTEST_NA(a_cbFailIfExists);
+    xTEST_EQ(false, a_dirPathTo.empty());
+    xTEST_NA(a_failIfExists);
 
     CxDir drDir(dirPath());
 
-    drDir.copy(a_csDirPathTo, a_cbFailIfExists);
+    drDir.copy(a_dirPathTo, a_failIfExists);
     drDir.pathDelete();
 }
 //------------------------------------------------------------------------------
 void_t
-CxDir::remove() {
+CxDir::remove()
+{
     bool_t bRv = isExists();
     xCHECK_DO(!bRv, return);
 
@@ -226,15 +233,15 @@ CxDir::remove() {
 //------------------------------------------------------------------------------
 void_t
 CxDir::tryRemove(
-    std::csize_t &a_cuiAttempts,
-    culong_t     &a_culTimeoutMsec
+    std::csize_t &a_attempts,
+    culong_t     &a_timeoutMsec
 )
 {
-    xTEST_LESS(size_t(0U), a_cuiAttempts);
+    xTEST_LESS(size_t(0U), a_attempts);
 
     std::csize_t cuiMaxAttempts  = 100;  // MAGIC_NUMBER: cuiMaxAttempts
-    std::csize_t cuiRealAttempts = (cuiMaxAttempts < a_cuiAttempts) ?
-                                    cuiMaxAttempts : a_cuiAttempts;
+    std::csize_t cuiRealAttempts = (cuiMaxAttempts < a_attempts) ?
+                                    cuiMaxAttempts : a_attempts;
 
     for (size_t i = 0; i < cuiRealAttempts; ++ i) {
         bool_t bRv = isExists();
@@ -250,14 +257,15 @@ CxDir::tryRemove(
         xCHECK_DO(- 1 != iRv, break);
     #endif
 
-        CxCurrentThread::sleep(a_culTimeoutMsec);
+        CxCurrentThread::sleep(a_timeoutMsec);
     }
 
     xTEST_EQ(false, isExists());
 }
 //------------------------------------------------------------------------------
 void_t
-CxDir::pathClear() {
+CxDir::pathClear()
+{
     xTEST_EQ(true, isExists());
 
     //-------------------------------------
@@ -295,7 +303,8 @@ CxDir::pathClear() {
 }
 //------------------------------------------------------------------------------
 void_t
-CxDir::pathDelete() {
+CxDir::pathDelete()
+{
     bool_t bRv = isExists();
     xCHECK_DO(!bRv, return);
 
@@ -314,7 +323,8 @@ CxDir::pathDelete() {
 
 //------------------------------------------------------------------------------
 std::tstring_t
-CxDir::current() {
+CxDir::current()
+{
     std::tstring_t sRv;
     std::tstring_t sBuff(xPATH_MAX + 1, 0);
 
@@ -337,23 +347,24 @@ CxDir::current() {
 //--------------------------------------------------------------------------
 void_t
 CxDir::setCurrent(
-    std::ctstring_t &a_csDirPath
+    std::ctstring_t &a_dirPath
 )
 {
-    std::tstring_t dirPath = CxPath(a_csDirPath).slashAppend();
+    std::tstring_t dirPath = CxPath(a_dirPath).slashAppend();
 
 #if xOS_ENV_WIN
     BOOL blRes = ::SetCurrentDirectory(dirPath.c_str());
     xTEST_DIFF(FALSE, blRes);
 #else
-    int_t iRv = ::chdir(a_csDirPath.c_str());
+    int_t iRv = ::chdir(a_dirPath.c_str());
     xTEST_DIFF(- 1, iRv);
 #endif
 }
 //--------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxDir::temp() {
+CxDir::temp()
+{
     std::tstring_t sRv;
 
 #if xOS_ENV_WIN
