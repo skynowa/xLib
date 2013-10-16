@@ -17,7 +17,8 @@ xNAMESPACE_BEGIN(NxLib)
 //------------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxLocale::current() {
+CxLocale::current()
+{
     // n/a
 
     std::tstring_t sRv;
@@ -53,25 +54,22 @@ CxLocale::current() {
 /* static */
 void_t
 CxLocale::setCurrent(
-    std::ctstring_t &csLocale
+    std::ctstring_t &a_locale
 )
 {
-    // csLocale - n/a
+    xTEST_NA(a_locale);
 
-    ctchar_t *pcszLocale = (csLocale.empty()) ? NULL : csLocale.c_str();
+    ctchar_t *pcszLocale = (a_locale.empty()) ? NULL : a_locale.c_str();
 
-    ctchar_t *pcszRes = NULL;
-
-    pcszRes = ::xTSETLOCALE(LC_ALL, pcszLocale);
+    ctchar_t *pcszRes = ::xTSETLOCALE(LC_ALL, pcszLocale);
     xTEST_PTR(pcszRes);
 }
 //------------------------------------------------------------------------------
 /* static */
 void_t
-CxLocale::setDefault() {
-    // n/a
-
-    setCurrent(CxLocale::current());
+CxLocale::setDefault()
+{
+    setCurrent( CxLocale::current() );
 }
 //------------------------------------------------------------------------------
 
@@ -82,12 +80,14 @@ CxLocale::setDefault() {
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-CxLocale::CxLocale() {
+CxLocale::CxLocale()
+{
     // n/a
 }
 //------------------------------------------------------------------------------
 /* virtual */
-CxLocale::~CxLocale() {
+CxLocale::~CxLocale()
+{
     // n/a
 }
 //------------------------------------------------------------------------------

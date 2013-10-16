@@ -20,33 +20,33 @@ template<typename T>
 /* static */ inline
 void_t
 CxUtils::ptrDeleteT(
-    T * &a_pPtrT
+    T * &a_ptr
 )
 {
-    delete a_pPtrT; a_pPtrT = NULL;
+    delete a_ptr; a_ptr = NULL;
 }
 //------------------------------------------------------------------------------
 template<typename T>
 /* static */ inline
 void_t
 CxUtils::arrayDeleteT(
-    T * &a_pPtrT
+    T * &a_ptr
 )
 {
-    delete [] a_pPtrT;  a_pPtrT = NULL;
+    delete [] a_ptr;  a_ptr = NULL;
 }
 //------------------------------------------------------------------------------
 template<typename T>
 /* static */ inline
 void_t
 CxUtils::ptrAssignT(
-    T *     &a_pPtrT,
-    const T &a_valueT
+    T *     &a_ptr,
+    const T &a_value
 )
 {
-    xCHECK_DO(NULL == a_pPtrT, return);
+    xCHECK_DO(NULL == a_ptr, return);
 
-    *a_pPtrT = a_valueT;
+    *a_ptr = a_value;
 }
 //------------------------------------------------------------------------------
 template <typename T, std::csize_t cuiArraySize>
@@ -62,13 +62,13 @@ CxUtils::arraySizeT(
 /* static */ inline
 void_t
 CxUtils::memoryZero(
-    void_t         *a_pPtr,
+    void_t       *a_ptr,
     std::csize_t &a_sizeBytes
 )
 {
-    xCHECK_DO(NULL == a_pPtr, return);
+    xCHECK_DO(NULL == a_ptr, return);
 
-    void_t *pvRv = std::memset(a_pPtr, 0, a_sizeBytes);
+    void_t *pvRv = std::memset(a_ptr, 0, a_sizeBytes);
     xUNUSED(pvRv);
 }
 //------------------------------------------------------------------------------
@@ -86,10 +86,10 @@ template <typename T>
 /* static */ inline
 void_t
 CxUtils::structZeroT(
-    T &a_structT
+    T &a_object
 )
 {
-    void_t *pvRv = std::memset(&a_structT, 0, sizeof(a_structT));
+    void_t *pvRv = std::memset(&a_object, 0, sizeof(a_object));
     xUNUSED(pvRv);
 }
 //------------------------------------------------------------------------------
@@ -97,81 +97,81 @@ template <typename T>
 /* static */ inline
 void_t
 CxUtils::bufferFreeT(
-    T * &a_pPtrT
+    T * &a_ptr
 )
 {
-    xCHECK_DO(NULL == a_pPtrT, return);
+    xCHECK_DO(NULL == a_ptr, return);
 
-    std::free(a_pPtrT);
-    a_pPtrT = NULL;
+    std::free(a_ptr);
+    a_ptr = NULL;
 }
 //------------------------------------------------------------------------------
 /* static */ inline
 void_t
 CxUtils::fileClose(
-    FILE * &a_pFile
+    FILE * &a_fileHandle
 )
 {
-    xCHECK_DO(NULL == a_pFile, return);
+    xCHECK_DO(NULL == a_fileHandle, return);
 
-    std::fclose(a_pFile);
-    a_pFile = NULL;
+    std::fclose(a_fileHandle);
+    a_fileHandle = NULL;
 }
 //------------------------------------------------------------------------------
 template <typename T>
 /* static */ inline
 bool_t
 CxUtils::intToBoolT(
-    const T &a_valueT
+    const T &a_value
 )
 {
-    return (0 == a_valueT) ? false : true;
+    return (0 == a_value) ? false : true;
 }
 //------------------------------------------------------------------------------
 template <typename T>
 /* static */ inline
 const T &
 CxUtils::maxT(
-    const T &a_cValue1T,
-    const T &a_cValue2T
+    const T &a_value1,
+    const T &a_value2
 )
 {
-    return (a_cValue1T > a_cValue2T) ? a_cValue1T : a_cValue2T;
+    return (a_value1 > a_value2) ? a_value1 : a_value2;
 }
 //------------------------------------------------------------------------------
 template <typename T>
 /* static */ inline
 const T &
 CxUtils::minT(
-    const T &a_cValue1T,
-    const T &a_cValue2T
+    const T &a_value1,
+    const T &a_value2
 )
 {
-    return (a_cValue1T < a_cValue2T) ? a_cValue1T : a_cValue2T;
+    return (a_value1 < a_value2) ? a_value1 : a_value2;
 }
 //------------------------------------------------------------------------------
 template <typename T>
 /* static */ inline
 void_t
 CxUtils::swapT(
-    T &a_value1T,
-    T &a_value2T
+    T &a_value1,
+    T &a_value2
 )
 {
-    T temp = a_value1T;
+    T temp = a_value1;
 
-    a_value1T = a_value2T;
-    a_value2T = temp;
+    a_value1 = a_value2;
+    a_value2 = temp;
 }
 //------------------------------------------------------------------------------
 template <typename ToT, typename FromT>
 /* static */ inline
 ToT
 CxUtils::reinterpretCastT(
-    const FromT &a_pPtrT
+    const FromT &a_ptr
 )
 {
-    void_t *pvVoidCast = static_cast<void_t *>( a_pPtrT );
+    void_t *pvVoidCast = static_cast<void_t *>( a_ptr );
     ToT   ResT         = static_cast<ToT>( pvVoidCast );
 
     return ResT;
@@ -192,17 +192,17 @@ CxUtils::doubleIsEqual(
 /* static */ inline
 double
 CxUtils::roundDouble(
-    cdouble_t &a_cdValue
+    cdouble_t &a_value
 )
 {
-    xTEST_NA(a_cdValue);
+    xTEST_NA(a_value);
 
     double dRv = 0.0;
 
-    if (a_cdValue > 0.0) {
-        dRv = ::floor(a_cdValue + 0.5);
+    if (a_value > 0.0) {
+        dRv = ::floor(a_value + 0.5);
     } else {
-        dRv = ::ceil(a_cdValue - 0.5);
+        dRv = ::ceil(a_value - 0.5);
     }
 
     return dRv;
@@ -212,18 +212,18 @@ template <typename T>
 /* static */ inline
 T
 CxUtils::roundIntT(
-    cdouble_t &a_cdValue
+    cdouble_t &a_value
 )
 {
-    assert(a_cdValue >= (std::numeric_limits<T>::min)() - 0.5);
-    assert(a_cdValue <= (std::numeric_limits<T>::max)() + 0.5);
+    assert(a_value >= (std::numeric_limits<T>::min)() - 0.5);
+    assert(a_value <= (std::numeric_limits<T>::max)() + 0.5);
 
     T iRv = 0;
 
-    if (a_cdValue > 0.0) {
-        iRv = static_cast<T>( a_cdValue + 0.5 );
+    if (a_value > 0.0) {
+        iRv = static_cast<T>( a_value + 0.5 );
     } else {
-        iRv = static_cast<T>( a_cdValue - 0.5 );
+        iRv = static_cast<T>( a_value - 0.5 );
     }
 
     return iRv;
@@ -233,16 +233,16 @@ template <typename T1, typename T2>
 /* static */ inline
 double
 CxUtils::safeDivT(
-    const T1 &a_cValue1T,
-    const T2 &a_cValue2T
+    const T1 &a_value1,
+    const T2 &a_value2
 )
 {
     double dRv = 0.0;
 
-    if (static_cast<T2>( 0 ) == a_cValue2T) {
+    if (static_cast<T2>( 0 ) == a_value2) {
         dRv = 0.0;
     } else {
-        dRv = static_cast<double>( a_cValue1T ) / static_cast<double>( a_cValue2T );
+        dRv = static_cast<double>( a_value1 ) / static_cast<double>( a_value2 );
     }
 
     return dRv;
@@ -251,19 +251,19 @@ CxUtils::safeDivT(
 template <typename T>
 /* static */ inline T
 CxUtils::enumIncT(
-    const T &a_valueT
+    const T &a_value
 )
 {
-    return static_cast<T>( static_cast<long_t>( a_valueT ) + 1 );
+    return static_cast<T>( static_cast<long_t>( a_value ) + 1 );
 }
 //------------------------------------------------------------------------------
 template <typename T>
 /* static */  inline T
 CxUtils::enumDecT(
-    const T &a_valueT
+    const T &a_value
 )
 {
-    return static_cast<T>( static_cast<long_t>( a_valueT ) - 1 );
+    return static_cast<T>( static_cast<long_t>( a_value ) - 1 );
 }
 //------------------------------------------------------------------------------
 
