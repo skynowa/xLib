@@ -27,26 +27,27 @@ CxHandleT<hvTag>::CxHandleT() :
 //------------------------------------------------------------------------------
 template<ExHandleValue hvTag>
 CxHandleT<hvTag>::CxHandleT(
-    cnative_handle_t &a_chHandle
+    cnative_handle_t &a_handle
 ) :
-    _m_hHandle(a_chHandle)
+    _m_hHandle(a_handle)
 {
-    xTEST_NA(a_chHandle);
+    xTEST_NA(a_handle);
 }
 //------------------------------------------------------------------------------
 template<ExHandleValue hvTag>
 CxHandleT<hvTag>::CxHandleT(
-    const CxHandleT &a_chHandle
+    const CxHandleT &a_handle
 ) :
     _m_hHandle( error_value_t::get() )
 {
-    xTEST_NA(a_chHandle);
+    xTEST_NA(a_handle);
 
-    _m_hHandle = a_chHandle.duplicate();
+    _m_hHandle = a_handle.duplicate();
 }
 //------------------------------------------------------------------------------
 template<ExHandleValue hvTag>
-CxHandleT<hvTag>::~CxHandleT() {
+CxHandleT<hvTag>::~CxHandleT()
+{
     close();
 }
 //------------------------------------------------------------------------------
@@ -61,19 +62,19 @@ CxHandleT<hvTag>::~CxHandleT() {
 template<ExHandleValue hvTag>
 CxHandleT<hvTag> &
 CxHandleT<hvTag>::operator = (
-    cnative_handle_t &a_chHandle
+    cnative_handle_t &a_handle
 )
 {
     ////xTEST_EQ(false, isValid(), *this);
-    xTEST_NA(a_chHandle);
+    xTEST_NA(a_handle);
 
     // Try m_Handle.Attach(other.Detach(), if you got an assertion here.
 
-    xCHECK_RET(_m_hHandle == a_chHandle, *this);
+    xCHECK_RET(_m_hHandle == a_handle, *this);
 
     close();
 
-    _m_hHandle = a_chHandle;
+    _m_hHandle = a_handle;
 
     return *this;
 }
@@ -81,17 +82,17 @@ CxHandleT<hvTag>::operator = (
 template<ExHandleValue hvTag>
 CxHandleT<hvTag> &
 CxHandleT<hvTag>::operator = (
-    const CxHandleT &a_chHandle
+    const CxHandleT &a_handle
 )
 {
     //xTEST_EQ(false, isValid(), *this);
-    xTEST_NA(a_chHandle);
+    xTEST_NA(a_handle);
 
-    xCHECK_RET(this == &a_chHandle, *this);
+    xCHECK_RET(this == &a_handle, *this);
 
     close();
 
-    _m_hHandle = a_chHandle.duplicate();
+    _m_hHandle = a_handle.duplicate();
     xTEST_NA(_m_hHandle);
 
     return *this;
@@ -99,24 +100,26 @@ CxHandleT<hvTag>::operator = (
 //------------------------------------------------------------------------------
 template<ExHandleValue hvTag>
 native_handle_t
-CxHandleT<hvTag>::get() const {
+CxHandleT<hvTag>::get() const
+{
     return _m_hHandle;
 }
 //------------------------------------------------------------------------------
 template<ExHandleValue hvTag>
 void_t
 CxHandleT<hvTag>::set(
-    cnative_handle_t &a_chHandle
+    cnative_handle_t &a_handle
 )
 {
-    xTEST_NA(a_chHandle);
+    xTEST_NA(a_handle);
 
-    _m_hHandle = a_chHandle;
+    _m_hHandle = a_handle;
 }
 //------------------------------------------------------------------------------
 template<ExHandleValue hvTag>
 native_handle_t
-CxHandleT<hvTag>::duplicate() const {
+CxHandleT<hvTag>::duplicate() const
+{
     xCHECK_RET(!isValid(), error_value_t::get());
 
     native_handle_t hRv = error_value_t::get();
@@ -146,7 +149,8 @@ CxHandleT<hvTag>::duplicate() const {
 //------------------------------------------------------------------------------
 template<ExHandleValue hvTag>
 bool_t
-CxHandleT<hvTag>::isValid() const {
+CxHandleT<hvTag>::isValid() const
+{
     bool_t bRv = false;
 
 #if   xOS_ENV_WIN
@@ -172,15 +176,15 @@ CxHandleT<hvTag>::isValid() const {
 template<ExHandleValue hvTag>
 void_t
 CxHandleT<hvTag>::attach(
-    cnative_handle_t &a_chHandle
+    cnative_handle_t &a_handle
 )
 {
-    xTEST_NA(a_chHandle);
+    xTEST_NA(a_handle);
     xCHECK_DO(!isValid(), return);
 
     close();
 
-    _m_hHandle = a_chHandle;
+    _m_hHandle = a_handle;
 }
 //------------------------------------------------------------------------------
 template<ExHandleValue hvTag>
@@ -216,7 +220,8 @@ CxHandleT<hvTag>::close() {
 
 template<ExHandleValue hvTag>
 ulong_t
-CxHandleT<hvTag>::info() const {
+CxHandleT<hvTag>::info() const
+{
     ////xTEST_EQ(true, isValid(), 0UL);
 
     DWORD dwFlags = 0UL;
@@ -237,15 +242,15 @@ CxHandleT<hvTag>::info() const {
 template<ExHandleValue hvTag>
 void_t
 CxHandleT<hvTag>::setInfo(
-    culong_t &a_culMask,
-    culong_t &a_culFlags
+    culong_t &a_mask,
+    culong_t &a_flags
 )
 {
     ////xTEST_EQ(true, isValid(), false);
-    xTEST_NA(a_culMask);
-    xTEST_NA(a_culFlags);
+    xTEST_NA(a_mask);
+    xTEST_NA(a_flags);
 
-    BOOL blRes = ::SetHandleInformation(_m_hHandle, a_culMask, a_culFlags);
+    BOOL blRes = ::SetHandleInformation(_m_hHandle, a_mask, a_flags);
     xUNUSED(blRes);
 
     ////xTEST_DIFF(FALSE, blRes);

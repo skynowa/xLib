@@ -21,7 +21,8 @@ xNAMESPACE_BEGIN(NxLib)
 /* static */ std::vec_tstring_t CxCommandLine::_ms_vsArgs;
 //--------------------------------------------------------------------------
 long_t
-CxCommandLine::argsMax() {
+CxCommandLine::argsMax()
+{
     long_t liRv = 0L;
 
 #if xOS_ENV_WIN
@@ -36,7 +37,8 @@ CxCommandLine::argsMax() {
 //------------------------------------------------------------------------------
 /* static */
 std::tstring_t
-CxCommandLine::get() {
+CxCommandLine::get()
+{
     // n/a
 
     std::tstring_t sRv;
@@ -56,30 +58,30 @@ CxCommandLine::get() {
 /* static */
 void_t
 CxCommandLine::args(
-    std::vec_tstring_t *a_pvsArgs
+    std::vec_tstring_t *a_args
 )
 {
-    xTEST_PTR(a_pvsArgs);
+    xTEST_PTR(a_args);
 
     xCHECK_DO(_ms_vsArgs.empty(),
         CxTracer() << xT("::: xLib: warning (command line is empty) :::"));
 
-    *a_pvsArgs = _ms_vsArgs;
+    *a_args = _ms_vsArgs;
 }
 //------------------------------------------------------------------------------
 /* static */
 void_t
 CxCommandLine::setArgs(
-    cint_t  &a_ciArgsCount,
-    tchar_t *a_paszArgs[]
+    cint_t  &a_argsNum,
+    tchar_t *a_args[]
 )
 {
     // n/a (because we'll have a recursion)
 
     std::vec_tstring_t vsArgs;
 
-    for (int_t i = 0; i < a_ciArgsCount; ++ i) {
-        vsArgs.push_back(a_paszArgs[i]);
+    for (int_t i = 0; i < a_argsNum; ++ i) {
+        vsArgs.push_back(a_args[i]);
     }
 
     // out
@@ -97,13 +99,13 @@ CxCommandLine::setArgs(
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-CxCommandLine::CxCommandLine() {
-
+CxCommandLine::CxCommandLine()
+{
 }
 //------------------------------------------------------------------------------
 /* virtual */
-CxCommandLine::~CxCommandLine() {
-
+CxCommandLine::~CxCommandLine()
+{
 }
 //------------------------------------------------------------------------------
 

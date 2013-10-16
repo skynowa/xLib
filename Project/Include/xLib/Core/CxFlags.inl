@@ -20,17 +20,17 @@ CxFlags<T>::CxFlags() :
 //------------------------------------------------------------------------------
 template <class T>
 CxFlags<T>::CxFlags(
-    const CxFlags &a_cfValues
+    const CxFlags &a_values
 ) : 
-    _m_mFlags(a_cfValues._m_mFlags)
+    _m_mFlags(a_values._m_mFlags)
 {
 }
 //------------------------------------------------------------------------------
 template <class T>
 CxFlags<T>::CxFlags(
-    const T &a_valuesT
+    const T &a_values
 ) :
-    _m_mFlags(a_valuesT)
+    _m_mFlags(a_values)
 {
 }
 //------------------------------------------------------------------------------
@@ -43,12 +43,12 @@ CxFlags<T>::~CxFlags()
 template <class T>
 CxFlags<T> & 
 CxFlags<T>::operator = (
-    const CxFlags &a_cfValues
+    const CxFlags &a_values
 )
 {
-    xCHECK_RET(this == &a_cfValues, *this);
+    xCHECK_RET(this == &a_values, *this);
 
-    _m_mFlags = a_cfValues._m_mFlags;
+    _m_mFlags = a_values._m_mFlags;
 
     return *this;
 }
@@ -63,10 +63,10 @@ CxFlags<T>::get() const
 template <class T>
 void_t 
 CxFlags<T>::set(
-    const T &a_valuesT
+    const T &a_values
 )
 {
-    _m_mFlags = a_valuesT; 
+    _m_mFlags = a_values;
 }
 //------------------------------------------------------------------------------
 template <class T>
@@ -79,47 +79,47 @@ CxFlags<T>::clear()
 template <class T>
 bool_t 
 CxFlags<T>::isSetFlag(
-    const T &a_valueT
+    const T &a_value
 ) const
 {
-    return (_m_mFlags & a_valueT) == a_valueT;
+    return (_m_mFlags & a_value) == a_value;
 }
 //------------------------------------------------------------------------------        
 template <class T>
 bool_t 
 CxFlags<T>::isSetAnyFlag(
-    const T &a_valueT
+    const T &a_value
 ) const
 {
-    return (_m_mFlags & a_valueT) != 0;
+    return (_m_mFlags & a_value) != 0;
 }
 //------------------------------------------------------------------------------  
 template <class T>
 void_t 
 CxFlags<T>::setFlag(
-    const T &a_valueT
+    const T &a_value
 )
 {
-    _m_mFlags |= a_valueT;
+    _m_mFlags |= a_value;
 }
 //------------------------------------------------------------------------------        
 template <class T>
 void_t 
 CxFlags<T>::unsetFlag(
-    const T &a_valueT
+    const T &a_value
 )
 {
-    _m_mFlags &= ~a_valueT;
+    _m_mFlags &= ~a_value;
 }
 
 //------------------------------------------------------------------------------        
 template <class T>
 void
 CxFlags<T>::toggleFlag(
-    const T &a_valueT
+    const T &a_value
 )
 {
-    _m_mFlags ^= a_valueT;
+    _m_mFlags ^= a_value;
 }
 //------------------------------------------------------------------------------        
 

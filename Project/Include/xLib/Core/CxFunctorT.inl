@@ -14,40 +14,40 @@ xNAMESPACE_BEGIN(NxLib)
 //------------------------------------------------------------------------------
 template <typename ClassT, typename ReturnT, typename ParamT>
 CxFunctorT<ClassT, ReturnT, ParamT>::CxFunctorT(
-    ClassT   *pObject,
-    method_t  method
+    ClassT   *a_object,
+    method_t  a_method
 ) :
-    _m_pObject(pObject),
-    _m_Method (method)
+    _object(a_object),
+    _method(a_method)
 {
     // TODO: debug code
 #if xTODO
-    xTEST_DIFF(NULL, _m_pObject);
-    xTEST_DIFF(NULL, _m_Method);
+    xTEST_DIFF(NULL, a_object);
+    xTEST_DIFF(NULL, a_method);
 #endif
 }
 //------------------------------------------------------------------------------
 template <typename ClassT, typename ReturnT, typename ParamT>
-CxFunctorT<ClassT, ReturnT, ParamT>::~CxFunctorT() {
-
+CxFunctorT<ClassT, ReturnT, ParamT>::~CxFunctorT()
+{
 }
 //------------------------------------------------------------------------------
 template <typename ClassT, typename ReturnT, typename ParamT>
 ReturnT
 CxFunctorT<ClassT, ReturnT, ParamT>::operator()(
-    ParamT Param
+    ParamT a_param
 )
 {
-    return (_m_pObject->*_m_Method)(Param);
+    return (_object->*_method)(a_param);
 }
 //------------------------------------------------------------------------------
 template <typename ClassT, typename ReturnT, typename ParamT>
 ReturnT
 CxFunctorT<ClassT, ReturnT, ParamT>::execute(
-    ParamT Param
+    ParamT a_param
 )
 {
-    return operator()(Param);
+    return operator()(a_param);
 }
 //------------------------------------------------------------------------------
 

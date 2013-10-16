@@ -18,19 +18,19 @@ public:
     typedef   ReturnT (ClassT::*method_t)(ParamT);
         ///< return type
 
-              CxFunctorT(ClassT *pObject, method_t method);
+              CxFunctorT(ClassT *object, method_t method);
         ///< constructor
     virtual  ~CxFunctorT();
         ///< destructor
 
-    ReturnT   operator()(ParamT Param) xWARN_UNUSED_RV;
+    ReturnT   operator()(ParamT param) xWARN_UNUSED_RV;
         ///< operator ()
-    ReturnT   execute(ParamT Param) xWARN_UNUSED_RV;
+    ReturnT   execute(ParamT param) xWARN_UNUSED_RV;
         ///< execute operator ()
 
 private:
-    ClassT   *_m_pObject;
-    method_t  _m_Method;
+    ClassT   *_object;
+    method_t  _method;
 };
 
 xNAMESPACE_END(NxLib)
