@@ -25,7 +25,7 @@ public:
 
     void_t                  create();
         ///< create
-    void_t                  wait(culong_t &culTimeoutMs);
+    void_t                  wait(culong_t &timeoutMs);
         ///< wait
     void_t                  signal();
         ///< signal one
@@ -34,8 +34,8 @@ public:
 
 private:
 #if !xOS_ENV_WIN
-    pthread_mutex_t         _m_mutex;
-    pthread_cond_t          _m_handle;
+    pthread_mutex_t         _mutex;
+    pthread_cond_t          _handle;
 #endif
 };
 //------------------------------------------------------------------------------

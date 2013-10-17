@@ -30,44 +30,44 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 CxProcess::CxProcess() :
-    _m_hHandle     (0),
+    _handle     (0),
 #if xOS_ENV_WIN
-    _m_hThread     (NULL),
+    _thread     (NULL),
 #endif
-    _m_ulPid       (0UL),
-    _m_uiExitStatus(0U)
+    _pid       (0UL),
+    _exitStatus(0U)
 {
-
 }
 //------------------------------------------------------------------------------
 /* virtual */
-CxProcess::~CxProcess() {
+CxProcess::~CxProcess()
+{
 #if xOS_ENV_WIN
     BOOL blRes = FALSE;
 
-    blRes = ::CloseHandle(_m_hThread);
+    blRes = ::CloseHandle(_thread);
     xTEST_DIFF(FALSE, blRes);
 
-    blRes = ::CloseHandle(_m_hHandle);
+    blRes = ::CloseHandle(_handle);
     xTEST_DIFF(FALSE, blRes);
 #endif
 }
 //------------------------------------------------------------------------------
 void_t
 CxProcess::create(
-    std::ctstring_t &a_csFilePath,
-    ctchar_t        *a_pcszParams, ...
+    std::ctstring_t &a_filePath,
+    ctchar_t        *a_params, ...
 )
 {
-    xTEST_EQ(false, a_csFilePath.empty());
-    xTEST_EQ(true, CxFile::isExists(a_csFilePath));
-    xTEST_PTR(a_pcszParams);
+    xTEST_EQ(false, a_filePath.empty());
+    xTEST_EQ(true, CxFile::isExists(a_filePath));
+    xTEST_PTR(a_params);
 
     std::tstring_t sCmdLine;
 
     va_list palArgs;
-    xVA_START(palArgs, a_pcszParams);
-    sCmdLine = CxString::formatV(a_pcszParams, palArgs);
+    xVA_START(palArgs, a_params);
+    sCmdLine = CxString::formatV(a_params, palArgs);
     xVA_END(palArgs);
 
     //xTRACEV(xT("sCmdLine: %s"), sCmdLine.c_str());
@@ -76,56 +76,56 @@ CxProcess::create(
     STARTUPINFO         siInfo = {0};   siInfo.cb = sizeof(siInfo);
     PROCESS_INFORMATION piInfo = {0};
 
-    BOOL blRes = ::CreateProcess(a_csFilePath.c_str(), const_cast<LPTSTR>( sCmdLine.c_str() ),
+    BOOL blRes = ::CreateProcess(a_filePath.c_str(), const_cast<LPTSTR>( sCmdLine.c_str() ),
                                  NULL, NULL, FALSE, NORMAL_PRIORITY_CLASS, NULL, NULL,
                                  &siInfo, &piInfo);
     xTEST_DIFF(FALSE, blRes);
 
-    _m_hHandle = piInfo.hProcess;
-    _m_hThread = piInfo.hThread;
-    _m_ulPid   = piInfo.dwProcessId;
+    _handle = piInfo.hProcess;
+    _thread = piInfo.hThread;
+    _pid   = piInfo.dwProcessId;
 #else
     pid_t liPid = ::fork();
     xTEST_EQ(true, - 1L != liPid);
 
     if (0L == liPid) {
-        // TODO: csFilePath is executable
+        // TODO: filePath is executable
 
-        int_t iRv = ::execlp(a_csFilePath.c_str(), a_csFilePath.c_str(), sCmdLine.c_str(), static_cast<ctchar_t *>( NULL ));
+        int_t iRv = ::execlp(a_filePath.c_str(), a_filePath.c_str(), sCmdLine.c_str(), static_cast<ctchar_t *>( NULL ));
         xTEST_DIFF(- 1, iRv);
 
         (void_t)::_exit(EXIT_SUCCESS);  /* not exit() */
     }
 
-    _m_hHandle = liPid;
-    _m_ulPid   = liPid;
+    _handle = liPid;
+    _pid   = liPid;
 #endif
 }
 //------------------------------------------------------------------------------
 CxProcess::ExWaitResult
 CxProcess::wait(
-    culong_t &a_culTimeout
+    culong_t &a_timeoutMSec
 )
 {
     ExWaitResult wrStatus = wrFailed;
 
 #if xOS_ENV_WIN
-    DWORD ulRv = ::WaitForSingleObject(_m_hHandle, a_culTimeout);
+    DWORD ulRv = ::WaitForSingleObject(_handle, a_timeoutMSec);
     xTEST_EQ(WAIT_OBJECT_0, ulRv);
 
     wrStatus = static_cast<ExWaitResult>( ulRv );
 #else
-    // TODO: a_culTimeout
+    // TODO: a_timeoutMSec
     pid_t liRv    = - 1L;
     int_t   iStatus = 0;
 
     do {
-        liRv = ::waitpid(_m_ulPid, &iStatus, 0);
+        liRv = ::waitpid(_pid, &iStatus, 0);
     }
     while (liRv < 0L && EINTR == CxLastError::get());
-    xTEST_EQ(liRv, _m_ulPid);
+    xTEST_EQ(liRv, _pid);
 
-    _m_uiExitStatus = WEXITSTATUS(iStatus);
+    _exitStatus = WEXITSTATUS(iStatus);
     wrStatus        = static_cast<ExWaitResult>( WEXITSTATUS(iStatus) );
 #endif
 
@@ -134,58 +134,62 @@ CxProcess::wait(
 //------------------------------------------------------------------------------
 void_t
 CxProcess::kill(
-    culong_t &a_culTimeout    // FIX: culTimeout not used
+    culong_t &a_timeoutMSec    // FIX: timeoutMSec not used
 )
 {
 #if xOS_ENV_WIN
-    xTEST_DIFF(xNATIVE_HANDLE_NULL, _m_hHandle);
+    xTEST_DIFF(xNATIVE_HANDLE_NULL, _handle);
     // ulTimeout - n/a
 
-    _m_uiExitStatus = 0U;
+    _exitStatus = 0U;
 
-    BOOL blRes = ::TerminateProcess(_m_hHandle, _m_uiExitStatus);
+    BOOL blRes = ::TerminateProcess(_handle, _exitStatus);
     xTEST_DIFF(FALSE, blRes);
 
     xFOREVER {
         ulong_t ulRv = exitStatus();
         xCHECK_DO(STILL_ACTIVE != ulRv, break);
 
-        CxCurrentThread::sleep(a_culTimeout);
+        CxCurrentThread::sleep(a_timeoutMSec);
     }
 #else
-    int_t iRv = ::kill(_m_ulPid, SIGKILL);
+    int_t iRv = ::kill(_pid, SIGKILL);
     xTEST_DIFF(- 1, iRv);
 
-    CxCurrentThread::sleep(a_culTimeout);
+    CxCurrentThread::sleep(a_timeoutMSec);
 
-    _m_uiExitStatus = 0U;
+    _exitStatus = 0U;
 #endif
 }
 //------------------------------------------------------------------------------
 CxProcess::handle_t
-CxProcess::handle() const {
-    return _m_hHandle;
+CxProcess::handle() const
+{
+    return _handle;
 }
 //------------------------------------------------------------------------------
 CxProcess::id_t
-CxProcess::id() const {
-    return _m_ulPid;
+CxProcess::id() const
+{
+    return _pid;
 }
 //------------------------------------------------------------------------------
 bool_t
-CxProcess::isCurrent() const {
+CxProcess::isCurrent() const
+{
     return CxCurrentProcess::isCurrent( CxCurrentProcess::id() );
 }
 //------------------------------------------------------------------------------
 ulong_t
-CxProcess::exitStatus() const {
+CxProcess::exitStatus() const
+{
     ulong_t ulRv = 0UL;
 
 #if xOS_ENV_WIN
-    BOOL blRes = ::GetExitCodeProcess(_m_hHandle, &ulRv);
+    BOOL blRes = ::GetExitCodeProcess(_handle, &ulRv);
     xTEST_DIFF(FALSE, blRes);
 #else
-    ulRv = _m_uiExitStatus;
+    ulRv = _exitStatus;
 #endif
 
     return ulRv;
@@ -202,16 +206,16 @@ CxProcess::exitStatus() const {
 /* static */
 CxProcess::id_t
 CxProcess::idByHandle(
-    const handle_t &a_chHandle    ///< handle
+    const handle_t &a_handle    ///< handle
 )
 {
     id_t ulRv;
 
 #if xOS_ENV_WIN
-    ulRv = ::GetProcessId(a_chHandle);
+    ulRv = ::GetProcessId(a_handle);
     xTEST_NA(ulRv);
 #else
-    ulRv = static_cast<id_t>( a_chHandle );
+    ulRv = static_cast<id_t>( a_handle );
 #endif
 
     return ulRv;
@@ -220,16 +224,16 @@ CxProcess::idByHandle(
 /* static */
 CxProcess::handle_t
 CxProcess::handleById(
-    const id_t &a_culId   ///< ID
+    const id_t &a_id   ///< ID
 )
 {
     handle_t hRv;
 
 #if xOS_ENV_WIN
-    hRv = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, a_culId);
+    hRv = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, a_id);
     xTEST_NA(hRv);
 #else
-    hRv = static_cast<handle_t>( a_culId );
+    hRv = static_cast<handle_t>( a_id );
 #endif
 
     return hRv;
@@ -238,7 +242,7 @@ CxProcess::handleById(
 /* static */
 CxProcess::id_t
 CxProcess::idByName(
-    std::ctstring_t &a_csProcessName
+    std::ctstring_t &a_processName
 )
 {
     id_t ulRv;
@@ -254,7 +258,7 @@ CxProcess::idByName(
     xTEST_DIFF(FALSE, blRv);
 
     xFOREVER {
-        bool_t bRv = CxString::compareNoCase(a_csProcessName, peProcess.szExeFile);
+        bool_t bRv = CxString::compareNoCase(a_processName, peProcess.szExeFile);
         xCHECK_DO(bRv, break);   // OK
 
         blRv = ::Process32Next(hSnapshot.get(), &peProcess);
@@ -295,7 +299,7 @@ CxProcess::idByName(
             }
 
             cmdLine = CxPath(cmdLine).fileName();
-            if (a_csProcessName == cmdLine) {
+            if (a_processName == cmdLine) {
                 iPid = iId;
                 break;
             }
@@ -331,7 +335,7 @@ CxProcess::idByName(
         size_t uiNumProcs = uiBuffSize / sizeof(kinfo_proc);
 
         for (size_t i = 0; i < uiNumProcs; ++ i) {
-            if (0 == strncmp(a_csProcessName.c_str(), pkpProcesses[i].ki_comm, MAXCOMLEN)) {
+            if (0 == strncmp(a_processName.c_str(), pkpProcesses[i].ki_comm, MAXCOMLEN)) {
                 ulRv = pkpProcesses[i].ki_pid;
 
                 break;
@@ -352,7 +356,7 @@ CxProcess::idByName(
 /* static */
 bool_t
 CxProcess::isRunning(
-    const id_t &culId
+    const id_t &id
 )
 {
     std::vector<CxProcess::id_t> vidIds;
@@ -360,7 +364,7 @@ CxProcess::isRunning(
     CxProcessInfo::currentIds(&vidIds);
 
     std::vector<CxProcess::id_t>::iterator it;
-    it = std::find(vidIds.begin(), vidIds.end(), culId);
+    it = std::find(vidIds.begin(), vidIds.end(), id);
     xCHECK_RET(it == vidIds.end(), false);
 
     return true;

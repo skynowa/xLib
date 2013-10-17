@@ -26,24 +26,24 @@ xNAMESPACE_BEGIN(NxLib)
 /* static */
 bool_t
 CxEnvironment::isExists(
-    std::ctstring_t &a_csVarName
+    std::ctstring_t &a_varName
 )
 {
-    xTEST_NA(a_csVarName);
+    xTEST_NA(a_varName);
 
-    xCHECK_RET(a_csVarName.empty(), false);
+    xCHECK_RET(a_varName.empty(), false);
 
 #if xOS_ENV_WIN
     std::tstring_t sRv;
 
     sRv.resize(xPATH_MAX);
 
-    DWORD dwLength = ::GetEnvironmentVariable(a_csVarName.c_str(), &sRv.at(0), static_cast<DWORD>( sRv.size() ));
+    DWORD dwLength = ::GetEnvironmentVariable(a_varName.c_str(), &sRv.at(0), static_cast<DWORD>( sRv.size() ));
     xTEST_NA(dwLength);
 
     xCHECK_RET(0UL == dwLength && ERROR_ENVVAR_NOT_FOUND == CxLastError::get(), false);
 #else
-    const char *pcszRes = ::getenv(a_csVarName.c_str());
+    const char *pcszRes = ::getenv(a_varName.c_str());
     xTEST_NA(pcszRes);
 
     xCHECK_RET(NULL == pcszRes, false);
@@ -55,13 +55,13 @@ CxEnvironment::isExists(
 /* static */
 bool_t
 CxEnvironment::isVarValid(
-    std::ctstring_t &a_csVarName
+    std::ctstring_t &a_varName
 )
 {
-    xTEST_NA(a_csVarName);
+    xTEST_NA(a_varName);
 
-    xCHECK_RET(true              == a_csVarName.empty(),               false);
-    xCHECK_RET(std::string::npos != a_csVarName.find(CxConst::xEQUAL), false);
+    xCHECK_RET(true              == a_varName.empty(),               false);
+    xCHECK_RET(std::string::npos != a_varName.find(CxConst::xEQUAL), false);
 
     return true;
 }
@@ -69,12 +69,12 @@ CxEnvironment::isVarValid(
 /* static */
 bool_t
 CxEnvironment::isValueValid(
-    std::ctstring_t &a_csVarValue
+    std::ctstring_t &a_varValue
 )
 {
-    xTEST_NA(a_csVarValue);
+    xTEST_NA(a_varValue);
 
-    xCHECK_RET(xENV_MAX < a_csVarValue.size(), false);
+    xCHECK_RET(xENV_MAX < a_varValue.size(), false);
 
     return true;
 }
@@ -82,29 +82,29 @@ CxEnvironment::isValueValid(
 /* static */
 std::tstring_t
 CxEnvironment::var(
-    std::ctstring_t &a_csVarName
+    std::ctstring_t &a_varName
 )
 {
-    xTEST_NA(a_csVarName);
+    xTEST_NA(a_varName);
 
-    xCHECK_RET(!isExists(a_csVarName), std::tstring_t());
+    xCHECK_RET(!isExists(a_varName), std::tstring_t());
 
     std::tstring_t sRv;
 
 #if xOS_ENV_WIN
     sRv.resize(xPATH_MAX);
 
-    DWORD dwLength = ::GetEnvironmentVariable(a_csVarName.c_str(), &sRv.at(0), static_cast<DWORD>( sRv.size() ));
+    DWORD dwLength = ::GetEnvironmentVariable(a_varName.c_str(), &sRv.at(0), static_cast<DWORD>( sRv.size() ));
     xTEST_DIFF(0UL, dwLength);
 
     sRv.resize(dwLength);
 
     if (sRv.size() < dwLength) {
-        dwLength = ::GetEnvironmentVariable(a_csVarName.c_str(), &sRv.at(0), static_cast<DWORD>( sRv.size() ));
+        dwLength = ::GetEnvironmentVariable(a_varName.c_str(), &sRv.at(0), static_cast<DWORD>( sRv.size() ));
         xTEST_DIFF(0UL, dwLength);
     }
 #else
-    const char *pcszRes = ::getenv(a_csVarName.c_str());
+    const char *pcszRes = ::getenv(a_varName.c_str());
     xTEST_PTR(pcszRes);
 
     sRv.assign(pcszRes);
@@ -116,18 +116,18 @@ CxEnvironment::var(
 /* static */
 void_t
 CxEnvironment::setVar(
-    std::ctstring_t &a_csVarName,
-    std::ctstring_t &a_csValue
+    std::ctstring_t &a_varName,
+    std::ctstring_t &a_value
 )
 {
-    xTEST_EQ(true, isVarValid(a_csVarName));
-    xTEST_EQ(true, isVarValid(a_csValue));
+    xTEST_EQ(true, isVarValid(a_varName));
+    xTEST_EQ(true, isVarValid(a_value));
 
 #if xOS_ENV_WIN
-    BOOL blRes = ::SetEnvironmentVariable(a_csVarName.c_str(), a_csValue.c_str());
+    BOOL blRes = ::SetEnvironmentVariable(a_varName.c_str(), a_value.c_str());
     xTEST_DIFF(FALSE, blRes);
 #else
-    int_t iRv = ::setenv(a_csVarName.c_str(), a_csValue.c_str(), true);
+    int_t iRv = ::setenv(a_varName.c_str(), a_value.c_str(), true);
     xTEST_DIFF(- 1, iRv);
 #endif
 }
@@ -135,25 +135,25 @@ CxEnvironment::setVar(
 /* static */
 void_t
 CxEnvironment::deleteVar(
-    std::ctstring_t &a_csVarName
+    std::ctstring_t &a_varName
 )
 {
-    xTEST_NA(a_csVarName);
+    xTEST_NA(a_varName);
 
-    xCHECK_DO(!isExists(a_csVarName), return);
+    xCHECK_DO(!isExists(a_varName), return);
 
 #if     xOS_ENV_WIN
-    BOOL blRes = ::SetEnvironmentVariable(a_csVarName.c_str(), NULL);
+    BOOL blRes = ::SetEnvironmentVariable(a_varName.c_str(), NULL);
     xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        int_t iRv = ::unsetenv(a_csVarName.c_str());
+        int_t iRv = ::unsetenv(a_varName.c_str());
         xTEST_DIFF(- 1, iRv);
     #elif xOS_FREEBSD
-        (void_t)::unsetenv(a_csVarName.c_str());
+        (void_t)::unsetenv(a_varName.c_str());
     #endif
 #elif xOS_ENV_MAC
-    int_t iRv = ::unsetenv(a_csVarName.c_str());
+    int_t iRv = ::unsetenv(a_varName.c_str());
     xTEST_DIFF(- 1, iRv);
 #endif
 }
@@ -161,10 +161,10 @@ CxEnvironment::deleteVar(
 /* static */
 void_t
 CxEnvironment::values(
-    std::vec_tstring_t *a_pvsValues
+    std::vec_tstring_t *a_values
 )
 {
-    xTEST_PTR(a_pvsValues);
+    xTEST_PTR(a_values);
 
     std::vec_tstring_t vsArgs;
 
@@ -193,7 +193,7 @@ CxEnvironment::values(
 #endif
 
     // out
-    a_pvsValues->swap(vsArgs);
+    a_values->swap(vsArgs);
 }
 //--------------------------------------------------------------------------
 /* static */
@@ -268,13 +268,13 @@ CxEnvironment::expandStrings(
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-CxEnvironment::CxEnvironment() {
-
+CxEnvironment::CxEnvironment()
+{
 }
 //------------------------------------------------------------------------------
 /* virtual */
-CxEnvironment::~CxEnvironment() {
-
+CxEnvironment::~CxEnvironment()
+{
 }
 //------------------------------------------------------------------------------
 

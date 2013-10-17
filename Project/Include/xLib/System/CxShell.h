@@ -23,7 +23,7 @@ class CxShell :
 {
 public:
     static bool_t         isAvailable() xWARN_UNUSED_RV;
-    static void_t         execute(std::ctstring_t &csFilePath, std::ctstring_t &csParams);
+    static void_t         execute(std::ctstring_t &filePath, std::ctstring_t &params);
 
 #if   xOS_ENV_WIN
     enum ExOperation
@@ -118,30 +118,30 @@ public:
         sfWindows                = CSIDL_WINDOWS
     };
 
-    static std::tstring_t findExecutable(std::ctstring_t &csFileName,
-                              std::ctstring_t &csFindDirPath) xWARN_UNUSED_RV;
+    static std::tstring_t findExecutable(std::ctstring_t &fileName,
+                              std::ctstring_t &findDirPath) xWARN_UNUSED_RV;
         ///< find executable file path
-    static void_t         execute(const HWND &chOwner, const ExOperation &copOperation,
-                              std::ctstring_t &csFilePath, std::ctstring_t &csParams,
-                              std::ctstring_t &csDir, const EShowFlag &csfShowCmd);
+    static void_t         execute(const HWND &owner, const ExOperation &operation,
+                              std::ctstring_t &filePath, std::ctstring_t &params,
+                              std::ctstring_t &dirPath, const EShowFlag &showCmd);
         ///< execute
-    static void_t         executeEx(SHELLEXECUTEINFO *peiInfo);
+    static void_t         executeEx(SHELLEXECUTEINFO *info);
         ///< execute
-    static void_t         executeHttp(std::ctstring_t &csUrl);
+    static void_t         executeHttp(std::ctstring_t &url);
         ///< execute HTTP
-    static void_t         executeFtp(std::ctstring_t &csUrl);
+    static void_t         executeFtp(std::ctstring_t &url);
         ///< execute FTP
-    static void_t         executeEmail(std::ctstring_t &csToEmail, std::ctstring_t &csSubject,
-                              std::ctstring_t &csBody);
+    static void_t         executeEmail(std::ctstring_t &toEmail, std::ctstring_t &subject,
+                              std::ctstring_t &body);
         ///< execute email
-    static std::tstring_t specialDirPath(const ESpecialDir &csfDir, const HANDLE &chToken)
+    static std::tstring_t specialDirPath(const ESpecialDir &dir, const HANDLE &token)
                               xWARN_UNUSED_RV;
         ///< get special dir path
-    static void_t         createShortcut(std::ctstring_t &csShortCutFilePath,
-                             std::ctstring_t &csFilePath, std::ctstring_t &csWorkingDirectory,
-                             std::ctstring_t &csArguments, const WORD &cwHotKey, cint_t &ciCmdShow,
-                             std::ctstring_t &csIconFilePath, cint_t &ciIconIndex,
-                             std::ctstring_t &csDescription);
+    static void_t         createShortcut(std::ctstring_t &shortCutFilePath,
+                             std::ctstring_t &filePath, std::ctstring_t &workingDirectory,
+                             std::ctstring_t &args, const WORD &hotKey, cint_t &cmdShow,
+                             std::ctstring_t &iconFilePath, cint_t &iconIndex,
+                             std::ctstring_t &description);
         ///< create shortcut
 #endif
 

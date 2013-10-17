@@ -27,20 +27,20 @@ public:
 
     const handle_t & handle() const xWARN_UNUSED_RV;
         ///< get handle
-    void_t           create(clong_t &cliInitialValue, std::ctstring_t &csName);
+    void_t           create(clong_t &initialValue, std::ctstring_t &name);
         ///< create
-    void_t           open(std::ctstring_t &csName);
+    void_t           open(std::ctstring_t &name);
         ///< open
     void_t           post() const;
         ///< release
-    void_t           wait(culong_t &culTimeoutMsec) const;
+    void_t           wait(culong_t &timeoutMsec) const;
         ///< wait
     long_t           value() const xWARN_UNUSED_RV;
         ///< get value
 
 private:
-    handle_t         _m_hHandle;
-    std::tstring_t   _m_sName;
+    handle_t         _handle;
+    std::tstring_t   _name;
 
     bool_t           _isValid() const xWARN_UNUSED_RV;
 };

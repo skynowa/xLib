@@ -18,151 +18,156 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 CxEvent::CxEvent(
-    cbool_t &a_cbIsAutoReset,    ///< is auto reset
-    cbool_t &a_cbIsSignaled      ///< is signaled (false - wait, lock)
+    cbool_t &a_isAutoReset,    ///< is auto reset
+    cbool_t &a_isSignaled      ///< is signaled (false - wait, lock)
 ) :
 #if xOS_ENV_WIN
-    _m_hEvent       (),
+    _event       (),
 #else
-    _m_mtMutex      (),
-    _m_cndCond      (),
-    _m_bIsSignaled  (a_cbIsSignaled),
+    _mutex      (),
+    _cond      (),
+    _isSignaled  (a_isSignaled),
 #endif
-    _m_cbIsAutoReset(a_cbIsAutoReset),
-    _m_cbInitState  (a_cbIsSignaled)
+    _isAutoReset(a_isAutoReset),
+    _initState  (a_isSignaled)
 {
 }
 //------------------------------------------------------------------------------
-CxEvent::~CxEvent() {
+CxEvent::~CxEvent()
+{
 #if xOS_ENV_WIN
     xNA;
 #else
     int_t iRv = - 1;
 
-    iRv = ::pthread_cond_destroy(&_m_cndCond);
+    iRv = ::pthread_cond_destroy(&_cond);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
-    iRv = ::pthread_mutex_destroy(&_m_mtMutex);
+    iRv = ::pthread_mutex_destroy(&_mutex);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 #endif
 }
 //------------------------------------------------------------------------------
 const CxEvent::handle_t &
-CxEvent::handle() const {
+CxEvent::handle() const
+{
 #if xOS_ENV_WIN
-    return _m_hEvent;
+    return _event;
 #else
-    return _m_cndCond;
+    return _cond;
 #endif
 }
 //------------------------------------------------------------------------------
 void_t
-CxEvent::create() {
+CxEvent::create()
+{
 #if xOS_ENV_WIN
-    xTEST_EQ(false, _m_hEvent.isValid());
+    xTEST_EQ(false, _event.isValid());
 
-    HANDLE hRv = ::CreateEvent(NULL, ! _m_cbIsAutoReset, _m_cbInitState, NULL);
+    HANDLE hRv = ::CreateEvent(NULL, ! _isAutoReset, _initState, NULL);
     xTEST_DIFF(static_cast<HANDLE>(NULL), hRv);
 
-    _m_hEvent.set(hRv);
+    _event.set(hRv);
     // n/a
 #else
     int_t iRv = - 1;
 
-    iRv = ::pthread_mutex_init(&_m_mtMutex, NULL);   // mutex not recursive
+    iRv = ::pthread_mutex_init(&_mutex, NULL);   // mutex not recursive
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
-    iRv = ::pthread_cond_init(&_m_cndCond, NULL);
+    iRv = ::pthread_cond_init(&_cond, NULL);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 #endif
 }
 //------------------------------------------------------------------------------
 // NOTE: unblock threads blocked on a condition variable
 void_t
-CxEvent::set() {
+CxEvent::set()
+{
 #if xOS_ENV_WIN
-    xTEST_EQ(true, _m_hEvent.isValid());
+    xTEST_EQ(true, _event.isValid());
 
     BOOL blRes = ::SetEvent(handle().get());
     xTEST_DIFF(FALSE, blRes);
 #else
     int_t iRv = - 1;
 
-    iRv = ::pthread_mutex_lock(&_m_mtMutex);
+    iRv = ::pthread_mutex_lock(&_mutex);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
     {
-        if (_m_cbIsAutoReset) {
-            int_t iRv = ::pthread_cond_signal(&_m_cndCond);
+        if (_isAutoReset) {
+            int_t iRv = ::pthread_cond_signal(&_cond);
             xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
         } else {
-            int_t iRv = ::pthread_cond_broadcast(&_m_cndCond);
+            int_t iRv = ::pthread_cond_broadcast(&_cond);
             xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
         }
 
-        _m_bIsSignaled = true;
+        _isSignaled = true;
     }
 
-    iRv = ::pthread_mutex_unlock(&_m_mtMutex);
+    iRv = ::pthread_mutex_unlock(&_mutex);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 #endif
 }
 //------------------------------------------------------------------------------
 void_t
-CxEvent::reset() {
+CxEvent::reset()
+{
 #if xOS_ENV_WIN
-    xTEST_EQ(true, _m_hEvent.isValid());
+    xTEST_EQ(true, _event.isValid());
 
     BOOL blRes = ::ResetEvent(handle().get());
     xTEST_DIFF(FALSE, blRes);
 #else
     int_t iRv = - 1;
 
-    iRv = ::pthread_mutex_lock(&_m_mtMutex);
+    iRv = ::pthread_mutex_lock(&_mutex);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
     {
-        _m_bIsSignaled = false;
+        _isSignaled = false;
     }
 
-    iRv = ::pthread_mutex_unlock(&_m_mtMutex);
+    iRv = ::pthread_mutex_unlock(&_mutex);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 #endif
 }
 //------------------------------------------------------------------------------
 CxEvent::ExObjectState
 CxEvent::wait(
-    culong_t &a_culTimeout /* = xTIMEOUT_INFINITE */  ///< in milliseconds
+    culong_t &a_timeoutMs /* = xTIMEOUT_INFINITE */  ///< in milliseconds
 )
 {
-    // culTimeout - n/a
+    // timeoutMs - n/a
 
     ExObjectState osRes = osFailed;
 
 #if xOS_ENV_WIN
-    xTEST_EQ(true, _m_hEvent.isValid());
+    xTEST_EQ(true, _event.isValid());
 
-    osRes = static_cast<ExObjectState>( ::WaitForSingleObject(handle().get(), a_culTimeout) );
+    osRes = static_cast<ExObjectState>( ::WaitForSingleObject(handle().get(), a_timeoutMs) );
 #else
     int_t iRv = - 1;
 
-    iRv = ::pthread_mutex_lock(&_m_mtMutex);
+    iRv = ::pthread_mutex_lock(&_mutex);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
     {
         int_t iRv = 0;
 
-        // if (!_m_bIsSignaled) {
+        // if (!_isSignaled) {
             timespec tsTimeoutMs = {0};
 
-            if (xTIMEOUT_INFINITE != a_culTimeout) {
+            if (xTIMEOUT_INFINITE != a_timeoutMs) {
                 timeval tvNow  = {0};
 
                 iRv = ::gettimeofday(&tvNow, NULL);
                 xTEST_DIFF(- 1, iRv);
 
-                tsTimeoutMs.tv_sec  = tvNow.tv_sec + a_culTimeout / 1000;
-                tsTimeoutMs.tv_nsec = tvNow.tv_usec * 1000 + (a_culTimeout % 1000) * 1000000;
+                tsTimeoutMs.tv_sec  = tvNow.tv_sec + a_timeoutMs / 1000;
+                tsTimeoutMs.tv_nsec = tvNow.tv_usec * 1000 + (a_timeoutMs % 1000) * 1000000;
 
                 // handle overflow
                 if (tsTimeoutMs.tv_nsec >= 1000000000) {
@@ -175,13 +180,13 @@ CxEvent::wait(
 
             // wait until condition thread returns control
             do {
-                if (xTIMEOUT_INFINITE == a_culTimeout) {
-                    iRv = ::pthread_cond_wait     (&_m_cndCond, &_m_mtMutex);
+                if (xTIMEOUT_INFINITE == a_timeoutMs) {
+                    iRv = ::pthread_cond_wait     (&_cond, &_mutex);
                 } else {
-                    iRv = ::pthread_cond_timedwait(&_m_cndCond, &_m_mtMutex, &tsTimeoutMs);
+                    iRv = ::pthread_cond_timedwait(&_cond, &_mutex, &tsTimeoutMs);
                 }
             }
-            while (!iRv && !_m_bIsSignaled);
+            while (!iRv && !_isSignaled);
         // } else {
         //    iRv = 0;
         // }
@@ -190,8 +195,8 @@ CxEvent::wait(
         // adjust signaled member
         switch (iRv) {
             case 0:
-                if (_m_cbIsAutoReset) {
-                    _m_bIsSignaled = false;
+                if (_isAutoReset) {
+                    _isSignaled = false;
                 }
 
                 osRes = osSignaled;
@@ -199,18 +204,18 @@ CxEvent::wait(
             case ETIMEDOUT:
                 osRes = osTimeout;
 
-                if (_m_cbIsAutoReset) {
-                    _m_bIsSignaled = false;
+                if (_isAutoReset) {
+                    _isSignaled = false;
                 } else {
-                    osRes = _m_cbInitState ? osSignaled : osTimeout;
-                    _m_bIsSignaled = _m_cbInitState;
+                    osRes = _initState ? osSignaled : osTimeout;
+                    _isSignaled = _initState;
                 }
                 break;
         }
 
     }
 
-    iRv = ::pthread_mutex_unlock(&_m_mtMutex);
+    iRv = ::pthread_mutex_unlock(&_mutex);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 #endif
 
@@ -220,7 +225,8 @@ CxEvent::wait(
 }
 //------------------------------------------------------------------------------
 bool_t
-CxEvent::isSignaled() {
+CxEvent::isSignaled()
+{
     // n/a
 
     bool_t bRv = false;
@@ -229,9 +235,9 @@ CxEvent::isSignaled() {
     DWORD dwRv = ::WaitForSingleObject(handle().get(), 0UL);
     // n/a
 
-    bRv = (_m_hEvent.isValid() && osSignaled == dwRv);
+    bRv = (_event.isValid() && osSignaled == dwRv);
 #else
-    bRv = _m_bIsSignaled;
+    bRv = _isSignaled;
 #endif
 
     return bRv;

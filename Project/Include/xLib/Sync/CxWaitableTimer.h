@@ -33,7 +33,7 @@ public:
     void_t   wait(culong_t &ulTimeout) const;
 
 private:
-    CxHandle _m_hHandle;
+    CxHandle _handle;
 };
 
 xNAMESPACE_END(NxLib)

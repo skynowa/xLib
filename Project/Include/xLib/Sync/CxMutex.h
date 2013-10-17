@@ -39,7 +39,7 @@ public:
         ///< unlock
 
 private:
-    handle_t         _m_hHandle;   ///< mutex native handle
+    handle_t         _handle;   ///< mutex native handle
 };
 //------------------------------------------------------------------------------
 xNAMESPACE_END(NxLib)

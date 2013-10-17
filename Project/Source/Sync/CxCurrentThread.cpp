@@ -18,16 +18,16 @@ xNAMESPACE_BEGIN(NxLib)
 /* static */
 bool_t
 CxCurrentThread::isCurrent(
-    const CxThread::id_t &a_culId
+    const CxThread::id_t &a_id
 )
 {
     bool_t bRv = false;
 
 #if xOS_ENV_WIN
-    bRv = (id() == a_culId);
+    bRv = (id() == a_id);
 #else
     //TODO: If either thread1 or thread2 are not valid thread IDs, the behavior is undefined
-    bRv = ::pthread_equal(id(), a_culId);
+    bRv = ::pthread_equal(id(), a_id);
 #endif
 
     return bRv;
@@ -35,7 +35,8 @@ CxCurrentThread::isCurrent(
 //------------------------------------------------------------------------------
 /* static */
 CxThread::id_t
-CxCurrentThread::id() {
+CxCurrentThread::id()
+{
     // n/a
 
     CxThread::id_t ulRv = 0UL;
@@ -53,7 +54,8 @@ CxCurrentThread::id() {
 //------------------------------------------------------------------------------
 /* static */
 CxThread::handle_t
-CxCurrentThread::handle() {
+CxCurrentThread::handle()
+{
     // n/a
 
     CxThread::handle_t hRv;
@@ -71,7 +73,8 @@ CxCurrentThread::handle() {
 //------------------------------------------------------------------------------
 /* static */
 void_t
-CxCurrentThread::yield() {
+CxCurrentThread::yield()
+{
     // n/a
 
 #if xOS_ENV_WIN
@@ -85,18 +88,19 @@ CxCurrentThread::yield() {
 /* static */
 void_t
 CxCurrentThread::sleep(
-    culong_t &a_culMsec
-) {
+    culong_t &a_timeoutMs
+)
+{
     // n/a
 
 #if xOS_ENV_WIN
-    (void_t)::Sleep(a_culMsec);
+    (void_t)::Sleep(a_timeoutMs);
 #else
     timespec tsSleep  = {0};
     timespec tsRemain = {0};
 
-    tsSleep.tv_sec  = a_culMsec / 1000;
-    tsSleep.tv_nsec = (a_culMsec % 1000) * (1000 * 1000);
+    tsSleep.tv_sec  = a_timeoutMs / 1000;
+    tsSleep.tv_nsec = (a_timeoutMs % 1000) * (1000 * 1000);
 
     xFOREVER {
         int_t iRv = ::nanosleep(&tsSleep, &tsRemain);
@@ -116,13 +120,13 @@ CxCurrentThread::sleep(
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-CxCurrentThread::CxCurrentThread() {
-
+CxCurrentThread::CxCurrentThread()
+{
 }
 //------------------------------------------------------------------------------
 /* virtual */
-CxCurrentThread::~CxCurrentThread() {
-
+CxCurrentThread::~CxCurrentThread()
+{
 }
 //------------------------------------------------------------------------------
 
