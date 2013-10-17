@@ -19,7 +19,7 @@ public:
    virtual ~CxMimeBody();
 
 private:
-    std::mmap_tstring_t _m_mmsBody;
+    std::mmap_tstring_t _body;
 };
 
 xNAMESPACE_END(NxLib)

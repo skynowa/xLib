@@ -10,8 +10,8 @@
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxMimeHeader;
-class CxMimeBody;
+class CxMimeheader;
+class CxMimebody;
 
 class CxMimeMessage :
     private CxNonCopyable
@@ -21,12 +21,12 @@ public:
                    CxMimeMessage();
     virtual       ~CxMimeMessage();
 
-    static void_t  parse(std::ctstring_t &csRawMessage, CxMimeHeader &Header, CxMimeBody &Body);
-    static void_t  loadFromRawFile(std::ctstring_t &csFilePath); // csFilePath - raw msg
-    static void_t  saveToRawFile(std::ctstring_t &csFilePath); // csFilePath - raw msg
+    static void_t  parse(std::ctstring_t &rawMessage, CxMimeheader &header, CxMimebody &body);
+    static void_t  loadFromRawFile(std::ctstring_t &filePath); // filePath - raw msg
+    static void_t  saveToRawFile(std::ctstring_t &filePath); // filePath - raw msg
 
 private:
-    std::tstring_t _m_csRawMessage;
+    std::tstring_t _rawMessage;
 };
 
 xNAMESPACE_END(NxLib)

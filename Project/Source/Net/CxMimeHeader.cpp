@@ -15,26 +15,26 @@
 xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
-std::ctstring_t CxMimeHeader::_ms_csAttrDelimiter = xT(":");
-std::ctstring_t CxMimeHeader::_ms_csEndOfHeader   = xT("\r\n\r\n");
-std::ctstring_t CxMimeHeader::_ms_csEndOfLine     = xT("\r\n");
+std::ctstring_t CxMimeHeader::_attrDelimiter = xT(":");
+std::ctstring_t CxMimeHeader::_endOfHeader   = xT("\r\n\r\n");
+std::ctstring_t CxMimeHeader::_endOfLine     = xT("\r\n");
 //------------------------------------------------------------------------------
 //DONE: CxMimeHeader
 CxMimeHeader::CxMimeHeader() :
-    _m_mmsHeader()
+    _header()
 {
 }
 //------------------------------------------------------------------------------
 //DONE: ~CxMimeHeader
 /* virtual */
-CxMimeHeader::~CxMimeHeader () {
-
+CxMimeHeader::~CxMimeHeader()
+{
 }
 //------------------------------------------------------------------------------
 //DONE: bParse (��������� ��������� ������� "TOP 10 0" �� ��������, ��������)
 void_t
 CxMimeHeader::parse(
-    std::ctstring_t &a_csRawHeader
+    std::ctstring_t &a_rawHeader
 )
 {
 #if xTODO
@@ -62,7 +62,7 @@ CxMimeHeader::parse(
     */
 
     std::vec_tstring_t vsHeader;
-    _m_bRes = CxString::bSplit(csRawHeader, _ms_csEndOfLine, &vsHeader);
+    _m_bRes = CxString::bSplit(rawHeader, _endOfLine, &vsHeader);
     //TODO:
 
     //-------------------------------------
@@ -108,7 +108,7 @@ CxMimeHeader::parse(
     for (size_t i = 0; i < vsHeader.size(); i ++) {
         std::vec_tstring_t vsLines;
         //--vsLines = vsSplit(": ", vsHeader.at(i));
-        _m_bRes = CxString::bSplitKeyValue(vsHeader.at(i), _ms_csAttrDelimiter, &vsLines);
+        _m_bRes = CxString::bSplitKeyValue(vsHeader.at(i), _attrDelimiter, &vsLines);
         xTEST_EQ(true, _m_bRes,           false);
         xTEST_EQ(false, vsLines.empty(), false);
 
@@ -116,7 +116,7 @@ CxMimeHeader::parse(
         std::tstring_t sKey   = CxString::trimSpace(vsLines.at(0));
         std::tstring_t sValue = CxString::trimSpace(vsLines.at(1));
 
-        _m_mmsHeader.insert(std::pair<std::tstring_t, std::tstring_t>(sKey, sValue));
+        _header.insert(std::pair<std::tstring_t, std::tstring_t>(sKey, sValue));
     }
 #endif
 }
@@ -124,15 +124,15 @@ CxMimeHeader::parse(
 //DONE: sGetField
 std::tstring_t
 CxMimeHeader::field(
-    std::ctstring_t &a_csName
+    std::ctstring_t &a_name
 )
 {
-    xTEST_EQ(false, _m_mmsHeader.empty());
-    xTEST_EQ(false, a_csName.empty());
+    xTEST_EQ(false, _header.empty());
+    xTEST_EQ(false, a_name.empty());
 
     std::tstring_t sRv;
 
-    std::pair<std::mmap_tstring_t::const_iterator, std::mmap_tstring_t::const_iterator> prEqualRange = _m_mmsHeader.equal_range(a_csName);
+    std::pair<std::mmap_tstring_t::const_iterator, std::mmap_tstring_t::const_iterator> prEqualRange = _header.equal_range(a_name);
 
     std::mmap_tstring_t::const_iterator it;
     for (it = prEqualRange.first; it != prEqualRange.second; ++ it) {
@@ -144,20 +144,21 @@ CxMimeHeader::field(
 //------------------------------------------------------------------------------
 //DONE: uiCount
 size_t
-CxMimeHeader::count() {
-    return _m_mmsHeader.size();
+CxMimeHeader::count()
+{
+    return _header.size();
 }
 //------------------------------------------------------------------------------
 //TODO:  bLoadFromFile
 #if xTODO
     bool_t
-    CxMimeHeader::bLoadFromFile(std::ctstring_t &csFilePath) {
-     xTEST_EQ(false, csFilePath.empty(),                 false);
-     xTEST_EQ(true, CxFile::isExists(csFilePath), false);
+    CxMimeHeader::bLoadFromFile(std::ctstring_t &filePath) {
+     xTEST_EQ(false, filePath.empty(),                 false);
+     xTEST_EQ(true, CxFile::isExists(filePath), false);
 
      std::tstring_t sUknownEmail("Uknown@Uknown.Uknown");
      std::tstring_t sLine("");
-     std::ifstream  ifsStream(csFilePath.c_str());
+     std::ifstream  ifsStream(filePath.c_str());
      xTEST_EQ(true,  !! ifsStream);
      xTEST_EQ(false, ifsStream.fail());
      xTEST_EQ(true,  ifsStream.good());
@@ -171,7 +172,7 @@ CxMimeHeader::count() {
          //���� �� ������ csFrom (From:)
          if (std::tstring_t::npos != sLine.find(csFrom + ":")) {
              //From: ����<test_1@localhost>
-             return sReplaceAll(vsSplit(_ms_csAttrDelimiter, sLine).at(1), " ", "");    //Uknown@Uknown.Uknown!!!!!!!!!!!
+             return sReplaceAll(vsSplit(_attrDelimiter, sLine).at(1), " ", "");    //Uknown@Uknown.Uknown!!!!!!!!!!!
          }
 
          //������ �� "\r\n\r\n" (����� ������)
@@ -193,11 +194,11 @@ CxMimeHeader::count() {
 
 void_t
 CxMimeHeader::loadFromFile(
-    std::ctstring_t &a_csRawMessageFilePath
+    std::ctstring_t &a_rawMessageFilePath
 )
 {
-    xTEST_EQ(false, a_csRawMessageFilePath.empty());
-    xTEST_EQ(true, CxFile::isExists(a_csRawMessageFilePath));
+    xTEST_EQ(false, a_rawMessageFilePath.empty());
+    xTEST_EQ(true, CxFile::isExists(a_rawMessageFilePath));
 
     std::tstring_t sRawHeader;
     std::tstring_t sLine;
@@ -208,7 +209,7 @@ CxMimeHeader::loadFromFile(
 
     //-------------------------------------
     //������ ���������� ����� � ������ �� ����� ������ (\r\n\r\n - ������ ������)
-    std::tifstream_t ifsStream(a_csRawMessageFilePath.c_str());
+    std::tifstream_t ifsStream(a_rawMessageFilePath.c_str());
     xTEST_EQ(true, !! ifsStream);
     xTEST_EQ(false, ifsStream.fail());
     xTEST_EQ(true,  ifsStream.good());
@@ -222,7 +223,7 @@ CxMimeHeader::loadFromFile(
         //������ �� "\r\n\r\n" (����� ������)
         xCHECK_DO(sLine.empty(), break);
 
-        sRawHeader.append(sLine + _ms_csEndOfLine);
+        sRawHeader.append(sLine + _endOfLine);
     }
 
     //-------------------------------------
@@ -233,7 +234,7 @@ CxMimeHeader::loadFromFile(
 //TODO: bSaveToFile
 void_t
 CxMimeHeader::saveToFile(
-    std::ctstring_t &a_csFilePath
+    std::ctstring_t &a_filePath
 )
 {
     xNOT_IMPLEMENTED;
@@ -242,7 +243,8 @@ CxMimeHeader::saveToFile(
 //TODO: sGenerateMessageID (������� Message-ID ��� "<", ">")
 /* static */
 std::tstring_t
-CxMimeHeader::generateMessageID() {
+CxMimeHeader::generateMessageID()
+{
     std::tstring_t sRv;
 
     sRv = CxString::format(xT("%s@%s"), CxString::createGuid().c_str(), CxSystemInfo::hostName().c_str());
