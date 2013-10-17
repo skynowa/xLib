@@ -20,37 +20,36 @@ xNAMESPACE_BEGIN(NxLib)
 //------------------------------------------------------------------------------
 //DONE: CxUri
 CxUri::CxUri() :
-    _m_sScheme   (),
-    _m_sAuthority(),
-    _m_sUserInfo (),
-    _m_sHost     (),
-    _m_usPort    (0),
-    _m_sPath     (),
-    _m_sQuery    (),
-    _m_sFragment ()
+    _scheme   (),
+    _authority(),
+    _userInfo (),
+    _host     (),
+    _port    (0),
+    _path     (),
+    _query    (),
+    _fragment ()
 {
-
 }
 //------------------------------------------------------------------------------
 //DONE: CxUri
 CxUri::CxUri(
-    std::ctstring_t &a_csUri
+    std::ctstring_t &a_uri
 ) :
-    _m_sScheme   (),
-    _m_sAuthority(),
-    _m_sUserInfo (),
-    _m_sHost     (),
-    _m_usPort    (0),
-    _m_sPath     (),
-    _m_sQuery    (),
-    _m_sFragment ()
+    _scheme   (),
+    _authority(),
+    _userInfo (),
+    _host     (),
+    _port    (0),
+    _path     (),
+    _query    (),
+    _fragment ()
 {
-    _parse(a_csUri);
+    _parse(a_uri);
 }
 //------------------------------------------------------------------------------
 //DONE: ~CxUri
-CxUri::~CxUri() {
-
+CxUri::~CxUri()
+{
 }
 //------------------------------------------------------------------------------
 //TODO: uri
@@ -77,9 +76,8 @@ tel    : +1-816-555-1212
 telnet : //192.0.2.16:80/
 */
 std::tstring_t
-CxUri::uri() const {
-
-
+CxUri::uri() const
+{
     std::tstring_t sRv;
     std::tstring_t sTemp;
 
@@ -117,149 +115,177 @@ CxUri::uri() const {
 }
 void_t
 CxUri::setUri(
-    std::ctstring_t &a_csScheme,
-    std::ctstring_t &a_csAuthority,
-    std::ctstring_t &a_csPath,
-    std::ctstring_t &a_csQuery,
-    std::ctstring_t &a_csFragment
+    std::ctstring_t &a_scheme,
+    std::ctstring_t &a_authority,
+    std::ctstring_t &a_path,
+    std::ctstring_t &a_query,
+    std::ctstring_t &a_fragment
 )
 {
-
-
-    setScheme   (a_csScheme);
-    setAuthority(a_csAuthority);
-    setPath     (a_csPath);
-    setQuery    (a_csQuery);
-    setFragment (a_csFragment);
+    setScheme   (a_scheme);
+    setAuthority(a_authority);
+    setPath     (a_path);
+    setQuery    (a_query);
+    setFragment (a_fragment);
 }
 //------------------------------------------------------------------------------
 //TODO: scheme
 std::tstring_t
-CxUri::scheme() const {
-    return encodeComponent(_m_sScheme);
+CxUri::scheme() const
+{
+    return encodeComponent(_scheme);
 }
 void_t
 CxUri::setScheme(
-    std::ctstring_t &csScheme
+    std::ctstring_t &scheme
 )
 {
-    _m_sScheme = decodeComponent(csScheme);
+    _scheme = decodeComponent(scheme);
 }
 //------------------------------------------------------------------------------
 //DONE: authority
 std::tstring_t
-CxUri::authority() const {
+CxUri::authority() const
+{
     std::tstring_t sTempAuthority;
 
     sTempAuthority += xT("//");
 
-    if (!_m_sUserInfo.empty()) {
-        sTempAuthority += _m_sUserInfo;
+    if (!_userInfo.empty()) {
+        sTempAuthority += _userInfo;
         sTempAuthority += xT("@");
     }
 
-    if (!_m_sHost.empty()) {
-        sTempAuthority += _m_sHost;
+    if (!_host.empty()) {
+        sTempAuthority += _host;
     }
 
-    if (0 < _m_usPort && !_isDefaultPort()) {
+    if (0 < _port && !_isDefaultPort()) {
         sTempAuthority += xT(":");
-        sTempAuthority += CxString::cast(_m_usPort);
+        sTempAuthority += CxString::cast(_port);
     }
 
-    return encodeComponent(sTempAuthority/*_m_sAuthority*/);
+    return encodeComponent(sTempAuthority/*_authority*/);
 }
 void_t
-CxUri::setAuthority(std::ctstring_t &csAuthority) {
-    _m_sAuthority = decodeComponent(csAuthority);
+CxUri::setAuthority(
+    std::ctstring_t &authority
+)
+{
+    _authority = decodeComponent(authority);
 }
 //------------------------------------------------------------------------------
 //DONE: userInfo
 std::tstring_t
-CxUri::userInfo() const {
-    return encodeComponent(_m_sUserInfo);
+CxUri::userInfo() const
+{
+    return encodeComponent(_userInfo);
 }
 void_t
-CxUri::setUserInfo(std::ctstring_t &csUserInfo) {
-    _m_sUserInfo = decodeComponent(csUserInfo);
+CxUri::setUserInfo(
+    std::ctstring_t &userInfo
+)
+{
+    _userInfo = decodeComponent(userInfo);
 
     //TODO: bSetAuthority
 }
 //------------------------------------------------------------------------------
 //DONE: host
 std::tstring_t
-CxUri::host() const {
-    return encodeComponent(_m_sHost);
+CxUri::host() const
+{
+    return encodeComponent(_host);
 }
 void_t
-CxUri::setHost(std::ctstring_t &csHost) {
-    _m_sHost = decodeComponent(csHost);
+CxUri::setHost(
+    std::ctstring_t &host
+)
+{
+    _host = decodeComponent(host);
 
     //TODO: bSetAuthority
 }
 //------------------------------------------------------------------------------
 //DONE: port
 ushort_t
-CxUri::port() {
-    return _m_usPort;
+CxUri::port()
+{
+    return _port;
 }
 void_t
-CxUri::setPort(cushort_t &cusPort) {
-    _m_usPort = cusPort;
+CxUri::setPort(
+    cushort_t &port
+)
+{
+    _port = port;
 
     //TODO: bSetAuthority
 }
 //------------------------------------------------------------------------------
 //DONE: path
 std::tstring_t
-CxUri::path() const {
-    return encodeComponent(_m_sPath);
+CxUri::path() const
+{
+    return encodeComponent(_path);
 }
 void_t
-CxUri::setPath(std::ctstring_t &csPath) {
-    _m_sPath = decodeComponent(csPath);
+CxUri::setPath(
+    std::ctstring_t &path
+)
+{
+    _path = decodeComponent(path);
 }
 //------------------------------------------------------------------------------
 //DONE: query
 std::tstring_t
-CxUri::query() const {
-    return encodeComponent(_m_sQuery);
+CxUri::query() const
+{
+    return encodeComponent(_query);
 }
 void_t
-CxUri::setQuery(std::ctstring_t &csQuery) {
-    _m_sQuery = decodeComponent(csQuery);
+CxUri::setQuery(
+    std::ctstring_t &query
+)
+{
+    _query = decodeComponent(query);
 }
 //------------------------------------------------------------------------------
 //DONE: fragment
 std::tstring_t
-CxUri::fragment() const {
-    return encodeComponent(_m_sFragment);
+CxUri::fragment() const
+{
+    return encodeComponent(_fragment);
 }
 void_t
-CxUri::setFragment(std::ctstring_t &csFragment) {
-    _m_sFragment = decodeComponent(csFragment);
+CxUri::setFragment(
+    std::ctstring_t &fragment
+)
+{
+    _fragment = decodeComponent(fragment);
 }
 //------------------------------------------------------------------------------
 //DONE: bClear ()
 void_t
-CxUri::clear() {
+CxUri::clear()
+{
     ////bool_t bRv = false;
 
-    _m_sScheme.clear();
-    _m_sAuthority.clear();
-    _m_sUserInfo.clear();
-    _m_sHost.clear();
-    _m_usPort = 0;
-    _m_sPath.clear();
-    _m_sQuery.clear();
-    _m_sFragment.clear();
+    _scheme.clear();
+    _authority.clear();
+    _userInfo.clear();
+    _host.clear();
+    _port = 0;
+    _path.clear();
+    _query.clear();
+    _fragment.clear();
 }
 //------------------------------------------------------------------------------
 //TODO: escape ()
 /* static */
 std::tstring_t
 CxUri::escape(
-    std::ctstring_t &csUri
+    std::ctstring_t &uri
 )
 {
 
@@ -291,7 +317,7 @@ CxUri::escape(
 
     std::tstring_t sRv;
 
-    sRv = csUri;
+    sRv = uri;
 
 
 
@@ -302,7 +328,7 @@ CxUri::escape(
 /* static */
 std::tstring_t
 CxUri::unescape(
-    std::ctstring_t &csUri
+    std::ctstring_t &uri
 )
 {
 
@@ -319,12 +345,12 @@ CxUri::unescape(
 /* static */
 std::tstring_t
 CxUri::encodeComponent(
-    std::ctstring_t &a_csUri
+    std::ctstring_t &a_uri
 )
 {
     std::tstring_t sRv;
 
-    xFOREACH_CONST(std::tstring_t, it, a_csUri) {
+    xFOREACH_CONST(std::tstring_t, it, a_uri) {
         tchar_t c = *it;
 
         if (
@@ -361,27 +387,27 @@ CxUri::encodeComponent(
 /* static */
 std::tstring_t
 CxUri::decodeComponent(
-    std::ctstring_t &a_csUri
+    std::ctstring_t &a_uri
 )
 {
     std::tstring_t sRv;
 
-    std::tstring_t::const_iterator it  = a_csUri.begin();
-    std::tstring_t::const_iterator end = a_csUri.end();
+    std::tstring_t::const_iterator it  = a_uri.begin();
+    std::tstring_t::const_iterator end = a_uri.end();
 
     while (it != end) {
         tchar_t c = *it ++;
 
         if (c == '%') {
             if (it == end) {
-                //throw SyntaxException("URI encoding: no hex digit following percent sign", csUri);
+                //throw SyntaxException("URI encoding: no hex digit following percent sign", uri);
                 xTEST_FAIL;
             }
 
             tchar_t hi = *it ++;
 
             if (it == end) {
-                //throw SyntaxException("URI encoding: two hex digits must follow percent sign", csUri);
+                //throw SyntaxException("URI encoding: two hex digits must follow percent sign", uri);
                 xTEST_FAIL;
             }
 
@@ -458,7 +484,7 @@ telnet : //192.0.2.16:80/
 */
 void_t
 CxUri::_parse(
-    std::ctstring_t &a_csUri
+    std::ctstring_t &a_uri
 )
 {
     //Normilize();
@@ -469,11 +495,11 @@ CxUri::_parse(
     //[scheme] - [foo]
     //[INPUT]     - foo://userinfo@example.com:8042/over/there?name=ferret#nose
     size_t uiSchemeStart = 0;
-    size_t uiSchemeEnd   = a_csUri.find_first_of(CxConst::xCOLON);
+    size_t uiSchemeEnd   = a_uri.find_first_of(CxConst::xCOLON);
     xTEST_DIFF(std::tstring_t::npos, uiSchemeEnd);
     xTEST_GR(size_t(7U)/*SCHEME_MAX_SIZE + 1*/, uiSchemeEnd);
 
-    _m_sScheme = CxString::cut(a_csUri, uiSchemeStart, uiSchemeEnd);
+    _scheme = CxString::cut(a_uri, uiSchemeStart, uiSchemeEnd);
 
     //-------------------------------------
     //[authority] - [example.com:8042]
@@ -482,110 +508,110 @@ CxUri::_parse(
 
     //���� ����� [:] ���� [//] - ����������
     size_t uiSlashCount = 0;
-    while ('/' == a_csUri.at(uiAuthorityStart + uiSlashCount)) {
+    while ('/' == a_uri.at(uiAuthorityStart + uiSlashCount)) {
         uiSlashCount ++;
     }
 
-    size_t uiAuthorityEnd = a_csUri.find_first_of(xT("/?#"), uiAuthorityStart + uiSlashCount); //or by the end
+    size_t uiAuthorityEnd = a_uri.find_first_of(xT("/?#"), uiAuthorityStart + uiSlashCount); //or by the end
 
     if (std::tstring_t::npos == uiAuthorityEnd) {
-        uiAuthorityEnd = a_csUri.size();
+        uiAuthorityEnd = a_uri.size();
     }
 
-    _m_sAuthority = CxString::cut(a_csUri, uiAuthorityStart /*+ uiSlashCount*/, uiAuthorityEnd);
+    _authority = CxString::cut(a_uri, uiAuthorityStart /*+ uiSlashCount*/, uiAuthorityEnd);
 
     //-------------------------------------
-    //[_m_sUserInfo] - [userinfo]
+    //[_userInfo] - [userinfo]
     //[INPUT]        - userinfo@example.com:8042
     size_t uiUserInfoStart = 0 + uiSlashCount;
-    size_t uiUserInfoEnd   = _m_sAuthority.find_first_of(xT("@"), uiUserInfoStart);
+    size_t uiUserInfoEnd   = _authority.find_first_of(xT("@"), uiUserInfoStart);
 
     if (std::tstring_t::npos != uiUserInfoEnd) {
-        _m_sUserInfo = CxString::cut(_m_sAuthority, uiUserInfoStart, uiUserInfoEnd);
+        _userInfo = CxString::cut(_authority, uiUserInfoStart, uiUserInfoEnd);
     }
 
     //-------------------------------------
-    //[_m_sHost] - [example.com]
+    //[_host] - [example.com]
     //[INPUT]    -  userinfo@example.com:8042
-    size_t uiHostStart = _m_sAuthority.find_first_of(xT("@"));
-    size_t uiHostEnd   = _m_sAuthority.find_first_of(xT(":"));
+    size_t uiHostStart = _authority.find_first_of(xT("@"));
+    size_t uiHostEnd   = _authority.find_first_of(xT(":"));
 
     if (std::tstring_t::npos != uiHostStart) {
         //���� ��� �����
         if (std::tstring_t::npos == uiHostEnd) {
-            uiHostEnd = _m_sAuthority.size();
+            uiHostEnd = _authority.size();
         }
 
-        _m_sHost = CxString::cut(_m_sAuthority, uiHostStart + 1/*"@"*/, uiHostEnd);
+        _host = CxString::cut(_authority, uiHostStart + 1/*"@"*/, uiHostEnd);
     }
 
     //-------------------------------------
     //[_sPort] - [8042]
     //[INPUT]  -  userinfo@example.com:8042
-    size_t uiPortStart = _m_sAuthority.find_first_of(xT(":"));
-    size_t uiPortEnd   = _m_sAuthority.size();
+    size_t uiPortStart = _authority.find_first_of(xT(":"));
+    size_t uiPortEnd   = _authority.size();
 
     if (std::tstring_t::npos != uiPortStart) {
-        std::tstring_t sPort = CxString::cut(_m_sAuthority, uiPortStart + 1/*":"*/, uiPortEnd);
-        _m_usPort = CxString::cast<ushort_t>(sPort);
+        std::tstring_t sPort = CxString::cut(_authority, uiPortStart + 1/*":"*/, uiPortEnd);
+        _port = CxString::cast<ushort_t>(sPort);
     }
-    if (0 == _m_usPort) {
-        _m_usPort = _defaultPort();
+    if (0 == _port) {
+        _port = _defaultPort();
     }
 
     //-------------------------------------
-    //[_m_sHost] - [example.com] - ������ ������
+    //[_host] - [example.com] - ������ ������
     //[INPUT]    -  userinfo@example.com:8042
-    size_t uiAuthorityChars = _m_sAuthority.find_first_of(xT("@:"));
+    size_t uiAuthorityChars = _authority.find_first_of(xT("@:"));
 
-    //���� � Authority ��� "@:" - _m_sHost ��� Authority ��� "//"
+    //���� � Authority ��� "@:" - _host ��� Authority ��� "//"
     if (std::tstring_t::npos == uiAuthorityChars) {
-        _m_sHost = CxString::trimChars(_m_sAuthority, xT("/"));
+        _host = CxString::trimChars(_authority, xT("/"));
     }
 
     //-------------------------------------
-    //[_m_sPath] - [/over/there?]
+    //[_path] - [/over/there?]
     //[INPUT]     - foo://userinfo@example.com:8042/over/there?name=ferret#nose
     size_t uiPathStart = uiAuthorityEnd;
-    size_t uiPathEnd   = a_csUri.find_first_of(xT("?#"), uiPathStart);  //or by the end
+    size_t uiPathEnd   = a_uri.find_first_of(xT("?#"), uiPathStart);  //or by the end
 
     if (std::tstring_t::npos == uiPathEnd) {
-        uiPathEnd = a_csUri.size();
+        uiPathEnd = a_uri.size();
     }
 
-    _m_sPath = CxString::cut(a_csUri, uiPathStart, uiPathEnd);
+    _path = CxString::cut(a_uri, uiPathStart, uiPathEnd);
 
     //-------------------------------------
-    //[_m_sQuery] - [name=ferret]
+    //[_query] - [name=ferret]
     //[INPUT]     - foo://userinfo@example.com:8042/over/there?name=ferret#nose
     size_t uiQueryStart = uiPathEnd;
-    size_t uiQueryEnd   = a_csUri.find_first_of(xT("#"), uiQueryStart);
+    size_t uiQueryEnd   = a_uri.find_first_of(xT("#"), uiQueryStart);
 
     if (std::tstring_t::npos == uiQueryEnd) {
-        uiQueryEnd = a_csUri.size();
+        uiQueryEnd = a_uri.size();
     }
 
-    _m_sQuery = CxString::cut(a_csUri, uiQueryStart + 1/*"?"*/, uiQueryEnd);
+    _query = CxString::cut(a_uri, uiQueryStart + 1/*"?"*/, uiQueryEnd);
 
     //-------------------------------------
-    //[_m_sFragment] - [nose]
+    //[_fragment] - [nose]
     //[INPUT]     - foo://userinfo@example.com:8042/over/there?name=ferret#nose
     size_t uiFragmentStart = uiQueryEnd + std::tstring_t(xT("#")).size();
-    size_t uiFragmentEnd   = a_csUri.size();                        //by the end
+    size_t uiFragmentEnd   = a_uri.size();                        //by the end
 
-    _m_sFragment = CxString::cut(a_csUri, uiFragmentStart, uiFragmentEnd);
+    _fragment = CxString::cut(a_uri, uiFragmentStart, uiFragmentEnd);
 }
 //------------------------------------------------------------------------------
 //TODO: _bNormilize ()
 void_t
 CxUri::_normilize(
-    std::ctstring_t &a_csUri
+    std::ctstring_t &a_uri
 )
 {
     ////bool_t bRv = false;
 
     //trim
-    //lowcase(_m_sScheme)
+    //lowcase(_scheme)
     //remove dot-segment
 
     xNOT_IMPLEMENTED;
@@ -593,22 +619,23 @@ CxUri::_normilize(
 //------------------------------------------------------------------------------
 //TODO: _defaultPort ()
 ushort_t
-CxUri::_defaultPort() const {
-    if (       xT("ftp")    == _m_sScheme) {
+CxUri::_defaultPort() const
+{
+    if (       xT("ftp")    == _scheme) {
         return 21;
-    } else if (xT("ssh")    == _m_sScheme) {
+    } else if (xT("ssh")    == _scheme) {
         return 22;
-    } else if (xT("telnet") == _m_sScheme) {
+    } else if (xT("telnet") == _scheme) {
         return 23;
-    } else if (xT("gopher") == _m_sScheme) {
+    } else if (xT("gopher") == _scheme) {
         return 70;
-    } else if (xT("http")   == _m_sScheme) {
+    } else if (xT("http")   == _scheme) {
         return 80;
-    } else if (xT("nntp")   == _m_sScheme) {
+    } else if (xT("nntp")   == _scheme) {
         return 119;
-    } else if (xT("ldap")   == _m_sScheme) {
+    } else if (xT("ldap")   == _scheme) {
         return 389;
-    } else if (xT("https")  == _m_sScheme) {
+    } else if (xT("https")  == _scheme) {
         return 443;
     } else {
         return 0;
@@ -617,8 +644,9 @@ CxUri::_defaultPort() const {
 //------------------------------------------------------------------------------
 //TODO: _isDefaultPort ()
 bool_t
-CxUri::_isDefaultPort() const {
-    return ( _m_usPort == _defaultPort() );
+CxUri::_isDefaultPort() const
+{
+    return ( _port == _defaultPort() );
 }
 //------------------------------------------------------------------------------
 
