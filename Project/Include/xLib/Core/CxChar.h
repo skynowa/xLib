@@ -53,8 +53,8 @@ private:
 };
 
 xNAMESPACE_END(NxLib)
-
-#if xXLIB_HEADER_ONLY
-    #include <xLib/Core/CxChar.h>
-#endif
 //------------------------------------------------------------------------------
+#if xXLIB_HEADER_ONLY
+
+#endif
+

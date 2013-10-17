@@ -127,6 +127,9 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
+#if xXLIB_HEADER_ONLY
+
+#endif
 
 
 // https://github.com/joyent/node/blob/master/src/platform_linux.cc

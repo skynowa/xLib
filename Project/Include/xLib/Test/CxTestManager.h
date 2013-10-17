@@ -37,6 +37,10 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
+#if xXLIB_HEADER_ONLY
+
+#endif
+
 
 // TODO: CxTestManager - not enough RAM
 // TODO: CxTestManager - not enough HDD

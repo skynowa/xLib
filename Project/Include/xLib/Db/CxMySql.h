@@ -113,12 +113,11 @@ private:
 
 xNAMESPACE_END(NxLib)
 
+#endif // CXMYSQL_IS_USE
+//------------------------------------------------------------------------------
 #if xXLIB_HEADER_ONLY
 
 #endif
-
-#endif // CXMYSQL_IS_USE
-//------------------------------------------------------------------------------
 
 
 #if xTODO
