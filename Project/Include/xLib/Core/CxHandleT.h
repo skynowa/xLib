@@ -72,6 +72,10 @@ private:
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
 #include "CxHandleT.inl"
+
+#if xXLIB_HEADER_ONLY
+
+#endif
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 

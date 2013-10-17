@@ -68,6 +68,10 @@ private:
 
 xNAMESPACE_END(NxLib)
 
+#if xXLIB_HEADER_ONLY
+
+#endif
+
 #endif // xOPENSSL_IS_USE
 //------------------------------------------------------------------------------
 
