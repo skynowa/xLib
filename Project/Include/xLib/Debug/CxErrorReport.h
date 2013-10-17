@@ -90,5 +90,5 @@ xNAMESPACE_END(NxLib)
 #include "CxErrorReport.inl"
 
 #if xXLIB_HEADER_ONLY
-
+    #include <Debug/CxErrorReport.cpp>
 #endif

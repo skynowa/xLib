@@ -80,5 +80,5 @@ private:
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
 #if xXLIB_HEADER_ONLY
-
+    #include <Net/CxCookiePv0.cpp>
 #endif

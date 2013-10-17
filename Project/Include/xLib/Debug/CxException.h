@@ -36,5 +36,5 @@ xNAMESPACE_END(NxLib)
 #include "CxException.inl"
 
 #if xXLIB_HEADER_ONLY
-
+    #include <Debug/CxException.cpp>
 #endif

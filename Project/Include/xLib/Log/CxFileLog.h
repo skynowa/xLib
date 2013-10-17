@@ -9,7 +9,7 @@
 #include <xLib/Core/xCore.h>
 
 #if   xOS_ENV_WIN
-    #include <xLib/Sync/CxIpcMutex.h>
+    #include <Sync/CxIpcMutex.h>
 #elif xOS_ENV_UNIX
 
 #endif
@@ -61,6 +61,5 @@ private:
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
 #if xXLIB_HEADER_ONLY
-
+    #include <Log/CxFileLog.cpp>
 #endif
-

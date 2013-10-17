@@ -331,5 +331,5 @@ xNAMESPACE_BEGIN(NxLib)
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
 #if xXLIB_HEADER_ONLY
-
+    #include <Core/xFunctions.cpp>
 #endif

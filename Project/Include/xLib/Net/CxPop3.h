@@ -66,7 +66,7 @@ private:
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
 #if xXLIB_HEADER_ONLY
-
+    #include <Net/CxPop3.cpp>
 #endif
 
 

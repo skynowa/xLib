@@ -35,7 +35,7 @@ protected:
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
 #if xXLIB_HEADER_ONLY
-
+    #include <Net/CxTcpServer.cpp>
 #endif
 
 

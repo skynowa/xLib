@@ -74,5 +74,5 @@ private:
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
 #if xXLIB_HEADER_ONLY
-
+    #include <Filesystem/CxVolume.cpp>
 #endif

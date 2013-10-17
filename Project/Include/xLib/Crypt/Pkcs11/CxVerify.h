@@ -17,8 +17,7 @@ class CxPkcs11;
 class CxSession;
 
 class CxVerify :
-    private CxNonCopyable
-    /// Pkcs11 verify
+    private CxNonCopyable    /// Pkcs11 verify
 {
 public:
                          CxVerify(const CxPkcs11 &cPkcs11, const CxSession &cSession);
@@ -56,5 +55,5 @@ xNAMESPACE_END(NxLib)
 #endif
 //------------------------------------------------------------------------------
 #if xXLIB_HEADER_ONLY
-
+    #include <Crypt/Pkcs11/CxVerify.cpp>
 #endif
