@@ -20,16 +20,16 @@ xNAMESPACE_BEGIN(NxLib)
 /* static */
 bool_t
 CxCurrentProcess::isCurrent(
-    const CxProcess::id_t &a_culId
+    const CxProcess::id_t &a_id
 )
 {
     bool_t bRv = false;
 
 #if xOS_ENV_WIN
-    bRv = (id() == a_culId);
+    bRv = (id() == a_id);
 #else
     // TODO: If either thread1 or thread2 are not valid thread IDs, the behavior is undefined
-    // bRv = ::pthread_equal(ulGetId(), a_culId);
+    // bRv = ::pthread_equal(ulGetId(), a_id);
 #endif
 
     return bRv;
@@ -37,7 +37,8 @@ CxCurrentProcess::isCurrent(
 //------------------------------------------------------------------------------
 /* static */
 CxProcess::id_t
-CxCurrentProcess::id() {
+CxCurrentProcess::id()
+{
     // n/a
 
     CxProcess::id_t ulRv;
@@ -55,7 +56,8 @@ CxCurrentProcess::id() {
 //------------------------------------------------------------------------------
 /* static */
 CxProcess::id_t
-CxCurrentProcess::parentId() {
+CxCurrentProcess::parentId()
+{
     // n/a
 
     CxProcess::id_t ulRv;
@@ -121,7 +123,8 @@ CxCurrentProcess::parentId() {
 // TODO: tests
 /* static */
 CxProcess::handle_t
-CxCurrentProcess::handle() {
+CxCurrentProcess::handle()
+{
     // n/a
 
     CxProcess::handle_t hRv;
@@ -145,13 +148,13 @@ CxCurrentProcess::handle() {
 /* static */
 void_t
 CxCurrentProcess::exit(
-    cuint_t &a_cuiExitCode
+    cuint_t &a_exitCode
 )
 {
 #if xOS_ENV_WIN
-    (void_t)::ExitProcess(a_cuiExitCode);
+    (void_t)::ExitProcess(a_exitCode);
 #else
-    (void_t)::exit(static_cast<int_t>( a_cuiExitCode ));
+    (void_t)::exit(static_cast<int_t>( a_exitCode ));
 #endif
 }
 //------------------------------------------------------------------------------
@@ -163,13 +166,13 @@ CxCurrentProcess::exit(
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-CxCurrentProcess::CxCurrentProcess() {
-
+CxCurrentProcess::CxCurrentProcess()
+{
 }
 //------------------------------------------------------------------------------
 /* virtual */
-CxCurrentProcess::~CxCurrentProcess() {
-
+CxCurrentProcess::~CxCurrentProcess()
+{
 }
 //------------------------------------------------------------------------------
 

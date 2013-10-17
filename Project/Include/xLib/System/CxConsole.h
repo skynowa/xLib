@@ -71,52 +71,52 @@ public:
     virtual        ~CxConsole();
         ///< destructor
 
-    std::tstring_t  setAttributes(const ExForeground &cfgForeground,
-                        const ExBackground &cbgBackground, cint_t &ciAttributes) xWARN_UNUSED_RV;
+    std::tstring_t  setAttributes(const ExForeground &foreground,
+                        const ExBackground &background, cint_t &attributes) xWARN_UNUSED_RV;
         ///< set text color
     std::tstring_t  setAttributesDef() xWARN_UNUSED_RV;
         ///< set text color
     std::tstring_t  read() xWARN_UNUSED_RV;
         ///< read
-    void_t          write(std::ctstring_t &csStr);
+    void_t          write(std::ctstring_t &str);
         ///< write
-    void_t          writeLine(std::ctstring_t &csStr = xT(""));
+    void_t          writeLine(std::ctstring_t &str = xT(""));
         ///< write line
-    void_t          writeErrLine(std::ctstring_t &csStr);
+    void_t          writeErrLine(std::ctstring_t &str);
         ///< write error message
-    ExModalResult   msgBox(std::ctstring_t &csText, std::ctstring_t &csTitle, cuint_t &cuiType)
+    ExModalResult   msgBox(std::ctstring_t &text, std::ctstring_t &title, cuint_t &type)
                         xWARN_UNUSED_RV;
         ///< show console message dialog
-    void_t          prompt(std::ctstring_t &csPrompt, cbool_t &cbIsVisible,
-                        std::tstring_t *psAnswer);
+    void_t          prompt(std::ctstring_t &prompt, cbool_t &isVisible,
+                        std::tstring_t *answer);
         ///< show console prompt dialog
-    void_t          pause(culong_t &culTimeoutMs);
+    void_t          pause(culong_t &timeoutMsec);
         ///< pause with timeout (msec)
     void_t          clear();
         ///< clear
 
     std::tstring_t  title() xWARN_UNUSED_RV;
         ///< get title string
-    void_t          setTitle(std::ctstring_t &csTitle);
+    void_t          setTitle(std::ctstring_t &title);
         ///< set title string
     void_t          centerWindow();
         ///< align to center
     void_t          setFullScreen();
         ///< set full screen
-    void_t          enableClose(cbool_t &cbFlag);
+    void_t          enableClose(cbool_t &flag);
         ///< enable close button
 
 private:
 #if xOS_ENV_WIN
-    HWND            _m_hWnd;             ///< console window handle
-    HMENU           _m_hMenu;            ///< console menu handle
-    CxHandleInvalid _m_hStdIn;           ///< standard input handle
-    CxHandleInvalid _m_hStdOut;          ///< standard output handle
-    WORD            _m_wAttributesDef;   ///< default console attributes
+    HWND            _wnd;             ///< console window handle
+    HMENU           _menu;            ///< console menu handle
+    CxHandleInvalid _stdIn;           ///< standard input handle
+    CxHandleInvalid _stdOut;          ///< standard output handle
+    WORD            _attributesDef;   ///< default console attributes
 
     HWND            _wndHandle() xWARN_UNUSED_RV;
         ///< get console window handle
-    HMENU           _menuHandle(cbool_t &cbRevert) xWARN_UNUSED_RV;
+    HMENU           _menuHandle(cbool_t &revert) xWARN_UNUSED_RV;
         ///< get console menu handle
 #endif
 };

@@ -37,7 +37,7 @@ public:
     };
 
 
-                      CxEvent(cbool_t &cbIsAutoReset, cbool_t &cbIsSignaled);
+                      CxEvent(cbool_t &isAutoReset, cbool_t &isSignaled);
         ///< constructor
     virtual          ~CxEvent();
         ///< destructor
@@ -50,7 +50,7 @@ public:
         ///< signal the event for the waiting thread (!!! unlock !!!)
     void_t            reset();
         ///< once signaled, the event class must be "reset" before responding to a new signal
-    ExObjectState     wait(culong_t &culTimeout = xTIMEOUT_INFINITE) xWARN_UNUSED_RV;
+    ExObjectState     wait(culong_t &timeoutMs = xTIMEOUT_INFINITE) xWARN_UNUSED_RV;
         ///< wait either for the CxEvent to be signaled by another thread or for the specified
         ///< timeout duration
     bool_t            isSignaled() xWARN_UNUSED_RV;
@@ -58,15 +58,15 @@ public:
 
 private:
 #if xOS_ENV_WIN
-    CxHandle          _m_hEvent;        ///< event
+    CxHandle          _event;        ///< event
 #else
-    pthread_mutex_t   _m_mtMutex;       ///< mutex
-    handle_t          _m_cndCond;       ///< condition variable
-    bool_t            _m_bIsSignaled;   ///< is signaled flag
+    pthread_mutex_t   _mutex;       ///< mutex
+    handle_t          _cond;       ///< condition variable
+    bool_t            _isSignaled;   ///< is signaled flag
 #endif
 
-    cbool_t           _m_cbIsAutoReset; ///< auto-reset flag
-    cbool_t           _m_cbInitState;   ///< initial state
+    cbool_t           _isAutoReset; ///< auto-reset flag
+    cbool_t           _initState;   ///< initial state
 };
 
 xNAMESPACE_END(NxLib)

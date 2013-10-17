@@ -26,7 +26,7 @@ xNAMESPACE_BEGIN(NxLib)
 /* static */
 void_t
 CxProcessInfo::currentIds(
-    std::vector<CxProcess::id_t> *a_pvidIds
+    std::vector<CxProcess::id_t> *a_ids
 )
 {
     std::vector<CxProcess::id_t> vidRv;
@@ -105,13 +105,13 @@ CxProcessInfo::currentIds(
 #endif
 
     // out
-    (*a_pvidIds).swap(vidRv);
+    (*a_ids).swap(vidRv);
 }
 //------------------------------------------------------------------------------
 /* static */
 ulong_t
 CxProcessInfo::cpuUsage(
-    const CxProcess::id_t &a_cidId
+    const CxProcess::id_t &a_id
 )
 {
     ulong_t ulRv = 0UL;
@@ -130,7 +130,7 @@ CxProcessInfo::cpuUsage(
 /* static */
 ulong_t
 CxProcessInfo::ramUsage(
-    const CxProcess::id_t &a_cidId
+    const CxProcess::id_t &a_id
 )
 {
     ulong_t ulRv = 0UL;
@@ -149,7 +149,7 @@ CxProcessInfo::ramUsage(
 /* static */
 ulong_t
 CxProcessInfo::ioBytes(
-    const CxProcess::id_t &a_cidId
+    const CxProcess::id_t &a_id
 )
 {
     ulong_t ulRv = 0UL;
@@ -169,7 +169,7 @@ CxProcessInfo::ioBytes(
         1372    cancelled_write_bytes: 0
     #endif
 
-    std::tstring_t sProcPath  = CxString::format(xT("/proc/%lu/io"), a_cidId);
+    std::tstring_t sProcPath  = CxString::format(xT("/proc/%lu/io"), a_id);
 
     ulong_t ulReadBytes = 0UL;
     {
@@ -198,7 +198,7 @@ CxProcessInfo::ioBytes(
 /* static */
 std::tstring_t
 CxProcessInfo::exeName(
-    const CxProcess::id_t &a_cidId
+    const CxProcess::id_t &a_id
 )
 {
     std::tstring_t sRv;
@@ -206,7 +206,7 @@ CxProcessInfo::exeName(
 #if   xOS_ENV_WIN
     sRv.resize(xPATH_MAX);
 
-    CxProcess::handle_t hHandle = CxProcess::handleById(a_cidId);
+    CxProcess::handle_t hHandle = CxProcess::handleById(a_id);
 
     DWORD dwStored = ::GetModuleFileNameEx(hHandle, NULL, &sRv.at(0), static_cast<DWORD>( sRv.size() ));
     xTEST_DIFF(0UL, dwStored);
@@ -214,7 +214,7 @@ CxProcessInfo::exeName(
     sRv.resize(dwStored);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        std::ctstring_t csProcFile = CxString::format(xT("/proc/%ld/exe"), a_cidId);
+        std::ctstring_t csProcFile = CxString::format(xT("/proc/%ld/exe"), a_id);
 
         bool_t bRv = CxFile::isExists(csProcFile);
         xCHECK_RET(!bRv, std::tstring_t());
@@ -234,7 +234,7 @@ CxProcessInfo::exeName(
         sRv.resize(iReaded);
     #elif xOS_FREEBSD
         #if defined(KERN_PROC_PATHNAME)
-            int_t aiMib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, a_cidId};
+            int_t aiMib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, a_id};
 
             tchar_t szBuff[PATH_MAX + 1] = {0};
             size_t  uiBuffSize           = sizeof(szBuff) - 1;
@@ -258,7 +258,7 @@ CxProcessInfo::exeName(
 /* static */
 ulong_t
 CxProcessInfo::parentId(
-    const CxProcess::id_t &a_cidId
+    const CxProcess::id_t &a_id
 )
 {
     ulong_t ulRv = 0UL;
@@ -281,7 +281,7 @@ CxProcessInfo::parentId(
 /* static */
 std::tstring_t
 CxProcessInfo::commandLine(
-    const CxProcess::id_t &a_cidId
+    const CxProcess::id_t &a_id
 )
 {
     std::tstring_t sRv;
@@ -298,7 +298,7 @@ CxProcessInfo::commandLine(
 
         const CxProcess::id_t cidNtoskrnlId = 4UL;  // MAGIC: cidNtoskrnlId
 
-        if (cidNtoskrnlId == a_cidId) {
+        if (cidNtoskrnlId == a_id) {
             sRv = CxEnvironment::expandStrings(xT("%SystemRoot%\\System32\\ntoskrnl.exe"));
 
             return sRv;
@@ -370,7 +370,7 @@ CxProcessInfo::commandLine(
 
     CxHandle processHandle;
 
-    processHandle = ::OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, static_cast<DWORD>( a_cidId ));
+    processHandle = ::OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, static_cast<DWORD>( a_id ));
     xTEST_EQ(true, processHandle.isValid());
 
     PVOID pebAddress               = _SNested::pvPebAddress(processHandle.get());
@@ -410,7 +410,7 @@ CxProcessInfo::commandLine(
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         // FIX: content of "/proc/%ld/cmdline" - missing spaces
-        std::ctstring_t csProcFile = CxString::format(xT("/proc/%ld/cmdline"), a_cidId);
+        std::ctstring_t csProcFile = CxString::format(xT("/proc/%ld/cmdline"), a_id);
 
         std::vec_tstring_t vsProcFile;
 
@@ -420,7 +420,7 @@ CxProcessInfo::commandLine(
         sRv = vsProcFile.at(0);
     #elif xOS_FREEBSD
         int_t iRv      = - 1;
-        int_t aiMib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_ARGS, a_cidId};
+        int_t aiMib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_ARGS, a_id};
 
         std::string sBuff;
         size_t      uiBuffSize = 0;
@@ -452,13 +452,13 @@ CxProcessInfo::commandLine(
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-CxProcessInfo::CxProcessInfo() {
-
+CxProcessInfo::CxProcessInfo()
+{
 }
 //------------------------------------------------------------------------------
 /* virtual */
-CxProcessInfo::~CxProcessInfo() {
-
+CxProcessInfo::~CxProcessInfo()
+{
 }
 //------------------------------------------------------------------------------
 

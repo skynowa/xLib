@@ -18,17 +18,18 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 CxAutoIpcMutex::CxAutoIpcMutex(
-    CxIpcMutex      &a_mtMutex,
-    std::ctstring_t &a_csName
+    CxIpcMutex      &a_mutex,
+    std::ctstring_t &a_name
 ) :
-    _m_mtMutex(a_mtMutex)
+    _mutex(a_mutex)
 {
-    _m_mtMutex.create(a_csName);
-    _m_mtMutex.lock(xTIMEOUT_INFINITE);
+    _mutex.create(a_name);
+    _mutex.lock(xTIMEOUT_INFINITE);
 }
 //------------------------------------------------------------------------------
-CxAutoIpcMutex::~CxAutoIpcMutex() {
-    _m_mtMutex.unlock();
+CxAutoIpcMutex::~CxAutoIpcMutex()
+{
+    _mutex.unlock();
 }
 //------------------------------------------------------------------------------
 

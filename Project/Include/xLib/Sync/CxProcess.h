@@ -43,11 +43,11 @@ public:
                     CxProcess();
     virtual        ~CxProcess();
 
-    void_t          create(std::ctstring_t &csFilePath, ctchar_t *pcszParams, ...);
+    void_t          create(std::ctstring_t &filePath, ctchar_t *params, ...);
         ///< execute a file
-    ExWaitResult    wait(culong_t &culTimeout) xWARN_UNUSED_RV;
+    ExWaitResult    wait(culong_t &timeoutMSec) xWARN_UNUSED_RV;
         ///< wait for termination
-    void_t          kill(culong_t &culTimeout);
+    void_t          kill(culong_t &timeoutMSec);
         ///< kills the calling process and all of its threads
 
     handle_t        handle() const xWARN_UNUSED_RV;
@@ -59,22 +59,22 @@ public:
     ulong_t         exitStatus() const xWARN_UNUSED_RV;
         ///< get termination status
 
-    static id_t     idByHandle(const handle_t &chHandle) xWARN_UNUSED_RV;
+    static id_t     idByHandle(const handle_t &handle) xWARN_UNUSED_RV;
         ///< get ID by handle
-    static handle_t handleById(const id_t &culId) xWARN_UNUSED_RV;
+    static handle_t handleById(const id_t &id) xWARN_UNUSED_RV;
         ///< get handle by ID
-    static id_t     idByName(std::ctstring_t &csProcessName) xWARN_UNUSED_RV;
+    static id_t     idByName(std::ctstring_t &processName) xWARN_UNUSED_RV;
         ///< get ID by name
-    static bool_t   isRunning(const id_t &culId) xWARN_UNUSED_RV;
+    static bool_t   isRunning(const id_t &id) xWARN_UNUSED_RV;
         ///< is process running by name (with extension)
 
 private:
-    handle_t        _m_hHandle;
+    handle_t        _handle;
 #if xOS_ENV_WIN
-    HANDLE          _m_hThread;
+    HANDLE          _thread;
 #endif
-    id_t            _m_ulPid;
-    uint_t          _m_uiExitStatus;            ///< exit code
+    id_t            _pid;
+    uint_t          _exitStatus;            ///< exit code
 };
 
 xNAMESPACE_END(NxLib)

@@ -25,102 +25,103 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 CxIpcMutex::CxIpcMutex() :
-    _m_hHandle(),
-    _m_sName  ()
+    _handle(),
+    _name  ()
 {
 }
 //------------------------------------------------------------------------------
 /* virtual */
-CxIpcMutex::~CxIpcMutex() {
-
+CxIpcMutex::~CxIpcMutex()
+{
 }
 //------------------------------------------------------------------------------
 const CxIpcMutex::handle_t &
-CxIpcMutex::handle() const {
-    return _m_hHandle;
+CxIpcMutex::handle() const
+{
+    return _handle;
 }
 //------------------------------------------------------------------------------
 void_t
 CxIpcMutex::create(
-    std::ctstring_t &a_csName
+    std::ctstring_t &a_name
 )
 {
-    ////xTEST_EQ(false, _m_hHandle.bIsValid(), false);
+    ////xTEST_EQ(false, _handle.bIsValid(), false);
 #if xOS_ENV_WIN
-    // csName
+    // name
 #else
-    xTEST_GR(xNAME_MAX - 4, a_csName.size());
+    xTEST_GR(xNAME_MAX - 4, a_name.size());
 #endif
 
 #if xOS_ENV_WIN
     ctchar_t *pcszWinName = NULL;
     std::tstring_t _sWinName;
 
-    if (a_csName.empty()) {
+    if (a_name.empty()) {
         pcszWinName = NULL;
     } else {
-        _sWinName   = xT("Global\\") + a_csName;
+        _sWinName   = xT("Global\\") + a_name;
         pcszWinName = _sWinName.c_str();
     }
 
     HANDLE hRv = ::CreateMutex(NULL, FALSE, pcszWinName);
     xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
 
-    _m_hHandle.set(hRv);
-    _m_sName = a_csName;
+    _handle.set(hRv);
+    _name = a_name;
 #else
-    std::tstring_t sUnixName = CxConst::xUNIX_SLASH + a_csName;
+    std::tstring_t sUnixName = CxConst::xUNIX_SLASH + a_name;
 
     handle_t hHandle = ::sem_open(sUnixName.c_str(), O_CREAT | O_RDWR, 0777, 1U);
     xTEST_DIFF(SEM_FAILED, hHandle);
 
-    _m_hHandle = hHandle;
-    _m_sName   = sUnixName;
+    _handle = hHandle;
+    _name   = sUnixName;
 #endif
 }
 //------------------------------------------------------------------------------
 void_t
 CxIpcMutex::open(
-    std::ctstring_t &a_csName
+    std::ctstring_t &a_name
 )
 {
 #if xOS_ENV_WIN
     ctchar_t *pcszWinName = NULL;
     std::tstring_t _sWinName;
 
-    if (a_csName.empty()) {
+    if (a_name.empty()) {
         pcszWinName = NULL;
     } else {
-        _sWinName   = xT("Global\\") + a_csName;
+        _sWinName   = xT("Global\\") + a_name;
         pcszWinName = _sWinName.c_str();
     }
 
     HANDLE hRv = ::OpenMutex(MUTEX_ALL_ACCESS, FALSE, pcszWinName);
     xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
 
-    _m_hHandle.set(hRv);
-    _m_sName = a_csName;
+    _handle.set(hRv);
+    _name = a_name;
 #else
-    std::tstring_t sUnixName = CxConst::xUNIX_SLASH + a_csName;
+    std::tstring_t sUnixName = CxConst::xUNIX_SLASH + a_name;
 
     handle_t hHandle = ::sem_open(sUnixName.c_str(), O_RDWR, 0777, 1U);
     xTEST_DIFF(SEM_FAILED, hHandle);
 
-    _m_hHandle = hHandle;
-    _m_sName   = sUnixName;
+    _handle = hHandle;
+    _name   = sUnixName;
 #endif
 }
 //------------------------------------------------------------------------------
 void_t
 CxIpcMutex::lock(
-    culong_t &a_culTimeoutMsec
+    culong_t &a_timeoutMsec
 ) const
 {
-    ////xTEST_EQ(true, _m_hHandle.bIsValid(), false);
+    ////xTEST_EQ(true, _handle.bIsValid(), false);
     //culTimeout - n/a
 
 #if   xOS_ENV_WIN
-    DWORD ulRv = ::WaitForSingleObject(_m_hHandle.get(), a_culTimeoutMsec);
+    DWORD ulRv = ::WaitForSingleObject(_handle.get(), a_timeoutMsec);
     xTEST_EQ(WAIT_OBJECT_0, ulRv);
     xTEST_DIFF(WAIT_ABANDONED, ulRv);
 #elif xOS_ENV_UNIX
@@ -155,10 +156,10 @@ CxIpcMutex::lock(
         iRv = ::clock_gettime(CLOCK_REALTIME, &tmsTimeout);
         xTEST_DIFF(- 1, iRv);
 
-        (void_t)_SFunctor::timespec_addms(&tmsTimeout, a_culTimeoutMsec);
+        (void_t)_SFunctor::timespec_addms(&tmsTimeout, a_timeoutMsec);
     }
 
-    while (- 1 == (iRv = ::sem_timedwait(_m_hHandle, &tmsTimeout)) && (EINTR == errno)) {
+    while (- 1 == (iRv = ::sem_timedwait(_handle, &tmsTimeout)) && (EINTR == errno)) {
         // Restart if interrupted by handler
         continue;
     }
@@ -177,14 +178,15 @@ CxIpcMutex::lock(
 }
 //------------------------------------------------------------------------------
 void_t
-CxIpcMutex::unlock() const {
-    ////xTEST_EQ(true, _m_hHandle.bIsValid(), false);
+CxIpcMutex::unlock() const
+{
+    ////xTEST_EQ(true, _handle.bIsValid(), false);
 
 #if xOS_ENV_WIN
-    BOOL blRes = ::ReleaseMutex(_m_hHandle.get());
+    BOOL blRes = ::ReleaseMutex(_handle.get());
     xTEST_DIFF(FALSE, blRes);
 #else
-    int_t iRv = ::sem_post(_m_hHandle);
+    int_t iRv = ::sem_post(_handle);
     xTEST_DIFF(- 1, iRv);
 #endif
 }

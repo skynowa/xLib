@@ -18,16 +18,17 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 CxAutoMutex::CxAutoMutex(
-    CxMutex *a_mtMutex
+    CxMutex *a_mutex
 ) :
-    _m_mtMutex(a_mtMutex)
+    _mutex(a_mutex)
 {
-    _m_mtMutex->create();
-    _m_mtMutex->lock();
+    _mutex->create();
+    _mutex->lock();
 }
 //------------------------------------------------------------------------------
-CxAutoMutex::~CxAutoMutex() {
-    _m_mtMutex->unlock();
+CxAutoMutex::~CxAutoMutex()
+{
+    _mutex->unlock();
 }
 //------------------------------------------------------------------------------
 

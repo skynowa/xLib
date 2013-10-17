@@ -15,7 +15,7 @@ class CxCurrentProcess :
     private CxNonCopyable
 {
 public:
-    static bool_t              isCurrent(const CxProcess::id_t &culId) xWARN_UNUSED_RV;
+    static bool_t              isCurrent(const CxProcess::id_t &id) xWARN_UNUSED_RV;
         ///< is current id
     static CxProcess::id_t     id() xWARN_UNUSED_RV;
         ///< process ID of the calling process
@@ -23,7 +23,7 @@ public:
         ///< process ID of the parent of the calling process
     static CxProcess::handle_t handle() xWARN_UNUSED_RV;
         ///< get pseudo handle for the calling process
-    static void_t              exit(cuint_t &cuiExitCode);
+    static void_t              exit(cuint_t &exitCode);
         ///< ends the calling process and all its threads
 
 private:

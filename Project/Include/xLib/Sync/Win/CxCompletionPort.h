@@ -21,15 +21,15 @@ public:
              CxCompletionPort();
     virtual ~CxCompletionPort();
 
-    void_t   create(culong_t &culThreadsNum /* = 0UL */);
-    void_t   associate(const HANDLE &chFile, ULONG_PTR pulCompletionKey);
-    void_t   status(LPDWORD lpNumberOfBytes, PULONG_PTR lpCompletionKey,
-                LPOVERLAPPED *lpOverlapped, culong_t &culMilliseconds);
-    void_t   postStatus(culong_t &culNumberOfBytesTransferred, ULONG_PTR ulCompletionKey,
-                LPOVERLAPPED lpOverlapped);
+    void_t   create(culong_t &threadsNum /* = 0UL */);
+    void_t   associate(const HANDLE &file, ULONG_PTR completionKey);
+    void_t   status(LPDWORD numberOfBytes, PULONG_PTR completionKey,
+                LPOVERLAPPED *overlapped, culong_t &msec);
+    void_t   postStatus(culong_t &numOfBytesTransferred, ULONG_PTR completionKey,
+                LPOVERLAPPED overlapped);
 
 private:
-    CxHandle _m_hHandle;
+    CxHandle _handle;
 };
 
 xNAMESPACE_END(NxLib)

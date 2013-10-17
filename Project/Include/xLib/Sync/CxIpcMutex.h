@@ -27,18 +27,18 @@ public:
 
     const handle_t & handle() const xWARN_UNUSED_RV;
         ///< get handle
-    void_t           create(std::ctstring_t &csName);
+    void_t           create(std::ctstring_t &name);
         ///< create
-    void_t           open(std::ctstring_t &csName);
+    void_t           open(std::ctstring_t &name);
         ///< open
-    void_t           lock(culong_t &culTimeoutMsec) const;
+    void_t           lock(culong_t &timeoutMsec) const;
         ///< unlock by timeout in msec
     void_t           unlock() const;
         ///< lock
 
 private:
-    handle_t         _m_hHandle;   ///< mutex native handle
-    std::tstring_t   _m_sName;     ///< mutex name
+    handle_t         _handle;   ///< mutex native handle
+    std::tstring_t   _name;     ///< mutex name
 };
 
 xNAMESPACE_END(NxLib)

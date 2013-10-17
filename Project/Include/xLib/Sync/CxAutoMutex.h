@@ -17,13 +17,13 @@ class CxAutoMutex :
     /// auto critical section
 {
 public:
-    explicit CxAutoMutex(CxMutex *mtMutex);
+    explicit CxAutoMutex(CxMutex *mutex);
         ///< constructor
     virtual ~CxAutoMutex();
         ///< destructor
 
 private:
-    CxMutex *_m_mtMutex;    ///< mutex
+    CxMutex *_mutex;    ///< mutex
 };
 
 xNAMESPACE_END(NxLib)

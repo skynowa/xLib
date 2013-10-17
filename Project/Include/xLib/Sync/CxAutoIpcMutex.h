@@ -17,11 +17,11 @@ class CxAutoIpcMutex :
     /// auto mutex
 {
 public:
-                CxAutoIpcMutex(CxIpcMutex &mtMutex, std::ctstring_t &csName);
+                CxAutoIpcMutex(CxIpcMutex &mutex, std::ctstring_t &name);
     virtual    ~CxAutoIpcMutex();
 
 private:
-    CxIpcMutex &_m_mtMutex;
+    CxIpcMutex &_mutex;
 };
 
 xNAMESPACE_END(NxLib)
