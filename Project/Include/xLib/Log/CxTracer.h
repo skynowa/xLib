@@ -41,7 +41,8 @@ xNAMESPACE_BEGIN(NxLib)
 
 template<typename T>
 CxTracer &
-CxTracer::operator << (const T &value) {
+CxTracer::operator << (const T &value)
+{
     _oss << value;
 
     return *this;
@@ -50,5 +51,5 @@ CxTracer::operator << (const T &value) {
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
 #if xXLIB_HEADER_ONLY
-
+    #include <Log/CxTracer.cpp>
 #endif

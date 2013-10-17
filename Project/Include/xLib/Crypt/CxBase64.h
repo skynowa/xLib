@@ -34,5 +34,5 @@ private:
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
 #if xXLIB_HEADER_ONLY
-
+    #include <Crypt/CxBase64.cpp>
 #endif

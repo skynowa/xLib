@@ -50,7 +50,7 @@ protected:
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
 #if xXLIB_HEADER_ONLY
-
+    #include <Net/CxTcpClient.cpp>
 #endif
 
 

@@ -56,7 +56,7 @@ private:
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
 #if xXLIB_HEADER_ONLY
-
+    #include <Net/CxMimeHeader.cpp>
 #endif
 
 

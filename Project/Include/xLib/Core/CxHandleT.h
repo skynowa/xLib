@@ -66,7 +66,7 @@ public:
 private:
     typedef CxHandleErrorT<hvTag> error_value_t;
 
-    native_handle_t _m_hHandle;    ///< handle
+    native_handle_t _handle;    ///< handle
 };
 
 xNAMESPACE_END(NxLib)

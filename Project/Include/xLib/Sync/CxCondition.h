@@ -40,5 +40,5 @@ private:
 };
 //------------------------------------------------------------------------------
 #if xXLIB_HEADER_ONLY
-
+    #include <Sync/CxCondition.cpp>
 #endif

@@ -37,5 +37,5 @@ xNAMESPACE_END(NxLib)
 #endif
 //------------------------------------------------------------------------------
 #if xXLIB_HEADER_ONLY
-
+    #include <Sync/Win/CxCompletionPort.cpp>
 #endif

@@ -15,34 +15,34 @@ class CxChar :
     /// character
 {
 public:
-    static bool_t  isAlphaNum(ctchar_t &character) xWARN_UNUSED_RV;
-        ///< Check if character is alphanumeric
-    static bool_t  isAlpha(ctchar_t &character) xWARN_UNUSED_RV;
-        ///< Check if character is alphabetic
-    static bool_t  isControl(ctchar_t &character) xWARN_UNUSED_RV;
-        ///< Check if character is a control character
-    static bool_t  isDigitDec(ctchar_t &character) xWARN_UNUSED_RV;
-        ///< Check if character is decimal digit
-    static bool_t  isDigitHex(ctchar_t &character) xWARN_UNUSED_RV;
-        ///< Check if character is hexadecimal digit
+    static bool_t  isAlphaNum(ctchar_t &ch) xWARN_UNUSED_RV;
+        ///< Check if ch is alphanumeric
+    static bool_t  isAlpha(ctchar_t &ch) xWARN_UNUSED_RV;
+        ///< Check if ch is alphabetic
+    static bool_t  isControl(ctchar_t &ch) xWARN_UNUSED_RV;
+        ///< Check if ch is a control ch
+    static bool_t  isDigitDec(ctchar_t &ch) xWARN_UNUSED_RV;
+        ///< Check if ch is decimal digit
+    static bool_t  isDigitHex(ctchar_t &ch) xWARN_UNUSED_RV;
+        ///< Check if ch is hexadecimal digit
 
-    static bool_t  isGraph(ctchar_t &character) xWARN_UNUSED_RV;
-        ///< Check if character has graphical representation
-    static bool_t  isPrint(ctchar_t &character) xWARN_UNUSED_RV;
-        ///< Check if character is printable
-    static bool_t  isPunct(ctchar_t &character) xWARN_UNUSED_RV;
-        ///< Check if character is a punctuation character
-    static bool_t  isSpace(ctchar_t &character) xWARN_UNUSED_RV;
-        ///< Check if character is a white-space
+    static bool_t  isGraph(ctchar_t &ch) xWARN_UNUSED_RV;
+        ///< Check if ch has graphical representation
+    static bool_t  isPrint(ctchar_t &ch) xWARN_UNUSED_RV;
+        ///< Check if ch is printable
+    static bool_t  isPunct(ctchar_t &ch) xWARN_UNUSED_RV;
+        ///< Check if ch is a punctuation ch
+    static bool_t  isSpace(ctchar_t &ch) xWARN_UNUSED_RV;
+        ///< Check if ch is a white-space
 
-    static bool_t  isLower(ctchar_t &character) xWARN_UNUSED_RV;
-        ///< Check if character is lowercase letter
-    static bool_t  isUpper(ctchar_t &character) xWARN_UNUSED_RV;
-        ///< Check if character is uppercase letter
+    static bool_t  isLower(ctchar_t &ch) xWARN_UNUSED_RV;
+        ///< Check if ch is lowercase letter
+    static bool_t  isUpper(ctchar_t &ch) xWARN_UNUSED_RV;
+        ///< Check if ch is uppercase letter
 
-    static tchar_t toLower(ctchar_t &character) xWARN_UNUSED_RV;
+    static tchar_t toLower(ctchar_t &ch) xWARN_UNUSED_RV;
         ///< Convert uppercase letter to lowercase
-    static tchar_t toUpper(ctchar_t &character) xWARN_UNUSED_RV;
+    static tchar_t toUpper(ctchar_t &ch) xWARN_UNUSED_RV;
         ///< Convert lowercase letter to uppercase
 
 private:
@@ -55,6 +55,6 @@ private:
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
 #if xXLIB_HEADER_ONLY
-
+    #include <Core/CxChar.cpp>
 #endif
 

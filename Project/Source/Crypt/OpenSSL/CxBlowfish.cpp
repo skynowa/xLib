@@ -30,13 +30,15 @@ xNAMESPACE_BEGIN(NxLib)
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-CxBlowfish::CxBlowfish() {
+CxBlowfish::CxBlowfish()
+{
     xSTRUCT_ZERO(_bfKey);
     xARRAY_ZERO(_ivec);
 }
 //------------------------------------------------------------------------------
 /* virtual */
-CxBlowfish::~CxBlowfish() {
+CxBlowfish::~CxBlowfish()
+{
     /*SECURE*/xSTRUCT_ZERO(_bfKey);
     /*SECURE*/xARRAY_ZERO(_ivec);
 }
@@ -106,7 +108,8 @@ CxBlowfish::setFileKey(
 //------------------------------------------------------------------------------
 /* static */
 size_t
-CxBlowfish::maxKeySize() {
+CxBlowfish::maxKeySize()
+{
     return MAX_KEY_SIZE;
 }
 //------------------------------------------------------------------------------

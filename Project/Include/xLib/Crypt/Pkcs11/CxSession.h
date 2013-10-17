@@ -54,5 +54,5 @@ xNAMESPACE_END(NxLib)
 #endif
 //------------------------------------------------------------------------------
 #if xXLIB_HEADER_ONLY
-
+    #include <Crypt/Pkcs11/CxSession.cpp>
 #endif
