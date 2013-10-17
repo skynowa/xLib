@@ -329,4 +329,8 @@ xNAMESPACE_BEGIN(NxLib)
     ///< implementation std::clock
 
 xNAMESPACE_END(NxLib)
+
+#if xXLIB_HEADER_ONLY
+
+#endif
 //------------------------------------------------------------------------------
