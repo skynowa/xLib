@@ -95,3 +95,6 @@ xNAMESPACE_END(NxLib)
 
 #include "CxThreadPool.inl"
 //------------------------------------------------------------------------------
+#if xXLIB_HEADER_ONLY
+
+#endif

@@ -23,7 +23,8 @@ public:
         ///< destructor
 };
 
-xNAMESPACE_END(NxLib)
-
 #endif
 //------------------------------------------------------------------------------
+#if xXLIB_HEADER_ONLY
+
+#endif

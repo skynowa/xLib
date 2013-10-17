@@ -47,6 +47,10 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
+#if xXLIB_HEADER_ONLY
+
+#endif
+
 
 /*
     SysV  semaphores are semget/semop/semctl
