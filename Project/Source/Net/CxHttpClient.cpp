@@ -12,22 +12,22 @@
 xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
-CxHttpClient::CxHttpClient() {
-
+CxHttpClient::CxHttpClient()
+{
 }
 //------------------------------------------------------------------------------
-CxHttpClient::~CxHttpClient() {
-
+CxHttpClient::~CxHttpClient()
+{
 }
 //------------------------------------------------------------------------------
 //TODO: bHead ()
 void_t
 CxHttpClient::head(
-    std::ctstring_t &a_csUrl,
-    std::tstring_t  *a_psResponse
+    std::ctstring_t &a_url,
+    std::tstring_t  *a_response
 )
 {
-    //csUrl = http://dn1.berloga.net/83841/zombie_baseball_2.swf
+    //url = http://dn1.berloga.net/83841/zombie_baseball_2.swf
 
     std::tstring_t sStartLine;
     std::tstring_t sHeader;
@@ -46,8 +46,8 @@ CxHttpClient::head(
 //TODO: bGet ()
 void_t
 CxHttpClient::get(
-    std::ctstring_t &a_csUrl,
-    std::tstring_t  *a_psResponse
+    std::ctstring_t &a_url,
+    std::tstring_t  *a_response
 )
 {
     xNOT_IMPLEMENTED;
@@ -56,9 +56,9 @@ CxHttpClient::get(
 //TODO: bPost ()
 void_t
 CxHttpClient::post(
-    std::ctstring_t &a_csUrl,
-    std::ctstring_t &a_csParams,
-    std::tstring_t  *a_psResponse
+    std::ctstring_t &a_url,
+    std::ctstring_t &a_params,
+    std::tstring_t  *a_response
 )
 {
     xNOT_IMPLEMENTED;
@@ -67,7 +67,7 @@ CxHttpClient::post(
 //TODO: bOptions ()
 void_t
 CxHttpClient::options(
-    std::ctstring_t &a_csUrl
+    std::ctstring_t &a_url
 )
 {
     xNOT_IMPLEMENTED;
@@ -76,7 +76,7 @@ CxHttpClient::options(
 //TODO: bTrace ()
 void_t
 CxHttpClient::trace(
-    std::ctstring_t &a_csUrl
+    std::ctstring_t &a_url
 )
 {
     xNOT_IMPLEMENTED;
@@ -85,7 +85,7 @@ CxHttpClient::trace(
 //TODO: bPut ()
 void_t
 CxHttpClient::put(
-    std::ctstring_t &a_csUrl
+    std::ctstring_t &a_url
 )
 {
     xNOT_IMPLEMENTED;
@@ -94,7 +94,7 @@ CxHttpClient::put(
 //TODO: del ()
 void_t
 CxHttpClient::del(
-    std::ctstring_t &a_csUrl
+    std::ctstring_t &a_url
 )
 {
     xNOT_IMPLEMENTED;
@@ -103,7 +103,7 @@ CxHttpClient::del(
 //TODO: bConnect ()
 void_t
 CxHttpClient::connect(
-    std::ctstring_t &a_csUrl
+    std::ctstring_t &a_url
 )
 {
     xNOT_IMPLEMENTED;
@@ -112,7 +112,7 @@ CxHttpClient::connect(
 //TODO: bPatch ()
 void_t
 CxHttpClient::patch(
-    std::ctstring_t &a_csUrl
+    std::ctstring_t &a_url
 )
 {
     xNOT_IMPLEMENTED;
@@ -121,7 +121,7 @@ CxHttpClient::patch(
 //TODO: bLink ()
 void_t
 CxHttpClient::link(
-    std::ctstring_t &a_csUrl
+    std::ctstring_t &a_url
 )
 {
     xNOT_IMPLEMENTED;
@@ -130,7 +130,7 @@ CxHttpClient::link(
 //TODO: bUnlink ()
 void_t
 CxHttpClient::unlink(
-    std::ctstring_t &a_csUrl
+    std::ctstring_t &a_url
 )
 {
     xNOT_IMPLEMENTED;
@@ -154,15 +154,13 @@ CxHttpClient::unlink(
 
 //------------------------------------------------------------------------------
 //TODO: CxStatusLine ()
-CxHttpClient::CxStatusLine::CxStatusLine() {
-
-
+CxHttpClient::CxStatusLine::CxStatusLine()
+{
 }
 //------------------------------------------------------------------------------
 //TODO: ~CxStatusLine ()
-CxHttpClient::CxStatusLine::~CxStatusLine() {
-
-
+CxHttpClient::CxStatusLine::~CxStatusLine()
+{
 }
 //------------------------------------------------------------------------------
 
@@ -175,15 +173,13 @@ CxHttpClient::CxStatusLine::~CxStatusLine() {
 
 //------------------------------------------------------------------------------
 //TODO: CxHeader ()
-CxHttpClient::CxHeader::CxHeader() {
-
-
+CxHttpClient::CxHeader::CxHeader()
+{
 }
 //------------------------------------------------------------------------------
 //TODO: ~CxHeader ()
-CxHttpClient::CxHeader::~CxHeader() {
-
-
+CxHttpClient::CxHeader::~CxHeader()
+{
 }
 //------------------------------------------------------------------------------
 
@@ -196,15 +192,13 @@ CxHttpClient::CxHeader::~CxHeader() {
 
 //------------------------------------------------------------------------------
 //TODO: CxBody ()
-CxHttpClient::CxBody::CxBody() {
-
-
+CxHttpClient::CxBody::CxBody()
+{
 }
 //------------------------------------------------------------------------------
 //TODO: ~CxBody ()
-CxHttpClient::CxBody::~CxBody() {
-
-
+CxHttpClient::CxBody::~CxBody()
+{
 }
 //------------------------------------------------------------------------------
 
