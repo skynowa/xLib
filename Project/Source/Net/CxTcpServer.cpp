@@ -10,57 +10,57 @@
 xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
-CxTcpServer::CxTcpServer() {
-
+CxTcpServer::CxTcpServer()
+{
 }
 //------------------------------------------------------------------------------
-CxTcpServer::~CxTcpServer() {
-
+CxTcpServer::~CxTcpServer()
+{
 }
 //------------------------------------------------------------------------------
 void_t
 CxTcpServer::bind(
-    cushort_t &a_cusPort
+    cushort_t &a_port
 )
 {
-    xTEST_DIFF(xSOCKET_HANDLE_INVALID, _m_sktSocket);
-    xTEST_EQ(true, (32767 > a_cusPort) && (0 < a_cusPort));
+    xTEST_DIFF(xSOCKET_HANDLE_INVALID, _socket);
+    xTEST_EQ(true, (32767 > a_port) && (0 < a_port));
 
     struct sockaddr_in saSockAddr = {0};
-    saSockAddr.sin_family      = _m_siFamily;
+    saSockAddr.sin_family      = _family;
     saSockAddr.sin_addr.s_addr = INADDR_ANY;
-    saSockAddr.sin_port        = htons(a_cusPort);
+    saSockAddr.sin_port        = htons(a_port);
 
-    int_t iRv = ::bind(_m_sktSocket, CxUtils::reinterpretCastT<const struct sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
+    int_t iRv = ::bind(_socket, CxUtils::reinterpretCastT<const struct sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
     xTEST_DIFF(xSOCKET_ERROR, iRv);
 
     ////int_t iOpt = 1;
     //???
-    ////if (::setsockopt(_m_sktSocket, SOL_SOCKET, SO_REUSEADDR, (LPSTR)&iOpt, sizeof(iOpt)) < 0) {
+    ////if (::setsockopt(_socket, SOL_SOCKET, SO_REUSEADDR, (LPSTR)&iOpt, sizeof(iOpt)) < 0) {
     ////    return false;
     ////}
 }
 //------------------------------------------------------------------------------
 void_t
 CxTcpServer::listen(
-    cint_t &a_ciBacklog /*= SOMAXCONN*/
+    cint_t &a_backlog /*= SOMAXCONN*/
 )
 {
-    xTEST_DIFF(xSOCKET_HANDLE_INVALID, _m_sktSocket);
+    xTEST_DIFF(xSOCKET_HANDLE_INVALID, _socket);
 
-    int_t iRv = ::listen(_m_sktSocket, a_ciBacklog);
+    int_t iRv = ::listen(_socket, a_backlog);
     xTEST_DIFF(xSOCKET_ERROR, iRv);
 }
 //------------------------------------------------------------------------------
 void_t
 CxTcpServer::accept(
-    CxTcpServer    *a_pscktAcceptSocket,
-    std::tstring_t *a_psFromIp
+    CxTcpServer    *a_serverSocket,
+    std::tstring_t *a_fromIp
 )
 {
-    xTEST_DIFF(xSOCKET_HANDLE_INVALID, _m_sktSocket);
-    xTEST_PTR(a_pscktAcceptSocket);
-    xTEST_PTR(a_psFromIp);
+    xTEST_DIFF(xSOCKET_HANDLE_INVALID, _socket);
+    xTEST_PTR(a_serverSocket);
+    xTEST_PTR(a_fromIp);
 
     socket_t scktClient = xSOCKET_HANDLE_INVALID;
 
@@ -68,24 +68,24 @@ CxTcpServer::accept(
     struct sockaddr_in cliaddr  = {0};
     int_t              iAddrlen = sizeof(cliaddr);
 
-    scktClient = ::accept(_m_sktSocket, CxUtils::reinterpretCastT<struct sockaddr *>( &cliaddr ), &iAddrlen);
+    scktClient = ::accept(_socket, CxUtils::reinterpretCastT<struct sockaddr *>( &cliaddr ), &iAddrlen);
     xTEST_DIFF(xSOCKET_HANDLE_INVALID, scktClient);
 #else
     struct sockaddr_in cliaddr  = {0};
     socklen_t          iAddrlen = sizeof(cliaddr);
 
-    scktClient = ::accept(_m_sktSocket, CxUtils::reinterpretCastT<struct sockaddr *>( &cliaddr ), &iAddrlen);
+    scktClient = ::accept(_socket, CxUtils::reinterpretCastT<struct sockaddr *>( &cliaddr ), &iAddrlen);
     xTEST_DIFF(xSOCKET_HANDLE_INVALID, scktClient);
 #endif
 
     //TODO: bAccept
     ////scktAcceptSocket = scktClient;
-    (*a_pscktAcceptSocket).assign(scktClient);
+    (*a_serverSocket).assign(scktClient);
 
     //конверт из UNICODE
     std::string asFromIp = ::inet_ntoa(cliaddr.sin_addr);
 
-    (*a_psFromIp).assign(asFromIp.begin(), asFromIp.end());
+    (*a_fromIp).assign(asFromIp.begin(), asFromIp.end());
 }
 //------------------------------------------------------------------------------
 

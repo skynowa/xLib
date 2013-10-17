@@ -21,15 +21,15 @@ public:
     virtual ~CxTcpServer();
         ///< destructor
 
-    void_t   bind(cushort_t &cusPort);
+    void_t   bind(cushort_t &port);
         ///< associates a local address with a socket
-    void_t   listen(cint_t &ciBacklog /* = SOMAXCONN*/);
+    void_t   listen(cint_t &backlog /* = SOMAXCONN*/);
         ///< places a socket in a state in which it is listening for an incoming connection
-    void_t   accept(CxTcpServer *pscktAcceptSocket, std::tstring_t *psFromIp);
+    void_t   accept(CxTcpServer *serverSocket, std::tstring_t *fromIp);
         ///< permits an incoming connection attempt on a socket
 
 protected:
-    timeval  _m_tvTimeout;  ///< timeout
+    timeval  _timeout;  ///< timeout
 };
 
 xNAMESPACE_END(NxLib)

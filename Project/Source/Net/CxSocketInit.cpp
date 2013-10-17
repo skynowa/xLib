@@ -22,21 +22,22 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 CxSocketInit::CxSocketInit(
-    cushort_t &a_cusMajorVersion,
-    cushort_t &a_cusMinorVersion
+    cushort_t &a_majorVersion,
+    cushort_t &a_minorVersion
 )
 {
 #if xOS_ENV_WIN
     WSADATA wdData = {0};
 
-    int_t iRv = ::WSAStartup(MAKEWORD(a_cusMajorVersion, a_cusMinorVersion), &wdData);
+    int_t iRv = ::WSAStartup(MAKEWORD(a_majorVersion, a_minorVersion), &wdData);
     xTEST_EQ(0, iRv);
-    xTEST_EQ((ushort_t)HIBYTE(wdData.wVersion), a_cusMinorVersion);
-    xTEST_EQ((ushort_t)LOBYTE(wdData.wVersion), a_cusMajorVersion);
+    xTEST_EQ((ushort_t)HIBYTE(wdData.wVersion), a_minorVersion);
+    xTEST_EQ((ushort_t)LOBYTE(wdData.wVersion), a_majorVersion);
 #endif
 }
 //------------------------------------------------------------------------------
-CxSocketInit::~CxSocketInit() {
+CxSocketInit::~CxSocketInit()
+{
 #if xOS_ENV_WIN
     int_t iRv = ::WSACleanup();
     xTEST_EQ(0, iRv);

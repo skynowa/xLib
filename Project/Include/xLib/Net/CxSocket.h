@@ -201,7 +201,7 @@ public:
     virtual       ~CxSocket() = 0;
         ///< destructor
 
-    void_t         assign(csocket_t &csktSocket);
+    void_t         assign(csocket_t &socket);
         ///< assign to another socket
 
     /*******************************************************************************
@@ -209,7 +209,7 @@ public:
     *
     *******************************************************************************/
 
-    CxSocket &     operator = (csocket_t &csktSocket);
+    CxSocket &     operator = (csocket_t &socket);
         ///< operator =
                    operator socket_t();
         ///< operator socket_t
@@ -220,8 +220,8 @@ public:
     *
     *******************************************************************************/
 
-    void_t         create(const ExAddressFamily &cafFamily, const ExType &ctpType,
-                        const ExProtocol &cptProtocol);
+    void_t         create(const ExAddressFamily &family, const ExType &type,
+                        const ExProtocol &protocol);
         ///< creates a socket that is bound to a specific transport service provider
     socket_t       handle() const xWARN_UNUSED_RV;
         ///< get socket
@@ -238,21 +238,21 @@ public:
 
     //void_t *, std::tstring_t, std::ustring_t
 
-    int_t          send(ctchar_t *pcszBuff, cint_t &ciBuffSize, cint_t &ciFlags) xWARN_UNUSED_RV;
+    int_t          send(ctchar_t *buff, cint_t &buffSize, cint_t &flags) xWARN_UNUSED_RV;
         ///< send data
-    void_t         sendAll(std::ctstring_t &csBuff, cint_t &ciFlags);
+    void_t         sendAll(std::ctstring_t &buff, cint_t &flags);
         ///< send data by blocks
 
-    int_t          recv(tchar_t *pszBuff,  cint_t &ciBuffSize, cint_t &ciFlags) xWARN_UNUSED_RV;
+    int_t          recv(tchar_t *buff,  cint_t &buffSize, cint_t &flags) xWARN_UNUSED_RV;
         ///< receive data
-    std::tstring_t recvAll(cint_t &ciFlags) xWARN_UNUSED_RV;
+    std::tstring_t recvAll(cint_t &flags) xWARN_UNUSED_RV;
         ///< receive data
-    std::tstring_t recvAll(cint_t &ciFlags, std::ctstring_t &csDelimiter) xWARN_UNUSED_RV;
+    std::tstring_t recvAll(cint_t &flags, std::ctstring_t &delimiter) xWARN_UNUSED_RV;
         ///< receive data to delimiter, includes it
 
-    int_t          sendBytes(char *pszBuff, cint_t &ciMessageLength) xWARN_UNUSED_RV;
+    int_t          sendBytes(char *buff, cint_t &messageLength) xWARN_UNUSED_RV;
         ///< send bytes
-    int_t          receiveBytes(char *pszBuff, cint_t &ciStillToReceive) xWARN_UNUSED_RV;
+    int_t          receiveBytes(char *buff, cint_t &stillToReceive) xWARN_UNUSED_RV;
         ///< receive bytes
 
 
@@ -261,9 +261,9 @@ public:
     *
     *******************************************************************************/
 
-    void_t           peerName(std::tstring_t *psPeerAddr, ushort_t *pusPeerPort);
+    void_t           peerName(std::tstring_t *peerAddr, ushort_t *peerPort);
         ///< get address of the peer to which a socket is connected
-    void_t           socketName(std::tstring_t *psSocketAddr, ushort_t *pusSocketPort);
+    void_t           socketName(std::tstring_t *socketAddr, ushort_t *socketPort);
         ///< get local name for a socket
 
     /*******************************************************************************
@@ -273,17 +273,17 @@ public:
 
     ////getsockopt
     static int_t     select(int_t nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds,
-                         timeval *tvTimeout) xWARN_UNUSED_RV;
+                         timeval *timeout) xWARN_UNUSED_RV;
         ///< determines the status of one or more sockets, waiting if necessary,
         ///< to perform synchronous I/O
     static int_t     lastError() xWARN_UNUSED_RV;
         ///< get error status for the last operation that failed
 
 protected:
-    socket_t         _m_sktSocket;  ///< handle to socket
-    short_t          _m_siFamily;   ///< family
-    std::tstring_t   _m_sIp;        ///< IP
-    ushort_t         _m_usPort;     ///< port
+    socket_t         _socket;  ///< handle to socket
+    short_t          _family;   ///< family
+    std::tstring_t   _ip;        ///< IP
+    ushort_t         _port;     ///< port
 };
 
 xNAMESPACE_END(NxLib)
@@ -342,9 +342,9 @@ xNAMESPACE_END(NxLib)
         TIMEVAL tv;
         TIMEVAL *ptv = NULL;
 
-        if (_m_tvTimeout) {
-            tv.tv_sec =  _m_tvTimeout / 1000;
-            tv.tv_usec = _m_tvTimeout * 1000 - tv.tv_sec * 1000000;
+        if (_m_timeout) {
+            tv.tv_sec =  _m_timeout / 1000;
+            tv.tv_usec = _m_timeout * 1000 - tv.tv_sec * 1000000;
             ptv = &tv;
         } else {
             ptv = NULL; // NULL for blocking operation (never times out)
