@@ -418,7 +418,7 @@ CxPath::isNameValid(
     std::ctstring_t &a_fileName
 )
 {
-    xTEST_NA(a_filePath);
+    xTEST_NA(a_fileName);
 
     bool_t bRv = false;
 

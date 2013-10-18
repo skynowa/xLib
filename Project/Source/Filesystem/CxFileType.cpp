@@ -81,7 +81,7 @@ CxFileType::set(
 )
 {
     xTEST_EQ(false, filePath().empty());
-    xTEST_NA(a_value);
+    xTEST_NA(a_values);
 
 #if xOS_ENV_WIN
     BOOL blRes = ::SetFileAttributes(filePath().c_str(), a_values);
