@@ -13,10 +13,14 @@ project (xLib)
 set(XLib_PROJECT_INCLUDE_DIRS "")
 
 file(GLOB_RECURSE xLib_HEADERS "Project/*.h")
-file(GLOB_RECURSE xLib_SOURCES "Project/*.cpp")
-
 foreach(_headerFile ${xLib_HEADERS})
     get_filename_component(_dir ${_headerFile} PATH)
+    list (APPEND XLib_PROJECT_INCLUDE_DIRS ${_dir})
+endforeach()
+
+file(GLOB_RECURSE xLib_SOURCES "Project/*.cpp")
+foreach(_sourceFile ${xLib_SOURCES})
+    get_filename_component(_dir ${_sourceFile} PATH)
     list (APPEND XLib_PROJECT_INCLUDE_DIRS ${_dir})
 endforeach()
 
@@ -39,15 +43,14 @@ list(REMOVE_DUPLICATES XLib_TESTS_INCLUDE_DIRS)
 #-------------------------------------------------------------------------------
 # source directories
 include_directories("${CMAKE_SOURCE_DIR}/Project/Include")
+include_directories("${CMAKE_SOURCE_DIR}/Project/Source")
 include_directories("${CMAKE_SOURCE_DIR}/Tests/Include")
 include_directories(${XLib_TESTS_INCLUDE_DIRS})
 include_directories(${XLib_PROJECT_INCLUDE_DIRS})
 
 #-------------------------------------------------------------------------------
 # targets
-add_library   (xLib_static STATIC ${xLib_SOURCES})
-add_library   (xLib_shared SHARED ${xLib_SOURCES})
-add_executable(xLib_test ${xLib_SOURCES} ${xLib_tests_SOURCES})
+add_executable(xLib_test ${xLib_tests_SOURCES})
 
 #-------------------------------------------------------------------------------
 # flags
@@ -76,13 +79,6 @@ target_link_libraries(
     ${LIBS} ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS}
 )
 
-target_link_libraries(
-    xLib_shared
-    ${LIBS} ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS}
-)
-
 #-------------------------------------------------------------------------------
 # add the install targets
-install (TARGETS xLib_static DESTINATION "bin")
-install (TARGETS xLib_shared DESTINATION "bin")
 install (DIRECTORY ${XLib_PROJECT_INCLUDE_DIRS} DESTINATION "include/xLib")
