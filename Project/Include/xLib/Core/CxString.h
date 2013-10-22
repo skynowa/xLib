@@ -7,6 +7,8 @@
 #pragma once
 
 #include <xLib/Core/xCore.h>
+#include <xLib/Test/xTest.h>
+#include <xLib/Debug/xDebug.h>
 //------------------------------------------------------------------------------
 // overload operators << for std::basic_ostream
 xNAMESPACE_BEGIN(std)
