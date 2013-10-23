@@ -6,13 +6,16 @@
 
 #include <xLib/Core/CxString.h>
 
+
 #include <xLib/Test/xTest.h>
 #include <xLib/Debug/xDebug.h>
 #include <xLib/Core/xCore.h>
+#include <xLib/Core/xFunctors.h>
 #include <xLib/Debug/CxLastError.h>
 #include <xLib/Debug/CxStdError.h>
 #include <xLib/Debug/CxErrorReport.h>
 #include <xLib/Debug/CxDebugger.h>
+#include <xLib/Debug/CxStackTrace.h>
 #include <xLib/Log/CxTracer.h>
 #include <xLib/Core/CxConst.h>
 #include <xLib/Core/CxChar.h>
@@ -717,22 +720,6 @@ CxString::minimize(
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-xNAMESPACE_ANONYM_BEGIN
-
-struct SCompareNoCase {
-    // TODO: bool_t
-    bool
-    operator () (
-        const std::tstring_t::value_type &a_cchChar1,
-        const std::tstring_t::value_type &a_cchChar2
-    )  const
-    {
-        return CxChar::toUpper(a_cchChar1) == CxChar::toUpper(a_cchChar2);
-    }
-};
-
-xNAMESPACE_ANONYM_END
-
 /* static */
 bool_t
 CxString::compareNoCase(

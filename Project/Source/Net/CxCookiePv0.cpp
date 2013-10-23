@@ -238,15 +238,6 @@ CxCookiePv0::clear()
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-struct SCompareNoCase
-{
-    bool_t
-    operator() (std::ctstring_t &a_str1, std::ctstring_t &a_str2) const
-    {
-        return !! CxString::compareNoCase(a_str1, a_str2);
-    }
-};
-//------------------------------------------------------------------------------
 void_t
 CxCookiePv0::init(
     std::ctstring_t &a_rawCookie
