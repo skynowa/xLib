@@ -6,6 +6,7 @@
 
 #include <xLib/Core/CxChar.h>
 
+#include <xLib/Core/CxUtils.h>
 
 xNAMESPACE_BEGIN(NxLib)
 

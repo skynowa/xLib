@@ -12,6 +12,7 @@
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Filesystem/CxDir.h>
 #include <xLib/Sync/CxCurrentProcess.h>
+#include <xLib/Log/CxTracer.h>
 
 
 xNAMESPACE_BEGIN(NxLib)

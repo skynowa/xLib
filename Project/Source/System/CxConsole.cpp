@@ -531,7 +531,7 @@ CxConsole::pause(
 
         writeLine(sMsg);
 
-		CxCurrentThread::sleep(a_timeoutMsec);
+		//// TODO: CxCurrentThread::sleep(a_timeoutMsec);
 	}
 }
 //------------------------------------------------------------------------------

@@ -8,6 +8,7 @@
 
 #include <xLib/Core/CxConst.h>
 #include <xLib/Core/CxString.h>
+#include <xLib/Core/CxUtils.h>
 
 
 xNAMESPACE_BEGIN(NxLib)

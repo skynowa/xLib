@@ -7,6 +7,7 @@
 #include <xLib/Debug/CxStdError.h>
 
 #include <xLib/Core/CxString.h>
+#include <xLib/Core/CxUtils.h>
 
 xNAMESPACE_ANONYM_BEGIN
 

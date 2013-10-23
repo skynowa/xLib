@@ -7,6 +7,7 @@
 #include <xLib/Sync/CxEvent.h>
 
 #include <xLib/Core/CxString.h>
+#include <xLib/Log/CxTracer.h>
 
 
 xNAMESPACE_BEGIN(NxLib)
