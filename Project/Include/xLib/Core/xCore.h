@@ -171,15 +171,15 @@ namespace NxLib { }
 #include <xLib/Core/xVersion.h>
 #include <xLib/Core/xTypes.h>
 #include <xLib/Core/xFunctions.h>
-#include <xLib/Core/CxConst.h>
+//#include <xLib/Core/CxConst.h>
 #include <xLib/Core/CxNonCopyable.h>
 #include <xLib/Core/CxNonAssignable.h>
 #include <xLib/Core/CxNonHeap.h>
 #include <xLib/Core/CxNonArrayHeap.h>
-#include <xLib/Test/xTest.h>
-#include <xLib/Core/CxUtils.h>
-#include <xLib/Debug/xDebug.h>
-#include <xLib/Debug/CxException.h>
+//#include <xLib/Test/xTest.h>
+//#include <xLib/Core/CxUtils.h>
+//#include <xLib/Debug/xDebug.h>
+//#include <xLib/Debug/CxException.h>
 
 #include <xLib/Core/xTracing.h>
 #include <xLib/Core/xLinking.h>

@@ -6,7 +6,6 @@
 
 #include <xLib/Test/xTest.h>
 #include <xLib/Debug/xDebug.h>
-#include <xLib/Core/xCore.h>
 #include <xLib/Debug/CxLastError.h>
 #include <xLib/Debug/CxStdError.h>
 #include <xLib/Debug/CxErrorReport.h>

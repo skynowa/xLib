@@ -178,7 +178,8 @@ CxProcess::id() const
 bool_t
 CxProcess::isCurrent() const
 {
-    return CxCurrentProcess::isCurrent( CxCurrentProcess::id() );
+    //// TODO: return CxCurrentProcess::isCurrent( CxCurrentProcess::id() );
+    return false;
 }
 //------------------------------------------------------------------------------
 ulong_t

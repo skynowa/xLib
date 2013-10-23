@@ -32,6 +32,7 @@ CxTest_CxIpcMutex::unit(
         CxIpcMutex::handle_t hRv;
 
         hRv = mtMutex.handle();
+        xUNUSED(hRv);
         ////xTEST_EQ(false, hRv.bIsValid());
     }
 

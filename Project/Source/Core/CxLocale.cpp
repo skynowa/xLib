@@ -6,6 +6,7 @@
 
 #include <xLib/Core/CxLocale.h>
 
+#include <xLib/Debug/CxDebugger.h>
 
 xNAMESPACE_BEGIN(NxLib)
 

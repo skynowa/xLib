@@ -8,8 +8,10 @@
 
 #include <xLib/Core/CxConst.h>
 #include <xLib/Core/CxString.h>
+#include <xLib/Core/CxUtils.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Sync/CxCurrentProcess.h>
+#include <xLib/Log/CxTracer.h>
 
 #if   xOS_ENV_WIN
     #if   xCOMPILER_MINGW
