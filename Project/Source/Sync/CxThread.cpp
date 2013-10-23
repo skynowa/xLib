@@ -11,7 +11,6 @@
 #include <xLib/Sync/CxCurrentThread.h>
 #include <xLib/Sync/CxProcess.h>
 
-
 xNAMESPACE_BEGIN(NxLib)
 
 #if !xOS_ENV_WIN
@@ -154,7 +153,7 @@ CxThread::create(
     _m_hThread = id;  // TODO: is it right?
     _m_ulId    = id;
 #endif
-    xTEST_EQ(false, CxCurrentThread::isCurrent(_m_ulId));
+    //// TODO: xTEST_EQ(false, CxCurrentThread::isCurrent(_m_ulId));
 
     //-------------------------------------
     // flags
@@ -258,7 +257,7 @@ CxThread::kill(
     int_t iRv = ::pthread_kill(_m_ulId, SIGALRM);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
-    CxCurrentThread::sleep(a_culTimeout);
+    //// TODO: CxCurrentThread::sleep(a_culTimeout);
 #endif
 
     //-------------------------------------
@@ -894,7 +893,8 @@ CxThread::id() const {
 //------------------------------------------------------------------------------
 bool_t
 CxThread::isCurrent() const {
-    return CxCurrentThread::isCurrent( CxCurrentThread::id() );
+    //// TODO: return CxCurrentThread::isCurrent( CxCurrentThread::id() );
+    return false;
 }
 //------------------------------------------------------------------------------
 ulong_t

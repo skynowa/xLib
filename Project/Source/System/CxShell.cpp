@@ -8,6 +8,12 @@
 
 #include <xLib/Core/CxString.h>
 #include <xLib/Core/Win/CxCom.h>
+#include <xLib/Debug/CxLastError.h>
+#include <xLib/Debug/CxStdError.h>
+#include <xLib/Debug/CxErrorReport.h>
+#include <xLib/Debug/CxDebugger.h>
+#include <xLib/Debug/CxStackTrace.h>
+#include <xLib/Log/CxTracer.h>
 
 #if xCOMPILER_MINGW
     //  lib: -luuid (for IID_IPersistFile)

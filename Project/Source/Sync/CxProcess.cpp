@@ -11,8 +11,9 @@
 #include <xLib/System/CxProcessInfo.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
-#include <xLib/Sync/CxCurrentThread.h>
 #include <xLib/Sync/CxCurrentProcess.h>
+#include <xLib/Sync/CxCurrentThread.h>
+
 
 #if xOS_ENV_WIN
     #if !xCOMPILER_MINGW
@@ -156,7 +157,7 @@ CxProcess::kill(
     int_t iRv = ::kill(_pid, SIGKILL);
     xTEST_DIFF(- 1, iRv);
 
-    CxCurrentThread::sleep(a_timeoutMSec);
+    //// TODO: CxCurrentThread::sleep(a_timeoutMSec);
 
     _exitStatus = 0U;
 #endif
