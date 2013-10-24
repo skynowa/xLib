@@ -495,7 +495,7 @@ CxUri::_parse(
     //[scheme] - [foo]
     //[INPUT]     - foo://userinfo@example.com:8042/over/there?name=ferret#nose
     size_t uiSchemeStart = 0;
-    size_t uiSchemeEnd   = a_uri.find_first_of(CxConst::xCOLON);
+    size_t uiSchemeEnd   = a_uri.find_first_of(CxConst::xCOLON());
     xTEST_DIFF(std::tstring_t::npos, uiSchemeEnd);
     xTEST_GR(size_t(7U)/*SCHEME_MAX_SIZE + 1*/, uiSchemeEnd);
 

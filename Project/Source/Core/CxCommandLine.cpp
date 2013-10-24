@@ -54,7 +54,7 @@ CxCommandLine::get()
 
     sRv = CxString::trimSpace(pcszRes);
 #else
-    sRv = CxString::join(_ms_vsArgs, CxConst::xSPACE);
+    sRv = CxString::join(_ms_vsArgs, CxConst::xSPACE());
 #endif
 
     return sRv;

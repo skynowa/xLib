@@ -61,8 +61,8 @@ CxEnvironment::isVarValid(
 {
     xTEST_NA(a_varName);
 
-    xCHECK_RET(true              == a_varName.empty(),               false);
-    xCHECK_RET(std::string::npos != a_varName.find(CxConst::xEQUAL), false);
+    xCHECK_RET(true              == a_varName.empty(),                 false);
+    xCHECK_RET(std::string::npos != a_varName.find(CxConst::xEQUAL()), false);
 
     return true;
 }

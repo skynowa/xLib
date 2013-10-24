@@ -26,7 +26,7 @@ public:
 
     bool_t                isExists() xWARN_UNUSED_RV;
         ///< check for existence
-    bool_t                isEmpty(std::ctstring_t &shellFilter = CxConst::xMASK_ALL) xWARN_UNUSED_RV;
+    bool_t                isEmpty(std::ctstring_t &shellFilter = CxConst::xMASK_ALL()) xWARN_UNUSED_RV;
         ///< is empty
     bool_t                isRoot() xWARN_UNUSED_RV;
         ///< is root

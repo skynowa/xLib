@@ -241,7 +241,7 @@ CxTest_CxVolume::unit(
             ulonglong_t ullTotal     = 0ULL;
             ulonglong_t ullFree      = 0ULL;
 
-            CxVolume::space(CxConst::xSTR_EMPTY, &ullAvailable, &ullTotal, &ullFree);
+            CxVolume::space(CxConst::xSTR_EMPTY(), &ullAvailable, &ullTotal, &ullFree);
             xTEST_LESS_EQ(0ULL, ullAvailable);
             xTEST_LESS_EQ(0ULL, ullTotal);
             xTEST_LESS_EQ(0ULL, ullFree);

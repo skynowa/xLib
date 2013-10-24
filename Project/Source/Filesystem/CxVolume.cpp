@@ -118,8 +118,8 @@ CxVolume::label() const
     sRv.assign(szVolumeName);
 #else
     // REVIEW: just get the dir name ??
-    if (CxConst::xUNIX_SLASH == volumePath()) {
-        sRv = CxConst::xUNIX_SLASH;
+    if (CxConst::xUNIX_SLASH() == volumePath()) {
+        sRv = CxConst::xUNIX_SLASH();
     } else {
         sRv = CxPath( volumePath() ).fileName();
     }
@@ -135,8 +135,8 @@ CxVolume::isValid() const
     bool_t bRv = CxDir( volumePath() ).isRoot();
     xCHECK_RET(!bRv, false);
 #else
-    xCHECK_RET(true                  == volumePath().empty(), false);
-    xCHECK_RET(CxConst::xSLASH.at(0) != volumePath().at(0),   false);
+    xCHECK_RET(true                    == volumePath().empty(), false);
+    xCHECK_RET(CxConst::xSLASH().at(0) != volumePath().at(0),   false);
 #endif
 
     return true;
@@ -182,7 +182,7 @@ CxVolume::isReady() const
 bool_t
 CxVolume::isEmpty() const
 {
-    return CxDir( volumePath() ).isEmpty(CxConst::xMASK_ALL);
+    return CxDir( volumePath() ).isEmpty(CxConst::xMASK_ALL());
 }
 //------------------------------------------------------------------------------
 void_t

@@ -29,14 +29,14 @@ CxTest_CxTracer::unit(
     #if xTEST_IGNORE
         CxTracer trTracer;
 
-        trTracer << xT("\tMsg: ") << 12345 << xT(' ') << CxConst::x3DOT;
+        trTracer << xT("\tMsg: ") << 12345 << xT(' ') << CxConst::x3DOT();
     #endif
     }
 
     xTEST_CASE("CxTracer::operator <<", a_cullCaseLoops)
     {
     #if xTEST_IGNORE
-        CxTracer() << xT("\tMsg: ") << 12345 << xT(' ') << CxConst::x3DOT;
+        CxTracer() << xT("\tMsg: ") << 12345 << xT(' ') << CxConst::x3DOT();
     #endif
     }
 

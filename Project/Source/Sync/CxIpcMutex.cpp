@@ -70,7 +70,7 @@ CxIpcMutex::create(
     _handle.set(hRv);
     _name = a_name;
 #else
-    std::tstring_t sUnixName = CxConst::xUNIX_SLASH + a_name;
+    std::tstring_t sUnixName = CxConst::xUNIX_SLASH() + a_name;
 
     handle_t hHandle = ::sem_open(sUnixName.c_str(), O_CREAT | O_RDWR, 0777, 1U);
     xTEST_DIFF(SEM_FAILED, hHandle);
@@ -102,7 +102,7 @@ CxIpcMutex::open(
     _handle.set(hRv);
     _name = a_name;
 #else
-    std::tstring_t sUnixName = CxConst::xUNIX_SLASH + a_name;
+    std::tstring_t sUnixName = CxConst::xUNIX_SLASH() + a_name;
 
     handle_t hHandle = ::sem_open(sUnixName.c_str(), O_RDWR, 0777, 1U);
     xTEST_DIFF(SEM_FAILED, hHandle);

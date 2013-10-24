@@ -77,7 +77,7 @@ CxErrorReport::_construct(
     osArchitecture = CxSystemInfo::formatOsArch( CxSystemInfo::osArch() );
 
     stackTrace     = a_csStackTrace;
-    comment        = a_csComment.empty() ? CxConst::xHYPHEN : a_csComment;
+    comment        = a_csComment.empty() ? CxConst::xHYPHEN() : a_csComment;
 }
 //------------------------------------------------------------------------------
 

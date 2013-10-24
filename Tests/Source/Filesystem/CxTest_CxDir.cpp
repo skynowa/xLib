@@ -24,7 +24,7 @@ CxTest_CxDir::unit(
     culonglong_t &a_cullCaseLoops
 )
 {
-    std::ctstring_t csTempScanDirPath = tempDirPath() + CxConst::xSLASH + xT("Scan");
+    std::ctstring_t csTempScanDirPath = tempDirPath() + CxConst::xSLASH() + xT("Scan");
     std::ctstring_t csMask            = xT("*.txt");
 
 #if   xOS_ENV_WIN
@@ -92,13 +92,13 @@ CxTest_CxDir::unit(
 
     xTEST_CASE("CxDir::isEmpty", a_cullCaseLoops)
     {
-        m_bRv = CxDir(csDirPath).isEmpty(CxConst::xMASK_ALL);
+        m_bRv = CxDir(csDirPath).isEmpty(CxConst::xMASK_ALL());
         xTEST_EQ(false, m_bRv);
 
-        m_bRv = CxDir(csDirPath2).isEmpty(CxConst::xMASK_ALL);
+        m_bRv = CxDir(csDirPath2).isEmpty(CxConst::xMASK_ALL());
         xTEST_EQ(true, m_bRv);
 
-        m_bRv = CxDir(tempDirPath()).isEmpty(CxConst::xMASK_ALL);
+        m_bRv = CxDir(tempDirPath()).isEmpty(CxConst::xMASK_ALL());
         xTEST_EQ(false, m_bRv);
     }
 
@@ -170,14 +170,14 @@ CxTest_CxDir::unit(
     {
         //-------------------------------------
         //prepare for csTempScanDirPath (create dirs)
-        std::ctstring_t csDirSource = tempDirPath() + CxConst::xSLASH + xT("DirSource");
-        std::ctstring_t csDirDest   = tempDirPath() + CxConst::xSLASH + xT("DirDest");
+        std::ctstring_t csDirSource = tempDirPath() + CxConst::xSLASH() + xT("DirSource");
+        std::ctstring_t csDirDest   = tempDirPath() + CxConst::xSLASH() + xT("DirDest");
 
         std::ctstring_t sDirPaths[] =
         {
             csDirSource,
-            csDirSource + CxConst::xSLASH + xT("AA"),
-            csDirSource + CxConst::xSLASH + xT("AA") + CxConst::xSLASH + xT("AAA")
+            csDirSource + CxConst::xSLASH() + xT("AA"),
+            csDirSource + CxConst::xSLASH() + xT("AA") + CxConst::xSLASH() + xT("AAA")
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(sDirPaths); ++ i) {
@@ -199,14 +199,14 @@ CxTest_CxDir::unit(
     {
         //-------------------------------------
         // prepare for csTempScanDirPath (create dirs)
-        std::ctstring_t csDirSource = tempDirPath() + CxConst::xSLASH + xT("Source");
-        std::ctstring_t csDirDest   = tempDirPath() + CxConst::xSLASH + xT("Dest");
+        std::ctstring_t csDirSource = tempDirPath() + CxConst::xSLASH() + xT("Source");
+        std::ctstring_t csDirDest   = tempDirPath() + CxConst::xSLASH() + xT("Dest");
 
         std::ctstring_t sDirPaths[] =
         {
             csDirSource,
-            csDirSource + CxConst::xSLASH + xT("dd"),
-            csDirSource + CxConst::xSLASH + xT("XX") + CxConst::xSLASH + xT("111")
+            csDirSource + CxConst::xSLASH() + xT("dd"),
+            csDirSource + CxConst::xSLASH() + xT("XX") + CxConst::xSLASH() + xT("111")
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(sDirPaths); ++ i) {

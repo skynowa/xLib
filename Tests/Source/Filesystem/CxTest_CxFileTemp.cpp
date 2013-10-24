@@ -31,7 +31,7 @@ CxTest_CxFileTemp::unit(
         CxFileTemp ftFileTemp(true);
         CxFile     fJobber;
 
-        ftFileTemp.create(CxPath::exe(), tempDirPath() + CxConst::xSLASH + xT("Temp"), &fJobber);
+        ftFileTemp.create(CxPath::exe(), tempDirPath() + CxConst::xSLASH() + xT("Temp"), &fJobber);
         #if 0
             xTRACEV(xT("\tsTemp: %s"), fJobber.path().c_str());
         #endif
