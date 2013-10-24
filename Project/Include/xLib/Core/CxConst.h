@@ -4,9 +4,10 @@
  */
 
 
+#include <xLib/Core/xCore.h>
+
 #pragma once
 
-#include <xLib/Core/xCore.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 

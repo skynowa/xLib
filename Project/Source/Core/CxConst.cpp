@@ -4,7 +4,7 @@
  */
 
 
-#include <xLib/Core/CxConst.h>
+//#include <xLib/Core/CxConst.h>
 
 
 xNAMESPACE_BEGIN(NxLib)
@@ -21,9 +21,9 @@ std::cwstring_t CxConst::xSTR_EMPTY_W      ;
 std::ctstring_t CxConst::xSTR_EMPTY        ;
 
 // xCR
-std::cstring_t  CxConst::xCR_A             ("\r");
-std::cwstring_t CxConst::xCR_W             (L"\r");
-std::ctstring_t CxConst::xCR               (xT("\r"));
+extern std::cstring_t  CxConst::xCR_A             ("\r");
+extern std::cwstring_t CxConst::xCR_W             (L"\r");
+extern std::ctstring_t CxConst::xCR               (xT("\r"));
 
 // xNL
 std::cstring_t  CxConst::xNL_A             ("\n");
