@@ -596,7 +596,15 @@
             }
         ///< catch CxException, std::exception and all other exceptions
 
-//-------------------------------------
-// etc
+//--------------------------------------------------
+// header only library
+#if xXLIB_HEADER_ONLY && 0
+    #define xEXTERN_HO                  extern
+    #define xINLINE_HO                  inline
+#else
+    #define xEXTERN_HO                  // n/a
+    #define xINLINE_HO                  // n/a
+#endif
+    ///< keywords for header only library
 
 //------------------------------------------------------------------------------
