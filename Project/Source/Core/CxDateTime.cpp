@@ -1008,12 +1008,12 @@ CxDateTime::_parse(
 
             // replace ":" to " ", "-" to " "
             std::tstring_t sDT = a_value;
-            sDT = CxString::replaceAll(sDT, CxConst::xCOLON,  CxConst::xSPACE);
-            sDT = CxString::replaceAll(sDT, CxConst::xHYPHEN, CxConst::xSPACE);
+            sDT = CxString::replaceAll(sDT, CxConst::xCOLON(),  CxConst::xSPACE());
+            sDT = CxString::replaceAll(sDT, CxConst::xHYPHEN(), CxConst::xSPACE());
 
             // split by separator " "
             std::vec_tstring_t vsDates;
-            CxString::split(sDT, CxConst::xSPACE, &vsDates);
+            CxString::split(sDT, CxConst::xSPACE(), &vsDates);
 
             //                   = CxString::cast<ushort_t>( vsDates.at(0) );     //Wed(0),
             (*a_datetime)._day    = CxString::cast<ushort_t>( vsDates.at(1) );   //23(1)

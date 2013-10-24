@@ -29,7 +29,7 @@ CxTest_CxCgi::unit(
     xTEST_CASE("CxCgi::pageShow", a_cullCaseLoops)
     {
         #if xTEST_IGNORE
-            std::ctstring_t csFilePath = tempDirPath() + CxConst::xSLASH + xT("Test.txt");
+            std::ctstring_t csFilePath = tempDirPath() + CxConst::xSLASH() + xT("Test.txt");
 
             std::ctstring_t sFileContent =
                     xT("\t<html>")

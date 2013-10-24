@@ -158,7 +158,7 @@ CxSystemInfo::formatOsType(
             sRv = xT("Windows 7");
             break;
         default:
-            sRv = CxConst::xUNKNOWN_STRING;
+            sRv = CxConst::xUNKNOWN_STRING();
             break;
     }
 #elif xOS_ENV_UNIX
@@ -183,7 +183,7 @@ CxSystemInfo::formatOsType(
                 sRv = xT("FreeBSD");
                 break;
             default:
-                sRv = CxConst::xUNKNOWN_STRING;
+                sRv = CxConst::xUNKNOWN_STRING();
                 break;
         }
     }
@@ -277,10 +277,10 @@ CxSystemInfo::formatOsArch(
             sRv = xT("64-bit");
             break;
         case CxSystemInfo::oaUnknown:
-            sRv = CxConst::xUNKNOWN_STRING;
+            sRv = CxConst::xUNKNOWN_STRING();
             break;
         default:
-            sRv = CxConst::xUNKNOWN_STRING;
+            sRv = CxConst::xUNKNOWN_STRING();
             break;
     }
 
@@ -477,7 +477,7 @@ CxSystemInfo::userShellPath()
     xTEST_DIFF(FALSE, blRv);
 
     sRv.append(szBuff);
-    sRv.append(CxConst::xSLASH);
+    sRv.append(CxConst::xSLASH());
     sRv.append(xT("explorer.exe"));
 #elif xOS_ENV_UNIX
     struct passwd passwd = {0};

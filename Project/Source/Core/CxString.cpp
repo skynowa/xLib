@@ -380,7 +380,7 @@ CxString::trimSpace(
 {
     xTEST_NA(a_str);
 
-    return trimChars(a_str, CxConst::xWHITE_SPACES);
+    return trimChars(a_str, CxConst::xWHITE_SPACES());
 }
 //------------------------------------------------------------------------------
 /* static */
@@ -391,7 +391,7 @@ CxString::removeEol(
 {
     xTEST_NA(a_str);
 
-    return trimRightChars(a_str, CxConst::xEOL);
+    return trimRightChars(a_str, CxConst::xEOL());
 }
 //------------------------------------------------------------------------------
 /* static */
@@ -700,11 +700,11 @@ CxString::minimize(
     std::tstring_t sRv;
 
     if (a_str.size() > a_maxLength) {
-        if (a_maxLength < CxConst::x3DOT.size()) {
+        if (a_maxLength < CxConst::x3DOT().size()) {
             sRv = a_str.substr(0, a_maxLength);
         } else {
-            sRv = a_str.substr(0, a_maxLength - CxConst::x3DOT.size()) +
-                                 CxConst::x3DOT;
+            sRv = a_str.substr(0, a_maxLength - CxConst::x3DOT().size()) +
+                                 CxConst::x3DOT();
         }
     } else {
         sRv = a_str;

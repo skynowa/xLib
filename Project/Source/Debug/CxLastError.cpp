@@ -118,7 +118,7 @@ CxLastError::format(
 
     sMessage.assign( static_cast<LPCTSTR>( pvBuff ), dwRv );
     sMessage = CxString::removeEol(sMessage);
-    sMessage = CxString::trimRightChars(sMessage, CxConst::xDOT);
+    sMessage = CxString::trimRightChars(sMessage, CxConst::xDOT());
 
     sRv.append(sMessage);
 

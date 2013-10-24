@@ -21,7 +21,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //-------------------------------------------------------------------------
 CxLocalStorage::CxLocalStorage() :
-    _separator(CxConst::xEQUAL),
+    _separator(CxConst::xEQUAL()),
     _fileExt  (xT("ini")),
     _filePath (),
     _ini      ()
@@ -36,7 +36,7 @@ CxLocalStorage::CxLocalStorage() :
 CxLocalStorage::CxLocalStorage(
     std::ctstring_t &a_filePath
 ) :
-    _separator(CxConst::xEQUAL),
+    _separator(CxConst::xEQUAL()),
     _fileExt  (xT("ini")),
     _filePath  (),
     _ini      ()

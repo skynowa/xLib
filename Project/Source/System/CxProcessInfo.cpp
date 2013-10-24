@@ -53,7 +53,7 @@ CxProcessInfo::currentIds(
     #if   xOS_LINUX
         std::vec_tstring_t a_vsDirPaths;
 
-        CxFinder::dirs(xT("/proc"), CxConst::xMASK_ALL, false, &a_vsDirPaths);
+        CxFinder::dirs(xT("/proc"), CxConst::xMASK_ALL(), false, &a_vsDirPaths);
 
         // skip non-numeric entries
         xFOREACH_CONST(std::vec_tstring_t, it, a_vsDirPaths) {
