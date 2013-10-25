@@ -15,9 +15,13 @@
 xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
-std::ctstring_t CxMimeHeader::_attrDelimiter = xT(":");
-std::ctstring_t CxMimeHeader::_endOfHeader   = xT("\r\n\r\n");
-std::ctstring_t CxMimeHeader::_endOfLine     = xT("\r\n");
+xINLINE_HO
+CxMimeHeader::CxMimeHeader() :
+    _attrDelimiter(xT(":")),
+    _endOfHeader  (xT("\r\n\r\n")),
+    _endOfLine    (xT("\r\n"))
+{
+}
 //------------------------------------------------------------------------------
 xINLINE_HO void_t
 CxMimeHeader::parse(

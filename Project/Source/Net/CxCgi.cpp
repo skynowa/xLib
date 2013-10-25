@@ -19,7 +19,6 @@ xNAMESPACE_BEGIN(NxLib)
 
 using namespace NxCgi;
 
-std::csize_t CxCgi::MAX_DATA_SIZE_DEFAULT = 1024 * 1024;
 
 /*******************************************************************************
 *    public
@@ -280,7 +279,7 @@ CxCgi::urlEscape(char *a_s, FILE *a_fw) {
 //-------------------------------------------------------------------------------------------------------
 //TODO: bUrlUnescape
 //modified from the Apache code. Code shrinks string, so can be done in place.
-void_t
+xINLINE_HO void_t
 CxCgi::urlUnescape(char *a_s) {
 //    int_t    error;
 //    char    *p;
@@ -806,7 +805,7 @@ CxCgiFormData::rawData() const
     return _formData;
 }
 //------------------------------------------------------------------------------
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxCgiFormData::dump() const
 {
     std::tstring_t sRv;

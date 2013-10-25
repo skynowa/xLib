@@ -27,9 +27,9 @@ public:
     static std::tstring_t  generateMessageID();
 
 private:
-    static std::ctstring_t _attrDelimiter;
-    static std::ctstring_t _endOfHeader;
-    static std::ctstring_t _endOfLine;
+    std::ctstring_t        _attrDelimiter;
+    std::ctstring_t        _endOfHeader;
+    std::ctstring_t        _endOfLine;
 
     std::mmap_tstring_t    _header;
 
