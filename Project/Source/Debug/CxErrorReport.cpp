@@ -27,12 +27,7 @@ xNAMESPACE_BEGIN(NxLib)
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-/* virtual */
-CxErrorReport::~CxErrorReport() {
-
-}
-//------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxErrorReport::_construct(
     const ExType    &a_crtType,
     std::ctstring_t &a_csVar1,
@@ -51,7 +46,6 @@ CxErrorReport::_construct(
 )
 {
     std::csize_t cuiReportWidthMax = 46U;   // MAGIC: cuiReportWidthMax
-
 
     type          = a_crtType;
 
@@ -88,8 +82,9 @@ CxErrorReport::_construct(
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-void_t
-CxErrorReport::_initPlain() {
+xINLINE_HO void_t
+CxErrorReport::_initPlain()
+{
     std::tostringstream_t ossReport;
 
     ossReport

@@ -30,12 +30,14 @@ xNAMESPACE_BEGIN(NxLib)
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
+xINLINE_HO
 CxBlowfish::CxBlowfish()
 {
     xSTRUCT_ZERO(_bfKey);
     xARRAY_ZERO(_ivec);
 }
 //------------------------------------------------------------------------------
+xINLINE_HO
 /* virtual */
 CxBlowfish::~CxBlowfish()
 {
@@ -43,7 +45,7 @@ CxBlowfish::~CxBlowfish()
     /*SECURE*/xARRAY_ZERO(_ivec);
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxBlowfish::setKey(
     uchar_t *a_key,
     cint_t  &a_keySize
@@ -56,7 +58,7 @@ CxBlowfish::setKey(
     (void_t)::BF_set_key(&_bfKey, a_keySize, a_key);
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxBlowfish::setKey(
     std::custring_t &a_key
 )
@@ -67,7 +69,7 @@ CxBlowfish::setKey(
     setKey(const_cast<uchar_t *>( a_key.data() ), static_cast<int_t>( a_key.size() ));
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxBlowfish::setKey(
     std::ctstring_t &a_key
 )
@@ -78,7 +80,7 @@ CxBlowfish::setKey(
     setKey(std::ustring_t(a_key.begin(), a_key.end()));
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxBlowfish::setFileKey(
     std::ctstring_t &a_filePath
 )
@@ -107,7 +109,7 @@ CxBlowfish::setFileKey(
 }
 //------------------------------------------------------------------------------
 /* static */
-size_t
+xINLINE_HO size_t
 CxBlowfish::maxKeySize()
 {
     return MAX_KEY_SIZE;
@@ -121,7 +123,7 @@ CxBlowfish::maxKeySize()
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxBlowfish::encryptCfb64(
     uchar_t           *a_in,
     uchar_t           *a_out,
@@ -140,7 +142,7 @@ CxBlowfish::encryptCfb64(
     (void_t)::BF_cfb64_encrypt(a_in, a_out, a_inSize, &_bfKey, _ivec, a_num, a_mode);
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxBlowfish::encryptCfb64(
     std::custring_t   &a_cusIn,
     std::ustring_t    *a_pusOut,
@@ -160,7 +162,7 @@ CxBlowfish::encryptCfb64(
     xTEST_LESS(- 1, iNum);
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxBlowfish::encryptFileCfb64(
     std::ctstring_t   &a_filePathIn,
     std::ctstring_t   &a_filePathOut,

@@ -21,6 +21,7 @@ xNAMESPACE_BEGIN(NxLib)
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
+xINLINE_HO
 CxSocketInit::CxSocketInit(
     cushort_t &a_majorVersion,
     cushort_t &a_minorVersion
@@ -36,6 +37,7 @@ CxSocketInit::CxSocketInit(
 #endif
 }
 //------------------------------------------------------------------------------
+xINLINE_HO
 CxSocketInit::~CxSocketInit()
 {
 #if xOS_ENV_WIN

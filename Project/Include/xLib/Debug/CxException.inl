@@ -18,13 +18,13 @@ xNAMESPACE_BEGIN(NxLib)
 template<typename T>
 CxException &
 CxException::operator << (
-    const T &a_cMessageT
+    const T &a_message
 )
 {
     std::tostringstream_t ossRes;
 
     ossRes.exceptions(std::tostringstream_t::failbit | std::tostringstream_t::badbit);
-    ossRes << a_cMessageT;
+    ossRes << a_message;
 
     _m_sMessage.append( ossRes.str() );
 

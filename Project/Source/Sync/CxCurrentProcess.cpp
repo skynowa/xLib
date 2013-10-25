@@ -17,8 +17,7 @@ xNAMESPACE_BEGIN(NxLib)
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-/* static */
-bool_t
+xINLINE_HO bool_t
 CxCurrentProcess::isCurrent(
     const CxProcess::id_t &a_id
 )
@@ -35,8 +34,7 @@ CxCurrentProcess::isCurrent(
     return bRv;
 }
 //------------------------------------------------------------------------------
-/* static */
-CxProcess::id_t
+xINLINE_HO CxProcess::id_t
 CxCurrentProcess::id()
 {
     // n/a
@@ -54,8 +52,7 @@ CxCurrentProcess::id()
     return ulRv;
 }
 //------------------------------------------------------------------------------
-/* static */
-CxProcess::id_t
+xINLINE_HO CxProcess::id_t
 CxCurrentProcess::parentId()
 {
     // n/a
@@ -121,8 +118,7 @@ CxCurrentProcess::parentId()
 }
 //------------------------------------------------------------------------------
 // TODO: tests
-/* static */
-CxProcess::handle_t
+xINLINE_HO CxProcess::handle_t
 CxCurrentProcess::handle()
 {
     // n/a
@@ -145,8 +141,7 @@ CxCurrentProcess::handle()
 }
 //------------------------------------------------------------------------------
 // TODO: tests
-/* static */
-void_t
+xINLINE_HO void_t
 CxCurrentProcess::exit(
     cuint_t &a_exitCode
 )
@@ -156,23 +151,6 @@ CxCurrentProcess::exit(
 #else
     (void_t)::exit(static_cast<int_t>( a_exitCode ));
 #endif
-}
-//------------------------------------------------------------------------------
-
-
-/*******************************************************************************
-*    private
-*
-*******************************************************************************/
-
-//------------------------------------------------------------------------------
-CxCurrentProcess::CxCurrentProcess()
-{
-}
-//------------------------------------------------------------------------------
-/* virtual */
-CxCurrentProcess::~CxCurrentProcess()
-{
 }
 //------------------------------------------------------------------------------
 

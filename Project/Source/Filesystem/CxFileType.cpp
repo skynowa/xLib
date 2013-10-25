@@ -16,6 +16,7 @@ xNAMESPACE_BEGIN(NxLib)
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
+xINLINE_HO
 CxFileType::CxFileType(
     std::ctstring_t &a_filePath
 ) :
@@ -24,12 +25,7 @@ CxFileType::CxFileType(
     xTEST_EQ(false, a_filePath.empty());
 }
 //------------------------------------------------------------------------------
-/* virtual */
-CxFileType::~CxFileType()
-{
-}
- //------------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxFileType::filePath() const
 {
     xTEST_EQ(false, _filePath.empty());
@@ -38,7 +34,7 @@ CxFileType::filePath() const
 }
 //------------------------------------------------------------------------------
 /* static */
-bool_t
+xINLINE_HO bool_t
 CxFileType::isExists(
     cExType &a_value
 )
@@ -51,7 +47,7 @@ CxFileType::isExists(
     return false;
 }
 //------------------------------------------------------------------------------
-CxFileType::types_t
+xINLINE_HO CxFileType::types_t
 CxFileType::get()
 {
     xTEST_EQ(false, filePath().empty());
@@ -76,7 +72,7 @@ CxFileType::get()
     return ftRv;
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxFileType::set(
     ctypes_t &a_values
 )
@@ -93,7 +89,7 @@ CxFileType::set(
 #endif
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxFileType::add(
     cExType &a_value
 )
@@ -104,7 +100,7 @@ CxFileType::add(
     modify(static_cast<ExType>( 0 ), a_value);
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxFileType::remove(
     cExType &a_value
 )
@@ -115,7 +111,7 @@ CxFileType::remove(
     modify(a_value, static_cast<ExType>( 0 ));
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxFileType::modify(
     cExType &a_valueRemove,
     cExType &a_valueAdd
@@ -136,7 +132,7 @@ CxFileType::modify(
     set(cfaValues);
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxFileType::clear()
 {
     xTEST_EQ(false, filePath().empty());

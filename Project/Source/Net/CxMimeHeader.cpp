@@ -19,20 +19,7 @@ std::ctstring_t CxMimeHeader::_attrDelimiter = xT(":");
 std::ctstring_t CxMimeHeader::_endOfHeader   = xT("\r\n\r\n");
 std::ctstring_t CxMimeHeader::_endOfLine     = xT("\r\n");
 //------------------------------------------------------------------------------
-//DONE: CxMimeHeader
-CxMimeHeader::CxMimeHeader() :
-    _header()
-{
-}
-//------------------------------------------------------------------------------
-//DONE: ~CxMimeHeader
-/* virtual */
-CxMimeHeader::~CxMimeHeader()
-{
-}
-//------------------------------------------------------------------------------
-//DONE: bParse (��������� ��������� ������� "TOP 10 0" �� ��������, ��������)
-void_t
+xINLINE_HO void_t
 CxMimeHeader::parse(
     std::ctstring_t &a_rawHeader
 )
@@ -122,7 +109,7 @@ CxMimeHeader::parse(
 }
 //------------------------------------------------------------------------------
 //DONE: sGetField
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxMimeHeader::field(
     std::ctstring_t &a_name
 )
@@ -143,7 +130,7 @@ CxMimeHeader::field(
 }
 //------------------------------------------------------------------------------
 //DONE: uiCount
-size_t
+xINLINE_HO size_t
 CxMimeHeader::count()
 {
     return _header.size();
@@ -192,7 +179,7 @@ CxMimeHeader::count()
     }
 #endif
 
-void_t
+xINLINE_HO void_t
 CxMimeHeader::loadFromFile(
     std::ctstring_t &a_rawMessageFilePath
 )
@@ -232,7 +219,7 @@ CxMimeHeader::loadFromFile(
 }
 //------------------------------------------------------------------------------
 //TODO: bSaveToFile
-void_t
+xINLINE_HO void_t
 CxMimeHeader::saveToFile(
     std::ctstring_t &a_filePath
 )
@@ -242,7 +229,7 @@ CxMimeHeader::saveToFile(
 //------------------------------------------------------------------------------
 //TODO: sGenerateMessageID (������� Message-ID ��� "<", ">")
 /* static */
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxMimeHeader::generateMessageID()
 {
     std::tstring_t sRv;

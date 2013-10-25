@@ -28,11 +28,6 @@ CxFunctorT<ClassT, ReturnT, ParamT>::CxFunctorT(
 }
 //------------------------------------------------------------------------------
 template <typename ClassT, typename ReturnT, typename ParamT>
-CxFunctorT<ClassT, ReturnT, ParamT>::~CxFunctorT()
-{
-}
-//------------------------------------------------------------------------------
-template <typename ClassT, typename ReturnT, typename ParamT>
 ReturnT
 CxFunctorT<ClassT, ReturnT, ParamT>::operator()(
     ParamT a_param

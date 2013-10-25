@@ -21,18 +21,20 @@ xNAMESPACE_BEGIN(NxLib)
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
+xINLINE_HO
 CxDll::CxDll() :
     _dll(NULL)
 {
 }
 //------------------------------------------------------------------------------
 /* virtual */
+xINLINE_HO
 CxDll::~CxDll()
 {
     _destruct();
 }
 //------------------------------------------------------------------------------
-bool_t
+xINLINE_HO bool_t
 CxDll::isLoaded() const
 {
     xTESTS_NA;
@@ -40,7 +42,7 @@ CxDll::isLoaded() const
     return (NULL != _dll);
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxDll::load(
     std::ctstring_t &a_dllPath
 )
@@ -59,7 +61,7 @@ CxDll::load(
 #endif
 }
 //------------------------------------------------------------------------------
-bool_t
+xINLINE_HO bool_t
 CxDll::isProcExists(
     std::ctstring_t &a_procName
 ) const
@@ -84,7 +86,7 @@ CxDll::isProcExists(
     return true;
 }
 //------------------------------------------------------------------------------
-CxDll::proc_address_t
+xINLINE_HO CxDll::proc_address_t
 CxDll::procAddress(
     std::ctstring_t &a_procName
 ) const
@@ -120,7 +122,7 @@ CxDll::procAddress(
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxDll::_destruct()
 {
     xTESTS_NA;

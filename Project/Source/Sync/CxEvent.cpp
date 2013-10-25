@@ -18,6 +18,7 @@ xNAMESPACE_BEGIN(NxLib)
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
+xINLINE_HO
 CxEvent::CxEvent(
     cbool_t &a_isAutoReset,    ///< is auto reset
     cbool_t &a_isSignaled      ///< is signaled (false - wait, lock)
@@ -34,6 +35,7 @@ CxEvent::CxEvent(
 {
 }
 //------------------------------------------------------------------------------
+xINLINE_HO
 CxEvent::~CxEvent()
 {
 #if xOS_ENV_WIN
@@ -49,7 +51,7 @@ CxEvent::~CxEvent()
 #endif
 }
 //------------------------------------------------------------------------------
-const CxEvent::handle_t &
+xINLINE_HO const CxEvent::handle_t &
 CxEvent::handle() const
 {
 #if xOS_ENV_WIN
@@ -59,7 +61,7 @@ CxEvent::handle() const
 #endif
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxEvent::create()
 {
 #if xOS_ENV_WIN
@@ -82,7 +84,7 @@ CxEvent::create()
 }
 //------------------------------------------------------------------------------
 // NOTE: unblock threads blocked on a condition variable
-void_t
+xINLINE_HO void_t
 CxEvent::set()
 {
 #if xOS_ENV_WIN
@@ -113,7 +115,7 @@ CxEvent::set()
 #endif
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxEvent::reset()
 {
 #if xOS_ENV_WIN
@@ -136,7 +138,7 @@ CxEvent::reset()
 #endif
 }
 //------------------------------------------------------------------------------
-CxEvent::ExObjectState
+xINLINE_HO CxEvent::ExObjectState
 CxEvent::wait(
     culong_t &a_timeoutMs /* = xTIMEOUT_INFINITE */  ///< in milliseconds
 )
@@ -225,7 +227,7 @@ CxEvent::wait(
     return osRes;
 }
 //------------------------------------------------------------------------------
-bool_t
+xINLINE_HO bool_t
 CxEvent::isSignaled()
 {
     // n/a

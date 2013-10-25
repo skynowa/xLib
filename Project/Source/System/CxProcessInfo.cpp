@@ -24,7 +24,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 /* static */
-void_t
+xINLINE_HO void_t
 CxProcessInfo::currentIds(
     std::vector<CxProcess::id_t> *a_ids
 )
@@ -109,7 +109,7 @@ CxProcessInfo::currentIds(
 }
 //------------------------------------------------------------------------------
 /* static */
-ulong_t
+xINLINE_HO ulong_t
 CxProcessInfo::cpuUsage(
     const CxProcess::id_t &a_id
 )
@@ -128,7 +128,7 @@ CxProcessInfo::cpuUsage(
 }
 //------------------------------------------------------------------------------
 /* static */
-ulong_t
+xINLINE_HO ulong_t
 CxProcessInfo::ramUsage(
     const CxProcess::id_t &a_id
 )
@@ -147,7 +147,7 @@ CxProcessInfo::ramUsage(
 }
 //------------------------------------------------------------------------------
 /* static */
-ulong_t
+xINLINE_HO ulong_t
 CxProcessInfo::ioBytes(
     const CxProcess::id_t &a_id
 )
@@ -196,7 +196,7 @@ CxProcessInfo::ioBytes(
 }
 //------------------------------------------------------------------------------
 /* static */
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxProcessInfo::exeName(
     const CxProcess::id_t &a_id
 )
@@ -256,7 +256,7 @@ CxProcessInfo::exeName(
 }
 //-------------------------------------------------------------------------------------------------------
 /* static */
-ulong_t
+xINLINE_HO ulong_t
 CxProcessInfo::parentId(
     const CxProcess::id_t &a_id
 )
@@ -279,7 +279,7 @@ CxProcessInfo::parentId(
 }
 //-------------------------------------------------------------------------------------------------------
 /* static */
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxProcessInfo::commandLine(
     const CxProcess::id_t &a_id
 )
@@ -444,22 +444,5 @@ CxProcessInfo::commandLine(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------------
-
-
-/*******************************************************************************
-*    private
-*
-*******************************************************************************/
-
-//------------------------------------------------------------------------------
-CxProcessInfo::CxProcessInfo()
-{
-}
-//------------------------------------------------------------------------------
-/* virtual */
-CxProcessInfo::~CxProcessInfo()
-{
-}
-//------------------------------------------------------------------------------
 
 xNAMESPACE_END(NxLib)

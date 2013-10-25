@@ -21,13 +21,15 @@ xNAMESPACE_BEGIN(NxLib)
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
+xINLINE_HO
 CxProfiler::CxProfiler() :
     _isStarted(false),
-    _log       (CxFileLog::lsDefaultSize)
+    _log      (CxFileLog::lsDefaultSize)
 {
     _dataReset();
 }
 //------------------------------------------------------------------------------
+xINLINE_HO
 CxProfiler::~CxProfiler()
 {
     if ( !_log.filePath().empty() ) {
@@ -35,7 +37,7 @@ CxProfiler::~CxProfiler()
     }
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxProfiler::setLogPath(
     std::ctstring_t &a_logPath
 )
@@ -45,13 +47,13 @@ CxProfiler::setLogPath(
     _log.setFilePath(a_logPath);
 }
 //------------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxProfiler::logPath() const
 {
     return _log.filePath();
 }
 //--------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxProfiler::start()
 {
     xTEST_EQ(false, _isStarted);
@@ -69,7 +71,7 @@ CxProfiler::start()
     _isStarted = true;
 }
 //--------------------------------------------------------------------------
-size_t
+xINLINE_HO size_t
 CxProfiler::stop(
     ctchar_t *a_comment, ...
 )
@@ -108,7 +110,7 @@ CxProfiler::stop(
     return cullDurationMsec;
 }
 //--------------------------------------------------------------------------
-size_t
+xINLINE_HO size_t
 CxProfiler::restart(
     ctchar_t *a_comment, ...
 )
@@ -142,7 +144,7 @@ CxProfiler::restart(
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxProfiler::_dataReset()
 {
     // TODO: set normal thread priority

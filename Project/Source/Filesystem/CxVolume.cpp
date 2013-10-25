@@ -28,6 +28,7 @@ xNAMESPACE_BEGIN(NxLib)
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
+xINLINE_HO
 CxVolume::CxVolume(
     std::ctstring_t &volumePath
 ) :
@@ -36,12 +37,7 @@ CxVolume::CxVolume(
     xTEST_EQ(false, _volumePath.empty());
 }
 //------------------------------------------------------------------------------
-/* virtual */
-CxVolume::~CxVolume()
-{
-}
-//------------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxVolume::volumePath() const
 {
     xTEST_EQ(false, _volumePath.empty());
@@ -49,7 +45,7 @@ CxVolume::volumePath() const
     return _volumePath;
 }
 //--------------------------------------------------------------------------
-CxVolume::ExType
+xINLINE_HO CxVolume::ExType
 CxVolume::type() const
 {
     ExType dtRes = dtUnknown;
@@ -90,7 +86,7 @@ CxVolume::type() const
     return dtRes;
 }
 //--------------------------------------------------------------------------
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxVolume::label() const
 {
     std::tstring_t sRv;
@@ -128,7 +124,7 @@ CxVolume::label() const
     return sRv;
 }
 //--------------------------------------------------------------------------
-bool_t
+xINLINE_HO bool_t
 CxVolume::isValid() const
 {
 #if xOS_ENV_WIN
@@ -142,7 +138,7 @@ CxVolume::isValid() const
     return true;
 }
 //--------------------------------------------------------------------------
-bool_t
+xINLINE_HO bool_t
 CxVolume::isReady() const
 {
     bool_t         bRv          = false;
@@ -179,13 +175,13 @@ CxVolume::isReady() const
     return bRv;
 }
 //--------------------------------------------------------------------------
-bool_t
+xINLINE_HO bool_t
 CxVolume::isEmpty() const
 {
     return CxDir( volumePath() ).isEmpty(CxConst::xMASK_ALL());
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxVolume::mount(
     std::ctstring_t &a_destPath    ///< destination path
 ) const
@@ -220,7 +216,7 @@ CxVolume::mount(
 #endif
 }
 //--------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxVolume::unMount(
     cbool_t &a_isForce     ///< force unmount even if busy
 ) const
@@ -261,7 +257,7 @@ CxVolume::unMount(
 
 //--------------------------------------------------------------------------
 /* static */
-void_t
+xINLINE_HO void_t
 CxVolume::space(
     std::ctstring_t &a_dirPath,      ///< directory path
     ulonglong_t     *a_available,  ///< available space (for unprivileged users)
@@ -311,7 +307,7 @@ CxVolume::space(
 }
 //--------------------------------------------------------------------------
 /* static */
-void_t
+xINLINE_HO void_t
 CxVolume::paths(
     std::vec_tstring_t *a_volumePaths    ///< volume paths
 )

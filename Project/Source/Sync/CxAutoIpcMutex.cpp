@@ -17,6 +17,7 @@ xNAMESPACE_BEGIN(NxLib)
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
+xINLINE_HO
 CxAutoIpcMutex::CxAutoIpcMutex(
     CxIpcMutex      &a_mutex,
     std::ctstring_t &a_name
@@ -27,6 +28,7 @@ CxAutoIpcMutex::CxAutoIpcMutex(
     _mutex.lock(xTIMEOUT_INFINITE);
 }
 //------------------------------------------------------------------------------
+xINLINE_HO
 CxAutoIpcMutex::~CxAutoIpcMutex()
 {
     _mutex.unlock();

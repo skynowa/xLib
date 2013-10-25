@@ -598,7 +598,7 @@
 
 //--------------------------------------------------
 // header only library
-#if xXLIB_HEADER_ONLY && 0
+#if xXLIB_HEADER_ONLY
     #define xEXTERN_HO                  extern
     #define xINLINE_HO                  inline
 #else

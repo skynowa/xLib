@@ -24,6 +24,7 @@ xNAMESPACE_BEGIN(NxLib)
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
+xINLINE_HO
 CxIpcSemaphore::CxIpcSemaphore() :
 #if xOS_ENV_WIN
     _handle(),
@@ -41,6 +42,7 @@ CxIpcSemaphore::CxIpcSemaphore() :
 #endif
 }
 //------------------------------------------------------------------------------
+xINLINE_HO
 CxIpcSemaphore::~CxIpcSemaphore()
 {
     xTEST_EQ(true, _isValid());
@@ -56,7 +58,7 @@ CxIpcSemaphore::~CxIpcSemaphore()
 #endif
 }
 //------------------------------------------------------------------------------
-const CxIpcSemaphore::handle_t &
+xINLINE_HO const CxIpcSemaphore::handle_t &
 CxIpcSemaphore::handle() const
 {
     xTEST_EQ(true, _isValid());
@@ -64,7 +66,7 @@ CxIpcSemaphore::handle() const
     return _handle;
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxIpcSemaphore::create(
     clong_t         &a_initialValue,
     std::ctstring_t &a_name
@@ -103,7 +105,7 @@ CxIpcSemaphore::create(
 #endif
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxIpcSemaphore::open(
     std::ctstring_t &a_name
 )
@@ -138,7 +140,7 @@ CxIpcSemaphore::open(
 #endif
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxIpcSemaphore::post() const
 {
     xTEST_EQ(true, _isValid());
@@ -154,7 +156,7 @@ CxIpcSemaphore::post() const
 #endif
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxIpcSemaphore::wait(
     culong_t &a_timeoutMsec
 ) const
@@ -229,7 +231,7 @@ CxIpcSemaphore::wait(
 #endif
 }
 //------------------------------------------------------------------------------
-long_t
+xINLINE_HO long_t
 CxIpcSemaphore::value() const
 {
     xTEST_EQ(true, _isValid());
@@ -261,7 +263,7 @@ CxIpcSemaphore::value() const
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-bool_t
+xINLINE_HO bool_t
 CxIpcSemaphore::_isValid() const
 {
 #if xOS_ENV_WIN

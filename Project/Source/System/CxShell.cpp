@@ -29,7 +29,8 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 /* static */
-bool_t
+//------------------------------------------------------------------------------
+xINLINE_HO bool_t
 CxShell::isAvailable()
 {
     xTESTS_NA;
@@ -46,7 +47,7 @@ CxShell::isAvailable()
 }
 //------------------------------------------------------------------------------
 /* static */
-void_t
+xINLINE_HO void_t
 CxShell::execute(
     std::ctstring_t &a_filePath,   ///< file path to binary file
     std::ctstring_t &a_params      ///< command line params for binary file
@@ -71,7 +72,7 @@ CxShell::execute(
 
 //------------------------------------------------------------------------------
 /* static */
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxShell::findExecutable(
     std::ctstring_t &a_fileName,
     std::ctstring_t &a_findDirPath
@@ -91,7 +92,7 @@ CxShell::findExecutable(
 }
 //------------------------------------------------------------------------------
 /* static */
-void_t
+xINLINE_HO void_t
 CxShell::execute(
     const HWND        &a_owner,
     const ExOperation &a_operation,
@@ -142,7 +143,7 @@ CxShell::execute(
 }
 //------------------------------------------------------------------------------
 /* static */
-void_t
+xINLINE_HO void_t
 CxShell::executeEx(
     SHELLEXECUTEINFO *a_info
 )
@@ -154,7 +155,7 @@ CxShell::executeEx(
 }
 //------------------------------------------------------------------------------
 /* static */
-void_t
+xINLINE_HO void_t
 CxShell::executeHttp(
     std::ctstring_t &a_url
 )
@@ -169,7 +170,7 @@ CxShell::executeHttp(
 }
 //------------------------------------------------------------------------------
 /* static */
-void_t
+xINLINE_HO void_t
 CxShell::executeFtp(
     std::ctstring_t &a_url
 )
@@ -184,7 +185,7 @@ CxShell::executeFtp(
 }
 //------------------------------------------------------------------------------
 /* static */
-void_t
+xINLINE_HO void_t
 CxShell::executeEmail(
     std::ctstring_t &a_toEmail,
     std::ctstring_t &a_subject,
@@ -218,7 +219,7 @@ CxShell::executeEmail(
 }
 //------------------------------------------------------------------------------
 /* static */
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxShell::specialDirPath(
     const ESpecialDir &a_dir,
     const HANDLE      &a_token
@@ -248,7 +249,7 @@ CxShell::specialDirPath(
 #define xHOTKEY(modifier, key) ((((modifier) & 0xff) << 8) | ((key)&0xff))
 
 /* static */
-void_t
+xINLINE_HO void_t
 CxShell::createShortcut(
     std::ctstring_t &a_shortCutFilePath, ///< путь и имя ярлыка, например, "C:\\Блокнот.lnk"
                                            ///< Если не указан путь, ярлык будет создан в папке, указанной в следующем параметре.
@@ -313,23 +314,6 @@ CxShell::createShortcut(
 
     ppfPF->Release();
     pslSL->Release();
-}
-//------------------------------------------------------------------------------
-
-
-/*******************************************************************************
-*    private
-*
-*******************************************************************************/
-
-//------------------------------------------------------------------------------
-CxShell::CxShell()
-{
-}
-//------------------------------------------------------------------------------
-/* virtual */
-CxShell::~CxShell()
-{
 }
 //------------------------------------------------------------------------------
 
