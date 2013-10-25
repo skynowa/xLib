@@ -163,7 +163,7 @@ CxTcpClient::setTimeout(
 
 //------------------------------------------------------------------------------
 /* static */
-bool_t
+xINLINE_HO bool_t
 CxTcpClient::isServerAlive(
     std::ctstring_t &a_ip,
     cushort_t       &a_port
