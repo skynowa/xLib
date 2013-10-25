@@ -45,8 +45,8 @@ xINLINE_HO
 CxStackTrace::CxStackTrace(
     std::ctstring_t &a_linePrefix,         /* = xT("\t") */
     std::ctstring_t &a_elementSeparator,   /* = xT("  ") */
-    std::ctstring_t &a_lineSeparator,     /* = xT("\n") */
-    cbool_t         &a_isWrapFilePaths,   /* = true */
+    std::ctstring_t &a_lineSeparator,      /* = xT("\n") */
+    cbool_t         &a_isWrapFilePaths,    /* = true */
     cbool_t         &a_isFuncParamsDisable /* = true */
 ) :
     _linePrefix         (a_linePrefix),

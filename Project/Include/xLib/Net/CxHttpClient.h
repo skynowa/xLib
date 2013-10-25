@@ -60,7 +60,7 @@ public:
     void_t   unlink(std::ctstring_t &url);
 
              CxHttpClient();
-    virtual ~CxHttpClient();
+    virtual ~CxHttpClient() {}
 };
 //------------------------------------------------------------------------------
 class CxHttpClient::CxStatusLine
@@ -68,7 +68,7 @@ class CxHttpClient::CxStatusLine
 {
 public:
              CxStatusLine();
-    virtual ~CxStatusLine();
+    virtual ~CxStatusLine() {}
 
 private:
 
@@ -79,7 +79,7 @@ class CxHttpClient::CxHeader
 {
 public:
              CxHeader();
-    virtual ~CxHeader();
+    virtual ~CxHeader() {}
 
 private:
 
@@ -90,7 +90,7 @@ class CxHttpClient::CxBody
 {
 public:
              CxBody();
-    virtual ~CxBody();
+    virtual ~CxBody() {}
 
 private:
 

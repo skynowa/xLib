@@ -20,7 +20,7 @@ public:
                         std::ctstring_t &lineSeparator = xT("\n"),
                         cbool_t &isWrapFilePaths = true, cbool_t &isFuncParamsDisable = true);
         ///< constructor
-    virtual        ~CxStackTrace();
+    virtual        ~CxStackTrace() {}
         ///< destructor
 
     void_t          get(std::vector<std::vec_tstring_t> *stack);

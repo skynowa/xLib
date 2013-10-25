@@ -14,9 +14,9 @@ class CxException
     /// exception
 {
 public:
-                      CxException();
+                      CxException() {}
         ///< constructor
-    virtual          ~CxException();
+    virtual          ~CxException() {}
         ///< destructor
 
     std::ctstring_t & what() const xWARN_UNUSED_RV;

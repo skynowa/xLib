@@ -16,7 +16,7 @@ class CxAtomicLongInt :
 {
 public:
                       CxAtomicLongInt();
-    virtual          ~CxAtomicLongInt();
+    virtual          ~CxAtomicLongInt() {}
 
     CxAtomicLongInt & operator += (const CxAtomicLongInt &value);
     CxAtomicLongInt & operator += (clong_t &right);

@@ -32,7 +32,7 @@ public:
 
                       CxCgiEnvironment(CxCgi &cgi);
         ///< constructor
-    virtual          ~CxCgiEnvironment();
+    virtual          ~CxCgiEnvironment() {}
         ///< destructor
 
     std::ctstring_t & authType() const xWARN_UNUSED_RV;
@@ -178,7 +178,7 @@ class CxCgiFormData :
 public:
                      CxCgiFormData(CxCgi &cgi, std::csize_t &maxSize);
         ///< constructor
-    virtual         ~CxCgiFormData();
+    virtual         ~CxCgiFormData() {}
         ///< destructor
 
     std::ctstring_t &rawData() const xWARN_UNUSED_RV;
@@ -216,7 +216,7 @@ public:
 
     explicit                CxCgi(std::csize_t &maxSize);
         ///< constructor
-    virtual                ~CxCgi();
+    virtual                ~CxCgi() {}
         ///< destructor
 
     std::tstring_t          dump() const xWARN_UNUSED_RV;

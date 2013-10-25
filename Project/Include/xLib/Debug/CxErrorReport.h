@@ -67,7 +67,7 @@ public:
                                  std::ctstring_t &csDate,       std::ctstring_t &csTime,
                                  std::ctstring_t &csStackTrace, std::ctstring_t &csComment);
         ///< constructor
-    virtual       ~CxErrorReport();
+    virtual       ~CxErrorReport() {}
         ///< destructor
 
 private:

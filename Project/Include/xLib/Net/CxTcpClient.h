@@ -18,7 +18,7 @@ class CxTcpClient :
 public:
                   CxTcpClient();
         ///< constructor
-    virtual      ~CxTcpClient();
+    virtual      ~CxTcpClient() {}
         ///< constructor
 
     bool_t        isReadable() xWARN_UNUSED_RV;

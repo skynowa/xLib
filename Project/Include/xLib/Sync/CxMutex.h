@@ -22,7 +22,7 @@ public:
     typedef pthread_mutex_t  handle_t;
 #endif
 
-                     CxMutex();
+                     CxMutex() {}
         ///< constructor
     virtual         ~CxMutex();
         ///< destructor
