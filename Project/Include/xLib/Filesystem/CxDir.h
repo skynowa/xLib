@@ -18,7 +18,7 @@ class CxDir :
 public:
     explicit              CxDir(std::ctstring_t &dirPath);
         ///< constructor
-    virtual              ~CxDir();
+    virtual              ~CxDir() {}
         ///< destructor
 
     std::ctstring_t &     dirPath() const xWARN_UNUSED_RV;

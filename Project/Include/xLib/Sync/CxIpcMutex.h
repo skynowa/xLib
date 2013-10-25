@@ -22,8 +22,8 @@ public:
     typedef sem_t *  handle_t;
 #endif
 
-                     CxIpcMutex();
-    virtual         ~CxIpcMutex();
+                     CxIpcMutex() {}
+    virtual         ~CxIpcMutex() {}
 
     const handle_t & handle() const xWARN_UNUSED_RV;
         ///< get handle

@@ -16,9 +16,9 @@ class CxTcpServer :
     /// server socket
 {
 public:
-             CxTcpServer();
+             CxTcpServer() {}
         ///< constructor
-    virtual ~CxTcpServer();
+    virtual ~CxTcpServer() {}
         ///< destructor
 
     void_t   bind(cushort_t &port);

@@ -40,7 +40,7 @@ public:
 
     explicit          CxVolume(std::ctstring_t &volumePath);
         ///< constructor
-    virtual          ~CxVolume();
+    virtual          ~CxVolume() {}
         ///< destructor
 
     std::ctstring_t & volumePath() const xWARN_UNUSED_RV;

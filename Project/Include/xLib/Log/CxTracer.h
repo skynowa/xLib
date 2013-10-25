@@ -17,7 +17,7 @@ class CxTracer :
     /// tracing
 {
 public:
-                          CxTracer();
+                          CxTracer() {}
         ///< constructor
     virtual              ~CxTracer();
         ///< destructor

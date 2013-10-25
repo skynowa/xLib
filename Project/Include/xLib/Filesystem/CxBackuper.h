@@ -28,7 +28,7 @@ public:
 
     explicit        CxBackuper(cExBackupPeriod &period);
         ///< constructor
-    virtual        ~CxBackuper();
+    virtual        ~CxBackuper() {}
         ///< destructor
 
     void_t          fileExec(std::ctstring_t &filePath, std::ctstring_t &destDirPath,

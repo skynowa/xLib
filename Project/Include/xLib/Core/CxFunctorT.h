@@ -20,7 +20,7 @@ public:
 
               CxFunctorT(ClassT *object, method_t method);
         ///< constructor
-    virtual  ~CxFunctorT();
+    virtual  ~CxFunctorT() {}
         ///< destructor
 
     ReturnT   operator()(ParamT param) xWARN_UNUSED_RV;

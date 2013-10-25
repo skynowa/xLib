@@ -58,7 +58,7 @@ public:
 
     explicit          CxFileType(std::ctstring_t &filePath);
         ///< constructor
-    virtual          ~CxFileType();
+    virtual          ~CxFileType() {}
         ///< destructor
 
     std::ctstring_t & filePath() const xWARN_UNUSED_RV;

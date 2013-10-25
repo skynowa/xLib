@@ -17,7 +17,7 @@ class CxUri :
 public:
                           CxUri();
     explicit              CxUri(std::ctstring_t &uri);
-                         ~CxUri();
+    virtual              ~CxUri() {}
 
     std::tstring_t        uri() const xWARN_UNUSED_RV;
     void_t                setUri(std::ctstring_t &scheme, std::ctstring_t &authority,

@@ -31,7 +31,7 @@ public:
 private:
                           CxStdError();
         ///< constructor
-    virtual              ~CxStdError();
+    virtual              ~CxStdError() {}
         ///< destructor
 };
 

@@ -19,7 +19,7 @@ public:
         ///< constructor
     explicit          CxCookiePv0(std::ctstring_t &rawCookie);
         ///< constructor
-    virtual          ~CxCookiePv0();
+    virtual          ~CxCookiePv0() {}
         ///< constructor
 
     void_t            init(std::ctstring_t &rawCookie);

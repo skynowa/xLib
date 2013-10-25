@@ -31,7 +31,7 @@ public:
 
     explicit          CxFileLog(culong_t &maxFileSizeBytes);
         ///< constructor
-    virtual          ~CxFileLog();
+    virtual          ~CxFileLog() {}
         ///< destructor
 
     void_t            setFilePath(std::ctstring_t &filePath);

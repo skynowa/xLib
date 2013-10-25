@@ -41,7 +41,7 @@ public:
                               cushort_t &hour, cushort_t &minute, cushort_t &second,
                               cushort_t &msec);
         ///< constructor
-    virtual              ~CxDateTime();
+    virtual              ~CxDateTime() {}
         ///< destructor
 
     // comparison operators

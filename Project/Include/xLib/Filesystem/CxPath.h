@@ -27,7 +27,7 @@ public:
 
     explicit              CxPath(std::ctstring_t &filePath);
         ///< constructor
-    virtual              ~CxPath();
+    virtual              ~CxPath() {}
         ///< destructor
 
     std::ctstring_t &     filePath() const xWARN_UNUSED_RV;

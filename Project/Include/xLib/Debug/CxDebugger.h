@@ -20,7 +20,7 @@ class CxDebugger :
 public:
                    CxDebugger();
         ///< constructor
-    virtual       ~CxDebugger();
+    virtual       ~CxDebugger() {}
         ///< destructor
 
     bool_t         isEnabled() xWARN_UNUSED_RV;

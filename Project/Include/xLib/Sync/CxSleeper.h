@@ -18,7 +18,7 @@ class CxSleeper :
 public:
              CxSleeper();
         ///< constructor
-    virtual ~CxSleeper();
+    virtual ~CxSleeper() {}
         ///< destructor
 
     void_t   sleep(culong_t &culTimeout);

@@ -254,7 +254,7 @@ cgl_parsecgibuf(/*cgllist *cdata,*/ char *a_query) {
 //}
 //-------------------------------------------------------------------------------------------------------
 //TODO: bUrlEscape
-void_t
+xINLINE_HO void_t
 CxCgi::urlEscape(char *a_s, FILE *a_fw) {
 //    register int_t    c;
 //
