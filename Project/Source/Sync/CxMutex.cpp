@@ -15,12 +15,8 @@ xNAMESPACE_BEGIN(NxLib)
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-CxMutex::CxMutex() :
-    _handle()
-{
-}
-//------------------------------------------------------------------------------
 /* virtual */
+xINLINE_HO
 CxMutex::~CxMutex()
 {
 #if xOS_ENV_WIN
@@ -41,7 +37,7 @@ CxMutex::~CxMutex()
 #endif
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxMutex::create()
 {
 #if xOS_ENV_WIN
@@ -83,13 +79,13 @@ CxMutex::create()
 #endif
 }
 //------------------------------------------------------------------------------
-const CxMutex::handle_t &
+xINLINE_HO const CxMutex::handle_t &
 CxMutex::handle() const
 {
     return _handle;
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxMutex::lock()
 {
 #if xOS_ENV_WIN
@@ -110,7 +106,7 @@ CxMutex::lock()
 #endif
 }
 //------------------------------------------------------------------------------
-bool_t
+xINLINE_HO bool_t
 CxMutex::tryLock()
 {
 #if xOS_ENV_WIN
@@ -124,7 +120,7 @@ CxMutex::tryLock()
     return true;
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxMutex::unlock()
 {
 #if xOS_ENV_WIN

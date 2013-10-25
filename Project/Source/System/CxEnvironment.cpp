@@ -25,7 +25,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 /* static */
-bool_t
+xINLINE_HO bool_t
 CxEnvironment::isExists(
     std::ctstring_t &a_varName
 )
@@ -54,7 +54,7 @@ CxEnvironment::isExists(
 }
 //------------------------------------------------------------------------------
 /* static */
-bool_t
+xINLINE_HO bool_t
 CxEnvironment::isVarValid(
     std::ctstring_t &a_varName
 )
@@ -68,7 +68,7 @@ CxEnvironment::isVarValid(
 }
 //------------------------------------------------------------------------------
 /* static */
-bool_t
+xINLINE_HO bool_t
 CxEnvironment::isValueValid(
     std::ctstring_t &a_varValue
 )
@@ -81,7 +81,7 @@ CxEnvironment::isValueValid(
 }
 //------------------------------------------------------------------------------
 /* static */
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxEnvironment::var(
     std::ctstring_t &a_varName
 )
@@ -115,7 +115,7 @@ CxEnvironment::var(
 }
 //--------------------------------------------------------------------------
 /* static */
-void_t
+xINLINE_HO void_t
 CxEnvironment::setVar(
     std::ctstring_t &a_varName,
     std::ctstring_t &a_value
@@ -134,7 +134,7 @@ CxEnvironment::setVar(
 }
 //------------------------------------------------------------------------------
 /* static */
-void_t
+xINLINE_HO void_t
 CxEnvironment::deleteVar(
     std::ctstring_t &a_varName
 )
@@ -160,7 +160,7 @@ CxEnvironment::deleteVar(
 }
 //--------------------------------------------------------------------------
 /* static */
-void_t
+xINLINE_HO void_t
 CxEnvironment::values(
     std::vec_tstring_t *a_values
 )
@@ -198,7 +198,7 @@ CxEnvironment::values(
 }
 //--------------------------------------------------------------------------
 /* static */
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxEnvironment::expandStrings(
     std::ctstring_t &a_csVar
 )
@@ -261,22 +261,5 @@ CxEnvironment::expandStrings(
     return sRv;
 }
 //--------------------------------------------------------------------------
-
-
-/*******************************************************************************
-*    private
-*
-*******************************************************************************/
-
-//------------------------------------------------------------------------------
-CxEnvironment::CxEnvironment()
-{
-}
-//------------------------------------------------------------------------------
-/* virtual */
-CxEnvironment::~CxEnvironment()
-{
-}
-//------------------------------------------------------------------------------
 
 xNAMESPACE_END(NxLib)

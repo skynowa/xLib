@@ -12,16 +12,13 @@
 xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
+xINLINE_HO
 CxHttpClient::CxHttpClient()
 {
 }
 //------------------------------------------------------------------------------
-CxHttpClient::~CxHttpClient()
-{
-}
-//------------------------------------------------------------------------------
 //TODO: bHead ()
-void_t
+xINLINE_HO void_t
 CxHttpClient::head(
     std::ctstring_t &a_url,
     std::tstring_t  *a_response
@@ -44,7 +41,7 @@ CxHttpClient::head(
 }
 //------------------------------------------------------------------------------
 //TODO: bGet ()
-void_t
+xINLINE_HO void_t
 CxHttpClient::get(
     std::ctstring_t &a_url,
     std::tstring_t  *a_response
@@ -54,7 +51,7 @@ CxHttpClient::get(
 }
 //------------------------------------------------------------------------------
 //TODO: bPost ()
-void_t
+xINLINE_HO void_t
 CxHttpClient::post(
     std::ctstring_t &a_url,
     std::ctstring_t &a_params,
@@ -65,7 +62,7 @@ CxHttpClient::post(
 }
 //------------------------------------------------------------------------------
 //TODO: bOptions ()
-void_t
+xINLINE_HO void_t
 CxHttpClient::options(
     std::ctstring_t &a_url
 )
@@ -74,7 +71,7 @@ CxHttpClient::options(
 }
 //------------------------------------------------------------------------------
 //TODO: bTrace ()
-void_t
+xINLINE_HO void_t
 CxHttpClient::trace(
     std::ctstring_t &a_url
 )
@@ -83,7 +80,7 @@ CxHttpClient::trace(
 }
 //------------------------------------------------------------------------------
 //TODO: bPut ()
-void_t
+xINLINE_HO void_t
 CxHttpClient::put(
     std::ctstring_t &a_url
 )
@@ -92,7 +89,7 @@ CxHttpClient::put(
 }
 //------------------------------------------------------------------------------
 //TODO: del ()
-void_t
+xINLINE_HO void_t
 CxHttpClient::del(
     std::ctstring_t &a_url
 )
@@ -101,7 +98,7 @@ CxHttpClient::del(
 }
 //------------------------------------------------------------------------------
 //TODO: bConnect ()
-void_t
+xINLINE_HO void_t
 CxHttpClient::connect(
     std::ctstring_t &a_url
 )
@@ -110,7 +107,7 @@ CxHttpClient::connect(
 }
 //------------------------------------------------------------------------------
 //TODO: bPatch ()
-void_t
+xINLINE_HO void_t
 CxHttpClient::patch(
     std::ctstring_t &a_url
 )
@@ -119,7 +116,7 @@ CxHttpClient::patch(
 }
 //------------------------------------------------------------------------------
 //TODO: bLink ()
-void_t
+xINLINE_HO void_t
 CxHttpClient::link(
     std::ctstring_t &a_url
 )
@@ -128,77 +125,12 @@ CxHttpClient::link(
 }
 //------------------------------------------------------------------------------
 //TODO: bUnlink ()
-void_t
+xINLINE_HO void_t
 CxHttpClient::unlink(
     std::ctstring_t &a_url
 )
 {
     xNOT_IMPLEMENTED;
-}
-//------------------------------------------------------------------------------
-
-
-/*******************************************************************************
-* Class name:  CxStatusLine
-* Description: protocol HTTP/1.0 (RFC 1945)  HTTP/1.1 (...)
-* File name:   CxHttpClient.cpp
-
-
-
-* Author:      skynowa
-* E-mail:      skynowa@gmail.com
-* Created:     14.02.2011
-
-*
-*******************************************************************************/
-
-//------------------------------------------------------------------------------
-//TODO: CxStatusLine ()
-CxHttpClient::CxStatusLine::CxStatusLine()
-{
-}
-//------------------------------------------------------------------------------
-//TODO: ~CxStatusLine ()
-CxHttpClient::CxStatusLine::~CxStatusLine()
-{
-}
-//------------------------------------------------------------------------------
-
-
-/*******************************************************************************
-* Class name:  CxHeader
-* Description: protocol HTTP/1.0 (RFC 1945)  HTTP/1.1 (...)
-*
-*******************************************************************************/
-
-//------------------------------------------------------------------------------
-//TODO: CxHeader ()
-CxHttpClient::CxHeader::CxHeader()
-{
-}
-//------------------------------------------------------------------------------
-//TODO: ~CxHeader ()
-CxHttpClient::CxHeader::~CxHeader()
-{
-}
-//------------------------------------------------------------------------------
-
-
-/*******************************************************************************
-* Class name:  CxBody
-* Description: protocol HTTP/1.0 (RFC 1945)  HTTP/1.1 (...)
-*
-*******************************************************************************/
-
-//------------------------------------------------------------------------------
-//TODO: CxBody ()
-CxHttpClient::CxBody::CxBody()
-{
-}
-//------------------------------------------------------------------------------
-//TODO: ~CxBody ()
-CxHttpClient::CxBody::~CxBody()
-{
 }
 //------------------------------------------------------------------------------
 

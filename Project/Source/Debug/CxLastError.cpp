@@ -30,7 +30,7 @@ xNAMESPACE_ANONYM_END
 
 //------------------------------------------------------------------------------
 /* static */
-bool_t
+xINLINE_HO bool_t
 CxLastError::isSuccess()
 {
     bool_t bRv = false;
@@ -45,7 +45,7 @@ CxLastError::isSuccess()
 }
 //------------------------------------------------------------------------------
 /* static */
-ulong_t
+xINLINE_HO ulong_t
 CxLastError::get()
 {
     ulong_t ulCode = g_culCodeSuccess;
@@ -62,7 +62,7 @@ CxLastError::get()
 }
 //------------------------------------------------------------------------------
 /* static */
-void_t
+xINLINE_HO void_t
 CxLastError::set(
     culong_t &a_code
 )
@@ -75,21 +75,21 @@ CxLastError::set(
 }
 //------------------------------------------------------------------------------
 /* static */
-void_t
+xINLINE_HO void_t
 CxLastError::reset()
 {
     set(g_culCodeSuccess);
 }
 //------------------------------------------------------------------------------
 /* static */
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxLastError::format()
 {
     return format( get() );
 }
 //------------------------------------------------------------------------------
 /* static */
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxLastError::format(
     culong_t &a_code
 )
@@ -144,23 +144,6 @@ CxLastError::format(
 #endif
 
     return sRv;
-}
-//------------------------------------------------------------------------------
-
-
-/*******************************************************************************
-*    private
-*
-*******************************************************************************/
-
-//------------------------------------------------------------------------------
-CxLastError::CxLastError()
-{
-}
-//------------------------------------------------------------------------------
-/* virtual */
-CxLastError::~CxLastError()
-{
 }
 //------------------------------------------------------------------------------
 

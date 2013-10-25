@@ -24,6 +24,7 @@ xNAMESPACE_BEGIN(NxLib)
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
+xINLINE_HO
 CxSocket::CxSocket() :
     _socket(xSOCKET_HANDLE_INVALID),
     _family(- 1),
@@ -32,12 +33,13 @@ CxSocket::CxSocket() :
 {
 }
 //------------------------------------------------------------------------------
+xINLINE_HO
 CxSocket::~CxSocket()
 {
     close();
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxSocket::assign(
     csocket_t &a_socket
 )
@@ -56,7 +58,7 @@ CxSocket::assign(
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-CxSocket &
+xINLINE_HO CxSocket &
 CxSocket::operator = (
     csocket_t &a_socket
 )
@@ -69,7 +71,9 @@ CxSocket::operator = (
     return *this;
 }
 //------------------------------------------------------------------------------
-CxSocket::operator socket_t () {
+xINLINE_HO
+CxSocket::operator socket_t ()
+{
     // _socket - n/a
     // scktSocket   - n/a
 
@@ -84,7 +88,7 @@ CxSocket::operator socket_t () {
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxSocket::create(
     const ExAddressFamily &a_family,
     const ExType          &a_type,
@@ -99,14 +103,14 @@ CxSocket::create(
     _family = a_family;
 }
 //------------------------------------------------------------------------------
-socket_t
+xINLINE_HO socket_t
 CxSocket::handle() const {
     xTEST_DIFF(xSOCKET_HANDLE_INVALID, _socket);
 
     return _socket;
 }
 //------------------------------------------------------------------------------
-bool_t
+xINLINE_HO bool_t
 CxSocket::isValid() const {
     // n/a
 
@@ -117,7 +121,7 @@ CxSocket::isValid() const {
 #endif
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxSocket::close() {
     xCHECK_DO(!isValid(), return);
 
@@ -150,7 +154,7 @@ CxSocket::close() {
 //------------------------------------------------------------------------------
 //TODO: iSend
 //TODO: LINUX: ssize_t send(int_t sockfd, cvoid_t *buf, size_t len, int_t flags);
-int_t
+xINLINE_HO int_t
 CxSocket::send(
     ctchar_t *a_buff,
     cint_t   &a_buffSize,
@@ -179,7 +183,7 @@ CxSocket::send(
 }
 //------------------------------------------------------------------------------
 //TODO: bSendAll
-void_t
+xINLINE_HO void_t
 CxSocket::sendAll(
     std::ctstring_t &a_buff,
     cint_t          &a_flags
@@ -220,7 +224,7 @@ CxSocket::sendAll(
     }
 }
 //------------------------------------------------------------------------------
-int_t
+xINLINE_HO int_t
 CxSocket::recv(
     tchar_t *a_buff,
     cint_t  &a_buffSize,
@@ -248,7 +252,7 @@ CxSocket::recv(
     return iRv / sizeof(tchar_t);
 }
 //------------------------------------------------------------------------------
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxSocket::recvAll(
     cint_t &a_flags
 )
@@ -281,7 +285,7 @@ CxSocket::recvAll(
     return sRv;
 }
 //------------------------------------------------------------------------------
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxSocket::recvAll(
     cint_t          &a_flags,
     std::ctstring_t &a_csDelimiter
@@ -309,7 +313,7 @@ CxSocket::recvAll(
 }
 //------------------------------------------------------------------------------
 //TODO: iSendBytes
-int_t
+xINLINE_HO int_t
 CxSocket::sendBytes(
     char   *a_buff,
     cint_t &a_messageLength
@@ -352,7 +356,7 @@ CxSocket::sendBytes(
 }
 //------------------------------------------------------------------------------
 //TODO: ReceiveNBytes
-int_t
+xINLINE_HO int_t
 CxSocket::receiveBytes(
     char   *a_buff,
     cint_t &a_stillToReceive
@@ -402,7 +406,7 @@ CxSocket::receiveBytes(
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxSocket::peerName(
     std::tstring_t *a_peerAddr,
     ushort_t       *a_peerPort
@@ -437,7 +441,7 @@ CxSocket::peerName(
     }
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxSocket::socketName(
     std::tstring_t *a_socketAddr,
     ushort_t       *a_socketPort
@@ -481,7 +485,7 @@ CxSocket::socketName(
 
 //------------------------------------------------------------------------------
 /* static */
-int_t
+xINLINE_HO int_t
 CxSocket::select(
     int_t    a_nfds,
     fd_set  *a_readfds,
@@ -503,7 +507,7 @@ CxSocket::select(
 }
 //------------------------------------------------------------------------------
 /* static */
-int_t
+xINLINE_HO int_t
 CxSocket::lastError()
 {
     // n/a

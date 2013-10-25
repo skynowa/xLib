@@ -25,6 +25,7 @@ xNAMESPACE_BEGIN(NxLib)
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
+xINLINE_HO
 CxDir::CxDir(
     std::ctstring_t &a_dirPath
 ) :
@@ -33,12 +34,7 @@ CxDir::CxDir(
     xTEST_EQ(false, a_dirPath.empty());
 }
 //------------------------------------------------------------------------------
-/* virtual */
-CxDir::~CxDir()
-{
-}
-//------------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxDir::dirPath() const
 {
     xTEST_EQ(false, _dirPath.empty());
@@ -46,7 +42,7 @@ CxDir::dirPath() const
     return _dirPath;
 }
 //------------------------------------------------------------------------------
-bool_t
+xINLINE_HO bool_t
 CxDir::isExists()
 {
     xCHECK_RET(dirPath().empty(), false);
@@ -61,7 +57,7 @@ CxDir::isExists()
     return true;
 }
 //------------------------------------------------------------------------------
-bool_t
+xINLINE_HO bool_t
 CxDir::isEmpty(
     std::ctstring_t &a_shellFilter /* = CxConst::xMASK_ALL() */
 )
@@ -85,7 +81,7 @@ CxDir::isEmpty(
     return bRv;
 }
 //------------------------------------------------------------------------------
-bool_t
+xINLINE_HO bool_t
 CxDir::isRoot()
 {
 #if xOS_ENV_WIN
@@ -104,7 +100,7 @@ CxDir::isRoot()
     return true;
 }
 //------------------------------------------------------------------------------
-bool_t
+xINLINE_HO bool_t
 CxDir::isDir()
 {
     bool_t bRv = CxFileType(dirPath()).isExists(CxFileType::faDirectory);
@@ -113,7 +109,7 @@ CxDir::isDir()
     return true;
 }
 //--------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxDir::create()
 {
     bool_t bRv = isExists();
@@ -130,7 +126,7 @@ CxDir::create()
     xTEST_EQ(true, isExists());
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxDir::pathCreate()
 {
     std::vec_tstring_t vsPathParts;
@@ -151,7 +147,7 @@ CxDir::pathCreate()
     xTEST_EQ(true, isExists());
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxDir::copy(
     std::ctstring_t &a_dirPathTo,
     cbool_t         &a_failIfExists
@@ -196,7 +192,7 @@ CxDir::copy(
     // TODO: rollback copy
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxDir::move(
     std::ctstring_t &a_dirPathTo,
     cbool_t         &a_failIfExists
@@ -212,7 +208,7 @@ CxDir::move(
     drDir.pathDelete();
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxDir::remove()
 {
     bool_t bRv = isExists();
@@ -231,7 +227,7 @@ CxDir::remove()
     xTEST_EQ(false, isExists());
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxDir::tryRemove(
     std::csize_t &a_attempts,
     culong_t     &a_timeoutMsec
@@ -263,7 +259,7 @@ CxDir::tryRemove(
     xTEST_EQ(false, isExists());
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxDir::pathClear()
 {
     xTEST_EQ(true, isExists());
@@ -302,7 +298,7 @@ CxDir::pathClear()
     xTEST_EQ(true, isEmpty());
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxDir::pathDelete()
 {
     bool_t bRv = isExists();
@@ -322,7 +318,7 @@ CxDir::pathDelete()
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxDir::current()
 {
     std::tstring_t sRv;
@@ -345,7 +341,7 @@ CxDir::current()
     return sRv;
 }
 //--------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxDir::setCurrent(
     std::ctstring_t &a_dirPath
 )
@@ -362,7 +358,7 @@ CxDir::setCurrent(
 }
 //--------------------------------------------------------------------------
 /* static */
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxDir::temp()
 {
     std::tstring_t sRv;

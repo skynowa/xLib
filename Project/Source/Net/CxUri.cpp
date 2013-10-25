@@ -18,7 +18,7 @@ xNAMESPACE_BEGIN(NxLib)
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-//DONE: CxUri
+xINLINE_HO
 CxUri::CxUri() :
     _scheme   (),
     _authority(),
@@ -31,7 +31,7 @@ CxUri::CxUri() :
 {
 }
 //------------------------------------------------------------------------------
-//DONE: CxUri
+xINLINE_HO
 CxUri::CxUri(
     std::ctstring_t &a_uri
 ) :
@@ -45,11 +45,6 @@ CxUri::CxUri(
     _fragment ()
 {
     _parse(a_uri);
-}
-//------------------------------------------------------------------------------
-//DONE: ~CxUri
-CxUri::~CxUri()
-{
 }
 //------------------------------------------------------------------------------
 //TODO: uri
@@ -75,7 +70,7 @@ data   : text/plain;charset=iso-8859-7,%be%fg%be
 tel    : +1-816-555-1212
 telnet : //192.0.2.16:80/
 */
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxUri::uri() const
 {
     std::tstring_t sRv;
@@ -113,7 +108,7 @@ CxUri::uri() const
 
     return sRv;
 }
-void_t
+xINLINE_HO void_t
 CxUri::setUri(
     std::ctstring_t &a_scheme,
     std::ctstring_t &a_authority,
@@ -129,8 +124,7 @@ CxUri::setUri(
     setFragment (a_fragment);
 }
 //------------------------------------------------------------------------------
-//TODO: scheme
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxUri::scheme() const
 {
     return encodeComponent(_scheme);
@@ -143,8 +137,7 @@ CxUri::setScheme(
     _scheme = decodeComponent(scheme);
 }
 //------------------------------------------------------------------------------
-//DONE: authority
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxUri::authority() const
 {
     std::tstring_t sTempAuthority;
@@ -167,7 +160,7 @@ CxUri::authority() const
 
     return encodeComponent(sTempAuthority/*_authority*/);
 }
-void_t
+xINLINE_HO void_t
 CxUri::setAuthority(
     std::ctstring_t &authority
 )
@@ -181,7 +174,7 @@ CxUri::userInfo() const
 {
     return encodeComponent(_userInfo);
 }
-void_t
+xINLINE_HO void_t
 CxUri::setUserInfo(
     std::ctstring_t &userInfo
 )
@@ -191,13 +184,12 @@ CxUri::setUserInfo(
     //TODO: bSetAuthority
 }
 //------------------------------------------------------------------------------
-//DONE: host
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxUri::host() const
 {
     return encodeComponent(_host);
 }
-void_t
+xINLINE_HO void_t
 CxUri::setHost(
     std::ctstring_t &host
 )
@@ -207,13 +199,12 @@ CxUri::setHost(
     //TODO: bSetAuthority
 }
 //------------------------------------------------------------------------------
-//DONE: port
-ushort_t
+xINLINE_HO ushort_t
 CxUri::port()
 {
     return _port;
 }
-void_t
+xINLINE_HO void_t
 CxUri::setPort(
     cushort_t &port
 )
@@ -223,13 +214,12 @@ CxUri::setPort(
     //TODO: bSetAuthority
 }
 //------------------------------------------------------------------------------
-//DONE: path
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxUri::path() const
 {
     return encodeComponent(_path);
 }
-void_t
+xINLINE_HO void_t
 CxUri::setPath(
     std::ctstring_t &path
 )
@@ -237,13 +227,12 @@ CxUri::setPath(
     _path = decodeComponent(path);
 }
 //------------------------------------------------------------------------------
-//DONE: query
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxUri::query() const
 {
     return encodeComponent(_query);
 }
-void_t
+xINLINE_HO void_t
 CxUri::setQuery(
     std::ctstring_t &query
 )
@@ -251,13 +240,12 @@ CxUri::setQuery(
     _query = decodeComponent(query);
 }
 //------------------------------------------------------------------------------
-//DONE: fragment
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxUri::fragment() const
 {
     return encodeComponent(_fragment);
 }
-void_t
+xINLINE_HO void_t
 CxUri::setFragment(
     std::ctstring_t &fragment
 )
@@ -265,8 +253,7 @@ CxUri::setFragment(
     _fragment = decodeComponent(fragment);
 }
 //------------------------------------------------------------------------------
-//DONE: bClear ()
-void_t
+xINLINE_HO void_t
 CxUri::clear()
 {
     ////bool_t bRv = false;
@@ -281,9 +268,8 @@ CxUri::clear()
     _fragment.clear();
 }
 //------------------------------------------------------------------------------
-//TODO: escape ()
 /* static */
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxUri::escape(
     std::ctstring_t &uri
 )
@@ -324,9 +310,8 @@ CxUri::escape(
     return sRv;
 }
 //------------------------------------------------------------------------------
-//TODO: unescape ()
 /* static */
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxUri::unescape(
     std::ctstring_t &uri
 )
@@ -343,7 +328,7 @@ CxUri::unescape(
 //TODO: encodeComponent
 //void_t URI::encode(std::ctstring_t& str, std::ctstring_t& reserved, std::tstring_t& encodedStr)
 /* static */
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxUri::encodeComponent(
     std::ctstring_t &a_uri
 )
@@ -385,7 +370,7 @@ CxUri::encodeComponent(
 //TODO: decodeComponent
 //void_t URI::decode(std::ctstring_t& str, std::tstring_t& decodedStr)
 /* static */
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxUri::decodeComponent(
     std::ctstring_t &a_uri
 )
@@ -482,7 +467,7 @@ data   : text/plain;charset=iso-8859-7,%be%fg%be
 tel    : +1-816-555-1212
 telnet : //192.0.2.16:80/
 */
-void_t
+xINLINE_HO void_t
 CxUri::_parse(
     std::ctstring_t &a_uri
 )
@@ -603,7 +588,7 @@ CxUri::_parse(
 }
 //------------------------------------------------------------------------------
 //TODO: _bNormilize ()
-void_t
+xINLINE_HO void_t
 CxUri::_normilize(
     std::ctstring_t &a_uri
 )
@@ -618,7 +603,7 @@ CxUri::_normilize(
 }
 //------------------------------------------------------------------------------
 //TODO: _defaultPort ()
-ushort_t
+xINLINE_HO ushort_t
 CxUri::_defaultPort() const
 {
     if (       xT("ftp")    == _scheme) {
@@ -643,7 +628,7 @@ CxUri::_defaultPort() const
 }
 //------------------------------------------------------------------------------
 //TODO: _isDefaultPort ()
-bool_t
+xINLINE_HO bool_t
 CxUri::_isDefaultPort() const
 {
     return ( _port == _defaultPort() );

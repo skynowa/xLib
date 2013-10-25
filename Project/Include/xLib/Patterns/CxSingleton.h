@@ -24,9 +24,9 @@ public:
     }
 
 private:
-             CxSingleton() { };
+             CxSingleton();
         ///< constructor
-    virtual ~CxSingleton() { };
+    virtual ~CxSingleton();
         ///< destructor
 };
 

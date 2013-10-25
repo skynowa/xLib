@@ -7,7 +7,7 @@
 #include <xLib/Sync/Win/CxCompletionPort.h>
 
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
 
 xNAMESPACE_BEGIN(NxLib)
 
@@ -17,17 +17,7 @@ xNAMESPACE_BEGIN(NxLib)
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-CxCompletionPort::CxCompletionPort() :
-    _handle()
-{
-}
-//------------------------------------------------------------------------------
-/* virtual */
-CxCompletionPort::~CxCompletionPort()
-{
-}
-//------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxCompletionPort::create(
     culong_t &a_threadsNum
 )
@@ -39,7 +29,7 @@ CxCompletionPort::create(
     xTEST_EQ(true, _handle.isValid());
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxCompletionPort::associate(
     const HANDLE  &a_file,
     ULONG_PTR      a_completionKey
@@ -59,7 +49,7 @@ CxCompletionPort::associate(
     xTEST_EQ(_handle.get(), hRv);
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxCompletionPort::status(
     LPDWORD       a_numberOfBytes,
     PULONG_PTR    acompletionKey,
@@ -77,7 +67,7 @@ CxCompletionPort::status(
     xTEST_DIFF(FALSE, blRes);
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxCompletionPort::postStatus(
     culong_t     &a_numOfBytesTransferred,
     ULONG_PTR     a_completionKey,

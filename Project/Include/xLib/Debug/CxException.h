@@ -22,7 +22,7 @@ public:
     std::ctstring_t & what() const xWARN_UNUSED_RV;
         ///< get message
     template<typename T>
-    CxException &     operator << (const T &cMessageT);
+    CxException &     operator << (const T &message);
         ///< put message
 
 private:

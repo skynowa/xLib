@@ -15,11 +15,7 @@ xNAMESPACE_BEGIN(NxLib)
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-cint_t CxRandom::A = 48271;
-cint_t CxRandom::M = RAND_MAX;
-cint_t CxRandom::Q = M / A;
-cint_t CxRandom::R = M % A;
-//------------------------------------------------------------------------------
+xINLINE_HO
 CxRandom::CxRandom(
     clong_t &a_seed
 ) :
@@ -33,13 +29,7 @@ CxRandom::CxRandom(
     xUNUSED(liRv);
 }
 //------------------------------------------------------------------------------
-/* virtual */
-CxRandom::~CxRandom()
-{
-
-}
-//------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxRandom::vSetSeed(
     clong_t &a_seed
 )
@@ -61,12 +51,12 @@ CxRandom::vSetSeed(
     _isHaveNextNextGaussian = false;
 }
 //------------------------------------------------------------------------------
-int_t
+xINLINE_HO int_t
 CxRandom::iNextInt() {
     return static_cast<int_t>( liNext() );
 }
 //------------------------------------------------------------------------------
-int_t
+xINLINE_HO int_t
 CxRandom::iNextInt(
     cint_t &max
 )
@@ -74,7 +64,7 @@ CxRandom::iNextInt(
     return iNextInt() % max;
 }
 //------------------------------------------------------------------------------
-int_t
+xINLINE_HO int_t
 CxRandom::iNextInt(
     cint_t &a,
     cint_t &b
@@ -83,43 +73,43 @@ CxRandom::iNextInt(
     return iNextInt() % (b - a) + a;
 }
 //------------------------------------------------------------------------------
-long_t
+xINLINE_HO long_t
 CxRandom::liNextLong()
 {
     return liNext();
 }
 //------------------------------------------------------------------------------
-bool_t
+xINLINE_HO bool_t
 CxRandom::bNextBoolean()
 {
     return ( 0 == (liNext() % 2) );
 }
 //------------------------------------------------------------------------------
-float_t
+xINLINE_HO float_t
 CxRandom::fNextFloat()
 {
     return static_cast<float_t>( iNextInt() / float_t(M) );
 }
 //------------------------------------------------------------------------------
-double
+xINLINE_HO double
 CxRandom::bNextDouble()
 {
     return static_cast<double>( iNextInt() / double(M) );
 }
 //------------------------------------------------------------------------------
-char
+xINLINE_HO char
 CxRandom::chNextChar()
 {
     return char(('z' - 'a' + 1) * bNextDouble() + 'a');
 }
 //------------------------------------------------------------------------------
-char
+xINLINE_HO char
 CxRandom::chNextFigure()
 {
     return char(('9' - '0' + 1) * bNextDouble() + '0');
 }
 //------------------------------------------------------------------------------
-double
+xINLINE_HO double
 CxRandom::dNextGaussian()
 {
     // See Knuth, ACP, Section 3.4.1 Algorithm C.
@@ -156,7 +146,7 @@ CxRandom::dNextGaussian()
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxRandom::vSetSeed()
 {
     // n/a
@@ -173,7 +163,7 @@ CxRandom::vSetSeed()
 }
 //------------------------------------------------------------------------------
 /* static */
-long_t
+xINLINE_HO long_t
 CxRandom::liInt(
     clong_t &a_min,
     clong_t &a_max
@@ -193,7 +183,7 @@ CxRandom::liInt(
 }
 //------------------------------------------------------------------------------
 /* static */
-long_t
+xINLINE_HO long_t
 CxRandom::liIntEx(
     clong_t &a_min,
     clong_t &a_max
@@ -215,7 +205,7 @@ CxRandom::liIntEx(
 }
 //------------------------------------------------------------------------------
 /* static */
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxRandom::sString(
     std::csize_t &a_cuiLength
 )
@@ -276,7 +266,7 @@ CxRandom::sString(
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-long_t
+xINLINE_HO long_t
 CxRandom::liNext()
 {
     #if xTEMP_DISABLED

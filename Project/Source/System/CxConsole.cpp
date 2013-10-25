@@ -21,7 +21,7 @@ xNAMESPACE_BEGIN(NxLib)
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-CxConsole::CxConsole()
+xINLINE_HO CxConsole::CxConsole()
 #if xOS_ENV_WIN
     :
     _wnd          (NULL),
@@ -57,7 +57,7 @@ CxConsole::CxConsole()
 #endif
 }
 //------------------------------------------------------------------------------
-CxConsole::~CxConsole()
+xINLINE_HO CxConsole::~CxConsole()
 {
 #if xOS_ENV_WIN
     (native_handle_t)_stdIn.detach();
@@ -65,7 +65,7 @@ CxConsole::~CxConsole()
 #endif
 }
 //------------------------------------------------------------------------------
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxConsole::setAttributes(
     const ExForeground &a_foreground,
     const ExBackground &a_background,
@@ -285,7 +285,7 @@ CxConsole::setAttributes(
 #endif
 }
 //------------------------------------------------------------------------------
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxConsole::setAttributesDef()
 {
 #if xOS_ENV_WIN
@@ -309,7 +309,7 @@ CxConsole::setAttributesDef()
     return sRv;
 }
 //------------------------------------------------------------------------------
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxConsole::read()
 {
 #if xOS_ENV_WIN
@@ -337,7 +337,7 @@ CxConsole::read()
     return sRv;
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxConsole::write(
     std::ctstring_t &a_str
 )
@@ -364,7 +364,7 @@ CxConsole::write(
     std::tcout.flush();
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxConsole::writeLine(
     std::ctstring_t &a_str /* = xT("") */
 )
@@ -378,7 +378,7 @@ CxConsole::writeLine(
     write(a_str + CxConst::xNL());
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxConsole::writeErrLine(
     std::ctstring_t &a_str
 )
@@ -394,7 +394,7 @@ CxConsole::writeErrLine(
     pause(xTIMEOUT_INFINITE);
 }
 //------------------------------------------------------------------------------
-CxConsole::ExModalResult
+xINLINE_HO CxConsole::ExModalResult
 CxConsole::msgBox(
     std::ctstring_t &a_text,
     std::ctstring_t &a_title,
@@ -448,7 +448,7 @@ CxConsole::msgBox(
     return mrRes;
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxConsole::prompt(
     std::ctstring_t &a_prompt,
     cbool_t         &a_isVisible,
@@ -490,7 +490,7 @@ CxConsole::prompt(
     }
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxConsole::pause(
     culong_t &a_timeoutMsec
 )
@@ -535,7 +535,7 @@ CxConsole::pause(
 	}
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxConsole::clear() {
 #if xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _wnd);
@@ -575,7 +575,7 @@ CxConsole::clear() {
 #endif
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxConsole::enableClose(
     cbool_t &a_flag
 )
@@ -610,7 +610,7 @@ CxConsole::enableClose(
 #endif
 }
 //------------------------------------------------------------------------------
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxConsole::title()
 {
 #if xOS_ENV_WIN
@@ -638,7 +638,7 @@ CxConsole::title()
     return sRv;
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxConsole::setTitle(
     std::ctstring_t &a_title
 )
@@ -658,7 +658,7 @@ CxConsole::setTitle(
 #endif
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxConsole::setFullScreen()
 {
 #if xOS_ENV_WIN
@@ -693,7 +693,7 @@ CxConsole::setFullScreen()
 #endif
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxConsole::centerWindow()
 {
 #if xOS_ENV_WIN
@@ -737,7 +737,7 @@ CxConsole::centerWindow()
 //------------------------------------------------------------------------------
 #if xOS_ENV_WIN
 
-HWND
+xINLINE_HO HWND
 CxConsole::_wndHandle()
 {
     HWND           hRv = NULL;
@@ -771,7 +771,7 @@ CxConsole::_wndHandle()
 //------------------------------------------------------------------------------
 #if xOS_ENV_WIN
 
-HMENU
+xINLINE_HO HMENU
 CxConsole::_menuHandle(
     cbool_t &a_isRevert
 )

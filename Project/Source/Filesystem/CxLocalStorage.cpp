@@ -20,6 +20,7 @@ xNAMESPACE_BEGIN(NxLib)
 *******************************************************************************/
 
 //-------------------------------------------------------------------------
+xINLINE_HO
 CxLocalStorage::CxLocalStorage() :
     _separator(CxConst::xEQUAL()),
     _fileExt  (xT("ini")),
@@ -33,6 +34,7 @@ CxLocalStorage::CxLocalStorage() :
     setPath( CxPath( CxPath::exe() ).setExt(_fileExt) );
 }
 //-------------------------------------------------------------------------
+xINLINE_HO
 CxLocalStorage::CxLocalStorage(
     std::ctstring_t &a_filePath
 ) :
@@ -50,12 +52,13 @@ CxLocalStorage::CxLocalStorage(
 }
 //-------------------------------------------------------------------------
 /* virtual */
+xINLINE_HO
 CxLocalStorage::~CxLocalStorage()
 {
     flush();
 }
 //-------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxLocalStorage::createDefault(
     std::ctstring_t &a_content
 ) const
@@ -65,14 +68,14 @@ CxLocalStorage::createDefault(
     CxFile::textWrite(path(), a_content);
 }
 //-------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxLocalStorage::path() const {
     xTEST_EQ(false, _filePath.empty());
 
     return _filePath;
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxLocalStorage::setPath(
     std::ctstring_t &a_filePath
 )
@@ -84,24 +87,24 @@ CxLocalStorage::setPath(
     _filePath = a_filePath;
 }
 //------------------------------------------------------------------------------
-local_storage_t &
+xINLINE_HO local_storage_t &
 CxLocalStorage::get() {
     return _ini;
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxLocalStorage::flush() const
 {
     CxFile::textWrite(path(), _separator, _ini);
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxLocalStorage::clear()
 {
     CxFile::clear(path());
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxLocalStorage::remove()
 {
     // file
@@ -119,7 +122,7 @@ CxLocalStorage::remove()
 *******************************************************************************/
 
 //-------------------------------------------------------------------------
-bool_t
+xINLINE_HO bool_t
 CxLocalStorage::keyIsExists(
     std::ctstring_t &a_key
 ) const
@@ -133,7 +136,7 @@ CxLocalStorage::keyIsExists(
     return true;
 }
 //-------------------------------------------------------------------------
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxLocalStorage::keyReadString(
     std::ctstring_t &a_key,
     std::ctstring_t &a_defaultValue
@@ -149,7 +152,7 @@ CxLocalStorage::keyReadString(
     return sRv;
 }
 //-------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxLocalStorage::keyWriteString(
     std::ctstring_t &a_key,
     std::ctstring_t &a_value
@@ -161,7 +164,7 @@ CxLocalStorage::keyWriteString(
     _write(a_key, a_value);
 }
 //------------------------------------------------------------------------------
-long_t
+xINLINE_HO long_t
 CxLocalStorage::keyReadInt(
     std::ctstring_t &a_key,
     clong_t         &a_defaultValue
@@ -173,7 +176,7 @@ CxLocalStorage::keyReadInt(
     return CxString::cast<long_t>( keyReadString(a_key, CxString::cast(a_defaultValue)) );
 }
 //-------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxLocalStorage::keyWriteInt(
     std::ctstring_t &a_key,
     clong_t         &a_value
@@ -185,7 +188,7 @@ CxLocalStorage::keyWriteInt(
     keyWriteString(a_key, CxString::cast(a_value));
 }
 //-------------------------------------------------------------------------
-double
+xINLINE_HO double
 CxLocalStorage::keyReadFloat(
     std::ctstring_t &a_key,
     cdouble_t       &a_cdDefaultValue
@@ -197,7 +200,7 @@ CxLocalStorage::keyReadFloat(
     return CxString::cast<double>( keyReadString(a_key, CxString::cast(a_cdDefaultValue)) );
 }
 //-------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxLocalStorage::keyWriteFloat(
     std::ctstring_t &a_key,
     cdouble_t       &a_value
@@ -209,7 +212,7 @@ CxLocalStorage::keyWriteFloat(
     keyWriteString(a_key, CxString::cast(a_value));
 }
 //-------------------------------------------------------------------------
-bool_t
+xINLINE_HO bool_t
 CxLocalStorage::keyReadBool(
     std::ctstring_t &a_key,
     cbool_t         &a_defaultValue
@@ -227,7 +230,7 @@ CxLocalStorage::keyReadBool(
     return bRv;
 }
 //-------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxLocalStorage::keyWriteBool(
     std::ctstring_t &a_key,
     cbool_t         &a_value
@@ -243,7 +246,7 @@ CxLocalStorage::keyWriteBool(
     keyWriteString(a_key, sValue);
 }
 //------------------------------------------------------------------------------
-std::ustring_t
+xINLINE_HO std::ustring_t
 CxLocalStorage::keyReadBin(
     std::ctstring_t &a_key,
     std::custring_t &a_defaultValue
@@ -262,7 +265,7 @@ CxLocalStorage::keyReadBin(
     return std::ustring_t(sRv.begin(), sRv.end());
 }
 //-------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxLocalStorage::keyWriteBin(
     std::ctstring_t &a_key,
     std::custring_t &a_value
@@ -279,7 +282,7 @@ CxLocalStorage::keyWriteBin(
     keyWriteString(a_key, sHexStr);
 }
 //-------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxLocalStorage::keyClear(
     std::ctstring_t &a_key
 )
@@ -289,7 +292,7 @@ CxLocalStorage::keyClear(
     keyWriteString(a_key, std::tstring_t());
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxLocalStorage::keyDelete(
    std::ctstring_t &a_key
 )
@@ -316,7 +319,7 @@ CxLocalStorage::keyDelete(
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxLocalStorage::_read(
     std::ctstring_t &a_key,
     std::ctstring_t &a_defaultValue,
@@ -341,7 +344,7 @@ CxLocalStorage::_read(
     }
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxLocalStorage::_write(
     std::ctstring_t &a_key,
     std::ctstring_t &a_value

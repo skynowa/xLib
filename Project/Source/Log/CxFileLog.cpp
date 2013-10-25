@@ -25,6 +25,7 @@ xNAMESPACE_BEGIN(NxLib)
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
+xINLINE_HO
 CxFileLog::CxFileLog(
     culong_t &a_maxFileSizeBytes
 ) :
@@ -39,12 +40,7 @@ CxFileLog::CxFileLog(
     xTEST_GR(static_cast<ulong_t>( lsLimitSize ), a_maxFileSizeBytes);
 }
 //------------------------------------------------------------------------------
-/* virtual */
-CxFileLog::~CxFileLog()
-{
-}
-//------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxFileLog::setFilePath(
     std::ctstring_t &a_filePath
 )
@@ -58,13 +54,13 @@ CxFileLog::setFilePath(
     }
 }
 //------------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxFileLog::filePath() const
 {
     return _filePath;
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxFileLog::write(
     ctchar_t *a_format, ...
 )
@@ -101,7 +97,7 @@ CxFileLog::write(
     xTEST_DIFF(- 1, iRv);
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxFileLog::clear()
 {
     #if xTODO
@@ -111,7 +107,7 @@ CxFileLog::clear()
     CxFile::clear(filePath());
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxFileLog::remove()
 {
     #if xTODO
@@ -129,7 +125,7 @@ CxFileLog::remove()
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxFileLog::_removeIfFull()
 {
     #if xTODO

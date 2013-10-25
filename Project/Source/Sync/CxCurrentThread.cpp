@@ -15,8 +15,7 @@ xNAMESPACE_BEGIN(NxLib)
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-/* static */
-bool_t
+xINLINE_HO bool_t
 CxCurrentThread::isCurrent(
     const CxThread::id_t &a_id
 )
@@ -33,8 +32,7 @@ CxCurrentThread::isCurrent(
     return bRv;
 }
 //------------------------------------------------------------------------------
-/* static */
-CxThread::id_t
+xINLINE_HO CxThread::id_t
 CxCurrentThread::id()
 {
     // n/a
@@ -52,8 +50,7 @@ CxCurrentThread::id()
     return ulRv;
 }
 //------------------------------------------------------------------------------
-/* static */
-CxThread::handle_t
+xINLINE_HO CxThread::handle_t
 CxCurrentThread::handle()
 {
     // n/a
@@ -71,8 +68,7 @@ CxCurrentThread::handle()
     return hRv;
 }
 //------------------------------------------------------------------------------
-/* static */
-void_t
+xINLINE_HO void_t
 CxCurrentThread::yield()
 {
     // n/a
@@ -85,8 +81,7 @@ CxCurrentThread::yield()
 #endif
 }
 //------------------------------------------------------------------------------
-/* static */
-void_t
+xINLINE_HO void_t
 CxCurrentThread::sleep(
     culong_t &a_timeoutMs
 )
@@ -110,23 +105,6 @@ CxCurrentThread::sleep(
         tsSleep = tsRemain;
     }
 #endif
-}
-//------------------------------------------------------------------------------
-
-
-/*******************************************************************************
-*    private
-*
-*******************************************************************************/
-
-//------------------------------------------------------------------------------
-CxCurrentThread::CxCurrentThread()
-{
-}
-//------------------------------------------------------------------------------
-/* virtual */
-CxCurrentThread::~CxCurrentThread()
-{
 }
 //------------------------------------------------------------------------------
 

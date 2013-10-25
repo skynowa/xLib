@@ -21,6 +21,7 @@ xNAMESPACE_BEGIN(NxLib)
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
+xINLINE_HO
 CxCom::CxCom(
     const COINIT &a_concurrencyModel
 )
@@ -31,6 +32,7 @@ CxCom::CxCom(
     xTEST_EQ(true, SUCCEEDED(hrRv));
 }
 //------------------------------------------------------------------------------
+xINLINE_HO
 CxCom::~CxCom()
 {
     (void_t)::CoUninitialize();

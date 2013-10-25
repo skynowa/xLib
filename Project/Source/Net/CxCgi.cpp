@@ -27,6 +27,7 @@ std::csize_t CxCgi::MAX_DATA_SIZE_DEFAULT = 1024 * 1024;
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
+xINLINE_HO
 CxCgi::CxCgi(
     std::csize_t &a_maxSize
 ) :
@@ -36,12 +37,7 @@ CxCgi::CxCgi(
 {
 }
 //------------------------------------------------------------------------------
-/* virtual */
-CxCgi::~CxCgi()
-{
-}
-//------------------------------------------------------------------------------
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxCgi::dump() const
 {
     std::tstring_t sRv;
@@ -60,7 +56,7 @@ CxCgi::dump() const
 }
 //------------------------------------------------------------------------------
 /* static */
-void_t
+xINLINE_HO void_t
 CxCgi::redirect(
     std::ctstring_t &a_url
 )
@@ -76,7 +72,7 @@ CxCgi::redirect(
 }
 //------------------------------------------------------------------------------
 /* static */
-void_t
+xINLINE_HO void_t
 CxCgi::pageShow(
     std::ctstring_t &a_filePath
 )
@@ -102,7 +98,7 @@ namespace {
 //------------------------------------------------------------------------------
 //TODO: bUriEncode
 /* static */
-void_t
+xINLINE_HO void_t
 CxCgi::uriEncode(
     std::ctstring_t &a_uri,
     std::ctstring_t &a_reserved,
@@ -138,7 +134,7 @@ CxCgi::uriEncode(
 //------------------------------------------------------------------------------
 //TODO: bUriDecode ()
 /* static */
-void_t
+xINLINE_HO void_t
 CxCgi::uriDecode(
     std::ctstring_t &a_uri,
     std::tstring_t  *a_decodedStr
@@ -192,7 +188,7 @@ CxCgi::uriDecode(
 }
 //-------------------------------------------------------------------------------------------------------
 //TODO: cgl_parsecgibuf
-int_t
+xINLINE_HO int_t
 cgl_parsecgibuf(/*cgllist *cdata,*/ char *a_query) {
 //    char *s;
 //    char *np;
@@ -318,7 +314,7 @@ CxCgi::urlUnescape(char *a_s) {
 //-------------------------------------------------------------------------------------------------------
 //TODO: cgl_hex2char
 //ripped off from the Apache code
-char
+xINLINE_HO char
 CxCgi::cgl_hex2char(char *a_what) {
     register char digit = '\0';
 
@@ -345,6 +341,7 @@ CxCgi::cgl_hex2char(char *a_what) {
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
+xINLINE_HO
 CxCgiEnvironment::CxCgiEnvironment(
     CxCgi &a_cgi
 ) :
@@ -354,199 +351,194 @@ CxCgiEnvironment::CxCgiEnvironment(
     _construct();
 }
 //------------------------------------------------------------------------------
-/* virtual */
-CxCgiEnvironment::~CxCgiEnvironment()
-{
-}
-//------------------------------------------------------------------------------
 //DONE: sGetAuthType
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxCgiEnvironment::authType() const
 {
     return _authType;
 }
 //------------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxCgiEnvironment::contentLength() const
 {
     return _contentLength;
 }
 //------------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxCgiEnvironment::contentType() const
 {
     return _contentType;
 }
 //------------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxCgiEnvironment::documentRoot() const
 {
     return _documentRoot;
 }
 //------------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxCgiEnvironment::gatewayInterface() const
 {
     return _gatewayInterface;
 }
 //------------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxCgiEnvironment::httpAccept() const
 {
     return _httpAccept;
 }
 //------------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxCgiEnvironment::httpCookie() const
 {
     return _httpCookie;
 }
 //------------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxCgiEnvironment::httpPragma() const
 {
     return _httpPragma;
 }
 //------------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxCgiEnvironment::httpUserAgent() const
 {
     return _httpUserAgent;
 }
 //------------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxCgiEnvironment::pathInfo() const
 {
     return _pathInfo;
 }
 //------------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxCgiEnvironment::pathTranslated() const
 {
     return _pathTranslated;
 }
 //------------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxCgiEnvironment::queryString() const
 {
     return _queryString;
 }
 //------------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxCgiEnvironment::remoteAddr() const
 {
     return _remoteAddr;
 }
 //------------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxCgiEnvironment::remoteHost() const
 {
     return _remoteHost;
 }
 //------------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxCgiEnvironment::remoteIdent() const
 {
     return _remoteIdent;
 }
 //------------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxCgiEnvironment::remotePort() const
 {
     return _remotePort;
 }
 //------------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxCgiEnvironment::remoteUser() const
 {
     return _remoteUser;
 }
 //------------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxCgiEnvironment::requestMethod() const
 {
     return _requestMethod;
 }
 //------------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxCgiEnvironment::requestUri() const
 {
     return _requestUri;
 }
 //------------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxCgiEnvironment::scriptFilename() const
 {
     return _scriptFilename;
 }
 //------------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxCgiEnvironment::scriptName() const
 {
     return _scriptName;
 }
 //------------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxCgiEnvironment::serverAdmin() const
 {
     return _serverAdmin;
 }
 //------------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxCgiEnvironment::serverName() const
 {
     return _serverName;
 }
 //------------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxCgiEnvironment::serverPort() const
 {
     return _serverPort;
 }
 //------------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxCgiEnvironment::serverProtocol() const
 {
     return _serverProtocol;
 }
 //------------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxCgiEnvironment::serverSoftware() const
 {
     return _serverSoftware;
 }
 //------------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxCgiEnvironment::httpReferer() const
 {
     return _httpReferer;
 }
 //------------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxCgiEnvironment::httpHost() const
 {
     return _httpHost;
 }
 //------------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxCgiEnvironment::httpAcceptLanguage() const
 {
    return _httpAcceptLanguage;
 }
 //------------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxCgiEnvironment::countryCode() const
 {
     return _countryCode;
 }
 //------------------------------------------------------------------------------
-CxCgiEnvironment::ExRequestType
+xINLINE_HO CxCgiEnvironment::ExRequestType
 CxCgiEnvironment::requestType() const
 {
     return _requestType;
 }
 //------------------------------------------------------------------------------
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxCgiEnvironment::dump() const
 {
     std::tstring_t sRv;
@@ -625,7 +617,7 @@ CxCgiEnvironment::dump() const
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-bool_t
+xINLINE_HO bool_t
 CxCgiEnvironment::_construct()
 {
     _authType           = CxEnvironment::var(xT("AUTH_TYPE"));
@@ -693,6 +685,7 @@ CxCgiEnvironment::_construct()
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
+xINLINE_HO
 CxCgiCookies::CxCgiCookies(
     CxCgi &a_cgi
 ):
@@ -702,6 +695,7 @@ CxCgiCookies::CxCgiCookies(
 }
 //------------------------------------------------------------------------------
 /* virtual */
+xINLINE_HO
 CxCgiCookies::~CxCgiCookies()
 {
     xFOREACH(TCookies, it, items) {
@@ -709,7 +703,7 @@ CxCgiCookies::~CxCgiCookies()
     }
 }
 //------------------------------------------------------------------------------
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxCgiCookies::operator [] (
     std::ctstring_t &a_cookieName
 )
@@ -723,7 +717,7 @@ CxCgiCookies::operator [] (
     return std::tstring_t();
 }
 //------------------------------------------------------------------------------
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxCgiCookies::dump() const
 {
     std::tstring_t sRv;
@@ -763,7 +757,7 @@ CxCgiCookies::dump() const
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxCgiCookies::_construct()
 {
     std::tstring_t     sRawCookies = _cgi.Environment.httpCookie();
@@ -795,6 +789,7 @@ CxCgiCookies::_construct()
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
+xINLINE_HO
 CxCgiFormData::CxCgiFormData(
     CxCgi        &a_cgi,
     std::csize_t &a_maxSize
@@ -805,12 +800,7 @@ CxCgiFormData::CxCgiFormData(
     _construct();
 }
 //------------------------------------------------------------------------------
-/* virtual */
-CxCgiFormData::~CxCgiFormData()
-{
-}
-//------------------------------------------------------------------------------
-std::ctstring_t &
+xINLINE_HO std::ctstring_t &
 CxCgiFormData::rawData() const
 {
     return _formData;
@@ -836,7 +826,7 @@ CxCgiFormData::dump() const
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxCgiFormData::_construct()
 {
     int_t iRv = _cgi.Environment.requestType();

@@ -17,25 +17,14 @@ xNAMESPACE_BEGIN(NxLib)
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-CxWaitableTimer::CxWaitableTimer() :
-    _handle()
-{
-
-}
-//------------------------------------------------------------------------------
-CxWaitableTimer::~CxWaitableTimer() {
-    xTEST_DIFF(false, _handle.isValid());
-
-}
-//------------------------------------------------------------------------------
-HANDLE
+xINLINE_HO HANDLE
 CxWaitableTimer::handle() const {
     xTEST_EQ(true, _handle.isValid());
 
     return _handle.get();
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxWaitableTimer::create(
     cbool_t                     &a_bManualReset,
     std::ctstring_t             &a_csName,
@@ -50,7 +39,7 @@ CxWaitableTimer::create(
     _handle.set(hRv);
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxWaitableTimer::open(
     std::ctstring_t &a_csName,
     culong_t        &a_culDesiredAccess,
@@ -74,7 +63,7 @@ CxWaitableTimer::open(
     _handle.set(hRv);
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxWaitableTimer::cancel() const {
     xTEST_EQ(true, _handle.isValid());
 
@@ -82,7 +71,7 @@ CxWaitableTimer::cancel() const {
     xTEST_DIFF(FALSE, blRes);
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxWaitableTimer::set(
     clonglong_t      &a_cllDueTime,
     clong_t          &a_cliPeriod,
@@ -107,7 +96,7 @@ CxWaitableTimer::set(
     xTEST_DIFF(FALSE, blRes);
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxWaitableTimer::wait(
     culong_t &a_culTimeout
 ) const

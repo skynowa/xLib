@@ -25,7 +25,7 @@ xNAMESPACE_BEGIN(NxLib)
 //--------------------------------------------------------------------------
 /* static */ std::vec_tstring_t CxCommandLine::_ms_vsArgs;
 //--------------------------------------------------------------------------
-long_t
+xINLINE_HO long_t
 CxCommandLine::argsMax()
 {
     long_t liRv = 0L;
@@ -41,7 +41,7 @@ CxCommandLine::argsMax()
 }
 //------------------------------------------------------------------------------
 /* static */
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxCommandLine::get()
 {
     // n/a
@@ -61,7 +61,7 @@ CxCommandLine::get()
 }
 //------------------------------------------------------------------------------
 /* static */
-void_t
+xINLINE_HO void_t
 CxCommandLine::args(
     std::vec_tstring_t *a_args
 )
@@ -75,7 +75,7 @@ CxCommandLine::args(
 }
 //------------------------------------------------------------------------------
 /* static */
-void_t
+xINLINE_HO void_t
 CxCommandLine::setArgs(
     cint_t  &a_argsNum,
     tchar_t *a_args[]
@@ -94,23 +94,6 @@ CxCommandLine::setArgs(
 
     xCHECK_DO(_ms_vsArgs.empty(),
         CxTracer::write(xT("xLib: warning (command line is empty)")));
-}
-//------------------------------------------------------------------------------
-
-
-/*******************************************************************************
-*    private
-*
-*******************************************************************************/
-
-//------------------------------------------------------------------------------
-CxCommandLine::CxCommandLine()
-{
-}
-//------------------------------------------------------------------------------
-/* virtual */
-CxCommandLine::~CxCommandLine()
-{
 }
 //------------------------------------------------------------------------------
 

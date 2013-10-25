@@ -17,6 +17,7 @@ xNAMESPACE_BEGIN(NxLib)
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
+xINLINE_HO
 CxAutoMutex::CxAutoMutex(
     CxMutex *a_mutex
 ) :
@@ -26,6 +27,7 @@ CxAutoMutex::CxAutoMutex(
     _mutex->lock();
 }
 //------------------------------------------------------------------------------
+xINLINE_HO
 CxAutoMutex::~CxAutoMutex()
 {
     _mutex->unlock();

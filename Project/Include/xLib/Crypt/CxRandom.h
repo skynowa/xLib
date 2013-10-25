@@ -57,10 +57,10 @@ protected:
         ///< next long_t
 
 private:
-    static cint_t         A;  ///< for private use
-    static cint_t         M;  ///< for private use
-    static cint_t         Q;  ///< for private use
-    static cint_t         R;  ///< for private use
+    static cint_t         A = 48271;
+    static cint_t         M = RAND_MAX;
+    static cint_t         Q = M / A;
+    static cint_t         R = M % A;
 
     long_t                _seed;                  ///< for private use
     double                _nextNextGaussian;       ///< for private use

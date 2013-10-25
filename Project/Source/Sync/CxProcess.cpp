@@ -30,6 +30,7 @@ xNAMESPACE_BEGIN(NxLib)
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
+xINLINE_HO
 CxProcess::CxProcess() :
     _handle     (0),
 #if xOS_ENV_WIN
@@ -41,6 +42,7 @@ CxProcess::CxProcess() :
 }
 //------------------------------------------------------------------------------
 /* virtual */
+xINLINE_HO
 CxProcess::~CxProcess()
 {
 #if xOS_ENV_WIN
@@ -54,7 +56,7 @@ CxProcess::~CxProcess()
 #endif
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxProcess::create(
     std::ctstring_t &a_filePath,
     ctchar_t        *a_params, ...
@@ -103,7 +105,7 @@ CxProcess::create(
 #endif
 }
 //------------------------------------------------------------------------------
-CxProcess::ExWaitResult
+xINLINE_HO CxProcess::ExWaitResult
 CxProcess::wait(
     culong_t &a_timeoutMSec
 )
@@ -133,7 +135,7 @@ CxProcess::wait(
     return wrStatus;
 }
 //------------------------------------------------------------------------------
-void_t
+xINLINE_HO void_t
 CxProcess::kill(
     culong_t &a_timeoutMSec    // FIX: timeoutMSec not used
 )
@@ -163,26 +165,26 @@ CxProcess::kill(
 #endif
 }
 //------------------------------------------------------------------------------
-CxProcess::handle_t
+xINLINE_HO CxProcess::handle_t
 CxProcess::handle() const
 {
     return _handle;
 }
 //------------------------------------------------------------------------------
-CxProcess::id_t
+xINLINE_HO CxProcess::id_t
 CxProcess::id() const
 {
     return _pid;
 }
 //------------------------------------------------------------------------------
-bool_t
+xINLINE_HO bool_t
 CxProcess::isCurrent() const
 {
     //// TODO: return CxCurrentProcess::isCurrent( CxCurrentProcess::id() );
     return false;
 }
 //------------------------------------------------------------------------------
-ulong_t
+xINLINE_HO ulong_t
 CxProcess::exitStatus() const
 {
     ulong_t ulRv = 0UL;
@@ -205,8 +207,7 @@ CxProcess::exitStatus() const
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-/* static */
-CxProcess::id_t
+xINLINE_HO CxProcess::id_t
 CxProcess::idByHandle(
     const handle_t &a_handle    ///< handle
 )
@@ -223,8 +224,7 @@ CxProcess::idByHandle(
     return ulRv;
 }
 //------------------------------------------------------------------------------
-/* static */
-CxProcess::handle_t
+xINLINE_HO CxProcess::handle_t
 CxProcess::handleById(
     const id_t &a_id   ///< ID
 )
@@ -242,6 +242,7 @@ CxProcess::handleById(
 }
 //------------------------------------------------------------------------------
 /* static */
+xINLINE_HO
 CxProcess::id_t
 CxProcess::idByName(
     std::ctstring_t &a_processName
@@ -356,7 +357,7 @@ CxProcess::idByName(
 }
 //--------------------------------------------------------------------------
 /* static */
-bool_t
+xINLINE_HO bool_t
 CxProcess::isRunning(
     const id_t &id
 )
