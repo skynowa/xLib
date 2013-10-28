@@ -700,7 +700,9 @@ CxTest_CxPath::unit(
     {
         std::vec_tstring_t vsArgs;
 
-        CxProcessInfo::commandLine(CxCurrentProcess::id(), &vsArgs);
+        CxProcessInfo info;
+        info.setProcessId(CxCurrentProcess::id());
+        info.commandLine(&vsArgs);
 
         m_sRv = CxPath(vsArgs.at(0)).absolute();
         xTEST_EQ(false, m_sRv.empty());
