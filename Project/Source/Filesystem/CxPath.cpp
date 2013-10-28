@@ -92,14 +92,18 @@ CxPath::exe()
 
             sRv.assign(szBuff);
         #else
-            std::vec_tstring_t vsArgs;
+            std::vec_tstring_t args;
 
-            bool_t bRv = CxProcessInfo::commandLine(CxCurrentProcess::id(), &vsArgs);
+            CxProcessInfo info;
+            info.setProcessId(CxCurrentProcess::id());
+            info.commandLine(&args);
+
+            bool_t bRv = info.commandLine(CxCurrentProcess::id(), &args);
             xTEST_EQ(true,  bRv);
-            xTEST_EQ(false, vsArgs.empty());
-            xTEST_EQ(false, bIsAbsolute(vsArgs.at(0)));
+            xTEST_EQ(false, args.empty());
+            xTEST_EQ(false, bIsAbsolute(args.at(0)));
 
-            sRv = absolute(vsArgs.at(0));
+            sRv = absolute(args.at(0));
         #endif
     #endif
 #elif xOS_ENV_MAC

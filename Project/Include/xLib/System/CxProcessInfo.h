@@ -15,28 +15,32 @@ class CxProcessInfo :
     public CxNonCopyable
 {
 public:
-    static void_t         currentIds(std::vector<CxProcess::id_t> *ids);
-        ///< get all IDs of current processes
-    static ulong_t        cpuUsage(const CxProcess::id_t &id) xWARN_UNUSED_RV;
-        ///< get CPU usage (percentage)
-    static ulong_t        ramUsage(const CxProcess::id_t &id) xWARN_UNUSED_RV;
-        ///< get RAM usage (percentage)
-    static ulong_t        ioBytes(const CxProcess::id_t &id) xWARN_UNUSED_RV;
-        ///< get total read and written bytes
-    static std::tstring_t exeName(const CxProcess::id_t &id) xWARN_UNUSED_RV;
-        ///< get exe name
-    static ulong_t        parentId(const CxProcess::id_t &id) xWARN_UNUSED_RV;
-        ///< get parent process id
-    static void_t         commandLine(const CxProcess::id_t &id, std::vec_tstring_t *args);
-        ///< get arguments
-    static long_t         commandLineArgsMax() xWARN_UNUSED_RV;
-        ///< get maximum length of command line arguments (in chars)
-
-private:
-                          CxProcessInfo();
+                    CxProcessInfo() {}
         ///< constructor
-    virtual              ~CxProcessInfo();
+    virtual        ~CxProcessInfo() {}
         ///< destructor
+
+    void_t          setProcessId(const CxProcess::id_t &a_id);
+        ///< set target process ID
+    ulong_t         cpuUsage() xWARN_UNUSED_RV;
+        ///< get CPU usage (percentage)
+    ulong_t         ramUsage() xWARN_UNUSED_RV;
+        ///< get RAM usage (percentage)
+    ulong_t         ioBytes() xWARN_UNUSED_RV;
+        ///< get total read and written bytes
+    std::tstring_t  exeName() xWARN_UNUSED_RV;
+        ///< get exe name
+    ulong_t         parentId() xWARN_UNUSED_RV;
+        ///< get parent process id
+    void_t          commandLine(std::vec_tstring_t *args);
+        ///< get arguments
+
+    static long_t   commandLineArgsMax() xWARN_UNUSED_RV;
+        ///< get maximum length of command line arguments (in chars)
+    static void_t   currentIds(std::vector<CxProcess::id_t> *ids);
+        ///< get all IDs of current processes
+private:
+    CxProcess::id_t _id;  ///< target process ID
 };
 
 xNAMESPACE_END(NxLib)

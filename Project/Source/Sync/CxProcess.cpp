@@ -362,13 +362,13 @@ CxProcess::isRunning(
     const id_t &id
 )
 {
-    std::vector<CxProcess::id_t> vidIds;
+    std::vector<CxProcess::id_t> ids;
 
-    CxProcessInfo::currentIds(&vidIds);
+    CxProcessInfo::currentIds(&ids);
 
     std::vector<CxProcess::id_t>::iterator it;
-    it = std::find(vidIds.begin(), vidIds.end(), id);
-    xCHECK_RET(it == vidIds.end(), false);
+    it = std::find(ids.begin(), ids.end(), id);
+    xCHECK_RET(it == ids.end(), false);
 
     return true;
 }

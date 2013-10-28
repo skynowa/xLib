@@ -7,6 +7,7 @@
 #include <xLib/Core/xCore.h>
 #include <xLib/System/CxConsole.h>
 #include <xLib/System/CxProcessInfo.h>
+#include <xLib/Sync/CxCurrentProcess.h>
 #include <xLib/Test/CxTestManager.h>
 
 // Core
@@ -124,7 +125,9 @@ int_t xTMAIN(int_t argNum, tchar_t *args[])
     {
         std::vec_tstring_t args;
 
-        CxProcessInfo::commandLine(CxCurrentProcess::id(), &args);
+        CxProcessInfo info;
+        info.setProcessId(CxCurrentProcess::id());
+        info.commandLine(&args);
 
         // usage
         if (2 == argNum) {
