@@ -15,22 +15,20 @@ class CxCommandLine :
     /// command line
 {
 public:
-    static long_t         argsMax() xWARN_UNUSED_RV;
-        ///< get maximum length of command line arguments (in chars)
-    static std::tstring_t get() xWARN_UNUSED_RV;
+                       CxCommandLine() {}
+        ///< constructor
+
+    std::tstring_t     get() xWARN_UNUSED_RV;
         ///< get command line string for the current process
-    static void_t         args(std::vec_tstring_t *args);
+    void_t             args(std::vec_tstring_t *args);
         ///< get command line arguments
-    static void_t         setArgs(cint_t &argsNum, tchar_t *args[]);
+    void_t             setArgs(cint_t &argsNum, tchar_t *args[]);
         ///< set command line arguments
 
+    static long_t      argsMax() xWARN_UNUSED_RV;
+        ///< get maximum length of command line arguments (in chars)
 private:
-    static std::vec_tstring_t _ms_vsArgs;  ///< command line arguments
-
-                          CxCommandLine();
-        ///< constructor
-    virtual              ~CxCommandLine();
-        ///< destructor
+    std::vec_tstring_t _args;  ///< command line arguments
 };
 
 xNAMESPACE_END(NxLib)
