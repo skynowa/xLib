@@ -8,7 +8,7 @@
 
 #include <xLib/Core/CxChar.h>
 #include <xLib/Core/CxString.h>
-#include <xLib/Core/CxCommandLine.h>
+#include <xLib/System/CxProcessInfo.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Filesystem/CxDir.h>
 #include <xLib/Sync/CxCurrentProcess.h>
@@ -94,7 +94,7 @@ CxPath::exe()
         #else
             std::vec_tstring_t vsArgs;
 
-            bool_t bRv = CxCommandLine::args(&vsArgs);
+            bool_t bRv = CxProcessInfo::commandLine(CxCurrentProcess::id(), &vsArgs);
             xTEST_EQ(true,  bRv);
             xTEST_EQ(false, vsArgs.empty());
             xTEST_EQ(false, bIsAbsolute(vsArgs.at(0)));
