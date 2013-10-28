@@ -279,12 +279,15 @@ CxProcessInfo::parentId(
 }
 //-------------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::tstring_t
+xINLINE_HO void_t
 CxProcessInfo::commandLine(
-    const CxProcess::id_t &a_id
+    const CxProcess::id_t &a_id,
+    std::vec_tstring_t    *a_args
 )
 {
-    std::tstring_t sRv;
+    xTEST_PTR(a_args);
+
+    std::string sRv;
 
 #if   xOS_ENV_WIN
     // process with PID 4
@@ -301,22 +304,24 @@ CxProcessInfo::commandLine(
         if (cidNtoskrnlId == a_id) {
             sRv = CxEnvironment::expandStrings(xT("%SystemRoot%\\System32\\ntoskrnl.exe"));
 
-            return sRv;
+            CxString::split(sRv, CxConst::xSPACE(), &args);
+            a_args.swap(args);
+
+            return;
         }
     }
 
+#if xCOMPILER_MINGW || xCOMPILER_CODEGEAR
+    // typedef __success(return >= 0) LONG NTSTATUS;
+    typedef LONG NTSTATUS;
 
-    #if xCOMPILER_MINGW || xCOMPILER_CODEGEAR
-        // typedef __success(return >= 0) LONG NTSTATUS;
-        typedef LONG NTSTATUS;
-
-        enum PROCESSINFOCLASS
-            /// process info type
-        {
-            ProcessBasicInformation = 0,
-            ProcessWow64Information = 26
-        };
-    #endif
+    enum PROCESSINFOCLASS
+        /// process info type
+    {
+        ProcessBasicInformation = 0,
+        ProcessWow64Information = 26
+    };
+#endif
 
     typedef NTSTATUS (WINAPI *Dll_NtQueryInformationProcess_t) (
         HANDLE           ProcessHandle,
@@ -440,9 +445,39 @@ CxProcessInfo::commandLine(
     xNOT_IMPLEMENTED
 #endif
 
+#if xTEMP_DISABLED
+    #if xOS_ENV_WIN
+        LPCTSTR pcszRes = ::GetCommandLine();
+        xTEST_PTR(pcszRes);
 
-    return sRv;
+        sRv = CxString::trimSpace(pcszRes);
+    #else
+        sRv = CxString::join(_args, CxConst::xSPACE());
+    #endif
+#endif
+
+    std::vec_tstring_t args;
+    CxString::split(sRv, CxConst::xSPACE(), &args);
+
+    // out
+    a_args->swap(args);
 }
 //-------------------------------------------------------------------------------------------------------
+/* static */
+xINLINE_HO long_t
+CxProcessInfo::commandLineArgsMax()
+{
+    long_t liRv = 0L;
+
+#if xOS_ENV_WIN
+    liRv = 32L * 1024L;
+#else
+    liRv = ::sysconf(_SC_ARG_MAX) / sizeof(std::tstring_t::value_type);
+    xTEST_DIFF(- 1L, liRv);
+#endif
+
+    return liRv;
+}
+//------------------------------------------------------------------------------
 
 xNAMESPACE_END(NxLib)

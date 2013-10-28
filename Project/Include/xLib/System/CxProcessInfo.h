@@ -27,8 +27,10 @@ public:
         ///< get exe name
     static ulong_t        parentId(const CxProcess::id_t &id) xWARN_UNUSED_RV;
         ///< get parent process id
-    static std::tstring_t commandLine(const CxProcess::id_t &id) xWARN_UNUSED_RV;
+    static void_t         commandLine(const CxProcess::id_t &id, std::vec_tstring_t *args);
         ///< get arguments
+    static long_t         commandLineArgsMax() xWARN_UNUSED_RV;
+        ///< get maximum length of command line arguments (in chars)
 
 private:
                           CxProcessInfo();
