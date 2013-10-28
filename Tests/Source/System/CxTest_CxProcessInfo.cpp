@@ -117,11 +117,20 @@ CxTest_CxProcessInfo::unit(
 
         #endif
 
-            m_sRv = CxProcessInfo::commandLine(/* *it */ CxCurrentProcess::id());
+            m_sRv = CxProcessInfo::commandLine(/* *it */ CxCurrentProcess::id(), &m_vsRv);
+            xTEST_EQ(false, m_vsRv.empty());
+
             #if xTEST_IGNORE
                 CxTracer() << m_sRv;
             #endif
         }
+    }
+
+    xTEST_CASE("CxProcessInfo::commandLineArgsMax", a_cullCaseLoops)
+    {
+        m_liRv = CxProcessInfo::commandLineArgsMax();
+        xTEST_LESS(0L, m_liRv);
+        //xTRACEV(xT("\CxProcessInfo::commandLineArgsMax() = %li"), m_liRv);
     }
 }
 //------------------------------------------------------------------------------
