@@ -208,7 +208,13 @@ class CxCgi :
     /// CGI
 {
 public:
-    static std::csize_t     MAX_DATA_SIZE_DEFAULT = 1024 * 1024;    ///< maximum data size by default
+    std::csize_t &          MAX_DATA_SIZE_DEFAULT()
+         ///< maximum data size by default
+    {
+        static std::csize_t uiRv = 1024U * 1024U;
+
+        return uiRv;
+    }
 
     NxCgi::CxCgiEnvironment Environment;    ///< CxCgiEnvironment object
     NxCgi::CxCgiCookies     Cookies;        ///< CxCgiCookies object

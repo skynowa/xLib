@@ -23,22 +23,6 @@ xNAMESPACE_BEGIN(NxLib)
 *******************************************************************************/
 
 //--------------------------------------------------------------------------
-xINLINE_HO long_t
-CxCommandLine::argsMax()
-{
-    long_t liRv = 0L;
-
-#if xOS_ENV_WIN
-    liRv = 32L * 1024L;
-#else
-    liRv = ::sysconf(_SC_ARG_MAX) / sizeof(std::tstring_t::value_type);
-    xTEST_DIFF(- 1L, liRv);
-#endif
-
-    return liRv;
-}
-//------------------------------------------------------------------------------
-/* static */
 xINLINE_HO std::tstring_t
 CxCommandLine::get()
 {
@@ -52,13 +36,12 @@ CxCommandLine::get()
 
     sRv = CxString::trimSpace(pcszRes);
 #else
-    sRv = CxString::join(_ms_vsArgs, CxConst::xSPACE());
+    sRv = CxString::join(_args, CxConst::xSPACE());
 #endif
 
     return sRv;
 }
 //------------------------------------------------------------------------------
-/* static */
 xINLINE_HO void_t
 CxCommandLine::args(
     std::vec_tstring_t *a_args
@@ -66,13 +49,12 @@ CxCommandLine::args(
 {
     xTEST_PTR(a_args);
 
-    xCHECK_DO(_ms_vsArgs.empty(),
+    xCHECK_DO(_args.empty(),
         CxTracer() << xT("::: xLib: warning (command line is empty) :::"));
 
-    *a_args = _ms_vsArgs;
+    *a_args = _args;
 }
 //------------------------------------------------------------------------------
-/* static */
 xINLINE_HO void_t
 CxCommandLine::setArgs(
     cint_t  &a_argsNum,
@@ -88,10 +70,26 @@ CxCommandLine::setArgs(
     }
 
     // out
-    _ms_vsArgs.swap(vsArgs);
+    _args.swap(vsArgs);
 
-    xCHECK_DO(_ms_vsArgs.empty(),
+    xCHECK_DO(_args.empty(),
         CxTracer::write(xT("xLib: warning (command line is empty)")));
+}
+//------------------------------------------------------------------------------
+/* static */
+xINLINE_HO long_t
+CxCommandLine::argsMax()
+{
+    long_t liRv = 0L;
+
+#if xOS_ENV_WIN
+    liRv = 32L * 1024L;
+#else
+    liRv = ::sysconf(_SC_ARG_MAX) / sizeof(std::tstring_t::value_type);
+    xTEST_DIFF(- 1L, liRv);
+#endif
+
+    return liRv;
 }
 //------------------------------------------------------------------------------
 

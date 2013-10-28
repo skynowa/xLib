@@ -63,7 +63,7 @@ CxTest_CxCgi::unit(
     {
         //std::tcout << xT("<pre>");
 
-        CxCgi cgCgi(CxCgi::MAX_DATA_SIZE_DEFAULT);
+        CxCgi cgCgi(1024U * 1024U /* CxCgi::MAX_DATA_SIZE_DEFAULT() */);
 
         //--------------------------------------------------
         //CxCgi::CxCgiEnvironment
