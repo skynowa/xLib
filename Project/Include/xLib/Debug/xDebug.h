@@ -6,10 +6,6 @@
 
 #pragma once
 
-//#include <xLib/Core/xCore.h>
-//#include <xLib/Debug/CxLastError.h>
-//#include <xLib/Debug/CxStdError.h>
-//#include <xLib/Log/CxTracer.h>
 //------------------------------------------------------------------------------
 #define xSTD_VERIFY(expr) \
     { \

@@ -6,13 +6,6 @@
 
 #pragma once
 
-//#include <xLib/Core/xCore.h>
-//#include <xLib/Debug/CxLastError.h>
-//#include <xLib/Debug/CxStdError.h>
-//#include <xLib/Debug/CxStackTrace.h>
-//#include <xLib/Debug/CxErrorReport.h>
-//#include <xLib/Debug/CxDebugger.h>
-//#include <xLib/Log/CxTracer.h>
 //------------------------------------------------------------------------------
 #define _xTEST_MSG_EQ(report_type, val1, val2, msg)      { if ( !((val1) == (val2)) ) { ulong_t ulLastError = CxLastError::get(); CxErrorReport rpReport(report_type, xT(#val1),   xT(#val2), (val1),        (val2),         xT("=="), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().toString(), (msg));  CxDebugger().reportMake(rpReport); } }
 #define _xTEST_MSG_DIFF(report_type, val1, val2, msg)    { if ( !((val1) != (val2)) ) { ulong_t ulLastError = CxLastError::get(); CxErrorReport rpReport(report_type, xT(#val1),   xT(#val2), (val1),        (val2),         xT("!="), ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().toString(), (msg));  CxDebugger().reportMake(rpReport); } }
