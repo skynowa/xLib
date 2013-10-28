@@ -6,9 +6,10 @@
 
 #include <Test/Filesystem/CxTest_CxPath.h>
 
-#include <xLib/Core/CxCommandLine.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Filesystem/CxDir.h>
+#include <xLib/Sync/CxCurrentProcess.h>
+#include <xLib/System/CxProcessInfo.h>
 
 
 //------------------------------------------------------------------------------
@@ -699,8 +700,7 @@ CxTest_CxPath::unit(
     {
         std::vec_tstring_t vsArgs;
 
-        CxCommandLine cmd;
-        cmd.args(&vsArgs);
+        CxProcessInfo::commandLine(CxCurrentProcess::id(), &vsArgs);
 
         m_sRv = CxPath(vsArgs.at(0)).absolute();
         xTEST_EQ(false, m_sRv.empty());

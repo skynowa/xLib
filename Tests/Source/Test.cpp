@@ -5,8 +5,8 @@
 
 
 #include <xLib/Core/xCore.h>
-#include <xLib/Core/CxCommandLine.h>
 #include <xLib/System/CxConsole.h>
+#include <xLib/System/CxProcessInfo.h>
 #include <xLib/Test/CxTestManager.h>
 
 // Core
@@ -24,7 +24,6 @@
 #include <Test/Core/CxTest_CxLocale.h>
 #include <Test/Core/CxTest_CxString.h>
 #include <Test/Core/CxTest_CxDateTime.h>
-#include <Test/Core/CxTest_CxCommandLine.h>
 #include <Test/Core/Win/CxTest_CxCom.h>
 
 // Crypt
@@ -116,11 +115,6 @@
 int_t xTMAIN(int_t argNum, tchar_t *args[])
 {
     //--------------------------------------------------
-    // set command line args for xLib
-    CxCommandLine cmd;
-    cmd.setArgs(argNum, args);
-
-    //--------------------------------------------------
     // options (default)
     bool_t        bIsUseTracing = true;
     ulonglong_t ullAllLoops   = 1UL;
@@ -128,13 +122,13 @@ int_t xTMAIN(int_t argNum, tchar_t *args[])
     ulonglong_t ullCaseLoops  = 1UL;
 
     {
-        std::vec_tstring_t vsArgs;
+        std::vec_tstring_t args;
 
-        cmd.args(&vsArgs);
+        CxProcessInfo::commandLine(CxCurrentProcess::id(), &args);
 
         // usage
         if (2 == argNum) {
-            bool_t bRv = CxString::compareNoCase(xT("-h"), vsArgs.at(1));
+            bool_t bRv = CxString::compareNoCase(xT("-h"), args.at(1));
             if (bRv) {
                 std::tcout << xT("\nUsage: xlib_r is_tracing all_loops unit_loops\n")
                               xT("  - xlib_r      (binary file path)\n")
@@ -151,10 +145,10 @@ int_t xTMAIN(int_t argNum, tchar_t *args[])
 
         // loops number
         if (5 == argNum) {
-            bIsUseTracing = CxString::cast<bool_t>     ( vsArgs.at(1) );
-            ullAllLoops   = CxString::cast<ulonglong_t>( vsArgs.at(2) );
-            ullUnitLoops  = CxString::cast<ulonglong_t>( vsArgs.at(3) );
-            ullCaseLoops  = CxString::cast<ulonglong_t>( vsArgs.at(4) );
+            bIsUseTracing = CxString::cast<bool_t>     ( args.at(1) );
+            ullAllLoops   = CxString::cast<ulonglong_t>( args.at(2) );
+            ullUnitLoops  = CxString::cast<ulonglong_t>( args.at(3) );
+            ullCaseLoops  = CxString::cast<ulonglong_t>( args.at(4) );
         }
     }
 
@@ -178,7 +172,6 @@ int_t xTMAIN(int_t argNum, tchar_t *args[])
         tmManager.add(new CxTest_CxLocale);
         tmManager.add(new CxTest_CxString);
         tmManager.add(new CxTest_CxDateTime);
-        tmManager.add(new CxTest_CxCommandLine);
         tmManager.add(new CxTest_CxCom);
 
         // Crypt
