@@ -412,6 +412,13 @@ CxSystemInfo::userName()
     xNOT_IMPLEMENTED
 #endif
 
+#if 0
+    // TODO: CxSystemInfo::userName()
+    char * userName = ::getenv("LOGNAME");
+    char * userName = ::getenv("USERNAME");
+    ::getlogin_r
+#endif
+
     return sRv;
 }
 //------------------------------------------------------------------------------
