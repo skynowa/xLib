@@ -360,7 +360,7 @@ CxProcess::isRunning(
     const id_t &id
 )
 {
-    std::vector<CxProcess::id_t> ids;
+    std::vector<id_t> ids;
 
     CxProcessInfo::currentIds(&ids);
 
@@ -434,7 +434,7 @@ CxProcess::currentParentId()
         PULONG           ReturnLength
     );
 
-    const CxProcess::id_t culInvalidId = (DWORD)- 1;
+    const id_t culInvalidId = (DWORD)- 1;
 
     CxDll dlDll;
 
