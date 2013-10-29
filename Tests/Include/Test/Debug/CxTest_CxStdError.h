@@ -14,10 +14,7 @@ class CxTest_CxStdError :
     public CxTest
 {
 public:
-                   CxTest_CxStdError();
-        ///< constructor
-    virtual       ~CxTest_CxStdError();
-        ///< destructor
+                   CxTest_CxStdError() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
         ///< unit test

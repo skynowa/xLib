@@ -14,8 +14,7 @@ class CxTest_CxFunctorT :
     public CxTest
 {
 public:
-                   CxTest_CxFunctorT();
-    virtual       ~CxTest_CxFunctorT();
+                   CxTest_CxFunctorT() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };

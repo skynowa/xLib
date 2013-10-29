@@ -10,14 +10,6 @@
 
 
 //------------------------------------------------------------------------------
-CxTest_xDebug::CxTest_xDebug() {
-
-}
-//------------------------------------------------------------------------------
-CxTest_xDebug::~CxTest_xDebug() {
-
-}
-//------------------------------------------------------------------------------
 /*virtual*/
 void_t
 CxTest_xDebug::unit(
@@ -25,7 +17,7 @@ CxTest_xDebug::unit(
 )
 {
     //--------------------------------------------------
-    // 
+    //
     xTEST_CASE("xDebug::xTEST_*_", a_cullCaseLoops)
     {
         {
@@ -94,7 +86,7 @@ CxTest_xDebug::unit(
     }
 
     //--------------------------------------------------
-    // 
+    //
     xTEST_CASE("xDebug::xSTD_VERIFY_", a_cullCaseLoops)
     {
         xSTD_VERIFY(true);
@@ -102,14 +94,14 @@ CxTest_xDebug::unit(
     }
 
     //--------------------------------------------------
-    // 
+    //
     xTEST_CASE("xDebug::xCHECK_RET", a_cullCaseLoops)
     {
         // xCHECK_RET(expr, return_expr)
     }
 
     //--------------------------------------------------
-    // 
+    //
     xTEST_CASE("xDebug::xCHECK_DO_", a_cullCaseLoops)
     {
         class STest {
@@ -150,28 +142,28 @@ CxTest_xDebug::unit(
     }
 
     //--------------------------------------------------
-    // 
+    //
     xTEST_CASE("xDebug::xCHECK_MSG_", a_cullCaseLoops)
     {
         // xCHECK_MSG(expr, comment)
     }
 
     //--------------------------------------------------
-    // 
+    //
     xTEST_CASE("xDebug::xCHECK_MSG_RET_", a_cullCaseLoops)
     {
         // xCHECK_MSG_RET(expr, comment, return_expr)
     }
 
     //--------------------------------------------------
-    // 
+    //
     xTEST_CASE("xDebug::xCHECK_MSG_DO_", a_cullCaseLoops)
     {
         xCHECK_MSG_DO(false, xT("xxx"), int_t i = 0; ++ i;);
     }
 
     //--------------------------------------------------
-    // 
+    //
     xTEST_CASE("xDebug::xTEST_STATIC_", a_cullCaseLoops)
     {
         xTEST_STATIC(true);
@@ -182,7 +174,7 @@ CxTest_xDebug::unit(
     }
 
     //--------------------------------------------------
-    // 
+    //
     xTEST_CASE("xDebug::xNOT_IMPLEMENTED_", a_cullCaseLoops)
     {
         #if xTEST_IGNORE
@@ -191,7 +183,7 @@ CxTest_xDebug::unit(
     }
 
     //--------------------------------------------------
-    // 
+    //
     xTEST_CASE("xDebug::xTEST_CASE_", a_cullCaseLoops)
     {
         xTEST_CASE("case_name", 3U) {
@@ -200,7 +192,7 @@ CxTest_xDebug::unit(
     }
 
     //--------------------------------------------------
-    // 
+    //
     xTEST_CASE("xDebug::xTRACE_", a_cullCaseLoops)
     {
         #if xTEST_IGNORE
@@ -209,7 +201,7 @@ CxTest_xDebug::unit(
     }
 
     //--------------------------------------------------
-    // 
+    //
     xTEST_CASE("xDebug::xTRACEV_", a_cullCaseLoops)
     {
         #if xTEST_IGNORE
@@ -218,7 +210,7 @@ CxTest_xDebug::unit(
     }
 
     //--------------------------------------------------
-    // 
+    //
     xTEST_CASE("xDebug::xTRACE_POINT_", a_cullCaseLoops)
     {
         #if xTEST_IGNORE

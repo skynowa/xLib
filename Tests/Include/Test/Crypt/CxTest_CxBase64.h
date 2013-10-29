@@ -14,8 +14,7 @@ class CxTest_CxBase64 :
     public CxTest
 {
 public:
-                   CxTest_CxBase64();
-    virtual       ~CxTest_CxBase64();
+                   CxTest_CxBase64() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };

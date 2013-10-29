@@ -77,14 +77,6 @@ class CThread {
 };
 CThread objThread;
 //------------------------------------------------------------------------------
-CxTest_CxFunctorT::CxTest_CxFunctorT() {
-
-}
-//------------------------------------------------------------------------------
-CxTest_CxFunctorT::~CxTest_CxFunctorT() {
-
-}
-//------------------------------------------------------------------------------
 void_t
 CxTest_CxFunctorT::unit(
     culonglong_t &a_cullCaseLoops

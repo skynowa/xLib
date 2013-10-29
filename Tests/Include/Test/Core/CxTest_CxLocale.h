@@ -14,8 +14,7 @@ class CxTest_CxLocale :
     public CxTest
 {
 public:
-                   CxTest_CxLocale();
-    virtual       ~CxTest_CxLocale();
+                   CxTest_CxLocale() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };

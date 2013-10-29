@@ -14,8 +14,7 @@ class CxTest_CxSystemInfo :
     public CxTest
 {
 public:
-                   CxTest_CxSystemInfo();
-    virtual       ~CxTest_CxSystemInfo();
+                   CxTest_CxSystemInfo() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };

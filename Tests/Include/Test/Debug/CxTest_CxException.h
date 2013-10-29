@@ -14,8 +14,7 @@ class CxTest_CxException :
     public CxTest
 {
 public:
-                   CxTest_CxException();
-    virtual       ~CxTest_CxException();
+                   CxTest_CxException() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };

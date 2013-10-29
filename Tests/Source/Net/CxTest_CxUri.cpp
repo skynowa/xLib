@@ -8,14 +8,6 @@
 
 
 //------------------------------------------------------------------------------
-CxTest_CxUri::CxTest_CxUri() {
-
-}
-//------------------------------------------------------------------------------
-CxTest_CxUri::~CxTest_CxUri() {
-
-}
-//------------------------------------------------------------------------------
 /* virtual */
 void_t
 CxTest_CxUri::unit(
@@ -183,7 +175,7 @@ CxTest_CxUri::unit(
         m_sRv  = objUri.fragment();
         xTEST_EQ(std::tstring_t(xT("")), m_sRv);
     }
-     
+
     xTEST_CASE("CxUri::getters", a_cullCaseLoops)
     {
         CxUri objUri(xT("http://weather.yahoo.com/ukraine/kiev-city-municipality/kiev-924938/?unit=c"));

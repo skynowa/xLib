@@ -8,14 +8,6 @@
 
 
 //------------------------------------------------------------------------------
-CxTest_CxCompletionPort::CxTest_CxCompletionPort() {
-
-}
-//------------------------------------------------------------------------------
-CxTest_CxCompletionPort::~CxTest_CxCompletionPort() {
-
-}
-//------------------------------------------------------------------------------
 /* virtual */
 void_t
 CxTest_CxCompletionPort::unit(

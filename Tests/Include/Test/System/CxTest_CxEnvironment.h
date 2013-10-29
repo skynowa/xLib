@@ -14,8 +14,7 @@ class CxTest_CxEnvironment :
     public CxTest
 {
 public:
-                   CxTest_CxEnvironment();
-    virtual       ~CxTest_CxEnvironment();
+                   CxTest_CxEnvironment() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };

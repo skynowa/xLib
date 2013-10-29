@@ -14,8 +14,7 @@ class CxTest_CxErrorReport :
     public CxTest
 {
 public:
-                   CxTest_CxErrorReport();
-    virtual       ~CxTest_CxErrorReport();
+                   CxTest_CxErrorReport() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };

@@ -11,14 +11,6 @@
 #include <xLib/Sync/CxProcess.h>
 
 //------------------------------------------------------------------------------
-CxTest_CxProcessInfo::CxTest_CxProcessInfo() {
-
-}
-//------------------------------------------------------------------------------
-CxTest_CxProcessInfo::~CxTest_CxProcessInfo() {
-
-}
-//------------------------------------------------------------------------------
 /* virtual */
 void_t
 CxTest_CxProcessInfo::unit(

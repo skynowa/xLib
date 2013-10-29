@@ -14,10 +14,7 @@ class CxTest_CxThreadPool :
     public CxTest
 {
 public:
-                   CxTest_CxThreadPool();
-        ///< constructor
-    virtual       ~CxTest_CxThreadPool();
-        ///< destructor
+                   CxTest_CxThreadPool() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
         ///< unit test

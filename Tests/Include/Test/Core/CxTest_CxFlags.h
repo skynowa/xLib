@@ -15,10 +15,7 @@ class CxTest_CxFlags :
     ///< tests for CxFlags
 {
 public:
-                   CxTest_CxFlags();
-        ///< constructor
-    virtual       ~CxTest_CxFlags();
-        ///< destructor
+                   CxTest_CxFlags() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops) xOVERRIDE;
         ///< unit test

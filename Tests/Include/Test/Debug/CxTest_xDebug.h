@@ -14,10 +14,7 @@ class CxTest_xDebug :
     public CxTest
 {
 public:
-                   CxTest_xDebug();
-        ///< constructor
-    virtual       ~CxTest_xDebug();
-        ///< destructor
+                   CxTest_xDebug() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
         ///< unit test

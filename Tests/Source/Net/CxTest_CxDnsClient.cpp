@@ -10,14 +10,6 @@
 
 
 //------------------------------------------------------------------------------
-CxTest_CxDnsClient::CxTest_CxDnsClient() {
-
-}
-//------------------------------------------------------------------------------
-CxTest_CxDnsClient::~CxTest_CxDnsClient() {
-
-}
-//------------------------------------------------------------------------------
 /* virtual */
 void_t
 CxTest_CxDnsClient::unit(
@@ -195,7 +187,7 @@ CxTest_CxDnsClient::unit(
         //std::tcout << xT("  --------------------")                 << std::endl;
         //std::tcout << std::endl;
     }
-    
+
     xTEST_CASE("CxDnsClient::isOnLan", a_cullCaseLoops)
     {
         //TODO: m_bRv = CxDnsClient::isOnLan(culong_t culIp);

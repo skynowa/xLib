@@ -14,8 +14,7 @@ class CxTest_CxSmtp :
     public CxTest
 {
 public:
-                   CxTest_CxSmtp();
-    virtual       ~CxTest_CxSmtp();
+                   CxTest_CxSmtp() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };

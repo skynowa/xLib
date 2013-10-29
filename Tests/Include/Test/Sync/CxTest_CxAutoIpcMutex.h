@@ -14,8 +14,7 @@ class CxTest_CxAutoIpcMutex :
     public CxTest
 {
 public:
-                   CxTest_CxAutoIpcMutex();
-    virtual       ~CxTest_CxAutoIpcMutex();
+                   CxTest_CxAutoIpcMutex() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };

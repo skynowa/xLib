@@ -14,10 +14,7 @@ class CxTest_CxProcessInfo :
     public CxTest
 {
 public:
-                  CxTest_CxProcessInfo();
-        ///< constructor
-    virtual      ~CxTest_CxProcessInfo();
-        ///< destructor
+                   CxTest_CxProcessInfo() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
         ///< unit test

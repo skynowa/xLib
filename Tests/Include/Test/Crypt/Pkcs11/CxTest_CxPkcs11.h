@@ -17,8 +17,7 @@ class CxTest_CxPkcs11 :
     public CxTest
 {
 public:
-                 CxTest_CxPkcs11();
-    virtual     ~CxTest_CxPkcs11();
+                   CxTest_CxPkcs11() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };

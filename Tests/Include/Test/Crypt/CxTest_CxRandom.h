@@ -14,8 +14,7 @@ class CxTest_CxRandom :
     public CxTest
 {
 public:
-                   CxTest_CxRandom();
-    virtual       ~CxTest_CxRandom();
+                   CxTest_CxRandom() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };

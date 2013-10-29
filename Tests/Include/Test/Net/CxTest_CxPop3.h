@@ -16,8 +16,7 @@ class CxTest_CxPop3 :
     public CxTest
 {
 public:
-                   CxTest_CxPop3();
-    virtual       ~CxTest_CxPop3();
+                   CxTest_CxPop3() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };

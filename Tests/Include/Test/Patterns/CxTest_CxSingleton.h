@@ -14,8 +14,7 @@ class CxTest_CxSingleton :
     public CxTest
 {
 public:
-                   CxTest_CxSingleton();
-    virtual       ~CxTest_CxSingleton();
+                   CxTest_CxSingleton() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };

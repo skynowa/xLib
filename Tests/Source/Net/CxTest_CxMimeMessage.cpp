@@ -10,14 +10,6 @@
 #if xOPENSSL_IS_USE
 
 //------------------------------------------------------------------------------
-CxTest_CxMimeMessage::CxTest_CxMimeMessage() {
-
-}
-//------------------------------------------------------------------------------
-CxTest_CxMimeMessage::~CxTest_CxMimeMessage() {
-
-}
-//------------------------------------------------------------------------------
 /* virtual */
 void_t
 CxTest_CxMimeMessage::unit(

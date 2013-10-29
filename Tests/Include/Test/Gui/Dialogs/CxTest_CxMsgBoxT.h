@@ -14,10 +14,7 @@ class CxTest_CxMsgBoxT :
     public CxTest
 {
 public:
-                   CxTest_CxMsgBoxT();
-        ///< constructor
-    virtual       ~CxTest_CxMsgBoxT();
-        ///< destructor
+                   CxTest_CxMsgBoxT() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
         ///< test unit

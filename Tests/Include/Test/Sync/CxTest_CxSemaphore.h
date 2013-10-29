@@ -14,10 +14,7 @@ class CxTest_CxSemaphore :
     public CxTest
 {
 public:
-                   CxTest_CxSemaphore();
-        ///< constructor
-    virtual       ~CxTest_CxSemaphore();
-        ///< destructor
+                   CxTest_CxSemaphore() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
         ///< unit test

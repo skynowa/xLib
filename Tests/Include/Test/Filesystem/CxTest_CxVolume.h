@@ -14,8 +14,7 @@ class CxTest_CxVolume :
     public CxTest
 {
 public:
-                   CxTest_CxVolume();
-    virtual       ~CxTest_CxVolume();
+                   CxTest_CxVolume() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };

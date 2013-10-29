@@ -14,8 +14,7 @@ class CxTest_CxIpcSemaphore :
     public CxTest
 {
 public:
-                   CxTest_CxIpcSemaphore();
-    virtual       ~CxTest_CxIpcSemaphore();
+                   CxTest_CxIpcSemaphore() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };
