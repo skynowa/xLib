@@ -11,7 +11,7 @@
 #include <xLib/System/CxProcessInfo.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Filesystem/CxDir.h>
-#include <xLib/Sync/CxCurrentProcess.h>
+#include <xLib/Sync/CxProcess.h>
 #include <xLib/Log/CxTracer.h>
 
 
@@ -62,7 +62,7 @@ CxPath::exe()
     sRv.resize(dwStored);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        std::ctstring_t csProcFile = CxString::format(xT("/proc/%ld/exe"), CxCurrentProcess::id());
+        std::ctstring_t csProcFile = CxString::format(xT("/proc/%ld/exe"), CxProcess::currentId());
 
         bool_t bRv = CxFile::isExists(csProcFile);
         xCHECK_RET(!bRv, std::tstring_t());
@@ -95,10 +95,10 @@ CxPath::exe()
             std::vec_tstring_t args;
 
             CxProcessInfo info;
-            info.setProcessId(CxCurrentProcess::id());
+            info.setProcessId(CxProcess::currentId());
             info.commandLine(&args);
 
-            bool_t bRv = info.commandLine(CxCurrentProcess::id(), &args);
+            bool_t bRv = info.commandLine(CxProcess::currentId(), &args);
             xTEST_EQ(true,  bRv);
             xTEST_EQ(false, args.empty());
             xTEST_EQ(false, bIsAbsolute(args.at(0)));

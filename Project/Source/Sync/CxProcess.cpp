@@ -11,7 +11,7 @@
 #include <xLib/System/CxProcessInfo.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
-#include <xLib/Sync/CxCurrentProcess.h>
+#include <xLib/Filesystem/CxDll.h>
 #include <xLib/Sync/CxCurrentThread.h>
 
 
@@ -180,8 +180,7 @@ CxProcess::id() const
 xINLINE_HO bool_t
 CxProcess::isCurrent() const
 {
-    //// TODO: return CxCurrentProcess::isCurrent( CxCurrentProcess::id() );
-    return false;
+    return isCurrent( currentId() );
 }
 //------------------------------------------------------------------------------
 xINLINE_HO ulong_t
@@ -366,11 +365,147 @@ CxProcess::isRunning(
 
     CxProcessInfo::currentIds(&ids);
 
-    std::vector<CxProcess::id_t>::iterator it;
+    std::vector<id_t>::iterator it;
     it = std::find(ids.begin(), ids.end(), id);
     xCHECK_RET(it == ids.end(), false);
 
     return true;
+}
+//------------------------------------------------------------------------------
+xINLINE_HO bool_t
+CxProcess::isCurrent(
+    const CxProcess::id_t &a_id
+)
+{
+    bool_t bRv = false;
+
+#if xOS_ENV_WIN
+    bRv = (id() == a_id);
+#else
+    // TODO: If either thread1 or thread2 are not valid thread IDs, the behavior is undefined
+    // bRv = ::pthread_equal(ulGetId(), a_id);
+#endif
+
+    return bRv;
+}
+//------------------------------------------------------------------------------
+xINLINE_HO CxProcess::id_t
+CxProcess::currentId()
+{
+    // n/a
+
+    id_t ulRv;
+
+#if xOS_ENV_WIN
+    ulRv = ::GetCurrentProcessId();
+    // n/a
+#else
+    ulRv = ::getpid();
+    // n/a
+#endif
+
+    return ulRv;
+}
+//------------------------------------------------------------------------------
+xINLINE_HO CxProcess::id_t
+CxProcess::currentParentId()
+{
+    // n/a
+
+    id_t ulRv;
+
+#if xOS_ENV_WIN
+    #if xCOMPILER_MINGW || xCOMPILER_CODEGEAR
+        // typedef __success(return >= 0) LONG NTSTATUS;
+        typedef LONG NTSTATUS;
+
+        enum PROCESSINFOCLASS
+            /// process info type
+        {
+            ProcessBasicInformation = 0,
+            ProcessWow64Information = 26
+        };
+    #endif
+
+    typedef NTSTATUS (WINAPI *Dll_NtQueryInformationProcess_t) (
+        HANDLE           ProcessHandle,
+        PROCESSINFOCLASS ProcessInformationClass,
+        PVOID            ProcessInformation,
+        ULONG            ProcessInformationLength,
+        PULONG           ReturnLength
+    );
+
+    const CxProcess::id_t culInvalidId = (DWORD)- 1;
+
+    CxDll dlDll;
+
+    dlDll.load(xT("ntdll.dll"));
+
+    bool_t bRv = dlDll.isProcExists(xT("NtQueryInformationProcess"));
+    xCHECK_RET(!bRv, culInvalidId);
+
+#if xARCH_X86
+    const PROCESSINFOCLASS    cpicInfo                = ProcessBasicInformation;
+#else
+    const PROCESSINFOCLASS    cpicInfo                = ProcessWow64Information;
+#endif
+    ULONG                     ulProcessInformation[6] = {0};
+    DWORD                     dwReturnSizeBytes       = 0UL;
+    Dll_NtQueryInformationProcess_t
+    DllNtQueryInformationProcess = (Dll_NtQueryInformationProcess_t)dlDll.procAddress(xT("NtQueryInformationProcess"));
+    xTEST_PTR(DllNtQueryInformationProcess);
+
+    // TODO: ProcessBasicInformation (for x64)
+    NTSTATUS ntsRes = DllNtQueryInformationProcess(
+                            handle(),
+                            cpicInfo,
+                           &ulProcessInformation, sizeof(ulProcessInformation), &dwReturnSizeBytes);
+    xTEST_EQ(true, NT_SUCCESS(ntsRes));
+    xTEST_EQ(size_t(dwReturnSizeBytes), sizeof(ulProcessInformation));
+
+    ulRv = ulProcessInformation[5];
+#else
+    ulRv = ::getppid();
+    xTEST_NA(ulRv);
+#endif
+
+    return ulRv;
+}
+//------------------------------------------------------------------------------
+// TODO: tests
+xINLINE_HO CxProcess::handle_t
+CxProcess::currentHandle()
+{
+    // n/a
+
+    handle_t hRv;
+
+#if xOS_ENV_WIN
+    #if xDEPRECIATE
+        hRv = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, id());
+    #else
+        hRv = ::GetCurrentProcess();
+    #endif
+    xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
+#else
+    hRv = ::getpid();
+    // n/a
+#endif
+
+    return hRv;
+}
+//------------------------------------------------------------------------------
+// TODO: tests
+xINLINE_HO void_t
+CxProcess::currentExit(
+    cuint_t &a_exitCode
+)
+{
+#if xOS_ENV_WIN
+    (void_t)::ExitProcess(a_exitCode);
+#else
+    (void_t)::exit(static_cast<int_t>( a_exitCode ));
+#endif
 }
 //------------------------------------------------------------------------------
 

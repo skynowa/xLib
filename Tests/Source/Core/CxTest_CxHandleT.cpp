@@ -6,7 +6,7 @@
 
 #include <Test/Core/CxTest_CxHandleT.h>
 
-#include <xLib/Sync/CxCurrentProcess.h>
+#include <xLib/Sync/CxProcess.h>
 
 
 //------------------------------------------------------------------------------
@@ -35,7 +35,7 @@ CxTest_CxHandleT::unit(
 
     xTEST_CASE("CxHandleT::CxHandleT(const HANDLE &chHandle)", a_cullCaseLoops)
     {
-        CxHandle handle( CxCurrentProcess::handle() );
+        CxHandle handle( CxProcess::currentHandle() );
 
         m_bRv = handle.isValid();
         xTEST_EQ(true, m_bRv);
@@ -63,7 +63,7 @@ CxTest_CxHandleT::unit(
     {
         CxHandle handle;
 
-        handle = CxCurrentProcess::handle();
+        handle = CxProcess::currentHandle();
 
         m_hRv = handle.detach();
         xTEST_EQ(false, handle.isValid());
@@ -94,10 +94,10 @@ CxTest_CxHandleT::unit(
         m_hRv = handle.get();
         xTEST_EQ(true, native_handle_t() == m_hRv);
 
-        handle.set(CxCurrentProcess::handle());
+        handle.set(CxProcess::currentHandle());
 
         m_hRv = handle.get();
-        xTEST_EQ(CxCurrentProcess::handle(), m_hRv);
+        xTEST_EQ(CxProcess::currentHandle(), m_hRv);
 
         m_hRv = handle.detach();
         xTEST_EQ(false, handle.isValid());
@@ -118,7 +118,7 @@ CxTest_CxHandleT::unit(
         m_bRv = handle.isValid();
         xTEST_EQ(false, m_bRv);
 
-        handle.set(CxCurrentProcess::handle());
+        handle.set(CxProcess::currentHandle());
 
         m_hRv = handle.detach();
         xTEST_EQ(false, handle.isValid());
@@ -128,7 +128,7 @@ CxTest_CxHandleT::unit(
     {
         CxHandle handle;
 
-        handle.attach(CxCurrentProcess::handle());
+        handle.attach(CxProcess::currentHandle());
     }
 
     xTEST_CASE("CxHandleT::detach", a_cullCaseLoops)
@@ -157,7 +157,7 @@ CxTest_CxHandleT::unit(
         #if xTODO
             CxHandle handle;
 
-            handle = CxCurrentProcess::handle();
+            handle = CxProcess::currentHandle();
             xTEST_EQ(true, handle.isValid());
 
             handle.setInfo(HANDLE_FLAG_INHERIT, 0);
@@ -178,7 +178,7 @@ CxTest_CxHandleT::unit(
         #if xTODO
             CxHandle handle;
 
-            handle = CxCurrentProcess::handle();
+            handle = CxProcess::currentHandle();
             xTEST_EQ(true, handle.isValid());
 
             handle.setInfo(HANDLE_FLAG_PROTECT_FROM_CLOSE, 0);

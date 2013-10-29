@@ -6,10 +6,9 @@
 
 #include <Test/System/CxTest_CxProcessInfo.h>
 
-#include <xLib/Sync/CxCurrentProcess.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
-
+#include <xLib/Sync/CxProcess.h>
 
 //------------------------------------------------------------------------------
 CxTest_CxProcessInfo::CxTest_CxProcessInfo() {
@@ -43,7 +42,10 @@ CxTest_CxProcessInfo::unit(
         CxProcessInfo::currentIds(&vidIds);
 
         xFOREACH_CONST(std::vector<CxProcess::id_t>, it, vidIds) {
-            m_ulRv = CxProcessInfo::cpuUsage(*it);
+            CxProcessInfo info;
+            info.setProcessId(/* *it */ CxProcess::currentId());
+
+            m_ulRv = info.cpuUsage();
             #if xTEST_IGNORE
                 CxTracer() << xT("\tCxProcessInfo::cpuUsage(): ") << m_ulRv;
             #endif
@@ -57,7 +59,10 @@ CxTest_CxProcessInfo::unit(
         CxProcessInfo::currentIds(&vidIds);
 
         xFOREACH_CONST(std::vector<CxProcess::id_t>, it, vidIds) {
-            m_ulRv = CxProcessInfo::ramUsage(*it);
+            CxProcessInfo info;
+            info.setProcessId(/* *it */ CxProcess::currentId());
+
+            m_ulRv = info.ramUsage();
             #if xTEST_IGNORE
                 CxTracer() << xT("\tCxProcessInfo::ramUsage(): ") << m_ulRv;
             #endif
@@ -71,7 +76,10 @@ CxTest_CxProcessInfo::unit(
         CxProcessInfo::currentIds(&vidIds);
 
         xFOREACH_CONST(std::vector<CxProcess::id_t>, it, vidIds) {
-            m_ulRv = CxProcessInfo::ioBytes(/* *it */ CxCurrentProcess::id());
+            CxProcessInfo info;
+            info.setProcessId(/* *it */ CxProcess::currentId());
+
+            m_ulRv = info.ioBytes();
             #if xTEST_IGNORE
                 CxTracer() << xT("\tCxProcessInfo::ioBytes(): ") << m_ulRv;
             #endif
@@ -85,7 +93,10 @@ CxTest_CxProcessInfo::unit(
         CxProcessInfo::currentIds(&vidIds);
 
         xFOREACH_CONST(std::vector<CxProcess::id_t>, it, vidIds) {
-            m_sRv = CxProcessInfo::exeName(/* *it */ CxCurrentProcess::id());
+            CxProcessInfo info;
+            info.setProcessId(/* *it */ CxProcess::currentId());
+
+            m_sRv = info.exeName();
             xTEST_EQ(true,  CxFile::isExists(m_sRv));
             xTEST_EQ(m_sRv, CxPath::exe());
         }
@@ -98,7 +109,10 @@ CxTest_CxProcessInfo::unit(
         CxProcessInfo::currentIds(&vidIds);
 
         xFOREACH_CONST(std::vector<CxProcess::id_t>, it, vidIds) {
-            m_ulRv = CxProcessInfo::parentId(/* *it */ CxCurrentProcess::id());
+            CxProcessInfo info;
+            info.setProcessId(/* *it */ CxProcess::currentId());
+
+            m_ulRv = info.parentId();
             // xTEST_DIFF(0UL, m_ulRv);
         }
     }
@@ -116,8 +130,10 @@ CxTest_CxProcessInfo::unit(
         #elif xOS_ENV_UNIX
 
         #endif
+            CxProcessInfo info;
+            info.setProcessId(/* *it */ CxProcess::currentId());
 
-            m_sRv = CxProcessInfo::commandLine(/* *it */ CxCurrentProcess::id(), &m_vsRv);
+            m_sRv = info.commandLine(&m_vsRv);
             xTEST_EQ(false, m_vsRv.empty());
 
             #if xTEST_IGNORE

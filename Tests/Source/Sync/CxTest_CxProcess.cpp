@@ -8,7 +8,6 @@
 
 #include <xLib/Core/CxString.h>
 #include <xLib/Filesystem/CxPath.h>
-#include <xLib/Sync/CxCurrentProcess.h>
 
 
 //------------------------------------------------------------------------------
@@ -92,13 +91,13 @@ CxTest_CxProcess::unit(
 
     xTEST_CASE("CxProcess::idByHandle", a_cullCaseLoops)
     {
-        CxProcess::id_t id = CxProcess::idByHandle( CxCurrentProcess::handle() );
+        CxProcess::id_t id = CxProcess::idByHandle( CxProcess::currentHandle() );
         xTEST_DIFF(0UL, static_cast<ulong_t>( id ));
     }
 
     xTEST_CASE("CxProcess::handleById", a_cullCaseLoops)
     {
-        CxProcess::handle_t hHandle = CxProcess::handleById( CxCurrentProcess::id() );
+        CxProcess::handle_t hHandle = CxProcess::handleById( CxProcess::currentId() );
         xTEST_EQ(true, CxHandle(hHandle).isValid());
     }
 
@@ -114,8 +113,20 @@ CxTest_CxProcess::unit(
 
     xTEST_CASE("CxProcess::isRunning", a_cullCaseLoops)
     {
-        m_bRv = CxProcess::isRunning( CxCurrentProcess::id() );
+        m_bRv = CxProcess::isRunning( CxProcess::currentId() );
         xTEST_EQ(true, m_bRv);
+    }
+
+    xTEST_CASE("CxProcess::currentId", a_cullCaseLoops)
+    {
+        CxProcess::id_t ulRv = CxProcess::currentId();
+        xTEST_LESS(0UL, (ulong_t)ulRv);
+    }
+
+    xTEST_CASE("CxProcess::currentParentId", a_cullCaseLoops)
+    {
+        CxProcess::id_t ulRv = CxProcess::currentParentId();
+        xTEST_LESS(0UL, (ulong_t)ulRv);
     }
 }
 //------------------------------------------------------------------------------
