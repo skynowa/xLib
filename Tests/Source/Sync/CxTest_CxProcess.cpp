@@ -103,11 +103,11 @@ CxTest_CxProcess::unit(
         // CxTracer() << xTRACE_VAR(id);
     }
 
-    xTEST_CASE("CxProcess::currentIds", a_cullCaseLoops)
+    xTEST_CASE("CxProcess::ids", a_cullCaseLoops)
     {
         std::vector<CxProcess::id_t> vidIds;
 
-        CxProcess::currentIds(&vidIds);
+        CxProcess::ids(&vidIds);
         #if xTEST_IGNORE
             CxTracer() << vidIds;
         #endif

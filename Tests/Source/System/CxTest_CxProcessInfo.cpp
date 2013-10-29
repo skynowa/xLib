@@ -21,7 +21,7 @@ CxTest_CxProcessInfo::unit(
     {
         std::vector<CxProcess::id_t> vidIds;
 
-        CxProcess::currentIds(&vidIds);
+        CxProcess::ids(&vidIds);
 
         xFOREACH_CONST(std::vector<CxProcess::id_t>, it, vidIds) {
             CxProcessInfo info;
@@ -38,7 +38,7 @@ CxTest_CxProcessInfo::unit(
     {
         std::vector<CxProcess::id_t> vidIds;
 
-        CxProcess::currentIds(&vidIds);
+        CxProcess::ids(&vidIds);
 
         xFOREACH_CONST(std::vector<CxProcess::id_t>, it, vidIds) {
             CxProcessInfo info;
@@ -55,7 +55,7 @@ CxTest_CxProcessInfo::unit(
     {
         std::vector<CxProcess::id_t> vidIds;
 
-        CxProcess::currentIds(&vidIds);
+        CxProcess::ids(&vidIds);
 
         xFOREACH_CONST(std::vector<CxProcess::id_t>, it, vidIds) {
             CxProcessInfo info;
@@ -72,7 +72,7 @@ CxTest_CxProcessInfo::unit(
     {
         std::vector<CxProcess::id_t> vidIds;
 
-        CxProcess::currentIds(&vidIds);
+        CxProcess::ids(&vidIds);
 
         xFOREACH_CONST(std::vector<CxProcess::id_t>, it, vidIds) {
             CxProcessInfo info;
@@ -88,7 +88,7 @@ CxTest_CxProcessInfo::unit(
     {
         std::vector<CxProcess::id_t> vidIds;
 
-        CxProcess::currentIds(&vidIds);
+        CxProcess::ids(&vidIds);
 
         xFOREACH_CONST(std::vector<CxProcess::id_t>, it, vidIds) {
             CxProcessInfo info;
@@ -103,7 +103,7 @@ CxTest_CxProcessInfo::unit(
     {
         std::vector<CxProcess::id_t> vidIds;
 
-        CxProcess::currentIds(&vidIds);
+        CxProcess::ids(&vidIds);
 
         xFOREACH_CONST(std::vector<CxProcess::id_t>, it, vidIds) {
         #if   xOS_ENV_WIN

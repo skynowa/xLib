@@ -361,7 +361,7 @@ CxProcess::isRunning(
 {
     std::vector<id_t> ids;
 
-    currentIds(&ids);
+    ids(&ids);
 
     std::vector<id_t>::iterator it;
     it = std::find(ids.begin(), ids.end(), id);
@@ -372,7 +372,7 @@ CxProcess::isRunning(
 //------------------------------------------------------------------------------
 /* static */
 xINLINE_HO void_t
-CxProcess::currentIds(
+CxProcess::ids(
     std::vector<CxProcess::id_t> *a_ids
 )
 {
