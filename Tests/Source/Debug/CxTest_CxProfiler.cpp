@@ -7,7 +7,7 @@
 #include <Test/Debug/CxTest_CxProfiler.h>
 
 #include <xLib/Core/CxConst.h>
-#include <xLib/Sync/CxCurrentThread.h>
+#include <xLib/Sync/CxThread.h>
 #include <xLib/Filesystem/CxFile.h>
 
 
@@ -34,7 +34,7 @@ CxTest_CxProfiler::unit(
         pfP.start();
 
         for (size_t i = 0; i < 10; ++ i) {
-            CxCurrentThread::sleep(5UL);
+            CxThread::currentSleep(5UL);
 
             m_uiRv = pfP.restart(xT("\tVar i: %") xPR_SIZET, i);
         }
@@ -49,7 +49,7 @@ CxTest_CxProfiler::unit(
         pfP.start();
 
         for (size_t i = 0; i < 10; ++ i) {
-            CxCurrentThread::sleep(5UL);
+            CxThread::currentSleep(5UL);
 
             m_uiRv = pfP.restart(xT("\tVar i: %") xPR_SIZET, i);
         }

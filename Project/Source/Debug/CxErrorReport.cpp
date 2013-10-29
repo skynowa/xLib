@@ -15,7 +15,7 @@
 #include <xLib/Debug/CxDebugger.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
-#include <xLib/Sync/CxCurrentThread.h>
+#include <xLib/Sync/CxThread.h>
 #include <xLib/Sync/CxProcess.h>
 
 
@@ -51,7 +51,7 @@ CxErrorReport::_construct(
 
     program        = CxPath( CxPath(CxPath::exe()).brief(cuiReportWidthMax) ).toUnix(false);
     processId     = (ulong_t)CxProcess::currentId();
-    threadId      = (ulong_t)CxCurrentThread::id();
+    threadId      = (ulong_t)CxThread::currentId();
     fileSize       = CxString::formatBytes( static_cast<ulonglong_t>( CxFile::size(CxPath::exe())) );
 
     sourceFile     = CxPath( CxPath(a_csFile).brief(cuiReportWidthMax) ).toUnix(false);

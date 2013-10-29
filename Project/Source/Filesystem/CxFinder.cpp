@@ -12,7 +12,6 @@
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/System/CxEnvironment.h>
-#include <xLib/Sync/CxCurrentThread.h>
 
 
 xNAMESPACE_BEGIN(NxLib)

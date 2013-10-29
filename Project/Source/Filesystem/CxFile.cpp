@@ -15,7 +15,7 @@
 #include <xLib/Filesystem/CxDir.h>
 #include <xLib/Filesystem/CxFileType.h>
 #include <xLib/Crypt/CxRandom.h>
-#include <xLib/Sync/CxCurrentThread.h>
+#include <xLib/Sync/CxThread.h>
 
 
 xNAMESPACE_BEGIN(NxLib)
@@ -720,7 +720,7 @@ CxFile::tryRemove(
             xNA;
         }
 
-        CxCurrentThread::sleep(a_timeoutMsec);
+        CxThread::currentSleep(a_timeoutMsec);
     }
 }
 //------------------------------------------------------------------------------

@@ -406,7 +406,7 @@ CxThreadPool<T>::onRun(
     xFOREVER {
         xCHECK_DO(isEmpty(), break);
 
-        CxCurrentThread::sleep(500UL);
+        CxThread::currentSleep(500UL);
     }
     xTEST_EQ(true, _m_lthTasks.empty());
 

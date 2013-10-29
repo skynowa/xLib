@@ -14,7 +14,7 @@
 #include <xLib/Filesystem/CxFileType.h>
 #include <xLib/System/CxEnvironment.h>
 #include <xLib/Filesystem/CxFinder.h>
-#include <xLib/Sync/CxCurrentThread.h>
+#include <xLib/Sync/CxThread.h>
 
 
 xNAMESPACE_BEGIN(NxLib)
@@ -253,7 +253,7 @@ CxDir::tryRemove(
         xCHECK_DO(- 1 != iRv, break);
     #endif
 
-        CxCurrentThread::sleep(a_timeoutMsec);
+        CxThread::currentSleep(a_timeoutMsec);
     }
 
     xTEST_EQ(false, isExists());

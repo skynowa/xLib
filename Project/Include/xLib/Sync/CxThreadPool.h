@@ -91,7 +91,6 @@ xNAMESPACE_END(NxLib)
 #include <xLib/Sync/CxMutex.h>
 #include <xLib/Sync/CxAutoMutex.h>
 #include <xLib/Sync/CxThread.h>
-#include <xLib/Sync/CxCurrentThread.h>
 
 #include "CxThreadPool.inl"
 //------------------------------------------------------------------------------
