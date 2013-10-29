@@ -103,6 +103,16 @@ CxTest_CxProcess::unit(
         // CxTracer() << xTRACE_VAR(id);
     }
 
+    xTEST_CASE("CxProcess::currentIds", a_cullCaseLoops)
+    {
+        std::vector<CxProcess::id_t> vidIds;
+
+        CxProcess::currentIds(&vidIds);
+        #if xTEST_IGNORE
+            CxTracer() << vidIds;
+        #endif
+    }
+
     xTEST_CASE("CxProcess::isRunning", a_cullCaseLoops)
     {
         m_bRv = CxProcess::isRunning( CxProcess::currentId() );

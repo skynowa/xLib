@@ -67,6 +67,8 @@ public:
         ///< get ID by name
     static bool_t   isRunning(const id_t &id) xWARN_UNUSED_RV;
         ///< is process running by name (with extension)
+    static void_t   currentIds(std::vector<CxProcess::id_t> *ids);
+        ///< get all IDs of current processes
 
     // current process
     static bool_t   isCurrent(const CxProcess::id_t &id) xWARN_UNUSED_RV;

@@ -37,8 +37,7 @@ public:
 
     static long_t   commandLineArgsMax() xWARN_UNUSED_RV;
         ///< get maximum length of command line arguments (in chars)
-    static void_t   currentIds(std::vector<CxProcess::id_t> *ids);
-        ///< get all IDs of current processes
+
 private:
     CxProcess::id_t _id;  ///< target process ID
 };
