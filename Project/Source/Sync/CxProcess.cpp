@@ -12,7 +12,6 @@
 #include <xLib/Filesystem/CxDll.h>
 #include <xLib/Sync/CxThread.h>
 #include <xLib/System/CxSystemInfo.h>
-#include <xLib/System/CxProcessInfo.h>
 
 #if xOS_ENV_WIN
     #if !xCOMPILER_MINGW
@@ -362,13 +361,98 @@ CxProcess::isRunning(
 {
     std::vector<id_t> ids;
 
-    CxProcessInfo::currentIds(&ids);
+    currentIds(&ids);
 
     std::vector<id_t>::iterator it;
     it = std::find(ids.begin(), ids.end(), id);
     xCHECK_RET(it == ids.end(), false);
 
     return true;
+}
+//------------------------------------------------------------------------------
+/* static */
+xINLINE_HO void_t
+CxProcess::currentIds(
+    std::vector<CxProcess::id_t> *a_ids
+)
+{
+    std::vector<id_t> vidRv;
+
+#if   xOS_ENV_WIN
+    CxHandle       hSnapshot;
+    PROCESSENTRY32 peProcess = {0};    peProcess.dwSize = sizeof(PROCESSENTRY32);
+
+    hSnapshot = ::CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0UL);
+    xTEST_EQ(true, hSnapshot.isValid());
+
+    BOOL blRv = ::Process32First(hSnapshot.get(), &peProcess);
+    xTEST_DIFF(FALSE, blRv);
+
+    xFOREVER {
+        DWORD dwPid = peProcess.th32ProcessID;
+
+        vidRv.push_back(dwPid);
+
+        blRv = ::Process32Next(hSnapshot.get(), &peProcess);
+        xCHECK_DO(FALSE == blRv, break);
+    }
+#elif xOS_ENV_UNIX
+    #if   xOS_LINUX
+        std::vec_tstring_t a_vsDirPaths;
+
+        CxFinder::dirs(xT("/proc"), CxConst::xMASK_ALL(), false, &a_vsDirPaths);
+
+        // skip non-numeric entries
+        xFOREACH_CONST(std::vec_tstring_t, it, a_vsDirPaths) {
+            int_t iPid = 0;
+            {
+                std::tstring_t sDirName = CxPath(*it).fileName();
+
+                iPid = ::atoi(sDirName.c_str());
+                xCHECK_DO(0 >= iPid, continue);
+            }
+
+            vidRv.push_back( static_cast<id_t>( iPid ));
+        }
+    #elif xOS_FREEBSD
+        int_t    aiMib[3]   = {CTL_KERN, KERN_PROC, KERN_PROC_ALL};
+        size_t uiBuffSize = 0U;
+
+        int_t iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), NULL, &uiBuffSize, NULL, 0U);
+        xTEST_DIFF(- 1, iRv);
+
+        // allocate memory and populate info in the  processes structure
+        kinfo_proc *pkpProcesses = NULL;
+
+        xFOREVER {
+            uiBuffSize += uiBuffSize / 10;
+
+            kinfo_proc *pkpNewProcesses = static_cast<kinfo_proc *>( realloc(pkpProcesses, uiBuffSize) );
+            xTEST_PTR(pkpNewProcesses);
+
+            pkpProcesses = pkpNewProcesses;
+
+            iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), pkpProcesses, &uiBuffSize, NULL, 0U);
+            xCHECK_DO(!(- 1 == iRv && errno == ENOMEM), break);
+        }
+
+        // search for the given process name and return its pid
+        std::csize_t cuiProcsNum = uiBuffSize / sizeof(kinfo_proc);
+
+        for (size_t i = 0; i < cuiProcsNum; ++ i) {
+            pid_t iPid = pkpProcesses[i].ki_pid;
+
+            vidRv.push_back(iPid);
+        }
+
+        xBUFF_FREE(pkpProcesses);
+    #endif
+#elif xOS_ENV_MAC
+    xNOT_IMPLEMENTED
+#endif
+
+    // out
+    (*a_ids).swap(vidRv);
 }
 //------------------------------------------------------------------------------
 xINLINE_HO bool_t

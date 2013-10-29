@@ -17,21 +17,11 @@ CxTest_CxProcessInfo::unit(
     culonglong_t &a_cullCaseLoops
 )
 {
-    xTEST_CASE("CxProcessInfo::currentIds", a_cullCaseLoops)
-    {
-        std::vector<CxProcess::id_t> vidIds;
-
-        CxProcessInfo::currentIds(&vidIds);
-        #if xTEST_IGNORE
-            CxTracer() << vidIds;
-        #endif
-    }
-
     xTEST_CASE("CxProcessInfo::cpuUsage", a_cullCaseLoops)
     {
         std::vector<CxProcess::id_t> vidIds;
 
-        CxProcessInfo::currentIds(&vidIds);
+        CxProcess::currentIds(&vidIds);
 
         xFOREACH_CONST(std::vector<CxProcess::id_t>, it, vidIds) {
             CxProcessInfo info;
@@ -48,7 +38,7 @@ CxTest_CxProcessInfo::unit(
     {
         std::vector<CxProcess::id_t> vidIds;
 
-        CxProcessInfo::currentIds(&vidIds);
+        CxProcess::currentIds(&vidIds);
 
         xFOREACH_CONST(std::vector<CxProcess::id_t>, it, vidIds) {
             CxProcessInfo info;
@@ -65,7 +55,7 @@ CxTest_CxProcessInfo::unit(
     {
         std::vector<CxProcess::id_t> vidIds;
 
-        CxProcessInfo::currentIds(&vidIds);
+        CxProcess::currentIds(&vidIds);
 
         xFOREACH_CONST(std::vector<CxProcess::id_t>, it, vidIds) {
             CxProcessInfo info;
@@ -82,7 +72,7 @@ CxTest_CxProcessInfo::unit(
     {
         std::vector<CxProcess::id_t> vidIds;
 
-        CxProcessInfo::currentIds(&vidIds);
+        CxProcess::currentIds(&vidIds);
 
         xFOREACH_CONST(std::vector<CxProcess::id_t>, it, vidIds) {
             CxProcessInfo info;
@@ -98,7 +88,7 @@ CxTest_CxProcessInfo::unit(
     {
         std::vector<CxProcess::id_t> vidIds;
 
-        CxProcessInfo::currentIds(&vidIds);
+        CxProcess::currentIds(&vidIds);
 
         xFOREACH_CONST(std::vector<CxProcess::id_t>, it, vidIds) {
             CxProcessInfo info;
@@ -113,7 +103,7 @@ CxTest_CxProcessInfo::unit(
     {
         std::vector<CxProcess::id_t> vidIds;
 
-        CxProcessInfo::currentIds(&vidIds);
+        CxProcess::currentIds(&vidIds);
 
         xFOREACH_CONST(std::vector<CxProcess::id_t>, it, vidIds) {
         #if   xOS_ENV_WIN
