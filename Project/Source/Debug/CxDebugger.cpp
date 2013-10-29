@@ -11,9 +11,9 @@
 #include <xLib/System/CxConsole.h>
 #include <xLib/Debug/CxErrorReport.h>
 #include <xLib/Filesystem/CxPath.h>
-#include <xLib/System/CxEnvironment.h>
-#include <xLib/Sync/CxProcess.h>
 #include <xLib/Gui/Dialogs/CxMsgBoxT.h>
+#include <xLib/Sync/CxProcess.h>
+#include <xLib/System/CxEnvironment.h>
 
 #if xOS_ENV_UNIX
     #if   xOS_LINUX
