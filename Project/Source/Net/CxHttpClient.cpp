@@ -6,6 +6,14 @@
 
 #include <xLib/Net/CxHttpClient.h>  //65536
 
+#include <xLib/Test/xTest.h>
+#include <xLib/Debug/xDebug.h>
+#include <xLib/Debug/CxLastError.h>
+#include <xLib/Debug/CxStdError.h>
+#include <xLib/Debug/CxStackTrace.h>
+#include <xLib/Debug/CxErrorReport.h>
+#include <xLib/Debug/CxDebugger.h>
+#include <xLib/Log/CxTracer.h>
 #include <xLib/Core/CxConst.h>
 
 

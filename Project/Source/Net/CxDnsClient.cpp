@@ -6,7 +6,16 @@
 
 #include <xLib/Net/CxDnsClient.h>
 
+#include <xLib/Test/xTest.h>
+#include <xLib/Debug/xDebug.h>
+#include <xLib/Debug/CxLastError.h>
+#include <xLib/Debug/CxStdError.h>
+#include <xLib/Debug/CxErrorReport.h>
+#include <xLib/Debug/CxDebugger.h>
+#include <xLib/Debug/CxStackTrace.h>
+#include <xLib/Log/CxTracer.h>
 #include <xLib/Core/CxString.h>
+#include <xLib/Core/CxUtils.h>
 
 
 xNAMESPACE_BEGIN(NxLib)

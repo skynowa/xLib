@@ -8,6 +8,7 @@
 
 #include <xLib/Core/CxType.h>
 #include <xLib/Core/CxString.h>
+#include <xLib/Core/CxUtils.h>
 #include <xLib/Filesystem/CxPath.h>
 
 

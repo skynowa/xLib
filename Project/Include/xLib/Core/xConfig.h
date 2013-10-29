@@ -86,7 +86,7 @@
     #endif
 #endif
 
-#define xXLIB_HEADER_ONLY               1
+#define xXLIB_HEADER_ONLY               0
     ///< is header only library
 
 #define xUSING_NAMESPACE_NXLIB          1

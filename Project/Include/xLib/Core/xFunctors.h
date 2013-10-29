@@ -7,6 +7,7 @@
 #pragma once
 
 #include <xLib/Core/xCore.h>
+#include <xLib/Core/CxChar.h>
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
