@@ -14,6 +14,7 @@
 #include <xLib/Debug/CxErrorReport.h>
 #include <xLib/Debug/CxDebugger.h>
 #include <xLib/Log/CxTracer.h>
+#include <xLib/Core/CxUtils.h>
 
 
 xNAMESPACE_BEGIN(NxLib)

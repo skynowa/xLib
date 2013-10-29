@@ -7,6 +7,14 @@
 //------------------------------------------------------------------------------
 #include <xLib/Net/CxSmtp.h>
 
+#include <xLib/Test/xTest.h>
+#include <xLib/Debug/xDebug.h>
+#include <xLib/Debug/CxLastError.h>
+#include <xLib/Debug/CxStdError.h>
+#include <xLib/Debug/CxStackTrace.h>
+#include <xLib/Debug/CxErrorReport.h>
+#include <xLib/Debug/CxDebugger.h>
+#include <xLib/Log/CxTracer.h>
 #include <xLib/Crypt/CxBase64.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>

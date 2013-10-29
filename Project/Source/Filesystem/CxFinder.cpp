@@ -6,8 +6,17 @@
 
 #include <xLib/Filesystem/CxFinder.h>
 
+#include <xLib/Test/xTest.h>
+#include <xLib/Debug/xDebug.h>
+#include <xLib/Debug/CxLastError.h>
+#include <xLib/Debug/CxStdError.h>
+#include <xLib/Debug/CxStackTrace.h>
+#include <xLib/Debug/CxErrorReport.h>
+#include <xLib/Debug/CxDebugger.h>
+#include <xLib/Log/CxTracer.h>
 #include <xLib/Core/CxChar.h>
 #include <xLib/Core/CxString.h>
+#include <xLib/Core/CxConst.h>
 #include <xLib/Debug/CxException.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>

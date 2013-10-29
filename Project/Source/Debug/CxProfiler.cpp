@@ -7,6 +7,7 @@
 #include <xLib/Debug/CxProfiler.h>
 
 #include <xLib/Core/CxString.h>
+#include <xLib/Core/CxUtils.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
 

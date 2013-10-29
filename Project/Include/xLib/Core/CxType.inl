@@ -4,6 +4,8 @@
  */
 
 
+#include <xLib/Core/CxUtils.h>
+
 #if xCOMPILER_GNUC || xCOMPILER_MINGW
     #include <cxxabi.h>
 #endif
