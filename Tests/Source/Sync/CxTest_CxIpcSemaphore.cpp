@@ -7,7 +7,7 @@
 #include <Test/Sync/CxTest_CxIpcSemaphore.h>
 
 #include <xLib/Core/CxString.h>
-#include <xLib/Sync/CxCurrentThread.h>
+#include <xLib/Sync/CxThread.h>
 
 
 //------------------------------------------------------------------------------
@@ -66,13 +66,13 @@ CxTest_CxIpcSemaphore::unit(
     //-------------------------------------
     // vPost
     for (size_t i = 0; i < 50; ++ i) {
-        CxCurrentThread::sleep(1);
+        CxThread::currentSleep(1);
 
         for (int_t x = 0; x < 2; x ++) {
             semSemaphore.post();
         }
     }
 
-    //m_bRv = CxCurrentThread::sleep(3000);
+    //m_bRv = CxThread::currentSleep(3000);
 }
 //------------------------------------------------------------------------------

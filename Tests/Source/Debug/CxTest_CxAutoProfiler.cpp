@@ -7,7 +7,7 @@
 #include <Test/Debug/CxTest_CxAutoProfiler.h>
 
 #include <xLib/Core/CxConst.h>
-#include <xLib/Sync/CxCurrentThread.h>
+#include <xLib/Sync/CxThread.h>
 #include <xLib/Filesystem/CxFile.h>
 
 
@@ -27,7 +27,7 @@ CxTest_CxAutoProfiler::unit(
         for (size_t y = 0; y < 10; ++ y) {
             CxAutoProfiler apfP(csFilePath, xT("\tVar y: %") xPR_SIZET, y);
 
-            CxCurrentThread::sleep(5UL);
+            CxThread::currentSleep(5UL);
         }
     }
 }

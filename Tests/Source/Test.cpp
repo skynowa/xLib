@@ -96,7 +96,6 @@
 #include <Test/Sync/CxTest_CxSleeper.h>
 #include <Test/Sync/CxTest_CxSemaphore.h>
 #include <Test/Sync/CxTest_CxIpcSemaphore.h>
-#include <Test/Sync/CxTest_CxCurrentThread.h>
 #include <Test/Sync/CxTest_CxThread.h>
 #include <Test/Sync/CxTest_CxThreadPool.h>
 #include <Test/Sync/CxTest_CxProcess.h>
@@ -243,7 +242,6 @@ int_t xTMAIN(int_t argNum, tchar_t *args[])
         tmManager.add(new CxTest_CxSemaphore);
         tmManager.add(new CxTest_CxIpcSemaphore);
         tmManager.add(new CxTest_CxSleeper);
-        tmManager.add(new CxTest_CxCurrentThread);
         tmManager.add(new CxTest_CxThread);
         // tmManager.add(new CxTest_CxThreadPool);
         tmManager.add(new CxTest_CxProcess);

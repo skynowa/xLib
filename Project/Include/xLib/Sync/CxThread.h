@@ -144,6 +144,18 @@ public:
                              xWARN_UNUSED_RV;
         ///< opens an existing thread object
 
+    // current thread
+    static bool_t        isCurrent(const CxThread::id_t &id) xWARN_UNUSED_RV;
+        ///< is current id
+    static id_t          currentId() xWARN_UNUSED_RV;
+        ///< get the thread identifier of the calling thread
+    static handle_t      currentHandle() xWARN_UNUSED_RV;
+        ///< get pseudo handle for the calling thread
+    static void_t        currentYield();
+        ///< yield
+    static void_t        currentSleep(culong_t &timeoutMs);
+        ///< sleep
+
 protected:
     // events
     virtual uint_t       onRun               (void_t *pvParam) /* BUG: = 0 */ xWARN_UNUSED_RV;

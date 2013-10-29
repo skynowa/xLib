@@ -9,7 +9,7 @@
 #include <xLib/Core/CxConst.h>
 #include <xLib/Core/CxString.h>
 #include <xLib/Filesystem/CxFile.h>
-#include <xLib/Sync/CxCurrentThread.h>
+#include <xLib/Sync/CxThread.h>
 #include <xLib/Sync/CxProcess.h>
 
 
@@ -531,7 +531,7 @@ CxConsole::pause(
 
         writeLine(sMsg);
 
-		//// TODO: CxCurrentThread::sleep(a_timeoutMsec);
+		CxThread::currentSleep(a_timeoutMsec);
 	}
 }
 //------------------------------------------------------------------------------
@@ -755,7 +755,7 @@ CxConsole::_wndHandle()
     setTitle(sNewWndTitle);
 
     // ensure window title has been updated.
-    CxCurrentThread::sleep(50UL);
+    CxThread::currentSleep(50UL);
 
     // look for NewWindowTitle.
     hRv = ::FindWindow(NULL, sNewWndTitle.c_str());

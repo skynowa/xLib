@@ -9,7 +9,6 @@
 #include <xLib/Core/xCore.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Sync/CxThread.h>
-#include <xLib/Sync/CxCurrentThread.h>
 //------------------------------------------------------------------------------
 class CxTest_CxThread :
     public CxTest
@@ -18,5 +17,8 @@ public:
                    CxTest_CxThread() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
+
+private:
+    void_t         unit1(culonglong_t &cullCaseLoops);
 };
 //------------------------------------------------------------------------------

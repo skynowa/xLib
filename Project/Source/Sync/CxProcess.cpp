@@ -12,7 +12,7 @@
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Filesystem/CxDll.h>
-#include <xLib/Sync/CxCurrentThread.h>
+#include <xLib/Sync/CxThread.h>
 
 
 #if xOS_ENV_WIN
@@ -153,13 +153,13 @@ CxProcess::kill(
         ulong_t ulRv = exitStatus();
         xCHECK_DO(STILL_ACTIVE != ulRv, break);
 
-        CxCurrentThread::sleep(a_timeoutMSec);
+        CxThread::currentSleep(a_timeoutMSec);
     }
 #else
     int_t iRv = ::kill(_pid, SIGKILL);
     xTEST_DIFF(- 1, iRv);
 
-    //// TODO: CxCurrentThread::sleep(a_timeoutMSec);
+    CxThread::currentSleep(a_timeoutMSec);
 
     _exitStatus = 0U;
 #endif

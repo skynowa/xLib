@@ -6,7 +6,7 @@
 
 #include <Test/Sync/CxTest_CxThreadPool.h>
 
-#include <xLib/Sync/CxCurrentThread.h>
+#include <xLib/Sync/CxThread.h>
 
 //------------------------------------------------------------------------------
 /*virtual*/
@@ -105,8 +105,8 @@ CPoolThread::uiOnRun(
                 xTRACE(xT("\t*"));
             #endif
 
-            CxCurrentThread::sleep(50UL);
-            CxCurrentThread::yield();
+            CxThread::currentSleep(50UL);
+            CxThread::currentYield();
         }
     }
 

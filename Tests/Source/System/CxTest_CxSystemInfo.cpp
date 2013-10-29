@@ -9,7 +9,7 @@
 #include <xLib/Core/CxString.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Filesystem/CxDir.h>
-#include <xLib/Sync/CxCurrentThread.h>
+#include <xLib/Sync/CxThread.h>
 
 
 //------------------------------------------------------------------------------
@@ -217,7 +217,7 @@ CxTest_CxSystemInfo::unit(
             #if xTEST_IGNORE
                 xTRACEV(xT("\tcpuUsage: %ld"), m_ulRv);
 
-                CxCurrentThread::sleep(1000UL);
+                CxThread::currentSleep(1000UL);
             #endif
         }
     }
@@ -231,7 +231,7 @@ CxTest_CxSystemInfo::unit(
             #if xTEST_IGNORE
                 xTRACEV(xT("\tramUsage: %ld"), m_ulRv);
 
-                CxCurrentThread::sleep(1000UL);
+                CxThread::currentSleep(1000UL);
             #endif
         }
     }
