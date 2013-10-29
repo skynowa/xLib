@@ -7,7 +7,6 @@
 #include <xLib/Core/xCore.h>
 #include <xLib/System/CxConsole.h>
 #include <xLib/System/CxProcessInfo.h>
-#include <xLib/Sync/CxCurrentProcess.h>
 #include <xLib/Test/CxTestManager.h>
 
 // Core
@@ -100,7 +99,6 @@
 #include <Test/Sync/CxTest_CxCurrentThread.h>
 #include <Test/Sync/CxTest_CxThread.h>
 #include <Test/Sync/CxTest_CxThreadPool.h>
-#include <Test/Sync/CxTest_CxCurrentProcess.h>
 #include <Test/Sync/CxTest_CxProcess.h>
 
 // Gui
@@ -126,7 +124,7 @@ int_t xTMAIN(int_t argNum, tchar_t *args[])
         std::vec_tstring_t args;
 
         CxProcessInfo info;
-        info.setProcessId(CxCurrentProcess::id());
+        info.setProcessId(CxProcess::currentId());
         info.commandLine(&args);
 
         // usage
@@ -248,7 +246,6 @@ int_t xTMAIN(int_t argNum, tchar_t *args[])
         tmManager.add(new CxTest_CxCurrentThread);
         tmManager.add(new CxTest_CxThread);
         // tmManager.add(new CxTest_CxThreadPool);
-        tmManager.add(new CxTest_CxCurrentProcess);
         tmManager.add(new CxTest_CxProcess);
 
         // Gui

@@ -13,7 +13,7 @@
 #include <xLib/System/CxEnvironment.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxDll.h>
-#include <xLib/Sync/CxCurrentProcess.h>
+#include <xLib/Sync/CxProcess.h>
 
 #if xOS_ENV_WIN
     #include <shlobj.h>
@@ -211,7 +211,7 @@ CxSystemInfo::osArch()
         }
 
         BOOL blIs64BitOs = FALSE;
-        BOOL blIsWow64Process = ::IsWow64Process(CxCurrentProcess::handle(), &blIs64BitOs);
+        BOOL blIsWow64Process = ::IsWow64Process(CxProcess::currentHandle(), &blIs64BitOs);
 
         oaRes = (blIsFuncExist && blIsWow64Process && blIs64BitOs) ? oa64bit : oa32bit;
     #elif xARCH_X64

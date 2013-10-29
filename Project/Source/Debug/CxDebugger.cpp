@@ -12,7 +12,7 @@
 #include <xLib/Debug/CxErrorReport.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/System/CxEnvironment.h>
-#include <xLib/Sync/CxCurrentProcess.h>
+#include <xLib/Sync/CxProcess.h>
 #include <xLib/Gui/Dialogs/CxMsgBoxT.h>
 
 #if xOS_ENV_UNIX
@@ -76,7 +76,7 @@ CxDebugger::isActive()
     // remote debugger
     BOOL blIsRemoteDebuggerPresent = FALSE;
 
-    blRes = ::CheckRemoteDebuggerPresent(CxCurrentProcess::handle(), &blIsRemoteDebuggerPresent);
+    blRes = ::CheckRemoteDebuggerPresent(CxProcess::currentHandle(), &blIsRemoteDebuggerPresent);
     xCHECK_RET(FALSE == blRes || FALSE == blIsRemoteDebuggerPresent, false);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
@@ -91,7 +91,7 @@ CxDebugger::isActive()
         aiMib[0] = CTL_KERN;
         aiMib[1] = KERN_PROC;
         aiMib[2] = KERN_PROC_PID;
-        aiMib[3] = CxCurrentProcess::id();
+        aiMib[3] = CxProcess::currentId();
 
         // if sysctl fails for some bizarre reason, we get a predictable result
         kiInfo.ki_flag = 0;
@@ -132,8 +132,8 @@ CxDebugger::breakPoint()
     int_t iRv = ::raise(SIGTRAP);
     xTEST_DIFF(- 1, iRv);
 
-    //// int_t iRv = ::kill(CxCurrentProcess::id(), SIGALRM);
-    //// xTEST_DIFF(- 1, iRv);
+    iRv = ::kill(CxProcess::currentId(), SIGALRM);
+    xTEST_DIFF(- 1, iRv);
 #endif
 }
 //------------------------------------------------------------------------------
@@ -208,7 +208,7 @@ CxDebugger::_msgboxPlain(
 #endif
     switch (mrRes) {
         case CxMsgBoxT::mrAbort:
-            CxCurrentProcess::exit(EXIT_FAILURE);
+            CxProcess::currentExit(EXIT_FAILURE);
             break;
         default:
         case CxMsgBoxT::mrIgnore:
@@ -220,7 +220,7 @@ CxDebugger::_msgboxPlain(
             } else {
                 CxMsgBoxT::ExModalResult nrRv = CxMsgBoxT::show(xT("Debugger is not present.\nThe application will be terminated."), xT("xLib"));
                 xUNUSED(nrRv);
-                CxCurrentProcess::exit(EXIT_FAILURE);
+                CxProcess::currentExit(EXIT_FAILURE);
             }
             break;
     }
@@ -255,7 +255,7 @@ CxDebugger::_stdoutPlain(
         case cmAbort:
             std::tcout << xT("Abort...\n\n");  std::tcout.flush();
 
-            CxCurrentProcess::exit(EXIT_FAILURE);
+            CxProcess::currentExit(EXIT_FAILURE);
             break;
         default:
         case cmIgnore:
@@ -275,7 +275,7 @@ CxDebugger::_stdoutPlain(
                 std::tcout << xT("\n\n");
                 std::tcout.flush();
 
-                CxCurrentProcess::exit(EXIT_FAILURE);
+                CxProcess::currentExit(EXIT_FAILURE);
             }
             break;
     }

@@ -8,7 +8,7 @@
 
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Filesystem/CxDir.h>
-#include <xLib/Sync/CxCurrentProcess.h>
+#include <xLib/Sync/CxProcess.h>
 #include <xLib/System/CxProcessInfo.h>
 
 
@@ -701,7 +701,7 @@ CxTest_CxPath::unit(
         std::vec_tstring_t vsArgs;
 
         CxProcessInfo info;
-        info.setProcessId(CxCurrentProcess::id());
+        info.setProcessId(CxProcess::currentId());
         info.commandLine(&vsArgs);
 
         m_sRv = CxPath(vsArgs.at(0)).absolute();

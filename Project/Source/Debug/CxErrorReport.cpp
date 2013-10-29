@@ -16,7 +16,7 @@
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Sync/CxCurrentThread.h>
-#include <xLib/Sync/CxCurrentProcess.h>
+#include <xLib/Sync/CxProcess.h>
 
 
 xNAMESPACE_BEGIN(NxLib)
@@ -50,7 +50,7 @@ CxErrorReport::_construct(
     type          = a_crtType;
 
     program        = CxPath( CxPath(CxPath::exe()).brief(cuiReportWidthMax) ).toUnix(false);
-    processId     = (ulong_t)CxCurrentProcess::id();
+    processId     = (ulong_t)CxProcess::currentId();
     threadId      = (ulong_t)CxCurrentThread::id();
     fileSize       = CxString::formatBytes( static_cast<ulonglong_t>( CxFile::size(CxPath::exe())) );
 

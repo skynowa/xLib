@@ -68,6 +68,18 @@ public:
     static bool_t   isRunning(const id_t &id) xWARN_UNUSED_RV;
         ///< is process running by name (with extension)
 
+    // current process
+    static bool_t   isCurrent(const CxProcess::id_t &id) xWARN_UNUSED_RV;
+        ///< is current id
+    static id_t     currentId() xWARN_UNUSED_RV;
+        ///< process ID of the calling process
+    static id_t     currentParentId() xWARN_UNUSED_RV;
+        ///< process ID of the parent of the calling process
+    static handle_t currentHandle() xWARN_UNUSED_RV;
+        ///< get pseudo handle for the calling process
+    static void_t   currentExit(cuint_t &exitCode);
+        ///< ends the calling process and all its threads
+
 private:
     handle_t        _handle;
 #if xOS_ENV_WIN
