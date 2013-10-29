@@ -14,8 +14,7 @@ class CxTest_CxConsole :
     public CxTest
 {
 public:
-                   CxTest_CxConsole();
-    virtual       ~CxTest_CxConsole();
+                   CxTest_CxConsole() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };

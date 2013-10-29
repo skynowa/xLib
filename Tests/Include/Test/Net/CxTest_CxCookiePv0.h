@@ -14,8 +14,7 @@ class CxTest_CxCookiePv0 :
     public CxTest
 {
 public:
-                   CxTest_CxCookiePv0();
-    virtual       ~CxTest_CxCookiePv0();
+                   CxTest_CxCookiePv0() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };

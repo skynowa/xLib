@@ -13,10 +13,7 @@ class CxTest_CxNonCopyable :
     public CxTest
 {
 public:
-                   CxTest_CxNonCopyable();
-        ///< constructor
-    virtual       ~CxTest_CxNonCopyable();
-        ///< destructor
+                   CxTest_CxNonCopyable() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops) xOVERRIDE;
         ///< unit test

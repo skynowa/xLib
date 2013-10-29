@@ -14,8 +14,7 @@ class CxTest_CxDateTime :
     public CxTest
 {
 public:
-                   CxTest_CxDateTime();
-    virtual       ~CxTest_CxDateTime();
+                   CxTest_CxDateTime() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };

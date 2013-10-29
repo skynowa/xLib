@@ -14,8 +14,7 @@ class CxTest_CxProfiler :
     public CxTest
 {
 public:
-                   CxTest_CxProfiler();
-    virtual       ~CxTest_CxProfiler();
+                   CxTest_CxProfiler() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };

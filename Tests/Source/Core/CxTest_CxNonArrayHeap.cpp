@@ -15,14 +15,6 @@ class CNonArrayHeap :
         int_t m_a;
 };
 //------------------------------------------------------------------------------
-CxTest_CxNonArrayHeap::CxTest_CxNonArrayHeap() {
-
-}
-//------------------------------------------------------------------------------
-CxTest_CxNonArrayHeap::~CxTest_CxNonArrayHeap() {
-
-}
-//------------------------------------------------------------------------------
 /* virtual */
 void_t
 CxTest_CxNonArrayHeap::unit(

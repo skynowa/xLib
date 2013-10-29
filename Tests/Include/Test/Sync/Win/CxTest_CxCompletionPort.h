@@ -14,8 +14,7 @@ class CxTest_CxCompletionPort :
     public CxTest
 {
 public:
-                   CxTest_CxCompletionPort();
-    virtual       ~CxTest_CxCompletionPort();
+                   CxTest_CxCompletionPort() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };

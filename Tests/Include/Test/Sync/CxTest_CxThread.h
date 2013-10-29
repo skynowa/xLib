@@ -15,8 +15,7 @@ class CxTest_CxThread :
     public CxTest
 {
 public:
-                   CxTest_CxThread();
-    virtual       ~CxTest_CxThread();
+                   CxTest_CxThread() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };

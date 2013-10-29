@@ -14,10 +14,7 @@ class CxTest_CxStackTrace :
     public CxTest
 {
 public:
-                   CxTest_CxStackTrace();
-        ///< constructor
-    virtual       ~CxTest_CxStackTrace();
-        ///< destructor
+                   CxTest_CxStackTrace() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
         ///< unit test

@@ -14,14 +14,6 @@ class A :
 
 };
 //------------------------------------------------------------------------------
-CxTest_CxNonAssignable::CxTest_CxNonAssignable() {
-
-}
-//------------------------------------------------------------------------------
-CxTest_CxNonAssignable::~CxTest_CxNonAssignable() {
-
-}
-//------------------------------------------------------------------------------
 /*virtual*/
 void_t
 CxTest_CxNonAssignable::unit(

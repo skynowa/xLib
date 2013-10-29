@@ -14,10 +14,7 @@ class CxTest_CxCurrentThread :
     public CxTest
 {
 public:
-                   CxTest_CxCurrentThread();
-        ///< constructor
-    virtual       ~CxTest_CxCurrentThread();
-        ///< destructor
+                   CxTest_CxCurrentThread() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
         ///< unit test

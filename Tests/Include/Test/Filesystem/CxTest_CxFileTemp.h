@@ -14,10 +14,7 @@ class CxTest_CxFileTemp :
     public CxTest
 {
 public:
-                   CxTest_CxFileTemp();
-        ///< constructor
-    virtual       ~CxTest_CxFileTemp();
-        ///< destructor
+                   CxTest_CxFileTemp() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
         ///< unit test

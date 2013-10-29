@@ -14,10 +14,7 @@ class CxTest_CxTracer :
     public CxTest
 {
 public:
-                   CxTest_CxTracer();
-        ///< constructor
-    virtual       ~CxTest_CxTracer();
-        ///< destructor
+                   CxTest_CxTracer() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
         ///< unit test

@@ -14,8 +14,7 @@ class CxTest_CxSleeper :
     public CxTest
 {
 public:
-                   CxTest_CxSleeper();
-    virtual       ~CxTest_CxSleeper();
+                   CxTest_CxSleeper() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };

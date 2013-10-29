@@ -19,8 +19,7 @@ class CxTest_CxMimeMessage :
     public CxTest
 {
 public:
-                   CxTest_CxMimeMessage();
-    virtual       ~CxTest_CxMimeMessage();
+                   CxTest_CxMimeMessage() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };

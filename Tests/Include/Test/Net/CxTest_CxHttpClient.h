@@ -14,8 +14,7 @@ class CxTest_CxHttpClient :
     public CxTest
 {
 public:
-                   CxTest_CxHttpClient();
-    virtual       ~CxTest_CxHttpClient();
+                   CxTest_CxHttpClient() {}
 
     virtual void_t unit(culonglong_t &cullCaseLoops);
 };
