@@ -38,7 +38,8 @@ struct SDelete
 {
     template<class T>
     void
-    operator()(T* &a_ptr) const
+    operator()(
+        T* &a_ptr) const
     {
         T* tmp = NULL;
         std::swap(a_ptr, tmp);
