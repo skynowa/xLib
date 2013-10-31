@@ -22,7 +22,7 @@ class CxMutex;
 class CxAutoMutex;
 class CxThread;
 
-template<typename T>
+template<class T>
 class CxThreadPool :
     public CxThread
     /// thread pool

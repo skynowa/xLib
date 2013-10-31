@@ -13,22 +13,22 @@
 // overload operators << for std::basic_ostream
 xNAMESPACE_BEGIN(std)
 
-template<typename Traits>
+template<class Traits>
 inline basic_ostream<tchar_t, Traits> &
 operator << (basic_ostream<tchar_t, Traits> &os, std::custring_t &value);
     ///< overload operators << for std::ustring_t
 
-template<typename Traits, class T>
+template<class Traits, class T>
 inline basic_ostream<tchar_t, Traits> &
 operator << (basic_ostream<tchar_t, Traits> &os, const vector<T> &value);
     ///< overload operators << for std::vector
 
-template<typename Traits, class T1, class T2>
+template<class Traits, class T1, class T2>
 inline basic_ostream<tchar_t, Traits> &
 operator << (basic_ostream<tchar_t, Traits> &os, const map<T1, T2> &value);
     ///< overload operators << for std::map
 
-template<typename Traits, class T1, class T2>
+template<class Traits, class T1, class T2>
 inline basic_ostream<tchar_t, Traits> &
 operator << (basic_ostream<tchar_t, Traits> &os, const multimap<T1, T2> &value);
     ///< overload operators << for std::multimap
@@ -47,16 +47,16 @@ public:
     *
     *******************************************************************************/
 
-    template<typename T>
+    template<class T>
     static std::tstring_t cast(const T &value) xWARN_UNUSED_RV;
         ///< convert type to std::tstring_t
-    template<typename T>
+    template<class T>
     static std::tstring_t cast(const T &value, cint_t &base) xWARN_UNUSED_RV;
         ///< convert type to std::tstring_t by base
-    template<typename T>
+    template<class T>
     static T              cast(std::ctstring_t &str) xWARN_UNUSED_RV;
         ///< convert std::tstring_t to type
-    template<typename T>
+    template<class T>
     static T              cast(std::ctstring_t &str, cint_t &base) xWARN_UNUSED_RV;
         ///< convert std::tstring_t by base (8, 10, 16) to type
 

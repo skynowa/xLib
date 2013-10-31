@@ -30,22 +30,22 @@ public:
     };
 
 #if xOS_ENV_WIN
-    template <typename TextT, typename TitleT>
+    template <class TextT, class TitleT>
     static ExModalResult show(const HWND &handle, const TextT &text, const TitleT &title,
                              cuint_t &type) xWARN_UNUSED_RV;
         ///< message box has parent window, with custom text, custom title, custom type
 #endif
 
-    template <typename TextT, typename TitleT>
+    template <class TextT, class TitleT>
     static ExModalResult show(const TextT &text, const TitleT &title, cuint_t &type)
                              xWARN_UNUSED_RV;
         ///< message box with custom text, custom title, custom type
 
-    template <typename TextT, typename TitleT>
+    template <class TextT, class TitleT>
     static ExModalResult show(const TextT &text, const TitleT &title) xWARN_UNUSED_RV;
         ///< message box with custom text, custom title, default type
 
-    template <typename TextT>
+    template <class TextT>
     static ExModalResult show(const TextT &text) xWARN_UNUSED_RV;
         ///< message box with custom text, default title, default type
 

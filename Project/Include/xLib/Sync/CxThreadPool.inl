@@ -12,13 +12,13 @@ xNAMESPACE_BEGIN(NxLib)
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-template<typename T>
+template<class T>
 CxMutex CxThreadPool<T>::_m_mtList;
 
-template<typename T>
+template<class T>
 CxTracer  CxThreadPool<T>::_m_clLog;
 //------------------------------------------------------------------------------
-template<typename T>
+template<class T>
 CxThreadPool<T>::CxThreadPool(
     cbool_t &a_cbIsPaused,
     cbool_t &a_cbIsAutoDelete,
@@ -43,7 +43,7 @@ CxThreadPool<T>::CxThreadPool(
     /*LOG*/_m_clLog.write(xT("CxThreadPool: construct"));
 }
 //------------------------------------------------------------------------------
-template<typename T>
+template<class T>
 CxThreadPool<T>::~CxThreadPool() {
 
 
@@ -58,7 +58,7 @@ CxThreadPool<T>::~CxThreadPool() {
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-template<typename T>
+template<class T>
 void_t
 CxThreadPool<T>::groupCreate(
     cuint_t          &a_cuiStackSize,
@@ -89,7 +89,7 @@ CxThreadPool<T>::groupCreate(
     create(false, 0U, NULL);
 }
 //------------------------------------------------------------------------------
-template<typename T>
+template<class T>
 void_t
 CxThreadPool<T>::groupResume() {
     xCHECK_DO(!isRunning(), /*LOG*/_m_clLog.write(xT("CxThreadPool: not running")); return);
@@ -99,7 +99,7 @@ CxThreadPool<T>::groupResume() {
     {
         CxAutoMutex amtMutex(&_m_mtList);
 
-        xFOREACH_CONST(typename std::list<T *>, it, _m_lthTasks) {
+        xFOREACH_CONST(class std::list<T *>, it, _m_lthTasks) {
             xCHECK_DO(!(*it)->isRunning(), /*LOG*/_m_clLog.write(xT("Not running")); continue);
 
             (*it)->resume();
@@ -111,7 +111,7 @@ CxThreadPool<T>::groupResume() {
     resume();
 }
 //------------------------------------------------------------------------------
-template<typename T>
+template<class T>
 void_t
 CxThreadPool<T>::groupPause() {
     xCHECK_DO(!isRunning(), /*LOG*/_m_clLog.write(xT("CxThreadPool: not running")); return);
@@ -125,7 +125,7 @@ CxThreadPool<T>::groupPause() {
     {
         CxAutoMutex amtMutex(&_m_mtList);
 
-        xFOREACH_CONST(typename std::list<T *>, it, _m_lthTasks) {
+        xFOREACH_CONST(class std::list<T *>, it, _m_lthTasks) {
             xCHECK_DO(!(*it)->isRunning(), /*LOG*/_m_clLog.write(xT("Not running")); continue);
 
             (*it)->pause();
@@ -133,7 +133,7 @@ CxThreadPool<T>::groupPause() {
     }
 }
 //------------------------------------------------------------------------------
-template<typename T>
+template<class T>
 void_t
 CxThreadPool<T>::groupExit(
     culong_t &a_culTimeout
@@ -150,7 +150,7 @@ CxThreadPool<T>::groupExit(
     {
         CxAutoMutex amtMutex(&_m_mtList);
 
-        xFOREACH_CONST(typename std::list<T *>, it, _m_lthTasks)    {
+        xFOREACH_CONST(class std::list<T *>, it, _m_lthTasks)    {
             xCHECK_DO(!(*it)->isRunning(), /*LOG*/_m_clLog.write(xT("CxThreadPool: not running")); continue);
 
             (*it)->exit(/* a_culTimeout */);
@@ -158,7 +158,7 @@ CxThreadPool<T>::groupExit(
     }
 }
 //------------------------------------------------------------------------------
-template<typename T>
+template<class T>
 void_t
 CxThreadPool<T>::groupKill(
     culong_t &a_culTimeout
@@ -173,7 +173,7 @@ CxThreadPool<T>::groupKill(
     {
         CxAutoMutex amtMutex(&_m_mtList);
 
-        xFOREACH_CONST(typename std::list<T *>, it, _m_lthTasks)    {
+        xFOREACH_CONST(class std::list<T *>, it, _m_lthTasks)    {
             xCHECK_DO(!(*it)->isRunning(), /*LOG*/_m_clLog.write(xT("Not running")); continue);
 
             (*it)->kill(a_culTimeout);
@@ -185,7 +185,7 @@ CxThreadPool<T>::groupKill(
     kill(a_culTimeout);
 }
 //------------------------------------------------------------------------------
-template<typename T>
+template<class T>
 void_t
 CxThreadPool<T>::groupWait(
     culong_t &a_culTimeout
@@ -198,7 +198,7 @@ CxThreadPool<T>::groupWait(
     {
         CxAutoMutex amtMutex(&_m_mtList);
 
-        xFOREACH_CONST(typename std::list<T *>, it, _m_lthTasks)    {
+        xFOREACH_CONST(class std::list<T *>, it, _m_lthTasks)    {
             xCHECK_DO(!(*it)->isRunning(), /*LOG*/_m_clLog.write(xT("Not running")); continue);
 
             (*it)->wait(a_culTimeout);
@@ -218,7 +218,7 @@ CxThreadPool<T>::groupWait(
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-template<typename T>
+template<class T>
 size_t
 CxThreadPool<T>::maxTasks() const {
     // n/a
@@ -226,7 +226,7 @@ CxThreadPool<T>::maxTasks() const {
     return _m_uiMaxRunningTasks;
 }
 //------------------------------------------------------------------------------
-template<typename T>
+template<class T>
 void_t
 CxThreadPool<T>::setMaxTasks(
     std::csize_t &a_cuiNum
@@ -257,7 +257,7 @@ CxThreadPool<T>::setMaxTasks(
         size_t uiCount       = 0U;
         size_t uiTasksForDec = _m_uiMaxRunningTasks - a_cuiNum;
 
-        xFOREACH_R_CONST(typename std::list<T *>, it, _m_lthTasks) {
+        xFOREACH_R_CONST(class std::list<T *>, it, _m_lthTasks) {
             xCHECK_DO(!(*it)->isRunning(), /*LOG*/_m_clLog.write(xT("Not running")); continue);
 
             #if   xOS_ENV_WIN
@@ -288,7 +288,7 @@ CxThreadPool<T>::setMaxTasks(
     xTEST_FAIL;
 }
 //------------------------------------------------------------------------------
-template<typename T>
+template<class T>
 size_t
 CxThreadPool<T>::numTasks() const {
     // n/a
@@ -296,7 +296,7 @@ CxThreadPool<T>::numTasks() const {
     return _m_uiNumTasks;
 }
 //------------------------------------------------------------------------------
-template<typename T>
+template<class T>
 void_t
 CxThreadPool<T>::setNumTasks(
     std::csize_t &a_cuiNum
@@ -307,7 +307,7 @@ CxThreadPool<T>::setNumTasks(
     _m_uiNumTasks = a_cuiNum;
 }
 //------------------------------------------------------------------------------
-template<typename T>
+template<class T>
 bool_t
 CxThreadPool<T>::isEmpty() const {
 
@@ -320,7 +320,7 @@ CxThreadPool<T>::isEmpty() const {
     return bRv;
 }
 //------------------------------------------------------------------------------
-template<typename T>
+template<class T>
 bool_t
 CxThreadPool<T>::isFull() const {
     //xTEST_EQ(CONDITION);
@@ -335,7 +335,7 @@ CxThreadPool<T>::isFull() const {
     return bRv;
 }
 //------------------------------------------------------------------------------
-template<typename T>
+template<class T>
 size_t
 CxThreadPool<T>::size() const {
     //xTEST_EQ(CONDITION);
@@ -356,7 +356,7 @@ CxThreadPool<T>::size() const {
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-template<typename T>
+template<class T>
 uint_t
 CxThreadPool<T>::onRun(
     void_t *a_pvParam
@@ -424,7 +424,7 @@ CxThreadPool<T>::onRun(
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-template<typename T>
+template<class T>
 void_t
 CxThreadPool<T>::_taskAdd(
     CxThread *a_pvItem
@@ -446,7 +446,7 @@ CxThreadPool<T>::_taskAdd(
     }
 }
 //------------------------------------------------------------------------------
-template<typename T>
+template<class T>
 void_t
 CxThreadPool<T>::_taskRemove(
     CxThread *a_pvItem
@@ -475,7 +475,7 @@ CxThreadPool<T>::_taskRemove(
     return true;
 }
 //------------------------------------------------------------------------------
-template<typename T>
+template<class T>
 void_t
 CxThreadPool<T>::_onEnterTask(
     CxThread *a_pthSender
@@ -489,7 +489,7 @@ CxThreadPool<T>::_onEnterTask(
     /*LOG*///_m_clLog.write(xT("_vOnEnterTask: #%i"), a_pthTask->m_uiIndex);
 }
 //------------------------------------------------------------------------------
-template<typename T>
+template<class T>
 void_t
 CxThreadPool<T>::_onExitTask(
     CxThread *a_pthSender

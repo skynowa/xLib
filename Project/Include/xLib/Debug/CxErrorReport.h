@@ -57,7 +57,7 @@ public:
     // comment
     std::tstring_t comment;        ///< comment
 
-                   template<typename T>
+                   template<class T>
                    CxErrorReport(const ExType    &crtType,
                                  std::ctstring_t &csVar1,       std::ctstring_t &csVar2,
                                  const T         &cVar1ValueT,  const T         &cVar2ValueT,

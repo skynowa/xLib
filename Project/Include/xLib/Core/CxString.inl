@@ -22,7 +22,7 @@
 xNAMESPACE_BEGIN(std)
 
 //------------------------------------------------------------------------------
-template<typename Traits>
+template<class Traits>
 inline basic_ostream<tchar_t, Traits> &
 operator << (
     basic_ostream<tchar_t, Traits> &a_os,
@@ -41,7 +41,7 @@ operator << (
     return a_os;
 }
 //------------------------------------------------------------------------------
-template<typename Traits, typename T>
+template<class Traits, class T>
 inline basic_ostream<tchar_t, Traits> &
 operator << (
     basic_ostream<tchar_t, Traits> &a_os,
@@ -55,7 +55,7 @@ operator << (
     a_os << xT("std::vector (") << a_value.size() << (" elements):") << std::endl;
     a_os << std::endl;
 
-    typename vector<T>::const_iterator it;
+    class vector<T>::const_iterator it;
     size_t                             i = 0;
     for (it = a_value.begin(), i = 0; it != a_value.end(); ++ it, ++ i) {
         a_os << xT("Value[") << i << xT("]: ") << (*it) << std::endl;
@@ -67,7 +67,7 @@ operator << (
     return a_os;
 }
 //------------------------------------------------------------------------------
-template<typename Traits, typename T1, typename T2>
+template<class Traits, class T1, class T2>
 inline basic_ostream<tchar_t, Traits> &
 operator << (
     basic_ostream<tchar_t, Traits> &a_os,
@@ -81,7 +81,7 @@ operator << (
     a_os << xT("std::map (") << a_value.size() << (" elements):") << std::endl;
     a_os << std::endl;
 
-    typename map<T1, T2>::const_iterator it;
+    class map<T1, T2>::const_iterator it;
     for (it = a_value.begin(); it != a_value.end(); ++ it) {
         a_os << xT("Key: ")   << (*it).first  << xT("\t\t")
                 << xT("Value: ") << (*it).second << std::endl;
@@ -93,7 +93,7 @@ operator << (
     return a_os;
 }
 //------------------------------------------------------------------------------
-template<typename Traits, typename T1, typename T2>
+template<class Traits, class T1, class T2>
 inline basic_ostream<tchar_t, Traits> &
 operator << (
     basic_ostream<tchar_t, Traits> &a_os,
@@ -107,7 +107,7 @@ operator << (
     a_os << xT("std::multimap (") << a_value.size() << (" elements):") << std::endl;
     a_os << std::endl;
 
-    typename multimap<T1, T2>::const_iterator it;
+    class multimap<T1, T2>::const_iterator it;
     for (it = a_value.begin(); it != a_value.end(); ++ it) {
         a_os << xT("Key: ")   << (*it).first  << xT("\t\t")
                 << xT("Value: ") << (*it).second << std::endl;
@@ -132,7 +132,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 /* static */
-template<typename T>
+template<class T>
 inline std::tstring_t
 CxString::cast(
     const T &a_value
@@ -159,7 +159,7 @@ CxString::cast(
 }
 //------------------------------------------------------------------------------
 /* static */
-template<typename T>
+template<class T>
 inline std::tstring_t
 CxString::cast(
     const T &a_value,
@@ -188,7 +188,7 @@ CxString::cast(
 }
 //------------------------------------------------------------------------------
 /* static */
-template<typename T>
+template<class T>
 inline T
 CxString::cast(
     std::ctstring_t &a_str
@@ -213,7 +213,7 @@ CxString::cast(
 }
 //------------------------------------------------------------------------------
 /* static */
-template<typename T>
+template<class T>
 inline T
 CxString::cast(
     std::ctstring_t &a_str,
