@@ -7,6 +7,7 @@
 #include <xLib/Test/CxTestManager.h>
 
 #include <xLib/Core/CxType.h>
+#include <xLib/Core/xFunctors.h>
 #include <xLib/Core/CxString.h>
 #include <xLib/Core/CxUtils.h>
 #include <xLib/Filesystem/CxPath.h>
@@ -36,9 +37,7 @@ CxTestManager::CxTestManager(
 xINLINE_HO
 CxTestManager::~CxTestManager()
 {
-    xFOREACH(container_t, it, _tests) {
-        xPTR_DELETE(*it);
-    }
+    std::for_each(_tests.begin(), _tests.end(), SDelete());
 
     xCHECK_DO(_isUseTracing, xTRACE(xT("CxTestManager: all tests destructed.")));
     xCHECK_DO(_isUseTracing, xTRACE(xT("\n")));
