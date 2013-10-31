@@ -57,7 +57,7 @@ public:
         ///< get work dir path
     std::ctstring_t &    name() const xWARN_UNUSED_RV;
         ///< get name
-    void_t               setName(std::ctstring_t &csTestName);
+    void_t               setName(std::ctstring_t &testName);
         ///< set name
 
 private:

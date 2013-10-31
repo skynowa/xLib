@@ -22,27 +22,27 @@ xNAMESPACE_BEGIN(NxLib)
 //------------------------------------------------------------------------------
 xINLINE_HO
 CxTest::CxTest() :
-    m_pvRv         (NULL),
-    m_chRv         (0),
-    m_bRv          (false),
-    m_iRv          (- 1),
-    m_siRv         (0),
-    m_usiRv        (0),
-    m_uiRv         (0U),
-    m_stRv         (0),
-    m_liRv         (0L),
-    m_ulRv         (0),
-    m_llRv         (0LL),
-    m_ullRv        (0UL),
-    m_fRv          (0.0f),
-    m_dRv          (0.0f),
-    m_sRv          (),
-    m_usRv         (),
-    m_vsRv         (),
-    m_msRv         (),
-    m_hRv          (xNATIVE_HANDLE_NULL),
+    m_pvRv      (NULL),
+    m_chRv      (0),
+    m_bRv       (false),
+    m_iRv       (- 1),
+    m_siRv      (0),
+    m_usiRv     (0),
+    m_uiRv      (0U),
+    m_stRv      (0),
+    m_liRv      (0L),
+    m_ulRv      (0),
+    m_llRv      (0LL),
+    m_ullRv     (0UL),
+    m_fRv       (0.0f),
+    m_dRv       (0.0f),
+    m_sRv       (),
+    m_usRv      (),
+    m_vsRv      (),
+    m_msRv      (),
+    m_hRv       (xNATIVE_HANDLE_NULL),
 #if xOS_ENV_WIN
-    m_hwndRv       (NULL),
+    m_hwndRv    (NULL),
 #endif
     _workDirPath(),
     _name       ()
@@ -73,13 +73,13 @@ CxTest::run(
             // TODO: xTEST_MSG_EQ(true, bRv, sGetName() + xT(": fail"));
         }
     }
-    catch (const std::exception &a_cexE) {
-        std::string asMsg = a_cexE.what();
+    catch (const std::exception &a_e) {
+        std::string asMsg = a_e.what();
 
         xTEST_FAIL(name() + xT(": ") + xS2TS(asMsg));
     }
-    catch (const CxException &a_cexE) {
-        xTEST_FAIL(name() + xT(": ") + a_cexE.what());
+    catch (const CxException &a_e) {
+        xTEST_FAIL(name() + xT(": ") + a_e.what());
     }
     catch (...) {
         xTEST_FAIL(name() + xT(": Unknown test error"));
@@ -97,14 +97,14 @@ CxTest::unit(
 #if xTODO
     xTEST_CASE("CaseName", a_caseLoops)
     {
-        std::ctstring_t casData[][2] = {
+        std::ctstring_t data[][2] = {
             {xT("TEST_STRING_1"), xT("MUST_BE_1")},
             {xT("TEST_STRING_2"), xT("MUST_BE_2")},
             {xT("TEST_STRING_3"), xT("MUST_BE_3")},
             {xT("TEST_STRING_4"), xT("MUST_BE_4")}
         };
 
-        for (size_t i = 0; i < xARRAY_SIZE(casData); ++ i) {
+        for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
 
         }
     }
@@ -143,12 +143,12 @@ CxTest::name() const
 //------------------------------------------------------------------------------
 xINLINE_HO void_t
 CxTest::setName(
-    std::ctstring_t &a_csTestName
+    std::ctstring_t &a_testName
 )
 {
-    xTEST_NA(a_csTestName);
+    xTEST_NA(a_testName);
 
-    _name = a_csTestName;
+    _name = a_testName;
 }
 //------------------------------------------------------------------------------
 
