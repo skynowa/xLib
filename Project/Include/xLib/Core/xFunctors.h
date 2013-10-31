@@ -18,7 +18,7 @@ struct SCompareNoCase
     bool
     operator () (
         const std::tstring_t::value_type &a_value1,
-        const std::tstring_t::value_type &a_value2)  const
+        const std::tstring_t::value_type &a_value2) const
     {
         return CxChar::toUpper(a_value1) == CxChar::toUpper(a_value2);
     }
@@ -38,7 +38,7 @@ struct SDelete
 {
     template<class T>
     void
-    operator()(
+    operator() (
         T* &a_ptr) const
     {
         T* tmp = NULL;
