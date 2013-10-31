@@ -4,10 +4,9 @@
  */
 
 
-#ifndef CxTest_[CxTemplate]H
-#define CxTest_[CxTemplate]H
-//---------------------------------------------------------------------------
-#include <xLib/Common/xCommon.h>
+#pragma once
+
+#include <xLib/Core/xCore.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/xxxxxxxxx/[CxTemplate].h>
 //---------------------------------------------------------------------------
@@ -15,16 +14,10 @@ class CxTest_[CxTemplate] :
     public CxTest
     ///< tests for [CxTemplate]
 {
-    public:
-                      CxTest_[CxTemplate]();
-            ///< constructor
-        virtual      ~CxTest_[CxTemplate]();
-            ///< destructor
+public:
+                   CxTest_[CxTemplate]() {}
 
-        virtual void  vUnit(const ulonglong_t &cullCaseLoops) xOVERRIDE;
-            ///< unit test
-
-    private:
+    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
+        ///< unit test
 };
 //---------------------------------------------------------------------------
-#endif // CxTest_[CxTemplate]H
