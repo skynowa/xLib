@@ -12,6 +12,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 struct SCompareNoCase
+    ///< case insensitive comparison
 {
     // TODO: bool_t
     bool
@@ -29,6 +30,20 @@ struct SCompareNoCase
         std::ctstring_t &a_value2) const
     {
         return CxString::compareNoCase(a_value1, a_value2);
+    }
+};
+
+struct SDelete
+    ///< container items deleter
+{
+    template<class T>
+    void
+    operator()(T* &a_ptr) const
+    {
+        T* tmp = NULL;
+        std::swap(a_ptr, tmp);
+
+        delete tmp; tmp = NULL;
     }
 };
 
