@@ -8,21 +8,13 @@
 
 
 //---------------------------------------------------------------------------
-CxTest_[CxTemplate]::CxTest_[CxTemplate]() {
-
-}
-//---------------------------------------------------------------------------
-CxTest_[CxTemplate]::~CxTest_[CxTemplate]() {
-
-}
-//---------------------------------------------------------------------------
 /* virtual */
-void
-CxTest_[CxTemplate]::vUnit(
-    const ulonglong_t &cullCaseLoops
+void_t
+CxTest_[CxTemplate]::unit(
+    culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("[CxTemplate]::??????????", cullCaseLoops)
+    xTEST_CASE("[CxTemplate]::??????????", a_caseLoops)
     {
 
     }

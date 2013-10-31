@@ -4,10 +4,9 @@
  */
 
 
-#ifndef xLib_[CxTemplate]H
-#define xLib_[CxTemplate]H
-//---------------------------------------------------------------------------
-#include <xLib/Common/xCommon.h>
+#pragma once
+
+#include <xLib/Core/xCore.h>
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
@@ -16,9 +15,9 @@ class [CxTemplate] :
     ///< ??????????
 {
     public:
-                 [CxTemplate]();
+                 [CxTemplate]() {}
             ///< constructor
-        virtual ~[CxTemplate]();
+        virtual ~[CxTemplate]() {}
             ///< destructor
 
     private:
@@ -27,4 +26,6 @@ class [CxTemplate] :
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#endif // xLib_[CxTemplate]H
+#if xXLIB_HEADER_ONLY
+    #include <xLib/[CxTemplate].h>
+#endif
