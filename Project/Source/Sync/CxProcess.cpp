@@ -356,16 +356,16 @@ CxProcess::idByName(
 /* static */
 xINLINE_HO bool_t
 CxProcess::isRunning(
-    const id_t &id
+    const id_t &a_id
 )
 {
-    std::vector<id_t> ids;
+    std::vector<id_t> _ids;
 
-    ids(&ids);
+    ids(&_ids);
 
     std::vector<id_t>::iterator it;
-    it = std::find(ids.begin(), ids.end(), id);
-    xCHECK_RET(it == ids.end(), false);
+    it = std::find(_ids.begin(), _ids.end(), a_id);
+    xCHECK_RET(it == _ids.end(), false);
 
     return true;
 }
