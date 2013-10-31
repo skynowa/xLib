@@ -22,7 +22,7 @@ public:
     virtual              ~CxTracer();
         ///< destructor
 
-    template<typename T>
+    template<class T>
     CxTracer &            operator << (const T &value);
         ///< operator <<
 
@@ -39,7 +39,7 @@ xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-template<typename T>
+template<class T>
 CxTracer &
 CxTracer::operator << (const T &value)
 {

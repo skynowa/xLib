@@ -16,7 +16,7 @@ xNAMESPACE_BEGIN(NxLib)
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-template<typename T>
+template<class T>
 /* static */ inline
 void_t
 CxUtils::ptrDeleteT(
@@ -26,7 +26,7 @@ CxUtils::ptrDeleteT(
     delete a_ptr; a_ptr = NULL;
 }
 //------------------------------------------------------------------------------
-template<typename T>
+template<class T>
 /* static */ inline
 void_t
 CxUtils::arrayDeleteT(
@@ -36,7 +36,7 @@ CxUtils::arrayDeleteT(
     delete [] a_ptr;  a_ptr = NULL;
 }
 //------------------------------------------------------------------------------
-template<typename T>
+template<class T>
 /* static */ inline
 void_t
 CxUtils::ptrAssignT(
@@ -49,7 +49,7 @@ CxUtils::ptrAssignT(
     *a_ptr = a_value;
 }
 //------------------------------------------------------------------------------
-template <typename T, std::csize_t cuiArraySize>
+template <class T, std::csize_t cuiArraySize>
 /* static */ inline
 size_t
 CxUtils::arraySizeT(
@@ -82,7 +82,7 @@ CxUtils::arrayZeroT(
     (void_t)std::fill_n(&a_arrayT[0], cuiArraySize, T());
 }
 //------------------------------------------------------------------------------
-template <typename T>
+template <class T>
 /* static */ inline
 void_t
 CxUtils::structZeroT(
@@ -93,7 +93,7 @@ CxUtils::structZeroT(
     xUNUSED(pvRv);
 }
 //------------------------------------------------------------------------------
-template <typename T>
+template <class T>
 /* static */ inline
 void_t
 CxUtils::bufferFreeT(
@@ -118,7 +118,7 @@ CxUtils::fileClose(
     a_fileHandle = NULL;
 }
 //------------------------------------------------------------------------------
-template <typename T>
+template <class T>
 /* static */ inline
 bool_t
 CxUtils::intToBoolT(
@@ -128,7 +128,7 @@ CxUtils::intToBoolT(
     return (0 == a_value) ? false : true;
 }
 //------------------------------------------------------------------------------
-template <typename T>
+template <class T>
 /* static */ inline
 const T &
 CxUtils::maxT(
@@ -139,7 +139,7 @@ CxUtils::maxT(
     return (a_value1 > a_value2) ? a_value1 : a_value2;
 }
 //------------------------------------------------------------------------------
-template <typename T>
+template <class T>
 /* static */ inline
 const T &
 CxUtils::minT(
@@ -150,7 +150,7 @@ CxUtils::minT(
     return (a_value1 < a_value2) ? a_value1 : a_value2;
 }
 //------------------------------------------------------------------------------
-template <typename T>
+template <class T>
 /* static */ inline
 void_t
 CxUtils::swapT(
@@ -164,7 +164,7 @@ CxUtils::swapT(
     a_value2 = temp;
 }
 //------------------------------------------------------------------------------
-template <typename ToT, typename FromT>
+template <class ToT, class FromT>
 /* static */ inline
 ToT
 CxUtils::reinterpretCastT(
@@ -208,7 +208,7 @@ CxUtils::roundDouble(
     return dRv;
 }
 //------------------------------------------------------------------------------
-template <typename T>
+template <class T>
 /* static */ inline
 T
 CxUtils::roundIntT(
@@ -229,7 +229,7 @@ CxUtils::roundIntT(
     return iRv;
 }
 //------------------------------------------------------------------------------
-template <typename T1, typename T2>
+template <class T1, class T2>
 /* static */ inline
 double
 CxUtils::safeDivT(
@@ -248,7 +248,7 @@ CxUtils::safeDivT(
     return dRv;
 }
 //------------------------------------------------------------------------------
-template <typename T>
+template <class T>
 /* static */ inline T
 CxUtils::enumIncT(
     const T &a_value
@@ -257,7 +257,7 @@ CxUtils::enumIncT(
     return static_cast<T>( static_cast<long_t>( a_value ) + 1 );
 }
 //------------------------------------------------------------------------------
-template <typename T>
+template <class T>
 /* static */  inline T
 CxUtils::enumDecT(
     const T &a_value

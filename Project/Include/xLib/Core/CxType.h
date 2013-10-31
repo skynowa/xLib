@@ -15,15 +15,15 @@ class CxType :
     /// type info
 {
 public:
-    template<typename T>
+    template<class T>
     static std::tstring_t name(const T &object) xWARN_UNUSED_RV;
         ///< get name
 
-    template<typename T>
+    template<class T>
     static std::tstring_t rawName(const T &object) xWARN_UNUSED_RV;
         ///< get raw name
 
-    template<typename T1, class T2>
+    template<class T1, class T2>
     static bool_t         isEquals(const T1 &object1, const T2 &object2) xWARN_UNUSED_RV;
         ///< is equals
 private:

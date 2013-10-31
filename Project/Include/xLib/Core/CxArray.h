@@ -10,7 +10,7 @@
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-template<typename T, std::size_t N>
+template<class T, std::size_t N>
 class CxArray
     /// array
 {
@@ -125,7 +125,7 @@ public:
     }
 
     // assignment with type conversion
-    template <typename T2>
+    template <class T2>
     CxArray<T,N>& operator= (const CxArray<T2, N> &rhs) {
     std::copy(rhs.begin(), rhs.end(), begin());
         return *this;
@@ -156,33 +156,33 @@ public:
 
 // comparisons
 namespace NxArray {
-    template<typename T, std::size_t N>
+    template<class T, std::size_t N>
     bool_t operator == (const CxArray<T, N> &x, const CxArray<T, N> &y) {
         return std::equal(x.begin(), x.end(), y.begin());
     }
-    template<typename T, std::size_t N>
+    template<class T, std::size_t N>
     bool_t operator< (const CxArray<T, N> &x, const CxArray<T, N> &y) {
         return std::lexicographical_compare(x.begin(),x.end(),y.begin(),y.end());
     }
-    template<typename T, std::size_t N>
+    template<class T, std::size_t N>
     bool_t operator != (const CxArray<T, N> &x, const CxArray<T, N> &y) {
         return !(x == y);
     }
-    template<typename T, std::size_t N>
+    template<class T, std::size_t N>
     bool_t operator > (const CxArray<T, N> &x, const CxArray<T, N> &y) {
         return (y < x);
     }
-    template<typename T, std::size_t N>
+    template<class T, std::size_t N>
     bool_t operator <= (const CxArray<T, N> &x, const CxArray<T, N> &y) {
         return !(y < x);
     }
-    template<typename T, std::size_t N>
+    template<class T, std::size_t N>
     bool_t operator >= (const CxArray<T, N> &x, const CxArray<T, N> &y) {
         return !(x < y);
     }
 
     // global swap()
-    template<typename T, std::size_t N>
+    template<class T, std::size_t N>
     inline void_t swap(CxArray<T, N> &x, CxArray<T, N> &y) {
         x.swap(y);
     }
@@ -190,13 +190,13 @@ namespace NxArray {
 
 #if xTEMP_DISABLED
     // Specific for boost::array: simply returns its elems data member.
-    template <typename T, std::size_t N>
+    template <class T, std::size_t N>
     T(&get_c_array(boost::CxArray<T, N> &arg))[N] {
         return arg.elems;
     }
 
     // Const version.
-    template <typename T, std::size_t N>
+    template <class T, std::size_t N>
     const T(&get_c_array(const boost::CxArray<T, N> &arg))[N] {
         return arg.elems;
     }
@@ -206,13 +206,13 @@ namespace NxArray {
     // Overload for std::array, assuming that std::array will have
     // explicit conversion functions as discussed at the WG21 meeting
     // in Summit, March 2009.
-    template <typename T, std::size_t N>
+    template <class T, std::size_t N>
     T(&get_c_array(std::array<T,N> &arg))[N] {
         return static_cast<T(&)[N]>(arg);
     }
 
     // Const version.
-    template <typename T, std::size_t N>
+    template <class T, std::size_t N>
     const T(&get_c_array(const std::array<T, N> &arg))[N] {
         return static_cast<T(&)[N]>(arg);
     }
@@ -220,7 +220,7 @@ namespace NxArray {
 //------------------------------------------------------------------------------
 namespace NxArray {
     //make_array (2 elements)
-    template<typename T>
+    template<class T>
     CxArray<T, 2>
     make_array(const T &t1, const T &t2) {
         CxArray<T, 2> aArrayT = {{t1, t2}};
@@ -229,7 +229,7 @@ namespace NxArray {
     }
 
     //make_array (3 elements)
-    template<typename T>
+    template<class T>
     CxArray<T, 3>
     make_array(const T &t1, const T &t2, const T &t3) {
         CxArray<T, 3> aArrayT = {{t1, t2, t3}};

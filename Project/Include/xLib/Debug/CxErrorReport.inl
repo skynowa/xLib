@@ -7,7 +7,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
-template<typename T>
+template<class T>
 CxErrorReport::CxErrorReport(
     const ExType    &a_type,
     std::ctstring_t &a_var1,
