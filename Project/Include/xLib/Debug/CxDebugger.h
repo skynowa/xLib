@@ -11,7 +11,7 @@
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-//class CxErrorReport;
+// TODO: class CxErrorReport;
 
 class CxDebugger :
     private CxNonCopyable
