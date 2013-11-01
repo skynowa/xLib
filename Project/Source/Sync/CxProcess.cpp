@@ -11,7 +11,6 @@
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Filesystem/CxDll.h>
 #include <xLib/Sync/CxThread.h>
-#include <xLib/System/CxSystemInfo.h>
 
 #if xOS_ENV_WIN
     #if !xCOMPILER_MINGW

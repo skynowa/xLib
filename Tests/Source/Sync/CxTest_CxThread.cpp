@@ -216,7 +216,7 @@ CxTest_CxThread::unit(
 
     xTEST_CASE("CxThread::setCpuAffinity", a_cullCaseLoops)
     {
-        for (ulong_t i = 0; i < CxSystemInfo::numOfCpus(); ++ i) {
+        for (ulong_t i = 0; i < CxSystemInfo().numOfCpus(); ++ i) {
             pthT->setCpuAffinity(i);
         }
     }
@@ -227,7 +227,7 @@ CxTest_CxThread::unit(
             pthT->setCpuIdeal(0);
 
             m_ulRv = pthT->cpuIdeal();
-            xTEST_EQ(true, CxSystemInfo::numOfCpus() > m_ulRv);
+            xTEST_EQ(true, CxSystemInfo().numOfCpus() > m_ulRv);
         #elif xOS_ENV_UNIX
 
         #endif

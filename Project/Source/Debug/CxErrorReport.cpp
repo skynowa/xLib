@@ -45,6 +45,8 @@ CxErrorReport::_construct(
     std::ctstring_t &a_csComment
 )
 {
+    CxSystemInfo sys_info;
+
     std::csize_t cuiReportWidthMax = 46U;   // MAGIC: cuiReportWidthMax
 
     type          = a_crtType;
@@ -67,8 +69,8 @@ CxErrorReport::_construct(
     currentDate    = CxDateTime::current().format(CxDateTime::ftDateTime);
     buildDate      = CxString::format(xT("%s/%s"), a_csDate.c_str(), a_csTime.c_str());
     buildType      = CxDebugger().isDebugBuild() ? xT("debug") : xT("release");
-    osVersion      = CxSystemInfo::formatOsType( CxSystemInfo::os() );
-    osArchitecture = CxSystemInfo::formatOsArch( CxSystemInfo::osArch() );
+    osVersion      = sys_info.formatOsType( sys_info.os() );
+    osArchitecture = sys_info.formatOsArch( sys_info.osArch() );
 
     stackTrace     = a_csStackTrace;
     comment        = a_csComment.empty() ? CxConst::xHYPHEN() : a_csComment;

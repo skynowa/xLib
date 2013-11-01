@@ -238,7 +238,7 @@ CxMimeHeader::generateMessageID()
 {
     std::tstring_t sRv;
 
-    sRv = CxString::format(xT("%s@%s"), CxString::createGuid().c_str(), CxSystemInfo::hostName().c_str());
+    sRv = CxString::format(xT("%s@%s"), CxString::createGuid().c_str(), CxSystemInfo().hostName().c_str());
     xTEST_EQ(false, sRv.empty());
 
     return sRv;
