@@ -57,7 +57,7 @@ CxShell::execute(
     xTEST_NA(a_params);
 
     xCHECK_DO(true  == a_filePath.empty(), return);
-    xCHECK_DO(!isAvailable(),        return);
+    xCHECK_DO(!isAvailable(),              return);
 
     // REVIEW: security bug - xT("%s \"%s\"") or xT("\"%s\" \"%s\"") ??
     std::tstring_t sCommand = CxString::format(xT("%s \"%s\""), a_filePath.c_str(), a_params.c_str());
@@ -81,8 +81,8 @@ CxShell::findExecutable(
     xTEST_EQ(false, a_fileName.empty());
     // findDirPath - n/a
 
-    int_t            iRv             = SE_ERR_FNF;
-    tchar_t        szRes[MAX_PATH] = {0};
+    int_t     iRv             = SE_ERR_FNF;
+    tchar_t   szRes[MAX_PATH] = {0};
     ctchar_t *cpszFindDirPath = a_findDirPath.empty() ? NULL : a_findDirPath.c_str();
 
     iRv = reinterpret_cast<int_t>( ::FindExecutable(a_fileName.c_str(), cpszFindDirPath, szRes) );
@@ -138,7 +138,8 @@ CxShell::execute(
             break;
     }
 
-    int_t iRv = reinterpret_cast<int_t>( ::ShellExecute(a_owner, sOperation.c_str(), sFilePath.c_str(), sParams.c_str(), sDir.c_str(), a_showCmd) );
+    int_t iRv = reinterpret_cast<int_t>( ::ShellExecute(a_owner, sOperation.c_str(),
+        sFilePath.c_str(), sParams.c_str(), sDir.c_str(), a_showCmd) );
     xTEST_LESS(32, iRv);
 }
 //------------------------------------------------------------------------------
@@ -210,8 +211,8 @@ CxShell::executeEmail(
     sCmd.append(xT("mailto:")  + sToEmail);
 
     xCHECK_DO(!sSubject.empty() || !sBody.empty(), sCmd.append(xT("?")                  ));
-    xCHECK_DO(!sSubject.empty(),                           sCmd.append(xT("subject=") + sSubject));
-    xCHECK_DO(!sBody.empty(),                              sCmd.append(xT("&body=")    + sBody  ));
+    xCHECK_DO(!sSubject.empty(),                   sCmd.append(xT("subject=") + sSubject));
+    xCHECK_DO(!sBody.empty(),                      sCmd.append(xT("&body=")   + sBody   ));
 
     //iMsgBox(sCmd);
 
@@ -252,11 +253,11 @@ CxShell::specialDirPath(
 xINLINE_HO void_t
 CxShell::createShortcut(
     std::ctstring_t &a_shortCutFilePath, ///< путь и имя ярлыка, например, "C:\\Блокнот.lnk"
-                                           ///< Если не указан путь, ярлык будет создан в папке, указанной в следующем параметре.
-                                           ///< Прим.: Windows сама НЕ добавляет к имени расширение .lnk
+                                         ///< Если не указан путь, ярлык будет создан в папке, указанной в следующем параметре.
+                                         ///< Прим.: Windows сама НЕ добавляет к имени расширение .lnk
     std::ctstring_t &a_filePath,         ///< путь и имя программы/файла, например, "C:\\Windows\\NotePad.Exe" или "C:\\Мои документы\\Файл.doc"
     std::ctstring_t &a_workingDirectory, ///< рабочий каталог, например, "C:\\Windows"
-    std::ctstring_t &a_args,        ///< аргументы командной строки, например, "C:\\Doc\\Text.txt"
+    std::ctstring_t &a_args,             ///< аргументы командной строки, например, "C:\\Doc\\Text.txt"
     const WORD      &a_hotKey,           ///< горячая клавиша, например, для Ctrl+Alt+A HOTKEY(HOTKEYF_ALT|HOTKEYF_CONTROL,'A')
     cint_t          &a_cmdShow,          ///< начальный вид, например, SW_SHOWNORMAL (см. параметр nCmdShow функции ShowWindow)
     std::ctstring_t &a_iconFilePath,     ///< путь и имя файла, содержащего иконку, например, "C:\\Windows\\NotePad.Exe"
