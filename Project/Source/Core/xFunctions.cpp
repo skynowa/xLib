@@ -13,7 +13,7 @@ xNAMESPACE_BEGIN(NxLib)
 #if xOS_ENV_WIN
 
 int_t
-iGetTimeOfDay(
+getTimeOfDay(
     struct timeval  *a_tv,
     struct timezone *a_tz
 )
@@ -24,9 +24,9 @@ iGetTimeOfDay(
     ulonglong_t DELTA_EPOCH_IN_MICROSECS = 11644473600000000ULL;
 #endif
 
-    FILETIME    ftTime    = {0};
-    ulonglong_t ullRv    = 0ULL;
-    static int_t  s_iTzFlag = 0;
+    FILETIME     ftTime    = {0};
+    ulonglong_t  ullRv     = 0ULL;
+    static int_t s_iTzFlag = 0;
 
     if (NULL != a_tv) {
         (void_t)::GetSystemTimeAsFileTime(&ftTime);
@@ -66,7 +66,8 @@ iGetTimeOfDay(
         xNA;
     #elif xOS_FREEBSD
         std::clock_t
-        liGetClock() {
+        clock()
+        {
             rusage ruUsage = {{0}};
 
             int_t iRv = ::getrusage(RUSAGE_SELF, &ruUsage);
