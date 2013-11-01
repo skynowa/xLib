@@ -12,7 +12,6 @@
 #include <xLib/Debug/CxErrorReport.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Gui/Dialogs/CxMsgBoxT.h>
-#include <xLib/Sync/CxProcess.h>
 #include <xLib/System/CxEnvironment.h>
 
 #if xOS_ENV_UNIX
@@ -76,7 +75,7 @@ CxDebugger::isActive()
     // remote debugger
     BOOL blIsRemoteDebuggerPresent = FALSE;
 
-    blRes = ::CheckRemoteDebuggerPresent(CxProcess::currentHandle(), &blIsRemoteDebuggerPresent);
+    blRes = ::CheckRemoteDebuggerPresent(::GetCurrentProcess(), &blIsRemoteDebuggerPresent);
     xCHECK_RET(FALSE == blRes || FALSE == blIsRemoteDebuggerPresent, false);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
@@ -91,7 +90,7 @@ CxDebugger::isActive()
         aiMib[0] = CTL_KERN;
         aiMib[1] = KERN_PROC;
         aiMib[2] = KERN_PROC_PID;
-        aiMib[3] = CxProcess::currentId();
+        aiMib[3] = ::getpid();
 
         // if sysctl fails for some bizarre reason, we get a predictable result
         kiInfo.ki_flag = 0;
