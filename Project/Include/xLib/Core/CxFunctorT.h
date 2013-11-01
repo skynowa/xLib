@@ -37,10 +37,6 @@ xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
 #include "CxFunctorT.inl"
 
-#if xXLIB_HEADER_ONLY
-
-#endif
-
 
 #if xTODO
     class thread_adapter {
