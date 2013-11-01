@@ -16,6 +16,8 @@ CxTest_CxAutoReset::unit(
 {
     xTEST_CASE("CxAutoReset::CxAutoReset", a_caseLoops)
     {
+    #if xTODO
+        // TODO: CxTest_CxAutoReset
         bool data[] = {true, false, true};
 
         for (auto &it : data) {
@@ -39,6 +41,7 @@ CxTest_CxAutoReset::unit(
 
             xTEST_EQ(it, true);
         }
+    #endif
     }
 }
 //---------------------------------------------------------------------------
