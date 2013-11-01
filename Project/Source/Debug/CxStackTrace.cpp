@@ -71,7 +71,7 @@ CxStackTrace::get(
     #if   xCOMPILER_MINGW
         // TODO: CxStackTrace::vGet
     #elif xCOMPILER_MS || xCOMPILER_CODEGEAR
-        void_t        *pvStack[xSTACK_TRACE_FRAMES_MAX] = {0};
+        void_t      *pvStack[xSTACK_TRACE_FRAMES_MAX] = {0};
         SYMBOL_INFO *psiSymbol                        = NULL;
         HANDLE       hProcess                         = NULL;
 
@@ -103,7 +103,8 @@ CxStackTrace::get(
 
             // sModulePath
             {
-                IMAGEHLP_MODULE64 miModuleInfo = {0};   miModuleInfo.SizeOfStruct = sizeof(IMAGEHLP_MODULE64);
+                IMAGEHLP_MODULE64 miModuleInfo = {0};
+                miModuleInfo.SizeOfStruct = sizeof(IMAGEHLP_MODULE64);
 
                 blRes = ::SymGetModuleInfo64(hProcess, reinterpret_cast<DWORD64>( pvStack[i] ), &miModuleInfo);
                 if (FALSE == blRes) {
@@ -116,7 +117,8 @@ CxStackTrace::get(
             // sFilePath, sFileLine
             {
                 DWORD           dwDisplacement  = 0UL;
-                IMAGEHLP_LINE64 ihlImagehlpLine = {0};    ihlImagehlpLine.SizeOfStruct = sizeof(IMAGEHLP_LINE64);
+                IMAGEHLP_LINE64 ihlImagehlpLine = {0};
+                ihlImagehlpLine.SizeOfStruct = sizeof(IMAGEHLP_LINE64);
 
                 blRes = ::SymGetLineFromAddr64(hProcess, reinterpret_cast<DWORD64>( pvStack[i] ), &dwDisplacement, &ihlImagehlpLine);
                 if (FALSE == blRes) {
@@ -176,7 +178,7 @@ CxStackTrace::get(
 
         xARRAY_DELETE(psiSymbol);
 
-        (void_t)::SymCleanup(hProcess);   hProcess = NULL;
+        (void_t)::SymCleanup(hProcess); hProcess = NULL;
     #endif
 #elif xOS_ENV_UNIX
     void_t *pvStack[xSTACK_TRACE_FRAMES_MAX] = {0};
@@ -188,7 +190,7 @@ CxStackTrace::get(
     xCHECK_DO(NULL == ppszSymbols, return);
 
     for (int_t i = 0; i < iFramesNum; ++ i) {
-        int_t            iStackLineNum = 0;
+        int_t          iStackLineNum = 0;
         std::tstring_t sModulePath;
         std::tstring_t sFilePath;
         std::tstring_t sFileLine;
@@ -204,10 +206,10 @@ CxStackTrace::get(
             sFilePath     = csDataNotFound;
             sFileLine     = csDataNotFound;
             sByteOffset   = CxString::format(xT("%p"), ptrdiff_t(0));
-            sFunctionName = (NULL == ppszSymbols[i])   ? csDataNotFound : ppszSymbols[i];
+            sFunctionName = (NULL == ppszSymbols[i]) ? csDataNotFound : ppszSymbols[i];
         } else {
             ctchar_t *pcszSymbolName = NULL;
-            int_t            iStatus        = - 1;
+            int_t     iStatus        = - 1;
 
             tchar_t *pszDemangleName = abi::__cxa_demangle(dlinfo.dli_sname, NULL, NULL, &iStatus);
             if (NULL != pszDemangleName && 0 == iStatus) {
@@ -229,7 +231,7 @@ CxStackTrace::get(
             sFilePath     = _sFilePath.empty()         ? csDataNotFound : _sFilePath;
             sFileLine     = CxString::cast(_ulSourceLine);
             sByteOffset   = CxString::format(xT("%p"), ptrdiff_t(dlinfo.dli_saddr));
-            sFunctionName = (NULL == pcszSymbolName)   ? csDataNotFound : pcszSymbolName;
+            sFunctionName = (NULL == pcszSymbolName) ? csDataNotFound : pcszSymbolName;
 
             xBUFF_FREE(pszDemangleName);
         }
@@ -278,12 +280,10 @@ xINLINE_HO std::tstring_t
 CxStackTrace::toString()
 {
     std::tstring_t sRv;
+    std::vector<std::vec_tstring_t> stack;
 
-    std::vector<std::vec_tstring_t> vvsStack;
-
-    get(&vvsStack);
-
-    sRv = _format(&vvsStack);
+    get(&stack);
+    sRv = _format(&stack);
     xCHECK_RET(sRv.empty(), CxConst::xUNKNOWN_STRING());
 
     return sRv;
@@ -322,14 +322,15 @@ CxStackTrace::_format(
     xFOREACH_CONST(std::vector<std::vec_tstring_t>, it, *a_stack) {
         std::tstringstream_t ssStackLine;
 
-        ssStackLine << _linePrefix
-                    << std::setw(vuiMaxs[0]) << std::right << it->at(0) << _elementSeparator
-                    << std::setw(vuiMaxs[1]) << std::left  << it->at(1) << _elementSeparator
-                    << std::setw(vuiMaxs[2]) << std::left  << it->at(2) << _elementSeparator
-                    << std::setw(vuiMaxs[3]) << std::right << it->at(3) << _elementSeparator
-                    << std::setw(vuiMaxs[4]) << std::left  << it->at(4) << _elementSeparator
-                    << std::setw(vuiMaxs[5]) << std::left  << it->at(5)
-                    << _lineSeparator;
+        ssStackLine
+            << _linePrefix
+            << std::setw(vuiMaxs[0]) << std::right << it->at(0) << _elementSeparator
+            << std::setw(vuiMaxs[1]) << std::left  << it->at(1) << _elementSeparator
+            << std::setw(vuiMaxs[2]) << std::left  << it->at(2) << _elementSeparator
+            << std::setw(vuiMaxs[3]) << std::right << it->at(3) << _elementSeparator
+            << std::setw(vuiMaxs[4]) << std::left  << it->at(4) << _elementSeparator
+            << std::setw(vuiMaxs[5]) << std::left  << it->at(5)
+            << _lineSeparator;
 
         sRv.append(ssStackLine.str());
     }
@@ -388,11 +389,10 @@ CxStackTrace::_addr2Line(
         ctchar_t *pcszFileAndLine = std::fgets(szBuff, xARRAY_SIZE(szBuff), pflFile);
         xSTD_VERIFY(NULL != pcszFileAndLine);
 
-       /*
+       /**
         * Parse that variants of pcszFileAndLine string:
         *   - /home/skynowa/Projects/xLib/Build/Tests/GCC_linux/Debug/../../../../Tests/Source/./Test.cpp:108
         *   - ??:0
-        *
         */
         std::vec_tstring_t vsLine;
 
@@ -406,7 +406,7 @@ CxStackTrace::_addr2Line(
         *a_sourceLine = CxString::cast<ulong_t>( vsLine.at(1) );
     }
 
-    int_t iRv =::pclose(pflFile);    pflFile = NULL;
+    int_t iRv =::pclose(pflFile);   pflFile = NULL;
     xSTD_VERIFY(- 1 != iRv);
 }
 
