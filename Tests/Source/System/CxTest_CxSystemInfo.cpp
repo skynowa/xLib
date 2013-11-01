@@ -21,7 +21,7 @@ CxTest_CxSystemInfo::unit(
 {
     xTEST_CASE("CxSystemInfo::os", a_cullCaseLoops)
     {
-        const CxSystemInfo::ExOsType otType = CxSystemInfo::os();
+        const CxSystemInfo::ExOsType otType = CxSystemInfo().os();
         xTEST_DIFF(CxSystemInfo::otUnknown, otType);
 
         #if   xOS_ENV_WIN
@@ -78,10 +78,10 @@ CxTest_CxSystemInfo::unit(
                 xTEST_EQ((*it).second, m_sRv);
             }
         #elif xOS_ENV_UNIX
-            m_sRv = CxSystemInfo::formatOsType(CxSystemInfo::otLinux);
+            m_sRv = CxSystemInfo().formatOsType(CxSystemInfo::otLinux);
             xTEST_EQ(false, m_sRv.empty());
 
-            m_sRv = CxSystemInfo::formatOsType(CxSystemInfo::otFreeBSD);
+            m_sRv = CxSystemInfo().formatOsType(CxSystemInfo::otFreeBSD);
             xTEST_EQ(false, m_sRv.empty());
         #endif
     }
@@ -90,25 +90,25 @@ CxTest_CxSystemInfo::unit(
     {
         CxSystemInfo::ExOsArch oaRes = CxSystemInfo::oaUnknown;
 
-        oaRes = CxSystemInfo::osArch();
+        oaRes = CxSystemInfo().osArch();
         xTEST_DIFF(CxSystemInfo::oaUnknown, oaRes);
     }
 
     xTEST_CASE("CxSystemInfo::formatOsArch", a_cullCaseLoops)
     {
-        m_sRv = CxSystemInfo::formatOsArch(CxSystemInfo::oaUnknown);
+        m_sRv = CxSystemInfo().formatOsArch(CxSystemInfo::oaUnknown);
         xTEST_EQ(false, m_sRv.empty());
 
-        m_sRv = CxSystemInfo::formatOsArch(CxSystemInfo::oa32bit);
+        m_sRv = CxSystemInfo().formatOsArch(CxSystemInfo::oa32bit);
         xTEST_EQ(false, m_sRv.empty());
 
-        m_sRv = CxSystemInfo::formatOsArch(CxSystemInfo::oa64bit);
+        m_sRv = CxSystemInfo().formatOsArch(CxSystemInfo::oa64bit);
         xTEST_EQ(false, m_sRv.empty());
     }
 
     xTEST_CASE("CxSystemInfo::hostName", a_cullCaseLoops)
     {
-        m_sRv = CxSystemInfo::hostName();
+        m_sRv = CxSystemInfo().hostName();
         xTEST_EQ(false, m_sRv.empty());
         #if xTEST_IGNORE
             xTRACEV(xT("\tCxSystemInfo::hostName(): %s"), m_sRv.c_str());
@@ -117,7 +117,7 @@ CxTest_CxSystemInfo::unit(
 
     xTEST_CASE("CxSystemInfo::isUserAdmin", a_cullCaseLoops)
     {
-        m_bRv = CxSystemInfo::isUserAdmin();
+        m_bRv = CxSystemInfo().isUserAdmin();
         #if xTEST_IGNORE
             xTRACEV(xT("\tCxSystemInfo::isUserAdmin(): %s"), CxString::boolToStr(m_bRv).c_str());
         #endif
@@ -125,7 +125,7 @@ CxTest_CxSystemInfo::unit(
 
     xTEST_CASE("CxSystemInfo::userName", a_cullCaseLoops)
     {
-        m_sRv = CxSystemInfo::userName();
+        m_sRv = CxSystemInfo().userName();
         xTEST_EQ(false, m_sRv.empty());
         #if xTEST_IGNORE
             xTRACEV(xT("\tCxSystemInfo::userName(): %s"), m_sRv.c_str());
@@ -134,7 +134,7 @@ CxTest_CxSystemInfo::unit(
 
     xTEST_CASE("CxSystemInfo::useHomeDir", a_cullCaseLoops)
     {
-        m_sRv = CxSystemInfo::useHomeDir();
+        m_sRv = CxSystemInfo().useHomeDir();
         xTEST_EQ(false, m_sRv.empty());
         xTEST_EQ(true,  CxDir(m_sRv).isExists());
         #if xTEST_IGNORE
@@ -144,7 +144,7 @@ CxTest_CxSystemInfo::unit(
 
     xTEST_CASE("CxSystemInfo::userShellPath", a_cullCaseLoops)
     {
-        m_sRv = CxSystemInfo::userShellPath();
+        m_sRv = CxSystemInfo().userShellPath();
         xTEST_EQ(false, m_sRv.empty());
         xTEST_EQ(true,  CxFile::isExists(m_sRv));
         #if xTEST_IGNORE
@@ -154,7 +154,7 @@ CxTest_CxSystemInfo::unit(
 
     xTEST_CASE("CxSystemInfo::numOfCpus", a_cullCaseLoops)
     {
-        m_ulRv = CxSystemInfo::numOfCpus();
+        m_ulRv = CxSystemInfo().numOfCpus();
         #if xTEST_IGNORE
             xTRACEV(xT("\tCxSystemInfo::numOfCpus: %lu"), m_ulRv);
         #endif
@@ -163,22 +163,22 @@ CxTest_CxSystemInfo::unit(
 
     xTEST_CASE("CxSystemInfo::currentCpuNum", a_cullCaseLoops)
     {
-        m_ulRv = CxSystemInfo::currentCpuNum();
+        m_ulRv = CxSystemInfo().currentCpuNum();
         #if xTEST_IGNORE
             xTRACEV(xT("\tCxSystemInfo::currentCpuNum: %lu"), m_ulRv);
         #endif
-        xTEST_EQ(true, CxSystemInfo::numOfCpus() > m_ulRv);
+        xTEST_EQ(true, CxSystemInfo().numOfCpus() > m_ulRv);
     }
 
     xTEST_CASE("CxSystemInfo::cpuVendor", a_cullCaseLoops)
     {
-        CxSystemInfo::ExCpuVendor cvType = CxSystemInfo::cpuVendor();
+        CxSystemInfo::ExCpuVendor cvType = CxSystemInfo().cpuVendor();
         xTEST_EQ(true, CxSystemInfo::cvIntel == cvType || CxSystemInfo::cvAmd == cvType);
     }
 
     xTEST_CASE("CxSystemInfo::cpuModel", a_cullCaseLoops)
     {
-        m_sRv = CxSystemInfo::cpuModel();
+        m_sRv = CxSystemInfo().cpuModel();
         xTEST_EQ(false, m_sRv.empty());
 
         #if xTEST_IGNORE
@@ -188,7 +188,7 @@ CxTest_CxSystemInfo::unit(
 
     xTEST_CASE("CxSystemInfo::cpuSpeed", a_cullCaseLoops)
     {
-        m_ulRv = CxSystemInfo::cpuSpeed();
+        m_ulRv = CxSystemInfo().cpuSpeed();
         xTEST_LESS(0UL, m_ulRv);
 
         #if xTEST_IGNORE
@@ -198,20 +198,20 @@ CxTest_CxSystemInfo::unit(
 
     xTEST_CASE("CxSystemInfo::ramTotal", a_cullCaseLoops)
     {
-        m_ullRv = CxSystemInfo::ramTotal();
+        m_ullRv = CxSystemInfo().ramTotal();
         xTEST_LESS(0ULL, m_ullRv);
     }
 
     xTEST_CASE("CxSystemInfo::ramAvailable", a_cullCaseLoops)
     {
-        m_ullRv = CxSystemInfo::ramAvailable();
+        m_ullRv = CxSystemInfo().ramAvailable();
         xTEST_LESS(0ULL, m_ullRv);
     }
 
     xTEST_CASE("CxSystemInfo::cpuUsage", a_cullCaseLoops)
     {
         for (size_t i = 0; i < 10; ++ i) {
-            m_ulRv = CxSystemInfo::cpuUsage();
+            m_ulRv = CxSystemInfo().cpuUsage();
             xTEST_NA(m_ulRv);
 
             #if xTEST_IGNORE
@@ -225,7 +225,7 @@ CxTest_CxSystemInfo::unit(
     xTEST_CASE("CxSystemInfo::ramUsage", a_cullCaseLoops)
     {
         for (size_t i = 0; i < 10; ++ i) {
-            m_ulRv = CxSystemInfo::ramUsage();
+            m_ulRv = CxSystemInfo().ramUsage();
             xTEST_NA(m_ulRv);
 
             #if xTEST_IGNORE
@@ -238,7 +238,7 @@ CxTest_CxSystemInfo::unit(
 
     xTEST_CASE("CxSystemInfo::pageSize", a_cullCaseLoops)
     {
-        m_ulRv = CxSystemInfo::pageSize();
+        m_ulRv = CxSystemInfo().pageSize();
         xTEST_LESS(0UL, m_ulRv);
     }
 }

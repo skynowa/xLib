@@ -586,7 +586,7 @@ CxThread::setPriority(
     BOOL blRes = ::SetThreadPriority(_m_hThread.get(), a_ctpPriority);
     xTEST_DIFF(FALSE, blRes);
 #else
-    if (!CxSystemInfo::isUserAdmin()) {
+    if (!CxSystemInfo().isUserAdmin()) {
         CxTracer() << xT("::: xLib: warning (CxThread::setPriority fail, need root) :::");
         return;
     }
@@ -865,7 +865,7 @@ CxThread::cpuIdeal() const
 xINLINE_HO ulong_t
 CxThread::cpuCount()
 {
-    ulong_t ulRv = CxSystemInfo::numOfCpus();
+    ulong_t ulRv = CxSystemInfo().numOfCpus();
     xCHECK_RET(ulRv < 1UL || ulRv > 32UL, 1UL);
 
     return ulRv;

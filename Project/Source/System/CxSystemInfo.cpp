@@ -28,7 +28,6 @@ xNAMESPACE_BEGIN(NxLib)
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-/* static */
 xINLINE_HO CxSystemInfo::ExOsType
 CxSystemInfo::os()
 {
@@ -103,7 +102,6 @@ CxSystemInfo::os()
     return otRes;
 }
 //------------------------------------------------------------------------------
-/* static */
 xINLINE_HO std::tstring_t
 CxSystemInfo::formatOsType(
     const ExOsType &a_osType
@@ -194,7 +192,6 @@ CxSystemInfo::formatOsType(
     return sRv;
 }
 //------------------------------------------------------------------------------
-/* static */
 xINLINE_HO CxSystemInfo::ExOsArch
 CxSystemInfo::osArch()
 {
@@ -261,7 +258,6 @@ CxSystemInfo::osArch()
     return oaRes;
 }
 //------------------------------------------------------------------------------
-/* static */
 xINLINE_HO std::tstring_t
 CxSystemInfo::formatOsArch(
     const ExOsArch &a_osArch
@@ -287,7 +283,6 @@ CxSystemInfo::formatOsArch(
     return sRv;
 }
 //------------------------------------------------------------------------------
-/* static */
 xINLINE_HO std::tstring_t
 CxSystemInfo::desktopName()
 {
@@ -315,7 +310,6 @@ CxSystemInfo::desktopName()
     return sRv;
 }
 //------------------------------------------------------------------------------
-/* static */
 xINLINE_HO std::tstring_t
 CxSystemInfo::hostName()
 {
@@ -341,7 +335,6 @@ CxSystemInfo::hostName()
     return sRv;
 }
 //------------------------------------------------------------------------------
-/* static */
 xINLINE_HO bool_t
 CxSystemInfo::isUserAdmin()
 {
@@ -387,7 +380,6 @@ CxSystemInfo::isUserAdmin()
     return true;
 }
 //------------------------------------------------------------------------------
-/* static */
 xINLINE_HO std::tstring_t
 CxSystemInfo::userName()
 {
@@ -422,7 +414,6 @@ CxSystemInfo::userName()
     return sRv;
 }
 //------------------------------------------------------------------------------
-/* static */
 xINLINE_HO std::tstring_t
 CxSystemInfo::useHomeDir()
 {
@@ -466,7 +457,6 @@ CxSystemInfo::useHomeDir()
     return sRv;
 }
 //------------------------------------------------------------------------------
-/* static */
 xINLINE_HO std::tstring_t
 CxSystemInfo::userShellPath()
 {
@@ -500,7 +490,6 @@ CxSystemInfo::userShellPath()
     return sRv;
 }
 //------------------------------------------------------------------------------
-/* static */
 xINLINE_HO ulong_t
 CxSystemInfo::numOfCpus()
 {
@@ -532,7 +521,6 @@ CxSystemInfo::numOfCpus()
     return ulRv;
 }
 //------------------------------------------------------------------------------
-/* static */
 xINLINE_HO ulong_t
 CxSystemInfo::currentCpuNum()
 {
@@ -598,7 +586,6 @@ CxSystemInfo::currentCpuNum()
     return ulRv;
 }
 //------------------------------------------------------------------------------
-/* static */
 xINLINE_HO CxSystemInfo::ExCpuVendor
 CxSystemInfo::cpuVendor()
 {
@@ -685,7 +672,6 @@ CxSystemInfo::cpuVendor()
     return cvRes;
 }
 //------------------------------------------------------------------------------
-/* static */
 xINLINE_HO std::tstring_t
 CxSystemInfo::cpuModel()
 {
@@ -761,7 +747,6 @@ CxSystemInfo::cpuModel()
     return sRv;
 }
 //------------------------------------------------------------------------------
-/* static */
 xINLINE_HO ulong_t
 CxSystemInfo::cpuSpeed()
 {
@@ -807,7 +792,6 @@ CxSystemInfo::cpuSpeed()
     return ulRv;
 }
 //------------------------------------------------------------------------------
-/* static */
 xINLINE_HO ulong_t
 CxSystemInfo::cpuUsage()
 {
@@ -945,7 +929,6 @@ CxSystemInfo::cpuUsage()
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------------
-/* static */
 xINLINE_HO ulonglong_t
 CxSystemInfo::ramTotal()
 {
@@ -985,7 +968,6 @@ CxSystemInfo::ramTotal()
     return ullRv;
 }
 //-------------------------------------------------------------------------------------------------------
-/* static */
 xINLINE_HO ulonglong_t
 CxSystemInfo::ramAvailable()
 {
@@ -1023,7 +1005,6 @@ CxSystemInfo::ramAvailable()
     return ullRv;
 }
 //-------------------------------------------------------------------------------------------------------
-/* static */
 xINLINE_HO ulong_t
 CxSystemInfo::ramUsage()
 {
@@ -1081,7 +1062,6 @@ CxSystemInfo::ramUsage()
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------------
-/* static */
 xINLINE_HO ulong_t
 CxSystemInfo::pageSize()
 {
@@ -1116,7 +1096,6 @@ CxSystemInfo::pageSize()
 #if !xOS_ENV_WIN
 
 //------------------------------------------------------------------------------
-/* static */
 xINLINE_HO void_t
 CxSystemInfo::_passwdFileEntry(
     struct passwd *a_passwdEntry
