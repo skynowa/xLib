@@ -8,8 +8,6 @@
 
 #include <xLib/Core/xCore.h>
 //------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(NxLib)
-
 #if xUNICODE
         #define tcin            wcin
         #define tcout           wcout
@@ -218,7 +216,7 @@ xNAMESPACE_BEGIN(NxLib)
         #define xTISUPPER       isupper
         #define xTTOLOWER       tolower
         #define xTTOUPPER       toupper
-#endif //xUNICODE
+#endif // xUNICODE
 
 
 // xLOCKING
@@ -293,6 +291,8 @@ xNAMESPACE_BEGIN(NxLib)
 *
 *******************************************************************************/
 
+xNAMESPACE_BEGIN(NxLib)
+
 // xGETTIMEOFDAY
 #if xOS_ENV_WIN
     struct timezone
@@ -302,10 +302,10 @@ xNAMESPACE_BEGIN(NxLib)
         int_t tz_dsttime;     ///< type of dst correction
     };
 
-    int_t                           iGetTimeOfDay(struct timeval *tv, struct timezone *tz) xWARN_UNUSED_RV;
+    int_t                           getTimeOfDay(struct timeval *tv, struct timezone *tz) xWARN_UNUSED_RV;
         ///< porting from Linux gettimeofday
 
-    #define xGETTIMEOFDAY           iGetTimeOfDay
+    #define xGETTIMEOFDAY           getTimeOfDay
 #else
     #define xGETTIMEOFDAY           gettimeofday
 #endif
@@ -318,10 +318,10 @@ xNAMESPACE_BEGIN(NxLib)
     #if   xOS_LINUX
         #define xSTD_CLOCK          std::clock
     #elif xOS_FREEBSD
-        std::clock_t                liGetClock() xWARN_UNUSED_RV;
+        std::clock_t                clock() xWARN_UNUSED_RV;
             ///< get std::clock_t (http://bugs.vcmi.eu/view.php?id=719)
 
-        #define xSTD_CLOCK          liGetClock
+        #define xSTD_CLOCK          clock
     #endif
 #elif xOS_ENV_MAC
     #define xSTD_CLOCK              std::clock
