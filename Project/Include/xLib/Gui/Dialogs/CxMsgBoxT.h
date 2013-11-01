@@ -59,7 +59,3 @@ private:
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
 #include "CxMsgBoxT.inl"
-
-#if xXLIB_HEADER_ONLY
-
-#endif
