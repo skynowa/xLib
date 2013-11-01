@@ -115,7 +115,7 @@ CxTest_CxProcessInfo::unit(
             CxProcessInfo info;
             info.setProcessId(/* *it */ CxProcess::currentId());
 
-            m_sRv = info.commandLine(&m_vsRv);
+            info.commandLine(&m_vsRv);
             xTEST_EQ(false, m_vsRv.empty());
 
             #if xTEST_IGNORE
