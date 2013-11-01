@@ -331,13 +331,13 @@ CxDateTime::get(
     xTEST_EQ(true, isValid());
     // n/a
 
-    CxUtils::ptrAssignT(a_year,        _year);
-    CxUtils::ptrAssignT(a_month,       _month);
-    CxUtils::ptrAssignT(a_day,         _day);
-    CxUtils::ptrAssignT(a_hour,        _hour);
-    CxUtils::ptrAssignT(a_minute,      _minute);
-    CxUtils::ptrAssignT(a_second,      _second);
-    CxUtils::ptrAssignT(a_msec, _msec);
+    CxUtils::ptrAssignT(a_year,   _year);
+    CxUtils::ptrAssignT(a_month,  _month);
+    CxUtils::ptrAssignT(a_day,    _day);
+    CxUtils::ptrAssignT(a_hour,   _hour);
+    CxUtils::ptrAssignT(a_minute, _minute);
+    CxUtils::ptrAssignT(a_second, _second);
+    CxUtils::ptrAssignT(a_msec,   _msec);
 }
 //------------------------------------------------------------------------------
 xINLINE_HO ushort_t
@@ -425,13 +425,13 @@ CxDateTime::set(
     xTEST_EQ(true, isValid(a_year, a_month, a_day, a_hour, a_minute, a_second, a_msec));
 
     //datetime members
-    _year            = a_year;
-    _month           = a_month;
-    _day             = a_day;
-    _hour            = a_hour;
-    _minute          = a_minute;
-    _second          = a_second;
-    _msec     = a_msec;
+    _year   = a_year;
+    _month  = a_month;
+    _day    = a_day;
+    _hour   = a_hour;
+    _minute = a_minute;
+    _second = a_second;
+    _msec   = a_msec;
 
     //datetime msec member (convert to milliseconds)
     _thisMSec = _toMilliseconds();
@@ -454,12 +454,12 @@ CxDateTime::_toMilliseconds() const
 
     ulonglong_t ullRv = 0ULL;
 
-    ullRv += _year        * 1000ULL * 60 * 60 * 24 * 30 * 12;      //TODO: days in month 30 or 31 ???
-    ullRv += _month       * 1000ULL * 60 * 60 * 24 * 30;
-    ullRv += _day         * 1000ULL * 60 * 60 * 24;
-    ullRv += _hour        * 1000ULL * 60 * 60;
-    ullRv += _minute      * 1000ULL * 60;
-    ullRv += _second      * 1000ULL * 1;
+    ullRv += _year   * 1000ULL * 60 * 60 * 24 * 30 * 12;      //TODO: days in month 30 or 31 ???
+    ullRv += _month  * 1000ULL * 60 * 60 * 24 * 30;
+    ullRv += _day    * 1000ULL * 60 * 60 * 24;
+    ullRv += _hour   * 1000ULL * 60 * 60;
+    ullRv += _minute * 1000ULL * 60;
+    ullRv += _second * 1000ULL * 1;
     ullRv += _msec;
 
     return ullRv;
@@ -567,7 +567,8 @@ CxDateTime::isValid(
     const CxDateTime &a_datetime
 )
 {
-    return isValid(a_datetime._year, a_datetime._month, a_datetime._day, a_datetime._hour, a_datetime._minute, a_datetime._second, a_datetime._msec);
+    return isValid(a_datetime._year, a_datetime._month, a_datetime._day,
+        a_datetime._hour, a_datetime._minute, a_datetime._second, a_datetime._msec);
 }
 //------------------------------------------------------------------------------
 xINLINE_HO bool_t
@@ -584,9 +585,11 @@ CxDateTime::current()
     SYSTEMTIME stDateTime = {0};
 
     (void_t)::GetLocalTime(&stDateTime);
-    xTEST_EQ(true, isValid(stDateTime.wYear, stDateTime.wMonth, stDateTime.wDay, stDateTime.wHour, stDateTime.wMinute, stDateTime.wSecond, stDateTime.wMilliseconds));
+    xTEST_EQ(true, isValid(stDateTime.wYear, stDateTime.wMonth, stDateTime.wDay,
+        stDateTime.wHour, stDateTime.wMinute, stDateTime.wSecond, stDateTime.wMilliseconds));
 
-    return CxDateTime(stDateTime.wYear, stDateTime.wMonth, stDateTime.wDay, stDateTime.wHour, stDateTime.wMinute, stDateTime.wSecond, stDateTime.wMilliseconds);
+    return CxDateTime(stDateTime.wYear, stDateTime.wMonth, stDateTime.wDay,
+        stDateTime.wHour, stDateTime.wMinute, stDateTime.wSecond, stDateTime.wMilliseconds);
 #else
     // get milliseconds
     timeval tvTime = {0};
@@ -995,7 +998,7 @@ CxDateTime::_parse(
     CxDateTime         *a_datetime
 )
 {
-     switch (a_format) {
+    switch (a_format) {
         case ftTime:
             // TODO: ftTime
             break;
