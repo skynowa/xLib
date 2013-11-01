@@ -176,6 +176,8 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
+#include "CxString.inl"
+
 #if xXLIB_HEADER_ONLY
     #include <Core/CxString.cpp>
 #endif

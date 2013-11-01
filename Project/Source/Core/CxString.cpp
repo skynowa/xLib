@@ -123,8 +123,8 @@ CxString::wstrToStr(
     xTEST_NA(a_stdWString);
     xTEST_NA(a_locale);
 
-    typedef std::wstring::traits_type::state_type      state_type_t;
-    typedef std::codecvt<wchar_t, char, state_type_t>  codecvt_t;
+    typedef std::wstring::traits_type::state_type     state_type_t;
+    typedef std::codecvt<wchar_t, char, state_type_t> codecvt_t;
 
     std::string      asRv(a_stdWString.size(), std::wstring::value_type());
 

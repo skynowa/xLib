@@ -48,5 +48,31 @@ struct SDelete
     }
 };
 
+struct SNarrow
+    ///<
+{
+    std::string::value_type
+    operator () (
+        const std::wstring::value_type &a_char
+    ) const
+    {
+        return std::use_facet< std::ctype<std::wstring::value_type> >( std::locale() )
+                    .narrow(a_char, '@');
+    }
+};
+
+struct SWiden
+    ///<
+{
+    std::wstring::value_type
+    operator () (
+        const std::string::value_type &a_char
+    ) const
+    {
+        return std::use_facet< std::ctype<std::string::value_type> >( std::locale() )
+                    .widen(a_char);
+    }
+};
+
 xNAMESPACE_ANONYM_END
 //------------------------------------------------------------------------------
