@@ -10,7 +10,6 @@
 #include <xLib/Core/CxString.h>
 #include <xLib/Core/CxUtils.h>
 #include <xLib/Filesystem/CxPath.h>
-#include <xLib/Sync/CxProcess.h>
 #include <xLib/Log/CxTracer.h>
 
 #if   xOS_ENV_WIN
@@ -75,7 +74,7 @@ CxStackTrace::get(
         SYMBOL_INFO *psiSymbol                        = NULL;
         HANDLE       hProcess                         = NULL;
 
-        hProcess = CxProcess::currentHandle();
+        hProcess = ::GetCurrentProcess();
 
         BOOL blRes = ::SymInitialize(hProcess, NULL, TRUE);
         xCHECK_DO(FALSE == blRes, return);
