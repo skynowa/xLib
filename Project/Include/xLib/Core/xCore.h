@@ -143,6 +143,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <list>
 #include <map>
 #include <algorithm>
 #include <iterator>

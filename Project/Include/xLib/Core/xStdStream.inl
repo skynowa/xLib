@@ -44,11 +44,11 @@ operator << (
 /**
  * overload operators << for std::vector
  */
-template<typename Traits, typename T>
-inline basic_ostream<char, Traits> &
+template<class Traits, class T>
+inline basic_ostream<tchar_t, Traits> &
 operator << (
-    basic_ostream<char, Traits> &a_os,
-    const vector<T>             &a_value
+    basic_ostream<tchar_t, Traits> &a_os,
+    const vector<T>                &a_value
 )
 {
     a_os << "std::vector (" << a_value.size() << " elements)";
@@ -71,11 +71,11 @@ operator << (
     return a_os;
 }
 //------------------------------------------------------------------------------
-template<typename Traits, typename T>
-inline basic_ostream<char, Traits> &
+template<class Traits, class T>
+inline basic_ostream<tchar_t, Traits> &
 operator << (
-    basic_ostream<char, Traits> &a_os,
-    const list<T>               &a_value
+    basic_ostream<tchar_t, Traits> &a_os,
+    const list<T>                  &a_value
 )
 {
     a_os << "std::list (" << a_value.size() << " elements)";
@@ -99,11 +99,11 @@ operator << (
     return a_os;
 }
 //------------------------------------------------------------------------------
-template<typename Traits, typename T1, typename T2>
-inline basic_ostream<char, Traits> &
+template<class Traits, class T1, class T2>
+inline basic_ostream<tchar_t, Traits> &
 operator << (
-    basic_ostream<char, Traits> &a_os,
-    const map<T1, T2>           &a_value
+    basic_ostream<tchar_t, Traits> &a_os,
+    const map<T1, T2>              &a_value
 )
 {
     a_os << "std::map (" << a_value.size() << " elements)";
