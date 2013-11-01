@@ -22,6 +22,11 @@ inline basic_ostream<tchar_t, Traits> &
 operator << (basic_ostream<tchar_t, Traits> &os, const vector<T> &value);
     ///< overload operators << for std::vector
 
+template<class Traits, class T>
+inline basic_ostream<tchar_t, Traits> &
+operator << (basic_ostream<tchar_t, Traits> &os, const list<T> &value);
+    ///< overload operators << for std::list
+
 template<class Traits, class T1, class T2>
 inline basic_ostream<tchar_t, Traits> &
 operator << (basic_ostream<tchar_t, Traits> &os, const map<T1, T2> &value);

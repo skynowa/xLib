@@ -41,54 +41,89 @@ operator << (
     return a_os;
 }
 //------------------------------------------------------------------------------
-template<class Traits, class T>
-inline basic_ostream<tchar_t, Traits> &
+/**
+ * overload operators << for std::vector
+ */
+template<typename Traits, typename T>
+inline basic_ostream<char, Traits> &
 operator << (
-    basic_ostream<tchar_t, Traits> &a_os,
-    const vector<T>                &a_value
+    basic_ostream<char, Traits> &a_os,
+    const vector<T>             &a_value
 )
 {
-    xTEST_NA(a_os);
-    xTEST_NA(a_value);
+    a_os << "std::vector (" << a_value.size() << " elements)";
 
-    a_os << std::endl;
-    a_os << xT("std::vector (") << a_value.size() << (" elements):") << std::endl;
-    a_os << std::endl;
-
-    typename vector<T>::const_iterator it;
-    size_t                             i = 0;
-    for (it = a_value.begin(), i = 0; it != a_value.end(); ++ it, ++ i) {
-        a_os << xT("Value[") << i << xT("]: ") << (*it) << std::endl;
+    if (a_value.empty())  {
+        return a_os;
     }
 
-    a_os << std::endl;
-    a_os << std::endl;
+    a_os << ":" << std::endl;
+
+    typename vector<T>::const_iterator it;
+    for (it = a_value.begin(); it != a_value.end(); ++ it) {
+        a_os << "    value[" << std::distance(a_value.begin(), it) << "]: " << *it;
+
+        if (it + 1 != a_value.end()) {
+             a_os << std::endl;
+        }
+    }
 
     return a_os;
 }
 //------------------------------------------------------------------------------
-template<class Traits, class T1, class T2>
-inline basic_ostream<tchar_t, Traits> &
+template<typename Traits, typename T>
+inline basic_ostream<char, Traits> &
 operator << (
-    basic_ostream<tchar_t, Traits> &a_os,
-    const map<T1, T2>              &a_value
+    basic_ostream<char, Traits> &a_os,
+    const list<T>               &a_value
 )
 {
-    xTEST_NA(a_os);
-    xTEST_NA(a_value);
+    a_os << "std::list (" << a_value.size() << " elements)";
 
-    a_os << std::endl;
-    a_os << xT("std::map (") << a_value.size() << (" elements):") << std::endl;
-    a_os << std::endl;
+    if (a_value.empty()) {
+        return a_os;
+    }
+
+    a_os << ":" << std::endl;
+
+    typename list<T>::const_iterator it;
+    for (it = a_value.begin(); it != a_value.end(); ++ it) {
+        a_os << "    value[" << std::distance(a_value.begin(), it) << "]: " << *it;
+
+        if (++ it != a_value.end()) {
+             a_os << std::endl;
+        }
+        -- it;
+    }
+
+    return a_os;
+}
+//------------------------------------------------------------------------------
+template<typename Traits, typename T1, typename T2>
+inline basic_ostream<char, Traits> &
+operator << (
+    basic_ostream<char, Traits> &a_os,
+    const map<T1, T2>           &a_value
+)
+{
+    a_os << "std::map (" << a_value.size() << " elements)";
+
+    if (a_value.empty()) {
+        return a_os;
+    }
+
+    a_os << ":" << std::endl;
 
     typename map<T1, T2>::const_iterator it;
     for (it = a_value.begin(); it != a_value.end(); ++ it) {
-        a_os << xT("Key: ")   << (*it).first  << xT("\t\t")
-             << xT("Value: ") << (*it).second << std::endl;
-    }
+        a_os << "    key: " << (*it).first  << "\t"
+             << "value: "   << (*it).second;
 
-    a_os << std::endl;
-    a_os << std::endl;
+        if (++ it != a_value.end()) {
+             a_os << std::endl;
+        }
+        -- it;
+    }
 
     return a_os;
 }
@@ -109,12 +144,14 @@ operator << (
 
     typename multimap<T1, T2>::const_iterator it;
     for (it = a_value.begin(); it != a_value.end(); ++ it) {
-        a_os << xT("Key: ")   << (*it).first  << xT("\t\t")
-             << xT("Value: ") << (*it).second << std::endl;
-    }
+        a_os << "    key: " << (*it).first  << "\t"
+             << "value: "   << (*it).second;
 
-    a_os << std::endl;
-    a_os << std::endl;
+        if (++ it != a_value.end()) {
+             a_os << std::endl;
+        }
+        -- it;
+    }
 
     return a_os;
 }
