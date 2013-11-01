@@ -132,7 +132,7 @@ CxDebugger::breakPoint()
     int_t iRv = ::raise(SIGTRAP);
     xTEST_DIFF(- 1, iRv);
 
-    iRv = ::kill(CxProcess::currentId(), SIGALRM);
+    iRv = ::kill(::getpid(), SIGALRM);
     xTEST_DIFF(- 1, iRv);
 #endif
 }
@@ -208,7 +208,7 @@ CxDebugger::_msgboxPlain(
 #endif
     switch (mrRes) {
         case CxMsgBoxT::mrAbort:
-            CxProcess::currentExit(EXIT_FAILURE);
+            (void_t)::exit(EXIT_FAILURE);
             break;
         default:
         case CxMsgBoxT::mrIgnore:
@@ -220,7 +220,7 @@ CxDebugger::_msgboxPlain(
             } else {
                 CxMsgBoxT::ExModalResult nrRv = CxMsgBoxT::show(xT("Debugger is not present.\nThe application will be terminated."), xT("xLib"));
                 xUNUSED(nrRv);
-                CxProcess::currentExit(EXIT_FAILURE);
+                (void_t)::exit(EXIT_FAILURE);
             }
             break;
     }
@@ -255,7 +255,7 @@ CxDebugger::_stdoutPlain(
         case cmAbort:
             std::tcout << xT("Abort...\n\n");  std::tcout.flush();
 
-            CxProcess::currentExit(EXIT_FAILURE);
+            (void_t)::exit(EXIT_FAILURE);
             break;
         default:
         case cmIgnore:
@@ -275,7 +275,7 @@ CxDebugger::_stdoutPlain(
                 std::tcout << xT("\n\n");
                 std::tcout.flush();
 
-                CxProcess::currentExit(EXIT_FAILURE);
+                (void_t)::exit(EXIT_FAILURE);
             }
             break;
     }
