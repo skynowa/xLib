@@ -14,6 +14,7 @@
 #include <Test/Core/CxTest_CxNonHeap.h>
 #include <Test/Core/CxTest_CxNonArrayHeap.h>
 #include <Test/Core/CxTest_CxUtils.h>
+#include <Test/Core/CxTest_xStdStream.h>
 #include <Test/Core/CxTest_CxHandleT.h>
 #include <Test/Core/CxTest_CxType.h>
 #include <Test/Core/CxTest_CxFlags.h>
@@ -163,6 +164,7 @@ int_t xTMAIN(int_t argNum, tchar_t *args[])
         manager.add(new CxTest_CxNonHeap);
         manager.add(new CxTest_CxNonArrayHeap);
         manager.add(new CxTest_CxUtils);
+        manager.add(new CxTest_xStdStream);
         manager.add(new CxTest_CxHandleT);
         manager.add(new CxTest_CxType);
         manager.add(new CxTest_CxFlags);

@@ -10,31 +10,6 @@
 #include <xLib/Test/xTest.h>
 #include <xLib/Debug/xDebug.h>
 //------------------------------------------------------------------------------
-// overload operators << for std::basic_ostream
-xNAMESPACE_BEGIN(std)
-
-template<class Traits>
-inline basic_ostream<tchar_t, Traits> &
-operator << (basic_ostream<tchar_t, Traits> &os, std::custring_t &value);
-    ///< overload operators << for std::ustring_t
-
-template<class Traits, class T>
-inline basic_ostream<tchar_t, Traits> &
-operator << (basic_ostream<tchar_t, Traits> &os, const vector<T> &value);
-    ///< overload operators << for std::vector
-
-template<class Traits, class T1, class T2>
-inline basic_ostream<tchar_t, Traits> &
-operator << (basic_ostream<tchar_t, Traits> &os, const map<T1, T2> &value);
-    ///< overload operators << for std::map
-
-template<class Traits, class T1, class T2>
-inline basic_ostream<tchar_t, Traits> &
-operator << (basic_ostream<tchar_t, Traits> &os, const multimap<T1, T2> &value);
-    ///< overload operators << for std::multimap
-
-xNAMESPACE_END(std)
-//------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
 class CxString :
@@ -201,8 +176,6 @@ private:
 
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
-#include "CxString.inl"
-
 #if xXLIB_HEADER_ONLY
     #include <Core/CxString.cpp>
 #endif
