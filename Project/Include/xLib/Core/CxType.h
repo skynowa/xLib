@@ -36,7 +36,3 @@ private:
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
 #include "CxType.inl"
-
-#if xXLIB_HEADER_ONLY
-
-#endif
