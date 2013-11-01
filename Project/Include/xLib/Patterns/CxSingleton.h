@@ -19,14 +19,15 @@ public:
     static T &get() xWARN_UNUSED_RV
         ///< get object instance
     {
-        static T singletonT;
-        return singletonT;
+        static T singleton;
+
+        return singleton;
     }
 
 private:
-             CxSingleton();
+    CxSingleton();
         ///< constructor
-    virtual ~CxSingleton();
+   ~CxSingleton();
         ///< destructor
 };
 

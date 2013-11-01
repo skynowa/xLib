@@ -7,22 +7,23 @@
 #include <Test/Patterns/CxTest_CxSingleton.h>
 
 
-//-------------------------------------
-//class CLogger
-class CLogger {
+//------------------------------------------------------------------------------
+class CLogger
+{
     public:
-        CLogger() {
-            //xSTD_COUT_FUNC;
+        CLogger()
+        {
+            // xSTD_COUT_FUNC;
         };
-        ~CLogger() {
-            //xSTD_COUT_FUNC;
+        ~CLogger()
+        {
+            // xSTD_COUT_FUNC;
         };
 
-       void_t  vOpen  () { /*xSTD_COUT_FUNC;*/ };
-       void_t  vWrite () { /*xSTD_COUT_FUNC;*/ };
-       void_t  vClose () { /*xSTD_COUT_FUNC;*/ };
+       void_t  open()  { /* xSTD_COUT_FUNC; */ };
+       void_t  write() { /* xSTD_COUT_FUNC; */ };
+       void_t  close() { /* xSTD_COUT_FUNC; */ };
 };
-
 //------------------------------------------------------------------------------
 /* virtual */
 void_t
@@ -30,31 +31,35 @@ CxTest_CxSingleton::unit(
     culonglong_t &a_cullCaseLoops
 )
 {
-    xTEST_CASE("CxSingleton::GetInstance", a_cullCaseLoops)
+    xTEST_CASE("CxSingleton::get", a_cullCaseLoops)
     {
-        typedef CxSingleton<CLogger> TLoggerSingleton;
+        typedef CxSingleton<CLogger> logger_singleton_t;
 
-        TLoggerSingleton::get().vOpen();
-        TLoggerSingleton::get().vWrite();
-        TLoggerSingleton::get().vClose();
+        logger_singleton_t::get().open();
+        logger_singleton_t::get().write();
+        logger_singleton_t::get().close();
     }
 
-    xTEST_CASE("CxSingleton::GetInstance", a_cullCaseLoops)
+    xTEST_CASE("CxSingleton::get", a_cullCaseLoops)
     {
-        CxSingleton<CLogger>::get().vOpen();
-        CxSingleton<CLogger>::get().vWrite();
-        CxSingleton<CLogger>::get().vClose();
+        CxSingleton<CLogger>::get().open();
+        CxSingleton<CLogger>::get().write();
+        CxSingleton<CLogger>::get().close();
     }
 
     xTEST_CASE("construct CxSingleton on stack", a_cullCaseLoops)
     {
-        ////TLoggerSingleton objLoggerSingleton;
+        #if xTEST_IGNORE
+            logger_singleton_t log;
+        #endif
     }
 
     xTEST_CASE("construct CxSingleton on heap", a_cullCaseLoops)
     {
-        ////TLoggerSingleton *pobjLoggerSingleton = new TLoggerSingleton;
-        ////xPTR_DELETE(pobjLoggerSingleton);
+        #if xTEST_IGNORE
+            logger_singleton_t *log = new logger_singleton_t;
+            xPTR_DELETE(log);
+        #endif
     }
 }
 //------------------------------------------------------------------------------
