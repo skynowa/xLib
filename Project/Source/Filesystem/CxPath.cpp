@@ -62,7 +62,7 @@ CxPath::exe()
     sRv.resize(dwStored);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        std::ctstring_t csProcFile = CxString::format(xT("/proc/%ld/exe"), CxProcess::currentId());
+        std::ctstring_t csProcFile = CxString::format(xT("/proc/%ld/exe"), ::getpid());
 
         bool_t bRv = CxFile::isExists(csProcFile);
         xCHECK_RET(!bRv, std::tstring_t());

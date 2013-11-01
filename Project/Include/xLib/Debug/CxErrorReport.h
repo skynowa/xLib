@@ -58,27 +58,27 @@ public:
     std::tstring_t comment;        ///< comment
 
                    template<class T>
-                   CxErrorReport(const ExType    &crtType,
-                                 std::ctstring_t &csVar1,       std::ctstring_t &csVar2,
-                                 const T         &cVar1ValueT,  const T         &cVar2ValueT,
-                                 std::ctstring_t &csExprSign,
-                                 culong_t        &culLastError, std::ctstring_t &csFile,
-                                 culong_t        &culLine,      std::ctstring_t &csFunc,
-                                 std::ctstring_t &csDate,       std::ctstring_t &csTime,
-                                 std::ctstring_t &csStackTrace, std::ctstring_t &csComment);
+                   CxErrorReport(const ExType    &type,
+                                 std::ctstring_t &var1,       std::ctstring_t &var2,
+                                 const T         &var1ValueT, const T         &var2ValueT,
+                                 std::ctstring_t &exprSign,
+                                 culong_t        &lastError,  std::ctstring_t &file,
+                                 culong_t        &line,       std::ctstring_t &func,
+                                 std::ctstring_t &date,       std::ctstring_t &time,
+                                 std::ctstring_t &stackTrace, std::ctstring_t &comment);
         ///< constructor
     virtual       ~CxErrorReport() {}
         ///< destructor
 
 private:
-    void_t        _construct    (const ExType    &crtType,
-                                 std::ctstring_t &csVar1,       std::ctstring_t &csVar2,
-                                 std::ctstring_t &csVar1Value,  std::ctstring_t &csVar2Value,
-                                 std::ctstring_t &csExprSign,
-                                 culong_t        &culLastError, std::ctstring_t &csFile,
-                                 culong_t        &culLine,      std::ctstring_t &csFunc,
-                                 std::ctstring_t &csDate,       std::ctstring_t &csTime,
-                                 std::ctstring_t &csStackTrace, std::ctstring_t &csComment);
+    void_t        _construct    (const ExType    &type,
+                                 std::ctstring_t &var1,       std::ctstring_t &var2,
+                                 std::ctstring_t &var1Value,  std::ctstring_t &var2Value,
+                                 std::ctstring_t &exprSign,
+                                 culong_t        &lastError,  std::ctstring_t &file,
+                                 culong_t        &line,       std::ctstring_t &func,
+                                 std::ctstring_t &date,       std::ctstring_t &time,
+                                 std::ctstring_t &stackTrace, std::ctstring_t &comment);
         ///< initiate class members
     void_t        _initPlain    ();
         ///< initiate plain report

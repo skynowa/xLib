@@ -62,9 +62,9 @@ public:
         cvAmd
     };
 
-                   CxSystemInfo();
+                   CxSystemInfo() {}
         ///< constructor
-    virtual       ~CxSystemInfo();
+    virtual       ~CxSystemInfo() {}
         ///< destructor
 
     // OS

@@ -248,7 +248,8 @@ CxProcess::idByName(
 
 #if xOS_ENV_WIN
     CxHandle       hSnapshot;
-    PROCESSENTRY32 peProcess = {0};    peProcess.dwSize = sizeof(PROCESSENTRY32);
+    PROCESSENTRY32 peProcess = {0};
+    peProcess.dwSize = sizeof(PROCESSENTRY32);
 
     hSnapshot = ::CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0UL);
     xTEST_EQ(true, hSnapshot.isValid());
@@ -379,7 +380,8 @@ CxProcess::ids(
 
 #if   xOS_ENV_WIN
     CxHandle       hSnapshot;
-    PROCESSENTRY32 peProcess = {0};    peProcess.dwSize = sizeof(PROCESSENTRY32);
+    PROCESSENTRY32 peProcess = {0};
+    peProcess.dwSize = sizeof(PROCESSENTRY32);
 
     hSnapshot = ::CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0UL);
     xTEST_EQ(true, hSnapshot.isValid());

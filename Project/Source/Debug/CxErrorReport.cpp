@@ -16,7 +16,6 @@
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Sync/CxThread.h>
-#include <xLib/Sync/CxProcess.h>
 
 
 xNAMESPACE_BEGIN(NxLib)
@@ -29,51 +28,55 @@ xNAMESPACE_BEGIN(NxLib)
 //------------------------------------------------------------------------------
 xINLINE_HO void_t
 CxErrorReport::_construct(
-    const ExType    &a_crtType,
-    std::ctstring_t &a_csVar1,
-    std::ctstring_t &a_csVar2,
-    std::ctstring_t &a_csVar1Value,
-    std::ctstring_t &a_csVar2Value,
-    std::ctstring_t &a_csExprSign,
-    culong_t        &a_culLastError,
-    std::ctstring_t &a_csFile,
-    culong_t        &a_culLine,
-    std::ctstring_t &a_csFunc,
-    std::ctstring_t &a_csDate,
-    std::ctstring_t &a_csTime,
-    std::ctstring_t &a_csStackTrace,
-    std::ctstring_t &a_csComment
+    const ExType    &a_type,
+    std::ctstring_t &a_var1,
+    std::ctstring_t &a_var2,
+    std::ctstring_t &a_var1Value,
+    std::ctstring_t &a_var2Value,
+    std::ctstring_t &a_exprSign,
+    culong_t        &a_lastError,
+    std::ctstring_t &a_file,
+    culong_t        &a_line,
+    std::ctstring_t &a_func,
+    std::ctstring_t &a_date,
+    std::ctstring_t &a_time,
+    std::ctstring_t &a_stackTrace,
+    std::ctstring_t &a_comment
 )
 {
     CxSystemInfo sys_info;
 
     std::csize_t cuiReportWidthMax = 46U;   // MAGIC: cuiReportWidthMax
 
-    type          = a_crtType;
+    type           = a_type;
 
     program        = CxPath( CxPath(CxPath::exe()).brief(cuiReportWidthMax) ).toUnix(false);
-    processId     = (ulong_t)CxProcess::currentId();
-    threadId      = (ulong_t)CxThread::currentId();
+#if xOS_ENV_WIN
+    processId      = ::GetCurrentProcessId();
+#else
+    processId      = ::getpid();
+#endif
+    threadId       = (ulong_t)CxThread::currentId();
     fileSize       = CxString::formatBytes( static_cast<ulonglong_t>( CxFile::size(CxPath::exe())) );
 
-    sourceFile     = CxPath( CxPath(a_csFile).brief(cuiReportWidthMax) ).toUnix(false);
-    sourceLine    = a_culLine;
-    functionName   = a_csFunc;
+    sourceFile     = CxPath( CxPath(a_file).brief(cuiReportWidthMax) ).toUnix(false);
+    sourceLine     = a_line;
+    functionName   = a_func;
     expression     = CxString::format(xT("%s (%s) %s %s (%s)"),
-                                          a_csVar1.c_str(), a_csVar1Value.c_str(), a_csExprSign.c_str(),
-                                          a_csVar2.c_str(), a_csVar2Value.c_str());
-    exprSign       = a_csExprSign;
-    lastError     = a_culLastError;
-    lastErrorStr   = CxLastError::format(a_culLastError);
+                                          a_var1.c_str(), a_var1Value.c_str(), a_exprSign.c_str(),
+                                          a_var2.c_str(), a_var2Value.c_str());
+    exprSign       = a_exprSign;
+    lastError      = a_lastError;
+    lastErrorStr   = CxLastError::format(a_lastError);
 
     currentDate    = CxDateTime::current().format(CxDateTime::ftDateTime);
-    buildDate      = CxString::format(xT("%s/%s"), a_csDate.c_str(), a_csTime.c_str());
+    buildDate      = CxString::format(xT("%s/%s"), a_date.c_str(), a_time.c_str());
     buildType      = CxDebugger().isDebugBuild() ? xT("debug") : xT("release");
     osVersion      = sys_info.formatOsType( sys_info.os() );
     osArchitecture = sys_info.formatOsArch( sys_info.osArch() );
 
-    stackTrace     = a_csStackTrace;
-    comment        = a_csComment.empty() ? CxConst::xHYPHEN() : a_csComment;
+    stackTrace     = a_stackTrace;
+    comment        = a_comment.empty() ? CxConst::xHYPHEN() : a_comment;
 }
 //------------------------------------------------------------------------------
 
