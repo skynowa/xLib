@@ -41,7 +41,7 @@ CxFileTemp::CxFileTemp(
 xINLINE_HO
 CxFileTemp::~CxFileTemp()
 {
-    (*_file).close();
+    _file->close();
 
     if (_isAutoDelete) {
         CxFile::remove(_filePath);
@@ -62,7 +62,7 @@ CxFileTemp::create(
     std::ctstring_t csFileNameTemplate = xT("XXXXXX");
 
 
-    FILE *_pfStdFile = NULL;
+    FILE *stdFile = NULL;
 
     CxDir(a_dirPath).pathCreate();
 
@@ -75,27 +75,27 @@ CxFileTemp::create(
         tchar_t *pszFile = ::xTMKSTEMP(&_filePath.at(0));
         xTEST_PTR(pszFile);
 
-        _pfStdFile = std::xTFOPEN(pszFile, CxFile::_openMode(CxFile::omBinCreateReadWrite).c_str());
-        xTEST_PTR(_pfStdFile);
+        stdFile = std::xTFOPEN(pszFile, CxFile::_openMode(CxFile::omBinCreateReadWrite).c_str());
+        xTEST_PTR(stdFile);
     #else
         _filePath.resize(_filePath.size() + 1);
 
         errno_t iError = ::xTMKSTEMP(&_filePath.at(0), _filePath.size() + 1);
         xTEST_EQ(0, iError);
 
-        _pfStdFile = ::xTFOPEN(_filePath.c_str(), CxFile::_openMode(CxFile::omBinCreateReadWrite).c_str());
-        xTEST_PTR(_pfStdFile);
+        stdFile = ::xTFOPEN(_filePath.c_str(), CxFile::_openMode(CxFile::omBinCreateReadWrite).c_str());
+        xTEST_PTR(stdFile);
     #endif
 #else
     int_t iFile = ::xTMKSTEMP(&_filePath.at(0));
     xTEST_DIFF(- 1, iFile);
 
-    _pfStdFile = ::xTFDOPEN(iFile, CxFile::_openMode(CxFile::omBinCreateReadWrite).c_str());
-    xTEST_PTR(_pfStdFile);
+    stdFile = ::xTFDOPEN(iFile, CxFile::_openMode(CxFile::omBinCreateReadWrite).c_str());
+    xTEST_PTR(stdFile);
 #endif
 
     //out
-    (*a_file).attach(_pfStdFile);
+    a_file->attach(stdFile);
 
     _file = a_file;
 }
