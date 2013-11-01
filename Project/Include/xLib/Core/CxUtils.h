@@ -101,7 +101,3 @@ private:
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
 #include "CxUtils.inl"
-
-#if xXLIB_HEADER_ONLY
-
-#endif
