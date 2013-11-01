@@ -53,7 +53,3 @@ private:
 xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
 #include <xLib/Core/CxFlags.inl>
-
-#if xXLIB_HEADER_ONLY
-
-#endif
