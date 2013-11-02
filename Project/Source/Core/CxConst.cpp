@@ -192,6 +192,7 @@ CxConst::xUNIX_SLASH()
 //------------------------------------------------------------------------------
 // xSLASH
 #if xOS_ENV_WIN
+
 xINLINE_HO std::cstring_t &
 CxConst::xSLASH_A()
 {
@@ -216,7 +217,9 @@ CxConst::xSLASH()
     return sRv;
 }
 //------------------------------------------------------------------------------
+
 #else
+
 xINLINE_HO std::cstring_t &
 CxConst::xSLASH_A()
 {
@@ -241,10 +244,12 @@ CxConst::xSLASH()
     return sRv;
 }
 //------------------------------------------------------------------------------
+
 #endif
 //------------------------------------------------------------------------------
 // xEOL
 #if xOS_ENV_WIN
+
 xINLINE_HO std::cstring_t &
 CxConst::xEOL_A()
 {
@@ -269,7 +274,9 @@ CxConst::xEOL()
     return sRv;
 }
 //------------------------------------------------------------------------------
+
 #else
+
 xINLINE_HO std::cstring_t &
 CxConst::xEOL_A()
 {
@@ -293,6 +300,7 @@ CxConst::xEOL()
 
     return sRv;
 }
+
 #endif
 //------------------------------------------------------------------------------
 // xSEMICOLON
