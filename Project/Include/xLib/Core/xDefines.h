@@ -584,12 +584,12 @@
         ///< like try
 
 #define xCATCH_ALL \
-            catch (const std::exception &a_cexExp) { \
-                std::string asMsg = a_cexExp.what(); \
+            catch (const std::exception &a_ex) { \
+                std::string asMsg = a_ex.what(); \
                 xTEST_MSG_FAIL(xS2TS(asMsg));        \
             }                                        \
-            catch (const CxException &a_cexExp) {    \
-                xTEST_MSG_FAIL(a_cexExp.what());    \
+            catch (const CxException &a_ex) {    \
+                xTEST_MSG_FAIL(a_ex.what());    \
             }                                        \
             catch (...) {                            \
                 xTEST_MSG_FAIL(xT("unknown error")); \
