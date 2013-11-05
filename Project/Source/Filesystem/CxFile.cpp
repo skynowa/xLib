@@ -64,10 +64,10 @@ CxFile::create(
 
     // create, open file
     {
-        std::FILE *pFile = ::xTFOPEN(a_filePath.c_str(), _openMode(a_mode).c_str());
-        xTEST_PTR(pFile);
+        std::FILE *file = ::xTFOPEN(a_filePath.c_str(), _openMode(a_mode).c_str());
+        xTEST_PTR(file);
 
-        _file     = pFile;
+        _file     = file;
         _filePath = a_filePath;
     }
 
@@ -95,10 +95,10 @@ CxFile::reopen(
 
     // create, reopen file
     {
-        std::FILE *pFile = ::xTFREOPEN(a_filePath.c_str(), _openMode(a_mode).c_str(), get());
-        xTEST_PTR(pFile);
+        std::FILE *file = ::xTFREOPEN(a_filePath.c_str(), _openMode(a_mode).c_str(), get());
+        xTEST_PTR(file);
 
-        _file     = pFile;
+        _file     = file;
         _filePath = a_filePath;
     }
 
@@ -143,11 +143,11 @@ CxFile::attach(
 xINLINE_HO std::FILE *
 CxFile::detach()
 {
-    std::FILE *pFile = get();
+    std::FILE *file = get();
 
     _file = NULL;
 
-    return pFile;
+    return file;
 }
 //------------------------------------------------------------------------------
 
@@ -195,12 +195,12 @@ CxFile::read(
 {
     xTEST_PTR(a_buff);
 
-    longlong_t llFileSize = size();
-    xTEST_DIFF(static_cast<longlong_t>( ppError ), llFileSize);
+    longlong_t fileSize = size();
+    xTEST_DIFF(static_cast<longlong_t>( ppError ), fileSize);
 
     (*a_buff).clear();
-    (*a_buff).resize( static_cast<size_t>( llFileSize ) );
-    xCHECK_DO(0LL == llFileSize, return);
+    (*a_buff).resize( static_cast<size_t>( fileSize ) );
+    xCHECK_DO(0LL == fileSize, return);
 
     size_t uiRes = std::fread(&(*a_buff).at(0), 1, (*a_buff).size() * sizeof(std::ustring_t::value_type), get());
     xTEST_EQ((*a_buff).size(), uiRes);
@@ -224,12 +224,12 @@ CxFile::read(
 {
     xTEST_PTR(a_buff);
 
-    longlong_t llFileSize = size();
-    xTEST_DIFF(static_cast<longlong_t>( ppError ), llFileSize);
+    longlong_t fileSize = size();
+    xTEST_DIFF(static_cast<longlong_t>( ppError ), fileSize);
 
     (*a_buff).clear();
-    (*a_buff).resize( static_cast<size_t>( llFileSize) );
-    xCHECK_DO(0LL == llFileSize, return);
+    (*a_buff).resize( static_cast<size_t>( fileSize) );
+    xCHECK_DO(0LL == fileSize, return);
 
     size_t uiRes = std::fread(&(*a_buff).at(0), 1, (*a_buff).size() * sizeof(std::tstring_t::value_type), get());
     xTEST_EQ((*a_buff).size(), uiRes);
@@ -242,13 +242,13 @@ CxFile::write(
 {
     xTEST_PTR(a_format);
 
-    va_list vlArgs;
-    xVA_START(vlArgs, a_format);
+    va_list args;
+    xVA_START(args, a_format);
 
-    int_t iRv = std::xTVFPRINTF(get(), a_format, vlArgs);
+    int_t iRv = std::xTVFPRINTF(get(), a_format, args);
     xTEST_LESS(- 1, iRv);
 
-    xVA_END(vlArgs);
+    xVA_END(args);
 
     return iRv;
 }
@@ -432,16 +432,16 @@ CxFile::size() const
 
     return stStat.st_size;
 #else
-    long_t liStreamSize    = - 1L;
-    long_t liCurrStreamPos = - 1L;
+    long_t streamSize    = - 1L;
+    long_t currStreamPos = - 1L;
 
-    liCurrStreamPos = position();
+    currStreamPos = position();
     setPosition(0, ppEnd);
 
-    liStreamSize = position();
-    setPosition(liCurrStreamPos, ppBegin);
+    streamSize = position();
+    setPosition(currStreamPos, ppBegin);
 
-    return static_cast<longlong_t>( liStreamSize );
+    return static_cast<longlong_t>( streamSize );
 #endif
 }
 //------------------------------------------------------------------------------
@@ -485,10 +485,10 @@ CxFile::isOpen() const
 xINLINE_HO bool_t
 CxFile::isEmpty() const
 {
-    longlong_t llFileSize = size();
-    xTEST_DIFF(- 1LL, llFileSize);
+    longlong_t fileSize = size();
+    xTEST_DIFF(- 1LL, fileSize);
 
-    return (0LL == llFileSize);
+    return (0LL == fileSize);
 }
 //------------------------------------------------------------------------------
 xINLINE_HO bool_t
@@ -559,24 +559,24 @@ CxFile::isFile(
 
     bool_t bRv = false;
 
-    CxFileType ftType(a_filePath);
+    CxFileType type(a_filePath);
 
-    xCHECK_RET(CxFileType::faInvalid == ftType.get(), false);
+    xCHECK_RET(CxFileType::faInvalid == type.get(), false);
 
 #if xOS_ENV_WIN
-    bRv = ftType.isExists(CxFileType::faDirectory);
+    bRv = type.isExists(CxFileType::faDirectory);
     xCHECK_RET(bRv, false);
 
-    bRv = ftType.isExists(CxFileType::faDevice);
+    bRv = type.isExists(CxFileType::faDevice);
     xCHECK_RET(bRv, false);
 
-    bRv = ftType.isExists(CxFileType::faReparsePoint);
+    bRv = type.isExists(CxFileType::faReparsePoint);
     xCHECK_RET(bRv, false);
 
-    bRv = ftType.isExists(CxFileType::faOffline);
+    bRv = type.isExists(CxFileType::faOffline);
     xCHECK_RET(bRv, false);
 #else
-    bRv = ftType.isExists(CxFileType::faRegularFile);
+    bRv = type.isExists(CxFileType::faRegularFile);
     xCHECK_RET(!bRv, false);
 #endif
 
@@ -609,21 +609,21 @@ CxFile::isExistsEx(
 
     std::tstring_t sRv;
 
-    CxPath ptPath(a_filePath);
+    CxPath path(a_filePath);
 
-    std::tstring_t sFileDir  = ptPath.dir();
-    std::tstring_t sFileName = ptPath.fileBaseName();
-    std::tstring_t sFileExt  = ptPath.ext();
+    std::tstring_t fileDir  = path.dir();
+    std::tstring_t fileName = path.fileBaseName();
+    std::tstring_t fileExt  = path.ext();
 
-    xCHECK_DO(!sFileExt.empty(), sFileExt.insert(0, CxConst::xDOT()));
+    xCHECK_DO(!fileExt.empty(), fileExt.insert(0, CxConst::xDOT()));
 
-    for (ulong_t ulExistsIndex = 1; ; ++ ulExistsIndex) {
+    for (ulong_t existsIndex = 1; ; ++ existsIndex) {
         sRv = CxString::format(xT("%s%s%s (%lu)%s"),
-                               sFileDir.c_str(),
+                               fileDir.c_str(),
                                CxConst::xSLASH().c_str(),
-                               sFileName.c_str(),
-                               ulExistsIndex,
-                               sFileExt.c_str());
+                               fileName.c_str(),
+                               existsIndex,
+                               fileExt.c_str());
 
         xCHECK_DO(!isExists(sRv), break);
     }
@@ -673,10 +673,10 @@ CxFile::clear(
 {
     xTEST_EQ(false, a_filePath.empty());
 
-    CxFile sfFile;
+    CxFile file;
 
-    sfFile.create(a_filePath, omWrite, true);
-    sfFile.clear();
+    file.create(a_filePath, omWrite, true);
+    file.clear();
 }
 //------------------------------------------------------------------------------
 /* static */
@@ -737,7 +737,7 @@ CxFile::wipe(
     xCHECK_DO(!isExists(a_filePath), return);
 
     {
-        CxFile sfFile;
+        CxFile file;
 
         //--------------------------------------------------
         // set normal file attributes
@@ -745,9 +745,9 @@ CxFile::wipe(
 
         //--------------------------------------------------
         // open
-        sfFile.create(a_filePath, omBinWrite, true);
+        file.create(a_filePath, omBinWrite, true);
 
-        longlong_t llSize = sfFile.size();
+        longlong_t llSize = file.size();
         if (0LL < llSize) {
             //--------------------------------------------------
             // fill by 0x55, 0xAA, random char
@@ -760,30 +760,30 @@ CxFile::wipe(
 
                 // chRand
                 {
-                    sfFile.setPosition(0L, ppBegin);
+                    file.setPosition(0L, ppBegin);
 
                     for (longlong_t i = 0LL; i < llSize; ++ i) {
-                        size_t uiRes = std::fwrite(&chRand, 1, sizeof(chRand), sfFile.get());
+                        size_t uiRes = std::fwrite(&chRand, 1, sizeof(chRand), file.get());
                         xTEST_EQ(sizeof(chRand), uiRes);
                     }
                 }
 
                 // chChar1
                 {
-                    sfFile.setPosition(0L, ppBegin);
+                    file.setPosition(0L, ppBegin);
 
                     for (longlong_t i = 0LL; i < llSize; ++ i) {
-                        size_t uiRes = std::fwrite(&chChar1, 1, sizeof(chChar1), sfFile.get());
+                        size_t uiRes = std::fwrite(&chChar1, 1, sizeof(chChar1), file.get());
                         xTEST_EQ(sizeof(chChar1), uiRes);
                     }
                 }
 
                 // chChar2
                 {
-                    sfFile.setPosition(0L, ppBegin);
+                    file.setPosition(0L, ppBegin);
 
                     for (longlong_t i = 0LL; i < llSize; ++ i) {
-                        size_t uiRes = std::fwrite(&chChar2, 1, sizeof(chChar2), sfFile.get());
+                        size_t uiRes = std::fwrite(&chChar2, 1, sizeof(chChar2), file.get());
                         xTEST_EQ(sizeof(chChar2), uiRes);
                     }
                 }
@@ -791,8 +791,8 @@ CxFile::wipe(
 
             //--------------------------------------------------
             // truncate
-            sfFile.flush();
-            sfFile.resize(0L);
+            file.flush();
+            file.resize(0L);
         }
     }
 
@@ -930,10 +930,10 @@ CxFile::size(
     xTEST_EQ(false, a_filePath.empty());
     xTEST_EQ(true,  isExists(a_filePath));
 
-    CxFile sfFile;
+    CxFile file;
 
-    sfFile.create(a_filePath, omRead, true);
-    longlong_t liRv = sfFile.size();
+    file.create(a_filePath, omRead, true);
+    longlong_t liRv = file.size();
     xTEST_LESS_EQ(0LL, liRv);
 
     return liRv;
@@ -1068,19 +1068,19 @@ CxFile::textRead(
     xTEST_EQ(false, a_filePath.empty());
     xTEST_PTR(a_content);
 
-    CxFile         sfFile;
+    CxFile         file;
     std::tstring_t sRv;
 
-    sfFile.create(a_filePath, omBinRead, true);
+    file.create(a_filePath, omBinRead, true);
 
-    longlong_t llFileSize = sfFile.size();
-    xTEST_DIFF(static_cast<longlong_t>( ppError ), llFileSize);
+    longlong_t fileSize = file.size();
+    xTEST_DIFF(static_cast<longlong_t>( ppError ), fileSize);
 
-    xCHECK_DO(0LL == llFileSize, (*a_content).clear(); return);
+    xCHECK_DO(0LL == fileSize, (*a_content).clear(); return);
 
-    sRv.resize( static_cast<size_t>( llFileSize) );
+    sRv.resize( static_cast<size_t>( fileSize) );
 
-    size_t uiReadLen = sfFile.read((void_t *)&sRv.at(0), sRv.size());
+    size_t uiReadLen = file.read((void_t *)&sRv.at(0), sRv.size());
     xTEST_EQ(sRv.size(), uiReadLen);
 
     // out
@@ -1099,13 +1099,13 @@ CxFile::textWrite(
 
     // TODO: if content.empty()
 
-    CxFile sfFile;
+    CxFile file;
 
-    sfFile.create(a_filePath, omBinWrite, true);
+    file.create(a_filePath, omBinWrite, true);
 
     xCHECK_DO(a_content.empty(), return);
 
-    size_t uiWriteLen = sfFile.write((void_t *)&a_content.at(0), a_content.size());
+    size_t uiWriteLen = file.write((void_t *)&a_content.at(0), a_content.size());
     xTEST_EQ(a_content.size(), uiWriteLen);
 }
 //------------------------------------------------------------------------------
@@ -1271,19 +1271,19 @@ CxFile::binRead(
     xTEST_EQ(false, a_filePath.empty());
     xTEST_PTR(a_content);
 
-    CxFile         sfFile;
+    CxFile         file;
     std::ustring_t usRv;
 
-    sfFile.create(a_filePath, omBinRead, true);
+    file.create(a_filePath, omBinRead, true);
 
-    longlong_t llFileSize = sfFile.size();
-    xTEST_DIFF(static_cast<longlong_t>( ppError ), llFileSize);
+    longlong_t fileSize = file.size();
+    xTEST_DIFF(static_cast<longlong_t>( ppError ), fileSize);
 
-    xCHECK_DO(0LL == llFileSize, (*a_content).clear(); return);
+    xCHECK_DO(0LL == fileSize, (*a_content).clear(); return);
 
-    usRv.resize( static_cast<size_t>( llFileSize ) );
+    usRv.resize( static_cast<size_t>( fileSize ) );
 
-    size_t uiReadLen = sfFile.read((void_t *)&usRv.at(0), usRv.size());
+    size_t uiReadLen = file.read((void_t *)&usRv.at(0), usRv.size());
     xTEST_EQ(usRv.size(), uiReadLen);
 
     // out
@@ -1302,13 +1302,13 @@ CxFile::binWrite(
 
     // TODO: if content.empty()
 
-    CxFile sfFile;
+    CxFile file;
 
-    sfFile.create(a_filePath, omBinWrite, true);
+    file.create(a_filePath, omBinWrite, true);
 
     xCHECK_DO(a_content.empty(), return);
 
-    size_t uiWriteLen = sfFile.write((void_t *)&a_content.at(0), a_content.size());
+    size_t uiWriteLen = file.write((void_t *)&a_content.at(0), a_content.size());
     xTEST_EQ(a_content.size(), uiWriteLen);
 }
 //------------------------------------------------------------------------------
