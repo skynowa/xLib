@@ -66,13 +66,13 @@ CxDir::isEmpty(
 
     bool_t bRv = true;
 
-    CxFinder fnFinder(dirPath(), a_shellFilter);
+    CxFinder finder(dirPath(), a_shellFilter);
 
     xFOREVER {
-        xCHECK_DO(!fnFinder.moveNext(), break);
+        xCHECK_DO(!finder.moveNext(), break);
 
-        xCHECK_DO(CxConst::xDOT()  == fnFinder.entryName(), continue);
-        xCHECK_DO(CxConst::x2DOT() == fnFinder.entryName(), continue);
+        xCHECK_DO(CxConst::xDOT()  == finder.entryName(), continue);
+        xCHECK_DO(CxConst::x2DOT() == finder.entryName(), continue);
 
         bRv = false;
         break;
@@ -129,19 +129,19 @@ CxDir::create()
 xINLINE_HO void_t
 CxDir::pathCreate()
 {
-    std::vec_tstring_t vsPathParts;
-    std::tstring_t     sBuildPath;
+    std::vec_tstring_t pathParts;
+    std::tstring_t     buildPath;
 
     //-------------------------------------
     // split dirPath into parts
-     CxString::split( CxPath(dirPath()).toNative(false), CxConst::xSLASH(), &vsPathParts );
+     CxString::split( CxPath(dirPath()).toNative(false), CxConst::xSLASH(), &pathParts );
 
     //-------------------------------------
     // create dirs by steps
-    xFOREACH_CONST(std::vec_tstring_t, it, vsPathParts) {
-        sBuildPath.append(*it).append(CxConst::xSLASH());
+    xFOREACH_CONST(std::vec_tstring_t, it, pathParts) {
+        buildPath.append(*it).append(CxConst::xSLASH());
 
-        CxDir(sBuildPath).create();
+        CxDir(buildPath).create();
     }
 
     xTEST_EQ(true, isExists());
@@ -168,14 +168,14 @@ CxDir::copy(
 
     //--------------------------------------------------
     // get lists of files
-    std::vec_tstring_t vsFilePaths;
+    std::vec_tstring_t filePaths;
 
-    vsFilePaths.clear();
-    CxFinder::files(dirPath(), CxConst::xMASK_ALL(), true, &vsFilePaths);
+    filePaths.clear();
+    CxFinder::files(dirPath(), CxConst::xMASK_ALL(), true, &filePaths);
 
     //--------------------------------------------------
     // copy
-    xFOREACH_R_CONST(std::vec_tstring_t, it, vsFilePaths) {
+    xFOREACH_R_CONST(std::vec_tstring_t, it, filePaths) {
         std::tstring_t sFilePathTo = *it;
 
         size_t uiPosBegin = sFilePathTo.find(dirPath());
@@ -272,12 +272,12 @@ CxDir::pathClear()
     //-------------------------------------
     // delete files
     {
-        std::vec_tstring_t vsFilePaths;
+        std::vec_tstring_t filePaths;
 
-        vsFilePaths.clear();
-        CxFinder::files(dirPath(), CxConst::xMASK_ALL(), true, &vsFilePaths);
+        filePaths.clear();
+        CxFinder::files(dirPath(), CxConst::xMASK_ALL(), true, &filePaths);
 
-        xFOREACH_R(std::vec_tstring_t, it, vsFilePaths) {
+        xFOREACH_R(std::vec_tstring_t, it, filePaths) {
             CxFile::remove(*it);
         }
     }
@@ -285,12 +285,12 @@ CxDir::pathClear()
     //-------------------------------------
     // delete subdirs
     {
-        std::vec_tstring_t vsDirPaths;
+        std::vec_tstring_t dirPaths;
 
-        vsDirPaths.clear();
-        CxFinder::dirs(dirPath(), CxConst::xMASK_ALL(), true, &vsDirPaths);
+        dirPaths.clear();
+        CxFinder::dirs(dirPath(), CxConst::xMASK_ALL(), true, &dirPaths);
 
-        xFOREACH_R(std::vec_tstring_t, it, vsDirPaths) {
+        xFOREACH_R(std::vec_tstring_t, it, dirPaths) {
             CxDir(*it).remove();
         }
     }
@@ -322,18 +322,18 @@ xINLINE_HO std::tstring_t
 CxDir::current()
 {
     std::tstring_t sRv;
-    std::tstring_t sBuff(xPATH_MAX + 1, 0);
+    std::tstring_t buff(xPATH_MAX + 1, 0);
 
 #if xOS_ENV_WIN
-    DWORD ulRv = ::GetCurrentDirectory(static_cast<DWORD>( xPATH_MAX ), &sBuff[0]);
+    DWORD ulRv = ::GetCurrentDirectory(static_cast<DWORD>( xPATH_MAX ), &buff[0]);
     xTEST_DIFF(0UL, ulRv);
     xTEST_LESS(ulRv, static_cast<ulong_t>( xPATH_MAX ));
 
-    sRv.assign(sBuff, 0, ulRv);
+    sRv.assign(buff, 0, ulRv);
 #else
-    tchar_t *pszRes = ::getcwd(&sBuff[0], xPATH_MAX);
+    tchar_t *pszRes = ::getcwd(&buff[0], xPATH_MAX);
     xTEST_PTR(pszRes);
-    xTEST_EQ(sBuff.c_str(), const_cast<ctchar_t *>( pszRes ));
+    xTEST_EQ(buff.c_str(), const_cast<ctchar_t *>( pszRes ));
 
     sRv.assign(pszRes);
 #endif
@@ -364,13 +364,13 @@ CxDir::temp()
     std::tstring_t sRv;
 
 #if xOS_ENV_WIN
-    std::tstring_t sBuff(xPATH_MAX + 1, 0);
+    std::tstring_t buff(xPATH_MAX + 1, 0);
 
-    DWORD ulRv = ::GetTempPath(static_cast<DWORD>( xPATH_MAX ), &sBuff[0]);
+    DWORD ulRv = ::GetTempPath(static_cast<DWORD>( xPATH_MAX ), &buff[0]);
     xTEST_DIFF(0UL, ulRv);
     xTEST_LESS(ulRv, static_cast<ulong_t>( xPATH_MAX ));
 
-    sRv.assign(sBuff, 0, ulRv);
+    sRv.assign(buff, 0, ulRv);
 #else
     std::ctstring_t csEnvDirTemp = xT("TMPDIR");
 
