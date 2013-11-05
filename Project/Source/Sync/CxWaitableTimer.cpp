@@ -18,7 +18,8 @@ xNAMESPACE_BEGIN(NxLib)
 
 //------------------------------------------------------------------------------
 xINLINE_HO HANDLE
-CxWaitableTimer::handle() const {
+CxWaitableTimer::handle() const
+{
     xTEST_EQ(true, _handle.isValid());
 
     return _handle.get();
@@ -27,13 +28,13 @@ CxWaitableTimer::handle() const {
 xINLINE_HO void_t
 CxWaitableTimer::create(
     cbool_t                     &a_bManualReset,
-    std::ctstring_t             &a_csName,
-    const LPSECURITY_ATTRIBUTES  a_pcsaTimerAttributes
+    std::ctstring_t             &a_name,
+    const LPSECURITY_ATTRIBUTES  a_attrs
 )
 {
     xTEST_EQ(false, _handle.isValid());
 
-    HANDLE hRv = ::CreateWaitableTimer(a_pcsaTimerAttributes, a_bManualReset, a_csName.c_str());
+    HANDLE hRv = ::CreateWaitableTimer(a_attrs, a_bManualReset, a_name.c_str());
     xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
 
     _handle.set(hRv);
@@ -41,14 +42,14 @@ CxWaitableTimer::create(
 //------------------------------------------------------------------------------
 xINLINE_HO void_t
 CxWaitableTimer::open(
-    std::ctstring_t &a_csName,
-    culong_t        &a_culDesiredAccess,
-    cbool_t         &a_cbInheritHandle
+    std::ctstring_t &a_name,
+    culong_t        &a_access,
+    cbool_t         &a_isInheritHandle
 )
 {
     xTEST_EQ(true, _handle.isValid());
 
-//MinGW fix
+// MinGW fix
 #if !defined(OpenWaitableTimer)
     #if xUNICODE
         #define OpenWaitableTimer OpenWaitableTimerW
@@ -57,14 +58,15 @@ CxWaitableTimer::open(
     #endif
 #endif
 
-    HANDLE hRv = ::OpenWaitableTimer(a_culDesiredAccess, a_cbInheritHandle, a_csName.c_str());
+    HANDLE hRv = ::OpenWaitableTimer(a_access, a_isInheritHandle, a_name.c_str());
     xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
 
     _handle.set(hRv);
 }
 //------------------------------------------------------------------------------
 xINLINE_HO void_t
-CxWaitableTimer::cancel() const {
+CxWaitableTimer::cancel() const
+{
     xTEST_EQ(true, _handle.isValid());
 
     BOOL blRes = ::CancelWaitableTimer(_handle.get());
@@ -73,11 +75,11 @@ CxWaitableTimer::cancel() const {
 //------------------------------------------------------------------------------
 xINLINE_HO void_t
 CxWaitableTimer::set(
-    clonglong_t      &a_cllDueTime,
-    clong_t          &a_cliPeriod,
-    PTIMERAPCROUTINE  a_pfnCompletionRoutine,
-    LPVOID            a_pvArgToCompletionRoutine,
-    cbool_t          &a_cbResume
+    clonglong_t      &a_dueTimeMsec,
+    clong_t          &a_period,
+    PTIMERAPCROUTINE  a_routine,
+    LPVOID            a_routineArgs,
+    cbool_t          &a_isResume
 ) const
 {
     xTEST_EQ(true, _handle.isValid());
@@ -89,21 +91,21 @@ CxWaitableTimer::set(
     qwTimeInterval = -2 * _SECOND;
     */
 
-    LARGE_INTEGER liDueTime = {{0}};
-    liDueTime.QuadPart = a_cllDueTime;
+    LARGE_INTEGER dueTimeMsec = {{0}};
+    dueTimeMsec.QuadPart = a_dueTimeMsec;
 
-    BOOL blRes = ::SetWaitableTimer(_handle.get(), &liDueTime, a_cliPeriod, a_pfnCompletionRoutine, a_pvArgToCompletionRoutine, a_cbResume);
+    BOOL blRes = ::SetWaitableTimer(_handle.get(), &dueTimeMsec, a_period, a_routine, a_routineArgs, a_isResume);
     xTEST_DIFF(FALSE, blRes);
 }
 //------------------------------------------------------------------------------
 xINLINE_HO void_t
 CxWaitableTimer::wait(
-    culong_t &a_culTimeout
+    culong_t &a_timeoutMsec
 ) const
 {
     xTEST_EQ(true, _handle.isValid());
 
-    DWORD ulRv = ::WaitForSingleObject(_handle.get(), a_culTimeout);
+    DWORD ulRv = ::WaitForSingleObject(_handle.get(), a_timeoutMsec);
     xTEST_EQ(WAIT_OBJECT_0, ulRv);
 }
 //------------------------------------------------------------------------------

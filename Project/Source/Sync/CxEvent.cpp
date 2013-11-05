@@ -24,11 +24,11 @@ CxEvent::CxEvent(
     cbool_t &a_isSignaled      ///< is signaled (false - wait, lock)
 ) :
 #if xOS_ENV_WIN
-    _event       (),
+    _event      (),
 #else
     _mutex      (),
-    _cond      (),
-    _isSignaled  (a_isSignaled),
+    _cond       (),
+    _isSignaled (a_isSignaled),
 #endif
     _isAutoReset(a_isAutoReset),
     _initState  (a_isSignaled)
@@ -161,23 +161,23 @@ CxEvent::wait(
         int_t iRv = 0;
 
         // if (!_isSignaled) {
-            timespec tsTimeoutMs = {0};
+            timespec timeoutMsec = {0};
 
             if (xTIMEOUT_INFINITE != a_timeoutMs) {
-                timeval tvNow  = {0};
+                timeval timeNow  = {0};
 
-                iRv = ::gettimeofday(&tvNow, NULL);
+                iRv = ::gettimeofday(&timeNow, NULL);
                 xTEST_DIFF(- 1, iRv);
 
-                tsTimeoutMs.tv_sec  = tvNow.tv_sec + a_timeoutMs / 1000;
-                tsTimeoutMs.tv_nsec = tvNow.tv_usec * 1000 + (a_timeoutMs % 1000) * 1000000;
+                timeoutMsec.tv_sec  = timeNow.tv_sec + a_timeoutMs / 1000;
+                timeoutMsec.tv_nsec = timeNow.tv_usec * 1000 + (a_timeoutMs % 1000) * 1000000;
 
                 // handle overflow
-                if (tsTimeoutMs.tv_nsec >= 1000000000) {
+                if (timeoutMsec.tv_nsec >= 1000000000) {
                     CxTracer() << xT("::: xLib: CxEvent::osWait - handle overflow :::");
 
-                    ++ tsTimeoutMs.tv_sec;
-                    tsTimeoutMs.tv_nsec -= 1000000000;
+                    ++ timeoutMsec.tv_sec;
+                    timeoutMsec.tv_nsec -= 1000000000;
                 }
             }
 
@@ -186,7 +186,7 @@ CxEvent::wait(
                 if (xTIMEOUT_INFINITE == a_timeoutMs) {
                     iRv = ::pthread_cond_wait     (&_cond, &_mutex);
                 } else {
-                    iRv = ::pthread_cond_timedwait(&_cond, &_mutex, &tsTimeoutMs);
+                    iRv = ::pthread_cond_timedwait(&_cond, &_mutex, &timeoutMsec);
                 }
             }
             while (!iRv && !_isSignaled);

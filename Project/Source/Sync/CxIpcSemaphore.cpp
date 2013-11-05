@@ -77,17 +77,17 @@ CxIpcSemaphore::create(
     xTEST_EQ(true, 0L <= a_initialValue && a_initialValue <= xSEMAPHORE_VALUE_MAX);
 
 #if xOS_ENV_WIN
-    ctchar_t  *pcszWinName = NULL;
-    std::tstring_t  _sWinName;
+    ctchar_t       *winName = NULL;
+    std::tstring_t  _winName;
 
     if (a_name.empty()) {
-        pcszWinName = NULL;
+        winName = NULL;
     } else {
-        _sWinName   = xT("Global\\") + a_name;
-        pcszWinName = _sWinName.c_str();
+        _winName   = xT("Global\\") + a_name;
+        winName = _winName.c_str();
     }
 
-    HANDLE  hRv         = ::CreateSemaphore(NULL, a_initialValue, xSEMAPHORE_VALUE_MAX, pcszWinName);
+    HANDLE  hRv         = ::CreateSemaphore(NULL, a_initialValue, xSEMAPHORE_VALUE_MAX, winName);
     ulong_t ulLastError = CxLastError::get();
     xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
     xTEST_DIFF(ulLastError, static_cast<ulong_t>( ERROR_ALREADY_EXISTS ));
@@ -95,13 +95,13 @@ CxIpcSemaphore::create(
     _handle.set(hRv);
     _name = a_name;
 #else
-    std::tstring_t sUnixName = CxConst::xUNIX_SLASH() + a_name;
+    std::tstring_t unixName = CxConst::xUNIX_SLASH() + a_name;
 
-    handle_t handle = ::sem_open(sUnixName.c_str(), O_CREAT | O_RDWR, 0777, a_initialValue);
+    handle_t handle = ::sem_open(unixName.c_str(), O_CREAT | O_RDWR, 0777, a_initialValue);
     xTEST_DIFF(SEM_FAILED, handle);
 
     _handle = handle;
-    _name   = sUnixName;
+    _name   = unixName;
 #endif
 }
 //------------------------------------------------------------------------------
@@ -114,29 +114,29 @@ CxIpcSemaphore::open(
     //name    - n/a
 
 #if xOS_ENV_WIN
-    ctchar_t *pcszWinName = NULL;
-    std::tstring_t _sWinName;
+    ctchar_t       *winName = NULL;
+    std::tstring_t  _winName;
 
     if (a_name.empty()) {
-        pcszWinName = NULL;
+        winName  = NULL;
     } else {
-        _sWinName   = xT("Global\\") + a_name;
-        pcszWinName = _sWinName.c_str();
+        _winName = xT("Global\\") + a_name;
+        winName  = _winName.c_str();
     }
 
-    HANDLE hRv = ::OpenSemaphore(SEMAPHORE_ALL_ACCESS, FALSE, pcszWinName);
+    HANDLE hRv = ::OpenSemaphore(SEMAPHORE_ALL_ACCESS, FALSE, winName);
     xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
 
     _handle.set(hRv);
     _name = a_name;
 #else
-    std::tstring_t sUnixName = CxConst::xUNIX_SLASH() + a_name;
+    std::tstring_t unixName = CxConst::xUNIX_SLASH() + a_name;
 
-    handle_t handle = ::sem_open(sUnixName.c_str(), O_RDWR, 0777, 0U);
+    handle_t handle = ::sem_open(unixName.c_str(), O_RDWR, 0777, 0U);
     xTEST_DIFF(SEM_FAILED, handle);
 
     _handle = handle;
-    _name   = sUnixName;
+    _name   = unixName;
 #endif
 }
 //------------------------------------------------------------------------------
@@ -146,9 +146,9 @@ CxIpcSemaphore::post() const
     xTEST_EQ(true, _isValid());
 
 #if xOS_ENV_WIN
-   const LONG cliPostValue = 1L;
+   const LONG postValue = 1L;
 
-   BOOL blRes = ::ReleaseSemaphore(_handle.get(), cliPostValue, NULL);
+   BOOL blRes = ::ReleaseSemaphore(_handle.get(), postValue, NULL);
    xTEST_DIFF(FALSE, blRes);
 #else
     int_t iRv = ::sem_post(_handle);
@@ -208,18 +208,18 @@ CxIpcSemaphore::wait(
         continue;
     }
 #else
-    int_t iLastError = 0;
+    int_t lastError = 0;
 
     xFOREVER {
-        iRv        = ::sem_timedwait(_handle, &tmsTimeout);
-        iLastError = errno;
+        iRv       = ::sem_timedwait(_handle, &tmsTimeout);
+        lastError = errno;
 
-        xCHECK_DO(! (- 1 == iRv && EINTR == iLastError), break);
+        xCHECK_DO(! (- 1 == iRv && EINTR == lastError), break);
     }
 #endif
 
     if (- 1 == iRv) {
-        if (ETIMEDOUT == iLastError) {
+        if (ETIMEDOUT == lastError) {
             // timeout
             xTEST_FAIL;
         } else {
@@ -239,17 +239,17 @@ CxIpcSemaphore::value() const
     long_t liRv = - 1L;
 
 #if xOS_ENV_WIN
-    const LONG cliPostValue = 0L;
+    const LONG postValue = 0L;
 
-    BOOL blRv = ::ReleaseSemaphore(_handle.get(), cliPostValue, &liRv);
+    BOOL blRv = ::ReleaseSemaphore(_handle.get(), postValue, &liRv);
     xTEST_DIFF(FALSE, blRv);
 #else
-    int_t iValue = - 1;
+    int_t value = - 1;
 
-    int_t iRv = ::sem_getvalue(_handle, &iValue);
+    int_t iRv = ::sem_getvalue(_handle, &value);
     xTEST_DIFF(- 1, iRv);
 
-    liRv = iValue;
+    liRv = value;
 #endif
 
     return liRv;

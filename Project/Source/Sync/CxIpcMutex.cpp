@@ -43,29 +43,29 @@ CxIpcMutex::create(
 #endif
 
 #if xOS_ENV_WIN
-    ctchar_t *pcszWinName = NULL;
-    std::tstring_t _sWinName;
+    ctchar_t       *winName = NULL;
+    std::tstring_t  _winName;
 
     if (a_name.empty()) {
-        pcszWinName = NULL;
+        winName  = NULL;
     } else {
-        _sWinName   = xT("Global\\") + a_name;
-        pcszWinName = _sWinName.c_str();
+        _winName = xT("Global\\") + a_name;
+        winName  = _winName.c_str();
     }
 
-    HANDLE hRv = ::CreateMutex(NULL, FALSE, pcszWinName);
+    HANDLE hRv = ::CreateMutex(NULL, FALSE, winName);
     xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
 
     _handle.set(hRv);
     _name = a_name;
 #else
-    std::tstring_t sUnixName = CxConst::xUNIX_SLASH() + a_name;
+    std::tstring_t unixName = CxConst::xUNIX_SLASH() + a_name;
 
-    handle_t hHandle = ::sem_open(sUnixName.c_str(), O_CREAT | O_RDWR, 0777, 1U);
+    handle_t hHandle = ::sem_open(unixName.c_str(), O_CREAT | O_RDWR, 0777, 1U);
     xTEST_DIFF(SEM_FAILED, hHandle);
 
     _handle = hHandle;
-    _name   = sUnixName;
+    _name   = unixName;
 #endif
 }
 //------------------------------------------------------------------------------
@@ -75,29 +75,29 @@ CxIpcMutex::open(
 )
 {
 #if xOS_ENV_WIN
-    ctchar_t *pcszWinName = NULL;
-    std::tstring_t _sWinName;
+    ctchar_t *winName = NULL;
+    std::tstring_t _winName;
 
     if (a_name.empty()) {
-        pcszWinName = NULL;
+        winName = NULL;
     } else {
-        _sWinName   = xT("Global\\") + a_name;
-        pcszWinName = _sWinName.c_str();
+        _winName = xT("Global\\") + a_name;
+        winName  = _winName.c_str();
     }
 
-    HANDLE hRv = ::OpenMutex(MUTEX_ALL_ACCESS, FALSE, pcszWinName);
+    HANDLE hRv = ::OpenMutex(MUTEX_ALL_ACCESS, FALSE, winName);
     xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
 
     _handle.set(hRv);
     _name = a_name;
 #else
-    std::tstring_t sUnixName = CxConst::xUNIX_SLASH() + a_name;
+    std::tstring_t unixName = CxConst::xUNIX_SLASH() + a_name;
 
-    handle_t hHandle = ::sem_open(sUnixName.c_str(), O_RDWR, 0777, 1U);
+    handle_t hHandle = ::sem_open(unixName.c_str(), O_RDWR, 0777, 1U);
     xTEST_DIFF(SEM_FAILED, hHandle);
 
     _handle = hHandle;
-    _name   = sUnixName;
+    _name   = unixName;
 #endif
 }
 //------------------------------------------------------------------------------
@@ -117,7 +117,7 @@ CxIpcMutex::lock(
     struct _SFunctor {
         static
         void_t
-        timespec_addms(
+        timespecAddMsec(
             struct timespec *ts,
             long             ms
         )
@@ -137,18 +137,18 @@ CxIpcMutex::lock(
     };
 
 
-    int_t             iRv        = - 1;
-    struct timespec tmsTimeout = {0};
+    int_t           iRv         = - 1;
+    struct timespec timeoutMsec = {0};
 
     // add msec to struct timespec
     {
-        iRv = ::clock_gettime(CLOCK_REALTIME, &tmsTimeout);
+        iRv = ::clock_gettime(CLOCK_REALTIME, &timeoutMsec);
         xTEST_DIFF(- 1, iRv);
 
-        (void_t)_SFunctor::timespec_addms(&tmsTimeout, a_timeoutMsec);
+        (void_t)_SFunctor::timespecAddMsec(&timeoutMsec, a_timeoutMsec);
     }
 
-    while (- 1 == (iRv = ::sem_timedwait(_handle, &tmsTimeout)) && (EINTR == errno)) {
+    while (- 1 == (iRv = ::sem_timedwait(_handle, &timeoutMsec)) && (EINTR == errno)) {
         // Restart if interrupted by handler
         continue;
     }

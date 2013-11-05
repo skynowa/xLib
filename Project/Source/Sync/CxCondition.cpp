@@ -104,24 +104,24 @@ CxCondition::wait(
             if (xTIMEOUT_INFINITE == a_timeoutMs) {
                 iRv = ::pthread_cond_wait(&_handle, &_mutex);
             } else {
-                timespec tsTimeoutMs = {0};
-                timeval  tvNow       = {0};
+                timespec timeoutMs = {0};
+                timeval  timeNow   = {0};
 
-                iRv = ::gettimeofday(&tvNow, NULL);
+                iRv = ::gettimeofday(&timeNow, NULL);
                 xTEST_DIFF(- 1, iRv);
 
-                tsTimeoutMs.tv_sec  = tvNow.tv_sec + a_timeoutMs / 1000;
-                tsTimeoutMs.tv_nsec = tvNow.tv_usec * 1000 + (a_timeoutMs % 1000) * 1000000;
+                timeoutMs.tv_sec  = timeNow.tv_sec + a_timeoutMs / 1000;
+                timeoutMs.tv_nsec = timeNow.tv_usec * 1000 + (a_timeoutMs % 1000) * 1000000;
 
                 // handle overflow
-                if (tsTimeoutMs.tv_nsec >= 1000000000) {
+                if (timeoutMs.tv_nsec >= 1000000000) {
                     CxTracer() << xT("xLib: CxCondition::vWait - handle overflow");
 
-                    ++ tsTimeoutMs.tv_sec;
-                    tsTimeoutMs.tv_nsec -= 1000000000;
+                    ++ timeoutMs.tv_sec;
+                    timeoutMs.tv_nsec -= 1000000000;
                 }
 
-                iRv = ::pthread_cond_timedwait(&_handle, &_mutex, &tsTimeoutMs);
+                iRv = ::pthread_cond_timedwait(&_handle, &_mutex, &timeoutMs);
             }
 
             xCHECK_DO(iRv, break);

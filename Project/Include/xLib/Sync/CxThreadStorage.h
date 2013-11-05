@@ -24,7 +24,7 @@ public:
 
     void_t  *value() const xWARN_UNUSED_RV;
         ///< get the value
-    void_t   setValue(void_t *pvValue) const;
+    void_t   setValue(void_t *value) const;
         ///< set value
 
 private:
@@ -39,7 +39,7 @@ private:
     void_t   _destruct();
         ///< releases a thread storage index
 
-    index_t  _m_indIndex;
+    index_t  _index;
         ///< thread storage index
 };
 

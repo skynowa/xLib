@@ -29,9 +29,9 @@ xNAMESPACE_BEGIN(NxLib)
 //------------------------------------------------------------------------------
 xINLINE_HO
 CxProcess::CxProcess() :
-    _handle     (0),
+    _handle    (0),
 #if xOS_ENV_WIN
-    _thread     (NULL),
+    _thread    (NULL),
 #endif
     _pid       (0UL),
     _exitStatus(0U)
@@ -63,42 +63,42 @@ CxProcess::create(
     xTEST_EQ(true, CxFile::isExists(a_filePath));
     xTEST_PTR(a_params);
 
-    std::tstring_t sCmdLine;
+    std::tstring_t cmdLine;
 
-    va_list palArgs;
-    xVA_START(palArgs, a_params);
-    sCmdLine = CxString::formatV(a_params, palArgs);
-    xVA_END(palArgs);
+    va_list args;
+    xVA_START(args, a_params);
+    cmdLine = CxString::formatV(a_params, args);
+    xVA_END(args);
 
-    //xTRACEV(xT("sCmdLine: %s"), sCmdLine.c_str());
+    // xTRACEV(xT("cmdLine: %s"), cmdLine.c_str());
 
 #if xOS_ENV_WIN
-    STARTUPINFO         siInfo = {0};   siInfo.cb = sizeof(siInfo);
-    PROCESS_INFORMATION piInfo = {0};
+    STARTUPINFO         startupInfo = {0};  startupInfo.cb = sizeof(startupInfo);
+    PROCESS_INFORMATION processInfo = {0};
 
-    BOOL blRes = ::CreateProcess(a_filePath.c_str(), const_cast<LPTSTR>( sCmdLine.c_str() ),
+    BOOL blRes = ::CreateProcess(a_filePath.c_str(), const_cast<LPTSTR>( cmdLine.c_str() ),
                                  NULL, NULL, FALSE, NORMAL_PRIORITY_CLASS, NULL, NULL,
-                                 &siInfo, &piInfo);
+                                 &startupInfo, &processInfo);
     xTEST_DIFF(FALSE, blRes);
 
-    _handle = piInfo.hProcess;
-    _thread = piInfo.hThread;
-    _pid   = piInfo.dwProcessId;
+    _handle = processInfo.hProcess;
+    _thread = processInfo.hThread;
+    _pid    = processInfo.dwProcessId;
 #else
-    pid_t liPid = ::fork();
-    xTEST_EQ(true, - 1L != liPid);
+    pid_t id = ::fork();
+    xTEST_EQ(true, - 1L != id);
 
-    if (0L == liPid) {
+    if (0L == id) {
         // TODO: filePath is executable
 
-        int_t iRv = ::execlp(a_filePath.c_str(), a_filePath.c_str(), sCmdLine.c_str(), static_cast<ctchar_t *>( NULL ));
+        int_t iRv = ::execlp(a_filePath.c_str(), a_filePath.c_str(), cmdLine.c_str(), static_cast<ctchar_t *>( NULL ));
         xTEST_DIFF(- 1, iRv);
 
         (void_t)::_exit(EXIT_SUCCESS);  /* not exit() */
     }
 
-    _handle = liPid;
-    _pid   = liPid;
+    _handle = id;
+    _pid    = id;
 #endif
 }
 //------------------------------------------------------------------------------
@@ -107,29 +107,29 @@ CxProcess::wait(
     culong_t &a_timeoutMSec
 )
 {
-    ExWaitResult wrStatus = wrFailed;
+    ExWaitResult waitStatus = wrFailed;
 
 #if xOS_ENV_WIN
     DWORD ulRv = ::WaitForSingleObject(_handle, a_timeoutMSec);
     xTEST_EQ(WAIT_OBJECT_0, ulRv);
 
-    wrStatus = static_cast<ExWaitResult>( ulRv );
+    waitStatus = static_cast<ExWaitResult>( ulRv );
 #else
     // TODO: a_timeoutMSec
-    pid_t liRv    = - 1L;
-    int_t   iStatus = 0;
+    pid_t liRv   = - 1L;
+    int_t status = 0;
 
     do {
-        liRv = ::waitpid(_pid, &iStatus, 0);
+        liRv = ::waitpid(_pid, &status, 0);
     }
     while (liRv < 0L && EINTR == CxLastError::get());
     xTEST_EQ(liRv, _pid);
 
-    _exitStatus = WEXITSTATUS(iStatus);
-    wrStatus        = static_cast<ExWaitResult>( WEXITSTATUS(iStatus) );
+    _exitStatus = WEXITSTATUS(status);
+    waitStatus    = static_cast<ExWaitResult>( WEXITSTATUS(status) );
 #endif
 
-    return wrStatus;
+    return waitStatus;
 }
 //------------------------------------------------------------------------------
 xINLINE_HO void_t
@@ -247,45 +247,45 @@ CxProcess::idByName(
     id_t ulRv;
 
 #if xOS_ENV_WIN
-    CxHandle       hSnapshot;
-    PROCESSENTRY32 peProcess = {0};
-    peProcess.dwSize = sizeof(PROCESSENTRY32);
+    CxHandle       snapshot;
+    PROCESSENTRY32 processEntry = {0};
+    processEntry.dwSize = sizeof(PROCESSENTRY32);
 
-    hSnapshot = ::CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0UL);
-    xTEST_EQ(true, hSnapshot.isValid());
+    snapshot = ::CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0UL);
+    xTEST_EQ(true, snapshot.isValid());
 
-    BOOL blRv = ::Process32First(hSnapshot.get(), &peProcess);
+    BOOL blRv = ::Process32First(snapshot.get(), &processEntry);
     xTEST_DIFF(FALSE, blRv);
 
     xFOREVER {
-        bool_t bRv = CxString::compareNoCase(a_processName, peProcess.szExeFile);
+        bool_t bRv = CxString::compareNoCase(a_processName, processEntry.szExeFile);
         xCHECK_DO(bRv, break);   // OK
 
-        blRv = ::Process32Next(hSnapshot.get(), &peProcess);
+        blRv = ::Process32Next(snapshot.get(), &processEntry);
         xCHECK_DO(FALSE == blRv, break);
     }
 
-    ulRv = peProcess.th32ProcessID;
+    ulRv = processEntry.th32ProcessID;
     xTEST_DIFF(0UL, ulRv);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        int_t iPid = -1;
+        int_t pid = -1;
 
         // open the /proc directory
-        DIR *pDir = ::opendir("/proc");
-        xTEST_PTR(pDir);
+        DIR *dir = ::opendir("/proc");
+        xTEST_PTR(dir);
 
         // enumerate all entries in directory until process found
         xFOREVER {
-            struct dirent *dirp = ::readdir(pDir);
-            xCHECK_DO(NULL == dirp, break);
+            struct dirent *dirEntry = ::readdir(dir);
+            xCHECK_DO(NULL == dirEntry, break);
 
             // skip non-numeric entries
-            int_t iId = ::atoi(dirp->d_name);
-            xCHECK_DO(0 >= iId, continue);
+            int_t id = ::atoi(dirEntry->d_name);
+            xCHECK_DO(0 >= id, continue);
 
             // read contents of virtual /proc/{pid}/cmdline file
-            std::string   cmdPath = std::string("/proc/") + dirp->d_name + "/cmdline";
+            std::string   cmdPath = std::string("/proc/") + dirEntry->d_name + "/cmdline";
             std::ifstream cmdFile(cmdPath.c_str());
             std::string   cmdLine;
 
@@ -293,50 +293,50 @@ CxProcess::idByName(
             xCHECK_DO(cmdLine.empty(), continue);
 
             // keep first cmdline item which contains the program path
-            size_t uiPos = cmdLine.find('\0');
-            if (std::string::npos != uiPos) {
-                cmdLine = cmdLine.substr(0, uiPos);
+            size_t pos = cmdLine.find('\0');
+            if (std::string::npos != pos) {
+                cmdLine = cmdLine.substr(0, pos);
             }
 
             cmdLine = CxPath(cmdLine).fileName();
             if (a_processName == cmdLine) {
-                iPid = iId;
+                pid = id;
                 break;
             }
         }
 
-        int_t iRv = ::closedir(pDir); pDir = NULL;
+        int_t iRv = ::closedir(dir); dir = NULL;
         xTEST_DIFF(- 1, iRv);
 
-        ulRv = iPid;
+        ulRv = pid;
     #elif xOS_FREEBSD
-        int_t    aiMib[3]   = {CTL_KERN, KERN_PROC, KERN_PROC_ALL};
-        size_t uiBuffSize = 0U;
+        int_t  mib[3]   = {CTL_KERN, KERN_PROC, KERN_PROC_ALL};
+        size_t buffSize = 0U;
 
-        int_t iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), NULL, &uiBuffSize, NULL, 0U);
+        int_t iRv = ::sysctl(mib, xARRAY_SIZE(mib), NULL, &buffSize, NULL, 0U);
         xTEST_DIFF(- 1, iRv);
 
         // allocate memory and populate info in the  processes structure
-        kinfo_proc *pkpProcesses = NULL;
+        kinfo_proc *infoProc = NULL;
 
         xFOREVER {
-            uiBuffSize += uiBuffSize / 10;
+            buffSize += buffSize / 10;
 
-            kinfo_proc *pkpNewProcesses = static_cast<kinfo_proc *>( realloc(pkpProcesses, uiBuffSize) );
-            xTEST_PTR(pkpNewProcesses);
+            kinfo_proc *infoProcNew = static_cast<kinfo_proc *>( realloc(infoProc, buffSize) );
+            xTEST_PTR(infoProcNew);
 
-            pkpProcesses = pkpNewProcesses;
+            infoProc = infoProcNew;
 
-            iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), pkpProcesses, &uiBuffSize, NULL, 0U);
+            iRv = ::sysctl(mib, xARRAY_SIZE(mib), infoProc, &buffSize, NULL, 0U);
             xCHECK_DO(!(- 1 == iRv && errno == ENOMEM), break);
         }
 
         // search for the given process name and return its pid
-        size_t uiNumProcs = uiBuffSize / sizeof(kinfo_proc);
+        size_t uiNumProcs = buffSize / sizeof(kinfo_proc);
 
         for (size_t i = 0; i < uiNumProcs; ++ i) {
-            if (0 == strncmp(a_processName.c_str(), pkpProcesses[i].ki_comm, MAXCOMLEN)) {
-                ulRv = pkpProcesses[i].ki_pid;
+            if (0 == strncmp(a_processName.c_str(), infoProc[i].ki_comm, MAXCOMLEN)) {
+                ulRv = infoProc[i].ki_pid;
 
                 break;
             } else {
@@ -344,7 +344,7 @@ CxProcess::idByName(
             }
         }
 
-        xBUFF_FREE(pkpProcesses);
+        xBUFF_FREE(infoProc);
     #endif
 #elif xOS_ENV_MAC
     xNOT_IMPLEMENTED
@@ -379,74 +379,74 @@ CxProcess::ids(
     std::vector<id_t> vidRv;
 
 #if   xOS_ENV_WIN
-    CxHandle       hSnapshot;
-    PROCESSENTRY32 peProcess = {0};
-    peProcess.dwSize = sizeof(PROCESSENTRY32);
+    CxHandle       snapshot;
+    PROCESSENTRY32 processEntry = {0};
+    processEntry.dwSize = sizeof(PROCESSENTRY32);
 
-    hSnapshot = ::CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0UL);
-    xTEST_EQ(true, hSnapshot.isValid());
+    snapshot = ::CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0UL);
+    xTEST_EQ(true, snapshot.isValid());
 
-    BOOL blRv = ::Process32First(hSnapshot.get(), &peProcess);
+    BOOL blRv = ::Process32First(snapshot.get(), &processEntry);
     xTEST_DIFF(FALSE, blRv);
 
     xFOREVER {
-        DWORD dwPid = peProcess.th32ProcessID;
+        DWORD pid = processEntry.th32ProcessID;
 
-        vidRv.push_back(dwPid);
+        vidRv.push_back(pid);
 
-        blRv = ::Process32Next(hSnapshot.get(), &peProcess);
+        blRv = ::Process32Next(snapshot.get(), &processEntry);
         xCHECK_DO(FALSE == blRv, break);
     }
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        std::vec_tstring_t a_vsDirPaths;
+        std::vec_tstring_t dirPaths;
 
-        CxFinder::dirs(xT("/proc"), CxConst::xMASK_ALL(), false, &a_vsDirPaths);
+        CxFinder::dirs(xT("/proc"), CxConst::xMASK_ALL(), false, &dirPaths);
 
         // skip non-numeric entries
-        xFOREACH_CONST(std::vec_tstring_t, it, a_vsDirPaths) {
-            int_t iPid = 0;
+        xFOREACH_CONST(std::vec_tstring_t, it, dirPaths) {
+            int_t pid = 0;
             {
-                std::tstring_t sDirName = CxPath(*it).fileName();
+                std::tstring_t dirName = CxPath(*it).fileName();
 
-                iPid = ::atoi(sDirName.c_str());
-                xCHECK_DO(0 >= iPid, continue);
+                pid = ::atoi(dirName.c_str());
+                xCHECK_DO(0 >= pid, continue);
             }
 
-            vidRv.push_back( static_cast<id_t>( iPid ));
+            vidRv.push_back( static_cast<id_t>( pid ));
         }
     #elif xOS_FREEBSD
-        int_t    aiMib[3]   = {CTL_KERN, KERN_PROC, KERN_PROC_ALL};
-        size_t uiBuffSize = 0U;
+        int_t  mib[3]   = {CTL_KERN, KERN_PROC, KERN_PROC_ALL};
+        size_t buffSize = 0U;
 
-        int_t iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), NULL, &uiBuffSize, NULL, 0U);
+        int_t iRv = ::sysctl(mib, xARRAY_SIZE(mib), NULL, &buffSize, NULL, 0U);
         xTEST_DIFF(- 1, iRv);
 
         // allocate memory and populate info in the  processes structure
-        kinfo_proc *pkpProcesses = NULL;
+        kinfo_proc *infoProc = NULL;
 
         xFOREVER {
-            uiBuffSize += uiBuffSize / 10;
+            buffSize += buffSize / 10;
 
-            kinfo_proc *pkpNewProcesses = static_cast<kinfo_proc *>( realloc(pkpProcesses, uiBuffSize) );
-            xTEST_PTR(pkpNewProcesses);
+            kinfo_proc *infoProcNew = static_cast<kinfo_proc *>( realloc(infoProc, buffSize) );
+            xTEST_PTR(infoProcNew);
 
-            pkpProcesses = pkpNewProcesses;
+            infoProc = infoProcNew;
 
-            iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), pkpProcesses, &uiBuffSize, NULL, 0U);
+            iRv = ::sysctl(mib, xARRAY_SIZE(mib), infoProc, &buffSize, NULL, 0U);
             xCHECK_DO(!(- 1 == iRv && errno == ENOMEM), break);
         }
 
         // search for the given process name and return its pid
-        std::csize_t cuiProcsNum = uiBuffSize / sizeof(kinfo_proc);
+        std::csize_t procsNum = buffSize / sizeof(kinfo_proc);
 
-        for (size_t i = 0; i < cuiProcsNum; ++ i) {
-            pid_t iPid = pkpProcesses[i].ki_pid;
+        for (size_t i = 0; i < procsNum; ++ i) {
+            pid_t pid = infoProc[i].ki_pid;
 
-            vidRv.push_back(iPid);
+            vidRv.push_back(pid);
         }
 
-        xBUFF_FREE(pkpProcesses);
+        xBUFF_FREE(infoProc);
     #endif
 #elif xOS_ENV_MAC
     xNOT_IMPLEMENTED
@@ -519,35 +519,35 @@ CxProcess::currentParentId()
         PULONG           ReturnLength
     );
 
-    const id_t culInvalidId = (DWORD)- 1;
+    const id_t invalidId = (DWORD)- 1;
 
-    CxDll dlDll;
+    CxDll dll;
 
-    dlDll.load(xT("ntdll.dll"));
+    dll.load(xT("ntdll.dll"));
 
-    bool_t bRv = dlDll.isProcExists(xT("NtQueryInformationProcess"));
-    xCHECK_RET(!bRv, culInvalidId);
+    bool_t bRv = dll.isProcExists(xT("NtQueryInformationProcess"));
+    xCHECK_RET(!bRv, invalidId);
 
 #if xARCH_X86
-    const PROCESSINFOCLASS    cpicInfo                = ProcessBasicInformation;
+    const PROCESSINFOCLASS    infoClass             = ProcessBasicInformation;
 #else
-    const PROCESSINFOCLASS    cpicInfo                = ProcessWow64Information;
+    const PROCESSINFOCLASS    infoClass             = ProcessWow64Information;
 #endif
-    ULONG                     ulProcessInformation[6] = {0};
-    DWORD                     dwReturnSizeBytes       = 0UL;
+    ULONG                     processInformation[6] = {0};
+    DWORD                     returnSizeBytes       = 0UL;
     Dll_NtQueryInformationProcess_t
-    DllNtQueryInformationProcess = (Dll_NtQueryInformationProcess_t)dlDll.procAddress(xT("NtQueryInformationProcess"));
+    DllNtQueryInformationProcess = (Dll_NtQueryInformationProcess_t)dll.procAddress(xT("NtQueryInformationProcess"));
     xTEST_PTR(DllNtQueryInformationProcess);
 
     // TODO: ProcessBasicInformation (for x64)
     NTSTATUS ntsRes = DllNtQueryInformationProcess(
                             handle(),
-                            cpicInfo,
-                           &ulProcessInformation, sizeof(ulProcessInformation), &dwReturnSizeBytes);
+                            infoClass,
+                           &processInformation, sizeof(processInformation), &returnSizeBytes);
     xTEST_EQ(true, NT_SUCCESS(ntsRes));
-    xTEST_EQ(size_t(dwReturnSizeBytes), sizeof(ulProcessInformation));
+    xTEST_EQ(size_t(returnSizeBytes), sizeof(processInformation));
 
-    ulRv = ulProcessInformation[5];
+    ulRv = processInformation[5];
 #else
     ulRv = ::getppid();
     xTEST_NA(ulRv);
