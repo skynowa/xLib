@@ -72,25 +72,25 @@ CxFileTemp::create(
     #if xCOMPILER_MINGW || xCOMPILER_CODEGEAR
         _filePath.resize(_filePath.size() + 1);
 
-        tchar_t *pszFile = ::xTMKSTEMP(&_filePath.at(0));
-        xTEST_PTR(pszFile);
+        tchar_t *file = ::xTMKSTEMP(&_filePath.at(0));
+        xTEST_PTR(file);
 
-        stdFile = std::xTFOPEN(pszFile, CxFile::_openMode(CxFile::omBinCreateReadWrite).c_str());
+        stdFile = std::xTFOPEN(file, CxFile::_openMode(CxFile::omBinCreateReadWrite).c_str());
         xTEST_PTR(stdFile);
     #else
         _filePath.resize(_filePath.size() + 1);
 
-        errno_t iError = ::xTMKSTEMP(&_filePath.at(0), _filePath.size() + 1);
-        xTEST_EQ(0, iError);
+        errno_t error = ::xTMKSTEMP(&_filePath.at(0), _filePath.size() + 1);
+        xTEST_EQ(0, error);
 
         stdFile = ::xTFOPEN(_filePath.c_str(), CxFile::_openMode(CxFile::omBinCreateReadWrite).c_str());
         xTEST_PTR(stdFile);
     #endif
 #else
-    int_t iFile = ::xTMKSTEMP(&_filePath.at(0));
-    xTEST_DIFF(- 1, iFile);
+    int_t file = ::xTMKSTEMP(&_filePath.at(0));
+    xTEST_DIFF(- 1, file);
 
-    stdFile = ::xTFDOPEN(iFile, CxFile::_openMode(CxFile::omBinCreateReadWrite).c_str());
+    stdFile = ::xTFDOPEN(file, CxFile::_openMode(CxFile::omBinCreateReadWrite).c_str());
     xTEST_PTR(stdFile);
 #endif
 
