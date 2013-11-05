@@ -33,7 +33,7 @@ xNAMESPACE_BEGIN(NxLib)
 xINLINE_HO
 CxBlowfish::CxBlowfish()
 {
-    xSTRUCT_ZERO(_bfKey);
+    xSTRUCT_ZERO(_key);
     xARRAY_ZERO(_ivec);
 }
 //------------------------------------------------------------------------------
@@ -41,7 +41,7 @@ xINLINE_HO
 /* virtual */
 CxBlowfish::~CxBlowfish()
 {
-    /*SECURE*/xSTRUCT_ZERO(_bfKey);
+    /*SECURE*/xSTRUCT_ZERO(_key);
     /*SECURE*/xARRAY_ZERO(_ivec);
 }
 //------------------------------------------------------------------------------
@@ -55,7 +55,7 @@ CxBlowfish::setKey(
     xTEST_GR_EQ(static_cast<int_t>( MAX_KEY_SIZE ), a_keySize);
     xTEST_LESS(0, a_keySize);
 
-    (void_t)::BF_set_key(&_bfKey, a_keySize, a_key);
+    (void_t)::BF_set_key(&_key, a_keySize, a_key);
 }
 //------------------------------------------------------------------------------
 xINLINE_HO void_t
@@ -139,26 +139,26 @@ CxBlowfish::encryptCfb64(
 
     xARRAY_ZERO(_ivec);
 
-    (void_t)::BF_cfb64_encrypt(a_in, a_out, a_inSize, &_bfKey, _ivec, a_num, a_mode);
+    (void_t)::BF_cfb64_encrypt(a_in, a_out, a_inSize, &_key, _ivec, a_num, a_mode);
 }
 //------------------------------------------------------------------------------
 xINLINE_HO void_t
 CxBlowfish::encryptCfb64(
-    std::custring_t   &a_cusIn,
-    std::ustring_t    *a_pusOut,
+    std::custring_t   &a_in,
+    std::ustring_t    *a_out,
     const ExCryptMode &a_mode
 )
 {
-    xTEST_EQ(false, a_cusIn.empty());
-    xTEST_PTR(a_pusOut);
+    xTEST_EQ(false, a_in.empty());
+    xTEST_PTR(a_out);
 
     int_t iNum = 0;    //This integer must be initialized to zero when ivec is initialized
 
-    (*a_pusOut).resize( a_cusIn.size() );
+    (*a_out).resize( a_in.size() );
 
     encryptCfb64(
-        const_cast<uchar_t *>( &a_cusIn.at(0) ), &(*a_pusOut).at(0),
-        static_cast<long_t>( a_cusIn.size() ), &iNum, a_mode);
+        const_cast<uchar_t *>( &a_in.at(0) ), &(*a_out).at(0),
+        static_cast<long_t>( a_in.size() ), &iNum, a_mode);
     xTEST_LESS(- 1, iNum);
 }
 //------------------------------------------------------------------------------
@@ -172,23 +172,23 @@ CxBlowfish::encryptFileCfb64(
     xTEST_EQ(false, a_filePathIn.empty());
     xTEST_EQ(false, a_filePathOut.empty());
 
-    std::ustring_t usIn;
-    std::ustring_t usOut;
+    std::ustring_t in;
+    std::ustring_t out;
 
     {
-        CxFile sfFileIn;
+        CxFile fileIn;
 
-        sfFileIn.create(a_filePathIn, CxFile::omBinRead, true);
-        sfFileIn.read(&usIn);
+        fileIn.create(a_filePathIn, CxFile::omBinRead, true);
+        fileIn.read(&in);
     }
 
-    encryptCfb64(usIn, &usOut, a_mode);
+    encryptCfb64(in, &out, a_mode);
 
     {
-        CxFile sfFileOut;
+        CxFile fileOut;
 
-        sfFileOut.create(a_filePathOut, CxFile::omBinCreateReadWrite, true);
-        sfFileOut.write(usOut);
+        fileOut.create(a_filePathOut, CxFile::omBinCreateReadWrite, true);
+        fileOut.write(out);
     }
 }
 //------------------------------------------------------------------------------

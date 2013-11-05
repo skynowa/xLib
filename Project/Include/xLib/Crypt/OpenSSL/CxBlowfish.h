@@ -47,7 +47,7 @@ public:
     void_t        encryptCfb64(uchar_t *in, uchar_t *out, clong_t &inSize, int_t *num,
                       const ExCryptMode &mode);
         ///< encrypt buffer
-    void_t        encryptCfb64(std::custring_t &cusIn, std::ustring_t *pusOut,
+    void_t        encryptCfb64(std::custring_t &in, std::ustring_t *out,
                       const ExCryptMode &mode);
         ///< encrypt std::ustring_t
     void_t        encryptFileCfb64(std::ctstring_t &filePathIn, std::ctstring_t &filePathOut,
@@ -62,7 +62,7 @@ private:
         IVEC_SIZE    = 8    ///< ivec size
     };
 
-    BF_KEY        _bfKey;             ///< crypt key
+    BF_KEY        _key;             ///< crypt key
     uchar_t       _ivec[IVEC_SIZE]; ///< ivec
 };
 
