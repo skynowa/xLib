@@ -39,10 +39,10 @@ CxEnvironment::isExists(
 
     sRv.resize(xPATH_MAX);
 
-    DWORD dwLength = ::GetEnvironmentVariable(a_varName.c_str(), &sRv.at(0), static_cast<DWORD>( sRv.size() ));
-    xTEST_NA(dwLength);
+    DWORD length = ::GetEnvironmentVariable(a_varName.c_str(), &sRv.at(0), static_cast<DWORD>( sRv.size() ));
+    xTEST_NA(length);
 
-    xCHECK_RET(0UL == dwLength && ERROR_ENVVAR_NOT_FOUND == CxLastError::get(), false);
+    xCHECK_RET(0UL == length && ERROR_ENVVAR_NOT_FOUND == CxLastError::get(), false);
 #else
     const char *pcszRes = ::getenv(a_varName.c_str());
     xTEST_NA(pcszRes);
@@ -95,14 +95,14 @@ CxEnvironment::var(
 #if xOS_ENV_WIN
     sRv.resize(xPATH_MAX);
 
-    DWORD dwLength = ::GetEnvironmentVariable(a_varName.c_str(), &sRv.at(0), static_cast<DWORD>( sRv.size() ));
-    xTEST_DIFF(0UL, dwLength);
+    DWORD length = ::GetEnvironmentVariable(a_varName.c_str(), &sRv.at(0), static_cast<DWORD>( sRv.size() ));
+    xTEST_DIFF(0UL, length);
 
-    sRv.resize(dwLength);
+    sRv.resize(length);
 
-    if (sRv.size() < dwLength) {
-        dwLength = ::GetEnvironmentVariable(a_varName.c_str(), &sRv.at(0), static_cast<DWORD>( sRv.size() ));
-        xTEST_DIFF(0UL, dwLength);
+    if (sRv.size() < length) {
+        length = ::GetEnvironmentVariable(a_varName.c_str(), &sRv.at(0), static_cast<DWORD>( sRv.size() ));
+        xTEST_DIFF(0UL, length);
     }
 #else
     const char *pcszRes = ::getenv(a_varName.c_str());
@@ -167,7 +167,7 @@ CxEnvironment::values(
 {
     xTEST_PTR(a_values);
 
-    std::vec_tstring_t vsArgs;
+    std::vec_tstring_t args;
 
 #if xOS_ENV_WIN
     LPTCH lpvEnv = ::GetEnvironmentStrings();
@@ -176,11 +176,11 @@ CxEnvironment::values(
     // variable strings are separated by NULL byte,
     // and the block is terminated by a NULL byte
     for (
-        LPTSTR pszVar = static_cast<LPTSTR>( lpvEnv );
-        xT('\0') != *pszVar;
-        pszVar += ::lstrlen(pszVar) + 1)
+        LPTSTR var = static_cast<LPTSTR>( lpvEnv );
+        xT('\0') != *var;
+        var += ::lstrlen(var) + 1)
     {
-        vsArgs.push_back(pszVar);
+        args.push_back(var);
     }
 
     BOOL blRes = ::FreeEnvironmentStrings(lpvEnv);
@@ -189,72 +189,72 @@ CxEnvironment::values(
     xTEST_PTR(environ);
 
     for (size_t i = 0; 0 != environ[i]; ++ i) {
-        vsArgs.push_back(environ[i]);
+        args.push_back(environ[i]);
     }
 #endif
 
     // out
-    a_values->swap(vsArgs);
+    a_values->swap(args);
 }
 //--------------------------------------------------------------------------
 /* static */
 xINLINE_HO std::tstring_t
 CxEnvironment::expandStrings(
-    std::ctstring_t &a_csVar
+    std::ctstring_t &a_var
 )
 {
-    xTEST_EQ(false, a_csVar.empty());
+    xTEST_EQ(false, a_var.empty());
 
     std::tstring_t sRv;
 
 #if xOS_ENV_WIN
     sRv.resize(xPATH_MAX);
 
-    DWORD dwLength = ::ExpandEnvironmentStrings(a_csVar.c_str(), &sRv.at(0), static_cast<DWORD>( sRv.size() ));
-    xTEST_DIFF(0UL, dwLength);
+    DWORD length = ::ExpandEnvironmentStrings(a_var.c_str(), &sRv.at(0), static_cast<DWORD>( sRv.size() ));
+    xTEST_DIFF(0UL, length);
 
-    sRv.resize(dwLength);
+    sRv.resize(length);
 
-    if (sRv.size() < dwLength) {
-        dwLength = ::ExpandEnvironmentStrings(a_csVar.c_str(), &sRv.at(0), static_cast<DWORD>( sRv.size() ));
-        xTEST_DIFF(0UL, dwLength);
+    if (sRv.size() < length) {
+        length = ::ExpandEnvironmentStrings(a_var.c_str(), &sRv.at(0), static_cast<DWORD>( sRv.size() ));
+        xTEST_DIFF(0UL, length);
     }
 
-    sRv.resize(dwLength - 1);   // remove '\0'
+    sRv.resize(length - 1);   // remove '\0'
 #else
-    std::ctstring_t csSep = xT("%");
+    std::ctstring_t sep = xT("%");
 
-    sRv = a_csVar;
+    sRv = a_var;
 
     xFOREVER {
         //--------------------------------------------------
         // find from left two first chars '%'
-        std::csize_t cuiStartSepPos = sRv.find(csSep);
-        xCHECK_DO(std::tstring_t::npos == cuiStartSepPos, break);
+        std::csize_t startSepPos = sRv.find(sep);
+        xCHECK_DO(std::tstring_t::npos == startSepPos, break);
 
-        std::csize_t cuiStopSepPos  = sRv.find(csSep, cuiStartSepPos + csSep.size());
-        xCHECK_DO(std::tstring_t::npos == cuiStopSepPos, break);
+        std::csize_t stopSepPos  = sRv.find(sep, startSepPos + sep.size());
+        xCHECK_DO(std::tstring_t::npos == stopSepPos, break);
 
         //--------------------------------------------------
         // copy %var% to temp string
-        std::tstring_t sRawEnvVar; // %var%
+        std::tstring_t rawEnvVar; // %var%
 
-        sRawEnvVar = CxString::cut(sRv, cuiStartSepPos, cuiStopSepPos + csSep.size());
-        xTEST_EQ(false, sRawEnvVar.empty());
+        rawEnvVar = CxString::cut(sRv, startSepPos, stopSepPos + sep.size());
+        xTEST_EQ(false, rawEnvVar.empty());
 
-        std::tstring_t sEnvVar;    // var
+        std::tstring_t envVar;    // var
 
-        sEnvVar = CxString::trimChars(sRawEnvVar, csSep);
+        envVar = CxString::trimChars(rawEnvVar, sep);
 
         //--------------------------------------------------
         // expand var to temp string
-        std::tstring_t sExpandedEnvVar;
+        std::tstring_t expandedEnvVar;
 
-        sExpandedEnvVar = var(sEnvVar);
+        expandedEnvVar = var(envVar);
 
         //--------------------------------------------------
-        // replace sEnvVar(%var%) by sExpandedEnvVar
-        sRv.replace(cuiStartSepPos, sRawEnvVar.size(), sExpandedEnvVar);
+        // replace envVar(%var%) by expandedEnvVar
+        sRv.replace(startSepPos, rawEnvVar.size(), expandedEnvVar);
     }
 #endif
 

@@ -42,12 +42,12 @@ xINLINE_HO CxConsole::CxConsole()
 
     // _attributesDef
     {
-        CONSOLE_SCREEN_BUFFER_INFO csbInfo = {};
+        CONSOLE_SCREEN_BUFFER_INFO info = {};
 
-        BOOL blRv = ::GetConsoleScreenBufferInfo(_stdOut.get(), &csbInfo);
+        BOOL blRv = ::GetConsoleScreenBufferInfo(_stdOut.get(), &info);
         xTEST_DIFF(FALSE, blRv);
 
-        _attributesDef = csbInfo.wAttributes;
+        _attributesDef = info.wAttributes;
     }
 
     _wnd = _wndHandle();
@@ -80,7 +80,7 @@ CxConsole::setAttributes(
     // n/a
 
     //--------------------------------------------------
-    ExForeground fgForegroundColor;
+    ExForeground foregroundColor;
 
     {
     #if xOS_ENV_WIN
@@ -103,56 +103,56 @@ CxConsole::setAttributes(
             #define COLOR_LTWHITE   F
         */
 
-        const WORD ciForegroundColorBlack   = 0;
-        const WORD ciForegroundColorRed	    = FOREGROUND_RED;
-        const WORD ciForegroundColorBlue	= FOREGROUND_BLUE;
-        const WORD ciForegroundColorGreen   = FOREGROUND_GREEN;
-        const WORD ciForegroundColorCyan	= FOREGROUND_GREEN | FOREGROUND_BLUE;
-        const WORD ciForegroundColorMagenta = FOREGROUND_RED | FOREGROUND_BLUE;
-        const WORD ciForegroundColorYellow  = FOREGROUND_RED | FOREGROUND_GREEN;
-        const WORD ciForegroundColorWhite   = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE;
-        const WORD ciForegroundColorGray	= FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE;
+        const WORD foregroundColorBlack   = 0;
+        const WORD foregroundColorRed	  = FOREGROUND_RED;
+        const WORD foregroundColorBlue	  = FOREGROUND_BLUE;
+        const WORD foregroundColorGreen   = FOREGROUND_GREEN;
+        const WORD foregroundColorCyan	  = FOREGROUND_GREEN | FOREGROUND_BLUE;
+        const WORD foregroundColorMagenta = FOREGROUND_RED | FOREGROUND_BLUE;
+        const WORD foregroundColorYellow  = FOREGROUND_RED | FOREGROUND_GREEN;
+        const WORD foregroundColorWhite   = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE;
+        const WORD foregroundColorGray	  = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE;
     #else
-        cint_t  ciForegroundColorBlack      = 30;
-        cint_t  ciForegroundColorRed        = 31;
-        cint_t  ciForegroundColorBlue       = 34;
-        cint_t  ciForegroundColorGreen      = 32;
-        cint_t  ciForegroundColorCyan       = 36;
-        cint_t  ciForegroundColorMagenta    = 35;
-        cint_t  ciForegroundColorYellow     = 33;
-        cint_t  ciForegroundColorWhite      = 37;
-        cint_t  ciForegroundColorGray       = 37;    // TODO: ciForegroundColorGray
+        cint_t  foregroundColorBlack      = 30;
+        cint_t  foregroundColorRed        = 31;
+        cint_t  foregroundColorBlue       = 34;
+        cint_t  foregroundColorGreen      = 32;
+        cint_t  foregroundColorCyan       = 36;
+        cint_t  foregroundColorMagenta    = 35;
+        cint_t  foregroundColorYellow     = 33;
+        cint_t  foregroundColorWhite      = 37;
+        cint_t  foregroundColorGray       = 37;    // TODO: foregroundColorGray
     #endif
 
         int_t iRv = - 1;
 
 	    switch (a_foreground) {
     	    case fgBlack:
-    	        iRv = ciForegroundColorBlack;
+    	        iRv = foregroundColorBlack;
     	        break;
 		    case fgRed:
-		        iRv = ciForegroundColorRed;
+		        iRv = foregroundColorRed;
 		        break;
 		    case fgGreen:
-		        iRv = ciForegroundColorGreen;
+		        iRv = foregroundColorGreen;
 		        break;
 		    case fgYellow:
-		        iRv = ciForegroundColorYellow;
+		        iRv = foregroundColorYellow;
 		        break;
     	    case fgBlue:
-    	        iRv = ciForegroundColorBlue;
+    	        iRv = foregroundColorBlue;
                 break;
 		    case fgMagenta:
-		        iRv = ciForegroundColorMagenta;
+		        iRv = foregroundColorMagenta;
 		        break;
 		    case fgCyan:
-		        iRv = ciForegroundColorCyan;
+		        iRv = foregroundColorCyan;
 		        break;
 		    case fgWhite:
-		        iRv = ciForegroundColorWhite;
+		        iRv = foregroundColorWhite;
 		        break;
     	    case fgGray:
-    	        iRv = ciForegroundColorGray;
+    	        iRv = foregroundColorGray;
     	        break;
             case fgUnknown:
     	    default:
@@ -160,64 +160,64 @@ CxConsole::setAttributes(
     	        break;
         }
 
-        fgForegroundColor = static_cast<ExForeground>( iRv );
+        foregroundColor = static_cast<ExForeground>( iRv );
     }
 
     //--------------------------------------------------
-    ExBackground bgBackgroundColor;
+    ExBackground backgroundColor;
 
     {
     #if xOS_ENV_WIN
-        const WORD ciBackgroundColorBlack   = 0;
-        const WORD ciBackgroundColorRed	    = BACKGROUND_RED;
-        const WORD ciBackgroundColorBlue	= BACKGROUND_BLUE;
-        const WORD ciBackgroundColorGreen   = BACKGROUND_GREEN;
-        const WORD ciBackgroundColorCyan	= BACKGROUND_GREEN | BACKGROUND_BLUE;
-        const WORD ciBackgroundColorMagenta = BACKGROUND_RED | BACKGROUND_BLUE;
-        const WORD ciBackgroundColorYellow  = BACKGROUND_RED | BACKGROUND_GREEN;
-        const WORD ciBackgroundColorWhite   = BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE;
-        const WORD ciBackgroundColorGray	= BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE;
+        const WORD backgroundColorBlack   = 0;
+        const WORD backgroundColorRed	  = BACKGROUND_RED;
+        const WORD backgroundColorBlue	  = BACKGROUND_BLUE;
+        const WORD backgroundColorGreen   = BACKGROUND_GREEN;
+        const WORD backgroundColorCyan	  = BACKGROUND_GREEN | BACKGROUND_BLUE;
+        const WORD backgroundColorMagenta = BACKGROUND_RED | BACKGROUND_BLUE;
+        const WORD backgroundColorYellow  = BACKGROUND_RED | BACKGROUND_GREEN;
+        const WORD backgroundColorWhite   = BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE;
+        const WORD backgroundColorGray	  = BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE;
     #else
-        cint_t  ciBackgroundColorBlack      = 40;
-        cint_t  ciBackgroundColorRed	    = 41;
-        cint_t  ciBackgroundColorBlue	    = 44;
-        cint_t  ciBackgroundColorGreen      = 42;
-        cint_t  ciBackgroundColorCyan	    = 46;
-        cint_t  ciBackgroundColorMagenta    = 45;
-        cint_t  ciBackgroundColorYellow     = 43;
-        cint_t  ciBackgroundColorWhite      = 47;
-        cint_t  ciBackgroundColorGray	    = 47;    // TODO: ciBackgroundColorGray
+        cint_t  backgroundColorBlack      = 40;
+        cint_t  backgroundColorRed	      = 41;
+        cint_t  backgroundColorBlue	      = 44;
+        cint_t  backgroundColorGreen      = 42;
+        cint_t  backgroundColorCyan	      = 46;
+        cint_t  backgroundColorMagenta    = 45;
+        cint_t  backgroundColorYellow     = 43;
+        cint_t  backgroundColorWhite      = 47;
+        cint_t  backgroundColorGray	      = 47;    // TODO: backgroundColorGray
     #endif
 
         int_t iRv = - 1;
 
 	    switch (a_background) {
     	    case fgBlack:
-                iRv = ciBackgroundColorBlack;
+                iRv = backgroundColorBlack;
                 break;
 		    case fgRed:
-                iRv = ciBackgroundColorRed;
+                iRv = backgroundColorRed;
                 break;
 		    case fgGreen:
-                iRv = ciBackgroundColorGreen;
+                iRv = backgroundColorGreen;
                 break;
 		    case fgYellow:
-                iRv = ciBackgroundColorYellow;
+                iRv = backgroundColorYellow;
                 break;
     	    case fgBlue:
-                iRv = ciBackgroundColorBlue;
+                iRv = backgroundColorBlue;
                 break;
 		    case fgMagenta:
-                iRv = ciBackgroundColorMagenta;
+                iRv = backgroundColorMagenta;
                 break;
 		    case fgCyan:
-                iRv = ciBackgroundColorCyan;
+                iRv = backgroundColorCyan;
                 break;
 		    case fgWhite:
-                iRv = ciBackgroundColorWhite;
+                iRv = backgroundColorWhite;
                 break;
     	    case fgGray:
-                iRv = ciBackgroundColorGray;
+                iRv = backgroundColorGray;
                 break;
             case fgUnknown:
     	    default:
@@ -225,63 +225,63 @@ CxConsole::setAttributes(
                 break;
         }
 
-        bgBackgroundColor = static_cast<ExBackground>( iRv );
+        backgroundColor = static_cast<ExBackground>( iRv );
     }
 
     //--------------------------------------------------
 #if xOS_ENV_WIN
-    WORD           wAttributes = 0U;
+    WORD           attrs = 0U;
 #else
-    std::tstring_t sAttributes;
+    std::tstring_t attrs;
 #endif
 
     {
     #if xOS_ENV_WIN
-        const WORD ciAttributeAllOff     = 0;
-        const WORD ciAttributeBold       = FOREGROUND_INTENSITY;
-        const WORD ciAttributeUnderscore = - 1; xUNUSED(ciAttributeUnderscore);   // not supported
-        const WORD ciAttributeBlink      = - 1; xUNUSED(ciAttributeBlink);        // not supported
-        const WORD ciAttributeReverse    = - 1; xUNUSED(ciAttributeReverse);      // not supported
-        const WORD ciAttributeConcealed  = - 1; xUNUSED(ciAttributeConcealed);    // not supported
+        const WORD attributeAllOff     = 0;
+        const WORD attributeBold       = FOREGROUND_INTENSITY;
+        const WORD attributeUnderscore = - 1; xUNUSED(attributeUnderscore);   // not supported
+        const WORD attributeBlink      = - 1; xUNUSED(attributeBlink);        // not supported
+        const WORD attributeReverse    = - 1; xUNUSED(attributeReverse);      // not supported
+        const WORD attributeConcealed  = - 1; xUNUSED(attributeConcealed);    // not supported
     #else
-        cint_t  ciAttributeAllOff     = 0;
-        cint_t  ciAttributeBold       = 1;
-        cint_t  ciAttributeUnderscore = 4;
-        cint_t  ciAttributeBlink      = 5;
-        cint_t  ciAttributeReverse    = 7;
-        cint_t  ciAttributeConcealed  = 8;
+        cint_t  attributeAllOff        = 0;
+        cint_t  attributeBold          = 1;
+        cint_t  attributeUnderscore    = 4;
+        cint_t  attributeBlink         = 5;
+        cint_t  attributeReverse       = 7;
+        cint_t  attributeConcealed     = 8;
     #endif
 
     #if xOS_ENV_WIN
-        wAttributes |= fgForegroundColor;
-        wAttributes |= bgBackgroundColor;
+        attrs |= foregroundColor;
+        attrs |= backgroundColor;
 
-        xCHECK_DO(a_attributes & CxConsole::atAllOff,     wAttributes |= ciAttributeAllOff);
-        xCHECK_DO(a_attributes & CxConsole::atBold,       wAttributes |= ciAttributeBold);
-        xCHECK_DO(a_attributes & CxConsole::atUnderscore, /* wAttributes |= ciAttributeUnderscore */);   // not supported
-        xCHECK_DO(a_attributes & CxConsole::atBlink,      /* wAttributes |= ciAttributeBlink */);        // not supported
-        xCHECK_DO(a_attributes & CxConsole::atReverse,    /* wAttributes |= ciAttributeReverse */);      // not supported
-        xCHECK_DO(a_attributes & CxConsole::atConcealed,  /* wAttributes |= ciAttributeConcealed */);    // not supported
+        xCHECK_DO(a_attributes & CxConsole::atAllOff,     attrs |= attributeAllOff);
+        xCHECK_DO(a_attributes & CxConsole::atBold,       attrs |= attributeBold);
+        xCHECK_DO(a_attributes & CxConsole::atUnderscore, /* attrs |= attributeUnderscore */);   // not supported
+        xCHECK_DO(a_attributes & CxConsole::atBlink,      /* attrs |= attributeBlink */);        // not supported
+        xCHECK_DO(a_attributes & CxConsole::atReverse,    /* attrs |= attributeReverse */);      // not supported
+        xCHECK_DO(a_attributes & CxConsole::atConcealed,  /* attrs |= attributeConcealed */);    // not supported
     #else
-        sAttributes += CxString::format(xT("\033[%im"), fgForegroundColor);
-        sAttributes += CxString::format(xT("\033[%im"), bgBackgroundColor);
+        attrs += CxString::format(xT("\033[%im"), foregroundColor);
+        attrs += CxString::format(xT("\033[%im"), backgroundColor);
 
-        xCHECK_DO(a_attributes & CxConsole::atAllOff,     sAttributes += CxString::format(xT("\033[%im"), ciAttributeAllOff));
-        xCHECK_DO(a_attributes & CxConsole::atBold,       sAttributes += CxString::format(xT("\033[%im"), ciAttributeBold));
-        xCHECK_DO(a_attributes & CxConsole::atUnderscore, sAttributes += CxString::format(xT("\033[%im"), ciAttributeUnderscore));
-        xCHECK_DO(a_attributes & CxConsole::atBlink,      sAttributes += CxString::format(xT("\033[%im"), ciAttributeBlink));
-        xCHECK_DO(a_attributes & CxConsole::atReverse,    sAttributes += CxString::format(xT("\033[%im"), ciAttributeReverse));
-        xCHECK_DO(a_attributes & CxConsole::atConcealed,  sAttributes += CxString::format(xT("\033[%im"), ciAttributeConcealed));
+        xCHECK_DO(a_attributes & CxConsole::atAllOff,     attrs += CxString::format(xT("\033[%im"), attributeAllOff));
+        xCHECK_DO(a_attributes & CxConsole::atBold,       attrs += CxString::format(xT("\033[%im"), attributeBold));
+        xCHECK_DO(a_attributes & CxConsole::atUnderscore, attrs += CxString::format(xT("\033[%im"), attributeUnderscore));
+        xCHECK_DO(a_attributes & CxConsole::atBlink,      attrs += CxString::format(xT("\033[%im"), attributeBlink));
+        xCHECK_DO(a_attributes & CxConsole::atReverse,    attrs += CxString::format(xT("\033[%im"), attributeReverse));
+        xCHECK_DO(a_attributes & CxConsole::atConcealed,  attrs += CxString::format(xT("\033[%im"), attributeConcealed));
     #endif
     }
 
 #if xOS_ENV_WIN
-    BOOL blRes = ::SetConsoleTextAttribute(_stdOut.get(), wAttributes);
+    BOOL blRes = ::SetConsoleTextAttribute(_stdOut.get(), attrs);
     xTEST_DIFF(FALSE, blRes);
 
     return std::tstring_t();    // not need for Windows
 #else
-    return sAttributes;
+    return attrs;
 #endif
 }
 //------------------------------------------------------------------------------
@@ -321,14 +321,14 @@ CxConsole::read()
     std::tstring_t sRv;
 
 #if xOS_ENV_WIN
-    DWORD    ulRead                  = 0UL;
-    culong_t culBuffSize             = 1024UL * 4UL;
-    tchar_t  szBuff[culBuffSize + 1] = {0};
+    DWORD    read               = 0UL;
+    culong_t buffSize           = 1024UL * 4UL;
+    tchar_t  buff[buffSize + 1] = {0};
 
-    BOOL blRes = ::ReadConsole(_stdIn.get(), &szBuff[0], culBuffSize, &ulRead, NULL);
+    BOOL blRes = ::ReadConsole(_stdIn.get(), &buff[0], buffSize, &read, NULL);
     xTEST_DIFF(FALSE, blRes);
 
-    sRv.assign(szBuff, ulRead - CxConst::xCRNL().size());
+    sRv.assign(buff, read - CxConst::xCRNL().size());
 #else
     // BUG: CxConsole::read
     std::tcin >> sRv;
@@ -349,14 +349,14 @@ CxConsole::write(
 #endif
 
 #if xOS_ENV_WIN
-    DWORD dwWritten = 0UL;
+    DWORD written = 0UL;
 
     BOOL blRes = ::WriteConsole(
                     _stdOut.get(),
                     &a_str.at(0), static_cast<DWORD>( a_str.size() ),
-                    &dwWritten, NULL);
+                    &written, NULL);
     xTEST_DIFF(FALSE, blRes);
-    xTEST_EQ(static_cast<size_t>( dwWritten ), a_str.size());
+    xTEST_EQ(static_cast<size_t>( written ), a_str.size());
 #else
     std::tcout << a_str;
 #endif
@@ -468,18 +468,18 @@ CxConsole::prompt(
         write(a_prompt + xT(": "));
 
         xFOREVER {
-            ctchar_t chLetter = static_cast<tchar_t>( std::tcin.get() );
+            ctchar_t letter = static_cast<tchar_t>( std::tcin.get() );
 
             // asterisks
             xCHECK_DO(a_isVisible, write(xT("*")));
 
             // ENTER
-            xCHECK_DO(10 == chLetter, break);
+            xCHECK_DO(10 == letter, break);
 
             // BACKSPACE
-            xCHECK_DO(0x8 == chLetter, (*a_answer).clear(); continue);
+            xCHECK_DO(0x8 == letter, (*a_answer).clear(); continue);
 
-            (*a_answer).push_back(chLetter);
+            (*a_answer).push_back(letter);
         }
 
         writeLine(CxConst::xSTR_EMPTY());
@@ -517,19 +517,19 @@ CxConsole::pause(
     #endif
 #endif
 
-    std::tstring_t sMsg;
+    std::tstring_t msg;
 
 	if (xTIMEOUT_INFINITE == a_timeoutMsec) {
-        sMsg = xT("Pause, press [ENTER] to continue...");
+        msg = xT("Pause, press [ENTER] to continue...");
 
-        writeLine(sMsg);
+        writeLine(msg);
 
         std::cin.clear();
         std::cin.ignore();
 	} else {
-        sMsg = CxString::format(xT("Pause, wait for %lu msec to continue..."), a_timeoutMsec);
+        msg = CxString::format(xT("Pause, wait for %lu msec to continue..."), a_timeoutMsec);
 
-        writeLine(sMsg);
+        writeLine(msg);
 
 		CxThread::currentSleep(a_timeoutMsec);
 	}
@@ -544,19 +544,19 @@ CxConsole::clear() {
 #endif
 
 #if xOS_ENV_WIN
-    COORD                      coordScreen   = {0};     // here's where we'll home the cursor
-    DWORD                      cCharsWritten = 0UL;
-    CONSOLE_SCREEN_BUFFER_INFO csbi          = {{0}};   // to get buffer info
-    DWORD                      ulConSize     = 0UL;     // number of character cells in the current buffer
+    COORD                      coordScreen  = {0};     // here's where we'll home the cursor
+    DWORD                      charsWritten = 0UL;
+    CONSOLE_SCREEN_BUFFER_INFO csbi         = {{0}};   // to get buffer info
+    DWORD                      conSize      = 0UL;     // number of character cells in the current buffer
 
     // get the number of character cells in the current buffer
     BOOL blRes = ::GetConsoleScreenBufferInfo(_stdOut.get(), &csbi);
     xTEST_DIFF(FALSE, blRes);
 
-    ulConSize = csbi.dwSize.X * csbi.dwSize.Y;
+    conSize = csbi.dwSize.X * csbi.dwSize.Y;
 
     // fill the entire screen with blanks
-    blRes = ::FillConsoleOutputCharacter(_stdOut.get(), xT(' '), ulConSize, coordScreen, &cCharsWritten);
+    blRes = ::FillConsoleOutputCharacter(_stdOut.get(), xT(' '), conSize, coordScreen, &charsWritten);
     xTEST_DIFF(FALSE, blRes);
 
     // get the current text attribute
@@ -564,7 +564,7 @@ CxConsole::clear() {
     xTEST_DIFF(FALSE, blRes);
 
     // now set the buffer's attributes accordingly
-    blRes = ::FillConsoleOutputAttribute(_stdOut.get(), csbi.wAttributes, ulConSize, coordScreen, &cCharsWritten);
+    blRes = ::FillConsoleOutputAttribute(_stdOut.get(), csbi.wAttributes, conSize, coordScreen, &charsWritten);
     xTEST_DIFF(FALSE, blRes);
 
     // put the cursor at (0, 0)
@@ -622,14 +622,14 @@ CxConsole::title()
     std::tstring_t sRv;
 
 #if xOS_ENV_WIN
-    const DWORD cdwBuffSize             = 1024UL;
-    tchar_t     szBuff[cdwBuffSize + 1] = {0};
-    DWORD       dwTitleSize             = 0UL;
+    const DWORD buffSize           = 1024UL;
+    tchar_t     buff[buffSize + 1] = {0};
+    DWORD       titleSize          = 0UL;
 
-    dwTitleSize = ::GetConsoleTitle(szBuff, cdwBuffSize);
-    xTEST_LESS(0UL, dwTitleSize);
+    titleSize = ::GetConsoleTitle(buff, buffSize);
+    xTEST_LESS(0UL, titleSize);
 
-    sRv.assign(szBuff, dwTitleSize);
+    sRv.assign(buff, titleSize);
 #else
     // TODO: sTitle
     xNOT_IMPLEMENTED;
@@ -668,22 +668,22 @@ CxConsole::setFullScreen()
 #endif
 
 #if xOS_ENV_WIN
-    COORD crdCoord = ::GetLargestConsoleWindowSize(_stdOut.get());
-    xTEST_EQ(true, 0 != crdCoord.X && 0 != crdCoord.Y);
+    COORD coord = ::GetLargestConsoleWindowSize(_stdOut.get());
+    xTEST_EQ(true, 0 != coord.X && 0 != coord.Y);
 
-    crdCoord.X -= 2;
-    crdCoord.Y -= 2;
+    coord.X -= 2;
+    coord.Y -= 2;
 
-    SMALL_RECT recSmallRec = {0};
-    recSmallRec.Left   = 0;
-    recSmallRec.Top    = 0;
-    recSmallRec.Right  = crdCoord.X - 2;
-    recSmallRec.Bottom = crdCoord.Y - 2;
+    SMALL_RECT smallRec = {0};
+    smallRec.Left   = 0;
+    smallRec.Top    = 0;
+    smallRec.Right  = coord.X - 2;
+    smallRec.Bottom = coord.Y - 2;
 
-    BOOL blRes = ::SetConsoleScreenBufferSize(_stdOut.get(), crdCoord);
+    BOOL blRes = ::SetConsoleScreenBufferSize(_stdOut.get(), coord);
     xTEST_DIFF(FALSE, blRes);
 
-    blRes = ::SetConsoleWindowInfo(_stdOut.get(), true, &recSmallRec);
+    blRes = ::SetConsoleWindowInfo(_stdOut.get(), true, &smallRec);
     xTEST_DIFF(FALSE, blRes);
 
     centerWindow();
@@ -705,24 +705,24 @@ CxConsole::centerWindow()
 #if xOS_ENV_WIN
     BOOL blRes = FALSE;
 
-    RECT rcOrigin = {0};
-    blRes = ::GetWindowRect(_wnd, &rcOrigin);
+    RECT origin = {0};
+    blRes = ::GetWindowRect(_wnd, &origin);
     xTEST_DIFF(FALSE, blRes);
 
-    RECT rcDesktop = {0};
-    blRes = ::SystemParametersInfo(SPI_GETWORKAREA, 0, &rcDesktop, 0);
+    RECT desktop = {0};
+    blRes = ::SystemParametersInfo(SPI_GETWORKAREA, 0, &desktop, 0);
     xTEST_DIFF(FALSE, blRes);
 
-    int_t iDesktopX  = (rcDesktop.right  - rcDesktop.left) / 2;
-    int_t iDesktopY  = (rcDesktop.bottom - rcDesktop.top)  / 2;
-    int_t iWndWidth  = (rcOrigin.right   - rcOrigin.left);
-    int_t iWndHeight = (rcOrigin.bottom  - rcOrigin.top);
-    int_t x          = iDesktopX - iWndWidth / 2;        if (x < 0) { x = 0; }
+    int_t desktopX  = (desktop.right  - desktop.left) / 2;
+    int_t desktopY  = (desktop.bottom - desktop.top)  / 2;
+    int_t wndWidth  = (origin.right   - origin.left);
+    int_t wndHeight = (origin.bottom  - origin.top);
+    int_t x         = desktopX - wndWidth / 2;        if (x < 0) { x = 0; }
 
-    blRes = ::MoveWindow(_wnd, x, iDesktopY - iWndHeight / 2, iWndWidth, iWndHeight, true);
+    blRes = ::MoveWindow(_wnd, x, desktopY - wndHeight / 2, wndWidth, wndHeight, true);
     xTEST_DIFF(FALSE, blRes);
 #else
-    // TODO: vCenterWindow
+    // TODO: centerWindow
     xNOT_IMPLEMENTED;
 #endif
 }
@@ -741,28 +741,28 @@ xINLINE_HO HWND
 CxConsole::_wndHandle()
 {
     HWND           hRv = NULL;
-    std::tstring_t sNewWndTitle;
-    std::tstring_t sOldWndTitle;
+    std::tstring_t newWndTitle;
+    std::tstring_t oldWndTitle;
 
     // fetch current window title.
-    sOldWndTitle = title();
-    xTEST_EQ(false, sOldWndTitle.empty());
+    oldWndTitle = title();
+    xTEST_EQ(false, oldWndTitle.empty());
 
     // format a "unique" szNewWndTitle.
-    sNewWndTitle = CxString::format(xT("%lu/%lu"), ::GetTickCount(), CxProcess::currentId());
+    newWndTitle = CxString::format(xT("%lu/%lu"), ::GetTickCount(), CxProcess::currentId());
 
     // change current window title.
-    setTitle(sNewWndTitle);
+    setTitle(newWndTitle);
 
     // ensure window title has been updated.
     CxThread::currentSleep(50UL);
 
     // look for NewWindowTitle.
-    hRv = ::FindWindow(NULL, sNewWndTitle.c_str());
+    hRv = ::FindWindow(NULL, newWndTitle.c_str());
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, hRv);
 
     // restore original window title.
-    setTitle(sOldWndTitle);
+    setTitle(oldWndTitle);
 
     return hRv;
 }
