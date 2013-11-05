@@ -33,10 +33,10 @@ CxMySQLConnection::CxMySQLConnection() :
 {
     xTEST_EQ(false, isValid());
 
-    MYSQL *_pmsConnection = ::mysql_init(NULL);
-    xTEST_MSG_PTR(_pmsConnection, lastErrorStr());
+    MYSQL *_connection = ::mysql_init(NULL);
+    xTEST_MSG_PTR(_connection, lastErrorStr());
 
-    _connection = _pmsConnection;
+    _connection = _connection;
 }
 //------------------------------------------------------------------------------
 /* virtual */
@@ -94,27 +94,27 @@ CxMySQLConnection::isExists(
 {
     bool_t bRv = false;
 
-    CxMySQLConnection conConn;
+    CxMySQLConnection connection;
 
     {
-        bRv = conConn.isValid();
+        bRv = connection.isValid();
         xCHECK_RET(!bRv, false);
 
-        conConn.connect(a_host, a_user, a_password, xT(""), a_port, a_unixSocket, a_clientFlag);
-        conConn.query(xT("SELECT IF (EXISTS(SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '%s'), 'true', 'false')"),
+        connection.connect(a_host, a_user, a_password, xT(""), a_port, a_unixSocket, a_clientFlag);
+        connection.query(xT("SELECT IF (EXISTS(SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '%s'), 'true', 'false')"),
                        a_db.c_str());
     }
 
-    CxMySQLRecordset recRec(conConn, false);
+    CxMySQLRecordset rec(connection, false);
 
     {
-        bRv = recRec.isValid();
+        bRv = rec.isValid();
         xTEST_EQ(true, bRv);
-        xTEST_EQ(1ULL, recRec.rowsNum());
+        xTEST_EQ(1ULL, rec.rowsNum());
 
         std::vec_tstring_t vsRow;
 
-        recRec.fetchRow(&vsRow);
+        rec.fetchRow(&vsRow);
         xTEST_EQ(static_cast<size_t>( 1U ), vsRow.size());
 
         xCHECK_RET(CxString::compareNoCase(xT("false"), vsRow.at(0)), false);
@@ -145,17 +145,17 @@ CxMySQLConnection::connect(
     // unixSocket - n/a
     // ulClientFlag - n/a
 
-    MYSQL *pmsConnection = ::mysql_real_connect(
+    MYSQL *connection = ::mysql_real_connect(
                                 _connection,
                                 xTS2S(a_host).c_str(),
                                 xTS2S(a_user).c_str(), xTS2S(a_password).c_str(),
                                 xTS2S(a_db).c_str(),   a_port,
                                 xTS2S(a_unixSocket).c_str(), a_clientFlag);
 
-    xTEST_MSG_PTR(pmsConnection, lastErrorStr());
-    xTEST_MSG_EQ(_connection, pmsConnection, lastErrorStr());
+    xTEST_MSG_PTR(connection, lastErrorStr());
+    xTEST_MSG_EQ(_connection, connection, lastErrorStr());
 
-    _connection = pmsConnection;
+    _connection = connection;
 }
 //------------------------------------------------------------------------------
 xINLINE_HO void_t
@@ -166,14 +166,14 @@ CxMySQLConnection::query(
     xTEST_EQ(true, isValid());
     xTEST_PTR(a_sqlFormat);
 
-    std::tstring_t sSqlQuery;
-    va_list        palArgs;
+    std::tstring_t sqlQuery;
+    va_list        args;
 
-    xVA_START(palArgs, a_sqlFormat);
-    sSqlQuery = CxString::formatV(a_sqlFormat, palArgs);
-    xVA_END(palArgs);
+    xVA_START(args, a_sqlFormat);
+    sqlQuery = CxString::formatV(a_sqlFormat, args);
+    xVA_END(args);
 
-    std::string asSqlQuery = xTS2S(sSqlQuery);
+    std::string asSqlQuery = xTS2S(sqlQuery);
 
     int_t iRv = ::mysql_real_query(_connection,
                                  asSqlQuery.data(),
@@ -230,15 +230,15 @@ CxMySQLConnection::lastErrorStr() const
 
     std::tstring_t sRv;
 
-    cuint_t  cuiLastError = lastError();
-    const char   *cpszRes      = ::mysql_error(_connection);
+    cuint_t    lastError = lastError();
+    const char*cpszRes   = ::mysql_error(_connection);
     // n/a
     xTEST_PTR(cpszRes);
 
-    if (0 == cuiLastError) {
-        sRv = CxString::format(xT("%u - \"%s\""), cuiLastError, xT("Success"));
+    if (0 == lastError) {
+        sRv = CxString::format(xT("%u - \"%s\""), lastError, xT("Success"));
     } else {
-        sRv = CxString::format(xT("%u - \"%s\""), cuiLastError, cpszRes);
+        sRv = CxString::format(xT("%u - \"%s\""), lastError, cpszRes);
     }
 
     return sRv;
@@ -263,17 +263,17 @@ CxMySQLRecordset::CxMySQLRecordset(
     xTEST_EQ(false, isValid());
     xTEST_PTR(_connection->get());
 
-    MYSQL_RES *pmrResult = NULL;
+    MYSQL_RES *result = NULL;
 
     if (a_isUseResult) {
-        pmrResult = ::mysql_use_result  (_connection->get());
-        xTEST_MSG_PTR(pmrResult, _connection->lastErrorStr());
+        result = ::mysql_use_result  (_connection->get());
+        xTEST_MSG_PTR(result, _connection->lastErrorStr());
     } else {
-        pmrResult = ::mysql_store_result(_connection->get());
-        xTEST_MSG_PTR(pmrResult, _connection->lastErrorStr());
+        result = ::mysql_store_result(_connection->get());
+        xTEST_MSG_PTR(result, _connection->lastErrorStr());
     }
 
-    _result = pmrResult;
+    _result = result;
 }
 //------------------------------------------------------------------------------
 /* virtual */
@@ -372,38 +372,38 @@ CxMySQLRecordset::fetchRow(
     xTEST_EQ(true, isValid());
     xTEST_PTR(a_row);
 
-    uint_t     uiFieldsNum     = 0;
-    MYSQL_ROW  mrRow           = NULL;
-    ulong_t   *pulFieldLengths = NULL;
+    uint_t     fieldsNum    = 0;
+    MYSQL_ROW  row          = NULL;
+    ulong_t   *fieldLengths = NULL;
 
     (*a_row).clear();
 
     // TODO: CxMySQLRecordset::vFetchRow
     #if xTODO
-        //--uint_t   uiFieldsNum   = mysql_num_fields   (_result);
-        uint_t     uiFieldsNum   = _connection->ufieldCount();
+        //--uint_t   fieldsNum   = mysql_num_fields   (_result);
+        uint_t     fieldsNum  = _connection->ufieldCount();
         MYSQL_ROW  prow       = mysql_fetch_row    (_result);   // array of strings
-        ulong_t   *pulRowLengths = mysql_fetch_lengths(_result);   // TODO: may be 64-bit bug
+        ulong_t   *rowLengths = mysql_fetch_lengths(_result);   // TODO: may be 64-bit bug
     #endif
 
     // fields count
-    uiFieldsNum   = _connection->fieldCount();
+    fieldsNum = _connection->fieldCount();
 
     // fetch row
-    _fetchRow(&mrRow);
+    _fetchRow(&row);
 
     // field lengths
-    _fetchLengths(&pulFieldLengths);
-    xTEST_PTR(pulFieldLengths);
+    _fetchLengths(&fieldLengths);
+    xTEST_PTR(fieldLengths);
 
     // push to std::vector
     std::tstring_t sField;
 
-    for (uint_t i = 0; i < uiFieldsNum; ++ i) {
-        if (NULL == mrRow[i]) {
+    for (uint_t i = 0; i < fieldsNum; ++ i) {
+        if (NULL == row[i]) {
             sField = std::tstring_t();
         } else {
-            std::string asField = std::string(mrRow[i], pulFieldLengths[i]);
+            std::string asField = std::string(row[i], fieldLengths[i]);
 
             sField = xS2TS(asField);
         }
