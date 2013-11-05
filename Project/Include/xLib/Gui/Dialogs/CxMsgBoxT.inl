@@ -60,13 +60,13 @@ CxMsgBoxT::show(
                             CxString::cast(a_title).c_str(),
                             a_type) );
 #elif xOS_ENV_UNIX
-    std::tstring_t sMsg = CxString::format(
+    std::tstring_t msg = CxString::format(
                             xT("xmessage -center \"%s\" -title \"%s\" -buttons \"%s\""),
                             CxString::cast(a_text).c_str(),
                             CxString::cast(a_title).c_str(),
                             xT("Abort, Ignore, Retry"));
 
-    mrRes = static_cast<ExModalResult>( std::xTSYSTEM(sMsg.c_str()) );
+    mrRes = static_cast<ExModalResult>( std::xTSYSTEM(msg.c_str()) );
 #endif
 
     return mrRes;
@@ -89,13 +89,13 @@ CxMsgBoxT::show(
                             CxString::cast(a_title).c_str(),
                             MB_OK) );
 #elif xOS_ENV_UNIX
-    std::tstring_t sMsg = CxString::format(
+    std::tstring_t msg = CxString::format(
                             xT("xmessage -center \"%s\" -title \"%s\" -buttons \"%s\""),
                             CxString::cast(a_text).c_str(),
                             CxString::cast(a_title).c_str(),
                             xT("Ok"));
 
-    mrRes = static_cast<ExModalResult>( std::xTSYSTEM(sMsg.c_str()) );
+    mrRes = static_cast<ExModalResult>( std::xTSYSTEM(msg.c_str()) );
 #endif
 
     return mrRes;
@@ -117,13 +117,13 @@ CxMsgBoxT::show(
                             CxPath(CxPath::exe()).fileName().c_str(),
                             MB_OK) );
 #elif xOS_ENV_UNIX
-    std::tstring_t sMsg = CxString::format(
+    std::tstring_t msg = CxString::format(
                             xT("xmessage -center \"%s\" -title \"%s\" -buttons \"%s\""),
                             CxString::cast(a_text).c_str(),
                             xT("Message box"),
                             xT("Ok"));
 
-    mrRes = static_cast<ExModalResult>( std::xTSYSTEM(sMsg.c_str()) );
+    mrRes = static_cast<ExModalResult>( std::xTSYSTEM(msg.c_str()) );
 #endif
 
     return mrRes;
