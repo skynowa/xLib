@@ -30,7 +30,7 @@ CxCrc32::calc(
 
     ulong_t crc            = 0;
     ulong_t crc_table[256] = {0};
-    ulong_t ulSize         = a_size;
+    ulong_t size           = a_size;
 
     for (int_t i = 0; i < 256; ++ i) {
         crc = i;
@@ -43,7 +43,7 @@ CxCrc32::calc(
 
     crc = 0xFFFFFFFFUL;
 
-    while (-- ulSize) {
+    while (-- size) {
         crc = crc_table[(crc ^ ++ (*a_buff)) & 0xFF] ^ (crc >> 8);
     }
 
@@ -60,13 +60,13 @@ CxCrc32::calcFile(
 
     ulong_t ulRv = 0;
 
-    std::ustring_t usFile;
+    std::ustring_t file;
 
-    CxFile::binRead(a_filePath, &usFile);
-    if (usFile.empty()) {
+    CxFile::binRead(a_filePath, &file);
+    if (file.empty()) {
         ulRv = 0;
     } else {
-        ulRv = calc(&usFile.at(0), static_cast<ulong_t>( usFile.size() ));
+        ulRv = calc(&file.at(0), static_cast<ulong_t>( file.size() ));
     }
 
     return ulRv;
@@ -164,11 +164,11 @@ CxCrc32::calcFast(
         0xB3667A2E, 0xC4614AB8, 0x5D681B02, 0x2A6F2B94,
         0xB40BBE37, 0xC30C8EA1, 0x5A05DF1B, 0x2D02EF8D
     };
-    ulong_t ulSize = a_size;
+    ulong_t size = a_size;
 
     crc = 0xFFFFFFFFUL;
 
-    while (ulSize --) {
+    while (size --) {
         crc = crc_table[(crc ^ *a_buff ++) & 0xFF] ^ (crc >> 8);
     }
 
@@ -185,13 +185,13 @@ CxCrc32::calcFileFast(
 
     ulong_t ulRv = 0;
 
-    std::ustring_t usFile;
+    std::ustring_t file;
 
-    CxFile::binRead(a_filePath, &usFile);
-    if (usFile.empty()) {
+    CxFile::binRead(a_filePath, &file);
+    if (file.empty()) {
         ulRv = 0;
     } else {
-        ulRv = calcFast(&usFile.at(0), static_cast<ulong_t>( usFile.size() ));
+        ulRv = calcFast(&file.at(0), static_cast<ulong_t>( file.size() ));
     }
 
     return ulRv;
@@ -204,15 +204,15 @@ CxCrc32::formatHex(
 )
 {
     std::tstring_t sRv;
-    std::csize_t   uiCrc32Size = 8;
+    std::csize_t   crc32Size = 8;
 
     sRv = CxString::format(xT("%X"), a_crc32);    // 0AADDEA0
 
-    size_t uiAdditionalZeros = uiCrc32Size - sRv.size();
+    size_t uiAdditionalZeros = crc32Size - sRv.size();
     if (0 != uiAdditionalZeros) {
         sRv.insert(0, uiAdditionalZeros, xT('0'));
     }
-    xTEST_EQ(uiCrc32Size, sRv.size());
+    xTEST_EQ(crc32Size, sRv.size());
 
     return sRv;
 }
