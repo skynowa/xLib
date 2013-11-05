@@ -29,10 +29,10 @@ CxType::rawName(
     xTEST_NA(a_object);
 
     std::tstring_t sRv;
-    std::string    asClassName;
+    std::string    className;
 
-    asClassName.assign( typeid(a_object).name() );
-    sRv = xS2TS(asClassName);
+    className.assign( typeid(a_object).name() );
+    sRv = xS2TS(className);
 
     return sRv;
 }
@@ -47,22 +47,22 @@ CxType::name(
     xTEST_NA(a_object);
 
     std::tstring_t sRv;
-    std::string    asClassName;
+    std::string    className;
 
 #if xCOMPILER_MINGW || xCOMPILER_GNUC
-    int_t iStatus = - 1;
+    int_t status = - 1;
 
-    char *pszRealName = abi::__cxa_demangle(typeid(a_object).name(), NULL, NULL, &iStatus);
-    asClassName = (NULL != pszRealName) ? pszRealName : CxConst::xUNKNOWN_STRING_A();
+    char *realName = abi::__cxa_demangle(typeid(a_object).name(), NULL, NULL, &status);
+    className = (NULL != realName) ? realName : CxConst::xUNKNOWN_STRING_A();
 
-    xBUFF_FREE(pszRealName);
+    xBUFF_FREE(realName);
 #else
-    asClassName.assign( typeid(a_object).name() );
+    className.assign( typeid(a_object).name() );
 
     // or use UnDecorateSymbolName
 #endif
 
-    sRv = xS2TS(asClassName);
+    sRv = xS2TS(className);
 
     return sRv;
 }
