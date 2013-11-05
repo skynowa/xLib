@@ -273,7 +273,7 @@ CxString::toLowerCase(
 
     size_t uiLength = a_length;
 
-    xCHECK_RET(a_str.empty(),   std::tstring_t());
+    xCHECK_RET(a_str.empty(), std::tstring_t());
     xCHECK_DO (a_str.size() < uiLength, uiLength = a_str.size());
 
     std::tstring_t sRv(a_str);
@@ -301,7 +301,7 @@ CxString::toUpperCase(
 
     size_t uiLength = a_length;
 
-    xCHECK_RET(a_str.empty(),   std::tstring_t());
+    xCHECK_RET(a_str.empty(), std::tstring_t());
     xCHECK_DO (a_str.size() < uiLength, uiLength = a_str.size());
 
     std::tstring_t sRv(a_str);
@@ -411,15 +411,15 @@ CxString::replaceAll(
 
     std::tstring_t sRv(a_str);
 
-    size_t uiPos = 0U;
+    size_t pos = 0U;
 
     xFOREVER {
-        uiPos = sRv.find(a_strOld, uiPos);
-        xCHECK_DO(std::tstring_t::npos == uiPos, break);
+        pos = sRv.find(a_strOld, pos);
+        xCHECK_DO(std::tstring_t::npos == pos, break);
 
-        sRv.replace(uiPos, a_strOld.size(), a_strNew);
+        sRv.replace(pos, a_strOld.size(), a_strNew);
 
-        uiPos += a_strNew.size();
+        pos += a_strNew.size();
     }
 
     return sRv;
@@ -470,18 +470,18 @@ CxString::split(
     xTEST_PTR(a_rv);
 
     std::vec_tstring_t vsRes;
-    size_t             uiPrevPos = 0U;     // start of string
-    size_t             uiPos     = 0U;
+    size_t             prevPos = 0U;     // start of string
+    size_t             pos     = 0U;
 
     xFOREVER {
-        uiPos = a_str.find(a_sep, uiPrevPos);
-        xCHECK_DO(std::tstring_t::npos == uiPos, break);
+        pos = a_str.find(a_sep, prevPos);
+        xCHECK_DO(std::tstring_t::npos == pos, break);
 
-        vsRes.push_back(a_str.substr(uiPrevPos, uiPos - uiPrevPos));
+        vsRes.push_back(a_str.substr(prevPos, pos - prevPos));
 
-        uiPrevPos = uiPos + a_sep.size();
+        prevPos = pos + a_sep.size();
     }
-    vsRes.push_back( a_str.substr(uiPrevPos, a_str.size() - uiPrevPos) );
+    vsRes.push_back( a_str.substr(prevPos, a_str.size() - prevPos) );
 
     //out
     std::swap(*a_rv, vsRes);
@@ -533,19 +533,19 @@ CxString::cut(
     xTEST_NA(a_sepLeft);
     xTEST_NA(a_sepRight);
 
-    size_t uiStartDelimPos = 0U;
-    size_t uiStopDelimPos  = 0U;
+    size_t startDelimPos = 0U;
+    size_t stopDelimPos  = 0U;
 
-    uiStartDelimPos = a_str.find(a_sepLeft);
-    xCHECK_RET(std::tstring_t::npos == uiStartDelimPos, std::tstring_t());
-    uiStartDelimPos += a_sepLeft.size();
+    startDelimPos = a_str.find(a_sepLeft);
+    xCHECK_RET(std::tstring_t::npos == startDelimPos, std::tstring_t());
+    startDelimPos += a_sepLeft.size();
 
-    uiStopDelimPos  = a_str.rfind(a_sepRight);
-    xCHECK_RET(std::tstring_t::npos == uiStopDelimPos, std::tstring_t());
+    stopDelimPos  = a_str.rfind(a_sepRight);
+    xCHECK_RET(std::tstring_t::npos == stopDelimPos, std::tstring_t());
 
-    xCHECK_RET(uiStartDelimPos      >= uiStopDelimPos, std::tstring_t());
+    xCHECK_RET(startDelimPos >= stopDelimPos, std::tstring_t());
 
-    return a_str.substr(uiStartDelimPos, uiStopDelimPos - uiStartDelimPos);
+    return a_str.substr(startDelimPos, stopDelimPos - startDelimPos);
 }
 //------------------------------------------------------------------------------
 /* static */
@@ -563,15 +563,15 @@ CxString::cut(
     xCHECK_RET(true == a_str.empty(),  std::tstring_t());
     xCHECK_RET(a_posBegin >  a_posEnd, std::tstring_t());
 
-    size_t uiSize = std::string::npos;
+    size_t size = std::string::npos;
 
     if (std::string::npos == a_posEnd) {
-        uiSize = a_str.size();
+        size = a_str.size();
     } else {
-        uiSize = a_posEnd - a_posBegin /* + 1*/;
+        size = a_posEnd - a_posBegin /* + 1*/;
     }
 
-    return a_str.substr(a_posBegin, uiSize);
+    return a_str.substr(a_posBegin, size);
 }
 //------------------------------------------------------------------------------
 /* static */
@@ -586,12 +586,10 @@ CxString::format(
 
     std::tstring_t sRv;
 
-    va_list palArgs;
-    xVA_START(palArgs, a_format);
-
-    sRv = formatV(a_format, palArgs);
-
-    xVA_END(palArgs);
+    va_list args;
+    xVA_START(args, a_format);
+    sRv = formatV(a_format, args);
+    xVA_END(args);
 
     return sRv;
 }
@@ -610,26 +608,26 @@ CxString::formatV(
 
     xCHECK_RET(NULL == a_format, std::tstring_t());
 
-    std::tstring_t sBuff(64, 0);
-    int_t          iWrittenSize = - 1;
+    std::tstring_t buff(64, 0);
+    int_t          writtenSize = - 1;
 
     xFOREVER {
-        va_list _palArgs;
-        xVA_COPY(_palArgs, a_args);
+        va_list _args;
+        xVA_COPY(_args, a_args);
 
         {
-            iWrittenSize = ::xTVSNPRINTF(&sBuff.at(0), sBuff.size(), a_format, _palArgs);
-            xCHECK_DO(iWrittenSize > - 1 && static_cast<size_t>( iWrittenSize ) < sBuff.size(), break);
+            writtenSize = ::xTVSNPRINTF(&buff.at(0), buff.size(), a_format, _args);
+            xCHECK_DO(writtenSize > - 1 && static_cast<size_t>( writtenSize ) < buff.size(), break);
 
-            sBuff.resize(sBuff.size() * 2);
+            buff.resize(buff.size() * 2);
         }
 
-        xVA_END(_palArgs);
+        xVA_END(_args);
     }
 
-    sBuff.resize(iWrittenSize);
+    buff.resize(writtenSize);
 
-    return sBuff;
+    return buff;
 }
 
 #else
@@ -645,41 +643,41 @@ CxString::formatV(
 
     xCHECK_RET(NULL == pcszFormat, std::tstring_t());
 
-    std::tstring_t sBuff(64, 0);
-    int_t            iWrittenSize = - 1;
+    std::tstring_t buff(64, 0);
+    int_t          writtenSize = - 1;
 
     //--------------------------------------------------
     // calc size
     {
-        va_list _palArgs;
-        xVA_COPY(_palArgs, palArgs);
-        iWrittenSize = ::xTVSNPRINTF(&sBuff.at(0), sBuff.size(), pcszFormat, _palArgs);
-        xVA_END(_palArgs);
+        va_list _args;
+        xVA_COPY(_args, args);
+        writtenSize = ::xTVSNPRINTF(&buff.at(0), buff.size(), pcszFormat, _args);
+        xVA_END(_args);
 
-        assert(- 1 < iWrittenSize);
-        xCHECK_RET(0 >  iWrittenSize, std::tstring_t());
-        xCHECK_RET(0 == iWrittenSize, sBuff);
+        assert(- 1 < writtenSize);
+        xCHECK_RET(0 >  writtenSize, std::tstring_t());
+        xCHECK_RET(0 == writtenSize, buff);
     }
 
     //--------------------------------------------------
     // format
-    if (sBuff.size() <= static_cast<size_t>( iWrittenSize )) {
-        sBuff.resize(iWrittenSize + 1);
+    if (buff.size() <= static_cast<size_t>( writtenSize )) {
+        buff.resize(writtenSize + 1);
 
-        va_list _palArgs;
-        xVA_COPY(_palArgs, palArgs);
-        iWrittenSize = std::xTVSNPRINTF(&sBuff.at(0), sBuff.size(), pcszFormat, _palArgs);
-        xVA_END(_palArgs);
+        va_list _args;
+        xVA_COPY(_args, args);
+        writtenSize = std::xTVSNPRINTF(&buff.at(0), buff.size(), pcszFormat, _args);
+        xVA_END(_args);
 
-        assert(- 1          <  iWrittenSize);
-        assert(sBuff.size() == static_cast<size_t>( iWrittenSize ) + 1);
-        xCHECK_RET(0             >  iWrittenSize,                           std::tstring_t());
-        xCHECK_RET(sBuff.size() != static_cast<size_t>( iWrittenSize ) + 1, std::tstring_t());
+        assert(- 1          <  writtenSize);
+        assert(buff.size() == static_cast<size_t>( writtenSize ) + 1);
+        xCHECK_RET(0            >  writtenSize,                           std::tstring_t());
+        xCHECK_RET(buff.size() != static_cast<size_t>( writtenSize ) + 1, std::tstring_t());
     }
 
-    sBuff.resize(iWrittenSize);
+    buff.resize(writtenSize);
 
-    return sBuff;
+    return buff;
 }
 
 #endif
@@ -762,7 +760,7 @@ CxString::translitLatToRus(
     xCHECK_RET(a_str.empty(), std::tstring_t());
 
     // translit table
-    std::ctstring_t csDict[][2] = {
+    std::ctstring_t dict[][2] = {
         {xT("Й"), xT("Y")},   {xT("Ц"), xT("C")},  {xT("У"), xT("U")},
         {xT("К"), xT("K")},   {xT("Е"), xT("E")},  {xT("Ё"), xT("E")},
         {xT("Н"), xT("N")},   {xT("Г"), xT("G")},  {xT("Ш"), xT("SH")},
@@ -790,8 +788,8 @@ CxString::translitLatToRus(
 
     std::tstring_t sRv(a_str);
 
-    for (size_t i = 0; i < xARRAY_SIZE(csDict); ++ i) {
-        sRv = replaceAll(sRv, csDict[i][0], csDict[i][1]);
+    for (size_t i = 0; i < xARRAY_SIZE(dict); ++ i) {
+        sRv = replaceAll(sRv, dict[i][0], dict[i][1]);
     }
 
     return sRv;
@@ -807,31 +805,31 @@ CxString::formatBytes(
 
     std::tstring_t sRv = xT("<uknown>");
 
-    culonglong_t cullTB   = 1024ULL * 1024ULL * 1024ULL * 1024ULL;
-    culonglong_t cullGB   = 1024ULL * 1024ULL * 1024ULL;
-    culonglong_t cullMB   = 1024ULL * 1024ULL;
-    culonglong_t cullKB   = 1024ULL;
-    culonglong_t cullByte = 1ULL;
+    culonglong_t tb   = 1024ULL * 1024ULL * 1024ULL * 1024ULL;
+    culonglong_t gb   = 1024ULL * 1024ULL * 1024ULL;
+    culonglong_t mb   = 1024ULL * 1024ULL;
+    culonglong_t kb   = 1024ULL;
+    culonglong_t byte = 1ULL;
 
-    if (     a_bytes / cullTB > 0ULL) {
+    if (     a_bytes / tb > 0ULL) {
         sRv = format(xT("%.2f TB"),
-                static_cast<double>(a_bytes) / static_cast<double>(cullTB));
+                static_cast<double>(a_bytes) / static_cast<double>(tb));
     }
-    else if (a_bytes / cullGB > 0ULL) {
+    else if (a_bytes / gb > 0ULL) {
         sRv = format(xT("%.2f GB"),
-                static_cast<double>(a_bytes) / static_cast<double>(cullGB));
+                static_cast<double>(a_bytes) / static_cast<double>(gb));
     }
-    else if (a_bytes / cullMB > 0ULL) {
+    else if (a_bytes / mb > 0ULL) {
         sRv = format(xT("%.2f MB"),
-                static_cast<double>(a_bytes) / static_cast<double>(cullMB));
+                static_cast<double>(a_bytes) / static_cast<double>(mb));
     }
-    else if (a_bytes / cullKB > 0ULL) {
+    else if (a_bytes / kb > 0ULL) {
         sRv = format(xT("%.2f KB"),
-                static_cast<double>(a_bytes) / static_cast<double>(cullKB));
+                static_cast<double>(a_bytes) / static_cast<double>(kb));
     }
-    else if (a_bytes / cullByte > 0ULL) {
+    else if (a_bytes / byte > 0ULL) {
         sRv = format(xT("%.2f Byte(s)"),
-                static_cast<double>(a_bytes) / static_cast<double>(cullByte));
+                static_cast<double>(a_bytes) / static_cast<double>(byte));
     }
     else {
         sRv = format(xT("%.2f Bit(s)"),
@@ -879,11 +877,11 @@ CxString::memoryZeroSecure(
     xTEST_NA(a_buff);
     xTEST_NA(a_buffSize);
 
-    size_t uiBuffSize = a_buffSize;
+    size_t buffSize = a_buffSize;
 
     for (volatile uchar_t *buff = static_cast<volatile uchar_t *>( a_buff );
-         NULL != a_buff && 0 != uiBuffSize;
-         ++ buff, -- uiBuffSize)
+         NULL != a_buff && 0 != buffSize;
+         ++ buff, -- buffSize)
     {
         *buff = 0;
     }
@@ -905,21 +903,21 @@ CxString::createGuid()
     std::tstring_t sRv;
 
 #if xOS_ENV_WIN
-    GUID    guidId = {0};
+    GUID    guid = {0};
     HRESULT hrGuid = S_FALSE;
 
-    hrGuid = ::CoCreateGuid(&guidId);
+    hrGuid = ::CoCreateGuid(&guid);
     xTEST_EQ(true, SUCCEEDED(hrGuid));
 
     sRv = format(
             xT("%08lX-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X"),
-            guidId.Data1,
-            guidId.Data2,
-            guidId.Data3,
-            guidId.Data4[0], guidId.Data4[1],
-            guidId.Data4[2], guidId.Data4[3],
-            guidId.Data4[4], guidId.Data4[5],
-            guidId.Data4[6], guidId.Data4[7]
+            guid.Data1,
+            guid.Data2,
+            guid.Data3,
+            guid.Data4[0], guid.Data4[1],
+            guid.Data4[2], guid.Data4[3],
+            guid.Data4[4], guid.Data4[5],
+            guid.Data4[6], guid.Data4[7]
     );
     xTEST_EQ(false, sRv.empty());
 #else
