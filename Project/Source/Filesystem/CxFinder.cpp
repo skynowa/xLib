@@ -241,23 +241,23 @@ CxFinder::dirs(
     xTEST_NA(a_isRecursively);
     xTEST_PTR(a_dirPaths);
 
-    CxFinder fnFinder(a_rootDirPath, a_shellFilter);
+    CxFinder finder(a_rootDirPath, a_shellFilter);
 
     xFOREVER {
-        bool_t bRv = fnFinder.moveNext();
+        bool_t bRv = finder.moveNext();
         xCHECK_DO(!bRv, break);
 
-        xCHECK_DO(CxConst::xDOT()  == fnFinder.entryName(), continue);
-        xCHECK_DO(CxConst::x2DOT() == fnFinder.entryName(), continue);
+        xCHECK_DO(CxConst::xDOT()  == finder.entryName(), continue);
+        xCHECK_DO(CxConst::x2DOT() == finder.entryName(), continue);
 
         // set filter for dirs
-        xCHECK_DO(!(CxFileType::faDirectory & fnFinder.fileTypes()), continue);
+        xCHECK_DO(!(CxFileType::faDirectory & finder.fileTypes()), continue);
 
-        a_dirPaths->push_back( fnFinder.entryPath() );
+        a_dirPaths->push_back( finder.entryPath() );
 
         // is search in subdirs
         if (a_isRecursively) {
-            CxFinder::dirs(fnFinder.entryPath(), a_shellFilter, true, a_dirPaths);
+            CxFinder::dirs(finder.entryPath(), a_shellFilter, true, a_dirPaths);
         }
     }
 }
@@ -277,29 +277,29 @@ CxFinder::files(
     xTEST_PTR(a_filePaths);
 
     if (!a_isRecursively) {
-        CxFinder fnFinder(a_rootDirPath, a_shellFilter);
+        CxFinder finder(a_rootDirPath, a_shellFilter);
 
         xFOREVER {
-            bool_t bRv = fnFinder.moveNext();
+            bool_t bRv = finder.moveNext();
             xCHECK_DO(!bRv, break);
 
-            xCHECK_DO(CxConst::xDOT()  == fnFinder.entryName(), continue);
-            xCHECK_DO(CxConst::x2DOT() == fnFinder.entryName(), continue);
+            xCHECK_DO(CxConst::xDOT()  == finder.entryName(), continue);
+            xCHECK_DO(CxConst::x2DOT() == finder.entryName(), continue);
 
             // set filter for files
-            xCHECK_DO(CxFileType::faDirectory & fnFinder.fileTypes(), continue);
+            xCHECK_DO(CxFileType::faDirectory & finder.fileTypes(), continue);
 
-            a_filePaths->push_back(fnFinder.entryPath());
+            a_filePaths->push_back(finder.entryPath());
         }
     } else {
         // subdirs
-        std::vec_tstring_t m_vsDirPaths;
-        dirs(a_rootDirPath, CxConst::xMASK_ALL(), true, &m_vsDirPaths);
+        std::vec_tstring_t dirPaths;
+        dirs(a_rootDirPath, CxConst::xMASK_ALL(), true, &dirPaths);
 
         // files in root dir and each subdir
         files(a_rootDirPath, a_shellFilter, false, a_filePaths);
 
-        xFOREACH_CONST(std::vec_tstring_t, it, m_vsDirPaths) {
+        xFOREACH_CONST(std::vec_tstring_t, it, dirPaths) {
             files(*it, a_shellFilter, false, a_filePaths);
         }
     }
