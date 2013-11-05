@@ -34,18 +34,18 @@ CxHttpClient::head(
 {
     //url = http://dn1.berloga.net/83841/zombie_baseball_2.swf
 
-    std::tstring_t sStartLine;
-    std::tstring_t sHeader;
-    std::tstring_t sBody;
+    std::tstring_t startLine;
+    std::tstring_t header;
+    std::tstring_t body;
 
-    sStartLine = xT("HEAD /83841/zombie_baseball_2.swf HTTP/1.1")         + CxConst::xCRNL();
+    startLine = xT("HEAD /83841/zombie_baseball_2.swf HTTP/1.1")         + CxConst::xCRNL();
 
-    sHeader    = xT("Host: dn1.berloga.net")                              + CxConst::xCRNL() +
-                 xT("Accept: text/html, */*")                             + CxConst::xCRNL() +
-                 xT("Accept-Encoding: identity")                          + CxConst::xCRNL() +
-                 xT("User-Agent: Mozilla/3.0 (compatible; Indy Library)") + CxConst::xCRNL() + CxConst::xCRNL();
+    header    = xT("Host: dn1.berloga.net")                              + CxConst::xCRNL() +
+                xT("Accept: text/html, */*")                             + CxConst::xCRNL() +
+                xT("Accept-Encoding: identity")                          + CxConst::xCRNL() +
+                xT("User-Agent: Mozilla/3.0 (compatible; Indy Library)") + CxConst::xCRNL() + CxConst::xCRNL();
 
-    sBody      = xT("");
+    body      = xT("");
 }
 //------------------------------------------------------------------------------
 //TODO: bGet ()

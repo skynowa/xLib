@@ -246,44 +246,44 @@ CxCookiePv0::init(
     typedef std::map<std::tstring_t, std::tstring_t/*, SCompareNoCase*/> TStringMap;
     typedef std::pair<std::tstring_t, std::tstring_t>                TStringPair;
 
-    TStringMap     msCookie;
-    std::tstring_t sCookie;
+    TStringMap     cookies;
+    std::tstring_t cookie;
 
-    sCookie = a_rawCookie;
-    sCookie = CxString::removeAll(sCookie, CxConst::xSQM());
-    sCookie = CxString::removeAll(sCookie, CxConst::xDQM());
+    cookie = a_rawCookie;
+    cookie = CxString::removeAll(cookie, CxConst::xSQM());
+    cookie = CxString::removeAll(cookie, CxConst::xDQM());
 
     //split into pairs (name1=value1; name2=value2; nameN=valueN)
-    std::vec_tstring_t vsPairs;
+    std::vec_tstring_t pairs;
 
-    CxString::split(sCookie, CxConst::xSEMICOLON(), &vsPairs);
+    CxString::split(cookie, CxConst::xSEMICOLON(), &pairs);
 
-    for (size_t i = 0; i < vsPairs.size(); ++ i) {
+    for (size_t i = 0; i < pairs.size(); ++ i) {
         //split into name, value (name=value)
-        std::vec_tstring_t vsTemp;
+        std::vec_tstring_t temp;
 
-        CxString::split(vsPairs.at(i), CxConst::xEQUAL(), &vsTemp);
+        CxString::split(pairs.at(i), CxConst::xEQUAL(), &temp);
 
-        std::tstring_t sCookieName  = CxString::trimSpace(vsTemp.at(0));
-        std::tstring_t sCookieValue = ( (1 == vsTemp.size()) ? std::tstring_t() : vsTemp.at(1) );
+        std::tstring_t cookieName  = CxString::trimSpace(temp.at(0));
+        std::tstring_t cookieValue = ( (1 == temp.size()) ? std::tstring_t() : temp.at(1) );
 
         if (0 == i) {
             //1-st pair is "Name=Value"
-            msCookie.insert( TStringPair(xT("Name"),  sCookieName) );
-            msCookie.insert( TStringPair(xT("Value"), sCookieValue) );
+            cookies.insert( TStringPair(xT("Name"),  cookieName) );
+            cookies.insert( TStringPair(xT("Value"), cookieValue) );
         } else {
-            msCookie.insert( TStringPair(sCookieName, sCookieValue) );
+            cookies.insert( TStringPair(cookieName, cookieValue) );
         }
     }
 
     //set results
-    _name     = msCookie[xT("Name")];
-    _value    = msCookie[xT("Value")];
-    _domain   = msCookie[xT("Domain")];
-    _path     = msCookie[xT("Path")];
-    _expires  = msCookie[xT("Expires")];
-    _isSecure   = ( msCookie.end() != msCookie.find(xT("Secure")) );
-    _isHttpOnly = ( msCookie.end() != msCookie.find(xT("HttpOnly")) );
+    _name     = cookies[xT("Name")];
+    _value    = cookies[xT("Value")];
+    _domain   = cookies[xT("Domain")];
+    _path     = cookies[xT("Path")];
+    _expires  = cookies[xT("Expires")];
+    _isSecure   = ( cookies.end() != cookies.find(xT("Secure")) );
+    _isHttpOnly = ( cookies.end() != cookies.find(xT("HttpOnly")) );
 }
 //------------------------------------------------------------------------------
 

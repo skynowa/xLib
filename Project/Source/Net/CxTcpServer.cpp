@@ -27,12 +27,12 @@ CxTcpServer::bind(
     xTEST_DIFF(xSOCKET_HANDLE_INVALID, _socket);
     xTEST_EQ(true, (32767 > a_port) && (0 < a_port));
 
-    struct sockaddr_in saSockAddr = {0};
-    saSockAddr.sin_family      = _family;
-    saSockAddr.sin_addr.s_addr = INADDR_ANY;
-    saSockAddr.sin_port        = htons(a_port);
+    struct sockaddr_in sockAddr = {0};
+    sockAddr.sin_family      = _family;
+    sockAddr.sin_addr.s_addr = INADDR_ANY;
+    sockAddr.sin_port        = htons(a_port);
 
-    int_t iRv = ::bind(_socket, CxUtils::reinterpretCastT<const struct sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
+    int_t iRv = ::bind(_socket, CxUtils::reinterpretCastT<const struct sockaddr *>( &sockAddr ), sizeof(sockAddr));
     xTEST_DIFF(xSOCKET_ERROR, iRv);
 
     ////int_t iOpt = 1;
@@ -67,15 +67,15 @@ CxTcpServer::accept(
 
 #if xOS_ENV_WIN
     struct sockaddr_in cliaddr  = {0};
-    int_t              iAddrlen = sizeof(cliaddr);
+    int_t              addrlen = sizeof(cliaddr);
 
-    scktClient = ::accept(_socket, CxUtils::reinterpretCastT<struct sockaddr *>( &cliaddr ), &iAddrlen);
+    scktClient = ::accept(_socket, CxUtils::reinterpretCastT<struct sockaddr *>( &cliaddr ), &addrlen);
     xTEST_DIFF(xSOCKET_HANDLE_INVALID, scktClient);
 #else
     struct sockaddr_in cliaddr  = {0};
-    socklen_t          iAddrlen = sizeof(cliaddr);
+    socklen_t          addrlen = sizeof(cliaddr);
 
-    scktClient = ::accept(_socket, CxUtils::reinterpretCastT<struct sockaddr *>( &cliaddr ), &iAddrlen);
+    scktClient = ::accept(_socket, CxUtils::reinterpretCastT<struct sockaddr *>( &cliaddr ), &addrlen);
     xTEST_DIFF(xSOCKET_HANDLE_INVALID, scktClient);
 #endif
 
@@ -84,9 +84,9 @@ CxTcpServer::accept(
     (*a_serverSocket).assign(scktClient);
 
     //конверт из UNICODE
-    std::string asFromIp = ::inet_ntoa(cliaddr.sin_addr);
+    std::string fromIp = ::inet_ntoa(cliaddr.sin_addr);
 
-    (*a_fromIp).assign(asFromIp.begin(), asFromIp.end());
+    (*a_fromIp).assign(fromIp.begin(), fromIp.end());
 }
 //------------------------------------------------------------------------------
 

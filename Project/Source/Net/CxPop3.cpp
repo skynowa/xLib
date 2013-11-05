@@ -67,13 +67,13 @@ CxPop3::connect()
 
      //-------------------------------------
      //Parse domain
-     std::tstring_t sIp;
+     std::tstring_t ip;
 
-     CxDnsClient::hostAddrByName(_server, &sIp);
+     CxDnsClient::hostAddrByName(_server, &ip);
 
      //-------------------------------------
      //Connect
-     _socket.connect(sIp, _port);
+     _socket.connect(ip, _port);
 
      //-------------------------------------
      //[welcome message]
@@ -114,15 +114,15 @@ CxPop3::login()
 
     //-------------------------------------
     //[USER user\r\n]
-    std::ctstring_t sUserCmd = xT("USER ") + _user + xT("\r\n");
+    std::ctstring_t userCmd = xT("USER ") + _user + xT("\r\n");
 
-    _command(sUserCmd, xT("\r\n"), &_sRv);
+    _command(userCmd, xT("\r\n"), &_sRv);
 
     //-------------------------------------
     //[PASS\r\n]
-    std::tstring_t sPassCmd = xT("PASS ") + _password + xT("\r\n");
+    std::tstring_t passCmd = xT("PASS ") + _password + xT("\r\n");
 
-    _command(sPassCmd, xT("\r\n"), &_sRv);
+    _command(passCmd, xT("\r\n"), &_sRv);
 }
 //------------------------------------------------------------------------------
 xINLINE_HO void_t
@@ -140,9 +140,9 @@ CxPop3::stat(
 
     //-------------------------------------
     //[LIST\r\n]
-    std::ctstring_t sStatCmd = xT("STAT\r\n");
+    std::ctstring_t statCmd = xT("STAT\r\n");
 
-    _command(sStatCmd, xT("\r\n"), &_sRv);
+    _command(statCmd, xT("\r\n"), &_sRv);
 
     a_sum  = _mailsSum (_sRv);
     a_size = _mailsSize(_sRv);
@@ -222,9 +222,9 @@ CxPop3::noop()
 
     //-------------------------------------
     //[NOOP\r\n]
-    std::tstring_t sNoopCmd = xT("NOOP\r\n");
+    std::tstring_t noopCmd = xT("NOOP\r\n");
 
-    _command(sNoopCmd, xT("\r\n"), &_sRv);
+    _command(noopCmd, xT("\r\n"), &_sRv);
 }
 //------------------------------------------------------------------------------
 xINLINE_HO void_t
@@ -239,9 +239,9 @@ CxPop3::rset()
 
     //-------------------------------------
     //[RSET\r\n]
-    std::tstring_t sRsetCmd = xT("RSET\r\n");
+    std::tstring_t rsetCmd = xT("RSET\r\n");
 
-    _command(sRsetCmd, xT("\r\n"), &_sRv);
+    _command(rsetCmd, xT("\r\n"), &_sRv);
 }
 //------------------------------------------------------------------------------
 xINLINE_HO void_t
@@ -267,9 +267,9 @@ CxPop3::top(
 
     //-------------------------------------
     //[TOP 1 10\r\n]
-    std::tstring_t sTopCmd = xT("TOP ") + CxString::cast(a_num) + xT(" ") + CxString::cast(a_lines) + xT("\r\n");
+    std::tstring_t topCmd = xT("TOP ") + CxString::cast(a_num) + xT(" ") + CxString::cast(a_lines) + xT("\r\n");
 
-    _command(sTopCmd, xT("\r\n.\r\n"), &_sRv);
+    _command(topCmd, xT("\r\n.\r\n"), &_sRv);
 
     a_buff = _sRv;
 }
@@ -296,38 +296,38 @@ CxPop3::retriveRaw(
 
     //-------------------------------------
     //[RETR 3\r\n]
-    std::ctstring_t sRetrCmd = xT("RETR ") + CxString::cast(a_num) + xT("\r\n");
+    std::ctstring_t retrCmd = xT("RETR ") + CxString::cast(a_num) + xT("\r\n");
 
-    _command(sRetrCmd, xT("\r\n.\r\n"), &_sRv);
+    _command(retrCmd, xT("\r\n.\r\n"), &_sRv);
 
     //-------------------------------------
     //DONE: ������� 1-�� ������ [+OK message 1 (652 octets)]
-    size_t uiOkPos      = _sRv.find(xT("+OK"));
-    size_t uiFirstCRPos = _sRv.find(xT("\r\n"));
-    if (std::tstring_t::npos != uiOkPos && 0 == uiOkPos && std::tstring_t::npos != uiFirstCRPos) {
-        _sRv.erase(uiOkPos, uiFirstCRPos - uiOkPos + 2);    //"\r\n - 2 c������"
+    size_t okPos      = _sRv.find(xT("+OK"));
+    size_t firstCRPos = _sRv.find(xT("\r\n"));
+    if (std::tstring_t::npos != okPos && 0 == okPos && std::tstring_t::npos != firstCRPos) {
+        _sRv.erase(okPos, firstCRPos - okPos + 2);    //"\r\n - 2 c������"
     } else {
         xTEST_FAIL;
     }
 
     //-------------------------------------
     //DONE: ������� [\r\n.\r\n]
-    size_t uiEndOfMessagePos = _sRv.rfind(xT("\r\n.\r\n"));
-    if (std::tstring_t::npos != uiEndOfMessagePos) {
-        _sRv.erase(uiEndOfMessagePos, 5);    //"\r\n.\r\n" - 5 c������"
+    size_t endOfMessagePos = _sRv.rfind(xT("\r\n.\r\n"));
+    if (std::tstring_t::npos != endOfMessagePos) {
+        _sRv.erase(endOfMessagePos, 5);    //"\r\n.\r\n" - 5 c������"
     } else {
         xTEST_FAIL;
     }
 
     //-------------------------------------
     //��������� ���� �� ����
-    CxFile stdFile;
+    CxFile file;
 
-    stdFile.create(a_dirPath + xT("\\") + a_fileName, CxFile::omBinWrite, true);
+    file.create(a_dirPath + xT("\\") + a_fileName, CxFile::omBinWrite, true);
 
-    size_t uiWriteSize = stdFile.write((cvoid_t *)&_sRv[0], _sRv.size());
+    size_t writeSize = file.write((cvoid_t *)&_sRv[0], _sRv.size());
     //???
-    xUNUSED(uiWriteSize);
+    xUNUSED(writeSize);
 }
 //------------------------------------------------------------------------------
 xINLINE_HO void_t
@@ -353,25 +353,25 @@ CxPop3::retriveRawAndBackup(
 
     //-------------------------------------
     //[RETR 3\r\n]
-    std::ctstring_t sRetrCmd = xT("RETR ") + CxString::cast(a_num) + xT("\r\n");
+    std::ctstring_t retrCmd = xT("RETR ") + CxString::cast(a_num) + xT("\r\n");
 
-    _command(sRetrCmd, xT("\r\n.\r\n"), &_sRv);
+    _command(retrCmd, xT("\r\n.\r\n"), &_sRv);
 
     //-------------------------------------
     //DONE: ������� 1-�� ������ [+OK message 1 (652 octets)]
-    size_t uiOkPos      = _sRv.find(xT("+OK"));
-    size_t uiFirstCRPos = _sRv.find(xT("\r\n"));
-    if (std::tstring_t::npos != uiOkPos && 0 == uiOkPos && std::tstring_t::npos != uiFirstCRPos) {
-        _sRv.erase(uiOkPos, uiFirstCRPos - uiOkPos + 2);    //"\r\n - 2 c������"
+    size_t okPos      = _sRv.find(xT("+OK"));
+    size_t firstCRPos = _sRv.find(xT("\r\n"));
+    if (std::tstring_t::npos != okPos && 0 == okPos && std::tstring_t::npos != firstCRPos) {
+        _sRv.erase(okPos, firstCRPos - okPos + 2);    //"\r\n - 2 c������"
     } else {
         xTEST_FAIL;
     }
 
     //-------------------------------------
     //DONE: ������� [\r\n.\r\n]
-    size_t uiEndOfMessagePos = _sRv.rfind(xT("\r\n.\r\n"));
-    if (std::tstring_t::npos != uiEndOfMessagePos) {
-        _sRv.erase(uiEndOfMessagePos, 5);    //"\r\n.\r\n" - 5 c������"
+    size_t endOfMessagePos = _sRv.rfind(xT("\r\n.\r\n"));
+    if (std::tstring_t::npos != endOfMessagePos) {
+        _sRv.erase(endOfMessagePos, 5);    //"\r\n.\r\n" - 5 c������"
     } else {
         xTEST_FAIL;
     }
@@ -379,23 +379,23 @@ CxPop3::retriveRawAndBackup(
     //-------------------------------------
     //��������� ���� �� ���� (��������), ���� ���� ���� - �� ���������
     if (!a_dirPath.empty()) {
-        CxFile stdfOriginal;
+        CxFile original;
 
-        stdfOriginal.create(a_dirPath + xT("\\") + a_fileName, CxFile::omBinWrite, true);
+        original.create(a_dirPath + xT("\\") + a_fileName, CxFile::omBinWrite, true);
 
-        size_t uiOriginalWriteSize = stdfOriginal.write((cvoid_t *)&_sRv[0], _sRv.size());
-        xTEST_DIFF(size_t(0), uiOriginalWriteSize);
+        size_t originalWriteSize = original.write((cvoid_t *)&_sRv[0], _sRv.size());
+        xTEST_DIFF(size_t(0), originalWriteSize);
     }
 
     //-------------------------------------
     //��������� ���� �� ���� (�����), ���� ���� ���� - �� ���������
     if (!a_backupDirPath.empty()) {
-        CxFile stdfBackup;
+        CxFile backup;
 
-        stdfBackup.create(a_backupDirPath + xT("\\") + a_fileName, CxFile::omBinWrite, true);
+        backup.create(a_backupDirPath + xT("\\") + a_fileName, CxFile::omBinWrite, true);
 
-        size_t uiBackupWriteSize = stdfBackup.write((cvoid_t *)&_sRv[0], _sRv.size());
-        xTEST_DIFF(size_t(0), uiBackupWriteSize);
+        size_t backupWriteSize = backup.write((cvoid_t *)&_sRv[0], _sRv.size());
+        xTEST_DIFF(size_t(0), backupWriteSize);
     }
 }
 //------------------------------------------------------------------------------
@@ -420,9 +420,9 @@ CxPop3::retrieveHeader(
 
     //-------------------------------------
     //[TOP 1 0\r\n]
-    std::tstring_t sTopCmd = xT("TOP ") + CxString::cast(a_num) + xT(" ") + xT("0") + xT("\r\n");
+    std::tstring_t topCmd = xT("TOP ") + CxString::cast(a_num) + xT(" ") + xT("0") + xT("\r\n");
 
-    _command(sTopCmd, xT("\r\n.\r\n"), &_sRv);
+    _command(topCmd, xT("\r\n.\r\n"), &_sRv);
 
     //-------------------------------------
     //������ �����
@@ -452,9 +452,9 @@ CxPop3::del(
 
     //-------------------------------------
     //[DELE 2\r\n]
-    std::ctstring_t sDeleCmd = xT("DELE ") + CxString::cast(a_num) + xT("\r\n");
+    std::ctstring_t deleCmd = xT("DELE ") + CxString::cast(a_num) + xT("\r\n");
 
-    _command(sDeleCmd, xT("\r\n"), &_sRv);
+    _command(deleCmd, xT("\r\n"), &_sRv);
 }
 //------------------------------------------------------------------------------
 xINLINE_HO void_t
@@ -471,9 +471,9 @@ CxPop3::disconnect()
 
     //-------------------------------------
     //[QUIT\r\n]
-    std::ctstring_t sQuitCmd = xT("QUIT\r\n");
+    std::ctstring_t quitCmd = xT("QUIT\r\n");
 
-    _command(sQuitCmd, xT("\r\n"), &_sRv);
+    _command(quitCmd, xT("\r\n"), &_sRv);
 
     _socket.close();
 
