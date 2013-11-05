@@ -62,12 +62,12 @@ CxCgi::redirect(
 {
     xTEST_EQ(false, a_url.empty())
 
-    std::tstring_t sHttpResponse;
+    std::tstring_t httpResponse;
 
-    sHttpResponse.append( CxString::format(xT("Location: %s\n"), a_url.c_str()) );
-    sHttpResponse.append( CxConst::xNL() );
+    httpResponse.append( CxString::format(xT("Location: %s\n"), a_url.c_str()) );
+    httpResponse.append( CxConst::xNL() );
 
-    std::tcout << sHttpResponse << std::endl;
+    std::tcout << httpResponse << std::endl;
 }
 //------------------------------------------------------------------------------
 /* static */
@@ -76,11 +76,11 @@ CxCgi::pageShow(
     std::ctstring_t &a_filePath
 )
 {
-    std::tstring_t sFileContent;
+    std::tstring_t fileContent;
 
-    CxFile::textRead(a_filePath, &sFileContent);
+    CxFile::textRead(a_filePath, &fileContent);
 
-    std::tcout << sFileContent << std::endl;
+    std::tcout << fileContent << std::endl;
 }
 //------------------------------------------------------------------------------
 
@@ -105,16 +105,16 @@ CxCgi::uriEncode(
 )
 {
     xFOREACH_CONST(std::tstring_t, it, a_uri) {
-        tchar_t chChar = *it;
+        tchar_t ch = *it;
 
-        if ((chChar >= 'a' && chChar <= 'z') || (chChar >= 'A' && chChar <= 'Z') || (chChar >= '0' && chChar <= '9') ||
-             chChar == '-' || chChar == '_'  || chChar == '.' || chChar == '~')
+        if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || (ch >= '0' && ch <= '9') ||
+             ch == '-' || ch == '_'  || ch == '.' || ch == '~')
         {
-            (*a_encodedStr) += chChar;
+            (*a_encodedStr) += ch;
         }
-        else if (chChar <= 0x20 || chChar >= 0x7F || std::tstring_t::npos != URI_ILLEGAL.find(chChar) || std::tstring_t::npos != a_reserved.find(chChar)) {
+        else if (ch <= 0x20 || ch >= 0x7F || std::tstring_t::npos != URI_ILLEGAL.find(ch) || std::tstring_t::npos != a_reserved.find(ch)) {
             (*a_encodedStr) += '%';
-            //--encodedStr += NumberFormatter::formatHex((unsigned) (unsigned char) chChar, 2);
+            //--encodedStr += NumberFormatter::formatHex((unsigned) (unsigned char) ch, 2);
 
             /*
                 poco_assert (width > 0 && width < 64);
@@ -123,10 +123,10 @@ CxCgi::uriEncode(
                 std::sprintf(buffer, "%0*X", width, value);
                 str.append(buffer);
              */
-            (*a_encodedStr) += CxString::format(xT("%0*X"), 2, (uint_t)(uchar_t)chChar);
+            (*a_encodedStr) += CxString::format(xT("%0*X"), 2, (uint_t)(uchar_t)ch);
         }
         else {
-            (*a_encodedStr) += chChar;
+            (*a_encodedStr) += ch;
         }
     }
 }
@@ -143,9 +143,9 @@ CxCgi::uriDecode(
     std::tstring_t::const_iterator end = a_uri.end();
 
     while (it != end) {
-        tchar_t chChar = *it++;
+        tchar_t ch = *it++;
 
-        if (chChar == '%') {
+        if (ch == '%') {
             if (it == end) {
                 ////throw SyntaxException("URI encoding: no hex digit following percent sign", str);
                 xTEST_FAIL;
@@ -159,30 +159,30 @@ CxCgi::uriDecode(
 
             tchar_t lo = *it++;
             if (hi >= '0' && hi <= '9')
-                chChar = hi - '0';
+                ch = hi - '0';
             else if (hi >= 'A' && hi <= 'F')
-                chChar = hi - 'A' + 10;
+                ch = hi - 'A' + 10;
             else if (hi >= 'a' && hi <= 'f')
-                chChar = hi - 'a' + 10;
+                ch = hi - 'a' + 10;
             else {
                 ////throw SyntaxException("URI encoding: not a hex digit");
                 xTEST_FAIL;
             }
 
-            chChar *= 16;
+            ch *= 16;
             if (lo >= '0' && lo <= '9')
-                chChar += lo - '0';
+                ch += lo - '0';
             else if (lo >= 'A' && lo <= 'F')
-                chChar += lo - 'A' + 10;
+                ch += lo - 'A' + 10;
             else if (lo >= 'a' && lo <= 'f')
-                chChar += lo - 'a' + 10;
+                ch += lo - 'a' + 10;
             else {
                 ////throw SyntaxException("URI encoding: not a hex digit");
                 xTEST_FAIL;
             }
         }
 
-        (*a_decodedStr) += chChar;
+        (*a_decodedStr) += ch;
     }
 }
 //-------------------------------------------------------------------------------------------------------
@@ -724,7 +724,7 @@ CxCgiCookies::dump() const
     sRv.append(xT("[CxCgiCookies dump]\n\n"));
 
     xFOREACH_CONST(TCookies, it, items) {
-        std::tstring_t sItemN = CxString::format(
+        std::tstring_t itemN = CxString::format(
                 xT("Name: %s\n")
                 xT("Value: %s\n")
                 xT("Domain: %s\n")
@@ -742,7 +742,7 @@ CxCgiCookies::dump() const
         );
 
         sRv.append( xT("[Item]:\n") );
-        sRv.append(sItemN);
+        sRv.append(itemN);
         sRv.append(CxConst::xNL());
     }
 
@@ -759,20 +759,20 @@ CxCgiCookies::dump() const
 xINLINE_HO void_t
 CxCgiCookies::_construct()
 {
-    std::tstring_t     sRawCookies = _cgi.Environment.httpCookie();
+    std::tstring_t     rawCookies = _cgi.Environment.httpCookie();
     std::vec_tstring_t vsRawCookies;
-    TCookies           vecckCookies;
+    TCookies           cookies;
 
-    CxString::split(sRawCookies, CxConst::xSEMICOLON(), &vsRawCookies);
+    CxString::split(rawCookies, CxConst::xSEMICOLON(), &vsRawCookies);
 
     xFOREACH_CONST(std::vec_tstring_t, it, vsRawCookies) {
         CxCookiePv0 *pckItem = new(std::nothrow) CxCookiePv0(*it);
         xTEST_PTR(pckItem);
 
-        vecckCookies.push_back(pckItem);
+        cookies.push_back(pckItem);
     }
 
-    vecckCookies.swap(items);
+    cookies.swap(items);
 }
 //------------------------------------------------------------------------------
 
@@ -844,33 +844,33 @@ CxCgiFormData::_construct()
             xTEST_EQ(true, bRv);
 
             //get content length
-            size_t uiPostSize = 0;  // in bytes
+            size_t postSize = 0;  // in bytes
             if (_cgi.Environment.contentLength().empty()) {
-                uiPostSize = 0;
+                postSize = 0;
             }
             else {
-                uiPostSize = CxString::cast<size_t>( _cgi.Environment.contentLength() );
+                postSize = CxString::cast<size_t>( _cgi.Environment.contentLength() );
             }
-            xTEST_LESS(size_t(0U), uiPostSize);
-            xTEST_GR_EQ(_maxData, uiPostSize);  //secure
-            xTEST_EQ(false, _maxData <= uiPostSize);
+            xTEST_LESS(size_t(0U), postSize);
+            xTEST_GR_EQ(_maxData, postSize);  //secure
+            xTEST_EQ(false, _maxData <= postSize);
 
             //read, parse data
-            CxFile       sfFile;
-            std::tstring_t sBuff;
+            CxFile         file;
+            std::tstring_t buff;
 
-            sfFile.attach(stdin);
+            file.attach(stdin);
 
-            sBuff.resize(uiPostSize);
+            buff.resize(postSize);
 
-            size_t uiRes = sfFile.read(&sBuff.at(0), sBuff.size());
-            xTEST_EQ(uiRes, sBuff.size());
+            size_t uiRes = file.read(&buff.at(0), buff.size());
+            xTEST_EQ(uiRes, buff.size());
 
             //TODO: cgl_parsecgibuf(cgl_Formdata, cgl_Buf)
 
-            _formData = sBuff;
+            _formData = buff;
 
-            FILE *f = sfFile.detach();
+            FILE *f = file.detach();
             xTEST_PTR(f);
             break;
         }
