@@ -29,7 +29,7 @@ public:
         ///< check for sleeping
 
 private:
-    CxEvent  _m_objEvent;    ///< event object
+    CxEvent  _event;    ///< event object
 };
 
 xNAMESPACE_END(NxLib)

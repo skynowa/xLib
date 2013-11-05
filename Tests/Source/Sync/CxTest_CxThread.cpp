@@ -107,7 +107,7 @@ CxTest_CxThread::unit(
 
     CWorkThread *pthT = new CWorkThread(cbAutoDelete);
 
-    pthT->m_ulTag = 0;
+    pthT->tag = 0;
     ////pthT->vOnExit2  = vOnExitHandle;
 
     xTEST_CASE("CxThread::create", 1)

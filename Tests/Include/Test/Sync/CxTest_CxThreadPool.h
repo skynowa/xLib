@@ -24,7 +24,7 @@ class CPoolThread :
     public CxThread
 {
 public:
-    size_t         m_uiIndex;
+    size_t         index;
 
                    CPoolThread(cbool_t &cbAutoDelete);
     virtual       ~CPoolThread();

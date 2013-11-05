@@ -68,7 +68,7 @@ CPoolThread::CPoolThread(
     cbool_t &cbAutoDelete
 ) :
     CxThread (cbAutoDelete),
-    m_uiIndex(0U)
+    index    (0U)
 {
 }
 //------------------------------------------------------------------------------

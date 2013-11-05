@@ -64,26 +64,26 @@ CxMutex::create()
 #else
     int_t iRv = - 1;
 
-    pthread_mutexattr_t maAttr;    // n/a {{0}}
+    pthread_mutexattr_t attr;    // n/a {{0}}
 
-    iRv = ::pthread_mutexattr_init(&maAttr);
+    iRv = ::pthread_mutexattr_init(&attr);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
-    iRv = ::pthread_mutexattr_setpshared(&maAttr, PTHREAD_PROCESS_PRIVATE);
+    iRv = ::pthread_mutexattr_setpshared(&attr, PTHREAD_PROCESS_PRIVATE);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
     // TODO: create - PTHREAD_MUTEX_RECURSIVE
 #if 1
-    iRv = ::pthread_mutexattr_settype(&maAttr, PTHREAD_MUTEX_RECURSIVE);
+    iRv = ::pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 #endif
 
     {
-        iRv = ::pthread_mutex_init(&_handle, &maAttr);
+        iRv = ::pthread_mutex_init(&_handle, &attr);
         xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
     }
 
-    iRv = ::pthread_mutexattr_destroy(&maAttr);
+    iRv = ::pthread_mutexattr_destroy(&attr);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 #endif
 }
