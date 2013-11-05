@@ -64,26 +64,26 @@ CxVolume::type() const
     xTEST_NA(dtRes);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        FILE *pfFile = ::setmntent(xT("/etc/mtab"), xT("r"));
-        xTEST_PTR(pfFile);
+        FILE *file = ::setmntent(xT("/etc/mtab"), xT("r"));
+        xTEST_PTR(file);
 
         xFOREVER {
-            const mntent *pmteMountPoint = ::getmntent(pfFile);
-            xCHECK_DO(NULL == pmteMountPoint, break);
+            const mntent *mountPoint = ::getmntent(file);
+            xCHECK_DO(NULL == mountPoint, break);
 
             // printf("[name]: %s\n[path]: %s\n[type]: %s\n\n",
-            //        pmteMountPoint->mnt_fsname, pmteMountPoint->mnt_dir, pmteMountPoint->mnt_type);
+            //        mountPoint->mnt_fsname, mountPoint->mnt_dir, mountPoint->mnt_type);
 
-            bool_t bRv = CxString::compareNoCase(volumePath(), std::tstring_t(pmteMountPoint->mnt_dir));
+            bool_t bRv = CxString::compareNoCase(volumePath(), std::tstring_t(mountPoint->mnt_dir));
             xCHECK_DO(!bRv, continue);
 
             // TODO: CxVolume::dtGetType
-            dtRes = (NULL == pmteMountPoint->mnt_type) ? dtUnknown : dtOther;
+            dtRes = (NULL == mountPoint->mnt_type) ? dtUnknown : dtOther;
 
             break;
         }
 
-        int_t iRv = ::endmntent(pfFile);
+        int_t iRv = ::endmntent(file);
         xTEST_EQ(1, iRv);
     #elif xOS_FREEBSD
         // TODO: CxVolume::dtGetType
@@ -104,14 +104,14 @@ CxVolume::label() const
     xCHECK_RET(!bRv, std::tstring_t());
 
 #if xOS_ENV_WIN
-    tchar_t szVolumeName[MAX_PATH + 1] = {0};
+    tchar_t volumeName[MAX_PATH + 1] = {0};
 
     CxLastError::reset();
 
     BOOL blRes = ::GetVolumeInformation(
                         CxPath( volumePath() ).slashAppend().c_str(),
-                        &szVolumeName[0],
-                        static_cast<DWORD>( xARRAY_SIZE(szVolumeName) ),
+                        &volumeName[0],
+                        static_cast<DWORD>( xARRAY_SIZE(volumeName) ),
                         NULL,
                         NULL,
                         NULL,
@@ -120,7 +120,7 @@ CxVolume::label() const
     );
     xTEST_DIFF(false, blRes && 0UL == CxLastError::get());
 
-    sRv.assign(szVolumeName);
+    sRv.assign(volumeName);
 #else
     // REVIEW: just get the dir name ??
     if (CxConst::xUNIX_SLASH() == volumePath()) {
@@ -151,34 +151,34 @@ xINLINE_HO bool_t
 CxVolume::isReady() const
 {
     bool_t         bRv          = false;
-    std::tstring_t _sVolumePath = CxPath( volumePath() ).slashAppend();
-    std::tstring_t sOldDirPath;
+    std::tstring_t _volumePath = CxPath( volumePath() ).slashAppend();
+    std::tstring_t oldDirPath;
 
 #if xOS_ENV_WIN
     std::tstring_t sRv;
-    UINT           uiOldErrorMode = 0U;
+    UINT           oldErrorMode = 0U;
 
-    uiOldErrorMode = ::SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOALIGNMENTFAULTEXCEPT | SEM_NOGPFAULTERRORBOX | SEM_NOOPENFILEERRORBOX);
-    xTEST_NA(uiOldErrorMode);
+    oldErrorMode = ::SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOALIGNMENTFAULTEXCEPT | SEM_NOGPFAULTERRORBOX | SEM_NOOPENFILEERRORBOX);
+    xTEST_NA(oldErrorMode);
 
-    sOldDirPath  = CxDir::current();
-    xTEST_NA(sOldDirPath);
+    oldDirPath  = CxDir::current();
+    xTEST_NA(oldDirPath);
 
-    bRv = !!::SetCurrentDirectory(_sVolumePath.c_str());
+    bRv = !!::SetCurrentDirectory(_volumePath.c_str());
     xTEST_NA(bRv);
 
-    CxDir::setCurrent(sOldDirPath);
+    CxDir::setCurrent(oldDirPath);
 
-    (void_t)::SetErrorMode(uiOldErrorMode);
+    (void_t)::SetErrorMode(oldErrorMode);
 #else
-    sOldDirPath  = CxDir::current();
-    xTEST_NA(sOldDirPath);
+    oldDirPath = CxDir::current();
+    xTEST_NA(oldDirPath);
 
-    int_t iRv = ::chdir(_sVolumePath.c_str());
+    int_t iRv = ::chdir(_volumePath.c_str());
     xTEST_NA(iRv);
     bRv = (- 1 != iRv);
 
-    CxDir::setCurrent(sOldDirPath);
+    CxDir::setCurrent(oldDirPath);
 #endif
 
     return bRv;
@@ -199,18 +199,18 @@ CxVolume::mount(
 
 #if   xOS_ENV_WIN
     // TODO: CxVolume::bMount - is it correct?
-    NETRESOURCE nrNetResource = {0};
+    NETRESOURCE netResource = {0};
 
-    nrNetResource.dwScope       = RESOURCE_GLOBALNET;
-    nrNetResource.dwType        = RESOURCETYPE_DISK;
-    nrNetResource.dwDisplayType = RESOURCEDISPLAYTYPE_GENERIC;
-    nrNetResource.dwUsage       = RESOURCEUSAGE_CONTAINER;
-    nrNetResource.lpLocalName   = const_cast<tchar_t *>( a_destPath.c_str() );
-    nrNetResource.lpRemoteName  = const_cast<tchar_t *>( volumePath().c_str() );
-    nrNetResource.lpComment     = NULL;
-    nrNetResource.lpProvider    = NULL;
+    netResource.dwScope       = RESOURCE_GLOBALNET;
+    netResource.dwType        = RESOURCETYPE_DISK;
+    netResource.dwDisplayType = RESOURCEDISPLAYTYPE_GENERIC;
+    netResource.dwUsage       = RESOURCEUSAGE_CONTAINER;
+    netResource.lpLocalName   = const_cast<tchar_t *>( a_destPath.c_str() );
+    netResource.lpRemoteName  = const_cast<tchar_t *>( volumePath().c_str() );
+    netResource.lpComment     = NULL;
+    netResource.lpProvider    = NULL;
 
-    DWORD dwRes = ::WNetAddConnection2(&nrNetResource, NULL, NULL, CONNECT_UPDATE_PROFILE);
+    DWORD dwRes = ::WNetAddConnection2(&netResource, NULL, NULL, CONNECT_UPDATE_PROFILE);
     xTEST_EQ(static_cast<DWORD>( NO_ERROR ), dwRes);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
@@ -243,13 +243,13 @@ CxVolume::unMount(
         #define xMNT_DETACH MNT_FORCE
     #endif
 
-    cint_t ciFlag = a_isForce ? MNT_FORCE : xMNT_DETACH;
+    cint_t flag = a_isForce ? MNT_FORCE : xMNT_DETACH;
 
     #if   xOS_LINUX
-        int_t iRv = ::umount2(volumePath().c_str(), ciFlag);
+        int_t iRv = ::umount2(volumePath().c_str(), flag);
         xTEST_DIFF(- 1, iRv);
     #elif xOS_FREEBSD
-        int_t iRv = ::unmount(volumePath().c_str(), ciFlag);
+        int_t iRv = ::unmount(volumePath().c_str(), flag);
         xTEST_DIFF(- 1, iRv);
     #endif
 #elif xOS_ENV_MAC
@@ -281,37 +281,37 @@ CxVolume::space(
 
     //--------------------------------------------------
     //if dirPath parameter is empty, uses the root of the current volume
-    std::tstring_t sDirPath;
+    std::tstring_t dirPath;
 
     if (a_dirPath.empty()) {
-        sDirPath = CxPath::exeDir();
+        dirPath = CxPath::exeDir();
     } else {
-        sDirPath = a_dirPath;
+        dirPath = a_dirPath;
     }
 
-    bool_t bRv = CxDir(sDirPath).isExists();
+    bool_t bRv = CxDir(dirPath).isExists();
     xTEST_EQ(true, bRv);
 
 #if xOS_ENV_WIN
-    ULARGE_INTEGER ullAvailable = {{0}};
-    ULARGE_INTEGER ullTotal     = {{0}};
-    ULARGE_INTEGER ullFree      = {{0}};
+    ULARGE_INTEGER available = {{0}};
+    ULARGE_INTEGER total     = {{0}};
+    ULARGE_INTEGER free      = {{0}};
 
-    BOOL blRes = ::GetDiskFreeSpaceEx(sDirPath.c_str(), &ullAvailable, &ullTotal, &ullFree);
+    BOOL blRes = ::GetDiskFreeSpaceEx(dirPath.c_str(), &available, &total, &free);
     xTEST_DIFF(FALSE, blRes);
 
-    CxUtils::ptrAssignT(a_available, ullAvailable.QuadPart);
-    CxUtils::ptrAssignT(a_total,     ullTotal.QuadPart);
-    CxUtils::ptrAssignT(a_free,      ullFree.QuadPart);
+    CxUtils::ptrAssignT(a_available, available.QuadPart);
+    CxUtils::ptrAssignT(a_total,     total.QuadPart);
+    CxUtils::ptrAssignT(a_free,      free.QuadPart);
 #else
-    struct xSTATVFS stfInfo = {0};
+    struct xSTATVFS info = {0};
 
-    int_t iRv = ::xSTATVFS(sDirPath.c_str(), &stfInfo);
+    int_t iRv = ::xSTATVFS(dirPath.c_str(), &info);
     xTEST_DIFF(- 1, iRv);
 
-    CxUtils::ptrAssignT(a_available, static_cast<ulonglong_t>( stfInfo.f_bavail * stfInfo.xSTATVFS_F_FRSIZE ));
-    CxUtils::ptrAssignT(a_total,     static_cast<ulonglong_t>( stfInfo.f_blocks * stfInfo.xSTATVFS_F_FRSIZE ));
-    CxUtils::ptrAssignT(a_free,      static_cast<ulonglong_t>( stfInfo.f_bfree  * stfInfo.xSTATVFS_F_FRSIZE ));
+    CxUtils::ptrAssignT(a_available, static_cast<ulonglong_t>( info.f_bavail * info.xSTATVFS_F_FRSIZE ));
+    CxUtils::ptrAssignT(a_total,     static_cast<ulonglong_t>( info.f_blocks * info.xSTATVFS_F_FRSIZE ));
+    CxUtils::ptrAssignT(a_free,      static_cast<ulonglong_t>( info.f_bfree  * info.xSTATVFS_F_FRSIZE ));
 #endif
 }
 //--------------------------------------------------------------------------
@@ -343,25 +343,25 @@ CxVolume::paths(
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         struct _SMounts {
-            std::tstring_t m_sDevice;
-            std::tstring_t m_sDestination;
-            std::tstring_t m_sFsType;
-            std::tstring_t m_sOptions;
-            int_t            m_iDump;
-            int_t            m_iPass;
+            std::tstring_t device;
+            std::tstring_t destination;
+            std::tstring_t fsType;
+            std::tstring_t options;
+            int_t          dump;
+            int_t          pass;
         };
 
-        std::tifstream_t fsProcMounts(xT("/proc/mounts"));
-        xTEST_EQ(true, !! fsProcMounts.good());
+        std::tifstream_t procMounts(xT("/proc/mounts"));
+        xTEST_EQ(true, !! procMounts.good());
 
-        for ( ; !fsProcMounts.eof(); ) {
-            _SMounts mntMounts;
+        for ( ; !procMounts.eof(); ) {
+            _SMounts mounts;
 
-            fsProcMounts >> mntMounts.m_sDevice  >> mntMounts.m_sDestination >> mntMounts.m_sFsType >>
-                            mntMounts.m_sOptions >> mntMounts.m_iDump        >> mntMounts.m_iPass;
-            xCHECK_DO(mntMounts.m_sDevice.empty(), continue);
+            procMounts >> mounts.device  >> mounts.destination >> mounts.fsType >>
+                          mounts.options >> mounts.dump        >> mounts.pass;
+            xCHECK_DO(mounts.device.empty(), continue);
 
-            vsRes.push_back(mntMounts.m_sDestination);
+            vsRes.push_back(mounts.destination);
         }
     #elif xOS_FREEBSD
         // TODO: CxVolume::paths
