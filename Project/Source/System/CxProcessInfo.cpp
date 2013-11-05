@@ -83,25 +83,25 @@ CxProcessInfo::ioBytes()
         1372    cancelled_write_bytes: 0
     #endif
 
-    std::tstring_t sProcPath  = CxString::format(xT("/proc/%lu/io"), _id);
+    std::tstring_t procPath  = CxString::format(xT("/proc/%lu/io"), _id);
 
-    ulong_t ulReadBytes = 0UL;
+    ulong_t readBytes = 0UL;
     {
-        std::tstring_t sValue = CxPath::procValue(sProcPath, xT("read_bytes"));
+        std::tstring_t value = CxPath::procValue(procPath, xT("read_bytes"));
 
-        ulReadBytes = CxString::cast<ulong_t>( sValue );
+        readBytes = CxString::cast<ulong_t>( value );
     }
 
-    ulong_t ulWriteBytes = 0UL;
+    ulong_t writeBytes = 0UL;
     {
-        std::tstring_t sValue = CxPath::procValue(sProcPath, xT("write_bytes"));
+        std::tstring_t value = CxPath::procValue(procPath, xT("write_bytes"));
 
-        ulWriteBytes = CxString::cast<ulong_t>( sValue );
+        writeBytes = CxString::cast<ulong_t>( value );
     }
 
-    ulRv = ulReadBytes + ulWriteBytes;
+    ulRv = readBytes + writeBytes;
 
-    // xTRACEV("\tulReadBytes: %lu, ulWriteBytes: %lu", ulReadBytes, ulWriteBytes);
+    // xTRACEV("\tulReadBytes: %lu, writeBytes: %lu", readBytes, writeBytes);
 #elif xOS_ENV_MAC
     xNOT_IMPLEMENTED
 #endif
@@ -117,43 +117,43 @@ CxProcessInfo::exeName()
 #if   xOS_ENV_WIN
     sRv.resize(xPATH_MAX);
 
-    CxProcess::handle_t hHandle = CxProcess::handleById(_id);
+    CxProcess::handle_t handle = CxProcess::handleById(_id);
 
-    DWORD dwStored = ::GetModuleFileNameEx(hHandle, NULL, &sRv.at(0), static_cast<DWORD>( sRv.size() ));
-    xTEST_DIFF(0UL, dwStored);
+    DWORD stored = ::GetModuleFileNameEx(handle, NULL, &sRv.at(0), static_cast<DWORD>( sRv.size() ));
+    xTEST_DIFF(0UL, stored);
 
-    sRv.resize(dwStored);
+    sRv.resize(stored);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        std::ctstring_t csProcFile = CxString::format(xT("/proc/%ld/exe"), _id);
+        std::ctstring_t procFile = CxString::format(xT("/proc/%ld/exe"), _id);
 
-        bool_t bRv = CxFile::isExists(csProcFile);
+        bool_t bRv = CxFile::isExists(procFile);
         xCHECK_RET(!bRv, std::tstring_t());
 
-        int_t iReaded = - 1;
+        int_t readed = - 1;
         sRv.resize(xPATH_MAX);
 
         xFOREVER {
-            iReaded = ::readlink(csProcFile.c_str(), &sRv.at(0), sRv.size() * sizeof(std::tstring_t::value_type));
-            xTEST_DIFF(- 1, iReaded);
+            readed = ::readlink(procFile.c_str(), &sRv.at(0), sRv.size() * sizeof(std::tstring_t::value_type));
+            xTEST_DIFF(- 1, readed);
 
-            xCHECK_DO(sRv.size() * sizeof(std::tstring_t::value_type) > static_cast<size_t>( iReaded ), break);
+            xCHECK_DO(sRv.size() * sizeof(std::tstring_t::value_type) > static_cast<size_t>( readed ), break);
 
             sRv.resize(sRv.size() * 2);
         }
 
-        sRv.resize(iReaded);
+        sRv.resize(readed);
     #elif xOS_FREEBSD
         #if defined(KERN_PROC_PATHNAME)
-            int_t aiMib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, _id};
+            int_t   mib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, _id};
 
-            tchar_t szBuff[PATH_MAX + 1] = {0};
-            size_t  uiBuffSize           = sizeof(szBuff) - 1;
+            tchar_t buff[PATH_MAX + 1] = {0};
+            size_t  buffSize           = sizeof(buff) - 1;
 
-            int_t iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), szBuff, &uiBuffSize, NULL, 0U);
+            int_t iRv = ::sysctl(mib, xARRAY_SIZE(aiMib), buff, &buffSize, NULL, 0U);
             xTEST_DIFF(- 1, iRv);
 
-            sRv.assign(szBuff);
+            sRv.assign(buff);
         #else
             // TODO: CxProcessInfo::sGetExeName
             xNOT_IMPLEMENTED_RET(std::tstring_t());
@@ -206,9 +206,9 @@ CxProcessInfo::commandLine(
         // Actual filename is ntoskrnl.exe, but other name will be in
         // Original Filename field of version block.
 
-        const CxProcess::id_t cidNtoskrnlId = 4UL;  // MAGIC: cidNtoskrnlId
+        const CxProcess::id_t ntoskrnlId = 4UL;  // MAGIC: ntoskrnlId
 
-        if (cidNtoskrnlId == _id) {
+        if (ntoskrnlId == _id) {
             sRv = CxEnvironment::expandStrings(xT("%SystemRoot%\\System32\\ntoskrnl.exe"));
 
             CxString::split(sRv, CxConst::xSPACE(), &args);
@@ -241,39 +241,39 @@ CxProcessInfo::commandLine(
     struct _SNested {
         static
         PVOID
-        pvPebAddress(
-            HANDLE hProcessHandle
+        pebAddress(
+            HANDLE process
         )
         {
-            CxDll dlDll;
+            CxDll dll;
 
-            dlDll.load(xT("ntdll.dll"));
+            dll.load(xT("ntdll.dll"));
 
-            bool_t bRv = dlDll.isProcExists(xT("NtQueryInformationProcess"));
+            bool_t bRv = dll.isProcExists(xT("NtQueryInformationProcess"));
             xTEST_EQ(true, bRv);
 
             Dll_NtQueryInformationProcess_t
-            DllNtQueryInformationProcess = (Dll_NtQueryInformationProcess_t)dlDll.procAddress(xT("NtQueryInformationProcess"));
+            DllNtQueryInformationProcess = (Dll_NtQueryInformationProcess_t)dll.procAddress(xT("NtQueryInformationProcess"));
             xTEST_PTR(DllNtQueryInformationProcess);
 
         #if xARCH_X86
-            const PROCESSINFOCLASS    cpicInfo          = ProcessBasicInformation;
+            const PROCESSINFOCLASS    info          = ProcessBasicInformation;
         #else
-            const PROCESSINFOCLASS    cpicInfo          = ProcessWow64Information;
+            const PROCESSINFOCLASS    info          = ProcessWow64Information;
         #endif
-            PROCESS_BASIC_INFORMATION pbiBasicInfo      = {0};
-            const DWORD               cdwBasicInfoSize  = sizeof(pbiBasicInfo);   // in bytes
-            DWORD                     dwReturnSizeBytes = 0UL;
+            PROCESS_BASIC_INFORMATION basicInfo      = {0};
+            const DWORD               basicInfoSize  = sizeof(basicInfo);   // in bytes
+            DWORD                     returnSizeBytes = 0UL;
 
             // TODO: ProcessBasicInformation (for x64)
-            NTSTATUS nsRv = DllNtQueryInformationProcess(hProcessHandle,
-                                                         cpicInfo,
-                                                         &pbiBasicInfo, cdwBasicInfoSize, &dwReturnSizeBytes);
+            NTSTATUS nsRv = DllNtQueryInformationProcess(process,
+                                                         info,
+                                                         &basicInfo, basicInfoSize, &returnSizeBytes);
             xTEST_EQ(true, NT_SUCCESS(nsRv));
-            xTEST_EQ(cdwBasicInfoSize, dwReturnSizeBytes);
-            xTEST_PTR(pbiBasicInfo.PebBaseAddress);
+            xTEST_EQ(basicInfoSize, returnSizeBytes);
+            xTEST_PTR(basicInfo.PebBaseAddress);
 
-            PVOID pvRv = pbiBasicInfo.PebBaseAddress;
+            PVOID pvRv = basicInfo.PebBaseAddress;
 
             return pvRv;
         }
@@ -285,31 +285,31 @@ CxProcessInfo::commandLine(
     processHandle = ::OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, static_cast<DWORD>( _id ));
     xTEST_EQ(true, processHandle.isValid());
 
-    PVOID pebAddress               = _SNested::pvPebAddress(processHandle.get());
+    PVOID pebAddress               = _SNested::pebAddress(processHandle.get());
     PVOID rtlUserProcParamsAddress = NULL;
 
     // get the address of ProcessParameters
     BOOL blRv = ::ReadProcessMemory(processHandle.get(), static_cast<PCHAR>(pebAddress) + 0x10,  &rtlUserProcParamsAddress, sizeof(PVOID), NULL);
     xTEST_DIFF(FALSE, blRv);
 
-    // read the usCommandLine UNICODE_STRING structure
-    UNICODE_STRING usCommandLine = {0};
+    // read the commandLine UNICODE_STRING structure
+    UNICODE_STRING commandLine = {0};
 
-    blRv = ::ReadProcessMemory(processHandle.get(), static_cast<PCHAR>(rtlUserProcParamsAddress) + 0x40, &usCommandLine, sizeof(usCommandLine), NULL);
+    blRv = ::ReadProcessMemory(processHandle.get(), static_cast<PCHAR>(rtlUserProcParamsAddress) + 0x40, &commandLine, sizeof(commandLine), NULL);
     xTEST_DIFF(FALSE, blRv);
 
     // allocate memory to hold the command line
     {
-        WCHAR *pCommandLineContents = static_cast<WCHAR *>( ::malloc(usCommandLine.Length) );
-        xTEST_PTR(pCommandLineContents);
+        WCHAR *commandLineContents = static_cast<WCHAR *>( ::malloc(commandLine.Length) );
+        xTEST_PTR(commandLineContents);
 
         // read the command line
-        blRv = ::ReadProcessMemory(processHandle.get(), usCommandLine.Buffer, pCommandLineContents, usCommandLine.Length, NULL);
+        blRv = ::ReadProcessMemory(processHandle.get(), commandLine.Buffer, commandLineContents, commandLine.Length, NULL);
         xTEST_DIFF(FALSE, blRv);
 
-        // length specifier is in characters, but usCommandLine.Length is in bytes a WCHAR is 2 bytes
+        // length specifier is in characters, but commandLine.Length is in bytes a WCHAR is 2 bytes
         std::wstring wsRv;
-        wsRv.assign(pCommandLineContents, usCommandLine.Length / 2);
+        wsRv.assign(commandLineContents, commandLine.Length / 2);
 
     #if xUNICODE
         sRv = wsRv;
@@ -317,36 +317,36 @@ CxProcessInfo::commandLine(
         sRv = CxString::wstrToStr(wsRv, CP_ACP);
     #endif
 
-        (void_t)::free(pCommandLineContents); pCommandLineContents = NULL;
+        (void_t)::free(commandLineContents); commandLineContents = NULL;
     }
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         // FIX: content of "/proc/%ld/cmdline" - missing spaces
-        std::ctstring_t csProcFile = CxString::format(xT("/proc/%ld/cmdline"), _id);
+        std::ctstring_t procFile = CxString::format(xT("/proc/%ld/cmdline"), _id);
 
         std::vec_tstring_t vsProcFile;
 
-        CxPath::proc(csProcFile, &vsProcFile);
+        CxPath::proc(procFile, &vsProcFile);
         xTEST_EQ(size_t(1), vsProcFile.size())
 
         sRv = vsProcFile.at(0);
     #elif xOS_FREEBSD
         int_t iRv      = - 1;
-        int_t aiMib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_ARGS, _id};
+        int_t mib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_ARGS, _id};
 
-        std::string sBuff;
-        size_t      uiBuffSize = 0;
+        std::string buff;
+        size_t      buffSize = 0;
 
-        // get uiBuffSize
-        iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), NULL,         &uiBuffSize, NULL, 0);
+        // get buffSize
+        iRv = ::sysctl(mib, xARRAY_SIZE(mib), NULL,         &buffSize, NULL, 0);
         xTEST_DIFF(- 1, iRv);
 
-        sBuff.resize(uiBuffSize);
+        buff.resize(buffSize);
 
-        iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), &sBuff.at(0), &uiBuffSize, NULL, 0U);
+        iRv = ::sysctl(mib, xARRAY_SIZE(mib), &buff.at(0), &buffSize, NULL, 0U);
         xTEST_DIFF(- 1, iRv);
 
-        sRv = sBuff;    // BUG: sBuff or sBuff.c_str() - FreeBSD crazy!!!
+        sRv = buff;    // BUG: buff or buff.c_str() - FreeBSD crazy!!!
     #endif
 #elif xOS_ENV_MAC
     xNOT_IMPLEMENTED
