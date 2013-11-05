@@ -130,14 +130,14 @@ CxFileType::modify(
     xTEST_NA(a_valueAdd);
 
     // get current attributes
-    types_t cfaValues = get();
+    types_t values = get();
 
     // change bits
-    cfaValues &= ~a_valueRemove;
-    cfaValues |= a_valueAdd;
+    values &= ~a_valueRemove;
+    values |= a_valueAdd;
 
     // change the attributes
-    set(cfaValues);
+    set(values);
 }
 //------------------------------------------------------------------------------
 xINLINE_HO void_t
