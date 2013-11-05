@@ -73,35 +73,35 @@ CxDebugger::isActive()
     xCHECK_RET(FALSE != blRes, true);
 
     // remote debugger
-    BOOL blIsRemoteDebuggerPresent = FALSE;
+    BOOL isRemoteDebuggerPresent = FALSE;
 
-    blRes = ::CheckRemoteDebuggerPresent(::GetCurrentProcess(), &blIsRemoteDebuggerPresent);
-    xCHECK_RET(FALSE == blRes || FALSE == blIsRemoteDebuggerPresent, false);
+    blRes = ::CheckRemoteDebuggerPresent(::GetCurrentProcess(), &isRemoteDebuggerPresent);
+    xCHECK_RET(FALSE == blRes || FALSE == isRemoteDebuggerPresent, false);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         // if ppid != sid, some process spawned our app, probably a debugger
         bool_t bRv = ( ::getsid(::getpid()) != ::getppid() );
         xCHECK_RET(!bRv, false);
     #elif xOS_FREEBSD
-        int_t             aiMib[4]   = {0};
-        struct kinfo_proc kiInfo     = {0};
-        size_t            uiInfoSize = 0;
+        int_t             mib[4]   = {0};
+        struct kinfo_proc info     = {0};
+        size_t            infoSize = 0;
 
-        aiMib[0] = CTL_KERN;
-        aiMib[1] = KERN_PROC;
-        aiMib[2] = KERN_PROC_PID;
-        aiMib[3] = ::getpid();
+        mib[0] = CTL_KERN;
+        mib[1] = KERN_PROC;
+        mib[2] = KERN_PROC_PID;
+        mib[3] = ::getpid();
 
         // if sysctl fails for some bizarre reason, we get a predictable result
-        kiInfo.ki_flag = 0;
+        info.ki_flag = 0;
 
-        uiInfoSize = sizeof(kiInfo);
+        infoSize = sizeof(info);
 
-        int_t iRv = ::sysctl(aiMib, xARRAY_SIZE(aiMib), &kiInfo, &uiInfoSize, NULL, 0);
+        int_t iRv = ::sysctl(mib, xARRAY_SIZE(mib), &info, &infoSize, NULL, 0);
         xCHECK_RET(- 1 == iRv, false);
 
         // we're being debugged if the P_TRACED flag is set.
-        xCHECK_RET(0 == (kiInfo.ki_flag & P_TRACED), false);
+        xCHECK_RET(0 == (info.ki_flag & P_TRACED), false);
     #endif
 #elif xOS_ENV_MAC
     xNOT_IMPLEMENTED
@@ -157,7 +157,7 @@ CxDebugger::reportMake(
 {
     //-------------------------------------
     // never corrupt the last error value
-    culong_t culLastError = CxLastError::get();
+    culong_t lastError = CxLastError::get();
 
     switch (a_report.type) {
         case CxErrorReport::rtMsgboxPlain:
@@ -176,7 +176,7 @@ CxDebugger::reportMake(
 
     //-------------------------------------
     // never corrupt the last error value
-    CxLastError::set(culLastError);
+    CxLastError::set(lastError);
 }
 //------------------------------------------------------------------------------
 
@@ -196,12 +196,12 @@ CxDebugger::_msgboxPlain(
 
 #if xDEBUG_USE_PROMPT_DIALOG
     #if xOS_ENV_WIN
-        uint_t uiType = MB_ABORTRETRYIGNORE | MB_ICONSTOP;
+        uint_t type = MB_ABORTRETRYIGNORE | MB_ICONSTOP;
     #else
-        uint_t uiType = 1U;
+        uint_t type = 1U;
     #endif
 
-    CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::show(a_report.report, CxPath::exe(), uiType);
+    CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::show(a_report.report, CxPath::exe(), type);
 #else
     CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::mrIgnore;
 #endif
@@ -289,18 +289,18 @@ CxDebugger::_loggingPlain(
 
     //--------------------------------------------------
     // get log file path
-    std::tstring_t sFilePath;
+    std::tstring_t filePath;
 
     if (logPath().empty()) {
-        sFilePath = CxPath( CxPath::exe() ).setExt(xT("debug"));
+        filePath = CxPath( CxPath::exe() ).setExt(xT("debug"));
     } else {
-        sFilePath = logPath();
+        filePath = logPath();
     }
 
     //--------------------------------------------------
     // write to file
     try {
-        std::ofstream ofs(sFilePath.c_str(), std::ofstream::out);
+        std::ofstream ofs(filePath.c_str(), std::ofstream::out);
         xCHECK_DO(ofs.fail(), return);
 
         std::ctstring_t csMsg = CxString::format(
