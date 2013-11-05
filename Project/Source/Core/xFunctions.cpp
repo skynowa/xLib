@@ -24,16 +24,16 @@ getTimeOfDay(
     ulonglong_t DELTA_EPOCH_IN_MICROSECS = 11644473600000000ULL;
 #endif
 
-    FILETIME     ftTime    = {0};
-    ulonglong_t  ullRv     = 0ULL;
-    static int_t s_iTzFlag = 0;
+    FILETIME     time     = {0};
+    ulonglong_t  ullRv    = 0ULL;
+    static int_t s_tzFlag = 0;
 
     if (NULL != a_tv) {
-        (void_t)::GetSystemTimeAsFileTime(&ftTime);
+        (void_t)::GetSystemTimeAsFileTime(&time);
 
-        ullRv |= ftTime.dwHighDateTime;
+        ullRv |= time.dwHighDateTime;
         ullRv <<= 32ULL;
-        ullRv |= ftTime.dwLowDateTime;
+        ullRv |= time.dwLowDateTime;
 
         //convert into microseconds
         ullRv /= 10ULL;
@@ -46,9 +46,9 @@ getTimeOfDay(
     }
 
     if (NULL != a_tz) {
-        if (!s_iTzFlag) {
+        if (!s_tzFlag) {
             _tzset();
-            ++ s_iTzFlag;
+            ++ s_tzFlag;
         }
 
         a_tz->tz_minuteswest = _timezone / 60;
