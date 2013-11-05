@@ -26,7 +26,7 @@ CxException::operator << (
     ossRes.exceptions(std::tostringstream_t::failbit | std::tostringstream_t::badbit);
     ossRes << a_message;
 
-    _m_sMessage.append( ossRes.str() );
+    _m_message.append( ossRes.str() );
 
     return *this;
 }
