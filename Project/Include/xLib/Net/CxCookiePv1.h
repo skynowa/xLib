@@ -75,7 +75,7 @@ public:
 private:
     std::tstring_t    _name;      ///< name
     std::tstring_t    _value;     ///< value
-    std::tstring_t    _m_sComment;   ///< comment
+    std::tstring_t    _comment;   ///< comment
     std::tstring_t    _domain;    ///< domain
     std::tstring_t    _path;      ///< path
     longlong_t        _maxAge;   ///< max age (in seconds)

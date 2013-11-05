@@ -36,12 +36,12 @@ CxTcpClient::CxTcpClient() :
 xINLINE_HO bool_t
 CxTcpClient::isReadable()
 {
-    timeval tvTimeout = {1, 0};     /*seconds, microseconds*/
+    timeval timeout = {1, 0};     /*seconds, microseconds*/
     fd_set  fds;        FD_ZERO(&fds);
 
     FD_SET(_socket, &fds);
 
-    int_t iRv = ::select(0, &fds, NULL, NULL, &tvTimeout);
+    int_t iRv = ::select(0, &fds, NULL, NULL, &timeout);
     xCHECK_RET(iRv <= 0 || !FD_ISSET(_socket, &fds), false);
 
     return true;
@@ -50,12 +50,12 @@ CxTcpClient::isReadable()
 xINLINE_HO bool_t
 CxTcpClient::isWritable()
 {
-    timeval tvTimeout = {1, 0};     /*seconds, microseconds*/
+    timeval timeout = {1, 0};     /*seconds, microseconds*/
     fd_set  fds;        FD_ZERO(&fds);
 
     FD_SET(_socket, &fds);
 
-    int_t iRv = ::select(0, NULL, &fds, NULL, &tvTimeout);
+    int_t iRv = ::select(0, NULL, &fds, NULL, &timeout);
     xCHECK_RET(iRv <= 0 || !FD_ISSET(_socket, &fds), false);
 
     return true;
@@ -72,14 +72,14 @@ CxTcpClient::connect(
     xTEST_EQ(true, (65535 > a_port) && (0 < a_port));
 
     //конверт из UNICODE
-    std::string asIp(a_ip.begin(), a_ip.end());
+    std::string ip(a_ip.begin(), a_ip.end());
 
-    sockaddr_in saSockAddr = {0};
-    saSockAddr.sin_family      = _family;
-    saSockAddr.sin_addr.s_addr = ::inet_addr(asIp.c_str());
-    saSockAddr.sin_port        = htons(a_port); //???????
+    sockaddr_in sockAddr = {0};
+    sockAddr.sin_family      = _family;
+    sockAddr.sin_addr.s_addr = ::inet_addr(ip.c_str());
+    sockAddr.sin_port        = htons(a_port); //???????
 
-    int_t iRv = ::connect(_socket, CxUtils::reinterpretCastT<sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
+    int_t iRv = ::connect(_socket, CxUtils::reinterpretCastT<sockaddr *>( &sockAddr ), sizeof(sockAddr));
     xTEST_DIFF(xSOCKET_ERROR, iRv);
 }
 //------------------------------------------------------------------------------
@@ -108,9 +108,9 @@ CxTcpClient::setNonBlockingMode(
 )
 {
 #if xOS_ENV_WIN
-    ulong_t ulNonBlockingMode = static_cast<ulong_t>(a_flag);
+    ulong_t nonBlockingMode = static_cast<ulong_t>(a_flag);
 
-    ioctl(FIONBIO, static_cast<ulong_t FAR *>(&ulNonBlockingMode));
+    ioctl(FIONBIO, static_cast<ulong_t FAR *>(&nonBlockingMode));
 
     /*
     int_t bOptVal = true;
@@ -145,7 +145,7 @@ CxTcpClient::timeout(
     // microsec - n/a
 
     // BUG: static_cast<long_t>( _timeout.tv_sec  )
-    CxUtils::ptrAssignT(a_seconds,      static_cast<long_t>( _timeout.tv_sec  ));
+    CxUtils::ptrAssignT(a_seconds,  static_cast<long_t>( _timeout.tv_sec  ));
     CxUtils::ptrAssignT(a_microsec, static_cast<long_t>( _timeout.tv_usec ));
 }
 //------------------------------------------------------------------------------
@@ -182,24 +182,24 @@ CxTcpClient::isServerAlive(
 
     int_t iRv = - 1;
 
-    CxTcpClient objSocket;
+    CxTcpClient client;
 
     //-------------------------------------
     //bCreate
-    objSocket.create(CxSocket::afInet, CxSocket::tpStream, CxSocket::ptIp);
+    client.create(CxSocket::afInet, CxSocket::tpStream, CxSocket::ptIp);
 
     //-------------------------------------
     //bConnect
     //convert from UNICODE
-    std::string asIp(a_ip.begin(), a_ip.end());
+    std::string ip(a_ip.begin(), a_ip.end());
 
-    sockaddr_in saSockAddr = {0};
-    saSockAddr.sin_family      = CxSocket::afInet;
-    saSockAddr.sin_addr.s_addr = ::inet_addr(asIp.c_str());
-    saSockAddr.sin_port        = htons(a_port); //TODO: htons
+    sockaddr_in sockAddr = {0};
+    sockAddr.sin_family      = CxSocket::afInet;
+    sockAddr.sin_addr.s_addr = ::inet_addr(ip.c_str());
+    sockAddr.sin_port        = htons(a_port); //TODO: htons
 
     //connect - [+] 0 [-] SOCKET_ERROR
-    iRv = ::connect(objSocket.handle(), CxUtils::reinterpretCastT<sockaddr *>( &saSockAddr ), sizeof(saSockAddr));
+    iRv = ::connect(client.handle(), CxUtils::reinterpretCastT<sockaddr *>( &sockAddr ), sizeof(sockAddr));
     // n/a
 
     xCHECK_RET(0 != iRv, false);
