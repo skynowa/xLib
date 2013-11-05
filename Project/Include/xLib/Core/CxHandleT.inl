@@ -128,12 +128,10 @@ CxHandleT<hvTag>::duplicate() const
     native_handle_t hRv = error_value_t::get();
 
 #if   xOS_ENV_WIN
-    native_handle_t hCurrentProcess = ::GetCurrentProcess();
-
     BOOL blRes = ::DuplicateHandle(
-                    hCurrentProcess,
+                    currentProcess,
                     _handle,
-                    hCurrentProcess,
+                    ::GetCurrentProcess(),
                     &hRv,
                     DUPLICATE_SAME_ACCESS,
                     FALSE,
