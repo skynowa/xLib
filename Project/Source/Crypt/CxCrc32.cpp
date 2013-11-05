@@ -208,9 +208,9 @@ CxCrc32::formatHex(
 
     sRv = CxString::format(xT("%X"), a_crc32);    // 0AADDEA0
 
-    size_t uiAdditionalZeros = crc32Size - sRv.size();
-    if (0 != uiAdditionalZeros) {
-        sRv.insert(0, uiAdditionalZeros, xT('0'));
+    size_t additionalZeros = crc32Size - sRv.size();
+    if (0 != additionalZeros) {
+        sRv.insert(0, additionalZeros, xT('0'));
     }
     xTEST_EQ(crc32Size, sRv.size());
 
