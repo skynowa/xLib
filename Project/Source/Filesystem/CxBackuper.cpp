@@ -46,93 +46,93 @@ CxBackuper::fileExec(
     bool_t bRv = false;
 
     // errors
-    std::ctstring_t csError_DestFileNotExists  = xT("Destination file not exists");
-    std::ctstring_t csError_NotEnoughFreeSpace = xT("Not enough free space");
-    std::ctstring_t csError_CopyingFail        = xT("Copying fail");
-    std::ctstring_t csError_Unknown            = xT("Unknown error");
+    std::ctstring_t error_DestFileNotExists  = xT("Destination file not exists");
+    std::ctstring_t error_NotEnoughFreeSpace = xT("Not enough free space");
+    std::ctstring_t error_CopyingFail        = xT("Copying fail");
+    std::ctstring_t error_Unknown            = xT("Unknown error");
 
     // prepare
     {
-        (*a_destFilePath).clear();
+        a_destFilePath->clear();
 
         bool_t bRv = CxFile::isExists(a_filePath);
-        xCHECK_DO(!bRv, xTHROW() << csError_DestFileNotExists);
+        xCHECK_DO(!bRv, xTHROW() << error_DestFileNotExists);
 
-        CxDir drDest(a_destDirPath);
+        CxDir dest(a_destDirPath);
 
-        bRv = drDest.isExists();
-        xCHECK_DO(!bRv, drDest.pathCreate());
+        bRv = dest.isExists();
+        xCHECK_DO(!bRv, dest.pathCreate());
     }
 
     //-------------------------------------
     // get backup period
-    std::tstring_t sDateTimeStamp;
+    std::tstring_t dateTimeStamp;
 
     {
         switch (_period) {
             // TODO: bpHourly:
             case bpDaily:
-                sDateTimeStamp = CxDateTime().current()
+                dateTimeStamp = CxDateTime().current()
                                     .format(CxDateTime::ftDate);
                 break;
             // TODO: bpWeekly:
             // TODO: bpMonthly:
             default:
-                sDateTimeStamp = CxDateTime().current()
+                dateTimeStamp = CxDateTime().current()
                                     .format(CxDateTime::ftDateTime);
                 break;
         }
 
-        sDateTimeStamp = CxString::replaceAll(sDateTimeStamp, xT(":"), xT("-"));
+        dateTimeStamp = CxString::replaceAll(dateTimeStamp, xT(":"), xT("-"));
     }
 
     //-------------------------------------
     // format file full name
-    std::tstring_t sBackupFilePath =
+    std::tstring_t backupFilePath =
                         CxPath(a_destDirPath).slashAppend() +
                         CxPath(a_filePath).fileName()       +
-                        xT(".bak [") + sDateTimeStamp + xT("]");
+                        xT(".bak [") + dateTimeStamp + xT("]");
 
     //-------------------------------------
     // check for existence source file
     {
-        bRv = CxFile::isExists(sBackupFilePath);
-        xCHECK_DO(bRv, *a_destFilePath = sBackupFilePath; return);
+        bRv = CxFile::isExists(backupFilePath);
+        xCHECK_DO(bRv, *a_destFilePath = backupFilePath; return);
     }
 
     //-------------------------------------
     // check for enough space
     {
-        ulonglong_t ullTotalFreeBytes = 0ULL;
-        CxVolume::space(a_destDirPath, NULL, NULL, &ullTotalFreeBytes);
+        ulonglong_t totalFreeBytes = 0ULL;
+        CxVolume::space(a_destDirPath, NULL, NULL, &totalFreeBytes);
 
-        ulonglong_t ullFileSizeBytes  = 0ULL;
-        ullFileSizeBytes = static_cast<ulonglong_t>( CxFile::size(a_filePath) );
+        ulonglong_t fileSizeBytes  = 0ULL;
+        fileSizeBytes = static_cast<ulonglong_t>( CxFile::size(a_filePath) );
 
-        xCHECK_DO(ullFileSizeBytes > ullTotalFreeBytes, xTHROW() << csError_NotEnoughFreeSpace);
+        xCHECK_DO(fileSizeBytes > totalFreeBytes, xTHROW() << error_NotEnoughFreeSpace);
     }
 
     //-------------------------------------
     // copy
     {
-        CxFile::copy(a_filePath, sBackupFilePath, true);
+        CxFile::copy(a_filePath, backupFilePath, true);
     }
 
     //-------------------------------------
     // check for a valid backup
     {
-        bRv = CxFile::isExists(sBackupFilePath);
-        xCHECK_DO(!bRv, xTHROW() << csError_CopyingFail);
+        bRv = CxFile::isExists(backupFilePath);
+        xCHECK_DO(!bRv, xTHROW() << error_CopyingFail);
 
-        bRv = (CxFile::size(a_filePath) == CxFile::size(sBackupFilePath));
-        xCHECK_DO(!bRv, xTHROW() << csError_CopyingFail);
+        bRv = (CxFile::size(a_filePath) == CxFile::size(backupFilePath));
+        xCHECK_DO(!bRv, xTHROW() << error_CopyingFail);
 
-        bRv = (CxCrc32::calcFileFast(a_filePath) == CxCrc32::calcFileFast(sBackupFilePath));
-        xCHECK_DO(!bRv, xTHROW() << csError_CopyingFail);
+        bRv = (CxCrc32::calcFileFast(a_filePath) == CxCrc32::calcFileFast(backupFilePath));
+        xCHECK_DO(!bRv, xTHROW() << error_CopyingFail);
     }
 
     // out
-    std::swap(*a_destFilePath, sBackupFilePath);
+    std::swap(*a_destFilePath, backupFilePath);
 }
 //------------------------------------------------------------------------------
 
