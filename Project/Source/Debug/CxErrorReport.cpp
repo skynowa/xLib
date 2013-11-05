@@ -44,13 +44,13 @@ CxErrorReport::_construct(
     std::ctstring_t &a_comment
 )
 {
-    CxSystemInfo sys_info;
+    CxSystemInfo sysInfo;
 
-    std::csize_t cuiReportWidthMax = 46U;   // MAGIC: cuiReportWidthMax
+    std::csize_t reportWidthMax = 46U;   // MAGIC: reportWidthMax
 
     type           = a_type;
 
-    program        = CxPath( CxPath(CxPath::exe()).brief(cuiReportWidthMax) ).toUnix(false);
+    program        = CxPath( CxPath(CxPath::exe()).brief(reportWidthMax) ).toUnix(false);
 #if xOS_ENV_WIN
     processId      = ::GetCurrentProcessId();
 #else
@@ -59,7 +59,7 @@ CxErrorReport::_construct(
     threadId       = (ulong_t)CxThread::currentId();
     fileSize       = CxString::formatBytes( static_cast<ulonglong_t>( CxFile::size(CxPath::exe())) );
 
-    sourceFile     = CxPath( CxPath(a_file).brief(cuiReportWidthMax) ).toUnix(false);
+    sourceFile     = CxPath( CxPath(a_file).brief(reportWidthMax) ).toUnix(false);
     sourceLine     = a_line;
     functionName   = a_func;
     expression     = CxString::format(xT("%s (%s) %s %s (%s)"),
@@ -72,8 +72,8 @@ CxErrorReport::_construct(
     currentDate    = CxDateTime::current().format(CxDateTime::ftDateTime);
     buildDate      = CxString::format(xT("%s/%s"), a_date.c_str(), a_time.c_str());
     buildType      = CxDebugger().isDebugBuild() ? xT("debug") : xT("release");
-    osVersion      = sys_info.formatOsType( sys_info.os() );
-    osArchitecture = sys_info.formatOsArch( sys_info.osArch() );
+    osVersion      = sysInfo.formatOsType( sysInfo.os() );
+    osArchitecture = sysInfo.formatOsArch( sysInfo.osArch() );
 
     stackTrace     = a_stackTrace;
     comment        = a_comment.empty() ? CxConst::xHYPHEN() : a_comment;
@@ -90,9 +90,9 @@ CxErrorReport::_construct(
 xINLINE_HO void_t
 CxErrorReport::_initPlain()
 {
-    std::tostringstream_t ossReport;
+    std::tostringstream_t ossRv;
 
-    ossReport
+    ossRv
         << xT("CxErrorReport    ")                   << std::endl
                                                      << std::endl
                                                      << std::endl
@@ -118,7 +118,7 @@ CxErrorReport::_initPlain()
                                                      << std::endl
         << xT("Comment:         ") << comment        << std::endl;
 
-    report = ossReport.str();
+    report = ossRv.str();
 }
 //------------------------------------------------------------------------------
 

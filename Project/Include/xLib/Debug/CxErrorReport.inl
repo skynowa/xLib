@@ -45,27 +45,27 @@ CxErrorReport::CxErrorReport(
     stackTrace    (),
     comment       ()
 {
-    // sVar1Value
-    std::tstring_t sVar1Value;
+    // var1Value
+    std::tstring_t var1Value;
     {
         std::tostringstream_t ossRes;
 
         ossRes << a_var1Value;
-        sVar1Value = ossRes.str();
+        var1Value = ossRes.str();
     }
 
-    // sVar2Value
-    std::tstring_t sVar2Value;
+    // var2Value
+    std::tstring_t var2Value;
     {
         std::tostringstream_t ossRes;
 
         ossRes << a_var2Value;
-        sVar2Value = ossRes.str();
+        var2Value = ossRes.str();
     }
 
     _construct(a_type,
                a_var1,     a_var2,
-               sVar1Value, sVar2Value,
+               var1Value, var2Value,
                a_exprSign,
                a_lastError, a_file, a_line, a_func,
                a_date, a_time, a_stackTrace, a_comment);
