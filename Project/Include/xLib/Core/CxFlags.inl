@@ -14,7 +14,7 @@ xNAMESPACE_BEGIN(NxLib)
 //------------------------------------------------------------------------------
 template <class T>
 CxFlags<T>::CxFlags() : 
-    _m_mFlags(0)
+    _flags(0)
 {
 }
 //------------------------------------------------------------------------------
@@ -22,7 +22,7 @@ template <class T>
 CxFlags<T>::CxFlags(
     const CxFlags &a_values
 ) : 
-    _m_mFlags(a_values._m_mFlags)
+    _flags(a_values._flags)
 {
 }
 //------------------------------------------------------------------------------
@@ -30,7 +30,7 @@ template <class T>
 CxFlags<T>::CxFlags(
     const T &a_values
 ) :
-    _m_mFlags(a_values)
+    _flags(a_values)
 {
 }
 //------------------------------------------------------------------------------
@@ -42,7 +42,7 @@ CxFlags<T>::operator = (
 {
     xCHECK_RET(this == &a_values, *this);
 
-    _m_mFlags = a_values._m_mFlags;
+    _flags = a_values._flags;
 
     return *this;
 }
@@ -51,7 +51,7 @@ template <class T>
 size_t &
 CxFlags<T>::get() const 
 {
-    return _m_mFlags;
+    return _flags;
 }
 //------------------------------------------------------------------------------        
 template <class T>
@@ -60,14 +60,14 @@ CxFlags<T>::set(
     const T &a_values
 )
 {
-    _m_mFlags = a_values;
+    _flags = a_values;
 }
 //------------------------------------------------------------------------------
 template <class T>
 void_t
 CxFlags<T>::clear()
 {
-    _m_mFlags = 0;
+    _flags = 0;
 }
 //------------------------------------------------------------------------------        
 template <class T>
@@ -76,7 +76,7 @@ CxFlags<T>::isSetFlag(
     const T &a_value
 ) const
 {
-    return (_m_mFlags & a_value) == a_value;
+    return (_flags & a_value) == a_value;
 }
 //------------------------------------------------------------------------------        
 template <class T>
@@ -85,7 +85,7 @@ CxFlags<T>::isSetAnyFlag(
     const T &a_value
 ) const
 {
-    return (_m_mFlags & a_value) != 0;
+    return (_flags & a_value) != 0;
 }
 //------------------------------------------------------------------------------  
 template <class T>
@@ -94,7 +94,7 @@ CxFlags<T>::setFlag(
     const T &a_value
 )
 {
-    _m_mFlags |= a_value;
+    _flags |= a_value;
 }
 //------------------------------------------------------------------------------        
 template <class T>
@@ -103,7 +103,7 @@ CxFlags<T>::unsetFlag(
     const T &a_value
 )
 {
-    _m_mFlags &= ~a_value;
+    _flags &= ~a_value;
 }
 
 //------------------------------------------------------------------------------        
@@ -113,7 +113,7 @@ CxFlags<T>::toggleFlag(
     const T &a_value
 )
 {
-    _m_mFlags ^= a_value;
+    _flags ^= a_value;
 }
 //------------------------------------------------------------------------------        
 

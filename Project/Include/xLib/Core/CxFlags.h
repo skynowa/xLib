@@ -47,7 +47,7 @@ public:
         ///< toggle flag
 
 private:
-    size_t    _m_mFlags;
+    size_t    _flags;
 };
 
 xNAMESPACE_END(NxLib)
