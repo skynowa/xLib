@@ -152,14 +152,14 @@ CxBlowfish::encryptCfb64(
     xTEST_EQ(false, a_in.empty());
     xTEST_PTR(a_out);
 
-    int_t iNum = 0;    //This integer must be initialized to zero when ivec is initialized
+    int_t num = 0;    //This integer must be initialized to zero when ivec is initialized
 
     (*a_out).resize( a_in.size() );
 
     encryptCfb64(
         const_cast<uchar_t *>( &a_in.at(0) ), &(*a_out).at(0),
-        static_cast<long_t>( a_in.size() ), &iNum, a_mode);
-    xTEST_LESS(- 1, iNum);
+        static_cast<long_t>( a_in.size() ), &num, a_mode);
+    xTEST_LESS(- 1, num);
 }
 //------------------------------------------------------------------------------
 xINLINE_HO void_t
