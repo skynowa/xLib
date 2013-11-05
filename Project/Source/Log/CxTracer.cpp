@@ -35,10 +35,10 @@ CxTracer::write(
 
     std::tstring_t sRv;
 
-    va_list palArgs;
-    xVA_START(palArgs, a_format);
-    sRv = CxString::formatV(a_format, palArgs);
-    xVA_END(palArgs);
+    va_list args;
+    xVA_START(args, a_format);
+    sRv = CxString::formatV(a_format, args);
+    xVA_END(args);
 
     write(sRv);
 }

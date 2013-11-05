@@ -71,17 +71,17 @@ CxFileLog::write(
 
     //-------------------------------------
     //time
-    std::tstring_t sTime;
-    sTime = CxDateTime::current().format(CxDateTime::ftTime);
+    std::tstring_t time;
+    time = CxDateTime::current().format(CxDateTime::ftTime);
 
     //-------------------------------------
     //comment
-    std::tstring_t sParam;
-    va_list        palArgs;
+    std::tstring_t param;
+    va_list        args;
 
-    xVA_START(palArgs, a_format);
-    sParam = CxString::formatV(a_format, palArgs);
-    xVA_END(palArgs);
+    xVA_START(args, a_format);
+    param = CxString::formatV(a_format, args);
+    xVA_END(args);
 
     //-------------------------------------
     //write to file
@@ -89,11 +89,9 @@ CxFileLog::write(
         CxAutoIpcMutex SL(_mutex);
     #endif
 
-    CxFile sfFile;
-
-    sfFile.create(filePath(), CxFile::omAppend, false);
-
-    int_t iRv = sfFile.write(xT("[%s] %s\n"), sTime.c_str(), sParam.c_str());
+    CxFile file;
+    file.create(filePath(), CxFile::omAppend, false);
+    int_t iRv = file.write(xT("[%s] %s\n"), time.c_str(), param.c_str());
     xTEST_DIFF(- 1, iRv);
 }
 //------------------------------------------------------------------------------
@@ -137,9 +135,9 @@ CxFileLog::_removeIfFull()
 
     //-------------------------------------
     // remove log, if full
-    ulong_t ulSize = static_cast<ulong_t>( CxFile::size(filePath()) );
+    ulong_t size = static_cast<ulong_t>( CxFile::size(filePath()) );
 
-    xCHECK_DO(ulSize < _maxFileSizeBytes, return);
+    xCHECK_DO(size < _maxFileSizeBytes, return);
 
     CxFile::remove(filePath());
 }

@@ -87,22 +87,22 @@ CxSystemLog::write(
 
     //-------------------------------------
     // comment
-    std::tstring_t sMessage;
-    va_list        alArgs;
+    std::tstring_t message;
+    va_list        args;
 
-    xVA_START(alArgs, a_format);
-    sMessage = CxString::formatV(a_format, alArgs);
-    xVA_END(alArgs);
+    xVA_START(args, a_format);
+    message = CxString::formatV(a_format, args);
+    xVA_END(args);
 
     //-------------------------------------
     // write
 #if xOS_ENV_WIN
-    LPCTSTR pcszStrings = sMessage.c_str();
+    LPCTSTR strings = message.c_str();
 
-    BOOL bRv = ::ReportEvent(_sysLog, a_level, 0, 0UL, NULL, 1, 0UL, &pcszStrings, NULL);
+    BOOL bRv = ::ReportEvent(_sysLog, a_level, 0, 0UL, NULL, 1, 0UL, &strings, NULL);
     xTEST_DIFF(FALSE, bRv);
 #else
-    (void_t)::syslog(a_level, xT("%s"), sMessage.c_str());
+    (void_t)::syslog(a_level, xT("%s"), message.c_str());
 #endif
 }
 //------------------------------------------------------------------------------
