@@ -37,11 +37,11 @@ CxStdError::isSuccess()
 xINLINE_HO int_t
 CxStdError::get()
 {
-    int_t iCode = errno;
+    int_t code = errno;
 
     reset();
 
-    return iCode;
+    return code;
 }
 //------------------------------------------------------------------------------
 /* static */
@@ -79,33 +79,33 @@ CxStdError::format(
 
 #if   xOS_ENV_WIN
     #if   xCOMPILER_MINGW
-        tchar_t *pcszError = ::xSTRERROR(a_code);
-        xCHECK_RET(NULL == pcszError, sRv.append(xT("[Cann't format error message]")));
+        tchar_t *error = ::xSTRERROR(a_code);
+        xCHECK_RET(NULL == error, sRv.append(xT("[Cann't format error message]")));
 
-        sRv.append(pcszError);
+        sRv.append(error);
     #elif xCOMPILER_MS || xCOMPILER_CODEGEAR
-        tchar_t szBuff[64 + 1] = {0};
+        tchar_t buff[64 + 1] = {0};
 
-        errno_t iError = ::xSTRERROR(szBuff, xARRAY_SIZE(szBuff), a_code);
-        xCHECK_RET(0 != iError, sRv.append(xT("[Cann't format error message]")));
+        errno_t error = ::xSTRERROR(buff, xARRAY_SIZE(buff), a_code);
+        xCHECK_RET(0 != error, sRv.append(xT("[Cann't format error message]")));
 
-        sRv.append(szBuff);
+        sRv.append(buff);
     #endif
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        char szBuff[64 + 1] = {0};
+        char buff[64 + 1] = {0};
 
-        ctchar_t *pcszError = ::strerror_r(a_code, &szBuff[0], xARRAY_SIZE(szBuff));
-        xCHECK_RET(NULL == pcszError, sRv.append(xT("[Cann't format error message]")));
+        ctchar_t *error = ::strerror_r(a_code, &buff[0], xARRAY_SIZE(buff));
+        xCHECK_RET(NULL == error, sRv.append(xT("[Cann't format error message]")));
 
-        sRv.append(pcszError);
+        sRv.append(error);
     #elif xOS_FREEBSD
-        char szBuff[64 + 1] = {0};
+        char buff[64 + 1] = {0};
 
-        int_t iRv = ::strerror_r(a_code, &szBuff[0], xARRAY_SIZE(szBuff));
+        int_t iRv = ::strerror_r(a_code, &buff[0], xARRAY_SIZE(buff));
         xCHECK_RET(- 1 == iRv, sRv.append(xT("[Cann't format error message]")));
 
-        sRv.append(&szBuff[0]);
+        sRv.append(&buff[0]);
     #endif
 #elif xOS_ENV_MAC
     xNOT_IMPLEMENTED
