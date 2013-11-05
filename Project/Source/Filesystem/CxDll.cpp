@@ -62,7 +62,7 @@ CxDll::load(
     _destruct();
 
 #if xOS_ENV_WIN
-    _dll = ::LoadLibrary(dllPath.c_str());
+    _dll = ::LoadLibrary(a_dllPath.c_str());
     xTEST_PTR(_dll);
 #else
     _dll = ::dlopen(a_dllPath.c_str(), RTLD_LAZY | RTLD_GLOBAL);
