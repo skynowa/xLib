@@ -26,7 +26,7 @@ public:
         ///< put message
 
 private:
-    std::tstring_t    _m_sMessage;
+    std::tstring_t    _m_message;
         ///< message
 };
 
