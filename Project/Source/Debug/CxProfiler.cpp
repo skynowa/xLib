@@ -87,26 +87,26 @@ CxProfiler::stop(
         xTEST_LESS_EQ(static_cast<clock_t>( 0 ), _duration);
     }
 
-    cdouble_t   cdDurationMsec   = (static_cast<double>( _duration ) / static_cast<double>( CLOCKS_PER_SEC )) * 1000.0;  // 1 sec = 1000 msec
-    std::size_t cullDurationMsec = CxUtils::roundIntT<std::size_t>( cdDurationMsec );
+    cdouble_t   durationMsec1 = (static_cast<double>( _duration ) / static_cast<double>( CLOCKS_PER_SEC )) * 1000.0;  // 1 sec = 1000 msec
+    std::size_t durationMsec2 = CxUtils::roundIntT<std::size_t>( durationMsec1 );
 
     //-------------------------------------
     // write to log
     if ( !_log.filePath().empty() ) {
         std::tstring_t  sRv;
-        std::ctstring_t csDurationTime = CxDateTime(cullDurationMsec).format(CxDateTime::ftTime);
+        std::ctstring_t durationTime = CxDateTime(durationMsec2).format(CxDateTime::ftTime);
 
-        va_list palArgs;
-        xVA_START(palArgs, a_comment);
-        sRv = CxString::formatV(a_comment, palArgs);
-        xVA_END(palArgs);
+        va_list args;
+        xVA_START(args, a_comment);
+        sRv = CxString::formatV(a_comment, args);
+        xVA_END(args);
 
-        _log.write(xT("%s: %s"), csDurationTime.c_str(), sRv.c_str());
+        _log.write(xT("%s: %s"), durationTime.c_str(), sRv.c_str());
     }
 
     _isStarted = false;
 
-    return cullDurationMsec;
+    return durationMsec2;
 }
 //--------------------------------------------------------------------------
 xINLINE_HO size_t
@@ -121,10 +121,10 @@ CxProfiler::restart(
     std::tstring_t sRv;
 
     if ( !_log.filePath().empty() ) {
-        va_list palArgs;
-        xVA_START(palArgs, a_comment);
-        sRv = CxString::formatV(a_comment, palArgs);
-        xVA_END(palArgs);
+        va_list args;
+        xVA_START(args, a_comment);
+        sRv = CxString::formatV(a_comment, args);
+        xVA_END(args);
     }
 
     //-------------------------------------
