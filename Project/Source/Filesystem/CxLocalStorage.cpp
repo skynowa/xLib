@@ -257,10 +257,10 @@ CxLocalStorage::keyReadBin(
 
     std::tstring_t sRv;
 
-    std::tstring_t sHexStr = keyReadString(a_key, std::tstring_t(a_defaultValue.begin(), a_defaultValue.end()));
+    std::tstring_t hexStr = keyReadString(a_key, std::tstring_t(a_defaultValue.begin(), a_defaultValue.end()));
 
-    // sHexStr -> usRv
-    sRv = CxString::cast(sHexStr, 16);
+    // hexStr -> usRv
+    sRv = CxString::cast(hexStr, 16);
 
     return std::ustring_t(sRv.begin(), sRv.end());
 }
@@ -274,12 +274,12 @@ CxLocalStorage::keyWriteBin(
     xTEST_NA(a_key);
     xTEST_NA(a_value);
 
-    // value (std::ustring_t) -> sHexStr (std::tstring_t)
-    std::tstring_t sHexStr;
+    // value (std::ustring_t) -> hexStr (std::tstring_t)
+    std::tstring_t hexStr;
 
-    sHexStr = CxString::cast( std::tstring_t(a_value.begin(), a_value.end()), 16);
+    hexStr = CxString::cast( std::tstring_t(a_value.begin(), a_value.end()), 16);
 
-    keyWriteString(a_key, sHexStr);
+    keyWriteString(a_key, hexStr);
 }
 //-------------------------------------------------------------------------
 xINLINE_HO void_t
