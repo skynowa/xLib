@@ -27,10 +27,10 @@ CxAutoProfiler::CxAutoProfiler(
 {
     //-------------------------------------
     // format comment
-    va_list palArgs;
-    xVA_START(palArgs, a_comment);
-    _comment = CxString::formatV(a_comment, palArgs);
-    xVA_END(palArgs);
+    va_list args;
+    xVA_START(args, a_comment);
+    _comment = CxString::formatV(a_comment, args);
+    xVA_END(args);
 
     //-------------------------------------
     // start
