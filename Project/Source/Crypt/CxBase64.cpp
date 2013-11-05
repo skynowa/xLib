@@ -42,13 +42,13 @@ CxBase64::encode(
 )
 {
     std::string sRv;
-    std::size_t uiSize = a_size;
+    std::size_t size = a_size;
     int         i = 0;
     int         j = 0;
     uchar_t     char_array_3[3] = {0};
     uchar_t     char_array_4[4] = {0};
 
-    while (uiSize--) {
+    while (size--) {
         char_array_3[i++] = *(a_bytes++);
         if (i == 3) {
             char_array_4[0] = (char_array_3[0] & 0xfc) >> 2;
