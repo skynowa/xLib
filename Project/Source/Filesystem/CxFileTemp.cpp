@@ -59,14 +59,14 @@ CxFileTemp::create(
     xTEST_EQ(false, a_dirPath.empty());
     xTEST_EQ(false, a_file->isValid());
 
-    std::ctstring_t csFileNameTemplate = xT("XXXXXX");
+    std::ctstring_t fileNameTemplate = xT("XXXXXX");
 
 
     FILE *stdFile = NULL;
 
     CxDir(a_dirPath).pathCreate();
 
-    _filePath = CxPath(a_dirPath).slashAppend() + CxPath(a_filePath).fileName() + csFileNameTemplate;
+    _filePath = CxPath(a_dirPath).slashAppend() + CxPath(a_filePath).fileName() + fileNameTemplate;
 
 #if xOS_ENV_WIN
     #if xCOMPILER_MINGW || xCOMPILER_CODEGEAR
