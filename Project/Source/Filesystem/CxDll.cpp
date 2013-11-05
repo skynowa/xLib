@@ -81,15 +81,15 @@ CxDll::isProcExists(
     proc_address_t fpRes = ::GetProcAddress(_dll, xTS2S(a_procName).c_str());
     xCHECK_RET(NULL == fpRes, false);
 #else
-    const char *pszError = NULL;
+    const char *error = NULL;
 
-    pszError = ::dlerror();
-    xTEST_PTR_FAIL(pszError);
+    error = ::dlerror();
+    xTEST_PTR_FAIL(error);
 
     (void_t)::dlsym(_dll, a_procName.c_str());
 
-    pszError = ::dlerror();
-    xCHECK_RET(NULL != pszError, false);
+    error = ::dlerror();
+    xCHECK_RET(NULL != error, false);
 #endif
 
     return true;
@@ -108,16 +108,16 @@ CxDll::procAddress(
     fpRes = ::GetProcAddress(_dll, xTS2S(a_procName).c_str());
     xTEST_PTR(fpRes);
 #else
-    const char *pszError = NULL;
+    const char *error = NULL;
 
-    pszError = ::dlerror();
-    xTEST_PTR_FAIL(pszError);
+    error = ::dlerror();
+    xTEST_PTR_FAIL(error);
 
     fpRes = ::dlsym(_dll, a_procName.c_str());
     xTEST_NA(fpRes)
 
-    pszError = ::dlerror();
-    xTEST_PTR_FAIL(pszError);
+    error = ::dlerror();
+    xTEST_PTR_FAIL(error);
 #endif
 
     return fpRes;
