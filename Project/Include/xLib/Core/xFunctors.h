@@ -38,7 +38,7 @@ struct SDelete
 {
     template<class T>
     void
-    operator() (
+    operator () (
         T* &a_ptr) const
     {
         T* tmp = NULL;
