@@ -107,31 +107,31 @@ CxFinder::fileTypes() const {
 
     uchar_t ucRv = _enrty.data->d_type;
     switch (ucRv) {
-        case DT_BLK: // block device
-            ftRv |= CxFileType::faBlockDevice;
-            break;
-        case DT_CHR: // character device
-            ftRv |= CxFileType::faCharacterDevice;
-            break;
-        case DT_DIR: // directory
-            ftRv |= CxFileType::faDirectory;
-            break;
-        case DT_FIFO: // named pipe (FIFO)
-            ftRv |= CxFileType::faFifo;
-            break;
-        case DT_LNK: // symbolic link
-            ftRv |= CxFileType::faSymbolicLink;
-            break;
-        case DT_REG: // regular file
-            ftRv |= CxFileType::faRegularFile;
-            break;
-        case DT_SOCK: // UNIX domain socket
-            ftRv |= CxFileType::faSocket;
-            break;
-        case DT_UNKNOWN: // type is unknown
-        default:
-            ftRv = CxFileType::faInvalid;
-            break;
+    case DT_BLK: // block device
+        ftRv |= CxFileType::faBlockDevice;
+        break;
+    case DT_CHR: // character device
+        ftRv |= CxFileType::faCharacterDevice;
+        break;
+    case DT_DIR: // directory
+        ftRv |= CxFileType::faDirectory;
+        break;
+    case DT_FIFO: // named pipe (FIFO)
+        ftRv |= CxFileType::faFifo;
+        break;
+    case DT_LNK: // symbolic link
+        ftRv |= CxFileType::faSymbolicLink;
+        break;
+    case DT_REG: // regular file
+        ftRv |= CxFileType::faRegularFile;
+        break;
+    case DT_SOCK: // UNIX domain socket
+        ftRv |= CxFileType::faSocket;
+        break;
+    case DT_UNKNOWN: // type is unknown
+    default:
+        ftRv = CxFileType::faInvalid;
+        break;
     }
 #endif
 

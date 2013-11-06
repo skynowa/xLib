@@ -830,53 +830,53 @@ CxCgiFormData::_construct()
 {
     int_t iRv = _cgi.Environment.requestType();
     switch (iRv) {
-        case CxCgiEnvironment::rtGet:
-            xTEST_EQ(false, _cgi.Environment.queryString().empty());
+    case CxCgiEnvironment::rtGet:
+        xTEST_EQ(false, _cgi.Environment.queryString().empty());
 
-            //TODO: cgl_parsecgibuf(cgl_Formdata, cgl_Buf)
+        //TODO: cgl_parsecgibuf(cgl_Formdata, cgl_Buf)
 
-            _formData = _cgi.Environment.queryString();
-            break;
-        case CxCgiEnvironment::rtPost: {
-            bool_t bRv = false;
+        _formData = _cgi.Environment.queryString();
+        break;
+    case CxCgiEnvironment::rtPost: {
+        bool_t bRv = false;
 
-            bRv = CxString::compareNoCase(xT("application/x-www-form-urlencoded"), _cgi.Environment.contentType());
-            xTEST_EQ(true, bRv);
+        bRv = CxString::compareNoCase(xT("application/x-www-form-urlencoded"), _cgi.Environment.contentType());
+        xTEST_EQ(true, bRv);
 
-            //get content length
-            size_t postSize = 0;  // in bytes
-            if (_cgi.Environment.contentLength().empty()) {
-                postSize = 0;
-            }
-            else {
-                postSize = CxString::cast<size_t>( _cgi.Environment.contentLength() );
-            }
-            xTEST_LESS(size_t(0U), postSize);
-            xTEST_GR_EQ(_maxData, postSize);  //secure
-            xTEST_EQ(false, _maxData <= postSize);
-
-            //read, parse data
-            CxFile         file;
-            std::tstring_t buff;
-
-            file.attach(stdin);
-
-            buff.resize(postSize);
-
-            size_t uiRes = file.read(&buff.at(0), buff.size());
-            xTEST_EQ(uiRes, buff.size());
-
-            //TODO: cgl_parsecgibuf(cgl_Formdata, cgl_Buf)
-
-            _formData = buff;
-
-            FILE *f = file.detach();
-            xTEST_PTR(f);
-            break;
+        //get content length
+        size_t postSize = 0;  // in bytes
+        if (_cgi.Environment.contentLength().empty()) {
+            postSize = 0;
         }
-        default:
-            ////xTEST_FAIL;
-            break;
+        else {
+            postSize = CxString::cast<size_t>( _cgi.Environment.contentLength() );
+        }
+        xTEST_LESS(size_t(0U), postSize);
+        xTEST_GR_EQ(_maxData, postSize);  //secure
+        xTEST_EQ(false, _maxData <= postSize);
+
+        //read, parse data
+        CxFile         file;
+        std::tstring_t buff;
+
+        file.attach(stdin);
+
+        buff.resize(postSize);
+
+        size_t uiRes = file.read(&buff.at(0), buff.size());
+        xTEST_EQ(uiRes, buff.size());
+
+        //TODO: cgl_parsecgibuf(cgl_Formdata, cgl_Buf)
+
+        _formData = buff;
+
+        FILE *f = file.detach();
+        xTEST_PTR(f);
+        break;
+    }
+    default:
+        ////xTEST_FAIL;
+        break;
     }
 }
 //------------------------------------------------------------------------------

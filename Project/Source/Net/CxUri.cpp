@@ -281,19 +281,19 @@ CxUri::escape(
 
     while((c = *s++) != (char)0) {
         switch(c) {
-            case '\0':
-                break;
+        case '\0':
+            break;
 
-            case '%': case ' ': case '?': case '&':
-            case '>': case '<': case '\"': case ';':
-            case '=': case '@': case ':': case '#':
-                fprintf(fw, "%%%02x", c);
-                break;
+        case '%': case ' ': case '?': case '&':
+        case '>': case '<': case '\"': case ';':
+        case '=': case '@': case ':': case '#':
+            fprintf(fw, "%%%02x", c);
+            break;
 
-            default:
-                if (fputc(c, fw) == EOF)
-                    return EOF;
-                break;
+        default:
+            if (fputc(c, fw) == EOF)
+                return EOF;
+            break;
         }
     }
 

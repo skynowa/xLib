@@ -71,11 +71,11 @@ CxErrorReport::CxErrorReport(
                a_date, a_time, a_stackTrace, a_comment);
 
     switch (a_type) {
-        case rtMsgboxPlain:  { _initPlain(); } break;
-        case rtStdoutPlain:  { _initPlain(); } break;
-        case rtLoggingPlain: { _initPlain(); } break;
+    case rtMsgboxPlain:  { _initPlain(); } break;
+    case rtStdoutPlain:  { _initPlain(); } break;
+    case rtLoggingPlain: { _initPlain(); } break;
 
-        default:             { _initPlain(); } break;
+    default:             { _initPlain(); } break;
     }
 }
 //------------------------------------------------------------------------------

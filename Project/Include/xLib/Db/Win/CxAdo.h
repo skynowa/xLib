@@ -133,15 +133,15 @@ public:
         }
 
         switch (m_errCode) {
-            case ceUnknown                  : return "������ �� ����� ��������";
-            case ceCantCreateConnection     : return "������ ��� �������� ������� \"����������\"";
-            case ceConnectionNotExists      : return "������ \"����������\" �� ������";
-            case ceConnectionNotOpen        : return "���������� �� �������";
-            case ceErrCloseConnection       : return "������ ��� �������� ����������";
-            case ceConnectionAlreadyOpen    : return "���������� ��� �������";
-            case ceErrOpenConnection        : return "������ ��� �������� ����������";
-            case ceErrExecuteCmd            : return "������ ��� ���������� �������";
-            default : break;
+        case ceUnknown                  : return "������ �� ����� ��������";
+        case ceCantCreateConnection     : return "������ ��� �������� ������� \"����������\"";
+        case ceConnectionNotExists      : return "������ \"����������\" �� ������";
+        case ceConnectionNotOpen        : return "���������� �� �������";
+        case ceErrCloseConnection       : return "������ ��� �������� ����������";
+        case ceConnectionAlreadyOpen    : return "���������� ��� �������";
+        case ceErrOpenConnection        : return "������ ��� �������� ����������";
+        case ceErrExecuteCmd            : return "������ ��� ���������� �������";
+        default : break;
         }
 
         return "����������� ������";
@@ -207,30 +207,30 @@ public:
         }
 
         switch (m_errCode) {
-            case reUnknown                  : return "������ �� ����� ��������";
-            case reRecordsetNotCreated      : return "������ \"����� �������\" �� ������";
-            case reRecordsetNotClosed       : return "\"����� �������\" �� ������";
-            case reCannotCreateCmd          : return "������ ��� �������� ������� \"��������\"";
-            case reCannotCreateRecordset    : return "������ ��� �������� ������� \"����� �������\"";
-            case reRecordsetAlreadyExists   : return "����� ������� ��� ����������";
-            case reErrOpenRecordset         : return "������ ��� �������� ������ ������";
-            case reRecordsetNotOpen         : return "����� ������� �� ������";
-            case reErrMoveFirst             : return "������ ��� �������� �� ������ ������";
-            case reErrMoveLast              : return "������ ��� �������� �� ��������� ������";
-            case reErrMoveNext              : return "������ ��� �������� �� ��������� ������";
-            case reErrMovePrev              : return "������ ��� �������� �� ���������� ������";
-            case reErrGetEoF                : return "������ ��� ����������� ������ ������ �������";
-            case reErrGetBoF                : return "������ ��� ����������� ����� ������ �������";
-            case reErrGetField              : return "������ ��� ��������� �������� ����";
-            case reErrCloseRecordset        : return "������ ��� �������� ������ ������";
-            case reErrAddNewRecord          : return "������ ��� ���������� ����� ������";
-            case reErrUpdateRecordset       : return "������ ��� ���������� ������ �������";
-            case reErrSetField              : return "������ ��� ��������� �������� ����";
-            case reErrCancel                : return "������ ��� ������";
-            case reErrGetFieldsCount        : return "������ ��� ��������� ���������� ����� ������ �������";
-            case reErrSafeBookmark          : return "������ ��� ���������� ��������";
-            case reErrSafeGoToBookmark      : return "������ ��� �������� �� ��������";
-            default : break;
+        case reUnknown                  : return "������ �� ����� ��������";
+        case reRecordsetNotCreated      : return "������ \"����� �������\" �� ������";
+        case reRecordsetNotClosed       : return "\"����� �������\" �� ������";
+        case reCannotCreateCmd          : return "������ ��� �������� ������� \"��������\"";
+        case reCannotCreateRecordset    : return "������ ��� �������� ������� \"����� �������\"";
+        case reRecordsetAlreadyExists   : return "����� ������� ��� ����������";
+        case reErrOpenRecordset         : return "������ ��� �������� ������ ������";
+        case reRecordsetNotOpen         : return "����� ������� �� ������";
+        case reErrMoveFirst             : return "������ ��� �������� �� ������ ������";
+        case reErrMoveLast              : return "������ ��� �������� �� ��������� ������";
+        case reErrMoveNext              : return "������ ��� �������� �� ��������� ������";
+        case reErrMovePrev              : return "������ ��� �������� �� ���������� ������";
+        case reErrGetEoF                : return "������ ��� ����������� ������ ������ �������";
+        case reErrGetBoF                : return "������ ��� ����������� ����� ������ �������";
+        case reErrGetField              : return "������ ��� ��������� �������� ����";
+        case reErrCloseRecordset        : return "������ ��� �������� ������ ������";
+        case reErrAddNewRecord          : return "������ ��� ���������� ����� ������";
+        case reErrUpdateRecordset       : return "������ ��� ���������� ������ �������";
+        case reErrSetField              : return "������ ��� ��������� �������� ����";
+        case reErrCancel                : return "������ ��� ������";
+        case reErrGetFieldsCount        : return "������ ��� ��������� ���������� ����� ������ �������";
+        case reErrSafeBookmark          : return "������ ��� ���������� ��������";
+        case reErrSafeGoToBookmark      : return "������ ��� �������� �� ��������";
+        default : break;
         }
 
         return "����������� ������";

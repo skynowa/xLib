@@ -115,27 +115,27 @@ CxShell::execute(
 
     std::tstring_t operation;
     switch (a_operation) {
-        case opEdit:
-            operation = xT("edit");
-            break;
-        case opExplore:
-            operation = xT("explore");
-            break;
-        case opFind:
-            operation = xT("find");
-            break;
-        case opOpen:
-            operation = xT("open");
-            break;
-        case opPrint:
-            operation = xT("print");
-            break;
-        case opNull:
-            operation = xT("");
-            break;
-        default:
-            operation = xT("");
-            break;
+    case opEdit:
+        operation = xT("edit");
+        break;
+    case opExplore:
+        operation = xT("explore");
+        break;
+    case opFind:
+        operation = xT("find");
+        break;
+    case opOpen:
+        operation = xT("open");
+        break;
+    case opPrint:
+        operation = xT("print");
+        break;
+    case opNull:
+        operation = xT("");
+        break;
+    default:
+        operation = xT("");
+        break;
     }
 
     int_t iRv = reinterpret_cast<int_t>( ::ShellExecute(a_owner, operation.c_str(),

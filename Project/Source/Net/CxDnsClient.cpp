@@ -73,28 +73,28 @@ CxDnsClient::hostNameByAddr(
     hostent *host = NULL;
 
     switch (a_family) {
-        case CxSocket::afInet6:
-        #if (xWINVER >= xOS_WIN_VISTA)
-            #if xTODO
-                IN6_ADDR iaAddr6 = {0};
+    case CxSocket::afInet6:
+    #if (xWINVER >= xOS_WIN_VISTA)
+        #if xTODO
+            IN6_ADDR iaAddr6 = {0};
 
-                iRv = ::inet_pton(afInet6, a_casHostAddr.c_str(), &iaAddr6);
-                xTEST_DIFF(0, iRv);
+            iRv = ::inet_pton(afInet6, a_casHostAddr.c_str(), &iaAddr6);
+            xTEST_DIFF(0, iRv);
 
-                host = ::gethostbyaddr((char *) &iaAddr6, 16, afInet6);
-                xTEST_PTR(host, false);
-            #endif
-        #endif // xOS_WIN_VISTA
-            break;
-        default:
-            in_addr iaAddr;
+            host = ::gethostbyaddr((char *) &iaAddr6, 16, afInet6);
+            xTEST_PTR(host, false);
+        #endif
+    #endif // xOS_WIN_VISTA
+        break;
+    default:
+        in_addr iaAddr;
 
-            iaAddr.s_addr = ::inet_addr(hostAddr.c_str());
-            xTEST_EQ(true, iaAddr.s_addr != INADDR_NONE);
+        iaAddr.s_addr = ::inet_addr(hostAddr.c_str());
+        xTEST_EQ(true, iaAddr.s_addr != INADDR_NONE);
 
-            host = ::gethostbyaddr((char *) &iaAddr, sizeof(iaAddr)/*4*/, CxSocket::afInet);
-            xTEST_PTR(host);
-            break;
+        host = ::gethostbyaddr((char *) &iaAddr, sizeof(iaAddr)/*4*/, CxSocket::afInet);
+        xTEST_PTR(host);
+        break;
     }
 
     // convert to UNICODE
