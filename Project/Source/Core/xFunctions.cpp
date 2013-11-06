@@ -12,7 +12,7 @@ xNAMESPACE_BEGIN(NxLib)
 //------------------------------------------------------------------------------
 #if xOS_ENV_WIN
 
-int_t
+xINLINE_HO int_t
 getTimeOfDay(
     struct timeval  *a_tv,
     struct timezone *a_tz
@@ -65,7 +65,7 @@ getTimeOfDay(
     #if   xOS_LINUX
         xNA;
     #elif xOS_FREEBSD
-        std::clock_t
+        xINLINE_HO std::clock_t
         clock()
         {
             rusage ruUsage = {{0}};
