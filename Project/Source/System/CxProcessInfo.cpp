@@ -197,7 +197,8 @@ CxProcessInfo::commandLine(
 {
     xTEST_PTR(a_args);
 
-    std::string sRv;
+    std::string        sRv;
+    std::vec_tstring_t args;
 
 #if   xOS_ENV_WIN
     // process with PID 4
@@ -213,9 +214,10 @@ CxProcessInfo::commandLine(
 
         if (ntoskrnlId == _id) {
             sRv = CxEnvironment::expandStrings(xT("%SystemRoot%\\System32\\ntoskrnl.exe"));
-
             CxString::split(sRv, CxConst::xSPACE(), &args);
-            a_args.swap(args);
+
+            // out
+            a_args->swap(args);
 
             return;
         }
@@ -370,7 +372,6 @@ CxProcessInfo::commandLine(
     #endif
 #endif
 
-    std::vec_tstring_t args;
     CxString::split(sRv, CxConst::xSPACE(), &args);
 
     // out
