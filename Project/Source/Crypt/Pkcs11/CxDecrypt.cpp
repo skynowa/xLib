@@ -58,7 +58,8 @@ CxDecrypt::make(
 {
 
 
-    CK_RV ulRv = _m_pFunc->C_Decrypt(_m_hSession, a_pEncryptedData, a_ulEncryptedDataLen, a_pData, a_pulDataLen);
+    CK_RV ulRv = _m_pFunc->C_Decrypt(_m_hSession, a_pEncryptedData, a_ulEncryptedDataLen, a_pData,
+        a_pulDataLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
@@ -72,7 +73,8 @@ CxDecrypt::update(
 {
 
 
-    CK_RV ulRv = _m_pFunc->C_DecryptUpdate(_m_hSession, a_pEncryptedPart, a_ulEncryptedPartLen, a_pPart, a_pulPartLen);
+    CK_RV ulRv = _m_pFunc->C_DecryptUpdate(_m_hSession, a_pEncryptedPart, a_ulEncryptedPartLen,
+        a_pPart, a_pulPartLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
@@ -98,7 +100,8 @@ CxDecrypt::digestUpdate(
 {
 
 
-    CK_RV ulRv = _m_pFunc->C_DecryptDigestUpdate(_m_hSession, a_pEncryptedPart, a_ulEncryptedPartLen, a_pPart, a_pulPartLen);
+    CK_RV ulRv = _m_pFunc->C_DecryptDigestUpdate(_m_hSession, a_pEncryptedPart,
+        a_ulEncryptedPartLen, a_pPart, a_pulPartLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
@@ -112,7 +115,8 @@ CxDecrypt::verifyUpdate(
 {
 
 
-    CK_RV ulRv = _m_pFunc->C_DecryptVerifyUpdate(_m_hSession, a_pEncryptedPart, a_ulEncryptedPartLen, a_pPart, a_pulPartLen);
+    CK_RV ulRv = _m_pFunc->C_DecryptVerifyUpdate(_m_hSession, a_pEncryptedPart,
+        a_ulEncryptedPartLen, a_pPart, a_pulPartLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
@@ -161,9 +165,13 @@ CxDecrypt::makeFile(
     CK_ULONG       usDecryptedDataSize = g_culBuffSize;
 
     {
-        for (ulOffset = 0; ulOffset < usEncryptedData.size()/*ulResEncryptSize*//*usRawData.size()*/; ulOffset += ulPadSize) {
+        for (ulOffset = 0;
+             ulOffset < usEncryptedData.size()/*ulResEncryptSize*//*usRawData.size()*/;
+             ulOffset += ulPadSize)
+        {
             init(a_pMechanism, a_hKey);
-            make(&usEncryptedData[0] + ulOffset, ulPadSize, &usDecryptedData[0] + ulOffset2, &usDecryptedDataSize);
+            make(&usEncryptedData[0] + ulOffset, ulPadSize, &usDecryptedData[0] + ulOffset2,
+                &usDecryptedDataSize);
 
             ulOffset2 += usDecryptedDataSize;
         }

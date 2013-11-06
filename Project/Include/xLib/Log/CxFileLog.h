@@ -48,7 +48,7 @@ public:
 
 private:
     std::tstring_t    _filePath;            ///< file path
-    ulong_t           _maxFileSizeBytes;   ///< maximum file size in bytes
+    ulong_t           _maxFileSizeBytes;    ///< maximum file size in bytes
 
 #if xTODO
     CxAutoIpcMutex    _mutex;

@@ -102,14 +102,9 @@ CxLastError::format(
     DWORD  dwRv   = 0UL;
     LPVOID pvBuff = NULL;
 
-    dwRv = ::FormatMessage(
-                    FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
-                    NULL,
-                    a_code,
-                    MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-                    reinterpret_cast<LPTSTR>( &pvBuff ),
-                    0UL,
-                    NULL);
+    dwRv = ::FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM |
+        FORMAT_MESSAGE_IGNORE_INSERTS, NULL, a_code, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+        reinterpret_cast<LPTSTR>( &pvBuff ), 0UL, NULL);
 
     xCHECK_RET(ERROR_MR_MID_NOT_FOUND == get(), sRv.append(xT("Unknown error")));
     xCHECK_RET(0UL                    == dwRv,  sRv.append(xT("[Cann't format error message]")));
@@ -127,7 +122,8 @@ CxLastError::format(
     #if   xOS_LINUX
         char szBuff[64 + 1] = {0};
 
-        ctchar_t *pcszError = ::strerror_r(static_cast<int_t>( a_code ), &szBuff[0], xARRAY_SIZE(szBuff));
+        ctchar_t *pcszError = ::strerror_r(static_cast<int_t>( a_code ), &szBuff[0],
+            xARRAY_SIZE(szBuff));
         xCHECK_RET(NULL == pcszError, sRv.append(xT("[Cann't format error message]")));
 
         sRv.append(pcszError);

@@ -385,9 +385,9 @@
 //-------------------------------------
 // xSEMAPHORE_VALUE_MAX
 #if xOS_ENV_WIN
-    #define xSEMAPHORE_VALUE_MAX        ( LONG_MAX )         // LONG, custom define (tested on Win7 x64)
+    #define xSEMAPHORE_VALUE_MAX        ( LONG_MAX ) // LONG, custom define (tested on Win7 x64)
 #else
-    #define xSEMAPHORE_VALUE_MAX        ( SEM_VALUE_MAX )    // int_t
+    #define xSEMAPHORE_VALUE_MAX        ( SEM_VALUE_MAX ) // int_t
 #endif
     ///< semaphore maximum value
 

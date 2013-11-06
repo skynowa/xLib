@@ -197,7 +197,8 @@ CxSocket::sendAll(
     //-------------------------------------
     //������ �� ������ ������� � ����� � ������
     int_t currPos  = 0;
-    int_t leftSize = static_cast<int_t>( a_buff.size() * sizeof(tchar_t) );            //TODO: !!!!!!  bSendAll (overflow)
+    // TODO: !!!!!!  bSendAll (overflow)
+    int_t leftSize = static_cast<int_t>( a_buff.size() * sizeof(tchar_t) );
 
     //if size of data more than size of buffer - sizeof buffer SOCKET_BUFF_SIZE
     int_t buffOutSize  = 0;
@@ -420,13 +421,15 @@ CxSocket::peerName(
     SOCKADDR_IN sockAddr     = {0};
     int_t       sockAddrLen = sizeof(sockAddr);
 
-    int_t iRv = ::getpeername(_socket, CxUtils::reinterpretCastT<SOCKADDR *>( &sockAddr ), &sockAddrLen);
+    int_t iRv = ::getpeername(_socket, CxUtils::reinterpretCastT<SOCKADDR *>( &sockAddr ),
+        &sockAddrLen);
     xTEST_DIFF(xSOCKET_ERROR, iRv);
 #else
     sockaddr_in sockAddr      = {0};
     socklen_t   sockAddrLen = sizeof(sockAddr);
 
-    int_t iRv = ::getpeername(_socket, CxUtils::reinterpretCastT<sockaddr *>( &sockAddr ), &sockAddrLen);
+    int_t iRv = ::getpeername(_socket, CxUtils::reinterpretCastT<sockaddr *>( &sockAddr ),
+        &sockAddrLen);
     xTEST_DIFF(xSOCKET_ERROR, iRv);
 #endif
 
@@ -455,13 +458,15 @@ CxSocket::socketName(
     SOCKADDR_IN sockAddr     = {0};
     int_t       sockAddrLen = sizeof(sockAddr);
 
-    int_t iRv = ::getsockname(_socket, CxUtils::reinterpretCastT<SOCKADDR *>( &sockAddr ), &sockAddrLen);
+    int_t iRv = ::getsockname(_socket, CxUtils::reinterpretCastT<SOCKADDR *>( &sockAddr ),
+        &sockAddrLen);
     xTEST_DIFF(xSOCKET_ERROR, iRv);
 #else
     sockaddr_in sockAddr     = {0};
     socklen_t   sockAddrLen = sizeof(sockAddr);
 
-    int_t iRv = ::getsockname(_socket, CxUtils::reinterpretCastT<sockaddr *>( &sockAddr ), &sockAddrLen);
+    int_t iRv = ::getsockname(_socket, CxUtils::reinterpretCastT<sockaddr *>( &sockAddr ),
+        &sockAddrLen);
     xTEST_DIFF(xSOCKET_ERROR, iRv);
 #endif
 

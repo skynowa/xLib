@@ -58,7 +58,8 @@ CxEncrypt::make(
 {
 
 
-    CK_RV ulRv = _m_pFunc->C_Encrypt(_m_hSession, a_pData, a_ulDataLen, a_pEncryptedData, a_pulEncryptedDataLen  );
+    CK_RV ulRv = _m_pFunc->C_Encrypt(_m_hSession, a_pData, a_ulDataLen, a_pEncryptedData,
+        a_pulEncryptedDataLen  );
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
@@ -72,7 +73,8 @@ CxEncrypt::update(
 {
 
 
-    CK_RV ulRv = _m_pFunc->C_EncryptUpdate(_m_hSession, a_pPart, a_ulPartLen, a_pEncryptedPart, a_pulEncryptedPartLen);
+    CK_RV ulRv = _m_pFunc->C_EncryptUpdate(_m_hSession, a_pPart, a_ulPartLen, a_pEncryptedPart,
+        a_pulEncryptedPartLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
@@ -84,7 +86,8 @@ CxEncrypt::final(
 {
 
 
-    CK_RV ulRv = _m_pFunc->C_EncryptFinal(_m_hSession, a_pLastEncryptedPart, a_pulLastEncryptedPartLen );
+    CK_RV ulRv = _m_pFunc->C_EncryptFinal(_m_hSession, a_pLastEncryptedPart,
+        a_pulLastEncryptedPartLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
@@ -141,7 +144,8 @@ CxEncrypt::makeFile(
             }
 
             init(a_pMechanism, a_hKey);
-            make(&usPlainData[0] + ulOffset, ulPadSize, &usEncryptedData[0] + ulOffset2, &usEncryptedDataSize);
+            make(&usPlainData[0] + ulOffset, ulPadSize, &usEncryptedData[0] + ulOffset2,
+                &usEncryptedDataSize);
 
             ulOffset2 += usEncryptedDataSize;
         }

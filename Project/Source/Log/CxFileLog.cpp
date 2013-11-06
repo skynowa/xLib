@@ -29,7 +29,7 @@ xINLINE_HO
 CxFileLog::CxFileLog(
     culong_t &a_maxFileSizeBytes
 ) :
-    _filePath         (),
+    _filePath        (),
     _maxFileSizeBytes(a_maxFileSizeBytes)
     #if xTODO
         CxAutoIpcMutex

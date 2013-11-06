@@ -544,10 +544,10 @@ CxConsole::clear() {
 #endif
 
 #if xOS_ENV_WIN
-    COORD                      coordScreen  = {0};     // here's where we'll home the cursor
+    COORD                      coordScreen  = {0};   // here's where we'll home the cursor
     DWORD                      charsWritten = 0UL;
-    CONSOLE_SCREEN_BUFFER_INFO csbi         = {{0}};   // to get buffer info
-    DWORD                      conSize      = 0UL;     // number of character cells in the current buffer
+    CONSOLE_SCREEN_BUFFER_INFO csbi         = {{0}}; // to get buffer info
+    DWORD                      conSize      = 0UL;   // number of chars cells in the current buffer
 
     // get the number of character cells in the current buffer
     BOOL blRes = ::GetConsoleScreenBufferInfo(_stdOut.get(), &csbi);
@@ -556,7 +556,8 @@ CxConsole::clear() {
     conSize = csbi.dwSize.X * csbi.dwSize.Y;
 
     // fill the entire screen with blanks
-    blRes = ::FillConsoleOutputCharacter(_stdOut.get(), xT(' '), conSize, coordScreen, &charsWritten);
+    blRes = ::FillConsoleOutputCharacter(_stdOut.get(), xT(' '), conSize, coordScreen,
+        &charsWritten);
     xTEST_DIFF(FALSE, blRes);
 
     // get the current text attribute
@@ -564,7 +565,8 @@ CxConsole::clear() {
     xTEST_DIFF(FALSE, blRes);
 
     // now set the buffer's attributes accordingly
-    blRes = ::FillConsoleOutputAttribute(_stdOut.get(), csbi.wAttributes, conSize, coordScreen, &charsWritten);
+    blRes = ::FillConsoleOutputAttribute(_stdOut.get(), csbi.wAttributes, conSize, coordScreen,
+        &charsWritten);
     xTEST_DIFF(FALSE, blRes);
 
     // put the cursor at (0, 0)

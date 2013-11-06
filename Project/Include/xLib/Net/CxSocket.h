@@ -299,7 +299,8 @@ xNAMESPACE_END(NxLib)
 
 #if xTODO
     std::tstring_t sStr = xT("Some string!!!");
-    ::send(0, reinterpret_cast<char const*>(sStr.data()), sStr.size() * sizeof(std::tstring_t::value_type), 0);
+    ::send(0, reinterpret_cast<char const*>(sStr.data()), sStr.size() *
+        sizeof(std::tstring_t::value_type), 0);
 
     sizeof(std::tstring_t::value_type)
 #endif
@@ -325,7 +326,9 @@ xNAMESPACE_END(NxLib)
 
 #if xTODO
     int_t
-    CxSocket::WaitForData(SOCKET *pSocketForReceiving, SOCKET *pSocketForSending, SOCKET *pSocketForExceptions) {
+    CxSocket::WaitForData(SOCKET *pSocketForReceiving, SOCKET *pSocketForSending,
+        SOCKET *pSocketForExceptions)
+    {
         int_t nSocketsReady = 0;
 
         fd_set FdSetReceive;    FD_ZERO(&FdSetReceive);

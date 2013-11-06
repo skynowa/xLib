@@ -154,7 +154,8 @@ CxThreadPool<T>::groupExit(
         CxAutoMutex mutex(&_s_mutex);
 
         xFOREACH_CONST(class std::list<T *>, it, _tasks)    {
-            xCHECK_DO(!(*it)->isRunning(), /*LOG*/_s_log.write(xT("CxThreadPool: not running")); continue);
+            xCHECK_DO(!(*it)->isRunning(), /*LOG*/_s_log.write(xT("CxThreadPool: not running"));
+                continue);
 
             (*it)->exit(/* a_timeoutMsec */);
         }

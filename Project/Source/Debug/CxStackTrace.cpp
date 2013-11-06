@@ -82,7 +82,7 @@ CxStackTrace::get(
         ushort_t framesNum = ::CaptureStackBackTrace(0UL, xSTACK_TRACE_FRAMES_MAX, stackBuff, NULL);
         xCHECK_DO(framesNum == 0U, return);
 
-        symbol               = new (std::nothrow) SYMBOL_INFO[ sizeof(SYMBOL_INFO) + (255UL + 1) * sizeof(tchar_t) ];
+        symbol = new (std::nothrow) SYMBOL_INFO[sizeof(SYMBOL_INFO) + (255UL + 1) * sizeof(tchar_t)];
         xSTD_VERIFY(NULL != symbol);
         symbol->SizeOfStruct = sizeof(SYMBOL_INFO);
         symbol->MaxNameLen   = 255UL;
@@ -105,7 +105,8 @@ CxStackTrace::get(
                 IMAGEHLP_MODULE64 miModuleInfo = {0};
                 miModuleInfo.SizeOfStruct = sizeof(IMAGEHLP_MODULE64);
 
-                blRes = ::SymGetModuleInfo64(process, reinterpret_cast<DWORD64>( stackBuff[i] ), &miModuleInfo);
+                blRes = ::SymGetModuleInfo64(process, reinterpret_cast<DWORD64>( stackBuff[i] ),
+                    &miModuleInfo);
                 if (FALSE == blRes) {
                     modulePath = dataNotFound;
                 } else {
@@ -119,7 +120,8 @@ CxStackTrace::get(
                 IMAGEHLP_LINE64 imagehlpLine = {0};
                 imagehlpLine.SizeOfStruct = sizeof(IMAGEHLP_LINE64);
 
-                blRes = ::SymGetLineFromAddr64(process, reinterpret_cast<DWORD64>( stackBuff[i] ), &displacement, &imagehlpLine);
+                blRes = ::SymGetLineFromAddr64(process, reinterpret_cast<DWORD64>( stackBuff[i] ),
+                    &displacement, &imagehlpLine);
                 if (FALSE == blRes) {
                     filePath = dataNotFound;
                     fileLine = dataNotFound;
@@ -131,12 +133,13 @@ CxStackTrace::get(
 
             // stackLineNum, byteOffset, functionName
             {
-                blRes = ::SymFromAddr(process, reinterpret_cast<DWORD64>( stackBuff[i] ), NULL, symbol);
+                blRes = ::SymFromAddr(process, reinterpret_cast<DWORD64>( stackBuff[i] ), NULL,
+                    symbol);
                 if (FALSE == blRes) {
                     byteOffset   = CxString::format(xT("%p"), ptrdiff_t(NULL));
                     functionName = dataNotFound;
                 } else {
-                    byteOffset   = CxString::format(xT("%p"), static_cast<ptrdiff_t>( symbol->Address ) );
+                    byteOffset   = CxString::format(xT("%p"), static_cast<ptrdiff_t>(symbol->Address));
                     functionName = std::tstring_t(symbol->Name);
                 }
             }
@@ -387,7 +390,7 @@ CxStackTrace::_addr2Line(
 
        /**
         * Parse that variants of fileAndLine string:
-        *   - /home/skynowa/Projects/xLib/Build/Tests/GCC_linux/Debug/../../../../Tests/Source/./Test.cpp:108
+        *   - /home/skynowa/Projects/xLib/Build/Debug/../../../../Tests/Source/./Test.cpp:108
         *   - ??:0
         */
         std::vec_tstring_t line;

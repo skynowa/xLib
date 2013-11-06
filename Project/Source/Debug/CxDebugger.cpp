@@ -217,7 +217,8 @@ CxDebugger::_msgboxPlain(
         if (isActive()) {
             breakPoint();
         } else {
-            CxMsgBoxT::ExModalResult nrRv = CxMsgBoxT::show(xT("Debugger is not present.\nThe application will be terminated."), xT("xLib"));
+            CxMsgBoxT::ExModalResult nrRv = CxMsgBoxT::show(xT("Debugger is not present.\n"
+                "The application will be terminated."), xT("xLib"));
             xUNUSED(nrRv);
             (void_t)::exit(EXIT_FAILURE);
         }

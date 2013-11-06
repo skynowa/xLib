@@ -91,7 +91,8 @@ CxProcess::create(
     if (0L == id) {
         // TODO: filePath is executable
 
-        int_t iRv = ::execlp(a_filePath.c_str(), a_filePath.c_str(), cmdLine.c_str(), static_cast<ctchar_t *>( NULL ));
+        int_t iRv = ::execlp(a_filePath.c_str(), a_filePath.c_str(), cmdLine.c_str(),
+            static_cast<ctchar_t *>( NULL ));
         xTEST_DIFF(- 1, iRv);
 
         (void_t)::_exit(EXIT_SUCCESS);  /* not exit() */
@@ -536,7 +537,8 @@ CxProcess::currentParentId()
     ULONG                     processInformation[6] = {0};
     DWORD                     returnSizeBytes       = 0UL;
     Dll_NtQueryInformationProcess_t
-    DllNtQueryInformationProcess = (Dll_NtQueryInformationProcess_t)dll.procAddress(xT("NtQueryInformationProcess"));
+    DllNtQueryInformationProcess = (Dll_NtQueryInformationProcess_t)
+        dll.procAddress(xT("NtQueryInformationProcess"));
     xTEST_PTR(DllNtQueryInformationProcess);
 
     // TODO: ProcessBasicInformation (for x64)

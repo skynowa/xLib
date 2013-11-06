@@ -60,9 +60,9 @@ CxShell::execute(
     xCHECK_DO(!isAvailable(),              return);
 
     // REVIEW: security bug - xT("%s \"%s\"") or xT("\"%s\" \"%s\"") ??
-    std::tstring_t command = CxString::format(xT("%s \"%s\""), a_filePath.c_str(), a_params.c_str());
+    std::tstring_t cmd = CxString::format(xT("%s \"%s\""), a_filePath.c_str(), a_params.c_str());
 
-    int_t iRv = ::xTSYSTEM(command.c_str());
+    int_t iRv = ::xTSYSTEM(cmd.c_str());
     xTEST_DIFF(- 1, iRv);
 }
 //------------------------------------------------------------------------------
@@ -232,7 +232,8 @@ CxShell::specialDirPath(
     HRESULT      hRv    = S_FALSE;
     LPITEMIDLIST idList = {0};
 
-    ////hRv = ::SHGetFolderLocation(NULL, sfDir, token, 0, &idList);    //FIXME: SHGetFolderLocation
+    // FIXME: SHGetFolderLocation
+    ////hRv = ::SHGetFolderLocation(NULL, sfDir, token, 0, &idList);
     hRv = ::SHGetSpecialFolderLocation(NULL, a_dir, &idList);
     xTEST_EQ(true, SUCCEEDED(hRv));
 
@@ -252,14 +253,21 @@ CxShell::specialDirPath(
 xINLINE_HO void_t
 CxShell::createShortcut(
     std::ctstring_t &a_shortCutFilePath, ///< путь и имя ярлыка, например, "C:\\Блокнот.lnk"
-                                         ///< Если не указан путь, ярлык будет создан в папке, указанной в следующем параметре.
-                                         ///< Прим.: Windows сама НЕ добавляет к имени расширение .lnk
-    std::ctstring_t &a_filePath,         ///< путь и имя программы/файла, например, "C:\\Windows\\NotePad.Exe" или "C:\\Мои документы\\Файл.doc"
+                                         ///< Если не указан путь, ярлык будет создан в папке,
+                                         ///< указанной в следующем параметре.
+                                         ///< Прим.: Windows сама НЕ добавляет
+                                         ///< к имени расширение .lnk
+    std::ctstring_t &a_filePath,         ///< путь и имя программы/файла, например,
+                                         ///< "C:\\Windows\\NotePad.Exe" или
+                                         ///< "C:\\Мои документы\\Файл.doc"
     std::ctstring_t &a_workingDirectory, ///< рабочий каталог, например, "C:\\Windows"
-    std::ctstring_t &a_args,             ///< аргументы командной строки, например, "C:\\Doc\\Text.txt"
-    const WORD      &a_hotKey,           ///< горячая клавиша, например, для Ctrl+Alt+A HOTKEY(HOTKEYF_ALT|HOTKEYF_CONTROL,'A')
-    cint_t          &a_cmdShow,          ///< начальный вид, например, SW_SHOWNORMAL (см. параметр nCmdShow функции ShowWindow)
-    std::ctstring_t &a_iconFilePath,     ///< путь и имя файла, содержащего иконку, например, "C:\\Windows\\NotePad.Exe"
+    std::ctstring_t &a_args,             ///< аргументы командной строки, например,
+                                         ///< "C:\\Doc\\Text.txt"
+    const WORD      &a_hotKey,           ///< горячая клавиша, например,
+                                         ///< для Ctrl+Alt+A HOTKEY(HOTKEYF_ALT|HOTKEYF_CONTROL,'A')
+    cint_t          &a_cmdShow,          ///< начальный вид, например, SW_SHOWNORMAL
+    std::ctstring_t &a_iconFilePath,     ///< путь и имя файла, содержащего иконку,
+                                         ///< например, "C:\\Windows\\NotePad.Exe"
     cint_t          &a_iconIndex,        ///< индекс иконки в файле, нумеруется с 0
     std::ctstring_t &a_description       ///< description
 )
@@ -271,7 +279,8 @@ CxShell::createShortcut(
     IShellLink *link = NULL;
     HRESULT     hRv  = 0;
 
-    hRv = ::CoCreateInstance(CLSID_ShellLink, NULL, CLSCTX_INPROC_SERVER, IID_IShellLink, (void_t **)&link);
+    hRv = ::CoCreateInstance(CLSID_ShellLink, NULL, CLSCTX_INPROC_SERVER, IID_IShellLink,
+        (void_t **)&link);
     xTEST_EQ(true, SUCCEEDED(hRv));
 
     {

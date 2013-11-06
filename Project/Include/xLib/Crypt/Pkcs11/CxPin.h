@@ -37,7 +37,8 @@ public:
 
     // TODO: CxPin utils
 #if xTODO
-    std::tstring_t       changeUserPin(std::ctstring_t &csOldUserPin, std::ctstring_t &csNewUserPin);
+    std::tstring_t       changeUserPin(std::ctstring_t &csOldUserPin,
+                             std::ctstring_t &csNewUserPin);
     std::tstring_t       changeSOPin(std::ctstring_t &csOldSOPin, std::ctstring_t &csNewSOPin);
 #endif
 

@@ -87,7 +87,8 @@ CxProfiler::stop(
         xTEST_LESS_EQ(static_cast<clock_t>( 0 ), _duration);
     }
 
-    cdouble_t   durationMsec1 = (static_cast<double>( _duration ) / static_cast<double>( CLOCKS_PER_SEC )) * 1000.0;  // 1 sec = 1000 msec
+    cdouble_t   durationMsec1 = (static_cast<double>( _duration ) /
+        static_cast<double>( CLOCKS_PER_SEC )) * 1000.0;  // 1 sec = 1000 msec
     std::size_t durationMsec2 = CxUtils::roundIntT<std::size_t>( durationMsec1 );
 
     //-------------------------------------

@@ -119,7 +119,8 @@ CxProcessInfo::exeName()
 
     CxProcess::handle_t handle = CxProcess::handleById(_id);
 
-    DWORD stored = ::GetModuleFileNameEx(handle, NULL, &sRv.at(0), static_cast<DWORD>( sRv.size() ));
+    DWORD stored = ::GetModuleFileNameEx(handle, NULL, &sRv.at(0),
+        static_cast<DWORD>( sRv.size() ));
     xTEST_DIFF(0UL, stored);
 
     sRv.resize(stored);
@@ -134,10 +135,12 @@ CxProcessInfo::exeName()
         sRv.resize(xPATH_MAX);
 
         xFOREVER {
-            readed = ::readlink(procFile.c_str(), &sRv.at(0), sRv.size() * sizeof(std::tstring_t::value_type));
+            readed = ::readlink(procFile.c_str(), &sRv.at(0), sRv.size() *
+                sizeof(std::tstring_t::value_type));
             xTEST_DIFF(- 1, readed);
 
-            xCHECK_DO(sRv.size() * sizeof(std::tstring_t::value_type) > static_cast<size_t>( readed ), break);
+            xCHECK_DO(sRv.size() * sizeof(std::tstring_t::value_type) >
+                static_cast<size_t>( readed ), break);
 
             sRv.resize(sRv.size() * 2);
         }
@@ -253,7 +256,8 @@ CxProcessInfo::commandLine(
             xTEST_EQ(true, bRv);
 
             Dll_NtQueryInformationProcess_t
-            DllNtQueryInformationProcess = (Dll_NtQueryInformationProcess_t)dll.procAddress(xT("NtQueryInformationProcess"));
+            DllNtQueryInformationProcess = (Dll_NtQueryInformationProcess_t)
+                dll.procAddress(xT("NtQueryInformationProcess"));
             xTEST_PTR(DllNtQueryInformationProcess);
 
         #if xARCH_X86
@@ -266,9 +270,8 @@ CxProcessInfo::commandLine(
             DWORD                     returnSizeBytes = 0UL;
 
             // TODO: ProcessBasicInformation (for x64)
-            NTSTATUS nsRv = DllNtQueryInformationProcess(a_process,
-                                                         info,
-                                                         &basicInfo, basicInfoSize, &returnSizeBytes);
+            NTSTATUS nsRv = DllNtQueryInformationProcess(a_process, info, &basicInfo,
+                basicInfoSize, &returnSizeBytes);
             xTEST_EQ(true, NT_SUCCESS(nsRv));
             xTEST_EQ(basicInfoSize, returnSizeBytes);
             xTEST_PTR(basicInfo.PebBaseAddress);
@@ -282,20 +285,23 @@ CxProcessInfo::commandLine(
 
     CxHandle processHandle;
 
-    processHandle = ::OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, static_cast<DWORD>( _id ));
+    processHandle = ::OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE,
+        static_cast<DWORD>( _id ));
     xTEST_EQ(true, processHandle.isValid());
 
     PVOID pebAddress               = _SFunctor::pebAddress(processHandle.get());
     PVOID rtlUserProcParamsAddress = NULL;
 
     // get the address of ProcessParameters
-    BOOL blRv = ::ReadProcessMemory(processHandle.get(), static_cast<PCHAR>(pebAddress) + 0x10,  &rtlUserProcParamsAddress, sizeof(PVOID), NULL);
+    BOOL blRv = ::ReadProcessMemory(processHandle.get(), static_cast<PCHAR>(pebAddress) + 0x10,
+        &rtlUserProcParamsAddress, sizeof(PVOID), NULL);
     xTEST_DIFF(FALSE, blRv);
 
     // read the commandLine UNICODE_STRING structure
     UNICODE_STRING commandLine = {0};
 
-    blRv = ::ReadProcessMemory(processHandle.get(), static_cast<PCHAR>(rtlUserProcParamsAddress) + 0x40, &commandLine, sizeof(commandLine), NULL);
+    blRv = ::ReadProcessMemory(processHandle.get(), static_cast<PCHAR>(rtlUserProcParamsAddress) +
+        0x40, &commandLine, sizeof(commandLine), NULL);
     xTEST_DIFF(FALSE, blRv);
 
     // allocate memory to hold the command line
@@ -304,7 +310,8 @@ CxProcessInfo::commandLine(
         xTEST_PTR(commandLineContents);
 
         // read the command line
-        blRv = ::ReadProcessMemory(processHandle.get(), commandLine.Buffer, commandLineContents, commandLine.Length, NULL);
+        blRv = ::ReadProcessMemory(processHandle.get(), commandLine.Buffer, commandLineContents,
+            commandLine.Length, NULL);
         xTEST_DIFF(FALSE, blRv);
 
         // length specifier is in characters, but commandLine.Length is in bytes a WCHAR is 2 bytes
@@ -338,7 +345,7 @@ CxProcessInfo::commandLine(
         size_t      buffSize = 0;
 
         // get buffSize
-        iRv = ::sysctl(mib, xARRAY_SIZE(mib), NULL,         &buffSize, NULL, 0);
+        iRv = ::sysctl(mib, xARRAY_SIZE(mib), NULL, &buffSize, NULL, 0);
         xTEST_DIFF(- 1, iRv);
 
         buff.resize(buffSize);

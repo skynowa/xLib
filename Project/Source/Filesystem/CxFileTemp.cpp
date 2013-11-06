@@ -83,7 +83,8 @@ CxFileTemp::create(
         errno_t error = ::xTMKSTEMP(&_filePath.at(0), _filePath.size() + 1);
         xTEST_EQ(0, error);
 
-        stdFile = ::xTFOPEN(_filePath.c_str(), CxFile::_openMode(CxFile::omBinCreateReadWrite).c_str());
+        stdFile = ::xTFOPEN(_filePath.c_str(),
+            CxFile::_openMode(CxFile::omBinCreateReadWrite).c_str());
         xTEST_PTR(stdFile);
     #endif
 #else

@@ -123,7 +123,8 @@ CxMimeHeader::field(
 
     std::tstring_t sRv;
 
-    std::pair<std::mmap_tstring_t::const_iterator, std::mmap_tstring_t::const_iterator> prEqualRange = _header.equal_range(a_name);
+    std::pair<std::mmap_tstring_t::const_iterator, std::mmap_tstring_t::const_iterator>
+        prEqualRange = _header.equal_range(a_name);
 
     std::mmap_tstring_t::const_iterator it;
     for (it = prEqualRange.first; it != prEqualRange.second; ++ it) {
@@ -163,7 +164,7 @@ CxMimeHeader::count()
          //���� �� ������ csFrom (From:)
          if (std::tstring_t::npos != sLine.find(csFrom + ":")) {
              //From: ����<test_1@localhost>
-             return sReplaceAll(vsSplit(_attrDelimiter, sLine).at(1), " ", "");    //Uknown@Uknown.Uknown!!!!!!!!!!!
+             return sReplaceAll(vsSplit(_attrDelimiter, sLine).at(1), " ", ""); // Uknown@Uknown.Uknown!!!!!!!!!!!
          }
 
          //������ �� "\r\n\r\n" (����� ������)
@@ -238,7 +239,8 @@ CxMimeHeader::generateMessageID()
 {
     std::tstring_t sRv;
 
-    sRv = CxString::format(xT("%s@%s"), CxString::createGuid().c_str(), CxSystemInfo().hostName().c_str());
+    sRv = CxString::format(xT("%s@%s"), CxString::createGuid().c_str(),
+        CxSystemInfo().hostName().c_str());
     xTEST_EQ(false, sRv.empty());
 
     return sRv;

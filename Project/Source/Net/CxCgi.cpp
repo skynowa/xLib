@@ -112,7 +112,9 @@ CxCgi::uriEncode(
         {
             (*a_encodedStr) += ch;
         }
-        else if (ch <= 0x20 || ch >= 0x7F || std::tstring_t::npos != URI_ILLEGAL.find(ch) || std::tstring_t::npos != a_reserved.find(ch)) {
+        else if (ch <= 0x20 || ch >= 0x7F || std::tstring_t::npos != URI_ILLEGAL.find(ch) ||
+            std::tstring_t::npos != a_reserved.find(ch))
+        {
             (*a_encodedStr) += '%';
             //--encodedStr += NumberFormatter::formatHex((unsigned) (unsigned char) ch, 2);
 
@@ -840,7 +842,8 @@ CxCgiFormData::_construct()
     case CxCgiEnvironment::rtPost: {
         bool_t bRv = false;
 
-        bRv = CxString::compareNoCase(xT("application/x-www-form-urlencoded"), _cgi.Environment.contentType());
+        bRv = CxString::compareNoCase(xT("application/x-www-form-urlencoded"),
+            _cgi.Environment.contentType());
         xTEST_EQ(true, bRv);
 
         //get content length

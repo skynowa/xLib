@@ -63,7 +63,8 @@ CxCompletionPort::status(
     xTEST_PTR(a_overlapped);
     // ulMilliseconds - n/a
 
-    BOOL blRes = ::GetQueuedCompletionStatus(_handle.get(), a_numberOfBytes, acompletionKey, a_overlapped, a_msec);
+    BOOL blRes = ::GetQueuedCompletionStatus(_handle.get(), a_numberOfBytes, acompletionKey,
+        a_overlapped, a_msec);
     xTEST_DIFF(FALSE, blRes);
 }
 //------------------------------------------------------------------------------
@@ -79,7 +80,8 @@ CxCompletionPort::postStatus(
     // completionKey            - n/a
     xTEST_PTR(a_overlapped);
 
-    BOOL blRes = ::PostQueuedCompletionStatus(_handle.get(), a_numOfBytesTransferred, a_completionKey, a_overlapped);
+    BOOL blRes = ::PostQueuedCompletionStatus(_handle.get(), a_numOfBytesTransferred,
+        a_completionKey, a_overlapped);
     xTEST_DIFF(FALSE, blRes);
 }
 //------------------------------------------------------------------------------

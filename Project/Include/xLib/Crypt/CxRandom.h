@@ -48,7 +48,8 @@ public:
     static long_t         liInt(clong_t &min, clong_t &max) xWARN_UNUSED_RV;
         ///< generates a random number between specified min/max boundaries
     static long_t         liIntEx(clong_t &min, clong_t &max) xWARN_UNUSED_RV;
-        ///< generates a random number between specified min/max boundaries using a vector to shuffle
+        ///< generates a random number between specified min/max boundaries using a vector
+        ///< to shuffle
     static std::tstring_t sString(std::csize_t &size) xWARN_UNUSED_RV;
         ///< get random string
 

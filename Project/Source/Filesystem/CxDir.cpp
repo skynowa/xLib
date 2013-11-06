@@ -47,11 +47,11 @@ CxDir::isExists()
 {
     xCHECK_RET(dirPath().empty(), false);
 
-    CxFileType ftType(dirPath());
+    CxFileType type(dirPath());
 
-    xCHECK_RET(CxFileType::faInvalid == ftType.get(), false);
+    xCHECK_RET(CxFileType::faInvalid == type.get(), false);
 
-    bool_t bRv = ftType.isExists(CxFileType::faDirectory);
+    bool_t bRv = type.isExists(CxFileType::faDirectory);
     xCHECK_RET(!bRv, false);
 
     return true;
@@ -176,16 +176,16 @@ CxDir::copy(
     //--------------------------------------------------
     // copy
     xFOREACH_R_CONST(std::vec_tstring_t, it, filePaths) {
-        std::tstring_t sFilePathTo = *it;
+        std::tstring_t filePathTo = *it;
 
-        size_t uiPosBegin = sFilePathTo.find(dirPath());
-        xTEST_DIFF(std::tstring_t::npos, uiPosBegin);
+        size_t posBegin = filePathTo.find(dirPath());
+        xTEST_DIFF(std::tstring_t::npos, posBegin);
 
-        sFilePathTo.replace(uiPosBegin, uiPosBegin + dirPath().size(), a_dirPathTo);
+        filePathTo.replace(posBegin, posBegin + dirPath().size(), a_dirPathTo);
 
-        CxDir( CxPath(sFilePathTo).dir() ).pathCreate();
+        CxDir( CxPath(filePathTo).dir() ).pathCreate();
 
-        CxFile::copy(*it, sFilePathTo, a_failIfExists);
+        CxFile::copy(*it, filePathTo, a_failIfExists);
     }
 
     //--------------------------------------------------
@@ -202,10 +202,10 @@ CxDir::move(
     xTEST_EQ(false, a_dirPathTo.empty());
     xTEST_NA(a_failIfExists);
 
-    CxDir drDir(dirPath());
+    CxDir dir(dirPath());
 
-    drDir.copy(a_dirPathTo, a_failIfExists);
-    drDir.pathDelete();
+    dir.copy(a_dirPathTo, a_failIfExists);
+    dir.pathDelete();
 }
 //------------------------------------------------------------------------------
 xINLINE_HO void_t
@@ -235,11 +235,10 @@ CxDir::tryRemove(
 {
     xTEST_LESS(size_t(0U), a_attempts);
 
-    std::csize_t cuiMaxAttempts  = 100;  // MAGIC_NUMBER: cuiMaxAttempts
-    std::csize_t cuiRealAttempts = (cuiMaxAttempts < a_attempts) ?
-                                    cuiMaxAttempts : a_attempts;
+    std::csize_t maxAttempts  = 100;  // MAGIC_NUMBER: maxAttempts
+    std::csize_t realAttempts = (maxAttempts < a_attempts) ? maxAttempts : a_attempts;
 
-    for (size_t i = 0; i < cuiRealAttempts; ++ i) {
+    for (size_t i = 0; i < realAttempts; ++ i) {
         bool_t bRv = isExists();
         xCHECK_DO(!bRv, break);
 
@@ -372,11 +371,11 @@ CxDir::temp()
 
     sRv.assign(buff, 0, ulRv);
 #else
-    std::ctstring_t csEnvDirTemp = xT("TMPDIR");
+    std::ctstring_t envDirTemp = xT("TMPDIR");
 
-    bool_t bRv = CxEnvironment::isExists(csEnvDirTemp);
+    bool_t bRv = CxEnvironment::isExists(envDirTemp);
     if (bRv) {
-        sRv = CxEnvironment::var(csEnvDirTemp);
+        sRv = CxEnvironment::var(envDirTemp);
     } else {
         sRv = xDIR_TEMP;
     }

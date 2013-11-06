@@ -113,7 +113,8 @@ CxThread::create(
 #if xOS_ENV_WIN
     id_t id = 0UL;
 
-    HANDLE hRv = reinterpret_cast<HANDLE>( ::_beginthreadex(NULL, a_stackSize, _s_jobEntry, this, 0U, (uint_t *)&id) );
+    HANDLE hRv = reinterpret_cast<HANDLE>( ::_beginthreadex(NULL, a_stackSize, _s_jobEntry, this,
+        0U, (uint_t *)&id) );
     xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
     xTEST_LESS(0UL, id);
 
@@ -415,7 +416,8 @@ CxThread::postMessage(
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, a_wnd);
     xTEST_DIFF(FALSE, ::IsWindow(a_wnd));
 
-    BOOL blRes = ::PostMessage(a_wnd, a_msg, static_cast<WPARAM>( a_param1 ), static_cast<LPARAM>( a_param2 ));
+    BOOL blRes = ::PostMessage(a_wnd, a_msg, static_cast<WPARAM>( a_param1 ),
+        static_cast<LPARAM>( a_param2 ));
     xTEST_DIFF(FALSE, blRes);
 }
 
@@ -435,7 +437,8 @@ CxThread::sendMessage(
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, a_wnd);
     xTEST_DIFF(FALSE, ::IsWindow(a_wnd));
 
-    (void_t)::SendMessage(a_wnd, a_msg, static_cast<WPARAM>( a_param1 ), static_cast<LPARAM>( a_param2 ));
+    (void_t)::SendMessage(a_wnd, a_msg, static_cast<WPARAM>( a_param1 ),
+        static_cast<LPARAM>( a_param2 ));
     xTEST_EQ(0UL, CxLastError::get());
 }
 
@@ -452,7 +455,8 @@ CxThread::postThreadMessage(
 {
     xTEST_EQ(true, _thread.isValid());
 
-    BOOL blRes = ::PostThreadMessage(id(), a_msg, static_cast<WPARAM>( a_param1 ), static_cast<LPARAM>( a_param2 ));
+    BOOL blRes = ::PostThreadMessage(id(), a_msg, static_cast<WPARAM>( a_param1 ),
+        static_cast<LPARAM>( a_param2 ));
     xTEST_DIFF(FALSE, blRes);
 }
 
@@ -472,7 +476,8 @@ CxThread::tryPostThreadMessage(
     xTEST_EQ(true, _thread.isValid());
 
     for (ulong_t i = 0UL; i < a_attempsNum; ++ i) {
-        BOOL blRes = ::PostThreadMessage(id(), a_msg, static_cast<WPARAM>( a_param1 ), static_cast<LPARAM>( a_param2 ));
+        BOOL blRes = ::PostThreadMessage(id(), a_msg, static_cast<WPARAM>( a_param1 ),
+            static_cast<LPARAM>( a_param2 ));
 
         xCHECK_RET(FALSE != blRes, true);
         xCHECK_DO (FALSE == blRes, currentSleep(a_attempTimeoutMsec));
@@ -967,7 +972,8 @@ CxThread::setDebugName(
         info.dwFlags    = 0;
 
         __try {
-            (void_t)::RaiseException(msVcException, 0, sizeof(info) / sizeof(ULONG_PTR), (ULONG_PTR *)&info);
+            (void_t)::RaiseException(msVcException, 0, sizeof(info) / sizeof(ULONG_PTR),
+                (ULONG_PTR *)&info);
         }
         __except (EXCEPTION_EXECUTE_HANDLER) {
             //n/a

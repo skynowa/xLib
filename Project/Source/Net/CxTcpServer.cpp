@@ -32,7 +32,8 @@ CxTcpServer::bind(
     sockAddr.sin_addr.s_addr = INADDR_ANY;
     sockAddr.sin_port        = htons(a_port);
 
-    int_t iRv = ::bind(_socket, CxUtils::reinterpretCastT<const struct sockaddr *>( &sockAddr ), sizeof(sockAddr));
+    int_t iRv = ::bind(_socket, CxUtils::reinterpretCastT<const struct sockaddr *>( &sockAddr ),
+        sizeof(sockAddr));
     xTEST_DIFF(xSOCKET_ERROR, iRv);
 
     ////int_t iOpt = 1;
@@ -66,16 +67,18 @@ CxTcpServer::accept(
     socket_t scktClient = xSOCKET_HANDLE_INVALID;
 
 #if xOS_ENV_WIN
-    struct sockaddr_in cliaddr  = {0};
+    struct sockaddr_in cliaddr = {0};
     int_t              addrlen = sizeof(cliaddr);
 
-    scktClient = ::accept(_socket, CxUtils::reinterpretCastT<struct sockaddr *>( &cliaddr ), &addrlen);
+    scktClient = ::accept(_socket, CxUtils::reinterpretCastT<struct sockaddr *>( &cliaddr ),
+        &addrlen);
     xTEST_DIFF(xSOCKET_HANDLE_INVALID, scktClient);
 #else
     struct sockaddr_in cliaddr  = {0};
     socklen_t          addrlen = sizeof(cliaddr);
 
-    scktClient = ::accept(_socket, CxUtils::reinterpretCastT<struct sockaddr *>( &cliaddr ), &addrlen);
+    scktClient = ::accept(_socket, CxUtils::reinterpretCastT<struct sockaddr *>( &cliaddr ),
+        &addrlen);
     xTEST_DIFF(xSOCKET_HANDLE_INVALID, scktClient);
 #endif
 

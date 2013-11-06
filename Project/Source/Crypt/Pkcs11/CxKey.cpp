@@ -42,7 +42,8 @@ CxKey::generate(
     CK_OBJECT_HANDLE_PTR a_phKey        ///< gets handle of new key
 )
 {
-    CK_RV ulRv = _m_pFunc->C_GenerateKey(_m_hSession, a_pMechanism, a_pTemplate, a_ulCount, a_phKey);
+    CK_RV ulRv = _m_pFunc->C_GenerateKey(_m_hSession, a_pMechanism, a_pTemplate, a_ulCount,
+        a_phKey);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
@@ -57,7 +58,9 @@ CxKey::generatePair(
     CK_OBJECT_HANDLE_PTR a_phPrivateKey
 )
 {
-    CK_RV ulRv = _m_pFunc->C_GenerateKeyPair(_m_hSession, a_pMechanism, a_pPublicKeyTemplate, a_ulPublicKeyAttributeCount, a_pPrivateKeyTemplate, a_ulPrivateKeyAttributeCount, a_phPublicKey, a_phPrivateKey);
+    CK_RV ulRv = _m_pFunc->C_GenerateKeyPair(_m_hSession, a_pMechanism,
+        a_pPublicKeyTemplate, a_ulPublicKeyAttributeCount, a_pPrivateKeyTemplate,
+        a_ulPrivateKeyAttributeCount, a_phPublicKey, a_phPrivateKey);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
@@ -70,7 +73,8 @@ CxKey::derive(
     CK_OBJECT_HANDLE_PTR a_phKey
 )
 {
-    CK_RV ulRv = _m_pFunc->C_DeriveKey(_m_hSession, a_pMechanism, a_hBaseKey, a_pTemplate, a_ulAttributeCount, a_phKey);
+    CK_RV ulRv = _m_pFunc->C_DeriveKey(_m_hSession, a_pMechanism, a_hBaseKey, a_pTemplate,
+        a_ulAttributeCount, a_phKey);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
@@ -83,7 +87,8 @@ CxKey::wrap(
     CK_ULONG_PTR     a_pulWrappedKeyLen ///< gets wrapped key size
 )
 {
-    CK_RV ulRv = _m_pFunc->C_WrapKey(_m_hSession, a_pMechanism, a_hWrappingKey, a_hKey, a_pWrappedKey, a_pulWrappedKeyLen);
+    CK_RV ulRv = _m_pFunc->C_WrapKey(_m_hSession, a_pMechanism, a_hWrappingKey, a_hKey,
+        a_pWrappedKey, a_pulWrappedKeyLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
@@ -98,7 +103,8 @@ CxKey::unwrap(
     CK_OBJECT_HANDLE_PTR a_phKey
 )
 {
-    CK_RV ulRv = _m_pFunc->C_UnwrapKey(_m_hSession, a_pMechanism, a_hUnwrappingKey, a_pWrappedKey, a_ulWrappedKeyLen, a_pTemplate, a_ulAttributeCount, a_phKey);
+    CK_RV ulRv = _m_pFunc->C_UnwrapKey(_m_hSession, a_pMechanism, a_hUnwrappingKey, a_pWrappedKey,
+        a_ulWrappedKeyLen, a_pTemplate, a_ulAttributeCount, a_phKey);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------

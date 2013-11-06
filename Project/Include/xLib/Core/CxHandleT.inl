@@ -155,18 +155,27 @@ CxHandleT<tagT>::isValid() const
     bool_t bRv = false;
 
 #if   xOS_ENV_WIN
-    bool_t bCond1 = (reinterpret_cast<native_handle_t>(0xCDCDCDCD) != _handle);   // created but not initialised
-    bool_t bCond2 = (reinterpret_cast<native_handle_t>(0xCCCCCCCC) != _handle);   // uninitialized locals in VC6 when you compile w/ /GZ
-    bool_t bCond3 = (reinterpret_cast<native_handle_t>(0xBAADF00D) != _handle);   // indicate an uninitialized variable
-    bool_t bCond4 = (reinterpret_cast<native_handle_t>(0xFDFDFDFD) != _handle);   // no man's land (normally outside of a process)
-    bool_t bCond5 = (reinterpret_cast<native_handle_t>(0xFEEEFEEE) != _handle);   // freed memory set by NT's heap manager
-    bool_t bCond6 = (reinterpret_cast<native_handle_t>(0xDDDDDDDD) != _handle);   // deleted
-    bool_t bCond7 = (error_value_t::get()                          != _handle);   // compare with error handle value
+    // created but not initialised
+    bool_t bCond1 = (reinterpret_cast<native_handle_t>(0xCDCDCDCD) != _handle);
+    // uninitialized locals in VC6 when you compile w/ /GZ
+    bool_t bCond2 = (reinterpret_cast<native_handle_t>(0xCCCCCCCC) != _handle);
+    // indicate an uninitialized variable
+    bool_t bCond3 = (reinterpret_cast<native_handle_t>(0xBAADF00D) != _handle);
+    // no man's land (normally outside of a process)
+    bool_t bCond4 = (reinterpret_cast<native_handle_t>(0xFDFDFDFD) != _handle);
+    // freed memory set by NT's heap manager
+    bool_t bCond5 = (reinterpret_cast<native_handle_t>(0xFEEEFEEE) != _handle);
+    // deleted
+    bool_t bCond6 = (reinterpret_cast<native_handle_t>(0xDDDDDDDD) != _handle);
+    // compare with error handle value
+    bool_t bCond7 = (error_value_t::get()                          != _handle);
 
     bRv = bCond1 && bCond2 && bCond3 && bCond4 && bCond5 && bCond6 && bCond7;
 #elif xOS_ENV_UNIX
-    bool_t bCond1 = (error_value_t::get()                          != _handle);   // compare with error handle value
-    bool_t bCond2 = (error_value_t::get()                          <  _handle);   // handle value is negative
+    // compare with error handle value
+    bool_t bCond1 = (error_value_t::get()                          != _handle);
+    // handle value is negative
+    bool_t bCond2 = (error_value_t::get()                          <  _handle);
 
     bRv = bCond1 && bCond2;
 #endif

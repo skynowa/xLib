@@ -32,13 +32,12 @@ public:
 
     // construct? destruct
                            CxThreadPool(cbool_t &isPaused, cbool_t &isAutoDelete,
-                                        cbool_t &isGroupPaused, cbool_t &isGroupAutoDelete);
+                               cbool_t &isGroupPaused, cbool_t &isGroupAutoDelete);
     virtual               ~CxThreadPool();
 
     // groups
-    void_t                 groupCreate(cuint_t &stackSize, const func_ptr_t funcPtr,
-                               void_t *param, std::csize_t &numTasks,
-                               std::csize_t &maxRunningTasks);
+    void_t                 groupCreate(cuint_t &stackSize, const func_ptr_t funcPtr, void_t *param,
+                               std::csize_t &numTasks, std::csize_t &maxRunningTasks);
     void_t                 groupResume();
     void_t                 groupPause();
     void_t                 groupExit(culong_t &timeoutMsec);
