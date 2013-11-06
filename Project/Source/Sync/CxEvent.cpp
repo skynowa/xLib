@@ -197,23 +197,23 @@ CxEvent::wait(
 
         // adjust signaled member
         switch (iRv) {
-            case 0:
-                if (_isAutoReset) {
-                    _isSignaled = false;
-                }
+        case 0:
+            if (_isAutoReset) {
+                _isSignaled = false;
+            }
 
-                osRes = osSignaled;
-                break;
-            case ETIMEDOUT:
-                osRes = osTimeout;
+            osRes = osSignaled;
+            break;
+        case ETIMEDOUT:
+            osRes = osTimeout;
 
-                if (_isAutoReset) {
-                    _isSignaled = false;
-                } else {
-                    osRes = _initState ? osSignaled : osTimeout;
-                    _isSignaled = _initState;
-                }
-                break;
+            if (_isAutoReset) {
+                _isSignaled = false;
+            } else {
+                osRes = _initState ? osSignaled : osTimeout;
+                _isSignaled = _initState;
+            }
+            break;
         }
 
     }

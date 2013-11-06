@@ -70,17 +70,17 @@ CxBackuper::fileExec(
 
     {
         switch (_period) {
-            // TODO: bpHourly:
-            case bpDaily:
-                dateTimeStamp = CxDateTime().current()
-                                    .format(CxDateTime::ftDate);
-                break;
-            // TODO: bpWeekly:
-            // TODO: bpMonthly:
-            default:
-                dateTimeStamp = CxDateTime().current()
-                                    .format(CxDateTime::ftDateTime);
-                break;
+        // TODO: bpHourly:
+        case bpDaily:
+            dateTimeStamp = CxDateTime().current()
+                                .format(CxDateTime::ftDate);
+            break;
+        // TODO: bpWeekly:
+        // TODO: bpMonthly:
+        default:
+            dateTimeStamp = CxDateTime().current()
+                                .format(CxDateTime::ftDateTime);
+            break;
         }
 
         dateTimeStamp = CxString::replaceAll(dateTimeStamp, xT(":"), xT("-"));

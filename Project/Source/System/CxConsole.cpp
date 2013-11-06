@@ -127,37 +127,37 @@ CxConsole::setAttributes(
         int_t iRv = - 1;
 
 	    switch (a_foreground) {
-    	    case fgBlack:
-    	        iRv = foregroundColorBlack;
-    	        break;
-		    case fgRed:
-		        iRv = foregroundColorRed;
-		        break;
-		    case fgGreen:
-		        iRv = foregroundColorGreen;
-		        break;
-		    case fgYellow:
-		        iRv = foregroundColorYellow;
-		        break;
-    	    case fgBlue:
-    	        iRv = foregroundColorBlue;
-                break;
-		    case fgMagenta:
-		        iRv = foregroundColorMagenta;
-		        break;
-		    case fgCyan:
-		        iRv = foregroundColorCyan;
-		        break;
-		    case fgWhite:
-		        iRv = foregroundColorWhite;
-		        break;
-    	    case fgGray:
-    	        iRv = foregroundColorGray;
-    	        break;
-            case fgUnknown:
-    	    default:
-    	        xTEST_FAIL;
-    	        break;
+        case fgBlack:
+            iRv = foregroundColorBlack;
+            break;
+        case fgRed:
+            iRv = foregroundColorRed;
+            break;
+        case fgGreen:
+            iRv = foregroundColorGreen;
+            break;
+        case fgYellow:
+            iRv = foregroundColorYellow;
+            break;
+        case fgBlue:
+            iRv = foregroundColorBlue;
+            break;
+        case fgMagenta:
+            iRv = foregroundColorMagenta;
+            break;
+        case fgCyan:
+            iRv = foregroundColorCyan;
+            break;
+        case fgWhite:
+            iRv = foregroundColorWhite;
+            break;
+        case fgGray:
+            iRv = foregroundColorGray;
+            break;
+        case fgUnknown:
+        default:
+            xTEST_FAIL;
+            break;
         }
 
         foregroundColor = static_cast<ExForeground>( iRv );
@@ -192,37 +192,37 @@ CxConsole::setAttributes(
         int_t iRv = - 1;
 
 	    switch (a_background) {
-    	    case fgBlack:
-                iRv = backgroundColorBlack;
-                break;
-		    case fgRed:
-                iRv = backgroundColorRed;
-                break;
-		    case fgGreen:
-                iRv = backgroundColorGreen;
-                break;
-		    case fgYellow:
-                iRv = backgroundColorYellow;
-                break;
-    	    case fgBlue:
-                iRv = backgroundColorBlue;
-                break;
-		    case fgMagenta:
-                iRv = backgroundColorMagenta;
-                break;
-		    case fgCyan:
-                iRv = backgroundColorCyan;
-                break;
-		    case fgWhite:
-                iRv = backgroundColorWhite;
-                break;
-    	    case fgGray:
-                iRv = backgroundColorGray;
-                break;
-            case fgUnknown:
-    	    default:
-    	        xTEST_FAIL;
-                break;
+        case fgBlack:
+            iRv = backgroundColorBlack;
+            break;
+        case fgRed:
+            iRv = backgroundColorRed;
+            break;
+        case fgGreen:
+            iRv = backgroundColorGreen;
+            break;
+        case fgYellow:
+            iRv = backgroundColorYellow;
+            break;
+        case fgBlue:
+            iRv = backgroundColorBlue;
+            break;
+        case fgMagenta:
+            iRv = backgroundColorMagenta;
+            break;
+        case fgCyan:
+            iRv = backgroundColorCyan;
+            break;
+        case fgWhite:
+            iRv = backgroundColorWhite;
+            break;
+        case fgGray:
+            iRv = backgroundColorGray;
+            break;
+        case fgUnknown:
+        default:
+            xTEST_FAIL;
+            break;
         }
 
         backgroundColor = static_cast<ExBackground>( iRv );
@@ -427,22 +427,22 @@ CxConsole::msgBox(
 
     EConsoleCmd cmRes = static_cast<EConsoleCmd>( std::tcin.get() );   std::tcin.ignore();
     switch (cmRes) {
-        case cmAbort:
-            mrRes = mrAbort;
-            writeLine(xT("Abort..."));
-            break;
-        case cmIgnore:
-            mrRes = mrIgnore;
-            writeLine(xT("Ignore..."));
-            break;
-        case cmRetry:
-            mrRes = mrRetry;
-            writeLine(xT("Retry..."));
-            break;
-        default:
-            mrRes = mrRetry;
-            writeLine(xT("Retry..."));
-            break;
+    case cmAbort:
+        mrRes = mrAbort;
+        writeLine(xT("Abort..."));
+        break;
+    case cmIgnore:
+        mrRes = mrIgnore;
+        writeLine(xT("Ignore..."));
+        break;
+    case cmRetry:
+        mrRes = mrRetry;
+        writeLine(xT("Retry..."));
+        break;
+    default:
+        mrRes = mrRetry;
+        writeLine(xT("Retry..."));
+        break;
     }
 
     return mrRes;

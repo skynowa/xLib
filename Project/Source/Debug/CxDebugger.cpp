@@ -160,18 +160,18 @@ CxDebugger::reportMake(
     culong_t lastError = CxLastError::get();
 
     switch (a_report.type) {
-        case CxErrorReport::rtMsgboxPlain:
-            _msgboxPlain(a_report);
-            break;
-        case CxErrorReport::rtStdoutPlain:
-            _stdoutPlain(a_report);
-            break;
-        case CxErrorReport::rtLoggingPlain:
-            _loggingPlain(a_report);
-            break;
-        default:
-            _stdoutPlain(a_report);
-            break;
+    case CxErrorReport::rtMsgboxPlain:
+        _msgboxPlain(a_report);
+        break;
+    case CxErrorReport::rtStdoutPlain:
+        _stdoutPlain(a_report);
+        break;
+    case CxErrorReport::rtLoggingPlain:
+        _loggingPlain(a_report);
+        break;
+    default:
+        _stdoutPlain(a_report);
+        break;
     }
 
     //-------------------------------------
@@ -206,22 +206,22 @@ CxDebugger::_msgboxPlain(
     CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::mrIgnore;
 #endif
     switch (mrRes) {
-        case CxMsgBoxT::mrAbort:
+    case CxMsgBoxT::mrAbort:
+        (void_t)::exit(EXIT_FAILURE);
+        break;
+    default:
+    case CxMsgBoxT::mrIgnore:
+        xNA;
+        break;
+    case CxMsgBoxT::mrRetry:
+        if (isActive()) {
+            breakPoint();
+        } else {
+            CxMsgBoxT::ExModalResult nrRv = CxMsgBoxT::show(xT("Debugger is not present.\nThe application will be terminated."), xT("xLib"));
+            xUNUSED(nrRv);
             (void_t)::exit(EXIT_FAILURE);
-            break;
-        default:
-        case CxMsgBoxT::mrIgnore:
-            xNA;
-            break;
-        case CxMsgBoxT::mrRetry:
-            if (isActive()) {
-                breakPoint();
-            } else {
-                CxMsgBoxT::ExModalResult nrRv = CxMsgBoxT::show(xT("Debugger is not present.\nThe application will be terminated."), xT("xLib"));
-                xUNUSED(nrRv);
-                (void_t)::exit(EXIT_FAILURE);
-            }
-            break;
+        }
+        break;
     }
 }
 //------------------------------------------------------------------------------
@@ -251,32 +251,32 @@ CxDebugger::_stdoutPlain(
     EConsoleCmd cmRes = cmIgnore;
 #endif
     switch (cmRes) {
-        case cmAbort:
-            std::tcout << xT("Abort...\n\n");  std::tcout.flush();
+    case cmAbort:
+        std::tcout << xT("Abort...\n\n");  std::tcout.flush();
+
+        (void_t)::exit(EXIT_FAILURE);
+        break;
+    default:
+    case cmIgnore:
+        std::tcout << xT("Ignore...\n\n");  std::tcout.flush();
+        break;
+    case cmRetry:
+        std::tcout << xT("Retry...\n\n");
+
+        if (isActive()) {
+            breakPoint();
+        } else {
+            std::tcout << xT("\n####################################################################################################\n");
+            std::tcout << xT("CxDebugger\n");
+            std::tcout << xT("\n");
+            std::tcout << xT("OS debugger is not present.\nThe application will be terminated.\n");
+            std::tcout << xT("####################################################################################################\n");
+            std::tcout << xT("\n\n");
+            std::tcout.flush();
 
             (void_t)::exit(EXIT_FAILURE);
-            break;
-        default:
-        case cmIgnore:
-            std::tcout << xT("Ignore...\n\n");  std::tcout.flush();
-            break;
-        case cmRetry:
-            std::tcout << xT("Retry...\n\n");
-
-            if (isActive()) {
-                breakPoint();
-            } else {
-                std::tcout << xT("\n####################################################################################################\n");
-                std::tcout << xT("CxDebugger\n");
-                std::tcout << xT("\n");
-                std::tcout << xT("OS debugger is not present.\nThe application will be terminated.\n");
-                std::tcout << xT("####################################################################################################\n");
-                std::tcout << xT("\n\n");
-                std::tcout.flush();
-
-                (void_t)::exit(EXIT_FAILURE);
-            }
-            break;
+        }
+        break;
     }
 }
 //------------------------------------------------------------------------------
