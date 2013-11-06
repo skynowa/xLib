@@ -129,7 +129,7 @@ CxHandleT<tagT>::duplicate() const
 
 #if   xOS_ENV_WIN
     BOOL blRes = ::DuplicateHandle(
-                    currentProcess,
+                    ::GetCurrentProcess(),
                     _handle,
                     ::GetCurrentProcess(),
                     &hRv,
@@ -142,7 +142,7 @@ CxHandleT<tagT>::duplicate() const
     ////xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     hRv = ::dup(_handle);
-    ////xTEST_EQ(error_value_t::hGet() != hRv);
+    ////xTEST_EQ(error_value_t::get() != hRv);
 #endif
 
     return hRv;
