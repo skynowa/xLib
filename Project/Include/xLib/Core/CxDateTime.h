@@ -207,7 +207,8 @@ xNAMESPACE_END(NxLib)
 
 #if xTODO
     //microSec
-    #define FILETIME_TO_USEC(ft) (((unsigned __int64) ft.dwHighDateTime << 32 | ft.dwLowDateTime) / 10)
+    #define FILETIME_TO_USEC(ft) \
+        (((unsigned __int64) ft.dwHighDateTime << 32 | ft.dwLowDateTime) / 10)
 
     GetTimeFormatEx
     GetDateFormat

@@ -94,7 +94,8 @@ CxWaitableTimer::set(
     LARGE_INTEGER dueTimeMsec = {{0}};
     dueTimeMsec.QuadPart = a_dueTimeMsec;
 
-    BOOL blRes = ::SetWaitableTimer(_handle.get(), &dueTimeMsec, a_period, a_routine, a_routineArgs, a_isResume);
+    BOOL blRes = ::SetWaitableTimer(_handle.get(), &dueTimeMsec, a_period, a_routine,
+        a_routineArgs, a_isResume);
     xTEST_DIFF(FALSE, blRes);
 }
 //------------------------------------------------------------------------------

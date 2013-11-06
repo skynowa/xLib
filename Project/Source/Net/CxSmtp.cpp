@@ -187,7 +187,7 @@ CxSmtp::sendRaw
 
     std::tstring_t sRv;
 
-    /////////std::ctstring_t helloCmd = "HELO HOST\r\n";        //std::ctstring_t helloCmd = "HELO\r\n";
+    /////////std::ctstring_t helloCmd = "HELO HOST\r\n"; // std::ctstring_t helloCmd = "HELO\r\n";
     std::ctstring_t fromCmd = xT("MAIL FROM: <") + a_from + xT(">\r\n");
     std::ctstring_t toCmd   = xT("RCPT TO: <")   + a_to   + xT(">\r\n");
     std::ctstring_t dataCmd = xT("DATA\r\n");
@@ -325,12 +325,12 @@ CxSmtp::_isError(
     xTEST_EQ(false, a_text.empty());
 
     bool_t bRv = (bool_t)!(
-            !std::memcmp(a_text.c_str(), xT("334"), 3) ||    //334 VXNlcm5hbWU6
-            !std::memcmp(a_text.c_str(), xT("235"), 3) ||    //235 2.0.0 Authentication successful
-            !std::memcmp(a_text.c_str(), xT("220"), 3) ||    //220 Sergey Kerio MailServer 6.7.0 patch 1 ESMTP ready
-            !std::memcmp(a_text.c_str(), xT("250"), 3) ||    //250 2.0.0 OK
-            !std::memcmp(a_text.c_str(), xT("354"), 3) ||    //354 Enter mail, end with CRLF.CRLF
-            !std::memcmp(a_text.c_str(), xT("221"), 3)       //221 221 2.0.0 SMTP closing connection
+        !std::memcmp(a_text.c_str(), xT("334"), 3) || // 334 VXNlcm5hbWU6
+        !std::memcmp(a_text.c_str(), xT("235"), 3) || // 235 2.0.0 Authentication successful
+        !std::memcmp(a_text.c_str(), xT("220"), 3) || // 220 Kerio MailServer ESMTP ready
+        !std::memcmp(a_text.c_str(), xT("250"), 3) || // 250 2.0.0 OK
+        !std::memcmp(a_text.c_str(), xT("354"), 3) || // 354 Enter mail, end with CRLF.CRLF
+        !std::memcmp(a_text.c_str(), xT("221"), 3)    // 221 221 2.0.0 SMTP closing connection
     );
 
     return bRv;

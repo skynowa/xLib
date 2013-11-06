@@ -24,7 +24,7 @@ CxUri::CxUri() :
     _authority(),
     _userInfo (),
     _host     (),
-    _port    (0),
+    _port     (0),
     _path     (),
     _query    (),
     _fragment ()
@@ -39,7 +39,7 @@ CxUri::CxUri(
     _authority(),
     _userInfo (),
     _host     (),
-    _port    (0),
+    _port     (0),
     _path     (),
     _query    (),
     _fragment ()
@@ -355,7 +355,9 @@ CxUri::encodeComponent(
         RESERVED_FRAGMENT = "";
         ILLEGAL           = "%<>{}|\\\"^`";
         */
-        else if (c <= 0x20 || c >= 0x7F || ILLEGAL.find(c) != std::tstring_t::npos /*|| reserved.find(c) != std::tstring_t::npos*/) {
+        else if (c <= 0x20 || c >= 0x7F || ILLEGAL.find(c) != std::tstring_t::npos
+            /*|| reserved.find(c) != std::tstring_t::npos*/)
+        {
             //� -> %FF
             sRv += CxString::format(xT("%%%02X"), (uint_t)(uchar_t)c);
         }
@@ -392,7 +394,8 @@ CxUri::decodeComponent(
             tchar_t hi = *it ++;
 
             if (it == end) {
-                //throw SyntaxException("URI encoding: two hex digits must follow percent sign", uri);
+                // throw SyntaxException("URI encoding: two hex digits must follow percent sign",
+                // uri);
                 xTEST_FAIL;
             }
 
@@ -497,7 +500,7 @@ CxUri::_parse(
         slashCount ++;
     }
 
-    size_t authorityEnd = a_uri.find_first_of(xT("/?#"), authorityStart + slashCount); //or by the end
+    size_t authorityEnd = a_uri.find_first_of(xT("/?#"), authorityStart + slashCount); // or by the end
 
     if (std::tstring_t::npos == authorityEnd) {
         authorityEnd = a_uri.size();
@@ -558,7 +561,7 @@ CxUri::_parse(
     //[_path] - [/over/there?]
     //[INPUT]     - foo://userinfo@example.com:8042/over/there?name=ferret#nose
     size_t pathStart = authorityEnd;
-    size_t pathEnd   = a_uri.find_first_of(xT("?#"), pathStart);  //or by the end
+    size_t pathEnd   = a_uri.find_first_of(xT("?#"), pathStart);  // or by the end
 
     if (std::tstring_t::npos == pathEnd) {
         pathEnd = a_uri.size();
@@ -582,7 +585,7 @@ CxUri::_parse(
     //[_fragment] - [nose]
     //[INPUT]     - foo://userinfo@example.com:8042/over/there?name=ferret#nose
     size_t fragmentStart = queryEnd + std::tstring_t(xT("#")).size();
-    size_t fragmentEnd   = a_uri.size();                        //by the end
+    size_t fragmentEnd   = a_uri.size();                        // by the end
 
     _fragment = CxString::cut(a_uri, fragmentStart, fragmentEnd);
 }

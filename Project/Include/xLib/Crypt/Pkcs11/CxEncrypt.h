@@ -34,7 +34,8 @@ public:
     void_t               update(CK_BYTE_PTR pPart, CK_ULONG ulPartLen, CK_BYTE_PTR  pEncryptedPart,
                              CK_ULONG_PTR pulEncryptedPartLen);
         ///< continues a multiple-part encryption operation
-    void_t               final(CK_BYTE_PTR pLastEncryptedPart, CK_ULONG_PTR pulLastEncryptedPartLen);
+    void_t               final(CK_BYTE_PTR pLastEncryptedPart,
+                             CK_ULONG_PTR pulLastEncryptedPartLen);
         ///< finishes a multiple-part encryption operation
 
     // Utils

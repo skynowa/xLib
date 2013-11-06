@@ -101,8 +101,8 @@ CxMySQLConnection::isExists(
         xCHECK_RET(!bRv, false);
 
         connection.connect(a_host, a_user, a_password, xT(""), a_port, a_unixSocket, a_clientFlag);
-        connection.query(xT("SELECT IF (EXISTS(SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '%s'), 'true', 'false')"),
-                       a_db.c_str());
+        connection.query(xT("SELECT IF (EXISTS(SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA "
+            "WHERE SCHEMA_NAME = '%s'), 'true', 'false')"), a_db.c_str());
     }
 
     CxMySQLRecordset rec(connection, false);

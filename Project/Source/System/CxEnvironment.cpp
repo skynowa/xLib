@@ -39,7 +39,8 @@ CxEnvironment::isExists(
 
     sRv.resize(xPATH_MAX);
 
-    DWORD length = ::GetEnvironmentVariable(a_varName.c_str(), &sRv.at(0), static_cast<DWORD>( sRv.size() ));
+    DWORD length = ::GetEnvironmentVariable(a_varName.c_str(), &sRv.at(0),
+        static_cast<DWORD>( sRv.size() ));
     xTEST_NA(length);
 
     xCHECK_RET(0UL == length && ERROR_ENVVAR_NOT_FOUND == CxLastError::get(), false);
@@ -95,13 +96,15 @@ CxEnvironment::var(
 #if xOS_ENV_WIN
     sRv.resize(xPATH_MAX);
 
-    DWORD length = ::GetEnvironmentVariable(a_varName.c_str(), &sRv.at(0), static_cast<DWORD>( sRv.size() ));
+    DWORD length = ::GetEnvironmentVariable(a_varName.c_str(), &sRv.at(0),
+        static_cast<DWORD>( sRv.size() ));
     xTEST_DIFF(0UL, length);
 
     sRv.resize(length);
 
     if (sRv.size() < length) {
-        length = ::GetEnvironmentVariable(a_varName.c_str(), &sRv.at(0), static_cast<DWORD>( sRv.size() ));
+        length = ::GetEnvironmentVariable(a_varName.c_str(), &sRv.at(0),
+            static_cast<DWORD>( sRv.size() ));
         xTEST_DIFF(0UL, length);
     }
 #else
@@ -210,13 +213,15 @@ CxEnvironment::expandStrings(
 #if xOS_ENV_WIN
     sRv.resize(xPATH_MAX);
 
-    DWORD length = ::ExpandEnvironmentStrings(a_var.c_str(), &sRv.at(0), static_cast<DWORD>( sRv.size() ));
+    DWORD length = ::ExpandEnvironmentStrings(a_var.c_str(), &sRv.at(0),
+        static_cast<DWORD>( sRv.size() ));
     xTEST_DIFF(0UL, length);
 
     sRv.resize(length);
 
     if (sRv.size() < length) {
-        length = ::ExpandEnvironmentStrings(a_var.c_str(), &sRv.at(0), static_cast<DWORD>( sRv.size() ));
+        length = ::ExpandEnvironmentStrings(a_var.c_str(), &sRv.at(0),
+            static_cast<DWORD>( sRv.size() ));
         xTEST_DIFF(0UL, length);
     }
 

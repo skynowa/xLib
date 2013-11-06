@@ -541,7 +541,7 @@ CxDateTime::isValid(
     bool_t bMonth  = (/*cusMonth  >= 0 /1/ &&*/ a_month  <= 12U);
     xTEST_EQ(true, bMonth);
 
-    bool_t bDay    = true;   ////(usDay    >= 0/*1*/ && usDay    <= usDaysInMonth(a_usYear, a_month));
+    bool_t bDay    = true; ////(usDay    >= 0/*1*/ && usDay    <= usDaysInMonth(a_usYear, a_month));
     xTEST_EQ(true, bDay);
 
     bool_t bHour   = (/*cusHour   >= 0 &&*/ a_hour   <= 23U);
@@ -684,7 +684,9 @@ CxDateTime::daysInMonth(
 {
     xCHECK_RET(2 == a_month && isLeapYear(a_year), 29);
 
-    const CxArray<ushort_t, 13> monthsDays = {{/*31*/0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}};
+    const CxArray<ushort_t, 13> monthsDays = {{
+        /*31*/0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
+    }};
 
     ushort_t usRv = 0;
 

@@ -61,8 +61,8 @@ public:
         ///< unmount
 
     // static
-    static void_t     space(std::ctstring_t &dirPath, ulonglong_t *available,
-                        ulonglong_t *total, ulonglong_t *free);
+    static void_t     space(std::ctstring_t &dirPath, ulonglong_t *available, ulonglong_t *total,
+                          ulonglong_t *free);
         ///< get free space
     static void_t     paths(std::vec_tstring_t *volumePaths);
         ///< get paths

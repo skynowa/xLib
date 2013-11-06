@@ -257,7 +257,8 @@ CxLocalStorage::keyReadBin(
 
     std::tstring_t sRv;
 
-    std::tstring_t hexStr = keyReadString(a_key, std::tstring_t(a_defaultValue.begin(), a_defaultValue.end()));
+    std::tstring_t hexStr = keyReadString(a_key, std::tstring_t(a_defaultValue.begin(),
+        a_defaultValue.end()));
 
     // hexStr -> usRv
     sRv = CxString::cast(hexStr, 16);

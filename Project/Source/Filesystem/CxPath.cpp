@@ -40,10 +40,14 @@ CxPath::filePath() const
     return _filePath;
 }
 //------------------------------------------------------------------------------
-// FAQ: http://www.cplusplus.com/forum/general/11104/
-//      http://stackoverflow.com/questions/1023306/finding-current-executables-path-without-proc-self-exe
-//      http://libsylph.sourceforge.net/wiki/Full_path_to_binary
-//      http://h21007.www2.hp.com/portal/site/dspp/menuitem.863c3e4cbcdc3f3515b49c108973a801?ciid=88086d6e1de021106d6e1de02110275d6e10RCRD
+/**
+* FAQ:
+*   http://www.cplusplus.com/forum/general/11104/
+*   http://stackoverflow.com/questions/1023306/finding-current-executables-path-without-proc-self-exe
+*   http://libsylph.sourceforge.net/wiki/Full_path_to_binary
+*   http://h21007.www2.hp.com/portal/site/dspp/menuitem.863c3e4cbcdc3f3515b49c108973a801?
+*       ciid=88086d6e1de021106d6e1de02110275d6e10RCRD
+*/
 
 /* static */
 xINLINE_HO std::tstring_t
@@ -71,10 +75,12 @@ CxPath::exe()
         sRv.resize(xPATH_MAX);
 
         xFOREVER {
-            readed = ::readlink(procFile.c_str(), &sRv.at(0), sRv.size() * sizeof(std::tstring_t::value_type));
+            readed = ::readlink(procFile.c_str(), &sRv.at(0), sRv.size() *
+                sizeof(std::tstring_t::value_type));
             xTEST_DIFF(- 1, readed);
 
-            xCHECK_DO(sRv.size() * sizeof(std::tstring_t::value_type) > static_cast<size_t>( readed ), break);
+            xCHECK_DO(sRv.size() * sizeof(std::tstring_t::value_type) >
+                static_cast<size_t>( readed ), break);
 
             sRv.resize(sRv.size() * 2);
         }
@@ -134,9 +140,8 @@ CxPath::dll()
 #if   xOS_ENV_WIN
     sRv.resize(xPATH_MAX);
 
-    DWORD stored = ::GetModuleFileName(
-                            reinterpret_cast<HINSTANCE>( &__ImageBase ),
-                            &sRv.at(0), static_cast<DWORD>( sRv.size() ));
+    DWORD stored = ::GetModuleFileName(reinterpret_cast<HINSTANCE>( &__ImageBase ),
+        &sRv.at(0), static_cast<DWORD>( sRv.size() ));
     xTEST_DIFF(0UL, stored);
 
     sRv.resize(stored);
@@ -561,8 +566,9 @@ CxPath::isAbsolute() const {
     xCHECK_RET(CxConst::xSLASH().at(0) == filePath().at(0),   true);
 
 #if xOS_ENV_WIN
-    xCHECK_RET(1 == filePath().size(),                                                           false);
-    xCHECK_RET(CxChar::isAlpha(filePath().at(0)) && CxConst::xCOLON().at(0) == filePath().at(1), true);
+    xCHECK_RET(1 == filePath().size(), false);
+    xCHECK_RET(CxChar::isAlpha(filePath().at(0)) &&
+        CxConst::xCOLON().at(0) == filePath().at(1), true);
 #else
     xNA;
 #endif
@@ -814,7 +820,8 @@ CxPath::absolute() const
 
     buff.resize(dwRv);
 
-    dwRv = ::GetFullPathName(&filePath().at(0), static_cast<DWORD>( buff.size() ), &buff.at(0), NULL);
+    dwRv = ::GetFullPathName(&filePath().at(0), static_cast<DWORD>( buff.size() ), &buff.at(0),
+        NULL);
     xTEST_DIFF(0UL, dwRv);
 
     buff.resize(dwRv);

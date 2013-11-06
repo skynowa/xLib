@@ -113,7 +113,8 @@ CxDnsClient::localHostName(
 
     std::string asRes(xHOST_NAME_MAX, '0');
 
-    int_t iRv = ::gethostname(&asRes.at(0), static_cast<int_t>( asRes.size() * sizeof(std::string::value_type) ));
+    int_t iRv = ::gethostname(&asRes.at(0), static_cast<int_t>( asRes.size() *
+        sizeof(std::string::value_type) ));
     xTEST_EQ(0, iRv);
 
     asRes.assign(asRes.c_str());    //delete '0' from end
@@ -145,8 +146,9 @@ CxDnsClient::nameInfo(
     tchar_t hostName[NI_MAXHOST + 1] = {0};
     tchar_t servInfo[NI_MAXSERV + 1] = {0};
 
-    //TODO: bGetNameInfo
-    int_t iRv = ::xGETNAMEINFO((struct sockaddr *)&socketAddr, sizeof(socketAddr), &hostName[0], NI_MAXHOST, &servInfo[0], NI_MAXSERV, NI_NUMERICSERV);
+    // TODO: bGetNameInfo
+    int_t iRv = ::xGETNAMEINFO((struct sockaddr *)&socketAddr, sizeof(socketAddr), &hostName[0],
+        NI_MAXHOST, &servInfo[0], NI_MAXSERV, NI_NUMERICSERV);
     xTEST_EQ(0, iRv);
 
     //hostname

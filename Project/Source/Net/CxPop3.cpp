@@ -267,7 +267,8 @@ CxPop3::top(
 
     //-------------------------------------
     //[TOP 1 10\r\n]
-    std::tstring_t topCmd = xT("TOP ") + CxString::cast(a_num) + xT(" ") + CxString::cast(a_lines) + xT("\r\n");
+    std::tstring_t topCmd = xT("TOP ") + CxString::cast(a_num) + xT(" ") +
+        CxString::cast(a_lines) + xT("\r\n");
 
     _command(topCmd, xT("\r\n.\r\n"), &_sRv);
 

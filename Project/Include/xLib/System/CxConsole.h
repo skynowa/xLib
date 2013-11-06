@@ -71,8 +71,8 @@ public:
     virtual        ~CxConsole();
         ///< destructor
 
-    std::tstring_t  setAttributes(const ExForeground &foreground,
-                        const ExBackground &background, cint_t &attributes) xWARN_UNUSED_RV;
+    std::tstring_t  setAttributes(const ExForeground &foreground, const ExBackground &background,
+                        cint_t &attributes) xWARN_UNUSED_RV;
         ///< set text color
     std::tstring_t  setAttributesDef() xWARN_UNUSED_RV;
         ///< set text color

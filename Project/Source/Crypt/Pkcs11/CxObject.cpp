@@ -96,7 +96,8 @@ CxObject::copy(
     xTEST_DIFF(0UL, _m_hSession);
     xTEST_DIFF(0UL, _m_hObject);
 
-    CK_RV ulRv = _m_pFunc->C_CopyObject(_m_hSession, _m_hObject, a_pTemplate, a_ulCount, a_phNewObject);
+    CK_RV ulRv = _m_pFunc->C_CopyObject(_m_hSession, _m_hObject, a_pTemplate, a_ulCount,
+        a_phNewObject);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //--------------------------------------------------------------------------
@@ -116,14 +117,16 @@ CxObject::find(
 
     (*a_pvecObjectHandles).clear();
 
-    CK_RV ulRv = _m_pFunc->C_FindObjectsInit(_m_hSession, a_pTemplate, a_ulCount);    // To find all attributes, set ulCount to 0.
+    // To find all attributes, set ulCount to 0.
+    CK_RV ulRv = _m_pFunc->C_FindObjectsInit(_m_hSession, a_pTemplate, a_ulCount);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 
     const CK_ULONG   culMaxFindedObjects        = 512;
     CK_OBJECT_HANDLE hList[culMaxFindedObjects] = {0};
     CK_ULONG         ulFound                    = 0;
 
-    ulRv = _m_pFunc->C_FindObjects(_m_hSession, &hList[0], static_cast<CK_ULONG>( xARRAY_SIZE(hList) ), &ulFound);
+    ulRv = _m_pFunc->C_FindObjects(_m_hSession, &hList[0],
+        static_cast<CK_ULONG>( xARRAY_SIZE(hList) ), &ulFound);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
     xTEST_GR_EQ(static_cast<ulong_t>( xARRAY_SIZE(hList) ), ulFound);
 
@@ -201,19 +204,22 @@ CxObject::data(
     //CxLogin
     CxLogin objLogin(objPkcs11, objSession);
 
-    objLogin.login(CKU_USER, (CK_UTF8CHAR_PTR)&a_cusUserPin.at(0), static_cast<CK_ULONG>( a_cusUserPin.size() ));
+    objLogin.login(CKU_USER, (CK_UTF8CHAR_PTR)&a_cusUserPin.at(0),
+        static_cast<CK_ULONG>( a_cusUserPin.size() ));
 
     //-------------------------------------
     //CxObject
     std::vector<CK_OBJECT_HANDLE> vechData;
     {
         CK_ATTRIBUTE atDataTemplate [] = {
-            {CKA_LABEL, (CK_VOID_PTR)&a_cusDataLabel.at(0), static_cast<CK_ULONG>( a_cusDataLabel.size() )}
+            {CKA_LABEL, (CK_VOID_PTR)&a_cusDataLabel.at(0),
+             static_cast<CK_ULONG>( a_cusDataLabel.size() )}
         };
 
         CxObject objObject(objPkcs11, objSession);
 
-        objObject.find(atDataTemplate, static_cast<CK_ULONG>( xARRAY_SIZE(atDataTemplate) ), &vechData);
+        objObject.find(atDataTemplate, static_cast<CK_ULONG>( xARRAY_SIZE(atDataTemplate) ),
+            &vechData);
         xTEST_EQ(false, vechData.empty());
     }
 
@@ -281,7 +287,8 @@ CxObject::data(
     //CxLogin
     CxLogin objLogin(objPkcs11, objSession);
 
-    objLogin.login(CKU_USER, (CK_UTF8CHAR_PTR)&a_cusUserPin.at(0), static_cast<CK_ULONG>( a_cusUserPin.size() ));
+    objLogin.login(CKU_USER, (CK_UTF8CHAR_PTR)&a_cusUserPin.at(0),
+        static_cast<CK_ULONG>( a_cusUserPin.size() ));
 
     //-------------------------------------
     //CxObject
@@ -295,7 +302,8 @@ CxObject::data(
 
         CxObject objObject(objPkcs11, objSession);
 
-        objObject.find(atDataTemplate, static_cast<CK_ULONG>( xARRAY_SIZE(atDataTemplate) ), &vechData);
+        objObject.find(atDataTemplate, static_cast<CK_ULONG>( xARRAY_SIZE(atDataTemplate) ),
+            &vechData);
         xTEST_EQ(false, vechData.empty());
 
         ////CK_OBJECT_HANDLE hData = vechData.at(0);
@@ -371,19 +379,22 @@ CxObject::setData(
     //CxLogin
     CxLogin objLogin(objPkcs11, objSession);
 
-    objLogin.login(CKU_USER, (CK_UTF8CHAR_PTR)&a_cusUserPin.at(0), static_cast<CK_ULONG>( a_cusUserPin.size() ));
+    objLogin.login(CKU_USER, (CK_UTF8CHAR_PTR)&a_cusUserPin.at(0),
+        static_cast<CK_ULONG>( a_cusUserPin.size() ));
 
     //-------------------------------------
     //CxObject
     std::vector<CK_OBJECT_HANDLE> vechData;
     {
         CK_ATTRIBUTE atDataTemplate [] = {
-            {CKA_LABEL, (CK_VOID_PTR)&a_cusDataLabel.at(0), static_cast<CK_ULONG>( a_cusDataLabel.size() )}
+            {CKA_LABEL, (CK_VOID_PTR)&a_cusDataLabel.at(0),
+                static_cast<CK_ULONG>( a_cusDataLabel.size() )}
         };
 
         CxObject objObject(objPkcs11, objSession);
 
-        objObject.find(atDataTemplate, static_cast<CK_ULONG>( xARRAY_SIZE(atDataTemplate) ), &vechData);
+        objObject.find(atDataTemplate, static_cast<CK_ULONG>( xARRAY_SIZE(atDataTemplate) ),
+            &vechData);
     }
 
     //-------------------------------------

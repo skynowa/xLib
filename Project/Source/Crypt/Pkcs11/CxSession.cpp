@@ -80,7 +80,8 @@ CxSession::setOperationState(
     xTEST_PTR(_m_pFunc);
     xTEST_DIFF(0UL, _m_hSession);
 
-    CK_RV ulRv = _m_pFunc->C_SetOperationState(_m_hSession, a_pOperationState, a_ulOperationStateLen, a_hEncryptionKey, a_hAuthenticationKey);
+    CK_RV ulRv = _m_pFunc->C_SetOperationState(_m_hSession, a_pOperationState,
+        a_ulOperationStateLen, a_hEncryptionKey, a_hAuthenticationKey);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
@@ -93,7 +94,8 @@ CxSession::operationState(
     xTEST_PTR(_m_pFunc);
     xTEST_DIFF(0UL, _m_hSession);
 
-    CK_RV ulRv = _m_pFunc->C_GetOperationState(_m_hSession, a_pOperationState, a_pulOperationStateLen);
+    CK_RV ulRv = _m_pFunc->C_GetOperationState(_m_hSession, a_pOperationState,
+        a_pulOperationStateLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------

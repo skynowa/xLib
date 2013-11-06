@@ -52,7 +52,8 @@ CxSign::make(
     CK_ULONG_PTR a_pulSignatureLen  ///< gets signature length
 )
 {
-    CK_RV ulRv = _m_pFunc->C_Sign(_m_hSession, a_pData, a_ulDataLen, a_pSignature, a_pulSignatureLen);
+    CK_RV ulRv = _m_pFunc->C_Sign(_m_hSession, a_pData, a_ulDataLen, a_pSignature,
+        a_pulSignatureLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
@@ -74,7 +75,8 @@ CxSign::encryptUpdate(
     CK_ULONG_PTR a_pulEncryptedPartLen  ///< gets c-text length
 )
 {
-    CK_RV ulRv = _m_pFunc->C_SignEncryptUpdate(_m_hSession, a_pPart, a_ulPartLen, a_pEncryptedPart, a_pulEncryptedPartLen);
+    CK_RV ulRv = _m_pFunc->C_SignEncryptUpdate(_m_hSession, a_pPart, a_ulPartLen, a_pEncryptedPart,
+        a_pulEncryptedPartLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------
@@ -106,7 +108,8 @@ CxSign::recover(
     CK_ULONG_PTR a_pulSignatureLen  ///< gets signature length
 )
 {
-    CK_RV ulRv = _m_pFunc->C_SignRecover(_m_hSession, a_pData, a_ulDataLen, a_pSignature, a_pulSignatureLen);
+    CK_RV ulRv = _m_pFunc->C_SignRecover(_m_hSession, a_pData, a_ulDataLen, a_pSignature,
+        a_pulSignatureLen);
     xTEST_MSG_EQ(ulong_t(CKR_OK), ulRv, CxPkcs11::errorStr(ulRv));
 }
 //------------------------------------------------------------------------------

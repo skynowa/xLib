@@ -158,7 +158,8 @@ CxVolume::isReady() const
     std::tstring_t sRv;
     UINT           oldErrorMode = 0U;
 
-    oldErrorMode = ::SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOALIGNMENTFAULTEXCEPT | SEM_NOGPFAULTERRORBOX | SEM_NOOPENFILEERRORBOX);
+    oldErrorMode = ::SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOALIGNMENTFAULTEXCEPT |
+        SEM_NOGPFAULTERRORBOX | SEM_NOOPENFILEERRORBOX);
     xTEST_NA(oldErrorMode);
 
     oldDirPath  = CxDir::current();

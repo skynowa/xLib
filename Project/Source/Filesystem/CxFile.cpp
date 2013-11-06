@@ -202,7 +202,8 @@ CxFile::read(
     (*a_buff).resize( static_cast<size_t>( fileSize ) );
     xCHECK_DO(0LL == fileSize, return);
 
-    size_t uiRes = std::fread(&(*a_buff).at(0), 1, (*a_buff).size() * sizeof(std::ustring_t::value_type), get());
+    size_t uiRes = std::fread(&(*a_buff).at(0), 1, (*a_buff).size() *
+        sizeof(std::ustring_t::value_type), get());
     xTEST_EQ((*a_buff).size(), uiRes);
 }
 //------------------------------------------------------------------------------
@@ -213,7 +214,8 @@ CxFile::write(
 {
     xTEST_NA(a_buff);
 
-    size_t uiRes = std::fwrite(&a_buff.at(0), 1, a_buff.size() * sizeof(std::ustring_t::value_type), get());
+    size_t uiRes = std::fwrite(&a_buff.at(0), 1, a_buff.size() *
+        sizeof(std::ustring_t::value_type), get());
     xTEST_EQ(a_buff.size(), uiRes);
 }
 //------------------------------------------------------------------------------
@@ -231,7 +233,8 @@ CxFile::read(
     (*a_buff).resize( static_cast<size_t>( fileSize) );
     xCHECK_DO(0LL == fileSize, return);
 
-    size_t uiRes = std::fread(&(*a_buff).at(0), 1, (*a_buff).size() * sizeof(std::tstring_t::value_type), get());
+    size_t uiRes = std::fread(&(*a_buff).at(0), 1, (*a_buff).size() *
+        sizeof(std::tstring_t::value_type), get());
     xTEST_EQ((*a_buff).size(), uiRes);
 }
 //------------------------------------------------------------------------------
@@ -277,16 +280,16 @@ CxFile::readLine(
     xTEST_PTR(a_str);
     xTEST_NA(a_maxCount);
 
-    std::tstring_t sStr;
-    sStr.resize(a_maxCount + 1); // + 1 for 0
+    std::tstring_t str;
+    str.resize(a_maxCount + 1); // + 1 for 0
 
-    tchar_t *pszRes = std::xTFGETS(&sStr.at(0), static_cast<int_t>( sStr.size() ), get());
+    tchar_t *pszRes = std::xTFGETS(&str.at(0), static_cast<int_t>( str.size() ), get());
     xTEST_PTR(pszRes);
 
-    sStr.erase(sStr.end() - 1); // erase last char - 0
+    str.erase(str.end() - 1); // erase last char - 0
 
     // out
-    (*a_str).swap(sStr);
+    (*a_str).swap(str);
 }
 //------------------------------------------------------------------------------
 xINLINE_HO void_t
@@ -953,7 +956,8 @@ CxFile::lines(
     ulonglong_t      ullRv = 0LL;
     std::tifstream_t ifsStream(a_filePath.c_str(), std::ios::in);
 
-    xCHECK_RET(!ifsStream || ifsStream.fail() || !ifsStream.good() || !ifsStream.is_open() || ifsStream.eof(), 0LL);
+    xCHECK_RET(!ifsStream || ifsStream.fail() || !ifsStream.good() || !ifsStream.is_open() ||
+        ifsStream.eof(), 0LL);
 
     tchar_t chChar;
     for (ullRv = 0LL; ifsStream.get(chChar); ) {
