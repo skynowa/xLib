@@ -11,7 +11,6 @@
 #include <xLib/Core/CxUtils.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxDll.h>
-#include <xLib/Sync/CxProcess.h>
 #include <xLib/System/CxShell.h>
 #include <xLib/System/CxEnvironment.h>
 
@@ -207,7 +206,7 @@ CxSystemInfo::osArch()
         }
 
         BOOL is64BitOs      = FALSE;
-        BOOL isWow64Process = ::IsWow64Process(CxProcess::currentHandle(), &is64BitOs);
+        BOOL isWow64Process = ::IsWow64Process(::GetCurrentProcess(), &is64BitOs);
 
         oaRes = (isFuncExist && isWow64Process && is64BitOs) ? oa64bit : oa32bit;
     #elif xARCH_X64
@@ -288,8 +287,11 @@ CxSystemInfo::desktopName()
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
-    std::ctstring_t       nativeDesktop = xT("explorer.exe");
-    const CxProcess::id_t pid           = CxProcess::idByName(nativeDesktop);
+    std::ctstring_t nativeDesktop = xT("explorer.exe");
+
+#if 0
+    // TODO: CxSystemInfo::desktopName
+    const CxProcess::id_t pid = CxProcess::idByName(nativeDesktop);
 
     bool_t bRv = CxProcess::isRunning(pid);
     if (bRv) {
@@ -299,6 +301,10 @@ CxSystemInfo::desktopName()
     }
 
     xTEST_EQ(false, sRv.empty());
+#else
+    sRv = nativeDesktop;
+#endif
+
 #elif xOS_ENV_UNIX
     sRv = CxEnvironment::var(xT("DESKTOP_SESSION"));
     xTEST_EQ(false, sRv.empty());
