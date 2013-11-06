@@ -20,11 +20,12 @@ CxTest_CxIpcSemaphore::unit(
     struct _SFunctor
     {
     #if   xOS_ENV_WIN
-        static uint_t xSTDCALL
+        static uint_t   xSTDCALL
     #elif xOS_ENV_UNIX
         static void_t * xSTDCALL
     #endif
-	    uiJob(void_t *pArguments) {
+	    uiJob(void_t *pArguments)
+	    {
 	        CxTracer() << xT("Start");
 
             CxIpcSemaphore *psemSem = static_cast<CxIpcSemaphore *>(pArguments);

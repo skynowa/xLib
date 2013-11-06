@@ -238,11 +238,11 @@ CxProcessInfo::commandLine(
         PULONG           ReturnLength
     );
 
-    struct _SNested {
-        static
-        PVOID
+    struct _SFunctor
+    {
+        static PVOID
         pebAddress(
-            HANDLE process
+            HANDLE a_process
         )
         {
             CxDll dll;
@@ -257,16 +257,16 @@ CxProcessInfo::commandLine(
             xTEST_PTR(DllNtQueryInformationProcess);
 
         #if xARCH_X86
-            const PROCESSINFOCLASS    info          = ProcessBasicInformation;
+            const PROCESSINFOCLASS    info            = ProcessBasicInformation;
         #else
-            const PROCESSINFOCLASS    info          = ProcessWow64Information;
+            const PROCESSINFOCLASS    info            = ProcessWow64Information;
         #endif
-            PROCESS_BASIC_INFORMATION basicInfo      = {0};
-            const DWORD               basicInfoSize  = sizeof(basicInfo);   // in bytes
+            PROCESS_BASIC_INFORMATION basicInfo       = {0};
+            const DWORD               basicInfoSize   = sizeof(basicInfo);   // in bytes
             DWORD                     returnSizeBytes = 0UL;
 
             // TODO: ProcessBasicInformation (for x64)
-            NTSTATUS nsRv = DllNtQueryInformationProcess(process,
+            NTSTATUS nsRv = DllNtQueryInformationProcess(a_process,
                                                          info,
                                                          &basicInfo, basicInfoSize, &returnSizeBytes);
             xTEST_EQ(true, NT_SUCCESS(nsRv));
@@ -285,7 +285,7 @@ CxProcessInfo::commandLine(
     processHandle = ::OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, static_cast<DWORD>( _id ));
     xTEST_EQ(true, processHandle.isValid());
 
-    PVOID pebAddress               = _SNested::pebAddress(processHandle.get());
+    PVOID pebAddress               = _SFunctor::pebAddress(processHandle.get());
     PVOID rtlUserProcParamsAddress = NULL;
 
     // get the address of ProcessParameters

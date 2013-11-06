@@ -617,33 +617,38 @@ CxSystemInfo::cpuVendor()
     #elif xOS_FREEBSD
         // Use gcc 4.4 provided cpuid intrinsic
         // 32 bit fpic requires ebx be preserved
-        struct _SFunctor {
-            #if (defined(__pic__) || defined(__APPLE__)) && defined(__i386__)
-                static inline void_t
-                __cpuid(int_t cpuInfo[4], int_t infoType)
-                {
-                    __asm__ volatile (
-                        "mov %%ebx, %%edi\n"
-                        "cpuid\n"
-                        "xchg %%edi, %%ebx\n"
-                        : "=a"(cpuInfo[0]), "=D"(cpuInfo[1]), "=c"(cpuInfo[2]), "=d"(cpuInfo[3])
-                        : "a"(infoType)
-                    );
-                }
-            #elif defined(__i386__) || defined(__x86_64__)
-                static inline void_t
-                __cpuid(int_t cpuInfo[4], int_t infoType)
-                {
-                    __asm__ volatile (
-                        "cpuid\n"
-                        : "=a"(cpuInfo[0]), "=b"(cpuInfo[1]), "=c"(cpuInfo[2]), "=d"(cpuInfo[3])
-                        : "a"(infoType)
-                    );
-                }
-            #else
-                // OS_NOT_SUPPORTED: CxSystemInfo::cvGetCpuVendor()
-                #error xLib: Can not define __cpuid
-            #endif
+        struct _SFunctor
+        {
+        #if (defined(__pic__) || defined(__APPLE__)) && defined(__i386__)
+            static inline void_t
+            __cpuid(
+                int_t  a_cpuInfo[4],
+                cint_t a_infoType)
+            {
+                __asm__ volatile (
+                    "mov %%ebx, %%edi\n"
+                    "cpuid\n"
+                    "xchg %%edi, %%ebx\n"
+                    : "=a"(a_cpuInfo[0]), "=D"(a_cpuInfo[1]), "=c"(a_cpuInfo[2]), "=d"(a_cpuInfo[3])
+                    : "a"(a_infoType)
+                );
+            }
+        #elif defined(__i386__) || defined(__x86_64__)
+            static inline void_t
+            __cpuid(
+                int_t  a_cpuInfo[4],
+                cint_t a_infoType)
+            {
+                __asm__ volatile (
+                    "cpuid\n"
+                    : "=a"(a_cpuInfo[0]), "=b"(a_cpuInfo[1]), "=c"(a_cpuInfo[2]), "=d"(a_cpuInfo[3])
+                    : "a"(a_infoType)
+                );
+            }
+        #else
+            // OS_NOT_SUPPORTED: CxSystemInfo::cvGetCpuVendor()
+            #error xLib: Can not define __cpuid
+        #endif
         };
 
         int_t cpuInfo[4] = {0};
