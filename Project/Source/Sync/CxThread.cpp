@@ -1041,7 +1041,7 @@ CxThread::isCurrent(
     bool_t bRv = false;
 
 #if xOS_ENV_WIN
-    bRv = (id() == a_id);
+    bRv = (currentId() == a_id);
 #else
     //TODO: If either thread1 or thread2 are not valid thread IDs, the behavior is undefined
     bRv = ::pthread_equal(currentId(), a_id);
