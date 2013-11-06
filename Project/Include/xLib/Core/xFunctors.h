@@ -25,7 +25,7 @@ struct SCompareNoCase
 
     // TODO: bool_t
     bool
-    operator() (
+    operator () (
         std::ctstring_t &a_value1,
         std::ctstring_t &a_value2) const
     {
