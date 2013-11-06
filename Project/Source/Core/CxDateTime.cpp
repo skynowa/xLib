@@ -361,9 +361,9 @@ CxDateTime::dayOfWeek() const
     return usRv;
 }
 //------------------------------------------------------------------------------
-// TODO: toMilliseconds
+// TODO: toMsec
 xINLINE_HO ulonglong_t
-CxDateTime::toMilliseconds() const
+CxDateTime::toMsec() const
 {
     xTEST_EQ(true, isValid()); //??? - 0
 
@@ -434,7 +434,7 @@ CxDateTime::set(
     _msec   = a_msec;
 
     //datetime msec member (convert to milliseconds)
-    _thisMSec = _toMilliseconds();
+    _thisMSec = _toMsec();
 
     xTEST_EQ(true, isValid());
 }
@@ -448,7 +448,7 @@ CxDateTime::set(
 
 //--------------------------------------------------------------------------
 xINLINE_HO ulonglong_t
-CxDateTime::_toMilliseconds() const
+CxDateTime::_toMsec() const
 {
     xTEST_EQ(true, isValid());
 

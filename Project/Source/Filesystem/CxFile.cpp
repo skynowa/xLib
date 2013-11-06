@@ -816,7 +816,7 @@ CxFile::wipe(
     {
         std::tstring_t sRndFileName;
 
-        sRndFileName = CxString::cast( CxDateTime().current().toMilliseconds() );
+        sRndFileName = CxString::cast( CxDateTime().current().toMsec() );
         std::random_shuffle(sRndFileName.begin(), sRndFileName.end());
 
         sRndFilePath = CxPath(a_filePath).dir() + CxConst::xSLASH() + sRndFileName;
