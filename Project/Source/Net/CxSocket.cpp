@@ -512,7 +512,6 @@ CxSocket::select(
      return iRv;
 }
 //------------------------------------------------------------------------------
-/* static */
 xINLINE_HO int_t
 CxSocket::lastError()
 {
