@@ -38,7 +38,6 @@
 
 #include <Test/Crypt/CxTest_CxCrc32.h>
 #include <Test/Crypt/CxTest_CxRandom.h>
-#include <Test/Crypt/Pkcs11/CxTest_CxPkcs11.h>
 
 // Db
 //#include <Test/Db/CxTest_CxMySql.h>
@@ -229,9 +228,6 @@ int_t xTMAIN(int_t argNum, tchar_t *args[])
 
         // Patterns
         manager.add(new CxTest_CxSingleton);
-
-        // Pkcs11
-        // manager.add(new CxTest_CxPkcs11);
 
         // Sync
         manager.add(new CxTest_CxAtomicLongInt);
