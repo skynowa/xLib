@@ -438,7 +438,7 @@ CxTest_CxThread::unit1(
 
             dtTime2 = CxDateTime::current();
 
-            xTEST_GR_EQ(dtTime2.toMilliseconds(), dtTime1.toMilliseconds());
+            xTEST_GR_EQ(dtTime2.toMsec(), dtTime1.toMsec());
             // xTRACEV(xT("sNow1: %s,\nsNow2: %s"), dtTime1.sormat(CxDateTime::ftTime).c_str(),
             //    dtTime2.format(CxDateTime::ftTime).c_str());
         }

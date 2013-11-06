@@ -234,7 +234,7 @@ CxTest_CxDateTime::unit(
     {
         //1
         {
-            m_ullRv = CxDateTime(2010, 1, 14, 17, 0, 55, 666).toMilliseconds();
+            m_ullRv = CxDateTime(2010, 1, 14, 17, 0, 55, 666).toMsec();
             xTEST_EQ(62522902855666ULL, m_ullRv);
         }
 
@@ -246,7 +246,7 @@ CxTest_CxDateTime::unit(
             };
 
             for (size_t i = 0; i < xARRAY_SIZE(caullMsec); ++ i) {
-                m_ullRv = CxDateTime(caullMsec[i]).toMilliseconds();
+                m_ullRv = CxDateTime(caullMsec[i]).toMsec();
                 xTEST_EQ(caullMsec[i], m_ullRv);
             }
         }

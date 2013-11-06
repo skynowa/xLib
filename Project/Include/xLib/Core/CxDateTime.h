@@ -90,7 +90,7 @@ public:
         ///< set CxDateTime by datetime data
 
     // converting
-    ulonglong_t           toMilliseconds() const xWARN_UNUSED_RV;
+    ulonglong_t           toMsec() const xWARN_UNUSED_RV;
         ///< convert CxDateTime to milliseconds
 
     // TODO: ToUniversalTime, ToLocalTime
@@ -160,7 +160,7 @@ private:
     ushort_t              _msec;
         ///< 0-999, Win (0-99)
 
-    ulonglong_t           _toMilliseconds() const xWARN_UNUSED_RV;
+    ulonglong_t           _toMsec() const xWARN_UNUSED_RV;
         ///< convert to milliseconds
     static void_t         _parse(std::ctstring_t &value, const ExFormatType &format,
                               CxDateTime *datetime);
