@@ -21,7 +21,7 @@ xNAMESPACE_END(NxLib)
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-template<ExHandleValue hvTag>
+template<ExHandleValue tagT>
 class CxHandleT
     /// handle
 {
@@ -64,7 +64,7 @@ public:
 #endif
 
 private:
-    typedef CxHandleErrorT<hvTag> error_value_t;
+    typedef CxHandleErrorT<tagT> error_value_t;
 
     native_handle_t _handle;    ///< handle
 };
