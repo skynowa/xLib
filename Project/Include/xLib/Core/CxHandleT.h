@@ -69,14 +69,10 @@ private:
     native_handle_t _handle;    ///< handle
 };
 
-xNAMESPACE_END(NxLib)
-//------------------------------------------------------------------------------
-#include "CxHandleT.inl"
-//------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(NxLib)
-
 typedef CxHandleT<hvNull>    CxHandle;
 typedef CxHandleT<hvInvalid> CxHandleInvalid;
 
 xNAMESPACE_END(NxLib)
+//------------------------------------------------------------------------------
+#include "CxHandleT.inl"
 //------------------------------------------------------------------------------
