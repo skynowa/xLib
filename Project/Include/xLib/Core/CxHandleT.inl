@@ -227,15 +227,15 @@ CxHandleT<tagT>::info() const
 {
     ////xTEST_EQ(true, isValid(), 0UL);
 
-    DWORD dwFlags = 0UL;
+    DWORD flags = 0UL;
 
-    BOOL blRes = ::GetHandleInformation(_handle, &dwFlags);
+    BOOL blRes = ::GetHandleInformation(_handle, &flags);
     xUNUSED(blRes);
 
     ////xTEST_DIFF(FALSE, blRes);
     ////xTEST_DIFF(0UL,   ulFlags);
 
-    return dwFlags;
+    return flags;
 }
 
 #endif
