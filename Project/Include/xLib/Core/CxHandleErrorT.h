@@ -17,7 +17,7 @@ enum ExHandleValue
     hvNull    = 0       ///< like "null"
 };
 
-template<ExHandleValue hvTag>
+template<ExHandleValue tagT>
 struct CxHandleErrorT;
     /// handle error
 
