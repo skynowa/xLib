@@ -74,7 +74,7 @@ CxTest_CxSystemInfo::unit(
             mapData.insert( std::pair<CxSystemInfo::ExOsType, std::tstring_t>(CxSystemInfo::otWindows7,               xT("Windows 7")) );
 
             xFOREACH_CONST(TData, it, mapData) {
-                m_sRv = CxSystemInfo::formatOsType((*it).first);
+                m_sRv = CxSystemInfo().formatOsType((*it).first);
                 xTEST_EQ((*it).second, m_sRv);
             }
         #elif xOS_ENV_UNIX
