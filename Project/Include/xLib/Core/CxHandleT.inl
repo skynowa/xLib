@@ -22,14 +22,14 @@ xNAMESPACE_BEGIN(NxLib)
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-template<ExHandleValue hvTag>
-CxHandleT<hvTag>::CxHandleT() :
+template<ExHandleValue tagT>
+CxHandleT<tagT>::CxHandleT() :
     _handle( error_value_t::get() )
 {
 }
 //------------------------------------------------------------------------------
-template<ExHandleValue hvTag>
-CxHandleT<hvTag>::CxHandleT(
+template<ExHandleValue tagT>
+CxHandleT<tagT>::CxHandleT(
     cnative_handle_t &a_handle
 ) :
     _handle(a_handle)
@@ -37,8 +37,8 @@ CxHandleT<hvTag>::CxHandleT(
     xTEST_NA(a_handle);
 }
 //------------------------------------------------------------------------------
-template<ExHandleValue hvTag>
-CxHandleT<hvTag>::CxHandleT(
+template<ExHandleValue tagT>
+CxHandleT<tagT>::CxHandleT(
     const CxHandleT &a_handle
 ) :
     _handle( error_value_t::get() )
@@ -48,8 +48,8 @@ CxHandleT<hvTag>::CxHandleT(
     _handle = a_handle.duplicate();
 }
 //------------------------------------------------------------------------------
-template<ExHandleValue hvTag>
-CxHandleT<hvTag>::~CxHandleT()
+template<ExHandleValue tagT>
+CxHandleT<tagT>::~CxHandleT()
 {
     close();
 }
@@ -62,9 +62,9 @@ CxHandleT<hvTag>::~CxHandleT()
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-template<ExHandleValue hvTag>
-CxHandleT<hvTag> &
-CxHandleT<hvTag>::operator = (
+template<ExHandleValue tagT>
+CxHandleT<tagT> &
+CxHandleT<tagT>::operator = (
     cnative_handle_t &a_handle
 )
 {
@@ -82,9 +82,9 @@ CxHandleT<hvTag>::operator = (
     return *this;
 }
 //------------------------------------------------------------------------------
-template<ExHandleValue hvTag>
-CxHandleT<hvTag> &
-CxHandleT<hvTag>::operator = (
+template<ExHandleValue tagT>
+CxHandleT<tagT> &
+CxHandleT<tagT>::operator = (
     const CxHandleT &a_handle
 )
 {
@@ -101,16 +101,16 @@ CxHandleT<hvTag>::operator = (
     return *this;
 }
 //------------------------------------------------------------------------------
-template<ExHandleValue hvTag>
+template<ExHandleValue tagT>
 native_handle_t
-CxHandleT<hvTag>::get() const
+CxHandleT<tagT>::get() const
 {
     return _handle;
 }
 //------------------------------------------------------------------------------
-template<ExHandleValue hvTag>
+template<ExHandleValue tagT>
 void_t
-CxHandleT<hvTag>::set(
+CxHandleT<tagT>::set(
     cnative_handle_t &a_handle
 )
 {
@@ -119,9 +119,9 @@ CxHandleT<hvTag>::set(
     _handle = a_handle;
 }
 //------------------------------------------------------------------------------
-template<ExHandleValue hvTag>
+template<ExHandleValue tagT>
 native_handle_t
-CxHandleT<hvTag>::duplicate() const
+CxHandleT<tagT>::duplicate() const
 {
     xCHECK_RET(!isValid(), error_value_t::get());
 
@@ -148,9 +148,9 @@ CxHandleT<hvTag>::duplicate() const
     return hRv;
 }
 //------------------------------------------------------------------------------
-template<ExHandleValue hvTag>
+template<ExHandleValue tagT>
 bool_t
-CxHandleT<hvTag>::isValid() const
+CxHandleT<tagT>::isValid() const
 {
     bool_t bRv = false;
 
@@ -174,9 +174,9 @@ CxHandleT<hvTag>::isValid() const
     return bRv;
 }
 //------------------------------------------------------------------------------
-template<ExHandleValue hvTag>
+template<ExHandleValue tagT>
 void_t
-CxHandleT<hvTag>::attach(
+CxHandleT<tagT>::attach(
     cnative_handle_t &a_handle
 )
 {
@@ -188,9 +188,9 @@ CxHandleT<hvTag>::attach(
     _handle = a_handle;
 }
 //------------------------------------------------------------------------------
-template<ExHandleValue hvTag>
+template<ExHandleValue tagT>
 native_handle_t
-CxHandleT<hvTag>::detach()
+CxHandleT<tagT>::detach()
 {
     native_handle_t hHandle = _handle;
 
@@ -199,9 +199,9 @@ CxHandleT<hvTag>::detach()
     return hHandle;
 }
 //------------------------------------------------------------------------------
-template<ExHandleValue hvTag>
+template<ExHandleValue tagT>
 void_t
-CxHandleT<hvTag>::close()
+CxHandleT<tagT>::close()
 {
     xCHECK_DO(!isValid(), _handle = error_value_t::get(); return);
 
@@ -221,9 +221,9 @@ CxHandleT<hvTag>::close()
 //------------------------------------------------------------------------------
 #if xOS_ENV_WIN
 
-template<ExHandleValue hvTag>
+template<ExHandleValue tagT>
 ulong_t
-CxHandleT<hvTag>::info() const
+CxHandleT<tagT>::info() const
 {
     ////xTEST_EQ(true, isValid(), 0UL);
 
@@ -242,9 +242,9 @@ CxHandleT<hvTag>::info() const
 //------------------------------------------------------------------------------
 #if xOS_ENV_WIN
 
-template<ExHandleValue hvTag>
+template<ExHandleValue tagT>
 void_t
-CxHandleT<hvTag>::setInfo(
+CxHandleT<tagT>::setInfo(
     culong_t &a_mask,
     culong_t &a_flags
 )
