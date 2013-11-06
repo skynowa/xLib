@@ -535,25 +535,25 @@ CxDateTime::isValid(
     cushort_t &a_msec
 )
 {
-    bool_t bYear   = (/*cusYear   >= 0U && */a_year   <= 9999U);
+    bool_t bYear   = (/*a_year   >= 0U && */a_year   <= 9999U);
     xTEST_EQ(true, bYear);
 
-    bool_t bMonth  = (/*cusMonth  >= 0 /1/ &&*/ a_month  <= 12U);
+    bool_t bMonth  = (/*a_month  >= 0 /1/ &&*/ a_month  <= 12U);
     xTEST_EQ(true, bMonth);
 
-    bool_t bDay    = true; ////(usDay    >= 0/*1*/ && usDay    <= usDaysInMonth(a_usYear, a_month));
+    bool_t bDay    = true; ////(a_day    >= 0/*1*/ && a_day    <= usDaysInMonth(a_year, a_month));
     xTEST_EQ(true, bDay);
 
-    bool_t bHour   = (/*cusHour   >= 0 &&*/ a_hour   <= 23U);
+    bool_t bHour   = (/*a_hour   >= 0 &&*/ a_hour   <= 23U);
     xTEST_EQ(true, bHour);
 
-    bool_t bMinute = (/*cusMinute >= 0 &&*/ a_minute <= 59U);
+    bool_t bMinute = (/*a_minute >= 0 &&*/ a_minute <= 59U);
     xTEST_EQ(true, bMinute);
 
-    bool_t bSecond = (/*cusSecond >= 0 &&*/ a_second <= 59U);
+    bool_t bSecond = (/*a_second >= 0 &&*/ a_second <= 59U);
     xTEST_EQ(true, bSecond);
 
-    bool_t bMsec   = (/*cusMillisecond >= 0 &&*/ a_msec   <= 999U);
+    bool_t bMsec   = (/*a_msec >= 0 &&*/ a_msec   <= 999U);
     xTEST_EQ(true, bMsec);
 
     xCHECK_RET(!(bYear && bMonth && bDay && bHour && bMinute && bSecond && bMsec), false);
@@ -604,17 +604,17 @@ CxDateTime::current()
     xTEST_PTR(dateTime);
 
     // set datetime
-    ushort_t usYear        = dateTime->tm_year + 1900U;
-    ushort_t usMonth       = dateTime->tm_mon  + 1U;   //TODO: +1U ???
-    ushort_t usDay         = dateTime->tm_mday;
-    ushort_t usHour        = dateTime->tm_hour;
-    ushort_t usMinute      = dateTime->tm_min;
-    ushort_t usSecond      = dateTime->tm_sec;
-    ushort_t usMillisecond = static_cast<ushort_t>( time.tv_usec * 0.001 );
+    ushort_t year   = dateTime->tm_year + 1900U;
+    ushort_t month  = dateTime->tm_mon  + 1U;   // TODO: +1U ???
+    ushort_t day    = dateTime->tm_mday;
+    ushort_t hour   = dateTime->tm_hour;
+    ushort_t minute = dateTime->tm_min;
+    ushort_t second = dateTime->tm_sec;
+    ushort_t msec = static_cast<ushort_t>( time.tv_usec * 0.001 );
 
-    xTEST_EQ(true, isValid(usYear, usMonth, usDay, usHour, usMinute, usSecond, usMillisecond));
+    xTEST_EQ(true, isValid(year, month, day, hour, minute, second, msec));
 
-    return CxDateTime(usYear, usMonth, usDay, usHour, usMinute, usSecond, usMillisecond);
+    return CxDateTime(year, month, day, hour, minute, second, msec);
 #endif
 }
 //------------------------------------------------------------------------------
@@ -662,12 +662,12 @@ CxDateTime::fileTimeToUnixTime(
     const FILETIME &a_fileTime
 )
 {
-    const __int64 NANOSECS_BETWEEN_EPOCHS = 116444736000000000LL;
+    const __int64 nanosecsBetweenEpochs = 116444736000000000LL;
 
     __int64 llRv = 0LL;
 
     llRv = (static_cast<__int64>( a_fileTime.dwHighDateTime ) << 32) + a_fileTime.dwLowDateTime;
-    llRv -= NANOSECS_BETWEEN_EPOCHS;
+    llRv -= nanosecsBetweenEpochs;
     llRv /= 10000000;
 
     return static_cast<time_t>( llRv );
@@ -712,27 +712,6 @@ CxDateTime::isLeapYear(
 *******************************************************************************/
 
 //------------------------------------------------------------------------------
-/*
-NOTE: signs of the zodiac
-
-        -----------------------------------------------------
-        |  Знак     |  Символ  |  Западная астрология       |
-        -----------------------------------------------------
-        |  Овеен    |  U+2648  |  21 марта    — 20 апреля   |
-        |  Телец    |  U+2649  |  21 апреля   — 21 мая      |
-        |  Близнецы |  U+264A  |  22 мая      — 21 июня     |
-        |  Рак      |  U+264B  |  22 июня     — 23 июля     |
-        |  Лев      |  U+264С  |  24 июля     — 23 августа  |
-        |  Дева     |  U+264D  |  24 августа  — 23 сентября |
-        |  Весы     |  U+264E  |  24 сентября — 23 октября  |
-        |  Скорпион |  U+264F  |  24 октября  — 22 ноября   |
-        |  Стрелец  |  U+2650  |  23 ноября   — 21 декабря  |
-        |  Козерог  |  U+2651  |  22 декабря  — 20 января   |
-        |  Водолей  |  U+2652  |  21 января   — 19 февраля  |
-        |  Рыбы     |  U+2653  |  20 февраля  — 20 марта    |
-        -----------------------------------------------------
-*/
-
 /* static */
 xINLINE_HO std::tstring_t
 CxDateTime::zodiacSign(
@@ -740,8 +719,29 @@ CxDateTime::zodiacSign(
     cushort_t &a_day
 )
 {
-    // usDay
-    // usMonth
+   /**
+    * NOTE: signs of the zodiac
+    *
+    *  -----------------------------------------------------
+    *  |  Знак     |  Символ  |  Западная астрология       |
+    *  -----------------------------------------------------
+    *  |  Овен     |  U+2648  |  21 марта    — 20 апреля   |
+    *  |  Телец    |  U+2649  |  21 апреля   — 21 мая      |
+    *  |  Близнецы |  U+264A  |  22 мая      — 21 июня     |
+    *  |  Рак      |  U+264B  |  22 июня     — 23 июля     |
+    *  |  Лев      |  U+264С  |  24 июля     — 23 августа  |
+    *  |  Дева     |  U+264D  |  24 августа  — 23 сентября |
+    *  |  Весы     |  U+264E  |  24 сентября — 23 октября  |
+    *  |  Скорпион |  U+264F  |  24 октября  — 22 ноября   |
+    *  |  Стрелец  |  U+2650  |  23 ноября   — 21 декабря  |
+    *  |  Козерог  |  U+2651  |  22 декабря  — 20 января   |
+    *  |  Водолей  |  U+2652  |  21 января   — 19 февраля  |
+    *  |  Рыбы     |  U+2653  |  20 февраля  — 20 марта    |
+    *  -----------------------------------------------------
+    */
+
+    // day
+    // month
 
     // Овен     |  U+2648  |  21 марта    — 20 апреля
     xCHECK_RET(a_month == 3  && a_day >= 21, xT("Овен"));
@@ -803,7 +803,7 @@ CxDateTime::monthStr(
     cbool_t  &a_isShortName
 )
 {
-    // usMonth      - n/a
+    // month      - n/a
     // bIsShortName - n/a
 
     xCHECK_DO(12 < a_month, a_month = 12);
@@ -896,10 +896,10 @@ CxDateTime::monthNum(
 
     for (ushort_t i = 0; i < static_cast<ushort_t>( longMonths.size() ); ++ i) {
         xCHECK_RET(!a_isShortName && CxString::compareNoCase(a_month, longMonths[i]),  i + 1);
-        xCHECK_RET(true  == a_isShortName && CxString::compareNoCase(a_month, shortMonths[i]), i + 1);
+        xCHECK_RET(a_isShortName  && CxString::compareNoCase(a_month, shortMonths[i]), i + 1);
     }
 
-    return static_cast<ushort_t>( - 1 );  //TODO: static_cast<ushort_t>( - 1 )
+    return static_cast<ushort_t>( - 1 );  // TODO: static_cast<ushort_t>( - 1 )
 }
 //------------------------------------------------------------------------------
 /* static */
@@ -917,7 +917,7 @@ CxDateTime::weekDayStr(
     std::tstring_t sRv;
 
     if (!a_isShortName) {
-        //days numbering: 0-6
+        // days numbering: 0-6
         const CxArray<std::tstring_t, 7> longDays = {{
             xT("Sunday"),
             xT("Monday"),
@@ -930,7 +930,7 @@ CxDateTime::weekDayStr(
 
         sRv = longDays[a_day];
     } else {
-        //days numbering: 0-6
+        // days numbering: 0-6
         const CxArray<std::tstring_t, 8> shortDays = {{
             xT("Sun"),
             xT("Mon"),
@@ -954,7 +954,7 @@ CxDateTime::weekDayNum(
     cbool_t         &a_isShortName
 )
 {
-    //days numbering: 0-6
+    // days numbering: 0-6
     const CxArray<std::tstring_t, 7> longDays = {{
         xT("Sunday"),
         xT("Monday"),
@@ -965,7 +965,7 @@ CxDateTime::weekDayNum(
         xT("Saturday")
     }};
 
-    //days numbering: 0-6
+    // days numbering: 0-6
     const CxArray<std::tstring_t, 7> shortDays = {{
         xT("Sun"),
         xT("Mon"),
@@ -978,7 +978,7 @@ CxDateTime::weekDayNum(
 
     for (ushort_t i = 0; i < static_cast<ushort_t>( longDays.size() ); ++ i) {
         xCHECK_RET(!a_isShortName && CxString::compareNoCase(a_day, longDays[i]),  i);
-        xCHECK_RET(true  == a_isShortName && CxString::compareNoCase(a_day, shortDays[i]), i);
+        xCHECK_RET( a_isShortName && CxString::compareNoCase(a_day, shortDays[i]), i);
     }
 
     return static_cast<ushort_t>( - 1 );  //TODO: static_cast<ushort_t>( - 1 )
