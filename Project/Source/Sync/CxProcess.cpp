@@ -543,7 +543,7 @@ CxProcess::currentParentId()
 
     // TODO: ProcessBasicInformation (for x64)
     NTSTATUS ntsRes = DllNtQueryInformationProcess(
-                            handle(),
+                            currentHandle(),
                             infoClass,
                            &processInformation, sizeof(processInformation), &returnSizeBytes);
     xTEST_EQ(true, NT_SUCCESS(ntsRes));
