@@ -168,25 +168,25 @@ CxIpcSemaphore::wait(
     DWORD dwRv = ::WaitForSingleObject(_handle.get(), a_timeoutMsec);
     xTEST_EQ(WAIT_OBJECT_0, dwRv);
 #elif xOS_ENV_UNIX
-    struct _SFunctor {
-        static
-        void_t
-        timespec_addms(
-            struct timespec *ts,
-            long             ms
+    struct _SFunctor
+    {
+        static void_t
+        timespecAddMsec(
+            struct timespec *a_ts,
+            long             a_ms
         )
         {
             int_t sec = 0;
 
-            sec = ms / 1000;
-            ms  = ms - sec * 1000;
+            sec  = a_ms / 1000;
+            a_ms = a_ms - sec * 1000;
 
             // perform the addition
-            ts->tv_nsec += ms * 1000000;
+            a_ts->tv_nsec += a_ms * 1000000;
 
             // adjust the time
-            ts->tv_sec += ts->tv_nsec / 1000000000 + sec;
-            ts->tv_nsec = ts->tv_nsec % 1000000000;
+            a_ts->tv_sec += a_ts->tv_nsec / 1000000000 + sec;
+            a_ts->tv_nsec = a_ts->tv_nsec % 1000000000;
         }
     };
 
@@ -199,7 +199,7 @@ CxIpcSemaphore::wait(
         iRv = ::clock_gettime(CLOCK_REALTIME, &tmsTimeout);
         xTEST_DIFF(- 1, iRv);
 
-        (void_t)_SFunctor::timespec_addms(&tmsTimeout, a_timeoutMsec);
+        (void_t)_SFunctor::timespecAddMsec(&tmsTimeout, a_timeoutMsec);
     }
 
 #if xC99_OLD

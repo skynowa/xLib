@@ -877,11 +877,10 @@ CxPath::brief(
     xTEST_LESS(size_t(0), a_maxSize);
 
     // util function
-    struct _SSlashes
+    struct _SFunctor
     {
-        static
-        void_t
-        make(
+        static void_t
+        slashesMake(
             std::tstring_t &a_str,
             size_t         &a_num
         )
@@ -895,7 +894,7 @@ CxPath::brief(
 
                 xCHECK_DO(std::tstring_t::npos != pos,  ++ index);
                 xCHECK_DO(index == a_num && 0 != a_num, break);
-                xCHECK_DO(std::tstring_t::npos == pos,      break);
+                xCHECK_DO(std::tstring_t::npos == pos,  break);
             }
 
             a_num = index;
@@ -907,19 +906,19 @@ CxPath::brief(
     std::tstring_t sPath = filePath();
     size_t         num = 0;
 
-    _SSlashes::make(sPath, num);
+    _SFunctor::slashesMake(sPath, num);
 
     while (sRv.size() > a_maxSize && num > 2) {
         sPath = sRv;
 
         std::size_t uiNumNew = num / 2;
 
-        _SSlashes::make(sPath, uiNumNew);
+        _SFunctor::slashesMake(sPath, uiNumNew);
 
         sRv.erase(sRv.find(sPath), sPath.size());
 
         uiNumNew = 2;
-        _SSlashes::make(sPath, uiNumNew);
+        _SFunctor::slashesMake(sPath, uiNumNew);
 
         sRv.append(CxConst::x3DOT() + CxConst::xSLASH() + sPath);
 

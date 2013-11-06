@@ -342,7 +342,8 @@ CxVolume::paths(
     }
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        struct _SMounts {
+        struct _SMounts
+        {
             std::tstring_t device;
             std::tstring_t destination;
             std::tstring_t fsType;
@@ -352,10 +353,10 @@ CxVolume::paths(
         };
 
         std::tifstream_t procMounts(xT("/proc/mounts"));
-        xTEST_EQ(true, !! procMounts.good());
+        xTEST_EQ(true, procMounts.good());
 
         for ( ; !procMounts.eof(); ) {
-            _SMounts mounts;
+            _SMounts mounts = {0};
 
             procMounts >> mounts.device  >> mounts.destination >> mounts.fsType >>
                           mounts.options >> mounts.dump        >> mounts.pass;
