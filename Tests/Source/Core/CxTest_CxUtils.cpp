@@ -267,7 +267,7 @@ CxTest_CxUtils::unit(
         };
 
         for (size_t i = 0; i < CxUtils::arraySizeT(cdData); ++ i) {
-            cbool_t bRv  = (cbool_t)( cdData[i][2] );
+            cbool_t bRv  = !!( cdData[i][2] );
             m_bRv = CxUtils::doubleIsEqual(cdData[i][0], cdData[i][1]);
             xTEST_EQ(m_bRv, bRv);
         }
