@@ -18,8 +18,8 @@ class CxWaitableTimer  :
     /// waitable timer
 {
 public:
-             CxWaitableTimer();
-    virtual ~CxWaitableTimer();
+             CxWaitableTimer() {}
+    virtual ~CxWaitableTimer() {}
 
     HANDLE   handle() const xWARN_UNUSED_RV;
     void_t   create(cbool_t &isManualReset, std::ctstring_t &name/* = NULL*/,
