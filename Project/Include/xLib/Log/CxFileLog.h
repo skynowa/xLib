@@ -7,12 +7,6 @@
 #pragma once
 
 #include <xLib/Core/xCore.h>
-
-#if   xOS_ENV_WIN
-    #include <Sync/CxIpcMutex.h>
-#elif xOS_ENV_UNIX
-
-#endif
 //------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
