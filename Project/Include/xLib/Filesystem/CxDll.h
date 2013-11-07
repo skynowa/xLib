@@ -11,7 +11,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxDll :
-    private CxNonCopyable
+    public CxNonCopyable
     /// dynamic linking loader
 {
 public:

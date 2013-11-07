@@ -13,7 +13,7 @@ xNAMESPACE_BEGIN(NxLib)
 class CxFile;
 
 class CxFileTemp :
-    private CxNonCopyable
+    public CxNonCopyable
     /// temporary file
 {
 public:

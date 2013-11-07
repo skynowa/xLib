@@ -13,7 +13,7 @@ xNAMESPACE_BEGIN(NxLib)
 class CxString;
 
 class CxTracer :
-    private CxNonCopyable
+    public CxNonCopyable
     /// tracing
 {
 public:

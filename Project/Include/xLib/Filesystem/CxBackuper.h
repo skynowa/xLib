@@ -11,7 +11,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxBackuper :
-    private CxNonCopyable
+    public CxNonCopyable
     /// backup file
 {
 public:

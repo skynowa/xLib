@@ -14,7 +14,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxWaitableTimer  :
-    private CxNonCopyable
+    public CxNonCopyable
     /// waitable timer
 {
 public:

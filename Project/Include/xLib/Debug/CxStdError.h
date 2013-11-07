@@ -11,7 +11,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxStdError :
-    private CxNonCopyable
+    public CxNonCopyable
     /// standard C library last error
 {
 public:

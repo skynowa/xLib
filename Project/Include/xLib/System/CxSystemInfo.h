@@ -11,7 +11,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxSystemInfo :
-    private CxNonCopyable
+    public CxNonCopyable
     /// system information
 {
 public:

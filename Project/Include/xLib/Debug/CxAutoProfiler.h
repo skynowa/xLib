@@ -12,7 +12,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxAutoProfiler :
-    private CxNonCopyable
+    public CxNonCopyable
     /// auto code profiling
 {
 public:

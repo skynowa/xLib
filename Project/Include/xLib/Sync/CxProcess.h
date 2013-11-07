@@ -12,7 +12,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxProcess :
-    private CxNonCopyable
+    public CxNonCopyable
     /// process
 {
 public:

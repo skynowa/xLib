@@ -11,7 +11,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxUtils :
-    private CxNonCopyable
+    public CxNonCopyable
     /// help macros
 {
 public:

@@ -15,7 +15,7 @@ class CxMimeHeader;
 class CxMimeBody;
 
 class CxSmtp :
-    private CxNonCopyable
+    public CxNonCopyable
     /// SMTP (RFC 2821)
 {
 public:

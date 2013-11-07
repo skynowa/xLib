@@ -11,7 +11,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxAtomicLongInt :
-    private CxNonCopyable
+    public CxNonCopyable
     /// atomic operations with long_t
 {
 public:

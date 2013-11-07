@@ -12,7 +12,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxErrorReport :
-    private CxNonCopyable
+    public CxNonCopyable
     /// debug report
 {
 public:

@@ -11,7 +11,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxStackTrace :
-    private CxNonCopyable
+    public CxNonCopyable
     /// stack trace
 {
 public:
