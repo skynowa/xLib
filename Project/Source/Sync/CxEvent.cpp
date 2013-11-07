@@ -90,8 +90,8 @@ CxEvent::set()
 #if xOS_ENV_WIN
     xTEST_EQ(true, _event.isValid());
 
-    BOOL blRes = ::SetEvent(handle().get());
-    xTEST_DIFF(FALSE, blRes);
+    BOOL blRv = ::SetEvent(handle().get());
+    xTEST_DIFF(FALSE, blRv);
 #else
     int_t iRv = - 1;
 
@@ -121,8 +121,8 @@ CxEvent::reset()
 #if xOS_ENV_WIN
     xTEST_EQ(true, _event.isValid());
 
-    BOOL blRes = ::ResetEvent(handle().get());
-    xTEST_DIFF(FALSE, blRes);
+    BOOL blRv = ::ResetEvent(handle().get());
+    xTEST_DIFF(FALSE, blRv);
 #else
     int_t iRv = - 1;
 
@@ -145,12 +145,12 @@ CxEvent::wait(
 {
     // timeoutMs - n/a
 
-    ExObjectState osRes = osFailed;
+    ExObjectState osRv = osFailed;
 
 #if xOS_ENV_WIN
     xTEST_EQ(true, _event.isValid());
 
-    osRes = static_cast<ExObjectState>( ::WaitForSingleObject(handle().get(), a_timeoutMs) );
+    osRv = static_cast<ExObjectState>( ::WaitForSingleObject(handle().get(), a_timeoutMs) );
 #else
     int_t iRv = - 1;
 
@@ -202,15 +202,15 @@ CxEvent::wait(
                 _isSignaled = false;
             }
 
-            osRes = osSignaled;
+            osRv = osSignaled;
             break;
         case ETIMEDOUT:
-            osRes = osTimeout;
+            osRv = osTimeout;
 
             if (_isAutoReset) {
                 _isSignaled = false;
             } else {
-                osRes = _initState ? osSignaled : osTimeout;
+                osRv = _initState ? osSignaled : osTimeout;
                 _isSignaled = _initState;
             }
             break;
@@ -222,9 +222,9 @@ CxEvent::wait(
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 #endif
 
-    xTEST_MSG_EQ(true, osSignaled == osRes || osTimeout == osRes, CxLastError::format(osRes));
+    xTEST_MSG_EQ(true, osSignaled == osRv || osTimeout == osRv, CxLastError::format(osRv));
 
-    return osRes;
+    return osRv;
 }
 //------------------------------------------------------------------------------
 xINLINE_HO bool_t

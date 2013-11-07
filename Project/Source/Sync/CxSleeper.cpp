@@ -29,8 +29,8 @@ CxSleeper::sleep(
 {
     // n/a
 
-    CxEvent::ExObjectState osRes = _event.wait(a_culTimeout);
-    xTEST_EQ(true, CxEvent::osSignaled == osRes || CxEvent::osTimeout == osRes);
+    CxEvent::ExObjectState osRv = _event.wait(a_culTimeout);
+    xTEST_EQ(true, CxEvent::osSignaled == osRv || CxEvent::osTimeout == osRv);
 }
 //------------------------------------------------------------------------------
 xINLINE_HO void_t

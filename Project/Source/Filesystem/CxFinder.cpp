@@ -199,8 +199,8 @@ CxFinder::close() {
     // close handle
     {
     #if xOS_ENV_WIN
-        BOOL blRes = ::FindClose(_enrty.handle);
-        xTEST_DIFF(FALSE, blRes);
+        BOOL blRv = ::FindClose(_enrty.handle);
+        xTEST_DIFF(FALSE, blRv);
     #else
         int_t iRv = ::closedir(_enrty.handle);
         xTEST_DIFF(- 1, iRv);

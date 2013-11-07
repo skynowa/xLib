@@ -167,10 +167,10 @@ CxFile::read(
     xTEST_PTR(a_buff);
     xTEST_NA(a_count);
 
-    size_t uiRes = std::fread(a_buff, 1, a_count, get());
-    xTEST_GR_EQ(a_count, uiRes);
+    size_t uiRv = std::fread(a_buff, 1, a_count, get());
+    xTEST_GR_EQ(a_count, uiRv);
 
-    return uiRes;
+    return uiRv;
 }
 //------------------------------------------------------------------------------
 xINLINE_HO size_t
@@ -182,10 +182,10 @@ CxFile::write(
     xTEST_PTR(a_buff);
     xTEST_NA(a_count);
 
-    size_t uiRes = std::fwrite(a_buff, 1, a_count, get());
-    xTEST_EQ(a_count, uiRes);
+    size_t uiRv = std::fwrite(a_buff, 1, a_count, get());
+    xTEST_EQ(a_count, uiRv);
 
-    return uiRes;
+    return uiRv;
 }
 //------------------------------------------------------------------------------
 xINLINE_HO void_t
@@ -202,9 +202,9 @@ CxFile::read(
     (*a_buff).resize( static_cast<size_t>( fileSize ) );
     xCHECK_DO(0LL == fileSize, return);
 
-    size_t uiRes = std::fread(&(*a_buff).at(0), 1, (*a_buff).size() *
+    size_t uiRv = std::fread(&(*a_buff).at(0), 1, (*a_buff).size() *
         sizeof(std::ustring_t::value_type), get());
-    xTEST_EQ((*a_buff).size(), uiRes);
+    xTEST_EQ((*a_buff).size(), uiRv);
 }
 //------------------------------------------------------------------------------
 xINLINE_HO void_t
@@ -214,9 +214,9 @@ CxFile::write(
 {
     xTEST_NA(a_buff);
 
-    size_t uiRes = std::fwrite(&a_buff.at(0), 1, a_buff.size() *
+    size_t uiRv = std::fwrite(&a_buff.at(0), 1, a_buff.size() *
         sizeof(std::ustring_t::value_type), get());
-    xTEST_EQ(a_buff.size(), uiRes);
+    xTEST_EQ(a_buff.size(), uiRv);
 }
 //------------------------------------------------------------------------------
 xINLINE_HO void_t
@@ -233,9 +233,9 @@ CxFile::read(
     (*a_buff).resize( static_cast<size_t>( fileSize) );
     xCHECK_DO(0LL == fileSize, return);
 
-    size_t uiRes = std::fread(&(*a_buff).at(0), 1, (*a_buff).size() *
+    size_t uiRv = std::fread(&(*a_buff).at(0), 1, (*a_buff).size() *
         sizeof(std::tstring_t::value_type), get());
-    xTEST_EQ((*a_buff).size(), uiRes);
+    xTEST_EQ((*a_buff).size(), uiRv);
 }
 //------------------------------------------------------------------------------
 xINLINE_HO int_t
@@ -283,8 +283,8 @@ CxFile::readLine(
     std::tstring_t str;
     str.resize(a_maxCount + 1); // + 1 for 0
 
-    tchar_t *pszRes = std::xTFGETS(&str.at(0), static_cast<int_t>( str.size() ), get());
-    xTEST_PTR(pszRes);
+    tchar_t *pszRv = std::xTFGETS(&str.at(0), static_cast<int_t>( str.size() ), get());
+    xTEST_PTR(pszRv);
 
     str.erase(str.end() - 1); // erase last char - 0
 
@@ -766,8 +766,8 @@ CxFile::wipe(
                     file.setPosition(0L, ppBegin);
 
                     for (longlong_t i = 0LL; i < llSize; ++ i) {
-                        size_t uiRes = std::fwrite(&chRand, 1, sizeof(chRand), file.get());
-                        xTEST_EQ(sizeof(chRand), uiRes);
+                        size_t uiRv = std::fwrite(&chRand, 1, sizeof(chRand), file.get());
+                        xTEST_EQ(sizeof(chRand), uiRv);
                     }
                 }
 
@@ -776,8 +776,8 @@ CxFile::wipe(
                     file.setPosition(0L, ppBegin);
 
                     for (longlong_t i = 0LL; i < llSize; ++ i) {
-                        size_t uiRes = std::fwrite(&chChar1, 1, sizeof(chChar1), file.get());
-                        xTEST_EQ(sizeof(chChar1), uiRes);
+                        size_t uiRv = std::fwrite(&chChar1, 1, sizeof(chChar1), file.get());
+                        xTEST_EQ(sizeof(chChar1), uiRv);
                     }
                 }
 
@@ -786,8 +786,8 @@ CxFile::wipe(
                     file.setPosition(0L, ppBegin);
 
                     for (longlong_t i = 0LL; i < llSize; ++ i) {
-                        size_t uiRes = std::fwrite(&chChar2, 1, sizeof(chChar2), file.get());
-                        xTEST_EQ(sizeof(chChar2), uiRes);
+                        size_t uiRv = std::fwrite(&chChar2, 1, sizeof(chChar2), file.get());
+                        xTEST_EQ(sizeof(chChar2), uiRv);
                     }
                 }
             }
@@ -992,8 +992,8 @@ CxFile::time(
                              NULL, OPEN_EXISTING, CxFileType::faNormal, NULL);
     xTEST_EQ(true, m_hHandle.isValid());
 
-    BOOL blRes = ::GetFileTime(m_hHandle.get(), &ftCreate, &ftAccess, &ftModified);
-    xTEST_DIFF(FALSE, blRes);
+    BOOL blRv = ::GetFileTime(m_hHandle.get(), &ftCreate, &ftAccess, &ftModified);
+    xTEST_DIFF(FALSE, blRv);
 
     CxUtils::ptrAssignT(a_create,   CxDateTime::fileTimeToUnixTime(ftCreate));
     CxUtils::ptrAssignT(a_access,   CxDateTime::fileTimeToUnixTime(ftAccess));
@@ -1040,8 +1040,8 @@ CxFile::setTime(
                              NULL, OPEN_EXISTING, CxFileType::faNormal, NULL);
     xTEST_EQ(true, m_hHandle.isValid());
 
-    BOOL blRes = ::SetFileTime(m_hHandle.get(), &ftCreate, &ftAccess, &ftModified);
-    xTEST_DIFF(FALSE, blRes);
+    BOOL blRv = ::SetFileTime(m_hHandle.get(), &ftCreate, &ftAccess, &ftModified);
+    xTEST_DIFF(FALSE, blRv);
 #else
     utimbuf tbTimes = {0};
 
@@ -1124,15 +1124,15 @@ CxFile::textRead(
     xTEST_EQ(true,  isExists(a_filePath));
     xTEST_PTR(a_content);
 
-    std::vec_tstring_t vsRes;
+    std::vec_tstring_t vsRv;
     std::tstring_t     sFileContent;
 
     textRead(a_filePath, &sFileContent);
 
-    CxString::split(sFileContent, CxConst::nl(), &vsRes);
+    CxString::split(sFileContent, CxConst::nl(), &vsRv);
 
     // out
-    a_content->swap(vsRes);
+    a_content->swap(vsRv);
 }
 //------------------------------------------------------------------------------
 /* static */
@@ -1199,16 +1199,16 @@ CxFile::textRead(
 #if xTODO
     bool_t               bRv = false;
     std::map_tstring_t msRv;
-    std::vec_tstring_t vsRes;
+    std::vec_tstring_t vsRv;
 
-    bRv = textRead(filePath, &vsRes);
+    bRv = textRead(filePath, &vsRv);
     xTEST_EQ(true, bRv);
 
     std::vec_tstring_t::_const_iterator it;
-    for (it = vsRes.begin(); it != vsRes.end(); ++ it) {
+    for (it = vsRv.begin(); it != vsRv.end(); ++ it) {
         std::vec_tstring_t vsLine;
 
-        CxString::split(vsRes.at(0), separator, &vsLine);
+        CxString::split(vsRv.at(0), separator, &vsLine);
         msRv.insert( std::pair<std::tstring_t, std::tstring_t>(vsLine.at(0), vsLine.at(1)) );
     }
 
@@ -1348,10 +1348,10 @@ CxFile::_stdHandle(
     xTEST_NA(a_fileHandle);
     xTEST_NA(a_mode);
 
-    std::FILE *pfRes = ::xTFDOPEN(a_fileHandle, _openMode(a_mode).c_str());
-    xTEST_PTR(pfRes);
+    std::FILE *pfRv = ::xTFDOPEN(a_fileHandle, _openMode(a_mode).c_str());
+    xTEST_PTR(pfRv);
 
-    return pfRes;
+    return pfRv;
 }
 //------------------------------------------------------------------------------
 /* static */

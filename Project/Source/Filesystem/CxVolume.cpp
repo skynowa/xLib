@@ -57,11 +57,11 @@ CxVolume::volumePath() const
 xINLINE_HO CxVolume::ExType
 CxVolume::type() const
 {
-    ExType dtRes = dtUnknown;
+    ExType dtRv = dtUnknown;
 
 #if   xOS_ENV_WIN
-    dtRes = static_cast<ExType>( ::GetDriveType( CxPath(volumePath()).slashAppend().c_str() ) );
-    xTEST_NA(dtRes);
+    dtRv = static_cast<ExType>( ::GetDriveType( CxPath(volumePath()).slashAppend().c_str() ) );
+    xTEST_NA(dtRv);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         FILE *file = ::setmntent(xT("/etc/mtab"), xT("r"));
@@ -78,7 +78,7 @@ CxVolume::type() const
             xCHECK_DO(!bRv, continue);
 
             // TODO: CxVolume::dtGetType
-            dtRes = (NULL == mountPoint->mnt_type) ? dtUnknown : dtOther;
+            dtRv = (NULL == mountPoint->mnt_type) ? dtUnknown : dtOther;
 
             break;
         }
@@ -92,7 +92,7 @@ CxVolume::type() const
     xNOT_IMPLEMENTED
 #endif
 
-    return dtRes;
+    return dtRv;
 }
 //--------------------------------------------------------------------------
 xINLINE_HO std::tstring_t
@@ -108,7 +108,7 @@ CxVolume::label() const
 
     CxLastError::reset();
 
-    BOOL blRes = ::GetVolumeInformation(
+    BOOL blRv = ::GetVolumeInformation(
                         CxPath( volumePath() ).slashAppend().c_str(),
                         &volumeName[0],
                         static_cast<DWORD>( xARRAY_SIZE(volumeName) ),
@@ -118,7 +118,7 @@ CxVolume::label() const
                         NULL,
                         0
     );
-    xTEST_DIFF(false, blRes && 0UL == CxLastError::get());
+    xTEST_DIFF(false, blRv && 0UL == CxLastError::get());
 
     sRv.assign(volumeName);
 #else
@@ -211,8 +211,8 @@ CxVolume::mount(
     netResource.lpComment     = NULL;
     netResource.lpProvider    = NULL;
 
-    DWORD dwRes = ::WNetAddConnection2(&netResource, NULL, NULL, CONNECT_UPDATE_PROFILE);
-    xTEST_EQ(static_cast<DWORD>( NO_ERROR ), dwRes);
+    DWORD dwRv = ::WNetAddConnection2(&netResource, NULL, NULL, CONNECT_UPDATE_PROFILE);
+    xTEST_EQ(static_cast<DWORD>( NO_ERROR ), dwRv);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         int_t iRv = ::mount(volumePath().c_str(), a_destPath.c_str(), NULL, MS_REMOUNT, NULL);
@@ -235,8 +235,8 @@ CxVolume::unMount(
 
 #if   xOS_ENV_WIN
     // TODO: CxVolume::bUnMount - is it correct?
-    DWORD dwRes = ::WNetCancelConnection2(volumePath().c_str(), CONNECT_UPDATE_PROFILE, a_isForce);
-    xTEST_EQ(static_cast<DWORD>( NO_ERROR ), dwRes);
+    DWORD dwRv = ::WNetCancelConnection2(volumePath().c_str(), CONNECT_UPDATE_PROFILE, a_isForce);
+    xTEST_EQ(static_cast<DWORD>( NO_ERROR ), dwRv);
 #elif xOS_ENV_UNIX
     #ifdef MNT_DETACH
         #define xMNT_DETACH MNT_DETACH
@@ -298,8 +298,8 @@ CxVolume::space(
     ULARGE_INTEGER total     = {{0}};
     ULARGE_INTEGER free      = {{0}};
 
-    BOOL blRes = ::GetDiskFreeSpaceEx(dirPath.c_str(), &available, &total, &free);
-    xTEST_DIFF(FALSE, blRes);
+    BOOL blRv = ::GetDiskFreeSpaceEx(dirPath.c_str(), &available, &total, &free);
+    xTEST_DIFF(FALSE, blRv);
 
     CxUtils::ptrAssignT(a_available, available.QuadPart);
     CxUtils::ptrAssignT(a_total,     total.QuadPart);
@@ -324,7 +324,7 @@ CxVolume::paths(
 {
     xTEST_PTR(a_volumePaths);
 
-    std::vec_tstring_t vsRes;
+    std::vec_tstring_t vsRv;
 
 #if   xOS_ENV_WIN
     std::tstring_t sRv;
@@ -339,7 +339,7 @@ CxVolume::paths(
     xTEST_DIFF(0UL, dwRv);
 
     for (ctchar_t *s = sRv.c_str(); 0 != *s; s += ::lstrlen(s) + 1) {
-        vsRes.push_back(s);
+        vsRv.push_back(s);
     }
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
@@ -363,7 +363,7 @@ CxVolume::paths(
                           mounts.options >> mounts.dump        >> mounts.pass;
             xCHECK_DO(mounts.device.empty(), continue);
 
-            vsRes.push_back(mounts.destination);
+            vsRv.push_back(mounts.destination);
         }
     #elif xOS_FREEBSD
         // TODO: CxVolume::paths
@@ -373,7 +373,7 @@ CxVolume::paths(
 #endif
 
     // out
-    a_volumePaths->swap(vsRes);
+    a_volumePaths->swap(vsRv);
 }
 //--------------------------------------------------------------------------
 

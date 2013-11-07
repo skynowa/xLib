@@ -43,13 +43,13 @@ xINLINE_HO
 CxProcess::~CxProcess()
 {
 #if xOS_ENV_WIN
-    BOOL blRes = FALSE;
+    BOOL blRv = FALSE;
 
-    blRes = ::CloseHandle(_thread);
-    xTEST_DIFF(FALSE, blRes);
+    blRv = ::CloseHandle(_thread);
+    xTEST_DIFF(FALSE, blRv);
 
-    blRes = ::CloseHandle(_handle);
-    xTEST_DIFF(FALSE, blRes);
+    blRv = ::CloseHandle(_handle);
+    xTEST_DIFF(FALSE, blRv);
 #endif
 }
 //------------------------------------------------------------------------------
@@ -76,9 +76,9 @@ CxProcess::create(
     STARTUPINFO         startupInfo = {0};  startupInfo.cb = sizeof(startupInfo);
     PROCESS_INFORMATION processInfo = {0};
 
-    BOOL blRes = ::CreateProcess(a_filePath.c_str(), const_cast<LPTSTR>( cmdLine.c_str() ),
+    BOOL blRv = ::CreateProcess(a_filePath.c_str(), const_cast<LPTSTR>( cmdLine.c_str() ),
         NULL, NULL, FALSE, NORMAL_PRIORITY_CLASS, NULL, NULL, &startupInfo, &processInfo);
-    xTEST_DIFF(FALSE, blRes);
+    xTEST_DIFF(FALSE, blRv);
 
     _handle = processInfo.hProcess;
     _thread = processInfo.hThread;
@@ -143,8 +143,8 @@ CxProcess::kill(
 
     _exitStatus = 0U;
 
-    BOOL blRes = ::TerminateProcess(_handle, _exitStatus);
-    xTEST_DIFF(FALSE, blRes);
+    BOOL blRv = ::TerminateProcess(_handle, _exitStatus);
+    xTEST_DIFF(FALSE, blRv);
 
     xFOREVER {
         xCHECK_DO(STILL_ACTIVE != exitStatus(), break);
@@ -185,8 +185,8 @@ CxProcess::exitStatus() const
     ulong_t ulRv = 0UL;
 
 #if xOS_ENV_WIN
-    BOOL blRes = ::GetExitCodeProcess(_handle, &ulRv);
-    xTEST_DIFF(FALSE, blRes);
+    BOOL blRv = ::GetExitCodeProcess(_handle, &ulRv);
+    xTEST_DIFF(FALSE, blRv);
 #else
     ulRv = _exitStatus;
 #endif
@@ -540,11 +540,11 @@ CxProcess::currentParentId()
     xTEST_PTR(DllNtQueryInformationProcess);
 
     // TODO: ProcessBasicInformation (for x64)
-    NTSTATUS ntsRes = DllNtQueryInformationProcess(
+    NTSTATUS ntsRv = DllNtQueryInformationProcess(
                             currentHandle(),
                             infoClass,
                            &processInformation, sizeof(processInformation), &returnSizeBytes);
-    xTEST_EQ(true, NT_SUCCESS(ntsRes));
+    xTEST_EQ(true, NT_SUCCESS(ntsRv));
     xTEST_EQ(size_t(returnSizeBytes), sizeof(processInformation));
 
     ulRv = processInformation[5];

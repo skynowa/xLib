@@ -363,10 +363,10 @@ CxProcessInfo::commandLine(
 
 #if xTEMP_DISABLED
     #if xOS_ENV_WIN
-        LPCTSTR pcszRes = ::GetCommandLine();
-        xTEST_PTR(pcszRes);
+        LPCTSTR pcszRv = ::GetCommandLine();
+        xTEST_PTR(pcszRv);
 
-        sRv = CxString::trimSpace(pcszRes);
+        sRv = CxString::trimSpace(pcszRv);
     #else
         sRv = CxString::join(_args, CxConst::space());
     #endif

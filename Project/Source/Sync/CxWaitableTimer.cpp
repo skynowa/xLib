@@ -69,8 +69,8 @@ CxWaitableTimer::cancel() const
 {
     xTEST_EQ(true, _handle.isValid());
 
-    BOOL blRes = ::CancelWaitableTimer(_handle.get());
-    xTEST_DIFF(FALSE, blRes);
+    BOOL blRv = ::CancelWaitableTimer(_handle.get());
+    xTEST_DIFF(FALSE, blRv);
 }
 //------------------------------------------------------------------------------
 xINLINE_HO void_t
@@ -94,9 +94,9 @@ CxWaitableTimer::set(
     LARGE_INTEGER dueTimeMsec = {{0}};
     dueTimeMsec.QuadPart = a_dueTimeMsec;
 
-    BOOL blRes = ::SetWaitableTimer(_handle.get(), &dueTimeMsec, a_period, a_routine,
+    BOOL blRv = ::SetWaitableTimer(_handle.get(), &dueTimeMsec, a_period, a_routine,
         a_routineArgs, a_isResume);
-    xTEST_DIFF(FALSE, blRes);
+    xTEST_DIFF(FALSE, blRv);
 }
 //------------------------------------------------------------------------------
 xINLINE_HO void_t
