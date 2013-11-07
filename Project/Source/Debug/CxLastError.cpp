@@ -21,9 +21,9 @@ xNAMESPACE_BEGIN(NxLib)
 xNAMESPACE_ANONYM_BEGIN
 
 #if xOS_ENV_WIN
-    culong_t codeSuccess = ERROR_SUCCESS;
+    culong_t nativeCodeSuccess = ERROR_SUCCESS;
 #else
-    culong_t codeSuccess = 0UL;
+    culong_t nativeCodeSuccess = 0UL;
 #endif
 
 xNAMESPACE_ANONYM_END
@@ -36,9 +36,9 @@ CxLastError::isSuccess()
     bool_t bRv = false;
 
 #if xOS_ENV_WIN
-    bRv = (::codeSuccess == ::GetLastError());
+    bRv = (::nativeCodeSuccess == ::GetLastError());
 #else
-    bRv = (::codeSuccess == static_cast<ulong_t>( errno ));
+    bRv = (::nativeCodeSuccess == static_cast<ulong_t>( errno ));
 #endif
 
     return bRv;
@@ -48,7 +48,7 @@ CxLastError::isSuccess()
 xINLINE_HO ulong_t
 CxLastError::get()
 {
-    ulong_t code = ::codeSuccess;
+    ulong_t code = ::nativeCodeSuccess;
 
 #if xOS_ENV_WIN
     code = ::GetLastError();
@@ -78,7 +78,7 @@ CxLastError::set(
 xINLINE_HO void_t
 CxLastError::reset()
 {
-    set(::codeSuccess);
+    set(::nativeCodeSuccess);
 }
 //------------------------------------------------------------------------------
 /* static */
