@@ -23,7 +23,7 @@ public:
         ///< destructor
 
     template<class T>
-    CxTracer &            operator << (const T &value);
+    CxTracer &            operator << (const T &valueT);
         ///< operator <<
 
     static void_t         write(ctchar_t *format, ...);
@@ -32,7 +32,7 @@ public:
         ///< tracing to debugger, std::cout
 
 private:
-    std::tostringstream_t _oss;    ///< string stream
+    std::tostringstream_t _oss; ///< string stream
 };
 
 xNAMESPACE_END(NxLib)
@@ -41,9 +41,9 @@ xNAMESPACE_BEGIN(NxLib)
 
 template<class T>
 CxTracer &
-CxTracer::operator << (const T &value)
+CxTracer::operator << (const T &valueT)
 {
-    _oss << value;
+    _oss << valueT;
 
     return *this;
 }

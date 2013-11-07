@@ -22,7 +22,7 @@ xNAMESPACE_BEGIN(NxLib)
 xINLINE_HO
 CxTracer::~CxTracer()
 {
-    write(_oss.str());
+    write( _oss.str() );
 }
 //------------------------------------------------------------------------------
 /* static */
