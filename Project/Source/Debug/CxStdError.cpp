@@ -11,7 +11,7 @@
 
 xNAMESPACE_ANONYM_BEGIN
 
-cint_t g_ciCodeSuccess = 0;
+cint_t codeSuccess = 0;
 
 xNAMESPACE_ANONYM_END
 
@@ -28,7 +28,7 @@ xNAMESPACE_BEGIN(NxLib)
 xINLINE_HO bool_t
 CxStdError::isSuccess()
 {
-    bool_t bRv = (g_ciCodeSuccess == errno);
+    bool_t bRv = (::codeSuccess == errno);
 
     return bRv;
 }
@@ -57,7 +57,7 @@ CxStdError::set(
 xINLINE_HO void_t
 CxStdError::reset()
 {
-    set(g_ciCodeSuccess);
+    set(::codeSuccess);
 }
 //------------------------------------------------------------------------------
 /* static */
