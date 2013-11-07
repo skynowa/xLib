@@ -77,8 +77,7 @@ CxProcess::create(
     PROCESS_INFORMATION processInfo = {0};
 
     BOOL blRes = ::CreateProcess(a_filePath.c_str(), const_cast<LPTSTR>( cmdLine.c_str() ),
-                                 NULL, NULL, FALSE, NORMAL_PRIORITY_CLASS, NULL, NULL,
-                                 &startupInfo, &processInfo);
+        NULL, NULL, FALSE, NORMAL_PRIORITY_CLASS, NULL, NULL, &startupInfo, &processInfo);
     xTEST_DIFF(FALSE, blRes);
 
     _handle = processInfo.hProcess;
@@ -105,18 +104,18 @@ CxProcess::create(
 //------------------------------------------------------------------------------
 xINLINE_HO CxProcess::ExWaitResult
 CxProcess::wait(
-    culong_t &a_timeoutMSec
+    culong_t &a_timeoutMsec
 )
 {
     ExWaitResult waitStatus = wrFailed;
 
 #if xOS_ENV_WIN
-    DWORD ulRv = ::WaitForSingleObject(_handle, a_timeoutMSec);
+    DWORD ulRv = ::WaitForSingleObject(_handle, a_timeoutMsec);
     xTEST_EQ(WAIT_OBJECT_0, ulRv);
 
     waitStatus = static_cast<ExWaitResult>( ulRv );
 #else
-    // TODO: a_timeoutMSec
+    // TODO: a_timeoutMsec
     pid_t liRv   = - 1L;
     int_t status = 0;
 
@@ -127,7 +126,7 @@ CxProcess::wait(
     xTEST_EQ(liRv, _pid);
 
     _exitStatus = WEXITSTATUS(status);
-    waitStatus    = static_cast<ExWaitResult>( WEXITSTATUS(status) );
+    waitStatus  = static_cast<ExWaitResult>( WEXITSTATUS(status) );
 #endif
 
     return waitStatus;
@@ -135,7 +134,7 @@ CxProcess::wait(
 //------------------------------------------------------------------------------
 xINLINE_HO void_t
 CxProcess::kill(
-    culong_t &a_timeoutMSec    // FIX: timeoutMSec not used
+    culong_t &a_timeoutMsec    // FIX: timeoutMSec not used
 )
 {
 #if xOS_ENV_WIN
@@ -148,16 +147,15 @@ CxProcess::kill(
     xTEST_DIFF(FALSE, blRes);
 
     xFOREVER {
-        ulong_t ulRv = exitStatus();
-        xCHECK_DO(STILL_ACTIVE != ulRv, break);
+        xCHECK_DO(STILL_ACTIVE != exitStatus(), break);
 
-        CxThread::currentSleep(a_timeoutMSec);
+        CxThread::currentSleep(a_timeoutMsec);
     }
 #else
     int_t iRv = ::kill(_pid, SIGKILL);
     xTEST_DIFF(- 1, iRv);
 
-    CxThread::currentSleep(a_timeoutMSec);
+    CxThread::currentSleep(a_timeoutMsec);
 
     _exitStatus = 0U;
 #endif
