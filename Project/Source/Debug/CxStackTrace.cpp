@@ -116,7 +116,7 @@ CxStackTrace::get(
 
             // filePath, fileLine
             {
-                DWORD           displacement  = 0UL;
+                DWORD           displacement = 0UL;
                 IMAGEHLP_LINE64 imagehlpLine = {0};
                 imagehlpLine.SizeOfStruct = sizeof(IMAGEHLP_LINE64);
 
@@ -210,7 +210,7 @@ CxStackTrace::get(
             functionName = (NULL == symbols[i]) ? dataNotFound : symbols[i];
         } else {
             ctchar_t *symbolName = NULL;
-            int_t     status        = - 1;
+            int_t     status     = - 1;
 
             tchar_t *demangleName = abi::__cxa_demangle(dlinfo.dli_sname, NULL, NULL, &status);
             if (NULL != demangleName && 0 == status) {
@@ -365,8 +365,9 @@ CxStackTrace::_addr2Line(
     */
 
     snprintf(cmdLine, xARRAY_SIZE(cmdLine) - 1,
-             xT("addr2line -C -e %s -f %lx"),   /* xT("addr2line -C -e %s -f -i %lx") */
-             CxPath::exe().c_str(), reinterpret_cast<ptrdiff_t>(a_symbolAddress));
+        /* xT("addr2line -C -e %s -f -i %lx") */
+        xT("addr2line -C -e %s -f %lx"),
+        CxPath::exe().c_str(), reinterpret_cast<ptrdiff_t>(a_symbolAddress));
 
     FILE *file = ::popen(cmdLine, xT("r"));
     xSTD_VERIFY(NULL != file);
