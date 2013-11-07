@@ -21,9 +21,9 @@ xNAMESPACE_BEGIN(NxLib)
 xNAMESPACE_ANONYM_BEGIN
 
 #if xOS_ENV_WIN
-    culong_t g_culCodeSuccess = ERROR_SUCCESS;
+    culong_t codeSuccess = ERROR_SUCCESS;
 #else
-    culong_t g_culCodeSuccess = 0;
+    culong_t codeSuccess = 0UL;
 #endif
 
 xNAMESPACE_ANONYM_END
@@ -36,9 +36,9 @@ CxLastError::isSuccess()
     bool_t bRv = false;
 
 #if xOS_ENV_WIN
-    bRv = (g_culCodeSuccess == ::GetLastError());
+    bRv = (::codeSuccess == ::GetLastError());
 #else
-    bRv = (g_culCodeSuccess == static_cast<ulong_t>( errno ));
+    bRv = (::codeSuccess == static_cast<ulong_t>( errno ));
 #endif
 
     return bRv;
@@ -48,17 +48,17 @@ CxLastError::isSuccess()
 xINLINE_HO ulong_t
 CxLastError::get()
 {
-    ulong_t ulCode = g_culCodeSuccess;
+    ulong_t code = ::codeSuccess;
 
 #if xOS_ENV_WIN
-    ulCode = ::GetLastError();
+    code = ::GetLastError();
 #else
-    ulCode = static_cast<ulong_t>( errno );
+    code = static_cast<ulong_t>( errno );
 #endif
 
     reset();
 
-    return ulCode;
+    return code;
 }
 //------------------------------------------------------------------------------
 /* static */
@@ -78,7 +78,7 @@ CxLastError::set(
 xINLINE_HO void_t
 CxLastError::reset()
 {
-    set(g_culCodeSuccess);
+    set(::codeSuccess);
 }
 //------------------------------------------------------------------------------
 /* static */
@@ -99,41 +99,40 @@ CxLastError::format(
     sRv = CxString::format(xT("%lu - "), a_code);
 
 #if xOS_ENV_WIN
-    DWORD  dwRv   = 0UL;
-    LPVOID pvBuff = NULL;
+    DWORD  dwRv = 0UL;
+    LPVOID buff = NULL;
 
     dwRv = ::FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM |
         FORMAT_MESSAGE_IGNORE_INSERTS, NULL, a_code, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-        reinterpret_cast<LPTSTR>( &pvBuff ), 0UL, NULL);
+        reinterpret_cast<LPTSTR>( &buff ), 0UL, NULL);
 
     xCHECK_RET(ERROR_MR_MID_NOT_FOUND == get(), sRv.append(xT("Unknown error")));
     xCHECK_RET(0UL                    == dwRv,  sRv.append(xT("[Cann't format error message]")));
 
-    std::tstring_t sMessage;
+    std::tstring_t msg;
 
-    sMessage.assign( static_cast<LPCTSTR>( pvBuff ), dwRv );
-    sMessage = CxString::removeEol(sMessage);
-    sMessage = CxString::trimRightChars(sMessage, CxConst::xDOT());
+    msg.assign( static_cast<LPCTSTR>( buff ), dwRv );
+    msg = CxString::removeEol(msg);
+    msg = CxString::trimRightChars(msg, CxConst::xDOT());
 
-    sRv.append(sMessage);
+    sRv.append(msg);
 
-    (void_t)::LocalFree(pvBuff);
+    (void_t)::LocalFree(buff);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        char szBuff[64 + 1] = {0};
+        char buff[64 + 1] = {0};
 
-        ctchar_t *pcszError = ::strerror_r(static_cast<int_t>( a_code ), &szBuff[0],
-            xARRAY_SIZE(szBuff));
-        xCHECK_RET(NULL == pcszError, sRv.append(xT("[Cann't format error message]")));
+        ctchar_t *error = ::strerror_r(static_cast<int_t>( a_code ), &buff[0], xARRAY_SIZE(buff));
+        xCHECK_RET(NULL == error, sRv.append(xT("[Cann't format error message]")));
 
-        sRv.append(pcszError);
+        sRv.append(error);
     #elif xOS_FREEBSD
-        char szBuff[64 + 1] = {0};
+        char buff[64 + 1] = {0};
 
-        int_t iRv = ::strerror_r(static_cast<int_t>( a_code ), &szBuff[0], xARRAY_SIZE(szBuff));
+        int_t iRv = ::strerror_r(static_cast<int_t>( a_code ), &buff[0], xARRAY_SIZE(buff));
         xCHECK_RET(- 1 == iRv, sRv.append(xT("[Cann't format error message]")));
 
-        sRv.append(&szBuff[0]);
+        sRv.append(&buff[0]);
     #endif
 #elif xOS_ENV_MAC
     xNOT_IMPLEMENTED
