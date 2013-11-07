@@ -149,7 +149,7 @@ CxShell::executeEx(
     SHELLEXECUTEINFO &a_info
 )
 {
-    xTEST_PTR(a_info);
+    xTEST_NA(a_info);
 
     BOOL bRv = ::ShellExecuteEx(&a_info);
     xTEST_DIFF(FALSE, bRv);
