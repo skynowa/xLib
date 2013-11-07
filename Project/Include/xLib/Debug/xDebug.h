@@ -68,11 +68,11 @@
     )
     ///< trace variable, trace variable and value
 #define xTRACEV(...) \
-    { CxTracer::write(__VA_ARGS__); }
+    { CxTracer().write(__VA_ARGS__); }
     ///< tracing
 #define xTRACE_POINT \
     { \
-        CxTracer::write(xT("Point: %lu (file: %s, function: %s, last error: %s, line: %lu)"), \
+        CxTracer().write(xT("Point: %lu (file: %s, function: %s, last error: %s, line: %lu)"), \
             xCOUNTER, xFILE, xFUNCTION, CxLastError::get().c_str(), xLINE); \
     }
     ///< trace point (use CxTracer)
