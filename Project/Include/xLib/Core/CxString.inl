@@ -41,7 +41,7 @@ CxString::cast(
         oss << a_value;
 
         sRv = oss.str();
-    } catch (std::ctostringstream_t::failure &e) {
+    } catch (std::ctostringstream_t::failure &) {
         sRv.clear();
     } catch (...) {
         sRv.clear();
@@ -70,7 +70,7 @@ CxString::cast(
         oss << std::setbase(a_base) << std::uppercase << a_value;  // std::showbase
 
         sRv = oss.str();
-    } catch (std::ctostringstream_t::failure &e) {
+    } catch (std::ctostringstream_t::failure &) {
         sRv.clear();
     } catch (...) {
         sRv.clear();
@@ -95,7 +95,7 @@ CxString::cast(
 
         iss.exceptions(std::tistringstream_t::failbit | std::tistringstream_t::badbit);
         iss >> ResT;
-    } catch (std::ctistringstream_t::failure &e) {
+    } catch (std::ctistringstream_t::failure &) {
         return T();
     } catch (...) {
         return T();
@@ -122,7 +122,7 @@ CxString::cast(
 
         iss.exceptions(std::tistringstream_t::failbit | std::tistringstream_t::badbit);
         iss >> std::setbase(a_base) >> ResT;
-    } catch (std::ctistringstream_t::failure &e) {
+    } catch (std::ctistringstream_t::failure &) {
         return T();
     } catch (...) {
         return T();
