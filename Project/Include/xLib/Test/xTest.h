@@ -85,7 +85,8 @@
     #define xTEST_MSG(expr, msg)                        { xNA }
 #endif
 
-#define xTEST_NA(var)                                   ;
+#define xTEST_NA(var) \
+    ;
     ///< at this point debug code for variable is not applicable
 #define xTESTS_NA                                       ;
     ///< at this point debug code for variables is not applicable
