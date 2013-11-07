@@ -11,7 +11,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxSharedMemory :
-    private CxNonCopyable
+    public CxNonCopyable
     /// share memory
 {
 public:

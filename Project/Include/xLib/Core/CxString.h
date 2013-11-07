@@ -13,7 +13,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxString :
-    private CxNonCopyable
+    public CxNonCopyable
     /// strings utils
 {
 public:

@@ -12,7 +12,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxIpcSemaphore :
-    private CxNonCopyable
+    public CxNonCopyable
     /// semaphore (interprocess)
 {
 public:

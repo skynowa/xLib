@@ -17,7 +17,7 @@ class CxMimeHeader;
 class CxMimeBody;
 
 class CxPop3 :
-    private CxNonCopyable
+    public CxNonCopyable
     /// POP3 (RFC 2821)
 {
 public:

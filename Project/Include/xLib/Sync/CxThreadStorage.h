@@ -11,7 +11,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxThreadStorage :
-    private CxNonCopyable
+    public CxNonCopyable
     /// thread local storage
 {
 public:

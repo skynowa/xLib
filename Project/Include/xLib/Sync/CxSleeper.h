@@ -12,7 +12,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxSleeper :
-    private CxNonCopyable
+    public CxNonCopyable
     /// sleeper
 {
 public:

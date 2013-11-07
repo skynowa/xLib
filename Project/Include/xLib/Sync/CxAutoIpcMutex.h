@@ -13,7 +13,7 @@ xNAMESPACE_BEGIN(NxLib)
 class CxIpcMutex;
 
 class CxAutoIpcMutex :
-    private CxNonCopyable
+    public CxNonCopyable
     /// auto mutex
 {
 public:

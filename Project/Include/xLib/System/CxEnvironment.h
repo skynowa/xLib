@@ -11,7 +11,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxEnvironment :
-    private CxNonCopyable
+    public CxNonCopyable
     /// system environment variables
 {
 public:

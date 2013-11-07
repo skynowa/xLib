@@ -18,7 +18,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxShell :
-    private CxNonCopyable
+    public CxNonCopyable
     /// shell
 {
 public:

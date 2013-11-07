@@ -11,7 +11,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxUri :
-    private CxNonCopyable
+    public CxNonCopyable
     /// URI (RFC 3986)
 {
 public:

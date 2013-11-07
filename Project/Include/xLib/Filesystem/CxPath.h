@@ -11,7 +11,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxPath :
-    private CxNonCopyable
+    public CxNonCopyable
     /// file system path
 {
 public:

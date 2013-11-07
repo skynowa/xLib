@@ -11,7 +11,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxCrc32 :
-    private CxNonCopyable
+    public CxNonCopyable
     /// Crc32
 {
 public:

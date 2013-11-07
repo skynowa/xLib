@@ -11,7 +11,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxType :
-    private CxNonCopyable
+    public CxNonCopyable
     /// type info
 {
 public:

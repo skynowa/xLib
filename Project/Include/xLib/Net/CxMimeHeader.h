@@ -11,7 +11,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxMimeHeader :
-    private CxNonCopyable
+    public CxNonCopyable
     /// MIME header (RFC 822)
 {
 public:

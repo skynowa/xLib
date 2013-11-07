@@ -18,7 +18,7 @@ xNAMESPACE_BEGIN(NxCgi)
 
 //------------------------------------------------------------------------------
 class CxCgiEnvironment :
-    private CxNonCopyable
+    public CxNonCopyable
     /// CGI environment
 {
 public:
@@ -143,7 +143,7 @@ private:
 
 //------------------------------------------------------------------------------
 class CxCgiCookies :
-    private CxNonCopyable
+    public CxNonCopyable
     /// CGI cookies
 {
 public:
@@ -172,7 +172,7 @@ private:
 
 //------------------------------------------------------------------------------
 class CxCgiFormData :
-    private CxNonCopyable
+    public CxNonCopyable
     /// CGI form data
 {
 public:
@@ -204,7 +204,7 @@ xNAMESPACE_END(NxCgi)
 
 //------------------------------------------------------------------------------
 class CxCgi :
-    private CxNonCopyable
+    public CxNonCopyable
     /// CGI
 {
 public:

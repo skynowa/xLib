@@ -14,7 +14,7 @@ class CxMimeheader;
 class CxMimebody;
 
 class CxMimeMessage :
-    private CxNonCopyable
+    public CxNonCopyable
     /// MIME message (RFC 822)
 {
 public:

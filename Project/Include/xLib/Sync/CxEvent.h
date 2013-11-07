@@ -12,7 +12,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxEvent :
-    private CxNonCopyable
+    public CxNonCopyable
     /// event
 {
 public:
