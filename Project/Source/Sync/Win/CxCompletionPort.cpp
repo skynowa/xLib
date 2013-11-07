@@ -72,7 +72,7 @@ xINLINE_HO void_t
 CxCompletionPort::postStatus(
     culong_t     &a_numOfBytesTransferred,
     ULONG_PTR     a_completionKey,
-    LPOVERLAPPED  a_numOfBytesTransferred
+    LPOVERLAPPED  a_overlapped
 )
 {
     xTEST_EQ(true, _handle.isValid());
