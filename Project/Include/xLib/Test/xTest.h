@@ -6,7 +6,7 @@
 
 #pragma once
 
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 #define _xTEST_MSG_EQ(reportType, val1, val2, msg)      { if ( !((val1) == (val2)) ) { ulong_t lastError = CxLastError::get(); CxErrorReport report(reportType, xT(#val1),   xT(#val2), (val1),        (val2),         xT("=="), lastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().toString(), (msg));  CxDebugger().reportMake(report); } }
 #define _xTEST_MSG_DIFF(reportType, val1, val2, msg)    { if ( !((val1) != (val2)) ) { ulong_t lastError = CxLastError::get(); CxErrorReport report(reportType, xT(#val1),   xT(#val2), (val1),        (val2),         xT("!="), lastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().toString(), (msg));  CxDebugger().reportMake(report); } }
 #define _xTEST_MSG_LESS(reportType, val1, val2, msg)    { if ( !((val1) <  (val2)) ) { ulong_t lastError = CxLastError::get(); CxErrorReport report(reportType, xT(#val1),   xT(#val2), (val1),        (val2),         xT("<"),  lastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().toString(), (msg));  CxDebugger().reportMake(report); } }
@@ -90,7 +90,7 @@
     ///< at this point debug code for variable is not applicable
 #define xTESTS_NA                                       ;
     ///< at this point debug code for variables is not applicable
-//-------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 #define xTEST_STATIC(expr) \
     { switch (0) {case 0: case (expr):;} }
     ///< static assert
@@ -99,4 +99,4 @@
     /* CxTracer() << xT("\tCase name: ") << caseName; */ \
     for (size_t _caseLoops = 0U; _caseLoops < (loops); ++ _caseLoops)
     ///< test case
-//-------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
