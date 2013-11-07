@@ -40,7 +40,7 @@ public:
     static std::wstring   castW(std::cstring_t &str) xWARN_UNUSED_RV;
         ///< std::string in std::wstring
 
-    static std::wstring   strToWStr(std::cstring_t  &str,  cuint_t &codePage) xWARN_UNUSED_RV;
+    static std::wstring   strToWStr(std::cstring_t &str, cuint_t &codePage) xWARN_UNUSED_RV;
         ///< std::string in std::wstring
     static std::string    wstrToStr(std::cwstring_t &str, cuint_t &codePage) xWARN_UNUSED_RV;
         ///< std::wstring in std::string
@@ -142,7 +142,7 @@ public:
 
     static std::tstring_t formatBytes(culonglong_t &bytes) xWARN_UNUSED_RV;
         ///< format bytes (like Bit(s), Byte(s), MB, GB, TB)
-    static std::tstring_t formatPercentage(culonglong_t &maxValue, culonglong_t &currValue)
+    static std::tstring_t formatPercentage(culonglong_t &maxValue, culonglong_t &currentValue)
                               xWARN_UNUSED_RV;
         ///< formatting percentage
     static std::tstring_t translitLatToRus(std::ctstring_t &str) xWARN_UNUSED_RV;

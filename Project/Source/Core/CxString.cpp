@@ -43,14 +43,13 @@ CxString::strToWStr(
     std::wstring wsRes;
 
 #if xOS_ENV_WIN
-    int_t iSize = ::MultiByteToWideChar(a_codePage, 0UL, a_str.c_str(), - 1,
-                                      NULL, 0);
-    xTEST_LESS(0, iSize);
+    int_t size = ::MultiByteToWideChar(a_codePage, 0UL, a_str.c_str(), - 1, NULL, 0);
+    xTEST_LESS(0, size);
 
-    wsRes.resize(iSize - 1);    // remove '\0'
-    iSize = ::MultiByteToWideChar(a_codePage, 0UL, a_str.c_str(), - 1,
-                                  static_cast<LPWSTR>(&wsRes.at(0)), iSize);
-    xTEST_LESS(0, iSize);
+    wsRes.resize(size - 1);    // remove '\0'
+    size = ::MultiByteToWideChar(a_codePage, 0UL, a_str.c_str(), - 1,
+        static_cast<LPWSTR>(&wsRes.at(0)), size);
+    xTEST_LESS(0, size);
 #else
     // TODO: strToWStr
     xNOT_IMPLEMENTED;
@@ -72,15 +71,13 @@ CxString::wstrToStr(
     std::string asRes;
 
 #if xOS_ENV_WIN
-    int_t iSize = ::WideCharToMultiByte(a_codePage, 0UL, a_str.c_str(), - 1,
-                                      NULL, 0, NULL, NULL);
-    xTEST_LESS(0, iSize);
+    int_t size = ::WideCharToMultiByte(a_codePage, 0UL, a_str.c_str(), - 1, NULL, 0, NULL, NULL);
+    xTEST_LESS(0, size);
 
-    asRes.resize(iSize - 1);    // remove '\0'
-    iSize = ::WideCharToMultiByte(a_codePage, 0UL, a_str.c_str(), - 1,
-                                  static_cast<LPSTR>(&asRes.at(0)), iSize, NULL,
-                                  NULL);
-    xTEST_LESS(0, iSize);
+    asRes.resize(size - 1);    // remove '\0'
+    size = ::WideCharToMultiByte(a_codePage, 0UL, a_str.c_str(), - 1,
+        static_cast<LPSTR>(&asRes.at(0)), size, NULL, NULL);
+    xTEST_LESS(0, size);
 #else
     // TODO: (wstrToStr)
     xNOT_IMPLEMENTED;
@@ -106,8 +103,7 @@ CxString::strToWStr(
     std::wstring::iterator      itToBegin( swRv.begin() );
 
     for ( ; itBegin != itEnd; ++ itBegin, ++ itToBegin) {
-        *itToBegin = std::use_facet< std::ctype<wchar_t> >( a_locale )
-                        .widen( *itBegin );
+        *itToBegin = std::use_facet< std::ctype<wchar_t> >( a_locale ).widen( *itBegin );
     }
 
     return swRv;
@@ -129,7 +125,7 @@ CxString::wstrToStr(
     std::string      asRv(a_stdWString.size(), std::wstring::value_type());
 
     const codecvt_t &cvt       = std::use_facet<codecvt_t>( a_locale );
-    state_type_t     state     = state_type_t();
+    state_type_t     state;
 
     const wchar_t   *itBegin   = &a_stdWString.at(0);
     const wchar_t   *itEnd     = &a_stdWString.at(0) + a_stdWString.size();
@@ -174,20 +170,19 @@ CxString::charToOemBuff(
 {
     xTEST_NA(a_str);
 
-    std::string asDst;
+    std::string dest;
 
 #if xOS_ENV_WIN
-    asDst.resize(a_str.size());
+    dest.resize(a_str.size());
 
-    BOOL blRv = ::CharToOemBuff(a_str.c_str(), &asDst.at(0),
-                                static_cast<DWORD>( asDst.size() ));
+    BOOL blRv = ::CharToOemBuff(a_str.c_str(), &dest.at(0), static_cast<DWORD>( dest.size() ));
     xTEST_DIFF(FALSE, blRv);
 #else
     // TODO: charToOemBuff
     xNOT_IMPLEMENTED;
 #endif
 
-    return asDst;
+    return dest;
 }
 //------------------------------------------------------------------------------
 /* static */
@@ -198,20 +193,19 @@ CxString::oemToCharBuff(
 {
     xTEST_NA(a_str);
 
-    std::tstring_t sDst;
+    std::tstring_t dest;
 
 #if xOS_ENV_WIN
-    sDst.resize(a_str.size());
+    dest.resize(a_str.size());
 
-    BOOL blRv = ::OemToCharBuff(a_str.c_str(), &sDst.at(0),
-                                static_cast<DWORD>( sDst.size() ));
+    BOOL blRv = ::OemToCharBuff(a_str.c_str(), &dest.at(0), static_cast<DWORD>( dest.size() ));
     xTEST_DIFF(FALSE, blRv);
 #else
     // TODO: sOemToCharBuffoemToCharBuff
     xNOT_IMPLEMENTED;
 #endif
 
-    return sDst;
+    return dest;
 }
 //------------------------------------------------------------------------------
 /* static */
@@ -271,19 +265,19 @@ CxString::toLowerCase(
     xTEST_NA(a_str);
     xTEST_NA(a_length);
 
-    size_t uiLength = a_length;
+    size_t length = a_length;
 
     xCHECK_RET(a_str.empty(), std::tstring_t());
-    xCHECK_DO (a_str.size() < uiLength, uiLength = a_str.size());
+    xCHECK_DO (a_str.size() < length, length = a_str.size());
 
     std::tstring_t sRv(a_str);
 
 #if xOS_ENV_WIN
     DWORD dwRv = ::CharLowerBuff(static_cast<LPTSTR>( &sRv[0] ),
-                                 static_cast<DWORD>( uiLength ));
-    xTEST_EQ(uiLength, static_cast<size_t>( dwRv ));
+                                 static_cast<DWORD>( length ));
+    xTEST_EQ(length, static_cast<size_t>( dwRv ));
 #else
-    std::transform(sRv.begin(), sRv.begin() + uiLength, sRv.begin(), CxChar::toLower);
+    std::transform(sRv.begin(), sRv.begin() + length, sRv.begin(), CxChar::toLower);
 #endif
 
     return sRv;
@@ -299,19 +293,18 @@ CxString::toUpperCase(
     xTEST_NA(a_str);
     xTEST_NA(a_length);
 
-    size_t uiLength = a_length;
+    size_t length = a_length;
 
     xCHECK_RET(a_str.empty(), std::tstring_t());
-    xCHECK_DO (a_str.size() < uiLength, uiLength = a_str.size());
+    xCHECK_DO (a_str.size() < length, length = a_str.size());
 
     std::tstring_t sRv(a_str);
 
 #if xOS_ENV_WIN
-    DWORD dwRv = ::CharUpperBuff(static_cast<LPTSTR>( &sRv[0] ),
-                                 static_cast<DWORD>( uiLength ));
-    xTEST_EQ(uiLength, static_cast<size_t>( dwRv ));
+    DWORD dwRv = ::CharUpperBuff(static_cast<LPTSTR>( &sRv[0] ), static_cast<DWORD>( length ));
+    xTEST_EQ(length, static_cast<size_t>( dwRv ));
 #else
-    std::transform(sRv.begin(), sRv.begin() + uiLength, sRv.begin(), CxChar::toUpper);
+    std::transform(sRv.begin(), sRv.begin() + length, sRv.begin(), CxChar::toUpper);
 #endif
 
     return sRv;
@@ -470,18 +463,19 @@ CxString::split(
     xTEST_PTR(a_rv);
 
     std::vec_tstring_t vsRes;
-    size_t             prevPos = 0U;     // start of string
+    size_t             posPrev = 0U;    // start of string
     size_t             pos     = 0U;
 
     xFOREVER {
-        pos = a_str.find(a_sep, prevPos);
+        pos = a_str.find(a_sep, posPrev);
         xCHECK_DO(std::tstring_t::npos == pos, break);
 
-        vsRes.push_back(a_str.substr(prevPos, pos - prevPos));
+        vsRes.push_back(a_str.substr(posPrev, pos - posPrev));
 
-        prevPos = pos + a_sep.size();
+        posPrev = pos + a_sep.size();
     }
-    vsRes.push_back( a_str.substr(prevPos, a_str.size() - prevPos) );
+
+    vsRes.push_back( a_str.substr(posPrev, a_str.size() - posPrev) );
 
     //out
     std::swap(*a_rv, vsRes);
@@ -641,7 +635,7 @@ CxString::formatV(
     xTEST_NA(a_format);
     xTEST_NA(a_args);
 
-    xCHECK_RET(NULL == pcszFormat, std::tstring_t());
+    xCHECK_RET(NULL == a_format, std::tstring_t());
 
     std::tstring_t buff(64, 0);
     int_t          writtenSize = - 1;
@@ -651,7 +645,7 @@ CxString::formatV(
     {
         va_list _args;
         xVA_COPY(_args, args);
-        writtenSize = ::xTVSNPRINTF(&buff.at(0), buff.size(), pcszFormat, _args);
+        writtenSize = ::xTVSNPRINTF(&buff.at(0), buff.size(), a_format, _args);
         xVA_END(_args);
 
         assert(- 1 < writtenSize);
@@ -666,12 +660,12 @@ CxString::formatV(
 
         va_list _args;
         xVA_COPY(_args, args);
-        writtenSize = std::xTVSNPRINTF(&buff.at(0), buff.size(), pcszFormat, _args);
+        writtenSize = std::xTVSNPRINTF(&buff.at(0), buff.size(), a_format, _args);
         xVA_END(_args);
 
-        assert(- 1          <  writtenSize);
+        assert(- 1 <  writtenSize);
         assert(buff.size() == static_cast<size_t>( writtenSize ) + 1);
-        xCHECK_RET(0            >  writtenSize,                           std::tstring_t());
+        xCHECK_RET(0 >  writtenSize,                                      std::tstring_t());
         xCHECK_RET(buff.size() != static_cast<size_t>( writtenSize ) + 1, std::tstring_t());
     }
 
@@ -701,8 +695,7 @@ CxString::minimize(
         if (a_maxLength < CxConst::x3DOT().size()) {
             sRv = a_str.substr(0, a_maxLength);
         } else {
-            sRv = a_str.substr(0, a_maxLength - CxConst::x3DOT().size()) +
-                                 CxConst::x3DOT();
+            sRv = a_str.substr(0, a_maxLength - CxConst::x3DOT().size()) + CxConst::x3DOT();
         }
     } else {
         sRv = a_str;
@@ -843,17 +836,17 @@ CxString::formatBytes(
 xINLINE_HO std::tstring_t
 CxString::formatPercentage(
     culonglong_t &a_maxValue,
-    culonglong_t &a_currValue
+    culonglong_t &a_currentValue
 )
 {
     xTEST_NA(a_maxValue);
-    xTEST_NA(a_currValue);
+    xTEST_NA(a_currentValue);
 
     xCHECK_RET(0ULL == a_maxValue, xT("0%")); // devision by zero
 
     std::tstring_t sRv;
 
-    sRv = cast( a_currValue * 100ULL / a_maxValue );
+    sRv = cast( a_currentValue * 100ULL / a_maxValue );
     xCHECK_RET(sRv.empty(), xT("0%"));
 
     sRv.append(xT("%"));
@@ -909,16 +902,9 @@ CxString::createGuid()
     hrGuid = ::CoCreateGuid(&guid);
     xTEST_EQ(true, SUCCEEDED(hrGuid));
 
-    sRv = format(
-            xT("%08lX-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X"),
-            guid.Data1,
-            guid.Data2,
-            guid.Data3,
-            guid.Data4[0], guid.Data4[1],
-            guid.Data4[2], guid.Data4[3],
-            guid.Data4[4], guid.Data4[5],
-            guid.Data4[6], guid.Data4[7]
-    );
+    sRv = format(xT("%08lX-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X"), guid.Data1, guid.Data2,
+        guid.Data3, guid.Data4[0], guid.Data4[1], guid.Data4[2], guid.Data4[3], guid.Data4[4],
+        guid.Data4[5], guid.Data4[6], guid.Data4[7]);
     xTEST_EQ(false, sRv.empty());
 #else
     // TODO: createGuid
