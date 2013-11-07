@@ -30,9 +30,9 @@ CxTest_CxLocalStorage::unit(
     std::ctstring_t csKey3     = xT("c");
     std::ctstring_t csValue3   = xT("3");
 
-    std::ctstring_t csContent  = csKey1 + CxConst::xEQUAL() + csValue1 + CxConst::xNL() +
-                                      csKey2 + CxConst::xEQUAL() + csValue2 + CxConst::xNL() +
-                                      csKey3 + CxConst::xEQUAL() + csValue3 + CxConst::xNL();
+    std::ctstring_t csContent  = csKey1 + CxConst::equal() + csValue1 + CxConst::nl() +
+                                      csKey2 + CxConst::equal() + csValue2 + CxConst::nl() +
+                                      csKey3 + CxConst::equal() + csValue3 + CxConst::nl();
 
     xTEST_CASE("CxLocalStorage::CxLocalStorage", a_cullCaseLoops)
     {
@@ -102,14 +102,14 @@ CxTest_CxLocalStorage::unit(
         {
             std::vec_tstring_t vsPairs;
 
-            vsPairs.push_back(csKey1 + CxConst::xEQUAL() + csValue1);
-            vsPairs.push_back(csKey2 + CxConst::xEQUAL() + csValue2);
-            vsPairs.push_back(csKey3 + CxConst::xEQUAL() + csValue3);
+            vsPairs.push_back(csKey1 + CxConst::equal() + csValue1);
+            vsPairs.push_back(csKey2 + CxConst::equal() + csValue2);
+            vsPairs.push_back(csKey3 + CxConst::equal() + csValue3);
 
             for (size_t i = 0; i < vsPairs.size(); ++ i) {
                 std::vec_tstring_t vsPair;
 
-                CxString::split(vsPairs.at(i), CxConst::xEQUAL(), &vsPair);
+                CxString::split(vsPairs.at(i), CxConst::equal(), &vsPair);
                 xTEST_EQ(false, vsPair.empty());
 
                 m_bRv = iniIni.keyIsExists( vsPair.at(0) );
@@ -130,7 +130,7 @@ CxTest_CxLocalStorage::unit(
             for (size_t i = 0; i < vsPairs.size(); ++ i) {
                 std::vec_tstring_t vsPair;
 
-                 CxString::split(vsPairs.at(i), CxConst::xEQUAL(), &vsPair);
+                 CxString::split(vsPairs.at(i), CxConst::equal(), &vsPair);
 
                 m_bRv = iniIni.keyIsExists( vsPair.at(0) );
                 xTEST_EQ(false, m_bRv);
@@ -216,7 +216,7 @@ CxTest_CxLocalStorage::unit(
         xTEST_EQ(true, iniIni.keyIsExists(csKey3));
 
         m_sRv = iniIni.keyReadString(csKey3, xT("fasrfsefrtg"));
-        xTEST_EQ(CxConst::xSTR_EMPTY(), m_sRv);
+        xTEST_EQ(CxConst::strEmpty(), m_sRv);
     }
 
     xTEST_CASE("CxLocalStorage::keyDelete", a_cullCaseLoops)

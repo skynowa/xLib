@@ -65,7 +65,7 @@ CxCgi::redirect(
     std::tstring_t httpResponse;
 
     httpResponse.append( CxString::format(xT("Location: %s\n"), a_url.c_str()) );
-    httpResponse.append( CxConst::xNL() );
+    httpResponse.append( CxConst::nl() );
 
     std::tcout << httpResponse << std::endl;
 }
@@ -237,7 +237,7 @@ cgl_parsecgibuf(/*cgllist *cdata,*/ char *a_query) {
 //        return 0;
 //
 //    //--cgl_charify(s, ' ', '+');
-//    std::tstring_t sRv = CxString::replaceAll(s, CxConst::xSPACE(), xT("+"));
+//    std::tstring_t sRv = CxString::replaceAll(s, CxConst::space(), xT("+"));
 //
 //    vUrlEscape(sRv, fw);
 //
@@ -250,7 +250,7 @@ cgl_parsecgibuf(/*cgllist *cdata,*/ char *a_query) {
 //    //--cgl_charify(s, '+', ' ');
 //    std::tstring_t sRv;
 //
-//    sRv = CxString::replaceAll(s, xT("+"), CxConst::xSPACE());
+//    sRv = CxString::replaceAll(s, xT("+"), CxConst::space());
 //
 //    vUrlUnescape(sRv);
 //}
@@ -745,7 +745,7 @@ CxCgiCookies::dump() const
 
         sRv.append( xT("[Item]:\n") );
         sRv.append(itemN);
-        sRv.append(CxConst::xNL());
+        sRv.append(CxConst::nl());
     }
 
     return sRv;
@@ -765,7 +765,7 @@ CxCgiCookies::_construct()
     std::vec_tstring_t vsRawCookies;
     TCookies           cookies;
 
-    CxString::split(rawCookies, CxConst::xSEMICOLON(), &vsRawCookies);
+    CxString::split(rawCookies, CxConst::semicolon(), &vsRawCookies);
 
     xFOREACH_CONST(std::vec_tstring_t, it, vsRawCookies) {
         CxCookiePv0 *pckItem = new(std::nothrow) CxCookiePv0(*it);

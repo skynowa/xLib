@@ -247,8 +247,8 @@ CxFinder::dirs(
         bool_t bRv = finder.moveNext();
         xCHECK_DO(!bRv, break);
 
-        xCHECK_DO(CxConst::xDOT()  == finder.entryName(), continue);
-        xCHECK_DO(CxConst::x2DOT() == finder.entryName(), continue);
+        xCHECK_DO(CxConst::dot()  == finder.entryName(), continue);
+        xCHECK_DO(CxConst::dot2() == finder.entryName(), continue);
 
         // set filter for dirs
         xCHECK_DO(!(CxFileType::faDirectory & finder.fileTypes()), continue);
@@ -283,8 +283,8 @@ CxFinder::files(
             bool_t bRv = finder.moveNext();
             xCHECK_DO(!bRv, break);
 
-            xCHECK_DO(CxConst::xDOT()  == finder.entryName(), continue);
-            xCHECK_DO(CxConst::x2DOT() == finder.entryName(), continue);
+            xCHECK_DO(CxConst::dot()  == finder.entryName(), continue);
+            xCHECK_DO(CxConst::dot2() == finder.entryName(), continue);
 
             // set filter for files
             xCHECK_DO(CxFileType::faDirectory & finder.fileTypes(), continue);
@@ -294,7 +294,7 @@ CxFinder::files(
     } else {
         // subdirs
         std::vec_tstring_t dirPaths;
-        dirs(a_rootDirPath, CxConst::xMASK_ALL(), true, &dirPaths);
+        dirs(a_rootDirPath, CxConst::maskAll(), true, &dirPaths);
 
         // files in root dir and each subdir
         files(a_rootDirPath, a_shellFilter, false, a_filePaths);
@@ -321,7 +321,7 @@ CxFinder::_moveFirst() {
 
 #if xOS_ENV_WIN
     _enrty.handle = ::FindFirstFile(
-                            (rootDirPath() + CxConst::xSLASH() + shellFilter()).c_str(),
+                            (rootDirPath() + CxConst::slash() + shellFilter()).c_str(),
                             &_enrty.data);
     xCHECK_RET(xNATIVE_HANDLE_INVALID == _enrty.handle, false);
 #else

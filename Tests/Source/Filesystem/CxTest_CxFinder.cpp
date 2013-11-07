@@ -26,7 +26,7 @@ CxTest_CxFinder::unit(
         size_t         uiEntriesNum;
     };
 
-    std::ctstring_t    csRootDirPath = tempDirPath() + CxConst::xSLASH() + xT("CxFinder_Dir");
+    std::ctstring_t    csRootDirPath = tempDirPath() + CxConst::slash() + xT("CxFinder_Dir");
     std::vec_tstring_t vsDirs;
     std::vec_tstring_t vsFiles;
 
@@ -34,9 +34,9 @@ CxTest_CxFinder::unit(
         CxDir(csRootDirPath).pathDelete();
 
         {
-            vsDirs.push_back( csRootDirPath + CxConst::xSLASH() + xT("AAA") );
-            vsDirs.push_back( csRootDirPath + CxConst::xSLASH() + xT("BBB") );
-            vsDirs.push_back( csRootDirPath + CxConst::xSLASH() + xT("CCC") );
+            vsDirs.push_back( csRootDirPath + CxConst::slash() + xT("AAA") );
+            vsDirs.push_back( csRootDirPath + CxConst::slash() + xT("BBB") );
+            vsDirs.push_back( csRootDirPath + CxConst::slash() + xT("CCC") );
 
             xFOREACH_CONST(std::vec_tstring_t, cit, vsDirs) {
                 CxDir(*cit).pathCreate();
@@ -46,27 +46,27 @@ CxTest_CxFinder::unit(
         }
 
         {
-            vsFiles.push_back( csRootDirPath + CxConst::xSLASH() + xT("AAA.h") );
-            vsFiles.push_back( csRootDirPath + CxConst::xSLASH() + xT("BBB.h") );
-            vsFiles.push_back( csRootDirPath + CxConst::xSLASH() + xT("CCC.h") );
-            vsFiles.push_back( csRootDirPath + CxConst::xSLASH() + xT("DDD.h") );
-            vsFiles.push_back( csRootDirPath + CxConst::xSLASH() + xT("AAA.cpp") );
-            vsFiles.push_back( csRootDirPath + CxConst::xSLASH() + xT("BBB.cpp") );
-            vsFiles.push_back( csRootDirPath + CxConst::xSLASH() + xT("CCC.cpp") );
-            vsFiles.push_back( csRootDirPath + CxConst::xSLASH() + xT("DDD.cpp") );
+            vsFiles.push_back( csRootDirPath + CxConst::slash() + xT("AAA.h") );
+            vsFiles.push_back( csRootDirPath + CxConst::slash() + xT("BBB.h") );
+            vsFiles.push_back( csRootDirPath + CxConst::slash() + xT("CCC.h") );
+            vsFiles.push_back( csRootDirPath + CxConst::slash() + xT("DDD.h") );
+            vsFiles.push_back( csRootDirPath + CxConst::slash() + xT("AAA.cpp") );
+            vsFiles.push_back( csRootDirPath + CxConst::slash() + xT("BBB.cpp") );
+            vsFiles.push_back( csRootDirPath + CxConst::slash() + xT("CCC.cpp") );
+            vsFiles.push_back( csRootDirPath + CxConst::slash() + xT("DDD.cpp") );
 
-            vsFiles.push_back( csRootDirPath + CxConst::xSLASH() + xT("File_1") );
-            vsFiles.push_back( csRootDirPath + CxConst::xSLASH() + xT("File_2.log") );
-            vsFiles.push_back( csRootDirPath + CxConst::xSLASH() + xT("AAA") +
-                               CxConst::xSLASH() + xT("AA") +
-                               CxConst::xSLASH() + xT("File_3.log") );
-            vsFiles.push_back( csRootDirPath + CxConst::xSLASH() + xT("BBB") +
-                               CxConst::xSLASH() + xT("BB") +
-                               CxConst::xSLASH() + xT("BBB") +
-                               CxConst::xSLASH() + xT("File_4.log") );
+            vsFiles.push_back( csRootDirPath + CxConst::slash() + xT("File_1") );
+            vsFiles.push_back( csRootDirPath + CxConst::slash() + xT("File_2.log") );
+            vsFiles.push_back( csRootDirPath + CxConst::slash() + xT("AAA") +
+                               CxConst::slash() + xT("AA") +
+                               CxConst::slash() + xT("File_3.log") );
+            vsFiles.push_back( csRootDirPath + CxConst::slash() + xT("BBB") +
+                               CxConst::slash() + xT("BB") +
+                               CxConst::slash() + xT("BBB") +
+                               CxConst::slash() + xT("File_4.log") );
 
             xFOREACH_CONST(std::vec_tstring_t, cit, vsFiles) {
-                CxFile::textWrite(*cit, CxConst::xSTR_EMPTY());
+                CxFile::textWrite(*cit, CxConst::strEmpty());
             }
 
             xTEST_EQ(size_t(12), vsFiles.size());
@@ -76,7 +76,7 @@ CxTest_CxFinder::unit(
     xTEST_CASE("CxFinder::CxFinder", a_cullCaseLoops)
     {
         SData adtData[] = {
-            {CxConst::xMASK_ALL(), 12 - 2},
+            {CxConst::maskAll(), 12 - 2},
             {xT("*"),            12 - 2},
         #if xOS_ENV_WIN
             {xT("*.*"),          12 - 2},
@@ -98,8 +98,8 @@ CxTest_CxFinder::unit(
                 m_bRv = fnFinder.moveNext();
                 xCHECK_DO(!m_bRv, break);
 
-                xCHECK_DO(CxConst::xDOT()  == fnFinder.entryName(), continue);
-                xCHECK_DO(CxConst::x2DOT() == fnFinder.entryName(), continue);
+                xCHECK_DO(CxConst::dot()  == fnFinder.entryName(), continue);
+                xCHECK_DO(CxConst::dot2() == fnFinder.entryName(), continue);
 
                 // set filter for files
                 xCHECK_DO(CxFileType::faDirectory & fnFinder.fileTypes(), continue);
@@ -119,7 +119,7 @@ CxTest_CxFinder::unit(
         {
             m_vsRv.clear();
 
-            CxFinder::dirs(csRootDirPath, CxConst::xMASK_ALL(), false, &m_vsRv);
+            CxFinder::dirs(csRootDirPath, CxConst::maskAll(), false, &m_vsRv);
             // CxTracer() << m_vsRv;
             xTEST_EQ(vsDirs.size(), m_vsRv.size());
         }
@@ -128,7 +128,7 @@ CxTest_CxFinder::unit(
         {
             m_vsRv.clear();
 
-            CxFinder::dirs(csRootDirPath, CxConst::xMASK_ALL(), true, &m_vsRv);
+            CxFinder::dirs(csRootDirPath, CxConst::maskAll(), true, &m_vsRv);
             // CxTracer() << m_vsRv;
             xTEST_EQ(size_t(6), m_vsRv.size());
         }
@@ -139,7 +139,7 @@ CxTest_CxFinder::unit(
         // non recursive
         {
             SData adtData[] = {
-                {CxConst::xMASK_ALL(), 12 - 2},
+                {CxConst::maskAll(), 12 - 2},
                 {xT("*"),            12 - 2},
             #if xOS_ENV_WIN
                 {xT("*.*"),          12 - 2},
@@ -164,7 +164,7 @@ CxTest_CxFinder::unit(
         // recursive
         {
             SData adtData[] = {
-                {CxConst::xMASK_ALL(), 12},
+                {CxConst::maskAll(), 12},
                 {xT("*"),            12},
             #if xOS_ENV_WIN
                 {xT("*.*"),          12},

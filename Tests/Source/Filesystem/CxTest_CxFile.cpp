@@ -16,7 +16,7 @@ CxTest_CxFile::unit(
     culonglong_t &a_cullCaseLoops
 )
 {
-    std::ctstring_t csFilePath = tempDirPath() + CxConst::xSLASH() + xT("Test.txt");
+    std::ctstring_t csFilePath = tempDirPath() + CxConst::slash() + xT("Test.txt");
 
 
     /*******************************************************************************
@@ -151,7 +151,7 @@ CxTest_CxFile::unit(
         {
             CxFile F;
 
-            F.create(tempDirPath() + CxConst::xSLASH() + xT("DataNew.dat"), CxFile::omBinWrite, true);
+            F.create(tempDirPath() + CxConst::slash() + xT("DataNew.dat"), CxFile::omBinWrite, true);
             F.write(usText1);
         }
 
@@ -541,7 +541,7 @@ CxTest_CxFile::vUnit1(
     culonglong_t &a_cullCaseLoops
 )
 {
-    std::ctstring_t csFilePath = tempDirPath() + CxConst::xSLASH() + xT("Test.txt");
+    std::ctstring_t csFilePath = tempDirPath() + CxConst::slash() + xT("Test.txt");
 
     /*******************************************************************************
     *   static
@@ -590,7 +590,7 @@ CxTest_CxFile::vUnit1(
 
     xTEST_CASE("CxFile::rename", a_cullCaseLoops)
     {
-        std::ctstring_t csNewFilePath = tempDirPath() + CxConst::xSLASH() + xT("New.Test.txt");
+        std::ctstring_t csNewFilePath = tempDirPath() + CxConst::slash() + xT("New.Test.txt");
 
         CxFile::textWrite(csFilePath, xT("Simple text"));
         CxFile::remove(csNewFilePath);
@@ -617,7 +617,7 @@ CxTest_CxFile::vUnit1(
 
     xTEST_CASE("CxFile::copy", a_cullCaseLoops)
     {
-        std::ctstring_t sFilePathFrom = tempDirPath() + CxConst::xSLASH() + xT("test_copy.txt");
+        std::ctstring_t sFilePathFrom = tempDirPath() + CxConst::slash() + xT("test_copy.txt");
         std::ctstring_t sFilePathTo   = sFilePathFrom + xT("_addition_to_name");
 
         {
@@ -637,10 +637,10 @@ CxTest_CxFile::vUnit1(
 
     xTEST_CASE("CxFile::move", a_cullCaseLoops)
     {
-        std::ctstring_t csNewFilePath = tempDirPath() + CxConst::xSLASH() + xT("New.Test.txt");
+        std::ctstring_t csNewFilePath = tempDirPath() + CxConst::slash() + xT("New.Test.txt");
 
         CxFile::textWrite(csNewFilePath, xT("Simple text"));
-        CxFile::remove(tempDirPath() + CxConst::xSLASH() + csNewFilePath);
+        CxFile::remove(tempDirPath() + CxConst::slash() + csNewFilePath);
         CxFile::move(csNewFilePath, tempDirPath());
     }
 
@@ -654,14 +654,14 @@ CxTest_CxFile::vUnit1(
 
     xTEST_CASE("CxFile::clear", a_cullCaseLoops)
     {
-        std::ctstring_t csNewFilePath = tempDirPath() + CxConst::xSLASH() + xT("New.Test.txt");
+        std::ctstring_t csNewFilePath = tempDirPath() + CxConst::slash() + xT("New.Test.txt");
 
         CxFile::clear(csNewFilePath);
     }
 
     xTEST_CASE("CxFile::remove", a_cullCaseLoops)
     {
-        std::ctstring_t csNewFilePath = tempDirPath() + CxConst::xSLASH() + xT("New.Test.txt");
+        std::ctstring_t csNewFilePath = tempDirPath() + CxConst::slash() + xT("New.Test.txt");
 
         CxFile::remove(csNewFilePath);
         CxFile::remove(csNewFilePath);
@@ -672,7 +672,7 @@ CxTest_CxFile::vUnit1(
         // TEST: CxFile::tryRemove
 
         #if xTODO
-            std::ctstring_t csFilePath = tempDirPath() + CxConst::xSLASH() + xT("New.Test.txt");
+            std::ctstring_t csFilePath = tempDirPath() + CxConst::slash() + xT("New.Test.txt");
 
             for (size_t i = 0; i < 20; ++ i) {
                 if (i < 10) {
@@ -809,7 +809,7 @@ CxTest_CxFile::vUnit1(
     {
         // std::vector
         std::map_tstring_t   cmsFileContent;
-        std::ctstring_t csSeparator = CxConst::xEQUAL();
+        std::ctstring_t csSeparator = CxConst::equal();
 
         {
             CxFile F;
@@ -835,7 +835,7 @@ CxTest_CxFile::vUnit1(
     {
         // empty content
         std::map_tstring_t   cmsFileContent;
-        std::ctstring_t csSeparator = CxConst::xEQUAL();
+        std::ctstring_t csSeparator = CxConst::equal();
 
         {
             CxFile F;
@@ -906,7 +906,7 @@ CxTest_CxFile::vUnitPrivate(
 )
 {
 #if xTEST_PRIVATE_DATA
-    std::ctstring_t csFilePath = tempDirPath() + CxConst::xSLASH() + xT("Test.txt");
+    std::ctstring_t csFilePath = tempDirPath() + CxConst::slash() + xT("Test.txt");
 
     xTEST_CASE("CxFile::_nativeHandle", a_cullCaseLoops)
     {

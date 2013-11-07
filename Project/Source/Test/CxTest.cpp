@@ -121,7 +121,7 @@ CxTest::createTempDir(
     if (a_dirName.empty()) {
         _workDirPath = CxDir::temp();
     } else {
-        _workDirPath = CxPath::exeDir() + CxConst::xSLASH() + a_dirName;
+        _workDirPath = CxPath::exeDir() + CxConst::slash() + a_dirName;
 
         CxDir(_workDirPath).pathCreate();
     }

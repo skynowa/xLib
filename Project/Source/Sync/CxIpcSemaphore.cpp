@@ -95,7 +95,7 @@ CxIpcSemaphore::create(
     _handle.set(hRv);
     _name = a_name;
 #else
-    std::tstring_t unixName = CxConst::xUNIX_SLASH() + a_name;
+    std::tstring_t unixName = CxConst::unixSlash() + a_name;
 
     handle_t handle = ::sem_open(unixName.c_str(), O_CREAT | O_RDWR, 0777, a_initialValue);
     xTEST_DIFF(SEM_FAILED, handle);
@@ -130,7 +130,7 @@ CxIpcSemaphore::open(
     _handle.set(hRv);
     _name = a_name;
 #else
-    std::tstring_t unixName = CxConst::xUNIX_SLASH() + a_name;
+    std::tstring_t unixName = CxConst::unixSlash() + a_name;
 
     handle_t handle = ::sem_open(unixName.c_str(), O_RDWR, 0777, 0U);
     xTEST_DIFF(SEM_FAILED, handle);

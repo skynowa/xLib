@@ -250,19 +250,19 @@ CxCookiePv0::init(
     std::tstring_t cookie;
 
     cookie = a_rawCookie;
-    cookie = CxString::removeAll(cookie, CxConst::xSQM());
-    cookie = CxString::removeAll(cookie, CxConst::xDQM());
+    cookie = CxString::removeAll(cookie, CxConst::sqm());
+    cookie = CxString::removeAll(cookie, CxConst::dqm());
 
     //split into pairs (name1=value1; name2=value2; nameN=valueN)
     std::vec_tstring_t pairs;
 
-    CxString::split(cookie, CxConst::xSEMICOLON(), &pairs);
+    CxString::split(cookie, CxConst::semicolon(), &pairs);
 
     for (size_t i = 0; i < pairs.size(); ++ i) {
         //split into name, value (name=value)
         std::vec_tstring_t temp;
 
-        CxString::split(pairs.at(i), CxConst::xEQUAL(), &temp);
+        CxString::split(pairs.at(i), CxConst::equal(), &temp);
 
         std::tstring_t cookieName  = CxString::trimSpace(temp.at(0));
         std::tstring_t cookieValue = ( (1 == temp.size()) ? std::tstring_t() : temp.at(1) );

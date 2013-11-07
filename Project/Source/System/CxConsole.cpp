@@ -327,7 +327,7 @@ CxConsole::read()
     BOOL blRes = ::ReadConsole(_stdIn.get(), &buff[0], buffSize, &read, NULL);
     xTEST_DIFF(FALSE, blRes);
 
-    sRv.assign(buff, read - CxConst::xCRNL().size());
+    sRv.assign(buff, read - CxConst::crNl().size());
 #else
     // BUG: CxConsole::read
     std::tcin >> sRv;
@@ -374,7 +374,7 @@ CxConsole::writeLine(
     xTEST_EQ(true, _stdOut.isValid());
 #endif
 
-    write(a_str + CxConst::xNL());
+    write(a_str + CxConst::nl());
 }
 //------------------------------------------------------------------------------
 xINLINE_HO void_t
@@ -481,7 +481,7 @@ CxConsole::prompt(
             (*a_answer).push_back(letter);
         }
 
-        writeLine(CxConst::xSTR_EMPTY());
+        writeLine(CxConst::strEmpty());
 
         xCHECK_DO((*a_answer).empty(), continue);
 
@@ -572,7 +572,7 @@ CxConsole::clear() {
     blRes = ::SetConsoleCursorPosition(_stdOut.get(), coordScreen );
     xTEST_DIFF(FALSE, blRes);
 #else
-    writeLine(CxConst::xFF());
+    writeLine(CxConst::ff());
 #endif
 }
 //------------------------------------------------------------------------------

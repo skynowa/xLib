@@ -123,8 +123,8 @@ CxVolume::label() const
     sRv.assign(volumeName);
 #else
     // REVIEW: just get the dir name ??
-    if (CxConst::xUNIX_SLASH() == volumePath()) {
-        sRv = CxConst::xUNIX_SLASH();
+    if (CxConst::unixSlash() == volumePath()) {
+        sRv = CxConst::unixSlash();
     } else {
         sRv = CxPath( volumePath() ).fileName();
     }
@@ -141,7 +141,7 @@ CxVolume::isValid() const
     xCHECK_RET(!bRv, false);
 #else
     xCHECK_RET(true                    == volumePath().empty(), false);
-    xCHECK_RET(CxConst::xSLASH().at(0) != volumePath().at(0),   false);
+    xCHECK_RET(CxConst::slash().at(0) != volumePath().at(0),   false);
 #endif
 
     return true;
@@ -188,7 +188,7 @@ CxVolume::isReady() const
 xINLINE_HO bool_t
 CxVolume::isEmpty() const
 {
-    return CxDir( volumePath() ).isEmpty(CxConst::xMASK_ALL());
+    return CxDir( volumePath() ).isEmpty(CxConst::maskAll());
 }
 //------------------------------------------------------------------------------
 xINLINE_HO void_t

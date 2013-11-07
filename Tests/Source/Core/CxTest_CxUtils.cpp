@@ -193,7 +193,7 @@ CxTest_CxUtils::unit(
 
     xTEST_CASE("CxUtils::fileClose", a_cullCaseLoops)
     {
-        std::ctstring_t csFilaPath = tempDirPath() + CxConst::xSLASH() + xT("test_fileclose.txt");
+        std::ctstring_t csFilaPath = tempDirPath() + CxConst::slash() + xT("test_fileclose.txt");
 
         FILE *pFile = xTFOPEN(csFilaPath.c_str(), xT("w"));
         xTEST_PTR(pFile);

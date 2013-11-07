@@ -170,11 +170,11 @@ CxPath::exeDir()
 xINLINE_HO std::tstring_t
 CxPath::drive() const
 {
-    std::csize_t driveDelimPos = filePath().find(CxConst::xCOLON());
+    std::csize_t driveDelimPos = filePath().find(CxConst::colon());
     xTEST_DIFF(std::tstring_t::npos, driveDelimPos);
     xTEST_EQ(size_t(1), driveDelimPos);
 
-    return filePath().substr(0, driveDelimPos + CxConst::xCOLON().size());
+    return filePath().substr(0, driveDelimPos + CxConst::colon().size());
 }
 
 #endif
@@ -182,7 +182,7 @@ CxPath::drive() const
 xINLINE_HO std::tstring_t
 CxPath::dir() const
 {
-    std::csize_t slashPos = filePath().rfind(CxConst::xSLASH(), filePath().size());
+    std::csize_t slashPos = filePath().rfind(CxConst::slash(), filePath().size());
     xCHECK_RET(std::tstring_t::npos == slashPos, std::tstring_t());
 
     return filePath().substr(0, slashPos);
@@ -191,10 +191,10 @@ CxPath::dir() const
 xINLINE_HO std::tstring_t
 CxPath::dirName() const
 {
-    std::csize_t slashPos2 = filePath().rfind(CxConst::xSLASH());
+    std::csize_t slashPos2 = filePath().rfind(CxConst::slash());
     xCHECK_RET(std::tstring_t::npos == slashPos2, std::tstring_t());
 
-    std::csize_t slashPos1 = filePath().rfind(CxConst::xSLASH(), slashPos2 - 1);
+    std::csize_t slashPos1 = filePath().rfind(CxConst::slash(), slashPos2 - 1);
     if (std::tstring_t::npos == slashPos1) {
         return filePath().substr(0, slashPos2);
     } else {
@@ -205,32 +205,32 @@ CxPath::dirName() const
 xINLINE_HO std::tstring_t
 CxPath::fileName() const
 {
-    std::csize_t slashPos = filePath().rfind(CxConst::xSLASH(), filePath().size());
+    std::csize_t slashPos = filePath().rfind(CxConst::slash(), filePath().size());
     xCHECK_RET(std::tstring_t::npos == slashPos, filePath());
 
-    return filePath().substr(slashPos + CxConst::xSLASH().size());
+    return filePath().substr(slashPos + CxConst::slash().size());
 }
 //--------------------------------------------------------------------------
 xINLINE_HO std::tstring_t
 CxPath::fileBaseName() const
 {
-    std::csize_t slashPos = filePath().rfind(CxConst::xSLASH(), filePath().size());
-    std::csize_t dotPos   = filePath().rfind(CxConst::xDOT(),   filePath().size());
+    std::csize_t slashPos = filePath().rfind(CxConst::slash(), filePath().size());
+    std::csize_t dotPos   = filePath().rfind(CxConst::dot(),   filePath().size());
 
-    return CxString::cut(filePath(), slashPos + CxConst::xSLASH().size(), dotPos);
+    return CxString::cut(filePath(), slashPos + CxConst::slash().size(), dotPos);
 }
 //--------------------------------------------------------------------------
 xINLINE_HO std::tstring_t
 CxPath::ext() const
 {
-    std::csize_t dotPos   = filePath().rfind(CxConst::xDOT(),   filePath().size());
+    std::csize_t dotPos   = filePath().rfind(CxConst::dot(),   filePath().size());
     xCHECK_RET(std::tstring_t::npos == dotPos, std::tstring_t());
 
-    std::csize_t slashPos = filePath().rfind(CxConst::xSLASH(), filePath().size());
+    std::csize_t slashPos = filePath().rfind(CxConst::slash(), filePath().size());
     // if dot after slash - extension not exists
     xCHECK_RET(dotPos < slashPos && std::tstring_t::npos != slashPos, std::tstring_t());
 
-    return filePath().substr(dotPos + CxConst::xDOT().size());
+    return filePath().substr(dotPos + CxConst::dot().size());
 }
 //--------------------------------------------------------------------------
 /* static */
@@ -367,7 +367,7 @@ CxPath::setExt(
 {
     xTEST_NA(a_ext);
 
-    return removeExt() + CxConst::xDOT() + a_ext;
+    return removeExt() + CxConst::dot() + a_ext;
 }
 //------------------------------------------------------------------------------
 
@@ -376,7 +376,7 @@ CxPath::setExt(
 xINLINE_HO std::tstring_t
 CxPath::removeExt()
 {
-    std::csize_t dotPos = filePath().rfind(CxConst::xDOT());
+    std::csize_t dotPos = filePath().rfind(CxConst::dot());
 
     return filePath().substr(0, dotPos);
 }
@@ -386,10 +386,10 @@ CxPath::removeExtIf(
     std::ctstring_t &a_ext
 )
 {
-    std::csize_t extPos = filePath().rfind(CxConst::xDOT() + a_ext);
+    std::csize_t extPos = filePath().rfind(CxConst::dot() + a_ext);
     xCHECK_RET(std::tstring_t::npos == extPos, filePath());
 
-    std::csize_t dotPos = filePath().rfind(CxConst::xDOT());
+    std::csize_t dotPos = filePath().rfind(CxConst::dot());
     xTEST_DIFF(std::tstring_t::npos, dotPos);
 
     return filePath().substr(0, dotPos);
@@ -457,17 +457,17 @@ CxPath::isNameValid(
         ctchar_t end   = *(a_fileName.end() - 1);
 
         // space
-        bRv = (CxConst::xSPACE().at(0) == begin);
+        bRv = (CxConst::space().at(0) == begin);
         xCHECK_RET(bRv, false);
 
-        bRv = (CxConst::xSPACE().at(0) == end);
+        bRv = (CxConst::space().at(0) == end);
         xCHECK_RET(bRv, false);
 
         // dot
-        bRv = (CxConst::xDOT().at(0)   == begin);
+        bRv = (CxConst::dot().at(0)   == begin);
         xCHECK_RET(bRv, false);
 
-        bRv = (CxConst::xDOT().at(0)   == end);
+        bRv = (CxConst::dot().at(0)   == end);
         xCHECK_RET(bRv, false);
     }
 
@@ -563,12 +563,12 @@ CxPath::isNameValid(
 xINLINE_HO bool_t
 CxPath::isAbsolute() const {
     xCHECK_RET(true                    == filePath().empty(), false);
-    xCHECK_RET(CxConst::xSLASH().at(0) == filePath().at(0),   true);
+    xCHECK_RET(CxConst::slash().at(0) == filePath().at(0),   true);
 
 #if xOS_ENV_WIN
     xCHECK_RET(1 == filePath().size(), false);
     xCHECK_RET(CxChar::isAlpha(filePath().at(0)) &&
-        CxConst::xCOLON().at(0) == filePath().at(1), true);
+        CxConst::colon().at(0) == filePath().at(1), true);
 #else
     xNA;
 #endif
@@ -617,7 +617,7 @@ CxPath::setNameValid(
     // as the first character of a name. For example, ".temp".
     {
         // skip checks, trim right now
-        sRv = CxString::trimChars(sRv, CxConst::xSPACE() + CxConst::xDOT());
+        sRv = CxString::trimChars(sRv, CxConst::space() + CxConst::dot());
 
         xCHECK_RET(sRv.empty(), std::tstring_t());
     }
@@ -757,7 +757,7 @@ CxPath::toWin(
         sRv = slashRemove();
     }
 
-    sRv = CxString::replaceAll(sRv, CxConst::xUNIX_SLASH(), CxConst::xWIN_SLASH());
+    sRv = CxString::replaceAll(sRv, CxConst::unixSlash(), CxConst::winSlash());
 
     return sRv;
 }
@@ -777,7 +777,7 @@ CxPath::toUnix(
         sRv = slashRemove();
     }
 
-    sRv = CxString::replaceAll(sRv, CxConst::xWIN_SLASH(), CxConst::xUNIX_SLASH());
+    sRv = CxString::replaceAll(sRv, CxConst::winSlash(), CxConst::unixSlash());
 
     return sRv;
 }
@@ -798,9 +798,9 @@ CxPath::toNative(
     }
 
 #if xOS_ENV_WIN
-    sRv = CxString::replaceAll(sRv, CxConst::xUNIX_SLASH(), CxConst::xSLASH());
+    sRv = CxString::replaceAll(sRv, CxConst::unixSlash(), CxConst::slash());
 #else
-    sRv = CxString::replaceAll(sRv, CxConst::xWIN_SLASH(),  CxConst::xSLASH());
+    sRv = CxString::replaceAll(sRv, CxConst::winSlash(),  CxConst::slash());
 #endif
 
     return sRv;
@@ -860,7 +860,7 @@ CxPath::shortName(
     if (CxPath(a_fileName).ext().empty()) {
         tildaDotExt = xT("~");
     } else {
-        tildaDotExt = xT("~") + CxConst::xDOT() + CxPath(a_fileName).ext();
+        tildaDotExt = xT("~") + CxConst::dot() + CxPath(a_fileName).ext();
     }
 
     if (a_fileName.size() > a_maxSize) {
@@ -895,9 +895,9 @@ CxPath::brief(
             size_t index = 0;
 
             xFOREVER {
-                std::csize_t pos = a_str.find_first_of(CxConst::xWIN_SLASH() + CxConst::xUNIX_SLASH());
+                std::csize_t pos = a_str.find_first_of(CxConst::winSlash() + CxConst::unixSlash());
 
-                a_str.erase(0, pos + CxConst::xSLASH().size());
+                a_str.erase(0, pos + CxConst::slash().size());
 
                 xCHECK_DO(std::tstring_t::npos != pos,  ++ index);
                 xCHECK_DO(index == a_num && 0 != a_num, break);
@@ -927,7 +927,7 @@ CxPath::brief(
         uiNumNew = 2;
         _SFunctor::slashesMake(sPath, uiNumNew);
 
-        sRv.append(CxConst::x3DOT() + CxConst::xSLASH() + sPath);
+        sRv.append(CxConst::dot3() + CxConst::slash() + sPath);
 
         -- num;
     }
@@ -940,13 +940,13 @@ CxPath::brief(
 xINLINE_HO std::tstring_t
 CxPath::slashAppend() const
 {
-    return CxString::trimRightChars(filePath(), CxConst::xSLASH()).append(CxConst::xSLASH());
+    return CxString::trimRightChars(filePath(), CxConst::slash()).append(CxConst::slash());
 }
 //--------------------------------------------------------------------------
 xINLINE_HO std::tstring_t
 CxPath::slashRemove() const
 {
-    return CxString::trimRightChars(filePath(), CxConst::xSLASH());
+    return CxString::trimRightChars(filePath(), CxConst::slash());
 }
 //--------------------------------------------------------------------------
 /* static */

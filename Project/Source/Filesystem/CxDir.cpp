@@ -59,7 +59,7 @@ CxDir::isExists()
 //------------------------------------------------------------------------------
 xINLINE_HO bool_t
 CxDir::isEmpty(
-    std::ctstring_t &a_shellFilter /* = CxConst::xMASK_ALL() */
+    std::ctstring_t &a_shellFilter /* = CxConst::maskAll() */
 )
 {
     xTEST_EQ(false, a_shellFilter.empty());
@@ -71,8 +71,8 @@ CxDir::isEmpty(
     xFOREVER {
         xCHECK_DO(!finder.moveNext(), break);
 
-        xCHECK_DO(CxConst::xDOT()  == finder.entryName(), continue);
-        xCHECK_DO(CxConst::x2DOT() == finder.entryName(), continue);
+        xCHECK_DO(CxConst::dot()  == finder.entryName(), continue);
+        xCHECK_DO(CxConst::dot2() == finder.entryName(), continue);
 
         bRv = false;
         break;
@@ -88,13 +88,13 @@ CxDir::isRoot()
     xCHECK_RET(3 != dirPath().size(), false);
 
     bool_t bRes1 = CxChar::isAlpha(dirPath().at(0));
-    bool_t bRes2 = (dirPath().at(1) == CxConst::xCOLON().at(0));
-    bool_t bRes3 = (dirPath().at(2) == CxConst::xWIN_SLASH().at(0) ||
-                    dirPath().at(2) == CxConst::xUNIX_SLASH().at(0));
+    bool_t bRes2 = (dirPath().at(1) == CxConst::colon().at(0));
+    bool_t bRes3 = (dirPath().at(2) == CxConst::winSlash().at(0) ||
+                    dirPath().at(2) == CxConst::unixSlash().at(0));
 
     xCHECK_RET(!bRes1 || !bRes2 || !bRes3, false);
 #else
-    xCHECK_RET(CxConst::xSLASH() != dirPath(), false);
+    xCHECK_RET(CxConst::slash() != dirPath(), false);
 #endif
 
     return true;
@@ -134,12 +134,12 @@ CxDir::pathCreate()
 
     //-------------------------------------
     // split dirPath into parts
-     CxString::split( CxPath(dirPath()).toNative(false), CxConst::xSLASH(), &pathParts );
+     CxString::split( CxPath(dirPath()).toNative(false), CxConst::slash(), &pathParts );
 
     //-------------------------------------
     // create dirs by steps
     xFOREACH_CONST(std::vec_tstring_t, it, pathParts) {
-        buildPath.append(*it).append(CxConst::xSLASH());
+        buildPath.append(*it).append(CxConst::slash());
 
         CxDir(buildPath).create();
     }
@@ -171,7 +171,7 @@ CxDir::copy(
     std::vec_tstring_t filePaths;
 
     filePaths.clear();
-    CxFinder::files(dirPath(), CxConst::xMASK_ALL(), true, &filePaths);
+    CxFinder::files(dirPath(), CxConst::maskAll(), true, &filePaths);
 
     //--------------------------------------------------
     // copy
@@ -265,7 +265,7 @@ CxDir::pathClear()
 
     //-------------------------------------
     // checks
-    bool_t bRv = isEmpty(CxConst::xMASK_ALL());
+    bool_t bRv = isEmpty(CxConst::maskAll());
     xCHECK_DO(bRv, return);
 
     //-------------------------------------
@@ -274,7 +274,7 @@ CxDir::pathClear()
         std::vec_tstring_t filePaths;
 
         filePaths.clear();
-        CxFinder::files(dirPath(), CxConst::xMASK_ALL(), true, &filePaths);
+        CxFinder::files(dirPath(), CxConst::maskAll(), true, &filePaths);
 
         xFOREACH_R(std::vec_tstring_t, it, filePaths) {
             CxFile::remove(*it);
@@ -287,7 +287,7 @@ CxDir::pathClear()
         std::vec_tstring_t dirPaths;
 
         dirPaths.clear();
-        CxFinder::dirs(dirPath(), CxConst::xMASK_ALL(), true, &dirPaths);
+        CxFinder::dirs(dirPath(), CxConst::maskAll(), true, &dirPaths);
 
         xFOREACH_R(std::vec_tstring_t, it, dirPaths) {
             CxDir(*it).remove();
