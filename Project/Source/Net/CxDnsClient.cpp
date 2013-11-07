@@ -45,15 +45,15 @@ CxDnsClient::hostAddrByName(
     xTEST_PTR(host);
 
     sRv = CxString::format(
-                xT("%u.%u.%u.%u"),
-                static_cast<uchar_t>(host->h_addr_list[0][0]),
-                static_cast<uchar_t>(host->h_addr_list[0][1]),
-                static_cast<uchar_t>(host->h_addr_list[0][2]),
-                static_cast<uchar_t>(host->h_addr_list[0][3])
+        xT("%u.%u.%u.%u"),
+        static_cast<uchar_t>(host->h_addr_list[0][0]),
+        static_cast<uchar_t>(host->h_addr_list[0][1]),
+        static_cast<uchar_t>(host->h_addr_list[0][2]),
+        static_cast<uchar_t>(host->h_addr_list[0][3])
     );
     xTEST_EQ(false, sRv.empty());
 
-    (*a_hostAddr) = sRv;
+    *a_hostAddr = sRv;
 }
 //------------------------------------------------------------------------------
 /* static */
@@ -81,18 +81,18 @@ CxDnsClient::hostNameByAddr(
             iRv = ::inet_pton(afInet6, a_casHostAddr.c_str(), &iaAddr6);
             xTEST_DIFF(0, iRv);
 
-            host = ::gethostbyaddr((char *) &iaAddr6, 16, afInet6);
+            host = ::gethostbyaddr(static_cast<char *>( &iaAddr6 ), 16, afInet6);
             xTEST_PTR(host, false);
         #endif
-    #endif // xOS_WIN_VISTA
+    #endif
         break;
     default:
-        in_addr iaAddr;
+        in_addr iaAddr = {0};
 
-        iaAddr.s_addr = ::inet_addr(hostAddr.c_str());
+        iaAddr.s_addr = ::inet_addr( hostAddr.c_str() );
         xTEST_EQ(true, iaAddr.s_addr != INADDR_NONE);
 
-        host = ::gethostbyaddr((char *) &iaAddr, sizeof(iaAddr)/*4*/, CxSocket::afInet);
+        host = ::gethostbyaddr((char *) &iaAddr, sizeof(iaAddr), CxSocket::afInet);
         xTEST_PTR(host);
         break;
     }
@@ -100,7 +100,7 @@ CxDnsClient::hostNameByAddr(
     // convert to UNICODE
     std::string sRv(host->h_name);
 
-    (*a_hostName).assign(sRv.begin(), sRv.end());
+    a_hostName->assign(sRv.begin(), sRv.end());
 }
 //------------------------------------------------------------------------------
 /* static */
@@ -111,16 +111,16 @@ CxDnsClient::localHostName(
 {
     xTEST_PTR(a_hostName);
 
-    std::string asRes(xHOST_NAME_MAX, '0');
+    std::string asRv(xHOST_NAME_MAX, '0');
 
-    int_t iRv = ::gethostname(&asRes.at(0), static_cast<int_t>( asRes.size() *
+    int_t iRv = ::gethostname(&asRv.at(0), static_cast<int_t>( asRv.size() *
         sizeof(std::string::value_type) ));
     xTEST_EQ(0, iRv);
 
-    asRes.assign(asRes.c_str());    //delete '0' from end
+    asRv.assign(asRv.c_str());    // trim '0' from end
 
     // convert to UNICODE
-    (*a_hostName).assign(asRes.begin(), asRes.end());
+    a_hostName->assign(asRv.begin(), asRv.end());
 }
 //------------------------------------------------------------------------------
 /* static */
@@ -183,9 +183,9 @@ CxDnsClient::protocolByName(
 )
 {
     xTEST_EQ(false, a_protocolName.empty());
-    //name     - n/a
-    //aliases - n/a
-    //number  - n/a
+    xTEST_NA(a_name);
+    xTEST_NA(a_aliases);
+    xTEST_NA(a_number);
 
     // convert to UNICODE
     std::string protocolName(a_protocolName.begin(), a_protocolName.end());
@@ -194,32 +194,32 @@ CxDnsClient::protocolByName(
     xTEST_PTR(info);
 
     //-------------------------------------
-    //name
+    // a_name
     if (NULL != a_name) {
         // convert to UNICODE
         std::string name = info->p_name;
-        (*a_name).assign(name.begin(), name.end());
+        a_name->assign(name.begin(), name.end());
     }
 
     //-------------------------------------
-    //psAliases
+    // a_aliases
     if (NULL != a_aliases) {
-        (*a_aliases).clear();
+        a_aliases->clear();
 
         for (char **s = info->p_aliases; s && *s; ++ s) {
-            std::string asRes;
-            asRes.assign(*s);
+            std::string asRv;
+            asRv.assign(*s);
 
             // convert to UNICODE
             std::tstring_t sRv;
-            sRv.assign(asRes.begin(), asRes.end());
+            sRv.assign(asRv.begin(), asRv.end());
 
-            (*a_aliases).push_back(sRv);
+            a_aliases->push_back(sRv);
         }
     }
 
     //-------------------------------------
-    //number
+    // a_number
     CxUtils::ptrAssignT(a_number, *a_number = info->p_proto);
 }
 //------------------------------------------------------------------------------
@@ -232,41 +232,41 @@ CxDnsClient::protocolByNumber(
     short_t            *a_number_rv
 )
 {
-    //siNum      - n/a
-    //psName     - n/a
-    //pvsAliases - n/a
-    //psiNum     - n/a
+    xTEST_NA(a_number);
+    xTEST_NA(a_name);
+    xTEST_NA(a_aliases);
+    xTEST_NA(a_number_rv);
 
-    protoent/*PROTOENT*/*info = ::getprotobynumber(a_number);
+    protoent/*PROTOENT*/ *info = ::getprotobynumber(a_number);
     xTEST_PTR(info);
 
     //-------------------------------------
-    //psName
+    // a_name
     // convert to UNICODE
     if (NULL != a_name) {
         std::string name = info->p_name;
-        (*a_name).assign(name.begin(), name.end());
+        a_name->assign(name.begin(), name.end());
     }
 
     //-------------------------------------
-    //psAliases
+    // a_aliases
     if (NULL != a_aliases) {
-        (*a_aliases).clear();
+        a_aliases->clear();
 
         for (char **s = info->p_aliases; s && *s; ++ s) {
-            std::string asRes;
-            asRes.assign(*s);
+            std::string asRv;
+            asRv.assign(*s);
 
             // convert to UNICODE
             std::tstring_t sRv;
-            sRv.assign(asRes.begin(), asRes.end());
+            sRv.assign(asRv.begin(), asRv.end());
 
-            (*a_aliases).push_back(sRv);
+            a_aliases->push_back(sRv);
         }
     }
 
     //-------------------------------------
-    //psiNum
+    // a_number_rv
     CxUtils::ptrAssignT(a_number_rv, *a_number_rv = info->p_proto);
 }
 //------------------------------------------------------------------------------
@@ -283,10 +283,10 @@ CxDnsClient::serviceByName(
 {
     xTEST_EQ(false, a_serviceName.empty());
     xTEST_EQ(false, a_protocolName.empty());
-    //name         - n/a
-    //aliases   - n/a
-    //port        - n/a
-    //protocolName_rv - n/a
+    xTEST_NA(a_name);
+    xTEST_NA(a_aliases);
+    xTEST_NA(a_port);
+    xTEST_NA(a_protocolName_rv);
 
     // convert to UNICODE
     std::string serviceName(a_serviceName.begin(), a_serviceName.end());
@@ -296,44 +296,45 @@ CxDnsClient::serviceByName(
     xTEST_PTR(info);
 
     //-------------------------------------
-    //name
+    // name
     if (NULL != a_name) {
         std::string name = info->s_name;
-        (*a_name).assign(name.begin(), name.end());
+        a_name->assign(name.begin(), name.end());
     }
 
     //-------------------------------------
-    //aliases
+    // aliases
     if (NULL != a_aliases) {
-        (*a_aliases).clear();
+        a_aliases->clear();
 
         for (char **s = info->s_aliases; s && *s; ++ s) {
-            std::string asRes;
-            asRes.assign(*s);
+            std::string asRv;
+            asRv.assign(*s);
 
             // convert to UNICODE
             std::tstring_t sRv;
-            sRv.assign(asRes.begin(), asRes.end());
+            sRv.assign(asRv.begin(), asRv.end());
 
-            (*a_aliases).push_back(sRv);
+            a_aliases->push_back(sRv);
         }
     }
+
     //-------------------------------------
-    //port
+    // port
     CxUtils::ptrAssignT(a_port, *a_port = info->s_port);
 
     //-------------------------------------
-    //protocolName_rv
+    // protocolName_rv
     if (NULL != a_protocolName_rv) {
         std::string _protocolName = info->s_proto;
-        (*a_protocolName_rv).assign(_protocolName.begin(), _protocolName.end());
+        a_protocolName_rv->assign(_protocolName.begin(), _protocolName.end());
     }
 }
 //------------------------------------------------------------------------------
 /* static */
 xINLINE_HO void_t
 CxDnsClient::serviceByPort(
-    cshort_t           &a_siPort,
+    cshort_t           &a_port,
     std::ctstring_t    &a_protocolName,
     std::tstring_t     *a_name,
     std::vec_tstring_t *a_aliases,
@@ -341,52 +342,52 @@ CxDnsClient::serviceByPort(
     std::tstring_t     *a_protocolName_rv
 )
 {
-    //TODO: siPort
+    // TODO: a_port
     xTEST_EQ(false, a_protocolName.empty());
-    //name         - n/a
-    //aliases   - n/a
-    //port        - n/a
-    //protocolName_rv - n/a
+    xTEST_NA(a_name);
+    xTEST_NA(a_aliases);
+    xTEST_NA(a_port_rv);
+    xTEST_NA(a_protocolName_rv);
 
     // convert to UNICODE
     std::string protocolName(a_protocolName.begin(), a_protocolName.end());
 
-    servent *info = ::getservbyport(a_siPort, protocolName.c_str());
+    servent *info = ::getservbyport(a_port, protocolName.c_str());
     xTEST_PTR(info);
 
     //-------------------------------------
-    //name
+    // name
     if (NULL != a_name) {
         std::string name = info->s_name;
-        (*a_name).assign(name.begin(), name.end());
+        a_name->assign(name.begin(), name.end());
     }
 
     //-------------------------------------
-    //aliases
+    // aliases
     if (NULL != a_aliases) {
-        (*a_aliases).clear();
+        a_aliases->clear();
 
         for (char **s = info->s_aliases; s && *s; ++ s) {
-            std::string asRes;
-            asRes.assign(*s);
+            std::string asRv;
+            asRv.assign(*s);
 
             // convert to UNICODE
             std::tstring_t sRv;
-            sRv.assign(asRes.begin(), asRes.end());
+            sRv.assign(asRv.begin(), asRv.end());
 
-            (*a_aliases).push_back(sRv);
+            a_aliases->push_back(sRv);
         }
     }
 
     //-------------------------------------
-    //port
+    // port
     CxUtils::ptrAssignT(a_port_rv, static_cast<short_t>( info->s_port ));
 
     //-------------------------------------
-    //protocolName_rv
+    // protocolName_rv
     if (NULL != a_protocolName_rv) {
         std::string _protocolName = info->s_proto;
-        (*a_protocolName_rv).assign(_protocolName.begin(), _protocolName.end());
+        a_protocolName_rv->assign(_protocolName.begin(), _protocolName.end());
     }
 }
 //------------------------------------------------------------------------------
@@ -396,10 +397,10 @@ CxDnsClient::isOnLan(
     culong_t &a_ip
 )
 {
-    culong_t myIpAddress = INADDR_ANY;     // IP of local interface (network order)
-    culong_t netMask     = INADDR_NONE;    // net mask for IP (network order)
+    culong_t localIp = INADDR_ANY;  // IP of local interface (network order)
+    culong_t netMask = INADDR_NONE; // net mask for IP (network order)
 
-    return (0L == ((ntohl(a_ip) ^ ntohl(myIpAddress)) & ntohl(netMask)));
+    return (0L == ((ntohl(a_ip) ^ ntohl(localIp)) & ntohl(netMask)));
 }
 //------------------------------------------------------------------------------
 /* static */
@@ -408,7 +409,7 @@ CxDnsClient::isBroadcast(
     culong_t &a_ip
 )
 {
-    culong_t netMask = INADDR_NONE;    // net mask for IP (network order)
+    culong_t netMask = INADDR_NONE; // net mask for IP (network order)
 
     return (0L == (~ntohl(a_ip) & ~ntohl(netMask)));
 }
