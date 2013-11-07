@@ -23,15 +23,15 @@ template<class T>
 /* static */
 std::tstring_t
 CxType::rawName(
-    const T &a_object
+    const T &a_objT
 )
 {
-    xTEST_NA(a_object);
+    xTEST_NA(a_objT);
 
     std::tstring_t sRv;
     std::string    className;
 
-    className.assign( typeid(a_object).name() );
+    className.assign( typeid(a_objT).name() );
     sRv = xS2TS(className);
 
     return sRv;
@@ -41,10 +41,10 @@ template<class T>
 /* static */
 std::tstring_t
 CxType::name(
-    const T &a_object
+    const T &a_objT
 )
 {
-    xTEST_NA(a_object);
+    xTEST_NA(a_objT);
 
     std::tstring_t sRv;
     std::string    className;
@@ -52,12 +52,12 @@ CxType::name(
 #if xCOMPILER_MINGW || xCOMPILER_GNUC
     int_t status = - 1;
 
-    char *realName = abi::__cxa_demangle(typeid(a_object).name(), NULL, NULL, &status);
+    char *realName = abi::__cxa_demangle(typeid(a_objT).name(), NULL, NULL, &status);
     className = (NULL != realName) ? realName : CxConst::xUNKNOWN_STRING_A();
 
     xBUFF_FREE(realName);
 #else
-    className.assign( typeid(a_object).name() );
+    className.assign( typeid(a_objT).name() );
 
     // or use UnDecorateSymbolName
 #endif
@@ -71,14 +71,14 @@ template<class T1, class T2>
 /* static */
 bool_t
 CxType::isEquals(
-    const T1 &a_object1,
-    const T2 &a_object2
+    const T1 &a_obj1T,
+    const T2 &a_obj2T
 )
 {
-    xTEST_NA(a_object1);
-    xTEST_NA(a_object2);
+    xTEST_NA(a_obj1T);
+    xTEST_NA(a_obj2T);
 
-    return ( rawName(a_object1) == rawName(a_object2) );
+    return ( rawName(a_obj1T) == rawName(a_obj2T) );
 }
 //------------------------------------------------------------------------------
 
