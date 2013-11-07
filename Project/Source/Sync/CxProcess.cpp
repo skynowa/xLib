@@ -400,7 +400,7 @@ CxProcess::ids(
     #if   xOS_LINUX
         std::vec_tstring_t dirPaths;
 
-        CxFinder::dirs(xT("/proc"), CxConst::xMASK_ALL(), false, &dirPaths);
+        CxFinder::dirs(xT("/proc"), CxConst::maskAll(), false, &dirPaths);
 
         // skip non-numeric entries
         xFOREACH_CONST(std::vec_tstring_t, it, dirPaths) {

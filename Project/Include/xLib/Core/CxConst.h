@@ -15,220 +15,220 @@ class CxConst
     /// constants
 {
 public:
-    // xSTR_EMPTY
-    static std::cstring_t &  xSTR_EMPTY_A();
+    // strEmpty
+    static std::cstring_t &  strEmptyA();
         ///< empty string (ansi)
-    static std::cwstring_t & xSTR_EMPTY_W();
+    static std::cwstring_t & strEmptyW();
         ///< empty string (unicode)
-    static std::ctstring_t & xSTR_EMPTY();
+    static std::ctstring_t & strEmpty();
         ///< empty string (ansi or unicode)
 
-    // xCR
-    static std::cstring_t &  xCR_A();
+    // cr
+    static std::cstring_t &  crA();
         ///< carriage return (ansi)
-    static std::cwstring_t & xCR_W();
+    static std::cwstring_t & crW();
         ///< carriage return (unicode)
-    static std::ctstring_t & xCR();
+    static std::ctstring_t & cr();
         ///< carriage return (ansi or unicode)
 
-    // xNL
-    static std::cstring_t &  xNL_A();
+    // nl
+    static std::cstring_t &  nlA();
         ///< newline (ansi)
-    static std::cwstring_t & xNL_W();
+    static std::cwstring_t & nlW();
         ///< newline (unicode)
-    static std::ctstring_t & xNL();
+    static std::ctstring_t & nl();
         ///< newline (ansi or unicode)
 
-    // xCRNL
-    static std::cstring_t &  xCRNL_A();
+    // crNl
+    static std::cstring_t &  crNlA();
         ///< carriage return + newline (ansi)
-    static std::cwstring_t & xCRNL_W();
+    static std::cwstring_t & crNlW();
         ///< carriage return + newline (unicode)
-    static std::ctstring_t & xCRNL();
+    static std::ctstring_t & crNl();
         ///< carriage return + newline (ansi or unicode)
 
-    // xCOLON
-    static std::cstring_t &  xCOLON_A();
+    // colon
+    static std::cstring_t &  colonA();
         ///< colon (ansi)
-    static std::cwstring_t & xCOLON_W();
+    static std::cwstring_t & colonW();
         ///< colon (unicode)
-    static std::ctstring_t & xCOLON();
+    static std::ctstring_t & colon();
         ///< colon (ansi or unicode)
 
-    // xWIN_SLASH
-    static std::cstring_t &  xWIN_SLASH_A();
+    // winSlash
+    static std::cstring_t &  winSlashA();
         ///< windows backslash (ansi)
-    static std::cwstring_t & xWIN_SLASH_W();
+    static std::cwstring_t & winSlashW();
         ///< windows backslash (unicode)
-    static std::ctstring_t & xWIN_SLASH();
+    static std::ctstring_t & winSlash();
         ///< windows backslash (ansi or unicode)
 
-    // xUNIX_SLASH
-    static std::cstring_t &  xUNIX_SLASH_A();
+    // unixSlash
+    static std::cstring_t &  unixSlashA();
         ///< nix backslash (ansi)
-    static std::cwstring_t & xUNIX_SLASH_W();
+    static std::cwstring_t & unixSlashW();
         ///< nix backslash (unicode)
-    static std::ctstring_t & xUNIX_SLASH();
+    static std::ctstring_t & unixSlash();
         ///< nix backslash (ansi or unicode)
 
-    // xSLASH
-    static std::cstring_t &  xSLASH_A();
+    // slash
+    static std::cstring_t &  slashA();
         ///< backslash for specific OS (ansi)
-    static std::cwstring_t & xSLASH_W();
+    static std::cwstring_t & slashW();
         ///< backslash for specific OS (unicode)
-    static std::ctstring_t & xSLASH();
+    static std::ctstring_t & slash();
         ///< backslash for specific OS (ansi or unicode)
 
-    // xEOL
-    static std::cstring_t &  xEOL_A();
+    // eol
+    static std::cstring_t &  eolA();
         ///< end of line (ansi)
-    static std::cwstring_t & xEOL_W();
+    static std::cwstring_t & eolW();
         ///< end of line (unicode)
-    static std::ctstring_t & xEOL();
+    static std::ctstring_t & eol();
         ///< end of line (ansi or unicode)
 
-    // xSEMICOLON
-    static std::cstring_t &  xSEMICOLON_A();
+    // semicolon
+    static std::cstring_t &  semicolonA();
         ///< path separator (ansi)
-    static std::cwstring_t & xSEMICOLON_W();
+    static std::cwstring_t & semicolonW();
         ///< path separator (unicode)
-    static std::ctstring_t & xSEMICOLON();
+    static std::ctstring_t & semicolon();
         ///< path separator (ansi or unicode)
 
-    // xDOT
-    static std::cstring_t &  xDOT_A();
+    // dot
+    static std::cstring_t &  dotA();
         ///< 1 dot (ansi)
-    static std::cwstring_t & xDOT_W();
+    static std::cwstring_t & dotW();
         ///< 1 dot (unicode)
-    static std::ctstring_t & xDOT();
+    static std::ctstring_t & dot();
         ///< 1 dot (ansi or unicode)
 
-    // x2DOT
-    static std::cstring_t &  x2DOT_A();
+    // dot2
+    static std::cstring_t &  dot2A();
         ///< 2 dots (ansi)
-    static std::cwstring_t & x2DOT_W();
+    static std::cwstring_t & dot2W();
         ///< 2 dots (unicode)
-    static std::ctstring_t & x2DOT();
+    static std::ctstring_t & dot2();
         ///< 2 dots
 
-    // x3DOT
-    static std::cstring_t &  x3DOT_A();
+    // dot3
+    static std::cstring_t &  dot3A();
         ///< 3 dots (ansi)
-    static std::cwstring_t & x3DOT_W();
+    static std::cwstring_t & dot3W();
         ///< 3 dots (unicode)
-    static std::ctstring_t & x3DOT();
+    static std::ctstring_t & dot3();
         ///< 3 dots (ansi or unicode)
 
-    // xMASK_ALL
-    static std::cstring_t &  xMASK_ALL_A();
+    // maskAll
+    static std::cstring_t &  maskAllA();
         ///< all files mask (ansi)
-    static std::cwstring_t & xMASK_ALL_W();
+    static std::cwstring_t & maskAllW();
         ///< all files mask (unicode)
-    static std::ctstring_t & xMASK_ALL();
+    static std::ctstring_t & maskAll();
         ///< all files mask (ansi or unicode)
 
-    // xHT
-    static std::cstring_t &  xHT_A();
+    // ht
+    static std::cstring_t &  htA();
         ///< horizontal tab (ansi)
-    static std::cwstring_t & xHT_W();
+    static std::cwstring_t & htW();
         ///< horizontal tab (unicode)
-    static std::ctstring_t & xHT();
+    static std::ctstring_t & ht();
         ///< horizontal tab (ansi or unicode)
 
-    // xVT
-    static std::cstring_t &  xVT_A();
+    // vt
+    static std::cstring_t &  vtA();
         ///< vertical tab (ansi)
-    static std::cwstring_t & xVT_W();
+    static std::cwstring_t & vtW();
         ///< vertical tab (unicode)
-    static std::ctstring_t & xVT();
+    static std::ctstring_t & vt();
         ///< vertical tab (ansi or unicode)
 
-    // xSPACE
-    static std::cstring_t &  xSPACE_A();
+    // space
+    static std::cstring_t &  spaceA();
         ///< space (ansi)
-    static std::cwstring_t & xSPACE_W();
+    static std::cwstring_t & spaceW();
         ///< space (unicode)
-    static std::ctstring_t & xSPACE();
+    static std::ctstring_t & space();
         ///< space (ansi or unicode)
 
-    // xBELL
-    static std::cstring_t &  xBELL_A();
+    // bell
+    static std::cstring_t &  bellA();
         ///< alert (ansi)
-    static std::cwstring_t & xBELL_W();
+    static std::cwstring_t & bellW();
         ///< alert (unicode)
-    static std::ctstring_t & xBELL();
+    static std::ctstring_t & bell();
         ///< alert (ansi or unicode)
 
-    // xBS
-    static std::cstring_t &  xBS_A();
+    // bs
+    static std::cstring_t &  bsA();
         ///< backspace (ansi)
-    static std::cwstring_t & xBS_W();
+    static std::cwstring_t & bsW();
         ///< backspace (unicode)
-    static std::ctstring_t & xBS();
+    static std::ctstring_t & bs();
         ///< backspace (ansi or unicode)
 
-    // xFF
-    static std::cstring_t &  xFF_A();
+    // ff
+    static std::cstring_t &  ffA();
         ///< formfeed (ansi)
-    static std::cwstring_t & xFF_W();
+    static std::cwstring_t & ffW();
         ///< formfeed (unicode)
-    static std::ctstring_t & xFF();
+    static std::ctstring_t & ff();
         ///< formfeed (ansi or unicode)
 
-    // xQM
-    static std::cstring_t &  xQM_A();
+    // qm
+    static std::cstring_t &  qmA();
         ///< question mark (ansi)
-    static std::cwstring_t & xQM_W();
+    static std::cwstring_t & qmW();
         ///< question mark (unicode)
-    static std::ctstring_t & xQM();
+    static std::ctstring_t & qm();
         ///< question mark (ansi or unicode)
 
-    // xSQM
-    static std::cstring_t &  xSQM_A();
+    // sqm
+    static std::cstring_t &  sqmA();
         ///< single quotation mark (ansi)
-    static std::cwstring_t & xSQM_W();
+    static std::cwstring_t & sqmW();
         ///< single quotation mark (unicode)
-    static std::ctstring_t & xSQM();
+    static std::ctstring_t & sqm();
         ///< single quotation mark (ansi or unicode)
 
-    // xDQM
-    static std::cstring_t &  xDQM_A();
+    // dqm
+    static std::cstring_t &  dqmA();
         ///< double quotation mark (ansi)
-    static std::cwstring_t & xDQM_W();
+    static std::cwstring_t & dqmW();
         ///< double quotation mark (unicode)
-    static std::ctstring_t & xDQM();
+    static std::ctstring_t & dqm();
         ///< double quotation mark (ansi or unicode)
 
-    // xWHITE_SPACES
-    static std::cstring_t &  xWHITE_SPACES_A();
+    // whiteSpaces
+    static std::cstring_t &  whiteSpacesA();
         ///< white spaces (ansi)
-    static std::cwstring_t & xWHITE_SPACES_W();
+    static std::cwstring_t & whiteSpacesW();
         ///< white spaces (unicode)
-    static std::ctstring_t & xWHITE_SPACES();
+    static std::ctstring_t & whiteSpaces();
         ///< white spaces (ansi or unicode)
 
-    // xEQUAL
-    static std::cstring_t &  xEQUAL_A();
+    // equal
+    static std::cstring_t &  equalA();
         ///< equal sign (ansi)
-    static std::cwstring_t & xEQUAL_W();
+    static std::cwstring_t & equalW();
         ///< equal sign (unicode)
-    static std::ctstring_t & xEQUAL();
+    static std::ctstring_t & equal();
         ///< equal sign (ansi or unicode)
 
-    // xHYPHEN
-    static std::cstring_t &  xHYPHEN_A();
+    // hyphen
+    static std::cstring_t &  hyphenA();
         ///< hyphen (ansi)
-    static std::cwstring_t & xHYPHEN_W();
+    static std::cwstring_t & hyphenW();
         ///< hyphen (unicode)
-    static std::ctstring_t & xHYPHEN();
+    static std::ctstring_t & hyphen();
         ///< hyphen (ansi or unicode)
 
-    // xUNKNOWN_STRING
-    static std::cstring_t &  xUNKNOWN_STRING_A();
+    // strUnknown
+    static std::cstring_t &  strUnknownA();
         ///< unknown string value (ansi)
-    static std::cwstring_t & xUNKNOWN_STRING_W();
+    static std::cwstring_t & strUnknownW();
         ///< unknown string value (unicode)
-    static std::ctstring_t & xUNKNOWN_STRING();
+    static std::ctstring_t & strUnknown();
         ///< unknown string value (ansi or unicode)
 
 private:

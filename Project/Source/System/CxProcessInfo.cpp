@@ -214,7 +214,7 @@ CxProcessInfo::commandLine(
 
         if (ntoskrnlId == _id) {
             sRv = CxEnvironment::expandStrings(xT("%SystemRoot%\\System32\\ntoskrnl.exe"));
-            CxString::split(sRv, CxConst::xSPACE(), &args);
+            CxString::split(sRv, CxConst::space(), &args);
 
             // out
             a_args->swap(args);
@@ -368,11 +368,11 @@ CxProcessInfo::commandLine(
 
         sRv = CxString::trimSpace(pcszRes);
     #else
-        sRv = CxString::join(_args, CxConst::xSPACE());
+        sRv = CxString::join(_args, CxConst::space());
     #endif
 #endif
 
-    CxString::split(sRv, CxConst::xSPACE(), &args);
+    CxString::split(sRv, CxConst::space(), &args);
 
     // out
     a_args->swap(args);

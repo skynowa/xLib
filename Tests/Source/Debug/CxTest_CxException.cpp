@@ -22,7 +22,7 @@ CxTest_CxException::unit(
             throw CxException();
         }
         catch (const CxException &e) {
-            xTEST_EQ(CxConst::xSTR_EMPTY(), e.what());
+            xTEST_EQ(CxConst::strEmpty(), e.what());
             //xTRACEV( xT("std::what: %s"), e.what().c_str() );
         }
         catch (...) {

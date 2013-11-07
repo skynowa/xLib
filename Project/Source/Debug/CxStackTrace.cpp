@@ -284,7 +284,7 @@ CxStackTrace::toString()
 
     get(&stack);
     sRv = _format(&stack);
-    xCHECK_RET(sRv.empty(), CxConst::xUNKNOWN_STRING());
+    xCHECK_RET(sRv.empty(), CxConst::strUnknown());
 
     return sRv;
 }

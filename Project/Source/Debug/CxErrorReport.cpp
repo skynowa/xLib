@@ -76,7 +76,7 @@ CxErrorReport::_construct(
     osArchitecture = sysInfo.formatOsArch( sysInfo.osArch() );
 
     stackTrace     = a_stackTrace;
-    comment        = a_comment.empty() ? CxConst::xHYPHEN() : a_comment;
+    comment        = a_comment.empty() ? CxConst::hyphen() : a_comment;
 }
 //------------------------------------------------------------------------------
 

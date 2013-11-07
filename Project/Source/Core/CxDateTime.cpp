@@ -1015,12 +1015,12 @@ CxDateTime::_parse(
 
         // replace ":" to " ", "-" to " "
         std::tstring_t dateTime = a_value;
-        dateTime = CxString::replaceAll(dateTime, CxConst::xCOLON(),  CxConst::xSPACE());
-        dateTime = CxString::replaceAll(dateTime, CxConst::xHYPHEN(), CxConst::xSPACE());
+        dateTime = CxString::replaceAll(dateTime, CxConst::colon(),  CxConst::space());
+        dateTime = CxString::replaceAll(dateTime, CxConst::hyphen(), CxConst::space());
 
         // split by separator " "
         std::vec_tstring_t dates;
-        CxString::split(dateTime, CxConst::xSPACE(), &dates);
+        CxString::split(dateTime, CxConst::space(), &dates);
 
         //                   = CxString::cast<ushort_t>( dates.at(0) );    // Wed(0),
         (*a_datetime)._day    = CxString::cast<ushort_t>( dates.at(1) );   // 23(1)

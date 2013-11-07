@@ -137,7 +137,7 @@ CxFile::attach(
     close();
 
     _file     = a_file;
-    _filePath = CxConst::xSTR_EMPTY();
+    _filePath = CxConst::strEmpty();
 }
 //------------------------------------------------------------------------------
 xINLINE_HO std::FILE *
@@ -299,7 +299,7 @@ CxFile::writeLine(
 {
     xTEST_NA(a_str);
 
-    int_t iRv = xTFPUTS((a_str + CxConst::xEOL()).c_str(), get());
+    int_t iRv = xTFPUTS((a_str + CxConst::eol()).c_str(), get());
     xTEST_DIFF(- 1, iRv);
 }
 //------------------------------------------------------------------------------
@@ -618,12 +618,12 @@ CxFile::isExistsEx(
     std::tstring_t fileName = path.fileBaseName();
     std::tstring_t fileExt  = path.ext();
 
-    xCHECK_DO(!fileExt.empty(), fileExt.insert(0, CxConst::xDOT()));
+    xCHECK_DO(!fileExt.empty(), fileExt.insert(0, CxConst::dot()));
 
     for (ulong_t existsIndex = 1; ; ++ existsIndex) {
         sRv = CxString::format(xT("%s%s%s (%lu)%s"),
                                fileDir.c_str(),
-                               CxConst::xSLASH().c_str(),
+                               CxConst::slash().c_str(),
                                fileName.c_str(),
                                existsIndex,
                                fileExt.c_str());
@@ -819,7 +819,7 @@ CxFile::wipe(
         sRndFileName = CxString::cast( CxDateTime().current().toMsec() );
         std::random_shuffle(sRndFileName.begin(), sRndFileName.end());
 
-        sRndFilePath = CxPath(a_filePath).dir() + CxConst::xSLASH() + sRndFileName;
+        sRndFilePath = CxPath(a_filePath).dir() + CxConst::slash() + sRndFileName;
 
         rename(a_filePath, sRndFilePath);
     }
@@ -1129,7 +1129,7 @@ CxFile::textRead(
 
     textRead(a_filePath, &sFileContent);
 
-    CxString::split(sFileContent, CxConst::xNL(), &vsRes);
+    CxString::split(sFileContent, CxConst::nl(), &vsRes);
 
     // out
     a_content->swap(vsRes);
@@ -1149,7 +1149,7 @@ CxFile::textWrite(
 
     std::tstring_t sFileContent;
 
-    sFileContent = CxString::join(a_content, CxConst::xNL());
+    sFileContent = CxString::join(a_content, CxConst::nl());
 
     textWrite(a_filePath, sFileContent);
 }
@@ -1185,7 +1185,7 @@ CxFile::textRead(
     for (size_t i = 0; !ifsStream.eof(); ++ i) {
         std::getline(ifsStream, sLine);
 
-        sLine = CxString::trimRightChars(sLine, CxConst::xEOL());
+        sLine = CxString::trimRightChars(sLine, CxConst::eol());
 
         CxString::split(sLine, a_separator, &vsLine);
         xTEST_EQ(size_t(2), vsLine.size());
@@ -1248,9 +1248,9 @@ CxFile::textWrite(
         sRv.append((*it).first);
         sRv.append(separator);
         sRv.append((*it).second);
-        sRv.append(CxConst::xNL());
+        sRv.append(CxConst::nl());
 
-        xCHECK_DO(it != content.end(), sRv.append(CxConst::xNL()));
+        xCHECK_DO(it != content.end(), sRv.append(CxConst::nl()));
     }
 
     textWrite(filePath, sRv);

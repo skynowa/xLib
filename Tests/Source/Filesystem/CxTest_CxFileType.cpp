@@ -18,7 +18,7 @@ CxTest_CxFileType::unit(
     culonglong_t &a_cullCaseLoops
 )
 {
-    std::ctstring_t    csFilePath = tempDirPath() + CxConst::xSLASH() + xT("Test.txt");
+    std::ctstring_t    csFilePath = tempDirPath() + CxConst::slash() + xT("Test.txt");
     CxFileType::ExType cfaValue;
 
     // prepare
