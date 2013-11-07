@@ -146,12 +146,12 @@ CxShell::execute(
 /* static */
 xINLINE_HO void_t
 CxShell::executeEx(
-    SHELLEXECUTEINFO *a_info
+    SHELLEXECUTEINFO &a_info
 )
 {
     xTEST_PTR(a_info);
 
-    BOOL bRv = ::ShellExecuteEx(a_info);
+    BOOL bRv = ::ShellExecuteEx(&a_info);
     xTEST_DIFF(FALSE, bRv);
 }
 //------------------------------------------------------------------------------
@@ -161,7 +161,7 @@ CxShell::executeHttp(
     std::ctstring_t &a_url
 )
 {
-    // url - n/a
+    xTEST_NA(a_url);
 
     std::tstring_t url = CxString::trimSpace(a_url);
 
@@ -176,7 +176,7 @@ CxShell::executeFtp(
     std::ctstring_t &a_url
 )
 {
-    // url - n/a
+    xTEST_NA(a_url);
 
     std::ctstring_t url = CxString::trimSpace(a_url);
 
@@ -247,8 +247,6 @@ CxShell::specialDirPath(
     return std::tstring_t(buff);
 }
 //------------------------------------------------------------------------------
-#define xHOTKEY(modifier, key) ((((modifier) & 0xff) << 8) | ((key)&0xff))
-
 /* static */
 xINLINE_HO void_t
 CxShell::createShortcut(
@@ -276,8 +274,8 @@ CxShell::createShortcut(
 
     CxCom cmCom(COINIT_MULTITHREADED);
 
-    IShellLink *link = NULL;
     HRESULT     hRv  = 0;
+    IShellLink *link = NULL;
 
     hRv = ::CoCreateInstance(CLSID_ShellLink, NULL, CLSCTX_INPROC_SERVER, IID_IShellLink,
         (void_t **)&link);
@@ -320,8 +318,8 @@ CxShell::createShortcut(
     hRv = file->Save(buff, true);
 #endif
 
-    file->Release();
-    link->Release();
+    file->Release();    file = NULL;
+    link->Release();    link = NULL;
 }
 //------------------------------------------------------------------------------
 
