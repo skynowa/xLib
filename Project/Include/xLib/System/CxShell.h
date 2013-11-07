@@ -125,7 +125,7 @@ public:
                               std::ctstring_t &filePath, std::ctstring_t &params,
                               std::ctstring_t &dirPath, const EShowFlag &showCmd);
         ///< execute
-    static void_t         executeEx(SHELLEXECUTEINFO *info);
+    static void_t         executeEx(SHELLEXECUTEINFO &info);
         ///< execute
     static void_t         executeHttp(std::ctstring_t &url);
         ///< execute HTTP
