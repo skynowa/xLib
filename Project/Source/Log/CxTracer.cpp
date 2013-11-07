@@ -22,6 +22,8 @@ xNAMESPACE_BEGIN(NxLib)
 xINLINE_HO
 CxTracer::~CxTracer()
 {
+    _oss << CxConst::xNL();
+
     write( _oss.str() );
 }
 //------------------------------------------------------------------------------
@@ -50,10 +52,10 @@ CxTracer::write(
 )
 {
 #if xOS_ENV_WIN
-    (void_t)::OutputDebugString((a_msg + CxConst::xNL()).c_str());
+    (void_t)::OutputDebugString( a_msg.c_str() );
 #endif
 
-    std::tcout << a_msg << std::endl;
+    std::tcout << a_msg;
 }
 //------------------------------------------------------------------------------
 

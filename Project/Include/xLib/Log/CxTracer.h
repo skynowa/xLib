@@ -26,9 +26,9 @@ public:
     CxTracer &            operator << (const T &valueT);
         ///< operator <<
 
-    static void_t         write(ctchar_t *format, ...);
+    void_t                write(ctchar_t *format, ...);
         ///< tracing to debugger, std::cout
-    static void_t         write(std::ctstring_t &msg);
+    void_t                write(std::ctstring_t &msg);
         ///< tracing to debugger, std::cout
 
 private:
