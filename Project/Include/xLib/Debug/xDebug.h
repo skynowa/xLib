@@ -10,8 +10,8 @@
 #define xSTD_VERIFY(expr) \
     { \
         if ( !(expr) )  { \
-            std::ctstring_t csLastError = CxLastError::format(); \
-            CxTracer::write( \
+            std::ctstring_t lastError = CxLastError::format(); \
+            CxTracer().write( \
                 xT("\n--------------------------------- xSTD_VERIFY ----------------------------------\n") \
                 xT("  Expression: %s\n") \
                 xT("  File:       %s\n") \
@@ -23,7 +23,7 @@
                 xFILE, \
                 xFUNCTION, \
                 xLINE, \
-                csLastError.c_str()); \
+                lastError.c_str()); \
             \
             (void_t)::exit(EXIT_FAILURE); \
         } \
