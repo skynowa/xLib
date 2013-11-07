@@ -15,12 +15,12 @@
 
 xNAMESPACE_BEGIN(NxLib)
 
-/*******************************************************************************
+/**************************************************************************************************
 *   public
 *
-*******************************************************************************/
+**************************************************************************************************/
 
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 xINLINE_HO
 CxTestManager::CxTestManager(
     cbool_t &a_isUseTracing
@@ -32,7 +32,7 @@ CxTestManager::CxTestManager(
         xLIB_NAME, xLIB_VERSION, xLIB_VERSION_SUFFIX, xLIB_AUTHOR, xLIB_DATE));
     xCHECK_DO(_isUseTracing, xTRACE (xT("\n")));
 }
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 /* virtual */
 xINLINE_HO
 CxTestManager::~CxTestManager()
@@ -42,7 +42,7 @@ CxTestManager::~CxTestManager()
     xCHECK_DO(_isUseTracing, xTRACE(xT("CxTestManager: all tests destructed.")));
     xCHECK_DO(_isUseTracing, xTRACE(xT("\n")));
 }
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 xINLINE_HO void_t
 CxTestManager::add(
     CxTest *a_test
@@ -58,7 +58,7 @@ CxTestManager::add(
     xCHECK_DO(_isUseTracing, xTRACEV(xT("CxTestManager: added test \"%s\""), a_test->name().c_str()));
 #endif
 }
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 xINLINE_HO void_t
 CxTestManager::run(
     culonglong_t &a_allLoops,
@@ -93,6 +93,6 @@ CxTestManager::run(
     xCHECK_DO(_isUseTracing, xTRACE(xT("CxTestManager: all tests successful done.")));
     xCHECK_DO(_isUseTracing, xTRACE(xT("\n")));
 }
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END(NxLib)

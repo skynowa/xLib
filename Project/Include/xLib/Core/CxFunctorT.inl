@@ -11,7 +11,7 @@ xNAMESPACE_BEGIN(NxLib)
 *
 *******************************************************************************/
 
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 template <class ClassT, class ReturnT, class ParamT>
 CxFunctorT<ClassT, ReturnT, ParamT>::CxFunctorT(
     ClassT   *a_object,
@@ -26,7 +26,7 @@ CxFunctorT<ClassT, ReturnT, ParamT>::CxFunctorT(
     xTEST_DIFF(NULL, a_method);
 #endif
 }
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 template <class ClassT, class ReturnT, class ParamT>
 ReturnT
 CxFunctorT<ClassT, ReturnT, ParamT>::operator()(
@@ -35,7 +35,7 @@ CxFunctorT<ClassT, ReturnT, ParamT>::operator()(
 {
     return (_object->*_method)(a_param);
 }
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 template <class ClassT, class ReturnT, class ParamT>
 ReturnT
 CxFunctorT<ClassT, ReturnT, ParamT>::execute(
@@ -44,6 +44,6 @@ CxFunctorT<ClassT, ReturnT, ParamT>::execute(
 {
     return operator()(a_param);
 }
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END(NxLib)

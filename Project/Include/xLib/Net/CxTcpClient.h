@@ -8,7 +8,7 @@
 
 #include <xLib/Net/CxSocket.h>
 #include <xLib/Core/xCore.h>
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
 class CxTcpClient :
@@ -48,7 +48,7 @@ protected:
 //TODO: bIsReadable repeats from CxSocket
 
 xNAMESPACE_END(NxLib)
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 #if xXLIB_HEADER_ONLY
     #include <Net/CxTcpClient.cpp>
 #endif
