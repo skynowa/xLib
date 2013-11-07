@@ -22,8 +22,8 @@ public:
         ///< destructor
 
 private:
-    CxProfiler     _profiler; ///< profiler
-    std::tstring_t _comment;   ///< comment
+    CxProfiler     _profiler;   ///< profiler
+    std::tstring_t _comment;    ///< comment
 };
 
 xNAMESPACE_END(NxLib)
