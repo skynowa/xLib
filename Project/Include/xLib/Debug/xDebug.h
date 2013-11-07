@@ -23,7 +23,7 @@
                 xFILE, \
                 xFUNCTION, \
                 xLINE, \
-                csLastError.c_str());  \
+                csLastError.c_str()); \
             \
             (void_t)::exit(EXIT_FAILURE); \
         } \
@@ -62,9 +62,9 @@
 #define xTRACE_VAR(v) \
     ( \
         std::tstring_t() \
-        .append( xT(#v) xT(": ") ) \
-        .append( CxString::cast(v) ) \
-        .append( xT(" ") ) \
+            .append( xT(#v) xT(": ") ) \
+            .append( CxString::cast(v) ) \
+            .append( xT(" ") ) \
     )
     ///< trace variable, trace variable and value
 #define xTRACEV(...) \
