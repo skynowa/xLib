@@ -200,17 +200,17 @@ CxRandom::liIntEx(
 {
     xTEST_LESS(a_min, a_max);
 
-    std::vector<long_t> vliRes;
+    std::vector<long_t> vliRv;
 
     for (long_t i = a_min; i < a_max; ++ i) {
-        vliRes.push_back(i);
+        vliRv.push_back(i);
     }
 
-    xTEST_EQ(false, vliRes.empty());
+    xTEST_EQ(false, vliRv.empty());
 
-    std::random_shuffle(vliRes.begin(), vliRes.end());
+    std::random_shuffle(vliRv.begin(), vliRv.end());
 
-    return vliRes.at(0);
+    return vliRv.at(0);
 }
 //------------------------------------------------------------------------------
 /* static */

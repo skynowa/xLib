@@ -832,10 +832,10 @@ CxPath::absolute() const
 
     buff.resize(xPATH_MAX);
 
-    tchar_t *pszRes = ::realpath(&filePath().at(0), &buff.at(0));
-    xTEST_PTR(pszRes);
+    tchar_t *pszRv = ::realpath(&filePath().at(0), &buff.at(0));
+    xTEST_PTR(pszRv);
 
-    sRv.assign(pszRes);
+    sRv.assign(pszRv);
 #endif
 
     xTEST_EQ(true, CxPath(sRv).isAbsolute());
@@ -953,19 +953,19 @@ CxPath::slashRemove() const
 xINLINE_HO size_t
 CxPath::maxSize()
 {
-    size_t uiRes = 0;
+    size_t uiRv = 0;
 
 #if xOS_ENV_WIN
     #if defined(MAX_PATH)
-        uiRes = MAX_PATH;
+        uiRv = MAX_PATH;
     #else
         std::csize_t defaultSize = 260;
 
-        uiRes = defaultSize;
+        uiRv = defaultSize;
     #endif
 #else
     #if defined(PATH_MAX)
-        uiRes = PATH_MAX;
+        uiRv = PATH_MAX;
     #else
         culong_t savedError     = 0UL;
         long_t        liRv      = - 1L;
@@ -981,34 +981,34 @@ CxPath::maxSize()
             //system does not have a limit for the requested resource
             std::csize_t defaultSize = 1024;
 
-            uiRes = defaultSize;
+            uiRv = defaultSize;
         } else {
             //relative root
-            uiRes = static_cast<size_t>( liRv + 1 );
+            uiRv = static_cast<size_t>( liRv + 1 );
         }
     #endif
 #endif
 
-    return uiRes;
+    return uiRv;
 }
 //------------------------------------------------------------------------------
 /* static */
 xINLINE_HO size_t
 CxPath::nameMaxSize()
 {
-    size_t uiRes = 0;
+    size_t uiRv = 0;
 
 #if xOS_ENV_WIN
     #if defined(FILENAME_MAX)
-        uiRes = FILENAME_MAX;
+        uiRv = FILENAME_MAX;
     #else
         std::csize_t defaultSize = 260;
 
-        uiRes = defaultSize;
+        uiRv = defaultSize;
     #endif
 #else
     #if defined(NAME_MAX)
-        uiRes = NAME_MAX;
+        uiRv = NAME_MAX;
     #else
         culong_t savedError = 0UL;
         long_t   liRv       = - 1L;
@@ -1024,14 +1024,14 @@ CxPath::nameMaxSize()
             //system does not have a limit for the requested resource
             std::csize_t defaultSize = 1024;
 
-            uiRes = defaultSize;
+            uiRv = defaultSize;
         } else {
-            uiRes = static_cast<size_t>( liRv );
+            uiRv = static_cast<size_t>( liRv );
         }
     #endif
 #endif
 
-    return uiRes;
+    return uiRv;
 }
 //------------------------------------------------------------------------------
 #if !xOS_ENV_WIN

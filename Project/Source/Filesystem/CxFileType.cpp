@@ -89,8 +89,8 @@ CxFileType::set(
     xTEST_NA(a_values);
 
 #if xOS_ENV_WIN
-    BOOL blRes = ::SetFileAttributes(filePath().c_str(), a_values);
-    xTEST_DIFF(FALSE, blRes);
+    BOOL blRv = ::SetFileAttributes(filePath().c_str(), a_values);
+    xTEST_DIFF(FALSE, blRv);
 #else
     int_t iRv = ::xTCHMOD(filePath().c_str(), a_values);
     xTEST_DIFF(- 1, iRv);

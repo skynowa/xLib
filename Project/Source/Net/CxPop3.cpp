@@ -491,11 +491,11 @@ CxPop3::_mailsSum(
     //+OK 2 1141841
     ulong_t            sum = 0UL;
     std::tstring_t     sSum;
-    std::vec_tstring_t vsRes;
+    std::vec_tstring_t vsRv;
 
-    CxString::split(a_serverAnswer, xT(" "), &vsRes);
+    CxString::split(a_serverAnswer, xT(" "), &vsRv);
 
-    sSum  = vsRes.at(1);
+    sSum  = vsRv.at(1);
     sum = CxString::cast<ulong_t>( sSum );        // ul -> l
 
     return sum;
@@ -511,11 +511,11 @@ CxPop3::_mailsSize(
     //+OK 2 1141841
     ulong_t            size = 0;
     std::tstring_t     sSize;
-    std::vec_tstring_t vsRes;
+    std::vec_tstring_t vsRv;
 
-    CxString::split(a_serverAnswer, xT(" "), &vsRes);
+    CxString::split(a_serverAnswer, xT(" "), &vsRv);
 
-    sSize  = vsRes.at(2);
+    sSize  = vsRv.at(2);
     size = CxString::cast<ulong_t>( sSize );    // ul+\r\n -> l
 
     return size;

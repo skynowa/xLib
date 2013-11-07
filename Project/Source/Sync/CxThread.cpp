@@ -243,8 +243,8 @@ CxThread::kill(
 
     _exitStatus = 0U;
 
-    BOOL blRes = ::TerminateThread(_thread.get(), _exitStatus);
-    xTEST_DIFF(FALSE, blRes);
+    BOOL blRv = ::TerminateThread(_thread.get(), _exitStatus);
+    xTEST_DIFF(FALSE, blRv);
 
     xFOREVER {
         ulRv = exitStatus();
@@ -416,9 +416,9 @@ CxThread::postMessage(
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, a_wnd);
     xTEST_DIFF(FALSE, ::IsWindow(a_wnd));
 
-    BOOL blRes = ::PostMessage(a_wnd, a_msg, static_cast<WPARAM>( a_param1 ),
+    BOOL blRv = ::PostMessage(a_wnd, a_msg, static_cast<WPARAM>( a_param1 ),
         static_cast<LPARAM>( a_param2 ));
-    xTEST_DIFF(FALSE, blRes);
+    xTEST_DIFF(FALSE, blRv);
 }
 
 #endif
@@ -455,9 +455,9 @@ CxThread::postThreadMessage(
 {
     xTEST_EQ(true, _thread.isValid());
 
-    BOOL blRes = ::PostThreadMessage(id(), a_msg, static_cast<WPARAM>( a_param1 ),
+    BOOL blRv = ::PostThreadMessage(id(), a_msg, static_cast<WPARAM>( a_param1 ),
         static_cast<LPARAM>( a_param2 ));
-    xTEST_DIFF(FALSE, blRes);
+    xTEST_DIFF(FALSE, blRv);
 }
 
 #endif
@@ -476,11 +476,11 @@ CxThread::tryPostThreadMessage(
     xTEST_EQ(true, _thread.isValid());
 
     for (ulong_t i = 0UL; i < a_attempsNum; ++ i) {
-        BOOL blRes = ::PostThreadMessage(id(), a_msg, static_cast<WPARAM>( a_param1 ),
+        BOOL blRv = ::PostThreadMessage(id(), a_msg, static_cast<WPARAM>( a_param1 ),
             static_cast<LPARAM>( a_param2 ));
 
-        xCHECK_RET(FALSE != blRes, true);
-        xCHECK_DO (FALSE == blRes, currentSleep(a_attempTimeoutMsec));
+        xCHECK_RET(FALSE != blRv, true);
+        xCHECK_DO (FALSE == blRv, currentSleep(a_attempTimeoutMsec));
     }
 
     return false;
@@ -521,11 +521,11 @@ CxThread::messageWaitQueue(
     xTEST_EQ(true, _thread.isValid());
     xTEST_EQ(false, a_msgs.empty());
 
-    BOOL blRes = FALSE;
+    BOOL blRv = FALSE;
     MSG  msg   = {0};
 
-    while ((blRes = ::GetMessage(&msg, NULL, 0, 0 ))) {
-        xTEST_DIFF(- 1, blRes);
+    while ((blRv = ::GetMessage(&msg, NULL, 0, 0 ))) {
+        xTEST_DIFF(- 1, blRv);
 
         for (size_t i = 0; i < a_msgs.size(); ++ i) {
             xCHECK_DO(a_msgs.at(i) != msg.message, continue);
@@ -588,8 +588,8 @@ CxThread::setPriority(
 #if xOS_ENV_WIN
     xTEST_EQ(true, _thread.isValid());
 
-    BOOL blRes = ::SetThreadPriority(_thread.get(), a_priority);
-    xTEST_DIFF(FALSE, blRes);
+    BOOL blRv = ::SetThreadPriority(_thread.get(), a_priority);
+    xTEST_DIFF(FALSE, blRv);
 #else
     if (!CxSystemInfo().isUserAdmin()) {
         CxTracer() << xT("::: xLib: warning (CxThread::setPriority fail, need root) :::");
@@ -613,11 +613,11 @@ CxThread::priority() const
 
 #endif
 
-    CxThread::ExPriority tpRes = tpError;
+    CxThread::ExPriority tpRv = tpError;
 
 #if xOS_ENV_WIN
-    tpRes = static_cast<ExPriority>( ::GetThreadPriority(_thread.get()) );
-    xTEST_DIFF(tpError, tpRes);
+    tpRv = static_cast<ExPriority>( ::GetThreadPriority(_thread.get()) );
+    xTEST_DIFF(tpError, tpRv);
 #else
     sched_param param  = {0};
     int_t       policy = SCHED_FIFO;
@@ -625,10 +625,10 @@ CxThread::priority() const
     int_t iRv = ::pthread_getschedparam(id(), &policy, &param);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
-    tpRes = static_cast<ExPriority>( param.sched_priority );
+    tpRv = static_cast<ExPriority>( param.sched_priority );
 #endif
 
-    return tpRes;
+    return tpRv;
 }
 //------------------------------------------------------------------------------
 xINLINE_HO std::tstring_t
@@ -751,8 +751,8 @@ CxThread::isPriorityBoost() const
 
     BOOL isDisablePriorityBoost = TRUE;
 
-    BOOL blRes = ::GetThreadPriorityBoost(_thread.get(), &isDisablePriorityBoost);
-    xTEST_DIFF(FALSE, blRes);
+    BOOL blRv = ::GetThreadPriorityBoost(_thread.get(), &isDisablePriorityBoost);
+    xTEST_DIFF(FALSE, blRv);
 
     //bDisablePriorityBoost == true  - dynamic boosting is disabled
     //bDisablePriorityBoost == false - normal behavior
@@ -771,8 +771,8 @@ CxThread::setPriorityBoost(
 #if xOS_ENV_WIN
     xTEST_EQ(true, _thread.isValid());
 
-    BOOL blRes = ::SetThreadPriorityBoost(_thread.get(), ! a_isEnabled);
-    xTEST_DIFF(FALSE, blRes);
+    BOOL blRv = ::SetThreadPriorityBoost(_thread.get(), ! a_isEnabled);
+    xTEST_DIFF(FALSE, blRv);
 #else
     return;
 #endif
@@ -921,8 +921,8 @@ CxThread::exitStatus() const
 #if xOS_ENV_WIN
     xTEST_EQ(true, _thread.isValid());
 
-    BOOL blRes = ::GetExitCodeThread(_thread.get(), &ulRv);
-    xTEST_DIFF(FALSE, blRes);
+    BOOL blRv = ::GetExitCodeThread(_thread.get(), &ulRv);
+    xTEST_DIFF(FALSE, blRv);
 #else
     ulRv = _exitStatus;
 #endif
@@ -1141,7 +1141,7 @@ CxThread::onRun(
     // n/a
     xTEST_MSG_FAIL(xT("It's virtual method"));
 
-    uint_t uiRes = 0U;
+    uint_t uiRv = 0U;
 
     #if xTEMP_DISABLED
         xFOREVER {
@@ -1152,7 +1152,7 @@ CxThread::onRun(
         }
     #endif
 
-    return uiRes;
+    return uiRv;
 }
 //------------------------------------------------------------------------------
 
@@ -1203,7 +1203,7 @@ CxThread::_s_jobEntry(
 {
     xTEST_PTR(a_param);
 
-    uint_t uiRes = 0U;
+    uint_t uiRv = 0U;
     bool_t bRv  = false;     xUNUSED(bRv);
 
     CxThread *self = static_cast<CxThread *>( a_param );
@@ -1213,8 +1213,8 @@ CxThread::_s_jobEntry(
     // handle must be valid
     currentSleep(500UL);
 
-    CxEvent::ExObjectState osRes = self->_eventStarter->wait(10000UL);   // not infinite timeout
-    xTEST_EQ(CxEvent::osSignaled, osRes);
+    CxEvent::ExObjectState osRv = self->_eventStarter->wait(10000UL);   // not infinite timeout
+    xTEST_EQ(CxEvent::osSignaled, osRv);
 
     xPTR_DELETE(self->_eventStarter);
 
@@ -1240,7 +1240,7 @@ CxThread::_s_jobEntry(
         //-------------------------------------
         // executing of thread function
         try {
-            uiRes = self->onRun(self->_param);
+            uiRv = self->onRun(self->_param);
         }
         catch (std::exception &e) {
             std::string asWhat = e.what();
@@ -1271,7 +1271,7 @@ CxThread::_s_jobEntry(
 #endif
 
     self->_id         = 0UL;
-    self->_exitStatus = uiRes;    //???
+    self->_exitStatus = uiRv;    //???
     self->_param      = NULL;
     // self->_isAutoDelete - n/a
 
@@ -1302,12 +1302,12 @@ CxThread::_waitResumption()
     /*_isPaused*///  n/a
     /*_isExited*///  n/a
 
-    CxEvent::ExObjectState osRes = _eventPause.wait();
-    xTEST_DIFF(CxEvent::osFailed, osRes);
-    xTEST_DIFF(CxEvent::osTimeout, osRes);
-    xTEST_EQ(CxEvent::osSignaled, osRes);
+    CxEvent::ExObjectState osRv = _eventPause.wait();
+    xTEST_DIFF(CxEvent::osFailed, osRv);
+    xTEST_DIFF(CxEvent::osTimeout, osRv);
+    xTEST_EQ(CxEvent::osSignaled, osRv);
 
-    return (CxEvent::osSignaled == osRes);
+    return (CxEvent::osSignaled == osRv);
 }
 //------------------------------------------------------------------------------
 xINLINE_HO void_t

@@ -69,14 +69,14 @@ CxDebugger::isActive()
 {
 #if   xOS_ENV_WIN
     // local debugger
-    BOOL blRes = ::IsDebuggerPresent();
-    xCHECK_RET(FALSE != blRes, true);
+    BOOL blRv = ::IsDebuggerPresent();
+    xCHECK_RET(FALSE != blRv, true);
 
     // remote debugger
     BOOL isRemoteDebuggerPresent = FALSE;
 
-    blRes = ::CheckRemoteDebuggerPresent(::GetCurrentProcess(), &isRemoteDebuggerPresent);
-    xCHECK_RET(FALSE == blRes || FALSE == isRemoteDebuggerPresent, false);
+    blRv = ::CheckRemoteDebuggerPresent(::GetCurrentProcess(), &isRemoteDebuggerPresent);
+    xCHECK_RET(FALSE == blRv || FALSE == isRemoteDebuggerPresent, false);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         // if ppid != sid, some process spawned our app, probably a debugger
@@ -201,11 +201,11 @@ CxDebugger::_msgboxPlain(
         uint_t type = 1U;
     #endif
 
-    CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::show(a_report.report, CxPath::exe(), type);
+    CxMsgBoxT::ExModalResult mrRv = CxMsgBoxT::show(a_report.report, CxPath::exe(), type);
 #else
-    CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT::mrIgnore;
+    CxMsgBoxT::ExModalResult mrRv = CxMsgBoxT::mrIgnore;
 #endif
-    switch (mrRes) {
+    switch (mrRv) {
     case CxMsgBoxT::mrAbort:
         (void_t)::exit(EXIT_FAILURE);
         break;
@@ -247,11 +247,11 @@ CxDebugger::_stdoutPlain(
     std::tcout.flush();
 
 #if xDEBUG_USE_PROMPT_DIALOG
-    EConsoleCmd cmRes = static_cast<EConsoleCmd>( std::tcin.get() );   std::tcin.ignore();
+    EConsoleCmd cmRv = static_cast<EConsoleCmd>( std::tcin.get() );   std::tcin.ignore();
 #else
-    EConsoleCmd cmRes = cmIgnore;
+    EConsoleCmd cmRv = cmIgnore;
 #endif
-    switch (cmRes) {
+    switch (cmRv) {
     case cmAbort:
         std::tcout << xT("Abort...\n\n");  std::tcout.flush();
 

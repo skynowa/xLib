@@ -68,8 +68,8 @@ CxLocale::setCurrent(
 
     ctchar_t *locale = (a_locale.empty()) ? NULL : a_locale.c_str();
 
-    ctchar_t *pcszRes = ::xTSETLOCALE(LC_ALL, locale);
-    xTEST_PTR(pcszRes);
+    ctchar_t *pcszRv = ::xTSETLOCALE(LC_ALL, locale);
+    xTEST_PTR(pcszRv);
 }
 //------------------------------------------------------------------------------
 /* static */

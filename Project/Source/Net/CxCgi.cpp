@@ -866,8 +866,8 @@ CxCgiFormData::_construct()
 
         buff.resize(postSize);
 
-        size_t uiRes = file.read(&buff.at(0), buff.size());
-        xTEST_EQ(uiRes, buff.size());
+        size_t uiRv = file.read(&buff.at(0), buff.size());
+        xTEST_EQ(uiRv, buff.size());
 
         //TODO: cgl_parsecgibuf(cgl_Formdata, cgl_Buf)
 

@@ -87,8 +87,8 @@ CxThreadStorage::setValue(
 #if xOS_ENV_WIN
     xTEST_DIFF(TLS_OUT_OF_INDEXES, _index);
 
-    BOOL blRes = ::TlsSetValue(_index, a_value);
-    xTEST_DIFF(FALSE, blRes);
+    BOOL blRv = ::TlsSetValue(_index, a_value);
+    xTEST_DIFF(FALSE, blRv);
 #else
     xTEST_EQ(true, 0 < _index);
 
@@ -108,21 +108,21 @@ CxThreadStorage::setValue(
 xINLINE_HO void_t
 CxThreadStorage::_construct()
 {
-    index_t indRes = (index_t)- 1;
+    index_t indRv = (index_t)- 1;
 
 #if xOS_ENV_WIN
     xTEST_EQ(TLS_OUT_OF_INDEXES, _index);
 
-    indRes = ::TlsAlloc();
-    xTEST_DIFF(TLS_OUT_OF_INDEXES, indRes);
+    indRv = ::TlsAlloc();
+    xTEST_DIFF(TLS_OUT_OF_INDEXES, indRv);
 #else
     xTEST_EQ(static_cast<pthread_key_t>( - 1 ), _index);
 
-    int_t iRv = ::pthread_key_create(&indRes, NULL);
+    int_t iRv = ::pthread_key_create(&indRv, NULL);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 #endif
 
-    _index = indRes;
+    _index = indRv;
 }
 //------------------------------------------------------------------------------
 xINLINE_HO void_t
@@ -131,8 +131,8 @@ CxThreadStorage::_destruct()
 #if xOS_ENV_WIN
     xTEST_DIFF(TLS_OUT_OF_INDEXES, _index);
 
-    BOOL blRes = ::TlsFree(_index);
-    xTEST_DIFF(FALSE, blRes);
+    BOOL blRv = ::TlsFree(_index);
+    xTEST_DIFF(FALSE, blRv);
 
     _index = TLS_OUT_OF_INDEXES;
 #else

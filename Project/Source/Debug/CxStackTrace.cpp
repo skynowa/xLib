@@ -76,8 +76,8 @@ CxStackTrace::get(
 
         process = ::GetCurrentProcess();
 
-        BOOL blRes = ::SymInitialize(process, NULL, TRUE);
-        xCHECK_DO(FALSE == blRes, return);
+        BOOL blRv = ::SymInitialize(process, NULL, TRUE);
+        xCHECK_DO(FALSE == blRv, return);
 
         ushort_t framesNum = ::CaptureStackBackTrace(0UL, xSTACK_TRACE_FRAMES_MAX, stackBuff, NULL);
         xCHECK_DO(framesNum == 0U, return);
@@ -105,9 +105,9 @@ CxStackTrace::get(
                 IMAGEHLP_MODULE64 miModuleInfo = {0};
                 miModuleInfo.SizeOfStruct = sizeof(IMAGEHLP_MODULE64);
 
-                blRes = ::SymGetModuleInfo64(process, reinterpret_cast<DWORD64>( stackBuff[i] ),
+                blRv = ::SymGetModuleInfo64(process, reinterpret_cast<DWORD64>( stackBuff[i] ),
                     &miModuleInfo);
-                if (FALSE == blRes) {
+                if (FALSE == blRv) {
                     modulePath = dataNotFound;
                 } else {
                     modulePath = miModuleInfo.ImageName;
@@ -120,9 +120,9 @@ CxStackTrace::get(
                 IMAGEHLP_LINE64 imagehlpLine = {0};
                 imagehlpLine.SizeOfStruct = sizeof(IMAGEHLP_LINE64);
 
-                blRes = ::SymGetLineFromAddr64(process, reinterpret_cast<DWORD64>( stackBuff[i] ),
+                blRv = ::SymGetLineFromAddr64(process, reinterpret_cast<DWORD64>( stackBuff[i] ),
                     &displacement, &imagehlpLine);
-                if (FALSE == blRes) {
+                if (FALSE == blRv) {
                     filePath = dataNotFound;
                     fileLine = dataNotFound;
                 } else {
@@ -133,9 +133,9 @@ CxStackTrace::get(
 
             // stackLineNum, byteOffset, functionName
             {
-                blRes = ::SymFromAddr(process, reinterpret_cast<DWORD64>( stackBuff[i] ), NULL,
+                blRv = ::SymFromAddr(process, reinterpret_cast<DWORD64>( stackBuff[i] ), NULL,
                     symbol);
-                if (FALSE == blRes) {
+                if (FALSE == blRv) {
                     byteOffset   = CxString::format(xT("%p"), ptrdiff_t(NULL));
                     functionName = dataNotFound;
                 } else {

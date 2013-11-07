@@ -186,10 +186,10 @@ CxMySQLConnection::fieldCount() const
 {
     xTEST_EQ(true, isValid());
 
-    uint_t uiRes = ::mysql_field_count(_connection);
+    uint_t uiRv = ::mysql_field_count(_connection);
     // n/a
 
-    return uiRes;
+    return uiRv;
 }
 //------------------------------------------------------------------------------
 xINLINE_HO void_t
@@ -217,10 +217,10 @@ CxMySQLConnection::lastError() const
 {
     xTEST_EQ(true, isValid());
 
-    uint_t uiRes = ::mysql_errno(_connection);
+    uint_t uiRv = ::mysql_errno(_connection);
     // n/a
 
-    return uiRes;
+    return uiRv;
 }
 //------------------------------------------------------------------------------
 xINLINE_HO std::tstring_t
@@ -230,15 +230,15 @@ CxMySQLConnection::lastErrorStr() const
 
     std::tstring_t sRv;
 
-    cuint_t    lastError = lastError();
-    const char*cpszRes   = ::mysql_error(_connection);
+    cuint_t      lastError = lastError();
+    const char * cpszRv    = ::mysql_error(_connection);
     // n/a
-    xTEST_PTR(cpszRes);
+    xTEST_PTR(cpszRv);
 
     if (0 == lastError) {
         sRv = CxString::format(xT("%u - \"%s\""), lastError, xT("Success"));
     } else {
-        sRv = CxString::format(xT("%u - \"%s\""), lastError, cpszRes);
+        sRv = CxString::format(xT("%u - \"%s\""), lastError, cpszRv);
     }
 
     return sRv;
@@ -309,10 +309,10 @@ CxMySQLRecordset::fieldsNum() const
 {
     xTEST_EQ(true, isValid());
 
-    uint_t uiRes = ::mysql_num_fields(_result);
+    uint_t uiRv = ::mysql_num_fields(_result);
     // n/a
 
-    return uiRes;
+    return uiRv;
 }
 //------------------------------------------------------------------------------
 xINLINE_HO my_ulonglong

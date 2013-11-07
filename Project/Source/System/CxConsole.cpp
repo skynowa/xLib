@@ -275,8 +275,8 @@ CxConsole::setAttributes(
     }
 
 #if xOS_ENV_WIN
-    BOOL blRes = ::SetConsoleTextAttribute(_stdOut.get(), attrs);
-    xTEST_DIFF(FALSE, blRes);
+    BOOL blRv = ::SetConsoleTextAttribute(_stdOut.get(), attrs);
+    xTEST_DIFF(FALSE, blRv);
 
     return std::tstring_t();    // not need for Windows
 #else
@@ -297,8 +297,8 @@ CxConsole::setAttributesDef()
     std::tstring_t sRv;
 
 #if xOS_ENV_WIN
-    BOOL blRes = ::SetConsoleTextAttribute(_stdOut.get(), _attributesDef);
-    xTEST_DIFF(FALSE, blRes);
+    BOOL blRv = ::SetConsoleTextAttribute(_stdOut.get(), _attributesDef);
+    xTEST_DIFF(FALSE, blRv);
 
     xUNUSED(sRv);
 #else
@@ -324,8 +324,8 @@ CxConsole::read()
     culong_t buffSize           = 1024UL * 4UL;
     tchar_t  buff[buffSize + 1] = {0};
 
-    BOOL blRes = ::ReadConsole(_stdIn.get(), &buff[0], buffSize, &read, NULL);
-    xTEST_DIFF(FALSE, blRes);
+    BOOL blRv = ::ReadConsole(_stdIn.get(), &buff[0], buffSize, &read, NULL);
+    xTEST_DIFF(FALSE, blRv);
 
     sRv.assign(buff, read - CxConst::crNl().size());
 #else
@@ -350,11 +350,11 @@ CxConsole::write(
 #if xOS_ENV_WIN
     DWORD written = 0UL;
 
-    BOOL blRes = ::WriteConsole(
+    BOOL blRv = ::WriteConsole(
                     _stdOut.get(),
                     &a_str.at(0), static_cast<DWORD>( a_str.size() ),
                     &written, NULL);
-    xTEST_DIFF(FALSE, blRes);
+    xTEST_DIFF(FALSE, blRv);
     xTEST_EQ(static_cast<size_t>( written ), a_str.size());
 #else
     std::tcout << a_str;
@@ -406,7 +406,7 @@ CxConsole::msgBox(
     xTEST_EQ(true, _stdOut.isValid());
 #endif
 
-    ExModalResult mrRes;
+    ExModalResult mrRv;
 
     enum EConsoleCmd {
         cmAbort  = xT('a'),
@@ -424,27 +424,27 @@ CxConsole::msgBox(
     writeLine();
     write(CxString::format(xT("\nAbort (%c), Ignore (%c), Retry (%c): "), cmAbort, cmIgnore, cmRetry));
 
-    EConsoleCmd cmRes = static_cast<EConsoleCmd>( std::tcin.get() );   std::tcin.ignore();
-    switch (cmRes) {
+    EConsoleCmd cmRv = static_cast<EConsoleCmd>( std::tcin.get() );   std::tcin.ignore();
+    switch (cmRv) {
     case cmAbort:
-        mrRes = mrAbort;
+        mrRv = mrAbort;
         writeLine(xT("Abort..."));
         break;
     case cmIgnore:
-        mrRes = mrIgnore;
+        mrRv = mrIgnore;
         writeLine(xT("Ignore..."));
         break;
     case cmRetry:
-        mrRes = mrRetry;
+        mrRv = mrRetry;
         writeLine(xT("Retry..."));
         break;
     default:
-        mrRes = mrRetry;
+        mrRv = mrRetry;
         writeLine(xT("Retry..."));
         break;
     }
 
-    return mrRes;
+    return mrRv;
 }
 //------------------------------------------------------------------------------
 xINLINE_HO void_t
@@ -549,28 +549,28 @@ CxConsole::clear() {
     DWORD                      conSize      = 0UL;   // number of chars cells in the current buffer
 
     // get the number of character cells in the current buffer
-    BOOL blRes = ::GetConsoleScreenBufferInfo(_stdOut.get(), &csbi);
-    xTEST_DIFF(FALSE, blRes);
+    BOOL blRv = ::GetConsoleScreenBufferInfo(_stdOut.get(), &csbi);
+    xTEST_DIFF(FALSE, blRv);
 
     conSize = csbi.dwSize.X * csbi.dwSize.Y;
 
     // fill the entire screen with blanks
-    blRes = ::FillConsoleOutputCharacter(_stdOut.get(), xT(' '), conSize, coordScreen,
+    blRv = ::FillConsoleOutputCharacter(_stdOut.get(), xT(' '), conSize, coordScreen,
         &charsWritten);
-    xTEST_DIFF(FALSE, blRes);
+    xTEST_DIFF(FALSE, blRv);
 
     // get the current text attribute
-    blRes = ::GetConsoleScreenBufferInfo(_stdOut.get(), &csbi);
-    xTEST_DIFF(FALSE, blRes);
+    blRv = ::GetConsoleScreenBufferInfo(_stdOut.get(), &csbi);
+    xTEST_DIFF(FALSE, blRv);
 
     // now set the buffer's attributes accordingly
-    blRes = ::FillConsoleOutputAttribute(_stdOut.get(), csbi.wAttributes, conSize, coordScreen,
+    blRv = ::FillConsoleOutputAttribute(_stdOut.get(), csbi.wAttributes, conSize, coordScreen,
         &charsWritten);
-    xTEST_DIFF(FALSE, blRes);
+    xTEST_DIFF(FALSE, blRv);
 
     // put the cursor at (0, 0)
-    blRes = ::SetConsoleCursorPosition(_stdOut.get(), coordScreen );
-    xTEST_DIFF(FALSE, blRes);
+    blRv = ::SetConsoleCursorPosition(_stdOut.get(), coordScreen );
+    xTEST_DIFF(FALSE, blRv);
 #else
     writeLine(CxConst::ff());
 #endif
@@ -651,8 +651,8 @@ CxConsole::setTitle(
 #endif
 
 #if xOS_ENV_WIN
-    BOOL blRes = ::SetConsoleTitle(a_title.c_str());
-    xTEST_DIFF(FALSE, blRes);
+    BOOL blRv = ::SetConsoleTitle(a_title.c_str());
+    xTEST_DIFF(FALSE, blRv);
 #else
     // TODO: vSetTitle
     writeLine( CxString::format(xT("%c]0;%s%c"), xT('\033'), a_title.c_str(), xT('\007')) );
@@ -681,11 +681,11 @@ CxConsole::setFullScreen()
     smallRec.Right  = coord.X - 2;
     smallRec.Bottom = coord.Y - 2;
 
-    BOOL blRes = ::SetConsoleScreenBufferSize(_stdOut.get(), coord);
-    xTEST_DIFF(FALSE, blRes);
+    BOOL blRv = ::SetConsoleScreenBufferSize(_stdOut.get(), coord);
+    xTEST_DIFF(FALSE, blRv);
 
-    blRes = ::SetConsoleWindowInfo(_stdOut.get(), true, &smallRec);
-    xTEST_DIFF(FALSE, blRes);
+    blRv = ::SetConsoleWindowInfo(_stdOut.get(), true, &smallRec);
+    xTEST_DIFF(FALSE, blRv);
 
     centerWindow();
 #else
@@ -704,15 +704,15 @@ CxConsole::centerWindow()
 #endif
 
 #if xOS_ENV_WIN
-    BOOL blRes = FALSE;
+    BOOL blRv = FALSE;
 
     RECT origin = {0};
-    blRes = ::GetWindowRect(_wnd, &origin);
-    xTEST_DIFF(FALSE, blRes);
+    blRv = ::GetWindowRect(_wnd, &origin);
+    xTEST_DIFF(FALSE, blRv);
 
     RECT desktop = {0};
-    blRes = ::SystemParametersInfo(SPI_GETWORKAREA, 0, &desktop, 0);
-    xTEST_DIFF(FALSE, blRes);
+    blRv = ::SystemParametersInfo(SPI_GETWORKAREA, 0, &desktop, 0);
+    xTEST_DIFF(FALSE, blRv);
 
     int_t desktopX  = (desktop.right  - desktop.left) / 2;
     int_t desktopY  = (desktop.bottom - desktop.top)  / 2;
@@ -720,8 +720,8 @@ CxConsole::centerWindow()
     int_t wndHeight = (origin.bottom  - origin.top);
     int_t x         = desktopX - wndWidth / 2;        if (x < 0) { x = 0; }
 
-    blRes = ::MoveWindow(_wnd, x, desktopY - wndHeight / 2, wndWidth, wndHeight, true);
-    xTEST_DIFF(FALSE, blRes);
+    blRv = ::MoveWindow(_wnd, x, desktopY - wndHeight / 2, wndWidth, wndHeight, true);
+    xTEST_DIFF(FALSE, blRv);
 #else
     // TODO: centerWindow
     xNOT_IMPLEMENTED;

@@ -40,22 +40,22 @@ CxString::strToWStr(
     xTEST_NA(a_str);
     xTEST_NA(a_codePage);
 
-    std::wstring wsRes;
+    std::wstring wsRv;
 
 #if xOS_ENV_WIN
     int_t size = ::MultiByteToWideChar(a_codePage, 0UL, a_str.c_str(), - 1, NULL, 0);
     xTEST_LESS(0, size);
 
-    wsRes.resize(size - 1);    // remove '\0'
+    wsRv.resize(size - 1);    // remove '\0'
     size = ::MultiByteToWideChar(a_codePage, 0UL, a_str.c_str(), - 1,
-        static_cast<LPWSTR>(&wsRes.at(0)), size);
+        static_cast<LPWSTR>(&wsRv.at(0)), size);
     xTEST_LESS(0, size);
 #else
     // TODO: strToWStr
     xNOT_IMPLEMENTED;
 #endif
 
-    return wsRes;
+    return wsRv;
 }
 //------------------------------------------------------------------------------
 /* static */
@@ -68,22 +68,22 @@ CxString::wstrToStr(
     xTEST_NA(a_str);
     xTEST_NA(a_codePage);
 
-    std::string asRes;
+    std::string asRv;
 
 #if xOS_ENV_WIN
     int_t size = ::WideCharToMultiByte(a_codePage, 0UL, a_str.c_str(), - 1, NULL, 0, NULL, NULL);
     xTEST_LESS(0, size);
 
-    asRes.resize(size - 1);    // remove '\0'
+    asRv.resize(size - 1);    // remove '\0'
     size = ::WideCharToMultiByte(a_codePage, 0UL, a_str.c_str(), - 1,
-        static_cast<LPSTR>(&asRes.at(0)), size, NULL, NULL);
+        static_cast<LPSTR>(&asRv.at(0)), size, NULL, NULL);
     xTEST_LESS(0, size);
 #else
     // TODO: (wstrToStr)
     xNOT_IMPLEMENTED;
 #endif
 
-    return asRes;
+    return asRv;
 }
 //------------------------------------------------------------------------------
 /* static */
@@ -462,7 +462,7 @@ CxString::split(
     xCHECK_DO(a_sep.empty(), return);
     xTEST_PTR(a_rv);
 
-    std::vec_tstring_t vsRes;
+    std::vec_tstring_t vsRv;
     size_t             posPrev = 0U;    // start of string
     size_t             pos     = 0U;
 
@@ -470,15 +470,15 @@ CxString::split(
         pos = a_str.find(a_sep, posPrev);
         xCHECK_DO(std::tstring_t::npos == pos, break);
 
-        vsRes.push_back(a_str.substr(posPrev, pos - posPrev));
+        vsRv.push_back(a_str.substr(posPrev, pos - posPrev));
 
         posPrev = pos + a_sep.size();
     }
 
-    vsRes.push_back( a_str.substr(posPrev, a_str.size() - posPrev) );
+    vsRv.push_back( a_str.substr(posPrev, a_str.size() - posPrev) );
 
     //out
-    std::swap(*a_rv, vsRes);
+    std::swap(*a_rv, vsRv);
 }
 //------------------------------------------------------------------------------
 /* static */

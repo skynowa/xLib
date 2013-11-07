@@ -87,12 +87,12 @@ CxDir::isRoot()
 #if xOS_ENV_WIN
     xCHECK_RET(3 != dirPath().size(), false);
 
-    bool_t bRes1 = CxChar::isAlpha(dirPath().at(0));
-    bool_t bRes2 = (dirPath().at(1) == CxConst::colon().at(0));
-    bool_t bRes3 = (dirPath().at(2) == CxConst::winSlash().at(0) ||
+    bool_t bRv1 = CxChar::isAlpha(dirPath().at(0));
+    bool_t bRv2 = (dirPath().at(1) == CxConst::colon().at(0));
+    bool_t bRv3 = (dirPath().at(2) == CxConst::winSlash().at(0) ||
                     dirPath().at(2) == CxConst::unixSlash().at(0));
 
-    xCHECK_RET(!bRes1 || !bRes2 || !bRes3, false);
+    xCHECK_RET(!bRv1 || !bRv2 || !bRv3, false);
 #else
     xCHECK_RET(CxConst::slash() != dirPath(), false);
 #endif
@@ -116,8 +116,8 @@ CxDir::create()
     xCHECK_DO(bRv, return);
 
 #if xOS_ENV_WIN
-    BOOL blRes = ::CreateDirectory(dirPath().c_str(), NULL);
-    xTEST_DIFF(FALSE, blRes);
+    BOOL blRv = ::CreateDirectory(dirPath().c_str(), NULL);
+    xTEST_DIFF(FALSE, blRv);
 #else
     int_t iRv = ::mkdir(dirPath().c_str(), 0755);
     xTEST_DIFF(- 1, iRv);
@@ -217,8 +217,8 @@ CxDir::remove()
     CxFileType(dirPath()).clear();
 
 #if xOS_ENV_WIN
-    BOOL blRes = ::RemoveDirectory(dirPath().c_str());
-    xTEST_DIFF(FALSE, blRes);
+    BOOL blRv = ::RemoveDirectory(dirPath().c_str());
+    xTEST_DIFF(FALSE, blRv);
 #else
     int_t iRv = ::rmdir(dirPath().c_str());
     xTEST_DIFF(- 1, iRv);
@@ -245,8 +245,8 @@ CxDir::tryRemove(
         CxFileType(dirPath()).clear();
 
     #if xOS_ENV_WIN
-        BOOL blRes = ::RemoveDirectory(dirPath().c_str());
-        xCHECK_DO(FALSE != blRes, break);
+        BOOL blRv = ::RemoveDirectory(dirPath().c_str());
+        xCHECK_DO(FALSE != blRv, break);
     #else
         int_t iRv = ::rmdir(dirPath().c_str());
         xCHECK_DO(- 1 != iRv, break);
@@ -330,11 +330,11 @@ CxDir::current()
 
     sRv.assign(buff, 0, ulRv);
 #else
-    tchar_t *pszRes = ::getcwd(&buff[0], xPATH_MAX);
-    xTEST_PTR(pszRes);
-    xTEST_EQ(buff.c_str(), const_cast<ctchar_t *>( pszRes ));
+    tchar_t *pszRv = ::getcwd(&buff[0], xPATH_MAX);
+    xTEST_PTR(pszRv);
+    xTEST_EQ(buff.c_str(), const_cast<ctchar_t *>( pszRv ));
 
-    sRv.assign(pszRes);
+    sRv.assign(pszRv);
 #endif
 
     return sRv;
@@ -348,8 +348,8 @@ CxDir::setCurrent(
     std::tstring_t dirPath = CxPath(a_dirPath).slashAppend();
 
 #if xOS_ENV_WIN
-    BOOL blRes = ::SetCurrentDirectory(dirPath.c_str());
-    xTEST_DIFF(FALSE, blRes);
+    BOOL blRv = ::SetCurrentDirectory(dirPath.c_str());
+    xTEST_DIFF(FALSE, blRv);
 #else
     int_t iRv = ::chdir(a_dirPath.c_str());
     xTEST_DIFF(- 1, iRv);

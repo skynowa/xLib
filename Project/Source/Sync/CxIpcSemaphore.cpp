@@ -148,8 +148,8 @@ CxIpcSemaphore::post() const
 #if xOS_ENV_WIN
    const LONG postValue = 1L;
 
-   BOOL blRes = ::ReleaseSemaphore(_handle.get(), postValue, NULL);
-   xTEST_DIFF(FALSE, blRes);
+   BOOL blRv = ::ReleaseSemaphore(_handle.get(), postValue, NULL);
+   xTEST_DIFF(FALSE, blRv);
 #else
     int_t iRv = ::sem_post(_handle);
     xTEST_DIFF(- 1, iRv);

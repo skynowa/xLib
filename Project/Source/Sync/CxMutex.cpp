@@ -119,8 +119,8 @@ xINLINE_HO bool_t
 CxMutex::tryLock()
 {
 #if xOS_ENV_WIN
-    BOOL blRes = ::TryEnterCriticalSection(&_handle);
-    xCHECK_RET(FALSE == blRes, false);
+    BOOL blRv = ::TryEnterCriticalSection(&_handle);
+    xCHECK_RET(FALSE == blRv, false);
 #else
     int_t iRv = ::pthread_mutex_trylock(&_handle);
     xCHECK_RET(0 != iRv, false);

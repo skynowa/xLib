@@ -87,7 +87,7 @@ CxBlowfish::setFileKey(
 {
     xTEST_EQ(false, a_filePath.empty());
 
-    size_t         uiRes = 0;
+    size_t         uiRv = 0;
     std::ustring_t usFile;
     CxFile         sfFile;
 
@@ -99,8 +99,8 @@ CxBlowfish::setFileKey(
 
     usFile.resize( static_cast<size_t>( llFileSize ) );
 
-    uiRes = sfFile.read(&usFile.at(0), usFile.size());
-    xTEST_EQ(usFile.size(), uiRes);
+    uiRv = sfFile.read(&usFile.at(0), usFile.size());
+    xTEST_EQ(usFile.size(), uiRv);
 
     setKey(usFile);
 

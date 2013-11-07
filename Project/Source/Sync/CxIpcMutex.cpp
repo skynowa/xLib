@@ -172,8 +172,8 @@ CxIpcMutex::unlock() const
     ////xTEST_EQ(true, _handle.bIsValid(), false);
 
 #if xOS_ENV_WIN
-    BOOL blRes = ::ReleaseMutex(_handle.get());
-    xTEST_DIFF(FALSE, blRes);
+    BOOL blRv = ::ReleaseMutex(_handle.get());
+    xTEST_DIFF(FALSE, blRv);
 #else
     int_t iRv = ::sem_post(_handle);
     xTEST_DIFF(- 1, iRv);

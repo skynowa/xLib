@@ -53,7 +53,7 @@ CxMimeHeader::parse(
     */
 
     std::vec_tstring_t vsHeader;
-    _m_bRes = CxString::bSplit(rawHeader, _endOfLine, &vsHeader);
+    _m_bRv = CxString::bSplit(rawHeader, _endOfLine, &vsHeader);
     //TODO:
 
     //-------------------------------------
@@ -99,8 +99,8 @@ CxMimeHeader::parse(
     for (size_t i = 0; i < vsHeader.size(); i ++) {
         std::vec_tstring_t vsLines;
         //--vsLines = vsSplit(": ", vsHeader.at(i));
-        _m_bRes = CxString::bSplitKeyValue(vsHeader.at(i), _attrDelimiter, &vsLines);
-        xTEST_EQ(true, _m_bRes,           false);
+        _m_bRv = CxString::bSplitKeyValue(vsHeader.at(i), _attrDelimiter, &vsLines);
+        xTEST_EQ(true, _m_bRv,           false);
         xTEST_EQ(false, vsLines.empty(), false);
 
         //????????? ? ?????? "????" ? "????????"

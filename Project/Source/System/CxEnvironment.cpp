@@ -45,10 +45,10 @@ CxEnvironment::isExists(
 
     xCHECK_RET(0UL == length && ERROR_ENVVAR_NOT_FOUND == CxLastError::get(), false);
 #else
-    const char *pcszRes = ::getenv(a_varName.c_str());
-    xTEST_NA(pcszRes);
+    const char *pcszRv = ::getenv(a_varName.c_str());
+    xTEST_NA(pcszRv);
 
-    xCHECK_RET(NULL == pcszRes, false);
+    xCHECK_RET(NULL == pcszRv, false);
 #endif
 
     return true;
@@ -108,10 +108,10 @@ CxEnvironment::var(
         xTEST_DIFF(0UL, length);
     }
 #else
-    const char *pcszRes = ::getenv(a_varName.c_str());
-    xTEST_PTR(pcszRes);
+    const char *pcszRv = ::getenv(a_varName.c_str());
+    xTEST_PTR(pcszRv);
 
-    sRv.assign(pcszRes);
+    sRv.assign(pcszRv);
 #endif
 
     return sRv;
@@ -128,8 +128,8 @@ CxEnvironment::setVar(
     xTEST_EQ(true, isVarValid(a_value));
 
 #if xOS_ENV_WIN
-    BOOL blRes = ::SetEnvironmentVariable(a_varName.c_str(), a_value.c_str());
-    xTEST_DIFF(FALSE, blRes);
+    BOOL blRv = ::SetEnvironmentVariable(a_varName.c_str(), a_value.c_str());
+    xTEST_DIFF(FALSE, blRv);
 #else
     int_t iRv = ::setenv(a_varName.c_str(), a_value.c_str(), true);
     xTEST_DIFF(- 1, iRv);
@@ -147,8 +147,8 @@ CxEnvironment::deleteVar(
     xCHECK_DO(!isExists(a_varName), return);
 
 #if     xOS_ENV_WIN
-    BOOL blRes = ::SetEnvironmentVariable(a_varName.c_str(), NULL);
-    xTEST_DIFF(FALSE, blRes);
+    BOOL blRv = ::SetEnvironmentVariable(a_varName.c_str(), NULL);
+    xTEST_DIFF(FALSE, blRv);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         int_t iRv = ::unsetenv(a_varName.c_str());
@@ -186,8 +186,8 @@ CxEnvironment::values(
         args.push_back(var);
     }
 
-    BOOL blRes = ::FreeEnvironmentStrings(lpvEnv);
-    xTEST_DIFF(FALSE, blRes);
+    BOOL blRv = ::FreeEnvironmentStrings(lpvEnv);
+    xTEST_DIFF(FALSE, blRv);
 #else
     xTEST_PTR(environ);
 
