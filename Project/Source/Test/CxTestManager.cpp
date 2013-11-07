@@ -29,7 +29,7 @@ CxTestManager::CxTestManager(
     _tests       ()
 {
     xCHECK_DO(_isUseTracing, xTRACEV(xT("\n\nCxTestManager: *** %s v.%s %s (author: %s date: %s) ***"),
-                                         xLIB_NAME, xLIB_VERSION, xLIB_VERSION_SUFFIX, xLIB_AUTHOR, xLIB_DATE));
+        xLIB_NAME, xLIB_VERSION, xLIB_VERSION_SUFFIX, xLIB_AUTHOR, xLIB_DATE));
     xCHECK_DO(_isUseTracing, xTRACE (xT("\n")));
 }
 //------------------------------------------------------------------------------

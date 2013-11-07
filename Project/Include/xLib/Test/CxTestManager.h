@@ -24,14 +24,13 @@ public:
 
     void_t      add(CxTest *test);
         ///< add CxTest
-    void_t      run(culonglong_t &allLoops, culonglong_t &unitLoops,
-                    culonglong_t &caseLoops);
+    void_t      run(culonglong_t &allLoops, culonglong_t &unitLoops, culonglong_t &caseLoops);
         ///< run all tests
 
 private:
     typedef std::vector<CxTest *> container_t;
 
-    cbool_t     _isUseTracing;   ///< is use tracing
+    cbool_t     _isUseTracing;  ///< is use tracing
     container_t _tests;         ///< CxTest's container
 };
 
