@@ -18,7 +18,7 @@ xNAMESPACE_BEGIN(NxLib)
 xINLINE_HO std::ctstring_t &
 CxException::what() const
 {
-    return _m_message;
+    return _msgT;
 }
 //------------------------------------------------------------------------------
 
