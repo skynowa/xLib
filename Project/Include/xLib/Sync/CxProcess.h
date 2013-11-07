@@ -45,9 +45,9 @@ public:
 
     void_t          create(std::ctstring_t &filePath, ctchar_t *params, ...);
         ///< execute a file
-    ExWaitResult    wait(culong_t &timeoutMSec) xWARN_UNUSED_RV;
+    ExWaitResult    wait(culong_t &timeoutMsec) xWARN_UNUSED_RV;
         ///< wait for termination
-    void_t          kill(culong_t &timeoutMSec);
+    void_t          kill(culong_t &timeoutMsec);
         ///< kills the calling process and all of its threads
 
     handle_t        handle() const xWARN_UNUSED_RV;
