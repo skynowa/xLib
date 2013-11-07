@@ -53,7 +53,7 @@ CxType::name(
     int_t status = - 1;
 
     char *realName = abi::__cxa_demangle(typeid(a_objT).name(), NULL, NULL, &status);
-    className = (NULL != realName) ? realName : CxConst::xUNKNOWN_STRING_A();
+    className = (NULL != realName) ? realName : CxConst::strUnknownA();
 
     xBUFF_FREE(realName);
 #else
