@@ -553,6 +553,13 @@
 #endif
 
 //-------------------------------------
+#if xOS_ENV_WIN
+    #define xHOTKEY(modifier, key) \
+        ((((modifier) & 0xFF) << 8) | ((key) & 0xFF))
+        ///< hot key
+#endif
+
+//-------------------------------------
 // xFOREACH, xFOREVER
 #define xFOREACH(it_t, it, cont)  \
                                         for (it_t::iterator               it((cont).begin());  it != (cont).end();  ++ it)
