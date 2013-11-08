@@ -350,7 +350,8 @@ CxCgiEnvironment::CxCgiEnvironment(
     _requestType(rtUknown)
 {
     // fix warning "is not used"
-    _cgi.dump();
+    std::ctstring_t sRv = _cgi.dump();
+    xUNUSED(sRv);
 
     _construct();
 }
