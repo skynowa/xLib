@@ -22,8 +22,15 @@ class CxShell :
     /// shell
 {
 public:
-    static bool_t         isAvailable() xWARN_UNUSED_RV;
-    static void_t         execute(std::ctstring_t &filePath, std::ctstring_t &params);
+               CxShell();
+        ///< constructor
+    virtual   ~CxShell();
+        ///< destructor
+
+    bool_t     isAvailable() xWARN_UNUSED_RV;
+        ///<
+    void_t     execute(std::ctstring_t &filePath, std::ctstring_t &params);
+        ///<
 
 #if   xOS_ENV_WIN
     enum ExOperation
@@ -118,26 +125,26 @@ public:
         sfWindows                = CSIDL_WINDOWS
     };
 
-    static std::tstring_t findExecutable(std::ctstring_t &fileName,
+    std::tstring_t findExecutable(std::ctstring_t &fileName,
                               std::ctstring_t &findDirPath) xWARN_UNUSED_RV;
         ///< find executable file path
-    static void_t         execute(const HWND &owner, const ExOperation &operation,
+    void_t         execute(const HWND &owner, const ExOperation &operation,
                               std::ctstring_t &filePath, std::ctstring_t &params,
                               std::ctstring_t &dirPath, const EShowFlag &showCmd);
         ///< execute
-    static void_t         executeEx(SHELLEXECUTEINFO &info);
+    void_t         executeEx(SHELLEXECUTEINFO &info);
         ///< execute
-    static void_t         executeHttp(std::ctstring_t &url);
+    void_t         executeHttp(std::ctstring_t &url);
         ///< execute HTTP
-    static void_t         executeFtp(std::ctstring_t &url);
+    void_t         executeFtp(std::ctstring_t &url);
         ///< execute FTP
-    static void_t         executeEmail(std::ctstring_t &toEmail, std::ctstring_t &subject,
+    void_t         executeEmail(std::ctstring_t &toEmail, std::ctstring_t &subject,
                               std::ctstring_t &body);
         ///< execute email
-    static std::tstring_t specialDirPath(const ESpecialDir &dir, const HANDLE &token)
+    std::tstring_t specialDirPath(const ESpecialDir &dir, const HANDLE &token)
                               xWARN_UNUSED_RV;
         ///< get special dir path
-    static void_t         createShortcut(std::ctstring_t &shortCutFilePath,
+    void_t         createShortcut(std::ctstring_t &shortCutFilePath,
                              std::ctstring_t &filePath, std::ctstring_t &workingDirectory,
                              std::ctstring_t &args, const WORD &hotKey, cint_t &cmdShow,
                              std::ctstring_t &iconFilePath, cint_t &iconIndex,
@@ -146,10 +153,7 @@ public:
 #endif
 
 private:
-                          CxShell();
-        ///< constructor
-    virtual              ~CxShell();
-        ///< destructor
+
 };
 
 xNAMESPACE_END(NxLib)

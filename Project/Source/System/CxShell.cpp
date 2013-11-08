@@ -28,7 +28,6 @@ xNAMESPACE_BEGIN(NxLib)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-/* static */
 xINLINE_HO bool_t
 CxShell::isAvailable()
 {
@@ -45,7 +44,6 @@ CxShell::isAvailable()
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 xINLINE_HO void_t
 CxShell::execute(
     std::ctstring_t &a_filePath,   ///< file path to binary file
@@ -70,7 +68,6 @@ CxShell::execute(
 #if xOS_ENV_WIN
 
 //-------------------------------------------------------------------------------------------------
-/* static */
 xINLINE_HO std::tstring_t
 CxShell::findExecutable(
     std::ctstring_t &a_fileName,
@@ -90,7 +87,6 @@ CxShell::findExecutable(
     return std::tstring_t(buff);
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 xINLINE_HO void_t
 CxShell::execute(
     const HWND        &a_owner,
@@ -142,7 +138,6 @@ CxShell::execute(
     xTEST_LESS(32, iRv);
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 xINLINE_HO void_t
 CxShell::executeEx(
     SHELLEXECUTEINFO &a_info
@@ -154,7 +149,6 @@ CxShell::executeEx(
     xTEST_DIFF(FALSE, bRv);
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 xINLINE_HO void_t
 CxShell::executeHttp(
     std::ctstring_t &a_url
@@ -169,7 +163,6 @@ CxShell::executeHttp(
     execute(NULL, opOpen, xT("IEXPLORE.EXE"), url, xT(""), sfShowNormal);
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 xINLINE_HO void_t
 CxShell::executeFtp(
     std::ctstring_t &a_url
@@ -184,7 +177,6 @@ CxShell::executeFtp(
     execute(NULL, opOpen, xT("explorer.exe"), xT("/e, ") + url, xT(""), sfShowNormal);
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 xINLINE_HO void_t
 CxShell::executeEmail(
     std::ctstring_t &a_toEmail,
@@ -218,7 +210,6 @@ CxShell::executeEmail(
     execute(NULL, opOpen, cmd, xT(""), xT(""), sfShowNormal);
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 xINLINE_HO std::tstring_t
 CxShell::specialDirPath(
     const ESpecialDir &a_dir,
@@ -246,7 +237,6 @@ CxShell::specialDirPath(
     return std::tstring_t(buff);
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 xINLINE_HO void_t
 CxShell::createShortcut(
     std::ctstring_t &a_shortCutFilePath, ///< путь и имя ярлыка, например, "C:\\Блокнот.lnk"
