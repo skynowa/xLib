@@ -7,11 +7,13 @@
 cmake_minimum_required (VERSION 2.6)
 
 
+project (xLib)
+
+#-------------------------------------------------------------------------------
+# prepare
 if (CMAKE_CXX_COMPILER MATCHES ".*clang")
     set(CMAKE_COMPILER_IS_CLANGXX 1)
 endif()
-
-project (xLib)
 
 #-------------------------------------------------------------------------------
 # dir "Project"
