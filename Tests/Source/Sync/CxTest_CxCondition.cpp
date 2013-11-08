@@ -109,7 +109,8 @@ pvJob(
 
         // do some "work" so threads can alternate on mutex lock
         {
-            (uint_t)::sleep(1);
+            uint_t uiRv = ::sleep(1);
+            xUNUSED(uiRv);
         }
     }
 

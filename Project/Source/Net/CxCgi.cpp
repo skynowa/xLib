@@ -349,6 +349,8 @@ CxCgiEnvironment::CxCgiEnvironment(
     _cgi         (a_cgi),
     _requestType(rtUknown)
 {
+    xUNUSED(_cgi);
+
     _construct();
 }
 //-------------------------------------------------------------------------------------------------

@@ -196,7 +196,7 @@ CxTest_xDefines::unit(
     xTEST_CASE("xDefines::xLINE_", a_cullCaseLoops)
     {
         m_ulRv = xLINE;
-        xTEST_GR(0UL, m_ulRv);
+        xTEST_GR(m_ulRv, 0UL);
     }
 
     xTEST_CASE("xDefines::xFUNCTION_", a_cullCaseLoops)

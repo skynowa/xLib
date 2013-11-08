@@ -193,9 +193,9 @@ CxTest_CxVolume::unit(
             xCHECK_DO(!CxVolume(*it).isReady(), continue);
 
             CxVolume::space(*it, &ullAvailable, &ullTotal, &ullFree);
-            xTEST_LESS_EQ(0ULL, ullAvailable);
-            xTEST_LESS_EQ(0ULL, ullTotal);
-            xTEST_LESS_EQ(0ULL, ullFree);
+            xTEST_DIFF(0ULL, ullAvailable);
+            xTEST_DIFF(0ULL, ullTotal);
+            xTEST_DIFF(0ULL, ullFree);
         }
 
         xFOREACH(std::vec_tstring_t, it, vsData) {
@@ -206,9 +206,9 @@ CxTest_CxVolume::unit(
             xCHECK_DO(!CxVolume(*it).isReady(), continue);
 
             CxVolume::space(*it, NULL, NULL, NULL);
-            xTEST_LESS_EQ(0ULL, ullAvailable);
-            xTEST_LESS_EQ(0ULL, ullTotal);
-            xTEST_LESS_EQ(0ULL, ullFree);
+            xTEST_DIFF(0ULL, ullAvailable);
+            xTEST_DIFF(0ULL, ullTotal);
+            xTEST_DIFF(0ULL, ullFree);
         }
 
         xFOREACH(std::vec_tstring_t, it, vsData) {
@@ -219,9 +219,9 @@ CxTest_CxVolume::unit(
             xCHECK_DO(!CxVolume(*it).isReady(), continue);
 
             CxVolume::space(*it, &ullAvailable, &ullTotal, &ullFree);
-            xTEST_LESS_EQ(0ULL, ullAvailable);
-            xTEST_LESS_EQ(0ULL, ullTotal);
-            xTEST_LESS_EQ(0ULL, ullFree);
+            xTEST_DIFF(0ULL, ullAvailable);
+            xTEST_DIFF(0ULL, ullTotal);
+            xTEST_DIFF(0ULL, ullFree);
 
             #if xTEST_IGNORE
                 xTRACEV(xT("ullAvailable: %lld, ullTotal: %lld, ullFree: %lld"), ullAvailable, ullTotal, ullFree);
@@ -234,9 +234,9 @@ CxTest_CxVolume::unit(
             ulonglong_t ullFree      = 0ULL;
 
             CxVolume::space(CxConst::strEmpty(), &ullAvailable, &ullTotal, &ullFree);
-            xTEST_LESS_EQ(0ULL, ullAvailable);
-            xTEST_LESS_EQ(0ULL, ullTotal);
-            xTEST_LESS_EQ(0ULL, ullFree);
+            xTEST_DIFF(0ULL, ullAvailable);
+            xTEST_DIFF(0ULL, ullTotal);
+            xTEST_DIFF(0ULL, ullFree);
 
             #if xTEST_IGNORE
                 xTRACEV(xT("ullAvailable: %lld, ullTotal: %lld, ullFree: %lld"), ullAvailable, ullTotal, ullFree);
