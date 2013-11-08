@@ -6,6 +6,11 @@
 
 cmake_minimum_required (VERSION 2.6)
 
+
+if (CMAKE_CXX_COMPILER MATCHES ".*clang")
+    set(CMAKE_COMPILER_IS_CLANGXX 1)
+endif()
+
 project (xLib)
 
 #-------------------------------------------------------------------------------
@@ -60,7 +65,7 @@ if (MSVC)
 elseif (MINGW)
     set(LIBS ws2_32 psapi uuid ole32 mpr)
     set(FLAGS "-Wall -pipe")
-elseif (CMAKE_COMPILER_IS_GNUCXX)
+elseif (CMAKE_COMPILER_IS_GNUCXX OR CMAKE_COMPILER_IS_CLANGXX)
     set(LIBS pthread rt m z )
     set(FLAGS "-Wall -pipe")
 else()
@@ -68,7 +73,10 @@ else()
 endif()
 
 set_target_properties(
-    xLib_test PROPERTIES COMPILE_FLAGS ${FLAGS}
+    xLib_test
+    PROPERTIES
+        # COMPILE_DEFINITIONS
+        COMPILE_FLAGS ${FLAGS}
 )
 
 target_link_libraries(
