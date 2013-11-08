@@ -113,6 +113,15 @@
 int_t xTMAIN(int_t argNum, tchar_t *args[])
 {
     //--------------------------------------------------
+    // checks
+    {
+    #if xOS_ENV_UNIX
+        CxSystemInfo info;
+        xCHECK_MSG_RET(info.isUserAdmin(), xT("Can't run as root"), EXIT_FAILURE);
+    #endif
+    }
+
+    //--------------------------------------------------
     // options (default)
     bool_t      isUseTracing = true;
     ulonglong_t allLoops     = 1ULL;
