@@ -117,7 +117,7 @@ int_t xTMAIN(int_t argNum, tchar_t *args[])
     {
     #if xOS_ENV_UNIX
         CxSystemInfo info;
-        xCHECK_MSG_RET(info.isUserAdmin(), xT("Can't run as root"), EXIT_FAILURE);
+        xCHECK_MSG_RET(info.isUserAdmin(), xT("xLib_test: Can't run as root"), EXIT_FAILURE);
     #endif
     }
 
@@ -139,14 +139,14 @@ int_t xTMAIN(int_t argNum, tchar_t *args[])
         if (2 == argNum) {
             bool_t bRv = CxString::compareNoCase(xT("-h"), args.at(1));
             if (!bRv) {
-                std::tcout << xT("\nUnknown switches\n") << std::endl;
+                std::tcout << xT("\nxLib_test: unknown switches\n") << std::endl;
             } else {
-                std::tcout << xT("\nUsage: xlib_r is_tracing all_loops unit_loops\n")
-                              xT("  - xlib_r      (binary file path)\n")
-                              xT("  - is_tracing  (is tracing)\n")
-                              xT("  - all_loops   (loops for all tests)\n")
-                              xT("  - unit_loops  (loops for unit test)\n")
-                              xT("  - case_loops  (loops for case test)\n") << std::endl;
+                std::tcout << xT("\nUsage: ./xLib_test is_tracing all_loops unit_loops\n")
+                              xT("  - xLib_test  (binary file path)\n")
+                              xT("  - is_tracing (is tracing)\n")
+                              xT("  - all_loops  (loops for all tests)\n")
+                              xT("  - unit_loops (loops for unit test)\n")
+                              xT("  - case_loops (loops for case test)\n") << std::endl;
             }
 
             return EXIT_SUCCESS;
