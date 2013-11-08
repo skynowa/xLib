@@ -782,7 +782,7 @@ CxPath::toUnix(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+xINLINE_HO std::tstring_t
 CxPath::toNative(
     cbool_t &a_isSlashAtEnd
 ) const
