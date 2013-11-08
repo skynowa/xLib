@@ -69,11 +69,11 @@ CxThreadPool<T>::groupCreate(
     std::csize_t     &a_maxRunningTasks
 )
 {
-    xTEST_LESS_EQ(0U, a_stackSize);    // TODO: MaxValue
+    xTEST_NA(a_stackSize);    // TODO: MaxValue
     xTEST_NA(a_funcPtr);
     xTEST_NA(a_param);
-    xTEST_LESS_EQ(size_t(0), a_numTasks);
-    xTEST_LESS_EQ(size_t(0), a_maxRunningTasks);
+    xTEST_NA(a_numTasks);
+    xTEST_NA(a_maxRunningTasks);
 
     xCHECK_DO(isRunning(), /*LOG*/_s_log.write(xT("CxThreadPool: is running")); return);
 
@@ -480,8 +480,6 @@ CxThreadPool<T>::_taskRemove(
     }
 
     xTEST_PTR(task);
-
-    return true;
 }
 //-------------------------------------------------------------------------------------------------
 template<class T>
