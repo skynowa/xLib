@@ -313,10 +313,17 @@ CxTest_CxUtils::unit(
 
     xTEST_CASE("CxUtils::safeDivT", a_cullCaseLoops)
     {
-        CxUtils::safeDivT(0, 0);
-        CxUtils::safeDivT(0, 1);
-        CxUtils::safeDivT(1, 0);
-        CxUtils::safeDivT(1, 1);
+        m_dRv = CxUtils::safeDivT(0, 0);
+        xTEST_EQ(true, CxUtils::doubleIsEqual(m_dRv, 0.0));
+
+        m_dRv = CxUtils::safeDivT(0, 1);
+        xTEST_EQ(true, CxUtils::doubleIsEqual(m_dRv, 0.0));
+
+        m_dRv = CxUtils::safeDivT(1, 0);
+        xTEST_EQ(true, CxUtils::doubleIsEqual(m_dRv, 0.0));
+
+        m_dRv = CxUtils::safeDivT(1, 1);
+        xTEST_EQ(true, CxUtils::doubleIsEqual(m_dRv, 1.0));
     }
 
     xTEST_CASE("CxUtils::enumIncT enumDecT", a_cullCaseLoops)
