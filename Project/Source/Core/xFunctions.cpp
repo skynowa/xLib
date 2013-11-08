@@ -60,26 +60,25 @@ getTimeOfDay(
 
 #endif
 //-------------------------------------------------------------------------------------------------
-#if xOS_ENV_UNIX
-    #if   xOS_LINUX
-        xNA;
-    #elif xOS_FREEBSD
-        xINLINE_HO std::clock_t
-        clock()
-        {
-            rusage ruUsage = {{0}};
+#if xOS_FREEBSD
 
-            int_t iRv = ::getrusage(RUSAGE_SELF, &ruUsage);
-            xTEST_DIFF(- 1, iRv);
+xINLINE_HO std::clock_t
+clock()
+{
+    rusage ruUsage = {{0}};
 
-            std::clock_t clkRv =
-                static_cast<std::clock_t>( ruUsage.ru_utime.tv_sec  + ruUsage.ru_stime.tv_sec ) * 1000000 +
-                ruUsage.ru_utime.tv_usec +
-                ruUsage.ru_stime.tv_usec;
+    int_t iRv = ::getrusage(RUSAGE_SELF, &ruUsage);
+    if (iRv == - 1) {
+        return - 1;
+    }
 
-            return clkRv;
-        }
-    #endif
+    std::clock_t clkRv =
+        static_cast<std::clock_t>( ruUsage.ru_utime.tv_sec  + ruUsage.ru_stime.tv_sec ) * 1000000 +
+        ruUsage.ru_utime.tv_usec + ruUsage.ru_stime.tv_usec;
+
+    return clkRv;
+}
+
 #endif
 //-------------------------------------------------------------------------------------------------
 
