@@ -153,7 +153,7 @@ CxProcessInfo::exeName()
             tchar_t buff[PATH_MAX + 1] = {0};
             size_t  buffSize           = sizeof(buff) - 1;
 
-            int_t iRv = ::sysctl(mib, xARRAY_SIZE(aiMib), buff, &buffSize, NULL, 0U);
+            int_t iRv = ::sysctl(mib, xARRAY_SIZE(mib), buff, &buffSize, NULL, 0U);
             xTEST_DIFF(- 1, iRv);
 
             sRv.assign(buff);
