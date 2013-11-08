@@ -114,7 +114,7 @@ CxTest_CxRandom::unit(
 
             CxRandom::setSeed();
 
-            m_liRv = CxRandom::nextInt(cliMin, cliMax);
+            m_liRv = CxRandom::nextIntEx(cliMin, cliMax);
             xTEST_EQ(true, m_liRv >= cliMin && m_liRv <= cliMax);
         }
     }
