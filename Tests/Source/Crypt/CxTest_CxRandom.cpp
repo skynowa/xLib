@@ -27,77 +27,77 @@ CxTest_CxRandom::unit(
         }
 
         //--------------------------------------------------
-        //iNextInt
+        //nextInt
         {
-            m_iRv = rndR.iNextInt();
+            m_iRv = rndR.nextInt();
             xTEST_LESS(0, m_iRv);
         }
 
         //--------------------------------------------------
-        //iNextInt
+        //nextInt
         {
-            m_iRv = rndR.iNextInt(100);
+            m_iRv = rndR.nextInt(100);
             xTEST_LESS_EQ(0, m_iRv);
         }
 
         //--------------------------------------------------
-        //iNextInt
+        //nextInt
         {
-            m_iRv = rndR.iNextInt(100, 200);
+            m_iRv = rndR.nextInt(100, 200);
             xTEST_EQ(true, 100 <= m_iRv && 200 >= m_iRv);
         }
 
         //--------------------------------------------------
-        //liNextLong
+        //nextLong
         {
-            m_liRv = rndR.liNextLong();
+            m_liRv = rndR.nextLong();
             xTEST_LESS(0L, m_liRv);
         }
 
         //--------------------------------------------------
-        //bNextBoolean
+        //nextBool
         {
-            m_blRes = rndR.bNextBoolean();
+            m_blRes = rndR.nextBool();
             xTEST_EQ(true, m_blRes || !m_blRes);
         }
 
         //--------------------------------------------------
-        //fNextFloat
+        //nextFloat
         {
-            m_fRv = rndR.fNextFloat();
+            m_fRv = rndR.nextFloat();
             //
         }
 
         //--------------------------------------------------
-        //bNextDouble
+        //nextDouble
         {
-            m_dRv = rndR.bNextDouble();
+            m_dRv = rndR.nextDouble();
             //
         }
 
         //--------------------------------------------------
-        //chNextChar
+        //nextChar
         {
-            m_chRv = rndR.chNextChar();
+            m_chRv = rndR.nextChar();
             //
         }
 
         //--------------------------------------------------
-        //chNextFigure
+        //nextFigure
         {
-            m_chRv = rndR.chNextFigure();
+            m_chRv = rndR.nextFigure();
             //
         }
 
         //--------------------------------------------------
-        //dNextGaussian
+        //nextGaussian
         {
-            m_dRv = rndR.dNextGaussian();
+            m_dRv = rndR.nextGaussian();
             //
         }
     #endif
 
-    xTEST_CASE("CxRandom::vSetSeed liGetInt liGetIntEx", a_cullCaseLoops)
+    xTEST_CASE("CxRandom::setSeed liGetInt liGetIntEx", a_cullCaseLoops)
     {
         clong_t caliData[][2] = {
             {0, 100},
@@ -112,12 +112,9 @@ CxTest_CxRandom::unit(
             clong_t cliMin = caliData[i][0];
             clong_t cliMax = caliData[i][1];
 
-            CxRandom::vSetSeed();
+            CxRandom::setSeed();
 
-            m_liRv = CxRandom::liInt(cliMin, cliMax);
-            xTEST_EQ(true, m_liRv >= cliMin && m_liRv <= cliMax);
-
-            m_liRv = CxRandom::liIntEx(cliMin, cliMax);
+            m_liRv = CxRandom::nextInt(cliMin, cliMax);
             xTEST_EQ(true, m_liRv >= cliMin && m_liRv <= cliMax);
         }
     }
@@ -127,9 +124,9 @@ CxTest_CxRandom::unit(
         std::csize_t cuiStrSize = 10;
 
         for (size_t i = 0; i < 10; ++ i) {
-            CxRandom::vSetSeed();
+            CxRandom::setSeed();
 
-            m_sRv = CxRandom::sString(cuiStrSize);
+            m_sRv = CxRandom::nextString(cuiStrSize);
             xTEST_EQ(cuiStrSize, m_sRv.size());
             //xTRACEV(xT("\ti: %s"), m_sRv.c_str());
         }
