@@ -31,19 +31,19 @@
     ///< check expression (work in debug and release modes)
 
 #define xCHECK_RET(expr, return_expr) \
-    { if ((expr)) { return (return_expr); } }
+    { if (expr) { return (return_expr); } }
     ///< check expression and return value
 #define xCHECK_DO(expr, do_expr) \
-    { if ((expr)) { do_expr; } }
+    { if (expr) { do_expr; } }
     ///< check expression and do instructions
 #define xCHECK_MSG(expr, comment) \
-    { if ((expr)) { CxTracer() << (comment); } }
+    { if (expr) { CxTracer() << (comment); } }
     ///< check expression and show message with comment
 #define xCHECK_MSG_RET(expr, comment, return_expr) \
-    { if ((expr)) { CxTracer() << (comment); return (return_expr); } }
+    { if (expr) { CxTracer() << (comment); return (return_expr); } }
     ///< check expression, show message with comment and return value
 #define xCHECK_MSG_DO(expr, comment, do_expr) \
-    { if ((expr)) { CxTracer() << (comment); do_expr; } }
+    { if (expr) { CxTracer() << (comment); do_expr; } }
     ///< check expression, show message with comment and do instructions
 #define xCHECK_NA(var) \
     ;
