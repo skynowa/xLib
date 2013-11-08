@@ -333,7 +333,7 @@ CxThreadPool<T>::isFull() const
 {
     //xTEST_EQ(CONDITION);
 
-    CxAutoMutex mutex(&_s_mutex, true);
+    CxAutoMutex mutex(&_s_mutex);
 
     xTEST_LESS(_maxRunningTasks, _tasks.size());
 
@@ -349,7 +349,7 @@ CxThreadPool<T>::size() const
 {
     //xTEST_EQ(CONDITION);
 
-    CxAutoMutex mutex(&_s_mutex, true);
+    CxAutoMutex mutex(&_s_mutex);
 
     size_t uiRes = _tasks.size();
     // n/a
