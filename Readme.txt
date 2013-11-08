@@ -25,8 +25,6 @@ Dependencies:
     - MySQL
         Ubuntu: sudo apt-get install libmysqlclient-dev 
 
-    - Aladdin eToken RTE, SDK 4.53
-
 Repositories:
     - bitbucket.org
         git clone https://skynowa@bitbucket.org/skynowa/xlib.git
