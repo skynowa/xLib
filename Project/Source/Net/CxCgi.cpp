@@ -349,7 +349,8 @@ CxCgiEnvironment::CxCgiEnvironment(
     _cgi         (a_cgi),
     _requestType(rtUknown)
 {
-    xUNUSED(_cgi);
+    // fix warning "is not used"
+    _cgi.dump();
 
     _construct();
 }
