@@ -22,9 +22,9 @@ class CxShell :
     /// shell
 {
 public:
-               CxShell();
+               CxShell() {}
         ///< constructor
-    virtual   ~CxShell();
+    virtual   ~CxShell() {}
         ///< destructor
 
     bool_t     isAvailable() xWARN_UNUSED_RV;
