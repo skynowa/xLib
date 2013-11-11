@@ -25,7 +25,7 @@ foreach(_headerFile ${xLib_HEADERS})
     list (APPEND XLib_PROJECT_INCLUDE_DIRS ${_dir})
 endforeach()
 
-file(GLOB_RECURSE xLib_SOURCES "Project/*.cpp")
+file(GLOB_RECURSE xLib_SOURCES "Project/*.inl")
 foreach(_sourceFile ${xLib_SOURCES})
     get_filename_component(_dir ${_sourceFile} PATH)
     list (APPEND XLib_PROJECT_INCLUDE_DIRS ${_dir})
