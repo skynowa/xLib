@@ -55,7 +55,7 @@ CxBackuper::fileExec(
     {
         a_destFilePath->clear();
 
-        bool_t bRv = CxFile::isExists(a_filePath);
+        bRv = CxFile::isExists(a_filePath);
         xCHECK_DO(!bRv, xTHROW() << error_DestFileNotExists);
 
         CxDir dest(a_destDirPath);
@@ -64,22 +64,17 @@ CxBackuper::fileExec(
         xCHECK_DO(!bRv, dest.pathCreate());
     }
 
-    //-------------------------------------
-    // get backup period
     std::tstring_t dateTimeStamp;
-
     {
         switch (_period) {
         // TODO: bpHourly:
         case bpDaily:
-            dateTimeStamp = CxDateTime().current()
-                                .format(CxDateTime::ftDate);
+            dateTimeStamp = CxDateTime().current().format(CxDateTime::ftDate);
             break;
         // TODO: bpWeekly:
         // TODO: bpMonthly:
         default:
-            dateTimeStamp = CxDateTime().current()
-                                .format(CxDateTime::ftDateTime);
+            dateTimeStamp = CxDateTime().current().format(CxDateTime::ftDateTime);
             break;
         }
 
@@ -88,10 +83,8 @@ CxBackuper::fileExec(
 
     //-------------------------------------
     // format file full name
-    std::tstring_t backupFilePath =
-                        CxPath(a_destDirPath).slashAppend() +
-                        CxPath(a_filePath).fileName()       +
-                        xT(".bak [") + dateTimeStamp + xT("]");
+    std::tstring_t backupFilePath = CxPath(a_destDirPath).slashAppend() +
+        CxPath(a_filePath).fileName() + xT(".bak [") + dateTimeStamp + xT("]");
 
     //-------------------------------------
     // check for existence source file
