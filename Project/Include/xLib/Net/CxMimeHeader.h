@@ -16,7 +16,7 @@ class CxMimeHeader :
 {
 public:
                            CxMimeHeader();
-                          ~CxMimeHeader();
+    virtual               ~CxMimeHeader() {}
 
     void_t                 parse(std::ctstring_t &rawHeader);
     std::tstring_t         field(std::ctstring_t &name) xWARN_UNUSED_RV;

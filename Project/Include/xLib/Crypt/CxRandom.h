@@ -17,7 +17,7 @@ class CxRandom :
 public:
     explicit              CxRandom(clong_t &seed = std::time(NULL));
         ///< constructor
-    virtual              ~CxRandom();
+    virtual              ~CxRandom() {}
         ///< destructor
 
     void_t                setSeed(clong_t &seed);
