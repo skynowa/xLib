@@ -261,6 +261,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#if xXLIB_HEADER_ONLY
-    #include <Net/CxCgi.cpp>
-#endif
+#include <Net/CxCgi.inl>

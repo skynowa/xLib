@@ -79,6 +79,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#if xXLIB_HEADER_ONLY
-    #include <Net/CxUri.cpp>
-#endif
+#include <Net/CxUri.inl>

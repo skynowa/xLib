@@ -37,6 +37,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#if xXLIB_HEADER_ONLY
-    #include <Debug/CxLastError.cpp>
-#endif
+#include <Debug/CxLastError.inl>

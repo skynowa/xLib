@@ -23,6 +23,4 @@ public:
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#if xXLIB_HEADER_ONLY
-    #include <Net/CxSocketInit.cpp>
-#endif
+#include <Net/CxSocketInit.inl>

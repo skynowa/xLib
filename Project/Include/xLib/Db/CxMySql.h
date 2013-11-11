@@ -115,9 +115,7 @@ xNAMESPACE_END(NxLib)
 
 #endif // CXMYSQL_IS_USE
 //-------------------------------------------------------------------------------------------------
-#if xXLIB_HEADER_ONLY
-    #include <Db/CxMySql.cpp>
-#endif
+#include <Db/CxMySql.inl>
 
 
 #if xTODO

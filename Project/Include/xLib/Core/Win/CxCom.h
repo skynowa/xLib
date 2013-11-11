@@ -27,7 +27,4 @@ xNAMESPACE_END(NxLib)
 
 #endif
 //-------------------------------------------------------------------------------------------------
-#if xXLIB_HEADER_ONLY
-    #include <Core/Win/CxCom.cpp>
-#endif
-
+#include <Core/Win/CxCom.inl>

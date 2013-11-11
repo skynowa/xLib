@@ -154,6 +154,4 @@ public:
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#if xXLIB_HEADER_ONLY
-    #include <System/CxShell.cpp>
-#endif
+#include <System/CxShell.inl>

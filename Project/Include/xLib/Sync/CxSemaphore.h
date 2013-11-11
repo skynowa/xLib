@@ -26,6 +26,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#if xXLIB_HEADER_ONLY
-    #include <Sync/CxSemaphore.cpp>
-#endif
+#include <Sync/CxSemaphore.inl>

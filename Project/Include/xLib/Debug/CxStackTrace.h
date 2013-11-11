@@ -45,6 +45,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#if xXLIB_HEADER_ONLY
-    #include <Debug/CxStackTrace.cpp>
-#endif
+#include <Debug/CxStackTrace.inl>

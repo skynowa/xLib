@@ -70,9 +70,7 @@ xNAMESPACE_END(NxLib)
 
 #endif // xOPENSSL_IS_USE
 //-------------------------------------------------------------------------------------------------
-#if xXLIB_HEADER_ONLY
-    #include <Crypt/OpenSSL/CxBlowfish.cpp>
-#endif
+#include <Crypt/OpenSSL/CxBlowfish.inl>
 
 
 /*

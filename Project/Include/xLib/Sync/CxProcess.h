@@ -93,6 +93,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#if xXLIB_HEADER_ONLY
-    #include <Sync/CxProcess.cpp>
-#endif
+#include <Sync/CxProcess.inl>

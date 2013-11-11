@@ -65,6 +65,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#if xXLIB_HEADER_ONLY
-    #include <Filesystem/CxDir.cpp>
-#endif
+#include <Filesystem/CxDir.inl>

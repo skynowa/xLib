@@ -49,6 +49,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#if xXLIB_HEADER_ONLY
-    #include <Filesystem/CxDll.cpp>
-#endif
+#include <Filesystem/CxDll.inl>

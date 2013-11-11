@@ -44,6 +44,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#if xXLIB_HEADER_ONLY
-    #include <System/CxProcessInfo.cpp>
-#endif
+#include <System/CxProcessInfo.inl>

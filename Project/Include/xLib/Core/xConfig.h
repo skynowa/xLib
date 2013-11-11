@@ -86,9 +86,6 @@
     #endif
 #endif
 
-#define xXLIB_HEADER_ONLY               1
-    ///< is header only library
-
 #define xUSING_NAMESPACE_NXLIB          1
     ///< automatically include the NxLib namespace
 

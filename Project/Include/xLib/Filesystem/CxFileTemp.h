@@ -33,6 +33,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#if xXLIB_HEADER_ONLY
-    #include <Filesystem/CxFileTemp.cpp>
-#endif
+#include <Filesystem/CxFileTemp.inl>

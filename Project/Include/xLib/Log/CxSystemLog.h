@@ -69,6 +69,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#if xXLIB_HEADER_ONLY
-    #include <Log/CxSystemLog.cpp>
-#endif
+#include <Log/CxSystemLog.inl>

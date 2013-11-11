@@ -54,7 +54,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#if xXLIB_HEADER_ONLY
-    #include <Core/CxChar.cpp>
-#endif
-
+#include <Core/CxChar.inl>
