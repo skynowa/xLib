@@ -48,9 +48,7 @@ private:
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#if xXLIB_HEADER_ONLY
-    #include <Debug/CxProfiler.cpp>
-#endif
+#include <Debug/CxProfiler.inl>
 
 
 // http://www.metalshell.com/source_code/133/Microsecond_Benchmark.html

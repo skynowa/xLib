@@ -48,9 +48,7 @@ private:
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#if xXLIB_HEADER_ONLY
-    #include <Net/CxSmtp.cpp>
-#endif
+#include <Net/CxSmtp.inl>
 
 
 /*

@@ -216,6 +216,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#if xXLIB_HEADER_ONLY
-    #include <Sync/CxThread.cpp>
-#endif
+#include <Sync/CxThread.inl>

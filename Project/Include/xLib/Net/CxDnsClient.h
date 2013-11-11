@@ -62,9 +62,7 @@ private:
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#if xXLIB_HEADER_ONLY
-    #include <Net/CxDnsClient.cpp>
-#endif
+#include <Net/CxDnsClient.inl>
 
 
 #if xTODO

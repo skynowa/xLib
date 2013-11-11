@@ -127,9 +127,7 @@ private:
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#if xXLIB_HEADER_ONLY
-    #include <System/CxSystemInfo.cpp>
-#endif
+#include <System/CxSystemInfo.inl>
 
 
 // https://github.com/joyent/node/blob/master/src/platform_linux.cc

@@ -31,6 +31,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#if xXLIB_HEADER_ONLY
-    #include <Net/CxMimeMessage.cpp>
-#endif
+#include <Net/CxMimeMessage.inl>

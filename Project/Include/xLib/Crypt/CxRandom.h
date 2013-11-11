@@ -67,6 +67,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#if xXLIB_HEADER_ONLY
-    #include <Crypt/CxRandom.cpp>
-#endif
+#include <Crypt/CxRandom.inl>

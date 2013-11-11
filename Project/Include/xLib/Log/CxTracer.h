@@ -50,6 +50,4 @@ CxTracer::operator << (const T &valueT)
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#if xXLIB_HEADER_ONLY
-    #include <Log/CxTracer.cpp>
-#endif
+#include <Log/CxTracer.inl>

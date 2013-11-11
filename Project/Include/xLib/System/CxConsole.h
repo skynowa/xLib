@@ -123,9 +123,7 @@ private:
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#if xXLIB_HEADER_ONLY
-    #include <System/CxConsole.cpp>
-#endif
+#include <System/CxConsole.inl>
 
 
 #if xTODO

@@ -81,6 +81,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#if xXLIB_HEADER_ONLY
-    #include <Filesystem/CxFinder.cpp>
-#endif
+#include <Filesystem/CxFinder.inl>

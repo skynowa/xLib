@@ -24,6 +24,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#if xXLIB_HEADER_ONLY
-    #include <Net/CxMimeBody.cpp>
-#endif
+#include <Net/CxMimeBody.inl>
