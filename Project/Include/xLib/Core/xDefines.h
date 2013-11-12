@@ -758,5 +758,34 @@
 #endif
     ///< keywords for header only library
 
+//--------------------------------------------------
+// class disallows
+#define xNO_COPY(class_name) \
+    private: \
+        class_name(const class_name &);
+    ///< disallow copy
+#define xNO_ASSIGN(class_name) \
+    private: \
+        class_name &       operator = (const class_name &); \
+        const class_name & operator = (const class_name &);
+    ///< disallow assign
+#define xNO_ASSIGN(class_name) \
+    xNO_COPY(class_name) \
+    xNO_ASSIGN(class_name)
+    ///< disallow copy and assign
+#define xNO_INSTANCE(class_name) \
+    private: \
+        class_name();
+    ///< disallow make instance
+#define xNO_ARRAY_HEAP \
+    private: \
+        void * operator new [](size_t) throw() { return NULL; } \
+        void   operator delete [](void *) { ; }
+    ///< disallow array on heap
+#define xNO_HEAP \
+    private: \
+        void * operator new(size_t) throw() { return NULL; } \
+        void   operator delete(void *) { ; }
+    ///< disallow object on heap
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_xDefinesH
