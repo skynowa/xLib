@@ -6,6 +6,9 @@
 
 #pragma once
 
+#ifndef xLib_CxHandleErrorTH
+#define xLib_CxHandleErrorTH
+//-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -47,3 +50,4 @@ struct CxHandleErrorT<hvNull>
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
+#endif // xLib_CxHandleErrorTH

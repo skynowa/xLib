@@ -103,6 +103,9 @@
 
 #pragma once
 
+#ifndef xLib_xCoreH
+#define xLib_xCoreH
+//-------------------------------------------------------------------------------------------------
 // config
 #include <xLib/Core/xSysDefines.h>
 #include <xLib/Core/xConfig.h>
@@ -176,3 +179,5 @@ namespace NxLib { }
 
 #include <xLib/Core/xTracing.h>
 #include <xLib/Core/xLinking.h>
+//-------------------------------------------------------------------------------------------------
+#endif // xLib_xCoreH

@@ -6,6 +6,8 @@
 
 #pragma once
 
+#ifndef xLib_xLinkingH
+#define xLib_xLinkingH
 //-------------------------------------------------------------------------------------------------
 #if xOS_ENV_WIN
     #if !xLIB && xIS_AUTO_LINKING
@@ -28,6 +30,7 @@
     xNA;
 #endif
 //-------------------------------------------------------------------------------------------------
+#endif // xLib_xLinkingH
 
 
 #if xTODO

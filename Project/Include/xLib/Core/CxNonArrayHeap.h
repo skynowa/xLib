@@ -6,6 +6,9 @@
 
 #pragma once
 
+#ifndef xLib_CxNonArrayHeapH
+#define xLib_CxNonArrayHeapH
+//-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -28,3 +31,4 @@ protected:
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
+#endif // xLib_CxNonArrayHeapH

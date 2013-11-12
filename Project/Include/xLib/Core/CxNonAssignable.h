@@ -6,6 +6,9 @@
 
 #pragma once
 
+#ifndef xLib_CxNonAssignableH
+#define xLib_CxNonAssignableH
+//-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -28,3 +31,4 @@ private:
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
+#endif // xLib_CxNonAssignableH

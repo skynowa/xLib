@@ -6,6 +6,8 @@
 
 #pragma once
 
+#ifndef xLib_CxStdDebugH
+#define xLib_CxStdDebugH
 //-------------------------------------------------------------------------------------------------
 // POSIX
 #include <sys/types.h>  // must be at the top (it's portable)
@@ -89,3 +91,4 @@ currentDateTime()
     return srv;
 }
 //-------------------------------------------------------------------------------------------------
+#endif // xLib_CxStdDebugH

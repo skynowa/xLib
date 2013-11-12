@@ -6,6 +6,9 @@
 
 #pragma once
 
+#ifndef xLib_xCore_WinH
+#define xLib_xCore_WinH
+//-------------------------------------------------------------------------------------------------
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #include <windows.h>
@@ -29,3 +32,5 @@
 #elif xCOMPILER_CODEGEAR
     #include <dir.h>
 #endif
+//-------------------------------------------------------------------------------------------------
+#endif // xLib_xCore_WinH

@@ -6,6 +6,9 @@
 
 #pragma once
 
+#ifndef xLib_CxTracerH
+#define xLib_CxTracerH
+//-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -23,7 +26,12 @@ public:
         ///< destructor
 
     template<class T>
-    CxTracer &            operator << (const T &valueT);
+    CxTracer &            operator << (const T &valueT)
+    {
+        _oss << valueT;
+
+        return *this;
+    }
         ///< operator <<
 
     void_t                write(ctchar_t *format, ...);
@@ -37,17 +45,6 @@ private:
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(NxLib)
-
-template<class T>
-CxTracer &
-CxTracer::operator << (const T &valueT)
-{
-    _oss << valueT;
-
-    return *this;
-}
-
-xNAMESPACE_END(NxLib)
-//-------------------------------------------------------------------------------------------------
 #include <Log/CxTracer.inl>
+//-------------------------------------------------------------------------------------------------
+#endif // xLib_CxTracerH

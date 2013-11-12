@@ -6,6 +6,9 @@
 
 #pragma once
 
+#ifndef xLib_CxSystemInfoH
+#define xLib_CxSystemInfoH
+//-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -128,6 +131,8 @@ private:
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
 #include <System/CxSystemInfo.inl>
+//-------------------------------------------------------------------------------------------------
+#endif // xLib_CxSystemInfoH
 
 
 // https://github.com/joyent/node/blob/master/src/platform_linux.cc

@@ -6,6 +6,9 @@
 
 #pragma once
 
+#ifndef xLib_xStdStreamH
+#define xLib_xStdStreamH
+//-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 #include <xLib/Test/xTest.h>
 #include <xLib/Debug/xDebug.h>
@@ -40,3 +43,5 @@ operator << (basic_ostream<tchar_t, Traits> &os, const multimap<T1, T2> &value);
 xNAMESPACE_END(std)
 //-------------------------------------------------------------------------------------------------
 #include "xStdStream.inl"
+//-------------------------------------------------------------------------------------------------
+#endif // xLib_xStdStreamH

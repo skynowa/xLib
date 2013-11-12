@@ -6,6 +6,9 @@
 
 #pragma once
 
+#ifndef xLib_CxErrorReportH
+#define xLib_CxErrorReportH
+//-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 #include <xLib/Core/CxNonCopyable.h>
 //-------------------------------------------------------------------------------------------------
@@ -89,3 +92,5 @@ xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
 #include "CxErrorReport.inl"
 #include <Debug/CxErrorReport.inl>
+//-------------------------------------------------------------------------------------------------
+#endif // xLib_CxErrorReportH

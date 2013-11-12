@@ -6,6 +6,9 @@
 
 #pragma once
 
+#ifndef xLib_xCore_DarwinH
+#define xLib_xCore_DarwinH
+//-------------------------------------------------------------------------------------------------
 // POSIX
 #include <cpio.h>
 #include <dirent.h>
@@ -50,3 +53,5 @@
 #include <netdb.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+//-------------------------------------------------------------------------------------------------
+#endif // xLib_xCore_DarwinH

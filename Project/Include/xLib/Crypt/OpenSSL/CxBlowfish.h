@@ -6,6 +6,9 @@
 
 #pragma once
 
+#ifndef xLib_CxBlowfishH
+#define xLib_CxBlowfishH
+//-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 
 #if xOPENSSL_IS_USE
@@ -71,6 +74,8 @@ xNAMESPACE_END(NxLib)
 #endif // xOPENSSL_IS_USE
 //-------------------------------------------------------------------------------------------------
 #include <Crypt/OpenSSL/CxBlowfish.inl>
+//-------------------------------------------------------------------------------------------------
+#endif // xLib_CxBlowfishH
 
 
 /*
