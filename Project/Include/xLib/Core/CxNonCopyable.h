@@ -9,8 +9,6 @@
 #ifndef xLib_CxNonCopyableH
 #define xLib_CxNonCopyableH
 //-------------------------------------------------------------------------------------------------
-#include <xLib/Core/xCore.h>
-//-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
 class CxNonCopyable
