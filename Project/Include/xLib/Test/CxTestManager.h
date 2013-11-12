@@ -6,6 +6,9 @@
 
 #pragma once
 
+#ifndef xLib_CxTestManagerH
+#define xLib_CxTestManagerH
+//-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 #include <xLib/Core/CxConst.h>
 #include <xLib/Test/CxTest.h>
@@ -37,6 +40,8 @@ private:
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
 #include <Test/CxTestManager.inl>
+//-------------------------------------------------------------------------------------------------
+#endif // xLib_CxTestManagerH
 
 
 // TODO: CxTestManager - not enough RAM

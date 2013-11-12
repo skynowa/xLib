@@ -6,6 +6,8 @@
 
 #pragma once
 
+#ifndef xLib_xConfigH
+#define xLib_xConfigH
 //-------------------------------------------------------------------------------------------------
 #if xOS_ENV_WIN
     #if xCOMPILER_MS
@@ -121,3 +123,4 @@
 #define xOPENSSL_IS_USE                 0
     ///< is use OpenSSL
 //-------------------------------------------------------------------------------------------------
+#endif // xLib_xConfigH

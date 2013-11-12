@@ -6,6 +6,8 @@
 
 #pragma once
 
+#ifndef xLib_xTestH
+#define xLib_xTestH
 //-------------------------------------------------------------------------------------------------
 #define _xTEST_MSG_EQ(reportType, val1, val2, msg)      { if ( !((val1) == (val2)) ) { ulong_t lastError = CxLastError::get(); CxErrorReport report(reportType, xT(#val1),   xT(#val2), (val1),        (val2),         xT("=="), lastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().toString(), (msg));  CxDebugger().reportMake(report); } }
 #define _xTEST_MSG_DIFF(reportType, val1, val2, msg)    { if ( !((val1) != (val2)) ) { ulong_t lastError = CxLastError::get(); CxErrorReport report(reportType, xT(#val1),   xT(#val2), (val1),        (val2),         xT("!="), lastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().toString(), (msg));  CxDebugger().reportMake(report); } }
@@ -100,3 +102,4 @@
     for (size_t _caseLoops = 0U; _caseLoops < (loops); ++ _caseLoops)
     ///< test case
 //-------------------------------------------------------------------------------------------------
+#endif // xLib_xTestH

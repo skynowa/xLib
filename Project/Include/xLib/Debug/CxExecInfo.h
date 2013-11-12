@@ -6,6 +6,8 @@
 
 #pragma once
 
+#ifndef xLib_CxExecInfoH
+#define xLib_CxExecInfoH
 //-------------------------------------------------------------------------------------------------
 inline int
 backtrace(void **buffer, int size)
@@ -33,3 +35,4 @@ backtrace_symbols_fd(void *const *buffer, int size, int fd)
     (void)fd;
 }
 //-------------------------------------------------------------------------------------------------
+#endif // xLib_CxExecInfoH

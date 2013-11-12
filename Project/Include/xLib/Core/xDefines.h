@@ -6,6 +6,8 @@
 
 #pragma once
 
+#ifndef xLib_xDefinesH
+#define xLib_xDefinesH
 //-------------------------------------------------------------------------------------------------
 
 //--------------------------------------------------
@@ -45,24 +47,24 @@
 //--------------------------------------------------
 // xDECL, xDECL_TEMPL
 #if xOS_ENV_WIN && xDLL
-	#if xAPI_EXPORTS
-		#define xDECL \
-		    __declspec(dllexport)
+    #if xAPI_EXPORTS
+        #define xDECL \
+            __declspec(dllexport)
             // export DLL information
-		#define xDECL_TEMPL
+        #define xDECL_TEMPL
             // export DLL information
-	#else
-		#define xDECL \
-		    __declspec(dllimport)
+    #else
+        #define xDECL \
+            __declspec(dllimport)
             ///< import DLL information
-		#define xDECL_TEMPL \
-		    extern
+        #define xDECL_TEMPL \
+            extern
             ///< import DLL information
-	#endif
+    #endif
 #else
-	#define xDECL
+    #define xDECL
         // export, import DLL information
-	#define xDECL_TEMPL
+    #define xDECL_TEMPL
         // export, import DLL information
 #endif
 
@@ -757,3 +759,4 @@
     ///< keywords for header only library
 
 //-------------------------------------------------------------------------------------------------
+#endif // xLib_xDefinesH

@@ -6,6 +6,9 @@
 
 #pragma once
 
+#ifndef xLib_CxThreadPoolH
+#define xLib_CxThreadPoolH
+//-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 #include <xLib/Sync/CxIpcSemaphore.h>
 #include <xLib/Sync/CxThread.h>
@@ -87,12 +90,6 @@ private:
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <xLib/Sync/CxMutex.h>
-#include <xLib/Sync/CxAutoMutex.h>
-#include <xLib/Sync/CxThread.h>
-
 #include "CxThreadPool.inl"
 //-------------------------------------------------------------------------------------------------
-#if xXLIB_HEADER_ONLY
-
-#endif
+#endif // xLib_CxThreadPoolH

@@ -4,6 +4,11 @@
  */
 
 
+#include <xLib/Sync/CxMutex.h>
+#include <xLib/Sync/CxAutoMutex.h>
+#include <xLib/Sync/CxThread.h>
+
+
 xNAMESPACE_BEGIN(NxLib)
 
 /*******************************************************************************

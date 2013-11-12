@@ -6,6 +6,9 @@
 
 #pragma once
 
+#ifndef xLib_CxStringH
+#define xLib_CxStringH
+//-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 #include <xLib/Test/xTest.h>
 #include <xLib/Debug/xDebug.h>
@@ -178,3 +181,5 @@ xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
 #include "CxString.inl"
 #include <Core/CxString.inl>
+//-------------------------------------------------------------------------------------------------
+#endif // xLib_CxStringH

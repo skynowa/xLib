@@ -6,6 +6,9 @@
 
 #pragma once
 
+#ifndef xLib_CxThreadH
+#define xLib_CxThreadH
+//-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 #include <xLib/Core/CxHandleT.h>
 #include <xLib/Sync/CxEvent.h>
@@ -217,3 +220,5 @@ private:
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
 #include <Sync/CxThread.inl>
+//-------------------------------------------------------------------------------------------------
+#endif // xLib_CxThreadH

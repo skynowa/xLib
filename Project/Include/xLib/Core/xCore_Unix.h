@@ -6,6 +6,9 @@
 
 #pragma once
 
+#ifndef xLib_xCore_UnixH
+#define xLib_xCore_UnixH
+//-------------------------------------------------------------------------------------------------
 // POSIX
 #include <cpio.h>
 #include <dirent.h>
@@ -57,3 +60,5 @@
 #include <netdb.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+//-------------------------------------------------------------------------------------------------
+#endif // xLib_xCore_UnixH
