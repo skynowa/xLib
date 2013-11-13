@@ -98,12 +98,12 @@
 #elif defined(__BORLANDC__) || defined(__CODEGEARC__)
     #define xCOMPILER_CODEGEAR 1
         ///< compiler Borland C++, Code Gear
+#elif defined(__clang__)    /* xCOMPILER_CLANG also __GNUC__ */
+    #define xCOMPILER_CLANG    1
+        ///< compiler Clang
 #elif defined(__GNUC__)
     #define xCOMPILER_GNUC     1
         ///< compiler GNU C/C++
-#elif defined(__clang__)
-    #define xCOMPILER_CLANG    1
-        ///< compiler Clang
 #else
     #error xLib: unsupported compiler
 #endif
