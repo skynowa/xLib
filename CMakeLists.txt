@@ -16,24 +16,6 @@ if (CMAKE_CXX_COMPILER MATCHES ".*clang")
 endif()
 
 #-------------------------------------------------------------------------------
-# dir "Project"
-set(XLib_PROJECT_INCLUDE_DIRS "")
-
-file(GLOB_RECURSE xLib_HEADERS "Project/*.h")
-foreach(_headerFile ${xLib_HEADERS})
-    get_filename_component(_dir ${_headerFile} PATH)
-    list (APPEND XLib_PROJECT_INCLUDE_DIRS ${_dir})
-endforeach()
-
-file(GLOB_RECURSE xLib_SOURCES "Project/*.inl")
-foreach(_sourceFile ${xLib_SOURCES})
-    get_filename_component(_dir ${_sourceFile} PATH)
-    list (APPEND XLib_PROJECT_INCLUDE_DIRS ${_dir})
-endforeach()
-
-list(REMOVE_DUPLICATES XLib_PROJECT_INCLUDE_DIRS)
-
-#-------------------------------------------------------------------------------
 # dir "Tests"
 set(XLib_TESTS_INCLUDE_DIRS "")
 
@@ -53,7 +35,6 @@ include_directories("${CMAKE_SOURCE_DIR}/Project/Include")
 include_directories("${CMAKE_SOURCE_DIR}/Project/Source")
 include_directories("${CMAKE_SOURCE_DIR}/Tests/Include")
 include_directories(${XLib_TESTS_INCLUDE_DIRS})
-#include_directories(${XLib_PROJECT_INCLUDE_DIRS})
 
 #-------------------------------------------------------------------------------
 # targets
@@ -85,7 +66,3 @@ target_link_libraries(
     xLib_test
     ${LIBS} ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS}
 )
-
-#-------------------------------------------------------------------------------
-# add the install targets
-#install (DIRECTORY ${XLib_PROJECT_INCLUDE_DIRS} DESTINATION "include/xLib")
