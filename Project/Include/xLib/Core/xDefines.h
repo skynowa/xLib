@@ -769,7 +769,7 @@
         class_name &       operator = (const class_name &); \
         const class_name & operator = (const class_name &);
     ///< disallow assign
-#define xNO_ASSIGN(class_name) \
+#define xNO_COPY_ASSIGN(class_name) \
     xNO_COPY(class_name) \
     xNO_ASSIGN(class_name)
     ///< disallow copy and assign
