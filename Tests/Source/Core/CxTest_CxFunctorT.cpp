@@ -14,7 +14,7 @@
 
 //-------------------------------------
 //classes A, B
-class A /*: CxNonCopyable*/ {
+class A {
     public:
         A() {
             ////xSTD_COUT_FUNC;
@@ -26,9 +26,11 @@ class A /*: CxNonCopyable*/ {
         void_t vOutput() {
             ////xSTD_COUT_FUNC;
         };
+
+// xNO_COPY_ASSIGN(A);
 };
 
-class B : CxNonCopyable  {
+class B {
     public:
         B() {
             ////xSTD_COUT_FUNC;
@@ -43,6 +45,8 @@ class B : CxNonCopyable  {
 
             return true;
         };
+
+xNO_COPY_ASSIGN(B)
 };
 class CThread;
 class CParam {
