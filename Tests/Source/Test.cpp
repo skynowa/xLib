@@ -9,10 +9,6 @@
 #include <xLib/Test/CxTestManager.h>
 
 // Core
-#include <Test/Core/CxTest_CxNonCopyable.h>
-#include <Test/Core/CxTest_CxNonAssignable.h>
-#include <Test/Core/CxTest_CxNonHeap.h>
-#include <Test/Core/CxTest_CxNonArrayHeap.h>
 #include <Test/Core/CxTest_CxUtils.h>
 #include <Test/Core/CxTest_xStdStream.h>
 #include <Test/Core/CxTest_CxHandleT.h>
@@ -167,10 +163,6 @@ int_t xTMAIN(int_t argNum, tchar_t *args[])
         CxTestManager manager(isUseTracing);
 
         // Core
-        manager.add(new CxTest_CxNonCopyable);
-        manager.add(new CxTest_CxNonAssignable);
-        manager.add(new CxTest_CxNonHeap);
-        manager.add(new CxTest_CxNonArrayHeap);
         manager.add(new CxTest_CxUtils);
         manager.add(new CxTest_xStdStream);
         manager.add(new CxTest_CxHandleT);
