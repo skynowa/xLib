@@ -14,8 +14,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxIpcMutex :
-    public CxNonCopyable
+class CxIpcMutex
     /// mutex
 {
 public:
@@ -42,6 +41,8 @@ public:
 private:
     handle_t         _handle;   ///< mutex native handle
     std::tstring_t   _name;     ///< mutex name
+
+xNO_COPY_ASSIGN(CxIpcMutex)
 };
 
 xNAMESPACE_END(NxLib)

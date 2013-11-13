@@ -13,8 +13,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxPath :
-    public CxNonCopyable
+class CxPath
     /// file system path
 {
 public:
@@ -125,6 +124,8 @@ public:
 
 private:
     std::tstring_t        _filePath;
+
+xNO_COPY_ASSIGN(CxPath)
 };
 
 xNAMESPACE_END(NxLib)

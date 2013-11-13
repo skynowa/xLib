@@ -15,8 +15,7 @@
 
 xNAMESPACE_BEGIN(NxLib)
 
-class CxCom :
-    private CxNonCopyable
+class CxCom
     /// Component Object Model (COM)
 {
 public:
@@ -24,6 +23,8 @@ public:
         ///< constructor
     virtual  ~CxCom();
         ///< destructor
+
+xNO_COPY_ASSIGN(CxCom)
 };
 
 xNAMESPACE_END(NxLib)

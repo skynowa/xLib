@@ -17,8 +17,7 @@ xNAMESPACE_BEGIN(NxLib)
 class CxMimeHeader;
 class CxMimeBody;
 
-class CxSmtp :
-    public CxNonCopyable
+class CxSmtp
     /// SMTP (RFC 2821)
 {
 public:
@@ -47,6 +46,8 @@ private:
     void_t         _command(std::ctstring_t &command, std::ctstring_t &replyDelimiter,
                        std::tstring_t &reply);
     bool_t         _isError(std::ctstring_t &text) xWARN_UNUSED_RV;
+
+xNO_COPY_ASSIGN(CxSmtp)
 };
 
 xNAMESPACE_END(NxLib)

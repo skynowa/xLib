@@ -13,8 +13,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxBackuper :
-    public CxNonCopyable
+class CxBackuper
     /// backup file
 {
 public:
@@ -40,6 +39,8 @@ public:
 
 private:
     cExBackupPeriod _period;  ///< backup period
+
+xNO_COPY_ASSIGN(CxBackuper)
 };
 
 xNAMESPACE_END(NxLib)

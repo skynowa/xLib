@@ -14,8 +14,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxEvent :
-    public CxNonCopyable
+class CxEvent
     /// event
 {
 public:
@@ -70,6 +69,8 @@ private:
 
     cbool_t           _isAutoReset; ///< auto-reset flag
     cbool_t           _initState;   ///< initial state
+
+xNO_COPY_ASSIGN(CxEvent)
 };
 
 xNAMESPACE_END(NxLib)

@@ -13,8 +13,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxSharedMemory :
-    public CxNonCopyable
+class CxSharedMemory
     /// share memory
 {
 public:
@@ -23,6 +22,7 @@ public:
 
 private:
 
+xNO_COPY_ASSIGN(CxSharedMemory)
 };
 
 xNAMESPACE_END(NxLib)

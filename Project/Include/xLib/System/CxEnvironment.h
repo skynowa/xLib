@@ -13,8 +13,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxEnvironment :
-    public CxNonCopyable
+class CxEnvironment
     /// system environment variables
 {
 public:
@@ -40,6 +39,8 @@ private:
         ///< constructor
     virtual              ~CxEnvironment();
         ///< destructor
+
+xNO_COPY_ASSIGN(CxEnvironment)
 };
 
 xNAMESPACE_END(NxLib)

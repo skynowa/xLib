@@ -25,8 +25,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxMySQLConnection :
-    public CxNonCopyable
+class CxMySQLConnection
     /// MySQL connection
 {
 public:
@@ -67,14 +66,15 @@ public:
 private:
     MYSQL                   *_connection;
         ///< pointer to connection
+
+xNO_COPY_ASSIGN(CxMySQLConnection)
 };
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxMySQLRecordset :
-    public CxNonCopyable
+class CxMySQLRecordset
     /// MySQL recordset
 {
 public:
@@ -112,6 +112,8 @@ private:
         ///< An array of unsigned long_t integers representing the size of each column
     void_t                   _fetchRow(MYSQL_ROW *row) const;
         ///< A MYSQL_ROW structure for the next row
+
+xNO_COPY_ASSIGN(CxMySQLRecordset)
 };
 
 xNAMESPACE_END(NxLib)

@@ -13,8 +13,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxVolume :
-    public CxNonCopyable
+class CxVolume
     /// volume
 {
 public:
@@ -72,6 +71,8 @@ public:
 
 private:
     std::ctstring_t   _volumePath;  ///< volume path
+
+xNO_COPY_ASSIGN(CxVolume)
 };
 
 xNAMESPACE_END(NxLib)

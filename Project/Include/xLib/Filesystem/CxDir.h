@@ -14,8 +14,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxDir :
-    public CxNonCopyable
+class CxDir
     /// directory
 {
 public:
@@ -64,6 +63,8 @@ public:
 
 private:
     std::ctstring_t       _dirPath;
+
+xNO_COPY_ASSIGN(CxDir)
 };
 
 xNAMESPACE_END(NxLib)

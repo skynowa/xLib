@@ -13,8 +13,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxStdError :
-    public CxNonCopyable
+class CxStdError
     /// standard C library last error
 {
 public:
@@ -36,6 +35,8 @@ private:
         ///< constructor
     virtual              ~CxStdError() {}
         ///< destructor
+
+xNO_COPY_ASSIGN(CxStdError)
 };
 
 xNAMESPACE_END(NxLib)

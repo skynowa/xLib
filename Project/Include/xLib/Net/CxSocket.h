@@ -10,12 +10,10 @@
 #define xLib_CxSocketH
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
-#include <xLib/Core/CxNonCopyable.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxSocket :
-    public CxNonCopyable
+class CxSocket
     /// socket
 {
 public:
@@ -288,6 +286,8 @@ protected:
     short_t          _family;   ///< family
     std::tstring_t   _ip;        ///< IP
     ushort_t         _port;     ///< port
+
+xNO_COPY_ASSIGN(CxSocket)
 };
 
 xNAMESPACE_END(NxLib)

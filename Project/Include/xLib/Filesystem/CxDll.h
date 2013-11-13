@@ -13,8 +13,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxDll :
-    public CxNonCopyable
+class CxDll
     /// dynamic linking loader
 {
 public:
@@ -48,6 +47,8 @@ private:
 
     void_t          _destruct();
         ///< free
+
+xNO_COPY_ASSIGN(CxDll)
 };
 
 xNAMESPACE_END(NxLib)

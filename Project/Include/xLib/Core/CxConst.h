@@ -236,6 +236,8 @@ public:
 private:
              CxConst();
     virtual ~CxConst();
+
+xNO_COPY_ASSIGN(CxConst)
 };
 
 xNAMESPACE_END(NxLib)

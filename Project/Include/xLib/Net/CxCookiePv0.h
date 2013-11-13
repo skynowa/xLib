@@ -13,8 +13,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxCookiePv0 :
-    public CxNonCopyable
+class CxCookiePv0
     /// cookie version 0
 {
 public:
@@ -78,6 +77,8 @@ private:
     std::tstring_t    _expires;     ///< expire
     bool_t            _isSecure;      ///< secure
     bool_t            _isHttpOnly;    ///< http only
+
+xNO_COPY_ASSIGN(CxCookiePv0)
 };
 
 xNAMESPACE_END(NxLib)

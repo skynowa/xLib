@@ -10,12 +10,10 @@
 #define xLib_CxSocketInitH
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
-#include <xLib/Core/CxNonCopyable.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxSocketInit :
-    public CxNonCopyable
+class CxSocketInit
     /// initiates use of the Winsock DLL by a process
 {
 public:
@@ -23,6 +21,8 @@ public:
         ///< constructor (init winsock DLL)
     virtual  ~CxSocketInit();
         ///< destructor  (clean winsock DLL)
+
+xNO_COPY_ASSIGN(CxSocketInit)
 };
 
 xNAMESPACE_END(NxLib)

@@ -14,8 +14,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 template <class T>
-class CxFlags :
-    public CxNonCopyable
+class CxFlags
     /// bit mask flags
 {
 public:

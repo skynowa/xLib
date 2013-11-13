@@ -14,8 +14,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxProcessInfo :
-    public CxNonCopyable
+class CxProcessInfo
 {
 public:
                     CxProcessInfo() {}
@@ -43,6 +42,8 @@ public:
 
 private:
     CxProcess::id_t _id;  ///< target process ID
+
+xNO_COPY_ASSIGN(CxProcessInfo)
 };
 
 xNAMESPACE_END(NxLib)

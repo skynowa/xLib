@@ -14,8 +14,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 template <class T>
-class CxAutoReset :
-    public CxNonCopyable
+class CxAutoReset
     ///< auto reset value
 {
 public:
@@ -35,6 +34,8 @@ public:
 private:
     T *       _value;
     const T & _reset_value;
+
+xNO_COPY_ASSIGN(CxAutoReset)
 };
 
 xNAMESPACE_END(NxLib)

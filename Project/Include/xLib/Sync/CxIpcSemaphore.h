@@ -14,8 +14,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxIpcSemaphore :
-    public CxNonCopyable
+class CxIpcSemaphore
     /// semaphore (interprocess)
 {
 public:
@@ -46,6 +45,8 @@ private:
     std::tstring_t   _name;
 
     bool_t           _isValid() const xWARN_UNUSED_RV;
+
+xNO_COPY_ASSIGN(CxIpcSemaphore)
 };
 
 xNAMESPACE_END(NxLib)

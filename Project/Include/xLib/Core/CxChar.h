@@ -13,8 +13,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxChar :
-    public CxNonCopyable
+class CxChar
     /// character
 {
 public:
@@ -53,6 +52,8 @@ private:
         ///< constructor
     virtual       ~CxChar();
         ///< destructor
+
+xNO_COPY_ASSIGN(CxChar)
 };
 
 xNAMESPACE_END(NxLib)

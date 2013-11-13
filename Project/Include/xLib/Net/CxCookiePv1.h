@@ -13,8 +13,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxCookiePv1 :
-    public CxNonCopyable
+class CxCookiePv1
     /// cookie version 1
 {
 public:
@@ -84,6 +83,8 @@ private:
     longlong_t        _maxAge;   ///< max age (in seconds)
     bool_t            _isSecure;    ///< secure
     bool_t            _isHttpOnly;  ///< http only
+
+xNO_COPY_ASSIGN(CxCookiePv1)
 };
 
 xNAMESPACE_END(NxLib)

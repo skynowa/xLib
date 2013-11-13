@@ -11,12 +11,10 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 #include <xLib/Test/xTest.h>
-#include <xLib/Core/CxNonCopyable.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxTest :
-    public CxNonCopyable
+class CxTest
     /// testing
 {
 public:
@@ -67,6 +65,8 @@ public:
 private:
     std::tstring_t       _workDirPath; ///< work dir path
     std::tstring_t       _name;        ///< test name
+
+xNO_COPY_ASSIGN(CxTest)
 };
 
 xNAMESPACE_END(NxLib)

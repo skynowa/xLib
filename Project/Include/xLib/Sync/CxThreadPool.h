@@ -86,6 +86,8 @@ private:
     void_t                 _onExitTask(CxThread *sender);
 
     // WatchDog
+
+xNO_COPY_ASSIGN(CxThreadPool)
 };
 
 xNAMESPACE_END(NxLib)

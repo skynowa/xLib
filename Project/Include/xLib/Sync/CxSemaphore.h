@@ -13,8 +13,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxSemaphore :
-    public CxNonCopyable
+class CxSemaphore
     /// semaphore
 {
 public:
@@ -25,6 +24,7 @@ public:
 
 private:
 
+xNO_COPY_ASSIGN(CxSemaphore)
 };
 
 xNAMESPACE_END(NxLib)

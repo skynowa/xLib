@@ -14,8 +14,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxFinder :
-    public CxNonCopyable
+class CxFinder
     ///< file system finder
 {
 public:
@@ -80,6 +79,8 @@ private:
 
     bool_t              _moveFirst() xWARN_UNUSED_RV;
         ///< move first entry
+
+xNO_COPY_ASSIGN(CxFinder)
 };
 
 xNAMESPACE_END(NxLib)

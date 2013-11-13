@@ -13,8 +13,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxBase64 :
-    public CxNonCopyable
+class CxBase64
     /// Base64
 {
 public:
@@ -32,6 +31,8 @@ private:
 
     static bool        _isValid(cuchar_t &ch) xWARN_UNUSED_RV;
         ///< check char for validness
+
+xNO_COPY_ASSIGN(CxBase64)
 };
 
 xNAMESPACE_END(NxLib)

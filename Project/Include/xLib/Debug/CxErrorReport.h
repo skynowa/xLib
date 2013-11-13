@@ -10,12 +10,10 @@
 #define xLib_CxErrorReportH
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
-#include <xLib/Core/CxNonCopyable.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxErrorReport :
-    public CxNonCopyable
+class CxErrorReport
     /// debug report
 {
 public:
@@ -85,6 +83,8 @@ private:
         ///< initiate class members
     void_t        _initPlain    ();
         ///< initiate plain report
+
+xNO_COPY_ASSIGN(CxErrorReport)
 };
 
 xNAMESPACE_END(NxLib)

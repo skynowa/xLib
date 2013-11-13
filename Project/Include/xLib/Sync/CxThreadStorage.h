@@ -13,8 +13,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxThreadStorage :
-    public CxNonCopyable
+class CxThreadStorage
     /// thread local storage
 {
 public:
@@ -44,6 +43,8 @@ private:
 
     index_t  _index;
         ///< thread storage index
+
+xNO_COPY_ASSIGN(CxThreadStorage)
 };
 
 xNAMESPACE_END(NxLib)

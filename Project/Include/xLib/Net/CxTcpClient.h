@@ -45,6 +45,8 @@ public:
 
 protected:
     timeval       _timeout;    ///< timeout
+
+xNO_COPY_ASSIGN(CxTcpClient)
 };
 
 //TODO: bIsWritable repeats from CxSocket

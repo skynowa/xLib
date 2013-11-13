@@ -14,8 +14,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxAutoProfiler :
-    public CxNonCopyable
+class CxAutoProfiler
     /// auto code profiling
 {
 public:
@@ -27,6 +26,8 @@ public:
 private:
     CxProfiler     _profiler;   ///< profiler
     std::tstring_t _comment;    ///< comment
+
+xNO_COPY_ASSIGN(CxAutoProfiler)
 };
 
 xNAMESPACE_END(NxLib)

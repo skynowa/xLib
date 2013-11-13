@@ -15,8 +15,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 class CxFile;
 
-class CxFileTemp :
-    public CxNonCopyable
+class CxFileTemp
     /// temporary file
 {
 public:
@@ -32,6 +31,8 @@ private:
     cbool_t         _isAutoDelete;  ///< auto delete flag
     CxFile         *_file;          ///< temporary file handle
     std::tstring_t  _filePath;      ///< temporary file path
+
+xNO_COPY_ASSIGN(CxFileTemp)
 };
 
 xNAMESPACE_END(NxLib)

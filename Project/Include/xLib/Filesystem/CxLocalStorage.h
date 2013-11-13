@@ -15,8 +15,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 typedef std::map_tstring_t local_storage_t;
 
-class CxLocalStorage :
-    public CxNonCopyable
+class CxLocalStorage
     /// local storage
 {
 public:
@@ -93,6 +92,8 @@ private:
         ///< parse file
     void_t            _write(std::ctstring_t &key, std::ctstring_t &value);
         ///< flush to local_storage_t, file
+
+xNO_COPY_ASSIGN(CxLocalStorage)
 };
 
 xNAMESPACE_END(NxLib)

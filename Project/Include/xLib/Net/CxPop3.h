@@ -19,8 +19,7 @@ xNAMESPACE_BEGIN(NxLib)
 class CxMimeHeader;
 class CxMimeBody;
 
-class CxPop3 :
-    public CxNonCopyable
+class CxPop3
     /// POP3 (RFC 2821)
 {
 public:
@@ -64,6 +63,8 @@ private:
     bool_t            _isError(std::ctstring_t &text) xWARN_UNUSED_RV;
     ulong_t           _mailsSum(std::ctstring_t &serverAnswer) xWARN_UNUSED_RV;
     ulong_t           _mailsSize(std::ctstring_t &serverAnswer) xWARN_UNUSED_RV;
+
+xNO_COPY_ASSIGN(CxPop3)
 };
 
 xNAMESPACE_END(NxLib)

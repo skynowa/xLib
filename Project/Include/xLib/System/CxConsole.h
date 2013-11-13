@@ -14,8 +14,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxConsole :
-    public CxNonCopyable
+class CxConsole
     /// console
 {
 public:
@@ -122,6 +121,8 @@ private:
     HMENU           _menuHandle(cbool_t &revert) xWARN_UNUSED_RV;
         ///< get console menu handle
 #endif
+
+xNO_COPY_ASSIGN(CxConsole)
 };
 
 xNAMESPACE_END(NxLib)

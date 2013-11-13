@@ -13,8 +13,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxFileLog :
-    public CxNonCopyable
+class CxFileLog
     /// logging to file
 {
 public:
@@ -53,6 +52,8 @@ private:
 
     void_t            _removeIfFull();
         ///< delete log, if full
+
+xNO_COPY_ASSIGN(CxFileLog)
 };
 
 xNAMESPACE_END(NxLib)
