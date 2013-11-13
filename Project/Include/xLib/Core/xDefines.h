@@ -745,17 +745,10 @@
 
 //--------------------------------------------------
 // header only library
-#if xXLIB_HEADER_ONLY
-    #define xEXTERN_HO \
-        extern
-    #define xINLINE_HO \
-        inline
-#else
-    #define xEXTERN_HO \
-        // n/a
-    #define xINLINE_HO \
-        // n/a
-#endif
+#define xEXTERN_HO \
+    extern
+#define xINLINE_HO \
+    inline
     ///< keywords for header only library
 
 //--------------------------------------------------
