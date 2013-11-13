@@ -106,7 +106,7 @@
 #define xDEBUG_MODE_NO                  0
     ///< debug mode "no debugging"
 
-#define xIS_COMPILE_TIME_TRACING        1
+#define xIS_COMPILE_TIME_TRACING        0
     ///< is compile time tracing
 
 #define xIS_AUTO_LINKING                0
