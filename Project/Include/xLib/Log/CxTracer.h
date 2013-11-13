@@ -15,8 +15,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 class CxString;
 
-class CxTracer :
-    public CxNonCopyable
+class CxTracer
     /// tracing
 {
 public:
@@ -41,6 +40,8 @@ public:
 
 private:
     std::tostringstream_t _oss; ///< string stream
+
+xNO_COPY_ASSIGN(CxTracer)
 };
 
 xNAMESPACE_END(NxLib)

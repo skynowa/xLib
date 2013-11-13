@@ -13,8 +13,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxMimeHeader :
-    public CxNonCopyable
+class CxMimeHeader
     /// MIME header (RFC 822)
 {
 public:
@@ -54,6 +53,8 @@ private:
     //Content-Transfer-Encoding:
     //Date:
     //Message-ID:
+
+xNO_COPY_ASSIGN(CxMimeHeader)
 };
 
 xNAMESPACE_END(NxLib)

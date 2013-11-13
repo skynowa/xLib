@@ -13,8 +13,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxStackTrace :
-    public CxNonCopyable
+class CxStackTrace
     /// stack trace
 {
 public:
@@ -44,6 +43,8 @@ private:
     static void_t   _addr2Line(cvoid_t *symbolAddress, std::tstring_t *filePath,
                         std::tstring_t *functionName, ulong_t *sourceLine);
 #endif
+
+xNO_COPY_ASSIGN(CxStackTrace)
 };
 
 xNAMESPACE_END(NxLib)

@@ -17,8 +17,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxBlowfish :
-    public CxNonCopyable
+class CxBlowfish
     /// blowfish (openssl-1.0.0a)
 {
 public:
@@ -67,6 +66,8 @@ private:
 
     BF_KEY        _key;             ///< crypt key
     uchar_t       _ivec[IVEC_SIZE]; ///< ivec
+
+xNO_COPY_ASSIGN(CxBlowfish)
 };
 
 xNAMESPACE_END(NxLib)

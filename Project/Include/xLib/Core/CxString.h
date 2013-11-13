@@ -15,8 +15,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxString :
-    public CxNonCopyable
+class CxString
     /// strings utils
 {
 public:
@@ -175,6 +174,8 @@ private:
         ///< constructor
     virtual              ~CxString();
         ///< destructor
+
+xNO_COPY_ASSIGN(CxString)
 };
 
 xNAMESPACE_END(NxLib)

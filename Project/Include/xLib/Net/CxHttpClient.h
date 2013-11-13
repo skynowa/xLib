@@ -13,8 +13,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxHttpClient :
-    public CxNonCopyable
+class CxHttpClient
     /// protocol HTTP/1.0 (RFC 1945)  HTTP/1.1 (...)
 {
 public:
@@ -64,6 +63,8 @@ public:
 
              CxHttpClient();
     virtual ~CxHttpClient() {}
+
+xNO_COPY_ASSIGN(CxHttpClient)
 };
 //-------------------------------------------------------------------------------------------------
 class CxHttpClient::CxStatusLine
@@ -75,6 +76,7 @@ public:
 
 private:
 
+xNO_COPY_ASSIGN(CxStatusLine)
 };
 //-------------------------------------------------------------------------------------------------
 class CxHttpClient::CxHeader
@@ -86,6 +88,7 @@ public:
 
 private:
 
+xNO_COPY_ASSIGN(CxHeader)
 };
 //-------------------------------------------------------------------------------------------------
 class CxHttpClient::CxBody
@@ -97,6 +100,7 @@ public:
 
 private:
 
+xNO_COPY_ASSIGN(CxBody)
 };
 
 xNAMESPACE_END(NxLib)

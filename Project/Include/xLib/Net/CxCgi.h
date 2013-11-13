@@ -20,8 +20,7 @@ class CxCookiePv1;
 xNAMESPACE_BEGIN(NxCgi)
 
 //-------------------------------------------------------------------------------------------------
-class CxCgiEnvironment :
-    public CxNonCopyable
+class CxCgiEnvironment
     /// CGI environment
 {
 public:
@@ -140,13 +139,14 @@ private:
 
     bool_t            _construct();
         ///< initiate class data
+
+xNO_COPY_ASSIGN(CxCgiEnvironment)
 };
 //-------------------------------------------------------------------------------------------------
 
 
 //-------------------------------------------------------------------------------------------------
-class CxCgiCookies :
-    public CxNonCopyable
+class CxCgiCookies
     /// CGI cookies
 {
 public:
@@ -169,13 +169,14 @@ private:
 
     void_t          _construct();
         ///< initiate class data
+
+xNO_COPY_ASSIGN(CxCgiCookies)
 };
 //-------------------------------------------------------------------------------------------------
 
 
 //-------------------------------------------------------------------------------------------------
-class CxCgiFormData :
-    public CxNonCopyable
+class CxCgiFormData
     /// CGI form data
 {
 public:
@@ -198,6 +199,8 @@ private:
 
     void_t           _construct();
         ///< initiate class data
+
+xNO_COPY_ASSIGN(CxCgiFormData)
 };
 //-------------------------------------------------------------------------------------------------
 
@@ -206,8 +209,7 @@ xNAMESPACE_END(NxCgi)
 
 
 //-------------------------------------------------------------------------------------------------
-class CxCgi :
-    public CxNonCopyable
+class CxCgi
     /// CGI
 {
 public:
@@ -260,6 +262,8 @@ private:
 
     char                    cgl_hex2char(char *what) xWARN_UNUSED_RV;
         ///< hex to char
+
+xNO_COPY_ASSIGN(CxCgi)
 };
 
 xNAMESPACE_END(NxLib)

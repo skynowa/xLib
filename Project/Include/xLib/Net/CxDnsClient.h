@@ -14,8 +14,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxDnsClient :
-    public CxNonCopyable
+class CxDnsClient
     /// DNS client
 {
 public:
@@ -61,6 +60,8 @@ private:
         ///< constructor
     virtual      ~CxDnsClient();
         ///< destructor
+
+xNO_COPY_ASSIGN(CxDnsClient)
 };
 
 xNAMESPACE_END(NxLib)

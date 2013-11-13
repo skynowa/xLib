@@ -13,8 +13,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxCrc32 :
-    public CxNonCopyable
+class CxCrc32
     /// Crc32
 {
 public:
@@ -36,6 +35,8 @@ private:
         ///< constructor
     virtual              ~CxCrc32();
         ///< destructor
+
+xNO_COPY_ASSIGN(CxCrc32)
 };
 
 xNAMESPACE_END(NxLib)

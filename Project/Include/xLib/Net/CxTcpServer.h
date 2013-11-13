@@ -33,6 +33,8 @@ public:
 
 protected:
     timeval  _timeout;  ///< timeout
+
+xNO_COPY_ASSIGN(CxTcpServer)
 };
 
 xNAMESPACE_END(NxLib)

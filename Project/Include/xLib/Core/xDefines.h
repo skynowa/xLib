@@ -766,8 +766,8 @@
     ///< disallow copy
 #define xNO_ASSIGN(class_name) \
     private: \
-        class_name &       operator = (const class_name &); \
-        const class_name & operator = (const class_name &);
+        class_name & operator = (const class_name &);
+
     ///< disallow assign
 #define xNO_COPY_ASSIGN(class_name) \
     xNO_COPY(class_name) \

@@ -14,8 +14,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxSleeper :
-    public CxNonCopyable
+class CxSleeper
     /// sleeper
 {
 public:
@@ -24,7 +23,7 @@ public:
     virtual ~CxSleeper() {}
         ///< destructor
 
-    void_t   sleep(culong_t &culTimeout);
+    void_t   sleep(culong_t &timeoutMsec);
         ///< sleep
     void_t   wakeUp();
         ///< wake up
@@ -33,6 +32,8 @@ public:
 
 private:
     CxEvent  _event;    ///< event object
+
+xNO_COPY_ASSIGN(CxSleeper)
 };
 
 xNAMESPACE_END(NxLib)

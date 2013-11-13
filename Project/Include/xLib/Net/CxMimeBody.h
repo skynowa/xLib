@@ -13,8 +13,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxMimeBody :
-    public CxNonCopyable
+class CxMimeBody
     /// MIME body (RFC 822)
 {
 public:
@@ -23,6 +22,8 @@ public:
 
 private:
     std::mmap_tstring_t _body;
+
+xNO_COPY_ASSIGN(CxMimeBody)
 };
 
 xNAMESPACE_END(NxLib)

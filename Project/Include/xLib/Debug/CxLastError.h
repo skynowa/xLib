@@ -10,12 +10,10 @@
 #define xLib_CxLastErrorH
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
-#include <xLib/Core/CxNonCopyable.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxLastError :
-    public CxNonCopyable
+class CxLastError
     /// system last error
 {
 public:
@@ -37,6 +35,8 @@ private:
         ///< constructor
     virtual              ~CxLastError() {}
         ///< destructor
+
+xNO_COPY_ASSIGN(CxLastError)
 };
 
 xNAMESPACE_END(NxLib)

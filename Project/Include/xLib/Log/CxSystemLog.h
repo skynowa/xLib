@@ -13,8 +13,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxSystemLog :
-    public CxNonCopyable
+class CxSystemLog
     /// logging to system event log
 {
 public:
@@ -68,6 +67,8 @@ private:
 
     void_t   _construct(std::ctstring_t &logName);
         ///< initiate data
+
+xNO_COPY_ASSIGN(CxSystemLog)
 };
 
 xNAMESPACE_END(NxLib)

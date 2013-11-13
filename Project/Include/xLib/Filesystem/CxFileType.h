@@ -13,8 +13,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxFileType :
-    public CxNonCopyable
+class CxFileType
     /// file attribute
 {
 public:
@@ -84,6 +83,8 @@ public:
 
 private:
     std::ctstring_t   _filePath;
+
+xNO_COPY_ASSIGN(CxFileType)
 };
 
 xNAMESPACE_END(NxLib)

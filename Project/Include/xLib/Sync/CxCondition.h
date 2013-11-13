@@ -11,8 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
-class CxCondition :
-    public CxNonCopyable
+class CxCondition
 {
 public:
                             CxCondition();
@@ -40,6 +39,8 @@ private:
     pthread_mutex_t         _mutex;
     pthread_cond_t          _handle;
 #endif
+
+xNO_COPY_ASSIGN(CxCondition)
 };
 //-------------------------------------------------------------------------------------------------
 #include <Sync/CxCondition.inl>

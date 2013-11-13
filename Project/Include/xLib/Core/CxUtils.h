@@ -13,8 +13,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxUtils :
-    public CxNonCopyable
+class CxUtils
     /// help macros
 {
 public:
@@ -99,6 +98,8 @@ private:
         ///< constructor
                            ~CxUtils();
         ///< destructor
+
+xNO_COPY_ASSIGN(CxUtils)
 };
 
 xNAMESPACE_END(NxLib)

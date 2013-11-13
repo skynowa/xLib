@@ -13,8 +13,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxType :
-    public CxNonCopyable
+class CxType
     /// type info
 {
 public:
@@ -34,6 +33,8 @@ private:
         ///< constructor
     virtual              ~CxType();
         ///< destructor
+
+xNO_COPY_ASSIGN(CxType)
 };
 
 xNAMESPACE_END(NxLib)

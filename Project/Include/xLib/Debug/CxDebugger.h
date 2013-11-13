@@ -10,14 +10,12 @@
 #define xLib_CxDebuggerH
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
-#include <xLib/Core/CxNonCopyable.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
 // TODO: class CxErrorReport;
 
-class CxDebugger :
-    public CxNonCopyable
+class CxDebugger
     /// debugger
 {
 public:
@@ -55,6 +53,8 @@ private:
         ///< show plain report in std::cout
     void_t         _loggingPlain(const CxErrorReport &report);
         ///< log plain report to file
+
+xNO_COPY_ASSIGN(CxDebugger)
 };
 
 xNAMESPACE_END(NxLib)

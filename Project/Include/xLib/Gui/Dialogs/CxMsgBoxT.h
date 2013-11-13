@@ -13,8 +13,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxMsgBoxT :
-    public CxNonCopyable
+class CxMsgBoxT
     /// message box
 {
 public:
@@ -57,6 +56,8 @@ private:
         ///< constructor
     virtual             ~CxMsgBoxT();
         ///< destructor
+
+xNO_COPY_ASSIGN(CxMsgBoxT)
 };
 
 xNAMESPACE_END(NxLib)

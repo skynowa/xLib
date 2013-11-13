@@ -10,12 +10,10 @@
 #define xLib_CxMutexH
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
-#include <xLib/Core/CxNonCopyable.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxMutex :
-    public CxNonCopyable
+class CxMutex
     /// critical section
 {
 public:
@@ -43,6 +41,8 @@ public:
 
 private:
     handle_t         _handle;   ///< mutex native handle
+
+xNO_COPY_ASSIGN(CxMutex)
 };
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_END(NxLib)

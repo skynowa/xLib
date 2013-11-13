@@ -15,8 +15,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxProfiler :
-    public CxNonCopyable
+class CxProfiler
     /// code profiling
 {
 public:
@@ -47,6 +46,8 @@ private:
 
     void_t           _dataReset();
         ///< reset all class data
+
+xNO_COPY_ASSIGN(CxProfiler)
 };
 
 xNAMESPACE_END(NxLib)

@@ -15,8 +15,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxThread :
-    public CxNonCopyable
+class CxThread
     /// thread
 {
 public:
@@ -215,6 +214,8 @@ private:
     // static
     static int_t         _priorityMin();
     static int_t         _priorityMax();
+
+xNO_COPY_ASSIGN(CxThread)
 };
 
 xNAMESPACE_END(NxLib)

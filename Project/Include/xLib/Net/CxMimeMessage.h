@@ -16,8 +16,7 @@ xNAMESPACE_BEGIN(NxLib)
 class CxMimeheader;
 class CxMimebody;
 
-class CxMimeMessage :
-    public CxNonCopyable
+class CxMimeMessage
     /// MIME message (RFC 822)
 {
 public:
@@ -30,6 +29,8 @@ public:
 
 private:
     std::tstring_t _rawMessage;
+
+xNO_COPY_ASSIGN(CxMimeMessage)
 };
 
 xNAMESPACE_END(NxLib)

@@ -21,12 +21,12 @@ CxSleeper::CxSleeper() :
 //-------------------------------------------------------------------------------------------------
 xINLINE_HO void_t
 CxSleeper::sleep(
-    culong_t &a_culTimeout  ///< in milliseconds
+    culong_t &a_timeoutMsec  ///< in milliseconds
 )
 {
     // n/a
 
-    CxEvent::ExObjectState osRv = _event.wait(a_culTimeout);
+    CxEvent::ExObjectState osRv = _event.wait(a_timeoutMsec);
     xTEST_EQ(true, CxEvent::osSignaled == osRv || CxEvent::osTimeout == osRv);
 }
 //-------------------------------------------------------------------------------------------------

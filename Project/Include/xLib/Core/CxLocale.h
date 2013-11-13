@@ -13,8 +13,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxLocale :
-    public CxNonCopyable
+class CxLocale
     /// locale
 {
 public:
@@ -30,6 +29,8 @@ private:
        ///< constructor
    virtual              ~CxLocale();
              ///< destructor
+
+xNO_COPY_ASSIGN(CxLocale)
 };
 
 xNAMESPACE_END(NxLib)

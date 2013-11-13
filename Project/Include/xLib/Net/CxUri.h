@@ -13,8 +13,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxUri :
-    public CxNonCopyable
+class CxUri
     /// URI (RFC 3986)
 {
 public:
@@ -78,6 +77,8 @@ private:
     void_t                _normilize(std::ctstring_t &uri);
     ushort_t              _defaultPort() const xWARN_UNUSED_RV;
     bool_t                _isDefaultPort() const xWARN_UNUSED_RV;
+
+xNO_COPY_ASSIGN(CxUri)
 };
 
 xNAMESPACE_END(NxLib)

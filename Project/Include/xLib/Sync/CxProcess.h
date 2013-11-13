@@ -14,8 +14,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxProcess :
-    public CxNonCopyable
+class CxProcess
     /// process
 {
 public:
@@ -92,6 +91,8 @@ private:
 #endif
     id_t            _pid;
     uint_t          _exitStatus;            ///< exit code
+
+xNO_COPY_ASSIGN(CxProcess)
 };
 
 xNAMESPACE_END(NxLib)

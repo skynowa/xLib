@@ -13,8 +13,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxRandom :
-    public CxNonCopyable
+class CxRandom
     /// random
 {
 public:
@@ -66,6 +65,8 @@ private:
     long_t                _seed;                    ///< for private use
     double                _nextNextGaussian;        ///< for private use
     bool_t                _isHaveNextNextGaussian;  ///< for private use
+
+xNO_COPY_ASSIGN(CxRandom)
 };
 
 xNAMESPACE_END(NxLib)

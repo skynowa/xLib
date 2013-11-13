@@ -13,8 +13,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxSystemInfo :
-    public CxNonCopyable
+class CxSystemInfo
     /// system information
 {
 public:
@@ -126,6 +125,8 @@ private:
     void_t         _passwdFileEntry(struct passwd *passwdEntry);
         ///< get password file entry
 #endif
+
+xNO_COPY_ASSIGN(CxSystemInfo)
 };
 
 xNAMESPACE_END(NxLib)

@@ -14,8 +14,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 template <class T>
-class CxSingleton :
-    public CxNonCopyable
+class CxSingleton
     /// singleton
 {
 public:
@@ -32,6 +31,8 @@ private:
         ///< constructor
    ~CxSingleton();
         ///< destructor
+
+xNO_COPY_ASSIGN(CxSingleton)
 };
 
 xNAMESPACE_END(NxLib)

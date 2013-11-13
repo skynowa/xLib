@@ -19,8 +19,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxShell :
-    public CxNonCopyable
+class CxShell
     /// shell
 {
 public:
@@ -152,6 +151,7 @@ public:
         ///< create shortcut
 #endif
 
+xNO_COPY_ASSIGN(CxShell)
 };
 
 xNAMESPACE_END(NxLib)
