@@ -56,10 +56,10 @@
         #pragma message("xLib: xCOMPILER_MS")
     #elif xCOMPILER_CODEGEAR
         #pragma message("xLib: xCOMPILER_CODEGEAR")
-    #elif xCOMPILER_GNUC
-        #pragma message("xLib: xCOMPILER_GNUC")
     #elif xCOMPILER_CLANG
         #pragma message("xLib: xCOMPILER_CLANG")
+    #elif xCOMPILER_GNUC
+        #pragma message("xLib: xCOMPILER_GNUC")
     #else
         #pragma message("xLib: unsupported compiler")
     #endif
