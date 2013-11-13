@@ -22,11 +22,15 @@
         #pragma comment(lib, "DbgHelp.Lib")
     #endif
 #elif xOS_ENV_UNIX
-    // #include <execinfo.h>   // lib: -lexecinfo (FreeBSD)
-    #include "CxExecInfo.h"
+    #if   xOS_LINUX
+        #include <execinfo.h>
+    #elif xOS_FREEBSD
+        #include "CxExecInfo.h" // lib: -lexecinfo (FreeBSD)
+    #endif
+
     #include <cxxabi.h>
 #elif xOS_ENV_MAC
-    #include <execinfo.h>   // lib: -lexecinfo (FreeBSD)
+    #include <execinfo.h>   // lib: -lexecinfo
     #include <cxxabi.h>
 #endif
 
