@@ -101,6 +101,9 @@
 #elif defined(__GNUC__)
     #define xCOMPILER_GNUC     1
         ///< compiler GNU C/C++
+#elif defined(__clang__)
+    #define xCOMPILER_CLANG    1
+        ///< compiler Clang
 #else
     #error xLib: unsupported compiler
 #endif
@@ -119,6 +122,10 @@
 #define xCOMPILER_GNUC_VER_MAJOR      __GNUC__
 #define xCOMPILER_GNUC_VER_MINOR      __GNUC_MINOR__
 #define xCOMPILER_GNUC_VER_PATCHLEVEL __GNUC_PATCHLEVEL__
+
+#define xCOMPILER_CLANG_VER_MAJOR      __clang_major__
+#define xCOMPILER_CLANG_VER_MINOR      __clang_minor__
+#define xCOMPILER_CLANG_VER_PATCHLEVEL __clang_patchlevel__
 
 //-------------------------------------------------------------------------------------------------
 // standard C libraries

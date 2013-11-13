@@ -58,6 +58,8 @@
         #pragma message("xLib: xCOMPILER_CODEGEAR")
     #elif xCOMPILER_GNUC
         #pragma message("xLib: xCOMPILER_GNUC")
+    #elif xCOMPILER_CLANG
+        #pragma message("xLib: xCOMPILER_CLANG")
     #else
         #pragma message("xLib: unsupported compiler")
     #endif
