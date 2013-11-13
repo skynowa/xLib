@@ -53,7 +53,7 @@ include_directories("${CMAKE_SOURCE_DIR}/Project/Include")
 include_directories("${CMAKE_SOURCE_DIR}/Project/Source")
 include_directories("${CMAKE_SOURCE_DIR}/Tests/Include")
 include_directories(${XLib_TESTS_INCLUDE_DIRS})
-include_directories(${XLib_PROJECT_INCLUDE_DIRS})
+#include_directories(${XLib_PROJECT_INCLUDE_DIRS})
 
 #-------------------------------------------------------------------------------
 # targets
@@ -88,4 +88,4 @@ target_link_libraries(
 
 #-------------------------------------------------------------------------------
 # add the install targets
-install (DIRECTORY ${XLib_PROJECT_INCLUDE_DIRS} DESTINATION "include/xLib")
+#install (DIRECTORY ${XLib_PROJECT_INCLUDE_DIRS} DESTINATION "include/xLib")
