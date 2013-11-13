@@ -114,8 +114,11 @@
 // xCOMPILER_MINGW
 #define xCOMPILER_MINGW32_VER_MAJOR   __MINGW32_MAJOR_VERSION
 #define xCOMPILER_MINGW32_VER_MINOR   __MINGW32_MINOR_VERSION
+#define xCOMPILER_MINGW32_VER         // TODO: xCOMPILER
+
 #define xCOMPILER_MINGW64_VER_MAJOR   __MINGW64_VERSION_MAJOR // defined if <stdlib.h> is included
 #define xCOMPILER_MINGW64_VER_MINOR   __MINGW64_VERSION_MINOR
+#define xCOMPILER_MINGW64_VER         // TODO: xCOMPILER
 
 // xCOMPILER_MS
 #define xCOMPILER_MS_VER              _MSC_VER
@@ -127,11 +130,13 @@
 #define xCOMPILER_CLANG_VER_MAJOR      __clang_major__
 #define xCOMPILER_CLANG_VER_MINOR      __clang_minor__
 #define xCOMPILER_CLANG_VER_PATCHLEVEL __clang_patchlevel__
+#define xCOMPILER_CLANG_VER            // TODO: xCOMPILER
 
 // xCOMPILER_GNUC
 #define xCOMPILER_GNUC_VER_MAJOR      __GNUC__
 #define xCOMPILER_GNUC_VER_MINOR      __GNUC_MINOR__
 #define xCOMPILER_GNUC_VER_PATCHLEVEL __GNUC_PATCHLEVEL__
+#define xCOMPILER_GNUC_VER            // TODO: xCOMPILER
 
 //-------------------------------------------------------------------------------------------------
 // standard C libraries
