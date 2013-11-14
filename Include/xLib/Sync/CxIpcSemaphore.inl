@@ -79,26 +79,26 @@ CxIpcSemaphore::create(
     std::tstring_t  _winName;
 
     if (a_name.empty()) {
-        winName = NULL;
+        winName  = NULL;
     } else {
-        _winName   = xT("Global\\") + a_name;
-        winName = _winName.c_str();
+        _winName = xT("Global\\") + a_name;
+        winName  = _winName.c_str();
     }
 
-    HANDLE  hRv         = ::CreateSemaphore(NULL, a_initialValue, xSEMAPHORE_VALUE_MAX, winName);
-    ulong_t ulLastError = CxLastError::get();
+    HANDLE  hRv       = ::CreateSemaphore(NULL, a_initialValue, xSEMAPHORE_VALUE_MAX, winName);
+    ulong_t lastError = CxLastError::get();
     xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
-    xTEST_DIFF(ulLastError, static_cast<ulong_t>( ERROR_ALREADY_EXISTS ));
+    xTEST_DIFF(lastError, static_cast<ulong_t>( ERROR_ALREADY_EXISTS ));
 
     _handle.set(hRv);
     _name = a_name;
 #else
     std::tstring_t unixName = CxConst::unixSlash() + a_name;
 
-    handle_t handle = ::sem_open(unixName.c_str(), O_CREAT | O_RDWR, 0777, a_initialValue);
-    xTEST_DIFF(SEM_FAILED, handle);
+    handle_t hRv = ::sem_open(unixName.c_str(), O_CREAT | O_RDWR, 0777, a_initialValue);
+    xTEST_DIFF(SEM_FAILED, hRv);
 
-    _handle = handle;
+    _handle = hRv;
     _name   = unixName;
 #endif
 }
@@ -130,10 +130,10 @@ CxIpcSemaphore::open(
 #else
     std::tstring_t unixName = CxConst::unixSlash() + a_name;
 
-    handle_t handle = ::sem_open(unixName.c_str(), O_RDWR, 0777, 0U);
-    xTEST_DIFF(SEM_FAILED, handle);
+    handle_t hRv = ::sem_open(unixName.c_str(), O_RDWR, 0777, 0U);
+    xTEST_DIFF(SEM_FAILED, hRv);
 
-    _handle = handle;
+    _handle = hRv;
     _name   = unixName;
 #endif
 }
@@ -174,7 +174,7 @@ CxIpcSemaphore::wait(
             long             a_ms
         )
         {
-            int_t sec = 0;
+            long_t sec = 0L;
 
             sec  = a_ms / 1000;
             a_ms = a_ms - sec * 1000;
@@ -190,7 +190,7 @@ CxIpcSemaphore::wait(
 
 
     int_t           iRv        = - 1;
-    struct timespec tmsTimeout = {0};
+    struct timespec tmsTimeout = {0, 0};
 
     // add msec to struct timespec
     {
@@ -200,24 +200,24 @@ CxIpcSemaphore::wait(
         (void_t)_SFunctor::timespecAddMsec(&tmsTimeout, a_timeoutMsec);
     }
 
-#if xC99_OLD
+#if 0
     while (- 1 == (iRv = ::sem_timedwait(_handle, &tmsTimeout)) && (EINTR == errno)) {
         // Restart if interrupted by handler
         continue;
     }
 #else
-    int_t lastError = 0;
+    int_t _lastError = 0;
 
     xFOREVER {
         iRv       = ::sem_timedwait(_handle, &tmsTimeout);
-        lastError = errno;
+        _lastError = errno;
 
-        xCHECK_DO(! (- 1 == iRv && EINTR == lastError), break);
+        xCHECK_DO(! (- 1 == iRv && EINTR == _lastError), break);
     }
 #endif
 
     if (- 1 == iRv) {
-        if (ETIMEDOUT == lastError) {
+        if (ETIMEDOUT == _lastError) {
             // timeout
             xTEST_FAIL;
         } else {
@@ -242,12 +242,12 @@ CxIpcSemaphore::value() const
     BOOL blRv = ::ReleaseSemaphore(_handle.get(), postValue, &liRv);
     xTEST_DIFF(FALSE, blRv);
 #else
-    int_t value = - 1;
+    int_t _value = - 1;
 
-    int_t iRv = ::sem_getvalue(_handle, &value);
-    xTEST_DIFF(- 1, iRv);
+    int_t _iRv = ::sem_getvalue(_handle, &_value);
+    xTEST_DIFF(- 1, _iRv);
 
-    liRv = value;
+    liRv = _value;
 #endif
 
     return liRv;
