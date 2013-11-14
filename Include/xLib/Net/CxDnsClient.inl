@@ -136,7 +136,7 @@ CxDnsClient::nameInfo(
     // convert to UNICODE
     std::string hostAddr(a_hostAddr.begin(), a_hostAddr.end());
 
-    sockaddr_in socketAddr = {0};
+    sockaddr_in socketAddr; xSTRUCT_ZERO(socketAddr);
     socketAddr.sin_family      = a_family;
     socketAddr.sin_addr.s_addr = ::inet_addr(hostAddr.c_str());
     socketAddr.sin_port        = htons(a_usPort);
