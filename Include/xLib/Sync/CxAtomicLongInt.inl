@@ -184,10 +184,10 @@ CxAtomicLongInt::operator > (
 //-------------------------------------------------------------------------------------------------
 xINLINE_HO bool_t
 CxAtomicLongInt::operator >= (
-    clong_t &value
+    clong_t &a_value
 ) const
 {
-    return (_value >= value);
+    return (_value >= a_value);
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE_HO bool_t
