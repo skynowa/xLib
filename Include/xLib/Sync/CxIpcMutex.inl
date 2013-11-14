@@ -118,7 +118,7 @@ CxIpcMutex::lock(
             long             a_ms
         )
         {
-            int_t sec = 0;
+            long_t sec = 0L;
 
             sec  = a_ms / 1000;
             a_ms = a_ms - sec * 1000;
@@ -134,7 +134,7 @@ CxIpcMutex::lock(
 
 
     int_t           iRv         = - 1;
-    struct timespec timeoutMsec = {0};
+    struct timespec timeoutMsec = {0, 0};
 
     // add msec to struct timespec
     {
