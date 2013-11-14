@@ -206,18 +206,18 @@ CxIpcSemaphore::wait(
         continue;
     }
 #else
-    int_t _lastError = 0;
+    int_t lastError = 0;
 
     xFOREVER {
         iRv       = ::sem_timedwait(_handle, &tmsTimeout);
-        _lastError = errno;
+        lastError = errno;
 
-        xCHECK_DO(! (- 1 == iRv && EINTR == _lastError), break);
+        xCHECK_DO(! (- 1 == iRv && EINTR == lastError), break);
     }
 #endif
 
     if (- 1 == iRv) {
-        if (ETIMEDOUT == _lastError) {
+        if (ETIMEDOUT == lastError) {
             // timeout
             xTEST_FAIL;
         } else {
