@@ -29,6 +29,6 @@ xNO_COPY_ASSIGN(CxSemaphore)
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <Sync/CxSemaphore.inl>
+#include "CxSemaphore.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxSemaphoreH

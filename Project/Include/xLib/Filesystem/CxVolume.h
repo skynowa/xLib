@@ -77,6 +77,6 @@ xNO_COPY_ASSIGN(CxVolume)
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <Filesystem/CxVolume.inl>
+#include "CxVolume.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxVolumeH

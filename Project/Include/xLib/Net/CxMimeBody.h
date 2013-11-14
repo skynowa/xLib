@@ -28,6 +28,6 @@ xNO_COPY_ASSIGN(CxMimeBody)
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <Net/CxMimeBody.inl>
+#include "CxMimeBody.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxMimeBodyH

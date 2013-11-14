@@ -88,9 +88,7 @@ xNO_COPY_ASSIGN(CxErrorReport)
 };
 
 xNAMESPACE_END(NxLib)
-
 //-------------------------------------------------------------------------------------------------
 #include "CxErrorReport.inl"
-#include <Debug/CxErrorReport.inl>
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxErrorReportH

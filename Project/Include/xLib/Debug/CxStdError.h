@@ -41,6 +41,6 @@ xNO_COPY_ASSIGN(CxStdError)
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <Debug/CxStdError.inl>
+#include "CxStdError.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxStdErrorH

@@ -98,6 +98,6 @@ xNO_COPY_ASSIGN(CxLocalStorage)
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <Filesystem/CxLocalStorage.inl>
+#include "CxLocalStorage.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxLocalStorageH

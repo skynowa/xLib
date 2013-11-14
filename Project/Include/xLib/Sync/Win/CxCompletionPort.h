@@ -40,6 +40,6 @@ xNAMESPACE_END(NxLib)
 
 #endif
 //-------------------------------------------------------------------------------------------------
-#include <Sync/Win/CxCompletionPort.inl>
+#include "CxCompletionPort.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxCompletionPortH

@@ -127,7 +127,7 @@ xNO_COPY_ASSIGN(CxConsole)
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <System/CxConsole.inl>
+#include "CxConsole.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxConsoleH
 

@@ -333,6 +333,6 @@ xNAMESPACE_BEGIN(NxLib)
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <Core/xFunctions.inl>
+#include "xFunctions.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_xFunctionsH

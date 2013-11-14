@@ -38,6 +38,6 @@ xNO_COPY_ASSIGN(CxSleeper)
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <Sync/CxSleeper.inl>
+#include "CxSleeper.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxSleeperH

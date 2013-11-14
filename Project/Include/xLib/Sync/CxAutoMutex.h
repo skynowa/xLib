@@ -32,6 +32,6 @@ xNO_COPY_ASSIGN(CxAutoMutex)
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <Sync/CxAutoMutex.inl>
+#include "CxAutoMutex.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxAutoMutexH

@@ -66,7 +66,7 @@ xNO_COPY_ASSIGN(CxDnsClient)
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <Net/CxDnsClient.inl>
+#include "CxDnsClient.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxDnsClientH
 

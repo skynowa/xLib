@@ -51,7 +51,7 @@ xNO_COPY_ASSIGN(CxIpcSemaphore)
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <Sync/CxIpcSemaphore.inl>
+#include "CxIpcSemaphore.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxIpcSemaphoreH
 

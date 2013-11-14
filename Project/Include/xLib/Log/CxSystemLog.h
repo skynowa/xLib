@@ -73,6 +73,6 @@ xNO_COPY_ASSIGN(CxSystemLog)
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <Log/CxSystemLog.inl>
+#include "CxSystemLog.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxSystemLogH

@@ -59,7 +59,7 @@ xNO_COPY_ASSIGN(CxMimeHeader)
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <Net/CxMimeHeader.inl>
+#include "CxMimeHeader.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxMimeHeaderH
 
