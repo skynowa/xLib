@@ -106,7 +106,7 @@
 #include <Test/System/CxTest_CxConsole.h>
 #include <Test/System/CxTest_CxShell.h>
 //------------------------------------------------------------------------------
-int_t xTMAIN(int_t argNum, tchar_t *args[])
+int_t xTMAIN(int_t a_argNum, tchar_t *a_args[])
 {
     //--------------------------------------------------
     // checks
@@ -132,7 +132,7 @@ int_t xTMAIN(int_t argNum, tchar_t *args[])
         info.commandLine(&args);
 
         // usage
-        if (2 == argNum) {
+        if (2 == a_argNum) {
             bool_t bRv = CxString::compareNoCase(xT("-h"), args.at(1));
             if (!bRv) {
                 std::tcout << xT("\nxLib_test: unknown switches\n") << std::endl;
@@ -149,7 +149,7 @@ int_t xTMAIN(int_t argNum, tchar_t *args[])
         }
 
         // loops number
-        if (5 == argNum) {
+        if (5 == a_argNum) {
             isUseTracing = CxString::cast<bool_t>     ( args.at(1) );
             allLoops     = CxString::cast<ulonglong_t>( args.at(2) );
             unitLoops    = CxString::cast<ulonglong_t>( args.at(3) );
