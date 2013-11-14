@@ -780,10 +780,10 @@ CxSystemInfo::cpuSpeed()
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         // target proc line: "cpu MHz         : 2796.380"
-        std::tstring_t value = CxPath::procValue(xT("/proc/cpuinfo"), xT("cpu MHz"));
+        std::ctstring_t value = CxPath::procValue(xT("/proc/cpuinfo"), xT("cpu MHz"));
         xTEST_EQ(false, value.empty());
 
-        double cpuSpeedMHz = CxString::cast<double>( value );
+        cdouble_t cpuSpeedMHz = CxString::cast<double>( value );
 
         ulRv = CxUtils::roundIntT<ulong_t>( cpuSpeedMHz );
     #elif xOS_FREEBSD
