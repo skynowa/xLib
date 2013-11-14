@@ -105,6 +105,6 @@ xNO_COPY_ASSIGN(CxBody)
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <Net/CxHttpClient.inl>
+#include "CxHttpClient.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxHttpClientH

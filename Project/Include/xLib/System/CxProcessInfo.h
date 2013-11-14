@@ -48,6 +48,6 @@ xNO_COPY_ASSIGN(CxProcessInfo)
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <System/CxProcessInfo.inl>
+#include "CxProcessInfo.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxProcessInfoH

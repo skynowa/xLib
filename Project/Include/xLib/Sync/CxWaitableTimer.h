@@ -43,6 +43,6 @@ xNAMESPACE_END(NxLib)
 
 #endif
 //-------------------------------------------------------------------------------------------------
-#include <Sync/CxWaitableTimer.inl>
+#include "CxWaitableTimer.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxWaitableTimerH

@@ -85,6 +85,6 @@ xNO_COPY_ASSIGN(CxFinder)
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <Filesystem/CxFinder.inl>
+#include "CxFinder.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxFinderH

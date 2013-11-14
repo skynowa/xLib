@@ -49,6 +49,6 @@ xNO_COPY_ASSIGN(CxThreadStorage)
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <Sync/CxThreadStorage.inl>
+#include "CxThreadStorage.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxThreadStorageH

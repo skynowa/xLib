@@ -45,6 +45,6 @@ xNO_COPY_ASSIGN(CxEnvironment)
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <System/CxEnvironment.inl>
+#include "CxEnvironment.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxEnvironmentH

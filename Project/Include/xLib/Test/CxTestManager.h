@@ -40,7 +40,7 @@ xNO_COPY_ASSIGN(CxTestManager)
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <Test/CxTestManager.inl>
+#include "CxTestManager.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxTestManagerH
 

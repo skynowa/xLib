@@ -89,6 +89,6 @@ xNO_COPY_ASSIGN(CxFileType)
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <Filesystem/CxFileType.inl>
+#include "CxFileType.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxFileTypeH

@@ -59,6 +59,6 @@ xNO_COPY_ASSIGN(CxDebugger)
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <Debug/CxDebugger.inl>
+#include "CxDebugger.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxDebuggerH

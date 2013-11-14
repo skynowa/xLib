@@ -37,6 +37,6 @@ xNO_COPY_ASSIGN(CxFileTemp)
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <Filesystem/CxFileTemp.inl>
+#include "CxFileTemp.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxFileTempH

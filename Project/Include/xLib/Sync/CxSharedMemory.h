@@ -27,6 +27,6 @@ xNO_COPY_ASSIGN(CxSharedMemory)
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <Sync/CxSharedMemory.inl>
+#include "CxSharedMemory.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxSharedMemoryH

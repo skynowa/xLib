@@ -97,6 +97,6 @@ xNO_COPY_ASSIGN(CxProcess)
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <Sync/CxProcess.inl>
+#include "CxProcess.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxProcessH

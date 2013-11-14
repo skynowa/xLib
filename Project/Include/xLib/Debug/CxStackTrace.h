@@ -49,6 +49,6 @@ xNO_COPY_ASSIGN(CxStackTrace)
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <Debug/CxStackTrace.inl>
+#include "CxStackTrace.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxStackTraceH

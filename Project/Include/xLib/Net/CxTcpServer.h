@@ -39,7 +39,7 @@ xNO_COPY_ASSIGN(CxTcpServer)
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <Net/CxTcpServer.inl>
+#include "CxTcpServer.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxTcpServerH
 

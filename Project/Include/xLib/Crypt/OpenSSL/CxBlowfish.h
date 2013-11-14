@@ -74,7 +74,7 @@ xNAMESPACE_END(NxLib)
 
 #endif // xOPENSSL_IS_USE
 //-------------------------------------------------------------------------------------------------
-#include <Crypt/OpenSSL/CxBlowfish.inl>
+#include "CxBlowfish.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxBlowfishH
 

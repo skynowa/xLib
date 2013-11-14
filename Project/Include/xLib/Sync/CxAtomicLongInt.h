@@ -58,6 +58,6 @@ private:
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <Sync/CxAtomicLongInt.inl>
+#include "CxAtomicLongInt.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxAtomicLongIntH

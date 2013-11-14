@@ -47,6 +47,6 @@ xNO_COPY_ASSIGN(CxIpcMutex)
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <Sync/CxIpcMutex.inl>
+#include "CxIpcMutex.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxIpcMutexH

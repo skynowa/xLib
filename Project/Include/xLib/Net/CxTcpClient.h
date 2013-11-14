@@ -54,7 +54,7 @@ xNO_COPY_ASSIGN(CxTcpClient)
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <Net/CxTcpClient.inl>
+#include "CxTcpClient.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxTcpClientH
 

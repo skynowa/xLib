@@ -27,6 +27,6 @@ xNO_COPY_ASSIGN(CxSocketInit)
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <Net/CxSocketInit.inl>
+#include "CxSocketInit.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxSocketInitH

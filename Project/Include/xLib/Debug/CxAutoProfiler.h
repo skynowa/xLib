@@ -32,6 +32,6 @@ xNO_COPY_ASSIGN(CxAutoProfiler)
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <Debug/CxAutoProfiler.inl>
+#include "CxAutoProfiler.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxAutoProfilerH

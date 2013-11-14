@@ -83,6 +83,6 @@ xNO_COPY_ASSIGN(CxCookiePv0)
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <Net/CxCookiePv0.inl>
+#include "CxCookiePv0.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxCookiePv0H

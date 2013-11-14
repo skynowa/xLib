@@ -131,7 +131,7 @@ xNO_COPY_ASSIGN(CxSystemInfo)
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <System/CxSystemInfo.inl>
+#include "CxSystemInfo.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxSystemInfoH
 

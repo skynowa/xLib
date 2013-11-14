@@ -35,6 +35,6 @@ xNO_COPY_ASSIGN(CxMimeMessage)
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <Net/CxMimeMessage.inl>
+#include "CxMimeMessage.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxMimeMessageH

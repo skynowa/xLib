@@ -52,7 +52,7 @@ xNO_COPY_ASSIGN(CxProfiler)
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include <Debug/CxProfiler.inl>
+#include "CxProfiler.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxProfilerH
 
