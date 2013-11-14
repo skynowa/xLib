@@ -81,7 +81,7 @@ private:
                                  std::ctstring_t &date,       std::ctstring_t &time,
                                  std::ctstring_t &stackTrace, std::ctstring_t &comment);
         ///< initiate class members
-    void_t        _initPlain    ();
+    void_t        _initPlain();
         ///< initiate plain report
 
 xNO_COPY_ASSIGN(CxErrorReport)
