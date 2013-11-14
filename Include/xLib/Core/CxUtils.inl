@@ -215,8 +215,8 @@ CxUtils::roundIntT(
     cdouble_t &a_value
 )
 {
-    assert(a_value >= (std::numeric_limits<T>::min)() - 0.5);
-    assert(a_value <= (std::numeric_limits<T>::max)() + 0.5);
+    assert(a_value >= static_cast<cdouble_t>( (std::numeric_limits<T>::min)() ) - 0.5);
+    assert(a_value <= static_cast<cdouble_t>( (std::numeric_limits<T>::max)() ) + 0.5);
 
     T iRv = 0;
 
