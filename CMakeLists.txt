@@ -16,27 +16,16 @@ if (CMAKE_CXX_COMPILER MATCHES ".*clang")
 endif()
 
 #-------------------------------------------------------------------------------
-# dir "Tests"
-set(XLib_TESTS_INCLUDE_DIRS "")
-
-file(GLOB_RECURSE xLib_tests_HEADERS "Tests/*.h")
-file(GLOB_RECURSE xLib_tests_SOURCES "Tests/*.cpp")
-
-foreach (_headerFile ${xLib_tests_HEADERS})
-    get_filename_component(_dir ${_headerFile} PATH)
-    list (APPEND XLib_TESTS_INCLUDE_DIRS ${_dir})
-endforeach()
-
-list(REMOVE_DUPLICATES XLib_TESTS_INCLUDE_DIRS)
-
-#-------------------------------------------------------------------------------
-# source directories
+# includes
 include_directories("${CMAKE_SOURCE_DIR}/Include")
 include_directories("${CMAKE_SOURCE_DIR}/Tests/Include")
-include_directories(${XLib_TESTS_INCLUDE_DIRS})
 
 #-------------------------------------------------------------------------------
-# targets
+# sources
+file(GLOB_RECURSE xLib_tests_SOURCES "Tests/*.cpp")
+
+#-------------------------------------------------------------------------------
+# target
 add_executable(xLib_test ${xLib_tests_SOURCES})
 
 #-------------------------------------------------------------------------------
