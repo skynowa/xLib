@@ -25,7 +25,7 @@ CxTcpServer::bind(
     xTEST_DIFF(xSOCKET_HANDLE_INVALID, _socket);
     xTEST_EQ(true, (32767 > a_port) && (0 < a_port));
 
-    struct sockaddr_in sockAddr = {0};
+    struct sockaddr_in sockAddr;    xSTRUCT_ZERO(sockAddr);
     sockAddr.sin_family      = _family;
     sockAddr.sin_addr.s_addr = INADDR_ANY;
     sockAddr.sin_port        = htons(a_port);
@@ -72,7 +72,7 @@ CxTcpServer::accept(
         &addrlen);
     xTEST_DIFF(xSOCKET_HANDLE_INVALID, scktClient);
 #else
-    struct sockaddr_in cliaddr  = {0};
+    struct sockaddr_in cliaddr; xSTRUCT_ZERO(cliaddr);
     socklen_t          addrlen = sizeof(cliaddr);
 
     scktClient = ::accept(_socket, CxUtils::reinterpretCastT<struct sockaddr *>( &cliaddr ),
