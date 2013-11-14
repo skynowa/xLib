@@ -398,7 +398,7 @@ CxDnsClient::isOnLan(
     culong_t localIp = INADDR_ANY;  // IP of local interface (network order)
     culong_t netMask = INADDR_NONE; // net mask for IP (network order)
 
-    return (0L == ((ntohl(a_ip) ^ ntohl(localIp)) & ntohl(netMask)));
+    return (0UL == ((ntohl(a_ip) ^ ntohl(localIp)) & ntohl(netMask)));
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -409,7 +409,7 @@ CxDnsClient::isBroadcast(
 {
     culong_t netMask = INADDR_NONE; // net mask for IP (network order)
 
-    return (0L == (~ntohl(a_ip) & ~ntohl(netMask)));
+    return (0UL == (~ntohl(a_ip) & ~ntohl(netMask)));
 }
 //-------------------------------------------------------------------------------------------------
 
