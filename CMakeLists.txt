@@ -31,7 +31,7 @@ list(REMOVE_DUPLICATES XLib_TESTS_INCLUDE_DIRS)
 
 #-------------------------------------------------------------------------------
 # source directories
-include_directories("${CMAKE_SOURCE_DIR}/Project/Include")
+include_directories("${CMAKE_SOURCE_DIR}/Include")
 include_directories("${CMAKE_SOURCE_DIR}/Tests/Include")
 include_directories(${XLib_TESTS_INCLUDE_DIRS})
 
