@@ -100,6 +100,7 @@
         ///< compiler Borland C++, Code Gear
 #elif defined(__clang__)    /* xCOMPILER_CLANG also __GNUC__ */
     #define xCOMPILER_CLANG    1
+    #define xCOMPILER_GNUC     1
         ///< compiler Clang
 #elif defined(__GNUC__)
     #define xCOMPILER_GNUC     1
