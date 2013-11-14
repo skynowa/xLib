@@ -45,7 +45,7 @@
         #define xTMKSTEMP       _tmktemp_s
     #elif xCOMPILER_CODEGEAR
         #define xTMKSTEMP       _wmktemp
-    #elif xCOMPILER_GNUC
+    #elif xCOMPILER_GNUCz
         #define xTMKSTEMP       mkstemp
     #else
         #define xTMKSTEMP       mkstemp
