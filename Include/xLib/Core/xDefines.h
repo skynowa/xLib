@@ -79,6 +79,9 @@
 #elif xCOMPILER_CODEGEAR
     #define xFORCE_INLINE \
         inline
+#elif xCOMPILER_CLANG
+    #define xFORCE_INLINE \
+        __attribute__((__always_inline__)) inline
 #elif xCOMPILER_GNUC
     #define xFORCE_INLINE \
         __attribute__((__always_inline__)) inline
@@ -99,6 +102,9 @@
 #elif xCOMPILER_CODEGEAR
     #define xNO_INLINE \
         xNOT_AVAILABLE
+#elif xCOMPILER_CLANG
+    #define xNO_INLINE \
+        __attribute__ ((noinline))
 #elif xCOMPILER_GNUC
     #define xNO_INLINE \
         __attribute__ ((noinline))
@@ -128,6 +134,9 @@
     #define xOVERRIDE \
         override
 #elif xCOMPILER_CODEGEAR
+    #define xOVERRIDE \
+        xNOT_AVAILABLE
+#elif xCOMPILER_CLANG
     #define xOVERRIDE \
         xNOT_AVAILABLE
 #elif xCOMPILER_GNUC
@@ -161,6 +170,9 @@
 #elif xCOMPILER_CODEGEAR
     #define xWARN_UNUSED_RV \
         xNOT_AVAILABLE
+#elif xCOMPILER_CLANG
+    #define xWARN_UNUSED_RV \
+        __attribute__((warn_unused_result))
 #elif xCOMPILER_GNUC
     #define xWARN_UNUSED_RV \
         __attribute__((warn_unused_result))
@@ -257,6 +269,9 @@
 #elif xCOMPILER_CODEGEAR
     #define xUNUSED(arg) \
     ( static_cast<void_t>( arg ) )
+#elif xCOMPILER_CLANG
+    #define xUNUSED(arg) \
+    { static_cast<void_t>( (arg) = ((true) ? (arg) : (arg)) ); }
 #elif xCOMPILER_GNUC
     #define xUNUSED(arg) \
     { static_cast<void_t>( (arg) = ((true) ? (arg) : (arg)) ); }
@@ -329,6 +344,9 @@
 #elif xCOMPILER_CODEGEAR
     #define xFUNCTION \
         xT(__FUNC__)
+#elif xCOMPILER_CLANG
+    #define xFUNCTION \
+        xT(__PRETTY_FUNCTION__)
 #elif xCOMPILER_GNUC || xCOMPILER_MINGW
     #define xFUNCTION \
         xT(__PRETTY_FUNCTION__)
