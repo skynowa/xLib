@@ -37,9 +37,9 @@ xNAMESPACE_BEGIN(NxLib)
 //-------------------------------------------------------------------------------------------------
 xINLINE_HO
 CxVolume::CxVolume(
-    std::ctstring_t &volumePath
+    std::ctstring_t &a_volumePath
 ) :
-    _volumePath(volumePath)
+    _volumePath(a_volumePath)
 {
     xTEST_EQ(false, _volumePath.empty());
 }
@@ -138,7 +138,7 @@ CxVolume::isValid() const
     bool_t bRv = CxDir( volumePath() ).isRoot();
     xCHECK_RET(!bRv, false);
 #else
-    xCHECK_RET(true                    == volumePath().empty(), false);
+    xCHECK_RET(true                   == volumePath().empty(), false);
     xCHECK_RET(CxConst::slash().at(0) != volumePath().at(0),   false);
 #endif
 
@@ -148,8 +148,8 @@ CxVolume::isValid() const
 xINLINE_HO bool_t
 CxVolume::isReady() const
 {
-    bool_t         bRv          = false;
-    std::tstring_t _volumePath = CxPath( volumePath() ).slashAppend();
+    bool_t         bRv           = false;
+    std::tstring_t volumeDirPath = CxPath( volumePath() ).slashAppend();
     std::tstring_t oldDirPath;
 
 #if xOS_ENV_WIN
@@ -163,7 +163,7 @@ CxVolume::isReady() const
     oldDirPath  = CxDir::current();
     xTEST_NA(oldDirPath);
 
-    bRv = !!::SetCurrentDirectory(_volumePath.c_str());
+    bRv = !!::SetCurrentDirectory(volumeDirPath.c_str());
     xTEST_NA(bRv);
 
     CxDir::setCurrent(oldDirPath);
@@ -173,7 +173,7 @@ CxVolume::isReady() const
     oldDirPath = CxDir::current();
     xTEST_NA(oldDirPath);
 
-    int_t iRv = ::chdir(_volumePath.c_str());
+    int_t iRv = ::chdir(volumeDirPath.c_str());
     xTEST_NA(iRv);
     bRv = (- 1 != iRv);
 
