@@ -144,7 +144,7 @@ CxPath::dll()
 
     sRv.resize(stored);
 #else
-    Dl_info  diInfo      = {0};
+    Dl_info  diInfo;    xSTRUCT_ZERO(diInfo);
     cvoid_t *procAddress = reinterpret_cast<cvoid_t *>( ::function );
 
     int_t iRv = ::dladdr(procAddress, &diInfo);

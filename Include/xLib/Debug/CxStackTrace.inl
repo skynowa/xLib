@@ -201,7 +201,7 @@ CxStackTrace::get(
         std::tstring_t byteOffset;
         std::tstring_t functionName;
 
-        Dl_info dlinfo = {0};
+        Dl_info dlinfo;  xSTRUCT_ZERO(dlinfo);
 
         int_t iRv = ::dladdr(stackBuff[i], &dlinfo);
         if (0 == iRv) {

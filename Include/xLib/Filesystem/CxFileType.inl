@@ -64,14 +64,14 @@ CxFileType::get()
     ftRv = ::GetFileAttributes(filePath().c_str());
     xTEST_NA(ftRv);
 #else
-    xTSTAT_STRUCT stInfo = {0};
+    xTSTAT_STRUCT info;   xSTRUCT_ZERO(info);
 
-    int_t iRv = ::xTSTAT(filePath().c_str(), &stInfo);
+    int_t iRv = ::xTSTAT(filePath().c_str(), &info);
     xTEST_NA(iRv);
     if (- 1 == iRv) {
         ftRv = faInvalid;
     } else {
-        ftRv = (stInfo.st_mode & S_IFMT);
+        ftRv = (info.st_mode & S_IFMT);
     }
 #endif
 

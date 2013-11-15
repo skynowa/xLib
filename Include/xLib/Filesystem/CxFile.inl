@@ -988,7 +988,7 @@ CxFile::time(
     CxUtils::ptrAssignT(a_access,   CxDateTime::fileTimeToUnixTime(timeAccess));
     CxUtils::ptrAssignT(a_modified, CxDateTime::fileTimeToUnixTime(timeModified));
 #else
-    xTSTAT_STRUCT info = {0};
+    xTSTAT_STRUCT info; xSTRUCT_ZERO(info);
 
     int_t iRv = ::xTSTAT(a_filePath.c_str(), &info);
     xTEST_DIFF(- 1, iRv);

@@ -394,7 +394,7 @@ CxSystemInfo::userName()
 
     sRv.assign(buff, buffSize);
 #elif xOS_ENV_UNIX
-    struct passwd passwd = {0};
+    struct passwd passwd;   xSTRUCT_ZERO(passwd);
 
     _passwdFileEntry(&passwd);
     xTEST_PTR(passwd.pw_name);
@@ -443,7 +443,7 @@ CxSystemInfo::useHomeDir()
     if (bRv) {
         sRv = CxEnvironment::var(xT("HOME"));
     } else {
-        struct passwd passwd = {0};
+        struct passwd passwd;   xSTRUCT_ZERO(passwd);
 
         _passwdFileEntry(&passwd);
         xTEST_PTR(passwd.pw_dir);
@@ -477,7 +477,7 @@ CxSystemInfo::userShellPath()
     sRv.append(CxConst::slash());
     sRv.append(xT("explorer.exe"));
 #elif xOS_ENV_UNIX
-    struct passwd passwd = {0};
+    struct passwd passwd;   xSTRUCT_ZERO(passwd);
 
     _passwdFileEntry(&passwd);
     xTEST_PTR(passwd.pw_shell);
@@ -956,7 +956,7 @@ CxSystemInfo::ramTotal()
     ullRv = status.ullTotalPhys;
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        struct sysinfo info = {0};
+        struct sysinfo info;   xSTRUCT_ZERO(info);
 
         int_t iRv = ::sysinfo(&info);
         xTEST_DIFF(- 1, iRv);
@@ -995,7 +995,7 @@ CxSystemInfo::ramAvailable()
     ullRv = status.ullAvailPhys;
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        struct sysinfo info = {0};
+        struct sysinfo info;   xSTRUCT_ZERO(info);
 
         int_t iRv = ::sysinfo(&info);
         xTEST_DIFF(- 1, iRv);
@@ -1033,7 +1033,7 @@ CxSystemInfo::ramUsage()
     ulRv = status.dwMemoryLoad;
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        struct sysinfo info = {0};
+        struct sysinfo info;   xSTRUCT_ZERO(info);
 
         int_t iRv = ::sysinfo(&info);
         xTEST_DIFF(- 1, iRv);
