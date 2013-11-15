@@ -156,8 +156,6 @@ CxEvent::wait(
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
     {
-        int_t iRv = 0;
-
         // if (!_isSignaled) {
             timespec timeoutMsec = {0};
 
