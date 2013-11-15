@@ -307,14 +307,14 @@ CxStackTrace::_format(
 {
     xCHECK_RET(NULL == a_stack, std::tstring_t());
 
-    std::tstring_t      sRv;
-    std::csize_t        elementsNum = 6U;
-    std::vector<size_t> maxs(elementsNum, 0U);
+    std::tstring_t     sRv;
+    std::csize_t       elementsNum = 6U;
+    std::vector<int_t> maxs(elementsNum, 0);
 
     // get elements max sizes
     for (size_t i = 0; i < elementsNum; ++ i) {
         xFOREACH_CONST(std::vector<std::vec_tstring_t>, it, *a_stack) {
-            std::csize_t current = it->at(i).size();
+            cint_t current = static_cast<int_t>( it->at(i).size() );
 
             xCHECK_DO(current > maxs[i], maxs[i] = current);
         }
