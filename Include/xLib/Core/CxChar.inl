@@ -120,7 +120,7 @@ CxChar::toLower(
     ctchar_t &a_ch
 )
 {
-    return xTTOLOWER(a_ch);
+    return static_cast<tchar_t>( xTTOLOWER(a_ch) );
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -129,7 +129,7 @@ CxChar::toUpper(
     ctchar_t &a_ch
 )
 {
-    return xTTOUPPER(a_ch);
+    return static_cast<tchar_t>( xTTOUPPER(a_ch) );
 }
 //-------------------------------------------------------------------------------------------------
 

@@ -1032,7 +1032,7 @@ CxFile::setTime(
     BOOL blRv = ::SetFileTime(file.get(), &timeCreate, &timeAccess, &timeModified);
     xTEST_DIFF(FALSE, blRv);
 #else
-    utimbuf times = {0};
+    utimbuf times = {0, 0};
 
     // times.create - n/a
     times.actime  = a_access;

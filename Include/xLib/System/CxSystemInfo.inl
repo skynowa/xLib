@@ -68,7 +68,7 @@ CxSystemInfo::os()
     }
 
 #elif xOS_ENV_UNIX
-    utsname info = {{0}};
+    utsname info; xSTRUCT_ZERO(info);
 
     int_t iRv = ::uname(&info);
     xTEST_DIFF(- 1, iRv);
@@ -159,7 +159,7 @@ CxSystemInfo::formatOsType(
 #elif xOS_ENV_UNIX
     if (os() == a_osType) {
         // current OS type - get info about OS kernel
-        utsname info= {{0}};
+        utsname info; xSTRUCT_ZERO(info);
 
         int_t iRv = ::uname(&info);
         xTEST_DIFF(- 1, iRv);
@@ -214,7 +214,7 @@ CxSystemInfo::osArch()
         oaRv = oaUnknown;
     #endif
 #else
-    utsname info= {{0}};
+    utsname info; xSTRUCT_ZERO(info);
 
     int_t iRv = ::uname(&info);
     xTEST_DIFF(- 1, iRv);
@@ -327,7 +327,7 @@ CxSystemInfo::hostName()
 
     sRv.assign(buff, buffSize);
 #else
-    utsname info= {{0}};
+    utsname info; xSTRUCT_ZERO(info);
 
     int_t iRv = ::uname(&info);
     xTEST_DIFF(- 1, iRv);
@@ -547,8 +547,8 @@ CxSystemInfo::currentCpuNum()
         #if defined(SYS_getcpu)
             ulong_t cpu = 0UL;
 
-            int_t iRv = ::syscall(SYS_getcpu, &cpu, NULL, NULL);
-            xTEST_DIFF(- 1, iRv);
+            long_t liRv = ::syscall(SYS_getcpu, &cpu, NULL, NULL);
+            xTEST_DIFF(- 1L, liRv);
 
             ulRv = cpu;
         #else
@@ -897,9 +897,9 @@ CxSystemInfo::cpuUsage()
         } else {
             total  = (userTotal - userTotalOld) + (userTotalLow - userTotalLowOld) +
                 (sysTotal - sysTotalOld);
-            dRv    = total;
+            dRv    = static_cast<double>( total );
             total += (totalIdle - totalIdleOld);
-            dRv   /= total;
+            dRv   /= static_cast<double>( total );
             dRv   *= 100ULL;
         }
 
@@ -1038,10 +1038,10 @@ CxSystemInfo::ramUsage()
         int_t iRv = ::sysinfo(&info);
         xTEST_DIFF(- 1, iRv);
 
-        ulong_t usage = info.totalram - info.freeram;
+        cdouble_t usage = static_cast<cdouble_t>( info.totalram - info.freeram );
 
         ulRv = static_cast<ulong_t>( CxUtils::safeDivT(usage * 100.0, info.totalram) );
-        xTEST_EQ(info.totalram, usage + info.freeram);
+        xTEST_EQ(static_cast<cdouble_t>( info.totalram ), usage + static_cast<cdouble_t>( info.freeram ));
     #elif xOS_FREEBSD
         ulonglong_t ramTotal = 0ULL;
         {
@@ -1088,11 +1088,11 @@ CxSystemInfo::pageSize()
 
     ulRv = sysInfo.dwPageSize;
 #else
-    int_t iRv = ::sysconf(xPAGE_SIZE);
-    xTEST_DIFF(- 1, iRv);
-    xTEST_LESS(0, iRv);
+    long_t liRv = ::sysconf(xPAGE_SIZE);
+    xTEST_DIFF(- 1L, liRv);
+    xTEST_LESS(0L,   liRv);
 
-    ulRv = static_cast<ulong_t>( iRv );
+    ulRv = static_cast<ulong_t>( liRv );
 #endif
 
     xTEST_LESS(0UL, ulRv);

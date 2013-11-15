@@ -184,9 +184,9 @@ CxUtils::doubleIsEqual(
     const double &y
 )
 {
-    const double epsilon = std::numeric_limits<double>::epsilon();
+    cdouble_t epsilon = std::numeric_limits<double>::epsilon();
 
-    return ::abs(x - y) <= epsilon * ::abs(x);
+    return std::abs(x - y) <= (epsilon * std::abs(x));
 }
 //-------------------------------------------------------------------------------------------------
 /* static */ inline

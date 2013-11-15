@@ -41,7 +41,7 @@ CxRandom::setSeed(
     clong_t &a_seed
 )
 {
-    std::srand(a_seed);
+    std::srand( static_cast<uint_t>(a_seed) );
 
 #if xTEMP_DISABLED
     if (a_seed < 0)    {
@@ -96,13 +96,13 @@ CxRandom::nextBool()
 xINLINE_HO float_t
 CxRandom::nextFloat()
 {
-    return static_cast<float_t>( nextInt() / float_t(M) );
+    return static_cast<float_t>( static_cast<float_t>(nextInt()) / static_cast<float_t>(M) );
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE_HO double
 CxRandom::nextDouble()
 {
-    return static_cast<double>( nextInt() / double(M) );
+    return static_cast<double>( nextInt() / static_cast<double>(M) );
 }
 //-------------------------------------------------------------------------------------------------
 xINLINE_HO char
