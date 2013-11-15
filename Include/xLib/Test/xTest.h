@@ -207,7 +207,8 @@
 #define xTEST_NA(var) \
     ;
     ///< at this point debug code for variable is not applicable
-#define xTESTS_NA                                       ;
+#define xTESTS_NA
+    ;
     ///< at this point debug code for variables is not applicable
 //-------------------------------------------------------------------------------------------------
 #define xTEST_STATIC(expr) \
@@ -215,7 +216,7 @@
     ///< static assert
 
 #define xTEST_CASE(caseName, loops) \
-    /* CxTracer() << xT("\tCase name: ") << caseName; */ \
+    CxTracer() << xT("\tCase name: ") << caseName; \
     for (size_t _caseLoops = 0U; _caseLoops < (loops); ++ _caseLoops)
     ///< test case
 //-------------------------------------------------------------------------------------------------
