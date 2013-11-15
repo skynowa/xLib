@@ -129,13 +129,13 @@ CxProcessInfo::exeName()
         bool_t bRv = CxFile::isExists(procFile);
         xCHECK_RET(!bRv, std::tstring_t());
 
-        int_t readed = - 1;
+        ssize_t readed = - 1;
         sRv.resize(xPATH_MAX);
 
         xFOREVER {
             readed = ::readlink(procFile.c_str(), &sRv.at(0), sRv.size() *
                 sizeof(std::tstring_t::value_type));
-            xTEST_DIFF(- 1, readed);
+            xTEST_DIFF(ssize_t(- 1), readed);
 
             xCHECK_DO(sRv.size() * sizeof(std::tstring_t::value_type) >
                 static_cast<size_t>( readed ), break);

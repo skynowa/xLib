@@ -379,7 +379,7 @@ CxStackTrace::_addr2Line(
     {
         tchar_t buff[1024 + 1] = {0};
 
-        ctchar_t *functionName = std::fgets(buff, xARRAY_SIZE(buff), file);
+        ctchar_t *functionName = std::fgets(buff, static_cast<int_t>( xARRAY_SIZE(buff) ), file);
         xSTD_VERIFY(NULL != functionName);
 
         (*a_functionName).assign(functionName);
@@ -389,7 +389,7 @@ CxStackTrace::_addr2Line(
     {
         tchar_t buff[1024 + 1] = {0};
 
-        ctchar_t *fileAndLine = std::fgets(buff, xARRAY_SIZE(buff), file);
+        ctchar_t *fileAndLine = std::fgets(buff, static_cast<int_t>( xARRAY_SIZE(buff) ), file);
         xSTD_VERIFY(NULL != fileAndLine);
 
        /**

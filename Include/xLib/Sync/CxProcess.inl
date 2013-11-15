@@ -82,10 +82,10 @@ CxProcess::create(
     _thread = processInfo.hThread;
     _pid    = processInfo.dwProcessId;
 #else
-    pid_t id = ::fork();
-    xTEST_EQ(true, - 1L != id);
+    pid_t pid = ::fork();
+    xTEST_EQ(true, - 1L != pid);
 
-    if (0L == id) {
+    if (0L == pid) {
         // TODO: filePath is executable
 
         int_t iRv = ::execlp(a_filePath.c_str(), a_filePath.c_str(), cmdLine.c_str(),
@@ -95,8 +95,8 @@ CxProcess::create(
         (void_t)::_exit(EXIT_SUCCESS);  /* not exit() */
     }
 
-    _handle = id;
-    _pid    = id;
+    _handle = pid;
+    _pid    = pid;
 #endif
 }
 //-------------------------------------------------------------------------------------------------

@@ -344,7 +344,7 @@ CxDateTime::dayOfWeek() const
     xTEST_EQ(true, isValid()); //??? - 0
 
     ushort_t usRv     = 0;
-    tm       timeInfo = {0};
+    tm       timeInfo;  xSTRUCT_ZERO(timeInfo);
 
     timeInfo.tm_year = _year  - 1900;
     timeInfo.tm_mon  = _month - 1;
@@ -590,7 +590,7 @@ CxDateTime::current()
         dateTime.wHour, dateTime.wMinute, dateTime.wSecond, dateTime.wMilliseconds);
 #else
     // get milliseconds
-    timeval time = {0};
+    timeval time;   xSTRUCT_ZERO(time);
 
     int_t iRv = ::gettimeofday(&time, NULL);
     xTEST_DIFF(- 1, iRv);
@@ -608,7 +608,7 @@ CxDateTime::current()
     ushort_t hour   = dateTime->tm_hour;
     ushort_t minute = dateTime->tm_min;
     ushort_t second = dateTime->tm_sec;
-    ushort_t msec = static_cast<ushort_t>( time.tv_usec * 0.001 );
+    ushort_t msec   = static_cast<ushort_t>( static_cast<double>(time.tv_usec) * 0.001 );
 
     xTEST_EQ(true, isValid(year, month, day, hour, minute, second, msec));
 
@@ -892,9 +892,12 @@ CxDateTime::monthNum(
         xT("Dec")
     }};
 
-    for (ushort_t i = 0; i < static_cast<ushort_t>( longMonths.size() ); ++ i) {
-        xCHECK_RET(!a_isShortName && CxString::compareNoCase(a_month, longMonths[i]),  i + 1);
-        xCHECK_RET(a_isShortName  && CxString::compareNoCase(a_month, shortMonths[i]), i + 1);
+    for (size_t i = 0; i < longMonths.size(); ++ i) {
+        if (a_isShortName) {
+            xCHECK_RET(CxString::compareNoCase(a_month, shortMonths[i]), static_cast<ushort_t>( i + 1 ));
+        } else {
+            xCHECK_RET(CxString::compareNoCase(a_month, longMonths[i]),  static_cast<ushort_t>( i + 1 ));
+        }
     }
 
     return static_cast<ushort_t>( - 1 );  // TODO: static_cast<ushort_t>( - 1 )

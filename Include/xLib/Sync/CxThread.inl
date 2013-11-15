@@ -123,7 +123,7 @@ CxThread::create(
     _id = id;
 #else
     int_t          iRv = - 1;
-    id_t           id;
+    id_t           hid;
     pthread_attr_t attrs; // n/a - {{0}}
 
     iRv = ::pthread_attr_init(&attrs);
@@ -138,15 +138,15 @@ CxThread::create(
         xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
     }
 
-    iRv = ::pthread_create(&id, &attrs, &_s_jobEntry, this);
+    iRv = ::pthread_create(&hid, &attrs, &_s_jobEntry, this);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
-    xTEST_MSG_EQ(true, 0UL < id, CxLastError::format(iRv));
+    xTEST_MSG_EQ(true, 0UL < hid, CxLastError::format(iRv));
 
     iRv = ::pthread_attr_destroy(&attrs);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
-    _thread = id;  // TODO: is it right?
-    _id     = id;
+    _thread = hid;  // TODO: is it right?
+    _id     = hid;
 #endif
     xTEST_EQ(false, isCurrent(_id));
 
@@ -267,7 +267,7 @@ CxThread::kill(
 #endif
 
     _id         = 0UL;
-    _exitStatus = ulRv;    //saving value
+    _exitStatus = static_cast<uint_t>( ulRv );  // saving value
     _param      = NULL;
     //_isAutoDelete - n/a
 
@@ -1109,8 +1109,8 @@ CxThread::currentSleep(
 #if xOS_ENV_WIN
     (void_t)::Sleep(a_timeoutMsec);
 #else
-    timespec timeSleep  = {0};
-    timespec timeRemain = {0};
+    timespec timeSleep  = {0, 0};
+    timespec timeRemain = {0, 0};
 
     timeSleep.tv_sec  = a_timeoutMsec / 1000;
     timeSleep.tv_nsec = (a_timeoutMsec % 1000) * (1000 * 1000);

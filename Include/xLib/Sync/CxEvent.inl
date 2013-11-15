@@ -98,10 +98,10 @@ CxEvent::set()
 
     {
         if (_isAutoReset) {
-            int_t iRv = ::pthread_cond_signal(&_cond);
+            iRv = ::pthread_cond_signal(&_cond);
             xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
         } else {
-            int_t iRv = ::pthread_cond_broadcast(&_cond);
+            iRv = ::pthread_cond_broadcast(&_cond);
             xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
         }
 
@@ -157,10 +157,10 @@ CxEvent::wait(
 
     {
         // if (!_isSignaled) {
-            timespec timeoutMsec = {0};
+            timespec timeoutMsec = {0, 0};
 
             if (xTIMEOUT_INFINITE != a_timeoutMs) {
-                timeval timeNow  = {0};
+                timeval timeNow  = {0, 0};
 
                 iRv = ::gettimeofday(&timeNow, NULL);
                 xTEST_DIFF(- 1, iRv);
