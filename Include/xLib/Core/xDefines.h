@@ -9,17 +9,37 @@
 #ifndef xLib_xDefinesH
 #define xLib_xDefinesH
 //-------------------------------------------------------------------------------------------------
-
-//--------------------------------------------------
 // lexeme utils
 #define xLEX_TO_STR(a) \
     xT(#a)
     ///< make as string
+
 #define xLEX_CAT(a, b) \
     a##b
-    ///< concatenate strings
+    ///< concatenate 2 strings
+#define xLEX_CAT3(x1, x2, x3) \
+    xLEX_CAT(xLEX_CAT(x1, x2), x3)
+    ///< concatenate 3 strings
+#define xLEX_CAT4(x1, x2, x3, x4) \
+    xLEX_CAT(xLEX_CAT3(x1, x2, x3), x4)
+    ///< concatenate 4 strings
+#define xLEX_CAT5(x1, x2, x3, x4, x5) \
+    xLEX_CAT(xLEX_CAT4(x1, x2, x3, x4), x5)
+    ///< concatenate 5 strings
+#define xLEX_CAT6(x1, x2, x3, x4, x5, x6) \
+    xLEX_CAT(xLEX_CAT5(x1, x2, x3, x4, x5), x6)
+    ///< concatenate 6 strings
+#define xLEX_CAT7(x1, x2, x3, x4, x5, x6, x7) \
+    xLEX_CAT(xLEX_CAT6(x1, x2, x3, x4, x5, x6), x7)
+    ///< concatenate 7 strings
+#define xLEX_CAT8(x1, x2, x3, x4, x5, x6, x7, x8) \
+    xLEX_CAT(xLEX_CAT7(x1, x2, x3, x4, x5, x6, x7), x8)
+    ///< concatenate 8 strings
+#define xLEX_CAT9(x1, x2, x3, x4, x5, x6, x7, x8, x9) \
+    xLEX_CAT(xLEX_CAT8(x1, x2, x3, x4, x5, x6, x7, x8), x9)
+    ///< concatenate 9 strings
 
-//--------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 // xTEXT, xT
 #if xUNICODE
     #define xTEXT(x) \
@@ -34,7 +54,7 @@
 #endif
     ///< Ansi, Unicode string
 
-//--------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 // xTEST_PRIVATE_DATA
 #if xTEST_PRIVATE_DATA
     #define private \
@@ -44,7 +64,7 @@
 #endif
     ///< for testing private class data
 
-//--------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 // xDECL, xDECL_TEMPL
 #if xOS_ENV_WIN && xDLL
     #if xAPI_EXPORTS
@@ -68,7 +88,7 @@
         // export, import DLL information
 #endif
 
-//--------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 // xFORCE_INLINE
 #if   xCOMPILER_MINGW
     #define xFORCE_INLINE \
@@ -88,7 +108,7 @@
 #endif
     ///< keyword "inline"
 
-//--------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 // xNO_INLINE
 #if   xCOMPILER_MINGW
     #define xNO_INLINE \
@@ -108,7 +128,7 @@
 #endif
     ///< keyword "no inline"
 
-//--------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 // xSTDCALL
 #if   xOS_ENV_WIN
     #define xSTDCALL \
@@ -119,7 +139,7 @@
 #endif
     ///< calling convention
 
-//--------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 // xOVERRIDE
 #if   xCOMPILER_MINGW
     #define xOVERRIDE \
@@ -139,7 +159,7 @@
 #endif
     ///< keyword "override"
 
-//--------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 // xNEW
 #if xNEW_NO_STD_THROW
     #define xNEW \
@@ -150,7 +170,7 @@
 #endif
     ///< operator "new"
 
-//--------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 // xWARN_UNUSED_RV
 #if   xCOMPILER_MINGW
     #define xWARN_UNUSED_RV \
@@ -169,7 +189,7 @@
 #endif
     ///< give a warning if the return value of function was not used
 
-//--------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 // namespace
 #define xNAMESPACE_BEGIN(n) \
         namespace n {
@@ -185,7 +205,7 @@
         }
         ///< end anonymous namespace
 
-//--------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 // TODO: converters
 #if xUNICODE
     #define xS2TS(s) \
@@ -210,7 +230,7 @@
     std::tstring_t( (us).begin(), (us).begin() + (us).size() )
     ///< convert std::ustring_t to std::tstring_t
 
-//--------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 // utils
 #define xPTR_DELETE(p) \
     { CxUtils::ptrDeleteT(p); }
@@ -249,7 +269,7 @@
     ( CxUtils::intToBoolT(i) )
     ///< convert int_t to bool_t
 
-//--------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 // xUNUSED
 #if   xCOMPILER_MINGW || xCOMPILER_MS
     #define xUNUSED(arg) \
@@ -266,13 +286,13 @@
 #endif
     ///< hide "unused variable" warnings
 
-//--------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 // xUNKNOWN_CSTRING
 #define xUNKNOWN_CSTRING \
     xT("[unknown]")
     ///< C string as unknown value
 
-//--------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 // temporary enable/disable code
 #define xTEMP_ENABLED                   1
     ///< temporary code enabled
@@ -299,7 +319,7 @@
 #define xNOT_AVAILABLE                  // n/a
     ///< code not available
 
-//--------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 // build in macros
 
 // xFILE
@@ -379,7 +399,7 @@
     ///< Expands to an integer starting with 0 and
     ///< incrementing by 1 every time it is used in a compiland
 
-//-------------------------------------
+//-------------------------------------------------------------------------------------------------
 // function params
 #define xIN
     ///< incoming param
@@ -388,7 +408,7 @@
 #define xIN_OUT
     ///< incoming and out coming param
 
-//-------------------------------------
+//-------------------------------------------------------------------------------------------------
 // xHOST_NAME_MAX
 #if xOS_ENV_WIN
     #if defined(MAX_COMPUTERNAME_LENGTH)
@@ -412,19 +432,19 @@
 #endif
     ///< max host name length
 
-//-------------------------------------
+//-------------------------------------------------------------------------------------------------
 // xPATH_MAX
 #define xPATH_MAX \
     ( CxPath::maxSize() )
     ///< max path length
 
-//-------------------------------------
+//-------------------------------------------------------------------------------------------------
 // xNAME_MAX
 #define xNAME_MAX \
     ( CxPath::nameMaxSize() )
     ///< max file name length
 
-//-------------------------------------
+//-------------------------------------------------------------------------------------------------
 // xLINE_MAX
 #if xOS_ENV_WIN
     #define xLINE_MAX \
@@ -442,7 +462,7 @@
 #endif
     ///< maximum length of a utility's input line, either from standard input or from a file
 
-//-------------------------------------
+//-------------------------------------------------------------------------------------------------
 // xENV_MAX
 #if xOS_ENV_WIN
     #if   xCOMPILER_MS
@@ -458,7 +478,7 @@
 #endif
     ///< maximum permissible string length of an environmental variable
 
-//-------------------------------------
+//-------------------------------------------------------------------------------------------------
 // xSTACK_TRACE_FRAMES_MAX
 #if xOS_ENV_WIN
     #if (xOS_WIN_VER <= xOS_WIN_S03)
@@ -479,7 +499,7 @@
 #endif
     ///< maximum frames for stack trace
 
-//-------------------------------------
+//-------------------------------------------------------------------------------------------------
 // xSEMAPHORE_VALUE_MAX
 #if xOS_ENV_WIN
     #define xSEMAPHORE_VALUE_MAX \
@@ -490,7 +510,7 @@
 #endif
     ///< semaphore maximum value
 
-//-------------------------------------
+//-------------------------------------------------------------------------------------------------
 // var args
 #if defined(va_start)
     #define xVA_START(val, fmt) \
@@ -517,7 +537,7 @@
     ///< Each invocation of xVA_START() must be matched by a corresponding invocation of xVA_END()
     ///< in the same function
 
-//-------------------------------------
+//-------------------------------------------------------------------------------------------------
 // qualifiers
 #if xOS_ENV_WIN
     #ifdef xARCH_X86
@@ -570,7 +590,7 @@
 #endif
     ///< qualifiers
 
-//-------------------------------------
+//-------------------------------------------------------------------------------------------------
 // xTIMEOUT_INFINITE
 #if xOS_ENV_WIN
     #define xTIMEOUT_INFINITE \
@@ -581,7 +601,7 @@
 #endif
     ///< infinite timeout
 
-//-------------------------------------
+//-------------------------------------------------------------------------------------------------
 // xPAGE_SIZE
 #if xOS_ENV_WIN
     xNA
@@ -598,7 +618,7 @@
 #endif
     ///< file system page size
 
-//-------------------------------------
+//-------------------------------------------------------------------------------------------------
 // xDIR_TEMP temporary directory
 #if xOS_ENV_WIN
     #if defined(P_tmpdir)
@@ -619,7 +639,7 @@
 #endif
     ///< temporary directory
 
-//-------------------------------------
+//-------------------------------------------------------------------------------------------------
 // xNATIVE_HANDLE_NULL, xNATIVE_HANDLE_INVALID
 #if xOS_ENV_WIN
     #define xNATIVE_HANDLE_NULL \
@@ -637,7 +657,7 @@
         ///< native handle value "invalid"
 #endif
 
-//-------------------------------------
+//-------------------------------------------------------------------------------------------------
 // xSOCKET_ERROR, xSOCKET_HANDLE_INVALID
 #if xOS_ENV_WIN
     #define xSOCKET_ERROR \
@@ -655,7 +675,7 @@
         ///< socket native handle value "null"
 #endif
 
-//-------------------------------------
+//-------------------------------------------------------------------------------------------------
 // xWND_NATIVE_HANDLE_NULL
 #if xOS_ENV_WIN
     #define xWND_NATIVE_HANDLE_NULL \
@@ -663,7 +683,7 @@
         ///< window native handle value "null"
 #endif
 
-//-------------------------------------
+//-------------------------------------------------------------------------------------------------
 // generic test for success on any status value (for Windows XP)
 #if xOS_ENV_WIN
     #ifndef NT_SUCCESS
@@ -691,14 +711,14 @@
     #endif
 #endif
 
-//-------------------------------------
+//-------------------------------------------------------------------------------------------------
 #if xOS_ENV_WIN
     #define xHOTKEY(modifier, key) \
         ((((modifier) & 0xFF) << 8) | ((key) & 0xFF))
         ///< hot key
 #endif
 
-//-------------------------------------
+//-------------------------------------------------------------------------------------------------
 // xFOREACH, xFOREVER
 #define xFOREACH(it_t, it, cont) \
     for (it_t::iterator               it((cont).begin());  it != (cont).end();  ++ it)
@@ -720,7 +740,7 @@
     for ( ; ; )
     ///< infinite loop
 
-//-------------------------------------
+//-------------------------------------------------------------------------------------------------
 // xTHROW, xTRY, xCATCH_ALL
 #define xTHROW \
     throw CxException
@@ -743,7 +763,7 @@
     }
     ///< catch CxException, std::exception and all other exceptions
 
-//--------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 // header only library
 #define xEXTERN_HO \
     extern
@@ -751,7 +771,7 @@
     inline
     ///< keywords for header only library
 
-//--------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 // class disallows
 #define xNO_COPY(class_name) \
     private: \
