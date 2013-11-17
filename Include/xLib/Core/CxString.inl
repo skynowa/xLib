@@ -17,6 +17,7 @@
 #include <xLib/Debug/CxDebugger.h>
 #include <xLib/Debug/CxStackTrace.h>
 #include <xLib/Log/CxTracer.h>
+#include <xLib/Debug/CxStdDebug.h>
 
 
 xNAMESPACE_BEGIN(NxLib)
@@ -248,7 +249,7 @@ CxString::strToWStr(
     std::wstring::iterator      itToBegin( swRv.begin() );
 
     for ( ; itBegin != itEnd; ++ itBegin, ++ itToBegin) {
-        *itToBegin = std::use_facet< std::ctype<wchar_t> >( a_locale ).widen( *itBegin );
+        *itToBegin = std::use_facet< std::ctype<wchar_t> >( a_locale ).widen(*itBegin);
     }
 
     return swRv;
@@ -271,7 +272,7 @@ CxString::wstrToStr(
 
     std::string      asRv(a_stdWString.size(), std::wstring::value_type());
 
-    const codecvt_t &cvt       = std::use_facet<codecvt_t>( a_locale );
+    const codecvt_t &codec     = std::use_facet<codecvt_t>( a_locale );
     state_type_t     state;
 
     const wchar_t   *itBegin   = &a_stdWString.at(0);
@@ -282,7 +283,8 @@ CxString::wstrToStr(
     char            *itToEnd   = &asRv.at(0) + asRv.size();
     char            *itToNext  = NULL;
 
-    cvt.out(state, itBegin, itEnd, itNext, itToBegin, itToEnd, itToNext);
+    // FIX: CxString::wstrToStr()
+    codec.out(state, itBegin, itEnd, itNext, itToBegin, itToEnd, itToNext);
 
     return asRv;
 }
