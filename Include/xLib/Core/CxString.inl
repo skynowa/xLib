@@ -239,6 +239,8 @@ CxString::strToWStr(
     xTEST_NA(a_stdString);
     xTEST_NA(a_locale);
 
+    xCHECK_RET(a_stdString.empty(), std::wstring());
+
     std::wstring                swRv(a_stdString.size(), std::wstring::value_type());
 
     std::string::const_iterator itBegin( a_stdString.begin() );
@@ -261,6 +263,8 @@ CxString::wstrToStr(
 {
     xTEST_NA(a_stdWString);
     xTEST_NA(a_locale);
+
+    xCHECK_RET(a_stdWString.empty(), std::string());
 
     typedef std::wstring::traits_type::state_type     state_type_t;
     typedef std::codecvt<wchar_t, char, state_type_t> codecvt_t;
