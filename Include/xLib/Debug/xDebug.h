@@ -72,8 +72,11 @@
     ///< tracing
 #define xTRACE_POINT \
     { \
-        CxTracer().write(xT("Point: %lu (file: %s, function: %s, last error: %s, line: %lu)"), \
-            xCOUNTER, xFILE, xFUNCTION, CxLastError::get().c_str(), xLINE); \
+        CxTracer() \
+            << "\t::: #" << xCOUNTER  << " " \
+            << "in "     << xFILE     << ":" << xLINE << ", " \
+            << "func: "  << xFUNCTION << ", " \
+            << "error: " << CxLastError::format() << " :::"; \
     }
     ///< trace point (use CxTracer)
 //-------------------------------------------------------------------------------------------------
