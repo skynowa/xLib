@@ -13,19 +13,18 @@
 #include <climits> // standard C libraries
 //-------------------------------------------------------------------------------------------------
 // OS environment
-#if defined(_WIN32) || defined(_WIN64) || defined(__WIN32__) || \
-        defined(__TOS_WIN__) || defined(__WINDOWS__)
+#if defined(_WIN32) || defined(_WIN64) || defined(__WIN32__) || defined(__TOS_WIN__) || \
+        defined(__WINDOWS__)
     #define xOS_ENV_WIN   1
         ///< Windows environment
 #elif defined(__unix__) || defined(__unix)
     #define xOS_ENV_UNIX  1
         ///< Unix environment
-#elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || \
-        defined(__bsdi__) || defined(__DragonFly__)
+#elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__bsdi__) || \
+        defined(__DragonFly__)
     #define xOS_ENV_BSD   1
         ///< BSD environment
-#elif defined(macintosh) || defined(Macintosh) || defined(__APPLE__) || \
-        defined(__MACH__)
+#elif defined(macintosh) || defined(Macintosh) || defined(__APPLE__) || defined(__MACH__)
     #define xOS_ENV_MAC   1
         ///< MacOS environment
 #else
@@ -34,8 +33,8 @@
 
 //-------------------------------------------------------------------------------------------------
 // OS family
-#if defined(_WIN32) || defined(_WIN64) || defined(__WIN32__) || \
-        defined(__TOS_WIN__) || defined(__WINDOWS__)
+#if defined(_WIN32) || defined(_WIN64) || defined(__WIN32__) || defined(__TOS_WIN__) || \
+        defined(__WINDOWS__)
     #define xOS_WIN     1
         ///< operating system Windows
 #elif defined(linux) || defined(__linux) || defined(__linux__)
@@ -44,8 +43,7 @@
 #elif defined(__FreeBSD__)
     #define xOS_FREEBSD 1
         ///< operating system FreeBSD
-#elif defined(macintosh) || defined(Macintosh) || defined(__APPLE__) || \
-        defined(__MACH__)
+#elif defined(macintosh) || defined(Macintosh) || defined(__APPLE__) || defined(__MACH__)
     #define xOS_MACOS   1
         ///< operating system MacOS
 #else
@@ -69,17 +67,15 @@
 
 //-------------------------------------------------------------------------------------------------
 // OS architecture
-#if defined(i386) || defined(__i386__) || defined(__i486__) || \
-        defined(__i586__) || defined(__i686__) || defined(__i386) || \
-        defined(_M_IX86) || defined(__X86__) || defined(_X86_) || \
-        defined(__THW_INTEL__) || defined(__I86__) || defined(__I86__) || \
+#if defined(i386) || defined(__i386__) || defined(__i486__) || defined(__i586__) || \
+        defined(__i686__) || defined(__i386) || defined(_M_IX86) || defined(__X86__) || \
+        defined(_X86_) || defined(__THW_INTEL__) || defined(__I86__) || defined(__I86__) || \
         defined(__INTEL__)
     #define xARCH_X86 1
         ///< architecture x86
-#elif defined(__amd64__) || defined(__amd64) || defined(__x86_64__) || \
-        defined(__x86_64) || defined(_M_X64) || defined(__ia64__) || \
-        defined(_IA64) || defined(__IA64__) || defined(__ia64) || \
-        defined(_M_IA64 )
+#elif defined(__amd64__) || defined(__amd64) || defined(__x86_64__) || defined(__x86_64) || \
+        defined(_M_X64) || defined(__ia64__) || defined(_IA64) || defined(__IA64__) || \
+        defined(__ia64) || defined(_M_IA64)
 
     #define xARCH_X64 1
         ///< architecture x64
