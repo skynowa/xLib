@@ -111,15 +111,20 @@
 
 //-------------------------------------------------------------------------------------------------
 // compiler version
+#define xVER_FULL(major, minor, patch) \
+    (major * 10000 + minor * 100 + patch)
+    ///< version builder
 
 // xCOMPILER_MINGW
 #define xCOMPILER_MINGW32_VER_MAJOR   __MINGW32_MAJOR_VERSION
 #define xCOMPILER_MINGW32_VER_MINOR   __MINGW32_MINOR_VERSION
-#define xCOMPILER_MINGW32_VER         // TODO: xCOMPILER
+#define xCOMPILER_MINGW32_VER \
+    xVER_FULL(xCOMPILER_MINGW32_VER_MAJOR, xCOMPILER_MINGW32_VER_MINOR, 0)
 
 #define xCOMPILER_MINGW64_VER_MAJOR   __MINGW64_VERSION_MAJOR // defined if <stdlib.h> is included
 #define xCOMPILER_MINGW64_VER_MINOR   __MINGW64_VERSION_MINOR
-#define xCOMPILER_MINGW64_VER         // TODO: xCOMPILER
+#define xCOMPILER_MINGW64_VER\
+    xVER_FULL(xCOMPILER_MINGW64_VER_MAJOR, xCOMPILER_MINGW64_VER_MINOR, 0)
 
 // xCOMPILER_MS
 #define xCOMPILER_MS_VER              _MSC_VER
@@ -131,13 +136,15 @@
 #define xCOMPILER_CLANG_VER_MAJOR      __clang_major__
 #define xCOMPILER_CLANG_VER_MINOR      __clang_minor__
 #define xCOMPILER_CLANG_VER_PATCHLEVEL __clang_patchlevel__
-#define xCOMPILER_CLANG_VER            // TODO: xCOMPILER
+#define xCOMPILER_CLANG_VER \
+    xVER_FULL(xCOMPILER_CLANG_VER_MAJOR, xCOMPILER_CLANG_VER_MINOR, xCOMPILER_CLANG_VER_PATCHLEVEL)
 
 // xCOMPILER_GNUC
 #define xCOMPILER_GNUC_VER_MAJOR      __GNUC__
 #define xCOMPILER_GNUC_VER_MINOR      __GNUC_MINOR__
 #define xCOMPILER_GNUC_VER_PATCHLEVEL __GNUC_PATCHLEVEL__
-#define xCOMPILER_GNUC_VER            // TODO: xCOMPILER
+#define xCOMPILER_GNUC_VER \
+    xVER_FULL(xCOMPILER_GNUC_VER_MAJOR, xCOMPILER_GNUC_VER_MINOR, xCOMPILER_GNUC_VER_PATCHLEVEL)
 
 //-------------------------------------------------------------------------------------------------
 // standard C libraries
