@@ -74,13 +74,8 @@ CxErrorReport::CxErrorReport(
         var2Value = ossRes.str();
     }
 
-    _construct(a_type,
-               a_var1,     a_var2,
-               var1Value, var2Value,
-               a_exprSign,
-               a_lastError, a_file, a_line, a_func,
-               a_date, a_time, a_stackTrace, a_comment);
-
+    _construct(a_type, a_var1, a_var2, var1Value, var2Value, a_exprSign, a_lastError, a_file,
+        a_line, a_func, a_date, a_time, a_stackTrace, a_comment);
     switch (a_type) {
     case rtMsgboxPlain:
         _initPlain();
@@ -133,9 +128,8 @@ CxErrorReport::_construct(
     sourceFile     = CxPath( CxPath(a_file).brief(reportWidthMax) ).toUnix(false);
     sourceLine     = a_line;
     functionName   = a_func;
-    expression     = CxString::format(xT("%s (%s) %s %s (%s)"),
-                                          a_var1.c_str(), a_var1Value.c_str(), a_exprSign.c_str(),
-                                          a_var2.c_str(), a_var2Value.c_str());
+    expression     = CxString::format(xT("%s (%s) %s %s (%s)"), a_var1.c_str(), a_var1Value.c_str(),
+        a_exprSign.c_str(), a_var2.c_str(), a_var2Value.c_str());
     exprSign       = a_exprSign;
     lastError      = a_lastError;
     lastErrorStr   = CxLastError::format(a_lastError);
