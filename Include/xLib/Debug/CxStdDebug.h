@@ -31,7 +31,7 @@
 #define xSTD_TRACE_POINT \
     { \
         std::printf("\t::::: #%d in %s:%d, func: %s, error: %s :::::\n", \
-            __COUNTER__, __FILE__, __LINE__, __FUNCTION__, ::strerror(errno)); \
+            __COUNTER__, __FILE__, __LINE__, __FUNCTION__, std::strerror(errno)); \
     }
     ///< trace point
 
@@ -51,7 +51,7 @@
                 __FILE__, \
                 __FUNCTION__, \
                 __LINE__, \
-                ::strerror(errno), \
+                std::strerror(errno), \
                 ::currentDateTime().c_str()); \
             \
             (void)::exit(EXIT_FAILURE); \
@@ -75,7 +75,7 @@
                     __FILE__, \
                     __FUNCTION__, \
                     __LINE__, \
-                    ::strerror(errno), \
+                    std::strerror(errno), \
                     ::currentDateTime().c_str()); \
             { \
                 do_expr; \
@@ -92,7 +92,8 @@
     xSTD_TEST_DO(expr, return ret_expr)
     ///< test macros
 
-#define xSTD_TEST_NA(expr) ;
+#define xSTD_TEST_NA(expr)
+    ;
     ///< test macros
 
 #define xSTD_ARRAY_SIZE(a) \
@@ -106,10 +107,10 @@ inline std::string
 currentDateTime()
 {
     char       srv[80 + 1] = {};
-    time_t     now         = ::time(NULL);
-    struct tm *tms         = ::localtime(&now);
+    time_t     now         = std::time(NULL);
+    struct tm *tms         = std::localtime(&now);
 
-    size_t urv = ::strftime(srv, sizeof(srv), "%Y-%m-%d.%X", tms);
+    size_t urv = std::strftime(srv, sizeof(srv), "%Y-%m-%d.%X", tms);
     if (urv == 0) {
         return std::string();
     }
