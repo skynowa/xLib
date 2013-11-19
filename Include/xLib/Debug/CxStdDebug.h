@@ -1,6 +1,6 @@
 /**
  * \file   CxStdDebug.h
- * \brief  debug by using C library and STL, header only.
+ * \brief  debug by using C library and STL
  */
 
 
