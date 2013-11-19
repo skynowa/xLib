@@ -24,36 +24,62 @@
 #include <limits.h>
 #include <assert.h>
 //-------------------------------------------------------------------------------------------------
+#define xSTD_TRACE_VAR(v) \
+    #v ": " << (v)
+    ///< variable for tracing
+
 #define xSTD_TRACE_POINT \
     { \
-        ::printf("\t::::: #%d in %s:%d, func: %s, error: %s :::::\n", \
+        std::printf("\t::::: #%d in %s:%d, func: %s, error: %s :::::\n", \
             __COUNTER__, __FILE__, __LINE__, __FUNCTION__, ::strerror(errno)); \
     }
     ///< trace point
 
-#define xSTD_TRACE_VAR(v) \
-    #v ": " << v
-    ///< variable for tracing
-
-#define xSTD_TEST_DO(expr, do_expr) \
-    if ( !(expr) ) { \
-        ::fprintf(stdout, \
-                "\n-------------------- TEST ----------------------\n" \
+#define xSTD_VERIFY(expr) \
+    { \
+        if ( !(expr) ) { \
+            std::printf( \
+                "\n--------------------------------- xSTD_VERIFY ----------------------------------\n" \
                 " Expression: %s\n" \
                 " File:       %s\n" \
                 " Function:   %s\n" \
                 " Line:       %d\n" \
                 " Last error: %s\n" \
                 " Date time:  %s\n" \
-                "--------------------------------------------------\n", \
+                "--------------------------------------------------------------------------------\n", \
                 #expr, \
                 __FILE__, \
                 __FUNCTION__, \
                 __LINE__, \
                 ::strerror(errno), \
-                currentDateTime().c_str()); \
-        { \
-            do_expr; \
+                ::currentDateTime().c_str()); \
+            \
+            (void)::exit(EXIT_FAILURE); \
+        } \
+    }
+    ///< check expression (work in debug and release modes)
+
+#define xSTD_TEST_DO(expr, do_expr) \
+    { \
+        if ( !(expr) ) { \
+            std::fprintf(stdout, \
+                    "\n------------------ xSTD_TEST --------------------\n" \
+                    " Expression: %s\n" \
+                    " File:       %s\n" \
+                    " Function:   %s\n" \
+                    " Line:       %d\n" \
+                    " Last error: %s\n" \
+                    " Date time:  %s\n" \
+                    "--------------------------------------------------\n", \
+                    #expr, \
+                    __FILE__, \
+                    __FUNCTION__, \
+                    __LINE__, \
+                    ::strerror(errno), \
+                    ::currentDateTime().c_str()); \
+            { \
+                do_expr; \
+            } \
         } \
     }
     ///< test macros

@@ -9,27 +9,6 @@
 #ifndef xLib_xDebugH
 #define xLib_xDebugH
 //-------------------------------------------------------------------------------------------------
-#define xSTD_VERIFY(expr) \
-    if ( !(expr) ) { \
-        std::ctstring_t lastError = CxLastError::format(); \
-        CxTracer().write( \
-            xT("\n--------------------------------- xSTD_VERIFY ----------------------------------\n") \
-            xT("  Expression: %s\n") \
-            xT("  File:       %s\n") \
-            xT("  Function:   %s\n") \
-            xT("  Line:       %lu\n") \
-            xT("  Last error: %s\n") \
-            xT("--------------------------------------------------------------------------------\n"), \
-            xT(#expr), \
-            xFILE, \
-            xFUNCTION, \
-            xLINE, \
-            lastError.c_str()); \
-        \
-        (void_t)::exit(EXIT_FAILURE); \
-    } \
-    ///< check expression (work in debug and release modes)
-
 #define xCHECK_RET(expr, return_expr) \
     { if (expr) { return (return_expr); } }
     ///< check expression and return value

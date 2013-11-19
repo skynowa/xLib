@@ -9,6 +9,7 @@
 #include <xLib/Core/CxUtils.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Log/CxTracer.h>
+#include <xLib/Debug/CxStdDebug.h>
 
 #if   xOS_ENV_WIN
     #if   xCOMPILER_MINGW
