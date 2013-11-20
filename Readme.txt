@@ -15,7 +15,7 @@ Feature list:
     - architecture: x86, x64
     - header only    
 
-Prerequisites:
+Pre-requisites:
     - bash-compatible Unix command shell (for Unix)
     - Doxygen 1.8.2
 
