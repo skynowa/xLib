@@ -24,7 +24,7 @@ xNAMESPACE_BEGIN(NxLib)
 //-------------------------------------------------------------------------------------------------
 xINLINE_HO
 CxBackuper::CxBackuper(
-    cExBackupPeriod &a_period
+    cExPeriod &a_period
 ) :
     _period(a_period)
 {
@@ -35,7 +35,7 @@ CxBackuper::fileExec(
     std::ctstring_t &a_filePath,
     std::ctstring_t &a_destDirPath,
     std::tstring_t  *a_destFilePath
-) const
+) const /* throw(CxException) */
 {
     xTEST_EQ(false, a_filePath.empty());
     xTEST_EQ(false, a_destDirPath.empty());
