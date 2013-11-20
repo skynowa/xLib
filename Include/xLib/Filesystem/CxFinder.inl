@@ -29,7 +29,7 @@ xNAMESPACE_BEGIN(NxLib)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO
+inline
 CxFinder::CxFinder(
     std::ctstring_t &a_rootDirPath,   ///< target root dir
     std::ctstring_t &a_shellFilter    ///< shell wildcard pattern
@@ -45,26 +45,26 @@ CxFinder::CxFinder(
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE_HO
+inline
 CxFinder::~CxFinder() {
     close();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO std::ctstring_t &
+inline std::ctstring_t &
 CxFinder::rootDirPath() const {
     xTEST_EQ(false, _rootDirPath.empty());
 
     return _rootDirPath;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO std::ctstring_t &
+inline std::ctstring_t &
 CxFinder::shellFilter() const {
     xTEST_EQ(false, _shellFilter.empty());
 
     return _shellFilter;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxFinder::entryName() const {
     xTEST_EQ(true, isValid());
 
@@ -81,7 +81,7 @@ CxFinder::entryName() const {
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxFinder::entryPath() const {
     xTEST_EQ(true, isValid());
 
@@ -92,7 +92,7 @@ CxFinder::entryPath() const {
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO CxFileType::types_t
+inline CxFileType::types_t
 CxFinder::fileTypes() const {
     xTEST_EQ(true, isValid());
 
@@ -136,7 +136,7 @@ CxFinder::fileTypes() const {
     return ftRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxFinder::isValid() const {
 #if xOS_ENV_WIN
     xCHECK_RET(xNATIVE_HANDLE_INVALID == _enrty.handle, false);
@@ -149,7 +149,7 @@ CxFinder::isValid() const {
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxFinder::moveNext() {
     // xTEST_EQ(true, isValid());
 
@@ -188,7 +188,7 @@ CxFinder::moveNext() {
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxFinder::close() {
     _isMoveFirst = true;
 
@@ -226,7 +226,7 @@ CxFinder::close() {
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxFinder::dirs(
     std::ctstring_t    &a_rootDirPath,    ///< target root dir
     std::ctstring_t    &a_shellFilter,    ///< shell wildcard pattern
@@ -261,7 +261,7 @@ CxFinder::dirs(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxFinder::files(
     std::ctstring_t    &a_rootDirPath,   ///< target root dir
     std::ctstring_t    &a_shellFilter,   ///< shell wildcard pattern
@@ -311,7 +311,7 @@ CxFinder::files(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxFinder::_moveFirst() {
     xTEST_EQ(false, isValid());
 

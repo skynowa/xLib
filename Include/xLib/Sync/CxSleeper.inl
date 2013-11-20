@@ -12,14 +12,14 @@ xNAMESPACE_BEGIN(NxLib)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO
+inline
 CxSleeper::CxSleeper() :
     _event(false, false)
 {
     _event.create();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxSleeper::sleep(
     culong_t &a_timeoutMsec  ///< in milliseconds
 )
@@ -30,14 +30,14 @@ CxSleeper::sleep(
     xTEST_EQ(true, CxEvent::osSignaled == osRv || CxEvent::osTimeout == osRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxSleeper::wakeUp() {
     // n/a
 
     _event.set();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxSleeper::isSleeping() {
     // n/a
 

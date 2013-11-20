@@ -20,13 +20,13 @@ xNAMESPACE_BEGIN(NxLib)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO const CxIpcMutex::handle_t &
+inline const CxIpcMutex::handle_t &
 CxIpcMutex::handle() const
 {
     return _handle;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxIpcMutex::create(
     std::ctstring_t &a_name
 )
@@ -65,7 +65,7 @@ CxIpcMutex::create(
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxIpcMutex::open(
     std::ctstring_t &a_name
 )
@@ -97,7 +97,7 @@ CxIpcMutex::open(
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxIpcMutex::lock(
     culong_t &a_timeoutMsec
 ) const
@@ -162,7 +162,7 @@ CxIpcMutex::lock(
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxIpcMutex::unlock() const
 {
     ////xTEST_EQ(true, _handle.bIsValid(), false);

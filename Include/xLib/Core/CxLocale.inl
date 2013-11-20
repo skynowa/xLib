@@ -23,7 +23,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxLocale::current()
 {
     // n/a
@@ -57,7 +57,7 @@ CxLocale::current()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxLocale::setCurrent(
     std::ctstring_t &a_locale
 )
@@ -71,7 +71,7 @@ CxLocale::setCurrent(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxLocale::setDefault()
 {
     setCurrent( CxLocale::current() );

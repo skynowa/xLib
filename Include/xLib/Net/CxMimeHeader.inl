@@ -13,7 +13,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO
+inline
 CxMimeHeader::CxMimeHeader() :
     _attrDelimiter(xT(":")),
     _endOfHeader  (xT("\r\n\r\n")),
@@ -21,7 +21,7 @@ CxMimeHeader::CxMimeHeader() :
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxMimeHeader::parse(
     std::ctstring_t &a_rawHeader
 )
@@ -111,7 +111,7 @@ CxMimeHeader::parse(
 }
 //-------------------------------------------------------------------------------------------------
 //DONE: sGetField
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxMimeHeader::field(
     std::ctstring_t &a_name
 )
@@ -133,7 +133,7 @@ CxMimeHeader::field(
 }
 //-------------------------------------------------------------------------------------------------
 //DONE: uiCount
-xINLINE_HO size_t
+inline size_t
 CxMimeHeader::count()
 {
     return _header.size();
@@ -182,7 +182,7 @@ CxMimeHeader::count()
     }
 #endif
 
-xINLINE_HO void_t
+inline void_t
 CxMimeHeader::loadFromFile(
     std::ctstring_t &a_rawMessageFilePath
 )
@@ -222,7 +222,7 @@ CxMimeHeader::loadFromFile(
 }
 //-------------------------------------------------------------------------------------------------
 //TODO: bSaveToFile
-xINLINE_HO void_t
+inline void_t
 CxMimeHeader::saveToFile(
     std::ctstring_t &a_filePath
 )
@@ -232,7 +232,7 @@ CxMimeHeader::saveToFile(
 //-------------------------------------------------------------------------------------------------
 //TODO: sGenerateMessageID (������� Message-ID ��� "<", ">")
 /* static */
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxMimeHeader::generateMessageID()
 {
     std::tstring_t sRv;

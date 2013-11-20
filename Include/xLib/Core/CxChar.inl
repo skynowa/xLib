@@ -16,7 +16,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO bool_t
+inline bool_t
 CxChar::isAlphaNum(
     ctchar_t &a_ch
 )
@@ -25,7 +25,7 @@ CxChar::isAlphaNum(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO bool_t
+inline bool_t
 CxChar::isAlpha(
     ctchar_t &a_ch
 )
@@ -34,7 +34,7 @@ CxChar::isAlpha(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO bool_t
+inline bool_t
 CxChar::isControl(
     ctchar_t &a_ch
 )
@@ -43,7 +43,7 @@ CxChar::isControl(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO bool_t
+inline bool_t
 CxChar::isDigitDec(
     ctchar_t &a_ch
 )
@@ -52,7 +52,7 @@ CxChar::isDigitDec(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO bool_t
+inline bool_t
 CxChar::isDigitHex(
     ctchar_t &a_ch
 )
@@ -61,7 +61,7 @@ CxChar::isDigitHex(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO bool_t
+inline bool_t
 CxChar::isGraph(
     ctchar_t &a_ch
 )
@@ -70,7 +70,7 @@ CxChar::isGraph(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO bool_t
+inline bool_t
 CxChar::isPrint(
     ctchar_t &a_ch
 )
@@ -79,7 +79,7 @@ CxChar::isPrint(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO bool_t
+inline bool_t
 CxChar::isPunct(
     ctchar_t &a_ch
 )
@@ -88,7 +88,7 @@ CxChar::isPunct(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO bool_t
+inline bool_t
 CxChar::isSpace(
     ctchar_t &a_ch
 )
@@ -97,7 +97,7 @@ CxChar::isSpace(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO bool_t
+inline bool_t
 CxChar::isLower(
     ctchar_t &a_ch
 )
@@ -106,7 +106,7 @@ CxChar::isLower(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO bool_t
+inline bool_t
 CxChar::isUpper(
     ctchar_t &a_ch
 )
@@ -115,7 +115,7 @@ CxChar::isUpper(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO tchar_t
+inline tchar_t
 CxChar::toLower(
     ctchar_t &a_ch
 )
@@ -124,7 +124,7 @@ CxChar::toLower(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO tchar_t
+inline tchar_t
 CxChar::toUpper(
     ctchar_t &a_ch
 )

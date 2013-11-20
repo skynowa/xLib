@@ -18,7 +18,7 @@ xNAMESPACE_BEGIN(NxLib)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO CxConsole::CxConsole()
+inline CxConsole::CxConsole()
 #if xOS_ENV_WIN
     :
     _wnd          (NULL),
@@ -54,7 +54,7 @@ xINLINE_HO CxConsole::CxConsole()
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO CxConsole::~CxConsole()
+inline CxConsole::~CxConsole()
 {
 #if xOS_ENV_WIN
     (native_handle_t)_stdIn.detach();
@@ -62,7 +62,7 @@ xINLINE_HO CxConsole::~CxConsole()
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxConsole::setAttributes(
     const ExForeground &a_foreground,
     const ExBackground &a_background,
@@ -282,7 +282,7 @@ CxConsole::setAttributes(
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxConsole::setAttributesDef()
 {
 #if xOS_ENV_WIN
@@ -306,7 +306,7 @@ CxConsole::setAttributesDef()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxConsole::read()
 {
 #if xOS_ENV_WIN
@@ -334,7 +334,7 @@ CxConsole::read()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxConsole::write(
     std::ctstring_t &a_str
 )
@@ -361,7 +361,7 @@ CxConsole::write(
     std::tcout.flush();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxConsole::writeLine(
     std::ctstring_t &a_str /* = xT("") */
 )
@@ -375,7 +375,7 @@ CxConsole::writeLine(
     write(a_str + CxConst::nl());
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxConsole::writeErrLine(
     std::ctstring_t &a_str
 )
@@ -391,7 +391,7 @@ CxConsole::writeErrLine(
     pause(xTIMEOUT_INFINITE);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO CxConsole::ExModalResult
+inline CxConsole::ExModalResult
 CxConsole::msgBox(
     std::ctstring_t &a_text,
     std::ctstring_t &a_title,
@@ -445,7 +445,7 @@ CxConsole::msgBox(
     return mrRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxConsole::prompt(
     std::ctstring_t &a_prompt,
     cbool_t         &a_isVisible,
@@ -487,7 +487,7 @@ CxConsole::prompt(
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxConsole::pause(
     culong_t &a_timeoutMsec
 )
@@ -532,7 +532,7 @@ CxConsole::pause(
 	}
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxConsole::clear() {
 #if xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _wnd);
@@ -574,7 +574,7 @@ CxConsole::clear() {
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxConsole::enableClose(
     cbool_t &a_flag
 )
@@ -609,7 +609,7 @@ CxConsole::enableClose(
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxConsole::title()
 {
 #if xOS_ENV_WIN
@@ -637,7 +637,7 @@ CxConsole::title()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxConsole::setTitle(
     std::ctstring_t &a_title
 )
@@ -657,7 +657,7 @@ CxConsole::setTitle(
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxConsole::setFullScreen()
 {
 #if xOS_ENV_WIN
@@ -692,7 +692,7 @@ CxConsole::setFullScreen()
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxConsole::centerWindow()
 {
 #if xOS_ENV_WIN
@@ -736,7 +736,7 @@ CxConsole::centerWindow()
 //-------------------------------------------------------------------------------------------------
 #if xOS_ENV_WIN
 
-xINLINE_HO HWND
+inline HWND
 CxConsole::_wndHandle()
 {
     HWND           hRv = NULL;
@@ -770,7 +770,7 @@ CxConsole::_wndHandle()
 //-------------------------------------------------------------------------------------------------
 #if xOS_ENV_WIN
 
-xINLINE_HO HMENU
+inline HMENU
 CxConsole::_menuHandle(
     cbool_t &a_isRevert
 )

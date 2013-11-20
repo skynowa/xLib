@@ -44,7 +44,7 @@ xNAMESPACE_BEGIN(NxLib)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO
+inline
 CxStackTrace::CxStackTrace(
     std::ctstring_t &a_linePrefix,         /* = xT("\t") */
     std::ctstring_t &a_elementSeparator,   /* = xT("  ") */
@@ -60,7 +60,7 @@ CxStackTrace::CxStackTrace(
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxStackTrace::get(
     std::vector<std::vec_tstring_t> *a_stack
 )
@@ -280,7 +280,7 @@ CxStackTrace::get(
     std::swap(*a_stack, stack);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxStackTrace::toString()
 {
     std::tstring_t sRv;
@@ -301,7 +301,7 @@ CxStackTrace::toString()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxStackTrace::_format(
     std::vector<std::vec_tstring_t> *a_stack
 )
@@ -344,7 +344,7 @@ CxStackTrace::_format(
 #if !xOS_ENV_WIN
 
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxStackTrace::_addr2Line(
     cvoid_t        *a_symbolAddress,
     std::tstring_t *a_filePath,

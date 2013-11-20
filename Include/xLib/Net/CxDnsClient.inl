@@ -25,7 +25,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxDnsClient::hostAddrByName(
     std::ctstring_t &a_hostName,
     std::tstring_t  *a_hostAddr
@@ -55,7 +55,7 @@ CxDnsClient::hostAddrByName(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxDnsClient::hostNameByAddr(
     std::ctstring_t                 &a_hostAddr,
     const CxSocket::ExAddressFamily &a_family,
@@ -102,7 +102,7 @@ CxDnsClient::hostNameByAddr(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxDnsClient::localHostName(
     std::tstring_t *a_hostName
 )
@@ -122,7 +122,7 @@ CxDnsClient::localHostName(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxDnsClient::nameInfo(
     CxSocket::ExAddressFamily &a_family,
     std::ctstring_t           &a_hostAddr,
@@ -154,7 +154,7 @@ CxDnsClient::nameInfo(
 //-------------------------------------------------------------------------------------------------
 //NOTE: http://www.geekpage.jp/en/programming/linux-network/getaddrinfo-0.php
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxDnsClient::hostAddrInfo(
     std::ctstring_t  &a_hostName,
     std::ctstring_t  &a_port,
@@ -172,7 +172,7 @@ CxDnsClient::hostAddrInfo(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxDnsClient::protocolByName(
     std::ctstring_t    &a_protocolName,
     std::tstring_t     *a_name,
@@ -222,7 +222,7 @@ CxDnsClient::protocolByName(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxDnsClient::protocolByNumber(
     cshort_t           &a_number,
     std::tstring_t     *a_name,
@@ -269,7 +269,7 @@ CxDnsClient::protocolByNumber(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxDnsClient::serviceByName(
     std::ctstring_t    &a_serviceName,
     std::ctstring_t    &a_protocolName,
@@ -330,7 +330,7 @@ CxDnsClient::serviceByName(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxDnsClient::serviceByPort(
     cshort_t           &a_port,
     std::ctstring_t    &a_protocolName,
@@ -390,7 +390,7 @@ CxDnsClient::serviceByPort(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO bool_t
+inline bool_t
 CxDnsClient::isOnLan(
     culong_t &a_ip
 )
@@ -402,7 +402,7 @@ CxDnsClient::isOnLan(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO bool_t
+inline bool_t
 CxDnsClient::isBroadcast(
     culong_t &a_ip
 )

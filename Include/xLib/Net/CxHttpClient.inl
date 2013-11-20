@@ -18,13 +18,13 @@
 xNAMESPACE_BEGIN(NxLib)
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO
+inline
 CxHttpClient::CxHttpClient()
 {
 }
 //-------------------------------------------------------------------------------------------------
 //TODO: bHead ()
-xINLINE_HO void_t
+inline void_t
 CxHttpClient::head(
     std::ctstring_t &a_url,
     std::tstring_t  *a_response
@@ -47,7 +47,7 @@ CxHttpClient::head(
 }
 //-------------------------------------------------------------------------------------------------
 //TODO: bGet ()
-xINLINE_HO void_t
+inline void_t
 CxHttpClient::get(
     std::ctstring_t &a_url,
     std::tstring_t  *a_response
@@ -57,7 +57,7 @@ CxHttpClient::get(
 }
 //-------------------------------------------------------------------------------------------------
 //TODO: bPost ()
-xINLINE_HO void_t
+inline void_t
 CxHttpClient::post(
     std::ctstring_t &a_url,
     std::ctstring_t &a_params,
@@ -68,7 +68,7 @@ CxHttpClient::post(
 }
 //-------------------------------------------------------------------------------------------------
 //TODO: bOptions ()
-xINLINE_HO void_t
+inline void_t
 CxHttpClient::options(
     std::ctstring_t &a_url
 )
@@ -77,7 +77,7 @@ CxHttpClient::options(
 }
 //-------------------------------------------------------------------------------------------------
 //TODO: bTrace ()
-xINLINE_HO void_t
+inline void_t
 CxHttpClient::trace(
     std::ctstring_t &a_url
 )
@@ -86,7 +86,7 @@ CxHttpClient::trace(
 }
 //-------------------------------------------------------------------------------------------------
 //TODO: bPut ()
-xINLINE_HO void_t
+inline void_t
 CxHttpClient::put(
     std::ctstring_t &a_url
 )
@@ -95,7 +95,7 @@ CxHttpClient::put(
 }
 //-------------------------------------------------------------------------------------------------
 //TODO: del ()
-xINLINE_HO void_t
+inline void_t
 CxHttpClient::del(
     std::ctstring_t &a_url
 )
@@ -104,7 +104,7 @@ CxHttpClient::del(
 }
 //-------------------------------------------------------------------------------------------------
 //TODO: bConnect ()
-xINLINE_HO void_t
+inline void_t
 CxHttpClient::connect(
     std::ctstring_t &a_url
 )
@@ -113,7 +113,7 @@ CxHttpClient::connect(
 }
 //-------------------------------------------------------------------------------------------------
 //TODO: bPatch ()
-xINLINE_HO void_t
+inline void_t
 CxHttpClient::patch(
     std::ctstring_t &a_url
 )
@@ -122,7 +122,7 @@ CxHttpClient::patch(
 }
 //-------------------------------------------------------------------------------------------------
 //TODO: bLink ()
-xINLINE_HO void_t
+inline void_t
 CxHttpClient::link(
     std::ctstring_t &a_url
 )
@@ -131,7 +131,7 @@ CxHttpClient::link(
 }
 //-------------------------------------------------------------------------------------------------
 //TODO: bUnlink ()
-xINLINE_HO void_t
+inline void_t
 CxHttpClient::unlink(
     std::ctstring_t &a_url
 )

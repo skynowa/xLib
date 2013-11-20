@@ -19,7 +19,7 @@ xNAMESPACE_BEGIN(NxLib)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO
+inline
 CxTestManager::CxTestManager(
     cbool_t &a_isUseTracing
 ) :
@@ -32,7 +32,7 @@ CxTestManager::CxTestManager(
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE_HO
+inline
 CxTestManager::~CxTestManager()
 {
     std::for_each(_tests.begin(), _tests.end(), SDelete());
@@ -41,7 +41,7 @@ CxTestManager::~CxTestManager()
     xCHECK_DO(_isUseTracing, xTRACE(xT("\n")));
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxTestManager::add(
     CxTest *a_test
 )
@@ -57,7 +57,7 @@ CxTestManager::add(
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxTestManager::run(
     culonglong_t &a_allLoops,
     culonglong_t &a_unitLoops,

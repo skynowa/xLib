@@ -15,7 +15,7 @@ xNAMESPACE_BEGIN(NxLib)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO
+inline
 CxAutoProfiler::CxAutoProfiler(
     std::ctstring_t &a_filePath,
     ctchar_t        *a_comment, ...
@@ -37,7 +37,7 @@ CxAutoProfiler::CxAutoProfiler(
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE_HO
+inline
 CxAutoProfiler::~CxAutoProfiler()
 {
     size_t uiRv = _profiler.stop(xT("%s"), _comment.c_str());

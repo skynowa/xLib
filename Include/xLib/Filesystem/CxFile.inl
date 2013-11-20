@@ -24,7 +24,7 @@ xNAMESPACE_BEGIN(NxLib)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO
+inline
 CxFile::CxFile() :
     _file    (NULL),
     _filePath()
@@ -32,7 +32,7 @@ CxFile::CxFile() :
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE_HO
+inline
 CxFile::~CxFile()
 {
     close();
@@ -46,7 +46,7 @@ CxFile::~CxFile()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxFile::create(
     std::ctstring_t  &a_filePath,
     const ExOpenMode &a_mode,
@@ -77,7 +77,7 @@ CxFile::create(
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxFile::reopen(
     std::ctstring_t  &a_filePath,
     const ExOpenMode &a_mode,
@@ -108,7 +108,7 @@ CxFile::reopen(
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO std::FILE *
+inline std::FILE *
 CxFile::get() const
 {
     xTEST_EQ(true, isValid());
@@ -116,7 +116,7 @@ CxFile::get() const
     return _file;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO std::ctstring_t &
+inline std::ctstring_t &
 CxFile::path() const
 {
     xTEST_EQ(false, _filePath.empty());
@@ -125,7 +125,7 @@ CxFile::path() const
     return _filePath;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxFile::attach(
     std::FILE *a_file
 )
@@ -138,7 +138,7 @@ CxFile::attach(
     _filePath = CxConst::strEmpty();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO std::FILE *
+inline std::FILE *
 CxFile::detach()
 {
     std::FILE *file = get();
@@ -156,7 +156,7 @@ CxFile::detach()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO size_t
+inline size_t
 CxFile::read(
     void_t       *a_buff,
     std::csize_t &a_count
@@ -171,7 +171,7 @@ CxFile::read(
     return uiRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO size_t
+inline size_t
 CxFile::write(
     cvoid_t      *a_buff,
     std::csize_t &a_count
@@ -186,7 +186,7 @@ CxFile::write(
     return uiRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxFile::read(
     std::ustring_t *a_buff
 ) const
@@ -205,7 +205,7 @@ CxFile::read(
     xTEST_EQ(a_buff->size(), uiRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxFile::write(
     std::custring_t &a_buff
 ) const
@@ -217,7 +217,7 @@ CxFile::write(
     xTEST_EQ(a_buff.size(), uiRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxFile::read(
     std::tstring_t *a_buff
 ) const
@@ -236,7 +236,7 @@ CxFile::read(
     xTEST_EQ(a_buff->size(), uiRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO int_t
+inline int_t
 CxFile::write(
     ctchar_t *a_format, ...
 ) const
@@ -254,7 +254,7 @@ CxFile::write(
     return iRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO int_t
+inline int_t
 CxFile::writeV(
     ctchar_t *a_format,
     va_list   a_args
@@ -269,7 +269,7 @@ CxFile::writeV(
     return iRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxFile::readLine(
     std::tstring_t *a_str,
     std::csize_t   &a_maxCount
@@ -290,7 +290,7 @@ CxFile::readLine(
     a_str->swap(str);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxFile::writeLine(
     std::ctstring_t &a_str
 ) const
@@ -301,7 +301,7 @@ CxFile::writeLine(
     xTEST_DIFF(- 1, iRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO tchar_t
+inline tchar_t
 CxFile::readChar() const
 {
     twint_t iRv = std::xTFGETC(get());
@@ -310,7 +310,7 @@ CxFile::readChar() const
     return static_cast<tchar_t>( iRv );
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxFile::writeChar(
     ctchar_t &a_ch
 ) const
@@ -322,7 +322,7 @@ CxFile::writeChar(
     xTEST_EQ(a_ch, static_cast<tchar_t>( iRv ));
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxFile::ungetChar(
     ctchar_t &a_ch
 ) const
@@ -334,7 +334,7 @@ CxFile::ungetChar(
     xTEST_EQ(a_ch, static_cast<tchar_t>( iRv ));
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxFile::clear() const
 {
     resize(0L);
@@ -348,7 +348,7 @@ CxFile::clear() const
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxFile::locking(
     const ExLockingMode &a_mode,
     clong_t             &a_bytes
@@ -367,7 +367,7 @@ CxFile::locking(
     xTEST_DIFF(- 1, iRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxFile::setPosition(
     clong_t                 &a_offset,
     const ExPointerPosition &a_pos
@@ -380,7 +380,7 @@ CxFile::setPosition(
     xTEST_DIFF(- 1, iRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO long_t
+inline long_t
 CxFile::position() const {
     long_t liRv = std::ftell(get());
     xTEST_DIFF(- 1L, liRv);
@@ -388,7 +388,7 @@ CxFile::position() const {
     return liRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxFile::setVBuff(
     char                  *a_buff,
     const ExBufferingMode &a_mode,
@@ -405,7 +405,7 @@ CxFile::setVBuff(
 //-------------------------------------------------------------------------------------------------
 #if xOS_ENV_WIN
 
-xINLINE_HO void_t
+inline void_t
 CxFile::setMode(
     const ExTranslationMode &a_mode
 ) const
@@ -419,7 +419,7 @@ CxFile::setMode(
 #endif
 //-------------------------------------------------------------------------------------------------
 // NOTE: https://www.securecoding.cert.org/confluence/display/seccode/FIO19-C.+Do+not+use+fseek()+and+ftell()+to+compute+the+size+of+a+file
-xINLINE_HO longlong_t
+inline longlong_t
 CxFile::size() const
 {
 #if xDEPRECIATE
@@ -446,7 +446,7 @@ CxFile::size() const
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxFile::resize(
     clonglong_t &a_size
 ) const
@@ -471,19 +471,19 @@ CxFile::resize(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxFile::isValid() const
 {
     return (NULL != _file);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxFile::isOpen() const
 {
     return isValid();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxFile::isEmpty() const
 {
     longlong_t fileSize = size();
@@ -492,7 +492,7 @@ CxFile::isEmpty() const
     return (0LL == fileSize);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxFile::isEof() const
 {
     bool_t bRv = xINT_TO_BOOL( std::feof(get()) );
@@ -501,7 +501,7 @@ CxFile::isEof() const
     return bRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxFile::isError() const
 {
     bool_t bRv = xINT_TO_BOOL( std::ferror(get()) );
@@ -510,7 +510,7 @@ CxFile::isError() const
     return bRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxFile::errorClear() const
 {
     (void_t)std::clearerr( get() );
@@ -524,14 +524,14 @@ CxFile::errorClear() const
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxFile::flush() const
 {
     int_t iRv = std::fflush(get());
     xTEST_DIFF(EOF, iRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxFile::close()
 {
     xCHECK_DO(!isValid(), return);
@@ -551,7 +551,7 @@ CxFile::close()
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO bool_t
+inline bool_t
 CxFile::isFile(
     std::ctstring_t &a_filePath
 )
@@ -585,7 +585,7 @@ CxFile::isFile(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO bool_t
+inline bool_t
 CxFile::isExists(
     std::ctstring_t &a_filePath
 )
@@ -601,7 +601,7 @@ CxFile::isExists(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxFile::isExistsEx(
     std::ctstring_t &a_filePath
 )
@@ -628,7 +628,7 @@ CxFile::isExistsEx(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxFile::access(
     std::ctstring_t    &a_filePath,
     const ExAccessMode &a_mode
@@ -642,7 +642,7 @@ CxFile::access(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxFile::chmod(
     std::ctstring_t        &a_filePath,
     const ExPermissionMode &a_mode
@@ -662,7 +662,7 @@ CxFile::chmod(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxFile::clear(
     std::ctstring_t &a_filePath
 )
@@ -676,7 +676,7 @@ CxFile::clear(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxFile::remove(
     std::ctstring_t &a_filePath
 )
@@ -693,7 +693,7 @@ CxFile::remove(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxFile::tryRemove(
     std::ctstring_t &a_filePath,
     std::csize_t    &a_attempts,
@@ -719,7 +719,7 @@ CxFile::tryRemove(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxFile::wipe(
     std::ctstring_t &a_filePath,
     std::csize_t    &a_passes
@@ -820,7 +820,7 @@ CxFile::wipe(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxFile::unlink(
     std::ctstring_t &a_filePath
 )
@@ -832,7 +832,7 @@ CxFile::unlink(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxFile::rename(
     std::ctstring_t &a_filePathOld,
     std::ctstring_t &a_filePathNew
@@ -846,7 +846,7 @@ CxFile::rename(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxFile::move(
     std::ctstring_t &a_filePath,
     std::ctstring_t &a_dirPath
@@ -859,7 +859,7 @@ CxFile::move(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxFile::copy(
     std::ctstring_t &a_filePathFrom,
     std::ctstring_t &a_filePathTo,
@@ -915,7 +915,7 @@ CxFile::copy(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO longlong_t
+inline longlong_t
 CxFile::size(
     std::ctstring_t &a_filePath
 )
@@ -933,7 +933,7 @@ CxFile::size(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO ulonglong_t
+inline ulonglong_t
 CxFile::lines(
     std::ctstring_t &a_filePath
 )
@@ -957,7 +957,7 @@ CxFile::lines(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxFile::time(
     std::ctstring_t &a_filePath,
     time_t          *a_create,
@@ -1000,7 +1000,7 @@ CxFile::time(
 }
 //-------------------------------------------------------------------------------------------------
 /*static */
-xINLINE_HO void_t
+inline void_t
 CxFile::setTime(
     std::ctstring_t &a_filePath,
     const time_t    &a_create,
@@ -1052,7 +1052,7 @@ CxFile::setTime(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxFile::textRead(
     std::ctstring_t &a_filePath,
     std::tstring_t  *a_content
@@ -1081,7 +1081,7 @@ CxFile::textRead(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxFile::textWrite(
     std::ctstring_t &a_filePath,
     std::ctstring_t &a_content
@@ -1103,7 +1103,7 @@ CxFile::textWrite(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxFile::textRead(
     std::ctstring_t    &a_filePath,
     std::vec_tstring_t *a_content
@@ -1125,7 +1125,7 @@ CxFile::textRead(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxFile::textWrite(
     std::ctstring_t     &a_filePath,
     std::cvec_tstring_t &a_content
@@ -1144,7 +1144,7 @@ CxFile::textWrite(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxFile::textRead(
     std::ctstring_t    &a_filePath,
     std::ctstring_t    &a_separator,
@@ -1207,7 +1207,7 @@ CxFile::textRead(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxFile::textWrite(
     std::ctstring_t     &a_filePath,
     std::ctstring_t     &a_separator,
@@ -1254,7 +1254,7 @@ CxFile::textWrite(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxFile::binRead(
     std::ctstring_t &a_filePath,
     std::ustring_t  *a_content
@@ -1283,7 +1283,7 @@ CxFile::binRead(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxFile::binWrite(
     std::ctstring_t &a_filePath,
     std::custring_t &a_content
@@ -1312,7 +1312,7 @@ CxFile::binWrite(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO int_t
+inline int_t
 CxFile::_nativeHandle(
     std::FILE *a_file
 )
@@ -1326,7 +1326,7 @@ CxFile::_nativeHandle(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::FILE *
+inline std::FILE *
 CxFile::_stdHandle(
     int_t             a_fileHandle,
     const ExOpenMode &a_mode
@@ -1342,7 +1342,7 @@ CxFile::_stdHandle(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxFile::_openMode(
     const ExOpenMode &a_mode
 )

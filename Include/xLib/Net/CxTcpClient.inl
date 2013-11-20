@@ -24,14 +24,14 @@ xNAMESPACE_BEGIN(NxLib)
 
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE_HO
+inline
 CxTcpClient::CxTcpClient() :
     _timeout()
 {
     setTimeout(0L, SOCKET_TIMEOUT);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxTcpClient::isReadable()
 {
     timeval timeout_ = {1, 0};   /* seconds, microseconds */
@@ -45,7 +45,7 @@ CxTcpClient::isReadable()
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxTcpClient::isWritable()
 {
     timeval timeout_ = {1, 0};   /* seconds, microseconds */
@@ -59,7 +59,7 @@ CxTcpClient::isWritable()
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxTcpClient::connect(
     std::ctstring_t &a_ip,
     cushort_t       &a_port
@@ -82,7 +82,7 @@ CxTcpClient::connect(
     xTEST_DIFF(xSOCKET_ERROR, iRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxTcpClient::ioctl(
     clong_t &a_command,
     ulong_t *a_args
@@ -101,7 +101,7 @@ CxTcpClient::ioctl(
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxTcpClient::setNonBlockingMode(
     cbool_t &a_flag
 )
@@ -134,7 +134,7 @@ CxTcpClient::setNonBlockingMode(
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxTcpClient::timeout(
     long_t *a_seconds,
     long_t *a_microsec
@@ -148,7 +148,7 @@ CxTcpClient::timeout(
     CxUtils::ptrAssignT(a_microsec, static_cast<long_t>( _timeout.tv_usec ));
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxTcpClient::setTimeout(
     clong_t &a_seconds,
     clong_t &a_microsec
@@ -170,7 +170,7 @@ CxTcpClient::setTimeout(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO bool_t
+inline bool_t
 CxTcpClient::isServerAlive(
     std::ctstring_t &a_ip,
     cushort_t       &a_port

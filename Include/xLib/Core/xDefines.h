@@ -764,14 +764,6 @@
     ///< catch CxException, std::exception and all other exceptions
 
 //-------------------------------------------------------------------------------------------------
-// header only library
-#define xEXTERN_HO \
-    extern
-#define xINLINE_HO \
-    inline
-    ///< keywords for header only library
-
-//-------------------------------------------------------------------------------------------------
 // class disallows
 #define xNO_COPY(class_name) \
     private: \

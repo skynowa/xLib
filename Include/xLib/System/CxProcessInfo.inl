@@ -21,7 +21,7 @@ xNAMESPACE_BEGIN(NxLib)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxProcessInfo::setProcessId(
     const CxProcess::id_t &a_id
 )
@@ -29,7 +29,7 @@ CxProcessInfo::setProcessId(
     _id = a_id;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO ulong_t
+inline ulong_t
 CxProcessInfo::cpuUsage()
 {
     ulong_t ulRv = 0UL;
@@ -45,7 +45,7 @@ CxProcessInfo::cpuUsage()
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO ulong_t
+inline ulong_t
 CxProcessInfo::ramUsage()
 {
     ulong_t ulRv = 0UL;
@@ -61,7 +61,7 @@ CxProcessInfo::ramUsage()
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO ulong_t
+inline ulong_t
 CxProcessInfo::ioBytes()
 {
     ulong_t ulRv = 0UL;
@@ -107,7 +107,7 @@ CxProcessInfo::ioBytes()
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxProcessInfo::exeName()
 {
     std::tstring_t sRv;
@@ -167,7 +167,7 @@ CxProcessInfo::exeName()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO ulong_t
+inline ulong_t
 CxProcessInfo::parentId()
 {
     ulong_t ulRv = 0UL;
@@ -188,7 +188,7 @@ CxProcessInfo::parentId()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxProcessInfo::commandLine(
     std::vec_tstring_t *a_args
 )
@@ -377,7 +377,7 @@ CxProcessInfo::commandLine(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO long_t
+inline long_t
 CxProcessInfo::commandLineArgsMax()
 {
     long_t liRv = 0L;
