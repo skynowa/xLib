@@ -17,7 +17,7 @@ class CxBackuper
     /// backup file
 {
 public:
-    enum ExBackupPeriod
+    enum ExPeriod
         /// backup period
     {
         bpUnknown,
@@ -26,19 +26,19 @@ public:
         //TODO: bpWeekly,
         //TODO: bpMonthly
     };
-    typedef const ExBackupPeriod cExBackupPeriod;
+    typedef const ExPeriod cExPeriod;
 
-    explicit        CxBackuper(cExBackupPeriod &period);
+    explicit  CxBackuper(cExPeriod &period);
         ///< constructor
-    virtual        ~CxBackuper() {}
+    virtual  ~CxBackuper() {}
         ///< destructor
 
-    void_t          fileExec(std::ctstring_t &filePath, std::ctstring_t &destDirPath,
-                        std::tstring_t *destFilePath) const;
-        ///< backup, throws CxException
+    void_t    fileExec(std::ctstring_t &filePath, std::ctstring_t &destDirPath,
+                  std::tstring_t *destFilePath) const /* throw(CxException) */;
+        ///< execute file backup
 
 private:
-    cExBackupPeriod _period;  ///< backup period
+    cExPeriod _period;  ///< backup period
 
 xNO_COPY_ASSIGN(CxBackuper)
 };
