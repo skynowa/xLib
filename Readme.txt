@@ -1,9 +1,6 @@
 xLib - C++ cross-platform library
 
 
-Platforms:    Windows, Linux, FreeBSD
-Architecture: x86, x64
-
 Authors:      skynowa
 E-mail:       skynowa@gmail.com
 Skype:        skynowa777
@@ -12,6 +9,11 @@ ICQ:          627713628
 Web:          https://bitbucket.org/skynowa/xlib
               https://github.com/skynowa/xLib
               https://sourceforge.net/p/x-lib
+              
+Feature list:
+    - platforms: Windows, Linux, FreeBSD, Mac OS
+    - architecture: x86, x64
+    - header only    
 
 Prerequisites:
     - bash-compatible Unix command shell (for Unix)
@@ -42,4 +44,3 @@ CMake:
     cmake ../xLib -G"Eclipse CDT4 - Unix Makefiles" -D_ECLIPSE_VERSION=3.7.2
     cmake ../xLib  -DCMAKE_C_COMPILER=/usr/local/libexec/ccache/world/clang \
                    -DCMAKE_CXX_COMPILER=/usr/local/libexec/ccache/world/clang++
-
