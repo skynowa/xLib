@@ -18,7 +18,7 @@ xNAMESPACE_BEGIN(NxLib)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO
+inline
 CxPop3::CxPop3() :
     _sRv        (),
     ////_socketInit(2, 2),
@@ -31,13 +31,13 @@ CxPop3::CxPop3() :
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO
+inline
 CxPop3::~CxPop3()
 {
     disconnect();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxPop3::create(
     std::ctstring_t &a_user,
     std::ctstring_t &a_password,
@@ -56,7 +56,7 @@ CxPop3::create(
      _port  = a_port;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxPop3::connect()
 {
      //-------------------------------------
@@ -81,7 +81,7 @@ CxPop3::connect()
     _isConnected = true;
  }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxPop3::login()
 {
     //-------------------------------------
@@ -123,7 +123,7 @@ CxPop3::login()
     _command(passCmd, xT("\r\n"), &_sRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxPop3::stat(
     ulong_t &a_sum,
     ulong_t &a_size
@@ -152,7 +152,7 @@ CxPop3::stat(
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxPop3::list(
     std::vector<ulong_t> &a_list
 )
@@ -180,7 +180,7 @@ CxPop3::list(
     xNOT_IMPLEMENTED;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxPop3::listAt(
     ulong_t &a_index
 )
@@ -208,7 +208,7 @@ CxPop3::listAt(
     xNOT_IMPLEMENTED;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxPop3::noop()
 {
     //-------------------------------------
@@ -225,7 +225,7 @@ CxPop3::noop()
     _command(noopCmd, xT("\r\n"), &_sRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxPop3::rset()
 {
     //-------------------------------------
@@ -242,7 +242,7 @@ CxPop3::rset()
     _command(rsetCmd, xT("\r\n"), &_sRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxPop3::top(
     int_t           a_num,
     int_t           a_lines,
@@ -273,7 +273,7 @@ CxPop3::top(
     a_buff = _sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxPop3::retriveRaw(
     int_t            a_num,
     std::ctstring_t &a_dirPath,
@@ -329,7 +329,7 @@ CxPop3::retriveRaw(
     xUNUSED(writeSize);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxPop3::retriveRawAndBackup(
     int_t            a_num,
     std::ctstring_t &a_dirPath,
@@ -398,7 +398,7 @@ CxPop3::retriveRawAndBackup(
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxPop3::retrieveHeader(
     int_t         a_num,
     CxMimeHeader &a_mimeHeader
@@ -428,7 +428,7 @@ CxPop3::retrieveHeader(
     a_mimeHeader.parse(_sRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxPop3::del(
     int_t a_num
 )
@@ -456,7 +456,7 @@ CxPop3::del(
     _command(deleCmd, xT("\r\n"), &_sRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxPop3::disconnect()
 {
     xCHECK_DO(!_isConnected, return);
@@ -479,7 +479,7 @@ CxPop3::disconnect()
     _isConnected = false;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO ulong_t
+inline ulong_t
 CxPop3::_mailsSum(
     std::ctstring_t &a_serverAnswer
 )
@@ -499,7 +499,7 @@ CxPop3::_mailsSum(
     return sum;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO ulong_t
+inline ulong_t
 CxPop3::_mailsSize(
     std::ctstring_t &a_serverAnswer
 )
@@ -527,7 +527,7 @@ CxPop3::_mailsSize(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxPop3::_command(
     std::ctstring_t &command,
     std::ctstring_t &replyDelimiter,
@@ -552,7 +552,7 @@ CxPop3::_command(
     xTEST_EQ(false, _isError(_sRv));
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxPop3::_isError(
     std::ctstring_t &text
 )

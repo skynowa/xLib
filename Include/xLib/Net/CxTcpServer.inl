@@ -17,7 +17,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxTcpServer::bind(
     cushort_t &a_port
 )
@@ -41,7 +41,7 @@ CxTcpServer::bind(
     ////}
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxTcpServer::listen(
     cint_t &a_backlog /*= SOMAXCONN*/
 )
@@ -52,7 +52,7 @@ CxTcpServer::listen(
     xTEST_DIFF(xSOCKET_ERROR, iRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxTcpServer::accept(
     CxTcpServer    *a_serverSocket,
     std::tstring_t *a_fromIp

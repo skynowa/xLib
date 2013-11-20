@@ -26,7 +26,7 @@ xNAMESPACE_BEGIN(NxLib)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxShell::isAvailable()
 {
     xTESTS_NA;
@@ -42,7 +42,7 @@ CxShell::isAvailable()
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxShell::execute(
     std::ctstring_t &a_filePath,   ///< file path to binary file
     std::ctstring_t &a_params      ///< command line params for binary file
@@ -66,7 +66,7 @@ CxShell::execute(
 #if xOS_ENV_WIN
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxShell::findExecutable(
     std::ctstring_t &a_fileName,
     std::ctstring_t &a_findDirPath
@@ -85,7 +85,7 @@ CxShell::findExecutable(
     return std::tstring_t(buff);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxShell::execute(
     const HWND        &a_owner,
     const ExOperation &a_operation,
@@ -136,7 +136,7 @@ CxShell::execute(
     xTEST_LESS(32, iRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxShell::executeEx(
     SHELLEXECUTEINFO &a_info
 )
@@ -147,7 +147,7 @@ CxShell::executeEx(
     xTEST_DIFF(FALSE, bRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxShell::executeHttp(
     std::ctstring_t &a_url
 )
@@ -161,7 +161,7 @@ CxShell::executeHttp(
     execute(NULL, opOpen, xT("IEXPLORE.EXE"), url, xT(""), sfShowNormal);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxShell::executeFtp(
     std::ctstring_t &a_url
 )
@@ -175,7 +175,7 @@ CxShell::executeFtp(
     execute(NULL, opOpen, xT("explorer.exe"), xT("/e, ") + url, xT(""), sfShowNormal);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxShell::executeEmail(
     std::ctstring_t &a_toEmail,
     std::ctstring_t &a_subject,
@@ -208,7 +208,7 @@ CxShell::executeEmail(
     execute(NULL, opOpen, cmd, xT(""), xT(""), sfShowNormal);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxShell::specialDirPath(
     const ESpecialDir &a_dir,
     const HANDLE      &a_token
@@ -235,7 +235,7 @@ CxShell::specialDirPath(
     return std::tstring_t(buff);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxShell::createShortcut(
     std::ctstring_t &a_shortCutFilePath, ///< путь и имя ярлыка, например, "C:\\Блокнот.lnk"
                                          ///< Если не указан путь, ярлык будет создан в папке,

@@ -12,13 +12,13 @@ xNAMESPACE_BEGIN(NxLib)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO
+inline
 CxAtomicLongInt::CxAtomicLongInt() :
     _value(0L)
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO CxAtomicLongInt &
+inline CxAtomicLongInt &
 CxAtomicLongInt::operator += (
     const CxAtomicLongInt &a_value
 )
@@ -32,7 +32,7 @@ CxAtomicLongInt::operator += (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO CxAtomicLongInt &
+inline CxAtomicLongInt &
 CxAtomicLongInt::operator += (
     clong_t &a_value
 )
@@ -46,7 +46,7 @@ CxAtomicLongInt::operator += (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO CxAtomicLongInt &
+inline CxAtomicLongInt &
 CxAtomicLongInt::operator -= (
     const CxAtomicLongInt &a_value
 )
@@ -60,7 +60,7 @@ CxAtomicLongInt::operator -= (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO CxAtomicLongInt &
+inline CxAtomicLongInt &
 CxAtomicLongInt::operator -= (
     clong_t &a_value
 )
@@ -74,7 +74,7 @@ CxAtomicLongInt::operator -= (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO CxAtomicLongInt &
+inline CxAtomicLongInt &
 CxAtomicLongInt::operator = (
     const CxAtomicLongInt &a_value
 )
@@ -88,7 +88,7 @@ CxAtomicLongInt::operator = (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO CxAtomicLongInt &
+inline CxAtomicLongInt &
 CxAtomicLongInt::operator = (
     clong_t &a_value
 )
@@ -102,7 +102,7 @@ CxAtomicLongInt::operator = (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxAtomicLongInt::operator == (
     const CxAtomicLongInt &a_value
 ) const
@@ -110,7 +110,7 @@ CxAtomicLongInt::operator == (
     return (_value == a_value._value);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxAtomicLongInt::operator == (
     clong_t &a_value
 ) const
@@ -118,7 +118,7 @@ CxAtomicLongInt::operator == (
     return (_value == a_value);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxAtomicLongInt::operator != (
     const CxAtomicLongInt &a_value
 ) const
@@ -126,7 +126,7 @@ CxAtomicLongInt::operator != (
     return (_value != a_value._value);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxAtomicLongInt::operator != (
     clong_t &a_value
 ) const
@@ -134,7 +134,7 @@ CxAtomicLongInt::operator != (
     return (_value != a_value);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxAtomicLongInt::operator < (
     clong_t &a_value
 ) const
@@ -142,7 +142,7 @@ CxAtomicLongInt::operator < (
     return (_value < a_value);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxAtomicLongInt::operator < (
     const CxAtomicLongInt &a_value
 ) const
@@ -150,7 +150,7 @@ CxAtomicLongInt::operator < (
     return (_value < a_value.value());
 }
 //------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxAtomicLongInt::operator <= (
     clong_t &a_value
 ) const
@@ -158,7 +158,7 @@ CxAtomicLongInt::operator <= (
     return (_value <= a_value);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxAtomicLongInt::operator <= (
     const CxAtomicLongInt &a_value
 ) const
@@ -166,7 +166,7 @@ CxAtomicLongInt::operator <= (
     return (_value <= a_value.value());
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxAtomicLongInt::operator > (
     clong_t &a_value
 ) const
@@ -174,7 +174,7 @@ CxAtomicLongInt::operator > (
     return (_value > a_value);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxAtomicLongInt::operator > (
     const CxAtomicLongInt &a_value
 ) const
@@ -182,7 +182,7 @@ CxAtomicLongInt::operator > (
     return (_value > a_value.value());
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxAtomicLongInt::operator >= (
     clong_t &a_value
 ) const
@@ -190,7 +190,7 @@ CxAtomicLongInt::operator >= (
     return (_value >= a_value);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxAtomicLongInt::operator >= (
     const CxAtomicLongInt &a_value
 ) const
@@ -198,7 +198,7 @@ CxAtomicLongInt::operator >= (
     return (_value >= a_value.value());
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO CxAtomicLongInt &
+inline CxAtomicLongInt &
 CxAtomicLongInt::operator ++ (
     cint_t a_value
 )
@@ -216,7 +216,7 @@ CxAtomicLongInt::operator ++ (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO CxAtomicLongInt &
+inline CxAtomicLongInt &
 CxAtomicLongInt::operator -- (
     cint_t a_value
 )
@@ -234,7 +234,7 @@ CxAtomicLongInt::operator -- (
     return *this;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO long_t
+inline long_t
 CxAtomicLongInt::value() const
 {
 #if xOS_ENV_WIN

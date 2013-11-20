@@ -22,7 +22,7 @@ xNAMESPACE_BEGIN(NxLib)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO
+inline
 CxBackuper::CxBackuper(
     cExPeriod &a_period
 ) :
@@ -30,7 +30,7 @@ CxBackuper::CxBackuper(
 {
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxBackuper::fileExec(
     std::ctstring_t &a_filePath,
     std::ctstring_t &a_destDirPath,

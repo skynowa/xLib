@@ -28,7 +28,7 @@ xNAMESPACE_ANONYM_END
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO bool_t
+inline bool_t
 CxLastError::isSuccess()
 {
     bool_t bRv = false;
@@ -43,7 +43,7 @@ CxLastError::isSuccess()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO ulong_t
+inline ulong_t
 CxLastError::get()
 {
     ulong_t code = ::nativeCodeSuccess;
@@ -60,7 +60,7 @@ CxLastError::get()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxLastError::set(
     culong_t &a_code
 )
@@ -73,21 +73,21 @@ CxLastError::set(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxLastError::reset()
 {
     set(::nativeCodeSuccess);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxLastError::format()
 {
     return format( get() );
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxLastError::format(
     culong_t &a_code
 )

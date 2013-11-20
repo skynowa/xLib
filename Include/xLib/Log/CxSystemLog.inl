@@ -20,7 +20,7 @@ xNAMESPACE_BEGIN(NxLib)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO
+inline
 CxSystemLog::CxSystemLog() :
     _isEnable(true)
 #if xOS_ENV_WIN
@@ -31,7 +31,7 @@ CxSystemLog::CxSystemLog() :
     _construct( CxPath( CxPath::exe() ).fileBaseName() );
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO
+inline
 CxSystemLog::CxSystemLog(
     std::ctstring_t &a_logName
 ) :
@@ -45,7 +45,7 @@ CxSystemLog::CxSystemLog(
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE_HO
+inline
 CxSystemLog::~CxSystemLog()
 {
 #if xOS_ENV_WIN
@@ -60,7 +60,7 @@ CxSystemLog::~CxSystemLog()
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxSystemLog::setEnabled(
     cbool_t &a_flag
 )
@@ -70,7 +70,7 @@ CxSystemLog::setEnabled(
     _isEnable = a_flag;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxSystemLog::write(
     const ExLevel &a_level,
     ctchar_t      *a_format, ...
@@ -112,7 +112,7 @@ CxSystemLog::write(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxSystemLog::_construct(
     std::ctstring_t &a_logName
 )

@@ -23,7 +23,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO bool_t
+inline bool_t
 CxStdError::isSuccess()
 {
     bool_t bRv = (::stdCodeSuccess == errno);
@@ -32,7 +32,7 @@ CxStdError::isSuccess()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO int_t
+inline int_t
 CxStdError::get()
 {
     int_t code = errno;
@@ -43,7 +43,7 @@ CxStdError::get()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxStdError::set(
     cint_t &a_code
 )
@@ -52,21 +52,21 @@ CxStdError::set(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxStdError::reset()
 {
     set(::stdCodeSuccess);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxStdError::format()
 {
     return format(get());
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxStdError::format(
     cint_t &a_code
 )

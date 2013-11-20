@@ -14,7 +14,7 @@ xNAMESPACE_BEGIN(NxLib)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxCompletionPort::create(
     culong_t &a_threadsNum
 )
@@ -26,7 +26,7 @@ CxCompletionPort::create(
     xTEST_EQ(true, _handle.isValid());
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxCompletionPort::associate(
     const HANDLE  &a_file,
     ULONG_PTR      a_completionKey
@@ -46,7 +46,7 @@ CxCompletionPort::associate(
     xTEST_EQ(_handle.get(), hRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxCompletionPort::status(
     LPDWORD       a_numberOfBytes,
     PULONG_PTR    a_completionKey,
@@ -65,7 +65,7 @@ CxCompletionPort::status(
     xTEST_DIFF(FALSE, blRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxCompletionPort::postStatus(
     culong_t     &a_numOfBytesTransferred,
     ULONG_PTR     a_completionKey,

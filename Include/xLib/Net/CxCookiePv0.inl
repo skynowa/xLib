@@ -18,7 +18,7 @@ xNAMESPACE_BEGIN(NxLib)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO
+inline
 CxCookiePv0::CxCookiePv0() :
     _name    (),
     _value   (),
@@ -31,7 +31,7 @@ CxCookiePv0::CxCookiePv0() :
     init(std::tstring_t());
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO
+inline
 CxCookiePv0::CxCookiePv0(
     std::ctstring_t &a_rawCookie
 ) :
@@ -46,13 +46,13 @@ CxCookiePv0::CxCookiePv0(
     init(a_rawCookie);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO std::ctstring_t &
+inline std::ctstring_t &
 CxCookiePv0::name() const
 {
     return _name;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxCookiePv0::setName(
     std::ctstring_t &a_name
 )
@@ -60,13 +60,13 @@ CxCookiePv0::setName(
     _name = a_name;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO std::ctstring_t &
+inline std::ctstring_t &
 CxCookiePv0::value() const
 {
     return _value;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxCookiePv0::setValue(
     std::ctstring_t &a_value
 )
@@ -74,13 +74,13 @@ CxCookiePv0::setValue(
     _value = a_value;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO std::ctstring_t &
+inline std::ctstring_t &
 CxCookiePv0::domain() const
 {
     return _domain;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxCookiePv0::setDomain(
     std::ctstring_t &a_domain
 )
@@ -88,13 +88,13 @@ CxCookiePv0::setDomain(
     _domain = a_domain;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO std::ctstring_t &
+inline std::ctstring_t &
 CxCookiePv0::path() const
 {
     return _path;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxCookiePv0::setPath(
     std::ctstring_t &a_path
 )
@@ -102,13 +102,13 @@ CxCookiePv0::setPath(
     _path = a_path;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO std::ctstring_t &
+inline std::ctstring_t &
 CxCookiePv0::expires() const
 {
     return _expires;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxCookiePv0::setExpires(
     std::ctstring_t &a_expires
 )
@@ -116,13 +116,13 @@ CxCookiePv0::setExpires(
     _expires = a_expires;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxCookiePv0::secure() const
 {
     return _isSecure;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxCookiePv0::setSecure(
     cbool_t &a_flag
 )
@@ -130,13 +130,13 @@ CxCookiePv0::setSecure(
     _isSecure = a_flag;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxCookiePv0::httpOnly() const
 {
     return _isHttpOnly;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxCookiePv0::setHttpOnly(
     cbool_t &a_flag
 )
@@ -144,7 +144,7 @@ CxCookiePv0::setHttpOnly(
     _isHttpOnly = a_flag;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxCookiePv0::toString() const
 {
     std::tstring_t sRv;
@@ -187,7 +187,7 @@ CxCookiePv0::toString() const
 }
 //-------------------------------------------------------------------------------------------------
 //TODO: sDump make tests
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxCookiePv0::dump() const
 {
     std::tstring_t sRv;
@@ -213,7 +213,7 @@ CxCookiePv0::dump() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxCookiePv0::clear()
 {
     _name.clear();
@@ -233,7 +233,7 @@ CxCookiePv0::clear()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxCookiePv0::init(
     std::ctstring_t &a_rawCookie
 )

@@ -33,7 +33,7 @@ xNAMESPACE_BEGIN(NxLib)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO
+inline
 CxDebugger::CxDebugger() :
     _isEnabled(true),
     _logPath  ()
@@ -48,13 +48,13 @@ CxDebugger::CxDebugger() :
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxDebugger::isEnabled()
 {
     return _isEnabled;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxDebugger::setEnabled(
     cbool_t &a_flag
 )
@@ -62,7 +62,7 @@ CxDebugger::setEnabled(
     _isEnabled = a_flag;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxDebugger::isActive()
 {
 #if   xOS_ENV_WIN
@@ -108,7 +108,7 @@ CxDebugger::isActive()
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxDebugger::isDebugBuild()
 {
 #if xBUILD_DEBUG
@@ -118,7 +118,7 @@ CxDebugger::isDebugBuild()
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxDebugger::breakPoint()
 {
     xCHECK_DO(!isEnabled(), return);
@@ -134,7 +134,7 @@ CxDebugger::breakPoint()
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxDebugger::setLogPath(
     std::ctstring_t &a_filePath
 )
@@ -142,13 +142,13 @@ CxDebugger::setLogPath(
     _logPath = a_filePath;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxDebugger::logPath()
 {
     return _logPath;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxDebugger::reportMake(
     const CxErrorReport &a_report
 )
@@ -185,7 +185,7 @@ CxDebugger::reportMake(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxDebugger::_msgboxPlain(
     const CxErrorReport &a_report
 )
@@ -224,7 +224,7 @@ CxDebugger::_msgboxPlain(
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxDebugger::_stdoutPlain(
     const CxErrorReport &a_report
 )
@@ -279,7 +279,7 @@ CxDebugger::_stdoutPlain(
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxDebugger::_loggingPlain(
     const CxErrorReport &a_report
 )

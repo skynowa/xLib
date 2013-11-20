@@ -18,7 +18,7 @@ xNAMESPACE_BEGIN(NxLib)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO
+inline
 CxProfiler::CxProfiler() :
     _isStarted(false),
     _log      (CxFileLog::lsDefaultSize)
@@ -26,7 +26,7 @@ CxProfiler::CxProfiler() :
     _dataReset();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO
+inline
 CxProfiler::~CxProfiler()
 {
     if ( !_log.filePath().empty() ) {
@@ -34,7 +34,7 @@ CxProfiler::~CxProfiler()
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxProfiler::setLogPath(
     std::ctstring_t &a_logPath
 )
@@ -44,13 +44,13 @@ CxProfiler::setLogPath(
     _log.setFilePath(a_logPath);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO std::ctstring_t &
+inline std::ctstring_t &
 CxProfiler::logPath() const
 {
     return _log.filePath();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxProfiler::start()
 {
     xTEST_EQ(false, _isStarted);
@@ -68,7 +68,7 @@ CxProfiler::start()
     _isStarted = true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO size_t
+inline size_t
 CxProfiler::stop(
     ctchar_t *a_comment, ...
 )
@@ -108,7 +108,7 @@ CxProfiler::stop(
     return durationMsec2;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO size_t
+inline size_t
 CxProfiler::restart(
     ctchar_t *a_comment, ...
 )
@@ -142,7 +142,7 @@ CxProfiler::restart(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxProfiler::_dataReset()
 {
     // TODO: set normal thread priority

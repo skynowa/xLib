@@ -25,7 +25,7 @@ xNAMESPACE_BEGIN(NxLib)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO
+inline
 CxFileTemp::CxFileTemp(
     cbool_t &a_isAutoDelete
 ) :
@@ -36,7 +36,7 @@ CxFileTemp::CxFileTemp(
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE_HO
+inline
 CxFileTemp::~CxFileTemp()
 {
     _file->close();
@@ -46,7 +46,7 @@ CxFileTemp::~CxFileTemp()
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxFileTemp::create(
     std::ctstring_t &a_filePath,
     std::ctstring_t &a_dirPath,

@@ -20,7 +20,7 @@
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO
+inline
 CxCondition::CxCondition()
 #if !xOS_ENV_WIN
     :
@@ -31,7 +31,7 @@ CxCondition::CxCondition()
 }
 //-------------------------------------------------------------------------------------------------
 /*virtual*/
-xINLINE_HO
+inline
 CxCondition::~CxCondition()
 {
 #if xOS_ENV_WIN
@@ -49,7 +49,7 @@ CxCondition::~CxCondition()
 //-------------------------------------------------------------------------------------------------
 #if xOS_ENV_UNIX
 
-xINLINE_HO const pthread_mutex_t &
+inline const pthread_mutex_t &
 CxCondition::mutex() const
 {
     return _mutex;
@@ -59,7 +59,7 @@ CxCondition::mutex() const
 //-------------------------------------------------------------------------------------------------
 #if xOS_ENV_UNIX
 
-xINLINE_HO const pthread_cond_t &
+inline const pthread_cond_t &
 CxCondition::handle() const
 {
     return _handle;
@@ -67,7 +67,7 @@ CxCondition::handle() const
 
 #endif
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxCondition::create()
 {
 #if xOS_ENV_WIN
@@ -83,7 +83,7 @@ CxCondition::create()
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxCondition::wait(
     culong_t &a_timeoutMs
 )
@@ -131,7 +131,7 @@ CxCondition::wait(
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxCondition::signal()
 {
 #if xOS_ENV_WIN
@@ -152,7 +152,7 @@ CxCondition::signal()
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxCondition::broadcast()
 {
 #if xOS_ENV_WIN

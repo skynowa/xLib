@@ -175,7 +175,7 @@ CxString::castW(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::wstring
+inline std::wstring
 CxString::strToWStr(
     std::cstring_t &a_str,
     cuint_t        &a_codePage
@@ -203,7 +203,7 @@ CxString::strToWStr(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::string
+inline std::string
 CxString::wstrToStr(
     std::cwstring_t &a_str,
     cuint_t         &a_codePage
@@ -231,7 +231,7 @@ CxString::wstrToStr(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::wstring
+inline std::wstring
 CxString::strToWStr(
     std::cstring_t    &a_stdString,
     const std::locale &a_locale /* = std::locale() */
@@ -256,7 +256,7 @@ CxString::strToWStr(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::string
+inline std::string
 CxString::wstrToStr(
     std::cwstring_t   &a_stdWString,
     const std::locale &a_locale /* = std::locale() */
@@ -290,7 +290,7 @@ CxString::wstrToStr(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::string
+inline std::string
 CxString::convertCodePage(
     std::cstring_t &a_source,
     cuint_t        &a_codePageSource,
@@ -312,7 +312,7 @@ CxString::convertCodePage(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::string
+inline std::string
 CxString::charToOemBuff(
     std::ctstring_t &a_str
 )
@@ -335,7 +335,7 @@ CxString::charToOemBuff(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxString::oemToCharBuff(
     std::cstring_t &a_str
 )
@@ -358,7 +358,7 @@ CxString::oemToCharBuff(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxString::boolToStr(
     cbool_t &a_value
 )
@@ -369,7 +369,7 @@ CxString::boolToStr(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO bool_t
+inline bool_t
 CxString::strToBool(
     std::ctstring_t &a_str
 )
@@ -383,7 +383,7 @@ CxString::strToBool(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxString::toLowerCase(
     std::ctstring_t &a_str
 )
@@ -394,7 +394,7 @@ CxString::toLowerCase(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxString::toUpperCase(
     std::ctstring_t &a_str
 )
@@ -405,7 +405,7 @@ CxString::toUpperCase(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxString::toLowerCase(
     std::ctstring_t &a_str,
     std::csize_t    &a_length
@@ -433,7 +433,7 @@ CxString::toLowerCase(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxString::toUpperCase(
     std::ctstring_t &a_str,
     std::csize_t    &a_length
@@ -467,7 +467,7 @@ CxString::toUpperCase(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxString::trimLeftChars(
     std::ctstring_t &a_str,
     std::ctstring_t &a_chars
@@ -482,7 +482,7 @@ CxString::trimLeftChars(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxString::trimRightChars(
     std::ctstring_t &a_str,
     std::ctstring_t &a_chars
@@ -497,7 +497,7 @@ CxString::trimRightChars(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxString::trimChars(
     std::ctstring_t &a_str,
     std::ctstring_t &a_chars
@@ -515,7 +515,7 @@ CxString::trimChars(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxString::trimSpace(
     std::ctstring_t &a_str
 )
@@ -526,7 +526,7 @@ CxString::trimSpace(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxString::removeEol(
     std::ctstring_t &a_str
 )
@@ -537,7 +537,7 @@ CxString::removeEol(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxString::replaceAll(
     std::ctstring_t &a_str,
     std::ctstring_t &a_strOld,
@@ -568,7 +568,7 @@ CxString::replaceAll(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxString::replaceAll(
     std::ctstring_t &a_str,
     ctchar_t        &a_charOld,
@@ -583,7 +583,7 @@ CxString::replaceAll(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxString::removeAll(
     std::ctstring_t &a_str,
     std::ctstring_t &a_removeStr
@@ -596,7 +596,7 @@ CxString::removeAll(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxString::split(
     std::ctstring_t    &a_str,
     std::ctstring_t    &a_sep,
@@ -631,7 +631,7 @@ CxString::split(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxString::join(
     std::cvec_tstring_t &a_vec,
     std::ctstring_t     &a_sep
@@ -652,7 +652,7 @@ CxString::join(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxString::join(
     std::cvec_tstring_t &a_vec,
     ctchar_t            &a_sep
@@ -665,7 +665,7 @@ CxString::join(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxString::cut(
     std::ctstring_t &a_str,
     std::ctstring_t &a_sepLeft,
@@ -692,7 +692,7 @@ CxString::cut(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxString::cut(
     std::ctstring_t &a_str,
     std::csize_t    &a_posBegin /* = 0 */,
@@ -718,7 +718,7 @@ CxString::cut(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxString::format(
     ctchar_t *a_format, ...
 )
@@ -740,7 +740,7 @@ CxString::format(
 /* static */
 #if 1
 
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxString::formatV(
     ctchar_t *a_format,
     va_list   a_args
@@ -775,7 +775,7 @@ CxString::formatV(
 
 #else
 
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxString::formatV(
     LPCTSTR a_format,
     va_list a_args
@@ -826,7 +826,7 @@ CxString::formatV(
 #endif
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxString::minimize(
     std::ctstring_t &a_str,
     std::csize_t    &a_maxLength
@@ -861,7 +861,7 @@ CxString::minimize(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO bool_t
+inline bool_t
 CxString::compareNoCase(
     std::ctstring_t &a_str1,
     std::ctstring_t &a_str2
@@ -892,7 +892,7 @@ CxString::compareNoCase(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxString::translitLatToRus(
     std::ctstring_t &a_str
 )
@@ -938,7 +938,7 @@ CxString::translitLatToRus(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxString::formatBytes(
     culonglong_t &a_bytes
 )
@@ -982,7 +982,7 @@ CxString::formatBytes(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxString::formatPercentage(
     culonglong_t &a_maxValue,
     culonglong_t &a_currentValue
@@ -1010,7 +1010,7 @@ CxString::formatPercentage(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t *
+inline void_t *
 CxString::memoryZeroSecure(
     void_t       *a_buff,
     std::csize_t &a_buffSize
@@ -1039,7 +1039,7 @@ CxString::memoryZeroSecure(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxString::createGuid()
 {
     std::tstring_t sRv;
@@ -1065,7 +1065,7 @@ CxString::createGuid()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO bool_t
+inline bool_t
 CxString::isRepeated(
     std::ctstring_t &a_str
 )

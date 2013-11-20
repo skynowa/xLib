@@ -17,7 +17,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE_HO
+inline
 CxTracer::~CxTracer()
 {
     _oss << CxConst::nl();
@@ -26,7 +26,7 @@ CxTracer::~CxTracer()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxTracer::write(
     ctchar_t *a_format, ...
 )
@@ -44,7 +44,7 @@ CxTracer::write(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxTracer::write(
     std::ctstring_t &a_msg
 )

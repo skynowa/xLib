@@ -26,7 +26,7 @@ xNAMESPACE_BEGIN(NxLib)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO
+inline
 CxSmtp::CxSmtp() :
     _socket     (),
     _user       (),
@@ -38,7 +38,7 @@ CxSmtp::CxSmtp() :
 ////--    CxSocket::bInit();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO
+inline
 CxSmtp::~CxSmtp()
 {
     disconnect();
@@ -46,7 +46,7 @@ CxSmtp::~CxSmtp()
 ////--    CxSocket::bClean();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO
+inline
 void_t
 CxSmtp::create(
     std::ctstring_t &a_user,
@@ -66,7 +66,7 @@ CxSmtp::create(
     _port     = a_port;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxSmtp::connect()
 {
     std::tstring_t sRv;
@@ -99,7 +99,7 @@ CxSmtp::connect()
     _isConnected = true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxSmtp::login()
 {
     //-------------------------------------
@@ -133,7 +133,7 @@ CxSmtp::login()
     _command(passwordCmd, xT("\r\n"), /*ref*/sRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxSmtp::noop()
 {
     //-------------------------------------
@@ -152,7 +152,7 @@ CxSmtp::noop()
     _command(noopCmd, xT("\r\n"), /*ref*/sRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxSmtp::rset()
 {
     //-------------------------------------
@@ -171,7 +171,7 @@ CxSmtp::rset()
     _command(rsetCmd, xT("\r\n"), /*ref*/sRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxSmtp::sendRaw
 (
     std::ctstring_t &a_filePath,
@@ -219,7 +219,7 @@ CxSmtp::sendRaw
     _command(text + endCmd, xT("\r\n"), /*ref*/sRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxSmtp::send(
     std::ctstring_t &a_text,
     std::ctstring_t &a_from,
@@ -264,7 +264,7 @@ CxSmtp::send(
     _command(endCmd, xT("\r\n"), /*ref*/sRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxSmtp::disconnect()
 {
     xCHECK_DO(!_isConnected, disconnect());
@@ -297,7 +297,7 @@ CxSmtp::disconnect()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxSmtp::_command(
     std::ctstring_t &a_command,
     std::ctstring_t &a_replyDelimiter,
@@ -315,7 +315,7 @@ CxSmtp::_command(
     a_reply.swap(sRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxSmtp::_isError(
     std::ctstring_t &a_text
 )

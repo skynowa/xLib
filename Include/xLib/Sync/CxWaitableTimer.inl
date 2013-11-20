@@ -14,7 +14,7 @@ xNAMESPACE_BEGIN(NxLib)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO HANDLE
+inline HANDLE
 CxWaitableTimer::handle() const
 {
     xTEST_EQ(true, _handle.isValid());
@@ -22,7 +22,7 @@ CxWaitableTimer::handle() const
     return _handle.get();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxWaitableTimer::create(
     cbool_t                     &a_bManualReset,
     std::ctstring_t             &a_name,
@@ -37,7 +37,7 @@ CxWaitableTimer::create(
     _handle.set(hRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxWaitableTimer::open(
     std::ctstring_t &a_name,
     culong_t        &a_access,
@@ -61,7 +61,7 @@ CxWaitableTimer::open(
     _handle.set(hRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxWaitableTimer::cancel() const
 {
     xTEST_EQ(true, _handle.isValid());
@@ -70,7 +70,7 @@ CxWaitableTimer::cancel() const
     xTEST_DIFF(FALSE, blRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxWaitableTimer::set(
     clonglong_t      &a_dueTimeMsec,
     clong_t          &a_period,
@@ -96,7 +96,7 @@ CxWaitableTimer::set(
     xTEST_DIFF(FALSE, blRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxWaitableTimer::wait(
     culong_t &a_timeoutMsec
 ) const

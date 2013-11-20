@@ -33,7 +33,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::string
+inline std::string
 CxBase64::encode(
     cuchar_t     *a_bytes,
     std::csize_t &a_size
@@ -85,7 +85,7 @@ CxBase64::encode(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::string
+inline std::string
 CxBase64::encode(
     std::cstring_t &a_str
 )
@@ -96,7 +96,7 @@ CxBase64::encode(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO std::string
+inline std::string
 CxBase64::decode(
     std::cstring_t &a_str
 )
@@ -158,7 +158,7 @@ CxBase64::decode(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO bool
+inline bool
 CxBase64::_isValid(
     cuchar_t &a_ch
 )

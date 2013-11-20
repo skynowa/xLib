@@ -92,7 +92,7 @@ CxErrorReport::CxErrorReport(
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxErrorReport::_construct(
     const ExType    &a_type,
     std::ctstring_t &a_var1,
@@ -152,7 +152,7 @@ CxErrorReport::_construct(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxErrorReport::_initPlain()
 {
     std::tostringstream_t ossRv;

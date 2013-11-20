@@ -19,7 +19,7 @@ xNAMESPACE_BEGIN(NxLib)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO
+inline
 CxThread::CxThread(
     cbool_t &a_isAutoDelete
 ) :
@@ -49,7 +49,7 @@ CxThread::CxThread(
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE_HO
+inline
 CxThread::~CxThread()
 {
     //-------------------------------------
@@ -80,7 +80,7 @@ CxThread::~CxThread()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxThread::create(
     cbool_t &a_isPaused,
     cuint_t &a_stackSize,
@@ -171,7 +171,7 @@ CxThread::create(
     _eventStarter->set();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxThread::resume()
 {
 #if xOS_ENV_WIN
@@ -190,7 +190,7 @@ CxThread::resume()
     /*_isExited*///  n/a
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxThread::pause()
 {
 #if xOS_ENV_WIN
@@ -209,7 +209,7 @@ CxThread::pause()
     /*_isExited*///  n/a
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxThread::exit()
 {
 #if xOS_ENV_WIN
@@ -229,7 +229,7 @@ CxThread::exit()
                                                                    //если ожидает чего-то
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxThread::kill(
     culong_t &a_timeoutMsec
 )
@@ -276,7 +276,7 @@ CxThread::kill(
     _setStatesDefault();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxThread::wait(
     culong_t &a_timeoutMsec
 ) const
@@ -310,7 +310,7 @@ CxThread::wait(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxThread::isCreated() const
 {
     // _thread - n/a
@@ -326,7 +326,7 @@ CxThread::isCreated() const
     return bRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxThread::isRunning() const
 {
     // _thread - n/a
@@ -361,7 +361,7 @@ CxThread::isRunning() const
     return bRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxThread::isPaused()
 {
     // _thread - n/a
@@ -377,7 +377,7 @@ CxThread::isPaused()
     return bRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxThread::isExited()
 {
     // _thread - n/a
@@ -403,7 +403,7 @@ CxThread::isExited()
 //-------------------------------------------------------------------------------------------------
 #if xOS_ENV_WIN
 
-xINLINE_HO void_t
+inline void_t
 CxThread::postMessage(
     HWND   a_wnd,
     uint_t a_msg,
@@ -424,7 +424,7 @@ CxThread::postMessage(
 //-------------------------------------------------------------------------------------------------
 #if xOS_ENV_WIN
 
-xINLINE_HO void_t
+inline void_t
 CxThread::sendMessage(
     HWND   a_wnd,
     uint_t a_msg,
@@ -445,7 +445,7 @@ CxThread::sendMessage(
 //-------------------------------------------------------------------------------------------------
 #if xOS_ENV_WIN
 
-xINLINE_HO void_t
+inline void_t
 CxThread::postThreadMessage(
     uint_t a_msg,
     uint_t a_param1,
@@ -463,7 +463,7 @@ CxThread::postThreadMessage(
 //-------------------------------------------------------------------------------------------------
 #if xOS_ENV_WIN
 
-xINLINE_HO bool_t
+inline bool_t
 CxThread::tryPostThreadMessage(
     uint_t  a_msg,
     uint_t  a_param1,
@@ -489,7 +489,7 @@ CxThread::tryPostThreadMessage(
 //-------------------------------------------------------------------------------------------------
 #if xOS_ENV_WIN
 
-xINLINE_HO void_t
+inline void_t
 CxThread::messageWaitQueue(
     uint_t  a_msg,
     uint_t *a_param1,
@@ -509,7 +509,7 @@ CxThread::messageWaitQueue(
 //-------------------------------------------------------------------------------------------------
 #if xOS_ENV_WIN
 
-xINLINE_HO void_t
+inline void_t
 CxThread::messageWaitQueue(
     const std::vector<uint_t> &a_msgs,
     uint_t                    *a_msg,
@@ -549,7 +549,7 @@ CxThread::messageWaitQueue(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO int_t
+inline int_t
 CxThread::_priorityMin()
 {
     int_t iRv = - 1;
@@ -565,7 +565,7 @@ CxThread::_priorityMin()
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO int_t
+inline int_t
 CxThread::_priorityMax() {
     int_t iRv = - 1;
 
@@ -579,7 +579,7 @@ CxThread::_priorityMax() {
     return iRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxThread::setPriority(
     const ExPriority &a_priority
 ) const
@@ -603,7 +603,7 @@ CxThread::setPriority(
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO CxThread::ExPriority
+inline CxThread::ExPriority
 CxThread::priority() const
 {
 #if xOS_ENV_WIN
@@ -630,7 +630,7 @@ CxThread::priority() const
     return tpRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxThread::priorityString() const
 {
     // n/a
@@ -656,7 +656,7 @@ CxThread::priorityString() const
     return xT("N/A");
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxThread::priorityUp() const
 {
 #if xOS_ENV_WIN
@@ -699,7 +699,7 @@ CxThread::priorityUp() const
     setPriority(tpiNewLevel);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxThread::priorityDown() const
 {
 #if xOS_ENV_WIN
@@ -742,7 +742,7 @@ CxThread::priorityDown() const
     setPriority(tpiNewLevel);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxThread::isPriorityBoost() const
 {
 #if xOS_ENV_WIN
@@ -762,7 +762,7 @@ CxThread::isPriorityBoost() const
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxThread::setPriorityBoost(
     cbool_t &a_isEnabled
 ) const
@@ -785,7 +785,7 @@ CxThread::setPriorityBoost(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxThread::setCpuAffinity(
     cint_t &a_procNum
 ) const
@@ -826,7 +826,7 @@ CxThread::setCpuAffinity(
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxThread::setCpuIdeal(
     culong_t &a_idealCpu    ///< value is zero-based
 ) const
@@ -843,7 +843,7 @@ CxThread::setCpuIdeal(
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO ulong_t
+inline ulong_t
 CxThread::cpuIdeal() const
 {
 #if xOS_ENV_WIN
@@ -865,7 +865,7 @@ CxThread::cpuIdeal() const
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO ulong_t
+inline ulong_t
 CxThread::cpuCount()
 {
     ulong_t ulRv = CxSystemInfo().numOfCpus();
@@ -882,7 +882,7 @@ CxThread::cpuCount()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO CxThread::handle_t
+inline CxThread::handle_t
 CxThread::handle() const
 {
 #if xOS_ENV_WIN
@@ -894,7 +894,7 @@ CxThread::handle() const
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO CxThread::id_t
+inline CxThread::id_t
 CxThread::id() const
 {
 #if xOS_ENV_WIN
@@ -906,13 +906,13 @@ CxThread::id() const
     return _id;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxThread::isCurrent() const
 {
     return isCurrent( currentId() );
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO ulong_t
+inline ulong_t
 CxThread::exitStatus() const
 {
     ulong_t ulRv = 0UL;
@@ -935,7 +935,7 @@ CxThread::exitStatus() const
 //}
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxThread::setDebugName(
     std::ctstring_t &a_name
 ) const
@@ -1003,7 +1003,7 @@ CxThread::setDebugName(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO CxThread::handle_t
+inline CxThread::handle_t
 CxThread::open(
     culong_t &a_access,
     cbool_t  &a_isInheritHandle,
@@ -1033,7 +1033,7 @@ CxThread::open(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxThread::isCurrent(
     const CxThread::id_t &a_id
 )
@@ -1050,7 +1050,7 @@ CxThread::isCurrent(
     return bRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO CxThread::id_t
+inline CxThread::id_t
 CxThread::currentId()
 {
     // n/a
@@ -1068,7 +1068,7 @@ CxThread::currentId()
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO CxThread::handle_t
+inline CxThread::handle_t
 CxThread::currentHandle()
 {
     // n/a
@@ -1086,7 +1086,7 @@ CxThread::currentHandle()
     return hRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxThread::currentYield()
 {
     // n/a
@@ -1099,7 +1099,7 @@ CxThread::currentYield()
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxThread::currentSleep(
     culong_t &a_timeoutMsec
 )
@@ -1134,7 +1134,7 @@ CxThread::currentSleep(
 
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE_HO uint_t
+inline uint_t
 CxThread::onRun(
     void_t *a_param
 ) /* = 0*/
@@ -1164,7 +1164,7 @@ CxThread::onRun(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxThread::isTimeToExit()
 {
     // n/a
@@ -1197,7 +1197,7 @@ CxThread::isTimeToExit()
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO CxThread::exit_status_t xSTDCALL
+inline CxThread::exit_status_t xSTDCALL
 CxThread::_s_jobEntry(
     void_t *a_param
 )
@@ -1293,7 +1293,7 @@ CxThread::_s_jobEntry(
     return esExitStatus;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxThread::_waitResumption()
 {
     //-------------------------------------
@@ -1311,7 +1311,7 @@ CxThread::_waitResumption()
     return (CxEvent::osSignaled == osRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxThread::_setStatesDefault()
 {
     // n/a

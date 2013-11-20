@@ -25,7 +25,7 @@ xNAMESPACE_BEGIN(NxLib)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO
+inline
 CxMySQLConnection::CxMySQLConnection() :
     _connection(NULL)
 {
@@ -38,7 +38,7 @@ CxMySQLConnection::CxMySQLConnection() :
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE_HO
+inline
 CxMySQLConnection::~CxMySQLConnection()
 {
     close();
@@ -52,7 +52,7 @@ CxMySQLConnection::get() const
     return _connection;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxMySQLConnection::isValid() const
 {
     // n/a
@@ -60,7 +60,7 @@ CxMySQLConnection::isValid() const
     return (NULL != _connection);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxMySQLConnection::options(
     const mysql_option &a_option,
     cvoid_t            *a_arg
@@ -79,7 +79,7 @@ CxMySQLConnection::options(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO bool_t
+inline bool_t
 CxMySQLConnection::isExists(
     std::ctstring_t &a_host,
     std::ctstring_t &a_user,
@@ -123,7 +123,7 @@ CxMySQLConnection::isExists(
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxMySQLConnection::connect(
     std::ctstring_t &a_host,
     std::ctstring_t &a_user,
@@ -156,7 +156,7 @@ CxMySQLConnection::connect(
     _connection = connection;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxMySQLConnection::query(
     ctchar_t *a_sqlFormat, ...
 ) const
@@ -179,7 +179,7 @@ CxMySQLConnection::query(
     xTEST_MSG_EQ(0, iRv, lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO uint_t
+inline uint_t
 CxMySQLConnection::fieldCount() const
 {
     xTEST_EQ(true, isValid());
@@ -190,7 +190,7 @@ CxMySQLConnection::fieldCount() const
     return uiRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxMySQLConnection::close()
 {
     // _connection - n/a
@@ -210,7 +210,7 @@ CxMySQLConnection::close()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO uint_t
+inline uint_t
 CxMySQLConnection::lastError() const
 {
     xTEST_EQ(true, isValid());
@@ -221,7 +221,7 @@ CxMySQLConnection::lastError() const
     return uiRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO std::tstring_t
+inline std::tstring_t
 CxMySQLConnection::lastErrorStr() const
 {
     xTEST_EQ(true, isValid());
@@ -250,7 +250,7 @@ CxMySQLConnection::lastErrorStr() const
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO
+inline
 CxMySQLRecordset::CxMySQLRecordset(
     const CxMySQLConnection &a_connection, ///< connection
     cbool_t                 &a_isUseResult  ///< use result or store result
@@ -275,7 +275,7 @@ CxMySQLRecordset::CxMySQLRecordset(
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE_HO
+inline
 CxMySQLRecordset::~CxMySQLRecordset()
 {
     // _result - n/a
@@ -287,14 +287,14 @@ CxMySQLRecordset::~CxMySQLRecordset()
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO MYSQL_RES *
+inline MYSQL_RES *
 CxMySQLRecordset::get() const {
     xTEST_EQ(true, isValid());
 
     return _result;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxMySQLRecordset::isValid() const
 {
     // n/a
@@ -313,7 +313,7 @@ CxMySQLRecordset::fieldsNum() const
     return uiRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO my_ulonglong
+inline my_ulonglong
 CxMySQLRecordset::rowsNum() const
 {
     xTEST_EQ(true, isValid());
@@ -324,7 +324,7 @@ CxMySQLRecordset::rowsNum() const
     return ullRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxMySQLRecordset::fetchField(
     MYSQL_FIELD *a_field
 ) const
@@ -336,7 +336,7 @@ CxMySQLRecordset::fetchField(
     xTEST_MSG_PTR(a_field, _connection->lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxMySQLRecordset::fetchFieldDirect(
     cuint_t     &a_fieldNumber,
     MYSQL_FIELD *a_field
@@ -350,7 +350,7 @@ CxMySQLRecordset::fetchFieldDirect(
     xTEST_MSG_PTR(a_field, _connection->lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxMySQLRecordset::fetchFields(
     MYSQL_FIELD *a_field
 ) const
@@ -362,7 +362,7 @@ CxMySQLRecordset::fetchFields(
     xTEST_MSG_PTR(a_field, _connection->lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxMySQLRecordset::fetchRow(
     std::vec_tstring_t *a_row
 ) const
@@ -418,7 +418,7 @@ CxMySQLRecordset::fetchRow(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxMySQLRecordset::_fetchRow(
     MYSQL_ROW *a_row
 ) const
@@ -431,7 +431,7 @@ CxMySQLRecordset::_fetchRow(
     xTEST_PTR(*a_row);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxMySQLRecordset::_fetchLengths(
     ulong_t **a_fieldLengths
 ) const

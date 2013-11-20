@@ -22,7 +22,7 @@ xNAMESPACE_BEGIN(NxLib)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO
+inline
 CxThreadStorage::CxThreadStorage() :
 #if xOS_ENV_WIN
     _index(TLS_OUT_OF_INDEXES)
@@ -34,13 +34,13 @@ CxThreadStorage::CxThreadStorage() :
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE_HO
+inline
 CxThreadStorage::~CxThreadStorage()
 {
     _destruct();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxThreadStorage::isSet() const
 {
     void_t *pvRv = NULL;
@@ -56,7 +56,7 @@ CxThreadStorage::isSet() const
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t *
+inline void_t *
 CxThreadStorage::value() const
 {
     void_t *pvRv = NULL;
@@ -76,7 +76,7 @@ CxThreadStorage::value() const
     return pvRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxThreadStorage::setValue(
     void_t *a_value
 ) const
@@ -104,7 +104,7 @@ CxThreadStorage::setValue(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxThreadStorage::_construct()
 {
     index_t indRv = (index_t)- 1;
@@ -124,7 +124,7 @@ CxThreadStorage::_construct()
     _index = indRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxThreadStorage::_destruct()
 {
 #if xOS_ENV_WIN

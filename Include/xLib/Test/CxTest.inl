@@ -18,7 +18,7 @@ xNAMESPACE_BEGIN(NxLib)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO
+inline
 CxTest::CxTest() :
     m_pvRv      (NULL),
     m_chRv      (0),
@@ -48,13 +48,13 @@ CxTest::CxTest() :
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE_HO
+inline
 CxTest::~CxTest() /* = 0 */
 {
     CxDir( tempDirPath() ).pathDelete();
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxTest::run(
     culonglong_t &a_unitLoops,
     culonglong_t &a_caseLoops
@@ -85,7 +85,7 @@ CxTest::run(
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE_HO void_t
+inline void_t
 CxTest::unit(
     culonglong_t &a_caseLoops
 ) /* = 0 */
@@ -109,7 +109,7 @@ CxTest::unit(
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxTest::createTempDir(
     std::ctstring_t &a_dirName
 )
@@ -125,7 +125,7 @@ CxTest::createTempDir(
     }
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO std::ctstring_t &
+inline std::ctstring_t &
 CxTest::tempDirPath() const
 {
     xTEST_EQ(false, _workDirPath.empty());
@@ -133,13 +133,13 @@ CxTest::tempDirPath() const
     return _workDirPath;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO std::ctstring_t &
+inline std::ctstring_t &
 CxTest::name() const
 {
     return _name;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxTest::setName(
     std::ctstring_t &a_testName
 )

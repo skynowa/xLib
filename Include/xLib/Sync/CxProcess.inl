@@ -25,7 +25,7 @@ xNAMESPACE_BEGIN(NxLib)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO
+inline
 CxProcess::CxProcess() :
     _handle    (0),
 #if xOS_ENV_WIN
@@ -37,7 +37,7 @@ CxProcess::CxProcess() :
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
-xINLINE_HO
+inline
 CxProcess::~CxProcess()
 {
 #if xOS_ENV_WIN
@@ -51,7 +51,7 @@ CxProcess::~CxProcess()
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxProcess::create(
     std::ctstring_t &a_filePath,
     ctchar_t        *a_params, ...
@@ -100,7 +100,7 @@ CxProcess::create(
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO CxProcess::ExWaitResult
+inline CxProcess::ExWaitResult
 CxProcess::wait(
     culong_t &a_timeoutMsec
 )
@@ -130,7 +130,7 @@ CxProcess::wait(
     return waitStatus;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO void_t
+inline void_t
 CxProcess::kill(
     culong_t &a_timeoutMsec    // FIX: timeoutMSec not used
 )
@@ -159,25 +159,25 @@ CxProcess::kill(
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO CxProcess::handle_t
+inline CxProcess::handle_t
 CxProcess::handle() const
 {
     return _handle;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO CxProcess::id_t
+inline CxProcess::id_t
 CxProcess::id() const
 {
     return _pid;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxProcess::isCurrent() const
 {
     return isCurrent( currentId() );
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO ulong_t
+inline ulong_t
 CxProcess::exitStatus() const
 {
     ulong_t ulRv = 0UL;
@@ -200,7 +200,7 @@ CxProcess::exitStatus() const
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO CxProcess::id_t
+inline CxProcess::id_t
 CxProcess::idByHandle(
     const handle_t &a_handle    ///< handle
 )
@@ -217,7 +217,7 @@ CxProcess::idByHandle(
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO CxProcess::handle_t
+inline CxProcess::handle_t
 CxProcess::handleById(
     const id_t &a_id   ///< ID
 )
@@ -235,7 +235,7 @@ CxProcess::handleById(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO
+inline
 CxProcess::id_t
 CxProcess::idByName(
     std::ctstring_t &a_processName
@@ -351,7 +351,7 @@ CxProcess::idByName(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO bool_t
+inline bool_t
 CxProcess::isRunning(
     const id_t &a_id
 )
@@ -368,7 +368,7 @@ CxProcess::isRunning(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxProcess::ids(
     std::vector<CxProcess::id_t> *a_ids
 )
@@ -453,7 +453,7 @@ CxProcess::ids(
     (*a_ids).swap(vidRv);
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO bool_t
+inline bool_t
 CxProcess::isCurrent(
     const CxProcess::id_t &a_id
 )
@@ -470,7 +470,7 @@ CxProcess::isCurrent(
     return bRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO CxProcess::id_t
+inline CxProcess::id_t
 CxProcess::currentId()
 {
     // n/a
@@ -488,7 +488,7 @@ CxProcess::currentId()
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
-xINLINE_HO CxProcess::id_t
+inline CxProcess::id_t
 CxProcess::currentParentId()
 {
     // n/a
@@ -555,7 +555,7 @@ CxProcess::currentParentId()
 }
 //-------------------------------------------------------------------------------------------------
 // TODO: tests
-xINLINE_HO CxProcess::handle_t
+inline CxProcess::handle_t
 CxProcess::currentHandle()
 {
     // n/a
@@ -578,7 +578,7 @@ CxProcess::currentHandle()
 }
 //-------------------------------------------------------------------------------------------------
 // TODO: tests
-xINLINE_HO void_t
+inline void_t
 CxProcess::currentExit(
     cuint_t &a_exitCode
 )

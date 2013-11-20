@@ -20,7 +20,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxMimeMessage::parse(
     std::ctstring_t &a_rawMessage,
     CxMimeheader    &a_header,
@@ -31,7 +31,7 @@ CxMimeMessage::parse(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxMimeMessage::loadFromRawFile(
     std::ctstring_t &a_filePath
 )
@@ -40,7 +40,7 @@ CxMimeMessage::loadFromRawFile(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-xINLINE_HO void_t
+inline void_t
 CxMimeMessage::saveToRawFile(
     std::ctstring_t &a_filePath
 )
