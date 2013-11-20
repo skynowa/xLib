@@ -10,8 +10,6 @@
 #define xLib_xStdStreamH
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
-#include <xLib/Test/xTest.h>
-#include <xLib/Debug/xDebug.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(std)
 
