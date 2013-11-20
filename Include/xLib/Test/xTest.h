@@ -77,12 +77,12 @@
     }
 
 // _xREPORT_TYPE
-#if xDEBUG_MODE_STDOUT_PLAIN
+#if   xDEBUG_MODE_STDOUT_PLAIN
     #define _xREPORT_TYPE CxErrorReport::rtStdoutPlain
 #elif xDEBUG_MODE_MSGBOX_PLAIN
     #define _xREPORT_TYPE CxErrorReport::rtMsgboxPlain
-#else
-    #define _xREPORT_TYPE 0
+#elif xDEBUG_MODE_LOGGING_PLAIN
+    #define _xREPORT_TYPE CxErrorReport::rtLoggingPlain
 #endif
 
 #ifdef _xREPORT_TYPE
