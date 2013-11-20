@@ -28,15 +28,15 @@ Dependencies:
         Ubuntu: sudo apt-get install libmysqlclient-dev 
 
 Repositories:
-    - bitbucket.org
+    - http://bitbucket.org
         git clone https://skynowa@bitbucket.org/skynowa/xlib.git
         git clone git@bitbucket.org:skynowa/xlib.git
 
-    - github.com
+    - http://github.com
         git clone https://github.com/skynowa/xLib.git
         git clone git://github.com/skynowa/xLib.git
 
-    - sourceforge.net
+    - http://sourceforge.net
         git clone https://skynowa@git.code.sf.net/p/x-lib/code x-lib-code
         git clone git://git.code.sf.net/p/x-lib/code x-lib-code
 
