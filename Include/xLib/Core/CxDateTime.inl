@@ -94,10 +94,10 @@ CxDateTime::CxDateTime(
 //-------------------------------------------------------------------------------------------------
 inline
 CxDateTime::CxDateTime(
-    cushort_t &a_hour,
-    cushort_t &a_minute,
-    cushort_t &a_second,
-    cushort_t &a_msec
+    cint_t &a_hour,
+    cint_t &a_minute,
+    cint_t &a_second,
+    cint_t &a_msec
 ) :
     _thisMSec(0ULL),
     _year    (0),
@@ -113,9 +113,9 @@ CxDateTime::CxDateTime(
 //-------------------------------------------------------------------------------------------------
 inline
 CxDateTime::CxDateTime(
-    cushort_t &a_year,
-    cushort_t &a_month,
-    cushort_t &a_day
+    cint_t &a_year,
+    cint_t &a_month,
+    cint_t &a_day
 ) :
     _thisMSec(0),
     _year    (0),
@@ -131,13 +131,13 @@ CxDateTime::CxDateTime(
 //-------------------------------------------------------------------------------------------------
 inline
 CxDateTime::CxDateTime(
-    cushort_t &a_year,
-    cushort_t &a_month,
-    cushort_t &a_day,
-    cushort_t &a_hour,
-    cushort_t &a_minute,
-    cushort_t &a_second,
-    cushort_t &a_msec
+    cint_t &a_year,
+    cint_t &a_month,
+    cint_t &a_day,
+    cint_t &a_hour,
+    cint_t &a_minute,
+    cint_t &a_second,
+    cint_t &a_msec
 ) :
     _thisMSec(0ULL),
     _year    (0),
@@ -317,13 +317,13 @@ CxDateTime::operator -= (
 //-------------------------------------------------------------------------------------------------
 inline void_t
 CxDateTime::get(
-    ushort_t *a_year,
-    ushort_t *a_month,
-    ushort_t *a_day,
-    ushort_t *a_hour,
-    ushort_t *a_minute,
-    ushort_t *a_second,
-    ushort_t *a_msec
+    int_t *a_year,
+    int_t *a_month,
+    int_t *a_day,
+    int_t *a_hour,
+    int_t *a_minute,
+    int_t *a_second,
+    int_t *a_msec
 ) const
 {
     xTEST_EQ(true, isValid());
@@ -338,13 +338,13 @@ CxDateTime::get(
     CxUtils::ptrAssignT(a_msec,   _msec);
 }
 //-------------------------------------------------------------------------------------------------
-inline ushort_t
+inline int_t
 CxDateTime::dayOfWeek() const
 {
     xTEST_EQ(true, isValid()); //??? - 0
 
-    ushort_t usRv     = 0;
-    tm       timeInfo;  xSTRUCT_ZERO(timeInfo);
+    int_t iRv     = 0;
+    tm    timeInfo;  xSTRUCT_ZERO(timeInfo);
 
     timeInfo.tm_year = _year  - 1900;
     timeInfo.tm_mon  = _month - 1;
@@ -353,10 +353,10 @@ CxDateTime::dayOfWeek() const
     time_t tmTime = std::mktime(&timeInfo);
     xTEST_DIFF(static_cast<time_t>( - 1 ), tmTime);
 
-    usRv = timeInfo.tm_wday;
-    //xTRACEV(xT("That day is a %s"), sGetWeekDayStr(usRv, false).c_str());
+    iRv = timeInfo.tm_wday;
+    //xTRACEV(xT("That day is a %s"), sGetWeekDayStr(iRv, false).c_str());
 
-    return usRv;
+    return iRv;
 }
 //-------------------------------------------------------------------------------------------------
 // TODO: toMsec
@@ -385,36 +385,36 @@ CxDateTime::set(
     ulonglong_t msec = a_msec;
 
     // converts milliseconds to datetime members
-    _year    = static_cast<ushort_t>( msec / ((1000ULL * 60 * 60 * 24 * 30) * 12) );
+    _year    = static_cast<int_t>( msec / ((1000ULL * 60 * 60 * 24 * 30) * 12) );
 
     msec    %= ((1000ULL * 60 * 60 * 24 * 30) * 12);
-    _month   = static_cast<ushort_t>( msec / ((1000ULL * 60 * 60 * 24) * 30) );
+    _month   = static_cast<int_t>( msec / ((1000ULL * 60 * 60 * 24) * 30) );
 
     msec    %= ((1000ULL * 60 * 60 * 24) * 30);
-    _day     = static_cast<ushort_t>( msec / ((1000ULL * 60 * 60) * 24) );
+    _day     = static_cast<int_t>( msec / ((1000ULL * 60 * 60) * 24) );
 
     msec    %= ((1000ULL * 60 * 60) * 24);
-    _hour    = static_cast<ushort_t>( msec / ((1000ULL * 60) * 60) );
+    _hour    = static_cast<int_t>( msec / ((1000ULL * 60) * 60) );
 
     msec    %= ((1000ULL * 60) * 60);
-    _minute  = static_cast<ushort_t>( msec / ((1000ULL * 60)) );
+    _minute  = static_cast<int_t>( msec / ((1000ULL * 60)) );
 
     msec    %= ((1000ULL * 60));
-    _second  = static_cast<ushort_t>( msec / 1000ULL );
+    _second  = static_cast<int_t>( msec / 1000ULL );
 
     msec    %= 1000ULL;
-    _msec    = static_cast<ushort_t>( msec );
+    _msec    = static_cast<int_t>( msec );
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
 CxDateTime::set(
-    cushort_t &a_year,
-    cushort_t &a_month,
-    cushort_t &a_day,
-    cushort_t &a_hour,
-    cushort_t &a_minute,
-    cushort_t &a_second,
-    cushort_t &a_msec
+    cint_t &a_year,
+    cint_t &a_month,
+    cint_t &a_day,
+    cint_t &a_hour,
+    cint_t &a_minute,
+    cint_t &a_second,
+    cint_t &a_msec
 )
 {
     // n/a
@@ -524,34 +524,34 @@ CxDateTime::format(
 /* static */
 inline bool_t
 CxDateTime::isValid(
-    cushort_t &a_year,
-    cushort_t &a_month,
-    cushort_t &a_day,
-    cushort_t &a_hour,
-    cushort_t &a_minute,
-    cushort_t &a_second,
-    cushort_t &a_msec
+    cint_t &a_year,
+    cint_t &a_month,
+    cint_t &a_day,
+    cint_t &a_hour,
+    cint_t &a_minute,
+    cint_t &a_second,
+    cint_t &a_msec
 )
 {
-    bool_t bYear   = (/*a_year   >= 0U && */a_year   <= 9999U);
+    bool_t bYear   = (/*a_year   >= 0U && */a_year   <= 9999);
     xTEST_EQ(true, bYear);
 
-    bool_t bMonth  = (/*a_month  >= 0 /1/ &&*/ a_month  <= 12U);
+    bool_t bMonth  = (/*a_month  >= 0 /1/ &&*/ a_month  <= 12);
     xTEST_EQ(true, bMonth);
 
     bool_t bDay    = true; ////(a_day    >= 0/*1*/ && a_day    <= usDaysInMonth(a_year, a_month));
     xTEST_EQ(true, bDay);
 
-    bool_t bHour   = (/*a_hour   >= 0 &&*/ a_hour   <= 23U);
+    bool_t bHour   = (/*a_hour   >= 0 &&*/ a_hour   <= 23);
     xTEST_EQ(true, bHour);
 
-    bool_t bMinute = (/*a_minute >= 0 &&*/ a_minute <= 59U);
+    bool_t bMinute = (/*a_minute >= 0 &&*/ a_minute <= 59);
     xTEST_EQ(true, bMinute);
 
-    bool_t bSecond = (/*a_second >= 0 &&*/ a_second <= 59U);
+    bool_t bSecond = (/*a_second >= 0 &&*/ a_second <= 59);
     xTEST_EQ(true, bSecond);
 
-    bool_t bMsec   = (/*a_msec >= 0 &&*/ a_msec   <= 999U);
+    bool_t bMsec   = (/*a_msec >= 0 &&*/ a_msec   <= 999);
     xTEST_EQ(true, bMsec);
 
     xCHECK_RET(!(bYear && bMonth && bDay && bHour && bMinute && bSecond && bMsec), false);
@@ -602,13 +602,13 @@ CxDateTime::current()
     xTEST_PTR(dateTime);
 
     // set datetime
-    ushort_t year   = dateTime->tm_year + 1900U;
-    ushort_t month  = dateTime->tm_mon  + 1U;   // TODO: +1U ???
-    ushort_t day    = dateTime->tm_mday;
-    ushort_t hour   = dateTime->tm_hour;
-    ushort_t minute = dateTime->tm_min;
-    ushort_t second = dateTime->tm_sec;
-    ushort_t msec   = static_cast<ushort_t>( static_cast<double>(time.tv_usec) * 0.001 );
+    int_t year   = dateTime->tm_year + 1900;
+    int_t month  = dateTime->tm_mon  + 1;   // TODO: +1U ???
+    int_t day    = dateTime->tm_mday;
+    int_t hour   = dateTime->tm_hour;
+    int_t minute = dateTime->tm_min;
+    int_t second = dateTime->tm_sec;
+    int_t msec   = static_cast<int_t>( static_cast<double>(time.tv_usec) * 0.001 );
 
     xTEST_EQ(true, isValid(year, month, day, hour, minute, second, msec));
 
@@ -674,29 +674,29 @@ CxDateTime::fileTimeToUnixTime(
 #endif
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline ushort_t
+inline int_t
 CxDateTime::daysInMonth(
-    cushort_t &a_year,
-    cushort_t &a_month
+    cint_t &a_year,
+    cint_t &a_month
 )
 {
     xCHECK_RET(2 == a_month && isLeapYear(a_year), 29);
 
-    const CxArray<ushort_t, 13> monthsDays = {{
+    const CxArray<int_t, 13> monthsDays = {{
         /*31*/0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
     }};
 
-    ushort_t usRv = 0;
+    int_t iRv = 0;
 
-    usRv = monthsDays[a_month];
+    iRv = monthsDays[a_month];
 
-    return usRv;
+    return iRv;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline bool_t
 CxDateTime::isLeapYear(
-    cushort_t &a_year
+    cint_t &a_year
 )
 {
     return ( 0 == (a_year % 4) && ( 0 != (a_year % 100) || 0 == (a_year % 400)) );
@@ -713,8 +713,8 @@ CxDateTime::isLeapYear(
 /* static */
 inline std::tstring_t
 CxDateTime::zodiacSign(
-    cushort_t &a_month,
-    cushort_t &a_day
+    cint_t &a_month,
+    cint_t &a_day
 )
 {
    /**
@@ -797,8 +797,8 @@ CxDateTime::zodiacSign(
 /* static */
 inline std::tstring_t
 CxDateTime::monthStr(
-    ushort_t  a_month,
-    cbool_t  &a_isShortName
+    int_t    a_month,
+    cbool_t &a_isShortName
 )
 {
     // month      - n/a
@@ -852,7 +852,7 @@ CxDateTime::monthStr(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline ushort_t
+inline int_t
 CxDateTime::monthNum(
     std::ctstring_t &a_month,
     cbool_t         &a_isShortName
@@ -894,20 +894,20 @@ CxDateTime::monthNum(
 
     for (size_t i = 0; i < longMonths.size(); ++ i) {
         if (a_isShortName) {
-            xCHECK_RET(CxString::compareNoCase(a_month, shortMonths[i]), static_cast<ushort_t>( i + 1 ));
+            xCHECK_RET(CxString::compareNoCase(a_month, shortMonths[i]), static_cast<int_t>( i + 1 ));
         } else {
-            xCHECK_RET(CxString::compareNoCase(a_month, longMonths[i]),  static_cast<ushort_t>( i + 1 ));
+            xCHECK_RET(CxString::compareNoCase(a_month, longMonths[i]),  static_cast<int_t>( i + 1 ));
         }
     }
 
-    return static_cast<ushort_t>( - 1 );  // TODO: static_cast<ushort_t>( - 1 )
+    return static_cast<int_t>( - 1 );  // TODO: static_cast<int_t>( - 1 )
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline std::tstring_t
 CxDateTime::weekDayStr(
-    ushort_t  a_day,
-    cbool_t  &a_isShortName
+    int_t    a_day,
+    cbool_t &a_isShortName
 )
 {
     // cusDay       - n/a
@@ -949,7 +949,7 @@ CxDateTime::weekDayStr(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline ushort_t
+inline int_t
 CxDateTime::weekDayNum(
     std::ctstring_t &a_day,
     cbool_t         &a_isShortName
@@ -977,12 +977,12 @@ CxDateTime::weekDayNum(
         xT("Sat")
     }};
 
-    for (ushort_t i = 0; i < static_cast<ushort_t>( longDays.size() ); ++ i) {
+    for (int_t i = 0; i < static_cast<int_t>( longDays.size() ); ++ i) {
         xCHECK_RET(!a_isShortName && CxString::compareNoCase(a_day, longDays[i]),  i);
         xCHECK_RET( a_isShortName && CxString::compareNoCase(a_day, shortDays[i]), i);
     }
 
-    return static_cast<ushort_t>( - 1 );  //TODO: static_cast<ushort_t>( - 1 )
+    return static_cast<int_t>( - 1 );  // TODO: static_cast<int_t>( - 1 )
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -1023,23 +1023,23 @@ CxDateTime::_parse(
         std::vec_tstring_t dates;
         CxString::split(dateTime, CxConst::space(), &dates);
 
-        //                   = CxString::cast<ushort_t>( dates.at(0) );    // Wed(0),
-        (*a_datetime)._day    = CxString::cast<ushort_t>( dates.at(1) );   // 23(1)
-        (*a_datetime)._month  = monthNum(dates.at(2), true);               // Mar(2)
-        (*a_datetime)._year   = CxString::cast<ushort_t>( dates.at(3) );   // 2011(3)
-        (*a_datetime)._hour   = CxString::cast<ushort_t>( dates.at(4) );   // 15(4)
-        (*a_datetime)._minute = CxString::cast<ushort_t>( dates.at(5) );   // 05(5)
-        (*a_datetime)._second = CxString::cast<ushort_t>( dates.at(6) );   // 49(6)
+        //                  = CxString::cast<int_t>( dates.at(0) );   // Wed(0),
+        a_datetime->_day    = CxString::cast<int_t>( dates.at(1) );   // 23(1)
+        a_datetime->_month  = monthNum(dates.at(2), true);            // Mar(2)
+        a_datetime->_year   = CxString::cast<int_t>( dates.at(3) );   // 2011(3)
+        a_datetime->_hour   = CxString::cast<int_t>( dates.at(4) );   // 15(4)
+        a_datetime->_minute = CxString::cast<int_t>( dates.at(5) );   // 05(5)
+        a_datetime->_second = CxString::cast<int_t>( dates.at(6) );   // 49(6)
 
     #if xTEMP_DISABLED
         xTRACE(xT("-----------------------------------"));
         xTRACE(xFUNCTION);
-        xTRACEV(xT("_day:    %i"), (*a_datetime)._day);
-        xTRACEV(xT("_month:  %i"), (*a_datetime)._month);
-        xTRACEV(xT("_year:   %i"), (*a_datetime)._year);
-        xTRACEV(xT("_hour:   %i"), (*a_datetime)._hour);
-        xTRACEV(xT("_minute: %i"), (*a_datetime)._minute);
-        xTRACEV(xT("_second: %i"), (*a_datetime)._second);
+        xTRACEV(xT("_day:    %i"), a_datetime->_day);
+        xTRACEV(xT("_month:  %i"), a_datetime->_month);
+        xTRACEV(xT("_year:   %i"), a_datetime->_year);
+        xTRACEV(xT("_hour:   %i"), a_datetime->_hour);
+        xTRACEV(xT("_minute: %i"), a_datetime->_minute);
+        xTRACEV(xT("_second: %i"), a_datetime->_second);
         xTRACE(xT("-----------------------------------"));
     #endif
         break;
