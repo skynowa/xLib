@@ -447,13 +447,13 @@ CxPop3::del(
     S: -ERR message 2 already deleted
     */
 
-    std::tstring_t _sRv;
+    std::tstring_t sRv;
 
     //-------------------------------------
     //[DELE 2\r\n]
     std::ctstring_t deleCmd = xT("DELE ") + CxString::cast(a_num) + xT("\r\n");
 
-    _command(deleCmd, xT("\r\n"), &_sRv);
+    _command(deleCmd, xT("\r\n"), &sRv);
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
