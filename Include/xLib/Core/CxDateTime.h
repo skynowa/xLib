@@ -35,14 +35,12 @@ public:
         ///< constructor
     explicit              CxDateTime(culonglong_t &msec);
         ///< constructor
-                          CxDateTime(cushort_t &hour, cushort_t &minute, cushort_t &second,
-                              cushort_t &msec);
+                          CxDateTime(cint_t &hour, cint_t &minute, cint_t &second, cint_t &msec);
         ///< constructor
-                          CxDateTime(cushort_t &year, cushort_t &month, cushort_t &day);
+                          CxDateTime(cint_t &year, cint_t &month, cint_t &day);
         ///< constructor
-                          CxDateTime(cushort_t &year, cushort_t &month, cushort_t &day,
-                              cushort_t &hour, cushort_t &minute, cushort_t &second,
-                              cushort_t &msec);
+                          CxDateTime(cint_t &year, cint_t &month, cint_t &day, cint_t &hour,
+                              cint_t &minute, cint_t &second, cint_t &msec);
         ///< constructor
     virtual              ~CxDateTime() {}
         ///< destructor
@@ -79,17 +77,15 @@ public:
     //--
 
     // get/set
-    void_t                get(ushort_t *year, ushort_t *month, ushort_t *day,
-                              ushort_t *hour, ushort_t *minute,
-                              ushort_t *second, ushort_t *msec) const;
+    void_t                get(int_t *year, int_t *month, int_t *day, int_t *hour, int_t *minute,
+                              int_t *second, int_t *msec) const;
         ///< get datetime data
-    ushort_t              dayOfWeek() const xWARN_UNUSED_RV;
+    int_t                 dayOfWeek() const xWARN_UNUSED_RV;
         ///< get day of week, days since Sunday 0-6
     void_t                set(culonglong_t &msec);
         ///< set CxDateTime by milliseconds
-    void_t                set(cushort_t &year, cushort_t &month, cushort_t &day,
-                              cushort_t &hour, cushort_t &minute,
-                              cushort_t &second, cushort_t &msec);
+    void_t                set(cint_t &year, cint_t &month, cint_t &day, cint_t &hour,
+                              cint_t &minute, cint_t &second, cint_t &msec);
         ///< set CxDateTime by datetime data
 
     // converting
@@ -107,9 +103,8 @@ public:
         ///< formating
 
     // static
-    static bool_t         isValid(cushort_t &year, cushort_t &month, cushort_t &day,
-                              cushort_t &hour, cushort_t &minute,
-                              cushort_t &second, cushort_t &msec) xWARN_UNUSED_RV;
+    static bool_t         isValid(cint_t &year, cint_t &month, cint_t &day, cint_t &hour,
+                              cint_t &minute, cint_t &second, cint_t &msec) xWARN_UNUSED_RV;
         ///< checking for a valid datetime
     static bool_t         isValid(const CxDateTime &datetime) xWARN_UNUSED_RV;
         ///< checking for a valid datetime
@@ -118,9 +113,9 @@ public:
 
     static CxDateTime     current() xWARN_UNUSED_RV;
         ///< get current datetime
-    static ushort_t       daysInMonth(cushort_t &year, cushort_t &month) xWARN_UNUSED_RV;
+    static int_t          daysInMonth(cint_t &year, cint_t &month) xWARN_UNUSED_RV;
         ///< get number days in month
-    static bool_t         isLeapYear(cushort_t &year) xWARN_UNUSED_RV;
+    static bool_t         isLeapYear(cint_t &year) xWARN_UNUSED_RV;
         ///< is leap year
 #if xOS_ENV_WIN
     static longlong_t     filetimeToInt64(const FILETIME &fileTime) xWARN_UNUSED_RV;
@@ -132,15 +127,15 @@ public:
 #endif
 
     // other
-    static std::tstring_t zodiacSign(cushort_t &month, cushort_t &day) xWARN_UNUSED_RV;
+    static std::tstring_t zodiacSign(cint_t &month, cint_t &day) xWARN_UNUSED_RV;
         ///< sign of the zodiac by date
-    static std::tstring_t monthStr(ushort_t month, cbool_t &isShortName) xWARN_UNUSED_RV;
+    static std::tstring_t monthStr(int_t month, cbool_t &isShortName) xWARN_UNUSED_RV;
         ///< get month string
-    static ushort_t       monthNum(std::ctstring_t &month, cbool_t &isShortName) xWARN_UNUSED_RV;
+    static int_t          monthNum(std::ctstring_t &month, cbool_t &isShortName) xWARN_UNUSED_RV;
         ///< get month number by string
-    static std::tstring_t weekDayStr(ushort_t day, cbool_t &isShortName) xWARN_UNUSED_RV;
+    static std::tstring_t weekDayStr(int_t day, cbool_t &isShortName) xWARN_UNUSED_RV;
         ///< get week day string
-    static ushort_t       weekDayNum(std::ctstring_t &day, cbool_t &isShortName) xWARN_UNUSED_RV;
+    static int_t          weekDayNum(std::ctstring_t &day, cbool_t &isShortName) xWARN_UNUSED_RV;
         ///< get week day number by string
 
 private:
@@ -148,19 +143,19 @@ private:
         ///< datetime in milliseconds
 
     // datetime members
-    ushort_t              _year;
+    int_t                 _year;
         ///< 0-2010, Win (1601 through 30827)
-    ushort_t              _month;
+    int_t                 _month;
         ///< 1-12, Win (1-12)
-    ushort_t              _day;
+    int_t                 _day;
         ///< 1-31, Win (1-31)
-    ushort_t              _hour;
+    int_t                 _hour;
         ///< 0-23, Win (0-23)
-    ushort_t              _minute;
+    int_t                 _minute;
         ///< 0-59, Win (0-59)
-    ushort_t              _second;
+    int_t                 _second;
         ///< 0-61*, Win (0-59)
-    ushort_t              _msec;
+    int_t                 _msec;
         ///< 0-999, Win (0-99)
 
     ulonglong_t           _toMsec() const xWARN_UNUSED_RV;
