@@ -12,10 +12,10 @@
 /* virtual */
 void_t
 CxTest_CxVolume::unit(
-    culonglong_t &a_cullCaseLoops
+    culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("CxVolume::type", a_cullCaseLoops)
+    xTEST_CASE("CxVolume::type", a_caseLoops)
     {
         #if   xOS_ENV_WIN
             std::ctstring_t csVolumePath = xT("C:");
@@ -29,7 +29,7 @@ CxTest_CxVolume::unit(
         // TEST: xTEST_EQ(CxVolume::dtFixed, dtRes);
     }
 
-    xTEST_CASE("CxVolume::label", a_cullCaseLoops)
+    xTEST_CASE("CxVolume::label", a_caseLoops)
     {
         std::vec_tstring_t vsVolumePaths;
 
@@ -45,7 +45,7 @@ CxTest_CxVolume::unit(
         }
     }
 
-    xTEST_CASE("CxVolume::isValid", a_cullCaseLoops)
+    xTEST_CASE("CxVolume::isValid", a_caseLoops)
     {
         // true
         {
@@ -84,7 +84,7 @@ CxTest_CxVolume::unit(
         }
     }
 
-    xTEST_CASE("CxVolume::isReady", a_cullCaseLoops)
+    xTEST_CASE("CxVolume::isReady", a_caseLoops)
     {
         // true
         {
@@ -121,7 +121,7 @@ CxTest_CxVolume::unit(
         }
     }
 
-    xTEST_CASE("CxVolume::isEmpty", a_cullCaseLoops)
+    xTEST_CASE("CxVolume::isEmpty", a_caseLoops)
     {
         // true
         {
@@ -163,7 +163,7 @@ CxTest_CxVolume::unit(
         }
     }
 
-    xTEST_CASE("CxVolume::mount unMount", a_cullCaseLoops)
+    xTEST_CASE("CxVolume::mount unMount", a_caseLoops)
     {
     #if xTEST_IGNORE
         #if   xOS_ENV_WIN
@@ -179,7 +179,33 @@ CxTest_CxVolume::unit(
     #endif
     }
 
-    xTEST_CASE("CxVolume::space", a_cullCaseLoops)
+    xTEST_CASE("CxVolume::isSpaceEnough", a_caseLoops)
+    {
+        std::vec_tstring_t volumes;
+
+        CxVolume::paths(&volumes);
+
+        xFOREACH(std::vec_tstring_t, it, volumes) {
+            culonglong_t data[][2] = {
+                {0, 1},
+                {1, 1},
+                {std::numeric_limits<ulonglong_t>, 0}
+            };
+
+            for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
+                culonglong_t needBytes = data[i][0];
+                cbool_t      bRv       = static_cast<cbool_t>( data[i][1] );
+
+                CxVolume volume(*it);
+                xCHECK_DO(!volume.isReady(), continue);
+
+                m_bRv = volume.isSpaceEnough(needBytes);
+                xTEST_EQ(m_bRv, bRv);
+            }
+        }
+    }
+
+    xTEST_CASE("CxVolume::space", a_caseLoops)
     {
         std::vec_tstring_t vsData;
 
@@ -244,7 +270,7 @@ CxTest_CxVolume::unit(
         }
     }
 
-    xTEST_CASE("CxVolume::paths", a_cullCaseLoops)
+    xTEST_CASE("CxVolume::paths", a_caseLoops)
     {
         std::vec_tstring_t vsVolumePaths;
 
