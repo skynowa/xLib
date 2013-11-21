@@ -29,15 +29,15 @@ public:
     static inline void_t    ptrAssignT(T * &ptr, const T &value);
         ///< assign pointer
 
-    template <class T, std::csize_t cuiArraySize>
-    static inline size_t    arraySizeT(const T (&)[cuiArraySize]) xWARN_UNUSED_RV;
+    template <class T, std::csize_t arraySize>
+    static inline size_t    arraySizeT(const T (&)[arraySize]) xWARN_UNUSED_RV;
         ///< get array size
 
     static inline void_t    memoryZero(void_t *ptr, std::csize_t &sizeBytes);
         ///< zero memory
 
-    template <class T, std::csize_t cuiArraySize>
-    static inline void_t    arrayZeroT(T (&arrayT)[cuiArraySize]);
+    template <class T, std::csize_t arraySize>
+    static inline void_t    arrayZeroT(T (&arrayT)[arraySize]);
         ///< array zero
 
     template <class T>
