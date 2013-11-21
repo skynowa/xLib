@@ -256,6 +256,21 @@ CxVolume::unMount(
 #endif
 }
 //-------------------------------------------------------------------------------------------------
+inline bool_t
+CxVolume::isSpaceEnough(
+    culonglong_t &a_needBytes ///< need space in bytes
+) const
+{
+    xTEST_NA(a_needBytes);
+
+    ulonglong_t totalFreeBytes = 0ULL;
+    space(_volumePath, NULL, NULL, &totalFreeBytes);
+
+    xCHECK_RET(a_needBytes > totalFreeBytes, false);
+
+    return true;
+}
+//-------------------------------------------------------------------------------------------------
 
 
 /**************************************************************************************************
@@ -267,10 +282,10 @@ CxVolume::unMount(
 /* static */
 inline void_t
 CxVolume::space(
-    std::ctstring_t &a_dirPath,      ///< directory path
-    ulonglong_t     *a_available,  ///< available space (for unprivileged users)
-    ulonglong_t     *a_total,      ///< total space
-    ulonglong_t     *a_free        ///< free space
+    std::ctstring_t &a_dirPath,     ///< directory path
+    ulonglong_t     *a_available,   ///< available space (for unprivileged users)
+    ulonglong_t     *a_total,       ///< total space
+    ulonglong_t     *a_free         ///< free space
 )
 {
     xTEST_NA(a_dirPath);
@@ -279,7 +294,7 @@ CxVolume::space(
     xTEST_NA(a_free);
 
     //--------------------------------------------------
-    //if dirPath parameter is empty, uses the root of the current volume
+    // if a_dirPath parameter is empty, uses the root of the current volume
     std::tstring_t dirPath;
 
     if (a_dirPath.empty()) {

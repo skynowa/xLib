@@ -61,6 +61,8 @@ public:
         ///< mount
     void_t            unMount(cbool_t &isForce) const;
         ///< unmount
+    bool_t            isSpaceEnough(culonglong_t &needBytes) const;
+        ///< is enough space
 
     // static
     static void_t     space(std::ctstring_t &dirPath, ulonglong_t *available, ulonglong_t *total,
