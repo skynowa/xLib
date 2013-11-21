@@ -240,21 +240,21 @@ public:
 
     //void_t *, std::tstring_t, std::ustring_t
 
-    int_t          send(ctchar_t *buff, cint_t &buffSize, cint_t &flags) xWARN_UNUSED_RV;
+    ssize_t        send(ctchar_t *buff, size_t &buffSize, cint_t &flags) xWARN_UNUSED_RV;
         ///< send data
     void_t         sendAll(std::ctstring_t &buff, cint_t &flags);
         ///< send data by blocks
 
-    int_t          recv(tchar_t *buff,  cint_t &buffSize, cint_t &flags) xWARN_UNUSED_RV;
+    ssize_t        receive(tchar_t *buff,  size_t &buffSize, cint_t &flags) xWARN_UNUSED_RV;
         ///< receive data
     std::tstring_t recvAll(cint_t &flags) xWARN_UNUSED_RV;
         ///< receive data
     std::tstring_t recvAll(cint_t &flags, std::ctstring_t &delimiter) xWARN_UNUSED_RV;
         ///< receive data to delimiter, includes it
 
-    int_t          sendBytes(char *buff, cint_t &messageLength) xWARN_UNUSED_RV;
+    int_t          sendBytes(char *buff, ssize_t &messageLength) xWARN_UNUSED_RV;
         ///< send bytes
-    int_t          receiveBytes(char *buff, cint_t &stillToReceive) xWARN_UNUSED_RV;
+    int_t          receiveBytes(char *buff, ssize_t &stillToReceive) xWARN_UNUSED_RV;
         ///< receive bytes
 
 
