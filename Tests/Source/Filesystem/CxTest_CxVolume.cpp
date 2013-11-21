@@ -189,7 +189,7 @@ CxTest_CxVolume::unit(
             culonglong_t data[][2] = {
                 {0, 1},
                 {1, 1},
-                {std::numeric_limits<ulonglong_t>, 0}
+                {std::numeric_limits<ulonglong_t>::max(), 0}
             };
 
             for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
