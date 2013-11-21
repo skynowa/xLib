@@ -37,15 +37,15 @@ elseif (MINGW)
     set(LIBS ws2_32 psapi uuid ole32 mpr)
     set(FLAGS "-Wall -pipe")
 elseif (CMAKE_COMPILER_IS_CLANGXX)
-    set(LIBS pthread rt m z )
-    set(FLAGS "-pipe -Wall")
-    set(FLAGS "${FLAGS} -Wno-deprecated -Wextra -Wconversion -Wshadow -Wno-unused-parameter -Wno-unused-variable -Wno-unknown-pragmas -Wno-return-type-c-linkage -Werror")
-    set(FLAGS "${FLAGS} -fcolor-diagnostics -Qunused-arguments -U__STRICT_ANSI__ -D__STDC_FORMAT_MACROS")
+    set(LIBS pthread rt m z)
+    set(FLAGS "-pipe -Wall -Wno-deprecated -Wextra -Wconversion -Wshadow -Wno-unused-parameter "
+        "-Wno-unused-variable -Wno-unknown-pragmas -Wno-return-type-c-linkage -Werror "
+        "-fcolor-diagnostics -Qunused-arguments -U__STRICT_ANSI__ -D__STDC_FORMAT_MACROS")
 elseif (CMAKE_COMPILER_IS_GNUCXX)
-    set(LIBS pthread rt m z )
-    set(FLAGS "-pipe -Wall")
-    set(FLAGS "${FLAGS} -Wno-deprecated -Wextra -Wconversion -Wshadow -Wno-unused-parameter -Wno-unused-variable -Wno-unknown-pragmas -Wno-return-type-c-linkage -Werror")
-    set(FLAGS "${FLAGS} -U__STRICT_ANSI__ -D__STDC_FORMAT_MACROS")
+    set(LIBS pthread rt m z)
+    set(FLAGS "-pipe -Wall -Wno-deprecated -Wextra -Wconversion -Wshadow -Wno-unused-parameter "
+        "-Wno-unused-variable -Wno-unknown-pragmas -Wno-return-type-c-linkage -Werror "
+        "-U__STRICT_ANSI__ -D__STDC_FORMAT_MACROS")
 else()
     message("xLib: unknown compiler")
 endif()
