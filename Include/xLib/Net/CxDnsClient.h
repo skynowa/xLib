@@ -34,15 +34,15 @@ public:
 
     // protocol
     static void_t protocolByName(std::ctstring_t &protocolName, std::tstring_t *name,
-                      std::vec_tstring_t *aliases, short_t *number);
+                      std::vec_tstring_t *aliases, int_t *number);
         ///< get protocol by name
-    static void_t protocolByNumber(cshort_t &number, std::tstring_t *name,
-                      std::vec_tstring_t *aliases, short_t *number_rv);
+    static void_t protocolByNumber(cint_t &number, std::tstring_t *name,
+                      std::vec_tstring_t *aliases, int_t *number_rv);
         ///< get protocol by number
 
     // service
     static void_t serviceByName(std::ctstring_t &serviceName, std::ctstring_t &protocolName,
-                      std::tstring_t *name, std::vec_tstring_t *aliases, short_t *port,
+                      std::tstring_t *name, std::vec_tstring_t *aliases, int_t *port,
                       std::tstring_t *protocolName_rv);
         ///< get service by name
     static void_t serviceByPort(cshort_t &port, std::ctstring_t &protocolName,
@@ -50,9 +50,9 @@ public:
                       std::tstring_t *protocolName_rv);
         ///< get service by port
 
-    static bool_t isOnLan(culong_t &ip) xWARN_UNUSED_RV;
+    static bool_t isOnLan(cuint_t &ip) xWARN_UNUSED_RV;
         ///< return true if IP is on this LAN
-    static bool_t isBroadcast(culong_t &ip) xWARN_UNUSED_RV;
+    static bool_t isBroadcast(cuint_t &ip) xWARN_UNUSED_RV;
         ///< return true if IP is a (directed) IP-broadcast address
 
 private:

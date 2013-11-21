@@ -154,9 +154,9 @@ CxSocket::close() {
 //TODO: LINUX: ssize_t send(int_t sockfd, cvoid_t *buf, size_t len, int_t flags);
 inline ssize_t
 CxSocket::send(
-    ctchar_t *a_buff,
-    size_t   &a_buffSize,
-    cint_t   &a_flags
+    ctchar_t     *a_buff,
+    std::csize_t &a_buffSize,
+    cint_t       &a_flags
 )
 {
     xTEST_DIFF(xSOCKET_HANDLE_INVALID, _socket);
@@ -225,9 +225,9 @@ CxSocket::sendAll(
 //-------------------------------------------------------------------------------------------------
 inline ssize_t
 CxSocket::receive(
-    tchar_t *a_buff,
-    size_t  &a_buffSize,
-    cint_t  &a_flags
+    tchar_t      *a_buff,
+    std::csize_t &a_buffSize,
+    cint_t       &a_flags
 )
 {
     xTEST_DIFF(xSOCKET_HANDLE_INVALID, _socket);

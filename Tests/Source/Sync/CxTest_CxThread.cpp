@@ -217,7 +217,7 @@ CxTest_CxThread::unit(
     xTEST_CASE("CxThread::setCpuAffinity", a_cullCaseLoops)
     {
         for (ulong_t i = 0; i < CxSystemInfo().numOfCpus(); ++ i) {
-            pthT->setCpuAffinity(i);
+            pthT->setCpuAffinity(static_cast<int_t>(i));
         }
     }
 
@@ -426,7 +426,7 @@ CxTest_CxThread::unit1(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(caulData); ++ i) {
-            cuint_t cuiMsec = caulData[i];
+            culong_t cuiMsec = caulData[i];
 
             CxDateTime dtTime1;
 

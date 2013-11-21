@@ -36,10 +36,10 @@ CxTest_CxProfiler::unit(
         for (size_t i = 0; i < 10; ++ i) {
             CxThread::currentSleep(5UL);
 
-            m_uiRv = pfP.restart(xT("\tVar i: %") xPR_SIZET, i);
+            m_stRv = pfP.restart(xT("\tVar i: %") xPR_SIZET, i);
         }
 
-        m_uiRv = pfP.stop(xT(""));
+        m_stRv = pfP.stop(xT(""));
     }
 
     xTEST_CASE("CxProfiler::CxProfiler", a_cullCaseLoops)
@@ -51,10 +51,10 @@ CxTest_CxProfiler::unit(
         for (size_t i = 0; i < 10; ++ i) {
             CxThread::currentSleep(5UL);
 
-            m_uiRv = pfP.restart(xT("\tVar i: %") xPR_SIZET, i);
+            m_stRv = pfP.restart(xT("\tVar i: %") xPR_SIZET, i);
         }
 
-        m_uiRv = pfP.stop(xT(""));
+        m_stRv = pfP.stop(xT(""));
     }
 }
 //------------------------------------------------------------------------------

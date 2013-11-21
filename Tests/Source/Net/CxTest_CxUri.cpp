@@ -14,8 +14,6 @@ CxTest_CxUri::unit(
     culonglong_t &a_cullCaseLoops
 )
 {
-    std::tstring_t m_sRv;
-
     xTEST_CASE(xT("CxUri::getters"), a_cullCaseLoops)
     {
         CxUri objUri(xT("foo://userinfo@example.com:8042/over/there?name=ferret#nose"));

@@ -240,12 +240,12 @@ public:
 
     //void_t *, std::tstring_t, std::ustring_t
 
-    ssize_t        send(ctchar_t *buff, size_t &buffSize, cint_t &flags) xWARN_UNUSED_RV;
+    ssize_t        send(ctchar_t *buff, std::csize_t &buffSize, cint_t &flags) xWARN_UNUSED_RV;
         ///< send data
     void_t         sendAll(std::ctstring_t &buff, cint_t &flags);
         ///< send data by blocks
 
-    ssize_t        receive(tchar_t *buff,  size_t &buffSize, cint_t &flags) xWARN_UNUSED_RV;
+    ssize_t        receive(tchar_t *buff,  std::csize_t &buffSize, cint_t &flags) xWARN_UNUSED_RV;
         ///< receive data
     std::tstring_t recvAll(cint_t &flags) xWARN_UNUSED_RV;
         ///< receive data

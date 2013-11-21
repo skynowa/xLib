@@ -129,10 +129,10 @@ CxUri::scheme() const
 }
 void_t
 CxUri::setScheme(
-    std::ctstring_t &scheme
+    std::ctstring_t &a_scheme
 )
 {
-    _scheme = decodeComponent(scheme);
+    _scheme = decodeComponent(a_scheme);
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
@@ -160,10 +160,10 @@ CxUri::authority() const
 }
 inline void_t
 CxUri::setAuthority(
-    std::ctstring_t &authority
+    std::ctstring_t &a_authority
 )
 {
-    _authority = decodeComponent(authority);
+    _authority = decodeComponent(a_authority);
 }
 //-------------------------------------------------------------------------------------------------
 //DONE: userInfo
@@ -174,10 +174,10 @@ CxUri::userInfo() const
 }
 inline void_t
 CxUri::setUserInfo(
-    std::ctstring_t &userInfo
+    std::ctstring_t &a_userInfo
 )
 {
-    _userInfo = decodeComponent(userInfo);
+    _userInfo = decodeComponent(a_userInfo);
 
     //TODO: bSetAuthority
 }
@@ -189,10 +189,10 @@ CxUri::host() const
 }
 inline void_t
 CxUri::setHost(
-    std::ctstring_t &host
+    std::ctstring_t &a_host
 )
 {
-    _host = decodeComponent(host);
+    _host = decodeComponent(a_host);
 
     //TODO: bSetAuthority
 }
@@ -204,10 +204,10 @@ CxUri::port()
 }
 inline void_t
 CxUri::setPort(
-    cushort_t &port
+    cushort_t &a_port
 )
 {
-    _port = port;
+    _port = a_port;
 
     //TODO: bSetAuthority
 }
@@ -219,10 +219,10 @@ CxUri::path() const
 }
 inline void_t
 CxUri::setPath(
-    std::ctstring_t &path
+    std::ctstring_t &a_path
 )
 {
-    _path = decodeComponent(path);
+    _path = decodeComponent(a_path);
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
@@ -232,10 +232,10 @@ CxUri::query() const
 }
 inline void_t
 CxUri::setQuery(
-    std::ctstring_t &query
+    std::ctstring_t &a_query
 )
 {
-    _query = decodeComponent(query);
+    _query = decodeComponent(a_query);
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
@@ -245,10 +245,10 @@ CxUri::fragment() const
 }
 inline void_t
 CxUri::setFragment(
-    std::ctstring_t &fragment
+    std::ctstring_t &a_fragment
 )
 {
-    _fragment = decodeComponent(fragment);
+    _fragment = decodeComponent(a_fragment);
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -269,7 +269,7 @@ CxUri::clear()
 /* static */
 inline std::tstring_t
 CxUri::escape(
-    std::ctstring_t &uri
+    std::ctstring_t &a_uri
 )
 {
 
@@ -301,7 +301,7 @@ CxUri::escape(
 
     std::tstring_t sRv;
 
-    sRv = uri;
+    sRv = a_uri;
 
 
 
@@ -311,7 +311,7 @@ CxUri::escape(
 /* static */
 inline std::tstring_t
 CxUri::unescape(
-    std::ctstring_t &uri
+    std::ctstring_t &a_uri
 )
 {
 

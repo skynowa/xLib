@@ -105,7 +105,7 @@ CxTest_CxDnsClient::unit(
         for (size_t i = 0; i < xARRAY_SIZE(cszProtocolNames); ++ i) {
             std::tstring_t     sName;
             std::vec_tstring_t vsAliases;
-            short_t            siNumber = - 1;
+            int_t              siNumber = - 1;
 
             CxDnsClient::protocolByName(cszProtocolNames[i], &sName, &vsAliases, &siNumber);
 
@@ -129,7 +129,7 @@ CxTest_CxDnsClient::unit(
         for (size_t i = 0; i < xARRAY_SIZE(ciProtocolNumbers); ++ i) {
             std::tstring_t     sName;
             std::vec_tstring_t vsAliases;
-            short_t            siNumber = - 1;
+            int_t              siNumber = - 1;
 
             CxDnsClient::protocolByNumber(ciProtocolNumbers[i], &sName, &vsAliases, &siNumber);
 
@@ -147,10 +147,10 @@ CxTest_CxDnsClient::unit(
     xTEST_CASE("CxDnsClient::serviceByName", a_cullCaseLoops)
     {
         std::tstring_t     csServiceName  = xT("http");
-        ctchar_t      cszProtocolNames[][10] = {xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"), xT("pup"), xT("udp"), xT("hmp"), xT("xns-idp"), xT("rdp") };
+        ctchar_t           cszProtocolNames[][10] = {xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"), xT("pup"), xT("udp"), xT("hmp"), xT("xns-idp"), xT("rdp") };
         std::tstring_t     sName;
         std::vec_tstring_t vsAliases;
-        short_t            siPort;
+        int_t              siPort;
         std::tstring_t     sProtocolName;
 
         CxDnsClient::serviceByName(csServiceName, cszProtocolNames[3], &sName, &vsAliases, &siPort, &sProtocolName);
@@ -169,7 +169,7 @@ CxTest_CxDnsClient::unit(
     xTEST_CASE("CxDnsClient::serviceByPort", a_cullCaseLoops)
     {
         short_t            csiPort  = 20480;
-        ctchar_t      cszProtocolNames[][10] = {xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"), xT("pup"), xT("udp"), xT("hmp"), xT("xns-idp"), xT("rdp") };
+        ctchar_t           cszProtocolNames[][10] = {xT("ip"), xT("icmp"), xT("ggp"), xT("tcp"), xT("egp"), xT("pup"), xT("udp"), xT("hmp"), xT("xns-idp"), xT("rdp") };
         std::tstring_t     sName;
         std::vec_tstring_t vsAliases;
         short_t            siPort = - 1;

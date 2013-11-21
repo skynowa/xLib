@@ -184,15 +184,6 @@ CxTest_xDebug::unit(
 
     //--------------------------------------------------
     //
-    xTEST_CASE("xDebug::xTEST_CASE_", a_cullCaseLoops)
-    {
-        xTEST_CASE("case_name", 3U) {
-            int_t iVal = 0; ++ iVal;
-        }
-    }
-
-    //--------------------------------------------------
-    //
     xTEST_CASE("xDebug::xTRACE_", a_cullCaseLoops)
     {
         #if xTEST_IGNORE

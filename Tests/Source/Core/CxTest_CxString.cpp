@@ -762,11 +762,11 @@ CxTest_CxString::unit(
             for (size_t i = 1; i < 1024 * 2; ++ i) {
                 std::tstring_t _sData(i, xT('s'));
 
-                std::tstring_t m_sRv = CxString::format(xT("%s"), _sData.c_str());
-                //xSTD_COUT("_sData (" << _sData.size() << ") = " << _sData << "\nm_sRes (" << m_sRv.size() << ") = " << m_sRv);
+                std::tstring_t sRv = CxString::format(xT("%s"), _sData.c_str());
+                //xSTD_COUT("_sData (" << _sData.size() << ") = " << _sData << "\nsRes (" << sRv.size() << ") = " << sRv);
 
-                xTEST_EQ(m_sRv.size(), _sData.size());
-                xTEST_EQ(m_sRv,        _sData);
+                xTEST_EQ(sRv.size(), _sData.size());
+                xTEST_EQ(sRv,        _sData);
             }
         }
     }
