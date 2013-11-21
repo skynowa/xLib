@@ -177,7 +177,7 @@ CxDnsClient::protocolByName(
     std::ctstring_t    &a_protocolName,
     std::tstring_t     *a_name,
     std::vec_tstring_t *a_aliases,
-    short_t            *a_number
+    int_t              *a_number
 )
 {
     xTEST_EQ(false, a_protocolName.empty());
@@ -224,10 +224,10 @@ CxDnsClient::protocolByName(
 /* static */
 inline void_t
 CxDnsClient::protocolByNumber(
-    cshort_t           &a_number,
+    cint_t             &a_number,
     std::tstring_t     *a_name,
     std::vec_tstring_t *a_aliases,
-    short_t            *a_number_rv
+    int_t              *a_number_rv
 )
 {
     xTEST_NA(a_number);
@@ -275,7 +275,7 @@ CxDnsClient::serviceByName(
     std::ctstring_t    &a_protocolName,
     std::tstring_t     *a_name,
     std::vec_tstring_t *a_aliases,
-    short_t            *a_port,
+    int_t              *a_port,
     std::tstring_t     *a_protocolName_rv
 )
 {
@@ -392,11 +392,11 @@ CxDnsClient::serviceByPort(
 /* static */
 inline bool_t
 CxDnsClient::isOnLan(
-    culong_t &a_ip
+    cuint_t &a_ip
 )
 {
-    culong_t localIp = INADDR_ANY;  // IP of local interface (network order)
-    culong_t netMask = INADDR_NONE; // net mask for IP (network order)
+    cuint_t localIp = INADDR_ANY;  // IP of local interface (network order)
+    cuint_t netMask = INADDR_NONE; // net mask for IP (network order)
 
     return (0UL == ((ntohl(a_ip) ^ ntohl(localIp)) & ntohl(netMask)));
 }
@@ -404,10 +404,10 @@ CxDnsClient::isOnLan(
 /* static */
 inline bool_t
 CxDnsClient::isBroadcast(
-    culong_t &a_ip
+    cuint_t &a_ip
 )
 {
-    culong_t netMask = INADDR_NONE; // net mask for IP (network order)
+    cuint_t netMask = INADDR_NONE; // net mask for IP (network order)
 
     return (0UL == (~ntohl(a_ip) & ~ntohl(netMask)));
 }

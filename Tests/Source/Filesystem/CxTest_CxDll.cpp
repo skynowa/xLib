@@ -73,10 +73,10 @@ CxTest_CxDll::unit(
         pDllFunc pCosine = NULL;
 
         pCosine = (pDllFunc)fpRes;
-        double m_dRv = pCosine(2.0);
-        xUNUSED(m_dRv);
+        double dRv = pCosine(2.0);
+        xUNUSED(dRv);
         //xTEST_EQ(-0.416147, m_dRv);
-        //xTRACEV(xT("\tpCosine(2.0): %f"), m_dRv);
+        //xTRACEV(xT("\tpCosine(2.0): %f"), dRv);
     #endif
 
         //-------------------------------------

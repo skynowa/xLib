@@ -144,7 +144,7 @@ CxTest_CxUtils::unit(
     xTEST_CASE("CxUtils::structZeroT", a_cullCaseLoops)
     {
         struct SData {
-            int_t            m_iValue;
+            int_t          m_iValue;
             double         m_dValue;
             std::tstring_t m_sValue;
         };
@@ -154,21 +154,16 @@ CxTest_CxUtils::unit(
         cdouble_t         cdValue = 20.0;
         std::ctstring_t csValue = xT("30");
 
-        SData datData = {0};
-
-        xTEST_EQ(0,   datData.m_iValue);
-        xTEST_EQ(0.0, datData.m_dValue);
-        xTEST_EQ(size_t(0U), datData.m_sValue.size());
-
+        SData datData;
         datData.m_iValue = ciValue;
         datData.m_dValue = cdValue;
         datData.m_sValue = csValue;
 
         // TODO: CxUtils::structZeroT(datData);
 
-        // xTEST_EQ(0,   datData.m_iValue);
-        // xTEST_EQ(0.0, datData.m_dValue);
-        // xTEST_EQ(size_t(0U),  datData.m_sValue.size());
+        xTEST_EQ(0,   datData.m_iValue);
+        xTEST_EQ(0.0, datData.m_dValue);
+        xTEST_EQ(size_t(0U),  datData.m_sValue.size());
     }
 
     xTEST_CASE("CxUtils::bufferFreeT", a_cullCaseLoops)

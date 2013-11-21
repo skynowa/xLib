@@ -310,7 +310,7 @@ CxVolume::space(
     CxUtils::ptrAssignT(a_total,     total.QuadPart);
     CxUtils::ptrAssignT(a_free,      free.QuadPart);
 #else
-    struct xSTATVFS info = {0};
+    struct xSTATVFS info;   xSTRUCT_ZERO(info);
 
     int_t iRv = ::xSTATVFS(dirPath.c_str(), &info);
     xTEST_DIFF(- 1, iRv);
@@ -362,7 +362,7 @@ CxVolume::paths(
         xTEST_EQ(true, procMounts.good());
 
         for ( ; !procMounts.eof(); ) {
-            _SMounts mounts = {0};
+            _SMounts mounts;
 
             procMounts >> mounts.device  >> mounts.destination >> mounts.fsType >>
                           mounts.options >> mounts.dump        >> mounts.pass;

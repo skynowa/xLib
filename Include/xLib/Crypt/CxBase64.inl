@@ -17,7 +17,7 @@
 
 xNAMESPACE_ANONYM_BEGIN
 
-std::cstring_t g_csBase64Chars =
+std::cstring_t base64Chars =
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         "abcdefghijklmnopqrstuvwxyz"
         "0123456789+/";
@@ -55,7 +55,7 @@ CxBase64::encode(
             char_array_4[3] = char_array_3[2] & 0x3f;
 
             for (i = 0; i < 4; i ++) {
-                sRv += g_csBase64Chars[char_array_4[i]];
+                sRv += ::base64Chars[char_array_4[i]];
             }
 
             i = 0;
@@ -73,7 +73,7 @@ CxBase64::encode(
         char_array_4[3] = char_array_3[2] & 0x3f;
 
         for (j = 0; (j < i + 1); j ++) {
-            sRv += g_csBase64Chars[char_array_4[j]];
+            sRv += ::base64Chars[char_array_4[j]];
         }
 
         while ((i++ < 3)) {
@@ -102,7 +102,7 @@ CxBase64::decode(
 )
 {
     std::string sRv;
-    int         in_len = a_str.size();
+    int         in_len = static_cast<int>( a_str.size() );
     int         i = 0;
     int         j = 0;
     int         in_ = 0;
@@ -113,7 +113,7 @@ CxBase64::decode(
         char_array_4[i++] = a_str[in_]; in_++;
         if (i == 4) {
             for (i = 0; i <4; i++) {
-                char_array_4[i] = g_csBase64Chars.find(char_array_4[i]);
+                char_array_4[i] = ::base64Chars.find(char_array_4[i]);
             }
 
             char_array_3[0] = (char_array_4[0] << 2) + ((char_array_4[1] & 0x30) >> 4);
@@ -134,7 +134,7 @@ CxBase64::decode(
         }
 
         for (j = 0; j < 4; j ++) {
-            char_array_4[j] = g_csBase64Chars.find(char_array_4[j]);
+            char_array_4[j] = ::base64Chars.find(char_array_4[j]);
         }
 
         char_array_3[0] = (char_array_4[0] << 2) + ((char_array_4[1] & 0x30) >> 4);
