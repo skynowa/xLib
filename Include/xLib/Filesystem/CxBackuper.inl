@@ -103,7 +103,7 @@ CxBackuper::fileExec(
 
         xCHECK_DO(fileSizeBytes > totalFreeBytes, xTHROW() << error_NotEnoughFreeSpace);
     #else
-        ulonglong_t fileSizeBytes  = 0ULL;
+        ulonglong_t fileSizeBytes = 0ULL;
         fileSizeBytes = static_cast<ulonglong_t>( CxFile::size(a_filePath) );
 
         CxVolume volume(a_destDirPath);
