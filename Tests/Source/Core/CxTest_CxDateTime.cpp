@@ -210,24 +210,24 @@ CxTest_CxDateTime::unit(
     {
         CxDateTime dtDT;
 
-        ushort_t     usYear   = 2010;
-        ushort_t     usMonth  = 1;
-        ushort_t     usDay    = 14;
-        ushort_t     usHour   = 17;
-        ushort_t     usMinute = 0;
-        ushort_t     usSecond = 55;
-        ushort_t     usMSec   = 666;
+        int_t     year   = 2010;
+        int_t     month  = 1;
+        int_t     day    = 14;
+        int_t     hour   = 17;
+        int_t     minute = 0;
+        int_t     second = 55;
+        int_t     msec   = 666;
 
-        dtDT.set(usYear, usMonth, usDay, usHour, usMinute, usSecond, usMSec);
-        dtDT.get(&usYear, &usMonth, &usDay, &usHour, &usMinute, &usSecond, &usMSec);
+        dtDT.set(year, month, day, hour, minute, second, msec);
+        dtDT.get(&year, &month, &day, &hour, &minute, &second, &msec);
 
-        xTEST_EQ((ushort_t)2010, usYear);
-        xTEST_EQ((ushort_t)1,    usMonth);
-        xTEST_EQ((ushort_t)14,   usDay);
-        xTEST_EQ((ushort_t)17,   usHour);
-        xTEST_EQ((ushort_t)0,    usMinute);
-        xTEST_EQ((ushort_t)55,   usSecond);
-        xTEST_EQ((ushort_t)666,  usMSec);
+        xTEST_EQ(2010, year);
+        xTEST_EQ(1,    month);
+        xTEST_EQ(14,   day);
+        xTEST_EQ(17,   hour);
+        xTEST_EQ(0,    minute);
+        xTEST_EQ(55,   second);
+        xTEST_EQ(666,  msec);
     }
 
     xTEST_CASE("CxDateTime::toMilliseconds", a_cullCaseLoops)
@@ -258,36 +258,36 @@ CxTest_CxDateTime::unit(
 
         ulonglong_t  ui64DT = 1000 * 60 * 60; //1 hour
 
-        ushort_t     usYear   = 0;
-        ushort_t     usMonth  = 0;
-        ushort_t     usDay    = 0;
-        ushort_t     usHour   = 0;
-        ushort_t     usMinute = 0;
-        ushort_t     usSecond = 0;
-        ushort_t     usMSec   = 0;
+        int_t     year   = 0;
+        int_t     month  = 0;
+        int_t     day    = 0;
+        int_t     hour   = 0;
+        int_t     minute = 0;
+        int_t     second = 0;
+        int_t     msec   = 0;
 
         dtDT.set(ui64DT);
-        dtDT.get(&usYear, &usMonth, &usDay, &usHour, &usMinute, &usSecond, &usMSec);
+        dtDT.get(&year, &month, &day, &hour, &minute, &second, &msec);
 
-        xTEST_EQ((ushort_t)0, usYear);
-        xTEST_EQ((ushort_t)0, usMonth);
-        xTEST_EQ((ushort_t)0, usDay);
-        xTEST_EQ((ushort_t)1, usHour);
-        xTEST_EQ((ushort_t)0, usMinute);
-        xTEST_EQ((ushort_t)0, usSecond);
-        xTEST_EQ((ushort_t)0, usMSec);
+        xTEST_EQ(0, year);
+        xTEST_EQ(0, month);
+        xTEST_EQ(0, day);
+        xTEST_EQ(1, hour);
+        xTEST_EQ(0, minute);
+        xTEST_EQ(0, second);
+        xTEST_EQ(0, msec);
     }
 
     xTEST_CASE("CxDateTime::dayOfWeek", a_cullCaseLoops)
     {
-        m_usiRv = CxDateTime(2011, 7, 25, 13, 0, 0, 0).dayOfWeek();
-        xTEST_EQ((ushort_t)1, m_usiRv);
+        m_iRv = CxDateTime(2011, 7, 25, 13, 0, 0, 0).dayOfWeek();
+        xTEST_EQ(1, m_iRv);
 
-        m_usiRv = CxDateTime(2011, 7, 31, 0, 0, 0, 0).dayOfWeek();
-        xTEST_EQ((ushort_t)0, m_usiRv);
+        m_iRv = CxDateTime(2011, 7, 31, 0, 0, 0, 0).dayOfWeek();
+        xTEST_EQ(0, m_iRv);
 
-        m_usiRv = CxDateTime(2011, 3, 18, 0, 0, 0, 0).dayOfWeek();
-        xTEST_EQ((ushort_t)5, m_usiRv);
+        m_iRv = CxDateTime(2011, 3, 18, 0, 0, 0, 0).dayOfWeek();
+        xTEST_EQ(5, m_iRv);
     }
 
     /*******************************************************************************
@@ -334,7 +334,7 @@ CxTest_CxDateTime::unit(
         //valid data
         {
             cushort_t causiValid[][7] = {
-                    //usYear, usMonth, usDay, usHour, usMinute, usSecond, usMSec
+                    //year, month, day, hour, minute, second, msec
                     { 2011,     3,       24,    13,     21,       56,       999 },
                     { 1978,     7,       31,    4,      0,        0,        0   },
                     { 1956,     1,       24,    13,     59,       59,       998 },
@@ -348,15 +348,15 @@ CxTest_CxDateTime::unit(
             };
 
             for (size_t i = 0; i < xARRAY_SIZE(causiValid); ++ i) {
-    //                ushort_t usYear   = causiValid[i][0];
-    //                ushort_t usMonth  = causiValid[i][1];
-    //                ushort_t usDay    = causiValid[i][2];
-    //                ushort_t usHour   = causiValid[i][3];
-    //                ushort_t usMinute = causiValid[i][4];
-    //                ushort_t usSecond = causiValid[i][5];
-    //                ushort_t usMSec   = causiValid[i][6];
+    //                int_t year   = causiValid[i][0];
+    //                int_t month  = causiValid[i][1];
+    //                int_t day    = causiValid[i][2];
+    //                int_t hour   = causiValid[i][3];
+    //                int_t minute = causiValid[i][4];
+    //                int_t second = causiValid[i][5];
+    //                int_t msec   = causiValid[i][6];
     //
-    //                m_bRv = CxDateTime::isValid(usYear, usMonth, usDay, usHour, usMinute, usSecond, usMSec);
+    //                m_bRv = CxDateTime::isValid(year, month, day, hour, minute, second, msec);
     //                xTEST_EQ(true, m_bRv);
             }
         }
@@ -364,7 +364,7 @@ CxTest_CxDateTime::unit(
         //non valid data
         {
             cushort_t causiNonValid[][7] = {
-                    //usYear, usMonth, usDay, usHour, usMinute, usSecond, usMSec
+                    //year, month, day, hour, minute, second, msec
                     { 10000,    3,       24,    13,     21,       56,       999 },
                     { 2011,     13,      24,    13,     21,       56,       999 },
                     { 2011,     3,       32,    13,     21,       56,       999 },
@@ -375,15 +375,15 @@ CxTest_CxDateTime::unit(
             };
 
             for (size_t i = 0; i < xARRAY_SIZE(causiNonValid); ++ i) {
-                ////ushort_t usYear   = causiNonValid[i][0];
-                ////ushort_t usMonth  = causiNonValid[i][1];
-                ////ushort_t usDay    = causiNonValid[i][2];
-                ////ushort_t usHour   = causiNonValid[i][3];
-                ////ushort_t usMinute = causiNonValid[i][4];
-                ////ushort_t usSecond = causiNonValid[i][5];
-                ////ushort_t usMSec   = causiNonValid[i][6];
+                ////int_t year   = causiNonValid[i][0];
+                ////int_t month  = causiNonValid[i][1];
+                ////int_t day    = causiNonValid[i][2];
+                ////int_t hour   = causiNonValid[i][3];
+                ////int_t minute = causiNonValid[i][4];
+                ////int_t second = causiNonValid[i][5];
+                ////int_t msec   = causiNonValid[i][6];
 
-                ////m_bRv = CxDateTime::isValid(usYear, usMonth, usDay, usHour, usMinute, usSecond, usMSec);
+                ////m_bRv = CxDateTime::isValid(year, month, day, hour, minute, second, msec);
                 ////xTEST_EQ(true, m_bRv);
             }
         }
@@ -432,16 +432,16 @@ CxTest_CxDateTime::unit(
 
     xTEST_CASE("CxDateTime::daysInMonth", a_cullCaseLoops)
     {
-        for (ushort_t y = 0; y < 3000; ++ y) {
-            for (ushort_t m = 1; m < 13; ++ m) {
-                m_usiRv = CxDateTime::daysInMonth(y, m);
+        for (int_t y = 0; y < 3000; ++ y) {
+            for (int_t m = 1; m < 13; ++ m) {
+                m_iRv = CxDateTime::daysInMonth(y, m);
 
                 if (2 == m && CxDateTime::isLeapYear(y)) {
-                    xTEST_EQ((ushort_t)29, m_usiRv);
+                    xTEST_EQ(29, m_iRv);
                 } else {
-                    ushort_t arusDaysOfMonth[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+                    int_t arusDaysOfMonth[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
-                    xTEST_EQ(m_usiRv, arusDaysOfMonth[m]);
+                    xTEST_EQ(m_iRv, arusDaysOfMonth[m]);
                 }
             } //m
         } //y
@@ -552,7 +552,7 @@ CxTest_CxDateTime::unit(
     xTEST_CASE("CxDateTime::monthStr", a_cullCaseLoops)
     {
         //bIsShortName = false
-        m_sRv = CxDateTime::monthStr((ushort_t)- 1, false);
+        m_sRv = CxDateTime::monthStr(- 1, false);
         xTEST_EQ(std::tstring_t(xT("December")), m_sRv);
         m_sRv = CxDateTime::monthStr(0, false);
         xTEST_EQ(std::tstring_t(xT("January")), m_sRv);
@@ -584,7 +584,7 @@ CxTest_CxDateTime::unit(
         xTEST_EQ(std::tstring_t(xT("December")), m_sRv);
 
         //bIsShortName = true
-        m_sRv = CxDateTime::monthStr((ushort_t)- 1, true);
+        m_sRv = CxDateTime::monthStr(- 1, true);
         xTEST_EQ(std::tstring_t(xT("Dec")), m_sRv);
         m_sRv = CxDateTime::monthStr(0, true);
         xTEST_EQ(std::tstring_t(xT("Jan")), m_sRv);
@@ -634,24 +634,24 @@ CxTest_CxDateTime::unit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(casMonths); ++ i) {
-            m_usiRv = CxDateTime::monthNum(casMonths[i][0], false);
-            xTEST_EQ((ushort_t)(i + 1), m_usiRv);
+            m_iRv = CxDateTime::monthNum(casMonths[i][0], false);
+            xTEST_EQ(int_t(i + 1), m_iRv);
 
-            m_usiRv = CxDateTime::monthNum(casMonths[i][1], true);
-            xTEST_EQ((ushort_t)(i + 1), m_usiRv);
+            m_iRv = CxDateTime::monthNum(casMonths[i][1], true);
+            xTEST_EQ(int_t(i + 1), m_iRv);
 
             if (xT("May") == casMonths[i][0] || xT("May") == casMonths[i][1]) {
-                m_usiRv = CxDateTime::monthNum(casMonths[i][0], true);
-                xTEST_EQ((ushort_t)(i + 1), m_usiRv);
+                m_iRv = CxDateTime::monthNum(casMonths[i][0], true);
+                xTEST_EQ(int_t(i + 1), m_iRv);
 
-                m_usiRv = CxDateTime::monthNum(casMonths[i][1], false);
-                xTEST_EQ((ushort_t)(i + 1), m_usiRv);
+                m_iRv = CxDateTime::monthNum(casMonths[i][1], false);
+                xTEST_EQ(int_t(i + 1), m_iRv);
             } else {
-                m_usiRv = CxDateTime::monthNum(casMonths[i][0], true);
-                xTEST_EQ((ushort_t)- 1, m_usiRv);
+                m_iRv = CxDateTime::monthNum(casMonths[i][0], true);
+                xTEST_EQ(- 1, m_iRv);
 
-                m_usiRv = CxDateTime::monthNum(casMonths[i][1], false);
-                xTEST_EQ((ushort_t)- 1, m_usiRv);
+                m_iRv = CxDateTime::monthNum(casMonths[i][1], false);
+                xTEST_EQ(- 1, m_iRv);
             }
         }
     }
@@ -708,17 +708,17 @@ CxTest_CxDateTime::unit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(casDays); ++ i) {
-            m_usiRv = CxDateTime::weekDayNum(casDays[i][0], false);
-            xTEST_EQ((ushort_t)i, m_usiRv);
+            m_iRv = CxDateTime::weekDayNum(casDays[i][0], false);
+            xTEST_EQ((int_t)i, m_iRv);
 
-            m_usiRv = CxDateTime::weekDayNum(casDays[i][1], true);
-            xTEST_EQ((ushort_t)i, m_usiRv);
+            m_iRv = CxDateTime::weekDayNum(casDays[i][1], true);
+            xTEST_EQ((int_t)i, m_iRv);
 
-            m_usiRv = CxDateTime::weekDayNum(casDays[i][0], true);
-            xTEST_EQ((ushort_t)- 1, m_usiRv);
+            m_iRv = CxDateTime::weekDayNum(casDays[i][0], true);
+            xTEST_EQ(- 1, m_iRv);
 
-            m_usiRv = CxDateTime::weekDayNum(casDays[i][1], false);
-            xTEST_EQ((ushort_t)- 1, m_usiRv);
+            m_iRv = CxDateTime::weekDayNum(casDays[i][1], false);
+            xTEST_EQ(- 1, m_iRv);
         }
     }
 }
