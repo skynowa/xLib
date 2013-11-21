@@ -49,14 +49,14 @@ CxUtils::ptrAssignT(
     *a_ptr = a_value;
 }
 //-------------------------------------------------------------------------------------------------
-template <class T, std::csize_t cuiArraySize>
+template <class T, std::csize_t arraySize>
 /* static */ inline
 size_t
 CxUtils::arraySizeT(
-    const T (&)[cuiArraySize]
+    const T (&)[arraySize]
 )
 {
-    return cuiArraySize;
+    return arraySize;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */ inline
@@ -72,14 +72,14 @@ CxUtils::memoryZero(
     xUNUSED(pvRv);
 }
 //-------------------------------------------------------------------------------------------------
-template<class T, std::csize_t cuiArraySize>
+template<class T, std::csize_t arraySize>
 /* static */ inline
 void_t
 CxUtils::arrayZeroT(
-    T (&a_arrayT)[cuiArraySize]
+    T (&a_arrayT)[arraySize]
 )
 {
-    (void_t)std::fill_n(&a_arrayT[0], cuiArraySize, T());
+    (void_t)std::fill_n(&a_arrayT[0], arraySize, T());
 }
 //-------------------------------------------------------------------------------------------------
 template <class T>
