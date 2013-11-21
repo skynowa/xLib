@@ -106,16 +106,8 @@ CxVolume::label() const
 
     CxLastError::reset();
 
-    BOOL blRv = ::GetVolumeInformation(
-                        CxPath( volumePath() ).slashAppend().c_str(),
-                        &volumeName[0],
-                        static_cast<DWORD>( xARRAY_SIZE(volumeName) ),
-                        NULL,
-                        NULL,
-                        NULL,
-                        NULL,
-                        0
-    );
+    BOOL blRv = ::GetVolumeInformation(CxPath( volumePath() ).slashAppend().c_str(), &volumeName[0],
+        static_cast<DWORD>( xARRAY_SIZE(volumeName) ), NULL, NULL, NULL, NULL, 0);
     xTEST_DIFF(false, blRv && 0UL == CxLastError::get());
 
     sRv.assign(volumeName);
@@ -232,7 +224,7 @@ CxVolume::unMount(
     xTEST_NA(a_isForce);
 
 #if   xOS_ENV_WIN
-    // TODO: CxVolume::bUnMount - is it correct?
+    // TODO: CxVolume::unMount - is it correct?
     DWORD dwRv = ::WNetCancelConnection2(volumePath().c_str(), CONNECT_UPDATE_PROFILE, a_isForce);
     xTEST_EQ(static_cast<DWORD>( NO_ERROR ), dwRv);
 #elif xOS_ENV_UNIX
@@ -379,7 +371,7 @@ CxVolume::paths(
             vsRv.push_back(mounts.destination);
         }
     #elif xOS_FREEBSD
-        // TODO: CxVolume::paths
+        // TODO: CxVolume::paths()
     #endif
 #elif xOS_ENV_MAC
     xNOT_IMPLEMENTED
