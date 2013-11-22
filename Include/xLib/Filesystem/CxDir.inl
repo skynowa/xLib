@@ -88,7 +88,7 @@ CxDir::isRoot()
     bool_t bRv1 = CxChar::isAlpha(dirPath().at(0));
     bool_t bRv2 = (dirPath().at(1) == CxConst::colon().at(0));
     bool_t bRv3 = (dirPath().at(2) == CxConst::winSlash().at(0) ||
-                    dirPath().at(2) == CxConst::unixSlash().at(0));
+                   dirPath().at(2) == CxConst::unixSlash().at(0));
 
     xCHECK_RET(!bRv1 || !bRv2 || !bRv3, false);
 #else
@@ -101,7 +101,7 @@ CxDir::isRoot()
 inline bool_t
 CxDir::isDir()
 {
-    bool_t bRv = CxFileType(dirPath()).isExists(CxFileType::faDirectory);
+    bool_t bRv = CxFileType( dirPath() ).isExists(CxFileType::faDirectory);
     xCHECK_RET(!bRv, false);
 
     return true;
