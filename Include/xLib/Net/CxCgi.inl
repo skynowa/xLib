@@ -159,23 +159,23 @@ CxCgi::uriDecode(
 
             tchar_t lo = *it++;
             if (hi >= '0' && hi <= '9')
-                ch = hi - '0';
+                ch = static_cast<tchar_t>(hi - '0');
             else if (hi >= 'A' && hi <= 'F')
-                ch = hi - 'A' + 10;
+                ch = static_cast<tchar_t>(hi - 'A' + 10);
             else if (hi >= 'a' && hi <= 'f')
-                ch = hi - 'a' + 10;
+                ch = static_cast<tchar_t>(hi - 'a' + 10);
             else {
                 ////throw SyntaxException("URI encoding: not a hex digit");
                 xTEST_FAIL;
             }
 
-            ch *= 16;
+            ch = static_cast<tchar_t>(ch * 16);
             if (lo >= '0' && lo <= '9')
-                ch += lo - '0';
+                ch = static_cast<tchar_t>(ch + lo - '0');
             else if (lo >= 'A' && lo <= 'F')
-                ch += lo - 'A' + 10;
+                ch = static_cast<tchar_t>(ch + lo - 'A' + 10);
             else if (lo >= 'a' && lo <= 'f')
-                ch += lo - 'a' + 10;
+                ch = static_cast<tchar_t>(ch + lo - 'a' + 10);
             else {
                 ////throw SyntaxException("URI encoding: not a hex digit");
                 xTEST_FAIL;
