@@ -42,7 +42,7 @@ CxTest::CxTest() :
 #if xOS_ENV_WIN
     m_hwndRv    (NULL),
 #endif
-    _workDirPath(),
+    _tempDirPath(),
     _name       ()
 {
 }
@@ -117,20 +117,20 @@ CxTest::createTempDir(
     xTEST_NA(a_dirName);
 
     if (a_dirName.empty()) {
-        _workDirPath = CxDir::temp();
+        _tempDirPath = CxDir::temp();
     } else {
-        _workDirPath = CxPath::exeDir() + CxConst::slash() + a_dirName;
+        _tempDirPath = CxPath::exeDir() + CxConst::slash() + a_dirName;
 
-        CxDir(_workDirPath).pathCreate();
+        CxDir(_tempDirPath).pathCreate();
     }
 }
 //-------------------------------------------------------------------------------------------------
 inline std::ctstring_t &
 CxTest::tempDirPath() const
 {
-    xTEST_EQ(false, _workDirPath.empty());
+    xTEST_EQ(false, _tempDirPath.empty());
 
-    return _workDirPath;
+    return _tempDirPath;
 }
 //-------------------------------------------------------------------------------------------------
 inline std::ctstring_t &
