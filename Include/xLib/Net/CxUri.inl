@@ -400,24 +400,24 @@ CxUri::decodeComponent(
             tchar_t lo = *it ++;
 
             if (       hi >= '0' && hi <= '9') {
-                c = hi - '0';
+                c = static_cast<tchar_t>(hi - '0');
             } else if (hi >= 'A' && hi <= 'F') {
-                c = hi - 'A' + 10;
+                c = static_cast<tchar_t>(hi - 'A' + 10);
             } else if (hi >= 'a' && hi <= 'f') {
-                c = hi - 'a' + 10;
+                c = static_cast<tchar_t>(hi - 'a' + 10);
             } else {
                 //throw SyntaxException("URI encoding: not a hex digit");
                 xTEST_FAIL;
             }
 
-            c *= 16;
+            c = static_cast<tchar_t>(c * 16);
 
             if (       lo >= '0' && lo <= '9') {
-                c += lo - '0';
+                c = static_cast<tchar_t>(c + lo - '0');
             } else if (lo >= 'A' && lo <= 'F') {
-                c += lo - 'A' + 10;
+                c = static_cast<tchar_t>(c + lo - 'A' + 10);
             } else if (lo >= 'a' && lo <= 'f') {
-                c += lo - 'a' + 10;
+                c = static_cast<tchar_t>(c + lo - 'a' + 10);
             } else {
                 //throw SyntaxException("URI encoding: not a hex digit");
                 xTEST_FAIL;
