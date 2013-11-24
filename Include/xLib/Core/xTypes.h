@@ -9,8 +9,11 @@
 #ifndef xLib_xTypesH
 #define xLib_xTypesH
 //-------------------------------------------------------------------------------------------------
-//#include <xLib/Core/xCore.h>
-//-------------------------------------------------------------------------------------------------
+#if xOS_WIN
+    // typedef SIZE_T              size_t;
+    typedef SSIZE_T                ssize_t;
+#endif
+
 xNAMESPACE_BEGIN(NxLib)
     typedef void                   void_t;
     typedef const void_t           cvoid_t;
@@ -109,12 +112,11 @@ xNAMESPACE_BEGIN(NxLib)
 
 xNAMESPACE_END(NxLib)
 
+xNAMESPACE_BEGIN(std)
 #if xOS_WIN
-    // typedef SIZE_T                 size_t;
-    typedef SSIZE_T                ssize_t;
+    using ::ssize_t;
 #endif
 
-xNAMESPACE_BEGIN(std)
     typedef const size_t           csize_t;
     typedef const string           cstring_t;
     typedef const wstring          cwstring_t;

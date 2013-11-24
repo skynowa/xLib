@@ -9,8 +9,6 @@
 #ifndef xLib_xFunctionsH
 #define xLib_xFunctionsH
 //-------------------------------------------------------------------------------------------------
-#include <xLib/Core/xCore.h>
-//-------------------------------------------------------------------------------------------------
 #if xUNICODE
         #define tcin            wcin
         #define tcout           wcout
