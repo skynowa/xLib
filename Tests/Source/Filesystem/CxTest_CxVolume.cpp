@@ -186,15 +186,20 @@ CxTest_CxVolume::unit(
         CxVolume::paths(&volumes);
 
         xFOREACH(std::vec_tstring_t, it, volumes) {
-            culonglong_t data[][2] = {
-                {0, 1},
-                {1, 1},
-                {(std::numeric_limits<ulonglong_t>::max)(), 0}
+            struct Data {
+                ulonglong_t tested;
+                bool_t      expected;
+            };
+
+            Data data[] = {
+                {0, true},
+                {1, true},
+                {(std::numeric_limits<ulonglong_t>::max)(), false}
             };
 
             for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-                culonglong_t needBytes = data[i][0];
-                cbool_t      bRv       = static_cast<cbool_t>( data[i][1] );
+                culonglong_t needBytes = data[i].tested;
+                cbool_t      bRv       = data[i].expected;
 
                 CxVolume volume(*it);
                 xCHECK_DO(!volume.isReady(), continue);
