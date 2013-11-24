@@ -22,6 +22,7 @@
 #include <io.h>
 #include <psapi.h>
 #include <TlHelp32.h>
+#include <BaseTsd.h>    // SIZE_T, SSIZE_T
 
 #if   xCOMPILER_MINGW
     #include <winternl.h>
