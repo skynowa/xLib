@@ -16,7 +16,7 @@ class CxTest_CxLastError :
 public:
                    CxTest_CxLastError() {}
 
-    virtual void_t unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &caseLoops);
 };
 //------------------------------------------------------------------------------
 

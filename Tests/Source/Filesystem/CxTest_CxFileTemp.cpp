@@ -15,10 +15,10 @@
 /* virtual */
 void_t
 CxTest_CxFileTemp::unit(
-    culonglong_t &a_cullCaseLoops
+    culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("CxFileTemp::all", a_cullCaseLoops)
+    xTEST_CASE("CxFileTemp::all", a_caseLoops)
     {
         CxFileTemp ftFileTemp(true);
         CxFile     fJobber;

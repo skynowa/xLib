@@ -16,7 +16,7 @@ class CxTest_CxSemaphore :
 public:
                    CxTest_CxSemaphore() {}
 
-    virtual void_t unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &caseLoops);
         ///< unit test
 };
 //------------------------------------------------------------------------------

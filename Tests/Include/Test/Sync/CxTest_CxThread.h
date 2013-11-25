@@ -16,9 +16,9 @@ class CxTest_CxThread :
 public:
                    CxTest_CxThread() {}
 
-    virtual void_t unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &caseLoops);
 
 private:
-    void_t         unit1(culonglong_t &cullCaseLoops);
+    void_t         unit1(culonglong_t &caseLoops);
 };
 //------------------------------------------------------------------------------

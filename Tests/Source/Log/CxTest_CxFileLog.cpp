@@ -14,14 +14,14 @@
 /* virtual */
 void_t
 CxTest_CxFileLog::unit(
-    culonglong_t &a_cullCaseLoops
+    culonglong_t &a_caseLoops
 )
 {
     std::ctstring_t csFilePath = tempDirPath() + CxConst::slash() + xT("Test.log");
 
     CxFileLog flLog(1);
 
-    xTEST_CASE("CxFileLog::setFilePath filePath", a_cullCaseLoops)
+    xTEST_CASE("CxFileLog::setFilePath filePath", a_caseLoops)
     {
         flLog.setFilePath(csFilePath);
 
@@ -29,7 +29,7 @@ CxTest_CxFileLog::unit(
         xTEST_EQ(csFilePath, m_sRv);
     }
 
-    xTEST_CASE("CxFileLog::write", a_cullCaseLoops)
+    xTEST_CASE("CxFileLog::write", a_caseLoops)
     {
         for (size_t i = 0; i < 10; ++ i) {
             flLog.write(xT("simple log string: %s"), xT("qwerty01234567890"));
@@ -37,13 +37,13 @@ CxTest_CxFileLog::unit(
         }
     }
 
-    xTEST_CASE("CxFileLog::clear", a_cullCaseLoops)
+    xTEST_CASE("CxFileLog::clear", a_caseLoops)
     {
         flLog.clear();
         xTEST_EQ(0LL, CxFile::size( flLog.filePath()) );
     }
 
-    xTEST_CASE("CxFileLog::remove", a_cullCaseLoops)
+    xTEST_CASE("CxFileLog::remove", a_caseLoops)
     {
         flLog.remove();
         xTEST_EQ(false, CxFile::isExists( flLog.filePath()) );

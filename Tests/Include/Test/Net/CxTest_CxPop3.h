@@ -18,7 +18,7 @@ class CxTest_CxPop3 :
 public:
                    CxTest_CxPop3() {}
 
-    virtual void_t unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &caseLoops);
 };
 
 #endif // xOPENSSL_IS_USE

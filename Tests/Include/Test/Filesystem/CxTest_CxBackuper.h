@@ -16,7 +16,7 @@ class CxTest_CxBackuper :
 public:
                    CxTest_CxBackuper() {}
 
-    virtual void_t unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &caseLoops);
         ///< unit test
 };
 //------------------------------------------------------------------------------

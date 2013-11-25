@@ -16,7 +16,7 @@ class CxTest_CxTcpClient :
 public:
                    CxTest_CxTcpClient() {}
 
-    virtual void_t unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &caseLoops);
 };
 //------------------------------------------------------------------------------
 

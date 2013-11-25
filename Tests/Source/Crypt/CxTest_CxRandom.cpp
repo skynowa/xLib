@@ -11,7 +11,7 @@
 /* virtual */
 void_t
 CxTest_CxRandom::unit(
-    culonglong_t &a_cullCaseLoops
+    culonglong_t &a_caseLoops
 )
 {
     // TEST: CxRandom
@@ -97,7 +97,7 @@ CxTest_CxRandom::unit(
         }
     #endif
 
-    xTEST_CASE("CxRandom::setSeed liGetInt liGetIntEx", a_cullCaseLoops)
+    xTEST_CASE("CxRandom::setSeed liGetInt liGetIntEx", a_caseLoops)
     {
         clong_t caliData[][2] = {
             {0, 100},
@@ -119,7 +119,7 @@ CxTest_CxRandom::unit(
         }
     }
 
-    xTEST_CASE("CxRandom::sGetString", a_cullCaseLoops)
+    xTEST_CASE("CxRandom::sGetString", a_caseLoops)
     {
         std::csize_t cuiStrSize = 10;
 

@@ -17,7 +17,7 @@ class CxTest_CxFinder :
 public:
                    CxTest_CxFinder() {}
 
-    virtual void_t unit(culonglong_t &cullCaseLoops) xOVERRIDE;
+    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
         ///< unit test
 };
 //------------------------------------------------------------------------------

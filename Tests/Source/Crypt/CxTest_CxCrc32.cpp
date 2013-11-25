@@ -13,7 +13,7 @@
 /* virtual */
 void_t
 CxTest_CxCrc32::unit(
-    culonglong_t &a_cullCaseLoops
+    culonglong_t &a_caseLoops
 )
 {
     std::ctstring_t csFilePath = tempDirPath()  + CxConst::slash() + xT("Test.txt");;
@@ -27,12 +27,12 @@ CxTest_CxCrc32::unit(
         flFile.resize(1337LL);
     }
 
-    xTEST_CASE("CxCrc32::calc", a_cullCaseLoops)
+    xTEST_CASE("CxCrc32::calc", a_caseLoops)
     {
 
     }
 
-    xTEST_CASE("CxCrc32::calcFile formatHex", a_cullCaseLoops)
+    xTEST_CASE("CxCrc32::calcFile formatHex", a_caseLoops)
     {
         m_ulRv = CxCrc32::calcFile(csFilePath);
         xTEST_LESS(0UL, m_ulRv);
@@ -42,12 +42,12 @@ CxTest_CxCrc32::unit(
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("CxCrc32::calcFast", a_cullCaseLoops)
+    xTEST_CASE("CxCrc32::calcFast", a_caseLoops)
     {
 
     }
 
-    xTEST_CASE("CxCrc32::calcFileFast formatHex", a_cullCaseLoops)
+    xTEST_CASE("CxCrc32::calcFileFast formatHex", a_caseLoops)
     {
         m_ulRv = CxCrc32::calcFileFast(csFilePath);
         xTEST_LESS(0UL, m_ulRv);

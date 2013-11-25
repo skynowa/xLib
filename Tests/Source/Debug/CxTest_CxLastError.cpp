@@ -11,7 +11,7 @@
 /* virtual */
 void_t
 CxTest_CxLastError::unit(
-    culonglong_t &a_cullCaseLoops
+    culonglong_t &a_caseLoops
 )
 {
     #if   xOS_ENV_WIN
@@ -20,7 +20,7 @@ CxTest_CxLastError::unit(
         culong_t cuiMaxErrors = 132;    /*0...132*/
     #endif
 
-    xTEST_CASE("CxLastError::isSuccess", a_cullCaseLoops)
+    xTEST_CASE("CxLastError::isSuccess", a_caseLoops)
     {
         CxLastError::reset();
         m_bRv = CxLastError::isSuccess();
@@ -31,21 +31,21 @@ CxTest_CxLastError::unit(
         xTEST_EQ(false, m_bRv);
     }
 
-    xTEST_CASE("CxLastError::get", a_cullCaseLoops)
+    xTEST_CASE("CxLastError::get", a_caseLoops)
     {
         m_ulRv = CxLastError::get();
         xUNUSED(m_ulRv);
         xTEST_EQ(0UL, CxLastError::get());
     }
 
-    xTEST_CASE("CxLastError::format", a_cullCaseLoops)
+    xTEST_CASE("CxLastError::format", a_caseLoops)
     {
         m_sRv = CxLastError::format();
         xTEST_EQ(0UL,   CxLastError::get());
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("CxLastError::set", a_cullCaseLoops)
+    xTEST_CASE("CxLastError::set", a_caseLoops)
     {
         culong_t caulData[] = {
             0UL,
@@ -62,7 +62,7 @@ CxTest_CxLastError::unit(
         }
     }
 
-    xTEST_CASE("CxLastError::reset", a_cullCaseLoops)
+    xTEST_CASE("CxLastError::reset", a_caseLoops)
     {
         culong_t caulData[] = {
             0UL,
@@ -80,7 +80,7 @@ CxTest_CxLastError::unit(
         }
     }
 
-    xTEST_CASE("CxLastError::format", a_cullCaseLoops)
+    xTEST_CASE("CxLastError::format", a_caseLoops)
     {
         culong_t caulData[] = {
             0UL,

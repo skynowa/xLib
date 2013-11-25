@@ -11,12 +11,12 @@
 /* virtual */
 void_t
 CxTest_CxCom::unit(
-    culonglong_t &a_cullCaseLoops
+    culonglong_t &a_caseLoops
 )
 {
 #if xOS_ENV_WIN
 
-    xTEST_CASE("CxCom::CxCom", a_cullCaseLoops)
+    xTEST_CASE("CxCom::CxCom", a_caseLoops)
     {
         const COINIT ccmModel[] = {
             COINIT_APARTMENTTHREADED,

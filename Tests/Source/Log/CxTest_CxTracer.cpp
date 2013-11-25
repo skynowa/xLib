@@ -13,10 +13,10 @@
 /* virtual */
 void_t
 CxTest_CxTracer::unit(
-    culonglong_t &a_cullCaseLoops
+    culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("CxTracer::operator <<", a_cullCaseLoops)
+    xTEST_CASE("CxTracer::operator <<", a_caseLoops)
     {
     #if xTEST_IGNORE
         CxTracer trTracer;
@@ -25,21 +25,21 @@ CxTest_CxTracer::unit(
     #endif
     }
 
-    xTEST_CASE("CxTracer::operator <<", a_cullCaseLoops)
+    xTEST_CASE("CxTracer::operator <<", a_caseLoops)
     {
     #if xTEST_IGNORE
         CxTracer() << xT("\tMsg: ") << 12345 << xT(' ') << CxConst::dot3();
     #endif
     }
 
-    xTEST_CASE("CxTracer::write", a_cullCaseLoops)
+    xTEST_CASE("CxTracer::write", a_caseLoops)
     {
     #if xTEST_IGNORE
         CxTracer::write(xT("\t%s: %d"), "test_str", 12345);
     #endif
     }
 
-    xTEST_CASE("CxTracer::write", a_cullCaseLoops)
+    xTEST_CASE("CxTracer::write", a_caseLoops)
     {
     #if xTEST_IGNORE
         std::tstring_t sData = xT("\ttest_str");
@@ -48,7 +48,7 @@ CxTest_CxTracer::unit(
     #endif
     }
 
-    xTEST_CASE("CxTracer::xTRACE_VAR_", a_cullCaseLoops)
+    xTEST_CASE("CxTracer::xTRACE_VAR_", a_caseLoops)
     {
     #if xTEST_IGNORE
         std::tstring_t sData  = xT("data1");

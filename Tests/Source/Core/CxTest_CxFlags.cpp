@@ -11,10 +11,10 @@
 /* virtual */
 void_t
 CxTest_CxFlags::unit(
-    culonglong_t &a_cullCaseLoops
+    culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("CxFlags::CxFlags", a_cullCaseLoops)
+    xTEST_CASE("CxFlags::CxFlags", a_caseLoops)
     {
         // TEST: CxFlags
     }

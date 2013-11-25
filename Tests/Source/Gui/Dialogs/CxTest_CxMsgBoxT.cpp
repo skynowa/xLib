@@ -11,13 +11,13 @@
 /* virtual */
 void_t
 CxTest_CxMsgBoxT::unit(
-    culonglong_t &a_cullCaseLoops
+    culonglong_t &a_caseLoops
 )
 {
 #if 1
 
 #if xOS_ENV_WIN
-    xTEST_CASE("CxMsgBoxT::show", a_cullCaseLoops)
+    xTEST_CASE("CxMsgBoxT::show", a_caseLoops)
     {
         const HWND      chWnd   = NULL;
         std::ctstring_t csText  = xT("\nmessage box with 3 params...\n");
@@ -29,7 +29,7 @@ CxTest_CxMsgBoxT::unit(
     }
 #endif
 
-    xTEST_CASE("CxMsgBoxT::show (3 params)", a_cullCaseLoops)
+    xTEST_CASE("CxMsgBoxT::show (3 params)", a_caseLoops)
     {
         std::ctstring_t csText  = xT("\nmessage box with 3 params...\n");
         std::ctstring_t csTitle = xT("Simple title");

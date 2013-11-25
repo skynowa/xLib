@@ -16,6 +16,6 @@ class CxTest_CxBase64 :
 public:
                    CxTest_CxBase64() {}
 
-    virtual void_t unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &caseLoops);
 };
 //------------------------------------------------------------------------------

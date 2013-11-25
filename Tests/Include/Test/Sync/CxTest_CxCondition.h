@@ -16,7 +16,7 @@ class CxTest_CxCondition :
 public:
                     CxTest_CxCondition() {}
 
-    virtual void_t  unit(culonglong_t &cullCaseLoops) xOVERRIDE;
+    virtual void_t  unit(culonglong_t &caseLoops) xOVERRIDE;
         ///< unit test
 };
 //------------------------------------------------------------------------------

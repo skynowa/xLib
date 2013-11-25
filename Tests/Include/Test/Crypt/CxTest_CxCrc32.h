@@ -17,6 +17,6 @@ class CxTest_CxCrc32 :
 public:
                    CxTest_CxCrc32() {}
 
-    virtual void_t unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &caseLoops);
 };
 //------------------------------------------------------------------------------

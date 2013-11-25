@@ -16,6 +16,6 @@ class CxTest_CxErrorReport :
 public:
                    CxTest_CxErrorReport() {}
 
-    virtual void_t unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &caseLoops);
 };
 //------------------------------------------------------------------------------

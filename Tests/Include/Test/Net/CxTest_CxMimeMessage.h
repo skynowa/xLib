@@ -21,7 +21,7 @@ class CxTest_CxMimeMessage :
 public:
                    CxTest_CxMimeMessage() {}
 
-    virtual void_t unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &caseLoops);
 };
 
 #endif // xOPENSSL_IS_USE

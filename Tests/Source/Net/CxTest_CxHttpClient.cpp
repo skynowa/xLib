@@ -11,10 +11,10 @@
 /* virtual */
 void_t
 CxTest_CxHttpClient::unit(
-    culonglong_t &a_cullCaseLoops
+    culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("CxHttpClient::CxHttpClient", a_cullCaseLoops)
+    xTEST_CASE("CxHttpClient::CxHttpClient", a_caseLoops)
     {
         CxHttpClient hcHttpClient;
     }

@@ -11,10 +11,10 @@
 /* virtual */
 void_t
 CxTest_CxErrorReport::unit(
-    culonglong_t &a_cullCaseLoops
+    culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("CxErrorReport::CxErrorReport", a_cullCaseLoops)
+    xTEST_CASE("CxErrorReport::CxErrorReport", a_caseLoops)
     {
         ulong_t ulLastError = CxLastError::get();
 

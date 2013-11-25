@@ -15,10 +15,10 @@
 /* virtual */
 void_t
 CxTest_CxAutoProfiler::unit(
-    culonglong_t &a_cullCaseLoops
+    culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("CxAutoProfiler::CxAutoProfiler", a_cullCaseLoops)
+    xTEST_CASE("CxAutoProfiler::CxAutoProfiler", a_caseLoops)
     {
         std::ctstring_t csFilePath = tempDirPath() + CxConst::slash() + xT("CxAutoProfilerLog.log");
 

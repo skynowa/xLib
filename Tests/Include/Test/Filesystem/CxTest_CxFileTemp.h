@@ -16,7 +16,7 @@ class CxTest_CxFileTemp :
 public:
                    CxTest_CxFileTemp() {}
 
-    virtual void_t unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &caseLoops);
         ///< unit test
 };
 //------------------------------------------------------------------------------

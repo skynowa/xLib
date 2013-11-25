@@ -16,6 +16,6 @@ class CxTest_CxDnsClient :
 public:
                    CxTest_CxDnsClient() {}
 
-    virtual void_t unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &caseLoops);
 };
 //------------------------------------------------------------------------------

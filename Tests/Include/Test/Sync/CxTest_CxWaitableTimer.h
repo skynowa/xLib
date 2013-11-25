@@ -16,6 +16,6 @@ class CxTest_CxWaitableTimer :
 public:
                    CxTest_CxWaitableTimer() {}
 
-    virtual void_t unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &caseLoops);
 };
 //------------------------------------------------------------------------------

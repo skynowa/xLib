@@ -13,10 +13,10 @@
 /* virtual */
 void_t
 CxTest_CxAutoMutex::unit(
-    culonglong_t &a_cullCaseLoops
+    culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("CxAutoMutex::CxAutoMutex", a_cullCaseLoops)
+    xTEST_CASE("CxAutoMutex::CxAutoMutex", a_caseLoops)
     {
         size_t  uiCounter = 0;
         CxMutex mtMutex;

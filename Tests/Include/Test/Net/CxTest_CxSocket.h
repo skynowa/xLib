@@ -16,7 +16,7 @@ class CxTest_CxSocket :
 public:
                    CxTest_CxSocket() {}
 
-    virtual void_t unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &caseLoops);
 };
 //------------------------------------------------------------------------------
 
