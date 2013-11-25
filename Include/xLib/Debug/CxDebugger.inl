@@ -193,13 +193,7 @@ CxDebugger::_msgboxPlain(
     xCHECK_DO(!isEnabled(), return);
 
 #if xDEBUG_USE_PROMPT_DIALOG
-    #if xOS_ENV_WIN
-        uint_t type = MB_ABORTRETRYIGNORE | MB_ICONSTOP;
-    #else
-        uint_t type = 1U;
-    #endif
-
-    CxMsgBoxT::ExModalResult mrRv = CxMsgBoxT().show(a_report.report, CxPath::exe(), type);
+    CxMsgBoxT::ExModalResult mrRv = CxMsgBoxT().show(a_report.report, "", CxMsgBoxT::tpAbortRetryIgnore);
 #else
     CxMsgBoxT::ExModalResult mrRv = CxMsgBoxT::mrIgnore;
 #endif

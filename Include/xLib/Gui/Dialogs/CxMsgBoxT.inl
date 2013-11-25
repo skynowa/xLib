@@ -48,37 +48,57 @@ CxMsgBoxT::ExModalResult
 CxMsgBoxT::show(
     const TextT  &a_text,
     const TitleT &a_title,
-    cExType      &a_type    /* = 0U */
+    cExType      &a_type    /* = tpOk */
 )
 {
-    ExModalResult mrRes = mrAbort;
-    std::string   title = CxString::cast(a_title);
+    ExModalResult  mrRes = mrAbort;
+    std::string    title = CxString::cast(a_title);
 
+    // title
     if ( title.empty() ) {
         title = CxPath(CxPath::exe()).fileName();
     }
 
-#if 0
-    // TODO: from CxDebugger::_msgboxPlain()
-    #if xOS_ENV_WIN
-        uint_t type = MB_ABORTRETRYIGNORE | MB_ICONSTOP;
-    #else
-        uint_t type = 1U;
-    #endif
-#endif
-
 #if   xOS_ENV_WIN
+    // type
+    UINT type = MB_OK;
+    {
+        switch (a_type) {
+        case tpOk:
+        default:
+            type = MB_OK;
+            break;
+        case tpAbortRetryIgnore:
+            type = MB_ABORTRETRYIGNORE | MB_ICONSTOP;
+            break;
+        }
+    }
+
     mrRes = static_cast<ExModalResult>( ::MessageBox(
         NULL,
         CxString::cast(a_text).c_str(),
         title.c_str(),
         a_type) );
 #elif xOS_ENV_UNIX
+    // type
+    std::tstring_t type = xT("Ok");
+    {
+        switch (a_type) {
+        case tpOk:
+        default:
+            type = xT("Ok");
+            break;
+        case tpAbortRetryIgnore:
+            type = xT("Abort, Ignore, Retry");
+            break;
+        }
+    }
+
     std::ctstring_t msg = CxString::format(
         xT("xmessage -center \"%s\" -title \"%s\" -buttons \"%s\""),
         CxString::cast(a_text).c_str(),
         title.c_str(),
-        xT("Abort, Ignore, Retry"));    /* xT("Ok") */
+        type.c_str());
 
     mrRes = static_cast<ExModalResult>( std::xTSYSTEM(msg.c_str()) );
 #endif

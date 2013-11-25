@@ -53,7 +53,7 @@ public:
 #endif
 
     template <class TextT, class TitleT>
-    ExModalResult show(const TextT &text, const TitleT &title, cExType &type) xWARN_UNUSED_RV;
+    ExModalResult show(const TextT &text, const TitleT &title, cExType &type = tpOk) xWARN_UNUSED_RV;
         ///< message box with custom text, custom title, custom type
 
     xNO_COPY_ASSIGN(CxMsgBoxT)
