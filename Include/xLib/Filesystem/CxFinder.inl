@@ -46,26 +46,30 @@ CxFinder::CxFinder(
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 inline
-CxFinder::~CxFinder() {
+CxFinder::~CxFinder()
+{
     close();
 }
 //-------------------------------------------------------------------------------------------------
 inline std::ctstring_t &
-CxFinder::rootDirPath() const {
+CxFinder::rootDirPath() const
+{
     xTEST_EQ(false, _rootDirPath.empty());
 
     return _rootDirPath;
 }
 //-------------------------------------------------------------------------------------------------
 inline std::ctstring_t &
-CxFinder::shellFilter() const {
+CxFinder::shellFilter() const
+{
     xTEST_EQ(false, _shellFilter.empty());
 
     return _shellFilter;
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
-CxFinder::entryName() const {
+CxFinder::entryName() const
+{
     xTEST_EQ(true, isValid());
 
     std::tstring_t sRv;
@@ -82,7 +86,8 @@ CxFinder::entryName() const {
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
-CxFinder::entryPath() const {
+CxFinder::entryPath() const
+{
     xTEST_EQ(true, isValid());
 
     std::tstring_t sRv;
@@ -93,7 +98,8 @@ CxFinder::entryPath() const {
 }
 //-------------------------------------------------------------------------------------------------
 inline CxFileType::types_t
-CxFinder::fileTypes() const {
+CxFinder::fileTypes() const
+{
     xTEST_EQ(true, isValid());
 
 #if xOS_ENV_WIN
@@ -137,7 +143,8 @@ CxFinder::fileTypes() const {
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
-CxFinder::isValid() const {
+CxFinder::isValid() const
+{
 #if xOS_ENV_WIN
     xCHECK_RET(xNATIVE_HANDLE_INVALID == _enrty.handle, false);
     xCHECK_NA(_enrty.data);
@@ -150,7 +157,8 @@ CxFinder::isValid() const {
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
-CxFinder::moveNext() {
+CxFinder::moveNext()
+{
     // xTEST_EQ(true, isValid());
 
     if (_isMoveFirst) {
@@ -189,7 +197,8 @@ CxFinder::moveNext() {
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxFinder::close() {
+CxFinder::close()
+{
     _isMoveFirst = true;
 
     xCHECK_DO(!isValid(), return);
@@ -312,7 +321,8 @@ CxFinder::files(
 
 //-------------------------------------------------------------------------------------------------
 inline bool_t
-CxFinder::_moveFirst() {
+CxFinder::_moveFirst()
+{
     xTEST_EQ(false, isValid());
 
     _isMoveFirst = false;
