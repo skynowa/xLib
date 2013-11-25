@@ -13,7 +13,7 @@
 /* virtual */
 void_t
 CxTest_CxFile::unit(
-    culonglong_t &a_cullCaseLoops
+    culonglong_t &a_caseLoops
 )
 {
     std::ctstring_t csFilePath = tempDirPath() + CxConst::slash() + xT("Test.txt");
@@ -24,7 +24,7 @@ CxTest_CxFile::unit(
     *
     *******************************************************************************/
 
-    xTEST_CASE("CxFile::remove", a_cullCaseLoops)
+    xTEST_CASE("CxFile::remove", a_caseLoops)
     {
         CxFile::remove(csFilePath);
     }
@@ -35,7 +35,7 @@ CxTest_CxFile::unit(
     *
     *******************************************************************************/
 
-    xTEST_CASE("CxFile::create", a_cullCaseLoops)
+    xTEST_CASE("CxFile::create", a_caseLoops)
     {
         CxFile F;
 
@@ -44,7 +44,7 @@ CxTest_CxFile::unit(
         }
     }
 
-    xTEST_CASE("CxFile::reopen", a_cullCaseLoops)
+    xTEST_CASE("CxFile::reopen", a_caseLoops)
     {
         CxFile F;
 
@@ -55,7 +55,7 @@ CxTest_CxFile::unit(
         }
     }
 
-    xTEST_CASE("CxFile::attach", a_cullCaseLoops)
+    xTEST_CASE("CxFile::attach", a_caseLoops)
     {
         CxFile _F;
 
@@ -69,7 +69,7 @@ CxTest_CxFile::unit(
         xTEST_EQ(stdout, pFile);
     }
 
-    xTEST_CASE("CxFile::get", a_cullCaseLoops)
+    xTEST_CASE("CxFile::get", a_caseLoops)
     {
         CxFile F;
 
@@ -79,7 +79,7 @@ CxTest_CxFile::unit(
         xTEST_PTR(pFile);
     }
 
-    xTEST_CASE("CxFile::path", a_cullCaseLoops)
+    xTEST_CASE("CxFile::path", a_caseLoops)
     {
         CxFile F;
 
@@ -95,7 +95,7 @@ CxTest_CxFile::unit(
     *
     *******************************************************************************/
 
-    xTEST_CASE("CxFile::write CxFile::read", a_cullCaseLoops)
+    xTEST_CASE("CxFile::write CxFile::read", a_caseLoops)
     {
         std::tstring_t sBuffWrite = xT("<test1>\n<test2>\n<test3>\n\n<...>");
         std::tstring_t sBuffRead  = xT("");       sBuffRead.resize(sBuffWrite.size());
@@ -121,7 +121,7 @@ CxTest_CxFile::unit(
         xTEST_EQ(sBuffWrite, sBuffRead);
     }
 
-    xTEST_CASE("CxFile::write CxFile::read", a_cullCaseLoops)
+    xTEST_CASE("CxFile::write CxFile::read", a_caseLoops)
     {
         std::custring_t sContent(10, 5);
 
@@ -168,7 +168,7 @@ CxTest_CxFile::unit(
         }
     }
 
-    xTEST_CASE("CxFile::readLine CxFile::writeLine", a_cullCaseLoops)
+    xTEST_CASE("CxFile::readLine CxFile::writeLine", a_caseLoops)
     {
         std::tstring_t sBuffWrite = xT("<test1><test2><test3><...>");
         std::tstring_t sBuffRead  = xT("");
@@ -193,7 +193,7 @@ CxTest_CxFile::unit(
         xTEST_EQ(sBuffWrite,        sBuffRead);
     }
 
-    xTEST_CASE("CxFile::writeChar chReadChar ungetChar", a_cullCaseLoops)
+    xTEST_CASE("CxFile::writeChar chReadChar ungetChar", a_caseLoops)
     {
         ctchar_t chChar = xT('W');
 
@@ -213,7 +213,7 @@ CxTest_CxFile::unit(
         F.ungetChar(chChar);
     }
 
-    xTEST_CASE("CxFile::clear", a_cullCaseLoops)
+    xTEST_CASE("CxFile::clear", a_caseLoops)
     {
         CxFile F;
 
@@ -226,7 +226,7 @@ CxTest_CxFile::unit(
     *
     *******************************************************************************/
 
-    xTEST_CASE("CxFile::time CxFile::setTime", a_cullCaseLoops)
+    xTEST_CASE("CxFile::time CxFile::setTime", a_caseLoops)
     {
         {
             CxFile F;
@@ -262,7 +262,7 @@ CxTest_CxFile::unit(
     *
     *******************************************************************************/
 
-    xTEST_CASE("CxFile::read", a_cullCaseLoops)
+    xTEST_CASE("CxFile::read", a_caseLoops)
     {
         std::ctstring_t csTestContent =
             xT("sz dkfjhsld2345234kfjfsd\tfjklg    23hsd5467ml ksd\tfcsjklsecfgsjk drbf");
@@ -288,7 +288,7 @@ CxTest_CxFile::unit(
         // TODO: xTEST_EQ(csTestContent, sContent);
     }
 
-    xTEST_CASE("CxFile::write", a_cullCaseLoops)
+    xTEST_CASE("CxFile::write", a_caseLoops)
     {
         std::ctstring_t csTestContent =
                 xT("sz dkfjhsld2345234kfjfsd\tfjklg    23hsd5467ml ksd\tfcsjklsecfgsjk drbf");
@@ -301,7 +301,7 @@ CxTest_CxFile::unit(
         xTEST_EQ(csTestContent.size(), size_t(iResFprintf));
     }
 
-    xTEST_CASE("CxFile::writeV", a_cullCaseLoops)
+    xTEST_CASE("CxFile::writeV", a_caseLoops)
     {
         struct SWriter {
             static void_t
@@ -327,7 +327,7 @@ CxTest_CxFile::unit(
     *
     *******************************************************************************/
 
-    xTEST_CASE("CxFile::locking", a_cullCaseLoops)
+    xTEST_CASE("CxFile::locking", a_caseLoops)
     {
         CxFile F;
 
@@ -337,7 +337,7 @@ CxTest_CxFile::unit(
         F.locking(CxFile::lmUnlock, 10);
     }
 
-    xTEST_CASE("CxFile::setPosition CxFile::getPosition", a_cullCaseLoops)
+    xTEST_CASE("CxFile::setPosition CxFile::getPosition", a_caseLoops)
     {
         CxFile F;
 
@@ -348,7 +348,7 @@ CxTest_CxFile::unit(
         xTEST_EQ(0L, liRv);
     }
 
-    xTEST_CASE("CxFile::getSize", a_cullCaseLoops)
+    xTEST_CASE("CxFile::getSize", a_caseLoops)
     {
         clonglong_t cllNewSize = 1024LL;
 
@@ -361,7 +361,7 @@ CxTest_CxFile::unit(
         xTEST_EQ(cllNewSize, llSize);
     }
 
-    xTEST_CASE("CxFile::resize", a_cullCaseLoops)
+    xTEST_CASE("CxFile::resize", a_caseLoops)
     {
         CxFile F;
 
@@ -369,7 +369,7 @@ CxTest_CxFile::unit(
         F.resize(0);
     }
 
-    xTEST_CASE("CxFile::setVBuff", a_cullCaseLoops)
+    xTEST_CASE("CxFile::setVBuff", a_caseLoops)
     {
         std::string asBuffRead;       asBuffRead.resize(1024);
 
@@ -379,7 +379,7 @@ CxTest_CxFile::unit(
         F.setVBuff(&asBuffRead.at(0), CxFile::bmFull, asBuffRead.size() * 2);
     }
 
-    xTEST_CASE("CxFile::setMode", a_cullCaseLoops)
+    xTEST_CASE("CxFile::setMode", a_caseLoops)
     {
         CxFile F;
 
@@ -393,7 +393,7 @@ CxTest_CxFile::unit(
         #endif
     }
 
-    xTEST_CASE("CxFile::setMode", a_cullCaseLoops)
+    xTEST_CASE("CxFile::setMode", a_caseLoops)
     {
         CxFile F;
 
@@ -412,7 +412,7 @@ CxTest_CxFile::unit(
     *
     *******************************************************************************/
 
-    xTEST_CASE("CxFile::isValid", a_cullCaseLoops)
+    xTEST_CASE("CxFile::isValid", a_caseLoops)
     {
         CxFile F;
 
@@ -427,7 +427,7 @@ CxTest_CxFile::unit(
         F.close();
     }
 
-    xTEST_CASE("CxFile::isOpen", a_cullCaseLoops)
+    xTEST_CASE("CxFile::isOpen", a_caseLoops)
     {
         CxFile F;
 
@@ -445,7 +445,7 @@ CxTest_CxFile::unit(
         xTEST_EQ(false, m_bRv);
     }
 
-    xTEST_CASE("CxFile::isEmpty", a_cullCaseLoops)
+    xTEST_CASE("CxFile::isEmpty", a_caseLoops)
     {
         CxFile F;
 
@@ -466,7 +466,7 @@ CxTest_CxFile::unit(
         xTEST_EQ(true, m_bRv);
     }
 
-    xTEST_CASE("CxFile::isEof", a_cullCaseLoops)
+    xTEST_CASE("CxFile::isEof", a_caseLoops)
     {
         CxFile F;
 
@@ -476,7 +476,7 @@ CxTest_CxFile::unit(
         xTEST_EQ(false, m_bRv);
     }
 
-    xTEST_CASE("CxFile::isError", a_cullCaseLoops)
+    xTEST_CASE("CxFile::isError", a_caseLoops)
     {
         CxFile F;
 
@@ -486,7 +486,7 @@ CxTest_CxFile::unit(
         xTEST_EQ(false, m_bRv);
     }
 
-    xTEST_CASE("CxFile::errorClear", a_cullCaseLoops)
+    xTEST_CASE("CxFile::errorClear", a_caseLoops)
     {
         CxFile F;
 
@@ -499,7 +499,7 @@ CxTest_CxFile::unit(
     *
     *******************************************************************************/
 
-    xTEST_CASE("CxFile::flush", a_cullCaseLoops)
+    xTEST_CASE("CxFile::flush", a_caseLoops)
     {
         CxFile F;
 
@@ -510,7 +510,7 @@ CxTest_CxFile::unit(
         xTEST_EQ(true, m_bRv);
     }
 
-    xTEST_CASE("CxFile::close", a_cullCaseLoops)
+    xTEST_CASE("CxFile::close", a_caseLoops)
     {
         CxFile F;
 
@@ -522,10 +522,10 @@ CxTest_CxFile::unit(
     }
 
     // vUnit1
-    vUnit1(a_cullCaseLoops);
+    vUnit1(a_caseLoops);
 
     // vUnitPrivate
-    vUnitPrivate(a_cullCaseLoops);
+    vUnitPrivate(a_caseLoops);
 }
 //------------------------------------------------------------------------------
 
@@ -538,7 +538,7 @@ CxTest_CxFile::unit(
 //------------------------------------------------------------------------------
 void_t
 CxTest_CxFile::vUnit1(
-    culonglong_t &a_cullCaseLoops
+    culonglong_t &a_caseLoops
 )
 {
     std::ctstring_t csFilePath = tempDirPath() + CxConst::slash() + xT("Test.txt");
@@ -548,7 +548,7 @@ CxTest_CxFile::vUnit1(
     *
     *******************************************************************************/
 
-    xTEST_CASE("CxFile::isFile", a_cullCaseLoops)
+    xTEST_CASE("CxFile::isFile", a_caseLoops)
     {
         m_bRv = CxFile::isFile(csFilePath);
         xTEST_EQ(true, m_bRv);
@@ -557,7 +557,7 @@ CxTest_CxFile::vUnit1(
         xTEST_EQ(false, m_bRv);
     }
 
-    xTEST_CASE("CxFile::isExists", a_cullCaseLoops)
+    xTEST_CASE("CxFile::isExists", a_caseLoops)
     {
         m_bRv = CxFile::isExists(csFilePath);
         xTEST_EQ(true, m_bRv);
@@ -569,7 +569,7 @@ CxTest_CxFile::vUnit1(
         xTEST_EQ(false, m_bRv);
     }
 
-    xTEST_CASE("CxFile::isExistsEx", a_cullCaseLoops)
+    xTEST_CASE("CxFile::isExistsEx", a_caseLoops)
     {
         m_sRv = CxFile::isExistsEx(csFilePath);
         xTEST_EQ(true, CxFile::isExists(csFilePath));
@@ -578,17 +578,17 @@ CxTest_CxFile::vUnit1(
         ////xTRACEV(xT("\tCxFile::isExistsEx: %s"), m_sRv.c_str());
     }
 
-    xTEST_CASE("CxFile::access", a_cullCaseLoops)
+    xTEST_CASE("CxFile::access", a_caseLoops)
     {
         CxFile::access(csFilePath, CxFile::amExistence);
     }
 
-    xTEST_CASE("CxFile::chmod", a_cullCaseLoops)
+    xTEST_CASE("CxFile::chmod", a_caseLoops)
     {
         CxFile::chmod(csFilePath, CxFile::pmReadWrite);
     }
 
-    xTEST_CASE("CxFile::rename", a_cullCaseLoops)
+    xTEST_CASE("CxFile::rename", a_caseLoops)
     {
         std::ctstring_t csNewFilePath = tempDirPath() + CxConst::slash() + xT("New.Test.txt");
 
@@ -598,7 +598,7 @@ CxTest_CxFile::vUnit1(
         CxFile::remove(csNewFilePath);
     }
 
-    xTEST_CASE("CxFile::lines", a_cullCaseLoops)
+    xTEST_CASE("CxFile::lines", a_caseLoops)
     {
         culonglong_t cullLinesNum = 17;
         {
@@ -615,7 +615,7 @@ CxTest_CxFile::vUnit1(
         xTEST_EQ(cullLinesNum, ullLinesNum);
     }
 
-    xTEST_CASE("CxFile::copy", a_cullCaseLoops)
+    xTEST_CASE("CxFile::copy", a_caseLoops)
     {
         std::ctstring_t sFilePathFrom = tempDirPath() + CxConst::slash() + xT("test_copy.txt");
         std::ctstring_t sFilePathTo   = sFilePathFrom + xT("_addition_to_name");
@@ -635,7 +635,7 @@ CxTest_CxFile::vUnit1(
         CxFile::copy(sFilePathFrom, sFilePathTo, true);
     }
 
-    xTEST_CASE("CxFile::move", a_cullCaseLoops)
+    xTEST_CASE("CxFile::move", a_caseLoops)
     {
         std::ctstring_t csNewFilePath = tempDirPath() + CxConst::slash() + xT("New.Test.txt");
 
@@ -644,7 +644,7 @@ CxTest_CxFile::vUnit1(
         CxFile::move(csNewFilePath, tempDirPath());
     }
 
-    xTEST_CASE("CxFile::unlink", a_cullCaseLoops)
+    xTEST_CASE("CxFile::unlink", a_caseLoops)
     {
         #if xTEMP_DISABLED
             m_bRv = CxFile::unlink(csNewFilePath);
@@ -652,14 +652,14 @@ CxTest_CxFile::vUnit1(
         #endif
     }
 
-    xTEST_CASE("CxFile::clear", a_cullCaseLoops)
+    xTEST_CASE("CxFile::clear", a_caseLoops)
     {
         std::ctstring_t csNewFilePath = tempDirPath() + CxConst::slash() + xT("New.Test.txt");
 
         CxFile::clear(csNewFilePath);
     }
 
-    xTEST_CASE("CxFile::remove", a_cullCaseLoops)
+    xTEST_CASE("CxFile::remove", a_caseLoops)
     {
         std::ctstring_t csNewFilePath = tempDirPath() + CxConst::slash() + xT("New.Test.txt");
 
@@ -667,7 +667,7 @@ CxTest_CxFile::vUnit1(
         CxFile::remove(csNewFilePath);
     }
 
-    xTEST_CASE("CxFile::tryRemove", a_cullCaseLoops)
+    xTEST_CASE("CxFile::tryRemove", a_caseLoops)
     {
         // TEST: CxFile::tryRemove
 
@@ -693,7 +693,7 @@ CxTest_CxFile::vUnit1(
         #endif
     }
 
-    xTEST_CASE("CxFile::wipe", a_cullCaseLoops)
+    xTEST_CASE("CxFile::wipe", a_caseLoops)
     {
         {
             CxFile F;
@@ -714,7 +714,7 @@ CxTest_CxFile::vUnit1(
     *
     *******************************************************************************/
 
-    xTEST_CASE("CxFile::textRead CxFile::textWrite", a_cullCaseLoops)
+    xTEST_CASE("CxFile::textRead CxFile::textWrite", a_caseLoops)
     {
         std::tstring_t sFileContent;
 
@@ -738,7 +738,7 @@ CxTest_CxFile::vUnit1(
         xTEST_EQ(sFileContent, sStr);
     }
 
-    xTEST_CASE("CxFile::textRead CxFile::textWrite", a_cullCaseLoops)
+    xTEST_CASE("CxFile::textRead CxFile::textWrite", a_caseLoops)
     {
         // empty content
         std::tstring_t sFileContent;
@@ -759,7 +759,7 @@ CxTest_CxFile::vUnit1(
         xTEST_EQ(sFileContent, sStr);
     }
 
-    xTEST_CASE("CxFile::textRead CxFile::textWrite", a_cullCaseLoops)
+    xTEST_CASE("CxFile::textRead CxFile::textWrite", a_caseLoops)
     {
         // std::vector
         std::vec_tstring_t vsFileContent;
@@ -784,7 +784,7 @@ CxTest_CxFile::vUnit1(
         xTEST_EQ(true, vsFileContent == vsStr);
     }
 
-    xTEST_CASE("CxFile::textRead CxFile::textWrite", a_cullCaseLoops)
+    xTEST_CASE("CxFile::textRead CxFile::textWrite", a_caseLoops)
     {
         //  empty content
         std::vec_tstring_t vsFileContent;
@@ -805,7 +805,7 @@ CxTest_CxFile::vUnit1(
         xTEST_EQ(true, vsFileContent == vsStr);
     }
 
-    xTEST_CASE("CxFile::textRead CxFile::textWrite", a_cullCaseLoops)
+    xTEST_CASE("CxFile::textRead CxFile::textWrite", a_caseLoops)
     {
         // std::vector
         std::map_tstring_t   cmsFileContent;
@@ -831,7 +831,7 @@ CxTest_CxFile::vUnit1(
         xTEST_EQ(true, cmsFileContent == msStr);
     }
 
-    xTEST_CASE("CxFile::textRead CxFile::textWrite", a_cullCaseLoops)
+    xTEST_CASE("CxFile::textRead CxFile::textWrite", a_caseLoops)
     {
         // empty content
         std::map_tstring_t   cmsFileContent;
@@ -853,7 +853,7 @@ CxTest_CxFile::vUnit1(
         xTEST_EQ(true, cmsFileContent == msStr);
     }
 
-    xTEST_CASE("CxFile::textRead CxFile::textWrite", a_cullCaseLoops)
+    xTEST_CASE("CxFile::textRead CxFile::textWrite", a_caseLoops)
     {
         // binary
         std::ustring_t usFileContent;   usFileContent.resize(1024 * 5);
@@ -880,7 +880,7 @@ CxTest_CxFile::vUnit1(
         xTEST_EQ(true, usFileContent == usStr);
     }
 
-    xTEST_CASE("CxFile::textRead CxFile::textWrite", a_cullCaseLoops)
+    xTEST_CASE("CxFile::textRead CxFile::textWrite", a_caseLoops)
     {
         // empty content
         std::ustring_t usFileContent;
@@ -902,13 +902,13 @@ CxTest_CxFile::vUnit1(
 //------------------------------------------------------------------------------
 void_t
 CxTest_CxFile::vUnitPrivate(
-    culonglong_t &a_cullCaseLoops
+    culonglong_t &a_caseLoops
 )
 {
 #if xTEST_PRIVATE_DATA
     std::ctstring_t csFilePath = tempDirPath() + CxConst::slash() + xT("Test.txt");
 
-    xTEST_CASE("CxFile::_nativeHandle", a_cullCaseLoops)
+    xTEST_CASE("CxFile::_nativeHandle", a_caseLoops)
     {
         CxFile sfFile;
 
@@ -918,7 +918,7 @@ CxTest_CxFile::vUnitPrivate(
         xTEST_DIFF((int_t)CxFile::etError, m_iRv);
     }
 
-    xTEST_CASE("CxFile::_stdHandle", a_cullCaseLoops)
+    xTEST_CASE("CxFile::_stdHandle", a_caseLoops)
     {
         // TEST: CxFile::_stdHandle
 
@@ -937,7 +937,7 @@ CxTest_CxFile::vUnitPrivate(
     #endif
     }
 
-    xTEST_CASE("CxFile::_openMode", a_cullCaseLoops)
+    xTEST_CASE("CxFile::_openMode", a_caseLoops)
     {
         std::vector< std::pair<CxFile::ExOpenMode, std::tstring_t> > vpData;
 

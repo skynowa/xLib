@@ -17,6 +17,6 @@ class CxTest_CxDir :
 public:
                    CxTest_CxDir() {}
 
-    virtual void_t unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &caseLoops);
 };
 //------------------------------------------------------------------------------

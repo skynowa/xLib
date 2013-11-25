@@ -18,7 +18,7 @@ RandomNumber () {
 /* virtual */
 void_t
 CxTest_CxString::unit(
-    culonglong_t &a_cullCaseLoops
+    culonglong_t &a_caseLoops
 )
 {
     /*******************************************************************************
@@ -26,7 +26,7 @@ CxTest_CxString::unit(
     *
     *******************************************************************************/
 
-    xTEST_CASE("CxString::cast (to string)", a_cullCaseLoops)
+    xTEST_CASE("CxString::cast (to string)", a_caseLoops)
     {
         m_sRv = CxString::cast(1);
         xTEST_EQ(std::tstring_t(xT("1")), m_sRv);
@@ -50,7 +50,7 @@ CxTest_CxString::unit(
         xTEST_EQ(std::tstring_t(xT("0")), m_sRv);
     }
 
-    xTEST_CASE("CxString::cast (from string)", a_cullCaseLoops)
+    xTEST_CASE("CxString::cast (from string)", a_caseLoops)
     {
         m_sRv = CxString::cast<std::tstring_t>(xT("String"));
         xTEST_EQ(std::tstring_t(xT("String")), m_sRv);
@@ -77,7 +77,7 @@ CxTest_CxString::unit(
         ////xTEST_EQ(0U, m_uiRv);
     }
 
-    xTEST_CASE("CxString::cast (to string by base)", a_cullCaseLoops)
+    xTEST_CASE("CxString::cast (to string by base)", a_caseLoops)
     {
         m_sRv = CxString::cast(1033, 8);
         xTEST_EQ(std::tstring_t(xT("2011")), m_sRv);
@@ -89,7 +89,7 @@ CxTest_CxString::unit(
         xTEST_EQ(std::tstring_t(xT("409")), m_sRv);
     }
 
-    xTEST_CASE("CxString::cast (to string by base)", a_cullCaseLoops)
+    xTEST_CASE("CxString::cast (to string by base)", a_caseLoops)
     {
         ////m_sRv = CxString::sIntToStr(1033L, 2);
         ////xTEST_EQ(std::tstring_t(xT("10000001001")), m_sRv);
@@ -104,7 +104,7 @@ CxTest_CxString::unit(
         xTEST_EQ(std::tstring_t(xT("409")), m_sRv);
     }
 
-    xTEST_CASE("CxString::cast (to string by base)", a_cullCaseLoops)
+    xTEST_CASE("CxString::cast (to string by base)", a_caseLoops)
     {
         ////m_sRv = CxString::sIntToStr(1033UL, 2);
         ////xTEST_EQ(std::tstring_t(xT("10000001001")), m_sRv);
@@ -119,7 +119,7 @@ CxTest_CxString::unit(
         xTEST_EQ(std::tstring_t(xT("409")), m_sRv);
     }
 
-    xTEST_CASE("CxString::cast (to string by base)", a_cullCaseLoops)
+    xTEST_CASE("CxString::cast (to string by base)", a_caseLoops)
     {
         ////m_sRv = CxString::sIntToStr(1033LL, 2);
         ////xTEST_EQ(xT("10000001001") == m_sRv);
@@ -134,7 +134,7 @@ CxTest_CxString::unit(
         xTEST_EQ(std::tstring_t(xT("409")), m_sRv);
     }
 
-    xTEST_CASE("CxString::cast (to string by base)", a_cullCaseLoops)
+    xTEST_CASE("CxString::cast (to string by base)", a_caseLoops)
     {
         ////m_sRv = CxString::sIntToStr(1033ULL, 2);
         ////xTEST_EQ(std::tstring_t(xT("10000001001")), m_sRv);
@@ -149,7 +149,7 @@ CxTest_CxString::unit(
         xTEST_EQ(std::tstring_t(xT("409")), m_sRv);
     }
 
-    xTEST_CASE("cast (from, to string by base)", a_cullCaseLoops)
+    xTEST_CASE("cast (from, to string by base)", a_caseLoops)
     {
         cint_t caiBases[] = {8, 10, 16};
 
@@ -173,12 +173,12 @@ CxTest_CxString::unit(
         }
     }
 
-    xTEST_CASE("CxString::castA, CxString::castW", a_cullCaseLoops)
+    xTEST_CASE("CxString::castA, CxString::castW", a_caseLoops)
     {
         // TODO: tests for CxString::castA, CxString::castW
     }
 
-    xTEST_CASE("CxString::strToWStr, CxString::wstrToStr", a_cullCaseLoops)
+    xTEST_CASE("CxString::strToWStr, CxString::wstrToStr", a_caseLoops)
     {
         std::cstring_t csAnsiStr[] = {
             "gnhjfgyhj ghj...",
@@ -200,17 +200,17 @@ CxTest_CxString::unit(
         }
     }
 
-    xTEST_CASE("CxString::strToWStr", a_cullCaseLoops)
+    xTEST_CASE("CxString::strToWStr", a_caseLoops)
     {
 
     }
 
-    xTEST_CASE("CxString::wstrToStr", a_cullCaseLoops)
+    xTEST_CASE("CxString::wstrToStr", a_caseLoops)
     {
 
     }
 
-    xTEST_CASE("CxString::convertCodePage", a_cullCaseLoops)
+    xTEST_CASE("CxString::convertCodePage", a_caseLoops)
     {
         std::cstring_t csAnsiStr[] = {
             "gnhjfgyhj ghj...",
@@ -246,7 +246,7 @@ CxTest_CxString::unit(
         }
     }
 
-    xTEST_CASE("CxString::charToOemBuff", a_cullCaseLoops)
+    xTEST_CASE("CxString::charToOemBuff", a_caseLoops)
     {
         std::string sRv;
 
@@ -258,7 +258,7 @@ CxTest_CxString::unit(
         #endif
     }
 
-    xTEST_CASE("CxString::oemToCharBuff", a_cullCaseLoops)
+    xTEST_CASE("CxString::oemToCharBuff", a_caseLoops)
     {
         std::tstring_t sRv;
 
@@ -270,7 +270,7 @@ CxTest_CxString::unit(
         #endif
     }
 
-    xTEST_CASE("CxString::boolToStr", a_cullCaseLoops)
+    xTEST_CASE("CxString::boolToStr", a_caseLoops)
     {
         m_sRv = CxString::boolToStr(true);
         xTEST_EQ(std::tstring_t(xT("true")), m_sRv);
@@ -279,7 +279,7 @@ CxTest_CxString::unit(
         xTEST_EQ(std::tstring_t(xT("false")), m_sRv);
     }
 
-    xTEST_CASE("CxString::strToBool", a_cullCaseLoops)
+    xTEST_CASE("CxString::strToBool", a_caseLoops)
     {
         m_bRv = CxString::strToBool(xT("true"));
         xTEST_EQ(true, m_bRv);
@@ -306,7 +306,7 @@ CxTest_CxString::unit(
         xTEST_EQ(false, m_bRv);
     }
 
-    xTEST_CASE("CxString::toLowerCase", a_cullCaseLoops)
+    xTEST_CASE("CxString::toLowerCase", a_caseLoops)
     {
         std::ctstring_t sTestData[][2] = {
             {xT("test_string_1"),       xT("TEST_string_1")},
@@ -326,7 +326,7 @@ CxTest_CxString::unit(
         }
     }
 
-    xTEST_CASE("CxString::toUpperCase", a_cullCaseLoops)
+    xTEST_CASE("CxString::toUpperCase", a_caseLoops)
     {
         std::ctstring_t sTestData[][2] = {
             {xT("TEST_STRING_1_A"),       xT("TEST_string_1_a")},
@@ -346,7 +346,7 @@ CxTest_CxString::unit(
         }
     }
 
-    xTEST_CASE("CxString::toLowerCase", a_cullCaseLoops)
+    xTEST_CASE("CxString::toLowerCase", a_caseLoops)
     {
         std::ctstring_t sTestData[][2] = {
             {xT("test_string_1_a"), xT("test_string_1_A")},
@@ -366,7 +366,7 @@ CxTest_CxString::unit(
         }
     }
 
-    xTEST_CASE("CxString::toUpperCase", a_cullCaseLoops)
+    xTEST_CASE("CxString::toUpperCase", a_caseLoops)
     {
         std::ctstring_t sTestData[][2] = {
             {xT("TEST_STRING_1_A"), xT("tEST_string_1_A")},
@@ -391,7 +391,7 @@ CxTest_CxString::unit(
     *
     *******************************************************************************/
 
-    xTEST_CASE("CxString::trimLeftChars", a_cullCaseLoops)
+    xTEST_CASE("CxString::trimLeftChars", a_caseLoops)
     {
         std::tstring_t sTestData[][2] = {
             {xT("TEST_STRIN#G_1"),       xT("TEST_STRIN#G_1")},
@@ -411,7 +411,7 @@ CxTest_CxString::unit(
         }
     }
 
-    xTEST_CASE("CxString::trimRightChars", a_cullCaseLoops)
+    xTEST_CASE("CxString::trimRightChars", a_caseLoops)
     {
         std::tstring_t sTestData[][2] = {
             {xT("#TEST_STRING_1"),       xT("#TEST_STRING_1")},
@@ -432,7 +432,7 @@ CxTest_CxString::unit(
         }
     }
 
-    xTEST_CASE("CxString::trimChars", a_cullCaseLoops)
+    xTEST_CASE("CxString::trimChars", a_caseLoops)
     {
         std::tstring_t sTestData[][2] = {
             {xT("TEST_STRING_1"),        xT("+-#####TEST_STRING_1+-")},
@@ -452,7 +452,7 @@ CxTest_CxString::unit(
         }
     }
 
-    xTEST_CASE("CxString::trimSpace", a_cullCaseLoops)
+    xTEST_CASE("CxString::trimSpace", a_caseLoops)
     {
         std::tstring_t sTestData[][2] = {
             {xT("TEST_STRING_1"),  xT("           TEST_STRING_1")},
@@ -473,7 +473,7 @@ CxTest_CxString::unit(
         }
     }
 
-    xTEST_CASE("CxString::removeEol", a_cullCaseLoops)
+    xTEST_CASE("CxString::removeEol", a_caseLoops)
     {
         #if   xOS_ENV_WIN
             std::ctstring_t sTestData[][2] = {
@@ -500,7 +500,7 @@ CxTest_CxString::unit(
         }
     }
 
-    xTEST_CASE("CxString::replaceAll", a_cullCaseLoops)
+    xTEST_CASE("CxString::replaceAll", a_caseLoops)
     {
         m_sRv = CxString::replaceAll(xT("aTaaaEaST_aSTaRINaaGaa_1a"), xT("a"), xT(""));
         xTEST_EQ(std::tstring_t(xT("TEST_STRING_1")), m_sRv);
@@ -530,7 +530,7 @@ CxTest_CxString::unit(
         xTEST_EQ(std::tstring_t(xT("aaaafaaaa")), m_sRv);
     }
 
-    xTEST_CASE("CxString::replaceAll", a_cullCaseLoops)
+    xTEST_CASE("CxString::replaceAll", a_caseLoops)
     {
         m_sRv = CxString::replaceAll(xT(" one test string "), xT(" "), xT("_"));
         xTEST_EQ(m_sRv, std::tstring_t(xT("_one_test_string_")));
@@ -542,7 +542,7 @@ CxTest_CxString::unit(
         xTEST_EQ(m_sRv, std::tstring_t(xT("-one-test-string-")));
     }
 
-    xTEST_CASE("CxString::removeAll", a_cullCaseLoops)
+    xTEST_CASE("CxString::removeAll", a_caseLoops)
     {
         m_sRv = CxString::removeAll(xT(" one test string "), xT(" "));
         xTEST_EQ(std::tstring_t(xT("oneteststring")), m_sRv);
@@ -563,7 +563,7 @@ CxTest_CxString::unit(
         xTEST_EQ(std::tstring_t(xT("one test g")), m_sRv);
     }
 
-    xTEST_CASE("CxString::split", a_cullCaseLoops)
+    xTEST_CASE("CxString::split", a_caseLoops)
     {
         std::vec_tstring_t vsText;
 
@@ -574,7 +574,7 @@ CxTest_CxString::unit(
         CxString::split(xT(""), xT("+"), &vsText);
     }
 
-    xTEST_CASE("CxString::join", a_cullCaseLoops)
+    xTEST_CASE("CxString::join", a_caseLoops)
     {
         std::vec_tstring_t vsRes;
         vsRes.push_back(xT("111"));
@@ -586,7 +586,7 @@ CxTest_CxString::unit(
         xTEST_EQ(std::tstring_t(xT("111--222-333")), m_sRv);
     }
 
-    xTEST_CASE("CxString::join", a_cullCaseLoops)
+    xTEST_CASE("CxString::join", a_caseLoops)
     {
         std::vec_tstring_t vsRes;
         vsRes.push_back(xT("111"));
@@ -598,7 +598,7 @@ CxTest_CxString::unit(
         xTEST_EQ(std::tstring_t(xT("111--222-333")), m_sRv);
     }
 
-    xTEST_CASE("CxString::cut", a_cullCaseLoops)
+    xTEST_CASE("CxString::cut", a_caseLoops)
     {
         std::tstring_t sForCut;
 
@@ -667,7 +667,7 @@ CxTest_CxString::unit(
         xTEST_EQ(std::tstring_t(xT("")), m_sRv);
     }
 
-    xTEST_CASE("CxString::cut", a_cullCaseLoops)
+    xTEST_CASE("CxString::cut", a_caseLoops)
     {
         std::tstring_t sForCut = xT("0123456789");
 
@@ -712,7 +712,7 @@ CxTest_CxString::unit(
         xTEST_EQ(std::tstring_t(xT("0123456789")), m_sRv);
     }
 
-    xTEST_CASE("CxString::format", a_cullCaseLoops)
+    xTEST_CASE("CxString::format", a_caseLoops)
     {
         std::tstring_t sData;
 
@@ -771,12 +771,12 @@ CxTest_CxString::unit(
         }
     }
 
-    xTEST_CASE("CxString::formatV", a_cullCaseLoops)
+    xTEST_CASE("CxString::formatV", a_caseLoops)
     {
         // TODO: formatV
     }
 
-    xTEST_CASE("CxString::minimize", a_cullCaseLoops)
+    xTEST_CASE("CxString::minimize", a_caseLoops)
     {
         m_sRv = CxString::minimize(xT("55555wwwww"), 5);
         xTEST_EQ(std::tstring_t(xT("55...")), m_sRv);
@@ -790,7 +790,7 @@ CxTest_CxString::unit(
     *
     *******************************************************************************/
 
-    xTEST_CASE("CxString::compareNoCase", a_cullCaseLoops)
+    xTEST_CASE("CxString::compareNoCase", a_caseLoops)
     {
         // must true
         m_bRv = CxString::compareNoCase(xT(""),     xT(""));
@@ -834,7 +834,7 @@ CxTest_CxString::unit(
     *
     *******************************************************************************/
 
-    xTEST_CASE("CxString::formatBytes(ulonglong_t)", a_cullCaseLoops)
+    xTEST_CASE("CxString::formatBytes(ulonglong_t)", a_caseLoops)
     {
         culonglong_t caullULongLong[] = {
             0ULL,
@@ -864,12 +864,12 @@ CxTest_CxString::unit(
         }
     }
 
-    xTEST_CASE("CxString::formatPercent", a_cullCaseLoops)
+    xTEST_CASE("CxString::formatPercent", a_caseLoops)
     {
 
     }
 
-    xTEST_CASE("CxString::translitLatToRus", a_cullCaseLoops)
+    xTEST_CASE("CxString::translitLatToRus", a_caseLoops)
     {
         // TEST: CxString::translitLatToRus
 
@@ -887,7 +887,7 @@ CxTest_CxString::unit(
     *
     *******************************************************************************/
 
-    xTEST_CASE("CxString::memoryZeroSecure", a_cullCaseLoops)
+    xTEST_CASE("CxString::memoryZeroSecure", a_caseLoops)
     {
         //1
         {
@@ -940,7 +940,7 @@ CxTest_CxString::unit(
     *
     *******************************************************************************/
 
-    xTEST_CASE("CxString::createGuid", a_cullCaseLoops)
+    xTEST_CASE("CxString::createGuid", a_caseLoops)
     {
         #if   xOS_ENV_WIN
             m_sRv = CxString::createGuid();
@@ -950,7 +950,7 @@ CxTest_CxString::unit(
         #endif
     }
 
-    xTEST_CASE("CxString::isRepeated", a_cullCaseLoops)
+    xTEST_CASE("CxString::isRepeated", a_caseLoops)
     {
         m_bRv = CxString::isRepeated(xT("yyyyyyyyyyyy"));
         xTEST_EQ(true, m_bRv);

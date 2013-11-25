@@ -16,10 +16,10 @@ class CxTest_CxFile :
 public:
                     CxTest_CxFile() {}
 
-    virtual  void_t unit(culonglong_t &cullCaseLoops);
+    virtual  void_t unit(culonglong_t &caseLoops);
 
 private:
-    void_t          vUnit1(culonglong_t &cullCaseLoops);
-    void_t          vUnitPrivate(culonglong_t &cullCaseLoops);
+    void_t          vUnit1(culonglong_t &caseLoops);
+    void_t          vUnitPrivate(culonglong_t &caseLoops);
 };
 //------------------------------------------------------------------------------

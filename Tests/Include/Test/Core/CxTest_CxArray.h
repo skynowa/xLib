@@ -16,6 +16,6 @@ class CxTest_CxArray :
 public:
                    CxTest_CxArray() {}
 
-    virtual void_t unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &caseLoops);
 };
 //------------------------------------------------------------------------------

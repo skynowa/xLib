@@ -16,7 +16,7 @@
 /* virtual */
 void_t
 CxTest_CxLocalStorage::unit(
-    culonglong_t &a_cullCaseLoops
+    culonglong_t &a_caseLoops
 )
 {
     std::ctstring_t csFilePath = CxPath( CxPath::exe() ).setExt(xT("ini") );
@@ -34,7 +34,7 @@ CxTest_CxLocalStorage::unit(
                                       csKey2 + CxConst::equal() + csValue2 + CxConst::nl() +
                                       csKey3 + CxConst::equal() + csValue3 + CxConst::nl();
 
-    xTEST_CASE("CxLocalStorage::CxLocalStorage", a_cullCaseLoops)
+    xTEST_CASE("CxLocalStorage::CxLocalStorage", a_caseLoops)
     {
         CxLocalStorage iniIni;
     }
@@ -43,18 +43,18 @@ CxTest_CxLocalStorage::unit(
 
     CxLocalStorage iniIni(csFilePath);
 
-    xTEST_CASE("CxLocalStorage::createDefault", a_cullCaseLoops)
+    xTEST_CASE("CxLocalStorage::createDefault", a_caseLoops)
     {
         iniIni.createDefault(csContent);
     }
 
-    xTEST_CASE("CxLocalStorage::path", a_cullCaseLoops)
+    xTEST_CASE("CxLocalStorage::path", a_caseLoops)
     {
         m_sRv = iniIni.path();
         xTEST_EQ(csFilePath, m_sRv);
     }
 
-    xTEST_CASE("CxLocalStorage::setPath", a_cullCaseLoops)
+    xTEST_CASE("CxLocalStorage::setPath", a_caseLoops)
     {
         iniIni.setPath(csFilePath);
 
@@ -62,7 +62,7 @@ CxTest_CxLocalStorage::unit(
         xTEST_EQ(csFilePath, m_sRv);
     }
 
-    xTEST_CASE("CxLocalStorage::get CxLocalStorage::flush", a_cullCaseLoops)
+    xTEST_CASE("CxLocalStorage::get CxLocalStorage::flush", a_caseLoops)
     {
         local_storage_t &riniIni = iniIni.get();
         xTEST_EQ(true, riniIni.empty());
@@ -87,7 +87,7 @@ CxTest_CxLocalStorage::unit(
         iniIni.flush();
     }
 
-    xTEST_CASE("CxLocalStorage::keyIsExists", a_cullCaseLoops)
+    xTEST_CASE("CxLocalStorage::keyIsExists", a_caseLoops)
     {
         local_storage_t &riniIni = iniIni.get();
         xTEST_EQ(true, riniIni.empty());
@@ -142,7 +142,7 @@ CxTest_CxLocalStorage::unit(
         iniIni.flush();
     }
 
-    xTEST_CASE("CxLocalStorage::keyWriteString CxLocalStorage::keyReadString", a_cullCaseLoops)
+    xTEST_CASE("CxLocalStorage::keyWriteString CxLocalStorage::keyReadString", a_caseLoops)
     {
         // true
         {
@@ -165,7 +165,7 @@ CxTest_CxLocalStorage::unit(
         }
     }
 
-    xTEST_CASE("CxLocalStorage::keyReadInt CxLocalStorage::keyWriteInt", a_cullCaseLoops)
+    xTEST_CASE("CxLocalStorage::keyReadInt CxLocalStorage::keyWriteInt", a_caseLoops)
     {
         clong_t cliValue = 10L;
 
@@ -175,7 +175,7 @@ CxTest_CxLocalStorage::unit(
         xTEST_EQ(cliValue, m_liRv);
     }
 
-    xTEST_CASE("CxLocalStorage::keyReadFloat CxLocalStorage::keyWriteFloat", a_cullCaseLoops)
+    xTEST_CASE("CxLocalStorage::keyReadFloat CxLocalStorage::keyWriteFloat", a_caseLoops)
     {
         cdouble_t cdValue = 777.0f;
 
@@ -185,7 +185,7 @@ CxTest_CxLocalStorage::unit(
         xTEST_EQ(cdValue, m_dRv);
     }
 
-    xTEST_CASE("CxLocalStorage::keyReadBool CxLocalStorage::keyWriteBool", a_cullCaseLoops)
+    xTEST_CASE("CxLocalStorage::keyReadBool CxLocalStorage::keyWriteBool", a_caseLoops)
     {
         cbool_t cbValue = false;
 
@@ -195,7 +195,7 @@ CxTest_CxLocalStorage::unit(
         xTEST_EQ(cbValue, m_bRv);
     }
 
-    xTEST_CASE("CxLocalStorage::keyWriteBin CxLocalStorage::keyReadBin", a_cullCaseLoops)
+    xTEST_CASE("CxLocalStorage::keyWriteBin CxLocalStorage::keyReadBin", a_caseLoops)
     {
         std::custring_t cusValue(10, 'z');
         std::custring_t cusDefaultValue(10, 'd');
@@ -210,7 +210,7 @@ CxTest_CxLocalStorage::unit(
     #endif
     }
 
-    xTEST_CASE("CxLocalStorage::keyClear", a_cullCaseLoops)
+    xTEST_CASE("CxLocalStorage::keyClear", a_caseLoops)
     {
         iniIni.keyClear(csKey3);
         xTEST_EQ(true, iniIni.keyIsExists(csKey3));
@@ -219,7 +219,7 @@ CxTest_CxLocalStorage::unit(
         xTEST_EQ(CxConst::strEmpty(), m_sRv);
     }
 
-    xTEST_CASE("CxLocalStorage::keyDelete", a_cullCaseLoops)
+    xTEST_CASE("CxLocalStorage::keyDelete", a_caseLoops)
     {
         std::ctstring_t csKey   = xT("Key");
         std::ctstring_t csValue = xT("");
@@ -231,13 +231,13 @@ CxTest_CxLocalStorage::unit(
         xTEST_EQ(false, iniIni.keyIsExists(csKey));
     }
 
-    xTEST_CASE("CxLocalStorage::clear", a_cullCaseLoops)
+    xTEST_CASE("CxLocalStorage::clear", a_caseLoops)
     {
         iniIni.clear();
         xTEST_EQ(0LL, CxFile::size( iniIni.path() ));
     }
 
-    xTEST_CASE("CxLocalStorage::remove", a_cullCaseLoops)
+    xTEST_CASE("CxLocalStorage::remove", a_caseLoops)
     {
         iniIni.remove();
         xTEST_EQ(false, CxFile::isExists( iniIni.path() ));

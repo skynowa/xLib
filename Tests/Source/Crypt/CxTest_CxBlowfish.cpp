@@ -16,10 +16,10 @@
 /* virtual */
 void_t
 CxTest_CxBlowfish::unit(
-    culonglong_t &a_cullCaseLoops
+    culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("CxBlowfish::encryptCfb64", a_cullCaseLoops)
+    xTEST_CASE("CxBlowfish::encryptCfb64", a_caseLoops)
     {
         std::custring_t usPlain[] = {
             std::ustring_t(1,  'a'),
@@ -49,7 +49,7 @@ CxTest_CxBlowfish::unit(
         }
     }
 
-    xTEST_CASE("CxBlowfish::encryptFileCfb64", a_cullCaseLoops)
+    xTEST_CASE("CxBlowfish::encryptFileCfb64", a_caseLoops)
     {
         CxBlowfish BF;
         std::tstring_t sKey           = xT("888888888");

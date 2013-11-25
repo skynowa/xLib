@@ -14,7 +14,7 @@
 /* virtual */
 void_t
 CxTest_CxTcpServer::unit(
-    culonglong_t &a_cullCaseLoops
+    culonglong_t &a_caseLoops
 )
 {
     CxSocket::ExAddressFamily afAf       = CxSocket::afInet;

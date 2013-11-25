@@ -16,7 +16,7 @@ class CxTest_CxMsgBoxT :
 public:
                    CxTest_CxMsgBoxT() {}
 
-    virtual void_t unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &caseLoops);
         ///< test unit
 };
 //------------------------------------------------------------------------------

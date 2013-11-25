@@ -16,6 +16,6 @@ class CxTest_CxIpcMutex :
 public:
                    CxTest_CxIpcMutex() {}
 
-    virtual void_t unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &caseLoops);
 };
 //------------------------------------------------------------------------------

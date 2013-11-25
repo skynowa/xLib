@@ -16,6 +16,6 @@ class CxTest_CxUtils :
 public:
                    CxTest_CxUtils() {}
 
-    virtual void_t unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &caseLoops);
 };
 //------------------------------------------------------------------------------

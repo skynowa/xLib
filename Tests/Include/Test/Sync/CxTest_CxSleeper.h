@@ -16,6 +16,6 @@ class CxTest_CxSleeper :
 public:
                    CxTest_CxSleeper() {}
 
-    virtual void_t unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &caseLoops);
 };
 //------------------------------------------------------------------------------

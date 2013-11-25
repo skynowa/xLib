@@ -11,10 +11,10 @@
 /* virtual */
 void_t
 CxTest_CxType::unit(
-    culonglong_t &a_cullCaseLoops
+    culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("CxType::name", a_cullCaseLoops)
+    xTEST_CASE("CxType::name", a_caseLoops)
     {
         std::tstring_t sObject;
 
@@ -22,7 +22,7 @@ CxTest_CxType::unit(
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("CxType::rawName", a_cullCaseLoops)
+    xTEST_CASE("CxType::rawName", a_caseLoops)
     {
         std::tstring_t sObject;
 
@@ -30,7 +30,7 @@ CxTest_CxType::unit(
         xTEST_EQ(false, m_sRv.empty())
     }
 
-    xTEST_CASE("CxType::isEquals", a_cullCaseLoops)
+    xTEST_CASE("CxType::isEquals", a_caseLoops)
     {
         std::string  sObject1;
         std::wstring wsObject2;

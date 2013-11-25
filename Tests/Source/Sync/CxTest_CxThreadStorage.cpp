@@ -11,10 +11,10 @@
 /* virtual */
 void_t
 CxTest_CxThreadStorage::unit(
-    culonglong_t &a_cullCaseLoops
+    culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("CxThreadStorage::setValue CxThreadStorage::value", a_cullCaseLoops)
+    xTEST_CASE("CxThreadStorage::setValue CxThreadStorage::value", a_caseLoops)
     {
         culong_t caulData[] = {0, 1, 2, 777};
 

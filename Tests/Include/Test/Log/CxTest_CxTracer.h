@@ -16,7 +16,7 @@ class CxTest_CxTracer :
 public:
                    CxTest_CxTracer() {}
 
-    virtual void_t unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &caseLoops);
         ///< unit test
 };
 //------------------------------------------------------------------------------

@@ -11,10 +11,10 @@
 /* virtual */
 void_t
 CxTest_CxSleeper::unit(
-    culonglong_t &a_cullCaseLoops
+    culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("CxSleeper::isSleeping", a_cullCaseLoops)
+    xTEST_CASE("CxSleeper::isSleeping", a_caseLoops)
     {
         CxSleeper objSleeper;
 
@@ -22,7 +22,7 @@ CxTest_CxSleeper::unit(
         xTEST_EQ(false, m_bRv);
     }
 
-    xTEST_CASE("CxSleeper::sleep", a_cullCaseLoops)
+    xTEST_CASE("CxSleeper::sleep", a_caseLoops)
     {
         CxSleeper objSleeper;
 
@@ -40,7 +40,7 @@ CxTest_CxSleeper::unit(
         }
     }
 
-    xTEST_CASE("CxSleeper::wakeUp", a_cullCaseLoops)
+    xTEST_CASE("CxSleeper::wakeUp", a_caseLoops)
     {
         // TEST: CxSleeper::vWakeUp
         #if xTODO

@@ -14,10 +14,10 @@
 /* virtual */
 void_t
 CxTest_CxProcess::unit(
-    culonglong_t &a_cullCaseLoops
+    culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("CxProcess::create CxProcess::wait", a_cullCaseLoops)
+    xTEST_CASE("CxProcess::create CxProcess::wait", a_caseLoops)
     {
         #if 0
             #if   xOS_ENV_WIN
@@ -37,7 +37,7 @@ CxTest_CxProcess::unit(
         #endif
     }
 
-    xTEST_CASE("CxProcess::kill", a_cullCaseLoops)
+    xTEST_CASE("CxProcess::kill", a_caseLoops)
     {
         #if 0
             #if   xOS_ENV_WIN
@@ -55,7 +55,7 @@ CxTest_CxProcess::unit(
         #endif
     }
 
-    xTEST_CASE("CxProcess::handle CxProcess::id", a_cullCaseLoops)
+    xTEST_CASE("CxProcess::handle CxProcess::id", a_caseLoops)
     {
         #if 0
             #if   xOS_ENV_WIN
@@ -81,19 +81,19 @@ CxTest_CxProcess::unit(
         #endif
     }
 
-    xTEST_CASE("CxProcess::idByHandle", a_cullCaseLoops)
+    xTEST_CASE("CxProcess::idByHandle", a_caseLoops)
     {
         CxProcess::id_t id = CxProcess::idByHandle( CxProcess::currentHandle() );
         xTEST_DIFF(0UL, static_cast<ulong_t>( id ));
     }
 
-    xTEST_CASE("CxProcess::handleById", a_cullCaseLoops)
+    xTEST_CASE("CxProcess::handleById", a_caseLoops)
     {
         CxProcess::handle_t hHandle = CxProcess::handleById( CxProcess::currentId() );
         xTEST_EQ(true, CxHandle(hHandle).isValid());
     }
 
-    xTEST_CASE("CxProcess::idByName", a_cullCaseLoops)
+    xTEST_CASE("CxProcess::idByName", a_caseLoops)
     {
         std::ctstring_t csProcessName = CxPath( CxPath::exe() ).fileName();
 
@@ -103,7 +103,7 @@ CxTest_CxProcess::unit(
         // CxTracer() << xTRACE_VAR(id);
     }
 
-    xTEST_CASE("CxProcess::ids", a_cullCaseLoops)
+    xTEST_CASE("CxProcess::ids", a_caseLoops)
     {
         std::vector<CxProcess::id_t> vidIds;
 
@@ -113,19 +113,19 @@ CxTest_CxProcess::unit(
         #endif
     }
 
-    xTEST_CASE("CxProcess::isRunning", a_cullCaseLoops)
+    xTEST_CASE("CxProcess::isRunning", a_caseLoops)
     {
         m_bRv = CxProcess::isRunning( CxProcess::currentId() );
         xTEST_EQ(true, m_bRv);
     }
 
-    xTEST_CASE("CxProcess::currentId", a_cullCaseLoops)
+    xTEST_CASE("CxProcess::currentId", a_caseLoops)
     {
         CxProcess::id_t ulRv = CxProcess::currentId();
         xTEST_LESS(0UL, (ulong_t)ulRv);
     }
 
-    xTEST_CASE("CxProcess::currentParentId", a_cullCaseLoops)
+    xTEST_CASE("CxProcess::currentParentId", a_caseLoops)
     {
         CxProcess::id_t ulRv = CxProcess::currentParentId();
         xTEST_LESS(0UL, (ulong_t)ulRv);

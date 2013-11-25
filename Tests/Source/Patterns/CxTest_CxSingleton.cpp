@@ -28,10 +28,10 @@ class CLogger
 /* virtual */
 void_t
 CxTest_CxSingleton::unit(
-    culonglong_t &a_cullCaseLoops
+    culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("CxSingleton::get", a_cullCaseLoops)
+    xTEST_CASE("CxSingleton::get", a_caseLoops)
     {
         typedef CxSingleton<CLogger> logger_singleton_t;
 
@@ -40,21 +40,21 @@ CxTest_CxSingleton::unit(
         logger_singleton_t::get().close();
     }
 
-    xTEST_CASE("CxSingleton::get", a_cullCaseLoops)
+    xTEST_CASE("CxSingleton::get", a_caseLoops)
     {
         CxSingleton<CLogger>::get().open();
         CxSingleton<CLogger>::get().write();
         CxSingleton<CLogger>::get().close();
     }
 
-    xTEST_CASE("construct CxSingleton on stack", a_cullCaseLoops)
+    xTEST_CASE("construct CxSingleton on stack", a_caseLoops)
     {
         #if xTEST_IGNORE
             logger_singleton_t log;
         #endif
     }
 
-    xTEST_CASE("construct CxSingleton on heap", a_cullCaseLoops)
+    xTEST_CASE("construct CxSingleton on heap", a_caseLoops)
     {
         #if xTEST_IGNORE
             logger_singleton_t *log = new logger_singleton_t;

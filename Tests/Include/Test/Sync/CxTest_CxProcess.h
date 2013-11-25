@@ -16,7 +16,7 @@ class CxTest_CxProcess :
 public:
                    CxTest_CxProcess() {}
 
-    virtual void_t unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &caseLoops);
 };
 //------------------------------------------------------------------------------
 

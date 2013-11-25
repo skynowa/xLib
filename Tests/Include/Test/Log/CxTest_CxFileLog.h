@@ -16,7 +16,7 @@ class CxTest_CxFileLog :
 public:
                    CxTest_CxFileLog() {}
 
-    virtual void_t unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &caseLoops);
 };
 //------------------------------------------------------------------------------
 

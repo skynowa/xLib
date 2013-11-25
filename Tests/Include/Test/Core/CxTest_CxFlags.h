@@ -17,7 +17,7 @@ class CxTest_CxFlags :
 public:
                    CxTest_CxFlags() {}
 
-    virtual void_t unit(culonglong_t &cullCaseLoops) xOVERRIDE;
+    virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
         ///< unit test
 };
 //------------------------------------------------------------------------------

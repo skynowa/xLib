@@ -16,7 +16,7 @@ class CxTest_xDefines :
 public:
                    CxTest_xDefines() {}
 
-    virtual void_t unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &caseLoops);
         ///< unit test
 };
 //------------------------------------------------------------------------------

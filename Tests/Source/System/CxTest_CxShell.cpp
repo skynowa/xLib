@@ -11,16 +11,16 @@
 /* virtual */
 void_t
 CxTest_CxShell::unit(
-    culonglong_t &a_cullCaseLoops
+    culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("CxShell::isAvailable", a_cullCaseLoops)
+    xTEST_CASE("CxShell::isAvailable", a_caseLoops)
     {
         m_bRv = CxShell().isAvailable();
         xTEST_EQ(true, m_bRv);
     }
 
-    xTEST_CASE("CxShell::execute", a_cullCaseLoops)
+    xTEST_CASE("CxShell::execute", a_caseLoops)
     {
         std::ctstring_t casData[][2] = {
             { xT("cd"), xT("./") },
@@ -44,39 +44,39 @@ CxTest_CxShell::unit(
 
 #if   xOS_ENV_WIN
 
-    xTEST_CASE("CxShell::findExecutable", a_cullCaseLoops)
+    xTEST_CASE("CxShell::findExecutable", a_caseLoops)
     {
         m_sRv = CxShell().findExecutable(xT("win.ini"), xT("C:"));
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("CxShell::executeEx", a_cullCaseLoops)
+    xTEST_CASE("CxShell::executeEx", a_caseLoops)
     {
         // SHELLEXECUTEINFO eiExecInfo = {0};
         // CxShell().executeEx(eiExecInfo);
     }
 
-    xTEST_CASE("CxShell::execute", a_cullCaseLoops)
+    xTEST_CASE("CxShell::execute", a_caseLoops)
     {
         // CxShell().execute(HWND hWnd, LPCTSTR pcszOperation, LPCTSTR pcszFile, LPCTSTR pcszParams, LPCTSTR pcszDirectory, int_t iShowCmd);
     }
 
-    xTEST_CASE("CxShell::executeHttp", a_cullCaseLoops)
+    xTEST_CASE("CxShell::executeHttp", a_caseLoops)
     {
         // CxShell().executeHttp(xT(" http://www.google.ru/ "));
     }
 
-    xTEST_CASE("CxShell::executeFtp", a_cullCaseLoops)
+    xTEST_CASE("CxShell::executeFtp", a_caseLoops)
     {
         // CxShell().executeFtp(xT(" ftp://ftp.drweb.com/ "));
     }
 
-    xTEST_CASE("CxShell::executeEmail", a_cullCaseLoops)
+    xTEST_CASE("CxShell::executeEmail", a_caseLoops)
     {
         // CxShell().executeEmail(xT("  Sky_Nova@mail.ru "), xT("  Subject"), xT("  Body  "));
     }
 
-    xTEST_CASE("CxShell::specialDirPath", a_cullCaseLoops) {
+    xTEST_CASE("CxShell::specialDirPath", a_caseLoops) {
         #if (xWINVER >= xOS_WIN_2K)
             m_sRv = CxShell().specialDirPath(CxShell::sfFonts, NULL);
             xTEST_EQ(std::tstring_t(xT("C:\\WINDOWS\\Fonts")), m_sRv);

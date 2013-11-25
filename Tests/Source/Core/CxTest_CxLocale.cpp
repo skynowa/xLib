@@ -11,26 +11,26 @@
 /* virtual */
 void_t
 CxTest_CxLocale::unit(
-    culonglong_t &a_cullCaseLoops
+    culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("CxLocale::current", a_cullCaseLoops)
+    xTEST_CASE("CxLocale::current", a_caseLoops)
     {
         m_sRv = CxLocale::current();
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("CxLocale::setCurrent", a_cullCaseLoops)
+    xTEST_CASE("CxLocale::setCurrent", a_caseLoops)
     {
         CxLocale::setCurrent( CxLocale::current() );
     }
 
-    xTEST_CASE("CxLocale::setDefault", a_cullCaseLoops)
+    xTEST_CASE("CxLocale::setDefault", a_caseLoops)
     {
         CxLocale::setDefault();
     }
 
-    xTEST_CASE("CxLocale::setCurrent", a_cullCaseLoops)
+    xTEST_CASE("CxLocale::setCurrent", a_caseLoops)
     {
         CxLocale::setCurrent(CxLocale::current());
     }

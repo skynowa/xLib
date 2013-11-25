@@ -11,10 +11,10 @@
 /* virtual */
 void_t
 CxTest_CxUri::unit(
-    culonglong_t &a_cullCaseLoops
+    culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE(xT("CxUri::getters"), a_cullCaseLoops)
+    xTEST_CASE(xT("CxUri::getters"), a_caseLoops)
     {
         CxUri objUri(xT("foo://userinfo@example.com:8042/over/there?name=ferret#nose"));
 
@@ -46,7 +46,7 @@ CxTest_CxUri::unit(
         xTEST_EQ(std::tstring_t(xT("nose")), m_sRv);
     }
 
-    xTEST_CASE("CxUri::getters", a_cullCaseLoops)
+    xTEST_CASE("CxUri::getters", a_caseLoops)
     {
         CxUri objUri(xT("foo://userinfo@example.com:8042/over/there?name=ferret"));
 
@@ -78,7 +78,7 @@ CxTest_CxUri::unit(
         xTEST_EQ(std::tstring_t(xT("")), m_sRv);
     }
 
-    xTEST_CASE("CxUri::getters", a_cullCaseLoops)
+    xTEST_CASE("CxUri::getters", a_caseLoops)
     {
         CxUri objUri(xT("foo://userinfo@example.com:8042/over/there"));
 
@@ -110,7 +110,7 @@ CxTest_CxUri::unit(
         xTEST_EQ(std::tstring_t(xT("")), m_sRv);
     }
 
-    xTEST_CASE("CxUri::getters", a_cullCaseLoops)
+    xTEST_CASE("CxUri::getters", a_caseLoops)
     {
         CxUri objUri(xT("foo://userinfo@example.com:8042"));
 
@@ -142,7 +142,7 @@ CxTest_CxUri::unit(
         xTEST_EQ(std::tstring_t(xT("")), m_sRv);
     }
 
-    xTEST_CASE("CxUri::getters", a_cullCaseLoops)
+    xTEST_CASE("CxUri::getters", a_caseLoops)
     {
         CxUri objUri(xT("foo://userinfo@example.com"));
 
@@ -174,7 +174,7 @@ CxTest_CxUri::unit(
         xTEST_EQ(std::tstring_t(xT("")), m_sRv);
     }
 
-    xTEST_CASE("CxUri::getters", a_cullCaseLoops)
+    xTEST_CASE("CxUri::getters", a_caseLoops)
     {
         CxUri objUri(xT("http://weather.yahoo.com/ukraine/kiev-city-municipality/kiev-924938/?unit=c"));
 
@@ -206,7 +206,7 @@ CxTest_CxUri::unit(
         xTEST_EQ(std::tstring_t(xT("")), m_sRv);
     }
 
-    xTEST_CASE("CxUri::getters", a_cullCaseLoops)
+    xTEST_CASE("CxUri::getters", a_caseLoops)
     {
         CxUri objUri(xT("http://dn1.berloga.net/83841/zombie_baseball_2.swf"));
 
@@ -238,7 +238,7 @@ CxTest_CxUri::unit(
         xTEST_EQ(std::tstring_t(xT("")), m_sRv);
     }
 
-    xTEST_CASE("CxUri::sEncodeComponent CxUri::sDecodeComponent", a_cullCaseLoops)
+    xTEST_CASE("CxUri::sEncodeComponent CxUri::sDecodeComponent", a_caseLoops)
     {
         std::ctstring_t uri[] = {
             xT("http://dn1.berloga.net/83841/xxxxx.swf"),

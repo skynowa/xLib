@@ -16,6 +16,6 @@ class CxTest_CxAtomicLongInt :
 public:
                    CxTest_CxAtomicLongInt() {}
 
-    virtual void_t unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &caseLoops);
 };
 //------------------------------------------------------------------------------

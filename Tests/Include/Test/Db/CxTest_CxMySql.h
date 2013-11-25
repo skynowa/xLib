@@ -18,7 +18,7 @@ class CxTest_CxMySql :
 public:
                    CxTest_CxMySql() {}
 
-    virtual void_t unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &caseLoops);
 };
 //------------------------------------------------------------------------------
 

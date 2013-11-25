@@ -16,7 +16,7 @@ class CxTest_CxSmtp :
 public:
                    CxTest_CxSmtp() {}
 
-    virtual void_t unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &caseLoops);
 };
 
 #endif // xOPENSSL_IS_USE

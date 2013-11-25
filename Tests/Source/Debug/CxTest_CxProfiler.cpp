@@ -15,10 +15,10 @@
 /* virtual */
 void_t
 CxTest_CxProfiler::unit(
-    culonglong_t &a_cullCaseLoops
+    culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("CxProfiler::CxProfiler", a_cullCaseLoops)
+    xTEST_CASE("CxProfiler::CxProfiler", a_caseLoops)
     {
         std::ctstring_t csFilePath = tempDirPath() + CxConst::slash() + xT("CxProfilerLog.log");
 
@@ -42,7 +42,7 @@ CxTest_CxProfiler::unit(
         m_stRv = pfP.stop(xT(""));
     }
 
-    xTEST_CASE("CxProfiler::CxProfiler", a_cullCaseLoops)
+    xTEST_CASE("CxProfiler::CxProfiler", a_caseLoops)
     {
         CxProfiler pfP;
 

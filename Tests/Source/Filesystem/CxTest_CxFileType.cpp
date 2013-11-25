@@ -15,7 +15,7 @@
 /* virtual */
 void_t
 CxTest_CxFileType::unit(
-    culonglong_t &a_cullCaseLoops
+    culonglong_t &a_caseLoops
 )
 {
     std::ctstring_t    csFilePath = tempDirPath() + CxConst::slash() + xT("Test.txt");
@@ -40,7 +40,7 @@ CxTest_CxFileType::unit(
         xTEST_EQ(true, m_bRv);
     }
 
-    xTEST_CASE("CxFileType::set CxFileType::get", a_cullCaseLoops)
+    xTEST_CASE("CxFileType::set CxFileType::get", a_caseLoops)
     {
         CxFileType ftType(csFilePath);
 
@@ -52,7 +52,7 @@ CxTest_CxFileType::unit(
         xTEST_EQ((ulong_t)cfaValue, (ulong_t)faRes);
     }
 
-    xTEST_CASE("CxFileType::add", a_cullCaseLoops)
+    xTEST_CASE("CxFileType::add", a_caseLoops)
     {
         CxFileType ftType(csFilePath);
 
@@ -63,7 +63,7 @@ CxTest_CxFileType::unit(
         xTEST_EQ(true, m_bRv);
     }
 
-    xTEST_CASE("CxFileType::remove", a_cullCaseLoops)
+    xTEST_CASE("CxFileType::remove", a_caseLoops)
     {
         #if   xOS_ENV_WIN
             CxFileType ftType(csFilePath);
@@ -120,7 +120,7 @@ CxTest_CxFileType::unit(
         #endif
     }
 
-    xTEST_CASE("CxFileType::modify", a_cullCaseLoops)
+    xTEST_CASE("CxFileType::modify", a_caseLoops)
     {
         CxFileType ftType(csFilePath);
 
@@ -135,7 +135,7 @@ CxTest_CxFileType::unit(
         ftType.modify(cfaRemoveValue, cfaAddValue);
     }
 
-    xTEST_CASE("CxFileType::isExists", a_cullCaseLoops)
+    xTEST_CASE("CxFileType::isExists", a_caseLoops)
     {
         CxFileType ftType(csFilePath);
 
@@ -151,7 +151,7 @@ CxTest_CxFileType::unit(
         xTEST_EQ(true, m_bRv);
     }
 
-    xTEST_CASE("CxFileType::clear", a_cullCaseLoops)
+    xTEST_CASE("CxFileType::clear", a_caseLoops)
     {
         CxFileType ftType(csFilePath);
 

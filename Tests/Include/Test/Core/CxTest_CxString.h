@@ -16,7 +16,7 @@ class CxTest_CxString :
 public:
                    CxTest_CxString() {}
 
-    virtual void_t unit(culonglong_t &cullCaseLoops);
+    virtual void_t unit(culonglong_t &caseLoops);
 };
 //------------------------------------------------------------------------------
 
