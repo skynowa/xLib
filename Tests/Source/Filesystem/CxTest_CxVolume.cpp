@@ -197,7 +197,7 @@ CxTest_CxVolume::unit(
                 {(std::numeric_limits<ulonglong_t>::max)(), false}
             };
 
-            for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
+            for (size_t i = 0; i < xARRAY_SIZE2(data); ++ i) {
                 culonglong_t needBytes = data[i].tested;
                 cbool_t      bRv       = data[i].expected;
 
