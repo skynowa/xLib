@@ -192,10 +192,12 @@ CxDebugger::_msgboxPlain(
 {
     xCHECK_DO(!isEnabled(), return);
 
-#if xDEBUG_USE_PROMPT_DIALOG
-    CxMsgBoxT::ExModalResult mrRv = CxMsgBoxT().show(a_report.report, "", CxMsgBoxT::tpAbortRetryIgnore);
+    CxMsgBoxT::ExModalResult mrRv;
+
+#if xDEBUG_USE_PROMPT_DIALOG || 1
+    mrRv = CxMsgBoxT().show(a_report.report, "", CxMsgBoxT::tpAbortRetryIgnore);
 #else
-    CxMsgBoxT::ExModalResult mrRv = CxMsgBoxT::mrIgnore;
+    mrRv = CxMsgBoxT::mrIgnore;
 #endif
     switch (mrRv) {
     case CxMsgBoxT::mrAbort:
