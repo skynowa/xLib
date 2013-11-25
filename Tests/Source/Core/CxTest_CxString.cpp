@@ -182,9 +182,11 @@ CxTest_CxString::unit(
     {
         std::cstring_t csAnsiStr[] = {
             "gnhjfgyhj ghj...",
-            "vhgnjhghjfgh 234563476 45674_+()_ (*?)casf,fjpo,e rfWAERCWER$%^*())_+)+*()BNVNH*",
+            //"vhgnjhghjfgh 234563476 45674_+()_ (*?)casf,fjpo,e rfWAERCWER$%^*())_+)+*()BNVNH*",
             "123 456 7890",
-            "!@#$% ^&*()_+|* /{}:@' \"?><",
+            //"!@#$% ^&*()_+|* /{}:@' \"?><",
+            "0123456789",
+            "0123456789",
             // TODO: "строка",
             // TODO: "_你_我_他_",
             " ",

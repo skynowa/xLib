@@ -19,23 +19,23 @@ CxTest_CxMsgBoxT::unit(
 #if xOS_ENV_WIN
     xTEST_CASE("CxMsgBoxT::show", a_caseLoops)
     {
-        const HWND      chWnd   = NULL;
-        std::ctstring_t csText  = xT("\nmessage box with 3 params...\n");
-        std::ctstring_t csTitle = xT("Simple title");
-        cuint_t         cuiType = 0;
+        const HWND        wnd   = NULL;
+        std::ctstring_t   text  = xT("\nmessage box with 3 params...\n");
+        std::ctstring_t   title = xT("Simple title");
+        CxMsgBoxT::ExType type  = CxMsgBoxT::tpOk;
 
-        CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT().show(chWnd, csText, csTitle, cuiType);
+        CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT().show(wnd, text, title, type);
         xUNUSED(mrRes);
     }
 #endif
 
     xTEST_CASE("CxMsgBoxT::show (3 params)", a_caseLoops)
     {
-        std::ctstring_t csText  = xT("\nmessage box with 3 params...\n");
-        std::ctstring_t csTitle = xT("Simple title");
-        cuint_t         cuiType = 0;
+        std::ctstring_t   text  = xT("\nmessage box with 3 params...\n");
+        std::ctstring_t   title = xT("Simple title");
+        CxMsgBoxT::ExType type = CxMsgBoxT::tpOk;
 
-        CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT().show(csText, csTitle, cuiType);
+        CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT().show(text, title, type);
         xUNUSED(mrRes);
     }
 #endif
