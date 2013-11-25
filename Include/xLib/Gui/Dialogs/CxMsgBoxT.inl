@@ -48,80 +48,37 @@ CxMsgBoxT::ExModalResult
 CxMsgBoxT::show(
     const TextT  &a_text,
     const TitleT &a_title,
-    cuint_t      &a_type
+    cuint_t      &a_type    /* = 0U */
 )
 {
     ExModalResult mrRes = mrAbort;
+    std::string   title = CxString::cast(a_title);
+
+    if ( title.empty() ) {
+        title = CxPath(CxPath::exe()).fileName();
+    }
+
+#if 0
+    // TODO: from CxDebugger::_msgboxPlain()
+    #if xOS_ENV_WIN
+        uint_t type = MB_ABORTRETRYIGNORE | MB_ICONSTOP;
+    #else
+        uint_t type = 1U;
+    #endif
+#endif
 
 #if   xOS_ENV_WIN
     mrRes = static_cast<ExModalResult>( ::MessageBox(
         NULL,
         CxString::cast(a_text).c_str(),
-        CxString::cast(a_title).c_str(),
+        title.c_str(),
         a_type) );
 #elif xOS_ENV_UNIX
-    std::tstring_t msg = CxString::format(
+    std::ctstring_t msg = CxString::format(
         xT("xmessage -center \"%s\" -title \"%s\" -buttons \"%s\""),
         CxString::cast(a_text).c_str(),
-        CxString::cast(a_title).c_str(),
-        xT("Abort, Ignore, Retry"));
-
-    mrRes = static_cast<ExModalResult>( std::xTSYSTEM(msg.c_str()) );
-#endif
-
-    return mrRes;
-}
-//-------------------------------------------------------------------------------------------------
-template <class TextT, class TitleT>
-/* static */
-CxMsgBoxT::ExModalResult
-CxMsgBoxT::show(
-    const TextT  &a_text,
-    const TitleT &a_title
-)
-{
-    ExModalResult mrRes = mrAbort;
-
-#if   xOS_ENV_WIN
-    mrRes = static_cast<ExModalResult>( ::MessageBox(
-        NULL,
-        CxString::cast(a_text).c_str(),
-        CxString::cast(a_title).c_str(),
-        MB_OK) );
-#elif xOS_ENV_UNIX
-    std::tstring_t msg = CxString::format(
-        xT("xmessage -center \"%s\" -title \"%s\" -buttons \"%s\""),
-        CxString::cast(a_text).c_str(),
-        CxString::cast(a_title).c_str(),
-        xT("Ok"));
-
-    mrRes = static_cast<ExModalResult>( std::xTSYSTEM(msg.c_str()) );
-#endif
-
-    return mrRes;
-}
-//-------------------------------------------------------------------------------------------------
-template <class TextT>
-/* static */
-CxMsgBoxT::ExModalResult
-CxMsgBoxT::show(
-    const TextT &a_text
-)
-{
-    ExModalResult mrRes = mrAbort;
-
-#if   xOS_ENV_WIN
-    mrRes = static_cast<ExModalResult>( ::MessageBox(
-        NULL,
-        CxString::cast(a_text).c_str(),
-        CxPath(CxPath::exe()).fileName().c_str(),
-        MB_OK) );
-#elif xOS_ENV_UNIX
-    std::tstring_t msg = CxString::format(
-        xT("xmessage -center \"%s\" -title \"%s\" -buttons \"%s\""),
-        CxString::cast(a_text).c_str(),
-        xT("Message box"),
-        xT("Ok"));
+        title.c_str(),
+        xT("Abort, Ignore, Retry"));    /* xT("Ok") */
 
     mrRes = static_cast<ExModalResult>( std::xTSYSTEM(msg.c_str()) );
 #endif

@@ -31,33 +31,23 @@ public:
         #endif
     };
 
+                  CxMsgBoxT() {}
+        ///< constructor
+    virtual      ~CxMsgBoxT() {}
+        ///< destructor
+
 #if xOS_ENV_WIN
     template <class TextT, class TitleT>
-    static ExModalResult show(const HWND &handle, const TextT &text, const TitleT &title,
-        cuint_t &type) xWARN_UNUSED_RV;
+    ExModalResult show(const HWND &handle, const TextT &text, const TitleT &title, cuint_t &type)
+        xWARN_UNUSED_RV;
         ///< message box has parent window, with custom text, custom title, custom type
 #endif
 
     template <class TextT, class TitleT>
-    static ExModalResult show(const TextT &text, const TitleT &title, cuint_t &type)
-        xWARN_UNUSED_RV;
+    ExModalResult show(const TextT &text, const TitleT &title, cuint_t &type = 0U) xWARN_UNUSED_RV;
         ///< message box with custom text, custom title, custom type
 
-    template <class TextT, class TitleT>
-    static ExModalResult show(const TextT &text, const TitleT &title) xWARN_UNUSED_RV;
-        ///< message box with custom text, custom title, default type
-
-    template <class TextT>
-    static ExModalResult show(const TextT &text) xWARN_UNUSED_RV;
-        ///< message box with custom text, default title, default type
-
-private:
-                         CxMsgBoxT();
-        ///< constructor
-    virtual             ~CxMsgBoxT();
-        ///< destructor
-
-xNO_COPY_ASSIGN(CxMsgBoxT)
+    xNO_COPY_ASSIGN(CxMsgBoxT)
 };
 
 xNAMESPACE_END(NxLib)
