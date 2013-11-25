@@ -23,7 +23,7 @@ template <class TextT, class TitleT>
 /* static */
 CxMsgBoxT::ExModalResult
 CxMsgBoxT::show(
-    const HWND   &a_handle,
+    const HWND   &a_parentWnd,
     const TextT  &a_text,
     const TitleT &a_title,
     cuint_t      &a_type
@@ -32,7 +32,7 @@ CxMsgBoxT::show(
     ExModalResult mrRes = mrAbort;
 
     mrRes = static_cast<ExModalResult>( ::MessageBox(
-        a_handle,
+        a_parentWnd,
         CxString::cast(a_text).c_str(),
         CxString::cast(a_title).c_str(),
         a_type) );
@@ -48,7 +48,7 @@ CxMsgBoxT::ExModalResult
 CxMsgBoxT::show(
     const TextT  &a_text,
     const TitleT &a_title,
-    cuint_t      &a_type    /* = 0U */
+    cExType      &a_type    /* = 0U */
 )
 {
     ExModalResult mrRes = mrAbort;
