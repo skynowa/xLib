@@ -20,7 +20,7 @@ CxTest_CxMsgBoxT::unit(
     xTEST_CASE("CxMsgBoxT::show", a_caseLoops)
     {
         const HWND        wnd   = NULL;
-        std::ctstring_t   text  = xT("\nmessage box with 3 params...\n");
+        std::ctstring_t   text  = xT("\nmessage box...\n");
         std::ctstring_t   title = xT("Simple title");
         CxMsgBoxT::ExType type  = CxMsgBoxT::tpOk;
 
@@ -29,9 +29,9 @@ CxTest_CxMsgBoxT::unit(
     }
 #endif
 
-    xTEST_CASE("CxMsgBoxT::show (3 params)", a_caseLoops)
+    xTEST_CASE("CxMsgBoxT::show", a_caseLoops)
     {
-        std::ctstring_t   text  = xT("\nmessage box with 3 params...\n");
+        std::ctstring_t   text  = xT("\nmessage box...\n");
         std::ctstring_t   title = xT("Simple title");
         CxMsgBoxT::ExType type = CxMsgBoxT::tpOk;
 
