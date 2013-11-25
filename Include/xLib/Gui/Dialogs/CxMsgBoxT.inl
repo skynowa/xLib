@@ -51,8 +51,8 @@ CxMsgBoxT::show(
     cExType      &a_type    /* = tpOk */
 )
 {
-    ExModalResult  mrRes = mrAbort;
-    std::string    title = CxString::cast(a_title);
+    ExModalResult mrRes = mrAbort;
+    std::string   title = CxString::cast(a_title);
 
     // title
     if ( title.empty() ) {
