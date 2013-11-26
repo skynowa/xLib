@@ -24,11 +24,11 @@ public:
     virtual ~CxCompletionPort();
 
     void_t   create(culong_t &threadsNum /* = 0UL */);
-    void_t   associate(const HANDLE &file, ULONG_PTR completionKey);
+    void_t   associate(const HANDLE &file, ULONG_PTR completionKey) const;
     void_t   status(LPDWORD numberOfBytes, PULONG_PTR completionKey, LPOVERLAPPED *overlapped,
-                culong_t &msec);
+                culong_t &msec) const;
     void_t   postStatus(culong_t &numOfBytesTransferred, ULONG_PTR completionKey,
-                LPOVERLAPPED overlapped);
+                LPOVERLAPPED overlapped) const;
 
 private:
     CxHandle _handle;

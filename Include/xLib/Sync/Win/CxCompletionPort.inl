@@ -30,7 +30,7 @@ inline void_t
 CxCompletionPort::associate(
     const HANDLE  &a_file,
     ULONG_PTR      a_completionKey
-)
+) const
 {
     xTEST_EQ(true, _handle.isValid());
     // a_file
@@ -52,7 +52,7 @@ CxCompletionPort::status(
     PULONG_PTR    a_completionKey,
     LPOVERLAPPED *a_overlapped,
     culong_t     &a_msec
-)
+) const
 {
     xTEST_EQ(true, _handle.isValid());
     xTEST_PTR(a_numberOfBytes);
@@ -70,7 +70,7 @@ CxCompletionPort::postStatus(
     culong_t     &a_numOfBytesTransferred,
     ULONG_PTR     a_completionKey,
     LPOVERLAPPED  a_overlapped
-)
+) const
 {
     xTEST_EQ(true, _handle.isValid());
     xTEST_NA( a_numOfBytesTransferred);

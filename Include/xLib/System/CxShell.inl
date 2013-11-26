@@ -27,7 +27,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //-------------------------------------------------------------------------------------------------
 inline bool_t
-CxShell::isAvailable()
+CxShell::isAvailable() const
 {
     xTESTS_NA;
 
@@ -46,7 +46,7 @@ inline void_t
 CxShell::execute(
     std::ctstring_t &a_filePath,   ///< file path to binary file
     std::ctstring_t &a_params      ///< command line params for binary file
-)
+) const
 {
     xTEST_NA(a_filePath);
     xTEST_NA(a_params);
@@ -70,7 +70,7 @@ inline std::tstring_t
 CxShell::findExecutable(
     std::ctstring_t &a_fileName,
     std::ctstring_t &a_findDirPath
-)
+) const
 {
     xTEST_EQ(false, a_fileName.empty());
     // findDirPath - n/a
@@ -93,7 +93,7 @@ CxShell::execute(
     std::ctstring_t   &a_params,
     std::ctstring_t   &a_dirPath,
     const EShowFlag   &a_showCmd
-)
+) const
 {
     // owner      - n/a
     // ccsOperation - n/a
@@ -139,7 +139,7 @@ CxShell::execute(
 inline void_t
 CxShell::executeEx(
     SHELLEXECUTEINFO &a_info
-)
+) const
 {
     xTEST_NA(a_info);
 
@@ -150,7 +150,7 @@ CxShell::executeEx(
 inline void_t
 CxShell::executeHttp(
     std::ctstring_t &a_url
-)
+) const
 {
     xTEST_NA(a_url);
 
@@ -164,7 +164,7 @@ CxShell::executeHttp(
 inline void_t
 CxShell::executeFtp(
     std::ctstring_t &a_url
-)
+) const
 {
     xTEST_NA(a_url);
 
@@ -180,7 +180,7 @@ CxShell::executeEmail(
     std::ctstring_t &a_toEmail,
     std::ctstring_t &a_subject,
     std::ctstring_t &a_body
-)
+) const
 {
     // toEmail - n/a
     // subject - n/a
@@ -212,7 +212,7 @@ inline std::tstring_t
 CxShell::specialDirPath(
     const ESpecialDir &a_dir,
     const HANDLE      &a_token
-)
+) const
 {
     // dir  - n/a
     // token - n/a
@@ -255,7 +255,7 @@ CxShell::createShortcut(
                                          ///< например, "C:\\Windows\\NotePad.Exe"
     cint_t          &a_iconIndex,        ///< индекс иконки в файле, нумеруется с 0
     std::ctstring_t &a_description       ///< description
-)
+) const
 {
 
 

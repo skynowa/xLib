@@ -27,7 +27,7 @@ CxMsgBoxT::show(
     const TextT  &a_text,
     const TitleT &a_title,
     cuint_t      &a_type
-)
+) const
 {
     ExModalResult mrRes = mrAbort;
 
@@ -49,7 +49,7 @@ CxMsgBoxT::show(
     const TextT  &a_text,
     const TitleT &a_title,
     cExType      &a_type    /* = tpOk */
-)
+) const
 {
     ExModalResult mrRes = mrAbort;
     std::string   title = CxString::cast(a_title);

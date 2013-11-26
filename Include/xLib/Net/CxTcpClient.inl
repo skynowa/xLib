@@ -32,7 +32,7 @@ CxTcpClient::CxTcpClient() :
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
-CxTcpClient::isReadable()
+CxTcpClient::isReadable() const
 {
     timeval timeout_ = {1, 0};   /* seconds, microseconds */
     fd_set  fds;       FD_ZERO(&fds);
@@ -46,7 +46,7 @@ CxTcpClient::isReadable()
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
-CxTcpClient::isWritable()
+CxTcpClient::isWritable() const
 {
     timeval timeout_ = {1, 0};   /* seconds, microseconds */
     fd_set  fds;       FD_ZERO(&fds);
@@ -63,7 +63,7 @@ inline void_t
 CxTcpClient::connect(
     std::ctstring_t &a_ip,
     cushort_t       &a_port
-)
+) const
 {
     xTEST_DIFF(xSOCKET_HANDLE_INVALID, _socket);
     xTEST_EQ(false, a_ip.empty());
@@ -86,7 +86,7 @@ inline void_t
 CxTcpClient::ioctl(
     clong_t &a_command,
     ulong_t *a_args
-)
+) const
 {
     xTEST_DIFF(xSOCKET_HANDLE_INVALID, _socket);
 
@@ -104,7 +104,7 @@ CxTcpClient::ioctl(
 inline void_t
 CxTcpClient::setNonBlockingMode(
     cbool_t &a_flag
-)
+) const
 {
 #if xOS_ENV_WIN
     ulong_t nonBlockingMode = static_cast<ulong_t>(a_flag);
@@ -138,7 +138,7 @@ inline void_t
 CxTcpClient::timeout(
     long_t *a_seconds,
     long_t *a_microsec
-)
+) const
 {
     // seconds      - n/a
     // microsec - n/a

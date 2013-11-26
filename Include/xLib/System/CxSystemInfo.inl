@@ -272,7 +272,7 @@ CxSystemInfo::formatOsArch()
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
-CxSystemInfo::desktopName()
+CxSystemInfo::desktopName() const
 {
     std::tstring_t sRv;
 
@@ -306,7 +306,7 @@ CxSystemInfo::desktopName()
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
-CxSystemInfo::hostName()
+CxSystemInfo::hostName() const
 {
     std::tstring_t sRv;
 
@@ -331,7 +331,7 @@ CxSystemInfo::hostName()
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
-CxSystemInfo::isUserAdmin()
+CxSystemInfo::isUserAdmin() const
 {
 #if xOS_ENV_WIN
     bool_t                   isAdmin     = false;
@@ -373,7 +373,7 @@ CxSystemInfo::isUserAdmin()
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
-CxSystemInfo::userName()
+CxSystemInfo::userName() const
 {
     std::tstring_t sRv;
 
@@ -407,7 +407,7 @@ CxSystemInfo::userName()
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
-CxSystemInfo::useHomeDir()
+CxSystemInfo::useHomeDir() const
 {
     std::tstring_t sRv;
 
@@ -450,7 +450,7 @@ CxSystemInfo::useHomeDir()
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
-CxSystemInfo::userShellPath()
+CxSystemInfo::userShellPath() const
 {
     std::tstring_t sRv;
 
@@ -483,7 +483,7 @@ CxSystemInfo::userShellPath()
 }
 //-------------------------------------------------------------------------------------------------
 inline ulong_t
-CxSystemInfo::numOfCpus()
+CxSystemInfo::numOfCpus() const
 {
     ulong_t ulRv = 0UL;
 
@@ -514,7 +514,7 @@ CxSystemInfo::numOfCpus()
 }
 //-------------------------------------------------------------------------------------------------
 inline ulong_t
-CxSystemInfo::currentCpuNum()
+CxSystemInfo::currentCpuNum() const
 {
     ulong_t ulRv = 0UL;
 
@@ -579,7 +579,7 @@ CxSystemInfo::currentCpuNum()
 }
 //-------------------------------------------------------------------------------------------------
 inline CxSystemInfo::ExCpuVendor
-CxSystemInfo::cpuVendor()
+CxSystemInfo::cpuVendor() const
 {
     ExCpuVendor cvRv = cvUnknown;
     std::string value;
@@ -672,7 +672,7 @@ CxSystemInfo::cpuVendor()
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
-CxSystemInfo::cpuModel()
+CxSystemInfo::cpuModel() const
 {
     std::tstring_t sRv;
 
@@ -747,7 +747,7 @@ CxSystemInfo::cpuModel()
 }
 //-------------------------------------------------------------------------------------------------
 inline ulong_t
-CxSystemInfo::cpuSpeed()
+CxSystemInfo::cpuSpeed() const
 {
     ulong_t ulRv = 0UL;
 
@@ -794,7 +794,7 @@ CxSystemInfo::cpuSpeed()
 }
 //-------------------------------------------------------------------------------------------------
 inline ulong_t
-CxSystemInfo::cpuUsage()
+CxSystemInfo::cpuUsage() const
 {
     ulong_t ulRv = 0UL;
 
@@ -933,7 +933,7 @@ CxSystemInfo::cpuUsage()
 }
 //-------------------------------------------------------------------------------------------------
 inline ulonglong_t
-CxSystemInfo::ramTotal()
+CxSystemInfo::ramTotal() const
 {
     ulonglong_t ullRv = 0ULL;
 
@@ -972,7 +972,7 @@ CxSystemInfo::ramTotal()
 }
 //-------------------------------------------------------------------------------------------------
 inline ulonglong_t
-CxSystemInfo::ramAvailable()
+CxSystemInfo::ramAvailable() const
 {
     ulonglong_t ullRv = 0ULL;
 
@@ -1010,7 +1010,7 @@ CxSystemInfo::ramAvailable()
 }
 //-------------------------------------------------------------------------------------------------
 inline ulong_t
-CxSystemInfo::ramUsage()
+CxSystemInfo::ramUsage() const
 {
     ulong_t ulRv = 0UL;
 
@@ -1068,7 +1068,7 @@ CxSystemInfo::ramUsage()
 }
 //-------------------------------------------------------------------------------------------------
 inline ulong_t
-CxSystemInfo::pageSize()
+CxSystemInfo::pageSize() const
 {
     ulong_t ulRv = 0UL;
 
@@ -1104,7 +1104,7 @@ CxSystemInfo::pageSize()
 inline void_t
 CxSystemInfo::_passwdFileEntry(
     struct passwd *a_passwdEntry
-)
+) const
 {
     xTEST_PTR(a_passwdEntry);
 

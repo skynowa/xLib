@@ -80,46 +80,46 @@ public:
     std::tstring_t formatOsArch() xWARN_UNUSED_RV;
         ///< format get OS architecture
 
-    std::tstring_t desktopName() xWARN_UNUSED_RV;
+    std::tstring_t desktopName() const xWARN_UNUSED_RV;
         ///< desktop environments
 
     // users
-    std::tstring_t hostName() xWARN_UNUSED_RV;
+    std::tstring_t hostName() const xWARN_UNUSED_RV;
         ///< get the NetBIOS name of the local computer
-    bool_t         isUserAdmin() xWARN_UNUSED_RV;
+    bool_t         isUserAdmin() const xWARN_UNUSED_RV;
         ///< is current user an admin
-    std::tstring_t userName() xWARN_UNUSED_RV;
+    std::tstring_t userName() const xWARN_UNUSED_RV;
         ///< get the name of the user associated with the current thread
-    std::tstring_t useHomeDir() xWARN_UNUSED_RV;
+    std::tstring_t useHomeDir() const xWARN_UNUSED_RV;
         ///< get home directory of current user
-    std::tstring_t userShellPath() xWARN_UNUSED_RV;
+    std::tstring_t userShellPath() const xWARN_UNUSED_RV;
         ///< get shell path of current user
 
     // CPU
-    ulong_t        numOfCpus() xWARN_UNUSED_RV;
+    ulong_t        numOfCpus() const xWARN_UNUSED_RV;
         ///< get num of CPUs
-    ulong_t        currentCpuNum() xWARN_UNUSED_RV;
+    ulong_t        currentCpuNum() const xWARN_UNUSED_RV;
         ///< get the number of the processor the current thread was running on during
         ///< the call to this function
-    ExCpuVendor    cpuVendor() xWARN_UNUSED_RV;
+    ExCpuVendor    cpuVendor() const xWARN_UNUSED_RV;
         ///< get CPU vendor
-    std::tstring_t cpuModel() xWARN_UNUSED_RV;
+    std::tstring_t cpuModel() const xWARN_UNUSED_RV;
         ///< get CPU model name
-    ulong_t        cpuSpeed() xWARN_UNUSED_RV;
+    ulong_t        cpuSpeed() const xWARN_UNUSED_RV;
         ///< get CPU speed (MHz)
-    ulong_t        cpuUsage() xWARN_UNUSED_RV;
+    ulong_t        cpuUsage() const xWARN_UNUSED_RV;
         ///< get CPU usage (percentage)
 
     // RAM
-    ulonglong_t    ramTotal() xWARN_UNUSED_RV;
+    ulonglong_t    ramTotal() const xWARN_UNUSED_RV;
         ///< get total RAM (bytes)
-    ulonglong_t    ramAvailable() xWARN_UNUSED_RV;
+    ulonglong_t    ramAvailable() const xWARN_UNUSED_RV;
         ///< get available RAM (bytes)
-    ulong_t        ramUsage() xWARN_UNUSED_RV;
+    ulong_t        ramUsage() const xWARN_UNUSED_RV;
         ///< get RAM usage (percentage)
 
     // HDD
-    ulong_t        pageSize() xWARN_UNUSED_RV;
+    ulong_t        pageSize() const xWARN_UNUSED_RV;
         ///< get Size of a page (bytes)
 
 private:
@@ -127,7 +127,7 @@ private:
     ExOsArch       _osArch;
 
 #if !xOS_ENV_WIN
-    void_t         _passwdFileEntry(struct passwd *passwdEntry);
+    void_t         _passwdFileEntry(struct passwd *passwdEntry) const;
         ///< get password file entry
 #endif
 

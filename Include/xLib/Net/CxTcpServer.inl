@@ -20,7 +20,7 @@ xNAMESPACE_BEGIN(NxLib)
 inline void_t
 CxTcpServer::bind(
     cushort_t &a_port
-)
+) const
 {
     xTEST_DIFF(xSOCKET_HANDLE_INVALID, _socket);
     xTEST_EQ(true, (32767 > a_port) && (0 < a_port));
@@ -44,7 +44,7 @@ CxTcpServer::bind(
 inline void_t
 CxTcpServer::listen(
     cint_t &a_backlog /*= SOMAXCONN*/
-)
+) const
 {
     xTEST_DIFF(xSOCKET_HANDLE_INVALID, _socket);
 
@@ -56,7 +56,7 @@ inline void_t
 CxTcpServer::accept(
     CxTcpServer    *a_serverSocket,
     std::tstring_t *a_fromIp
-)
+) const
 {
     xTEST_DIFF(xSOCKET_HANDLE_INVALID, _socket);
     xTEST_PTR(a_serverSocket);
@@ -82,12 +82,12 @@ CxTcpServer::accept(
 
     //TODO: bAccept
     ////scktAcceptSocket = scktClient;
-    (*a_serverSocket).assign(scktClient);
+    a_serverSocket->assign(scktClient);
 
     //конверт из UNICODE
     std::string fromIp = ::inet_ntoa(cliaddr.sin_addr);
 
-    (*a_fromIp).assign(fromIp.begin(), fromIp.end());
+    a_fromIp->assign(fromIp.begin(), fromIp.end());
 }
 //-------------------------------------------------------------------------------------------------
 

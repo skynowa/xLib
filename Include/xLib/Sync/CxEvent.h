@@ -55,7 +55,7 @@ public:
     ExObjectState     wait(culong_t &timeoutMs = xTIMEOUT_INFINITE) xWARN_UNUSED_RV;
         ///< wait either for the CxEvent to be signaled by another thread or for the specified
         ///< timeout duration
-    bool_t            isSignaled() xWARN_UNUSED_RV;
+    bool_t            isSignaled() const xWARN_UNUSED_RV;
         ///< is signaled
 
 private:

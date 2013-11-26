@@ -55,7 +55,7 @@ public:
 
     void_t   setEnabled(cbool_t &flag);
         ///< set enabled
-    void_t   write(const ExLevel &level, ctchar_t *format, ...);
+    void_t   write(const ExLevel &level, ctchar_t *format, ...) const;
         ///< write to log
 
 private:

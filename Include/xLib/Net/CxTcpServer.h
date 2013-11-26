@@ -24,11 +24,11 @@ public:
     virtual ~CxTcpServer() {}
         ///< destructor
 
-    void_t   bind(cushort_t &port);
+    void_t   bind(cushort_t &port) const;
         ///< associates a local address with a socket
-    void_t   listen(cint_t &backlog /* = SOMAXCONN*/);
+    void_t   listen(cint_t &backlog /* = SOMAXCONN*/) const;
         ///< places a socket in a state in which it is listening for an incoming connection
-    void_t   accept(CxTcpServer *serverSocket, std::tstring_t *fromIp);
+    void_t   accept(CxTcpServer *serverSocket, std::tstring_t *fromIp) const;
         ///< permits an incoming connection attempt on a socket
 
 protected:

@@ -33,9 +33,9 @@ public:
     }
         ///< operator <<
 
-    void_t                write(ctchar_t *format, ...);
+    void_t                write(ctchar_t *format, ...) const;
         ///< tracing to debugger, std::cout
-    void_t                write(std::ctstring_t &msg);
+    void_t                write(std::ctstring_t &msg) const;
         ///< tracing to debugger, std::cout
 
 private:

@@ -31,14 +31,16 @@ CxSleeper::sleep(
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxSleeper::wakeUp() {
+CxSleeper::wakeUp()
+{
     // n/a
 
     _event.set();
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
-CxSleeper::isSleeping() {
+CxSleeper::isSleeping() const
+{
     // n/a
 
     return _event.isSignaled();

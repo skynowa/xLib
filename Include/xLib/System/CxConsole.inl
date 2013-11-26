@@ -67,7 +67,7 @@ CxConsole::setAttributes(
     const ExForeground &a_foreground,
     const ExBackground &a_background,
     cint_t             &a_attributes
-)
+) const
 {
 #if xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _wnd);
@@ -283,7 +283,7 @@ CxConsole::setAttributes(
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
-CxConsole::setAttributesDef()
+CxConsole::setAttributesDef() const
 {
 #if xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _wnd);
@@ -307,7 +307,7 @@ CxConsole::setAttributesDef()
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
-CxConsole::read()
+CxConsole::read() const
 {
 #if xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _wnd);
@@ -337,7 +337,7 @@ CxConsole::read()
 inline void_t
 CxConsole::write(
     std::ctstring_t &a_str
-)
+) const
 {
 #if xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _wnd);
@@ -364,7 +364,7 @@ CxConsole::write(
 inline void_t
 CxConsole::writeLine(
     std::ctstring_t &a_str /* = xT("") */
-)
+) const
 {
 #if xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _wnd);
@@ -378,7 +378,7 @@ CxConsole::writeLine(
 inline void_t
 CxConsole::writeErrLine(
     std::ctstring_t &a_str
-)
+) const
 {
 #if xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _wnd);
@@ -396,7 +396,7 @@ CxConsole::msgBox(
     std::ctstring_t &a_text,
     std::ctstring_t &a_title,
     cuint_t         &a_type
-)
+) const
 {
 #if xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _wnd);
@@ -450,7 +450,7 @@ CxConsole::prompt(
     std::ctstring_t &a_prompt,
     cbool_t         &a_isVisible,
     std::tstring_t  *a_answer
-)
+) const
 {
 #if xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _wnd);
@@ -490,7 +490,7 @@ CxConsole::prompt(
 inline void_t
 CxConsole::pause(
     culong_t &a_timeoutMsec
-)
+) const
 {
 #if xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _wnd);
@@ -533,7 +533,8 @@ CxConsole::pause(
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxConsole::clear() {
+CxConsole::clear() const
+{
 #if xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _wnd);
     xTEST_EQ(true, _stdIn.isValid());
@@ -577,7 +578,7 @@ CxConsole::clear() {
 inline void_t
 CxConsole::enableClose(
     cbool_t &a_flag
-)
+) const
 {
 #if xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _wnd);
@@ -610,7 +611,7 @@ CxConsole::enableClose(
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
-CxConsole::title()
+CxConsole::title() const
 {
 #if xOS_ENV_WIN
     xTEST_NA(_wnd);
@@ -640,7 +641,7 @@ CxConsole::title()
 inline void_t
 CxConsole::setTitle(
     std::ctstring_t &a_title
-)
+) const
 {
 #if xOS_ENV_WIN
     xTEST_NA(_wnd);
@@ -658,7 +659,7 @@ CxConsole::setTitle(
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxConsole::setFullScreen()
+CxConsole::setFullScreen() const
 {
 #if xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _wnd);
@@ -693,7 +694,7 @@ CxConsole::setFullScreen()
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxConsole::centerWindow()
+CxConsole::centerWindow() const
 {
 #if xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _wnd);

@@ -224,7 +224,7 @@ CxEvent::wait(
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
-CxEvent::isSignaled()
+CxEvent::isSignaled() const
 {
     // n/a
 

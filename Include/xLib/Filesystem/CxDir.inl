@@ -41,7 +41,7 @@ CxDir::dirPath() const
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
-CxDir::isExists()
+CxDir::isExists() const
 {
     xCHECK_RET(dirPath().empty(), false);
 
@@ -58,7 +58,7 @@ CxDir::isExists()
 inline bool_t
 CxDir::isEmpty(
     std::ctstring_t &a_shellFilter /* = CxConst::maskAll() */
-)
+) const
 {
     xTEST_EQ(false, a_shellFilter.empty());
 
@@ -80,7 +80,7 @@ CxDir::isEmpty(
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
-CxDir::isRoot()
+CxDir::isRoot() const
 {
 #if xOS_ENV_WIN
     xCHECK_RET(3 != dirPath().size(), false);
@@ -99,7 +99,7 @@ CxDir::isRoot()
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
-CxDir::isDir()
+CxDir::isDir() const
 {
     bool_t bRv = CxFileType( dirPath() ).isExists(CxFileType::faDirectory);
     xCHECK_RET(!bRv, false);
@@ -108,7 +108,7 @@ CxDir::isDir()
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxDir::create()
+CxDir::create() const
 {
     bool_t bRv = isExists();
     xCHECK_DO(bRv, return);
@@ -125,7 +125,7 @@ CxDir::create()
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxDir::pathCreate()
+CxDir::pathCreate() const
 {
     std::vec_tstring_t pathParts;
     std::tstring_t     buildPath;
@@ -149,7 +149,7 @@ inline void_t
 CxDir::copy(
     std::ctstring_t &a_dirPathTo,
     cbool_t         &a_failIfExists
-)
+) const
 {
     xTEST_EQ(true,  isExists());
     xTEST_EQ(false, a_dirPathTo.empty());
@@ -194,7 +194,7 @@ inline void_t
 CxDir::move(
     std::ctstring_t &a_dirPathTo,
     cbool_t         &a_failIfExists
-)
+) const
 {
     xTEST_EQ(true,  isExists());
     xTEST_EQ(false, a_dirPathTo.empty());
@@ -207,7 +207,7 @@ CxDir::move(
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxDir::remove()
+CxDir::remove() const
 {
     bool_t bRv = isExists();
     xCHECK_DO(!bRv, return);
@@ -229,7 +229,7 @@ inline void_t
 CxDir::tryRemove(
     std::csize_t &a_attempts,
     culong_t     &a_timeoutMsec
-)
+) const
 {
     xTEST_LESS(size_t(0U), a_attempts);
 
@@ -257,7 +257,7 @@ CxDir::tryRemove(
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxDir::pathClear()
+CxDir::pathClear() const
 {
     xTEST_EQ(true, isExists());
 
@@ -296,7 +296,7 @@ CxDir::pathClear()
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxDir::pathDelete()
+CxDir::pathDelete() const
 {
     bool_t bRv = isExists();
     xCHECK_DO(!bRv, return);
