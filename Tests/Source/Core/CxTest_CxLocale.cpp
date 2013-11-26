@@ -16,23 +16,23 @@ CxTest_CxLocale::unit(
 {
     xTEST_CASE("CxLocale::current", a_caseLoops)
     {
-        m_sRv = CxLocale::current();
+        m_sRv = CxLocale().current();
         xTEST_EQ(false, m_sRv.empty());
     }
 
     xTEST_CASE("CxLocale::setCurrent", a_caseLoops)
     {
-        CxLocale::setCurrent( CxLocale::current() );
+        CxLocale().setCurrent( CxLocale().current() );
     }
 
     xTEST_CASE("CxLocale::setDefault", a_caseLoops)
     {
-        CxLocale::setDefault();
+        CxLocale().setDefault();
     }
 
     xTEST_CASE("CxLocale::setCurrent", a_caseLoops)
     {
-        CxLocale::setCurrent(CxLocale::current());
+        CxLocale().setCurrent( CxLocale().current() );
     }
 }
 //------------------------------------------------------------------------------

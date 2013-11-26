@@ -22,7 +22,6 @@ xNAMESPACE_BEGIN(NxLib)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-/* static */
 inline std::tstring_t
 CxLocale::current()
 {
@@ -45,7 +44,7 @@ CxLocale::current()
     iRv = ::GetLocaleInfo(id, LOCALE_SENGLANGUAGE, &sRv.at(0), static_cast<int_t>( sRv.size() ));
     xTEST_DIFF(0, iRv);
 
-    sRv.resize(iRv - sizeof('\0'));    //delete from end '\0'
+    sRv.resize(iRv - sizeof('\0')); // delete from end '\0'
 #else
     ctchar_t *locale = std::xTSETLOCALE(LC_ALL, NULL);
     xTEST_PTR(locale);
@@ -56,7 +55,6 @@ CxLocale::current()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 inline void_t
 CxLocale::setCurrent(
     std::ctstring_t &a_locale
@@ -70,11 +68,10 @@ CxLocale::setCurrent(
     xTEST_PTR(pcszRv);
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 inline void_t
 CxLocale::setDefault()
 {
-    setCurrent( CxLocale::current() );
+    setCurrent( current() );
 }
 //-------------------------------------------------------------------------------------------------
 

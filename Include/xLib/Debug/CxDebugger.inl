@@ -153,8 +153,7 @@ CxDebugger::reportMake(
     const CxErrorReport &a_report
 )
 {
-    //-------------------------------------
-    // never corrupt the last error value
+    // never corrupt last error value
     culong_t lastError = CxLastError::get();
 
     switch (a_report.type()) {
@@ -172,8 +171,7 @@ CxDebugger::reportMake(
         break;
     }
 
-    //-------------------------------------
-    // never corrupt the last error value
+    // never corrupt last error value
     CxLastError::set(lastError);
 }
 //-------------------------------------------------------------------------------------------------
