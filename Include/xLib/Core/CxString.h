@@ -172,7 +172,7 @@ public:
 private:
                           CxString();
         ///< constructor
-    virtual              ~CxString();
+                         ~CxString();
         ///< destructor
 
 xNO_COPY_ASSIGN(CxString)
