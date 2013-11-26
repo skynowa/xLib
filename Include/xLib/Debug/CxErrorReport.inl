@@ -15,6 +15,12 @@
 #include <xLib/Sync/CxThread.h>
 
 
+xNAMESPACE_ANONYM_BEGIN
+
+std::csize_t reportWidthMax = 46U;   // MAGIC: reportWidthMax
+
+xNAMESPACE_ANONYM_END
+
 xNAMESPACE_BEGIN(NxLib)
 
 //-------------------------------------------------------------------------------------------------
@@ -130,12 +136,11 @@ CxErrorReport::_construct(
     std::ctstring_t &a_comment
 )
 {
-    std::csize_t reportWidthMax = 46U;   // MAGIC: reportWidthMax
     CxSystemInfo sysInfo;
 
     _type           = a_type;
 
-    _program        = CxPath( CxPath(CxPath::exe()).brief(reportWidthMax) ).toUnix(false);
+    _program        = CxPath( CxPath(CxPath::exe()).brief(::reportWidthMax) ).toUnix(false);
 #if xOS_ENV_WIN
     _processId      = ::GetCurrentProcessId();
 #else
@@ -144,7 +149,7 @@ CxErrorReport::_construct(
     _threadId       = (ulong_t)CxThread::currentId();
     _fileSize       = CxString::formatBytes( static_cast<ulonglong_t>( CxFile::size(CxPath::exe())) );
 
-    _sourceFile     = CxPath( CxPath(a_file).brief(reportWidthMax) ).toUnix(false);
+    _sourceFile     = CxPath( CxPath(a_file).brief(::reportWidthMax) ).toUnix(false);
     _sourceLine     = a_line;
     _functionName   = a_func;
     _expression     = CxString::format(xT("%s (%s) %s %s (%s)"), a_var1.c_str(), a_var1Value.c_str(),
