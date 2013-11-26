@@ -10,8 +10,7 @@
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class [CxTemplate] :
-    public CxNonCopyable
+class [CxTemplate]
     ///< ??????????
 {
     public:
