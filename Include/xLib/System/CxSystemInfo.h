@@ -64,7 +64,7 @@ public:
         cvAmd
     };
 
-                   CxSystemInfo() {}
+                   CxSystemInfo();
         ///< constructor
     virtual       ~CxSystemInfo() {}
         ///< destructor
@@ -72,12 +72,12 @@ public:
     // OS
     ExOsType       os() xWARN_UNUSED_RV;
         ///< get information about the current OS
-    std::tstring_t formatOsType(const ExOsType &osType) xWARN_UNUSED_RV;
+    std::tstring_t formatOsType() xWARN_UNUSED_RV;
         ///< format OS type
 
     ExOsArch       osArch() xWARN_UNUSED_RV;
         ///< get OS architecture
-    std::tstring_t formatOsArch(const ExOsArch &osArch) xWARN_UNUSED_RV;
+    std::tstring_t formatOsArch() xWARN_UNUSED_RV;
         ///< format get OS architecture
 
     std::tstring_t desktopName() xWARN_UNUSED_RV;
@@ -121,6 +121,9 @@ public:
         ///< get Size of a page (bytes)
 
 private:
+    ExOsType       _osType;
+    ExOsArch       _osArch;
+
 #if !xOS_ENV_WIN
     void_t         _passwdFileEntry(struct passwd *passwdEntry);
         ///< get password file entry

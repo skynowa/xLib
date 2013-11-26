@@ -137,8 +137,8 @@ CxErrorReport::_construct(
     currentDate    = CxDateTime::current().format(CxDateTime::ftDateTime);
     buildDate      = CxString::format(xT("%s/%s"), a_date.c_str(), a_time.c_str());
     buildType      = CxDebugger().isDebugBuild() ? xT("debug") : xT("release");
-    osVersion      = sysInfo.formatOsType( sysInfo.os() );
-    osArchitecture = sysInfo.formatOsArch( sysInfo.osArch() );
+    osVersion      = sysInfo.formatOsType();
+    osArchitecture = sysInfo.formatOsArch();
 
     stackTrace     = a_stackTrace;
     comment        = a_comment.empty() ? CxConst::hyphen() : a_comment;

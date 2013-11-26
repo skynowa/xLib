@@ -25,6 +25,13 @@ xNAMESPACE_BEGIN(NxLib)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
+inline
+CxSystemInfo::CxSystemInfo() :
+    _osType(otUnknown),
+    _osArch(oaUnknown)
+{
+}
+//-------------------------------------------------------------------------------------------------
 inline CxSystemInfo::ExOsType
 CxSystemInfo::os()
 {
@@ -96,20 +103,21 @@ CxSystemInfo::os()
     }
 #endif
 
+    _osType = otRv;
+
     return otRv;
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
-CxSystemInfo::formatOsType(
-    const ExOsType &a_osType
-)
+CxSystemInfo::formatOsType()
 {
     xTEST_NA(a_osType);
 
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
-    switch (a_osType) {
+    ExOsType type = (_osType == otUnknown) ? os() : _osType;
+    switch (type) {
     case otWindows3:
         sRv = xT("Windows 3.1");
         break;
@@ -157,30 +165,13 @@ CxSystemInfo::formatOsType(
         break;
     }
 #elif xOS_ENV_UNIX
-    if (os() == a_osType) {
-        // current OS type - get info about OS kernel
-        utsname info; xSTRUCT_ZERO(info);
+    utsname info; xSTRUCT_ZERO(info);
 
-        int_t iRv = ::uname(&info);
-        xTEST_DIFF(- 1, iRv);
+    int_t iRv = ::uname(&info);
+    xTEST_DIFF(- 1, iRv);
 
-        sRv = CxString::format(xT("%s %s (%s) %s"), info.sysname, info.release, info.version,
-            info.machine);
-    } else {
-        // not current OS type, can't get info about OS kernel -
-        // return simple-formatted string
-        switch (a_osType) {
-        case otLinux:
-            sRv = xT("Linux");
-            break;
-        case otFreeBSD:
-            sRv = xT("FreeBSD");
-            break;
-        default:
-            sRv = CxConst::strUnknown();
-            break;
-        }
-    }
+    sRv = CxString::format(xT("%s %s (%s) %s"), info.sysname, info.release, info.version,
+        info.machine);
 #elif xOS_ENV_MAC
     xNOT_IMPLEMENTED
 #endif
@@ -251,17 +242,18 @@ CxSystemInfo::osArch()
     }
 #endif
 
+    _osArch = oaRv;
+
     return oaRv;
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
-CxSystemInfo::formatOsArch(
-    const ExOsArch &a_osArch
-)
+CxSystemInfo::formatOsArch()
 {
     std::tstring_t sRv;
 
-    switch (a_osArch) {
+    ExOsArch arch = (_osArch == oaUnknown) ? osArch() : _osArch;
+    switch (arch) {
     case CxSystemInfo::oa32bit:
         sRv = xT("32-bit");
         break;
