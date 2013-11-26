@@ -38,7 +38,7 @@ public:
 
     ExType         type() const;
         ///< report type
-    std::tstring_t toString() const;
+    std::ctstring_t & toString() const;
         ///< report message
 
 private:

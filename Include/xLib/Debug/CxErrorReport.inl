@@ -104,7 +104,7 @@ CxErrorReport::type() const
     return _type;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+inline std::ctstring_t &
 CxErrorReport::toString() const
 {
     return _report;
