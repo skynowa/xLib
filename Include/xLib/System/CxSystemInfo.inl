@@ -1113,21 +1113,19 @@ CxSystemInfo::_passwdFileEntry(
     xTEST_NA(userId);
 
     long_t buffSize = - 1L;
-
-    // get buffSize
     {
         buffSize = ::sysconf(_SC_GETPW_R_SIZE_MAX);
         if (- 1L == buffSize) {
-            clong_t cliPwRSizeMax = 1024L;    // CUSTOM: 1024L - custom value
+            clong_t pwRSizeMax = 1024L;    // CUSTOM: 1024L - custom value
 
-            buffSize = cliPwRSizeMax;
+            buffSize = pwRSizeMax;
         }
 
         xTEST_LESS(0L, buffSize);
     }
 
     struct passwd *pwd = NULL;
-    char           buff[ buffSize ];
+    char           buff[buffSize];
 
     void_t *pvRv = std::memset(&buff[0], 0, sizeof(buff));
     xUNUSED(pvRv);
@@ -1137,11 +1135,12 @@ CxSystemInfo::_passwdFileEntry(
     xTEST_PTR(pwd);
 
 #if 0
-    printf("\nThe user name is: %s\n",          a_passwdEntry->pw_name);
-    printf("The user id is: %u\n",              a_passwdEntry->pw_uid);
-    printf("The group id is: %u\n",             a_passwdEntry->pw_gid);
-    printf("The initial directory is: %s\n",    a_passwdEntry->pw_dir);
-    printf("The initial user program is: %s\n", a_passwdEntry->pw_shell);
+    CxTracer()
+        << xTRACE_VAR(a_passwdEntry->pw_name)
+        << xTRACE_VAR(a_passwdEntry->pw_uid)
+        << xTRACE_VAR(a_passwdEntry->pw_gid)
+        << xTRACE_VAR(a_passwdEntry->pw_dir)
+        << xTRACE_VAR(a_passwdEntry->pw_shell);
 #endif
 }
 
