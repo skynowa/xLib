@@ -99,7 +99,7 @@ CxProcessInfo::ioBytes() const
 
     ulRv = readBytes + writeBytes;
 
-    // xTRACEV("\tulReadBytes: %lu, writeBytes: %lu", readBytes, writeBytes);
+    // xTRACEV("\readBytes: %lu, writeBytes: %lu", readBytes, writeBytes);
 #elif xOS_ENV_MAC
     xNOT_IMPLEMENTED
 #endif
@@ -117,8 +117,7 @@ CxProcessInfo::exeName() const
 
     CxProcess::handle_t handle = CxProcess::handleById(_id);
 
-    DWORD stored = ::GetModuleFileNameEx(handle, NULL, &sRv.at(0),
-        static_cast<DWORD>( sRv.size() ));
+    DWORD stored = ::GetModuleFileNameEx(handle, NULL, &sRv.at(0), static_cast<DWORD>(sRv.size()));
     xTEST_DIFF(0UL, stored);
 
     sRv.resize(stored);
@@ -226,22 +225,18 @@ CxProcessInfo::commandLine(
     typedef LONG NTSTATUS;
 
     enum PROCESSINFOCLASS
-        /// process info type
+        // process info type
     {
         ProcessBasicInformation = 0,
         ProcessWow64Information = 26
     };
 #endif
 
-    typedef NTSTATUS (WINAPI *Dll_NtQueryInformationProcess_t) (
-        HANDLE           ProcessHandle,
-        PROCESSINFOCLASS ProcessInformationClass,
-        PVOID            ProcessInformation,
-        ULONG            ProcessInformationLength,
-        PULONG           ReturnLength
-    );
+    typedef NTSTATUS (WINAPI *func_t) (HANDLE ProcessHandle,
+        PROCESSINFOCLASS ProcessInformationClass, PVOID ProcessInformation,
+        ULONG ProcessInformationLength, PULONG ReturnLength);
 
-    struct _SFunctor
+    struct _Functor
     {
         static PVOID
         pebAddress(
@@ -255,10 +250,8 @@ CxProcessInfo::commandLine(
             bool_t bRv = dll.isProcExists(xT("NtQueryInformationProcess"));
             xTEST_EQ(true, bRv);
 
-            Dll_NtQueryInformationProcess_t
-            DllNtQueryInformationProcess = (Dll_NtQueryInformationProcess_t)
-                dll.procAddress(xT("NtQueryInformationProcess"));
-            xTEST_PTR(DllNtQueryInformationProcess);
+            func_t func = (func_t)dll.procAddress(xT("NtQueryInformationProcess"));
+            xTEST_PTR(func);
 
         #if xARCH_X86
             const PROCESSINFOCLASS    info            = ProcessBasicInformation;
@@ -270,8 +263,7 @@ CxProcessInfo::commandLine(
             DWORD                     returnSizeBytes = 0UL;
 
             // TODO: ProcessBasicInformation (for x64)
-            NTSTATUS nsRv = DllNtQueryInformationProcess(a_process, info, &basicInfo,
-                basicInfoSize, &returnSizeBytes);
+            NTSTATUS nsRv = func(a_process, info, &basicInfo, basicInfoSize, &returnSizeBytes);
             xTEST_EQ(true, NT_SUCCESS(nsRv));
             xTEST_EQ(basicInfoSize, returnSizeBytes);
             xTEST_PTR(basicInfo.PebBaseAddress);
@@ -289,7 +281,7 @@ CxProcessInfo::commandLine(
         static_cast<DWORD>( _id ));
     xTEST_EQ(true, processHandle.isValid());
 
-    PVOID pebAddress               = _SFunctor::pebAddress(processHandle.get());
+    PVOID pebAddress               = _Functor::pebAddress(processHandle.get());
     PVOID rtlUserProcParamsAddress = NULL;
 
     // get the address of ProcessParameters
@@ -338,7 +330,7 @@ CxProcessInfo::commandLine(
 
         sRv = vsProcFile.at(0);
     #elif xOS_FREEBSD
-        int_t iRv      = - 1;
+        int_t iRv    = - 1;
         int_t mib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_ARGS, _id};
 
         std::string buff;
