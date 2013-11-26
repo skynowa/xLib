@@ -13,18 +13,19 @@ COL_YELLOW_BOLD="$(tput bold; tput setaf 3)"
 
 
 # vars
-cOS_INFO=`uname -a`
-cOS_TYPE=$OSTYPE
-cOS_BIT=`getconf LONG_BIT`
-cOS_ARCH=`uname -m`
-cGCC_MACHINE=`gcc -dumpmachine`
-cGCC_INFO=`gcc -dumpversion`
-cGLIBC_INFO=`ldd --version | head -n 1`
-cBINUTILS_INFO=`ld --version | head -n 1`
-cGDB=`gdb --version | head -n 1`
-cMAKE=`make --version | head -n 1`
-cPATCH=`patch --version | head -n 1`
-cSHELL=$SHELL
+OS_INFO=`uname -a`
+OS_TYPE=$OSTYPE
+OS_BIT=`getconf LONG_BIT`
+OS_ARCH=`uname -m`
+GCC_MACHINE=`gcc -dumpmachine`
+GCC_INFO=`gcc -dumpversion`
+GLIBC_INFO=`ldd --version | head -n 1`
+BINUTILS_INFO=`ld --version | head -n 1`
+GDB=`gdb --version | head -n 1`
+MAKE=`make --version | head -n 1`
+CMAKE=`cmake --version | head -n 1`
+PATCH=`patch --version | head -n 1`
+SHELL=$SHELL
 
 
 # print info
@@ -32,17 +33,18 @@ echo ""
 echo "************************************************************"
 echo "* System info"
 echo "*"
-echo "* OS:       $cOS_INFO"
-echo "* OS type:  $cOS_TYPE"
-echo "* OS bit:   $cOS_BIT ($cOS_ARCH)"
-echo "* Machine:  $cGCC_MACHINE"
-echo "* GCC:      $cGCC_INFO"
-echo "* GLIBC:    $cGLIBC_INFO"
-echo "* Binutils: $cBINUTILS_INFO"
-echo "* GDB:      $cGDB"
-echo "* Make:     $cMAKE"
-echo "* Patch:    $cPATCH"
-echo "* Shell:    $cSHELL"
+echo "* OS:       $OS_INFO"
+echo "* OS type:  $OS_TYPE"
+echo "* OS bit:   $OS_BIT ($cOS_ARCH)"
+echo "* Machine:  $GCC_MACHINE"
+echo "* GCC:      $GCC_INFO"
+echo "* GLIBC:    $GLIBC_INFO"
+echo "* Binutils: $BINUTILS_INFO"
+echo "* GDB:      $GDB"
+echo "* Make:     $MAKE"
+echo "* CMake:    $CMAKE"
+echo "* Patch:    $PATCH"
+echo "* Shell:    $SHELL"
 echo "*"
 echo "************************************************************"
 echo ""
