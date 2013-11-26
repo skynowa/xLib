@@ -519,7 +519,7 @@ CxSystemInfo::currentCpuNum()
     ulong_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN
-    typedef DWORD (WINAPI *DllGetCurrentProcessorNumber_t)(void);
+    typedef DWORD (WINAPI *func_t)(void);
 
     CxDll dll;
 
@@ -528,11 +528,10 @@ CxSystemInfo::currentCpuNum()
     bool_t bRv = dll.isProcExists(xT("GetCurrentProcessorNumber"));
     xCHECK_RET(!bRv, 0UL);
 
-    DllGetCurrentProcessorNumber_t DllGetCurrentProcessorNumber =
-        (DllGetCurrentProcessorNumber_t)dll.procAddress(xT("GetCurrentProcessorNumber"));
-    xTEST_PTR(DllGetCurrentProcessorNumber);
+    func_t func = (func_t)dll.procAddress(xT("GetCurrentProcessorNumber"));
+    xTEST_PTR(func);
 
-    ulRv = DllGetCurrentProcessorNumber();
+    ulRv = func();
     xTEST_NA(ulRv);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
@@ -553,7 +552,7 @@ CxSystemInfo::currentCpuNum()
 
                 ulRv = static_cast<ulong_t>( iRv );
             #else
-                //TODO: ulGetCurrentCpuNum
+                // TODO: currentCpuNum
                 ulRv = 0UL;
             #endif
 
@@ -569,7 +568,7 @@ CxSystemInfo::currentCpuNum()
 
         #endif
     #elif xOS_FREEBSD
-        // OS_NOT_SUPPORTED: ulGetCurrentCpuNum
+        // OS_NOT_SUPPORTED: currentCpuNum
         ulRv = 0UL;
     #endif
 #elif xOS_ENV_MAC
