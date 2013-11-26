@@ -157,7 +157,7 @@ CxDebugger::reportMake(
     // never corrupt the last error value
     culong_t lastError = CxLastError::get();
 
-    switch (a_report.type) {
+    switch (a_report.type()) {
     case CxErrorReport::rtMsgboxPlain:
         _msgboxPlain(a_report);
         break;
@@ -195,7 +195,7 @@ CxDebugger::_msgboxPlain(
     CxMsgBoxT::ExModalResult mrRv;
 
 #if xDEBUG_USE_PROMPT_DIALOG || 1
-    mrRv = CxMsgBoxT().show(a_report.report, "", CxMsgBoxT::tpAbortRetryIgnore);
+    mrRv = CxMsgBoxT().show(a_report.toString(), "", CxMsgBoxT::tpAbortRetryIgnore);
 #else
     mrRv = CxMsgBoxT::mrIgnore;
 #endif
@@ -234,7 +234,7 @@ CxDebugger::_stdoutPlain(
     };
 
     std::tcout << xT("\n####################################################################################################\n");
-    std::tcout << a_report.report;
+    std::tcout << a_report.toString();
     std::tcout << xT("\n####################################################################################################\n");
     std::tcout << xT("\n");
     std::tcout << xT("\nAbort (a), Ignore (i), Retry (r): ");
@@ -303,7 +303,7 @@ CxDebugger::_loggingPlain(
             xT("####################################################################################################\n")
             xT("%s\n")
             xT("####################################################################################################\n"),
-            a_report.report.c_str()
+            a_report.toString().c_str()
         );
 
         ofs << csMsg;
