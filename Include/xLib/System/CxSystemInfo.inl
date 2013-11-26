@@ -598,7 +598,7 @@ CxSystemInfo::cpuVendor()
         value = std::string(man);
         xTEST_EQ(false, value.empty());
     #elif xCOMPILER_CODEGEAR
-        // TODO: CxSystemInfo::cvGetCpuVendor()
+        // TODO: CxSystemInfo::cpuVendor()
         value = std::tstring_t();
     #endif
 #elif xOS_ENV_UNIX
