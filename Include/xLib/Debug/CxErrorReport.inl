@@ -92,13 +92,13 @@ CxErrorReport::CxErrorReport(
     }
 }
 //-------------------------------------------------------------------------------------------------
-CxErrorReport::ExType
+inline CxErrorReport::ExType
 CxErrorReport::type() const
 {
     return _type;
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+inline std::tstring_t
 CxErrorReport::toString() const
 {
     return _report;
