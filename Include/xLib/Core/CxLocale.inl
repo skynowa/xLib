@@ -23,15 +23,15 @@ xNAMESPACE_BEGIN(NxLib)
 
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
-CxLocale::current()
+CxLocale::current() const
 {
     // n/a
 
     std::tstring_t sRv;
 
 #if xOS_ENV_WIN
-    int_t  iRv  = - 1;
-    LCID id = 0;
+    int_t iRv  = - 1;
+    LCID  id = 0;
 
     id = ::GetSystemDefaultLCID();
     // n/a
@@ -58,18 +58,18 @@ CxLocale::current()
 inline void_t
 CxLocale::setCurrent(
     std::ctstring_t &a_locale
-)
+) const
 {
     xTEST_NA(a_locale);
 
-    ctchar_t *locale = (a_locale.empty()) ? NULL : a_locale.c_str();
+    ctchar_t *locale = a_locale.empty() ? NULL : a_locale.c_str();
 
     ctchar_t *pcszRv = ::xTSETLOCALE(LC_ALL, locale);
     xTEST_PTR(pcszRv);
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxLocale::setDefault()
+CxLocale::setDefault() const
 {
     setCurrent( current() );
 }

@@ -22,11 +22,11 @@ public:
    virtual       ~CxLocale() {}
              ///< destructor
 
-   std::tstring_t current() xWARN_UNUSED_RV;
+   std::tstring_t current() const xWARN_UNUSED_RV;
           ///< get current
-   void_t         setCurrent(std::ctstring_t &locale);
+   void_t         setCurrent(std::ctstring_t &locale) const;
              ///< set current
-   void_t         setDefault();
+   void_t         setDefault() const;
              ///< set default
 
 private:
