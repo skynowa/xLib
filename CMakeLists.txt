@@ -30,7 +30,7 @@ add_executable(xLib_test ${xLib_tests_SOURCES})
 
 #-------------------------------------------------------------------------------
 # flags
-if (MSVC)
+if     (MSVC)
     #set(LIBS mysqlclient)
     set(FLAGS "/W3")
 elseif (MINGW)
