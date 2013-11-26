@@ -117,6 +117,8 @@ public:
         ///< get available RAM (bytes)
     ulong_t        ramUsage() xWARN_UNUSED_RV;
         ///< get RAM usage (percentage)
+
+    // HDD
     ulong_t        pageSize() xWARN_UNUSED_RV;
         ///< get Size of a page (bytes)
 
