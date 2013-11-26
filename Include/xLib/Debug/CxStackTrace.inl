@@ -63,7 +63,7 @@ CxStackTrace::CxStackTrace(
 inline void_t
 CxStackTrace::get(
     std::vector<std::vec_tstring_t> *a_stack
-)
+) const
 {
     xCHECK_DO(NULL == a_stack, return);
 

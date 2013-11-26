@@ -33,7 +33,7 @@ public:
 private:
                           CxLastError();
         ///< constructor
-    virtual              ~CxLastError() {}
+                         ~CxLastError() {}
         ///< destructor
 
 xNO_COPY_ASSIGN(CxLastError)

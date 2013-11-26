@@ -49,7 +49,7 @@ CxDebugger::CxDebugger() :
 
 //-------------------------------------------------------------------------------------------------
 inline bool_t
-CxDebugger::isEnabled()
+CxDebugger::isEnabled() const
 {
     return _isEnabled;
 }
@@ -63,7 +63,7 @@ CxDebugger::setEnabled(
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
-CxDebugger::isActive()
+CxDebugger::isActive() const
 {
 #if   xOS_ENV_WIN
     // local debugger
@@ -109,7 +109,7 @@ CxDebugger::isActive()
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
-CxDebugger::isDebugBuild()
+CxDebugger::isDebugBuild() const
 {
 #if xBUILD_DEBUG
     return true;
@@ -119,7 +119,7 @@ CxDebugger::isDebugBuild()
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxDebugger::breakPoint()
+CxDebugger::breakPoint() const
 {
     xCHECK_DO(!isEnabled(), return);
 
@@ -143,7 +143,7 @@ CxDebugger::setLogPath(
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
-CxDebugger::logPath()
+CxDebugger::logPath() const
 {
     return _logPath;
 }
@@ -186,7 +186,7 @@ CxDebugger::reportMake(
 inline void_t
 CxDebugger::_msgboxPlain(
     const CxErrorReport &a_report
-)
+) const
 {
     xCHECK_DO(!isEnabled(), return);
 
@@ -221,7 +221,7 @@ CxDebugger::_msgboxPlain(
 inline void_t
 CxDebugger::_stdoutPlain(
     const CxErrorReport &a_report
-)
+) const
 {
     xCHECK_DO(!isEnabled(), return);
 
@@ -276,7 +276,7 @@ CxDebugger::_stdoutPlain(
 inline void_t
 CxDebugger::_loggingPlain(
     const CxErrorReport &a_report
-)
+) const
 {
     xCHECK_DO(!isEnabled(), return);
 
@@ -296,7 +296,7 @@ CxDebugger::_loggingPlain(
         std::ofstream ofs(filePath.c_str(), std::ofstream::out);
         xCHECK_DO(ofs.fail(), return);
 
-        std::ctstring_t csMsg = CxString::format(
+        std::ctstring_t msg = CxString::format(
             xT("\n")
             xT("####################################################################################################\n")
             xT("%s\n")
@@ -304,7 +304,7 @@ CxDebugger::_loggingPlain(
             a_report.toString().c_str()
         );
 
-        ofs << csMsg;
+        ofs << msg;
         ofs.close();
     }
     catch (...) {

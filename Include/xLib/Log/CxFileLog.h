@@ -35,11 +35,11 @@ public:
     std::ctstring_t & filePath() const xWARN_UNUSED_RV;
         ///< get log path
 
-    void_t            write(ctchar_t *format, ...);
+    void_t            write(ctchar_t *format, ...) const;
         ///< write
-    void_t            clear();
+    void_t            clear() const;
         ///< clear content
-    void_t            remove();
+    void_t            remove() const;
         ///< delete
 
 private:
@@ -50,7 +50,7 @@ private:
     CxAutoIpcMutex    _mutex;
 #endif
 
-    void_t            _removeIfFull();
+    void_t            _removeIfFull() const;
         ///< delete log, if full
 
 xNO_COPY_ASSIGN(CxFileLog)

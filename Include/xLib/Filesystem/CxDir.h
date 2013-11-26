@@ -26,31 +26,31 @@ public:
     std::ctstring_t &     dirPath() const xWARN_UNUSED_RV;
         ///< directory path
 
-    bool_t                isExists() xWARN_UNUSED_RV;
+    bool_t                isExists() const xWARN_UNUSED_RV;
         ///< check for existence
-    bool_t                isEmpty(std::ctstring_t &shellFilter = CxConst::maskAll())
+    bool_t                isEmpty(std::ctstring_t &shellFilter = CxConst::maskAll()) const
                               xWARN_UNUSED_RV;
         ///< is empty
-    bool_t                isRoot() xWARN_UNUSED_RV;
+    bool_t                isRoot() const xWARN_UNUSED_RV;
         ///< is root
-    bool_t                isDir() xWARN_UNUSED_RV;
+    bool_t                isDir() const xWARN_UNUSED_RV;
         ///< is dir
-    void_t                create();
+    void_t                create() const;
         ///< create
-    void_t                pathCreate();
+    void_t                pathCreate() const;
         ///< creation of all directories that not exists in path
-    void_t                copy(std::ctstring_t &dirPathTo, cbool_t &failIfExists);
+    void_t                copy(std::ctstring_t &dirPathTo, cbool_t &failIfExists) const;
         ///< copy
-    void_t                move(std::ctstring_t &dirPathTo, cbool_t &failIfExists);
+    void_t                move(std::ctstring_t &dirPathTo, cbool_t &failIfExists) const;
         ///< move
 
-    void_t                remove();
+    void_t                remove() const;
         ///< deletion dir which empty
-    void_t                tryRemove(std::csize_t &attempts, culong_t &timeoutMsec);
+    void_t                tryRemove(std::csize_t &attempts, culong_t &timeoutMsec) const;
         ///< try deleting, max 100 attempts
-    void_t                pathClear();
+    void_t                pathClear() const;
         ///< deletion all content of dir
-    void_t                pathDelete();
+    void_t                pathDelete() const;
         ///< deletion dir find all content of it
 
     // static

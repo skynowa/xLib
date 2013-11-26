@@ -28,9 +28,9 @@ public:
     virtual   ~CxShell() {}
         ///< destructor
 
-    bool_t     isAvailable() xWARN_UNUSED_RV;
+    bool_t     isAvailable() const xWARN_UNUSED_RV;
         ///< is available
-    void_t     execute(std::ctstring_t &filePath, std::ctstring_t &params);
+    void_t     execute(std::ctstring_t &filePath, std::ctstring_t &params) const;
         ///< execute file
 
 #if   xOS_ENV_WIN
@@ -126,28 +126,29 @@ public:
         sfWindows                = CSIDL_WINDOWS
     };
 
-    std::tstring_t findExecutable(std::ctstring_t &fileName, std::ctstring_t &findDirPath)
+    std::tstring_t findExecutable(std::ctstring_t &fileName, std::ctstring_t &findDirPath) const
                        xWARN_UNUSED_RV;
         ///< find executable file path
     void_t         execute(const HWND &owner, const ExOperation &operation,
                        std::ctstring_t &filePath, std::ctstring_t &params, std::ctstring_t &dirPath,
-                       const EShowFlag &showCmd);
+                       const EShowFlag &showCmd) const;
         ///< execute
-    void_t         executeEx(SHELLEXECUTEINFO &info);
+    void_t         executeEx(SHELLEXECUTEINFO &info) const;
         ///< execute
-    void_t         executeHttp(std::ctstring_t &url);
+    void_t         executeHttp(std::ctstring_t &url) const;
         ///< execute HTTP
-    void_t         executeFtp(std::ctstring_t &url);
+    void_t         executeFtp(std::ctstring_t &url) const;
         ///< execute FTP
     void_t         executeEmail(std::ctstring_t &toEmail, std::ctstring_t &subject,
-                       std::ctstring_t &body);
+                       std::ctstring_t &body) const;
         ///< execute email
-    std::tstring_t specialDirPath(const ESpecialDir &dir, const HANDLE &token) xWARN_UNUSED_RV;
+    std::tstring_t specialDirPath(const ESpecialDir &dir, const HANDLE &token) const
+                       xWARN_UNUSED_RV;
         ///< get special dir path
     void_t         createShortcut(std::ctstring_t &shortCutFilePath, std::ctstring_t &filePath,
                        std::ctstring_t &workingDirectory, std::ctstring_t &args, const WORD &hotKey,
                        cint_t &cmdShow, std::ctstring_t &iconFilePath, cint_t &iconIndex,
-                       std::ctstring_t &description);
+                       std::ctstring_t &description) const;
         ///< create shortcut
 #endif
 

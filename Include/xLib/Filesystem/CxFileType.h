@@ -66,19 +66,19 @@ public:
     std::ctstring_t & filePath() const xWARN_UNUSED_RV;
         ///< file path
 
-    bool_t            isExists(cExType &value) xWARN_UNUSED_RV;
+    bool_t            isExists(cExType &value) const xWARN_UNUSED_RV;
         ///< is exists
-    types_t           get() xWARN_UNUSED_RV;
+    types_t           get() const xWARN_UNUSED_RV;
         ///< get
-    void_t            set(ctypes_t &values);
+    void_t            set(ctypes_t &values) const;
         ///< set
-    void_t            add(cExType &value);
+    void_t            add(cExType &value) const;
         ///< add
-    void_t            remove(cExType &value);
+    void_t            remove(cExType &value) const;
         ///< remove
-    void_t            modify(cExType &valueRemove, cExType &valueAdd);
+    void_t            modify(cExType &valueRemove, cExType &valueAdd) const;
         ///< modify
-    void_t            clear();
+    void_t            clear() const;
         ///< clear (set normal attributes, only for Windows)
 
 private:

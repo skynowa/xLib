@@ -24,17 +24,17 @@ public:
 
     void_t          setProcessId(const CxProcess::id_t &a_id);
         ///< set target process ID
-    ulong_t         cpuUsage() xWARN_UNUSED_RV;
+    ulong_t         cpuUsage() const xWARN_UNUSED_RV;
         ///< get CPU usage (percentage)
-    ulong_t         ramUsage() xWARN_UNUSED_RV;
+    ulong_t         ramUsage() const xWARN_UNUSED_RV;
         ///< get RAM usage (percentage)
-    ulong_t         ioBytes() xWARN_UNUSED_RV;
+    ulong_t         ioBytes() const xWARN_UNUSED_RV;
         ///< get total read and written bytes
-    std::tstring_t  exeName() xWARN_UNUSED_RV;
+    std::tstring_t  exeName() const xWARN_UNUSED_RV;
         ///< get exe name
-    ulong_t         parentId() xWARN_UNUSED_RV;
+    ulong_t         parentId() const xWARN_UNUSED_RV;
         ///< get parent process id
-    void_t          commandLine(std::vec_tstring_t *args);
+    void_t          commandLine(std::vec_tstring_t *args) const;
         ///< get arguments
 
     static long_t   commandLineArgsMax() xWARN_UNUSED_RV;

@@ -33,7 +33,7 @@ public:
 private:
                           CxStdError();
         ///< constructor
-    virtual              ~CxStdError() {}
+                         ~CxStdError() {}
         ///< destructor
 
 xNO_COPY_ASSIGN(CxStdError)

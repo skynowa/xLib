@@ -30,7 +30,7 @@ CxProcessInfo::setProcessId(
 }
 //-------------------------------------------------------------------------------------------------
 inline ulong_t
-CxProcessInfo::cpuUsage()
+CxProcessInfo::cpuUsage() const
 {
     ulong_t ulRv = 0UL;
 
@@ -46,7 +46,7 @@ CxProcessInfo::cpuUsage()
 }
 //-------------------------------------------------------------------------------------------------
 inline ulong_t
-CxProcessInfo::ramUsage()
+CxProcessInfo::ramUsage() const
 {
     ulong_t ulRv = 0UL;
 
@@ -62,7 +62,7 @@ CxProcessInfo::ramUsage()
 }
 //-------------------------------------------------------------------------------------------------
 inline ulong_t
-CxProcessInfo::ioBytes()
+CxProcessInfo::ioBytes() const
 {
     ulong_t ulRv = 0UL;
 
@@ -108,7 +108,7 @@ CxProcessInfo::ioBytes()
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
-CxProcessInfo::exeName()
+CxProcessInfo::exeName() const
 {
     std::tstring_t sRv;
 
@@ -168,7 +168,7 @@ CxProcessInfo::exeName()
 }
 //-------------------------------------------------------------------------------------------------
 inline ulong_t
-CxProcessInfo::parentId()
+CxProcessInfo::parentId() const
 {
     ulong_t ulRv = 0UL;
 
@@ -191,7 +191,7 @@ CxProcessInfo::parentId()
 inline void_t
 CxProcessInfo::commandLine(
     std::vec_tstring_t *a_args
-)
+) const
 {
     xTEST_PTR(a_args);
 

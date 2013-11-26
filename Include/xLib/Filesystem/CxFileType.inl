@@ -43,7 +43,7 @@ CxFileType::filePath() const
 inline bool_t
 CxFileType::isExists(
     cExType &a_value
-)
+) const
 {
     xTEST_EQ(false, filePath().empty());
     xTEST_NA(a_value);
@@ -54,7 +54,7 @@ CxFileType::isExists(
 }
 //-------------------------------------------------------------------------------------------------
 inline CxFileType::types_t
-CxFileType::get()
+CxFileType::get() const
 {
     xTEST_EQ(false, filePath().empty());
 
@@ -81,7 +81,7 @@ CxFileType::get()
 inline void_t
 CxFileType::set(
     ctypes_t &a_values
-)
+) const
 {
     xTEST_EQ(false, filePath().empty());
     xTEST_NA(a_values);
@@ -98,7 +98,7 @@ CxFileType::set(
 inline void_t
 CxFileType::add(
     cExType &a_value
-)
+) const
 {
     xTEST_EQ(false, filePath().empty());
     xTEST_NA(a_value);
@@ -109,7 +109,7 @@ CxFileType::add(
 inline void_t
 CxFileType::remove(
     cExType &a_value
-)
+) const
 {
     xTEST_EQ(false, filePath().empty());
     xTEST_NA(a_value);
@@ -121,7 +121,7 @@ inline void_t
 CxFileType::modify(
     cExType &a_valueRemove,
     cExType &a_valueAdd
-)
+) const
 {
     xTEST_EQ(false, filePath().empty());
     xTEST_NA(a_valueRemove);
@@ -139,7 +139,7 @@ CxFileType::modify(
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxFileType::clear()
+CxFileType::clear() const
 {
     xTEST_EQ(false, filePath().empty());
 

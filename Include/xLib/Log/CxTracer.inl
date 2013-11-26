@@ -29,7 +29,7 @@ CxTracer::~CxTracer()
 inline void_t
 CxTracer::write(
     ctchar_t *a_format, ...
-)
+) const
 {
     xCHECK_DO(a_format == NULL, return);
 
@@ -47,7 +47,7 @@ CxTracer::write(
 inline void_t
 CxTracer::write(
     std::ctstring_t &a_msg
-)
+) const
 {
 #if xOS_ENV_WIN
     (void_t)::OutputDebugString( a_msg.c_str() );

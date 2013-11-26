@@ -24,18 +24,18 @@ public:
     virtual      ~CxTcpClient() {}
         ///< constructor
 
-    bool_t        isReadable() xWARN_UNUSED_RV;
+    bool_t        isReadable() const xWARN_UNUSED_RV;
         ///< checking for readability
-    bool_t        isWritable() xWARN_UNUSED_RV;
+    bool_t        isWritable() const xWARN_UNUSED_RV;
         ///< checking for writability
-    void_t        connect(std::ctstring_t &ip, cushort_t &port);
+    void_t        connect(std::ctstring_t &ip, cushort_t &port) const;
         ///< connecting
 
-    void_t        ioctl(clong_t &command, ulong_t *args);
+    void_t        ioctl(clong_t &command, ulong_t *args) const;
         ///< controls the i/o mode
-    void_t        setNonBlockingMode(cbool_t &flag);
+    void_t        setNonBlockingMode(cbool_t &flag) const;
         ///< set nonblocking mode
-    void_t        timeout(long_t *seconds, long_t *microsec);
+    void_t        timeout(long_t *seconds, long_t *microsec) const;
         ///< get timeout
     void_t        setTimeout(clong_t &seconds, clong_t &microsec);
         ///< set timeout

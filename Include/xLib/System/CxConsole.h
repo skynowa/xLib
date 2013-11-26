@@ -74,38 +74,38 @@ public:
         ///< destructor
 
     std::tstring_t  setAttributes(const ExForeground &foreground, const ExBackground &background,
-                        cint_t &attributes) xWARN_UNUSED_RV;
+                        cint_t &attributes) const xWARN_UNUSED_RV;
         ///< set text color
-    std::tstring_t  setAttributesDef() xWARN_UNUSED_RV;
+    std::tstring_t  setAttributesDef() const xWARN_UNUSED_RV;
         ///< set text color
-    std::tstring_t  read() xWARN_UNUSED_RV;
+    std::tstring_t  read() const xWARN_UNUSED_RV;
         ///< read
-    void_t          write(std::ctstring_t &str);
+    void_t          write(std::ctstring_t &str) const;
         ///< write
-    void_t          writeLine(std::ctstring_t &str = xT(""));
+    void_t          writeLine(std::ctstring_t &str = xT("")) const;
         ///< write line
-    void_t          writeErrLine(std::ctstring_t &str);
+    void_t          writeErrLine(std::ctstring_t &str) const;
         ///< write error message
-    ExModalResult   msgBox(std::ctstring_t &text, std::ctstring_t &title, cuint_t &type)
+    ExModalResult   msgBox(std::ctstring_t &text, std::ctstring_t &title, cuint_t &type) const
                         xWARN_UNUSED_RV;
         ///< show console message dialog
-    void_t          prompt(std::ctstring_t &prompt, cbool_t &isVisible,
-                        std::tstring_t *answer);
+    void_t          prompt(std::ctstring_t &prompt, cbool_t &isVisible, std::tstring_t *answer)
+                        const;
         ///< show console prompt dialog
-    void_t          pause(culong_t &timeoutMsec);
+    void_t          pause(culong_t &timeoutMsec) const;
         ///< pause with timeout (msec)
-    void_t          clear();
+    void_t          clear() const;
         ///< clear
 
-    std::tstring_t  title() xWARN_UNUSED_RV;
+    std::tstring_t  title() const xWARN_UNUSED_RV;
         ///< get title string
-    void_t          setTitle(std::ctstring_t &title);
+    void_t          setTitle(std::ctstring_t &title) const;
         ///< set title string
-    void_t          centerWindow();
+    void_t          centerWindow() const;
         ///< align to center
-    void_t          setFullScreen();
+    void_t          setFullScreen() const;
         ///< set full screen
-    void_t          enableClose(cbool_t &flag);
+    void_t          enableClose(cbool_t &flag) const;
         ///< enable close button
 
 private:

@@ -61,7 +61,7 @@ CxFileLog::filePath() const
 inline void_t
 CxFileLog::write(
     ctchar_t *a_format, ...
-)
+) const
 {
     xTEST_PTR(a_format);
 
@@ -94,7 +94,7 @@ CxFileLog::write(
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxFileLog::clear()
+CxFileLog::clear() const
 {
     #if xTODO
         CxAutoIpcMutex SL(_mutex);
@@ -104,7 +104,7 @@ CxFileLog::clear()
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxFileLog::remove()
+CxFileLog::remove() const
 {
     #if xTODO
         CxAutoIpcMutex SL(_mutex);
@@ -122,7 +122,7 @@ CxFileLog::remove()
 
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxFileLog::_removeIfFull()
+CxFileLog::_removeIfFull() const
 {
     #if xTODO
         CxAutoIpcMutex SL(_mutex);

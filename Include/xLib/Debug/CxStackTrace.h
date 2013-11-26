@@ -25,7 +25,7 @@ public:
     virtual        ~CxStackTrace() {}
         ///< destructor
 
-    void_t          get(std::vector<std::vec_tstring_t> *stack);
+    void_t          get(std::vector<std::vec_tstring_t> *stack) const;
         ///< get stack trace
     std::tstring_t  toString() xWARN_UNUSED_RV;
         ///< get stack trace with format output
