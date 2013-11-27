@@ -358,7 +358,7 @@ CxFile::locking(
     xTEST_NA(a_bytes);
 
 #if xOS_ENV_WIN
-    clong_t bytes = a_bytes;
+    clong_t     bytes = a_bytes;
 #else
     const off_t bytes = static_cast<off_t>( a_bytes );
 #endif
@@ -418,11 +418,15 @@ CxFile::setMode(
 
 #endif
 //-------------------------------------------------------------------------------------------------
-// NOTE: https://www.securecoding.cert.org/confluence/display/seccode/FIO19-C.+Do+not+use+fseek()+and+ftell()+to+compute+the+size+of+a+file
 inline longlong_t
 CxFile::size() const
 {
-#if xDEPRECIATE
+/**
+ * TODO: Do not use fseek() and ftell() to compute the size of a regular file
+ * https://www.securecoding.cert.org/confluence/display/seccode/FIO19-C.+Do+not+use+fseek()+and+ftell()+to+compute+the+size+of+a+file
+ */
+
+#if xTODO
     vFlush();
 
     xTSTAT_STRUCT stat = {0};
@@ -459,7 +463,7 @@ CxFile::resize(
     const off_t _size = static_cast<off_t>( a_size );
 #endif
 
-    int_t iRv = ::xCHSIZE(_nativeHandle(get()), _size);
+    int_t iRv = ::xCHSIZE(_nativeHandle( get() ), _size);
     xTEST_EQ(0, iRv);
     xTEST_EQ(a_size, size());
 }
@@ -1098,8 +1102,8 @@ CxFile::textWrite(
 
     xCHECK_DO(a_content.empty(), return);
 
-    size_t uiWriteLen = file.write((void_t *)&a_content.at(0), a_content.size());
-    xTEST_EQ(a_content.size(), uiWriteLen);
+    size_t writeLen = file.write((void_t *)&a_content.at(0), a_content.size());
+    xTEST_EQ(a_content.size(), writeLen);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -1156,9 +1160,9 @@ CxFile::textRead(
     xTEST_PTR(a_content);
 
     // if file empty
-    xCHECK_DO(0L == size(a_filePath), (*a_content).clear(); return);
+    xCHECK_DO(0L == size(a_filePath), a_content->clear(); return);
 
-    std::locale::global(std::locale());
+    std::locale::global( std::locale() );
 
     std::tifstream_t ifs(a_filePath.c_str());
     xTEST_EQ(true,  !! ifs);
@@ -1183,7 +1187,7 @@ CxFile::textRead(
     }
 
     // out
-    (*a_content).swap(msRv);
+    a_content->swap(msRv);
 
 #if xTODO
     bool_t             bRv = false;
@@ -1201,7 +1205,7 @@ CxFile::textRead(
         msRv.insert( std::pair<std::tstring_t, std::tstring_t>(lines.at(0), lines.at(1)) );
     }
 
-    //out
+    // out
     content.swap(msRv);
 #endif
 }
@@ -1218,7 +1222,7 @@ CxFile::textWrite(
     xTEST_EQ(false, a_separator.empty());
     xTEST_NA(a_content);
 
-    // TODO: if cmsFile.empty()
+    // TODO: if a_content.empty()
 
     CxFile file;
     file.create(a_filePath, omWrite, true);
@@ -1233,9 +1237,9 @@ CxFile::textWrite(
     std::tstring_t sRv;
 
     xFOREACH_CONST(TContent, it, content) {
-        sRv.append((*it).first);
+        sRv.append(it->first);
         sRv.append(separator);
-        sRv.append((*it).second);
+        sRv.append(it->second);
         sRv.append(CxConst::nl());
 
         xCHECK_DO(it != content.end(), sRv.append(CxConst::nl()));
@@ -1292,7 +1296,7 @@ CxFile::binWrite(
     xTEST_EQ(false, a_filePath.empty());
     xTEST_NA(a_content);
 
-    // TODO: if content.empty()
+    // TODO: if a_content.empty()
 
     CxFile file;
     file.create(a_filePath, omBinWrite, true);
