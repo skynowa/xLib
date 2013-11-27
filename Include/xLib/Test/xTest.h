@@ -82,7 +82,7 @@
 #elif xDEBUG_MODE_MSGBOX_PLAIN
     #define _xREPORT_TYPE CxErrorReport::rtMsgbox
 #elif xDEBUG_MODE_LOGGING_PLAIN
-    #define _xREPORT_TYPE CxErrorReport::rtLogging
+    #define _xREPORT_TYPE CxErrorReport::rtLog
 #endif
 
 #ifdef _xREPORT_TYPE
