@@ -157,13 +157,13 @@ CxDebugger::reportMake(
     culong_t lastError = CxLastError::get();
 
     switch (a_report.type()) {
-    case CxErrorReport::rtMsgboxPlain:
+    case CxErrorReport::rtMsgbox:
         _msgboxPlain(a_report);
         break;
-    case CxErrorReport::rtStdoutPlain:
+    case CxErrorReport::rtStdout:
         _stdoutPlain(a_report);
         break;
-    case CxErrorReport::rtLoggingPlain:
+    case CxErrorReport::rtLog:
         _loggingPlain(a_report);
         break;
     default:

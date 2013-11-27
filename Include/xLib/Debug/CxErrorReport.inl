@@ -83,13 +83,13 @@ CxErrorReport::CxErrorReport(
     _construct(a_type, a_var1, a_var2, var1Value, var2Value, a_exprSign, a_lastError, a_file,
         a_line, a_func, a_date, a_time, a_stackTrace, a_comment);
     switch (a_type) {
-    case rtMsgboxPlain:
+    case rtMsgbox:
         _initPlain();
         break;
-    case rtStdoutPlain:
+    case rtStdout:
         _initPlain();
         break;
-    case rtLoggingPlain:
+    case rtLog:
         _initPlain();
         break;
     default:
