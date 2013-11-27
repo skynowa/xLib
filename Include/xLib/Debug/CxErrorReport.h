@@ -20,10 +20,10 @@ public:
     enum ExType
         /// type
     {
-        rtUnknown,      ///< unknown
-        rtMsgboxPlain,  ///< as message box with plain text (GUI)
-        rtStdoutPlain,  ///< to std::cout with plain text
-        rtLoggingPlain, ///< to log with plain text
+        rtUnknown,  ///< unknown
+        rtMsgbox,   ///< as message box with plain text (GUI)
+        rtStdout,   ///< to std::cout with plain text
+        rtLog,      ///< to log with plain text
     };
 
                    template<class T>

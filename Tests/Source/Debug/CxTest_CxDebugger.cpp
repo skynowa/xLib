@@ -86,20 +86,20 @@ CxTest_CxDebugger::unit(
     xTEST_CASE("CxDebugger::reportMake", a_caseLoops)
     {
         const CxErrorReport::ExType crtType[] = {
-            CxErrorReport::rtMsgboxPlain,
-            CxErrorReport::rtStdoutPlain,
-            CxErrorReport::rtLoggingPlain
+            CxErrorReport::rtMsgbox,
+            CxErrorReport::rtStdout,
+            CxErrorReport::rtLog
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(crtType); ++ i) {
-            ulong_t ulLastError = CxLastError::get();
+            ulong_t lastError = CxLastError::get();
 
-            ulong_t val1 = 10;
-            ulong_t val2 = 20;
+            ulong_t val1 = 10UL;
+            ulong_t val2 = 20UL;
 
             CxErrorReport rpReport(crtType[i], xT("val1"), xT("val2"), val1, val2, xT("=="),
-                                   ulLastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME,
-                                   CxStackTrace().toString(), xT(""));
+                lastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().toString(),
+                xT(""));
 
             CxDebugger dbgDebugger;
 
