@@ -60,7 +60,6 @@ private:
     ulong_t        _sourceLine;    ///< source file line
     std::tstring_t _functionName;  ///< source function name
     std::tstring_t _expression;    ///< expression
-    std::tstring_t _exprSign;      ///< expression sign
 
 
     ulong_t        _lastError;     ///< system last error
