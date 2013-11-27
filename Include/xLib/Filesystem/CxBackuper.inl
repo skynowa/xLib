@@ -54,7 +54,7 @@ CxBackuper::fileExec(
         a_destFilePath->clear();
 
         bRv = CxFile::isExists(a_filePath);
-        xCHECK_DO(!bRv, xTHROW() << error_DestFileNotExists);
+        xCHECK_DO(!bRv, throw CxException() << error_DestFileNotExists);
 
         CxDir dest(a_destDirPath);
 
@@ -101,14 +101,14 @@ CxBackuper::fileExec(
         ulonglong_t fileSizeBytes  = 0ULL;
         fileSizeBytes = static_cast<ulonglong_t>( CxFile::size(a_filePath) );
 
-        xCHECK_DO(fileSizeBytes > totalFreeBytes, xTHROW() << error_NotEnoughFreeSpace);
+        xCHECK_DO(fileSizeBytes > totalFreeBytes, throw CxException() << error_NotEnoughFreeSpace);
     #else
         ulonglong_t fileSizeBytes = 0ULL;
         fileSizeBytes = static_cast<ulonglong_t>( CxFile::size(a_filePath) );
 
         CxVolume volume(a_destDirPath);
         bRv = volume.isSpaceEnough(fileSizeBytes);
-        xCHECK_DO(!bRv, xTHROW() << error_NotEnoughFreeSpace);
+        xCHECK_DO(!bRv, throw CxException() << error_NotEnoughFreeSpace);
     #endif
     }
 
@@ -122,17 +122,17 @@ CxBackuper::fileExec(
     // check for a valid backup
     {
         bRv = CxFile::isExists(backupFilePath);
-        xCHECK_DO(!bRv, xTHROW() << error_CopyingFail);
+        xCHECK_DO(!bRv, throw CxException() << error_CopyingFail);
 
         bRv = (CxFile::size(a_filePath) == CxFile::size(backupFilePath));
-        xCHECK_DO(!bRv, xTHROW() << error_CopyingFail);
+        xCHECK_DO(!bRv, throw CxException() << error_CopyingFail);
 
         bRv = (CxCrc32::calcFileFast(a_filePath) == CxCrc32::calcFileFast(backupFilePath));
-        xCHECK_DO(!bRv, xTHROW() << error_CopyingFail);
+        xCHECK_DO(!bRv, throw CxException() << error_CopyingFail);
     }
 
     // out
-    std::swap(*a_destFilePath, backupFilePath);
+    a_destFilePath->swap(backupFilePath);
 }
 //-------------------------------------------------------------------------------------------------
 
