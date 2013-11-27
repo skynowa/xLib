@@ -44,17 +44,17 @@ CxBackuper::fileExec(
     bool_t bRv = false;
 
     // errors
-    std::ctstring_t error_DestFileNotExists  = xT("CxBackuper - Destination file not exists");
-    std::ctstring_t error_NotEnoughFreeSpace = xT("CxBackuper - Not enough free space");
-    std::ctstring_t error_CopyingFail        = xT("CxBackuper - Copying fail");
-    std::ctstring_t error_Unknown            = xT("CxBackuper - Unknown error");
+    std::ctstring_t errorDestFileNotExists  = xT("CxBackuper - Destination file not exists");
+    std::ctstring_t errorNotEnoughFreeSpace = xT("CxBackuper - Not enough free space");
+    std::ctstring_t errorCopyingFail        = xT("CxBackuper - Copying fail");
+    std::ctstring_t errorUnknown            = xT("CxBackuper - Unknown error");
 
     // prepare
     {
         a_destFilePath->clear();
 
         bRv = CxFile::isExists(a_filePath);
-        xCHECK_DO(!bRv, throw CxException() << error_DestFileNotExists);
+        xCHECK_DO(!bRv, xTHROW_REPORT(errorDestFileNotExists));
 
         CxDir dest(a_destDirPath);
 
@@ -101,14 +101,14 @@ CxBackuper::fileExec(
         ulonglong_t fileSizeBytes  = 0ULL;
         fileSizeBytes = static_cast<ulonglong_t>( CxFile::size(a_filePath) );
 
-        xCHECK_DO(fileSizeBytes > totalFreeBytes, throw CxException() << error_NotEnoughFreeSpace);
+        xCHECK_DO(fileSizeBytes > totalFreeBytes, xTHROW_REPORT(errorNotEnoughFreeSpace));
     #else
         ulonglong_t fileSizeBytes = 0ULL;
         fileSizeBytes = static_cast<ulonglong_t>( CxFile::size(a_filePath) );
 
         CxVolume volume(a_destDirPath);
         bRv = volume.isSpaceEnough(fileSizeBytes);
-        xCHECK_DO(!bRv, throw CxException() << error_NotEnoughFreeSpace);
+        xCHECK_DO(!bRv, xTHROW_REPORT(errorNotEnoughFreeSpace));
     #endif
     }
 
@@ -122,13 +122,13 @@ CxBackuper::fileExec(
     // check for a valid backup
     {
         bRv = CxFile::isExists(backupFilePath);
-        xCHECK_DO(!bRv, throw CxException() << error_CopyingFail);
+        xCHECK_DO(!bRv, xTHROW_REPORT(errorCopyingFail));
 
         bRv = (CxFile::size(a_filePath) == CxFile::size(backupFilePath));
-        xCHECK_DO(!bRv, throw CxException() << error_CopyingFail);
+        xCHECK_DO(!bRv, xTHROW_REPORT(errorCopyingFail));
 
         bRv = (CxCrc32::calcFileFast(a_filePath) == CxCrc32::calcFileFast(backupFilePath));
-        xCHECK_DO(!bRv, throw CxException() << error_CopyingFail);
+        xCHECK_DO(!bRv, xTHROW_REPORT(errorCopyingFail));
     }
 
     // out
