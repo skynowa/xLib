@@ -117,7 +117,7 @@ CxDir::create() const
     BOOL blRv = ::CreateDirectory(dirPath().c_str(), NULL);
     xTEST_DIFF(FALSE, blRv);
 #else
-    int_t iRv = ::mkdir(dirPath().c_str(), 0755);
+    int_t iRv = ::mkdir(dirPath().c_str(), S_IRWXU | S_IRGRP |  S_IXGRP | S_IROTH | S_IXOTH);
     xTEST_DIFF(- 1, iRv);
 #endif
 
