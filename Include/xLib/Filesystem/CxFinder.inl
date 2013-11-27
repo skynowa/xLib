@@ -176,6 +176,7 @@ CxFinder::moveNext()
         xFOREVER {
             CxLastError::reset();
 
+            // TODO: readdir -> readdir_r
             _enrty.data = ::readdir(_enrty.handle);
             if (NULL == _enrty.data) {
                 xCHECK_RET(CxLastError::isSuccess(), false);
@@ -221,7 +222,7 @@ CxFinder::close()
         xSTRUCT_ZERO(_enrty.data);
     #else
         _enrty.handle = NULL;
-        _enrty.data = NULL;
+        _enrty.data   = NULL;
     #endif
     }
 }
@@ -328,9 +329,8 @@ CxFinder::_moveFirst()
     _isMoveFirst = false;
 
 #if xOS_ENV_WIN
-    _enrty.handle = ::FindFirstFile(
-                            (rootDirPath() + CxConst::slash() + shellFilter()).c_str(),
-                            &_enrty.data);
+    _enrty.handle = ::FindFirstFile((rootDirPath() + CxConst::slash() + shellFilter()).c_str(),
+        &_enrty.data);
     xCHECK_RET(xNATIVE_HANDLE_INVALID == _enrty.handle, false);
 #else
     _enrty.handle = ::opendir(rootDirPath().c_str());
