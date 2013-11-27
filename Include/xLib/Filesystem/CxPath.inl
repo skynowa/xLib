@@ -869,12 +869,12 @@ CxPath::brief(
     xTEST_LESS(size_t(0), a_maxSize);
 
     // util function
-    struct _SFunctor
+    struct _Functor
     {
         static void_t
         slashesMake(
             std::tstring_t &a_str,
-            size_t         &a_num
+            size_t         *a_num
         )
         {
             size_t index = 0;
@@ -885,34 +885,34 @@ CxPath::brief(
                 a_str.erase(0, pos + CxConst::slash().size());
 
                 xCHECK_DO(std::tstring_t::npos != pos,  ++ index);
-                xCHECK_DO(index == a_num && 0 != a_num, break);
-                xCHECK_DO(std::tstring_t::npos == pos,  break);
+                xCHECK_DO(index == *a_num && 0 != *a_num, break);
+                xCHECK_DO(std::tstring_t::npos == pos,    break);
             }
 
-            a_num = index;
+            *a_num = index;
         }
     };
 
 
-    std::tstring_t sRv   = filePath();
-    std::tstring_t sPath = filePath();
-    size_t         num = 0;
+    std::tstring_t sRv  = filePath();
+    std::tstring_t path = filePath();
+    size_t         num  = 0;
 
-    _SFunctor::slashesMake(sPath, num);
+    _Functor::slashesMake(path, &num);
 
     while (sRv.size() > a_maxSize && num > 2) {
-        sPath = sRv;
+        path = sRv;
 
-        std::size_t uiNumNew = num / 2;
+        std::size_t numNew = num / 2;
 
-        _SFunctor::slashesMake(sPath, uiNumNew);
+        _Functor::slashesMake(path, &numNew);
 
-        sRv.erase(sRv.find(sPath), sPath.size());
+        sRv.erase(sRv.find(path), path.size());
 
-        uiNumNew = 2;
-        _SFunctor::slashesMake(sPath, uiNumNew);
+        numNew = 2;
+        _Functor::slashesMake(path, &numNew);
 
-        sRv.append(CxConst::dot3() + CxConst::slash() + sPath);
+        sRv.append(CxConst::dot3() + CxConst::slash() + path);
 
         -- num;
     }
@@ -952,9 +952,9 @@ CxPath::maxSize()
     #if defined(PATH_MAX)
         uiRv = PATH_MAX;
     #else
-        culong_t savedError     = 0UL;
-        long_t        liRv      = - 1L;
-        ulong_t       lastError = 0UL;
+        culong_t savedError = 0UL;
+        long_t   liRv       = - 1L;
+        ulong_t  lastError  = 0UL;
 
         CxLastError::set(savedError);
 
@@ -963,12 +963,12 @@ CxPath::maxSize()
         xTEST_EQ(true, - 1L == liRv && 0UL != savedError);
 
         if (- 1L == liRv && savedError == lastError) {
-            //system does not have a limit for the requested resource
+            // system does not have a limit for the requested resource
             std::csize_t defaultSize = 1024;
 
             uiRv = defaultSize;
         } else {
-            //relative root
+            // relative root
             uiRv = static_cast<size_t>( liRv + 1 );
         }
     #endif
@@ -1006,7 +1006,7 @@ CxPath::nameMaxSize()
         xTEST_EQ(true, - 1L == liRv && 0UL != savedError);
 
         if (- 1L == liRv && savedError == lastError) {
-            //system does not have a limit for the requested resource
+            // system does not have a limit for the requested resource
             std::csize_t defaultSize = 1024;
 
             uiRv = defaultSize;
@@ -1035,12 +1035,10 @@ CxPath::proc(
         CxDir proc(xT("/proc"));
 
         bRv = proc.isExists();
-        xCHECK_DO(!bRv,
-                  CxTracer() << xT("::: xLib: warning (/proc dir not mount) :::"); return);
+        xCHECK_DO(!bRv, CxTracer() << xT("::: xLib: warning (/proc dir not mount) :::"); return);
 
         bRv = proc.isEmpty();
-        xCHECK_DO(bRv,
-                  CxTracer() << xT("::: xLib: warning (/proc dir is empty) :::");  return);
+        xCHECK_DO(bRv, CxTracer() << xT("::: xLib: warning (/proc dir is empty) :::");  return);
     }
 
     std::vec_tstring_t vsRv;
@@ -1053,14 +1051,14 @@ CxPath::proc(
     xTEST_EQ(false, ifs.eof());
 
     for ( ; !ifs.eof(); ) {
-        std::tstring_t sLine;
+        std::tstring_t line;
 
-        std::getline(ifs, sLine);
-        vsRv.push_back(sLine);
+        std::getline(ifs, line);
+        vsRv.push_back(line);
     }
 
     // out
-    (*a_data).swap(vsRv);
+    a_data->swap(vsRv);
 }
 
 #endif
@@ -1081,14 +1079,14 @@ CxPath::procValue(
 
     xFOREACH_CONST (std::vec_tstring_t, it, procFile) {
         // TODO: no case search
-        std::csize_t pos = (*it).find(a_data);
+        std::csize_t pos = it->find(a_data);
         xCHECK_DO(std::tstring_t::npos == pos, continue);
 
         // parse value
-        std::csize_t delimPos = (*it).find(xT(":"));
+        std::csize_t delimPos = it->find(xT(":"));
         xTEST_DIFF(std::string::npos, delimPos);
 
-        sRv = (*it).substr(delimPos + 1);
+        sRv = it->substr(delimPos + 1);
         sRv = CxString::trimSpace(sRv);
 
         break;
