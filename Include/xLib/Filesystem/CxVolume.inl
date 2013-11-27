@@ -75,7 +75,7 @@ CxVolume::type() const
             bool_t bRv = CxString::compareNoCase(volumePath(), std::tstring_t(mountPoint->mnt_dir));
             xCHECK_DO(!bRv, continue);
 
-            // TODO: CxVolume::dtGetType
+            // TODO: CxVolume::type
             dtRv = (NULL == mountPoint->mnt_type) ? dtUnknown : dtOther;
 
             break;
@@ -84,7 +84,7 @@ CxVolume::type() const
         int_t iRv = ::endmntent(file);
         xTEST_EQ(1, iRv);
     #elif xOS_FREEBSD
-        // TODO: CxVolume::dtGetType
+        // TODO: CxVolume::type
     #endif
 #elif xOS_ENV_MAC
     xNOT_IMPLEMENTED
@@ -189,7 +189,7 @@ CxVolume::mount(
     xTEST_EQ(false, a_destPath.empty());
 
 #if   xOS_ENV_WIN
-    // TODO: CxVolume::bMount - is it correct?
+    // TODO: CxVolume::mount - is it correct?
     NETRESOURCE netResource = {0};
 
     netResource.dwScope       = RESOURCE_GLOBALNET;
@@ -348,7 +348,7 @@ CxVolume::paths(
     }
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        struct _SMounts
+        struct _Mounts
         {
             std::tstring_t device;
             std::tstring_t destination;
@@ -362,7 +362,7 @@ CxVolume::paths(
         xTEST_EQ(true, procMounts.good());
 
         for ( ; !procMounts.eof(); ) {
-            _SMounts mounts;
+            _Mounts mounts;
 
             procMounts >> mounts.device  >> mounts.destination >> mounts.fsType >>
                           mounts.options >> mounts.dump        >> mounts.pass;
