@@ -447,11 +447,25 @@ CxTest_xDefines::unit(
         }
     }
 
-    //--------------------------------------------------
-    // etc
     xTEST_CASE("xDefines::etc", a_caseLoops)
     {
 
+    }
+
+    xTEST_CASE("xTHROW_REPORT", a_caseLoops)
+    {
+        try {
+            xTHROW_REPORT
+        }
+        catch (const CxException &a_ex) {
+            CxTracer() << xTRACE_VAR(a_ex.what());
+        }
+        catch (const std::exception &a_ex) {
+            xTEST_FAIL;
+        }
+        catch (...) {
+            xTEST_FAIL;
+        }
     }
 }
 //------------------------------------------------------------------------------
