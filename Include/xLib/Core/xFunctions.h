@@ -185,7 +185,7 @@
     #elif xCOMPILER_CODEGEAR
         #define xTSTAT          _tstat
     #elif xCOMPILER_GNUC
-        #define xTSTAT          stat
+        #define xTSTAT          lstat
     #else
         #define xTSTAT          stat
     #endif
