@@ -26,13 +26,17 @@ public:
         rtLog,      ///< to log with plain text
     };
 
+                   CxErrorReport(culong_t &lastError, std::ctstring_t &file, culong_t &line,
+                       std::ctstring_t &func, std::ctstring_t &date, std::ctstring_t &time,
+                       std::ctstring_t &stackTrace);
+        ///< constructor (for CxException)
                    template<class T>
                    CxErrorReport(const ExType &type, std::ctstring_t &var1, std::ctstring_t &var2,
                        const T &var1ValueT, const T &var2ValueT, std::ctstring_t &exprSign,
                        culong_t &lastError, std::ctstring_t &file, culong_t &line,
                        std::ctstring_t &func, std::ctstring_t &date, std::ctstring_t &time,
                        std::ctstring_t &stackTrace, std::ctstring_t &comment);
-        ///< constructor
+        ///< constructor (for CxDebugger)
     virtual       ~CxErrorReport() {}
         ///< destructor
 

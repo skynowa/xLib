@@ -741,15 +741,18 @@
     ///< infinite loop
 
 //-------------------------------------------------------------------------------------------------
-// xTHROW, xTRY, xCATCH_ALL
-#define xTHROW \
-    throw CxException
+// xTRY, xCATCH_ALL
+#define xTHROW_REPORT \
+    { \
+        culong_t _lastError = CxLastError::get(); \
+        CxErrorReport report(_lastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, \
+            CxStackTrace().toString()); \
+        throw CxException() << report.toString(); \
+    }
     ///< like throw
-
 #define xTRY \
     try
     ///< like try
-
 #define xCATCH_ALL \
     catch (const CxException &a_ex) {        \
         xTEST_MSG_FAIL(a_ex.what());         \

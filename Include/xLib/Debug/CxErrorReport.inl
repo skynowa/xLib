@@ -24,6 +24,42 @@ xNAMESPACE_ANONYM_END
 xNAMESPACE_BEGIN(NxLib)
 
 //-------------------------------------------------------------------------------------------------
+inline
+CxErrorReport::CxErrorReport(
+    culong_t        &a_lastError,
+    std::ctstring_t &a_file,
+    culong_t        &a_line,
+    std::ctstring_t &a_func,
+    std::ctstring_t &a_date,
+    std::ctstring_t &a_time,
+    std::ctstring_t &a_stackTrace
+) :
+    _type          (rtUnknown),
+    _report        (),
+    _program       (),
+    _processId     (0UL),
+    _threadId      (0UL),
+    _fileSize      (),
+    _sourceFile    (),
+    _sourceLine    (0UL),
+    _functionName  (),
+    _expression    (),
+    _exprSign      (),
+    _lastError     (0UL),
+    _lastErrorStr  (),
+    _currentDate   (),
+    _buildDate     (),
+    _buildType     (),
+    _osVersion     (),
+    _osArchitecture(),
+    _stackTrace    (),
+    _comment       ()
+{
+    _construct(rtStdout, "", "", "", "", "", a_lastError, a_file, a_line, a_func, a_date, a_time,
+        a_stackTrace, "");
+    _initPlain();
+}
+//-------------------------------------------------------------------------------------------------
 template<class T>
 CxErrorReport::CxErrorReport(
     const ExType    &a_type,
@@ -152,8 +188,8 @@ CxErrorReport::_construct(
     _sourceFile     = CxPath( CxPath(a_file).brief(::reportWidthMax) ).toUnix(false);
     _sourceLine     = a_line;
     _functionName   = a_func;
-    _expression     = CxString::format(xT("%s (%s) %s %s (%s)"), a_var1.c_str(), a_var1Value.c_str(),
-        a_exprSign.c_str(), a_var2.c_str(), a_var2Value.c_str());
+    _expression     = CxString::format(xT("%s (%s) %s %s (%s)"), a_var1.c_str(),
+        a_var1Value.c_str(), a_exprSign.c_str(), a_var2.c_str(), a_var2Value.c_str());
     _exprSign       = a_exprSign;
     _lastError      = a_lastError;
     _lastErrorStr   = CxLastError::format(a_lastError);
