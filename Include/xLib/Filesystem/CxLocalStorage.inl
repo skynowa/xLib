@@ -38,7 +38,7 @@ CxLocalStorage::CxLocalStorage(
 ) :
     _separator(CxConst::equal()),
     _fileExt  (xT("ini")),
-    _filePath  (),
+    _filePath (),
     _ini      ()
 {
     xTEST_EQ(false, _separator.empty());
@@ -337,9 +337,9 @@ CxLocalStorage::_read(
     if (_ini.end() == it) {
         _write(a_key, a_defaultValue);
 
-        (*a_value) = a_defaultValue;
+        *a_value = a_defaultValue;
     } else {
-        (*a_value) = (*it).second;
+        *a_value = it->second;
     }
 }
 //-------------------------------------------------------------------------------------------------
@@ -357,7 +357,7 @@ CxLocalStorage::_write(
     if (_ini.end() == it) {
         _ini.insert( std::pair<std::tstring_t, std::tstring_t>(a_key, a_value) );
     } else {
-        (*it).second = a_value;
+        it->second = a_value;
     }
 
     // write to file
