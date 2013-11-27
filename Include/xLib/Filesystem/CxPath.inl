@@ -509,12 +509,11 @@ CxPath::isNameValid(
     // for example, NUL.txt is not recommended.
     {
         std::ctstring_t reservedNames[] = {
-            xT("CON"),  xT("PRN"),  xT("AUX"),  xT("NUL"),
+            xT("CON"),  xT("PRN"),  xT("AUX"),  xT("NUL"),  xT("CLOCK$"),
             xT("COM0"), xT("COM1"), xT("COM2"), xT("COM3"), xT("COM4"),
             xT("COM5"), xT("COM6"), xT("COM7"), xT("COM8"), xT("COM9"),
             xT("LPT0"), xT("LPT1"), xT("LPT2"), xT("LPT3"), xT("LPT4"),
-            xT("LPT5"), xT("LPT6"), xT("LPT7"), xT("LPT8"), xT("LPT9"),
-            xT("CLOCK$")
+            xT("LPT5"), xT("LPT6"), xT("LPT7"), xT("LPT8"), xT("LPT9")
         };
 
         std::ctstring_t baseFileName = CxPath(a_fileName).removeExt();
@@ -560,15 +559,14 @@ CxPath::isNameValid(
 //-------------------------------------------------------------------------------------------------
 inline bool_t
 CxPath::isAbsolute() const {
-    xCHECK_RET(true                    == filePath().empty(), false);
-    xCHECK_RET(CxConst::slash().at(0) == filePath().at(0),   true);
+    xCHECK_RET(filePath().empty(),                         false);
+    xCHECK_RET(CxConst::slash().at(0) == filePath().at(0), true);
 
 #if xOS_ENV_WIN
     xCHECK_RET(1 == filePath().size(), false);
-    xCHECK_RET(CxChar::isAlpha(filePath().at(0)) &&
-        CxConst::colon().at(0) == filePath().at(1), true);
+    xCHECK_RET(CxChar::isAlpha(filePath().at(0)) && CxConst::colon().at(0) == filePath().at(1), true);
 #else
-    xNA;
+    xNA
 #endif
 
     return false;
@@ -583,24 +581,17 @@ CxPath::setNameValid(
     xTEST_NA(a_fileName);
 
     std::tstring_t sRv(a_fileName);
-    bool_t         bRv = false;
 
     //-------------------------------------
     // check: empty name
-    {
-        bRv = sRv.empty();
-        if (bRv) {
-            return std::tstring_t();
-        }
+    if ( sRv.empty() ) {
+        return std::tstring_t();
     }
 
     //-------------------------------------
     // check: name size
-    {
-        bRv = (xNAME_MAX < sRv.size());
-        if (bRv) {
-            sRv.resize(xNAME_MAX);
-        }
+    if (xNAME_MAX < sRv.size()) {
+        sRv.resize(xNAME_MAX);
     }
 
 #if   xOS_ENV_WIN
@@ -635,8 +626,7 @@ CxPath::setNameValid(
         std::ctstring_t exceptedChars = xT("<>:\"/\\|?*");
 
         std::size_t pos = sRv.find_first_of(exceptedChars);
-        bRv = (std::tstring_t::npos != pos);
-        if (bRv) {
+        if (std::tstring_t::npos != pos) {
             while (std::tstring_t::npos != pos) {
                 sRv.erase(pos, 1);
                 pos = sRv.find_first_of(exceptedChars, pos);
@@ -654,8 +644,7 @@ CxPath::setNameValid(
         std::tstring_t::const_iterator cit;
 
         cit = std::find_if(sRv.begin(), sRv.end(), CxChar::isControl);
-        bRv = (cit != sRv.end());
-        if (bRv) {
+        if (cit != sRv.end()) {
             std::tstring_t::iterator itNewEnd;
 
             itNewEnd = std::remove_if(sRv.begin(), sRv.end(), CxChar::isControl);
@@ -674,19 +663,17 @@ CxPath::setNameValid(
     // for example, NUL.txt is not recommended.
     {
         std::ctstring_t reservedNames[] = {
-            xT("CON"),  xT("PRN"),  xT("AUX"),  xT("NUL"),
+            xT("CON"),  xT("PRN"),  xT("AUX"),  xT("NUL"),  xT("CLOCK$"),
             xT("COM0"), xT("COM1"), xT("COM2"), xT("COM3"), xT("COM4"),
             xT("COM5"), xT("COM6"), xT("COM7"), xT("COM8"), xT("COM9"),
             xT("LPT0"), xT("LPT1"), xT("LPT2"), xT("LPT3"), xT("LPT4"),
-            xT("LPT5"), xT("LPT6"), xT("LPT7"), xT("LPT8"), xT("LPT9"),
-            xT("CLOCK$")
+            xT("LPT5"), xT("LPT6"), xT("LPT7"), xT("LPT8"), xT("LPT9")
         };
 
         std::ctstring_t baseFileName = CxPath(sRv).removeExt();
 
         for (size_t i = 0; i < xARRAY_SIZE(reservedNames); ++ i) {
-            bRv = CxString::compareNoCase(baseFileName, reservedNames[i]);
-            if (bRv) {
+            if ( CxString::compareNoCase(baseFileName, reservedNames[i]) ) {
                 return std::tstring_t();
             }
         }
@@ -705,8 +692,7 @@ CxPath::setNameValid(
         xTEST_EQ(size_t(2), exceptedChars.size());
 
         std::size_t pos = a_fileName.find_first_of(exceptedChars);
-        bRv = (std::tstring_t::npos != pos);
-        if (bRv) {
+        if (std::tstring_t::npos != pos) {
             while (std::tstring_t::npos != pos) {
                 sRv.erase(pos, 1);
                 pos = sRv.find_first_of(exceptedChars, pos);
@@ -725,8 +711,7 @@ CxPath::setNameValid(
         std::ctstring_t exceptedChars = xT("/:");
 
         std::size_t pos = a_fileName.find_first_of(exceptedChars);
-        bRv = (std::tstring_t::npos != pos);
-        if (bRv) {
+        if (std::tstring_t::npos != pos) {
             while (std::tstring_t::npos != pos) {
                 sRv.erase(pos, 1);
                 pos = sRv.find_first_of(exceptedChars, pos);
@@ -796,10 +781,12 @@ CxPath::toNative(
     }
 
 #if xOS_ENV_WIN
-    sRv = CxString::replaceAll(sRv, CxConst::unixSlash(), CxConst::slash());
+    std::ctstring_t slash = CxConst::unixSlash();
 #else
-    sRv = CxString::replaceAll(sRv, CxConst::winSlash(),  CxConst::slash());
+    std::ctstring_t slash = CxConst::winSlash();
 #endif
+
+    sRv = CxString::replaceAll(sRv, slash, CxConst::slash());
 
     return sRv;
 }
