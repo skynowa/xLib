@@ -44,7 +44,6 @@ CxErrorReport::CxErrorReport(
     _sourceLine    (0UL),
     _functionName  (),
     _expression    (),
-    _exprSign      (),
     _lastError     (0UL),
     _lastErrorStr  (),
     _currentDate   (),
@@ -87,7 +86,6 @@ CxErrorReport::CxErrorReport(
     _sourceLine    (0UL),
     _functionName  (),
     _expression    (),
-    _exprSign      (),
     _lastError     (0UL),
     _lastErrorStr  (),
     _currentDate   (),
@@ -190,7 +188,6 @@ CxErrorReport::_construct(
     _functionName   = a_func;
     _expression     = CxString::format(xT("%s (%s) %s %s (%s)"), a_var1.c_str(),
         a_var1Value.c_str(), a_exprSign.c_str(), a_var2.c_str(), a_var2Value.c_str());
-    _exprSign       = a_exprSign;
     _lastError      = a_lastError;
     _lastErrorStr   = CxLastError::format(a_lastError);
 
