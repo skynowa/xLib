@@ -44,10 +44,10 @@ CxBackuper::fileExec(
     bool_t bRv = false;
 
     // errors
-    std::ctstring_t error_DestFileNotExists  = xT("Destination file not exists");
-    std::ctstring_t error_NotEnoughFreeSpace = xT("Not enough free space");
-    std::ctstring_t error_CopyingFail        = xT("Copying fail");
-    std::ctstring_t error_Unknown            = xT("Unknown error");
+    std::ctstring_t error_DestFileNotExists  = xT("CxBackuper - Destination file not exists");
+    std::ctstring_t error_NotEnoughFreeSpace = xT("CxBackuper - Not enough free space");
+    std::ctstring_t error_CopyingFail        = xT("CxBackuper - Copying fail");
+    std::ctstring_t error_Unknown            = xT("CxBackuper - Unknown error");
 
     // prepare
     {
