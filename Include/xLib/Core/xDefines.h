@@ -741,12 +741,13 @@
     ///< infinite loop
 
 //-------------------------------------------------------------------------------------------------
-// xTRY, xCATCH_ALL
+// xTHROW_REPORT, xTRY, xCATCH_ALL
 #define xTHROW_REPORT \
     { \
-        culong_t _lastError = CxLastError::get(); \
-        CxErrorReport report(_lastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, \
-            CxStackTrace().toString()); \
+        culong_t        lastError  = CxLastError::get(); \
+        std::cstring_t &stackTrace = CxStackTrace().toString(); \
+        CxErrorReport   report(lastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, stackTrace); \
+        \
         throw CxException() << report.toString(); \
     }
     ///< like throw
