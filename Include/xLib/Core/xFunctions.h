@@ -228,7 +228,7 @@
 #elif xCOMPILER_CODEGEAR
     #define xLOCKING            locking
 #elif xCOMPILER_GNUC
-    #define xLOCKING            lockf   //-- locking
+    #define xLOCKING            lockf
 #else
     #define xLOCKING            locking
 #endif
