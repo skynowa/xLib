@@ -81,7 +81,7 @@
     #elif xCOMPILER_CODEGEAR
         #define xTSTAT          _tstat
     #elif xCOMPILER_GNUC
-        #define xTSTAT          _wstat
+        #define xTSTAT          _wlstat
     #else
         #define xTSTAT          _wstat
     #endif
