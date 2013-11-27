@@ -769,21 +769,21 @@
 
 //-------------------------------------------------------------------------------------------------
 // class disallows
-#define xNO_COPY(class_name) \
+#define xNO_COPY(className) \
     private: \
-        class_name(const class_name &);
+        className(const className &);
     ///< disallow copy
-#define xNO_ASSIGN(class_name) \
+#define xNO_ASSIGN(className) \
     private: \
-        class_name & operator = (const class_name &);
+        className & operator = (const className &);
     ///< disallow assign
-#define xNO_COPY_ASSIGN(class_name) \
-    xNO_COPY(class_name) \
-    xNO_ASSIGN(class_name)
+#define xNO_COPY_ASSIGN(className) \
+    xNO_COPY(className) \
+    xNO_ASSIGN(className)
     ///< disallow copy and assign
-#define xNO_INSTANCE(class_name) \
+#define xNO_INSTANCE(className) \
     private: \
-        class_name();
+        className();
     ///< disallow make instance
 #define xNO_ARRAY_HEAP \
     private: \
