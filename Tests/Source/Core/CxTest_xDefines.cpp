@@ -455,7 +455,7 @@ CxTest_xDefines::unit(
     xTEST_CASE("xTHROW_REPORT", a_caseLoops)
     {
         try {
-            xTHROW_REPORT
+            xTHROW_REPORT("test xTHROW_REPORT message");
         }
         catch (const CxException &a_ex) {
             CxTracer() << xTRACE_VAR(a_ex.what());

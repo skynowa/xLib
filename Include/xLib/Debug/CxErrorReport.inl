@@ -32,7 +32,8 @@ CxErrorReport::CxErrorReport(
     std::ctstring_t &a_func,
     std::ctstring_t &a_date,
     std::ctstring_t &a_time,
-    std::ctstring_t &a_stackTrace
+    std::ctstring_t &a_stackTrace,
+    std::ctstring_t &a_comment
 ) :
     _type          (rtUnknown),
     _report        (),
@@ -55,7 +56,7 @@ CxErrorReport::CxErrorReport(
     _comment       ()
 {
     _construct(rtStdout, "", "", "", "", "", a_lastError, a_file, a_line, a_func, a_date, a_time,
-        a_stackTrace, "");
+        a_stackTrace, a_comment);
     _initPlain();
 }
 //-------------------------------------------------------------------------------------------------

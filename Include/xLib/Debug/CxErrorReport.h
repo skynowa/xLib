@@ -28,7 +28,7 @@ public:
 
                    CxErrorReport(culong_t &lastError, std::ctstring_t &file, culong_t &line,
                        std::ctstring_t &func, std::ctstring_t &date, std::ctstring_t &time,
-                       std::ctstring_t &stackTrace);
+                       std::ctstring_t &stackTrace, std::ctstring_t &comment);
         ///< constructor (for CxException)
                    template<class T>
                    CxErrorReport(const ExType &type, std::ctstring_t &var1, std::ctstring_t &var2,

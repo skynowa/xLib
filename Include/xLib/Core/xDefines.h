@@ -742,11 +742,11 @@
 
 //-------------------------------------------------------------------------------------------------
 // xTHROW_REPORT, xTRY, xCATCH_ALL
-#define xTHROW_REPORT \
+#define xTHROW_REPORT(msg) \
     { \
         culong_t        lastError  = CxLastError::get(); \
         std::cstring_t &stackTrace = CxStackTrace().toString(); \
-        CxErrorReport   report(lastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, stackTrace); \
+        CxErrorReport   report(lastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, stackTrace, msg); \
         \
         throw CxException() << report.toString(); \
     }
