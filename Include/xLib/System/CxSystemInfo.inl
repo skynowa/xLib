@@ -609,7 +609,7 @@ CxSystemInfo::cpuVendor() const
     #elif xOS_FREEBSD
         // Use gcc 4.4 provided cpuid intrinsic
         // 32 bit fpic requires ebx be preserved
-        struct _SFunctor
+        struct _Functor
         {
         #if (defined(__pic__) || defined(__APPLE__)) && defined(__i386__)
             static inline void_t
@@ -645,7 +645,7 @@ CxSystemInfo::cpuVendor() const
 
         int_t cpuInfo[4] = {0};
 
-        (void_t)_SFunctor::__cpuid(cpuInfo, 0);
+        (void_t)_Functor::__cpuid(cpuInfo, 0);
 
         cpuInfo[0] = cpuInfo[1];  // Reorder output
         cpuInfo[1] = cpuInfo[3];

@@ -166,7 +166,7 @@ CxIpcSemaphore::wait(
     DWORD dwRv = ::WaitForSingleObject(_handle.get(), a_timeoutMsec);
     xTEST_EQ(WAIT_OBJECT_0, dwRv);
 #elif xOS_ENV_UNIX
-    struct _SFunctor
+    struct _Functor
     {
         static void_t
         timespecAddMsec(
@@ -197,7 +197,7 @@ CxIpcSemaphore::wait(
         iRv = ::clock_gettime(CLOCK_REALTIME, &tmsTimeout);
         xTEST_DIFF(- 1, iRv);
 
-        (void_t)_SFunctor::timespecAddMsec(&tmsTimeout, a_timeoutMsec);
+        (void_t)_Functor::timespecAddMsec(&tmsTimeout, a_timeoutMsec);
     }
 
 #if 0

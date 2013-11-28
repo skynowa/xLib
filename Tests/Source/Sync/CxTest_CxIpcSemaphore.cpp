@@ -17,7 +17,7 @@ CxTest_CxIpcSemaphore::unit(
     culonglong_t &a_caseLoops
 )
 {
-    struct _SFunctor
+    struct _Functor
     {
     #if   xOS_ENV_WIN
         static uint_t   xSTDCALL
@@ -51,7 +51,7 @@ CxTest_CxIpcSemaphore::unit(
     semSemaphore.create(4, xT("sema_name"));
 
 #if   xOS_ENV_WIN
-    uintptr_t puiRv = ::_beginthreadex(NULL, 0U, &_SFunctor::uiJob, &semSemaphore, 0U, NULL);
+    uintptr_t puiRv = ::_beginthreadex(NULL, 0U, &_Functor::uiJob, &semSemaphore, 0U, NULL);
     #if xARCH_X86
         xTEST_DIFF(uintptr_t(0), puiRv);
     #else
@@ -60,7 +60,7 @@ CxTest_CxIpcSemaphore::unit(
 #elif xOS_ENV_UNIX
     pthread_t id = 0UL;
 
-    int_t iRv = ::pthread_create(&id, NULL, &_SFunctor::uiJob, &semSemaphore);
+    int_t iRv = ::pthread_create(&id, NULL, &_Functor::uiJob, &semSemaphore);
     xTEST_EQ(0, iRv);
 #endif
 
