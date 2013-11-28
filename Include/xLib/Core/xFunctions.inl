@@ -62,7 +62,7 @@ getTimeOfDay(
 inline std::clock_t
 clock()
 {
-    rusage ruUsage = {{0}};
+    rusage ruUsage; xSTRUCT_ZERO(ruUsage);
 
     int_t iRv = ::getrusage(RUSAGE_SELF, &ruUsage);
     if (iRv == - 1) {
