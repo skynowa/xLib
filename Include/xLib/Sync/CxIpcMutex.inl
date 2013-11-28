@@ -110,7 +110,7 @@ CxIpcMutex::lock(
     xTEST_EQ(WAIT_OBJECT_0, ulRv);
     xTEST_DIFF(WAIT_ABANDONED, ulRv);
 #elif xOS_ENV_UNIX
-    struct _SFunctor
+    struct _Functor
     {
         static void_t
         timespecAddMsec(
@@ -141,7 +141,7 @@ CxIpcMutex::lock(
         iRv = ::clock_gettime(CLOCK_REALTIME, &timeoutMsec);
         xTEST_DIFF(- 1, iRv);
 
-        (void_t)_SFunctor::timespecAddMsec(&timeoutMsec, a_timeoutMsec);
+        (void_t)_Functor::timespecAddMsec(&timeoutMsec, a_timeoutMsec);
     }
 
     while (- 1 == (iRv = ::sem_timedwait(_handle, &timeoutMsec)) && (EINTR == errno)) {
