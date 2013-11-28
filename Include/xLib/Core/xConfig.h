@@ -97,11 +97,11 @@
     ///<    1 - stop executing on dialog prompt, wait for user choice
 
 // log mode (only one mode can be activated)
-#define xDEBUG_MODE_MSGBOX_PLAIN        0
+#define xDEBUG_MODE_MSGBOX              0
     ///< debug mode "message box with plain text"
-#define xDEBUG_MODE_STDOUT_PLAIN        1
+#define xDEBUG_MODE_STDOUT              1
     ///< debug mode "std::out with plain text"
-#define xDEBUG_MODE_LOGGING_PLAIN       0
+#define xDEBUG_MODE_LOG                 0
     ///< debug mode "logging with plain text"
 #define xDEBUG_MODE_NO                  0
     ///< debug mode "no debugging"

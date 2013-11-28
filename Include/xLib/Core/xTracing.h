@@ -118,12 +118,12 @@
 
     //--------------------------------------------------
     // debug mode
-    #if   xDEBUG_MODE_MSGBOX_PLAIN
-        #pragma message("xLib: xDEBUG_MODE_MSGBOX_PLAIN")
-    #elif xDEBUG_MODE_STDOUT_PLAIN
-        #pragma message("xLib: xDEBUG_MODE_STDOUT_PLAIN")
-    #elif xDEBUG_MODE_LOGGING_PLAIN
-        #pragma message("xLib: xDEBUG_MODE_LOGGING_PLAIN")
+    #if   xDEBUG_MODE_MSGBOX
+        #pragma message("xLib: xDEBUG_MODE_MSGBOX")
+    #elif xDEBUG_MODE_STDOUT
+        #pragma message("xLib: xDEBUG_MODE_STDOUT")
+    #elif xDEBUG_MODE_LOG
+        #pragma message("xLib: xDEBUG_MODE_LOG")
     #elif xDEBUG_MODE_NO
         #pragma message("xLib: xDEBUG_MODE_NO")
     #else
