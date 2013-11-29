@@ -62,7 +62,7 @@ CxFile::create(
 
     // create, open file
     {
-        std::FILE *file = ::xTFOPEN(a_filePath.c_str(), _openMode(a_mode).c_str());
+        std::FILE *file = std::xTFOPEN(a_filePath.c_str(), _openMode(a_mode).c_str());
         xTEST_PTR(file);
 
         _file     = file;
@@ -93,7 +93,7 @@ CxFile::reopen(
 
     // create, reopen file
     {
-        std::FILE *file = ::xTFREOPEN(a_filePath.c_str(), _openMode(a_mode).c_str(), get());
+        std::FILE *file = std::xTFREOPEN(a_filePath.c_str(), _openMode(a_mode).c_str(), get());
         xTEST_PTR(file);
 
         _file     = file;
@@ -297,7 +297,7 @@ CxFile::writeLine(
 {
     xTEST_NA(a_str);
 
-    int_t iRv = xTFPUTS((a_str + CxConst::eol()).c_str(), get());
+    int_t iRv = std::xTFPUTS((a_str + CxConst::eol()).c_str(), get());
     xTEST_DIFF(- 1, iRv);
 }
 //-------------------------------------------------------------------------------------------------
@@ -317,7 +317,7 @@ CxFile::writeChar(
 {
     xTEST_NA(a_ch);
 
-    twint_t iRv = xTFPUTC(a_ch, get());
+    twint_t iRv = std::xTFPUTC(a_ch, get());
     xTEST_DIFF(xTEOF, iRv);
     xTEST_EQ(a_ch, static_cast<tchar_t>( iRv ));
 }
@@ -691,7 +691,7 @@ CxFile::remove(
 
     chmod(a_filePath, pmWrite);
 
-    int_t iRv = ::xTREMOVE(a_filePath.c_str());
+    int_t iRv = std::xTREMOVE(a_filePath.c_str());
     xTEST_DIFF(- 1, iRv);
     xTEST_EQ(false, isExists(a_filePath));
 }
@@ -845,7 +845,7 @@ CxFile::rename(
     xTEST_EQ(false, a_filePathOld.empty());
     xTEST_EQ(false, a_filePathNew.empty());
 
-    int_t iRv = ::xTRENAME(a_filePathOld.c_str(), a_filePathNew.c_str());
+    int_t iRv = std::xTRENAME(a_filePathOld.c_str(), a_filePathNew.c_str());
     xTEST_DIFF(- 1, iRv);
 }
 //-------------------------------------------------------------------------------------------------

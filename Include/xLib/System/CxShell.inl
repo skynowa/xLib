@@ -31,7 +31,7 @@ CxShell::isAvailable() const
 {
     xTESTS_NA;
 
-    int_t iRv = ::xTSYSTEM(NULL);
+    int_t iRv = std::xTSYSTEM(NULL);
 
 #if xOS_ENV_WIN
     xCHECK_RET(0 == iRv && ENOENT == CxStdError::get(), false);
@@ -57,7 +57,7 @@ CxShell::execute(
     // REVIEW: security bug - xT("%s \"%s\"") or xT("\"%s\" \"%s\"") ??
     std::tstring_t cmd = CxString::format(xT("%s \"%s\""), a_filePath.c_str(), a_params.c_str());
 
-    int_t iRv = ::xTSYSTEM(cmd.c_str());
+    int_t iRv = std::xTSYSTEM(cmd.c_str());
     xTEST_DIFF(- 1, iRv);
 }
 //-------------------------------------------------------------------------------------------------
