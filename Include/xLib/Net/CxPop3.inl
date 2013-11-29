@@ -408,7 +408,7 @@ CxPop3::retrieveHeader(
     CxMimeHeader &a_mimeHeader
 )
 {
-    xTEST_LESS(a_num, std::size_t(0));
+    xTEST_GR(a_num, std::size_t(0));
 
     //-------------------------------------
     //RFC
