@@ -1,34 +1,34 @@
-#-------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------------
 # \file  CMakeList.txt
 # \brief CMake file for build xLib tests
-#-------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------------
 
 
 cmake_minimum_required (VERSION 2.6)
-
-
 project (xLib_test)
 
-#-------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------------
 # prepare
+find_package(OpenSSL REQUIRED)
+
 if (CMAKE_CXX_COMPILER MATCHES ".*clang")
     set(CMAKE_COMPILER_IS_CLANGXX 1)
 endif()
 
-#-------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------------
 # includes
 include_directories("${CMAKE_SOURCE_DIR}/Include")
 include_directories("${CMAKE_SOURCE_DIR}/Tests/Include")
 
-#-------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------------
 # sources
 file(GLOB_RECURSE xLib_tests_SOURCES "Tests/*.cpp")
 
-#-------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------------
 # target
 add_executable(xLib_test ${xLib_tests_SOURCES})
 
-#-------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------------
 # flags
 if     (MSVC)
     #set(LIBS mysqlclient)
@@ -61,3 +61,18 @@ target_link_libraries(
     xLib_test
     ${LIBS} ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS}
 )
+
+#--------------------------------------------------------------------------------------------------
+# install
+set(XLib_INCLUDE_DIRS "")
+
+file(GLOB_RECURSE XLib_HEADERS "Include/*")
+
+foreach(_headerFile ${XLib_HEADERS})
+    get_filename_component(_dir ${_headerFile} PATH)
+    list (APPEND XLib_INCLUDE_DIRS ${_dir})
+endforeach()
+
+list(REMOVE_DUPLICATES XLib_INCLUDE_DIRS)
+
+install(DIRECTORY ${XLib_INCLUDE_DIRS} DESTINATION "include/xLib")
