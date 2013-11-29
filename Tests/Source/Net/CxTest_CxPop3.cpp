@@ -52,11 +52,11 @@ CxTest_CxPop3::unit(
 
     //-------------------------------------
     //
-    ulong_t              ulSum      = 0;
-    ulong_t              ulSize     = 0;
-    ulong_t              ulMsgID    = 1;
+    std::size_t          ulSum      = 0;
+    std::size_t          ulSize     = 0;
+    std::size_t          ulMsgID    = 1;
     std::vector<ulong_t> veculList;
-    ////ulong_t              ulIndex    = 1;
+    ////std::size_t              ulIndex    = 1;
     int_t                iNum       = 1;
     std::ctstring_t      csDirPath  = xT("C:/Temp2");
     std::ctstring_t      csFileName = xT("MailFileName");
@@ -104,7 +104,7 @@ CxTest_CxPop3::unit(
 
     //-------------------------------------
     //bTop
-    for (ulong_t i = 1; i <= ulSum; i ++) {
+    for (std::size_t i = 1; i <= ulSum; i ++) {
         //////-------------------------------------
         //////CxMimeMessage
         ////CxMimeMessage objMessage;
@@ -135,7 +135,7 @@ CxTest_CxPop3::unit(
 
     //-------------------------------------
     //bRetriveRaw
-    for (ulong_t i = 1; i <= ulSum; i ++) {
+    for (std::size_t i = 1; i <= ulSum; i ++) {
         CxDir(csDirPath).pathCreate();
 
         objPop3.retriveRaw(i, csDirPath, csFileName + xT("_") + CxString::cast(i) + xT(".eml"));
@@ -144,7 +144,7 @@ CxTest_CxPop3::unit(
 
     //-------------------------------------
     //bRetrieveHeader
-    for (ulong_t i = 1; i <= ulSum; i ++) {
+    for (std::size_t i = 1; i <= ulSum; i ++) {
         CxMimeHeader mhMimeHeader;
 
         objPop3.retrieveHeader(iNum, mhMimeHeader);
