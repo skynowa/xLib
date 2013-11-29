@@ -40,8 +40,3 @@ Repositories:
     - http://sourceforge.net
         git clone https://skynowa@git.code.sf.net/p/x-lib/code x-lib-code
         git clone git://git.code.sf.net/p/x-lib/code x-lib-code
-
-Tests:
-    cmake ../xLib -G"Eclipse CDT4 - Unix Makefiles" -D_ECLIPSE_VERSION=3.7.2
-    cmake ../xLib -DCMAKE_C_COMPILER=/usr/local/libexec/ccache/world/clang \
-                  -DCMAKE_CXX_COMPILER=/usr/local/libexec/ccache/world/clang++
