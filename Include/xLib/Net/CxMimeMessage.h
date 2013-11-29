@@ -20,8 +20,8 @@ class CxMimeMessage
     /// MIME message (RFC 822)
 {
 public:
-                   CxMimeMessage();
-    virtual       ~CxMimeMessage();
+                   CxMimeMessage() {}
+    virtual       ~CxMimeMessage() {}
 
     static void_t  parse(std::ctstring_t &rawMessage, CxMimeheader &header, CxMimebody &body);
     static void_t  loadFromRawFile(std::ctstring_t &filePath); // filePath - raw msg
