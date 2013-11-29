@@ -1,0 +1,7 @@
+Build tests
+
+
+cd Build
+cmake .. -G"Eclipse CDT4 - Unix Makefiles" -D_ECLIPSE_VERSION=3.7.2
+cmake .. -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
+cmake ..
