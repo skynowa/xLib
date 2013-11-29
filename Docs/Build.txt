@@ -3,7 +3,7 @@ Build tests
 
 cd Build
 
-cmake VERBOSE=1 .. -G"Eclipse CDT4 - Unix Makefiles" -D_ECLIPSE_VERSION=3.7.2
+cmake VERBOSE=1 ../xLib -G"Eclipse CDT4 - Unix Makefiles" -D_ECLIPSE_VERSION=3.7.2
 cmake VERBOSE=1 .. -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
 cmake VERBOSE=1 ..
 
