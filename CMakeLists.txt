@@ -19,7 +19,7 @@ endif()
 # includes
 include_directories("${CMAKE_SOURCE_DIR}/Include")
 include_directories("${CMAKE_SOURCE_DIR}/Tests/Include")
-
+include_directories("${OPENSSL_INCLUDE_DIR}")
 #--------------------------------------------------------------------------------------------------
 # sources
 file(GLOB_RECURSE xLib_tests_SOURCES "Tests/*.cpp")
@@ -57,8 +57,6 @@ if (OPENSSL_FOUND)
     message("OpenSSL libraries:   ${OPENSSL_LIBRARIES}")
 
     set(XLIB_TESTS_DEFINITIONS ${XLIB_TESTS_DEFINITIONS} xOPENSSL_IS_USE=1)
-    include_directories("${OPENSSL_INCLUDE_DIR}")
-    target_link_libraries(xLib_test ${OPENSSL_LIBRARIES})
 endif(OPENSSL_FOUND)
 
 set_target_properties(
@@ -67,7 +65,7 @@ set_target_properties(
         COMPILE_FLAGS ${FLAGS}
 )
 
-target_link_libraries(xLib_test ${LIBS} ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS})
+target_link_libraries(xLib_test ${LIBS} ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS} ${OPENSSL_LIBRARIES})
 
 #--------------------------------------------------------------------------------------------------
 # install
