@@ -16,8 +16,6 @@ CxTest_CxMimeMessage::unit(
     culonglong_t &a_caseLoops
 )
 {
-    std::tstring_t m_sRv;
-
     CxPop3 objPop3;
 
     //-------------------------------------

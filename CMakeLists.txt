@@ -31,36 +31,43 @@ add_executable(xLib_test ${xLib_tests_SOURCES})
 #--------------------------------------------------------------------------------------------------
 # flags
 if     (MSVC)
-    #set(LIBS mysqlclient)
-    set(FLAGS "/W3")
+    #set(LIBS ${LIBS} mysqlclient)
+    set(FLAGS ${FLAGS} "/W3")
 elseif (MINGW)
-    set(LIBS ws2_32 psapi uuid ole32 mpr)
-    set(FLAGS "-Wall -pipe")
+    set(LIBS ${LIBS} ws2_32 psapi uuid ole32 mpr)
+    set(FLAGS ${FLAGS} "-Wall -pipe")
 elseif (CMAKE_COMPILER_IS_CLANGXX)
-    set(LIBS pthread rt m z)
-    set(FLAGS "-pipe -Wall -Wno-deprecated -Wextra -Wconversion -Wshadow -Wno-unused-parameter "
-        "-Wno-unused-variable -Wno-unknown-pragmas -Wno-return-type-c-linkage -Werror "
-        "-fcolor-diagnostics -Qunused-arguments -U__STRICT_ANSI__ -D__STDC_FORMAT_MACROS")
-elseif (CMAKE_COMPILER_IS_GNUCXX)
-    set(LIBS pthread rt m z)
-    set(FLAGS "-pipe -Wall -Wno-deprecated -Wextra -Wconversion -Wshadow -Wno-unused-parameter "
-        "-Wno-unused-variable -Wno-unknown-pragmas -Wno-return-type-c-linkage -Werror "
+    set(LIBS ${LIBS} pthread rt m z)
+    set(FLAGS ${FLAGS} "-pipe -Wall -Wno-deprecated -Wextra -Wconversion -Wshadow "
+        "-Wno-unused-parameter -Wno-unused-variable -Wno-unknown-pragmas "
+        "-Wno-return-type-c-linkage -Werror -fcolor-diagnostics -Qunused-arguments "
         "-U__STRICT_ANSI__ -D__STDC_FORMAT_MACROS")
+elseif (CMAKE_COMPILER_IS_GNUCXX)
+    set(LIBS ${LIBS} pthread rt m z)
+    set(FLAGS ${FLAGS} "-pipe -Wall -Wno-deprecated -Wextra -Wconversion -Wshadow "
+        "-Wno-unused-parameter -Wno-unused-variable -Wno-unknown-pragmas "
+        "-Wno-return-type-c-linkage -Werror -U__STRICT_ANSI__ -D__STDC_FORMAT_MACROS")
 else()
     message("xLib: unknown compiler")
 endif()
 
+if (OPENSSL_FOUND)
+    message("OpenSSL found:       ${OPENSSL_FOUND}")
+    message("OpenSSL include dir: ${OPENSSL_INCLUDE_DIR}")
+    message("OpenSSL libraries:   ${OPENSSL_LIBRARIES}")
+
+    set(XLIB_TESTS_DEFINITIONS ${XLIB_TESTS_DEFINITIONS} xOPENSSL_IS_USE=1)
+    include_directories("${OPENSSL_INCLUDE_DIR}")
+    target_link_libraries(xLib_test ${OPENSSL_LIBRARIES})
+endif(OPENSSL_FOUND)
+
 set_target_properties(
-    xLib_test
-    PROPERTIES
-        # COMPILE_DEFINITIONS
+    xLib_test PROPERTIES
+        COMPILE_DEFINITIONS ${XLIB_TESTS_DEFINITIONS}
         COMPILE_FLAGS ${FLAGS}
 )
 
-target_link_libraries(
-    xLib_test
-    ${LIBS} ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS}
-)
+target_link_libraries(xLib_test ${LIBS} ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS})
 
 #--------------------------------------------------------------------------------------------------
 # install

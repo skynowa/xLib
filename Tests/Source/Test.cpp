@@ -26,9 +26,9 @@
 // Crypt
 #include <Test/Crypt/CxTest_CxBase64.h>
 
-#if xARCH_X86
+#if xOPENSSL_IS_USE
 
-// #include <Test/Crypt/CxTest_CxBlowfish.h>
+#include <Test/Crypt/CxTest_CxBlowfish.h>
 
 #endif
 
@@ -182,8 +182,8 @@ int_t xTMAIN(int_t a_argNum, tchar_t *a_args[])
         manager.add(new CxTest_CxRandom);
         manager.add(new CxTest_CxBase64);
 
-    #if xARCH_X86 && !xCOMPILER_MINGW
-        // manager.add(new CxTest_CxBlowfish);
+    #if xOPENSSL_IS_USE
+        manager.add(new CxTest_CxBlowfish);
     #endif
 
         // Db

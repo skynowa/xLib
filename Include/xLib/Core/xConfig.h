@@ -120,7 +120,11 @@
 
 #define xCXMYSQL_IS_USE                 0
     ///< is use CxMySql
-#define xOPENSSL_IS_USE                 0
-    ///< is use OpenSSL
+
+/**
+ * xOPENSSL_IS_USE
+ *
+ * Is use OpenSSL, set from CMake
+ */
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_xConfigH
