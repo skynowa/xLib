@@ -125,8 +125,8 @@ CxPop3::login()
 //-------------------------------------------------------------------------------------------------
 inline void_t
 CxPop3::stat(
-    ulong_t &a_sum,
-    ulong_t &a_size
+    std::size_t &a_sum,
+    std::size_t &a_size
 )
 {
     //-------------------------------------
@@ -147,14 +147,14 @@ CxPop3::stat(
 
 #if 0
     //+OK 2 1141841
-    _m_clLog.bWrite("Recv STAT Resp: MailsSum  = %u\n", a_sum);
-    _m_clLog.bWrite("Recv STAT Resp: MailsSize = %u\n", a_size);
+    _m_clLog.bWrite("Recv STAT Resp: MailsSum  = %zu\n", a_sum);
+    _m_clLog.bWrite("Recv STAT Resp: MailsSize = %zu\n", a_size);
 #endif
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
 CxPop3::list(
-    std::vector<ulong_t> &a_list
+    std::vector<std::size_t> &a_list
 )
 {
     //-------------------------------------
@@ -182,7 +182,7 @@ CxPop3::list(
 //-------------------------------------------------------------------------------------------------
 inline void_t
 CxPop3::listAt(
-    ulong_t &a_index
+    std::size_t &a_index
 )
 {
     //-------------------------------------
@@ -244,13 +244,13 @@ CxPop3::rset()
 //-------------------------------------------------------------------------------------------------
 inline void_t
 CxPop3::top(
-    int_t           a_num,
-    int_t           a_lines,
+    std::csize_t   &a_num,
+    std::csize_t   &a_lines,
     std::tstring_t &a_buff
 )
 {
-    xTEST_GR(a_num, 0);
-    xTEST_GR(a_lines,- 1);
+    xTEST_GR(a_num,   std::size_t(0));
+    xTEST_GR(a_lines, std::size_t(0));
 
     //-------------------------------------
     //RFC
@@ -275,12 +275,12 @@ CxPop3::top(
 //-------------------------------------------------------------------------------------------------
 inline void_t
 CxPop3::retriveRaw(
-    int_t            a_num,
+    std::csize_t    &a_num,
     std::ctstring_t &a_dirPath,
     std::ctstring_t &a_fileName
 )
 {  //dirPath ��� �����
-    xTEST_GR(a_num, 0);
+    xTEST_GR(a_num, std::size_t(0));
     xTEST_EQ(false, a_dirPath.empty());
     xTEST_EQ(false, a_fileName.empty());
 
@@ -331,13 +331,13 @@ CxPop3::retriveRaw(
 //-------------------------------------------------------------------------------------------------
 inline void_t
 CxPop3::retriveRawAndBackup(
-    int_t            a_num,
+    std::csize_t    &a_num,
     std::ctstring_t &a_dirPath,
     std::ctstring_t &a_backupDirPath,
     std::ctstring_t &a_fileName
 )
 {
-    xTEST_GR(a_num, 0);
+    xTEST_GR(a_num, std::size_t(0));
     xTEST_EQ(false, (a_dirPath.empty() && a_backupDirPath.empty()));
     xTEST_EQ(false, a_fileName.empty());
 
@@ -400,11 +400,11 @@ CxPop3::retriveRawAndBackup(
 //-------------------------------------------------------------------------------------------------
 inline void_t
 CxPop3::retrieveHeader(
-    int_t         a_num,
+    std::csize_t &a_num,
     CxMimeHeader &a_mimeHeader
 )
 {
-    xTEST_LESS(a_num, 0);
+    xTEST_LESS(a_num, std::size_t(0));
 
     //-------------------------------------
     //RFC
@@ -430,10 +430,10 @@ CxPop3::retrieveHeader(
 //-------------------------------------------------------------------------------------------------
 inline void_t
 CxPop3::del(
-    int_t a_num
+    std::csize_t &a_num
 )
 {
-    xTEST_GR(a_num, 0);
+    xTEST_GR(a_num, std::size_t(0));
 
     //-------------------------------------
     //RFC
@@ -479,7 +479,7 @@ CxPop3::disconnect()
     _isConnected = false;
 }
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+inline std::size_t
 CxPop3::_mailsSum(
     std::ctstring_t &a_serverAnswer
 )
@@ -487,19 +487,19 @@ CxPop3::_mailsSum(
     xTEST_EQ(false, a_serverAnswer.empty());
 
     //+OK 2 1141841
-    ulong_t            sum = 0UL;
+    std::size_t        sum = 0;
     std::tstring_t     sSum;
     std::vec_tstring_t vsRv;
 
     CxString::split(a_serverAnswer, xT(" "), &vsRv);
 
     sSum  = vsRv.at(1);
-    sum = CxString::cast<ulong_t>( sSum );        // ul -> l
+    sum = CxString::cast<std::size_t>( sSum );        // ul -> l
 
     return sum;
 }
 //-------------------------------------------------------------------------------------------------
-inline ulong_t
+inline std::size_t
 CxPop3::_mailsSize(
     std::ctstring_t &a_serverAnswer
 )
@@ -507,14 +507,14 @@ CxPop3::_mailsSize(
     xTEST_EQ(false, a_serverAnswer.empty());
 
     //+OK 2 1141841
-    ulong_t            size = 0;
+    std::size_t        size = 0;
     std::tstring_t     sSize;
     std::vec_tstring_t vsRv;
 
     CxString::split(a_serverAnswer, xT(" "), &vsRv);
 
-    sSize  = vsRv.at(2);
-    size = CxString::cast<ulong_t>( sSize );    // ul+\r\n -> l
+    sSize = vsRv.at(2);
+    size  = CxString::cast<std::size_t>( sSize );    // ul+\r\n -> l
 
     return size;
 }

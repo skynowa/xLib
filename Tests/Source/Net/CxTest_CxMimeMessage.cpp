@@ -34,8 +34,8 @@ CxTest_CxMimeMessage::unit(
 
     std::ctstring_t csDirPath  = xT("C:/Temp");
     std::ctstring_t csFilePath = xT("C:/Temp/1.eml");
-    ulong_t              ulSum      = 0;
-    ulong_t              ulSize     = 0;
+    std::size_t     ulSum      = 0;
+    std::size_t     ulSize     = 0;
 
 
 
@@ -114,7 +114,7 @@ CxTest_CxMimeMessage::unit(
     //bTop
     std::tstring_t sRawHeader;
 
-    for (ulong_t i = 1; i <= ulSum; i ++) {
+    for (std::size_t i = 1; i <= ulSum; i ++) {
         //-------------------------------------
         //CxMimeMessage
         CxMimeMessage objMessage;
@@ -159,7 +159,7 @@ CxTest_CxMimeMessage::unit(
 
     //-------------------------------------
     //bRetrieveHeader
-    for (ulong_t y = 1; y <= ulSum; y ++) {
+    for (std::size_t y = 1; y <= ulSum; y ++) {
         CxMimeHeader objHeader;
 
         //-------------------------------------
