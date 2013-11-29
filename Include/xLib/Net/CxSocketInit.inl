@@ -41,6 +41,9 @@ CxSocketInit::CxSocketInit(
     xTEST_EQ(0, iRv);
     xTEST_EQ((ushort_t)HIBYTE(wdData.wVersion), a_minorVersion);
     xTEST_EQ((ushort_t)LOBYTE(wdData.wVersion), a_majorVersion);
+#else
+    xUNUSED(a_majorVersion);
+    xUNUSED(a_minorVersion);
 #endif
 }
 //-------------------------------------------------------------------------------------------------

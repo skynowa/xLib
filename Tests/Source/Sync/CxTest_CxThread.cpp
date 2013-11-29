@@ -50,6 +50,8 @@ CWorkThread::onRun(
     void_t *pvData
 )
 {
+    xUNUSED(pvData);
+
     #if xTEST_IGNORE
         xTRACEV(xT("\n\tCWorkThread: start #%lu"), m_ulTag);
     #endif

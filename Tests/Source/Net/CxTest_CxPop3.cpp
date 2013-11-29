@@ -21,6 +21,8 @@ CxTest_CxPop3::unit(
     culonglong_t &a_caseLoops
 )
 {
+    xUNUSED(a_caseLoops);
+
     //-------------------------------------
     //
     //std::ctstring_t csUser     = xT("Sergey");        //"test_1";

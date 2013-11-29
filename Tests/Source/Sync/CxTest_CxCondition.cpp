@@ -125,6 +125,8 @@ CxTest_CxCondition::unit(
     culonglong_t &a_caseLoops
 )
 {
+    xUNUSED(a_caseLoops);
+
 #if xOS_ENV_UNIX
     int_t          iRv          = - 1;
     pthread_t    thThreads[3] = {0};

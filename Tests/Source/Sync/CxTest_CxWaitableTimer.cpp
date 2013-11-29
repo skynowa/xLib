@@ -14,6 +14,8 @@ CxTest_CxWaitableTimer::unit(
     culonglong_t &a_caseLoops
 )
 {
+    xUNUSED(a_caseLoops);
+
 #if   xOS_ENV_WIN
     CxWaitableTimer WT;
 

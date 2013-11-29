@@ -17,6 +17,8 @@ CxTest_CxTcpClient::unit(
     culonglong_t &a_caseLoops
 )
 {
+    xUNUSED(a_caseLoops);
+
     CxSocket::ExAddressFamily afAf           = CxSocket::afInet;
     CxSocket::ExType          tpType         = CxSocket::tpStream;
     CxSocket::ExProtocol      ptProtocol     = CxSocket::ptIp;

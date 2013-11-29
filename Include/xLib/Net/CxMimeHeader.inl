@@ -26,6 +26,8 @@ CxMimeHeader::parse(
     std::ctstring_t &a_rawHeader
 )
 {
+    xUNUSED(a_rawHeader);
+
 #if xTODO
     /*
     +OK message 1 (570821 octets)
@@ -228,6 +230,8 @@ CxMimeHeader::saveToFile(
     std::ctstring_t &a_filePath
 )
 {
+    xUNUSED(a_filePath);
+
     xNOT_IMPLEMENTED;
 }
 //-------------------------------------------------------------------------------------------------

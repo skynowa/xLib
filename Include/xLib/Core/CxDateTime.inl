@@ -533,6 +533,8 @@ CxDateTime::isValid(
     cint_t &a_msec
 )
 {
+    xUNUSED(a_day);
+
     bool_t bYear   = (/*a_year   >= 0U && */a_year   <= 9999);
     xTEST_EQ(true, bYear);
 

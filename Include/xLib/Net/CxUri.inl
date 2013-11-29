@@ -314,7 +314,7 @@ CxUri::unescape(
     std::ctstring_t &a_uri
 )
 {
-
+    xUNUSED(a_uri);
 
     std::tstring_t sRv;
 
@@ -592,6 +592,8 @@ CxUri::_normilize(
     std::ctstring_t &a_uri
 )
 {
+    xUNUSED(a_uri);
+
     ////bool_t bRv = false;
 
     //trim

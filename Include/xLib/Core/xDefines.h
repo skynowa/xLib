@@ -279,7 +279,7 @@
     ( static_cast<void_t>( arg ) )
 #elif xCOMPILER_GNUC
     #define xUNUSED(arg) \
-    { static_cast<void_t>( (arg) = ((true) ? (arg) : (arg)) ); }
+    { static_cast<void_t>( /* (arg) = */ ((true) ? (arg) : (arg)) ); }
 #else
     #define xUNUSED(arg) \
     ( static_cast<void_t>( arg ) )

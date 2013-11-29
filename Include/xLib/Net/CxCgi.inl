@@ -188,7 +188,9 @@ CxCgi::uriDecode(
 //-------------------------------------------------------------------------------------------------
 //TODO: cgl_parsecgibuf
 inline int_t
-cgl_parsecgibuf(/*cgllist *cdata,*/ char *a_query) {
+cgl_parsecgibuf(/*cgllist *cdata,*/ char *a_query)
+{
+    xUNUSED(a_query);
 //    char *s;
 //    char *np;
 //    char *vp;
@@ -255,7 +257,11 @@ cgl_parsecgibuf(/*cgllist *cdata,*/ char *a_query) {
 //-------------------------------------------------------------------------------------------------
 //TODO: bUrlEscape
 inline void_t
-CxCgi::urlEscape(char *a_s, FILE *a_fw) {
+CxCgi::urlEscape(char *a_s, FILE *a_fw)
+{
+    xUNUSED(a_s);
+    xUNUSED(a_fw);
+
 //    register int_t    c;
 //
 //    while((c = *s++) != (char)0) {
@@ -280,7 +286,9 @@ CxCgi::urlEscape(char *a_s, FILE *a_fw) {
 //TODO: bUrlUnescape
 //modified from the Apache code. Code shrinks string, so can be done in place.
 inline void_t
-CxCgi::urlUnescape(char *a_s) {
+CxCgi::urlUnescape(char *a_s)
+{
+    xUNUSED(a_s);
 //    int_t    error;
 //    char    *p;
 //
@@ -314,7 +322,10 @@ CxCgi::urlUnescape(char *a_s) {
 //TODO: cgl_hex2char
 //ripped off from the Apache code
 inline char
-CxCgi::cgl_hex2char(char *a_what) {
+CxCgi::cgl_hex2char(char *a_what)
+{
+    xUNUSED(a_what);
+
     register char digit = '\0';
 
 //    if (!what)

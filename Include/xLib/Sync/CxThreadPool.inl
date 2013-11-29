@@ -42,7 +42,9 @@ CxThreadPool<T>::CxThreadPool(
     _numTasks         (0U),
     _currTask         (0U)
 {
+    xUNUSED(a_isPaused);
 
+    // TODO: a_isPaused
 
     /*LOG*/_s_log.write(xT("--------------------------------"));
     /*LOG*/_s_log.write(xT("CxThreadPool: construct"));
@@ -147,6 +149,10 @@ CxThreadPool<T>::groupExit(
     culong_t &a_timeoutMsec
 )
 {
+    xUNUSED(a_timeoutMsec);
+
+    // TODO: a_timeoutMsec
+
     xCHECK_DO(!isRunning(), /*LOG*/_s_log.write(xT("CxThreadPool: not running")); return);
 
     //-------------------------------------
@@ -376,6 +382,10 @@ CxThreadPool<T>::onRun(
     void_t *a_param
 )
 {
+    xUNUSED(a_param);
+
+    // TODO: a_param
+
     uint_t uiRes = 0U;
 
     //-------------------------------------
@@ -444,6 +454,10 @@ CxThreadPool<T>::_taskAdd(
     CxThread *a_item
 )
 {
+    xUNUSED(a_item);
+
+    // TODO: a_item
+
     T *task = new T(_isGroupAutoDelete);
     xTEST_PTR(task);
 

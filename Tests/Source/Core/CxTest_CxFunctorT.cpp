@@ -51,15 +51,18 @@ xNO_COPY_ASSIGN(B)
 class CThread;
 class CParam {
     public:
-        CParam() {
+        CParam()
+        {
             ////xSTD_COUT_FUNC;
         };
-        ~CParam() {
+        ~CParam()
+        {
             ////xSTD_COUT_FUNC;
         };
 
-        std::tstring_t sSetName(void_t *uiIndex) {
-
+        std::tstring_t sSetName(void_t *uiIndex)
+        {
+            xUNUSED(uiIndex);
 
             return xT("Class_C");
         };
@@ -68,14 +71,18 @@ CParam objParam;
 
 class CThread {
     public:
-        CThread() {
+        CThread()
+        {
             ////xSTD_COUT_FUNC;
         };
-        ~CThread() {
+        ~CThread()
+        {
             ////xSTD_COUT_FUNC;
         };
 
-        void_t vRun(const CxFunctorT<CParam, std::tstring_t, void_t *> &bF) {
+        void_t vRun(const CxFunctorT<CParam, std::tstring_t, void_t *> &bF)
+        {
+            xUNUSED(bF);
             ////xSTD_COUT_FUNC;
         };
 };

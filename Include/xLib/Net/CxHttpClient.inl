@@ -30,6 +30,9 @@ CxHttpClient::head(
     std::tstring_t  *a_response
 )
 {
+    xUNUSED(a_url);
+    xUNUSED(a_response);
+
     //url = http://dn1.berloga.net/83841/zombie_baseball_2.swf
 
     std::tstring_t startLine;
@@ -53,6 +56,9 @@ CxHttpClient::get(
     std::tstring_t  *a_response
 )
 {
+    xUNUSED(a_url);
+    xUNUSED(a_response);
+
     xNOT_IMPLEMENTED;
 }
 //-------------------------------------------------------------------------------------------------
@@ -64,6 +70,10 @@ CxHttpClient::post(
     std::tstring_t  *a_response
 )
 {
+    xUNUSED(a_url);
+    xUNUSED(a_params);
+    xUNUSED(a_response);
+
     xNOT_IMPLEMENTED;
 }
 //-------------------------------------------------------------------------------------------------
@@ -73,6 +83,8 @@ CxHttpClient::options(
     std::ctstring_t &a_url
 )
 {
+    xUNUSED(a_url);
+
     xNOT_IMPLEMENTED;
 }
 //-------------------------------------------------------------------------------------------------
@@ -82,6 +94,8 @@ CxHttpClient::trace(
     std::ctstring_t &a_url
 )
 {
+    xUNUSED(a_url);
+
     xNOT_IMPLEMENTED;
 }
 //-------------------------------------------------------------------------------------------------
@@ -91,6 +105,8 @@ CxHttpClient::put(
     std::ctstring_t &a_url
 )
 {
+    xUNUSED(a_url);
+
     xNOT_IMPLEMENTED;
 }
 //-------------------------------------------------------------------------------------------------
@@ -100,6 +116,8 @@ CxHttpClient::del(
     std::ctstring_t &a_url
 )
 {
+    xUNUSED(a_url);
+
     xNOT_IMPLEMENTED;
 }
 //-------------------------------------------------------------------------------------------------
@@ -109,6 +127,8 @@ CxHttpClient::connect(
     std::ctstring_t &a_url
 )
 {
+    xUNUSED(a_url);
+
     xNOT_IMPLEMENTED;
 }
 //-------------------------------------------------------------------------------------------------
@@ -118,6 +138,8 @@ CxHttpClient::patch(
     std::ctstring_t &a_url
 )
 {
+    xUNUSED(a_url);
+
     xNOT_IMPLEMENTED;
 }
 //-------------------------------------------------------------------------------------------------
@@ -127,6 +149,8 @@ CxHttpClient::link(
     std::ctstring_t &a_url
 )
 {
+    xUNUSED(a_url);
+
     xNOT_IMPLEMENTED;
 }
 //-------------------------------------------------------------------------------------------------
@@ -136,6 +160,8 @@ CxHttpClient::unlink(
     std::ctstring_t &a_url
 )
 {
+    xUNUSED(a_url);
+
     xNOT_IMPLEMENTED;
 }
 //-------------------------------------------------------------------------------------------------

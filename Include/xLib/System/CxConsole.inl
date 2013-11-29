@@ -398,6 +398,8 @@ CxConsole::msgBox(
     cuint_t         &a_type
 ) const
 {
+    xUNUSED(a_type);
+
 #if xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _wnd);
     xTEST_EQ(true, _stdIn.isValid());
@@ -605,7 +607,9 @@ CxConsole::enableClose(
         xTEST_DIFF(FALSE, blRv);
     }
 #else
-    // TODO: vEnableClose
+    xUNUSED(a_flag);
+
+    // TODO: enableClose
     xNOT_IMPLEMENTED;
 #endif
 }
