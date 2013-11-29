@@ -168,6 +168,8 @@ CxSocket::send(
     xTEST_EQ(true, xSOCKET_ERROR != iRv && WSAEWOULDBLOCK != CxSocket::lastError());
     xTEST_GR_EQ(a_buffSize * sizeof(tchar_t), iRv);
 #else
+    xUNUSED(a_flags);
+
     #if !defined(MSG_NOSIGNAL)
         #define MSG_NOSIGNAL  0x20000
     #endif
@@ -256,6 +258,8 @@ CxSocket::recvAll(
     cint_t &a_flags
 )
 {
+    xUNUSED(a_flags);   // TODO: a_flags
+
     std::tstring_t sRv;
 
     std::csize_t   buffSize           = 1024 * sizeof(tchar_t);

@@ -90,6 +90,7 @@ CxTest::unit(
     culonglong_t &a_caseLoops
 ) /* = 0 */
 {
+    xUNUSED(a_caseLoops);
     xTEST_NA(a_caseLoops);
 
 #if xTODO

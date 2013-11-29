@@ -16,6 +16,8 @@ CxTest_CxSmtp::unit(
     culonglong_t &a_caseLoops
 )
 {
+    xUNUSED(a_caseLoops);
+
     //-------------------------------------
     //IPNET
     //std::ctstring_t  csUser     = "domen";

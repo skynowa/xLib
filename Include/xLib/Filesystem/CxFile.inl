@@ -878,11 +878,9 @@ CxFile::copy(
 
     //--------------------------------------------------
     // TODO: fail if exists
-#if xTODO
-    if (isFailIfExists && bIsExists(filePathTo)) {
+    if (a_isFailIfExists && isExists(a_filePathTo)) {
         xTEST_FAIL;
     }
-#endif
 
     // TODO: check file size
 
@@ -992,6 +990,8 @@ CxFile::time(
     CxUtils::ptrAssignT(a_access,   CxDateTime::fileTimeToUnixTime(timeAccess));
     CxUtils::ptrAssignT(a_modified, CxDateTime::fileTimeToUnixTime(timeModified));
 #else
+    xUNUSED(a_create);
+
     xTSTAT_STRUCT info; xSTRUCT_ZERO(info);
 
     int_t iRv = ::xTSTAT(a_filePath.c_str(), &info);
@@ -1036,6 +1036,8 @@ CxFile::setTime(
     BOOL blRv = ::SetFileTime(file.get(), &timeCreate, &timeAccess, &timeModified);
     xTEST_DIFF(FALSE, blRv);
 #else
+    xUNUSED(a_create);
+
     utimbuf times = {0, 0};
 
     // times.create - n/a

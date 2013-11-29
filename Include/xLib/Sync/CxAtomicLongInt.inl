@@ -210,6 +210,8 @@ CxAtomicLongInt::operator ++ (
         (void_t)::InterlockedExchangeAdd(&_value, a_value + 1);
     }
 #else
+    xUNUSED(a_value);
+
     (void_t)::__sync_add_and_fetch(&_value, 1);
 #endif
 
@@ -228,6 +230,8 @@ CxAtomicLongInt::operator -- (
         (void_t)::InterlockedExchangeAdd(&_value, - (a_value + 1));
     }
 #else
+    xUNUSED(a_value);
+
     (void_t)::__sync_sub_and_fetch(&_value, 1);
 #endif
 

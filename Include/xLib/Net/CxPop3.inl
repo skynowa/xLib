@@ -157,6 +157,8 @@ CxPop3::list(
     std::vector<std::size_t> &a_list
 )
 {
+    xUNUSED(a_list);
+
     //-------------------------------------
     //RFC
     /*
@@ -185,6 +187,8 @@ CxPop3::listAt(
     std::size_t &a_index
 )
 {
+    xUNUSED(a_index);
+
     //-------------------------------------
     //RFC
     /*

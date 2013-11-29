@@ -195,6 +195,9 @@ CxString::strToWStr(
         static_cast<LPWSTR>(&wsRv.at(0)), size);
     xTEST_LESS(0, size);
 #else
+    xUNUSED(a_str);
+    xUNUSED(a_codePage);
+
     // TODO: strToWStr
     xNOT_IMPLEMENTED;
 #endif
@@ -223,6 +226,9 @@ CxString::wstrToStr(
         static_cast<LPSTR>(&asRv.at(0)), size, NULL, NULL);
     xTEST_LESS(0, size);
 #else
+    xUNUSED(a_str);
+    xUNUSED(a_codePage);
+
     // TODO: (wstrToStr)
     xNOT_IMPLEMENTED;
 #endif
@@ -327,6 +333,8 @@ CxString::charToOemBuff(
     BOOL blRv = ::CharToOemBuff(a_str.c_str(), &dest.at(0), static_cast<DWORD>( dest.size() ));
     xTEST_DIFF(FALSE, blRv);
 #else
+    xUNUSED(a_str);
+
     // TODO: charToOemBuff
     xNOT_IMPLEMENTED;
 #endif
@@ -350,6 +358,8 @@ CxString::oemToCharBuff(
     BOOL blRv = ::OemToCharBuff(a_str.c_str(), &dest.at(0), static_cast<DWORD>( dest.size() ));
     xTEST_DIFF(FALSE, blRv);
 #else
+    xUNUSED(a_str);
+
     // TODO: sOemToCharBuffoemToCharBuff
     xNOT_IMPLEMENTED;
 #endif

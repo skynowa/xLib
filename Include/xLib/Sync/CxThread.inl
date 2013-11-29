@@ -295,6 +295,8 @@ CxThread::wait(
     DWORD ulRv = ::WaitForSingleObject(_thread.get(), a_timeoutMsec);
     xTEST_EQ(WAIT_OBJECT_0, ulRv);
 #else
+    xUNUSED(a_timeoutMsec);
+
     // TODO: thread must not be detached
     // FIX:  a_timeoutMsec
     int_t iRv = ::pthread_join(_id, NULL);
@@ -773,6 +775,8 @@ CxThread::setPriorityBoost(
     BOOL blRv = ::SetThreadPriorityBoost(_thread.get(), ! a_isEnabled);
     xTEST_DIFF(FALSE, blRv);
 #else
+    xUNUSED(a_isEnabled);
+
     return;
 #endif
 }
@@ -839,6 +843,8 @@ CxThread::setCpuIdeal(
     ulRv = ::SetThreadIdealProcessor(_thread.get(), a_idealCpu);
     xTEST_DIFF((DWORD) - 1, ulRv);
 #else
+    xUNUSED(a_idealCpu);
+
     xNOT_IMPLEMENTED;
 #endif
 }
@@ -1010,14 +1016,17 @@ CxThread::open(
     culong_t &a_id
 )
 {
-    //ulAccess       - n/a
-    //bInheritHandle - n/a
+    xTEST_NA(a_access);
+    xTEST_NA(a_isInheritHandle);
     xTEST_LESS(0UL, a_id);
 
 #if xOS_ENV_WIN
     handle_t hRv = ::OpenThread(a_access, a_isInheritHandle, a_id);
     xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
 #else
+    xUNUSED(a_access);
+    xUNUSED(a_isInheritHandle);
+
     // TODO: hOpen
     handle_t hRv = 0;
 #endif
@@ -1139,7 +1148,8 @@ CxThread::onRun(
     void_t *a_param
 ) /* = 0*/
 {
-    // n/a
+    xUNUSED(a_param);
+
     xTEST_MSG_FAIL(xT("It's virtual method"));
 
     uint_t uiRv = 0U;

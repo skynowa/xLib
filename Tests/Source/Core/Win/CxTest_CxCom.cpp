@@ -31,7 +31,8 @@ CxTest_CxCom::unit(
             CxCom cmCom3(ccmModel[i]);
         }
     }
-
+#else
+    xUNUSED(a_caseLoops);
 #endif
 }
 //------------------------------------------------------------------------------

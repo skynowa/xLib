@@ -15,6 +15,8 @@ CxTest_CxThreadPool::unit(
     culonglong_t &a_caseLoops
 )
 {
+    xUNUSED(a_caseLoops);
+
     cbool_t cbIsPaused            = true;
     cbool_t cbIsAutoDelete        = true;
     cbool_t cbIsGroupPaused       = true;
@@ -81,6 +83,8 @@ CPoolThread::uiOnRun(
     void_t *pvData
 )
 {
+    xUNUSED(pvData);
+
     #if xTEST_IGNORE
         xTRACEV(xT("\n\tCWorkThread: start #%lu"), m_ulTag);
     #endif

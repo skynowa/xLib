@@ -905,6 +905,8 @@ CxTest_CxFile::vUnitPrivate(
     culonglong_t &a_caseLoops
 )
 {
+    xUNUSED(a_caseLoops);
+
 #if xTEST_PRIVATE_DATA
     std::ctstring_t csFilePath = tempDirPath() + CxConst::slash() + xT("Test.txt");
 

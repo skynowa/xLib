@@ -27,6 +27,10 @@ CxMimeMessage::parse(
     CxMimebody      &a_body
 )
 {
+    xUNUSED(a_rawMessage);
+    xUNUSED(a_header);
+    xUNUSED(a_body);
+
     xNOT_IMPLEMENTED;
 }
 //-------------------------------------------------------------------------------------------------
@@ -36,6 +40,8 @@ CxMimeMessage::loadFromRawFile(
     std::ctstring_t &a_filePath
 )
 {
+    xUNUSED(a_filePath);
+
     xNOT_IMPLEMENTED;
 }
 //-------------------------------------------------------------------------------------------------
@@ -45,6 +51,8 @@ CxMimeMessage::saveToRawFile(
     std::ctstring_t &a_filePath
 )
 {
+    xUNUSED(a_filePath);
+
     xNOT_IMPLEMENTED;
 }
 //-------------------------------------------------------------------------------------------------

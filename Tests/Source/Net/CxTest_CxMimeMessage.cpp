@@ -16,6 +16,8 @@ CxTest_CxMimeMessage::unit(
     culonglong_t &a_caseLoops
 )
 {
+    xUNUSED(a_caseLoops);
+
     CxPop3 objPop3;
 
     //-------------------------------------

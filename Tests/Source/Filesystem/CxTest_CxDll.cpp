@@ -14,6 +14,10 @@ CxTest_CxDll::unit(
     culonglong_t &a_caseLoops
 )
 {
+    xUNUSED(a_caseLoops);
+
+    // TODO: CxTest_CxDll
+
     #if   xOS_ENV_WIN
         std::ctstring_t sData[][2] = {
             {xT("kernel32.dll"), xT("Beep")}

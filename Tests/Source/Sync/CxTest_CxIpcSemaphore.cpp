@@ -17,6 +17,8 @@ CxTest_CxIpcSemaphore::unit(
     culonglong_t &a_caseLoops
 )
 {
+    xUNUSED(a_caseLoops);
+
     struct _Functor
     {
     #if   xOS_ENV_WIN
