@@ -9,8 +9,6 @@ cmake_minimum_required (VERSION 2.6)
 
 project (xLib_test)
 
-enable_testing()
-
 #-------------------------------------------------------------------------------
 # prepare
 if (CMAKE_CXX_COMPILER MATCHES ".*clang")
