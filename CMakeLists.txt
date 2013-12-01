@@ -6,8 +6,9 @@
 
 cmake_minimum_required (VERSION 2.6)
 include(CheckCXXSourceCompiles)
+include(CheckLibraryExists)
 
-project (xLib_test)
+project(xLib_test)
 
 #--------------------------------------------------------------------------------------------------
 # prepare
@@ -16,6 +17,7 @@ configure_file(
     ${CMAKE_CURRENT_SOURCE_DIR}/Include/xLib/Core/xConfig.h)
 
 find_package(OpenSSL REQUIRED)
+CHECK_LIBRARY_EXISTS(crypto BF_cfb64_encrypt "" xHAVE_OPENSSL_CRYPTO)
 
 if (UNIX)
     check_cxx_source_compiles(
@@ -96,13 +98,11 @@ if (OPENSSL_FOUND)
     message("OpenSSL found:       ${OPENSSL_FOUND}")
     message("OpenSSL include dir: ${OPENSSL_INCLUDE_DIR}")
     message("OpenSSL libraries:   ${OPENSSL_LIBRARIES}")
-
-    set(XLIB_TESTS_DEFINITIONS ${XLIB_TESTS_DEFINITIONS} xOPENSSL_IS_USE=1)
 endif(OPENSSL_FOUND)
 
 set_target_properties(
     xLib_test PROPERTIES
-        COMPILE_DEFINITIONS ${XLIB_TESTS_DEFINITIONS}
+        # COMPILE_DEFINITIONS
         COMPILE_FLAGS ${FLAGS}
 )
 

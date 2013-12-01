@@ -7,7 +7,7 @@
 #include <Test/Net/CxTest_CxSmtp.h>
 
 
-#if xOPENSSL_IS_USE
+#if xHAVE_OPENSSL_CRYPTO
 
 //------------------------------------------------------------------------------
 /* virtual */
@@ -104,4 +104,4 @@ CxTest_CxSmtp::unit(
 }
 //------------------------------------------------------------------------------
 
-#endif // xOPENSSL_IS_USE
+#endif // xHAVE_OPENSSL_CRYPTO

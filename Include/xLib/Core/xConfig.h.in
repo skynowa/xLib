@@ -9,6 +9,7 @@
 #ifndef xLib_xConfigH_in
 #define xLib_xConfigH_in
 //-------------------------------------------------------------------------------------------------
+#cmakedefine xHAVE_OPENSSL_CRYPTO  1
 #cmakedefine xHAVE_PR_SET_DUMPABLE 1
 #cmakedefine xHAVE_RLIMIT_CORE     1
 #cmakedefine xHAVE_PT_DENY_ATTACH  1
@@ -124,11 +125,5 @@
 
 #define xCXMYSQL_IS_USE                 0
     ///< is use CxMySql
-
-/**
- * xOPENSSL_IS_USE
- *
- * Is use OpenSSL, set from CMake
- */
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_xConfigH_in

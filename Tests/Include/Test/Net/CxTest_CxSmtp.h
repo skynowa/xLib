@@ -8,7 +8,7 @@
 #include <xLib/Test/CxTest.h>
 #include <xLib/Net/CxSmtp.h>
 //------------------------------------------------------------------------------
-#if xOPENSSL_IS_USE
+#if xHAVE_OPENSSL_CRYPTO
 
 class CxTest_CxSmtp :
     public CxTest
@@ -19,5 +19,5 @@ public:
     virtual void_t unit(culonglong_t &caseLoops);
 };
 
-#endif // xOPENSSL_IS_USE
+#endif // xHAVE_OPENSSL_CRYPTO
 //------------------------------------------------------------------------------

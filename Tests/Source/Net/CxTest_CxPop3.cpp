@@ -12,7 +12,7 @@
 #include <xLib/Net/CxMimeBody.h>
 
 
-#if xOPENSSL_IS_USE
+#if xHAVE_OPENSSL_CRYPTO
 
 //------------------------------------------------------------------------------
 /* virtual */
@@ -159,4 +159,4 @@ CxTest_CxPop3::unit(
 }
 //------------------------------------------------------------------------------
 
-#endif // xOPENSSL_IS_USE
+#endif // xHAVE_OPENSSL_CRYPTO

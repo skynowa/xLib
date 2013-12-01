@@ -4,7 +4,7 @@
  */
 
 
-#if xOPENSSL_IS_USE
+#if xHAVE_OPENSSL_CRYPTO
 
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Filesystem/CxPath.h>
@@ -193,4 +193,4 @@ CxBlowfish::encryptFileCfb64(
 
 xNAMESPACE_END(NxLib)
 
-#endif // xOPENSSL_IS_USE
+#endif // xHAVE_OPENSSL_CRYPTO
