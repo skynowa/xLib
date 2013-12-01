@@ -13,7 +13,7 @@
 #include <xLib/Net/CxSmtp.h>
 #include <xLib/Net/CxMimeHeader.h>
 //------------------------------------------------------------------------------
-#if xOPENSSL_IS_USE
+#if xHAVE_OPENSSL_CRYPTO
 
 class CxTest_CxMimeMessage :
     public CxTest
@@ -24,5 +24,5 @@ public:
     virtual void_t unit(culonglong_t &caseLoops);
 };
 
-#endif // xOPENSSL_IS_USE
+#endif // xHAVE_OPENSSL_CRYPTO
 //------------------------------------------------------------------------------

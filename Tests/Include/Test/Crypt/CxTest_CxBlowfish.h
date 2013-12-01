@@ -10,7 +10,7 @@
 #include <xLib/Test/CxTest.h>
 #include <xLib/Crypt/OpenSSL/CxBlowfish.h>
 //------------------------------------------------------------------------------
-#if xOPENSSL_IS_USE
+#if xHAVE_OPENSSL_CRYPTO
 
 class CxTest_CxBlowfish :
     public CxTest
@@ -21,5 +21,5 @@ public:
     virtual void_t unit(culonglong_t &caseLoops);
 };
 
-#endif // xOPENSSL_IS_USE
+#endif // xHAVE_OPENSSL_CRYPTO
 //------------------------------------------------------------------------------

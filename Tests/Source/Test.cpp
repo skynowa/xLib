@@ -26,7 +26,7 @@
 // Crypt
 #include <Test/Crypt/CxTest_CxBase64.h>
 
-#if xOPENSSL_IS_USE
+#if xHAVE_OPENSSL_CRYPTO
 
 #include <Test/Crypt/CxTest_CxBlowfish.h>
 
@@ -184,7 +184,7 @@ int_t xTMAIN(int_t a_argNum, tchar_t *a_args[])
         manager.add(new CxTest_CxRandom);
         manager.add(new CxTest_CxBase64);
 
-    #if xOPENSSL_IS_USE
+    #if xHAVE_OPENSSL_CRYPTO
         manager.add(new CxTest_CxBlowfish);
     #endif
 

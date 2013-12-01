@@ -10,7 +10,7 @@
 #include <xLib/Filesystem/CxFile.h>
 
 
-#if xOPENSSL_IS_USE
+#if xHAVE_OPENSSL_CRYPTO
 
 //------------------------------------------------------------------------------
 /* virtual */
@@ -70,4 +70,4 @@ CxTest_CxBlowfish::unit(
 }
 //------------------------------------------------------------------------------
 
-#endif // xOPENSSL_IS_USE
+#endif // xHAVE_OPENSSL_CRYPTO
