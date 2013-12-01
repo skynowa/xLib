@@ -118,6 +118,38 @@ CxDebugger::isDebugBuild() const
 #endif
 }
 //-------------------------------------------------------------------------------------------------
+inline void
+CxDebugger::coreDumpsEnable(
+    cbool_t &a_flag
+)
+{
+    xUNUSED(a_flag);    // TODO: a_flag
+    xTEST_NA(a_flag);
+
+    bool_t isEnable = false;
+    int_t  iRv      = 0;
+
+#if defined(xHAVE_PR_SET_DUMPABLE)
+    // prefer PR_SET_DUMPABLE since that also prevents ptrace
+    iRv = ::prctl(PR_SET_DUMPABLE, 0);
+    isEnable = (iRv == 0);
+#elif defined(xHAVE_RLIMIT_CORE)
+    struct rlimit limit = {0, 0};
+
+    iRv = ::setrlimit(RLIMIT_CORE, &limit);
+    isEnable = (iRv == 0);
+#endif
+
+    // Mac OS X
+#ifdef xHAVE_PT_DENY_ATTACH
+    // make sure setrlimit() and ptrace() succeeded
+    iRv = ::ptrace(PT_DENY_ATTACH, 0, 0, 0);
+    isEnable = isEnable && (iRv == 0);
+#endif
+
+    xCHECK_DO(!isEnable, CxTracer() << xT("Unable to disable core dumps."));
+}
+//-------------------------------------------------------------------------------------------------
 inline void_t
 CxDebugger::breakPoint() const
 {

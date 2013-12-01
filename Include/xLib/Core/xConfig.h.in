@@ -1,5 +1,5 @@
 /**
- * \file  xConfig.h
+ * \file  xConfig.h.in
  * \brief configurations for xLib
  */
 
@@ -9,6 +9,10 @@
 #ifndef xLib_xConfigH
 #define xLib_xConfigH
 //-------------------------------------------------------------------------------------------------
+#cmakedefine xHAVE_PR_SET_DUMPABLE 1
+#cmakedefine xHAVE_RLIMIT_CORE     1
+#cmakedefine xHAVE_PT_DENY_ATTACH  1
+
 #if xOS_ENV_WIN
     #if xCOMPILER_MS
         #include <SDKDDKVer.h>

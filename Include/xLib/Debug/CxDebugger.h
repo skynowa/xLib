@@ -32,6 +32,8 @@ public:
         ///< is OS debugger presents
     bool_t         isDebugBuild() const xWARN_UNUSED_RV;
         ///< is debug build (is NDEBUG macros is don't set)
+    void           coreDumpsEnable(cbool_t &flag);
+        ///< core dumps
     void_t         breakPoint() const;
         ///< attach to OS debugger
     void_t         setLogPath(std::ctstring_t &filePath);
