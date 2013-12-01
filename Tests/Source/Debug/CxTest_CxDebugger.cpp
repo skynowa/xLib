@@ -54,6 +54,14 @@ CxTest_CxDebugger::unit(
         #endif
     }
 
+    xTEST_CASE("CxDebugger::coreDumpsEnable", a_caseLoops)
+    {
+        CxDebugger debugger;
+
+        debugger.coreDumpsEnable(false);
+        debugger.coreDumpsEnable(true);
+    }
+
     xTEST_CASE("CxDebugger::breakPoint", a_caseLoops)
     {
         CxDebugger dbgDebugger;
