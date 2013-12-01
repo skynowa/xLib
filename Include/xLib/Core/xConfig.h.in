@@ -6,8 +6,8 @@
 
 #pragma once
 
-#ifndef xLib_xConfigH
-#define xLib_xConfigH
+#ifndef xLib_xConfigH_in
+#define xLib_xConfigH_in
 //-------------------------------------------------------------------------------------------------
 #cmakedefine xHAVE_PR_SET_DUMPABLE 1
 #cmakedefine xHAVE_RLIMIT_CORE     1
@@ -131,4 +131,4 @@
  * Is use OpenSSL, set from CMake
  */
 //-------------------------------------------------------------------------------------------------
-#endif // xLib_xConfigH
+#endif // xLib_xConfigH_in
