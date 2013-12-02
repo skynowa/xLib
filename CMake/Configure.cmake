@@ -6,10 +6,20 @@
 
 include(CheckLibraryExists)
 include(CheckCXXSourceCompiles)
+include(FindMySQL)
 
 
 #--------------------------------------------------------------------------------------------------
 find_package(OpenSSL REQUIRED)
+find_package(MySQL REQUIRED)
+
+if (MYSQL_FOUND)
+    message("MySQL found:       ${MYSQL_FOUND}")
+    message("MySQL include dir: ${MYSQL_INCLUDE_DIR}")
+    message("MySQL libraries:   ${MYSQL_LIBRARIES}")
+else()
+    message("STATUS MySQL found: ${MYSQL_FOUND}")
+endif(MYSQL_FOUND)
 
 configure_file(
     ${CMAKE_CURRENT_SOURCE_DIR}/Include/xLib/Core/xConfig.h.in
