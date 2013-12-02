@@ -10,7 +10,7 @@ Web:     https://bitbucket.org/skynowa/xlib
          https://github.com/skynowa/xLib
          https://sourceforge.net/p/x-lib
 
-Feature list:
+Features:
     - platforms: Windows, Linux, FreeBSD, Mac OS
     - architecture: x86, x64
     - compilers: MinGW, MSVC, CodeGear, Clang, GCC
