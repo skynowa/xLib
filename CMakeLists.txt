@@ -30,7 +30,6 @@ add_executable(xLib_test ${xLib_tests_SOURCES})
 #--------------------------------------------------------------------------------------------------
 # flags
 if     (MSVC)
-    #set(LIBS ${LIBS} mysqlclient)
     set(FLAGS ${FLAGS} "/W3")
 elseif (MINGW)
     set(LIBS ${LIBS} ws2_32 psapi uuid ole32 mpr)
@@ -56,7 +55,7 @@ if (OPENSSL_FOUND)
     message("OpenSSL libraries:   ${OPENSSL_LIBRARIES}")
 else()
     message("OpenSSL found:       ${OPENSSL_FOUND}")
-endif(OPENSSL_FOUND)
+endif()
 
 set_target_properties(
     xLib_test PROPERTIES
@@ -64,7 +63,8 @@ set_target_properties(
         COMPILE_FLAGS ${FLAGS}
 )
 
-target_link_libraries(xLib_test ${LIBS} ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS} ${OPENSSL_LIBRARIES} ${MYSQL_LIBRARIES})
+target_link_libraries(xLib_test
+    ${LIBS} ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS} ${OPENSSL_LIBRARIES} ${MYSQL_LIBRARIES})
 
 #--------------------------------------------------------------------------------------------------
 # install
@@ -74,7 +74,7 @@ file(GLOB_RECURSE XLib_HEADERS "Include/*")
 
 foreach(_headerFile ${XLib_HEADERS})
     get_filename_component(_dir ${_headerFile} PATH)
-    list (APPEND XLib_INCLUDE_DIRS ${_dir})
+    list(APPEND XLib_INCLUDE_DIRS ${_dir})
 endforeach()
 
 list(REMOVE_DUPLICATES XLib_INCLUDE_DIRS)
