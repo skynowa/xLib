@@ -6,7 +6,7 @@
 
 #include <Test/Db/CxTest_CxMySql.h>
 
-#if xCXMYSQL_IS_USE
+#if xHAVE_MYSQL
 
 #include <xLib/Core/CxString.h>
 

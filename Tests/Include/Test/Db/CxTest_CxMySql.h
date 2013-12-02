@@ -6,7 +6,7 @@
 
 #pragma once
 
-#if xCXMYSQL_IS_USE
+#if xHAVE_MYSQL
 
 #include <xLib/Core/xCore.h>
 #include <xLib/Test/CxTest.h>
