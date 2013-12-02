@@ -13,6 +13,7 @@ Web:     https://bitbucket.org/skynowa/xlib
 Feature list:
     - platforms: Windows, Linux, FreeBSD, Mac OS
     - architecture: x86, x64
+    - compilers: MinGW, MSVC, CodeGear, Clang, GCC
     - header only
     - unicode support
 
