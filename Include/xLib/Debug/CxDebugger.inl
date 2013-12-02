@@ -24,6 +24,12 @@
     #endif
 #endif
 
+#if   xHAVE_PR_SET_DUMPABLE
+    #include <sys/prctl.h>
+#elif xHAVE_RLIMIT_CORE
+    #include <sys/resource.h>
+#endif
+
 
 xNAMESPACE_BEGIN(NxLib)
 
