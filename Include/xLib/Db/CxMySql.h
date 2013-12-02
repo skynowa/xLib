@@ -11,7 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 
-#if xCXMYSQL_IS_USE
+#if xHAVE_MYSQL
 
 #if xOS_ENV_WIN
     #include <mysql.h>

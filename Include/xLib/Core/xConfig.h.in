@@ -10,6 +10,7 @@
 #define xLib_xConfigH
 //-------------------------------------------------------------------------------------------------
 #cmakedefine xHAVE_OPENSSL_CRYPTO  1
+#cmakedefine xHAVE_MYSQL           1
 #cmakedefine xHAVE_PR_SET_DUMPABLE 1
 #cmakedefine xHAVE_RLIMIT_CORE     1
 #cmakedefine xHAVE_PT_DENY_ATTACH  1
@@ -122,8 +123,5 @@
 
 #define xNEW_NO_STD_THROW               0
     ///< new with std::notrow
-
-#define xCXMYSQL_IS_USE                 0
-    ///< is use CxMySql
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_xConfigH
