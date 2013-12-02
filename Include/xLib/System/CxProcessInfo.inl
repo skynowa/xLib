@@ -9,7 +9,6 @@
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Filesystem/CxDir.h>
 #include <xLib/Filesystem/CxDll.h>
-#include <xLib/Filesystem/CxFinder.h>
 #include <xLib/System/CxEnvironment.h>
 
 
