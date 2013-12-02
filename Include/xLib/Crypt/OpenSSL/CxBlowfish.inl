@@ -39,8 +39,9 @@ inline
 /* virtual */
 CxBlowfish::~CxBlowfish()
 {
-    /*SECURE*/xSTRUCT_ZERO(_key);
-    /*SECURE*/xARRAY_ZERO(_ivec);
+    // for security
+    xSTRUCT_ZERO(_key);
+    xARRAY_ZERO(_ivec);
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -86,24 +87,24 @@ CxBlowfish::setFileKey(
     xTEST_EQ(false, a_filePath.empty());
 
     size_t         uiRv = 0;
-    std::ustring_t usFile;
-    CxFile         sfFile;
+    std::ustring_t fileKey;
+    CxFile         file;
 
-    sfFile.create(a_filePath, CxFile::omBinRead, true);
+    file.create(a_filePath, CxFile::omBinRead, true);
 
-    longlong_t llFileSize = sfFile.size();
-    xTEST_LESS(0LL, llFileSize);
-    xTEST_GR_EQ(static_cast<longlong_t>( MAX_KEY_SIZE ) >= llFileSize, false);
+    longlong_t fileSize = file.size();
+    xTEST_LESS(0LL, fileSize);
+    xTEST_GR_EQ(static_cast<longlong_t>( MAX_KEY_SIZE ) >= fileSize, false);
 
-    usFile.resize( static_cast<size_t>( llFileSize ) );
+    fileKey.resize( static_cast<size_t>( fileSize ) );
 
-    uiRv = sfFile.read(&usFile.at(0), usFile.size());
-    xTEST_EQ(usFile.size(), uiRv);
+    uiRv = file.read(&fileKey.at(0), fileKey.size());
+    xTEST_EQ(fileKey.size(), uiRv);
 
-    setKey(usFile);
+    setKey(fileKey);
 
     // for security
-    usFile.clear();
+    fileKey.clear();
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -152,10 +153,9 @@ CxBlowfish::encryptCfb64(
 
     int_t num = 0;    //This integer must be initialized to zero when ivec is initialized
 
-    (*a_out).resize( a_in.size() );
+    a_out->resize( a_in.size() );
 
-    encryptCfb64(
-        const_cast<uchar_t *>( &a_in.at(0) ), &(*a_out).at(0),
+    encryptCfb64(const_cast<uchar_t *>( &a_in.at(0) ), &a_out->at(0),
         static_cast<long_t>( a_in.size() ), &num, a_mode);
     xTEST_LESS(- 1, num);
 }
