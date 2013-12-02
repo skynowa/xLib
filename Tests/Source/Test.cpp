@@ -27,16 +27,16 @@
 #include <Test/Crypt/CxTest_CxBase64.h>
 
 #if xHAVE_OPENSSL_CRYPTO
-
 #include <Test/Crypt/CxTest_CxBlowfish.h>
-
 #endif
 
 #include <Test/Crypt/CxTest_CxCrc32.h>
 #include <Test/Crypt/CxTest_CxRandom.h>
 
 // Db
-//#include <Test/Db/CxTest_CxMySql.h>
+#if xHAVE_MYSQL
+#include <Test/Db/CxTest_CxMySql.h>
+#endif
 
 // Debug
 #include <Test/Debug/CxTest_xDebug.h>
@@ -189,7 +189,9 @@ int_t xTMAIN(int_t a_argNum, tchar_t *a_args[])
     #endif
 
         // Db
-        // manager.add(new CxTest_CxMySql);
+    #if xHAVE_MYSQL
+        manager.add(new CxTest_CxMySql);
+    #endif
 
         // Debug
         manager.add(new CxTest_xDebug);
