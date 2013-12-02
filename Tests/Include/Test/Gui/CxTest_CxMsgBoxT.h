@@ -8,7 +8,7 @@
 
 #include <xLib/Core/xCore.h>
 #include <xLib/Test/CxTest.h>
-#include <xLib/Gui/Dialogs/CxMsgBoxT.h>
+#include <xLib/Gui/CxMsgBoxT.h>
 //------------------------------------------------------------------------------
 class CxTest_CxMsgBoxT :
     public CxTest
