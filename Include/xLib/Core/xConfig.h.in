@@ -6,8 +6,8 @@
 
 #pragma once
 
-#ifndef xLib_xConfigH_in
-#define xLib_xConfigH_in
+#ifndef xLib_xConfigH
+#define xLib_xConfigH
 //-------------------------------------------------------------------------------------------------
 #cmakedefine xHAVE_OPENSSL_CRYPTO  1
 #cmakedefine xHAVE_PR_SET_DUMPABLE 1
@@ -126,4 +126,4 @@
 #define xCXMYSQL_IS_USE                 0
     ///< is use CxMySql
 //-------------------------------------------------------------------------------------------------
-#endif // xLib_xConfigH_in
+#endif // xLib_xConfigH
