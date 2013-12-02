@@ -21,7 +21,7 @@ CxTest_CxBlowfish::unit(
 {
     xTEST_CASE("CxBlowfish::encryptCfb64", a_caseLoops)
     {
-        std::custring_t usPlain[] = {
+        std::custring_t plain[] = {
             std::ustring_t(1,  'a'),
             std::ustring_t(2,  'b'),
             std::ustring_t(3,  'c'),
@@ -35,37 +35,37 @@ CxTest_CxBlowfish::unit(
             std::ustring_t(51, 'k')
         };
 
-        for (size_t i = 0; i < xARRAY_SIZE(usPlain); i ++) {
-            CxBlowfish BF;
-            std::tstring_t sKey       = xT("888888888");
-            std::ustring_t sEncrypted;
-            std::ustring_t sDecrypted;
+        for (size_t i = 0; i < xARRAY_SIZE(plain); i ++) {
+            CxBlowfish blowfish;
+            std::tstring_t key = xT("888888888");
+            std::ustring_t encrypted;
+            std::ustring_t decrypted;
 
-            BF.setKey(sKey);
-            BF.encryptCfb64(usPlain[i], &sEncrypted, CxBlowfish::cmEncrypt);
-            BF.encryptCfb64(sEncrypted, &sDecrypted, CxBlowfish::cmDecrypt);
+            blowfish.setKey(key);
+            blowfish.encryptCfb64(plain[i], &encrypted, CxBlowfish::cmEncrypt);
+            blowfish.encryptCfb64(encrypted, &decrypted, CxBlowfish::cmDecrypt);
 
-            xTEST_EQ(true, usPlain[i] == sDecrypted);
+            xTEST_EQ(true, plain[i] == decrypted);
         }
     }
 
     xTEST_CASE("CxBlowfish::encryptFileCfb64", a_caseLoops)
     {
-        CxBlowfish BF;
-        std::tstring_t sKey           = xT("888888888");
-        std::tstring_t sFilePlain     = tempDirPath() + CxConst::slash() + xT("Test.Plain.txt");
-        std::tstring_t sFileEncrypted = tempDirPath() + CxConst::slash() + xT("Test.Encrypted.txt");
-        std::tstring_t sFileDecrypted = tempDirPath() + CxConst::slash() + xT("Test.FileDecrypted.txt");
+        CxBlowfish blowfish;
+        std::tstring_t key           = xT("888888888");
+        std::tstring_t filePlain     = tempDirPath() + CxConst::slash() + xT("Test.Plain.txt");
+        std::tstring_t fileEncrypted = tempDirPath() + CxConst::slash() + xT("Test.Encrypted.txt");
+        std::tstring_t fileDecrypted = tempDirPath() + CxConst::slash() + xT("Test.FileDecrypted.txt");
 
-        //prepare
+        // prepare
         {
-            CxFile::textWrite(sFilePlain, xT("text_text"));
+            CxFile::textWrite(filePlain, xT("text_text"));
         }
 
-        //test
-        BF.setKey(sKey);
-        BF.encryptFileCfb64(sFilePlain, sFileEncrypted, CxBlowfish::cmEncrypt);
-        BF.encryptFileCfb64(sFileEncrypted, sFileDecrypted, CxBlowfish::cmDecrypt);
+        // test
+        blowfish.setKey(key);
+        blowfish.encryptFileCfb64(filePlain, fileEncrypted, CxBlowfish::cmEncrypt);
+        blowfish.encryptFileCfb64(fileEncrypted, fileDecrypted, CxBlowfish::cmDecrypt);
     }
 }
 //------------------------------------------------------------------------------

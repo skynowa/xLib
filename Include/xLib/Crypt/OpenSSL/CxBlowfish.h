@@ -18,7 +18,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxBlowfish
-    /// blowfish (openssl-1.0.0a)
+    /// blowfish
 {
 public:
     enum ExCryptMode
@@ -67,7 +67,7 @@ private:
     BF_KEY        _key;             ///< crypt key
     uchar_t       _ivec[IVEC_SIZE]; ///< ivec
 
-xNO_COPY_ASSIGN(CxBlowfish)
+    xNO_COPY_ASSIGN(CxBlowfish)
 };
 
 xNAMESPACE_END(NxLib)
