@@ -17,18 +17,6 @@ Features:
     - header only
     - unicode support
 
-Pre-requisites:
-    - bash-compatible Unix command shell (for Unix)
-    - Doxygen 1.8.2
-
-Dependencies:
-    - OpenSSL
-        Ubuntu: deb http://security.ubuntu.com/ubuntu lucid-security main
-        Ubuntu: sudo apt-get install libssl-dev
-
-    - MySQL
-        Ubuntu: sudo apt-get install libmysqlclient-dev
-
 Repositories:
     - http://bitbucket.org
         git clone https://skynowa@bitbucket.org/skynowa/xlib.git

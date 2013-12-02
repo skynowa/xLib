@@ -1,10 +1,33 @@
-Build tests
+xLib
 
 
-cd Build
+Pre-requisites:
+    - bash-compatible Unix command shell (for Unix)
+    - Doxygen 1.8.2
 
-cmake VERBOSE=1 ../xLib -G"Eclipse CDT4 - Unix Makefiles" -D_ECLIPSE_VERSION=3.7.2
-cmake VERBOSE=1 .. -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
-cmake VERBOSE=1 ..
+Dependencies:
+    - OpenSSL
+        Ubuntu: deb http://security.ubuntu.com/ubuntu lucid-security main
+        Ubuntu: sudo apt-get install libssl-dev
 
-make VERBOSE=1
+    - MySQL
+        Ubuntu: sudo apt-get install libmysqlclient-dev
+
+Installation:
+    -
+
+Usage:
+    -
+
+Known issues:
+    -
+
+Build tests:
+    mkdir Build
+    cd Build
+
+    cmake VERBOSE=1 ../xLib -G"Eclipse CDT4 - Unix Makefiles"
+    cmake VERBOSE=1 .. -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
+    cmake VERBOSE=1 ..
+
+    make VERBOSE=1
