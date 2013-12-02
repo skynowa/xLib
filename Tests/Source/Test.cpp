@@ -97,7 +97,7 @@
 #include <Test/Sync/CxTest_CxProcess.h>
 
 // Gui
-#include <Test/Gui/Dialogs/CxTest_CxMsgBoxT.h>
+#include <Test/Gui/CxTest_CxMsgBoxT.h>
 
 // System
 #include <Test/System/CxTest_CxEnvironment.h>

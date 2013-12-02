@@ -4,7 +4,7 @@
  */
 
 
-#include <Test/Gui/Dialogs/CxTest_CxMsgBoxT.h>
+#include <Test/Gui/CxTest_CxMsgBoxT.h>
 
 
 //------------------------------------------------------------------------------
