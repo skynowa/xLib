@@ -68,15 +68,17 @@ target_link_libraries(xLib_test
 
 #--------------------------------------------------------------------------------------------------
 # install
-set(XLib_INCLUDE_DIRS "")
+install(
+    DIRECTORY ${CMAKE_SOURCE_DIR}/Include/
+    DESTINATION "include"
+    FILES_MATCHING PATTERN "*" PATTERN "*.h.in" EXCLUDE)
 
-file(GLOB_RECURSE XLib_HEADERS "Include/*")
+#--------------------------------------------------------------------------------------------------
+# uninstall
+configure_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/CMake/cmake_uninstall.cmake.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
+    IMMEDIATE @ONLY)
 
-foreach(_headerFile ${XLib_HEADERS})
-    get_filename_component(_dir ${_headerFile} PATH)
-    list(APPEND XLib_INCLUDE_DIRS ${_dir})
-endforeach()
-
-list(REMOVE_DUPLICATES XLib_INCLUDE_DIRS)
-
-install(DIRECTORY ${XLib_INCLUDE_DIRS} DESTINATION "include/xLib")
+add_custom_target(uninstall
+    COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
