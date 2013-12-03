@@ -1066,9 +1066,15 @@ CxString::createGuid()
         guid.Data4[5], guid.Data4[6], guid.Data4[7]);
     xTEST_EQ(false, sRv.empty());
 #else
-    // TODO: createGuid
-    // #include <uuid/uuid.h>
-    xNOT_IMPLEMENTED;
+    uint_t timeNow = static_cast<uint_t>( std::time(NULL) );
+    std::srand(timeNow);
+
+    sRv = format("%x%x-%x-%x-%x-%x%x%x",
+        ::rand_r(&timeNow), ::rand_r(&timeNow),   // 64-bit Hex number
+        ::rand_r(&timeNow),                       // 32-bit Hex number
+        ((::rand_r(&timeNow) & 0x0fff) | 0x4000), // 32-bit Hex number of the form 4xxx (4 indicates the UUID version)
+        ::rand_r(&timeNow) % 0x3fff + 0x8000,     // 32-bit Hex number in the range [0x8000, 0xbfff]
+        ::rand_r(&timeNow), ::rand_r(&timeNow), ::rand_r(&timeNow)); // 96-bit Hex number
 #endif
 
     return sRv;
