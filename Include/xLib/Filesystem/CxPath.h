@@ -115,11 +115,11 @@ public:
         ///< get max name length in symbols
 
 #if !xOS_ENV_WIN
-    static void_t         proc(std::ctstring_t &procPath, std::vec_tstring_t *data);
-        ///< get from UNIX proc file content
-    static std::tstring_t procValue(std::ctstring_t &procPath, std::ctstring_t &data)
+    static void_t         proc(std::ctstring_t &procPath, std::vec_tstring_t *fileLines);
+        ///< get file lines from UNIX proc file
+    static std::tstring_t procValue(std::ctstring_t &procPath, std::ctstring_t &key)
                               xWARN_UNUSED_RV;
-        ///< get from UNIX proc file content value by data
+        ///< get value by data from UNIX proc file
 #endif
 
 private:
