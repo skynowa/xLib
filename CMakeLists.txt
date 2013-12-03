@@ -49,14 +49,6 @@ else()
     message("xLib: unknown compiler")
 endif()
 
-if (OPENSSL_FOUND)
-    message("OpenSSL found:       ${OPENSSL_FOUND}")
-    message("OpenSSL include dir: ${OPENSSL_INCLUDE_DIR}")
-    message("OpenSSL libraries:   ${OPENSSL_LIBRARIES}")
-else()
-    message("OpenSSL found:       ${OPENSSL_FOUND}")
-endif()
-
 set_target_properties(
     xLib_test PROPERTIES
         # COMPILE_DEFINITIONS
