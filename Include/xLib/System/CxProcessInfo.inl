@@ -317,17 +317,28 @@ CxProcessInfo::commandLine(
 
         (void_t)::free(commandLineContents); commandLineContents = NULL;
     }
+
+    CxString::split(sRv, CxConst::space(), &args);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        // FIX: content of "/proc/%ld/cmdline" - missing spaces
-        std::ctstring_t procFile = CxString::format(xT("/proc/%ld/cmdline"), _id);
+        std::ctstring_t procPath = CxString::format(xT("/proc/%ld/cmdline"), _id);
 
-        std::vec_tstring_t vsProcFile;
+        FILE *procFile = std::fopen(procPath.c_str(), "r");
+        xTEST_PTR(procFile);
 
-        CxPath::proc(procFile, &vsProcFile);
-        xTEST_EQ(size_t(1), vsProcFile.size())
+        cint_t bufferSize       = 2048;
+        char   buff[bufferSize] = {0};
 
-        sRv = vsProcFile.at(0);
+        while ( std::fgets(buff, bufferSize, procFile) ) {
+            size_t pos = 0;
+            while (pos < bufferSize && buff[pos] != '\0' ) {
+                args.push_back(buff + pos);
+
+                pos += std::strlen(buff + pos) + 1;
+            }
+        }
+
+        xFCLOSE(procFile);
     #elif xOS_FREEBSD
         int_t iRv    = - 1;
         int_t mib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_ARGS, _id};
@@ -345,23 +356,12 @@ CxProcessInfo::commandLine(
         xTEST_DIFF(- 1, iRv);
 
         sRv = buff;    // BUG: buff or buff.c_str() - FreeBSD crazy!!!
+
+        CxString::split(sRv, CxConst::space(), &args);
     #endif
 #elif xOS_ENV_MAC
     xNOT_IMPLEMENTED
 #endif
-
-#if xTEMP_DISABLED
-    #if xOS_ENV_WIN
-        LPCTSTR pcszRv = ::GetCommandLine();
-        xTEST_PTR(pcszRv);
-
-        sRv = CxString::trimSpace(pcszRv);
-    #else
-        sRv = CxString::join(_args, CxConst::space());
-    #endif
-#endif
-
-    CxString::split(sRv, CxConst::space(), &args);
 
     // out
     a_args->swap(args);
