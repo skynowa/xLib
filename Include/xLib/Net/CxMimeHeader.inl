@@ -5,9 +5,10 @@
 
 
 #include <xLib/Core/CxString.h>
+#include <xLib/Core/CxLocale.h>
+#include <xLib/Crypt/CxGuid.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/System/CxSystemInfo.h>
-#include <xLib/Core/CxLocale.h>
 
 
 xNAMESPACE_BEGIN(NxLib)
@@ -242,7 +243,7 @@ CxMimeHeader::generateMessageID()
 {
     std::tstring_t sRv;
 
-    sRv = CxString::format(xT("%s@%s"), CxString::createGuid().c_str(),
+    sRv = CxString::format(xT("%s@%s"), CxGuid().create(CxGuid::tpRandomBased).c_str(),
         CxSystemInfo().hostName().c_str());
     xTEST_EQ(false, sRv.empty());
 
