@@ -1054,7 +1054,7 @@ CxString::createGuid()
 {
     std::tstring_t sRv;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     GUID    guid = {0};
     HRESULT hrGuid = S_FALSE;
 
@@ -1065,7 +1065,7 @@ CxString::createGuid()
         guid.Data3, guid.Data4[0], guid.Data4[1], guid.Data4[2], guid.Data4[3], guid.Data4[4],
         guid.Data4[5], guid.Data4[6], guid.Data4[7]);
     xTEST_EQ(false, sRv.empty());
-#else
+#elif xOS_ENV_UNIX
     uint_t timeNow = static_cast<uint_t>( std::time(NULL) );
     std::srand(timeNow);
 
