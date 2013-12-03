@@ -942,12 +942,6 @@ CxTest_CxString::unit(
     *
     *******************************************************************************/
 
-    xTEST_CASE("CxString::createGuid", a_caseLoops)
-    {
-        m_sRv = CxString::createGuid();
-        xTEST_EQ(false, m_sRv.empty());
-    }
-
     xTEST_CASE("CxString::isRepeated", a_caseLoops)
     {
         m_bRv = CxString::isRepeated(xT("yyyyyyyyyyyy"));

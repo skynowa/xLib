@@ -31,6 +31,7 @@
 #endif
 
 #include <Test/Crypt/CxTest_CxCrc32.h>
+#include <Test/Crypt/CxTest_CxGuid.h>
 #include <Test/Crypt/CxTest_CxRandom.h>
 
 // Db
@@ -180,13 +181,13 @@ int_t xTMAIN(int_t a_argNum, tchar_t *a_args[])
         manager.add(new CxTest_CxCom);
 
         // Crypt
-        manager.add(new CxTest_CxCrc32);
-        manager.add(new CxTest_CxRandom);
         manager.add(new CxTest_CxBase64);
-
     #if xHAVE_OPENSSL_CRYPTO
         manager.add(new CxTest_CxBlowfish);
     #endif
+        manager.add(new CxTest_CxCrc32);
+        manager.add(new CxTest_CxGuid);
+        manager.add(new CxTest_CxRandom);
 
         // Db
     #if xHAVE_MYSQL

@@ -164,8 +164,6 @@ public:
     *
     *******************************************************************************/
 
-    static std::tstring_t createGuid() xWARN_UNUSED_RV;
-        ///< generate GUID
     static bool_t         isRepeated(std::ctstring_t &str) xWARN_UNUSED_RV;
         ///< is repeated
 
