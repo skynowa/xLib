@@ -944,12 +944,8 @@ CxTest_CxString::unit(
 
     xTEST_CASE("CxString::createGuid", a_caseLoops)
     {
-        #if   xOS_ENV_WIN
-            m_sRv = CxString::createGuid();
-            xTEST_EQ(false, m_sRv.empty());
-        #elif xOS_ENV_UNIX
-            ////xTEST_EQ(true, m_sRv.empty());
-        #endif
+        m_sRv = CxString::createGuid();
+        xTEST_EQ(false, m_sRv.empty());
     }
 
     xTEST_CASE("CxString::isRepeated", a_caseLoops)
