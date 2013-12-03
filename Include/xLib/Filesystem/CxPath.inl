@@ -1025,7 +1025,7 @@ CxPath::nameMaxSize()
 inline void_t
 CxPath::proc(
     std::ctstring_t    &a_procPath,
-    std::vec_tstring_t *a_data
+    std::vec_tstring_t *a_fileLines
 )
 {
     // check for existence "/proc" directory
@@ -1058,7 +1058,7 @@ CxPath::proc(
     }
 
     // out
-    a_data->swap(vsRv);
+    a_fileLines->swap(vsRv);
 }
 
 #endif
@@ -1068,8 +1068,8 @@ CxPath::proc(
 /* static */
 inline std::tstring_t
 CxPath::procValue(
-    std::ctstring_t &a_procPath,   ///< file path to proc-file
-    std::ctstring_t &a_data        ///< target search data string
+    std::ctstring_t &a_procPath,    ///< file path to proc-file
+    std::ctstring_t &a_key          ///< target search data string
 )
 {
     std::tstring_t     sRv;
@@ -1077,9 +1077,9 @@ CxPath::procValue(
 
     proc(a_procPath, &procFile);
 
-    xFOREACH_CONST (std::vec_tstring_t, it, procFile) {
+    xFOREACH_CONST(std::vec_tstring_t, it, procFile) {
         // TODO: no case search
-        std::csize_t pos = it->find(a_data);
+        std::csize_t pos = it->find(a_key);
         xCHECK_DO(std::tstring_t::npos == pos, continue);
 
         // parse value
