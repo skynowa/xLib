@@ -4,25 +4,15 @@
 #--------------------------------------------------------------------------------------------------
 
 
-if (not exists "@CMAKE_CURRENT_BINARY_DIR@/install_manifest.txt")
-    message(FATAL_ERROR "Cannot find install manifest: \"@CMAKE_CURRENT_BINARY_DIR@/install_manifest.txt\"")
-endif()
+message(STATUS "Uninstalling \"@XLIB_INSTALL_PATH@\"")
 
-file(READ "@CMAKE_CURRENT_BINARY_DIR@/install_manifest.txt" files)
-string(REGEX REPLACE "\n" ";" files "${files}")
-list(REVERSE files)
-foreach(file ${files})
-    message(STATUS "Uninstalling \"$ENV{DESTDIR}${file}\"")
-    if (exists "$ENV{DESTDIR}${file}")
-        execute_process(
-            command @CMAKE_COMMAND@ -E remove "$ENV{DESTDIR}${file}"
-            OUTPUT_VARIABLE rm_out
-            RESULT_VARIABLE rm_retval
-        )
-        if(not ${rm_retval} equal 0)
-            message(FATAL_ERROR "Problem when removing \"$ENV{DESTDIR}${file}\"")
-        endif()
-    else()
-        message(STATUS "File \"$ENV{DESTDIR}${file}\" does not exist.")
+if (EXISTS "@XLIB_INSTALL_PATH@")
+    exec_program("@CMAKE_COMMAND@"
+        ARGS "-E remove_directory \"@XLIB_INSTALL_PATH@\""
+        OUTPUT_VARIABLE rm_out RETURN_VALUE rm_retval)
+    if (NOT "${rm_retval}" STREQUAL 0)
+        message(FATAL_ERROR "Problem when removing \"@XLIB_INSTALL_PATH@\"")
     endif()
-endforeach()
+else()
+    message(STATUS "Directory \"@XLIB_INSTALL_PATH@\" does not exist.")
+endif()

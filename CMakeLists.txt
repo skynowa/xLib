@@ -19,6 +19,12 @@ include_directories("${CMAKE_SOURCE_DIR}/Include")
 include_directories("${CMAKE_SOURCE_DIR}/Tests/Include")
 include_directories("${OPENSSL_INCLUDE_DIR}")
 include_directories("${MYSQL_INCLUDE_DIR}")
+
+#--------------------------------------------------------------------------------------------------
+# vars
+set(XLIB_INSTALL_DIR  include/xLib)
+set(XLIB_INSTALL_PATH "${CMAKE_INSTALL_PREFIX}/${XLIB_INSTALL_DIR}")
+
 #--------------------------------------------------------------------------------------------------
 # sources
 file(GLOB_RECURSE xLib_tests_SOURCES "Tests/*.cpp")
@@ -61,8 +67,8 @@ target_link_libraries(xLib_test
 #--------------------------------------------------------------------------------------------------
 # install
 install(
-    DIRECTORY ${CMAKE_SOURCE_DIR}/Include/
-    DESTINATION "include"
+    DIRECTORY ${CMAKE_SOURCE_DIR}/Include/xLib/
+    DESTINATION ${XLIB_INSTALL_PATH}
     FILES_MATCHING PATTERN "*" PATTERN "*.h.in" EXCLUDE)
 
 #--------------------------------------------------------------------------------------------------
