@@ -45,8 +45,8 @@ CxUri::CxUri(
     _parse(a_uri);
 }
 //-------------------------------------------------------------------------------------------------
-//TODO: uri
-/*
+// TODO: uri
+/**
 URI = scheme ":" hier-part [ "?" query ] [ "#" fragment ]
 
 foo://userinfo@example.com:8042/over/there?name=ferret#nose
@@ -55,7 +55,7 @@ foo://userinfo@example.com:8042/over/there?name=ferret#nose
 scheme        authority           path        query   fragment
 */
 
-/*
+/**
 http   : //ru.wikipedia.org/wiki/URI
 ftp    : //ftp.is.co.za/rfc/rfc1808.txt
 file   : //C:\UserName.HostName\Projects\Wikipedia_Articles\URI.xml
@@ -106,6 +106,7 @@ CxUri::uri() const
 
     return sRv;
 }
+//-------------------------------------------------------------------------------------------------
 inline void_t
 CxUri::setUri(
     std::ctstring_t &a_scheme,
@@ -127,6 +128,7 @@ CxUri::scheme() const
 {
     return encodeComponent(_scheme);
 }
+//-------------------------------------------------------------------------------------------------
 void_t
 CxUri::setScheme(
     std::ctstring_t &a_scheme
@@ -158,6 +160,7 @@ CxUri::authority() const
 
     return encodeComponent(tempAuthority/*_authority*/);
 }
+//-------------------------------------------------------------------------------------------------
 inline void_t
 CxUri::setAuthority(
     std::ctstring_t &a_authority
@@ -166,12 +169,12 @@ CxUri::setAuthority(
     _authority = decodeComponent(a_authority);
 }
 //-------------------------------------------------------------------------------------------------
-//DONE: userInfo
 std::tstring_t
 CxUri::userInfo() const
 {
     return encodeComponent(_userInfo);
 }
+//-------------------------------------------------------------------------------------------------
 inline void_t
 CxUri::setUserInfo(
     std::ctstring_t &a_userInfo
@@ -179,7 +182,7 @@ CxUri::setUserInfo(
 {
     _userInfo = decodeComponent(a_userInfo);
 
-    //TODO: bSetAuthority
+    // TODO: setAuthority
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
@@ -187,6 +190,7 @@ CxUri::host() const
 {
     return encodeComponent(_host);
 }
+//-------------------------------------------------------------------------------------------------
 inline void_t
 CxUri::setHost(
     std::ctstring_t &a_host
@@ -194,7 +198,7 @@ CxUri::setHost(
 {
     _host = decodeComponent(a_host);
 
-    //TODO: bSetAuthority
+    // TODO: setAuthority
 }
 //-------------------------------------------------------------------------------------------------
 inline ushort_t
@@ -202,6 +206,7 @@ CxUri::port()
 {
     return _port;
 }
+//-------------------------------------------------------------------------------------------------
 inline void_t
 CxUri::setPort(
     cushort_t &a_port
@@ -217,6 +222,7 @@ CxUri::path() const
 {
     return encodeComponent(_path);
 }
+//-------------------------------------------------------------------------------------------------
 inline void_t
 CxUri::setPath(
     std::ctstring_t &a_path
@@ -230,6 +236,7 @@ CxUri::query() const
 {
     return encodeComponent(_query);
 }
+//-------------------------------------------------------------------------------------------------
 inline void_t
 CxUri::setQuery(
     std::ctstring_t &a_query
@@ -243,6 +250,7 @@ CxUri::fragment() const
 {
     return encodeComponent(_fragment);
 }
+//-------------------------------------------------------------------------------------------------
 inline void_t
 CxUri::setFragment(
     std::ctstring_t &a_fragment
@@ -254,8 +262,6 @@ CxUri::setFragment(
 inline void_t
 CxUri::clear()
 {
-    ////bool_t bRv = false;
-
     _scheme.clear();
     _authority.clear();
     _userInfo.clear();
@@ -272,11 +278,9 @@ CxUri::escape(
     std::ctstring_t &a_uri
 )
 {
-
-
-    /*
     int_t    c;
 
+#if 0
     while((c = *s++) != (char)0) {
         switch(c) {
         case '\0':
@@ -296,14 +300,11 @@ CxUri::escape(
     }
 
     return 0;
-    */
-
+#endif
 
     std::tstring_t sRv;
 
     sRv = a_uri;
-
-
 
     return sRv;
 }
@@ -318,13 +319,12 @@ CxUri::unescape(
 
     std::tstring_t sRv;
 
-    //TODO: unescape
+    // TODO: unescape
 
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-//TODO: encodeComponent
-//void_t URI::encode(std::ctstring_t& str, std::ctstring_t& reserved, std::tstring_t& encodedStr)
+// TODO: encodeComponent
 /* static */
 inline std::tstring_t
 CxUri::encodeComponent(
@@ -348,12 +348,12 @@ CxUri::encodeComponent(
             sRv += c;
         }
         /*
-        RESERVED_PATH     = "?#";
-        RESERVED_QUERY    = "#";
-        RESERVED_FRAGMENT = "";
-        ILLEGAL           = "%<>{}|\\\"^`";
+        _reservedPath     = "?#";
+        _reservedQuery    = "#";
+        _reservedFragment = "";
+        _illegal           = "%<>{}|\\\"^`";
         */
-        else if (c <= 0x20 || c >= 0x7F || ILLEGAL.find(c) != std::tstring_t::npos
+        else if (c <= 0x20 || c >= 0x7F || _illegal.find(c) != std::tstring_t::npos
             /*|| reserved.find(c) != std::tstring_t::npos*/)
         {
             //� -> %FF
@@ -367,8 +367,7 @@ CxUri::encodeComponent(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-//TODO: decodeComponent
-//void_t URI::decode(std::ctstring_t& str, std::tstring_t& decodedStr)
+// TODO: decodeComponent
 /* static */
 inline std::tstring_t
 CxUri::decodeComponent(
@@ -437,14 +436,14 @@ CxUri::decodeComponent(
 *
 **************************************************************************************************/
 
-std::ctstring_t CxUri::RESERVED_PATH     = xT("?#");
-std::ctstring_t CxUri::RESERVED_QUERY    = xT("#");
-std::ctstring_t CxUri::RESERVED_FRAGMENT = xT("");
-std::ctstring_t CxUri::ILLEGAL           = xT("%<>{}|\\\"^`");
+std::ctstring_t CxUri::_reservedPath     = xT("?#");
+std::ctstring_t CxUri::_reservedQuery    = xT("#");
+std::ctstring_t CxUri::_reservedFragment = xT("");
+std::ctstring_t CxUri::_illegal          = xT("%<>{}|\\\"^`");
 
 //-------------------------------------------------------------------------------------------------
-//TODO: bParse (������ URI)
-/*
+// TODO: _parse
+/**
 URI = scheme ":" hier-part [ "?" query ] [ "#" fragment ]
 
 foo://userinfo@example.com:8042/over/there?name=ferret#nose
@@ -453,7 +452,7 @@ foo://userinfo@example.com:8042/over/there?name=ferret#nose
 scheme        authority           path        query   fragment
 */
 
-/*
+/**
 http   : //ru.wikipedia.org/wiki/URI
 ftp    : //ftp.is.co.za/rfc/rfc1808.txt
 file   : //C:\UserName.HostName\Projects\Wikipedia_Articles\URI.xml
@@ -486,11 +485,10 @@ CxUri::_parse(
     _scheme = CxString::cut(a_uri, schemeStart, schemeEnd);
 
     //-------------------------------------
-    //[authority] - [example.com:8042]
-    //[INPUT]     - foo://userinfo@example.com:8042/over/there?name=ferret#nose
+    // [authority] - [example.com:8042]
+    // [INPUT]     - foo://userinfo@example.com:8042/over/there?name=ferret#nose
     size_t authorityStart = schemeEnd + 1/*":"*/;
 
-    //���� ����� [:] ���� [//] - ����������
     size_t slashCount = 0;
     while ('/' == a_uri.at(authorityStart + slashCount)) {
         slashCount ++;
@@ -505,8 +503,8 @@ CxUri::_parse(
     _authority = CxString::cut(a_uri, authorityStart /*+ slashCount*/, authorityEnd);
 
     //-------------------------------------
-    //[_userInfo] - [userinfo]
-    //[INPUT]        - userinfo@example.com:8042
+    // [_userInfo] - [userinfo]
+    // [INPUT]     - userinfo@example.com:8042
     size_t uiUserInfoStart = 0 + slashCount;
     size_t uiUserInfoEnd   = _authority.find_first_of(xT("@"), uiUserInfoStart);
 
@@ -515,13 +513,12 @@ CxUri::_parse(
     }
 
     //-------------------------------------
-    //[_host] - [example.com]
-    //[INPUT]    -  userinfo@example.com:8042
+    // [_host] - [example.com]
+    // [INPUT] -  userinfo@example.com:8042
     size_t hostStart = _authority.find_first_of(xT("@"));
     size_t hostEnd   = _authority.find_first_of(xT(":"));
 
     if (std::tstring_t::npos != hostStart) {
-        //���� ��� �����
         if (std::tstring_t::npos == hostEnd) {
             hostEnd = _authority.size();
         }
@@ -530,8 +527,8 @@ CxUri::_parse(
     }
 
     //-------------------------------------
-    //[_sPort] - [8042]
-    //[INPUT]  -  userinfo@example.com:8042
+    // [_sPort] - [8042]
+    // [INPUT]  -  userinfo@example.com:8042
     size_t portStart = _authority.find_first_of(xT(":"));
     size_t portEnd   = _authority.size();
 
@@ -544,8 +541,8 @@ CxUri::_parse(
     }
 
     //-------------------------------------
-    //[_host] - [example.com] - ������ ������
-    //[INPUT]    -  userinfo@example.com:8042
+    // [_host] - [example.com]
+    // [INPUT] -  userinfo@example.com:8042
     size_t authorityChars = _authority.find_first_of(xT("@:"));
 
     //���� � Authority ��� "@:" - _host ��� Authority ��� "//"
@@ -554,8 +551,8 @@ CxUri::_parse(
     }
 
     //-------------------------------------
-    //[_path] - [/over/there?]
-    //[INPUT]     - foo://userinfo@example.com:8042/over/there?name=ferret#nose
+    // [_path] - [/over/there?]
+    // [INPUT] - foo://userinfo@example.com:8042/over/there?name=ferret#nose
     size_t pathStart = authorityEnd;
     size_t pathEnd   = a_uri.find_first_of(xT("?#"), pathStart);  // or by the end
 
@@ -566,8 +563,8 @@ CxUri::_parse(
     _path = CxString::cut(a_uri, pathStart, pathEnd);
 
     //-------------------------------------
-    //[_query] - [name=ferret]
-    //[INPUT]     - foo://userinfo@example.com:8042/over/there?name=ferret#nose
+    // [_query] - [name=ferret]
+    // [INPUT]  - foo://userinfo@example.com:8042/over/there?name=ferret#nose
     size_t queryStart = pathEnd;
     size_t queryEnd   = a_uri.find_first_of(xT("#"), queryStart);
 
@@ -578,23 +575,21 @@ CxUri::_parse(
     _query = CxString::cut(a_uri, queryStart + 1/*"?"*/, queryEnd);
 
     //-------------------------------------
-    //[_fragment] - [nose]
-    //[INPUT]     - foo://userinfo@example.com:8042/over/there?name=ferret#nose
+    // [_fragment] - [nose]
+    // [INPUT]     - foo://userinfo@example.com:8042/over/there?name=ferret#nose
     size_t fragmentStart = queryEnd + std::tstring_t(xT("#")).size();
-    size_t fragmentEnd   = a_uri.size();                        // by the end
+    size_t fragmentEnd   = a_uri.size();    // by the end
 
     _fragment = CxString::cut(a_uri, fragmentStart, fragmentEnd);
 }
 //-------------------------------------------------------------------------------------------------
-//TODO: _bNormilize ()
+// TODO: _normilize()
 inline void_t
 CxUri::_normilize(
     std::ctstring_t &a_uri
 )
 {
     xUNUSED(a_uri);
-
-    ////bool_t bRv = false;
 
     //trim
     //lowcase(_scheme)
@@ -603,32 +598,38 @@ CxUri::_normilize(
     xNOT_IMPLEMENTED;
 }
 //-------------------------------------------------------------------------------------------------
-//TODO: _defaultPort ()
 inline ushort_t
 CxUri::_defaultPort() const
 {
-    if (       xT("ftp")    == _scheme) {
+    if (     xT("ftp")    == _scheme) {
         return 21;
-    } else if (xT("ssh")    == _scheme) {
+    }
+    else if (xT("ssh")    == _scheme) {
         return 22;
-    } else if (xT("telnet") == _scheme) {
+    }
+    else if (xT("telnet") == _scheme) {
         return 23;
-    } else if (xT("gopher") == _scheme) {
+    }
+    else if (xT("gopher") == _scheme) {
         return 70;
-    } else if (xT("http")   == _scheme) {
+    }
+    else if (xT("http")   == _scheme) {
         return 80;
-    } else if (xT("nntp")   == _scheme) {
+    }
+    else if (xT("nntp")   == _scheme) {
         return 119;
-    } else if (xT("ldap")   == _scheme) {
+    }
+    else if (xT("ldap")   == _scheme) {
         return 389;
-    } else if (xT("https")  == _scheme) {
+    }
+    else if (xT("https")  == _scheme) {
         return 443;
-    } else {
+    }
+    else {
         return 0;
     }
 }
 //-------------------------------------------------------------------------------------------------
-//TODO: _isDefaultPort ()
 inline bool_t
 CxUri::_isDefaultPort() const
 {
