@@ -575,12 +575,6 @@ CxTest_CxString::unit(
         xTEST_EQ(m_vsRv.at(1),  std::tstring_t(xT("bbb")));
         xTEST_EQ(m_vsRv.at(2),  std::tstring_t());
 
-        CxString::split(xT("aaa\0bbb"), xT("\0"), &m_vsRv);
-        xTEST_EQ(m_vsRv.size(), std::size_t(3));
-        xTEST_EQ(m_vsRv.at(0),  std::tstring_t(xT("aaa")));
-        xTEST_EQ(m_vsRv.at(1),  std::tstring_t(xT("bbb")));
-        xTEST_EQ(m_vsRv.at(2),  std::tstring_t());
-
         CxString::split(xT("1+++22+++333+++4444+++55555+++666666"), xT("+"), &m_vsRv);
         xTEST_EQ(m_vsRv.size(), std::size_t(16));
         xTEST_EQ(m_vsRv.at(0),  std::tstring_t(xT("1")));
