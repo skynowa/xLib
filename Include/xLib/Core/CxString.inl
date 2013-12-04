@@ -636,8 +636,8 @@ CxString::split(
 
     vsRv.push_back( a_str.substr(posPrev, a_str.size() - posPrev) );
 
-    //out
-    std::swap(*a_rv, vsRv);
+    // out
+    a_rv->swap(vsRv);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
