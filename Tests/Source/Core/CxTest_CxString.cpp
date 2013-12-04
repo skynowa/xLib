@@ -569,13 +569,53 @@ CxTest_CxString::unit(
 
     xTEST_CASE("CxString::split", a_caseLoops)
     {
-        std::vec_tstring_t vsText;
+        CxString::split(xT("aaa|bbb|"), xT("|"), &m_vsRv);
+        xTEST_EQ(m_vsRv.size(), std::size_t(3));
+        xTEST_EQ(m_vsRv.at(0),  std::tstring_t(xT("aaa")));
+        xTEST_EQ(m_vsRv.at(1),  std::tstring_t(xT("bbb")));
+        xTEST_EQ(m_vsRv.at(2),  std::tstring_t());
 
-        CxString::split(xT("1+++22+++333+++4444+++55555+++666666"), xT("+"), &vsText);
-        CxString::split(xT("Key+"), xT("+"), &vsText);
+        CxString::split(xT("aaa\0bbb"), xT("\0"), &m_vsRv);
+        xTEST_EQ(m_vsRv.size(), std::size_t(3));
+        xTEST_EQ(m_vsRv.at(0),  std::tstring_t(xT("aaa")));
+        xTEST_EQ(m_vsRv.at(1),  std::tstring_t(xT("bbb")));
+        xTEST_EQ(m_vsRv.at(2),  std::tstring_t());
 
-        vsText.clear();
-        CxString::split(xT(""), xT("+"), &vsText);
+        CxString::split(xT("1+++22+++333+++4444+++55555+++666666"), xT("+"), &m_vsRv);
+        xTEST_EQ(m_vsRv.size(), std::size_t(16));
+        xTEST_EQ(m_vsRv.at(0),  std::tstring_t(xT("1")));
+        xTEST_EQ(m_vsRv.at(1),  std::tstring_t());
+        xTEST_EQ(m_vsRv.at(2),  std::tstring_t());
+        xTEST_EQ(m_vsRv.at(3),  std::tstring_t(xT("22")));
+        xTEST_EQ(m_vsRv.at(4),  std::tstring_t());
+        xTEST_EQ(m_vsRv.at(5),  std::tstring_t());
+        xTEST_EQ(m_vsRv.at(6),  std::tstring_t(xT("333")));
+        xTEST_EQ(m_vsRv.at(7),  std::tstring_t());
+        xTEST_EQ(m_vsRv.at(8),  std::tstring_t());
+        xTEST_EQ(m_vsRv.at(9),  std::tstring_t(xT("4444")));
+        xTEST_EQ(m_vsRv.at(10), std::tstring_t());
+        xTEST_EQ(m_vsRv.at(11), std::tstring_t());
+        xTEST_EQ(m_vsRv.at(12), std::tstring_t(xT("55555")));
+        xTEST_EQ(m_vsRv.at(13), std::tstring_t());
+        xTEST_EQ(m_vsRv.at(14), std::tstring_t());
+        xTEST_EQ(m_vsRv.at(15), std::tstring_t(xT("666666")));
+
+        CxString::split(xT("1+22+333+4444+55555+666666"), xT("+"), &m_vsRv);
+        xTEST_EQ(m_vsRv.size(), std::size_t(6));
+        xTEST_EQ(m_vsRv.at(0),  std::tstring_t(xT("1")));
+        xTEST_EQ(m_vsRv.at(1),  std::tstring_t(xT("22")));
+        xTEST_EQ(m_vsRv.at(2),  std::tstring_t(xT("333")));
+        xTEST_EQ(m_vsRv.at(3),  std::tstring_t(xT("4444")));
+        xTEST_EQ(m_vsRv.at(4),  std::tstring_t(xT("55555")));
+        xTEST_EQ(m_vsRv.at(5),  std::tstring_t(xT("666666")));
+
+        CxString::split(xT("Key+"), xT("+"), &m_vsRv);
+        xTEST_EQ(m_vsRv.size(), std::size_t(2));
+        xTEST_EQ(m_vsRv.at(0),  std::tstring_t(xT("Key")));
+        xTEST_EQ(m_vsRv.at(1),  std::tstring_t());
+
+        CxString::split(xT(""), xT("+"), &m_vsRv);
+        xTEST_EQ(m_vsRv.empty(), true);
     }
 
     xTEST_CASE("CxString::join", a_caseLoops)
