@@ -278,9 +278,9 @@ CxUri::escape(
     std::ctstring_t &a_uri
 )
 {
+#if 0
     int_t    c;
 
-#if 0
     while((c = *s++) != (char)0) {
         switch(c) {
         case '\0':
