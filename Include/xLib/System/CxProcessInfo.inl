@@ -327,10 +327,10 @@ CxProcessInfo::commandLine(
         FILE *procFile = std::fopen(procPath.c_str(), "r");
         xTEST_PTR(procFile);
 
-        cint_t bufferSize       = 2048;
-        char   buff[bufferSize] = {0};
+        std::csize_t bufferSize       = 2048;
+        char         buff[bufferSize] = {0};
 
-        while ( std::fgets(buff, bufferSize, procFile) ) {
+        while ( std::fgets(buff, static_cast<int_t>(bufferSize), procFile) ) {
             size_t pos = 0;
             while (pos < bufferSize && buff[pos] != '\0' ) {
                 args.push_back(buff + pos);
