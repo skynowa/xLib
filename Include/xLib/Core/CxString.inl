@@ -617,6 +617,8 @@ CxString::split(
     xTEST_NA(a_sep);
     xTEST_NA(a_rv);
 
+    xCHECK_DO(a_rv != NULL, a_rv->clear());
+
     xCHECK_DO(a_str.empty(), return);
     xCHECK_DO(a_sep.empty(), return);
     xTEST_PTR(a_rv);
