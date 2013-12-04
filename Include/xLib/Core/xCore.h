@@ -175,6 +175,7 @@ namespace NxLib { }
 #include <xLib/Core/xVersion.h>
 #include <xLib/Core/xTypes.h>
 #include <xLib/Core/xFunctions.h>
+#include <xLib/Core/xStdStream.h>
 
 #include <xLib/Core/xTracing.h>
 #include <xLib/Core/xLinking.h>

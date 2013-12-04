@@ -9,8 +9,6 @@
 #ifndef xLib_xStdStreamH
 #define xLib_xStdStreamH
 //-------------------------------------------------------------------------------------------------
-#include <xLib/Core/xCore.h>
-//-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(std)
 
 template<class Traits>
