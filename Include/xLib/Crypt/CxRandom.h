@@ -27,8 +27,11 @@ public:
     void     setSeed(cuint_t &seed);
         ///< set non-default seed
     template <class T>
-    T        next(const T &min, const T &max);
-        ///< get integer in the range between 0 and RAND_MAX
+    T        nextInt(const T &min, const T &max);
+        ///< get integer value between min and max
+    template <class T>
+    T        nextFloat(const T &min, const T &max);
+       ///< get double value between min and max
 
 private:
     uint_t   _seed; ///< current seed
