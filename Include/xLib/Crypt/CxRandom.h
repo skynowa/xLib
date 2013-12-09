@@ -26,6 +26,8 @@ public:
         ///< set default seed
     void     setSeed(cuint_t &seed);
         ///< set non-default seed
+    bool_t   nextBool();
+        ///< get bool value
     template <class T>
     T        nextInt(const T &min, const T &max);
         ///< get integer value between min and max

@@ -97,6 +97,15 @@ CxTest_CxRandom::unit(
     }
 #endif
 
+    xTEST_CASE("CxRandom::nextBool", a_caseLoops)
+    {
+        CxRandom random;
+        random.setSeed();
+
+        m_bRv = random.nextBool();
+        xTEST_NA(m_bRv);
+    }
+
     xTEST_CASE("CxRandom::nextInt", a_caseLoops)
     {
         cint_t data[][2] = {
