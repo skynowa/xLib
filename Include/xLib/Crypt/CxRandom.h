@@ -17,56 +17,28 @@ class CxRandom
     /// random
 {
 public:
-    explicit              CxRandom(clong_t &seed = std::time(NULL));
+             CxRandom();
         ///< constructor
-    virtual              ~CxRandom() {}
+    virtual ~CxRandom() {}
         ///< destructor
 
-    void_t                setSeed(clong_t &seed);
-        ///< set seed
-    int_t                 nextInt() xWARN_UNUSED_RV;
-        ///< _next int_t
-    int_t                 nextInt(cint_t &max) xWARN_UNUSED_RV;
-        ///< _next int_t
-    int_t                 nextInt(cint_t &a, cint_t &b) xWARN_UNUSED_RV;
-        ///< _next int_t
-    long_t                nextLong() xWARN_UNUSED_RV;
-        ///< _next long_t
-    bool_t                nextBool() xWARN_UNUSED_RV;
-        ///< _next boolean
-    float_t               nextFloat() xWARN_UNUSED_RV;
-        ///< _next float_t
-    double                nextDouble() xWARN_UNUSED_RV;
-        ///< _next double
-    char                  nextChar() xWARN_UNUSED_RV;
-        ///< _next char
-    char                  nextFigure() xWARN_UNUSED_RV;
-        ///< _next figure
-    double                nextGaussian() xWARN_UNUSED_RV;
-        ///< _next gaussian
-
-    static void_t         setSeed();
-        ///< set seed
-    static long_t         nextIntEx(clong_t &min, clong_t &max) xWARN_UNUSED_RV;
-        ///< generates a random number between specified min/max boundaries
-    static std::tstring_t nextString(std::csize_t &size) xWARN_UNUSED_RV;
-        ///< get random string
-
-protected:
-    long_t                _next() xWARN_UNUSED_RV;
-        ///< _next long_t
+    void     setSeed();
+        ///< set default seed
+    void     setSeed(cuint_t &seed);
+        ///< set non-default seed
+    template <class T>
+    T        next(const T &min, const T &max);
+        ///< get integer in the range between 0 and RAND_MAX
 
 private:
-    static cint_t         A = 48271;
-    static cint_t         M = RAND_MAX;
-    static cint_t         Q = M / A;
-    static cint_t         R = M % A;
+    uint_t   _seed; ///< current seed
 
-    long_t                _seed;                    ///< for private use
-    double                _nextNextGaussian;        ///< for private use
-    bool_t                _isHaveNextNextGaussian;  ///< for private use
+    uint_t   _seedTimeBased() const;
+        ///< get time based seed
+    int_t    _nextInt();
+        ///< get integer in the range between 0 and RAND_MAX
 
-xNO_COPY_ASSIGN(CxRandom)
+    xNO_COPY_ASSIGN(CxRandom)
 };
 
 xNAMESPACE_END(NxLib)
