@@ -66,16 +66,16 @@ private:
 #if   xOS_ENV_WIN
     HCRYPTPROV     _hProv;  ///< CSP handle
 #elif xOS_ENV_UNIX
-    struct random_data _data;   ///< data for ::srandom_r()
+    random_data    _data;   ///< data for ::srandom_r()
 #endif
 };
 //-------------------------------------------------------------------------------------------------
-template <class SeedPolicy>
+template <class RandomValue, class SeedPolicy>
 class CxRandom
     /// random
 {
 public:
-               CxRandom() {}
+               CxRandom();
         ///< constructor
     virtual   ~CxRandom() {}
         ///< destructor
@@ -90,16 +90,17 @@ public:
         ///< get integer value between min and max
     template <class T>
     T          nextFloat(const T &min, const T &max);
-       ///< get double value between min and max
+       ///< get float value between min and max
 
 private:
+    const RandomValue _randMax;
     SeedPolicy _policy;
 
     xNO_COPY_ASSIGN(CxRandom)
 };
 
-typedef CxRandom<CxStdSeedPolicy>    CxStdRandom;
-typedef CxRandom<CxNativeSeedPolicy> CxNativeRandom;
+typedef CxRandom<int_t,  CxStdSeedPolicy>    CxStdRandom;
+typedef CxRandom<long_t, CxNativeSeedPolicy> CxNativeRandom;
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------

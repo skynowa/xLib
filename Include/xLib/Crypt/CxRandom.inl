@@ -156,46 +156,52 @@ CxNativeSeedPolicy::next()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-template <class SeedPolicy>
-inline bool_t
-CxRandom<SeedPolicy>::nextBool()
+template <class RandomValue, class SeedPolicy>
+CxRandom<RandomValue, SeedPolicy>::CxRandom() :
+    _randMax( (std::numeric_limits<RandomValue>::max)() )
+{
+}
+//-------------------------------------------------------------------------------------------------
+template <class RandomValue, class SeedPolicy>
+bool_t
+CxRandom<RandomValue, SeedPolicy>::nextBool()
 {
     return (0 == (_policy.next() % 2));
 }
 //-------------------------------------------------------------------------------------------------
-template <class SeedPolicy>
+template <class RandomValue, class SeedPolicy>
 template <class T>
 T
-CxRandom<SeedPolicy>::nextChar()
+CxRandom<RandomValue, SeedPolicy>::nextChar()
 {
-    cint_t min = (std::numeric_limits<T>::min)();
-    cint_t max = (std::numeric_limits<T>::max)();
+    clong_t min = (std::numeric_limits<T>::min)();
+    clong_t max = (std::numeric_limits<T>::max)();
 
     return static_cast<T>( nextInt(min, max) );
 }
 //-------------------------------------------------------------------------------------------------
-template <class SeedPolicy>
+template <class RandomValue, class SeedPolicy>
 template <class T>
 T
-CxRandom<SeedPolicy>::nextInt(
+CxRandom<RandomValue, SeedPolicy>::nextInt(
     const T &min,
     const T &max
 )
 {
-    cint_t width = static_cast<int_t>(max - min) + 1;
+    clong_t width = static_cast<long_t>(max - min) + 1;
 
     return static_cast<T>(_policy.next() % width) + min;
 }
 //-------------------------------------------------------------------------------------------------
-template <class SeedPolicy>
+template <class RandomValue, class SeedPolicy>
 template <class T>
 T
-CxRandom<SeedPolicy>::nextFloat(
+CxRandom<RandomValue, SeedPolicy>::nextFloat(
     const T &min,
     const T &max
 )
 {
-    const T factor = (max - min) / static_cast<T>(RAND_MAX);
+    const T factor = (max - min) / static_cast<T>(_randMax);
 
     return static_cast<T>( _policy.next() ) * factor + min;
 }
