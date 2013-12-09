@@ -59,6 +59,16 @@ CxRandom::nextBool()
 //-------------------------------------------------------------------------------------------------
 template <class T>
 T
+CxRandom::nextChar()
+{
+    cint_t min = (std::numeric_limits<T>::min)();
+    cint_t max = (std::numeric_limits<T>::max)();
+
+    return static_cast<T>( nextInt(min, max) );
+}
+//-------------------------------------------------------------------------------------------------
+template <class T>
+T
 CxRandom::nextInt(
     const T &min,
     const T &max
