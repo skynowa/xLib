@@ -14,93 +14,9 @@ CxTest_CxRandom::unit(
     culonglong_t &a_caseLoops
 )
 {
-    // TEST: CxRandom
-
-#if xTODO
-    CxRandom rndR;
-
-    //--------------------------------------------------
-    //bSetSeed
-    {
-        m_bRv = rndR.bSetSeed( static_cast<ulong_t>( time(NULL) ) );
-        xTEST_EQ(true, m_bRv);
-    }
-
-    //--------------------------------------------------
-    //nextInt
-    {
-        m_iRv = rndR.nextInt();
-        xTEST_LESS(0, m_iRv);
-    }
-
-    //--------------------------------------------------
-    //nextInt
-    {
-        m_iRv = rndR.nextInt(100);
-        xTEST_LESS_EQ(0, m_iRv);
-    }
-
-    //--------------------------------------------------
-    //nextInt
-    {
-        m_iRv = rndR.nextInt(100, 200);
-        xTEST_EQ(true, 100 <= m_iRv && 200 >= m_iRv);
-    }
-
-    //--------------------------------------------------
-    //nextLong
-    {
-        m_liRv = rndR.nextLong();
-        xTEST_LESS(0L, m_liRv);
-    }
-
-    //--------------------------------------------------
-    //nextBool
-    {
-        m_blRes = rndR.nextBool();
-        xTEST_EQ(true, m_blRes || !m_blRes);
-    }
-
-    //--------------------------------------------------
-    //nextFloat
-    {
-        m_fRv = rndR.nextFloat();
-        //
-    }
-
-    //--------------------------------------------------
-    //nextDouble
-    {
-        m_dRv = rndR.nextDouble();
-        //
-    }
-
-    //--------------------------------------------------
-    //nextChar
-    {
-        m_chRv = rndR.nextChar();
-        //
-    }
-
-    //--------------------------------------------------
-    //nextFigure
-    {
-        m_chRv = rndR.nextFigure();
-        //
-    }
-
-    //--------------------------------------------------
-    //nextGaussian
-    {
-        m_dRv = rndR.nextGaussian();
-        //
-    }
-#endif
-
     xTEST_CASE("CxRandom::nextBool", a_caseLoops)
     {
-        CxRandom random;
-        random.setSeed();
+        CxStdRandom random;
 
         m_bRv = random.nextBool();
         xTEST_NA(m_bRv);
@@ -108,8 +24,7 @@ CxTest_CxRandom::unit(
 
     xTEST_CASE("CxRandom::nextChar", a_caseLoops)
     {
-        CxRandom random;
-        random.setSeed();
+        CxStdRandom random;
 
         m_chRv = random.nextChar<char>();
         xTEST_NA(m_chRv);
@@ -132,8 +47,7 @@ CxTest_CxRandom::unit(
             {-100000, 50000}
         };
 
-        CxRandom random;
-        random.setSeed();
+        CxStdRandom random;
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
             clong_t min = data[i][0];
@@ -155,8 +69,7 @@ CxTest_CxRandom::unit(
             {-100000.0, 50000.0}
         };
 
-        CxRandom random;
-        random.setSeed();
+        CxStdRandom random;
 
         // float
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {

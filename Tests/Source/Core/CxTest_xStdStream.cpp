@@ -18,7 +18,7 @@ CxTest_xStdStream::unit(
     {
         for (size_t i = 0; i < 10; ++ i) {
             std::ustring_t usStr;
-            CxRandom       random;
+            CxStdRandom    random;
 
             usStr.resize( random.nextInt(size_t(1), size_t(64)) );
             std::fill_n(usStr.begin(), usStr.size(), static_cast<std::ustring_t::value_type>( random.nextInt(1, 255) ));
