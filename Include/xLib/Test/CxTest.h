@@ -20,6 +20,7 @@ class CxTest
 public:
     void_t *             m_pvRv;      ///< for global use
     tchar_t              m_chRv;      ///< for global use
+    uchar_t              m_ucRv;      ///< for global use
     bool_t               m_bRv;       ///< for global use
     int_t                m_iRv;       ///< for global use
     short_t              m_siRv;      ///< for global use

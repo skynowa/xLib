@@ -22,6 +22,7 @@ inline
 CxTest::CxTest() :
     m_pvRv      (NULL),
     m_chRv      (0),
+    m_ucRv      (0),
     m_bRv       (false),
     m_iRv       (- 1),
     m_siRv      (0),
