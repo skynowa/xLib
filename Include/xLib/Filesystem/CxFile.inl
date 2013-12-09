@@ -750,8 +750,7 @@ CxFile::wipe(
             //--------------------------------------------------
             // fill by 0x55, 0xAA, random char
             for (size_t p = 0; p < a_passes; ++ p) {
-                CxRandom random;
-                random.setSeed();
+                CxNativeRandom random;
 
                 cuchar_t rand  = random.nextChar<uchar_t>();
                 cuchar_t char1 = 0x55;

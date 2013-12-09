@@ -13,41 +13,93 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
+class IxSeedPolicy
+    /// seed policy interface
+{
+public:
+                   IxSeedPolicy();
+        ///< constructor
+    virtual       ~IxSeedPolicy() {};
+        ///< destructor
+
+    virtual long_t next() = 0;
+        ///< next value
+
+protected:
+    uint_t         _seed; ///< current seed
+
+private:
+    uint_t         _seedTimeBased() const;
+        ///< get time based seed
+
+    xNO_COPY_ASSIGN(IxSeedPolicy)
+};
+//-------------------------------------------------------------------------------------------------
+class CxStdSeedPolicy :
+    IxSeedPolicy
+    /// std seed policy
+{
+public:
+                   CxStdSeedPolicy();
+        ///< constructor
+    virtual       ~CxStdSeedPolicy();
+        ///< destructor
+
+    virtual long_t next();
+        ///< get integer in the range between 0 and RAND_MAX
+};
+//-------------------------------------------------------------------------------------------------
+class CxNativeSeedPolicy :
+    IxSeedPolicy
+    /// native seed policy
+{
+public:
+                   CxNativeSeedPolicy();
+        ///< constructor
+    virtual       ~CxNativeSeedPolicy();
+        ///< destructor
+
+    virtual long_t next();
+        ///< get long integer in the range between 0 and RAND_MAX
+
+private:
+#if   xOS_ENV_WIN
+    HCRYPTPROV     _hProv;  ///< CSP handle
+#elif xOS_ENV_UNIX
+    struct random_data _data;   ///< data for ::srandom_r()
+#endif
+};
+//-------------------------------------------------------------------------------------------------
+template <class SeedPolicy>
 class CxRandom
     /// random
 {
 public:
-             CxRandom();
+               CxRandom() {}
         ///< constructor
-    virtual ~CxRandom() {}
+    virtual   ~CxRandom() {}
         ///< destructor
 
-    void     setSeed();
-        ///< set default seed
-    void     setSeed(cuint_t &seed);
-        ///< set non-default seed
-    bool_t   nextBool();
+    bool_t     nextBool();
         ///< get bool value
     template <class T>
-    T        nextChar();
+    T          nextChar();
         ///< get character value between min and max
     template <class T>
-    T        nextInt(const T &min, const T &max);
+    T          nextInt(const T &min, const T &max);
         ///< get integer value between min and max
     template <class T>
-    T        nextFloat(const T &min, const T &max);
+    T          nextFloat(const T &min, const T &max);
        ///< get double value between min and max
 
 private:
-    uint_t   _seed; ///< current seed
-
-    uint_t   _seedTimeBased() const;
-        ///< get time based seed
-    int_t    _nextInt();
-        ///< get integer in the range between 0 and RAND_MAX
+    SeedPolicy _policy;
 
     xNO_COPY_ASSIGN(CxRandom)
 };
+
+typedef CxRandom<CxStdSeedPolicy>    CxStdRandom;
+typedef CxRandom<CxNativeSeedPolicy> CxNativeRandom;
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
