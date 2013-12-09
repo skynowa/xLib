@@ -53,7 +53,7 @@ CxRandom::setSeed(
 //-------------------------------------------------------------------------------------------------
 template <class T>
 T
-CxRandom::next(
+CxRandom::nextInt(
     const T &min,
     const T &max
 )
@@ -61,6 +61,18 @@ CxRandom::next(
     cint_t width = static_cast<int_t>(max - min) + 1;
 
     return static_cast<T>(_nextInt() % width) + min;
+}
+//-------------------------------------------------------------------------------------------------
+template <class T>
+T
+CxRandom::nextFloat(
+    const T &min,
+    const T &max
+)
+{
+    const T factor = (max - min) / static_cast<T>(RAND_MAX);
+
+    return static_cast<T>( _nextInt() ) * factor + min;
 }
 //-------------------------------------------------------------------------------------------------
 

@@ -97,7 +97,7 @@ CxTest_CxRandom::unit(
     }
 #endif
 
-    xTEST_CASE("CxRandom::next", a_caseLoops)
+    xTEST_CASE("CxRandom::nextInt", a_caseLoops)
     {
         cint_t data[][2] = {
             {0, 100},
@@ -115,7 +115,40 @@ CxTest_CxRandom::unit(
             clong_t min = data[i][0];
             clong_t max = data[i][1];
 
-            m_liRv = random.next(min, max);
+            m_liRv = random.nextInt(min, max);
+            xTEST_EQ(true, m_liRv >= min && m_liRv <= max);
+        }
+    }
+
+    xTEST_CASE("CxRandom::nextFloat", a_caseLoops)
+    {
+        cfloat_t data[][2] = {
+            {0.0, 100.0},
+            {500.0, 1000.0},
+            {50000.0, 100000.0},
+            {-100.0, 0.0},
+            {-1000.0, 500.0},
+            {-100000.0, 50000.0}
+        };
+
+        CxRandom random;
+        random.setSeed();
+
+        // float
+        for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
+            cfloat_t min = data[i][0];
+            cfloat_t max = data[i][1];
+
+            m_fRv = random.nextFloat(min, max);
+            xTEST_EQ(true, m_liRv >= min && m_liRv <= max);
+        }
+
+        // double
+        for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
+            cdouble_t min = data[i][0];
+            cdouble_t max = data[i][1];
+
+            m_dRv = random.nextFloat(min, max);
             xTEST_EQ(true, m_liRv >= min && m_liRv <= max);
         }
     }

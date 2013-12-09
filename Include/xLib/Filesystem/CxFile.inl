@@ -753,7 +753,7 @@ CxFile::wipe(
                 CxRandom random;
                 random.setSeed();
 
-                cuchar_t rand  = static_cast<uchar_t>( random.next(0, 255) );
+                cuchar_t rand  = static_cast<uchar_t>( random.nextInt(0, 255) );
                 cuchar_t char1 = 0x55;
                 cuchar_t char2 = 0xAA;
 
