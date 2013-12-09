@@ -29,6 +29,9 @@ public:
     bool_t   nextBool();
         ///< get bool value
     template <class T>
+    T        nextChar();
+        ///< get character value between min and max
+    template <class T>
     T        nextInt(const T &min, const T &max);
         ///< get integer value between min and max
     template <class T>
