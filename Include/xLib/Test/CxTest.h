@@ -67,7 +67,7 @@ private:
     std::tstring_t       _tempDirPath; ///< work dir path
     std::tstring_t       _name;        ///< test name
 
-xNO_COPY_ASSIGN(CxTest)
+    xNO_COPY_ASSIGN(CxTest)
 };
 
 xNAMESPACE_END(NxLib)
