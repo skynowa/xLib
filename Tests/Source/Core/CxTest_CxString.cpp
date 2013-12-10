@@ -178,7 +178,7 @@ CxTest_CxString::unit(
         // TODO: tests for CxString::castA, CxString::castW
     }
 
-#if xTODO
+#if 0
     xTEST_CASE("CxString::strToWStr, CxString::wstrToStr", a_caseLoops)
     {
         std::cstring_t csAnsiStr[] = {
