@@ -35,7 +35,7 @@ private:
     cbool_t     _isUseTracing;  ///< is use tracing
     container_t _tests;         ///< CxTest's container
 
-xNO_COPY_ASSIGN(CxTestManager)
+    xNO_COPY_ASSIGN(CxTestManager)
 };
 
 xNAMESPACE_END(NxLib)
