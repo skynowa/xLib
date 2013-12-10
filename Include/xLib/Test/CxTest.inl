@@ -72,13 +72,13 @@ CxTest::run(
             // TODO: xTEST_MSG_EQ(true, bRv, sGetName() + xT(": fail"));
         }
     }
+    catch (const CxException &a_e) {
+        xTEST_FAIL(name() + xT(": ") + a_e.what());
+    }
     catch (const std::exception &a_e) {
         std::string asMsg = a_e.what();
 
         xTEST_FAIL(name() + xT(": ") + xS2TS(asMsg));
-    }
-    catch (const CxException &a_e) {
-        xTEST_FAIL(name() + xT(": ") + a_e.what());
     }
     catch (...) {
         xTEST_FAIL(name() + xT(": Unknown test error"));
