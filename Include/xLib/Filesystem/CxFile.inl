@@ -714,7 +714,7 @@ CxFile::tryRemove(
     for (size_t i = 0; i < attemptsReal; ++ i) {
         xTRY {
             remove(a_filePath);
-            break;
+            xCHECK_DO(!isExists(a_filePath), break);
         }
         xCATCH_ALL
 
