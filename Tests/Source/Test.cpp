@@ -8,6 +8,9 @@
 #include <xLib/System/CxProcessInfo.h>
 #include <xLib/Test/CxTestManager.h>
 
+// Test
+#include <Test/Test/CxTest_xTest.h>
+
 // Core
 #include <Test/Core/CxTest_CxUtils.h>
 #include <Test/Core/CxTest_xStdStream.h>
@@ -164,6 +167,9 @@ int_t xTMAIN(int_t a_argNum, tchar_t *a_args[])
     // add and run tests
     {
         CxTestManager manager(isUseTracing);
+
+        // Test
+        manager.add(new CxTest_xTest);
 
         // Core
         manager.add(new CxTest_CxUtils);
