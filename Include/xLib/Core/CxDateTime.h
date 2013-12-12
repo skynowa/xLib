@@ -45,6 +45,25 @@ public:
     virtual              ~CxDateTime() {}
         ///< destructor
 
+    // validate
+    struct CxValidator
+        ///< CxDateTime validator
+    {
+        static bool_t year(cint_t &year) xWARN_UNUSED_RV;
+        static bool_t month(cint_t &month) xWARN_UNUSED_RV;
+        static bool_t day(cint_t &day) xWARN_UNUSED_RV;
+        static bool_t hour(cint_t &hour) xWARN_UNUSED_RV;
+        static bool_t minute(cint_t &minute) xWARN_UNUSED_RV;
+        static bool_t second(cint_t &second) xWARN_UNUSED_RV;
+        static bool_t msec(cint_t &msec) xWARN_UNUSED_RV;
+        static bool_t datetime(cint_t &year, cint_t &month, cint_t &day, cint_t &hour,
+            cint_t &minute, cint_t &second, cint_t &msec) xWARN_UNUSED_RV;
+        static bool_t datetime(const CxDateTime &datetime) xWARN_UNUSED_RV;
+    };
+
+    bool_t                isValid() const xWARN_UNUSED_RV;
+        ///< checking for a valid datetime
+
     // comparison operators
     bool_t                operator == (const CxDateTime &datetime) const;
         ///< operator ==
@@ -103,14 +122,6 @@ public:
         ///< formating
 
     // static
-    static bool_t         isValid(cint_t &year, cint_t &month, cint_t &day, cint_t &hour,
-                              cint_t &minute, cint_t &second, cint_t &msec) xWARN_UNUSED_RV;
-        ///< checking for a valid datetime
-    static bool_t         isValid(const CxDateTime &datetime) xWARN_UNUSED_RV;
-        ///< checking for a valid datetime
-           bool_t         isValid() const xWARN_UNUSED_RV;
-        ///< checking for a valid datetime
-
     static CxDateTime     current() xWARN_UNUSED_RV;
         ///< get current datetime
     static int_t          daysInMonth(cint_t &year, cint_t &month) xWARN_UNUSED_RV;

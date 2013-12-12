@@ -154,6 +154,133 @@ CxDateTime::CxDateTime(
 
 
 /**************************************************************************************************
+*   public: validate
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+inline bool_t
+CxDateTime::CxValidator::year(
+    cint_t &a_year
+)
+{
+    cbool_t bRv = (a_year >= 0 && a_year <= 9999);
+    xTEST_EQ(true, bRv);
+
+    return bRv;
+}
+//-------------------------------------------------------------------------------------------------
+inline bool_t
+CxDateTime::CxValidator::month(
+    cint_t &a_month
+)
+{
+    cbool_t bRv = (a_month >= 1 && a_month <= 12);
+    xTEST_EQ(true, bRv);
+
+    return bRv;
+}
+//-------------------------------------------------------------------------------------------------
+inline bool_t
+CxDateTime::CxValidator::day(
+    cint_t &a_day
+)
+{
+    cbool_t bRv = (a_day >= 1 && a_day <= 31);
+    xTEST_EQ(true, bRv);
+
+    return bRv;
+}
+//-------------------------------------------------------------------------------------------------
+inline bool_t
+CxDateTime::CxValidator::hour(
+    cint_t &a_hour
+)
+{
+    cbool_t bRv = (a_hour >= 0 && a_hour <= 23);
+    xTEST_EQ(true, bRv);
+
+    return bRv;
+}
+//-------------------------------------------------------------------------------------------------
+inline bool_t
+CxDateTime::CxValidator::minute(
+    cint_t &a_minute
+)
+{
+    cbool_t bRv = (a_minute >= 0 && a_minute <= 59);
+    xTEST_EQ(true, bRv);
+
+    return bRv;
+}
+//-------------------------------------------------------------------------------------------------
+inline bool_t
+CxDateTime::CxValidator::second(
+    cint_t &a_second
+)
+{
+    cbool_t bRv = (a_second >= 0 && a_second <= 59);
+    xTEST_EQ(true, bRv);
+
+    return  bRv;
+}
+//-------------------------------------------------------------------------------------------------
+inline bool_t
+CxDateTime::CxValidator::msec(
+    cint_t &a_msec
+)
+{
+    cbool_t bRv = (a_msec >= 0 && a_msec <= 999);
+    xTEST_EQ(true, bRv);
+
+    return  bRv;
+}
+//-------------------------------------------------------------------------------------------------
+inline bool_t
+CxDateTime::CxValidator::datetime(
+    cint_t &a_year,
+    cint_t &a_month,
+    cint_t &a_day,
+    cint_t &a_hour,
+    cint_t &a_minute,
+    cint_t &a_second,
+    cint_t &a_msec
+)
+{
+    xUNUSED(a_day);
+
+    xCHECK_RET(!year(a_year) || !month(a_month) || !day(a_day) || !hour(a_hour) ||
+        !minute(a_minute) || !second(a_second) || !msec(a_msec), false);
+
+    return true;
+}
+//-------------------------------------------------------------------------------------------------
+inline bool_t
+CxDateTime::CxValidator::datetime(
+    const CxDateTime &a_datetime
+)
+{
+    return datetime(a_datetime._year, a_datetime._month, a_datetime._day,
+        a_datetime._hour, a_datetime._minute, a_datetime._second, a_datetime._msec);
+}
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*    public: comparison operators
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+inline bool_t
+CxDateTime::isValid() const
+{
+    return CxValidator::datetime(*this);
+}
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
 *    public: comparison operators
 *
 **************************************************************************************************/
@@ -165,7 +292,7 @@ CxDateTime::operator == (
 ) const
 {
     xTEST_EQ(true, isValid());
-    xTEST_EQ(true, isValid(a_datetime));
+    xTEST_EQ(true, CxValidator::datetime(a_datetime));
 
     return (_thisMSec == a_datetime._thisMSec);
 }
@@ -176,7 +303,7 @@ CxDateTime::operator != (
 ) const
 {
     xTEST_EQ(true, isValid());
-    xTEST_EQ(true, isValid(a_datetime));
+    xTEST_EQ(true, CxValidator::datetime(a_datetime));
 
     return ( _thisMSec != a_datetime._thisMSec );
 }
@@ -187,7 +314,7 @@ CxDateTime::operator < (
 ) const
 {
     xTEST_EQ(true, isValid());
-    xTEST_EQ(true, isValid(a_datetime));
+    xTEST_EQ(true, CxValidator::datetime(a_datetime));
 
     return ( _thisMSec < a_datetime._thisMSec );
 }
@@ -198,7 +325,7 @@ CxDateTime::operator <= (
 ) const
 {
     xTEST_EQ(true, isValid());
-    xTEST_EQ(true, isValid(a_datetime));
+    xTEST_EQ(true, CxValidator::datetime(a_datetime));
 
     return ( _thisMSec <= a_datetime._thisMSec );
 }
@@ -209,7 +336,7 @@ CxDateTime::operator > (
 ) const
 {
     xTEST_EQ(true, isValid());
-    xTEST_EQ(true, isValid(a_datetime));
+    xTEST_EQ(true, CxValidator::datetime(a_datetime));
 
     return ( _thisMSec > a_datetime._thisMSec );
 }
@@ -220,7 +347,7 @@ CxDateTime::operator >= (
 ) const
 {
     xTEST_EQ(true, isValid());
-    xTEST_EQ(true, isValid(a_datetime));
+    xTEST_EQ(true, CxValidator::datetime(a_datetime));
 
     return ( _thisMSec >= a_datetime._thisMSec );
 }
@@ -420,7 +547,7 @@ CxDateTime::set(
     // n/a
     // n/a
 
-    xTEST_EQ(true, isValid(a_year, a_month, a_day, a_hour, a_minute, a_second, a_msec));
+    xTEST_EQ(true, CxValidator::datetime(a_year, a_month, a_day, a_hour, a_minute, a_second, a_msec));
 
     //datetime members
     _year   = a_year;
@@ -522,62 +649,6 @@ CxDateTime::format(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline bool_t
-CxDateTime::isValid(
-    cint_t &a_year,
-    cint_t &a_month,
-    cint_t &a_day,
-    cint_t &a_hour,
-    cint_t &a_minute,
-    cint_t &a_second,
-    cint_t &a_msec
-)
-{
-    xUNUSED(a_day);
-
-    cbool_t isYear   = (/*a_year   >= 0U && */a_year   <= 9999);
-    xTEST_EQ(true, isYear);
-
-    cbool_t isMonth  = (/*a_month  >= 0 /1/ &&*/ a_month  <= 12);
-    xTEST_EQ(true, isMonth);
-
-    cbool_t isDay    = true; ////(a_day    >= 0/*1*/ && a_day    <= usDaysInMonth(a_year, a_month));
-    xTEST_EQ(true, isDay);
-
-    cbool_t isHour   = (/*a_hour   >= 0 &&*/ a_hour   <= 23);
-    xTEST_EQ(true, isHour);
-
-    cbool_t isMinute = (/*a_minute >= 0 &&*/ a_minute <= 59);
-    xTEST_EQ(true, isMinute);
-
-    cbool_t isSecond = (/*a_second >= 0 &&*/ a_second <= 59);
-    xTEST_EQ(true, isSecond);
-
-    cbool_t isMsec   = (/*a_msec >= 0 &&*/ a_msec   <= 999);
-    xTEST_EQ(true, isMsec);
-
-    xCHECK_RET(!(isYear && isMonth && isDay && isHour && isMinute && isSecond && isMsec), false);
-
-    return true;
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-inline bool_t
-CxDateTime::isValid(
-    const CxDateTime &a_datetime
-)
-{
-    return isValid(a_datetime._year, a_datetime._month, a_datetime._day,
-        a_datetime._hour, a_datetime._minute, a_datetime._second, a_datetime._msec);
-}
-//-------------------------------------------------------------------------------------------------
-inline bool_t
-CxDateTime::isValid() const
-{
-    return isValid(*this);
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
 inline CxDateTime
 CxDateTime::current()
 {
@@ -612,7 +683,7 @@ CxDateTime::current()
     int_t second = dateTime->tm_sec;
     int_t msec   = static_cast<int_t>( static_cast<double>(time.tv_usec) * 0.001 );
 
-    xTEST_EQ(true, isValid(year, month, day, hour, minute, second, msec));
+    xTEST_EQ(true, CxValidator::datetime(year, month, day, hour, minute, second, msec));
 
     return CxDateTime(year, month, day, hour, minute, second, msec);
 #endif
