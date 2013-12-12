@@ -309,7 +309,7 @@ CxStackTrace::_format(
     xCHECK_RET(NULL == a_stack, std::tstring_t());
 
     std::tstring_t     sRv;
-    std::csize_t       elementsNum = 6U;
+    std::csize_t       elementsNum = 6;
     std::vector<int_t> maxs(elementsNum, 0);
 
     // get elements max sizes
@@ -320,8 +320,19 @@ CxStackTrace::_format(
         }
     }
 
-    // formating
-    xFOREACH_CONST(std::vector<std::vec_tstring_t>, it, *a_stack) {
+   /**
+    * formating
+    *
+    *   - skip 2 first elements of a real stack - it's a class internals:
+    *       0  xLib_test  ??  0  0x46d314  NxLib::CxStackTrace::get() const
+    *       1  xLib_test  ??  0  0x46e090  NxLib::CxStackTrace::toString()
+    */
+    std::csize_t posStackStart = 2;
+
+    for (std::vector<std::vec_tstring_t>::const_iterator it(a_stack->begin() + posStackStart);
+        it != a_stack->end();
+        ++ it)
+    {
         std::tstringstream_t stackLine;
 
         stackLine
