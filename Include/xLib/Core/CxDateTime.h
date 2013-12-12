@@ -140,11 +140,11 @@ public:
     // other
     static std::tstring_t zodiacSign(cint_t &month, cint_t &day) xWARN_UNUSED_RV;
         ///< sign of the zodiac by date
-    static std::tstring_t monthStr(int_t month, cbool_t &isShortName) xWARN_UNUSED_RV;
+    static std::tstring_t monthStr(cint_t &month, cbool_t &isShortName) xWARN_UNUSED_RV;
         ///< get month string
     static int_t          monthNum(std::ctstring_t &month, cbool_t &isShortName) xWARN_UNUSED_RV;
         ///< get month number by string
-    static std::tstring_t weekDayStr(int_t day, cbool_t &isShortName) xWARN_UNUSED_RV;
+    static std::tstring_t weekDayStr(cint_t &day, cbool_t &isShortName) xWARN_UNUSED_RV;
         ///< get week day string
     static int_t          weekDayNum(std::ctstring_t &day, cbool_t &isShortName) xWARN_UNUSED_RV;
         ///< get week day number by string
