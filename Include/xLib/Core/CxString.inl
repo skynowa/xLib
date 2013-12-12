@@ -245,6 +245,7 @@ CxString::strToWStr(
 {
     xTEST_NA(a_stdString);
     xTEST_NA(a_locale);
+    xSTD_VERIFY(std::has_facet<std::ctype<std::wstring::value_type> >(a_locale));
 
     xCHECK_RET(a_stdString.empty(),                                              std::wstring());
     xCHECK_RET(!std::has_facet<std::ctype<std::wstring::value_type> >(a_locale), std::wstring());
@@ -271,6 +272,8 @@ CxString::wstrToStr(
 {
     xTEST_NA(a_stdWString);
     xTEST_NA(a_locale);
+    xSTD_VERIFY(std::has_facet<std::ctype<wchar_t> >(a_locale));
+    xSTD_VERIFY(std::has_facet<std::ctype<char> >(a_locale));
 
     xCHECK_RET(a_stdWString.empty(),                            std::string());
     xCHECK_RET(!std::has_facet<std::ctype<wchar_t> >(a_locale), std::string());

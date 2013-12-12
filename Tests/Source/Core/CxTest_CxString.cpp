@@ -182,9 +182,9 @@ CxTest_CxString::unit(
     {
         std::cstring_t csAnsiStr[] = {
             "gnhjfgyhj ghj...",
-            //"vhgnjhghjfgh 234563476 45674_+()_ (*?)casf,fjpo,e rfWAERCWER$%^*())_+)+*()BNVNH*",
+            "vhgnjhghjfgh 234563476 45674_+()_ (*?)casf,fjpo,e rfWAERCWER$%^*())_+)+*()BNVNH*",
             "123 456 7890",
-            //"!@#$% ^&*()_+|* /{}:@' \"?><",
+            "!@#$% ^&*()_+|* /{}:@' \"?><",
             "0123456789",
             "0123456789",
             // TODO: "строка",
@@ -195,11 +195,11 @@ CxTest_CxString::unit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(csAnsiStr) - 1; i ++) {
-            std::cstring_t csTemplate = csAnsiStr[i];
+            std::cstring_t asTemplate = csAnsiStr[i];
 
-            std::wstring wsUnicode = CxString::strToWStr(csTemplate);
+            std::wstring wsUnicode = CxString::strToWStr(asTemplate);
             std::string  asAnsi    = CxString::wstrToStr(wsUnicode);
-            xTEST_EQ(true, csTemplate == asAnsi);
+            xTEST_EQ(asTemplate, asAnsi);
         }
     }
 
