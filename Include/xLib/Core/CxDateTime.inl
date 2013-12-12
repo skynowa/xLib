@@ -186,7 +186,7 @@ CxDateTime::CxValidator::day(
     cint_t &a_day
 )
 {
-    cbool_t bRv = (a_day >= 1 && a_day <= 31);
+    cbool_t bRv = (a_day >= 1 && a_day <= 7);
     xTEST_EQ(true, bRv);
 
     return bRv;
@@ -454,7 +454,7 @@ CxDateTime::get(
 ) const
 {
     xTEST_EQ(true, isValid());
-    // n/a
+    xTESTS_NA;
 
     CxUtils::ptrAssignT(a_year,   _year);
     CxUtils::ptrAssignT(a_month,  _month);
@@ -468,7 +468,7 @@ CxDateTime::get(
 inline int_t
 CxDateTime::dayOfWeek() const
 {
-    xTEST_EQ(true, isValid()); //??? - 0
+    xTEST_EQ(true, isValid());
 
     int_t iRv     = 0;
     tm    timeInfo;  xSTRUCT_ZERO(timeInfo);
@@ -490,7 +490,7 @@ CxDateTime::dayOfWeek() const
 inline ulonglong_t
 CxDateTime::toMsec() const
 {
-    xTEST_EQ(true, isValid()); //??? - 0
+    xTEST_EQ(true, isValid());
 
     return _thisMSec;
 }
@@ -500,8 +500,8 @@ CxDateTime::set(
     culonglong_t &a_msec
 )
 {
-    // n/a
-    // ullMSec - n/a
+    xTESTS_NA;
+    xTEST_NA(a_msec);
 
     //--------------------------------------------------
     // datetime msec member
@@ -549,7 +549,7 @@ CxDateTime::set(
 
     xTEST_EQ(true, CxValidator::datetime(a_year, a_month, a_day, a_hour, a_minute, a_second, a_msec));
 
-    //datetime members
+    // datetime members
     _year   = a_year;
     _month  = a_month;
     _day    = a_day;
@@ -558,7 +558,7 @@ CxDateTime::set(
     _second = a_second;
     _msec   = a_msec;
 
-    // datetime msec member (convert to milliseconds)
+    // datetime msec member (convert to msec)
     _thisMSec = _toMsec();
 
     xTEST_EQ(true, isValid());
@@ -579,7 +579,7 @@ CxDateTime::_toMsec() const
 
     ulonglong_t ullRv = 0ULL;
 
-    ullRv += _year   * 1000ULL * 60 * 60 * 24 * 30 * 12;      // TODO: days in month 30 or 31 ???
+    ullRv += _year   * 1000ULL * 60 * 60 * 24 * 30 * 12;    // TODO: days in month 30 or 31 ???
     ullRv += _month  * 1000ULL * 60 * 60 * 24 * 30;
     ullRv += _day    * 1000ULL * 60 * 60 * 24;
     ullRv += _hour   * 1000ULL * 60 * 60;
@@ -662,7 +662,7 @@ CxDateTime::current()
     return CxDateTime(dateTime.wYear, dateTime.wMonth, dateTime.wDay,
         dateTime.wHour, dateTime.wMinute, dateTime.wSecond, dateTime.wMilliseconds);
 #else
-    // get milliseconds
+    // get msec
     timeval time;   xSTRUCT_ZERO(time);
 
     int_t iRv = ::gettimeofday(&time, NULL);
@@ -711,7 +711,7 @@ CxDateTime::unixTimeToFileTime(
     FILETIME     *a_fileTime
 )
 {
-    // ctmTime - n/a
+    xTEST_NA(a_unixTime);
     xTEST_PTR(a_fileTime);
 
     longlong_t llRv = 0LL;
@@ -755,6 +755,7 @@ CxDateTime::daysInMonth(
 {
     xCHECK_RET(2 == a_month && isLeapYear(a_year), 29);
 
+    // TODO: CxDateTime::daysInMonth()
     const CxArray<int_t, 13> monthsDays = {{
         /*31*/0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
     }};
@@ -873,15 +874,12 @@ CxDateTime::zodiacSign(
 /* static */
 inline std::tstring_t
 CxDateTime::monthStr(
-    int_t    a_month,
+    cint_t  &a_month,
     cbool_t &a_isShortName
 )
 {
-    xTEST_NA(a_month);
+    xTEST_EQ(true, CxValidator::month(a_month));
     xTEST_NA(a_isShortName);
-
-    xCHECK_DO(12 < a_month, a_month = 12);
-    xCHECK_DO(1  > a_month, a_month = 1);
 
     std::tstring_t sRv;
 
@@ -983,14 +981,12 @@ CxDateTime::monthNum(
 /* static */
 inline std::tstring_t
 CxDateTime::weekDayStr(
-    int_t    a_day,
+    cint_t  &a_day,
     cbool_t &a_isShortName
 )
 {
-    xTEST_NA(a_day);
+    xTEST_EQ(true, CxValidator::day(a_day));
     xTEST_NA(a_isShortName);
-
-    xCHECK_DO(6 < a_day, a_day = 6);
 
     std::tstring_t sRv;
 
