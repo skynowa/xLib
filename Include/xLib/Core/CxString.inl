@@ -246,13 +246,14 @@ CxString::strToWStr(
     xTEST_NA(a_stdString);
     xTEST_NA(a_locale);
 
-    xCHECK_RET(a_stdString.empty(), std::wstring());
+    xCHECK_RET(a_stdString.empty(),                                              std::wstring());
+    xCHECK_RET(!std::has_facet<std::ctype<std::wstring::value_type> >(a_locale), std::wstring());
 
     std::wstring                swRv(a_stdString.size(), std::wstring::value_type());
 
-    std::string::const_iterator itBegin( a_stdString.begin() );
-    std::string::const_iterator itEnd  ( a_stdString.end() );
-    std::wstring::iterator      itToBegin( swRv.begin() );
+    std::string::const_iterator itBegin   = a_stdString.begin();
+    std::string::const_iterator itEnd     = a_stdString.end();
+    std::wstring::iterator      itToBegin = swRv.begin();
 
     for ( ; itBegin != itEnd; ++ itBegin, ++ itToBegin) {
         *itToBegin = std::use_facet< std::ctype<wchar_t> >( a_locale ).widen(*itBegin);
@@ -271,7 +272,9 @@ CxString::wstrToStr(
     xTEST_NA(a_stdWString);
     xTEST_NA(a_locale);
 
-    xCHECK_RET(a_stdWString.empty(), std::string());
+    xCHECK_RET(a_stdWString.empty(),                            std::string());
+    xCHECK_RET(!std::has_facet<std::ctype<wchar_t> >(a_locale), std::string());
+    xCHECK_RET(!std::has_facet<std::ctype<char> >(a_locale),    std::string());
 
     typedef std::wstring::traits_type::state_type     state_type_t;
     typedef std::codecvt<wchar_t, char, state_type_t> codecvt_t;
@@ -279,7 +282,7 @@ CxString::wstrToStr(
     std::string      asRv(a_stdWString.size(), std::wstring::value_type());
 
     const codecvt_t &codec     = std::use_facet<codecvt_t>( a_locale );
-    state_type_t     state;
+    state_type_t     state; xSTRUCT_ZERO(state);
 
     const wchar_t   *itBegin   = &a_stdWString.at(0);
     const wchar_t   *itEnd     = &a_stdWString.at(0) + a_stdWString.size();
@@ -289,7 +292,6 @@ CxString::wstrToStr(
     char            *itToEnd   = &asRv.at(0) + asRv.size();
     char            *itToNext  = NULL;
 
-    // FIX: CxString::wstrToStr()
     codec.out(state, itBegin, itEnd, itNext, itToBegin, itToEnd, itToNext);
 
     return asRv;
