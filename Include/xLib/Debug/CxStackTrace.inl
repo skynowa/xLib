@@ -70,6 +70,13 @@ CxStackTrace::get(
     std::vector<std::vec_tstring_t> stack;
     std::ctstring_t                 dataNotFound = xT("[???]");
 
+   /**
+    * Skip 2 first elements of a real stack - it's a class internals:
+    *   0  xLib_test  ??  0  0x46d314  NxLib::CxStackTrace::get() const
+    *   1  xLib_test  ??  0  0x46e090  NxLib::CxStackTrace::toString()
+    */
+    std::csize_t posStackStart = 2;
+
 #if   xOS_ENV_WIN
     #if   xCOMPILER_MINGW
         // TODO: CxStackTrace::get
@@ -91,7 +98,7 @@ CxStackTrace::get(
         symbol->SizeOfStruct = sizeof(SYMBOL_INFO);
         symbol->MaxNameLen   = 255UL;
 
-        for (ushort_t i = 1U; i < framesNum; ++ i) {
+        for (ushort_t i = 1U + posStackStart; i < framesNum; ++ i) {
             int_t          stackLineNum = 0;
             std::tstring_t modulePath;
             std::tstring_t filePath;
@@ -194,7 +201,7 @@ CxStackTrace::get(
     tchar_t **symbols = ::backtrace_symbols(stackBuff, framesNum);
     xCHECK_DO(NULL == symbols, return);
 
-    for (int_t i = 0; i < framesNum; ++ i) {
+    for (int_t i = 0 + posStackStart; i < framesNum; ++ i) {
         int_t          stackLineNum = 0;
         std::tstring_t modulePath;
         std::tstring_t filePath;
@@ -320,19 +327,8 @@ CxStackTrace::_format(
         }
     }
 
-   /**
-    * formating
-    *
-    *   - skip 2 first elements of a real stack - it's a class internals:
-    *       0  xLib_test  ??  0  0x46d314  NxLib::CxStackTrace::get() const
-    *       1  xLib_test  ??  0  0x46e090  NxLib::CxStackTrace::toString()
-    */
-    std::csize_t posStackStart = 2;
-
-    for (std::vector<std::vec_tstring_t>::const_iterator it(a_stack->begin() + posStackStart);
-        it != a_stack->end();
-        ++ it)
-    {
+    // formatting
+    xFOREACH_CONST(std::vector<std::vec_tstring_t>, it, *a_stack) {
         std::tstringstream_t stackLine;
 
         stackLine
