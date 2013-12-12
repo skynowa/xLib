@@ -67,8 +67,8 @@ CxStackTrace::get(
 {
     xCHECK_DO(NULL == a_stack, return);
 
-    std::ctstring_t                 dataNotFound = xT("[???]");
     std::vector<std::vec_tstring_t> stack;
+    std::ctstring_t                 dataNotFound = xT("[???]");
 
 #if   xOS_ENV_WIN
     #if   xCOMPILER_MINGW
@@ -277,7 +277,7 @@ CxStackTrace::get(
     xNOT_IMPLEMENTED
 #endif
 
-    std::swap(*a_stack, stack);
+    a_stack->swap(stack);
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
@@ -316,7 +316,6 @@ CxStackTrace::_format(
     for (size_t i = 0; i < elementsNum; ++ i) {
         xFOREACH_CONST(std::vector<std::vec_tstring_t>, it, *a_stack) {
             cint_t current = static_cast<int_t>( it->at(i).size() );
-
             xCHECK_DO(current > maxs[i], maxs[i] = current);
         }
     }
@@ -410,7 +409,7 @@ CxStackTrace::_addr2Line(
         *a_sourceLine = CxString::cast<ulong_t>( line.at(1) );
     }
 
-    int_t iRv =::pclose(file);   file = NULL;
+    int_t iRv = ::pclose(file);   file = NULL;
     xSTD_VERIFY(- 1 != iRv);
 }
 
