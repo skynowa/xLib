@@ -186,7 +186,7 @@ CxDateTime::CxValidator::day(
     cint_t &a_day
 )
 {
-    cbool_t bRv = (a_day >= 1 && a_day <= 7);
+    cbool_t bRv = (a_day >= 1 && a_day <= 31);
     xTEST_EQ(true, bRv);
 
     return bRv;
@@ -597,6 +597,33 @@ CxDateTime::_toMsec() const
 *
 **************************************************************************************************/
 
+//-------------------------------------------------------------------------------------------------
+inline std::tstring_t
+CxDateTime::format(
+    const std::ctstring_t &a_format
+) const
+{
+    xTEST_EQ(true, isValid());
+    // n/a
+
+    std::tstring_t sRv;
+    tchar_t        buff[80 + 1] = {};
+
+    struct tm time; xSTRUCT_ZERO(time);
+    time.tm_year = _year;
+    time.tm_mon  = _month;
+    time.tm_mday = _day;
+    time.tm_hour = _hour;
+    time.tm_min  = _minute;
+    time.tm_sec  = _second;
+
+    size_t uiRv = std::strftime(buff, sizeof(buff) - 1, a_format.c_str(), &time);
+    xTEST_NA(uiRv);
+
+    xCHECK_DO(uiRv > 0, sRv.assign(&buff[0], uiRv));
+
+    return sRv;
+}
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
 CxDateTime::format(
