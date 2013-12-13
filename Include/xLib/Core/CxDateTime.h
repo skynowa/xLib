@@ -118,6 +118,8 @@ public:
     #endif
 
     // formating
+    std::tstring_t        format(const std::ctstring_t &format) const xWARN_UNUSED_RV;
+        ///< formating
     std::tstring_t        format(const ExFormatType &format) const xWARN_UNUSED_RV;
         ///< formating
 
