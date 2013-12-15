@@ -21,9 +21,9 @@ public:
     static T &get() xWARN_UNUSED_RV
         ///< get object instance
     {
-        static T singleton;
+        static T object;
 
-        return singleton;
+        return object;
     }
 
 private:
@@ -32,7 +32,7 @@ private:
    ~CxSingleton();
         ///< destructor
 
-xNO_COPY_ASSIGN(CxSingleton)
+    xNO_COPY_ASSIGN(CxSingleton)
 };
 
 xNAMESPACE_END(NxLib)

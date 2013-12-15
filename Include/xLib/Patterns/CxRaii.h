@@ -1,6 +1,6 @@
 /**
- * \file  CxDateTime.h
- * \brief date, time
+ * \file  CxRaii.h
+ * \brief RAII
  */
 
 
@@ -9,6 +9,8 @@
 #ifndef xLib_CxRaiiH
 #define xLib_CxRaiiH
 //-------------------------------------------------------------------------------------------------
+#include <xLib/Core/xCore.h>
+//-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
 template <class T, void (T::*MemberT)(void)>
@@ -16,17 +18,21 @@ class CxRaii
     ///< RAII
 {
 public:
-    CxRaii(T& a_object) :
+    CxRaii(T &a_object) :
         _object(a_object)
     {
     }
+        ///< constructor
    ~CxRaii()
     {
         (_object.*MemberT)();
     }
+        ///< destructor
 
 private:
-    T& _object;
+    T &_object;
+
+    xNO_COPY_ASSIGN(CxRaii)
 };
 
 xNAMESPACE_END(NxLib)
