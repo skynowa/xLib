@@ -568,10 +568,6 @@ CxTest_CxDateTime::unit(
     xTEST_CASE("CxDateTime::monthStr", a_caseLoops)
     {
         // isShortName = false
-        m_sRv = CxDateTime::monthStr(- 1, false);
-        xTEST_EQ(std::tstring_t(xT("December")), m_sRv);
-        m_sRv = CxDateTime::monthStr(0, false);
-        xTEST_EQ(std::tstring_t(xT("January")), m_sRv);
         m_sRv = CxDateTime::monthStr(1, false);
         xTEST_EQ(std::tstring_t(xT("January")), m_sRv);
         m_sRv = CxDateTime::monthStr(2, false);
@@ -596,14 +592,8 @@ CxTest_CxDateTime::unit(
         xTEST_EQ(std::tstring_t(xT("November")), m_sRv);
         m_sRv = CxDateTime::monthStr(12, false);
         xTEST_EQ(std::tstring_t(xT("December")), m_sRv);
-        m_sRv = CxDateTime::monthStr(13, false);
-        xTEST_EQ(std::tstring_t(xT("December")), m_sRv);
 
         // isShortName = true
-        m_sRv = CxDateTime::monthStr(- 1, true);
-        xTEST_EQ(std::tstring_t(xT("Dec")), m_sRv);
-        m_sRv = CxDateTime::monthStr(0, true);
-        xTEST_EQ(std::tstring_t(xT("Jan")), m_sRv);
         m_sRv = CxDateTime::monthStr(1, true);
         xTEST_EQ(std::tstring_t(xT("Jan")), m_sRv);
         m_sRv = CxDateTime::monthStr(2, true);
@@ -627,8 +617,6 @@ CxTest_CxDateTime::unit(
         m_sRv = CxDateTime::monthStr(11, true);
         xTEST_EQ(std::tstring_t(xT("Nov")), m_sRv);
         m_sRv = CxDateTime::monthStr(12, true);
-        xTEST_EQ(std::tstring_t(xT("Dec")), m_sRv);
-        m_sRv = CxDateTime::monthStr(13, true);
         xTEST_EQ(std::tstring_t(xT("Dec")), m_sRv);
     }
 
