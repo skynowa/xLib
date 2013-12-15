@@ -6,6 +6,7 @@
 
 #include <Test/Patterns/CxTest_CxRaii.h>
 
+
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_ANONYM_BEGIN
 
