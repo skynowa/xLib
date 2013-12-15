@@ -82,6 +82,7 @@
 #include <Test/Net/CxTest_CxHttpClient.h>
 
 // Patterns
+#include <Test/Patterns/CxTest_CxObserver.h>
 #include <Test/Patterns/CxTest_CxRaii.h>
 #include <Test/Patterns/CxTest_CxSingleton.h>
 
@@ -240,6 +241,7 @@ int_t xTMAIN(int_t a_argNum, tchar_t *a_args[])
         manager.add(new CxTest_CxHttpClient);
 
         // Patterns
+        manager.add(new CxTest_CxObserver);
         manager.add(new CxTest_CxRaii);
         manager.add(new CxTest_CxSingleton);
 
