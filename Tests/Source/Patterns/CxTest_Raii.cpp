@@ -24,6 +24,7 @@ public:
     {
         *_value = _clearValue;
     }
+
 private:
     std::tstring_t *_value;
     std::tstring_t  _clearValue;
