@@ -56,6 +56,9 @@ public:
         static bool_t minute(cint_t &minute) xWARN_UNUSED_RV;
         static bool_t second(cint_t &second) xWARN_UNUSED_RV;
         static bool_t msec(cint_t &msec) xWARN_UNUSED_RV;
+
+        static bool_t weekDay(cint_t &weekDay) xWARN_UNUSED_RV;
+
         static bool_t time(cint_t &hour, cint_t &minute, cint_t &second, cint_t &msec) xWARN_UNUSED_RV;
         static bool_t date(cint_t &year, cint_t &month, cint_t &day) xWARN_UNUSED_RV;
         static bool_t datetime(cint_t &year, cint_t &month, cint_t &day, cint_t &hour,

@@ -252,6 +252,17 @@ CxDateTime::CxValidator::msec(
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
+CxDateTime::CxValidator::weekDay(
+    cint_t &a_weekDay
+)
+{
+    cbool_t bRv = (a_weekDay >= 1 && a_weekDay <= 7);
+    xTEST_EQ(true, bRv);
+
+    return bRv;
+}
+//-------------------------------------------------------------------------------------------------
+inline bool_t
 CxDateTime::CxValidator::date(
     cint_t &a_year,
     cint_t &a_month,
@@ -1047,7 +1058,7 @@ CxDateTime::weekDayStr(
     cbool_t &a_isShortName
 )
 {
-    xTEST_EQ(true, CxValidator::day(a_day));
+    xTEST_EQ(true, CxValidator::weekDay(a_day));
     xTEST_NA(a_isShortName);
 
     std::tstring_t sRv;
@@ -1055,26 +1066,26 @@ CxDateTime::weekDayStr(
     if (!a_isShortName) {
         // days numbering: 0-6
         const CxArray<std::tstring_t, 7> longDays = {{
-            xT("Sunday"),
             xT("Monday"),
             xT("Tuesday"),
             xT("Wednesday"),
             xT("Thursday"),
             xT("Friday"),
             xT("Saturday"),
+            xT("Sunday")
         }};
 
         sRv = longDays[a_day];
     } else {
         // days numbering: 0-6
         const CxArray<std::tstring_t, 8> shortDays = {{
-            xT("Sun"),
             xT("Mon"),
             xT("Tue"),
             xT("Wed"),
             xT("Thu"),
             xT("Fri"),
-            xT("Sat")
+            xT("Sat"),
+            xT("Sun")
         }};
 
         sRv = shortDays[a_day];
@@ -1095,24 +1106,24 @@ CxDateTime::weekDayNum(
 
     // days numbering: 0-6
     const CxArray<std::tstring_t, 7> longDays = {{
-        xT("Sunday"),
         xT("Monday"),
         xT("Tuesday"),
         xT("Wednesday"),
         xT("Thursday"),
         xT("Friday"),
-        xT("Saturday")
+        xT("Saturday"),
+        xT("Sunday")
     }};
 
     // days numbering: 0-6
     const CxArray<std::tstring_t, 7> shortDays = {{
-        xT("Sun"),
         xT("Mon"),
         xT("Tue"),
         xT("Wed"),
         xT("Thu"),
         xT("Fri"),
-        xT("Sat")
+        xT("Sat"),
+        xT("Sun")
     }};
 
     for (int_t i = 0; i < static_cast<int_t>( longDays.size() ); ++ i) {

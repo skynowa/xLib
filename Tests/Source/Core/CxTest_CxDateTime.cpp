@@ -663,7 +663,7 @@ CxTest_CxDateTime::unit(
     xTEST_CASE("CxDateTime::weekDayStr", a_caseLoops)
     {
         // isShortName = false
-        m_sRv = CxDateTime::weekDayStr(0, false);
+        m_sRv = CxDateTime::weekDayStr(7, false);
         xTEST_EQ(std::tstring_t(xT("Sunday")), m_sRv);
         m_sRv = CxDateTime::weekDayStr(1, false);
         xTEST_EQ(std::tstring_t(xT("Monday")), m_sRv);
@@ -677,11 +677,9 @@ CxTest_CxDateTime::unit(
         xTEST_EQ(std::tstring_t(xT("Friday")), m_sRv);
         m_sRv = CxDateTime::weekDayStr(6, false);
         xTEST_EQ(std::tstring_t(xT("Saturday")), m_sRv);
-        m_sRv = CxDateTime::weekDayStr(7, false);
-        xTEST_EQ(std::tstring_t(xT("Saturday")), m_sRv);
 
         // isShortName = true
-        m_sRv = CxDateTime::weekDayStr(0, true);
+        m_sRv = CxDateTime::weekDayStr(7, true);
         xTEST_EQ(std::tstring_t(xT("Sun")), m_sRv);
         m_sRv = CxDateTime::weekDayStr(1, true);
         xTEST_EQ(std::tstring_t(xT("Mon")), m_sRv);
@@ -694,8 +692,6 @@ CxTest_CxDateTime::unit(
         m_sRv = CxDateTime::weekDayStr(5, true);
         xTEST_EQ(std::tstring_t(xT("Fri")), m_sRv);
         m_sRv = CxDateTime::weekDayStr(6, true);
-        xTEST_EQ(std::tstring_t(xT("Sat")), m_sRv);
-        m_sRv = CxDateTime::weekDayStr(7, true);
         xTEST_EQ(std::tstring_t(xT("Sat")), m_sRv);
     }
 
