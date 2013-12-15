@@ -65,9 +65,6 @@ public:
             cint_t &minute, cint_t &second, cint_t &msec) xWARN_UNUSED_RV;
     };
 
-    bool_t                isValid() const xWARN_UNUSED_RV;
-        ///< checking for a valid datetime
-
     // comparison operators
     bool_t                operator == (const CxDateTime &datetime) const;
         ///< operator ==
