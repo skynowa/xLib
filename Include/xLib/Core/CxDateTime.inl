@@ -529,11 +529,10 @@ CxDateTime::dayOfWeek() const
     timeInfo.tm_mon  = _month - 1;
     timeInfo.tm_mday = _day;
 
-    time_t tmTime = std::mktime(&timeInfo);
-    xTEST_DIFF(static_cast<time_t>( - 1 ), tmTime);
+    time_t time = std::mktime(&timeInfo);
+    xTEST_DIFF(static_cast<time_t>( - 1 ), time);
 
     iRv = timeInfo.tm_wday;
-    //xTRACEV(xT("That day is a %s"), sGetWeekDayStr(iRv, false).c_str());
 
     return iRv;
 }
@@ -551,7 +550,6 @@ CxDateTime::set(
 )
 {
     xTESTS_NA;
-    xTEST_NA(a_msec);
 
     //--------------------------------------------------
     // datetime msec member
@@ -594,8 +592,7 @@ CxDateTime::set(
     cint_t &a_msec
 )
 {
-    // n/a
-    // n/a
+    xTESTS_NA;
 
     // datetime members
     _year   = a_year;
@@ -621,8 +618,7 @@ CxDateTime::set(
 inline ulonglong_t
 CxDateTime::_toMsec() const
 {
-    // n/a
-    // n/a
+    xTESTS_NA;
 
     ulonglong_t ullRv = 0ULL;
 
@@ -651,7 +647,7 @@ CxDateTime::format(
 ) const
 {
     xTEST_EQ(true, CxValidator::datetime(*this));
-    // n/a
+    xTEST_NA(a_format);
 
     std::tstring_t sRv;
     tchar_t        buff[80 + 1] = {};
@@ -725,7 +721,7 @@ CxDateTime::format(
 inline CxDateTime
 CxDateTime::current()
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     SYSTEMTIME dateTime = {0};
 
     (void_t)::GetLocalTime(&dateTime);
@@ -734,7 +730,7 @@ CxDateTime::current()
 
     return CxDateTime(dateTime.wYear, dateTime.wMonth, dateTime.wDay,
         dateTime.wHour, dateTime.wMinute, dateTime.wSecond, dateTime.wMilliseconds);
-#else
+#elif xOS_ENV_UNIX
     // get msec
     timeval time;   xSTRUCT_ZERO(time);
 
@@ -795,7 +791,6 @@ CxDateTime::unixTimeToFileTime(
 }
 
 #endif
-
 //-------------------------------------------------------------------------------------------------
 #if xOS_ENV_WIN
 
