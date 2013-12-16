@@ -22,77 +22,48 @@ CxTest_CxDateTime::unit(
     xTEST_CASE("CxDateTime::CxDateTime", a_caseLoops)
     {
         CxDateTime datetime;
-        m_sRv = datetime.format(CxDateTime::ftDateTime);
-        xTEST_EQ(std::tstring_t(xT("00.00.0000 0:00:00:000")), m_sRv);
-    }
-
-    xTEST_CASE("CxDateTime::CxDateTime(std::ctstring_t &, EFormatType)", a_caseLoops)
-    {
-        const CxDateTime::ExFormatType formats[] = {
-        #if xTODO
-            CxDateTime::ftTime,     // HH.MM.SS.MMM
-            CxDateTime::ftDate,     // DD.MM.YYYY
-            CxDateTime::ftDateTime, // DD.MM.YYYY HH.MM.SS.MMM
-        #endif
-            CxDateTime::ftRFC1123   // Wdy, DD Mon YYYY HH:MM:SS GMT
-        };
-
-        std::ctstring_t datetimes[] = {
-        #if xTODO
-            xT("23.05.33.555"),             // HH.MM.SS.MMM
-            xT("31.07.1978"),               // DD.MM.YYYY
-            xT("24.01.1977 12.12.12.222"),  // DD.MM.YYYY HH.MM.SS.MMM
-        #endif
-            xT("Wed, 23 Mar 2011 15:05:49 GMT")  // Wdy, DD Mon YYYY HH:MM:SS GMT
-        };
-        xTEST_EQ(xARRAY_SIZE(formats), xARRAY_SIZE(datetimes));
-
-        for (size_t i = 0; i < xARRAY_SIZE(formats); ++ i) {
-            CxDateTime datetime(datetimes[i], formats[i]);
-
-            m_sRv = datetime.format(formats[i]);
-            xTEST_EQ(datetimes[i], m_sRv);
-        }
+        m_sRv = datetime.format("YYYY-MM-DD HH:MM:SS");
+        xTEST_EQ(std::tstring_t(xT("00-00-0000 0:00:00")), m_sRv);
     }
 
     xTEST_CASE("CxDateTime::CxDateTime(const CxDateTime &)", a_caseLoops)
     {
         CxDateTime datetime1(2010, 7, 8, 3, 15, 6, 111);
         CxDateTime datetime2(datetime1);
-        m_sRv = datetime2.format(CxDateTime::ftDateTime);
-        xTEST_EQ(std::tstring_t(xT("08.07.2010 3:15:06:111")), m_sRv);
+        m_sRv = datetime2.format("YYYY-MM-DD HH:MM:SS");
+        xTEST_EQ(std::tstring_t(xT("08-07-2010 3:15:06")), m_sRv);
 
         CxDateTime datetime(2010, 1, 14, 17, 0, 55, 666);
-        m_sRv = datetime.format(CxDateTime::ftDateTime);
-        xTEST_EQ(std::tstring_t(xT("14.01.2010 17:00:55:666")), m_sRv);
+        m_sRv = datetime.format("YYYY-MM-DD HH:MM:SS");
+        xTEST_EQ(std::tstring_t(xT("14-01-2010 17:00:55")), m_sRv);
     }
 
     xTEST_CASE("CxDateTime::CxDateTime(culonglong_t &)", a_caseLoops)
     {
         CxDateTime datetime(1000 * 60 * 60);
-        m_sRv = datetime.format(CxDateTime::ftDateTime);
-        xTEST_EQ(std::tstring_t(xT("00.00.0000 1:00:00:000")), m_sRv);
+        m_sRv = datetime.format("YYYY-MM-DD HH:MM:SS");
+        xTEST_EQ(std::tstring_t(xT("00-00-0000 1:00:00")), m_sRv);
     }
 
     xTEST_CASE("CxDateTime::CxDateTime(cushort_t &, cushort_t &, cushort_t &, cushort_t &)", a_caseLoops)
     {
         CxDateTime datetime(12, 20, 37, 555);
-        m_sRv = datetime.format(CxDateTime::ftDateTime);
-        xTEST_EQ(std::tstring_t(xT("00.00.0000 12:20:37:555")), m_sRv);
+        m_sRv = datetime.format("YYYY-MM-DD HH:MM:SS");
+        xTEST_EQ(std::tstring_t(xT("00-00-0000 12:20:37")), m_sRv);
     }
 
     xTEST_CASE("CxDateTime::CxDateTime(cushort_t &, cushort_t &, cushort_t &)", a_caseLoops)
     {
         CxDateTime datetime(2010, 7, 8);
-        m_sRv = datetime.format(CxDateTime::ftDateTime);
-        xTEST_EQ(std::tstring_t(xT("08.07.2010 0:00:00:000")), m_sRv);
+        m_sRv = datetime.format("YYYY-MM-DD HH:MM:SS");
+        xTEST_EQ(std::tstring_t(xT("08-07-2010 0:00:00")), m_sRv);
     }
 
     xTEST_CASE("CxDateTime::CxDateTime(cushort_t &, cushort_t &, cushort_t &, cushort_t &, cushort_t &, cushort_t &, cushort_t &)", a_caseLoops)
     {
         CxDateTime datetime(2010, 8, 18, 14, 0, 5, 777);
-        m_sRv = datetime.format(CxDateTime::ftDateTime);
-        xTEST_EQ(std::tstring_t(xT("18.08.2010 14:00:05:777")), m_sRv);
+        m_sRv = datetime.format("YYYY-MM-DD HH:MM:SS");
+        xTEST_EQ(std::tstring_t(xT("18-08-2010 14:00:05")), m_sRv);
     }
 
 
@@ -173,8 +144,8 @@ CxTest_CxDateTime::unit(
         ulonglong_t msec = (1000 * 60) * 60; // 1 hour
 
         datetime = msec;
-        m_sRv = datetime.format(CxDateTime::ftDateTime);
-        xTEST_EQ(std::tstring_t(xT("00.00.0000 1:00:00:000")), m_sRv);
+        m_sRv = datetime.format("YYYY-MM-DD HH:MM:SS");
+        xTEST_EQ(std::tstring_t(xT("00-00-0000 1:00:00")), m_sRv);
     }
 
     xTEST_CASE("CxDateTime::operator (=, +, -)", a_caseLoops)
@@ -182,12 +153,12 @@ CxTest_CxDateTime::unit(
         CxDateTime datetime;
 
         datetime = CxDateTime() + CxDateTime(1000 * 60 * 60);
-        m_sRv = datetime.format(CxDateTime::ftDateTime);
-        xTEST_EQ(std::tstring_t(xT("00.00.0000 1:00:00:000")), m_sRv);
+        m_sRv = datetime.format("YYYY-MM-DD HH:MM:SS");
+        xTEST_EQ(std::tstring_t(xT("00-00-0000 1:00:00")), m_sRv);
 
         datetime = datetime - CxDateTime(1000 * 60 * 60 / 2);
-        m_sRv = datetime.format(CxDateTime::ftDateTime);
-        xTEST_EQ(std::tstring_t(xT("00.00.0000 0:30:00:000")), m_sRv);
+        m_sRv = datetime.format("YYYY-MM-DD HH:MM:SS");
+        xTEST_EQ(std::tstring_t(xT("00-00-0000 0:30:00")), m_sRv);
     }
 
     xTEST_CASE("CxDateTime::operator +=", a_caseLoops)
@@ -196,8 +167,8 @@ CxTest_CxDateTime::unit(
         CxDateTime datetime2(1, 30, 0, 0);
 
         datetime1 += datetime2;
-        m_sRv = datetime1.format(CxDateTime::ftDateTime);
-        xTEST_EQ(std::tstring_t(xT("00.00.0000 2:30:00:000")), m_sRv);
+        m_sRv = datetime1.format("YYYY-MM-DD HH:MM:SS");
+        xTEST_EQ(std::tstring_t(xT("00-00-0000 2:30:00")), m_sRv);
     }
 
     xTEST_CASE("CxDateTime::operator -=", a_caseLoops)
@@ -206,8 +177,8 @@ CxTest_CxDateTime::unit(
         CxDateTime datetime2(1, 30, 0, 0);
 
         datetime1 -= datetime2;
-        m_sRv = datetime1.format(CxDateTime::ftDateTime);
-        xTEST_EQ(std::tstring_t(xT("00.00.0000 0:20:00:000")), m_sRv);
+        m_sRv = datetime1.format("YYYY-MM-DD HH:MM:SS");
+        xTEST_EQ(std::tstring_t(xT("00-00-0000 0:20:00")), m_sRv);
     }
 
 
@@ -240,7 +211,7 @@ CxTest_CxDateTime::unit(
         xTEST_EQ(666,  msec);
     }
 
-    xTEST_CASE("CxDateTime::toMilliseconds", a_caseLoops)
+    xTEST_CASE("CxDateTime::toMsec", a_caseLoops)
     {
         // 1
         {
@@ -297,40 +268,6 @@ CxTest_CxDateTime::unit(
         m_iRv = CxDateTime(2011, 3, 18, 0, 0, 0, 0).dayOfWeek();
         xTEST_EQ(5, m_iRv);
     }
-
-    /*******************************************************************************
-    *    formating
-    *
-    *******************************************************************************/
-
-    xTEST_CASE("CxDateTime::format", a_caseLoops)
-    {
-        CxDateTime datetime(2010, 1, 14, 17, 0, 55, 666);
-        m_sRv = datetime.format(CxDateTime::ftTime);
-        xTEST_EQ(std::tstring_t(xT("17:00:55:666")), m_sRv);
-    }
-
-    xTEST_CASE("CxDateTime::format", a_caseLoops)
-    {
-        CxDateTime datetime(2010, 1, 14, 17, 0, 55, 666);
-        m_sRv = datetime.format(CxDateTime::ftDate);
-        xTEST_EQ(std::tstring_t(xT("14.01.2010")), m_sRv);
-    }
-
-    xTEST_CASE("CxDateTime::format", a_caseLoops)
-    {
-        CxDateTime datetime(2010, 1, 14, 17, 0, 55, 666);
-        m_sRv = datetime.format(CxDateTime::ftDateTime);
-        xTEST_EQ(std::tstring_t(xT("14.01.2010 17:00:55:666")), m_sRv);
-    }
-
-    xTEST_CASE("CxDateTime::format", a_caseLoops)
-    {
-        CxDateTime datetime(2011, 3, 19, 1, 35, 55, 666);
-        m_sRv = datetime.format(CxDateTime::ftRFC1123);
-        xTEST_EQ(std::tstring_t(xT("Sat, 19 Mar 2011 01:35:55 GMT")), m_sRv);
-    }
-
 
     /*******************************************************************************
     * static
@@ -417,8 +354,8 @@ CxTest_CxDateTime::unit(
         {
             CxDateTime datetimeNow;
 
-            m_sRv = datetimeNow.current().format(CxDateTime::ftDateTime);
-            xTEST_DIFF(std::tstring_t(xT("00.00.0000 0:00:00:000")), m_sRv);
+            m_sRv = datetimeNow.current().format("YYYY-MM-DD HH:MM:SS");
+            xTEST_DIFF(std::tstring_t(xT("00-00-0000 0:00:00:000")), m_sRv);
         }
 
         // 2
