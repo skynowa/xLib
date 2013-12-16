@@ -70,7 +70,7 @@ CxFileLog::write(
     //-------------------------------------
     //time
     std::tstring_t time;
-    time = CxDateTime::current().format("YYYY-MM-DD HH:MM:SS");
+    time = CxDateTime::current().format(xT("%Y-%m-%d %H:%M:%S"));
 
     //-------------------------------------
     //comment

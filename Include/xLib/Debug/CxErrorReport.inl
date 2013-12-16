@@ -192,7 +192,7 @@ CxErrorReport::_construct(
     _lastError      = a_lastError;
     _lastErrorStr   = CxLastError::format(a_lastError);
 
-    _currentDate    = CxDateTime::current().format("YYYY-MM-DD HH:MM:SS");
+    _currentDate    = CxDateTime::current().format(xT("%Y-%m-%d %H:%M:%S"));
     _buildDate      = CxString::format(xT("%s/%s"), a_date.c_str(), a_time.c_str());
     _buildType      = CxDebugger().isDebugBuild() ? xT("debug") : xT("release");
     _osVersion      = sysInfo.formatOsType();
