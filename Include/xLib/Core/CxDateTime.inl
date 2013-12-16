@@ -671,6 +671,7 @@ CxDateTime::current()
     // get datetime
     std::tm *dateTime = {0};
 
+    // FIX: localtime -> localtime_r
     dateTime = std::localtime( reinterpret_cast<const time_t *>( &time.tv_sec ));
     xTEST_PTR(dateTime);
 
