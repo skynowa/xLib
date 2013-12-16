@@ -106,16 +106,24 @@
 inline std::string
 currentDateTime()
 {
-    char       srv[80 + 1] = {};
-    time_t     now         = std::time(NULL);
-    struct tm *tms         = std::localtime(&now);
+    std::string sRv;
+    char        buff[80 + 1] = {};
+    time_t      timeNow      = std::time(NULL);
+    std::tm    *timeLocal    = NULL;
 
-    size_t urv = std::strftime(srv, sizeof(srv), "%Y-%m-%d.%X", tms);
-    if (urv == 0) {
+    timeLocal = std::localtime(&timeNow);
+    if (timeLocal == NULL) {
         return std::string();
     }
 
-    return srv;
+    size_t uiRv = std::strftime(buff, sizeof(buff) - 1, "%Y-%m-%d.%X", timeLocal);
+    if (uiRv == 0) {
+        return std::string();
+    }
+
+    sRv.assign(&buff[0], uiRv);
+
+    return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxStdDebugH
