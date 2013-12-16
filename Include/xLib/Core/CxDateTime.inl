@@ -619,9 +619,9 @@ CxDateTime::format(
     std::ctstring_t &a_formatMsec /* = xT(".%03d") */  ///< milliseconds format
 ) const
 {
-    xTEST_EQ(true, CxValidator::datetime(*this));
+    //xTEST_EQ(true, CxValidator::datetime(*this));
     xTEST_EQ(false, a_format.empty());
-    xTEST_NA(a_isMsec);
+    xTEST_NA(a_formatMsec);
 
     std::tstring_t sRv;
     tchar_t        buff[80 + 1] = {};
