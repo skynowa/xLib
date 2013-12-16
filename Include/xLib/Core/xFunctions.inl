@@ -32,10 +32,10 @@ getTimeOfDay(
         ullRv <<= 32ULL;
         ullRv |= time.dwLowDateTime;
 
-        //convert into microseconds
+        // convert to microseconds
         ullRv /= 10ULL;
 
-        //converting file time to unix epoch
+        // converting file time to unix epoch
         ullRv -= DELTA_EPOCH_IN_MICROSECS;
 
         a_tv->tv_sec  = static_cast<long_t>( ullRv / 1000000UL );
