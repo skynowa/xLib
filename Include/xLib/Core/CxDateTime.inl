@@ -675,18 +675,19 @@ CxDateTime::current()
     xTEST_DIFF(- 1, iRv);
 
     // get datetime
-    // FIX: localtime -> localtime_r
-    std::tm *dateTime = std::localtime( reinterpret_cast<const time_t *>( &time.tv_sec ));
-    xTEST_PTR(dateTime);
+    std::tm dateTime; xSTRUCT_ZERO(dateTime);
+
+    std::tm *dtRv = ::localtime_r(reinterpret_cast<const time_t *>( &time.tv_sec ), &dateTime);
+    xTEST_PTR(dtRv);
 
     // set datetime
-    int_t year   = dateTime->tm_year + 1900;
-    int_t month  = dateTime->tm_mon  + 1;
-    int_t day    = dateTime->tm_mday;
-    int_t hour   = dateTime->tm_hour;
-    int_t minute = dateTime->tm_min;
-    int_t second = dateTime->tm_sec;
-    int_t msec   = static_cast<int_t>( static_cast<double>(time.tv_usec) * 0.001 );
+    cint_t year   = dateTime.tm_year + 1900;
+    cint_t month  = dateTime.tm_mon  + 1;
+    cint_t day    = dateTime.tm_mday;
+    cint_t hour   = dateTime.tm_hour;
+    cint_t minute = dateTime.tm_min;
+    cint_t second = dateTime.tm_sec;
+    cint_t msec   = static_cast<int_t>( static_cast<double>(time.tv_usec) * 0.001 );
 
     xTEST_EQ(true, CxValidator::datetime(year, month, day, hour, minute, second, msec));
 
