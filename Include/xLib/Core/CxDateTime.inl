@@ -630,7 +630,7 @@ CxDateTime::format(
     std::tstring_t sRv;
     tchar_t        buff[80 + 1] = {};
 
-    struct tm time; xSTRUCT_ZERO(time);
+    std::tm time; xSTRUCT_ZERO(time);
     time.tm_year = _year;
     time.tm_mon  = _month;
     time.tm_mday = _day;
@@ -669,15 +669,15 @@ CxDateTime::current()
         dateTime.wHour, dateTime.wMinute, dateTime.wSecond, dateTime.wMilliseconds);
 #elif xOS_ENV_UNIX
     // get msec
-    timeval time;   xSTRUCT_ZERO(time);
+    timeval timeNow;   xSTRUCT_ZERO(timeNow);
 
-    int_t iRv = ::gettimeofday(&time, NULL);
+    int_t iRv = ::gettimeofday(&timeNow, NULL);
     xTEST_DIFF(- 1, iRv);
 
     // get datetime
     std::tm dateTime; xSTRUCT_ZERO(dateTime);
 
-    std::tm *dtRv = ::localtime_r(reinterpret_cast<const time_t *>( &time.tv_sec ), &dateTime);
+    std::tm *dtRv = ::localtime_r(reinterpret_cast<const time_t *>( &timeNow.tv_sec ), &dateTime);
     xTEST_PTR(dtRv);
 
     // set datetime
@@ -687,7 +687,7 @@ CxDateTime::current()
     cint_t hour   = dateTime.tm_hour;
     cint_t minute = dateTime.tm_min;
     cint_t second = dateTime.tm_sec;
-    cint_t msec   = static_cast<int_t>( static_cast<double>(time.tv_usec) * 0.001 );
+    cint_t msec   = static_cast<int_t>( static_cast<double>(timeNow.tv_usec) * 0.001 );
 
     xTEST_EQ(true, CxValidator::datetime(year, month, day, hour, minute, second, msec));
 
