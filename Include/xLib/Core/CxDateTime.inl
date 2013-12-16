@@ -645,7 +645,7 @@ CxDateTime::format(
 ) const
 {
     xTEST_EQ(true, CxValidator::datetime(*this));
-    xTEST_NA(a_format);
+    xTEST_EQ(false, a_format.empty());
 
     std::tstring_t sRv;
     tchar_t        buff[80 + 1] = {};
