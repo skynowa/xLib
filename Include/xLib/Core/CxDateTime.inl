@@ -634,7 +634,7 @@ CxDateTime::format(
     time.tm_min  = _minute;
     time.tm_sec  = _second;
 
-    size_t uiRv = std::strftime(buff, sizeof(buff) - 1, a_format.c_str(), &time);
+    size_t uiRv = xSTRFTIME(buff, sizeof(buff) - 1, a_format.c_str(), &time);
     xCHECK_RET(uiRv == 0, std::tstring_t());
 
     sRv.assign(&buff[0], uiRv);

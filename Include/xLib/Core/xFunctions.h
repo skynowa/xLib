@@ -35,6 +35,7 @@
         #define xTGETS          _getws
         #define xTGETCHAR       getwchar
         #define xTTMPNAM        _wtmpnam
+        #define xSTRFTIME       std::wcsftime
 
         // xTMKSTEMP
     #if   xCOMPILER_MINGW
@@ -139,6 +140,7 @@
         #define xTGETS          gets
         #define xTGETCHAR       getchar
         #define xTTMPNAM        tmpnam
+        #define xSTRFTIME       std::strftime
 
         // xTMKSTEMP
     #if   xCOMPILER_MINGW
