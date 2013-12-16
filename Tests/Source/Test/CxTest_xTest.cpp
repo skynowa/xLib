@@ -87,10 +87,5 @@ CxTest_xTest::unit(
             xTEST_STATIC(false);
         #endif
     }
-
-    xTEST_CASE("xTest::[TEST_CASE_1]", a_caseLoops)
-    {
-
-    }
 }
 //---------------------------------------------------------------------------
