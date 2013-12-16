@@ -160,19 +160,19 @@ private:
         ///< datetime in milliseconds
 
     // datetime members
-    int_t                 _year;
+    int_t                 _year;    ///< years since (1900)
         ///< 0-2010, Win (1601 through 30827)
-    int_t                 _month;
+    int_t                 _month;   ///< months since January (0-11)
         ///< 1-12, Win (1-12)
-    int_t                 _day;
+    int_t                 _day;     ///< day of the month (1-31)
         ///< 1-31, Win (1-31)
-    int_t                 _hour;
+    int_t                 _hour;    ///< hours since midnight (0-23)
         ///< 0-23, Win (0-23)
-    int_t                 _minute;
+    int_t                 _minute;  ///< minutes after the hour (0-59)
         ///< 0-59, Win (0-59)
-    int_t                 _second;
+    int_t                 _second;  ///< seconds after the minute (0-60*)
         ///< 0-61*, Win (0-59)
-    int_t                 _msec;
+    int_t                 _msec;    ///< milliseconds (0-999)
         ///< 0-999, Win (0-99)
 
     ulonglong_t           _toMsec() const xWARN_UNUSED_RV;
