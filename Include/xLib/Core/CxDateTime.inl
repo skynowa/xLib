@@ -621,6 +621,12 @@ CxDateTime::format(
     xTEST_EQ(true, CxValidator::datetime(*this));
     xTEST_EQ(false, a_format.empty());
 
+   /**
+    * FAQ: format msec
+    *
+    * std::printf("%s.%03ld", datetime.c_str(), msec);
+    */
+
     std::tstring_t sRv;
     tchar_t        buff[80 + 1] = {};
 
@@ -669,15 +675,13 @@ CxDateTime::current()
     xTEST_DIFF(- 1, iRv);
 
     // get datetime
-    std::tm *dateTime = {0};
-
     // FIX: localtime -> localtime_r
-    dateTime = std::localtime( reinterpret_cast<const time_t *>( &time.tv_sec ));
+    std::tm *dateTime = std::localtime( reinterpret_cast<const time_t *>( &time.tv_sec ));
     xTEST_PTR(dateTime);
 
     // set datetime
     int_t year   = dateTime->tm_year + 1900;
-    int_t month  = dateTime->tm_mon  + 1;   // TODO: +1U ???
+    int_t month  = dateTime->tm_mon  + 1;
     int_t day    = dateTime->tm_mday;
     int_t hour   = dateTime->tm_hour;
     int_t minute = dateTime->tm_min;
