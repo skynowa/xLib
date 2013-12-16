@@ -122,8 +122,9 @@ public:
     #endif
 
     // formatting
-    std::tstring_t        format(const std::ctstring_t &format) const xWARN_UNUSED_RV;
-        ///< formating
+    std::tstring_t        format(std::ctstring_t &format, std::ctstring_t &formatMsec = xT(".%03d"))
+                              const xWARN_UNUSED_RV;
+        ///< formatting
 
     // static
     static CxDateTime     current() xWARN_UNUSED_RV;

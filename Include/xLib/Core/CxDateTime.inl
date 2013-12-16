@@ -615,17 +615,13 @@ CxDateTime::_toMsec() const
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
 CxDateTime::format(
-    const std::ctstring_t &a_format
+    std::ctstring_t &a_format,                         ///< datetime format
+    std::ctstring_t &a_formatMsec /* = xT(".%03d") */  ///< milliseconds format
 ) const
 {
     xTEST_EQ(true, CxValidator::datetime(*this));
     xTEST_EQ(false, a_format.empty());
-
-   /**
-    * FAQ: format msec
-    *
-    * std::printf("%s.%03ld", datetime.c_str(), msec);
-    */
+    xTEST_NA(a_isMsec);
 
     std::tstring_t sRv;
     tchar_t        buff[80 + 1] = {};
@@ -639,9 +635,13 @@ CxDateTime::format(
     time.tm_sec  = _second;
 
     size_t uiRv = std::strftime(buff, sizeof(buff) - 1, a_format.c_str(), &time);
-    xTEST_NA(uiRv);
+    xCHECK_RET(uiRv == 0, std::tstring_t());
 
-    xCHECK_DO(uiRv > 0, sRv.assign(&buff[0], uiRv));
+    sRv.assign(&buff[0], uiRv);
+
+    if ( !a_formatMsec.empty() ) {
+        sRv += CxString::format(a_formatMsec.c_str(), _msec);
+    }
 
     return sRv;
 }
