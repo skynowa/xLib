@@ -67,12 +67,12 @@ CxBackuper::fileExec(
         switch (_period) {
         // TODO: bpHourly:
         case bpDaily:
-            dateTimeStamp = CxDateTime().current().format(CxDateTime::ftDate);
+            dateTimeStamp = CxDateTime().current().format("YYYY-MM-DD");
             break;
         // TODO: bpWeekly:
         // TODO: bpMonthly:
         default:
-            dateTimeStamp = CxDateTime().current().format(CxDateTime::ftDateTime);
+            dateTimeStamp = CxDateTime().current().format("HH-MM");
             break;
         }
 

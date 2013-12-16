@@ -17,6 +17,7 @@ class CxDateTime
     /// date, time
 {
 public:
+#if 0
     enum ExFormatType
         /// format type
     {
@@ -25,11 +26,10 @@ public:
         ftDateTime, ///< DD.MM.YYYY HH.MM.SS.MMM
         ftRFC1123   ///< Wdy, DD Mon YYYY HH:MM:SS GMT
     };
+#endif
 
     // constructors, destructor
                           CxDateTime();
-        ///< constructor
-    explicit              CxDateTime(std::ctstring_t &datetime, const ExFormatType &format);
         ///< constructor
     /*explicit*/          CxDateTime(const CxDateTime &datetime);
         ///< constructor
@@ -121,10 +121,8 @@ public:
         ToLocalTime();
     #endif
 
-    // formating
+    // formatting
     std::tstring_t        format(const std::ctstring_t &format) const xWARN_UNUSED_RV;
-        ///< formating
-    std::tstring_t        format(const ExFormatType &format) const xWARN_UNUSED_RV;
         ///< formating
 
     // static
@@ -177,9 +175,6 @@ private:
 
     ulonglong_t           _toMsec() const xWARN_UNUSED_RV;
         ///< convert to milliseconds
-    static void_t         _parse(std::ctstring_t &value, const ExFormatType &format,
-                              CxDateTime *datetime);
-        ///< parsing datetime string
 };
 
 xNAMESPACE_END(NxLib)

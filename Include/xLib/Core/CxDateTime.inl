@@ -39,32 +39,6 @@ CxDateTime::CxDateTime() :
 //-------------------------------------------------------------------------------------------------
 inline
 CxDateTime::CxDateTime(
-    std::ctstring_t    &a_datetime,
-    const ExFormatType &a_format
-) :
-    _thisMSec(0ULL),
-    _year    (0),
-    _month   (0),
-    _day     (0),
-    _hour    (0),
-    _minute  (0),
-    _second  (0),
-    _msec    (0)
-{
-    CxDateTime datetime;
-
-    _parse(a_datetime, a_format, &datetime);
-
-    xTEST_EQ(true, CxValidator::date(datetime._year, datetime._month, datetime._day) &&
-                   CxValidator::time(datetime._hour, datetime._minute, datetime._second,
-                                     datetime._msec));
-
-    set(datetime._year, datetime._month,  datetime._day,
-        datetime._hour, datetime._minute, datetime._second, datetime._msec);
-}
-//-------------------------------------------------------------------------------------------------
-inline
-CxDateTime::CxDateTime(
     const CxDateTime &a_datetime
 ) :
     _thisMSec(0ULL),
@@ -666,47 +640,6 @@ CxDateTime::format(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
-CxDateTime::format(
-    const ExFormatType &a_format
-) const
-{
-    xTESTS_NA;
-
-    std::tstring_t sRv;
-
-    switch (a_format) {
-    case ftTime:
-        sRv = CxString::format(
-                xT("%d:%.2d:%.2d:%.3d"),
-                _hour, _minute, _second, _msec);
-        break;
-    case ftDate:
-        sRv = CxString::format(
-                xT("%.2d.%.2d.%.4d"),
-                _day, _month, _year);
-        break;
-    case ftDateTime:
-        sRv = CxString::format(
-                xT("%.2d.%.2d.%.4d %d:%.2d:%.2d:%.3d"),
-                _day, _month, _year,
-                _hour, _minute, _second, _msec);
-        break;
-    case ftRFC1123:
-        sRv = CxString::format(
-                xT("%s, %.2d %s %.4d %.2d:%.2d:%.2d GMT"),
-                weekDayStr(dayOfWeek(), true).c_str(), _day,
-                CxDateTime::monthStr(_month, true).c_str(), _year,
-                _hour, _minute, _second);
-        break;
-    default:
-        xTEST_FAIL;
-        break;
-    }
-
-    return sRv;
-}
-//-------------------------------------------------------------------------------------------------
 
 
 /**************************************************************************************************
@@ -1125,71 +1058,6 @@ CxDateTime::weekDayNum(
     }
 
     return static_cast<int_t>( - 1 );  // TODO: static_cast<int_t>( - 1 )
-}
-//-------------------------------------------------------------------------------------------------
-
-
-/**************************************************************************************************
-*    private
-*
-**************************************************************************************************/
-
-//-------------------------------------------------------------------------------------------------
-/* static */
-inline void_t
-CxDateTime::_parse(
-    std::ctstring_t    &a_value,
-    const ExFormatType &a_format,
-    CxDateTime         *a_datetime
-)
-{
-    switch (a_format) {
-    case ftTime:
-        // TODO: ftTime
-        break;
-    case ftDate:
-        // TODO: ftDate
-        break;
-    case ftDateTime:
-        // TODO: ftDateTime
-        break;
-    case ftRFC1123: {
-        // Wdy, DD Mon YYYY HH:MM:SS GMT (Wed, 23 Mar 2011 15:05:49 GMT)
-
-        // replace ":" to " ", "-" to " "
-        std::tstring_t dateTime = a_value;
-        dateTime = CxString::replaceAll(dateTime, CxConst::colon(),  CxConst::space());
-        dateTime = CxString::replaceAll(dateTime, CxConst::hyphen(), CxConst::space());
-
-        // split by separator " "
-        std::vec_tstring_t dates;
-        CxString::split(dateTime, CxConst::space(), &dates);
-
-        //                  = CxString::cast<int_t>( dates.at(0) );   // Wed(0),
-        a_datetime->_day    = CxString::cast<int_t>( dates.at(1) );   // 23(1)
-        a_datetime->_month  = monthNum(dates.at(2), true);            // Mar(2)
-        a_datetime->_year   = CxString::cast<int_t>( dates.at(3) );   // 2011(3)
-        a_datetime->_hour   = CxString::cast<int_t>( dates.at(4) );   // 15(4)
-        a_datetime->_minute = CxString::cast<int_t>( dates.at(5) );   // 05(5)
-        a_datetime->_second = CxString::cast<int_t>( dates.at(6) );   // 49(6)
-
-    #if xTEMP_DISABLED
-        xTRACE(xT("-----------------------------------"));
-        xTRACE(xFUNCTION);
-        xTRACEV(xT("_day:    %i"), a_datetime->_day);
-        xTRACEV(xT("_month:  %i"), a_datetime->_month);
-        xTRACEV(xT("_year:   %i"), a_datetime->_year);
-        xTRACEV(xT("_hour:   %i"), a_datetime->_hour);
-        xTRACEV(xT("_minute: %i"), a_datetime->_minute);
-        xTRACEV(xT("_second: %i"), a_datetime->_second);
-        xTRACE(xT("-----------------------------------"));
-    #endif
-        break;
-    }
-    default:
-        xTEST_FAIL;
-        break;
-    }
 }
 //-------------------------------------------------------------------------------------------------
 

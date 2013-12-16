@@ -93,7 +93,8 @@ CxProfiler::stop(
     // write to log
     if ( !_log.filePath().empty() ) {
         std::tstring_t  sRv;
-        std::ctstring_t durationTime = CxDateTime(durationMsec2).format(CxDateTime::ftTime);
+        // TODO: fix msec
+        std::ctstring_t durationTime = CxDateTime(durationMsec2).format("HH:MM:SS");
 
         va_list args;
         xVA_START(args, a_comment);
