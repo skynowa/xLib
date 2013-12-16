@@ -628,7 +628,7 @@ CxDateTime::format(
 
     std::tm time; xSTRUCT_ZERO(time);
     time.tm_year = _year;
-    time.tm_mon  = _month;
+    time.tm_mon  = _month + 1;
     time.tm_mday = _day;
     time.tm_hour = _hour;
     time.tm_min  = _minute;
