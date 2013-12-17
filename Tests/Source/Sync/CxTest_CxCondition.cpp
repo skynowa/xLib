@@ -127,7 +127,7 @@ CxTest_CxCondition::unit(
 {
     xUNUSED(a_caseLoops);
 
-#if xOS_ENV_UNIX
+#if xOS_ENV_UNIX && xTODO
     int_t          iRv          = - 1;
     pthread_t    thThreads[3] = {0};
     clong_t liId1        = 1L;
