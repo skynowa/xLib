@@ -18,7 +18,7 @@ class CxRaii
     ///< RAII
 {
 public:
-    CxRaii(T &a_object) :
+    explicit CxRaii(T &a_object) :
         _object(a_object)
     {
     }
@@ -34,14 +34,14 @@ public:
         return _object;
     }
         ///< get object
-    const T &get() const
+    const T& get() const
     {
         return _object;
     }
         ///< get object
 
 private:
-    T &_object;
+    T& _object;
 
     xNO_COPY_ASSIGN(CxRaii)
 };
