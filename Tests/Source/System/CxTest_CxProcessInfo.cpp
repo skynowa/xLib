@@ -53,6 +53,7 @@ CxTest_CxProcessInfo::unit(
 
     xTEST_CASE("CxProcessInfo::ioBytes", a_caseLoops)
     {
+    #if 0
         std::vector<CxProcess::id_t> vidIds;
 
         CxProcess::ids(&vidIds);
@@ -66,6 +67,7 @@ CxTest_CxProcessInfo::unit(
                 CxTracer() << xT("\tCxProcessInfo::ioBytes(): ") << m_ulRv;
             #endif
         }
+    #endif
     }
 
     xTEST_CASE("CxProcessInfo::exeName", a_caseLoops)
