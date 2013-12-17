@@ -252,12 +252,12 @@ int_t xTMAIN(int_t a_argNum, tchar_t *a_args[])
         manager.add(new CxTest_CxAutoMutex);
         manager.add(new CxTest_CxIpcMutex);
         manager.add(new CxTest_CxAutoIpcMutex);
-        manager.add(new CxTest_CxEvent);
+        // manager.add(new CxTest_CxEvent);
         manager.add(new CxTest_CxCondition);
         manager.add(new CxTest_CxSemaphore);
         manager.add(new CxTest_CxIpcSemaphore);
-        manager.add(new CxTest_CxSleeper);
-        manager.add(new CxTest_CxThread);
+        // manager.add(new CxTest_CxSleeper);
+        // manager.add(new CxTest_CxThread);
         // manager.add(new CxTest_CxThreadPool);
         manager.add(new CxTest_CxProcess);
 
