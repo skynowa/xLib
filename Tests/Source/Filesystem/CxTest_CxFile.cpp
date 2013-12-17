@@ -809,8 +809,8 @@ CxTest_CxFile::vUnit1(
     xTEST_CASE("CxFile::textRead CxFile::textWrite", a_caseLoops)
     {
         // std::vector
-        std::map_tstring_t   cmsFileContent;
-        std::ctstring_t csSeparator = CxConst::equal();
+        std::map_tstring_t cmsFileContent;
+        std::ctstring_t    csSeparator = CxConst::equal();
 
         {
             CxFile F;

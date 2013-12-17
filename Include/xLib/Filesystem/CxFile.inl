@@ -1179,6 +1179,7 @@ CxFile::textRead(
 
     for (size_t i = 0; !ifs.eof(); ++ i) {
         std::getline(ifs, line);
+        xCHECK_DO(line.empty(), continue);
 
         line = CxString::trimRightChars(line, CxConst::eol());
 
