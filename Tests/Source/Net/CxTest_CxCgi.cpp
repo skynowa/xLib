@@ -53,6 +53,7 @@ CxTest_CxCgi::unit(
 
     xTEST_CASE("CxCgi::env_vars", a_caseLoops)
     {
+    #if 0
         //std::tcout << xT("<pre>");
 
         CxCgi cgCgi(1024U * 1024U /* CxCgi::MAX_DATA_SIZE_DEFAULT() */);
@@ -203,6 +204,7 @@ CxTest_CxCgi::unit(
 
         //std::tcout << xT("</pre>");
         //std::tcout << std::endl;
+    #endif
     }
 
     xTEST_CASE("CxCgi::uriEncode CxCgi::decodedStr", a_caseLoops)

@@ -181,25 +181,26 @@ CxTest_CxVolume::unit(
 
     xTEST_CASE("CxVolume::isSpaceEnough", a_caseLoops)
     {
+    #if xTODO
         std::vec_tstring_t volumes;
 
         CxVolume::paths(&volumes);
 
         xFOREACH(std::vec_tstring_t, it, volumes) {
             struct Data {
-                ulonglong_t tested;
-                bool_t      expected;
+                ulonglong_t test;
+                bool_t      expect;
             };
 
             Data data[] = {
-                {0, true},
+                {0, true}
                 {1, true},
-                {(std::numeric_limits<ulonglong_t>::max)(), false}
+                {(std::numeric_limits<std::size_t>::max)(), false}
             };
 
             for (size_t i = 0; i < xARRAY_SIZE2(data); ++ i) {
-                culonglong_t needBytes = data[i].tested;
-                cbool_t      bRv       = data[i].expected;
+                culonglong_t needBytes = data[i].test;
+                cbool_t      bRv       = data[i].expect;
 
                 CxVolume volume(*it);
                 xCHECK_DO(!volume.isReady(), continue);
@@ -208,13 +209,16 @@ CxTest_CxVolume::unit(
                 xTEST_EQ(m_bRv, bRv);
             }
         }
+    #endif
     }
 
     xTEST_CASE("CxVolume::space", a_caseLoops)
     {
+    #if xTODO
         std::vec_tstring_t vsData;
 
         CxVolume::paths(&vsData);
+        // CxTracer() << xTRACE_VAR(vsData);
 
         xFOREACH(std::vec_tstring_t, it, vsData) {
             ulonglong_t ullAvailable = 0ULL;
@@ -222,6 +226,7 @@ CxTest_CxVolume::unit(
             ulonglong_t ullFree      = 0ULL;
 
             xCHECK_DO(!CxVolume(*it).isReady(), continue);
+            CxTracer() << xTRACE_VAR(*it);
 
             CxVolume::space(*it, &ullAvailable, &ullTotal, &ullFree);
             xTEST_DIFF(0ULL, ullAvailable);
@@ -273,6 +278,7 @@ CxTest_CxVolume::unit(
                 xTRACEV(xT("ullAvailable: %lld, ullTotal: %lld, ullFree: %lld"), ullAvailable, ullTotal, ullFree);
             #endif
         }
+    #endif
     }
 
     xTEST_CASE("CxVolume::paths", a_caseLoops)

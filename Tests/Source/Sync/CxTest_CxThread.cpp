@@ -345,7 +345,9 @@ CxTest_CxThread::unit(
 
     xTEST_CASE("CxThread::exitStatus", 1)
     {
+    #if xTODO
         pthT->wait(xTIMEOUT_INFINITE);
+    #endif
     }
 
     if (!cbAutoDelete) {
