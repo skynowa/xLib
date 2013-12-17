@@ -54,7 +54,7 @@ CxTest_CxRaii::unit(
             {
                 Data data;
                 CxRaii<Data, &Data::destruct> raii(data);
-                data.construct(&value1, value2);
+                raii.get().construct(&value1, value2);
             }
 
             xTEST_EQ(value1, value2);
