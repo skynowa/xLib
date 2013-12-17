@@ -17,11 +17,11 @@
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxDir.h>
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #if !xCOMPILER_MINGW
         #pragma comment(lib, "mpr.lib")
     #endif
-#else
+#elif xOS_ENV_UNIX
     #include <sys/param.h>
     #include <sys/mount.h>
 #endif
@@ -101,7 +101,7 @@ CxVolume::label() const
     bool_t bRv = isReady();
     xCHECK_RET(!bRv, std::tstring_t());
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     tchar_t volumeName[MAX_PATH + 1] = {0};
 
     CxLastError::reset();
@@ -111,7 +111,7 @@ CxVolume::label() const
     xTEST_DIFF(false, blRv && 0UL == CxLastError::get());
 
     sRv.assign(volumeName);
-#else
+#elif xOS_ENV_UNIX
     // REVIEW: just get the dir name ??
     if (CxConst::unixSlash() == path()) {
         sRv = CxConst::unixSlash();
@@ -126,10 +126,10 @@ CxVolume::label() const
 inline bool_t
 CxVolume::isValid() const
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     bool_t bRv = CxDir( path() ).isRoot();
     xCHECK_RET(!bRv, false);
-#else
+#elif xOS_ENV_UNIX
     xCHECK_RET(true                   == path().empty(), false);
     xCHECK_RET(CxConst::slash().at(0) != path().at(0),   false);
 #endif
@@ -144,7 +144,7 @@ CxVolume::isReady() const
     std::tstring_t volumeDirPath = CxPath( path() ).slashAppend();
     std::tstring_t oldDirPath;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     std::tstring_t sRv;
     UINT           oldErrorMode = 0U;
 
@@ -161,7 +161,7 @@ CxVolume::isReady() const
     CxDir::setCurrent(oldDirPath);
 
     (void_t)::SetErrorMode(oldErrorMode);
-#else
+#elif xOS_ENV_UNIX
     oldDirPath = CxDir::current();
     xTEST_NA(oldDirPath);
 
@@ -298,7 +298,7 @@ CxVolume::space(
     bool_t bRv = CxDir(dirPath).isExists();
     xTEST_EQ(true, bRv);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     ULARGE_INTEGER available = {{0}};
     ULARGE_INTEGER total     = {{0}};
     ULARGE_INTEGER free      = {{0}};
@@ -309,7 +309,7 @@ CxVolume::space(
     CxUtils::ptrAssignT(a_available, available.QuadPart);
     CxUtils::ptrAssignT(a_total,     total.QuadPart);
     CxUtils::ptrAssignT(a_free,      free.QuadPart);
-#else
+#elif xOS_ENV_UNIX
     struct xSTATVFS info;   xSTRUCT_ZERO(info);
 
     int_t iRv = ::xSTATVFS(dirPath.c_str(), &info);
