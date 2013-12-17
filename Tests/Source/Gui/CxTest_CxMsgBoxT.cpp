@@ -14,7 +14,9 @@ CxTest_CxMsgBoxT::unit(
     culonglong_t &a_caseLoops
 )
 {
-#if 1
+    xUNUSED(a_caseLoops);
+
+#if xTEST_IGNORE
 
 #if xOS_ENV_WIN
     xTEST_CASE("CxMsgBoxT::show", a_caseLoops)
