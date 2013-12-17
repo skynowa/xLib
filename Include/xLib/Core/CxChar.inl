@@ -21,7 +21,7 @@ CxChar::isAlphaNum(
     ctchar_t &a_ch
 )
 {
-    return xINT_TO_BOOL( std::xTISALNUM(a_ch) );
+    return xINT_TO_BOOL( xTISALNUM(a_ch) );
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -30,7 +30,7 @@ CxChar::isAlpha(
     ctchar_t &a_ch
 )
 {
-    return xINT_TO_BOOL( std::xTISALPHA(a_ch) );
+    return xINT_TO_BOOL( xTISALPHA(a_ch) );
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -39,7 +39,7 @@ CxChar::isControl(
     ctchar_t &a_ch
 )
 {
-    return xINT_TO_BOOL( std::xTISCNTRL(a_ch) );
+    return xINT_TO_BOOL( xTISCNTRL(a_ch) );
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -48,7 +48,7 @@ CxChar::isDigitDec(
     ctchar_t &a_ch
 )
 {
-    return xINT_TO_BOOL( std::xTISDIGIT(a_ch) );
+    return xINT_TO_BOOL( xTISDIGIT(a_ch) );
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -57,7 +57,7 @@ CxChar::isDigitHex(
     ctchar_t &a_ch
 )
 {
-    return xINT_TO_BOOL( std::xTISXDIGIT(a_ch) );
+    return xINT_TO_BOOL( xTISXDIGIT(a_ch) );
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -66,7 +66,7 @@ CxChar::isGraph(
     ctchar_t &a_ch
 )
 {
-    return xINT_TO_BOOL( std::xTISGRAPH(a_ch) );
+    return xINT_TO_BOOL( xTISGRAPH(a_ch) );
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -75,7 +75,7 @@ CxChar::isPrint(
     ctchar_t &a_ch
 )
 {
-    return xINT_TO_BOOL( std::xTISPRINT(a_ch) );
+    return xINT_TO_BOOL( xTISPRINT(a_ch) );
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -84,7 +84,7 @@ CxChar::isPunct(
     ctchar_t &a_ch
 )
 {
-    return xINT_TO_BOOL( std::xTISPUNCT(a_ch) );
+    return xINT_TO_BOOL( xTISPUNCT(a_ch) );
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -93,7 +93,7 @@ CxChar::isSpace(
     ctchar_t &a_ch
 )
 {
-    return xINT_TO_BOOL( std::xTISSPACE(a_ch) );
+    return xINT_TO_BOOL( xTISSPACE(a_ch) );
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -102,7 +102,7 @@ CxChar::isLower(
     ctchar_t &a_ch
 )
 {
-    return xINT_TO_BOOL( std::xTISLOWER(a_ch) );
+    return xINT_TO_BOOL( xTISLOWER(a_ch) );
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -111,7 +111,7 @@ CxChar::isUpper(
     ctchar_t &a_ch
 )
 {
-    return xINT_TO_BOOL( std::xTISUPPER(a_ch) );
+    return xINT_TO_BOOL( xTISUPPER(a_ch) );
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -120,7 +120,7 @@ CxChar::toLower(
     ctchar_t &a_ch
 )
 {
-    return static_cast<tchar_t>( std::xTTOLOWER(a_ch) );
+    return static_cast<tchar_t>( xTTOLOWER(a_ch) );
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -129,7 +129,7 @@ CxChar::toUpper(
     ctchar_t &a_ch
 )
 {
-    return static_cast<tchar_t>( std::xTTOUPPER(a_ch) );
+    return static_cast<tchar_t>( xTTOUPPER(a_ch) );
 }
 //-------------------------------------------------------------------------------------------------
 

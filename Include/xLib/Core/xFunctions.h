@@ -101,19 +101,19 @@
     #endif
 
         // chars
-        #define xTISALNUM       iswalnum
-        #define xTISALPHA       iswalpha
-        #define xTISCNTRL       iswcntrl
-        #define xTISDIGIT       iswdigit
-        #define xTISXDIGIT      iswxdigit
-        #define xTISGRAPH       iswgraph
-        #define xTISPRINT       iswprint
-        #define xTISPUNCT       iswpunct
-        #define xTISSPACE       iswspace
-        #define xTISLOWER       iswlower
-        #define xTISUPPER       iswupper
-        #define xTTOLOWER       towlower
-        #define xTTOUPPER       towupper
+        #define xTISALNUM       std::iswalnum
+        #define xTISALPHA       std::iswalpha
+        #define xTISCNTRL       std::iswcntrl
+        #define xTISDIGIT       std::iswdigit
+        #define xTISXDIGIT      std::iswxdigit
+        #define xTISGRAPH       std::iswgraph
+        #define xTISPRINT       std::iswprint
+        #define xTISPUNCT       std::iswpunct
+        #define xTISSPACE       std::iswspace
+        #define xTISLOWER       std::iswlower
+        #define xTISUPPER       std::iswupper
+        #define xTTOLOWER       std::towlower
+        #define xTTOUPPER       std::towupper
 #else
         #define tcin            cin
         #define tcout           cout
@@ -206,19 +206,19 @@
     #endif
 
         // chars
-        #define xTISALNUM       isalnum
-        #define xTISALPHA       isalpha
-        #define xTISCNTRL       iscntrl
-        #define xTISDIGIT       isdigit
-        #define xTISXDIGIT      isxdigit
-        #define xTISGRAPH       isgraph
-        #define xTISPRINT       isprint
-        #define xTISPUNCT       ispunct
-        #define xTISSPACE       isspace
-        #define xTISLOWER       islower
-        #define xTISUPPER       isupper
-        #define xTTOLOWER       tolower
-        #define xTTOUPPER       toupper
+        #define xTISALNUM       std::isalnum
+        #define xTISALPHA       std::isalpha
+        #define xTISCNTRL       std::iscntrl
+        #define xTISDIGIT       std::isdigit
+        #define xTISXDIGIT      std::isxdigit
+        #define xTISGRAPH       std::isgraph
+        #define xTISPRINT       std::isprint
+        #define xTISPUNCT       std::ispunct
+        #define xTISSPACE       std::isspace
+        #define xTISLOWER       std::islower
+        #define xTISUPPER       std::isupper
+        #define xTTOLOWER       std::tolower
+        #define xTTOUPPER       std::toupper
 #endif // xUNICODE
 
 
