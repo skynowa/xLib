@@ -149,9 +149,9 @@ public:
         ///< get month string
     static int_t          monthNum(std::ctstring_t &month, cbool_t &isShortName) xWARN_UNUSED_RV;
         ///< get month number by string
-    static std::tstring_t weekDayStr(cint_t &day, cbool_t &isShortName) xWARN_UNUSED_RV;
+    static std::tstring_t weekDayStr(cint_t &week_day, cbool_t &isShortName) xWARN_UNUSED_RV;
         ///< get week day string
-    static int_t          weekDayNum(std::ctstring_t &day, cbool_t &isShortName) xWARN_UNUSED_RV;
+    static int_t          weekDayNum(std::ctstring_t &week_day, cbool_t &isShortName) xWARN_UNUSED_RV;
         ///< get week day number by string
 
 private:

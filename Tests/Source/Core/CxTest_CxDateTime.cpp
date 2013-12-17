@@ -24,18 +24,18 @@ CxTest_CxDateTime::unit(
         CxDateTime datetime;
         m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
 
-        xTEST_EQ(std::tstring_t(xT("00-01-1900 00:00:00.000")), m_sRv);
+        xTEST_EQ(std::tstring_t(xT("00-00-0 00:00:00.000")), m_sRv);
     }
 
     xTEST_CASE("CxDateTime::CxDateTime(const CxDateTime &)", a_caseLoops)
     {
         CxDateTime datetime1(2010, 7, 8, 3, 15, 6, 111);
         CxDateTime datetime2(datetime1);
-        m_sRv = datetime2.format(xT("%d-%m-%Y %H:%M:%S")); CxTracer() << xTRACE_VAR(m_sRv);
-        xTEST_EQ(std::tstring_t(xT("08-07-2010 3:15:06.111")), m_sRv);
+        m_sRv = datetime2.format(xT("%d-%m-%Y %H:%M:%S"));
+        xTEST_EQ(std::tstring_t(xT("08-07-2010 03:15:06.111")), m_sRv);
 
         CxDateTime datetime(2010, 1, 14, 17, 0, 55, 666);
-        m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S")); CxTracer() << xTRACE_VAR(m_sRv);
+        m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
         xTEST_EQ(std::tstring_t(xT("14-01-2010 17:00:55.666")), m_sRv);
     }
 
@@ -43,28 +43,28 @@ CxTest_CxDateTime::unit(
     {
         CxDateTime datetime(1000 * 60 * 60);
         m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
-        xTEST_EQ(std::tstring_t(xT("00-00-0000 1:00:00")), m_sRv);
+        xTEST_EQ(std::tstring_t(xT("00-00-0 01:00:00.000")), m_sRv);
     }
 
     xTEST_CASE("CxDateTime::CxDateTime(cushort_t &, cushort_t &, cushort_t &, cushort_t &)", a_caseLoops)
     {
         CxDateTime datetime(12, 20, 37, 555);
         m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
-        xTEST_EQ(std::tstring_t(xT("00-00-0000 12:20:37")), m_sRv);
+        xTEST_EQ(std::tstring_t(xT("00-00-0 12:20:37.555")), m_sRv);
     }
 
     xTEST_CASE("CxDateTime::CxDateTime(cushort_t &, cushort_t &, cushort_t &)", a_caseLoops)
     {
         CxDateTime datetime(2010, 7, 8);
         m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
-        xTEST_EQ(std::tstring_t(xT("08-07-2010 0:00:00")), m_sRv);
+        xTEST_EQ(std::tstring_t(xT("08-07-2010 00:00:00.000")), m_sRv);
     }
 
     xTEST_CASE("CxDateTime::CxDateTime(cushort_t &, cushort_t &, cushort_t &, cushort_t &, cushort_t &, cushort_t &, cushort_t &)", a_caseLoops)
     {
         CxDateTime datetime(2010, 8, 18, 14, 0, 5, 777);
         m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
-        xTEST_EQ(std::tstring_t(xT("18-08-2010 14:00:05")), m_sRv);
+        xTEST_EQ(std::tstring_t(xT("18-08-2010 14:00:05.777")), m_sRv);
     }
 
 
@@ -146,7 +146,7 @@ CxTest_CxDateTime::unit(
 
         datetime = msec;
         m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
-        xTEST_EQ(std::tstring_t(xT("00-00-0000 1:00:00")), m_sRv);
+        xTEST_EQ(std::tstring_t(xT("00-00-0 01:00:00.000")), m_sRv);
     }
 
     xTEST_CASE("CxDateTime::operator (=, +, -)", a_caseLoops)
@@ -155,11 +155,11 @@ CxTest_CxDateTime::unit(
 
         datetime = CxDateTime() + CxDateTime(1000 * 60 * 60);
         m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
-        xTEST_EQ(std::tstring_t(xT("00-00-0000 1:00:00")), m_sRv);
+        xTEST_EQ(std::tstring_t(xT("00-00-0 01:00:00.000")), m_sRv);
 
         datetime = datetime - CxDateTime(1000 * 60 * 60 / 2);
         m_sRv = datetime.format(xT("%d-%m-%Y %H:%M:%S"));
-        xTEST_EQ(std::tstring_t(xT("00-00-0000 0:30:00")), m_sRv);
+        xTEST_EQ(std::tstring_t(xT("00-00-0 00:30:00.000")), m_sRv);
     }
 
     xTEST_CASE("CxDateTime::operator +=", a_caseLoops)
@@ -169,7 +169,7 @@ CxTest_CxDateTime::unit(
 
         datetime1 += datetime2;
         m_sRv = datetime1.format(xT("%d-%m-%Y %H:%M:%S"));
-        xTEST_EQ(std::tstring_t(xT("00-00-0000 2:30:00")), m_sRv);
+        xTEST_EQ(std::tstring_t(xT("00-00-0 02:30:00.000")), m_sRv);
     }
 
     xTEST_CASE("CxDateTime::operator -=", a_caseLoops)
@@ -179,7 +179,7 @@ CxTest_CxDateTime::unit(
 
         datetime1 -= datetime2;
         m_sRv = datetime1.format(xT("%d-%m-%Y %H:%M:%S"));
-        xTEST_EQ(std::tstring_t(xT("00-00-0000 0:20:00")), m_sRv);
+        xTEST_EQ(std::tstring_t(xT("00-00-0 00:20:00.000")), m_sRv);
     }
 
 
@@ -636,21 +636,21 @@ CxTest_CxDateTime::unit(
     xTEST_CASE("CxDateTime::weekDayNum", a_caseLoops)
     {
         std::ctstring_t days[7][2] = {
-            { xT("Sunday"),     xT("Sun") },
             { xT("Monday"),     xT("Mon") },
             { xT("Tuesday"),    xT("Tue"} ),
             { xT("Wednesday"),  xT("Wed") },
             { xT("Thursday"),   xT("Thu") },
             { xT("Friday"),     xT("Fri") },
-            { xT("Saturday"),   xT("Sat") }
+            { xT("Saturday"),   xT("Sat") },
+            { xT("Sunday"),     xT("Sun") }
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(days); ++ i) {
             m_iRv = CxDateTime::weekDayNum(days[i][0], false);
-            xTEST_EQ((int_t)i, m_iRv);
+            xTEST_EQ((int_t)i + 1, m_iRv);
 
             m_iRv = CxDateTime::weekDayNum(days[i][1], true);
-            xTEST_EQ((int_t)i, m_iRv);
+            xTEST_EQ((int_t)i + 1, m_iRv);
 
             m_iRv = CxDateTime::weekDayNum(days[i][0], true);
             xTEST_EQ(- 1, m_iRv);
