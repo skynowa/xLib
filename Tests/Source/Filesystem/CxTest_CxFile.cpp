@@ -623,7 +623,7 @@ CxTest_CxFile::vUnit1(
         {
             CxFile F;
 
-            F.create(sFilePathFrom, CxFile::omBinCreateReadWrite, true);
+            F.create(sFilePathFrom, CxFile::omBinCreateReadWrite, false);
             F.resize(1024 * 5);
         }
 
@@ -632,6 +632,7 @@ CxTest_CxFile::vUnit1(
         m_bRv = CxFile::isExists(sFilePathTo);
         xTEST_EQ(true, m_bRv);
 
+        CxFile::remove(sFilePathTo);
         CxFile::copy(sFilePathFrom, sFilePathTo, true);
     }
 
