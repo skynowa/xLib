@@ -21,7 +21,10 @@ xNAMESPACE_BEGIN(NxLib)
 inline
 CxProfiler::CxProfiler() :
     _isStarted(false),
-    _log      (CxFileLog::lsDefaultSize)
+    _log      (CxFileLog::lsDefaultSize),
+    _start    (0),
+    _stop     (0),
+    _duration (0)
 {
     _dataReset();
 }
