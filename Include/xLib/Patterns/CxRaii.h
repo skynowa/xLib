@@ -29,6 +29,17 @@ public:
     }
         ///< destructor
 
+    T& get()
+    {
+        return _object;
+    }
+        ///< get object
+    const T &get() const
+    {
+        return _object;
+    }
+        ///< get object
+
 private:
     T &_object;
 
