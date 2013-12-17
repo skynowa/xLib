@@ -1054,6 +1054,8 @@ CxPath::proc(
         std::tstring_t line;
 
         std::getline(ifs, line);
+        xCHECK_DO(line.empty(), continue);
+
         vsRv.push_back(line);
     }
 
