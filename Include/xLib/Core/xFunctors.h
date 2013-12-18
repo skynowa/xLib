@@ -14,7 +14,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-struct SCompareNoCase
+struct CompareNoCase
     ///< case insensitive comparison
 {
     // TODO: bool_t
@@ -36,7 +36,7 @@ struct SCompareNoCase
     }
 };
 
-struct SDelete
+struct Delete
     ///< container items deleter
 {
     template<class T>
@@ -51,7 +51,7 @@ struct SDelete
     }
 };
 
-struct SNarrow
+struct Narrow
     ///<
 {
     std::string::value_type
@@ -64,7 +64,7 @@ struct SNarrow
     }
 };
 
-struct SWiden
+struct Widen
     ///<
 {
     std::wstring::value_type
@@ -77,6 +77,6 @@ struct SWiden
     }
 };
 
-xNAMESPACE_ANONYM_END
+xNAMESPACE_END(xLib)
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_xFunctorsH

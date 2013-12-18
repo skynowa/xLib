@@ -146,7 +146,7 @@ CxString::castA(
 
     std::string asRv;
 
-    std::transform(a_str.begin(), a_str.end(), std::back_inserter(asRv), SNarrow());
+    std::transform(a_str.begin(), a_str.end(), std::back_inserter(asRv), Narrow());
 
     return asRv;
 }
@@ -161,7 +161,7 @@ CxString::castW(
 
     std::wstring wsRv;
 
-    std::transform(a_str.begin(), a_str.end(), std::back_inserter(wsRv), SWiden());
+    std::transform(a_str.begin(), a_str.end(), std::back_inserter(wsRv), Widen());
 
     return wsRv;
 }
@@ -883,10 +883,9 @@ CxString::compareNoCase(
 
 #if   xOS_ENV_WIN
     int_t iRv = ::lstrcmpi(a_str1.c_str(), a_str2.c_str());
-    // n/a
     xCHECK_RET(0 != iRv, false);
 #elif xOS_ENV_UNIX
-    bool_t bRv = std::equal(a_str1.begin(), a_str1.end(), a_str2.begin(), SCompareNoCase());
+    bool_t bRv = std::equal(a_str1.begin(), a_str1.end(), a_str2.begin(), CompareNoCase());
     xCHECK_RET(!bRv, false);
 #endif
 
