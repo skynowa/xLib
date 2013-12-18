@@ -121,9 +121,9 @@ CxPath::exe()
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_ANONYM_BEGIN
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     extern "C" IMAGE_DOS_HEADER __ImageBase;
-#else
+#elif xOS_ENV_UNIX
     static void_t function() { ; }
 #endif
 
