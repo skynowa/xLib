@@ -84,8 +84,6 @@ CxTest_CxRandom::unit(
 
         // double
         {
-            xTRACE_POINT;
-
             cdouble_t data[][2] = {
                 {0.0, 100.0},
                 {500.0, 1000.0},
@@ -108,7 +106,7 @@ CxTest_CxRandom::unit(
     }
 
 #if xTODO
-    xTEST_CASE("CxRandom::sGetString", a_caseLoops)
+    xTEST_CASE("CxRandom::nextString", a_caseLoops)
     {
         std::csize_t cuiStrSize = 10;
 
