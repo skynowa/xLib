@@ -19,7 +19,7 @@ pthread_cond_t  g_cndCondition = PTHREAD_COND_INITIALIZER;
 
 #endif // xOS_ENV_UNIX
 //------------------------------------------------------------------------------
-#if xOS_ENV_UNIX
+#if xOS_ENV_UNIX && xTODO
 
 static
 void_t *
@@ -71,7 +71,7 @@ pvWatch(
 
 #endif // xOS_ENV_UNIX
 //------------------------------------------------------------------------------
-#if xOS_ENV_UNIX
+#if xOS_ENV_UNIX && xTODO
 
 static
 void_t *
