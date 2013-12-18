@@ -14,7 +14,7 @@ CxTest_CxGuid::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("CxGuid::[TEST_CASE_1]", a_caseLoops)
+    xTEST_CASE("CxGuid::create", a_caseLoops)
     {
         CxGuid::cExType data[] = {
             CxGuid::tpRandomBased
