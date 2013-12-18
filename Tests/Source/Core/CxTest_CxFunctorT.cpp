@@ -14,77 +14,87 @@
 
 //-------------------------------------
 //classes A, B
-class A {
-    public:
-        A() {
-            ////xSTD_COUT_FUNC;
-        };
-        ~A() {
-            ////xSTD_COUT_FUNC;
-        };
+class A
+{
+public:
+    A()
+    {
+        ////xSTD_COUT_FUNC;
+    };
+    ~A()
+    {
+        ////xSTD_COUT_FUNC;
+    };
 
-        void_t vOutput() {
-            ////xSTD_COUT_FUNC;
-        };
-
-// xNO_COPY_ASSIGN(A);
+    void_t vOutput()
+    {
+        ////xSTD_COUT_FUNC;
+    };
 };
 
-class B {
-    public:
-        B() {
-            ////xSTD_COUT_FUNC;
-        };
-        ~B() {
-            ////xSTD_COUT_FUNC;
-        };
+class B
+{
+public:
+    B()
+    {
+        ////xSTD_COUT_FUNC;
+    };
+    ~B()
+    {
+        ////xSTD_COUT_FUNC;
+    };
 
-        bool_t methodB(A a) {
-            ////xSTD_COUT_FUNC;
-            a.vOutput();
+    bool_t methodB(A a)
+    {
+        ////xSTD_COUT_FUNC;
+        a.vOutput();
 
-            return true;
-        };
+        return true;
+    };
 
-xNO_COPY_ASSIGN(B)
+private:
+    xNO_COPY_ASSIGN(B)
 };
+
 class CThread;
-class CParam {
-    public:
-        CParam()
-        {
-            ////xSTD_COUT_FUNC;
-        };
-        ~CParam()
-        {
-            ////xSTD_COUT_FUNC;
-        };
+class CParam
+{
+public:
+    CParam()
+    {
+        ////xSTD_COUT_FUNC;
+    };
+    ~CParam()
+    {
+        ////xSTD_COUT_FUNC;
+    };
 
-        std::tstring_t sSetName(void_t *uiIndex)
-        {
-            xUNUSED(uiIndex);
+    std::tstring_t sSetName(void_t *uiIndex)
+    {
+        xUNUSED(uiIndex);
 
-            return xT("Class_C");
-        };
+        return xT("Class_C");
+    };
 };
 CParam objParam;
 
-class CThread {
-    public:
-        CThread()
-        {
-            ////xSTD_COUT_FUNC;
-        };
-        ~CThread()
-        {
-            ////xSTD_COUT_FUNC;
-        };
+class CThread
+{
+public:
+    CThread()
+    {
+        ////xSTD_COUT_FUNC;
+    };
+    ~CThread()
+    {
+        ////xSTD_COUT_FUNC;
+    };
 
-        void_t vRun(const CxFunctorT<CParam, std::tstring_t, void_t *> &bF)
-        {
-            xUNUSED(bF);
-            ////xSTD_COUT_FUNC;
-        };
+    void_t vRun(const CxFunctorT<CParam, std::tstring_t, void_t *> &bF)
+    {
+        xUNUSED(bF);
+        ////xSTD_COUT_FUNC;
+    };
 };
 CThread objThread;
 //------------------------------------------------------------------------------
@@ -93,7 +103,7 @@ CxTest_CxFunctorT::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("CxFunctorT::operator ()", a_caseLoops)
+    xTEST_CASE("CxFunctorT::operator()", a_caseLoops)
     {
         A a;
         B b;
@@ -121,7 +131,7 @@ CxTest_CxFunctorT::unit(
         delete pbF;
     }
 
-    xTEST_CASE("CxFunctorT::operator ()", a_caseLoops)
+    xTEST_CASE("CxFunctorT::operator()", a_caseLoops)
     {
         A a;
         B b;
