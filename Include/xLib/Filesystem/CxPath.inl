@@ -143,7 +143,7 @@ CxPath::dll()
     xTEST_DIFF(0UL, stored);
 
     sRv.resize(stored);
-#else
+#elif xOS_ENV_UNIX
     Dl_info  diInfo;    xSTRUCT_ZERO(diInfo);
     cvoid_t *procAddress = reinterpret_cast<cvoid_t *>( ::function );
 
@@ -565,7 +565,7 @@ CxPath::isAbsolute() const {
 #if xOS_ENV_WIN
     xCHECK_RET(1 == filePath().size(), false);
     xCHECK_RET(CxChar::isAlpha(filePath().at(0)) && CxConst::colon().at(0) == filePath().at(1), true);
-#else
+#elif xOS_ENV_UNIX
     xNA
 #endif
 
@@ -780,9 +780,9 @@ CxPath::toNative(
         sRv = slashRemove();
     }
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     std::ctstring_t slash = CxConst::unixSlash();
-#else
+#elif xOS_ENV_UNIX
     std::ctstring_t slash = CxConst::winSlash();
 #endif
 
@@ -796,7 +796,7 @@ CxPath::absolute() const
 {
     std::tstring_t sRv;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     DWORD          dwRv = 0UL;
     std::tstring_t buff;
 
@@ -812,7 +812,7 @@ CxPath::absolute() const
     buff.resize(dwRv);
 
     sRv = buff;
-#else
+#elif xOS_ENV_UNIX
     std::tstring_t buff;
 
     buff.resize(xPATH_MAX);
@@ -940,7 +940,7 @@ CxPath::maxSize()
 {
     size_t uiRv = 0;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #if defined(MAX_PATH)
         uiRv = MAX_PATH;
     #else
@@ -948,7 +948,7 @@ CxPath::maxSize()
 
         uiRv = defaultSize;
     #endif
-#else
+#elif xOS_ENV_UNIX
     #if defined(PATH_MAX)
         uiRv = PATH_MAX;
     #else
@@ -983,7 +983,7 @@ CxPath::nameMaxSize()
 {
     size_t uiRv = 0;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #if defined(FILENAME_MAX)
         uiRv = FILENAME_MAX;
     #else
@@ -991,7 +991,7 @@ CxPath::nameMaxSize()
 
         uiRv = defaultSize;
     #endif
-#else
+#elif xOS_ENV_UNIX
     #if defined(NAME_MAX)
         uiRv = NAME_MAX;
     #else
@@ -1065,7 +1065,7 @@ CxPath::proc(
 
 #endif
 //-------------------------------------------------------------------------------------------------
-#if !xOS_ENV_WIN
+#if xOS_ENV_UNIX
 
 /* static */
 inline std::tstring_t
