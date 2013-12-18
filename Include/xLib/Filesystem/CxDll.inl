@@ -59,10 +59,10 @@ CxDll::load(
 
     _destruct();
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     _dll = ::LoadLibrary(a_dllPath.c_str());
     xTEST_PTR(_dll);
-#else
+#elif xOS_ENV_UNIX
     _dll = ::dlopen(a_dllPath.c_str(), RTLD_LAZY | RTLD_GLOBAL);
     xTEST_PTR(_dll);
 #endif
@@ -75,10 +75,10 @@ CxDll::isProcExists(
 {
     xTEST_PTR(_dll);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     proc_address_t fpRv = ::GetProcAddress(_dll, xTS2S(a_procName).c_str());
     xCHECK_RET(NULL == fpRv, false);
-#else
+#elif xOS_ENV_UNIX
     const char *error = NULL;
 
     error = ::dlerror();
@@ -102,10 +102,10 @@ CxDll::procAddress(
 
     proc_address_t fpRv = NULL;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     fpRv = ::GetProcAddress(_dll, xTS2S(a_procName).c_str());
     xTEST_PTR(fpRv);
-#else
+#elif xOS_ENV_UNIX
     const char *error = NULL;
 
     error = ::dlerror();
