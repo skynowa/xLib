@@ -186,7 +186,7 @@ CxString::strToWStr(
 
     std::wstring wsRv;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     int_t size = ::MultiByteToWideChar(a_codePage, 0UL, a_str.c_str(), - 1, NULL, 0);
     xTEST_LESS(0, size);
 
@@ -194,7 +194,7 @@ CxString::strToWStr(
     size = ::MultiByteToWideChar(a_codePage, 0UL, a_str.c_str(), - 1,
         static_cast<LPWSTR>(&wsRv.at(0)), size);
     xTEST_LESS(0, size);
-#else
+#elif xOS_ENV_UNIX
     xUNUSED(a_str);
     xUNUSED(a_codePage);
 
@@ -217,7 +217,7 @@ CxString::wstrToStr(
 
     std::string asRv;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     int_t size = ::WideCharToMultiByte(a_codePage, 0UL, a_str.c_str(), - 1, NULL, 0, NULL, NULL);
     xTEST_LESS(0, size);
 
@@ -225,7 +225,7 @@ CxString::wstrToStr(
     size = ::WideCharToMultiByte(a_codePage, 0UL, a_str.c_str(), - 1,
         static_cast<LPSTR>(&asRv.at(0)), size, NULL, NULL);
     xTEST_LESS(0, size);
-#else
+#elif xOS_ENV_UNIX
     xUNUSED(a_str);
     xUNUSED(a_codePage);
 
@@ -312,13 +312,6 @@ CxString::convertCodePage(
     xTEST_NA(a_codePageSource);
     xTEST_NA(a_codePageDest);
 
-//    xTEST_EQ(false, source.empty(), std::string()); //FIX: str - n/a
-//    // uiCodePageSource
-//    // uiCodePageDest
-
-    //CP_ACP(ANSI) <-> CP_UTF8(UTF-8)
-    //1251  (WIN)  <-> 20866  (KOI-8r)
-
     return wstrToStr(strToWStr(a_source, a_codePageSource), a_codePageDest);
 }
 //-------------------------------------------------------------------------------------------------
@@ -332,12 +325,12 @@ CxString::charToOemBuff(
 
     std::string dest;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     dest.resize(a_str.size());
 
     BOOL blRv = ::CharToOemBuff(a_str.c_str(), &dest.at(0), static_cast<DWORD>( dest.size() ));
     xTEST_DIFF(FALSE, blRv);
-#else
+#elif xOS_ENV_UNIX
     xUNUSED(a_str);
 
     // TODO: charToOemBuff
@@ -357,15 +350,15 @@ CxString::oemToCharBuff(
 
     std::tstring_t dest;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     dest.resize(a_str.size());
 
     BOOL blRv = ::OemToCharBuff(a_str.c_str(), &dest.at(0), static_cast<DWORD>( dest.size() ));
     xTEST_DIFF(FALSE, blRv);
-#else
+#elif xOS_ENV_UNIX
     xUNUSED(a_str);
 
-    // TODO: sOemToCharBuffoemToCharBuff
+    // TODO: oemToCharBuff
     xNOT_IMPLEMENTED;
 #endif
 
@@ -436,11 +429,10 @@ CxString::toLowerCase(
 
     std::tstring_t sRv(a_str);
 
-#if xOS_ENV_WIN
-    DWORD dwRv = ::CharLowerBuff(static_cast<LPTSTR>( &sRv[0] ),
-                                 static_cast<DWORD>( length ));
+#if   xOS_ENV_WIN
+    DWORD dwRv = ::CharLowerBuff(static_cast<LPTSTR>( &sRv[0] ), static_cast<DWORD>( length ));
     xTEST_EQ(length, static_cast<size_t>( dwRv ));
-#else
+#elif xOS_ENV_UNIX
     std::transform(sRv.begin(), sRv.begin() + length, sRv.begin(), CxChar::toLower);
 #endif
 
@@ -464,10 +456,10 @@ CxString::toUpperCase(
 
     std::tstring_t sRv(a_str);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     DWORD dwRv = ::CharUpperBuff(static_cast<LPTSTR>( &sRv[0] ), static_cast<DWORD>( length ));
     xTEST_EQ(length, static_cast<size_t>( dwRv ));
-#else
+#elif xOS_ENV_UNIX
     std::transform(sRv.begin(), sRv.begin() + length, sRv.begin(), CxChar::toUpper);
 #endif
 
@@ -728,7 +720,7 @@ CxString::cut(
     if (std::string::npos == a_posEnd) {
         size = a_str.size();
     } else {
-        size = a_posEnd - a_posBegin /* + 1*/;
+        size = a_posEnd - a_posBegin;
     }
 
     return a_str.substr(a_posBegin, size);
