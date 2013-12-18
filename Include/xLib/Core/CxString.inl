@@ -22,6 +22,8 @@
 
 xNAMESPACE_BEGIN(NxLib)
 
+using namespace NxFunctors;
+
 /*******************************************************************************
 *   casting
 *
