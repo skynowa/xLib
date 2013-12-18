@@ -12,7 +12,7 @@
 #include <xLib/Core/xCore.h>
 #include <xLib/Core/CxChar.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE2_BEGIN(NxLib, NxFunctors)
 
 struct CompareNoCase
     ///< case insensitive comparison
@@ -77,6 +77,6 @@ struct Widen
     }
 };
 
-xNAMESPACE_END(xLib)
+xNAMESPACE2_END(NxLib, NxFunctors)
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_xFunctorsH

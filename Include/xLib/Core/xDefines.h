@@ -198,6 +198,15 @@
         }
         ///< end namespace
 
+#define xNAMESPACE2_BEGIN(n1, n2) \
+        xNAMESPACE_BEGIN(n1) \
+        xNAMESPACE_BEGIN(n2)
+        ///< begin namespaces
+#define xNAMESPACE2_END(n1, n2) \
+        xNAMESPACE_END(n2) \
+        xNAMESPACE_END(n1)
+        ///< end namespaces
+
 #define xNAMESPACE_ANONYM_BEGIN \
         namespace {
         ///< begin anonymous namespace
