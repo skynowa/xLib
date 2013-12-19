@@ -88,43 +88,51 @@
 #ifdef _xREPORT_TYPE
     #define xTEST_EQ(val1, val2) \
         _xTEST_MSG_EQ      (_xREPORT_TYPE, val1, val2, xT(""))
-    #define xTEST_DIFF(val1, val2) \
-        _xTEST_MSG_DIFF    (_xREPORT_TYPE, val1, val2, xT(""))
-    #define xTEST_LESS(val1, val2) \
-        _xTEST_MSG_LESS    (_xREPORT_TYPE, val1, val2, xT(""))
-    #define xTEST_GR(val1, val2) \
-        _xTEST_MSG_GR      (_xREPORT_TYPE, val1, val2, xT(""))
-    #define xTEST_LESS_EQ(val1, val2) \
-        _xTEST_MSG_LESS_EQ (_xREPORT_TYPE, val1, val2, xT(""))
-    #define xTEST_GR_EQ(val1, val2) \
-        _xTEST_MSG_GR_EQ   (_xREPORT_TYPE, val1, val2, xT(""))
-    #define xTEST_PTR(ptr) \
-        _xTEST_MSG_PTR     (_xREPORT_TYPE, ptr, xT(""))
-    #define xTEST_PTR_FAIL(ptr) \
-        _xTEST_MSG_PTR_FAIL(_xREPORT_TYPE, ptr, xT(""))
-    #define xTEST_FAIL \
-        _xTEST_MSG_FAIL    (_xREPORT_TYPE, xT(""))
-    #define xTEST(expr) \
-        _xTEST_MSG_EQ      (_xREPORT_TYPE, true, expr, xT(""))
-
     #define xTEST_MSG_EQ(val1, val2, msg) \
         _xTEST_MSG_EQ      (_xREPORT_TYPE, val1, val2, msg)
+
+    #define xTEST_DIFF(val1, val2) \
+        _xTEST_MSG_DIFF    (_xREPORT_TYPE, val1, val2, xT(""))
     #define xTEST_MSG_DIFF(val1, val2, msg) \
         _xTEST_MSG_DIFF    (_xREPORT_TYPE, val1, val2, msg)
+
+    #define xTEST_LESS(val1, val2) \
+        _xTEST_MSG_LESS    (_xREPORT_TYPE, val1, val2, xT(""))
     #define xTEST_MSG_LESS(val1, val2, msg) \
         _xTEST_MSG_LESS    (_xREPORT_TYPE, val1, val2, msg)
+
+    #define xTEST_GR(val1, val2) \
+        _xTEST_MSG_GR      (_xREPORT_TYPE, val1, val2, xT(""))
     #define xTEST_MSG_GR(val1, val2, msg) \
         _xTEST_MSG_GR      (_xREPORT_TYPE, val1, val2, msg)
+
+    #define xTEST_LESS_EQ(val1, val2) \
+        _xTEST_MSG_LESS_EQ (_xREPORT_TYPE, val1, val2, xT(""))
     #define xTEST_MSG_LESS_EQ(val1, val2, msg) \
         _xTEST_MSG_LESS_EQ (_xREPORT_TYPE, val1, val2, msg)
+
+    #define xTEST_GR_EQ(val1, val2) \
+        _xTEST_MSG_GR_EQ   (_xREPORT_TYPE, val1, val2, xT(""))
     #define xTEST_MSG_GR_EQ(val1, val2, msg) \
         _xTEST_MSG_GR_EQ   (_xREPORT_TYPE, val1, val2, msg)
+
+    #define xTEST_PTR(ptr) \
+        _xTEST_MSG_PTR     (_xREPORT_TYPE, ptr, xT(""))
     #define xTEST_MSG_PTR(ptr, msg) \
         _xTEST_MSG_PTR     (_xREPORT_TYPE, ptr, msg)
+
+    #define xTEST_PTR_FAIL(ptr) \
+        _xTEST_MSG_PTR_FAIL(_xREPORT_TYPE, ptr, xT(""))
     #define xTEST_MSG_PTR_FAIL(ptr, msg) \
         _xTEST_MSG_PTR_FAIL(_xREPORT_TYPE, ptr, msg)
+
+    #define xTEST_FAIL \
+        _xTEST_MSG_FAIL    (_xREPORT_TYPE, xT(""))
     #define xTEST_MSG_FAIL(msg) \
         _xTEST_MSG_FAIL    (_xREPORT_TYPE, msg)
+
+    #define xTEST(expr) \
+        _xTEST_MSG_EQ      (_xREPORT_TYPE, true, expr, xT(""))
     #define xTEST_MSG(expr, msg) \
         _xTEST_MSG_EQ      (_xREPORT_TYPE, true, expr, msg)
 
@@ -141,7 +149,6 @@
             }                                       \
             xTEST_EQ(isExpected, true);             \
         }
-
     #define xTEST_MSG_THROW(expr, exception_t, msg) \
         {                                           \
             bool isExpected = false;                \
@@ -167,7 +174,6 @@
             }                                       \
             xTEST_EQ(isExpected, true);             \
         }
-
     #define xTEST_MSG_THROW_ALL(expr, msg)          \
         {                                           \
             bool isExpected = false;                \
@@ -191,7 +197,6 @@
             }                                       \
             xTEST_EQ(isExpected, true);             \
         }
-
     #define xTEST_MSG_THROW_NO(expr, msg)           \
         {                                           \
             bool isExpected = true;                 \
@@ -206,31 +211,41 @@
 #else
     // just empty macros
     #define xTEST_EQ(val1, val2)
-    #define xTEST_DIFF(val1, val2)
-    #define xTEST_LESS(val1, val2)
-    #define xTEST_GR(val1, val2)
-    #define xTEST_LESS_EQ(val1, val2)
-    #define xTEST_GR_EQ(val1, val2)
-    #define xTEST_PTR(ptr)
-    #define xTEST_PTR_FAIL(ptr)
-    #define xTEST_FAIL
-    #define xTEST(expr)
-
     #define xTEST_MSG_EQ(val1, val2, msg)
+
+    #define xTEST_DIFF(val1, val2)
     #define xTEST_MSG_DIFF(val1, val2, msg)
+
+    #define xTEST_LESS(val1, val2)
     #define xTEST_MSG_LESS(val1, val2, msg)
+
+    #define xTEST_GR(val1, val2)
     #define xTEST_MSG_GR(val1, val2, msg)
+
+    #define xTEST_LESS_EQ(val1, val2)
     #define xTEST_MSG_LESS_EQ(val1, val2, msg)
+
+    #define xTEST_GR_EQ(val1, val2)
     #define xTEST_MSG_GR_EQ(val1, val2, msg)
+
+    #define xTEST_PTR(ptr)
     #define xTEST_MSG_PTR(ptr, msg)
+
+    #define xTEST_PTR_FAIL(ptr)
     #define xTEST_MSG_PTR_FAIL(ptr, msg)
+
+    #define xTEST_FAIL
     #define xTEST_MSG_FAIL(msg)
+
+    #define xTEST(expr)
     #define xTEST_MSG(expr, msg)
 
     #define xTEST_THROW(expr, exception_t)
     #define xTEST_MSG_THROW(expr, exception_t, msg)
+
     #define xTEST_THROW_ALL(expr)
     #define xTEST_MSG_THROW_ALL(expr, msg)
+
     #define xTEST_THROW_NO(expr)
     #define xTEST_MSG_THROW_NO(expr, msg)
 #endif
