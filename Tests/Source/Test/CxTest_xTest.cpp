@@ -16,67 +16,42 @@ CxTest_xTest::unit(
 {
     xTEST_CASE("xDebug::xTEST_*_", a_caseLoops)
     {
-        {
-            int_t iSimpleVar = 1;
-            int_t iVeryVerySimpleVar = 1;
-            xTEST_MSG_EQ(iSimpleVar, iVeryVerySimpleVar, xT("Simple message"));
-
-            xTEST_EQ(1UL, 1UL);
-        }
-
-        {
-            xTEST_DIFF(1UL, 0UL);
-        }
-
-        {
-            xTEST_LESS(0UL, 1UL);
-        }
-
-        {
-            xTEST_GR(1UL, 0UL);
-        }
-
-        {
-            xTEST_LESS_EQ(1UL, 2UL);
-            xTEST_LESS_EQ(2UL, 2UL);
-        }
-
-        {
-            xTEST_GR_EQ(2UL, 1UL);
-            xTEST_GR_EQ(2UL, 2UL);
-        }
-
-        {
-            long_t *pliVal = new long_t;
-
-            xTEST_PTR(pliVal);
-
-            xPTR_DELETE(pliVal);
-        }
-
-        {
-            long_t *pliVal = NULL;
-            xTEST_PTR_FAIL(pliVal);
-        }
-
-        {
-            #if xTEST_IGNORE
-                xTEST_FAIL;
-            #endif
-        }
-
-        {
-            xTEST(true);
-
-            #if xTEST_IGNORE
-                xTEST(false);
-            #endif
-        }
+        xTEST_EQ(1UL, 1UL);
+        xTEST_DIFF(1UL, 0UL);
+        xTEST_LESS(0UL, 1UL);
+        xTEST_GR(1UL, 0UL);
+        xTEST_LESS_EQ(1UL, 2UL);
+        xTEST_LESS_EQ(2UL, 2UL);
+        xTEST_GR_EQ(2UL, 1UL);
+        xTEST_GR_EQ(2UL, 2UL);
+        xTEST_PTR(123);
+        xTEST_PTR_FAIL(NULL);
+    #if xTEST_IGNORE
+        xTEST_FAIL;
+        xTEST(false);
+    #endif
+        xTEST(true);
     }
 
     xTEST_CASE("xDebug::xTEST_MSG_*_", a_caseLoops)
     {
+        std::ctstring_t msg = xT("Simple message");
 
+        xTEST_MSG_EQ(1UL, 1UL, msg);
+        xTEST_MSG_DIFF(1UL, 0UL, msg);
+        xTEST_MSG_LESS(0UL, 1UL, msg);
+        xTEST_MSG_GR(1UL, 0UL, msg);
+        xTEST_MSG_LESS_EQ(1UL, 2UL, msg);
+        xTEST_MSG_LESS_EQ(2UL, 2UL, msg);
+        xTEST_MSG_GR_EQ(2UL, 1UL, msg);
+        xTEST_MSG_GR_EQ(2UL, 2UL, msg);
+        xTEST_MSG_PTR(61466, msg);
+        xTEST_MSG_PTR_FAIL(NULL, msg);
+    #if xTEST_IGNORE
+        xTEST_MSG_FAIL(msg);
+        xTEST_MSG(false, msg);
+    #endif
+        xTEST_MSG(true, msg);
     }
 
     xTEST_CASE("xDebug::xTEST_STATIC_", a_caseLoops)

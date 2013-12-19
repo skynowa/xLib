@@ -52,7 +52,7 @@
         CxDebugger().reportMake(report); \
     }
 #define _xTEST_MSG_PTR(reportType, ptr, msg) \
-    if ( NULL == (ptr) ) { \
+    if ( intptr_t(NULL) == intptr_t(ptr) ) { \
         ulong_t _lastError = CxLastError::get(); \
         CxErrorReport report(reportType, xT("NULL"), xT(#ptr), intptr_t(ptr), intptr_t(NULL), \
             xT("!="), _lastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, \
@@ -60,7 +60,7 @@
         CxDebugger().reportMake(report); \
     }
 #define _xTEST_MSG_PTR_FAIL(reportType, ptr, msg) \
-    if ( NULL != (ptr) ) { \
+    if ( intptr_t(NULL) != intptr_t(ptr) ) { \
         ulong_t _lastError = CxLastError::get(); \
         CxErrorReport report(reportType, xT("NULL"), xT(#ptr), intptr_t(ptr), intptr_t(NULL), \
             xT("=="), _lastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, \
