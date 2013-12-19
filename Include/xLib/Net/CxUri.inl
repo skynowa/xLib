@@ -129,7 +129,7 @@ CxUri::scheme() const
     return encodeComponent(_scheme);
 }
 //-------------------------------------------------------------------------------------------------
-void_t
+inline void_t
 CxUri::setScheme(
     std::ctstring_t &a_scheme
 )
@@ -169,7 +169,7 @@ CxUri::setAuthority(
     _authority = decodeComponent(a_authority);
 }
 //-------------------------------------------------------------------------------------------------
-std::tstring_t
+inline std::tstring_t
 CxUri::userInfo() const
 {
     return encodeComponent(_userInfo);
@@ -351,9 +351,9 @@ CxUri::encodeComponent(
         _reservedPath     = "?#";
         _reservedQuery    = "#";
         _reservedFragment = "";
-        _illegal           = "%<>{}|\\\"^`";
+        _illegal          = "%<>{}|\\\"^`";
         */
-        else if (c <= 0x20 || c >= 0x7F || _illegal.find(c) != std::tstring_t::npos
+        else if (c <= 0x20 || c >= 0x7F || _illegal().find(c) != std::tstring_t::npos
             /*|| reserved.find(c) != std::tstring_t::npos*/)
         {
             //� -> %FF
@@ -436,11 +436,38 @@ CxUri::decodeComponent(
 *
 **************************************************************************************************/
 
-std::ctstring_t CxUri::_reservedPath     = xT("?#");
-std::ctstring_t CxUri::_reservedQuery    = xT("#");
-std::ctstring_t CxUri::_reservedFragment = xT("");
-std::ctstring_t CxUri::_illegal          = xT("%<>{}|\\\"^`");
+//-------------------------------------------------------------------------------------------------
+inline std::ctstring_t &
+CxUri::_reservedPath()
+{
+    static std::ctstring_t sRv(xT("?#"));
 
+    return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+inline std::ctstring_t &
+CxUri::_reservedQuery()
+{
+    static std::ctstring_t sRv(xT("#"));
+
+    return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+inline std::ctstring_t &
+CxUri::_reservedFragment()
+{
+    static std::ctstring_t sRv(xT(""));
+
+    return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+inline std::ctstring_t &
+CxUri::_illegal()
+{
+    static std::ctstring_t sRv(xT("%<>{}|\\\"^`"));
+
+    return sRv;
+}
 //-------------------------------------------------------------------------------------------------
 // TODO: _parse
 /**

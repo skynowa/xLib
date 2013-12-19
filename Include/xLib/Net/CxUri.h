@@ -59,10 +59,10 @@ public:
     void_t                 clear();
 
 private:
-    static std::ctstring_t _reservedPath;
-    static std::ctstring_t _reservedQuery;
-    static std::ctstring_t _reservedFragment;
-    static std::ctstring_t _illegal;
+    static std::ctstring_t & _reservedPath();
+    static std::ctstring_t & _reservedQuery();
+    static std::ctstring_t & _reservedFragment();
+    static std::ctstring_t & _illegal();
 
     std::tstring_t         _scheme;
     std::tstring_t         _authority;
