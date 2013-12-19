@@ -10,7 +10,7 @@
 #include <xLib/Filesystem/CxPath.h>
 
 
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
 CxTest_CxProcess::unit(
@@ -19,66 +19,61 @@ CxTest_CxProcess::unit(
 {
     xTEST_CASE("CxProcess::create CxProcess::wait", a_caseLoops)
     {
-        #if 0
+        #if 1
             #if   xOS_ENV_WIN
-                std::ctstring_t csFilePath = xT("C:\\Windows\\System32\\attrib.exe");
-                std::ctstring_t csCmdLine  = xT("");
+                std::ctstring_t filePath = xT("C:\\Windows\\System32\\attrib.exe");
+                std::ctstring_t cmdLine  = xT("");
             #elif xOS_ENV_UNIX
-                std::ctstring_t csFilePath = xT("/usr/ls");
-                std::ctstring_t csCmdLine  = xT("-la");
+                std::ctstring_t filePath = xT("/bin/ls");
+                std::ctstring_t cmdLine  = xT("-la");
             #endif
 
-            CxProcess prProc;
+            CxProcess proc;
 
-            prProc.create(csFilePath, xT("%s"), csCmdLine.c_str());
+            proc.create(filePath, xT("%s"), cmdLine.c_str());
 
-            CxProcess::ExWaitResult wrRes = prProc.wait(xTIMEOUT_INFINITE);
-            xTEST_EQ(CxProcess::wrObject0, wrRes);
+            CxProcess::ExWaitResult wrRes = proc.wait(xTIMEOUT_INFINITE);
+            //xTEST_EQ(CxProcess::wrObject0, wrRes);
         #endif
     }
 
     xTEST_CASE("CxProcess::kill", a_caseLoops)
     {
-        #if 0
-            #if   xOS_ENV_WIN
-                std::ctstring_t csFilePath = xT("C:\\Windows\\System32\\attrib.exe");
-                std::ctstring_t csCmdLine  = xT("/?");
-            #elif xOS_ENV_UNIX
-                std::ctstring_t csFilePath = xT("/usr/ls");
-                std::ctstring_t csCmdLine  = xT("-la");
-            #endif
-
-            CxProcess prProc;
-
-            prProc.create(csFilePath, xT("%s"), csCmdLine.c_str());
-            prProc.kill(10UL);
+        #if   xOS_ENV_WIN
+            std::ctstring_t filePath = xT("C:\\Windows\\System32\\attrib.exe");
+            std::ctstring_t cmdLine  = xT("/?");
+        #elif xOS_ENV_UNIX
+            std::ctstring_t filePath = xT("/usr/bin/xmessage");
+            std::ctstring_t cmdLine  = xT("-print \"Test Message\"");
         #endif
+
+        CxProcess proc;
+
+        proc.create(filePath, xT("%s"), cmdLine.c_str());
+        proc.kill(10UL);
     }
 
     xTEST_CASE("CxProcess::handle CxProcess::id", a_caseLoops)
     {
-        #if 0
-            #if   xOS_ENV_WIN
-                std::ctstring_t csFilePath = xT("C:\\Windows\\System32\\attrib.exe");
-                std::ctstring_t csCmdLine  = xT("/?");
-            #elif xOS_ENV_UNIX
-                std::ctstring_t csFilePath = xT("/usr/bin/nautilus");
-                std::ctstring_t csCmdLine  = xT(">");
-            #endif
-
-            CxProcess prProc;
-
-            prProc.create(csFilePath, xT("%s"), csCmdLine.c_str());
-
-            CxProcess::handle_t hHandle = prProc.handle();
-            xTEST_DIFF(static_cast<CxProcess::handle_t>( NULL ), hHandle);
-
-            CxProcess::id_t id = prProc.id();
-            xTEST_LESS(static_cast<CxProcess::id_t>( 0 ), id);
-
-            CxProcess::ExWaitResult wrRes = prProc.wait(xTIMEOUT_INFINITE);
-            xTEST_EQ(CxProcess::wrObject0, wrRes);
+        #if   xOS_ENV_WIN
+            std::ctstring_t filePath = xT("C:\\Windows\\System32\\attrib.exe");
+            std::ctstring_t cmdLine  = xT("/?");
+        #elif xOS_ENV_UNIX
+            std::ctstring_t filePath = xT("/usr/bin/xmessage");
+            std::ctstring_t cmdLine  = xT("-print \"Test Message\"");
         #endif
+
+        CxProcess proc;
+
+        proc.create(filePath, xT("%s"), cmdLine.c_str());
+
+        CxProcess::handle_t hHandle = proc.handle();
+        xTEST_DIFF(static_cast<CxProcess::handle_t>( NULL ), hHandle);
+
+        CxProcess::id_t id = proc.id();
+        xTEST_LESS(static_cast<CxProcess::id_t>( 0 ), id);
+
+        proc.kill(10UL);
     }
 
     xTEST_CASE("CxProcess::idByHandle", a_caseLoops)
@@ -95,9 +90,9 @@ CxTest_CxProcess::unit(
 
     xTEST_CASE("CxProcess::idByName", a_caseLoops)
     {
-        std::ctstring_t csProcessName = CxPath( CxPath::exe() ).fileName();
+        std::ctstring_t procName = CxPath( CxPath::exe() ).fileName();
 
-        CxProcess::id_t id = CxProcess::idByName(csProcessName);
+        CxProcess::id_t id = CxProcess::idByName(procName);
         xTEST_DIFF(0UL, static_cast<ulong_t>( id ));
 
         // CxTracer() << xTRACE_VAR(id);
@@ -105,11 +100,11 @@ CxTest_CxProcess::unit(
 
     xTEST_CASE("CxProcess::ids", a_caseLoops)
     {
-        std::vector<CxProcess::id_t> vidIds;
+        std::vector<CxProcess::id_t> ids;
 
-        CxProcess::ids(&vidIds);
+        CxProcess::ids(&ids);
         #if xTEST_IGNORE
-            CxTracer() << vidIds;
+            CxTracer() << ids;
         #endif
     }
 
@@ -122,13 +117,13 @@ CxTest_CxProcess::unit(
     xTEST_CASE("CxProcess::currentId", a_caseLoops)
     {
         CxProcess::id_t ulRv = CxProcess::currentId();
-        xTEST_LESS(0UL, (ulong_t)ulRv);
+        xTEST_LESS(0UL, static_cast<ulong_t>( ulRv ));
     }
 
     xTEST_CASE("CxProcess::currentParentId", a_caseLoops)
     {
         CxProcess::id_t ulRv = CxProcess::currentParentId();
-        xTEST_LESS(0UL, (ulong_t)ulRv);
+        xTEST_LESS(0UL, static_cast<ulong_t>( ulRv ));
     }
 }
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
