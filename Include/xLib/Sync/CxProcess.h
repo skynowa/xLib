@@ -92,7 +92,7 @@ private:
     id_t            _pid;
     uint_t          _exitStatus;            ///< exit code
 
-xNO_COPY_ASSIGN(CxProcess)
+    xNO_COPY_ASSIGN(CxProcess)
 };
 
 xNAMESPACE_END(NxLib)
