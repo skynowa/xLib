@@ -1,6 +1,6 @@
 #--------------------------------------------------------------------------------------------------
 # \file  FindExecInfo.cmake
-# brief  Find libexecinfo
+# \brief Find libexecinfo
 #
 # EXECINFO_INCLUDES  - where to find libexecinfo includes
 # EXECINFO_LIBRARIES - list of libraries when using libexecinfo
@@ -9,12 +9,14 @@
 
 
 find_path(EXECINFO_INCLUDES "execinfo.h")
+find_library(EXECINFO_LIBRARIES NAMES "execinfo")
 
 if (EXECINFO_INCLUDES STREQUAL "EXECINFO_INCLUDES-NOTFOUND")
+    set(EXECINFO_FOUND FALSE)
     set(EXECINFO_INCLUDES "")
+    set(EXECINFO_LIBRARIES "")
 else()
-    # Now determine if it's built-in or not, by searching the library file.
-    find_library(EXECINFO_LIBRARIES "execinfo")
+    set(EXECINFO_FOUND TRUE)
 
     if (EXECINFO_LIBRARIES STREQUAL "EXECINFO_LIBRARIES-NOTFOUND")
         # Built-in, no further action is needed
@@ -24,6 +26,10 @@ else()
         # It's an external library.
         message(STATUS "Found execinfo: ${EXECINFO_LIBRARIES}")
     endif()
+endif()
 
-    set(EXECINFO_FOUND TRUE)
+if (NOT EXECINFO_FOUND)
+    if (EXECINFO_FIND_REQUIRED)
+        message(FATAL_ERROR "Could not find execinfo library")
+    endif()
 endif()
