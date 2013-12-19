@@ -16,6 +16,10 @@
     #include <shlobj.h>
 #endif
 
+#if xHAVE_GETCPU
+    #include <linux/getcpu.h>
+#endif
+
 
 xNAMESPACE_BEGIN(NxLib)
 
@@ -542,30 +546,24 @@ CxSystemInfo::currentCpuNum() const
             xTEST_DIFF(- 1L, liRv);
 
             ulRv = cpu;
+        #elif (xSTD_LIBC_GNU_VER_MAJOR > 2) || \
+              (xSTD_LIBC_GNU_VER_MAJOR == 2 && xSTD_LIBC_GNU_VER_MINOR > 6)
+            // ::sched_getcpu() function is available since glibc 2.6, it is glibc specific
+            int_t iRv = ::sched_getcpu();
+            xTEST_DIFF(- 1, iRv);
+
+            ulRv = static_cast<ulong_t>( iRv );
+        #elif xHAVE_GETCPU
+            // ::getcpu() was added in kernel 2.6.19 for x86_64 and i386
+            uint_t cpu = 0U;
+
+            int_t iRv = ::getcpu(&cpu, NULL, NULL);
+            xTEST_DIFF(- 1, iRv);
+
+            ulRv = cpu;
         #else
-            #if (xSTD_LIBC_GNU_VER_MAJOR > 2) || \
-                (xSTD_LIBC_GNU_VER_MAJOR == 2 && xSTD_LIBC_GNU_VER_MINOR > 6)
-
-                // ::sched_getcpu() function is available since glibc 2.6, it is glibc specific
-                int_t iRv = ::sched_getcpu();
-                xTEST_DIFF(- 1, iRv);
-
-                ulRv = static_cast<ulong_t>( iRv );
-            #else
-                // TODO: currentCpuNum
-                ulRv = 0UL;
-            #endif
-
-            #if xTEMP_DISABLED
-                // ::getcpu() was added in kernel 2.6.19 for x86_64 and i386
-                uint_t cpu = 0U;
-
-                int_t iRv = ::getcpu(&cpu, NULL, NULL);
-                xTEST_DIFF(- 1, iRv);
-
-                ulRv = cpu;
-            #endif
-
+            // TODO: currentCpuNum
+            ulRv = 0UL;
         #endif
     #elif xOS_FREEBSD
         // OS_NOT_SUPPORTED: currentCpuNum

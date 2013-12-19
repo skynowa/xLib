@@ -43,7 +43,8 @@ elseif (UNIX)
             ::prctl(PR_SET_DUMPABLE, 0);
             return 0;
         }"
-        xHAVE_PR_SET_DUMPABLE)
+        xHAVE_PR_SET_DUMPABLE
+    )
 
     # xHAVE_RLIMIT_CORE
     check_cxx_source_compiles(
@@ -55,7 +56,8 @@ elseif (UNIX)
             ::setrlimit(RLIMIT_CORE, &limit);
             return 0;
         }"
-        xHAVE_RLIMIT_CORE)
+        xHAVE_RLIMIT_CORE
+    )
 
     # xHAVE_ADDR2LINE
     find_file(IS_ADDR2LINE "addr2line")
@@ -67,6 +69,25 @@ elseif (UNIX)
         message(WARNING "addr2line - failed")
     endif()
 
+
+    # Linux
+    if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+        # xHAVE_GETCPU
+        check_cxx_source_compiles(
+            "#include <linux/getcpu.h>
+
+            int main()
+            {
+                unsigned int cpu = 0U;
+                int iRv = ::getcpu(&cpu, NULL, NULL);
+                return 0;
+            }"
+            xHAVE_GETCPU
+        )
+    endif()
+
+
+    # Apple
     if (APPLE)
         # xHAVE_PT_DENY_ATTACH
         check_cxx_source_compiles(
@@ -78,7 +99,8 @@ elseif (UNIX)
                 ::ptrace(PT_DENY_ATTACH, 0, 0, 0);
                 return 0;
             }"
-            xHAVE_PT_DENY_ATTACH)
+            xHAVE_PT_DENY_ATTACH
+        )
     endif()
 endif()
 #--------------------------------------------------------------------------------------------------
