@@ -60,7 +60,6 @@ CxMsgBoxT::show(
     }
 
 #if   xOS_ENV_WIN
-    // type
     UINT type = MB_OK;
     {
         switch (a_type) {
@@ -80,27 +79,31 @@ CxMsgBoxT::show(
         title.c_str(),
         a_type) );
 #elif xOS_ENV_UNIX
-    // type
-    std::tstring_t type = xT("Ok");
-    {
-        switch (a_type) {
-        case tpOk:
-        default:
-            type = xT("Ok");
-            break;
-        case tpAbortRetryIgnore:
-            type = xT("Abort, Ignore, Retry");
-            break;
+    #if xHAVE_XMESSAGE
+        std::tstring_t type = xT("Ok");
+        {
+            switch (a_type) {
+            case tpOk:
+            default:
+                type = xT("Ok");
+                break;
+            case tpAbortRetryIgnore:
+                type = xT("Abort, Ignore, Retry");
+                break;
+            }
         }
-    }
 
-    std::ctstring_t msg = CxString::format(
-        xT("xmessage -center \"%s\" -title \"%s\" -buttons \"%s\""),
-        CxString::cast(a_text).c_str(),
-        title.c_str(),
-        type.c_str());
+        std::ctstring_t msg = CxString::format(
+            xT("xmessage -center \"%s\" -title \"%s\" -buttons \"%s\""),
+            CxString::cast(a_text).c_str(),
+            title.c_str(),
+            type.c_str());
 
-    mrRes = static_cast<ExModalResult>( std::xTSYSTEM(msg.c_str()) );
+        mrRes = static_cast<ExModalResult>( std::xTSYSTEM(msg.c_str()) );
+    #else
+        #pragma message("xLib: CxMsgBoxT::show() - n/a")
+        mrRes = mrUnknown;
+    #endif
 #endif
 
     return mrRes;

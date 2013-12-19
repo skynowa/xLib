@@ -28,14 +28,16 @@ public:
     enum ExModalResult
         /// modal result
     {
-        #if xOS_ENV_WIN
-            mrAbort  = IDABORT,
-            mrIgnore = IDIGNORE,
-            mrRetry  = IDRETRY
-        #else
-            mrAbort  = 25856,
-            mrIgnore = 26112,
-            mrRetry  = 26368
+        #if   xOS_ENV_WIN
+            mrUnknown = - 1,
+            mrAbort   = IDABORT,
+            mrIgnore  = IDIGNORE,
+            mrRetry   = IDRETRY
+        #elif xOS_ENV_UNIX
+            mrUnknown = - 1,
+            mrAbort   = 25856,
+            mrIgnore  = 26112,
+            mrRetry   = 26368
         #endif
     };
     typedef const ExModalResult cExModalResult;

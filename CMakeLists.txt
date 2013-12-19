@@ -58,7 +58,7 @@ endif()
 
 set_target_properties(
     xLib_test PROPERTIES
-        COMPILE_DEFINITIONS ${DEFINITIONS}
+        # COMPILE_DEFINITIONS ${DEFINITIONS}
         COMPILE_FLAGS ${FLAGS}
 )
 
