@@ -18,7 +18,8 @@ include(Configure)
 include_directories("${CMAKE_SOURCE_DIR}/Include")
 include_directories("${CMAKE_SOURCE_DIR}/Tests/Include")
 include_directories("${OPENSSL_INCLUDE_DIR}")
-include_directories("${MYSQL_INCLUDE_DIR}")
+include_directories("${MYSQL_INCLUDES}")
+include_directories("${EXECINFO_INCLUDES}")
 
 #--------------------------------------------------------------------------------------------------
 # vars

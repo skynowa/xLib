@@ -23,10 +23,8 @@
         #pragma comment(lib, "DbgHelp.Lib")
     #endif
 #elif xOS_ENV_UNIX
-    #if   xOS_LINUX
-        #include <execinfo.h>
-    #elif xOS_FREEBSD
-        #include "CxExecInfo.h" // lib: -lexecinfo (FreeBSD)
+    #if xHAVE_EXECINFO
+        #include <execinfo.h> // lib: -lexecinfo (FreeBSD)
     #endif
 
     #include <cxxabi.h>
@@ -192,96 +190,98 @@ CxStackTrace::get(
 
         (void_t)::SymCleanup(process); process = NULL;
     #endif
-#elif xOS_ENV_UNIX
-    void_t *stackBuff[xSTACK_TRACE_FRAMES_MAX] = {0};
+#elif xOS_ENV_UNIX || xOS_ENV_MAC
+    #if xHAVE_EXECINFO
+        void_t *stackBuff[xSTACK_TRACE_FRAMES_MAX] = {0};
 
-    int_t framesNum = ::backtrace(stackBuff, xSTACK_TRACE_FRAMES_MAX);
-    xCHECK_DO(framesNum <= 0, return);
+        int_t framesNum = ::backtrace(stackBuff, xSTACK_TRACE_FRAMES_MAX);
+        xCHECK_DO(framesNum <= 0, return);
 
-    tchar_t **symbols = ::backtrace_symbols(stackBuff, framesNum);
-    xCHECK_DO(NULL == symbols, return);
+        tchar_t **symbols = ::backtrace_symbols(stackBuff, framesNum);
+        xCHECK_DO(NULL == symbols, return);
 
-    for (int_t i = 0 + skipFramesNum; i < framesNum; ++ i) {
-        int_t          stackLineNum = 0;
-        std::tstring_t modulePath;
-        std::tstring_t filePath;
-        std::tstring_t fileLine;
-        std::tstring_t byteOffset;
-        std::tstring_t functionName;
+        for (int_t i = 0 + skipFramesNum; i < framesNum; ++ i) {
+            int_t          stackLineNum = 0;
+            std::tstring_t modulePath;
+            std::tstring_t filePath;
+            std::tstring_t fileLine;
+            std::tstring_t byteOffset;
+            std::tstring_t functionName;
 
-        Dl_info dlinfo;  xSTRUCT_ZERO(dlinfo);
+            Dl_info dlinfo;  xSTRUCT_ZERO(dlinfo);
 
-        int_t iRv = ::dladdr(stackBuff[i], &dlinfo);
-        if (0 == iRv) {
-            stackLineNum = i;
-            modulePath   = (NULL == dlinfo.dli_fname) ? dataNotFound : dlinfo.dli_fname;
-            filePath     = dataNotFound;
-            fileLine     = dataNotFound;
-            byteOffset   = CxString::format(xT("%p"), ptrdiff_t(NULL));
-            functionName = (NULL == symbols[i]) ? dataNotFound : symbols[i];
-        } else {
-            ctchar_t *symbolName = NULL;
-            int_t     status     = - 1;
-
-            tchar_t *demangleName = abi::__cxa_demangle(dlinfo.dli_sname, NULL, NULL, &status);
-            if (NULL != demangleName && 0 == status) {
-                symbolName = demangleName;
+            int_t iRv = ::dladdr(stackBuff[i], &dlinfo);
+            if (0 == iRv) {
+                stackLineNum = i;
+                modulePath   = (NULL == dlinfo.dli_fname) ? dataNotFound : dlinfo.dli_fname;
+                filePath     = dataNotFound;
+                fileLine     = dataNotFound;
+                byteOffset   = CxString::format(xT("%p"), ptrdiff_t(NULL));
+                functionName = (NULL == symbols[i]) ? dataNotFound : symbols[i];
             } else {
-                symbolName = dlinfo.dli_sname;
+                ctchar_t *symbolName = NULL;
+                int_t     status     = - 1;
+
+                tchar_t *demangleName = abi::__cxa_demangle(dlinfo.dli_sname, NULL, NULL, &status);
+                if (NULL != demangleName && 0 == status) {
+                    symbolName = demangleName;
+                } else {
+                    symbolName = dlinfo.dli_sname;
+                }
+
+
+                std::tstring_t _filePath;
+                std::tstring_t _functionName;
+                ulong_t        _sourceLine = 0U;
+
+                _addr2Line(dlinfo.dli_saddr, &_filePath, &_functionName, &_sourceLine);
+                xUNUSED(_functionName);
+
+                stackLineNum = i;
+                modulePath   = (NULL == dlinfo.dli_fname) ? dataNotFound : dlinfo.dli_fname;
+                filePath     = _filePath.empty()          ? dataNotFound : _filePath;
+                fileLine     = CxString::cast(_sourceLine);
+                byteOffset   = CxString::format(xT("%p"), ptrdiff_t(dlinfo.dli_saddr));
+                functionName = (NULL == symbolName) ? dataNotFound : symbolName;
+
+                xBUFF_FREE(demangleName);
             }
 
-
-            std::tstring_t _filePath;
-            std::tstring_t _functionName;
-            ulong_t        _sourceLine = 0U;
-
-            _addr2Line(dlinfo.dli_saddr, &_filePath, &_functionName, &_sourceLine);
-            xUNUSED(_functionName);
-
-            stackLineNum = i;
-            modulePath   = (NULL == dlinfo.dli_fname) ? dataNotFound : dlinfo.dli_fname;
-            filePath     = _filePath.empty()          ? dataNotFound : _filePath;
-            fileLine     = CxString::cast(_sourceLine);
-            byteOffset   = CxString::format(xT("%p"), ptrdiff_t(dlinfo.dli_saddr));
-            functionName = (NULL == symbolName) ? dataNotFound : symbolName;
-
-            xBUFF_FREE(demangleName);
-        }
-
-        // swap file paths
-        if (_isWrapFilePaths) {
-            modulePath = CxPath(modulePath).fileName();
-            filePath   = CxPath(filePath).fileName();
-        }
-
-        // disable function params
-        if (_isFuncParamsDisable) {
-            std::csize_t pos1 = functionName.find(xT("("));
-            std::csize_t pos2 = functionName.find(xT(")"));
-
-            if (std::tstring_t::npos != pos1 && std::tstring_t::npos != pos2) {
-                xSTD_VERIFY(pos1 < pos2);
-
-                functionName = functionName.substr(0, pos1 + 1) + functionName.substr(pos2);
+            // swap file paths
+            if (_isWrapFilePaths) {
+                modulePath = CxPath(modulePath).fileName();
+                filePath   = CxPath(filePath).fileName();
             }
-        }
 
-        // out
-        {
-            std::vec_tstring_t stackLine;
+            // disable function params
+            if (_isFuncParamsDisable) {
+                std::csize_t pos1 = functionName.find(xT("("));
+                std::csize_t pos2 = functionName.find(xT(")"));
 
-            stackLine.push_back( CxString::cast(stackLineNum) );
-            stackLine.push_back(modulePath);
-            stackLine.push_back(filePath);
-            stackLine.push_back(fileLine);
-            stackLine.push_back(byteOffset);
-            stackLine.push_back(functionName);
+                if (std::tstring_t::npos != pos1 && std::tstring_t::npos != pos2) {
+                    xSTD_VERIFY(pos1 < pos2);
 
-            stack.push_back(stackLine);
-        }
-    } // for
-#elif xOS_ENV_MAC
-    xNOT_IMPLEMENTED
+                    functionName = functionName.substr(0, pos1 + 1) + functionName.substr(pos2);
+                }
+            }
+
+            // out
+            {
+                std::vec_tstring_t stackLine;
+
+                stackLine.push_back( CxString::cast(stackLineNum) );
+                stackLine.push_back(modulePath);
+                stackLine.push_back(filePath);
+                stackLine.push_back(fileLine);
+                stackLine.push_back(byteOffset);
+                stackLine.push_back(functionName);
+
+                stack.push_back(stackLine);
+            }
+        } // for
+    #else
+        stack.push_back( CxConst::strUnknown() );
+    #endif // xHAVE_EXECINFO
 #endif
 
     a_stack->swap(stack);
