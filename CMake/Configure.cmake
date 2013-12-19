@@ -47,17 +47,19 @@ elseif (UNIX)
             return 0;
         }"
         xHAVE_RLIMIT_CORE)
-elseif (APPLE)
-    # xHAVE_PT_DENY_ATTACH
-    check_cxx_source_compiles(
-        "#include <sys/types.h>
-        #include <sys/ptrace.h>
 
-        int main()
-        {
-            ::ptrace(PT_DENY_ATTACH, 0, 0, 0);
-            return 0;
-        }"
-        xHAVE_PT_DENY_ATTACH)
+    if (APPLE)
+        # xHAVE_PT_DENY_ATTACH
+        check_cxx_source_compiles(
+            "#include <sys/types.h>
+            #include <sys/ptrace.h>
+
+            int main()
+            {
+                ::ptrace(PT_DENY_ATTACH, 0, 0, 0);
+                return 0;
+            }"
+            xHAVE_PT_DENY_ATTACH)
+    endif()
 endif()
 #--------------------------------------------------------------------------------------------------
