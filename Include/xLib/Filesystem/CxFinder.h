@@ -58,16 +58,13 @@ private:
         _Entry() : handle(xNATIVE_HANDLE_INVALID), data() {}
     #elif xOS_ENV_UNIX
         DIR *           handle;
-        dirent *        data;
+        dirent          data;
 
-        _Entry() : handle(NULL), data(NULL) {}
+        _Entry() : handle(NULL), data() {}
     #endif
     };
 
-    typedef _Entry _entry_t;
-        ///< entry
-
-    _entry_t            _enrty;        ///< entry handle
+    _Entry              _entry;        ///< entry handle
     std::ctstring_t     _rootDirPath;  ///< root directory path
     std::ctstring_t     _shellFilter;  ///< shell wild card filter
     bool_t              _isMoveFirst;   ///< is first movement
