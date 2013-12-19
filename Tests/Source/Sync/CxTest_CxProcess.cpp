@@ -84,8 +84,10 @@ CxTest_CxProcess::unit(
 
     xTEST_CASE("CxProcess::handleById", a_caseLoops)
     {
+    #if xTODO
         CxProcess::handle_t hHandle = CxProcess::handleById( CxProcess::currentId() );
         xTEST_EQ(true, CxHandle(hHandle).isValid());
+    #endif
     }
 
     xTEST_CASE("CxProcess::idByName", a_caseLoops)
