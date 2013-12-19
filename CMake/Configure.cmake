@@ -14,6 +14,7 @@ include(FindExecInfo)
 # find packages
 find_package(OpenSSL REQUIRED)
 find_package(MySQL REQUIRED)
+find_package(ExecInfo REQUIRED)
 
 #--------------------------------------------------------------------------------------------------
 # configure
@@ -27,8 +28,6 @@ if (WIN32)
     # TODO: windows part
 elseif (UNIX)
     # xHAVE_EXECINFO
-    find_package(ExecInfo)
-
     if (EXECINFO_FOUND)
         add_definitions(-DxHAVE_EXECINFO=1)
         include_directories(${EXECINFO_INCLUDES})

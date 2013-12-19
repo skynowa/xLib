@@ -63,7 +63,8 @@ set_target_properties(
 )
 
 target_link_libraries(xLib_test
-    ${LIBS} ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS} ${OPENSSL_LIBRARIES} ${MYSQL_LIBRARIES})
+    ${LIBS} ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS} ${OPENSSL_LIBRARIES} ${MYSQL_LIBRARIES}
+    ${EXECINFO_LIBRARIES})
 
 #--------------------------------------------------------------------------------------------------
 # install
