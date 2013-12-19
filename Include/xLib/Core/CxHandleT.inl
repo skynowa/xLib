@@ -68,7 +68,7 @@ CxHandleT<tagT>::operator = (
     cnative_handle_t &a_handle
 )
 {
-    ////xTEST_EQ(false, isValid(), *this);
+    xTEST_EQ(false, isValid());
     xTEST_NA(a_handle);
 
     // Try m_Handle.Attach(other.Detach(), if you got an assertion here.
@@ -88,7 +88,7 @@ CxHandleT<tagT>::operator = (
     const CxHandleT &a_handle
 )
 {
-    //xTEST_EQ(false, isValid(), *this);
+    xTEST_EQ(false, isValid());
     xTEST_NA(a_handle);
 
     xCHECK_RET(this == &a_handle, *this);
@@ -128,21 +128,14 @@ CxHandleT<tagT>::duplicate() const
     native_handle_t hRv = error_value_t::get();
 
 #if   xOS_ENV_WIN
-    BOOL blRes = ::DuplicateHandle(
-                    ::GetCurrentProcess(),
-                    _handle,
-                    ::GetCurrentProcess(),
-                    &hRv,
-                    DUPLICATE_SAME_ACCESS,
-                    FALSE,
-                    DUPLICATE_SAME_ACCESS
-    );
+    BOOL blRes = ::DuplicateHandle(::GetCurrentProcess(), _handle, ::GetCurrentProcess(), &hRv,
+        DUPLICATE_SAME_ACCESS, FALSE, DUPLICATE_SAME_ACCESS);
     xUNUSED(blRes);
 
-    ////xTEST_DIFF(FALSE, blRes);
+    xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     hRv = ::dup(_handle);
-    ////xTEST_EQ(error_value_t::get() != hRv);
+    xTEST_DIFF(error_value_t::get(), hRv);
 #endif
 
     return hRv;
@@ -156,28 +149,28 @@ CxHandleT<tagT>::isValid() const
 
 #if   xOS_ENV_WIN
     // created but not initialised
-    bool_t bCond1 = (reinterpret_cast<native_handle_t>(0xCDCDCDCD) != _handle);
+    bool_t cond1 = (reinterpret_cast<native_handle_t>(0xCDCDCDCD) != _handle);
     // uninitialized locals in VC6 when you compile w/ /GZ
-    bool_t bCond2 = (reinterpret_cast<native_handle_t>(0xCCCCCCCC) != _handle);
+    bool_t cond2 = (reinterpret_cast<native_handle_t>(0xCCCCCCCC) != _handle);
     // indicate an uninitialized variable
-    bool_t bCond3 = (reinterpret_cast<native_handle_t>(0xBAADF00D) != _handle);
+    bool_t cond3 = (reinterpret_cast<native_handle_t>(0xBAADF00D) != _handle);
     // no man's land (normally outside of a process)
-    bool_t bCond4 = (reinterpret_cast<native_handle_t>(0xFDFDFDFD) != _handle);
+    bool_t cond4 = (reinterpret_cast<native_handle_t>(0xFDFDFDFD) != _handle);
     // freed memory set by NT's heap manager
-    bool_t bCond5 = (reinterpret_cast<native_handle_t>(0xFEEEFEEE) != _handle);
+    bool_t cond5 = (reinterpret_cast<native_handle_t>(0xFEEEFEEE) != _handle);
     // deleted
-    bool_t bCond6 = (reinterpret_cast<native_handle_t>(0xDDDDDDDD) != _handle);
+    bool_t cond6 = (reinterpret_cast<native_handle_t>(0xDDDDDDDD) != _handle);
     // compare with error handle value
-    bool_t bCond7 = (error_value_t::get()                          != _handle);
+    bool_t cond7 = (error_value_t::get()                          != _handle);
 
-    bRv = bCond1 && bCond2 && bCond3 && bCond4 && bCond5 && bCond6 && bCond7;
+    bRv = cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7;
 #elif xOS_ENV_UNIX
     // compare with error handle value
-    bool_t bCond1 = (error_value_t::get()                          != _handle);
+    bool_t cond1 = (error_value_t::get()                          != _handle);
     // handle value is negative
-    bool_t bCond2 = (error_value_t::get()                          <  _handle);
+    bool_t cond2 = (error_value_t::get()                          <  _handle);
 
-    bRv = bCond1 && bCond2;
+    bRv = cond1 && cond2;
 #endif
 
     return bRv;
@@ -201,11 +194,11 @@ template<ExHandleValue tagT>
 native_handle_t
 CxHandleT<tagT>::detach()
 {
-    native_handle_t hHandle = _handle;
+    native_handle_t hRv = _handle;
 
     _handle = error_value_t::get();
 
-    return hHandle;
+    return hRv;
 }
 //-------------------------------------------------------------------------------------------------
 template<ExHandleValue tagT>
@@ -218,11 +211,11 @@ CxHandleT<tagT>::close()
     BOOL blRes = ::CloseHandle(_handle);
     xUNUSED(blRes);
 
-    ////xTEST_DIFF(FALSE, blRes);
+    xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     int_t iRv = ::close(_handle);
     xUNUSED(iRv);
-    ////xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(- 1, iRv);
 #endif
 
     _handle = error_value_t::get();
@@ -234,15 +227,15 @@ template<ExHandleValue tagT>
 ulong_t
 CxHandleT<tagT>::info() const
 {
-    ////xTEST_EQ(true, isValid(), 0UL);
+    xTEST_EQ(true, isValid());
 
     DWORD flags = 0UL;
 
     BOOL blRes = ::GetHandleInformation(_handle, &flags);
     xUNUSED(blRes);
 
-    ////xTEST_DIFF(FALSE, blRes);
-    ////xTEST_DIFF(0UL,   ulFlags);
+    xTEST_DIFF(FALSE, blRes);
+    xTEST_DIFF(0UL,   flags);
 
     return flags;
 }
@@ -258,14 +251,14 @@ CxHandleT<tagT>::setInfo(
     culong_t &a_flags
 )
 {
-    ////xTEST_EQ(true, isValid(), false);
+    xTEST_EQ(true, isValid());
     xTEST_NA(a_mask);
     xTEST_NA(a_flags);
 
     BOOL blRes = ::SetHandleInformation(_handle, a_mask, a_flags);
     xUNUSED(blRes);
 
-    ////xTEST_DIFF(FALSE, blRes);
+    xTEST_DIFF(FALSE, blRes);
 }
 
 #endif
