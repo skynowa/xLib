@@ -22,7 +22,9 @@ configure_file(
 
 CHECK_LIBRARY_EXISTS(crypto BF_cfb64_encrypt "" xHAVE_OPENSSL_CRYPTO)
 
-if (UNIX)
+if (WINDOWS)
+
+elseif (UNIX)
     # xHAVE_PR_SET_DUMPABLE
     check_cxx_source_compiles(
         "#include <sys/prctl.h>
@@ -45,19 +47,17 @@ if (UNIX)
             return 0;
         }"
         xHAVE_RLIMIT_CORE)
-
+elseif (APPLE)
     # xHAVE_PT_DENY_ATTACH
-    if (APPLE)
-        check_cxx_source_compiles(
-            "#include <sys/types.h>
-            #include <sys/ptrace.h>
+    check_cxx_source_compiles(
+        "#include <sys/types.h>
+        #include <sys/ptrace.h>
 
-            int main()
-            {
-                ::ptrace(PT_DENY_ATTACH, 0, 0, 0);
-                return 0;
-            }"
-            xHAVE_PT_DENY_ATTACH)
-    endif()
+        int main()
+        {
+            ::ptrace(PT_DENY_ATTACH, 0, 0, 0);
+            return 0;
+        }"
+        xHAVE_PT_DENY_ATTACH)
 endif()
 #--------------------------------------------------------------------------------------------------
