@@ -347,7 +347,7 @@ CxStackTrace::_format(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-#if !xOS_ENV_WIN
+#if xOS_ENV_UNIX
 
 /* static */
 inline void_t
@@ -360,6 +360,7 @@ CxStackTrace::_addr2Line(
 {
     tchar_t cmdLine[1024 + 1] = {0};
 
+#if xHAVE_ADDR2LINE
    /**
     * MAN: addr2line
     *   @<file>                Read options from <file>
@@ -389,7 +390,7 @@ CxStackTrace::_addr2Line(
         ctchar_t *functionName = std::fgets(buff, static_cast<int_t>( xARRAY_SIZE(buff) ), file);
         xSTD_VERIFY(NULL != functionName);
 
-        (*a_functionName).assign(functionName);
+        a_functionName->assign(functionName);
     }
 
     // get file and line
@@ -418,6 +419,11 @@ CxStackTrace::_addr2Line(
 
     int_t iRv = ::pclose(file);   file = NULL;
     xSTD_VERIFY(- 1 != iRv);
+#else
+    *a_filePath     = CxConst::strUnknown();
+    *a_functionName = CxConst::strUnknown();
+    *a_sourceLine   = CxConst::strUnknown();
+#endif
 }
 
 #endif  // xOS_ENV_UNIX
