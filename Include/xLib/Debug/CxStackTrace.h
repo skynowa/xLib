@@ -39,7 +39,7 @@ private:
 
     std::tstring_t  _format(std::vector<std::vec_tstring_t> *stack) xWARN_UNUSED_RV;
         ///< format stack trace
-#if !xOS_ENV_WIN
+#if xOS_ENV_UNIX
     static void_t   _addr2Line(cvoid_t *symbolAddress, std::tstring_t *filePath,
                         std::tstring_t *functionName, ulong_t *sourceLine);
 #endif

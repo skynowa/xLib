@@ -20,9 +20,9 @@ configure_file(
     ${CMAKE_CURRENT_SOURCE_DIR}/Include/xLib/Core/xConfig.h.in
     ${CMAKE_CURRENT_SOURCE_DIR}/Include/xLib/Core/xConfig.h)
 
-CHECK_LIBRARY_EXISTS(crypto BF_cfb64_encrypt "" xHAVE_OPENSSL_CRYPTO)
+check_library_exists(crypto BF_cfb64_encrypt "" xHAVE_OPENSSL_CRYPTO)
 
-if (WINDOWS)
+if (WIN32)
 
 elseif (UNIX)
     # xHAVE_PR_SET_DUMPABLE
@@ -47,6 +47,16 @@ elseif (UNIX)
             return 0;
         }"
         xHAVE_RLIMIT_CORE)
+
+    # xHAVE_ADDR2LINE
+    find_file(IS_ADDR2LINE "addr2line")
+    if (IS_ADDR2LINE)
+        set(DEFINITIONS ${DEFINITIONS} "xHAVE_ADDR2LINE=1")
+        message(STATUS "addr2line - found")
+    else()
+        set(DEFINITIONS ${DEFINITIONS} "xHAVE_ADDR2LINE=0")
+        message(WARNING "addr2line - failed")
+    endif()
 
     if (APPLE)
         # xHAVE_PT_DENY_ATTACH
