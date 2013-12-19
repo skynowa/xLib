@@ -153,7 +153,7 @@
             }                                           \
             catch (...) {                               \
             }                                           \
-            xTEST_MSG_EQ(isExpected, msg);              \
+            xTEST_MSG_EQ(isExpected, true, msg);        \
         }
 
     #define xTEST_THROWS_ANYTHING(expr)                 \
@@ -177,7 +177,7 @@
             catch (...) {                               \
                 isExpected = true;                      \
             }                                           \
-            xTEST_MSG_EQ(isExpected, msg);              \
+            xTEST_MSG_EQ(isExpected, true, msg);        \
         }
 
     #define xTEST_THROWS_NOTHING(expr)                  \
@@ -201,7 +201,7 @@
             catch (...) {                               \
                 isExpected = false;                     \
             }                                           \
-            xTEST_MSG_EQ(isExpected, msg);              \
+            xTEST_MSG_EQ(isExpected, true, msg);        \
         }
 #else
     // just empty macros
