@@ -54,18 +54,18 @@ CxTest_xTest::unit(
         xTEST_MSG(true, msg);
     }
 
-    xTEST_CASE("xDebug::xTEST_THROWS...", a_caseLoops)
+    xTEST_CASE("xDebug::xTEST_THROW...", a_caseLoops)
     {
         std::ctstring_t msg = xT("Simple message");
 
-        xTEST_THROWS(msg.at(msg.size() + 10), std::exception);
-        xTEST_MSG_THROWS(msg.at(msg.size() + 10), std::exception, msg);
+        xTEST_THROW(msg.at(msg.size() + 10), std::exception);
+        xTEST_MSG_THROW(msg.at(msg.size() + 10), std::exception, msg);
 
-        xTEST_THROWS_ANYTHING(msg.at(msg.size() + 10));
-        xTEST_MSG_THROWS_ANYTHING(msg.at(msg.size() + 10), msg);
+        xTEST_THROW_ALL(msg.at(msg.size() + 10));
+        xTEST_MSG_THROW_ALL(msg.at(msg.size() + 10), msg);
 
-        xTEST_THROWS_NOTHING(msg.at(0));
-        xTEST_MSG_THROWS_NOTHING(msg.at(0), msg);
+        xTEST_THROW_NO(msg.at(0));
+        xTEST_MSG_THROW_NO(msg.at(0), msg);
     }
 
     xTEST_CASE("xDebug::xTEST_NA", a_caseLoops)
