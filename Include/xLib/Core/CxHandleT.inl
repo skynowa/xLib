@@ -130,8 +130,6 @@ CxHandleT<tagT>::duplicate() const
 #if   xOS_ENV_WIN
     BOOL blRes = ::DuplicateHandle(::GetCurrentProcess(), _handle, ::GetCurrentProcess(), &hRv,
         DUPLICATE_SAME_ACCESS, FALSE, DUPLICATE_SAME_ACCESS);
-    xUNUSED(blRes);
-
     xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     hRv = ::dup(_handle);
@@ -209,12 +207,9 @@ CxHandleT<tagT>::close()
 
 #if   xOS_ENV_WIN
     BOOL blRes = ::CloseHandle(_handle);
-    xUNUSED(blRes);
-
     xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     int_t iRv = ::close(_handle);
-    xUNUSED(iRv);
     xTEST_DIFF(- 1, iRv);
 #endif
 
@@ -232,8 +227,6 @@ CxHandleT<tagT>::info() const
     DWORD flags = 0UL;
 
     BOOL blRes = ::GetHandleInformation(_handle, &flags);
-    xUNUSED(blRes);
-
     xTEST_DIFF(FALSE, blRes);
     xTEST_DIFF(0UL,   flags);
 
@@ -256,8 +249,6 @@ CxHandleT<tagT>::setInfo(
     xTEST_NA(a_flags);
 
     BOOL blRes = ::SetHandleInformation(_handle, a_mask, a_flags);
-    xUNUSED(blRes);
-
     xTEST_DIFF(FALSE, blRes);
 }
 
