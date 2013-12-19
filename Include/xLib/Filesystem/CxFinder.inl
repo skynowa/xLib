@@ -34,7 +34,7 @@ CxFinder::CxFinder(
     std::ctstring_t &a_rootDirPath,   ///< target root dir
     std::ctstring_t &a_shellFilter    ///< shell wildcard pattern
 ) :
-    _enrty      (),
+    _entry      (),
     _rootDirPath( CxPath(a_rootDirPath).toNative(false) ),
     _shellFilter(a_shellFilter),
     _isMoveFirst (true)
@@ -74,10 +74,10 @@ CxFinder::entryName() const
 
     std::tstring_t sRv;
 
-#if xOS_ENV_WIN
-    sRv.assign( _enrty.data.cFileName );
-#else
-    sRv.assign( _enrty.data->d_name );
+#if   xOS_ENV_WIN
+    sRv.assign( _entry.data.cFileName );
+#elif xOS_ENV_UNIX
+    sRv.assign( _entry.data.d_name );
 #endif
 
     xTEST_EQ(false, sRv.empty());
@@ -102,14 +102,14 @@ CxFinder::fileTypes() const
 {
     xTEST_EQ(true, isValid());
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     CxFileType::types_t ftRv = CxFileType::faInvalid;
 
-    ftRv = _enrty.data.dwFileAttributes;
-#else
+    ftRv = _entry.data.dwFileAttributes;
+#elif xOS_ENV_UNIX
     CxFileType::types_t ftRv = 0;
 
-    uchar_t ucRv = _enrty.data->d_type;
+    uchar_t ucRv = _entry.data.d_type;
     switch (ucRv) {
     case DT_BLK: // block device
         ftRv |= CxFileType::faBlockDevice;
@@ -145,12 +145,12 @@ CxFinder::fileTypes() const
 inline bool_t
 CxFinder::isValid() const
 {
-#if xOS_ENV_WIN
-    xCHECK_RET(xNATIVE_HANDLE_INVALID == _enrty.handle, false);
-    xCHECK_NA(_enrty.data);
-#else
-    xCHECK_RET(NULL == _enrty.handle, false);
-    xCHECK_RET(NULL == _enrty.data, false);
+#if   xOS_ENV_WIN
+    xCHECK_RET(xNATIVE_HANDLE_INVALID == _entry.handle, false);
+    xCHECK_NA(_entry.data);
+#elif xOS_ENV_UNIX
+    xCHECK_RET(NULL == _entry.handle, false);
+    xCHECK_NA(entry.data);
 #endif
 
     return true;
@@ -165,27 +165,25 @@ CxFinder::moveNext()
         bool_t bRv = _moveFirst();
         xCHECK_RET(!bRv, false);
     } else {
-    #if xOS_ENV_WIN
-        BOOL blRv = ::FindNextFile(_enrty.handle, &_enrty.data);
+    #if   xOS_ENV_WIN
+        BOOL blRv = ::FindNextFile(_entry.handle, &_entry.data);
         if (FALSE == blRv) {
             xCHECK_RET(ERROR_NO_MORE_FILES == CxLastError::get(), false);
 
             xTEST_FAIL;
         }
-    #else
+    #elif xOS_ENV_UNIX
+        int_t iRv = 0;
+
         xFOREVER {
-            CxLastError::reset();
+            struct dirent *entryRv = NULL;
 
-            // TODO: readdir -> readdir_r
-            _enrty.data = ::readdir(_enrty.handle);
-            if (NULL == _enrty.data) {
-                xCHECK_RET(CxLastError::isSuccess(), false);
-
-                xTEST_FAIL;
-            }
+            iRv = ::readdir_r(_entry.handle, &_entry.data, &entryRv);
+            xTEST_EQ(iRv, 0);
+            xCHECK_RET(NULL == entryRv, false);
 
             // filter by pattern
-            int_t iRv = ::fnmatch(shellFilter().c_str(), entryName().c_str(), 0);
+            iRv = ::fnmatch(shellFilter().c_str(), entryName().c_str(), 0);
             xTEST_EQ(true, (0 == iRv) || (FNM_NOMATCH == iRv));
 
             xCHECK_DO(FNM_NOMATCH == iRv, continue);
@@ -206,24 +204,23 @@ CxFinder::close()
 
     // close handle
     {
-    #if xOS_ENV_WIN
-        BOOL blRv = ::FindClose(_enrty.handle);
+    #if   xOS_ENV_WIN
+        BOOL blRv = ::FindClose(_entry.handle);
         xTEST_DIFF(FALSE, blRv);
-    #else
-        int_t iRv = ::closedir(_enrty.handle);
+    #elif xOS_ENV_UNIX
+        int_t iRv = ::closedir(_entry.handle);
         xTEST_DIFF(- 1, iRv);
     #endif
     }
 
     // clear data
     {
-    #if xOS_ENV_WIN
-        _enrty.handle = xNATIVE_HANDLE_INVALID;
-        xSTRUCT_ZERO(_enrty.data);
-    #else
-        _enrty.handle = NULL;
-        _enrty.data   = NULL;
+    #if   xOS_ENV_WIN
+        _entry.handle = xNATIVE_HANDLE_INVALID;
+    #elif xOS_ENV_UNIX
+        _entry.handle = NULL;
     #endif
+        xSTRUCT_ZERO(_entry.data);
     }
 }
 //-------------------------------------------------------------------------------------------------
@@ -328,13 +325,13 @@ CxFinder::_moveFirst()
 
     _isMoveFirst = false;
 
-#if xOS_ENV_WIN
-    _enrty.handle = ::FindFirstFile((rootDirPath() + CxConst::slash() + shellFilter()).c_str(),
-        &_enrty.data);
-    xCHECK_RET(xNATIVE_HANDLE_INVALID == _enrty.handle, false);
-#else
-    _enrty.handle = ::opendir(rootDirPath().c_str());
-    xTEST_PTR(_enrty.handle);
+#if   xOS_ENV_WIN
+    _entry.handle = ::FindFirstFile((rootDirPath() + CxConst::slash() + shellFilter()).c_str(),
+        &_entry.data);
+    xCHECK_RET(xNATIVE_HANDLE_INVALID == _entry.handle, false);
+#elif xOS_ENV_UNIX
+    _entry.handle = ::opendir(rootDirPath().c_str());
+    xTEST_PTR(_entry.handle);
 
     bool_t bRv = moveNext();
     xCHECK_RET(!bRv, false);
