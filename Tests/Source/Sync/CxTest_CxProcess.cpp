@@ -33,7 +33,7 @@ CxTest_CxProcess::unit(
             proc.create(filePath, xT("%s"), cmdLine.c_str());
 
             CxProcess::ExWaitResult wrRes = proc.wait(xTIMEOUT_INFINITE);
-            //xTEST_EQ(CxProcess::wrObject0, wrRes);
+            xTEST_EQ(CxProcess::wrAbandoned, wrRes);
         #endif
     }
 
