@@ -49,27 +49,22 @@ public:
         ///< search files
 
 private:
-    struct _SEntry {
-    #if xOS_ENV_WIN
+    struct _Entry
+    {
+    #if   xOS_ENV_WIN
         HANDLE          handle;
         WIN32_FIND_DATA data;
 
-        _SEntry() :
-            handle(xNATIVE_HANDLE_INVALID),
-            data  ()
-        {}
-    #else
-        DIR    *handle;
-        dirent *data;
+        _Entry() : handle(xNATIVE_HANDLE_INVALID), data() {}
+    #elif xOS_ENV_UNIX
+        DIR *           handle;
+        dirent *        data;
 
-        _SEntry() :
-            handle(NULL),
-            data  (NULL)
-        {}
+        _Entry() : handle(NULL), data(NULL) {}
     #endif
     };
 
-    typedef _SEntry _entry_t;
+    typedef _Entry _entry_t;
         ///< entry
 
     _entry_t            _enrty;        ///< entry handle
