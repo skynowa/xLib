@@ -7,6 +7,7 @@
 include(CheckLibraryExists)
 include(CheckCXXSourceCompiles)
 include(FindMySQL)
+include(FindExecInfo)
 
 
 #--------------------------------------------------------------------------------------------------
@@ -23,8 +24,17 @@ configure_file(
 check_library_exists(crypto BF_cfb64_encrypt "" xHAVE_OPENSSL_CRYPTO)
 
 if (WIN32)
-
+    # TODO: windows part
 elseif (UNIX)
+    # xHAVE_EXECINFO
+    find_package(ExecInfo)
+
+    if (EXECINFO_FOUND)
+        add_definitions(-DxHAVE_EXECINFO=1)
+        include_directories(${EXECINFO_INCLUDES})
+        link_libraries(${EXECINFO_LIBRARIES})
+    endif()
+
     # xHAVE_PR_SET_DUMPABLE
     check_cxx_source_compiles(
         "#include <sys/prctl.h>
