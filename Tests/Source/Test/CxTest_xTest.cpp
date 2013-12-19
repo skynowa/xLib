@@ -54,13 +54,21 @@ CxTest_xTest::unit(
         xTEST_MSG(true, msg);
     }
 
+    xTEST_CASE("xDebug::xTEST_NA", a_caseLoops)
+    {
+        size_t value = 0;
+        xUNUSED(value);
+        xTEST_NA(value);
+        xTESTS_NA;
+    }
+
     xTEST_CASE("xDebug::xTEST_STATIC_", a_caseLoops)
     {
         xTEST_STATIC(true);
 
-        #if xTEST_IGNORE && 0
-            xTEST_STATIC(false);
-        #endif
+    #if xTEST_IGNORE && 0
+        xTEST_STATIC(false);
+    #endif
     }
 }
 //---------------------------------------------------------------------------
