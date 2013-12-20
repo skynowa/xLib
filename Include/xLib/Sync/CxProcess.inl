@@ -71,7 +71,7 @@ CxProcess::create(
 
     // xTRACEV(xT("cmdLine: %s"), cmdLine.c_str());
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     STARTUPINFO         startupInfo = {0};  startupInfo.cb = sizeof(startupInfo);
     PROCESS_INFORMATION processInfo = {0};
 
@@ -82,7 +82,7 @@ CxProcess::create(
     _handle = processInfo.hProcess;
     _thread = processInfo.hThread;
     _pid    = processInfo.dwProcessId;
-#else
+#elif xOS_ENV_UNIX
     pid_t pid = ::fork();
     xTEST_EQ(true, - 1L != pid);
 
@@ -108,12 +108,12 @@ CxProcess::wait(
 {
     ExWaitResult waitStatus = wrFailed;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     DWORD ulRv = ::WaitForSingleObject(_handle, a_timeoutMsec);
     xTEST_EQ(WAIT_OBJECT_0, ulRv);
 
     waitStatus = static_cast<ExWaitResult>( ulRv );
-#else
+#elif xOS_ENV_UNIX
     xUNUSED(a_timeoutMsec);
 
     // TODO: a_timeoutMsec
@@ -138,7 +138,7 @@ CxProcess::kill(
     culong_t &a_timeoutMsec    // FIX: timeoutMSec not used
 )
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     xTEST_DIFF(xNATIVE_HANDLE_NULL, _handle);
     // ulTimeout - n/a
 
@@ -152,7 +152,7 @@ CxProcess::kill(
 
         CxThread::currentSleep(a_timeoutMsec);
     }
-#else
+#elif xOS_ENV_UNIX
     int_t iRv = ::kill(_pid, SIGKILL);
     xTEST_DIFF(- 1, iRv);
 
@@ -185,10 +185,10 @@ CxProcess::exitStatus() const
 {
     ulong_t ulRv = 0UL;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     BOOL blRv = ::GetExitCodeProcess(_handle, &ulRv);
     xTEST_DIFF(FALSE, blRv);
-#else
+#elif xOS_ENV_UNIX
     ulRv = _exitStatus;
 #endif
 
@@ -210,10 +210,10 @@ CxProcess::idByHandle(
 {
     id_t ulRv;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     ulRv = ::GetProcessId(a_handle);
     xTEST_NA(ulRv);
-#else
+#elif xOS_ENV_UNIX
     ulRv = static_cast<id_t>( a_handle );
 #endif
 
@@ -227,10 +227,10 @@ CxProcess::handleById(
 {
     handle_t hRv;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     hRv = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, a_id);
     xTEST_NA(hRv);
-#else
+#elif xOS_ENV_UNIX
     hRv = static_cast<handle_t>( a_id );
 #endif
 
@@ -246,7 +246,7 @@ CxProcess::idByName(
 {
     id_t ulRv;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     CxHandle       snapshot;
     PROCESSENTRY32 processEntry = {0};
     processEntry.dwSize = sizeof(PROCESSENTRY32);
@@ -463,9 +463,9 @@ CxProcess::isCurrent(
 {
     bool_t bRv = false;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     bRv = (currentId() == a_id);
-#else
+#elif xOS_ENV_UNIX
     // TODO: If either thread1 or thread2 are not valid thread IDs, the behavior is undefined
     bRv = ::pthread_equal(currentId(), a_id);
 #endif
@@ -480,10 +480,10 @@ CxProcess::currentId()
 
     id_t ulRv;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     ulRv = ::GetCurrentProcessId();
     // n/a
-#else
+#elif xOS_ENV_UNIX
     ulRv = ::getpid();
     // n/a
 #endif
@@ -498,7 +498,7 @@ CxProcess::currentParentId()
 
     id_t ulRv;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #if xCOMPILER_MINGW || xCOMPILER_CODEGEAR
         // typedef __success(return >= 0) LONG NTSTATUS;
         typedef LONG NTSTATUS;
@@ -549,7 +549,7 @@ CxProcess::currentParentId()
     xTEST_EQ(size_t(returnSizeBytes), sizeof(processInformation));
 
     ulRv = processInformation[5];
-#else
+#elif xOS_ENV_UNIX
     ulRv = ::getppid();
     xTEST_NA(ulRv);
 #endif
@@ -565,14 +565,14 @@ CxProcess::currentHandle()
 
     handle_t hRv;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #if xDEPRECIATE
         hRv = ::OpenProcess(PROCESS_ALL_ACCESS, FALSE, id());
     #else
         hRv = ::GetCurrentProcess();
     #endif
     xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
-#else
+#elif xOS_ENV_UNIX
     hRv = ::getpid();
     // n/a
 #endif
@@ -586,9 +586,9 @@ CxProcess::currentExit(
     cuint_t &a_exitCode
 )
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     (void_t)::ExitProcess(a_exitCode);
-#else
+#elif xOS_ENV_UNIX
     (void_t)::exit(static_cast<int_t>( a_exitCode ));
 #endif
 }

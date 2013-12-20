@@ -53,5 +53,8 @@
 #include <netdb.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+
+// system
+#include <sys/resource.h>
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_xCore_DarwinH

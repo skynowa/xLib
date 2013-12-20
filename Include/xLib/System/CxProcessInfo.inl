@@ -52,7 +52,11 @@ CxProcessInfo::ramUsage() const
 #if   xOS_ENV_WIN
     // TODO: CxProcessInfo::ramUsage
 #elif xOS_ENV_UNIX
-    // TODO: CxProcessInfo::ramUsage
+    if (CxProcess::isCurrent( CxProcess::currentId() )) {
+        // TODO: CxProcessInfo::ramUsage
+    } else {
+        // TODO: CxProcessInfo::ramUsage
+    }
 #elif xOS_ENV_MAC
     // TODO: CxProcessInfo::ramUsage
 #endif
