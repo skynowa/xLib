@@ -20,7 +20,7 @@ public:
     enum ExLevel
         /// log level
     {
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         lvEmerg    = EVENTLOG_ERROR_TYPE,
         lvAlert    = EVENTLOG_ERROR_TYPE,
         lvCritical = EVENTLOG_ERROR_TYPE,
@@ -29,7 +29,7 @@ public:
         lvNotice   = EVENTLOG_SUCCESS,
         lvInfo     = EVENTLOG_INFORMATION_TYPE,
         lvDebug    = EVENTLOG_INFORMATION_TYPE
-    #else
+    #else xOS_ENV_UNIX
         lvEmerg    = 0,
         lvAlert    = 1,
         lvCritical = 2,
@@ -68,7 +68,7 @@ private:
     void_t   _construct(std::ctstring_t &logName);
         ///< initiate data
 
-xNO_COPY_ASSIGN(CxSystemLog)
+    xNO_COPY_ASSIGN(CxSystemLog)
 };
 
 xNAMESPACE_END(NxLib)

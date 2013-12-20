@@ -35,7 +35,7 @@ private:
     ClassT   *_object;
     method_t  _method;
 
-xNO_COPY_ASSIGN(CxFunctorT)
+    xNO_COPY_ASSIGN(CxFunctorT)
 };
 
 xNAMESPACE_END(NxLib)

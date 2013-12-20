@@ -87,7 +87,7 @@ private:
 
     // WatchDog
 
-xNO_COPY_ASSIGN(CxThreadPool)
+    xNO_COPY_ASSIGN(CxThreadPool)
 };
 
 xNAMESPACE_END(NxLib)

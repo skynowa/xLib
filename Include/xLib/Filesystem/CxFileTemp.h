@@ -32,7 +32,7 @@ private:
     CxFile         *_file;          ///< temporary file handle
     std::tstring_t  _filePath;      ///< temporary file path
 
-xNO_COPY_ASSIGN(CxFileTemp)
+    xNO_COPY_ASSIGN(CxFileTemp)
 };
 
 xNAMESPACE_END(NxLib)

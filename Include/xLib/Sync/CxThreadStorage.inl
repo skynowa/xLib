@@ -24,9 +24,9 @@ xNAMESPACE_BEGIN(NxLib)
 //-------------------------------------------------------------------------------------------------
 inline
 CxThreadStorage::CxThreadStorage() :
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     _index(TLS_OUT_OF_INDEXES)
-#else
+#elif xOS_ENV_UNUX
     _index(static_cast<pthread_key_t>( -1 ))
 #endif
 {
@@ -45,10 +45,10 @@ CxThreadStorage::isSet() const
 {
     void_t *pvRv = NULL;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     pvRv = ::TlsGetValue(_index);
     xCHECK_RET(NULL == pvRv, false);
-#else
+#elif xOS_ENV_UNUX
     pvRv = ::pthread_getspecific(_index);
     xCHECK_RET(NULL == pvRv, false);
 #endif
@@ -61,12 +61,12 @@ CxThreadStorage::value() const
 {
     void_t *pvRv = NULL;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     xTEST_DIFF(TLS_OUT_OF_INDEXES, _index);
 
     pvRv = ::TlsGetValue(_index);
     xTEST_EQ(true, (NULL != pvRv) && (ERROR_SUCCESS == CxLastError::get()));
-#else
+#elif xOS_ENV_UNUX
     xTEST_EQ(true, 0 < _index);
 
     pvRv = ::pthread_getspecific(_index);
@@ -83,12 +83,12 @@ CxThreadStorage::setValue(
 {
     xTEST_PTR(a_value);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     xTEST_DIFF(TLS_OUT_OF_INDEXES, _index);
 
     BOOL blRv = ::TlsSetValue(_index, a_value);
     xTEST_DIFF(FALSE, blRv);
-#else
+#elif xOS_ENV_UNUX
     xTEST_EQ(true, 0 < _index);
 
     int_t iRv = ::pthread_setspecific(_index, a_value);
@@ -109,12 +109,12 @@ CxThreadStorage::_construct()
 {
     index_t indRv = (index_t)- 1;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     xTEST_EQ(TLS_OUT_OF_INDEXES, _index);
 
     indRv = ::TlsAlloc();
     xTEST_DIFF(TLS_OUT_OF_INDEXES, indRv);
-#else
+#elif xOS_ENV_UNUX
     xTEST_EQ(static_cast<pthread_key_t>( - 1 ), _index);
 
     int_t iRv = ::pthread_key_create(&indRv, NULL);
@@ -127,14 +127,14 @@ CxThreadStorage::_construct()
 inline void_t
 CxThreadStorage::_destruct()
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     xTEST_DIFF(TLS_OUT_OF_INDEXES, _index);
 
     BOOL blRv = ::TlsFree(_index);
     xTEST_DIFF(FALSE, blRv);
 
     _index = TLS_OUT_OF_INDEXES;
-#else
+#elif xOS_ENV_UNUX
     xTEST_EQ(true, 0 < _index);
 
     int_t iRv = ::pthread_key_delete(_index);

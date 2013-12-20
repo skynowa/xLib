@@ -20,7 +20,7 @@ public:
     enum ExType
         /// attribute
     {
-        #if xOS_ENV_WIN
+        #if   xOS_ENV_WIN
             faInvalid           = INVALID_FILE_ATTRIBUTES,
             faNormal            = FILE_ATTRIBUTE_NORMAL,
             faReadOnly          = FILE_ATTRIBUTE_READONLY,
@@ -36,7 +36,7 @@ public:
             faOffline           = FILE_ATTRIBUTE_OFFLINE,
             faNotContentIndexed = FILE_ATTRIBUTE_NOT_CONTENT_INDEXED,
             faEncrypted         = FILE_ATTRIBUTE_ENCRYPTED
-        #else
+        #else xOS_ENV_UNIX
             faInvalid           = (mode_t)- 1,
             faDirectory         = S_IFDIR,
             faCharacterDevice   = S_IFCHR,
@@ -49,9 +49,9 @@ public:
     };
     typedef const ExType cExType;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     typedef DWORD  types_t;
-#else
+#else xOS_ENV_UNIX
     typedef mode_t types_t;
 #endif
 
@@ -84,7 +84,7 @@ public:
 private:
     std::ctstring_t   _filePath;
 
-xNO_COPY_ASSIGN(CxFileType)
+    xNO_COPY_ASSIGN(CxFileType)
 };
 
 xNAMESPACE_END(NxLib)

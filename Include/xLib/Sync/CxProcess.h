@@ -18,10 +18,10 @@ class CxProcess
     /// process
 {
 public:
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     typedef HANDLE  handle_t; ///< handle
     typedef DWORD   id_t;     ///< ID
-#else
+#elif xOS_ENV_UNUX
     typedef pid_t   handle_t; ///< handle
     typedef pid_t   id_t;     ///< ID
 #endif
@@ -29,12 +29,12 @@ public:
     enum ExWaitResult
         /// wait result
     {
-        #if xOS_ENV_WIN
+        #if   xOS_ENV_WIN
             wrFailed    = WAIT_FAILED,
             wrAbandoned = WAIT_ABANDONED,
             wrObject0   = WAIT_OBJECT_0,
             wrTimeout   = WAIT_TIMEOUT
-        #else
+        #elif xOS_ENV_UNUX
             wrFailed    = - 1,
             wrAbandoned = 0,
             wrObject0   = 1,

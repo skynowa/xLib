@@ -67,7 +67,7 @@ private:
     MYSQL                   *_connection;
         ///< pointer to connection
 
-xNO_COPY_ASSIGN(CxMySQLConnection)
+    xNO_COPY_ASSIGN(CxMySQLConnection)
 };
 
 xNAMESPACE_END(NxLib)
@@ -113,7 +113,7 @@ private:
     void_t                   _fetchRow(MYSQL_ROW *row) const;
         ///< A MYSQL_ROW structure for the next row
 
-xNO_COPY_ASSIGN(CxMySQLRecordset)
+    xNO_COPY_ASSIGN(CxMySQLRecordset)
 };
 
 xNAMESPACE_END(NxLib)

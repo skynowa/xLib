@@ -64,7 +64,7 @@ public:
 private:
     std::ctstring_t       _dirPath;
 
-xNO_COPY_ASSIGN(CxDir)
+    xNO_COPY_ASSIGN(CxDir)
 };
 
 xNAMESPACE_END(NxLib)

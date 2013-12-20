@@ -32,7 +32,7 @@ public:
 private:
 #if xOS_ENV_WIN
     typedef ulong_t       index_t;
-#else
+#elif xOS_ENV_UNUX
     typedef pthread_key_t index_t;
 #endif
 
@@ -44,7 +44,7 @@ private:
     index_t  _index;
         ///< thread storage index
 
-xNO_COPY_ASSIGN(CxThreadStorage)
+    xNO_COPY_ASSIGN(CxThreadStorage)
 };
 
 xNAMESPACE_END(NxLib)

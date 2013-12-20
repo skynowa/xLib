@@ -27,7 +27,7 @@ private:
     CxProfiler     _profiler;   ///< profiler
     std::tstring_t _comment;    ///< comment
 
-xNO_COPY_ASSIGN(CxAutoProfiler)
+    xNO_COPY_ASSIGN(CxAutoProfiler)
 };
 
 xNAMESPACE_END(NxLib)

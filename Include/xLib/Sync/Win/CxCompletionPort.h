@@ -33,7 +33,7 @@ public:
 private:
     CxHandle _handle;
 
-xNO_COPY_ASSIGN(CxCompletionPort)
+    xNO_COPY_ASSIGN(CxCompletionPort)
 };
 
 xNAMESPACE_END(NxLib)

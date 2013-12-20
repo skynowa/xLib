@@ -40,7 +40,7 @@ private:
     virtual              ~CxEnvironment();
         ///< destructor
 
-xNO_COPY_ASSIGN(CxEnvironment)
+    xNO_COPY_ASSIGN(CxEnvironment)
 };
 
 xNAMESPACE_END(NxLib)

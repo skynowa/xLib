@@ -36,7 +36,7 @@ private:
                          ~CxStdError() {}
         ///< destructor
 
-xNO_COPY_ASSIGN(CxStdError)
+    xNO_COPY_ASSIGN(CxStdError)
 };
 
 xNAMESPACE_END(NxLib)

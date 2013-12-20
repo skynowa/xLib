@@ -577,7 +577,7 @@ CxPath::isAbsolute() const {
     xCHECK_RET(filePath().empty(),                         false);
     xCHECK_RET(CxConst::slash().at(0) == filePath().at(0), true);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     xCHECK_RET(1 == filePath().size(), false);
     xCHECK_RET(CxChar::isAlpha(filePath().at(0)) && CxConst::colon().at(0) == filePath().at(1), true);
 #elif xOS_ENV_UNIX

@@ -61,7 +61,7 @@ private:
     virtual      ~CxDnsClient();
         ///< destructor
 
-xNO_COPY_ASSIGN(CxDnsClient)
+    xNO_COPY_ASSIGN(CxDnsClient)
 };
 
 xNAMESPACE_END(NxLib)

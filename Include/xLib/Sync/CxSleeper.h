@@ -33,7 +33,7 @@ public:
 private:
     CxEvent  _event;    ///< event object
 
-xNO_COPY_ASSIGN(CxSleeper)
+    xNO_COPY_ASSIGN(CxSleeper)
 };
 
 xNAMESPACE_END(NxLib)

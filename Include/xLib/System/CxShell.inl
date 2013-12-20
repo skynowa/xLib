@@ -33,9 +33,9 @@ CxShell::isAvailable() const
 
     int_t iRv = std::xTSYSTEM(NULL);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     xCHECK_RET(0 == iRv && ENOENT == CxStdError::get(), false);
-#else
+#elif xOS_ENV_UNUX
     xCHECK_RET(0 == iRv, false);
 #endif
 

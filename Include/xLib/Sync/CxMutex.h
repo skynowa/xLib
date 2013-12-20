@@ -17,9 +17,9 @@ class CxMutex
     /// critical section
 {
 public:
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     typedef CRITICAL_SECTION handle_t;
-#else
+#elif xOS_ENV_UNUX
     typedef pthread_mutex_t  handle_t;
 #endif
 
@@ -42,7 +42,7 @@ public:
 private:
     handle_t         _handle;   ///< mutex native handle
 
-xNO_COPY_ASSIGN(CxMutex)
+    xNO_COPY_ASSIGN(CxMutex)
 };
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_END(NxLib)

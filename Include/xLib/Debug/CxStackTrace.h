@@ -44,7 +44,7 @@ private:
                         std::tstring_t *functionName, ulong_t *sourceLine);
 #endif
 
-xNO_COPY_ASSIGN(CxStackTrace)
+    xNO_COPY_ASSIGN(CxStackTrace)
 };
 
 xNAMESPACE_END(NxLib)

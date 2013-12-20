@@ -23,8 +23,7 @@ public:
         ///< destructor
 
 private:
-
-xNO_COPY_ASSIGN(CxSemaphore)
+    xNO_COPY_ASSIGN(CxSemaphore)
 };
 
 xNAMESPACE_END(NxLib)

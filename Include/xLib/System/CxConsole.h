@@ -122,7 +122,7 @@ private:
         ///< get console menu handle
 #endif
 
-xNO_COPY_ASSIGN(CxConsole)
+    xNO_COPY_ASSIGN(CxConsole)
 };
 
 xNAMESPACE_END(NxLib)

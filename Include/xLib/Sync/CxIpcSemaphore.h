@@ -18,9 +18,9 @@ class CxIpcSemaphore
     /// semaphore (interprocess)
 {
 public:
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     typedef CxHandle handle_t;
-#else
+#elif xOS_ENV_UNUX
     typedef sem_t *  handle_t;
 #endif
 
@@ -46,7 +46,7 @@ private:
 
     bool_t           _isValid() const xWARN_UNUSED_RV;
 
-xNO_COPY_ASSIGN(CxIpcSemaphore)
+    xNO_COPY_ASSIGN(CxIpcSemaphore)
 };
 
 xNAMESPACE_END(NxLib)

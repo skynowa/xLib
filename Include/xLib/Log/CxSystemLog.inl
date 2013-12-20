@@ -48,14 +48,14 @@ CxSystemLog::CxSystemLog(
 inline
 CxSystemLog::~CxSystemLog()
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     xTEST_PTR(_sysLog);
 
     BOOL blRv = ::DeregisterEventSource(_sysLog);
     xTEST_DIFF(FALSE, blRv);
 
     _sysLog = NULL;
-#else
+#else xOS_ENV_UNIX
     (void_t)::closelog();
 #endif
 }
@@ -94,12 +94,12 @@ CxSystemLog::write(
 
     //-------------------------------------
     // write
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     LPCTSTR strings = message.c_str();
 
     BOOL bRv = ::ReportEvent(_sysLog, a_level, 0, 0UL, NULL, 1, 0UL, &strings, NULL);
     xTEST_DIFF(FALSE, bRv);
-#else
+#else xOS_ENV_UNIX
     (void_t)::syslog(a_level, xT("%s"), message.c_str());
 #endif
 }
@@ -117,10 +117,10 @@ CxSystemLog::_construct(
     std::ctstring_t &a_logName
 )
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     _sysLog = ::RegisterEventSource(NULL, a_logName.c_str());
     xTEST_DIFF(xNATIVE_HANDLE_NULL, _sysLog);
-#else
+#else xOS_ENV_UNIX
     (void_t)::openlog(a_logName.c_str(), LOG_PID | LOG_NDELAY | LOG_NOWAIT, LOG_USER);
 #endif
 }

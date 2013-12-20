@@ -41,7 +41,7 @@ public:
 private:
     std::tostringstream_t _oss; ///< string stream
 
-xNO_COPY_ASSIGN(CxTracer)
+    xNO_COPY_ASSIGN(CxTracer)
 };
 
 xNAMESPACE_END(NxLib)

@@ -93,7 +93,7 @@ private:
     void_t            _write(std::ctstring_t &key, std::ctstring_t &value);
         ///< flush to local_storage_t, file
 
-xNO_COPY_ASSIGN(CxLocalStorage)
+    xNO_COPY_ASSIGN(CxLocalStorage)
 };
 
 xNAMESPACE_END(NxLib)

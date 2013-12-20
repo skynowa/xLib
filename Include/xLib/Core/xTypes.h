@@ -65,7 +65,7 @@ xNAMESPACE_BEGIN(NxLib)
     typedef const double           cdouble_t;
 
 // addrinfo_t
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #if   xCOMPILER_MINGW
         typedef addrinfo           addrinfo_t;
     #elif xCOMPILER_CODEGEAR
@@ -73,7 +73,7 @@ xNAMESPACE_BEGIN(NxLib)
     #else
         typedef ADDRINFOT          addrinfo_t;
     #endif
-#else
+#elif xOS_ENV_UNIX
     typedef addrinfo               addrinfo_t;
 #endif
 
@@ -81,9 +81,9 @@ xNAMESPACE_BEGIN(NxLib)
         ///< hold host address information
 
 // native_handle_t
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     typedef HANDLE                 native_handle_t;
-#else
+#elif xOS_ENV_UNIX
     typedef int                    native_handle_t;
 #endif
 
@@ -91,9 +91,9 @@ xNAMESPACE_BEGIN(NxLib)
         ///< native handle
 
 // socket_t
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     typedef SOCKET                 socket_t;
-#else
+#elif xOS_ENV_UNIX
     typedef int                    socket_t;
 #endif
 
