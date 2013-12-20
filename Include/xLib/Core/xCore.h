@@ -163,6 +163,7 @@ namespace NxLib { }
 #endif
 
 #include <xLib/Core/xDefines.h>
+#include <xLib/Core/xLimits.h>
 
 #if   xOS_ENV_WIN
     #include <xLib/Core/xCore_Win.h>
