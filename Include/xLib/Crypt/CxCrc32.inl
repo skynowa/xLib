@@ -27,60 +27,6 @@ CxCrc32::calc(
     xTEST_LESS(0UL, a_size);
 
     ulong_t crc            = 0;
-    ulong_t crc_table[256] = {0};
-    ulong_t size           = a_size;
-
-    for (int_t i = 0; i < 256; ++ i) {
-        crc = i;
-        for (int_t j = 0; j < 8; ++ j) {
-            crc = crc & 1 ? (crc >> 1) ^ 0xEDB88320UL : crc >> 1;
-        }
-
-        crc_table[i] = crc;
-    };
-
-    crc = 0xFFFFFFFFUL;
-
-    while (-- size) {
-        crc = crc_table[(crc ^ ++ (*a_buff)) & 0xFF] ^ (crc >> 8);
-    }
-
-    return crc ^ 0xFFFFFFFFUL;
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-inline ulong_t
-CxCrc32::calcFile(
-    std::ctstring_t &a_filePath
-)
-{
-    xTEST_EQ(false, a_filePath.empty());
-
-    ulong_t ulRv = 0;
-
-    std::ustring_t file;
-
-    CxFile::binRead(a_filePath, &file);
-    if (file.empty()) {
-        ulRv = 0;
-    } else {
-        ulRv = calc(&file.at(0), static_cast<ulong_t>( file.size() ));
-    }
-
-    return ulRv;
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-inline ulong_t
-CxCrc32::calcFast(
-    uchar_t  *a_buff,
-    culong_t &a_size
-)
-{
-    xTEST_PTR(a_buff);
-    xTEST_LESS(0UL, a_size);
-
-    ulong_t crc            = 0;
     ulong_t crc_table[256] = {
         0x00000000, 0x77073096, 0xEE0E612C, 0x990951BA,
         0x076DC419, 0x706AF48F, 0xE963A535, 0x9E6495A3,
@@ -175,7 +121,7 @@ CxCrc32::calcFast(
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline ulong_t
-CxCrc32::calcFileFast(
+CxCrc32::calcFile(
     std::ctstring_t &a_filePath
 )
 {
@@ -189,7 +135,7 @@ CxCrc32::calcFileFast(
     if (file.empty()) {
         ulRv = 0;
     } else {
-        ulRv = calcFast(&file.at(0), static_cast<ulong_t>( file.size() ));
+        ulRv = calc(&file.at(0), static_cast<ulong_t>( file.size() ));
     }
 
     return ulRv;
