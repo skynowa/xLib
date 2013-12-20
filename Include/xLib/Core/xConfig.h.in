@@ -115,9 +115,6 @@
 #define xIS_COMPILE_TIME_TRACING        0
     ///< is compile time tracing
 
-#define xIS_AUTO_LINKING                0
-    ///< auto linkage
-
 #define xTEST_PRIVATE_DATA              0
     ///< for tests private data
 
