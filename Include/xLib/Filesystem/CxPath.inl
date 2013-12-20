@@ -272,8 +272,23 @@ CxPath::standartExt(
     case seShell:
         sRv = xT("sh");
         break;
+#elif xOS_ENV_MAC
+    case seExe:
+        sRv = xT("");
+        break;
+    case seDll:
+        sRv = xT("dylib");
+        break;
+    case seLib:
+        sRv = xT("a");
+        break;
+    case seObj:
+        sRv = xT("o");
+        break;
+    case seShell:
+        sRv = xT("sh");
+        break;
 #endif
-
     default:
         sRv = xT("");
         break;
