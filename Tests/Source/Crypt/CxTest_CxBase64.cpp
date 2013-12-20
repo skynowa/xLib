@@ -7,7 +7,7 @@
 #include <Test/Crypt/CxTest_CxBase64.h>
 
 
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
 CxTest_CxBase64::unit(
@@ -16,29 +16,36 @@ CxTest_CxBase64::unit(
 {
     xTEST_CASE("CxBase64::encode sDecode", a_caseLoops)
     {
-        std::cstring_t sTestData[][1] = {
+        std::cstring_t data[][1] = {
             {"ADP GmbH\nAnalyse Design & Programmierung\nGesellschaft mit beschrankter Haftung"},
             {"TEST_STRING_2"},
             {"evrtvertre=-430956=-lmj';l'654"},
-            {"ngb213,jhv560vlk254mlkvj6254klj'lcmkc34;lr,m34;'rtlm2cv456467809=-0i=-09i=-24i09v5grfmkldfgjghmjgyuiyuirvbty34v5"},
-            {"On-line Testing Pages by dev.FYIcenter.com\nWelcome to dev.FYIcenter.com on-line learning and testing pages.\nClick the Start button to play regular expression, date formatting, \nURL encoding, and many more programming techniques..."},
+            {"ngb213,jhv560vlk254mlkvj6254klj'lcmkc34;lr,m34;'rtlm2cv456467809=-0i=-09i=-24i09v5"
+             "grfmkldfgjghmjgyuiyuirvbty34v5"},
+            {"On-line Testing Pages by dev.FYIcenter.com\nWelcome to dev.FYIcenter.com on-line "
+             "learning and testing pages.\nClick the Start button to play regular expression, "
+             "date formatting, \nURL encoding, and many more programming techniques..."},
             {"TEST_STRING_3"},
-            {"On-line Testing Pages by dev.FYIcenter.comWelcome to dev.FYIcenter.com on-line learning and testing pages.Click the Start button to play regular expression, date formatting, \nURL encoding, and many more programming techniques..."},
+            {"On-line Testing Pages by dev.FYIcenter.comWelcome to dev.FYIcenter.com on-line "
+             "learning and testing pages.Click the Start button to play regular expression, date "
+             "formatting, \nURL encoding, and many more programming techniques..."},
             {"If you need a javascript for md5: http://pajhome.org.uk/crypt/md5/md5src.html"}
         };
 
-        for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
-            std::string sSource = sTestData[i][0];
+        for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
+            std::string source = data[i][0];
 
-            std::string sEncoded = CxBase64::encode(sSource);
-            std::string sDecoded = CxBase64::decode(sEncoded);
-            xTEST_EQ(true, sSource == sDecoded);
+            CxBase64 base64;
+
+            std::string encoded = base64.encode(source);
+            std::string decoded = base64.decode(encoded);
+            xTEST_EQ(true, source == decoded);
         }
     }
 
     xTEST_CASE("CxBase64::encode sDecode", a_caseLoops)
     {
-        std::cstring_t casData[][2] = {
+        std::cstring_t data[][2] = {
             {"YOYO!", "WU9ZTyE="},
             {"111111111111111", "MTExMTExMTExMTExMTEx"},
             {"!@#$%^&*()_+", "IUAjJCVeJiooKV8r"},
@@ -48,43 +55,20 @@ CxTest_CxBase64::unit(
             {"This is an encoded string", "VGhpcyBpcyBhbiBlbmNvZGVkIHN0cmluZw=="}
         };
 
-        for (size_t i = 0; i < xARRAY_SIZE(casData); ++ i) {
-            std::cstring_t csSource  = casData[i][0];
-            std::cstring_t csMustBe  = casData[i][1];
+        for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
+            std::cstring_t source = data[i][0];
+            std::cstring_t expect = data[i][1];
 
-            std::cstring_t csEncoded = CxBase64::encode(csSource);
-            //xTRACEV("csEncoded: %s (%zu), csMustBe (%zu)", csEncoded.c_str(), csEncoded.size(), csMustBe.size());
-            xTEST_EQ(true, csMustBe == csEncoded);
+            CxBase64 base64;
 
-            std::cstring_t csDecoded = CxBase64::decode(csEncoded);
-            //xTRACEV("csEncoded: %s (%zu), csSource (%zu)", csDecoded.c_str(), csDecoded.size(), csSource.size());
-            xTEST_EQ(true, csSource == csDecoded);
+            std::cstring_t encoded = base64.encode(source);
+            // xTRACEV("encoded: %s (%zu), expect (%zu)", encoded.c_str(), encoded.size(), expect.size());
+            xTEST_EQ(true, expect == encoded);
+
+            std::cstring_t decoded = base64.decode(encoded);
+            // xTRACEV("encoded: %s (%zu), source (%zu)", decoded.c_str(), decoded.size(), source.size());
+            xTEST_EQ(true, source == decoded);
         }
     }
-
-#if 0
-    xTEST_CASE("CxBase64::isCharValid", a_caseLoops)
-    {
-        {
-            std::cstring_t csValidChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-
-            for (size_t i = 0; i < csValidChars.size(); ++ i) {
-                m_bRv = CxBase64::_isValid(csValidChars.at(i));
-                //xTRACEV(xT("csValidChars.at(i): %c"), csValidChars.at(i));
-                xTEST_EQ(true, m_bRv);
-            }
-        }
-
-        {
-            std::cstring_t csNonValidChars = "!@#$%^&*()_|:?";
-
-            for (size_t i = 0; i < csNonValidChars.size(); ++ i) {
-                m_bRv = CxBase64::_isValid(csNonValidChars.at(i));
-                //xTRACEV(xT("csNonValidChars.at(i): %c"), csNonValidChars.at(i));
-                xTEST_EQ(false, m_bRv);
-            }
-        }
-    }
-#endif
 }
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------

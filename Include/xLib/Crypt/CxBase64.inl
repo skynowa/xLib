@@ -32,7 +32,6 @@ xNAMESPACE_BEGIN(NxLib)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-/* static */
 inline std::string
 CxBase64::encode(
     cuchar_t     *a_bytes,
@@ -84,7 +83,6 @@ CxBase64::encode(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 inline std::string
 CxBase64::encode(
     std::cstring_t &a_str
@@ -95,7 +93,6 @@ CxBase64::encode(
     return encode(reinterpret_cast<cuchar_t  *>( a_str.data() ), a_str.size());
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 inline std::string
 CxBase64::decode(
     std::cstring_t &a_str
@@ -157,7 +154,6 @@ CxBase64::decode(
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-/* static */
 inline bool
 CxBase64::_isValid(
     cuchar_t &a_ch
@@ -165,7 +161,7 @@ CxBase64::_isValid(
 {
     xTEST_NA(a_ch);
 
-    bool_t bRv = isalnum(a_ch) || ('+' == a_ch) || ('/' == a_ch);
+    bool_t bRv = xTISALNUM(a_ch) || ('+' == a_ch) || ('/' == a_ch);
 
     return bRv;
 }
