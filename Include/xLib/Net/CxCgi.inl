@@ -365,7 +365,6 @@ CxCgiEnvironment::CxCgiEnvironment(
     _construct();
 }
 //-------------------------------------------------------------------------------------------------
-//DONE: sGetAuthType
 inline std::ctstring_t &
 CxCgiEnvironment::authType() const
 {

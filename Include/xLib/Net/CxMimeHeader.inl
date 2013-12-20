@@ -99,12 +99,10 @@ CxMimeHeader::parse(
     //std::vector -> std::map
     for (size_t i = 0; i < vsHeader.size(); i ++) {
         std::vec_tstring_t vsLines;
-        //--vsLines = vsSplit(": ", vsHeader.at(i));
         _m_bRv = CxString::bSplitKeyValue(vsHeader.at(i), _attrDelimiter, &vsLines);
         xTEST_EQ(true, _m_bRv,           false);
         xTEST_EQ(false, vsLines.empty(), false);
 
-        //????????? ? ?????? "????" ? "????????"
         std::tstring_t sKey   = CxString::trimSpace(vsLines.at(0));
         std::tstring_t sValue = CxString::trimSpace(vsLines.at(1));
 
@@ -113,7 +111,6 @@ CxMimeHeader::parse(
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-//DONE: sGetField
 inline std::tstring_t
 CxMimeHeader::field(
     std::ctstring_t &a_name
@@ -135,54 +132,56 @@ CxMimeHeader::field(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-//DONE: uiCount
 inline size_t
 CxMimeHeader::count()
 {
     return _header.size();
 }
 //-------------------------------------------------------------------------------------------------
-//TODO:  bLoadFromFile
+// TODO:  loadFromFile
 #if xTODO
-    bool_t
-    CxMimeHeader::bLoadFromFile(std::ctstring_t &filePath) {
-     xTEST_EQ(false, filePath.empty(),                 false);
-     xTEST_EQ(true, CxFile::isExists(filePath), false);
 
-     std::tstring_t sUknownEmail("Uknown@Uknown.Uknown");
-     std::tstring_t sLine("");
-     std::ifstream  ifsStream(filePath.c_str());
-     xTEST_EQ(true,  !! ifsStream);
-     xTEST_EQ(false, ifsStream.fail());
-     xTEST_EQ(true,  ifsStream.good());
-     xTEST_EQ(true,  ifsStream.is_open());
-     xTEST_EQ(false, ifsStream.eof());
+bool_t
+CxMimeHeader::loadFromFile(
+    std::ctstring_t &filePath
+)
+{
+    xTEST_EQ(false, filePath.empty());
+    xTEST_EQ(true,  CxFile::isExists(filePath));
 
-     ulong_t ulCountBreaks = 0;
-     for (ulong_t i = 0; !ifsStream.eof();  ++ i) {
+    std::tstring_t sUknownEmail("Uknown@Uknown.Uknown");
+    std::tstring_t sLine("");
+    std::ifstream  ifsStream(filePath.c_str());
+    xTEST_EQ(true,  !! ifsStream);
+    xTEST_EQ(false, ifsStream.fail());
+    xTEST_EQ(true,  ifsStream.good());
+    xTEST_EQ(true,  ifsStream.is_open());
+    xTEST_EQ(false, ifsStream.eof());
+
+    ulong_t ulCountBreaks = 0;
+    for (ulong_t i = 0; !ifsStream.eof();  ++ i) {
          std::getline(ifsStream, sLine);
 
-         //���� �� ������ csFrom (From:)
+         // (From:)
          if (std::tstring_t::npos != sLine.find(csFrom + ":")) {
-             //From: ����<test_1@localhost>
-             return sReplaceAll(vsSplit(_attrDelimiter, sLine).at(1), " ", ""); // Uknown@Uknown.Uknown!!!!!!!!!!!
+            // From: ����<test_1@localhost>
+            return sReplaceAll(vsSplit(_attrDelimiter, sLine).at(1), " ", ""); // Uknown@Uknown.Uknown!!!!!!!!!!!
          }
 
-         //������ �� "\r\n\r\n" (����� ������)
-         if ("" == sLine) {
-             ulCountBreaks ++;
-             if (2 == ulCountBreaks) {
-                 return "";
-             }
-         } else {
-             ulCountBreaks = 0;
-         }
-     }
-
-     return "";
-
-     return false;
+        // "\r\n\r\n"
+        if ("" == sLine) {
+            ulCountBreaks ++;
+            if (2 == ulCountBreaks) {
+                return "";
+            }
+        } else {
+            ulCountBreaks = 0;
+        }
     }
+
+    return false;
+}
+
 #endif
 
 inline void_t
@@ -196,13 +195,11 @@ CxMimeHeader::loadFromFile(
     std::tstring_t sRawHeader;
     std::tstring_t sLine;
 
-    //-------------------------------------
-    //������������� ��������� ������
     CxLocale locale;
     locale.setDefault();
 
     //-------------------------------------
-    //������ ���������� ����� � ������ �� ����� ������ (\r\n\r\n - ������ ������)
+    // (\r\n\r\n)
     std::tifstream_t ifsStream(a_rawMessageFilePath.c_str());
     xTEST_EQ(true, !! ifsStream);
     xTEST_EQ(false, ifsStream.fail());
@@ -220,12 +217,9 @@ CxMimeHeader::loadFromFile(
         sRawHeader.append(sLine + _endOfLine);
     }
 
-    //-------------------------------------
-    //����������
     parse(sRawHeader);
 }
 //-------------------------------------------------------------------------------------------------
-//TODO: bSaveToFile
 inline void_t
 CxMimeHeader::saveToFile(
     std::ctstring_t &a_filePath
@@ -233,10 +227,10 @@ CxMimeHeader::saveToFile(
 {
     xUNUSED(a_filePath);
 
+    // TODO: CxMimeHeader::saveToFile()
     xNOT_IMPLEMENTED;
 }
 //-------------------------------------------------------------------------------------------------
-//TODO: sGenerateMessageID (������� Message-ID ��� "<", ">")
 /* static */
 inline std::tstring_t
 CxMimeHeader::generateMessageID()

@@ -19,7 +19,12 @@
 xNAMESPACE_BEGIN(NxLib)
 
 //-------------------------------------------------------------------------------------------------
-/* static */
+inline
+CxMimeMessage::CxMimeMessage() :
+    _rawMessage()
+{
+}
+//-------------------------------------------------------------------------------------------------
 inline void_t
 CxMimeMessage::parse(
     std::ctstring_t &a_rawMessage,
@@ -34,10 +39,9 @@ CxMimeMessage::parse(
     xNOT_IMPLEMENTED;
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 inline void_t
 CxMimeMessage::loadFromRawFile(
-    std::ctstring_t &a_filePath
+    std::ctstring_t &a_filePath ///< raw msg
 )
 {
     xUNUSED(a_filePath);
@@ -45,10 +49,9 @@ CxMimeMessage::loadFromRawFile(
     xNOT_IMPLEMENTED;
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 inline void_t
 CxMimeMessage::saveToRawFile(
-    std::ctstring_t &a_filePath
+    std::ctstring_t &a_filePath ///< raw msg
 )
 {
     xUNUSED(a_filePath);
@@ -58,4 +61,3 @@ CxMimeMessage::saveToRawFile(
 //-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END(NxLib)
-
