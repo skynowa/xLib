@@ -1,5 +1,5 @@
 /**
- * \file  xConfig.h.in
+ * \file  xConfig.h
  * \brief configurations for xLib
  */
 
@@ -14,6 +14,8 @@
 #cmakedefine xHAVE_PR_SET_DUMPABLE 1
 #cmakedefine xHAVE_RLIMIT_CORE     1
 #cmakedefine xHAVE_PT_DENY_ATTACH  1
+#cmakedefine xHAVE_ADDR2LINE       1
+#cmakedefine xHAVE_XMESSAGE        1
 
 #if xOS_ENV_WIN
     #if xCOMPILER_MS

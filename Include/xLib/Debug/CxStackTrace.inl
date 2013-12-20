@@ -280,7 +280,7 @@ CxStackTrace::get(
             }
         } // for
     #else
-        stack.push_back( CxConst::strUnknown() );
+        #pragma message("xLib: CxStackTrace::get() - n/a")
     #endif // xHAVE_EXECINFO
 #endif
 
