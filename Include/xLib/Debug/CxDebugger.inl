@@ -135,11 +135,11 @@ CxDebugger::coreDumpsEnable(
     bool_t isEnable = false;
     int_t  iRv      = 0;
 
-#if   defined(xHAVE_PR_SET_DUMPABLE)
+#if   xHAVE_PR_SET_DUMPABLE
     // prefer PR_SET_DUMPABLE since that also prevents ptrace
     iRv = ::prctl(PR_SET_DUMPABLE, 0);
     isEnable = (iRv == 0);
-#elif defined(xHAVE_RLIMIT_CORE)
+#elif xHAVE_RLIMIT_CORE
     struct rlimit limit = {0, 0};
 
     iRv = ::setrlimit(RLIMIT_CORE, &limit);
@@ -149,7 +149,7 @@ CxDebugger::coreDumpsEnable(
 #endif
 
     // Mac OS X
-#ifdef xHAVE_PT_DENY_ATTACH
+#if xHAVE_PT_DENY_ATTACH
     // make sure setrlimit() and ptrace() succeeded
     iRv = ::ptrace(PT_DENY_ATTACH, 0, 0, 0);
     isEnable = isEnable && (iRv == 0);
@@ -163,9 +163,9 @@ CxDebugger::breakPoint() const
 {
     xCHECK_DO(!isEnabled(), return);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     (void_t)::DebugBreak();
-#else
+#elif xOS_ENV_UNIX
     int_t iRv = ::raise(SIGTRAP);
     xTEST_DIFF(- 1, iRv);
 
