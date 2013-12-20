@@ -56,7 +56,7 @@ private:
     void_t         _loggingPlain(const CxErrorReport &report) const;
         ///< log plain report to file
 
-xNO_COPY_ASSIGN(CxDebugger)
+    xNO_COPY_ASSIGN(CxDebugger)
 };
 
 xNAMESPACE_END(NxLib)
