@@ -117,7 +117,7 @@ CxBackuper::fileExec(
         bRv = (CxFile::size(a_filePath) == CxFile::size(backupFilePath));
         xCHECK_DO(!bRv, xTHROW_REPORT(errorCopyingFail));
 
-        bRv = (CxCrc32::calcFile(a_filePath) == CxCrc32::calcFile(backupFilePath));
+        bRv = (CxCrc32().calcFile(a_filePath) == CxCrc32().calcFile(backupFilePath));
         xCHECK_DO(!bRv, xTHROW_REPORT(errorCopyingFail));
     }
 

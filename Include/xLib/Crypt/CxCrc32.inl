@@ -16,7 +16,12 @@ xNAMESPACE_BEGIN(NxLib)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-/* static */
+inline
+CxCrc32::CxCrc32() :
+    _crc32(0UL)
+{
+}
+//-------------------------------------------------------------------------------------------------
 inline ulong_t
 CxCrc32::calc(
     uchar_t  *a_buff,
@@ -26,8 +31,8 @@ CxCrc32::calc(
     xTEST_PTR(a_buff);
     xTEST_LESS(0UL, a_size);
 
-    ulong_t crc            = 0;
-    ulong_t crc_table[256] = {
+    ulong_t  crc            = 0;
+    culong_t crc_table[256] = {
         0x00000000, 0x77073096, 0xEE0E612C, 0x990951BA,
         0x076DC419, 0x706AF48F, 0xE963A535, 0x9E6495A3,
         0x0EDB8832, 0x79DCB8A4, 0xE0D5E91E, 0x97D2D988,
@@ -116,10 +121,11 @@ CxCrc32::calc(
         crc = crc_table[(crc ^ *a_buff ++) & 0xFF] ^ (crc >> 8);
     }
 
-    return crc ^ 0xFFFFFFFFUL;
+    _crc32 = crc ^ 0xFFFFFFFFUL;
+
+    return _crc32;
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 inline ulong_t
 CxCrc32::calcFile(
     std::ctstring_t &a_filePath
@@ -127,32 +133,25 @@ CxCrc32::calcFile(
 {
     xTEST_EQ(false, a_filePath.empty());
 
-    ulong_t ulRv = 0;
-
     std::ustring_t file;
 
     CxFile::binRead(a_filePath, &file);
-    if (file.empty()) {
-        ulRv = 0;
-    } else {
-        ulRv = calc(&file.at(0), static_cast<ulong_t>( file.size() ));
-    }
+    xCHECK_RET(file.empty(), 0UL);
 
-    return ulRv;
+    _crc32 = calc(&file.at(0), static_cast<culong_t>( file.size() ));
+
+    return _crc32;
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 inline std::tstring_t
-CxCrc32::formatHex(
-    culong_t &a_crc32
-)
+CxCrc32::formatHex() const
 {
     std::tstring_t sRv;
     std::csize_t   crc32Size = 8;
 
-    sRv = CxString::format(xT("%X"), a_crc32);    // 0AADDEA0
+    sRv = CxString::format(xT("%X"), _crc32);    // 0AADDEA0
 
-    size_t additionalZeros = crc32Size - sRv.size();
+    std::csize_t additionalZeros = crc32Size - sRv.size();
     if (0 != additionalZeros) {
         sRv.insert(0, additionalZeros, xT('0'));
     }
