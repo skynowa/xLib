@@ -179,6 +179,5 @@ namespace NxLib { }
 #include <xLib/Core/xStdStream.h>
 
 #include <xLib/Core/xTracing.h>
-#include <xLib/Core/xLinking.h>
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_xCoreH
