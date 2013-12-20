@@ -85,7 +85,7 @@ private:
     void_t         _initPlain();
         ///< initiate plain report
 
-xNO_COPY_ASSIGN(CxErrorReport)
+    xNO_COPY_ASSIGN(CxErrorReport)
 };
 
 xNAMESPACE_END(NxLib)

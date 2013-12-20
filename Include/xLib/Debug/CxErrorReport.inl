@@ -176,9 +176,9 @@ CxErrorReport::_construct(
     _type           = a_type;
 
     _program        = CxPath( CxPath(CxPath::exe()).brief(::reportWidthMax) ).toUnix(false);
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     _processId      = ::GetCurrentProcessId();
-#else
+#elif xOS_ENV_UNIX
     _processId      = ::getpid();
 #endif
     _threadId       = (ulong_t)CxThread::currentId();
