@@ -95,7 +95,7 @@ CxTcpClient::ioctl(
 #if   xOS_ENV_WIN
     iRv = ioctlsocket(_socket, a_command, a_args);
     xTEST_DIFF(xSOCKET_ERROR, iRv);
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     iRv = ::ioctl    (_socket, a_command, a_args);
     xTEST_DIFF(xSOCKET_ERROR, iRv);
 #endif
@@ -117,7 +117,7 @@ CxTcpClient::setNonBlockingMode(
 
     setsockopt(sock, IPPROTO_TCP, TCP_NODELAY, (char*)&bOptVal, bOptLen);
     */
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     int_t iFlags = - 1;
 
     iFlags = ::fcntl(_socket, F_GETFL);

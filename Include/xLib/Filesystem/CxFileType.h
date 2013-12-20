@@ -36,7 +36,7 @@ public:
             faOffline           = FILE_ATTRIBUTE_OFFLINE,
             faNotContentIndexed = FILE_ATTRIBUTE_NOT_CONTENT_INDEXED,
             faEncrypted         = FILE_ATTRIBUTE_ENCRYPTED
-        #else xOS_ENV_UNIX
+        #elif xOS_ENV_UNIX
             faInvalid           = (mode_t)- 1,
             faDirectory         = S_IFDIR,
             faCharacterDevice   = S_IFCHR,
@@ -51,7 +51,7 @@ public:
 
 #if   xOS_ENV_WIN
     typedef DWORD  types_t;
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     typedef mode_t types_t;
 #endif
 

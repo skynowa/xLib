@@ -20,7 +20,7 @@ class CxEvent
 public:
 #if   xOS_ENV_WIN
     typedef CxHandle       handle_t;   ///< handle
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     typedef pthread_cond_t handle_t;   ///< handle
 #endif
 
@@ -31,7 +31,7 @@ public:
             osSignaled = WAIT_OBJECT_0, ///< signaled
             osTimeout  = WAIT_TIMEOUT,  ///< time-out interval elapsed and the object's state is nonsignaled
             osFailed   = WAIT_FAILED    ///< failed
-        #elif xOS_ENV_UNUX
+        #elif xOS_ENV_UNIX
             osSignaled = 0,             ///< signaled
             osTimeout  = ETIMEDOUT,     ///< time-out interval elapsed and the object's state is nonsignaled
             osFailed /* other values */ ///< failed
@@ -61,7 +61,7 @@ public:
 private:
 #if   xOS_ENV_WIN
     CxHandle          _event;        ///< event
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     pthread_mutex_t   _mutex;       ///< mutex
     handle_t          _cond;       ///< condition variable
     bool_t            _isSignaled;   ///< is signaled flag

@@ -31,7 +31,7 @@ public:
             tpAboveNormal  = THREAD_PRIORITY_ABOVE_NORMAL,
             tpHighest      = THREAD_PRIORITY_HIGHEST,
             tpTimeCritical = THREAD_PRIORITY_TIME_CRITICAL
-        #elif xOS_ENV_UNUX
+        #elif xOS_ENV_UNIX
             tpError        = - 1,
             tpIdle         ,
             tpLowest       = 10,
@@ -46,7 +46,7 @@ public:
 #if   xOS_ENV_WIN
     typedef HANDLE    handle_t; ///< handle
     typedef DWORD     id_t;     ///< ID
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     typedef pthread_t handle_t; ///< handle
     typedef pthread_t id_t;     ///< ID
 #endif
@@ -176,7 +176,7 @@ private:
     // thread data
 #if   xOS_ENV_WIN
     CxHandle             _thread;                 ///< native handle
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     handle_t             _thread;                 ///< native handle
 #endif
 
@@ -199,7 +199,7 @@ private:
 
 #if   xOS_ENV_WIN
     typedef uint_t       exit_status_t;
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     typedef void_t *     exit_status_t;
 #endif
 

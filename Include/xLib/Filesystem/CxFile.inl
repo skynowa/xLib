@@ -359,7 +359,7 @@ CxFile::locking(
 
 #if   xOS_ENV_WIN
     clong_t     bytes = a_bytes;
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     const off_t bytes = static_cast<off_t>( a_bytes );
 #endif
 
@@ -459,7 +459,7 @@ CxFile::resize(
 
 #if   xOS_ENV_WIN
     clonglong_t _size = a_size;
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     const off_t _size = static_cast<off_t>( a_size );
 #endif
 
@@ -580,7 +580,7 @@ CxFile::isFile(
 
     bRv = type.isExists(CxFileType::faOffline);
     xCHECK_RET(bRv, false);
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     bRv = type.isExists(CxFileType::faRegularFile);
     xCHECK_RET(!bRv, false);
 #endif
@@ -657,7 +657,7 @@ CxFile::chmod(
 
 #if   xOS_ENV_WIN
     cint_t       mode = static_cast<int_t> ( a_mode );
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     const mode_t mode = static_cast<mode_t>( a_mode );
 #endif
 
@@ -989,7 +989,7 @@ CxFile::time(
     CxUtils::ptrAssignT(a_create,   CxDateTime::fileTimeToUnixTime(timeCreate));
     CxUtils::ptrAssignT(a_access,   CxDateTime::fileTimeToUnixTime(timeAccess));
     CxUtils::ptrAssignT(a_modified, CxDateTime::fileTimeToUnixTime(timeModified));
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     xUNUSED(a_create);
 
     xTSTAT_STRUCT info; xSTRUCT_ZERO(info);
@@ -1035,7 +1035,7 @@ CxFile::setTime(
 
     BOOL blRv = ::SetFileTime(file.get(), &timeCreate, &timeAccess, &timeModified);
     xTEST_DIFF(FALSE, blRv);
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     xUNUSED(a_create);
 
     utimbuf times = {0, 0};

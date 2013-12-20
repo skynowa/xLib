@@ -42,7 +42,7 @@ CxEnvironment::isExists(
     xTEST_NA(length);
 
     xCHECK_RET(0UL == length && ERROR_ENVVAR_NOT_FOUND == CxLastError::get(), false);
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     const char *pcszRv = ::getenv(a_varName.c_str());
     xTEST_NA(pcszRv);
 
@@ -105,7 +105,7 @@ CxEnvironment::var(
             static_cast<DWORD>( sRv.size() ));
         xTEST_DIFF(0UL, length);
     }
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     const char *pcszRv = ::getenv(a_varName.c_str());
     xTEST_PTR(pcszRv);
 
@@ -128,7 +128,7 @@ CxEnvironment::setVar(
 #if   xOS_ENV_WIN
     BOOL blRv = ::SetEnvironmentVariable(a_varName.c_str(), a_value.c_str());
     xTEST_DIFF(FALSE, blRv);
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     int_t iRv = ::setenv(a_varName.c_str(), a_value.c_str(), true);
     xTEST_DIFF(- 1, iRv);
 #endif
@@ -186,7 +186,7 @@ CxEnvironment::values(
 
     BOOL blRv = ::FreeEnvironmentStrings(lpvEnv);
     xTEST_DIFF(FALSE, blRv);
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     xTEST_PTR(environ);
 
     for (size_t i = 0; 0 != environ[i]; ++ i) {
@@ -224,7 +224,7 @@ CxEnvironment::expandStrings(
     }
 
     sRv.resize(length - 1);   // remove '\0'
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     std::ctstring_t sep = xT("%");
 
     sRv = a_var;

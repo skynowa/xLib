@@ -20,7 +20,7 @@ xNAMESPACE_ANONYM_BEGIN
 
 #if   xOS_ENV_WIN
     culong_t nativeCodeSuccess = ERROR_SUCCESS;
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     culong_t nativeCodeSuccess = 0UL;
 #endif
 
@@ -35,7 +35,7 @@ CxLastError::isSuccess()
 
 #if   xOS_ENV_WIN
     bRv = (::nativeCodeSuccess == ::GetLastError());
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     bRv = (::nativeCodeSuccess == static_cast<ulong_t>( errno ));
 #endif
 
@@ -50,7 +50,7 @@ CxLastError::get()
 
 #if   xOS_ENV_WIN
     code = ::GetLastError();
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     code = static_cast<ulong_t>( errno );
 #endif
 
@@ -67,7 +67,7 @@ CxLastError::set(
 {
 #if   xOS_ENV_WIN
     (void_t)::SetLastError(a_code);
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     errno = static_cast<int_t>( a_code );
 #endif
 }

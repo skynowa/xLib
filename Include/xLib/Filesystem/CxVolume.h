@@ -28,7 +28,7 @@ public:
         dtRemote    = DRIVE_REMOTE,
         dtCdRom     = DRIVE_CDROM,
         dtRam       = DRIVE_RAMDISK
-    #else xOS_ENV_UNIX
+    #elif xOS_ENV_UNIX
         dtUnknown   = 0,
         dtNoRoot    = 1,
         dtRemovable = 2,

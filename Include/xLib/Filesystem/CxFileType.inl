@@ -63,7 +63,7 @@ CxFileType::get() const
 #if   xOS_ENV_WIN
     ftRv = ::GetFileAttributes(filePath().c_str());
     xTEST_NA(ftRv);
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     xTSTAT_STRUCT info;   xSTRUCT_ZERO(info);
 
     int_t iRv = ::xTSTAT(filePath().c_str(), &info);
@@ -89,7 +89,7 @@ CxFileType::set(
 #if   xOS_ENV_WIN
     BOOL blRv = ::SetFileAttributes(filePath().c_str(), a_values);
     xTEST_DIFF(FALSE, blRv);
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     int_t iRv = ::xTCHMOD(filePath().c_str(), a_values);
     xTEST_DIFF(- 1, iRv);
 #endif

@@ -21,7 +21,7 @@ public:
 #if   xOS_ENV_WIN
     typedef HANDLE  handle_t; ///< handle
     typedef DWORD   id_t;     ///< ID
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     typedef pid_t   handle_t; ///< handle
     typedef pid_t   id_t;     ///< ID
 #endif
@@ -34,7 +34,7 @@ public:
             wrAbandoned = WAIT_ABANDONED,
             wrObject0   = WAIT_OBJECT_0,
             wrTimeout   = WAIT_TIMEOUT
-        #elif xOS_ENV_UNUX
+        #elif xOS_ENV_UNIX
             wrFailed    = - 1,
             wrAbandoned = 0,
             wrObject0   = 1,

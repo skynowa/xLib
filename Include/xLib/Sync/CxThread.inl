@@ -89,7 +89,7 @@ CxThread::create(
 {
 #if   xOS_ENV_WIN
     xTEST_EQ(false, _thread.isValid());
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
 
 #endif
     // cbIsPaused   - n/a
@@ -121,7 +121,7 @@ CxThread::create(
     xTEST_EQ(true, _thread.isValid());
 
     _id = id;
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     int_t          iRv = - 1;
     id_t           hid;
     pthread_attr_t attrs; // n/a - {{0}}
@@ -176,7 +176,7 @@ CxThread::resume()
 {
 #if   xOS_ENV_WIN
     xTEST_EQ(true, _thread.isValid());
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
 
 #endif
 
@@ -195,7 +195,7 @@ CxThread::pause()
 {
 #if   xOS_ENV_WIN
     xTEST_MSG_EQ(true, _thread.isValid(), CxString::cast(_thread.get()));
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
 
 #endif
 
@@ -214,7 +214,7 @@ CxThread::exit()
 {
 #if   xOS_ENV_WIN
     xTEST_EQ(true, _thread.isValid());
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
 
 #endif
 
@@ -251,7 +251,7 @@ CxThread::kill(
 
         currentSleep(a_timeoutMsec);
     }
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     int_t iRv = ::pthread_kill(_id, SIGALRM);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
@@ -262,7 +262,7 @@ CxThread::kill(
     // clean members
 #if   xOS_ENV_WIN
     _thread.close();
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     _thread = 0UL;
 #endif
 
@@ -294,7 +294,7 @@ CxThread::wait(
 
     DWORD ulRv = ::WaitForSingleObject(_thread.get(), a_timeoutMsec);
     xTEST_EQ(WAIT_OBJECT_0, ulRv);
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     xUNUSED(a_timeoutMsec);
 
     // TODO: thread must not be detached
@@ -321,7 +321,7 @@ CxThread::isCreated() const
 
 #if   xOS_ENV_WIN
     bRv = (_isCreated) && (_thread.isValid());
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     bRv = (_isCreated) && (0UL   != _thread);
 #endif
 
@@ -347,7 +347,7 @@ CxThread::isRunning() const
     bool_t bCond5 = ( STILL_ACTIVE  == ulRv                                      );
 
     bRv = bCond1 && bCond2 && bCond3 && bCond4 && bCond5;
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     bool_t bCond1 = ( 0UL           != _thread                                   );
     bool_t bCond2 = ( 0UL           <  _id                                       );
     bool_t bCond3 = ( true          == _isRunning                                );
@@ -372,7 +372,7 @@ CxThread::isPaused()
 
 #if   xOS_ENV_WIN
     bRv = !_eventPause.isSignaled() && _thread.isValid();
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     bRv = !_eventPause.isSignaled() /*&& (0UL   != _thread)*/;
 #endif
 
@@ -388,7 +388,7 @@ CxThread::isExited()
 
 #if   xOS_ENV_WIN
     bRv = _eventExit.isSignaled() && _thread.isValid();
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     bRv = _eventExit.isSignaled() && (0UL != _thread);
 #endif
 
@@ -558,7 +558,7 @@ CxThread::_priorityMin()
 
 #if   xOS_ENV_WIN
     iRv = THREAD_PRIORITY_IDLE;
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     iRv = ::sched_get_priority_min(SCHED_FIFO);
     xTEST_MSG_DIFF(- 1, iRv, CxLastError::format(iRv));
 #endif
@@ -573,7 +573,7 @@ CxThread::_priorityMax() {
 
 #if   xOS_ENV_WIN
     iRv = THREAD_PRIORITY_TIME_CRITICAL;
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     iRv = ::sched_get_priority_max(SCHED_FIFO);
     xTEST_MSG_DIFF(- 1, iRv, CxLastError::format(iRv));
 #endif
@@ -591,7 +591,7 @@ CxThread::setPriority(
 
     BOOL blRv = ::SetThreadPriority(_thread.get(), a_priority);
     xTEST_DIFF(FALSE, blRv);
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     if (!CxSystemInfo().isUserAdmin()) {
         CxTracer() << xT("::: xLib: warning (CxThread::setPriority fail, need root) :::");
         return;
@@ -610,7 +610,7 @@ CxThread::priority() const
 {
 #if   xOS_ENV_WIN
     xTEST_EQ(true, _thread.isValid());
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
 
 #endif
 
@@ -619,7 +619,7 @@ CxThread::priority() const
 #if   xOS_ENV_WIN
     tpRv = static_cast<ExPriority>( ::GetThreadPriority(_thread.get()) );
     xTEST_DIFF(tpError, tpRv);
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     sched_param param  = {0};
     int_t       policy = SCHED_FIFO;
 
@@ -663,7 +663,7 @@ CxThread::priorityUp() const
 {
 #if   xOS_ENV_WIN
     xTEST_EQ(true, _thread.isValid());
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
 
 #endif
 
@@ -706,7 +706,7 @@ CxThread::priorityDown() const
 {
 #if   xOS_ENV_WIN
     xTEST_EQ(true, _thread.isValid());
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
 
 #endif
 
@@ -759,7 +759,7 @@ CxThread::isPriorityBoost() const
     //bDisablePriorityBoost == false - normal behavior
 
     return ! isDisablePriorityBoost;
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     return false;
 #endif
 }
@@ -774,7 +774,7 @@ CxThread::setPriorityBoost(
 
     BOOL blRv = ::SetThreadPriorityBoost(_thread.get(), ! a_isEnabled);
     xTEST_DIFF(FALSE, blRv);
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     xUNUSED(a_isEnabled);
 
     return;
@@ -842,7 +842,7 @@ CxThread::setCpuIdeal(
 
     ulRv = ::SetThreadIdealProcessor(_thread.get(), a_idealCpu);
     xTEST_DIFF((DWORD) - 1, ulRv);
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     xUNUSED(a_idealCpu);
 
     xNOT_IMPLEMENTED;
@@ -854,7 +854,7 @@ CxThread::cpuIdeal() const
 {
 #if   xOS_ENV_WIN
     xTEST_EQ(true, _thread.isValid());
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
 
 #endif
 
@@ -863,7 +863,7 @@ CxThread::cpuIdeal() const
 #if   xOS_ENV_WIN
     ulRv = ::SetThreadIdealProcessor(_thread.get(), MAXIMUM_PROCESSORS);
     xTEST_DIFF((ulong_t) - 1, ulRv);
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
 
 #endif
 
@@ -895,7 +895,7 @@ CxThread::handle() const
     xTEST_EQ(true, _thread.isValid());
 
     return _thread.get();
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     return _thread;
 #endif
 }
@@ -905,7 +905,7 @@ CxThread::id() const
 {
 #if   xOS_ENV_WIN
     xTEST_EQ(true, _thread.isValid());
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
 
 #endif
 
@@ -928,7 +928,7 @@ CxThread::exitStatus() const
 
     BOOL blRv = ::GetExitCodeThread(_thread.get(), &ulRv);
     xTEST_DIFF(FALSE, blRv);
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     ulRv = _exitStatus;
 #endif
 
@@ -1023,7 +1023,7 @@ CxThread::open(
 #if   xOS_ENV_WIN
     handle_t hRv = ::OpenThread(a_access, a_isInheritHandle, a_id);
     xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     xUNUSED(a_access);
     xUNUSED(a_isInheritHandle);
 
@@ -1051,7 +1051,7 @@ CxThread::isCurrent(
 
 #if   xOS_ENV_WIN
     bRv = (currentId() == a_id);
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     //TODO: If either thread1 or thread2 are not valid thread IDs, the behavior is undefined
     bRv = ::pthread_equal(currentId(), a_id);
 #endif
@@ -1069,7 +1069,7 @@ CxThread::currentId()
 #if   xOS_ENV_WIN
     ulRv = ::GetCurrentThreadId();
     xTEST_LESS(0UL, ulRv);
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     ulRv = ::pthread_self();
     xTEST_EQ(true, 0UL < ulRv);
 #endif
@@ -1087,7 +1087,7 @@ CxThread::currentHandle()
 #if   xOS_ENV_WIN
     hRv = ::GetCurrentThread();
     xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     hRv = ::pthread_self();
     xTEST_EQ(true, 0 < hRv);
 #endif
@@ -1102,7 +1102,7 @@ CxThread::currentYield()
 
 #if   xOS_ENV_WIN
     (void_t)::SwitchToThread();
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     int_t iRv = ::sched_yield();
     xTEST_MSG_DIFF(- 1, iRv, CxLastError::format(iRv));
 #endif
@@ -1117,7 +1117,7 @@ CxThread::currentSleep(
 
 #if   xOS_ENV_WIN
     (void_t)::Sleep(a_timeoutMsec);
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     timespec timeSleep  = {0, 0};
     timespec timeRemain = {0, 0};
 
@@ -1277,7 +1277,7 @@ CxThread::_s_jobEntry(
     // clean members (is need to close???)
 #if   xOS_ENV_WIN
     self->_thread.close();
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     // TODO: _thread.vClose()
 #endif
 
@@ -1292,7 +1292,7 @@ CxThread::_s_jobEntry(
 
 #if   xOS_ENV_WIN
     exit_status_t esExitStatus = self->_exitStatus;
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     exit_status_t esExitStatus = &self->_exitStatus;
 #endif
 

@@ -84,7 +84,7 @@ CxFileTemp::create(
         stdFile = std::xTFOPEN(_filePath.c_str(), CxFile::_openMode(CxFile::omBinCreateReadWrite).c_str());
         xTEST_PTR(stdFile);
     #endif
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     int_t file = ::xTMKSTEMP(&_filePath.at(0));
     xTEST_DIFF(- 1, file);
 
