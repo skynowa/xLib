@@ -131,7 +131,7 @@ private:
         ///< get password file entry
 #endif
 
-xNO_COPY_ASSIGN(CxSystemInfo)
+    xNO_COPY_ASSIGN(CxSystemInfo)
 };
 
 xNAMESPACE_END(NxLib)

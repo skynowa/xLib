@@ -18,9 +18,9 @@ class CxIpcMutex
     /// mutex
 {
 public:
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     typedef CxHandle handle_t;
-#else
+#elif xOS_ENV_UNUX
     typedef sem_t *  handle_t;
 #endif
 
@@ -42,7 +42,7 @@ private:
     handle_t         _handle;   ///< mutex native handle
     std::tstring_t   _name;     ///< mutex name
 
-xNO_COPY_ASSIGN(CxIpcMutex)
+    xNO_COPY_ASSIGN(CxIpcMutex)
 };
 
 xNAMESPACE_END(NxLib)

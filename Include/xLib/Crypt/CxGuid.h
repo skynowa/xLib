@@ -14,7 +14,7 @@
 xNAMESPACE_BEGIN(NxLib)
 
 class CxGuid
-    ///< GUID (globally unique identifier)
+    /// GUID (globally unique identifier)
 {
 public:
     enum ExType
@@ -36,6 +36,8 @@ public:
 private:
     std::tstring_t _randomBased() const xWARN_UNUSED_RV;
         ///< random based GUID
+
+    xNO_COPY_ASSIGN(CxGuid)
 };
 
 xNAMESPACE_END(NxLib)

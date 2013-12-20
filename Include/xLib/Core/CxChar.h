@@ -53,7 +53,7 @@ private:
     virtual       ~CxChar();
         ///< destructor
 
-xNO_COPY_ASSIGN(CxChar)
+    xNO_COPY_ASSIGN(CxChar)
 };
 
 xNAMESPACE_END(NxLib)

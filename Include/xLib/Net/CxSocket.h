@@ -287,7 +287,7 @@ protected:
     std::tstring_t   _ip;        ///< IP
     ushort_t         _port;     ///< port
 
-xNO_COPY_ASSIGN(CxSocket)
+    xNO_COPY_ASSIGN(CxSocket)
 };
 
 xNAMESPACE_END(NxLib)

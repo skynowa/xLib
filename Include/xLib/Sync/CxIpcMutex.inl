@@ -32,13 +32,13 @@ CxIpcMutex::create(
 )
 {
     ////xTEST_EQ(false, _handle.bIsValid(), false);
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     // name
-#else
+#elif xOS_ENV_UNUX
     xTEST_GR(xNAME_MAX - 4, a_name.size());
 #endif
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     ctchar_t       *winName = NULL;
     std::tstring_t  _winName;
 
@@ -54,7 +54,7 @@ CxIpcMutex::create(
 
     _handle.set(hRv);
     _name = a_name;
-#else
+#elif xOS_ENV_UNUX
     std::tstring_t unixName = CxConst::unixSlash() + a_name;
 
     handle_t hHandle = ::sem_open(unixName.c_str(), O_CREAT | O_RDWR, 0777, 1U);
@@ -70,7 +70,7 @@ CxIpcMutex::open(
     std::ctstring_t &a_name
 )
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     ctchar_t *winName = NULL;
     std::tstring_t _winName;
 
@@ -86,7 +86,7 @@ CxIpcMutex::open(
 
     _handle.set(hRv);
     _name = a_name;
-#else
+#elif xOS_ENV_UNUX
     std::tstring_t unixName = CxConst::unixSlash() + a_name;
 
     handle_t hHandle = ::sem_open(unixName.c_str(), O_RDWR, 0777, 1U);
@@ -167,10 +167,10 @@ CxIpcMutex::unlock() const
 {
     ////xTEST_EQ(true, _handle.bIsValid(), false);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     BOOL blRv = ::ReleaseMutex(_handle.get());
     xTEST_DIFF(FALSE, blRv);
-#else
+#elif xOS_ENV_UNUX
     int_t iRv = ::sem_post(_handle);
     xTEST_DIFF(- 1, iRv);
 #endif

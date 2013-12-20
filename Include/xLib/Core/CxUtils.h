@@ -99,7 +99,7 @@ private:
                            ~CxUtils();
         ///< destructor
 
-xNO_COPY_ASSIGN(CxUtils)
+    xNO_COPY_ASSIGN(CxUtils)
 };
 
 xNAMESPACE_END(NxLib)

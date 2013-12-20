@@ -33,7 +33,7 @@ public:
     void_t     execute(std::ctstring_t &filePath, std::ctstring_t &params) const;
         ///< execute file
 
-#if   xOS_ENV_WIN
+#if xOS_ENV_WIN
     enum ExOperation
         /// operations
     {
@@ -152,7 +152,7 @@ public:
         ///< create shortcut
 #endif
 
-xNO_COPY_ASSIGN(CxShell)
+    xNO_COPY_ASSIGN(CxShell)
 };
 
 xNAMESPACE_END(NxLib)

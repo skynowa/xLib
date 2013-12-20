@@ -140,7 +140,7 @@ private:
     bool_t            _construct();
         ///< initiate class data
 
-xNO_COPY_ASSIGN(CxCgiEnvironment)
+    xNO_COPY_ASSIGN(CxCgiEnvironment)
 };
 //-------------------------------------------------------------------------------------------------
 
@@ -170,7 +170,7 @@ private:
     void_t          _construct();
         ///< initiate class data
 
-xNO_COPY_ASSIGN(CxCgiCookies)
+    xNO_COPY_ASSIGN(CxCgiCookies)
 };
 //-------------------------------------------------------------------------------------------------
 
@@ -200,7 +200,7 @@ private:
     void_t           _construct();
         ///< initiate class data
 
-xNO_COPY_ASSIGN(CxCgiFormData)
+    xNO_COPY_ASSIGN(CxCgiFormData)
 };
 //-------------------------------------------------------------------------------------------------
 
@@ -263,7 +263,7 @@ private:
     char                    cgl_hex2char(char *what) xWARN_UNUSED_RV;
         ///< hex to char
 
-xNO_COPY_ASSIGN(CxCgi)
+    xNO_COPY_ASSIGN(CxCgi)
 };
 
 xNAMESPACE_END(NxLib)

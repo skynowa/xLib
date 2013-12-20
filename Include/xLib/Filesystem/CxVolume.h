@@ -20,7 +20,7 @@ public:
     enum ExType
         /// file system type
     {
-    #if xOS_ENV_WIN
+    #if   xOS_ENV_WIN
         dtUnknown   = DRIVE_UNKNOWN,
         dtNoRoot    = DRIVE_NO_ROOT_DIR,
         dtRemovable = DRIVE_REMOVABLE,
@@ -28,7 +28,7 @@ public:
         dtRemote    = DRIVE_REMOTE,
         dtCdRom     = DRIVE_CDROM,
         dtRam       = DRIVE_RAMDISK
-    #else
+    #else xOS_ENV_UNIX
         dtUnknown   = 0,
         dtNoRoot    = 1,
         dtRemovable = 2,

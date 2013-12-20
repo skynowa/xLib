@@ -36,7 +36,7 @@ public:
 private:
     CxHandle _handle;
 
-xNO_COPY_ASSIGN(CxWaitableTimer)
+    xNO_COPY_ASSIGN(CxWaitableTimer)
 };
 
 xNAMESPACE_END(NxLib)

@@ -40,7 +40,7 @@ public:
 private:
     cExPeriod _period;  ///< backup period
 
-xNO_COPY_ASSIGN(CxBackuper)
+    xNO_COPY_ASSIGN(CxBackuper)
 };
 
 xNAMESPACE_END(NxLib)

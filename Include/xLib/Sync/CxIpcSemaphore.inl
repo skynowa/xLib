@@ -7,9 +7,9 @@
 #include <xLib/Core/CxConst.h>
 #include <xLib/Filesystem/CxPath.h>
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     // lib: n/a
-#else
+#elif xOS_ENV_UNUX
     // lib: -lrt
 #endif
 
@@ -24,18 +24,18 @@ xNAMESPACE_BEGIN(NxLib)
 //-------------------------------------------------------------------------------------------------
 inline
 CxIpcSemaphore::CxIpcSemaphore() :
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     _handle(),
-#else
+#elif xOS_ENV_UNUX
     _handle(NULL),
 #endif
     _name  ()
 {
     xTEST_EQ(false, _isValid());
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     xNA;
-#else
+#elif xOS_ENV_UNUX
     // sem_init
 #endif
 }
@@ -45,9 +45,9 @@ CxIpcSemaphore::~CxIpcSemaphore()
 {
     xTEST_EQ(true, _isValid());
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     xNA;
-#else
+#elif xOS_ENV_UNUX
     int_t iRv = ::sem_close(_handle);  _handle = NULL;
     xTEST_DIFF(- 1, iRv);
 
@@ -74,7 +74,7 @@ CxIpcSemaphore::create(
     xTEST_GR(CxPath::maxSize(), a_name.size());
     xTEST_EQ(true, 0L <= a_initialValue && a_initialValue <= xSEMAPHORE_VALUE_MAX);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     ctchar_t       *winName = NULL;
     std::tstring_t  _winName;
 
@@ -92,7 +92,7 @@ CxIpcSemaphore::create(
 
     _handle.set(hRv);
     _name = a_name;
-#else
+#elif xOS_ENV_UNUX
     std::tstring_t unixName = CxConst::unixSlash() + a_name;
 
     handle_t hRv = ::sem_open(unixName.c_str(), O_CREAT | O_RDWR, 0777, a_initialValue);
@@ -111,7 +111,7 @@ CxIpcSemaphore::open(
     xTEST_EQ(true, _isValid());
     //name    - n/a
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     ctchar_t       *winName = NULL;
     std::tstring_t  _winName;
 
@@ -127,7 +127,7 @@ CxIpcSemaphore::open(
 
     _handle.set(hRv);
     _name = a_name;
-#else
+#elif xOS_ENV_UNUX
     std::tstring_t unixName = CxConst::unixSlash() + a_name;
 
     handle_t hRv = ::sem_open(unixName.c_str(), O_RDWR, 0777, 0U);
@@ -143,12 +143,12 @@ CxIpcSemaphore::post() const
 {
     xTEST_EQ(true, _isValid());
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
    const LONG postValue = 1L;
 
    BOOL blRv = ::ReleaseSemaphore(_handle.get(), postValue, NULL);
    xTEST_DIFF(FALSE, blRv);
-#else
+#elif xOS_ENV_UNUX
     int_t iRv = ::sem_post(_handle);
     xTEST_DIFF(- 1, iRv);
 #endif
@@ -162,7 +162,7 @@ CxIpcSemaphore::wait(
     xTEST_EQ(true, _isValid());
     //ulTimeout - n/a
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     DWORD dwRv = ::WaitForSingleObject(_handle.get(), a_timeoutMsec);
     xTEST_EQ(WAIT_OBJECT_0, dwRv);
 #elif xOS_ENV_UNIX
@@ -236,12 +236,12 @@ CxIpcSemaphore::value() const
 
     long_t liRv = - 1L;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     const LONG postValue = 0L;
 
     BOOL blRv = ::ReleaseSemaphore(_handle.get(), postValue, &liRv);
     xTEST_DIFF(FALSE, blRv);
-#else
+#elif xOS_ENV_UNUX
     int_t _value = - 1;
 
     int_t _iRv = ::sem_getvalue(_handle, &_value);
@@ -264,9 +264,9 @@ CxIpcSemaphore::value() const
 inline bool_t
 CxIpcSemaphore::_isValid() const
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     return _handle.isValid();
-#else
+#elif xOS_ENV_UNUX
     return (NULL != _handle);
 #endif
 }

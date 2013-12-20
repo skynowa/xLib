@@ -32,7 +32,7 @@ CxEnvironment::isExists(
 
     xCHECK_RET(a_varName.empty(), false);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     std::tstring_t sRv;
 
     sRv.resize(xPATH_MAX);
@@ -42,7 +42,7 @@ CxEnvironment::isExists(
     xTEST_NA(length);
 
     xCHECK_RET(0UL == length && ERROR_ENVVAR_NOT_FOUND == CxLastError::get(), false);
-#else
+#elif xOS_ENV_UNUX
     const char *pcszRv = ::getenv(a_varName.c_str());
     xTEST_NA(pcszRv);
 
@@ -91,7 +91,7 @@ CxEnvironment::var(
 
     std::tstring_t sRv;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     sRv.resize(xPATH_MAX);
 
     DWORD length = ::GetEnvironmentVariable(a_varName.c_str(), &sRv.at(0),
@@ -105,7 +105,7 @@ CxEnvironment::var(
             static_cast<DWORD>( sRv.size() ));
         xTEST_DIFF(0UL, length);
     }
-#else
+#elif xOS_ENV_UNUX
     const char *pcszRv = ::getenv(a_varName.c_str());
     xTEST_PTR(pcszRv);
 
@@ -125,10 +125,10 @@ CxEnvironment::setVar(
     xTEST_EQ(true, isVarValid(a_varName));
     xTEST_EQ(true, isVarValid(a_value));
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     BOOL blRv = ::SetEnvironmentVariable(a_varName.c_str(), a_value.c_str());
     xTEST_DIFF(FALSE, blRv);
-#else
+#elif xOS_ENV_UNUX
     int_t iRv = ::setenv(a_varName.c_str(), a_value.c_str(), true);
     xTEST_DIFF(- 1, iRv);
 #endif
@@ -144,7 +144,7 @@ CxEnvironment::deleteVar(
 
     xCHECK_DO(!isExists(a_varName), return);
 
-#if     xOS_ENV_WIN
+#if   xOS_ENV_WIN
     BOOL blRv = ::SetEnvironmentVariable(a_varName.c_str(), NULL);
     xTEST_DIFF(FALSE, blRv);
 #elif xOS_ENV_UNIX
@@ -170,7 +170,7 @@ CxEnvironment::values(
 
     std::vec_tstring_t args;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     LPTCH lpvEnv = ::GetEnvironmentStrings();
     xTEST_PTR(lpvEnv);
 
@@ -186,7 +186,7 @@ CxEnvironment::values(
 
     BOOL blRv = ::FreeEnvironmentStrings(lpvEnv);
     xTEST_DIFF(FALSE, blRv);
-#else
+#elif xOS_ENV_UNUX
     xTEST_PTR(environ);
 
     for (size_t i = 0; 0 != environ[i]; ++ i) {
@@ -208,7 +208,7 @@ CxEnvironment::expandStrings(
 
     std::tstring_t sRv;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     sRv.resize(xPATH_MAX);
 
     DWORD length = ::ExpandEnvironmentStrings(a_var.c_str(), &sRv.at(0),
@@ -224,7 +224,7 @@ CxEnvironment::expandStrings(
     }
 
     sRv.resize(length - 1);   // remove '\0'
-#else
+#elif xOS_ENV_UNUX
     std::ctstring_t sep = xT("%");
 
     sRv = a_var;

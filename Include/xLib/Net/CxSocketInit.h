@@ -22,7 +22,7 @@ public:
     virtual  ~CxSocketInit();
         ///< destructor  (clean winsock DLL)
 
-xNO_COPY_ASSIGN(CxSocketInit)
+    xNO_COPY_ASSIGN(CxSocketInit)
 };
 
 xNAMESPACE_END(NxLib)

@@ -30,7 +30,7 @@ public:
 private:
     std::tstring_t _rawMessage;
 
-xNO_COPY_ASSIGN(CxMimeMessage)
+    xNO_COPY_ASSIGN(CxMimeMessage)
 };
 
 xNAMESPACE_END(NxLib)

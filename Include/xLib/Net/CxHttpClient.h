@@ -64,7 +64,7 @@ public:
              CxHttpClient();
     virtual ~CxHttpClient() {}
 
-xNO_COPY_ASSIGN(CxHttpClient)
+    xNO_COPY_ASSIGN(CxHttpClient)
 };
 //-------------------------------------------------------------------------------------------------
 class CxHttpClient::CxStatusLine
@@ -75,8 +75,7 @@ public:
     virtual ~CxStatusLine() {}
 
 private:
-
-xNO_COPY_ASSIGN(CxStatusLine)
+    xNO_COPY_ASSIGN(CxStatusLine)
 };
 //-------------------------------------------------------------------------------------------------
 class CxHttpClient::CxHeader
@@ -87,8 +86,7 @@ public:
     virtual ~CxHeader() {}
 
 private:
-
-xNO_COPY_ASSIGN(CxHeader)
+    xNO_COPY_ASSIGN(CxHeader)
 };
 //-------------------------------------------------------------------------------------------------
 class CxHttpClient::CxBody
@@ -99,8 +97,7 @@ public:
     virtual ~CxBody() {}
 
 private:
-
-xNO_COPY_ASSIGN(CxBody)
+    xNO_COPY_ASSIGN(CxBody)
 };
 
 xNAMESPACE_END(NxLib)

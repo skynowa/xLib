@@ -34,7 +34,7 @@ private:
     virtual              ~CxType();
         ///< destructor
 
-xNO_COPY_ASSIGN(CxType)
+    xNO_COPY_ASSIGN(CxType)
 };
 
 xNAMESPACE_END(NxLib)

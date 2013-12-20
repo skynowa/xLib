@@ -173,7 +173,7 @@ private:
                          ~CxString();
         ///< destructor
 
-xNO_COPY_ASSIGN(CxString)
+    xNO_COPY_ASSIGN(CxString)
 };
 
 xNAMESPACE_END(NxLib)

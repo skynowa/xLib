@@ -64,7 +64,7 @@ private:
     std::size_t       _mailsSum(std::ctstring_t &serverAnswer) xWARN_UNUSED_RV;
     std::size_t       _mailsSize(std::ctstring_t &serverAnswer) xWARN_UNUSED_RV;
 
-xNO_COPY_ASSIGN(CxPop3)
+    xNO_COPY_ASSIGN(CxPop3)
 };
 
 xNAMESPACE_END(NxLib)

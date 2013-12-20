@@ -208,7 +208,7 @@ CxSystemInfo::osArch()
         // 64-bit Windows does not support Win16
         oaRv = oaUnknown;
     #endif
-#else
+#elif xOS_ENV_UNUX
     utsname info; xSTRUCT_ZERO(info);
 
     int_t iRv = ::uname(&info);
@@ -283,22 +283,21 @@ CxSystemInfo::desktopName() const
 #if   xOS_ENV_WIN
     std::ctstring_t nativeDesktop = xT("explorer.exe");
 
-#if 0
-    // TODO: CxSystemInfo::desktopName
-    const CxProcess::id_t pid = CxProcess::idByName(nativeDesktop);
+    #if 0
+        // TODO: CxSystemInfo::desktopName
+        const CxProcess::id_t pid = CxProcess::idByName(nativeDesktop);
 
-    bool_t bRv = CxProcess::isRunning(pid);
-    if (bRv) {
+        bool_t bRv = CxProcess::isRunning(pid);
+        if (bRv) {
+            sRv = nativeDesktop;
+        } else {
+            // TODO: implement some checks for detecting Windows shell
+        }
+
+        xTEST_EQ(false, sRv.empty());
+    #else
         sRv = nativeDesktop;
-    } else {
-        // TODO: implement some checks for detecting Windows shell
-    }
-
-    xTEST_EQ(false, sRv.empty());
-#else
-    sRv = nativeDesktop;
-#endif
-
+    #endif
 #elif xOS_ENV_UNIX
     sRv = CxEnvironment::var(xT("DESKTOP_SESSION"));
     xTEST_EQ(false, sRv.empty());
@@ -314,7 +313,7 @@ CxSystemInfo::hostName() const
 {
     std::tstring_t sRv;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     ulong_t buffSize                 = xHOST_NAME_MAX;
     tchar_t buff[xHOST_NAME_MAX + 1] = {0};
 
@@ -322,7 +321,7 @@ CxSystemInfo::hostName() const
     xTEST_DIFF(FALSE, blRv);
 
     sRv.assign(buff, buffSize);
-#else
+#elif xOS_ENV_UNUX
     utsname info; xSTRUCT_ZERO(info);
 
     int_t iRv = ::uname(&info);
@@ -337,7 +336,7 @@ CxSystemInfo::hostName() const
 inline bool_t
 CxSystemInfo::isUserAdmin() const
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     bool_t                   isAdmin     = false;
     SID_IDENTIFIER_AUTHORITY ntAuthority = { SECURITY_NT_AUTHORITY };
     PSID                     adminGroup  = NULL;
@@ -360,7 +359,7 @@ CxSystemInfo::isUserAdmin() const
     (void_t)::FreeSid(adminGroup);
 
     xCHECK_RET(!isAdmin, false);
-#else
+#elif xOS_ENV_UNUX
     const uid_t rootId = 0;
     uid_t       userId = 0;
 
@@ -1070,13 +1069,13 @@ CxSystemInfo::pageSize() const
 {
     ulong_t ulRv = 0UL;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     SYSTEM_INFO sysInfo = {{0}};
 
     (void_t)::GetNativeSystemInfo(&sysInfo);
 
     ulRv = sysInfo.dwPageSize;
-#else
+#elif xOS_ENV_UNUX
     long_t liRv = ::sysconf(xPAGE_SIZE);
     xTEST_DIFF(- 1L, liRv);
     xTEST_LESS(0L,   liRv);

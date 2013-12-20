@@ -27,7 +27,7 @@ public:
 private:
     CxMutex *_mutex;    ///< mutex
 
-xNO_COPY_ASSIGN(CxAutoMutex)
+    xNO_COPY_ASSIGN(CxAutoMutex)
 };
 
 xNAMESPACE_END(NxLib)

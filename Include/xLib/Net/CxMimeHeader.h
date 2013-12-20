@@ -54,7 +54,7 @@ private:
     //Date:
     //Message-ID:
 
-xNO_COPY_ASSIGN(CxMimeHeader)
+    xNO_COPY_ASSIGN(CxMimeHeader)
 };
 
 xNAMESPACE_END(NxLib)

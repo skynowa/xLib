@@ -280,7 +280,7 @@ private:
     static std::tstring_t _openMode(const ExOpenMode &mode) xWARN_UNUSED_RV;
         ///< get open mode as string, by default use "r"
 
-xNO_COPY_ASSIGN(CxFile)
+    xNO_COPY_ASSIGN(CxFile)
 };
 
 xNAMESPACE_END(NxLib)

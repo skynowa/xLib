@@ -47,7 +47,7 @@ private:
                        std::tstring_t &reply);
     bool_t         _isError(std::ctstring_t &text) xWARN_UNUSED_RV;
 
-xNO_COPY_ASSIGN(CxSmtp)
+    xNO_COPY_ASSIGN(CxSmtp)
 };
 
 xNAMESPACE_END(NxLib)

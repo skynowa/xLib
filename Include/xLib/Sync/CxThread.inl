@@ -87,7 +87,7 @@ CxThread::create(
     void_t  *a_param
 )
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     xTEST_EQ(false, _thread.isValid());
 #else
 
@@ -109,7 +109,7 @@ CxThread::create(
 
     //-------------------------------------
     // start
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     id_t id = 0UL;
 
     HANDLE hRv = reinterpret_cast<HANDLE>( ::_beginthreadex(NULL, a_stackSize, _s_jobEntry, this,
@@ -174,7 +174,7 @@ CxThread::create(
 inline void_t
 CxThread::resume()
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     xTEST_EQ(true, _thread.isValid());
 #else
 
@@ -193,7 +193,7 @@ CxThread::resume()
 inline void_t
 CxThread::pause()
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     xTEST_MSG_EQ(true, _thread.isValid(), CxString::cast(_thread.get()));
 #else
 
@@ -212,7 +212,7 @@ CxThread::pause()
 inline void_t
 CxThread::exit()
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     xTEST_EQ(true, _thread.isValid());
 #else
 
@@ -236,7 +236,7 @@ CxThread::kill(
 {
     ulong_t ulRv = 0UL;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     xTEST_EQ(true, _thread.isValid());
     //ulTimeout - n/a
 
@@ -260,7 +260,7 @@ CxThread::kill(
 
     //-------------------------------------
     // clean members
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     _thread.close();
 #else
     _thread = 0UL;
@@ -281,7 +281,7 @@ CxThread::wait(
     culong_t &a_timeoutMsec
 ) const
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     xTEST_EQ(true, _thread.isValid());
     //ulTimeout - n/a
 
@@ -319,7 +319,7 @@ CxThread::isCreated() const
 
     bool_t bRv = false;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     bRv = (_isCreated) && (_thread.isValid());
 #else
     bRv = (_isCreated) && (0UL   != _thread);
@@ -335,7 +335,7 @@ CxThread::isRunning() const
 
     bool_t bRv = false;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     DWORD ulRv = 0UL;
 
     (void_t)::GetExitCodeThread(_thread.get(), &ulRv);
@@ -370,7 +370,7 @@ CxThread::isPaused()
 
     bool_t bRv = false;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     bRv = !_eventPause.isSignaled() && _thread.isValid();
 #else
     bRv = !_eventPause.isSignaled() /*&& (0UL   != _thread)*/;
@@ -386,7 +386,7 @@ CxThread::isExited()
 
     bool_t bRv = false;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     bRv = _eventExit.isSignaled() && _thread.isValid();
 #else
     bRv = _eventExit.isSignaled() && (0UL != _thread);
@@ -403,7 +403,7 @@ CxThread::isExited()
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
 
 inline void_t
 CxThread::postMessage(
@@ -424,7 +424,7 @@ CxThread::postMessage(
 
 #endif
 //-------------------------------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
 
 inline void_t
 CxThread::sendMessage(
@@ -445,7 +445,7 @@ CxThread::sendMessage(
 
 #endif
 //-------------------------------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
 
 inline void_t
 CxThread::postThreadMessage(
@@ -463,7 +463,7 @@ CxThread::postThreadMessage(
 
 #endif
 //-------------------------------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
 
 inline bool_t
 CxThread::tryPostThreadMessage(
@@ -489,7 +489,7 @@ CxThread::tryPostThreadMessage(
 
 #endif
 //-------------------------------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
 
 inline void_t
 CxThread::messageWaitQueue(
@@ -509,7 +509,7 @@ CxThread::messageWaitQueue(
 
 #endif
 //-------------------------------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
 
 inline void_t
 CxThread::messageWaitQueue(
@@ -556,7 +556,7 @@ CxThread::_priorityMin()
 {
     int_t iRv = - 1;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     iRv = THREAD_PRIORITY_IDLE;
 #else
     iRv = ::sched_get_priority_min(SCHED_FIFO);
@@ -571,7 +571,7 @@ inline int_t
 CxThread::_priorityMax() {
     int_t iRv = - 1;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     iRv = THREAD_PRIORITY_TIME_CRITICAL;
 #else
     iRv = ::sched_get_priority_max(SCHED_FIFO);
@@ -586,7 +586,7 @@ CxThread::setPriority(
     const ExPriority &a_priority
 ) const
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     xTEST_EQ(true, _thread.isValid());
 
     BOOL blRv = ::SetThreadPriority(_thread.get(), a_priority);
@@ -608,7 +608,7 @@ CxThread::setPriority(
 inline CxThread::ExPriority
 CxThread::priority() const
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     xTEST_EQ(true, _thread.isValid());
 #else
 
@@ -616,7 +616,7 @@ CxThread::priority() const
 
     CxThread::ExPriority tpRv = tpError;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     tpRv = static_cast<ExPriority>( ::GetThreadPriority(_thread.get()) );
     xTEST_DIFF(tpError, tpRv);
 #else
@@ -661,7 +661,7 @@ CxThread::priorityString() const
 inline void_t
 CxThread::priorityUp() const
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     xTEST_EQ(true, _thread.isValid());
 #else
 
@@ -704,7 +704,7 @@ CxThread::priorityUp() const
 inline void_t
 CxThread::priorityDown() const
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     xTEST_EQ(true, _thread.isValid());
 #else
 
@@ -747,7 +747,7 @@ CxThread::priorityDown() const
 inline bool_t
 CxThread::isPriorityBoost() const
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     xTEST_EQ(true, _thread.isValid());
 
     BOOL isDisablePriorityBoost = TRUE;
@@ -769,7 +769,7 @@ CxThread::setPriorityBoost(
     cbool_t &a_isEnabled
 ) const
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     xTEST_EQ(true, _thread.isValid());
 
     BOOL blRv = ::SetThreadPriorityBoost(_thread.get(), ! a_isEnabled);
@@ -794,7 +794,7 @@ CxThread::setCpuAffinity(
     cint_t &a_procNum
 ) const
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     xTEST_EQ(true, _thread.isValid());
 
     DWORD_PTR mask = 0;
@@ -835,7 +835,7 @@ CxThread::setCpuIdeal(
     culong_t &a_idealCpu    ///< value is zero-based
 ) const
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     xTEST_EQ(true, _thread.isValid());
 
     DWORD ulRv = (DWORD) - 1;
@@ -852,7 +852,7 @@ CxThread::setCpuIdeal(
 inline ulong_t
 CxThread::cpuIdeal() const
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     xTEST_EQ(true, _thread.isValid());
 #else
 
@@ -860,7 +860,7 @@ CxThread::cpuIdeal() const
 
     ulong_t ulRv = (ulong_t) - 1;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     ulRv = ::SetThreadIdealProcessor(_thread.get(), MAXIMUM_PROCESSORS);
     xTEST_DIFF((ulong_t) - 1, ulRv);
 #else
@@ -891,7 +891,7 @@ CxThread::cpuCount()
 inline CxThread::handle_t
 CxThread::handle() const
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     xTEST_EQ(true, _thread.isValid());
 
     return _thread.get();
@@ -903,7 +903,7 @@ CxThread::handle() const
 inline CxThread::id_t
 CxThread::id() const
 {
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     xTEST_EQ(true, _thread.isValid());
 #else
 
@@ -923,7 +923,7 @@ CxThread::exitStatus() const
 {
     ulong_t ulRv = 0UL;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     xTEST_EQ(true, _thread.isValid());
 
     BOOL blRv = ::GetExitCodeThread(_thread.get(), &ulRv);
@@ -951,7 +951,7 @@ CxThread::setDebugName(
 
     //// TODO: xCHECK_RET(!CxDebugger().bIsActive(), true);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #if xCOMPILER_MS || xCOMPILER_CODEGEAR
         const DWORD msVcException = 0x406D1388;
 
@@ -1020,7 +1020,7 @@ CxThread::open(
     xTEST_NA(a_isInheritHandle);
     xTEST_LESS(0UL, a_id);
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     handle_t hRv = ::OpenThread(a_access, a_isInheritHandle, a_id);
     xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
 #else
@@ -1049,7 +1049,7 @@ CxThread::isCurrent(
 {
     bool_t bRv = false;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     bRv = (currentId() == a_id);
 #else
     //TODO: If either thread1 or thread2 are not valid thread IDs, the behavior is undefined
@@ -1066,7 +1066,7 @@ CxThread::currentId()
 
     id_t ulRv = 0UL;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     ulRv = ::GetCurrentThreadId();
     xTEST_LESS(0UL, ulRv);
 #else
@@ -1084,7 +1084,7 @@ CxThread::currentHandle()
 
     handle_t hRv;
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     hRv = ::GetCurrentThread();
     xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
 #else
@@ -1100,7 +1100,7 @@ CxThread::currentYield()
 {
     // n/a
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     (void_t)::SwitchToThread();
 #else
     int_t iRv = ::sched_yield();
@@ -1115,7 +1115,7 @@ CxThread::currentSleep(
 {
     // n/a
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     (void_t)::Sleep(a_timeoutMsec);
 #else
     timespec timeSleep  = {0, 0};
@@ -1275,7 +1275,7 @@ CxThread::_s_jobEntry(
 
     //-------------------------------------
     // clean members (is need to close???)
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     self->_thread.close();
 #else
     // TODO: _thread.vClose()
@@ -1290,7 +1290,7 @@ CxThread::_s_jobEntry(
     // flags
     self->_setStatesDefault();
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     exit_status_t esExitStatus = self->_exitStatus;
 #else
     exit_status_t esExitStatus = &self->_exitStatus;

@@ -35,7 +35,7 @@ private:
     T *       _value;
     const T & _reset_value;
 
-xNO_COPY_ASSIGN(CxAutoReset)
+    xNO_COPY_ASSIGN(CxAutoReset)
 };
 
 xNAMESPACE_END(NxLib)

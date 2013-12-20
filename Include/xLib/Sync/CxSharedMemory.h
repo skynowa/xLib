@@ -21,8 +21,7 @@ public:
     virtual ~CxSharedMemory();
 
 private:
-
-xNO_COPY_ASSIGN(CxSharedMemory)
+    xNO_COPY_ASSIGN(CxSharedMemory)
 };
 
 xNAMESPACE_END(NxLib)

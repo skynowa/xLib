@@ -36,7 +36,7 @@ private:
     virtual              ~CxCrc32();
         ///< destructor
 
-xNO_COPY_ASSIGN(CxCrc32)
+    xNO_COPY_ASSIGN(CxCrc32)
 };
 
 xNAMESPACE_END(NxLib)

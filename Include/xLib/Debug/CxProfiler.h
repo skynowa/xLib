@@ -47,7 +47,7 @@ private:
     void_t           _dataReset();
         ///< reset all class data
 
-xNO_COPY_ASSIGN(CxProfiler)
+    xNO_COPY_ASSIGN(CxProfiler)
 };
 
 xNAMESPACE_END(NxLib)

@@ -17,17 +17,6 @@ class CxDateTime
     /// date, time
 {
 public:
-#if 0
-    enum ExFormatType
-        /// format type
-    {
-        ftTime,     ///< HH.MM.SS.MMM
-        ftDate,     ///< DD.MM.YYYY
-        ftDateTime, ///< DD.MM.YYYY HH.MM.SS.MMM
-        ftRFC1123   ///< Wdy, DD Mon YYYY HH:MM:SS GMT
-    };
-#endif
-
     // constructors, destructor
                           CxDateTime();
         ///< constructor

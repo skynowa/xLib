@@ -40,7 +40,7 @@ private:
     pthread_cond_t          _handle;
 #endif
 
-xNO_COPY_ASSIGN(CxCondition)
+    xNO_COPY_ASSIGN(CxCondition)
 };
 //-------------------------------------------------------------------------------------------------
 #include "CxCondition.inl"

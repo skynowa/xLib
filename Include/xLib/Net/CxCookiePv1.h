@@ -84,7 +84,7 @@ private:
     bool_t            _isSecure;    ///< secure
     bool_t            _isHttpOnly;  ///< http only
 
-xNO_COPY_ASSIGN(CxCookiePv1)
+    xNO_COPY_ASSIGN(CxCookiePv1)
 };
 
 xNAMESPACE_END(NxLib)

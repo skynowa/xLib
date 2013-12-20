@@ -22,7 +22,7 @@ public:
     enum ExPriority
         /// priotity
     {
-        #if xOS_ENV_WIN
+        #if   xOS_ENV_WIN
             tpError        = THREAD_PRIORITY_ERROR_RETURN,
             tpIdle         = THREAD_PRIORITY_IDLE,
             tpLowest       = THREAD_PRIORITY_LOWEST,
@@ -31,7 +31,7 @@ public:
             tpAboveNormal  = THREAD_PRIORITY_ABOVE_NORMAL,
             tpHighest      = THREAD_PRIORITY_HIGHEST,
             tpTimeCritical = THREAD_PRIORITY_TIME_CRITICAL
-        #else
+        #elif xOS_ENV_UNUX
             tpError        = - 1,
             tpIdle         ,
             tpLowest       = 10,
@@ -43,10 +43,10 @@ public:
         #endif
     };
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     typedef HANDLE    handle_t; ///< handle
     typedef DWORD     id_t;     ///< ID
-#else
+#elif xOS_ENV_UNUX
     typedef pthread_t handle_t; ///< handle
     typedef pthread_t id_t;     ///< ID
 #endif
@@ -174,9 +174,9 @@ private:
     static culong_t      _s_exitTimeout        = 5000UL; ///< exit timeout (msec)
 
     // thread data
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     CxHandle             _thread;                 ///< native handle
-#else
+#elif xOS_ENV_UNUX
     handle_t             _thread;                 ///< native handle
 #endif
 
@@ -197,9 +197,9 @@ private:
     CxEvent              _eventPause;                 ///< pause event
     CxEvent              _eventExit;                  ///< exit event
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     typedef uint_t       exit_status_t;
-#else
+#elif xOS_ENV_UNUX
     typedef void_t *     exit_status_t;
 #endif
 
@@ -215,7 +215,7 @@ private:
     static int_t         _priorityMin();
     static int_t         _priorityMax();
 
-xNO_COPY_ASSIGN(CxThread)
+    xNO_COPY_ASSIGN(CxThread)
 };
 
 xNAMESPACE_END(NxLib)
