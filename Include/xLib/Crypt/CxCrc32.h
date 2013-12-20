@@ -17,20 +17,22 @@ class CxCrc32
     /// Crc32
 {
 public:
-                          CxCrc32() {};
+                   CxCrc32();
         ///< constructor
-    virtual              ~CxCrc32() {};
+    virtual       ~CxCrc32() {};
         ///< destructor
 
-    static ulong_t        calc(uchar_t *buff, culong_t &size) xWARN_UNUSED_RV;
+    ulong_t        calc(uchar_t *buff, culong_t &size) xWARN_UNUSED_RV;
         ///< fast calculate
-    static ulong_t        calcFile(std::ctstring_t &filePath) xWARN_UNUSED_RV;
+    ulong_t        calcFile(std::ctstring_t &filePath) xWARN_UNUSED_RV;
         ///< fast calculate
 
-    static std::tstring_t formatHex(culong_t &crc32) xWARN_UNUSED_RV;
+    std::tstring_t formatHex() const xWARN_UNUSED_RV;
         ///< format Crc32 like "0AADDEA0"
 
 private:
+    ulong_t        _crc32;
+
     xNO_COPY_ASSIGN(CxCrc32)
 };
 

@@ -28,11 +28,13 @@ CxTest_CxCrc32::unit(
 
     xTEST_CASE("CxCrc32::calcFile calc formatHex", a_caseLoops)
     {
-        m_ulRv = CxCrc32::calcFile(filePath);
+        CxCrc32 crc32;
+
+        m_ulRv = crc32.calcFile(filePath);
         xTEST_LESS(0UL, m_ulRv);
         //xTRACE(m_ulRv);
 
-        m_sRv = CxCrc32::formatHex(m_ulRv);
+        m_sRv = crc32.formatHex();
         xTEST_EQ(false, m_sRv.empty());
     }
 }
