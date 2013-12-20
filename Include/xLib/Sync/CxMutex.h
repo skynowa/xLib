@@ -19,7 +19,7 @@ class CxMutex
 public:
 #if   xOS_ENV_WIN
     typedef CRITICAL_SECTION handle_t;
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     typedef pthread_mutex_t  handle_t;
 #endif
 

@@ -29,7 +29,7 @@ public:
         lvNotice   = EVENTLOG_SUCCESS,
         lvInfo     = EVENTLOG_INFORMATION_TYPE,
         lvDebug    = EVENTLOG_INFORMATION_TYPE
-    #else xOS_ENV_UNIX
+    #elif xOS_ENV_UNIX
         lvEmerg    = 0,
         lvAlert    = 1,
         lvCritical = 2,

@@ -31,8 +31,6 @@ public:
 private:
     std::tstring_t    _msgT;
         ///< message
-
-    xNO_COPY_ASSIGN(CxException)
 };
 
 xNAMESPACE_END(NxLib)

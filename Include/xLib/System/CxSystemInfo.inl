@@ -208,7 +208,7 @@ CxSystemInfo::osArch()
         // 64-bit Windows does not support Win16
         oaRv = oaUnknown;
     #endif
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     utsname info; xSTRUCT_ZERO(info);
 
     int_t iRv = ::uname(&info);
@@ -321,7 +321,7 @@ CxSystemInfo::hostName() const
     xTEST_DIFF(FALSE, blRv);
 
     sRv.assign(buff, buffSize);
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     utsname info; xSTRUCT_ZERO(info);
 
     int_t iRv = ::uname(&info);
@@ -359,7 +359,7 @@ CxSystemInfo::isUserAdmin() const
     (void_t)::FreeSid(adminGroup);
 
     xCHECK_RET(!isAdmin, false);
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     const uid_t rootId = 0;
     uid_t       userId = 0;
 
@@ -1075,7 +1075,7 @@ CxSystemInfo::pageSize() const
     (void_t)::GetNativeSystemInfo(&sysInfo);
 
     ulRv = sysInfo.dwPageSize;
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     long_t liRv = ::sysconf(xPAGE_SIZE);
     xTEST_DIFF(- 1L, liRv);
     xTEST_LESS(0L,   liRv);

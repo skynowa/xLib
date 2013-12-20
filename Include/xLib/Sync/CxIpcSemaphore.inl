@@ -9,7 +9,7 @@
 
 #if   xOS_ENV_WIN
     // lib: n/a
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     // lib: -lrt
 #endif
 
@@ -26,7 +26,7 @@ inline
 CxIpcSemaphore::CxIpcSemaphore() :
 #if   xOS_ENV_WIN
     _handle(),
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     _handle(NULL),
 #endif
     _name  ()
@@ -35,7 +35,7 @@ CxIpcSemaphore::CxIpcSemaphore() :
 
 #if   xOS_ENV_WIN
     xNA;
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     // sem_init
 #endif
 }
@@ -47,7 +47,7 @@ CxIpcSemaphore::~CxIpcSemaphore()
 
 #if   xOS_ENV_WIN
     xNA;
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     int_t iRv = ::sem_close(_handle);  _handle = NULL;
     xTEST_DIFF(- 1, iRv);
 
@@ -92,7 +92,7 @@ CxIpcSemaphore::create(
 
     _handle.set(hRv);
     _name = a_name;
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     std::tstring_t unixName = CxConst::unixSlash() + a_name;
 
     handle_t hRv = ::sem_open(unixName.c_str(), O_CREAT | O_RDWR, 0777, a_initialValue);
@@ -127,7 +127,7 @@ CxIpcSemaphore::open(
 
     _handle.set(hRv);
     _name = a_name;
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     std::tstring_t unixName = CxConst::unixSlash() + a_name;
 
     handle_t hRv = ::sem_open(unixName.c_str(), O_RDWR, 0777, 0U);
@@ -148,7 +148,7 @@ CxIpcSemaphore::post() const
 
    BOOL blRv = ::ReleaseSemaphore(_handle.get(), postValue, NULL);
    xTEST_DIFF(FALSE, blRv);
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     int_t iRv = ::sem_post(_handle);
     xTEST_DIFF(- 1, iRv);
 #endif
@@ -241,7 +241,7 @@ CxIpcSemaphore::value() const
 
     BOOL blRv = ::ReleaseSemaphore(_handle.get(), postValue, &liRv);
     xTEST_DIFF(FALSE, blRv);
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     int_t _value = - 1;
 
     int_t _iRv = ::sem_getvalue(_handle, &_value);
@@ -266,7 +266,7 @@ CxIpcSemaphore::_isValid() const
 {
 #if   xOS_ENV_WIN
     return _handle.isValid();
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     return (NULL != _handle);
 #endif
 }

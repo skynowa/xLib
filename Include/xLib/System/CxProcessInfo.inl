@@ -380,7 +380,7 @@ CxProcessInfo::commandLineArgsMax()
 
 #if   xOS_ENV_WIN
     liRv = 32L * 1024L;
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     liRv = ::sysconf(_SC_ARG_MAX) / sizeof(std::tstring_t::value_type);
     xTEST_DIFF(- 1L, liRv);
 #endif

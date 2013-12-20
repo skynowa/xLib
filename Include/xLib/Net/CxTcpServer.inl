@@ -71,7 +71,7 @@ CxTcpServer::accept(
     scktClient = ::accept(_socket, CxUtils::reinterpretCastT<struct sockaddr *>( &cliaddr ),
         &addrlen);
     xTEST_DIFF(xSOCKET_HANDLE_INVALID, scktClient);
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     struct sockaddr_in cliaddr; xSTRUCT_ZERO(cliaddr);
     socklen_t          addrlen = sizeof(cliaddr);
 

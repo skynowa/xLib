@@ -134,7 +134,7 @@ CxSocket::close() {
 
     iRv = ::closesocket(_socket);
     xTEST_DIFF(xSOCKET_ERROR, iRv);
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     iRv = ::close(_socket);
     xTEST_DIFF(xSOCKET_ERROR, iRv);
 #endif
@@ -167,7 +167,7 @@ CxSocket::send(
     ssize_t iRv = ::send(_socket, (LPCSTR)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
     xTEST_EQ(true, xSOCKET_ERROR != iRv && WSAEWOULDBLOCK != CxSocket::lastError());
     xTEST_GR_EQ(a_buffSize * sizeof(tchar_t), iRv);
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     xUNUSED(a_flags);
 
     #if !defined(MSG_NOSIGNAL)
@@ -243,7 +243,7 @@ CxSocket::receive(
     xTEST_EQ(true, xSOCKET_ERROR != iRv && WSAEWOULDBLOCK != CxSocket::lastError());
     xTEST_DIFF(0, iRv);  // gracefully closed
     xTEST_GR_EQ(a_buffSize * (int_t)sizeof(tchar_t), iRv);
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     ssize_t iRv = ::recv(_socket, (char *)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
     xTEST_DIFF((ssize_t)xSOCKET_ERROR, iRv);
     xTEST_DIFF((ssize_t)0, iRv);  // gracefully closed
@@ -271,7 +271,7 @@ CxSocket::recvAll(
 
     #if   xOS_ENV_WIN
         iRv = ::ioctlsocket(_socket, FIONREAD, &ulArg);
-    #else xOS_ENV_UNIX
+    #elif xOS_ENV_UNIX
         iRv = ::ioctl      (_socket, FIONREAD, &ulArg);
     #endif
 
@@ -425,7 +425,7 @@ CxSocket::peerName(
     int_t iRv = ::getpeername(_socket, CxUtils::reinterpretCastT<SOCKADDR *>( &sockAddr ),
         &sockAddrLen);
     xTEST_DIFF(xSOCKET_ERROR, iRv);
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     sockaddr_in sockAddr;   xSTRUCT_ZERO(sockAddr);
     socklen_t   sockAddrLen = sizeof(sockAddr);
 
@@ -462,7 +462,7 @@ CxSocket::socketName(
     int_t iRv = ::getsockname(_socket, CxUtils::reinterpretCastT<SOCKADDR *>( &sockAddr ),
         &sockAddrLen);
     xTEST_DIFF(xSOCKET_ERROR, iRv);
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     sockaddr_in sockAddr;   xSTRUCT_ZERO(sockAddr);
     socklen_t   sockAddrLen = sizeof(sockAddr);
 

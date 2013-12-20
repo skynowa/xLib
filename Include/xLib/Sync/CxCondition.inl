@@ -36,7 +36,7 @@ CxCondition::~CxCondition()
 {
 #if   xOS_ENV_WIN
 
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     int_t iRv = - 1;
 
     iRv = ::pthread_cond_destroy(&_handle);
@@ -72,7 +72,7 @@ CxCondition::create()
 {
 #if   xOS_ENV_WIN
 
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     int_t iRv = - 1;
 
     iRv = ::pthread_mutex_init(&_mutex, NULL);    // mutex not recursive
@@ -90,7 +90,7 @@ CxCondition::wait(
 {
 #if   xOS_ENV_WIN
 
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     int_t iRv = - 1;
 
     // wait until condition thread returns control

@@ -109,7 +109,7 @@ CxConsole::setAttributes(
         const WORD foregroundColorYellow  = FOREGROUND_RED | FOREGROUND_GREEN;
         const WORD foregroundColorWhite   = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE;
         const WORD foregroundColorGray	  = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE;
-    #elif xOS_ENV_UNUX
+    #elif xOS_ENV_UNIX
         cint_t  foregroundColorBlack      = 30;
         cint_t  foregroundColorRed        = 31;
         cint_t  foregroundColorBlue       = 34;
@@ -174,7 +174,7 @@ CxConsole::setAttributes(
         const WORD backgroundColorYellow  = BACKGROUND_RED | BACKGROUND_GREEN;
         const WORD backgroundColorWhite   = BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE;
         const WORD backgroundColorGray	  = BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE;
-    #elif xOS_ENV_UNUX
+    #elif xOS_ENV_UNIX
         cint_t  backgroundColorBlack      = 40;
         cint_t  backgroundColorRed	      = 41;
         cint_t  backgroundColorBlue	      = 44;
@@ -228,7 +228,7 @@ CxConsole::setAttributes(
     //--------------------------------------------------
 #if   xOS_ENV_WIN
     WORD           attrs = 0U;
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     std::tstring_t attrs;
 #endif
 
@@ -240,7 +240,7 @@ CxConsole::setAttributes(
         const WORD attributeBlink      = - 1; xUNUSED(attributeBlink);        // not supported
         const WORD attributeReverse    = - 1; xUNUSED(attributeReverse);      // not supported
         const WORD attributeConcealed  = - 1; xUNUSED(attributeConcealed);    // not supported
-    #elif xOS_ENV_UNUX
+    #elif xOS_ENV_UNIX
         cint_t  attributeAllOff        = 0;
         cint_t  attributeBold          = 1;
         cint_t  attributeUnderscore    = 4;
@@ -259,7 +259,7 @@ CxConsole::setAttributes(
         xCHECK_DO(a_attributes & CxConsole::atBlink,      /* attrs |= attributeBlink */);        // not supported
         xCHECK_DO(a_attributes & CxConsole::atReverse,    /* attrs |= attributeReverse */);      // not supported
         xCHECK_DO(a_attributes & CxConsole::atConcealed,  /* attrs |= attributeConcealed */);    // not supported
-    #elif xOS_ENV_UNUX
+    #elif xOS_ENV_UNIX
         attrs += CxString::format(xT("\033[%im"), foregroundColor);
         attrs += CxString::format(xT("\033[%im"), backgroundColor);
 
@@ -277,7 +277,7 @@ CxConsole::setAttributes(
     xTEST_DIFF(FALSE, blRv);
 
     return std::tstring_t();    // not need for Windows
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     return attrs;
 #endif
 }
@@ -299,7 +299,7 @@ CxConsole::setAttributesDef() const
     xTEST_DIFF(FALSE, blRv);
 
     xUNUSED(sRv);
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     sRv = xT("\033[0;0m");
 #endif
 
@@ -326,7 +326,7 @@ CxConsole::read() const
     xTEST_DIFF(FALSE, blRv);
 
     sRv.assign(buff, read - CxConst::crNl().size());
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     // BUG: CxConsole::read
     std::tcin >> sRv;
 #endif
@@ -354,7 +354,7 @@ CxConsole::write(
                     &written, NULL);
     xTEST_DIFF(FALSE, blRv);
     xTEST_EQ(static_cast<size_t>( written ), a_str.size());
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     std::tcout << a_str;
 #endif
 
@@ -507,7 +507,7 @@ CxConsole::pause(
 
         ::FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
         _getch();
-    #elif xOS_ENV_UNUX
+    #elif xOS_ENV_UNIX
         std::tcout << std::endl << "Press ENTER to continue..." << std::endl;
 
         std::cin.clear();
@@ -572,7 +572,7 @@ CxConsole::clear() const
     // put the cursor at (0, 0)
     blRv = ::SetConsoleCursorPosition(_stdOut.get(), coordScreen );
     xTEST_DIFF(FALSE, blRv);
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     writeLine(CxConst::ff());
 #endif
 }
@@ -606,7 +606,7 @@ CxConsole::enableClose(
                               SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_DRAWFRAME);
         xTEST_DIFF(FALSE, blRv);
     }
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     xUNUSED(a_flag);
 
     // TODO: enableClose
@@ -634,7 +634,7 @@ CxConsole::title() const
     xTEST_LESS(0UL, titleSize);
 
     sRv.assign(buff, titleSize);
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     // TODO: sTitle
     xNOT_IMPLEMENTED;
 #endif
@@ -656,7 +656,7 @@ CxConsole::setTitle(
 #if   xOS_ENV_WIN
     BOOL blRv = ::SetConsoleTitle(a_title.c_str());
     xTEST_DIFF(FALSE, blRv);
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     // TODO: vSetTitle
     writeLine( CxString::format(xT("%c]0;%s%c"), xT('\033'), a_title.c_str(), xT('\007')) );
 #endif
@@ -691,7 +691,7 @@ CxConsole::setFullScreen() const
     xTEST_DIFF(FALSE, blRv);
 
     centerWindow();
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     // TODO: setFullScreen
     xNOT_IMPLEMENTED;
 #endif
@@ -725,7 +725,7 @@ CxConsole::centerWindow() const
 
     blRv = ::MoveWindow(_wnd, x, desktopY - wndHeight / 2, wndWidth, wndHeight, true);
     xTEST_DIFF(FALSE, blRv);
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     // TODO: centerWindow
     xNOT_IMPLEMENTED;
 #endif

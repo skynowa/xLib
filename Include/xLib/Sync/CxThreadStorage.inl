@@ -26,7 +26,7 @@ inline
 CxThreadStorage::CxThreadStorage() :
 #if   xOS_ENV_WIN
     _index(TLS_OUT_OF_INDEXES)
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     _index(static_cast<pthread_key_t>( -1 ))
 #endif
 {
@@ -48,7 +48,7 @@ CxThreadStorage::isSet() const
 #if   xOS_ENV_WIN
     pvRv = ::TlsGetValue(_index);
     xCHECK_RET(NULL == pvRv, false);
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     pvRv = ::pthread_getspecific(_index);
     xCHECK_RET(NULL == pvRv, false);
 #endif
@@ -66,7 +66,7 @@ CxThreadStorage::value() const
 
     pvRv = ::TlsGetValue(_index);
     xTEST_EQ(true, (NULL != pvRv) && (ERROR_SUCCESS == CxLastError::get()));
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     xTEST_EQ(true, 0 < _index);
 
     pvRv = ::pthread_getspecific(_index);
@@ -88,7 +88,7 @@ CxThreadStorage::setValue(
 
     BOOL blRv = ::TlsSetValue(_index, a_value);
     xTEST_DIFF(FALSE, blRv);
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     xTEST_EQ(true, 0 < _index);
 
     int_t iRv = ::pthread_setspecific(_index, a_value);
@@ -114,7 +114,7 @@ CxThreadStorage::_construct()
 
     indRv = ::TlsAlloc();
     xTEST_DIFF(TLS_OUT_OF_INDEXES, indRv);
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     xTEST_EQ(static_cast<pthread_key_t>( - 1 ), _index);
 
     int_t iRv = ::pthread_key_create(&indRv, NULL);
@@ -134,7 +134,7 @@ CxThreadStorage::_destruct()
     xTEST_DIFF(FALSE, blRv);
 
     _index = TLS_OUT_OF_INDEXES;
-#elif xOS_ENV_UNUX
+#elif xOS_ENV_UNIX
     xTEST_EQ(true, 0 < _index);
 
     int_t iRv = ::pthread_key_delete(_index);

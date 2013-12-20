@@ -55,7 +55,7 @@ CxSystemLog::~CxSystemLog()
     xTEST_DIFF(FALSE, blRv);
 
     _sysLog = NULL;
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     (void_t)::closelog();
 #endif
 }
@@ -99,7 +99,7 @@ CxSystemLog::write(
 
     BOOL bRv = ::ReportEvent(_sysLog, a_level, 0, 0UL, NULL, 1, 0UL, &strings, NULL);
     xTEST_DIFF(FALSE, bRv);
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     (void_t)::syslog(a_level, xT("%s"), message.c_str());
 #endif
 }
@@ -120,7 +120,7 @@ CxSystemLog::_construct(
 #if   xOS_ENV_WIN
     _sysLog = ::RegisterEventSource(NULL, a_logName.c_str());
     xTEST_DIFF(xNATIVE_HANDLE_NULL, _sysLog);
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     (void_t)::openlog(a_logName.c_str(), LOG_PID | LOG_NDELAY | LOG_NOWAIT, LOG_USER);
 #endif
 }

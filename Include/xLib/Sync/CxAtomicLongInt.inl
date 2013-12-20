@@ -25,7 +25,7 @@ CxAtomicLongInt::operator += (
 {
 #if   xOS_ENV_WIN
     (void_t)::InterlockedExchangeAdd(&_value, a_value._value);
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     (void_t)::__sync_add_and_fetch(&_value, a_value._value);
 #endif
 
@@ -39,7 +39,7 @@ CxAtomicLongInt::operator += (
 {
 #if   xOS_ENV_WIN
     (void_t)::InterlockedExchangeAdd(&_value, a_value);
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     (void_t)::__sync_add_and_fetch(&_value, a_value);
 #endif
 
@@ -53,7 +53,7 @@ CxAtomicLongInt::operator -= (
 {
 #if   xOS_ENV_WIN
     (void_t)::InterlockedExchangeAdd(&_value, - a_value._value);
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     (void_t)::__sync_sub_and_fetch(&_value, a_value._value);
 #endif
 
@@ -67,7 +67,7 @@ CxAtomicLongInt::operator -= (
 {
 #if   xOS_ENV_WIN
     (void_t)::InterlockedExchangeAdd(&_value, - a_value);
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     (void_t)::__sync_sub_and_fetch(&_value, a_value);
 #endif
 
@@ -81,7 +81,7 @@ CxAtomicLongInt::operator = (
 {
 #if   xOS_ENV_WIN
     (void_t)::InterlockedExchange(&_value, a_value._value);
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     (void_t)::__sync_lock_test_and_set (&_value, a_value._value);
 #endif
 
@@ -95,7 +95,7 @@ CxAtomicLongInt::operator = (
 {
 #if   xOS_ENV_WIN
     (void_t)::InterlockedExchange(&_value, a_value);
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     (void_t)::__sync_lock_test_and_set (&_value, a_value);
 #endif
 
@@ -209,7 +209,7 @@ CxAtomicLongInt::operator ++ (
     } else {
         (void_t)::InterlockedExchangeAdd(&_value, a_value + 1);
     }
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     xUNUSED(a_value);
 
     (void_t)::__sync_add_and_fetch(&_value, 1);
@@ -229,7 +229,7 @@ CxAtomicLongInt::operator -- (
     } else {
         (void_t)::InterlockedExchangeAdd(&_value, - (a_value + 1));
     }
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     xUNUSED(a_value);
 
     (void_t)::__sync_sub_and_fetch(&_value, 1);
@@ -243,7 +243,7 @@ CxAtomicLongInt::value() const
 {
 #if   xOS_ENV_WIN
     return _value;
-#else xOS_ENV_UNIX
+#elif xOS_ENV_UNIX
     return ::__sync_fetch_and_add(const_cast<volatile long_t *>( &_value ), 0L);
 #endif
 }
