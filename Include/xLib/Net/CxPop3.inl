@@ -304,7 +304,7 @@ CxPop3::retriveRaw(
     _command(retrCmd, xT("\r\n.\r\n"), &_sRv);
 
     //-------------------------------------
-    //DONE: ������� 1-�� ������ [+OK message 1 (652 octets)]
+    // [+OK message 1 (652 octets)]
     size_t okPos      = _sRv.find(xT("+OK"));
     size_t firstCRPos = _sRv.find(xT("\r\n"));
     if (std::tstring_t::npos != okPos && 0 == okPos && std::tstring_t::npos != firstCRPos) {
@@ -314,7 +314,7 @@ CxPop3::retriveRaw(
     }
 
     //-------------------------------------
-    //DONE: ������� [\r\n.\r\n]
+    // [\r\n.\r\n]
     size_t endOfMessagePos = _sRv.rfind(xT("\r\n.\r\n"));
     if (std::tstring_t::npos != endOfMessagePos) {
         _sRv.erase(endOfMessagePos, 5);    //"\r\n.\r\n" - 5 c������"
@@ -361,7 +361,7 @@ CxPop3::retriveRawAndBackup(
     _command(retrCmd, xT("\r\n.\r\n"), &_sRv);
 
     //-------------------------------------
-    //DONE: ������� 1-�� ������ [+OK message 1 (652 octets)]
+    // [+OK message 1 (652 octets)]
     size_t okPos      = _sRv.find(xT("+OK"));
     size_t firstCRPos = _sRv.find(xT("\r\n"));
     if (std::tstring_t::npos != okPos && 0 == okPos && std::tstring_t::npos != firstCRPos) {
@@ -371,7 +371,7 @@ CxPop3::retriveRawAndBackup(
     }
 
     //-------------------------------------
-    //DONE: ������� [\r\n.\r\n]
+    // [\r\n.\r\n]
     size_t endOfMessagePos = _sRv.rfind(xT("\r\n.\r\n"));
     if (std::tstring_t::npos != endOfMessagePos) {
         _sRv.erase(endOfMessagePos, 5);    //"\r\n.\r\n" - 5 c������"
@@ -380,7 +380,6 @@ CxPop3::retriveRawAndBackup(
     }
 
     //-------------------------------------
-    //��������� ���� �� ���� (��������), ���� ���� ���� - �� ���������
     if (!a_dirPath.empty()) {
         CxFile original;
 
@@ -391,7 +390,6 @@ CxPop3::retriveRawAndBackup(
     }
 
     //-------------------------------------
-    //��������� ���� �� ���� (�����), ���� ���� ���� - �� ���������
     if (!a_backupDirPath.empty()) {
         CxFile backup;
 

@@ -209,7 +209,6 @@ CxSmtp::sendRaw
     _command(dataCmd, xT("\r\n"), /*ref*/sRv);
 
     //-------------------------------------
-    //DONE: ������ �� ����� � ����� ����� � �����
     std::tstring_t text;
 
     CxFile::textRead(a_filePath, &text);
