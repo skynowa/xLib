@@ -81,7 +81,7 @@
             extern
             ///< import DLL information
     #endif
-#else
+#elif xOS_ENV_UNIX
     #define xDECL
         // export, import DLL information
     #define xDECL_TEMPL
@@ -133,7 +133,7 @@
 #if   xOS_ENV_WIN
     #define xSTDCALL \
         __stdcall
-#else
+#elif xOS_ENV_UNIX
     #define xSTDCALL \
         xNOT_AVAILABLE
 #endif
@@ -446,7 +446,7 @@
 
 //-------------------------------------------------------------------------------------------------
 // qualifiers
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #ifdef xARCH_X86
         #define xPR_SIZET xT("u")
             ///< qualifier for std::size_t
@@ -470,7 +470,7 @@
         #define xPR_I64X  xT("I64X")
             ///< qualifier for long_t long_t int_t (hex)
     #endif
-#else
+#elif xOS_ENV_UNIX
     #ifdef xARCH_X86
         #define xPR_SIZET xT("zu")
             ///< qualifier for std::size_t
@@ -499,7 +499,7 @@
 
 //-------------------------------------------------------------------------------------------------
 // xDIR_TEMP temporary directory
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #if defined(P_tmpdir)
         #define xDIR_TEMP \
             xT(P_tmpdir)
@@ -507,7 +507,7 @@
         #define xDIR_TEMP \
             xT("C:\\Temp")  // custom define
     #endif
-#else
+#elif xOS_ENV_UNIX
     #if defined(P_tmpdir)
         #define xDIR_TEMP \
             xT(P_tmpdir)
@@ -520,14 +520,14 @@
 
 //-------------------------------------------------------------------------------------------------
 // xNATIVE_HANDLE_NULL, xNATIVE_HANDLE_INVALID
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #define xNATIVE_HANDLE_NULL \
         ( static_cast<native_handle_t>( NULL ) )
         ///< native handle value "null"
     #define xNATIVE_HANDLE_INVALID \
         ( static_cast<native_handle_t>( INVALID_HANDLE_VALUE ) )
         ///< native handle value "invalid"
-#else
+#elif xOS_ENV_UNIX
     #define xNATIVE_HANDLE_NULL \
         ( static_cast<native_handle_t>( 0 ) )
         ///< native handle value "null"
@@ -545,7 +545,7 @@
     #define xSOCKET_HANDLE_INVALID \
         ( static_cast<socket_t>( INVALID_SOCKET ) )
         ///< socket native handle value "null"
-#else
+#elif xOS_ENV_UNIX
     #define xSOCKET_ERROR \
         ( - 1 )
         ///< socket native handle value "error"

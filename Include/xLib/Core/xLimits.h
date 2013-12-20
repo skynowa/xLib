@@ -6,12 +6,11 @@
 
 #pragma once
 
-#ifndef xLib_xLimits.hH
-#define xLib_xLimits.hH
-//-------------------------------------------------------------------------------------------------
+#ifndef xLib_xLimitsH
+#define xLib_xLimitsH
 //-------------------------------------------------------------------------------------------------
 // xHOST_NAME_MAX
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #if defined(MAX_COMPUTERNAME_LENGTH)
         #define xHOST_NAME_MAX \
             ( MAX_COMPUTERNAME_LENGTH )
@@ -19,7 +18,7 @@
         #define xHOST_NAME_MAX \
             ( 15 ) // custom define
     #endif
-#else
+#elif xOS_ENV_UNIX
     #if   defined(HOST_NAME_MAX)
         #define xHOST_NAME_MAX \
             ( HOST_NAME_MAX )
@@ -47,10 +46,10 @@
 
 //-------------------------------------------------------------------------------------------------
 // xLINE_MAX
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #define xLINE_MAX \
     ( 2048 ) // custom define
-#else
+#elif xOS_ENV_UNIX
     #if   defined(LINE_MAX)
         #define xLINE_MAX \
             ( LINE_MAX )
@@ -65,7 +64,7 @@
 
 //-------------------------------------------------------------------------------------------------
 // xENV_MAX
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #if   xCOMPILER_MS
         #define xENV_MAX \
             ( _MAX_ENV )
@@ -73,7 +72,7 @@
         #define xENV_MAX \
             ( 32767 ) // custom define
     #endif
-#else
+#elif xOS_ENV_UNIX
     #define xENV_MAX \
         ( 32767 ) // custom define
 #endif
@@ -81,7 +80,7 @@
 
 //-------------------------------------------------------------------------------------------------
 // xSTACK_TRACE_FRAMES_MAX
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #if (xOS_WIN_VER <= xOS_WIN_S03)
        /**
         * MSDN: Windows Server 2003 and Windows XP:
@@ -94,7 +93,7 @@
         #define xSTACK_TRACE_FRAMES_MAX \
             ( USHRT_MAX )
     #endif
-#else
+#elif xOS_ENV_UNIX
     #define xSTACK_TRACE_FRAMES_MAX \
         ( 256 )     // custom define, this should be enough
 #endif
@@ -102,10 +101,10 @@
 
 //-------------------------------------------------------------------------------------------------
 // xSEMAPHORE_VALUE_MAX
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #define xSEMAPHORE_VALUE_MAX \
         ( LONG_MAX ) // LONG, custom define (tested on Win7 x64)
-#else
+#elif xOS_ENV_UNIX
     #define xSEMAPHORE_VALUE_MAX \
         ( SEM_VALUE_MAX ) // int_t
 #endif
@@ -113,9 +112,9 @@
 
 //-------------------------------------------------------------------------------------------------
 // xPAGE_SIZE
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     xNA
-#else
+#elif xOS_ENV_UNIX
     #if   defined(_SC_PAGESIZE)
         #define xPAGE_SIZE \
             ( _SC_PAGESIZE )
@@ -130,14 +129,14 @@
 
 //-------------------------------------------------------------------------------------------------
 // xTIMEOUT_INFINITE
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #define xTIMEOUT_INFINITE \
         ( INFINITE )
-#else
+#elif xOS_ENV_UNIX
     #define xTIMEOUT_INFINITE \
         ( ~(0UL) )
 #endif
     ///< infinite timeout
 
 //-------------------------------------------------------------------------------------------------
-#endif // xLib_xLimits.hH
+#endif // xLib_xLimitsH
