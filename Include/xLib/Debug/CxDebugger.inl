@@ -145,7 +145,7 @@ CxDebugger::coreDumpsEnable(
     iRv = ::setrlimit(RLIMIT_CORE, &limit);
     isEnable = (iRv == 0);
 #else
-    #pragma message("xLib: CxDebugger::coreDumpsEnable() - fail")
+    #pragma message("xLib: CxDebugger::coreDumpsEnable() - n/a")
 #endif
 
     // Mac OS X

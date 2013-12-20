@@ -60,22 +60,18 @@ elseif (UNIX)
     )
 
     # xHAVE_ADDR2LINE
-    find_file(IS_ADDR2LINE "addr2line")
-    if (IS_ADDR2LINE)
-        add_definitions(-DxHAVE_ADDR2LINE=1)
+    find_file(xHAVE_ADDR2LINE "addr2line")
+    if (xHAVE_ADDR2LINE)
         message(STATUS "addr2line - found")
     else()
-        add_definitions(-DxHAVE_ADDR2LINE=0)
         message(WARNING "addr2line - failed")
     endif()
 
-    # HAVE_XMESSAGE
-    find_file(IS_XMESSAGE "xmessage")
-    if (IS_XMESSAGE)
-        add_definitions(-DxHAVE_XMESSAGE=1)
+    # xHAVE_XMESSAGE
+    find_file(xHAVE_XMESSAGE "xmessage")
+    if (xHAVE_XMESSAGE)
         message(STATUS "xmessage - found")
     else()
-        add_definitions(-DxHAVE_XMESSAGE=0)
         message(WARNING "xmessage - failed")
     endif()
 
