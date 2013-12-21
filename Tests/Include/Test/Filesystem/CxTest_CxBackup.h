@@ -1,6 +1,6 @@
 /**
- * \file   CxTest_CxBackuper.h
- * \brief  test CxBackuper
+ * \file   CxTest_CxBackup.h
+ * \brief  test CxBackup
  */
 
 
@@ -8,13 +8,13 @@
 
 #include <xLib/Core/xCore.h>
 #include <xLib/Test/CxTest.h>
-#include <xLib/Filesystem/CxBackuper.h>
+#include <xLib/Filesystem/CxBackup.h>
 //------------------------------------------------------------------------------
-class CxTest_CxBackuper :
+class CxTest_CxBackup :
     public CxTest
 {
 public:
-                   CxTest_CxBackuper() {}
+                   CxTest_CxBackup() {}
 
     virtual void_t unit(culonglong_t &caseLoops);
         ///< unit test

@@ -1,19 +1,19 @@
 /**
- * \file   CxBackuper.h
+ * \file   CxBackup.h
  * \brief
  */
 
 
 #pragma once
 
-#ifndef xLib_CxBackuperH
-#define xLib_CxBackuperH
+#ifndef xLib_CxBackupH
+#define xLib_CxBackupH
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxBackuper
+class CxBackup
     /// backup file
 {
 public:
@@ -28,9 +28,9 @@ public:
     };
     typedef const ExPeriod cExPeriod;
 
-    explicit  CxBackuper(cExPeriod &period);
+    explicit  CxBackup(cExPeriod &period);
         ///< constructor
-    virtual  ~CxBackuper() {}
+    virtual  ~CxBackup() {}
         ///< destructor
 
     void_t    fileExec(std::ctstring_t &filePath, std::ctstring_t &destDirPath,
@@ -40,11 +40,11 @@ public:
 private:
     cExPeriod _period;  ///< backup period
 
-    xNO_COPY_ASSIGN(CxBackuper)
+    xNO_COPY_ASSIGN(CxBackup)
 };
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include "CxBackuper.inl"
+#include "CxBackup.inl"
 //-------------------------------------------------------------------------------------------------
-#endif // xLib_CxBackuperH
+#endif // xLib_CxBackupH

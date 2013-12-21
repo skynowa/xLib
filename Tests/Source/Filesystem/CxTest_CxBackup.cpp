@@ -1,10 +1,10 @@
 /**
- * \file   CxTest_CxBackuper.cpp
- * \brief  test CxBackuper
+ * \file   CxTest_CxBackup.cpp
+ * \brief  test CxBackup
  */
 
 
-#include <Test/Filesystem/CxTest_CxBackuper.h>
+#include <Test/Filesystem/CxTest_CxBackup.h>
 
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Filesystem/CxDir.h>
@@ -13,7 +13,7 @@
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-CxTest_CxBackuper::unit(
+CxTest_CxBackup::unit(
     culonglong_t &a_caseLoops
 )
 {
@@ -21,7 +21,7 @@ CxTest_CxBackuper::unit(
     std::ctstring_t backupDir = tempDirPath() + CxConst::slash() + xT("CxBackup_dir");
 
 
-    xTEST_CASE("CxBackuper::fileExec", a_caseLoops)
+    xTEST_CASE("CxBackup::fileExec", a_caseLoops)
     {
         // prepare
         {
@@ -38,17 +38,17 @@ CxTest_CxBackuper::unit(
         #endif
         }
 
-        CxBackuper::cExPeriod periods[] = {
-            // CxBackuper::bpUnknown,
-            CxBackuper::bpHourly,
-            CxBackuper::bpDaily,
-            CxBackuper::bpWeekly,
-            CxBackuper::bpMonthly
+        CxBackup::cExPeriod periods[] = {
+            // CxBackup::bpUnknown,
+            CxBackup::bpHourly,
+            CxBackup::bpDaily,
+            CxBackup::bpWeekly,
+            CxBackup::bpMonthly
         };
 
         for (size_t p = 0; p < xARRAY_SIZE(periods); ++ p) {
             for (size_t i = 0; i < 10; ++ i) {
-                CxBackuper backuper(periods[p]);
+                CxBackup backuper(periods[p]);
 
                 xTRY {
                     std::tstring_t backupFilePath;

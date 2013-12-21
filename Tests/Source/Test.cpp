@@ -120,7 +120,7 @@ int_t xTMAIN(int_t a_argNum, tchar_t *a_args[])
         manager.add(new CxTest_CxDir);
         manager.add(new CxTest_CxVolume);
         manager.add(new CxTest_CxLocalStorage);
-        manager.add(new CxTest_CxBackuper);
+        manager.add(new CxTest_CxBackup);
 
         // Log
         manager.add(new CxTest_CxTracer);
