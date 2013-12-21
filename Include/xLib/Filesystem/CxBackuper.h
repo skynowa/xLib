@@ -21,10 +21,10 @@ public:
         /// backup period
     {
         bpUnknown,
-        // TODO: bpHourly,
-        bpDaily
-        // TODO: bpWeekly,
-        // TODO: bpMonthly
+        bpHourly,
+        bpDaily,
+        bpWeekly,
+        bpMonthly
     };
     typedef const ExPeriod cExPeriod;
 
