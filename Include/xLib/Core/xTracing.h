@@ -9,7 +9,7 @@
 #ifndef xLib_xTracingH
 #define xLib_xTracingH
 //-------------------------------------------------------------------------------------------------
-#if xIS_COMPILE_TIME_TRACING
+#if xCOMPILE_TRACING
     //--------------------------------------------------
     // OS environment
     #if   xOS_ENV_WIN
