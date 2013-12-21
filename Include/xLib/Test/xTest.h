@@ -11,49 +11,49 @@
 //-------------------------------------------------------------------------------------------------
 #define _xTEST_MSG_EQ(reportType, val1, val2, msg) \
     if ( !((val1) == (val2)) ) { \
-        ulong_t _lastError = CxLastError::get(); \
+        culong_t      _lastError = CxLastError::get(); \
         CxErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT("=="), \
             _lastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().toString(), (msg)); \
         CxDebugger().reportMake(report); \
     }
 #define _xTEST_MSG_DIFF(reportType, val1, val2, msg) \
     if ( !((val1) != (val2)) ) { \
-        ulong_t _lastError = CxLastError::get(); \
+        culong_t      _lastError = CxLastError::get(); \
         CxErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT("!="), \
             _lastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().toString(), (msg)); \
         CxDebugger().reportMake(report); \
     }
 #define _xTEST_MSG_LESS(reportType, val1, val2, msg) \
     if ( !((val1) < (val2)) ) { \
-        ulong_t _lastError = CxLastError::get(); \
+        culong_t      _lastError = CxLastError::get(); \
         CxErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT("<"), \
             _lastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().toString(), (msg)); \
         CxDebugger().reportMake(report); \
     }
 #define _xTEST_MSG_GR(reportType, val1, val2, msg) \
     if ( !((val1) > (val2)) ) { \
-        ulong_t _lastError = CxLastError::get(); \
+        culong_t      _lastError = CxLastError::get(); \
         CxErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT(">"), \
             _lastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().toString(), (msg)); \
         CxDebugger().reportMake(report); \
     }
 #define _xTEST_MSG_LESS_EQ(reportType, val1, val2, msg) \
     if ( !((val1) <= (val2)) ) { \
-        ulong_t _lastError = CxLastError::get(); \
+        culong_t      _lastError = CxLastError::get(); \
         CxErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT("<="), \
             _lastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().toString(), (msg)); \
         CxDebugger().reportMake(report); \
     }
 #define _xTEST_MSG_GR_EQ(reportType, val1, val2, msg) \
     if ( !((val1) >= (val2)) ) { \
-        ulong_t _lastError = CxLastError::get(); \
+        culong_t      _lastError = CxLastError::get(); \
         CxErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT(">="), \
             _lastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().toString(), (msg)); \
         CxDebugger().reportMake(report); \
     }
 #define _xTEST_MSG_PTR(reportType, ptr, msg) \
     if ( intptr_t(NULL) == intptr_t(ptr) ) { \
-        ulong_t _lastError = CxLastError::get(); \
+        culong_t      _lastError = CxLastError::get(); \
         CxErrorReport report(reportType, xT("NULL"), xT(#ptr), intptr_t(ptr), intptr_t(NULL), \
             xT("!="), _lastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, \
             CxStackTrace().toString(), (msg)); \
@@ -61,7 +61,7 @@
     }
 #define _xTEST_MSG_PTR_FAIL(reportType, ptr, msg) \
     if ( intptr_t(NULL) != intptr_t(ptr) ) { \
-        ulong_t _lastError = CxLastError::get(); \
+        culong_t      _lastError = CxLastError::get(); \
         CxErrorReport report(reportType, xT("NULL"), xT(#ptr), intptr_t(ptr), intptr_t(NULL), \
             xT("=="), _lastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, \
             CxStackTrace().toString(), (msg)); \
@@ -69,7 +69,7 @@
     }
 #define _xTEST_MSG_FAIL(reportType, msg) \
     if ( true ) { \
-        ulong_t _lastError = CxLastError::get(); \
+        culong_t      _lastError = CxLastError::get(); \
         CxErrorReport report(reportType, xT("false"), xT(""), xT(""), xT(""), xT(""), \
             _lastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, \
             CxStackTrace().toString(), (msg)); \
@@ -138,7 +138,7 @@
 
     #define xTEST_THROW(expr, exception_t)          \
         {                                           \
-            bool isExpected = false;                \
+            bool_t isExpected = false;              \
             try {                                   \
                 expr;                               \
             }                                       \
@@ -151,7 +151,7 @@
         }
     #define xTEST_MSG_THROW(expr, exception_t, msg) \
         {                                           \
-            bool isExpected = false;                \
+            bool_t isExpected = false;              \
             try {                                   \
                 expr;                               \
             }                                       \
@@ -165,7 +165,7 @@
 
     #define xTEST_THROW_ALL(expr)                   \
         {                                           \
-            bool isExpected = false;                \
+            bool_t isExpected = false;              \
             try {                                   \
                 expr;                               \
             }                                       \
@@ -176,7 +176,7 @@
         }
     #define xTEST_MSG_THROW_ALL(expr, msg)          \
         {                                           \
-            bool isExpected = false;                \
+            bool_t isExpected = false;              \
             try {                                   \
                 expr;                               \
             }                                       \
@@ -188,7 +188,7 @@
 
     #define xTEST_THROW_NO(expr)                    \
         {                                           \
-            bool isExpected = true;                 \
+            bool_t isExpected = true;               \
             try {                                   \
                 expr;                               \
             }                                       \
@@ -199,7 +199,7 @@
         }
     #define xTEST_MSG_THROW_NO(expr, msg)           \
         {                                           \
-            bool isExpected = true;                 \
+            bool_t isExpected = true;               \
             try {                                   \
                 expr;                               \
             }                                       \
@@ -263,7 +263,7 @@
 
 #define xTEST_CASE(caseName, loops) \
     CxTracer() << xT("\tCase name: ") << caseName; \
-    for (size_t _caseLoops = 0U; _caseLoops < (loops); ++ _caseLoops)
+    for (size_t _caseLoops = 0; _caseLoops < (loops); ++ _caseLoops)
     ///< test case
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_xTestH
