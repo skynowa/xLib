@@ -1,5 +1,5 @@
 /**
- * \file   CxBackuper.cpp
+ * \file   CxBackup.cpp
  * \brief
  */
 
@@ -23,7 +23,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //-------------------------------------------------------------------------------------------------
 inline
-CxBackuper::CxBackuper(
+CxBackup::CxBackup(
     cExPeriod &a_period
 ) :
     _period(a_period)
@@ -31,7 +31,7 @@ CxBackuper::CxBackuper(
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxBackuper::fileExec(
+CxBackup::fileExec(
     std::ctstring_t &a_filePath,
     std::ctstring_t &a_destDirPath,
     std::tstring_t  *a_destFilePath
@@ -42,10 +42,10 @@ CxBackuper::fileExec(
     xTEST_PTR(a_destFilePath);
 
     // errors
-    std::ctstring_t errorDestFileNotExists  = xT("CxBackuper - Destination file not exists");
-    std::ctstring_t errorNotEnoughFreeSpace = xT("CxBackuper - Not enough free space");
-    std::ctstring_t errorCopyingFail        = xT("CxBackuper - Copying fail");
-    std::ctstring_t errorUnknown            = xT("CxBackuper - Unknown error");
+    std::ctstring_t errorDestFileNotExists  = xT("CxBackup - Destination file not exists");
+    std::ctstring_t errorNotEnoughFreeSpace = xT("CxBackup - Not enough free space");
+    std::ctstring_t errorCopyingFail        = xT("CxBackup - Copying fail");
+    std::ctstring_t errorUnknown            = xT("CxBackup - Unknown error");
 
     bool_t bRv = false;
 
