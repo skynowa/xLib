@@ -31,49 +31,23 @@
         #define STRICT 1
     #endif
 
-    // Required for VS 2008 (fails on XP and Win2000 without this fix)
-    #if xTEMP_DISABLED
-        #if !defined(_WIN32_WINNT)
-            #define _WIN32_WINNT 0x0600
-        #endif
-
-        #if WINVER
-            #undef  WINVER
-            #define WINVER 0x0600
-        #else
-            #define WINVER 0x0600
-        #endif
-
-        #if _WIN32_WINNT
-            #undef  _WIN32_WINNT
-            #define _WIN32_WINNT 0x0600
-        #else
-            #define _WIN32_WINNT 0x0600
-        #endif
-    #endif
-
-    // OBM_ (#include <winuser.h>)
-    #if !defined(OEMRESOURCE)
-        #define OEMRESOURCE 1
-    #endif
-
-    // xCOMPILER_MS
     #if xCOMPILER_MS
-        #pragma warning (disable: 4996)    // function or variable may be unsafe (deprecated)
-        #pragma warning (disable: 4355)    // 'this' : used in base member initializer list
-        #pragma warning (disable: 4101)    // 'e' : unreferenced local variable
+       /**
+        * 4996: function or variable may be unsafe (deprecated)
+        * 4355: 'this' : used in base member initializer list
+        * 4101: 'e' : unreferenced local variable
+        */
+        #pragma warning(disable: 4996 4355 4101)
 
         #if !defined(VC_EXTRALEAN)
             #define VC_EXTRALEAN 1
         #endif
     #endif
 
-    // xCOMPILER_MINGW
     #if xCOMPILER_MINGW
 
     #endif
 
-    // xCOMPILER_CODEGEAR
     #if xCOMPILER_CODEGEAR
         #pragma option -w-8027  // function not expanded inline
         #pragma option -w-8057  // parameter is never used
@@ -82,42 +56,42 @@
         #pragma option -w-8008  // Condition is always true
     #endif
 
-    #define _CRT_SECURE_NO_WARNINGS         1
+    #define _CRT_SECURE_NO_WARNINGS  1
         ///< disable Win CRT warnings
 
-    #define _SCL_SECURE_NO_WARNINGS         1
+    #define _SCL_SECURE_NO_WARNINGS  1
         ///< disable Win SCL warnings
-#else
+#elif xOS_ENV_UNIX
     #if !defined(_GNU_SOURCE)
         #define _GNU_SOURCE 1
     #endif
 #endif
 
-#define xUSING_NAMESPACE_NXLIB          1
+#define xUSING_NAMESPACE_NXLIB    1
     ///< automatically include the NxLib namespace
 
-#define xDEBUG_USE_PROMPT_DIALOG        1
+#define xDEBUG_USE_PROMPT_DIALOG  1
     ///< debug prompt dialog:
     ///<    0 - don't stop executing, pass throw dialog prompt
     ///<    1 - stop executing on dialog prompt, wait for user choice
 
 // log mode (only one mode can be activated)
-#define xDEBUG_MODE_MSGBOX              0
+#define xDEBUG_MODE_MSGBOX        0
     ///< debug mode "message box with plain text"
-#define xDEBUG_MODE_STDOUT              1
+#define xDEBUG_MODE_STDOUT        1
     ///< debug mode "std::out with plain text"
-#define xDEBUG_MODE_LOG                 0
+#define xDEBUG_MODE_LOG           0
     ///< debug mode "logging with plain text"
-#define xDEBUG_MODE_NO                  0
+#define xDEBUG_MODE_NO            0
     ///< debug mode "no debugging"
 
-#define xIS_COMPILE_TIME_TRACING        0
+#define xIS_COMPILE_TIME_TRACING  0
     ///< is compile time tracing
 
-#define xTEST_PRIVATE_DATA              0
+#define xTEST_PRIVATE_DATA        0
     ///< for tests private data
 
-#define xNEW_NO_STD_THROW               0
+#define xNEW_NO_STD_THROW         0
     ///< new with std::notrow
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_xConfigH
