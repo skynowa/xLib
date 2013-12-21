@@ -426,7 +426,7 @@ CxPath::isValid(
     bRv = (xPATH_MAX < a_filePath.size());
     xCHECK_RET(bRv, false);
 
-    // TODO: bIsValid
+    // TODO: isValid
 
     return true;
 }
@@ -441,14 +441,12 @@ CxPath::isNameValid(
 
     bool_t bRv = false;
 
-    //-------------------------------------
     // check: empty name
     {
         bRv = a_fileName.empty();
         xCHECK_RET(bRv, false);
     }
 
-    //-------------------------------------
     // check: name size
     {
         bRv = (xNAME_MAX < a_fileName.size());
@@ -456,15 +454,18 @@ CxPath::isNameValid(
     }
 
 #if   xOS_ENV_WIN
-    // MSDN: http://msdn.microsoft.com/en-us/library/windows/desktop/aa365247(v=vs.85).aspx
-    // FAQ:  Boost Path Name Portability Guide
+   /**
+    * MSDN: http://msdn.microsoft.com/en-us/library/windows/desktop/aa365247(v=vs.85).aspx
+    * FAQ:  Boost Path Name Portability Guide
+    */
 
-    //-------------------------------------
-    // MSDN: Do not end a file or directory name with a space or a period.
-    // Although the underlying file system may support such names,
-    // the Windows shell and user interface does not.
-    // However, it is acceptable to specify a period
-    // as the first character of a name. For example, ".temp".
+   /**
+    * MSDN: Do not end a file or directory name with a space or a period.
+    * Although the underlying file system may support such names,
+    * the Windows shell and user interface does not.
+    * However, it is acceptable to specify a period
+    * as the first character of a name. For example, ".temp".
+    */
     {
         ctchar_t begin = *a_fileName.begin();
         ctchar_t end   = *(a_fileName.end() - 1);
@@ -484,17 +485,18 @@ CxPath::isNameValid(
         xCHECK_RET(bRv, false);
     }
 
-    //-------------------------------------
-    // check: excepted chars
-    // < (less than)
-    // > (greater than)
-    // : (colon)
-    // " (double quote)
-    // / (forward slash)
-    // \ (backslash)
-    // | (vertical bar or pipe)
-    // ? (question mark)
-    // * (asterisk)
+   /**
+    * check: excepted chars
+    * < (less than)
+    * > (greater than)
+    * : (colon)
+    * " (double quote)
+    * / (forward slash)
+    * \ (backslash)
+    * | (vertical bar or pipe)
+    * ? (question mark)
+    * * (asterisk)
+    */
     {
         std::ctstring_t exceptedChars = xT("<>:\"/\\|?*");
 
@@ -503,10 +505,11 @@ CxPath::isNameValid(
         xCHECK_RET(bRv, false);
     }
 
-    //-------------------------------------
-    // check: control chars
-    // MAN: For the standard ASCII character set (used by the "C" locale),
-    // control characters are those between ASCII codes 0x00 (NUL) and 0x1f (US), plus 0x7f (DEL).
+   /**
+    * check: control chars
+    * MAN: For the standard ASCII character set (used by the "C" locale),
+    * control characters are those between ASCII codes 0x00 (NUL) and 0x1f (US), plus 0x7f (DEL).
+    */
     {
         std::tstring_t::const_iterator cit;
 
@@ -515,13 +518,14 @@ CxPath::isNameValid(
         xCHECK_RET(bRv, false);
     }
 
-    //-------------------------------------
-    // check: device names
-    // MSDN: Do not use the following reserved names for the name of a file:
-    // CON, PRN, AUX, NUL, COM1, COM2, COM3, COM4, COM5, COM6, COM7, COM8,
-    // COM9, LPT1, LPT2, LPT3, LPT4, LPT5, LPT6, LPT7, LPT8, and LPT9.
-    // Also avoid these names followed immediately by an extension;
-    // for example, NUL.txt is not recommended.
+   /**
+    * check: device names
+    * MSDN: Do not use the following reserved names for the name of a file:
+    * CON, PRN, AUX, NUL, COM1, COM2, COM3, COM4, COM5, COM6, COM7, COM8,
+    * COM9, LPT1, LPT2, LPT3, LPT4, LPT5, LPT6, LPT7, LPT8, and LPT9.
+    * Also avoid these names followed immediately by an extension;
+    * for example, NUL.txt is not recommended.
+    */
     {
         std::ctstring_t reservedNames[] = {
             xT("CON"),  xT("PRN"),  xT("AUX"),  xT("NUL"),  xT("CLOCK$"),
@@ -539,11 +543,11 @@ CxPath::isNameValid(
         }
     }
 #elif xOS_ENV_UNIX
-    //-------------------------------------
-    // check: excepted chars
-    // /  (forward slash)
-    // \0 (NULL character)
-
+   /**
+    * check: excepted chars
+    * /  (forward slash)
+    * \0 (NULL character)
+    */
     {
         std::tstring_t exceptedChars;
         exceptedChars.push_back(xT('/'));
@@ -555,11 +559,11 @@ CxPath::isNameValid(
         xCHECK_RET(bRv, false);
     }
 #elif xOS_ENV_MAC
-    //-------------------------------------
-    // check: excepted chars
-    // / (forward slash)
-    // : (colon)
-
+   /**
+    * check: excepted chars
+    * / (forward slash)
+    * : (colon)
+    */
     {
         std::ctstring_t exceptedChars = xT("/:");
 
