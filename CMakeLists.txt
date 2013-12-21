@@ -9,6 +9,18 @@ cmake_minimum_required(VERSION 2.6)
 project(xLib_test)
 
 #--------------------------------------------------------------------------------------------------
+# options
+option(xUSING_NAMESPACE_NXLIB   "automatically include the NxLib namespace" ON)
+option(xDEBUG_USE_PROMPT_DIALOG "debug prompt dialog"                       ON)
+option(xDEBUG_MODE_MSGBOX       "debug mode 'message box with plain text'"  OFF)
+option(xDEBUG_MODE_STDOUT       "debug mode 'std::out with plain text'"     ON)
+option(xDEBUG_MODE_LOG          "debug mode 'logging with plain text'"      OFF)
+option(xDEBUG_MODE_NO           "debug mode 'no debugging'"                 OFF)
+option(xIS_COMPILE_TIME_TRACING "is compile time tracing"                   OFF)
+option(xTEST_PRIVATE_DATA       "tests private data"                        OFF)
+option(xNEW_NO_STD_THROW        "new with std::notrow"                      OFF)
+
+#--------------------------------------------------------------------------------------------------
 # modules
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake")
 include(Configure)
