@@ -85,7 +85,7 @@
 #cmakedefine xDEBUG_MODE_NO            0
     ///< debug mode "no debugging"
 
-#cmakedefine xIS_COMPILE_TIME_TRACING  0
+#cmakedefine xCOMPILE_TRACING          0
     ///< is compile time tracing
 
 #cmakedefine xTEST_PRIVATE_DATA        0
