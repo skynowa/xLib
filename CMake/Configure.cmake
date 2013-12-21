@@ -29,7 +29,12 @@ if (WIN32)
 elseif (UNIX)
     # xHAVE_EXECINFO
     if (EXECINFO_FOUND)
-        add_definitions(-DxHAVE_EXECINFO=1)
+        # just for setting macro
+        check_cxx_source_compiles(
+            "int main() { return 0; }"
+            xHAVE_EXECINFO
+        )
+
         include_directories(${EXECINFO_INCLUDES})
         link_libraries(${EXECINFO_LIBRARIES})
     endif()
