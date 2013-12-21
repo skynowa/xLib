@@ -41,13 +41,13 @@ CxBackuper::fileExec(
     xTEST_EQ(false, a_destDirPath.empty());
     xTEST_PTR(a_destFilePath);
 
-    bool_t bRv = false;
-
     // errors
     std::ctstring_t errorDestFileNotExists  = xT("CxBackuper - Destination file not exists");
     std::ctstring_t errorNotEnoughFreeSpace = xT("CxBackuper - Not enough free space");
     std::ctstring_t errorCopyingFail        = xT("CxBackuper - Copying fail");
     std::ctstring_t errorUnknown            = xT("CxBackuper - Unknown error");
+
+    bool_t bRv = false;
 
     // prepare
     {
@@ -65,50 +65,52 @@ CxBackuper::fileExec(
     std::tstring_t dateTimeStamp;
     {
         switch (_period) {
-        // TODO: bpHourly:
-        case bpDaily:
-            dateTimeStamp = CxDateTime().current().format("YYYY-MM-DD");
+        case bpHourly:
+            // format: 2013-12-21_23
+            dateTimeStamp = CxDateTime::current().format(xT("%Y-%m-%d_%H"), xT(""));
             break;
-        // TODO: bpWeekly:
-        // TODO: bpMonthly:
+        case bpDaily:
+            // format: 2013-12-21
+            dateTimeStamp = CxDateTime::current().format(xT("%Y-%m-%d"), xT(""));
+            break;
+        case bpWeekly:
+            // format: 2013_01
+            dateTimeStamp = CxDateTime::current().format(xT("%Y_%U"), xT(""));
+            break;
+        case bpMonthly:
+            // format: 2013-12
+            dateTimeStamp = CxDateTime::current().format(xT("%Y-%m"), xT(""));
+            break;
+        case bpUnknown:
         default:
-            dateTimeStamp = CxDateTime().current().format("HH-MM");
+            xTEST_FAIL;
+            return;
             break;
         }
-
-        dateTimeStamp = CxString::replaceAll(dateTimeStamp, xT(":"), xT("-"));
     }
 
-    //-------------------------------------
     // format file full name
-    std::tstring_t backupFilePath = CxPath(a_destDirPath).slashAppend() +
-        CxPath(a_filePath).fileName() + xT(".bak [") + dateTimeStamp + xT("]");
+    std::ctstring_t backupFilePath = CxPath(a_destDirPath).slashAppend() +
+        CxPath(a_filePath).fileName() + xT("_[") + dateTimeStamp + xT("].bak");
 
-    //-------------------------------------
     // check for existence source file
     {
         bRv = CxFile::isExists(backupFilePath);
         xCHECK_DO(bRv, *a_destFilePath = backupFilePath; return);
     }
 
-    //-------------------------------------
     // check for enough space
     {
-        ulonglong_t fileSizeBytes = 0ULL;
-        fileSizeBytes = static_cast<ulonglong_t>( CxFile::size(a_filePath) );
-
         CxVolume volume(a_destDirPath);
-        bRv = volume.isSpaceEnough(fileSizeBytes);
+        bRv = volume.isSpaceEnough( CxFile::size(a_filePath) );
         xCHECK_DO(!bRv, xTHROW_REPORT(errorNotEnoughFreeSpace));
     }
 
-    //-------------------------------------
     // copy
     {
         CxFile::copy(a_filePath, backupFilePath, true);
     }
 
-    //-------------------------------------
     // check for a valid backup
     {
         bRv = CxFile::isExists(backupFilePath);
@@ -122,7 +124,7 @@ CxBackuper::fileExec(
     }
 
     // out
-    a_destFilePath->swap(backupFilePath);
+    *a_destFilePath = backupFilePath;
 }
 //-------------------------------------------------------------------------------------------------
 
