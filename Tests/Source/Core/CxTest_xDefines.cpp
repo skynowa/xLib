@@ -260,6 +260,12 @@ CxTest_xDefines::unit(
         xTEST_GR(0, m_iRv);
     }
 
+    xTEST_CASE("xDefines::xUSER_NAME_MAX", a_caseLoops)
+    {
+        m_iRv = xUSER_NAME_MAX;
+        xTEST_GR(0, m_iRv);
+    }
+
     xTEST_CASE("xDefines::xPATH_MAX_", a_caseLoops)
     {
         m_stRv = xPATH_MAX;
