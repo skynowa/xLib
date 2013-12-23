@@ -30,7 +30,7 @@ CxTest_CxBackup::unit(
             F.create(filePath, CxFile::omBinCreateReadWrite, true);
             F.resize(100L);
 
-        #if 1
+        #if 0
             CxTracer() << xTRACE_VAR(CxDateTime::current().format(xT("%Y-%m-%d_%H"), xT("")));
             CxTracer() << xTRACE_VAR(CxDateTime::current().format(xT("%Y-%m-%d"), xT("")));
             CxTracer() << xTRACE_VAR(CxDateTime::current().format(xT("%Y_%U"), xT("")));
