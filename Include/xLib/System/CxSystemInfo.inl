@@ -399,13 +399,6 @@ CxSystemInfo::userName() const
     xNOT_IMPLEMENTED
 #endif
 
-#if 0
-    // TODO: CxSystemInfo::userName()
-    char * userName = ::getenv("LOGNAME");
-    char * userName = ::getenv("USERNAME");
-    ::getlogin_r
-#endif
-
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
@@ -1105,14 +1098,11 @@ CxSystemInfo::_passwdFileEntry(
 {
     xTEST_PTR(a_passwdEntry);
 
-    const uid_t userId = ::getuid();
-    xTEST_NA(userId);
-
     long_t buffSize = - 1L;
     {
         buffSize = ::sysconf(_SC_GETPW_R_SIZE_MAX);
         if (- 1L == buffSize) {
-            clong_t pwRSizeMax = 1024L;    // CUSTOM: 1024L - custom value
+            clong_t pwRSizeMax = 16384L;    // CUSTOM: 16384L - custom value
 
             buffSize = pwRSizeMax;
         }
@@ -1120,13 +1110,13 @@ CxSystemInfo::_passwdFileEntry(
         xTEST_LESS(0L, buffSize);
     }
 
-    struct passwd *pwd = NULL;
-    char           buff[buffSize];
+    passwd *pwd = NULL;
+    char    buff[buffSize];
 
     void_t *pvRv = std::memset(&buff[0], 0, sizeof(buff));
     xUNUSED(pvRv);
 
-    int_t iRv = ::getpwuid_r(userId, a_passwdEntry, buff, sizeof(buff), &pwd);
+    int_t iRv = ::getpwuid_r(::getuid(), a_passwdEntry, buff, sizeof(buff), &pwd);
     xTEST_EQ(0, iRv);
     xTEST_PTR(pwd);
 
