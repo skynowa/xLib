@@ -376,13 +376,39 @@ CxSystemInfo::isUserAdmin() const
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
+CxSystemInfo::loginUserName() const
+{
+    std::tstring_t sRv;
+
+#if   xOS_ENV_WIN
+    bool_t bRv = CxEnvironment::isExists(xT("USERNAME"));
+    if (bRv) {
+        sRv = CxEnvironment::var(xT("USERNAME"));
+    } else {
+        // TODO: CxSystemInfo::loginUseName()
+    }
+#elif xOS_ENV_UNIX
+    char buff[xUSER_NAME_MAX + 1] = {0};
+
+    int_t iRv = ::getlogin_r(buff, xARRAY_SIZE(buff));
+    xTEST_EQ(iRv, 0);
+
+    sRv.assign(buff);
+#elif xOS_ENV_MAC
+    xNOT_IMPLEMENTED
+#endif
+
+    return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+inline std::tstring_t
 CxSystemInfo::userName() const
 {
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
-    DWORD   buffSize        = UNLEN;
-    tchar_t buff[UNLEN + 1] = {0};
+    DWORD   buffSize                 = xUSER_NAME_MAX;
+    tchar_t buff[xUSER_NAME_MAX + 1] = {0};
 
     BOOL blRv = ::GetUserName(&buff[0], &buffSize);
     xTEST_DIFF(FALSE, blRv);

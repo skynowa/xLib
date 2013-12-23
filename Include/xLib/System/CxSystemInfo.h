@@ -88,6 +88,8 @@ public:
         ///< get the NetBIOS name of the local computer
     bool_t         isUserAdmin() const xWARN_UNUSED_RV;
         ///< is current user an admin
+    std::tstring_t loginUserName() const xWARN_UNUSED_RV;
+        ///<
     std::tstring_t userName() const xWARN_UNUSED_RV;
         ///< get the name of the user associated with the current thread
     std::tstring_t useHomeDir() const xWARN_UNUSED_RV;

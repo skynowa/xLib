@@ -97,6 +97,15 @@ CxTest_CxSystemInfo::unit(
         #endif
     }
 
+    xTEST_CASE("CxSystemInfo::loginUserName", a_caseLoops)
+    {
+        m_sRv = CxSystemInfo().loginUserName();
+        xTEST_EQ(false, m_sRv.empty());
+        #if xTEST_IGNORE
+            xTRACEV(xT("\tCxSystemInfo::loginUserName(): %s"), m_sRv.c_str());
+        #endif
+    }
+
     xTEST_CASE("CxSystemInfo::useHomeDir", a_caseLoops)
     {
         m_sRv = CxSystemInfo().useHomeDir();
