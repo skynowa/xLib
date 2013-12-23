@@ -33,6 +33,17 @@
     ///< max host name length
 
 //-------------------------------------------------------------------------------------------------
+// xUSER_NAME_MAX
+#if   xOS_ENV_WIN
+    #define xUSER_NAME_MAX \
+        ( UNLEN )
+#elif xOS_ENV_UNIX
+    #define xUSER_NAME_MAX \
+        ( L_cuserid )
+#endif
+    ///< max user name length
+
+//-------------------------------------------------------------------------------------------------
 // xPATH_MAX
 #define xPATH_MAX \
     ( CxPath::maxSize() )
