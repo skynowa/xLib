@@ -262,7 +262,7 @@
     ///< static assert
 
 #define xTEST_CASE(caseName, loops) \
-    CxTracer() << xT("\tCase name: ") << caseName; \
+    /* CxTracer() << xT("\tCase name: ") << caseName; */ \
     for (size_t _caseLoops = 0; _caseLoops < (loops); ++ _caseLoops)
     ///< test case
 //-------------------------------------------------------------------------------------------------
