@@ -23,7 +23,7 @@ struct CompareNoCase
         const std::tstring_t::value_type &a_value1,
         const std::tstring_t::value_type &a_value2) const
     {
-        return CxChar::toUpper(a_value1) == CxChar::toUpper(a_value2);
+        return CxChar::toLower(a_value1) == CxChar::toLower(a_value2);
     }
 
     // TODO: bool_t

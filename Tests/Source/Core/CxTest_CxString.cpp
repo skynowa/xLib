@@ -849,6 +849,18 @@ CxTest_CxString::unit(
         m_bRv = CxString::compareNoCase(xT("ccc"),  xT("CCCz"));
         xTEST_EQ(false, m_bRv);
 
+        m_bRv = CxString::compareNoCase(xT(""), xT("222"));
+        xTEST_EQ(false, m_bRv);
+
+        m_bRv = CxString::compareNoCase(xT("111"), xT(""));
+        xTEST_EQ(false, m_bRv);
+
+        m_bRv = CxString::compareNoCase(xT(""), xT("2"));
+        xTEST_EQ(false, m_bRv);
+
+        m_bRv = CxString::compareNoCase(xT("1"), xT(""));
+        xTEST_EQ(false, m_bRv);
+
         m_bRv = CxString::compareNoCase(xT("!!!!!"),  xT("@@@@@@"));
         xTEST_EQ(false, m_bRv);
 
