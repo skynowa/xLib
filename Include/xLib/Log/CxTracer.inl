@@ -57,7 +57,7 @@ CxTracer::write(
 
     va_list args;
     xVA_START(args, a_format);
-    _write(format.c_str(), args);
+    write(format.c_str(), args);
     xVA_END(args);
 }
 //-------------------------------------------------------------------------------------------------
