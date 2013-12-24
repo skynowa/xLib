@@ -51,6 +51,11 @@ public:
         xUNUSED(format);
     }
         ///< write to log
+    virtual void_t  write(ctchar_t *format, ...) const /* = 0 */
+    {
+        xUNUSED(format);
+    }
+        ///< write to log
 
 protected:
     bool_t          _isEnable;  ///< is enabled
