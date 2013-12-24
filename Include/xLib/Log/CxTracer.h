@@ -10,7 +10,7 @@
 #define xLib_CxTracerH
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
-#include "IxLog.inl"
+#include "IxLog.h"
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
@@ -43,8 +43,6 @@ private:
 
     void_t         _write(std::ctstring_t &msg) const;
         ///< tracing to debugger, std::cout
-
-    xNO_COPY_ASSIGN(CxTracer)
 };
 
 xNAMESPACE_END(NxLib)

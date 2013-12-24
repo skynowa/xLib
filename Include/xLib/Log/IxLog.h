@@ -32,7 +32,7 @@ public:
 
                     IxLog();
         ///< constructor
-    virtual        ~IxLog() /*= 0*/;
+    virtual        ~IxLog() = 0;
         ///< destructor
 
     void_t          setEnabled(cbool_t &flag);
@@ -45,13 +45,17 @@ public:
     virtual IxLog & operator << (const T &valueT) = 0;
         ///< write to log with operator <<
 #endif
-    virtual void_t  write(const ExLevel &level, ctchar_t *format, ...) const /*= 0*/;
+    virtual void_t  write(const ExLevel &level, ctchar_t *format, ...) const /* = 0 */
+    {
+        xUNUSED(level);
+        xUNUSED(format);
+    }
         ///< write to log
 
 protected:
     bool_t          _isEnable;  ///< is enabled
 
-    // xNO_COPY_ASSIGN(IxLog)
+    xNO_COPY_ASSIGN(IxLog)
 };
 
 xNAMESPACE_END(NxLib)

@@ -10,7 +10,7 @@
 #define xLib_CxFileLogH
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
-#include "IxLog.inl"
+#include "IxLog.h"
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
@@ -55,8 +55,6 @@ private:
 
     void_t            _removeIfFull() const;
         ///< delete log, if full
-
-xNO_COPY_ASSIGN(CxFileLog)
 };
 
 xNAMESPACE_END(NxLib)
