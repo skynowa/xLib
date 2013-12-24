@@ -37,6 +37,8 @@ public:
 
     virtual void_t write(ctchar_t *format, ...) const xOVERRIDE;
         ///< tracing to debugger, std::cout
+    virtual void_t write(const ExLevel &level, ctchar_t *format, ...) const xOVERRIDE;
+        ///< tracing to debugger, std::cout
 
 private:
     std::tostringstream_t _oss; ///< string stream

@@ -45,16 +45,9 @@ public:
     virtual IxLog & operator << (const T &valueT) = 0;
         ///< write to log with operator <<
 #endif
-    virtual void_t  write(const ExLevel &level, ctchar_t *format, ...) const /* = 0 */
-    {
-        xUNUSED(level);
-        xUNUSED(format);
-    }
+    virtual void_t  write(ctchar_t *format, ...) const = 0;
         ///< write to log
-    virtual void_t  write(ctchar_t *format, ...) const /* = 0 */
-    {
-        xUNUSED(format);
-    }
+    virtual void_t  write(const ExLevel &level, ctchar_t *format, ...) const = 0;
         ///< write to log
 
 protected:

@@ -39,7 +39,9 @@ public:
         ///< get log path
 
     virtual void_t    write(ctchar_t *format, ...) const xOVERRIDE;
-        ///< write
+        ///< write to log
+    virtual void_t    write(const ExLevel &level, ctchar_t *format, ...) const xOVERRIDE;
+        ///< write to log
     void_t            clear() const;
         ///< clear content
     void_t            remove() const;
