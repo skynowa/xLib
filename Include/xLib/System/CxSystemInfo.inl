@@ -381,11 +381,39 @@ CxSystemInfo::loginUserName() const
     std::tstring_t sRv;
 
 #if   xOS_ENV_WIN
-    bool_t bRv = CxEnvironment::isExists(xT("USERNAME"));
-    if (bRv) {
-        sRv = CxEnvironment::var(xT("USERNAME"));
-    } else {
-        // TODO: CxSystemInfo::loginUseName()
+    // try to get from NetAPI
+    {
+        LPWKSTA_USER_INFO_1 *userInfo = NULL;
+
+        NET_API_STATUS nsRv = ::NetWkstaUserGetInfo(NULL, 1UL, static_cast<LPBYTE *>( &userInfo );
+        xTEST_EQ(nsRv == NERR_Success);
+        xTEST_PTR(userInfo);
+
+    #if 0
+        ::wprintf(L"\n\tUser:        %s\n", userInfo->wkui1_username);
+        ::wprintf(L"\tDomain:        %s\n", userInfo->wkui1_logon_domain);
+        ::wprintf(L"\tOther Domains: %s\n", userInfo->wkui1_oth_domains);
+        ::wprintf(L"\tLogon Server:  %s\n", userInfo->wkui1_logon_server);
+    #endif
+
+    #if xUNICODE
+        sRv = userInfo->wkui1_username;
+    #else
+        sRv = CxString::wstrToStr(userInfo->wkui1_username, CP_UTF8);
+    #endif
+
+        if (userInfo != NULL)
+            nsRv = ::NetApiBufferFree(userInfo);    userInfo = NULL;
+            xTEST_EQ(nsRv == NERR_Success);
+        }
+    }
+
+    // try to get from system environment
+    if (nsRv == NERR_Success || userInfo == NULL) {
+        bool_t bRv = CxEnvironment::isExists(xT("USERNAME"));
+        if (bRv) {
+            sRv = CxEnvironment::var(xT("USERNAME"));
+        }
     }
 #elif xOS_ENV_UNIX
     char buff[xUSER_NAME_MAX + 1] = {0};
