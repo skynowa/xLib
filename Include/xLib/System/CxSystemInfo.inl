@@ -481,17 +481,21 @@ CxSystemInfo::useHomeDir() const
     * it is necessary to use getpwnam("username")->pw_dir or similar.
     */
 
-    bool_t bRv = CxEnvironment::isExists(xT("HOME"));
-    if (bRv) {
-        sRv = CxEnvironment::var(xT("HOME"));
-    } else {
-        struct passwd passwd;   xSTRUCT_ZERO(passwd);
+    {
+        passwd passwd;   xSTRUCT_ZERO(passwd);
 
         _passwdFileEntry(&passwd);
         xTEST_PTR(passwd.pw_dir);
 
         sRv.assign(passwd.pw_dir);
     }
+
+    bool_t bRv = CxEnvironment::isExists(xT("HOME"));
+    if (bRv) {
+        sRv = CxEnvironment::var(xT("HOME"));
+    }
+
+    xTEST_EQ(sRv.empty(), false);
 #elif xOS_ENV_MAC
     xNOT_IMPLEMENTED
 #endif
