@@ -35,7 +35,7 @@ public:
     }
         ///< operator <<
 
-    virtual void_t write(ctchar_t *format, ...) const;
+    virtual void_t write(ctchar_t *format, ...) const xOVERRIDE;
         ///< tracing to debugger, std::cout
 
 private:

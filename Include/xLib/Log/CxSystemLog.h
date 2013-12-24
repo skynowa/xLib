@@ -57,7 +57,7 @@ public:
     virtual ~CxSystemLog();
         ///< destructor
 
-    virtual void_t write(const ExLevel &level, ctchar_t *format, ...) const;
+    virtual void_t write(const ExLevel &level, ctchar_t *format, ...) const xOVERRIDE;
         ///< write to log
 
 private:
