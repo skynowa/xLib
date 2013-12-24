@@ -38,7 +38,7 @@ public:
     std::ctstring_t & filePath() const xWARN_UNUSED_RV;
         ///< get log path
 
-    virtual void_t    write(ctchar_t *format, ...) const;
+    virtual void_t    write(ctchar_t *format, ...) const xOVERRIDE;
         ///< write
     void_t            clear() const;
         ///< clear content
