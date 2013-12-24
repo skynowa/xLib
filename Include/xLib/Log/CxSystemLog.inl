@@ -21,10 +21,9 @@ xNAMESPACE_BEGIN(NxLib)
 
 //-------------------------------------------------------------------------------------------------
 inline
-CxSystemLog::CxSystemLog() :
-    _isEnable(true)
+CxSystemLog::CxSystemLog()
 #if xOS_ENV_WIN
-    ,
+    :
     _sysLog  (NULL)
 #endif
 {
@@ -34,10 +33,9 @@ CxSystemLog::CxSystemLog() :
 inline
 CxSystemLog::CxSystemLog(
     std::ctstring_t &a_logName
-) :
-    _isEnable(true)
+)
 #if xOS_ENV_WIN
-    ,
+    :
     _sysLog   (NULL)
 #endif
 {
@@ -60,16 +58,7 @@ CxSystemLog::~CxSystemLog()
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
-CxSystemLog::setEnabled(
-    cbool_t &a_flag
-)
-{
-    xTEST_NA(a_flag);
-
-    _isEnable = a_flag;
-}
-//-------------------------------------------------------------------------------------------------
+/* virtual */
 inline void_t
 CxSystemLog::write(
     const ExLevel &a_level,
@@ -81,7 +70,7 @@ CxSystemLog::write(
     xTEST_DIFF(xNATIVE_HANDLE_NULL, _sysLog);
 #endif
 
-    xCHECK_DO(!_isEnable, return);
+    xCHECK_DO(!isEnable(), return);
 
     //-------------------------------------
     // comment

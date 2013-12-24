@@ -10,22 +10,24 @@
 #define xLib_CxTracerH
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
+#include "IxLog.inl"
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
 class CxString;
 
-class CxTracer
+class CxTracer :
+    public IxLog
     /// tracing
 {
 public:
-                          CxTracer() {}
+                   CxTracer() {}
         ///< constructor
-    virtual              ~CxTracer();
+    virtual       ~CxTracer();
         ///< destructor
 
     template<class T>
-    CxTracer &            operator << (const T &valueT)
+    CxTracer &     operator << (const T &valueT)
     {
         _oss << valueT;
 
@@ -33,13 +35,13 @@ public:
     }
         ///< operator <<
 
-    void_t                write(ctchar_t *format, ...) const;
+    virtual void_t write(ctchar_t *format, ...) const;
         ///< tracing to debugger, std::cout
 
 private:
     std::tostringstream_t _oss; ///< string stream
 
-    void_t                _write(std::ctstring_t &msg) const;
+    void_t         _write(std::ctstring_t &msg) const;
         ///< tracing to debugger, std::cout
 
     xNO_COPY_ASSIGN(CxTracer)

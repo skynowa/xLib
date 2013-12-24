@@ -10,13 +10,16 @@
 #define xLib_CxSystemLogH
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
+#include "IxLog.inl"
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxSystemLog
+class CxSystemLog :
+    public IxLog
     /// logging to system event log
 {
 public:
+#if xTEMP_DISABLED
     enum ExLevel
         /// log level
     {
@@ -40,6 +43,7 @@ public:
         lvDebug    = 7
     #endif
     };
+#endif
 
     #if xTEMP_DISABLED
         EVENTLOG_AUDIT_FAILURE  // Failure Audit event
@@ -53,14 +57,10 @@ public:
     virtual ~CxSystemLog();
         ///< destructor
 
-    void_t   setEnabled(cbool_t &flag);
-        ///< set enabled
-    void_t   write(const ExLevel &level, ctchar_t *format, ...) const;
+    virtual void_t write(const ExLevel &level, ctchar_t *format, ...) const;
         ///< write to log
 
 private:
-    bool_t   _isEnable;  ///< is enabled
-
 #if xOS_ENV_WIN
     HANDLE   _sysLog;     ///< event log handle
 #endif

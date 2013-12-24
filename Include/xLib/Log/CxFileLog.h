@@ -10,10 +10,12 @@
 #define xLib_CxFileLogH
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
+#include "IxLog.inl"
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxFileLog
+class CxFileLog :
+    public IxLog
     /// logging to file
 {
 public:
@@ -24,7 +26,8 @@ public:
         lsDefaultMaxSize = 200 * 1024 * 1024,
         lsLimitSize      = 500 * 1024 * 1024
     };
-
+                      CxFileLog();
+        ///< constructor
     explicit          CxFileLog(culong_t &maxFileSizeBytes);
         ///< constructor
     virtual          ~CxFileLog() {}
@@ -35,7 +38,7 @@ public:
     std::ctstring_t & filePath() const xWARN_UNUSED_RV;
         ///< get log path
 
-    void_t            write(ctchar_t *format, ...) const;
+    virtual void_t    write(ctchar_t *format, ...) const;
         ///< write
     void_t            clear() const;
         ///< clear content

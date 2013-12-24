@@ -78,6 +78,7 @@
 
 
 // Log
+#include <xLib/Log/IxLog.h>
 #include <xLib/Log/CxTracer.h>
 #include <xLib/Log/CxFileLog.h>
 #include <xLib/Log/CxSystemLog.h>

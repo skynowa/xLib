@@ -24,6 +24,15 @@ xNAMESPACE_BEGIN(NxLib)
 
 //-------------------------------------------------------------------------------------------------
 inline
+CxFileLog::CxFileLog() :
+    _filePath        (),
+    _maxFileSizeBytes(lsDefaultMaxSize)
+{
+    xTEST_EQ(true, _filePath.empty());
+    xTEST_GR(lsLimitSize, lsDefaultMaxSize);
+}
+//-------------------------------------------------------------------------------------------------
+inline
 CxFileLog::CxFileLog(
     culong_t &a_maxFileSizeBytes
 ) :
@@ -58,6 +67,7 @@ CxFileLog::filePath() const
     return _filePath;
 }
 //-------------------------------------------------------------------------------------------------
+/* virtual */
 inline void_t
 CxFileLog::write(
     ctchar_t *a_format, ...
