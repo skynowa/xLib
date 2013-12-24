@@ -18,6 +18,7 @@
 #include <objbase.h>
 #include <process.h>
 #include <lmcons.h>
+#include <lm.h>         // lib: Netapi32.lib
 #include <sys/locking.h>
 #include <io.h>
 #include <psapi.h>
