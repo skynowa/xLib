@@ -4,10 +4,6 @@
  */
 
 
-#include <xLib/Core/CxString.h>
-#include <xLib/Filesystem/CxPath.h>
-
-
 xNAMESPACE_BEGIN(NxLib)
 
 /**************************************************************************************************
@@ -18,14 +14,6 @@ xNAMESPACE_BEGIN(NxLib)
 //-------------------------------------------------------------------------------------------------
 inline
 IxLog::IxLog() :
-    _isEnable(true)
-{
-}
-//-------------------------------------------------------------------------------------------------
-inline
-IxLog::IxLog(
-    std::ctstring_t &a_logName
-) :
     _isEnable(true)
 {
 }
@@ -44,7 +32,7 @@ IxLog::setEnabled(
     _isEnable = a_flag;
 }
 //-------------------------------------------------------------------------------------------------
-bool_t
+inline bool_t
 IxLog::isEnabled() const
 {
     return _isEnable;
