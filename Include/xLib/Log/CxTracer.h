@@ -42,9 +42,6 @@ public:
 
 private:
     std::tostringstream_t _oss; ///< string stream
-
-    void_t         _write(std::ctstring_t &msg) const;
-        ///< tracing to debugger, std::cout
 };
 
 xNAMESPACE_END(NxLib)

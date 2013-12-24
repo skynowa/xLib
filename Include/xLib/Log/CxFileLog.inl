@@ -75,32 +75,10 @@ CxFileLog::write(
 {
     xCHECK_DO(a_format == NULL, return);
 
-    _removeIfFull();
-
-    //-------------------------------------
-    //time
-    std::tstring_t time;
-    time = CxDateTime::current().format(xT("%Y-%m-%d %H:%M:%S"));
-
-    //-------------------------------------
-    //comment
-    std::tstring_t param;
-    va_list        args;
-
+    va_list args;
     xVA_START(args, a_format);
-    param = CxString::formatV(a_format, args);
+    write(lvUnknown, a_format, args);
     xVA_END(args);
-
-    //-------------------------------------
-    //write to file
-    #if xTODO
-        CxAutoIpcMutex SL(_mutex);
-    #endif
-
-    CxFile file;
-    file.create(filePath(), CxFile::omAppend, false);
-    int_t iRv = file.write(xT("[%s] %s\n"), time.c_str(), param.c_str());
-    xTEST_DIFF(- 1, iRv);
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -113,12 +91,33 @@ CxFileLog::write(
     xUNUSED(a_level);
     xUNUSED(a_format);
 
-    std::ctstring_t format = _levelToString(a_level) + xT(": ") + a_format;
+    _removeIfFull();
 
-    va_list args;
-    xVA_START(args, a_format);
-    write(format.c_str(), args);
-    xVA_END(args);
+    // datetime
+    std::tstring_t time;
+    time = CxDateTime::current().format(xT("%Y-%m-%d %H:%M:%S"));
+
+    std::tstring_t msg;
+    {
+        va_list args;
+        xVA_START(args, a_format);
+        msg = CxString::formatV(a_format, args);
+        xVA_END(args);
+
+        msg = _levelToString(a_level) + xT(": ") + msg;
+    }
+
+    // write
+    {
+        #if xTODO
+            CxAutoIpcMutex SL(_mutex);
+        #endif
+
+        CxFile file;
+        file.create(filePath(), CxFile::omAppend, false);
+        int_t iRv = file.write(xT("[%s] %s\n"), time.c_str(), msg.c_str());
+        xTEST_DIFF(- 1, iRv);
+    }
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
