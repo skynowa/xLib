@@ -10,7 +10,7 @@
 #define xLib_CxSystemLogH
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
-#include "IxLog.inl"
+#include "IxLog.h"
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
@@ -67,8 +67,6 @@ private:
 
     void_t   _construct(std::ctstring_t &logName);
         ///< initiate data
-
-    xNO_COPY_ASSIGN(CxSystemLog)
 };
 
 xNAMESPACE_END(NxLib)

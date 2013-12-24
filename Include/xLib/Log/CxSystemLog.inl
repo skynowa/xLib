@@ -70,7 +70,7 @@ CxSystemLog::write(
     xTEST_DIFF(xNATIVE_HANDLE_NULL, _sysLog);
 #endif
 
-    xCHECK_DO(!isEnable(), return);
+    xCHECK_DO(!isEnabled(), return);
 
     //-------------------------------------
     // comment
