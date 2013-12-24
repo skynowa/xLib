@@ -46,12 +46,19 @@ CxTracer::write(
 /* virtual */
 inline void_t
 CxTracer::write(
-    cExLevel &level,
+    cExLevel &a_level,
     ctchar_t *a_format, ...
 ) const
 {
-    xUNUSED(level);
+    xUNUSED(a_level);
     xUNUSED(a_format);
+
+    std::ctstring_t format = _levelToString(a_level) + xT(": ") + a_format;
+
+    va_list args;
+    xVA_START(args, a_format);
+    _write(format.c_str(), args);
+    xVA_END(args);
 }
 //-------------------------------------------------------------------------------------------------
 

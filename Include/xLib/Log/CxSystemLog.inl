@@ -64,7 +64,12 @@ CxSystemLog::write(
     ctchar_t *a_format, ...
 ) const
 {
-    xUNUSED(a_format);
+    xCHECK_DO(a_format == NULL, return);
+
+    va_list args;
+    xVA_START(args, a_format);
+    write(lvInfo, a_format, args);
+    xVA_END(args);
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
