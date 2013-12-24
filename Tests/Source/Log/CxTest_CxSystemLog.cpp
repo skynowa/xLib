@@ -38,7 +38,7 @@ CxTest_CxSystemLog::unit(
 
     xTEST_CASE("CxSystemLog::write", a_caseLoops)
     {
-        IxLog::ExLevel alvLogLevel[] = {
+        IxLog::cExLevel alvLogLevel[] = {
             IxLog::lvEmerg, IxLog::lvAlert,   IxLog::lvCritical,
             IxLog::lvError, IxLog::lvWarning, IxLog::lvNotice,
             IxLog::lvInfo,  IxLog::lvDebug

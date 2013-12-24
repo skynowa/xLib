@@ -20,6 +20,7 @@ public:
     enum ExLevel
         /// log level
     {
+        lvUnknown,
         lvEmerg,
         lvAlert,
         lvCritical,
@@ -29,6 +30,7 @@ public:
         lvInfo,
         lvDebug
     };
+    typedef const ExLevel cExLevel;
 
                     IxLog();
         ///< constructor
@@ -47,10 +49,13 @@ public:
 #endif
     virtual void_t  write(ctchar_t *format, ...) const = 0;
         ///< write to log
-    virtual void_t  write(const ExLevel &level, ctchar_t *format, ...) const = 0;
+    virtual void_t  write(cExLevel &level, ctchar_t *format, ...) const = 0;
         ///< write to log
 
 protected:
+    std::tstring_t  _levelToString(cExLevel &level) const;
+
+private:
     bool_t          _isEnable;  ///< is enabled
 
     xNO_COPY_ASSIGN(IxLog)

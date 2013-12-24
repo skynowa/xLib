@@ -70,8 +70,8 @@ CxSystemLog::write(
 /* virtual */
 inline void_t
 CxSystemLog::write(
-    const ExLevel &a_level,
-    ctchar_t      *a_format, ...
+    cExLevel &a_level,
+    ctchar_t *a_format, ...
 ) const
 {
     xTEST_PTR(a_format);
