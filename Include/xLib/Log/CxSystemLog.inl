@@ -86,25 +86,25 @@ CxSystemLog::write(
 
     xCHECK_DO(!isEnabled(), return);
 
-    //-------------------------------------
-    // comment
-    std::tstring_t message;
-    va_list        args;
+    std::tstring_t msg;
+    {
+        va_list args;
+        xVA_START(args, a_format);
+        msg = CxString::formatV(a_format, args);
+        xVA_END(args);
+    }
 
-    xVA_START(args, a_format);
-    message = CxString::formatV(a_format, args);
-    xVA_END(args);
-
-    //-------------------------------------
     // write
-#if   xOS_ENV_WIN
-    LPCTSTR strings = message.c_str();
+    {
+    #if   xOS_ENV_WIN
+        LPCTSTR strings = msg.c_str();
 
-    BOOL bRv = ::ReportEvent(_sysLog, a_level, 0, 0UL, NULL, 1, 0UL, &strings, NULL);
-    xTEST_DIFF(FALSE, bRv);
-#elif xOS_ENV_UNIX
-    (void_t)::syslog(a_level, xT("%s"), message.c_str());
-#endif
+        BOOL bRv = ::ReportEvent(_sysLog, a_level, 0, 0UL, NULL, 1, 0UL, &strings, NULL);
+        xTEST_DIFF(FALSE, bRv);
+    #elif xOS_ENV_UNIX
+        (void_t)::syslog(a_level, xT("%s"), msg.c_str());
+    #endif
+    }
 }
 //-------------------------------------------------------------------------------------------------
 
