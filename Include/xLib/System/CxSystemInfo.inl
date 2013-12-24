@@ -410,10 +410,7 @@ CxSystemInfo::loginUserName() const
 
     // try to get from system environment
     if (nsRv == NERR_Success || userInfo == NULL) {
-        bool_t bRv = CxEnvironment::isExists(xT("USERNAME"));
-        if (bRv) {
-            sRv = CxEnvironment::var(xT("USERNAME"));
-        }
+        sRv = CxEnvironment::var(xT("USERNAME"));
     }
 #elif xOS_ENV_UNIX
     char buff[xUSER_NAME_MAX + 1] = {0}; // TODO: LOGIN_NAME_MAX
@@ -481,6 +478,7 @@ CxSystemInfo::useHomeDir() const
     * it is necessary to use getpwnam("username")->pw_dir or similar.
     */
 
+    // try to get from API
     {
         passwd passwd;   xSTRUCT_ZERO(passwd);
 
@@ -490,12 +488,8 @@ CxSystemInfo::useHomeDir() const
         sRv.assign(passwd.pw_dir);
     }
 
-    bool_t bRv = CxEnvironment::isExists(xT("HOME"));
-    if (bRv) {
-        sRv = CxEnvironment::var(xT("HOME"));
-    }
-
-    xTEST_EQ(sRv.empty(), false);
+    // try to get from system environment
+    sRv = CxEnvironment::var(xT("HOME"));
 #elif xOS_ENV_MAC
     xNOT_IMPLEMENTED
 #endif
@@ -523,7 +517,7 @@ CxSystemInfo::userShellPath() const
     sRv.append(CxConst::slash());
     sRv.append(xT("explorer.exe"));
 #elif xOS_ENV_UNIX
-    struct passwd passwd;   xSTRUCT_ZERO(passwd);
+    passwd passwd;   xSTRUCT_ZERO(passwd);
 
     _passwdFileEntry(&passwd);
     xTEST_PTR(passwd.pw_shell);
