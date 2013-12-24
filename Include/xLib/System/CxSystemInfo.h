@@ -129,7 +129,7 @@ private:
     ExOsArch       _osArch;
 
 #if !xOS_ENV_WIN
-    void_t         _passwdFileEntry(struct passwd *passwdEntry) const;
+    void_t         _passwdFileEntry(passwd *passwdEntry) const;
         ///< get password file entry
 #endif
 

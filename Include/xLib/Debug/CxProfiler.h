@@ -72,7 +72,7 @@ xNAMESPACE_END(NxLib)
     #include <sys/time.h>
 
     double time_in_seconds() {
-        struct timeval tp;
+        timeval tp;
         gettimeofday(&tp,0);
         return tp.tv_sec+.000001*tp.tv_usec;
     }
@@ -90,7 +90,7 @@ xNAMESPACE_END(NxLib)
     #include <time.h>
 
     double time_in_seconds() {
-      struct timespec tp;
+      timespec tp;
       clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &tp);
       return tp.tv_sec + .000000001 * tp.tv_nsec;
     }

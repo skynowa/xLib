@@ -38,18 +38,6 @@
 #define xTRACE(msg) \
     { CxTracer() << (msg); }
     ///< tracing
-#define xTRACE_VAR(v) \
-    #v ": " << (v)
-    ///< trace variable, trace variable and value
-#define xTRACE_VAR2(v1, v2) \
-    xTRACE_VAR(v1)  << ", " << xTRACE_VAR(v2)
-#define xTRACE_VAR3(v1, v2, v3) \
-    xTRACE_VAR2(v1) << ", " << xTRACE_VAR(v2)
-#define xTRACE_VAR4(v1, v2, v3, v4) \
-    xTRACE_VAR3(v1) << ", " << xTRACE_VAR(v2)
-#define xTRACE_VAR5(v1, v2, v3, v4, v5) \
-    xTRACE_VAR4(v1) << ", " << xTRACE_VAR(v2)
-
 #define xTRACEV(...) \
     { CxTracer().write(__VA_ARGS__); }
     ///< tracing
@@ -62,5 +50,17 @@
             << "error: " << CxLastError::format() << " :::"; \
     }
     ///< trace point (use CxTracer)
+
+#define xTRACE_VAR(v) \
+    #v ": " << (v)
+    ///< trace variable, trace variable and value
+#define xTRACE_VAR2(v1, v2) \
+    xTRACE_VAR(v1)  << ", " << xTRACE_VAR(v2)
+#define xTRACE_VAR3(v1, v2, v3) \
+    xTRACE_VAR2(v1) << ", " << xTRACE_VAR(v2)
+#define xTRACE_VAR4(v1, v2, v3, v4) \
+    xTRACE_VAR3(v1) << ", " << xTRACE_VAR(v2)
+#define xTRACE_VAR5(v1, v2, v3, v4, v5) \
+    xTRACE_VAR4(v1) << ", " << xTRACE_VAR(v2)
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_xDebugH

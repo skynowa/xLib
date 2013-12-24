@@ -145,7 +145,7 @@ CxDnsClient::nameInfo(
     tchar_t servInfo[NI_MAXSERV + 1] = {0};
 
     // TODO: bGetNameInfo
-    int_t iRv = ::xGETNAMEINFO((struct sockaddr *)&socketAddr, sizeof(socketAddr), &hostName[0],
+    int_t iRv = ::xGETNAMEINFO((sockaddr *)&socketAddr, sizeof(socketAddr), &hostName[0],
         NI_MAXHOST, &servInfo[0], NI_MAXSERV, NI_NUMERICSERV);
     xTEST_EQ(0, iRv);
 

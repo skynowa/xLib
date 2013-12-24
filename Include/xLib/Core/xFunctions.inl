@@ -11,8 +11,8 @@ xNAMESPACE_BEGIN(NxLib)
 
 inline int_t
 getTimeOfDay(
-    struct timeval  *a_tv,
-    struct timezone *a_tz
+    timeval  *a_tv,
+    timezone *a_tz
 )
 {
 #if xCOMPILER_MS || defined(_MSC_EXTENSIONS)

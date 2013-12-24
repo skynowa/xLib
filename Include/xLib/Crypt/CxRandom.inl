@@ -32,7 +32,7 @@ IxSeedPolicy::IxSeedPolicy() :
 inline uint_t
 IxSeedPolicy::_seedTimeBased() const
 {
-    struct timeval tv = {0, 0};
+    timeval tv = {0, 0};
     int_t iRv = xGETTIMEOFDAY(&tv, NULL);
     xTEST_DIFF(iRv, - 1);
 
