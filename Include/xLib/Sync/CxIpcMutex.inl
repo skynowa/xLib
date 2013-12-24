@@ -114,8 +114,8 @@ CxIpcMutex::lock(
     {
         static void_t
         timespecAddMsec(
-            struct timespec *a_ts,
-            long             a_ms
+            timespec *a_ts,
+            long      a_ms
         )
         {
             long_t sec = 0L;
@@ -133,10 +133,10 @@ CxIpcMutex::lock(
     };
 
 
-    int_t           iRv         = - 1;
-    struct timespec timeoutMsec = {0, 0};
+    int_t    iRv         = - 1;
+    timespec timeoutMsec = {0, 0};
 
-    // add msec to struct timespec
+    // add msec to timespec
     {
         iRv = ::clock_gettime(CLOCK_REALTIME, &timeoutMsec);
         xTEST_DIFF(- 1, iRv);

@@ -87,9 +87,9 @@ CxDebugger::isActive() const
         bool_t bRv = ( ::getsid(::getpid()) != ::getppid() );
         xCHECK_RET(!bRv, false);
     #elif xOS_FREEBSD
-        int_t             mib[4]   = {0};
-        struct kinfo_proc info     = {0};
-        size_t            infoSize = 0;
+        int_t      mib[4]   = {0};
+        kinfo_proc info     = {0};
+        size_t     infoSize = 0;
 
         mib[0] = CTL_KERN;
         mib[1] = KERN_PROC;
@@ -140,7 +140,7 @@ CxDebugger::coreDumpsEnable(
     iRv = ::prctl(PR_SET_DUMPABLE, 0);
     isEnable = (iRv == 0);
 #elif xHAVE_RLIMIT_CORE
-    struct rlimit limit = {0, 0};
+    rlimit limit = {0, 0};
 
     iRv = ::setrlimit(RLIMIT_CORE, &limit);
     isEnable = (iRv == 0);

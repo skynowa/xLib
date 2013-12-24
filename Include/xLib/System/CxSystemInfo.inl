@@ -473,7 +473,7 @@ CxSystemInfo::userName() const
 
     sRv.assign(buff, buffSize);
 #elif xOS_ENV_UNIX
-    struct passwd passwd;   xSTRUCT_ZERO(passwd);
+    passwd passwd;   xSTRUCT_ZERO(passwd);
 
     _passwdFileEntry(&passwd);
     xTEST_PTR(passwd.pw_name);
@@ -1178,7 +1178,7 @@ CxSystemInfo::pageSize() const
 //-------------------------------------------------------------------------------------------------
 inline void_t
 CxSystemInfo::_passwdFileEntry(
-    struct passwd *a_passwdEntry
+    passwd *a_passwdEntry
 ) const
 {
     xTEST_PTR(a_passwdEntry);

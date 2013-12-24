@@ -956,7 +956,8 @@ CxThread::setDebugName(
         const DWORD msVcException = 0x406D1388;
 
     #pragma pack(push, 8)
-        struct tagTHREADNAME_INFO {
+        struct tagTHREADNAME_INFO
+        {
             DWORD  dwType;      // must be 0x1000
             LPCSTR pszName;     // pointer to name (in user addr space)
             DWORD  dwThreadID;  // thread ID (-1 = caller thread)
@@ -965,7 +966,7 @@ CxThread::setDebugName(
     #pragma pack(pop)
 
         tagTHREADNAME_INFO info = {0};
-        info.dwType     = 0x1000;
+        info.dwType = 0x1000;
     #if xUNICODE
         // TODO: vSetDebugName, convert from Unicode to Ansi
         //// info.pszName    = xTS2S(csName).c_str();

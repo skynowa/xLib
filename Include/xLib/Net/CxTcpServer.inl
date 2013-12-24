@@ -25,12 +25,12 @@ CxTcpServer::bind(
     xTEST_DIFF(xSOCKET_HANDLE_INVALID, _socket);
     xTEST_EQ(true, (32767 > a_port) && (0 < a_port));
 
-    struct sockaddr_in sockAddr;    xSTRUCT_ZERO(sockAddr);
+    sockaddr_in sockAddr;    xSTRUCT_ZERO(sockAddr);
     sockAddr.sin_family      = _family;
     sockAddr.sin_addr.s_addr = INADDR_ANY;
     sockAddr.sin_port        = htons(a_port);
 
-    int_t iRv = ::bind(_socket, CxUtils::reinterpretCastT<const struct sockaddr *>( &sockAddr ),
+    int_t iRv = ::bind(_socket, CxUtils::reinterpretCastT<const sockaddr *>( &sockAddr ),
         sizeof(sockAddr));
     xTEST_DIFF(xSOCKET_ERROR, iRv);
 
@@ -65,17 +65,17 @@ CxTcpServer::accept(
     socket_t scktClient = xSOCKET_HANDLE_INVALID;
 
 #if   xOS_ENV_WIN
-    struct sockaddr_in cliaddr = {0};
-    int_t              addrlen = sizeof(cliaddr);
+    sockaddr_in cliaddr = {0};
+    int_t       addrlen = sizeof(cliaddr);
 
-    scktClient = ::accept(_socket, CxUtils::reinterpretCastT<struct sockaddr *>( &cliaddr ),
+    scktClient = ::accept(_socket, CxUtils::reinterpretCastT<sockaddr *>( &cliaddr ),
         &addrlen);
     xTEST_DIFF(xSOCKET_HANDLE_INVALID, scktClient);
 #elif xOS_ENV_UNIX
-    struct sockaddr_in cliaddr; xSTRUCT_ZERO(cliaddr);
-    socklen_t          addrlen = sizeof(cliaddr);
+    sockaddr_in cliaddr; xSTRUCT_ZERO(cliaddr);
+    socklen_t   addrlen = sizeof(cliaddr);
 
-    scktClient = ::accept(_socket, CxUtils::reinterpretCastT<struct sockaddr *>( &cliaddr ),
+    scktClient = ::accept(_socket, CxUtils::reinterpretCastT<sockaddr *>( &cliaddr ),
         &addrlen);
     xTEST_DIFF(xSOCKET_HANDLE_INVALID, scktClient);
 #endif

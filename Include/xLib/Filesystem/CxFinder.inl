@@ -176,7 +176,7 @@ CxFinder::moveNext()
         int_t iRv = 0;
 
         xFOREVER {
-            struct dirent *entryRv = NULL;
+            dirent *entryRv = NULL;
 
             iRv = ::readdir_r(_entry.handle, &_entry.data, &entryRv);
             xTEST_EQ(iRv, 0);
