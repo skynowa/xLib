@@ -46,8 +46,8 @@ CxTracer::write(
 /* virtual */
 inline void_t
 CxTracer::write(
-    const ExLevel &level,
-    ctchar_t      *a_format, ...
+    cExLevel &level,
+    ctchar_t *a_format, ...
 ) const
 {
     xUNUSED(level);
