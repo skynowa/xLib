@@ -39,15 +39,6 @@ CxTest_CxTracer::unit(
     #endif
     }
 
-    xTEST_CASE("CxTracer::write", a_caseLoops)
-    {
-    #if xTEST_IGNORE
-        std::tstring_t sData = xT("\ttest_str");
-
-        CxTracer::write(sData);
-    #endif
-    }
-
     xTEST_CASE("CxTracer::xTRACE_VAR_", a_caseLoops)
     {
     #if xTEST_IGNORE
