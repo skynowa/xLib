@@ -61,6 +61,15 @@ CxSystemLog::~CxSystemLog()
 /* virtual */
 inline void_t
 CxSystemLog::write(
+    ctchar_t *a_format, ...
+) const
+{
+    xUNUSED(a_format);
+}
+//-------------------------------------------------------------------------------------------------
+/* virtual */
+inline void_t
+CxSystemLog::write(
     const ExLevel &a_level,
     ctchar_t      *a_format, ...
 ) const

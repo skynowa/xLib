@@ -103,6 +103,17 @@ CxFileLog::write(
     xTEST_DIFF(- 1, iRv);
 }
 //-------------------------------------------------------------------------------------------------
+/* virtual */
+inline void_t
+CxFileLog::write(
+    const ExLevel &level,
+    ctchar_t      *a_format, ...
+) const
+{
+    xUNUSED(level);
+    xUNUSED(a_format);
+}
+//-------------------------------------------------------------------------------------------------
 inline void_t
 CxFileLog::clear() const
 {
