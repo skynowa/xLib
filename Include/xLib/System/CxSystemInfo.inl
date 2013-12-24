@@ -416,7 +416,7 @@ CxSystemInfo::loginUserName() const
         }
     }
 #elif xOS_ENV_UNIX
-    char buff[xUSER_NAME_MAX + 1] = {0};
+    char buff[xUSER_NAME_MAX + 1] = {0}; // TODO: LOGIN_NAME_MAX
 
     int_t iRv = ::getlogin_r(buff, xARRAY_SIZE(buff));
     xTEST_EQ(iRv, 0);
