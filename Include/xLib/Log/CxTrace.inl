@@ -1,5 +1,5 @@
 /**
- * \file   CxTracer.cpp
+ * \file   CxTrace.cpp
  * \brief  tracer
  */
 
@@ -18,14 +18,14 @@ xNAMESPACE_BEGIN(NxLib)
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 inline
-CxTracer::~CxTracer()
+CxTrace::~CxTrace()
 {
     write(xT("%s\n"), _oss.str().c_str() );
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 inline void_t
-CxTracer::write(
+CxTrace::write(
     ctchar_t *a_format, ...
 ) const
 {
@@ -43,7 +43,7 @@ CxTracer::write(
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 inline void_t
-CxTracer::write(
+CxTrace::write(
     cExLevel &a_level,
     ctchar_t *a_format, ...
 ) const

@@ -8,6 +8,7 @@
 
 #include <xLib/Core/CxString.h>
 #include <xLib/Filesystem/CxPath.h>
+#include <xLib/Log/CxTrace.h>
 
 
 //------------------------------------------------------------------------------
@@ -464,7 +465,7 @@ CxTest_xDefines::unit(
             xTHROW_REPORT("test xTHROW_REPORT message");
         }
         catch (const CxException &a_ex) {
-            CxTracer() << xTRACE_VAR(a_ex.what());
+            CxTrace() << xTRACE_VAR(a_ex.what());
         }
         catch (const std::exception &a_ex) {
             xTEST_FAIL;

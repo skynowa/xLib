@@ -16,13 +16,13 @@
     { if (expr) { do_expr; } }
     ///< check expression and do instructions
 #define xCHECK_MSG(expr, comment) \
-    { if (expr) { CxTracer() << (comment); } }
+    { if (expr) { CxTrace() << (comment); } }
     ///< check expression and show message with comment
 #define xCHECK_MSG_RET(expr, comment, return_expr) \
-    { if (expr) { CxTracer() << (comment); return (return_expr); } }
+    { if (expr) { CxTrace() << (comment); return (return_expr); } }
     ///< check expression, show message with comment and return value
 #define xCHECK_MSG_DO(expr, comment, do_expr) \
-    { if (expr) { CxTracer() << (comment); do_expr; } }
+    { if (expr) { CxTrace() << (comment); do_expr; } }
     ///< check expression, show message with comment and do instructions
 #define xCHECK_NA(var) \
     ;
@@ -36,20 +36,20 @@
     ///< show not implemented message and return value
 //-------------------------------------------------------------------------------------------------
 #define xTRACE(msg) \
-    { CxTracer() << (msg); }
+    { CxTrace() << (msg); }
     ///< tracing
 #define xTRACEV(...) \
-    { CxTracer().write(__VA_ARGS__); }
+    { CxTrace().write(__VA_ARGS__); }
     ///< tracing
 #define xTRACE_POINT \
     { \
-        CxTracer() \
+        CxTrace() \
             << "\t::: #" << xCOUNTER  << " " \
             << "in "     << xFILE     << ":" << xLINE << ", " \
             << "func: "  << xFUNCTION << ", " \
             << "error: " << CxLastError::format() << " :::"; \
     }
-    ///< trace point (use CxTracer)
+    ///< trace point (use CxTrace)
 
 #define xTRACE_VAR(v) \
     #v ": " << (v)

@@ -1,13 +1,13 @@
 /**
- * \file   CxTracer.h
+ * \file   CxTrace.h
  * \brief  tracer
  */
 
 
 #pragma once
 
-#ifndef xLib_CxTracerH
-#define xLib_CxTracerH
+#ifndef xLib_CxTraceH
+#define xLib_CxTraceH
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 #include "IxLog.h"
@@ -16,18 +16,18 @@ xNAMESPACE_BEGIN(NxLib)
 
 class CxString;
 
-class CxTracer :
+class CxTrace :
     public IxLog
     /// tracing
 {
 public:
-                   CxTracer() {}
+                   CxTrace() {}
         ///< constructor
-    virtual       ~CxTracer();
+    virtual       ~CxTrace();
         ///< destructor
 
     template<class T>
-    CxTracer &     operator << (const T &valueT)
+    CxTrace &     operator << (const T &valueT)
     {
         _oss << valueT;
 
@@ -46,6 +46,6 @@ private:
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include "CxTracer.inl"
+#include "CxTrace.inl"
 //-------------------------------------------------------------------------------------------------
-#endif // xLib_CxTracerH
+#endif // xLib_CxTraceH
