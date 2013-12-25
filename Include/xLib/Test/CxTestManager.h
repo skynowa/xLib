@@ -45,7 +45,9 @@ xNAMESPACE_END(NxLib)
 #endif // xLib_CxTestManagerH
 
 
-// TODO: CxTestManager - not enough RAM
-// TODO: CxTestManager - not enough HDD
-// TODO: CxTestManager - busy CPU
-// TODO: CxTestManager - every macros wrapped by try-catch
+/**
+ * TODO: CxTestManager - not enough RAM
+ * TODO: CxTestManager - not enough HDD
+ * TODO: CxTestManager - busy CPU
+ * TODO: CxTestManager - every macros wrapped by try-catch
+ */

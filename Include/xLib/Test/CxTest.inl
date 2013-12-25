@@ -69,7 +69,6 @@ CxTest::run(
 
         for (ulonglong_t i = 0ULL; i < a_unitLoops; ++ i) {
             unit(a_caseLoops);
-            // TODO: xTEST_MSG_EQ(true, bRv, sGetName() + xT(": fail"));
         }
     }
     catch (const CxException &a_e) {
