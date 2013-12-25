@@ -73,7 +73,7 @@ CxSystemLog::write(
     msg = CxString::formatV(a_format, args);
     xVA_END(args);
 
-    write(lvUnknown, xT("%s"), msg.c_str());
+    write(lvPlain, xT("%s"), msg.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -90,6 +90,11 @@ CxSystemLog::write(
 
     xCHECK_DO(!isEnabled(), return);
 
+    ExLevel level = lvUnknown;
+    {
+        xCHECK_DO(a_level == lvPlain, level = lvInfo);
+    }
+
     std::tstring_t msg;
     {
         va_list args;
@@ -103,10 +108,10 @@ CxSystemLog::write(
     #if   xOS_ENV_WIN
         LPCTSTR strings = msg.c_str();
 
-        BOOL bRv = ::ReportEvent(_sysLog, a_level, 0, 0UL, NULL, 1, 0UL, &strings, NULL);
+        BOOL bRv = ::ReportEvent(_sysLog, level, 0, 0UL, NULL, 1, 0UL, &strings, NULL);
         xTEST_DIFF(FALSE, bRv);
     #elif xOS_ENV_UNIX
-        (void_t)::syslog(a_level, xT("%s"), msg.c_str());
+        (void_t)::syslog(level, xT("%s"), msg.c_str());
     #endif
     }
 }

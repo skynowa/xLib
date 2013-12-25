@@ -38,7 +38,7 @@ CxTracer::write(
     msg = CxString::formatV(a_format, args);
     xVA_END(args);
 
-    write(lvUnknown, xT("%s"), msg.c_str());
+    write(lvPlain, xT("%s"), msg.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -58,7 +58,9 @@ CxTracer::write(
         msg = CxString::formatV(a_format, args);
         xVA_END(args);
 
-        msg = _levelToString(a_level) + xT(": ") + msg;
+        if (a_level != lvPlain) {
+            msg = _levelToString(a_level) + xT(": ") + msg;
+        }
     }
 
     // write
