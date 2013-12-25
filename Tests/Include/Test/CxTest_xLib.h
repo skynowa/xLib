@@ -73,7 +73,7 @@
 
 
 // Log
-#include <Test/Log/CxTest_CxTracer.h>
+#include <Test/Log/CxTest_CxTrace.h>
 #include <Test/Log/CxTest_CxFileLog.h>
 #include <Test/Log/CxTest_CxSystemLog.h>
 

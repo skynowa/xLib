@@ -1,6 +1,6 @@
 /**
- * \file   CxTest_CxTracer.h
- * \brief  test CxTracer
+ * \file   CxTest_CxTrace.h
+ * \brief  test CxTrace
  */
 
 
@@ -8,13 +8,13 @@
 
 #include <xLib/Core/xCore.h>
 #include <xLib/Test/CxTest.h>
-#include <xLib/Log/CxTracer.h>
+#include <xLib/Log/CxTrace.h>
 //------------------------------------------------------------------------------
-class CxTest_CxTracer :
+class CxTest_CxTrace :
     public CxTest
 {
 public:
-                   CxTest_CxTracer() {}
+                   CxTest_CxTrace() {}
 
     virtual void_t unit(culonglong_t &caseLoops);
         ///< unit test
