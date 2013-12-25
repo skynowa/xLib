@@ -31,10 +31,14 @@ CxTracer::write(
 {
     xCHECK_DO(a_format == NULL, return);
 
+    std::tstring_t msg;
+
     va_list args;
     xVA_START(args, a_format);
-    write(lvUnknown, a_format, args);
+    msg = CxString::formatV(a_format, args);
     xVA_END(args);
+
+    write(lvUnknown, xT("%s"), msg.c_str());
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
