@@ -76,22 +76,25 @@
     ///<    1 - stop executing on dialog prompt, wait for user choice
 
 // log mode (only one mode can be activated)
-#cmakedefine xDEBUG_MODE_MSGBOX        0
+#cmakedefine xDEBUG_MODE_MSGBOX        1
     ///< debug mode "message box with plain text"
 #cmakedefine xDEBUG_MODE_STDOUT        1
     ///< debug mode "std::out with plain text"
-#cmakedefine xDEBUG_MODE_LOG           0
+#cmakedefine xDEBUG_MODE_LOG           1
     ///< debug mode "logging with plain text"
-#cmakedefine xDEBUG_MODE_NO            0
+#cmakedefine xDEBUG_MODE_NO            1
     ///< debug mode "no debugging"
 
-#cmakedefine xCOMPILE_TRACING          0
+#cmakedefine xCOMPILE_TRACING          1
     ///< is compile time tracing
 
-#cmakedefine xTEST_PRIVATE_DATA        0
-    ///< for tests private data
-
-#cmakedefine xNEW_NO_STD_THROW         0
+#cmakedefine xNEW_NO_STD_THROW         1
     ///< new with std::notrow
+
+#cmakedefine xTEST_PRIVATE_DATA        1
+    ///< for tests private data
+#cmakedefine xTEST_TRACING             1
+    ///< use tracing in tests
+
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_xConfigH

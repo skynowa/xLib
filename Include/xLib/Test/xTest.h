@@ -261,9 +261,14 @@
     { switch (0) {case 0: case (expr):;} }
     ///< static assert
 
-#define xTEST_CASE(caseName, loops) \
-    /* CxTracer() << xT("\tCase name: ") << caseName; */ \
-    for (size_t _caseLoops = 0; _caseLoops < (loops); ++ _caseLoops)
+#if xTEST_TRACING
+    #define xTEST_CASE(caseName, loops) \
+        CxTracer() << xT("\tCase name: ") << caseName; \
+        for (size_t _caseLoops = 0; _caseLoops < (loops); ++ _caseLoops)
+#else
+    #define xTEST_CASE(caseName, loops) \
+        for (size_t _caseLoops = 0; _caseLoops < (loops); ++ _caseLoops)
+#endif
     ///< test case
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_xTestH
