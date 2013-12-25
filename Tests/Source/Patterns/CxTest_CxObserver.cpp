@@ -53,6 +53,9 @@ CxTest_CxObserver::unit(
 {
     xTEST_CASE("CxObserver::CxObserver", a_caseLoops)
     {
+        ::type_all = 0;
+        ::message_all.clear();
+
         Observer1<std::ctstring_t> ob1;
         Observer2<std::ctstring_t> ob2;
 
@@ -61,8 +64,8 @@ CxTest_CxObserver::unit(
         observer.attach(&ob2);
 
         observer.updateAll(1, "abcdef");
-        xTEST_EQ(type_all, 1 * 2);
-        xTEST_EQ(message_all, std::tstring_t("abcdef") + std::tstring_t("abcdef"));
+        xTEST_EQ(::type_all, 1 * 2);
+        xTEST_EQ(::message_all, std::tstring_t("abcdef") + std::tstring_t("abcdef"));
     }
 }
 //---------------------------------------------------------------------------
