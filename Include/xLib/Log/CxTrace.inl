@@ -20,7 +20,9 @@ xNAMESPACE_BEGIN(NxLib)
 inline
 CxTrace::~CxTrace()
 {
-    write(xT("%s\n"), _oss.str().c_str() );
+    std::cstring_t msg = _oss.str();
+
+    write(xT("%s\n"), msg.c_str() );
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */

@@ -12,7 +12,7 @@
 #include <xLib/Debug/CxErrorReport.h>
 #include <xLib/Debug/CxDebugger.h>
 #include <xLib/Debug/CxStackTrace.h>
-#include <xLib/Log/CxTracer.h>
+#include <xLib/Log/CxTrace.h>
 
 
 xNAMESPACE_ANONYM_BEGIN

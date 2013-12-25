@@ -8,7 +8,7 @@
 #include <xLib/Core/CxString.h>
 #include <xLib/Core/CxUtils.h>
 #include <xLib/Filesystem/CxPath.h>
-#include <xLib/Log/CxTracer.h>
+#include <xLib/Log/CxTrace.h>
 #include <xLib/Debug/CxStdDebug.h>
 
 #if   xOS_ENV_WIN

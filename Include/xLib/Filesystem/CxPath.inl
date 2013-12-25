@@ -10,7 +10,7 @@
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Filesystem/CxDir.h>
 #include <xLib/Sync/CxProcess.h>
-#include <xLib/Log/CxTracer.h>
+#include <xLib/Log/CxTrace.h>
 
 
 xNAMESPACE_BEGIN(NxLib)
@@ -1056,10 +1056,10 @@ CxPath::proc(
         CxDir proc(xT("/proc"));
 
         bRv = proc.isExists();
-        xCHECK_DO(!bRv, CxTracer() << xT("::: xLib: warning (/proc dir not mount) :::"); return);
+        xCHECK_DO(!bRv, CxTrace() << xT("::: xLib: warning (/proc dir not mount) :::"); return);
 
         bRv = proc.isEmpty();
-        xCHECK_DO(bRv, CxTracer() << xT("::: xLib: warning (/proc dir is empty) :::");  return);
+        xCHECK_DO(bRv, CxTrace() << xT("::: xLib: warning (/proc dir is empty) :::");  return);
     }
 
     std::vec_tstring_t vsRv;

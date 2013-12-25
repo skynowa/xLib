@@ -8,7 +8,7 @@
 #include <xLib/Core/CxUtils.h>
 #include <xLib/System/CxSystemInfo.h>
 #include <xLib/Sync/CxProcess.h>
-#include <xLib/Log/CxTracer.h>
+#include <xLib/Log/CxTrace.h>
 
 
 xNAMESPACE_BEGIN(NxLib)
@@ -593,7 +593,7 @@ CxThread::setPriority(
     xTEST_DIFF(FALSE, blRv);
 #elif xOS_ENV_UNIX
     if (!CxSystemInfo().isUserAdmin()) {
-        CxTracer() << xT("::: xLib: warning (CxThread::setPriority fail, need root) :::");
+        CxTrace() << xT("::: xLib: warning (CxThread::setPriority fail, need root) :::");
         return;
     }
 
