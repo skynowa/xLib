@@ -89,20 +89,6 @@ CxTest_xDebug::unit(
         #endif
     }
 
-    xTEST_CASE("xDebug::xTRACE_", a_caseLoops)
-    {
-        #if xTEST_IGNORE
-            xTRACE(xT("test_data"));
-        #endif
-    }
-
-    xTEST_CASE("xDebug::xTRACEV_", a_caseLoops)
-    {
-        #if xTEST_IGNORE
-            xTRACEV(xT("%s: %d"), xT("test_data"), 10);
-        #endif
-    }
-
     xTEST_CASE("xDebug::xTRACE_POINT_", a_caseLoops)
     {
         #if xTEST_IGNORE
