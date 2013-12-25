@@ -9,6 +9,7 @@
 #include <xLib/Core/CxString.h>
 #include <xLib/Core/CxUtils.h>
 #include <xLib/Filesystem/CxPath.h>
+#include <xLib/Log/CxTrace.h>
 
 
 xNAMESPACE_BEGIN(NxLib)
@@ -29,7 +30,7 @@ CxTestManager::CxTestManager(
     _tests       ()
 {
     xCHECK_DO(_isUseTracing,
-        CxTracer()
+        CxTrace()
             << xT("\n\nCxTestManager: *** ") << xLIB_NAME
             << xT(" v.")                     << xLIB_VERSION << xT(" ") << xLIB_VERSION_SUFFIX
             << xT(" author: ")               << xLIB_AUTHOR
@@ -43,7 +44,7 @@ CxTestManager::~CxTestManager()
 {
     std::for_each(_tests.begin(), _tests.end(), Delete());
 
-    xCHECK_DO(_isUseTracing, CxTracer() << xT("CxTestManager: all tests destructed."));
+    xCHECK_DO(_isUseTracing, CxTrace() << xT("CxTestManager: all tests destructed."));
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -69,23 +70,23 @@ CxTestManager::run(
     xTEST_NA(a_unitLoops);
     xTEST_NA(a_caseLoops);
 
-    xCHECK_DO(_isUseTracing, CxTracer() << xT("\nCxTestManager: start all tests..."));
-    xCHECK_DO(_isUseTracing, CxTracer() << xT("CxTestManager: module path: ") << CxPath::exe());
-    xCHECK_DO(_isUseTracing, CxTracer() << xT("CxTestManager: ")
-                                        << xT("all loops: ")     << a_allLoops
-                                        << xT(", unit loops: ")  << a_unitLoops
-                                        << xT(", case loops: ")  << a_caseLoops
-                                        << xT(", unit number: ") << _tests.size());
+    xCHECK_DO(_isUseTracing, CxTrace() << xT("\nCxTestManager: start all tests..."));
+    xCHECK_DO(_isUseTracing, CxTrace() << xT("CxTestManager: module path: ") << CxPath::exe());
+    xCHECK_DO(_isUseTracing, CxTrace() << xT("CxTestManager: ")
+                                       << xT("all loops: ")     << a_allLoops
+                                       << xT(", unit loops: ")  << a_unitLoops
+                                       << xT(", case loops: ")  << a_caseLoops
+                                       << xT(", unit number: ") << _tests.size());
 
     for (ulonglong_t i = 0ULL; i < a_allLoops; ++ i) {
         xFOREACH_CONST(container_t, it, _tests) {
-            xCHECK_DO(_isUseTracing, CxTracer() << xT("CxTestManager: run test ") << (*it)->name());
+            xCHECK_DO(_isUseTracing, CxTrace() << xT("CxTestManager: run test ") << (*it)->name());
 
             (*it)->run(a_unitLoops, a_caseLoops);
         }
     }
 
-    xCHECK_DO(_isUseTracing, CxTracer() << xT("CxTestManager: all tests successful done."));
+    xCHECK_DO(_isUseTracing, CxTrace() << xT("CxTestManager: all tests successful done."));
 }
 //-------------------------------------------------------------------------------------------------
 

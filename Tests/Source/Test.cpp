@@ -123,7 +123,7 @@ int_t xTMAIN(int_t a_argNum, tchar_t *a_args[])
         manager.add(new CxTest_CxBackup);
 
         // Log
-        manager.add(new CxTest_CxTracer);
+        manager.add(new CxTest_CxTrace);
         manager.add(new CxTest_CxFileLog);
         manager.add(new CxTest_CxSystemLog);
 

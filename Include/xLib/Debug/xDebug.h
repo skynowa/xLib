@@ -35,12 +35,6 @@
     { xTEST_MSG_FAIL(xT("Not implemented")); }
     ///< show not implemented message and return value
 //-------------------------------------------------------------------------------------------------
-#define xTRACE(msg) \
-    { CxTrace() << (msg); }
-    ///< tracing
-#define xTRACEV(...) \
-    { CxTrace().write(__VA_ARGS__); }
-    ///< tracing
 #define xTRACE_POINT \
     { \
         CxTrace() \
