@@ -7,6 +7,7 @@
 #include <Test/Debug/CxTest_xDebug.h>
 
 #include <xLib/Debug/xDebug.h>
+#include <xLib/Log/CxTrace.h>
 
 
 //------------------------------------------------------------------------------
