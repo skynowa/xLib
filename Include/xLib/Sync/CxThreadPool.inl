@@ -21,7 +21,7 @@ template<class T>
 CxMutex CxThreadPool<T>::_s_mutex;
 
 template<class T>
-CxTracer  CxThreadPool<T>::_s_log;
+CxTrace  CxThreadPool<T>::_s_log;
 //-------------------------------------------------------------------------------------------------
 template<class T>
 CxThreadPool<T>::CxThreadPool(

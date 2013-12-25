@@ -77,7 +77,7 @@ private:
 
     //static
     static CxMutex         _s_mutex;
-    static CxTracer        _s_log;
+    static CxTrace         _s_log;
 
     void_t                 _taskAdd(CxThread *item);
     void_t                 _taskRemove(CxThread *item);

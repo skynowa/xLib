@@ -11,7 +11,7 @@
 #include <xLib/Debug/CxErrorReport.h>
 #include <xLib/Debug/CxDebugger.h>
 #include <xLib/Debug/CxStackTrace.h>
-#include <xLib/Log/CxTracer.h>
+#include <xLib/Log/CxTrace.h>
 
 
 /**************************************************************************************************
@@ -113,7 +113,7 @@ CxCondition::wait(
 
                 // handle overflow
                 if (timeoutMs.tv_nsec >= 1000000000) {
-                    CxTracer() << xT("xLib: CxCondition::vWait - handle overflow");
+                    CxTrace() << xT("xLib: CxCondition::vWait - handle overflow");
 
                     ++ timeoutMs.tv_sec;
                     timeoutMs.tv_nsec -= 1000000000;

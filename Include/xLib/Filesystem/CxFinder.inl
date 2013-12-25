@@ -11,7 +11,7 @@
 #include <xLib/Debug/CxStackTrace.h>
 #include <xLib/Debug/CxErrorReport.h>
 #include <xLib/Debug/CxDebugger.h>
-#include <xLib/Log/CxTracer.h>
+#include <xLib/Log/CxTrace.h>
 #include <xLib/Core/CxChar.h>
 #include <xLib/Core/CxString.h>
 #include <xLib/Core/CxConst.h>

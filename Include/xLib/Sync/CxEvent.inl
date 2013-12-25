@@ -5,7 +5,7 @@
 
 
 #include <xLib/Core/CxString.h>
-#include <xLib/Log/CxTracer.h>
+#include <xLib/Log/CxTrace.h>
 
 
 xNAMESPACE_BEGIN(NxLib)
@@ -170,7 +170,7 @@ CxEvent::wait(
 
                 // handle overflow
                 if (timeoutMsec.tv_nsec >= 1000000000) {
-                    CxTracer() << xT("::: xLib: CxEvent::osWait - handle overflow :::");
+                    CxTrace() << xT("::: xLib: CxEvent::osWait - handle overflow :::");
 
                     ++ timeoutMsec.tv_sec;
                     timeoutMsec.tv_nsec -= 1000000000;
@@ -189,7 +189,7 @@ CxEvent::wait(
         // } else {
         //    iRv = 0;
         // }
-        CxTracer() << xTRACE_VAR(iRv);
+        CxTrace() << xTRACE_VAR(iRv);
 
         // adjust signaled member
         switch (iRv) {

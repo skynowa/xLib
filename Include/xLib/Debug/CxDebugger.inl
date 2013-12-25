@@ -155,7 +155,7 @@ CxDebugger::coreDumpsEnable(
     isEnable = isEnable && (iRv == 0);
 #endif
 
-    xCHECK_DO(!isEnable, CxTracer() << xT("Unable to disable core dumps."));
+    xCHECK_DO(!isEnable, CxTrace() << xT("Unable to disable core dumps."));
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t

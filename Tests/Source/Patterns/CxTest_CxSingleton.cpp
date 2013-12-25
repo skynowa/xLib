@@ -7,24 +7,30 @@
 #include <Test/Patterns/CxTest_CxSingleton.h>
 
 
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 class CLogger
 {
-    public:
-        CLogger()
-        {
-            // xSTD_COUT_FUNC;
-        };
-        ~CLogger()
-        {
-            // xSTD_COUT_FUNC;
-        };
+public:
+    CLogger()
+    {
+        CxTrace() << xFUNCTION;
+    }
+    ~CLogger()
+    {
+        CxTrace() << xFUNCTION;
+    }
 
-       void_t  open()  { /* xSTD_COUT_FUNC; */ };
-       void_t  write() { /* xSTD_COUT_FUNC; */ };
-       void_t  close() { /* xSTD_COUT_FUNC; */ };
+    void_t open()
+    {
+        CxTrace() << xFUNCTION;
+    }
+
+    void_t  write()
+    {
+        CxTrace() << xFUNCTION;
+    }
 };
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
 CxTest_CxSingleton::unit(
@@ -37,14 +43,12 @@ CxTest_CxSingleton::unit(
 
         logger_singleton_t::get().open();
         logger_singleton_t::get().write();
-        logger_singleton_t::get().close();
     }
 
     xTEST_CASE("CxSingleton::get", a_caseLoops)
     {
         CxSingleton<CLogger>::get().open();
         CxSingleton<CLogger>::get().write();
-        CxSingleton<CLogger>::get().close();
     }
 
     xTEST_CASE("construct CxSingleton on stack", a_caseLoops)
@@ -62,4 +66,4 @@ CxTest_CxSingleton::unit(
         #endif
     }
 }
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
