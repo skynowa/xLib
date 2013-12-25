@@ -8,12 +8,11 @@
 #include <Test/CxTest_xLib.h>
 
 
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 int_t xTMAIN(int_t a_argNum, tchar_t *a_args[])
 {
     xUNUSED(a_args);
 
-    //--------------------------------------------------
     // checks
     {
     #if xOS_ENV_UNIX
@@ -22,13 +21,11 @@ int_t xTMAIN(int_t a_argNum, tchar_t *a_args[])
     #endif
     }
 
-    //--------------------------------------------------
     // options (default)
     bool_t      isUseTracing = true;
     ulonglong_t allLoops     = 1ULL;
     ulonglong_t unitLoops    = 1ULL;
     ulonglong_t caseLoops    = 1ULL;
-
     {
         std::vec_tstring_t args;
 
@@ -62,7 +59,6 @@ int_t xTMAIN(int_t a_argNum, tchar_t *a_args[])
         }
     }
 
-    //--------------------------------------------------
     // add and run tests
     {
         CxTestManager manager(isUseTracing);
@@ -173,4 +169,4 @@ int_t xTMAIN(int_t a_argNum, tchar_t *a_args[])
 
     return EXIT_SUCCESS;
 }
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
