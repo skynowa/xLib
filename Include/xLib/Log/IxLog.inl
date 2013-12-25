@@ -78,6 +78,9 @@ IxLog::_levelToString(
     case lvDebug:
         sRv = xT("Debug");
         break;
+    case lvPlain:
+        sRv = xT("");
+        break;
     case lvUnknown:
     default:
         sRv = xT("Unknown");

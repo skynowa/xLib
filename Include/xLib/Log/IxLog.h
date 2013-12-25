@@ -28,7 +28,8 @@ public:
         lvWarning,
         lvNotice,
         lvInfo,
-        lvDebug
+        lvDebug,
+        lvPlain
     };
     typedef const ExLevel cExLevel;
 
