@@ -92,7 +92,6 @@ CxTest::unit(
 ) /* = 0 */
 {
     xUNUSED(a_caseLoops);
-    xTEST_NA(a_caseLoops);
 
 #if xTODO
     xTEST_CASE("CaseName", a_caseLoops)
