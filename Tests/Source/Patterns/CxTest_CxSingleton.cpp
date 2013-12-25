@@ -13,21 +13,21 @@ class CLogger
 public:
     CLogger()
     {
-        CxTrace() << xFUNCTION;
+        // CxTrace() << xFUNCTION;
     }
     ~CLogger()
     {
-        CxTrace() << xFUNCTION;
+        // CxTrace() << xFUNCTION;
     }
 
     void_t open()
     {
-        CxTrace() << xFUNCTION;
+        // CxTrace() << xFUNCTION;
     }
 
     void_t  write()
     {
-        CxTrace() << xFUNCTION;
+        // CxTrace() << xFUNCTION;
     }
 };
 //-------------------------------------------------------------------------------------------------
