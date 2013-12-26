@@ -44,7 +44,7 @@ public:
 
     virtual void_t    write(ctchar_t *format, ...) const xOVERRIDE;
         ///< write to log
-    virtual void_t    write(const ExLevel &level, ctchar_t *format, ...) const xOVERRIDE;
+    virtual void_t    write(cExLevel &level, ctchar_t *format, ...) const xOVERRIDE;
         ///< write to log
     void_t            clear() const;
         ///< clear content
