@@ -30,13 +30,17 @@ public:
         ///< constructor
     explicit          CxFileLog(culong_t &maxFileSizeBytes);
         ///< constructor
-    virtual          ~CxFileLog() {}
+    virtual          ~CxFileLog();
         ///< destructor
 
     void_t            setFilePath(std::ctstring_t &filePath);
         ///< set log path
     std::ctstring_t & filePath() const xWARN_UNUSED_RV;
         ///< get log path
+
+    template<class T>
+    CxFileLog & operator << (const T &valueT);
+        ///< operator <<
 
     virtual void_t    write(ctchar_t *format, ...) const xOVERRIDE;
         ///< write to log
