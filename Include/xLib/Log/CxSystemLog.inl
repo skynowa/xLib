@@ -97,7 +97,7 @@ CxSystemLog::CxSystemLog(
 inline
 CxSystemLog::~CxSystemLog()
 {
-    write(xT("%s\n"), _oss.str().c_str());
+    write(xT("%s"), _oss.str().c_str());
 
 #if   xOS_ENV_WIN
     xTEST_PTR(_sysLog);

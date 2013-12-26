@@ -20,7 +20,7 @@ xNAMESPACE_BEGIN(NxLib)
 inline
 CxTrace::~CxTrace()
 {
-    write(xT("%s\n"), _oss.str().c_str());
+    write(xT("%s"), _oss.str().c_str());
 }
 //-------------------------------------------------------------------------------------------------
 template<class T>
@@ -77,7 +77,7 @@ CxTrace::write(
         (void_t)::OutputDebugString( msg.c_str() );
     #endif
 
-        std::tcout << msg;
+        std::tcout << msg << std::endl;
     }
 }
 //-------------------------------------------------------------------------------------------------
