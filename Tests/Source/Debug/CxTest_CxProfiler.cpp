@@ -11,7 +11,7 @@
 #include <xLib/Filesystem/CxFile.h>
 
 
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
 CxTest_CxProfiler::unit(
@@ -20,41 +20,37 @@ CxTest_CxProfiler::unit(
 {
     xTEST_CASE("CxProfiler::CxProfiler", a_caseLoops)
     {
-        std::ctstring_t csFilePath = tempDirPath() + CxConst::slash() + xT("CxProfilerLog.log");
+        std::ctstring_t filePath = tempDirPath() + CxConst::slash() + xT("CxProfilerLog.log");
 
-        CxFile::clear(csFilePath);
+        CxFile::clear(filePath);
 
-        CxProfiler pfP;
+        CxProfiler profiler;
+        profiler.setLogPath(filePath);
 
-        pfP.setLogPath(csFilePath);
+        m_sRv = profiler.logPath();
+        xTEST_EQ(filePath, m_sRv);
 
-        m_sRv = pfP.logPath();
-        xTEST_EQ(csFilePath, m_sRv);
-
-        pfP.start();
+        profiler.start();
 
         for (size_t i = 0; i < 10; ++ i) {
             CxThread::currentSleep(5UL);
-
-            m_stRv = pfP.restart(xT("\tVar i: %") xPR_SIZET, i);
+            m_stRv = profiler.restart(xT("\tVar i: %") xPR_SIZET, i);
         }
 
-        m_stRv = pfP.stop(xT(""));
+        m_stRv = profiler.stop(xT(""));
     }
 
     xTEST_CASE("CxProfiler::CxProfiler", a_caseLoops)
     {
-        CxProfiler pfP;
-
-        pfP.start();
+        CxProfiler profiler;
+        profiler.start();
 
         for (size_t i = 0; i < 10; ++ i) {
             CxThread::currentSleep(5UL);
-
-            m_stRv = pfP.restart(xT("\tVar i: %") xPR_SIZET, i);
+            m_stRv = profiler.restart(xT("\tVar i: %") xPR_SIZET, i);
         }
 
-        m_stRv = pfP.stop(xT(""));
+        m_stRv = profiler.stop(xT(""));
     }
 }
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
