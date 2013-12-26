@@ -50,5 +50,19 @@ CxTest_CxSystemLog::unit(
             log.write(logLevel[i], xT("%s%")xPR_SIZET, xT("This is test system log message #"), i);
         }
     }
+
+    xTEST_CASE("CxSystemLog::write(cExLevel &level, ...)", a_caseLoops)
+    {
+        CxSystemLog().write(IxLog::lvUnknown,  xT("\t%s, %d"), xLEX_TO_STR(IxLog::lvUnknown),  12345);
+        CxSystemLog().write(IxLog::lvEmerg,    xT("\t%s, %d"), xLEX_TO_STR(IxLog::lvEmerg),    12345);
+        CxSystemLog().write(IxLog::lvAlert,    xT("\t%s, %d"), xLEX_TO_STR(IxLog::lvAlert),    12345);
+        CxSystemLog().write(IxLog::lvCritical, xT("\t%s, %d"), xLEX_TO_STR(IxLog::lvCritical), 12345);
+        CxSystemLog().write(IxLog::lvError,    xT("\t%s, %d"), xLEX_TO_STR(IxLog::lvError),    12345);
+        CxSystemLog().write(IxLog::lvWarning,  xT("\t%s, %d"), xLEX_TO_STR(IxLog::lvWarning),  12345);
+        CxSystemLog().write(IxLog::lvNotice,   xT("\t%s, %d"), xLEX_TO_STR(IxLog::lvNotice),   12345);
+        CxSystemLog().write(IxLog::lvInfo,     xT("\t%s, %d"), xLEX_TO_STR(IxLog::lvInfo),     12345);
+        CxSystemLog().write(IxLog::lvDebug,    xT("\t%s, %d"), xLEX_TO_STR(IxLog::lvDebug),    12345);
+        CxSystemLog().write(IxLog::lvPlain,    xT("\t%s, %d"), xLEX_TO_STR(IxLog::lvPlain),    12345);
+    }
 }
 //-------------------------------------------------------------------------------------------------
