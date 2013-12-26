@@ -39,7 +39,7 @@ public:
         ///< get log path
 
     template<class T>
-    CxFileLog & operator << (const T &valueT);
+    CxFileLog &       operator << (const T &valueT);
         ///< operator <<
 
     virtual void_t    write(ctchar_t *format, ...) const xOVERRIDE;

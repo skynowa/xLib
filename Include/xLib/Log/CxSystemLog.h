@@ -58,7 +58,7 @@ public:
         ///< destructor
 
     template<class T>
-    CxSystemLog & operator << (const T &valueT);
+    CxSystemLog &  operator << (const T &valueT);
         ///< operator <<
 
     virtual void_t write(ctchar_t *format, ...) const xOVERRIDE;

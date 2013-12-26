@@ -27,7 +27,7 @@ public:
         ///< destructor
 
     template<class T>
-    CxTrace & operator << (const T &valueT);
+    CxTrace &      operator << (const T &valueT);
         ///< operator <<
 
     virtual void_t write(ctchar_t *format, ...) const xOVERRIDE;
