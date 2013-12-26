@@ -56,9 +56,6 @@ CxTrace::write(
     ctchar_t *a_format, ...
 ) const
 {
-    xUNUSED(a_level);
-    xUNUSED(a_format);
-
     std::tstring_t msg;
     {
         va_list args;
