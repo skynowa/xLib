@@ -38,9 +38,6 @@ CxFileLog::CxFileLog(
 ) :
     _filePath        (),
     _maxFileSizeBytes(a_maxFileSizeBytes)
-    #if xTODO
-        CxAutoIpcMutex
-    #endif
 {
     xTEST_EQ(true, _filePath.empty());
     xTEST_GR(lsLimitSize, lsDefaultMaxSize);
@@ -132,10 +129,6 @@ CxFileLog::write(
 
     // write
     {
-        #if xTODO
-            CxAutoIpcMutex SL(_mutex);
-        #endif
-
         CxFile file;
         file.create(filePath(), CxFile::omAppend, false);
         int_t iRv = file.write(xT("[%s] %s\n"), time.c_str(), msg.c_str());
@@ -146,20 +139,12 @@ CxFileLog::write(
 inline void_t
 CxFileLog::clear() const
 {
-    #if xTODO
-        CxAutoIpcMutex SL(_mutex);
-    #endif
-
     CxFile::clear(filePath());
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
 CxFileLog::remove() const
 {
-    #if xTODO
-        CxAutoIpcMutex SL(_mutex);
-    #endif
-
     CxFile::remove(filePath());
 }
 //-------------------------------------------------------------------------------------------------
@@ -174,10 +159,6 @@ CxFileLog::remove() const
 inline void_t
 CxFileLog::_removeIfFull() const
 {
-    #if xTODO
-        CxAutoIpcMutex SL(_mutex);
-    #endif
-
     bool_t bRv = CxFile::isExists(filePath());
     xCHECK_DO(!bRv, return);
 

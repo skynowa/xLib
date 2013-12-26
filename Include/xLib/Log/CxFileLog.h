@@ -55,10 +55,6 @@ private:
     std::tstring_t    _filePath;            ///< file path
     std::size_t       _maxFileSizeBytes;    ///< maximum file size in bytes
 
-#if xTODO
-    CxAutoIpcMutex    _mutex;
-#endif
-
     void_t            _removeIfFull() const;
         ///< delete log, if full
 };
