@@ -11,6 +11,55 @@
     #include <syslog.h>
 #endif
 
+xNAMESPACE2_BEGIN(internal, util_enum)
+
+struct Type
+{
+    ssize_t value;
+    ssize_t value_impl;
+};
+
+static Type _types[10] =
+{
+#if   xOS_ENV_WIN
+    {IxLog::lvUnknown,  - 1},
+    {IxLog::lvEmerg,    EVENTLOG_ERROR_TYPE},
+    {IxLog::lvAlert,    EVENTLOG_ERROR_TYPE},
+    {IxLog::lvCritical, EVENTLOG_ERROR_TYPE},
+    {IxLog::lvError,    EVENTLOG_ERROR_TYPE}
+    {IxLog::lvWarning,  EVENTLOG_WARNING_TYPE},
+    {IxLog::lvNotice,   EVENTLOG_SUCCESS},
+    {IxLog::lvInfo,     EVENTLOG_INFORMATION_TYPE},
+    {IxLog::lvDebug,    EVENTLOG_INFORMATION_TYPE},
+    {IxLog::lvPlain,    EVENTLOG_INFORMATION_TYPE}
+#elif xOS_ENV_UNIX
+    {IxLog::lvUnknown,  - 1},
+    {IxLog::lvEmerg,    0},
+    {IxLog::lvAlert,    1},
+    {IxLog::lvCritical, 2},
+    {IxLog::lvError,    3},
+    {IxLog::lvWarning,  4},
+    {IxLog::lvNotice,   5},
+    {IxLog::lvInfo,     6},
+    {IxLog::lvDebug,    7},
+    {IxLog::lvPlain,    6}
+#endif
+};
+
+inline ssize_t
+value(std::cssize_t &a_type)
+{
+    return _types[a_type].value;
+}
+
+inline ssize_t
+value_impl(std::cssize_t &a_type)
+{
+    return _types[a_type].value_impl;
+}
+
+xNAMESPACE2_END(internal, util_enum)
+
 
 xNAMESPACE_BEGIN(NxLib)
 
