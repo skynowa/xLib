@@ -12,6 +12,7 @@
 #if xOS_WIN
     // typedef SIZE_T              size_t;
     typedef SSIZE_T                ssize_t;
+    typedef const SSIZE_T          cssize_t;
 #endif
 
 xNAMESPACE_BEGIN(NxLib)
@@ -118,6 +119,7 @@ xNAMESPACE_BEGIN(std)
 #endif
 
     typedef const size_t           csize_t;
+    typedef const ssize_t          cssize_t;
     typedef const string           cstring_t;
     typedef const wstring          cwstring_t;
 
