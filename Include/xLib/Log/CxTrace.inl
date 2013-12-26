@@ -37,6 +37,7 @@ CxTrace::write(
     ctchar_t *a_format, ...
 ) const
 {
+    xCHECK_DO(!isEnabled(),     return);
     xCHECK_DO(a_format == NULL, return);
 
     std::tstring_t msg;
@@ -56,6 +57,8 @@ CxTrace::write(
     ctchar_t *a_format, ...
 ) const
 {
+    xCHECK_DO(!isEnabled(), return);
+
     std::tstring_t msg;
     {
         va_list args;
