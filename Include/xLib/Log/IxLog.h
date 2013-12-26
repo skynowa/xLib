@@ -43,17 +43,13 @@ public:
     bool_t          isEnabled() const;
         ///< set enabled
 
-#if xTEMP_DISABLED
-    template<class T>
-    virtual IxLog & operator << (const T &valueT) = 0;
-        ///< write to log with operator <<
-#endif
     virtual void_t  write(ctchar_t *format, ...) const = 0;
         ///< write to log
     virtual void_t  write(cExLevel &level, ctchar_t *format, ...) const = 0;
         ///< write to log
 
 protected:
+    std::tostringstream_t _oss; ///< string stream
     std::tstring_t  _levelToString(cExLevel &level) const;
 
 private:

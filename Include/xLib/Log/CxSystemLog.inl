@@ -46,6 +46,8 @@ CxSystemLog::CxSystemLog(
 inline
 CxSystemLog::~CxSystemLog()
 {
+    write(xT("%s\n"), _oss.str().c_str());
+
 #if   xOS_ENV_WIN
     xTEST_PTR(_sysLog);
 
@@ -56,6 +58,14 @@ CxSystemLog::~CxSystemLog()
 #elif xOS_ENV_UNIX
     (void_t)::closelog();
 #endif
+}
+//-------------------------------------------------------------------------------------------------
+template<class T>
+inline CxSystemLog &
+CxSystemLog::operator << (const T &valueT)
+{
+    _oss << valueT;
+    return *this;
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */

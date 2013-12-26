@@ -47,6 +47,13 @@ CxFileLog::CxFileLog(
     xTEST_GR(static_cast<ulong_t>( lsLimitSize ), a_maxFileSizeBytes);
 }
 //-------------------------------------------------------------------------------------------------
+/* virtual */
+inline
+CxFileLog::~CxFileLog()
+{
+    write(xT("%s\n"), _oss.str().c_str());
+}
+//-------------------------------------------------------------------------------------------------
 inline void_t
 CxFileLog::setFilePath(
     std::ctstring_t &a_filePath
@@ -65,6 +72,14 @@ inline std::ctstring_t &
 CxFileLog::filePath() const
 {
     return _filePath;
+}
+//-------------------------------------------------------------------------------------------------
+template<class T>
+inline CxFileLog &
+CxFileLog::operator << (const T &valueT)
+{
+    _oss << valueT;
+    return *this;
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
