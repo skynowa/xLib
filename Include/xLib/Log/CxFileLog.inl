@@ -88,6 +88,7 @@ CxFileLog::write(
     ctchar_t *a_format, ...
 ) const
 {
+    xCHECK_DO(!isEnabled(),       return);
     xCHECK_DO(a_format == NULL,   return);
     xCHECK_DO(filePath().empty(), return);
 
@@ -108,6 +109,7 @@ CxFileLog::write(
     ctchar_t *a_format, ...
 ) const
 {
+    xCHECK_DO(!isEnabled(),       return);
     xCHECK_DO(filePath().empty(), return);
 
     _removeIfFull();

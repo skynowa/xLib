@@ -74,6 +74,7 @@ CxSystemLog::write(
     ctchar_t *a_format, ...
 ) const
 {
+    xCHECK_DO(!isEnabled(),     return);
     xCHECK_DO(a_format == NULL, return);
 
     std::tstring_t msg;
@@ -93,12 +94,11 @@ CxSystemLog::write(
     ctchar_t *a_format, ...
 ) const
 {
+    xCHECK_DO(!isEnabled(), return);
     xTEST_PTR(a_format);
 #if xOS_ENV_WIN
     xTEST_DIFF(xNATIVE_HANDLE_NULL, _sysLog);
 #endif
-
-    xCHECK_DO(!isEnabled(), return);
 
     ExLevel level = lvUnknown;
     {
