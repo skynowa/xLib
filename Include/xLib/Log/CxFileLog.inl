@@ -34,7 +34,7 @@ CxFileLog::CxFileLog() :
 //-------------------------------------------------------------------------------------------------
 inline
 CxFileLog::CxFileLog(
-    culong_t &a_maxFileSizeBytes
+    std::csize_t &a_maxFileSizeBytes
 ) :
     _filePath        (),
     _maxFileSizeBytes(a_maxFileSizeBytes)
@@ -44,7 +44,7 @@ CxFileLog::CxFileLog(
 {
     xTEST_EQ(true, _filePath.empty());
     xTEST_GR(lsLimitSize, lsDefaultMaxSize);
-    xTEST_GR(static_cast<ulong_t>( lsLimitSize ), a_maxFileSizeBytes);
+    xTEST_GR(static_cast<std::size_t>( lsLimitSize ), a_maxFileSizeBytes);
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -179,11 +179,8 @@ CxFileLog::_removeIfFull() const
     bool_t bRv = CxFile::isExists(filePath());
     xCHECK_DO(!bRv, return);
 
-    //-------------------------------------
     // remove log, if full
-    ulong_t size = static_cast<ulong_t>( CxFile::size(filePath()) );
-
-    xCHECK_DO(size < _maxFileSizeBytes, return);
+    xCHECK_DO(CxFile::size( filePath() ) < static_cast<longlong_t>(_maxFileSizeBytes), return);
 
     CxFile::remove(filePath());
 }

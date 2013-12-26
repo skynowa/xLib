@@ -28,7 +28,7 @@ public:
     };
                       CxFileLog();
         ///< constructor
-    explicit          CxFileLog(culong_t &maxFileSizeBytes);
+    explicit          CxFileLog(std::csize_t &maxFileSizeBytes);
         ///< constructor
     virtual          ~CxFileLog();
         ///< destructor
@@ -53,7 +53,7 @@ public:
 
 private:
     std::tstring_t    _filePath;            ///< file path
-    ulong_t           _maxFileSizeBytes;    ///< maximum file size in bytes
+    std::size_t       _maxFileSizeBytes;    ///< maximum file size in bytes
 
 #if xTODO
     CxAutoIpcMutex    _mutex;
