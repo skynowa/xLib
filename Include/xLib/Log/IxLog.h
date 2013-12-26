@@ -20,7 +20,7 @@ public:
     enum ExLevel
         /// log level
     {
-        lvUnknown,
+        lvUnknown = - 1,
         lvEmerg,
         lvAlert,
         lvCritical,
