@@ -18,7 +18,7 @@ CxTest_CxProfiler::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("CxProfiler::CxProfiler", a_caseLoops)
+    xTEST_CASE("CxProfiler::setLogPath", a_caseLoops)
     {
         std::ctstring_t filePath = tempDirPath() + CxConst::slash() + xT("CxProfilerLog.log");
 
