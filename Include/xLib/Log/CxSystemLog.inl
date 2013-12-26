@@ -13,13 +13,13 @@
 
 xNAMESPACE2_BEGIN(internal, util_enum)
 
-struct Type
+struct EnumType
 {
-    ssize_t value;
-    ssize_t value_impl;
+    ssize_t cross;
+    ssize_t impl;
 };
 
-static Type _types[10] =
+static EnumType _types[] =
 {
 #if   xOS_ENV_WIN
     {IxLog::lvUnknown,  - 1},
@@ -46,16 +46,18 @@ static Type _types[10] =
 #endif
 };
 
-inline ssize_t
-value(std::cssize_t &a_type)
+template<typename T>
+inline T
+toCross(std::cssize_t &a_type)
 {
-    return _types[a_type].value;
+    return static_cast<T>( _types[a_type].cross );
 }
 
-inline ssize_t
-value_impl(std::cssize_t &a_type)
+template<typename T>
+inline T
+toImpl(std::cssize_t &a_type)
 {
-    return _types[a_type].value_impl;
+    return static_cast<T>( _types[a_type].impl );
 }
 
 xNAMESPACE2_END(internal, util_enum)
@@ -165,12 +167,15 @@ CxSystemLog::write(
     // write
     {
     #if   xOS_ENV_WIN
-        LPCTSTR strings = msg.c_str();
+        WORD    level_impl = internal::util_enum::toCross<WORD>(level);
+        LPCTSTR strings    = msg.c_str();
 
         BOOL bRv = ::ReportEvent(_sysLog, level, 0, 0UL, NULL, 1, 0UL, &strings, NULL);
         xTEST_DIFF(FALSE, bRv);
     #elif xOS_ENV_UNIX
-        (void_t)::syslog(level, xT("%s"), msg.c_str());
+        cint_t level_impl = internal::util_enum::toCross<cint_t>(level);
+
+        (void_t)::syslog(level_impl, xT("%s"), msg.c_str());
     #endif
     }
 }

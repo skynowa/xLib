@@ -32,7 +32,7 @@ public:
 
     virtual void_t write(ctchar_t *format, ...) const xOVERRIDE;
         ///< tracing to debugger, std::cout
-    virtual void_t write(const ExLevel &level, ctchar_t *format, ...) const xOVERRIDE;
+    virtual void_t write(cExLevel &level, ctchar_t *format, ...) const xOVERRIDE;
         ///< tracing to debugger, std::cout
 };
 
