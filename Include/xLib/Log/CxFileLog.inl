@@ -48,7 +48,7 @@ CxFileLog::CxFileLog(
 inline
 CxFileLog::~CxFileLog()
 {
-    write(xT("%s\n"), _oss.str().c_str());
+    write(xT("%s"), _oss.str().c_str());
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
