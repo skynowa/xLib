@@ -23,7 +23,10 @@ CxUtils::ptrDeleteT(
     T * &a_ptr
 )
 {
-    delete a_ptr; a_ptr = NULL;
+    T* tmp = NULL;
+    std::swap(a_ptr, tmp);
+
+    delete tmp; tmp = NULL;
 }
 //-------------------------------------------------------------------------------------------------
 template<class T>
@@ -33,7 +36,10 @@ CxUtils::arrayDeleteT(
     T * &a_ptr
 )
 {
-    delete [] a_ptr;  a_ptr = NULL;
+    T* tmp = NULL;
+    std::swap(a_ptr, tmp);
+
+    delete [] tmp; tmp = NULL;
 }
 //-------------------------------------------------------------------------------------------------
 template<class T>
@@ -254,7 +260,7 @@ CxUtils::enumIncT(
     const T &a_value
 )
 {
-    return static_cast<T>( static_cast<long_t>( a_value ) + 1 );
+    return static_cast<T>( static_cast<longlong_t>( a_value ) + 1 );
 }
 //-------------------------------------------------------------------------------------------------
 template <class T>
@@ -263,7 +269,7 @@ CxUtils::enumDecT(
     const T &a_value
 )
 {
-    return static_cast<T>( static_cast<long_t>( a_value ) - 1 );
+    return static_cast<T>( static_cast<longlong_t>( a_value ) - 1 );
 }
 //-------------------------------------------------------------------------------------------------
 
