@@ -33,13 +33,17 @@ int_t xTMAIN(int_t a_argNum, tchar_t *a_args[])
         info.setProcessId(CxProcess::currentId());
         info.commandLine(&args);
 
-        // usage
-        if (2 == a_argNum) {
-            bool_t bRv = CxString::compareNoCase(xT("-h"), args.at(1));
+        if (a_argNum == 1) {
+            // OK, run tests with default params
+        }
+        else if (a_argNum == 2) {
+            // usage
+            bool_t bRv = CxString::compareNoCase(xT("-h"),     args.at(1)) ||
+                         CxString::compareNoCase(xT("--help"), args.at(1));
             if (!bRv) {
                 std::tcout << xT("\nxLib_test: unknown switches\n") << std::endl;
             } else {
-                std::tcout << xT("\nUsage: ./xLib_test is_tracing all_loops unit_loops\n")
+                std::tcout << xT("\nUsage: ./xLib_test [is_tracing] [all_loops] [unit_loops]\n")
                               xT("  - xLib_test  (binary file path)\n")
                               xT("  - is_tracing (is tracing)\n")
                               xT("  - all_loops  (loops for all tests)\n")
@@ -49,13 +53,17 @@ int_t xTMAIN(int_t a_argNum, tchar_t *a_args[])
 
             return EXIT_SUCCESS;
         }
-
-        // loops number
-        if (5 == a_argNum) {
+        else if (a_argNum == 5) {
+            // addition params
             isUseTracing = CxString::cast<bool_t>     ( args.at(1) );
             allLoops     = CxString::cast<ulonglong_t>( args.at(2) );
             unitLoops    = CxString::cast<ulonglong_t>( args.at(3) );
             caseLoops    = CxString::cast<ulonglong_t>( args.at(4) );
+        }
+        else {
+            // fail
+            std::tcout << xT("\nxLib_test: unknown switches\n") << std::endl;
+            return EXIT_FAILURE;
         }
     }
 
