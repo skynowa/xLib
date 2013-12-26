@@ -44,10 +44,7 @@ struct Delete
     operator () (
         T* &a_ptr) const
     {
-        T* tmp = NULL;
-        std::swap(a_ptr, tmp);
-
-        delete tmp; tmp = NULL;
+        xPTR_DELETE(a_ptr);
     }
 };
 
