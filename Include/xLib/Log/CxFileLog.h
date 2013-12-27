@@ -22,8 +22,8 @@ public:
     enum ExLogSizes
         /// log size
     {
-        lsDefaultMb    = 20  * 1024 * 1024,
-        lsDefaultMaxMb = 200 * 1024 * 1024
+        lsDefaultMb    = 20 * 1024 * 1024,  // 20 Mb
+        lsDefaultMaxMb = 50 * 1024 * 1024   // 50 Mb
     };
                       CxFileLog();
         ///< constructor
