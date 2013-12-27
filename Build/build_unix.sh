@@ -5,8 +5,13 @@
 #
 
 
+# vars
+DIR_BUILD="./xLib_Build_Unix"
+
+
+# build
 cd ../..
-mkdir ./xLib_Build_Unix
-cd ./xLib_Build_Unix
+mkdir $DIR_BUILD
+cd $DIR_BUILD
 cmake VERBOSE=1 ../xLib -G"Eclipse CDT4 - Unix Makefiles"
 make
