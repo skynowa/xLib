@@ -10,4 +10,8 @@ DIR_BUILD="./xLib_Build_Unix"
 
 
 # build
-cmake -G"Eclipse CDT4 - Unix Makefiles" "../.."
+cd ../..
+mkdir -p $DIR_BUILD
+cd $DIR_BUILD
+cmake VERBOSE=1 -G"Eclipse CDT4 - Unix Makefiles" "../xLib"
+make
