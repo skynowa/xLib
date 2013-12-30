@@ -4,7 +4,6 @@
  */
 
 
-#include <xLib/Core/CxChar.h>
 #include <xLib/Test/xTest.h>
 #include <xLib/Debug/xDebug.h>
 #include <xLib/Debug/CxLastError.h>
@@ -159,11 +158,7 @@ CxBase64::_isValid(
     cuchar_t &a_ch
 )
 {
-    xTEST_NA(a_ch);
-
-    bool_t bRv = xTISALNUM(a_ch) || ('+' == a_ch) || ('/' == a_ch);
-
-    return bRv;
+    return std::isalnum(a_ch) || ('+' == a_ch) || ('/' == a_ch);
 }
 //-------------------------------------------------------------------------------------------------
 
