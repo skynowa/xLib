@@ -19,13 +19,7 @@ CxTest_CxFinder::unit(
     culonglong_t &a_caseLoops
 )
 {
-    //-------------------------------------
     // prepare
-    struct Data {
-        std::tstring_t filter;
-        size_t         entriesNum;
-    };
-
     std::ctstring_t    rootDirPath = tempDirPath() + CxConst::slash() + xT("CxFinder_Dir");
     std::vec_tstring_t dirs;
     std::vec_tstring_t files;
@@ -75,7 +69,7 @@ CxTest_CxFinder::unit(
 
     xTEST_CASE("CxFinder::CxFinder", a_caseLoops)
     {
-        Data data[] = {
+        CxTest::Data data[] = {
             {CxConst::maskAll(), 12 - 2},
             {xT("*"),            12 - 2},
         #if   xOS_ENV_WIN
@@ -91,7 +85,7 @@ CxTest_CxFinder::unit(
 
         for (size_t i = 0; i < xARRAY_SIZE2(data); ++ i) {
             std::vec_tstring_t entries;
-            std::ctstring_t    filter = data[i].filter;
+            std::ctstring_t    filter = data[i].test;
             CxFinder           finder(rootDirPath, filter);
 
             xFOREVER {
@@ -109,7 +103,7 @@ CxTest_CxFinder::unit(
             }
 
             // CxTracer() << filter << "\n" << xTRACE_VAR(rootDirPath) << entries;
-            xTEST_EQ(data[i].entriesNum, entries.size());
+            xTEST_EQ(data[i].expect, entries.size());
         }
     }
 
@@ -138,7 +132,7 @@ CxTest_CxFinder::unit(
     {
         // non recursive
         {
-            Data data[] = {
+            CxTest::Data data[] = {
                 {CxConst::maskAll(), 12 - 2},
                 {xT("*"),            12 - 2},
             #if   xOS_ENV_WIN
@@ -155,15 +149,15 @@ CxTest_CxFinder::unit(
             for (size_t i = 0; i < xARRAY_SIZE2(data); ++ i) {
                 m_vsRv.clear();
 
-                CxFinder::files(rootDirPath, data[i].filter, false, &m_vsRv);
+                CxFinder::files(rootDirPath, data[i].test, false, &m_vsRv);
                 // CxTracer() << m_vsRv;
-                xTEST_EQ(data[i].entriesNum, m_vsRv.size());
+                xTEST_EQ(data[i].expect, m_vsRv.size());
             }
         }
 
         // recursive
         {
-            Data data[] = {
+            CxTest::Data data[] = {
                 {CxConst::maskAll(), 12},
                 {xT("*"),            12},
             #if   xOS_ENV_WIN
@@ -180,9 +174,9 @@ CxTest_CxFinder::unit(
             for (size_t i = 0; i < xARRAY_SIZE2(data); ++ i) {
                 m_vsRv.clear();
 
-                CxFinder::files(rootDirPath, data[i].filter, true, &m_vsRv);
+                CxFinder::files(rootDirPath, data[i].test, true, &m_vsRv);
                 // CxTracer() << m_vsRv;
-                xTEST_EQ(data[i].entriesNum, m_vsRv.size());
+                xTEST_EQ(data[i].expect, m_vsRv.size());
             }
         }
     }
