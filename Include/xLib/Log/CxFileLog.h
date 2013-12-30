@@ -10,6 +10,7 @@
 #define xLib_CxFileLogH
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
+#include <xLib/Core/xUnits.h>
 #include "IxLog.h"
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
@@ -22,8 +23,8 @@ public:
     enum ExLogSizes
         /// log size
     {
-        lsDefaultMb    = 20 * 1024 * 1024,  // 20 Mb
-        lsDefaultMaxMb = 50 * 1024 * 1024   // 50 Mb
+        lsDefaultMb    = xMB(20),
+        lsDefaultMaxMb = xMB(50)
     };
                       CxFileLog();
         ///< constructor

@@ -4,6 +4,7 @@
  */
 
 
+#include <xLib/Core/xUnits.h>
 #include <xLib/Core/xFunctors.h>
 #include <xLib/Core/CxUtils.h>
 #include <xLib/Core/CxConst.h>
@@ -957,11 +958,11 @@ CxString::formatBytes(
 
     std::tstring_t sRv = xT("<uknown>");
 
-    culonglong_t tb   = 1024ULL * 1024ULL * 1024ULL * 1024ULL;
-    culonglong_t gb   = 1024ULL * 1024ULL * 1024ULL;
-    culonglong_t mb   = 1024ULL * 1024ULL;
-    culonglong_t kb   = 1024ULL;
-    culonglong_t byte = 1ULL;
+    culonglong_t tb   = xTB(1);
+    culonglong_t gb   = xGB(1);
+    culonglong_t mb   = xMB(1);
+    culonglong_t kb   = xKB(1);
+    culonglong_t byte = xBYTES(1);
 
     if (     a_bytes / tb > 0ULL) {
         sRv = format(xT("%.2f TB"),
