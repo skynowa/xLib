@@ -956,15 +956,26 @@ CxString::formatBytes(
 {
     xTEST_NA(a_bytes);
 
-    std::tstring_t sRv = xT("<uknown>");
+    std::tstring_t sRv = CxConst::strUnknown();
 
+    culonglong_t eb   = xEB(1);
+    culonglong_t pb   = xPB(1);
     culonglong_t tb   = xTB(1);
     culonglong_t gb   = xGB(1);
     culonglong_t mb   = xMB(1);
     culonglong_t kb   = xKB(1);
     culonglong_t byte = xBYTES(1);
 
-    if (     a_bytes / tb > 0ULL) {
+
+    if (     a_bytes / eb > 0ULL) {
+        sRv = format(xT("%.2f EB"),
+                static_cast<double>(a_bytes) / static_cast<double>(eb));
+    }
+    else if (a_bytes / pb > 0ULL) {
+        sRv = format(xT("%.2f PB"),
+                static_cast<double>(a_bytes) / static_cast<double>(pb));
+    }
+    else if (a_bytes / tb > 0ULL) {
         sRv = format(xT("%.2f TB"),
                 static_cast<double>(a_bytes) / static_cast<double>(tb));
     }
