@@ -24,13 +24,15 @@ CxTest_xUnits::unit(
         culonglong_t PB   = 1024ULL * 1024 * 1024 * 1024 * 1024;
         culonglong_t EB   = 1024ULL * 1024 * 1024 * 1024 * 1024 * 1024;
 
-        xTEST_EQ(1ULL,   BYTE);
-        xTEST_EQ(xKB(1), KB);
-        xTEST_EQ(xMB(1), MB);
-        xTEST_EQ(xGB(1), GB);
-        xTEST_EQ(xTB(1), TB);
-        xTEST_EQ(xPB(1), PB);
-        xTEST_EQ(xEB(1), EB);
+        for (size_t i = 0; i < 20; ++ i) {
+            xTEST_EQ(xBYTES(1 * i), BYTE * i);
+            xTEST_EQ(xKB(1 * i),    KB * i);
+            xTEST_EQ(xMB(1 * i),    MB * i);
+            xTEST_EQ(xGB(1 * i),    GB * i);
+            xTEST_EQ(xTB(1 * i),    TB * i);
+            xTEST_EQ(xPB(1 * i),    PB * i);
+            xTEST_EQ(xEB(1 * i),    EB * i);
+        }
     }
 }
 //---------------------------------------------------------------------------
