@@ -16,7 +16,7 @@ CxTest_CxCrc32::unit(
     culonglong_t &a_caseLoops
 )
 {
-    std::ctstring_t filePath = tempDirPath()  + CxConst::slash() + xT("Test.txt");
+    std::ctstring_t filePath = tempDirPath()  + CxConst::slash() + xT("CxCrc32.txt");
 
     // Prepare
     {
@@ -31,11 +31,10 @@ CxTest_CxCrc32::unit(
         CxCrc32 crc32;
 
         m_ulRv = crc32.calcFile(filePath);
-        xTEST_LESS(0UL, m_ulRv);
-        //xTRACE(m_ulRv);
+        xTEST_EQ(432847819UL, m_ulRv);
 
         m_sRv = crc32.formatHex();
-        xTEST_EQ(false, m_sRv.empty());
+        xTEST_EQ(m_sRv, std::tstring_t(xT("19CCBBCB")));
     }
 }
 //-------------------------------------------------------------------------------------------------
