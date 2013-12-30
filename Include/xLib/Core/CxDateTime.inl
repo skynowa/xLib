@@ -532,6 +532,7 @@ CxDateTime::set(
     ulonglong_t msec = a_msec;
 
     // converts milliseconds to datetime members
+#if xDEPRECIATE
     _year    = static_cast<int_t>( msec / ((1000ULL * 60 * 60 * 24 * 30) * 12) );
 
     msec    %= ((1000ULL * 60 * 60 * 24 * 30) * 12);
@@ -551,6 +552,27 @@ CxDateTime::set(
 
     msec    %= 1000ULL;
     _msec    = static_cast<int_t>( msec );
+#else
+    _year    = static_cast<int_t>( msec / ((1000ULL * 60 * 60 * 24 * 30) * 12) );
+
+    msec    %= ((1000ULL * 60 * 60 * 24 * 30) * 12);
+    _month   = static_cast<int_t>( msec / ((1000ULL * 60 * 60 * 24) * 30) );
+
+    msec    %= ((1000ULL * 60 * 60 * 24) * 30);
+    _day     = static_cast<int_t>( msec / ((1000ULL * 60 * 60) * 24) );
+
+    msec    %= ((1000ULL * 60 * 60) * 24);
+    _hour    = static_cast<int_t>( msec / ((1000ULL * 60) * 60) );
+
+    msec    %= ((1000ULL * 60) * 60);
+    _minute  = static_cast<int_t>( msec / ((1000ULL * 60)) );
+
+    msec    %= ((1000ULL * 60));
+    _second  = static_cast<int_t>( msec / 1000ULL );
+
+    msec    %= 1000ULL;
+    _msec    = static_cast<int_t>( msec );
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -594,13 +616,13 @@ CxDateTime::_toMsec() const
 
     ulonglong_t ullRv = 0ULL;
 
-    ullRv += _year   * 1000ULL * 60 * 60 * 24 * 30 * 12;    // TODO: days in month 30 or 31 ???
-    ullRv += _month  * 1000ULL * 60 * 60 * 24 * 30;
-    ullRv += _day    * 1000ULL * 60 * 60 * 24;
-    ullRv += _hour   * 1000ULL * 60 * 60;
-    ullRv += _minute * 1000ULL * 60;
-    ullRv += _second * 1000ULL * 1;
-    ullRv += _msec;
+    ullRv += xYEAR(_year);    // TODO: days in month 30 or 31 ???
+    ullRv += xMONTH(_month);
+    ullRv += xDAY(_day);
+    ullRv += xHOUR(_hour);
+    ullRv += xMINUTE(_minute);
+    ullRv += xSECOND(_second);
+    ullRv += xMSEC(_msec);
 
     return ullRv;
 }
