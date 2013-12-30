@@ -45,7 +45,7 @@ CxTest_CxBase64::unit(
 
     xTEST_CASE("CxBase64::encode sDecode", a_caseLoops)
     {
-        std::cstring_t data[][2] = {
+        const CxTest::Data data[][2] = {
             {"YOYO!", "WU9ZTyE="},
             {"111111111111111", "MTExMTExMTExMTExMTEx"},
             {"!@#$%^&*()_+", "IUAjJCVeJiooKV8r"},
@@ -56,18 +56,13 @@ CxTest_CxBase64::unit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            std::cstring_t source = data[i][0];
-            std::cstring_t expect = data[i][1];
-
             CxBase64 base64;
 
-            std::cstring_t encoded = base64.encode(source);
-            // xTRACEV("encoded: %s (%zu), expect (%zu)", encoded.c_str(), encoded.size(), expect.size());
+            std::cstring_t encoded = base64.encode(data[i].test);
             xTEST_EQ(true, expect == encoded);
 
             std::cstring_t decoded = base64.decode(encoded);
-            // xTRACEV("encoded: %s (%zu), source (%zu)", decoded.c_str(), decoded.size(), source.size());
-            xTEST_EQ(true, source == decoded);
+            xTEST_EQ(true, data[i].expect == decoded);
         }
     }
 }

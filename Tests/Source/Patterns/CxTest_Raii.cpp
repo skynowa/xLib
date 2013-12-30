@@ -10,7 +10,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_ANONYM_BEGIN
 
-class Data
+class A
 {
 public:
     void construct(
@@ -52,8 +52,8 @@ CxTest_CxRaii::unit(
             std::tstring_t value2 = datetimes[i][1];
 
             {
-                Data data;
-                CxRaii<Data, &Data::destruct> raii(data);
+                A data;
+                CxRaii<A, &A::destruct> raii(data);
                 raii.get().construct(&value1, value2);
             }
 
