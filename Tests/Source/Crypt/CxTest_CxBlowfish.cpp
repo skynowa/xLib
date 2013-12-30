@@ -12,7 +12,7 @@
 
 #if xHAVE_OPENSSL_CRYPTO
 
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
 CxTest_CxBlowfish::unit(
@@ -37,7 +37,7 @@ CxTest_CxBlowfish::unit(
 
         for (size_t i = 0; i < xARRAY_SIZE(plain); i ++) {
             CxBlowfish blowfish;
-            std::tstring_t key = xT("888888888");
+            std::tstring_t key = xT("8888r88888");
             std::ustring_t encrypted;
             std::ustring_t decrypted;
 
@@ -52,10 +52,10 @@ CxTest_CxBlowfish::unit(
     xTEST_CASE("CxBlowfish::encryptFileCfb64", a_caseLoops)
     {
         CxBlowfish blowfish;
-        std::tstring_t key           = xT("888888888");
-        std::tstring_t filePlain     = tempDirPath() + CxConst::slash() + xT("Test.Plain.txt");
-        std::tstring_t fileEncrypted = tempDirPath() + CxConst::slash() + xT("Test.Encrypted.txt");
-        std::tstring_t fileDecrypted = tempDirPath() + CxConst::slash() + xT("Test.FileDecrypted.txt");
+        std::tstring_t key           = xT("888888888A");
+        std::tstring_t filePlain     = tempDirPath() + CxConst::slash() + xT("CxBlowfish.txt");
+        std::tstring_t fileEncrypted = tempDirPath() + CxConst::slash() + xT("CxBlowfish_Encrypted.txt");
+        std::tstring_t fileDecrypted = tempDirPath() + CxConst::slash() + xT("CxBlowfish_Decrypted.txt");
 
         // prepare
         {
@@ -68,6 +68,6 @@ CxTest_CxBlowfish::unit(
         blowfish.encryptFileCfb64(fileEncrypted, fileDecrypted, CxBlowfish::cmDecrypt);
     }
 }
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 
 #endif // xHAVE_OPENSSL_CRYPTO
