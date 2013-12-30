@@ -69,7 +69,7 @@ CxTest_CxFinder::unit(
 
     xTEST_CASE("CxFinder::CxFinder", a_caseLoops)
     {
-        CxTest::Data data[] = {
+        CxTest::Data<std::tstring_t, std::size_t> data[] = {
             {CxConst::maskAll(), 12 - 2},
             {xT("*"),            12 - 2},
         #if   xOS_ENV_WIN
@@ -132,7 +132,7 @@ CxTest_CxFinder::unit(
     {
         // non recursive
         {
-            CxTest::Data data[] = {
+            CxTest::Data<std::tstring_t, std::size_t> data[] = {
                 {CxConst::maskAll(), 12 - 2},
                 {xT("*"),            12 - 2},
             #if   xOS_ENV_WIN
@@ -157,7 +157,7 @@ CxTest_CxFinder::unit(
 
         // recursive
         {
-            CxTest::Data data[] = {
+            CxTest::Data<std::tstring_t, std::size_t> data[] = {
                 {CxConst::maskAll(), 12},
                 {xT("*"),            12},
             #if   xOS_ENV_WIN
