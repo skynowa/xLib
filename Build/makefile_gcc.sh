@@ -6,7 +6,7 @@
 
 
 # vars
-DIR_BUILD="./xLib_Build_Unix"
+DIR_BUILD="./xLib_`basename -s .sh $0`"
 
 
 # build
