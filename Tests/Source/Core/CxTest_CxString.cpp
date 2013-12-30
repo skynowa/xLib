@@ -883,33 +883,34 @@ CxTest_CxString::unit(
     *
     *******************************************************************************/
 
-    xTEST_CASE("CxString::formatBytes(ulonglong_t)", a_caseLoops)
+    xTEST_CASE("CxString::formatBytes(culonglong_t)", a_caseLoops)
     {
-        culonglong_t caullULongLong[] = {
-            0ULL,
-            10ULL,
-            100ULL,
-            1000ULL,
-            10000ULL,
-            100000ULL,
-            1000000ULL,
-            10000000ULL,
-            100000000ULL,
-            1000000000ULL,
-            10000000000ULL,
-            100000000000ULL,
-            1000000000000ULL,
-            10000000000000ULL,
-            100000000000000ULL,
-            1000000000000000ULL,
-            10000000000000000ULL,
-            100000000000000000ULL,
-            1000000000000000000ULL,
+        Data<ulonglong_t, std::tstring_t> data[] = {
+            {0ULL, xT("0.00 Bit(s)")},
+            {10ULL, xT("10.00 Byte(s)")},
+            {100ULL, xT("100.00 Byte(s)")},
+            {1000ULL, xT("1000.00 Byte(s)")},
+            {10000ULL, xT("9.77 KB")},
+            {100000ULL, xT("97.66 KB")},
+            {1000000ULL, xT("976.56 KB")},
+            {10000000ULL, xT("9.54 MB")},
+            {100000000ULL, xT("95.37 MB")},
+            {1000000000ULL, xT("953.67 MB")},
+            {10000000000ULL, xT("9.31 GB")},
+            {100000000000ULL, xT("93.13 GB")},
+            {1000000000000ULL, xT("931.32 GB")},
+            {10000000000000ULL, xT("9.09 TB")},
+            {100000000000000ULL, xT("90.95 TB")},
+            {1000000000000000ULL, xT("909.49 TB")},
+            {10000000000000000ULL, xT("8.88 PB")},
+            {100000000000000000ULL, xT("88.82 PB")},
+            {1000000000000000000ULL, xT("888.18 PB")},
+            {10000000000000000000ULL, xT("8.67 EB")}
         };
 
-        for (size_t i = 0; i < xARRAY_SIZE(caullULongLong); ++ i) {
-            m_sRv = CxString::formatBytes(caullULongLong[i]);
-            //xTRACE(m_sRv);
+        for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
+            m_sRv = CxString::formatBytes(data[i].test);
+            CxTrace() << xTRACE_VAR(m_sRv);
         }
     }
 

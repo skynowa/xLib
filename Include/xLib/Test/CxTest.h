@@ -45,6 +45,13 @@ public:
     HWND                 m_hwndRv;    ///< for global use
 #endif
 
+    template <class T1, class T2>
+    struct Data {
+        T1 test;
+        T2 expect;
+    };
+        ///< for global use
+
                          CxTest();
         ///< constructor
     virtual             ~CxTest() = 0;
