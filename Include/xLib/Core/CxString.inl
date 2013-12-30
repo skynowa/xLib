@@ -968,36 +968,28 @@ CxString::formatBytes(
 
 
     if (     a_bytes / eb > 0ULL) {
-        sRv = format(xT("%.2f EB"),
-                static_cast<double>(a_bytes) / static_cast<double>(eb));
+        sRv = format(xT("%.2f EB"), static_cast<double>(a_bytes) / static_cast<double>(eb));
     }
     else if (a_bytes / pb > 0ULL) {
-        sRv = format(xT("%.2f PB"),
-                static_cast<double>(a_bytes) / static_cast<double>(pb));
+        sRv = format(xT("%.2f PB"), static_cast<double>(a_bytes) / static_cast<double>(pb));
     }
     else if (a_bytes / tb > 0ULL) {
-        sRv = format(xT("%.2f TB"),
-                static_cast<double>(a_bytes) / static_cast<double>(tb));
+        sRv = format(xT("%.2f TB"), static_cast<double>(a_bytes) / static_cast<double>(tb));
     }
     else if (a_bytes / gb > 0ULL) {
-        sRv = format(xT("%.2f GB"),
-                static_cast<double>(a_bytes) / static_cast<double>(gb));
+        sRv = format(xT("%.2f GB"), static_cast<double>(a_bytes) / static_cast<double>(gb));
     }
     else if (a_bytes / mb > 0ULL) {
-        sRv = format(xT("%.2f MB"),
-                static_cast<double>(a_bytes) / static_cast<double>(mb));
+        sRv = format(xT("%.2f MB"), static_cast<double>(a_bytes) / static_cast<double>(mb));
     }
     else if (a_bytes / kb > 0ULL) {
-        sRv = format(xT("%.2f KB"),
-                static_cast<double>(a_bytes) / static_cast<double>(kb));
+        sRv = format(xT("%.2f KB"), static_cast<double>(a_bytes) / static_cast<double>(kb));
     }
     else if (a_bytes / byte > 0ULL) {
-        sRv = format(xT("%.2f Byte(s)"),
-                static_cast<double>(a_bytes) / static_cast<double>(byte));
+        sRv = format(xT("%.2f Byte(s)"), static_cast<double>(a_bytes) / static_cast<double>(byte));
     }
     else {
-        sRv = format(xT("%.2f Bit(s)"),
-                static_cast<double>(a_bytes));
+        sRv = format(xT("%.2f Bit(s)"), static_cast<double>(a_bytes));
     }
 
     return sRv;
