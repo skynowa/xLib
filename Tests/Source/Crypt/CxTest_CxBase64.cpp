@@ -14,9 +14,9 @@ CxTest_CxBase64::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("CxBase64::encode sDecode", a_caseLoops)
+    xTEST_CASE("CxBase64::encode decode", a_caseLoops)
     {
-        std::cstring_t data[][1] = {
+        std::string data[][1] = {
             {"ADP GmbH\nAnalyse Design & Programmierung\nGesellschaft mit beschrankter Haftung"},
             {"TEST_STRING_2"},
             {"evrtvertre=-430956=-lmj';l'654"},
@@ -43,9 +43,9 @@ CxTest_CxBase64::unit(
         }
     }
 
-    xTEST_CASE("CxBase64::encode sDecode", a_caseLoops)
+    xTEST_CASE("CxBase64::encode decode", a_caseLoops)
     {
-        const CxTest::Data<std::tstring_t, std::tstring_t> data[] = {
+        const CxTest::Data<std::string, std::string> data[] = {
             {"YOYO!", "WU9ZTyE="},
             {"111111111111111", "MTExMTExMTExMTExMTEx"},
             {"!@#$%^&*()_+", "IUAjJCVeJiooKV8r"},
@@ -58,11 +58,11 @@ CxTest_CxBase64::unit(
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
             CxBase64 base64;
 
-            std::cstring_t encoded = base64.encode(data[i].test);
+            std::string encoded = base64.encode(data[i].test);
             xTEST_EQ(true, data[i].expect == encoded);
 
-            std::cstring_t decoded = base64.decode(encoded);
-            xTEST_EQ(true, data[i].expect == decoded);
+            std::string decoded = base64.decode(encoded);
+            xTEST_EQ(true, data[i].test == decoded);
         }
     }
 }
