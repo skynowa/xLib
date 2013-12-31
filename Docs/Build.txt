@@ -21,13 +21,3 @@ Usage:
 
 Known issues:
     -
-
-Build tests:
-    mkdir Build
-    cd Build
-
-    cmake VERBOSE=1 ../xLib -G"Eclipse CDT4 - Unix Makefiles"
-    cmake VERBOSE=1 .. -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
-    cmake VERBOSE=1 ..
-
-    make VERBOSE=1
