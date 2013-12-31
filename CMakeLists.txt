@@ -42,6 +42,10 @@ include_directories("${EXECINFO_INCLUDES}")
 
 #--------------------------------------------------------------------------------------------------
 # vars
+if (CMAKE_CXX_COMPILER MATCHES ".*clang")
+    set(CMAKE_COMPILER_IS_CLANGXX 1)
+endif()
+
 set(XLIB_INSTALL_DIR  include/xLib)
 set(XLIB_INSTALL_PATH "${CMAKE_INSTALL_PREFIX}/${XLIB_INSTALL_DIR}")
 
@@ -64,13 +68,12 @@ elseif (CMAKE_COMPILER_IS_CLANGXX)
     set(LIBS ${LIBS} pthread rt m z)
     set(FLAGS ${FLAGS} "-pipe -Wall -Wno-deprecated -Wextra -Wconversion -Wshadow "
         "-Wno-unused-parameter -Wno-unused-variable -Wno-unknown-pragmas "
-        "-Wno-return-type-c-linkage -Werror -fcolor-diagnostics -Qunused-arguments "
-        "-U__STRICT_ANSI__ -D__STDC_FORMAT_MACROS")
+        "-Wno-return-type-c-linkage -Werror -fcolor-diagnostics -Qunused-arguments ")
 elseif (CMAKE_COMPILER_IS_GNUCXX)
     set(LIBS ${LIBS} pthread rt m z)
     set(FLAGS ${FLAGS} "-pipe -Wall -Wno-deprecated -Wextra -Wconversion -Wshadow "
         "-Wno-unused-parameter -Wno-unused-variable -Wno-unknown-pragmas "
-        "-Wno-return-type-c-linkage -Werror -U__STRICT_ANSI__ -D__STDC_FORMAT_MACROS")
+        "-Wno-return-type-c-linkage -Werror")
 else()
     message("xLib: unknown compiler")
 endif()
