@@ -76,6 +76,8 @@ int_t xTMAIN(int_t a_argNum, tchar_t *a_args[])
 
         // Core
         manager.add(new CxTest_xUnits);
+        manager.add(new CxTest_xDefines);
+        manager.add(new CxTest_xLimits);
         manager.add(new CxTest_CxUtils);
         manager.add(new CxTest_xStdStream);
         manager.add(new CxTest_CxHandleT);

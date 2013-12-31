@@ -255,54 +255,6 @@ CxTest_xDefines::unit(
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("xDefines::xHOST_NAME_MAX_", a_caseLoops)
-    {
-        m_iRv = xHOST_NAME_MAX;
-        xTEST_GR(0, m_iRv);
-    }
-
-    xTEST_CASE("xDefines::xUSER_NAME_MAX", a_caseLoops)
-    {
-        m_iRv = xUSER_NAME_MAX;
-        xTEST_GR(0, m_iRv);
-    }
-
-    xTEST_CASE("xDefines::xPATH_MAX_", a_caseLoops)
-    {
-        m_stRv = xPATH_MAX;
-        xTEST_GR(m_stRv, size_t(0U));
-    }
-
-    xTEST_CASE("xDefines::xNAME_MAX_", a_caseLoops)
-    {
-        m_stRv = xNAME_MAX;
-        xTEST_GR(m_stRv, size_t(0U));
-    }
-
-    xTEST_CASE("xDefines::xLINE_MAX_", a_caseLoops)
-    {
-        m_stRv = xLINE_MAX;
-        xTEST_GR(m_stRv, size_t(0U));
-    }
-
-    xTEST_CASE("xDefines::xENV_MAX_", a_caseLoops)
-    {
-        m_stRv = xENV_MAX;
-        xTEST_GR(m_stRv, size_t(0U));
-    }
-
-    xTEST_CASE("xDefines::xFRAMES_MAX_", a_caseLoops)
-    {
-        m_ulRv = xSTACK_TRACE_FRAMES_MAX;
-        xTEST_GR(m_ulRv, 0UL);
-    }
-
-    xTEST_CASE("xDefines::xSEMAPHORE_VALUE_MAX_", a_caseLoops)
-    {
-        m_liRv = xSEMAPHORE_VALUE_MAX;
-        xTEST_GR(m_liRv, 0L);
-    }
-
     xTEST_CASE("xDefines::var args", a_caseLoops)
     {
         std::ctstring_t csVal = xT("aaa");
@@ -346,20 +298,6 @@ CxTest_xDefines::unit(
             m_sRv = CxString::format(xT("%")xPR_I64x, cllValue);
             xTEST_EQ(CxString::toLowerCase( CxString::cast(cllValue, 16) ), m_sRv);
         }
-    }
-
-
-    xTEST_CASE("xDefines::xTIMEOUT_INFINITE_", a_caseLoops)
-    {
-        m_ullRv = xTIMEOUT_INFINITE;
-    }
-
-    xTEST_CASE("xDefines::xPAGE_SIZE_", a_caseLoops)
-    {
-        #if xOS_ENV_UNIX
-            m_stRv = xPAGE_SIZE;
-            xTEST_GR(m_stRv, size_t(0U));
-        #endif
     }
 
     xTEST_CASE("xDefines::xDIR_TEMP_ temprory directory", a_caseLoops)

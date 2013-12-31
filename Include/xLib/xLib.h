@@ -15,6 +15,7 @@
 #include <xLib/Core/xConfig.h>
 #include <xLib/Core/xUnits.h>
 #include <xLib/Core/xDefines.h>
+#include <xLib/Core/xLimits.h>
 #include <xLib/Core/xVersion.h>
 #include <xLib/Core/xTypes.h>
 #include <xLib/Core/xFunctions.h>

@@ -15,6 +15,8 @@
 
 // Core
 #include <Test/Core/CxTest_xUnits.h>
+#include <Test/Core/CxTest_xDefines.h>
+#include <Test/Core/CxTest_xLimits.h>
 #include <Test/Core/CxTest_CxUtils.h>
 #include <Test/Core/CxTest_xStdStream.h>
 #include <Test/Core/CxTest_CxHandleT.h>
