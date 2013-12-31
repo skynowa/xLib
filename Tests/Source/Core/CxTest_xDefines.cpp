@@ -11,7 +11,7 @@
 #include <xLib/Log/CxTrace.h>
 
 
-//------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------
 /*virtual*/
 void_t
 CxTest_xDefines::unit(
@@ -38,11 +38,11 @@ CxTest_xDefines::unit(
                 xTEST_FAIL;
             #endif
 
-            //#if xDEF_A                      //compile error: #if with no expression
+            //#if xDEF_A                      // compile error: #if with no expression
             //
             //#endif
 
-            //#if defined(xDEF_A) && xDEF_A   //compile error: operator '&&' has no right operand
+            //#if defined(xDEF_A) && xDEF_A   // compile error: operator '&&' has no right operand
             //
             //#endif
         }
@@ -105,33 +105,33 @@ CxTest_xDefines::unit(
 
     xTEST_CASE("xDefines::xLEX_TO_STR_", a_caseLoops)
     {
-        long_t liVal = - 1;
+        long_t value = - 1;
 
-        m_sRv = xLEX_TO_STR(liVal);
-        xTEST_EQ(std::tstring_t(xT("liVal")), m_sRv);
+        m_sRv = xLEX_TO_STR(value);
+        xTEST_EQ(std::tstring_t(xT("value")), m_sRv);
 
-        xUNUSED(liVal);
+        xUNUSED(value);
     }
 
     xTEST_CASE("xDefines::xLEX_CAT_", a_caseLoops)
     {
-        std::tstring_t sVal;
+        std::tstring_t value;
 
-        xLEX_CAT(s, Val) = xT("XLIB_VAL");
-        xTEST_EQ(std::tstring_t(xT("XLIB_VAL")), sVal);
+        xLEX_CAT(va, lue) = xT("XLIB_VAL");
+        xTEST_EQ(std::tstring_t(xT("XLIB_VAL")), value);
 
-        sVal.clear();
+        value.clear();
     }
 
     xTEST_CASE("xDefines::xTEXT_ xT_", a_caseLoops)
     {
-        std::ctstring_t csStr(xT("xxx"));
+        std::ctstring_t value(xT("xxx"));
 
         m_sRv = xTEXT("xxx");
-        xTEST_EQ(csStr, m_sRv);
+        xTEST_EQ(value, m_sRv);
 
         m_sRv = xT("xxx");
-        xTEST_EQ(csStr, m_sRv);
+        xTEST_EQ(value, m_sRv);
     }
 
     xTEST_CASE("xDefines::xS2US_", a_caseLoops)
@@ -161,9 +161,9 @@ CxTest_xDefines::unit(
 
     xTEST_CASE("xDefines::xUNUSED", a_caseLoops)
     {
-        size_t uiArg = 0U;
+        size_t value = 0U;
 
-        xUNUSED(uiArg);
+        xUNUSED(value);
     }
 
     xTEST_CASE("xDefines::temporary enable disable code", a_caseLoops)
@@ -248,17 +248,17 @@ CxTest_xDefines::unit(
             }
         };
 
-        STest   tsTest;
-        tchar_t szBuff[10 + 1] = {0};
+        STest   data;
+        tchar_t buff[10 + 1] = {0};
 
-        m_sRv = tsTest.execute(10, 15U, szBuff);
+        m_sRv = data.execute(10, 15U, buff);
         xTEST_EQ(false, m_sRv.empty());
     }
 
     xTEST_CASE("xDefines::var args", a_caseLoops)
     {
         std::ctstring_t csVal = xT("aaa");
-        cint_t            ciVal = 100;
+        cint_t          ciVal = 100;
 
         // CxString::format use var args
         m_sRv = CxString::format(xT("%s, %d"), csVal.c_str(), ciVal);
@@ -269,34 +269,34 @@ CxTest_xDefines::unit(
     {
         // xPR_SIZET
         {
-            std::csize_t cuiValue = 2356567U;
+            std::csize_t value = 2356567U;
 
-            m_sRv = CxString::format(xT("%")xPR_SIZET, cuiValue);
-            xTEST_EQ(CxString::cast(cuiValue), m_sRv);
+            m_sRv = CxString::format(xT("%")xPR_SIZET, value);
+            xTEST_EQ(CxString::cast(value), m_sRv);
         }
 
         // xPR_I64d
         {
-            clonglong_t cllValue = 36745723LL;
+            clonglong_t value = 36745723LL;
 
-            m_sRv = CxString::format(xT("%")xPR_I64d, cllValue);
-            xTEST_EQ(CxString::cast(cllValue), m_sRv);
+            m_sRv = CxString::format(xT("%")xPR_I64d, value);
+            xTEST_EQ(CxString::cast(value), m_sRv);
         }
 
         // xPR_I64u
         {
-            culonglong_t cullValue = 4767834ULL;
+            culonglong_t value = 4767834ULL;
 
-            m_sRv = CxString::format(xT("%")xPR_I64u, cullValue);
-            xTEST_EQ(CxString::cast(cullValue), m_sRv);
+            m_sRv = CxString::format(xT("%")xPR_I64u, value);
+            xTEST_EQ(CxString::cast(value), m_sRv);
         }
 
         // xPR_I64x
         {
-            clonglong_t cllValue = 57830LL;
+            clonglong_t value = 57830LL;
 
-            m_sRv = CxString::format(xT("%")xPR_I64x, cllValue);
-            xTEST_EQ(CxString::toLowerCase( CxString::cast(cllValue, 16) ), m_sRv);
+            m_sRv = CxString::format(xT("%")xPR_I64x, value);
+            xTEST_EQ(CxString::toLowerCase( CxString::cast(value, 16) ), m_sRv);
         }
     }
 
@@ -319,75 +319,75 @@ CxTest_xDefines::unit(
     {
         // xFOREACH
         {
-            std::ctstring_t csNew = xT("xxxxxx");
+            std::ctstring_t valueNew = xT("xxxxxx");
 
-            std::vec_tstring_t vsData;
-            vsData.push_back(xT("aaaaaa"));
-            vsData.push_back(xT("bbbbbb"));
-            vsData.push_back(xT("cccccc"));
+            std::vec_tstring_t data;
+            data.push_back(xT("aaaaaa"));
+            data.push_back(xT("bbbbbb"));
+            data.push_back(xT("cccccc"));
 
-            xFOREACH(std::vec_tstring_t, it, vsData) {
-                *it = csNew;
+            xFOREACH(std::vec_tstring_t, it, data) {
+                *it = valueNew;
             }
 
-            xFOREACH(std::vec_tstring_t, it, vsData) {
-                xTEST_EQ(*it, csNew);
+            xFOREACH(std::vec_tstring_t, it, data) {
+                xTEST_EQ(*it, valueNew);
             }
         }
 
         // xFOREACH_CONST
         {
-            std::ctstring_t csNew = xT("xxxxxx");
-            std::vec_tstring_t   vsDataNew;
+            std::ctstring_t    valueNew = xT("xxxxxx");
+            std::vec_tstring_t dataNew;
 
-            std::vec_tstring_t   vsData;
-            vsData.push_back(csNew);
-            vsData.push_back(csNew);
-            vsData.push_back(csNew);
+            std::vec_tstring_t data;
+            data.push_back(valueNew);
+            data.push_back(valueNew);
+            data.push_back(valueNew);
 
-            xFOREACH_CONST(std::vec_tstring_t, it, vsData) {
-                vsDataNew.push_back(*it);
+            xFOREACH_CONST(std::vec_tstring_t, it, data) {
+                dataNew.push_back(*it);
             }
 
-            xFOREACH(std::vec_tstring_t, it, vsDataNew) {
-                xTEST_EQ(*it, csNew);
+            xFOREACH(std::vec_tstring_t, it, dataNew) {
+                xTEST_EQ(*it, valueNew);
             }
         }
 
         // xFOREACH_R
         {
-            std::ctstring_t csNew = xT("xxxxxx");
+            std::ctstring_t valueNew = xT("xxxxxx");
 
-            std::vec_tstring_t vsData;
-            vsData.push_back(xT("aaaaaa"));
-            vsData.push_back(xT("bbbbbb"));
-            vsData.push_back(xT("cccccc"));
+            std::vec_tstring_t data;
+            data.push_back(xT("aaaaaa"));
+            data.push_back(xT("bbbbbb"));
+            data.push_back(xT("cccccc"));
 
-            xFOREACH_R(std::vec_tstring_t, it, vsData) {
-                *it = csNew;
+            xFOREACH_R(std::vec_tstring_t, it, data) {
+                *it = valueNew;
             }
 
-            xFOREACH_R(std::vec_tstring_t, it, vsData) {
-                xTEST_EQ(*it, csNew);
+            xFOREACH_R(std::vec_tstring_t, it, data) {
+                xTEST_EQ(*it, valueNew);
             }
         }
 
         // xFOREACH_R_CONST
         {
-            std::ctstring_t csNew = xT("xxxxxx");
-            std::vec_tstring_t   vsDataNew;
+            std::ctstring_t    valueNew = xT("xxxxxx");
+            std::vec_tstring_t dataNew;
 
-            std::vec_tstring_t   vsData;
-            vsData.push_back(csNew);
-            vsData.push_back(csNew);
-            vsData.push_back(csNew);
+            std::vec_tstring_t data;
+            data.push_back(valueNew);
+            data.push_back(valueNew);
+            data.push_back(valueNew);
 
-            xFOREACH_R_CONST(std::vec_tstring_t, it, vsData) {
-                vsDataNew.push_back(*it);
+            xFOREACH_R_CONST(std::vec_tstring_t, it, data) {
+                dataNew.push_back(*it);
             }
 
-            xFOREACH_R_CONST(std::vec_tstring_t, it, vsDataNew) {
-                xTEST_EQ(*it, csNew);
+            xFOREACH_R_CONST(std::vec_tstring_t, it, dataNew) {
+                xTEST_EQ(*it, valueNew);
             }
         }
     }
@@ -413,4 +413,4 @@ CxTest_xDefines::unit(
         }
     }
 }
-//------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------
