@@ -399,18 +399,7 @@ CxTest_xDefines::unit(
 
     xTEST_CASE("xTHROW_REPORT", a_caseLoops)
     {
-        try {
-            xTHROW_REPORT("test xTHROW_REPORT message");
-        }
-        catch (const CxException &a_ex) {
-            CxTrace() << xTRACE_VAR(a_ex.what());
-        }
-        catch (const std::exception &a_ex) {
-            xTEST_FAIL;
-        }
-        catch (...) {
-            xTEST_FAIL;
-        }
+        xTEST_THROW(xTHROW_REPORT("test xTHROW_REPORT message"), CxException);
     }
 }
 //----------------------------------------------------------------------------------------------------
