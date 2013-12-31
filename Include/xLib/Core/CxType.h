@@ -28,6 +28,7 @@ public:
     template<class T1, class T2>
     static bool_t         isEquals(const T1 &obj1T, const T2 &obj2T) xWARN_UNUSED_RV;
         ///< is equals
+
 private:
                           CxType();
         ///< constructor
