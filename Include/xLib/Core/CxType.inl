@@ -26,8 +26,6 @@ CxType::rawName(
     const T &a_objT
 )
 {
-    xTEST_NA(a_objT);
-
     std::tstring_t sRv;
     std::string    className;
 
@@ -44,8 +42,6 @@ CxType::name(
     const T &a_objT
 )
 {
-    xTEST_NA(a_objT);
-
     std::tstring_t sRv;
     std::string    className;
 
@@ -53,7 +49,7 @@ CxType::name(
     int_t status = - 1;
 
     char *realName = abi::__cxa_demangle(typeid(a_objT).name(), NULL, NULL, &status);
-    className = (NULL != realName) ? realName : CxConst::strUnknownA();
+    className = (realName == NULL) ? CxConst::strUnknownA() : realName;
 
     xBUFF_FREE(realName);
 #else
@@ -75,9 +71,6 @@ CxType::isEquals(
     const T2 &a_obj2T
 )
 {
-    xTEST_NA(a_obj1T);
-    xTEST_NA(a_obj2T);
-
     return ( rawName(a_obj1T) == rawName(a_obj2T) );
 }
 //-------------------------------------------------------------------------------------------------
