@@ -905,7 +905,7 @@ CxTest_CxString::unit(
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
             m_sRv = CxString::formatBytes(data[i].test);
-            CxTrace() << xTRACE_VAR(m_sRv);
+            // CxTrace() << xTRACE_VAR(m_sRv);
         }
     }
 
