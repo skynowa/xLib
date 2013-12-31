@@ -17,37 +17,37 @@ CxTest_xLimits::unit(
     xTEST_CASE("xDefines::xHOST_NAME_MAX_", a_caseLoops)
     {
         m_iRv = xHOST_NAME_MAX;
-        xTEST_GR(0, m_iRv);
+        xTEST_GR(m_iRv, 0);
     }
 
     xTEST_CASE("xDefines::xUSER_NAME_MAX", a_caseLoops)
     {
         m_iRv = xUSER_NAME_MAX;
-        xTEST_GR(0, m_iRv);
+        xTEST_GR(m_iRv, 0);
     }
 
     xTEST_CASE("xDefines::xPATH_MAX_", a_caseLoops)
     {
         m_stRv = xPATH_MAX;
-        xTEST_GR(m_stRv, size_t(0U));
+        xTEST_GR(m_stRv, size_t(0));
     }
 
     xTEST_CASE("xDefines::xNAME_MAX_", a_caseLoops)
     {
         m_stRv = xNAME_MAX;
-        xTEST_GR(m_stRv, size_t(0U));
+        xTEST_GR(m_stRv, size_t(0));
     }
 
     xTEST_CASE("xDefines::xLINE_MAX_", a_caseLoops)
     {
         m_stRv = xLINE_MAX;
-        xTEST_GR(m_stRv, size_t(0U));
+        xTEST_GR(m_stRv, size_t(0));
     }
 
     xTEST_CASE("xDefines::xENV_MAX_", a_caseLoops)
     {
         m_stRv = xENV_MAX;
-        xTEST_GR(m_stRv, size_t(0U));
+        xTEST_GR(m_stRv, size_t(0));
     }
 
     xTEST_CASE("xDefines::xFRAMES_MAX_", a_caseLoops)
