@@ -7,7 +7,7 @@
 #include <Test/Debug/CxTest_CxDebugger.h>
 
 
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
 CxTest_CxDebugger::unit(
@@ -19,38 +19,44 @@ CxTest_CxDebugger::unit(
         cbool_t cbTrue  = true;
         cbool_t cbFalse = false;
 
-        CxDebugger dbgDebugger;
+        CxDebugger debugger;
 
-        m_bRv = dbgDebugger.isEnabled();
+        m_bRv = debugger.isEnabled();
         xTEST_EQ(cbTrue, m_bRv);
 
-        dbgDebugger.setEnabled(cbFalse);
+        debugger.setEnabled(cbFalse);
 
-        m_bRv = dbgDebugger.isEnabled();
+        m_bRv = debugger.isEnabled();
         xTEST_EQ(cbFalse, m_bRv);
 
-        dbgDebugger.setEnabled(cbTrue);
+        debugger.setEnabled(cbTrue);
 
-        m_bRv = dbgDebugger.isEnabled();
+        m_bRv = debugger.isEnabled();
         xTEST_EQ(cbTrue, m_bRv);
     }
 
     xTEST_CASE("CxDebugger::isActive", a_caseLoops)
     {
-        CxDebugger dbgDebugger;
+        CxDebugger debugger;
 
-        m_bRv = dbgDebugger.isActive();
+        m_bRv = debugger.isActive();
     }
 
     xTEST_CASE("CxDebugger::isDebugBuild", a_caseLoops)
     {
-        CxDebugger dbgDebugger;
+        CxDebugger debugger;
 
-        m_bRv = dbgDebugger.isDebugBuild();
+        m_bRv = debugger.isDebugBuild();
         #if defined(NDEBUG)
             xTEST_EQ(false, m_bRv);
         #else
             xTEST_EQ(true, m_bRv);
+        #endif
+
+        #if xBUILD_DEBUG
+            xTEST_EQ(m_bRv, true);
+        #else
+            xTEST_EQ(m_bRv, false);
         #endif
     }
 
@@ -64,30 +70,30 @@ CxTest_CxDebugger::unit(
 
     xTEST_CASE("CxDebugger::breakPoint", a_caseLoops)
     {
-        CxDebugger dbgDebugger;
+        CxDebugger debugger;
 
         #if xTEST_IGNORE
-            dbgDebugger.breakPoint();
+            debugger.breakPoint();
         #endif
     }
 
     xTEST_CASE("CxDebugger::setLogPath logPath", a_caseLoops)
     {
-        std::ctstring_t csFilePath;
+        std::ctstring_t filePath;
 
-        CxDebugger dbgDebugger;
+        CxDebugger debugger;
 
-        m_sRv = dbgDebugger.logPath();
+        m_sRv = debugger.logPath();
         xTEST_EQ(true, m_sRv.empty());
 
-        dbgDebugger.setLogPath(csFilePath);
+        debugger.setLogPath(filePath);
 
-        m_sRv = dbgDebugger.logPath();
-        xTEST_EQ(csFilePath, m_sRv);
+        m_sRv = debugger.logPath();
+        xTEST_EQ(filePath, m_sRv);
 
-        dbgDebugger.setLogPath(xT(""));
+        debugger.setLogPath(xT(""));
 
-        m_sRv = dbgDebugger.logPath();
+        m_sRv = debugger.logPath();
         xTEST_EQ(true, m_sRv.empty());
     }
 
@@ -105,21 +111,22 @@ CxTest_CxDebugger::unit(
             ulong_t val1 = 10UL;
             ulong_t val2 = 20UL;
 
-            CxErrorReport rpReport(crtType[i], xT("val1"), xT("val2"), val1, val2, xT("=="),
+            CxErrorReport report(crtType[i], xT("val1"), xT("val2"), val1, val2, xT("=="),
                 lastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().toString(),
                 xT(""));
 
-            CxDebugger dbgDebugger;
+            CxDebugger debugger;
+            debugger.setEnabled(false);
 
-            // m_bRv = dbgDebugger.reportMake(rpReport);
-            // xTEST_EQ(true, m_bRv);
+            m_bRv = debugger.reportMake(report);
+            xTEST_EQ(true, m_bRv);
         }
     }
 #if 0
     //--------------------------------------------------
-    //like xTEST_EQ macroses
+    // like xTEST_EQ macroses
 
-    //with int_t
+    // with int_t
     {
         xTEST_CASE("CxDebugger::xTEST_EQ_", a_caseLoops)
         {
@@ -173,9 +180,9 @@ CxTest_CxDebugger::unit(
     }
 
     //--------------------------------------------------
-    //like xTEST_EQ macroses
+    // like xTEST_EQ macroses
 
-    //with std::tstring_t
+    // with std::tstring_t
     {
         xTEST_CASE("CxDebugger::xTEST_EQ_", a_caseLoops)
         {
@@ -229,4 +236,4 @@ CxTest_CxDebugger::unit(
     }
 #endif
 }
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
