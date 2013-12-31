@@ -1,6 +1,6 @@
 /**
  * \file   xUnits.h
- * \brief
+ * \brief  measure units
  */
 
 
@@ -10,7 +10,8 @@
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-// bytes
+///@name Bytes
+///@{
 #define xBYTES(x) \
     ( static_cast<culonglong_t>(x) )
 #define xKB(x) \
@@ -25,8 +26,10 @@ xNAMESPACE_BEGIN(NxLib)
     ( xBYTES(x) << 50 )
 #define xEB(x) \
     ( xBYTES(x) << 60 )
+///@}
 
-// datetime
+///@name Datetime
+///@{
 #define xMSEC(x) \
     ( static_cast<culonglong_t>(x) )
 #define xSECOND(x) \
@@ -41,6 +44,7 @@ xNAMESPACE_BEGIN(NxLib)
     ( xMSEC(x) * 1000ULL * 60 * 60 * 24 * 30 )
 #define xYEAR(x) \
     ( xMSEC(x) * 1000ULL * 60 * 60 * 24 * 30 * 12 )
+///@}
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
