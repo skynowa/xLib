@@ -70,7 +70,7 @@ CxFileTemp::create(
     #if xCOMPILER_MINGW || xCOMPILER_CODEGEAR
         _filePath.resize(_filePath.size() + 1);
 
-        tchar_t *file = ::xTMKSTEMP(&_filePath.at(0));
+        tchar_t *file = xTMKSTEMP(&_filePath.at(0));
         xTEST_PTR(file);
 
         stdFile = std::xTFOPEN(file, CxFile::_openMode(CxFile::omBinCreateReadWrite).c_str());
@@ -78,14 +78,14 @@ CxFileTemp::create(
     #else
         _filePath.resize(_filePath.size() + 1);
 
-        errno_t error = std::xTMKSTEMP(&_filePath.at(0), _filePath.size() + 1);
+        errno_t error = xTMKSTEMP(&_filePath.at(0), _filePath.size() + 1);
         xTEST_EQ(0, error);
 
         stdFile = std::xTFOPEN(_filePath.c_str(), CxFile::_openMode(CxFile::omBinCreateReadWrite).c_str());
         xTEST_PTR(stdFile);
     #endif
 #elif xOS_ENV_UNIX
-    int_t file = ::xTMKSTEMP(&_filePath.at(0));
+    int_t file = xTMKSTEMP(&_filePath.at(0));
     xTEST_DIFF(- 1, file);
 
     stdFile = ::xTFDOPEN(file, CxFile::_openMode(CxFile::omBinCreateReadWrite).c_str());
