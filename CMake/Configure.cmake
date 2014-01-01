@@ -18,10 +18,6 @@ find_package(ExecInfo REQUIRED)
 
 #--------------------------------------------------------------------------------------------------
 # configure
-configure_file(
-    ${CMAKE_CURRENT_SOURCE_DIR}/Include/xLib/Core/xConfig.h.in
-    ${CMAKE_CURRENT_SOURCE_DIR}/Include/xLib/Core/xConfig.h)
-
 check_library_exists(crypto BF_cfb64_encrypt "" xHAVE_OPENSSL_CRYPTO)
 
 if (WIN32)
@@ -106,6 +102,7 @@ elseif (UNIX)
         xHAVE_GETCPU
     )
 
+
     # Linux
     if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
@@ -128,4 +125,9 @@ elseif (UNIX)
         )
     endif()
 endif()
+#--------------------------------------------------------------------------------------------------
+# config
+configure_file(
+    ${CMAKE_CURRENT_SOURCE_DIR}/Include/xLib/Core/xConfig.h.in
+    ${CMAKE_CURRENT_SOURCE_DIR}/Include/xLib/Core/xConfig.h)
 #--------------------------------------------------------------------------------------------------
