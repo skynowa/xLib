@@ -383,9 +383,9 @@ CxSystemInfo::loginUserName() const
 #if   xOS_ENV_WIN
     // try NetAPI
     {
-        LPWKSTA_USER_INFO_1 *userInfo = NULL;
+        WKSTA_USER_INFO_1 *userInfo = NULL;
 
-        NET_API_STATUS nsRv = ::NetWkstaUserGetInfo(NULL, 1UL, static_cast<LPBYTE *>( &userInfo );
+        NET_API_STATUS nsRv = ::NetWkstaUserGetInfo(NULL, 1UL, reinterpret_cast<LPBYTE *>( &userInfo ));
         if (nsRv == NERR_Success && userInfo != NULL) {
         #if 0
             ::wprintf(L"\n\tUser:        %s\n", userInfo->wkui1_username);
@@ -397,12 +397,13 @@ CxSystemInfo::loginUserName() const
         #if xUNICODE
             sRv = userInfo->wkui1_username;
         #else
+            userInfo->wkui1_username;
             sRv = CxString::wstrToStr(userInfo->wkui1_username, CP_UTF8);
         #endif
 
             if (userInfo != NULL) {
                 nsRv = ::NetApiBufferFree(userInfo);    userInfo = NULL;
-                xTEST_EQ(nsRv == NERR_Success);
+                xTEST_EQ(nsRv, static_cast<DWORD>(NERR_Success));
             }
 
             return sRv;
