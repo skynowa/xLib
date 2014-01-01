@@ -26,7 +26,7 @@ static EnumType _types[] =
     {IxLog::lvEmerg,    EVENTLOG_ERROR_TYPE},
     {IxLog::lvAlert,    EVENTLOG_ERROR_TYPE},
     {IxLog::lvCritical, EVENTLOG_ERROR_TYPE},
-    {IxLog::lvError,    EVENTLOG_ERROR_TYPE}
+    {IxLog::lvError,    EVENTLOG_ERROR_TYPE},
     {IxLog::lvWarning,  EVENTLOG_WARNING_TYPE},
     {IxLog::lvNotice,   EVENTLOG_SUCCESS},
     {IxLog::lvInfo,     EVENTLOG_INFORMATION_TYPE},
