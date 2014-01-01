@@ -23,7 +23,7 @@
         #define xTFOPEN         _wfopen
         #define xTFREOPEN       _wfreopen
         #define xTFDOPEN        _wfdopen
-        #define xTVSNPRINTF     _vsnwprintf
+        #define xTVSNPRINTF     ::_vsnwprintf
         #define xTPERROR        _wperror
         #define xTVSPRINTF      _vswprintf
         #define xTVPRINTF       vwprintf
@@ -128,7 +128,7 @@
         #define xTFOPEN         fopen
         #define xTFREOPEN       freopen
         #define xTFDOPEN        fdopen
-        #define xTVSNPRINTF     vsnprintf
+        #define xTVSNPRINTF     ::vsnprintf
         #define xTPERROR        perror
         #define xTVSPRINTF      vsprintf
         #define xTVPRINTF       vprintf
