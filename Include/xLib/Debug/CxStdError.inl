@@ -77,14 +77,14 @@ CxStdError::format(
 
 #if   xOS_ENV_WIN
     #if   xCOMPILER_MINGW
-        tchar_t *error = std::xSTRERROR(a_code);
+        tchar_t *error = xSTRERROR(a_code);
         xCHECK_RET(NULL == error, sRv.append(xT("[Cann't format error message]")));
 
         sRv.append(error);
     #elif xCOMPILER_MS || xCOMPILER_CODEGEAR
         tchar_t buff[64 + 1] = {0};
 
-        errno_t error = std::xSTRERROR(buff, xARRAY_SIZE(buff), a_code);
+        errno_t error = xSTRERROR(buff, xARRAY_SIZE(buff), a_code);
         xCHECK_RET(0 != error, sRv.append(xT("[Cann't format error message]")));
 
         sRv.append(buff);

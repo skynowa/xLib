@@ -89,15 +89,15 @@
 
     // xSTRERROR
     #if   xCOMPILER_MINGW
-        #define xSTRERROR       _tcserror
+        #define xSTRERROR       ::_tcserror
     #elif xCOMPILER_MS
-        #define xSTRERROR       _tcserror_s
+        #define xSTRERROR       ::_tcserror_s
     #elif xCOMPILER_GNUC
-        #define xSTRERROR       strerror_r
+        #define xSTRERROR       ::strerror_r
     #elif xCOMPILER_CODEGEAR
-        #define xSTRERROR       _tcserror
+        #define xSTRERROR       ::_tcserror
     #else
-        #define xSTRERROR       _wstrerror
+        #define xSTRERROR       ::_wstrerror
     #endif
 
         // chars
@@ -194,15 +194,15 @@
 
     // xSTRERROR
     #if   xCOMPILER_MINGW
-        #define xSTRERROR       _tcserror
+        #define xSTRERROR       ::_tcserror
     #elif xCOMPILER_MS
-        #define xSTRERROR       _tcserror_s
+        #define xSTRERROR       ::_tcserror_s
     #elif xCOMPILER_GNUC
-        #define xSTRERROR       strerror_r
+        #define xSTRERROR       ::strerror_r
     #elif xCOMPILER_CODEGEAR
-        #define xSTRERROR       _tcserror
+        #define xSTRERROR       ::_tcserror
     #else
-        #define xSTRERROR       strerror
+        #define xSTRERROR       std::strerror
     #endif
 
         // chars
