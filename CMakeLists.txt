@@ -33,12 +33,24 @@ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake")
 include(Configure)
 
 #--------------------------------------------------------------------------------------------------
-# includes
+# includes, libs
 include_directories("${CMAKE_SOURCE_DIR}/Include")
 include_directories("${CMAKE_SOURCE_DIR}/Tests/Include")
-include_directories("${OPENSSL_INCLUDE_DIR}")
-include_directories("${MYSQL_INCLUDES}")
-include_directories("${EXECINFO_INCLUDES}")
+
+if (OPENSSL_FOUND)
+    include_directories("${OPENSSL_INCLUDE_DIR}")
+    set(LIBS ${LIBS} ${OPENSSL_LIBRARIES})
+endif()
+
+if (MYSQL_FOUND)
+    include_directories("${MYSQL_INCLUDES}")
+    set(LIBS ${LIBS} ${MYSQL_LIBRARIES})
+endif()
+
+if (UNIX)
+    include_directories("${EXECINFO_INCLUDES}")
+    set(LIBS ${LIBS} ${EXECINFO_LIBRARIES})
+endif()
 
 #--------------------------------------------------------------------------------------------------
 # vars
@@ -84,9 +96,7 @@ set_target_properties(
         COMPILE_FLAGS ${FLAGS}
 )
 
-target_link_libraries(xLib_test
-    ${LIBS} ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS} ${OPENSSL_LIBRARIES} ${MYSQL_LIBRARIES}
-    ${EXECINFO_LIBRARIES})
+target_link_libraries(xLib_test ${LIBS} ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS})
 
 #--------------------------------------------------------------------------------------------------
 # install

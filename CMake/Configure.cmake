@@ -11,26 +11,31 @@ include(FindExecInfo)
 
 #--------------------------------------------------------------------------------------------------
 # unset cache
-unset(xHAVE_OPENSSL_CRYPTO CACHE)
-unset(xHAVE_MYSQL CACHE)
+unset(xHAVE_OPENSSL_CRYPTO  CACHE)
+unset(xHAVE_MYSQL           CACHE)
 unset(xHAVE_PR_SET_DUMPABLE CACHE)
-unset(xHAVE_RLIMIT_CORE CACHE)
-unset(xHAVE_PT_DENY_ATTACH CACHE)
-unset(xHAVE_SCHED_GETCPU CACHE)
-unset(xHAVE_SCHED_GETCPU CACHE)
-unset(xHAVE_ADDR2LINE CACHE)
-unset(xHAVE_XMESSAGE CACHE)
-unset(xHAVE_EXECINFO CACHE)
+unset(xHAVE_RLIMIT_CORE     CACHE)
+unset(xHAVE_PT_DENY_ATTACH  CACHE)
+unset(xHAVE_SCHED_GETCPU    CACHE)
+unset(xHAVE_SCHED_GETCPU    CACHE)
+unset(xHAVE_ADDR2LINE       CACHE)
+unset(xHAVE_XMESSAGE        CACHE)
+unset(xHAVE_EXECINFO        CACHE)
 
 #--------------------------------------------------------------------------------------------------
 # find packages
-find_package(OpenSSL REQUIRED)
-find_package(MySQL REQUIRED)
-find_package(ExecInfo REQUIRED)
+find_package(OpenSSL)
+find_package(MySQL)
+
+if (UNIX)
+    find_package(ExecInfo REQUIRED)
+endif()
 
 #--------------------------------------------------------------------------------------------------
 # configure
-check_library_exists(crypto BF_cfb64_encrypt "" xHAVE_OPENSSL_CRYPTO)
+if (OPENSSL_FOUND)
+    check_library_exists(crypto BF_cfb64_encrypt "" xHAVE_OPENSSL_CRYPTO)
+endif()
 
 if (WIN32)
     # TODO: windows part
