@@ -59,7 +59,7 @@ CxTest_CxBlowfish::unit(
 
         // prepare
         {
-            CxFile::textWrite(filePlain, xT("text_text"));
+            CxFile::textWrite(filePlain, xT("text_text"), CxFile::omWrite);
         }
 
         // test

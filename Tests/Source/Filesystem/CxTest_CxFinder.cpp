@@ -60,7 +60,7 @@ CxTest_CxFinder::unit(
                                CxConst::slash() + xT("File_4.log") );
 
             xFOREACH_CONST(std::vec_tstring_t, cit, files) {
-                CxFile::textWrite(*cit, CxConst::strEmpty());
+                CxFile::clear(*cit);
             }
 
             xTEST_EQ(size_t(12), files.size());

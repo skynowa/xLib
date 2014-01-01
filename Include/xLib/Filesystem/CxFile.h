@@ -20,6 +20,7 @@ public:
     enum ExOpenMode
         /// open mode
     {
+        omUnknown,             ///< unknown
         omRead,                ///< "r"
         omWrite,               ///< "w"
         omAppend,              ///< "a"
@@ -248,17 +249,19 @@ public:
     // text
     static void_t         textRead(std::ctstring_t &filePath, std::tstring_t *content);
         ///< read to std::tstring_t
-    static void_t         textWrite(std::ctstring_t &filePath, std::ctstring_t &content);
+    static void_t         textWrite(std::ctstring_t &filePath, std::ctstring_t &content,
+                              const ExOpenMode &mode);
         ///< write std::tstring_t
     static void_t         textRead(std::ctstring_t &filePath, std::vec_tstring_t *content);
         ///< read to std::vector
-    static void_t         textWrite(std::ctstring_t &filePath, std::cvec_tstring_t &content);
+    static void_t         textWrite(std::ctstring_t &filePath, std::cvec_tstring_t &content,
+                              const ExOpenMode &mode);
         ///< write std::vector
     static void_t         textRead(std::ctstring_t &filePath, std::ctstring_t &separator,
                               std::map_tstring_t *content);
         ///< read text to std::map
     static void_t         textWrite(std::ctstring_t &filePath, std::ctstring_t &separator,
-                              std::cmap_tstring_t &content);
+                              std::cmap_tstring_t &content, const ExOpenMode &mode);
         ///< write text from std::map
 
     // binary
