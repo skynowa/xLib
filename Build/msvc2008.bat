@@ -1,3 +1,4 @@
+@echo off
 rem \file  msvc2008.bat
 rem \brief build tests
 rem
@@ -9,6 +10,6 @@ set DIR_BUILD="../../xLib_msvc2008"
 
 
 rem build
-mkdir %DIR_BUILD%
+if not exist %DIR_BUILD% mkdir %DIR_BUILD%
 cd %DIR_BUILD%
 cmake -G"Visual Studio 9 2008" %DIR_XLIB%
