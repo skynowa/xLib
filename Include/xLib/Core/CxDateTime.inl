@@ -684,7 +684,7 @@ CxDateTime::current()
     SYSTEMTIME dateTime = {0};
 
     (void_t)::GetLocalTime(&dateTime);
-    xTEST_EQ(true, isValid(dateTime.wYear, dateTime.wMonth, dateTime.wDay,
+    xTEST_EQ(true, CxValidator::datetime(dateTime.wYear, dateTime.wMonth, dateTime.wDay,
         dateTime.wHour, dateTime.wMinute, dateTime.wSecond, dateTime.wMilliseconds));
 
     return CxDateTime(dateTime.wYear, dateTime.wMonth, dateTime.wDay,
