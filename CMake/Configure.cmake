@@ -9,6 +9,18 @@ include(CheckCXXSourceCompiles)
 include(FindMySQL)
 include(FindExecInfo)
 
+#--------------------------------------------------------------------------------------------------
+# unset cache
+unset(xHAVE_OPENSSL_CRYPTO CACHE)
+unset(xHAVE_MYSQL CACHE)
+unset(xHAVE_PR_SET_DUMPABLE CACHE)
+unset(xHAVE_RLIMIT_CORE CACHE)
+unset(xHAVE_PT_DENY_ATTACH CACHE)
+unset(xHAVE_SCHED_GETCPU CACHE)
+unset(xHAVE_SCHED_GETCPU CACHE)
+unset(xHAVE_ADDR2LINE CACHE)
+unset(xHAVE_XMESSAGE CACHE)
+unset(xHAVE_EXECINFO CACHE)
 
 #--------------------------------------------------------------------------------------------------
 # find packages
