@@ -112,7 +112,7 @@ inline
 CxNativeSeedPolicy::~CxNativeSeedPolicy()
 {
 #if   xOS_ENV_WIN
-    blRv = ::CryptReleaseContext(_hProv, 0UL);   _hProv = NULL;
+    BOOL blRv = ::CryptReleaseContext(_hProv, 0UL);   _hProv = NULL;
     xTEST_DIFF(blRv, FALSE);
 #elif xOS_ENV_UNIX
     xSTRUCT_ZERO(_data);
@@ -132,7 +132,7 @@ CxNativeSeedPolicy::next()
         long_t value;
     } randBuff;
 
-    BOOL blRv = ::CryptGenRandom(_hProv, sizeof(randBuff), staic_cast<BYTE *>( randBuff ));
+    BOOL blRv = ::CryptGenRandom(_hProv, sizeof(randBuff), reinterpret_cast<BYTE *>( &randBuff ));
     xTEST_DIFF(blRv, FALSE);
 
     liRv = randBuff.value;

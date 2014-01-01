@@ -24,6 +24,7 @@
 #include <psapi.h>
 #include <TlHelp32.h>
 #include <BaseTsd.h>    // SIZE_T, SSIZE_T
+#include <Wincrypt.h>
 
 #if   xCOMPILER_MINGW
     #include <winternl.h>
