@@ -771,7 +771,7 @@ CxString::formatV(
         xVA_COPY(_args, a_args);
 
         {
-            writtenSize = std::xTVSNPRINTF(&buff.at(0), buff.size(), a_format, _args);
+            writtenSize = xTVSNPRINTF(&buff.at(0), buff.size(), a_format, _args);
             xCHECK_DO(writtenSize > - 1 && static_cast<size_t>( writtenSize ) < buff.size(), break);
 
             buff.resize(buff.size() * 2);
@@ -806,7 +806,7 @@ CxString::formatV(
     {
         va_list _args;
         xVA_COPY(_args, args);
-        writtenSize = std::xTVSNPRINTF(&buff.at(0), buff.size(), a_format, _args);
+        writtenSize = xTVSNPRINTF(&buff.at(0), buff.size(), a_format, _args);
         xVA_END(_args);
 
         assert(- 1 < writtenSize);
