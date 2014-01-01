@@ -105,7 +105,7 @@ public:
         ///< align to center
     void_t          setFullScreen() const;
         ///< set full screen
-    void_t          enableClose(cbool_t &flag) const;
+    void_t          enableClose(cbool_t &flag);
         ///< enable close button
 
 private:

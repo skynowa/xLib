@@ -580,7 +580,7 @@ CxConsole::clear() const
 inline void_t
 CxConsole::enableClose(
     cbool_t &a_flag
-) const
+) 
 {
 #if xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _wnd);
