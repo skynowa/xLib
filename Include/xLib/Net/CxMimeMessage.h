@@ -13,8 +13,8 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxMimeheader;
-class CxMimebody;
+class CxMimeHeader;
+class CxMimeBody;
 
 class CxMimeMessage
     /// MIME message (RFC 822)
@@ -23,7 +23,7 @@ public:
                    CxMimeMessage();
     virtual       ~CxMimeMessage() {}
 
-    void_t         parse(std::ctstring_t &rawMessage, CxMimeheader &header, CxMimebody &body);
+    void_t         parse(std::ctstring_t &rawMessage, CxMimeHeader &header, CxMimeBody &body);
     void_t         loadFromRawFile(std::ctstring_t &filePath);
     void_t         saveToRawFile(std::ctstring_t &filePath);
 
