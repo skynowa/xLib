@@ -63,7 +63,7 @@ CxLocalStorage::createDefault(
 {
     xTEST_NA(a_content);
 
-    CxFile::textWrite(path(), a_content);
+    CxFile::textWrite(path(), a_content, CxFile::omWrite);
 }
 //-------------------------------------------------------------------------------------------------
 inline std::ctstring_t &
@@ -93,7 +93,7 @@ CxLocalStorage::get() {
 inline void_t
 CxLocalStorage::flush() const
 {
-    CxFile::textWrite(path(), _separator, _ini);
+    CxFile::textWrite(path(), _separator, _ini, CxFile::omWrite);
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -307,7 +307,7 @@ CxLocalStorage::keyDelete(
     _ini.erase(a_key);
 
     // write to file
-    CxFile::textWrite(path(), _separator, _ini);
+    CxFile::textWrite(path(), _separator, _ini, CxFile::omWrite);
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -361,7 +361,7 @@ CxLocalStorage::_write(
     }
 
     // write to file
-    CxFile::textWrite(path(), _separator, _ini);
+    CxFile::textWrite(path(), _separator, _ini, CxFile::omWrite);
 }
 //-------------------------------------------------------------------------------------------------
 

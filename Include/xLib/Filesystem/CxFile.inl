@@ -1089,18 +1089,19 @@ CxFile::textRead(
 /* static */
 inline void_t
 CxFile::textWrite(
-    std::ctstring_t &a_filePath,
-    std::ctstring_t &a_content
+    std::ctstring_t  &a_filePath,
+    std::ctstring_t  &a_content,
+    const ExOpenMode &a_mode
 )
 {
     xTEST_EQ(false, a_filePath.empty());
     xTEST_NA(a_content);
+    xTEST_DIFF(a_mode, omUnknown);
 
     // TODO: if content.empty()
 
     CxFile file;
-
-    file.create(a_filePath, omBinWrite, true);
+    file.create(a_filePath, a_mode, true);
 
     xCHECK_DO(a_content.empty(), return);
 
@@ -1134,11 +1135,13 @@ CxFile::textRead(
 inline void_t
 CxFile::textWrite(
     std::ctstring_t     &a_filePath,
-    std::cvec_tstring_t &a_content
+    std::cvec_tstring_t &a_content,
+    const ExOpenMode    &a_mode
 )
 {
     xTEST_EQ(false, a_filePath.empty());
     xTEST_NA(a_content);
+    xTEST_DIFF(a_mode, omUnknown);
 
     // TODO: if content.empty()
 
@@ -1146,7 +1149,7 @@ CxFile::textWrite(
 
     content = CxString::join(a_content, CxConst::nl());
 
-    textWrite(a_filePath, content);
+    textWrite(a_filePath, content, a_mode);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -1218,17 +1221,19 @@ inline void_t
 CxFile::textWrite(
     std::ctstring_t     &a_filePath,
     std::ctstring_t     &a_separator,
-    std::cmap_tstring_t &a_content
+    std::cmap_tstring_t &a_content,
+    const ExOpenMode    &a_mode
 )
 {
     xTEST_EQ(false, a_filePath.empty());
     xTEST_EQ(false, a_separator.empty());
     xTEST_NA(a_content);
+    xTEST_DIFF(a_mode, omUnknown);
 
     // TODO: if a_content.empty()
 
     CxFile file;
-    file.create(a_filePath, omWrite, true);
+    file.create(a_filePath, a_mode, true);
 
     typedef std::map_tstring_t content_t;
 
@@ -1248,7 +1253,7 @@ CxFile::textWrite(
         xCHECK_DO(it != content.end(), sRv.append(CxConst::nl()));
     }
 
-    textWrite(filePath, sRv);
+    textWrite(filePath, sRv, a_mode);
 #endif
 }
 //-------------------------------------------------------------------------------------------------
@@ -1398,6 +1403,8 @@ CxFile::_openMode(
     case omBinOpenReadAppend:
         sRv = xT("ab+");
         break;
+
+    case omUnknown:
     default:
         sRv = xT("r");
         break;

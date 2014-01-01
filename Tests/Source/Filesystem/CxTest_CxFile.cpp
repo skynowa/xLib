@@ -592,7 +592,7 @@ CxTest_CxFile::vUnit1(
     {
         std::ctstring_t csNewFilePath = tempDirPath() + CxConst::slash() + xT("New.Test.txt");
 
-        CxFile::textWrite(csFilePath, xT("Simple text"));
+        CxFile::textWrite(csFilePath, xT("Simple text"), CxFile::omWrite);
         CxFile::remove(csNewFilePath);
         CxFile::rename(csFilePath, csNewFilePath);
         CxFile::remove(csNewFilePath);
@@ -640,7 +640,7 @@ CxTest_CxFile::vUnit1(
     {
         std::ctstring_t csNewFilePath = tempDirPath() + CxConst::slash() + xT("New.Test.txt");
 
-        CxFile::textWrite(csNewFilePath, xT("Simple text"));
+        CxFile::textWrite(csNewFilePath, xT("Simple text"), CxFile::omWrite);
         CxFile::remove(tempDirPath() + CxConst::slash() + csNewFilePath);
         CxFile::move(csNewFilePath, tempDirPath());
     }
@@ -730,7 +730,7 @@ CxTest_CxFile::vUnit1(
         }
 
         CxFile::textRead(csFilePath, &sFileContent);
-        CxFile::textWrite(csFilePath, sFileContent);
+        CxFile::textWrite(csFilePath, sFileContent, CxFile::omWrite);
 
         std::tstring_t sStr;
         CxFile::textRead(csFilePath, &sStr);
@@ -751,7 +751,7 @@ CxTest_CxFile::vUnit1(
         }
 
         CxFile::textRead(csFilePath, &sFileContent);
-        CxFile::textWrite(csFilePath, sFileContent);
+        CxFile::textWrite(csFilePath, sFileContent, CxFile::omWrite);
 
         std::tstring_t sStr;
         CxFile::textRead(csFilePath, &sStr);
@@ -776,7 +776,7 @@ CxTest_CxFile::vUnit1(
         }
 
         CxFile::textRead(csFilePath, &vsFileContent);
-        CxFile::textWrite(csFilePath, vsFileContent);
+        CxFile::textWrite(csFilePath, vsFileContent, CxFile::omWrite);
 
         std::vec_tstring_t vsStr;
         CxFile::textRead(csFilePath, &vsStr);
@@ -797,7 +797,7 @@ CxTest_CxFile::vUnit1(
         }
 
         CxFile::textRead(csFilePath, &vsFileContent);
-        CxFile::textWrite(csFilePath, vsFileContent);
+        CxFile::textWrite(csFilePath, vsFileContent, CxFile::omWrite);
 
         std::vec_tstring_t vsStr;
         CxFile::textRead(csFilePath, &vsStr);
@@ -823,7 +823,7 @@ CxTest_CxFile::vUnit1(
         }
 
         CxFile::textRead(csFilePath, csSeparator, &cmsFileContent);
-        CxFile::textWrite(csFilePath, csSeparator, cmsFileContent);
+        CxFile::textWrite(csFilePath, csSeparator, cmsFileContent, CxFile::omWrite);
 
         std::map_tstring_t msStr;
         CxFile::textRead(csFilePath, csSeparator, &msStr);
@@ -845,7 +845,7 @@ CxTest_CxFile::vUnit1(
         }
 
         CxFile::textRead(csFilePath, csSeparator, &cmsFileContent);
-        CxFile::textWrite(csFilePath, csSeparator, cmsFileContent);
+        CxFile::textWrite(csFilePath, csSeparator, cmsFileContent, CxFile::omWrite);
 
         std::map_tstring_t msStr;
         CxFile::textRead(csFilePath, csSeparator, &msStr);
