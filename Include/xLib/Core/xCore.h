@@ -154,6 +154,7 @@
 #include <iomanip>
 #include <cerrno>
 #include <stdexcept>
+#include <locale>
 
 // xLib
 namespace NxLib { }
