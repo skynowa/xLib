@@ -147,8 +147,6 @@ public:
     static std::tstring_t formatPercentage(culonglong_t &maxValue, culonglong_t &currentValue)
                               xWARN_UNUSED_RV;
         ///< formatting percentage
-    static std::tstring_t translitLatToRus(std::ctstring_t &str) xWARN_UNUSED_RV;
-        ///< translit
 
     /*******************************************************************************
     *    memory

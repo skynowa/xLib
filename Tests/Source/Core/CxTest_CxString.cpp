@@ -914,19 +914,6 @@ CxTest_CxString::unit(
 
     }
 
-    xTEST_CASE("CxString::translitLatToRus", a_caseLoops)
-    {
-        // TEST: CxString::translitLatToRus
-
-        #if xTODO
-            m_sRv = CxString::translitLatToRus(xT(""));
-            xTEST_EQ(std::tstring_t(), m_sRv);
-
-            m_sRv = CxString::translitLatToRus(xT("ConsoleTest.exe': Loaded 'C:\\Program Files\\Kaspersky Lab\\Kaspersky Internet Security 2009\\adialhk.dll"));
-            xTEST_EQ(std::tstring_t(xT("ConsoleTest.exe': Loaded 'C:\\Program Files\\Kaspersky Lab\\Kaspersky Internet Security 2009\\adialhk.dll")), m_sRv);
-        #endif
-    }
-
     /*******************************************************************************
     *    memory
     *
