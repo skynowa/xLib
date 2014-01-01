@@ -80,21 +80,35 @@ elseif (UNIX)
         message(WARNING "xmessage - failed")
     endif()
 
+    # xHAVE_SCHED_GETCPU
+    check_cxx_source_compiles(
+        "#define _GNU_SOURCE
+        #include <sched.h>
+
+        int main()
+        {
+            int iRv = ::sched_getcpu();
+            return 0;
+        }"
+        xHAVE_SCHED_GETCPU
+    )
+
+    # xHAVE_GETCPU
+    check_cxx_source_compiles(
+        "#include <linux/getcpu.h>
+
+        int main()
+        {
+            unsigned int cpu = 0U;
+            int iRv = ::getcpu(&cpu, NULL, NULL);
+            return 0;
+        }"
+        xHAVE_GETCPU
+    )
 
     # Linux
     if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-        # xHAVE_GETCPU
-        check_cxx_source_compiles(
-            "#include <linux/getcpu.h>
 
-            int main()
-            {
-                unsigned int cpu = 0U;
-                int iRv = ::getcpu(&cpu, NULL, NULL);
-                return 0;
-            }"
-            xHAVE_GETCPU
-        )
     endif()
 
 
