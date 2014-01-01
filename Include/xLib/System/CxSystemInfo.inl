@@ -615,35 +615,28 @@ CxSystemInfo::currentCpuNum() const
     ulRv = func();
     xTEST_NA(ulRv);
 #elif xOS_ENV_UNIX
-    #if   xOS_LINUX
-        #if defined(SYS_getcpu)
-            ulong_t cpu = 0UL;
+    #if defined(SYS_getcpu)
+        ulong_t cpu = 0UL;
 
-            long_t liRv = ::syscall(SYS_getcpu, &cpu, NULL, NULL);
-            xTEST_DIFF(- 1L, liRv);
+        long_t liRv = ::syscall(SYS_getcpu, &cpu, NULL, NULL);
+        xTEST_DIFF(- 1L, liRv);
 
-            ulRv = cpu;
-        #elif (xSTD_LIBC_GNU_VER_MAJOR > 2) || \
-              (xSTD_LIBC_GNU_VER_MAJOR == 2 && xSTD_LIBC_GNU_VER_MINOR > 6)
-            // ::sched_getcpu() function is available since glibc 2.6, it is glibc specific
-            int_t iRv = ::sched_getcpu();
-            xTEST_DIFF(- 1, iRv);
+        ulRv = cpu;
+    #elif xHAVE_SCHED_GETCPU
+        int_t iRv = ::sched_getcpu();
+        xTEST_DIFF(- 1, iRv);
 
-            ulRv = static_cast<ulong_t>( iRv );
-        #elif xHAVE_GETCPU
-            // ::getcpu() was added in kernel 2.6.19 for x86_64 and i386
-            uint_t cpu = 0U;
+        ulRv = static_cast<ulong_t>( iRv );
+    #elif xHAVE_GETCPU
+        // ::getcpu() was added in kernel 2.6.19 for x86_64 and i386
+        uint_t cpu = 0U;
 
-            int_t iRv = ::getcpu(&cpu, NULL, NULL);
-            xTEST_DIFF(- 1, iRv);
+        int_t iRv = ::getcpu(&cpu, NULL, NULL);
+        xTEST_DIFF(- 1, iRv);
 
-            ulRv = cpu;
-        #else
-            // TODO: currentCpuNum
-            ulRv = 0UL;
-        #endif
-    #elif xOS_FREEBSD
-        // OS_NOT_SUPPORTED: currentCpuNum
+        ulRv = cpu;
+    #else
+        #pragma message("xLib: CxSystemInfo::currentCpuNum() - n/a")
         ulRv = 0UL;
     #endif
 #elif xOS_ENV_MAC
