@@ -39,15 +39,15 @@
 
         // xTMKSTEMP
     #if   xCOMPILER_MINGW
-        #define xTMKSTEMP       _wmktemp
+        #define xTMKSTEMP       ::_wmktemp
     #elif xCOMPILER_MS
-        #define xTMKSTEMP       _tmktemp_s
+        #define xTMKSTEMP       ::_tmktemp_s
     #elif xCOMPILER_CODEGEAR
-        #define xTMKSTEMP       _wmktemp
+        #define xTMKSTEMP       ::_wmktemp
     #elif xCOMPILER_GNUC
-        #define xTMKSTEMP       mkstemp
+        #define xTMKSTEMP       std::mkstemp
     #else
-        #define xTMKSTEMP       mkstemp
+        #define xTMKSTEMP       std::mkstemp
     #endif
 
         #define xTRENAME        _wrename
@@ -144,15 +144,15 @@
 
         // xTMKSTEMP
     #if   xCOMPILER_MINGW
-        #define xTMKSTEMP       _mktemp
+        #define xTMKSTEMP       ::_mktemp
     #elif xCOMPILER_MS
-        #define xTMKSTEMP       _tmktemp_s
+        #define xTMKSTEMP       ::_tmktemp_s
     #elif xCOMPILER_CODEGEAR
-        #define xTMKSTEMP       _mktemp
+        #define xTMKSTEMP       ::_mktemp
     #elif xCOMPILER_GNUC
-        #define xTMKSTEMP       mkstemp
+        #define xTMKSTEMP       std::mkstemp
     #else
-        #define xTMKSTEMP       mktemp
+        #define xTMKSTEMP       std::mktemp
     #endif
 
         #define xTRENAME        rename
