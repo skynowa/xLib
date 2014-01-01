@@ -28,8 +28,8 @@ CxMimeMessage::CxMimeMessage() :
 inline void_t
 CxMimeMessage::parse(
     std::ctstring_t &a_rawMessage,
-    CxMimeheader    &a_header,
-    CxMimebody      &a_body
+    CxMimeHeader    &a_header,
+    CxMimeBody      &a_body
 )
 {
     xUNUSED(a_rawMessage);
