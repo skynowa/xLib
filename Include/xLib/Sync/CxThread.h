@@ -189,8 +189,6 @@ private:
     //TODO: make struct SFlags
     bool_t               _isCreated;              ///< is created
     bool_t               _isRunning;              ///< is running
-    /*bool_t             _isPaused;*/ // n/a
-    /*bool_t             _isExited;*/ // n/a
 
     // other
     CxEvent             *_eventStarter;              ///< starter event
