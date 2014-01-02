@@ -35,8 +35,6 @@ CxThread::CxThread(
     // flags
     _isCreated   (false),
     _isRunning   (false),
-    /*_isPaused*/// n/a
-    /*_isExited*/// n/a
 
     //
     ///_vOnExit  (NULL),
@@ -92,9 +90,9 @@ CxThread::create(
 #elif xOS_ENV_UNIX
 
 #endif
-    // cbIsPaused   - n/a
-    // cuiStackSize - n/a
-    // a_param      - n/a
+    xTEST_NA(a_isPaused);
+    xTEST_NA(a_stackSize);
+    xTEST_NA(a_param);
 
     _param = a_param;
 
@@ -124,7 +122,7 @@ CxThread::create(
 #elif xOS_ENV_UNIX
     int_t          iRv = - 1;
     id_t           hid;
-    pthread_attr_t attrs; // n/a - {{0}}
+    pthread_attr_t attrs; xSTRUCT_ZERO(attrs);
 
     iRv = ::pthread_attr_init(&attrs);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
@@ -132,7 +130,7 @@ CxThread::create(
     iRv = ::pthread_attr_setdetachstate(&attrs, PTHREAD_CREATE_JOINABLE); //PTHREAD_CREATE_DETACHED
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
-    if (0 != a_stackSize) {
+    if (a_stackSize != 0U) {
         //TODO: size_t size = PTHREAD_STACK_MIN + 0x4000;
         iRv = ::pthread_attr_setstacksize(&attrs, a_stackSize);
         xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
@@ -155,18 +153,14 @@ CxThread::create(
     {
         _isCreated = true;
         _isRunning = true;
-        /*_isPaused*/// n/a
 
         if (a_isPaused) {
             pause();
         } else {
             resume();
         }
-
-        /*_isExited*/// n/a
     }
 
-    //-------------------------------------
     // construction is complete, start job entry
     _eventStarter->set();
 }
@@ -183,11 +177,11 @@ CxThread::resume()
     _eventPause.set();
 
     //-------------------------------------
-    //flags
-    /*_isCreated*/// n/a
-    /*_isRunning*/// n/a
-    /*_isPaused*///  n/a
-    /*_isExited*///  n/a
+    // flags
+    {
+        /*_isCreated*/// n/a
+        /*_isRunning*/// n/a
+    }
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -202,11 +196,11 @@ CxThread::pause()
     _eventPause.reset();
 
     //-------------------------------------
-    //flags
-    /*_isCreated*/// n/a
-    /*_isRunning*/// n/a
-    /*_isPaused*///  n/a
-    /*_isExited*///  n/a
+    // flags
+    {
+        /*_isCreated*/// n/a
+        /*_isRunning*/// n/a
+    }
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -221,12 +215,13 @@ CxThread::exit()
     _eventExit.set();
 
     //-------------------------------------
-    //flags
-    /*_isExited*///  n/a
-    /*_isCreated*/// n/a
-    /*_isRunning*/// n/a
-    /*_isPaused*/    xCHECK_DO(isPaused(), resume()); //если поток приостановленный (bPause) - возобновляем
-                                                                   //если ожидает чего-то
+    // flags
+    {
+        /*_isExited*///  n/a
+        /*_isCreated*/// n/a
+
+        xCHECK_DO(isPaused(), resume());
+    }
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -238,7 +233,7 @@ CxThread::kill(
 
 #if   xOS_ENV_WIN
     xTEST_EQ(true, _thread.isValid());
-    //ulTimeout - n/a
+    xTEST_NA(a_timeoutMsec);
 
     _exitStatus = 0U;
 
@@ -258,22 +253,22 @@ CxThread::kill(
     currentSleep(a_timeoutMsec);
 #endif
 
-    //-------------------------------------
     // clean members
-#if   xOS_ENV_WIN
-    _thread.close();
-#elif xOS_ENV_UNIX
-    _thread = 0UL;
-#endif
+    {
+    #if   xOS_ENV_WIN
+        _thread.close();
+    #elif xOS_ENV_UNIX
+        _thread = 0UL;
+    #endif
 
-    _id         = 0UL;
-    _exitStatus = static_cast<uint_t>( ulRv );  // saving value
-    _param      = NULL;
-    //_isAutoDelete - n/a
+        _id         = 0UL;
+        _exitStatus = static_cast<uint_t>( ulRv );  // saving value
+        _param      = NULL;
+        //_isAutoDelete - n/a
 
-    //-------------------------------------
-    //flags
-    _setStatesDefault();
+        // flags
+        _setStatesDefault();
+    }
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -283,17 +278,15 @@ CxThread::wait(
 {
 #if   xOS_ENV_WIN
     xTEST_EQ(true, _thread.isValid());
-    //ulTimeout - n/a
+    xTEST_NA(a_timeoutMsec);
 
     //-------------------------------------
-    //flags
-    //?????????
-
+    // flags
     xTEST_DIFF(currentId(), _id);
     xCHECK_DO(currentId() == _id, return);
 
-    DWORD ulRv = ::WaitForSingleObject(_thread.get(), a_timeoutMsec);
-    xTEST_EQ(WAIT_OBJECT_0, ulRv);
+    DWORD dwRv = ::WaitForSingleObject(_thread.get(), a_timeoutMsec);
+    xTEST_EQ(WAIT_OBJECT_0, dwRv);
 #elif xOS_ENV_UNIX
     xUNUSED(a_timeoutMsec);
 
@@ -322,7 +315,7 @@ CxThread::isCreated() const
 #if   xOS_ENV_WIN
     bRv = (_isCreated) && (_thread.isValid());
 #elif xOS_ENV_UNIX
-    bRv = (_isCreated) && (0UL   != _thread);
+    bRv = (_isCreated) && (0UL != _thread);
 #endif
 
     return bRv;
@@ -373,7 +366,7 @@ CxThread::isPaused()
 #if   xOS_ENV_WIN
     bRv = !_eventPause.isSignaled() && _thread.isValid();
 #elif xOS_ENV_UNIX
-    bRv = !_eventPause.isSignaled() /*&& (0UL   != _thread)*/;
+    bRv = !_eventPause.isSignaled() /*&& (0UL != _thread)*/;
 #endif
 
     return bRv;
@@ -568,7 +561,8 @@ CxThread::_priorityMin()
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline int_t
-CxThread::_priorityMax() {
+CxThread::_priorityMax()
+{
     int_t iRv = - 1;
 
 #if   xOS_ENV_WIN
@@ -755,8 +749,8 @@ CxThread::isPriorityBoost() const
     BOOL blRv = ::GetThreadPriorityBoost(_thread.get(), &isDisablePriorityBoost);
     xTEST_DIFF(FALSE, blRv);
 
-    //bDisablePriorityBoost == true  - dynamic boosting is disabled
-    //bDisablePriorityBoost == false - normal behavior
+    // bDisablePriorityBoost == true  - dynamic boosting is disabled
+    // bDisablePriorityBoost == false - normal behavior
 
     return ! isDisablePriorityBoost;
 #elif xOS_ENV_UNIX
@@ -838,10 +832,10 @@ CxThread::setCpuIdeal(
 #if   xOS_ENV_WIN
     xTEST_EQ(true, _thread.isValid());
 
-    DWORD ulRv = (DWORD) - 1;
+    DWORD dwRv = (DWORD) - 1;
 
-    ulRv = ::SetThreadIdealProcessor(_thread.get(), a_idealCpu);
-    xTEST_DIFF((DWORD) - 1, ulRv);
+    dwRv = ::SetThreadIdealProcessor(_thread.get(), a_idealCpu);
+    xTEST_DIFF((DWORD) - 1, dwRv);
 #elif xOS_ENV_UNIX
     xUNUSED(a_idealCpu);
 
@@ -947,9 +941,9 @@ CxThread::setDebugName(
 ) const
 {
     ////xTEST_LESS(0, _id);
-    ////xTEST_GR(32, a_name.size()); //MAX_NAME_SIZE 32
+    ////xTEST_GR(32, a_name.size()); // MAX_NAME_SIZE 32
 
-    //// TODO: xCHECK_RET(!CxDebugger().bIsActive(), true);
+    //// TODO: xCHECK_RET(!CxDebugger().isActive(), true);
 
 #if   xOS_ENV_WIN
     #if xCOMPILER_MS || xCOMPILER_CODEGEAR
@@ -985,9 +979,9 @@ CxThread::setDebugName(
             //n/a
         }
     #elif xCOMPILER_MINGW
-        // TODO: bSetDebugName
+        // TODO: setDebugName
     #else
-        // TODO: bSetDebugName
+        // TODO: setDebugName
     #endif
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
@@ -1053,7 +1047,7 @@ CxThread::isCurrent(
 #if   xOS_ENV_WIN
     bRv = (currentId() == a_id);
 #elif xOS_ENV_UNIX
-    //TODO: If either thread1 or thread2 are not valid thread IDs, the behavior is undefined
+    // TODO: If either thread1 or thread2 are not valid thread IDs, the behavior is undefined
     bRv = ::pthread_equal(currentId(), a_id);
 #endif
 
@@ -1183,17 +1177,17 @@ CxThread::isTimeToExit()
     bool_t bRv = false;
 
     //-------------------------------------
-    //exit
+    // exit
     bRv = isExited();
     xCHECK_RET(bRv, true);
 
     //-------------------------------------
-    //pause / resume
+    // pause / resume
     bRv = isPaused();
     xCHECK_RET(bRv, ! _waitResumption());
 
     //-------------------------------------
-    //flags
+    // flags
     // n/a
 
     return false;
@@ -1216,7 +1210,7 @@ CxThread::_s_jobEntry(
     xTEST_PTR(a_param);
 
     uint_t uiRv = 0U;
-    bool_t bRv  = false;     xUNUSED(bRv);
+    bool_t bRv  = false;
 
     CxThread *self = static_cast<CxThread *>( a_param );
     xTEST_PTR(self);
@@ -1279,7 +1273,7 @@ CxThread::_s_jobEntry(
 #if   xOS_ENV_WIN
     self->_thread.close();
 #elif xOS_ENV_UNIX
-    // TODO: _thread.vClose()
+    // TODO: _thread.close()
 #endif
 
     self->_id         = 0UL;
@@ -1309,10 +1303,10 @@ CxThread::_waitResumption()
 {
     //-------------------------------------
     // flags
-    /*_isCreated*/// n/a
-    /*_isRunning*/// n/a
-    /*_isPaused*///  n/a
-    /*_isExited*///  n/a
+    {
+        /*_isCreated*/// n/a
+        /*_isRunning*/// n/a
+    }
 
     CxEvent::ExObjectState osRv = _eventPause.wait();
     xTEST_DIFF(CxEvent::osFailed, osRv);
@@ -1329,10 +1323,10 @@ CxThread::_setStatesDefault()
 
     //-------------------------------------
     // flags
-    _isCreated  = false;
-    _isRunning  = false;
-    /*_isPaused*/// n/a
-    /*_isExited*/// n/a
+    {
+        _isCreated  = false;
+        _isRunning  = false;
+    }
 }
 //-------------------------------------------------------------------------------------------------
 
