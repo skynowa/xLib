@@ -6,6 +6,10 @@
 
 xNAMESPACE_BEGIN(NxLib)
 
+#if xOS_FREEBSD
+    #include <xLib/Core/CxUtils.h>
+#endif
+
 //-------------------------------------------------------------------------------------------------
 #if xOS_ENV_WIN
 
