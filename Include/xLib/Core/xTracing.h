@@ -11,6 +11,36 @@
 //-------------------------------------------------------------------------------------------------
 #if xCOMPILE_TRACING
     //--------------------------------------------------
+    // Language standards
+    #if xLANG_STANDART_C89
+        #pragma message("xLib: xLANG_STANDART_C89")
+    #endif
+    #if xLANG_STANDART_C90
+        #pragma message("xLib: xLANG_STANDART_C90")
+    #endif
+    #if xLANG_STANDART_C94
+        #pragma message("xLib: xLANG_STANDART_C94")
+    #endif
+    #if xLANG_STANDART_C99
+        #pragma message("xLib: xLANG_STANDART_C99")
+    #endif
+    #if xLANG_STANDART_C11
+        #pragma message("xLib: xLANG_STANDART_C11")
+    #endif
+    #if xLANG_STANDART_CPP98
+        #pragma message("xLib: xLANG_STANDART_CPP98")
+    #endif
+    #if xLANG_STANDART_CPP11
+        #pragma message("xLib: xLANG_STANDART_CPP11")
+    #endif
+    #if xLANG_STANDART_CPP_CLI
+        #pragma message("xLib: xLANG_STANDART_CPP_CLI")
+    #endif
+    #if xLANG_STANDART_ECPP
+        #pragma message("xLib: xLANG_STANDART_ECPP")
+    #endif
+
+    //--------------------------------------------------
     // OS environment
     #if   xOS_ENV_WIN
         #pragma message("xLib: xOS_ENV_WIN")

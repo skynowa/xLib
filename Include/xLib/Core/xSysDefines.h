@@ -12,6 +12,52 @@
 #include <cstdlib> // compilers
 #include <climits> // standard C libraries
 //-------------------------------------------------------------------------------------------------
+// Language standards
+#if defined(__STDC__)
+    #define xLANG_STANDART_C89
+        ///< ANSI X3.159-1989
+#endif
+
+#if defined(__STDC_VERSION__)
+    #define xLANG_STANDART_C90
+        ///< ISO/IEC 9899:1990
+#endif
+
+#if (__STDC_VERSION__ >= 199409L)
+    #define xLANG_STANDART_C94
+        ///< ISO/IEC 9899-1:1994
+#endif
+
+#if (__STDC_VERSION__ >= 199901L)
+    #define xLANG_STANDART_C99
+        ///< ISO/IEC 9899:1999
+#endif
+
+#if (__STDC_VERSION__ >= 201112L)
+    #define xLANG_STANDART_C11
+        ///< ISO/IEC 9899:2011
+#endif
+
+#if (__cplusplus >= 199711L)
+    #define xLANG_STANDART_CPP98
+        ///< ISO/IEC 14882:1998
+#endif
+
+#if (__cplusplus >= 201103L)
+    #define xLANG_STANDART_CPP11
+        ///< ISO/IEC 14882:2011
+#endif
+
+#if (__cplusplus_cli >= 200406L)
+    #define xLANG_STANDART_CPP_CLI
+        ///< ECMA-372
+#endif
+
+#if defined(__embedded_cplusplus)
+    #define xLANG_STANDART_ECPP
+        ///< Embedded C++
+#endif
+//-------------------------------------------------------------------------------------------------
 // OS environment
 #if defined(_WIN32) || defined(_WIN64) || defined(__WIN32__) || defined(__TOS_WIN__) || \
         defined(__WINDOWS__)
