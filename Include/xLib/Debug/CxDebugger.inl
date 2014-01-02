@@ -87,8 +87,8 @@ CxDebugger::isActive() const
         bool_t bRv = ( ::getsid(::getpid()) != ::getppid() );
         xCHECK_RET(!bRv, false);
     #elif xOS_FREEBSD
-        int_t      mib[4]   = {0};
-        kinfo_proc info     = {0};
+        int_t      mib[4];  xSTRUCT_ZERO(mib);
+        kinfo_proc info;    xSTRUCT_ZERO(info);
         size_t     infoSize = 0;
 
         mib[0] = CTL_KERN;
