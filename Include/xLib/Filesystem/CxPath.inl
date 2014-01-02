@@ -439,19 +439,11 @@ CxPath::isNameValid(
 {
     xTEST_NA(a_fileName);
 
-    bool_t bRv = false;
-
     // check: empty name
-    {
-        bRv = a_fileName.empty();
-        xCHECK_RET(bRv, false);
-    }
+    xCHECK_RET(a_fileName.empty(), false);
 
     // check: name size
-    {
-        bRv = (xNAME_MAX < a_fileName.size());
-        xCHECK_RET(bRv, false);
-    }
+    xCHECK_RET(xNAME_MAX < a_fileName.size(), false);
 
 #if   xOS_ENV_WIN
    /**
@@ -471,18 +463,12 @@ CxPath::isNameValid(
         ctchar_t end   = *(a_fileName.end() - 1);
 
         // space
-        bRv = (CxConst::space().at(0) == begin);
-        xCHECK_RET(bRv, false);
-
-        bRv = (CxConst::space().at(0) == end);
-        xCHECK_RET(bRv, false);
+        xCHECK_RET(CxConst::space().at(0) == begin, false);
+        xCHECK_RET(CxConst::space().at(0) == end,   false);
 
         // dot
-        bRv = (CxConst::dot().at(0)   == begin);
-        xCHECK_RET(bRv, false);
-
-        bRv = (CxConst::dot().at(0)   == end);
-        xCHECK_RET(bRv, false);
+        xCHECK_RET(CxConst::dot().at(0) == begin, false);
+        xCHECK_RET(CxConst::dot().at(0) == end,   false);
     }
 
    /**
@@ -501,8 +487,7 @@ CxPath::isNameValid(
         std::ctstring_t exceptedChars = xT("<>:\"/\\|?*");
 
         std::csize_t pos = a_fileName.find_first_of(exceptedChars);
-        bRv = (std::tstring_t::npos != pos);
-        xCHECK_RET(bRv, false);
+        xCHECK_RET(std::tstring_t::npos != pos, false);
     }
 
    /**
@@ -514,8 +499,7 @@ CxPath::isNameValid(
         std::tstring_t::const_iterator cit;
 
         cit = std::find_if(a_fileName.begin(), a_fileName.end(), CxChar::isControl);
-        bRv = (cit != a_fileName.end());
-        xCHECK_RET(bRv, false);
+        xCHECK_RET(cit != a_fileName.end(), false);
     }
 
    /**
@@ -555,8 +539,7 @@ CxPath::isNameValid(
         xTEST_EQ(size_t(2), exceptedChars.size());
 
         std::csize_t pos = a_fileName.find_first_of(exceptedChars);
-        bRv = (std::tstring_t::npos != pos);
-        xCHECK_RET(bRv, false);
+        xCHECK_RET(std::tstring_t::npos != pos, false);
     }
 #elif xOS_ENV_MAC
    /**
@@ -568,8 +551,7 @@ CxPath::isNameValid(
         std::ctstring_t exceptedChars = xT("/:");
 
         std::csize_t pos = a_fileName.find_first_of(exceptedChars);
-        bRv = (std::tstring_t::npos != pos);
-        xCHECK_RET(bRv, false);
+        xCHECK_RET(std::tstring_t::npos != pos, false);
     }
 #endif
 
@@ -713,11 +695,9 @@ CxPath::setNameValid(
         xTEST_EQ(size_t(2), exceptedChars.size());
 
         std::size_t pos = a_fileName.find_first_of(exceptedChars);
-        if (std::tstring_t::npos != pos) {
-            while (std::tstring_t::npos != pos) {
-                sRv.erase(pos, 1);
-                pos = sRv.find_first_of(exceptedChars, pos);
-            }
+        while (std::tstring_t::npos != pos) {
+            sRv.erase(pos, 1);
+            pos = sRv.find_first_of(exceptedChars, pos);
         }
 
         xCHECK_RET(sRv.empty(), std::tstring_t());
@@ -732,11 +712,9 @@ CxPath::setNameValid(
         std::ctstring_t exceptedChars = xT("/:");
 
         std::size_t pos = a_fileName.find_first_of(exceptedChars);
-        if (std::tstring_t::npos != pos) {
-            while (std::tstring_t::npos != pos) {
-                sRv.erase(pos, 1);
-                pos = sRv.find_first_of(exceptedChars, pos);
-            }
+        while (std::tstring_t::npos != pos) {
+            sRv.erase(pos, 1);
+            pos = sRv.find_first_of(exceptedChars, pos);
         }
 
         xCHECK_RET(sRv.empty(), std::tstring_t());
