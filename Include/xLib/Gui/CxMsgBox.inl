@@ -19,7 +19,7 @@ xNAMESPACE_BEGIN(NxLib)
 //-------------------------------------------------------------------------------------------------
 #if xOS_ENV_WIN
 
-CxMsgBox::ExModalResult
+inline CxMsgBox::ExModalResult
 CxMsgBox::show(
     const HWND      &a_parentWnd,
     std::ctstring_t &a_text,
@@ -37,7 +37,7 @@ CxMsgBox::show(
 
 #endif
 //-------------------------------------------------------------------------------------------------
-CxMsgBox::ExModalResult
+inline CxMsgBox::ExModalResult
 CxMsgBox::show(
     std::ctstring_t &a_text,
     std::ctstring_t &a_title,
