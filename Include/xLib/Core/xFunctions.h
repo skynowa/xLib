@@ -59,7 +59,7 @@
         #define xTFGETS         fgetws
         #define xTSTRLEN        wcslen
         #define xTCHMOD         _wchmod
-        #define xTSYSTEM        _wsystem
+        #define xTSYSTEM        std::_wsystem
 
     // xTSTAT_STRUCT
     #if   xCOMPILER_MINGW
@@ -164,7 +164,7 @@
         #define xTFGETS         fgets
         #define xTSTRLEN        strlen
         #define xTCHMOD         chmod
-        #define xTSYSTEM        system
+        #define xTSYSTEM        std::system
 
     // xTSTAT_STRUCT
     #if   xCOMPILER_MINGW

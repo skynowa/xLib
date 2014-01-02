@@ -118,7 +118,7 @@
 
 
 // Gui
-#include <Test/Gui/CxTest_CxMsgBoxT.h>
+#include <Test/Gui/CxTest_CxMsgBox.h>
 
 
 // System

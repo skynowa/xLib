@@ -1,19 +1,19 @@
 /**
- * \file  CxMsgBoxT.h
+ * \file  CxMsgBox.h
  * \brief message box
  */
 
 
 #pragma once
 
-#ifndef xLib_CxMsgBoxTH
-#define xLib_CxMsgBoxTH
+#ifndef xLib_CxMsgBoxH
+#define xLib_CxMsgBoxH
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-class CxMsgBoxT
+class CxMsgBox
     /// message box
 {
 public:
@@ -42,28 +42,26 @@ public:
     };
     typedef const ExModalResult cExModalResult;
 
-                  CxMsgBoxT() {}
+                  CxMsgBox() {}
         ///< constructor
-    virtual      ~CxMsgBoxT() {}
+    virtual      ~CxMsgBox() {}
         ///< destructor
 
 #if xOS_ENV_WIN
-    template <class TextT, class TitleT>
-    ExModalResult show(const HWND &parentWnd, const TextT &text, const TitleT &title, cuint_t &type)
+    ExModalResult show(const HWND &parentWnd, std::ctstring_t &text, std::ctstring_t &title, cuint_t &type)
         const xWARN_UNUSED_RV;
         ///< message box has parent window, with custom text, custom title, custom type
 #endif
 
-    template <class TextT, class TitleT>
-    ExModalResult show(const TextT &text, const TitleT &title, cExType &type = tpOk)  const
+    ExModalResult show(std::ctstring_t &text, const std::ctstring_t &title, cExType &type = tpOk)  const
         xWARN_UNUSED_RV;
         ///< message box with custom text, custom title, custom type
 
-    xNO_COPY_ASSIGN(CxMsgBoxT)
+    xNO_COPY_ASSIGN(CxMsgBox)
 };
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
-#include "CxMsgBoxT.inl"
+#include "CxMsgBox.inl"
 //-------------------------------------------------------------------------------------------------
-#endif // xLib_CxMsgBoxTH
+#endif // xLib_CxMsgBoxH
