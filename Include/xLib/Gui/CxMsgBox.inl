@@ -1,5 +1,5 @@
 /**
- * \file  CxMsgBoxT.inl
+ * \file  CxMsgBox.inl
  * \brief message box
  */
 
@@ -19,22 +19,17 @@ xNAMESPACE_BEGIN(NxLib)
 //-------------------------------------------------------------------------------------------------
 #if xOS_ENV_WIN
 
-template <class TextT, class TitleT>
-/* static */
-CxMsgBoxT::ExModalResult
-CxMsgBoxT::show(
-    const HWND   &a_parentWnd,
-    const TextT  &a_text,
-    const TitleT &a_title,
-    cuint_t      &a_type
+CxMsgBox::ExModalResult
+CxMsgBox::show(
+    const HWND      &a_parentWnd,
+    std::ctstring_t &a_text,
+    std::ctstring_t &a_title,
+    cuint_t         &a_type
 ) const
 {
     ExModalResult mrRes = mrAbort;
 
-    mrRes = static_cast<ExModalResult>( ::MessageBox(
-        a_parentWnd,
-        CxString::cast(a_text).c_str(),
-        CxString::cast(a_title).c_str(),
+    mrRes = static_cast<ExModalResult>( ::MessageBox(a_parentWnd, a_text.c_str(), a_title.c_str(),
         a_type) );
 
     return mrRes;
@@ -42,17 +37,15 @@ CxMsgBoxT::show(
 
 #endif
 //-------------------------------------------------------------------------------------------------
-template <class TextT, class TitleT>
-/* static */
-CxMsgBoxT::ExModalResult
-CxMsgBoxT::show(
-    const TextT  &a_text,
-    const TitleT &a_title,
-    cExType      &a_type    /* = tpOk */
+CxMsgBox::ExModalResult
+CxMsgBox::show(
+    std::ctstring_t &a_text,
+    std::ctstring_t &a_title,
+    cExType         &a_type    /* = tpOk */
 ) const
 {
     ExModalResult mrRes = mrAbort;
-    std::string   title = CxString::cast(a_title);
+    std::string   title = a_title;
 
     // title
     if ( title.empty() ) {
@@ -73,11 +66,7 @@ CxMsgBoxT::show(
         }
     }
 
-    mrRes = static_cast<ExModalResult>( ::MessageBox(
-        NULL,
-        CxString::cast(a_text).c_str(),
-        title.c_str(),
-        a_type) );
+    mrRes = static_cast<ExModalResult>( ::MessageBox(NULL, a_text.c_str(), title.c_str(), a_type) );
 #elif xOS_ENV_UNIX
     #if xHAVE_XMESSAGE
         std::tstring_t type = xT("Ok");
@@ -95,13 +84,11 @@ CxMsgBoxT::show(
 
         std::ctstring_t msg = CxString::format(
             xT("xmessage -center \"%s\" -title \"%s\" -buttons \"%s\""),
-            CxString::cast(a_text).c_str(),
-            title.c_str(),
-            type.c_str());
+            a_text.c_str(), title.c_str(), type.c_str());
 
-        mrRes = static_cast<ExModalResult>( std::xTSYSTEM(msg.c_str()) );
+        mrRes = static_cast<ExModalResult>( xTSYSTEM(msg.c_str()) );
     #else
-        #pragma message("xLib: CxMsgBoxT::show() - n/a")
+        #pragma message("xLib: CxMsgBox::show() - n/a")
         mrRes = mrUnknown;
     #endif
 #elif xOS_ENV_MAC

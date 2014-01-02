@@ -76,7 +76,7 @@
 
 
 // Gui
-#include <xLib/Gui/CxMsgBoxT.h>
+#include <xLib/Gui/CxMsgBox.h>
 
 
 // Log

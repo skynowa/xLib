@@ -9,7 +9,7 @@
 #include <xLib/System/CxConsole.h>
 #include <xLib/Debug/CxErrorReport.h>
 #include <xLib/Filesystem/CxPath.h>
-#include <xLib/Gui/CxMsgBoxT.h>
+#include <xLib/Gui/CxMsgBox.h>
 #include <xLib/System/CxEnvironment.h>
 
 #if xOS_ENV_UNIX
@@ -235,26 +235,26 @@ CxDebugger::_msgboxPlain(
 {
     xCHECK_DO(!isEnabled(), return);
 
-    CxMsgBoxT::ExModalResult mrRv;
+    CxMsgBox::ExModalResult mrRv;
 
 #if xDEBUG_USE_PROMPT_DIALOG || 1
-    mrRv = CxMsgBoxT().show(a_report.toString(), "", CxMsgBoxT::tpAbortRetryIgnore);
+    mrRv = CxMsgBox().show(a_report.toString(), "", CxMsgBox::tpAbortRetryIgnore);
 #else
-    mrRv = CxMsgBoxT::mrIgnore;
+    mrRv = CxMsgBox::mrIgnore;
 #endif
     switch (mrRv) {
-    case CxMsgBoxT::mrAbort:
+    case CxMsgBox::mrAbort:
         (void_t)::exit(EXIT_FAILURE);
         break;
     default:
-    case CxMsgBoxT::mrIgnore:
+    case CxMsgBox::mrIgnore:
         xNA;
         break;
-    case CxMsgBoxT::mrRetry:
+    case CxMsgBox::mrRetry:
         if (isActive()) {
             breakPoint();
         } else {
-            CxMsgBoxT::ExModalResult nrRv = CxMsgBoxT().show(xT("Debugger is not present.\n"
+            CxMsgBox::ExModalResult nrRv = CxMsgBox().show(xT("Debugger is not present.\n"
                 "The application will be terminated."), xT("xLib"));
             xUNUSED(nrRv);
             (void_t)::exit(EXIT_FAILURE);

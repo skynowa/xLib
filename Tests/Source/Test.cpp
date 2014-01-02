@@ -166,7 +166,7 @@ int_t xTMAIN(int_t a_argNum, tchar_t *a_args[])
         manager.add(new CxTest_CxProcess);
 
         // Gui
-        manager.add(new CxTest_CxMsgBoxT);
+        manager.add(new CxTest_CxMsgBox);
 
         // System
         manager.add(new CxTest_CxEnvironment);

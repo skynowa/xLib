@@ -1,16 +1,16 @@
 /**
- * \file   CxTest_CxMsgBoxT.cpp
- * \brief  test CxMsgBoxT
+ * \file   CxTest_CxMsgBox.cpp
+ * \brief  test CxMsgBox
  */
 
 
-#include <Test/Gui/CxTest_CxMsgBoxT.h>
+#include <Test/Gui/CxTest_CxMsgBox.h>
 
 
-//------------------------------------------------------------------------------
+//---------------------------------------1---------------------------------------
 /* virtual */
 void_t
-CxTest_CxMsgBoxT::unit(
+CxTest_CxMsgBox::unit(
     culonglong_t &a_caseLoops
 )
 {
@@ -19,25 +19,25 @@ CxTest_CxMsgBoxT::unit(
 #if xTEST_IGNORE
 
 #if xOS_ENV_WIN
-    xTEST_CASE("CxMsgBoxT::show", a_caseLoops)
+    xTEST_CASE("CxMsgBox::show", a_caseLoops)
     {
         const HWND        wnd   = NULL;
         std::ctstring_t   text  = xT("\nmessage box...\n");
         std::ctstring_t   title = xT("Simple title");
-        CxMsgBoxT::ExType type  = CxMsgBoxT::tpOk;
+        CxMsgBox::ExType type  = CxMsgBox::tpOk;
 
-        CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT().show(wnd, text, title, type);
+        CxMsgBox::ExModalResult mrRes = CxMsgBox().show(wnd, text, title, type);
         xUNUSED(mrRes);
     }
 #endif
 
-    xTEST_CASE("CxMsgBoxT::show", a_caseLoops)
+    xTEST_CASE("CxMsgBox::show", a_caseLoops)
     {
         std::ctstring_t   text  = xT("\nmessage box...\n");
         std::ctstring_t   title = xT("Simple title");
-        CxMsgBoxT::ExType type = CxMsgBoxT::tpOk;
+        CxMsgBox::ExType type = CxMsgBox::tpOk;
 
-        CxMsgBoxT::ExModalResult mrRes = CxMsgBoxT().show(text, title, type);
+        CxMsgBox::ExModalResult mrRes = CxMsgBox().show(text, title, type);
         xUNUSED(mrRes);
     }
 #endif
