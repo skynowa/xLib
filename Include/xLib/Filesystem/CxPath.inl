@@ -627,11 +627,9 @@ CxPath::setNameValid(
         std::ctstring_t exceptedChars = xT("<>:\"/\\|?*");
 
         std::size_t pos = sRv.find_first_of(exceptedChars);
-        if (std::tstring_t::npos != pos) {
-            while (std::tstring_t::npos != pos) {
-                sRv.erase(pos, 1);
-                pos = sRv.find_first_of(exceptedChars, pos);
-            }
+        while (std::tstring_t::npos != pos) {
+            sRv.erase(pos, 1);
+            pos = sRv.find_first_of(exceptedChars, pos);
         }
 
         xCHECK_RET(sRv.empty(), std::tstring_t());
@@ -1018,7 +1016,7 @@ CxPath::nameMaxSize()
     return uiRv;
 }
 //-------------------------------------------------------------------------------------------------
-#if !xOS_ENV_WIN
+#if xOS_ENV_UNIX
 
 /* static */
 inline void_t
