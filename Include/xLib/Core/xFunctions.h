@@ -45,7 +45,7 @@
     #elif xCOMPILER_CODEGEAR
         #define xTMKSTEMP       ::_wmktemp
     #elif xCOMPILER_GNUC
-        #define xTMKSTEMP       std::mkstemp
+        #define xTMKSTEMP       ::mkstemp
     #else
         #define xTMKSTEMP       std::mkstemp
     #endif
@@ -150,7 +150,7 @@
     #elif xCOMPILER_CODEGEAR
         #define xTMKSTEMP       ::_mktemp
     #elif xCOMPILER_GNUC
-        #define xTMKSTEMP       std::mkstemp
+        #define xTMKSTEMP       ::mkstemp
     #else
         #define xTMKSTEMP       std::mktemp
     #endif
