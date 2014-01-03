@@ -18,7 +18,6 @@
 #cmakedefine xHAVE_SCHED_GETCPU    1
 #cmakedefine xHAVE_GETCPU          1
 #cmakedefine xHAVE_ADDR2LINE       1
-#cmakedefine xHAVE_XMESSAGE        1
 #cmakedefine xHAVE_EXECINFO        1
 
 #if xOS_ENV_WIN
