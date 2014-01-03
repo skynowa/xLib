@@ -19,7 +19,6 @@ unset(xHAVE_PT_DENY_ATTACH  CACHE)
 unset(xHAVE_SCHED_GETCPU    CACHE)
 unset(xHAVE_SCHED_GETCPU    CACHE)
 unset(xHAVE_ADDR2LINE       CACHE)
-unset(xHAVE_XMESSAGE        CACHE)
 unset(xHAVE_EXECINFO        CACHE)
 
 #--------------------------------------------------------------------------------------------------
@@ -81,14 +80,6 @@ elseif (UNIX)
         message(STATUS "addr2line - found")
     else()
         message(WARNING "addr2line - failed")
-    endif()
-
-    # xHAVE_XMESSAGE
-    find_file(xHAVE_XMESSAGE "xmessage")
-    if (xHAVE_XMESSAGE)
-        message(STATUS "xmessage - found")
-    else()
-        message(WARNING "xmessage - failed")
     endif()
 
     # xHAVE_SCHED_GETCPU
