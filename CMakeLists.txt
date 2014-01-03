@@ -39,22 +39,24 @@ include_directories("${CMAKE_SOURCE_DIR}/Tests/Include")
 
 if (OPENSSL_FOUND)
     include_directories("${OPENSSL_INCLUDE_DIR}")
-    set(LIBS ${LIBS} ${OPENSSL_LIBRARIES})
+    link_libraries(${OPENSSL_LIBRARIES})
 endif()
 
 if (MYSQL_FOUND)
     include_directories("${MYSQL_INCLUDES}")
-    set(LIBS ${LIBS} ${MYSQL_LIBRARIES})
+    link_libraries(${MYSQL_LIBRARIES})
 endif()
 
 if (UNIX)
     if (X11_FOUND)
         include_directories("${X11_INCLUDE_DIR}")
-        set(LIBS ${LIBS} ${X11_LIBRARIES})
+        link_libraries(${X11_LIBRARIES})
     endif()
 
-    include_directories("${EXECINFO_INCLUDES}")
-    set(LIBS ${LIBS} ${EXECINFO_LIBRARIES})
+    if (EXECINFO_FOUND)
+        include_directories(${EXECINFO_INCLUDES})
+        link_libraries(${EXECINFO_LIBRARIES})
+    endif()
 endif()
 
 #--------------------------------------------------------------------------------------------------
