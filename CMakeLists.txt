@@ -48,6 +48,11 @@ if (MYSQL_FOUND)
 endif()
 
 if (UNIX)
+    if (X11_FOUND)
+        include_directories("${X11_INCLUDE_DIR}")
+        set(LIBS ${LIBS} ${X11_LIBRARIES})
+    endif()
+
     include_directories("${EXECINFO_INCLUDES}")
     set(LIBS ${LIBS} ${EXECINFO_LIBRARIES})
 endif()

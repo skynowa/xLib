@@ -28,6 +28,7 @@ find_package(OpenSSL)
 find_package(MySQL)
 
 if (UNIX)
+    find_package(X11)
     find_package(ExecInfo REQUIRED)
 endif()
 
@@ -40,6 +41,10 @@ endif()
 if (WIN32)
     # TODO: windows part
 elseif (UNIX)
+    if (X11_FOUND)
+        set(xHAVE_X11 TRUE)
+    endif()
+
     # xHAVE_EXECINFO
     if (EXECINFO_FOUND)
         # just for setting macro
