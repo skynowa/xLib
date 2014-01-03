@@ -62,13 +62,5 @@ private:
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
 #include "CxMsgBox.inl"
-
-#if   xOS_ENV_WIN
-    #include "Platform/CxMsgBox_win.inl"
-#elif xOS_ENV_UNIX
-    #include "Platform/CxMsgBox_unix.inl"
-#elif xOS_ENV_MAC
-    #include "Platform/CxMsgBox_mac.inl"
-#endif
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxMsgBoxH
