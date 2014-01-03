@@ -47,14 +47,7 @@ elseif (UNIX)
 
     # xHAVE_EXECINFO
     if (EXECINFO_FOUND)
-        # just for setting macro
-        check_cxx_source_compiles(
-            "int main() { return 0; }"
-            xHAVE_EXECINFO
-        )
-
-        include_directories(${EXECINFO_INCLUDES})
-        link_libraries(${EXECINFO_LIBRARIES})
+        set(xHAVE_EXECINFO TRUE)
     endif()
 
     # xHAVE_PR_SET_DUMPABLE
