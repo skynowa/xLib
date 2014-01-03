@@ -51,11 +51,24 @@ public:
         xWARN_UNUSED_RV;
         ///< message box with custom text, custom title, custom type
 
+private:
+    ExModalResult show_impl(std::ctstring_t &text, const std::ctstring_t &title, cExType &type = tpOk)  const
+        xWARN_UNUSED_RV;
+        ///< message box with custom text, custom title, custom type
+
     xNO_COPY_ASSIGN(CxMsgBox)
 };
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------
 #include "CxMsgBox.inl"
+
+#if   xOS_ENV_WIN
+    #include "Platform/CxMsgBox_win.inl"
+#elif xOS_ENV_UNIX
+    #include "Platform/CxMsgBox_unix.inl"
+#elif xOS_ENV_MAC
+    #include "Platform/CxMsgBox_mac.inl"
+#endif
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxMsgBoxH

@@ -18,7 +18,7 @@ xNAMESPACE_BEGIN(NxLib)
 
 //-------------------------------------------------------------------------------------------------
 inline CxMsgBox::ExModalResult
-CxMsgBox::show(
+CxMsgBox::show_impl(
     std::ctstring_t &a_text,
     std::ctstring_t &a_title,
     cExType         &a_type    /* = tpOk */
@@ -27,12 +27,20 @@ CxMsgBox::show(
     ExModalResult mrRes = mrAbort;
     std::string   title = a_title;
 
-    // title
-    if ( title.empty() ) {
-        title = CxPath(CxPath::exe()).fileName();
+    UINT type = MB_OK;
+    {
+        switch (a_type) {
+        case tpOk:
+        default:
+            type = MB_OK;
+            break;
+        case tpAbortRetryIgnore:
+            type = MB_ABORTRETRYIGNORE | MB_ICONSTOP;
+            break;
+        }
     }
 
-    mrRes = show_impl(a_text, a_title, a_type);
+    mrRes = static_cast<ExModalResult>( ::MessageBox(NULL, a_text.c_str(), title.c_str(), a_type) );
 
     return mrRes;
 }
