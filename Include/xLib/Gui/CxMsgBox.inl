@@ -17,26 +17,6 @@ xNAMESPACE_BEGIN(NxLib)
 *******************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-#if xOS_ENV_WIN
-
-inline CxMsgBox::ExModalResult
-CxMsgBox::show(
-    const HWND      &a_parentWnd,
-    std::ctstring_t &a_text,
-    std::ctstring_t &a_title,
-    cuint_t         &a_type
-) const
-{
-    ExModalResult mrRes = mrAbort;
-
-    mrRes = static_cast<ExModalResult>( ::MessageBox(a_parentWnd, a_text.c_str(), a_title.c_str(),
-        a_type) );
-
-    return mrRes;
-}
-
-#endif
-//-------------------------------------------------------------------------------------------------
 inline CxMsgBox::ExModalResult
 CxMsgBox::show(
     std::ctstring_t &a_text,

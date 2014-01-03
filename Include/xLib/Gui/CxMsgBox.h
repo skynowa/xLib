@@ -47,12 +47,6 @@ public:
     virtual      ~CxMsgBox() {}
         ///< destructor
 
-#if xOS_ENV_WIN
-    ExModalResult show(const HWND &parentWnd, std::ctstring_t &text, std::ctstring_t &title, cuint_t &type)
-        const xWARN_UNUSED_RV;
-        ///< message box has parent window, with custom text, custom title, custom type
-#endif
-
     ExModalResult show(std::ctstring_t &text, const std::ctstring_t &title, cExType &type = tpOk)  const
         xWARN_UNUSED_RV;
         ///< message box with custom text, custom title, custom type
