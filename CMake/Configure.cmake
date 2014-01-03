@@ -13,6 +13,7 @@ include(FindExecInfo)
 # unset cache
 unset(xHAVE_OPENSSL_CRYPTO  CACHE)
 unset(xHAVE_MYSQL           CACHE)
+unset(xHAVE_X11             CACHE)
 unset(xHAVE_PR_SET_DUMPABLE CACHE)
 unset(xHAVE_RLIMIT_CORE     CACHE)
 unset(xHAVE_PT_DENY_ATTACH  CACHE)
