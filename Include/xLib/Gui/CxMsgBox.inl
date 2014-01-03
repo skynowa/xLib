@@ -4,8 +4,6 @@
  */
 
 
-#include <xLib/Core/CxString.h>
-#include <xLib/System/CxConsole.h>
 #include <xLib/Filesystem/CxPath.h>
 
 #if   xOS_ENV_WIN
