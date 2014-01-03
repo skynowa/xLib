@@ -25,7 +25,6 @@ CxMsgBox::show_impl(
 ) const
 {
     ExModalResult mrRes = mrAbort;
-    std::string   title = a_title;
 
     // int msgbox(string msg, string title, int buttons)
 

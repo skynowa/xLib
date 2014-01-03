@@ -25,7 +25,6 @@ CxMsgBox::show_impl(
 ) const
 {
     ExModalResult mrRes = mrAbort;
-    std::string   title = a_title;
 
     UINT type = MB_OK;
     {
@@ -40,7 +39,7 @@ CxMsgBox::show_impl(
         }
     }
 
-    mrRes = static_cast<ExModalResult>( ::MessageBox(NULL, a_text.c_str(), title.c_str(), a_type) );
+    mrRes = static_cast<ExModalResult>( ::MessageBox(NULL, a_text.c_str(), a_title.c_str(), a_type) );
 
     return mrRes;
 }
