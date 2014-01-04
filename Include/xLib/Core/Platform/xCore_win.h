@@ -1,13 +1,13 @@
 /**
- * \file  xCommon_Win.h
- * \brief Windows common header for xLib
+ * \file  xCore_win.h
+ * \brief Windows core header for xLib
  */
 
 
 #pragma once
 
-#ifndef xLib_xCore_WinH
-#define xLib_xCore_WinH
+#ifndef xLib_xCore_winH
+#define xLib_xCore_winH
 //-------------------------------------------------------------------------------------------------
 #include <winsock2.h>
 #include <ws2tcpip.h>
@@ -37,4 +37,4 @@
     #include <dir.h>
 #endif
 //-------------------------------------------------------------------------------------------------
-#endif // xLib_xCore_WinH
+#endif // xLib_xCore_winH
