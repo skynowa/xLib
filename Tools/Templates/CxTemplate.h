@@ -13,18 +13,18 @@ xNAMESPACE_BEGIN(NxLib)
 class [CxTemplate]
     ///< ??????????
 {
-    public:
-                 [CxTemplate]() {}
-            ///< constructor
-        virtual ~[CxTemplate]() {}
-            ///< destructor
+public:
+             [CxTemplate]() {}
+        ///< constructor
+    virtual ~[CxTemplate]() {}
+        ///< destructor
 
-    private:
+private:
 
 };
 
 xNAMESPACE_END(NxLib)
 //---------------------------------------------------------------------------
-#if xXLIB_HEADER_ONLY
-    #include <xLib/[CxTemplate].h>
-#endif
+#include <xLib/xxx/[CxTemplate].h>
+//---------------------------------------------------------------------------
+
