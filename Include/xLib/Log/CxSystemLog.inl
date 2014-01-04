@@ -27,11 +27,6 @@ static Types<10> levels =
     {IxLog::lvInfo,     EVENTLOG_INFORMATION_TYPE},
     {IxLog::lvDebug,    EVENTLOG_INFORMATION_TYPE},
     {IxLog::lvPlain,    EVENTLOG_INFORMATION_TYPE}
-
-    #if xTEMP_DISABLED
-        EVENTLOG_AUDIT_FAILURE  // Failure Audit event
-        EVENTLOG_AUDIT_SUCCESS  // Success Audit event
-    #endif
 #elif xOS_ENV_UNIX
     {IxLog::lvUnknown,  - 1},
     {IxLog::lvEmerg,    0},
