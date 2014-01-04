@@ -79,7 +79,8 @@ CxMsgBox::show_impl(
     int_t length = 0, height = 0;
 
     for (std::size_t i = 0; i < lines.size(); ++ i) {
-        ::XTextExtents(font, lines[i].c_str(), (int)lines[i].size(), &direction, &ascent, &descent, &overall);
+        ::XTextExtents(font, lines[i].c_str(), (int)lines[i].size(), &direction, &ascent,
+            &descent, &overall);
 
         length = (overall.width > length) ? overall.width : length;
         height = ((ascent + descent) > height) ? (ascent + descent) : height;
@@ -87,7 +88,8 @@ CxMsgBox::show_impl(
 
     // Compute the shape of the window, needed to display the text and adjust the window accordingly
     cint_t  X = DisplayWidth (display, DefaultScreen(display)) / 2 - length / 2 - 10;
-    cint_t  Y = DisplayHeight(display, DefaultScreen(display)) / 2 - lines_size * height / 2 - height - 10;
+    cint_t  Y = DisplayHeight(display, DefaultScreen(display)) / 2 - lines_size * height / 2 -
+        height - 10;
     cuint_t W = length + 20;
     cuint_t H = lines_size * height + height + 40;
 
@@ -164,13 +166,14 @@ CxMsgBox::show_impl(
 
             // Draw text lines
             for (std::size_t i = 0; i < lines.size(); ++ i) {
-                ::XDrawString(display, wnd, gc, 10, 10 + height + height * (int_t)i, lines[i].c_str(),
-                    (int)lines[i].size());
+                ::XDrawString(display, wnd, gc, 10, 10 + height + height * (int_t)i,
+                    lines[i].c_str(), (int)lines[i].size());
             }
 
             // Draw OK button
             if (isButtonFocus) {
-                ::XFillRectangle(display, wnd, gc, offset + okX1, offset + okY1, okX2 - okX1, okY2 - okY1);
+                ::XFillRectangle(display, wnd, gc, offset + okX1, offset + okY1, okX2 - okX1,
+                    okY2 - okY1);
                 ::XSetForeground(display, gc, black);
             } else {
                 ::XDrawLine(display, wnd, gc, okX1, okY1, okX2, okY1);
