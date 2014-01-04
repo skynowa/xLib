@@ -37,34 +37,13 @@ CxMsgBox::show_impl(
     std::ctstring_t buttonOk       = xT("OK");
     std::ctstring_t wmDeleteWindow = xT("WM_DELETE_WINDOW");
 
-    int_t   i = 0;
-    ulong_t black = 0;
-    ulong_t white = 0;
-    int_t   length = 0;
-    int_t   height = 0;
-    int_t   direction = 0;
-    int_t   ascent = 0;
-    int_t   descent = 0;
-    int_t   X = 0;
-    int_t   Y = 0;
-    uint_t  W = 0;
-    uint_t  H = 0;
-    int_t   okX1 = 0;
-    int_t   okY1 = 0;
-    int_t   okX2 = 0;
-    int_t   okY2 = 0;
-    int_t   okBaseX = 0;
-    int_t   okBaseY = 0;
-    int_t   okWidth = 0;
-    int_t   okHeight = 0;
-
     // Open a display
     Display *display = ::XOpenDisplay(NULL);
     xTEST_PTR(display);
 
     // Get us a white and black color
-    black = BlackPixel(display, DefaultScreen(display));
-    white = WhitePixel(display, DefaultScreen(display));
+    culong_t black = BlackPixel(display, DefaultScreen(display));
+    culong_t white = WhitePixel(display, DefaultScreen(display));
 
     // Create a window with the specified title
     Window wnd = ::XCreateSimpleWindow(display, DefaultRootWindow(display), 0, 0, 100, 100, 0,
@@ -88,30 +67,35 @@ CxMsgBox::show_impl(
     // Split the text down into a list of lines
     char  **strvec      = NULL;
     int_t   strvec_size = 0;
+    {
+        char *temp = (char *)std::malloc( std::strlen(a_text.c_str()) + 1);
+        std::strcpy(temp, a_text.c_str());
 
-    char *temp = (char *)std::malloc( std::strlen(a_text.c_str()) + 1);
-    std::strcpy(temp, a_text.c_str());
+        char *pch = std::strtok(temp, "\n");
+        while (pch != NULL) {
+            strvec = (char **)std::realloc(strvec, (strvec_size + 1) * sizeof(char **));
 
-    char *pch = std::strtok(temp, "\n");
-    while (pch != NULL) {
-        strvec = (char **)std::realloc(strvec, (strvec_size + 1) * sizeof(char **));
+            strvec[strvec_size] = (char *)std::malloc(std::strlen(pch) + 1);
+            std::strcpy(strvec[strvec_size], pch);
 
-        strvec[strvec_size] = (char *)std::malloc(std::strlen(pch) + 1);
-        std::strcpy(strvec[strvec_size], pch);
+            ++ strvec_size;
 
-        ++ strvec_size;
+            pch = std::strtok(NULL, "\n");
+        }
 
-        pch = std::strtok(NULL, "\n");
+        xBUFF_FREE(temp);
     }
-
-    xBUFF_FREE(temp);
 
     // Compute the printed length and height of the longest and the tallest line
     XFontStruct *font = ::XQueryFont(display, ::XGContextFromGC(gc));
     xTEST_PTR(font);
 
     XCharStruct overall;
-    for (i = 0, length = 0, height = 0; i < strvec_size; ++ i) {
+
+    int_t direction = 0, ascent = 0, descent = 0;
+    int_t length = 0, height = 0;
+
+    for (int_t i = 0; i < strvec_size; ++ i) {
         ::XTextExtents(font, strvec[i], (int)std::strlen(strvec[i]), &direction, &ascent, &descent, &overall);
 
         length = (overall.width > length) ? overall.width : length;
@@ -119,24 +103,24 @@ CxMsgBox::show_impl(
     }
 
     // Compute the shape of the window, needed to display the text and adjust the window accordingly
-    X = DisplayWidth (display, DefaultScreen(display)) / 2 - length / 2 - 10;
-    Y = DisplayHeight(display, DefaultScreen(display)) / 2 - strvec_size * height / 2 - height - 10;
-    W = length + 20;
-    H = strvec_size * height + height + 40;
+    int_t  X = DisplayWidth (display, DefaultScreen(display)) / 2 - length / 2 - 10;
+    int_t  Y = DisplayHeight(display, DefaultScreen(display)) / 2 - strvec_size * height / 2 - height - 10;
+    uint_t W = length + 20;
+    uint_t H = strvec_size * height + height + 40;
 
     ::XMoveResizeWindow(display, wnd, X, Y, W, H);
 
     // Compute the shape of the OK button
     ::XTextExtents(font, buttonOk.c_str(), 2, &direction, &ascent, &descent, &overall);
 
-    okWidth  = overall.width;
-    okHeight = ascent + descent;
-    okX1     = W / 2 - okWidth / 2 - 15;
-    okY1     = (strvec_size * height + 20) + 5;
-    okX2     = W/2 + okWidth / 2 + 15;
-    okY2     = okY1 + 4 + okHeight;
-    okBaseX  = okX1 + 15;
-    okBaseY  = okY1 + 2 + okHeight;
+    int_t okWidth  = overall.width;
+    int_t okHeight = ascent + descent;
+    int_t okX1     = W / 2 - okWidth / 2 - 15;
+    int_t okY1     = (strvec_size * height + 20) + 5;
+    int_t okX2     = W/2 + okWidth / 2 + 15;
+    int_t okY2     = okY1 + 4 + okHeight;
+    int_t okBaseX  = okX1 + 15;
+    int_t okBaseY  = okY1 + 2 + okHeight;
 
     ::XFreeFontInfo(NULL, font, 1);
 
@@ -158,10 +142,10 @@ CxMsgBox::show_impl(
     // Event loop
     bool_t isRun         = true;
     bool_t isButtonFocus = false;
-    XEvent event;
 
     do {
-        int_t offset = 0;
+        int_t  offset = 0;
+        XEvent event;
 
         ::XNextEvent(display, &event);
 
@@ -181,9 +165,8 @@ CxMsgBox::show_impl(
         switch (event.type) {
         case ButtonPress:
         case ButtonRelease:
-            if (event.xbutton.button != Button1) {
-                break;
-            }
+            xCHECK_DO(event.xbutton.button != Button1, break);
+
             if (isButtonFocus) {
                 offset = (event.type == ButtonPress) ? 1 : 0;
                 if (!offset) {
@@ -198,7 +181,7 @@ CxMsgBox::show_impl(
             ::XClearWindow(display, wnd);
 
             // Draw text lines
-            for (i = 0; i < strvec_size; ++ i) {
+            for (int_t i = 0; i < strvec_size; ++ i) {
                 ::XDrawString(display, wnd, gc, 10, 10 + height + height * i, strvec[i],
                     (int)std::strlen(strvec[i]));
             }
@@ -241,7 +224,7 @@ CxMsgBox::show_impl(
 
     // Clean up
     {
-        for (i = 0; i < strvec_size; ++ i) {
+        for (int_t i = 0; i < strvec_size; ++ i) {
             xBUFF_FREE(strvec[i]);
         }
         xBUFF_FREE(strvec);
