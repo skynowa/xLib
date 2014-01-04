@@ -1,13 +1,13 @@
 /**
- * \file  xCommon_Darwin.h
- * \brief Darwin common header for xLib
+ * \file  xCore_Mac.h
+ * \brief Mac core header for xLib
  */
 
 
 #pragma once
 
-#ifndef xLib_xCore_DarwinH
-#define xLib_xCore_DarwinH
+#ifndef xLib_xCore_MacH
+#define xLib_xCore_MacH
 //-------------------------------------------------------------------------------------------------
 // POSIX
 #include <cpio.h>
@@ -40,7 +40,7 @@
 // dll
 #include <dlfcn.h>
 
-// Darwin
+// Mac
 #include <sys/mount.h>
 #include <sys/statvfs.h>
 #include <sys/resource.h>
@@ -57,4 +57,4 @@
 // system
 #include <sys/resource.h>
 //-------------------------------------------------------------------------------------------------
-#endif // xLib_xCore_DarwinH
+#endif // xLib_xCore_MacH

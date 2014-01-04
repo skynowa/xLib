@@ -1,13 +1,13 @@
 /**
- * \file  xCommon_Unix.h
- * \brief Unix common header for xLib
+ * \file  xCore_unix.h
+ * \brief Unix core header for xLib
  */
 
 
 #pragma once
 
-#ifndef xLib_xCore_UnixH
-#define xLib_xCore_UnixH
+#ifndef xLib_xCore_unixH
+#define xLib_xCore_unixH
 //-------------------------------------------------------------------------------------------------
 // POSIX
 #include <cpio.h>
@@ -64,4 +64,4 @@
 // system
 #include <sys/resource.h>
 //-------------------------------------------------------------------------------------------------
-#endif // xLib_xCore_UnixH
+#endif // xLib_xCore_unixH
