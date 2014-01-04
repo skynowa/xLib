@@ -6,21 +6,16 @@
 
 #include <xLib/Core/CxString.h>
 #include <xLib/Filesystem/CxPath.h>
+#include <xLib/Internal/xInternal.h>
 
-#if !xOS_ENV_WIN
+#if xOS_ENV_UNIX
     #include <syslog.h>
 #endif
 
-xNAMESPACE2_BEGIN(internal, util_enum)
+xNAMESPACE3_BEGIN(NxLib, NxInternal, NxEnum)
 
-struct EnumType
-{
-    ssize_t cross;
-    ssize_t impl;
-};
-
-static EnumType _types[] =
-{
+static Types<10> levels =
+{{
 #if   xOS_ENV_WIN
     {IxLog::lvUnknown,  - 1},
     {IxLog::lvEmerg,    EVENTLOG_ERROR_TYPE},
@@ -49,23 +44,9 @@ static EnumType _types[] =
     {IxLog::lvDebug,    7},
     {IxLog::lvPlain,    6}
 #endif
-};
+}};
 
-template<typename T>
-inline T
-toCross(std::cssize_t &a_type)
-{
-    return static_cast<T>( _types[a_type].cross );
-}
-
-template<typename T>
-inline T
-toImpl(std::cssize_t &a_type)
-{
-    return static_cast<T>( _types[a_type].impl );
-}
-
-xNAMESPACE2_END(internal, util_enum)
+xNAMESPACE3_END(NxLib, NxInternal, NxEnum)
 
 
 xNAMESPACE_BEGIN(NxLib)
@@ -172,13 +153,13 @@ CxSystemLog::write(
     // write
     {
     #if   xOS_ENV_WIN
-        WORD    level_impl = internal::util_enum::toCross<WORD>(level);
+        WORD    level_impl = NxInternal::NxEnum::toCross<WORD>(level);
         LPCTSTR strings    = msg.c_str();
 
         BOOL bRv = ::ReportEvent(_sysLog, level, 0, 0UL, NULL, 1, 0UL, &strings, NULL);
         xTEST_DIFF(FALSE, bRv);
     #elif xOS_ENV_UNIX
-        cint_t level_impl = internal::util_enum::toCross<cint_t>(level);
+        cint_t level_impl = NxInternal::NxEnum::levels.toCross<cint_t>(level);
 
         (void_t)::syslog(level_impl, xT("%s"), msg.c_str());
     #endif
