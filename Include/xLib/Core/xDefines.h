@@ -207,6 +207,17 @@
         xNAMESPACE_END(n1)
         ///< end namespaces
 
+#define xNAMESPACE3_BEGIN(n1, n2, n3) \
+        xNAMESPACE_BEGIN(n1) \
+        xNAMESPACE_BEGIN(n2) \
+        xNAMESPACE_BEGIN(n3)
+        ///< begin namespaces
+#define xNAMESPACE3_END(n1, n2, n3) \
+        xNAMESPACE_END(n3) \
+        xNAMESPACE_END(n2) \
+        xNAMESPACE_END(n1)
+        ///< end namespaces
+
 #define xNAMESPACE_ANONYM_BEGIN \
         namespace {
         ///< begin anonymous namespace
