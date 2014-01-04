@@ -14,16 +14,17 @@ xNAMESPACE_BEGIN(NxLib)
 xNAMESPACE2_BEGIN(NxInternal, NxEnum)
 
 struct Type
+    ///< enum values
 {
-    ssize_t cross;
-    ssize_t impl;
+    ssize_t cross;  ///< crossplatform value
+    ssize_t impl;   ///< implementation (native) value
 };
 
 template<std::csize_t sizeT>
 struct Types
     ///< convert implementation (native) <-> crossplatform values
 {
-    Type values[sizeT]; ///< crossplatform to native values
+    Type values[sizeT]; ///< crossplatform to implementation (native) values
 
     template<class T>
     T toCross(std::cssize_t &a_value) const
