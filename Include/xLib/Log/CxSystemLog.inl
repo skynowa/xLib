@@ -117,13 +117,13 @@ CxSystemLog::write(
     // write
     {
     #if   xOS_ENV_WIN
-        WORD    level_impl = NxInternal::NxEnum::toCross<WORD>(level);
+        WORD    level_impl = NxInternal::NxEnum::toCross(level);
         LPCTSTR strings    = msg.c_str();
 
         BOOL bRv = ::ReportEvent(_sysLog, level, 0, 0UL, NULL, 1, 0UL, &strings, NULL);
         xTEST_DIFF(FALSE, bRv);
     #elif xOS_ENV_UNIX
-        cint_t level_impl = NxInternal::NxEnum::levels.toCross<cint_t>(level);
+        cint_t level_impl = NxInternal::NxEnum::levels.toCross(level);
 
         (void_t)::syslog(level_impl, xT("%s"), msg.c_str());
     #endif
