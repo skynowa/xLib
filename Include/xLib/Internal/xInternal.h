@@ -13,29 +13,30 @@ xNAMESPACE_BEGIN(NxLib)
 
 xNAMESPACE2_BEGIN(NxInternal, NxEnum)
 
+template<class crossT, class implT>
 struct Type
     ///< enum values
 {
-    ssize_t cross;  ///< crossplatform value
-    ssize_t impl;   ///< implementation (native) value
+    crossT cross;  ///< crossplatform value
+    implT  impl;   ///< implementation (native) value
 };
 
-template<std::csize_t sizeT>
+template<class crossT, class implT, std::csize_t sizeT>
 struct Types
     ///< convert implementation (native) <-> crossplatform values
 {
-    Type values[sizeT]; ///< crossplatform to implementation (native) values
+    Type<crossT, implT> values[sizeT]; ///< crossplatform to implementation (native) values
 
-    template<class T>
-    T toCross(std::cssize_t &a_value) const
+    crossT
+    toCross(std::cssize_t &a_value) const
     {
-        return static_cast<T>( this->values[a_value].cross );
+        return static_cast<crossT>( this->values[a_value].cross );
     }
         ///< implementation (native) value to crossplatform
-    template<class T>
-    T toImpl(std::cssize_t &a_value) const
+    implT
+    toImpl(std::cssize_t &a_value) const
     {
-        return static_cast<T>( this->values[a_value].impl );
+        return static_cast<implT>( this->values[a_value].impl );
     }
         ///< crossplatform value to implementation (native)
 };

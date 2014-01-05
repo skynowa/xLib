@@ -17,7 +17,7 @@ xNAMESPACE_BEGIN(NxLib)
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE2_BEGIN(NxInternal, NxEnum)
 
-static Types<10> levels =
+static Types<IxLog::ExLevel, ssize_t, 10> levels =
 {{
 #if   xOS_ENV_WIN
     {IxLog::lvUnknown,  - 1},
