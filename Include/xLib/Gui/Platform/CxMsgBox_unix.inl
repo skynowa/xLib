@@ -31,7 +31,7 @@ CxMsgBox::show_impl(
 {
     xUNUSED(a_type);
 
-    ExModalResult mrRes = mrAbort;
+    ExModalResult mrRv = mrAbort;
 
 #if xHAVE_X11
     std::ctstring_t buttonOk       = xT("OK");
@@ -218,7 +218,7 @@ CxMsgBox::show_impl(
     #pragma message("xLib: CxMsgBox::show_impl() - n/a")
 #endif
 
-    return mrRes;
+    return mrRv;
 }
 //-------------------------------------------------------------------------------------------------
 

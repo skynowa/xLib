@@ -24,7 +24,7 @@ CxMsgBox::show_impl(
     cExType         &a_type    /* = tpOk */
 ) const
 {
-    ExModalResult mrRes = mrAbort;
+    ExModalResult mrRv = mrAbort;
 
     UINT type = MB_OK;
     {
@@ -39,9 +39,9 @@ CxMsgBox::show_impl(
         }
     }
 
-    mrRes = static_cast<ExModalResult>( ::MessageBox(NULL, a_text.c_str(), a_title.c_str(), a_type) );
+    mrRv = static_cast<ExModalResult>( ::MessageBox(NULL, a_text.c_str(), a_title.c_str(), a_type) );
 
-    return mrRes;
+    return mrRv;
 }
 //-------------------------------------------------------------------------------------------------
 
