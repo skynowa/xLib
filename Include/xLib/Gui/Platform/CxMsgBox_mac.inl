@@ -24,7 +24,7 @@ CxMsgBox::show_impl(
     cExType         &a_type    /* = tpOk */
 ) const
 {
-    ExModalResult mrRes = mrAbort;
+    ExModalResult mrRv = mrAbort;
 
     // int msgbox(string msg, string title, int buttons)
 
@@ -51,7 +51,7 @@ CxMsgBox::show_impl(
     NSString *altbutton   = nil;
     NSString *otherbutton = nil;
 
-    switch(buttons)
+    switch(a_type)
     {
     default:
     case MB_OK:
@@ -95,53 +95,63 @@ CxMsgBox::show_impl(
 
     // brings this 'application' to the front.
     [[NSRunningApplication currentApplication] activateWithOptions:NSApplicationActivateIgnoringOtherApps];
-    NSInteger retval = [alert runModal];
+    NSInteger iRv = [alert runModal];
 
     // Convert the NSAlert return values into my MB_* return values.
-    if (retval == NSAlertDefaultReturn) {
-        switch (buttons) {
+    if (iRv == NSAlertDefaultReturn) {
+        switch (a_type) {
         case MB_OK:
         case MB_OKCANCEL:
-            return MB_OK;
+            mrRv = MB_OK;
+            break;
         case MB_YESNO:
         case MB_YESNOCANCEL:
-            return MB_YES;
+            mrRv = MB_YES;
+            break;
         case MB_ABORTRETRYIGNORE:
-            return MB_ABORT;
+            mrRv = MB_ABORT;
+            break;
         case MB_CANCELTRYCONTINUE:
-            return MB_CANCEL;
+            mrRv = MB_CANCEL;
+            break;
         case MB_RETRYCANCEL:
-            return MB_RETRY;
+            mrRv = MB_RETRY;
+            break;
         }
     }
-    else if (retval == NSAlertAlternateReturn) {
-        switch(buttons) {
+    else if (iRv == NSAlertAlternateReturn) {
+        switch(a_type) {
         case MB_OKCANCEL:
         case MB_RETRYCANCEL:
-            return MB_CANCEL;
+            mrRv = MB_CANCEL;
+            break;
         case MB_YESNO:
         case MB_YESNOCANCEL:
-            return MB_NO;
+            mrRv = MB_NO;
+            break;
         case MB_ABORTRETRYIGNORE:
-            return MB_RETRY;
+            mrRv = MB_RETRY;
+            break;
         case MB_CANCELTRYCONTINUE:
-            return MB_TRYAGAIN;
+            mrRv = MB_TRYAGAIN;
+            break;
         }
     }
-    else if (retval == NSAlertOtherReturn) {
-        switch(buttons) {
+    else if (iRv == NSAlertOtherReturn) {
+        switch(a_type) {
         case MB_YESNOCANCEL:
-            return MB_CANCEL;
+            mrRv = MB_CANCEL;
+            break;
         case MB_ABORTRETRYIGNORE:
-            return MB_IGNORE;
+            mrRv = MB_IGNORE;
+            break;
         case MB_CANCELTRYCONTINUE:
-            return MB_CONTINUE;
+            mrRv = MB_CONTINUE;
+            break;
         }
     }
 
-    return NULL;
-
-    return mrRes;
+    return mrRv;
 }
 //-------------------------------------------------------------------------------------------------
 
