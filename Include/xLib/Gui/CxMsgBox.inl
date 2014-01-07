@@ -5,6 +5,7 @@
 
 
 #include <xLib/Filesystem/CxPath.h>
+#include "Platform/CxMsgBox_internal.inl"
 
 #if   xOS_ENV_WIN
     #include "Platform/CxMsgBox_win.inl"

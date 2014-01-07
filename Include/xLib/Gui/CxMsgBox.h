@@ -29,9 +29,15 @@ public:
         /// modal result
     {
         mrUnknown,
+        mrOk,
+        mrYes,
+        mrNo,
         mrAbort,
+        mrCancel,
+        mrContinue,
         mrIgnore,
-        mrRetry
+        mrRetry,
+        mrTryAgain
     };
     typedef const ExModalResult cExModalResult;
 
