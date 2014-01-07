@@ -202,8 +202,17 @@ CxMsgBox::show_impl(
             ::XFlush(display);
             break;
         case KeyRelease:
-            if (::XLookupKeysym(&event.xkey, 0) == XK_Escape) {
-                isRun = false;
+            {
+                KeySym sym = ::XLookupKeysym(&event.xkey, 0);
+                switch (sym) {
+                case XK_Escape:
+                case XK_space:
+                    isRun = false;
+                    break;
+                default:
+                    ;
+                    break;
+                }
             }
             break;
         case ClientMessage:
@@ -225,6 +234,8 @@ CxMsgBox::show_impl(
         ::XDestroyWindow(display, wnd);
         ::XCloseDisplay(display);   display = NULL;
     }
+
+    xUNUSED(NxInternal::NxEnum::modalResults);
 #else
     #pragma message("xLib: CxMsgBox::show_impl() - n/a")
 #endif
