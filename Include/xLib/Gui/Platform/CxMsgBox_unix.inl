@@ -34,7 +34,18 @@ CxMsgBox::show_impl(
     ExModalResult mrRv = mrUnknown;
 
 #if xHAVE_X11
-    std::ctstring_t buttonOk       = xT("OK");
+    std::ctstring_t btnUnknown  = xT("");
+    std::ctstring_t btnOk       = xT("OK");
+    std::ctstring_t btnYes      = xT("Yes");
+    std::ctstring_t btnNo       = xT("No");
+    std::ctstring_t btnAbort    = xT("Abort");
+    std::ctstring_t btnCancel   = xT("Cancel");
+    std::ctstring_t btnContinue = xT("Continue");
+    std::ctstring_t btnIgnore   = xT("Ignore");
+    std::ctstring_t btnRetry    = xT("Retry");
+    std::ctstring_t btnTryAgain = xT("Try Again");
+
+
     std::ctstring_t wmDeleteWindow = xT("WM_DELETE_WINDOW");
 
     // Open a display
@@ -96,7 +107,7 @@ CxMsgBox::show_impl(
     ::XMoveResizeWindow(display, wnd, X, Y, W, H);
 
     // Compute the shape of the OK button
-    ::XTextExtents(font, buttonOk.c_str(), 2, &direction, &ascent, &descent, &overall);
+    ::XTextExtents(font, btnOk.c_str(), 2, &direction, &ascent, &descent, &overall);
     ::XFreeFontInfo(NULL, font, 1);
 
     cint_t okWidth  = overall.width;
@@ -182,7 +193,7 @@ CxMsgBox::show_impl(
                 ::XDrawLine(display, wnd, gc, okX2, okY1, okX2, okY2);
             }
 
-            ::XDrawString(display, wnd, gc, offset + okBaseX, offset + okBaseY, buttonOk.c_str(), 2);
+            ::XDrawString(display, wnd, gc, offset + okBaseX, offset + okBaseY, btnOk.c_str(), 2);
 
             if (isButtonFocus) {
                 ::XSetForeground(display, gc, white);
