@@ -31,7 +31,7 @@ CxMsgBox::show_impl(
 {
     xUNUSED(a_type);
 
-    ExModalResult mrRv = mrAbort;
+    ExModalResult mrRv = mrUnknown;
 
 #if xHAVE_X11
     std::ctstring_t buttonOk       = xT("OK");
