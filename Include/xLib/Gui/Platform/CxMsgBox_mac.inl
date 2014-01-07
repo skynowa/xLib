@@ -55,33 +55,33 @@ CxMsgBox::show_impl(
     {
     default:
     case MB_OK:
-        defbutton = @"Ok";
+        defbutton   = @"Ok";
         break;
     case MB_OKCANCEL:
-        defbutton = @"Ok";
-        altbutton = @"Cancel";
+        defbutton   = @"Ok";
+        altbutton   = @"Cancel";
         break;
     case MB_RETRYCANCEL:
-        defbutton = @"Retry";
-        altbutton = @"Cancel";
+        defbutton   = @"Retry";
+        altbutton   = @"Cancel";
         break;
     case MB_YESNO:
-        defbutton = @"Yes";
-        altbutton = @"No";
+        defbutton   = @"Yes";
+        altbutton   = @"No";
         break;
     case MB_YESNOCANCEL:
-        defbutton = @"Yes";
-        altbutton = @"No";
+        defbutton   = @"Yes";
+        altbutton   = @"No";
         otherbutton = @"Cancel";
         break;
     case MB_ABORTRETRYIGNORE:
-        defbutton = @"Abort";
-        altbutton = @"Retry";
+        defbutton   = @"Abort";
+        altbutton   = @"Retry";
         otherbutton = @"Ignore";
         break;
     case MB_CANCELTRYCONTINUE:
-        defbutton = @"Cancel";
-        altbutton = @"Try Again";
+        defbutton   = @"Cancel";
+        altbutton   = @"Try Again";
         otherbutton = @"Continue";
         break;
     }
@@ -102,20 +102,20 @@ CxMsgBox::show_impl(
         switch (a_type) {
         case MB_OK:
         case MB_OKCANCEL:
-            mrRv = MB_OK;
+            mrRv = mrOk;
             break;
         case MB_YESNO:
         case MB_YESNOCANCEL:
-            mrRv = MB_YES;
+            mrRv = mrYes;
             break;
         case MB_ABORTRETRYIGNORE:
-            mrRv = MB_ABORT;
+            mrRv = mrAbort;
             break;
         case MB_CANCELTRYCONTINUE:
-            mrRv = MB_CANCEL;
+            mrRv = mrCancel;
             break;
         case MB_RETRYCANCEL:
-            mrRv = MB_RETRY;
+            mrRv = mrRetry;
             break;
         }
     }
@@ -123,30 +123,30 @@ CxMsgBox::show_impl(
         switch(a_type) {
         case MB_OKCANCEL:
         case MB_RETRYCANCEL:
-            mrRv = MB_CANCEL;
+            mrRv = mrCancel;
             break;
         case MB_YESNO:
         case MB_YESNOCANCEL:
-            mrRv = MB_NO;
+            mrRv = mrNo;
             break;
         case MB_ABORTRETRYIGNORE:
-            mrRv = MB_RETRY;
+            mrRv = mrRetry;
             break;
         case MB_CANCELTRYCONTINUE:
-            mrRv = MB_TRYAGAIN;
+            mrRv = mrTryAgain;
             break;
         }
     }
     else if (iRv == NSAlertOtherReturn) {
         switch(a_type) {
         case MB_YESNOCANCEL:
-            mrRv = MB_CANCEL;
+            mrRv = mrCancel;
             break;
         case MB_ABORTRETRYIGNORE:
-            mrRv = MB_IGNORE;
+            mrRv = mrIgnore;
             break;
         case MB_CANCELTRYCONTINUE:
-            mrRv = MB_CONTINUE;
+            mrRv = mrContinue;
             break;
         }
     }
