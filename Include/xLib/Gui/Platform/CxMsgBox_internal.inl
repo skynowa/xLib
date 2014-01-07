@@ -17,7 +17,7 @@ xNAMESPACE_BEGIN(NxLib)
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE2_BEGIN(NxInternal, NxEnum)
 
-static Types<CxMsgBox::ExModalResult, std::tstring_t, 4> modalResults =
+static Types<CxMsgBox::ExModalResult, ssize_t, 10> modalResults =
 {{
 #if   xOS_ENV_WIN
     {CxMsgBox::mrUnknown,  - 1},
