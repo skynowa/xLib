@@ -24,7 +24,8 @@ CxMsgBox::show_impl(
     cExType         &a_type    /* = tpOk */
 ) const
 {
-    ExModalResult mrRv = mrAbort;
+    ExModalResult mrRv = mrUnknown;
+    int_t         iRv  = - 1;
 
     UINT type = MB_OK;
     {
@@ -39,7 +40,8 @@ CxMsgBox::show_impl(
         }
     }
 
-    mrRv = static_cast<ExModalResult>( ::MessageBox(NULL, a_text.c_str(), a_title.c_str(), a_type) );
+    iRv  = ::MessageBox(NULL, a_text.c_str(), a_title.c_str(), a_type);
+    mrRv = NxInternal::NxEnum::modalResults.toCross(iRv);
 
     return mrRv;
 }
