@@ -41,7 +41,7 @@ static Types<CxMsgBox::ExModalResult, std::tstring_t, 4> modalResults =
     {CxMsgBox::mrIgnore,   6},
     {CxMsgBox::mrRetry,    7},
     {CxMsgBox::mrTryAgain, 8}
-#else xOS_ENV_MAC
+#elif xOS_ENV_MAC
     {CxMsgBox::mrUnknown,  - 1},
     {CxMsgBox::mrOk,       0},
     {CxMsgBox::mrYes,      1},
