@@ -192,7 +192,7 @@ CxMsgBox::show_impl(
     // xTEST_DIFF(iRv, 0);
 
     // Event loop
-    bool_t isRun         = true;
+    bool_t isRunning     = true;
     bool_t isButtonFocus = false;
 
     xFOREVER {
@@ -223,7 +223,7 @@ CxMsgBox::show_impl(
             if (isButtonFocus) {
                 offset = (event.type == ButtonPress) ? 1 : 0;
                 if (!offset) {
-                    isRun = false;
+                    isRunning = false;
                 }
             } else {
                 offset = 0;
@@ -281,7 +281,7 @@ CxMsgBox::show_impl(
                 switch (sym) {
                 case XK_Escape:
                 case XK_space:
-                    isRun = false;
+                    isRunning = false;
                     break;
                 default:
                     ;
@@ -293,7 +293,7 @@ CxMsgBox::show_impl(
             char *atom = ::XGetAtomName(display, event.xclient.message_type);
             xTEST_PTR(atom);
 
-            xCHECK_DO(std::tstring_t(atom) == wmDeleteWindow, isRun = false);
+            xCHECK_DO(std::tstring_t(atom) == wmDeleteWindow, isRunning = false);
 
             iRv = ::XFree(atom);  atom = NULL;
             // xTEST_DIFF(iRv, 0);
@@ -301,7 +301,7 @@ CxMsgBox::show_impl(
             break;
         };
 
-        xCHECK_DO(!isRun, break);
+        xCHECK_DO(!isRunning, break);
     }
 
     // Clean up
