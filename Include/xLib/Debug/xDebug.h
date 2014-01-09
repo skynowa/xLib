@@ -9,6 +9,8 @@
 #ifndef xLib_xDebugH
 #define xLib_xDebugH
 //-------------------------------------------------------------------------------------------------
+///@name check condition
+///@{
 #define xCHECK_RET(expr, return_expr) \
     { if (expr) { return (return_expr); } }
     ///< check expression and return value
@@ -30,21 +32,8 @@
 #define xCHECKS_NA \
     ;
     ///< at this point check code for variables is not applicable
-
-#define xNOT_IMPLEMENTED \
-    { xTEST_MSG_FAIL(xT("Not implemented")); }
-    ///< show not implemented message and return value
+///@}
 //-------------------------------------------------------------------------------------------------
-#define xTRACE_POINT \
-    { \
-        CxTrace() \
-            << "\t::: #" << xCOUNTER  << " " \
-            << "in "     << xFILE     << ":" << xLINE << ", " \
-            << "func: "  << xFUNCTION << ", " \
-            << "error: " << CxLastError::format() << " :::"; \
-    }
-    ///< trace point (use CxTrace)
-
 ///@name Trace variables (variable with value)
 ///@{
 #define xTRACE_VAR(v1) \
@@ -73,5 +62,18 @@
 #define xTRACE_VAR9(v1, v2, v3, v4, v5, v6, v7, v8, v9) \
     xTRACE_VAR8(v1, v2, v3, v4, v5, v6, v7, v8) << ", " << xTRACE_VAR(v9)
 ///@}
+//-------------------------------------------------------------------------------------------------
+#define xTRACE_POINT \
+    { \
+        CxTrace() \
+            << "\t::: #" << xCOUNTER  << " " \
+            << "in "     << xFILE     << ":" << xLINE << ", " \
+            << "func: "  << xFUNCTION << ", " \
+            << "error: " << CxLastError::format() << " :::"; \
+    }
+    ///< trace point (use CxTrace)
+#define xNOT_IMPLEMENTED \
+    { xTEST_MSG_FAIL(xT("Not implemented")); }
+    ///< show not implemented message and return value
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_xDebugH
