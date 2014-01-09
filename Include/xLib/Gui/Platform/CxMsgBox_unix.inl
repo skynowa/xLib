@@ -33,7 +33,7 @@ xlib_errorFormat
     std::tstring_t sRv;
     tchar_t        buff[1024 + 1] = {0};
 
-    int_t iRv = ::XGetErrorText(a_display, a_code, buff, sizeof(buff) - 1);
+    int_t iRv = ::XGetErrorText(a_display, a_code, buff, static_cast<int_t>( sizeof(buff) ) - 1);
     xUNUSED(iRv);
     // xTEST_DIFF(iRv, 0);
 
