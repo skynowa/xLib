@@ -48,7 +48,11 @@ xlib_errorHandler(
     XErrorEvent *a_errorEvent
 )
 {
-    CxTrace() << "XLIB error: " << ::xlib_errorFormat(a_display, a_errorEvent->error_code);
+    std::tstring_t errorStr = ::xlib_errorFormat(a_display, a_errorEvent->error_code);
+
+    CxTrace() << xT("xLib: XLIB error - ") << xTRACE_VAR7(a_errorEvent->type,
+        a_errorEvent->resourceid, a_errorEvent->serial, a_errorEvent->error_code, errorStr,
+        a_errorEvent->request_code, a_errorEvent->minor_code);
 
     return 0;
 }
