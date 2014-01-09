@@ -92,7 +92,7 @@ CxMsgBox::show_impl(
     xTEST_PTR(display);
 
     // handle errors is on
-    ::XSynchronize(display, False);
+    ::XSynchronize(display, True);
     ::XSetErrorHandler(xlib_errorHandler);
 
     // Get us a white and black color
