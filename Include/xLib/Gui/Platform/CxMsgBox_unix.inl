@@ -203,7 +203,7 @@ CxMsgBox::show_impl(
         XEvent event;
 
         iRv = ::XNextEvent(display, &event);
-        xTEST_DIFF(iRv, 0);
+        // xTEST_DIFF(iRv, 0);
 
         if (event.type == MotionNotify) {
             if (event.xmotion.x >= okX1 && event.xmotion.x <= okX2 &&
