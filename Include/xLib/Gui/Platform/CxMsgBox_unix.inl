@@ -241,7 +241,7 @@ CxMsgBox::show_impl(
             for (std::size_t i = 0; i < lines.size(); ++ i) {
                 iRv = ::XDrawString(display, wnd, gc, 10, 10 + height + height * (int_t)i,
                     lines[i].c_str(), (int)lines[i].size());
-                xTEST_DIFF(iRv, 0);
+                // xTEST_DIFF(iRv, 0);
             }
 
             // Draw OK button
@@ -267,7 +267,7 @@ CxMsgBox::show_impl(
             }
 
             iRv = ::XDrawString(display, wnd, gc, offset + okBaseX, offset + okBaseY, btnOk.c_str(), 2);
-            xTEST_DIFF(iRv, 0);
+            // xTEST_DIFF(iRv, 0);
 
             if (isButtonFocus) {
                 iRv = ::XSetForeground(display, gc, white);
@@ -317,7 +317,7 @@ CxMsgBox::show_impl(
         xTEST_DIFF(iRv, 0);
 
         iRv = ::XCloseDisplay(display);   display = NULL;
-        xTEST_DIFF(iRv, 0);
+        // xTEST_DIFF(iRv, 0);
     }
 
     xUNUSED(NxInternal::NxEnum::modalResults);
