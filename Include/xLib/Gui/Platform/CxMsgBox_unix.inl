@@ -84,7 +84,7 @@ CxMsgBox::show_impl(
     std::ctstring_t btnRetry    = xT("Retry");
     std::ctstring_t btnTryAgain = xT("Try Again");
 
-
+    std::ctstring_t wmProtocols = xT("WM_PROTOCOLS");
     std::ctstring_t wmDeleteWindow = xT("WM_DELETE_WINDOW");
 
     // Open a display
@@ -298,6 +298,7 @@ CxMsgBox::show_impl(
             xTEST_PTR(atom);
 
             xCHECK_DO(std::tstring_t(atom) == wmDeleteWindow, isRunning = false);
+            xCHECK_DO(std::tstring_t(atom) == wmProtocols,    isRunning = false);
 
             iRv = ::XFree(atom);  atom = NULL;
             // xTEST_DIFF(iRv, 0);
