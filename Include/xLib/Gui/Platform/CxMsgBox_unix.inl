@@ -34,8 +34,7 @@ xlib_errorFormat
     tchar_t        buff[1024 + 1] = {0};
 
     int_t iRv = ::XGetErrorText(a_display, a_code, buff, static_cast<int_t>( sizeof(buff) ) - 1);
-    xUNUSED(iRv);
-    // xTEST_DIFF(iRv, 0);
+    xTEST_DIFF(iRv, 0);
 
     sRv.assign(buff);
 
@@ -48,7 +47,7 @@ xlib_errorHandler(
     XErrorEvent *a_errorEvent
 )
 {
-    std::tstring_t errorStr = ::xlib_errorFormat(a_display, a_errorEvent->error_code);
+    std::ctstring_t errorStr = ::xlib_errorFormat(a_display, a_errorEvent->error_code);
 
     CxTrace() << xT("xLib: XLIB error - ") << xTRACE_VAR7(a_errorEvent->type,
         a_errorEvent->resourceid, a_errorEvent->serial, a_errorEvent->error_code, errorStr,
@@ -71,7 +70,7 @@ CxMsgBox::show_impl(
     ExModalResult mrRv = mrUnknown;
 
 #if xHAVE_X11
-    int_t iRv = - 1;    xUNUSED(iRv);
+    int_t iRv = - 1;
 
     std::ctstring_t btnUnknown  = xT("");
     std::ctstring_t btnOk       = xT("OK");
@@ -105,13 +104,13 @@ CxMsgBox::show_impl(
 
     iRv = ::XSelectInput(display, wnd, ExposureMask | StructureNotifyMask | KeyReleaseMask |
         PointerMotionMask | ButtonPressMask | ButtonReleaseMask);
-    // xTEST_DIFF(iRv, 0);
+    xTEST_DIFF(iRv, 0);
 
     iRv = ::XMapWindow(display, wnd);
-    // xTEST_DIFF(iRv, 0);
+    xTEST_DIFF(iRv, 0);
 
     iRv = ::XStoreName(display, wnd, a_title.c_str());
-    // xTEST_DIFF(iRv, 0);
+    xTEST_DIFF(iRv, 0);
 
     Atom wmDelete = ::XInternAtom(display, wmDeleteWindow.c_str(), True);
     ::XSetWMProtocols(display, wnd, &wmDelete, 1);
@@ -120,10 +119,10 @@ CxMsgBox::show_impl(
     const GC gc = ::XCreateGC(display, wnd, 0, 0);
 
     iRv = ::XSetForeground(display, gc, white);
-    // xTEST_DIFF(iRv, 0);
+    xTEST_DIFF(iRv, 0);
 
     iRv = ::XSetBackground(display, gc, black);
-    // xTEST_DIFF(iRv, 0);
+    xTEST_DIFF(iRv, 0);
 
     // Split the text down into a list of lines
     std::vec_tstring_t lines;
@@ -156,14 +155,14 @@ CxMsgBox::show_impl(
     cuint_t H = lines_size * height + height + 40;
 
     iRv = ::XMoveResizeWindow(display, wnd, X, Y, W, H);
-    // xTEST_DIFF(iRv, 0);
+    xTEST_DIFF(iRv, 0);
 
     // Compute the shape of the OK button
     iRv = ::XTextExtents(font, btnOk.c_str(), 2, &direction, &ascent, &descent, &overall);
     // xTEST_DIFF(iRv, 0);
 
     iRv = ::XFreeFontInfo(NULL, font, 1);
-    // xTEST_DIFF(iRv, 0);
+    xTEST_DIFF(iRv, 0);
 
     cint_t okWidth  = overall.width;
     cint_t okHeight = ascent + descent;
@@ -176,7 +175,7 @@ CxMsgBox::show_impl(
 
     // Make the window non resizeable
     iRv = ::XUnmapWindow(display, wnd);
-    // xTEST_DIFF(iRv, 0);
+    xTEST_DIFF(iRv, 0);
 
     XSizeHints *hints = ::XAllocSizeHints();
     xTEST_PTR(hints);
@@ -187,13 +186,13 @@ CxMsgBox::show_impl(
 
     (void_t)::XSetWMNormalHints(display, wnd, hints);
     iRv = ::XFree(hints); hints = NULL;
-    // xTEST_DIFF(iRv, 0);
+    xTEST_DIFF(iRv, 0);
 
     iRv = ::XMapRaised(display, wnd);
-    // xTEST_DIFF(iRv, 0);
+    xTEST_DIFF(iRv, 0);
 
     iRv = ::XFlush(display);
-    // xTEST_DIFF(iRv, 0);
+    xTEST_DIFF(iRv, 0);
 
     // Event loop
     bool_t isRunning     = true;
@@ -204,7 +203,7 @@ CxMsgBox::show_impl(
         XEvent event;
 
         iRv = ::XNextEvent(display, &event);
-        // xTEST_DIFF(iRv, 0);
+        xTEST_DIFF(iRv, 0);
 
         if (event.type == MotionNotify) {
             if (event.xmotion.x >= okX1 && event.xmotion.x <= okX2 &&
@@ -236,47 +235,47 @@ CxMsgBox::show_impl(
         case Expose:
         case MapNotify:
             iRv = ::XClearWindow(display, wnd);
-            // xTEST_DIFF(iRv, 0);
+            xTEST_DIFF(iRv, 0);
 
             // Draw text lines
             for (std::size_t i = 0; i < lines.size(); ++ i) {
                 iRv = ::XDrawString(display, wnd, gc, 10, 10 + height + height * (int_t)i,
                     lines[i].c_str(), (int)lines[i].size());
-                // xTEST_DIFF(iRv, 0);
+                xTEST_DIFF(iRv, 0);
             }
 
             // Draw OK button
             if (isButtonFocus) {
                 iRv = ::XFillRectangle(display, wnd, gc, offset + okX1, offset + okY1, okX2 - okX1,
                     okY2 - okY1);
-                // xTEST_DIFF(iRv, 0);
+                xTEST_DIFF(iRv, 0);
 
                 iRv = ::XSetForeground(display, gc, black);
-                // xTEST_DIFF(iRv, 0);
+                xTEST_DIFF(iRv, 0);
             } else {
                 iRv = ::XDrawLine(display, wnd, gc, okX1, okY1, okX2, okY1);
-                // xTEST_DIFF(iRv, 0);
+                xTEST_DIFF(iRv, 0);
 
                 iRv = ::XDrawLine(display, wnd, gc, okX1, okY2, okX2, okY2);
-                // xTEST_DIFF(iRv, 0);
+                xTEST_DIFF(iRv, 0);
 
                 iRv = ::XDrawLine(display, wnd, gc, okX1, okY1, okX1, okY2);
-                // xTEST_DIFF(iRv, 0);
+                xTEST_DIFF(iRv, 0);
 
                 iRv = ::XDrawLine(display, wnd, gc, okX2, okY1, okX2, okY2);
-                // xTEST_DIFF(iRv, 0);
+                xTEST_DIFF(iRv, 0);
             }
 
             iRv = ::XDrawString(display, wnd, gc, offset + okBaseX, offset + okBaseY, btnOk.c_str(), 2);
-            // xTEST_DIFF(iRv, 0);
+            xTEST_DIFF(iRv, 0);
 
             if (isButtonFocus) {
                 iRv = ::XSetForeground(display, gc, white);
-                // xTEST_DIFF(iRv, 0);
+                xTEST_DIFF(iRv, 0);
             }
 
             iRv = ::XFlush(display);
-            // xTEST_DIFF(iRv, 0);
+            xTEST_DIFF(iRv, 0);
 
             break;
         case KeyRelease:
@@ -301,7 +300,7 @@ CxMsgBox::show_impl(
             xCHECK_DO(std::tstring_t(atom) == wmProtocols,    isRunning = false);
 
             iRv = ::XFree(atom);  atom = NULL;
-            // xTEST_DIFF(iRv, 0);
+            xTEST_DIFF(iRv, 0);
 
             break;
         };
@@ -312,13 +311,13 @@ CxMsgBox::show_impl(
     // Clean up
     {
         iRv = ::XFreeGC(display, gc);
-        // xTEST_DIFF(iRv, 0);
+        xTEST_DIFF(iRv, 0);
 
         iRv = ::XDestroyWindow(display, wnd);
-        // xTEST_DIFF(iRv, 0);
+        xTEST_DIFF(iRv, 0);
 
         iRv = ::XCloseDisplay(display);   display = NULL;
-        // xTEST_DIFF(iRv, 0);
+        xTEST_DIFF(iRv, 0);
     }
 
     xUNUSED(NxInternal::NxEnum::modalResults);
