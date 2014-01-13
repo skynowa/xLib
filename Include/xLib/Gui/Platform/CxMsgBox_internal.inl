@@ -66,7 +66,7 @@ static Types<CxMsgBox::ExModalResult, ssize_t, 10> types =
     {CxMsgBox::tpRetryCancel,       MB_RETRYCANCEL},
     {CxMsgBox::tpYesNoCancel,       MB_YESNOCANCEL},
     {CxMsgBox::tpAbortRetryIgnore,  MB_ABORTRETRYIGNORE},
-    {CxMsgBox::tpCancelTryContinue, MB_CANCELTRYCONTINUE},
+    {CxMsgBox::tpCancelTryContinue, MB_CANCELTRYCONTINUE}
 #elif xOS_ENV_UNIX
     {CxMsgBox::tpUnknown,           - 1},
     {CxMsgBox::tpOk,                0},
@@ -75,7 +75,7 @@ static Types<CxMsgBox::ExModalResult, ssize_t, 10> types =
     {CxMsgBox::tpRetryCancel,       3},
     {CxMsgBox::tpYesNoCancel,       4},
     {CxMsgBox::tpAbortRetryIgnore,  5},
-    {CxMsgBox::tpCancelTryContinue, 6},
+    {CxMsgBox::tpCancelTryContinue, 6}
 #elif xOS_ENV_MAC
     {CxMsgBox::tpUnknown,           - 1},
     {CxMsgBox::tpOk,                0},
@@ -84,7 +84,7 @@ static Types<CxMsgBox::ExModalResult, ssize_t, 10> types =
     {CxMsgBox::tpRetryCancel,       3},
     {CxMsgBox::tpYesNoCancel,       4},
     {CxMsgBox::tpAbortRetryIgnore,  5},
-    {CxMsgBox::tpCancelTryContinue, 6},
+    {CxMsgBox::tpCancelTryContinue, 6}
 #endif
 }};
 
