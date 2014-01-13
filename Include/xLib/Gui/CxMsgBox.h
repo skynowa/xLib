@@ -21,7 +21,12 @@ public:
         ///< windows type
     {
         tpOk,
-        tpAbortRetryIgnore
+        tpOkCancel,
+        tpYesNo,
+        tpRetryCancel,
+        tpYesNoCancel,
+        tpAbortRetryIgnore,
+        tpCancelTryContinue
     };
     typedef const ExType cExType;
 

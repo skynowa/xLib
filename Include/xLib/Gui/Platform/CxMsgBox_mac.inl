@@ -26,71 +26,50 @@ CxMsgBox::show_impl(
 {
     ExModalResult mrRv = mrAbort;
 
-    // int msgbox(string msg, string title, int buttons)
-
-    enum ExButtons
-    {
-        MB_OK,
-        MB_OKCANCEL,
-        MB_YESNO,
-        MB_RETRYCANCEL,
-        MB_YESNOCANCEL,
-        MB_ABORTRETRYIGNORE,
-        MB_CANCELTRYCONTINUE,
-        MB_CANCEL,
-        MB_YES,
-        MB_NO,
-        MB_RETRY,
-        MB_IGNORE,
-        MB_TRYAGAIN,
-        MB_CONTINUE,
-        MB_ABORT,
-    };
-
-    NSString *defbutton   = nil;
-    NSString *altbutton   = nil;
-    NSString *otherbutton = nil;
+    NSString *btnDefault = nil;
+    NSString *btnAlt     = nil;
+    NSString *btnOther   = nil;
 
     switch(a_type)
     {
     default:
-    case MB_OK:
-        defbutton   = @"Ok";
+    case tpOk:
+        btnDefault = @"Ok";
         break;
-    case MB_OKCANCEL:
-        defbutton   = @"Ok";
-        altbutton   = @"Cancel";
+    case tpOkCancel:
+        btnDefault = @"Ok";
+        btnAlt     = @"Cancel";
         break;
-    case MB_RETRYCANCEL:
-        defbutton   = @"Retry";
-        altbutton   = @"Cancel";
+    case tpYesNo:
+        btnDefault = @"Yes";
+        btnAlt     = @"No";
         break;
-    case MB_YESNO:
-        defbutton   = @"Yes";
-        altbutton   = @"No";
+    case tpRetryCancel:
+        btnDefault = @"Retry";
+        btnAlt     = @"Cancel";
         break;
-    case MB_YESNOCANCEL:
-        defbutton   = @"Yes";
-        altbutton   = @"No";
-        otherbutton = @"Cancel";
+    case tpYesNoCancel:
+        btnDefault = @"Yes";
+        btnAlt     = @"No";
+        btnOther   = @"Cancel";
         break;
-    case MB_ABORTRETRYIGNORE:
-        defbutton   = @"Abort";
-        altbutton   = @"Retry";
-        otherbutton = @"Ignore";
+    case tpAbortRetryIgnore:
+        btnDefault = @"Abort";
+        btnAlt     = @"Retry";
+        btnOther   = @"Ignore";
         break;
-    case MB_CANCELTRYCONTINUE:
-        defbutton   = @"Cancel";
-        altbutton   = @"Try Again";
-        otherbutton = @"Continue";
+    case tpCancelTryContinue:
+        btnDefault = @"Cancel";
+        btnAlt     = @"Try Again";
+        btnOther   = @"Continue";
         break;
     }
 
     NSAlert *alert = [NSAlert alertWithMessageText:[NSString stringWithCString:title.c_str()
                         encoding:[NSString defaultCStringEncoding]]
-                        defaultButton:defbutton
-                        alternateButton:altbutton
-                        otherButton:otherbutton
+                        defaultButton:btnDefault
+                        alternateButton:btnAlt
+                        otherButton:btnOther
                         informativeTextWithFormat:@"%s", msg.c_str()];
 
     // brings this 'application' to the front.
@@ -100,52 +79,52 @@ CxMsgBox::show_impl(
     // Convert the NSAlert return values into my MB_* return values.
     if (iRv == NSAlertDefaultReturn) {
         switch (a_type) {
-        case MB_OK:
-        case MB_OKCANCEL:
+        case tpOk:
+        case tpOkCancel:
             mrRv = mrOk;
             break;
-        case MB_YESNO:
-        case MB_YESNOCANCEL:
+        case tpYesNo:
+        case tpYesNoCancel:
             mrRv = mrYes;
             break;
-        case MB_ABORTRETRYIGNORE:
+        case tpRetryCancel:
+            mrRv = mrRetry;
+            break;
+        case tpAbortRetryIgnore:
             mrRv = mrAbort;
             break;
-        case MB_CANCELTRYCONTINUE:
+        case tpCancelTryContinue:
             mrRv = mrCancel;
-            break;
-        case MB_RETRYCANCEL:
-            mrRv = mrRetry;
             break;
         }
     }
     else if (iRv == NSAlertAlternateReturn) {
         switch(a_type) {
-        case MB_OKCANCEL:
-        case MB_RETRYCANCEL:
+        case tpOkCancel:
+        case tpRetryCancel:
             mrRv = mrCancel;
             break;
-        case MB_YESNO:
-        case MB_YESNOCANCEL:
+        case tpYesNo:
+        case tpYesNoCancel:
             mrRv = mrNo;
             break;
-        case MB_ABORTRETRYIGNORE:
+        case tpAbortRetryIgnore:
             mrRv = mrRetry;
             break;
-        case MB_CANCELTRYCONTINUE:
+        case tpCancelTryContinue:
             mrRv = mrTryAgain;
             break;
         }
     }
     else if (iRv == NSAlertOtherReturn) {
         switch(a_type) {
-        case MB_YESNOCANCEL:
+        case tpYesNoCancel:
             mrRv = mrCancel;
             break;
-        case MB_ABORTRETRYIGNORE:
+        case tpAbortRetryIgnore:
             mrRv = mrIgnore;
             break;
-        case MB_CANCELTRYCONTINUE:
+        case tpCancelTryContinue:
             mrRv = mrContinue;
             break;
         }
