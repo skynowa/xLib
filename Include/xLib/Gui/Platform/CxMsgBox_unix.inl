@@ -331,6 +331,7 @@ CxMsgBox::show_impl(
         // xTEST_DIFF(iRv, 0);
     }
 
+    xUNUSED(NxInternal::NxEnum::types);
     xUNUSED(NxInternal::NxEnum::modalResults);
 #else
     #pragma message("xLib: CxMsgBox::show_impl() - n/a")
