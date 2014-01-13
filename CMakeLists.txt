@@ -16,6 +16,17 @@ set(CMAKE_BUILD_TYPE "RelWithDebInfo")
 
 #--------------------------------------------------------------------------------------------------
 # options
+unset(xUSING_NAMESPACE_NXLIB   CACHE)
+unset(xDEBUG_USE_PROMPT_DIALOG CACHE)
+unset(xDEBUG_MODE_MSGBOX       CACHE)
+unset(xDEBUG_MODE_STDOUT       CACHE)
+unset(xDEBUG_MODE_LOG          CACHE)
+unset(xDEBUG_MODE_NO           CACHE)
+unset(xCOMPILE_TRACING         CACHE)
+unset(xNEW_NO_STD_THROW        CACHE)
+unset(xTEST_PRIVATE_DATA       CACHE)
+unset(xTEST_TRACING            CACHE)
+
 option(xUSING_NAMESPACE_NXLIB   "automatically include the NxLib namespace" ON)
 option(xDEBUG_USE_PROMPT_DIALOG "debug prompt dialog"                       ON)
 option(xDEBUG_MODE_MSGBOX       "debug mode 'message box with plain text'"  OFF)
@@ -25,7 +36,7 @@ option(xDEBUG_MODE_NO           "debug mode 'no debugging'"                 OFF)
 option(xCOMPILE_TRACING         "is compile time tracing"                   OFF)
 option(xNEW_NO_STD_THROW        "new with std::notrow"                      OFF)
 option(xTEST_PRIVATE_DATA       "tests private data"                        OFF)
-option(xTEST_TRACING            "use tracing in tests"                      ON)
+option(xTEST_TRACING            "use tracing in tests"                      OFF)
 
 #--------------------------------------------------------------------------------------------------
 # modules
