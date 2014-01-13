@@ -293,15 +293,26 @@ CxMsgBox::show_impl(
             }
             break;
         case ClientMessage:
-            char *atom = ::XGetAtomName(display, event.xclient.message_type);
-            xTEST_PTR(atom);
+            {
+                char *atom = ::XGetAtomName(display, event.xclient.message_type);
+                xTEST_PTR(atom);
 
-            xCHECK_DO(std::tstring_t(atom) == wmDeleteWindow, isRunning = false);
-            xCHECK_DO(std::tstring_t(atom) == wmProtocols,    isRunning = false);
+                xCHECK_DO(std::tstring_t(atom) == wmDeleteWindow, isRunning = false);
+                xCHECK_DO(std::tstring_t(atom) == wmProtocols,    isRunning = false);
 
-            iRv = ::XFree(atom);  atom = NULL;
-            xTEST_DIFF(iRv, 0);
-
+                iRv = ::XFree(atom);  atom = NULL;
+                xTEST_DIFF(iRv, 0);
+            }
+            break;
+        case ConfigureNotify:
+            {
+                CxTrace() << xT("Window moved or resized!\n");
+            }
+            break;
+        case DestroyNotify:
+            {
+                CxTrace() << xT("Window killed!\n");
+            }
             break;
         };
 
