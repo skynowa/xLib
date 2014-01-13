@@ -24,24 +24,13 @@ CxMsgBox::show_impl(
     cExType         &a_type    /* = tpOk */
 ) const
 {
-    ExModalResult mrRv = mrUnknown;
-    int_t         iRv  = - 1;
+    ExModalResult mrRv      = mrUnknown;
+    UINT          type_impl = tpUnknown;
+    int_t         iRv       = - 1;
 
-    UINT type = MB_OK;
-    {
-        switch (a_type) {
-        case tpOk:
-        default:
-            type = MB_OK;
-            break;
-        case tpAbortRetryIgnore:
-            type = MB_ABORTRETRYIGNORE | MB_ICONSTOP;
-            break;
-        }
-    }
-
-    iRv  = ::MessageBox(NULL, a_text.c_str(), a_title.c_str(), a_type);
-    mrRv = NxInternal::NxEnum::modalResults.toCross(iRv);
+    type_impl = NxInternal::NxEnum::types.toImpl(a_type);
+    iRv       = ::MessageBox(NULL, a_text.c_str(), a_title.c_str(), type_impl);
+    mrRv      = NxInternal::NxEnum::modalResults.toCross(iRv);
 
     return mrRv;
 }
