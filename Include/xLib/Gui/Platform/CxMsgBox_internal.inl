@@ -56,7 +56,7 @@ static Types<CxMsgBox::ExModalResult, ssize_t, 10> modalResults =
 }};
 
 
-static Types<CxMsgBox::ExModalResult, ssize_t, 10> types =
+static Types<CxMsgBox::ExModalResult, ssize_t, 8> types =
 {{
 #if   xOS_ENV_WIN
     {CxMsgBox::tpUnknown,           - 1},
