@@ -20,6 +20,7 @@ public:
     enum ExType
         ///< windows type
     {
+        tpUnknown,
         tpOk,
         tpOkCancel,
         tpYesNo,
