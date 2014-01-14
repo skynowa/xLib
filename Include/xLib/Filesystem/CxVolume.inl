@@ -70,6 +70,7 @@ CxVolume::type() const
         xTEST_PTR(file);
 
         xFOREVER {
+            // TODO: getmntent -> getmntent_r
             const mntent *mountPoint = ::getmntent(file);
             xCHECK_DO(NULL == mountPoint, break);
 
