@@ -36,7 +36,7 @@ public:
         dtRemote    = 4,
         dtCdRom     = 5,
         dtRam       = 6,
-        dtOther     = 7    // TODO: CxVolume::type
+        dtOther     = 7
     #endif
     };
 
