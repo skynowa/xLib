@@ -65,35 +65,10 @@ CxVolume::type() const
 
     dtRv = static_cast<ExType>(uiRv);
 #elif xOS_ENV_UNIX
-    #if   xOS_LINUX
-        FILE *file = ::setmntent(xT("/etc/mtab"), xT("r"));
-        xTEST_PTR(file);
-
-        xFOREVER {
-            // TODO: getmntent -> getmntent_r
-            const mntent *mountPoint = ::getmntent(file);
-            xCHECK_DO(NULL == mountPoint, break);
-
-        #if 0
-            printf("[name]: %s\n[path]: %s\n[type]: %s\n\n", mountPoint->mnt_fsname,
-                mountPoint->mnt_dir, mountPoint->mnt_type);
-        #endif
-
-            bool_t bRv = CxString::compareNoCase(path(), mountPoint->mnt_dir);
-            xCHECK_DO(!bRv, continue);
-
-            // TODO: CxVolume::type
-            dtRv = (mountPoint->mnt_type == NULL) ? dtUnknown : dtOther;
-
-            break;
-        }
-
-        int_t iRv = ::endmntent(file);
-        xTEST_EQ(1, iRv);
-    #elif xOS_FREEBSD
-        // TODO: CxVolume::type
-    #endif
+    // TODO: CxVolume::type()
+    xNOT_IMPLEMENTED
 #elif xOS_ENV_MAC
+    // TODO: CxVolume::type()
     xNOT_IMPLEMENTED
 #endif
 
