@@ -49,6 +49,8 @@ public:
         ///< volume path
     ExType            type() const xWARN_UNUSED_RV;
         ///< drive type
+    std::tstring_t    fileSystem() const xWARN_UNUSED_RV;
+        ///< filesystem type
     std::tstring_t    label() const xWARN_UNUSED_RV;
         ///< get label
     bool_t            isValid() const xWARN_UNUSED_RV;
