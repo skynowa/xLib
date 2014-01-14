@@ -102,6 +102,9 @@ public:
         ///< path validation
     static bool_t         isNameValid(std::ctstring_t &fileName) xWARN_UNUSED_RV;
         ///< name validation
+    static bool_t         isNameValid(std::ctstring_t &fileName, cbool_t &isNormalize = false,
+                              std::ctstring_t *fileNameNormalized = NULL) xWARN_UNUSED_RV;
+        ///< name validation
 
     static std::tstring_t shortName(std::ctstring_t &fileName, std::csize_t &maxSize)
                               xWARN_UNUSED_RV;
