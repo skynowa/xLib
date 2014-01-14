@@ -79,7 +79,7 @@ CxVolume::type() const
                 mountPoint->mnt_dir, mountPoint->mnt_type);
         #endif
 
-            bool_t bRv = CxString::compareNoCase(path(), std::tstring_t(mountPoint->mnt_dir));
+            bool_t bRv = CxString::compareNoCase(path(), mountPoint->mnt_dir);
             xCHECK_DO(!bRv, continue);
 
             // TODO: CxVolume::type
@@ -101,6 +101,53 @@ CxVolume::type() const
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
+CxVolume::fileSystem() const
+{
+    std::tstring_t sRv;
+
+#if   xOS_ENV_WIN
+    tchar_t fileSystemName[MAX_PATH + 1] = {0};
+
+    CxLastError::reset();
+
+    BOOL blRv = ::GetVolumeInformation(CxPath( path() ).slashAppend().c_str(), NULL, 0UL, NULL,
+        NULL, NULL, &fileSystemName[0], static_cast<DWORD>( xARRAY_SIZE(fileSystemName) ));
+    xTEST_DIFF(false, blRv != FALSE && CxLastError::isSuccess() );
+
+    sRv.assign(volumeName);
+#elif xOS_ENV_UNIX
+    #if   xOS_LINUX
+        FILE *file = ::setmntent(xT("/etc/mtab"), xT("r"));
+        xTEST_PTR(file);
+
+        xFOREVER {
+            // TODO: getmntent -> getmntent_r
+            const mntent *mountPoint = ::getmntent(file);
+            xCHECK_DO(NULL == mountPoint, break);
+
+            bool_t bRv = CxString::compareNoCase(path(), mountPoint->mnt_dir);
+            xCHECK_DO(!bRv, continue);
+
+            sRv = (mountPoint->mnt_type == NULL) ? CxConst::strEmpty() : mountPoint->mnt_type;
+
+            break;
+        }
+
+        int_t iRv = ::endmntent(file);
+        xTEST_EQ(1, iRv);
+    #elif xOS_FREEBSD
+        // TODO: CxVolume::fileSystem()
+        xNOT_IMPLEMENTED
+    #endif
+#elif xOS_ENV_MAC
+    // TODO: CxVolume::fileSystem()
+    xNOT_IMPLEMENTED
+#endif
+
+    return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+inline std::tstring_t
 CxVolume::label() const
 {
     std::tstring_t sRv;
@@ -114,8 +161,8 @@ CxVolume::label() const
     CxLastError::reset();
 
     BOOL blRv = ::GetVolumeInformation(CxPath( path() ).slashAppend().c_str(), &volumeName[0],
-        static_cast<DWORD>( xARRAY_SIZE(volumeName) ), NULL, NULL, NULL, NULL, 0);
-    xTEST_DIFF(false, blRv && 0UL == CxLastError::get());
+        static_cast<DWORD>( xARRAY_SIZE(volumeName) ), NULL, NULL, NULL, NULL, 0UL);
+    xTEST_DIFF(false, blRv != FALSE && CxLastError::isSuccess());
 
     sRv.assign(volumeName);
 #elif xOS_ENV_UNIX

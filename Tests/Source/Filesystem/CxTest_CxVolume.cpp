@@ -29,6 +29,21 @@ CxTest_CxVolume::unit(
         // TEST: xTEST_EQ(CxVolume::dtFixed, dtRes);
     }
 
+    xTEST_CASE("CxVolume::fileSystem", a_caseLoops)
+    {
+        std::vec_tstring_t volumePaths;
+
+        CxVolume::paths(&volumePaths);
+        xTEST_EQ(false, volumePaths.empty());
+
+        xFOREACH_CONST(std::vec_tstring_t, it_path, volumePaths) {
+            m_sRv = CxVolume(*it_path).fileSystem();
+            xUNUSED(m_sRv);
+
+            CxTrace() << xTRACE_VAR(m_sRv);
+        }
+    }
+
     xTEST_CASE("CxVolume::label", a_caseLoops)
     {
         std::vec_tstring_t vsVolumePaths;
