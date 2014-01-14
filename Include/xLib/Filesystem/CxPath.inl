@@ -558,6 +558,35 @@ CxPath::isNameValid(
     return true;
 }
 //-------------------------------------------------------------------------------------------------
+/* static */
+inline bool_t
+CxPath::isNameValid(
+    std::ctstring_t &a_fileName,                        ///< file, directory name
+    cbool_t         &a_isNormalize        /* = false */,  ///< is normalize name
+    std::ctstring_t *a_fileNameNormalized /* = NULL */    ///< [out] normalized name
+)
+{
+    xTEST_NA(a_fileName);
+    xTEST_NA(a_isNormalize);
+    xTEST_NA(a_fileNameNormalized);
+
+    // check: empty name
+    xCHECK_RET(a_fileName.empty(), false);
+
+    // check: name size
+    xCHECK_RET(xNAME_MAX < a_fileName.size(), false);
+
+#if   xOS_ENV_WIN
+    // TODO: CxPath::isNameValid()
+#elif xOS_ENV_UNIX
+    // TODO: CxPath::isNameValid()
+#elif xOS_ENV_MAC
+    // TODO: CxPath::isNameValid()
+#endif
+
+    return true;
+}
+//-------------------------------------------------------------------------------------------------
 inline bool_t
 CxPath::isAbsolute() const {
     xCHECK_RET(filePath().empty(),                         false);
