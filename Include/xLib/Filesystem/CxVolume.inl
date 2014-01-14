@@ -58,8 +58,12 @@ CxVolume::type() const
     ExType dtRv = dtUnknown;
 
 #if   xOS_ENV_WIN
-    dtRv = static_cast<ExType>( ::GetDriveType( CxPath(path()).slashAppend().c_str() ) );
-    xTEST_NA(dtRv);
+    std::ctstring_t rootPath = CxPath( path() ).slashAppend();
+
+    UINT uiRv = ::GetDriveType( rootPath.c_str() );
+    xTEST_NA(uiRv);
+
+    dtRv = static_cast<ExType>(uiRv);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         FILE *file = ::setmntent(xT("/etc/mtab"), xT("r"));
@@ -69,14 +73,16 @@ CxVolume::type() const
             const mntent *mountPoint = ::getmntent(file);
             xCHECK_DO(NULL == mountPoint, break);
 
-            // printf("[name]: %s\n[path]: %s\n[type]: %s\n\n",
-            //        mountPoint->mnt_fsname, mountPoint->mnt_dir, mountPoint->mnt_type);
+        #if 0
+            printf("[name]: %s\n[path]: %s\n[type]: %s\n\n", mountPoint->mnt_fsname,
+                mountPoint->mnt_dir, mountPoint->mnt_type);
+        #endif
 
             bool_t bRv = CxString::compareNoCase(path(), std::tstring_t(mountPoint->mnt_dir));
             xCHECK_DO(!bRv, continue);
 
             // TODO: CxVolume::type
-            dtRv = (NULL == mountPoint->mnt_type) ? dtUnknown : dtOther;
+            dtRv = (mountPoint->mnt_type == NULL) ? dtUnknown : dtOther;
 
             break;
         }
