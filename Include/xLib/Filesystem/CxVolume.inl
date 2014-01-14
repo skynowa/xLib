@@ -108,7 +108,7 @@ CxVolume::fileSystem() const
             break;
         }
 
-        int_t iRv = ::endmntent(file);
+        int_t iRv = ::endmntent(file);  file = NULL;
         xTEST_EQ(1, iRv);
     #elif xOS_FREEBSD
         // TODO: CxVolume::fileSystem()
