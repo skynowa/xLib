@@ -306,12 +306,12 @@ CxMsgBox::show_impl(
             break;
         case ConfigureNotify:
             {
-                CxTrace() << xT("Window moved or resized!\n");
+                // CxTrace() << xT("Window moved or resized!\n");
             }
             break;
         case DestroyNotify:
             {
-                CxTrace() << xT("Window killed!\n");
+                // CxTrace() << xT("Window killed!\n");
             }
             break;
         };
