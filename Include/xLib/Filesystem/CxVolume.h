@@ -47,8 +47,10 @@ public:
 
     std::ctstring_t & path() const xWARN_UNUSED_RV;
         ///< volume path
+#if   xOS_ENV_WIN
     ExType            type() const xWARN_UNUSED_RV;
         ///< drive type
+#endif
     std::tstring_t    fileSystem() const xWARN_UNUSED_RV;
         ///< filesystem type
     std::tstring_t    label() const xWARN_UNUSED_RV;
