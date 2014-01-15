@@ -422,150 +422,7 @@ CxTest_CxPath::unit(
 
     xTEST_CASE("CxPath::isNameValid", a_caseLoops)
     {
-        {
-        #if   xOS_ENV_WIN
-            const CxTest::Data<std::tstring_t, bool_t> data[] =
-            {
-                {xT("CLOCK$"),       false},
-                {xT("AUX"),          false},
-                {xT("CON"),          false},
-                {xT("NUL"),          false},
-                {xT("PRN"),          false},
-                {xT("COM1"),         false},
-                {xT("COM2"),         false},
-                {xT("COM3"),         false},
-                {xT("COM4"),         false},
-                {xT("COM5"),         false},
-                {xT("COM6"),         false},
-                {xT("COM7"),         false},
-                {xT("COM8"),         false},
-                {xT("COM9"),         false},
-                {xT("LPT1"),         false},
-                {xT("LPT2"),         false},
-                {xT("LPT3"),         false},
-                {xT("LPT4"),         false},
-                {xT("LPT5"),         false},
-                {xT("LPT6"),         false},
-                {xT("LPT7"),         false},
-                {xT("LPT8"),         false},
-                {xT("LPT9"),         false},
-                {xT("clock$"),       false},
-                {xT("aux"),          false},
-                {xT("con"),          false},
-                {xT("nul"),          false},
-                {xT("prn"),          false},
-                {xT("com1"),         false},
-                {xT("com2"),         false},
-                {xT("com3"),         false},
-                {xT("com4"),         false},
-                {xT("com5"),         false},
-                {xT("com6"),         false},
-                {xT("com7"),         false},
-                {xT("com8"),         false},
-                {xT("com9"),         false},
-                {xT("LPT1"),         false},
-                {xT("LPT2"),         false},
-                {xT("LPT3"),         false},
-                {xT("LPT4"),         false},
-                {xT("LPT5"),         false},
-                {xT("LPT6"),         false},
-                {xT("LPT7"),         false},
-                {xT("LPT8"),         false},
-                {xT("LPT9"),         false},
-                {xT("clock$.txt"),   false},
-                {xT("aux.txt"),      false},
-                {xT("con.txt"),      false},
-                {xT("nul.txt"),      false},
-                {xT("prn.txt"),      false},
-                {xT("com1.txt"),     false},
-                {xT("com2.txt"),     false},
-                {xT("com3.txt"),     false},
-                {xT("com4.txt"),     false},
-                {xT("com5.txt"),     false},
-                {xT("com6.txt"),     false},
-                {xT("com7.txt"),     false},
-                {xT("com8.txt"),     false},
-                {xT("com9.txt"),     false},
-                {xT("LPT1.txt"),     false},
-                {xT("LPT2.txt"),     false},
-                {xT("LPT3.txt"),     false},
-                {xT("LPT4.txt"),     false},
-                {xT("LPT5.txt"),     false},
-                {xT("LPT6.txt"),     false},
-                {xT("LPT7.txt"),     false},
-                {xT("LPT8.txt"),     false},
-                {xT("LPT9.txt"),     false},
-                {xT("T\t"),          false},
-                {xT("T\n"),          false},
-                {xT("T\r"),          false},
-                {xT("T<"),           false},
-                {xT("T>"),           false},
-                {xT("T:"),           false},
-                {xT("T\""),          false},
-                {xT("T\\"),          false},
-                {xT("T/"),           false},
-                {xT("T*"),           false},
-                {xT("T?"),           false},
-                {xT("T|"),           false},
-                {xT("..."),          false},
-                {xT(" "),            false},
-                {xT("       "),      false},
-                {xT(". .."),         false},
-                {xT(".xxx."),        false},
-                {xT(" dd "),         false},
-                {xT("ff "),          false},
-                {xT("w "),           false},
-                {xT(".."),           false},
-                {xT("."),            false},
-                {xT("Good Data"),    true},
-                {xT("commit"),       true},
-                {xT("console"),      true},
-                {xT("LPT10"),        true},
-                {xT("clock"),        true},
-                {xT(".aux.txt"),     false},
-                {xT("auxx.aux.txt"), true},
-                {xT("NULL"),         true},
-                {xT("?V|||/:*?\"<>|||a:l/:*?\"<>|/:*?\"<>|/:*?\"<>|\\i?dT*e/:*?\"<>|stN////:*?\"<>|///ame"), false},
-                {xT(""),             false},
-                {xT("C:\\test\\"),   false},
-                {xT("C:/test/"),     false}
-            };
-        #elif xOS_ENV_UNIX
-            const CxTest::Data<std::tstring_t, bool_t> data[] =
-            {
-                {xT("xxxx"),       true},
-                {xT(""),           false},
-                {xT("/opt/test/"), false},
-                {xT("////////"),   false},
-                {xT("\\\\\\\\\\"), true},
-                {xT("?V|||/:*?\"<>|||a:l/:*?\"<>|/:*?\"<>|/:*?\"<>|\\i?dT*e/:*?\"<>|stN////:*?\"<>|///a\0me"), false},
-                {xT("?V|||/:*?\"<>|||a:l/:*?\"<>|/:*?\"<>|/:*?\"<>|\\i?dT*e/:*?\"<>|stN////:*?\"<>|///ame"),   false}
-            };
-        #endif
-
-            for (size_t i = 0; i < xARRAY_SIZE2(data); ++ i) {
-                bool_t bRv1 = CxPath::isNameValid(data[i].test);
-                bool_t bRv2 = data[i].expect;
-                xTEST_EQ(bRv1, bRv2);
-            }
-        }
-
-    #if xOS_ENV_UNIX
-        {
-            std::string data;
-            data.push_back('x');
-            data.push_back('\0');
-            data.push_back('y');
-
-            m_bRv = CxPath::isNameValid(data);
-            xTEST_EQ(false, m_bRv);
-        }
-    #endif
-    }
-
-    xTEST_CASE("CxPath::isNameValid", a_caseLoops)
-    {
-        // // isNormalize = false
+        // // a_fileNameValid == NULL
         {
             {
             #if   xOS_ENV_WIN
@@ -708,7 +565,7 @@ CxTest_CxPath::unit(
         #endif
         }
 
-        // isNormalize = true
+        // a_fileNameValid != NULL
         {
         #if   xOS_ENV_WIN
             const CxTest::Data<std::tstring_t, std::tstring_t> data[] =
@@ -819,7 +676,7 @@ CxTest_CxPath::unit(
 
             for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
                 std::tstring_t str;
-                m_bRv = CxPath::isNameValid(data[i].test, true, &str);
+                m_bRv = CxPath::isNameValid(data[i].test, &str);
                 xTEST_EQ(m_bRv, true);
                 xTEST_EQ(str,   data[i].expect);
 

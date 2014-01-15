@@ -430,28 +430,27 @@ CxPath::isValid(
 /* static */
 inline bool_t
 CxPath::isNameValid(
-    std::ctstring_t &a_fileName,                         ///< file, directory name
-    cbool_t         &a_isNormalize        /* = false */, ///< is normalize name
-    std::tstring_t  *a_fileNameNormalized /* = NULL */   ///< [out] normalized name
+    std::ctstring_t &a_fileName,                    ///< file, directory name
+    std::tstring_t  *a_fileNameValid /* = NULL */   ///< [out] normalized name
 )
 {
     xTEST_NA(a_fileName);
     xTEST_NA(a_isNormalize);
-    xTEST_NA(a_fileNameNormalized);
+    xTEST_NA(a_fileNameValid);
 
     std::tstring_t sRv(a_fileName);
 
     // check: empty name
     if ( sRv.empty() ) {
-        xCHECK_RET(!a_isNormalize, false);
+        xCHECK_RET(a_fileNameValid == NULL, false);
 
-        a_fileNameNormalized->clear();
+        a_fileNameValid->clear();
         return true;
     }
 
     // check: name size
     if (sRv.size() > xNAME_MAX) {
-        xCHECK_RET(!a_isNormalize, false);
+        xCHECK_RET(a_fileNameValid == NULL, false);
 
         sRv.resize(xNAME_MAX);
     }
@@ -473,7 +472,7 @@ CxPath::isNameValid(
         ctchar_t begin = *sRv.begin();
         ctchar_t end   = *(sRv.end() - 1);
 
-        if (!a_isNormalize) {
+        if (a_fileNameValid == NULL) {
             // space
             xCHECK_RET(CxConst::space().at(0) == begin, false);
             xCHECK_RET(CxConst::space().at(0) == end,   false);
@@ -486,7 +485,7 @@ CxPath::isNameValid(
             sRv = CxString::trimChars(sRv, CxConst::space() + CxConst::dot());
 
             if ( sRv.empty() ) {
-                a_fileNameNormalized->clear();
+                a_fileNameValid->clear();
                 return true;
             }
         }
@@ -510,7 +509,7 @@ CxPath::isNameValid(
 
         std::csize_t pos = sRv.find_first_of(exceptedChars);
         if (pos != std::tstring_t::npos) {
-            xCHECK_RET(!a_isNormalize, false);
+            xCHECK_RET(a_fileNameValid == NULL, false);
 
             xFOREVER {
                 sRv.erase(pos, 1);
@@ -519,7 +518,7 @@ CxPath::isNameValid(
             }
 
             if ( sRv.empty() ) {
-                a_fileNameNormalized->clear();
+                a_fileNameValid->clear();
                 return true;
             }
         }
@@ -536,7 +535,7 @@ CxPath::isNameValid(
 
         cit = std::find_if(sRv.begin(), sRv.end(), CxChar::isControl);
         if (cit != sRv.end()) {
-            xCHECK_RET(!a_isNormalize, false);
+            xCHECK_RET(a_fileNameValid == NULL, false);
 
             xFOREVER {
                 std::tstring_t::iterator itNewEnd;
@@ -549,7 +548,7 @@ CxPath::isNameValid(
             }
 
             if ( sRv.empty() ) {
-                a_fileNameNormalized->clear();
+                a_fileNameValid->clear();
                 return true;
             }
         }
@@ -579,9 +578,9 @@ CxPath::isNameValid(
             bool_t bRv = CxString::compareNoCase(baseFileName, reservedNames[i]);
             xCHECK_DO(!bRv, continue);
 
-            xCHECK_RET(!a_isNormalize, false);
+            xCHECK_RET(a_fileNameValid == NULL, false);
 
-            a_fileNameNormalized->clear();
+            a_fileNameValid->clear();
             return true;
         }
 
@@ -600,7 +599,7 @@ CxPath::isNameValid(
 
         std::size_t pos = sRv.find_first_of(exceptedChars);
         if (pos != std::tstring_t::npos) {
-            xCHECK_RET(!a_isNormalize, false);
+            xCHECK_RET(a_fileNameValid == NULL, false);
 
             xFOREVER {
                 sRv.erase(pos, 1);
@@ -609,7 +608,7 @@ CxPath::isNameValid(
             }
 
             if ( sRv.empty() ) {
-                a_fileNameNormalized->clear();
+                a_fileNameValid->clear();
                 return true;
             }
         }
@@ -626,7 +625,7 @@ CxPath::isNameValid(
 
         std::size_t pos = sRv.find_first_of(exceptedChars);
         if (pos != std::tstring_t::npos) {
-            xCHECK_RET(!a_isNormalize, false);
+            xCHECK_RET(a_fileNameValid == NULL, false);
 
             xFOREVER {
                 sRv.erase(pos, 1);
@@ -635,7 +634,7 @@ CxPath::isNameValid(
             }
 
             if ( sRv.empty() ) {
-                a_fileNameNormalized->clear();
+                a_fileNameValid->clear();
                 return true;
             }
         }
@@ -644,7 +643,9 @@ CxPath::isNameValid(
 #endif
 
     // out
-    *a_fileNameNormalized = sRv;
+    if (a_fileNameValid != NULL) {
+        *a_fileNameValid = sRv;
+    }
 
     return true;
 }
