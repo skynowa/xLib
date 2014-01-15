@@ -570,10 +570,10 @@ CxPath::isNameValid(
     xTEST_NA(a_isNormalize);
     xTEST_NA(a_fileNameNormalized);
 
-    std::tstring_t fileNameNormalized(a_fileName);
+    std::tstring_t sRv(a_fileName);
 
     // check: empty name
-    if ( fileNameNormalized.empty() ) {
+    if ( sRv.empty() ) {
         xCHECK_RET(!a_isNormalize, false);
 
         a_fileNameNormalized->clear();
@@ -581,10 +581,10 @@ CxPath::isNameValid(
     }
 
     // check: name size
-    if (fileNameNormalized.size() > xNAME_MAX) {
+    if (sRv.size() > xNAME_MAX) {
         xCHECK_RET(!a_isNormalize, false);
 
-        fileNameNormalized.resize(xNAME_MAX);
+        sRv.resize(xNAME_MAX);
     }
 
 #if   xOS_ENV_WIN
@@ -601,27 +601,27 @@ CxPath::isNameValid(
     * as the first character of a name. For example, ".temp".
     */
     {
-        ctchar_t begin = *a_fileName.begin();
-        ctchar_t end   = *(a_fileName.end() - 1);
+        ctchar_t begin = *sRv.begin();
+        ctchar_t end   = *(sRv.end() - 1);
 
-        // space
-        xCHECK_RET(CxConst::space().at(0) == begin, false);
-        xCHECK_RET(CxConst::space().at(0) == end,   false);
+        if (!a_isNormalize) {
+            // space
+            xCHECK_RET(CxConst::space().at(0) == begin, false);
+            xCHECK_RET(CxConst::space().at(0) == end,   false);
 
-        // dot
-        xCHECK_RET(CxConst::dot().at(0) == begin, false);
-        xCHECK_RET(CxConst::dot().at(0) == end,   false);
-
-    #if 1
-        if () {
-            xCHECK_RET(!a_isNormalize, false);
-
+            // dot
+            xCHECK_RET(CxConst::dot().at(0) == begin, false);
+            xCHECK_RET(CxConst::dot().at(0) == end,   false);
+        } else {
             // skip checks, trim right now
             sRv = CxString::trimChars(sRv, CxConst::space() + CxConst::dot());
 
-            xCHECK_RET(sRv.empty(), std::tstring_t());
+            if ( sRv.empty() ) {
+                a_fileNameNormalized->clear();
+                return true;
+            }
         }
-    #endif
+
     }
 
    /**
@@ -639,22 +639,22 @@ CxPath::isNameValid(
     {
         std::ctstring_t exceptedChars = xT("<>:\"/\\|?*");
 
-        std::csize_t pos = a_fileName.find_first_of(exceptedChars);
-    #if 1
+        std::csize_t pos = sRv.find_first_of(exceptedChars);
         if (pos != std::tstring_t::npos) {
             xCHECK_RET(!a_isNormalize, false);
 
-            std::ctstring_t exceptedChars = xT("<>:\"/\\|?*");
-
-            std::size_t pos = sRv.find_first_of(exceptedChars);
-            while (std::tstring_t::npos != pos) {
+            xFOREVER {
                 sRv.erase(pos, 1);
                 pos = sRv.find_first_of(exceptedChars, pos);
+                xCHECK_DO(pos == std::tstring_t::npos, break);
             }
 
-            xCHECK_RET(sRv.empty(), std::tstring_t());
+            if ( sRv.empty() ) {
+                a_fileNameNormalized->clear();
+                return true;
+            }
         }
-    #endif
+
     }
 
    /**
@@ -665,24 +665,26 @@ CxPath::isNameValid(
     {
         std::tstring_t::const_iterator cit;
 
-        cit = std::find_if(a_fileName.begin(), a_fileName.end(), CxChar::isControl);
-    #if 1
-        if (cit != a_fileName.end()) {
+        cit = std::find_if(sRv.begin(), sRv.end(), CxChar::isControl);
+        if (cit != sRv.end()) {
             xCHECK_RET(!a_isNormalize, false);
 
-            std::tstring_t::const_iterator cit;
-
-            cit = std::find_if(sRv.begin(), sRv.end(), CxChar::isControl);
-            if (cit != sRv.end()) {
+            xFOREVER {
                 std::tstring_t::iterator itNewEnd;
 
                 itNewEnd = std::remove_if(sRv.begin(), sRv.end(), CxChar::isControl);
                 sRv.erase(itNewEnd, sRv.end());
+
+                cit = std::find_if(sRv.begin(), sRv.end(), CxChar::isControl);
+                xCHECK_DO(cit == sRv.end(), break);
             }
 
-            xCHECK_RET(sRv.empty(), std::tstring_t());
+            if ( sRv.empty() ) {
+                a_fileNameNormalized->clear();
+                return true;
+            }
         }
-    #endif
+
     }
 
    /**
@@ -702,10 +704,10 @@ CxPath::isNameValid(
             xT("LPT5"), xT("LPT6"), xT("LPT7"), xT("LPT8"), xT("LPT9")
         };
 
-        std::ctstring_t baseFileName = CxPath(a_fileName).removeExt();
+        std::ctstring_t baseFileName = CxPath(sRv).removeExt();
 
         for (size_t i = 0; i < xARRAY_SIZE(reservedNames); ++ i) {
-            bRv = CxString::compareNoCase(baseFileName, reservedNames[i]);
+            bool_t bRv = CxString::compareNoCase(baseFileName, reservedNames[i]);
             xCHECK_DO(!bRv, continue);
 
             xCHECK_RET(!a_isNormalize, false);
@@ -713,6 +715,7 @@ CxPath::isNameValid(
             a_fileNameNormalized->clear();
             return true;
         }
+
     }
 #elif xOS_ENV_UNIX
    /**
@@ -726,20 +729,22 @@ CxPath::isNameValid(
         exceptedChars.push_back(xT('\0'));
         xTEST_EQ(size_t(2), exceptedChars.size());
 
-        std::csize_t pos = fileNameNormalized.find_first_of(exceptedChars);
+        std::csize_t pos = sRv.find_first_of(exceptedChars);
         if (pos != std::tstring_t::npos) {
             xCHECK_RET(!a_isNormalize, false);
 
-            while (pos != std::tstring_t::npos) {
-                fileNameNormalized.erase(pos, 1);
-                pos = fileNameNormalized.find_first_of(exceptedChars, pos);
+            xFOREVER {
+                sRv.erase(pos, 1);
+                pos = sRv.find_first_of(exceptedChars, pos);
+                xCHECK_DO(pos == std::tstring_t::npos, break);
             }
 
-            if ( fileNameNormalized.empty() ) {
+            if ( sRv.empty() ) {
                 a_fileNameNormalized->clear();
                 return true;
             }
         }
+
     }
 #elif xOS_ENV_MAC
    /**
@@ -750,20 +755,22 @@ CxPath::isNameValid(
     {
         std::ctstring_t exceptedChars = xT("/:");
 
-        std::csize_t pos = fileNameNormalized.find_first_of(exceptedChars);
+        std::csize_t pos = sRv.find_first_of(exceptedChars);
         if (pos != std::tstring_t::npos) {
             xCHECK_RET(!a_isNormalize, false);
 
-            while (pos != std::tstring_t::npos) {
-                fileNameNormalized.erase(pos, 1);
-                pos = fileNameNormalized.find_first_of(exceptedChars, pos);
+            xFOREVER {
+                sRv.erase(pos, 1);
+                pos = sRv.find_first_of(exceptedChars, pos);
+                xCHECK_DO(pos == std::tstring_t::npos, break);
             }
 
-            if ( fileNameNormalized.empty() ) {
+            if ( sRv.empty() ) {
                 a_fileNameNormalized->clear();
                 return true;
             }
         }
+
     }
 #endif
 
