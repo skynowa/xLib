@@ -588,7 +588,132 @@ CxPath::isNameValid(
     }
 
 #if   xOS_ENV_WIN
-    // TODO: CxPath::isNameValid()
+   /**
+    * MSDN: http://msdn.microsoft.com/en-us/library/windows/desktop/aa365247(v=vs.85).aspx
+    * FAQ:  Boost Path Name Portability Guide
+    */
+
+   /**
+    * MSDN: Do not end a file or directory name with a space or a period.
+    * Although the underlying file system may support such names,
+    * the Windows shell and user interface does not.
+    * However, it is acceptable to specify a period
+    * as the first character of a name. For example, ".temp".
+    */
+    {
+        ctchar_t begin = *a_fileName.begin();
+        ctchar_t end   = *(a_fileName.end() - 1);
+
+        // space
+        xCHECK_RET(CxConst::space().at(0) == begin, false);
+        xCHECK_RET(CxConst::space().at(0) == end,   false);
+
+        // dot
+        xCHECK_RET(CxConst::dot().at(0) == begin, false);
+        xCHECK_RET(CxConst::dot().at(0) == end,   false);
+
+    #if 1
+        if () {
+            xCHECK_RET(!a_isNormalize, false);
+
+            // skip checks, trim right now
+            sRv = CxString::trimChars(sRv, CxConst::space() + CxConst::dot());
+
+            xCHECK_RET(sRv.empty(), std::tstring_t());
+        }
+    #endif
+    }
+
+   /**
+    * check: excepted chars
+    * < (less than)
+    * > (greater than)
+    * : (colon)
+    * " (double quote)
+    * / (forward slash)
+    * \ (backslash)
+    * | (vertical bar or pipe)
+    * ? (question mark)
+    * * (asterisk)
+    */
+    {
+        std::ctstring_t exceptedChars = xT("<>:\"/\\|?*");
+
+        std::csize_t pos = a_fileName.find_first_of(exceptedChars);
+    #if 1
+        if (pos != std::tstring_t::npos) {
+            xCHECK_RET(!a_isNormalize, false);
+
+            std::ctstring_t exceptedChars = xT("<>:\"/\\|?*");
+
+            std::size_t pos = sRv.find_first_of(exceptedChars);
+            while (std::tstring_t::npos != pos) {
+                sRv.erase(pos, 1);
+                pos = sRv.find_first_of(exceptedChars, pos);
+            }
+
+            xCHECK_RET(sRv.empty(), std::tstring_t());
+        }
+    #endif
+    }
+
+   /**
+    * check: control chars
+    * MAN: For the standard ASCII character set (used by the "C" locale),
+    * control characters are those between ASCII codes 0x00 (NUL) and 0x1f (US), plus 0x7f (DEL).
+    */
+    {
+        std::tstring_t::const_iterator cit;
+
+        cit = std::find_if(a_fileName.begin(), a_fileName.end(), CxChar::isControl);
+    #if 1
+        if (cit != a_fileName.end()) {
+            xCHECK_RET(!a_isNormalize, false);
+
+            std::tstring_t::const_iterator cit;
+
+            cit = std::find_if(sRv.begin(), sRv.end(), CxChar::isControl);
+            if (cit != sRv.end()) {
+                std::tstring_t::iterator itNewEnd;
+
+                itNewEnd = std::remove_if(sRv.begin(), sRv.end(), CxChar::isControl);
+                sRv.erase(itNewEnd, sRv.end());
+            }
+
+            xCHECK_RET(sRv.empty(), std::tstring_t());
+        }
+    #endif
+    }
+
+   /**
+    * check: device names
+    * MSDN: Do not use the following reserved names for the name of a file:
+    * CON, PRN, AUX, NUL, COM1, COM2, COM3, COM4, COM5, COM6, COM7, COM8,
+    * COM9, LPT1, LPT2, LPT3, LPT4, LPT5, LPT6, LPT7, LPT8, and LPT9.
+    * Also avoid these names followed immediately by an extension;
+    * for example, NUL.txt is not recommended.
+    */
+    {
+        std::ctstring_t reservedNames[] = {
+            xT("CON"),  xT("PRN"),  xT("AUX"),  xT("NUL"),  xT("CLOCK$"),
+            xT("COM0"), xT("COM1"), xT("COM2"), xT("COM3"), xT("COM4"),
+            xT("COM5"), xT("COM6"), xT("COM7"), xT("COM8"), xT("COM9"),
+            xT("LPT0"), xT("LPT1"), xT("LPT2"), xT("LPT3"), xT("LPT4"),
+            xT("LPT5"), xT("LPT6"), xT("LPT7"), xT("LPT8"), xT("LPT9")
+        };
+
+        std::ctstring_t baseFileName = CxPath(a_fileName).removeExt();
+
+        for (size_t i = 0; i < xARRAY_SIZE(reservedNames); ++ i) {
+            bRv = CxString::compareNoCase(baseFileName, reservedNames[i]);
+            xCHECK_DO(!bRv, continue);
+
+            xCHECK_RET(!a_isNormalize, false);
+
+            a_fileNameNormalized->clear();
+            return true;
+        }
+    }
 #elif xOS_ENV_UNIX
    /**
     * check: excepted chars
