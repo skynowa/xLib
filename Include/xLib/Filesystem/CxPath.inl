@@ -643,6 +643,9 @@ CxPath::isNameValid(
     }
 #endif
 
+    // out
+    *a_fileNameNormalized = sRv;
+
     return true;
 }
 //-------------------------------------------------------------------------------------------------
