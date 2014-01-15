@@ -16,7 +16,7 @@ CxTest_CxMsgBox::unit(
 {
     xUNUSED(a_caseLoops);
 
-#if xTEST_IGNORE || 1
+#if xTEST_IGNORE
     xTEST_CASE("CxMsgBox::show", a_caseLoops)
     {
         std::ctstring_t  text  = xT("\n::: Message box :::\n\n\n\nSimple test 1\n\nSimple test 2\n");
