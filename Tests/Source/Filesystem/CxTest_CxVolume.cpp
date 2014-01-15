@@ -204,9 +204,9 @@ CxTest_CxVolume::unit(
         CxVolume::paths(&volumes);
 
         xFOREACH(std::vec_tstring_t, it, volumes) {
-            const CxTest::Data data[] = {
-                {0, true}
-                {1, true},
+            const CxTest::Data<ulonglong_t, bool_t> data[] = {
+                {0ULL, true}
+                {1ULL, true},
                 {(std::numeric_limits<std::size_t>::max)(), false}
             };
 
