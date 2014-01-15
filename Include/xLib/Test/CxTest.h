@@ -11,6 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 #include <xLib/Test/xTest.h>
+#include <xLib/Test/CxTestData.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
@@ -44,13 +45,6 @@ public:
 #if xOS_ENV_WIN
     HWND                 m_hwndRv;    ///< for global use
 #endif
-
-    template <class T1, class T2>
-    struct Data {
-        T1 test;
-        T2 expect;
-    };
-        ///< for global use
 
                          CxTest();
         ///< constructor
