@@ -45,7 +45,7 @@ CxTest_CxBase64::unit(
 
     xTEST_CASE("CxBase64::encode decode", a_caseLoops)
     {
-        const CxTest::Data<std::string, std::string> data[] = {
+        const CxTestData2<std::string, std::string> data[] = {
             {"YOYO!", "WU9ZTyE="},
             {"111111111111111", "MTExMTExMTExMTExMTEx"},
             {"!@#$%^&*()_+", "IUAjJCVeJiooKV8r"},
