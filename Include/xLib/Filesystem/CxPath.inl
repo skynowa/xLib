@@ -563,25 +563,83 @@ inline bool_t
 CxPath::isNameValid(
     std::ctstring_t &a_fileName,                        ///< file, directory name
     cbool_t         &a_isNormalize        /* = false */,  ///< is normalize name
-    std::ctstring_t *a_fileNameNormalized /* = NULL */    ///< [out] normalized name
+    std::tstring_t  *a_fileNameNormalized /* = NULL */    ///< [out] normalized name
 )
 {
     xTEST_NA(a_fileName);
     xTEST_NA(a_isNormalize);
     xTEST_NA(a_fileNameNormalized);
 
+    std::tstring_t fileNameNormalized(a_fileName);
+
     // check: empty name
-    xCHECK_RET(a_fileName.empty(), false);
+    if ( fileNameNormalized.empty() ) {
+        xCHECK_RET(!a_isNormalize, false);
+
+        a_fileNameNormalized->clear();
+        return true;
+    }
 
     // check: name size
-    xCHECK_RET(xNAME_MAX < a_fileName.size(), false);
+    if (fileNameNormalized.size() > xNAME_MAX) {
+        xCHECK_RET(!a_isNormalize, false);
+
+        fileNameNormalized.resize(xNAME_MAX);
+    }
 
 #if   xOS_ENV_WIN
     // TODO: CxPath::isNameValid()
 #elif xOS_ENV_UNIX
-    // TODO: CxPath::isNameValid()
+   /**
+    * check: excepted chars
+    * /  (forward slash)
+    * \0 (NULL character)
+    */
+    {
+        std::tstring_t exceptedChars;
+        exceptedChars.push_back(xT('/'));
+        exceptedChars.push_back(xT('\0'));
+        xTEST_EQ(size_t(2), exceptedChars.size());
+
+        std::csize_t pos = fileNameNormalized.find_first_of(exceptedChars);
+        if (pos != std::tstring_t::npos) {
+            xCHECK_RET(!a_isNormalize, false);
+
+            while (pos != std::tstring_t::npos) {
+                fileNameNormalized.erase(pos, 1);
+                pos = fileNameNormalized.find_first_of(exceptedChars, pos);
+            }
+
+            if ( fileNameNormalized.empty() ) {
+                a_fileNameNormalized->clear();
+                return true;
+            }
+        }
+    }
 #elif xOS_ENV_MAC
-    // TODO: CxPath::isNameValid()
+   /**
+    * check: excepted chars
+    * / (forward slash)
+    * : (colon)
+    */
+    {
+        std::ctstring_t exceptedChars = xT("/:");
+
+        std::csize_t pos = fileNameNormalized.find_first_of(exceptedChars);
+        if (pos != std::tstring_t::npos) {
+            xCHECK_RET(!a_isNormalize, false);
+
+            while (pos != std::tstring_t::npos) {
+                fileNameNormalized.erase(pos, 1);
+                pos = fileNameNormalized.find_first_of(exceptedChars, pos);
+            }
+
+            if ( fileNameNormalized.empty() ) {
+                a_fileNameNormalized->clear();
+                return true;
+            }
+        }
+    }
 #endif
 
     return true;
