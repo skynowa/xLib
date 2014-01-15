@@ -8,9 +8,11 @@
 #include <xLib/System/CxConsole.h>
 #include <xLib/Filesystem/CxPath.h>
 
-#include <X11/Xlib.h>
-#include <X11/Xutil.h>
-#include <X11/keysym.h>
+#if xHAVE_X11
+    #include <X11/Xlib.h>
+    #include <X11/Xutil.h>
+    #include <X11/keysym.h>
+#endif
 
 
 xNAMESPACE_BEGIN(NxLib)
