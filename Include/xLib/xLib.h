@@ -141,6 +141,7 @@
 
 
 // Test
+#include <xLib/Test/CxTestData.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Test/CxTestManager.h>
 #include <xLib/Test/xTest.h>
