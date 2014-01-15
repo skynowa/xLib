@@ -100,8 +100,6 @@ public:
 
     static bool_t         isValid(std::ctstring_t &filePath) xWARN_UNUSED_RV;
         ///< path validation
-    static bool_t         isNameValid(std::ctstring_t &fileName) xWARN_UNUSED_RV;
-        ///< name validation
     static bool_t         isNameValid(std::ctstring_t &fileName, cbool_t &isNormalize = false,
                               std::tstring_t *fileNameNormalized = NULL) xWARN_UNUSED_RV;
         ///< name validation
@@ -109,8 +107,6 @@ public:
     static std::tstring_t shortName(std::ctstring_t &fileName, std::csize_t &maxSize)
                               xWARN_UNUSED_RV;
         ///< get short name
-    static std::tstring_t setNameValid(std::ctstring_t &fileName) xWARN_UNUSED_RV;
-        ///< set name as valid
 
     static size_t         maxSize();
         ///< get max path length in symbols

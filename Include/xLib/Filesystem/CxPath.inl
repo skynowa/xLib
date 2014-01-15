@@ -416,15 +416,11 @@ CxPath::isValid(
 {
     xTEST_NA(a_filePath);
 
-    bool_t bRv = false;
-
     // is empty
-    bRv = a_filePath.empty();
-    xCHECK_RET(bRv, false);
+    xCHECK_RET(a_filePath.empty(), false);
 
     // check for size
-    bRv = (xPATH_MAX < a_filePath.size());
-    xCHECK_RET(bRv, false);
+    xCHECK_RET(a_filePath.size() > xPATH_MAX, false);
 
     // TODO: isValid
 
@@ -434,136 +430,9 @@ CxPath::isValid(
 /* static */
 inline bool_t
 CxPath::isNameValid(
-    std::ctstring_t &a_fileName
-)
-{
-    xTEST_NA(a_fileName);
-
-    // check: empty name
-    xCHECK_RET(a_fileName.empty(), false);
-
-    // check: name size
-    xCHECK_RET(xNAME_MAX < a_fileName.size(), false);
-
-#if   xOS_ENV_WIN
-   /**
-    * MSDN: http://msdn.microsoft.com/en-us/library/windows/desktop/aa365247(v=vs.85).aspx
-    * FAQ:  Boost Path Name Portability Guide
-    */
-
-   /**
-    * MSDN: Do not end a file or directory name with a space or a period.
-    * Although the underlying file system may support such names,
-    * the Windows shell and user interface does not.
-    * However, it is acceptable to specify a period
-    * as the first character of a name. For example, ".temp".
-    */
-    {
-        ctchar_t begin = *a_fileName.begin();
-        ctchar_t end   = *(a_fileName.end() - 1);
-
-        // space
-        xCHECK_RET(CxConst::space().at(0) == begin, false);
-        xCHECK_RET(CxConst::space().at(0) == end,   false);
-
-        // dot
-        xCHECK_RET(CxConst::dot().at(0) == begin, false);
-        xCHECK_RET(CxConst::dot().at(0) == end,   false);
-    }
-
-   /**
-    * check: excepted chars
-    * < (less than)
-    * > (greater than)
-    * : (colon)
-    * " (double quote)
-    * / (forward slash)
-    * \ (backslash)
-    * | (vertical bar or pipe)
-    * ? (question mark)
-    * * (asterisk)
-    */
-    {
-        std::ctstring_t exceptedChars = xT("<>:\"/\\|?*");
-
-        std::csize_t pos = a_fileName.find_first_of(exceptedChars);
-        xCHECK_RET(std::tstring_t::npos != pos, false);
-    }
-
-   /**
-    * check: control chars
-    * MAN: For the standard ASCII character set (used by the "C" locale),
-    * control characters are those between ASCII codes 0x00 (NUL) and 0x1f (US), plus 0x7f (DEL).
-    */
-    {
-        std::tstring_t::const_iterator cit;
-
-        cit = std::find_if(a_fileName.begin(), a_fileName.end(), CxChar::isControl);
-        xCHECK_RET(cit != a_fileName.end(), false);
-    }
-
-   /**
-    * check: device names
-    * MSDN: Do not use the following reserved names for the name of a file:
-    * CON, PRN, AUX, NUL, COM1, COM2, COM3, COM4, COM5, COM6, COM7, COM8,
-    * COM9, LPT1, LPT2, LPT3, LPT4, LPT5, LPT6, LPT7, LPT8, and LPT9.
-    * Also avoid these names followed immediately by an extension;
-    * for example, NUL.txt is not recommended.
-    */
-    {
-        std::ctstring_t reservedNames[] = {
-            xT("CON"),  xT("PRN"),  xT("AUX"),  xT("NUL"),  xT("CLOCK$"),
-            xT("COM0"), xT("COM1"), xT("COM2"), xT("COM3"), xT("COM4"),
-            xT("COM5"), xT("COM6"), xT("COM7"), xT("COM8"), xT("COM9"),
-            xT("LPT0"), xT("LPT1"), xT("LPT2"), xT("LPT3"), xT("LPT4"),
-            xT("LPT5"), xT("LPT6"), xT("LPT7"), xT("LPT8"), xT("LPT9")
-        };
-
-        std::ctstring_t baseFileName = CxPath(a_fileName).removeExt();
-
-        for (size_t i = 0; i < xARRAY_SIZE(reservedNames); ++ i) {
-            bRv = CxString::compareNoCase(baseFileName, reservedNames[i]);
-            xCHECK_RET(bRv, false);
-        }
-    }
-#elif xOS_ENV_UNIX
-   /**
-    * check: excepted chars
-    * /  (forward slash)
-    * \0 (NULL character)
-    */
-    {
-        std::tstring_t exceptedChars;
-        exceptedChars.push_back(xT('/'));
-        exceptedChars.push_back(xT('\0'));
-        xTEST_EQ(size_t(2), exceptedChars.size());
-
-        std::csize_t pos = a_fileName.find_first_of(exceptedChars);
-        xCHECK_RET(std::tstring_t::npos != pos, false);
-    }
-#elif xOS_ENV_MAC
-   /**
-    * check: excepted chars
-    * / (forward slash)
-    * : (colon)
-    */
-    {
-        std::ctstring_t exceptedChars = xT("/:");
-
-        std::csize_t pos = a_fileName.find_first_of(exceptedChars);
-        xCHECK_RET(std::tstring_t::npos != pos, false);
-    }
-#endif
-
-    return true;
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-inline bool_t
-CxPath::isNameValid(
-    std::ctstring_t &a_fileName,                        ///< file, directory name
-    cbool_t         &a_isNormalize        /* = false */,  ///< is normalize name
-    std::tstring_t  *a_fileNameNormalized /* = NULL */    ///< [out] normalized name
+    std::ctstring_t &a_fileName,                         ///< file, directory name
+    cbool_t         &a_isNormalize        /* = false */, ///< is normalize name
+    std::tstring_t  *a_fileNameNormalized /* = NULL */   ///< [out] normalized name
 )
 {
     xTEST_NA(a_fileName);
@@ -729,7 +598,7 @@ CxPath::isNameValid(
         exceptedChars.push_back(xT('\0'));
         xTEST_EQ(size_t(2), exceptedChars.size());
 
-        std::csize_t pos = sRv.find_first_of(exceptedChars);
+        std::size_t pos = sRv.find_first_of(exceptedChars);
         if (pos != std::tstring_t::npos) {
             xCHECK_RET(!a_isNormalize, false);
 
@@ -755,7 +624,7 @@ CxPath::isNameValid(
     {
         std::ctstring_t exceptedChars = xT("/:");
 
-        std::csize_t pos = sRv.find_first_of(exceptedChars);
+        std::size_t pos = sRv.find_first_of(exceptedChars);
         if (pos != std::tstring_t::npos) {
             xCHECK_RET(!a_isNormalize, false);
 
@@ -788,157 +657,6 @@ CxPath::isAbsolute() const {
 #endif
 
     return false;
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-inline std::tstring_t
-CxPath::setNameValid(
-    std::ctstring_t &a_fileName
-)
-{
-    xTEST_NA(a_fileName);
-
-    std::tstring_t sRv(a_fileName);
-
-    // check: empty name
-    if ( sRv.empty() ) {
-        return std::tstring_t();
-    }
-
-    // check: name size
-    if (xNAME_MAX < sRv.size()) {
-        sRv.resize(xNAME_MAX);
-    }
-
-#if   xOS_ENV_WIN
-   /**
-    * MSDN: http://msdn.microsoft.com/en-us/library/windows/desktop/aa365247(v=vs.85).aspx
-    * FAQ:  Boost Path Name Portability Guide
-    */
-
-   /**
-    * MSDN: Do not end a file or directory name with a space or a period.
-    * Although the underlying file system may support such names,
-    * the Windows shell and user interface does not.
-    * However, it is acceptable to specify a period
-    * as the first character of a name. For example, ".temp".
-    */
-    {
-        // skip checks, trim right now
-        sRv = CxString::trimChars(sRv, CxConst::space() + CxConst::dot());
-
-        xCHECK_RET(sRv.empty(), std::tstring_t());
-    }
-
-   /**
-    * check: excepted chars
-    * < (less than)
-    * > (greater than)
-    * : (colon)
-    * " (double quote)
-    * / (forward slash)
-    * \ (backslash)
-    * | (vertical bar or pipe)
-    * ? (question mark)
-    * * (asterisk)
-    */
-    {
-        std::ctstring_t exceptedChars = xT("<>:\"/\\|?*");
-
-        std::size_t pos = sRv.find_first_of(exceptedChars);
-        while (std::tstring_t::npos != pos) {
-            sRv.erase(pos, 1);
-            pos = sRv.find_first_of(exceptedChars, pos);
-        }
-
-        xCHECK_RET(sRv.empty(), std::tstring_t());
-    }
-
-   /**
-    * check: control chars
-    * MAN: For the standard ASCII character set (used by the "C" locale),
-    * control characters are those between ASCII codes 0x00 (NUL) and 0x1f (US), plus 0x7f (DEL).
-    */
-    {
-        std::tstring_t::const_iterator cit;
-
-        cit = std::find_if(sRv.begin(), sRv.end(), CxChar::isControl);
-        if (cit != sRv.end()) {
-            std::tstring_t::iterator itNewEnd;
-
-            itNewEnd = std::remove_if(sRv.begin(), sRv.end(), CxChar::isControl);
-            sRv.erase(itNewEnd, sRv.end());
-        }
-
-        xCHECK_RET(sRv.empty(), std::tstring_t());
-    }
-
-   /**
-    * check: device names
-    * MSDN: Do not use the following reserved names for the name of a file:
-    * CON, PRN, AUX, NUL, COM1, COM2, COM3, COM4, COM5, COM6, COM7, COM8,
-    * COM9, LPT1, LPT2, LPT3, LPT4, LPT5, LPT6, LPT7, LPT8, and LPT9.
-    * Also avoid these names followed immediately by an extension;
-    * for example, NUL.txt is not recommended.
-    */
-    {
-        std::ctstring_t reservedNames[] = {
-            xT("CON"),  xT("PRN"),  xT("AUX"),  xT("NUL"),  xT("CLOCK$"),
-            xT("COM0"), xT("COM1"), xT("COM2"), xT("COM3"), xT("COM4"),
-            xT("COM5"), xT("COM6"), xT("COM7"), xT("COM8"), xT("COM9"),
-            xT("LPT0"), xT("LPT1"), xT("LPT2"), xT("LPT3"), xT("LPT4"),
-            xT("LPT5"), xT("LPT6"), xT("LPT7"), xT("LPT8"), xT("LPT9")
-        };
-
-        std::ctstring_t baseFileName = CxPath(sRv).removeExt();
-
-        for (size_t i = 0; i < xARRAY_SIZE(reservedNames); ++ i) {
-            if ( CxString::compareNoCase(baseFileName, reservedNames[i]) ) {
-                return std::tstring_t();
-            }
-        }
-
-    }
-#elif xOS_ENV_UNIX
-   /**
-    * check: excepted chars
-    * /  (forward slash)
-    * \0 (NULL character)
-    */
-    {
-        std::tstring_t exceptedChars;
-        exceptedChars.push_back(xT('/'));
-        exceptedChars.push_back(xT('\0'));
-        xTEST_EQ(size_t(2), exceptedChars.size());
-
-        std::size_t pos = a_fileName.find_first_of(exceptedChars);
-        while (std::tstring_t::npos != pos) {
-            sRv.erase(pos, 1);
-            pos = sRv.find_first_of(exceptedChars, pos);
-        }
-
-        xCHECK_RET(sRv.empty(), std::tstring_t());
-    }
-#elif xOS_ENV_MAC
-   /**
-    * check: excepted chars
-    * / (forward slash)
-    * : (colon)
-    */
-    {
-        std::ctstring_t exceptedChars = xT("/:");
-
-        std::size_t pos = a_fileName.find_first_of(exceptedChars);
-        while (std::tstring_t::npos != pos) {
-            sRv.erase(pos, 1);
-            pos = sRv.find_first_of(exceptedChars, pos);
-        }
-
-        xCHECK_RET(sRv.empty(), std::tstring_t());
-    }
-#endif
-
-    return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
