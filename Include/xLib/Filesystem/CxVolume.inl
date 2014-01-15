@@ -52,28 +52,20 @@ CxVolume::path() const
     return _path;
 }
 //-------------------------------------------------------------------------------------------------
+#if xOS_ENV_WIN
+
 inline CxVolume::ExType
 CxVolume::type() const
 {
-    ExType dtRv = dtUnknown;
-
-#if   xOS_ENV_WIN
     std::ctstring_t rootPath = CxPath( path() ).slashAppend();
 
     UINT uiRv = ::GetDriveType( rootPath.c_str() );
     xTEST_NA(uiRv);
 
-    dtRv = static_cast<ExType>(uiRv);
-#elif xOS_ENV_UNIX
-    // TODO: CxVolume::type()
-    xNOT_IMPLEMENTED
-#elif xOS_ENV_MAC
-    // TODO: CxVolume::type()
-    xNOT_IMPLEMENTED
-#endif
-
-    return dtRv;
+    return static_cast<ExType>(uiRv);
 }
+
+#endif
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
 CxVolume::fileSystem() const

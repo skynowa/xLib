@@ -15,21 +15,18 @@ CxTest_CxVolume::unit(
     culonglong_t &a_caseLoops
 )
 {
+#if xOS_ENV_WIN
     xTEST_CASE("CxVolume::type", a_caseLoops)
     {
-    #if xOS_ENV_WIN
-        #if   xOS_ENV_WIN
-            std::ctstring_t volumePath = xT("C:");
-        #elif xOS_ENV_UNIX
-            std::ctstring_t volumePath = xT("/");
-        #endif
+
+        std::ctstring_t volumePath = xT("C:");
 
         CxVolume::ExType dtRes = CxVolume(volumePath).type();
         xUNUSED(dtRes);
         // CxTracer() << xTRACE_VAR(dtRes);
         // TEST: xTEST_EQ(CxVolume::dtFixed, dtRes);
-    #endif
     }
+#endif
 
     xTEST_CASE("CxVolume::fileSystem", a_caseLoops)
     {
