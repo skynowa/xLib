@@ -194,7 +194,7 @@ CxTcpClient::isServerAlive(
     sockaddr_in sockAddr;   xSTRUCT_ZERO(sockAddr);
     sockAddr.sin_family      = CxSocket::afInet;
     sockAddr.sin_addr.s_addr = ::inet_addr(ip.c_str());
-    sockAddr.sin_port        = htons(a_port); // TODO: isServerAlive() - htons
+    sockAddr.sin_port        = htons(a_port); // TODO: CxTcpClient::isServerAlive() - htons
 
     // connect - [+] 0 [-] SOCKET_ERROR
     iRv = ::connect(client.handle(), CxUtils::reinterpretCastT<sockaddr *>( &sockAddr ),

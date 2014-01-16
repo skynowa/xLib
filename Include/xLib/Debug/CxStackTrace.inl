@@ -77,7 +77,7 @@ CxStackTrace::get(
 
 #if   xOS_ENV_WIN
     #if   xCOMPILER_MINGW
-        // TODO: CxStackTrace::get
+        // TODO: CxStackTrace::get()
     #elif xCOMPILER_MS || xCOMPILER_CODEGEAR
         void_t      *stackBuff[xSTACK_TRACE_FRAMES_MAX] = {0};
         SYMBOL_INFO *symbol                             = NULL;

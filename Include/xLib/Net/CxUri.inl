@@ -324,13 +324,14 @@ CxUri::unescape(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-// TODO: encodeComponent
 /* static */
 inline std::tstring_t
 CxUri::encodeComponent(
     std::ctstring_t &a_uri
 )
 {
+    // TODO: CxUri::encodeComponent()
+
     std::tstring_t sRv;
 
     xFOREACH_CONST(std::tstring_t, it, a_uri) {
@@ -367,13 +368,14 @@ CxUri::encodeComponent(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-// TODO: decodeComponent
 /* static */
 inline std::tstring_t
 CxUri::decodeComponent(
     std::ctstring_t &a_uri
 )
 {
+    // TODO: CxUri::decodeComponent()
+
     std::tstring_t sRv;
 
     std::tstring_t::const_iterator it  = a_uri.begin();

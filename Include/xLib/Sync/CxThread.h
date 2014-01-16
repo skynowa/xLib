@@ -55,7 +55,8 @@ public:
 
                          CxThread(cbool_t &isAutoDelete);
         ///< constructor
-    virtual             ~CxThread() /* BUG: = 0*/;
+    // BUG: CxThread:: ~CxThread() - must pure virtual
+    virtual             ~CxThread() /* = 0*/;
         ///< destructor
 
     // actions
@@ -160,7 +161,8 @@ public:
 
 protected:
     // events
-    virtual uint_t       onRun               (void_t *param) /* BUG: = 0 */ xWARN_UNUSED_RV;
+    // BUG: CxThread::onRun() - must pure virtual
+    virtual uint_t       onRun               (void_t *param) /* = 0 */ xWARN_UNUSED_RV;
         ///< work thread function, must be override
     //--virtual void_t    vOnEnter              ();
     //--virtual void_t    vOnExit               ();
@@ -186,7 +188,7 @@ private:
     cbool_t              _isAutoDelete;          ///< is auto delete thread object
 
     // flags
-    //TODO: make struct SFlags
+    // TODO: CxThread - make struct SFlags
     bool_t               _isCreated;              ///< is created
     bool_t               _isRunning;              ///< is running
 

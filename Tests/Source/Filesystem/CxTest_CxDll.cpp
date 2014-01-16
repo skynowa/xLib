@@ -16,7 +16,7 @@ CxTest_CxDll::unit(
 {
     xUNUSED(a_caseLoops);
 
-    // TODO: CxTest_CxDll
+    // TEST: CxTest_CxDll
 
     #if   xOS_ENV_WIN
         std::ctstring_t sData[][2] = {

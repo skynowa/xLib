@@ -285,14 +285,14 @@ CxSystemInfo::desktopName() const
     std::ctstring_t nativeDesktop = xT("explorer.exe");
 
     #if 0
-        // TODO: CxSystemInfo::desktopName
+        // TODO: CxSystemInfo::desktopName()
         const CxProcess::id_t pid = CxProcess::idByName(nativeDesktop);
 
         bool_t bRv = CxProcess::isRunning(pid);
         if (bRv) {
             sRv = nativeDesktop;
         } else {
-            // TODO: implement some checks for detecting Windows shell
+            // TODO: CxSystemInfo::desktopName() - checks for detecting Windows shell
         }
 
         xTEST_EQ(false, sRv.empty());
@@ -424,7 +424,7 @@ CxSystemInfo::loginUserName() const
 #elif xOS_ENV_UNIX
     // try API
     {
-        char buff[xUSER_NAME_MAX + 1] = {0}; // TODO: LOGIN_NAME_MAX
+        char buff[xUSER_NAME_MAX + 1] = {0}; // TODO: CxSystemInfo::loginUserName() - LOGIN_NAME_MAX
 
         int_t iRv = ::getlogin_r(buff, xARRAY_SIZE(buff));
         if (iRv == 0) {

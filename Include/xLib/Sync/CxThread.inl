@@ -142,7 +142,7 @@ CxThread::create(
     iRv = ::pthread_attr_destroy(&attrs);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
-    _thread = hid;  // TODO: is it right?
+    _thread = hid;  // TODO: CxThread::create() - is it right?
     _id     = hid;
 #endif
     xTEST_EQ(false, isCurrent(_id));
@@ -1021,7 +1021,7 @@ CxThread::open(
     xUNUSED(a_access);
     xUNUSED(a_isInheritHandle);
 
-    // TODO: hOpen
+    // TODO: CxThread::open(()
     handle_t hRv = 0;
 #endif
 
@@ -1046,7 +1046,8 @@ CxThread::isCurrent(
 #if   xOS_ENV_WIN
     bRv = (currentId() == a_id);
 #elif xOS_ENV_UNIX
-    // TODO: If either thread1 or thread2 are not valid thread IDs, the behavior is undefined
+    // TODO: CxThread::isCurrent() - If either thread1 or thread2 are not valid thread IDs,
+    // the behavior is undefined
     bRv = ::pthread_equal(currentId(), a_id);
 #endif
 

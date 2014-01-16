@@ -616,7 +616,7 @@ CxDateTime::_toMsec() const
 
     ulonglong_t ullRv = 0ULL;
 
-    ullRv += xYEAR(_year);    // TODO: days in month 30 or 31 ???
+    ullRv += xYEAR(_year);    // TODO: CxDateTime::_toMsec() - days in month 30 or 31 ???
     ullRv += xMONTH(_month);
     ullRv += xDAY(_day);
     ullRv += xHOUR(_hour);
@@ -751,13 +751,14 @@ CxDateTime::unixTimeToFileTime(
 //-------------------------------------------------------------------------------------------------
 #if xOS_ENV_WIN
 
-// TODO: make tests fileTimeToUnixTime
 /* static */
 inline time_t
 CxDateTime::fileTimeToUnixTime(
     const FILETIME &a_fileTime
 )
 {
+    // TEST: CxDateTime::fileTimeToUnixTime()
+
     const __int64 nanosecsBetweenEpochs = 116444736000000000LL;
 
     __int64 llRv = 0LL;

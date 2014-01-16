@@ -421,7 +421,7 @@ inline longlong_t
 CxFile::size() const
 {
 /**
- * TODO: Do not use fseek() and ftell() to compute the size of a regular file
+ * TODO: CxFile::size() - Do not use fseek() and ftell() to compute the size of a regular file
  * https://www.securecoding.cert.org/confluence/display/seccode/FIO19-C.+Do+not+use+fseek()+and+ftell()+to+compute+the+size+of+a+file
  */
 
@@ -430,7 +430,7 @@ CxFile::size() const
 
     xTSTAT_STRUCT stat = {0};
 
-    // TODO: fstat
+    // TODO: CxFile::size() - fstat()
     int_t iRv = ::xTSTAT(_filePath.c_str(), &stat);
     xTEST_DIFF(- 1, iRv);
 
@@ -876,7 +876,7 @@ CxFile::copy(
     bool_t isCopyOk = true;
 
     //--------------------------------------------------
-    // TODO: fail if exists
+    // TODO: CxFile::copy() - fail if exists
     if (a_isFailIfExists && isExists(a_filePathTo)) {
         xTEST_FAIL;
     }
@@ -1097,7 +1097,7 @@ CxFile::textWrite(
     xTEST_NA(a_content);
     xTEST_DIFF(a_mode, omUnknown);
 
-    // TODO: if content.empty()
+    // TODO: CxFile::textWrite(() - if content.empty()
 
     CxFile file;
     file.create(a_filePath, a_mode, true);
@@ -1142,7 +1142,7 @@ CxFile::textWrite(
     xTEST_NA(a_content);
     xTEST_DIFF(a_mode, omUnknown);
 
-    // TODO: if content.empty()
+    // TODO: CxFile::textWrite(() - if content.empty()
 
     std::tstring_t content;
 
@@ -1229,7 +1229,7 @@ CxFile::textWrite(
     xTEST_NA(a_content);
     xTEST_DIFF(a_mode, omUnknown);
 
-    // TODO: if a_content.empty()
+    // TODO: CxFile::textWrite() - if a_content.empty()
 
     CxFile file;
     file.create(a_filePath, a_mode, true);
@@ -1303,7 +1303,7 @@ CxFile::binWrite(
     xTEST_EQ(false, a_filePath.empty());
     xTEST_NA(a_content);
 
-    // TODO: if a_content.empty()
+    // TODO: CxFile::binWrite(() - if a_content.empty()
 
     CxFile file;
     file.create(a_filePath, omBinWrite, true);

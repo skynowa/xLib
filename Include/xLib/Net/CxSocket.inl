@@ -150,8 +150,6 @@ CxSocket::close() {
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-//TODO: iSend
-//TODO: LINUX: ssize_t send(int_t sockfd, cvoid_t *buf, size_t len, int_t flags);
 inline ssize_t
 CxSocket::send(
     ctchar_t     *a_buff,
@@ -159,6 +157,8 @@ CxSocket::send(
     cint_t       &a_flags
 )
 {
+    // TODO: CxSocket::send() - LINUX: ssize_t send(int_t sockfd, cvoid_t *buf, size_t len, int_t flags);
+
     xTEST_DIFF(xSOCKET_HANDLE_INVALID, _socket);
     xTEST_PTR(a_buff);
     /////xTEST_LESS(0, ::lstrlen(buff));
@@ -307,20 +307,21 @@ CxSocket::recvAll(
         sRv.append(in.begin(), in.begin() + iRv);
 
         // if delimiter was find - break
-        size_t delimiterPos = sRv.find(a_delimiter);        //TODO: from unicode ???
+        size_t delimiterPos = sRv.find(a_delimiter); // TODO: CxSocket::recvAll() - from unicode ???
         xCHECK_DO(std::tstring_t::npos != delimiterPos, break);
     }
 
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-//TODO: iSendBytes
 inline int_t
 CxSocket::sendBytes(
     char    *a_buff,
     ssize_t &a_messageLength
 )
 {
+    // TODO: CxSocket::sendBytes()
+
     int_t   iRv           = 0;
     ssize_t sendStatus    = 0;
     timeval sendTimeout   = {0, 0};

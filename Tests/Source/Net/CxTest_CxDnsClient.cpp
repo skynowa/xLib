@@ -190,12 +190,12 @@ CxTest_CxDnsClient::unit(
 
     xTEST_CASE("CxDnsClient::isOnLan", a_caseLoops)
     {
-        //TODO: m_bRv = CxDnsClient::isOnLan(culong_t culIp);
+        // TEST: CxDnsClient::isOnLan()
     }
 
     xTEST_CASE("CxDnsClient::isBroadcast", a_caseLoops)
     {
-        //TODO: m_bRv = CxDnsClient::isBroadcast(culong_t culIp);
+        // TEST: CxDnsClient::isBroadcast()
     }
 }
 //------------------------------------------------------------------------------
