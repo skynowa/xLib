@@ -221,7 +221,6 @@ CxTest_CxSystemInfo::unit(
     {
         m_sRv = CxSystemInfo().glibcFullVersion();
         xTEST_EQ(m_sRv.empty(), false);
-        xTEST_EQ(m_sRv.size(),  std::tstring_t("2.17 stable").size());
 
         // CxTrace() << xTRACE_VAR(m_sRv);
     }
@@ -232,7 +231,6 @@ CxTest_CxSystemInfo::unit(
     {
         m_sRv = CxSystemInfo().libPthreadVersion();
         xTEST_EQ(m_sRv.empty(), false);
-        xTEST_EQ(m_sRv.size(),  std::tstring_t("NPTL 2.17").size());
 
         // CxTrace() << xTRACE_VAR(m_sRv);
     }
