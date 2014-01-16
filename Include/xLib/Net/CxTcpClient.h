@@ -49,8 +49,8 @@ protected:
     xNO_COPY_ASSIGN(CxTcpClient)
 };
 
-//TODO: bIsWritable repeats from CxSocket
-//TODO: bIsReadable repeats from CxSocket
+// TODO: CxTcpClient::isWritable() - repeats from CxSocket
+// TODO: CxTcpClient::isReadable() - repeats from CxSocket
 
 xNAMESPACE_END(NxLib)
 //-------------------------------------------------------------------------------------------------

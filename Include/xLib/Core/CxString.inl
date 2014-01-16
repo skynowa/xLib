@@ -232,7 +232,7 @@ CxString::wstrToStr(
     xUNUSED(a_str);
     xUNUSED(a_codePage);
 
-    // TODO: (wstrToStr)
+    // TODO: CxString::wstrToStr() - Unix
     xNOT_IMPLEMENTED;
 #endif
 
@@ -336,7 +336,7 @@ CxString::charToOemBuff(
 #elif xOS_ENV_UNIX
     xUNUSED(a_str);
 
-    // TODO: charToOemBuff
+    // TODO: CxString::charToOemBuff()
     xNOT_IMPLEMENTED;
 #endif
 

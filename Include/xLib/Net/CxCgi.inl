@@ -93,7 +93,6 @@ namespace {
     //// static std::ctstring_t ILLEGAL_CHARS = xT("()[]/|\\',;");     //for cookie
 }
 //-------------------------------------------------------------------------------------------------
-//TODO: bUriEncode
 /* static */
 inline void_t
 CxCgi::uriEncode(
@@ -102,6 +101,8 @@ CxCgi::uriEncode(
     std::tstring_t  *a_encodedStr
 )
 {
+    // TODO: CxCgi::uriEncode()
+
     xFOREACH_CONST(std::tstring_t, it, a_uri) {
         tchar_t ch = *it;
 
@@ -131,7 +132,6 @@ CxCgi::uriEncode(
     }
 }
 //-------------------------------------------------------------------------------------------------
-//TODO: bUriDecode ()
 /* static */
 inline void_t
 CxCgi::uriDecode(
@@ -139,6 +139,8 @@ CxCgi::uriDecode(
     std::tstring_t  *a_decodedStr
 )
 {
+    //TODO: CxCgi::uriDecode()
+
     std::tstring_t::const_iterator it  = a_uri.begin();
     std::tstring_t::const_iterator end = a_uri.end();
 
@@ -186,10 +188,11 @@ CxCgi::uriDecode(
     }
 }
 //-------------------------------------------------------------------------------------------------
-//TODO: cgl_parsecgibuf
 inline int_t
 cgl_parsecgibuf(/*cgllist *cdata,*/ char *a_query)
 {
+    // TODO: CxCgi::cgl_parsecgibuf()
+
     xUNUSED(a_query);
 //    char *s;
 //    char *np;
@@ -230,9 +233,10 @@ cgl_parsecgibuf(/*cgllist *cdata,*/ char *a_query)
     return 0;
 }
 //-------------------------------------------------------------------------------------------------
-//TODO: cgl_urlencode
 //int_t
-//CxCgi::cgl_urlencode(char *s, FILE *fw) {
+//CxCgi::cgl_urlencode(char *s, FILE *fw)
+// {
+//  // TODO: CxCgi::cgl_urlencode()
 //    if (!s)
 //        return 0;
 //
@@ -244,9 +248,10 @@ cgl_parsecgibuf(/*cgllist *cdata,*/ char *a_query)
 //    return
 //}
 //-------------------------------------------------------------------------------------------------
-////TODO: cgl_urldecode
 //void_t
-//CxCgi::cgl_urldecode(char *s) {
+//CxCgi::cgl_urldecode(char *s)
+// {
+//  // TODO: CxCgi::cgl_urldecode()
 //    //--cgl_charify(s, '+', ' ');
 //    std::tstring_t sRv;
 //
@@ -255,10 +260,11 @@ cgl_parsecgibuf(/*cgllist *cdata,*/ char *a_query)
 //    vUrlUnescape(sRv);
 //}
 //-------------------------------------------------------------------------------------------------
-//TODO: bUrlEscape
 inline void_t
 CxCgi::urlEscape(char *a_s, FILE *a_fw)
 {
+    // TODO: CxCgi::urlEscape()
+
     xUNUSED(a_s);
     xUNUSED(a_fw);
 
@@ -283,11 +289,12 @@ CxCgi::urlEscape(char *a_s, FILE *a_fw)
 //    }
 }
 //-------------------------------------------------------------------------------------------------
-//TODO: bUrlUnescape
 //modified from the Apache code. Code shrinks string, so can be done in place.
 inline void_t
 CxCgi::urlUnescape(char *a_s)
 {
+    // TODO: CxCgi::urlUnescape()
+
     xUNUSED(a_s);
 //    int_t    error;
 //    char    *p;
@@ -319,11 +326,12 @@ CxCgi::urlUnescape(char *a_s)
 //        return -1;
 }
 //-------------------------------------------------------------------------------------------------
-//TODO: cgl_hex2char
 //ripped off from the Apache code
 inline char
 CxCgi::cgl_hex2char(char *a_what)
 {
+    // TODO: CxCgi::cgl_hex2char()
+
     xUNUSED(a_what);
 
     register char digit = '\0';
@@ -849,7 +857,7 @@ CxCgiFormData::_construct()
     case CxCgiEnvironment::rtGet:
         xTEST_EQ(false, _cgi.Environment.queryString().empty());
 
-        //TODO: cgl_parsecgibuf(cgl_Formdata, cgl_Buf)
+        // TODO: CxCgiFormData::_construct() - cgl_parsecgibuf()
 
         _formData = _cgi.Environment.queryString();
         break;
@@ -883,7 +891,7 @@ CxCgiFormData::_construct()
         size_t uiRv = file.read(&buff.at(0), buff.size());
         xTEST_EQ(uiRv, buff.size());
 
-        //TODO: cgl_parsecgibuf(cgl_Formdata, cgl_Buf)
+        // TODO: CxCgiFormData::_construct() - cgl_parsecgibuf()
 
         _formData = buff;
 

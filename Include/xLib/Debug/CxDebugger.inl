@@ -129,7 +129,7 @@ CxDebugger::coreDumpsEnable(
     cbool_t &a_flag
 )
 {
-    xUNUSED(a_flag);    // TODO: a_flag
+    xUNUSED(a_flag);    // TODO: CxDebugger::coreDumpsEnable() - a_flag
     xTEST_NA(a_flag);
 
     bool_t isEnable = false;

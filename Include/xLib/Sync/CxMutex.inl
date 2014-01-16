@@ -70,7 +70,7 @@ CxMutex::create()
     iRv = ::pthread_mutexattr_setpshared(&attr, PTHREAD_PROCESS_PRIVATE);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
-    // TODO: create - PTHREAD_MUTEX_RECURSIVE
+    // TODO: CxMutex::create() - Unix - PTHREAD_MUTEX_RECURSIVE
 #if 1
     iRv = ::pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));

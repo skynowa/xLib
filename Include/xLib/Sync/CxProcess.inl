@@ -116,7 +116,7 @@ CxProcess::wait(
 #elif xOS_ENV_UNIX
     xUNUSED(a_timeoutMsec);
 
-    // TODO: a_timeoutMsec
+    // TODO: CxProcess::wait - a_timeoutMsec
     pid_t liRv   = - 1L;
     int_t status = 0;
 

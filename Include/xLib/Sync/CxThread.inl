@@ -1272,7 +1272,8 @@ CxThread::_s_jobEntry(
 #if   xOS_ENV_WIN
     self->_thread.close();
 #elif xOS_ENV_UNIX
-    // TODO: _thread.close()
+    // TODO: CxThread::_s_jobEntry() - close thread
+    // _thread.close()
 #endif
 
     self->_id         = 0UL;

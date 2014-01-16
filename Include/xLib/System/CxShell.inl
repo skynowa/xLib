@@ -220,7 +220,7 @@ CxShell::specialDirPath(
     HRESULT      hRv    = S_FALSE;
     LPITEMIDLIST idList = {0};
 
-    // FIXME: SHGetFolderLocation
+    // FIXME: CxShell::specialDirPath() - SHGetFolderLocation
     ////hRv = ::SHGetFolderLocation(NULL, sfDir, token, 0, &idList);
     hRv = ::SHGetSpecialFolderLocation(NULL, a_dir, &idList);
     xTEST_EQ(true, SUCCEEDED(hRv));

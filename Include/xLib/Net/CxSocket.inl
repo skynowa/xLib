@@ -182,7 +182,6 @@ CxSocket::send(
     return iRv / sizeof(tchar_t);
 }
 //-------------------------------------------------------------------------------------------------
-//TODO: bSendAll
 inline void_t
 CxSocket::sendAll(
     std::ctstring_t &a_buff,
@@ -196,7 +195,7 @@ CxSocket::sendAll(
     //-------------------------------------
     // ������ �� ������ ������� � ����� � ������
     size_t currPos  = 0;
-    // TODO: !!!!!!  bSendAll (overflow)
+    // TODO: CxSocket::send() - overflow CxSocket::sendAll()
     size_t leftSize = a_buff.size() * sizeof(tchar_t);
 
     // if size of data more than size of buffer - sizeof buffer SOCKET_BUFF_SIZE
@@ -258,7 +257,7 @@ CxSocket::recvAll(
     cint_t &a_flags
 )
 {
-    xUNUSED(a_flags);   // TODO: a_flags
+    xUNUSED(a_flags);   // TODO: CxSocket::recvAll() - a_flags
 
     std::tstring_t sRv;
 

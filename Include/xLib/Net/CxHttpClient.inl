@@ -23,7 +23,6 @@ CxHttpClient::CxHttpClient()
 {
 }
 //-------------------------------------------------------------------------------------------------
-//TODO: bHead ()
 inline void_t
 CxHttpClient::head(
     std::ctstring_t &a_url,
@@ -49,7 +48,6 @@ CxHttpClient::head(
     body      = xT("");
 }
 //-------------------------------------------------------------------------------------------------
-//TODO: bGet ()
 inline void_t
 CxHttpClient::get(
     std::ctstring_t &a_url,
@@ -62,7 +60,6 @@ CxHttpClient::get(
     xNOT_IMPLEMENTED;
 }
 //-------------------------------------------------------------------------------------------------
-//TODO: bPost ()
 inline void_t
 CxHttpClient::post(
     std::ctstring_t &a_url,
@@ -77,7 +74,6 @@ CxHttpClient::post(
     xNOT_IMPLEMENTED;
 }
 //-------------------------------------------------------------------------------------------------
-//TODO: bOptions ()
 inline void_t
 CxHttpClient::options(
     std::ctstring_t &a_url
@@ -88,7 +84,6 @@ CxHttpClient::options(
     xNOT_IMPLEMENTED;
 }
 //-------------------------------------------------------------------------------------------------
-//TODO: bTrace ()
 inline void_t
 CxHttpClient::trace(
     std::ctstring_t &a_url
@@ -99,7 +94,6 @@ CxHttpClient::trace(
     xNOT_IMPLEMENTED;
 }
 //-------------------------------------------------------------------------------------------------
-//TODO: bPut ()
 inline void_t
 CxHttpClient::put(
     std::ctstring_t &a_url
@@ -110,7 +104,6 @@ CxHttpClient::put(
     xNOT_IMPLEMENTED;
 }
 //-------------------------------------------------------------------------------------------------
-//TODO: del ()
 inline void_t
 CxHttpClient::del(
     std::ctstring_t &a_url
@@ -121,7 +114,6 @@ CxHttpClient::del(
     xNOT_IMPLEMENTED;
 }
 //-------------------------------------------------------------------------------------------------
-//TODO: bConnect ()
 inline void_t
 CxHttpClient::connect(
     std::ctstring_t &a_url
@@ -132,7 +124,6 @@ CxHttpClient::connect(
     xNOT_IMPLEMENTED;
 }
 //-------------------------------------------------------------------------------------------------
-//TODO: bPatch ()
 inline void_t
 CxHttpClient::patch(
     std::ctstring_t &a_url
@@ -143,7 +134,6 @@ CxHttpClient::patch(
     xNOT_IMPLEMENTED;
 }
 //-------------------------------------------------------------------------------------------------
-//TODO: bLink ()
 inline void_t
 CxHttpClient::link(
     std::ctstring_t &a_url
@@ -154,7 +144,6 @@ CxHttpClient::link(
     xNOT_IMPLEMENTED;
 }
 //-------------------------------------------------------------------------------------------------
-//TODO: bUnlink ()
 inline void_t
 CxHttpClient::unlink(
     std::ctstring_t &a_url

@@ -182,8 +182,8 @@ CxTest_CxString::unit(
             "!@#$% ^&*()_+|* /{}:@' \"?><",
             "0123456789",
             "0123456789",
-            // TODO: "строка",
-            // TODO: "_你_我_他_",
+            // TODO: TEST - CxString::strToWStr() - "строка",
+            // TODO: TEST - CxString::strToWStr() - "_你_我_他_",
             "z",
             " ",
             ""
@@ -238,7 +238,7 @@ CxTest_CxString::unit(
                 sWinStr = CxString::convertCodePage(sKoiStr,      20866, 1251);
                 xTEST_EQ(true, csAnsiStr[i] == sWinStr);
             #elif xOS_ENV_UNIX
-                // TODO: convertCodePage
+                // TODO: TETST - CxString::convertCodePage()
                 // xNOT_IMPLEMENTED_RET(RET_VALUE);
             #endif
         }
@@ -252,7 +252,7 @@ CxTest_CxString::unit(
             sRv = CxString::charToOemBuff(xT("Boss, hello? "));
             xTEST_EQ(true, std::string("Boss, hello? ") == sRv);
         #elif xOS_ENV_UNIX
-            // TODO: charToOemBuff
+            // TODO: TEST - CxString::charToOemBuff()
         #endif
     }
 

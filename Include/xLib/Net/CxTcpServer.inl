@@ -80,7 +80,7 @@ CxTcpServer::accept(
     xTEST_DIFF(xSOCKET_HANDLE_INVALID, scktClient);
 #endif
 
-    //TODO: bAccept
+    // TODO: CxTcpServer::accept() - bAccept
     ////scktAcceptSocket = scktClient;
     a_serverSocket->assign(scktClient);
 

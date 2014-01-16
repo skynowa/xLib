@@ -376,7 +376,7 @@ CxMySQLRecordset::fetchRow(
 
     (*a_row).clear();
 
-    // TODO: CxMySQLRecordset::vFetchRow
+    // TODO: CxMySQLRecordset::fetchRow()
     #if xTODO
         //--uint_t   fieldsNum   = mysql_num_fields   (_result);
         uint_t     fieldsNum  = _connection->ufieldCount();
