@@ -84,12 +84,15 @@ CxVolume::fileSystem() const
     sRv.assign(volumeName);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        FILE *file = ::setmntent(xT("/etc/mtab"), xT("r"));
+        FILE *file = ::setmntent("/etc/mtab", "r");
         xTEST_PTR(file);
 
         xFOREVER {
-            // TODO: CxVolume::fileSystem() - getmntent() -> getmntent_r()
-            const mntent *mountPoint = ::getmntent(file);
+            mntent mnt;  xSTRUCT_ZERO(mnt);
+            cint_t buffLen       = 4096 + 1;
+            char   buff[buffLen] = {0};
+
+            const mntent *mountPoint = ::getmntent_r(file, &mnt, buff, buffLen);
             xCHECK_DO(NULL == mountPoint, break);
 
             bool_t bRv = CxString::compareNoCase(path(), mountPoint->mnt_dir);
@@ -101,7 +104,7 @@ CxVolume::fileSystem() const
         }
 
         int_t iRv = ::endmntent(file);  file = NULL;
-        xTEST_EQ(1, iRv);
+        xTEST_EQ(iRv, 1);
     #elif xOS_FREEBSD
         // TODO: CxVolume::fileSystem()
         xNOT_IMPLEMENTED
