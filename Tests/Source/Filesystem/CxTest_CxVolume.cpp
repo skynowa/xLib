@@ -39,7 +39,7 @@ CxTest_CxVolume::unit(
             m_sRv = CxVolume(*it_path).fileSystem();
             xUNUSED(m_sRv);
 
-            // CxTrace() << xTRACE_VAR(m_sRv);
+            CxTrace() << xTRACE_VAR(m_sRv);
         }
     }
 
