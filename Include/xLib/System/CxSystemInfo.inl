@@ -9,7 +9,6 @@
 #include <xLib/Core/CxUtils.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxDll.h>
-#include <xLib/System/CxShell.h>
 #include <xLib/System/CxEnvironment.h>
 
 #if xOS_ENV_WIN

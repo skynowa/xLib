@@ -4,7 +4,6 @@
  */
 
 
-#include <xLib/Core/CxString.h>
 #include <xLib/Log/CxTrace.h>
 
 

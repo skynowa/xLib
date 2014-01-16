@@ -5,8 +5,6 @@
 
 
 #include <xLib/Core/CxString.h>
-#include <xLib/System/CxConsole.h>
-#include <xLib/Filesystem/CxPath.h>
 
 #if xHAVE_X11
     #include <X11/Xlib.h>

@@ -4,11 +4,6 @@
  */
 
 
-#include <xLib/Core/CxString.h>
-#include <xLib/System/CxConsole.h>
-#include <xLib/Filesystem/CxPath.h>
-
-
 xNAMESPACE_BEGIN(NxLib)
 
 /**************************************************************************************************

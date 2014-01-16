@@ -15,10 +15,8 @@
 #include <xLib/Core/CxChar.h>
 #include <xLib/Core/CxString.h>
 #include <xLib/Core/CxConst.h>
-#include <xLib/Debug/CxException.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
-#include <xLib/System/CxEnvironment.h>
 
 
 xNAMESPACE_BEGIN(NxLib)

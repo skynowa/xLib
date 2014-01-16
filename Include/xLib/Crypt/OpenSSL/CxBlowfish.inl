@@ -8,7 +8,6 @@
 
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Filesystem/CxPath.h>
-#include <xLib/Debug/CxProfiler.h>
 #include <xLib/Crypt/CxCrc32.h>
 
 #if xOS_ENV_WIN

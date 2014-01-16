@@ -7,7 +7,6 @@
 #pragma once
 
 #include <xLib/Core/xCore.h>
-#include <xLib/Internal/xInternal.h>
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 

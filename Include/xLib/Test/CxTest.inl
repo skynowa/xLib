@@ -7,7 +7,6 @@
 #include <xLib/Debug/CxException.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxDir.h>
-#include <xLib/System/CxEnvironment.h>
 
 
 xNAMESPACE_BEGIN(NxLib)
