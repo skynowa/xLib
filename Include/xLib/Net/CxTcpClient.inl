@@ -143,7 +143,6 @@ CxTcpClient::timeout(
     // seconds      - n/a
     // microsec - n/a
 
-    // BUG: static_cast<long_t>( _timeout.tv_sec  )
     CxUtils::ptrAssignT(a_seconds,  static_cast<long_t>( _timeout.tv_sec  ));
     CxUtils::ptrAssignT(a_microsec, static_cast<long_t>( _timeout.tv_usec ));
 }
@@ -195,7 +194,7 @@ CxTcpClient::isServerAlive(
     sockaddr_in sockAddr;   xSTRUCT_ZERO(sockAddr);
     sockAddr.sin_family      = CxSocket::afInet;
     sockAddr.sin_addr.s_addr = ::inet_addr(ip.c_str());
-    sockAddr.sin_port        = htons(a_port); //TODO: htons
+    sockAddr.sin_port        = htons(a_port); // TODO: isServerAlive() - htons
 
     // connect - [+] 0 [-] SOCKET_ERROR
     iRv = ::connect(client.handle(), CxUtils::reinterpretCastT<sockaddr *>( &sockAddr ),
