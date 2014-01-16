@@ -71,6 +71,10 @@ private:
     std::tstring_t _buildType;      ///< get build type
     std::tstring_t _osVersion;      ///< build OS version
     std::tstring_t _osArchitecture; ///< OS architecture
+#if xOS_ENV_UNIX
+    std::tstring_t _glibcVersion;   ///< GLIBC available on the system
+    std::tstring_t _libPthreadVersion;  ///< POSIX implementation supplied by C library
+#endif
     std::tstring_t _stackTrace;     ///< stack trace
 
     // comment
