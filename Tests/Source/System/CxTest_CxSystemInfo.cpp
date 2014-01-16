@@ -217,9 +217,9 @@ CxTest_CxSystemInfo::unit(
     }
 
 #if xOS_ENV_UNIX
-    xTEST_CASE("CxSystemInfo::glibcFullVersion", a_caseLoops)
+    xTEST_CASE("CxSystemInfo::glibcVersion", a_caseLoops)
     {
-        m_sRv = CxSystemInfo().glibcFullVersion();
+        m_sRv = CxSystemInfo().glibcVersion();
         xTEST_EQ(m_sRv.empty(), false);
 
         // CxTrace() << xTRACE_VAR(m_sRv);

@@ -1164,7 +1164,7 @@ CxSystemInfo::pageSize() const
 #if xOS_ENV_UNIX
 
 inline std::tstring_t
-CxSystemInfo::glibcFullVersion() const
+CxSystemInfo::glibcVersion() const
 {
     std::tstring_t sRv;
 
