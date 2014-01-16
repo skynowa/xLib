@@ -50,15 +50,15 @@ CxProcessInfo::ramUsage() const
     ulong_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN
-    // TODO: CxProcessInfo::ramUsage
+    // TODO: CxProcessInfo::ramUsage()
 #elif xOS_ENV_UNIX
     if (CxProcess::isCurrent( CxProcess::currentId() )) {
-        // TODO: CxProcessInfo::ramUsage
+        // TODO: CxProcessInfo::ramUsage()
     } else {
-        // TODO: CxProcessInfo::ramUsage
+        // TODO: CxProcessInfo::ramUsage()
     }
 #elif xOS_ENV_MAC
-    // TODO: CxProcessInfo::ramUsage
+    // TODO: CxProcessInfo::ramUsage()
 #endif
 
     return ulRv;
@@ -70,7 +70,7 @@ CxProcessInfo::ioBytes() const
     ulong_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN
-    // TODO: CxProcessInfo::ulIOBytes
+    // TODO: CxProcessInfo::ioBytes()
 #elif xOS_ENV_UNIX
     #if xCOMMENT
         "/proc/[pid]/io"
@@ -158,7 +158,7 @@ CxProcessInfo::exeName() const
 
             sRv.assign(buff);
         #else
-            // TODO: CxProcessInfo::sGetExeName
+            // TODO: CxProcessInfo::exeName()
             xNOT_IMPLEMENTED_RET(std::tstring_t());
         #endif
     #endif
@@ -175,12 +175,12 @@ CxProcessInfo::parentId() const
     ulong_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN
-    // TODO: CxProcessInfo::ulParentProcessId
+    // TODO: CxProcessInfo::parentId()
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        // TODO: CxProcessInfo::ulParentProcessId
+        // TODO: CxProcessInfo::parentId()
     #elif xOS_FREEBSD
-        // TODO: CxProcessInfo::ulParentProcessId
+        // TODO: CxProcessInfo::parentId()
     #endif
 #elif xOS_ENV_MAC
     xNOT_IMPLEMENTED

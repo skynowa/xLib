@@ -16,6 +16,6 @@ CxTest_CxCompletionPort::unit(
 {
     xUNUSED(a_caseLoops);
 
-    // TODO: CxTest_CxCompletionPort
+    // TEST: CxTest_CxCompletionPort
 }
 //------------------------------------------------------------------------------

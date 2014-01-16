@@ -182,8 +182,8 @@ CxTest_CxString::unit(
             "!@#$% ^&*()_+|* /{}:@' \"?><",
             "0123456789",
             "0123456789",
-            // TODO: TEST - CxString::strToWStr() - "строка",
-            // TODO: TEST - CxString::strToWStr() - "_你_我_他_",
+            // TEST: CxString::strToWStr() - "строка",
+            // TEST: CxString::strToWStr() - "_你_我_他_",
             "z",
             " ",
             ""
@@ -252,7 +252,7 @@ CxTest_CxString::unit(
             sRv = CxString::charToOemBuff(xT("Boss, hello? "));
             xTEST_EQ(true, std::string("Boss, hello? ") == sRv);
         #elif xOS_ENV_UNIX
-            // TODO: TEST - CxString::charToOemBuff()
+            // TEST: CxString::charToOemBuff()
         #endif
     }
 
@@ -805,7 +805,7 @@ CxTest_CxString::unit(
 
     xTEST_CASE("CxString::formatV", a_caseLoops)
     {
-        // TODO: formatV
+        // TEST: CxString::formatV()
     }
 
     xTEST_CASE("CxString::minimize", a_caseLoops)

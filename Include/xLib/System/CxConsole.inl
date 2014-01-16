@@ -117,7 +117,7 @@ CxConsole::setAttributes(
         cint_t  foregroundColorMagenta    = 35;
         cint_t  foregroundColorYellow     = 33;
         cint_t  foregroundColorWhite      = 37;
-        cint_t  foregroundColorGray       = 37;    // TODO: foregroundColorGray
+        cint_t  foregroundColorGray       = 37;  // TODO: CxConsole::setAttributes() - foregroundColorGray
     #endif
 
         int_t iRv = - 1;
@@ -326,7 +326,7 @@ CxConsole::read() const
 
     sRv.assign(buff, read - CxConst::crNl().size());
 #elif xOS_ENV_UNIX
-    // BUG: CxConsole::read
+    // BUG: CxConsole::read()
     std::tcin >> sRv;
 #endif
 
@@ -579,7 +579,7 @@ CxConsole::clear() const
 inline void_t
 CxConsole::enableClose(
     cbool_t &a_flag
-) 
+)
 {
 #if xOS_ENV_WIN
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _wnd);
@@ -608,7 +608,7 @@ CxConsole::enableClose(
 #elif xOS_ENV_UNIX
     xUNUSED(a_flag);
 
-    // TODO: enableClose
+    // TODO: CxConsole::enableClose()
     xNOT_IMPLEMENTED;
 #endif
 }

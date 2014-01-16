@@ -422,7 +422,7 @@ CxPath::isValid(
     // check for size
     xCHECK_RET(a_filePath.size() > xPATH_MAX, false);
 
-    // TODO: isValid
+    // TODO: CxPath::isValid()
 
     return true;
 }
@@ -1018,7 +1018,7 @@ CxPath::procValue(
     proc(a_procPath, &procFile);
 
     xFOREACH_CONST(std::vec_tstring_t, it, procFile) {
-        // TODO: no case search
+        // TODO: CxPath::procValue() - no case search
         std::csize_t pos = it->find(a_key);
         xCHECK_DO(std::tstring_t::npos == pos, continue);
 

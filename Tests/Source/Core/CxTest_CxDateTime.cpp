@@ -403,7 +403,7 @@ CxTest_CxDateTime::unit(
         {
         #if xTODO
             cushort_t valid[] = {
-                // TODO: isLeapYear
+                // TEST: CxDateTime::isLeapYear()
             };
 
             for (size_t i = 0; i < xARRAY_SIZE(valid); ++ i) {
@@ -417,7 +417,7 @@ CxTest_CxDateTime::unit(
         {
         #if xTODO
             cushort_t nonValid[] = {
-                // TODO: isLeapYear
+                // TEST: CxDateTime::isLeapYear()
             };
 
             for (size_t i = 0; i < xARRAY_SIZE(nonValid); ++ i) {

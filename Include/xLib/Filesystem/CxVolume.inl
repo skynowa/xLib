@@ -88,7 +88,7 @@ CxVolume::fileSystem() const
         xTEST_PTR(file);
 
         xFOREVER {
-            // TODO: getmntent -> getmntent_r
+            // TODO: CxVolume::fileSystem() - getmntent() -> getmntent_r()
             const mntent *mountPoint = ::getmntent(file);
             xCHECK_DO(NULL == mountPoint, break);
 
@@ -245,7 +245,7 @@ CxVolume::unMount(
     xTEST_NA(a_isForce);
 
 #if   xOS_ENV_WIN
-    // TODO: CxVolume::unMount - is it correct?
+    // TODO: CxVolume::unMount() - is it correct?
     DWORD dwRv = ::WNetCancelConnection2(path().c_str(), CONNECT_UPDATE_PROFILE, a_isForce);
     xTEST_EQ(static_cast<DWORD>( NO_ERROR ), dwRv);
 #elif xOS_ENV_UNIX

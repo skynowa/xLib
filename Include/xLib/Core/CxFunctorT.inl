@@ -20,7 +20,7 @@ CxFunctorT<ClassT, ReturnT, ParamT>::CxFunctorT(
     _object(a_object),
     _method(a_method)
 {
-    // TODO: debug code
+    // TODO: CxFunctorT - debug code
 #if xTODO
     xTEST_DIFF(NULL, a_object);
     xTEST_DIFF(NULL, a_method);

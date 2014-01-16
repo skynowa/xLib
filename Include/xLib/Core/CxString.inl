@@ -361,7 +361,7 @@ CxString::oemToCharBuff(
 #elif xOS_ENV_UNIX
     xUNUSED(a_str);
 
-    // TODO: oemToCharBuff
+    // TODO: CxString::oemToCharBuff()
     xNOT_IMPLEMENTED;
 #endif
 

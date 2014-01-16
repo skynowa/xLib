@@ -380,8 +380,8 @@ CxMySQLRecordset::fetchRow(
     #if xTODO
         //--uint_t   fieldsNum   = mysql_num_fields   (_result);
         uint_t     fieldsNum  = _connection->ufieldCount();
-        MYSQL_ROW  prow       = mysql_fetch_row    (_result);   // array of strings
-        ulong_t   *rowLengths = mysql_fetch_lengths(_result);   // TODO: may be 64-bit bug
+        MYSQL_ROW  prow       = mysql_fetch_row    (_result); // array of strings
+        ulong_t   *rowLengths = mysql_fetch_lengths(_result); // TODO: CxMySQLRecordset::fetchRow() - may be 64-bit bug
     #endif
 
     // fields count
