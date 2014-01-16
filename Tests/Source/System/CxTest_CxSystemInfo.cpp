@@ -215,5 +215,27 @@ CxTest_CxSystemInfo::unit(
         m_ulRv = CxSystemInfo().pageSize();
         xTEST_LESS(0UL, m_ulRv);
     }
+
+#if xOS_ENV_UNIX
+    xTEST_CASE("CxSystemInfo::glibcFullVersion", a_caseLoops)
+    {
+        m_sRv = CxSystemInfo().glibcFullVersion();
+        xTEST_EQ(m_sRv.empty(), false);
+        xTEST_EQ(m_sRv.size(),  std::tstring_t("2.17 stable").size());
+
+        // CxTrace() << xTRACE_VAR(m_sRv);
+    }
+#endif
+
+#if xOS_ENV_UNIX
+    xTEST_CASE("CxSystemInfo::libPthreadVersion", a_caseLoops)
+    {
+        m_sRv = CxSystemInfo().libPthreadVersion();
+        xTEST_EQ(m_sRv.empty(), false);
+        xTEST_EQ(m_sRv.size(),  std::tstring_t("NPTL 2.17").size());
+
+        // CxTrace() << xTRACE_VAR(m_sRv);
+    }
+#endif
 }
 //------------------------------------------------------------------------------
