@@ -11,8 +11,10 @@
 #include <xLib/Filesystem/CxDll.h>
 #include <xLib/System/CxEnvironment.h>
 
-#if xOS_ENV_WIN
+#if   xOS_ENV_WIN
     #include <shlobj.h>
+#elif xOS_ENV_UNIX
+    #include <gnu/libc-version.h>
 #endif
 
 #if xHAVE_GETCPU
@@ -1159,7 +1161,66 @@ CxSystemInfo::pageSize() const
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
+#if xOS_ENV_UNIX
 
+inline std::tstring_t
+CxSystemInfo::glibcFullVersion() const
+{
+    std::tstring_t sRv;
+
+    std::tstring_t version;
+    {
+        ctchar_t *libc_version = ::gnu_get_libc_version();
+        if (libc_version == NULL) {
+            version += CxConst::strUnknown();
+        } else {
+            version += libc_version;
+        }
+    }
+
+    std::tstring_t release;
+    {
+        ctchar_t *libc_release = ::gnu_get_libc_release();
+        if (libc_release == NULL) {
+            release += CxConst::strUnknown();
+        } else {
+            release += libc_release;
+        }
+    }
+
+    sRv = version + CxConst::space() + release;
+
+    return sRv;
+}
+
+#endif
+//-------------------------------------------------------------------------------------------------
+#if xOS_ENV_UNIX
+
+inline std::tstring_t
+CxSystemInfo::libPthreadVersion() const
+{
+    std::tstring_t buff;
+
+    std::size_t buffBytes;
+    {
+        buffBytes = ::confstr(_CS_GNU_LIBPTHREAD_VERSION, NULL, 0);
+        xCHECK_RET(buffBytes == 0, CxConst::strUnknown());
+
+        buff.resize(buffBytes);
+    }
+
+    buffBytes = ::confstr(_CS_GNU_LIBPTHREAD_VERSION, &buff.at(0), buff.size());
+    xCHECK_RET(buffBytes == 0, CxConst::strUnknown());
+
+    // remove terminating null byte
+    buff.resize(buffBytes - 1);
+
+    return buff;
+}
+
+#endif
+//-------------------------------------------------------------------------------------------------
 
 /**************************************************************************************************
 *    private

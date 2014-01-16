@@ -124,6 +124,14 @@ public:
     ulong_t        pageSize() const xWARN_UNUSED_RV;
         ///< get Size of a page (bytes)
 
+#if xOS_ENV_UNIX
+    std::tstring_t glibcFullVersion() const xWARN_UNUSED_RV;
+        ///< get glibc version available on the system
+    std::tstring_t libPthreadVersion() const xWARN_UNUSED_RV;
+        ///< get POSIX implementation supplied by C library ("NPTL 2.3.4" or "linuxthreads-0.10")
+#endif
+
+
 private:
     ExOsType       _osType;
     ExOsArch       _osArch;
