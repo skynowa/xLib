@@ -8,7 +8,6 @@
 #include <xLib/Core/CxLocale.h>
 #include <xLib/Core/CxDateTime.h>
 #include <xLib/Core/CxUtils.h>
-#include <xLib/Debug/CxException.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxDir.h>
 #include <xLib/Filesystem/CxFileType.h>

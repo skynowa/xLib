@@ -6,8 +6,6 @@
 
 #include <xLib/Core/CxConst.h>
 #include <xLib/Core/CxString.h>
-#include <xLib/Core/CxDateTime.h>
-#include <xLib/System/CxEnvironment.h>
 
 
 xNAMESPACE_BEGIN(NxLib)

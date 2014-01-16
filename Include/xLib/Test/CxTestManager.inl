@@ -5,16 +5,11 @@
 
 
 #include <xLib/Core/CxType.h>
-#include <xLib/Core/xFunctors.h>
-#include <xLib/Core/CxString.h>
-#include <xLib/Core/CxUtils.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Log/CxTrace.h>
 
 
 xNAMESPACE_BEGIN(NxLib)
-
-using namespace NxFunctors;
 
 /**************************************************************************************************
 *   public

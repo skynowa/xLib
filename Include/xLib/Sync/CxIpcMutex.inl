@@ -9,7 +9,6 @@
 #endif
 
 #include <xLib/Core/CxConst.h>
-#include <xLib/Filesystem/CxPath.h>
 
 
 xNAMESPACE_BEGIN(NxLib)
