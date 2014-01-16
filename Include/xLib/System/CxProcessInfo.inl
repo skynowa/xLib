@@ -360,9 +360,10 @@ CxProcessInfo::commandLine(
         iRv = ::sysctl(mib, xARRAY_SIZE(mib), &buff.at(0), &buffSize, NULL, 0U);
         xTEST_DIFF(- 1, iRv);
 
-        sRv = buff;    // BUG: buff or buff.c_str() - FreeBSD crazy!!!
+        // remove NULL terminating symbol
+        buff.resize(buffSize - 1);
 
-        CxString::split(sRv, CxConst::space(), &args);
+        CxString::split(buff, CxConst::space(), &args);
     #endif
 #elif xOS_ENV_MAC
     xNOT_IMPLEMENTED
