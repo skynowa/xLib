@@ -17,7 +17,7 @@ xNAMESPACE2_BEGIN(NxLib, NxFunctors)
 struct CompareNoCase
     ///< case insensitive comparison
 {
-    // TODO: bool_t
+    // TODO: xFunctors - bool_t
     bool
     operator () (
         const std::tstring_t::value_type &a_value1,
@@ -26,7 +26,7 @@ struct CompareNoCase
         return CxChar::toLower(a_value1) == CxChar::toLower(a_value2);
     }
 
-    // TODO: bool_t
+    // TODO: xFunctors - bool_t
     bool
     operator () (
         std::ctstring_t &a_value1,

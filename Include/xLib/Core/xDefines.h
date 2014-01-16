@@ -226,7 +226,7 @@
         ///< end anonymous namespace
 
 //-------------------------------------------------------------------------------------------------
-// TODO: converters
+// TODO: xDefines - converters
 #if xUNICODE
     #define xS2TS(s) \
         ( CxString::strToWStr(s) )

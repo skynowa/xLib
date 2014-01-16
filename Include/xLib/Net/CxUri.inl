@@ -214,7 +214,7 @@ CxUri::setPort(
 {
     _port = a_port;
 
-    //TODO: bSetAuthority
+    // TODO: CxUri::setPort() - setAuthority
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
@@ -469,7 +469,6 @@ CxUri::_illegal()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-// TODO: _parse
 /**
 URI = scheme ":" hier-part [ "?" query ] [ "#" fragment ]
 
@@ -497,6 +496,8 @@ CxUri::_parse(
     std::ctstring_t &a_uri
 )
 {
+    // TODO: CxUri::_parse()
+
     //Normilize();
 
     clear();
@@ -610,7 +611,6 @@ CxUri::_parse(
     _fragment = CxString::cut(a_uri, fragmentStart, fragmentEnd);
 }
 //-------------------------------------------------------------------------------------------------
-// TODO: _normilize()
 inline void_t
 CxUri::_normilize(
     std::ctstring_t &a_uri
@@ -618,9 +618,11 @@ CxUri::_normilize(
 {
     xUNUSED(a_uri);
 
-    //trim
-    //lowcase(_scheme)
-    //remove dot-segment
+    // TODO: CxUri::_normilize()
+
+    // trim
+    // lowcase(_scheme)
+    // remove dot-segment
 
     xNOT_IMPLEMENTED;
 }

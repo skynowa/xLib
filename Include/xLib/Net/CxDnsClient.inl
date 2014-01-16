@@ -144,7 +144,7 @@ CxDnsClient::nameInfo(
     tchar_t hostName[NI_MAXHOST + 1] = {0};
     tchar_t servInfo[NI_MAXSERV + 1] = {0};
 
-    // TODO: bGetNameInfo
+    // TODO: CxDnsClient::nameInfo()
     int_t iRv = ::xGETNAMEINFO((sockaddr *)&socketAddr, sizeof(socketAddr), &hostName[0],
         NI_MAXHOST, &servInfo[0], NI_MAXSERV, NI_NUMERICSERV);
     xTEST_EQ(0, iRv);
@@ -340,7 +340,7 @@ CxDnsClient::serviceByPort(
     std::tstring_t     *a_protocolName_rv
 )
 {
-    // TODO: a_port
+    // TODO: CxDnsClient::serviceByPort() - a_port
     xTEST_EQ(false, a_protocolName.empty());
     xTEST_NA(a_name);
     xTEST_NA(a_aliases);

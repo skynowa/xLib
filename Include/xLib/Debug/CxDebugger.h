@@ -13,8 +13,6 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(NxLib)
 
-// TODO: class CxErrorReport;
-
 class CxDebugger
     /// debugger
 {

@@ -881,7 +881,7 @@ CxFile::copy(
         xTEST_FAIL;
     }
 
-    // TODO: check file size
+    // TODO: CxFile::copy() - check file size
 
     {
         //--------------------------------------------------

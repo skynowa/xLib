@@ -71,7 +71,7 @@ public:
         afIpx         = AF_IPX,
         afAppletalk   = AF_APPLETALK
 
-        // TODO: add AP-*
+        // TODO: CxSocket - add AP-*
     #endif
     };
 
@@ -187,7 +187,7 @@ public:
         ptSctp        = IPPROTO_SCTP,
         ptRaw         = IPPROTO_RAW,
         ptMax         = IPPROTO_MAX
-        // TODO: add IPPROTO-*
+        // TODO: CxSocket - add IPPROTO-*
     #endif
     };
 

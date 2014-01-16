@@ -182,7 +182,7 @@ CxConsole::setAttributes(
         cint_t  backgroundColorMagenta    = 45;
         cint_t  backgroundColorYellow     = 43;
         cint_t  backgroundColorWhite      = 47;
-        cint_t  backgroundColorGray	      = 47;    // TODO: backgroundColorGray
+        cint_t  backgroundColorGray	      = 47; // TODO: CxConsole::setAttributes() - Unix - backgroundColorGray
     #endif
 
         int_t iRv = - 1;
@@ -499,7 +499,7 @@ CxConsole::pause(
     xTEST_EQ(true, _stdOut.isValid());
 #endif
 
-    // TODO: CxConsole::pause
+    // TODO: CxConsole::pause()
 #if xTODO
     #if xOS_ENV_UNIX
         std::tcout << std::endl << "Press any key to continue..." << std::endl;
@@ -725,7 +725,7 @@ CxConsole::centerWindow() const
     blRv = ::MoveWindow(_wnd, x, desktopY - wndHeight / 2, wndWidth, wndHeight, true);
     xTEST_DIFF(FALSE, blRv);
 #elif xOS_ENV_UNIX
-    // TODO: centerWindow
+    // TODO: CxConsole::centerWindow() - Unix
     xNOT_IMPLEMENTED;
 #endif
 }
