@@ -173,33 +173,37 @@ CxErrorReport::_construct(
 {
     CxSystemInfo sysInfo;
 
-    _type           = a_type;
+    _type              = a_type;
 
-    _program        = CxPath( CxPath(CxPath::exe()).brief(::reportWidthMax) ).toUnix(false);
+    _program           = CxPath( CxPath(CxPath::exe()).brief(::reportWidthMax) ).toUnix(false);
 #if   xOS_ENV_WIN
-    _processId      = ::GetCurrentProcessId();
+    _processId         = ::GetCurrentProcessId();
 #elif xOS_ENV_UNIX
-    _processId      = ::getpid();
+    _processId         = ::getpid();
 #endif
-    _threadId       = (ulong_t)CxThread::currentId();
-    _fileSize       = CxString::formatBytes( static_cast<ulonglong_t>( CxFile::size(CxPath::exe())) );
+    _threadId          = (ulong_t)CxThread::currentId();
+    _fileSize          = CxString::formatBytes( static_cast<ulonglong_t>( CxFile::size(CxPath::exe())) );
 
-    _sourceFile     = CxPath( CxPath(a_file).brief(::reportWidthMax) ).toUnix(false);
-    _sourceLine     = a_line;
-    _functionName   = a_func;
-    _expression     = CxString::format(xT("%s (%s) %s %s (%s)"), a_var1.c_str(),
+    _sourceFile        = CxPath( CxPath(a_file).brief(::reportWidthMax) ).toUnix(false);
+    _sourceLine        = a_line;
+    _functionName      = a_func;
+    _expression        = CxString::format(xT("%s (%s) %s %s (%s)"), a_var1.c_str(),
         a_var1Value.c_str(), a_exprSign.c_str(), a_var2.c_str(), a_var2Value.c_str());
-    _lastError      = a_lastError;
-    _lastErrorStr   = CxLastError::format(a_lastError);
+    _lastError         = a_lastError;
+    _lastErrorStr      = CxLastError::format(a_lastError);
 
-    _currentDate    = CxDateTime::current().format(xT("%Y-%m-%d %H:%M:%S"));
-    _buildDate      = CxString::format(xT("%s/%s"), a_date.c_str(), a_time.c_str());
-    _buildType      = CxDebugger().isDebugBuild() ? xT("debug") : xT("release");
-    _osVersion      = sysInfo.formatOsType();
-    _osArchitecture = sysInfo.formatOsArch();
+    _currentDate       = CxDateTime::current().format(xT("%Y-%m-%d %H:%M:%S"));
+    _buildDate         = CxString::format(xT("%s/%s"), a_date.c_str(), a_time.c_str());
+    _buildType         = CxDebugger().isDebugBuild() ? xT("debug") : xT("release");
+    _osVersion         = sysInfo.formatOsType();
+    _osArchitecture    = sysInfo.formatOsArch();
+#if xOS_ENV_UNIX
+    _glibcVersion      = sysInfo.glibcVersion();
+    _libPthreadVersion = sysInfo.libPthreadVersion();
+#endif
 
-    _stackTrace     = a_stackTrace;
-    _comment        = a_comment.empty() ? CxConst::hyphen() : a_comment;
+    _stackTrace        = a_stackTrace;
+    _comment           = a_comment.empty() ? CxConst::hyphen() : a_comment;
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -208,30 +212,34 @@ CxErrorReport::_initPlain()
     std::tostringstream_t ossRv;
 
     ossRv
-        << xT("CxErrorReport    ")                    << "\n"
-                                                      << "\n"
-                                                      << "\n"
-        << xT("Program:         ") << _program        << "\n"
-        << xT("Process id:      ") << _processId      << "\n"
-        << xT("Thread id:       ") << _threadId       << "\n"
-        << xT("File size:       ") << _fileSize       << "\n"
-                                                      << "\n"
-        << xT("Source file:     ") << _sourceFile     << "\n"
-        << xT("Source line:     ") << _sourceLine     << "\n"
-        << xT("Function name:   ") << _functionName   << "\n"
-        << xT("Expression:      ") << _expression     << "\n"
-        << xT("Last error:      ") << _lastErrorStr   << "\n"
-                                                      << "\n"
-        << xT("Current date:    ") << _currentDate    << "\n"
-        << xT("Build date:      ") << _buildDate      << "\n"
-        << xT("Build type:      ") << _buildType      << "\n"
-        << xT("OS version:      ") << _osVersion      << "\n"
-        << xT("OS architecture: ") << _osArchitecture << "\n"
-                                                      << "\n"
-        << xT("Stack trace:     ")                    << "\n"
-                                   << _stackTrace     << "\n"
-                                                      << "\n"
-        << xT("Comment:         ") << _comment        << std::endl;
+        << xT("CxErrorReport    ")                       << "\n"
+                                                         << "\n"
+                                                         << "\n"
+        << xT("Program:         ") << _program           << "\n"
+        << xT("Process id:      ") << _processId         << "\n"
+        << xT("Thread id:       ") << _threadId          << "\n"
+        << xT("File size:       ") << _fileSize          << "\n"
+                                                         << "\n"
+        << xT("Source file:     ") << _sourceFile        << "\n"
+        << xT("Source line:     ") << _sourceLine        << "\n"
+        << xT("Function name:   ") << _functionName      << "\n"
+        << xT("Expression:      ") << _expression        << "\n"
+        << xT("Last error:      ") << _lastErrorStr      << "\n"
+                                                         << "\n"
+        << xT("Current date:    ") << _currentDate       << "\n"
+        << xT("Build date:      ") << _buildDate         << "\n"
+        << xT("Build type:      ") << _buildType         << "\n"
+        << xT("OS version:      ") << _osVersion         << "\n"
+        << xT("OS architecture: ") << _osArchitecture    << "\n"
+    #if xOS_ENV_UNIX
+        << xT("GLIBC:           ") << _glibcVersion      << "\n"
+        << xT("Pthread lib:     ") << _libPthreadVersion << "\n"
+    #endif
+                                                         << "\n"
+        << xT("Stack trace:     ")                       << "\n"
+                                   << _stackTrace        << "\n"
+                                                         << "\n"
+        << xT("Comment:         ") << _comment           << std::endl;
 
     _report = ossRv.str();
 }
