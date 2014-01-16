@@ -17,23 +17,33 @@ xNAMESPACE2_BEGIN(NxLib, NxFunctors)
 struct CompareNoCase
     ///< case insensitive comparison
 {
-    // TODO: xFunctors - bool_t
-    bool
+    CompareNoCase(const std::locale &a_loc = std::locale()) :
+        _loc(a_loc)
+    {
+    }
+
+    bool_t
     operator () (
         const std::tstring_t::value_type &a_value1,
         const std::tstring_t::value_type &a_value2) const
     {
-        return CxChar::toLower(a_value1) == CxChar::toLower(a_value2);
+    #if 1
+        return CxChar::toLower(a_value1, _loc) == CxChar::toLower(a_value2, _loc);
+    #else
+        return std::tolower(a_value1, _loc) == std::toupper(a_value2, _loc);
+    #endif
     }
 
-    // TODO: xFunctors - bool_t
-    bool
+    bool_t
     operator () (
         std::ctstring_t &a_value1,
         std::ctstring_t &a_value2) const
     {
         return CxString::compareNoCase(a_value1, a_value2);
     }
+
+private:
+    const std::locale &_loc;
 };
 
 struct Delete
