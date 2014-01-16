@@ -46,7 +46,7 @@ getTimeOfDay(
         a_tv->tv_usec = static_cast<long_t>( ullRv % 1000000UL );
     }
 
-    if (NULL != a_tz) {
+    if (a_tz != NULL) {
         if (!s_tzFlag) {
             _tzset();
             ++ s_tzFlag;
