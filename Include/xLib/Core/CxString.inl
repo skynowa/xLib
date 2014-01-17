@@ -436,7 +436,7 @@ CxString::toLowerCase(
     DWORD dwRv = ::CharLowerBuff(static_cast<LPTSTR>( &sRv[0] ), static_cast<DWORD>( length ));
     xTEST_EQ(length, static_cast<size_t>( dwRv ));
 #elif xOS_ENV_UNIX
-    std::transform(sRv.begin(), sRv.begin() + length, sRv.begin(), CxChar::toLower);
+    std::transform(sRv.begin(), sRv.begin() + length, sRv.begin(), ToLower( std::locale() ));
 #endif
 
     return sRv;
@@ -463,7 +463,7 @@ CxString::toUpperCase(
     DWORD dwRv = ::CharUpperBuff(static_cast<LPTSTR>( &sRv[0] ), static_cast<DWORD>( length ));
     xTEST_EQ(length, static_cast<size_t>( dwRv ));
 #elif xOS_ENV_UNIX
-    std::transform(sRv.begin(), sRv.begin() + length, sRv.begin(), CxChar::toUpper);
+    std::transform(sRv.begin(), sRv.begin() + length, sRv.begin(), ToUpper( std::locale() ));
 #endif
 
     return sRv;
