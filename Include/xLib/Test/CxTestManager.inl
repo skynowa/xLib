@@ -37,7 +37,7 @@ CxTestManager::CxTestManager(
 inline
 CxTestManager::~CxTestManager()
 {
-    std::for_each(_tests.begin(), _tests.end(), Delete());
+    std::for_each(_tests.begin(), _tests.end(), functors::Delete());
 
     xCHECK_DO(_isUseTracing, CxTrace() << xT("CxTestManager: all tests destructed."));
 }
