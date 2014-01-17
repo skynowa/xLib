@@ -23,8 +23,6 @@
 
 xNAMESPACE_BEGIN(xlib)
 
-using namespace functors;
-
 /*******************************************************************************
 *   casting
 *
@@ -149,7 +147,7 @@ CxString::castA(
 
     std::string asRv;
 
-    std::transform(a_str.begin(), a_str.end(), std::back_inserter(asRv), Narrow());
+    std::transform(a_str.begin(), a_str.end(), std::back_inserter(asRv), functors::Narrow());
 
     return asRv;
 }
@@ -164,7 +162,7 @@ CxString::castW(
 
     std::wstring wsRv;
 
-    std::transform(a_str.begin(), a_str.end(), std::back_inserter(wsRv), Widen());
+    std::transform(a_str.begin(), a_str.end(), std::back_inserter(wsRv), functors::Widen());
 
     return wsRv;
 }
@@ -436,7 +434,7 @@ CxString::toLowerCase(
     DWORD dwRv = ::CharLowerBuff(static_cast<LPTSTR>( &sRv[0] ), static_cast<DWORD>( length ));
     xTEST_EQ(length, static_cast<size_t>( dwRv ));
 #elif xOS_ENV_UNIX
-    std::transform(sRv.begin(), sRv.begin() + length, sRv.begin(), ToLower( std::locale() ));
+    std::transform(sRv.begin(), sRv.begin() + length, sRv.begin(), functors::ToLower( std::locale() ));
 #endif
 
     return sRv;
@@ -463,12 +461,13 @@ CxString::toUpperCase(
     DWORD dwRv = ::CharUpperBuff(static_cast<LPTSTR>( &sRv[0] ), static_cast<DWORD>( length ));
     xTEST_EQ(length, static_cast<size_t>( dwRv ));
 #elif xOS_ENV_UNIX
-    std::transform(sRv.begin(), sRv.begin() + length, sRv.begin(), ToUpper( std::locale() ));
+    std::transform(sRv.begin(), sRv.begin() + length, sRv.begin(), functors::ToUpper( std::locale() ));
 #endif
 
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
+
 
 /**************************************************************************************************
 *   actions
@@ -888,7 +887,7 @@ CxString::compareNoCase(
     int_t iRv = ::lstrcmpi(a_str1.c_str(), a_str2.c_str());
     xCHECK_RET(0 != iRv, false);
 #elif xOS_ENV_UNIX
-    bool_t bRv = std::equal(a_str1.begin(), a_str1.end(), a_str2.begin(), CompareNoCase());
+    bool_t bRv = std::equal(a_str1.begin(), a_str1.end(), a_str2.begin(), functors::CompareNoCase());
     xCHECK_RET(!bRv, false);
 #endif
 
