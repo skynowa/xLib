@@ -12,7 +12,7 @@
 *
 **************************************************************************************************/
 
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE2_BEGIN(NxInternal, NxEnum)
@@ -47,4 +47,4 @@ static Types<IxLog::ExLevel, ssize_t, 10> levels =
 xNAMESPACE2_END(NxInternal, NxEnum)
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)

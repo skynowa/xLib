@@ -21,7 +21,7 @@
 #include <xLib/Debug/CxStdDebug.h>
 
 
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 using namespace functors;
 
@@ -1019,4 +1019,4 @@ CxString::isRepeated(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)

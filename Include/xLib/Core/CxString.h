@@ -13,7 +13,7 @@
 #include <xLib/Test/xTest.h>
 #include <xLib/Debug/xDebug.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 class CxString
     /// strings utils
@@ -174,7 +174,7 @@ private:
     xNO_COPY_ASSIGN(CxString)
 };
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)
 //-------------------------------------------------------------------------------------------------
 #include "CxString.inl"
 //-------------------------------------------------------------------------------------------------

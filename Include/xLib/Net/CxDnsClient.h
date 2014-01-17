@@ -12,7 +12,7 @@
 #include <xLib/Core/xCore.h>
 #include <xLib/Net/CxSocket.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 class CxDnsClient
     /// DNS client
@@ -64,7 +64,7 @@ private:
     xNO_COPY_ASSIGN(CxDnsClient)
 };
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)
 //-------------------------------------------------------------------------------------------------
 #include "CxDnsClient.inl"
 //-------------------------------------------------------------------------------------------------

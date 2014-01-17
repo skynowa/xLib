@@ -11,7 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 class IxSeedPolicy
     /// seed policy interface
@@ -102,7 +102,7 @@ private:
 typedef CxRandom<int_t,  CxStdSeedPolicy>    CxStdRandom;
 typedef CxRandom<long_t, CxNativeSeedPolicy> CxNativeRandom;
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)
 //-------------------------------------------------------------------------------------------------
 #include "CxRandom.inl"
 //-------------------------------------------------------------------------------------------------

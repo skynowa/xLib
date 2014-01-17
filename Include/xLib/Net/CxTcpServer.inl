@@ -14,7 +14,7 @@
 #include <xLib/Log/CxTrace.h>
 #include <xLib/Core/CxUtils.h>
 
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -91,4 +91,4 @@ CxTcpServer::accept(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)

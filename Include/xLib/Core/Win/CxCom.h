@@ -13,7 +13,7 @@
 //-------------------------------------------------------------------------------------------------
 #if xOS_ENV_WIN
 
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 class CxCom
     /// Component Object Model (COM)
@@ -27,7 +27,7 @@ public:
 xNO_COPY_ASSIGN(CxCom)
 };
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)
 
 #endif
 //-------------------------------------------------------------------------------------------------

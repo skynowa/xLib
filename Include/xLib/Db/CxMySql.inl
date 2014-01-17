@@ -17,7 +17,7 @@
 #endif
 
 
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 /**************************************************************************************************
 *    CxMySQLConnection
@@ -444,6 +444,6 @@ CxMySQLRecordset::_fetchLengths(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)
 
 #endif // CXMYSQL_IS_USE

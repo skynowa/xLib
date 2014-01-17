@@ -70,7 +70,7 @@
 #endif
 
 #cmakedefine xUSING_NAMESPACE_NXLIB    1
-    ///< automatically include the NxLib namespace
+    ///< automatically include the xlib namespace
 
 #cmakedefine xDEBUG_USE_PROMPT_DIALOG  1
     ///< debug prompt dialog:

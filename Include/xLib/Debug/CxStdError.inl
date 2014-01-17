@@ -14,7 +14,7 @@ cint_t stdCodeSuccess = 0;
 xNAMESPACE_ANONYM_END
 
 
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 /**************************************************************************************************
 *    public
@@ -113,4 +113,4 @@ CxStdError::format(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)

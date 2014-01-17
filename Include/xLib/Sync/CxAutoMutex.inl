@@ -7,7 +7,7 @@
 #include <xLib/Sync/CxMutex.h>
 
 
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 /**************************************************************************************************
 *    public
@@ -32,4 +32,4 @@ CxAutoMutex::~CxAutoMutex()
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)

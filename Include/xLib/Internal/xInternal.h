@@ -8,7 +8,7 @@
 
 #include <xLib/Core/xCore.h>
 //---------------------------------------------------------------------------
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 xNAMESPACE2_BEGIN(NxInternal, NxEnum)
 
@@ -42,5 +42,5 @@ struct Types
 
 xNAMESPACE2_END(NxInternal, NxEnum)
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)
 //---------------------------------------------------------------------------

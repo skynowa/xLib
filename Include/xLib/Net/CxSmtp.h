@@ -12,7 +12,7 @@
 #include <xLib/Core/xCore.h>
 #include <xLib/Net/CxTcpClient.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 class CxMimeHeader;
 class CxMimeBody;
@@ -50,7 +50,7 @@ private:
     xNO_COPY_ASSIGN(CxSmtp)
 };
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)
 //-------------------------------------------------------------------------------------------------
 #include "CxSmtp.inl"
 //-------------------------------------------------------------------------------------------------

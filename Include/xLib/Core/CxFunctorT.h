@@ -11,7 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 template <class ClassT, class ReturnT, class ParamT>
 class CxFunctorT
@@ -38,7 +38,7 @@ private:
     xNO_COPY_ASSIGN(CxFunctorT)
 };
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)
 //-------------------------------------------------------------------------------------------------
 #include "CxFunctorT.inl"
 //-------------------------------------------------------------------------------------------------

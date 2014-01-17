@@ -12,7 +12,7 @@
 #include <xLib/Core/xCore.h>
 #include <xLib/Core/CxHandleT.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 class CxIpcMutex
     /// mutex
@@ -45,7 +45,7 @@ private:
     xNO_COPY_ASSIGN(CxIpcMutex)
 };
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)
 //-------------------------------------------------------------------------------------------------
 #include "CxIpcMutex.inl"
 //-------------------------------------------------------------------------------------------------

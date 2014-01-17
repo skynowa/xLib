@@ -4,7 +4,7 @@
  */
 
 
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 #if xOS_FREEBSD
     #include <xLib/Core/CxUtils.h>
@@ -83,5 +83,5 @@ clock()
 #endif
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)
 

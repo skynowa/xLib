@@ -8,7 +8,7 @@
 
 #include <xLib/Core/xCore.h>
 //---------------------------------------------------------------------------
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 ///@name Bytes
 ///@{
@@ -46,5 +46,5 @@ xNAMESPACE_BEGIN(NxLib)
     ( xMSEC(x) * 1000ULL * 60 * 60 * 24 * 30 * 12 )
 ///@}
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)
 //---------------------------------------------------------------------------

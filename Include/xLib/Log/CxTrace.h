@@ -12,7 +12,7 @@
 #include <xLib/Core/xCore.h>
 #include "IxLog.h"
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 class CxString;
 
@@ -36,7 +36,7 @@ public:
         ///< tracing to debugger, std::cout
 };
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)
 //-------------------------------------------------------------------------------------------------
 #include "CxTrace.inl"
 //-------------------------------------------------------------------------------------------------

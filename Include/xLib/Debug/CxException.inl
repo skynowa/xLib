@@ -7,7 +7,7 @@
 #include <xLib/Core/CxString.h>
 
 
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 /*******************************************************************************
 *    public
@@ -38,4 +38,4 @@ CxException::operator << (
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)
