@@ -11,7 +11,7 @@
 #include <xLib/Core/CxConst.h>
 
 
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 /**************************************************************************************************
 *    public
@@ -176,4 +176,4 @@ CxIpcMutex::unlock() const
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)

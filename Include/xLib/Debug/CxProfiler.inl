@@ -10,7 +10,7 @@
 #include <xLib/Filesystem/CxFile.h>
 
 
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 /**************************************************************************************************
 * public
@@ -161,4 +161,4 @@ CxProfiler::_dataReset()
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)

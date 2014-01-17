@@ -6,7 +6,7 @@
 
 #if xOS_ENV_WIN
 
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 /**************************************************************************************************
 *    public
@@ -83,6 +83,6 @@ CxCompletionPort::postStatus(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)
 
 #endif

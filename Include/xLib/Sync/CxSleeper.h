@@ -12,7 +12,7 @@
 #include <xLib/Core/xCore.h>
 #include <xLib/Sync/CxEvent.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 class CxSleeper
     /// sleeper
@@ -36,7 +36,7 @@ private:
     xNO_COPY_ASSIGN(CxSleeper)
 };
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)
 //-------------------------------------------------------------------------------------------------
 #include "CxSleeper.inl"
 //-------------------------------------------------------------------------------------------------

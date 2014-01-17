@@ -12,7 +12,7 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 template <class T>
 class IxObserver
@@ -66,6 +66,6 @@ private:
     xNO_COPY_ASSIGN(CxObserver)
 };
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxObserverH

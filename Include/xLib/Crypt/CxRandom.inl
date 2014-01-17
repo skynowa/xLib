@@ -15,7 +15,7 @@
 #include <xLib/Log/CxTrace.h>
 
 
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 /**************************************************************************************************
 *    IxSeedPolicy
@@ -213,4 +213,4 @@ CxRandom<RandomValue, SeedPolicy>::nextFloat(
 *
 **************************************************************************************************/
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)

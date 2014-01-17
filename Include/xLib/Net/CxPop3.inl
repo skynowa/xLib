@@ -10,7 +10,7 @@
 #include <xLib/Net/CxMimeBody.h>
 
 
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 /**************************************************************************************************
 *    private
@@ -574,4 +574,4 @@ CxPop3::_isError(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)

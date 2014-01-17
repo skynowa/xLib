@@ -11,7 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 template <class T>
 class CxSingleton
@@ -35,6 +35,6 @@ private:
     xNO_COPY_ASSIGN(CxSingleton)
 };
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxSingletonH

@@ -13,7 +13,7 @@
 #include <xLib/Core/CxHandleT.h>
 #include <xLib/Sync/CxEvent.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 class CxThread
     /// thread
@@ -218,7 +218,7 @@ private:
     xNO_COPY_ASSIGN(CxThread)
 };
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)
 //-------------------------------------------------------------------------------------------------
 #include "CxThread.inl"
 //-------------------------------------------------------------------------------------------------

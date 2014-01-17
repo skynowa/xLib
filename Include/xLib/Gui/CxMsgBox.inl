@@ -15,7 +15,7 @@
     #include "Platform/CxMsgBox_mac.inl"
 #endif
 
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 /**************************************************************************************************
 *    public
@@ -44,4 +44,4 @@ CxMsgBox::show(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)

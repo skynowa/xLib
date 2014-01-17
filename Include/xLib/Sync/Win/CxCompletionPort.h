@@ -14,7 +14,7 @@
 //-------------------------------------------------------------------------------------------------
 #if xOS_ENV_WIN
 
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 class CxCompletionPort
     /// completion port
@@ -36,7 +36,7 @@ private:
     xNO_COPY_ASSIGN(CxCompletionPort)
 };
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)
 
 #endif
 //-------------------------------------------------------------------------------------------------

@@ -12,7 +12,7 @@
 #include <xLib/Core/xCore.h>
 #include <xLib/Filesystem/CxFileType.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 class CxFinder
     ///< file system finder
@@ -75,7 +75,7 @@ private:
     xNO_COPY_ASSIGN(CxFinder)
 };
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)
 //-------------------------------------------------------------------------------------------------
 #include "CxFinder.inl"
 //-------------------------------------------------------------------------------------------------

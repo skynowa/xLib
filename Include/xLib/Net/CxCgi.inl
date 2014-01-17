@@ -13,7 +13,7 @@
 #include <xLib/Net/CxCookiePv1.h>
 
 
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 using namespace NxCgi;
 
@@ -906,4 +906,4 @@ CxCgiFormData::_construct()
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)

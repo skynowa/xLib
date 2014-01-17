@@ -15,7 +15,7 @@
 #include <xLib/Core/CxUtils.h>
 
 
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 /**************************************************************************************************
 *    public
@@ -207,4 +207,4 @@ CxTcpClient::isServerAlive(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)

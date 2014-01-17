@@ -12,7 +12,7 @@
 #include <xLib/Core/xCore.h>
 #include "IxLog.h"
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 class CxSystemLog :
     public IxLog
@@ -44,7 +44,7 @@ private:
         ///< initiate data
 };
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)
 //-------------------------------------------------------------------------------------------------
 #include "CxSystemLog.inl"
 //-------------------------------------------------------------------------------------------------

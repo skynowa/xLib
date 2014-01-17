@@ -9,19 +9,19 @@
 #ifndef xLib_CxHandleTH
 #define xLib_CxHandleTH
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 class CxLastError;
 class CxStackTrace;
 class CxErrorReport;
 class CxDebugger;
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 #include <xLib/Core/CxHandleErrorT.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 template<ExHandleValue tagT>
 class CxHandleT
@@ -74,7 +74,7 @@ private:
 typedef CxHandleT<hvNull>    CxHandle;
 typedef CxHandleT<hvInvalid> CxHandleInvalid;
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)
 //-------------------------------------------------------------------------------------------------
 #include "CxHandleT.inl"
 //-------------------------------------------------------------------------------------------------

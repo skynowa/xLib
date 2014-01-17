@@ -14,7 +14,7 @@
 #include <xLib/Net/CxDnsClient.h>
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 class CxMimeHeader;
 class CxMimeBody;
@@ -67,7 +67,7 @@ private:
     xNO_COPY_ASSIGN(CxPop3)
 };
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)
 //-------------------------------------------------------------------------------------------------
 #include "CxPop3.inl"
 //-------------------------------------------------------------------------------------------------

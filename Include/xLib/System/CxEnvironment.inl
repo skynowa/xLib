@@ -12,7 +12,7 @@
     extern char **environ;  // from <env.h>
 #endif
 
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 /**************************************************************************************************
 *    public
@@ -263,4 +263,4 @@ CxEnvironment::expandStrings(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)

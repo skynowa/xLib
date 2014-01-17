@@ -21,7 +21,7 @@ std::csize_t reportWidthMax = 46U;   // MAGIC: reportWidthMax
 
 xNAMESPACE_ANONYM_END
 
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 //-------------------------------------------------------------------------------------------------
 inline
@@ -245,4 +245,4 @@ CxErrorReport::_initPlain()
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)

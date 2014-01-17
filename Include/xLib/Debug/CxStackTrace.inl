@@ -34,7 +34,7 @@
 #endif
 
 
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 /**************************************************************************************************
 *   public
@@ -70,8 +70,8 @@ CxStackTrace::get(
 
    /**
     * Skip 2 first elements of a real stack - it's a class internals:
-    *   0  xLib_test  ??  0  0x46d314  NxLib::CxStackTrace::get() const
-    *   1  xLib_test  ??  0  0x46e090  NxLib::CxStackTrace::toString()
+    *   0  xLib_test  ??  0  0x46d314  xlib::CxStackTrace::get() const
+    *   1  xLib_test  ??  0  0x46e090  xlib::CxStackTrace::toString()
     */
     std::csize_t skipFramesNum = 2;
 
@@ -429,4 +429,4 @@ CxStackTrace::_addr2Line(
 #endif  // xOS_ENV_UNIX
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)

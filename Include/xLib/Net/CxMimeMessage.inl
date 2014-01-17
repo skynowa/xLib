@@ -16,7 +16,7 @@
 #include <xLib/Net/CxMimeBody.h>
 
 
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 //-------------------------------------------------------------------------------------------------
 inline
@@ -60,4 +60,4 @@ CxMimeMessage::saveToRawFile(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)

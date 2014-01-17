@@ -157,10 +157,10 @@
 #include <locale>
 
 // xLib
-namespace NxLib { }
+namespace xlib { }
 
 #if xUSING_NAMESPACE_NXLIB
-    using namespace NxLib;
+    using namespace xlib;
 #endif
 
 #include <xLib/Core/xDefines.h>

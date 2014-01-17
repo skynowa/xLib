@@ -8,7 +8,7 @@
 
 #include <xLib/Core/xCore.h>
 //---------------------------------------------------------------------------
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 class [CxTemplate]
     ///< ??????????
@@ -23,7 +23,7 @@ private:
 
 };
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)
 //---------------------------------------------------------------------------
 #include <xLib/xxx/[CxTemplate].h>
 //---------------------------------------------------------------------------

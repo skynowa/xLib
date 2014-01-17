@@ -11,7 +11,7 @@
 #include <xLib/System/CxSystemInfo.h>
 
 
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 //-------------------------------------------------------------------------------------------------
 inline
@@ -246,4 +246,4 @@ CxMimeHeader::generateMessageID()
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)

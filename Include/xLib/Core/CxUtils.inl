@@ -8,7 +8,7 @@
 #include <xLib/Test/xTest.h>
 
 
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 /*******************************************************************************
 *   public
@@ -273,4 +273,4 @@ CxUtils::enumDecT(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)

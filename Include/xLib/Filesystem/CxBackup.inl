@@ -14,7 +14,7 @@
 #include <xLib/Filesystem/CxVolume.h>
 
 
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 /**************************************************************************************************
 *   public
@@ -128,4 +128,4 @@ CxBackup::fileExec(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)

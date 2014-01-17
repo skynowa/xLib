@@ -23,7 +23,7 @@
     #include <mysql/mysqld_error.h>
 #endif
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 class CxMySQLConnection
     /// MySQL connection
@@ -70,9 +70,9 @@ private:
     xNO_COPY_ASSIGN(CxMySQLConnection)
 };
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(NxLib)
+xNAMESPACE_BEGIN(xlib)
 
 class CxMySQLRecordset
     /// MySQL recordset
@@ -116,7 +116,7 @@ private:
     xNO_COPY_ASSIGN(CxMySQLRecordset)
 };
 
-xNAMESPACE_END(NxLib)
+xNAMESPACE_END(xlib)
 
 #endif // CXMYSQL_IS_USE
 //-------------------------------------------------------------------------------------------------
