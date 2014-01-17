@@ -21,14 +21,14 @@ public:
     typedef   ReturnT (ClassT::*method_t)(ParamT);
         ///< return type
 
-              CxFunctorT(ClassT *object, method_t method);
+              CxFunctorT(ClassT *object, const method_t &method);
         ///< constructor
     virtual  ~CxFunctorT() {}
         ///< destructor
 
-    ReturnT   operator()(ParamT param) xWARN_UNUSED_RV;
+    ReturnT   operator () (const ParamT &param) const xWARN_UNUSED_RV;
         ///< operator ()
-    ReturnT   execute(ParamT param) xWARN_UNUSED_RV;
+    ReturnT   execute(const ParamT &param) const xWARN_UNUSED_RV;
         ///< execute operator ()
 
 private:
@@ -43,25 +43,3 @@ xNAMESPACE_END(xlib)
 #include "CxFunctorT.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxFunctorTH
-
-
-#if xTODO
-    class thread_adapter {
-        public:
-            thread_adapter(void_t (*func)(void_t *), void_t *param) :
-                _func (func),
-                _param(param)
-            {
-            }
-
-            void_t operator()() const {
-                _func(_param);
-            }
-
-        private:
-            void_t (*_func)(void_t *);
-            void_t *_param;
-    };
-
-    //http://habrahabr.ru/blogs/cpp/111680/
-#endif
