@@ -46,34 +46,34 @@ public:
         ///< report message
 
 private:
-    ExType         _type;          ///< report type
-    std::tstring_t _report;        ///< report message
+    ExType         _type;           ///< report type
+    std::tstring_t _report;         ///< report message
 
     // exe
-    std::tstring_t _program;       ///< program name
-    ulong_t        _processId;     ///< current process id
-    ulong_t        _threadId;      ///< current thread id
-    std::tstring_t _fileSize;      ///< file size
+    std::tstring_t _program;        ///< program name
+    ulong_t        _processId;      ///< current process id
+    ulong_t        _threadId;       ///< current thread id
+    std::tstring_t _fileSize;       ///< file size
 
     // source
-    std::tstring_t _sourceFile;    ///< source file path
-    ulong_t        _sourceLine;    ///< source file line
-    std::tstring_t _functionName;  ///< source function name
-    std::tstring_t _expression;    ///< expression
+    std::tstring_t _sourceFile;     ///< source file path
+    ulong_t        _sourceLine;     ///< source file line
+    std::tstring_t _functionName;   ///< source function name
+    std::tstring_t _expression;     ///< expression
 
-
-    ulong_t        _lastError;     ///< system last error
-    std::tstring_t _lastErrorStr;  ///< system last error as string
+    ulong_t        _lastError;      ///< system last error
+    std::tstring_t _lastErrorStr;   ///< system last error as string
 
     // other
     std::tstring_t _currentDate;    ///< current date, time
     std::tstring_t _buildDate;      ///< build date, time
     std::tstring_t _buildType;      ///< get build type
     std::tstring_t _osVersion;      ///< build OS version
-    std::tstring_t _osArchitecture; ///< OS architecture
+    std::tstring_t _osArch;         ///< OS architecture
 #if xOS_ENV_UNIX
-    std::tstring_t _glibcVersion;   ///< GLIBC available on the system
-    std::tstring_t _libPthreadVersion;  ///< POSIX implementation supplied by C library
+    std::tstring_t _xlib;           ///< xLib build version
+    std::tstring_t _glibc;          ///< GLIBC available on the system
+    std::tstring_t _libPthread;     ///< POSIX implementation supplied by C library
 #endif
     std::tstring_t _stackTrace;     ///< stack trace
 
