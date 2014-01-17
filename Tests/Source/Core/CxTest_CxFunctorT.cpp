@@ -7,137 +7,125 @@
 #include <Test/Core/CxTest_CxFunctorT.h>
 
 
-/*******************************************************************************
-*    public
-*
-*******************************************************************************/
-
-//-------------------------------------
-//classes A, B
+//-------------------------------------------------------------------------------------------------
 class A
 {
 public:
     A()
     {
-        ////xSTD_COUT_FUNC;
     };
     ~A()
     {
-        ////xSTD_COUT_FUNC;
     };
 
-    void_t vOutput()
+    void_t
+    message() const
     {
-        ////xSTD_COUT_FUNC;
+        std::cout << __FUNCTION__ << std::endl;
     };
 };
-
+//-------------------------------------------------------------------------------------------------
 class B
 {
 public:
     B()
     {
-        ////xSTD_COUT_FUNC;
     };
     ~B()
     {
-        ////xSTD_COUT_FUNC;
     };
 
-    bool_t methodB(A a)
+    bool_t
+    methodB(const A &a) const
     {
-        ////xSTD_COUT_FUNC;
-        a.vOutput();
-
+        a.message();
         return true;
     };
 
 private:
     xNO_COPY_ASSIGN(B)
 };
-
+//-------------------------------------------------------------------------------------------------
 class CThread;
 class CParam
 {
 public:
     CParam()
     {
-        ////xSTD_COUT_FUNC;
     };
     ~CParam()
     {
-        ////xSTD_COUT_FUNC;
     };
 
-    std::tstring_t sSetName(void_t *uiIndex)
+    std::tstring_t
+    setName(void_t *index)
     {
-        xUNUSED(uiIndex);
+        xUNUSED(index);
 
         return xT("Class_C");
     };
 };
-CParam objParam;
-
+//-------------------------------------------------------------------------------------------------
 class CThread
 {
 public:
     CThread()
     {
-        ////xSTD_COUT_FUNC;
     };
     ~CThread()
     {
-        ////xSTD_COUT_FUNC;
     };
 
-    void_t vRun(const CxFunctorT<CParam, std::tstring_t, void_t *> &bF)
+    void_t
+    run(const CxFunctorT<CParam, std::tstring_t, void_t *> &func)
     {
-        xUNUSED(bF);
-        ////xSTD_COUT_FUNC;
+        xUNUSED(func);
     };
 };
-CThread objThread;
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 void_t
 CxTest_CxFunctorT::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("CxFunctorT::operator()", a_caseLoops)
-    {
-        A a;
-        B b;
-
-        CxFunctorT<B, bool_t, A> *pbF = new CxFunctorT<B, bool_t, A>(&b, &B::methodB);
-        xTEST_PTR(pbF);
-
-        m_bRv = (*pbF)(a);
-        xTEST_EQ(true, m_bRv);
-
-        delete pbF;
-    }
-
-    xTEST_CASE("CxFunctorT::execute", a_caseLoops)
-    {
-        A a;
-        B b;
-
-        CxFunctorT<B, bool_t, A> *pbF = new CxFunctorT<B, bool_t, A>(&b, &B::methodB);
-        xTEST_PTR(pbF);
-
-        m_bRv = pbF->execute(a);
-        xTEST_EQ(true, m_bRv);
-
-        delete pbF;
-    }
+    CParam  param;
+    CThread thread;
 
     xTEST_CASE("CxFunctorT::operator()", a_caseLoops)
     {
         A a;
         B b;
-        CxFunctorT<B, bool_t, A> bF(&b, &B::methodB);
 
-        m_bRv = bF(a);
+        CxFunctorT<B, bool_t, A> *func = new CxFunctorT<B, bool_t, A>(&b, &B::methodB);
+        xTEST_PTR(func);
+
+        m_bRv = (*func)(a);
+        xTEST_EQ(true, m_bRv);
+
+        delete func;
+    }
+
+    xTEST_CASE("CxFunctorT::execute", a_caseLoops)
+    {
+        A a;
+        B b;
+
+        CxFunctorT<B, bool_t, A> *func = new CxFunctorT<B, bool_t, A>(&b, &B::methodB);
+        xTEST_PTR(func);
+
+        m_bRv = func->execute(a);
+        xTEST_EQ(true, m_bRv);
+
+        delete func;
+    }
+
+    xTEST_CASE("CxFunctorT::operator()", a_caseLoops)
+    {
+        A a;
+        B b;
+        CxFunctorT<B, bool_t, A> func(&b, &B::methodB);
+
+        m_bRv = func(a);
         xTEST_EQ(true, m_bRv);
     }
 
@@ -146,18 +134,43 @@ CxTest_CxFunctorT::unit(
         A a;
         B b;
 
-        CxFunctorT<B, bool_t, A> bF(&b, &B::methodB);
+        CxFunctorT<B, bool_t, A> func(&b, &B::methodB);
 
-        m_bRv = bF.execute(a);
+        m_bRv = func.execute(a);
         xTEST_EQ(true, m_bRv);
     }
 
     xTEST_CASE("CxFunctorT::execute", a_caseLoops)
     {
-        CxFunctorT<CParam, std::tstring_t, void_t *> bF(&objParam, &CParam::sSetName);
+        CxFunctorT<CParam, std::tstring_t, void_t *> func(&objParam, &CParam::sSetName);
 
-        m_sRv = bF.execute(0);
+        m_sRv = func.execute(0);
         xTEST_EQ(std::tstring_t(xT("Class_C")), m_sRv);
     }
+
+    xTEST_CASE("functors::ToLower", a_caseLoops)
+    {
+        // TEST: functors::ToLower
+    }
+    xTEST_CASE("functors::ToUpper", a_caseLoops)
+    {
+        // TEST: functors::ToUpper
+    }
+    xTEST_CASE("functors::CompareNoCase", a_caseLoops)
+    {
+        // TEST: functors::CompareNoCase
+    }
+    xTEST_CASE("functors::Delete", a_caseLoops)
+    {
+        // TEST: functors::Delete
+    }
+    xTEST_CASE("functors::Narrow", a_caseLoops)
+    {
+        // TEST: functors::Narrow
+    }
+    xTEST_CASE("functors::Widen", a_caseLoops)
+    {
+        // TEST: functors::Widen
+    }
 }
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
