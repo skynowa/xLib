@@ -15,134 +15,92 @@ xNAMESPACE_BEGIN(NxLib)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-/* static */
-inline bool_t
-CxChar::isAlphaNum(
+inline
+CxChar::CxChar(
     ctchar_t          &a_ch,
-    const std::locale &a_loc /* = std::locale() */
-)
+    const std::locale &a_locale /*  = std::locale() */
+) :
+    _ch    (a_ch),
+    _locale(a_locale)
 {
-    return xINT_TO_BOOL( xTISALNUM(a_ch, a_loc) );
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 inline bool_t
-CxChar::isAlpha(
-    ctchar_t          &a_ch,
-    const std::locale &a_loc /* = std::locale() */
-)
+CxChar::isAlphaNum() const
 {
-    return xINT_TO_BOOL( xTISALPHA(a_ch, a_loc) );
+    return xINT_TO_BOOL( xTISALNUM(_ch, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 inline bool_t
-CxChar::isControl(
-    ctchar_t          &a_ch,
-    const std::locale &a_loc /* = std::locale() */
-)
+CxChar::isAlpha() const
 {
-    return xINT_TO_BOOL( xTISCNTRL(a_ch, a_loc) );
+    return xINT_TO_BOOL( xTISALPHA(_ch, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 inline bool_t
-CxChar::isDigitDec(
-    ctchar_t          &a_ch,
-    const std::locale &a_loc /* = std::locale() */
-)
+CxChar::isControl() const
 {
-    return xINT_TO_BOOL( xTISDIGIT(a_ch, a_loc) );
+    return xINT_TO_BOOL( xTISCNTRL(_ch, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 inline bool_t
-CxChar::isDigitHex(
-    ctchar_t          &a_ch,
-    const std::locale &a_loc /* = std::locale() */
-)
+CxChar::isDigitDec() const
 {
-    return xINT_TO_BOOL( xTISXDIGIT(a_ch, a_loc) );
+    return xINT_TO_BOOL( xTISDIGIT(_ch, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 inline bool_t
-CxChar::isGraph(
-    ctchar_t          &a_ch,
-    const std::locale &a_loc /* = std::locale() */
-)
+CxChar::isDigitHex() const
 {
-    return xINT_TO_BOOL( xTISGRAPH(a_ch, a_loc) );
+    return xINT_TO_BOOL( xTISXDIGIT(_ch, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 inline bool_t
-CxChar::isPrint(
-    ctchar_t          &a_ch,
-    const std::locale &a_loc /* = std::locale() */
-)
+CxChar::isGraph() const
 {
-    return xINT_TO_BOOL( xTISPRINT(a_ch, a_loc) );
+    return xINT_TO_BOOL( xTISGRAPH(_ch, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 inline bool_t
-CxChar::isPunct(
-    ctchar_t          &a_ch,
-    const std::locale &a_loc /* = std::locale() */
-)
+CxChar::isPrint() const
 {
-    return xINT_TO_BOOL( xTISPUNCT(a_ch, a_loc) );
+    return xINT_TO_BOOL( xTISPRINT(_ch, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 inline bool_t
-CxChar::isSpace(
-    ctchar_t          &a_ch,
-    const std::locale &a_loc /* = std::locale() */
-)
+CxChar::isPunct() const
 {
-    return xINT_TO_BOOL( xTISSPACE(a_ch, a_loc) );
+    return xINT_TO_BOOL( xTISPUNCT(_ch, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 inline bool_t
-CxChar::isLower(
-    ctchar_t          &a_ch,
-    const std::locale &a_loc /* = std::locale() */
-)
+CxChar::isSpace() const
 {
-    return xINT_TO_BOOL( xTISLOWER(a_ch, a_loc) );
+    return xINT_TO_BOOL( xTISSPACE(_ch, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 inline bool_t
-CxChar::isUpper(
-    ctchar_t          &a_ch,
-    const std::locale &a_loc /* = std::locale() */
-)
+CxChar::isLower() const
 {
-    return xINT_TO_BOOL( xTISUPPER(a_ch, a_loc) );
+    return xINT_TO_BOOL( xTISLOWER(_ch, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
+inline bool_t
+CxChar::isUpper() const
+{
+    return xINT_TO_BOOL( xTISUPPER(_ch, _locale) );
+}
+//-------------------------------------------------------------------------------------------------
 inline tchar_t
-CxChar::toLower(
-    ctchar_t          &a_ch,
-    const std::locale &a_loc /* = std::locale() */
-)
+CxChar::toLower() const
 {
-    return static_cast<tchar_t>( xTTOLOWER(a_ch, a_loc) );
+    return static_cast<tchar_t>( xTTOLOWER(_ch, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
-/* static */
 inline tchar_t
-CxChar::toUpper(
-    ctchar_t          &a_ch,
-    const std::locale &a_loc /* = std::locale() */
-)
+CxChar::toUpper() const
 {
-    return static_cast<tchar_t>( xTTOUPPER(a_ch, a_loc) );
+    return static_cast<tchar_t>( xTTOUPPER(_ch, _locale) );
 }
 //-------------------------------------------------------------------------------------------------
 

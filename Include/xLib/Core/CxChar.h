@@ -17,43 +17,46 @@ class CxChar
     /// character
 {
 public:
-    static bool_t  isAlphaNum(ctchar_t &ch, const std::locale &loc = std::locale()) xWARN_UNUSED_RV;
+                CxChar(ctchar_t &ch, const std::locale &locale = std::locale());
+        ///< constructor
+    virtual    ~CxChar() {}
+        ///< destructor
+
+    bool_t      isAlphaNum() const xWARN_UNUSED_RV;
         ///< Check if ch is alphanumeric
-    static bool_t  isAlpha(ctchar_t &ch, const std::locale &loc = std::locale()) xWARN_UNUSED_RV;
+    bool_t      isAlpha() const xWARN_UNUSED_RV;
         ///< Check if ch is alphabetic
-    static bool_t  isControl(ctchar_t &ch, const std::locale &loc = std::locale()) xWARN_UNUSED_RV;
+    bool_t      isControl() const xWARN_UNUSED_RV;
         ///< Check if ch is a control ch
-    static bool_t  isDigitDec(ctchar_t &ch, const std::locale &loc = std::locale()) xWARN_UNUSED_RV;
+    bool_t      isDigitDec() const xWARN_UNUSED_RV;
         ///< Check if ch is decimal digit
-    static bool_t  isDigitHex(ctchar_t &ch, const std::locale &loc = std::locale()) xWARN_UNUSED_RV;
+    bool_t      isDigitHex() const xWARN_UNUSED_RV;
         ///< Check if ch is hexadecimal digit
 
-    static bool_t  isGraph(ctchar_t &ch, const std::locale &loc = std::locale()) xWARN_UNUSED_RV;
+    bool_t      isGraph() const xWARN_UNUSED_RV;
         ///< Check if ch has graphical representation
-    static bool_t  isPrint(ctchar_t &ch, const std::locale &loc = std::locale()) xWARN_UNUSED_RV;
+    bool_t      isPrint() const xWARN_UNUSED_RV;
         ///< Check if ch is printable
-    static bool_t  isPunct(ctchar_t &ch, const std::locale &loc = std::locale()) xWARN_UNUSED_RV;
+    bool_t      isPunct() const xWARN_UNUSED_RV;
         ///< Check if ch is a punctuation ch
-    static bool_t  isSpace(ctchar_t &ch, const std::locale &loc = std::locale()) xWARN_UNUSED_RV;
+    bool_t      isSpace() const xWARN_UNUSED_RV;
         ///< Check if ch is a white-space
 
-    static bool_t  isLower(ctchar_t &ch, const std::locale &loc = std::locale()) xWARN_UNUSED_RV;
+    bool_t      isLower() const xWARN_UNUSED_RV;
         ///< Check if ch is lowercase letter
-    static bool_t  isUpper(ctchar_t &ch, const std::locale &loc = std::locale()) xWARN_UNUSED_RV;
+    bool_t      isUpper() const xWARN_UNUSED_RV;
         ///< Check if ch is uppercase letter
 
-    static tchar_t toLower(ctchar_t &ch, const std::locale &loc = std::locale()) xWARN_UNUSED_RV;
+    tchar_t     toLower() const xWARN_UNUSED_RV;
         ///< Convert uppercase letter to lowercase
-    static tchar_t toUpper(ctchar_t &ch, const std::locale &loc = std::locale()) xWARN_UNUSED_RV;
+    tchar_t     toUpper() const xWARN_UNUSED_RV;
         ///< Convert lowercase letter to uppercase
 
 private:
-                   CxChar();
-        ///< constructor
-    virtual       ~CxChar();
-        ///< destructor
+    tchar_t     _ch;
+    std::locale _locale;
 
-    xNO_COPY_ASSIGN(CxChar)
+    //xNO_COPY_ASSIGN(CxChar)
 };
 
 xNAMESPACE_END(NxLib)
