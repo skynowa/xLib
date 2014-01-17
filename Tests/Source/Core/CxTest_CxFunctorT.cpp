@@ -19,7 +19,7 @@ public:
     };
 
     void_t
-    message() const
+    message()
     {
         std::cout << __FUNCTION__ << std::endl;
     };
@@ -36,7 +36,7 @@ public:
     };
 
     bool_t
-    methodB(const A &a) const
+    methodB(A a)
     {
         a.message();
         return true;
@@ -65,6 +65,8 @@ public:
         return xT("Class_C");
     };
 };
+
+CParam param;
 //-------------------------------------------------------------------------------------------------
 class CThread
 {
@@ -82,15 +84,14 @@ public:
         xUNUSED(func);
     };
 };
+
+CThread thread;
 //-------------------------------------------------------------------------------------------------
 void_t
 CxTest_CxFunctorT::unit(
     culonglong_t &a_caseLoops
 )
 {
-    CParam  param;
-    CThread thread;
-
     xTEST_CASE("CxFunctorT::operator()", a_caseLoops)
     {
         A a;
@@ -142,7 +143,7 @@ CxTest_CxFunctorT::unit(
 
     xTEST_CASE("CxFunctorT::execute", a_caseLoops)
     {
-        CxFunctorT<CParam, std::tstring_t, void_t *> func(&objParam, &CParam::sSetName);
+        CxFunctorT<CParam, std::tstring_t, void_t *> func(&param, &CParam::setName);
 
         m_sRv = func.execute(0);
         xTEST_EQ(std::tstring_t(xT("Class_C")), m_sRv);
