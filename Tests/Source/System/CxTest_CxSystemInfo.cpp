@@ -216,6 +216,14 @@ CxTest_CxSystemInfo::unit(
         xTEST_LESS(0UL, m_ulRv);
     }
 
+    xTEST_CASE("CxSystemInfo::xlibVersion", a_caseLoops)
+    {
+        m_sRv = CxSystemInfo().xlibVersion()();
+        xTEST_EQ(m_sRv.empty(), false);
+
+        // CxTrace() << xTRACE_VAR(m_sRv);
+    }
+
 #if xOS_ENV_UNIX
     xTEST_CASE("CxSystemInfo::glibcVersion", a_caseLoops)
     {
