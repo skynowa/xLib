@@ -1172,7 +1172,7 @@ CxSystemInfo::pageSize() const
 inline std::tstring_t
 CxSystemInfo::xlibVersion() const
 {
-    return CxString::format(xT("%s %s %s"), xLIB_NAME, xLIB_VERSION, xLIB_VERSION_SUFFIX);
+    return CxString::format(xT("%s %s"), xLIB_VERSION, xLIB_VERSION_SUFFIX);
 }
 //-------------------------------------------------------------------------------------------------
 #if xOS_ENV_UNIX
