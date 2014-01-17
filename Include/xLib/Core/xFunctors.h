@@ -13,25 +13,64 @@
 #include <xLib/Core/CxChar.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE2_BEGIN(NxLib, NxFunctors)
+//-------------------------------------------------------------------------------------------------
+struct ToLower
+    ///< char to lower case
+{
+public:
+    ToLower(const std::locale &a_loc = std::locale()) :
+        _locale(a_loc)
+    {
+    }
 
+    tchar_t
+    operator () (
+        std::ctstring_t::value_type &a_ch
+    ) const
+    {
+        return xTTOLOWER(a_ch, _locale);
+    }
+
+private:
+    const std::locale &_locale;
+};
+//-------------------------------------------------------------------------------------------------
+struct ToUpper
+    ///< char to upper case
+{
+public:
+    ToUpper(const std::locale &a_loc = std::locale()) :
+        _locale(a_loc)
+    {
+    }
+
+    tchar_t
+    operator () (
+        std::ctstring_t::value_type &a_ch
+    ) const
+    {
+        return xTTOUPPER(a_ch, _locale);
+    }
+
+private:
+    const std::locale &_locale;
+};
+//-------------------------------------------------------------------------------------------------
 struct CompareNoCase
     ///< case insensitive comparison
 {
+public:
     CompareNoCase(const std::locale &a_loc = std::locale()) :
-        _loc(a_loc)
+        _locale(a_loc)
     {
     }
 
     bool_t
     operator () (
-        const std::tstring_t::value_type &a_value1,
-        const std::tstring_t::value_type &a_value2) const
+        const std::tstring_t::value_type &a_ch1,
+        const std::tstring_t::value_type &a_ch2) const
     {
-    #if 1
-        return CxChar::toLower(a_value1, _loc) == CxChar::toLower(a_value2, _loc);
-    #else
-        return std::tolower(a_value1, _loc) == std::toupper(a_value2, _loc);
-    #endif
+        return CxChar(a_ch1, _locale).toLower() == CxChar(a_ch2, _locale).toLower();
     }
 
     bool_t
@@ -43,9 +82,9 @@ struct CompareNoCase
     }
 
 private:
-    const std::locale &_loc;
+    const std::locale &_locale;
 };
-
+//-------------------------------------------------------------------------------------------------
 struct Delete
     ///< container items deleter
 {
@@ -57,7 +96,7 @@ struct Delete
         xPTR_DELETE(a_ptr);
     }
 };
-
+//-------------------------------------------------------------------------------------------------
 struct Narrow
     ///<
 {
@@ -70,7 +109,7 @@ struct Narrow
                     .narrow(a_char, '@');
     }
 };
-
+//-------------------------------------------------------------------------------------------------
 struct Widen
     ///<
 {
@@ -83,7 +122,7 @@ struct Widen
                     .widen(a_char);
     }
 };
-
+//-------------------------------------------------------------------------------------------------
 xNAMESPACE2_END(NxLib, NxFunctors)
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_xFunctorsH
