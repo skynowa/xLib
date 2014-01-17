@@ -218,7 +218,7 @@ CxTest_CxSystemInfo::unit(
 
     xTEST_CASE("CxSystemInfo::xlibVersion", a_caseLoops)
     {
-        m_sRv = CxSystemInfo().xlibVersion()();
+        m_sRv = CxSystemInfo().xlibVersion();
         xTEST_EQ(m_sRv.empty(), false);
 
         // CxTrace() << xTRACE_VAR(m_sRv);
