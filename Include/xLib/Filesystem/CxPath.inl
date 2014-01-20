@@ -1018,8 +1018,8 @@ CxPath::procValue(
     proc(a_procPath, &procFile);
 
     xFOREACH_CONST(std::vec_tstring_t, it, procFile) {
-        // TODO: CxPath::procValue() - no case search
-        std::csize_t pos = it->find(a_key);
+        std::csize_t pos = CxStringCI::find(*it, a_key);
+
         xCHECK_DO(std::tstring_t::npos == pos, continue);
 
         // parse value
