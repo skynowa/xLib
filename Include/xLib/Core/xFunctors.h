@@ -50,10 +50,10 @@ private:
     const std::locale &_locale;
 };
 //-------------------------------------------------------------------------------------------------
-struct CompareNoCase
+struct CompareCI
     ///< case insensitive comparison
 {
-    CompareNoCase(const std::locale &a_locale = std::locale()) :
+    CompareCI(const std::locale &a_locale = std::locale()) :
         _locale(a_locale)
     {
     }

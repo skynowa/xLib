@@ -1018,7 +1018,7 @@ CxStringCI::find(
     std::tstring_t::const_iterator cit;
 
     cit = std::search(a_str.begin() + a_pos, a_str.end(), a_target.begin(), a_target.end(),
-        functors::CompareNoCase(a_locale));
+        functors::CompareCI(a_locale));
     xCHECK_RET(cit != a_str.end(), cit - a_str.begin());
 
     return std::tstring_t::npos;
@@ -1042,7 +1042,7 @@ CxStringCI::compare(
     xCHECK_RET(0 != iRv, false);
 #elif xOS_ENV_UNIX
     bool_t bRv = std::equal(a_str1.begin(), a_str1.end(), a_str2.begin(),
-        functors::CompareNoCase(a_locale));
+        functors::CompareCI(a_locale));
     xCHECK_RET(!bRv, false);
 #endif
 

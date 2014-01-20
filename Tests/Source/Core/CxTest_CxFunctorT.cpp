@@ -157,9 +157,9 @@ CxTest_CxFunctorT::unit(
     {
         // TEST: functors::ToUpper
     }
-    xTEST_CASE("functors::CompareNoCase", a_caseLoops)
+    xTEST_CASE("functors::CompareCI", a_caseLoops)
     {
-        // TEST: functors::CompareNoCase
+        // TEST: functors::CompareCI
     }
     xTEST_CASE("functors::Delete", a_caseLoops)
     {
