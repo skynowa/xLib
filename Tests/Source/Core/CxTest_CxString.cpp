@@ -971,52 +971,30 @@ CxTest_CxString::unit(
 
     xTEST_CASE("CxStringCI::compare", a_caseLoops)
     {
-        // must true
-        m_bRv = CxStringCI::compare(xT(""),     xT(""));
-        xTEST_EQ(true, m_bRv);
+        const data3_bool_t data[] = {
+            { xT(""), xT(""), true },
+            { xT("xxx"), xT("XXX"), true },
+            { xT("111"), xT("111"), true },
+            { xT("eee"), xT("EeE"), true },
+            { xT("WWW"), xT("wwW"), true },
+            { xT("ccc"), xT("CCCz"), false },
+            { xT(""), xT("222"), false },
+            { xT("111"), xT(""), false },
+            { xT(""), xT("2"), false },
+            { xT("1"), xT(""), false },
+            { xT("!!!!!"), xT("@@@@@@"), false },
+            { xT("$$$$$"), xT("sdfgsdg"), false },
+            { xT("&&&&&"), xT("&&&&&????"), false },
+            { xT("_+#$^%^&*^&*("), xT("@#$%TY(J^HGYT"), false },
+            { xT("dddd"), xT("d"), false },
+            { xT("111Dddd3333"), xT("dD"), false },
+            { xT("111Dddd3333"), xT("dDddddd"), false }
+        };
 
-        m_bRv = CxStringCI::compare(xT("xxx"),  xT("XXX"));
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = CxStringCI::compare(xT("111"),  xT("111"));
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = CxStringCI::compare(xT("eee"),  xT("EeE"));
-        xTEST_EQ(true, m_bRv);
-
-        m_bRv = CxStringCI::compare(xT("WWW"),  xT("wwW"));
-        xTEST_EQ(true, m_bRv);
-
-        // must false
-        m_bRv = CxStringCI::compare(xT("ccc"),  xT("CCCz"));
-        xTEST_EQ(false, m_bRv);
-
-        m_bRv = CxStringCI::compare(xT(""), xT("222"));
-        xTEST_EQ(false, m_bRv);
-
-        m_bRv = CxStringCI::compare(xT("111"), xT(""));
-        xTEST_EQ(false, m_bRv);
-
-        m_bRv = CxStringCI::compare(xT(""), xT("2"));
-        xTEST_EQ(false, m_bRv);
-
-        m_bRv = CxStringCI::compare(xT("1"), xT(""));
-        xTEST_EQ(false, m_bRv);
-
-        m_bRv = CxStringCI::compare(xT("!!!!!"),  xT("@@@@@@"));
-        xTEST_EQ(false, m_bRv);
-
-        m_bRv = CxStringCI::compare(xT("$$$$$"), xT("sdfgsdg"));
-        xTEST_EQ(false, m_bRv);
-
-        m_bRv = CxStringCI::compare(xT("&&&&&"),  xT("&&&&&????"));
-        xTEST_EQ(false, m_bRv);
-
-        m_bRv = CxStringCI::compare(xT("_+#$^%^&*^&*("), xT("@#$%TY(J^HGYT"));
-        xTEST_EQ(false, m_bRv);
-
-        m_bRv = CxStringCI::compare(xT("dddd"), xT("d"));
-        xTEST_EQ(false, m_bRv);
+        for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
+            m_stRv = CxStringCI::compare(data[i].test1, data[i].test2);
+            xTEST_EQ(m_stRv, data[i].expect);
+        }
     }
 }
 //------------------------------------------------------------------------------
