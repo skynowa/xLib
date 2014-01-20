@@ -75,12 +75,12 @@ public:
         ///< clear
 
 private:
-    std::tstring_t    _name;      ///< name
-    std::tstring_t    _value;     ///< value
-    std::tstring_t    _comment;   ///< comment
-    std::tstring_t    _domain;    ///< domain
-    std::tstring_t    _path;      ///< path
-    longlong_t        _maxAge;   ///< max age (in seconds)
+    std::tstring_t    _name;        ///< name
+    std::tstring_t    _value;       ///< value
+    std::tstring_t    _comment;     ///< comment
+    std::tstring_t    _domain;      ///< domain
+    std::tstring_t    _path;        ///< path
+    longlong_t        _maxAge;      ///< max age (in seconds)
     bool_t            _isSecure;    ///< secure
     bool_t            _isHttpOnly;  ///< http only
 

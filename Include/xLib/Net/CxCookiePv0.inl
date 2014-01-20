@@ -184,7 +184,6 @@ CxCookiePv0::toString() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-//TODO: sDump make tests
 inline std::tstring_t
 CxCookiePv0::dump() const
 {
