@@ -145,11 +145,14 @@ CxDebugger::coreDumpsEnable(
         iRv = ::prctl(PR_SET_DUMPABLE, isDumpable);
         isEnable = (iRv == 0);
     #elif xHAVE_RLIMIT_CORE
-        xUNUSED(a_flag);
-
-        // TODO: CxDebugger::coreDumpsEnable() - a_flag
-
-        rlimit limit = {0, 0};
+        rlimit limit;   xSTRUCT_ZERO(limit);
+        if (a_flag) {
+            limit.rlim_cur = RLIM_INFINITY;
+            limit.rlim_max = RLIM_INFINITY;
+        } else {
+            limit.rlim_cur = 0;
+            limit.rlim_max = 0;
+        }
 
         iRv = ::setrlimit(RLIMIT_CORE, &limit);
         isEnable = (iRv == 0);
