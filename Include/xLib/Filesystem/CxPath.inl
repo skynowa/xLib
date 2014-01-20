@@ -1019,7 +1019,6 @@ CxPath::procValue(
 
     xFOREACH_CONST(std::vec_tstring_t, it, procFile) {
         std::csize_t pos = CxStringCI::find(*it, a_key);
-
         xCHECK_DO(std::tstring_t::npos == pos, continue);
 
         // parse value
