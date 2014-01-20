@@ -430,8 +430,7 @@ CxPath::isValid(
     {
         std::ctstring_t fileName = CxPath(a_filePath).fileName();
 
-        bool_t bRv = isNameValid(fileName, a_filePathValid);
-        xCHECK_RET(bRv, false);
+        xCHECK_RET(!isNameValid(fileName, a_filePathValid), false);
     }
 
     return true;
