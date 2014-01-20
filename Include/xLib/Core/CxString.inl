@@ -865,59 +865,6 @@ CxString::minimize(
 }
 //-------------------------------------------------------------------------------------------------
 
-/**************************************************************************************************
-*   search, compare
-*
-**************************************************************************************************/
-
-//-------------------------------------------------------------------------------------------------
-/* static */
-inline std::size_t
-CxString::findNoCase(
-    std::ctstring_t &a_str,          ///< source string
-    std::ctstring_t &a_target,       ///< target string
-    std::csize_t    &a_pos /* = 0 */ ///< start position
-)
-{
-    xTEST_NA(a_str);
-    xTEST_NA(a_target);
-    xTEST_NA(a_pos);
-
-    xCHECK_RET(a_str.empty() && a_target.empty() && a_pos == 0, 0);
-
-    std::tstring_t::const_iterator cit;
-
-    cit = std::search(a_str.begin() + a_pos, a_str.end(), a_target.begin(), a_target.end(),
-        functors::CompareNoCase());
-    xCHECK_RET(cit != a_str.end(), cit - a_str.begin());
-
-    return std::tstring_t::npos;
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-inline bool_t
-CxString::compareNoCase(
-    std::ctstring_t &a_str1,    ///< source string
-    std::ctstring_t &a_str2     ///< target string
-)
-{
-    xTEST_NA(a_str1);
-    xTEST_NA(a_str2);
-
-    xCHECK_RET(a_str1.size() != a_str2.size(), false);
-
-#if   xOS_ENV_WIN
-    int_t iRv = ::lstrcmpi(a_str1.c_str(), a_str2.c_str());
-    xCHECK_RET(0 != iRv, false);
-#elif xOS_ENV_UNIX
-    bool_t bRv = std::equal(a_str1.begin(), a_str1.end(), a_str2.begin(), functors::CompareNoCase());
-    xCHECK_RET(!bRv, false);
-#endif
-
-    return true;
-}
-//-------------------------------------------------------------------------------------------------
-
 
 /**************************************************************************************************
 *    formating
@@ -1039,6 +986,67 @@ CxString::isRepeated(
     xTEST_NA(a_str);
 
     return ( std::tstring_t::npos == a_str.find_first_not_of(a_str.at(0)) );
+}
+//-------------------------------------------------------------------------------------------------
+
+xNAMESPACE_END(xlib)
+
+
+xNAMESPACE_BEGIN(xlib)
+
+/**************************************************************************************************
+*   search, compare
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
+/* static */
+inline std::size_t
+CxStringCI::find(
+    std::ctstring_t   &a_str,               ///< source string
+    std::ctstring_t   &a_target,            ///< target string
+    std::csize_t      &a_pos    /* = 0 */,  ///< start position
+    const std::locale &a_locale /* = std::locale() */   ///< locale
+)
+{
+    xTEST_NA(a_str);
+    xTEST_NA(a_target);
+    xTEST_NA(a_pos);
+
+    xCHECK_RET(a_str.empty() && a_target.empty() && a_pos == 0, 0);
+
+    std::tstring_t::const_iterator cit;
+
+    cit = std::search(a_str.begin() + a_pos, a_str.end(), a_target.begin(), a_target.end(),
+        functors::CompareNoCase(a_locale));
+    xCHECK_RET(cit != a_str.end(), cit - a_str.begin());
+
+    return std::tstring_t::npos;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
+inline bool_t
+CxStringCI::compare(
+    std::ctstring_t   &a_str1,  ///< source string
+    std::ctstring_t   &a_str2,  ///< target string
+    const std::locale &a_locale /* = std::locale() */   ///< locale
+)
+{
+    xTEST_NA(a_str1);
+    xTEST_NA(a_str2);
+
+    xCHECK_RET(a_str1.size() != a_str2.size(), false);
+
+#if   xOS_ENV_WIN
+    int_t iRv = ::lstrcmpi(a_str1.c_str(), a_str2.c_str());
+    xCHECK_RET(0 != iRv, false);
+#elif xOS_ENV_UNIX
+    bool_t bRv = std::equal(a_str1.begin(), a_str1.end(), a_str2.begin(),
+        functors::CompareNoCase(a_locale));
+    xCHECK_RET(!bRv, false);
+#endif
+
+    return true;
 }
 //-------------------------------------------------------------------------------------------------
 
