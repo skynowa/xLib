@@ -129,33 +129,46 @@ CxDebugger::coreDumpsEnable(
     cbool_t &a_flag
 )
 {
-    xUNUSED(a_flag);    // TODO: CxDebugger::coreDumpsEnable() - a_flag
     xTEST_NA(a_flag);
 
     bool_t isEnable = false;
     int_t  iRv      = 0;
 
 #if   xOS_ENV_WIN
-    isEnable = false;   // n/a
+    xUNUSED(a_flag);
+    isEnable = false;
+    #pragma message("xLib: CxDebugger::coreDumpsEnable() - n/a")
 #elif xOS_ENV_UNIX
     #if   xHAVE_PR_SET_DUMPABLE
-        // prefer PR_SET_DUMPABLE since that also prevents ptrace
-        iRv = ::prctl(PR_SET_DUMPABLE, 0);
+        culong_t isDumpable = a_flag ? 1UL : 0UL;
+
+        iRv = ::prctl(PR_SET_DUMPABLE, isDumpable);
         isEnable = (iRv == 0);
     #elif xHAVE_RLIMIT_CORE
+        xUNUSED(a_flag);
+
+        // TODO: CxDebugger::coreDumpsEnable() - a_flag
+
         rlimit limit = {0, 0};
 
         iRv = ::setrlimit(RLIMIT_CORE, &limit);
         isEnable = (iRv == 0);
     #else
+        xUNUSED(a_flag);
+        isEnable = false;
         #pragma message("xLib: CxDebugger::coreDumpsEnable() - n/a")
     #endif
 #elif xOS_ENV_MAC
     #if xHAVE_PT_DENY_ATTACH
-        // make sure setrlimit() and ptrace() succeeded
+        xUNUSED(a_flag);
+
+        // TODO: CxDebugger::coreDumpsEnable() - a_flag
+
         iRv = ::ptrace(PT_DENY_ATTACH, 0, 0, 0);
         isEnable = isEnable && (iRv == 0);
     #else
+        xUNUSED(a_flag);
+        isEnable = false;
         #pragma message("xLib: CxDebugger::coreDumpsEnable() - n/a")
     #endif
 #endif
