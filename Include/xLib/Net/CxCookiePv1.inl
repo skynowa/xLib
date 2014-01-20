@@ -209,11 +209,27 @@ CxCookiePv1::toString() const
 inline std::tstring_t
 CxCookiePv1::dump() const
 {
-    // TODO: CxCookiePv1::dump()
-
     std::tstring_t sRv;
 
-    xNOT_IMPLEMENTED;
+    sRv = CxString::format(
+            xT("[CxCookiePv1 dump]\n\n")
+            xT("Name: %s\n")
+            xT("Value: %s\n")
+            xT("Comment: %s\n")
+            xT("Domain: %s\n")
+            xT("Path: %s\n")
+            xT("Max age: %s\n")
+            xT("Secure: %lld\n")
+            xT("HttpOnly: %s\n\n"),
+            name().c_str(),
+            value().c_str(),
+            comment().c_str(),
+            domain().c_str(),
+            path().c_str(),
+            maxAge(),
+            CxString::boolToStr( secure() ).c_str(),
+            CxString::boolToStr( httpOnly() ).c_str()
+    );
 
     return sRv;
 }
@@ -226,7 +242,7 @@ CxCookiePv1::clear()
     _comment.clear();
     _domain.clear();
     _path.clear();
-    _maxAge  = - 1L;
+    _maxAge     = - 1L;
     _isSecure   = false;
     _isHttpOnly = false;
 }
