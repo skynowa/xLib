@@ -115,9 +115,9 @@ CxMySQLConnection::isExists(
         rec.fetchRow(&vsRow);
         xTEST_EQ(static_cast<size_t>( 1U ), vsRow.size());
 
-        xCHECK_RET(CxString::compareNoCase(xT("false"), vsRow.at(0)), false);
+        xCHECK_RET(CxStringCI::compare(xT("false"), vsRow.at(0)), false);
 
-        xTEST_EQ(true, CxString::compareNoCase(xT("true"), vsRow.at(0)));
+        xTEST_EQ(true, CxStringCI::compare(xT("true"), vsRow.at(0)));
     }
 
     return true;

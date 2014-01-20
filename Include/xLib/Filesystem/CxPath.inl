@@ -575,7 +575,7 @@ CxPath::isNameValid(
         std::ctstring_t baseFileName = CxPath(sRv).removeExt();
 
         for (size_t i = 0; i < xARRAY_SIZE(reservedNames); ++ i) {
-            bool_t bRv = CxString::compareNoCase(baseFileName, reservedNames[i]);
+            bool_t bRv = CxStringCI::compare(baseFileName, reservedNames[i]);
             xCHECK_DO(!bRv, continue);
 
             xCHECK_RET(a_fileNameValid == NULL, false);

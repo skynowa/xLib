@@ -682,9 +682,9 @@ CxCgiEnvironment::_construct()
 
     //--------------------------------------------------
     //is data from a GET or a POST?
-    if        (CxString::compareNoCase(xT("GET"), requestMethod())) {
+    if        (CxStringCI::compare(xT("GET"), requestMethod())) {
         _requestType = rtGet;
-    } else if (CxString::compareNoCase(xT("POST"), requestMethod())) {
+    } else if (CxStringCI::compare(xT("POST"), requestMethod())) {
         _requestType = rtPost;
     }
     else {
@@ -731,7 +731,7 @@ CxCgiCookies::operator [] (
 )
 {
     xFOREACH_CONST(TCookies, it, items) {
-        xCHECK_DO(!CxString::compareNoCase(a_cookieName, (*it)->value()), continue);
+        xCHECK_DO(!CxStringCI::compare(a_cookieName, (*it)->value()), continue);
 
         return (*it)->value();
     }
@@ -864,7 +864,7 @@ CxCgiFormData::_construct()
     case CxCgiEnvironment::rtPost: {
         bool_t bRv = false;
 
-        bRv = CxString::compareNoCase(xT("application/x-www-form-urlencoded"),
+        bRv = CxStringCI::compare(xT("application/x-www-form-urlencoded"),
             _cgi.Environment.contentType());
         xTEST_EQ(true, bRv);
 

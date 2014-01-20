@@ -95,7 +95,7 @@ CxVolume::fileSystem() const
             const mntent *mountPoint = ::getmntent_r(file, &mnt, buff, buffLen);
             xCHECK_DO(NULL == mountPoint, break);
 
-            bool_t bRv = CxString::compareNoCase(path(), mountPoint->mnt_dir);
+            bool_t bRv = CxStringCI::compare(path(), mountPoint->mnt_dir);
             xCHECK_DO(!bRv, continue);
 
             sRv = (mountPoint->mnt_type == NULL) ? CxConst::strEmpty() : mountPoint->mnt_type;
