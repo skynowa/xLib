@@ -385,8 +385,8 @@ CxString::strToBool(
 {
     xTEST_NA(a_str);
 
-    xCHECK_RET(compareNoCase(xT("true"),  a_str), true);
-    xCHECK_RET(compareNoCase(xT("false"), a_str), false);
+    xCHECK_RET(CxStringCI::compare(xT("true"),  a_str), true);
+    xCHECK_RET(CxStringCI::compare(xT("false"), a_str), false);
 
     return false;
 }
