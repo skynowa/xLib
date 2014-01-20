@@ -98,7 +98,8 @@ public:
     static std::tstring_t standartExt(const ExStandartExt &fileExt) xWARN_UNUSED_RV;
         ///< get standard extension
 
-    static bool_t         isValid(std::ctstring_t &filePath) xWARN_UNUSED_RV;
+    static bool_t         isValid(std::ctstring_t &filePath, std::tstring_t *filePathValid = NULL)
+                              xWARN_UNUSED_RV;
         ///< path validation
     static bool_t         isNameValid(std::ctstring_t &fileName,
                               std::tstring_t *fileNameValid = NULL) xWARN_UNUSED_RV;
