@@ -1097,8 +1097,6 @@ CxFile::textWrite(
     xTEST_NA(a_content);
     xTEST_DIFF(a_mode, omUnknown);
 
-    // TODO: CxFile::textWrite(() - if content.empty()
-
     CxFile file;
     file.create(a_filePath, a_mode, true);
 
@@ -1141,8 +1139,6 @@ CxFile::textWrite(
     xTEST_EQ(false, a_filePath.empty());
     xTEST_NA(a_content);
     xTEST_DIFF(a_mode, omUnknown);
-
-    // TODO: CxFile::textWrite(() - if content.empty()
 
     std::tstring_t content;
 
@@ -1229,10 +1225,10 @@ CxFile::textWrite(
     xTEST_NA(a_content);
     xTEST_DIFF(a_mode, omUnknown);
 
-    // TODO: CxFile::textWrite() - if a_content.empty()
-
     CxFile file;
     file.create(a_filePath, a_mode, true);
+
+    xCHECK_DO(a_content.empty(), return);
 
     typedef std::map_tstring_t content_t;
 
@@ -1302,8 +1298,6 @@ CxFile::binWrite(
 {
     xTEST_EQ(false, a_filePath.empty());
     xTEST_NA(a_content);
-
-    // TODO: CxFile::binWrite(() - if a_content.empty()
 
     CxFile file;
     file.create(a_filePath, omBinWrite, true);
