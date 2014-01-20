@@ -118,7 +118,7 @@ private:
 
     HWND            _wndHandle() xWARN_UNUSED_RV;
         ///< get console window handle
-    HMENU           _menuHandle(cbool_t &revert) xWARN_UNUSED_RV;
+    HMENU           _menuHandle(cbool_t &isRevert) xWARN_UNUSED_RV;
         ///< get console menu handle
 #endif
 
