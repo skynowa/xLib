@@ -85,10 +85,10 @@ CxSystemInfo::os()
     int_t iRv = ::uname(&info);
     xTEST_DIFF(- 1, iRv);
 
-    if      (CxString::compareNoCase(xT("Linux"), info.sysname)) {
+    if      (CxStringCI::compare(xT("Linux"), info.sysname)) {
         otRv = otLinux;
     }
-    else if (CxString::compareNoCase(xT("FreeBSD"), info.sysname)) {
+    else if (CxStringCI::compare(xT("FreeBSD"), info.sysname)) {
         otRv = otFreeBSD;
     }
     else {
@@ -100,7 +100,7 @@ CxSystemInfo::os()
     int_t iRv = ::uname(&info);
     xTEST_DIFF(- 1, iRv);
 
-    if (CxString::compareNoCase(xT("Darwin"), info.sysname)) {
+    if (CxStringCI::compare(xT("Darwin"), info.sysname)) {
         otRv = otMac;
     }
     else {
@@ -217,27 +217,27 @@ CxSystemInfo::osArch()
     // TODO: xTEST_DIFF(0,   strlen(info.machine));
 
     // 32-bit checks
-    if      (CxString::compareNoCase(xT("i386"), info.machine)) {
+    if      (CxStringCI::compare(xT("i386"), info.machine)) {
         oaRv = oa32bit;
     }
-    else if (CxString::compareNoCase(xT("i486"), info.machine)) {
+    else if (CxStringCI::compare(xT("i486"), info.machine)) {
         oaRv = oa32bit;
     }
-    else if (CxString::compareNoCase(xT("i586"), info.machine)) {
+    else if (CxStringCI::compare(xT("i586"), info.machine)) {
         oaRv = oa32bit;
     }
-    else if (CxString::compareNoCase(xT("i686"), info.machine)) {
+    else if (CxStringCI::compare(xT("i686"), info.machine)) {
         oaRv = oa32bit;
     }
 
     // 64-bit checks
-    else if (CxString::compareNoCase(xT("x86_64"), info.machine)) {
+    else if (CxStringCI::compare(xT("x86_64"), info.machine)) {
         oaRv = oa64bit;
     }
-    else if (CxString::compareNoCase(xT("ia64"), info.machine)) {
+    else if (CxStringCI::compare(xT("ia64"), info.machine)) {
         oaRv = oa64bit;
     }
-    else if (CxString::compareNoCase(xT("amd64"), info.machine)) {
+    else if (CxStringCI::compare(xT("amd64"), info.machine)) {
         oaRv = oa64bit;
     }
 

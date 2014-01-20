@@ -38,8 +38,8 @@ int_t xTMAIN(int_t a_argNum, tchar_t *a_args[])
         }
         else if (a_argNum == 2) {
             // usage
-            bool_t bRv = CxString::compareNoCase(xT("-h"),     args.at(1)) ||
-                         CxString::compareNoCase(xT("--help"), args.at(1));
+            bool_t bRv = CxStringCI::compare(xT("-h"),     args.at(1)) ||
+                         CxStringCI::compare(xT("--help"), args.at(1));
             if (!bRv) {
                 std::tcout << xT("\nxLib_test: unknown switches\n") << std::endl;
             } else {

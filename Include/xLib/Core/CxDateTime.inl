@@ -995,9 +995,9 @@ CxDateTime::monthNum(
 
     for (int_t i = 0; i < static_cast<int_t>( longMonths.size() ); ++ i) {
         if (a_isShortName) {
-            xCHECK_RET(CxString::compareNoCase(a_month, shortMonths[i]), i + 1);
+            xCHECK_RET(CxStringCI::compare(a_month, shortMonths[i]), i + 1);
         } else {
-            xCHECK_RET(CxString::compareNoCase(a_month, longMonths[i]),  i + 1);
+            xCHECK_RET(CxStringCI::compare(a_month, longMonths[i]),  i + 1);
         }
     }
 
@@ -1076,8 +1076,8 @@ CxDateTime::weekDayNum(
     }};
 
     for (int_t i = 1; i < static_cast<int_t>( longDays.size() ) + 1; ++ i) {
-        xCHECK_RET(!a_isShortName && CxString::compareNoCase(a_week_day, longDays[i - 1]),  i);
-        xCHECK_RET( a_isShortName && CxString::compareNoCase(a_week_day, shortDays[i - 1]), i);
+        xCHECK_RET(!a_isShortName && CxStringCI::compare(a_week_day, longDays[i - 1]),  i);
+        xCHECK_RET( a_isShortName && CxStringCI::compare(a_week_day, shortDays[i - 1]), i);
     }
 
     return - 1;

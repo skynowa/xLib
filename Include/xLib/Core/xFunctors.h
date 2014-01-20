@@ -67,7 +67,7 @@ struct CompareCI
     bool_t
     operator () (std::ctstring_t &a_value1, std::ctstring_t &a_value2) const
     {
-        return CxString::compareNoCase(a_value1, a_value2);
+        return CxStringCI::compare(a_value1, a_value2);
     }
 
 private:

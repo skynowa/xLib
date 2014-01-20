@@ -258,7 +258,7 @@ CxProcess::idByName(
     xTEST_DIFF(FALSE, blRv);
 
     xFOREVER {
-        bool_t bRv = CxString::compareNoCase(a_processName, processEntry.szExeFile);
+        bool_t bRv = CxStringCI::compare(a_processName, processEntry.szExeFile);
         xCHECK_DO(bRv, break);   // OK
 
         blRv = ::Process32Next(snapshot.get(), &processEntry);

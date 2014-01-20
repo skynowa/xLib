@@ -170,7 +170,7 @@ CxTest_CxEnvironment::unit(
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
             std::tstring_t sStr1 = CxEnvironment::expandStrings(sData[i][0]);
             std::tstring_t sStr2 = sData[i][1];
-            xTEST_EQ(true, CxString::compareNoCase(sStr1, sStr2));
+            xTEST_EQ(true, CxStringCI::compare(sStr1, sStr2));
         }
     }
 
