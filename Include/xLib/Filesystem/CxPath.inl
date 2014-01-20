@@ -424,6 +424,8 @@ CxPath::isValid(
     // check for size
     xCHECK_RET(a_filePath.size() > xPATH_MAX, false);
 
+    // TODO: CxPath::isValid() - more checks
+
     // name
     {
         std::ctstring_t fileName = CxPath(a_filePath).fileName();
