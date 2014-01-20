@@ -822,6 +822,37 @@ CxTest_CxString::unit(
     *
     *******************************************************************************/
 
+    xTEST_CASE("CxString::findNoCase", a_caseLoops)
+    {
+        const data3_size_t data[] = {
+            // not using position
+            { xT(""), xT(""), 0 },
+            { xT("xxx"), xT("XXX"), 0 },
+            { xT("111"), xT("111"), 0 },
+            { xT("eee"), xT("EeE"), 0 },
+            { xT("WWW"), xT("wwW"), 0 },
+            { xT("ccc"), xT("CCCz"), std::tstring_t::npos },
+            { xT(""), xT("222"), std::tstring_t::npos },
+            { xT("111"), xT(""), 0 },
+            { xT(""), xT("2"), std::tstring_t::npos },
+            { xT("1"), xT(""), 0 },
+            { xT("!!!!!"), xT("@@@@@@"), std::tstring_t::npos },
+            { xT("$$$$$"), xT("sdfgsdg"), std::tstring_t::npos },
+            { xT("&&&&&"), xT("&&&&&????"), std::tstring_t::npos },
+            { xT("_+#$^%^&*^&*("), xT("@#$%TY(J^HGYT"), std::tstring_t::npos },
+            { xT("dddd"), xT("d"), 0 },
+
+            // using position
+            { xT("111Dddd3333"), xT("dD"), 3 },
+            { xT("111Dddd3333"), xT("dDddddd"), std::tstring_t::npos }
+        };
+
+        for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
+            m_stRv = CxString::findNoCase(data[i].test1, data[i].test2);
+            xTEST_EQ(m_stRv, data[i].expect);
+        }
+    }
+
     xTEST_CASE("CxString::compareNoCase", a_caseLoops)
     {
         // must true
@@ -871,7 +902,6 @@ CxTest_CxString::unit(
         m_bRv = CxString::compareNoCase(xT("dddd"), xT("d"));
         xTEST_EQ(false, m_bRv);
     }
-
 
     /*******************************************************************************
     *    formating
