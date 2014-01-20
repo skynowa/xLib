@@ -257,7 +257,7 @@ CxSocket::recvAll(
     cint_t &a_flags
 )
 {
-    xUNUSED(a_flags);   // TODO: CxSocket::recvAll() - a_flags
+    xTEST_NA(a_flags);
 
     std::tstring_t sRv;
 
@@ -266,7 +266,7 @@ CxSocket::recvAll(
 
     xFOREVER {
         int_t   iRv  = - 1;
-        ulong_t ulArg = (ulong_t)false;
+        ulong_t ulArg = (ulong_t)a_flags;
 
     #if   xOS_ENV_WIN
         iRv = ::ioctlsocket(_socket, FIONREAD, &ulArg);
