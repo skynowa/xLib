@@ -113,7 +113,6 @@
 
 
 // Sync
-#include <xLib/Sync/Win/CxCompletionPort.h>
 #include <xLib/Sync/CxAtomicLongInt.h>
 #include <xLib/Sync/CxAutoIpcMutex.h>
 #include <xLib/Sync/CxAutoMutex.h>
