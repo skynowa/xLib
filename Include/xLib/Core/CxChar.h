@@ -56,7 +56,7 @@ private:
     tchar_t     _ch;
     std::locale _locale;
 
-    //xNO_COPY_ASSIGN(CxChar)
+    xNO_COPY_ASSIGN(CxChar)
 };
 
 xNAMESPACE_END(xlib)
