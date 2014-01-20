@@ -411,10 +411,12 @@ CxPath::removeExtIf(
 /* static */
 inline bool_t
 CxPath::isValid(
-    std::ctstring_t &a_filePath
+    std::ctstring_t &a_filePath,                    ///< file, directory path
+    std::tstring_t  *a_filePathValid /* = NULL */   ///< [out] normalized path
 )
 {
     xTEST_NA(a_filePath);
+    xTEST_NA(a_filePathValid);
 
     // is empty
     xCHECK_RET(a_filePath.empty(), false);
@@ -422,7 +424,13 @@ CxPath::isValid(
     // check for size
     xCHECK_RET(a_filePath.size() > xPATH_MAX, false);
 
-    // TODO: CxPath::isValid()
+    // name
+    {
+        std::ctstring_t fileName = CxPath(a_filePath).fileName();
+
+        bool_t bRv = isNameValid(fileName, a_filePathValid);
+        xCHECK_RET(bRv, false);
+    }
 
     return true;
 }
