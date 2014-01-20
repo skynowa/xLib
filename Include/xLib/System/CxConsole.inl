@@ -608,7 +608,7 @@ CxConsole::enableClose(
 #elif xOS_ENV_UNIX
     xUNUSED(a_flag);
 
-    // TODO: CxConsole::enableClose()
+    // TODO: CxConsole::enableClose() - Unix
     xNOT_IMPLEMENTED;
 #endif
 }
@@ -634,7 +634,7 @@ CxConsole::title() const
 
     sRv.assign(buff, titleSize);
 #elif xOS_ENV_UNIX
-    // TODO: sTitle
+    // TODO: CxConsole::title() - Unix
     xNOT_IMPLEMENTED;
 #endif
 
@@ -656,7 +656,7 @@ CxConsole::setTitle(
     BOOL blRv = ::SetConsoleTitle(a_title.c_str());
     xTEST_DIFF(FALSE, blRv);
 #elif xOS_ENV_UNIX
-    // TODO: vSetTitle
+    // TODO: CxConsole::setTitle() - Unix
     writeLine( CxString::format(xT("%c]0;%s%c"), xT('\033'), a_title.c_str(), xT('\007')) );
 #endif
 }
@@ -691,7 +691,7 @@ CxConsole::setFullScreen() const
 
     centerWindow();
 #elif xOS_ENV_UNIX
-    // TODO: setFullScreen
+    // TODO: CxConsole::setFullScreen() - Unix
     xNOT_IMPLEMENTED;
 #endif
 }
