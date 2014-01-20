@@ -136,7 +136,7 @@ CxDebugger::coreDumpsEnable(
 
 #if   xOS_ENV_WIN
     xUNUSED(a_flag);
-    isEnable = false;
+    isEnable = true;
     #pragma message("xLib: CxDebugger::coreDumpsEnable() - n/a")
 #elif xOS_ENV_UNIX
     #if   xHAVE_PR_SET_DUMPABLE
@@ -163,12 +163,12 @@ CxDebugger::coreDumpsEnable(
     #endif
 #elif xOS_ENV_MAC
     #if xHAVE_PT_DENY_ATTACH
-        xUNUSED(a_flag);
+        // TODO: CxDebugger::coreDumpsEnable() - MacOS (not tested)
 
-        // TODO: CxDebugger::coreDumpsEnable() - a_flag
+        cint_t isAttachable = a_flag ? PT_ATTACH : PT_DENY_ATTACH;
 
-        iRv = ::ptrace(PT_DENY_ATTACH, 0, 0, 0);
-        isEnable = isEnable && (iRv == 0);
+        iRv = ::ptrace(isAttachable, 0, 0, 0);
+        isEnable = (iRv == 0);
     #else
         xUNUSED(a_flag);
         isEnable = false;
