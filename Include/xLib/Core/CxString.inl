@@ -866,16 +866,39 @@ CxString::minimize(
 //-------------------------------------------------------------------------------------------------
 
 /**************************************************************************************************
-*   compare
+*   search, compare
 *
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
 /* static */
+inline std::size_t
+CxString::findNoCase(
+    std::ctstring_t &a_str,          ///< source string
+    std::ctstring_t &a_target,       ///< target string
+    std::csize_t    &a_pos /* = 0 */ ///< start position
+)
+{
+    xTEST_NA(a_str);
+    xTEST_NA(a_target);
+    xTEST_NA(a_pos);
+
+    xCHECK_RET(a_str.empty() && a_target.empty() && a_pos == 0, 0);
+
+    std::tstring_t::const_iterator cit;
+
+    cit = std::search(a_str.begin() + a_pos, a_str.end(), a_target.begin(), a_target.end(),
+        functors::CompareNoCase());
+    xCHECK_RET(cit != a_str.end(), cit - a_str.begin());
+
+    return std::tstring_t::npos;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
 inline bool_t
 CxString::compareNoCase(
-    std::ctstring_t &a_str1,
-    std::ctstring_t &a_str2
+    std::ctstring_t &a_str1,    ///< source string
+    std::ctstring_t &a_str2     ///< target string
 )
 {
     xTEST_NA(a_str1);
@@ -894,6 +917,7 @@ CxString::compareNoCase(
     return true;
 }
 //-------------------------------------------------------------------------------------------------
+
 
 /**************************************************************************************************
 *    formating

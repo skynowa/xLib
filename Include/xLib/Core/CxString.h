@@ -129,13 +129,17 @@ public:
         ///< minimize
 
     /*******************************************************************************
-    *   compare
+    *   search, compare
     *
     *******************************************************************************/
 
+    static std::size_t    findNoCase(std::ctstring_t &str, std::ctstring_t &target,
+                              std::csize_t &pos = 0) xWARN_UNUSED_RV;
+        ///< no case search
     static bool_t         compareNoCase(std::ctstring_t &str1, std::ctstring_t &str2)
                               xWARN_UNUSED_RV;
         ///< no case compare
+
 
     /*******************************************************************************
     *    formating
