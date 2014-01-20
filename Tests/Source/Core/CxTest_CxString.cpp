@@ -992,8 +992,8 @@ CxTest_CxString::unit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            m_stRv = CxStringCI::compare(data[i].test1, data[i].test2);
-            xTEST_EQ(m_stRv, data[i].expect);
+            m_bRv = CxStringCI::compare(data[i].test1, data[i].test2);
+            xTEST_EQ(m_bRv, data[i].expect);
         }
     }
 }
