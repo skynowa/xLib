@@ -63,9 +63,9 @@ public:
     static std::tstring_t oemToCharBuff(std::cstring_t &str) xWARN_UNUSED_RV;
         ///< convert oem to char
 
-    static std::tstring_t boolToStr(cbool_t &value) xWARN_UNUSED_RV;
+    static std::tstring_t castBool(cbool_t &value) xWARN_UNUSED_RV;
         ///< bool_t to std::tstring_t
-    static bool_t         strToBool(std::ctstring_t &str) xWARN_UNUSED_RV;
+    static bool_t         castBool(std::ctstring_t &str) xWARN_UNUSED_RV;
         ///< convert std::tstring_t to bool_t
 
     static std::tstring_t toLowerCase(std::ctstring_t &str) xWARN_UNUSED_RV;

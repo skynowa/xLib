@@ -54,7 +54,7 @@ CxTest_CxEnvironment::unit(
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
             bool_t bStr1 = CxEnvironment::isExists(sData[i][0]);
-            xTEST_EQ(CxString::strToBool(sData[i][1]), bStr1);
+            xTEST_EQ(CxString::castBool(sData[i][1]), bStr1);
         }
     }
 
@@ -85,7 +85,7 @@ CxTest_CxEnvironment::unit(
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
             bool_t bStr1 = CxEnvironment::isVarValid(sData[i][0]);
-            xTEST_EQ(CxString::strToBool(sData[i][1]), bStr1);
+            xTEST_EQ(CxString::castBool(sData[i][1]), bStr1);
         }
     }
 
@@ -114,7 +114,7 @@ CxTest_CxEnvironment::unit(
 
         for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
             bool_t bStr1 = CxEnvironment::isValueValid(sData[i][0]);
-            xTEST_EQ(CxString::strToBool(sData[i][1]), bStr1);
+            xTEST_EQ(CxString::castBool(sData[i][1]), bStr1);
         }
     }
 

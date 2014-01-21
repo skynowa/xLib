@@ -760,8 +760,8 @@ CxCgiCookies::dump() const
                 (*it)->domain().c_str(),
                 (*it)->path().c_str(),
                 (*it)->expires().c_str(),
-                CxString::boolToStr((*it)->secure()).c_str(),
-                CxString::boolToStr((*it)->httpOnly()).c_str()
+                CxString::castBool((*it)->secure()).c_str(),
+                CxString::castBool((*it)->httpOnly()).c_str()
         );
 
         sRv.append( xT("[Item]:\n") );

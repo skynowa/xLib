@@ -259,39 +259,39 @@ CxTest_CxString::unit(
         #endif
     }
 
-    xTEST_CASE("CxString::boolToStr", a_caseLoops)
+    xTEST_CASE("CxString::castBool", a_caseLoops)
     {
-        m_sRv = CxString::boolToStr(true);
+        m_sRv = CxString::castBool(true);
         xTEST_EQ(std::tstring_t(xT("true")), m_sRv);
 
-        m_sRv = CxString::boolToStr(false);
+        m_sRv = CxString::castBool(false);
         xTEST_EQ(std::tstring_t(xT("false")), m_sRv);
     }
 
-    xTEST_CASE("CxString::strToBool", a_caseLoops)
+    xTEST_CASE("CxString::castBool", a_caseLoops)
     {
-        m_bRv = CxString::strToBool(xT("true"));
+        m_bRv = CxString::castBool(xT("true"));
         xTEST_EQ(true, m_bRv);
 
-        m_bRv = CxString::strToBool(xT("trUe"));
+        m_bRv = CxString::castBool(xT("trUe"));
         xTEST_EQ(true, m_bRv);
 
-        m_bRv = CxString::strToBool(xT("true"));
+        m_bRv = CxString::castBool(xT("true"));
         xTEST_EQ(true, m_bRv);
 
-        m_bRv = CxString::strToBool(xT("false"));
+        m_bRv = CxString::castBool(xT("false"));
         xTEST_EQ(false, m_bRv);
 
-        m_bRv = CxString::strToBool(xT("FAlse"));
+        m_bRv = CxString::castBool(xT("FAlse"));
         xTEST_EQ(false, m_bRv);
 
-        m_bRv = CxString::strToBool(xT("false"));
+        m_bRv = CxString::castBool(xT("false"));
         xTEST_EQ(false, m_bRv);
 
-        m_bRv = CxString::strToBool(xT(" true "));
+        m_bRv = CxString::castBool(xT(" true "));
         xTEST_EQ(false, m_bRv);
 
-        m_bRv = CxString::strToBool(xT("qwertyuiop[]"));
+        m_bRv = CxString::castBool(xT("qwertyuiop[]"));
         xTEST_EQ(false, m_bRv);
     }
 
