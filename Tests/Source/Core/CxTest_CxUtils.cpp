@@ -143,28 +143,20 @@ CxTest_CxUtils::unit(
 
     xTEST_CASE("CxUtils::structZeroT", a_caseLoops)
     {
-        // TODO: Test - CxUtils::structZeroT
-        struct Data
-        {
-            int_t          m_iValue;
-            double         m_dValue;
-            std::tstring_t m_sValue;
+        struct tm data = {
+            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "aaa"
         };
 
-
-        cint_t          ciValue = 10;
-        cdouble_t       cdValue = 20.0;
-        std::ctstring_t csValue = xT("30");
-
-        Data data;
-        data.m_iValue = ciValue;
-        data.m_dValue = cdValue;
-        data.m_sValue = csValue;
-
         CxUtils::structZeroT(data);
-        xTEST_EQ(0,   data.m_iValue);
-        xTEST_EQ(0.0, data.m_dValue);
-        xTEST_EQ(size_t(0U),  data.m_sValue.size());
+        xTEST_EQ(data.tm_sec, 0);
+        xTEST_EQ(data.tm_min, 0);
+        xTEST_EQ(data.tm_hour, 0);
+        xTEST_EQ(data.tm_mday, 0);
+        xTEST_EQ(data.tm_mon, 0);
+        xTEST_EQ(data.tm_year, 0);
+        xTEST_EQ(data.tm_wday, 0);
+        xTEST_EQ(data.tm_yday, 0);
+        xTEST_EQ(data.tm_isdst, 0);
     }
 
     xTEST_CASE("CxUtils::bufferFreeT", a_caseLoops)
