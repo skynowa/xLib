@@ -199,7 +199,7 @@ CxTest_CxString::unit(
 
     }
 
-    xTEST_CASE("CxString::convertCodePage", a_caseLoops)
+    xTEST_CASE("CxString::castCodePage", a_caseLoops)
     {
         std::cstring_t csAnsiStr[] = {
             "gnhjfgyhj ghj...",
@@ -216,8 +216,8 @@ CxTest_CxString::unit(
                 std::string sAnsi;
                 std::string sUtf8;
 
-                sUtf8 = CxString::convertCodePage(csAnsiStr[i], CP_ACP,  CP_UTF8);
-                sAnsi = CxString::convertCodePage(sUtf8,        CP_UTF8, CP_ACP);
+                sUtf8 = CxString::castCodePage(csAnsiStr[i], CP_ACP,  CP_UTF8);
+                sAnsi = CxString::castCodePage(sUtf8,        CP_UTF8, CP_ACP);
                 xTEST_EQ(true, csAnsiStr[i] == sAnsi);
 
 
@@ -225,11 +225,11 @@ CxTest_CxString::unit(
                 std::string sKoiStr;
                 std::string sWinStr;
 
-                sKoiStr = CxString::convertCodePage(csAnsiStr[i], 1251,  20866);
-                sWinStr = CxString::convertCodePage(sKoiStr,      20866, 1251);
+                sKoiStr = CxString::castCodePage(csAnsiStr[i], 1251,  20866);
+                sWinStr = CxString::castCodePage(sKoiStr,      20866, 1251);
                 xTEST_EQ(true, csAnsiStr[i] == sWinStr);
             #elif xOS_ENV_UNIX
-                // TODO: TETST - CxString::convertCodePage()
+                // TODO: TETST - CxString::castCodePage()
                 // xNOT_IMPLEMENTED_RET(RET_VALUE);
             #endif
         }

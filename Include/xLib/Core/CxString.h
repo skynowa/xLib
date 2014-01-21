@@ -54,7 +54,7 @@ public:
                               xWARN_UNUSED_RV;
         ///< std::string in std::wstring
 
-    static std::string    convertCodePage(std::cstring_t &str, cuint_t &codePageSource,
+    static std::string    castCodePage(std::cstring_t &str, cuint_t &codePageSource,
                               cuint_t &codePageDest) xWARN_UNUSED_RV;
         ///< convert codepage
 
