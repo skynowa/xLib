@@ -30,6 +30,10 @@
     #include <sys/resource.h>
 #endif
 
+#if xHAVE_PT_DENY_ATTACH
+    #include <sys/ptrace.h>
+#endif
+
 
 xNAMESPACE_BEGIN(xlib)
 
