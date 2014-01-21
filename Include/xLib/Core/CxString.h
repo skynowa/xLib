@@ -58,9 +58,9 @@ public:
                               cuint_t &codePageDest) xWARN_UNUSED_RV;
         ///< convert codepage
 
-    static std::string    charToOemBuff(std::ctstring_t &str) xWARN_UNUSED_RV;
+    static std::string    castToOem(std::ctstring_t &str) xWARN_UNUSED_RV;
         ///< convert char to oem
-    static std::tstring_t oemToCharBuff(std::cstring_t &str) xWARN_UNUSED_RV;
+    static std::tstring_t castFromOem(std::cstring_t &str) xWARN_UNUSED_RV;
         ///< convert oem to char
 
     static std::tstring_t castBool(cbool_t &value) xWARN_UNUSED_RV;
