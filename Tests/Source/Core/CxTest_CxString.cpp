@@ -62,10 +62,10 @@ CxTest_CxString::unit(
         m_dRv = CxString::cast<double>(xT("5.3"));
         xTEST_EQ(5.3, m_dRv);
 
-        m_bRv = cast<bool_t>(xT("true"));
+        m_bRv = CxString::cast<bool_t>(xT("true"));
         xTEST_EQ(5.3, m_dRv);
 
-        m_bRv = cast<bool_t>(xT("false"));
+        m_bRv = CxString::cast<bool_t>(xT("false"));
         xTEST_EQ(5.3, m_dRv);
 
         m_uiRv = CxString::cast<size_t>( std::tstring_t() );
@@ -86,7 +86,7 @@ CxTest_CxString::unit(
 
     xTEST_CASE("CxString::cast (to string by base)", a_caseLoops)
     {
-        m_sRv = CxString::sIntToStr(1033L, 2);
+        m_sRv = CxString::cast(1033L, 2);
         xTEST_EQ(std::tstring_t(xT("10000001001")), m_sRv);
 
         m_sRv = CxString::cast(1033L, 8);
@@ -101,7 +101,7 @@ CxTest_CxString::unit(
 
     xTEST_CASE("CxString::cast (to string by base)", a_caseLoops)
     {
-        m_sRv = CxString::sIntToStr(1033UL, 2);
+        m_sRv = CxString::cast(1033UL, 2);
         xTEST_EQ(std::tstring_t(xT("10000001001")), m_sRv);
 
         m_sRv = CxString::cast(1033UL, 8);
@@ -116,8 +116,8 @@ CxTest_CxString::unit(
 
     xTEST_CASE("CxString::cast (to string by base)", a_caseLoops)
     {
-        m_sRv = CxString::sIntToStr(1033LL, 2);
-        xTEST_EQ(xT("10000001001") == m_sRv);
+        m_sRv = CxString::cast(1033LL, 2);
+        xTEST_EQ(std::tstring_t(xT("10000001001")), m_sRv);
 
         m_sRv = CxString::cast(1033LL, 8);
         xTEST_EQ(std::tstring_t(xT("2011")), m_sRv);
@@ -131,7 +131,7 @@ CxTest_CxString::unit(
 
     xTEST_CASE("CxString::cast (to string by base)", a_caseLoops)
     {
-        m_sRv = CxString::sIntToStr(1033ULL, 2);
+        m_sRv = CxString::cast(1033ULL, 2);
         xTEST_EQ(std::tstring_t(xT("10000001001")), m_sRv);
 
         m_sRv = CxString::cast(1033ULL, 8);

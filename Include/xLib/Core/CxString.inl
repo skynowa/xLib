@@ -199,7 +199,7 @@ CxString::strToWStr(
     xUNUSED(a_str);
     xUNUSED(a_codePage);
 
-    // TODO: strToWStr
+    // TODO: CxString::strToWStr() - Unix
     xNOT_IMPLEMENTED;
 #endif
 
