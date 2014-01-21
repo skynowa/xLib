@@ -7,7 +7,7 @@
 #include <Test/Core/CxTest_CxAutoReset.h>
 
 
-//---------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
 CxTest_CxAutoReset::unit(
@@ -16,7 +16,6 @@ CxTest_CxAutoReset::unit(
 {
     xTEST_CASE("CxAutoReset::CxAutoReset", a_caseLoops)
     {
-    #if xTODO
         // TEST: CxTest_CxAutoReset
         bool data[] = {true, false, true};
 
@@ -41,7 +40,6 @@ CxTest_CxAutoReset::unit(
 
             xTEST_EQ(it, true);
         }
-    #endif
     }
 }
-//---------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
