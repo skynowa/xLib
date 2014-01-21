@@ -121,20 +121,6 @@ CxTest_CxConsole::unit(
         #endif
     }
 
-    xTEST_CASE("CxConsole::title", a_caseLoops)
-    {
-        #if xOS_ENV_WIN && xTEST_IGNORE
-            std::tstring_t title = xT("Title1");
-
-            CxConsole console;
-
-            console.setTitle(title);
-
-            m_sRv = console.title();
-            xTEST_EQ(m_sRv, title);
-        #endif
-    }
-
     xTEST_CASE("CxConsole::setTitle", a_caseLoops)
     {
         #if xTEST_IGNORE
@@ -151,6 +137,20 @@ CxTest_CxConsole::unit(
             #endif
         #endif
     }
+
+#if xOS_ENV_WIN && xTEST_IGNORE
+    xTEST_CASE("CxConsole::title", a_caseLoops)
+    {
+        std::tstring_t title = xT("Title1");
+
+        CxConsole console;
+
+        console.setTitle(title);
+
+        m_sRv = console.title();
+        xTEST_EQ(m_sRv, title);
+    }
+#endif
 
 #if xOS_ENV_WIN && xTEST_IGNORE
     xTEST_CASE("CxConsole::centerWindow", a_caseLoops)
