@@ -9,7 +9,7 @@
 #include <xLib/Core/xCore.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Patterns/CxObserver.h>
-//---------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 class CxTest_CxObserver :
     public CxTest
     ///< tests for CxObserver
@@ -20,4 +20,4 @@ public:
     virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
         ///< unit test
 };
-//---------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
