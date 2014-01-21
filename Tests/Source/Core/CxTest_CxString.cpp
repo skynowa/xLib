@@ -164,7 +164,7 @@ CxTest_CxString::unit(
         // TODO: tests for CxString::castA, CxString::castW
     }
 
-    xTEST_CASE("CxString::strToWStr, CxString::wstrToStr", a_caseLoops)
+    xTEST_CASE("CxString::castW, CxString::castA", a_caseLoops)
     {
         std::cstring_t csAnsiStr[] = {
             "gnhjfgyhj ghj...",
@@ -173,8 +173,8 @@ CxTest_CxString::unit(
             "!@#$% ^&*()_+|* /{}:@' \"?><",
             "0123456789",
             "0123456789",
-            // TEST: CxString::strToWStr() - "строка",
-            // TEST: CxString::strToWStr() - "_你_我_他_",
+            // TEST: CxString::castW() - "строка",
+            // TEST: CxString::castW() - "_你_我_他_",
             "z",
             " ",
             ""
@@ -183,18 +183,18 @@ CxTest_CxString::unit(
         for (size_t i = 0; i < xARRAY_SIZE(csAnsiStr) - 1; i ++) {
             std::cstring_t asTemplate = csAnsiStr[i];
 
-            std::wstring wsUnicode = CxString::strToWStr(asTemplate);
-            std::string  asAnsi    = CxString::wstrToStr(wsUnicode);
+            std::wstring wsUnicode = CxString::castW(asTemplate);
+            std::string  asAnsi    = CxString::castA(wsUnicode);
             xTEST_EQ(asTemplate, asAnsi);
         }
     }
 
-    xTEST_CASE("CxString::strToWStr", a_caseLoops)
+    xTEST_CASE("CxString::castW", a_caseLoops)
     {
 
     }
 
-    xTEST_CASE("CxString::wstrToStr", a_caseLoops)
+    xTEST_CASE("CxString::castA", a_caseLoops)
     {
 
     }

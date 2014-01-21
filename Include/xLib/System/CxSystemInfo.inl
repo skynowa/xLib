@@ -399,7 +399,7 @@ CxSystemInfo::loginUserName() const
             sRv = userInfo->wkui1_username;
         #else
             userInfo->wkui1_username;
-            sRv = CxString::wstrToStr(userInfo->wkui1_username, CP_UTF8);
+            sRv = CxString::castA(userInfo->wkui1_username, CP_UTF8);
         #endif
 
             if (userInfo != NULL) {

@@ -229,10 +229,10 @@
 // TODO: xDefines - converters
 #if xUNICODE
     #define xS2TS(s) \
-        ( CxString::strToWStr(s) )
+        ( CxString::castW(s) )
         ///< convert std::string to std::wstring
     #define xTS2S(ts) \
-        ( CxString::wstrToStr(ts) )
+        ( CxString::castA(ts) )
         ///< convert std::wstring to std::string
 #else
     #define xS2TS(s) \

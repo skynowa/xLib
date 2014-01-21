@@ -316,7 +316,7 @@ CxProcessInfo::commandLine(
     #if xUNICODE
         sRv = wsRv;
     #else
-        sRv = CxString::wstrToStr(wsRv, CP_ACP);
+        sRv = CxString::castA(wsRv, CP_ACP);
     #endif
 
         (void_t)::free(commandLineContents); commandLineContents = NULL;
