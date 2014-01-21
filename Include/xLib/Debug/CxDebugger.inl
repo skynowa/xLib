@@ -74,13 +74,13 @@ CxDebugger::isActive() const
 #if   xOS_ENV_WIN
     // local debugger
     BOOL blRv = ::IsDebuggerPresent();
-    xCHECK_RET(FALSE != blRv, true);
+    xCHECK_RET(blRv != FALSE, true);
 
     // remote debugger
     BOOL isRemoteDebuggerPresent = FALSE;
 
     blRv = ::CheckRemoteDebuggerPresent(::GetCurrentProcess(), &isRemoteDebuggerPresent);
-    xCHECK_RET(FALSE == blRv || FALSE == isRemoteDebuggerPresent, false);
+    xCHECK_RET(blRv == FALSE || isRemoteDebuggerPresent == FALSE, false);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         // if ppid != sid, some process spawned our app, probably a debugger
@@ -102,10 +102,10 @@ CxDebugger::isActive() const
         infoSize = sizeof(info);
 
         int_t iRv = ::sysctl(mib, xARRAY_SIZE(mib), &info, &infoSize, NULL, 0);
-        xCHECK_RET(- 1 == iRv, false);
+        xCHECK_RET(iRv == - 1, false);
 
         // we're being debugged if the P_TRACED flag is set.
-        xCHECK_RET(0 == (info.ki_flag & P_TRACED), false);
+        xCHECK_RET((info.ki_flag & P_TRACED) == 0, false);
     #endif
 #elif xOS_ENV_MAC
     xNOT_IMPLEMENTED
@@ -249,7 +249,7 @@ CxDebugger::_msgboxPlain(
     CxMsgBox::ExModalResult mrRv;
 
 #if xDEBUG_USE_PROMPT_DIALOG || 1
-    mrRv = CxMsgBox().show(a_report.toString(), "", CxMsgBox::tpAbortRetryIgnore);
+    mrRv = CxMsgBox().show(a_report.toString(), xT(""), CxMsgBox::tpAbortRetryIgnore);
 #else
     mrRv = CxMsgBox::mrIgnore;
 #endif
