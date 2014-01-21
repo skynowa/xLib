@@ -19,26 +19,26 @@ CxTest_CxAutoReset::unit(
         // TEST: CxTest_CxAutoReset
         bool data[] = {true, false, true};
 
-        for (auto &it : data) {
-            const bool origin = it;
+        for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
+            const bool origin = data[i];
 
             {
-                CxAutoReset<bool> reseter(&it, false);
-                xTEST_EQ(it, origin);
+                CxAutoReset<bool> reseter(&data[i], false);
+                xTEST_EQ(data[i], origin);
             }
 
-            xTEST_EQ(it, false);
+            xTEST_EQ(data[i], false);
         }
 
-        for (auto &it : data) {
-            const bool origin = it;
+        for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
+            const bool origin = data[i];
 
             {
-                CxAutoReset<bool> reseter(&it, true);
-                xTEST_EQ(it, origin);
+                CxAutoReset<bool> reseter(&data[i], true);
+                xTEST_EQ(data[i], origin);
             }
 
-            xTEST_EQ(it, true);
+            xTEST_EQ(data[i], true);
         }
     }
 }
