@@ -24,7 +24,8 @@ public:
     virtual  ~CxCom();
         ///< destructor
 
-xNO_COPY_ASSIGN(CxCom)
+private:
+    xNO_COPY_ASSIGN(CxCom)
 };
 
 xNAMESPACE_END(xlib)
