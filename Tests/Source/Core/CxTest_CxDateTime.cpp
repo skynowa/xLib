@@ -7,7 +7,7 @@
 #include <Test/Core/CxTest_CxDateTime.h>
 
 
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
 CxTest_CxDateTime::unit(
@@ -294,7 +294,6 @@ CxTest_CxDateTime::unit(
             };
 
             for (size_t i = 0; i < xARRAY_SIZE(valid); ++ i) {
-            #if xTODO
                 int_t year   = valid[i][0];
                 int_t month  = valid[i][1];
                 int_t day    = valid[i][2];
@@ -303,9 +302,8 @@ CxTest_CxDateTime::unit(
                 int_t second = valid[i][5];
                 int_t msec   = valid[i][6];
 
-                m_bRv = CxDateTime::isValid(year, month, day, hour, minute, second, msec);
+                m_bRv = CxDateTime::CxValidator::datetime(year, month, day, hour, minute, second, msec);
                 xTEST_EQ(true, m_bRv);
-            #endif
             }
         }
 
@@ -323,7 +321,6 @@ CxTest_CxDateTime::unit(
             };
 
             for (size_t i = 0; i < xARRAY_SIZE(nonValid); ++ i) {
-            #if xTODO
                 int_t year   = nonValid[i][0];
                 int_t month  = nonValid[i][1];
                 int_t day    = nonValid[i][2];
@@ -332,9 +329,8 @@ CxTest_CxDateTime::unit(
                 int_t second = nonValid[i][5];
                 int_t msec   = nonValid[i][6];
 
-                m_bRv = CxDateTime::isValid(year, month, day, hour, minute, second, msec);
+                m_bRv = CxDateTime::CxValidator::datetime(year, month, day, hour, minute, second, msec);
                 xTEST_EQ(true, m_bRv);
-            #endif
             }
         }
     }
@@ -401,30 +397,26 @@ CxTest_CxDateTime::unit(
     {
         // valid
         {
-        #if xTODO
             cushort_t valid[] = {
-                // TEST: CxDateTime::isLeapYear()
+                1812, 1828, 1904
             };
 
             for (size_t i = 0; i < xARRAY_SIZE(valid); ++ i) {
                 m_bRv = CxDateTime::isLeapYear(valid[i]);
                 xTEST_EQ(true, m_bRv);
             }
-        #endif
         }
 
         // non valid
         {
-        #if xTODO
             cushort_t nonValid[] = {
-                // TEST: CxDateTime::isLeapYear()
+                1813, 1829, 1905
             };
 
             for (size_t i = 0; i < xARRAY_SIZE(nonValid); ++ i) {
                 m_bRv = CxDateTime::isLeapYear(nonValid[i]);
                 xTEST_EQ(true, m_bRv);
             }
-        #endif
         }
     }
 
@@ -434,7 +426,7 @@ CxTest_CxDateTime::unit(
         const FILETIME time = {100, 200};
 
         m_ullRv = CxDateTime::filetimeToInt64(time);
-        // TEST: xTEST_EQ( , m_ullRv);
+        xTEST_EQ( , m_ullRv);
     #endif
     }
 
@@ -469,7 +461,6 @@ CxTest_CxDateTime::unit(
     {
         // TEST: CxDateTime::zodiacSign
 
-    #if xTODO
         /*
         -----------------------------------------------------
         |  Знак     |  Символ  |  Западная астрология       |
@@ -500,7 +491,6 @@ CxTest_CxDateTime::unit(
             std::tstring_t str2 = data[i][2];
             xTEST_EQ(str1, str2);
         }
-    #endif
     }
 
     xTEST_CASE("CxDateTime::monthStr", a_caseLoops)
@@ -660,4 +650,4 @@ CxTest_CxDateTime::unit(
         }
     }
 }
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
