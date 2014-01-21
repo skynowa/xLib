@@ -318,7 +318,7 @@ CxString::castCodePage(
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline std::string
-CxString::charToOemBuff(
+CxString::castToOem(
     std::ctstring_t &a_str
 )
 {
@@ -334,7 +334,7 @@ CxString::charToOemBuff(
 #elif xOS_ENV_UNIX
     xUNUSED(a_str);
 
-    // TODO: CxString::charToOemBuff()
+    // TODO: CxString::castToOem()
     xNOT_IMPLEMENTED;
 #endif
 
@@ -343,7 +343,7 @@ CxString::charToOemBuff(
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline std::tstring_t
-CxString::oemToCharBuff(
+CxString::castFromOem(
     std::cstring_t &a_str
 )
 {
@@ -359,7 +359,7 @@ CxString::oemToCharBuff(
 #elif xOS_ENV_UNIX
     xUNUSED(a_str);
 
-    // TODO: CxString::oemToCharBuff()
+    // TODO: CxString::castFromOem()
     xNOT_IMPLEMENTED;
 #endif
 

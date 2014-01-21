@@ -235,27 +235,27 @@ CxTest_CxString::unit(
         }
     }
 
-    xTEST_CASE("CxString::charToOemBuff", a_caseLoops)
+    xTEST_CASE("CxString::castToOem", a_caseLoops)
     {
         std::string sRv;
 
         #if   xOS_ENV_WIN
-            sRv = CxString::charToOemBuff(xT("Boss, hello? "));
+            sRv = CxString::castToOem(xT("Boss, hello? "));
             xTEST_EQ(true, std::string("Boss, hello? ") == sRv);
         #elif xOS_ENV_UNIX
-            // TEST: CxString::charToOemBuff()
+            // TEST: CxString::castToOem()
         #endif
     }
 
-    xTEST_CASE("CxString::oemToCharBuff", a_caseLoops)
+    xTEST_CASE("CxString::castFromOem", a_caseLoops)
     {
         std::tstring_t sRv;
 
         #if   xOS_ENV_WIN
-            sRv = CxString::oemToCharBuff(("1111, hdbhjgjk hkl, jl.,kh."));
+            sRv = CxString::castFromOem(("1111, hdbhjgjk hkl, jl.,kh."));
             xTEST_EQ(true, std::tstring_t(xT("1111, hdbhjgjk hkl, jl.,kh.")) == sRv);
         #elif xOS_ENV_UNIX
-            // TODO: oemToCharBuff
+            // TODO: castFromOem
         #endif
     }
 
