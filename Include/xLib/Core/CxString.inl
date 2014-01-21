@@ -241,7 +241,7 @@ CxString::castW(
 inline std::string
 CxString::castA(
     std::cwstring_t   &a_str,
-    const std::locale &a_locale /* = std::locale() */
+    const std::locale &a_locale
 )
 {
     xTEST_NA(a_str);
@@ -278,7 +278,7 @@ CxString::castA(
 inline std::wstring
 CxString::castW(
     std::cstring_t    &a_str,
-    const std::locale &a_locale /* = std::locale() */
+    const std::locale &a_locale
 )
 {
     xTEST_NA(a_str);

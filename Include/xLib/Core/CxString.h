@@ -56,11 +56,11 @@ public:
         ///< std::string in std::wstring
 
     static
-    std::string    castA(std::cwstring_t &str, const std::locale &locale = std::locale())
+    std::string    castA(std::cwstring_t &str, const std::locale &locale)
                        xWARN_UNUSED_RV;
         ///< std::wstring in std::string
     static
-    std::wstring   castW(std::cstring_t  &str, const std::locale &locale = std::locale())
+    std::wstring   castW(std::cstring_t  &str, const std::locale &locale)
                        xWARN_UNUSED_RV;
         ///< std::string in std::wstring
 
