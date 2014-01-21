@@ -61,15 +61,6 @@ CxTest_CxString::unit(
 
         m_dRv = CxString::cast<double>(xT("5.3"));
         xTEST_EQ(5.3, m_dRv);
-
-        m_bRv = CxString::cast<bool_t>(xT("true"));
-        xTEST_EQ(5.3, m_dRv);
-
-        m_bRv = CxString::cast<bool_t>(xT("false"));
-        xTEST_EQ(5.3, m_dRv);
-
-        m_uiRv = CxString::cast<size_t>( std::tstring_t() );
-        xTEST_EQ(0U, m_uiRv);
     }
 
     xTEST_CASE("CxString::cast (to string by base)", a_caseLoops)
