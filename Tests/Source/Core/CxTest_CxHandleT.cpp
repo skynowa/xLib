@@ -9,7 +9,7 @@
 #include <xLib/Sync/CxProcess.h>
 
 
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
 CxTest_CxHandleT::unit(
@@ -146,17 +146,15 @@ CxTest_CxHandleT::unit(
         // TEST: CxHandleT::setInfo
 
     #if   xOS_ENV_WIN
-        #if xTODO
-            CxHandle handle;
+        CxHandle handle;
 
-            handle = CxProcess::currentHandle();
-            xTEST_EQ(true, handle.isValid());
+        handle = CxProcess::currentHandle();
+        xTEST_EQ(true, handle.isValid());
 
-            handle.setInfo(HANDLE_FLAG_INHERIT, 0);
+        handle.setInfo(HANDLE_FLAG_INHERIT, 0);
 
-            m_ulRv = handle.info();
-            xTEST_EQ((ulong_t)HANDLE_FLAG_INHERIT, m_ulRv);
-        #endif
+        m_ulRv = handle.info();
+        xTEST_EQ((ulong_t)HANDLE_FLAG_INHERIT, m_ulRv);
     #elif xOS_ENV_UNIX
 
     #endif
@@ -167,21 +165,18 @@ CxTest_CxHandleT::unit(
         // TEST: CxHandleT::info
 
     #if   xOS_ENV_WIN
-        #if xTODO
-            CxHandle handle;
+        CxHandle handle;
 
-            handle = CxProcess::currentHandle();
-            xTEST_EQ(true, handle.isValid());
+        handle = CxProcess::currentHandle();
+        xTEST_EQ(true, handle.isValid());
 
-            handle.setInfo(HANDLE_FLAG_PROTECT_FROM_CLOSE, 0);
+        handle.setInfo(HANDLE_FLAG_PROTECT_FROM_CLOSE, 0);
 
-            m_ulRv = handle.info();
-            xTEST_EQ((ulong_t)HANDLE_FLAG_PROTECT_FROM_CLOSE, m_ulRv);
-        #endif
+        m_ulRv = handle.info();
+        xTEST_EQ((ulong_t)HANDLE_FLAG_PROTECT_FROM_CLOSE, m_ulRv);
     #elif xOS_ENV_UNIX
 
     #endif
     }
 }
-//------------------------------------------------------------------------------
-
+//-------------------------------------------------------------------------------------------------
