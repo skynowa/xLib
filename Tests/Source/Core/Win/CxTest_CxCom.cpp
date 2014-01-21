@@ -24,7 +24,7 @@ CxTest_CxCom::unit(
             COINIT_SPEED_OVER_MEMORY
         };
 
-        for (size_t i = 0; i < xARRAY_SIZE(model) - 1; ++ i) {
+        for (size_t i = 0; i < xARRAY_SIZE(model); ++ i) {
             CxCom com1(model[i]);
             CxCom com2(model[i]);
             CxCom com3(model[i]);
