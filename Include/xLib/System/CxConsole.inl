@@ -576,34 +576,6 @@ CxConsole::clear() const
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
-CxConsole::title() const
-{
-#if xOS_ENV_WIN
-    xTEST_NA(_wnd);
-    xTEST_EQ(true, _stdIn.isValid());
-    xTEST_EQ(true, _stdOut.isValid());
-#endif
-
-    std::tstring_t sRv;
-
-#if   xOS_ENV_WIN
-    const DWORD buffSize           = 1024UL;
-    tchar_t     buff[buffSize + 1] = {0};
-    DWORD       titleSize          = 0UL;
-
-    titleSize = ::GetConsoleTitle(buff, buffSize);
-    xTEST_LESS(0UL, titleSize);
-
-    sRv.assign(buff, titleSize);
-#elif xOS_ENV_UNIX
-    // TODO: CxConsole::title() - Unix
-    xNOT_IMPLEMENTED;
-#endif
-
-    return sRv;
-}
-//-------------------------------------------------------------------------------------------------
 inline void_t
 CxConsole::setTitle(
     std::ctstring_t &a_title
@@ -622,6 +594,31 @@ CxConsole::setTitle(
     writeLine( CxString::format(xT("%c]0;%s%c"), xT('\033'), a_title.c_str(), xT('\007')) );
 #endif
 }
+//-------------------------------------------------------------------------------------------------
+#if xOS_ENV_WIN
+
+inline std::tstring_t
+CxConsole::title() const
+{
+    xTEST_NA(_wnd);
+    xTEST_EQ(true, _stdIn.isValid());
+    xTEST_EQ(true, _stdOut.isValid());
+
+    std::tstring_t sRv;
+
+    const DWORD buffSize           = 1024UL;
+    tchar_t     buff[buffSize + 1] = {0};
+    DWORD       titleSize          = 0UL;
+
+    titleSize = ::GetConsoleTitle(buff, buffSize);
+    xTEST_LESS(0UL, titleSize);
+
+    sRv.assign(buff, titleSize);
+
+    return sRv;
+}
+
+#endif
 //-------------------------------------------------------------------------------------------------
 #if xOS_ENV_WIN
 

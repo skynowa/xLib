@@ -97,11 +97,11 @@ public:
     void_t          clear() const;
         ///< clear
 
-    std::tstring_t  title() const xWARN_UNUSED_RV;
-        ///< get title string
     void_t          setTitle(std::ctstring_t &title) const;
         ///< set title string
 #if xOS_ENV_WIN
+    std::tstring_t  title() const xWARN_UNUSED_RV;
+        ///< get title string
     void_t          centerWindow() const;
         ///< align to center
     void_t          setFullScreen() const;
