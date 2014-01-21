@@ -9,7 +9,7 @@
 #include <xLib/Core/CxString.h>
 
 
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
 CxTest_CxEnvironment::unit(
@@ -147,8 +147,6 @@ CxTest_CxEnvironment::unit(
     {
         CxEnvironment::values(&m_vsRv);
         xTEST_EQ(false, m_vsRv.empty());
-
-        ////CxString::vStdVectorPrintT(m_vsRv);
     }
 
     xTEST_CASE("CxEnvironment::expandStrings", a_caseLoops)
@@ -188,4 +186,4 @@ CxTest_CxEnvironment::unit(
         }
     }
 }
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
