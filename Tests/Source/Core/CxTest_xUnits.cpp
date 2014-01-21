@@ -7,14 +7,14 @@
 #include <Test/Core/CxTest_xUnits.h>
 
 
-//---------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
 CxTest_xUnits::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("xUnits::bytes", a_caseLoops)
+    xTEST_CASE("xUnits/Bytes", a_caseLoops)
     {
         culonglong_t BYTE = 1ULL;
         culonglong_t KB   = 1024ULL;
@@ -34,5 +34,10 @@ CxTest_xUnits::unit(
             xTEST_EQ(xEB(1 * i),    EB * i);
         }
     }
+
+    xTEST_CASE("xUnits/Datetime", a_caseLoops)
+    {
+        // TEST: xUnits/Datetime
+    }
 }
-//---------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
