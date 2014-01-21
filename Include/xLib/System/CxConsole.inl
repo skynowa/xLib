@@ -619,7 +619,6 @@ CxConsole::setTitle(
     BOOL blRv = ::SetConsoleTitle(a_title.c_str());
     xTEST_DIFF(FALSE, blRv);
 #elif xOS_ENV_UNIX
-    // TODO: CxConsole::setTitle() - Unix
     writeLine( CxString::format(xT("%c]0;%s%c"), xT('\033'), a_title.c_str(), xT('\007')) );
 #endif
 }
