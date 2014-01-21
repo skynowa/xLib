@@ -221,9 +221,9 @@ CxLocalStorage::keyReadBool(
 
     std::tstring_t sStr;
 
-    sStr = keyReadString(a_key, CxString::boolToStr(a_defaultValue));
+    sStr = keyReadString(a_key, CxString::castBool(a_defaultValue));
 
-    bool_t bRv = CxString::strToBool(sStr);
+    bool_t bRv = CxString::castBool(sStr);
 
     return bRv;
 }
@@ -239,7 +239,7 @@ CxLocalStorage::keyWriteBool(
 
     std::tstring_t sValue;
 
-    sValue = CxString::boolToStr(a_value);
+    sValue = CxString::castBool(a_value);
 
     keyWriteString(a_key, sValue);
 }

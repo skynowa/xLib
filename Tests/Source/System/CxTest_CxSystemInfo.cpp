@@ -84,7 +84,7 @@ CxTest_CxSystemInfo::unit(
     {
         m_bRv = CxSystemInfo().isUserAdmin();
         #if xTEST_IGNORE
-            xTRACEV(xT("\tCxSystemInfo::isUserAdmin(): %s"), CxString::boolToStr(m_bRv).c_str());
+            xTRACEV(xT("\tCxSystemInfo::isUserAdmin(): %s"), CxString::castBool(m_bRv).c_str());
         #endif
     }
 

@@ -124,7 +124,7 @@ CxTest_CxDir::unit(
 
         for (size_t i = 0; i < xARRAY_SIZE(sTestData); ++ i) {
             bool_t bRes1 = CxDir(sTestData[i][0]).isRoot();
-            bool_t bRes2 = CxString::strToBool(sTestData[i][1]);
+            bool_t bRes2 = CxString::castBool(sTestData[i][1]);
             xTEST_EQ(bRes1, bRes2);
         }
     }

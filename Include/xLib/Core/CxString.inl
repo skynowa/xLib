@@ -368,7 +368,7 @@ CxString::oemToCharBuff(
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline std::tstring_t
-CxString::boolToStr(
+CxString::castBool(
     cbool_t &a_value
 )
 {
@@ -379,7 +379,7 @@ CxString::boolToStr(
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline bool_t
-CxString::strToBool(
+CxString::castBool(
     std::ctstring_t &a_str
 )
 {

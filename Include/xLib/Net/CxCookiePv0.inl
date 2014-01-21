@@ -203,8 +203,8 @@ CxCookiePv0::dump() const
             domain().c_str(),
             path().c_str(),
             expires().c_str(),
-            CxString::boolToStr(secure()).c_str(),
-            CxString::boolToStr(httpOnly()).c_str()
+            CxString::castBool(secure()).c_str(),
+            CxString::castBool(httpOnly()).c_str()
     );
 
     return sRv;
