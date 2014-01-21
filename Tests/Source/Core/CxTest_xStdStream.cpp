@@ -7,7 +7,7 @@
 #include <Test/Core/CxTest_xStdStream.h>
 
 
-//---------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
 CxTest_xStdStream::unit(
@@ -43,7 +43,6 @@ CxTest_xStdStream::unit(
         m_vsRv.push_back(xT("Value4"));
 
         std::tostringstream_t osOut;   osOut << m_vsRv;
-        //xTRACEV(xT("\toperator << for std::vector: %s"), osOut.str().c_str());
         xTEST_EQ(false, osOut.str().empty());
 
         m_vsRv.clear();
@@ -60,7 +59,6 @@ CxTest_xStdStream::unit(
         m_msRv.insert( std::pair<std::tstring_t, std::tstring_t>(xT("Key4"), xT("Value4")) );
 
         std::tostringstream_t osOut;   osOut << m_msRv;
-        //xTRACEV(xT("\toperator << for std::map: %s"), osOut.str().c_str());
         xTEST_EQ(false, osOut.str().empty());
 
         m_msRv.clear();
@@ -77,10 +75,9 @@ CxTest_xStdStream::unit(
         m_mmsRv.insert( std::pair<std::tstring_t, std::tstring_t>(xT("Key1"), xT("Value1")) );
 
         std::tostringstream_t osOut;   osOut << m_mmsRv;
-        //xTRACEV(xT("\toperator << for std::multimap: %s"), osOut.str().c_str());
         xTEST_EQ(false, osOut.str().empty());
 
         m_mmsRv.clear();
     }
 }
-//---------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
