@@ -781,9 +781,8 @@ CxDateTime::daysInMonth(
 {
     xCHECK_RET(2 == a_month && isLeapYear(a_year), 29);
 
-    // TODO: CxDateTime::daysInMonth()
-    const CxArray<int_t, 13> monthsDays = {{
-        /*31*/0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
+    const CxArray<int_t, 12> monthsDays = {{
+        31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
     }};
 
     int_t iRv = 0;
