@@ -20,11 +20,8 @@ CxFunctorT<ClassT, ReturnT, ParamT>::CxFunctorT(
     _object(a_object),
     _method(a_method)
 {
-    // TODO: CxFunctorT - debug code
-#if xTODO
-    xTEST_DIFF(NULL, a_object);
-    xTEST_DIFF(NULL, a_method);
-#endif
+    xTEST_EQ(a_object != NULL, true);
+    xTEST_EQ(a_method != NULL, true);
 }
 //-------------------------------------------------------------------------------------------------
 template <class ClassT, class ReturnT, class ParamT>
@@ -33,6 +30,8 @@ CxFunctorT<ClassT, ReturnT, ParamT>::operator () (
     const ParamT &a_param
 ) const
 {
+    xTEST_NA(a_param);
+
     return (_object->*_method)(a_param);
 }
 //-------------------------------------------------------------------------------------------------
@@ -42,6 +41,8 @@ CxFunctorT<ClassT, ReturnT, ParamT>::execute(
     const ParamT &a_param
 ) const
 {
+    xTEST_NA(a_param);
+
     return operator()(a_param);
 }
 //-------------------------------------------------------------------------------------------------
