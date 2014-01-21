@@ -330,7 +330,7 @@ CxTest_CxDateTime::unit(
                 int_t msec   = nonValid[i][6];
 
                 m_bRv = CxDateTime::CxValidator::datetime(year, month, day, hour, minute, second, msec);
-                xTEST_EQ(true, m_bRv);
+                xTEST_EQ(m_bRv, false);
             }
         }
     }
