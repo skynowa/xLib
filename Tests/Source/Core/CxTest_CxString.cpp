@@ -183,8 +183,8 @@ CxTest_CxString::unit(
         for (size_t i = 0; i < xARRAY_SIZE(csAnsiStr) - 1; i ++) {
             std::cstring_t asTemplate = csAnsiStr[i];
 
-            std::wstring wsUnicode = CxString::castW(asTemplate);
-            std::string  asAnsi    = CxString::castA(wsUnicode);
+            std::cwstring_t wsUnicode = CxString::castW(asTemplate);
+            std::cstring_t  asAnsi    = CxString::castA(wsUnicode);
             xTEST_EQ(asTemplate, asAnsi);
         }
     }
@@ -270,28 +270,28 @@ CxTest_CxString::unit(
 
     xTEST_CASE("CxString::castBool", a_caseLoops)
     {
-        m_bRv = CxString::castBool(xT("true"));
+        m_bRv = CxString::castBool( std::tstring_t(xT("true")) );
         xTEST_EQ(true, m_bRv);
 
-        m_bRv = CxString::castBool(xT("trUe"));
+        m_bRv = CxString::castBool( std::tstring_t(xT("trUe")) );
         xTEST_EQ(true, m_bRv);
 
-        m_bRv = CxString::castBool(xT("true"));
+        m_bRv = CxString::castBool( std::tstring_t(xT("true")) );
         xTEST_EQ(true, m_bRv);
 
-        m_bRv = CxString::castBool(xT("false"));
+        m_bRv = CxString::castBool( std::tstring_t(xT("false")) );
         xTEST_EQ(false, m_bRv);
 
-        m_bRv = CxString::castBool(xT("FAlse"));
+        m_bRv = CxString::castBool( std::tstring_t(xT("FAlse")) );
         xTEST_EQ(false, m_bRv);
 
-        m_bRv = CxString::castBool(xT("false"));
+        m_bRv = CxString::castBool( std::tstring_t(xT("false")) );
         xTEST_EQ(false, m_bRv);
 
-        m_bRv = CxString::castBool(xT(" true "));
+        m_bRv = CxString::castBool( std::tstring_t(xT(" true ")) );
         xTEST_EQ(false, m_bRv);
 
-        m_bRv = CxString::castBool(xT("qwertyuiop[]"));
+        m_bRv = CxString::castBool( std::tstring_t(xT("qwertyuiop[]")) );
         xTEST_EQ(false, m_bRv);
     }
 
