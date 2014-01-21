@@ -576,43 +576,6 @@ CxConsole::clear() const
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
-CxConsole::enableClose(
-    cbool_t &a_flag
-)
-{
-#if xOS_ENV_WIN
-    xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _wnd);
-    xTEST_EQ(true, _stdIn.isValid());
-    xTEST_EQ(true, _stdOut.isValid());
-#endif
-
-#if   xOS_ENV_WIN
-    _menu = _menuHandle(false);
-    xTEST_EQ(true, NULL != _menu);
-
-    if (!a_flag) {
-        BOOL blRv = ::DeleteMenu(_menu, SC_CLOSE, MF_BYCOMMAND);
-        xTEST_DIFF(FALSE, blRv);
-    } else {
-        BOOL blRv = ::AppendMenu(_menu, SC_CLOSE, MF_BYCOMMAND, xT(""));
-        xTEST_DIFF(FALSE, blRv);
-
-        blRv = ::EnableMenuItem(_menuHandle(false), SC_CLOSE, MF_ENABLED);
-        xTEST_DIFF(TRUE, blRv);
-
-        blRv = ::SetWindowPos(_wndHandle(), NULL, 0, 0, 0, 0,
-                              SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_DRAWFRAME);
-        xTEST_DIFF(FALSE, blRv);
-    }
-#elif xOS_ENV_UNIX
-    xUNUSED(a_flag);
-
-    // TODO: CxConsole::enableClose() - Unix
-    xNOT_IMPLEMENTED;
-#endif
-}
-//-------------------------------------------------------------------------------------------------
 inline std::tstring_t
 CxConsole::title() const
 {
@@ -661,16 +624,46 @@ CxConsole::setTitle(
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-inline void_t
-CxConsole::setFullScreen() const
-{
 #if xOS_ENV_WIN
+
+inline void_t
+CxConsole::centerWindow() const
+{
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _wnd);
     xTEST_EQ(true, _stdIn.isValid());
     xTEST_EQ(true, _stdOut.isValid());
-#endif
 
-#if   xOS_ENV_WIN
+    BOOL blRv = FALSE;
+
+    RECT origin = {0};
+    blRv = ::GetWindowRect(_wnd, &origin);
+    xTEST_DIFF(FALSE, blRv);
+
+    RECT desktop = {0};
+    blRv = ::SystemParametersInfo(SPI_GETWORKAREA, 0, &desktop, 0);
+    xTEST_DIFF(FALSE, blRv);
+
+    int_t desktopX  = (desktop.right  - desktop.left) / 2;
+    int_t desktopY  = (desktop.bottom - desktop.top)  / 2;
+    int_t wndWidth  = (origin.right   - origin.left);
+    int_t wndHeight = (origin.bottom  - origin.top);
+    int_t x         = desktopX - wndWidth / 2;        if (x < 0) { x = 0; }
+
+    blRv = ::MoveWindow(_wnd, x, desktopY - wndHeight / 2, wndWidth, wndHeight, true);
+    xTEST_DIFF(FALSE, blRv);
+}
+
+#endif
+//-------------------------------------------------------------------------------------------------
+#if xOS_ENV_WIN
+
+inline void_t
+CxConsole::setFullScreen() const
+{
+    xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _wnd);
+    xTEST_EQ(true, _stdIn.isValid());
+    xTEST_EQ(true, _stdOut.isValid());
+
     COORD coord = ::GetLargestConsoleWindowSize(_stdOut.get());
     xTEST_EQ(true, 0 != coord.X && 0 != coord.Y);
 
@@ -690,45 +683,41 @@ CxConsole::setFullScreen() const
     xTEST_DIFF(FALSE, blRv);
 
     centerWindow();
-#elif xOS_ENV_UNIX
-    // TODO: CxConsole::setFullScreen() - Unix
-    xNOT_IMPLEMENTED;
-#endif
 }
+
+#endif
 //-------------------------------------------------------------------------------------------------
-inline void_t
-CxConsole::centerWindow() const
-{
 #if xOS_ENV_WIN
+
+inline void_t
+CxConsole::enableClose(
+    cbool_t &a_flag
+)
+{
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, _wnd);
     xTEST_EQ(true, _stdIn.isValid());
     xTEST_EQ(true, _stdOut.isValid());
-#endif
 
-#if   xOS_ENV_WIN
-    BOOL blRv = FALSE;
+    _menu = _menuHandle(false);
+    xTEST_EQ(true, NULL != _menu);
 
-    RECT origin = {0};
-    blRv = ::GetWindowRect(_wnd, &origin);
-    xTEST_DIFF(FALSE, blRv);
+    if (!a_flag) {
+        BOOL blRv = ::DeleteMenu(_menu, SC_CLOSE, MF_BYCOMMAND);
+        xTEST_DIFF(FALSE, blRv);
+    } else {
+        BOOL blRv = ::AppendMenu(_menu, SC_CLOSE, MF_BYCOMMAND, xT(""));
+        xTEST_DIFF(FALSE, blRv);
 
-    RECT desktop = {0};
-    blRv = ::SystemParametersInfo(SPI_GETWORKAREA, 0, &desktop, 0);
-    xTEST_DIFF(FALSE, blRv);
+        blRv = ::EnableMenuItem(_menuHandle(false), SC_CLOSE, MF_ENABLED);
+        xTEST_DIFF(TRUE, blRv);
 
-    int_t desktopX  = (desktop.right  - desktop.left) / 2;
-    int_t desktopY  = (desktop.bottom - desktop.top)  / 2;
-    int_t wndWidth  = (origin.right   - origin.left);
-    int_t wndHeight = (origin.bottom  - origin.top);
-    int_t x         = desktopX - wndWidth / 2;        if (x < 0) { x = 0; }
-
-    blRv = ::MoveWindow(_wnd, x, desktopY - wndHeight / 2, wndWidth, wndHeight, true);
-    xTEST_DIFF(FALSE, blRv);
-#elif xOS_ENV_UNIX
-    // TODO: CxConsole::centerWindow() - Unix
-    xNOT_IMPLEMENTED;
-#endif
+        blRv = ::SetWindowPos(_wndHandle(), NULL, 0, 0, 0, 0,
+                              SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_DRAWFRAME);
+        xTEST_DIFF(FALSE, blRv);
+    }
 }
+
+#endif
 //-------------------------------------------------------------------------------------------------
 
 

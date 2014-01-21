@@ -101,12 +101,14 @@ public:
         ///< get title string
     void_t          setTitle(std::ctstring_t &title) const;
         ///< set title string
+#if xOS_ENV_WIN
     void_t          centerWindow() const;
         ///< align to center
     void_t          setFullScreen() const;
         ///< set full screen
     void_t          enableClose(cbool_t &flag);
         ///< enable close button
+#endif
 
 private:
 #if xOS_ENV_WIN
