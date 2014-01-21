@@ -383,15 +383,15 @@ CxTest_CxDateTime::unit(
     xTEST_CASE("CxDateTime::daysInMonth", a_caseLoops)
     {
         for (int_t y = 0; y < 3000; ++ y) {
-            for (int_t m = 1; m < 13; ++ m) {
+            for (int_t m = 0; m < 12; ++ m) {
                 m_iRv = CxDateTime::daysInMonth(y, m);
 
                 if (2 == m && CxDateTime::isLeapYear(y)) {
                     xTEST_EQ(29, m_iRv);
                 } else {
-                    int_t arusDaysOfMonth[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+                    int_t daysOfMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
-                    xTEST_EQ(m_iRv, arusDaysOfMonth[m]);
+                    xTEST_EQ(m_iRv, daysOfMonth[m]);
                 }
             } // m
         } // y
