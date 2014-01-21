@@ -16,14 +16,13 @@ CxTest_CxAutoReset::unit(
 {
     xTEST_CASE("CxAutoReset::CxAutoReset", a_caseLoops)
     {
-        // TEST: CxTest_CxAutoReset
-        bool data[] = {true, false, true};
+        bool_t data[] = {true, false, true};
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            const bool origin = data[i];
+            bool_t origin = data[i];
 
             {
-                CxAutoReset<bool> reseter(&data[i], false);
+                CxAutoReset<bool_t> reseter(&data[i], false);
                 xTEST_EQ(data[i], origin);
             }
 
@@ -31,10 +30,10 @@ CxTest_CxAutoReset::unit(
         }
 
         for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            const bool origin = data[i];
+            bool_t origin = data[i];
 
             {
-                CxAutoReset<bool> reseter(&data[i], true);
+                CxAutoReset<bool_t> reseter(&data[i], true);
                 xTEST_EQ(data[i], origin);
             }
 
