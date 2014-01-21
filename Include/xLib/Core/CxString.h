@@ -225,9 +225,9 @@ public:
         ///< no case compare
 
 private:
-                          CxStringCI();
+                   CxStringCI();
         ///< constructor
-                         ~CxStringCI();
+                  ~CxStringCI();
         ///< destructor
 
     xNO_COPY_ASSIGN(CxStringCI)
