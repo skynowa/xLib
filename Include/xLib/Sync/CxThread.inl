@@ -32,8 +32,7 @@ CxThread::CxThread(
     _isAutoDelete(a_isAutoDelete),
 
     // flags
-    _isCreated   (false),
-    _isRunning   (false),
+    _state       (),
 
     //
     ///_vOnExit  (NULL),
@@ -56,12 +55,14 @@ CxThread::~CxThread()
         exit();
 
         // TODO: CxThread::~CxThread()
-        //if (!bRv) {
-        //    kill(_s_exitTimeout);
-        //    if (!bRv) {
-        //        xTEST_FAIL;
-        //    }
-        //}
+    #if xTODO
+        if (!bRv) {
+            kill(_s_exitTimeout);
+            if (!bRv) {
+                xTEST_FAIL;
+            }
+        }
+    #endif
     }
 
     //-------------------------------------
@@ -150,8 +151,8 @@ CxThread::create(
     //-------------------------------------
     // flags
     {
-        _isCreated = true;
-        _isRunning = true;
+        _state.isCreated = true;
+        _state.isRunning = true;
 
         if (a_isPaused) {
             pause();
@@ -178,8 +179,8 @@ CxThread::resume()
     //-------------------------------------
     // flags
     {
-        /*_isCreated*/// n/a
-        /*_isRunning*/// n/a
+        /* _state.isCreated */// n/a
+        /* _state.isRunning */// n/a
     }
 }
 //-------------------------------------------------------------------------------------------------
@@ -197,8 +198,8 @@ CxThread::pause()
     //-------------------------------------
     // flags
     {
-        /*_isCreated*/// n/a
-        /*_isRunning*/// n/a
+        /* _state.isCreated */// n/a
+        /* _state.isRunning */// n/a
     }
 }
 //-------------------------------------------------------------------------------------------------
@@ -216,8 +217,8 @@ CxThread::exit()
     //-------------------------------------
     // flags
     {
-        /*_isExited*///  n/a
-        /*_isCreated*/// n/a
+        /* _state.isCreated */// n/a
+        /* _state.isRunning */// n/a
 
         xCHECK_DO(isPaused(), resume());
     }
@@ -312,9 +313,9 @@ CxThread::isCreated() const
     bool_t bRv = false;
 
 #if   xOS_ENV_WIN
-    bRv = (_isCreated) && (_thread.isValid());
+    bRv = (_state.isCreated) && (_thread.isValid());
 #elif xOS_ENV_UNIX
-    bRv = (_isCreated) && (0UL != _thread);
+    bRv = (_state.isCreated) && (0UL != _thread);
 #endif
 
     return bRv;
@@ -334,7 +335,7 @@ CxThread::isRunning() const
 
     bool_t bCond1 = ( false         != _thread.isValid()                         );
     bool_t bCond2 = ( 0UL           <  _id                                       );
-    bool_t bCond3 = ( true          == _isRunning                                );
+    bool_t bCond3 = ( true          == _state.isRunning                          );
     bool_t bCond4 = ( WAIT_OBJECT_0 != ::WaitForSingleObject(_thread.get(), 0UL) );
     bool_t bCond5 = ( STILL_ACTIVE  == ulRv                                      );
 
@@ -342,7 +343,7 @@ CxThread::isRunning() const
 #elif xOS_ENV_UNIX
     bool_t bCond1 = ( 0UL           != _thread                                   );
     bool_t bCond2 = ( 0UL           <  _id                                       );
-    bool_t bCond3 = ( true          == _isRunning                                );
+    bool_t bCond3 = ( true          == _state.isRunning                          );
 
 #if xTODO
     bool_t bCond4 = ( WAIT_OBJECT_0 != ::WaitForSingleObject(_thread.get(), 0UL) );
@@ -515,7 +516,7 @@ CxThread::messageWaitQueue(
     xTEST_EQ(false, a_msgs.empty());
 
     BOOL blRv = FALSE;
-    MSG  msg   = {0};
+    MSG  msg  = {0};
 
     while ((blRv = ::GetMessage(&msg, NULL, 0, 0 ))) {
         xTEST_DIFF(- 1, blRv);
@@ -748,8 +749,8 @@ CxThread::isPriorityBoost() const
     BOOL blRv = ::GetThreadPriorityBoost(_thread.get(), &isDisablePriorityBoost);
     xTEST_DIFF(FALSE, blRv);
 
-    // bDisablePriorityBoost == true  - dynamic boosting is disabled
-    // bDisablePriorityBoost == false - normal behavior
+    // isDisablePriorityBoost == TRUE  - dynamic boosting is disabled
+    // isDisablePriorityBoost == FALSE - normal behavior
 
     return ! isDisablePriorityBoost;
 #elif xOS_ENV_UNIX
@@ -961,7 +962,7 @@ CxThread::setDebugName(
         tagTHREADNAME_INFO info = {0};
         info.dwType = 0x1000;
     #if xUNICODE
-        // TODO: vSetDebugName, convert from Unicode to Ansi
+        // TODO: CxThread::setDebugName() - convert from Unicode to Ansi
         //// info.pszName    = xTS2S(csName).c_str();
         info.pszName    = "[Unknown]";
     #else
@@ -978,9 +979,9 @@ CxThread::setDebugName(
             //n/a
         }
     #elif xCOMPILER_MINGW
-        // TODO: setDebugName
+        // TODO: CxThread::setDebugName() - xCOMPILER_MINGW
     #else
-        // TODO: setDebugName
+        // TODO: CxThread::setDebugName() - other
     #endif
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
@@ -990,6 +991,7 @@ CxThread::setDebugName(
          (void_t)pthread_set_name_np(id(), a_name.c_str());
     #endif
 #elif xOS_ENV_MAC
+    // TODO: CxThread::setDebugName() - Mac
     xNOT_IMPLEMENTED
 #endif
 }
@@ -1276,7 +1278,7 @@ CxThread::_s_jobEntry(
 #endif
 
     self->_id         = 0UL;
-    self->_exitStatus = uiRv;    //???
+    self->_exitStatus = uiRv;    // ???
     self->_param      = NULL;
     // self->_isAutoDelete - n/a
 
@@ -1303,8 +1305,8 @@ CxThread::_waitResumption()
     //-------------------------------------
     // flags
     {
-        /*_isCreated*/// n/a
-        /*_isRunning*/// n/a
+        /* _state.isCreated */// n/a
+        /* _state.isRunning */// n/a
     }
 
     CxEvent::ExObjectState osRv = _eventPause.wait();
@@ -1323,8 +1325,8 @@ CxThread::_setStatesDefault()
     //-------------------------------------
     // flags
     {
-        _isCreated  = false;
-        _isRunning  = false;
+        _state.isCreated  = false;
+        _state.isRunning  = false;
     }
 }
 //-------------------------------------------------------------------------------------------------

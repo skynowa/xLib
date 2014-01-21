@@ -187,10 +187,14 @@ private:
     void_t              *_param;                 ///< param for job function
     cbool_t              _isAutoDelete;          ///< is auto delete thread object
 
-    // flags
-    // TODO: CxThread - make struct SFlags
-    bool_t               _isCreated;              ///< is created
-    bool_t               _isRunning;              ///< is running
+    struct State
+        ///< thread state flags
+    {
+        bool_t isCreated;  ///< is created
+        bool_t isRunning;  ///< is running
+
+        State() : isCreated(false), isRunning(false) {}
+    } _state;
 
     // other
     CxEvent             *_eventStarter;              ///< starter event
