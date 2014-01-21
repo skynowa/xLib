@@ -183,10 +183,10 @@ CxDebugger::breakPoint() const
     (void_t)::DebugBreak();
 #elif xOS_ENV_UNIX
     int_t iRv = ::raise(SIGTRAP);
-    xTEST_DIFF(- 1, iRv);
+    xCHECK_DO(iRv == - 1, return);
 
     iRv = ::kill(::getpid(), SIGALRM);
-    xTEST_DIFF(- 1, iRv);
+    xCHECK_DO(iRv == - 1, return);
 #endif
 }
 //-------------------------------------------------------------------------------------------------
