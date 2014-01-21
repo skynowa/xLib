@@ -11,7 +11,7 @@
 #include <xLib/Log/CxTrace.h>
 
 
-//----------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 /*virtual*/
 void_t
 CxTest_xDefines::unit(
@@ -232,7 +232,8 @@ CxTest_xDefines::unit(
 
     xTEST_CASE("xDefines::function params", a_caseLoops)
     {
-        struct STest {
+        struct Test
+        {
             std::tstring_t execute(
                 xIN     cint_t       &a_iVal,
                 xOUT    std::csize_t &a_uiVal,
@@ -248,7 +249,7 @@ CxTest_xDefines::unit(
             }
         };
 
-        STest   data;
+        Test    data;
         tchar_t buff[10 + 1] = {0};
 
         m_sRv = data.execute(10, 15U, buff);
@@ -402,4 +403,4 @@ CxTest_xDefines::unit(
         xTEST_THROW(xTHROW_REPORT("test xTHROW_REPORT message"), CxException);
     }
 }
-//----------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
