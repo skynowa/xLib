@@ -138,7 +138,7 @@ CxDebugger::coreDumpsEnable(
     xUNUSED(a_flag);
     isEnable = true;
     #pragma message("xLib: CxDebugger::coreDumpsEnable() - n/a")
-#elif xOS_ENV_UNIX
+#elif xOS_ENV_UNIX || xOS_ENV_MAC
     #if   xHAVE_PR_SET_DUMPABLE
         culong_t isDumpable = a_flag ? 1UL : 0UL;
 
