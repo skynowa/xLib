@@ -161,18 +161,13 @@ CxDebugger::coreDumpsEnable(
         isEnable = false;
         #pragma message("xLib: CxDebugger::coreDumpsEnable() - n/a")
     #endif
-#elif xOS_ENV_MAC
-    #if xHAVE_PT_DENY_ATTACH
-        // TODO: CxDebugger::coreDumpsEnable() - MacOS (not tested)
 
+    #if xHAVE_PT_DENY_ATTACH
+        // make sure ::setrlimit() and ::ptrace() succeeded
         cint_t isAttachable = a_flag ? PT_ATTACH : PT_DENY_ATTACH;
 
         iRv = ::ptrace(isAttachable, 0, 0, 0);
-        isEnable = (iRv == 0);
-    #else
-        xUNUSED(a_flag);
-        isEnable = false;
-        #pragma message("xLib: CxDebugger::coreDumpsEnable() - n/a")
+        isEnable = isEnable && (iRv == 0);
     #endif
 #endif
 
