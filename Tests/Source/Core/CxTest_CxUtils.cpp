@@ -9,7 +9,7 @@
 #include <xLib/Core/CxConst.h>
 #include <xLib/Core/CxString.h>
 
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 xNAMESPACE_ANONYM_BEGIN
 
 enum EData {
@@ -19,7 +19,7 @@ enum EData {
 };
 
 xNAMESPACE_ANONYM_END;
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
 CxTest_CxUtils::unit(
@@ -143,9 +143,9 @@ CxTest_CxUtils::unit(
 
     xTEST_CASE("CxUtils::structZeroT", a_caseLoops)
     {
-    #if 0
         // TODO: Test - CxUtils::structZeroT
-        struct SData {
+        struct Data
+        {
             int_t          m_iValue;
             double         m_dValue;
             std::tstring_t m_sValue;
@@ -156,7 +156,7 @@ CxTest_CxUtils::unit(
         cdouble_t       cdValue = 20.0;
         std::ctstring_t csValue = xT("30");
 
-        SData data;
+        Data data;
         data.m_iValue = ciValue;
         data.m_dValue = cdValue;
         data.m_sValue = csValue;
@@ -165,7 +165,6 @@ CxTest_CxUtils::unit(
         xTEST_EQ(0,   data.m_iValue);
         xTEST_EQ(0.0, data.m_dValue);
         xTEST_EQ(size_t(0U),  data.m_sValue.size());
-    #endif
     }
 
     xTEST_CASE("CxUtils::bufferFreeT", a_caseLoops)
@@ -333,4 +332,4 @@ CxTest_CxUtils::unit(
         xTEST_EQ(static_cast<long_t>( datOne ), static_cast<long_t>( data ));
     }
 }
-//------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
