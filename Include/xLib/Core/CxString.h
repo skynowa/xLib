@@ -129,20 +129,6 @@ public:
         ///< minimize
 
     /*******************************************************************************
-    *   search, compare
-    *
-    *******************************************************************************/
-
-    static std::size_t    findNoCase(std::ctstring_t &str, std::ctstring_t &target,
-                              std::csize_t &pos = 0, const std::locale &a_locale = std::locale())
-                              xWARN_UNUSED_RV;
-        ///< no case search
-    static bool_t         compareNoCase(std::ctstring_t &str1, std::ctstring_t &str2,
-                              const std::locale &a_locale = std::locale()) xWARN_UNUSED_RV;
-        ///< no case compare
-
-
-    /*******************************************************************************
     *    formating
     *
     *******************************************************************************/
