@@ -303,7 +303,7 @@ CxString::castW(
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline std::string
-CxString::convertCodePage(
+CxString::castCodePage(
     std::cstring_t &a_str,
     cuint_t        &a_codePageSource,
     cuint_t        &a_codePageDest
