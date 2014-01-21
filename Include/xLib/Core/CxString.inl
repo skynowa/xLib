@@ -176,39 +176,8 @@ CxString::castW(
 
 //-------------------------------------------------------------------------------------------------
 /* static */
-inline std::wstring
-CxString::strToWStr(
-    std::cstring_t &a_str,
-    cuint_t        &a_codePage
-)
-{
-    xTEST_NA(a_str);
-    xTEST_NA(a_codePage);
-
-    std::wstring wsRv;
-
-#if   xOS_ENV_WIN
-    int_t size = ::MultiByteToWideChar(a_codePage, 0UL, a_str.c_str(), - 1, NULL, 0);
-    xTEST_LESS(0, size);
-
-    wsRv.resize(size - 1);    // remove '\0'
-    size = ::MultiByteToWideChar(a_codePage, 0UL, a_str.c_str(), - 1,
-        static_cast<LPWSTR>(&wsRv.at(0)), size);
-    xTEST_LESS(0, size);
-#elif xOS_ENV_UNIX
-    xUNUSED(a_str);
-    xUNUSED(a_codePage);
-
-    // TODO: CxString::strToWStr() - Unix
-    xNOT_IMPLEMENTED;
-#endif
-
-    return wsRv;
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
 inline std::string
-CxString::wstrToStr(
+CxString::castA(
     std::cwstring_t &a_str,
     cuint_t         &a_codePage
 )
@@ -230,7 +199,7 @@ CxString::wstrToStr(
     xUNUSED(a_str);
     xUNUSED(a_codePage);
 
-    // TODO: CxString::wstrToStr() - Unix
+    // TODO: CxString::castA() - Unix
     xNOT_IMPLEMENTED;
 #endif
 
@@ -239,57 +208,61 @@ CxString::wstrToStr(
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline std::wstring
-CxString::strToWStr(
-    std::cstring_t    &a_stdString,
-    const std::locale &a_locale /* = std::locale() */
+CxString::castW(
+    std::cstring_t &a_str,
+    cuint_t        &a_codePage
 )
 {
-    xTEST_NA(a_stdString);
-    xTEST_NA(a_locale);
-    xSTD_VERIFY(std::has_facet<std::ctype<std::wstring::value_type> >(a_locale));
+    xTEST_NA(a_str);
+    xTEST_NA(a_codePage);
 
-    xCHECK_RET(a_stdString.empty(),                                              std::wstring());
-    xCHECK_RET(!std::has_facet<std::ctype<std::wstring::value_type> >(a_locale), std::wstring());
+    std::wstring wsRv;
 
-    std::wstring                swRv(a_stdString.size(), std::wstring::value_type());
+#if   xOS_ENV_WIN
+    int_t size = ::MultiByteToWideChar(a_codePage, 0UL, a_str.c_str(), - 1, NULL, 0);
+    xTEST_LESS(0, size);
 
-    std::string::const_iterator itBegin   = a_stdString.begin();
-    std::string::const_iterator itEnd     = a_stdString.end();
-    std::wstring::iterator      itToBegin = swRv.begin();
+    wsRv.resize(size - 1);    // remove '\0'
+    size = ::MultiByteToWideChar(a_codePage, 0UL, a_str.c_str(), - 1,
+        static_cast<LPWSTR>(&wsRv.at(0)), size);
+    xTEST_LESS(0, size);
+#elif xOS_ENV_UNIX
+    xUNUSED(a_str);
+    xUNUSED(a_codePage);
 
-    for ( ; itBegin != itEnd; ++ itBegin, ++ itToBegin) {
-        *itToBegin = std::use_facet< std::ctype<wchar_t> >( a_locale ).widen(*itBegin);
-    }
+    // TODO: CxString::castW() - Unix
+    xNOT_IMPLEMENTED;
+#endif
 
-    return swRv;
+    return wsRv;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline std::string
-CxString::wstrToStr(
-    std::cwstring_t   &a_stdWString,
+CxString::castA(
+    std::cwstring_t   &a_str,
     const std::locale &a_locale /* = std::locale() */
 )
 {
-    xTEST_NA(a_stdWString);
+    xTEST_NA(a_str);
     xTEST_NA(a_locale);
     xSTD_VERIFY(std::has_facet<std::ctype<wchar_t> >(a_locale));
     xSTD_VERIFY(std::has_facet<std::ctype<char> >(a_locale));
 
-    xCHECK_RET(a_stdWString.empty(),                            std::string());
+    xCHECK_RET(a_str.empty(),                                   std::string());
     xCHECK_RET(!std::has_facet<std::ctype<wchar_t> >(a_locale), std::string());
     xCHECK_RET(!std::has_facet<std::ctype<char> >(a_locale),    std::string());
 
     typedef std::wstring::traits_type::state_type     state_type_t;
     typedef std::codecvt<wchar_t, char, state_type_t> codecvt_t;
 
-    std::string      asRv(a_stdWString.size(), std::wstring::value_type());
+    std::string      asRv(a_str.size(), std::wstring::value_type());
 
     const codecvt_t &codec     = std::use_facet<codecvt_t>( a_locale );
     state_type_t     state; xSTRUCT_ZERO(state);
 
-    const wchar_t   *itBegin   = &a_stdWString.at(0);
-    const wchar_t   *itEnd     = &a_stdWString.at(0) + a_stdWString.size();
+    const wchar_t   *itBegin   = &a_str.at(0);
+    const wchar_t   *itEnd     = &a_str.at(0) + a_str.size();
     const wchar_t   *itNext    = NULL;
 
     char            *itToBegin = &asRv.at(0);
@@ -302,9 +275,36 @@ CxString::wstrToStr(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
+inline std::wstring
+CxString::castW(
+    std::cstring_t    &a_str,
+    const std::locale &a_locale /* = std::locale() */
+)
+{
+    xTEST_NA(a_str);
+    xTEST_NA(a_locale);
+    xSTD_VERIFY(std::has_facet<std::ctype<std::wstring::value_type> >(a_locale));
+
+    xCHECK_RET(a_str.empty(),                                                    std::wstring());
+    xCHECK_RET(!std::has_facet<std::ctype<std::wstring::value_type> >(a_locale), std::wstring());
+
+    std::wstring                swRv(a_str.size(), std::wstring::value_type());
+
+    std::string::const_iterator itBegin   = a_str.begin();
+    std::string::const_iterator itEnd     = a_str.end();
+    std::wstring::iterator      itToBegin = swRv.begin();
+
+    for ( ; itBegin != itEnd; ++ itBegin, ++ itToBegin) {
+        *itToBegin = std::use_facet< std::ctype<wchar_t> >( a_locale ).widen(*itBegin);
+    }
+
+    return swRv;
+}
+//-------------------------------------------------------------------------------------------------
+/* static */
 inline std::string
 CxString::convertCodePage(
-    std::cstring_t &a_source,
+    std::cstring_t &a_str,
     cuint_t        &a_codePageSource,
     cuint_t        &a_codePageDest
 )
@@ -313,7 +313,7 @@ CxString::convertCodePage(
     xTEST_NA(a_codePageSource);
     xTEST_NA(a_codePageDest);
 
-    return wstrToStr(strToWStr(a_source, a_codePageSource), a_codePageDest);
+    return castA(castW(a_str, a_codePageSource), a_codePageDest);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */

@@ -42,19 +42,19 @@ public:
     static std::wstring   castW(std::cstring_t &str) xWARN_UNUSED_RV;
         ///< std::string in std::wstring
 
-    static std::wstring   strToWStr(std::cstring_t &str, cuint_t &codePage) xWARN_UNUSED_RV;
-        ///< std::string in std::wstring
-    static std::string    wstrToStr(std::cwstring_t &str, cuint_t &codePage) xWARN_UNUSED_RV;
+    static std::string    castA(std::cwstring_t &str, cuint_t &codePage) xWARN_UNUSED_RV;
         ///< std::wstring in std::string
-
-    static std::wstring   strToWStr(std::cstring_t  &stdString,
-                              const std::locale &locale = std::locale()) xWARN_UNUSED_RV;
+    static std::wstring   castW(std::cstring_t &str, cuint_t &codePage) xWARN_UNUSED_RV;
         ///< std::string in std::wstring
-    static std::string    wstrToStr(std::cwstring_t &stdWString,
-                              const std::locale &locale = std::locale()) xWARN_UNUSED_RV;
-        ///< std::wstring in std::string
 
-    static std::string    convertCodePage(std::cstring_t &source, cuint_t &codePageSource,
+    static std::string    castA(std::cwstring_t &str, const std::locale &locale = std::locale())
+                              xWARN_UNUSED_RV;
+        ///< std::wstring in std::string
+    static std::wstring   castW(std::cstring_t  &str, const std::locale &locale = std::locale())
+                              xWARN_UNUSED_RV;
+        ///< std::string in std::wstring
+
+    static std::string    convertCodePage(std::cstring_t &str, cuint_t &codePageSource,
                               cuint_t &codePageDest) xWARN_UNUSED_RV;
         ///< convert codepage
 
@@ -158,8 +158,7 @@ public:
     *
     *******************************************************************************/
 
-    static void_t *       memoryZeroSecure(void_t *buff, std::csize_t &buffSize)
-                              xWARN_UNUSED_RV;
+    static void_t *       memoryZeroSecure(void_t *buff, std::csize_t &buffSize) xWARN_UNUSED_RV;
         ///< secure zero memory
 
     /*******************************************************************************
