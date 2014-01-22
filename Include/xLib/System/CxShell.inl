@@ -51,11 +51,11 @@ CxShell::execute(
     xTEST_NA(a_filePath);
     xTEST_NA(a_params);
 
-    xCHECK_DO(true  == a_filePath.empty(), return);
-    xCHECK_DO(!isAvailable(),              return);
+    xCHECK_DO(a_filePath.empty(), return);
+    xCHECK_DO(!isAvailable(),     return);
 
     // REVIEW: security bug - xT("%s \"%s\"") or xT("\"%s\" \"%s\"") ??
-    std::tstring_t cmd = CxString::format(xT("%s \"%s\""), a_filePath.c_str(), a_params.c_str());
+    std::ctstring_t cmd = CxString::format(xT("%s \"%s\""), a_filePath.c_str(), a_params.c_str());
 
     int_t iRv = xTSYSTEM(cmd.c_str());
     xTEST_DIFF(- 1, iRv);
@@ -72,8 +72,8 @@ CxShell::findExecutable(
     std::ctstring_t &a_findDirPath
 ) const
 {
-    xTEST_EQ(false, a_fileName.empty());
-    // findDirPath - n/a
+    xTEST_EQ(a_fileName.empty(), false);
+    xTEST_NA(a_findDirPath);
 
     int_t     iRv            = SE_ERR_FNF;
     tchar_t   buff[MAX_PATH] = {0};
@@ -95,16 +95,16 @@ CxShell::execute(
     const EShowFlag   &a_showCmd
 ) const
 {
-    // owner      - n/a
-    // ccsOperation - n/a
-    // filePath   - n/a
-    // params     - n/a
-    // dirPath        - n/a
-    // showCmd   - n/a
+    xTEST_NA(a_owner);
+    xTEST_NA(a_operation);
+    xTEST_EQ(a_filePath.empty(), false);
+    xTEST_NA(a_params);
+    xTEST_EQ(a_dirPath.empty(), false);
+    xTEST_NA(a_showCmd);
 
-    std::tstring_t filePath = CxString::trimSpace(a_filePath);
-    std::tstring_t params   = CxString::trimSpace(a_params);
-    std::tstring_t dirPath  = CxString::trimSpace(a_dirPath);
+    std::ctstring_t filePath = CxString::trimSpace(a_filePath);
+    std::ctstring_t params   = CxString::trimSpace(a_params);
+    std::ctstring_t dirPath  = CxString::trimSpace(a_dirPath);
 
     std::tstring_t operation;
     switch (a_operation) {
@@ -141,7 +141,7 @@ CxShell::executeEx(
     SHELLEXECUTEINFO &a_info
 ) const
 {
-    xTEST_NA(a_info);
+    xTEST_EQ(a_info.empty(), false);
 
     BOOL bRv = ::ShellExecuteEx(&a_info);
     xTEST_DIFF(FALSE, bRv);
@@ -152,11 +152,10 @@ CxShell::executeHttp(
     std::ctstring_t &a_url
 ) const
 {
-    xTEST_NA(a_url);
+    xTEST_EQ(a_url.empty(), false);
 
-    std::tstring_t url = CxString::trimSpace(a_url);
-
-    xTEST_EQ(false, url.empty());
+    std::ctstring_t url = CxString::trimSpace(a_url);
+    xTEST_EQ(url.empty(), false);
 
     execute(NULL, opOpen, xT("IEXPLORE.EXE"), url, xT(""), sfShowNormal);
 }
@@ -166,11 +165,10 @@ CxShell::executeFtp(
     std::ctstring_t &a_url
 ) const
 {
-    xTEST_NA(a_url);
+    xTEST_EQ(a_url.empty(), false);
 
     std::ctstring_t url = CxString::trimSpace(a_url);
-
-    xTEST_EQ(false, url.empty());
+    xTEST_EQ(url.empty(), false);
 
     execute(NULL, opOpen, xT("explorer.exe"), xT("/e, ") + url, xT(""), sfShowNormal);
 }
@@ -182,28 +180,29 @@ CxShell::executeEmail(
     std::ctstring_t &a_body
 ) const
 {
-    // toEmail - n/a
-    // subject - n/a
-    // body    - n/a
+    xTEST_NA(a_toEmail);
+    xTEST_NA(a_subject);
+    xTEST_NA(a_body);
 
-    std::tstring_t toEmail = CxString::trimSpace(a_toEmail);
-    std::tstring_t subject = CxString::trimSpace(a_subject);
-    std::tstring_t body    = CxString::trimSpace(a_body);
+    std::ctstring_t toEmail = CxString::trimSpace(a_toEmail);
+    std::ctstring_t subject = CxString::trimSpace(a_subject);
+    std::ctstring_t body    = CxString::trimSpace(a_body);
 
-    xTEST_EQ(false, toEmail.empty());
+    xTEST_EQ(a_toEmail.empty(), false);
 
-    // mailto:sAddress[sHeaders]
-    // mailto:user@example.com?subject=Message Title&body=Message Content
+   /**
+    * mailto:address[headers]
+    *
+    * mailto:user@example.com?subject=Message Title&body=Message Content
+    */
 
     std::tstring_t cmd;
 
-    cmd.append(xT("mailto:")  + toEmail);
+    cmd.append(xT("mailto:") + toEmail);
 
     xCHECK_DO(!subject.empty() || !body.empty(), cmd.append(xT("?")                 ));
     xCHECK_DO(!subject.empty(),                  cmd.append(xT("subject=") + subject));
     xCHECK_DO(!body.empty(),                     cmd.append(xT("&body=")   + body   ));
-
-    //iMsgBox(cmd);
 
     execute(NULL, opOpen, cmd, xT(""), xT(""), sfShowNormal);
 }
@@ -255,9 +254,17 @@ CxShell::createShortcut(
     std::ctstring_t &a_description       ///< description
 ) const
 {
+    xTEST_EQ(a_shortCutFilePath.empty(), false);
+    xTEST_EQ(a_filePath.empty(), false);
+    xTEST_EQ(a_workingDirectory.empty(), false);
+    xTEST_NA(a_args);
+    xTEST_NA(a_hotKey);
+    xTEST_NA(a_cmdShow);
+    xTEST_EQ(a_iconFilePath.empty(), false);
+    xTEST_GR(a_iconIndex, - 1);
+    xTEST_NA(a_description);
 
-
-    CxCom cmCom(COINIT_MULTITHREADED);
+    CxCom com(COINIT_MULTITHREADED);
 
     HRESULT     hRv  = 0;
     IShellLink *link = NULL;
