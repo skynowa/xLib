@@ -275,9 +275,22 @@ CxTest_CxDateTime::unit(
     *
     *******************************************************************************/
 
-    xTEST_CASE("CxDateTime::isValid", a_caseLoops)
+    xTEST_CASE("CxDateTime::CxValidator", a_caseLoops)
     {
-        //valid data
+        // TEST: CxDateTime::CxValidator::year()
+        // TEST: CxDateTime::CxValidator::month()
+        // TEST: CxDateTime::CxValidator::day()
+        // TEST: CxDateTime::CxValidator::hour()
+        // TEST: CxDateTime::CxValidator::minute()
+        // TEST: CxDateTime::CxValidator::second()
+        // TEST: CxDateTime::CxValidator::msec()
+        // TEST: CxDateTime::CxValidator::weekDay()
+        // TEST: CxDateTime::CxValidator::time()
+        // TEST: CxDateTime::CxValidator::date()
+        // TEST: CxDateTime::CxValidator::datetime()
+        // TEST: CxDateTime::CxValidator::dateOrTime()
+
+        // valid data
         {
             cushort_t valid[][7] = {
                 // year, month, day, hour, minute, second, msec
@@ -307,7 +320,7 @@ CxTest_CxDateTime::unit(
             }
         }
 
-        //non valid data
+        // non valid data
         {
             cushort_t nonValid[][7] = {
                 // year, month, day, hour, minute, second, msec
@@ -333,16 +346,6 @@ CxTest_CxDateTime::unit(
                 xTEST_EQ(m_bRv, false);
             }
         }
-    }
-
-    xTEST_CASE("CxDateTime::isValid(const CxDateTime &)", a_caseLoops)
-    {
-        // TODO: tests isValid
-    }
-
-    xTEST_CASE("CxDateTime::isValid", a_caseLoops)
-    {
-        // TODO: tests isValid
     }
 
     xTEST_CASE("CxDateTime::current", a_caseLoops)
