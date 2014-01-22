@@ -214,23 +214,21 @@ CxShell::specialDirPath(
     const HANDLE      &a_token
 ) const
 {
-    // dir  - n/a
-    // token - n/a
+    xTEST_NA(a_dir);
+    xTEST_NA(a_token);
 
-    HRESULT      hRv    = S_FALSE;
-    LPITEMIDLIST idList = {0};
+    HRESULT       hRv    = S_FALSE;
+    LPITEMIDLIST *idList = NULL;
 
-    // FIXME: CxShell::specialDirPath() - SHGetFolderLocation
-    ////hRv = ::SHGetFolderLocation(NULL, sfDir, token, 0, &idList);
-    hRv = ::SHGetSpecialFolderLocation(NULL, a_dir, &idList);
-    xTEST_EQ(true, SUCCEEDED(hRv));
+    hRv = ::SHGetFolderLocation(NULL, a_dir, a_token, 0UL, idList);
+    xTEST_EQ(hRv, S_OK);
+    xTEST_PTR(idList);
 
     tchar_t buff[MAX_PATH + sizeof(tchar_t)] = {0};
 
     BOOL bRv = ::SHGetPathFromIDList(idList, &buff[0]);
-    xTEST_DIFF(FALSE, bRv);
-
-    (void_t)::CoTaskMemFree(idList);
+    (void_t)::ILFree(idList);   idList = NULL;
+    xTEST_DIFF(bRv, FALSE);
 
     return std::tstring_t(buff);
 }
