@@ -779,17 +779,13 @@ CxDateTime::daysInMonth(
     cint_t &a_month
 )
 {
-    xCHECK_RET(2 == a_month && isLeapYear(a_year), 29);
+    xCHECK_RET(a_month == 2 && isLeapYear(a_year), 29);
 
     const CxArray<int_t, 12> monthsDays = {{
         31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
     }};
 
-    int_t iRv = 0;
-
-    iRv = monthsDays[a_month];
-
-    return iRv;
+    return monthsDays[a_month];
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -909,7 +905,7 @@ CxDateTime::monthStr(
     std::tstring_t sRv;
 
     if (!a_isShortName) {
-        // months numbering: 1-12
+        // months numbering: 0-11
         const CxArray<std::tstring_t, 12> longMonths = {{
             xT("January"),
             xT("February"),
@@ -925,10 +921,10 @@ CxDateTime::monthStr(
             xT("December")
         }};
 
-        sRv = longMonths[a_month - 1];
+        sRv = longMonths[a_month];
     }
     else {
-        // months numbering: 1-12
+        // months numbering: 0-11
         const CxArray<std::tstring_t, 12> shortMonths = {{
             xT("Jan"),
             xT("Feb"),
@@ -944,7 +940,7 @@ CxDateTime::monthStr(
             xT("Dec")
         }};
 
-        sRv = shortMonths[a_month - 1];
+        sRv = shortMonths[a_month];
     }
 
     return sRv;
@@ -960,7 +956,7 @@ CxDateTime::monthNum(
     xTEST_NA(a_month);
     xTEST_NA(a_isShortName);
 
-    // months numbering: 1-12
+    // months numbering: 0-11
     const CxArray<std::tstring_t, 12> longMonths = {{
         xT("January"),
         xT("February"),
@@ -976,7 +972,7 @@ CxDateTime::monthNum(
         xT("December")
     }};
 
-    // months numbering: 1-12
+    // months numbering: 0-11
     const CxArray<std::tstring_t, 12> shortMonths = {{
         xT("Jan"),
         xT("Feb"),
@@ -994,9 +990,9 @@ CxDateTime::monthNum(
 
     for (int_t i = 0; i < static_cast<int_t>( longMonths.size() ); ++ i) {
         if (a_isShortName) {
-            xCHECK_RET(CxStringCI::compare(a_month, shortMonths[i]), i + 1);
+            xCHECK_RET(CxStringCI::compare(a_month, shortMonths[i]), i);
         } else {
-            xCHECK_RET(CxStringCI::compare(a_month, longMonths[i]),  i + 1);
+            xCHECK_RET(CxStringCI::compare(a_month, longMonths[i]),  i);
         }
     }
 
@@ -1013,32 +1009,34 @@ CxDateTime::weekDayStr(
     xTEST_EQ(true, CxValidator::weekDay(a_week_day));
     xTEST_NA(a_isShortName);
 
+    // days since Sunday (0-6)
+
     std::tstring_t sRv;
 
     if (!a_isShortName) {
         const CxArray<std::tstring_t, 7> longDays = {{
+            xT("Sunday"),
             xT("Monday"),
             xT("Tuesday"),
             xT("Wednesday"),
             xT("Thursday"),
             xT("Friday"),
-            xT("Saturday"),
-            xT("Sunday")
+            xT("Saturday")
         }};
 
-        sRv = longDays[a_week_day - 1];
+        sRv = longDays[a_week_day];
     } else {
         const CxArray<std::tstring_t, 8> shortDays = {{
+            xT("Sun"),
             xT("Mon"),
             xT("Tue"),
             xT("Wed"),
             xT("Thu"),
             xT("Fri"),
-            xT("Sat"),
-            xT("Sun")
+            xT("Sat")
         }};
 
-        sRv = shortDays[a_week_day - 1];
+        sRv = shortDays[a_week_day];
     }
 
     return sRv;
@@ -1074,9 +1072,9 @@ CxDateTime::weekDayNum(
         xT("Sun")
     }};
 
-    for (int_t i = 1; i < static_cast<int_t>( longDays.size() ) + 1; ++ i) {
-        xCHECK_RET(!a_isShortName && CxStringCI::compare(a_week_day, longDays[i - 1]),  i);
-        xCHECK_RET( a_isShortName && CxStringCI::compare(a_week_day, shortDays[i - 1]), i);
+    for (int_t i = 0; i < static_cast<int_t>( longDays.size() ); ++ i) {
+        xCHECK_RET(!a_isShortName && CxStringCI::compare(a_week_day, longDays[i]),  i);
+        xCHECK_RET( a_isShortName && CxStringCI::compare(a_week_day, shortDays[i]), i);
     }
 
     return - 1;
