@@ -875,7 +875,6 @@ CxFile::copy(
 
     bool_t isCopyOk = true;
 
-    //--------------------------------------------------
     // TODO: CxFile::copy() - fail if exists
     if (a_isFailIfExists && isExists(a_filePathTo)) {
         xTEST_FAIL;
@@ -884,7 +883,6 @@ CxFile::copy(
     // TODO: CxFile::copy() - check file size
 
     {
-        //--------------------------------------------------
         // open files
         CxFile fileFrom;
         fileFrom.create(a_filePathFrom, omBinRead, true);
@@ -892,7 +890,6 @@ CxFile::copy(
         CxFile fileTo;
         fileTo.create(a_filePathTo, omBinWrite, true);
 
-        //--------------------------------------------------
         // copy files
         std::csize_t buffSize       = 1024;
         uchar_t      buff[buffSize] = {0};
@@ -906,11 +903,9 @@ CxFile::copy(
         }
     }
 
-    //--------------------------------------------------
     // if copy fail - delete out file
     xCHECK_DO(!isCopyOk, remove(a_filePathTo); return /* false */);
 
-    //--------------------------------------------------
     // test for size, maybe CRC
     xCHECK_DO(size(a_filePathFrom) != size(a_filePathTo), remove(a_filePathTo); return /* false */);
 }
