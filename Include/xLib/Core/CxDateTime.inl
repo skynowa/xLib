@@ -26,14 +26,14 @@ xNAMESPACE_BEGIN(xlib)
 //-------------------------------------------------------------------------------------------------
 inline
 CxDateTime::CxDateTime() :
-    _thisMSec(0ULL),
     _year    (0),
     _month   (0),
     _day     (0),
     _hour    (0),
     _minute  (0),
     _second  (0),
-    _msec    (0)
+    _msec    (0),
+    _thisMSec(0ULL)
 {
 }
 //-------------------------------------------------------------------------------------------------
@@ -41,14 +41,14 @@ inline
 CxDateTime::CxDateTime(
     const CxDateTime &a_datetime
 ) :
-    _thisMSec(0ULL),
     _year    (0),
     _month   (0),
     _day     (0),
     _hour    (0),
     _minute  (0),
     _second  (0),
-    _msec    (0)
+    _msec    (0),
+    _thisMSec(0ULL)
 {
     xTEST_EQ(true, CxValidator::date(a_datetime._year, a_datetime._month, a_datetime._day) &&
                    CxValidator::time(a_datetime._hour, a_datetime._minute, a_datetime._second,
@@ -62,14 +62,14 @@ inline
 CxDateTime::CxDateTime(
     culonglong_t &a_msec
 ) :
-    _thisMSec(0ULL),
     _year    (0),
     _month   (0),
     _day     (0),
     _hour    (0),
     _minute  (0),
     _second  (0),
-    _msec    (0)
+    _msec    (0),
+    _thisMSec(0ULL)
 {
     set(a_msec);
 }
@@ -81,14 +81,14 @@ CxDateTime::CxDateTime(
     cint_t &a_second,
     cint_t &a_msec
 ) :
-    _thisMSec(0ULL),
     _year    (0),
     _month   (0),
     _day     (0),
     _hour    (0),
     _minute  (0),
     _second  (0),
-    _msec    (0)
+    _msec    (0),
+    _thisMSec(0ULL)
 {
     xTEST_EQ(true, CxValidator::time(a_hour, a_minute, a_second, a_msec));
 
@@ -101,14 +101,14 @@ CxDateTime::CxDateTime(
     cint_t &a_month,
     cint_t &a_day
 ) :
-    _thisMSec(0),
     _year    (0),
     _month   (0),
     _day     (0),
     _hour    (0),
     _minute  (0),
     _second  (0),
-    _msec    (0)
+    _msec    (0),
+    _thisMSec(0ULL)
 {
     xTEST_EQ(true, CxValidator::date(a_year, a_month, a_day));
 
@@ -125,14 +125,14 @@ CxDateTime::CxDateTime(
     cint_t &a_second,
     cint_t &a_msec
 ) :
-    _thisMSec(0ULL),
     _year    (0),
     _month   (0),
     _day     (0),
     _hour    (0),
     _minute  (0),
     _second  (0),
-    _msec    (0)
+    _msec    (0),
+    _thisMSec(0ULL)
 {
     xTEST_EQ(true, CxValidator::date(a_year, a_month, a_day) &&
                    CxValidator::time(a_hour, a_minute, a_second, a_msec));
