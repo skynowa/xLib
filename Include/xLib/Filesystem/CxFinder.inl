@@ -326,10 +326,10 @@ CxFinder::_moveFirst()
 #if   xOS_ENV_WIN
     _entry.handle = ::FindFirstFile((rootDirPath() + CxConst::slash() + shellFilter()).c_str(),
         &_entry.data);
-    xCHECK_RET(xNATIVE_HANDLE_INVALID == _entry.handle, false);
+    xCHECK_RET(_entry.handle == xNATIVE_HANDLE_INVALID, false);
 #elif xOS_ENV_UNIX
     _entry.handle = ::opendir(rootDirPath().c_str());
-    xTEST_PTR(_entry.handle);
+    xCHECK_RET(_entry.handle == NULL, false);
 
     bool_t bRv = moveNext();
     xCHECK_RET(!bRv, false);
