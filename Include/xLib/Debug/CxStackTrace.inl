@@ -96,7 +96,7 @@ CxStackTrace::get(
         symbol->SizeOfStruct = sizeof(SYMBOL_INFO);
         symbol->MaxNameLen   = 255UL;
 
-        for (ushort_t i = 1U + skipFramesNum; i < framesNum; ++ i) {
+        for (ushort_t i = skipFramesNum, line = 0; i < framesNum; ++ i) {
             int_t          stackLineNum = 0;
             std::tstring_t modulePath;
             std::tstring_t filePath;
@@ -106,7 +106,7 @@ CxStackTrace::get(
 
             // stackLineNum
             {
-                stackLineNum = i;
+                stackLineNum = ++ line;
             }
 
             // modulePath
@@ -200,7 +200,7 @@ CxStackTrace::get(
         tchar_t **symbols = ::backtrace_symbols(stackBuff, framesNum);
         xCHECK_DO(NULL == symbols, return);
 
-        for (int_t i = 0 + skipFramesNum; i < framesNum; ++ i) {
+        for (int_t i = skipFramesNum, line = 0; i < framesNum; ++ i) {
             int_t          stackLineNum = 0;
             std::tstring_t modulePath;
             std::tstring_t filePath;
@@ -212,7 +212,7 @@ CxStackTrace::get(
 
             int_t iRv = ::dladdr(stackBuff[i], &dlinfo);
             if (0 == iRv) {
-                stackLineNum = i;
+                stackLineNum = ++ line;
                 modulePath   = (NULL == dlinfo.dli_fname) ? dataNotFound : dlinfo.dli_fname;
                 filePath     = dataNotFound;
                 fileLine     = dataNotFound;
@@ -237,7 +237,7 @@ CxStackTrace::get(
                 _addr2Line(dlinfo.dli_saddr, &_filePath, &_functionName, &_sourceLine);
                 xUNUSED(_functionName);
 
-                stackLineNum = i;
+                stackLineNum = ++ line;
                 modulePath   = (NULL == dlinfo.dli_fname) ? dataNotFound : dlinfo.dli_fname;
                 filePath     = _filePath.empty()          ? dataNotFound : _filePath;
                 fileLine     = CxString::cast(_sourceLine);
