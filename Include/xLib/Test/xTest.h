@@ -264,9 +264,9 @@
 #if xTEST_TRACING
     #define xTEST_CASE(caseName, loops) \
         if (loops == 0) { \
-            CxTrace() << xT("\tTest case: ") << xT(caseName); \
-        } else { \
             CxTrace() << xT("\tTest case: ") << xT(caseName) << xT(" - skipped"); \
+        } else { \
+            CxTrace() << xT("\tTest case: ") << xT(caseName); \
         } \
         for (size_t _caseLoops = 0; _caseLoops < (loops); ++ _caseLoops)
 #else
