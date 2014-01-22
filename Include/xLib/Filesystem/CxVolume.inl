@@ -202,7 +202,7 @@ CxVolume::isReady() const
 inline bool_t
 CxVolume::isEmpty() const
 {
-    return CxDir( path() ).isEmpty(CxConst::maskAll());
+    return CxDir( path() ).isEmpty( CxConst::maskAll() );
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
