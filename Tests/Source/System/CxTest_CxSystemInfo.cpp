@@ -106,13 +106,13 @@ CxTest_CxSystemInfo::unit(
         #endif
     }
 
-    xTEST_CASE("CxSystemInfo::useHomeDir", a_caseLoops)
+    xTEST_CASE("CxSystemInfo::userHomeDir", a_caseLoops)
     {
-        m_sRv = CxSystemInfo().useHomeDir();
+        m_sRv = CxSystemInfo().userHomeDir();
         xTEST_EQ(false, m_sRv.empty());
         xTEST_EQ(true,  CxDir(m_sRv).isExists());
         #if xTEST_IGNORE
-            xTRACEV(xT("\tCxSystemInfo::useHomeDir(): %s"), m_sRv.c_str());
+            xTRACEV(xT("\tCxSystemInfo::userHomeDir(): %s"), m_sRv.c_str());
         #endif
     }
 

@@ -489,7 +489,7 @@ CxSystemInfo::userName() const
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
-CxSystemInfo::useHomeDir() const
+CxSystemInfo::userHomeDir() const
 {
     std::tstring_t sRv;
 
