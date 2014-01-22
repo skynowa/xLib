@@ -192,8 +192,7 @@ CxTest_CxVolume::unit(
     xTEST_CASE("CxVolume::isSpaceEnough", a_caseLoops)
     {
         std::vec_tstring_t volumes;
-
-        CxVolume::paths(&volumes);
+        volumes.push_back( CxSystemInfo().userHomeDir() );
 
         xFOREACH(std::vec_tstring_t, it, volumes) {
             const CxTestData2<ulonglong_t, bool_t> data[] = {
