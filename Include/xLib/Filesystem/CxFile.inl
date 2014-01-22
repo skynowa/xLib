@@ -283,10 +283,8 @@ CxFile::readLine(
     tchar_t *pszRv = std::xTFGETS(&str.at(0), static_cast<int_t>( str.size() ), get());
     xTEST_PTR(pszRv);
 
-    str.erase(str.end() - 1); // erase last char - 0
-
     // out
-    a_str->swap(str);
+    *a_str = str.c_str();
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
