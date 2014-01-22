@@ -243,7 +243,7 @@ public:
         ///< move
     static
     void_t         copy(std::ctstring_t &filePathFrom, std::ctstring_t &filePathTo,
-                       cbool_t &isFailIfExists);
+                       cbool_t &isFailIfExists) /* throw(CxException) */;
         ///< copy
     static
     longlong_t     size(std::ctstring_t &filePath) xWARN_UNUSED_RV;

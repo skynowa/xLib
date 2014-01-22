@@ -867,7 +867,7 @@ CxFile::copy(
     std::ctstring_t &a_filePathFrom,
     std::ctstring_t &a_filePathTo,
     cbool_t         &a_isFailIfExists
-)
+) /* throw(CxException) */
 {
     xTEST_EQ(false, a_filePathFrom.empty());
     xTEST_EQ(false, a_filePathTo.empty());
@@ -875,13 +875,15 @@ CxFile::copy(
 
     bool_t isCopyOk = true;
 
-    // TODO: CxFile::copy() - fail if exists
-    if (a_isFailIfExists && isExists(a_filePathTo)) {
-        xTEST_FAIL;
-    }
+    // errors
+    std::ctstring_t errorDestFileExists = xT("CxFile - Destination file is exists");
+    std::ctstring_t errorCopyFail       = xT("CxFile - Copy fail");
+    std::ctstring_t errorFilesDiffrent  = xT("CxFile - Files are diffrent");
 
-    // TODO: CxFile::copy() - check file size
 
+    xCHECK_DO(a_isFailIfExists && isExists(a_filePathTo), xTHROW_REPORT(errorDestFileExists));
+
+    // copy
     {
         // open files
         CxFile fileFrom;
@@ -890,24 +892,28 @@ CxFile::copy(
         CxFile fileTo;
         fileTo.create(a_filePathTo, omBinWrite, true);
 
-        // copy files
-        std::csize_t buffSize       = 1024;
-        uchar_t      buff[buffSize] = {0};
+        if ( !fileFrom.isEmpty() ) {
+            // copy files
+            std::csize_t buffSize       = 1024;
+            uchar_t      buff[buffSize] = {0};
 
-        xFOREVER {
-            std::csize_t readed  = fileFrom.read(buff, buffSize);
-            xCHECK_DO(0 >= readed, break);
+            xFOREVER {
+                std::csize_t readed  = fileFrom.read(buff, buffSize);
+                xCHECK_DO(0 >= readed, break);
 
-            std::csize_t written = fileTo.write(buff, readed);
-            xCHECK_DO(readed != written, isCopyOk = false; break);
+                std::csize_t written = fileTo.write(buff, readed);
+                xCHECK_DO(readed != written, isCopyOk = false; break);
+            }
         }
     }
 
-    // if copy fail - delete out file
-    xCHECK_DO(!isCopyOk, remove(a_filePathTo); return /* false */);
-
-    // test for size, maybe CRC
-    xCHECK_DO(size(a_filePathFrom) != size(a_filePathTo), remove(a_filePathTo); return /* false */);
+    // checks
+    {
+        xCHECK_DO(!isCopyOk, remove(a_filePathTo);
+            xTHROW_REPORT(errorCopyFail));
+        xCHECK_DO(size(a_filePathFrom) != size(a_filePathTo), remove(a_filePathTo);
+            xTHROW_REPORT(errorFilesDiffrent));
+    }
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
