@@ -42,7 +42,7 @@ CxTest_CxSleeper::unit(
 
     xTEST_CASE("CxSleeper::wakeUp", a_caseLoops)
     {
-        // TEST: CxSleeper::vWakeUp
+        // TEST: CxSleeper::wakeUp()
         #if xTODO
             CxSleeper objSleeper;
 

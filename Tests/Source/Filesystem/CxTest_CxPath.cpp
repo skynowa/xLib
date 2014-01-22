@@ -390,7 +390,7 @@ CxTest_CxPath::unit(
 
     xTEST_CASE("CxPath::removeExtIf", a_caseLoops)
     {
-        // TEST: CxPath::sRemoveExtIf
+        // TEST: CxPath::removeExtIf()
 
         //#if   xOS_ENV_WIN
         //    const data2_tstring_t data[] = {
@@ -417,7 +417,7 @@ CxTest_CxPath::unit(
 
     xTEST_CASE("CxPath::isValid", a_caseLoops)
     {
-        // TEST: CxPath::isValid
+        // TEST: CxPath::isValid()
     }
 
     xTEST_CASE("CxPath::isNameValid", a_caseLoops)
@@ -976,12 +976,12 @@ CxTest_CxPath::unit(
 #if xOS_ENV_UNIX
     xTEST_CASE("CxPath::proc", a_caseLoops)
     {
-        // TEST: CxPath::proc
+        // TEST: CxPath::proc()
     }
 
     xTEST_CASE("CxPath::procValue", a_caseLoops)
     {
-        // TEST: CxPath::procValue
+        // TEST: CxPath::procValue()
     }
 #endif
 }

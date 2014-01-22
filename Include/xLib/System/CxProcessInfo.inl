@@ -34,11 +34,11 @@ CxProcessInfo::cpuUsage() const
     ulong_t ulRv = 0UL;
 
 #if   xOS_ENV_WIN
-    // TODO: CxProcessInfo::cpuUsage
+    // TODO: CxProcessInfo::cpuUsage()
 #elif xOS_ENV_UNIX
-    // TODO: CxProcessInfo::cpuUsage
+    // TODO: CxProcessInfo::cpuUsage()
 #elif xOS_ENV_MAC
-    // TODO: CxProcessInfo::cpuUsage
+    // TODO: CxProcessInfo::cpuUsage()
 #endif
 
     return ulRv;
