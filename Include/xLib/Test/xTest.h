@@ -263,7 +263,11 @@
 
 #if xTEST_TRACING
     #define xTEST_CASE(caseName, loops) \
-        CxTrace() << xT("\tCase name: ") << xT(caseName); \
+        if (loops == 0) { \
+            CxTrace() << xT("\tTest case: ") << xT(caseName); \
+        } else { \
+            CxTrace() << xT("\tTest case: ") << xT(caseName) << xT(" - skipped"); \
+        } \
         for (size_t _caseLoops = 0; _caseLoops < (loops); ++ _caseLoops)
 #else
     #define xTEST_CASE(caseName, loops) \
