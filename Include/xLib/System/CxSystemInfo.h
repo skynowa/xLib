@@ -92,7 +92,7 @@ public:
         ///<
     std::tstring_t userName() const xWARN_UNUSED_RV;
         ///< get the name of the user associated with the current thread
-    std::tstring_t useHomeDir() const xWARN_UNUSED_RV;
+    std::tstring_t userHomeDir() const xWARN_UNUSED_RV;
         ///< get home directory of current user
     std::tstring_t userShellPath() const xWARN_UNUSED_RV;
         ///< get shell path of current user
