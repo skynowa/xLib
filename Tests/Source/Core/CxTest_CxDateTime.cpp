@@ -434,25 +434,25 @@ CxTest_CxDateTime::unit(
     {
         // valid
         {
-            cushort_t valid[] = {
+            cint_t valid[] = {
                 1812, 1828, 1904
             };
 
             for (size_t i = 0; i < xARRAY_SIZE(valid); ++ i) {
                 m_bRv = CxDateTime::isLeapYear(valid[i]);
-                xTEST_EQ(true, m_bRv);
+                xTEST_EQ(m_bRv, true);
             }
         }
 
         // non valid
         {
-            cushort_t nonValid[] = {
+            cint_t nonValid[] = {
                 1813, 1829, 1905
             };
 
             for (size_t i = 0; i < xARRAY_SIZE(nonValid); ++ i) {
                 m_bRv = CxDateTime::isLeapYear(nonValid[i]);
-                xTEST_EQ(true, m_bRv);
+                xTEST_EQ(m_bRv, false);
             }
         }
     }
