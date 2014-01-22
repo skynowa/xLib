@@ -98,7 +98,7 @@ CxTest_CxFile::unit(
     xTEST_CASE("CxFile::write CxFile::read", a_caseLoops)
     {
         std::tstring_t buffWrite = xT("<test1>\n<test2>\n<test3>\n\n<...>");
-        std::tstring_t buffWrite  = xT("");       buffWrite.resize(buffWrite.size());
+        std::tstring_t buffRead  = xT("");       buffRead.resize(buffWrite.size());
 
         // write
         {
@@ -114,11 +114,11 @@ CxTest_CxFile::unit(
             CxFile file;
 
             file.create(filePath, CxFile::omBinRead, true);
-            m_stRv = file.read(&buffWrite.at(0), buffWrite.size() * sizeof(std::tstring_t::value_type));
+            m_stRv = file.read(&buffRead.at(0), buffRead.size() * sizeof(std::tstring_t::value_type));
             xUNUSED(m_stRv);
         }
 
-        xTEST_EQ(buffWrite, buffWrite);
+        xTEST_EQ(buffWrite, buffRead);
     }
 
     xTEST_CASE("CxFile::write CxFile::read", a_caseLoops)
@@ -167,7 +167,7 @@ CxTest_CxFile::unit(
     xTEST_CASE("CxFile::readLine CxFile::writeLine", a_caseLoops)
     {
         std::tstring_t buffWrite = xT("<test1><test2><test3><...>");
-        std::tstring_t buffWrite = xT("");
+        std::tstring_t buffRead  = xT("");
 
         // writeLine
         {
@@ -182,11 +182,11 @@ CxTest_CxFile::unit(
             CxFile file;
 
             file.create(filePath, CxFile::omRead, true);
-            file.readLine(&buffWrite, buffWrite.size());
+            file.readLine(&buffRead, buffRead.size());
         }
 
-        xTEST_EQ(buffWrite.size(), buffWrite.size());
-        xTEST_EQ(buffWrite,        buffWrite);
+        xTEST_EQ(buffWrite.size(), buffRead.size());
+        xTEST_EQ(buffWrite,        buffRead);
     }
 
     xTEST_CASE("CxFile::writeChar chReadChar ungetChar", a_caseLoops)
@@ -665,20 +665,20 @@ CxTest_CxFile::unit1(
 
     xTEST_CASE("CxFile::tryRemove", a_caseLoops)
     {
-        std::ctstring_t filePath = tempDirPath() + CxConst::slash() + xT("New.Test.txt");
+        std::ctstring_t tryfilePath = tempDirPath() + CxConst::slash() + xT("New.Test.txt");
 
         for (size_t i = 0; i < 20; ++ i) {
             if (i < 10) {
                 CxFile file;
 
-                file.create(filePath, CxFile::omCreateReadWrite, true);
+                file.create(tryfilePath, CxFile::omCreateReadWrite, true);
                 file.resize(1024);
                 file.locking(CxFile::lmLock, 10);
 
-                CxFile::tryRemove(filePath, 10, 2000);
+                CxFile::tryRemove(tryfilePath, 10, 2000);
                 file.locking(CxFile::lmUnlock, 10);
             } else {
-                CxFile::tryRemove(filePath, 10, 33);
+                CxFile::tryRemove(tryfilePath, 10, 33);
             }
         }
     }
