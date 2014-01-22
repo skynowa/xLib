@@ -18,7 +18,7 @@ class CxVolume
 {
 public:
     enum ExType
-        /// file system type
+        /// drive type
     {
     #if   xOS_ENV_WIN
         dtUnknown   = DRIVE_UNKNOWN,
@@ -40,43 +40,45 @@ public:
     #endif
     };
 
-    explicit          CxVolume(std::ctstring_t &path);
+    explicit        CxVolume(std::ctstring_t &path);
         ///< constructor
-    virtual          ~CxVolume() {}
+    virtual        ~CxVolume() {}
         ///< destructor
 
     std::ctstring_t & path() const xWARN_UNUSED_RV;
         ///< volume path
-#if   xOS_ENV_WIN
-    ExType            type() const xWARN_UNUSED_RV;
+#if xOS_ENV_WIN
+    ExType          type() const xWARN_UNUSED_RV;
         ///< drive type
 #endif
-    std::tstring_t    fileSystem() const xWARN_UNUSED_RV;
+    std::tstring_t  fileSystem() const xWARN_UNUSED_RV;
         ///< filesystem type
-    std::tstring_t    label() const xWARN_UNUSED_RV;
+    std::tstring_t  label() const xWARN_UNUSED_RV;
         ///< get label
-    bool_t            isValid() const xWARN_UNUSED_RV;
+    bool_t          isValid() const xWARN_UNUSED_RV;
         ///< is valid path
-    bool_t            isReady() const xWARN_UNUSED_RV;
+    bool_t          isReady() const xWARN_UNUSED_RV;
         ///< is ready
-    bool_t            isEmpty() const xWARN_UNUSED_RV;
+    bool_t          isEmpty() const xWARN_UNUSED_RV;
         ///< is empty
-    void_t            mount(std::ctstring_t &destPath) const;
+    void_t          mount(std::ctstring_t &destPath) const;
         ///< mount
-    void_t            unMount(cbool_t &isForce) const;
+    void_t          unMount(cbool_t &isForce) const;
         ///< unmount
-    bool_t            isSpaceEnough(culonglong_t &needBytes) const;
+    bool_t          isSpaceEnough(culonglong_t &needBytes) const xWARN_UNUSED_RV;
         ///< is enough space
 
     // static
-    static void_t     space(std::ctstring_t &dirPath, ulonglong_t *available, ulonglong_t *total,
-                          ulonglong_t *free);
+    static
+    void_t          space(std::ctstring_t &dirPath, ulonglong_t *available, ulonglong_t *total,
+                        ulonglong_t *free);
         ///< get free space
-    static void_t     paths(std::vec_tstring_t *volumePaths);
+    static
+    void_t          paths(std::vec_tstring_t *volumePaths);
         ///< get paths
 
 private:
-    std::ctstring_t   _path;  ///< volume path
+    std::ctstring_t _path;  ///< volume path
 
     xNO_COPY_ASSIGN(CxVolume)
 };
