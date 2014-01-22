@@ -206,7 +206,7 @@ CxTest_CxVolume::unit(
                 cbool_t      bRv       = data[i].expect;
 
                 CxVolume volume(*it);
-                xCHECK_DO(!volume.isReady(), continue);
+                // xCHECK_DO(!volume.isReady(), continue);
 
                 m_bRv = volume.isSpaceEnough(needBytes);
                 xTEST_EQ(m_bRv, bRv);
@@ -217,17 +217,14 @@ CxTest_CxVolume::unit(
     xTEST_CASE("CxVolume::space", a_caseLoops)
     {
         std::vec_tstring_t volumePaths;
-
-        CxVolume::paths(&volumePaths);
-        // CxTracer() << xTRACE_VAR(volumePaths);
+        volumePaths.push_back( CxSystemInfo().userHomeDir() );
 
         xFOREACH(std::vec_tstring_t, it, volumePaths) {
             ulonglong_t available = 0ULL;
             ulonglong_t total     = 0ULL;
             ulonglong_t free      = 0ULL;
 
-            xCHECK_DO(!CxVolume(*it).isReady(), continue);
-            CxTrace() << xTRACE_VAR(*it);
+            // xCHECK_DO(!CxVolume(*it).isReady(), continue);
 
             CxVolume::space(*it, &available, &total, &free);
             xTEST_DIFF(0ULL, available);
@@ -240,12 +237,12 @@ CxTest_CxVolume::unit(
             ulonglong_t total     = 0ULL;
             ulonglong_t free      = 0ULL;
 
-            xCHECK_DO(!CxVolume(*it).isReady(), continue);
+            // xCHECK_DO(!CxVolume(*it).isReady(), continue);
 
             CxVolume::space(*it, NULL, NULL, NULL);
-            xTEST_DIFF(0ULL, available);
-            xTEST_DIFF(0ULL, total);
-            xTEST_DIFF(0ULL, free);
+            xTEST_EQ(0ULL, available);
+            xTEST_EQ(0ULL, total);
+            xTEST_EQ(0ULL, free);
         }
 
         xFOREACH(std::vec_tstring_t, it, volumePaths) {
@@ -253,7 +250,7 @@ CxTest_CxVolume::unit(
             ulonglong_t total     = 0ULL;
             ulonglong_t free      = 0ULL;
 
-            xCHECK_DO(!CxVolume(*it).isReady(), continue);
+            // xCHECK_DO(!CxVolume(*it).isReady(), continue);
 
             CxVolume::space(*it, &available, &total, &free);
             xTEST_DIFF(0ULL, available);
