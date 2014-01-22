@@ -471,7 +471,7 @@ CxTest_CxDateTime::unit(
     {
     #if xOS_ENV_WIN
         const time_t unixTime = 1000;
-        FILETIME     fileTime  = {0};
+        FILETIME     fileTime = {0};
 
         CxDateTime::unixTimeToFileTime(unixTime, &fileTime);
     #endif
@@ -517,16 +517,14 @@ CxTest_CxDateTime::unit(
         -----------------------------------------------------
         */
 
-        std::ctstring_t data[][3] = {
-            {xT("7"), xT("31"), xT("Лев")},
-            {xT("5"), xT("18"), xT("Телец")},
+        const CxTestData3<int_t, int_t, std::tstring_t> data[] = {
+            { 7, 31, xT("Лев")   },
+            { 5, 18, xT("Телец") }
         };
 
         for (std::size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
-            std::tstring_t str1 = CxDateTime::zodiacSign(CxString::cast<int_t>(data[i][0]),
-                                                         CxString::cast<int_t>(data[i][1]));
-            std::tstring_t str2 = data[i][2];
-            xTEST_EQ(str1, str2);
+            std::ctstring_t str1 = CxDateTime::zodiacSign(data[i].test1, data[i].test2);
+            xTEST_EQ(str1, data[i].expect);
         }
     }
 

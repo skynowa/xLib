@@ -164,7 +164,7 @@ CxDateTime::CxValidator::month(
     cint_t &a_month
 )
 {
-    cbool_t bRv = (a_month >= (0 + 1) && a_month <= (11 + 1));
+    cbool_t bRv = (a_month >= 0 && a_month <= 11);
     xTEST_EQ(true, bRv);
 
     return bRv;
@@ -230,7 +230,7 @@ CxDateTime::CxValidator::weekDay(
     cint_t &a_weekDay
 )
 {
-    cbool_t bRv = (a_weekDay >= (0 + 1) && a_weekDay <= (6 + 1));
+    cbool_t bRv = (a_weekDay >= 0 && a_weekDay <= 6);
     xTEST_EQ(true, bRv);
 
     return bRv;
