@@ -283,8 +283,10 @@ CxFile::readLine(
     tchar_t *pszRv = std::xTFGETS(&str.at(0), static_cast<int_t>( str.size() ), get());
     xTEST_PTR(pszRv);
 
+    // trim NULL's from string, remove EOL
+    str = CxString::removeEol( str.c_str() );
     // out
-    *a_str = str.c_str();
+    a_str->swap(str);
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
