@@ -220,7 +220,7 @@ CxTest_CxMySql::unit(
     //--------------------------------------------------
     // vFetchRow
     {
-        // TEST: CxMysql::vFetchRow
+        // TEST: CxMysql::fetchRow()
 
         //MYSQL_ROW mrRow;
 
@@ -230,7 +230,7 @@ CxTest_CxMySql::unit(
     //--------------------------------------------------
     // vFetchLengths
     {
-        // TEST: CxMysql::vFetchLengths
+        // TEST: CxMysql::fetchLengths()
 
         //ulong_t *pulFieldLengths = NULL;
 

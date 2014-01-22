@@ -22,9 +22,7 @@ CxTest_CxVolume::unit(
         std::ctstring_t volumePath = xT("C:");
 
         CxVolume::ExType dtRes = CxVolume(volumePath).type();
-        xUNUSED(dtRes);
-        // CxTracer() << xTRACE_VAR(dtRes);
-        // TEST: xTEST_EQ(CxVolume::dtFixed, dtRes);
+        xTEST_EQ(CxVolume::dtFixed, dtRes);
     }
 #endif
 
@@ -139,7 +137,7 @@ CxTest_CxVolume::unit(
     {
         // true
         {
-            // TEST: CxVolume::bIsEmpty
+            // TEST: CxVolume::isEmpty()
             #if   xOS_ENV_WIN
                 std::ctstring_t volumePathWithSlash    = xT("B:\\");
                 std::ctstring_t volumePathWithoutSlash = xT("B:");

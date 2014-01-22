@@ -263,7 +263,7 @@ CxTest_CxString::unit(
             sRv = CxString::castFromOem(("1111, hdbhjgjk hkl, jl.,kh."));
             xTEST_EQ(true, std::tstring_t(xT("1111, hdbhjgjk hkl, jl.,kh.")) == sRv);
         #elif xOS_ENV_UNIX
-            // TODO: castFromOem
+            // TODO: CxString::castFromOem()
         #endif
     }
 

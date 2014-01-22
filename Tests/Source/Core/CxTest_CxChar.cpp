@@ -170,7 +170,7 @@ CxTest_CxChar::unit(
 
             for (size_t i = 0; i < dataFalse.size(); ++ i) {
                 m_bRv = CxChar(dataFalse.at(i)).isPrint();
-                // TEST: CxChar(xxxx).isPrint
+                // TEST: CxChar::isPrint()
                 // xTEST_EQ(false, m_bRv);
             }
         }

@@ -139,7 +139,7 @@ CxTest_CxThread::unit(
 
     xTEST_CASE("CxThread::messages", a_caseLoops)
     {
-        // TEST: CxThread::messages
+        // TEST: CxThread::messages()
         #if xTODO
             m_bRv = pthT->postMessage(::GetDesktopWindow(), WM_CHAR, 0, 0);
             m_bRv = pthT->sendMessage(::GetDesktopWindow(), WM_CHAR, 0, 0);
@@ -169,7 +169,7 @@ CxTest_CxThread::unit(
 
     xTEST_CASE("CxThread::priorityString", a_caseLoops)
     {
-        // TEST: CxThread::priorityString
+        // TEST: CxThread::priorityString()
         #if xTODO
             m_sRv = pthT->priorityString();
             xTEST_EQ(std::tstring_t(xT("Lowest")), m_sRv);
@@ -275,7 +275,7 @@ CxTest_CxThread::unit(
 
     xTEST_CASE("CxThread::open", a_caseLoops)
     {
-        // TEST: CxThread::open
+        // TEST: CxThread::open()
         #if xTODO
             m_hRv = CxThread::open(THREAD_ALL_ACCESS, false, CxThread::ulGetCurrentId());
             xTEST_PTR(m_hRv);
@@ -284,7 +284,7 @@ CxTest_CxThread::unit(
 
     xTEST_CASE("CxThread::open", a_caseLoops)
     {
-        // TEST: CxThread::open
+        // TEST: CxThread::open()
         #if xTODO
             THandle hRv = CxThread::open(culong_t culAccess, cbool_t cbInheritHandle, culong_t culId);
         #endif
@@ -319,7 +319,7 @@ CxTest_CxThread::unit(
 
     xTEST_CASE("CxThread::exit", a_caseLoops)
     {
-        // TEST: CxThread::exit
+        // TEST: CxThread::exit()
         #if xTODO
             m_bRv = pthT->exit(xTIMEOUT_INFINITE);
             xTEST_EQ(true, m_bRv);
@@ -328,7 +328,7 @@ CxTest_CxThread::unit(
 
     xTEST_CASE("CxThread::kill", a_caseLoops)
     {
-        // TEST: CxThread::kill
+        // TEST: CxThread::kill()
         #if xTODO
             pthT->kill(xTIMEOUT_INFINITE);
         #endif
