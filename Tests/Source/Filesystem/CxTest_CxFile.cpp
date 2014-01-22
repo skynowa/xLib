@@ -164,7 +164,7 @@ CxTest_CxFile::unit(
         }
     }
 
-    xTEST_CASE("CxFile::readLine CxFile::writeLine", a_caseLoops)
+    xTEST_CASE("CxFile::readLine writeLine", a_caseLoops)
     {
         std::tstring_t buffWrite = xT("<test1><test2><test3><...>");
         std::tstring_t buffRead  = xT("");
@@ -182,14 +182,14 @@ CxTest_CxFile::unit(
             CxFile file;
 
             file.create(filePath, CxFile::omRead, true);
-            file.readLine(&buffRead, buffRead.size());
+            file.readLine(&buffRead, 1024);
         }
 
         xTEST_EQ(buffWrite.size(), buffRead.size());
         xTEST_EQ(buffWrite,        buffRead);
     }
 
-    xTEST_CASE("CxFile::writeChar chReadChar ungetChar", a_caseLoops)
+    xTEST_CASE("CxFile::writeChar readChar ungetChar", a_caseLoops)
     {
         ctchar_t ch = xT('W');
 
