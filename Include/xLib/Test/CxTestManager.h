@@ -43,11 +43,3 @@ xNAMESPACE_END(xlib)
 #include "CxTestManager.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxTestManagerH
-
-
-/**
- * TEST: CxTestManager - not enough RAM
- * TEST: CxTestManager - not enough HDD
- * TEST: CxTestManager - busy CPU
- * TEST: CxTestManager - every macros wrapped by try-catch
- */
