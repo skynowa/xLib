@@ -355,7 +355,7 @@ CxLocalStorage::_write(
     xTEST_NA(a_value);
 
     // write to std::map_tstring_t
-    std::map_tstring_t::const_iterator it = _ini.find(a_key);
+    std::map_tstring_t::iterator it = _ini.find(a_key);
     if (_ini.end() == it) {
         _ini.insert( std::pair<std::tstring_t, std::tstring_t>(a_key, a_value) );
     } else {
