@@ -38,7 +38,7 @@ CxMsgBox::show(
         title = CxPath(CxPath::exe()).fileName();
     }
 
-    mrRes = show_impl(a_text, a_title, a_type);
+    mrRes = _show_impl(a_text, a_title, a_type);
 
     return mrRes;
 }
