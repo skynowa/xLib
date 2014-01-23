@@ -43,7 +43,7 @@ CxTest_CxIpcMutex::unit(
         mtMutex.open(csName);
     }
 
-    xTEST_CASE("CxIpcMutex::lock CxIpcMutex::unlock", a_caseLoops)
+    xTEST_CASE("CxIpcMutex::lock unlock", a_caseLoops)
     {
         culong_t culTimeout = 1000UL;
 
