@@ -15,7 +15,7 @@
 xNAMESPACE_BEGIN(xlib)
 
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE2_BEGIN(NxInternal, NxEnum)
+xNAMESPACE2_BEGIN(internal, enums)
 
 static Types<IxLog::ExLevel, ssize_t, 10> levels =
 {{
@@ -44,7 +44,7 @@ static Types<IxLog::ExLevel, ssize_t, 10> levels =
 #endif
 }};
 
-xNAMESPACE2_END(NxInternal, NxEnum)
+xNAMESPACE2_END(internal, enums)
 //-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END(xlib)

@@ -13,7 +13,7 @@ xNAMESPACE_BEGIN(xlib)
 #define xPLATFORM_IMPL private
     ///< for platform code
 
-xNAMESPACE2_BEGIN(NxInternal, NxEnum)
+xNAMESPACE2_BEGIN(internal, enums)
 
 template<class crossT, class implT>
 struct Type
@@ -43,7 +43,7 @@ struct Types
         ///< crossplatform value to implementation (native)
 };
 
-xNAMESPACE2_END(NxInternal, NxEnum)
+xNAMESPACE2_END(internal, enums)
 
 xNAMESPACE_END(xlib)
 //---------------------------------------------------------------------------
