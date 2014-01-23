@@ -13,8 +13,6 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(xlib)
 
-typedef std::map_tstring_t local_storage_t;
-
 class CxLocalStorage
     /// local storage
 {
@@ -33,7 +31,7 @@ public:
         ///< get file path
     void_t            setPath(std::ctstring_t &filePath);
         ///< set file path
-    local_storage_t & get() xWARN_UNUSED_RV;
+    std::map_tstring_t & get() xWARN_UNUSED_RV;
         ///< get inner local_storage_t, may be used with bFlush
 
     void_t            flush() const;
@@ -85,7 +83,7 @@ private:
     std::ctstring_t   _fileExt;    ///< ini-file extension
 
     std::tstring_t    _filePath;    ///< file path to ini-file
-    local_storage_t   _ini;        ///< std::map of keys and values
+    std::map_tstring_t _ini;        ///< std::map of keys and values
 
     void_t            _read(std::ctstring_t &key, std::ctstring_t &defaultValue,
                           std::tstring_t *value);

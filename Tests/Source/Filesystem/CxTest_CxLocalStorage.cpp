@@ -64,7 +64,7 @@ CxTest_CxLocalStorage::unit(
 
     xTEST_CASE("CxLocalStorage::get CxLocalStorage::flush", a_caseLoops)
     {
-        local_storage_t &riniIni = iniIni.get();
+        std::map_tstring_t &riniIni = iniIni.get();
         xTEST_EQ(true, riniIni.empty());
 
         riniIni[csKey1] = csValue1;
@@ -89,7 +89,7 @@ CxTest_CxLocalStorage::unit(
 
     xTEST_CASE("CxLocalStorage::keyIsExists", a_caseLoops)
     {
-        local_storage_t &riniIni = iniIni.get();
+        std::map_tstring_t &riniIni = iniIni.get();
         xTEST_EQ(true, riniIni.empty());
 
         riniIni[csKey1] = csValue1;
