@@ -10,6 +10,9 @@
 //---------------------------------------------------------------------------
 xNAMESPACE_BEGIN(xlib)
 
+#define xPLATFORM_IMPL private
+    ///< for platform code
+
 xNAMESPACE2_BEGIN(NxInternal, NxEnum)
 
 template<class crossT, class implT>
