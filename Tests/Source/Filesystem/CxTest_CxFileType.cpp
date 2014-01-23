@@ -40,7 +40,7 @@ CxTest_CxFileType::unit(
         xTEST_EQ(true, m_bRv);
     }
 
-    xTEST_CASE("CxFileType::set CxFileType::get", a_caseLoops)
+    xTEST_CASE("CxFileType::set get", a_caseLoops)
     {
         CxFileType ftType(csFilePath);
 
