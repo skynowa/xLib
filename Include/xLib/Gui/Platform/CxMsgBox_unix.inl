@@ -65,11 +65,14 @@ CxMsgBox::show_impl(
     cExType         &a_type    /* = tpOk */
 ) const
 {
-    xUNUSED(a_type);
-
     ExModalResult mrRv = mrUnknown;
 
 #if xHAVE_X11
+    xUNUSED(a_type);
+
+    xUNUSED(NxInternal::NxEnum::types);
+    xUNUSED(NxInternal::NxEnum::modalResults);
+
     int_t iRv = - 1;
 
     std::ctstring_t btnUnknown  = xT("");
@@ -330,10 +333,14 @@ CxMsgBox::show_impl(
         iRv = ::XCloseDisplay(display);   display = NULL;
         // xTEST_DIFF(iRv, 0);
     }
+#else
+    xUNUSED(a_text);
+    xUNUSED(a_title);
+    xUNUSED(a_type);
 
     xUNUSED(NxInternal::NxEnum::types);
     xUNUSED(NxInternal::NxEnum::modalResults);
-#else
+
     #pragma message("xLib: CxMsgBox::show_impl() - n/a")
 #endif
 
