@@ -61,7 +61,7 @@ template<class T>
 inline std::tstring_t
 CxString::cast(
     const T &a_value,
-    cint_t  &a_base
+    cint_t  &a_base     ///< valid values: 8, 10, 16
 )
 {
     xTEST_NA(a_value);
@@ -115,7 +115,7 @@ template<class T>
 inline T
 CxString::cast(
     std::ctstring_t &a_str,
-    cint_t          &a_base
+    cint_t          &a_base     ///< valid values: 8, 10, 16
 )
 {
     xTEST_NA(a_str);
