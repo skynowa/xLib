@@ -70,8 +70,8 @@ CxMsgBox::_show_impl(
 #if xHAVE_X11
     xUNUSED(a_type);
 
-    xUNUSED(NxInternal::NxEnum::types);
-    xUNUSED(NxInternal::NxEnum::modalResults);
+    xUNUSED(internal::enums::types);
+    xUNUSED(internal::enums::modalResults);
 
     int_t iRv = - 1;
 
@@ -338,8 +338,8 @@ CxMsgBox::_show_impl(
     xUNUSED(a_title);
     xUNUSED(a_type);
 
-    xUNUSED(NxInternal::NxEnum::types);
-    xUNUSED(NxInternal::NxEnum::modalResults);
+    xUNUSED(internal::enums::types);
+    xUNUSED(internal::enums::modalResults);
 
     #pragma message("xLib: CxMsgBox::_show_impl() - n/a")
 #endif

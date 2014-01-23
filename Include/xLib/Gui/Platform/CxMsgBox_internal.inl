@@ -15,7 +15,7 @@
 xNAMESPACE_BEGIN(xlib)
 
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE2_BEGIN(NxInternal, NxEnum)
+xNAMESPACE2_BEGIN(internal, enums)
 
 static Types<CxMsgBox::ExModalResult, ssize_t, 10> modalResults =
 {{
@@ -88,7 +88,7 @@ static Types<CxMsgBox::ExType, ssize_t, 8> types =
 #endif
 }};
 
-xNAMESPACE2_END(NxInternal, NxEnum)
+xNAMESPACE2_END(internal, enums)
 //-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END(xlib)
