@@ -7,13 +7,16 @@
 #pragma once
 
 #include <xLib/Core/xCore.h>
-//---------------------------------------------------------------------------
-xNAMESPACE_BEGIN(xlib)
-
+//-------------------------------------------------------------------------------------------------
+xNAMESPACE2_BEGIN(xlib, internal)
+//-------------------------------------------------------------------------------------------------
+///@name Macroses
+///@{
 #define xPLATFORM_IMPL private
     ///< for platform code
-
-xNAMESPACE2_BEGIN(internal, enums)
+///@}
+//-------------------------------------------------------------------------------------------------
+xNAMESPACE_BEGIN(enums)
 
 template<class crossT, class implT>
 struct Type
@@ -43,7 +46,7 @@ struct Types
         ///< crossplatform value to implementation (native)
 };
 
-xNAMESPACE2_END(internal, enums)
-
-xNAMESPACE_END(xlib)
-//---------------------------------------------------------------------------
+xNAMESPACE_END(enums)
+//-------------------------------------------------------------------------------------------------
+xNAMESPACE2_END(xlib, internal)
+//-------------------------------------------------------------------------------------------------
