@@ -19,228 +19,224 @@ CxTest_CxLocalStorage::unit(
     culonglong_t &a_caseLoops
 )
 {
-    std::ctstring_t csFilePath = CxPath( CxPath::exe() ).setExt(xT("ini") );
+    std::ctstring_t filePath = CxPath( CxPath::exe() ).setExt(xT("ini") );
 
-    std::ctstring_t csKey1     = xT("a");
-    std::ctstring_t csValue1   = xT("1");
+    std::ctstring_t key1     = xT("a");
+    std::ctstring_t value1   = xT("1");
 
-    std::ctstring_t csKey2     = xT("b");
-    std::ctstring_t csValue2   = xT("2");
+    std::ctstring_t key2     = xT("b");
+    std::ctstring_t value2   = xT("2");
 
-    std::ctstring_t csKey3     = xT("c");
-    std::ctstring_t csValue3   = xT("3");
+    std::ctstring_t key3     = xT("c");
+    std::ctstring_t value3   = xT("3");
 
-    std::ctstring_t csContent  = csKey1 + CxConst::equal() + csValue1 + CxConst::nl() +
-                                      csKey2 + CxConst::equal() + csValue2 + CxConst::nl() +
-                                      csKey3 + CxConst::equal() + csValue3 + CxConst::nl();
+    std::ctstring_t content  = key1 + CxConst::equal() + value1 + CxConst::nl() +
+                               key2 + CxConst::equal() + value2 + CxConst::nl() +
+                               key3 + CxConst::equal() + value3 + CxConst::nl();
 
     xTEST_CASE("CxLocalStorage::CxLocalStorage", a_caseLoops)
     {
-        CxLocalStorage iniIni;
+        CxLocalStorage storage;
     }
 
-    CxFile::remove(csFilePath);
+    CxFile::remove(filePath);
 
-    CxLocalStorage iniIni(csFilePath);
+    CxLocalStorage storage(filePath);
 
     xTEST_CASE("CxLocalStorage::createDefault", a_caseLoops)
     {
-        iniIni.createDefault(csContent);
+        storage.createDefault(content);
     }
 
     xTEST_CASE("CxLocalStorage::path", a_caseLoops)
     {
-        m_sRv = iniIni.path();
-        xTEST_EQ(csFilePath, m_sRv);
+        m_sRv = storage.path();
+        xTEST_EQ(filePath, m_sRv);
     }
 
     xTEST_CASE("CxLocalStorage::setPath", a_caseLoops)
     {
-        iniIni.setPath(csFilePath);
+        storage.setPath(filePath);
 
-        m_sRv = iniIni.path();
-        xTEST_EQ(csFilePath, m_sRv);
+        m_sRv = storage.path();
+        xTEST_EQ(filePath, m_sRv);
     }
 
-    xTEST_CASE("CxLocalStorage::get CxLocalStorage::flush", a_caseLoops)
+    xTEST_CASE("CxLocalStorage::get flush", a_caseLoops)
     {
-        std::map_tstring_t &riniIni = iniIni.get();
-        xTEST_EQ(true, riniIni.empty());
+        std::map_tstring_t &_storage = storage.get();
+        xTEST_EQ(true, _storage.empty());
 
-        riniIni[csKey1] = csValue1;
-        riniIni[csKey2] = csValue2;
-        riniIni[csKey3] = csValue3;
+        _storage[key1] = value1;
+        _storage[key2] = value2;
+        _storage[key3] = value3;
 
-        iniIni.flush();
+        storage.flush();
 
-        m_sRv = iniIni.keyReadString(csKey1, std::tstring_t());
-        xTEST_EQ(csValue1, m_sRv);
+        m_sRv = storage.keyReadString(key1, std::tstring_t());
+        xTEST_EQ(value1, m_sRv);
 
-        m_sRv = iniIni.keyReadString(csKey2, std::tstring_t());
-        xTEST_EQ(csValue2, m_sRv);
+        m_sRv = storage.keyReadString(key2, std::tstring_t());
+        xTEST_EQ(value2, m_sRv);
 
-        m_sRv = iniIni.keyReadString(csKey3, std::tstring_t());
-        xTEST_EQ(csValue3, m_sRv);
+        m_sRv = storage.keyReadString(key3, std::tstring_t());
+        xTEST_EQ(value3, m_sRv);
 
-        iniIni.get().clear();
-
-        iniIni.flush();
+        storage.get().clear();
+        storage.flush();
     }
 
     xTEST_CASE("CxLocalStorage::keyIsExists", a_caseLoops)
     {
-        std::map_tstring_t &riniIni = iniIni.get();
-        xTEST_EQ(true, riniIni.empty());
+        std::map_tstring_t &_storage = storage.get();
+        xTEST_EQ(true, _storage.empty());
 
-        riniIni[csKey1] = csValue1;
-        riniIni[csKey2] = csValue2;
-        riniIni[csKey3] = csValue3;
+        _storage[key1] = value1;
+        _storage[key2] = value2;
+        _storage[key3] = value3;
 
-        iniIni.flush();
+        storage.flush();
 
         // true
         {
-            std::vec_tstring_t vsPairs;
+            std::vec_tstring_t pairs;
 
-            vsPairs.push_back(csKey1 + CxConst::equal() + csValue1);
-            vsPairs.push_back(csKey2 + CxConst::equal() + csValue2);
-            vsPairs.push_back(csKey3 + CxConst::equal() + csValue3);
+            pairs.push_back(key1 + CxConst::equal() + value1);
+            pairs.push_back(key2 + CxConst::equal() + value2);
+            pairs.push_back(key3 + CxConst::equal() + value3);
 
-            for (size_t i = 0; i < vsPairs.size(); ++ i) {
-                std::vec_tstring_t vsPair;
+            for (size_t i = 0; i < pairs.size(); ++ i) {
+                std::vec_tstring_t pair;
 
-                CxString::split(vsPairs.at(i), CxConst::equal(), &vsPair);
-                xTEST_EQ(false, vsPair.empty());
+                CxString::split(pairs.at(i), CxConst::equal(), &pair);
+                xTEST_EQ(false, pair.empty());
 
-                m_bRv = iniIni.keyIsExists( vsPair.at(0) );
+                m_bRv = storage.keyIsExists( pair.at(0) );
                 xTEST_EQ(true, m_bRv);
             }
         }
 
         // false
         {
-            std::vec_tstring_t vsPairs;
+            std::vec_tstring_t pairs;
 
-            vsPairs.push_back(xT("not_existance_key"));
-            vsPairs.push_back(xT("s<erfsenot_existance_key56eb54"));
-            vsPairs.push_back(xT("not_exist456745g67ance_key"));
-            vsPairs.push_back(xT("563yb675dfgv4g67"));
-            vsPairs.push_back(xT("not_exi5g675467stance_key"));
+            pairs.push_back(xT("not_existance_key"));
+            pairs.push_back(xT("s<erfsenot_existance_key56eb54"));
+            pairs.push_back(xT("not_exist456745g67ance_key"));
+            pairs.push_back(xT("563yb675dfgv4g67"));
+            pairs.push_back(xT("not_exi5g675467stance_key"));
 
-            for (size_t i = 0; i < vsPairs.size(); ++ i) {
-                std::vec_tstring_t vsPair;
+            for (size_t i = 0; i < pairs.size(); ++ i) {
+                std::vec_tstring_t pair;
 
-                 CxString::split(vsPairs.at(i), CxConst::equal(), &vsPair);
+                 CxString::split(pairs.at(i), CxConst::equal(), &pair);
 
-                m_bRv = iniIni.keyIsExists( vsPair.at(0) );
+                m_bRv = storage.keyIsExists( pair.at(0) );
                 xTEST_EQ(false, m_bRv);
             }
         }
 
-        iniIni.get().clear();
-
-        iniIni.flush();
+        storage.get().clear();
+        storage.flush();
     }
 
-    xTEST_CASE("CxLocalStorage::keyWriteString CxLocalStorage::keyReadString", a_caseLoops)
+    xTEST_CASE("CxLocalStorage::keyWriteString keyReadString", a_caseLoops)
     {
         // true
         {
-            std::ctstring_t csStr = csValue1;
+            std::ctstring_t str = value1;
 
-            iniIni.keyWriteString(csKey1, csStr);
+            storage.keyWriteString(key1, str);
 
-            m_sRv = iniIni.keyReadString(csKey1, std::tstring_t());
-            xTEST_EQ(csStr, m_sRv);
+            m_sRv = storage.keyReadString(key1, std::tstring_t());
+            xTEST_EQ(str, m_sRv);
         }
 
         // false
         {
-            std::ctstring_t csStr = xT("sssssssssssss");
+            std::ctstring_t str = xT("sssssssssssss");
 
-            iniIni.keyWriteString(csKey1, csStr);
+            storage.keyWriteString(key1, str);
 
-            m_sRv = iniIni.keyReadString(csKey1, std::tstring_t());
-            xTEST_EQ(csStr, m_sRv);
+            m_sRv = storage.keyReadString(key1, std::tstring_t());
+            xTEST_EQ(str, m_sRv);
         }
     }
 
-    xTEST_CASE("CxLocalStorage::keyReadInt CxLocalStorage::keyWriteInt", a_caseLoops)
+    xTEST_CASE("CxLocalStorage::keyReadInt keyWriteInt", a_caseLoops)
     {
-        clong_t cliValue = 10L;
+        clong_t value = 10L;
 
-        iniIni.keyWriteInt(csKey1, cliValue);
+        storage.keyWriteInt(key1, value);
 
-        m_liRv = iniIni.keyReadInt(csKey1, 0L);
-        xTEST_EQ(cliValue, m_liRv);
+        m_liRv = storage.keyReadInt(key1, 0L);
+        xTEST_EQ(value, m_liRv);
     }
 
-    xTEST_CASE("CxLocalStorage::keyReadFloat CxLocalStorage::keyWriteFloat", a_caseLoops)
+    xTEST_CASE("CxLocalStorage::keyReadFloat keyWriteFloat", a_caseLoops)
     {
-        cdouble_t cdValue = 777.0f;
+        cdouble_t value = 777.0f;
 
-        iniIni.keyWriteFloat(csKey1, cdValue);
+        storage.keyWriteFloat(key1, value);
 
-        m_dRv = iniIni.keyReadFloat(csKey1, 0.0f);
-        xTEST_EQ(cdValue, m_dRv);
+        m_dRv = storage.keyReadFloat(key1, 0.0f);
+        xTEST_EQ(value, m_dRv);
     }
 
-    xTEST_CASE("CxLocalStorage::keyReadBool CxLocalStorage::keyWriteBool", a_caseLoops)
+    xTEST_CASE("CxLocalStorage::keyReadBool keyWriteBool", a_caseLoops)
     {
-        cbool_t cbValue = false;
+        cbool_t value = false;
 
-        iniIni.keyWriteBool(csKey1, cbValue);
+        storage.keyWriteBool(key1, value);
 
-        m_bRv = iniIni.keyReadBool(csKey1, true);
-        xTEST_EQ(cbValue, m_bRv);
+        m_bRv = storage.keyReadBool(key1, true);
+        xTEST_EQ(value, m_bRv);
     }
 
-    xTEST_CASE("CxLocalStorage::keyWriteBin CxLocalStorage::keyReadBin", a_caseLoops)
+    xTEST_CASE("CxLocalStorage::keyWriteBin keyReadBin", a_caseLoops)
     {
-        std::custring_t cusValue(10, 'z');
-        std::custring_t cusDefaultValue(10, 'd');
+        std::custring_t value(10, 'z');
+        std::custring_t defaultValue(10, 'd');
 
-        iniIni.keyWriteBin(csKey1, cusValue);
+        storage.keyWriteBin(key1, value);
 
-        m_usRv = iniIni.keyReadBin(csKey1, cusDefaultValue);
+        m_usRv = storage.keyReadBin(key1, defaultValue);
 
-        // TEST: CxLocalStorage::keyWriteBin CxLocalStorage::keyReadBin
-    #if xTODO
-        xTEST_EQ(cusValue, m_usRv);
-    #endif
+        // TEST: CxLocalStorage::keyWriteBin keyReadBin
+        xTEST_EQ(value, m_usRv);
     }
 
     xTEST_CASE("CxLocalStorage::keyClear", a_caseLoops)
     {
-        iniIni.keyClear(csKey3);
-        xTEST_EQ(true, iniIni.keyIsExists(csKey3));
+        storage.keyClear(key3);
+        xTEST_EQ(true, storage.keyIsExists(key3));
 
-        m_sRv = iniIni.keyReadString(csKey3, xT("fasrfsefrtg"));
+        m_sRv = storage.keyReadString(key3, xT("fasrfsefrtg"));
         xTEST_EQ(CxConst::strEmpty(), m_sRv);
     }
 
     xTEST_CASE("CxLocalStorage::keyDelete", a_caseLoops)
     {
-        std::ctstring_t csKey   = xT("Key");
-        std::ctstring_t csValue = xT("");
+        std::ctstring_t key   = xT("Key");
+        std::ctstring_t value = xT("");
 
-        iniIni.keyWriteString(csKey, csValue);
-        xTEST_EQ(true, iniIni.keyIsExists(csKey));
+        storage.keyWriteString(key, value);
+        xTEST_EQ(true, storage.keyIsExists(key));
 
-        iniIni.keyDelete(csKey);
-        xTEST_EQ(false, iniIni.keyIsExists(csKey));
+        storage.keyDelete(key);
+        xTEST_EQ(false, storage.keyIsExists(key));
     }
 
     xTEST_CASE("CxLocalStorage::clear", a_caseLoops)
     {
-        iniIni.clear();
-        xTEST_EQ(0LL, CxFile::size( iniIni.path() ));
+        storage.clear();
+        xTEST_EQ(0LL, CxFile::size( storage.path() ));
     }
 
     xTEST_CASE("CxLocalStorage::remove", a_caseLoops)
     {
-        iniIni.remove();
-        xTEST_EQ(false, CxFile::isExists( iniIni.path() ));
+        storage.remove();
+        xTEST_EQ(false, CxFile::isExists( storage.path() ));
     }
 }
 //-------------------------------------------------------------------------------------------------
