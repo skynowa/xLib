@@ -176,6 +176,7 @@ namespace xlib { }
 
 #include <xLib/Core/xVersion.h>
 #include <xLib/Core/xTypes.h>
+#include <xLib/Internal/xInternal.h>    // internal
 #include <xLib/Core/xFunctions.h>
 #include <xLib/Core/xStdStream.h>
 
