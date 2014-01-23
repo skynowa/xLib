@@ -7,7 +7,7 @@
 #include <xLib/Core/CxUtils.h>
 
 
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, core)
 
 /**************************************************************************************************
 *    public
@@ -104,4 +104,4 @@ CxChar::toUpper() const
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, core)

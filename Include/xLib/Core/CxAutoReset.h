@@ -11,7 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, core)
 
 template <class T>
 class CxAutoReset
@@ -38,6 +38,6 @@ private:
     xNO_COPY_ASSIGN(CxAutoReset)
 };
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, core)
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxAutoResetH

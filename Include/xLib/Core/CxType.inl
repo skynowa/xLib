@@ -11,7 +11,7 @@
 #endif
 
 
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, core)
 
 /*******************************************************************************
 *   public
@@ -75,4 +75,4 @@ CxType::isEquals(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, core)

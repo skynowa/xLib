@@ -18,7 +18,7 @@
 #endif
 
 
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, system)
 
 /**************************************************************************************************
 *    public
@@ -317,4 +317,4 @@ CxShell::createShortcut(
 
 #endif
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, system)

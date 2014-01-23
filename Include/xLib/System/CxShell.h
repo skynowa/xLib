@@ -17,7 +17,7 @@
     #include <shlobj.h>
 #endif
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, system)
 
 class CxShell
     /// shell
@@ -155,7 +155,7 @@ public:
     xNO_COPY_ASSIGN(CxShell)
 };
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, system)
 //-------------------------------------------------------------------------------------------------
 #include "CxShell.inl"
 //-------------------------------------------------------------------------------------------------

@@ -15,7 +15,7 @@
 #include <xLib/Core/CxUtils.h>
 
 
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, net)
 
 /**************************************************************************************************
 *    public
@@ -526,4 +526,4 @@ CxSocket::lastError()
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, net)

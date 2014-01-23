@@ -4,7 +4,7 @@
  */
 
 
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, core)
 
 /**************************************************************************************************
 *    public
@@ -47,4 +47,4 @@ CxFunctorT<ClassT, ReturnT, ParamT>::execute(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, core)

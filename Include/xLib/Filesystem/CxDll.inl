@@ -20,7 +20,7 @@
 #endif
 
 
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, filesystem)
 
 /**************************************************************************************************
 *    public
@@ -148,4 +148,4 @@ CxDll::_destruct()
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, filesystem)

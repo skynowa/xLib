@@ -7,7 +7,7 @@
 #include <xLib/Log/CxTrace.h>
 
 
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, sync)
 
 /**************************************************************************************************
 *    public
@@ -242,4 +242,4 @@ CxEvent::isSignaled() const
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, sync)

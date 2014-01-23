@@ -11,7 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, patterns)
 
 template <class T, void (T::*MemberT)(void)>
 class CxRaii
@@ -46,6 +46,6 @@ private:
     xNO_COPY_ASSIGN(CxRaii)
 };
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, patterns)
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxRaiiH

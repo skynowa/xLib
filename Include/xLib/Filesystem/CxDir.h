@@ -12,7 +12,7 @@
 #include <xLib/Core/xCore.h>
 #include <xLib/Core/CxConst.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, filesystem)
 
 class CxDir
     /// directory
@@ -67,7 +67,7 @@ private:
     xNO_COPY_ASSIGN(CxDir)
 };
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, filesystem)
 //-------------------------------------------------------------------------------------------------
 #include "CxDir.inl"
 //-------------------------------------------------------------------------------------------------

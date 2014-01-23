@@ -18,7 +18,7 @@
 #include <xLib/Net/CxDnsClient.h>
 
 
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, net)
 
 /**************************************************************************************************
 *    Public methods
@@ -334,4 +334,4 @@ CxSmtp::_isError(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, net)

@@ -35,7 +35,7 @@
 #endif
 
 
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, debug)
 
 /**************************************************************************************************
 *    public
@@ -372,4 +372,4 @@ CxDebugger::_loggingPlain(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, debug)

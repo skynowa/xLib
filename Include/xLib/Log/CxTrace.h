@@ -12,9 +12,11 @@
 #include <xLib/Core/xCore.h>
 #include "IxLog.h"
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, log)
 
-class CxString;
+namespace core {
+    class CxString;
+}
 
 class CxTrace :
     public IxLog
@@ -36,7 +38,7 @@ public:
         ///< tracing to debugger, std::cout
 };
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, log)
 //-------------------------------------------------------------------------------------------------
 #include "CxTrace.inl"
 //-------------------------------------------------------------------------------------------------

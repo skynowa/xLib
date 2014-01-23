@@ -12,7 +12,7 @@
 #include <xLib/System/CxEnvironment.h>
 
 
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, system)
 
 /**************************************************************************************************
 *   public
@@ -390,4 +390,4 @@ CxProcessInfo::commandLineArgsMax()
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, system)

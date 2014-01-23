@@ -19,7 +19,7 @@
 #endif
 
 
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, crypt)
 
 /**************************************************************************************************
 *    public
@@ -190,6 +190,6 @@ CxBlowfish::encryptFileCfb64(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, crypt)
 
 #endif // xHAVE_OPENSSL_CRYPTO

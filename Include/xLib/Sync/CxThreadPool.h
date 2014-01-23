@@ -19,7 +19,7 @@
 ////#include <boost\bind.hpp>
 ////#include <functional>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, sync)
 
 class CxMutex;
 class CxAutoMutex;
@@ -90,7 +90,7 @@ private:
     xNO_COPY_ASSIGN(CxThreadPool)
 };
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, sync)
 //-------------------------------------------------------------------------------------------------
 #include "CxThreadPool.inl"
 //-------------------------------------------------------------------------------------------------

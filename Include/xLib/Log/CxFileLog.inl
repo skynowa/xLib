@@ -15,7 +15,7 @@
 #endif
 
 
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, log)
 
 /**************************************************************************************************
 *    public
@@ -166,4 +166,4 @@ CxFileLog::_removeIfFull() const
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, log)

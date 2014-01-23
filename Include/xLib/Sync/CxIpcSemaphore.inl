@@ -14,7 +14,7 @@
 #endif
 
 
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, sync)
 
 /**************************************************************************************************
 *    public
@@ -272,4 +272,4 @@ CxIpcSemaphore::_isValid() const
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, sync)

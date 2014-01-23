@@ -10,7 +10,7 @@
 #include <xLib/Log/CxTrace.h>
 
 
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, sync)
 
 /**************************************************************************************************
 *    public
@@ -1331,4 +1331,4 @@ CxThread::_setStatesDefault()
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, sync)

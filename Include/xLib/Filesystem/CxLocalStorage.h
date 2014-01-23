@@ -11,7 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, filesystem)
 
 class CxLocalStorage
     /// local storage
@@ -94,7 +94,7 @@ private:
     xNO_COPY_ASSIGN(CxLocalStorage)
 };
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, filesystem)
 //-------------------------------------------------------------------------------------------------
 #include "CxLocalStorage.inl"
 //-------------------------------------------------------------------------------------------------
