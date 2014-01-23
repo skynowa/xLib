@@ -167,7 +167,7 @@ CxTest_CxString::unit(
         }
     }
 
-    xTEST_CASE("CxString::castA, CxString::castW", a_caseLoops)
+    xTEST_CASE("CxString::castA castW", a_caseLoops)
     {
         // TODO: tests for CxString::castA, CxString::castW
     }
@@ -822,7 +822,7 @@ CxTest_CxString::unit(
     *
     *******************************************************************************/
 
-    xTEST_CASE("CxString::formatBytes(culonglong_t)", a_caseLoops)
+    xTEST_CASE("CxString::formatBytes", a_caseLoops)
     {
         const CxTestData2<ulonglong_t, std::tstring_t> data[] = {
             {0ULL, xT("0.00 Bit(s)")},
@@ -855,7 +855,7 @@ CxTest_CxString::unit(
 
     xTEST_CASE("CxString::formatPercent", a_caseLoops)
     {
-
+        // TEST: CxString::formatPercent
     }
 
     /*******************************************************************************
