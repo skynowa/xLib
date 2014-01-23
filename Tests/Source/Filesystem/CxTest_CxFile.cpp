@@ -95,7 +95,7 @@ CxTest_CxFile::unit(
     *
     *******************************************************************************/
 
-    xTEST_CASE("CxFile::write CxFile::read", a_caseLoops)
+    xTEST_CASE("CxFile::write read", a_caseLoops)
     {
         std::tstring_t buffWrite = xT("<test1>\n<test2>\n<test3>\n\n<...>");
         std::tstring_t buffRead  = xT("");       buffRead.resize(buffWrite.size());
@@ -121,7 +121,7 @@ CxTest_CxFile::unit(
         xTEST_EQ(buffWrite, buffRead);
     }
 
-    xTEST_CASE("CxFile::write CxFile::read", a_caseLoops)
+    xTEST_CASE("CxFile::write read", a_caseLoops)
     {
         std::custring_t content(10, 5);
 
@@ -334,7 +334,7 @@ CxTest_CxFile::unit(
         file.locking(CxFile::lmUnlock, 10);
     }
 
-    xTEST_CASE("CxFile::setPosition CxFile::getPosition", a_caseLoops)
+    xTEST_CASE("CxFile::setPosition getPosition", a_caseLoops)
     {
         CxFile file;
 
@@ -704,7 +704,7 @@ CxTest_CxFile::unit1(
     *
     *******************************************************************************/
 
-    xTEST_CASE("CxFile::textRead CxFile::textWrite", a_caseLoops)
+    xTEST_CASE("CxFile::textRead textWrite", a_caseLoops)
     {
         std::tstring_t content;
 
@@ -728,7 +728,7 @@ CxTest_CxFile::unit1(
         xTEST_EQ(content, str);
     }
 
-    xTEST_CASE("CxFile::textRead CxFile::textWrite", a_caseLoops)
+    xTEST_CASE("CxFile::textRead textWrite", a_caseLoops)
     {
         // empty content
         std::tstring_t content;
@@ -749,7 +749,7 @@ CxTest_CxFile::unit1(
         xTEST_EQ(content, str);
     }
 
-    xTEST_CASE("CxFile::textRead CxFile::textWrite", a_caseLoops)
+    xTEST_CASE("CxFile::textRead textWrite", a_caseLoops)
     {
         // std::vector
         std::vec_tstring_t content;
@@ -774,7 +774,7 @@ CxTest_CxFile::unit1(
         xTEST_EQ(true, content == vec);
     }
 
-    xTEST_CASE("CxFile::textRead CxFile::textWrite", a_caseLoops)
+    xTEST_CASE("CxFile::textRead textWrite", a_caseLoops)
     {
         //  empty content
         std::vec_tstring_t content;
@@ -795,7 +795,7 @@ CxTest_CxFile::unit1(
         xTEST_EQ(true, content == vec);
     }
 
-    xTEST_CASE("CxFile::textRead CxFile::textWrite", a_caseLoops)
+    xTEST_CASE("CxFile::textRead textWrite", a_caseLoops)
     {
         // std::vector
         std::map_tstring_t content;
@@ -821,7 +821,7 @@ CxTest_CxFile::unit1(
         xTEST_EQ(true, content == msStr);
     }
 
-    xTEST_CASE("CxFile::textRead CxFile::textWrite", a_caseLoops)
+    xTEST_CASE("CxFile::textRead textWrite", a_caseLoops)
     {
         // empty content
         std::map_tstring_t content;
@@ -843,7 +843,7 @@ CxTest_CxFile::unit1(
         xTEST_EQ(true, content == msStr);
     }
 
-    xTEST_CASE("CxFile::textRead CxFile::textWrite", a_caseLoops)
+    xTEST_CASE("CxFile::textRead textWrite", a_caseLoops)
     {
         // binary
         std::ustring_t content;   content.resize(1024 * 5);
@@ -870,7 +870,7 @@ CxTest_CxFile::unit1(
         xTEST_EQ(true, content == str);
     }
 
-    xTEST_CASE("CxFile::textRead CxFile::textWrite", a_caseLoops)
+    xTEST_CASE("CxFile::textRead textWrite", a_caseLoops)
     {
         // empty content
         std::ustring_t content;
