@@ -201,8 +201,6 @@ CxTest_CxLocalStorage::unit(
         storage.keyWriteBin(key1, value);
 
         m_usRv = storage.keyReadBin(key1, defaultValue);
-
-        // TEST: CxLocalStorage::keyWriteBin keyReadBin
         xTEST_EQ(value, m_usRv);
     }
 
