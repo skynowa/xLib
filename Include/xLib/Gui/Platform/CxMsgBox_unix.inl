@@ -21,7 +21,7 @@ xNAMESPACE_BEGIN(xlib)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(internal)
+xNAMESPACE_ANONYM_BEGIN
 
 std::ctstring_t
 xlib_errorFormat
@@ -56,7 +56,7 @@ xlib_errorHandler(
     return 0;
 }
 
-xNAMESPACE_END(internal)
+xNAMESPACE_ANONYM_END
 //-------------------------------------------------------------------------------------------------
 inline CxMsgBox::ExModalResult
 CxMsgBox::_show_impl(
