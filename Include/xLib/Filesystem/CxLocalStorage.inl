@@ -67,8 +67,9 @@ CxLocalStorage::createDefault(
 }
 //-------------------------------------------------------------------------------------------------
 inline std::ctstring_t &
-CxLocalStorage::path() const {
-    xTEST_EQ(false, _filePath.empty());
+CxLocalStorage::path() const
+{
+    xTEST_EQ(_filePath.empty(), false);
 
     return _filePath;
 }
@@ -78,15 +79,16 @@ CxLocalStorage::setPath(
     std::ctstring_t &a_filePath
 )
 {
-    xTEST_EQ(false, a_filePath.empty());
+    xTEST_EQ(a_filePath.empty(), false);
 
     CxDir( CxPath(a_filePath).dir() ).pathCreate();
 
     _filePath = a_filePath;
 }
 //-------------------------------------------------------------------------------------------------
-inline local_storage_t &
-CxLocalStorage::get() {
+inline std::map_tstring_t &
+CxLocalStorage::get()
+{
     return _ini;
 }
 //-------------------------------------------------------------------------------------------------
@@ -106,9 +108,9 @@ inline void_t
 CxLocalStorage::remove()
 {
     // file
-    CxFile::remove(path());
+    CxFile::remove( path() );
 
-    // local_storage_t
+    // std::map_tstring_t
     _ini.clear();
 }
 //-------------------------------------------------------------------------------------------------
@@ -125,11 +127,11 @@ CxLocalStorage::keyIsExists(
     std::ctstring_t &a_key
 ) const
 {
-    local_storage_t mmsIni;
+    std::map_tstring_t ini;
 
-    CxFile::textRead(path(), _separator, &mmsIni);
+    CxFile::textRead(path(), _separator, &ini);
 
-    xCHECK_RET(mmsIni.end() == mmsIni.find(a_key), false);
+    xCHECK_RET(ini.end() == ini.find(a_key), false);
 
     return true;
 }
@@ -189,13 +191,13 @@ CxLocalStorage::keyWriteInt(
 inline double
 CxLocalStorage::keyReadFloat(
     std::ctstring_t &a_key,
-    cdouble_t       &a_cdDefaultValue
+    cdouble_t       &a_defaultValue
 )
 {
     xTEST_NA(a_key);
-    xTEST_NA(a_cdDefaultValue);
+    xTEST_NA(a_defaultValue);
 
-    return CxString::cast<double>( keyReadString(a_key, CxString::cast(a_cdDefaultValue)) );
+    return CxString::cast<double>( keyReadString(a_key, CxString::cast(a_defaultValue)) );
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -219,11 +221,11 @@ CxLocalStorage::keyReadBool(
     xTEST_NA(a_key);
     xTEST_NA(a_defaultValue);
 
-    std::tstring_t sStr;
+    std::tstring_t str;
 
-    sStr = keyReadString(a_key, CxString::castBool(a_defaultValue));
+    str = keyReadString(a_key, CxString::castBool(a_defaultValue));
 
-    bool_t bRv = CxString::castBool(sStr);
+    bool_t bRv = CxString::castBool(str);
 
     return bRv;
 }
@@ -237,11 +239,11 @@ CxLocalStorage::keyWriteBool(
     xTEST_NA(a_key);
     xTEST_NA(a_value);
 
-    std::tstring_t sValue;
+    std::tstring_t value;
 
-    sValue = CxString::castBool(a_value);
+    value = CxString::castBool(a_value);
 
-    keyWriteString(a_key, sValue);
+    keyWriteString(a_key, value);
 }
 //-------------------------------------------------------------------------------------------------
 inline std::ustring_t
@@ -286,7 +288,7 @@ CxLocalStorage::keyClear(
     std::ctstring_t &a_key
 )
 {
-    xTEST_EQ(false, a_key.empty());
+    xTEST_EQ(a_key.empty(), false);
 
     keyWriteString(a_key, std::tstring_t());
 }
@@ -296,14 +298,14 @@ CxLocalStorage::keyDelete(
    std::ctstring_t &a_key
 )
 {
-    xTEST_EQ(false, a_key.empty());
+    xTEST_EQ(a_key.empty(), false);
 
     // read from file
     CxFile::textRead(path(), _separator, &_ini);
 
     xCHECK_DO(_ini.end() == _ini.find(a_key), return);
 
-    // delete from local_storage_t
+    // delete from std::map_tstring_t
     _ini.erase(a_key);
 
     // write to file
@@ -332,8 +334,8 @@ CxLocalStorage::_read(
     // read from file
     CxFile::textRead(path(), _separator, &_ini);
 
-    // read to local_storage_t
-    local_storage_t::iterator it = _ini.find(a_key);
+    // read to std::map_tstring_t
+    std::map_tstring_t::const_iterator it = _ini.find(a_key);
     if (_ini.end() == it) {
         _write(a_key, a_defaultValue);
 
@@ -349,11 +351,11 @@ CxLocalStorage::_write(
     std::ctstring_t &a_value
 )
 {
-    xTEST_EQ(false, a_key.empty());
+    xTEST_EQ(a_key.empty(), false);
     xTEST_NA(a_value);
 
-    // write to local_storage_t
-    local_storage_t::iterator it = _ini.find(a_key);
+    // write to std::map_tstring_t
+    std::map_tstring_t::const_iterator it = _ini.find(a_key);
     if (_ini.end() == it) {
         _ini.insert( std::pair<std::tstring_t, std::tstring_t>(a_key, a_value) );
     } else {
