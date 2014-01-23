@@ -17,7 +17,7 @@ CxTest_CxProcess::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("CxProcess::create CxProcess::wait", a_caseLoops)
+    xTEST_CASE("CxProcess::create wait", a_caseLoops)
     {
         #if 1
             #if   xOS_ENV_WIN
@@ -53,7 +53,7 @@ CxTest_CxProcess::unit(
         proc.kill(10UL);
     }
 
-    xTEST_CASE("CxProcess::handle CxProcess::id", a_caseLoops)
+    xTEST_CASE("CxProcess::handle id", a_caseLoops)
     {
         #if   xOS_ENV_WIN
             std::ctstring_t filePath = xT("C:\\Windows\\System32\\attrib.exe");
