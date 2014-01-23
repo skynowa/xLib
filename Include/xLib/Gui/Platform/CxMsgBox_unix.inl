@@ -21,7 +21,7 @@ xNAMESPACE_BEGIN(xlib)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_ANONYM_BEGIN
+xNAMESPACE_BEGIN(internal)
 
 std::ctstring_t
 xlib_errorFormat
@@ -47,7 +47,7 @@ xlib_errorHandler(
     XErrorEvent *a_errorEvent
 )
 {
-    std::ctstring_t errorStr = ::xlib_errorFormat(a_display, a_errorEvent->error_code);
+    std::ctstring_t errorStr = internal::xlib_errorFormat(a_display, a_errorEvent->error_code);
 
     CxTrace() << xT("xLib: XLIB error - ") << xTRACE_VAR7(a_errorEvent->type,
         a_errorEvent->resourceid, a_errorEvent->serial, a_errorEvent->error_code, errorStr,
@@ -56,7 +56,7 @@ xlib_errorHandler(
     return 0;
 }
 
-xNAMESPACE_ANONYM_END
+xNAMESPACE_END(internal)
 //-------------------------------------------------------------------------------------------------
 inline CxMsgBox::ExModalResult
 CxMsgBox::_show_impl(
@@ -95,7 +95,7 @@ CxMsgBox::_show_impl(
 
     // handle errors is on
     ::XSynchronize(display, True);
-    ::XSetErrorHandler(xlib_errorHandler);
+    ::XSetErrorHandler(internal::xlib_errorHandler);
 
     // Get us a white and black color
     culong_t black = BlackPixel(display, DefaultScreen(display));
