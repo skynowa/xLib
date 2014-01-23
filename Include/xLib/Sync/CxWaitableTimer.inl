@@ -6,7 +6,7 @@
 
 #if xOS_ENV_WIN
 
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, sync)
 
 /**************************************************************************************************
 *    public
@@ -108,6 +108,6 @@ CxWaitableTimer::wait(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, sync)
 
 #endif

@@ -11,7 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, net)
 
 class CxSocketInit
     /// initiates use of the Winsock DLL by a process
@@ -25,7 +25,7 @@ public:
     xNO_COPY_ASSIGN(CxSocketInit)
 };
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, net)
 //-------------------------------------------------------------------------------------------------
 #include "CxSocketInit.inl"
 //-------------------------------------------------------------------------------------------------

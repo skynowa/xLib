@@ -8,7 +8,7 @@
 #include <xLib/Core/CxString.h>
 
 
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, net)
 
 /**************************************************************************************************
 * public
@@ -668,4 +668,4 @@ CxUri::_isDefaultPort() const
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, net)

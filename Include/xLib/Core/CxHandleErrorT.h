@@ -11,7 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, core)
 
 enum ExHandleValue
     /// error handle type
@@ -48,6 +48,6 @@ struct CxHandleErrorT<hvNull>
     }
 };
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, core)
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxHandleErrorTH

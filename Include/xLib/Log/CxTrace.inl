@@ -8,7 +8,7 @@
 #include <xLib/Core/CxString.h>
 
 
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, log)
 
 /**************************************************************************************************
 *   public
@@ -82,4 +82,4 @@ CxTrace::write(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, log)

@@ -34,7 +34,7 @@
 #endif
 
 
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, debug)
 
 /**************************************************************************************************
 *   public
@@ -429,4 +429,4 @@ CxStackTrace::_addr2Line(
 #endif  // xOS_ENV_UNIX
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, debug)

@@ -4,6 +4,6 @@
  */
 
 
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, net)
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, net)

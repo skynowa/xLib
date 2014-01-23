@@ -157,10 +157,48 @@
 #include <locale>
 
 // xLib
-namespace xlib { }
+namespace xlib {
+    namespace core {}
+    namespace crypt {}
+    namespace db {}
+    namespace debug {}
+    namespace filesystem {}
+    namespace gui {}
+    namespace log {}
+    namespace net {}
+    namespace patterns {}
+    namespace sync {}
+    namespace system {}
+    namespace test {}
+    namespace xlib {}
+    namespace core {}
+    namespace crypt {}
+    namespace db {}
+    namespace debug {}
+    namespace filesystem {}
+    namespace gui {}
+    namespace log {}
+    namespace net {}
+    namespace patterns {}
+    namespace sync {}
+    namespace system {}
+    namespace test {}
+}
 
 #if xUSING_NAMESPACE_NXLIB
     using namespace xlib;
+    using namespace core;
+    using namespace crypt;
+    using namespace db;
+    using namespace debug;
+    using namespace filesystem;
+    using namespace gui;
+    using namespace log;
+    using namespace net;
+    using namespace patterns;
+    using namespace sync;
+    using namespace system;
+    using namespace test;
 #endif
 
 #include <xLib/Core/xDefines.h>

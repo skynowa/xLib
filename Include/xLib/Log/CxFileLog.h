@@ -13,7 +13,7 @@
 #include <xLib/Core/xUnits.h>
 #include "IxLog.h"
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, log)
 
 class CxFileLog :
     public IxLog
@@ -59,7 +59,7 @@ private:
         ///< delete log, if full
 };
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, log)
 //-------------------------------------------------------------------------------------------------
 #include "CxFileLog.inl"
 //-------------------------------------------------------------------------------------------------

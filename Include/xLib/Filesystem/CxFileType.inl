@@ -14,7 +14,7 @@
 #include <xLib/Log/CxTrace.h>
 
 
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, filesystem)
 
 /**************************************************************************************************
 *    public
@@ -149,4 +149,4 @@ CxFileType::clear() const
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, filesystem)

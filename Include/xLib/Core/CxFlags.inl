@@ -4,7 +4,7 @@
  */
 
 
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, core)
 
 /*******************************************************************************
 *   public
@@ -117,4 +117,4 @@ CxFlags<T>::toggleFlag(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, core)

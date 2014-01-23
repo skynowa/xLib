@@ -15,7 +15,7 @@
 #include <xLib/Sync/CxThread.h>
 
 
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, filesystem)
 
 /**************************************************************************************************
 *    public: constructors, destructor
@@ -1408,4 +1408,4 @@ CxFile::_openMode(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, filesystem)

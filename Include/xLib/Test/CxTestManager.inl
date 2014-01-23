@@ -9,7 +9,7 @@
 #include <xLib/Log/CxTrace.h>
 
 
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, test)
 
 /**************************************************************************************************
 *   public
@@ -85,4 +85,4 @@ CxTestManager::run(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, test)

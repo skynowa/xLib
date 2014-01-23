@@ -22,7 +22,7 @@
 #endif
 
 
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, system)
 
 /**************************************************************************************************
 *    public
@@ -1286,4 +1286,4 @@ CxSystemInfo::_passwdFileEntry(
 #endif
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, system)

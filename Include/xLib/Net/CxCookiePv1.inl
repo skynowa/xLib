@@ -8,7 +8,7 @@
 #include <xLib/Core/CxString.h>
 
 
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, net)
 
 /**************************************************************************************************
 *   public
@@ -308,4 +308,4 @@ CxCookiePv1::init(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, net)

@@ -11,7 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, core)
 
 template<class T, const std::size_t N>
 class CxArray
@@ -233,6 +233,6 @@ namespace NxArray {
     }
 }
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, core)
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxArrayH

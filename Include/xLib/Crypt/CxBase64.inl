@@ -23,7 +23,7 @@ std::cstring_t base64Chars =
 
 xNAMESPACE_ANONYM_END
 
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, crypt)
 
 /**************************************************************************************************
 *    public
@@ -162,4 +162,4 @@ CxBase64::_isValid(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, crypt)

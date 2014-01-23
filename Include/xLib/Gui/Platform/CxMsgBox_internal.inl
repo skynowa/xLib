@@ -12,7 +12,7 @@
 *
 **************************************************************************************************/
 
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, gui)
 
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE2_BEGIN(internal, enums)
@@ -91,4 +91,4 @@ static Types<CxMsgBox::ExType, ssize_t, 8> types =
 xNAMESPACE2_END(internal, enums)
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, gui)

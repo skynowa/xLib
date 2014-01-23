@@ -12,7 +12,7 @@
 #include <xLib/Core/xCore.h>
 #include <xLib/Core/CxHandleT.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, system)
 
 class CxConsole
     /// console
@@ -127,7 +127,7 @@ private:
     xNO_COPY_ASSIGN(CxConsole)
 };
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, system)
 //-------------------------------------------------------------------------------------------------
 #include "CxConsole.inl"
 //-------------------------------------------------------------------------------------------------

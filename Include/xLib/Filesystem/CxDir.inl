@@ -15,7 +15,7 @@
 #include <xLib/Sync/CxThread.h>
 
 
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, filesystem)
 
 /**************************************************************************************************
 *    public
@@ -385,4 +385,4 @@ CxDir::temp()
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, filesystem)

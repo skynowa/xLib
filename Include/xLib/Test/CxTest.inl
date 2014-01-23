@@ -9,7 +9,7 @@
 #include <xLib/Filesystem/CxDir.h>
 
 
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, test)
 
 /**************************************************************************************************
 *    public
@@ -149,4 +149,4 @@ CxTest::setName(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, test)

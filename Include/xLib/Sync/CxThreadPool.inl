@@ -9,7 +9,7 @@
 #include <xLib/Sync/CxThread.h>
 
 
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, sync)
 
 /*******************************************************************************
 *    public
@@ -530,4 +530,4 @@ CxThreadPool<T>::_onExitTask(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, sync)

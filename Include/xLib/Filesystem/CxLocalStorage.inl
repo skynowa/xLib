@@ -10,7 +10,7 @@
 #include <xLib/Filesystem/CxFile.h>
 
 
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, filesystem)
 
 /**************************************************************************************************
 *    public: creation
@@ -367,4 +367,4 @@ CxLocalStorage::_write(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, filesystem)

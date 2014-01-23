@@ -14,7 +14,7 @@
 //-------------------------------------------------------------------------------------------------
 #if xOS_ENV_WIN
 
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, sync)
 
 class CxWaitableTimer
     /// waitable timer
@@ -39,7 +39,7 @@ private:
     xNO_COPY_ASSIGN(CxWaitableTimer)
 };
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, sync)
 
 #endif
 //-------------------------------------------------------------------------------------------------

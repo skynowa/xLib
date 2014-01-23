@@ -12,7 +12,7 @@
 #include <xLib/Core/xCore.h>
 #include <xLib/Sync/CxProcess.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, system)
 
 class CxProcessInfo
 {
@@ -46,7 +46,7 @@ private:
     xNO_COPY_ASSIGN(CxProcessInfo)
 };
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, system)
 //-------------------------------------------------------------------------------------------------
 #include "CxProcessInfo.inl"
 //-------------------------------------------------------------------------------------------------

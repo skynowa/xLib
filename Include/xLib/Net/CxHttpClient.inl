@@ -15,7 +15,7 @@
 #include <xLib/Core/CxConst.h>
 
 
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, net)
 
 //-------------------------------------------------------------------------------------------------
 inline
@@ -155,4 +155,4 @@ CxHttpClient::unlink(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, net)

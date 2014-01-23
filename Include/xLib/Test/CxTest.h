@@ -13,7 +13,7 @@
 #include <xLib/Test/xTest.h>
 #include <xLib/Test/CxTestData.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, test)
 
 class CxTest
     /// testing
@@ -71,7 +71,7 @@ private:
     xNO_COPY_ASSIGN(CxTest)
 };
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, test)
 //-------------------------------------------------------------------------------------------------
 #include "CxTest.inl"
 //-------------------------------------------------------------------------------------------------

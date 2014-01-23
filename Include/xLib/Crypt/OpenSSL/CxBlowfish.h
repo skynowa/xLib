@@ -15,7 +15,7 @@
 
 #include <openssl/blowfish.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_BEGIN(xlib)
+xNAMESPACE2_BEGIN(xlib, crypt)
 
 class CxBlowfish
     /// blowfish
@@ -70,7 +70,7 @@ private:
     xNO_COPY_ASSIGN(CxBlowfish)
 };
 
-xNAMESPACE_END(xlib)
+xNAMESPACE2_END(xlib, crypt)
 
 #endif // xHAVE_OPENSSL_CRYPTO
 //-------------------------------------------------------------------------------------------------
