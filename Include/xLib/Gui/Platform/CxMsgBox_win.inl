@@ -13,7 +13,7 @@ xNAMESPACE_BEGIN(xlib)
 
 //-------------------------------------------------------------------------------------------------
 inline CxMsgBox::ExModalResult
-CxMsgBox::show_impl(
+CxMsgBox::_show_impl(
     std::ctstring_t &a_text,
     std::ctstring_t &a_title,
     cExType         &a_type    /* = tpOk */

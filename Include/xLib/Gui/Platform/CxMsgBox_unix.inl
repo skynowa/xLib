@@ -59,7 +59,7 @@ xlib_errorHandler(
 xNAMESPACE_ANONYM_END
 //-------------------------------------------------------------------------------------------------
 inline CxMsgBox::ExModalResult
-CxMsgBox::show_impl(
+CxMsgBox::_show_impl(
     std::ctstring_t &a_text,
     std::ctstring_t &a_title,
     cExType         &a_type    /* = tpOk */
@@ -341,7 +341,7 @@ CxMsgBox::show_impl(
     xUNUSED(NxInternal::NxEnum::types);
     xUNUSED(NxInternal::NxEnum::modalResults);
 
-    #pragma message("xLib: CxMsgBox::show_impl() - n/a")
+    #pragma message("xLib: CxMsgBox::_show_impl() - n/a")
 #endif
 
     return mrRv;

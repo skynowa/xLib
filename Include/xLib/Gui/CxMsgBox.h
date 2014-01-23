@@ -52,16 +52,16 @@ public:
     virtual      ~CxMsgBox() {}
         ///< destructor
 
-    ExModalResult show(std::ctstring_t &text, const std::ctstring_t &title, cExType &type = tpOk)  const
-        xWARN_UNUSED_RV;
+    ExModalResult show(std::ctstring_t &text, const std::ctstring_t &title, cExType &type = tpOk)
+        const xWARN_UNUSED_RV;
         ///< message box with custom text, custom title, custom type
 
 private:
-    ExModalResult show_impl(std::ctstring_t &text, const std::ctstring_t &title, cExType &type = tpOk)  const
-        xWARN_UNUSED_RV;
-        ///< message box with custom text, custom title, custom type
-
     xNO_COPY_ASSIGN(CxMsgBox)
+
+xPLATFORM_IMPL:
+    ExModalResult _show_impl(std::ctstring_t &text, const std::ctstring_t &title,
+        cExType &type = tpOk) const xWARN_UNUSED_RV;
 };
 
 xNAMESPACE_END(xlib)
