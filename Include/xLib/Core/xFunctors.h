@@ -12,7 +12,7 @@
 #include <xLib/Core/xCore.h>
 #include <xLib/Core/CxChar.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE2_BEGIN(xlib, functors)
+xNAMESPACE3_BEGIN(xlib, core, functors)
 //-------------------------------------------------------------------------------------------------
 struct ToLower
     ///< char to lower case
@@ -105,6 +105,6 @@ struct Widen
     }
 };
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE2_END(xlib, functors)
+xNAMESPACE3_END(xlib, core, functors)
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_xFunctorsH
