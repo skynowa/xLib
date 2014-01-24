@@ -129,6 +129,8 @@ CxDebugger::coreDumpsEnable(
     int_t  iRv      = 0;
 
 #if   xOS_ENV_WIN
+    // MSDN: MiniDumpWriteDump, http://www.debuginfo.com/
+
     xUNUSED(a_flag);
     isEnable = true;
     #pragma message("xLib: CxDebugger::coreDumpsEnable() - n/a")
