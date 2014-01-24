@@ -12,11 +12,9 @@
 *
 **************************************************************************************************/
 
-xNAMESPACE2_BEGIN(xlib, log)
+xNAMESPACE3_BEGIN(xlib, internal, enums)
 
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE2_BEGIN(internal, enums)
-
 static Types<IxLog::ExLevel, ssize_t, 10> levels =
 {{
 #if   xOS_ENV_WIN
@@ -43,8 +41,6 @@ static Types<IxLog::ExLevel, ssize_t, 10> levels =
     {IxLog::lvPlain,    6}
 #endif
 }};
-
-xNAMESPACE2_END(internal, enums)
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE2_END(xlib, log)
+xNAMESPACE3_END(xlib, internal, enums)

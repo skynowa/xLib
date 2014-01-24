@@ -12,11 +12,9 @@
 *
 **************************************************************************************************/
 
-xNAMESPACE2_BEGIN(xlib, gui)
+xNAMESPACE3_BEGIN(xlib, internal, enums)
 
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE2_BEGIN(internal, enums)
-
 static Types<CxMsgBox::ExModalResult, ssize_t, 10> modalResults =
 {{
 #if   xOS_ENV_WIN
@@ -54,8 +52,7 @@ static Types<CxMsgBox::ExModalResult, ssize_t, 10> modalResults =
     {CxMsgBox::mrTryAgain, 8}
 #endif
 }};
-
-
+//-------------------------------------------------------------------------------------------------
 static Types<CxMsgBox::ExType, ssize_t, 8> types =
 {{
 #if   xOS_ENV_WIN
@@ -87,8 +84,6 @@ static Types<CxMsgBox::ExType, ssize_t, 8> types =
     {CxMsgBox::tpCancelTryContinue, 6}
 #endif
 }};
-
-xNAMESPACE2_END(internal, enums)
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE2_END(xlib, gui)
+xNAMESPACE3_END(xlib, internal, enums)
