@@ -232,16 +232,20 @@ public:
 
     std::tstring_t          dump() const xWARN_UNUSED_RV;
         ///< get dump
-    static void_t           redirect(std::ctstring_t &url);
+    static
+    void_t                  redirect(std::ctstring_t &url);
         ///< redirect to URL
-    static void_t           pageShow(std::ctstring_t &filePath);
+    static
+    void_t                  pageShow(std::ctstring_t &filePath);
         ///< show page from file
 
     //encoding, decoding
-    static void_t           uriEncode(std::ctstring_t &uri, std::ctstring_t &reserved,
+    static
+    void_t                  uriEncode(std::ctstring_t &uri, std::ctstring_t &reserved,
                                 std::tstring_t *encodedStr);
         ///< encode URI
-    static void_t           uriDecode(std::ctstring_t &uri, std::tstring_t *decodedStr);
+    static
+    void_t                  uriDecode(std::ctstring_t &uri, std::tstring_t *decodedStr);
         ///< decode URI
 
 private:

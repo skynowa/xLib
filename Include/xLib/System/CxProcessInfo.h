@@ -37,7 +37,8 @@ public:
     void_t          commandLine(std::vec_tstring_t *args) const;
         ///< get arguments
 
-    static long_t   commandLineArgsMax() xWARN_UNUSED_RV;
+    static
+    long_t          commandLineArgsMax() xWARN_UNUSED_RV;
         ///< get maximum length of command line arguments (in chars)
 
 private:

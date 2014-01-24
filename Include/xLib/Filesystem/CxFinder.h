@@ -41,10 +41,12 @@ public:
     void_t              close();
         ///< close search
 
-    static void_t       dirs(std::ctstring_t &rootDirPath, std::ctstring_t &shellFilter,
+    static
+    void_t              dirs(std::ctstring_t &rootDirPath, std::ctstring_t &shellFilter,
                             cbool_t &isRecursively, std::vec_tstring_t *dirPaths);
         ///< search subdirectories
-    static void_t       files(std::ctstring_t &rootDirPath, std::ctstring_t &shellFilter,
+    static
+    void_t              files(std::ctstring_t &rootDirPath, std::ctstring_t &shellFilter,
                             cbool_t &isRecursively, std::vec_tstring_t *filePaths);
         ///< search files
 

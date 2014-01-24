@@ -17,23 +17,24 @@ class CxMimeHeader
     /// MIME header (RFC 822)
 {
 public:
-                          CxMimeHeader();
-    virtual              ~CxMimeHeader() {}
+                        CxMimeHeader();
+    virtual            ~CxMimeHeader() {}
 
-    void_t                parse(std::ctstring_t &rawHeader);
-    std::tstring_t        field(std::ctstring_t &name) xWARN_UNUSED_RV;
-    size_t                count() xWARN_UNUSED_RV;
-    void_t                loadFromFile(std::ctstring_t &rawMessageFilePath);
-    void_t                saveToFile(std::ctstring_t &filePath);
+    void_t              parse(std::ctstring_t &rawHeader);
+    std::tstring_t      field(std::ctstring_t &name) xWARN_UNUSED_RV;
+    size_t              count() xWARN_UNUSED_RV;
+    void_t              loadFromFile(std::ctstring_t &rawMessageFilePath);
+    void_t              saveToFile(std::ctstring_t &filePath);
 
-    static std::tstring_t generateMessageID() xWARN_UNUSED_RV;
+    static
+    std::tstring_t      generateMessageID() xWARN_UNUSED_RV;
 
 private:
-    std::ctstring_t       _attrDelimiter;
-    std::ctstring_t       _endOfHeader;
-    std::ctstring_t       _endOfLine;
+    std::ctstring_t     _attrDelimiter;
+    std::ctstring_t     _endOfHeader;
+    std::ctstring_t     _endOfLine;
 
-    std::mmap_tstring_t   _header;
+    std::mmap_tstring_t _header;
 
     // Delivered-To:
     // Return-Path:
