@@ -11,7 +11,6 @@
 #include <xLib/Debug/CxErrorReport.h>
 #include <xLib/Debug/CxDebugger.h>
 #include <xLib/Debug/CxStackTrace.h>
-#include <xLib/Log/CxTrace.h>
 
 
 xNAMESPACE2_BEGIN(xlib, core)
@@ -209,8 +208,6 @@ CxHandleT<tagT>::close()
     BOOL blRes = ::CloseHandle(_handle);
     xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
-    CxTrace() << xTRACE_VAR(_handle);
-
     int_t iRv = ::close(_handle);
     xTEST_DIFF(- 1, iRv);
 #endif
