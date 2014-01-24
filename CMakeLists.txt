@@ -16,7 +16,7 @@ set(CMAKE_BUILD_TYPE "RelWithDebInfo")
 
 #--------------------------------------------------------------------------------------------------
 # options
-unset(xUSING_NAMESPACE_NXLIB   CACHE)
+unset(xUSING_NAMESPACE_XLIB    CACHE)
 unset(xDEBUG_USE_PROMPT_DIALOG CACHE)
 unset(xDEBUG_MODE_MSGBOX       CACHE)
 unset(xDEBUG_MODE_STDOUT       CACHE)
@@ -27,7 +27,7 @@ unset(xNEW_NO_STD_THROW        CACHE)
 unset(xTEST_PRIVATE_DATA       CACHE)
 unset(xTEST_TRACING            CACHE)
 
-option(xUSING_NAMESPACE_NXLIB   "automatically include the xlib namespace" ON)
+option(xUSING_NAMESPACE_XLIB   "automatically include the xlib namespace"  ON)
 option(xDEBUG_USE_PROMPT_DIALOG "debug prompt dialog"                      ON)
 option(xDEBUG_MODE_MSGBOX       "debug mode 'message box with plain text'" OFF)
 option(xDEBUG_MODE_STDOUT       "debug mode 'std::out with plain text'"    ON)
