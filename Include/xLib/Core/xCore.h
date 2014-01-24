@@ -185,7 +185,7 @@ namespace xlib {
     namespace test {}
 }
 
-#if xUSING_NAMESPACE_NXLIB
+#if xUSING_NAMESPACE_XLIB
     using namespace xlib;
     using namespace core;
     using namespace crypt;
