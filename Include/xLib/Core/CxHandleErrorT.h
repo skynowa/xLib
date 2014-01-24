@@ -29,8 +29,7 @@ struct CxHandleErrorT<hvInvalid>
     /// handle error is hvInvalid
 {
     static
-    native_handle_t
-    get() xWARN_UNUSED_RV
+    native_handle_t get() xWARN_UNUSED_RV
     {
         return xNATIVE_HANDLE_INVALID;
     }
@@ -41,8 +40,7 @@ struct CxHandleErrorT<hvNull>
     /// handle error is hvNull
 {
     static
-    native_handle_t
-    get() xWARN_UNUSED_RV
+    native_handle_t get() xWARN_UNUSED_RV
     {
         return xNATIVE_HANDLE_NULL;
     }

@@ -19,11 +19,11 @@ class CxSystemLog :
     /// logging to system event log
 {
 public:
-             CxSystemLog();
+                   CxSystemLog();
         ///< constructor
-    explicit CxSystemLog(std::ctstring_t &logName);
+    explicit       CxSystemLog(std::ctstring_t &logName);
         ///< constructor
-    virtual ~CxSystemLog();
+    virtual       ~CxSystemLog();
         ///< destructor
 
     template<class T>
@@ -37,10 +37,10 @@ public:
 
 private:
 #if xOS_ENV_WIN
-    HANDLE   _sysLog;     ///< event log handle
+    HANDLE         _sysLog;     ///< event log handle
 #endif
 
-    void_t   _construct(std::ctstring_t &logName);
+    void_t         _construct(std::ctstring_t &logName);
         ///< initiate data
 };
 

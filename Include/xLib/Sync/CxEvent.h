@@ -39,36 +39,36 @@ public:
     };
 
 
-                      CxEvent(cbool_t &isAutoReset, cbool_t &isSignaled);
+                     CxEvent(cbool_t &isAutoReset, cbool_t &isSignaled);
         ///< constructor
-    virtual          ~CxEvent();
+    virtual         ~CxEvent();
         ///< destructor
 
-    const handle_t &  handle() const xWARN_UNUSED_RV;
+    const handle_t & handle() const xWARN_UNUSED_RV;
         ///< get handle
-    void_t            create();
+    void_t           create();
         ///< create
-    void_t            set();
+    void_t           set();
         ///< signal the event for the waiting thread (!!! unlock !!!)
-    void_t            reset();
+    void_t           reset();
         ///< once signaled, the event class must be "reset" before responding to a new signal
-    ExObjectState     wait(culong_t &timeoutMs = xTIMEOUT_INFINITE) xWARN_UNUSED_RV;
+    ExObjectState    wait(culong_t &timeoutMs = xTIMEOUT_INFINITE) xWARN_UNUSED_RV;
         ///< wait either for the CxEvent to be signaled by another thread or for the specified
         ///< timeout duration
-    bool_t            isSignaled() const xWARN_UNUSED_RV;
+    bool_t           isSignaled() const xWARN_UNUSED_RV;
         ///< is signaled
 
 private:
 #if   xOS_ENV_WIN
-    CxHandle          _event;        ///< event
+    CxHandle         _event;        ///< event
 #elif xOS_ENV_UNIX
-    pthread_mutex_t   _mutex;       ///< mutex
-    handle_t          _cond;       ///< condition variable
-    bool_t            _isSignaled;   ///< is signaled flag
+    pthread_mutex_t  _mutex;       ///< mutex
+    handle_t         _cond;       ///< condition variable
+    bool_t           _isSignaled;   ///< is signaled flag
 #endif
 
-    cbool_t           _isAutoReset; ///< auto-reset flag
-    cbool_t           _initState;   ///< initial state
+    cbool_t          _isAutoReset; ///< auto-reset flag
+    cbool_t          _initState;   ///< initial state
 
     xNO_COPY_ASSIGN(CxEvent)
 };

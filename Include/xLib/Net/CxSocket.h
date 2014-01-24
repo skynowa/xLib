@@ -274,11 +274,13 @@ public:
     *******************************************************************************/
 
     ////getsockopt
-    static int_t     select(int_t nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds,
+    static
+    int_t            select(int_t nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds,
                          timeval *timeout) xWARN_UNUSED_RV;
         ///< determines the status of one or more sockets, waiting if necessary,
         ///< to perform synchronous I/O
-    static int_t     lastError() xWARN_UNUSED_RV;
+    static
+    int_t            lastError() xWARN_UNUSED_RV;
         ///< get error status for the last operation that failed
 
 protected:

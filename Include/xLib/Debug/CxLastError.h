@@ -17,23 +17,29 @@ class CxLastError
     /// system last error
 {
 public:
-    static bool_t         isSuccess() xWARN_UNUSED_RV;
+    static
+    bool_t         isSuccess() xWARN_UNUSED_RV;
         ///< is error code success
-    static ulong_t        get() xWARN_UNUSED_RV;
+    static
+    ulong_t        get() xWARN_UNUSED_RV;
         ///< get the calling thread's last-error code value
-    static void_t         set(culong_t &code);
+    static
+    void_t         set(culong_t &code);
         ///< set the last error code for the calling thread
-    static void_t         reset();
+    static
+    void_t         reset();
         ///< set last error code to success value (0)
-    static std::tstring_t format() xWARN_UNUSED_RV;
+    static
+    std::tstring_t format() xWARN_UNUSED_RV;
         ///< get as string
-    static std::tstring_t format(culong_t &code) xWARN_UNUSED_RV;
+    static
+    std::tstring_t format(culong_t &code) xWARN_UNUSED_RV;
         ///< get last error as string
 
 private:
-                          CxLastError();
+                   CxLastError();
         ///< constructor
-                         ~CxLastError() {}
+                  ~CxLastError() {}
         ///< destructor
 
     xNO_COPY_ASSIGN(CxLastError)

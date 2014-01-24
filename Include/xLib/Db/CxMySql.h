@@ -40,7 +40,8 @@ public:
         ///< validating handle
     void_t                   options(const mysql_option &option, cvoid_t *arg) const;
         ///< set extra connect options and affect behavior
-    static bool_t            isExists(std::ctstring_t &host, std::ctstring_t &user,
+    static
+    bool_t                   isExists(std::ctstring_t &host, std::ctstring_t &user,
                                  std::ctstring_t &password, std::ctstring_t &db,
                                  cuint_t &port, std::ctstring_t &unixSocket,
                                  culong_t &clientFlag) xWARN_UNUSED_RV;
