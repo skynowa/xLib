@@ -42,24 +42,6 @@ CxTest_CxDebugger::unit(
         m_bRv = debugger.isActive();
     }
 
-    xTEST_CASE("CxDebugger::isDebugBuild", a_caseLoops)
-    {
-        CxDebugger debugger;
-
-        m_bRv = debugger.isDebugBuild();
-        #if defined(NDEBUG)
-            xTEST_EQ(false, m_bRv);
-        #else
-            xTEST_EQ(true, m_bRv);
-        #endif
-
-        #if xBUILD_DEBUG
-            xTEST_EQ(m_bRv, true);
-        #else
-            xTEST_EQ(m_bRv, false);
-        #endif
-    }
-
     xTEST_CASE("CxDebugger::coreDumpsEnable", a_caseLoops)
     {
         CxDebugger debugger;

@@ -28,8 +28,6 @@ public:
         ///< set debugging mode on/off
     bool_t         isActive() const xWARN_UNUSED_RV;
         ///< is OS debugger presents
-    bool_t         isDebugBuild() const xWARN_UNUSED_RV;
-        ///< is debug build (is NDEBUG macros is don't set)
     void           coreDumpsEnable(cbool_t &flag);
         ///< core dumps
     void_t         breakPoint() const;

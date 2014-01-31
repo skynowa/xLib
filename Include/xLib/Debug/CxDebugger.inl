@@ -118,16 +118,6 @@ CxDebugger::isActive() const
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
-CxDebugger::isDebugBuild() const
-{
-#if xBUILD_DEBUG
-    return true;
-#else
-    return false;
-#endif
-}
-//-------------------------------------------------------------------------------------------------
 inline void
 CxDebugger::coreDumpsEnable(
     cbool_t &a_flag

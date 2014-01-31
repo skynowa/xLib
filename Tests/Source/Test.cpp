@@ -108,6 +108,7 @@ int_t xTMAIN(int_t a_argNum, tchar_t *a_args[])
 
         // Debug
         manager.add(new CxTest_xDebug);
+        manager.add(new CxTest_CxBuildInfo);
         manager.add(new CxTest_CxStdError);
         manager.add(new CxTest_CxLastError);
         manager.add(new CxTest_CxException);
