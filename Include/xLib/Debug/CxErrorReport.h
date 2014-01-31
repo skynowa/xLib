@@ -70,8 +70,9 @@ private:
     std::tstring_t _buildType;      ///< get build type
     std::tstring_t _osVersion;      ///< build OS version
     std::tstring_t _osArch;         ///< OS architecture
-#if xOS_ENV_UNIX
+
     std::tstring_t _xlib;           ///< xLib build version
+#if xOS_ENV_UNIX
     std::tstring_t _glibc;          ///< GLIBC available on the system
     std::tstring_t _libPthread;     ///< POSIX implementation supplied by C library
 #endif
