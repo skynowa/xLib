@@ -1,10 +1,7 @@
 /**
- * \file   [CxTemplate].cpp
+ * \file   [CxTemplate].inl
  * \brief
  */
-
-
-#include <xLib/[CxTemplate].h>
 
 
 xNAMESPACE2_BEGIN(xlib, [NAMESPACE])
