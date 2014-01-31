@@ -109,7 +109,7 @@ CxVolume::fileSystem() const
         // TODO: CxVolume::fileSystem()
         xNOT_IMPLEMENTED
     #endif
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     // TODO: CxVolume::fileSystem()
     xNOT_IMPLEMENTED
 #endif
@@ -235,7 +235,7 @@ CxVolume::mount(
         int_t iRv = ::mount(path().c_str(), a_destPath.c_str(), MNT_UPDATE, NULL);
         xTEST_DIFF(- 1, iRv);
     #endif
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 }
@@ -267,7 +267,7 @@ CxVolume::unMount(
         int_t iRv = ::unmount(path().c_str(), flag);
         xTEST_DIFF(- 1, iRv);
     #endif
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 }
@@ -397,7 +397,7 @@ CxVolume::paths(
     #elif xOS_FREEBSD
         // TODO: CxVolume::paths()
     #endif
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 

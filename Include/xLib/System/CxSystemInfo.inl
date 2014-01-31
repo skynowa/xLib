@@ -94,7 +94,7 @@ CxSystemInfo::os()
     else {
         otRv = otUnknown;
     }
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     utsname info= {{0}};
 
     int_t iRv = ::uname(&info);
@@ -177,7 +177,7 @@ CxSystemInfo::formatOsType()
 
     sRv = CxString::format(xT("%s %s (%s) %s"), info.sysname, info.release, info.version,
         info.machine);
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -302,7 +302,7 @@ CxSystemInfo::desktopName() const
 #elif xOS_ENV_UNIX
     sRv = CxEnvironment::var(xT("DESKTOP_SESSION"));
     xTEST_EQ(false, sRv.empty());
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -454,7 +454,7 @@ CxSystemInfo::loginUserName() const
             return sRv;
         }
     }
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -481,7 +481,7 @@ CxSystemInfo::userName() const
     xTEST_PTR(passwd.pw_name);
 
     sRv.assign(passwd.pw_name);
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -525,7 +525,7 @@ CxSystemInfo::userHomeDir() const
 
     // try to get from system environment
     sRv = CxEnvironment::var(xT("HOME"));
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -558,7 +558,7 @@ CxSystemInfo::userShellPath() const
     xTEST_PTR(passwd.pw_shell);
 
     sRv.assign(passwd.pw_shell);
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -589,7 +589,7 @@ CxSystemInfo::numOfCpus() const
         int_t iRv = ::sysctl(mib, static_cast<u_int>( xARRAY_SIZE(mib) ), &ulRv, &resSize, NULL, 0);
         xTEST_DIFF(- 1, iRv);
     #endif
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -641,7 +641,7 @@ CxSystemInfo::currentCpuNum() const
         #pragma message("xLib: CxSystemInfo::currentCpuNum() - n/a")
         ulRv = 0UL;
     #endif
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -725,7 +725,7 @@ CxSystemInfo::cpuVendor() const
         value = std::string(CxUtils::reinterpretCastT<char *>( &cpuInfo[0] ));
         xTEST_EQ(false, value.empty());
     #endif
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     xNOT_IMPLEMENTED
 #endif
     if      (std::string("GenuineIntel") == value) {
@@ -809,7 +809,7 @@ CxSystemInfo::cpuModel() const
 
         sRv = value;
     #endif
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -856,7 +856,7 @@ CxSystemInfo::cpuSpeed() const
 
         ulRv = cpuSpeedMHz;
     #endif
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -995,7 +995,7 @@ CxSystemInfo::cpuUsage() const
 
         ulRv = CxUtils::roundIntT<ulong_t>( cpuUsage );
     #endif
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -1034,7 +1034,7 @@ CxSystemInfo::ramTotal() const
 
         ullRv = ramTotal;
     #endif
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -1072,7 +1072,7 @@ CxSystemInfo::ramAvailable() const
 
         ullRv = availPhysPages * pageSize();
     #endif
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -1130,7 +1130,7 @@ CxSystemInfo::ramUsage() const
         ulRv = static_cast<ulong_t>( CxUtils::safeDivT(ramUsage * 100.0, ramTotal) );
         xTEST_EQ(ramTotal, ramUsage + ramFree);
     #endif
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 

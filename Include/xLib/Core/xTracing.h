@@ -48,8 +48,8 @@
         #pragma message("xLib: xOS_ENV_UNIX")
     #elif xOS_ENV_BSD
         #pragma message("xLib: xOS_ENV_BSD")
-    #elif xOS_ENV_MAC
-        #pragma message("xLib: xOS_ENV_MAC")
+    #elif xOS_ENV_APPLE
+        #pragma message("xLib: xOS_ENV_APPLE")
     #else
         #pragma message("xLib: unsupported OS environment")
     #endif

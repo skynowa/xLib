@@ -28,7 +28,7 @@
     #endif
 
     #include <cxxabi.h>
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     #include <execinfo.h>   // lib: -lexecinfo
     #include <cxxabi.h>
 #endif
@@ -190,7 +190,7 @@ CxStackTrace::get(
 
         (void_t)::SymCleanup(process); process = NULL;
     #endif
-#elif xOS_ENV_UNIX || xOS_ENV_MAC
+#elif xOS_ENV_UNIX || xOS_ENV_APPLE
     #if xHAVE_EXECINFO
         void_t *stackBuff[xSTACK_TRACE_FRAMES_MAX] = {0};
 

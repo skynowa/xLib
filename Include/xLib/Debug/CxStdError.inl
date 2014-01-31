@@ -105,7 +105,7 @@ CxStdError::format(
 
         sRv.append(&buff[0]);
     #endif
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 

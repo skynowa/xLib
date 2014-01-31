@@ -110,7 +110,7 @@ CxPath::exe()
             sRv = absolute(args.at(0));
         #endif
     #endif
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -272,7 +272,7 @@ CxPath::standartExt(
     case seShell:
         sRv = xT("sh");
         break;
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     case seExe:
         sRv = xT("");
         break;
@@ -623,7 +623,7 @@ CxPath::isNameValid(
         }
 
     }
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
    /**
     * check: excepted chars
     * / (forward slash)

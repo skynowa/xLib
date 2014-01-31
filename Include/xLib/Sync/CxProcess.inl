@@ -346,7 +346,7 @@ CxProcess::idByName(
 
         xBUFF_FREE(infoProc);
     #endif
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -448,7 +448,7 @@ CxProcess::ids(
 
         xBUFF_FREE(infoProc);
     #endif
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 

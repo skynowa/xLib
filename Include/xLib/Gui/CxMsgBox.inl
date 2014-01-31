@@ -11,7 +11,7 @@
     #include "Platform/CxMsgBox_win.inl"
 #elif xOS_ENV_UNIX
     #include "Platform/CxMsgBox_unix.inl"
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     #include "Platform/CxMsgBox_mac.inl"
 #endif
 

@@ -39,7 +39,7 @@ static Types<CxMsgBox::ExModalResult, ssize_t, 10> modalResults =
     {CxMsgBox::mrIgnore,   6},
     {CxMsgBox::mrRetry,    7},
     {CxMsgBox::mrTryAgain, 8}
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     {CxMsgBox::mrUnknown,  - 1},
     {CxMsgBox::mrOk,       0},
     {CxMsgBox::mrYes,      1},
@@ -73,7 +73,7 @@ static Types<CxMsgBox::ExType, ssize_t, 8> types =
     {CxMsgBox::tpYesNoCancel,       4},
     {CxMsgBox::tpAbortRetryIgnore,  5},
     {CxMsgBox::tpCancelTryContinue, 6}
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     {CxMsgBox::tpUnknown,           - 1},
     {CxMsgBox::tpOk,                0},
     {CxMsgBox::tpOkCancel,          1},
