@@ -46,6 +46,7 @@ public:
         ///< xLib version
     std::tstring_t binaryType() const xWARN_UNUSED_RV;
         ///< binary type
+
 private:
     xNO_COPY_ASSIGN(CxBuildInfo)
 };
