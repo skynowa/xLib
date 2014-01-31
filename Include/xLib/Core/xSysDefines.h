@@ -247,8 +247,9 @@
 //-------------------------------------------------------------------------------------------------
 // standard C++ libraries
 #if xOS_ENV_WIN
-    #if   defined(__GLIBCXX__)
+    #if defined(__GLIBCXX__)
         #define xSTD_LIBCPP_GNUSTDCPP  1
+            ///< GNU libstdc++
     #endif
 #else
     #if   defined(__CPPLIB_VER)
