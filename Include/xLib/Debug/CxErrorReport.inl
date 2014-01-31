@@ -8,8 +8,8 @@
 #include <xLib/Core/CxDateTime.h>
 #include <xLib/System/CxSystemInfo.h>
 #include <xLib/System/CxConsole.h>
+#include <xLib/Debug/CxBuildInfo.h>
 #include <xLib/Debug/CxException.h>
-#include <xLib/Debug/CxDebugger.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
 #include <xLib/Sync/CxThread.h>
@@ -194,7 +194,7 @@ CxErrorReport::_construct(
 
     _currentDate  = CxDateTime::current().format(xT("%Y-%m-%d %H:%M:%S"));
     _buildDate    = CxString::format(xT("%s/%s"), a_date.c_str(), a_time.c_str());
-    _buildType    = CxDebugger().isDebugBuild() ? xT("debug") : xT("release");
+    _buildType    = CxBuildInfo().isRelease() ? xT("release") : xT("debug");
     _osVersion    = sysInfo.formatOsType();
     _osArch       = sysInfo.formatOsArch();
 #if xOS_ENV_UNIX
