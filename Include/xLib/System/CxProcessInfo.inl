@@ -37,7 +37,7 @@ CxProcessInfo::cpuUsage() const
     // TODO: CxProcessInfo::cpuUsage()
 #elif xOS_ENV_UNIX
     // TODO: CxProcessInfo::cpuUsage()
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     // TODO: CxProcessInfo::cpuUsage()
 #endif
 
@@ -57,7 +57,7 @@ CxProcessInfo::ramUsage() const
     } else {
         // TODO: CxProcessInfo::ramUsage()
     }
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     // TODO: CxProcessInfo::ramUsage()
 #endif
 
@@ -103,7 +103,7 @@ CxProcessInfo::ioBytes() const
     ulRv = readBytes + writeBytes;
 
     // xTRACEV("\readBytes: %lu, writeBytes: %lu", readBytes, writeBytes);
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -162,7 +162,7 @@ CxProcessInfo::exeName() const
             xNOT_IMPLEMENTED_RET(std::tstring_t());
         #endif
     #endif
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -182,7 +182,7 @@ CxProcessInfo::parentId() const
     #elif xOS_FREEBSD
         // TODO: CxProcessInfo::parentId()
     #endif
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -365,7 +365,7 @@ CxProcessInfo::commandLine(
 
         CxString::split(buff, CxConst::space(), &args);
     #endif
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 

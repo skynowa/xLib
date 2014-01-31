@@ -208,7 +208,7 @@ namespace xlib {
     #include <xLib/Core/Platform/xCore_win.h>
 #elif xOS_ENV_UNIX
     #include <xLib/Core/Platform/xCore_unix.h>
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     #include <xLib/Core/Platform/xCore_mac.h>
 #endif
 

@@ -100,7 +100,7 @@ CxBuildInfo::osEnvironment() const
     sRv = xT("Windows");
 #elif xOS_ENV_UNIX
     sRv = xT("Unix");
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     sRv = xT("Mac");
 #endif
 

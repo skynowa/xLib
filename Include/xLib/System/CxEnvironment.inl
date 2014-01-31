@@ -152,7 +152,7 @@ CxEnvironment::deleteVar(
     #elif xOS_FREEBSD
         (void_t)::unsetenv(a_varName.c_str());
     #endif
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     int_t iRv = ::unsetenv(a_varName.c_str());
     xTEST_DIFF(- 1, iRv);
 #endif

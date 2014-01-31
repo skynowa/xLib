@@ -156,7 +156,7 @@ CxIpcMutex::lock(
             xTEST_FAIL;
         }
     }
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 }

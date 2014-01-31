@@ -111,7 +111,7 @@ CxDebugger::isActive() const
         // we're being debugged if the P_TRACED flag is set.
         xCHECK_RET((info.ki_flag & P_TRACED) == 0, false);
     #endif
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -132,7 +132,7 @@ CxDebugger::coreDumpsEnable(
     xUNUSED(a_flag);
     isEnable = true;
     #pragma message("xLib: CxDebugger::coreDumpsEnable() - n/a")
-#elif xOS_ENV_UNIX || xOS_ENV_MAC
+#elif xOS_ENV_UNIX || xOS_ENV_APPLE
     #if   xHAVE_PR_SET_DUMPABLE
         culong_t isDumpable = a_flag ? 1UL : 0UL;
 

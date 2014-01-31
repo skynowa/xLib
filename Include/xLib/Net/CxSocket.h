@@ -63,7 +63,7 @@ public:
             afAppletalk   = AF_APPLETALK,
             afPacket      = AF_PACKET
         #endif
-    #elif xOS_ENV_MAC
+    #elif xOS_ENV_APPLE
         afUnix        = AF_UNIX,
         afLocal       = AF_LOCAL,
         afInet        = AF_INET,
@@ -159,7 +159,7 @@ public:
             ptRaw         = IPPROTO_RAW,
             ptMax         = IPPROTO_MAX
         #endif
-    #elif xOS_ENV_MAC
+    #elif xOS_ENV_APPLE
         ptIp          = IPPROTO_IP,
         ptHopopts     = IPPROTO_HOPOPTS,
         ptIcmp        = IPPROTO_ICMP,

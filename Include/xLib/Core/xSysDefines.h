@@ -71,8 +71,8 @@
     #define xOS_ENV_BSD   1
         ///< BSD environment
 #elif defined(macintosh) || defined(Macintosh) || defined(__APPLE__) || defined(__MACH__)
-    #define xOS_ENV_MAC   1
-        ///< MacOS environment
+    #define xOS_ENV_APPLE   1
+        ///< Apple environment
 #else
     #error xLib: unsupported OS environment
 #endif
@@ -208,7 +208,7 @@
     #endif
 
     #include <bits/c++config.h> // standard C++ libraries
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     #include <bits/c++config.h> // standard C++ libraries
 #endif
 

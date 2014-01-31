@@ -326,7 +326,7 @@ xNAMESPACE2_BEGIN(xlib, core)
 
         #define xSTD_CLOCK          clock
     #endif
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     #define xSTD_CLOCK              std::clock
 #endif
     ///< implementation std::clock

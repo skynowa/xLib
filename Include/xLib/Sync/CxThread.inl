@@ -819,7 +819,7 @@ CxThread::setCpuAffinity(
 
     int_t iRv = ::pthread_setaffinity_np(id(), sizeof(cpuSet), &cpuSet);
     xTEST_MSG_DIFF(- 1, iRv, CxLastError::format(iRv));
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 }
@@ -990,7 +990,7 @@ CxThread::setDebugName(
     #elif xOS_FREEBSD
          (void_t)pthread_set_name_np(id(), a_name.c_str());
     #endif
-#elif xOS_ENV_MAC
+#elif xOS_ENV_APPLE
     // TODO: CxThread::setDebugName() - Mac
     xNOT_IMPLEMENTED
 #endif

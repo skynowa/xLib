@@ -43,7 +43,7 @@ public:
         otLinux,
         // BSD family
         otFreeBSD
-    #elif xOS_ENV_MAC
+    #elif xOS_ENV_APPLE
         otMac
     #endif
     };
