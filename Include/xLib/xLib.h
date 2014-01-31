@@ -52,6 +52,7 @@
 // Debug
 #include <xLib/Debug/CxStdDebug.h>
 #include <xLib/Debug/xDebug.h>
+#include <xLib/Debug/CxBuildInfo.h>
 #include <xLib/Debug/CxLastError.h>
 #include <xLib/Debug/CxStdError.h>
 #include <xLib/Debug/CxException.h>
