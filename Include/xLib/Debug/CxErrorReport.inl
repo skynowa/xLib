@@ -197,8 +197,9 @@ CxErrorReport::_construct(
     _buildType    = CxBuildInfo().isRelease() ? xT("release") : xT("debug");
     _osVersion    = sysInfo.formatOsType();
     _osArch       = sysInfo.formatOsArch();
-#if xOS_ENV_UNIX
+
     _xlib         = sysInfo.xlibVersion();
+#if xOS_ENV_UNIX
     _glibc        = sysInfo.glibcVersion();
     _libPthread   = sysInfo.libPthreadVersion();
 #endif
