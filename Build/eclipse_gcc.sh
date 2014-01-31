@@ -14,4 +14,4 @@ DIR_BUILD="../../xLib_`basename -s .sh $0`"
 mkdir -p $DIR_BUILD
 cd $DIR_BUILD
 cmake -G"Eclipse CDT4 - Unix Makefiles" $DIR_XLIB
-make -j4 VERBOSE=1
+# make -j4 VERBOSE=1
