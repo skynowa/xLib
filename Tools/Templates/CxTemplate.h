@@ -1,30 +1,34 @@
 /**
- * \file   [CxTemplate].h
+ * \file   [TEMPLATE].h
  * \brief
  */
 
 
 #pragma once
 
+
+#ifndef xLib_[TEMPLATE]H
+#define xLib_[TEMPLATE]H
+//-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
-//---------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 xNAMESPACE2_BEGIN(xlib, [NAMESPACE])
 
-class [CxTemplate]
+class [TEMPLATE]
     ///< ??????????
 {
 public:
-             [CxTemplate]() {}
+             [TEMPLATE]() {}
         ///< constructor
-    virtual ~[CxTemplate]() {}
+    virtual ~[TEMPLATE]() {}
         ///< destructor
 
 private:
-
+    xNO_COPY_ASSIGN([TEMPLATE])
 };
 
 xNAMESPACE2_END(xlib, [NAMESPACE])
-//---------------------------------------------------------------------------
-#include <xLib/xxx/[CxTemplate].h>
-//---------------------------------------------------------------------------
-
+//-------------------------------------------------------------------------------------------------
+#include <xLib/xxx/[TEMPLATE].h>
+//-------------------------------------------------------------------------------------------------
+#endif // xLib_[TEMPLATE]H

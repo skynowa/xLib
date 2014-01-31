@@ -1,6 +1,6 @@
 /**
- * \file   CxTest_[CxTemplate].h
- * \brief  test [CxTemplate]
+ * \file   CxTest_[TEMPLATE].h
+ * \brief  test [TEMPLATE]
  */
 
 
@@ -8,16 +8,16 @@
 
 #include <xLib/Core/xCore.h>
 #include <xLib/Test/CxTest.h>
-#include <xLib/xxxxxxxxx/[CxTemplate].h>
-//---------------------------------------------------------------------------
-class CxTest_[CxTemplate] :
+#include <xLib/xxxxxxxxx/[TEMPLATE].h>
+//-------------------------------------------------------------------------------------------------
+class CxTest_[TEMPLATE] :
     public CxTest
-    ///< tests for [CxTemplate]
+    ///< tests for [TEMPLATE]
 {
 public:
-                   CxTest_[CxTemplate]() {}
+                   CxTest_[TEMPLATE]() {}
 
     virtual void_t unit(culonglong_t &caseLoops) xOVERRIDE;
         ///< unit test
 };
-//---------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
