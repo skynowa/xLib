@@ -118,12 +118,12 @@
         defined(_X86_) || defined(__THW_INTEL__) || defined(__I86__) || defined(__I86__) || \
         defined(__INTEL__)
     #define xARCH_X86 1
-        ///< architecture x86
+        ///< architecture 32-bit
 #elif defined(__amd64__) || defined(__amd64) || defined(__x86_64__) || defined(__x86_64) || \
         defined(_M_X64) || defined(__ia64__) || defined(_IA64) || defined(__IA64__) || \
         defined(__ia64) || defined(_M_IA64)
     #define xARCH_X64 1
-        ///< architecture x64
+        ///< architecture 64-bit
 #else
     #error xLib: unsupported architectures
 #endif
