@@ -191,7 +191,7 @@
 //-------------------------------------------------------------------------------------------------
 // standard C libraries
 #if xOS_ENV_WIN
-    // TODO: standard C libraries
+    // TODO: xSysDefines - standard C libraries
     #if   xCOMPILER_MINGW
         #include <bits/c++config.h> // standard C++ libraries
     #endif
@@ -202,7 +202,7 @@
     #endif
 #elif xOS_ENV_UNIX
     #if xOS_FREEBSD
-        // TODO: standard C libraries
+        // TODO: xSysDefines - standard C libraries
     #else
         #include <features.h> // standard C libraries
     #endif
@@ -236,7 +236,7 @@
 #endif
 
 //-------------------------------------------------------------------------------------------------
-// TODO: standard C libraries versions
+// TODO: xSysDefines - standard C libraries versions
 #define xSTD_LIBC_GNU_VER_MAJOR __GLIBC__
 #define xSTD_LIBC_GNU_VER_MINOR __GLIBC_MINOR__
 
@@ -270,7 +270,7 @@
 #endif
 
 //-------------------------------------------------------------------------------------------------
-// TODO: standard C++ libraries versions
+// TODO: xSysDefines - standard C++ libraries versions
 #define xSTD_LIBCPP_GNU_VER 0
 #define xSTD_LIBCPP_UC_VER  0
 #define xSTD_LIBCPP_VMS_VER 0
