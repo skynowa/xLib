@@ -9,6 +9,10 @@
 #ifndef xLib_xConfigH
 #define xLib_xConfigH
 //-------------------------------------------------------------------------------------------------
+#cmakedefine xHAVE_GIT_REVISION    1
+#cmakedefine xGIT_REVISION_BRANCH  xT("@GIT_REVISION_BRANCH@")
+#cmakedefine xGIT_REVISION_HASH    xT("@GIT_REVISION_HASH@")
+
 #cmakedefine xHAVE_OPENSSL_CRYPTO  1
 #cmakedefine xHAVE_MYSQL           1
 #cmakedefine xHAVE_X11             1
