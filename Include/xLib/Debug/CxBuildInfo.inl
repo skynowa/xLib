@@ -177,19 +177,41 @@ CxBuildInfo::compiler() const
 {
     std::tstring_t sRv;
 
-    // TODO: CxBuildInfo::compiler() - add version
+    std::tstring_t compilerName;
+    {
+    #if   xCOMPILER_MINGW
+        compilerName = xT("MinGW");
+    #elif xCOMPILER_MS
+        compilerName = xT("MSVC");
+    #elif xCOMPILER_CODEGEAR
+        compilerName = xT("CodeGear");
+    #elif xCOMPILER_CLANG
+        compilerName = xT("CLang");
+    #elif xCOMPILER_GNUC
+        compilerName = xT("GNUC");
+    #endif
+    }
 
-#if   xCOMPILER_MINGW
-    sRv = xT("MinGW");
-#elif xCOMPILER_MS
-    sRv = xT("MSVC");
-#elif xCOMPILER_CODEGEAR
-    sRv = xT("CodeGear");
-#elif xCOMPILER_CLANG
-    sRv = xT("CLang");
-#elif xCOMPILER_GNUC
-    sRv = xT("GNUC");
-#endif
+    std::tstring_t compilerVersion;
+    {
+    #if   xCOMPILER_MINGW
+        #if   defined(__MINGW32__)
+            compilerVersion = CxString::cast(xCOMPILER_MINGW32_VER);
+        #elif defined(__MINGW64__)
+            compilerVersion = CxString::cast(xCOMPILER_MINGW64_VER);
+        #endif
+    #elif xCOMPILER_MS
+        compilerVersion = CxString::cast(xCOMPILER_MS_VER);
+    #elif xCOMPILER_CODEGEAR
+        compilerVersion = CxString::cast(xCOMPILER_CODEGEAR_VER);
+    #elif xCOMPILER_CLANG
+        compilerVersion = CxString::cast(xCOMPILER_CLANG_VER);
+    #elif xCOMPILER_GNUC
+        compilerVersion = CxString::cast(xCOMPILER_GNUC_VER);
+    #endif
+    }
+
+    sRv = CxString::format(xT("%s %s"), compilerName.c_str(), compilerVersion.c_str());
 
     return sRv;
 }
