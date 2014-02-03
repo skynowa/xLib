@@ -15,6 +15,14 @@
     ///< xLib description
 #define xLIB_VERSION        xT("1.0.000")
     ///< xLib version
+
+#if xHAVE_GIT_REVISION
+    #define xLIB_GIT_REVISION_BRANCH  xGIT_REVISION_BRANCH
+        ///< xLib Git revision branch
+    #define xLIB_GIT_REVISION_HASH    xGIT_REVISION_HASH
+        ///< xLib Git revision hash
+#endif
+
 #define xLIB_VERSION_SUFFIX xT("Alpha")
     ///< xLib suffix version
 #define xLIB_DATE           xDATETIME

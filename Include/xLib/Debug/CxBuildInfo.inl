@@ -36,27 +36,6 @@ CxBuildInfo::datetime() const
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
-CxBuildInfo::gitRevision() const
-{
-    std::tstring_t sRv;
-
-    std::tstring_t gitBranch;
-    std::tstring_t gitHash;
-
-#if xHAVE_GIT_REVISION
-    gitBranch = xGIT_REVISION_BRANCH;
-    gitHash   = xGIT_REVISION_HASH;
-#else
-    gitBranch = CxConst::strUnknown();
-    gitHash   = CxConst::strUnknown();
-#endif
-
-    sRv = CxString::format(xT("%s/%s"), gitBranch.c_str(), gitHash.c_str());
-
-    return sRv;
-}
-//-------------------------------------------------------------------------------------------------
-inline std::tstring_t
 CxBuildInfo::langStandart() const
 {
     std::tstring_t  sRv;
@@ -298,7 +277,8 @@ CxBuildInfo::xlibVersion() const
 {
     std::tstring_t sRv;
 
-    sRv = CxString::format(xT("%s %s"), xLIB_VERSION, xLIB_VERSION_SUFFIX);
+    sRv = CxString::format(xT("%s %s %s/%s"), xLIB_VERSION, xLIB_VERSION_SUFFIX,
+        xLIB_GIT_REVISION_BRANCH, xLIB_GIT_REVISION_HASH);
 
     return sRv;
 }
