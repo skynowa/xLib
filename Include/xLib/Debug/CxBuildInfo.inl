@@ -114,17 +114,46 @@ CxBuildInfo::os() const
 {
     std::tstring_t sRv;
 
-    // TODO: CxBuildInfo::os() - add version
+    std::tstring_t osName;
+    {
+    #if   xOS_WIN
+        osName = xT("Windows");
+    #elif xOS_LINUX
+        osName = xT("Linux");
+    #elif xOS_FREEBSD
+        osName = xT("FreeBSD");
+    #elif xOS_MACOS
+        osName = xT("MacOS");
+    #endif
+    }
 
-#if   xOS_WIN
-    sRv = xT("Windows");
-#elif xOS_LINUX
-    sRv = xT("Linux");
-#elif xOS_FREEBSD
-    sRv = xT("FreeBSD");
-#elif xOS_MACOS
-    sRv = xT("MacOS");
-#endif
+    std::tstring_t osVersion;
+    {
+    #if   xOS_WIN
+        #if   (xOS_WIN_VER == xOS_WIN_NT4)
+            osVersion = xT("NT 4.0");
+        #elif (xOS_WIN_VER == xOS_WIN_2K)
+            osVersion = xT("2000");
+        #elif (xOS_WIN_VER == xOS_WIN_XP)
+            osVersion = xT("Server 2003, Windows XP");
+        #elif (xOS_WIN_VER == xOS_WIN_S03)
+            osVersion = xT("Server 2003 SP1, Windows XP SP2");
+        #elif (xOS_WIN_VER == xOS_WIN_VISTA)
+            osVersion = xT("Vista, Windows Server 2008");
+        #elif (xOS_WIN_VER == xOS_WIN_7)
+            osVersion = xT("7, Windows Server 2008 R2");
+        #endif
+    #elif xOS_LINUX
+        xNA
+    #elif xOS_FREEBSD
+        osName = CxString::cast(xOS_FREEBSD_VER);
+    #elif xOS_MACOS
+        // TODO: CxBuildInfo::os() - OS version
+    #endif
+    }
+
+    sRv = CxString::format(xT("%s %s"), osName.c_str(), osVersion.c_str());
+    sRv = CxString::trimRightChars(sRv, CxConst::space());
 
     return sRv;
 }
