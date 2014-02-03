@@ -26,8 +26,6 @@ public:
         ///< is debug build (is NDEBUG macros is don't set)
     std::tstring_t datetime() const xWARN_UNUSED_RV;
         ///< date time
-    std::tstring_t gitRevision() const xWARN_UNUSED_RV;
-        ///< Git revision
     std::tstring_t langStandart() const xWARN_UNUSED_RV;
         ///< C/C++ language standart
     std::tstring_t osEnvironment() const xWARN_UNUSED_RV;
