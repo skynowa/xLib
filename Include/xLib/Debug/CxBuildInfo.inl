@@ -164,9 +164,9 @@ CxBuildInfo::arch() const
     std::tstring_t sRv;
 
 #if   xARCH_X86
-    sRv = xT("32 bit");
+    sRv = xT("32-bit");
 #elif xARCH_X64
-    sRv = xT("64 bit");
+    sRv = xT("64-bit");
 #endif
 
     return sRv;
