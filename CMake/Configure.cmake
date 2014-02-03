@@ -6,11 +6,16 @@
 
 include(CheckLibraryExists)
 include(CheckCXXSourceCompiles)
+include(FindGitRevision)
 include(FindMySQL)
 include(FindExecInfo)
 
 #--------------------------------------------------------------------------------------------------
 # unset cache
+unset(xHAVE_GIT_REVISION    CACHE)
+unset(xGIT_REVISION_BRANCH  CACHE)
+unset(xGIT_REVISION_HASH    CACHE)
+
 unset(xHAVE_OPENSSL_CRYPTO  CACHE)
 unset(xHAVE_MYSQL           CACHE)
 unset(xHAVE_X11             CACHE)
@@ -24,6 +29,7 @@ unset(xHAVE_EXECINFO        CACHE)
 
 #--------------------------------------------------------------------------------------------------
 # find packages
+find_package(GitRevision REQUIRED)
 find_package(OpenSSL)
 find_package(MySQL)
 
@@ -34,6 +40,12 @@ endif()
 
 #--------------------------------------------------------------------------------------------------
 # configure
+if (GIT_REVISION_FOUND)
+    set(xHAVE_GIT_REVISION TRUE)
+    set(xGIT_REVISION_BRANCH GIT_REVISION_BRANCH)
+    set(xGIT_REVISION_HASH GIT_REVISION_HASH)
+endif()
+
 if (OPENSSL_FOUND)
     check_library_exists(crypto BF_cfb64_encrypt "" xHAVE_OPENSSL_CRYPTO)
 endif()
