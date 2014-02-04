@@ -13,66 +13,63 @@
     if ( !((val1) == (val2)) ) { \
         culong_t      _lastError = CxLastError::get(); \
         CxErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT("=="), \
-            _lastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().toString(), (msg)); \
+            _lastError, xFILE, xLINE, xFUNCTION, CxStackTrace().toString(), (msg)); \
         CxDebugger().reportMake(report); \
     }
 #define _xTEST_MSG_DIFF(reportType, val1, val2, msg) \
     if ( !((val1) != (val2)) ) { \
         culong_t      _lastError = CxLastError::get(); \
         CxErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT("!="), \
-            _lastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().toString(), (msg)); \
+            _lastError, xFILE, xLINE, xFUNCTION, CxStackTrace().toString(), (msg)); \
         CxDebugger().reportMake(report); \
     }
 #define _xTEST_MSG_LESS(reportType, val1, val2, msg) \
     if ( !((val1) < (val2)) ) { \
         culong_t      _lastError = CxLastError::get(); \
         CxErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT("<"), \
-            _lastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().toString(), (msg)); \
+            _lastError, xFILE, xLINE, xFUNCTION, CxStackTrace().toString(), (msg)); \
         CxDebugger().reportMake(report); \
     }
 #define _xTEST_MSG_GR(reportType, val1, val2, msg) \
     if ( !((val1) > (val2)) ) { \
         culong_t      _lastError = CxLastError::get(); \
         CxErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT(">"), \
-            _lastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().toString(), (msg)); \
+            _lastError, xFILE, xLINE, xFUNCTION, CxStackTrace().toString(), (msg)); \
         CxDebugger().reportMake(report); \
     }
 #define _xTEST_MSG_LESS_EQ(reportType, val1, val2, msg) \
     if ( !((val1) <= (val2)) ) { \
         culong_t      _lastError = CxLastError::get(); \
         CxErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT("<="), \
-            _lastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().toString(), (msg)); \
+            _lastError, xFILE, xLINE, xFUNCTION, CxStackTrace().toString(), (msg)); \
         CxDebugger().reportMake(report); \
     }
 #define _xTEST_MSG_GR_EQ(reportType, val1, val2, msg) \
     if ( !((val1) >= (val2)) ) { \
         culong_t      _lastError = CxLastError::get(); \
         CxErrorReport report(reportType, xT(#val1), xT(#val2), (val1), (val2), xT(">="), \
-            _lastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().toString(), (msg)); \
+            _lastError, xFILE, xLINE, xFUNCTION, CxStackTrace().toString(), (msg)); \
         CxDebugger().reportMake(report); \
     }
 #define _xTEST_MSG_PTR(reportType, ptr, msg) \
     if ( intptr_t(NULL) == intptr_t(ptr) ) { \
         culong_t      _lastError = CxLastError::get(); \
         CxErrorReport report(reportType, xT("NULL"), xT(#ptr), intptr_t(ptr), intptr_t(NULL), \
-            xT("!="), _lastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, \
-            CxStackTrace().toString(), (msg)); \
+            xT("!="), _lastError, xFILE, xLINE, xFUNCTION, CxStackTrace().toString(), (msg)); \
         CxDebugger().reportMake(report); \
     }
 #define _xTEST_MSG_PTR_FAIL(reportType, ptr, msg) \
     if ( intptr_t(NULL) != intptr_t(ptr) ) { \
         culong_t      _lastError = CxLastError::get(); \
         CxErrorReport report(reportType, xT("NULL"), xT(#ptr), intptr_t(ptr), intptr_t(NULL), \
-            xT("=="), _lastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, \
-            CxStackTrace().toString(), (msg)); \
+            xT("=="), _lastError, xFILE, xLINE, xFUNCTION, CxStackTrace().toString(), (msg)); \
         CxDebugger().reportMake(report); \
     }
 #define _xTEST_MSG_FAIL(reportType, msg) \
     if ( true ) { \
         culong_t      _lastError = CxLastError::get(); \
         CxErrorReport report(reportType, xT("false"), xT(""), xT(""), xT(""), xT(""), \
-            _lastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, \
-            CxStackTrace().toString(), (msg)); \
+            _lastError, xFILE, xLINE, xFUNCTION, CxStackTrace().toString(), (msg)); \
         CxDebugger().reportMake(report); \
     }
 
