@@ -94,8 +94,7 @@ CxTest_CxDebugger::unit(
             ulong_t val2 = 20UL;
 
             CxErrorReport report(type[i], xT("val1"), xT("val2"), val1, val2, xT("=="),
-                lastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().toString(),
-                xT(""));
+                lastError, xFILE, xLINE, xFUNCTION, CxStackTrace().toString(), xT(""));
 
             CxDebugger debugger;
             debugger.setEnabled(false);
