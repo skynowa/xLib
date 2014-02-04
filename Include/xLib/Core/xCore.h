@@ -217,7 +217,5 @@ namespace xlib {
 #include <xLib/Internal/xInternal.h>    // internal
 #include <xLib/Core/xFunctions.h>
 #include <xLib/Core/xStdStream.h>
-
-#include <xLib/Core/xTracing.h>
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_xCoreH

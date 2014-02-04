@@ -21,7 +21,6 @@
 #include <xLib/Core/xFunctions.h>
 #include <xLib/Core/xFunctors.h>
 #include <xLib/Core/xStdStream.h>
-#include <xLib/Core/xTracing.h>
 #include <xLib/Core/CxType.h>
 #include <xLib/Core/Win/CxCom.h>
 #include <xLib/Core/CxAutoReset.h>
