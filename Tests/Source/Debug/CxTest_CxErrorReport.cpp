@@ -22,8 +22,7 @@ CxTest_CxErrorReport::unit(
         ulong_t val2 = 20UL;
 
         CxErrorReport rpReport(CxErrorReport::rtMsgbox, xT("val1"), xT("val2"), val1, val2,
-            xT("=="), lastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, CxStackTrace().toString(),
-            xT(""));
+            xT("=="), lastError, xFILE, xLINE, xFUNCTION, CxStackTrace().toString(), xT(""));
     }
 }
 //-------------------------------------------------------------------------------------------------

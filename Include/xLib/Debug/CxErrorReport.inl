@@ -90,10 +90,6 @@ CxErrorReport::CxErrorReport(
     _lastError     (0UL),
     _lastErrorStr  (),
     _currentDate   (),
-    _buildDate     (),
-    _buildType     (),
-    _osVersion     (),
-    _osArch(),
     _stackTrace    (),
     _comment       ()
 {
@@ -193,12 +189,7 @@ CxErrorReport::_construct(
     _lastErrorStr = CxLastError::format(a_lastError);
 
     _currentDate  = CxDateTime::current().format(xT("%Y-%m-%d %H:%M:%S"));
-    _buildDate    = CxString::format(xT("%s/%s"), a_date.c_str(), a_time.c_str());
-    _buildType    = CxBuildInfo().isRelease() ? xT("release") : xT("debug");
-    _osVersion    = sysInfo.formatOsType();
-    _osArch       = sysInfo.formatOsArch();
 
-    _xlib         = sysInfo.xlibVersion();
 #if xOS_ENV_UNIX
     _glibc        = sysInfo.glibcVersion();
     _libPthread   = sysInfo.libPthreadVersion();
@@ -230,13 +221,8 @@ CxErrorReport::_initPlain()
         << margin << xT("Last error:    ") << _lastErrorStr << "\n"
                                                             << "\n"
         << margin << xT("Current date:  ") << _currentDate  << "\n"
-        << margin << xT("Build date:    ") << _buildDate    << "\n"
-        << margin << xT("Build type:    ") << _buildType    << "\n"
-        << margin << xT("OS version:    ") << _osVersion    << "\n"
-        << margin << xT("OS arch:       ") << _osArch       << "\n"
     #if xOS_ENV_UNIX
                                                             << "\n"
-        << margin << xT("xLib:          ") << _xlib         << "\n"
         << margin << xT("GLIBC:         ") << _glibc        << "\n"
         << margin << xT("Pthread lib:   ") << _libPthread   << "\n"
     #endif
