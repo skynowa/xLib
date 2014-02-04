@@ -636,7 +636,7 @@
     { \
         culong_t        lastError  = CxLastError::get(); \
         std::cstring_t &stackTrace = CxStackTrace().toString(); \
-        CxErrorReport   report(lastError, xFILE, xLINE, xFUNCTION, xDATE, xTIME, stackTrace, msg); \
+        CxErrorReport   report(lastError, xFILE, xLINE, xFUNCTION, stackTrace, msg); \
         \
         throw CxException() << report.toString(); \
     }

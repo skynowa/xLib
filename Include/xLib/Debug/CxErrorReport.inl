@@ -30,8 +30,6 @@ CxErrorReport::CxErrorReport(
     std::ctstring_t &a_file,
     culong_t        &a_line,
     std::ctstring_t &a_func,
-    std::ctstring_t &a_date,
-    std::ctstring_t &a_time,
     std::ctstring_t &a_stackTrace,
     std::ctstring_t &a_comment
 ) :
@@ -48,15 +46,11 @@ CxErrorReport::CxErrorReport(
     _lastError     (0UL),
     _lastErrorStr  (),
     _currentDate   (),
-    _buildDate     (),
-    _buildType     (),
-    _osVersion     (),
-    _osArch(),
     _stackTrace    (),
     _comment       ()
 {
-    _construct(rtStdout, "", "", "", "", "", a_lastError, a_file, a_line, a_func, a_date, a_time,
-        a_stackTrace, a_comment);
+    _construct(rtStdout, "", "", "", "", "", a_lastError, a_file, a_line, a_func, a_stackTrace,
+        a_comment);
     _initPlain();
 }
 //-------------------------------------------------------------------------------------------------
@@ -72,8 +66,6 @@ CxErrorReport::CxErrorReport(
     std::ctstring_t &a_file,
     culong_t        &a_line,
     std::ctstring_t &a_func,
-    std::ctstring_t &a_date,
-    std::ctstring_t &a_time,
     std::ctstring_t &a_stackTrace,
     std::ctstring_t &a_comment
 ) :
@@ -112,7 +104,7 @@ CxErrorReport::CxErrorReport(
     }
 
     _construct(a_type, a_var1, a_var2, var1Value, var2Value, a_exprSign, a_lastError, a_file,
-        a_line, a_func, a_date, a_time, a_stackTrace, a_comment);
+        a_line, a_func, a_stackTrace, a_comment);
     switch (a_type) {
     case rtMsgbox:
         _initPlain();
@@ -161,8 +153,6 @@ CxErrorReport::_construct(
     std::ctstring_t &a_file,
     culong_t        &a_line,
     std::ctstring_t &a_func,
-    std::ctstring_t &a_date,
-    std::ctstring_t &a_time,
     std::ctstring_t &a_stackTrace,
     std::ctstring_t &a_comment
 )
