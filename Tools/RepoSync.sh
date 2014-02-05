@@ -6,6 +6,13 @@
 
 cd ..
 
+# code.google.com
+git checkout master
+git push --tags https://skynowa@code.google.com/p/xlib-library/ master:master
+
+git checkout develop
+git push --tags https://skynowa@code.google.com/p/xlib-library/ develop:develop
+
 # github.com
 git checkout master
 git push --tags https://skynowa@github.com/skynowa/xLib.git master:master
