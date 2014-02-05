@@ -125,8 +125,6 @@ public:
         ///< get Size of a page (bytes)
 
     // Libs
-    std::tstring_t xlibVersion() const xWARN_UNUSED_RV;
-        ///< get xLib buid version
 #if xOS_ENV_UNIX
     std::tstring_t glibcVersion() const xWARN_UNUSED_RV;
         ///< get glibc version available on the system
