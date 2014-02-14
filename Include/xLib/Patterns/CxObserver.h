@@ -15,7 +15,7 @@
 xNAMESPACE2_BEGIN(xlib, patterns)
 
 template <class T>
-class IxObserver
+class xNO_VTABLE IxObserver
 {
 public:
                     IxObserver() {}

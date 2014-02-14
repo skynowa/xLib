@@ -13,7 +13,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE2_BEGIN(xlib, crypt)
 
-class IxSeedPolicy
+class xNO_VTABLE IxSeedPolicy
     /// seed policy interface
 {
 public:

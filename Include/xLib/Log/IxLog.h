@@ -13,7 +13,7 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE2_BEGIN(xlib, log)
 
-class IxLog
+class xNO_VTABLE IxLog
     /// logging interface
 {
 public:
