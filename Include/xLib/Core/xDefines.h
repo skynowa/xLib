@@ -89,6 +89,17 @@
 #endif
 
 //-------------------------------------------------------------------------------------------------
+// xNO_VTABLE
+#if   xOS_ENV_WIN
+    #define xNO_VTABLE \
+        __declspec(novtable)
+#elif xOS_ENV_UNIX
+    #define xNO_VTABLE \
+        xNOT_AVAILABLE
+#endif
+    ///< disable class virtual table (only: Windows)
+
+//-------------------------------------------------------------------------------------------------
 // xFORCE_INLINE
 #if   xCOMPILER_MINGW
     #define xFORCE_INLINE \

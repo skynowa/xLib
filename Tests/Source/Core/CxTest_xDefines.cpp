@@ -18,7 +18,7 @@ CxTest_xDefines::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("xDefines::combinations of preprocessor defines", a_caseLoops)
+    xTEST_CASE("xDefines: combinations of preprocessor defines", a_caseLoops)
     {
         /*
             if (DEFINE_VAL == NOT_ZERO_DIGIT) {
@@ -103,7 +103,7 @@ CxTest_xDefines::unit(
         }
     }
 
-    xTEST_CASE("xDefines::xLEX_TO_STR_", a_caseLoops)
+    xTEST_CASE("xDefines: xLEX_TO_STR_", a_caseLoops)
     {
         long_t value = - 1;
 
@@ -113,7 +113,7 @@ CxTest_xDefines::unit(
         xUNUSED(value);
     }
 
-    xTEST_CASE("xDefines::xLEX_CAT_", a_caseLoops)
+    xTEST_CASE("xDefines: xLEX_CAT_", a_caseLoops)
     {
         std::tstring_t value;
 
@@ -123,7 +123,7 @@ CxTest_xDefines::unit(
         value.clear();
     }
 
-    xTEST_CASE("xDefines::xTEXT_ xT_", a_caseLoops)
+    xTEST_CASE("xDefines: xTEXT_ xT_", a_caseLoops)
     {
         std::ctstring_t value(xT("xxx"));
 
@@ -134,39 +134,91 @@ CxTest_xDefines::unit(
         xTEST_EQ(value, m_sRv);
     }
 
-    xTEST_CASE("xDefines::xS2US_", a_caseLoops)
+    xTEST_CASE("xDefines: xNO_VTABLE", a_caseLoops)
+    {
+    #if   xOS_ENV_WIN
+        culong_t valueBase    = 1;
+        culong_t valueDerived = 2;
+
+        class Base
+        {
+        public:
+            ulong_t value;
+
+            Base() :
+                value(0UL)
+            {
+            }
+            virtual ~Base()
+            {
+            }
+
+            virtual void_t func()
+            {
+                value = valueBase;
+            }
+        };
+
+        class xNO_VTABLE Derived :
+            public Base
+        {
+        public:
+            virtual void_t func()
+            {
+                value = valueDerived;
+            }
+        };
+
+        Derived d;
+        d.func();
+        xTEST_EQ(d.value, valueDerived);
+
+        (&d)->func();
+        xTEST_EQ(d.value, valueDerived);
+
+        Derived *d2 = &d;
+        d2->func();
+        xTEST_DIFF(d.value, valueBase);
+    #elif xOS_ENV_UNIX
+        xNA
+    #elif xOS_ENV_MAC
+        xNA
+    #endif
+    }
+
+    xTEST_CASE("xDefines: xS2US_", a_caseLoops)
     {
 
     }
 
-    xTEST_CASE("xDefines::xUS2S_", a_caseLoops)
+    xTEST_CASE("xDefines: xUS2S_", a_caseLoops)
     {
 
     }
 
-    xTEST_CASE("xDefines::xS2TS_", a_caseLoops)
+    xTEST_CASE("xDefines: xS2TS_", a_caseLoops)
     {
 
     }
 
-    xTEST_CASE("xDefines::xTS2S_", a_caseLoops)
+    xTEST_CASE("xDefines: xTS2S_", a_caseLoops)
     {
 
     }
 
-    xTEST_CASE("xDefines::utils", a_caseLoops)
+    xTEST_CASE("xDefines: utils", a_caseLoops)
     {
 
     }
 
-    xTEST_CASE("xDefines::xUNUSED", a_caseLoops)
+    xTEST_CASE("xDefines: xUNUSED", a_caseLoops)
     {
         size_t value = 0U;
 
         xUNUSED(value);
     }
 
-    xTEST_CASE("xDefines::temporary enable disable code", a_caseLoops)
+    xTEST_CASE("xDefines: temporary enable disable code", a_caseLoops)
     {
         xTEST_EQ(1, xTEMP_ENABLED);
         xTEST_EQ(0, xTEMP_DISABLED);
@@ -183,54 +235,54 @@ CxTest_xDefines::unit(
         xNA;
     }
 
-    xTEST_CASE("xDefines::buildin macroses", a_caseLoops)
+    xTEST_CASE("xDefines: buildin macroses", a_caseLoops)
     {
 
     }
 
-    xTEST_CASE("xDefines::xFILE_", a_caseLoops)
+    xTEST_CASE("xDefines: xFILE_", a_caseLoops)
     {
         m_sRv = xFILE;
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("xDefines::xLINE_", a_caseLoops)
+    xTEST_CASE("xDefines: xLINE_", a_caseLoops)
     {
         m_ulRv = xLINE;
         xTEST_GR(m_ulRv, 0UL);
     }
 
-    xTEST_CASE("xDefines::xFUNCTION_", a_caseLoops)
+    xTEST_CASE("xDefines: xFUNCTION_", a_caseLoops)
     {
         m_sRv = xFUNCTION;
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("xDefines::xDATE_", a_caseLoops)
+    xTEST_CASE("xDefines: xDATE_", a_caseLoops)
     {
         m_sRv = xDATE;
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("xDefines::xTIME_", a_caseLoops)
+    xTEST_CASE("xDefines: xTIME_", a_caseLoops)
     {
         m_sRv = xTIME;
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("xDefines::xDATETIME_", a_caseLoops)
+    xTEST_CASE("xDefines: xDATETIME_", a_caseLoops)
     {
         m_sRv = xDATETIME;
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("xDefines::xCOUNTER_", a_caseLoops)
+    xTEST_CASE("xDefines: xCOUNTER_", a_caseLoops)
     {
         m_sRv = CxString::cast(xCOUNTER);
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("xDefines::function params", a_caseLoops)
+    xTEST_CASE("xDefines: function params", a_caseLoops)
     {
         struct Test
         {
@@ -256,7 +308,7 @@ CxTest_xDefines::unit(
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("xDefines::var args", a_caseLoops)
+    xTEST_CASE("xDefines: var args", a_caseLoops)
     {
         std::ctstring_t csVal = xT("aaa");
         cint_t          ciVal = 100;
@@ -266,7 +318,7 @@ CxTest_xDefines::unit(
         xTEST_EQ(std::tstring_t(xT("aaa, 100")), m_sRv);
     }
 
-    xTEST_CASE("xDefines::qualifiers", a_caseLoops)
+    xTEST_CASE("xDefines: qualifiers", a_caseLoops)
     {
         // xPR_SIZET
         {
@@ -301,13 +353,13 @@ CxTest_xDefines::unit(
         }
     }
 
-    xTEST_CASE("xDefines::xDIR_TEMP_ temprory directory", a_caseLoops)
+    xTEST_CASE("xDefines: xDIR_TEMP_ temprory directory", a_caseLoops)
     {
         m_sRv = xDIR_TEMP;
         xTEST_EQ(false, m_sRv.empty());
     }
 
-    xTEST_CASE("xDefines::xNATIVE_HANDLE_NULL_ xNATIVE_HANDLE_INVALID_", a_caseLoops)
+    xTEST_CASE("xDefines: xNATIVE_HANDLE_NULL_ xNATIVE_HANDLE_INVALID_", a_caseLoops)
     {
        native_handle_t nhNull    = xNATIVE_HANDLE_NULL;
        xUNUSED(nhNull);
@@ -316,7 +368,7 @@ CxTest_xDefines::unit(
        xUNUSED(nhInvalid);
     }
 
-    xTEST_CASE("xDefines::xFOREACH_", a_caseLoops)
+    xTEST_CASE("xDefines: xFOREACH_", a_caseLoops)
     {
         // xFOREACH
         {
@@ -393,7 +445,7 @@ CxTest_xDefines::unit(
         }
     }
 
-    xTEST_CASE("xDefines::etc", a_caseLoops)
+    xTEST_CASE("xDefines: etc", a_caseLoops)
     {
 
     }
