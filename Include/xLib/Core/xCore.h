@@ -158,18 +158,6 @@
 
 // xLib
 namespace xlib {
-    namespace core {}
-    namespace crypt {}
-    namespace db {}
-    namespace debug {}
-    namespace filesystem {}
-    namespace gui {}
-    namespace log {}
-    namespace net {}
-    namespace patterns {}
-    namespace sync {}
-    namespace system {}
-    namespace test {}
     namespace xlib {}
     namespace core {}
     namespace crypt {}
