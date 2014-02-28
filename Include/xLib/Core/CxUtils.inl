@@ -206,9 +206,9 @@ CxUtils::roundDouble(
     double dRv = 0.0;
 
     if (a_value > 0.0) {
-        dRv = ::floor(a_value + 0.5);
+        dRv = std::floor(a_value + 0.5);
     } else {
-        dRv = ::ceil(a_value - 0.5);
+        dRv = std::ceil(a_value - 0.5);
     }
 
     return dRv;
