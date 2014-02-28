@@ -15,14 +15,14 @@
 #include <sys/stat.h>
 
 // C library
-#include <stdio.h>
-#include <stdlib.h>
-#include <errno.h>
-#include <stdarg.h>
-#include <stddef.h>
-#include <math.h>
-#include <limits.h>
-#include <assert.h>
+#include <cstdio>
+#include <cstdlib>
+#include <cerrno>
+#include <cstdarg>
+#include <cstddef>
+#include <cmath>
+#include <climits>
+#include <cassert>
 //-------------------------------------------------------------------------------------------------
 #define xSTD_TRACE_VAR(v) \
     #v ": " << (v)
