@@ -6,12 +6,17 @@
 
 #include <xLib/Core/CxString.h>
 
-#if xHAVE_X11
+#if xHAVE_X11 && 0
     #include <X11/Xlib.h>
     #include <X11/Xutil.h>
     #include <X11/keysym.h>
 #endif
+#undef Status
+#undef Unsorted
+#undef None
+#undef Bool
 
+#include <xcb/xcb.h>
 
 xNAMESPACE2_BEGIN(xlib, gui)
 
@@ -22,6 +27,8 @@ xNAMESPACE2_BEGIN(xlib, gui)
 
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_ANONYM_BEGIN
+
+#if 0
 
 std::ctstring_t
 xlib_errorFormat
@@ -56,6 +63,8 @@ xlib_errorHandler(
     return 0;
 }
 
+#endif
+
 xNAMESPACE_ANONYM_END
 //-------------------------------------------------------------------------------------------------
 inline CxMsgBox::ExModalResult
@@ -67,7 +76,7 @@ CxMsgBox::_show_impl(
 {
     ExModalResult mrRv = mrUnknown;
 
-#if xHAVE_X11
+#if xHAVE_X11 && 0
     xUNUSED(a_type);
 
     xUNUSED(internal::enums::types);
