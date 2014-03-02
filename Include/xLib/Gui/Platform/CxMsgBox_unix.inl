@@ -10,13 +10,12 @@
     #include <X11/Xlib.h>
     #include <X11/Xutil.h>
     #include <X11/keysym.h>
-#endif
-#undef Status
-#undef Unsorted
-#undef None
-#undef Bool
 
-#include <xcb/xcb.h>
+    #undef Status
+    #undef Unsorted
+    #undef None
+    #undef Bool
+#endif
 
 xNAMESPACE2_BEGIN(xlib, gui)
 
@@ -350,7 +349,8 @@ CxMsgBox::_show_impl(
     xUNUSED(internal::enums::types);
     xUNUSED(internal::enums::modalResults);
 
-    #pragma message("xLib: CxMsgBox::_show_impl() - n/a")
+    // TODO: CxMsgBox::_show_impl() - Unix
+    // #pragma message("xLib: CxMsgBox::_show_impl() - n/a")
 #endif
 
     return mrRv;
