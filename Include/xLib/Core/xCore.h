@@ -157,8 +157,8 @@
 #include <locale>
 
 // xLib
-namespace xlib {
-    namespace xlib {}
+namespace xlib
+{
     namespace core {}
     namespace crypt {}
     namespace db {}
@@ -174,19 +174,18 @@ namespace xlib {
 }
 
 #if xUSING_NAMESPACE_XLIB
-    using namespace xlib;
-    using namespace core;
-    using namespace crypt;
-    using namespace db;
-    using namespace debug;
-    using namespace filesystem;
-    using namespace gui;
-    using namespace log;
-    using namespace net;
-    using namespace patterns;
-    using namespace sync;
-    using namespace system;
-    using namespace test;
+    using namespace xlib::core;
+    using namespace xlib::crypt;
+    using namespace xlib::db;
+    using namespace xlib::debug;
+    using namespace xlib::filesystem;
+    using namespace xlib::gui;
+    using namespace xlib::log;
+    using namespace xlib::net;
+    using namespace xlib::patterns;
+    using namespace xlib::sync;
+    using namespace xlib::system;
+    using namespace xlib::test;
 #endif
 
 #include <xLib/Core/xDefines.h>
