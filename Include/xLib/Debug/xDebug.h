@@ -40,25 +40,18 @@
     #v1 ": " << (v1)
 #define xTRACE_VAR2(v1, v2) \
     xTRACE_VAR(v1) << ", " << xTRACE_VAR(v2)
-
 #define xTRACE_VAR3(v1, v2, v3) \
     xTRACE_VAR2(v1, v2) << ", " << xTRACE_VAR(v3)
-
 #define xTRACE_VAR4(v1, v2, v3, v4) \
     xTRACE_VAR3(v1, v2, v3) << ", " << xTRACE_VAR(v4)
-
 #define xTRACE_VAR5(v1, v2, v3, v4, v5) \
     xTRACE_VAR4(v1, v2, v3, v4) << ", " << xTRACE_VAR(v5)
-
 #define xTRACE_VAR6(v1, v2, v3, v4, v5, v6) \
     xTRACE_VAR5(v1, v2, v3, v4, v5) << ", " << xTRACE_VAR(v6)
-
 #define xTRACE_VAR7(v1, v2, v3, v4, v5, v6, v7) \
     xTRACE_VAR6(v1, v2, v3, v4, v5, v6) << ", " << xTRACE_VAR(v7)
-
 #define xTRACE_VAR8(v1, v2, v3, v4, v5, v6, v7, v8) \
     xTRACE_VAR7(v1, v2, v3, v4, v5, v6, v7) << ", " << xTRACE_VAR(v8)
-
 #define xTRACE_VAR9(v1, v2, v3, v4, v5, v6, v7, v8, v9) \
     xTRACE_VAR8(v1, v2, v3, v4, v5, v6, v7, v8) << ", " << xTRACE_VAR(v9)
 ///@}
