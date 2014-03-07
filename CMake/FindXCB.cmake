@@ -2,50 +2,53 @@
 # Try to find XCB library and include path.
 # Once done this will define
 #
-# XCB_FOUND
-# XCB_INCLUDE_PATH
+# XCB_FOUND        - True if XCB is available
+# XCB_INCLUDE_DIR  - include directories to use XCB
 # XLIB_XCB_INCLUDE_PATH
-# XCB_LIBRARIES
-# 
+# XCB_LIBRARIES    - link against these to use XCB
+#
 
-IF (UNIX)
-	
-	FIND_PATH( XCB_INCLUDE_PATH xcb/xcb.h
-		/usr/include
-		DOC "The directory where xcb/xcb.h resides")
 
-	FIND_PATH( XLIB_XCB_INCLUDE_PATH X11/Xlib-xcb.h
-		/usr/include
-		DOC "The directory where X11/Xlib-xcb.h resides")
-	
+if (UNIX)
+    find_path(XCB_INCLUDE_DIR xcb/xcb.h
+        /usr/include
+        DOC "The directory where xcb/xcb.h resides")
 
-	FIND_LIBRARY( XCB_LIBRARY
-		NAMES xcb
-		PATHS
-		/usr/lib
-		DOC "The xcb library")
+    find_path(XLIB_XCB_INCLUDE_PATH X11/Xlib-xcb.h
+        /usr/include
+        DOC "The directory where X11/Xlib-xcb.h resides")
 
-	FIND_LIBRARY( XCB_XLIB_LIBRARY
-		NAMES xcb-xlib
-		PATHS
-		/usr/lib
-		DOC "The xcb-xlib library")
+    find_library(XCB_LIBRARY
+        NAMES xcb
+        PATHS
+        /usr/lib
+        DOC "The xcb library")
 
-	FIND_LIBRARY( XLIB_XCB_LIBRARY
-		NAMES X11-xcb
-		PATHS
-		/usr/lib
-		DOC "The X11-xcb library")
+    # find_library(XCB_XLIB_LIBRARY
+    #     NAMES xcb-xlib
+    #     PATHS
+    #     /usr/lib
+    #     DOC "The xcb-xlib library")
 
-	SET(XCB_LIBRARIES ${XCB_LIBRARY} ${XCB_XLIB_LIBRARY} ${XLIB_XCB_LIBRARY})
+    find_library(XLIB_XCB_LIBRARY
+        NAMES X11-xcb
+        PATHS
+        /usr/lib
+        DOC "The X11-xcb library")
 
-ENDIF (UNIX)
+    set(XCB_LIBRARIES ${XCB_LIBRARY} ${XLIB_XCB_LIBRARY}) # ${XCB_XLIB_LIBRARY}
+endif()
 
-IF (XCB_INCLUDE_PATH)
-	SET( XCB_FOUND 1 CACHE STRING "Set to 1 if GLEW is found, 0 otherwise")
-ELSE (XCB_INCLUDE_PATH)
-	SET( XCB_FOUND 0 CACHE STRING "Set to 1 if GLEW is found, 0 otherwise")
-ENDIF (XCB_INCLUDE_PATH)
+if (XCB_INCLUDE_DIR AND XCB_LIBRARIES)
+    set(XCB_FOUND TRUE)
+else()
+    set(XCB_FOUND FALSE)
+endif()
 
-MARK_AS_ADVANCED( XCB_FOUND )
-
+if (XCB_FOUND)
+    message(STATUS "Found XCB: ${XCB_LIBRARIES}")
+else()
+    if (XCB_FIND_REQUIRED)
+        message(FATAL_ERROR "Could not find XCB library")
+    endif()
+endif()
