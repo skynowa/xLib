@@ -9,6 +9,7 @@ include(CheckCXXSourceCompiles)
 include(FindGitRevision)
 include(FindMySQL)
 include(FindExecInfo)
+include(FindXCB)
 
 #--------------------------------------------------------------------------------------------------
 # unset cache
@@ -26,6 +27,7 @@ unset(xHAVE_SCHED_GETCPU    CACHE)
 unset(xHAVE_SCHED_GETCPU    CACHE)
 unset(xHAVE_ADDR2LINE       CACHE)
 unset(xHAVE_EXECINFO        CACHE)
+unset(xHAVE_XCB             CACHE)
 
 #--------------------------------------------------------------------------------------------------
 # find packages
@@ -34,8 +36,8 @@ find_package(OpenSSL)
 find_package(MySQL)
 
 if (UNIX)
-    find_package(X11)
     find_package(ExecInfo REQUIRED)
+    find_package(XCB)
 endif()
 
 #--------------------------------------------------------------------------------------------------
@@ -53,13 +55,14 @@ endif()
 if (WIN32)
     # TODO: windows part
 elseif (UNIX)
-    if (X11_FOUND)
-        set(xHAVE_X11 TRUE)
-    endif()
-
     # xHAVE_EXECINFO
     if (EXECINFO_FOUND)
         set(xHAVE_EXECINFO TRUE)
+    endif()
+
+    # xHAVE_XCB
+    if (XCB_FOUND)
+        set(xHAVE_XCB TRUE)
     endif()
 
     # xHAVE_PR_SET_DUMPABLE

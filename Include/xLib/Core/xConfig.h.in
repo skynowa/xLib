@@ -15,7 +15,6 @@
 
 #cmakedefine xHAVE_OPENSSL_CRYPTO  1
 #cmakedefine xHAVE_MYSQL           1
-#cmakedefine xHAVE_X11             1
 #cmakedefine xHAVE_PR_SET_DUMPABLE 1
 #cmakedefine xHAVE_RLIMIT_CORE     1
 #cmakedefine xHAVE_PT_DENY_ATTACH  1
@@ -23,6 +22,7 @@
 #cmakedefine xHAVE_GETCPU          1
 #cmakedefine xHAVE_ADDR2LINE       1
 #cmakedefine xHAVE_EXECINFO        1
+#cmakedefine xHAVE_XCB             1
 
 #if xOS_ENV_WIN
     #if xCOMPILER_MS
