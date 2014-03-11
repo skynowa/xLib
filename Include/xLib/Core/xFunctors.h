@@ -59,13 +59,17 @@ struct CompareCI
     }
 
     bool_t
-    operator () (const std::tstring_t::value_type &a_ch1, const std::tstring_t::value_type &a_ch2) const
+    operator () (
+        const std::tstring_t::value_type &a_ch1,
+        const std::tstring_t::value_type &a_ch2) const
     {
         return CxChar(a_ch1, _locale).toLower() == CxChar(a_ch2, _locale).toLower();
     }
 
     bool_t
-    operator () (std::ctstring_t &a_value1, std::ctstring_t &a_value2) const
+    operator () (
+        std::ctstring_t &a_value1,
+        std::ctstring_t &a_value2) const
     {
         return CxStringCI::compare(a_value1, a_value2);
     }
