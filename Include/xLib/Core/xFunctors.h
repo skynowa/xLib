@@ -92,21 +92,37 @@ struct Delete
 struct Narrow
     ///<
 {
+    Narrow(const std::locale &a_locale) :
+        _locale(a_locale)
+    {
+    }
+
     std::string::value_type
     operator () (const std::wstring::value_type &a_ch) const
     {
-        return std::use_facet< std::ctype<std::wstring::value_type> >( std::locale() ).narrow(a_ch, '@');
+        return std::use_facet< std::ctype<std::wstring::value_type> >( _locale ).narrow(a_ch, '@');
     }
+
+private:
+    const std::locale &_locale;
 };
 //-------------------------------------------------------------------------------------------------
 struct Widen
     ///<
 {
+    Widen(const std::locale &a_locale) :
+        _locale(a_locale)
+    {
+    }
+
     std::wstring::value_type
     operator () (const std::string::value_type &a_ch) const
     {
-        return std::use_facet< std::ctype<std::string::value_type> >( std::locale() ).widen(a_ch);
+        return std::use_facet< std::ctype<std::string::value_type> >( _locale ).widen(a_ch);
     }
+
+private:
+    const std::locale &_locale;
 };
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE3_END(xlib, core, functors)
