@@ -147,7 +147,8 @@ CxString::castA(
 
     std::string asRv;
 
-    std::transform(a_str.begin(), a_str.end(), std::back_inserter(asRv), functors::Narrow());
+    std::transform(a_str.begin(), a_str.end(), std::back_inserter(asRv),
+        functors::Narrow( std::locale() ));
 
     return asRv;
 }
@@ -162,7 +163,8 @@ CxString::castW(
 
     std::wstring wsRv;
 
-    std::transform(a_str.begin(), a_str.end(), std::back_inserter(wsRv), functors::Widen());
+    std::transform(a_str.begin(), a_str.end(), std::back_inserter(wsRv),
+        functors::Widen( std::locale() ));
 
     return wsRv;
 }
