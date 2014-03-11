@@ -1013,7 +1013,8 @@ CxStringCI::find(
     xTEST_NA(a_target);
     xTEST_NA(a_pos);
 
-    xCHECK_RET(a_str.empty() && a_target.empty() && a_pos == 0, 0);
+    xCHECK_RET(a_str.empty() && a_target.empty() && a_pos == 0U, 0U);
+    xCHECK_RET(a_target.empty(),                                 0U);
 
     std::tstring_t::const_iterator cit;
 
