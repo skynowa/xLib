@@ -17,7 +17,7 @@ xNAMESPACE3_BEGIN(xlib, core, functors)
 struct ToLower
     ///< char to lower case
 {
-    ToLower(const std::locale &a_locale = std::locale()) :
+    ToLower(const std::locale &a_locale) :
         _locale(a_locale)
     {
     }
@@ -35,7 +35,7 @@ private:
 struct ToUpper
     ///< char, std:tstring_t to upper case
 {
-    ToUpper(const std::locale &a_locale = std::locale()) :
+    ToUpper(const std::locale &a_locale) :
         _locale(a_locale)
     {
     }
@@ -53,7 +53,7 @@ private:
 struct CompareCI
     ///< case insensitive comparison
 {
-    CompareCI(const std::locale &a_locale = std::locale()) :
+    CompareCI(const std::locale &a_locale) :
         _locale(a_locale)
     {
     }
