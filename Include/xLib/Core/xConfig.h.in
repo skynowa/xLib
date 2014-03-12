@@ -73,7 +73,7 @@
     #endif
 #endif
 
-#cmakedefine xUSING_NAMESPACE_XLIB    1
+#cmakedefine xUSING_NAMESPACE_XLIB     1
     ///< automatically include the xlib namespace
 
 #cmakedefine xDEBUG_USE_PROMPT_DIALOG  1
