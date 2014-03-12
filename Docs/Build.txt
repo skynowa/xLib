@@ -18,8 +18,8 @@ Dependencies:
             - MinGW: -lws2_32 -lnetapi32 -lpsapi -luuid -lole32 -lmpr -ldbghelp -libeay32
                      -lmysqlclient
         Unix:
-            - Unix: -lX11 -ldl -pthread -lrt -lm -lz -lmysqlclient
-            - FreeBSD: -lc -lpthread -lexecinfo -lmysqlclient
+            - Unix:    -lxcb -ldl -pthread -lrt -lm -lz -lmysqlclient
+            - FreeBSD: -lxcb -lc -lpthread -lexecinfo -lmysqlclient
         Apple:
             - MacOS:   -lexecinfo
 
