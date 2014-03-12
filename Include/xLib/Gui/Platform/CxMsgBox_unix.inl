@@ -35,14 +35,14 @@ CxMsgBox::_show_impl(
     xUNUSED(internal::enums::types);
     xUNUSED(internal::enums::modalResults);
 
-    xcb_connection_t    *connection = NULL;
-    xcb_screen_t        *screen     = NULL;
-    xcb_drawable_t       windowId   = 0U;
-    xcb_gcontext_t       foreground = 0U;
-    xcb_gcontext_t       background = 0U;
-    xcb_generic_event_t *event      = NULL;
-    uint32_t             mask       = 0U;
-    uint32_t             values[2]  = {0U, 0U};
+    int_t             iRv        = 0;
+    xcb_connection_t *connection = NULL;
+    xcb_screen_t     *screen     = NULL;
+    xcb_drawable_t    windowId   = 0U;
+    xcb_gcontext_t    foreground = 0U;
+    xcb_gcontext_t    background = 0U;
+    uint32_t          mask       = 0U;
+    uint32_t          values[2]  = {0U, 0U};
 
     xcb_rectangle_t rectangles[] = {
         {40, 40, 20, 20},
@@ -92,26 +92,35 @@ CxMsgBox::_show_impl(
 
     // map the window on the screen
     ::xcb_map_window(connection, windowId);
-    ::xcb_flush(connection);
+    iRv = ::xcb_flush(connection);
+    xTEST_GR(iRv, 0);
 
-    while ( (event = ::xcb_wait_for_event(connection)) ) {
+    // while ( (event = ::xcb_wait_for_event(connection)) ) {
+    xFOREVER {
+        xcb_generic_event_t *event = ::xcb_wait_for_event(connection);
+        xTEST_PTR(event);
+
         switch (event->response_type & ~0x80) {
         case XCB_EXPOSE:
             ::xcb_poly_rectangle(connection, windowId, foreground, 1, rectangles);
             ::xcb_image_text_8(connection, static_cast<uint8_t>( a_text.size() ), windowId,
                 background, 20, 20, a_text.c_str());
-            ::xcb_flush(connection);
+            iRv = ::xcb_flush(connection);
+            xTEST_GR(iRv, 0);
             break;
         case XCB_KEY_PRESS:
-            goto breakLoop;
+            break;
+        default:
+            CxTrace() << xT("Unknown event: ") << event->response_type;
+            break;
         }
 
-        ::free(event);
+        xBUFF_FREE(event);
     }
 
-breakLoop:
     if (connection != NULL) {
-        ::xcb_disconnect(connection); connection = NULL;
+        (void_t)::xcb_disconnect(connection);
+        connection = NULL;
     }
 #else
     xUNUSED(a_text);
