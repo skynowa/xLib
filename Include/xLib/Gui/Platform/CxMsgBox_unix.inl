@@ -109,7 +109,10 @@ CxMsgBox::_show_impl(
         ::free(event);
     }
 
-    breakLoop:
+breakLoop:
+    if (connection != NULL) {
+        ::xcb_disconnect(connection); connection = NULL;
+    }
 #else
     xUNUSED(a_text);
     xUNUSED(a_title);
