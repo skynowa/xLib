@@ -1,12 +1,12 @@
+#--------------------------------------------------------------------------------------------------
+# \file  FindXCB.cmake
+# \brief Find libXCB
 #
-# Try to find XCB library and include path.
-# Once done this will define
-#
-# XCB_FOUND        - True if XCB is available
-# XCB_INCLUDE_DIR  - include directories to use XCB
-# XLIB_XCB_INCLUDE_PATH
-# XCB_LIBRARIES    - link against these to use XCB
-#
+# XCB_FOUND             - true if XCB is available
+# XCB_INCLUDE_DIR       - include directories to use XCB
+# XLIB_XCB_INCLUDE_PATH - include directories to use XLIB/XCB
+# XCB_LIBRARIES         - link against these to use XCB
+#--------------------------------------------------------------------------------------------------
 
 
 if (UNIX)

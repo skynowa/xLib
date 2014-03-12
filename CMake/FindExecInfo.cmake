@@ -2,9 +2,9 @@
 # \file  FindExecInfo.cmake
 # \brief Find libexecinfo
 #
+# EXECINFO_FOUND     - true if libexecinfo found
 # EXECINFO_INCLUDES  - where to find libexecinfo includes
 # EXECINFO_LIBRARIES - list of libraries when using libexecinfo
-# EXECINFO_FOUND     - true if libexecinfo found
 #--------------------------------------------------------------------------------------------------
 
 
