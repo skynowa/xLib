@@ -36,7 +36,7 @@ find_package(MySQL)
 
 if (UNIX)
     find_package(ExecInfo REQUIRED)
-    find_package(XCB)
+    find_package(XCB REQUIRED)
 endif()
 
 #--------------------------------------------------------------------------------------------------
