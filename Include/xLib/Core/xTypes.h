@@ -66,7 +66,7 @@ xNAMESPACE2_BEGIN(xlib, core)
     typedef const double           cdouble_t;
 
     typedef long double            ldouble_t;
-    typedef const long double      cldouble_t;
+    typedef const ldouble_t        cldouble_t;
 
 // addrinfo_t
 #if   xOS_ENV_WIN
