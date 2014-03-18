@@ -10,9 +10,8 @@
 #define xLib_xTypesH
 //-------------------------------------------------------------------------------------------------
 #if xOS_WIN
-    // typedef SIZE_T              size_t;
     typedef SSIZE_T                ssize_t;
-    typedef const SSIZE_T          cssize_t;
+    typedef const ssize_t          cssize_t;
 #endif
 
 xNAMESPACE2_BEGIN(xlib, core)
@@ -28,9 +27,8 @@ xNAMESPACE2_BEGIN(xlib, core)
 #else
     typedef char                   tchar_t;
 #endif
-
     typedef const tchar_t          ctchar_t;
-        ///< char
+        ///< tchar_t
 
     typedef unsigned char          uchar_t;
     typedef const uchar_t          cuchar_t;
@@ -80,7 +78,6 @@ xNAMESPACE2_BEGIN(xlib, core)
 #elif xOS_ENV_UNIX
     typedef addrinfo               addrinfo_t;
 #endif
-
     typedef const addrinfo_t       caddrinfo_t;
         ///< hold host address information
 
@@ -90,7 +87,6 @@ xNAMESPACE2_BEGIN(xlib, core)
 #elif xOS_ENV_UNIX
     typedef int                    native_handle_t;
 #endif
-
     typedef const native_handle_t  cnative_handle_t;
         ///< native handle
 
@@ -100,7 +96,6 @@ xNAMESPACE2_BEGIN(xlib, core)
 #elif xOS_ENV_UNIX
     typedef int                    socket_t;
 #endif
-
     typedef const socket_t         csocket_t;
         ///< socket native handle
 
@@ -110,7 +105,6 @@ xNAMESPACE2_BEGIN(xlib, core)
 #else
     typedef int                    twint_t;
 #endif
-
     typedef const twint_t          ctwint_t;
         ///< twint_t
 
