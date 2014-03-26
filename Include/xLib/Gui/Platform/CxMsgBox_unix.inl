@@ -6,7 +6,7 @@
 
 #include <xLib/Core/CxString.h>
 
-#if xHAVE_XCB
+#if xHAVE_XCB && 0
     #include <xcb/xcb.h>
 #endif
 
@@ -27,7 +27,7 @@ CxMsgBox::_show_impl(
 {
     ExModalResult mrRv = mrUnknown;
 
-#if xHAVE_XCB
+#if xHAVE_XCB && 0
     xUNUSED(a_text);
     xUNUSED(a_title);
     xUNUSED(a_type);
