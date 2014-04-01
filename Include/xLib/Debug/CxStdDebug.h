@@ -30,29 +30,30 @@
 
 #define xSTD_TRACE_POINT \
     { \
-        std::printf("\t::::: #%d in %s:%d, func: %s, error: %s :::::\n", \
-            __COUNTER__, __FILE__, __LINE__, __FUNCTION__, std::strerror(errno)); \
+        std::cout \
+            << "\t::::: #" << __COUNTER__ \
+            << " in "      << __FILE__ \
+            << ":"         << __LINE__ \
+            << ", func: "  << __FUNCTION__ \
+            << ", error: " << std::strerror(errno) \
+            << " :::::"    << std::endl; \
     }
     ///< trace point
 
 #define xSTD_VERIFY(expr) \
     { \
         if ( !(expr) ) { \
-            std::printf( \
-                "\n--------------------------------- xSTD_VERIFY ----------------------------------\n" \
-                " Expression: %s\n" \
-                " File:       %s\n" \
-                " Function:   %s\n" \
-                " Line:       %d\n" \
-                " Last error: %s\n" \
-                " Date time:  %s\n" \
-                "--------------------------------------------------------------------------------\n", \
-                #expr, \
-                __FILE__, \
-                __FUNCTION__, \
-                __LINE__, \
-                std::strerror(errno), \
-                ::currentDateTime().c_str()); \
+            std::cout \
+                << "\n" \
+                << "------------------ xSTD_VERIFY -------------------" << "\n" \
+                << " Expression: " << #expr                             << "\n" \
+                << " File:       " << __FILE__                          << "\n" \
+                << " Function:   " << __FUNCTION__                      << "\n" \
+                << " Line:       " << __LINE__                          << "\n" \
+                << " Last error: " << std::strerror(errno)              << "\n" \
+                << " Date time:  " << ::currentDateTime()               << "\n" \
+                << "--------------------------------------------------" << "\n" \
+                << std::flush; \
             \
             (void)::exit(EXIT_FAILURE); \
         } \
@@ -62,21 +63,17 @@
 #define xSTD_TEST_DO(expr, do_expr) \
     { \
         if ( !(expr) ) { \
-            std::fprintf(stdout, \
-                    "\n------------------ xSTD_TEST --------------------\n" \
-                    " Expression: %s\n" \
-                    " File:       %s\n" \
-                    " Function:   %s\n" \
-                    " Line:       %d\n" \
-                    " Last error: %s\n" \
-                    " Date time:  %s\n" \
-                    "--------------------------------------------------\n", \
-                    #expr, \
-                    __FILE__, \
-                    __FUNCTION__, \
-                    __LINE__, \
-                    std::strerror(errno), \
-                    ::currentDateTime().c_str()); \
+            std::cout \
+                << "\n" \
+                << "------------------- xSTD_TEST --------------------" << "\n" \
+                << " Expression: " << #expr                             << "\n" \
+                << " File:       " << __FILE__                          << "\n" \
+                << " Function:   " << __FUNCTION__                      << "\n" \
+                << " Line:       " << __LINE__                          << "\n" \
+                << " Last error: " << std::strerror(errno)              << "\n" \
+                << " Date time:  " << ::currentDateTime()               << "\n" \
+                << "--------------------------------------------------" << "\n" \
+                << std::flush; \
             { \
                 do_expr; \
             } \
