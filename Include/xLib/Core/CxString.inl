@@ -248,8 +248,8 @@ CxString::castA(
 {
     xTEST_NA(a_str);
     xTEST_NA(a_locale);
-    xSTD_VERIFY(std::has_facet<std::ctype<wchar_t> >(a_locale));
-    xSTD_VERIFY(std::has_facet<std::ctype<char> >(a_locale));
+    _xVERIFY(std::has_facet<std::ctype<wchar_t> >(a_locale));
+    _xVERIFY(std::has_facet<std::ctype<char> >(a_locale));
 
     xCHECK_RET(a_str.empty(),                                   std::string());
     xCHECK_RET(!std::has_facet<std::ctype<wchar_t> >(a_locale), std::string());
@@ -285,7 +285,7 @@ CxString::castW(
 {
     xTEST_NA(a_str);
     xTEST_NA(a_locale);
-    xSTD_VERIFY(std::has_facet<std::ctype<std::wstring::value_type> >(a_locale));
+    _xVERIFY(std::has_facet<std::ctype<std::wstring::value_type> >(a_locale));
 
     xCHECK_RET(a_str.empty(),                                                    std::wstring());
     xCHECK_RET(!std::has_facet<std::ctype<std::wstring::value_type> >(a_locale), std::wstring());

@@ -26,52 +26,52 @@
 //-------------------------------------------------------------------------------------------------
 ///@name check condition
 ///@{
-#define xSTD_CHECK_RET(expr, return_expr) \
+#define _xCHECK_RET(expr, return_expr) \
     { if ((expr)) { return (return_expr); } }
     ///< check expression and return value
-#define xSTD_CHECK_DO(expr, do_expr) \
+#define _xCHECK_DO(expr, do_expr) \
     { if ((expr)) { do_expr; } }
     ///< check expression and do instructions
-#define xSTD_CHECK_MSG(expr, comment) \
+#define _xCHECK_MSG(expr, comment) \
     { if ((expr)) { std::cout << (comment) << std::endl; } }
     ///< check expression and show message with comment
-#define xSTD_CHECK_MSG_RET(expr, comment, return_expr) \
+#define _xCHECK_MSG_RET(expr, comment, return_expr) \
     { if ((expr)) { std::cout << (comment) << std::endl; return (return_expr); } }
     ///< check expression, show message with comment and return value
-#define xSTD_CHECK_MSG_DO(expr, comment, do_expr) \
+#define _xCHECK_MSG_DO(expr, comment, do_expr) \
     { if ((expr)) { std::cout << (comment) << std::endl; do_expr; } }
     ///< check expression, show message with comment and do instructions
-#define xSTD_CHECK_NA(var) \
+#define _xCHECK_NA(var) \
     ;
     ///< at this point check code for variable is not applicable
-#define xSTD_CHECKS_NA \
+#define _xCHECKS_NA \
     ;
     ///< at this point check code for variables is not applicable
 ///@}
 //-------------------------------------------------------------------------------------------------
 ///@name Trace variables (variable with value)
 ///@{
-#define xSTD_TRACE_VAR(v1) \
+#define _xTRACE_VAR(v1) \
     #v1 ": " << (v1)
-#define xSTD_TRACE_VAR2(v1, v2) \
-    xSTD_TRACE_VAR(v1) << ", " << xSTD_TRACE_VAR(v2)
-#define xSTD_TRACE_VAR3(v1, v2, v3) \
-    xSTD_TRACE_VAR2(v1, v2) << ", " << xSTD_TRACE_VAR(v3)
-#define xSTD_TRACE_VAR4(v1, v2, v3, v4) \
-    xSTD_TRACE_VAR3(v1, v2, v3) << ", " << xSTD_TRACE_VAR(v4)
-#define xSTD_TRACE_VAR5(v1, v2, v3, v4, v5) \
-    xSTD_TRACE_VAR4(v1, v2, v3, v4) << ", " << xSTD_TRACE_VAR(v5)
-#define xSTD_TRACE_VAR6(v1, v2, v3, v4, v5, v6) \
-    xSTD_TRACE_VAR5(v1, v2, v3, v4, v5) << ", " << xSTD_TRACE_VAR(v6)
-#define xSTD_TRACE_VAR7(v1, v2, v3, v4, v5, v6, v7) \
-    xSTD_TRACE_VAR6(v1, v2, v3, v4, v5, v6) << ", " << xSTD_TRACE_VAR(v7)
-#define xSTD_TRACE_VAR8(v1, v2, v3, v4, v5, v6, v7, v8) \
-    xSTD_TRACE_VAR7(v1, v2, v3, v4, v5, v6, v7) << ", " << xSTD_TRACE_VAR(v8)
-#define xSTD_TRACE_VAR9(v1, v2, v3, v4, v5, v6, v7, v8, v9) \
-    xSTD_TRACE_VAR8(v1, v2, v3, v4, v5, v6, v7, v8) << ", " << xSTD_TRACE_VAR(v9)
+#define _xTRACE_VAR2(v1, v2) \
+    _xTRACE_VAR(v1) << ", " << _xTRACE_VAR(v2)
+#define _xTRACE_VAR3(v1, v2, v3) \
+    _xTRACE_VAR2(v1, v2) << ", " << _xTRACE_VAR(v3)
+#define _xTRACE_VAR4(v1, v2, v3, v4) \
+    _xTRACE_VAR3(v1, v2, v3) << ", " << _xTRACE_VAR(v4)
+#define _xTRACE_VAR5(v1, v2, v3, v4, v5) \
+    _xTRACE_VAR4(v1, v2, v3, v4) << ", " << _xTRACE_VAR(v5)
+#define _xTRACE_VAR6(v1, v2, v3, v4, v5, v6) \
+    _xTRACE_VAR5(v1, v2, v3, v4, v5) << ", " << _xTRACE_VAR(v6)
+#define _xTRACE_VAR7(v1, v2, v3, v4, v5, v6, v7) \
+    _xTRACE_VAR6(v1, v2, v3, v4, v5, v6) << ", " << _xTRACE_VAR(v7)
+#define _xTRACE_VAR8(v1, v2, v3, v4, v5, v6, v7, v8) \
+    _xTRACE_VAR7(v1, v2, v3, v4, v5, v6, v7) << ", " << _xTRACE_VAR(v8)
+#define _xTRACE_VAR9(v1, v2, v3, v4, v5, v6, v7, v8, v9) \
+    _xTRACE_VAR8(v1, v2, v3, v4, v5, v6, v7, v8) << ", " << _xTRACE_VAR(v9)
 ///@}
 //-------------------------------------------------------------------------------------------------
-#define xSTD_TRACE_POINT \
+#define _xTRACE_POINT \
     { \
         std::cout \
             << "\t::::: #" << __COUNTER__ \
@@ -82,16 +82,16 @@
             << " :::::"    << std::endl; \
     }
     ///< trace point
-#define xSTD_NOT_IMPLEMENTED \
-    { xSTD_TEST_MSG_FAIL(xT("Not implemented")); }
+#define _xNOT_IMPLEMENTED \
+    { _xTEST_MSG_FAIL(xT("Not implemented")); }
     ///< show not implemented message and return value
 //-------------------------------------------------------------------------------------------------
-#define xSTD_VERIFY(expr) \
+#define _xVERIFY(expr) \
     { \
         if ( !(expr) ) { \
             std::cout \
                 << "\n" \
-                << "------------------ xSTD_VERIFY -------------------" << "\n" \
+                << "------------------ _xVERIFY -------------------" << "\n" \
                 << " Expression: " << #expr                             << "\n" \
                 << " File:       " << __FILE__                          << "\n" \
                 << " Function:   " << __FUNCTION__                      << "\n" \
@@ -105,12 +105,12 @@
         } \
     }
     ///< check expression (work in debug and release modes)
-#define xSTD_TEST_DO(expr, do_expr) \
+#define _xTEST_DO(expr, do_expr) \
     { \
         if ( !(expr) ) { \
             std::cout \
                 << "\n" \
-                << "------------------- xSTD_TEST --------------------" << "\n" \
+                << "------------------- _xTEST --------------------" << "\n" \
                 << " Expression: " << #expr                             << "\n" \
                 << " File:       " << __FILE__                          << "\n" \
                 << " Function:   " << __FUNCTION__                      << "\n" \
@@ -125,13 +125,13 @@
         } \
     }
     ///< test macros
-#define xSTD_TEST(expr) \
-    xSTD_TEST_DO(expr, {})
+#define _xTEST(expr) \
+    _xTEST_DO(expr, {})
     ///< test macros
-#define xSTD_TEST_RET(expr, ret_expr) \
-    xSTD_TEST_DO(expr, return ret_expr)
+#define _xTEST_RET(expr, ret_expr) \
+    _xTEST_DO(expr, return ret_expr)
     ///< test macros
-#define xSTD_TEST_NA(expr) \
+#define _xTEST_NA(expr) \
     ;
     ///< test macros
 //-------------------------------------------------------------------------------------------------
