@@ -1185,9 +1185,10 @@ CxFile::textRead(
         CxString::split(line, a_separator, &lines);
         xTEST_EQ(size_t(2), lines.size());
 
-        bool_t bRv = msRv.insert( std::make_pair(lines.at(0), lines.at(1)) );
-        // TODO: CxFile::textRead() - xTEST_EQ(bRv, true);
-        xUNUSED(bRv);
+        std::pair<std::map_tstring_t::iterator, bool_t> prRv;
+        prRv = msRv.insert( std::make_pair(lines.at(0), lines.at(1)) );
+        // TODO: CxFile::textRead() - xTEST_EQ(prRv.second, true);
+        xUNUSED(prRv);
     }
 
     // out
