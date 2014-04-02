@@ -73,6 +73,8 @@
     #endif
 #endif
 
+#cmakedefine xUSING_CPP11              1
+    ///< support C++11 language
 #cmakedefine xUSING_NAMESPACE_XLIB     1
     ///< automatically include the xlib namespace
 
