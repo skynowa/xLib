@@ -24,10 +24,53 @@
 #include <climits>
 #include <cassert>
 //-------------------------------------------------------------------------------------------------
-#define xSTD_TRACE_VAR(v) \
-    #v ": " << (v)
-    ///< variable for tracing
-
+///@name check condition
+///@{
+#define xSTD_CHECK_RET(expr, return_expr) \
+    { if ((expr)) { return (return_expr); } }
+    ///< check expression and return value
+#define xSTD_CHECK_DO(expr, do_expr) \
+    { if ((expr)) { do_expr; } }
+    ///< check expression and do instructions
+#define xSTD_CHECK_MSG(expr, comment) \
+    { if ((expr)) { std::cout << (comment) << std::endl; } }
+    ///< check expression and show message with comment
+#define xSTD_CHECK_MSG_RET(expr, comment, return_expr) \
+    { if ((expr)) { std::cout << (comment) << std::endl; return (return_expr); } }
+    ///< check expression, show message with comment and return value
+#define xSTD_CHECK_MSG_DO(expr, comment, do_expr) \
+    { if ((expr)) { std::cout << (comment) << std::endl; do_expr; } }
+    ///< check expression, show message with comment and do instructions
+#define xSTD_CHECK_NA(var) \
+    ;
+    ///< at this point check code for variable is not applicable
+#define xSTD_CHECKS_NA \
+    ;
+    ///< at this point check code for variables is not applicable
+///@}
+//-------------------------------------------------------------------------------------------------
+///@name Trace variables (variable with value)
+///@{
+#define xSTD_TRACE_VAR(v1) \
+    #v1 ": " << (v1)
+#define xSTD_TRACE_VAR2(v1, v2) \
+    xSTD_TRACE_VAR(v1) << ", " << xSTD_TRACE_VAR(v2)
+#define xSTD_TRACE_VAR3(v1, v2, v3) \
+    xSTD_TRACE_VAR2(v1, v2) << ", " << xSTD_TRACE_VAR(v3)
+#define xSTD_TRACE_VAR4(v1, v2, v3, v4) \
+    xSTD_TRACE_VAR3(v1, v2, v3) << ", " << xSTD_TRACE_VAR(v4)
+#define xSTD_TRACE_VAR5(v1, v2, v3, v4, v5) \
+    xSTD_TRACE_VAR4(v1, v2, v3, v4) << ", " << xSTD_TRACE_VAR(v5)
+#define xSTD_TRACE_VAR6(v1, v2, v3, v4, v5, v6) \
+    xSTD_TRACE_VAR5(v1, v2, v3, v4, v5) << ", " << xSTD_TRACE_VAR(v6)
+#define xSTD_TRACE_VAR7(v1, v2, v3, v4, v5, v6, v7) \
+    xSTD_TRACE_VAR6(v1, v2, v3, v4, v5, v6) << ", " << xSTD_TRACE_VAR(v7)
+#define xSTD_TRACE_VAR8(v1, v2, v3, v4, v5, v6, v7, v8) \
+    xSTD_TRACE_VAR7(v1, v2, v3, v4, v5, v6, v7) << ", " << xSTD_TRACE_VAR(v8)
+#define xSTD_TRACE_VAR9(v1, v2, v3, v4, v5, v6, v7, v8, v9) \
+    xSTD_TRACE_VAR8(v1, v2, v3, v4, v5, v6, v7, v8) << ", " << xSTD_TRACE_VAR(v9)
+///@}
+//-------------------------------------------------------------------------------------------------
 #define xSTD_TRACE_POINT \
     { \
         std::cout \
@@ -39,7 +82,10 @@
             << " :::::"    << std::endl; \
     }
     ///< trace point
-
+#define xSTD_NOT_IMPLEMENTED \
+    { xSTD_TEST_MSG_FAIL(xT("Not implemented")); }
+    ///< show not implemented message and return value
+//-------------------------------------------------------------------------------------------------
 #define xSTD_VERIFY(expr) \
     { \
         if ( !(expr) ) { \
@@ -59,7 +105,6 @@
         } \
     }
     ///< check expression (work in debug and release modes)
-
 #define xSTD_TEST_DO(expr, do_expr) \
     { \
         if ( !(expr) ) { \
@@ -80,22 +125,15 @@
         } \
     }
     ///< test macros
-
 #define xSTD_TEST(expr) \
     xSTD_TEST_DO(expr, {})
     ///< test macros
-
 #define xSTD_TEST_RET(expr, ret_expr) \
     xSTD_TEST_DO(expr, return ret_expr)
     ///< test macros
-
-#define xSTD_TEST_NA(expr)
+#define xSTD_TEST_NA(expr) \
     ;
     ///< test macros
-
-#define xSTD_ARRAY_SIZE(a) \
-    ( sizeof(a) / sizeof((a)[0]) )
-    ///< get array size
 //-------------------------------------------------------------------------------------------------
 /**
  * current date/time, format is YYYY-MM-DD.HH:mm:ss
