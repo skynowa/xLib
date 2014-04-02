@@ -86,6 +86,12 @@ file(GLOB_RECURSE xLib_tests_SOURCES "Tests/*.cpp")
 add_executable(xLib_test ${xLib_tests_SOURCES})
 
 #--------------------------------------------------------------------------------------------------
+# definitions
+if (1)
+    add_definitions(-std=c++11)
+endif()
+
+#--------------------------------------------------------------------------------------------------
 # flags
 if     (MSVC)
     set(FLAGS ${FLAGS} "/W3")
