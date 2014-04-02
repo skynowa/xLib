@@ -49,7 +49,7 @@
 
 
 // Debug
-#include <xLib/Debug/CxStdDebug.h>
+#include <xLib/Debug/xStdDebug.h>
 #include <xLib/Debug/xDebug.h>
 #include <xLib/Debug/CxBuildInfo.h>
 #include <xLib/Debug/CxLastError.h>

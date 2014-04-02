@@ -18,7 +18,7 @@
 #include <xLib/Debug/CxDebugger.h>
 #include <xLib/Debug/CxStackTrace.h>
 #include <xLib/Log/CxTrace.h>
-#include <xLib/Debug/CxStdDebug.h>
+#include <xLib/Debug/xStdDebug.h>
 
 
 xNAMESPACE2_BEGIN(xlib, core)

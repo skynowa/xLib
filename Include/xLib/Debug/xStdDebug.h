@@ -1,13 +1,13 @@
 /**
- * \file   CxStdDebug.h
+ * \file   xStdDebug.h
  * \brief  debug by using C library and STL
  */
 
 
 #pragma once
 
-#ifndef xLib_CxStdDebugH
-#define xLib_CxStdDebugH
+#ifndef xLib_xStdDebugH
+#define xLib_xStdDebugH
 //-------------------------------------------------------------------------------------------------
 // POSIX
 #include <sys/types.h>  // must be at the top (it's portable)
@@ -161,4 +161,4 @@ currentDateTime()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-#endif // xLib_CxStdDebugH
+#endif // xLib_xStdDebugH
