@@ -17,10 +17,10 @@ CxTest_xDebug::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("xDebug::xSTD_VERIFY_", a_caseLoops)
+    xTEST_CASE("xDebug::_xVERIFY_", a_caseLoops)
     {
-        xSTD_VERIFY(true);
-        // xSTD_VERIFY(false);
+        _xVERIFY(true);
+        // _xVERIFY(false);
     }
 
     xTEST_CASE("xDebug::xCHECK_RET", a_caseLoops)

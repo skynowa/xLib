@@ -92,7 +92,7 @@ CxStackTrace::get(
         xCHECK_DO(framesNum == 0U, return);
 
         symbol = new (std::nothrow) SYMBOL_INFO[sizeof(SYMBOL_INFO) + (255UL + 1) * sizeof(tchar_t)];
-        xSTD_VERIFY(NULL != symbol);
+        _xVERIFY(NULL != symbol);
         symbol->SizeOfStruct = sizeof(SYMBOL_INFO);
         symbol->MaxNameLen   = 255UL;
 
@@ -165,7 +165,7 @@ CxStackTrace::get(
                 std::csize_t pos2 = functionName.find(xT(")"));
 
                 if (std::tstring_t::npos != pos1 && std::tstring_t::npos != pos2) {
-                    xSTD_VERIFY(pos1 < pos2);
+                    _xVERIFY(pos1 < pos2);
 
                     functionName = functionName.substr(0, pos1 + 1) + functionName.substr(pos2);
                 }
@@ -259,7 +259,7 @@ CxStackTrace::get(
                 std::csize_t pos2 = functionName.find(xT(")"));
 
                 if (std::tstring_t::npos != pos1 && std::tstring_t::npos != pos2) {
-                    xSTD_VERIFY(pos1 < pos2);
+                    _xVERIFY(pos1 < pos2);
 
                     functionName = functionName.substr(0, pos1 + 1) + functionName.substr(pos2);
                 }
@@ -381,14 +381,14 @@ CxStackTrace::_addr2Line(
         CxPath::exe().c_str(), reinterpret_cast<ptrdiff_t>(a_symbolAddress));
 
     FILE *file = ::popen(cmdLine, xT("r"));
-    xSTD_VERIFY(NULL != file);
+    _xVERIFY(NULL != file);
 
     // get function name
     {
         tchar_t buff[1024 + 1] = {0};
 
         ctchar_t *functionName = std::fgets(buff, static_cast<int_t>( xARRAY_SIZE(buff) ), file);
-        xSTD_VERIFY(NULL != functionName);
+        _xVERIFY(NULL != functionName);
 
         a_functionName->assign(functionName);
     }
@@ -398,7 +398,7 @@ CxStackTrace::_addr2Line(
         tchar_t buff[1024 + 1] = {0};
 
         ctchar_t *fileAndLine = std::fgets(buff, static_cast<int_t>( xARRAY_SIZE(buff) ), file);
-        xSTD_VERIFY(NULL != fileAndLine);
+        _xVERIFY(NULL != fileAndLine);
 
        /**
         * Parse that variants of fileAndLine string:
@@ -408,17 +408,17 @@ CxStackTrace::_addr2Line(
         std::vec_tstring_t line;
 
         CxString::split(fileAndLine, xT(":"), &line);
-        xSTD_VERIFY(2U == line.size());
+        _xVERIFY(2U == line.size());
 
         // out
-        xSTD_VERIFY(0 == std::feof(file));
+        _xVERIFY(0 == std::feof(file));
 
         *a_filePath   = line.at(0);
         *a_sourceLine = CxString::cast<ulong_t>( line.at(1) );
     }
 
     int_t iRv = ::pclose(file);   file = NULL;
-    xSTD_VERIFY(- 1 != iRv);
+    _xVERIFY(- 1 != iRv);
 #else
     *a_filePath     = CxConst::strUnknown();
     *a_functionName = CxConst::strUnknown();
