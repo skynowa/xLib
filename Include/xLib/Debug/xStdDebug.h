@@ -9,20 +9,14 @@
 #ifndef xLib_xStdDebugH
 #define xLib_xStdDebugH
 //-------------------------------------------------------------------------------------------------
-// POSIX
-#include <sys/types.h>  // must be at the top (it's portable)
-#include <fcntl.h>
-#include <sys/stat.h>
-
 // C library
-#include <cstdio>
-#include <cstdlib>
 #include <cerrno>
-#include <cstdarg>
-#include <cstddef>
-#include <cmath>
-#include <climits>
+#include <ctime>
 #include <cassert>
+
+// STL
+#include <string>
+#include <iostream>
 //-------------------------------------------------------------------------------------------------
 ///@name check condition
 ///@{
