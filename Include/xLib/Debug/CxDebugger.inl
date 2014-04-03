@@ -291,7 +291,8 @@ CxDebugger::_stdoutPlain(
     std::tcout.flush();
 
 #if xDEBUG_USE_DIALOG
-    EConsoleCmd cmRv = static_cast<EConsoleCmd>( std::tcin.get() );   std::tcin.ignore();
+    ctchar_t    cmd = static_cast<ctchar_t>( std::tcin.get() );   std::tcin.ignore();
+    EConsoleCmd cmRv = static_cast<EConsoleCmd>( CxChar(cmd).toLower() );
 #else
     EConsoleCmd cmRv = cmIgnore;
 #endif
