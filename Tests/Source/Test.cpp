@@ -11,8 +11,10 @@
 //-------------------------------------------------------------------------------------------------
 int_t xTMAIN(int_t a_argNum, tchar_t *a_args[])
 {
+    xUNUSED(a_argNum);
     xUNUSED(a_args);
 
+#if xUSING_TESTS
     // checks
     {
     #if xOS_ENV_UNIX
@@ -178,6 +180,7 @@ int_t xTMAIN(int_t a_argNum, tchar_t *a_args[])
 
         manager.run(allLoops, unitLoops, caseLoops);
     }
+#endif
 
     return EXIT_SUCCESS;
 }
