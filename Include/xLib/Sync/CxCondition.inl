@@ -75,10 +75,10 @@ CxCondition::create()
 #elif xOS_ENV_UNIX
     int_t iRv = - 1;
 
-    iRv = ::pthread_mutex_init(&_mutex, NULL);    // mutex not recursive
+    iRv = ::pthread_mutex_init(&_mutex, xPTR_NULL);    // mutex not recursive
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
-    iRv = ::pthread_cond_init(&_handle, NULL);
+    iRv = ::pthread_cond_init(&_handle, xPTR_NULL);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 #endif
 }
@@ -105,7 +105,7 @@ CxCondition::wait(
                 timespec timeoutMs = {0, 0};
                 timeval  timeNow   = {0, 0};
 
-                iRv = ::gettimeofday(&timeNow, NULL);
+                iRv = ::gettimeofday(&timeNow, xPTR_NULL);
                 xTEST_DIFF(- 1, iRv);
 
                 timeoutMs.tv_sec  = timeNow.tv_sec + a_timeoutMs / 1000;

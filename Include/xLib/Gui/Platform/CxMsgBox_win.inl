@@ -24,7 +24,7 @@ CxMsgBox::_show_impl(
     int_t         iRv       = - 1;
 
     type_impl = internal::enums::types.toImpl(a_type);
-    iRv       = ::MessageBox(NULL, a_text.c_str(), a_title.c_str(), type_impl);
+    iRv       = ::MessageBox(xPTR_NULL, a_text.c_str(), a_title.c_str(), type_impl);
     mrRv      = internal::enums::modalResults.toCross(iRv);
 
     return mrRv;

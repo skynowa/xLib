@@ -27,11 +27,11 @@ xNAMESPACE2_BEGIN(xlib, db)
 //-------------------------------------------------------------------------------------------------
 inline
 CxMySQLConnection::CxMySQLConnection() :
-    _connection(NULL)
+    _connection(xPTR_NULL)
 {
     xTEST_EQ(false, isValid());
 
-    MYSQL *_connection = ::mysql_init(NULL);
+    MYSQL *_connection = ::mysql_init(xPTR_NULL);
     xTEST_MSG_PTR(_connection, lastErrorStr());
 
     _connection = _connection;
@@ -57,7 +57,7 @@ CxMySQLConnection::isValid() const
 {
     // n/a
 
-    return (NULL != _connection);
+    return (xPTR_NULL != _connection);
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -198,7 +198,7 @@ CxMySQLConnection::close()
     if (isValid()) {
         (void_t)::mysql_close(_connection);
 
-        _connection = NULL;
+        _connection = xPTR_NULL;
     }
 }
 //-------------------------------------------------------------------------------------------------
@@ -256,12 +256,12 @@ CxMySQLRecordset::CxMySQLRecordset(
     cbool_t                 &a_isUseResult  ///< use result or store result
 ) :
     _connection(&a_connection),
-    _result     (NULL)
+    _result     (xPTR_NULL)
 {
     xTEST_EQ(false, isValid());
     xTEST_PTR(_connection->get());
 
-    MYSQL_RES *result = NULL;
+    MYSQL_RES *result = xPTR_NULL;
 
     if (a_isUseResult) {
         result = ::mysql_use_result  (_connection->get());
@@ -283,7 +283,7 @@ CxMySQLRecordset::~CxMySQLRecordset()
     if (isValid()) {
         (void_t)::mysql_free_result(_result);
 
-        _result = NULL;
+        _result = xPTR_NULL;
     }
 }
 //-------------------------------------------------------------------------------------------------
@@ -299,7 +299,7 @@ CxMySQLRecordset::isValid() const
 {
     // n/a
 
-    return (NULL != _result);
+    return (xPTR_NULL != _result);
 }
 //-------------------------------------------------------------------------------------------------
 uint_t
@@ -371,8 +371,8 @@ CxMySQLRecordset::fetchRow(
     xTEST_PTR(a_row);
 
     uint_t     fieldsNum    = 0;
-    MYSQL_ROW  row          = NULL;
-    ulong_t   *fieldLengths = NULL;
+    MYSQL_ROW  row          = xPTR_NULL;
+    ulong_t   *fieldLengths = xPTR_NULL;
 
     (*a_row).clear();
 
@@ -398,7 +398,7 @@ CxMySQLRecordset::fetchRow(
     std::tstring_t sField;
 
     for (uint_t i = 0; i < fieldsNum; ++ i) {
-        if (NULL == row[i]) {
+        if (xPTR_NULL == row[i]) {
             sField = std::tstring_t();
         } else {
             std::string asField = std::string(row[i], fieldLengths[i]);

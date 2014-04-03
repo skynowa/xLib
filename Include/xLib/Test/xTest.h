@@ -52,16 +52,16 @@
         CxDebugger().reportMake(report); \
     }
 #define xTEST_MSG_PTR_IMPL(reportType, ptr, msg) \
-    if ( intptr_t(NULL) == intptr_t(ptr) ) { \
+    if ( intptr_t(xPTR_NULL) == intptr_t(ptr) ) { \
         culong_t      _lastError = CxLastError::get(); \
-        CxErrorReport report(reportType, xT("NULL"), xT(#ptr), intptr_t(ptr), intptr_t(NULL), \
+        CxErrorReport report(reportType, xT("xPTR_NULL"), xT(#ptr), intptr_t(ptr), intptr_t(xPTR_NULL), \
             xT("!="), _lastError, xFILE, xLINE, xFUNCTION, CxStackTrace().toString(), (msg)); \
         CxDebugger().reportMake(report); \
     }
 #define xTEST_MSG_PTR_FAIL_IMPL(reportType, ptr, msg) \
-    if ( intptr_t(NULL) != intptr_t(ptr) ) { \
+    if ( intptr_t(xPTR_NULL) != intptr_t(ptr) ) { \
         culong_t      _lastError = CxLastError::get(); \
-        CxErrorReport report(reportType, xT("NULL"), xT(#ptr), intptr_t(ptr), intptr_t(NULL), \
+        CxErrorReport report(reportType, xT("xPTR_NULL"), xT(#ptr), intptr_t(ptr), intptr_t(xPTR_NULL), \
             xT("=="), _lastError, xFILE, xLINE, xFUNCTION, CxStackTrace().toString(), (msg)); \
         CxDebugger().reportMake(report); \
     }

@@ -105,7 +105,7 @@ CxDebugger::isActive() const
 
         infoSize = sizeof(info);
 
-        int_t iRv = ::sysctl(mib, xARRAY_SIZE(mib), &info, &infoSize, NULL, 0);
+        int_t iRv = ::sysctl(mib, xARRAY_SIZE(mib), &info, &infoSize, xPTR_NULL, 0);
         xCHECK_RET(iRv == - 1, false);
 
         // we're being debugged if the P_TRACED flag is set.

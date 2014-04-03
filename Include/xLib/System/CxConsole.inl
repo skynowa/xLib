@@ -20,8 +20,8 @@ xNAMESPACE2_BEGIN(xlib, system)
 inline CxConsole::CxConsole()
 #if   xOS_ENV_WIN
     :
-    _wnd          (NULL),
-    _menu         (NULL),
+    _wnd          (xPTR_NULL),
+    _menu         (xPTR_NULL),
     _stdIn        (),
     _stdOut       (),
     _attributesDef(0)
@@ -321,7 +321,7 @@ CxConsole::read() const
     culong_t buffSize           = 1024UL * 4UL;
     tchar_t  buff[buffSize + 1] = {0};
 
-    BOOL blRv = ::ReadConsole(_stdIn.get(), &buff[0], buffSize, &read, NULL);
+    BOOL blRv = ::ReadConsole(_stdIn.get(), &buff[0], buffSize, &read, xPTR_NULL);
     xTEST_DIFF(FALSE, blRv);
 
     sRv.assign(buff, read - CxConst::crNl().size());
@@ -350,7 +350,7 @@ CxConsole::write(
     BOOL blRv = ::WriteConsole(
                     _stdOut.get(),
                     &a_str.at(0), static_cast<DWORD>( a_str.size() ),
-                    &written, NULL);
+                    &written, xPTR_NULL);
     xTEST_DIFF(FALSE, blRv);
     xTEST_EQ(static_cast<size_t>( written ), a_str.size());
 #elif xOS_ENV_UNIX
@@ -695,7 +695,7 @@ CxConsole::enableClose(
     xTEST_EQ(true, _stdOut.isValid());
 
     _menu = _menuHandle(false);
-    xTEST_EQ(true, NULL != _menu);
+    xTEST_EQ(true, xPTR_NULL != _menu);
 
     if (!a_flag) {
         BOOL blRv = ::DeleteMenu(_menu, SC_CLOSE, MF_BYCOMMAND);
@@ -707,7 +707,7 @@ CxConsole::enableClose(
         blRv = ::EnableMenuItem(_menuHandle(false), SC_CLOSE, MF_ENABLED);
         xTEST_DIFF(TRUE, blRv);
 
-        blRv = ::SetWindowPos(_wndHandle(), NULL, 0, 0, 0, 0,
+        blRv = ::SetWindowPos(_wndHandle(), xPTR_NULL, 0, 0, 0, 0,
                               SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_DRAWFRAME);
         xTEST_DIFF(FALSE, blRv);
     }
@@ -728,7 +728,7 @@ CxConsole::enableClose(
 inline HWND
 CxConsole::_wndHandle()
 {
-    HWND           hRv = NULL;
+    HWND           hRv = xPTR_NULL;
     std::tstring_t newWndTitle;
     std::tstring_t oldWndTitle;
 
@@ -746,7 +746,7 @@ CxConsole::_wndHandle()
     CxThread::currentSleep(50UL);
 
     // look for NewWindowTitle.
-    hRv = ::FindWindow(NULL, newWndTitle.c_str());
+    hRv = ::FindWindow(xPTR_NULL, newWndTitle.c_str());
     xTEST_DIFF(xWND_NATIVE_HANDLE_NULL, hRv);
 
     // restore original window title.
@@ -766,10 +766,10 @@ CxConsole::_menuHandle(
 {
     _menu = ::GetSystemMenu(_wnd, a_isRevert);
     if (!a_isRevert) {
-        xTEST_EQ(true, NULL != _menu);
+        xTEST_EQ(true, xPTR_NULL != _menu);
     }
     if (true  == a_isRevert) {
-        xTEST_EQ(true, NULL == _menu);
+        xTEST_EQ(true, xPTR_NULL == _menu);
     }
 
     return _menu;

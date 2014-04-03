@@ -76,7 +76,7 @@ CxStackTrace::get(
     std::vector<std::vec_tstring_t> *a_stack
 ) const
 {
-    xCHECK_DO(NULL == a_stack, return);
+    xCHECK_DO(xPTR_NULL == a_stack, return);
 
     std::vector<std::vec_tstring_t> stack;
     std::ctstring_t                 dataNotFound = xT("[???]");
@@ -86,19 +86,19 @@ CxStackTrace::get(
         // TODO: CxStackTrace::get()
     #elif xCOMPILER_MS || xCOMPILER_CODEGEAR
         void_t      *stackBuff[xSTACK_TRACE_FRAMES_MAX] = {0};
-        SYMBOL_INFO *symbol                             = NULL;
-        HANDLE       process                            = NULL;
+        SYMBOL_INFO *symbol                             = xPTR_NULL;
+        HANDLE       process                            = xPTR_NULL;
 
         process = ::GetCurrentProcess();
 
-        BOOL blRv = ::SymInitialize(process, NULL, TRUE);
+        BOOL blRv = ::SymInitialize(process, xPTR_NULL, TRUE);
         xCHECK_DO(FALSE == blRv, return);
 
-        ushort_t framesNum = ::CaptureStackBackTrace(0UL, xSTACK_TRACE_FRAMES_MAX, stackBuff, NULL);
+        ushort_t framesNum = ::CaptureStackBackTrace(0UL, xSTACK_TRACE_FRAMES_MAX, stackBuff, xPTR_NULL);
         xCHECK_DO(framesNum == 0U, return);
 
         symbol = new (std::nothrow) SYMBOL_INFO[sizeof(SYMBOL_INFO) + (255UL + 1) * sizeof(tchar_t)];
-        _xVERIFY(NULL != symbol);
+        _xVERIFY(xPTR_NULL != symbol);
         symbol->SizeOfStruct = sizeof(SYMBOL_INFO);
         symbol->MaxNameLen   = 255UL;
 
@@ -142,10 +142,10 @@ CxStackTrace::get(
 
             // byteOffset, functionName
             {
-                blRv = ::SymFromAddr(process, reinterpret_cast<DWORD64>( stackBuff[i] ), NULL,
+                blRv = ::SymFromAddr(process, reinterpret_cast<DWORD64>( stackBuff[i] ), xPTR_NULL,
                     symbol);
                 if (FALSE == blRv) {
-                    byteOffset   = CxString::format(xT("%p"), ptrdiff_t(NULL));
+                    byteOffset   = CxString::format(xT("%p"), ptrdiff_t(xPTR_NULL));
                     functionName = dataNotFound;
                 } else {
                     byteOffset   = CxString::format(xT("%p"), static_cast<ptrdiff_t>(symbol->Address));
@@ -186,7 +186,7 @@ CxStackTrace::get(
 
         xARRAY_DELETE(symbol);
 
-        (void_t)::SymCleanup(process); process = NULL;
+        (void_t)::SymCleanup(process); process = xPTR_NULL;
     #endif
 #elif xOS_ENV_UNIX || xOS_ENV_APPLE
     #if xHAVE_EXECINFO
@@ -196,7 +196,7 @@ CxStackTrace::get(
         xCHECK_DO(framesNum <= 0, return);
 
         tchar_t **symbols = ::backtrace_symbols(stackBuff, framesNum);
-        xCHECK_DO(NULL == symbols, return);
+        xCHECK_DO(xPTR_NULL == symbols, return);
 
         for (int_t i = ::skipFramesNum; i < framesNum; ++ i) {
             std::tstring_t modulePath;
@@ -209,17 +209,17 @@ CxStackTrace::get(
 
             int_t iRv = ::dladdr(stackBuff[i], &dlinfo);
             if (0 == iRv) {
-                modulePath   = (NULL == dlinfo.dli_fname) ? dataNotFound : dlinfo.dli_fname;
+                modulePath   = (xPTR_NULL == dlinfo.dli_fname) ? dataNotFound : dlinfo.dli_fname;
                 filePath     = dataNotFound;
                 fileLine     = dataNotFound;
-                byteOffset   = CxString::format(xT("%p"), ptrdiff_t(NULL));
-                functionName = (NULL == symbols[i]) ? dataNotFound : symbols[i];
+                byteOffset   = CxString::format(xT("%p"), ptrdiff_t(xPTR_NULL));
+                functionName = (xPTR_NULL == symbols[i]) ? dataNotFound : symbols[i];
             } else {
-                ctchar_t *symbolName = NULL;
+                ctchar_t *symbolName = xPTR_NULL;
                 int_t     status     = - 1;
 
-                tchar_t *demangleName = abi::__cxa_demangle(dlinfo.dli_sname, NULL, NULL, &status);
-                if (NULL != demangleName && 0 == status) {
+                tchar_t *demangleName = abi::__cxa_demangle(dlinfo.dli_sname, xPTR_NULL, xPTR_NULL, &status);
+                if (xPTR_NULL != demangleName && 0 == status) {
                     symbolName = demangleName;
                 } else {
                     symbolName = dlinfo.dli_sname;
@@ -233,11 +233,11 @@ CxStackTrace::get(
                 _addr2Line(dlinfo.dli_saddr, &_filePath, &_functionName, &_sourceLine);
                 xUNUSED(_functionName);
 
-                modulePath   = (NULL == dlinfo.dli_fname) ? dataNotFound : dlinfo.dli_fname;
+                modulePath   = (xPTR_NULL == dlinfo.dli_fname) ? dataNotFound : dlinfo.dli_fname;
                 filePath     = _filePath.empty()          ? dataNotFound : _filePath;
                 fileLine     = CxString::cast(_sourceLine);
                 byteOffset   = CxString::format(xT("%p"), ptrdiff_t(dlinfo.dli_saddr));
-                functionName = (NULL == symbolName) ? dataNotFound : symbolName;
+                functionName = (xPTR_NULL == symbolName) ? dataNotFound : symbolName;
 
                 xBUFF_FREE(demangleName);
             }
@@ -308,7 +308,7 @@ CxStackTrace::_format(
     std::vector<std::vec_tstring_t> *a_stack
 )
 {
-    xCHECK_RET(NULL == a_stack, std::tstring_t());
+    xCHECK_RET(xPTR_NULL == a_stack, std::tstring_t());
 
     std::tstring_t     sRv;
     std::vector<int_t> maxs(::elementsNum, 0);
@@ -377,14 +377,14 @@ CxStackTrace::_addr2Line(
         CxPath::exe().c_str(), reinterpret_cast<ptrdiff_t>(a_symbolAddress));
 
     FILE *file = ::popen(cmdLine, xT("r"));
-    _xVERIFY(NULL != file);
+    _xVERIFY(xPTR_NULL != file);
 
     // get function name
     {
         tchar_t buff[1024 + 1] = {0};
 
         ctchar_t *functionName = std::fgets(buff, static_cast<int_t>( xARRAY_SIZE(buff) ), file);
-        _xVERIFY(NULL != functionName);
+        _xVERIFY(xPTR_NULL != functionName);
 
         a_functionName->assign(functionName);
     }
@@ -394,7 +394,7 @@ CxStackTrace::_addr2Line(
         tchar_t buff[1024 + 1] = {0};
 
         ctchar_t *fileAndLine = std::fgets(buff, static_cast<int_t>( xARRAY_SIZE(buff) ), file);
-        _xVERIFY(NULL != fileAndLine);
+        _xVERIFY(xPTR_NULL != fileAndLine);
 
        /**
         * Parse that variants of fileAndLine string:
@@ -413,7 +413,7 @@ CxStackTrace::_addr2Line(
         *a_sourceLine = CxString::cast<ulong_t>( line.at(1) );
     }
 
-    int_t iRv = ::pclose(file);   file = NULL;
+    int_t iRv = ::pclose(file);   file = xPTR_NULL;
     _xVERIFY(- 1 != iRv);
 #else
     *a_filePath     = CxConst::strUnknown();

@@ -38,17 +38,17 @@ CxIpcMutex::create(
 #endif
 
 #if   xOS_ENV_WIN
-    ctchar_t       *winName = NULL;
+    ctchar_t       *winName = xPTR_NULL;
     std::tstring_t  _winName;
 
     if (a_name.empty()) {
-        winName  = NULL;
+        winName  = xPTR_NULL;
     } else {
         _winName = xT("Global\\") + a_name;
         winName  = _winName.c_str();
     }
 
-    HANDLE hRv = ::CreateMutex(NULL, FALSE, winName);
+    HANDLE hRv = ::CreateMutex(xPTR_NULL, FALSE, winName);
     xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
 
     _handle.set(hRv);
@@ -70,11 +70,11 @@ CxIpcMutex::open(
 )
 {
 #if   xOS_ENV_WIN
-    ctchar_t *winName = NULL;
+    ctchar_t *winName = xPTR_NULL;
     std::tstring_t _winName;
 
     if (a_name.empty()) {
-        winName = NULL;
+        winName = xPTR_NULL;
     } else {
         _winName = xT("Global\\") + a_name;
         winName  = _winName.c_str();

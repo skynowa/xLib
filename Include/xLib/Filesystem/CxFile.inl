@@ -25,7 +25,7 @@ xNAMESPACE2_BEGIN(xlib, filesystem)
 //-------------------------------------------------------------------------------------------------
 inline
 CxFile::CxFile() :
-    _file    (NULL),
+    _file    (xPTR_NULL),
     _filePath()
 {
 }
@@ -70,9 +70,9 @@ CxFile::create(
 
     // buffering
     if (!a_isUseBuffering) {
-        setVBuff(NULL, bmNo,   0);
+        setVBuff(xPTR_NULL, bmNo,   0);
     } else {
-        setVBuff(NULL, bmFull, BUFSIZ);
+        setVBuff(xPTR_NULL, bmFull, BUFSIZ);
     }
 }
 //-------------------------------------------------------------------------------------------------
@@ -101,9 +101,9 @@ CxFile::reopen(
 
     // buffering
     if (!a_isUseBuffering) {
-        setVBuff(NULL, bmNo,   0);
+        setVBuff(xPTR_NULL, bmNo,   0);
     } else {
-        setVBuff(NULL, bmFull, BUFSIZ);
+        setVBuff(xPTR_NULL, bmFull, BUFSIZ);
     }
 }
 //-------------------------------------------------------------------------------------------------
@@ -142,7 +142,7 @@ CxFile::detach()
 {
     std::FILE *file = get();
 
-    _file = NULL;
+    _file = xPTR_NULL;
 
     return file;
 }
@@ -283,7 +283,7 @@ CxFile::readLine(
     tchar_t *pszRv = std::xTFGETS(&str.at(0), static_cast<int_t>( str.size() ), get());
     xTEST_PTR(pszRv);
 
-    // trim NULL's from string, remove EOL
+    // trim xPTR_NULL's from string, remove EOL
     str = CxString::removeEol( str.c_str() );
     // out
     a_str->swap(str);
@@ -477,7 +477,7 @@ CxFile::resize(
 inline bool_t
 CxFile::isValid() const
 {
-    return (NULL != _file);
+    return (xPTR_NULL != _file);
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
@@ -541,7 +541,7 @@ CxFile::close()
 
     errorClear();
 
-    int_t iRv = std::fclose(get()); _file = NULL;
+    int_t iRv = std::fclose(get()); _file = xPTR_NULL;
     xTEST_DIFF(EOF, iRv);
 }
 //-------------------------------------------------------------------------------------------------
@@ -979,8 +979,8 @@ CxFile::time(
 
     CxHandleInvalid file;
 
-    file = ::CreateFile(a_filePath.c_str(), GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING,
-        CxFileType::faNormal, NULL);
+    file = ::CreateFile(a_filePath.c_str(), GENERIC_READ, FILE_SHARE_READ, xPTR_NULL, OPEN_EXISTING,
+        CxFileType::faNormal, xPTR_NULL);
     xTEST_EQ(true, file.isValid());
 
     BOOL blRv = ::GetFileTime(file.get(), &timeCreate, &timeAccess, &timeModified);
@@ -1029,8 +1029,8 @@ CxFile::setTime(
 
     CxHandleInvalid file;
 
-    file = ::CreateFile(a_filePath.c_str(), GENERIC_WRITE, FILE_SHARE_WRITE, NULL, OPEN_EXISTING,
-        CxFileType::faNormal, NULL);
+    file = ::CreateFile(a_filePath.c_str(), GENERIC_WRITE, FILE_SHARE_WRITE, xPTR_NULL, OPEN_EXISTING,
+        CxFileType::faNormal, xPTR_NULL);
     xTEST_EQ(true, file.isValid());
 
     BOOL blRv = ::SetFileTime(file.get(), &timeCreate, &timeAccess, &timeModified);

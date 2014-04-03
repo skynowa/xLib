@@ -70,7 +70,7 @@ CxGuid::_randomBased() const
         guid.Data4[4], guid.Data4[5], guid.Data4[6], guid.Data4[7]);
     xTEST_EQ(false, sRv.empty());
 #elif xOS_ENV_UNIX
-    uint_t timeNow = static_cast<uint_t>( std::time(NULL) );
+    uint_t timeNow = static_cast<uint_t>( std::time(xPTR_NULL) );
     std::srand(timeNow);
 
     sRv = CxString::format("%x%x-%x-%x-%x-%x%x%x",

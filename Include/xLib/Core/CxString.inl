@@ -190,12 +190,12 @@ CxString::castA(
     std::string asRv;
 
 #if   xOS_ENV_WIN
-    int_t size = ::WideCharToMultiByte(a_codePage, 0UL, a_str.c_str(), - 1, NULL, 0, NULL, NULL);
+    int_t size = ::WideCharToMultiByte(a_codePage, 0UL, a_str.c_str(), - 1, xPTR_NULL, 0, xPTR_NULL, xPTR_NULL);
     xTEST_LESS(0, size);
 
     asRv.resize(size - 1);    // remove '\0'
     size = ::WideCharToMultiByte(a_codePage, 0UL, a_str.c_str(), - 1,
-        static_cast<LPSTR>(&asRv.at(0)), size, NULL, NULL);
+        static_cast<LPSTR>(&asRv.at(0)), size, xPTR_NULL, xPTR_NULL);
     xTEST_LESS(0, size);
 #elif xOS_ENV_UNIX
     xUNUSED(a_str);
@@ -221,7 +221,7 @@ CxString::castW(
     std::wstring wsRv;
 
 #if   xOS_ENV_WIN
-    int_t size = ::MultiByteToWideChar(a_codePage, 0UL, a_str.c_str(), - 1, NULL, 0);
+    int_t size = ::MultiByteToWideChar(a_codePage, 0UL, a_str.c_str(), - 1, xPTR_NULL, 0);
     xTEST_LESS(0, size);
 
     wsRv.resize(size - 1);    // remove '\0'
@@ -265,11 +265,11 @@ CxString::castA(
 
     const wchar_t   *itBegin   = &a_str.at(0);
     const wchar_t   *itEnd     = &a_str.at(0) + a_str.size();
-    const wchar_t   *itNext    = NULL;
+    const wchar_t   *itNext    = xPTR_NULL;
 
     char            *itToBegin = &asRv.at(0);
     char            *itToEnd   = &asRv.at(0) + asRv.size();
-    char            *itToNext  = NULL;
+    char            *itToNext  = xPTR_NULL;
 
     codec.out(state, itBegin, itEnd, itNext, itToBegin, itToEnd, itToNext);
 
@@ -618,7 +618,7 @@ CxString::split(
     xTEST_NA(a_sep);
     xTEST_NA(a_rv);
 
-    xCHECK_DO(a_rv != NULL, a_rv->clear());
+    xCHECK_DO(a_rv != xPTR_NULL, a_rv->clear());
 
     xCHECK_DO(a_str.empty(), return);
     xCHECK_DO(a_sep.empty(), return);
@@ -738,7 +738,7 @@ CxString::format(
 {
     xTEST_NA(a_format);
 
-    xCHECK_RET(NULL == a_format, std::tstring_t());
+    xCHECK_RET(xPTR_NULL == a_format, std::tstring_t());
 
     std::tstring_t sRv;
 
@@ -762,7 +762,7 @@ CxString::formatV(
     xTEST_NA(a_format);
     xTEST_NA(a_args);
 
-    xCHECK_RET(NULL == a_format, std::tstring_t());
+    xCHECK_RET(xPTR_NULL == a_format, std::tstring_t());
 
     std::tstring_t buff(64, 0);
     int_t          writtenSize = - 1;
@@ -797,7 +797,7 @@ CxString::formatV(
     xTEST_NA(a_format);
     xTEST_NA(a_args);
 
-    xCHECK_RET(NULL == a_format, std::tstring_t());
+    xCHECK_RET(xPTR_NULL == a_format, std::tstring_t());
 
     std::tstring_t buff(64, 0);
     int_t          writtenSize = - 1;
@@ -962,7 +962,7 @@ CxString::memoryZeroSecure(
     size_t buffSize = a_buffSize;
 
     for (volatile uchar_t *buff = static_cast<volatile uchar_t *>( a_buff );
-         NULL != a_buff && 0 != buffSize;
+         xPTR_NULL != a_buff && 0 != buffSize;
          ++ buff, -- buffSize)
     {
         *buff = 0;

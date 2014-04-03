@@ -30,7 +30,7 @@ CxFileTemp::CxFileTemp(
     cbool_t &a_isAutoDelete
 ) :
     _isAutoDelete(a_isAutoDelete),
-    _file        (NULL),
+    _file        (xPTR_NULL),
     _filePath    ()
 {
 }
@@ -60,7 +60,7 @@ CxFileTemp::create(
     std::ctstring_t fileNameTemplate = xT("XXXXXX");
 
 
-    FILE *stdFile = NULL;
+    FILE *stdFile = xPTR_NULL;
 
     CxDir(a_dirPath).pathCreate();
 

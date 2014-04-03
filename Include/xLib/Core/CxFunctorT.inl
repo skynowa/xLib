@@ -20,8 +20,8 @@ CxFunctorT<ClassT, ReturnT, ParamT>::CxFunctorT(
     _object(a_object),
     _method(a_method)
 {
-    xTEST_EQ(a_object != NULL, true);
-    xTEST_EQ(a_method != NULL, true);
+    xTEST_EQ(a_object != xPTR_NULL, true);
+    xTEST_EQ(a_method != xPTR_NULL, true);
 }
 //-------------------------------------------------------------------------------------------------
 template <class ClassT, class ReturnT, class ParamT>

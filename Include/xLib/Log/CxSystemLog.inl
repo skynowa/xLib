@@ -25,7 +25,7 @@ inline
 CxSystemLog::CxSystemLog()
 #if xOS_ENV_WIN
     :
-    _sysLog  (NULL)
+    _sysLog  (xPTR_NULL)
 #endif
 {
     _construct( CxPath( CxPath::exe() ).fileBaseName() );
@@ -37,7 +37,7 @@ CxSystemLog::CxSystemLog(
 )
 #if xOS_ENV_WIN
     :
-    _sysLog   (NULL)
+    _sysLog   (xPTR_NULL)
 #endif
 {
     _construct(a_logName);
@@ -55,7 +55,7 @@ CxSystemLog::~CxSystemLog()
     BOOL blRv = ::DeregisterEventSource(_sysLog);
     xTEST_DIFF(FALSE, blRv);
 
-    _sysLog = NULL;
+    _sysLog = xPTR_NULL;
 #elif xOS_ENV_UNIX
     (void_t)::closelog();
 #endif
@@ -76,7 +76,7 @@ CxSystemLog::write(
 ) const
 {
     xCHECK_DO(!isEnabled(),     return);
-    xCHECK_DO(a_format == NULL, return);
+    xCHECK_DO(a_format == xPTR_NULL, return);
 
     std::tstring_t msg;
 
@@ -120,7 +120,7 @@ CxSystemLog::write(
         WORD    level_impl = internal::enums::toCross(level);
         LPCTSTR strings    = msg.c_str();
 
-        BOOL bRv = ::ReportEvent(_sysLog, level, 0, 0UL, NULL, 1, 0UL, &strings, NULL);
+        BOOL bRv = ::ReportEvent(_sysLog, level, 0, 0UL, xPTR_NULL, 1, 0UL, &strings, xPTR_NULL);
         xTEST_DIFF(FALSE, bRv);
     #elif xOS_ENV_UNIX
         cint_t level_impl = internal::enums::levels.toCross(level);
@@ -144,7 +144,7 @@ CxSystemLog::_construct(
 )
 {
 #if   xOS_ENV_WIN
-    _sysLog = ::RegisterEventSource(NULL, a_logName.c_str());
+    _sysLog = ::RegisterEventSource(xPTR_NULL, a_logName.c_str());
     xTEST_DIFF(xNATIVE_HANDLE_NULL, _sysLog);
 #elif xOS_ENV_UNIX
     (void_t)::openlog(a_logName.c_str(), LOG_PID | LOG_NDELAY | LOG_NOWAIT, LOG_USER);

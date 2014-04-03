@@ -77,8 +77,8 @@ CxVolume::fileSystem() const
 
     CxLastError::reset();
 
-    BOOL blRv = ::GetVolumeInformation(CxPath( path() ).slashAppend().c_str(), NULL, 0UL, NULL,
-        NULL, NULL, &fileSystemName[0], static_cast<DWORD>( xARRAY_SIZE(fileSystemName) ));
+    BOOL blRv = ::GetVolumeInformation(CxPath( path() ).slashAppend().c_str(), xPTR_NULL, 0UL, xPTR_NULL,
+        xPTR_NULL, xPTR_NULL, &fileSystemName[0], static_cast<DWORD>( xARRAY_SIZE(fileSystemName) ));
     xTEST_DIFF(false, blRv != FALSE && CxLastError::isSuccess() );
 
     sRv.assign(volumeName);
@@ -93,17 +93,17 @@ CxVolume::fileSystem() const
             char   buff[buffLen] = {0};
 
             const mntent *mountPoint = ::getmntent_r(file, &mnt, buff, buffLen);
-            xCHECK_DO(NULL == mountPoint, break);
+            xCHECK_DO(xPTR_NULL == mountPoint, break);
 
             bool_t bRv = CxStringCI::compare(path(), mountPoint->mnt_dir);
             xCHECK_DO(!bRv, continue);
 
-            sRv = (mountPoint->mnt_type == NULL) ? CxConst::strEmpty() : mountPoint->mnt_type;
+            sRv = (mountPoint->mnt_type == xPTR_NULL) ? CxConst::strEmpty() : mountPoint->mnt_type;
 
             break;
         }
 
-        int_t iRv = ::endmntent(file);  file = NULL;
+        int_t iRv = ::endmntent(file);  file = xPTR_NULL;
         xTEST_EQ(iRv, 1);
     #elif xOS_FREEBSD
         // TODO: CxVolume::fileSystem()
@@ -131,7 +131,7 @@ CxVolume::label() const
     CxLastError::reset();
 
     BOOL blRv = ::GetVolumeInformation(CxPath( path() ).slashAppend().c_str(), &volumeName[0],
-        static_cast<DWORD>( xARRAY_SIZE(volumeName) ), NULL, NULL, NULL, NULL, 0UL);
+        static_cast<DWORD>( xARRAY_SIZE(volumeName) ), xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, 0UL);
     xTEST_DIFF(false, blRv != FALSE && CxLastError::isSuccess());
 
     sRv.assign(volumeName);
@@ -222,17 +222,17 @@ CxVolume::mount(
     netResource.dwUsage       = RESOURCEUSAGE_CONTAINER;
     netResource.lpLocalName   = const_cast<tchar_t *>( a_destPath.c_str() );
     netResource.lpRemoteName  = const_cast<tchar_t *>( path().c_str() );
-    netResource.lpComment     = NULL;
-    netResource.lpProvider    = NULL;
+    netResource.lpComment     = xPTR_NULL;
+    netResource.lpProvider    = xPTR_NULL;
 
-    DWORD dwRv = ::WNetAddConnection2(&netResource, NULL, NULL, CONNECT_UPDATE_PROFILE);
+    DWORD dwRv = ::WNetAddConnection2(&netResource, xPTR_NULL, xPTR_NULL, CONNECT_UPDATE_PROFILE);
     xTEST_EQ(static_cast<DWORD>( NO_ERROR ), dwRv);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
-        int_t iRv = ::mount(path().c_str(), a_destPath.c_str(), NULL, MS_REMOUNT, NULL);
+        int_t iRv = ::mount(path().c_str(), a_destPath.c_str(), xPTR_NULL, MS_REMOUNT, xPTR_NULL);
         xTEST_DIFF(- 1, iRv);
     #elif xOS_FREEBSD
-        int_t iRv = ::mount(path().c_str(), a_destPath.c_str(), MNT_UPDATE, NULL);
+        int_t iRv = ::mount(path().c_str(), a_destPath.c_str(), MNT_UPDATE, xPTR_NULL);
         xTEST_DIFF(- 1, iRv);
     #endif
 #elif xOS_ENV_APPLE
@@ -280,7 +280,7 @@ CxVolume::isSpaceEnough(
     xTEST_NA(a_needBytes);
 
     ulonglong_t totalFreeBytes = 0ULL;
-    space(path(), NULL, NULL, &totalFreeBytes);
+    space(path(), xPTR_NULL, xPTR_NULL, &totalFreeBytes);
 
     xCHECK_RET(a_needBytes > totalFreeBytes, false);
 
@@ -359,7 +359,7 @@ CxVolume::paths(
     std::tstring_t sRv;
     DWORD          dwRv = 0UL;
 
-    dwRv = ::GetLogicalDriveStrings(0UL, NULL);
+    dwRv = ::GetLogicalDriveStrings(0UL, xPTR_NULL);
     xTEST_DIFF(0UL, dwRv);
 
     sRv.resize(dwRv);

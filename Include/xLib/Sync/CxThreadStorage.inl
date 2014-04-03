@@ -43,14 +43,14 @@ CxThreadStorage::~CxThreadStorage()
 inline bool_t
 CxThreadStorage::isSet() const
 {
-    void_t *pvRv = NULL;
+    void_t *pvRv = xPTR_NULL;
 
 #if   xOS_ENV_WIN
     pvRv = ::TlsGetValue(_index);
-    xCHECK_RET(NULL == pvRv, false);
+    xCHECK_RET(xPTR_NULL == pvRv, false);
 #elif xOS_ENV_UNIX
     pvRv = ::pthread_getspecific(_index);
-    xCHECK_RET(NULL == pvRv, false);
+    xCHECK_RET(xPTR_NULL == pvRv, false);
 #endif
 
     return true;
@@ -59,13 +59,13 @@ CxThreadStorage::isSet() const
 inline void_t *
 CxThreadStorage::value() const
 {
-    void_t *pvRv = NULL;
+    void_t *pvRv = xPTR_NULL;
 
 #if   xOS_ENV_WIN
     xTEST_DIFF(TLS_OUT_OF_INDEXES, _index);
 
     pvRv = ::TlsGetValue(_index);
-    xTEST_EQ(true, (NULL != pvRv) && (ERROR_SUCCESS == CxLastError::get()));
+    xTEST_EQ(true, (xPTR_NULL != pvRv) && (ERROR_SUCCESS == CxLastError::get()));
 #elif xOS_ENV_UNIX
     xTEST_EQ(true, 0 < _index);
 
@@ -117,7 +117,7 @@ CxThreadStorage::_construct()
 #elif xOS_ENV_UNIX
     xTEST_EQ(static_cast<pthread_key_t>( - 1 ), _index);
 
-    int_t iRv = ::pthread_key_create(&indRv, NULL);
+    int_t iRv = ::pthread_key_create(&indRv, xPTR_NULL);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 #endif
 

@@ -98,11 +98,11 @@ CxLastError::format(
 
 #if   xOS_ENV_WIN
     DWORD  dwRv = 0UL;
-    LPVOID buff = NULL;
+    LPVOID buff = xPTR_NULL;
 
     dwRv = ::FormatMessage(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM |
-        FORMAT_MESSAGE_IGNORE_INSERTS, NULL, a_code, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-        reinterpret_cast<LPTSTR>( &buff ), 0UL, NULL);
+        FORMAT_MESSAGE_IGNORE_INSERTS, xPTR_NULL, a_code, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+        reinterpret_cast<LPTSTR>( &buff ), 0UL, xPTR_NULL);
 
     xCHECK_RET(ERROR_MR_MID_NOT_FOUND == get(), sRv.append(xT("Unknown error")));
     xCHECK_RET(0UL                    == dwRv,  sRv.append(xT("[Cann't format error message]")));
@@ -121,7 +121,7 @@ CxLastError::format(
         char buff[64 + 1] = {0};
 
         ctchar_t *error = ::strerror_r(static_cast<int_t>( a_code ), &buff[0], xARRAY_SIZE(buff));
-        xCHECK_RET(NULL == error, sRv.append(xT("[Cann't format error message]")));
+        xCHECK_RET(xPTR_NULL == error, sRv.append(xT("[Cann't format error message]")));
 
         sRv.append(error);
     #elif xOS_FREEBSD

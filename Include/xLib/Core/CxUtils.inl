@@ -23,10 +23,10 @@ CxUtils::ptrDeleteT(
     T * &a_ptr
 )
 {
-    T* tmp = NULL;
+    T* tmp = xPTR_NULL;
     std::swap(a_ptr, tmp);
 
-    delete tmp; tmp = NULL;
+    delete tmp; tmp = xPTR_NULL;
 }
 //-------------------------------------------------------------------------------------------------
 template<class T>
@@ -36,10 +36,10 @@ CxUtils::arrayDeleteT(
     T * &a_ptr
 )
 {
-    T* tmp = NULL;
+    T* tmp = xPTR_NULL;
     std::swap(a_ptr, tmp);
 
-    delete [] tmp; tmp = NULL;
+    delete [] tmp; tmp = xPTR_NULL;
 }
 //-------------------------------------------------------------------------------------------------
 template<class T>
@@ -50,7 +50,7 @@ CxUtils::ptrAssignT(
     const T &a_value
 )
 {
-    xCHECK_DO(NULL == a_ptr, return);
+    xCHECK_DO(xPTR_NULL == a_ptr, return);
 
     *a_ptr = a_value;
 }
@@ -72,7 +72,7 @@ CxUtils::memoryZero(
     std::csize_t &a_sizeBytes
 )
 {
-    xCHECK_DO(NULL == a_ptr, return);
+    xCHECK_DO(xPTR_NULL == a_ptr, return);
 
     void_t *pvRv = std::memset(a_ptr, 0, a_sizeBytes);
     xUNUSED(pvRv);
@@ -106,10 +106,10 @@ CxUtils::bufferFreeT(
     T * &a_ptr
 )
 {
-    xCHECK_DO(NULL == a_ptr, return);
+    xCHECK_DO(xPTR_NULL == a_ptr, return);
 
     std::free(a_ptr);
-    a_ptr = NULL;
+    a_ptr = xPTR_NULL;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */ inline
@@ -118,10 +118,10 @@ CxUtils::fileClose(
     FILE * &a_fileHandle
 )
 {
-    xCHECK_DO(NULL == a_fileHandle, return);
+    xCHECK_DO(xPTR_NULL == a_fileHandle, return);
 
     std::fclose(a_fileHandle);
-    a_fileHandle = NULL;
+    a_fileHandle = xPTR_NULL;
 }
 //-------------------------------------------------------------------------------------------------
 template <class T>

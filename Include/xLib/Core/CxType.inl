@@ -48,8 +48,8 @@ CxType::name(
 #if xCOMPILER_MINGW || xCOMPILER_GNUC
     int_t status = - 1;
 
-    char *realName = abi::__cxa_demangle(typeid(a_objT).name(), NULL, NULL, &status);
-    className = (realName == NULL) ? CxConst::strUnknownA() : realName;
+    char *realName = abi::__cxa_demangle(typeid(a_objT).name(), xPTR_NULL, xPTR_NULL, &status);
+    className = (realName == xPTR_NULL) ? CxConst::strUnknownA() : realName;
 
     xBUFF_FREE(realName);
 #else

@@ -28,17 +28,17 @@ CxThread::CxThread(
     _thread      (),
     _id          (0UL),
     _exitStatus  (0U),
-    _param       (NULL),
+    _param       (xPTR_NULL),
     _isAutoDelete(a_isAutoDelete),
 
     // flags
     _state       (),
 
     //
-    ///_vOnExit  (NULL),
+    ///_vOnExit  (xPTR_NULL),
 
     // other
-    _eventStarter(NULL),
+    _eventStarter(xPTR_NULL),
     _eventPause  (false, false),
     _eventExit   (true,  false)
 {
@@ -110,7 +110,7 @@ CxThread::create(
 #if   xOS_ENV_WIN
     id_t id = 0UL;
 
-    HANDLE hRv = reinterpret_cast<HANDLE>( ::_beginthreadex(NULL, a_stackSize, _s_jobEntry, this,
+    HANDLE hRv = reinterpret_cast<HANDLE>( ::_beginthreadex(xPTR_NULL, a_stackSize, _s_jobEntry, this,
         0U, (uint_t *)&id) );
     xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
     xTEST_LESS(0UL, id);
@@ -263,7 +263,7 @@ CxThread::kill(
 
         _id         = 0UL;
         _exitStatus = static_cast<uint_t>( ulRv );  // saving value
-        _param      = NULL;
+        _param      = xPTR_NULL;
         //_isAutoDelete - n/a
 
         // flags
@@ -292,7 +292,7 @@ CxThread::wait(
 
     // TODO: thread must not be detached
     // FIX:  a_timeoutMsec
-    int_t iRv = ::pthread_join(_id, NULL);
+    int_t iRv = ::pthread_join(_id, xPTR_NULL);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 #endif
 }
@@ -497,7 +497,7 @@ CxThread::messageWaitQueue(
     std::vector<uint_t> msgs;
     msgs.push_back(a_msg);
 
-    messageWaitQueue(msgs, NULL, a_param1, a_param2);
+    messageWaitQueue(msgs, xPTR_NULL, a_param1, a_param2);
 }
 
 #endif
@@ -518,7 +518,7 @@ CxThread::messageWaitQueue(
     BOOL blRv = FALSE;
     MSG  msg  = {0};
 
-    while ((blRv = ::GetMessage(&msg, NULL, 0, 0 ))) {
+    while ((blRv = ::GetMessage(&msg, xPTR_NULL, 0, 0 ))) {
         xTEST_DIFF(- 1, blRv);
 
         for (size_t i = 0; i < a_msgs.size(); ++ i) {
@@ -1279,7 +1279,7 @@ CxThread::_s_jobEntry(
 
     self->_id         = 0UL;
     self->_exitStatus = uiRv;    // ???
-    self->_param      = NULL;
+    self->_param      = xPTR_NULL;
     // self->_isAutoDelete - n/a
 
     //-------------------------------------

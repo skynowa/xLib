@@ -27,7 +27,7 @@ CxIpcSemaphore::CxIpcSemaphore() :
 #if   xOS_ENV_WIN
     _handle(),
 #elif xOS_ENV_UNIX
-    _handle(NULL),
+    _handle(xPTR_NULL),
 #endif
     _name  ()
 {
@@ -48,7 +48,7 @@ CxIpcSemaphore::~CxIpcSemaphore()
 #if   xOS_ENV_WIN
     xNA;
 #elif xOS_ENV_UNIX
-    int_t iRv = ::sem_close(_handle);  _handle = NULL;
+    int_t iRv = ::sem_close(_handle);  _handle = xPTR_NULL;
     xTEST_DIFF(- 1, iRv);
 
     // sem_destroy
@@ -75,17 +75,17 @@ CxIpcSemaphore::create(
     xTEST_EQ(true, 0L <= a_initialValue && a_initialValue <= xSEMAPHORE_VALUE_MAX);
 
 #if   xOS_ENV_WIN
-    ctchar_t       *winName = NULL;
+    ctchar_t       *winName = xPTR_NULL;
     std::tstring_t  _winName;
 
     if (a_name.empty()) {
-        winName  = NULL;
+        winName  = xPTR_NULL;
     } else {
         _winName = xT("Global\\") + a_name;
         winName  = _winName.c_str();
     }
 
-    HANDLE  hRv       = ::CreateSemaphore(NULL, a_initialValue, xSEMAPHORE_VALUE_MAX, winName);
+    HANDLE  hRv       = ::CreateSemaphore(xPTR_NULL, a_initialValue, xSEMAPHORE_VALUE_MAX, winName);
     ulong_t lastError = CxLastError::get();
     xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
     xTEST_DIFF(lastError, static_cast<ulong_t>( ERROR_ALREADY_EXISTS ));
@@ -112,11 +112,11 @@ CxIpcSemaphore::open(
     //name    - n/a
 
 #if   xOS_ENV_WIN
-    ctchar_t       *winName = NULL;
+    ctchar_t       *winName = xPTR_NULL;
     std::tstring_t  _winName;
 
     if (a_name.empty()) {
-        winName  = NULL;
+        winName  = xPTR_NULL;
     } else {
         _winName = xT("Global\\") + a_name;
         winName  = _winName.c_str();
@@ -146,7 +146,7 @@ CxIpcSemaphore::post() const
 #if   xOS_ENV_WIN
    const LONG postValue = 1L;
 
-   BOOL blRv = ::ReleaseSemaphore(_handle.get(), postValue, NULL);
+   BOOL blRv = ::ReleaseSemaphore(_handle.get(), postValue, xPTR_NULL);
    xTEST_DIFF(FALSE, blRv);
 #elif xOS_ENV_UNIX
     int_t iRv = ::sem_post(_handle);
@@ -267,7 +267,7 @@ CxIpcSemaphore::_isValid() const
 #if   xOS_ENV_WIN
     return _handle.isValid();
 #elif xOS_ENV_UNIX
-    return (NULL != _handle);
+    return (xPTR_NULL != _handle);
 #endif
 }
 //-------------------------------------------------------------------------------------------------

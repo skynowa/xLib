@@ -46,7 +46,7 @@ CxLocale::current() const
 
     sRv.resize(iRv - sizeof('\0')); // delete from end '\0'
 #elif xOS_ENV_UNIX
-    ctchar_t *locale = std::xTSETLOCALE(LC_ALL, NULL);
+    ctchar_t *locale = std::xTSETLOCALE(LC_ALL, xPTR_NULL);
     xTEST_PTR(locale);
 
     sRv.assign(locale);
@@ -62,7 +62,7 @@ CxLocale::setCurrent(
 {
     xTEST_NA(a_locale);
 
-    ctchar_t *locale = a_locale.empty() ? NULL : a_locale.c_str();
+    ctchar_t *locale = a_locale.empty() ? xPTR_NULL : a_locale.c_str();
 
     ctchar_t *pcszRv = std::xTSETLOCALE(LC_ALL, locale);
     xTEST_PTR(pcszRv);

@@ -32,8 +32,8 @@ CxThreadPool<T>::CxThreadPool(
 ) :
     CxThread          (a_isAutoDelete),
     _stackSize        (0U),
-    _funcPtr          (NULL),
-    _param            (NULL),
+    _funcPtr          (xPTR_NULL),
+    _param            (xPTR_NULL),
     _isGroupPaused    (a_isGroupPaused),
     _isGroupAutoDelete(a_isGroupAutoDelete),
     _semaphore        (),
@@ -94,7 +94,7 @@ CxThreadPool<T>::groupCreate(
 
     //-------------------------------------
     //
-    create(false, 0U, NULL);
+    create(false, 0U, xPTR_NULL);
 }
 //-------------------------------------------------------------------------------------------------
 template<class T>
@@ -414,7 +414,7 @@ CxThreadPool<T>::onRun(
 
         //-------------------------------------
         //������ ����. ������
-        _taskAdd(NULL);                       //_semaphore.bWait(INFINITE);
+        _taskAdd(xPTR_NULL);                       //_semaphore.bWait(INFINITE);
         xTEST_EQ(true, bRv);                //continue ???
 
         ++ _currTask;

@@ -336,7 +336,7 @@ CxSocket::sendBytes(
 
     //..as long_t as we need to send data...
     while (messageLength > 0) {
-        iRv = ::select(0, NULL, &fds, NULL, &sendTimeout);
+        iRv = ::select(0, xPTR_NULL, &fds, xPTR_NULL, &sendTimeout);
 
         //timed out, return error
         xCHECK_RET(!iRv, xSOCKET_ERROR);
@@ -379,7 +379,7 @@ CxSocket::receiveBytes(
 
     //.. Until the data is sent ..
     while (stillToReceive > 0) {
-        iRv = ::select(0, &fds, NULL, NULL, &receiveTimeout);
+        iRv = ::select(0, &fds, xPTR_NULL, xPTR_NULL, &receiveTimeout);
 
         //return by timeout
         xCHECK_RET(!iRv, xSOCKET_ERROR);
@@ -434,14 +434,14 @@ CxSocket::peerName(
     xTEST_DIFF(xSOCKET_ERROR, iRv);
 #endif
 
-    if (NULL != a_peerAddr) {
+    if (xPTR_NULL != a_peerAddr) {
         //convert to UNICODE
         std::string peerAddr = ::inet_ntoa(sockAddr.sin_addr);
 
         (*a_peerAddr).assign(peerAddr.begin(), peerAddr.end());
     }
 
-    if (NULL != a_peerPort) {
+    if (xPTR_NULL != a_peerPort) {
         *a_peerPort = ntohs(sockAddr.sin_port);
     }
 }
@@ -471,14 +471,14 @@ CxSocket::socketName(
     xTEST_DIFF(xSOCKET_ERROR, iRv);
 #endif
 
-    if (NULL != a_socketAddr) {
+    if (xPTR_NULL != a_socketAddr) {
         //convert to UNICODE
         std::string socketAddr = ::inet_ntoa(sockAddr.sin_addr);
 
         (*a_socketAddr).assign(socketAddr.begin(), socketAddr.end());
     }
 
-    if (NULL != a_socketPort) {
+    if (xPTR_NULL != a_socketPort) {
         *a_socketPort = ntohs(sockAddr.sin_port);
     }
 }

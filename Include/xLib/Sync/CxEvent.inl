@@ -64,18 +64,18 @@ CxEvent::create()
 #if   xOS_ENV_WIN
     xTEST_EQ(false, _event.isValid());
 
-    HANDLE hRv = ::CreateEvent(NULL, ! _isAutoReset, _initState, NULL);
-    xTEST_DIFF(static_cast<HANDLE>(NULL), hRv);
+    HANDLE hRv = ::CreateEvent(xPTR_NULL, ! _isAutoReset, _initState, xPTR_NULL);
+    xTEST_DIFF(static_cast<HANDLE>(xPTR_NULL), hRv);
 
     _event.set(hRv);
     // n/a
 #elif xOS_ENV_UNIX
     int_t iRv = - 1;
 
-    iRv = ::pthread_mutex_init(&_mutex, NULL);   // mutex not recursive
+    iRv = ::pthread_mutex_init(&_mutex, xPTR_NULL);   // mutex not recursive
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 
-    iRv = ::pthread_cond_init(&_cond, NULL);
+    iRv = ::pthread_cond_init(&_cond, xPTR_NULL);
     xTEST_MSG_EQ(0, iRv, CxLastError::format(iRv));
 #endif
 }
@@ -161,7 +161,7 @@ CxEvent::wait(
             if (xTIMEOUT_INFINITE != a_timeoutMs) {
                 timeval timeNow  = {0, 0};
 
-                iRv = ::gettimeofday(&timeNow, NULL);
+                iRv = ::gettimeofday(&timeNow, xPTR_NULL);
                 xTEST_DIFF(- 1, iRv);
 
                 timeoutMsec.tv_sec  = timeNow.tv_sec + a_timeoutMs / 1000;

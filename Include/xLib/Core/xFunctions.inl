@@ -29,7 +29,7 @@ getTimeOfDay(
     ulonglong_t  ullRv    = 0ULL;
     static int_t s_tzFlag = 0;
 
-    if (NULL != a_tv) {
+    if (xPTR_NULL != a_tv) {
         (void_t)::GetSystemTimeAsFileTime(&time);
 
         ullRv |= time.dwHighDateTime;
@@ -46,7 +46,7 @@ getTimeOfDay(
         a_tv->tv_usec = static_cast<long_t>( ullRv % 1000000UL );
     }
 
-    if (a_tz != NULL) {
+    if (a_tz != xPTR_NULL) {
         if (!s_tzFlag) {
             _tzset();
             ++ s_tzFlag;
