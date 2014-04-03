@@ -35,10 +35,10 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
         info.setProcessId(CxProcess::currentId());
         info.commandLine(&args);
 
-        if (a_argNum == 1) {
+        if (a_argsNum == 1) {
             // OK, run tests with default params
         }
-        else if (a_argNum == 2) {
+        else if (a_argsNum == 2) {
             // usage
             bool_t bRv = CxStringCI::compare(xT("-h"),     args.at(1)) ||
                          CxStringCI::compare(xT("--help"), args.at(1));
@@ -55,7 +55,7 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
 
             return EXIT_SUCCESS;
         }
-        else if (a_argNum == 5) {
+        else if (a_argsNum == 5) {
             // addition params
             isUseTracing = CxString::cast<bool_t>     ( args.at(1) );
             allLoops     = CxString::cast<ulonglong_t>( args.at(2) );
