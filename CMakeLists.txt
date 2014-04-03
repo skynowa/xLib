@@ -97,7 +97,7 @@ set(XLIB_INSTALL_PATH "${CMAKE_INSTALL_PREFIX}/${XLIB_INSTALL_DIR}")
 
 #--------------------------------------------------------------------------------------------------
 # sources
-file(GLOB_RECURSE xLib_tests_SOURCES "Tests/Test.cpp")
+file(GLOB_RECURSE xLib_tests_SOURCES "Tests/*.cpp")
 
 #--------------------------------------------------------------------------------------------------
 # target
