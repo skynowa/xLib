@@ -171,6 +171,16 @@
     ///< keyword "override"
 
 //-------------------------------------------------------------------------------------------------
+// xPTR_NULL
+#if xLANG_STANDART_CPP11
+    #define xPTR_NULL \
+        nullptr
+#else
+    #define xPTR_NULL \
+        NULL
+#endif
+    ///< "null" pointer
+//-------------------------------------------------------------------------------------------------
 // xNEW
 #if xNEW_NO_STD_THROW
     #define xNEW \

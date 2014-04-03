@@ -186,6 +186,12 @@ CxTest_xDefines::unit(
     #endif
     }
 
+    xTEST_CASE("xDefines: xPTR_NULL", a_caseLoops)
+    {
+       void_t *ptr = xPTR_NULL;
+       xUNUSED(ptr);
+    }
+
     xTEST_CASE("xDefines: xS2US_", a_caseLoops)
     {
 
