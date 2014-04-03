@@ -36,6 +36,19 @@
 
 xNAMESPACE2_BEGIN(xlib, debug)
 
+xNAMESPACE_ANONYM_BEGIN
+
+std::csize_t elementsNum   = 5;
+
+/**
+* Skip 2 first elements of a real stack - it's a class internals:
+*   0  xLib_test  ??  0  0x46d314  xlib::CxStackTrace::get() const
+*   1  xLib_test  ??  0  0x46e090  xlib::CxStackTrace::toString()
+*/
+std::csize_t skipFramesNum = 2;
+
+xNAMESPACE_ANONYM_END
+
 /**************************************************************************************************
 *   public
 *
@@ -68,13 +81,6 @@ CxStackTrace::get(
     std::vector<std::vec_tstring_t> stack;
     std::ctstring_t                 dataNotFound = xT("[???]");
 
-   /**
-    * Skip 2 first elements of a real stack - it's a class internals:
-    *   0  xLib_test  ??  0  0x46d314  xlib::CxStackTrace::get() const
-    *   1  xLib_test  ??  0  0x46e090  xlib::CxStackTrace::toString()
-    */
-    std::csize_t skipFramesNum = 2;
-
 #if   xOS_ENV_WIN
     #if   xCOMPILER_MINGW
         // TODO: CxStackTrace::get()
@@ -96,18 +102,12 @@ CxStackTrace::get(
         symbol->SizeOfStruct = sizeof(SYMBOL_INFO);
         symbol->MaxNameLen   = 255UL;
 
-        for (ushort_t i = skipFramesNum, line = 0; i < framesNum; ++ i) {
-            int_t          stackLineNum = 0;
+        for (ushort_t i = ::skipFramesNum; i < framesNum; ++ i) {
             std::tstring_t modulePath;
             std::tstring_t filePath;
             std::tstring_t fileLine;
             std::tstring_t byteOffset;
             std::tstring_t functionName;
-
-            // stackLineNum
-            {
-                stackLineNum = ++ line;
-            }
 
             // modulePath
             {
@@ -140,7 +140,7 @@ CxStackTrace::get(
                 }
             }
 
-            // stackLineNum, byteOffset, functionName
+            // byteOffset, functionName
             {
                 blRv = ::SymFromAddr(process, reinterpret_cast<DWORD64>( stackBuff[i] ), NULL,
                     symbol);
@@ -174,8 +174,6 @@ CxStackTrace::get(
             // out
             {
                 std::vec_tstring_t stackLine;
-
-                stackLine.push_back( CxString::cast(stackLineNum) );
                 stackLine.push_back(modulePath);
                 stackLine.push_back(filePath);
                 stackLine.push_back(fileLine);
@@ -200,8 +198,7 @@ CxStackTrace::get(
         tchar_t **symbols = ::backtrace_symbols(stackBuff, framesNum);
         xCHECK_DO(NULL == symbols, return);
 
-        for (int_t i = skipFramesNum, line = 0; i < framesNum; ++ i) {
-            int_t          stackLineNum = 0;
+        for (int_t i = ::skipFramesNum; i < framesNum; ++ i) {
             std::tstring_t modulePath;
             std::tstring_t filePath;
             std::tstring_t fileLine;
@@ -212,7 +209,6 @@ CxStackTrace::get(
 
             int_t iRv = ::dladdr(stackBuff[i], &dlinfo);
             if (0 == iRv) {
-                stackLineNum = ++ line;
                 modulePath   = (NULL == dlinfo.dli_fname) ? dataNotFound : dlinfo.dli_fname;
                 filePath     = dataNotFound;
                 fileLine     = dataNotFound;
@@ -237,7 +233,6 @@ CxStackTrace::get(
                 _addr2Line(dlinfo.dli_saddr, &_filePath, &_functionName, &_sourceLine);
                 xUNUSED(_functionName);
 
-                stackLineNum = ++ line;
                 modulePath   = (NULL == dlinfo.dli_fname) ? dataNotFound : dlinfo.dli_fname;
                 filePath     = _filePath.empty()          ? dataNotFound : _filePath;
                 fileLine     = CxString::cast(_sourceLine);
@@ -268,8 +263,6 @@ CxStackTrace::get(
             // out
             {
                 std::vec_tstring_t stackLine;
-
-                stackLine.push_back( CxString::cast(stackLineNum) );
                 stackLine.push_back(modulePath);
                 stackLine.push_back(filePath);
                 stackLine.push_back(fileLine);
@@ -283,6 +276,8 @@ CxStackTrace::get(
         #pragma message("xLib: CxStackTrace::get() - n/a")
     #endif // xHAVE_EXECINFO
 #endif
+
+    std::reverse(stack.begin(), stack.end());
 
     a_stack->swap(stack);
 }
@@ -316,11 +311,10 @@ CxStackTrace::_format(
     xCHECK_RET(NULL == a_stack, std::tstring_t());
 
     std::tstring_t     sRv;
-    std::csize_t       elementsNum = 6;
-    std::vector<int_t> maxs(elementsNum, 0);
+    std::vector<int_t> maxs(::elementsNum, 0);
 
     // get elements max sizes
-    for (size_t i = 0; i < elementsNum; ++ i) {
+    for (size_t i = 0; i < ::elementsNum; ++ i) {
         xFOREACH_CONST(std::vector<std::vec_tstring_t>, it, *a_stack) {
             cint_t current = static_cast<int_t>( it->at(i).size() );
             xCHECK_DO(current > maxs[i], maxs[i] = current);
@@ -328,17 +322,19 @@ CxStackTrace::_format(
     }
 
     // formatting
+    std::size_t lineNumber = 0;
+
     xFOREACH_CONST(std::vector<std::vec_tstring_t>, it, *a_stack) {
         std::tstringstream_t stackLine;
 
         stackLine
             << _linePrefix
-            << std::setw(maxs[0]) << std::right << it->at(0) << _elementSeparator
-            << std::setw(maxs[1]) << std::left  << it->at(1) << _elementSeparator
-            << std::setw(maxs[2]) << std::left  << it->at(2) << _elementSeparator
-            << std::setw(maxs[3]) << std::right << it->at(3) << _elementSeparator
-            << std::setw(maxs[4]) << std::left  << it->at(4) << _elementSeparator
-            << std::setw(maxs[5]) << std::left  << it->at(5)
+            << std::setw(2)       << std::right << (++ lineNumber) << "." << _elementSeparator
+            << std::setw(maxs[0]) << std::left  << it->at(0)              << _elementSeparator
+            << std::setw(maxs[1]) << std::left  << it->at(1)              << _elementSeparator
+            << std::setw(maxs[2]) << std::right << it->at(2)              << _elementSeparator
+            << std::setw(maxs[3]) << std::left  << it->at(3)              << _elementSeparator
+            << std::setw(maxs[4]) << std::left  << it->at(4)
             << _lineSeparator;
 
         sRv.append(stackLine.str());
