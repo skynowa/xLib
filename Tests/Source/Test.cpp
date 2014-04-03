@@ -9,9 +9,9 @@
 
 
 //-------------------------------------------------------------------------------------------------
-int_t xTMAIN(int_t a_argNum, tchar_t *a_args[])
+int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
 {
-    xUNUSED(a_argNum);
+    xUNUSED(a_argsNum);
     xUNUSED(a_args);
 
 #if xUSING_TESTS
