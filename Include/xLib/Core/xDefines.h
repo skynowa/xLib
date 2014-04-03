@@ -310,7 +310,7 @@
     ( static_cast<void_t>( arg ) )
 #elif xCOMPILER_GNUC
     #define xUNUSED(arg) \
-    { static_cast<void_t>( /* (arg) = */ ((true) ? (arg) : (arg)) ); }
+    { static_cast<void_t>( true ? (arg) : (arg) ); }
 #else
     #define xUNUSED(arg) \
     ( static_cast<void_t>( arg ) )
@@ -325,29 +325,29 @@
 
 //-------------------------------------------------------------------------------------------------
 // temporary enable/disable code
-#define xTEMP_ENABLED                   1
+#define xTEMP_ENABLED  1
     ///< temporary code enabled
-#define xTEMP_DISABLED                  0
+#define xTEMP_DISABLED 0
     ///< temporary code disable
-#define xDEPRECIATE                     0
+#define xDEPRECIATE    0
     ///< temporary code depreciate
-#define xTODO                           0
+#define xTODO          0
     ///< to do code
-#define xCAN_REMOVE                     0
+#define xCAN_REMOVE    0
     ///< can remove code
-#define xTEST_IGNORE                    0
+#define xTEST_IGNORE   0
     ///< ignore test code
-#define xNOT_COMPILE                    0
+#define xNOT_COMPILE   0
     ///< code not compile
-#define xREVIEW                         1
+#define xREVIEW        1
     ///< code for review
-#define xCOMMENT                        0
+#define xCOMMENT       0
     ///< comment for code
-#define xNA                             ;
+#define xNA            ;
     ///< at this point the code is not applicable
-#define xNOT_IMPL                       // n/a
+#define xNOT_IMPL      // n/a
     ///< code not implemented
-#define xNOT_AVAILABLE                  // n/a
+#define xNOT_AVAILABLE // n/a
     ///< code not available
 
 //-------------------------------------------------------------------------------------------------
