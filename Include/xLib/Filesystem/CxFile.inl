@@ -1177,16 +1177,20 @@ CxFile::textRead(
     std::vec_tstring_t lines;
 
     for (size_t i = 0; !ifs.eof(); ++ i) {
-        std::getline(ifs, line);
-        xCHECK_DO(line.empty(), continue);
+        std::pair<std::map_tstring_t::iterator, bool_t> prRv;
 
+        std::getline(ifs, line);
         line = CxString::trimRightChars(line, CxConst::eol());
 
-        CxString::split(line, a_separator, &lines);
-        xTEST_EQ(size_t(2), lines.size());
+        if ( line.empty() ) {
+            prRv = msRv.insert( std::make_pair(CxConst::strEmpty(), CxConst::strEmpty()) );
+        } else {
+            CxString::split(line, a_separator, &lines);
+            xTEST_EQ(size_t(2), lines.size());
 
-        std::pair<std::map_tstring_t::iterator, bool_t> prRv;
-        prRv = msRv.insert( std::make_pair(lines.at(0), lines.at(1)) );
+            prRv = msRv.insert( std::make_pair(lines.at(0), lines.at(1)) );
+        }
+
         // TODO: CxFile::textRead() - xTEST_EQ(prRv.second, true);
         xUNUSED(prRv);
     }
