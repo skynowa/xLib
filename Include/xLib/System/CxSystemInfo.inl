@@ -340,7 +340,7 @@ CxSystemInfo::isUserAdmin() const
 #if   xOS_ENV_WIN
     bool_t                   isAdmin     = false;
     SID_IDENTIFIER_AUTHORITY ntAuthority = { SECURITY_NT_AUTHORITY };
-    PSID                     adminGroup  = NULL;
+    PSID                     adminGroup  = xPTR_NULL;
 
     BOOL blRv = ::AllocateAndInitializeSid(&ntAuthority, 2, SECURITY_BUILTIN_DOMAIN_RID,
         DOMAIN_ALIAS_RID_ADMINS, 0UL, 0UL, 0UL, 0UL, 0UL, 0UL, &adminGroup);
@@ -349,7 +349,7 @@ CxSystemInfo::isUserAdmin() const
     {
         BOOL isMember = FALSE;
 
-        blRv = ::CheckTokenMembership(NULL, adminGroup, &isMember);
+        blRv = ::CheckTokenMembership(xPTR_NULL, adminGroup, &isMember);
         if (FALSE == blRv || FALSE == isMember) {
             isAdmin = false;
         } else {
@@ -384,10 +384,10 @@ CxSystemInfo::loginUserName() const
 #if   xOS_ENV_WIN
     // try NetAPI
     {
-        WKSTA_USER_INFO_1 *userInfo = NULL;
+        WKSTA_USER_INFO_1 *userInfo = xPTR_NULL;
 
-        NET_API_STATUS nsRv = ::NetWkstaUserGetInfo(NULL, 1UL, reinterpret_cast<LPBYTE *>( &userInfo ));
-        if (nsRv == NERR_Success && userInfo != NULL) {
+        NET_API_STATUS nsRv = ::NetWkstaUserGetInfo(xPTR_NULL, 1UL, reinterpret_cast<LPBYTE *>( &userInfo ));
+        if (nsRv == NERR_Success && userInfo != xPTR_NULL) {
         #if 0
             ::wprintf(L"\n\tUser:        %s\n", userInfo->wkui1_username);
             ::wprintf(L"\tDomain:        %s\n", userInfo->wkui1_logon_domain);
@@ -402,8 +402,8 @@ CxSystemInfo::loginUserName() const
             sRv = CxString::castA(userInfo->wkui1_username, CP_UTF8);
         #endif
 
-            if (userInfo != NULL) {
-                nsRv = ::NetApiBufferFree(userInfo);    userInfo = NULL;
+            if (userInfo != xPTR_NULL) {
+                nsRv = ::NetApiBufferFree(userInfo);    userInfo = xPTR_NULL;
                 xTEST_EQ(nsRv, static_cast<DWORD>(NERR_Success));
             }
 
@@ -496,7 +496,7 @@ CxSystemInfo::userHomeDir() const
 #if   xOS_ENV_WIN
     tchar_t buff[MAX_PATH + 1] = {0};
 
-    HRESULT hrRv = SHGetFolderPath(NULL, CSIDL_PROFILE, NULL, 0UL, &buff[0]);
+    HRESULT hrRv = SHGetFolderPath(xPTR_NULL, CSIDL_PROFILE, xPTR_NULL, 0UL, &buff[0]);
     xTEST_EQ(true, S_OK == hrRv);
 
     sRv.assign(buff);
@@ -540,7 +540,7 @@ CxSystemInfo::userShellPath() const
 #if   xOS_ENV_WIN
     LPITEMIDLIST idList = {0};
 
-    HRESULT hrRv = ::SHGetSpecialFolderLocation(NULL, CSIDL_WINDOWS, &idList);
+    HRESULT hrRv = ::SHGetSpecialFolderLocation(xPTR_NULL, CSIDL_WINDOWS, &idList);
     xTEST_EQ(S_OK, hrRv);
 
     tchar_t buff[MAX_PATH + 1] = {0};
@@ -586,7 +586,7 @@ CxSystemInfo::numOfCpus() const
         int_t  mib[]   = {CTL_HW, HW_NCPU};
         size_t resSize = sizeof(ulRv);
 
-        int_t iRv = ::sysctl(mib, static_cast<u_int>( xARRAY_SIZE(mib) ), &ulRv, &resSize, NULL, 0);
+        int_t iRv = ::sysctl(mib, static_cast<u_int>( xARRAY_SIZE(mib) ), &ulRv, &resSize, xPTR_NULL, 0);
         xTEST_DIFF(- 1, iRv);
     #endif
 #elif xOS_ENV_APPLE
@@ -620,7 +620,7 @@ CxSystemInfo::currentCpuNum() const
     #if defined(SYS_getcpu)
         ulong_t cpu = 0UL;
 
-        long_t liRv = ::syscall(SYS_getcpu, &cpu, NULL, NULL);
+        long_t liRv = ::syscall(SYS_getcpu, &cpu, xPTR_NULL, xPTR_NULL);
         xTEST_DIFF(- 1L, liRv);
 
         ulRv = cpu;
@@ -633,7 +633,7 @@ CxSystemInfo::currentCpuNum() const
         // ::getcpu() was added in kernel 2.6.19 for x86_64 and i386
         uint_t cpu = 0U;
 
-        int_t iRv = ::getcpu(&cpu, NULL, NULL);
+        int_t iRv = ::getcpu(&cpu, xPTR_NULL, xPTR_NULL);
         xTEST_DIFF(- 1, iRv);
 
         ulRv = cpu;
@@ -797,13 +797,13 @@ CxSystemInfo::cpuModel() const
         std::string value;
         size_t      valueSize = 0;
 
-        iRv = ::sysctlbyname("hw.model", NULL, &valueSize, NULL, 0U);
+        iRv = ::sysctlbyname("hw.model", xPTR_NULL, &valueSize, xPTR_NULL, 0U);
         xTEST_DIFF(- 1, iRv);
         xTEST_DIFF(size_t(0), valueSize);
 
         value.resize(valueSize);
 
-        iRv = ::sysctlbyname("hw.model", &value.at(0), &valueSize, NULL, 0U);
+        iRv = ::sysctlbyname("hw.model", &value.at(0), &valueSize, xPTR_NULL, 0U);
         xTEST_DIFF(- 1, iRv);
         xTEST_EQ(value.size(), valueSize);
 
@@ -824,17 +824,17 @@ CxSystemInfo::cpuSpeed() const
 #if   xOS_ENV_WIN
     DWORD cpuSpeedMHz = 0UL;
     DWORD buffSize    = sizeof(cpuSpeedMHz);
-    HKEY  key         = NULL;
+    HKEY  key         = xPTR_NULL;
 
     LONG lRv = ::RegOpenKeyEx(HKEY_LOCAL_MACHINE, xT("HARDWARE\\DESCRIPTION\\System\\"
         "CentralProcessor\\0"), 0UL, KEY_READ, &key);
     xTEST_EQ(ERROR_SUCCESS, lRv);
 
-    lRv = ::RegQueryValueEx(key, xT("~MHz"), NULL, NULL, reinterpret_cast<LPBYTE>( &cpuSpeedMHz ),
+    lRv = ::RegQueryValueEx(key, xT("~MHz"), xPTR_NULL, xPTR_NULL, reinterpret_cast<LPBYTE>( &cpuSpeedMHz ),
         &buffSize);
     xTEST_EQ(ERROR_SUCCESS, lRv);
 
-    lRv = ::RegCloseKey(key);    key = NULL;
+    lRv = ::RegCloseKey(key);    key = xPTR_NULL;
     xTEST_EQ(ERROR_SUCCESS, lRv);
 
     ulRv = cpuSpeedMHz;
@@ -851,7 +851,7 @@ CxSystemInfo::cpuSpeed() const
         ulong_t cpuSpeedMHz     = 0UL;
         size_t  cpuSpeedMHzSize = sizeof(cpuSpeedMHz);
 
-        int_t iRv = ::sysctlbyname("hw.clockrate", &cpuSpeedMHz, &cpuSpeedMHzSize, NULL, 0);
+        int_t iRv = ::sysctlbyname("hw.clockrate", &cpuSpeedMHz, &cpuSpeedMHzSize, xPTR_NULL, 0);
         xTEST_DIFF(- 1, iRv);
 
         ulRv = cpuSpeedMHz;
@@ -982,7 +982,7 @@ CxSystemInfo::cpuUsage() const
         ulong_t        cpuTime[CPUSTATES] = {0};
         size_t         cpuTimeSize        = sizeof(cpuTime);
 
-        int_t iRv = ::sysctlbyname("kern.cp_time", &cpuTime, &cpuTimeSize, NULL, 0);
+        int_t iRv = ::sysctlbyname("kern.cp_time", &cpuTime, &cpuTimeSize, xPTR_NULL, 0);
         xTEST_DIFF(- 1, iRv);
 
         used       = cpuTime[CP_USER] + cpuTime[CP_NICE] + cpuTime[CP_SYS];
@@ -1029,7 +1029,7 @@ CxSystemInfo::ramTotal() const
         int_t       mib[]        = {CTL_HW, HW_PHYSMEM};
         size_t      ramTotalSize = sizeof(ramTotal);
 
-        int_t iRv = ::sysctl(mib, 2, &ramTotal, &ramTotalSize, NULL, 0);
+        int_t iRv = ::sysctl(mib, 2, &ramTotal, &ramTotalSize, xPTR_NULL, 0);
         xTEST_DIFF(- 1, iRv);
 
         ullRv = ramTotal;
@@ -1067,7 +1067,7 @@ CxSystemInfo::ramAvailable() const
         size_t      availPhysPagesSize = sizeof(availPhysPages);
 
         int_t iRv = ::sysctlbyname("vm.stats.vm.v_free_count", &availPhysPages,
-            &availPhysPagesSize, NULL, 0);
+            &availPhysPagesSize, xPTR_NULL, 0);
         xTEST_DIFF(- 1, iRv);
 
         ullRv = availPhysPages * pageSize();
@@ -1109,7 +1109,7 @@ CxSystemInfo::ramUsage() const
             int_t  mib[]        = {CTL_HW, HW_PHYSMEM};
             size_t ramTotalSize = sizeof(ramTotal);
 
-            int_t iRv = ::sysctl(mib, 2, &ramTotal, &ramTotalSize, NULL, 0);
+            int_t iRv = ::sysctl(mib, 2, &ramTotal, &ramTotalSize, xPTR_NULL, 0);
             xTEST_DIFF(- 1, iRv);
         }
 
@@ -1119,7 +1119,7 @@ CxSystemInfo::ramUsage() const
             size_t      availPhysPagesSize = sizeof(availPhysPages);
 
             int_t iRv = ::sysctlbyname("vm.stats.vm.v_free_count", &availPhysPages,
-                &availPhysPagesSize, NULL, 0);
+                &availPhysPagesSize, xPTR_NULL, 0);
             xTEST_DIFF(- 1, iRv);
 
             ramFree = availPhysPages * pageSize();
@@ -1179,7 +1179,7 @@ CxSystemInfo::glibcVersion() const
     std::tstring_t version;
     {
         ctchar_t *libc_version = ::gnu_get_libc_version();
-        if (libc_version == NULL) {
+        if (libc_version == xPTR_NULL) {
             version += CxConst::strUnknown();
         } else {
             version += libc_version;
@@ -1189,7 +1189,7 @@ CxSystemInfo::glibcVersion() const
     std::tstring_t release;
     {
         ctchar_t *libc_release = ::gnu_get_libc_release();
-        if (libc_release == NULL) {
+        if (libc_release == xPTR_NULL) {
             release += CxConst::strUnknown();
         } else {
             release += libc_release;
@@ -1212,7 +1212,7 @@ CxSystemInfo::libPthreadVersion() const
 
     std::size_t buffBytes;
     {
-        buffBytes = ::confstr(_CS_GNU_LIBPTHREAD_VERSION, NULL, 0);
+        buffBytes = ::confstr(_CS_GNU_LIBPTHREAD_VERSION, xPTR_NULL, 0);
         xCHECK_RET(buffBytes == 0, CxConst::strUnknown());
 
         buff.resize(buffBytes);
@@ -1257,7 +1257,7 @@ CxSystemInfo::_passwdFileEntry(
         xTEST_LESS(0L, buffSize);
     }
 
-    passwd *pwd = NULL;
+    passwd *pwd = xPTR_NULL;
     char    buff[buffSize];
 
     void_t *pvRv = std::memset(&buff[0], 0, sizeof(buff));

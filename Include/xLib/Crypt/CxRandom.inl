@@ -33,7 +33,7 @@ inline uint_t
 IxSeedPolicy::_seedTimeBased() const
 {
     timeval tv = {0, 0};
-    int_t iRv = xGETTIMEOFDAY(&tv, NULL);
+    int_t iRv = xGETTIMEOFDAY(&tv, xPTR_NULL);
     xTEST_DIFF(iRv, - 1);
 
     return static_cast<uint_t>( tv.tv_usec );
@@ -94,9 +94,9 @@ CxNativeSeedPolicy::CxNativeSeedPolicy() :
     IxSeedPolicy()
 {
 #if   xOS_ENV_WIN
-    _hProv = NULL;
+    _hProv = xPTR_NULL;
 
-    BOOL blRv = ::CryptAcquireContext(&_hProv, NULL, NULL, PROV_RSA_FULL,
+    BOOL blRv = ::CryptAcquireContext(&_hProv, xPTR_NULL, xPTR_NULL, PROV_RSA_FULL,
         CRYPT_VERIFYCONTEXT | CRYPT_SILENT);
     xTEST_DIFF(blRv, FALSE);
 #elif xOS_ENV_UNIX
@@ -112,7 +112,7 @@ inline
 CxNativeSeedPolicy::~CxNativeSeedPolicy()
 {
 #if   xOS_ENV_WIN
-    BOOL blRv = ::CryptReleaseContext(_hProv, 0UL);   _hProv = NULL;
+    BOOL blRv = ::CryptReleaseContext(_hProv, 0UL);   _hProv = xPTR_NULL;
     xTEST_DIFF(blRv, FALSE);
 #elif xOS_ENV_UNIX
     xSTRUCT_ZERO(_data);

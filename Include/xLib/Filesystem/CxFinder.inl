@@ -147,7 +147,7 @@ CxFinder::isValid() const
     xCHECK_RET(xNATIVE_HANDLE_INVALID == _entry.handle, false);
     xCHECK_NA(_entry.data);
 #elif xOS_ENV_UNIX
-    xCHECK_RET(NULL == _entry.handle, false);
+    xCHECK_RET(xPTR_NULL == _entry.handle, false);
     xCHECK_NA(entry.data);
 #endif
 
@@ -174,11 +174,11 @@ CxFinder::moveNext()
         int_t iRv = 0;
 
         xFOREVER {
-            dirent *entryRv = NULL;
+            dirent *entryRv = xPTR_NULL;
 
             iRv = ::readdir_r(_entry.handle, &_entry.data, &entryRv);
             xTEST_EQ(iRv, 0);
-            xCHECK_RET(NULL == entryRv, false);
+            xCHECK_RET(xPTR_NULL == entryRv, false);
 
             // filter by pattern
             iRv = ::fnmatch(shellFilter().c_str(), entryName().c_str(), 0);
@@ -216,7 +216,7 @@ CxFinder::close()
     #if   xOS_ENV_WIN
         _entry.handle = xNATIVE_HANDLE_INVALID;
     #elif xOS_ENV_UNIX
-        _entry.handle = NULL;
+        _entry.handle = xPTR_NULL;
     #endif
         xSTRUCT_ZERO(_entry.data);
     }
@@ -329,7 +329,7 @@ CxFinder::_moveFirst()
     xCHECK_RET(_entry.handle == xNATIVE_HANDLE_INVALID, false);
 #elif xOS_ENV_UNIX
     _entry.handle = ::opendir(rootDirPath().c_str());
-    xCHECK_RET(_entry.handle == NULL, false);
+    xCHECK_RET(_entry.handle == xPTR_NULL, false);
 
     bool_t bRv = moveNext();
     xCHECK_RET(!bRv, false);

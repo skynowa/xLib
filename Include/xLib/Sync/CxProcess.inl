@@ -30,7 +30,7 @@ inline
 CxProcess::CxProcess() :
     _handle    (0),
 #if xOS_ENV_WIN
-    _thread    (NULL),
+    _thread    (xPTR_NULL),
 #endif
     _pid       (0UL),
     _exitStatus(0U)
@@ -76,7 +76,7 @@ CxProcess::create(
     PROCESS_INFORMATION processInfo = {0};
 
     BOOL blRv = ::CreateProcess(a_filePath.c_str(), const_cast<LPTSTR>( cmdLine.c_str() ),
-        NULL, NULL, FALSE, NORMAL_PRIORITY_CLASS, NULL, NULL, &startupInfo, &processInfo);
+        xPTR_NULL, xPTR_NULL, FALSE, NORMAL_PRIORITY_CLASS, xPTR_NULL, xPTR_NULL, &startupInfo, &processInfo);
     xTEST_DIFF(FALSE, blRv);
 
     _handle = processInfo.hProcess;
@@ -90,7 +90,7 @@ CxProcess::create(
         // TODO: CxProcess::create() - filePath is executable
 
         int_t iRv = ::execlp(a_filePath.c_str(), a_filePath.c_str(), cmdLine.c_str(),
-            static_cast<ctchar_t *>( NULL ));
+            static_cast<ctchar_t *>( xPTR_NULL ));
         xTEST_DIFF(- 1, iRv);
 
         (void_t)::_exit(EXIT_SUCCESS);  /* not exit() */
@@ -278,7 +278,7 @@ CxProcess::idByName(
         // enumerate all entries in directory until process found
         xFOREVER {
             dirent *dirEntry = ::readdir(dir);
-            xCHECK_DO(NULL == dirEntry, break);
+            xCHECK_DO(xPTR_NULL == dirEntry, break);
 
             // skip non-numeric entries
             int_t id = ::atoi(dirEntry->d_name);
@@ -305,7 +305,7 @@ CxProcess::idByName(
             }
         }
 
-        int_t iRv = ::closedir(dir); dir = NULL;
+        int_t iRv = ::closedir(dir); dir = xPTR_NULL;
         xTEST_DIFF(- 1, iRv);
 
         ulRv = pid;
@@ -313,11 +313,11 @@ CxProcess::idByName(
         int_t  mib[3]   = {CTL_KERN, KERN_PROC, KERN_PROC_ALL};
         size_t buffSize = 0U;
 
-        int_t iRv = ::sysctl(mib, xARRAY_SIZE(mib), NULL, &buffSize, NULL, 0U);
+        int_t iRv = ::sysctl(mib, xARRAY_SIZE(mib), xPTR_NULL, &buffSize, xPTR_NULL, 0U);
         xTEST_DIFF(- 1, iRv);
 
         // allocate memory and populate info in the  processes structure
-        kinfo_proc *infoProc = NULL;
+        kinfo_proc *infoProc = xPTR_NULL;
 
         xFOREVER {
             buffSize += buffSize / 10;
@@ -327,7 +327,7 @@ CxProcess::idByName(
 
             infoProc = infoProcNew;
 
-            iRv = ::sysctl(mib, xARRAY_SIZE(mib), infoProc, &buffSize, NULL, 0U);
+            iRv = ::sysctl(mib, xARRAY_SIZE(mib), infoProc, &buffSize, xPTR_NULL, 0U);
             xCHECK_DO(!(- 1 == iRv && errno == ENOMEM), break);
         }
 
@@ -419,11 +419,11 @@ CxProcess::ids(
         int_t  mib[3]   = {CTL_KERN, KERN_PROC, KERN_PROC_ALL};
         size_t buffSize = 0U;
 
-        int_t iRv = ::sysctl(mib, xARRAY_SIZE(mib), NULL, &buffSize, NULL, 0U);
+        int_t iRv = ::sysctl(mib, xARRAY_SIZE(mib), xPTR_NULL, &buffSize, xPTR_NULL, 0U);
         xTEST_DIFF(- 1, iRv);
 
         // allocate memory and populate info in the  processes structure
-        kinfo_proc *infoProc = NULL;
+        kinfo_proc *infoProc = xPTR_NULL;
 
         xFOREVER {
             buffSize += buffSize / 10;
@@ -433,7 +433,7 @@ CxProcess::ids(
 
             infoProc = infoProcNew;
 
-            iRv = ::sysctl(mib, xARRAY_SIZE(mib), infoProc, &buffSize, NULL, 0U);
+            iRv = ::sysctl(mib, xARRAY_SIZE(mib), infoProc, &buffSize, xPTR_NULL, 0U);
             xCHECK_DO(!(- 1 == iRv && errno == ENOMEM), break);
         }
 

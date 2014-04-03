@@ -58,7 +58,7 @@ CxPath::exe()
 
     sRv.resize(xPATH_MAX);
 
-    DWORD stored = ::GetModuleFileName(NULL, &sRv.at(0), static_cast<DWORD>( sRv.size() ));
+    DWORD stored = ::GetModuleFileName(xPTR_NULL, &sRv.at(0), static_cast<DWORD>( sRv.size() ));
     xTEST_DIFF(0UL, stored);
 
     sRv.resize(stored);
@@ -91,7 +91,7 @@ CxPath::exe()
             tchar_t     buff[PATH_MAX + 1] = {0};
             std::size_t buffSize           = sizeof(buff) - 1;
 
-            int_t iRv = ::sysctl(mib, xARRAY_SIZE(mib), buff, &buffSize, NULL, 0U);
+            int_t iRv = ::sysctl(mib, xARRAY_SIZE(mib), buff, &buffSize, xPTR_NULL, 0U);
             xTEST_DIFF(- 1, iRv);
 
             sRv.assign(buff);
@@ -412,7 +412,7 @@ CxPath::removeExtIf(
 inline bool_t
 CxPath::isValid(
     std::ctstring_t &a_filePath,                    ///< file, directory path
-    std::tstring_t  *a_filePathValid /* = NULL */   ///< [out] normalized path
+    std::tstring_t  *a_filePathValid /* = xPTR_NULL */   ///< [out] normalized path
 )
 {
     xTEST_NA(a_filePath);
@@ -440,7 +440,7 @@ CxPath::isValid(
 inline bool_t
 CxPath::isNameValid(
     std::ctstring_t &a_fileName,                    ///< file, directory name
-    std::tstring_t  *a_fileNameValid /* = NULL */   ///< [out] normalized name
+    std::tstring_t  *a_fileNameValid /* = xPTR_NULL */   ///< [out] normalized name
 )
 {
     xTEST_NA(a_fileName);
@@ -451,7 +451,7 @@ CxPath::isNameValid(
 
     // check: empty name
     if ( sRv.empty() ) {
-        xCHECK_RET(a_fileNameValid == NULL, false);
+        xCHECK_RET(a_fileNameValid == xPTR_NULL, false);
 
         a_fileNameValid->clear();
         return true;
@@ -459,7 +459,7 @@ CxPath::isNameValid(
 
     // check: name size
     if (sRv.size() > xNAME_MAX) {
-        xCHECK_RET(a_fileNameValid == NULL, false);
+        xCHECK_RET(a_fileNameValid == xPTR_NULL, false);
 
         sRv.resize(xNAME_MAX);
     }
@@ -481,7 +481,7 @@ CxPath::isNameValid(
         ctchar_t begin = *sRv.begin();
         ctchar_t end   = *(sRv.end() - 1);
 
-        if (a_fileNameValid == NULL) {
+        if (a_fileNameValid == xPTR_NULL) {
             // space
             xCHECK_RET(CxConst::space().at(0) == begin, false);
             xCHECK_RET(CxConst::space().at(0) == end,   false);
@@ -518,7 +518,7 @@ CxPath::isNameValid(
 
         std::csize_t pos = sRv.find_first_of(exceptedChars);
         if (pos != std::tstring_t::npos) {
-            xCHECK_RET(a_fileNameValid == NULL, false);
+            xCHECK_RET(a_fileNameValid == xPTR_NULL, false);
 
             xFOREVER {
                 sRv.erase(pos, 1);
@@ -544,7 +544,7 @@ CxPath::isNameValid(
 
         cit = std::find_if(sRv.begin(), sRv.end(), CxChar::isControl);
         if (cit != sRv.end()) {
-            xCHECK_RET(a_fileNameValid == NULL, false);
+            xCHECK_RET(a_fileNameValid == xPTR_NULL, false);
 
             xFOREVER {
                 std::tstring_t::iterator itNewEnd;
@@ -587,7 +587,7 @@ CxPath::isNameValid(
             bool_t bRv = CxStringCI::compare(baseFileName, reservedNames[i]);
             xCHECK_DO(!bRv, continue);
 
-            xCHECK_RET(a_fileNameValid == NULL, false);
+            xCHECK_RET(a_fileNameValid == xPTR_NULL, false);
 
             a_fileNameValid->clear();
             return true;
@@ -598,7 +598,7 @@ CxPath::isNameValid(
    /**
     * check: excepted chars
     * /  (forward slash)
-    * \0 (NULL character)
+    * \0 (xPTR_NULL character)
     */
     {
         std::tstring_t exceptedChars;
@@ -608,7 +608,7 @@ CxPath::isNameValid(
 
         std::size_t pos = sRv.find_first_of(exceptedChars);
         if (pos != std::tstring_t::npos) {
-            xCHECK_RET(a_fileNameValid == NULL, false);
+            xCHECK_RET(a_fileNameValid == xPTR_NULL, false);
 
             xFOREVER {
                 sRv.erase(pos, 1);
@@ -634,7 +634,7 @@ CxPath::isNameValid(
 
         std::size_t pos = sRv.find_first_of(exceptedChars);
         if (pos != std::tstring_t::npos) {
-            xCHECK_RET(a_fileNameValid == NULL, false);
+            xCHECK_RET(a_fileNameValid == xPTR_NULL, false);
 
             xFOREVER {
                 sRv.erase(pos, 1);
@@ -652,7 +652,7 @@ CxPath::isNameValid(
 #endif
 
     // out
-    if (a_fileNameValid != NULL) {
+    if (a_fileNameValid != xPTR_NULL) {
         *a_fileNameValid = sRv;
     }
 
@@ -747,13 +747,13 @@ CxPath::absolute() const
     DWORD          dwRv = 0UL;
     std::tstring_t buff;
 
-    dwRv = ::GetFullPathName(&filePath().at(0), 0, NULL, NULL);
+    dwRv = ::GetFullPathName(&filePath().at(0), 0, xPTR_NULL, xPTR_NULL);
     xTEST_DIFF(0UL, dwRv);
 
     buff.resize(dwRv);
 
     dwRv = ::GetFullPathName(&filePath().at(0), static_cast<DWORD>( buff.size() ), &buff.at(0),
-        NULL);
+        xPTR_NULL);
     xTEST_DIFF(0UL, dwRv);
 
     buff.resize(dwRv);

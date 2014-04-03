@@ -554,7 +554,7 @@
 // xNATIVE_HANDLE_NULL, xNATIVE_HANDLE_INVALID
 #if   xOS_ENV_WIN
     #define xNATIVE_HANDLE_NULL \
-        ( static_cast<native_handle_t>( NULL ) )
+        ( static_cast<native_handle_t>( xPTR_NULL ) )
         ///< native handle value "null"
     #define xNATIVE_HANDLE_INVALID \
         ( static_cast<native_handle_t>( INVALID_HANDLE_VALUE ) )
@@ -590,7 +590,7 @@
 // xWND_NATIVE_HANDLE_NULL
 #if xOS_ENV_WIN
     #define xWND_NATIVE_HANDLE_NULL \
-        ( static_cast<HWND>( NULL ) )
+        ( static_cast<HWND>( xPTR_NULL ) )
         ///< window native handle value "null"
 #endif
 
@@ -698,12 +698,12 @@
     ///< disallow make instance
 #define xNO_ARRAY_HEAP \
     private: \
-        void * operator new [](size_t) throw() { return NULL; } \
+        void * operator new [](size_t) throw() { return xPTR_NULL; } \
         void   operator delete [](void *) { ; }
     ///< disallow array on heap
 #define xNO_HEAP \
     private: \
-        void * operator new(size_t) throw() { return NULL; } \
+        void * operator new(size_t) throw() { return xPTR_NULL; } \
         void   operator delete(void *) { ; }
     ///< disallow object on heap
 //-------------------------------------------------------------------------------------------------

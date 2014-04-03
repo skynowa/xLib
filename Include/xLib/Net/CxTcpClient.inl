@@ -39,7 +39,7 @@ CxTcpClient::isReadable() const
 
     FD_SET(_socket, &fds);
 
-    int_t iRv = ::select(0, &fds, NULL, NULL, &timeout_);
+    int_t iRv = ::select(0, &fds, xPTR_NULL, xPTR_NULL, &timeout_);
     xCHECK_RET(iRv <= 0 || !FD_ISSET(_socket, &fds), false);
 
     return true;
@@ -53,7 +53,7 @@ CxTcpClient::isWritable() const
 
     FD_SET(_socket, &fds);
 
-    int_t iRv = ::select(0, NULL, &fds, NULL, &timeout_);
+    int_t iRv = ::select(0, xPTR_NULL, &fds, xPTR_NULL, &timeout_);
     xCHECK_RET(iRv <= 0 || !FD_ISSET(_socket, &fds), false);
 
     return true;

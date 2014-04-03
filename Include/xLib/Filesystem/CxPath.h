@@ -103,11 +103,11 @@ public:
         ///< get standard extension
 
     static
-    bool_t         isValid(std::ctstring_t &filePath, std::tstring_t *filePathValid = NULL)
+    bool_t         isValid(std::ctstring_t &filePath, std::tstring_t *filePathValid = xPTR_NULL)
                       xWARN_UNUSED_RV;
         ///< path validation
     static
-    bool_t         isNameValid(std::ctstring_t &fileName, std::tstring_t *fileNameValid = NULL)
+    bool_t         isNameValid(std::ctstring_t &fileName, std::tstring_t *fileNameValid = xPTR_NULL)
                       xWARN_UNUSED_RV;
         ///< name validation
 

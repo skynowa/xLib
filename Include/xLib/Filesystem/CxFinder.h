@@ -62,7 +62,7 @@ private:
         DIR *           handle;
         dirent          data;
 
-        _Entry() : handle(NULL), data() {}
+        _Entry() : handle(xPTR_NULL), data() {}
     #endif
     };
 

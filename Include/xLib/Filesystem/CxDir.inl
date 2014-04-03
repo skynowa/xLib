@@ -114,7 +114,7 @@ CxDir::create() const
     xCHECK_DO(bRv, return);
 
 #if   xOS_ENV_WIN
-    BOOL blRv = ::CreateDirectory(dirPath().c_str(), NULL);
+    BOOL blRv = ::CreateDirectory(dirPath().c_str(), xPTR_NULL);
     xTEST_DIFF(FALSE, blRv);
 #elif xOS_ENV_UNIX
     int_t iRv = ::mkdir(dirPath().c_str(), S_IRWXU | S_IRGRP |  S_IXGRP | S_IROTH | S_IXOTH);

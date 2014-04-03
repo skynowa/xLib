@@ -26,7 +26,7 @@ CxCom::CxCom(
 {
     xTEST_NA(a_concurrencyModel);
 
-    HRESULT hrRv = ::CoInitializeEx(NULL, a_concurrencyModel);
+    HRESULT hrRv = ::CoInitializeEx(xPTR_NULL, a_concurrencyModel);
     xTEST_EQ(SUCCEEDED(hrRv), true);
 }
 //-------------------------------------------------------------------------------------------------

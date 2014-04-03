@@ -693,7 +693,7 @@ CxDateTime::current()
     // get msec
     timeval timeNow;   xSTRUCT_ZERO(timeNow);
 
-    int_t iRv = ::gettimeofday(&timeNow, NULL);
+    int_t iRv = ::gettimeofday(&timeNow, xPTR_NULL);
     xTEST_DIFF(- 1, iRv);
 
     // get datetime

@@ -78,7 +78,7 @@ CxStdError::format(
 #if   xOS_ENV_WIN
     #if   xCOMPILER_MINGW
         tchar_t *error = xSTRERROR(a_code);
-        xCHECK_RET(NULL == error, sRv.append(xT("[Cann't format error message]")));
+        xCHECK_RET(xPTR_NULL == error, sRv.append(xT("[Cann't format error message]")));
 
         sRv.append(error);
     #elif xCOMPILER_MS || xCOMPILER_CODEGEAR
@@ -94,7 +94,7 @@ CxStdError::format(
         char buff[64 + 1] = {0};
 
         ctchar_t *error = ::strerror_r(a_code, &buff[0], xARRAY_SIZE(buff));
-        xCHECK_RET(NULL == error, sRv.append(xT("[Cann't format error message]")));
+        xCHECK_RET(xPTR_NULL == error, sRv.append(xT("[Cann't format error message]")));
 
         sRv.append(error);
     #elif xOS_FREEBSD

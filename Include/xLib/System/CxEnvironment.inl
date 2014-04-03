@@ -44,7 +44,7 @@ CxEnvironment::isExists(
     const char *pcszRv = ::getenv(a_varName.c_str());
     xTEST_NA(pcszRv);
 
-    xCHECK_RET(NULL == pcszRv, false);
+    xCHECK_RET(xPTR_NULL == pcszRv, false);
 #endif
 
     return true;
@@ -143,7 +143,7 @@ CxEnvironment::deleteVar(
     xCHECK_DO(!isExists(a_varName), return);
 
 #if   xOS_ENV_WIN
-    BOOL blRv = ::SetEnvironmentVariable(a_varName.c_str(), NULL);
+    BOOL blRv = ::SetEnvironmentVariable(a_varName.c_str(), xPTR_NULL);
     xTEST_DIFF(FALSE, blRv);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
@@ -172,8 +172,8 @@ CxEnvironment::values(
     LPTCH lpvEnv = ::GetEnvironmentStrings();
     xTEST_PTR(lpvEnv);
 
-    // variable strings are separated by NULL byte,
-    // and the block is terminated by a NULL byte
+    // variable strings are separated by xPTR_NULL byte,
+    // and the block is terminated by a xPTR_NULL byte
     for (
         LPTSTR var = static_cast<LPTSTR>( lpvEnv );
         xT('\0') != *var;

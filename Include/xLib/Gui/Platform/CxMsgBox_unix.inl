@@ -36,8 +36,8 @@ CxMsgBox::_show_impl(
     xUNUSED(internal::enums::modalResults);
 
     int_t             iRv        = 0;
-    xcb_connection_t *connection = NULL;
-    xcb_screen_t     *screen     = NULL;
+    xcb_connection_t *connection = xPTR_NULL;
+    xcb_screen_t     *screen     = xPTR_NULL;
     xcb_drawable_t    windowId   = 0U;
     xcb_gcontext_t    foreground = 0U;
     xcb_gcontext_t    background = 0U;
@@ -48,7 +48,7 @@ CxMsgBox::_show_impl(
         {40, 40, 20, 20},
     };
 
-    connection = ::xcb_connect(NULL, NULL);
+    connection = ::xcb_connect(xPTR_NULL, xPTR_NULL);
 
     // get the first screen
     screen = ::xcb_setup_roots_iterator( ::xcb_get_setup(connection) ).data;
@@ -118,9 +118,9 @@ CxMsgBox::_show_impl(
         xBUFF_FREE(event);
     }
 
-    if (connection != NULL) {
+    if (connection != xPTR_NULL) {
         (void_t)::xcb_disconnect(connection);
-        connection = NULL;
+        connection = xPTR_NULL;
     }
 #else
     xUNUSED(a_text);

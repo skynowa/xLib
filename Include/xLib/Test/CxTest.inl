@@ -19,7 +19,7 @@ xNAMESPACE2_BEGIN(xlib, test)
 //-------------------------------------------------------------------------------------------------
 inline
 CxTest::CxTest() :
-    m_pvRv      (NULL),
+    m_pvRv      (xPTR_NULL),
     m_chRv      (0),
     m_ucRv      (0),
     m_bRv       (false),
@@ -40,7 +40,7 @@ CxTest::CxTest() :
     m_msRv      (),
     m_hRv       (xNATIVE_HANDLE_NULL),
 #if xOS_ENV_WIN
-    m_hwndRv    (NULL),
+    m_hwndRv    (xPTR_NULL),
 #endif
     _tempDirPath(),
     _name       ()
