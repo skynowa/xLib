@@ -26,6 +26,7 @@ unset(xDEBUG_MODE_NO        CACHE)
 unset(xNEW_NO_STD_THROW     CACHE)
 unset(xTEST_PRIVATE_DATA    CACHE)
 unset(xTEST_TRACING         CACHE)
+unset(xUSING_TESTS         CACHE)
 
 option(xUSING_CPP11          "support C++11 language"                   ON)
 option(xUSING_NAMESPACE_XLIB "automatically include the xlib namespace" ON)
@@ -37,6 +38,7 @@ option(xDEBUG_MODE_NO        "debug mode 'no debugging'"                OFF)
 option(xNEW_NO_STD_THROW     "new with std::notrow"                     OFF)
 option(xTEST_PRIVATE_DATA    "tests private data"                       OFF)
 option(xTEST_TRACING         "use tracing in tests"                     ON)
+option(xUSING_TESTS          "use xLib tests"                           OFF)
 
 # trace options
 message("")
@@ -51,6 +53,7 @@ message("* xDEBUG_MODE_NO:        ${xDEBUG_MODE_NO}")
 message("* xNEW_NO_STD_THROW:     ${xNEW_NO_STD_THROW}")
 message("* xTEST_PRIVATE_DATA:    ${xTEST_PRIVATE_DATA}")
 message("* xTEST_TRACING:         ${xTEST_TRACING}")
+message("* xUSING_TESTS:          ${xUSING_TESTS}")
 message("**************************************************")
 message("")
 
@@ -97,7 +100,11 @@ set(XLIB_INSTALL_PATH "${CMAKE_INSTALL_PREFIX}/${XLIB_INSTALL_DIR}")
 
 #--------------------------------------------------------------------------------------------------
 # sources
-file(GLOB_RECURSE xLib_tests_SOURCES "Tests/*.cpp")
+if (xUSING_TESTS)
+    file(GLOB_RECURSE xLib_tests_SOURCES "Tests/*.cpp")
+else()
+    file(GLOB_RECURSE xLib_tests_SOURCES "Tests/Test.cpp")
+endif()
 
 #--------------------------------------------------------------------------------------------------
 # target
