@@ -16,27 +16,43 @@ set(CMAKE_BUILD_TYPE "RelWithDebInfo")
 
 #--------------------------------------------------------------------------------------------------
 # options
-unset(xUSING_CPP11             CACHE)
-unset(xUSING_NAMESPACE_XLIB    CACHE)
-unset(xDEBUG_USE_PROMPT_DIALOG CACHE)
-unset(xDEBUG_MODE_MSGBOX       CACHE)
-unset(xDEBUG_MODE_STDOUT       CACHE)
-unset(xDEBUG_MODE_LOG          CACHE)
-unset(xDEBUG_MODE_NO           CACHE)
-unset(xNEW_NO_STD_THROW        CACHE)
-unset(xTEST_PRIVATE_DATA       CACHE)
-unset(xTEST_TRACING            CACHE)
+unset(xUSING_CPP11          CACHE)
+unset(xUSING_NAMESPACE_XLIB CACHE)
+unset(xDEBUG_USE_DIALOG     CACHE)
+unset(xDEBUG_MODE_MSGBOX    CACHE)
+unset(xDEBUG_MODE_STDOUT    CACHE)
+unset(xDEBUG_MODE_LOG       CACHE)
+unset(xDEBUG_MODE_NO        CACHE)
+unset(xNEW_NO_STD_THROW     CACHE)
+unset(xTEST_PRIVATE_DATA    CACHE)
+unset(xTEST_TRACING         CACHE)
 
-option(xUSING_CPP11             "support C++11 language"                   ON)
-option(xUSING_NAMESPACE_XLIB    "automatically include the xlib namespace" ON)
-option(xDEBUG_USE_PROMPT_DIALOG "debug prompt dialog"                      ON)
-option(xDEBUG_MODE_MSGBOX       "debug mode 'message box with plain text'" OFF)
-option(xDEBUG_MODE_STDOUT       "debug mode 'std::out with plain text'"    ON)
-option(xDEBUG_MODE_LOG          "debug mode 'logging with plain text'"     OFF)
-option(xDEBUG_MODE_NO           "debug mode 'no debugging'"                OFF)
-option(xNEW_NO_STD_THROW        "new with std::notrow"                     OFF)
-option(xTEST_PRIVATE_DATA       "tests private data"                       OFF)
-option(xTEST_TRACING            "use tracing in tests"                     ON)
+option(xUSING_CPP11          "support C++11 language"                   ON)
+option(xUSING_NAMESPACE_XLIB "automatically include the xlib namespace" ON)
+option(xDEBUG_USE_DIALOG     "debug prompt dialog"                      ON)
+option(xDEBUG_MODE_MSGBOX    "debug mode 'message box with plain text'" OFF)
+option(xDEBUG_MODE_STDOUT    "debug mode 'std::out with plain text'"    ON)
+option(xDEBUG_MODE_LOG       "debug mode 'logging with plain text'"     OFF)
+option(xDEBUG_MODE_NO        "debug mode 'no debugging'"                OFF)
+option(xNEW_NO_STD_THROW     "new with std::notrow"                     OFF)
+option(xTEST_PRIVATE_DATA    "tests private data"                       OFF)
+option(xTEST_TRACING         "use tracing in tests"                     ON)
+
+# trace options
+message("")
+message("******************** Options *********************")
+message("* xUSING_CPP11:          ${xUSING_CPP11}")
+message("* xUSING_NAMESPACE_XLIB: ${xUSING_NAMESPACE_XLIB}")
+message("* xDEBUG_USE_DIALOG:     ${xDEBUG_USE_DIALOG}")
+message("* xDEBUG_MODE_MSGBOX:    ${xDEBUG_MODE_MSGBOX}")
+message("* xDEBUG_MODE_STDOUT:    ${xDEBUG_MODE_STDOUT}")
+message("* xDEBUG_MODE_LOG:       ${xDEBUG_MODE_LOG}")
+message("* xDEBUG_MODE_NO:        ${xDEBUG_MODE_NO}")
+message("* xNEW_NO_STD_THROW:     ${xNEW_NO_STD_THROW}")
+message("* xTEST_PRIVATE_DATA:    ${xTEST_PRIVATE_DATA}")
+message("* xTEST_TRACING:         ${xTEST_TRACING}")
+message("**************************************************")
+message("")
 
 #--------------------------------------------------------------------------------------------------
 # modules
@@ -81,7 +97,7 @@ set(XLIB_INSTALL_PATH "${CMAKE_INSTALL_PREFIX}/${XLIB_INSTALL_DIR}")
 
 #--------------------------------------------------------------------------------------------------
 # sources
-file(GLOB_RECURSE xLib_tests_SOURCES "Tests/*.cpp")
+file(GLOB_RECURSE xLib_tests_SOURCES "Tests/Test.cpp")
 
 #--------------------------------------------------------------------------------------------------
 # target

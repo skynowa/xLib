@@ -244,7 +244,7 @@ CxDebugger::_msgboxPlain(
 
     CxMsgBox::ExModalResult mrRv;
 
-#if xDEBUG_USE_PROMPT_DIALOG || 1
+#if xDEBUG_USE_DIALOG
     mrRv = CxMsgBox().show(a_report.toString(), xT(""), CxMsgBox::tpAbortRetryIgnore);
 #else
     mrRv = CxMsgBox::mrIgnore;
@@ -290,7 +290,7 @@ CxDebugger::_stdoutPlain(
     std::tcout << xT("\nAbort (a), Ignore (i), Retry (r): ");
     std::tcout.flush();
 
-#if xDEBUG_USE_PROMPT_DIALOG
+#if xDEBUG_USE_DIALOG
     EConsoleCmd cmRv = static_cast<EConsoleCmd>( std::tcin.get() );   std::tcin.ignore();
 #else
     EConsoleCmd cmRv = cmIgnore;
