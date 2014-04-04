@@ -137,11 +137,11 @@ currentDateTime()
 {
     std::string sRv;
     char        buff[80 + 1] = {};
-    time_t      timeNow      = std::time(xPTR_NULL);
-    std::tm    *timeLocal    = xPTR_NULL;
+    time_t      timeNow      = std::time(NULL);
+    std::tm    *timeLocal    = NULL;
 
     timeLocal = std::localtime(&timeNow);
-    if (timeLocal == xPTR_NULL) {
+    if (timeLocal == NULL) {
         return std::string();
     }
 
