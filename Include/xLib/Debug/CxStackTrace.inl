@@ -42,7 +42,7 @@ std::csize_t elementsNum   = 5;
 
 /**
 * Skip 2 first elements of a real stack - it's a class internals:
-*   0  xLib_test  ??  0  0x46d314  xlib::CxStackTrace::get() const
+*   0  xLib_test  ??  0  0x46d314  xlib::CxStackTrace::_get() const
 *   1  xLib_test  ??  0  0x46e090  xlib::CxStackTrace::toString()
 */
 std::csize_t skipFramesNum = 2;
@@ -71,8 +71,29 @@ CxStackTrace::CxStackTrace(
 {
 }
 //-------------------------------------------------------------------------------------------------
+inline std::tstring_t
+CxStackTrace::toString()
+{
+    std::tstring_t                  sRv;
+    std::vector<std::vec_tstring_t> stack;
+
+    _get(&stack);
+    _format(stack, &sRv);
+    xCHECK_RET(sRv.empty(), CxConst::strUnknown());
+
+    return sRv;
+}
+//-------------------------------------------------------------------------------------------------
+
+
+/**************************************************************************************************
+*   private
+*
+**************************************************************************************************/
+
+//-------------------------------------------------------------------------------------------------
 inline void_t
-CxStackTrace::get(
+CxStackTrace::_get(
     std::vector<std::vec_tstring_t> *a_stack
 ) const
 {
@@ -83,7 +104,7 @@ CxStackTrace::get(
 
 #if   xOS_ENV_WIN
     #if   xCOMPILER_MINGW
-        // TODO: CxStackTrace::get()
+        // TODO: CxStackTrace::_get()
     #elif xCOMPILER_MS || xCOMPILER_CODEGEAR
         void_t      *stackBuff[xSTACK_TRACE_FRAMES_MAX] = {0};
         SYMBOL_INFO *symbol                             = xPTR_NULL;
@@ -273,7 +294,7 @@ CxStackTrace::get(
             }
         } // for
     #else
-        #pragma message("xLib: CxStackTrace::get() - n/a")
+        #pragma message("xLib: CxStackTrace::_get() - n/a")
     #endif // xHAVE_EXECINFO
 #endif
 
@@ -282,40 +303,21 @@ CxStackTrace::get(
     a_stack->swap(stack);
 }
 //-------------------------------------------------------------------------------------------------
-inline std::tstring_t
-CxStackTrace::toString()
-{
-    std::tstring_t sRv;
-    std::vector<std::vec_tstring_t> stack;
-
-    get(&stack);
-    sRv = _format(&stack);
-    xCHECK_RET(sRv.empty(), CxConst::strUnknown());
-
-    return sRv;
-}
-//-------------------------------------------------------------------------------------------------
-
-
-/**************************************************************************************************
-*   private
-*
-**************************************************************************************************/
-
-//-------------------------------------------------------------------------------------------------
-inline std::tstring_t
+void_t
 CxStackTrace::_format(
-    std::vector<std::vec_tstring_t> *a_stack
-)
+    const std::vector<std::vec_tstring_t> &a_stack,     ///< stack as std::vector
+    std::tstring_t                        *a_stackStr   ///< [out] stack as formatted string
+) const
 {
-    xCHECK_RET(xPTR_NULL == a_stack, std::tstring_t());
+    xCHECK_DO(a_stack.empty(),         return);
+    xCHECK_DO(a_stackStr == xPTR_NULL, return);
 
     std::tstring_t     sRv;
     std::vector<int_t> maxs(::elementsNum, 0);
 
     // get elements max sizes
     for (size_t i = 0; i < ::elementsNum; ++ i) {
-        xFOREACH_CONST(std::vector<std::vec_tstring_t>, it, *a_stack) {
+        xFOREACH_CONST(std::vector<std::vec_tstring_t>, it, a_stack) {
             cint_t current = static_cast<int_t>( it->at(i).size() );
             xCHECK_DO(current > maxs[i], maxs[i] = current);
         }
@@ -324,7 +326,7 @@ CxStackTrace::_format(
     // formatting
     std::size_t lineNumber = 0;
 
-    xFOREACH_CONST(std::vector<std::vec_tstring_t>, it, *a_stack) {
+    xFOREACH_CONST(std::vector<std::vec_tstring_t>, it, a_stack) {
         std::tstringstream_t stackLine;
 
         stackLine
@@ -340,7 +342,8 @@ CxStackTrace::_format(
         sRv.append(stackLine.str());
     }
 
-    return sRv;
+    // out
+    a_stackStr->swap(sRv);
 }
 //-------------------------------------------------------------------------------------------------
 #if xOS_ENV_UNIX

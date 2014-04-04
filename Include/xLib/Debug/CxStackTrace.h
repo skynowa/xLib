@@ -25,8 +25,6 @@ public:
     virtual        ~CxStackTrace() {}
         ///< destructor
 
-    void_t          get(std::vector<std::vec_tstring_t> *stack) const;
-        ///< get stack trace
     std::tstring_t  toString() xWARN_UNUSED_RV;
         ///< get stack trace with format output
 
@@ -37,7 +35,10 @@ private:
     cbool_t         _isWrapFilePaths;
     cbool_t         _isFuncParamsDisable;
 
-    std::tstring_t  _format(std::vector<std::vec_tstring_t> *stack) xWARN_UNUSED_RV;
+    void_t          _get(std::vector<std::vec_tstring_t> *stack) const;
+        ///< get stack trace
+    void_t          _format(const std::vector<std::vec_tstring_t> &stack, std::tstring_t *stackStr)
+                        const;
         ///< format stack trace
 #if xOS_ENV_UNIX
     static
