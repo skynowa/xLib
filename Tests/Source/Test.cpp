@@ -7,12 +7,96 @@
 #include <xLib/xLib.h>
 #include <Test/CxTest_xLib.h>
 
+//-------------------------------------------------------------------------------------------------
+void
+onTerminate()
+{
+    CxTrace() << xFUNCTION;
+    CxTrace() << "Stack trace:\n" << CxStackTrace().toString();
 
+    // abort();  // forces abnormal termination
+}
+void
+onSignal(int sig)
+{
+    CxTrace() << xFUNCTION;
+    CxTrace() << "Stack trace:\n " << CxStackTrace().toString();
+
+    switch (sig) {
+    case SIGABRT:
+        CxTrace() << "Caught SIGABRT: usually caused by an abort() or assert()";
+        break;
+    case SIGFPE:
+        CxTrace() << "Caught SIGFPE: arithmetic exception, such as divide by zero";
+        break;
+    case SIGILL:
+        CxTrace() << "Caught SIGILL: illegal instruction";
+        break;
+    case SIGINT:
+        CxTrace() << "Caught SIGINT: interactive attention signal, probably a ctrl+c";
+        break;
+    case SIGSEGV:
+        CxTrace() << "Caught SIGSEGV: segfault";
+        break;
+    case SIGTERM:
+    default:
+        CxTrace() << "Caught SIGTERM: a termination request was sent to the program";
+        break;
+    }
+
+    _Exit(1);
+}
+void
+setSignalHandler()
+{
+    std::signal(SIGABRT, onSignal);
+    std::signal(SIGFPE,  onSignal);
+    std::signal(SIGILL,  onSignal);
+    std::signal(SIGINT,  onSignal);
+    std::signal(SIGSEGV, onSignal);
+    std::signal(SIGTERM, onSignal);
+}
+//-------------------------------------------------------------------------------------------------
+void
+fail()
+{
+#if 0
+    int *p = xPTR_NULL;
+    *p=10;
+#else
+    throw 0;  // unhandled exception: calls terminate handler
+#endif
+}
+void
+foo1()
+{
+    fail();
+}
+void
+foo2()
+{
+    foo1();
+}
+void
+foo3()
+{
+    foo2();
+}
 //-------------------------------------------------------------------------------------------------
 int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
 {
     xUNUSED(a_argsNum);
     xUNUSED(a_args);
+
+    // FAQ: https://gist.github.com/jvranish/4441299
+    // set handlers
+    {
+        std::set_terminate(onTerminate);
+        setSignalHandler();
+    }
+
+    // test error
+    foo3();
 
 #if xUSING_TESTS
     // checks
