@@ -47,10 +47,10 @@ CxThreadStorage::isSet() const
 
 #if   xOS_ENV_WIN
     pvRv = ::TlsGetValue(_index);
-    xCHECK_RET(xPTR_NULL == pvRv, false);
+    xCHECK_RET(pvRv == xPTR_NULL, false);
 #elif xOS_ENV_UNIX
     pvRv = ::pthread_getspecific(_index);
-    xCHECK_RET(xPTR_NULL == pvRv, false);
+    xCHECK_RET(pvRv == xPTR_NULL, false);
 #endif
 
     return true;
@@ -65,7 +65,7 @@ CxThreadStorage::value() const
     xTEST_DIFF(TLS_OUT_OF_INDEXES, _index);
 
     pvRv = ::TlsGetValue(_index);
-    xTEST_EQ(true, (xPTR_NULL != pvRv) && (ERROR_SUCCESS == CxLastError::get()));
+    xTEST_EQ(true, (pvRv != xPTR_NULL) && (ERROR_SUCCESS == CxLastError::get()));
 #elif xOS_ENV_UNIX
     xTEST_EQ(true, 0 < _index);
 

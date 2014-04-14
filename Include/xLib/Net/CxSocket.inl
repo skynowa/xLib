@@ -434,14 +434,14 @@ CxSocket::peerName(
     xTEST_DIFF(xSOCKET_ERROR, iRv);
 #endif
 
-    if (xPTR_NULL != a_peerAddr) {
+    if (a_peerAddr != xPTR_NULL) {
         //convert to UNICODE
         std::string peerAddr = ::inet_ntoa(sockAddr.sin_addr);
 
         (*a_peerAddr).assign(peerAddr.begin(), peerAddr.end());
     }
 
-    if (xPTR_NULL != a_peerPort) {
+    if (a_peerPort != xPTR_NULL) {
         *a_peerPort = ntohs(sockAddr.sin_port);
     }
 }
@@ -471,14 +471,14 @@ CxSocket::socketName(
     xTEST_DIFF(xSOCKET_ERROR, iRv);
 #endif
 
-    if (xPTR_NULL != a_socketAddr) {
+    if (a_socketAddr != xPTR_NULL) {
         //convert to UNICODE
         std::string socketAddr = ::inet_ntoa(sockAddr.sin_addr);
 
         (*a_socketAddr).assign(socketAddr.begin(), socketAddr.end());
     }
 
-    if (xPTR_NULL != a_socketPort) {
+    if (a_socketPort != xPTR_NULL) {
         *a_socketPort = ntohs(sockAddr.sin_port);
     }
 }

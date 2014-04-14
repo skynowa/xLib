@@ -44,7 +44,7 @@ CxEnvironment::isExists(
     const char *pcszRv = ::getenv(a_varName.c_str());
     xTEST_NA(pcszRv);
 
-    xCHECK_RET(xPTR_NULL == pcszRv, false);
+    xCHECK_RET(pcszRv == xPTR_NULL, false);
 #endif
 
     return true;

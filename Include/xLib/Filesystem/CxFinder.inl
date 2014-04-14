@@ -144,10 +144,10 @@ inline bool_t
 CxFinder::isValid() const
 {
 #if   xOS_ENV_WIN
-    xCHECK_RET(xNATIVE_HANDLE_INVALID == _entry.handle, false);
+    xCHECK_RET(_entry.handle == xNATIVE_HANDLE_INVALID, false);
     xCHECK_NA(_entry.data);
 #elif xOS_ENV_UNIX
-    xCHECK_RET(xPTR_NULL == _entry.handle, false);
+    xCHECK_RET(_entry.handle == xPTR_NULL, false);
     xCHECK_NA(entry.data);
 #endif
 
@@ -178,7 +178,7 @@ CxFinder::moveNext()
 
             iRv = ::readdir_r(_entry.handle, &_entry.data, &entryRv);
             xTEST_EQ(iRv, 0);
-            xCHECK_RET(xPTR_NULL == entryRv, false);
+            xCHECK_RET(entryRv == xPTR_NULL, false);
 
             // filter by pattern
             iRv = ::fnmatch(shellFilter().c_str(), entryName().c_str(), 0);

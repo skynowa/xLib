@@ -278,7 +278,7 @@ CxProcess::idByName(
         // enumerate all entries in directory until process found
         xFOREVER {
             dirent *dirEntry = ::readdir(dir);
-            xCHECK_DO(xPTR_NULL == dirEntry, break);
+            xCHECK_DO(dirEntry == xPTR_NULL, break);
 
             // skip non-numeric entries
             int_t id = ::atoi(dirEntry->d_name);

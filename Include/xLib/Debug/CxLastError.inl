@@ -121,7 +121,7 @@ CxLastError::format(
         char buff[64 + 1] = {0};
 
         ctchar_t *error = ::strerror_r(static_cast<int_t>( a_code ), &buff[0], xARRAY_SIZE(buff));
-        xCHECK_RET(xPTR_NULL == error, sRv.append(xT("[Cann't format error message]")));
+        xCHECK_RET(error == xPTR_NULL, sRv.append(xT("[Cann't format error message]")));
 
         sRv.append(error);
     #elif xOS_FREEBSD

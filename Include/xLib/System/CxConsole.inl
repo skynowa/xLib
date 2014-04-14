@@ -695,7 +695,7 @@ CxConsole::enableClose(
     xTEST_EQ(true, _stdOut.isValid());
 
     _menu = _menuHandle(false);
-    xTEST_EQ(true, xPTR_NULL != _menu);
+    xTEST_EQ(true, _menu != xPTR_NULL);
 
     if (!a_flag) {
         BOOL blRv = ::DeleteMenu(_menu, SC_CLOSE, MF_BYCOMMAND);
@@ -766,10 +766,10 @@ CxConsole::_menuHandle(
 {
     _menu = ::GetSystemMenu(_wnd, a_isRevert);
     if (!a_isRevert) {
-        xTEST_EQ(true, xPTR_NULL != _menu);
+        xTEST_EQ(true, _menu != xPTR_NULL);
     }
     if (true  == a_isRevert) {
-        xTEST_EQ(true, xPTR_NULL == _menu);
+        xTEST_EQ(true, _menu == xPTR_NULL);
     }
 
     return _menu;

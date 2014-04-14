@@ -738,7 +738,7 @@ CxString::format(
 {
     xTEST_NA(a_format);
 
-    xCHECK_RET(xPTR_NULL == a_format, std::tstring_t());
+    xCHECK_RET(a_format == xPTR_NULL, std::tstring_t());
 
     std::tstring_t sRv;
 
@@ -762,7 +762,7 @@ CxString::formatV(
     xTEST_NA(a_format);
     xTEST_NA(a_args);
 
-    xCHECK_RET(xPTR_NULL == a_format, std::tstring_t());
+    xCHECK_RET(a_format == xPTR_NULL, std::tstring_t());
 
     std::tstring_t buff(64, 0);
     int_t          writtenSize = - 1;
@@ -797,7 +797,7 @@ CxString::formatV(
     xTEST_NA(a_format);
     xTEST_NA(a_args);
 
-    xCHECK_RET(xPTR_NULL == a_format, std::tstring_t());
+    xCHECK_RET(a_format == xPTR_NULL, std::tstring_t());
 
     std::tstring_t buff(64, 0);
     int_t          writtenSize = - 1;
@@ -962,7 +962,7 @@ CxString::memoryZeroSecure(
     size_t buffSize = a_buffSize;
 
     for (volatile uchar_t *buff = static_cast<volatile uchar_t *>( a_buff );
-         xPTR_NULL != a_buff && 0 != buffSize;
+         a_buff != xPTR_NULL && 0 != buffSize;
          ++ buff, -- buffSize)
     {
         *buff = 0;

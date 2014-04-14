@@ -267,7 +267,7 @@ CxIpcSemaphore::_isValid() const
 #if   xOS_ENV_WIN
     return _handle.isValid();
 #elif xOS_ENV_UNIX
-    return (xPTR_NULL != _handle);
+    return (_handle != xPTR_NULL);
 #endif
 }
 //-------------------------------------------------------------------------------------------------

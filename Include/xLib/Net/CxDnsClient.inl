@@ -193,7 +193,7 @@ CxDnsClient::protocolByName(
 
     //-------------------------------------
     // a_name
-    if (xPTR_NULL != a_name) {
+    if (a_name != xPTR_NULL) {
         // convert to UNICODE
         std::string name = info->p_name;
         a_name->assign(name.begin(), name.end());
@@ -201,7 +201,7 @@ CxDnsClient::protocolByName(
 
     //-------------------------------------
     // a_aliases
-    if (xPTR_NULL != a_aliases) {
+    if (a_aliases != xPTR_NULL) {
         a_aliases->clear();
 
         for (char **s = info->p_aliases; s && *s; ++ s) {
@@ -241,14 +241,14 @@ CxDnsClient::protocolByNumber(
     //-------------------------------------
     // a_name
     // convert to UNICODE
-    if (xPTR_NULL != a_name) {
+    if (a_name != xPTR_NULL) {
         std::string name = info->p_name;
         a_name->assign(name.begin(), name.end());
     }
 
     //-------------------------------------
     // a_aliases
-    if (xPTR_NULL != a_aliases) {
+    if (a_aliases != xPTR_NULL) {
         a_aliases->clear();
 
         for (char **s = info->p_aliases; s && *s; ++ s) {
@@ -295,14 +295,14 @@ CxDnsClient::serviceByName(
 
     //-------------------------------------
     // name
-    if (xPTR_NULL != a_name) {
+    if (a_name != xPTR_NULL) {
         std::string name = info->s_name;
         a_name->assign(name.begin(), name.end());
     }
 
     //-------------------------------------
     // aliases
-    if (xPTR_NULL != a_aliases) {
+    if (a_aliases != xPTR_NULL) {
         a_aliases->clear();
 
         for (char **s = info->s_aliases; s && *s; ++ s) {
@@ -323,7 +323,7 @@ CxDnsClient::serviceByName(
 
     //-------------------------------------
     // protocolName_rv
-    if (xPTR_NULL != a_protocolName_rv) {
+    if (a_protocolName_rv != xPTR_NULL) {
         std::string _protocolName = info->s_proto;
         a_protocolName_rv->assign(_protocolName.begin(), _protocolName.end());
     }
@@ -355,14 +355,14 @@ CxDnsClient::serviceByPort(
 
     //-------------------------------------
     // name
-    if (xPTR_NULL != a_name) {
+    if (a_name != xPTR_NULL) {
         std::string name = info->s_name;
         a_name->assign(name.begin(), name.end());
     }
 
     //-------------------------------------
     // aliases
-    if (xPTR_NULL != a_aliases) {
+    if (a_aliases != xPTR_NULL) {
         a_aliases->clear();
 
         for (char **s = info->s_aliases; s && *s; ++ s) {
@@ -383,7 +383,7 @@ CxDnsClient::serviceByPort(
 
     //-------------------------------------
     // protocolName_rv
-    if (xPTR_NULL != a_protocolName_rv) {
+    if (a_protocolName_rv != xPTR_NULL) {
         std::string _protocolName = info->s_proto;
         a_protocolName_rv->assign(_protocolName.begin(), _protocolName.end());
     }

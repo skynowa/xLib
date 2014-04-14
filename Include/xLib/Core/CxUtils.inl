@@ -50,7 +50,7 @@ CxUtils::ptrAssignT(
     const T &a_value
 )
 {
-    xCHECK_DO(xPTR_NULL == a_ptr, return);
+    xCHECK_DO(a_ptr == xPTR_NULL, return);
 
     *a_ptr = a_value;
 }
@@ -72,7 +72,7 @@ CxUtils::memoryZero(
     std::csize_t &a_sizeBytes
 )
 {
-    xCHECK_DO(xPTR_NULL == a_ptr, return);
+    xCHECK_DO(a_ptr == xPTR_NULL, return);
 
     void_t *pvRv = std::memset(a_ptr, 0, a_sizeBytes);
     xUNUSED(pvRv);
@@ -106,7 +106,7 @@ CxUtils::bufferFreeT(
     T * &a_ptr
 )
 {
-    xCHECK_DO(xPTR_NULL == a_ptr, return);
+    xCHECK_DO(a_ptr == xPTR_NULL, return);
 
     std::free(a_ptr);
     a_ptr = xPTR_NULL;
@@ -118,7 +118,7 @@ CxUtils::fileClose(
     FILE * &a_fileHandle
 )
 {
-    xCHECK_DO(xPTR_NULL == a_fileHandle, return);
+    xCHECK_DO(a_fileHandle == xPTR_NULL, return);
 
     std::fclose(a_fileHandle);
     a_fileHandle = xPTR_NULL;
