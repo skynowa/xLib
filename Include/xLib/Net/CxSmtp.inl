@@ -55,10 +55,10 @@ CxSmtp::create(
     cushort_t       &a_port
 )
 {
-    xTEST_EQ(false, a_user.empty());
-    ////xTEST_EQ(false, a_password.empty());
-    xTEST_EQ(false, a_server.empty());
-    xTEST_EQ(true, (32767 > a_port) && (0 < a_port));
+    xTEST_EQ(a_user.empty(), false);
+    ////xTEST_EQ(a_password.empty(), false);
+    xTEST_EQ(a_server.empty(), false);
+    xTEST_EQ((32767 > a_port) && (0 < a_port), true);
 
     _user     = a_user;
     _password = a_password;
@@ -180,8 +180,8 @@ CxSmtp::sendRaw
 )
 {
     // TODO: xTEST_DIFF(xSOCKET_HANDLE_INVALID, _socket,   false);
-    xTEST_EQ(false, a_from.empty());
-    xTEST_EQ(false, a_to.empty());
+    xTEST_EQ(a_from.empty(), false);
+    xTEST_EQ(a_to.empty(), false);
 
     std::tstring_t sRv;
 
@@ -226,8 +226,8 @@ CxSmtp::send(
 )
 {
     // TODO: xTEST_DIFF(xSOCKET_HANDLE_INVALID, _socket);
-    xTEST_EQ(false, a_from.empty());
-    xTEST_EQ(false, a_to.empty());
+    xTEST_EQ(a_from.empty(), false);
+    xTEST_EQ(a_to.empty(), false);
 
     std::tstring_t sRv;
 
@@ -303,8 +303,8 @@ CxSmtp::_command(
     std::tstring_t  &a_reply
 )
 {
-    xTEST_EQ(false, a_command.empty());
-    xTEST_EQ(false, a_replyDelimiter.empty());
+    xTEST_EQ(a_command.empty(), false);
+    xTEST_EQ(a_replyDelimiter.empty(), false);
 
     std::tstring_t sRv;
 
@@ -321,7 +321,7 @@ CxSmtp::_isError(
 {
     xTEST_EQ(false, a_text.empty());
 
-    bool_t bRv = (bool_t)!(
+    bool_t bRv = !(
         !std::memcmp(a_text.c_str(), xT("334"), 3) || // 334 VXNlcm5hbWU6
         !std::memcmp(a_text.c_str(), xT("235"), 3) || // 235 2.0.0 Authentication successful
         !std::memcmp(a_text.c_str(), xT("220"), 3) || // 220 Kerio MailServer ESMTP ready
