@@ -22,7 +22,7 @@ public:
     virtual       ~CxCrc32() {};
         ///< destructor
 
-    ulong_t        calc(uchar_t *buff, culong_t &size) xWARN_UNUSED_RV;
+    ulong_t        calc(uchar_t *buff, culong_t &buffSize) xWARN_UNUSED_RV;
         ///< fast calculate
     ulong_t        calcFile(std::ctstring_t &filePath) xWARN_UNUSED_RV;
         ///< fast calculate
