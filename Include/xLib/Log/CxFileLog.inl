@@ -28,7 +28,7 @@ CxFileLog::CxFileLog() :
     _filePath        (),
     _maxFileSizeBytes(lsDefaultMb)
 {
-    xTEST_EQ(true, _filePath.empty());
+    xTEST_EQ(_filePath.empty(), true);
 }
 //-------------------------------------------------------------------------------------------------
 inline
@@ -38,7 +38,7 @@ CxFileLog::CxFileLog(
     _filePath        (),
     _maxFileSizeBytes(a_maxFileSizeBytes)
 {
-    xTEST_EQ(true, _filePath.empty());
+    xTEST_EQ(_filePath.empty(), true);
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -53,9 +53,9 @@ CxFileLog::setFilePath(
     std::ctstring_t &a_filePath
 )
 {
-    xTEST_EQ(false, a_filePath.empty());
+    xTEST_EQ(a_filePath.empty(), false);
 
-    if (std::tstring_t::npos == a_filePath.find(CxConst::slash())) {
+    if (a_filePath.find(CxConst::slash()), std::tstring_t::npos) {
         _filePath = CxPath(CxPath::exe()).dir() + CxConst::slash() + a_filePath;
     } else {
         _filePath = a_filePath;
@@ -70,7 +70,9 @@ CxFileLog::filePath() const
 //-------------------------------------------------------------------------------------------------
 template<class T>
 inline CxFileLog &
-CxFileLog::operator << (const T &valueT)
+CxFileLog::operator << (
+    const T &valueT
+)
 {
     _oss << valueT;
     return *this;
@@ -82,9 +84,9 @@ CxFileLog::write(
     ctchar_t *a_format, ...
 ) const
 {
-    xCHECK_DO(!isEnabled(),       return);
-    xCHECK_DO(a_format == xPTR_NULL,   return);
-    xCHECK_DO(filePath().empty(), return);
+    xCHECK_DO(!isEnabled(),          return);
+    xCHECK_DO(a_format == xPTR_NULL, return);
+    xCHECK_DO(filePath().empty(),    return);
 
     std::tstring_t msg;
 
