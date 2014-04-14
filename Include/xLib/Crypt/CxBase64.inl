@@ -16,10 +16,7 @@
 
 xNAMESPACE_ANONYM_BEGIN
 
-std::cstring_t base64Chars =
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        "abcdefghijklmnopqrstuvwxyz"
-        "0123456789+/";
+std::cstring_t base64Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
 xNAMESPACE_ANONYM_END
 
@@ -38,43 +35,43 @@ CxBase64::encode(
 )
 {
     std::string sRv;
-    std::size_t size = a_size;
-    int         i = 0;
-    int         j = 0;
-    uchar_t     char_array_3[3] = {0};
-    uchar_t     char_array_4[4] = {0};
+    std::size_t inSize        = a_size;
+    int         i             = 0;
+    int         j             = 0;
+    uchar_t     charArray3[3] = {0};
+    uchar_t     charArray4[4] = {0};
 
-    while (size--) {
-        char_array_3[i++] = *(a_bytes++);
+    while (inSize --) {
+        charArray3[i ++] = *(a_bytes ++);
         if (i == 3) {
-            char_array_4[0] = (char_array_3[0] & 0xfc) >> 2;
-            char_array_4[1] = static_cast<uchar_t>( ((char_array_3[0] & 0x03) << 4) + ((char_array_3[1] & 0xf0) >> 4) );
-            char_array_4[2] = static_cast<uchar_t>( ((char_array_3[1] & 0x0f) << 2) + ((char_array_3[2] & 0xc0) >> 6) );
-            char_array_4[3] = char_array_3[2] & 0x3f;
+            charArray4[0] = (charArray3[0] & 0xfc) >> 2;
+            charArray4[1] = static_cast<uchar_t>( ((charArray3[0] & 0x03) << 4) + ((charArray3[1] & 0xf0) >> 4) );
+            charArray4[2] = static_cast<uchar_t>( ((charArray3[1] & 0x0f) << 2) + ((charArray3[2] & 0xc0) >> 6) );
+            charArray4[3] = charArray3[2] & 0x3f;
 
-            for (i = 0; i < 4; i ++) {
-                sRv += ::base64Chars[char_array_4[i]];
+            for (i = 0; i < 4; ++ i) {
+                sRv += ::base64Chars[ charArray4[i] ];
             }
 
             i = 0;
         }
     }
 
-    if (i) {
-        for (j = i; j < 3; j ++) {
-            char_array_3[j] = '\0';
+    if (i != 0) {
+        for (j = i; j < 3; ++ j) {
+            charArray3[j] = '\0';
         }
 
-        char_array_4[0] = (char_array_3[0] & 0xfc) >> 2;
-        char_array_4[1] = static_cast<uchar_t>( ((char_array_3[0] & 0x03) << 4) + ((char_array_3[1] & 0xf0) >> 4) );
-        char_array_4[2] = static_cast<uchar_t>( ((char_array_3[1] & 0x0f) << 2) + ((char_array_3[2] & 0xc0) >> 6) );
-        char_array_4[3] = char_array_3[2] & 0x3f;
+        charArray4[0] = (charArray3[0] & 0xfc) >> 2;
+        charArray4[1] = static_cast<uchar_t>( ((charArray3[0] & 0x03) << 4) + ((charArray3[1] & 0xf0) >> 4) );
+        charArray4[2] = static_cast<uchar_t>( ((charArray3[1] & 0x0f) << 2) + ((charArray3[2] & 0xc0) >> 6) );
+        charArray4[3] = charArray3[2] & 0x3f;
 
         for (j = 0; (j < i + 1); j ++) {
-            sRv += ::base64Chars[char_array_4[j]];
+            sRv += ::base64Chars[ charArray4[j] ];
         }
 
-        while ((i++ < 3)) {
+        while (i ++ < 3) {
             sRv += '=';
         }
     }
@@ -98,47 +95,48 @@ CxBase64::decode(
 )
 {
     std::string sRv;
-    int         in_len = static_cast<int>( a_str.size() );
-    int         i = 0;
-    int         j = 0;
-    int         in_ = 0;
-    uchar_t     char_array_4[4] = {0};
-    uchar_t     char_array_3[3] = {0};
+    int         inSize        = static_cast<int>( a_str.size() );
+    int         i             = 0;
+    int         j             = 0;
+    int         in            = 0;
+    uchar_t     charArray4[4] = {0};
+    uchar_t     charArray3[3] = {0};
 
-    while (in_len-- && ( a_str[in_] != '=') && _isValid(a_str[in_])) {
-        char_array_4[i++] = a_str[in_]; in_++;
+    while (inSize -- && (a_str[in] != '=') && _isValid( a_str[in] )) {
+        charArray4[i ++] = a_str[in];
+        in ++;
         if (i == 4) {
-            for (i = 0; i <4; i++) {
-                char_array_4[i] = static_cast<uchar_t>( ::base64Chars.find(char_array_4[i]) );
+            for (i = 0; i < 4; ++ i) {
+                charArray4[i] = static_cast<uchar_t>( ::base64Chars.find(charArray4[i]) );
             }
 
-            char_array_3[0] = static_cast<uchar_t>( (char_array_4[0] << 2) + ((char_array_4[1] & 0x30) >> 4) );
-            char_array_3[1] = static_cast<uchar_t>( ((char_array_4[1] & 0xf) << 4) + ((char_array_4[2] & 0x3c) >> 2) );
-            char_array_3[2] = static_cast<uchar_t>( ((char_array_4[2] & 0x3) << 6) + char_array_4[3] );
+            charArray3[0] = static_cast<uchar_t>( (charArray4[0] << 2)         + ((charArray4[1] & 0x30) >> 4) );
+            charArray3[1] = static_cast<uchar_t>( ((charArray4[1] & 0xf) << 4) + ((charArray4[2] & 0x3c) >> 2) );
+            charArray3[2] = static_cast<uchar_t>( ((charArray4[2] & 0x3) << 6) + charArray4[3] );
 
-            for (i = 0; (i < 3); i ++) {
-                sRv += char_array_3[i];
+            for (i = 0; (i < 3); ++ i) {
+                sRv += charArray3[i];
             }
 
             i = 0;
         }
     }
 
-    if (i) {
-        for (j = i; j < 4; j ++) {
-            char_array_4[j] = 0;
+    if (i != 0) {
+        for (j = i; j < 4; ++ j) {
+            charArray4[j] = 0;
         }
 
-        for (j = 0; j < 4; j ++) {
-            char_array_4[j] = static_cast<uchar_t>( ::base64Chars.find(char_array_4[j]) );
+        for (j = 0; j < 4; ++ j) {
+            charArray4[j] = static_cast<uchar_t>( ::base64Chars.find(charArray4[j]) );
         }
 
-        char_array_3[0] = static_cast<uchar_t>( (char_array_4[0] << 2) + ((char_array_4[1] & 0x30) >> 4) );
-        char_array_3[1] = static_cast<uchar_t>( ((char_array_4[1] & 0xf) << 4) + ((char_array_4[2] & 0x3c) >> 2) );
-        char_array_3[2] = static_cast<uchar_t>( ((char_array_4[2] & 0x3) << 6) + char_array_4[3] );
+        charArray3[0] = static_cast<uchar_t>( (charArray4[0] << 2)         + ((charArray4[1] & 0x30) >> 4) );
+        charArray3[1] = static_cast<uchar_t>( ((charArray4[1] & 0xf) << 4) + ((charArray4[2] & 0x3c) >> 2) );
+        charArray3[2] = static_cast<uchar_t>( ((charArray4[2] & 0x3) << 6) + charArray4[3] );
 
-        for (j = 0; (j < i - 1); j ++) {
-            sRv += char_array_3[j];
+        for (j = 0; (j < i - 1); ++ j) {
+            sRv += charArray3[j];
         }
     }
 
@@ -158,7 +156,7 @@ CxBase64::_isValid(
     cuchar_t &a_ch
 )
 {
-    return std::isalnum(a_ch) || ('+' == a_ch) || ('/' == a_ch);
+    return std::isalnum(a_ch) || (a_ch == '+') || (a_ch == '/');
 }
 //-------------------------------------------------------------------------------------------------
 
