@@ -50,7 +50,7 @@ CxBlowfish::setKey(
 )
 {
     xTEST_PTR(a_key);
-    xTEST_GR_EQ(static_cast<int_t>( MAX_KEY_SIZE ), a_keySize);
+    xTEST_GR_EQ(static_cast<int_t>( maxKeySize() ), a_keySize);
     xTEST_LESS(0, a_keySize);
 
     (void_t)::BF_set_key(&_key, a_keySize, a_key);
@@ -62,7 +62,7 @@ CxBlowfish::setKey(
 )
 {
     xTEST_EQ(false, a_key.empty());
-    xTEST_GR_EQ(static_cast<size_t>( MAX_KEY_SIZE ), a_key.size());
+    xTEST_GR_EQ(maxKeySize(), a_key.size());
 
     setKey(const_cast<uchar_t *>( a_key.data() ), static_cast<int_t>( a_key.size() ));
 }
@@ -73,7 +73,7 @@ CxBlowfish::setKey(
 )
 {
     xTEST_EQ(false, a_key.empty());
-    xTEST_GR_EQ(static_cast<size_t>( MAX_KEY_SIZE ), a_key.size() * sizeof(std::tstring_t::value_type));
+    xTEST_GR_EQ(maxKeySize(), a_key.size() * sizeof(std::tstring_t::value_type));
 
     setKey(std::ustring_t(a_key.begin(), a_key.end()));
 }
@@ -93,7 +93,7 @@ CxBlowfish::setFileKey(
 
     longlong_t fileSize = file.size();
     xTEST_LESS(0LL, fileSize);
-    xTEST_GR_EQ(static_cast<longlong_t>( MAX_KEY_SIZE ) >= fileSize, false);
+    xTEST_GR_EQ(static_cast<longlong_t>( maxKeySize() ) >= fileSize, false);
 
     fileKey.resize( static_cast<size_t>( fileSize ) );
 
