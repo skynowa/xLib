@@ -23,14 +23,12 @@ CxAutoProfiler::CxAutoProfiler(
     _profiler(),
     _comment ()
 {
-    //-------------------------------------
     // format comment
     va_list args;
     xVA_START(args, a_comment);
     _comment = CxString::formatV(a_comment, args);
     xVA_END(args);
 
-    //-------------------------------------
     // start
     _profiler.setLogPath(a_filePath);
     _profiler.start();
