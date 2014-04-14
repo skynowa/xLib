@@ -113,7 +113,7 @@ CxStackTrace::_get(
         process = ::GetCurrentProcess();
 
         BOOL blRv = ::SymInitialize(process, xPTR_NULL, TRUE);
-        xCHECK_DO(FALSE == blRv, return);
+        xCHECK_DO(blRv == FALSE, return);
 
         ushort_t framesNum = ::CaptureStackBackTrace(0UL, xSTACK_TRACE_FRAMES_MAX, stackBuff, xPTR_NULL);
         xCHECK_DO(framesNum == 0U, return);
@@ -137,7 +137,7 @@ CxStackTrace::_get(
 
                 blRv = ::SymGetModuleInfo64(process, reinterpret_cast<DWORD64>( stackBuff[i] ),
                     &miModuleInfo);
-                if (FALSE == blRv) {
+                if (blRv == FALSE) {
                     modulePath = dataNotFound;
                 } else {
                     modulePath = miModuleInfo.ImageName;
@@ -152,7 +152,7 @@ CxStackTrace::_get(
 
                 blRv = ::SymGetLineFromAddr64(process, reinterpret_cast<DWORD64>( stackBuff[i] ),
                     &displacement, &imagehlpLine);
-                if (FALSE == blRv) {
+                if (blRv == FALSE) {
                     filePath = dataNotFound;
                     fileLine = dataNotFound;
                 } else {
@@ -165,7 +165,7 @@ CxStackTrace::_get(
             {
                 blRv = ::SymFromAddr(process, reinterpret_cast<DWORD64>( stackBuff[i] ), xPTR_NULL,
                     symbol);
-                if (FALSE == blRv) {
+                if (blRv == FALSE) {
                     byteOffset   = CxString::format(xT("%p"), ptrdiff_t(xPTR_NULL));
                     functionName = dataNotFound;
                 } else {
@@ -229,7 +229,7 @@ CxStackTrace::_get(
             Dl_info dlinfo;  xSTRUCT_ZERO(dlinfo);
 
             int_t iRv = ::dladdr(stackBuff[i], &dlinfo);
-            if (0 == iRv) {
+            if (iRv == 0) {
                 modulePath   = (dlinfo.dli_fname == xPTR_NULL) ? dataNotFound : dlinfo.dli_fname;
                 filePath     = dataNotFound;
                 fileLine     = dataNotFound;
@@ -240,7 +240,7 @@ CxStackTrace::_get(
                 int_t     status     = - 1;
 
                 tchar_t *demangleName = abi::__cxa_demangle(dlinfo.dli_sname, xPTR_NULL, xPTR_NULL, &status);
-                if (demangleName != xPTR_NULL && 0 == status) {
+                if (demangleName != xPTR_NULL && status == 0) {
                     symbolName = demangleName;
                 } else {
                     symbolName = dlinfo.dli_sname;
@@ -407,17 +407,17 @@ CxStackTrace::_addr2Line(
         std::vec_tstring_t line;
 
         CxString::split(fileAndLine, xT(":"), &line);
-        _xVERIFY(2U == line.size());
+        _xVERIFY(line.size() == 2U);
 
         // out
-        _xVERIFY(0 == std::feof(file));
+        _xVERIFY(std::feof(file) == 0);
 
         *a_filePath   = line.at(0);
         *a_sourceLine = CxString::cast<ulong_t>( line.at(1) );
     }
 
     int_t iRv = ::pclose(file);   file = xPTR_NULL;
-    _xVERIFY(- 1 != iRv);
+    _xVERIFY(iRv != - 1);
 #else
     *a_filePath     = CxConst::strUnknown();
     *a_functionName = CxConst::strUnknown();
