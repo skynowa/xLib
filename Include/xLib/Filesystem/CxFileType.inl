@@ -28,13 +28,13 @@ CxFileType::CxFileType(
 ) :
     _filePath(a_filePath)
 {
-    xTEST_EQ(false, a_filePath.empty());
+    xTEST_EQ(a_filePath.empty(), false);
 }
 //-------------------------------------------------------------------------------------------------
 inline std::ctstring_t &
 CxFileType::filePath() const
 {
-    xTEST_EQ(false, _filePath.empty());
+    xTEST_EQ(_filePath.empty(), false);
 
     return _filePath;
 }
@@ -45,7 +45,7 @@ CxFileType::isExists(
     cExType &a_value
 ) const
 {
-    xTEST_EQ(false, filePath().empty());
+    xTEST_EQ(filePath().empty(), false);
     xTEST_NA(a_value);
 
     xCHECK_RET(a_value == (get() & a_value), true);
@@ -56,7 +56,7 @@ CxFileType::isExists(
 inline CxFileType::types_t
 CxFileType::get() const
 {
-    xTEST_EQ(false, filePath().empty());
+    xTEST_EQ(filePath().empty(), false);
 
     types_t ftRv = faInvalid;
 
@@ -68,7 +68,7 @@ CxFileType::get() const
 
     int_t iRv = ::xTSTAT(filePath().c_str(), &info);
     xTEST_NA(iRv);
-    if (- 1 == iRv) {
+    if (iRv == - 1) {
         ftRv = faInvalid;
     } else {
         ftRv = (info.st_mode & S_IFMT);
@@ -83,7 +83,7 @@ CxFileType::set(
     ctypes_t &a_values
 ) const
 {
-    xTEST_EQ(false, filePath().empty());
+    xTEST_EQ(filePath().empty(), false);
     xTEST_NA(a_values);
 
 #if   xOS_ENV_WIN
@@ -100,7 +100,7 @@ CxFileType::add(
     cExType &a_value
 ) const
 {
-    xTEST_EQ(false, filePath().empty());
+    xTEST_EQ(filePath().empty(), false);
     xTEST_NA(a_value);
 
     modify(static_cast<ExType>( 0 ), a_value);
@@ -111,7 +111,7 @@ CxFileType::remove(
     cExType &a_value
 ) const
 {
-    xTEST_EQ(false, filePath().empty());
+    xTEST_EQ(filePath().empty(), false);
     xTEST_NA(a_value);
 
     modify(a_value, static_cast<ExType>( 0 ));
@@ -123,7 +123,7 @@ CxFileType::modify(
     cExType &a_valueAdd
 ) const
 {
-    xTEST_EQ(false, filePath().empty());
+    xTEST_EQ(filePath().empty(), false);
     xTEST_NA(a_valueRemove);
     xTEST_NA(a_valueAdd);
 
@@ -141,7 +141,7 @@ CxFileType::modify(
 inline void_t
 CxFileType::clear() const
 {
-    xTEST_EQ(false, filePath().empty());
+    xTEST_EQ(filePath().empty(), false);
 
 #if xOS_ENV_WIN
     set(faNormal);

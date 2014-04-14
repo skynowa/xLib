@@ -53,9 +53,9 @@ CxFileTemp::create(
     CxFile          *a_file
 )
 {
-    xTEST_EQ(false, a_filePath.empty());
-    xTEST_EQ(false, a_dirPath.empty());
-    xTEST_EQ(false, a_file->isValid());
+    xTEST_EQ(a_filePath.empty(), false);
+    xTEST_EQ(a_dirPath.empty(), false);
+    xTEST_EQ(a_file->isValid(), false);
 
     std::ctstring_t fileNameTemplate = xT("XXXXXX");
 
@@ -86,7 +86,7 @@ CxFileTemp::create(
     #endif
 #elif xOS_ENV_UNIX
     int_t file = xTMKSTEMP(&_filePath.at(0));
-    xTEST_DIFF(- 1, file);
+    xTEST_DIFF(file, - 1);
 
     stdFile = ::xTFDOPEN(file, CxFile::_openMode(CxFile::omBinCreateReadWrite).c_str());
     xTEST_PTR(stdFile);

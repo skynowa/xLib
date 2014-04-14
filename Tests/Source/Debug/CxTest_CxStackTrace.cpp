@@ -14,20 +14,6 @@ CxTest_CxStackTrace::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xTEST_CASE("CxStackTrace::get", a_caseLoops)
-    {
-        CxStackTrace                    stStack;
-        std::vector<std::vec_tstring_t> vvsStack;
-
-        stStack.get(&vvsStack);
-        xTEST_EQ(false, vvsStack.empty());
-
-        #if xTEST_IGNORE && 0
-            std::tcout << xT("stack trace:") << std::endl;
-            std::tcout << vvsStack           << std::endl;
-        #endif
-    }
-
     xTEST_CASE("CxStackTrace::toString", a_caseLoops)
     {
         CxStackTrace stStack;

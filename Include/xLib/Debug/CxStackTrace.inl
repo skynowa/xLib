@@ -303,7 +303,7 @@ CxStackTrace::_get(
     a_stack->swap(stack);
 }
 //-------------------------------------------------------------------------------------------------
-void_t
+inline void_t
 CxStackTrace::_format(
     const std::vector<std::vec_tstring_t> &a_stack,     ///< stack as std::vector
     std::tstring_t                        *a_stackStr   ///< [out] stack as formatted string

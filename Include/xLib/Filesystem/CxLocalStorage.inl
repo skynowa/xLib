@@ -25,9 +25,9 @@ CxLocalStorage::CxLocalStorage() :
     _filePath (),
     _ini      ()
 {
-    xTEST_EQ(false, _separator.empty());
-    xTEST_EQ(false, _fileExt.empty());
-    xTEST_EQ(true,  _filePath.empty());
+    xTEST_EQ(_separator.empty(), false);
+    xTEST_EQ(_fileExt.empty(), false);
+    xTEST_EQ(_filePath.empty(), true);
 
     setPath( CxPath( CxPath::exe() ).setExt(_fileExt) );
 }
@@ -41,10 +41,10 @@ CxLocalStorage::CxLocalStorage(
     _filePath (),
     _ini      ()
 {
-    xTEST_EQ(false, _separator.empty());
-    xTEST_EQ(false, _fileExt.empty());
-    xTEST_EQ(true,  _filePath.empty());
-    xTEST_EQ(false, a_filePath.empty());
+    xTEST_EQ(_separator.empty(), false);
+    xTEST_EQ(_fileExt.empty(), false);
+    xTEST_EQ(_filePath.empty(), true);
+    xTEST_EQ(a_filePath.empty(), false);
 
     setPath( CxPath(a_filePath).setExt(_fileExt) );
 }
@@ -142,7 +142,7 @@ CxLocalStorage::keyReadString(
     std::ctstring_t &a_defaultValue
 )
 {
-    xTEST_EQ(false, a_key.empty());
+    xTEST_EQ(a_key.empty(), false);
     xTEST_NA(a_defaultValue);
 
     std::tstring_t sRv;
@@ -158,7 +158,7 @@ CxLocalStorage::keyWriteString(
     std::ctstring_t &a_value
 )
 {
-    xTEST_EQ(false, a_key.empty());
+    xTEST_EQ(a_key.empty(), false);
     xTEST_NA(a_value);
 
     _write(a_key, a_value);
@@ -336,7 +336,7 @@ CxLocalStorage::_read(
 
     // read to std::map_tstring_t
     std::map_tstring_t::const_iterator it = _ini.find(a_key);
-    if (_ini.end() == it) {
+    if (it == _ini.end()) {
         _write(a_key, a_defaultValue);
 
         *a_value = a_defaultValue;
@@ -356,7 +356,7 @@ CxLocalStorage::_write(
 
     // write to std::map_tstring_t
     std::map_tstring_t::iterator it = _ini.find(a_key);
-    if (_ini.end() == it) {
+    if (it == _ini.end()) {
         _ini.insert( std::pair<std::tstring_t, std::tstring_t>(a_key, a_value) );
     } else {
         it->second = a_value;
