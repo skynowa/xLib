@@ -41,13 +41,13 @@ CxVolume::CxVolume(
 ) :
     _path(a_volumePath)
 {
-    xTEST_EQ(false, path().empty());
+    xTEST_EQ(path().empty(), false);
 }
 //-------------------------------------------------------------------------------------------------
 inline std::ctstring_t &
 CxVolume::path() const
 {
-    xTEST_EQ(false, _path.empty());
+    xTEST_EQ(_path.empty(), false);
 
     return _path;
 }
@@ -79,7 +79,7 @@ CxVolume::fileSystem() const
 
     BOOL blRv = ::GetVolumeInformation(CxPath( path() ).slashAppend().c_str(), xPTR_NULL, 0UL, xPTR_NULL,
         xPTR_NULL, xPTR_NULL, &fileSystemName[0], static_cast<DWORD>( xARRAY_SIZE(fileSystemName) ));
-    xTEST_DIFF(false, blRv != FALSE && CxLastError::isSuccess() );
+    xTEST_DIFF(blRv != FALSE && CxLastError::isSuccess(), false);
 
     sRv.assign(volumeName);
 #elif xOS_ENV_UNIX
@@ -132,12 +132,12 @@ CxVolume::label() const
 
     BOOL blRv = ::GetVolumeInformation(CxPath( path() ).slashAppend().c_str(), &volumeName[0],
         static_cast<DWORD>( xARRAY_SIZE(volumeName) ), xPTR_NULL, xPTR_NULL, xPTR_NULL, xPTR_NULL, 0UL);
-    xTEST_DIFF(false, blRv != FALSE && CxLastError::isSuccess());
+    xTEST_DIFF(blRv != FALSE && CxLastError::isSuccess(), false);
 
     sRv.assign(volumeName);
 #elif xOS_ENV_UNIX
     // REVIEW: just get the dir name ??
-    if (CxConst::unixSlash() == path()) {
+    if (path() == CxConst::unixSlash()) {
         sRv = CxConst::unixSlash();
     } else {
         sRv = CxPath( path() ).fileName();
@@ -154,8 +154,8 @@ CxVolume::isValid() const
     bool_t bRv = CxDir( path() ).isRoot();
     xCHECK_RET(!bRv, false);
 #elif xOS_ENV_UNIX
-    xCHECK_RET(true                   == path().empty(), false);
-    xCHECK_RET(CxConst::slash().at(0) != path().at(0),   false);
+    xCHECK_RET(path().empty(),                         false);
+    xCHECK_RET(path().at(0) != CxConst::slash().at(0), false);
 #endif
 
     return true;
@@ -226,7 +226,7 @@ CxVolume::mount(
     netResource.lpProvider    = xPTR_NULL;
 
     DWORD dwRv = ::WNetAddConnection2(&netResource, xPTR_NULL, xPTR_NULL, CONNECT_UPDATE_PROFILE);
-    xTEST_EQ(static_cast<DWORD>( NO_ERROR ), dwRv);
+    xTEST_EQ(dwRv, static_cast<DWORD>( NO_ERROR ));
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         int_t iRv = ::mount(path().c_str(), a_destPath.c_str(), xPTR_NULL, MS_REMOUNT, xPTR_NULL);
@@ -250,7 +250,7 @@ CxVolume::unMount(
 #if   xOS_ENV_WIN
     // TODO: CxVolume::unMount() - is it correct?
     DWORD dwRv = ::WNetCancelConnection2(path().c_str(), CONNECT_UPDATE_PROFILE, a_isForce);
-    xTEST_EQ(static_cast<DWORD>( NO_ERROR ), dwRv);
+    xTEST_EQ(dwRv, static_cast<DWORD>( NO_ERROR ));
 #elif xOS_ENV_UNIX
     #ifdef MNT_DETACH
         #define xMNT_DETACH MNT_DETACH
@@ -360,12 +360,12 @@ CxVolume::paths(
     DWORD          dwRv = 0UL;
 
     dwRv = ::GetLogicalDriveStrings(0UL, xPTR_NULL);
-    xTEST_DIFF(0UL, dwRv);
+    xTEST_DIFF(dwRv, 0UL);
 
     sRv.resize(dwRv);
 
     dwRv = ::GetLogicalDriveStrings(static_cast<DWORD>( sRv.size() ), &sRv.at(0));
-    xTEST_DIFF(0UL, dwRv);
+    xTEST_DIFF(dwRv, 0UL);
 
     for (ctchar_t *s = sRv.c_str(); 0 != *s; s += ::lstrlen(s) + 1) {
         vsRv.push_back(s);
@@ -383,7 +383,7 @@ CxVolume::paths(
         };
 
         std::tifstream_t procMounts(xT("/proc/mounts"));
-        xTEST_EQ(true, procMounts.good());
+        xTEST_EQ(procMounts.good(), true);
 
         for ( ; !procMounts.eof(); ) {
             _Mounts mounts;
