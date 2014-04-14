@@ -285,9 +285,9 @@ CxCookiePv1::init(
         CxString::split(pairs.at(i), CxConst::equal(), &temp);
 
         std::tstring_t cookieName  = CxString::trimSpace(temp.at(0));
-        std::tstring_t cookieValue = ( (1 == temp.size()) ? std::tstring_t() : temp.at(1) );
+        std::tstring_t cookieValue = ( (temp.size() == 1) ? std::tstring_t() : temp.at(1) );
 
-        if (0 == i) {
+        if (i == 0) {
             //1-st pair is "Name=Value"
             cookies.insert( TStringPair(xT("Name"),  cookieName) );
             cookies.insert( TStringPair(xT("Value"), cookieValue) );

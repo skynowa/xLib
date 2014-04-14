@@ -37,7 +37,7 @@ CxTrace::write(
     ctchar_t *a_format, ...
 ) const
 {
-    xCHECK_DO(!isEnabled(),     return);
+    xCHECK_DO(!isEnabled(),          return);
     xCHECK_DO(a_format == xPTR_NULL, return);
 
     std::tstring_t msg;

@@ -58,7 +58,7 @@ CxCgi::redirect(
     std::ctstring_t &a_url
 )
 {
-    xTEST_EQ(false, a_url.empty())
+    xTEST_EQ(a_url.empty(), false)
 
     std::tstring_t httpResponse;
 
@@ -112,7 +112,7 @@ CxCgi::uriEncode(
             (*a_encodedStr) += ch;
         }
         else if (ch <= 0x20 || ch >= 0x7F || std::tstring_t::npos != URI_ILLEGAL.find(ch) ||
-            std::tstring_t::npos != a_reserved.find(ch))
+            a_reserved.find(ch) != std::tstring_t::npos)
         {
             (*a_encodedStr) += '%';
             //--encodedStr += NumberFormatter::formatHex((unsigned) (unsigned char) ch, 2);
@@ -855,7 +855,7 @@ CxCgiFormData::_construct()
     int_t iRv = _cgi.Environment.requestType();
     switch (iRv) {
     case CxCgiEnvironment::rtGet:
-        xTEST_EQ(false, _cgi.Environment.queryString().empty());
+        xTEST_EQ(_cgi.Environment.queryString().empty(), false);
 
         // TODO: CxCgiFormData::_construct() - cgl_parsecgibuf()
 
@@ -866,7 +866,7 @@ CxCgiFormData::_construct()
 
         bRv = CxStringCI::compare(xT("application/x-www-form-urlencoded"),
             _cgi.Environment.contentType());
-        xTEST_EQ(true, bRv);
+        xTEST_EQ(bRv, true);
 
         //get content length
         size_t postSize = 0;  // in bytes
@@ -877,8 +877,8 @@ CxCgiFormData::_construct()
             postSize = CxString::cast<size_t>( _cgi.Environment.contentLength() );
         }
         xTEST_LESS(size_t(0U), postSize);
-        xTEST_GR_EQ(_maxData, postSize);  //secure
-        xTEST_EQ(false, _maxData <= postSize);
+        xTEST_GR_EQ(_maxData, postSize);  // secure
+        xTEST_EQ(_maxData <= postSize, false);
 
         //read, parse data
         CxFile         file;
