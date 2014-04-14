@@ -143,12 +143,9 @@ CxMySQLConnection::connect(
     // unixSocket - n/a
     // ulClientFlag - n/a
 
-    MYSQL *connection = ::mysql_real_connect(
-                                _connection,
-                                xTS2S(a_host).c_str(),
-                                xTS2S(a_user).c_str(), xTS2S(a_password).c_str(),
-                                xTS2S(a_db).c_str(),   a_port,
-                                xTS2S(a_unixSocket).c_str(), a_clientFlag);
+    MYSQL *connection = ::mysql_real_connect(_connection, xTS2S(a_host).c_str(),
+        xTS2S(a_user).c_str(), xTS2S(a_password).c_str(), xTS2S(a_db).c_str(), a_port,
+        xTS2S(a_unixSocket).c_str(), a_clientFlag);
 
     xTEST_MSG_PTR(connection, lastErrorStr());
     xTEST_MSG_EQ(_connection, connection, lastErrorStr());
@@ -173,9 +170,8 @@ CxMySQLConnection::query(
 
     std::string asSqlQuery = xTS2S(sqlQuery);
 
-    int_t iRv = ::mysql_real_query(_connection,
-                                 asSqlQuery.data(),
-                                 static_cast<ulong_t>( asSqlQuery.size() ));
+    int_t iRv = ::mysql_real_query(_connection, asSqlQuery.data(),
+        static_cast<ulong_t>( asSqlQuery.size() ));
     xTEST_MSG_EQ(0, iRv, lastErrorStr());
 }
 //-------------------------------------------------------------------------------------------------
@@ -228,12 +224,12 @@ CxMySQLConnection::lastErrorStr() const
 
     std::tstring_t sRv;
 
-    cuint_t      lastError = lastError();
-    const char * cpszRv    = ::mysql_error(_connection);
+    cuint_t     lastError = lastError();
+    const char *cpszRv    = ::mysql_error(_connection);
     // n/a
     xTEST_PTR(cpszRv);
 
-    if (0 == lastError) {
+    if (lastError == 0U) {
         sRv = CxString::format(xT("%u - \"%s\""), lastError, xT("Success"));
     } else {
         sRv = CxString::format(xT("%u - \"%s\""), lastError, cpszRv);
