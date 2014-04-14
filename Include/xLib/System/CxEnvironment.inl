@@ -125,10 +125,10 @@ CxEnvironment::setVar(
 
 #if   xOS_ENV_WIN
     BOOL blRv = ::SetEnvironmentVariable(a_varName.c_str(), a_value.c_str());
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 #elif xOS_ENV_UNIX
     int_t iRv = ::setenv(a_varName.c_str(), a_value.c_str(), true);
-    xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(iRv, - 1);
 #endif
 }
 //-------------------------------------------------------------------------------------------------
@@ -144,17 +144,17 @@ CxEnvironment::deleteVar(
 
 #if   xOS_ENV_WIN
     BOOL blRv = ::SetEnvironmentVariable(a_varName.c_str(), xPTR_NULL);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         int_t iRv = ::unsetenv(a_varName.c_str());
-        xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(iRv, - 1);
     #elif xOS_FREEBSD
         (void_t)::unsetenv(a_varName.c_str());
     #endif
 #elif xOS_ENV_APPLE
     int_t iRv = ::unsetenv(a_varName.c_str());
-    xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(iRv, - 1);
 #endif
 }
 //-------------------------------------------------------------------------------------------------
@@ -183,7 +183,7 @@ CxEnvironment::values(
     }
 
     BOOL blRv = ::FreeEnvironmentStrings(lpvEnv);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 #elif xOS_ENV_UNIX
     xTEST_PTR(environ);
 

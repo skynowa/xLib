@@ -58,7 +58,7 @@ CxShell::execute(
     std::ctstring_t cmd = CxString::format(xT("%s \"%s\""), a_filePath.c_str(), a_params.c_str());
 
     int_t iRv = xTSYSTEM(cmd.c_str());
-    xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
 

@@ -88,7 +88,7 @@ CxEvent::set()
     xTEST_EQ(true, _event.isValid());
 
     BOOL blRv = ::SetEvent(handle().get());
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 #elif xOS_ENV_UNIX
     int_t iRv = - 1;
 
@@ -119,7 +119,7 @@ CxEvent::reset()
     xTEST_EQ(true, _event.isValid());
 
     BOOL blRv = ::ResetEvent(handle().get());
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 #elif xOS_ENV_UNIX
     int_t iRv = - 1;
 
@@ -162,7 +162,7 @@ CxEvent::wait(
                 timeval timeNow  = {0, 0};
 
                 iRv = ::gettimeofday(&timeNow, xPTR_NULL);
-                xTEST_DIFF(- 1, iRv);
+                xTEST_DIFF(iRv, - 1);
 
                 timeoutMsec.tv_sec  = timeNow.tv_sec + a_timeoutMs / 1000;
                 timeoutMsec.tv_nsec = timeNow.tv_usec * 1000 + (a_timeoutMs % 1000) * 1000000;

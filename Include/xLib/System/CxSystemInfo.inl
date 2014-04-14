@@ -47,7 +47,7 @@ CxSystemInfo::os()
     info.dwOSVersionInfoSize = sizeof(info);
 
     BOOL blRv = ::GetVersionEx(&info);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 
     switch (info.dwPlatformId) {
     case VER_PLATFORM_WIN32s:
@@ -83,7 +83,7 @@ CxSystemInfo::os()
     utsname info; xSTRUCT_ZERO(info);
 
     int_t iRv = ::uname(&info);
-    xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(iRv, - 1);
 
     if      (CxStringCI::compare(xT("Linux"), info.sysname)) {
         otRv = otLinux;
@@ -98,7 +98,7 @@ CxSystemInfo::os()
     utsname info= {{0}};
 
     int_t iRv = ::uname(&info);
-    xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(iRv, - 1);
 
     if (CxStringCI::compare(xT("Darwin"), info.sysname)) {
         otRv = otMac;
@@ -173,7 +173,7 @@ CxSystemInfo::formatOsType()
     utsname info; xSTRUCT_ZERO(info);
 
     int_t iRv = ::uname(&info);
-    xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(iRv, - 1);
 
     sRv = CxString::format(xT("%s %s (%s) %s"), info.sysname, info.release, info.version,
         info.machine);
@@ -213,7 +213,7 @@ CxSystemInfo::osArch()
     utsname info; xSTRUCT_ZERO(info);
 
     int_t iRv = ::uname(&info);
-    xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(iRv, - 1);
     // TODO: xTEST_DIFF(0,   strlen(info.machine));
 
     // 32-bit checks
@@ -319,14 +319,14 @@ CxSystemInfo::hostName() const
     tchar_t buff[xHOST_NAME_MAX + 1] = {0};
 
     BOOL blRv = ::GetComputerName(buff, &buffSize);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 
     sRv.assign(buff, buffSize);
 #elif xOS_ENV_UNIX
     utsname info; xSTRUCT_ZERO(info);
 
     int_t iRv = ::uname(&info);
-    xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(iRv, - 1);
 
     sRv.assign(info.nodename);
 #endif
@@ -471,7 +471,7 @@ CxSystemInfo::userName() const
     tchar_t buff[xUSER_NAME_MAX + 1] = {0};
 
     BOOL blRv = ::GetUserName(&buff[0], &buffSize);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 
     sRv.assign(buff, buffSize);
 #elif xOS_ENV_UNIX
@@ -546,7 +546,7 @@ CxSystemInfo::userShellPath() const
     tchar_t buff[MAX_PATH + 1] = {0};
 
     BOOL blRv = ::SHGetPathFromIDList(idList, buff);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 
     sRv.append(buff);
     sRv.append(CxConst::slash());
@@ -587,7 +587,7 @@ CxSystemInfo::numOfCpus() const
         size_t resSize = sizeof(ulRv);
 
         int_t iRv = ::sysctl(mib, static_cast<u_int>( xARRAY_SIZE(mib) ), &ulRv, &resSize, xPTR_NULL, 0);
-        xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(iRv, - 1);
     #endif
 #elif xOS_ENV_APPLE
     xNOT_IMPLEMENTED
@@ -626,7 +626,7 @@ CxSystemInfo::currentCpuNum() const
         ulRv = cpu;
     #elif xHAVE_SCHED_GETCPU
         int_t iRv = ::sched_getcpu();
-        xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(iRv, - 1);
 
         ulRv = static_cast<ulong_t>( iRv );
     #elif xHAVE_GETCPU
@@ -634,7 +634,7 @@ CxSystemInfo::currentCpuNum() const
         uint_t cpu = 0U;
 
         int_t iRv = ::getcpu(&cpu, xPTR_NULL, xPTR_NULL);
-        xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(iRv, - 1);
 
         ulRv = cpu;
     #else
@@ -798,13 +798,13 @@ CxSystemInfo::cpuModel() const
         size_t      valueSize = 0;
 
         iRv = ::sysctlbyname("hw.model", xPTR_NULL, &valueSize, xPTR_NULL, 0U);
-        xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(iRv, - 1);
         xTEST_DIFF(size_t(0), valueSize);
 
         value.resize(valueSize);
 
         iRv = ::sysctlbyname("hw.model", &value.at(0), &valueSize, xPTR_NULL, 0U);
-        xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(iRv, - 1);
         xTEST_EQ(value.size(), valueSize);
 
         sRv = value;
@@ -852,7 +852,7 @@ CxSystemInfo::cpuSpeed() const
         size_t  cpuSpeedMHzSize = sizeof(cpuSpeedMHz);
 
         int_t iRv = ::sysctlbyname("hw.clockrate", &cpuSpeedMHz, &cpuSpeedMHzSize, xPTR_NULL, 0);
-        xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(iRv, - 1);
 
         ulRv = cpuSpeedMHz;
     #endif
@@ -885,7 +885,7 @@ CxSystemInfo::cpuUsage() const
 
 
     BOOL blRv = ::GetSystemTimes(&sysIdle, &sysKernel, &sysUser);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 
     (void_t)::CopyMemory(&ulSysIdle,   &sysIdle,   sizeof(sysIdle));
     (void_t)::CopyMemory(&ulSysKernel, &sysKernel, sizeof(sysKernel));
@@ -930,10 +930,10 @@ CxSystemInfo::cpuUsage() const
 
             iRv = fscanf(file, "cpu %Ld %Ld %Ld %Ld", &userTotalOld, &userTotalLowOld,
                 &sysTotalOld, &totalIdleOld);
-            xTEST_DIFF(- 1, iRv);
+            xTEST_DIFF(iRv, - 1);
 
             iRv = fclose(file);
-            xTEST_DIFF(- 1, iRv);
+            xTEST_DIFF(iRv, - 1);
 
             isFirstRun = false;
         }
@@ -944,10 +944,10 @@ CxSystemInfo::cpuUsage() const
             xTEST_PTR(file);
 
             iRv = fscanf(file, "cpu %Ld %Ld %Ld %Ld", &userTotal, &userTotalLow, &sysTotal, &totalIdle);
-            xTEST_DIFF(- 1, iRv);
+            xTEST_DIFF(iRv, - 1);
 
             iRv = fclose(file);
-            xTEST_DIFF(- 1, iRv);
+            xTEST_DIFF(iRv, - 1);
         }
 
         if (userTotal < userTotalOld || userTotalLow < userTotalLowOld ||
@@ -983,7 +983,7 @@ CxSystemInfo::cpuUsage() const
         size_t         cpuTimeSize        = sizeof(cpuTime);
 
         int_t iRv = ::sysctlbyname("kern.cp_time", &cpuTime, &cpuTimeSize, xPTR_NULL, 0);
-        xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(iRv, - 1);
 
         used       = cpuTime[CP_USER] + cpuTime[CP_NICE] + cpuTime[CP_SYS];
         total      = cpuTime[CP_USER] + cpuTime[CP_NICE] + cpuTime[CP_SYS] + cpuTime[CP_IDLE];
@@ -1012,7 +1012,7 @@ CxSystemInfo::ramTotal() const
     status.dwLength = sizeof(status);
 
     BOOL blRv = ::GlobalMemoryStatusEx(&status);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 
     ullRv = status.ullTotalPhys;
 #elif xOS_ENV_UNIX
@@ -1020,7 +1020,7 @@ CxSystemInfo::ramTotal() const
         struct sysinfo info;   xSTRUCT_ZERO(info);
 
         int_t iRv = ::sysinfo(&info);
-        xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(iRv, - 1);
 
         ullRv = info.totalram * info.mem_unit;
     #elif xOS_FREEBSD
@@ -1030,7 +1030,7 @@ CxSystemInfo::ramTotal() const
         size_t      ramTotalSize = sizeof(ramTotal);
 
         int_t iRv = ::sysctl(mib, 2, &ramTotal, &ramTotalSize, xPTR_NULL, 0);
-        xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(iRv, - 1);
 
         ullRv = ramTotal;
     #endif
@@ -1051,7 +1051,7 @@ CxSystemInfo::ramAvailable() const
     status.dwLength = sizeof(status);
 
     BOOL blRv = ::GlobalMemoryStatusEx(&status);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 
     ullRv = status.ullAvailPhys;
 #elif xOS_ENV_UNIX
@@ -1059,7 +1059,7 @@ CxSystemInfo::ramAvailable() const
         struct sysinfo info;   xSTRUCT_ZERO(info);
 
         int_t iRv = ::sysinfo(&info);
-        xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(iRv, - 1);
 
         ullRv = info.freeram * info.mem_unit;
     #elif xOS_FREEBSD
@@ -1068,7 +1068,7 @@ CxSystemInfo::ramAvailable() const
 
         int_t iRv = ::sysctlbyname("vm.stats.vm.v_free_count", &availPhysPages,
             &availPhysPagesSize, xPTR_NULL, 0);
-        xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(iRv, - 1);
 
         ullRv = availPhysPages * pageSize();
     #endif
@@ -1089,7 +1089,7 @@ CxSystemInfo::ramUsage() const
     status.dwLength = sizeof(status);
 
     BOOL blRv = ::GlobalMemoryStatusEx(&status);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 
     ulRv = status.dwMemoryLoad;
 #elif xOS_ENV_UNIX
@@ -1097,7 +1097,7 @@ CxSystemInfo::ramUsage() const
         struct sysinfo info;   xSTRUCT_ZERO(info);
 
         int_t iRv = ::sysinfo(&info);
-        xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(iRv, - 1);
 
         cdouble_t usage = static_cast<cdouble_t>( info.totalram - info.freeram );
 
@@ -1110,7 +1110,7 @@ CxSystemInfo::ramUsage() const
             size_t ramTotalSize = sizeof(ramTotal);
 
             int_t iRv = ::sysctl(mib, 2, &ramTotal, &ramTotalSize, xPTR_NULL, 0);
-            xTEST_DIFF(- 1, iRv);
+            xTEST_DIFF(iRv, - 1);
         }
 
         ulonglong_t ramFree = 0ULL;
@@ -1120,7 +1120,7 @@ CxSystemInfo::ramUsage() const
 
             int_t iRv = ::sysctlbyname("vm.stats.vm.v_free_count", &availPhysPages,
                 &availPhysPagesSize, xPTR_NULL, 0);
-            xTEST_DIFF(- 1, iRv);
+            xTEST_DIFF(iRv, - 1);
 
             ramFree = availPhysPages * pageSize();
         }

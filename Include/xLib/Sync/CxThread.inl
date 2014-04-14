@@ -238,7 +238,7 @@ CxThread::kill(
     _exitStatus = 0U;
 
     BOOL blRv = ::TerminateThread(_thread.get(), _exitStatus);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 
     xFOREVER {
         ulRv = exitStatus();
@@ -412,7 +412,7 @@ CxThread::postMessage(
 
     BOOL blRv = ::PostMessage(a_wnd, a_msg, static_cast<WPARAM>( a_param1 ),
         static_cast<LPARAM>( a_param2 ));
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 }
 
 #endif
@@ -451,7 +451,7 @@ CxThread::postThreadMessage(
 
     BOOL blRv = ::PostThreadMessage(id(), a_msg, static_cast<WPARAM>( a_param1 ),
         static_cast<LPARAM>( a_param2 ));
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 }
 
 #endif
@@ -473,7 +473,7 @@ CxThread::tryPostThreadMessage(
         BOOL blRv = ::PostThreadMessage(id(), a_msg, static_cast<WPARAM>( a_param1 ),
             static_cast<LPARAM>( a_param2 ));
 
-        xCHECK_RET(FALSE != blRv, true);
+        xCHECK_RET(blRv != FALSE, true);
         xCHECK_DO (FALSE == blRv, currentSleep(a_attempTimeoutMsec));
     }
 
@@ -584,7 +584,7 @@ CxThread::setPriority(
     xTEST_EQ(true, _thread.isValid());
 
     BOOL blRv = ::SetThreadPriority(_thread.get(), a_priority);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 #elif xOS_ENV_UNIX
     if (!CxSystemInfo().isUserAdmin()) {
         CxTrace() << xT("::: xLib: warning (CxThread::setPriority fail, need root) :::");
@@ -747,7 +747,7 @@ CxThread::isPriorityBoost() const
     BOOL isDisablePriorityBoost = TRUE;
 
     BOOL blRv = ::GetThreadPriorityBoost(_thread.get(), &isDisablePriorityBoost);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 
     // isDisablePriorityBoost == TRUE  - dynamic boosting is disabled
     // isDisablePriorityBoost == FALSE - normal behavior
@@ -767,7 +767,7 @@ CxThread::setPriorityBoost(
     xTEST_EQ(true, _thread.isValid());
 
     BOOL blRv = ::SetThreadPriorityBoost(_thread.get(), ! a_isEnabled);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 #elif xOS_ENV_UNIX
     xUNUSED(a_isEnabled);
 
@@ -921,7 +921,7 @@ CxThread::exitStatus() const
     xTEST_EQ(true, _thread.isValid());
 
     BOOL blRv = ::GetExitCodeThread(_thread.get(), &ulRv);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 #elif xOS_ENV_UNIX
     ulRv = _exitStatus;
 #endif
@@ -986,7 +986,7 @@ CxThread::setDebugName(
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         int_t iRv = ::prctl(PR_SET_NAME, a_name.c_str(), 0, 0, 0);
-        xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(iRv, - 1);
     #elif xOS_FREEBSD
          (void_t)pthread_set_name_np(id(), a_name.c_str());
     #endif

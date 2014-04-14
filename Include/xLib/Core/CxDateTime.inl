@@ -694,7 +694,7 @@ CxDateTime::current()
     timeval timeNow;   xSTRUCT_ZERO(timeNow);
 
     int_t iRv = ::gettimeofday(&timeNow, xPTR_NULL);
-    xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(iRv, - 1);
 
     // get datetime
     std::tm dateTime; xSTRUCT_ZERO(dateTime);

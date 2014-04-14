@@ -240,7 +240,7 @@ CxSocket::receive(
 #if   xOS_ENV_WIN
     int_t iRv = ::recv(_socket, (LPSTR)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
     xTEST_EQ(true, xSOCKET_ERROR != iRv && WSAEWOULDBLOCK != CxSocket::lastError());
-    xTEST_DIFF(0, iRv);  // gracefully closed
+    xTEST_DIFF(iRv, 0);  // gracefully closed
     xTEST_GR_EQ(int_t(a_buffSize * sizeof(tchar_t)), iRv);
 #elif xOS_ENV_UNIX
     ssize_t iRv = ::recv(_socket, (char *)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
@@ -508,7 +508,7 @@ CxSocket::select(
 
      int_t iRv = ::select(a_nfds, a_readfds, a_writefds, a_exceptfds, a_timeout);
      xTEST_DIFF(xSOCKET_ERROR, iRv);
-     xTEST_DIFF(0, iRv);  //zero if the time limit expired
+     xTEST_DIFF(iRv, 0);  //zero if the time limit expired
 
      return iRv;
 }

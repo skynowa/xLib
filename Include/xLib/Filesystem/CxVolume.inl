@@ -191,7 +191,7 @@ CxVolume::isReady() const
 
     int_t iRv = ::chdir(volumeDirPath.c_str());
     xTEST_NA(iRv);
-    bRv = (- 1 != iRv);
+    bRv = (iRv != - 1);
 
     CxDir::setCurrent(oldDirPath);
 #endif
@@ -230,10 +230,10 @@ CxVolume::mount(
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         int_t iRv = ::mount(path().c_str(), a_destPath.c_str(), xPTR_NULL, MS_REMOUNT, xPTR_NULL);
-        xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(iRv, - 1);
     #elif xOS_FREEBSD
         int_t iRv = ::mount(path().c_str(), a_destPath.c_str(), MNT_UPDATE, xPTR_NULL);
-        xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(iRv, - 1);
     #endif
 #elif xOS_ENV_APPLE
     xNOT_IMPLEMENTED
@@ -262,10 +262,10 @@ CxVolume::unMount(
 
     #if   xOS_LINUX
         int_t iRv = ::umount2(path().c_str(), flag);
-        xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(iRv, - 1);
     #elif xOS_FREEBSD
         int_t iRv = ::unmount(path().c_str(), flag);
-        xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(iRv, - 1);
     #endif
 #elif xOS_ENV_APPLE
     xNOT_IMPLEMENTED
@@ -328,7 +328,7 @@ CxVolume::space(
     ULARGE_INTEGER free      = {{0}};
 
     BOOL blRv = ::GetDiskFreeSpaceEx(dirPath.c_str(), &available, &total, &free);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 
     CxUtils::ptrAssignT(a_available, available.QuadPart);
     CxUtils::ptrAssignT(a_total,     total.QuadPart);
@@ -337,7 +337,7 @@ CxVolume::space(
     struct xSTATVFS info;   xSTRUCT_ZERO(info);
 
     int_t iRv = ::xSTATVFS(dirPath.c_str(), &info);
-    xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(iRv, - 1);
 
     CxUtils::ptrAssignT(a_available, static_cast<ulonglong_t>( info.f_bavail * info.xSTATVFS_F_FRSIZE ));
     CxUtils::ptrAssignT(a_total,     static_cast<ulonglong_t>( info.f_blocks * info.xSTATVFS_F_FRSIZE ));

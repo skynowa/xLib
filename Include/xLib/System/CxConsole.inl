@@ -41,7 +41,7 @@ inline CxConsole::CxConsole()
         CONSOLE_SCREEN_BUFFER_INFO info = {};
 
         BOOL blRv = ::GetConsoleScreenBufferInfo(_stdOut.get(), &info);
-        xTEST_DIFF(FALSE, blRv);
+        xTEST_DIFF(blRv, FALSE);
 
         _attributesDef = info.wAttributes;
     }
@@ -273,7 +273,7 @@ CxConsole::setAttributes(
 
 #if   xOS_ENV_WIN
     BOOL blRv = ::SetConsoleTextAttribute(_stdOut.get(), attrs);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 
     return std::tstring_t();    // not need for Windows
 #elif xOS_ENV_UNIX
@@ -295,7 +295,7 @@ CxConsole::setAttributesDef() const
 
 #if   xOS_ENV_WIN
     BOOL blRv = ::SetConsoleTextAttribute(_stdOut.get(), _attributesDef);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 
     xUNUSED(sRv);
 #elif xOS_ENV_UNIX
@@ -322,7 +322,7 @@ CxConsole::read() const
     tchar_t  buff[buffSize + 1] = {0};
 
     BOOL blRv = ::ReadConsole(_stdIn.get(), &buff[0], buffSize, &read, xPTR_NULL);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 
     sRv.assign(buff, read - CxConst::crNl().size());
 #elif xOS_ENV_UNIX
@@ -351,7 +351,7 @@ CxConsole::write(
                     _stdOut.get(),
                     &a_str.at(0), static_cast<DWORD>( a_str.size() ),
                     &written, xPTR_NULL);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
     xTEST_EQ(static_cast<size_t>( written ), a_str.size());
 #elif xOS_ENV_UNIX
     std::tcout << a_str;
@@ -550,27 +550,27 @@ CxConsole::clear() const
 
     // get the number of character cells in the current buffer
     BOOL blRv = ::GetConsoleScreenBufferInfo(_stdOut.get(), &csbi);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 
     conSize = csbi.dwSize.X * csbi.dwSize.Y;
 
     // fill the entire screen with blanks
     blRv = ::FillConsoleOutputCharacter(_stdOut.get(), xT(' '), conSize, coordScreen,
         &charsWritten);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 
     // get the current text attribute
     blRv = ::GetConsoleScreenBufferInfo(_stdOut.get(), &csbi);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 
     // now set the buffer's attributes accordingly
     blRv = ::FillConsoleOutputAttribute(_stdOut.get(), csbi.wAttributes, conSize, coordScreen,
         &charsWritten);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 
     // put the cursor at (0, 0)
     blRv = ::SetConsoleCursorPosition(_stdOut.get(), coordScreen );
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 #elif xOS_ENV_UNIX
     writeLine(CxConst::ff());
 #endif
@@ -589,7 +589,7 @@ CxConsole::setTitle(
 
 #if   xOS_ENV_WIN
     BOOL blRv = ::SetConsoleTitle(a_title.c_str());
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 #elif xOS_ENV_UNIX
     writeLine( CxString::format(xT("%c]0;%s%c"), xT('\033'), a_title.c_str(), xT('\007')) );
 #endif
@@ -633,11 +633,11 @@ CxConsole::centerWindow() const
 
     RECT origin = {0};
     blRv = ::GetWindowRect(_wnd, &origin);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 
     RECT desktop = {0};
     blRv = ::SystemParametersInfo(SPI_GETWORKAREA, 0, &desktop, 0);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 
     int_t desktopX  = (desktop.right  - desktop.left) / 2;
     int_t desktopY  = (desktop.bottom - desktop.top)  / 2;
@@ -646,7 +646,7 @@ CxConsole::centerWindow() const
     int_t x         = desktopX - wndWidth / 2;        if (x < 0) { x = 0; }
 
     blRv = ::MoveWindow(_wnd, x, desktopY - wndHeight / 2, wndWidth, wndHeight, true);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 }
 
 #endif
@@ -673,10 +673,10 @@ CxConsole::setFullScreen() const
     smallRec.Bottom = coord.Y - 2;
 
     BOOL blRv = ::SetConsoleScreenBufferSize(_stdOut.get(), coord);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 
     blRv = ::SetConsoleWindowInfo(_stdOut.get(), true, &smallRec);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 
     centerWindow();
 }
@@ -699,17 +699,17 @@ CxConsole::enableClose(
 
     if (!a_flag) {
         BOOL blRv = ::DeleteMenu(_menu, SC_CLOSE, MF_BYCOMMAND);
-        xTEST_DIFF(FALSE, blRv);
+        xTEST_DIFF(blRv, FALSE);
     } else {
         BOOL blRv = ::AppendMenu(_menu, SC_CLOSE, MF_BYCOMMAND, xT(""));
-        xTEST_DIFF(FALSE, blRv);
+        xTEST_DIFF(blRv, FALSE);
 
         blRv = ::EnableMenuItem(_menuHandle(false), SC_CLOSE, MF_ENABLED);
         xTEST_DIFF(TRUE, blRv);
 
         blRv = ::SetWindowPos(_wndHandle(), xPTR_NULL, 0, 0, 0, 0,
                               SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_DRAWFRAME);
-        xTEST_DIFF(FALSE, blRv);
+        xTEST_DIFF(blRv, FALSE);
     }
 }
 

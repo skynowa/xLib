@@ -154,7 +154,7 @@ CxProcessInfo::exeName() const
             size_t  buffSize           = sizeof(buff) - 1;
 
             int_t iRv = ::sysctl(mib, xARRAY_SIZE(mib), buff, &buffSize, xPTR_NULL, 0U);
-            xTEST_DIFF(- 1, iRv);
+            xTEST_DIFF(iRv, - 1);
 
             sRv.assign(buff);
         #else
@@ -290,14 +290,14 @@ CxProcessInfo::commandLine(
     // get the address of ProcessParameters
     BOOL blRv = ::ReadProcessMemory(processHandle.get(), static_cast<PCHAR>(pebAddress) + 0x10,
         &rtlUserProcParamsAddress, sizeof(PVOID), xPTR_NULL);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 
     // read the commandLine UNICODE_STRING structure
     UNICODE_STRING commandLine = {0};
 
     blRv = ::ReadProcessMemory(processHandle.get(), static_cast<PCHAR>(rtlUserProcParamsAddress) +
         0x40, &commandLine, sizeof(commandLine), xPTR_NULL);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 
     // allocate memory to hold the command line
     {
@@ -307,7 +307,7 @@ CxProcessInfo::commandLine(
         // read the command line
         blRv = ::ReadProcessMemory(processHandle.get(), commandLine.Buffer, commandLineContents,
             commandLine.Length, xPTR_NULL);
-        xTEST_DIFF(FALSE, blRv);
+        xTEST_DIFF(blRv, FALSE);
 
         // length specifier is in characters, but commandLine.Length is in bytes a WCHAR is 2 bytes
         std::wstring wsRv;
@@ -353,12 +353,12 @@ CxProcessInfo::commandLine(
 
         // get buffSize
         iRv = ::sysctl(mib, xARRAY_SIZE(mib), xPTR_NULL, &buffSize, xPTR_NULL, 0);
-        xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(iRv, - 1);
 
         buff.resize(buffSize);
 
         iRv = ::sysctl(mib, xARRAY_SIZE(mib), &buff.at(0), &buffSize, xPTR_NULL, 0U);
-        xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(iRv, - 1);
 
         // remove xPTR_NULL terminating symbol
         buff.resize(buffSize - 1);

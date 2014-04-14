@@ -77,7 +77,7 @@ CxDnsClient::hostNameByAddr(
             IN6_ADDR iaAddr6 = {0};
 
             iRv = ::inet_pton(afInet6, a_casHostAddr.c_str(), &iaAddr6);
-            xTEST_DIFF(0, iRv);
+            xTEST_DIFF(iRv, 0);
 
             host = ::gethostbyaddr(static_cast<char *>( &iaAddr6 ), 16, afInet6);
             xTEST_PTR(host, false);

@@ -45,10 +45,10 @@ CxProcess::~CxProcess()
     BOOL blRv = FALSE;
 
     blRv = ::CloseHandle(_thread);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 
     blRv = ::CloseHandle(_handle);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 #endif
 }
 //-------------------------------------------------------------------------------------------------
@@ -77,7 +77,7 @@ CxProcess::create(
 
     BOOL blRv = ::CreateProcess(a_filePath.c_str(), const_cast<LPTSTR>( cmdLine.c_str() ),
         xPTR_NULL, xPTR_NULL, FALSE, NORMAL_PRIORITY_CLASS, xPTR_NULL, xPTR_NULL, &startupInfo, &processInfo);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 
     _handle = processInfo.hProcess;
     _thread = processInfo.hThread;
@@ -91,7 +91,7 @@ CxProcess::create(
 
         int_t iRv = ::execlp(a_filePath.c_str(), a_filePath.c_str(), cmdLine.c_str(),
             static_cast<ctchar_t *>( xPTR_NULL ));
-        xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(iRv, - 1);
 
         (void_t)::_exit(EXIT_SUCCESS);  /* not exit() */
     }
@@ -145,7 +145,7 @@ CxProcess::kill(
     _exitStatus = 0U;
 
     BOOL blRv = ::TerminateProcess(_handle, _exitStatus);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 
     xFOREVER {
         xCHECK_DO(STILL_ACTIVE != exitStatus(), break);
@@ -154,7 +154,7 @@ CxProcess::kill(
     }
 #elif xOS_ENV_UNIX
     int_t iRv = ::kill(_pid, SIGKILL);
-    xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(iRv, - 1);
 
     CxThread::currentSleep(a_timeoutMsec);
 
@@ -187,7 +187,7 @@ CxProcess::exitStatus() const
 
 #if   xOS_ENV_WIN
     BOOL blRv = ::GetExitCodeProcess(_handle, &ulRv);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 #elif xOS_ENV_UNIX
     ulRv = _exitStatus;
 #endif
@@ -255,7 +255,7 @@ CxProcess::idByName(
     xTEST_EQ(true, snapshot.isValid());
 
     BOOL blRv = ::Process32First(snapshot.get(), &processEntry);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 
     xFOREVER {
         bool_t bRv = CxStringCI::compare(a_processName, processEntry.szExeFile);
@@ -266,7 +266,7 @@ CxProcess::idByName(
     }
 
     ulRv = processEntry.th32ProcessID;
-    xTEST_DIFF(0UL, ulRv);
+    xTEST_DIFF(ulRv, 0UL);
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         int_t pid = -1;
@@ -306,7 +306,7 @@ CxProcess::idByName(
         }
 
         int_t iRv = ::closedir(dir); dir = xPTR_NULL;
-        xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(iRv, - 1);
 
         ulRv = pid;
     #elif xOS_FREEBSD
@@ -314,7 +314,7 @@ CxProcess::idByName(
         size_t buffSize = 0U;
 
         int_t iRv = ::sysctl(mib, xARRAY_SIZE(mib), xPTR_NULL, &buffSize, xPTR_NULL, 0U);
-        xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(iRv, - 1);
 
         // allocate memory and populate info in the  processes structure
         kinfo_proc *infoProc = xPTR_NULL;
@@ -387,7 +387,7 @@ CxProcess::ids(
     xTEST_EQ(true, snapshot.isValid());
 
     BOOL blRv = ::Process32First(snapshot.get(), &processEntry);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 
     xFOREVER {
         DWORD pid = processEntry.th32ProcessID;
@@ -420,7 +420,7 @@ CxProcess::ids(
         size_t buffSize = 0U;
 
         int_t iRv = ::sysctl(mib, xARRAY_SIZE(mib), xPTR_NULL, &buffSize, xPTR_NULL, 0U);
-        xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(iRv, - 1);
 
         // allocate memory and populate info in the  processes structure
         kinfo_proc *infoProc = xPTR_NULL;

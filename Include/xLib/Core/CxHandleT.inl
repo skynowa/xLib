@@ -209,7 +209,7 @@ CxHandleT<tagT>::close()
     xTEST_DIFF(FALSE, blRes);
 #elif xOS_ENV_UNIX
     int_t iRv = ::close(_handle);
-    xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(iRv, - 1);
 #endif
 
     _handle = error_value_t::get();
