@@ -59,7 +59,7 @@ CxTest_CxIpcSemaphore::unit(
     #elif xOS_ENV_UNIX
         pthread_t id = 0UL;
         int_t iRv = ::pthread_create(&id, NULL, &_Functor::worker, &semSemaphore);
-        xTEST_EQ(0, iRv);
+        xTEST_EQ(iRv, 0);
     #endif
 
         // post

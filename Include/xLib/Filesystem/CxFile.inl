@@ -463,7 +463,7 @@ CxFile::resize(
 #endif
 
     int_t iRv = ::xCHSIZE(_nativeHandle( get() ), _size);
-    xTEST_EQ(0, iRv);
+    xTEST_EQ(iRv, 0);
     xTEST_EQ(a_size, size());
 }
 //-------------------------------------------------------------------------------------------------
