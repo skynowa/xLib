@@ -25,14 +25,15 @@ CxCrc32::CxCrc32() :
 inline ulong_t
 CxCrc32::calc(
     uchar_t  *a_buff,
-    culong_t &a_size
+    culong_t &a_buffSize
 )
 {
     xTEST_PTR(a_buff);
-    xTEST_LESS(0UL, a_size);
+    xTEST_GR(a_buffSize, 0UL);
 
-    ulong_t  crc            = 0;
-    culong_t crc_table[256] = {
+    ulong_t  buffSize        = a_buffSize;
+    ulong_t  crc             = 0xFFFFFFFFUL;
+    culong_t crc32Table[256] = {
         0x00000000, 0x77073096, 0xEE0E612C, 0x990951BA,
         0x076DC419, 0x706AF48F, 0xE963A535, 0x9E6495A3,
         0x0EDB8832, 0x79DCB8A4, 0xE0D5E91E, 0x97D2D988,
@@ -113,12 +114,9 @@ CxCrc32::calc(
         0xB3667A2E, 0xC4614AB8, 0x5D681B02, 0x2A6F2B94,
         0xB40BBE37, 0xC30C8EA1, 0x5A05DF1B, 0x2D02EF8D
     };
-    ulong_t size = a_size;
 
-    crc = 0xFFFFFFFFUL;
-
-    while (size --) {
-        crc = crc_table[(crc ^ *a_buff ++) & 0xFF] ^ (crc >> 8);
+    while (buffSize --) {
+        crc = crc32Table[ (crc ^ *a_buff ++) & 0xFF ] ^ (crc >> 8);
     }
 
     _crc32 = crc ^ 0xFFFFFFFFUL;
@@ -149,10 +147,11 @@ CxCrc32::formatHex() const
     std::tstring_t sRv;
     std::csize_t   crc32Size = 8;
 
-    sRv = CxString::format(xT("%X"), _crc32);    // 0AADDEA0
+    // Sample: 0AADDEA0
+    sRv = CxString::format(xT("%X"), _crc32);
 
     std::csize_t additionalZeros = crc32Size - sRv.size();
-    if (0 != additionalZeros) {
+    if (additionalZeros != 0U) {
         sRv.insert(0, additionalZeros, xT('0'));
     }
     xTEST_EQ(crc32Size, sRv.size());
