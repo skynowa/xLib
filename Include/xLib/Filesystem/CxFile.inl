@@ -477,7 +477,7 @@ CxFile::resize(
 inline bool_t
 CxFile::isValid() const
 {
-    return (xPTR_NULL != _file);
+    return (_file != xPTR_NULL);
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t

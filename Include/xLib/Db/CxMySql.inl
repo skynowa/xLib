@@ -57,7 +57,7 @@ CxMySQLConnection::isValid() const
 {
     // n/a
 
-    return (xPTR_NULL != _connection);
+    return (_connection != xPTR_NULL);
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -299,7 +299,7 @@ CxMySQLRecordset::isValid() const
 {
     // n/a
 
-    return (xPTR_NULL != _result);
+    return (_result != xPTR_NULL);
 }
 //-------------------------------------------------------------------------------------------------
 uint_t
@@ -398,7 +398,7 @@ CxMySQLRecordset::fetchRow(
     std::tstring_t sField;
 
     for (uint_t i = 0; i < fieldsNum; ++ i) {
-        if (xPTR_NULL == row[i]) {
+        if (row[i] == xPTR_NULL) {
             sField = std::tstring_t();
         } else {
             std::string asField = std::string(row[i], fieldLengths[i]);

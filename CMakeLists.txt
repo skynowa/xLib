@@ -26,7 +26,7 @@ unset(xDEBUG_MODE_NO        CACHE)
 unset(xNEW_NO_STD_THROW     CACHE)
 unset(xTEST_PRIVATE_DATA    CACHE)
 unset(xTEST_TRACING         CACHE)
-unset(xUSING_TESTS         CACHE)
+unset(xUSING_TESTS          CACHE)
 
 option(xUSING_CPP11          "support C++11 language"                   ON)
 option(xUSING_NAMESPACE_XLIB "automatically include the xlib namespace" ON)

@@ -88,6 +88,7 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
     xUNUSED(a_argsNum);
     xUNUSED(a_args);
 
+#if 0
     // FAQ: https://gist.github.com/jvranish/4441299
     // set handlers
     {
@@ -97,6 +98,7 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
 
     // test error
     foo3();
+#endif
 
 #if xUSING_TESTS
     // checks

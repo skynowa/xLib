@@ -93,7 +93,7 @@ CxVolume::fileSystem() const
             char   buff[buffLen] = {0};
 
             const mntent *mountPoint = ::getmntent_r(file, &mnt, buff, buffLen);
-            xCHECK_DO(xPTR_NULL == mountPoint, break);
+            xCHECK_DO(mountPoint == xPTR_NULL, break);
 
             bool_t bRv = CxStringCI::compare(path(), mountPoint->mnt_dir);
             xCHECK_DO(!bRv, continue);

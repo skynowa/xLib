@@ -46,7 +46,7 @@ CxDll::isLoaded() const
 {
     xTESTS_NA;
 
-    return (xPTR_NULL != _dll);
+    return (_dll != xPTR_NULL);
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -77,7 +77,7 @@ CxDll::isProcExists(
 
 #if   xOS_ENV_WIN
     proc_address_t fpRv = ::GetProcAddress(_dll, xTS2S(a_procName).c_str());
-    xCHECK_RET(xPTR_NULL == fpRv, false);
+    xCHECK_RET(fpRv, xPTR_NULL, false);
 #elif xOS_ENV_UNIX
     const char *error = xPTR_NULL;
 
@@ -87,7 +87,7 @@ CxDll::isProcExists(
     (void_t)::dlsym(_dll, a_procName.c_str());
 
     error = ::dlerror();
-    xCHECK_RET(xPTR_NULL != error, false);
+    xCHECK_RET(error != xPTR_NULL, false);
 #endif
 
     return true;
