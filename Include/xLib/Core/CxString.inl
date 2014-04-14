@@ -332,7 +332,7 @@ CxString::castToOem(
     dest.resize(a_str.size());
 
     BOOL blRv = ::CharToOemBuff(a_str.c_str(), &dest.at(0), static_cast<DWORD>( dest.size() ));
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 #elif xOS_ENV_UNIX
     xUNUSED(a_str);
 
@@ -357,7 +357,7 @@ CxString::castFromOem(
     dest.resize(a_str.size());
 
     BOOL blRv = ::OemToCharBuff(a_str.c_str(), &dest.at(0), static_cast<DWORD>( dest.size() ));
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 #elif xOS_ENV_UNIX
     xUNUSED(a_str);
 

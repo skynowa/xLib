@@ -92,7 +92,7 @@ CxPath::exe()
             std::size_t buffSize           = sizeof(buff) - 1;
 
             int_t iRv = ::sysctl(mib, xARRAY_SIZE(mib), buff, &buffSize, xPTR_NULL, 0U);
-            xTEST_DIFF(- 1, iRv);
+            xTEST_DIFF(iRv, - 1);
 
             sRv.assign(buff);
         #else

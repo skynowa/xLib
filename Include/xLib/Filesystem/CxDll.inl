@@ -138,7 +138,7 @@ CxDll::_destruct()
 
 #if   xOS_ENV_WIN
     BOOL blRv = ::FreeLibrary(_dll);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 #elif xOS_ENV_UNIX
     int_t iRv = ::dlclose(_dll);
     xTEST_EQ(0, iRv);

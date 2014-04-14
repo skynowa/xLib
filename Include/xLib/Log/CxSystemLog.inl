@@ -53,7 +53,7 @@ CxSystemLog::~CxSystemLog()
     xTEST_PTR(_sysLog);
 
     BOOL blRv = ::DeregisterEventSource(_sysLog);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 
     _sysLog = xPTR_NULL;
 #elif xOS_ENV_UNIX

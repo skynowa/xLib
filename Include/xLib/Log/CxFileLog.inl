@@ -129,7 +129,7 @@ CxFileLog::write(
         CxFile file;
         file.create(filePath(), CxFile::omAppend, false);
         int_t iRv = file.write(xT("[%s] %s\n"), time.c_str(), msg.c_str());
-        xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(iRv, - 1);
     }
 }
 //-------------------------------------------------------------------------------------------------

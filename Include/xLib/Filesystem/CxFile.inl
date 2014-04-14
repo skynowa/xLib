@@ -297,7 +297,7 @@ CxFile::writeLine(
     xTEST_NA(a_str);
 
     int_t iRv = std::xTFPUTS((a_str + CxConst::eol()).c_str(), get());
-    xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
 inline tchar_t
@@ -363,7 +363,7 @@ CxFile::locking(
 #endif
 
     int_t iRv = ::xLOCKING(_nativeHandle(get()), a_mode, bytes);
-    xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -376,7 +376,7 @@ CxFile::setPosition(
     xTEST_NA(a_pos);
 
     int_t iRv = std::fseek(get(), a_offset, a_pos);
-    xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
 inline long_t
@@ -399,7 +399,7 @@ CxFile::setVBuff(
     xTEST_NA(a_size);
 
     int_t iRv = std::setvbuf(get(), a_buff, a_mode, a_size);
-    xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
 #if xOS_ENV_WIN
@@ -412,7 +412,7 @@ CxFile::setMode(
     xTEST_NA(a_mode);
 
     int_t iRv = ::setmode(_nativeHandle(get()), a_mode);
-    xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(iRv, - 1);
 }
 
 #endif
@@ -432,7 +432,7 @@ CxFile::size() const
 
     // TODO: CxFile::size() - fstat()
     int_t iRv = ::xTSTAT(_filePath.c_str(), &stat);
-    xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(iRv, - 1);
 
     return stat.st_size;
 #else
@@ -641,7 +641,7 @@ CxFile::access(
     xTEST_NA(a_mode);
 
     int_t iRv = ::xTACCESS(a_filePath.c_str(), a_mode);
-    xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -661,7 +661,7 @@ CxFile::chmod(
 #endif
 
     int_t iRv = ::xTCHMOD(a_filePath.c_str(), mode);
-    xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -691,7 +691,7 @@ CxFile::remove(
     chmod(a_filePath, pmWrite);
 
     int_t iRv = std::xTREMOVE(a_filePath.c_str());
-    xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(iRv, - 1);
     xTEST_EQ(false, isExists(a_filePath));
 }
 //-------------------------------------------------------------------------------------------------
@@ -831,7 +831,7 @@ CxFile::unlink(
     xTEST_EQ(false, a_filePath.empty());
 
     int_t iRv = ::xTUNLINK(a_filePath.c_str());
-    xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -845,7 +845,7 @@ CxFile::rename(
     xTEST_EQ(false, a_filePathNew.empty());
 
     int_t iRv = std::xTRENAME(a_filePathOld.c_str(), a_filePathNew.c_str());
-    xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -984,7 +984,7 @@ CxFile::time(
     xTEST_EQ(true, file.isValid());
 
     BOOL blRv = ::GetFileTime(file.get(), &timeCreate, &timeAccess, &timeModified);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 
     CxUtils::ptrAssignT(a_create,   CxDateTime::fileTimeToUnixTime(timeCreate));
     CxUtils::ptrAssignT(a_access,   CxDateTime::fileTimeToUnixTime(timeAccess));
@@ -995,7 +995,7 @@ CxFile::time(
     xTSTAT_STRUCT info; xSTRUCT_ZERO(info);
 
     int_t iRv = ::xTSTAT(a_filePath.c_str(), &info);
-    xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(iRv, - 1);
 
     // create - n/a
     CxUtils::ptrAssignT(a_access,   info.st_atime);
@@ -1034,7 +1034,7 @@ CxFile::setTime(
     xTEST_EQ(true, file.isValid());
 
     BOOL blRv = ::SetFileTime(file.get(), &timeCreate, &timeAccess, &timeModified);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 #elif xOS_ENV_UNIX
     xUNUSED(a_create);
 
@@ -1045,7 +1045,7 @@ CxFile::setTime(
     times.modtime = a_modified;
 
     int_t iRv = ::utime(a_filePath.c_str(), &times);
-    xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(iRv, - 1);
 #endif
 }
 //-------------------------------------------------------------------------------------------------
@@ -1333,7 +1333,7 @@ CxFile::_nativeHandle(
     xTEST_PTR(a_file);
 
     int_t iRv = /*::*/fileno(a_file);
-    xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(iRv, - 1);
 
     return iRv;
 }

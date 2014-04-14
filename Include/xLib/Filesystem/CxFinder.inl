@@ -204,10 +204,10 @@ CxFinder::close()
     {
     #if   xOS_ENV_WIN
         BOOL blRv = ::FindClose(_entry.handle);
-        xTEST_DIFF(FALSE, blRv);
+        xTEST_DIFF(blRv, FALSE);
     #elif xOS_ENV_UNIX
         int_t iRv = ::closedir(_entry.handle);
-        xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(iRv, - 1);
     #endif
     }
 

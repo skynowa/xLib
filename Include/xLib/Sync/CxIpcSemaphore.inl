@@ -49,7 +49,7 @@ CxIpcSemaphore::~CxIpcSemaphore()
     xNA;
 #elif xOS_ENV_UNIX
     int_t iRv = ::sem_close(_handle);  _handle = xPTR_NULL;
-    xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(iRv, - 1);
 
     // sem_destroy
     // sem_unlink
@@ -147,10 +147,10 @@ CxIpcSemaphore::post() const
    const LONG postValue = 1L;
 
    BOOL blRv = ::ReleaseSemaphore(_handle.get(), postValue, xPTR_NULL);
-   xTEST_DIFF(FALSE, blRv);
+   xTEST_DIFF(blRv, FALSE);
 #elif xOS_ENV_UNIX
     int_t iRv = ::sem_post(_handle);
-    xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(iRv, - 1);
 #endif
 }
 //-------------------------------------------------------------------------------------------------
@@ -195,7 +195,7 @@ CxIpcSemaphore::wait(
     // add msec to timespec
     {
         iRv = ::clock_gettime(CLOCK_REALTIME, &tmsTimeout);
-        xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(iRv, - 1);
 
         (void_t)_Functor::timespecAddMsec(&tmsTimeout, a_timeoutMsec);
     }
@@ -240,7 +240,7 @@ CxIpcSemaphore::value() const
     const LONG postValue = 0L;
 
     BOOL blRv = ::ReleaseSemaphore(_handle.get(), postValue, &liRv);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 #elif xOS_ENV_UNIX
     int_t _value = - 1;
 

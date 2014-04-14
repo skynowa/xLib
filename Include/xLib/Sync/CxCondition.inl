@@ -106,7 +106,7 @@ CxCondition::wait(
                 timeval  timeNow   = {0, 0};
 
                 iRv = ::gettimeofday(&timeNow, xPTR_NULL);
-                xTEST_DIFF(- 1, iRv);
+                xTEST_DIFF(iRv, - 1);
 
                 timeoutMs.tv_sec  = timeNow.tv_sec + a_timeoutMs / 1000;
                 timeoutMs.tv_nsec = timeNow.tv_usec * 1000 + (a_timeoutMs % 1000) * 1000000;

@@ -38,11 +38,11 @@ CxLocale::current() const
 
     //Retrieves information about a locale specified by identifier
     iRv = ::GetLocaleInfo(id, LOCALE_SENGLANGUAGE, 0, 0);
-    xTEST_DIFF(0, iRv);
+    xTEST_DIFF(iRv, 0);
 
     sRv.resize(iRv);
     iRv = ::GetLocaleInfo(id, LOCALE_SENGLANGUAGE, &sRv.at(0), static_cast<int_t>( sRv.size() ));
-    xTEST_DIFF(0, iRv);
+    xTEST_DIFF(iRv, 0);
 
     sRv.resize(iRv - sizeof('\0')); // delete from end '\0'
 #elif xOS_ENV_UNIX

@@ -138,7 +138,7 @@ CxIpcMutex::lock(
     // add msec to timespec
     {
         iRv = ::clock_gettime(CLOCK_REALTIME, &timeoutMsec);
-        xTEST_DIFF(- 1, iRv);
+        xTEST_DIFF(iRv, - 1);
 
         (void_t)_Functor::timespecAddMsec(&timeoutMsec, a_timeoutMsec);
     }
@@ -168,10 +168,10 @@ CxIpcMutex::unlock() const
 
 #if   xOS_ENV_WIN
     BOOL blRv = ::ReleaseMutex(_handle.get());
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 #elif xOS_ENV_UNIX
     int_t iRv = ::sem_post(_handle);
-    xTEST_DIFF(- 1, iRv);
+    xTEST_DIFF(iRv, - 1);
 #endif
 }
 //-------------------------------------------------------------------------------------------------

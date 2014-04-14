@@ -87,7 +87,7 @@ CxThreadStorage::setValue(
     xTEST_DIFF(TLS_OUT_OF_INDEXES, _index);
 
     BOOL blRv = ::TlsSetValue(_index, a_value);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 #elif xOS_ENV_UNIX
     xTEST_EQ(true, 0 < _index);
 
@@ -131,7 +131,7 @@ CxThreadStorage::_destruct()
     xTEST_DIFF(TLS_OUT_OF_INDEXES, _index);
 
     BOOL blRv = ::TlsFree(_index);
-    xTEST_DIFF(FALSE, blRv);
+    xTEST_DIFF(blRv, FALSE);
 
     _index = TLS_OUT_OF_INDEXES;
 #elif xOS_ENV_UNIX
