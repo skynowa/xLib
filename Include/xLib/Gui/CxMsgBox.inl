@@ -30,17 +30,7 @@ CxMsgBox::show(
     cExType         &a_type    /* = tpOk */
 ) const
 {
-    ExModalResult mrRes = mrAbort;
-    std::string   title = a_title;
-
-    // title
-    if ( title.empty() ) {
-        title = CxPath(CxPath::exe()).fileName();
-    }
-
-    mrRes = _show_impl(a_text, a_title, a_type);
-
-    return mrRes;
+    return _show_impl(a_text, a_title, a_type);
 }
 //-------------------------------------------------------------------------------------------------
 
