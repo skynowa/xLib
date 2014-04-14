@@ -38,7 +38,7 @@ option(xDEBUG_MODE_NO        "debug mode 'no debugging'"                OFF)
 option(xNEW_NO_STD_THROW     "new with std::notrow"                     OFF)
 option(xTEST_PRIVATE_DATA    "tests private data"                       OFF)
 option(xTEST_TRACING         "use tracing in tests"                     ON)
-option(xUSING_TESTS          "use xLib tests"                           OFF)
+option(xUSING_TESTS          "use xLib tests"                           ON)
 
 # trace options
 message("")

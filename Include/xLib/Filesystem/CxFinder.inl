@@ -37,9 +37,9 @@ CxFinder::CxFinder(
     _shellFilter(a_shellFilter),
     _isMoveFirst (true)
 {
-    xTEST_EQ(false, isValid());
-    xTEST_EQ(false, a_rootDirPath.empty());
-    xTEST_EQ(false, a_shellFilter.empty());
+    xTEST_EQ(isValid(), false);
+    xTEST_EQ(a_rootDirPath.empty(), false);
+    xTEST_EQ(a_shellFilter.empty(), false);
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -52,7 +52,7 @@ CxFinder::~CxFinder()
 inline std::ctstring_t &
 CxFinder::rootDirPath() const
 {
-    xTEST_EQ(false, _rootDirPath.empty());
+    xTEST_EQ(_rootDirPath.empty(), false);
 
     return _rootDirPath;
 }
@@ -60,7 +60,7 @@ CxFinder::rootDirPath() const
 inline std::ctstring_t &
 CxFinder::shellFilter() const
 {
-    xTEST_EQ(false, _shellFilter.empty());
+    xTEST_EQ(_shellFilter.empty(), false);
 
     return _shellFilter;
 }
@@ -68,7 +68,7 @@ CxFinder::shellFilter() const
 inline std::tstring_t
 CxFinder::entryName() const
 {
-    xTEST_EQ(true, isValid());
+    xTEST_EQ(isValid(), true);
 
     std::tstring_t sRv;
 
@@ -78,7 +78,7 @@ CxFinder::entryName() const
     sRv.assign( _entry.data.d_name );
 #endif
 
-    xTEST_EQ(false, sRv.empty());
+    xTEST_EQ(sRv.empty(), false);
 
     return sRv;
 }
@@ -166,7 +166,7 @@ CxFinder::moveNext()
     #if   xOS_ENV_WIN
         BOOL blRv = ::FindNextFile(_entry.handle, &_entry.data);
         if (FALSE == blRv) {
-            xCHECK_RET(ERROR_NO_MORE_FILES == CxLastError::get(), false);
+            xCHECK_RET(CxLastError::get() == ERROR_NO_MORE_FILES, false);
 
             xTEST_FAIL;
         }
@@ -239,8 +239,8 @@ CxFinder::dirs(
     std::vec_tstring_t *a_dirPaths       ///< result dir paths
 )
 {
-    xTEST_EQ(false, a_rootDirPath.empty());
-    xTEST_EQ(false, a_shellFilter.empty());
+    xTEST_EQ(a_rootDirPath.empty(), false);
+    xTEST_EQ(a_shellFilter.empty(), false);
     xTEST_NA(a_isRecursively);
     xTEST_PTR(a_dirPaths);
 
@@ -274,8 +274,8 @@ CxFinder::files(
     std::vec_tstring_t *a_filePaths      ///< result file paths
 )
 {
-    xTEST_EQ(false, a_rootDirPath.empty());
-    xTEST_EQ(false, a_shellFilter.empty());
+    xTEST_EQ(a_rootDirPath.empty(), false);
+    xTEST_EQ(a_shellFilter.empty(), false);
     xTEST_NA(a_isRecursively);
     xTEST_PTR(a_filePaths);
 
@@ -319,7 +319,7 @@ CxFinder::files(
 inline bool_t
 CxFinder::_moveFirst()
 {
-    xTEST_EQ(false, isValid());
+    xTEST_EQ(isValid(), false);
 
     _isMoveFirst = false;
 
