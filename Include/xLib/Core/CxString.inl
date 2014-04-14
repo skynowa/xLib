@@ -568,7 +568,7 @@ CxString::replaceAll(
 
     xFOREVER {
         pos = sRv.find(a_strOld, pos);
-        xCHECK_DO(std::tstring_t::npos == pos, break);
+        xCHECK_DO(pos == std::tstring_t::npos, break);
 
         sRv.replace(pos, a_strOld.size(), a_strNew);
 
@@ -630,7 +630,7 @@ CxString::split(
 
     xFOREVER {
         pos = a_str.find(a_sep, posPrev);
-        xCHECK_DO(std::tstring_t::npos == pos, break);
+        xCHECK_DO(pos == std::tstring_t::npos, break);
 
         vsRv.push_back(a_str.substr(posPrev, pos - posPrev));
 
@@ -721,7 +721,7 @@ CxString::cut(
 
     size_t size = std::string::npos;
 
-    if (std::string::npos == a_posEnd) {
+    if (a_posEnd == std::string::npos) {
         size = a_str.size();
     } else {
         size = a_posEnd - a_posBegin;
@@ -849,15 +849,15 @@ CxString::minimize(
     xTEST_NA(a_maxLength);
 
     xCHECK_RET(a_str.empty(),     std::tstring_t());
-    xCHECK_RET(0U == a_maxLength, std::tstring_t());
+    xCHECK_RET(a_maxLength == 0U, std::tstring_t());
 
     std::tstring_t sRv;
 
     if (a_str.size() > a_maxLength) {
         if (a_maxLength < CxConst::dot3().size()) {
-            sRv = a_str.substr(0, a_maxLength);
+            sRv = a_str.substr(0U, a_maxLength);
         } else {
-            sRv = a_str.substr(0, a_maxLength - CxConst::dot3().size()) + CxConst::dot3();
+            sRv = a_str.substr(0U, a_maxLength - CxConst::dot3().size()) + CxConst::dot3();
         }
     } else {
         sRv = a_str;
