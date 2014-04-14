@@ -26,7 +26,7 @@ xNAMESPACE2_BEGIN(xlib, debug)
 inline bool_t
 CxStdError::isSuccess()
 {
-    bool_t bRv = (::stdCodeSuccess == errno);
+    bool_t bRv = (errno == ::stdCodeSuccess);
 
     return bRv;
 }
@@ -85,7 +85,7 @@ CxStdError::format(
         tchar_t buff[64 + 1] = {0};
 
         errno_t error = xSTRERROR(buff, xARRAY_SIZE(buff), a_code);
-        xCHECK_RET(0 != error, sRv.append(xT("[Cann't format error message]")));
+        xCHECK_RET(error != 0, sRv.append(xT("[Cann't format error message]")));
 
         sRv.append(buff);
     #endif
@@ -101,7 +101,7 @@ CxStdError::format(
         char buff[64 + 1] = {0};
 
         int_t iRv = ::strerror_r(a_code, &buff[0], xARRAY_SIZE(buff));
-        xCHECK_RET(- 1 == iRv, sRv.append(xT("[Cann't format error message]")));
+        xCHECK_RET(iRv == - 1, sRv.append(xT("[Cann't format error message]")));
 
         sRv.append(&buff[0]);
     #endif
