@@ -75,7 +75,7 @@ CxSystemLog::write(
     ctchar_t *a_format, ...
 ) const
 {
-    xCHECK_DO(!isEnabled(),     return);
+    xCHECK_DO(!isEnabled(),          return);
     xCHECK_DO(a_format == xPTR_NULL, return);
 
     std::tstring_t msg;
@@ -98,7 +98,7 @@ CxSystemLog::write(
     xCHECK_DO(!isEnabled(), return);
     xTEST_PTR(a_format);
 #if xOS_ENV_WIN
-    xTEST_DIFF(xNATIVE_HANDLE_NULL, _sysLog);
+    xTEST_DIFF(_sysLog, xNATIVE_HANDLE_NULL);
 #endif
 
     ExLevel level = lvUnknown;
@@ -121,7 +121,7 @@ CxSystemLog::write(
         LPCTSTR strings    = msg.c_str();
 
         BOOL bRv = ::ReportEvent(_sysLog, level, 0, 0UL, xPTR_NULL, 1, 0UL, &strings, xPTR_NULL);
-        xTEST_DIFF(FALSE, bRv);
+        xTEST_DIFF(bRv, FALSE);
     #elif xOS_ENV_UNIX
         cint_t level_impl = internal::enums::levels.toCross(level);
 
@@ -145,7 +145,7 @@ CxSystemLog::_construct(
 {
 #if   xOS_ENV_WIN
     _sysLog = ::RegisterEventSource(xPTR_NULL, a_logName.c_str());
-    xTEST_DIFF(xNATIVE_HANDLE_NULL, _sysLog);
+    xTEST_DIFF(_sysLog, xNATIVE_HANDLE_NULL);
 #elif xOS_ENV_UNIX
     (void_t)::openlog(a_logName.c_str(), LOG_PID | LOG_NDELAY | LOG_NOWAIT, LOG_USER);
 #endif
