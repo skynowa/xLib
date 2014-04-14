@@ -333,7 +333,6 @@ CxDebugger::_loggingPlain(
 {
     xCHECK_DO(!isEnabled(), return);
 
-    //--------------------------------------------------
     // get log file path
     std::tstring_t filePath;
 
@@ -343,7 +342,6 @@ CxDebugger::_loggingPlain(
         filePath = logPath();
     }
 
-    //--------------------------------------------------
     // write to file
     try {
         std::ofstream ofs(filePath.c_str(), std::ofstream::out);
