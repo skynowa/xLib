@@ -55,7 +55,7 @@ CxFileLog::setFilePath(
 {
     xTEST_EQ(a_filePath.empty(), false);
 
-    if (a_filePath.find(CxConst::slash()), std::tstring_t::npos) {
+    if (a_filePath.find(CxConst::slash()) == std::tstring_t::npos) {
         _filePath = CxPath(CxPath::exe()).dir() + CxConst::slash() + a_filePath;
     } else {
         _filePath = a_filePath;

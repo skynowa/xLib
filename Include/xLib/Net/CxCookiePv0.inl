@@ -260,7 +260,7 @@ CxCookiePv0::init(
         CxString::split(pairs.at(i), CxConst::equal(), &temp);
 
         std::tstring_t cookieName  = CxString::trimSpace(temp.at(0));
-        std::tstring_t cookieValue = ( (1 == temp.size()) ? std::tstring_t() : temp.at(1) );
+        std::tstring_t cookieValue = ( (temp.size() == 1) ? std::tstring_t() : temp.at(1) );
 
         if (0 == i) {
             //1-st pair is "Name=Value"
@@ -272,11 +272,11 @@ CxCookiePv0::init(
     }
 
     //set results
-    _name     = cookies[xT("Name")];
-    _value    = cookies[xT("Value")];
-    _domain   = cookies[xT("Domain")];
-    _path     = cookies[xT("Path")];
-    _expires  = cookies[xT("Expires")];
+    _name       = cookies[xT("Name")];
+    _value      = cookies[xT("Value")];
+    _domain     = cookies[xT("Domain")];
+    _path       = cookies[xT("Path")];
+    _expires    = cookies[xT("Expires")];
     _isSecure   = ( cookies.end() != cookies.find(xT("Secure")) );
     _isHttpOnly = ( cookies.end() != cookies.find(xT("HttpOnly")) );
 }

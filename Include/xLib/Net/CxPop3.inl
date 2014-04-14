@@ -45,10 +45,10 @@ CxPop3::create(
     ushort_t         a_port
 )
 {
-     xTEST_EQ(false, a_user.empty());
-     xTEST_EQ(false, a_password.empty());
-     xTEST_EQ(false, a_server.empty());
-     xTEST_EQ(true, (32767 > a_port) && (0 < a_port));
+     xTEST_EQ(a_user.empty(), false);
+     xTEST_EQ(a_password.empty(), false);
+     xTEST_EQ(a_server.empty(), false);
+     xTEST_EQ((32767 > a_port) && (0 < a_port), true);
 
      _user   = a_user;
      _password   = a_password;
@@ -76,7 +76,7 @@ CxPop3::connect()
      //-------------------------------------
      //[welcome message]
      _sRv = _socket.recvAll(0, xT("\r\n"));
-     xTEST_MSG_EQ(false, _isError(_sRv), _sRv); // "+OK"
+     xTEST_MSG_EQ(_isError(_sRv), false, _sRv); // "+OK"
 
     _isConnected = true;
  }
@@ -285,8 +285,8 @@ CxPop3::retriveRaw(
 )
 {  //dirPath ��� �����
     xTEST_GR(a_num, std::size_t(0));
-    xTEST_EQ(false, a_dirPath.empty());
-    xTEST_EQ(false, a_fileName.empty());
+    xTEST_EQ(a_dirPath.empty(), false);
+    xTEST_EQ(a_fileName.empty(), false);
 
     //-------------------------------------
     //RFC
@@ -307,7 +307,7 @@ CxPop3::retriveRaw(
     // [+OK message 1 (652 octets)]
     size_t okPos      = _sRv.find(xT("+OK"));
     size_t firstCRPos = _sRv.find(xT("\r\n"));
-    if (std::tstring_t::npos != okPos && 0 == okPos && std::tstring_t::npos != firstCRPos) {
+    if (okPos != std::tstring_t::npos && okPos == 0 && firstCRPos != std::tstring_t::npos) {
         _sRv.erase(okPos, firstCRPos - okPos + 2);    //"\r\n - 2 c������"
     } else {
         xTEST_FAIL;
@@ -316,7 +316,7 @@ CxPop3::retriveRaw(
     //-------------------------------------
     // [\r\n.\r\n]
     size_t endOfMessagePos = _sRv.rfind(xT("\r\n.\r\n"));
-    if (std::tstring_t::npos != endOfMessagePos) {
+    if (endOfMessagePos != std::tstring_t::npos) {
         _sRv.erase(endOfMessagePos, 5);    //"\r\n.\r\n" - 5 c������"
     } else {
         xTEST_FAIL;
@@ -342,8 +342,8 @@ CxPop3::retriveRawAndBackup(
 )
 {
     xTEST_GR(a_num, std::size_t(0));
-    xTEST_EQ(false, (a_dirPath.empty() && a_backupDirPath.empty()));
-    xTEST_EQ(false, a_fileName.empty());
+    xTEST_EQ((a_dirPath.empty() && a_backupDirPath.empty()), false);
+    xTEST_EQ(a_fileName.empty(), false);
 
     //-------------------------------------
     //RFC
@@ -364,7 +364,7 @@ CxPop3::retriveRawAndBackup(
     // [+OK message 1 (652 octets)]
     size_t okPos      = _sRv.find(xT("+OK"));
     size_t firstCRPos = _sRv.find(xT("\r\n"));
-    if (std::tstring_t::npos != okPos && 0 == okPos && std::tstring_t::npos != firstCRPos) {
+    if (okPos != std::tstring_t::npos && okPos == 0 && firstCRPos != std::tstring_t::npos) {
         _sRv.erase(okPos, firstCRPos - okPos + 2);    //"\r\n - 2 c������"
     } else {
         xTEST_FAIL;
@@ -373,7 +373,7 @@ CxPop3::retriveRawAndBackup(
     //-------------------------------------
     // [\r\n.\r\n]
     size_t endOfMessagePos = _sRv.rfind(xT("\r\n.\r\n"));
-    if (std::tstring_t::npos != endOfMessagePos) {
+    if (endOfMessagePos != std::tstring_t::npos) {
         _sRv.erase(endOfMessagePos, 5);    //"\r\n.\r\n" - 5 c������"
     } else {
         xTEST_FAIL;
@@ -396,7 +396,7 @@ CxPop3::retriveRawAndBackup(
         backup.create(a_backupDirPath + xT("\\") + a_fileName, CxFile::omBinWrite, true);
 
         size_t backupWriteSize = backup.write((cvoid_t *)&_sRv[0], _sRv.size());
-        xTEST_DIFF(size_t(0), backupWriteSize);
+        xTEST_DIFF(backupWriteSize, size_t(0));
     }
 }
 //-------------------------------------------------------------------------------------------------
@@ -486,7 +486,7 @@ CxPop3::_mailsSum(
     std::ctstring_t &a_serverAnswer
 )
 {
-    xTEST_EQ(false, a_serverAnswer.empty());
+    xTEST_EQ(a_serverAnswer.empty(), false);
 
     //+OK 2 1141841
     std::size_t        sum = 0;
@@ -506,7 +506,7 @@ CxPop3::_mailsSize(
     std::ctstring_t &a_serverAnswer
 )
 {
-    xTEST_EQ(false, a_serverAnswer.empty());
+    xTEST_EQ(a_serverAnswer.empty(), false);
 
     //+OK 2 1141841
     std::size_t        size = 0;
@@ -536,8 +536,8 @@ CxPop3::_command(
     std::tstring_t  *reply
 )
 {
-    xTEST_EQ(false, command.empty());
-    xTEST_EQ(false, replyDelimiter.empty());
+    xTEST_EQ(command.empty(), false);
+    xTEST_EQ(replyDelimiter.empty(), false);
     xTEST_PTR(reply);
 
     _socket.sendAll(command, 0);
@@ -561,10 +561,10 @@ CxPop3::_isError(
 {
     xTEST_EQ(false, text.empty());
 
-    if (0 == std::memcmp(text.c_str(), xT("+OK"), 3)) {
+    if (std::memcmp(text.c_str(), xT("+OK"), 3) == 0) {
         return false;
     }
-    if (0 == std::memcmp(text.c_str(), xT("-ERR"), 4)) {
+    if (std::memcmp(text.c_str(), xT("-ERR"), 4) == 0) {
         return true;
     }
 
