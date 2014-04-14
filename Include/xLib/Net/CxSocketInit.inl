@@ -38,7 +38,7 @@ CxSocketInit::CxSocketInit(
     WSADATA wdData = {0};
 
     int_t iRv = ::WSAStartup(MAKEWORD(a_majorVersion, a_minorVersion), &wdData);
-    xTEST_EQ(0, iRv);
+    xTEST_EQ(iRv, 0);
     xTEST_EQ((ushort_t)HIBYTE(wdData.wVersion), a_minorVersion);
     xTEST_EQ((ushort_t)LOBYTE(wdData.wVersion), a_majorVersion);
 #elif xOS_ENV_UNIX
@@ -52,7 +52,7 @@ CxSocketInit::~CxSocketInit()
 {
 #if xOS_ENV_WIN
     int_t iRv = ::WSACleanup();
-    xTEST_EQ(0, iRv);
+    xTEST_EQ(iRv, 0);
 #endif
 }
 //-------------------------------------------------------------------------------------------------

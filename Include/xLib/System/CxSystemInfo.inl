@@ -1264,7 +1264,7 @@ CxSystemInfo::_passwdFileEntry(
     xUNUSED(pvRv);
 
     int_t iRv = ::getpwuid_r(::getuid(), a_passwdEntry, buff, sizeof(buff), &pwd);
-    xTEST_EQ(0, iRv);
+    xTEST_EQ(iRv, 0);
     xTEST_PTR(pwd);
 
 #if 0
