@@ -78,7 +78,7 @@
 #cmakedefine xHAVE_NAMESPACE_XLIB 1
     ///< automatically include the xlib namespace
 
-#cmakedefine xDEBUG_USE_DIALOG 1
+#cmakedefine xHAVE_DEBUG_DIALOG 1
     ///< debug prompt dialog:
     ///<    0 - don't stop executing, pass throw dialog prompt
     ///<    1 - stop executing on dialog prompt, wait for user choice
