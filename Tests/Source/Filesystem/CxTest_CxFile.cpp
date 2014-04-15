@@ -897,7 +897,7 @@ CxTest_CxFile::unitPrivate(
 {
     xUNUSED(a_caseLoops);
 
-#if xTEST_PRIVATE_DATA
+#if xHAVE_TEST_PRIVATE
     std::ctstring_t filePath = tempDirPath() + CxConst::slash() + xT("Test.txt");
 
     xTEST_CASE("CxFile::_nativeHandle", a_caseLoops)
