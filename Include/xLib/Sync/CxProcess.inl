@@ -58,8 +58,8 @@ CxProcess::create(
     ctchar_t        *a_params, ...
 )
 {
-    xTEST_EQ(false, a_filePath.empty());
-    xTEST_EQ(true, CxFile::isExists(a_filePath));
+    xTEST_EQ(a_filePath.empty(), false);
+    xTEST_EQ(CxFile::isExists(a_filePath), true);
     xTEST_PTR(a_params);
 
     std::tstring_t cmdLine;
@@ -84,9 +84,9 @@ CxProcess::create(
     _pid    = processInfo.dwProcessId;
 #elif xOS_ENV_UNIX
     pid_t pid = ::fork();
-    xTEST_EQ(true, - 1L != pid);
+    xTEST_EQ(pid != - 1L, true);
 
-    if (0L == pid) {
+    if (pid == 0L) {
         // TODO: CxProcess::create() - filePath is executable
 
         int_t iRv = ::execlp(a_filePath.c_str(), a_filePath.c_str(), cmdLine.c_str(),
@@ -109,10 +109,10 @@ CxProcess::wait(
     ExWaitResult waitStatus = wrFailed;
 
 #if   xOS_ENV_WIN
-    DWORD ulRv = ::WaitForSingleObject(_handle, a_timeoutMsec);
-    xTEST_EQ(WAIT_OBJECT_0, ulRv);
+    DWORD dwRv = ::WaitForSingleObject(_handle, a_timeoutMsec);
+    xTEST_EQ(dwRv, WAIT_OBJECT_0);
 
-    waitStatus = static_cast<ExWaitResult>( ulRv );
+    waitStatus = static_cast<ExWaitResult>( dwRv );
 #elif xOS_ENV_UNIX
     xUNUSED(a_timeoutMsec);
 
@@ -123,7 +123,7 @@ CxProcess::wait(
     do {
         liRv = ::waitpid(_pid, &status, 0);
     }
-    while (liRv < 0L && EINTR == CxLastError::get());
+    while (liRv < 0L && CxLastError::get() == EINTR);
     xTEST_EQ(liRv, _pid);
 
     _exitStatus = WEXITSTATUS(status);
@@ -139,7 +139,7 @@ CxProcess::kill(
 )
 {
 #if   xOS_ENV_WIN
-    xTEST_DIFF(xNATIVE_HANDLE_NULL, _handle);
+    xTEST_DIFF(_handle, xNATIVE_HANDLE_NULL);
     // ulTimeout - n/a
 
     _exitStatus = 0U;
@@ -148,7 +148,7 @@ CxProcess::kill(
     xTEST_DIFF(blRv, FALSE);
 
     xFOREVER {
-        xCHECK_DO(STILL_ACTIVE != exitStatus(), break);
+        xCHECK_DO(exitStatus() != STILL_ACTIVE, break);
 
         CxThread::currentSleep(a_timeoutMsec);
     }
@@ -252,7 +252,7 @@ CxProcess::idByName(
     processEntry.dwSize = sizeof(PROCESSENTRY32);
 
     snapshot = ::CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0UL);
-    xTEST_EQ(true, snapshot.isValid());
+    xTEST_EQ(snapshot.isValid(), true);
 
     BOOL blRv = ::Process32First(snapshot.get(), &processEntry);
     xTEST_DIFF(blRv, FALSE);
@@ -294,12 +294,12 @@ CxProcess::idByName(
 
             // keep first cmdline item which contains the program path
             size_t pos = cmdLine.find('\0');
-            if (std::string::npos != pos) {
+            if (pos != std::string::npos) {
                 cmdLine = cmdLine.substr(0, pos);
             }
 
             cmdLine = CxPath(cmdLine).fileName();
-            if (a_processName == cmdLine) {
+            if (cmdLine == a_processName) {
                 pid = id;
                 break;
             }
@@ -328,14 +328,14 @@ CxProcess::idByName(
             infoProc = infoProcNew;
 
             iRv = ::sysctl(mib, xARRAY_SIZE(mib), infoProc, &buffSize, xPTR_NULL, 0U);
-            xCHECK_DO(!(- 1 == iRv && errno == ENOMEM), break);
+            xCHECK_DO(!(iRv == - 1 && errno == ENOMEM), break);
         }
 
         // search for the given process name and return its pid
         size_t uiNumProcs = buffSize / sizeof(kinfo_proc);
 
         for (size_t i = 0; i < uiNumProcs; ++ i) {
-            if (0 == strncmp(a_processName.c_str(), infoProc[i].ki_comm, MAXCOMLEN)) {
+            if (std::strncmp(a_processName.c_str(), infoProc[i].ki_comm, MAXCOMLEN) == 0) {
                 ulRv = infoProc[i].ki_pid;
 
                 break;
@@ -384,7 +384,7 @@ CxProcess::ids(
     processEntry.dwSize = sizeof(PROCESSENTRY32);
 
     snapshot = ::CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0UL);
-    xTEST_EQ(true, snapshot.isValid());
+    xTEST_EQ(snapshot.isValid(), true);
 
     BOOL blRv = ::Process32First(snapshot.get(), &processEntry);
     xTEST_DIFF(blRv, FALSE);
@@ -409,7 +409,7 @@ CxProcess::ids(
             {
                 std::tstring_t dirName = CxPath(*it).fileName();
 
-                pid = ::atoi(dirName.c_str());
+                pid = std::atoi(dirName.c_str());
                 xCHECK_DO(0 >= pid, continue);
             }
 
@@ -434,7 +434,7 @@ CxProcess::ids(
             infoProc = infoProcNew;
 
             iRv = ::sysctl(mib, xARRAY_SIZE(mib), infoProc, &buffSize, xPTR_NULL, 0U);
-            xCHECK_DO(!(- 1 == iRv && errno == ENOMEM), break);
+            xCHECK_DO(!(iRv == - 1 && errno == ENOMEM), break);
         }
 
         // search for the given process name and return its pid
@@ -544,7 +544,7 @@ CxProcess::currentParentId()
                             currentHandle(),
                             infoClass,
                            &processInformation, sizeof(processInformation), &returnSizeBytes);
-    xTEST_EQ(true, NT_SUCCESS(ntsRv));
+    xTEST_EQ(NT_SUCCESS(ntsRv), true);
     xTEST_EQ(size_t(returnSizeBytes), sizeof(processInformation));
 
     ulRv = processInformation[5];
@@ -570,7 +570,7 @@ CxProcess::currentHandle()
     #else
         hRv = ::GetCurrentProcess();
     #endif
-    xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
+    xTEST_DIFF(hRv, xNATIVE_HANDLE_NULL);
 #elif xOS_ENV_UNIX
     hRv = ::getpid();
     // n/a
