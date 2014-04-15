@@ -93,7 +93,7 @@
 #cmakedefine xDEBUG_MODE_NO 1
     ///< debug mode "no debugging"
 
-#cmakedefine xTEST_PRIVATE_DATA 1
+#cmakedefine xHAVE_TEST_PRIVATE 1
     ///< for tests private data
 #cmakedefine xHAVE_TEST_TRACING 1
     ///< use tracing in tests

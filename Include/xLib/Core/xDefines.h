@@ -55,8 +55,8 @@
     ///< Ansi, Unicode string
 
 //-------------------------------------------------------------------------------------------------
-// xTEST_PRIVATE_DATA
-#if xTEST_PRIVATE_DATA
+// xHAVE_TEST_PRIVATE
+#if xHAVE_TEST_PRIVATE
     #define private \
         public
     #define protected \
