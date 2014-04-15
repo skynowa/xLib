@@ -34,12 +34,12 @@ CxTcpClient::CxTcpClient() :
 inline bool_t
 CxTcpClient::isReadable() const
 {
-    timeval timeout = {1, 0};
-    fd_set  fds;       FD_ZERO(&fds);
+    timeval timeoutVal = {1, 0};
+    fd_set  fds;         FD_ZERO(&fds);
 
     FD_SET(_socket, &fds);
 
-    int_t iRv = ::select(0, &fds, xPTR_NULL, xPTR_NULL, &timeout);
+    int_t iRv = ::select(0, &fds, xPTR_NULL, xPTR_NULL, &timeoutVal);
     xCHECK_RET(iRv <= 0 || !FD_ISSET(_socket, &fds), false);
 
     return true;
@@ -48,12 +48,12 @@ CxTcpClient::isReadable() const
 inline bool_t
 CxTcpClient::isWritable() const
 {
-    timeval timeout = {1, 0};
-    fd_set  fds;       FD_ZERO(&fds);
+    timeval timeoutVal = {1, 0};
+    fd_set  fds;         FD_ZERO(&fds);
 
     FD_SET(_socket, &fds);
 
-    int_t iRv = ::select(0, xPTR_NULL, &fds, xPTR_NULL, &timeout);
+    int_t iRv = ::select(0, xPTR_NULL, &fds, xPTR_NULL, &timeoutVal);
     xCHECK_RET(iRv <= 0 || !FD_ISSET(_socket, &fds), false);
 
     return true;
