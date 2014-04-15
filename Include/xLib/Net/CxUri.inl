@@ -553,8 +553,8 @@ CxUri::_parse(
     size_t portEnd   = _authority.size();
 
     if (portStart != std::tstring_t::npos) {
-        std::tstring_t port = CxString::cut(_authority, portStart + 1/*":"*/, portEnd);
-        _port = CxString::cast<ushort_t>(port);
+        std::tstring_t sRv = CxString::cut(_authority, portStart + 1/*":"*/, portEnd);
+        _port = CxString::cast<ushort_t>(sRv);
     }
     if (0 == _port) {
         _port = _defaultPort();
