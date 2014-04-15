@@ -45,29 +45,27 @@ CxUri::CxUri(
     _parse(a_uri);
 }
 //-------------------------------------------------------------------------------------------------
-// TODO: uri
+// TODO: CxUri::uri()
 /**
-URI = scheme ":" hier-part [ "?" query ] [ "#" fragment ]
-
-foo://userinfo@example.com:8042/over/there?name=ferret#nose
-\_/   \_______________________/\_________/ \_________/ \__/
-|                |                |            |       |
-scheme        authority           path        query   fragment
-*/
-
-/**
-http   : //ru.wikipedia.org/wiki/URI
-ftp    : //ftp.is.co.za/rfc/rfc1808.txt
-file   : //C:\UserName.HostName\Projects\Wikipedia_Articles\URI.xml
-ldap   : //[2001:db8::7]/c=GB                                       ? objectClass?one
-
-mailto : John.Doe@example.com
-sip    : 911@pbx.mycompany.com
-news   : comp.infosystems.www.servers.unix
-data   : text/plain;charset=iso-8859-7,%be%fg%be
-tel    : +1-816-555-1212
-telnet : //192.0.2.16:80/
-*/
+ * URI = scheme ":" hier-part [ "?" query ] [ "#" fragment ]
+ *
+ * foo://userinfo@example.com:8042/over/there?name=ferret#nose
+ * \_/   \_______________________/\_________/ \_________/ \__/
+ * |                |                |            |       |
+ * scheme        authority           path        query   fragment
+ *
+ * http   : //ru.wikipedia.org/wiki/URI
+ * ftp    : //ftp.is.co.za/rfc/rfc1808.txt
+ * file   : //C:\UserName.HostName\Projects\Wikipedia_Articles\URI.xml
+ * ldap   : //[2001:db8::7]/c=GB                                       ? objectClass?one
+ *
+ * mailto : John.Doe@example.com
+ * sip    : 911@pbx.mycompany.com
+ * news   : comp.infosystems.www.servers.unix
+ * data   : text/plain;charset=iso-8859-7,%be%fg%be
+ * tel    : +1-816-555-1212
+ * telnet : //192.0.2.16:80/
+ * */
 inline std::tstring_t
 CxUri::uri() const
 {
@@ -285,16 +283,15 @@ CxUri::escape(
         switch(c) {
         case '\0':
             break;
-
         case '%': case ' ': case '?': case '&':
         case '>': case '<': case '\"': case ';':
         case '=': case '@': case ':': case '#':
             fprintf(fw, "%%%02x", c);
             break;
-
         default:
-            if (fputc(c, fw) == EOF)
+            if (fputc(c, fw) == EOF) {
                 return EOF;
+            }
             break;
         }
     }
@@ -472,27 +469,25 @@ CxUri::_illegal()
 }
 //-------------------------------------------------------------------------------------------------
 /**
-URI = scheme ":" hier-part [ "?" query ] [ "#" fragment ]
-
-foo://userinfo@example.com:8042/over/there?name=ferret#nose
-\_/   \_______________________/\_________/ \_________/ \__/
-|                |                |            |       |
-scheme        authority           path        query   fragment
-*/
-
-/**
-http   : //ru.wikipedia.org/wiki/URI
-ftp    : //ftp.is.co.za/rfc/rfc1808.txt
-file   : //C:\UserName.HostName\Projects\Wikipedia_Articles\URI.xml
-ldap   : //[2001:db8::7]/c=GB                                       ? objectClass?one
-
-mailto : John.Doe@example.com
-sip    : 911@pbx.mycompany.com
-news   : comp.infosystems.www.servers.unix
-data   : text/plain;charset=iso-8859-7,%be%fg%be
-tel    : +1-816-555-1212
-telnet : //192.0.2.16:80/
-*/
+ * URI = scheme ":" hier-part [ "?" query ] [ "#" fragment ]
+ *
+ * foo://userinfo@example.com:8042/over/there?name=ferret#nose
+ * \_/   \_______________________/\_________/ \_________/ \__/
+ * |                |                |            |       |
+ * scheme        authority           path        query   fragment
+ *
+ * http   : //ru.wikipedia.org/wiki/URI
+ * ftp    : //ftp.is.co.za/rfc/rfc1808.txt
+ * file   : //C:\UserName.HostName\Projects\Wikipedia_Articles\URI.xml
+ * ldap   : //[2001:db8::7]/c=GB                                       ? objectClass?one
+ *
+ * mailto : John.Doe@example.com
+ * sip    : 911@pbx.mycompany.com
+ * news   : comp.infosystems.www.servers.unix
+ * data   : text/plain;charset=iso-8859-7,%be%fg%be
+ * tel    : +1-816-555-1212
+ * telnet : //192.0.2.16:80/
+ */
 inline void_t
 CxUri::_parse(
     std::ctstring_t &a_uri
@@ -500,111 +495,102 @@ CxUri::_parse(
 {
     // TODO: CxUri::_parse()
 
-    //Normilize();
+    // normilize();
 
     clear();
 
-    //-------------------------------------
-    //[scheme] - [foo]
-    //[INPUT]     - foo://userinfo@example.com:8042/over/there?name=ferret#nose
+    // [scheme] - [foo]
+    // [INPUT]     - foo://userinfo@example.com:8042/over/there?name=ferret#nose
     size_t schemeStart = 0;
     size_t schemeEnd   = a_uri.find_first_of(CxConst::colon());
-    xTEST_DIFF(std::tstring_t::npos, schemeEnd);
+    xTEST_DIFF(schemeEnd, std::tstring_t::npos);
     xTEST_GR(size_t(7U)/*SCHEME_MAX_SIZE + 1*/, schemeEnd);
 
     _scheme = CxString::cut(a_uri, schemeStart, schemeEnd);
 
-    //-------------------------------------
     // [authority] - [example.com:8042]
     // [INPUT]     - foo://userinfo@example.com:8042/over/there?name=ferret#nose
     size_t authorityStart = schemeEnd + 1/*":"*/;
 
     size_t slashCount = 0;
-    while ('/' == a_uri.at(authorityStart + slashCount)) {
+    while (a_uri.at(authorityStart + slashCount) == '/') {
         slashCount ++;
     }
 
     size_t authorityEnd = a_uri.find_first_of(xT("/?#"), authorityStart + slashCount); // or by the end
 
-    if (std::tstring_t::npos == authorityEnd) {
+    if (authorityEnd == std::tstring_t::npos) {
         authorityEnd = a_uri.size();
     }
 
     _authority = CxString::cut(a_uri, authorityStart /*+ slashCount*/, authorityEnd);
 
-    //-------------------------------------
     // [_userInfo] - [userinfo]
     // [INPUT]     - userinfo@example.com:8042
-    size_t uiUserInfoStart = 0 + slashCount;
-    size_t uiUserInfoEnd   = _authority.find_first_of(xT("@"), uiUserInfoStart);
+    size_t userInfoStart = 0 + slashCount;
+    size_t userInfoEnd   = _authority.find_first_of(xT("@"), userInfoStart);
 
-    if (std::tstring_t::npos != uiUserInfoEnd) {
-        _userInfo = CxString::cut(_authority, uiUserInfoStart, uiUserInfoEnd);
+    if (userInfoEnd != std::tstring_t::npos) {
+        _userInfo = CxString::cut(_authority, userInfoStart, userInfoEnd);
     }
 
-    //-------------------------------------
     // [_host] - [example.com]
     // [INPUT] -  userinfo@example.com:8042
     size_t hostStart = _authority.find_first_of(xT("@"));
     size_t hostEnd   = _authority.find_first_of(xT(":"));
 
-    if (std::tstring_t::npos != hostStart) {
-        if (std::tstring_t::npos == hostEnd) {
+    if (hostStart != std::tstring_t::npos) {
+        if (hostEnd == std::tstring_t::npos) {
             hostEnd = _authority.size();
         }
 
         _host = CxString::cut(_authority, hostStart + 1/*"@"*/, hostEnd);
     }
 
-    //-------------------------------------
     // [_sPort] - [8042]
     // [INPUT]  -  userinfo@example.com:8042
     size_t portStart = _authority.find_first_of(xT(":"));
     size_t portEnd   = _authority.size();
 
-    if (std::tstring_t::npos != portStart) {
-        std::tstring_t sPort = CxString::cut(_authority, portStart + 1/*":"*/, portEnd);
-        _port = CxString::cast<ushort_t>(sPort);
+    if (portStart != std::tstring_t::npos) {
+        std::tstring_t port = CxString::cut(_authority, portStart + 1/*":"*/, portEnd);
+        _port = CxString::cast<ushort_t>(port);
     }
     if (0 == _port) {
         _port = _defaultPort();
     }
 
-    //-------------------------------------
     // [_host] - [example.com]
     // [INPUT] -  userinfo@example.com:8042
     size_t authorityChars = _authority.find_first_of(xT("@:"));
 
     //���� � Authority ��� "@:" - _host ��� Authority ��� "//"
-    if (std::tstring_t::npos == authorityChars) {
+    if (authorityChars == std::tstring_t::npos) {
         _host = CxString::trimChars(_authority, xT("/"));
     }
 
-    //-------------------------------------
     // [_path] - [/over/there?]
     // [INPUT] - foo://userinfo@example.com:8042/over/there?name=ferret#nose
     size_t pathStart = authorityEnd;
     size_t pathEnd   = a_uri.find_first_of(xT("?#"), pathStart);  // or by the end
 
-    if (std::tstring_t::npos == pathEnd) {
+    if (pathEnd == std::tstring_t::npos) {
         pathEnd = a_uri.size();
     }
 
     _path = CxString::cut(a_uri, pathStart, pathEnd);
 
-    //-------------------------------------
     // [_query] - [name=ferret]
     // [INPUT]  - foo://userinfo@example.com:8042/over/there?name=ferret#nose
     size_t queryStart = pathEnd;
     size_t queryEnd   = a_uri.find_first_of(xT("#"), queryStart);
 
-    if (std::tstring_t::npos == queryEnd) {
+    if (queryEnd == std::tstring_t::npos) {
         queryEnd = a_uri.size();
     }
 
     _query = CxString::cut(a_uri, queryStart + 1/*"?"*/, queryEnd);
 
-    //-------------------------------------
     // [_fragment] - [nose]
     // [INPUT]     - foo://userinfo@example.com:8042/over/there?name=ferret#nose
     size_t fragmentStart = queryEnd + std::tstring_t(xT("#")).size();
@@ -632,28 +618,28 @@ CxUri::_normilize(
 inline ushort_t
 CxUri::_defaultPort() const
 {
-    if (     xT("ftp")    == _scheme) {
+    if      (_scheme == xT("ftp")) {
         return 21;
     }
-    else if (xT("ssh")    == _scheme) {
+    else if (_scheme == xT("ssh")) {
         return 22;
     }
-    else if (xT("telnet") == _scheme) {
+    else if (_scheme == xT("telnet")) {
         return 23;
     }
-    else if (xT("gopher") == _scheme) {
+    else if (_scheme == xT("gopher")) {
         return 70;
     }
-    else if (xT("http")   == _scheme) {
+    else if (_scheme == xT("http")) {
         return 80;
     }
-    else if (xT("nntp")   == _scheme) {
+    else if (_scheme == xT("nntp")) {
         return 119;
     }
-    else if (xT("ldap")   == _scheme) {
+    else if (_scheme == xT("ldap")) {
         return 389;
     }
-    else if (xT("https")  == _scheme) {
+    else if (_scheme == xT("https")) {
         return 443;
     }
     else {
