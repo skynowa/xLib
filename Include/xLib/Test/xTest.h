@@ -258,7 +258,7 @@
     { switch (0) {case 0: case (expr):;} }
     ///< static assert
 
-#if xTEST_TRACING
+#if xHAVE_TEST_TRACING
     #define xTEST_CASE(caseName, loops) \
         if (loops == 0) { \
             CxTrace() << xT("\tTest case: ") << xT(caseName) << xT(" - skipped"); \
