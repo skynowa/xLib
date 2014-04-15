@@ -39,8 +39,8 @@ CxSocketInit::CxSocketInit(
 
     int_t iRv = ::WSAStartup(MAKEWORD(a_majorVersion, a_minorVersion), &wdData);
     xTEST_EQ(iRv, 0);
-    xTEST_EQ((ushort_t)HIBYTE(wdData.wVersion), a_minorVersion);
-    xTEST_EQ((ushort_t)LOBYTE(wdData.wVersion), a_majorVersion);
+    xTEST_EQ(a_minorVersion, (ushort_t)HIBYTE(wdData.wVersion));
+    xTEST_EQ(a_majorVersion, (ushort_t)LOBYTE(wdData.wVersion));
 #elif xOS_ENV_UNIX
     xUNUSED(a_majorVersion);
     xUNUSED(a_minorVersion);
