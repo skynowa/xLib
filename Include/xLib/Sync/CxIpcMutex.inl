@@ -30,7 +30,7 @@ CxIpcMutex::create(
     std::ctstring_t &a_name
 )
 {
-    ////xTEST_EQ(false, _handle.bIsValid(), false);
+    ////xTEST_EQ(false, _handle.isValid(), false);
 #if   xOS_ENV_WIN
     // name
 #elif xOS_ENV_UNIX
@@ -49,7 +49,7 @@ CxIpcMutex::create(
     }
 
     HANDLE hRv = ::CreateMutex(xPTR_NULL, FALSE, winName);
-    xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
+    xTEST_DIFF(hRv, xNATIVE_HANDLE_NULL);
 
     _handle.set(hRv);
     _name = a_name;
@@ -57,7 +57,7 @@ CxIpcMutex::create(
     std::tstring_t unixName = CxConst::unixSlash() + a_name;
 
     handle_t hHandle = ::sem_open(unixName.c_str(), O_CREAT | O_RDWR, 0777, 1U);
-    xTEST_DIFF(SEM_FAILED, hHandle);
+    xTEST_DIFF(hHandle, SEM_FAILED);
 
     _handle = hHandle;
     _name   = unixName;
@@ -81,7 +81,7 @@ CxIpcMutex::open(
     }
 
     HANDLE hRv = ::OpenMutex(MUTEX_ALL_ACCESS, FALSE, winName);
-    xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
+    xTEST_DIFF(hRv, xNATIVE_HANDLE_NULL);
 
     _handle.set(hRv);
     _name = a_name;
@@ -89,7 +89,7 @@ CxIpcMutex::open(
     std::tstring_t unixName = CxConst::unixSlash() + a_name;
 
     handle_t hHandle = ::sem_open(unixName.c_str(), O_RDWR, 0777, 1U);
-    xTEST_DIFF(SEM_FAILED, hHandle);
+    xTEST_DIFF(hHandle, SEM_FAILED);
 
     _handle = hHandle;
     _name   = unixName;
@@ -101,13 +101,13 @@ CxIpcMutex::lock(
     culong_t &a_timeoutMsec
 ) const
 {
-    ////xTEST_EQ(true, _handle.bIsValid(), false);
-    //culTimeout - n/a
+    ////xTEST_EQ(true, _handle.isValid(), false);
+    xTEST_NA(a_timeoutMsec);
 
 #if   xOS_ENV_WIN
-    DWORD ulRv = ::WaitForSingleObject(_handle.get(), a_timeoutMsec);
-    xTEST_EQ(WAIT_OBJECT_0, ulRv);
-    xTEST_DIFF(WAIT_ABANDONED, ulRv);
+    DWORD dwRv = ::WaitForSingleObject(_handle.get(), a_timeoutMsec);
+    xTEST_EQ(dwRv, WAIT_OBJECT_0);
+    xTEST_DIFF(dwRv, WAIT_ABANDONED);
 #elif xOS_ENV_UNIX
     struct _Functor
     {
@@ -143,13 +143,13 @@ CxIpcMutex::lock(
         (void_t)_Functor::timespecAddMsec(&timeoutMsec, a_timeoutMsec);
     }
 
-    while (- 1 == (iRv = ::sem_timedwait(_handle, &timeoutMsec)) && (EINTR == errno)) {
+    while ((iRv = ::sem_timedwait(_handle, &timeoutMsec)) == - 1 && (errno == EINTR)) {
         // Restart if interrupted by handler
         continue;
     }
 
-    if (- 1 == iRv) {
-        if (ETIMEDOUT == errno) {
+    if (iRv == - 1) {
+        if (errno == ETIMEDOUT) {
             // timeout
             xTEST_FAIL;
         } else {
@@ -164,7 +164,7 @@ CxIpcMutex::lock(
 inline void_t
 CxIpcMutex::unlock() const
 {
-    ////xTEST_EQ(true, _handle.bIsValid(), false);
+    ////xTEST_EQ(true, _handle.isValid(), false);
 
 #if   xOS_ENV_WIN
     BOOL blRv = ::ReleaseMutex(_handle.get());
