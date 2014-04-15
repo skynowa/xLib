@@ -75,7 +75,7 @@
 
 #cmakedefine xHAVE_CPP11               1
     ///< support C++11 language
-#cmakedefine xUSING_NAMESPACE_XLIB     1
+#cmakedefine xHAVE_NAMESPACE_XLIB     1
     ///< automatically include the xlib namespace
 
 #cmakedefine xDEBUG_USE_DIALOG         1
