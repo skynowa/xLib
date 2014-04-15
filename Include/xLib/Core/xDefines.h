@@ -70,9 +70,9 @@
     #if xAPI_EXPORTS
         #define xDECL \
             __declspec(dllexport)
-            // export DLL information
+            ///< export DLL information
         #define xDECL_TEMPL
-            // export DLL information
+            ///< export DLL information
     #else
         #define xDECL \
             __declspec(dllimport)
@@ -83,9 +83,9 @@
     #endif
 #elif xOS_ENV_UNIX
     #define xDECL
-        // export, import DLL information
+        ///< export, import DLL information
     #define xDECL_TEMPL
-        // export, import DLL information
+        ///< export, import DLL information
 #endif
 
 //-------------------------------------------------------------------------------------------------
@@ -701,15 +701,15 @@
     private: \
         className();
     ///< disallow make instance
-#define xNO_ARRAY_HEAP \
-    private: \
-        void * operator new [](size_t) throw() { return xPTR_NULL; } \
-        void   operator delete [](void *) { ; }
-    ///< disallow array on heap
 #define xNO_HEAP \
     private: \
-        void * operator new(size_t) throw() { return xPTR_NULL; } \
-        void   operator delete(void *) { ; }
+        void* operator new    (size_t) throw() { return xPTR_NULL; } \
+        void  operator delete (void*)          { ; }
     ///< disallow object on heap
+#define xNO_ARRAY_HEAP \
+    private: \
+        void* operator new []    (size_t) throw() { return xPTR_NULL; } \
+        void  operator delete [] (void*)          { ; }
+    ///< disallow array on heap
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_xDefinesH
