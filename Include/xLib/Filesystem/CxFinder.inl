@@ -165,7 +165,7 @@ CxFinder::moveNext()
     } else {
     #if   xOS_ENV_WIN
         BOOL blRv = ::FindNextFile(_entry.handle, &_entry.data);
-        if (FALSE == blRv) {
+        if (blRv == FALSE) {
             xCHECK_RET(CxLastError::get() == ERROR_NO_MORE_FILES, false);
 
             xTEST_FAIL;

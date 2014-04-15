@@ -262,7 +262,7 @@ CxProcess::idByName(
         xCHECK_DO(bRv, break);   // OK
 
         blRv = ::Process32Next(snapshot.get(), &processEntry);
-        xCHECK_DO(FALSE == blRv, break);
+        xCHECK_DO(blRv == FALSE, break);
     }
 
     ulRv = processEntry.th32ProcessID;
@@ -395,7 +395,7 @@ CxProcess::ids(
         vidRv.push_back(pid);
 
         blRv = ::Process32Next(snapshot.get(), &processEntry);
-        xCHECK_DO(FALSE == blRv, break);
+        xCHECK_DO(blRv == FALSE, break);
     }
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX

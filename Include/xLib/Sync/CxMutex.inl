@@ -118,7 +118,7 @@ CxMutex::tryLock()
 {
 #if   xOS_ENV_WIN
     BOOL blRv = ::TryEnterCriticalSection(&_handle);
-    xCHECK_RET(FALSE == blRv, false);
+    xCHECK_RET(blRv == FALSE, false);
 #elif xOS_ENV_UNIX
     int_t iRv = ::pthread_mutex_trylock(&_handle);
     xCHECK_RET(0 != iRv, false);

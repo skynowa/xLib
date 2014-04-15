@@ -54,22 +54,22 @@ CxSystemInfo::os()
         otRv = otWindows3;
         break;
     case VER_PLATFORM_WIN32_WINDOWS:
-        xCHECK_DO(0UL  == info.dwMinorVersion, otRv = otWindows95; break);
-        xCHECK_DO(10UL == info.dwMinorVersion, otRv = otWindows98; break);
-        xCHECK_DO(90UL == info.dwMinorVersion, otRv = otWindows98; break);
+        xCHECK_DO(info.dwMinorVersion == 0UL,  otRv = otWindows95; break);
+        xCHECK_DO(info.dwMinorVersion == 10UL, otRv = otWindows98; break);
+        xCHECK_DO(info.dwMinorVersion == 90UL, otRv = otWindows98; break);
         break;
     case VER_PLATFORM_WIN32_NT:
         xCHECK_DO(info.dwMajorVersion <= 4UL,                               otRv = otWindowsNT;              break);
-        xCHECK_DO(5UL == info.dwMajorVersion && 0UL == info.dwMinorVersion, otRv = otWindows2000;            break);
-        xCHECK_DO(5UL == info.dwMajorVersion && 1UL == info.dwMinorVersion, otRv = otWindowsXP;              break);
-        xCHECK_DO(5UL == info.dwMajorVersion && 2UL == info.dwMinorVersion, otRv = otWindowsXPProx64Edition; break);
-        xCHECK_DO(5UL == info.dwMajorVersion && 2UL == info.dwMinorVersion, otRv = otWindowsServer2003;      break);
-        xCHECK_DO(5UL == info.dwMajorVersion && 2UL == info.dwMinorVersion, otRv = otWindowsHomeServer;      break);
-        xCHECK_DO(5UL == info.dwMajorVersion && 2UL == info.dwMinorVersion, otRv = otWindowsServer2003R2;    break);
-        xCHECK_DO(6UL == info.dwMajorVersion && 0UL == info.dwMinorVersion, otRv = otWindowsVista;           break);
-        xCHECK_DO(6UL == info.dwMajorVersion && 0UL == info.dwMinorVersion, otRv = otWindowsServer2008;      break);
-        xCHECK_DO(6UL == info.dwMajorVersion && 1UL == info.dwMinorVersion, otRv = otWindowsServer2008R2;    break);
-        xCHECK_DO(6UL == info.dwMajorVersion && 1UL == info.dwMinorVersion, otRv = otWindows7;               break);
+        xCHECK_DO(info.dwMajorVersion == 5UL && info.dwMinorVersion == 0UL, otRv = otWindows2000;            break);
+        xCHECK_DO(info.dwMajorVersion == 5UL && info.dwMinorVersion == 1UL, otRv = otWindowsXP;              break);
+        xCHECK_DO(info.dwMajorVersion == 5UL && info.dwMinorVersion == 2UL, otRv = otWindowsXPProx64Edition; break);
+        xCHECK_DO(info.dwMajorVersion == 5UL && info.dwMinorVersion == 2UL, otRv = otWindowsServer2003;      break);
+        xCHECK_DO(info.dwMajorVersion == 5UL && info.dwMinorVersion == 2UL, otRv = otWindowsHomeServer;      break);
+        xCHECK_DO(info.dwMajorVersion == 5UL && info.dwMinorVersion == 2UL, otRv = otWindowsServer2003R2;    break);
+        xCHECK_DO(info.dwMajorVersion == 6UL && info.dwMinorVersion == 0UL, otRv = otWindowsVista;           break);
+        xCHECK_DO(info.dwMajorVersion == 6UL && info.dwMinorVersion == 0UL, otRv = otWindowsServer2008;      break);
+        xCHECK_DO(info.dwMajorVersion == 6UL && info.dwMinorVersion == 1UL, otRv = otWindowsServer2008R2;    break);
+        xCHECK_DO(info.dwMajorVersion == 6UL && info.dwMinorVersion == 1UL, otRv = otWindows7;               break);
 
         // for unknown windows/newest windows version
         otRv = otUnknown;
@@ -85,10 +85,10 @@ CxSystemInfo::os()
     int_t iRv = ::uname(&info);
     xTEST_DIFF(iRv, - 1);
 
-    if      (CxStringCI::compare(xT("Linux"), info.sysname)) {
+    if      (CxStringCI::compare(info.sysname, xT("Linux"))) {
         otRv = otLinux;
     }
-    else if (CxStringCI::compare(xT("FreeBSD"), info.sysname)) {
+    else if (CxStringCI::compare(info.sysname, xT("FreeBSD"))) {
         otRv = otFreeBSD;
     }
     else {
@@ -100,7 +100,7 @@ CxSystemInfo::os()
     int_t iRv = ::uname(&info);
     xTEST_DIFF(iRv, - 1);
 
-    if (CxStringCI::compare(xT("Darwin"), info.sysname)) {
+    if (CxStringCI::compare(info.sysname, xT("Darwin"))) {
         otRv = otMac;
     }
     else {
@@ -217,27 +217,27 @@ CxSystemInfo::osArch()
     // TODO: xTEST_DIFF(0,   strlen(info.machine));
 
     // 32-bit checks
-    if      (CxStringCI::compare(xT("i386"), info.machine)) {
+    if      (CxStringCI::compare(info.machine, xT("i386"))) {
         oaRv = oa32bit;
     }
-    else if (CxStringCI::compare(xT("i486"), info.machine)) {
+    else if (CxStringCI::compare(info.machine, xT("i486"))) {
         oaRv = oa32bit;
     }
-    else if (CxStringCI::compare(xT("i586"), info.machine)) {
+    else if (CxStringCI::compare(info.machine, xT("i586"))) {
         oaRv = oa32bit;
     }
-    else if (CxStringCI::compare(xT("i686"), info.machine)) {
+    else if (CxStringCI::compare(info.machine, xT("i686"))) {
         oaRv = oa32bit;
     }
 
     // 64-bit checks
-    else if (CxStringCI::compare(xT("x86_64"), info.machine)) {
+    else if (CxStringCI::compare(info.machine, xT("x86_64"))) {
         oaRv = oa64bit;
     }
-    else if (CxStringCI::compare(xT("ia64"), info.machine)) {
+    else if (CxStringCI::compare(info.machine, xT("ia64"))) {
         oaRv = oa64bit;
     }
-    else if (CxStringCI::compare(xT("amd64"), info.machine)) {
+    else if (CxStringCI::compare(info.machine, xT("amd64"))) {
         oaRv = oa64bit;
     }
 
@@ -295,13 +295,13 @@ CxSystemInfo::desktopName() const
             // TODO: CxSystemInfo::desktopName() - checks for detecting Windows shell
         }
 
-        xTEST_EQ(false, sRv.empty());
+        xTEST_EQ(sRv.empty(), false);
     #else
         sRv = nativeDesktop;
     #endif
 #elif xOS_ENV_UNIX
     sRv = CxEnvironment::var(xT("DESKTOP_SESSION"));
-    xTEST_EQ(false, sRv.empty());
+    xTEST_EQ(sRv.empty(), false);
 #elif xOS_ENV_APPLE
     xNOT_IMPLEMENTED
 #endif
@@ -344,13 +344,13 @@ CxSystemInfo::isUserAdmin() const
 
     BOOL blRv = ::AllocateAndInitializeSid(&ntAuthority, 2, SECURITY_BUILTIN_DOMAIN_RID,
         DOMAIN_ALIAS_RID_ADMINS, 0UL, 0UL, 0UL, 0UL, 0UL, 0UL, &adminGroup);
-    xCHECK_RET(FALSE == blRv, false);
+    xCHECK_RET(blRv == FALSE, false);
 
     {
         BOOL isMember = FALSE;
 
         blRv = ::CheckTokenMembership(xPTR_NULL, adminGroup, &isMember);
-        if (FALSE == blRv || FALSE == isMember) {
+        if (blRv == FALSE || isMember == FALSE) {
             isAdmin = false;
         } else {
             isAdmin = true;
@@ -366,11 +366,11 @@ CxSystemInfo::isUserAdmin() const
 
     userId = ::getuid();
     xTESTS_NA;
-    xCHECK_RET(rootId != userId, false);
+    xCHECK_RET(userId != rootId, false);
 
     userId = ::geteuid();
     xTESTS_NA;
-    xCHECK_RET(rootId != userId, false);
+    xCHECK_RET(userId != rootId, false);
 #endif
 
     return true;
@@ -497,7 +497,7 @@ CxSystemInfo::userHomeDir() const
     tchar_t buff[MAX_PATH + 1] = {0};
 
     HRESULT hrRv = SHGetFolderPath(xPTR_NULL, CSIDL_PROFILE, xPTR_NULL, 0UL, &buff[0]);
-    xTEST_EQ(true, S_OK == hrRv);
+    xTEST_EQ(S_OK == hrRv, true);
 
     sRv.assign(buff);
 #elif xOS_ENV_UNIX
@@ -541,7 +541,7 @@ CxSystemInfo::userShellPath() const
     LPITEMIDLIST idList = {0};
 
     HRESULT hrRv = ::SHGetSpecialFolderLocation(xPTR_NULL, CSIDL_WINDOWS, &idList);
-    xTEST_EQ(S_OK, hrRv);
+    xTEST_EQ(hrRv, S_OK);
 
     tchar_t buff[MAX_PATH + 1] = {0};
 
@@ -579,7 +579,7 @@ CxSystemInfo::numOfCpus() const
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         long_t liRv = ::sysconf(_SC_NPROCESSORS_ONLN);
-        xTEST_DIFF(- 1L, liRv);
+        xTEST_DIFF(liRv, - 1L);
 
         ulRv = static_cast<ulong_t>( liRv );
     #elif xOS_FREEBSD
@@ -621,7 +621,7 @@ CxSystemInfo::currentCpuNum() const
         ulong_t cpu = 0UL;
 
         long_t liRv = ::syscall(SYS_getcpu, &cpu, xPTR_NULL, xPTR_NULL);
-        xTEST_DIFF(- 1L, liRv);
+        xTEST_DIFF(liRv, - 1L);
 
         ulRv = cpu;
     #elif xHAVE_SCHED_GETCPU
@@ -666,7 +666,7 @@ CxSystemInfo::cpuVendor() const
         *reinterpret_cast<int_t *>( &man[8] ) = cpuInfo[2];
 
         value = std::string(man);
-        xTEST_EQ(false, value.empty());
+        xTEST_EQ(value.empty(), false);
     #elif xCOMPILER_CODEGEAR
         // TODO: CxSystemInfo::cpuVendor()
         value = std::tstring_t();
@@ -675,7 +675,7 @@ CxSystemInfo::cpuVendor() const
     #if   xOS_LINUX
         // target proc line: "vendor_id : GenuineIntel"
         value = CxPath::procValue(xT("/proc/cpuinfo"), xT("vendor_id"));
-        xTEST_EQ(false, value.empty());
+        xTEST_EQ(value.empty(), false);
     #elif xOS_FREEBSD
         // Use gcc 4.4 provided cpuid intrinsic
         // 32 bit fpic requires ebx be preserved
@@ -723,15 +723,15 @@ CxSystemInfo::cpuVendor() const
         cpuInfo[3] = 0;
 
         value = std::string(CxUtils::reinterpretCastT<char *>( &cpuInfo[0] ));
-        xTEST_EQ(false, value.empty());
+        xTEST_EQ(value.empty(), false);
     #endif
 #elif xOS_ENV_APPLE
     xNOT_IMPLEMENTED
 #endif
-    if      (std::string("GenuineIntel") == value) {
+    if      (value == std::string("GenuineIntel")) {
         cvRv = cvIntel;
     }
-    else if (std::string("AuthenticAMD") == value) {
+    else if (value == std::string("AuthenticAMD")) {
         cvRv = cvAmd;
     }
     else {
@@ -766,10 +766,10 @@ CxSystemInfo::cpuModel() const
 
         (void_t)::__cpuid(cpuInfo, 0x80000000);
 
-        uint_t uiHighestFeatureEx = static_cast<uint_t>( cpuInfo[0] );
+        uint_t highestFeatureEx = static_cast<uint_t>( cpuInfo[0] );
 
         // get processor brand name
-        if (uiHighestFeatureEx >= 0x80000004) {
+        if (highestFeatureEx >= 0x80000004) {
             char buff[49] = {0};
 
             (void_t)::__cpuid(reinterpret_cast<int_t *>( &buff[0]  ), 0x80000002);
@@ -789,7 +789,7 @@ CxSystemInfo::cpuModel() const
     #if   xOS_LINUX
         // target proc line: "model name    : Intel(R) Xeon(R) CPU           E5620  @ 2.40GHz"
         std::tstring_t value = CxPath::procValue(xT("/proc/cpuinfo"), xT("model name"));
-        xTEST_EQ(false, value.empty());
+        xTEST_EQ(value.empty(), false);
 
         sRv = value;
     #elif xOS_FREEBSD
@@ -799,7 +799,7 @@ CxSystemInfo::cpuModel() const
 
         iRv = ::sysctlbyname("hw.model", xPTR_NULL, &valueSize, xPTR_NULL, 0U);
         xTEST_DIFF(iRv, - 1);
-        xTEST_DIFF(size_t(0), valueSize);
+        xTEST_DIFF(valueSize, size_t(0));
 
         value.resize(valueSize);
 
@@ -828,21 +828,21 @@ CxSystemInfo::cpuSpeed() const
 
     LONG lRv = ::RegOpenKeyEx(HKEY_LOCAL_MACHINE, xT("HARDWARE\\DESCRIPTION\\System\\"
         "CentralProcessor\\0"), 0UL, KEY_READ, &key);
-    xTEST_EQ(ERROR_SUCCESS, lRv);
+    xTEST_EQ(lRv, ERROR_SUCCESS);
 
     lRv = ::RegQueryValueEx(key, xT("~MHz"), xPTR_NULL, xPTR_NULL, reinterpret_cast<LPBYTE>( &cpuSpeedMHz ),
         &buffSize);
-    xTEST_EQ(ERROR_SUCCESS, lRv);
+    xTEST_EQ(lRv, ERROR_SUCCESS);
 
     lRv = ::RegCloseKey(key);    key = xPTR_NULL;
-    xTEST_EQ(ERROR_SUCCESS, lRv);
+    xTEST_EQ(lRv, ERROR_SUCCESS);
 
     ulRv = cpuSpeedMHz;
 #elif xOS_ENV_UNIX
     #if   xOS_LINUX
         // target proc line: "cpu MHz         : 2796.380"
         std::ctstring_t value = CxPath::procValue(xT("/proc/cpuinfo"), xT("cpu MHz"));
-        xTEST_EQ(false, value.empty());
+        xTEST_EQ(value.empty(), false);
 
         cdouble_t cpuSpeedMHz = CxString::cast<double>( value );
 
@@ -1150,7 +1150,7 @@ CxSystemInfo::pageSize() const
     ulRv = sysInfo.dwPageSize;
 #elif xOS_ENV_UNIX
     long_t liRv = ::sysconf(xPAGE_SIZE);
-    xTEST_DIFF(- 1L, liRv);
+    xTEST_DIFF(liRv, - 1L);
     xTEST_LESS(0L,   liRv);
 
     ulRv = static_cast<ulong_t>( liRv );
@@ -1248,7 +1248,7 @@ CxSystemInfo::_passwdFileEntry(
     long_t buffSize = - 1L;
     {
         buffSize = ::sysconf(_SC_GETPW_R_SIZE_MAX);
-        if (- 1L == buffSize) {
+        if (buffSize == - 1L) {
             clong_t pwRSizeMax = 16384L;    // CUSTOM: 16384L - custom value
 
             buffSize = pwRSizeMax;
