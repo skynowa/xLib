@@ -186,17 +186,6 @@
 #endif
     ///< "null" pointer
 //-------------------------------------------------------------------------------------------------
-// xNEW
-#if xNEW_NO_STD_THROW
-    #define xNEW \
-        new (std::nothrow)
-#else
-    #define xNEW \
-        new
-#endif
-    ///< operator "new"
-
-//-------------------------------------------------------------------------------------------------
 // xWARN_UNUSED_RV
 #if   xCOMPILER_MINGW
     #define xWARN_UNUSED_RV \

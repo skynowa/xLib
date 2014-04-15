@@ -93,9 +93,6 @@
 #cmakedefine xDEBUG_MODE_NO            1
     ///< debug mode "no debugging"
 
-#cmakedefine xNEW_NO_STD_THROW         1
-    ///< new with std::notrow
-
 #cmakedefine xTEST_PRIVATE_DATA        1
     ///< for tests private data
 #cmakedefine xTEST_TRACING             1
