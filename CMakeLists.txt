@@ -16,7 +16,7 @@ set(CMAKE_BUILD_TYPE "RelWithDebInfo")
 
 #--------------------------------------------------------------------------------------------------
 # options
-unset(xUSING_CPP11          CACHE)
+unset(xHAVE_CPP11           CACHE)
 unset(xUSING_NAMESPACE_XLIB CACHE)
 unset(xDEBUG_USE_DIALOG     CACHE)
 unset(xDEBUG_MODE_MSGBOX    CACHE)
@@ -28,7 +28,7 @@ unset(xTEST_PRIVATE_DATA    CACHE)
 unset(xTEST_TRACING         CACHE)
 unset(xUSING_TESTS          CACHE)
 
-option(xUSING_CPP11          "support C++11 language"                   ON)
+option(xHAVE_CPP11           "support C++11 language"                   ON)
 option(xUSING_NAMESPACE_XLIB "automatically include the xlib namespace" ON)
 option(xDEBUG_USE_DIALOG     "debug prompt dialog"                      ON)
 option(xDEBUG_MODE_MSGBOX    "debug mode 'message box with plain text'" OFF)
@@ -43,7 +43,7 @@ option(xUSING_TESTS          "use xLib tests"                           ON)
 # trace options
 message("")
 message("******************** Options *********************")
-message("* xUSING_CPP11:          ${xUSING_CPP11}")
+message("* xHAVE_CPP11:           ${xHAVE_CPP11}")
 message("* xUSING_NAMESPACE_XLIB: ${xUSING_NAMESPACE_XLIB}")
 message("* xDEBUG_USE_DIALOG:     ${xDEBUG_USE_DIALOG}")
 message("* xDEBUG_MODE_MSGBOX:    ${xDEBUG_MODE_MSGBOX}")
@@ -112,7 +112,7 @@ add_executable(xLib_test ${xLib_tests_SOURCES})
 
 #--------------------------------------------------------------------------------------------------
 # definitions
-if (xUSING_CPP11)
+if (xHAVE_CPP11)
     add_definitions(-std=c++11)
 endif()
 

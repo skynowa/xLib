@@ -152,7 +152,7 @@
 
 //-------------------------------------------------------------------------------------------------
 // xOVERRIDE
-#if xUSING_CPP11
+#if xHAVE_CPP11
     #define xOVERRIDE \
         override
 #else
