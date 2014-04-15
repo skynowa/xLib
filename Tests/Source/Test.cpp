@@ -100,7 +100,7 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
     foo3();
 #endif
 
-#if xUSING_TESTS
+#if xHAVE_TESTS
     // checks
     {
     #if xOS_ENV_UNIX

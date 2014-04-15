@@ -100,7 +100,7 @@
     ///< for tests private data
 #cmakedefine xTEST_TRACING             1
     ///< use tracing in tests
-#cmakedefine xUSING_TESTS              1
+#cmakedefine xHAVE_TESTS              1
     ///< use xLib tests
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_xConfig_genH
