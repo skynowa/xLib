@@ -121,7 +121,7 @@ CxProcessInfo::exeName() const
     CxProcess::handle_t handle = CxProcess::handleById(_id);
 
     DWORD stored = ::GetModuleFileNameEx(handle, xPTR_NULL, &sRv.at(0), static_cast<DWORD>(sRv.size()));
-    xTEST_DIFF(0UL, stored);
+    xTEST_DIFF(stored, 0UL);
 
     sRv.resize(stored);
 #elif xOS_ENV_UNIX
@@ -137,7 +137,7 @@ CxProcessInfo::exeName() const
         xFOREVER {
             readed = ::readlink(procFile.c_str(), &sRv.at(0), sRv.size() *
                 sizeof(std::tstring_t::value_type));
-            xTEST_DIFF(ssize_t(- 1), readed);
+            xTEST_DIFF(readed, ssize_t(- 1));
 
             xCHECK_DO(sRv.size() * sizeof(std::tstring_t::value_type) >
                 static_cast<size_t>( readed ), break);
@@ -212,7 +212,7 @@ CxProcessInfo::commandLine(
 
         const CxProcess::id_t ntoskrnlId = 4UL;  // MAGIC: ntoskrnlId
 
-        if (ntoskrnlId == _id) {
+        if (_id == ntoskrnlId) {
             sRv = CxEnvironment::expandStrings(xT("%SystemRoot%\\System32\\ntoskrnl.exe"));
             CxString::split(sRv, CxConst::space(), &args);
 
@@ -251,7 +251,7 @@ CxProcessInfo::commandLine(
             dll.load(xT("ntdll.dll"));
 
             bool_t bRv = dll.isProcExists(xT("NtQueryInformationProcess"));
-            xTEST_EQ(true, bRv);
+            xTEST_EQ(Rv, true);
 
             func_t func = (func_t)dll.procAddress(xT("NtQueryInformationProcess"));
             xTEST_PTR(func);
@@ -267,7 +267,7 @@ CxProcessInfo::commandLine(
 
             // TODO: ProcessBasicInformation (for x64)
             NTSTATUS nsRv = func(a_process, info, &basicInfo, basicInfoSize, &returnSizeBytes);
-            xTEST_EQ(true, NT_SUCCESS(nsRv));
+            xTEST_EQ(NT_SUCCESS(nsRv), true);
             xTEST_EQ(basicInfoSize, returnSizeBytes);
             xTEST_PTR(basicInfo.PebBaseAddress);
 
@@ -282,7 +282,7 @@ CxProcessInfo::commandLine(
 
     processHandle = ::OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE,
         static_cast<DWORD>( _id ));
-    xTEST_EQ(true, processHandle.isValid());
+    xTEST_EQ(processHandle.isValid(), true);
 
     PVOID pebAddress               = _Functor::pebAddress(processHandle.get());
     PVOID rtlUserProcParamsAddress = xPTR_NULL;
@@ -383,7 +383,7 @@ CxProcessInfo::commandLineArgsMax()
     liRv = 32L * 1024L;
 #elif xOS_ENV_UNIX
     liRv = ::sysconf(_SC_ARG_MAX) / sizeof(std::tstring_t::value_type);
-    xTEST_DIFF(- 1L, liRv);
+    xTEST_DIFF(liRv, - 1L);
 #endif
 
     return liRv;
