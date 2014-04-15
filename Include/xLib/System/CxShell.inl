@@ -34,9 +34,9 @@ CxShell::isAvailable() const
     int_t iRv = xTSYSTEM(xPTR_NULL);
 
 #if   xOS_ENV_WIN
-    xCHECK_RET(0 == iRv && ENOENT == CxStdError::get(), false);
+    xCHECK_RET(iRv == 0 && CxStdError::get() == ENOENT, false);
 #elif xOS_ENV_UNIX
-    xCHECK_RET(0 == iRv, false);
+    xCHECK_RET(iRv == 0, false);
 #endif
 
     return true;
@@ -143,8 +143,8 @@ CxShell::executeEx(
 {
     xTEST_EQ(a_info.empty(), false);
 
-    BOOL bRv = ::ShellExecuteEx(&a_info);
-    xTEST_DIFF(FALSE, bRv);
+    BOOL blRv = ::ShellExecuteEx(&a_info);
+    xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -271,35 +271,35 @@ CxShell::createShortcut(
 
     hRv = ::CoCreateInstance(CLSID_ShellLink, xPTR_NULL, CLSCTX_INPROC_SERVER, IID_IShellLink,
         (void_t **)&link);
-    xTEST_EQ(true, SUCCEEDED(hRv));
+    xTEST_EQ(SUCCEEDED(hRv), true);
 
     {
         hRv = link->SetPath(a_filePath.c_str());
-        xTEST_EQ(true, SUCCEEDED(hRv));
+        xTEST_EQ(SUCCEEDED(hRv), true);
 
         hRv = link->SetArguments(a_args.c_str());
-        xTEST_EQ(true, SUCCEEDED(hRv));
+        xTEST_EQ(SUCCEEDED(hRv), true);
 
         hRv = link->SetWorkingDirectory(a_workingDirectory.c_str());
-        xTEST_EQ(true, SUCCEEDED(hRv));
+        xTEST_EQ(SUCCEEDED(hRv), true);
 
         hRv = link->SetIconLocation(a_iconFilePath.c_str(), a_iconIndex);
-        xTEST_EQ(true, SUCCEEDED(hRv));
+        xTEST_EQ(SUCCEEDED(hRv), true);
 
         hRv = link->SetHotkey(a_hotKey);
-        xTEST_EQ(true, SUCCEEDED(hRv));
+        xTEST_EQ(SUCCEEDED(hRv), true);
 
         hRv = link->SetShowCmd(a_cmdShow);
-        xTEST_EQ(true, SUCCEEDED(hRv));
+        xTEST_EQ(SUCCEEDED(hRv), true);
 
         hRv = link->SetDescription(a_description.c_str());
-        xTEST_EQ(true, SUCCEEDED(hRv));
+        xTEST_EQ(SUCCEEDED(hRv), true);
     }
 
     IPersistFile *file = xPTR_NULL;
 
     hRv = link->QueryInterface(IID_IPersistFile, CxUtils::reinterpretCastT<void_t **>( &file ));
-    xTEST_EQ(true, SUCCEEDED(hRv));
+    xTEST_EQ(SUCCEEDED(hRv), true);
 
 #if xUNICODE
     hRv = file->Save(a_shortCutFilePath.c_str(), true);
