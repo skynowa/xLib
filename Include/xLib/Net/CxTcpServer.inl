@@ -23,7 +23,7 @@ CxTcpServer::bind(
 ) const
 {
     xTEST_DIFF(_socket, xSOCKET_HANDLE_INVALID);
-    xTEST_EQ((32767 > a_port) && (0 < a_port), true);
+    xTEST_EQ((a_port > 0) && (a_port < 32767), true);
 
     sockaddr_in sockAddr;    xSTRUCT_ZERO(sockAddr);
     sockAddr.sin_family      = _family;
