@@ -53,8 +53,6 @@ CxThreadPool<T>::CxThreadPool(
 template<class T>
 CxThreadPool<T>::~CxThreadPool()
 {
-
-
     /*LOG*/_s_log.write(xT("CxThreadPool: destroy"));
 }
 //-------------------------------------------------------------------------------------------------
@@ -295,7 +293,7 @@ CxThreadPool<T>::setMaxTasks(
 
     //-------------------------------------
     //������ �� ������, �.�. ���-�� ������� �� ����������
-    if (_maxRunningTasks == a_num) {
+    if (a_num == _maxRunningTasks) {
         _maxRunningTasks = a_num;
 
         return;
@@ -394,7 +392,7 @@ CxThreadPool<T>::onRun(
 
     //-------------------------------------
     //������ ����
-    xTEST_EQ(true, _tasks.empty());
+    xTEST_EQ(_tasks.empty(), true);
     _tasks.clear();
 
     xFOREVER {
@@ -415,7 +413,7 @@ CxThreadPool<T>::onRun(
         //-------------------------------------
         //������ ����. ������
         _taskAdd(xPTR_NULL);                       //_semaphore.bWait(INFINITE);
-        xTEST_EQ(true, bRv);                //continue ???
+        xTEST_EQ(bRv, true);                //continue ???
 
         ++ _currTask;
 
@@ -432,7 +430,7 @@ CxThreadPool<T>::onRun(
 
         CxThread::currentSleep(500UL);
     }
-    xTEST_EQ(true, _tasks.empty());
+    xTEST_EQ(_tasks.empty(), true);
 
     /*LOG*/_s_log.write(xT("CxThreadPool: Exit thread function"));
     /*LOG*/_s_log.write(xT("CxThreadPool: List size: %u"), _tasks.size());
@@ -482,11 +480,11 @@ CxThreadPool<T>::_taskRemove(
 {
     T *task = static_cast<T *>( a_item );
     xTEST_PTR(task);
-    xTEST_EQ(true, task->isRunning());
+    xTEST_EQ(task->isRunning(), true);
 
     //-------------------------------------
     //����������� _semaphore
-    if (0UL == task->m_ulTag) {
+    if (task->m_ulTag == 0UL) {
         _semaphore.post();
     }
 
@@ -508,7 +506,7 @@ CxThreadPool<T>::_onEnterTask(
 )
 {
     xTEST_PTR(a_sender);
-    xTEST_EQ(true, a_sender->isRunning());
+    xTEST_EQ(a_sender->isRunning(), true);
 
     //...
 
@@ -522,7 +520,7 @@ CxThreadPool<T>::_onExitTask(
 )
 {
     xTEST_PTR(a_sender);
-    xTEST_EQ(true, a_sender->isRunning());
+    xTEST_EQ(a_sender->isRunning(), true);
 
     _taskRemove(a_sender);
 
