@@ -17,7 +17,7 @@ xNAMESPACE2_BEGIN(xlib, sync)
 inline HANDLE
 CxWaitableTimer::handle() const
 {
-    xTEST_EQ(true, _handle.isValid());
+    xTEST_EQ(_handle.isValid(), true);
 
     return _handle.get();
 }
@@ -29,10 +29,10 @@ CxWaitableTimer::create(
     const LPSECURITY_ATTRIBUTES  a_attrs
 )
 {
-    xTEST_EQ(false, _handle.isValid());
+    xTEST_EQ(_handle.isValid(), false);
 
     HANDLE hRv = ::CreateWaitableTimer(a_attrs, a_bManualReset, a_name.c_str());
-    xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
+    xTEST_DIFF(hRv, xNATIVE_HANDLE_NULL);
 
     _handle.set(hRv);
 }
@@ -44,7 +44,7 @@ CxWaitableTimer::open(
     cbool_t         &a_isInheritHandle
 )
 {
-    xTEST_EQ(true, _handle.isValid());
+    xTEST_EQ(_handle.isValid(), true);
 
 // MinGW fix
 #if !defined(OpenWaitableTimer)
@@ -56,7 +56,7 @@ CxWaitableTimer::open(
 #endif
 
     HANDLE hRv = ::OpenWaitableTimer(a_access, a_isInheritHandle, a_name.c_str());
-    xTEST_DIFF(xNATIVE_HANDLE_NULL, hRv);
+    xTEST_DIFF(hRv, xNATIVE_HANDLE_NULL);
 
     _handle.set(hRv);
 }
@@ -64,7 +64,7 @@ CxWaitableTimer::open(
 inline void_t
 CxWaitableTimer::cancel() const
 {
-    xTEST_EQ(true, _handle.isValid());
+    xTEST_EQ(_handle.isValid(), true);
 
     BOOL blRv = ::CancelWaitableTimer(_handle.get());
     xTEST_DIFF(blRv, FALSE);
@@ -79,14 +79,7 @@ CxWaitableTimer::set(
     cbool_t          &a_isResume
 ) const
 {
-    xTEST_EQ(true, _handle.isValid());
-
-    /*
-    #define _SECOND 10000000   // ���� ������� ��� ���������� �������
-
-    //����� �������� ��� ������� = 2 �������
-    qwTimeInterval = -2 * _SECOND;
-    */
+    xTEST_EQ(_handle.isValid(), true);
 
     LARGE_INTEGER dueTimeMsec = {{0}};
     dueTimeMsec.QuadPart = a_dueTimeMsec;
@@ -101,10 +94,10 @@ CxWaitableTimer::wait(
     culong_t &a_timeoutMsec
 ) const
 {
-    xTEST_EQ(true, _handle.isValid());
+    xTEST_EQ(_handle.isValid(), true);
 
-    DWORD ulRv = ::WaitForSingleObject(_handle.get(), a_timeoutMsec);
-    xTEST_EQ(WAIT_OBJECT_0, ulRv);
+    DWORD dwRv = ::WaitForSingleObject(_handle.get(), a_timeoutMsec);
+    xTEST_EQ(dwRv, WAIT_OBJECT_0);
 }
 //-------------------------------------------------------------------------------------------------
 
