@@ -474,7 +474,7 @@ CxThread::tryPostThreadMessage(
             static_cast<LPARAM>( a_param2 ));
 
         xCHECK_RET(blRv != FALSE, true);
-        xCHECK_DO (FALSE == blRv, currentSleep(a_attempTimeoutMsec));
+        xCHECK_DO (blRv == FALSE, currentSleep(a_attempTimeoutMsec));
     }
 
     return false;
