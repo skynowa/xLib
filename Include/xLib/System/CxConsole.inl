@@ -1,5 +1,5 @@
 /**
- * \file  CxConsole.cpp
+ * \file  CxConsole.inl
  * \brief console
  */
 

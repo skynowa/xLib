@@ -1,5 +1,5 @@
 /**
- * \file  CxSocket.cpp
+ * \file  CxSocket.inl
  * \brief blocking socket
  */
 

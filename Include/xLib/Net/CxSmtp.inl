@@ -1,5 +1,5 @@
 /**
- * \file  CxSmtp.cpp
+ * \file  CxSmtp.inl
  * \brief SMTP (RFC 2821)
  */
 

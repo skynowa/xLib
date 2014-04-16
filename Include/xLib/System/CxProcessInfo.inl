@@ -1,5 +1,5 @@
 /**
- * \file   CxProcessInfo.cpp
+ * \file   CxProcessInfo.inl
  * \brief
  */
 

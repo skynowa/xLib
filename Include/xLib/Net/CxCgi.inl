@@ -1,5 +1,5 @@
 /**
- * \file  CxCgi.cpp
+ * \file  CxCgi.inl
  * \brief CGI
  */
 

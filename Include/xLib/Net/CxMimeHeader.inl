@@ -1,5 +1,5 @@
 /**
- * \file  CxMimeHeader.cpp
+ * \file  CxMimeHeader.inl
  * \brief MIME header (RFC 822)
  */
 

@@ -1,5 +1,5 @@
 /**
- * \file  CxAtomicLongInt.cpp
+ * \file  CxAtomicLongInt.inl
  * \brief CxAtomicLongInt operartions with long_t
  */
 

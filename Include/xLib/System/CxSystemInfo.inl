@@ -1,5 +1,5 @@
 /**
- * \file  CxSystemInfo.cpp
+ * \file  CxSystemInfo.inl
  * \brief system information
  */
 

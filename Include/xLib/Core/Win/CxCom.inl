@@ -1,5 +1,5 @@
 /**
- * \file  CxCom.cpp
+ * \file  CxCom.inl
  * \brief COM
  */
 

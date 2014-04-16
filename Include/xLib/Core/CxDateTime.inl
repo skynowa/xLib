@@ -1,5 +1,5 @@
 /**
- * \file  CxDateTime.cpp
+ * \file  CxDateTime.inl
  * \brief date, time
  */
 

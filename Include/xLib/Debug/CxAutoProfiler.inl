@@ -1,5 +1,5 @@
 /**
- * \file  CxAutoProfiler.cpp
+ * \file  CxAutoProfiler.inl
  * \brief auto code profiling
  */
 

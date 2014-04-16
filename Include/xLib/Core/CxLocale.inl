@@ -1,5 +1,5 @@
 /**
- * \file  CxLocale.cpp
+ * \file  CxLocale.inl
  * \brief locale
  */
 

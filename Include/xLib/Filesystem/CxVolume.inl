@@ -1,5 +1,5 @@
 /**
- * \file  CxVolume.cpp
+ * \file  CxVolume.inl
  * \brief volume
  */
 

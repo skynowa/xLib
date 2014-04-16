@@ -1,5 +1,5 @@
 /**
- * \file  CxPath.cpp
+ * \file  CxPath.inl
  * \brief file system path
  */
 

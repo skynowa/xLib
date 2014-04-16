@@ -1,5 +1,5 @@
 /**
- * \file   CxTrace.cpp
+ * \file   CxTrace.inl
  * \brief  tracer
  */
 

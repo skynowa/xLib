@@ -1,5 +1,5 @@
 /**
- * \file   CxFinder.cpp
+ * \file   CxFinder.inl
  * \brief
  */
 

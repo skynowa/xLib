@@ -1,5 +1,5 @@
 /**
- * \file  CxSocketInit.cpp
+ * \file  CxSocketInit.inl
  * \brief initiates use of the Winsock DLL by a process
  */
 

@@ -1,5 +1,5 @@
 /**
- * \file  CxBase64.cpp
+ * \file  CxBase64.inl
  * \brief Base64
  */
 

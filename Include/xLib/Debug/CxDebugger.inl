@@ -1,5 +1,5 @@
 /**
- * \file  CxDebugger.cpp
+ * \file  CxDebugger.inl
  * \brief debugger
  */
 

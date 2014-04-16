@@ -1,5 +1,5 @@
 /**
- * \file  CxProfiler.cpp
+ * \file  CxProfiler.inl
  * \brief code profiling (msec)
  */
 

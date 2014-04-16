@@ -1,5 +1,5 @@
 /**
- * \file  CxTestManager.cpp
+ * \file  CxTestManager.inl
  * \brief manage tests (CxTest)
  */
 

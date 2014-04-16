@@ -1,5 +1,5 @@
 /**
- * \file  CxConst.cpp
+ * \file  CxConst.inl
  * \brief constants
  */
 

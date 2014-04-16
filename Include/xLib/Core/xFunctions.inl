@@ -1,5 +1,5 @@
 /**
- * \file   xFunctions.cpp
+ * \file   xFunctions.inl
  * \brief
  */
 

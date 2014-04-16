@@ -1,5 +1,5 @@
 /**
- * \file  CxRandom.cpp
+ * \file  CxRandom.inl
  * \brief random
  */
 
