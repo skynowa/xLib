@@ -1,10 +1,10 @@
 /**
- * \file   CxTest_CxLocalStorage.cpp
+ * \file   CxTest_CxConfig.cpp
  * \brief
  */
 
 
-#include <Test/Filesystem/CxTest_CxLocalStorage.h>
+#include <Test/Filesystem/CxTest_CxConfig.h>
 
 #include <xLib/Core/CxConst.h>
 #include <xLib/Core/CxString.h>
@@ -15,7 +15,7 @@
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-CxTest_CxLocalStorage::unit(
+CxTest_CxConfig::unit(
     culonglong_t &a_caseLoops
 )
 {
@@ -34,68 +34,68 @@ CxTest_CxLocalStorage::unit(
                                key2 + CxConst::equal() + value2 + CxConst::nl() +
                                key3 + CxConst::equal() + value3 + CxConst::nl();
 
-    xTEST_CASE("CxLocalStorage::CxLocalStorage", a_caseLoops)
+    xTEST_CASE("CxConfig::CxConfig", a_caseLoops)
     {
-        CxLocalStorage storage;
+        CxConfig config;
     }
 
     CxFile::remove(filePath);
 
-    CxLocalStorage storage(filePath);
+    CxConfig config(filePath);
 
-    xTEST_CASE("CxLocalStorage::createDefault", a_caseLoops)
+    xTEST_CASE("CxConfig::createDefault", a_caseLoops)
     {
-        storage.createDefault(content);
+        config.createDefault(content);
     }
 
-    xTEST_CASE("CxLocalStorage::path", a_caseLoops)
+    xTEST_CASE("CxConfig::path", a_caseLoops)
     {
-        m_sRv = storage.path();
+        m_sRv = config.path();
         xTEST_EQ(filePath, m_sRv);
     }
 
-    xTEST_CASE("CxLocalStorage::setPath", a_caseLoops)
+    xTEST_CASE("CxConfig::setPath", a_caseLoops)
     {
-        storage.setPath(filePath);
+        config.setPath(filePath);
 
-        m_sRv = storage.path();
+        m_sRv = config.path();
         xTEST_EQ(filePath, m_sRv);
     }
 
-    xTEST_CASE("CxLocalStorage::get flush", a_caseLoops)
+    xTEST_CASE("CxConfig::get flush", a_caseLoops)
     {
-        std::map_tstring_t &_storage = storage.get();
+        std::map_tstring_t &_storage = config.get();
         xTEST_EQ(true, _storage.empty());
 
         _storage[key1] = value1;
         _storage[key2] = value2;
         _storage[key3] = value3;
 
-        storage.flush();
+        config.flush();
 
-        m_sRv = storage.keyReadString(key1, std::tstring_t());
+        m_sRv = config.keyReadString(key1, std::tstring_t());
         xTEST_EQ(value1, m_sRv);
 
-        m_sRv = storage.keyReadString(key2, std::tstring_t());
+        m_sRv = config.keyReadString(key2, std::tstring_t());
         xTEST_EQ(value2, m_sRv);
 
-        m_sRv = storage.keyReadString(key3, std::tstring_t());
+        m_sRv = config.keyReadString(key3, std::tstring_t());
         xTEST_EQ(value3, m_sRv);
 
-        storage.get().clear();
-        storage.flush();
+        config.get().clear();
+        config.flush();
     }
 
-    xTEST_CASE("CxLocalStorage::keyIsExists", a_caseLoops)
+    xTEST_CASE("CxConfig::keyIsExists", a_caseLoops)
     {
-        std::map_tstring_t &_storage = storage.get();
+        std::map_tstring_t &_storage = config.get();
         xTEST_EQ(true, _storage.empty());
 
         _storage[key1] = value1;
         _storage[key2] = value2;
         _storage[key3] = value3;
 
-        storage.flush();
+        config.flush();
 
         // true
         {
@@ -111,7 +111,7 @@ CxTest_CxLocalStorage::unit(
                 CxString::split(pairs.at(i), CxConst::equal(), &pair);
                 xTEST_EQ(false, pair.empty());
 
-                m_bRv = storage.keyIsExists( pair.at(0) );
+                m_bRv = config.keyIsExists( pair.at(0) );
                 xTEST_EQ(m_bRv, true);
             }
         }
@@ -131,24 +131,24 @@ CxTest_CxLocalStorage::unit(
 
                  CxString::split(pairs.at(i), CxConst::equal(), &pair);
 
-                m_bRv = storage.keyIsExists( pair.at(0) );
+                m_bRv = config.keyIsExists( pair.at(0) );
                 xTEST_EQ(m_bRv, false);
             }
         }
 
-        storage.get().clear();
-        storage.flush();
+        config.get().clear();
+        config.flush();
     }
 
-    xTEST_CASE("CxLocalStorage::keyWriteString keyReadString", a_caseLoops)
+    xTEST_CASE("CxConfig::keyWriteString keyReadString", a_caseLoops)
     {
         // true
         {
             std::ctstring_t str = value1;
 
-            storage.keyWriteString(key1, str);
+            config.keyWriteString(key1, str);
 
-            m_sRv = storage.keyReadString(key1, std::tstring_t());
+            m_sRv = config.keyReadString(key1, std::tstring_t());
             xTEST_EQ(str, m_sRv);
         }
 
@@ -156,85 +156,85 @@ CxTest_CxLocalStorage::unit(
         {
             std::ctstring_t str = xT("sssssssssssss");
 
-            storage.keyWriteString(key1, str);
+            config.keyWriteString(key1, str);
 
-            m_sRv = storage.keyReadString(key1, std::tstring_t());
+            m_sRv = config.keyReadString(key1, std::tstring_t());
             xTEST_EQ(str, m_sRv);
         }
     }
 
-    xTEST_CASE("CxLocalStorage::keyReadInt keyWriteInt", a_caseLoops)
+    xTEST_CASE("CxConfig::keyReadInt keyWriteInt", a_caseLoops)
     {
         clong_t value = 10L;
 
-        storage.keyWriteInt(key1, value);
+        config.keyWriteInt(key1, value);
 
-        m_liRv = storage.keyReadInt(key1, 0L);
+        m_liRv = config.keyReadInt(key1, 0L);
         xTEST_EQ(value, m_liRv);
     }
 
-    xTEST_CASE("CxLocalStorage::keyReadFloat keyWriteFloat", a_caseLoops)
+    xTEST_CASE("CxConfig::keyReadFloat keyWriteFloat", a_caseLoops)
     {
         cdouble_t value = 777.0f;
 
-        storage.keyWriteFloat(key1, value);
+        config.keyWriteFloat(key1, value);
 
-        m_dRv = storage.keyReadFloat(key1, 0.0f);
+        m_dRv = config.keyReadFloat(key1, 0.0f);
         xTEST_EQ(value, m_dRv);
     }
 
-    xTEST_CASE("CxLocalStorage::keyReadBool keyWriteBool", a_caseLoops)
+    xTEST_CASE("CxConfig::keyReadBool keyWriteBool", a_caseLoops)
     {
         cbool_t value = false;
 
-        storage.keyWriteBool(key1, value);
+        config.keyWriteBool(key1, value);
 
-        m_bRv = storage.keyReadBool(key1, true);
+        m_bRv = config.keyReadBool(key1, true);
         xTEST_EQ(value, m_bRv);
     }
 
-    xTEST_CASE("CxLocalStorage::keyWriteBin keyReadBin", a_caseLoops)
+    xTEST_CASE("CxConfig::keyWriteBin keyReadBin", a_caseLoops)
     {
         std::custring_t value(10, 'z');
         std::custring_t defaultValue(10, 'd');
 
-        storage.keyWriteBin(key1, value);
+        config.keyWriteBin(key1, value);
 
-        m_usRv = storage.keyReadBin(key1, defaultValue);
+        m_usRv = config.keyReadBin(key1, defaultValue);
         xTEST_EQ(value, m_usRv);
     }
 
-    xTEST_CASE("CxLocalStorage::keyClear", a_caseLoops)
+    xTEST_CASE("CxConfig::keyClear", a_caseLoops)
     {
-        storage.keyClear(key3);
-        xTEST_EQ(true, storage.keyIsExists(key3));
+        config.keyClear(key3);
+        xTEST_EQ(true, config.keyIsExists(key3));
 
-        m_sRv = storage.keyReadString(key3, xT("fasrfsefrtg"));
+        m_sRv = config.keyReadString(key3, xT("fasrfsefrtg"));
         xTEST_EQ(CxConst::strEmpty(), m_sRv);
     }
 
-    xTEST_CASE("CxLocalStorage::keyDelete", a_caseLoops)
+    xTEST_CASE("CxConfig::keyDelete", a_caseLoops)
     {
         std::ctstring_t key   = xT("Key");
         std::ctstring_t value = xT("");
 
-        storage.keyWriteString(key, value);
-        xTEST_EQ(true, storage.keyIsExists(key));
+        config.keyWriteString(key, value);
+        xTEST_EQ(true, config.keyIsExists(key));
 
-        storage.keyDelete(key);
-        xTEST_EQ(false, storage.keyIsExists(key));
+        config.keyDelete(key);
+        xTEST_EQ(false, config.keyIsExists(key));
     }
 
-    xTEST_CASE("CxLocalStorage::clear", a_caseLoops)
+    xTEST_CASE("CxConfig::clear", a_caseLoops)
     {
-        storage.clear();
-        xTEST_EQ(0LL, CxFile::size( storage.path() ));
+        config.clear();
+        xTEST_EQ(0LL, CxFile::size( config.path() ));
     }
 
-    xTEST_CASE("CxLocalStorage::remove", a_caseLoops)
+    xTEST_CASE("CxConfig::remove", a_caseLoops)
     {
-        storage.remove();
-        xTEST_EQ(false, CxFile::isExists( storage.path() ));
+        config.remove();
+        xTEST_EQ(false, CxFile::isExists( config.path() ));
     }
 }
 //-------------------------------------------------------------------------------------------------
