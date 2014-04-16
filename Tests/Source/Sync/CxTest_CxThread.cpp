@@ -131,7 +131,7 @@ CxTest_CxThread::unit(
         xTEST_EQ(m_bRv, true);
 
         m_bRv = pthT->isPaused();
-        xTEST_DIFF(false/*cbIsPaused*/, m_bRv);
+        xTEST_DIFF(m_bRv, false /* cbIsPaused */);
 
         m_bRv = pthT->isExited();
         xTEST_EQ(m_bRv, false);
