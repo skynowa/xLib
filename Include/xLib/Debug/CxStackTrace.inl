@@ -185,7 +185,7 @@ CxStackTrace::_get(
                 std::csize_t pos1 = functionName.find(xT("("));
                 std::csize_t pos2 = functionName.find(xT(")"));
 
-                if (std::tstring_t::npos != pos1 && std::tstring_t::npos != pos2) {
+                if (pos1 != std::tstring_t::npos && pos2 != std::tstring_t::npos) {
                     _xVERIFY(pos1 < pos2);
 
                     functionName = functionName.substr(0, pos1 + 1) + functionName.substr(pos2);
@@ -274,7 +274,7 @@ CxStackTrace::_get(
                 std::csize_t pos1 = functionName.find(xT("("));
                 std::csize_t pos2 = functionName.find(xT(")"));
 
-                if (std::tstring_t::npos != pos1 && std::tstring_t::npos != pos2) {
+                if (pos1 != std::tstring_t::npos && pos2 != std::tstring_t::npos) {
                     _xVERIFY(pos1 < pos2);
 
                     functionName = functionName.substr(0, pos1 + 1) + functionName.substr(pos2);

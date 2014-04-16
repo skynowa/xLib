@@ -111,7 +111,7 @@ CxCgi::uriEncode(
         {
             (*a_encodedStr) += ch;
         }
-        else if (ch <= 0x20 || ch >= 0x7F || std::tstring_t::npos != URI_ILLEGAL.find(ch) ||
+        else if (ch <= 0x20 || ch >= 0x7F || URI_ILLEGAL.find(ch) != std::tstring_t::npos ||
             a_reserved.find(ch) != std::tstring_t::npos)
         {
             (*a_encodedStr) += '%';

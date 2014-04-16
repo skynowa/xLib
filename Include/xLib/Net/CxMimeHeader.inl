@@ -59,7 +59,7 @@ CxMimeHeader::parse(
 
     //-------------------------------------
     //???? ???? "+OK..." ? ?????? ??????, ?? ??????? ??? ??????
-    if (std::tstring_t::npos != vsHeader.at(0).find(xT("+OK"))) {
+    if (vsHeader.at(0).find(xT("+OK")) != std::tstring_t::npos) {
         vsHeader.erase(vsHeader.begin() + 0);
     }
 
@@ -164,7 +164,7 @@ CxMimeHeader::loadFromFile(
          std::getline(ifsStream, sLine);
 
          // (From:)
-         if (std::tstring_t::npos != sLine.find(csFrom + ":")) {
+         if (sLine.find(csFrom + ":") != std::tstring_t::npos) {
             // From: ����<test_1@localhost>
             return sReplaceAll(vsSplit(_attrDelimiter, sLine).at(1), " ", ""); // Uknown@Uknown.Uknown!!!!!!!!!!!
          }

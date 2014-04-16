@@ -693,11 +693,11 @@ CxString::cut(
     size_t stopDelimPos  = 0U;
 
     startDelimPos = a_str.find(a_sepLeft);
-    xCHECK_RET(std::tstring_t::npos == startDelimPos, std::tstring_t());
+    xCHECK_RET(startDelimPos == std::tstring_t::npos, std::tstring_t());
     startDelimPos += a_sepLeft.size();
 
     stopDelimPos  = a_str.rfind(a_sepRight);
-    xCHECK_RET(std::tstring_t::npos == stopDelimPos, std::tstring_t());
+    xCHECK_RET(stopDelimPos == std::tstring_t::npos, std::tstring_t());
 
     xCHECK_RET(startDelimPos >= stopDelimPos, std::tstring_t());
 
@@ -716,7 +716,7 @@ CxString::cut(
     xTEST_NA(a_posBegin);
     xTEST_NA(a_posEnd);
 
-    xCHECK_RET(true == a_str.empty(),  std::tstring_t());
+    xCHECK_RET(a_str.empty(),          std::tstring_t());
     xCHECK_RET(a_posBegin >  a_posEnd, std::tstring_t());
 
     size_t size = std::string::npos;
