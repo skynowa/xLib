@@ -72,7 +72,7 @@
 #include <xLib/Filesystem/CxDll.h>
 #include <xLib/Filesystem/CxFinder.h>
 #include <xLib/Filesystem/CxBackup.h>
-#include <xLib/Filesystem/CxLocalStorage.h>
+#include <xLib/Filesystem/CxConfig.h>
 
 
 // Gui

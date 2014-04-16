@@ -1,5 +1,5 @@
 /**
- * \file   CxTest_CxLocalStorage.h
+ * \file   CxTest_CxConfig.h
  * \brief
  */
 
@@ -8,13 +8,13 @@
 
 #include <xLib/Core/xCore.h>
 #include <xLib/Test/CxTest.h>
-#include <xLib/Filesystem/CxLocalStorage.h>
+#include <xLib/Filesystem/CxConfig.h>
 //-------------------------------------------------------------------------------------------------
-class CxTest_CxLocalStorage :
+class CxTest_CxConfig :
     public CxTest
 {
 public:
-                    CxTest_CxLocalStorage() {}
+                    CxTest_CxConfig() {}
 
     virtual  void_t unit(culonglong_t &caseLoops) xOVERRIDE;
 };

@@ -1,6 +1,6 @@
 /**
- * \file  CxLocalStorage.h
- * \brief local storage
+ * \file  CxConfig.h
+ * \brief config file
  */
 
 
@@ -13,15 +13,15 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE2_BEGIN(xlib, filesystem)
 
-class CxLocalStorage
-    /// local storage
+class CxConfig
+    /// config file
 {
 public:
-                      CxLocalStorage();
+                      CxConfig();
         ///< constructor, exe-file path
-    explicit          CxLocalStorage(std::ctstring_t &filePath);
+    explicit          CxConfig(std::ctstring_t &filePath);
         ///< constructor, file path
-    virtual          ~CxLocalStorage();
+    virtual          ~CxConfig();
         ///< destructor
 
     // creation
@@ -82,8 +82,8 @@ private:
     std::ctstring_t   _separator;  ///< separator between key and value
     std::ctstring_t   _fileExt;    ///< file extension
 
-    std::tstring_t    _filePath;    ///< file path to file
-    std::map_tstring_t _ini;        ///< std::map of keys and values
+    std::tstring_t    _filePath;   ///< file path to file
+    std::map_tstring_t _config;    ///< std::map of keys and values
 
     void_t            _read(std::ctstring_t &key, std::ctstring_t &defaultValue,
                           std::tstring_t *value);
@@ -91,11 +91,11 @@ private:
     void_t            _write(std::ctstring_t &key, std::ctstring_t &value);
         ///< flush to local_storage_t, file
 
-    xNO_COPY_ASSIGN(CxLocalStorage)
+    xNO_COPY_ASSIGN(CxConfig)
 };
 
 xNAMESPACE2_END(xlib, filesystem)
 //-------------------------------------------------------------------------------------------------
-#include "CxLocalStorage.inl"
+#include "CxConfig.inl"
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxLocalStorageH
