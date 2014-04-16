@@ -120,8 +120,7 @@ xNAMESPACE_BEGIN(std)
     typedef const string           cstring_t;
     typedef const wstring          cwstring_t;
 
-    typedef basic_string< tchar_t, char_traits<tchar_t>, allocator<tchar_t> >
-                                   tstring_t;
+    typedef basic_string< tchar_t, char_traits<tchar_t>, allocator<tchar_t> > tstring_t;
     typedef const tstring_t        ctstring_t;
 
     typedef basic_string< uchar_t, char_traits<uchar_t>, allocator<uchar_t> >
