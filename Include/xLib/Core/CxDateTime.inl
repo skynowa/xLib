@@ -642,7 +642,7 @@ CxDateTime::format(
 ) const
 {
     //xTEST_EQ(true, CxValidator::datetime(*this));
-    xTEST_EQ(false, a_format.empty());
+    xTEST_EQ(a_format.empty(), false);
     xTEST_NA(a_formatMsec);
 
     std::tstring_t sRv;

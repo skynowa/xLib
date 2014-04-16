@@ -29,7 +29,7 @@ inline
 CxMySQLConnection::CxMySQLConnection() :
     _connection(xPTR_NULL)
 {
-    xTEST_EQ(false, isValid());
+    xTEST_EQ(isValid(), false);
 
     MYSQL *_connection = ::mysql_init(xPTR_NULL);
     xTEST_MSG_PTR(_connection, lastErrorStr());
@@ -254,7 +254,7 @@ CxMySQLRecordset::CxMySQLRecordset(
     _connection(&a_connection),
     _result     (xPTR_NULL)
 {
-    xTEST_EQ(false, isValid());
+    xTEST_EQ(isValid(), false);
     xTEST_PTR(_connection->get());
 
     MYSQL_RES *result = xPTR_NULL;

@@ -56,7 +56,7 @@ CxProfiler::logPath() const
 inline void_t
 CxProfiler::start()
 {
-    xTEST_EQ(false, _isStarted);
+    xTEST_EQ(_isStarted, false);
 
     _dataReset();
 

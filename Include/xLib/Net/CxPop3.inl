@@ -551,7 +551,7 @@ CxPop3::_command(
     ////_m_clLog.bWrite("Command :  %s          Response: %s\n", command.c_str(), _sRv.c_str());
 #endif
 
-    xTEST_EQ(false, _isError(_sRv));
+    xTEST_EQ(_isError(_sRv), false);
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
@@ -559,7 +559,7 @@ CxPop3::_isError(
     std::ctstring_t &text
 )
 {
-    xTEST_EQ(false, text.empty());
+    xTEST_EQ(text.empty(), false);
 
     if (std::memcmp(text.c_str(), xT("+OK"), 3) == 0) {
         return false;

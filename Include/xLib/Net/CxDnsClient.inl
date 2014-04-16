@@ -31,7 +31,7 @@ CxDnsClient::hostAddrByName(
     std::tstring_t  *a_hostAddr
 )
 {
-    xTEST_EQ(false, a_hostName.empty());
+    xTEST_EQ(a_hostName.empty(), false);
     xTEST_PTR(a_hostAddr);
 
     std::tstring_t sRv;
@@ -49,7 +49,7 @@ CxDnsClient::hostAddrByName(
         static_cast<uchar_t>(host->h_addr_list[0][2]),
         static_cast<uchar_t>(host->h_addr_list[0][3])
     );
-    xTEST_EQ(false, sRv.empty());
+    xTEST_EQ(sRv.empty(), false);
 
     *a_hostAddr = sRv;
 }
@@ -62,7 +62,7 @@ CxDnsClient::hostNameByAddr(
     std::tstring_t                  *a_hostName
 )
 {
-    xTEST_EQ(false, a_hostAddr.empty());
+    xTEST_EQ(a_hostAddr.empty(), false);
     xTEST_PTR(a_hostName);
 
     // convert to UNICODE
@@ -180,7 +180,7 @@ CxDnsClient::protocolByName(
     int_t              *a_number
 )
 {
-    xTEST_EQ(false, a_protocolName.empty());
+    xTEST_EQ(a_protocolName.empty(), false);
     xTEST_NA(a_name);
     xTEST_NA(a_aliases);
     xTEST_NA(a_number);
@@ -279,8 +279,8 @@ CxDnsClient::serviceByName(
     std::tstring_t     *a_protocolName_rv
 )
 {
-    xTEST_EQ(false, a_serviceName.empty());
-    xTEST_EQ(false, a_protocolName.empty());
+    xTEST_EQ(a_serviceName.empty(), false);
+    xTEST_EQ(a_protocolName.empty(), false);
     xTEST_NA(a_name);
     xTEST_NA(a_aliases);
     xTEST_NA(a_port);
@@ -341,7 +341,7 @@ CxDnsClient::serviceByPort(
 )
 {
     // TODO: CxDnsClient::serviceByPort() - a_port
-    xTEST_EQ(false, a_protocolName.empty());
+    xTEST_EQ(a_protocolName.empty(), false);
     xTEST_NA(a_name);
     xTEST_NA(a_aliases);
     xTEST_NA(a_port_rv);

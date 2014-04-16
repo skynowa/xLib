@@ -210,7 +210,7 @@ CxVolume::mount(
     std::ctstring_t &a_destPath    ///< destination path
 ) const
 {
-    xTEST_EQ(false, a_destPath.empty());
+    xTEST_EQ(a_destPath.empty(), false);
 
 #if   xOS_ENV_WIN
     // TODO: CxVolume::mount - is it correct?

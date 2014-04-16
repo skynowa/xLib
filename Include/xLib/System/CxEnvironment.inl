@@ -201,7 +201,7 @@ CxEnvironment::expandStrings(
     std::ctstring_t &a_var
 )
 {
-    xTEST_EQ(false, a_var.empty());
+    xTEST_EQ(a_var.empty(), false);
 
     std::tstring_t sRv;
 

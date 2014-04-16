@@ -67,7 +67,7 @@ CxHandleT<tagT>::operator = (
     cnative_handle_t &a_handle
 )
 {
-    xTEST_EQ(false, isValid());
+    xTEST_EQ(isValid(), false);
     xTEST_NA(a_handle);
 
     // Try m_Handle.Attach(other.Detach(), if you got an assertion here.
@@ -87,7 +87,7 @@ CxHandleT<tagT>::operator = (
     const CxHandleT &a_handle
 )
 {
-    xTEST_EQ(false, isValid());
+    xTEST_EQ(isValid(), false);
     xTEST_NA(a_handle);
 
     xCHECK_RET(this == &a_handle, *this);

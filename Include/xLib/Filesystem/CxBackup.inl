@@ -37,8 +37,8 @@ CxBackup::fileExec(
     std::tstring_t  *a_destFilePath
 ) const /* throw(CxException) */
 {
-    xTEST_EQ(false, a_filePath.empty());
-    xTEST_EQ(false, a_destDirPath.empty());
+    xTEST_EQ(a_filePath.empty(), false);
+    xTEST_EQ(a_destDirPath.empty(), false);
     xTEST_PTR(a_destFilePath);
 
     // errors

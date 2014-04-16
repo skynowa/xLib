@@ -30,7 +30,7 @@ CxIpcMutex::create(
     std::ctstring_t &a_name
 )
 {
-    ////xTEST_EQ(false, _handle.isValid(), false);
+    ////xTEST_EQ(_handle.isValid(), false);
 #if   xOS_ENV_WIN
     // name
 #elif xOS_ENV_UNIX

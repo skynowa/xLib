@@ -27,13 +27,13 @@ CxPath::CxPath(
 ) :
     _filePath(a_filePath)
 {
-    xTEST_EQ(false, _filePath.empty());
+    xTEST_EQ(_filePath.empty(), false);
 }
 //-------------------------------------------------------------------------------------------------
 inline std::ctstring_t &
 CxPath::filePath() const
 {
-    xTEST_EQ(false, _filePath.empty());
+    xTEST_EQ(_filePath.empty(), false);
 
     return _filePath;
 }
@@ -782,7 +782,7 @@ CxPath::shortName(
     std::csize_t    &a_maxSize
 )
 {
-    xTEST_EQ(false, a_fileName.empty());
+    xTEST_EQ(a_fileName.empty(), false);
     xTEST_LESS(size_t(0), a_maxSize);
 
     std::tstring_t sRv;

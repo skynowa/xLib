@@ -319,7 +319,7 @@ CxSmtp::_isError(
     std::ctstring_t &a_text
 )
 {
-    xTEST_EQ(false, a_text.empty());
+    xTEST_EQ(a_text.empty(), false);
 
     bool_t bRv = !(
         !std::memcmp(a_text.c_str(), xT("334"), 3) || // 334 VXNlcm5hbWU6
