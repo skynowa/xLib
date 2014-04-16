@@ -206,10 +206,10 @@
 
 //-------------------------------------------------------------------------------------------------
 // namespace
-#define xNAMESPACE_BEGIN(n) \
-        namespace n {
+#define xNAMESPACE_BEGIN(n1) \
+        namespace n1 {
         ///< begin namespace
-#define xNAMESPACE_END(n) \
+#define xNAMESPACE_END(n1) \
         }
         ///< end namespace
 
