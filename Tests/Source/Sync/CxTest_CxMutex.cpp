@@ -35,7 +35,7 @@ CxTest_CxMutex::unit(
         csCS.create();
 
         m_bRv = csCS.tryLock();
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
 
         ++ uiVal;
 
@@ -71,7 +71,7 @@ CxTest_CxMutex::unit(
 
         for (size_t i = 0; i < cuiLocks; ++ i) {
             m_bRv = csCS.tryLock();
-            xTEST_EQ(true, m_bRv);
+            xTEST_EQ(m_bRv, true);
         }
 
         ++ uiVal;

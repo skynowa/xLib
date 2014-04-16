@@ -112,7 +112,7 @@ CxTest_CxLocalStorage::unit(
                 xTEST_EQ(false, pair.empty());
 
                 m_bRv = storage.keyIsExists( pair.at(0) );
-                xTEST_EQ(true, m_bRv);
+                xTEST_EQ(m_bRv, true);
             }
         }
 
@@ -132,7 +132,7 @@ CxTest_CxLocalStorage::unit(
                  CxString::split(pairs.at(i), CxConst::equal(), &pair);
 
                 m_bRv = storage.keyIsExists( pair.at(0) );
-                xTEST_EQ(false, m_bRv);
+                xTEST_EQ(m_bRv, false);
             }
         }
 

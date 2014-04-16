@@ -320,7 +320,7 @@ CxVolume::space(
     }
 
     bool_t bRv = CxDir(dirPath).isExists();
-    xTEST_EQ(true, bRv);
+    xTEST_EQ(bRv, true);
 
 #if   xOS_ENV_WIN
     ULARGE_INTEGER available = {{0}};

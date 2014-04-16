@@ -61,37 +61,37 @@ CxTest_CxDir::unit(
     xTEST_CASE("CxDir::isDir", a_caseLoops)
     {
         m_bRv = CxDir(csDirPath2).isDir();
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
     }
 
     xTEST_CASE("CxDir::isExists", a_caseLoops)
     {
         m_bRv = CxDir(csDirPath).isExists();
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
 
         m_bRv = CxDir(xT("b:")).isExists();
-        xTEST_EQ(false, m_bRv);
+        xTEST_EQ(m_bRv, false);
 
         m_bRv = CxDir(xT("sdfasdf:")).isExists();
-        xTEST_EQ(false, m_bRv);
+        xTEST_EQ(m_bRv, false);
 
         m_bRv = CxDir(xT("C:\\WINDOWS\\NOTEPAD.EXE")).isExists();
-        xTEST_EQ(false, m_bRv);
+        xTEST_EQ(m_bRv, false);
 
         m_bRv = CxDir(xT("C:\\pagefile.sys")).isExists();
-        xTEST_EQ(false, m_bRv);
+        xTEST_EQ(m_bRv, false);
     }
 
     xTEST_CASE("CxDir::isEmpty", a_caseLoops)
     {
         m_bRv = CxDir(csDirPath).isEmpty(CxConst::maskAll());
-        xTEST_EQ(false, m_bRv);
+        xTEST_EQ(m_bRv, false);
 
         m_bRv = CxDir(csDirPath2).isEmpty(CxConst::maskAll());
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
 
         m_bRv = CxDir(tempDirPath()).isEmpty(CxConst::maskAll());
-        xTEST_EQ(false, m_bRv);
+        xTEST_EQ(m_bRv, false);
     }
 
     xTEST_CASE("CxDir::isRoot", a_caseLoops)

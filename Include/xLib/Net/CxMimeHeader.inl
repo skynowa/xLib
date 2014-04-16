@@ -148,15 +148,15 @@ CxMimeHeader::loadFromFile(
     // TODO: CxMimeHeader::loadFromFile(()
 
     xTEST_EQ(filePath.empty(), false);
-    xTEST_EQ(true,  CxFile::isExists(filePath));
+    xTEST_EQ( CxFile::isExists(filePath), true);
 
     std::tstring_t sUknownEmail("Uknown@Uknown.Uknown");
     std::tstring_t sLine("");
     std::ifstream  ifsStream(filePath.c_str());
-    xTEST_EQ(true,  !! ifsStream);
+    xTEST_EQ(!!ifsStream, true);
     xTEST_EQ(ifsStream.fail(), false);
-    xTEST_EQ(true,  ifsStream.good());
-    xTEST_EQ(true,  ifsStream.is_open());
+    xTEST_EQ(ifsStream.good(), true);
+    xTEST_EQ(ifsStream.is_open(), true);
     xTEST_EQ(ifsStream.eof(), false);
 
     ulong_t ulCountBreaks = 0;

@@ -62,7 +62,7 @@ CxTest_CxFile::unit(
         file.attach(stdout);
 
         m_bRv = file.isValid();
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
 
         FILE *stdFile = file.detach();
         xTEST_PTR(stdFile);
@@ -384,7 +384,7 @@ CxTest_CxFile::unit(
 
         #if   xOS_ENV_WIN
             file.setMode(CxFile::tmBinary);
-            xTEST_EQ(true, m_bRv);
+            xTEST_EQ(m_bRv, true);
         #elif xOS_ENV_UNIX
             // TEST: CxFile::setMode()
         #endif
@@ -414,12 +414,12 @@ CxTest_CxFile::unit(
         CxFile file;
 
         m_bRv = file.isValid();
-        xTEST_EQ(false, m_bRv);
+        xTEST_EQ(m_bRv, false);
 
         file.create(filePath, CxFile::omCreateReadWrite, true);
 
         m_bRv = file.isValid();
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
 
         file.close();
     }
@@ -429,17 +429,17 @@ CxTest_CxFile::unit(
         CxFile file;
 
         m_bRv = file.isOpen();
-        xTEST_EQ(false, m_bRv);
+        xTEST_EQ(m_bRv, false);
 
         file.create(filePath, CxFile::omCreateReadWrite, true);
 
         m_bRv = file.isOpen();
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
 
         file.close();
 
         m_bRv = file.isOpen();
-        xTEST_EQ(false, m_bRv);
+        xTEST_EQ(m_bRv, false);
     }
 
     xTEST_CASE("CxFile::isEmpty", a_caseLoops)
@@ -449,18 +449,18 @@ CxTest_CxFile::unit(
         file.create(filePath, CxFile::omCreateReadWrite, true);
 
         m_bRv = file.isEmpty();
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
 
         m_iRv = file.write(xT("%s"), xT("xxasdfascefaweo4i57y2390450c1mxr,-1345rt3458854hbvx"));
         xTEST_LESS(0, m_iRv);
 
         m_bRv = file.isEmpty();
-        xTEST_EQ(false, m_bRv);
+        xTEST_EQ(m_bRv, false);
 
         file.clear();
 
         m_bRv = file.isEmpty();
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
     }
 
     xTEST_CASE("CxFile::isEof", a_caseLoops)
@@ -470,7 +470,7 @@ CxTest_CxFile::unit(
         file.create(filePath, CxFile::omCreateReadWrite, true);
 
         m_bRv = file.isEof();
-        xTEST_EQ(false, m_bRv);
+        xTEST_EQ(m_bRv, false);
     }
 
     xTEST_CASE("CxFile::isError", a_caseLoops)
@@ -480,7 +480,7 @@ CxTest_CxFile::unit(
         file.create(filePath, CxFile::omCreateReadWrite, true);
 
         m_bRv = file.isError();
-        xTEST_EQ(false, m_bRv);
+        xTEST_EQ(m_bRv, false);
     }
 
     xTEST_CASE("CxFile::errorClear", a_caseLoops)
@@ -504,7 +504,7 @@ CxTest_CxFile::unit(
         file.flush();
 
         m_bRv = file.isValid();
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
     }
 
     xTEST_CASE("CxFile::close", a_caseLoops)
@@ -515,7 +515,7 @@ CxTest_CxFile::unit(
         file.close();
 
         m_bRv = file.isValid();
-        xTEST_EQ(false, m_bRv);
+        xTEST_EQ(m_bRv, false);
     }
 
     // vUnit1
@@ -548,22 +548,22 @@ CxTest_CxFile::unit1(
     xTEST_CASE("CxFile::isFile", a_caseLoops)
     {
         m_bRv = CxFile::isFile(filePath);
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
 
         m_bRv = CxFile::isFile(tempDirPath());
-        xTEST_EQ(false, m_bRv);
+        xTEST_EQ(m_bRv, false);
     }
 
     xTEST_CASE("CxFile::isExists", a_caseLoops)
     {
         m_bRv = CxFile::isExists(filePath);
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
 
         m_bRv = CxFile::isExists(filePath + xT("wrong_path"));
-        xTEST_EQ(false, m_bRv);
+        xTEST_EQ(m_bRv, false);
 
         m_bRv = CxFile::isExists(tempDirPath());
-        xTEST_EQ(false, m_bRv);
+        xTEST_EQ(m_bRv, false);
     }
 
     xTEST_CASE("CxFile::isExistsEx", a_caseLoops)
@@ -625,7 +625,7 @@ CxTest_CxFile::unit1(
         CxFile::copy(sFilePathFrom, sFilePathTo, false);
 
         m_bRv = CxFile::isExists(sFilePathTo);
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
 
         CxFile::remove(sFilePathTo);
         CxFile::copy(sFilePathFrom, sFilePathTo, true);
@@ -644,7 +644,7 @@ CxTest_CxFile::unit1(
     {
         #if xTEMP_DISABLED
             m_bRv = CxFile::unlink(newFilePath);
-            xTEST_EQ(true, m_bRv);
+            xTEST_EQ(m_bRv, true);
         #endif
     }
 

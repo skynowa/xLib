@@ -63,7 +63,7 @@ CxGuid::_randomBased() const
     HRESULT hrGuid = S_FALSE;
 
     hrGuid = ::CoCreateGuid(&guid);
-    xTEST_EQ(true, SUCCEEDED(hrGuid));
+    xTEST_EQ(SUCCEEDED(hrGuid), true);
 
     sRv = CxString::format(xT("%08lX-%04X-%04X-%02X%02X-%02X%02X%02X%02X%02X%02X"), guid.Data1,
         guid.Data2, guid.Data3, guid.Data4[0], guid.Data4[1], guid.Data4[2], guid.Data4[3],

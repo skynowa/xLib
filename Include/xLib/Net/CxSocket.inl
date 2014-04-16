@@ -165,7 +165,7 @@ CxSocket::send(
 
 #if   xOS_ENV_WIN
     ssize_t iRv = ::send(_socket, (LPCSTR)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
-    xTEST_EQ(true, iRv != xSOCKET_ERROR && CxSocket::lastError() != WSAEWOULDBLOCK);
+    xTEST_EQ(iRv != xSOCKET_ERROR && CxSocket::lastError() != WSAEWOULDBLOCK, true);
     xTEST_GR_EQ(ssize_t(a_buffSize * sizeof(tchar_t)), iRv);
 #elif xOS_ENV_UNIX
     xUNUSED(a_flags);
@@ -239,7 +239,7 @@ CxSocket::receive(
 
 #if   xOS_ENV_WIN
     int_t iRv = ::recv(_socket, (LPSTR)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
-    xTEST_EQ(true, iRv != xSOCKET_ERROR && CxSocket::lastError() != WSAEWOULDBLOCK);
+    xTEST_EQ(iRv != xSOCKET_ERROR && CxSocket::lastError() != WSAEWOULDBLOCK, true);
     xTEST_DIFF(iRv, 0);  // gracefully closed
     xTEST_GR_EQ(int_t(a_buffSize * sizeof(tchar_t)), iRv);
 #elif xOS_ENV_UNIX

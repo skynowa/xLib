@@ -20,17 +20,17 @@ CxTest_CxStdError::unit(
     {
         CxStdError::reset();
         m_bRv = CxStdError::isSuccess();
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
 
         m_bRv = CxStdError::isSuccess();
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
 
         CxStdError::set(10);
         m_bRv = CxStdError::isSuccess();
-        xTEST_EQ(false, m_bRv);
+        xTEST_EQ(m_bRv, false);
 
         m_bRv = CxStdError::isSuccess();
-        xTEST_EQ(false, m_bRv);
+        xTEST_EQ(m_bRv, false);
     }
 
     xTEST_CASE("CxStdError::get", a_caseLoops)

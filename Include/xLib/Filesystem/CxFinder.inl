@@ -86,7 +86,7 @@ CxFinder::entryName() const
 inline std::tstring_t
 CxFinder::entryPath() const
 {
-    xTEST_EQ(true, isValid());
+    xTEST_EQ(isValid(), true);
 
     std::tstring_t sRv;
 
@@ -98,7 +98,7 @@ CxFinder::entryPath() const
 inline CxFileType::types_t
 CxFinder::fileTypes() const
 {
-    xTEST_EQ(true, isValid());
+    xTEST_EQ(isValid(), true);
 
 #if   xOS_ENV_WIN
     CxFileType::types_t ftRv = CxFileType::faInvalid;
@@ -157,7 +157,7 @@ CxFinder::isValid() const
 inline bool_t
 CxFinder::moveNext()
 {
-    // xTEST_EQ(true, isValid());
+    // xTEST_EQ(isValid(), true);
 
     if (_isMoveFirst) {
         bool_t bRv = _moveFirst();
@@ -182,10 +182,10 @@ CxFinder::moveNext()
 
             // filter by pattern
             iRv = ::fnmatch(shellFilter().c_str(), entryName().c_str(), 0);
-            xTEST_EQ(true, (0 == iRv) || (FNM_NOMATCH == iRv));
+            xTEST_EQ((iRv == 0) || (iRv == FNM_NOMATCH), true);
 
-            xCHECK_DO(FNM_NOMATCH == iRv, continue);
-            xCHECK_DO(0           == iRv, break);
+            xCHECK_DO(iRv == FNM_NOMATCH, continue);
+            xCHECK_DO(iRv == 0,           break);
         }
     #endif
     }

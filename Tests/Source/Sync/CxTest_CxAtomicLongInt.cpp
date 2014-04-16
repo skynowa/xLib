@@ -89,7 +89,7 @@ CxTest_CxAtomicLongInt::unit(
         alLong2 = 7L;
 
         m_bRv = ( alLong1 == alLong2 );
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
     }
 
     xTEST_CASE("CxAtomicLongInt::operator == (clong_t &cliRight)", a_caseLoops)
@@ -99,7 +99,7 @@ CxTest_CxAtomicLongInt::unit(
         alLong1 = 7L;
 
         m_bRv = ( alLong1 == 7L );
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
     }
 
     xTEST_CASE("CxAtomicLongInt::operator != (const CxAtomicLongInt &cRight)", a_caseLoops)
@@ -111,7 +111,7 @@ CxTest_CxAtomicLongInt::unit(
         alLong2 = 7L;
 
         m_bRv = ( alLong1 != alLong2 );
-        xTEST_EQ(false, m_bRv);
+        xTEST_EQ(m_bRv, false);
     }
 
     xTEST_CASE("CxAtomicLongInt::operator != (clong_t &cliRight)", a_caseLoops)
@@ -121,7 +121,7 @@ CxTest_CxAtomicLongInt::unit(
         alLong1 = 7L;
 
         m_bRv = ( alLong1 != 7L );
-        xTEST_EQ(false, m_bRv);
+        xTEST_EQ(m_bRv, false);
     }
 
     xTEST_CASE("CxAtomicLongInt::operator < (clong_t &cliValue)", a_caseLoops)
@@ -131,7 +131,7 @@ CxTest_CxAtomicLongInt::unit(
         alLong1 = 7L;
 
         m_bRv = ( alLong1 < 10L );
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
     }
 
     xTEST_CASE("CxAtomicLongInt::operator < (const CxAtomicLongInt &calValue)", a_caseLoops)
@@ -143,7 +143,7 @@ CxTest_CxAtomicLongInt::unit(
         alLong2 = 10L;
 
         m_bRv = ( alLong1 < alLong2 );
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
     }
 
     xTEST_CASE("CxAtomicLongInt::operator <= (clong_t &cliValue)", a_caseLoops)
@@ -153,7 +153,7 @@ CxTest_CxAtomicLongInt::unit(
         alLong1 = 7L;
 
         m_bRv = ( alLong1 <= 10L );
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
     }
 
     xTEST_CASE("CxAtomicLongInt::operator <= (const CxAtomicLongInt &calValue)", a_caseLoops)
@@ -165,7 +165,7 @@ CxTest_CxAtomicLongInt::unit(
         alLong2 = 10L;
 
         m_bRv = ( alLong1 <= alLong2 );
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
     }
 
     xTEST_CASE("CxAtomicLongInt::operator > (clong_t &cliValue)", a_caseLoops)
@@ -175,7 +175,7 @@ CxTest_CxAtomicLongInt::unit(
         alLong1 = 10L;
 
         m_bRv = ( alLong1 > 7L );
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
     }
 
     xTEST_CASE("CxAtomicLongInt::operator > (const CxAtomicLongInt &calValue)", a_caseLoops)
@@ -187,7 +187,7 @@ CxTest_CxAtomicLongInt::unit(
         alLong2 = 7L;
 
         m_bRv = ( alLong1 > alLong2 );
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
     }
 
     xTEST_CASE("CxAtomicLongInt::operator >= (clong_t &cliValue)", a_caseLoops)
@@ -197,7 +197,7 @@ CxTest_CxAtomicLongInt::unit(
         alLong1 = 10L;
 
         m_bRv = ( alLong1  >= 7L);
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
     }
 
     xTEST_CASE("CxAtomicLongInt::operator >= (const CxAtomicLongInt &calValue)", a_caseLoops)
@@ -209,7 +209,7 @@ CxTest_CxAtomicLongInt::unit(
         alLong2 = 7L;
 
         m_bRv = ( alLong1 >= alLong2 );
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
     }
 
     xTEST_CASE("CxAtomicLongInt::operator ++ (cint_t ciPos)", a_caseLoops)

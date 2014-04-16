@@ -24,11 +24,11 @@ CxTest_CxLastError::unit(
     {
         CxLastError::reset();
         m_bRv = CxLastError::isSuccess();
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
 
         CxLastError::set(10UL);
         m_bRv = CxLastError::isSuccess();
-        xTEST_EQ(false, m_bRv);
+        xTEST_EQ(m_bRv, false);
     }
 
     xTEST_CASE("CxLastError::get", a_caseLoops)

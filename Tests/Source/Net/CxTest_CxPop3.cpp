@@ -85,12 +85,12 @@ CxTest_CxPop3::unit(
     //-------------------------------------
     //bList
     ////m_bRv = objPop3.list(veculList);
-    ////xTEST_EQ(true, m_bRv);
+    ////xTEST_EQ(m_bRv, true);
 
     //-------------------------------------
     //bListAt
     ////m_bRv = objPop3.listAt(ulIndex);
-    ////xTEST_EQ(true, m_bRv);
+    ////xTEST_EQ(m_bRv, true);
 
     //-------------------------------------
     //bNoop
@@ -117,11 +117,11 @@ CxTest_CxPop3::unit(
         ////CxMimeHeader objHeader;
 
         ////m_bRv = objPop3.top(iNum, 0, /*ref*/sRawHeader);
-        ////xTEST_EQ(true, m_bRv);
+        ////xTEST_EQ(m_bRv, true);
         /////*LOG*/printf("bTop %i\n", i);
 
         ////m_bRv = objHeader.parse(sRawHeader);
-        ////xTEST_EQ(true, m_bRv);
+        ////xTEST_EQ(m_bRv, true);
 
         ////m_sRv = objHeader.field(xT("Message-Id"));
         ////xTEST_EQ(false, m_sRv.empty());
@@ -132,7 +132,7 @@ CxTest_CxPop3::unit(
         ////////CxMimeBody objBody;
 
         //////m_bRv = m_Body.parse(sRawMessage);
-        //////xTEST_EQ(true, m_bRv);
+        //////xTEST_EQ(m_bRv, true);
     }
 
     //-------------------------------------

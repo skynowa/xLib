@@ -41,7 +41,7 @@ CxTest_CxDll::unit(
         CxDll objDll;
 
         m_bRv = objDll.isLoaded();
-        xTEST_EQ(false, m_bRv);
+        xTEST_EQ(m_bRv, false);
 
         //-------------------------------------
         //bLoad
@@ -50,12 +50,12 @@ CxTest_CxDll::unit(
         //-------------------------------------
         //bIsLoaded
         m_bRv = objDll.isLoaded();
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
 
         //-------------------------------------
         //bIsProcExists
         m_bRv = objDll.isProcExists(sData[i][1]);
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
 
         //-------------------------------------
         //fpGetProcAddress
@@ -86,7 +86,7 @@ CxTest_CxDll::unit(
         //-------------------------------------
         //bIsLoaded
         m_bRv = objDll.isLoaded();
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
 
     } //for
 }

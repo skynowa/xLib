@@ -41,7 +41,7 @@ CxTest_CxSystemInfo::unit(
                 otType == CxSystemInfo::otWindowsServer2008R2 ||
                 otType == CxSystemInfo::otWindows7;
 
-            xTEST_EQ(true, m_bRv);
+            xTEST_EQ(m_bRv, true);
         #elif xOS_ENV_UNIX
             #if xOS_FREEBSD
                 xTEST_EQ(CxSystemInfo::otFreeBSD, otType);

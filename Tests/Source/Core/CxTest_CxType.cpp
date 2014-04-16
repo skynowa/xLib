@@ -36,7 +36,7 @@ CxTest_CxType::unit(
         std::wstring wsObject2;
 
         m_bRv = CxType::isEquals(sObject1, wsObject2);
-        xTEST_EQ(false, m_bRv);
+        xTEST_EQ(m_bRv, false);
     }
 }
 //-------------------------------------------------------------------------------------------------

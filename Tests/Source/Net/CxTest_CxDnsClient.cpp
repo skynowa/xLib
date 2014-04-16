@@ -54,7 +54,7 @@ CxTest_CxDnsClient::unit(
         ////ushort_t                      usPort    = 27015;
 
         ////m_bRv = CxDnsClient::nameInfo(afFamily, sHostAddr, usPort);
-        ////xTEST_EQ(true, m_bRv);
+        ////xTEST_EQ(m_bRv, true);
 
         //xSTD_COUT(xT("[nameInfo]: ") << sLocalHostName);
     }

@@ -101,7 +101,7 @@ CxTest_CxFunctorT::unit(
         xTEST_PTR(func);
 
         m_bRv = (*func)(a);
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
 
         delete func;
     }
@@ -115,7 +115,7 @@ CxTest_CxFunctorT::unit(
         xTEST_PTR(func);
 
         m_bRv = func->execute(a);
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
 
         delete func;
     }
@@ -127,7 +127,7 @@ CxTest_CxFunctorT::unit(
         CxFunctorT<B, bool_t, A> func(&b, &B::methodB);
 
         m_bRv = func(a);
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
     }
 
     xTEST_CASE("CxFunctorT::execute", a_caseLoops)
@@ -138,7 +138,7 @@ CxTest_CxFunctorT::unit(
         CxFunctorT<B, bool_t, A> func(&b, &B::methodB);
 
         m_bRv = func.execute(a);
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
     }
 
     xTEST_CASE("CxFunctorT::execute", a_caseLoops)

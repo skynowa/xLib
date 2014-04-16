@@ -121,7 +121,7 @@ CxDir::create() const
     xTEST_DIFF(iRv, - 1);
 #endif
 
-    xTEST_EQ(true, isExists());
+    xTEST_EQ(isExists(), true);
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -140,7 +140,7 @@ CxDir::pathCreate() const
         CxDir(buildPath).create();
     }
 
-    xTEST_EQ(true, isExists());
+    xTEST_EQ(isExists(), true);
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -149,7 +149,7 @@ CxDir::copy(
     cbool_t         &a_failIfExists
 ) const
 {
-    xTEST_EQ(true,  isExists());
+    xTEST_EQ(isExists(), true);
     xTEST_EQ(a_dirPathTo.empty(), false);
     xTEST_NA(a_failIfExists);
 
@@ -190,7 +190,7 @@ CxDir::move(
     cbool_t         &a_failIfExists
 ) const
 {
-    xTEST_EQ(true,  isExists());
+    xTEST_EQ(isExists(), true);
     xTEST_EQ(a_dirPathTo.empty(), false);
     xTEST_NA(a_failIfExists);
 
@@ -253,7 +253,7 @@ CxDir::tryRemove(
 inline void_t
 CxDir::pathClear() const
 {
-    xTEST_EQ(true, isExists());
+    xTEST_EQ(isExists(), true);
 
     // checks
     bool_t bRv = isEmpty(CxConst::maskAll());
@@ -283,7 +283,7 @@ CxDir::pathClear() const
         }
     }
 
-    xTEST_EQ(true, isEmpty());
+    xTEST_EQ(isEmpty(), true);
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -370,7 +370,7 @@ CxDir::temp()
     }
 #endif
 
-    xTEST_EQ(true, CxDir(sRv).isExists());
+    xTEST_EQ(CxDir(sRv).isExists(), true);
 
     return sRv;
 }

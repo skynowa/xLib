@@ -770,7 +770,7 @@ CxPath::absolute() const
     sRv.assign(pszRv);
 #endif
 
-    xTEST_EQ(true, CxPath(sRv).isAbsolute());
+    xTEST_EQ(CxPath(sRv).isAbsolute(), true);
 
     return sRv;
 }
