@@ -12,6 +12,7 @@
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
 class CxCondition
+    /// condition variable
 {
 public:
                             CxCondition();
