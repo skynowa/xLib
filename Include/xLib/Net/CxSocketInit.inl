@@ -30,20 +30,20 @@ xNAMESPACE2_BEGIN(xlib, net)
 //-------------------------------------------------------------------------------------------------
 inline
 CxSocketInit::CxSocketInit(
-    cushort_t &a_majorVersion,
-    cushort_t &a_minorVersion
+    cushort_t &a_versionMajor,
+    cushort_t &a_versionMinor
 )
 {
 #if   xOS_ENV_WIN
     WSADATA wdData = {0};
 
-    int_t iRv = ::WSAStartup(MAKEWORD(a_majorVersion, a_minorVersion), &wdData);
+    int_t iRv = ::WSAStartup(MAKEWORD(a_versionMajor, a_versionMinor), &wdData);
     xTEST_EQ(iRv, 0);
-    xTEST_EQ(a_minorVersion, (ushort_t)HIBYTE(wdData.wVersion));
-    xTEST_EQ(a_majorVersion, (ushort_t)LOBYTE(wdData.wVersion));
+    xTEST_EQ(a_versionMajor, (ushort_t)LOBYTE(wdData.wVersion));
+    xTEST_EQ(a_versionMinor, (ushort_t)HIBYTE(wdData.wVersion));
 #elif xOS_ENV_UNIX
-    xUNUSED(a_majorVersion);
-    xUNUSED(a_minorVersion);
+    xUNUSED(a_versionMajor);
+    xUNUSED(a_versionMinor);
 #endif
 }
 //-------------------------------------------------------------------------------------------------
