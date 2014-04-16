@@ -80,9 +80,9 @@ public:
 
 private:
     std::ctstring_t   _separator;  ///< separator between key and value
-    std::ctstring_t   _fileExt;    ///< ini-file extension
+    std::ctstring_t   _fileExt;    ///< file extension
 
-    std::tstring_t    _filePath;    ///< file path to ini-file
+    std::tstring_t    _filePath;    ///< file path to file
     std::map_tstring_t _ini;        ///< std::map of keys and values
 
     void_t            _read(std::ctstring_t &key, std::ctstring_t &defaultValue,
