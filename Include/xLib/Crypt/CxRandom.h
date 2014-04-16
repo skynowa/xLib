@@ -1,6 +1,6 @@
 /**
  * \file  CxRandom.h
- * \brief random
+ * \brief random generator
  */
 
 

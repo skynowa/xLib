@@ -1,6 +1,6 @@
 /**
  * \file   CxSemaphore.h
- * \brief  semaphore (user space)
+ * \brief  semaphore
  */
 
 

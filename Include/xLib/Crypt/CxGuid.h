@@ -1,6 +1,6 @@
 /**
  * \file   CxGuid.h
- * \brief
+ * \brief  GUID (globally unique identifier)
  */
 
 

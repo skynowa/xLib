@@ -1,6 +1,6 @@
 /**
  * \file   CxProcessInfo.inl
- * \brief
+ * \brief  process information
  */
 
 

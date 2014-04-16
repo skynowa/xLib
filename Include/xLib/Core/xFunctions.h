@@ -1,6 +1,6 @@
 /**
  * \file  xFunctions.h
- * \brief function's macroses
+ * \brief function macroses
  */
 
 

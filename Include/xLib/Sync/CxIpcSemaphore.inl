@@ -1,6 +1,6 @@
 /**
  * \file  CxIpcSemaphore.inl
- * \brief semaphore (interprocess)
+ * \brief semaphore
  */
 
 

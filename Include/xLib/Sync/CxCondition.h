@@ -1,6 +1,6 @@
 /**
  * \file   CxCondition.h
- * \brief
+ * \brief  condition variable
  */
 
 

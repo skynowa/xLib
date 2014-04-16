@@ -1,6 +1,6 @@
 /**
  * \file   CxCondition.inl
- * \brief
+ * \brief  condition variable
  */
 
 

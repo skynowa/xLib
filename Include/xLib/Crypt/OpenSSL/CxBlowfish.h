@@ -1,6 +1,6 @@
 /**
  * \file  CxBlowfish.h
- * \brief blowfish (openssl-1.0.0a)
+ * \brief blowfish (openssl)
  */
 
 

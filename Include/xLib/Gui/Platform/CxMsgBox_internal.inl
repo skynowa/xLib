@@ -1,6 +1,6 @@
 /**
- * \file  CxMsgBox_internal.inl
- * \brief
+ * \file   CxMsgBox_internal.inl
+ * \brief  message box (for internal use)
  */
 
 

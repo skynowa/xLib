@@ -1,6 +1,6 @@
 /**
- * \file  CxSystemLog.h
- * \brief logging to system log
+ * \file   CxSystemLog.h
+ * \brief  logging to system log
  */
 
 

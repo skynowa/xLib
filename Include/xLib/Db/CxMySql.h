@@ -1,6 +1,6 @@
 /**
  * \file  CxMySql.h
- * \brief MySQL data base v.5.1
+ * \brief MySQL client
  */
 
 

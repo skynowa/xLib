@@ -1,6 +1,6 @@
 /**
- * \file  CxMsgBox.h
- * \brief message box
+ * \file   CxMsgBox.h
+ * \brief  message box
  */
 
 

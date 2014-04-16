@@ -1,6 +1,6 @@
 /**
  * \file  CxUri.inl
- * \brief URI
+ * \brief URI (RFC 3986)
  */
 
 

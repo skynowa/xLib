@@ -1,6 +1,6 @@
 /**
  * \file  CxSocket.h
- * \brief socket
+ * \brief blocking socket
  */
 
 

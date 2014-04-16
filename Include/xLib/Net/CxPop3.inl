@@ -1,6 +1,6 @@
 /**
  * \file  CxPop3.inl
- * \brief POP3
+ * \brief POP3 (RFC 2821)
  */
 
 

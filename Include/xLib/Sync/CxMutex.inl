@@ -1,6 +1,6 @@
 /**
  * \file  CxMutex.inl
- * \brief critical section (using between threads)
+ * \brief mutex
  */
 
 

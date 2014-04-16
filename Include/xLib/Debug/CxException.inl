@@ -1,6 +1,6 @@
 /**
  * \file  CxException.inl
- * \brief CxException (exception)
+ * \brief exception
  */
 
 

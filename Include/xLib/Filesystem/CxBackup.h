@@ -1,6 +1,6 @@
 /**
  * \file   CxBackup.h
- * \brief
+ * \brief  filesystem backuper
  */
 
 
@@ -14,7 +14,7 @@
 xNAMESPACE2_BEGIN(xlib, filesystem)
 
 class CxBackup
-    /// backup file
+    /// filesystem backuper
 {
 public:
     enum ExPeriod

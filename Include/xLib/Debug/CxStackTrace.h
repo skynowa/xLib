@@ -1,6 +1,6 @@
 /**
  * \file   CxStackTrace.h
- * \brief  get stack backtrace of the caller function
+ * \brief  stackrace of the caller function
  */
 
 

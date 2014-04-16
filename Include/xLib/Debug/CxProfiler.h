@@ -1,6 +1,6 @@
 /**
  * \file  CxProfiler.h
- * \brief code profiling (msec)
+ * \brief code profiling
  */
 
 
