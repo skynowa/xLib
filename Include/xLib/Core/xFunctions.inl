@@ -1,6 +1,6 @@
 /**
  * \file   xFunctions.inl
- * \brief
+ * \brief  function macroses
  */
 
 

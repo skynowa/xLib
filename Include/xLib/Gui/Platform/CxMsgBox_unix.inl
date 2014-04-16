@@ -1,6 +1,6 @@
 /**
- * \file  CxMsgBox.inl
- * \brief message box
+ * \file   CxMsgBox.inl
+ * \brief  message box
  */
 
 

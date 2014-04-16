@@ -1,6 +1,6 @@
 /**
  * \file   CxFinder.inl
- * \brief
+ * \brief  filesystem finder
  */
 
 

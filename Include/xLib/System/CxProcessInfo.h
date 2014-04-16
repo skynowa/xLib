@@ -1,6 +1,6 @@
 /**
  * \file   CxProcessInfo.h
- * \brief
+ * \brief  process information
  */
 
 
@@ -15,6 +15,7 @@
 xNAMESPACE2_BEGIN(xlib, system)
 
 class CxProcessInfo
+    /// process information
 {
 public:
                     CxProcessInfo() {}

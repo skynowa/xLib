@@ -1,6 +1,6 @@
 /**
  * \file  CxDnsClient.inl
- * \brief DNS
+ * \brief DNS client
  */
 
 

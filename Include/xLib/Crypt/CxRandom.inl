@@ -1,6 +1,6 @@
 /**
  * \file  CxRandom.inl
- * \brief random
+ * \brief random generator
  */
 
 

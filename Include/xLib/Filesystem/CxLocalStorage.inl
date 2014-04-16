@@ -1,6 +1,6 @@
 /**
  * \file  CxLocalStorage.inl
- * \brief ini
+ * \brief local storage
  */
 
 

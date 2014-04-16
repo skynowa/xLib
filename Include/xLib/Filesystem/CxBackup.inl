@@ -1,6 +1,6 @@
 /**
  * \file   CxBackup.inl
- * \brief
+ * \brief  filesystem backuper
  */
 
 

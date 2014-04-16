@@ -1,6 +1,6 @@
 /**
  * \file  CxCom.inl
- * \brief COM
+ * \brief Component Object Model (COM)
  */
 
 

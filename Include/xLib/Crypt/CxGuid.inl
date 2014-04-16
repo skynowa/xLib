@@ -1,6 +1,6 @@
 /**
  * \file   CxGuid.inl
- * \brief
+ * \brief  GUID (globally unique identifier)
  */
 
 

@@ -1,6 +1,6 @@
 /**
  * \file   CxAutoReset.h
- * \brief
+ * \brief  auto reset value
  */
 
 

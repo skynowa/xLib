@@ -1,6 +1,6 @@
 /**
  * \file   xInternal.h
- * \brief
+ * \brief  for internal use
  */
 
 

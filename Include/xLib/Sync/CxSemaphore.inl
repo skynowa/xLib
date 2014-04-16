@@ -1,6 +1,6 @@
 /**
  * \file   CxSemaphore.inl
- * \brief  semaphore (user space)
+ * \brief  semaphore
  */
 
 

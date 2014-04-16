@@ -1,6 +1,6 @@
 /**
  * \file   CxFinder.h
- * \brief
+ * \brief  filesystem finder
  */
 
 
@@ -15,7 +15,7 @@
 xNAMESPACE2_BEGIN(xlib, filesystem)
 
 class CxFinder
-    ///< file system finder
+    ///< filesystem finder
 {
 public:
                         CxFinder(std::ctstring_t &rootDirPath, std::ctstring_t &shellFilter);

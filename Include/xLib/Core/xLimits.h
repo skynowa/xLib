@@ -1,6 +1,6 @@
 /**
- * \file  xLimits.h.h
- * \brief
+ * \file  xLimits.h
+ * \brief numeric limits
  */
 
 

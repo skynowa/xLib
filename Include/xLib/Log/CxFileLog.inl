@@ -1,6 +1,6 @@
 /**
- * \file  CxFileLog.inl
- * \brief logging to file
+ * \file   CxFileLog.inl
+ * \brief  logging to file
  */
 
 
