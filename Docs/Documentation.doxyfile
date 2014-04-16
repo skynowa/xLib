@@ -1591,10 +1591,12 @@ INCLUDE_FILE_PATTERNS  =
 # undefined via #undef or recursively expanded use the := operator 
 # instead of the = operator.
 
-PREDEFINED             = "xNAMESPACE_BEGIN(n)=namespace n {" \
-                         xNAMESPACE_END(n)=} \
-                         "xNAMESPACE_ANONYM_BEGIN=namespace {" \
-                         xNAMESPACE_ANONYM_END=}
+PREDEFINED             = "xNAMESPACE_BEGIN(n1)=namespace n1 {" \
+                         xNAMESPACE_END(n1)=} \
+                         "xNAMESPACE2_BEGIN(n1, n2)=namespace n1 { namespace n2 {" \
+                         xNAMESPACE2_END(n1, \
+                         n2)=}} \
+                         "xNAMESPACE3_BEGIN(n1, n2, n3)=namespace n1 { namespace n2 { namespace n3 {"
 
 # If the MACRO_EXPANSION and EXPAND_ONLY_PREDEF tags are set to YES then 
 # this tag can be used to specify a list of macro names that should be expanded. 
