@@ -45,7 +45,7 @@ CxTcpServer::bind(
 //-------------------------------------------------------------------------------------------------
 inline void_t
 CxTcpServer::listen(
-    cint_t &a_backlog /* = SOMAXCONN */
+    cint_t &a_backlog /* = xSOCKET_CONNECTIONS_MAX */
 ) const
 {
     xTEST_DIFF(_socket, xSOCKET_HANDLE_INVALID);
