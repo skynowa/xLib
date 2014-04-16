@@ -1,5 +1,5 @@
 /**
- * \file  CxMutex.cpp
+ * \file  CxMutex.inl
  * \brief critical section (using between threads)
  */
 

@@ -67,7 +67,7 @@ xNAMESPACE2_END(xlib, debug)
     double time_in_seconds();
 
 
-    // system_posix.cpp:
+    // system_posix.inl:
     #include "system.h"
     #include <sys/time.h>
 
@@ -78,7 +78,7 @@ xNAMESPACE2_END(xlib, debug)
     }
 
 
-    // system_standard.cpp:
+    // system_standard.inl:
     #include "system.h"
     #include <ctime>
 

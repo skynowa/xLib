@@ -1,5 +1,5 @@
 /**
- * \file  CxBlowfish.cpp
+ * \file  CxBlowfish.inl
  * \brief blowfish (openssl-1.0.0a)
  */
 

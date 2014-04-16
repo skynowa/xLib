@@ -1,5 +1,5 @@
 /**
- * \file   CxSemaphore.cpp
+ * \file   CxSemaphore.inl
  * \brief  semaphore (user space)
  */
 

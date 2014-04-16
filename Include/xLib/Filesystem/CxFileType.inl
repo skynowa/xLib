@@ -1,5 +1,5 @@
 /**
- * \file  CxFileType.cpp
+ * \file  CxFileType.inl
  * \brief file type
  */
 

@@ -1,5 +1,5 @@
 /**
- * \file  CxMySql.cpp
+ * \file  CxMySql.inl
  * \brief MySQL data base v.5.1
  */
 

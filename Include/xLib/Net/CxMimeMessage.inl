@@ -1,5 +1,5 @@
 /**
- * \file  CxMimeMessage.cpp
+ * \file  CxMimeMessage.inl
  * \brief MIME message (RFC 822)
  */
 

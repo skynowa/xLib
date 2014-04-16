@@ -1,5 +1,5 @@
 /**
- * \file  CxDll.cpp
+ * \file  CxDll.inl
  * \brief dynamic linking loader
  */
 

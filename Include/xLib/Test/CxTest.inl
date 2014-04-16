@@ -1,5 +1,5 @@
 /**
- * \file  CxTest.cpp
+ * \file  CxTest.inl
  * \brief testing
  */
 

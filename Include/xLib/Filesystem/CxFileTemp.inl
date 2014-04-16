@@ -1,5 +1,5 @@
 /**
- * \file   CxFileTemp.cpp
+ * \file   CxFileTemp.inl
  * \brief  temporary file
  */
 

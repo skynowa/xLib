@@ -1,5 +1,5 @@
 /**
- * \file  CxStdError.cpp
+ * \file  CxStdError.inl
  * \brief standard C library last error
  */
 

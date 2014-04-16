@@ -1,5 +1,5 @@
 /**
- * \file  CxSystemLog.cpp
+ * \file  CxSystemLog.inl
  * \brief logging to system log
  */
 

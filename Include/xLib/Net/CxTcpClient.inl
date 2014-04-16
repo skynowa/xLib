@@ -1,5 +1,5 @@
 /**
- * \file  CxTcpClient.cpp
+ * \file  CxTcpClient.inl
  * \brief client socket
  */
 

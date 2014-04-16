@@ -1,5 +1,5 @@
 /**
- * \file  CxLastError.cpp
+ * \file  CxLastError.inl
  * \brief system last error
  */
 

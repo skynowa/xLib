@@ -1,5 +1,5 @@
 /**
- * \file  CxThreadStorage.cpp
+ * \file  CxThreadStorage.inl
  * \brief thread local storage
  */
 

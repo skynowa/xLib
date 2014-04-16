@@ -1,5 +1,5 @@
 /**
- * \file  CxSharedMemory.cpp
+ * \file  CxSharedMemory.inl
  * \brief share memory
  */
 

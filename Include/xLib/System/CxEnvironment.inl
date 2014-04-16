@@ -1,5 +1,5 @@
 /**
- * \file  CxEnvironment.cpp
+ * \file  CxEnvironment.inl
  * \brief system environment variables
  */
 

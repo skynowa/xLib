@@ -1,5 +1,5 @@
 /**
- * \file  CxDnsClient.cpp
+ * \file  CxDnsClient.inl
  * \brief DNS
  */
 

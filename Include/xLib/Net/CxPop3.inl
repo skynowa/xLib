@@ -1,5 +1,5 @@
 /**
- * \file  CxPop3.cpp
+ * \file  CxPop3.inl
  * \brief POP3
  */
 

@@ -401,7 +401,7 @@ CxStackTrace::_addr2Line(
 
        /**
         * Parse that variants of fileAndLine string:
-        *   - /home/skynowa/Projects/xLib/Build/Debug/../../../../Tests/Source/./Test.cpp:108
+        *   - /home/skynowa/Projects/xLib/Build/Debug/../../../../Tests/Source/./Test.inl:108
         *   - ??:0
         */
         std::vec_tstring_t line;

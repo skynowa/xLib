@@ -1,5 +1,5 @@
 /**
- * \file  CxSleeper.cpp
+ * \file  CxSleeper.inl
  * \brief sleeper
  */
 

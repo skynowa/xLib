@@ -1,5 +1,5 @@
 /**
- * \file  CxIpcSemaphore.cpp
+ * \file  CxIpcSemaphore.inl
  * \brief semaphore (interprocess)
  */
 

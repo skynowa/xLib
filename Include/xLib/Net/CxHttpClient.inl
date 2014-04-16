@@ -1,5 +1,5 @@
 /**
- * \file  CxHttpClient.cpp
+ * \file  CxHttpClient.inl
  * \brief protocol HTTP/1.0 (RFC 1945)  HTTP/1.1 (...)
  */
 

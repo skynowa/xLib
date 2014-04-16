@@ -1,5 +1,5 @@
 /**
- * \file   CxFlags.cpp
+ * \file   CxFlags.inl
  * \brief  bit mask flags
  */
 

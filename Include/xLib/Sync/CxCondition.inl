@@ -1,5 +1,5 @@
 /**
- * \file   CxCondition.cpp
+ * \file   CxCondition.inl
  * \brief
  */
 

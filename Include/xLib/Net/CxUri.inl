@@ -1,5 +1,5 @@
 /**
- * \file  CxUri.cpp
+ * \file  CxUri.inl
  * \brief URI
  */
 

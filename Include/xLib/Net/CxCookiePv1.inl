@@ -1,5 +1,5 @@
 /**
- * \file  CxCookiePv1.cpp
+ * \file  CxCookiePv1.inl
  * \brief cookie (http://www.ietf.org/rfc/rfc2109.txt)
  */
 

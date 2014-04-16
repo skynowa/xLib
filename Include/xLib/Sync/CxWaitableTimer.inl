@@ -1,5 +1,5 @@
 /**
- * \file  CxWaitableTimer.cpp
+ * \file  CxWaitableTimer.inl
  * \brief waitable timer
  */
 

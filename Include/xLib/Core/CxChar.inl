@@ -1,5 +1,5 @@
 /**
- * \file  CxChar.cpp
+ * \file  CxChar.inl
  * \brief character
  */
 

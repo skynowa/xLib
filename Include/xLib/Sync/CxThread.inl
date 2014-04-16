@@ -1,5 +1,5 @@
 /**
- * \file  CxThread.cpp
+ * \file  CxThread.inl
  * \brief thread
  */
 

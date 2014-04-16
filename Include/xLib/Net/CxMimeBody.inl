@@ -1,5 +1,5 @@
 /**
- * \file  CxMimeBody.cpp
+ * \file  CxMimeBody.inl
  * \brief MIME body (RFC 822)
  */
 

@@ -1,5 +1,5 @@
 /**
- * \file   CxGuid.cpp
+ * \file   CxGuid.inl
  * \brief
  */
 
