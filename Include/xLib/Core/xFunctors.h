@@ -15,7 +15,7 @@
 xNAMESPACE3_BEGIN(xlib, core, functors)
 //-------------------------------------------------------------------------------------------------
 struct ToLower
-    ///< char to lower case
+    /// char to lower case
 {
     ToLower(const std::locale &a_locale) :
         _locale(a_locale)
@@ -33,7 +33,7 @@ private:
 };
 //-------------------------------------------------------------------------------------------------
 struct ToUpper
-    ///< char, std:tstring_t to upper case
+    /// char, std:tstring_t to upper case
 {
     ToUpper(const std::locale &a_locale) :
         _locale(a_locale)
@@ -51,7 +51,7 @@ private:
 };
 //-------------------------------------------------------------------------------------------------
 struct CompareCI
-    ///< case insensitive comparison
+    /// case insensitive comparison
 {
     CompareCI(const std::locale &a_locale) :
         _locale(a_locale)
@@ -79,7 +79,7 @@ private:
 };
 //-------------------------------------------------------------------------------------------------
 struct Delete
-    ///< container items deleter
+    /// container items deleter
 {
     template<class T>
     void
@@ -90,7 +90,7 @@ struct Delete
 };
 //-------------------------------------------------------------------------------------------------
 struct Narrow
-    ///<
+    ///
 {
     Narrow(const std::locale &a_locale) :
         _locale(a_locale)
@@ -108,7 +108,7 @@ private:
 };
 //-------------------------------------------------------------------------------------------------
 struct Widen
-    ///<
+    ///
 {
     Widen(const std::locale &a_locale) :
         _locale(a_locale)

@@ -17,15 +17,6 @@ class CxHttpClient
     /// protocol HTTP/1.0 (RFC 1945)  HTTP/1.1 (...)
 {
 public:
-    //status line
-    class CxStatusLine;
-
-    //header
-    class CxHeader;
-
-    //body
-    class CxBody;
-
     enum ExProtocolVersion
         /// protocol version
     {
@@ -67,7 +58,7 @@ public:
     xNO_COPY_ASSIGN(CxHttpClient)
 };
 //-------------------------------------------------------------------------------------------------
-class CxHttpClient::CxStatusLine
+class CxStatusLine
     /// HTTP status line
 {
 public:
@@ -78,7 +69,7 @@ private:
     xNO_COPY_ASSIGN(CxStatusLine)
 };
 //-------------------------------------------------------------------------------------------------
-class CxHttpClient::CxHeader
+class CxHeader
     /// HTTP header
 {
 public:
@@ -89,7 +80,7 @@ private:
     xNO_COPY_ASSIGN(CxHeader)
 };
 //-------------------------------------------------------------------------------------------------
-class CxHttpClient::CxBody
+class CxBody
     /// HTTP nody
 {
 public:
