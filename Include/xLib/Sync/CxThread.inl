@@ -86,7 +86,7 @@ CxThread::create(
 )
 {
 #if   xOS_ENV_WIN
-    xTEST_EQ(false, _thread.isValid());
+    xTEST_EQ(_thread.isValid(), false);
 #elif xOS_ENV_UNIX
 
 #endif
@@ -146,7 +146,7 @@ CxThread::create(
     _thread = hid;  // TODO: CxThread::create() - is it right?
     _id     = hid;
 #endif
-    xTEST_EQ(false, isCurrent(_id));
+    xTEST_EQ(isCurrent(_id), false);
 
     //-------------------------------------
     // flags
@@ -512,14 +512,14 @@ CxThread::messageWaitQueue(
     long_t                    *a_param2
 ) const
 {
-    xTEST_EQ(true, _thread.isValid());
-    xTEST_EQ(false, a_msgs.empty());
+    xTEST_EQ(_thread.isValid(), true);
+    xTEST_EQ(a_msgs.empty(), false);
 
     BOOL blRv = FALSE;
     MSG  msg  = {0};
 
     while ((blRv = ::GetMessage(&msg, xPTR_NULL, 0, 0 ))) {
-        xTEST_DIFF(- 1, blRv);
+        xTEST_DIFF(blRv, - 1);
 
         for (size_t i = 0; i < a_msgs.size(); ++ i) {
             xCHECK_DO(a_msgs.at(i) != msg.message, continue);

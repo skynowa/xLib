@@ -61,7 +61,7 @@ CxBlowfish::setKey(
     std::custring_t &a_key
 )
 {
-    xTEST_EQ(false, a_key.empty());
+    xTEST_EQ(a_key.empty(), false);
     xTEST_GR_EQ(maxKeySize(), a_key.size());
 
     setKey(const_cast<uchar_t *>( a_key.data() ), static_cast<int_t>( a_key.size() ));
@@ -72,7 +72,7 @@ CxBlowfish::setKey(
     std::ctstring_t &a_key
 )
 {
-    xTEST_EQ(false, a_key.empty());
+    xTEST_EQ(a_key.empty(), false);
     xTEST_GR_EQ(maxKeySize(), a_key.size() * sizeof(std::tstring_t::value_type));
 
     setKey(std::ustring_t(a_key.begin(), a_key.end()));
@@ -83,7 +83,7 @@ CxBlowfish::setFileKey(
     std::ctstring_t &a_filePath
 )
 {
-    xTEST_EQ(false, a_filePath.empty());
+    xTEST_EQ(a_filePath.empty(), false);
 
     size_t         uiRv = 0;
     std::ustring_t fileKey;
@@ -147,7 +147,7 @@ CxBlowfish::encryptCfb64(
     const ExCryptMode &a_mode
 )
 {
-    xTEST_EQ(false, a_in.empty());
+    xTEST_EQ(a_in.empty(), false);
     xTEST_PTR(a_out);
 
     int_t num = 0;    //This integer must be initialized to zero when ivec is initialized
@@ -166,8 +166,8 @@ CxBlowfish::encryptFileCfb64(
     const ExCryptMode &a_mode
 )
 {
-    xTEST_EQ(false, a_filePathIn.empty());
-    xTEST_EQ(false, a_filePathOut.empty());
+    xTEST_EQ(a_filePathIn.empty(), false);
+    xTEST_EQ(a_filePathOut.empty(), false);
 
     std::ustring_t in;
     std::ustring_t out;

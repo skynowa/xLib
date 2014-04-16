@@ -129,7 +129,7 @@ CxCrc32::calcFile(
     std::ctstring_t &a_filePath
 )
 {
-    xTEST_EQ(false, a_filePath.empty());
+    xTEST_EQ(a_filePath.empty(), false);
 
     std::ustring_t file;
 

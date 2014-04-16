@@ -100,8 +100,8 @@ CxMimeHeader::parse(
     for (size_t i = 0; i < vsHeader.size(); i ++) {
         std::vec_tstring_t vsLines;
         _m_bRv = CxString::bSplitKeyValue(vsHeader.at(i), _attrDelimiter, &vsLines);
-        xTEST_EQ(true, _m_bRv,           false);
-        xTEST_EQ(false, vsLines.empty(), false);
+        xTEST_EQ(_m_bRv,          true);
+        xTEST_EQ(vsLines.empty(), false);
 
         std::tstring_t sKey   = CxString::trimSpace(vsLines.at(0));
         std::tstring_t sValue = CxString::trimSpace(vsLines.at(1));
@@ -116,8 +116,8 @@ CxMimeHeader::field(
     std::ctstring_t &a_name
 )
 {
-    xTEST_EQ(false, _header.empty());
-    xTEST_EQ(false, a_name.empty());
+    xTEST_EQ(_header.empty(), false);
+    xTEST_EQ(a_name.empty(), false);
 
     std::tstring_t sRv;
 
@@ -147,17 +147,17 @@ CxMimeHeader::loadFromFile(
 {
     // TODO: CxMimeHeader::loadFromFile(()
 
-    xTEST_EQ(false, filePath.empty());
+    xTEST_EQ(filePath.empty(), false);
     xTEST_EQ(true,  CxFile::isExists(filePath));
 
     std::tstring_t sUknownEmail("Uknown@Uknown.Uknown");
     std::tstring_t sLine("");
     std::ifstream  ifsStream(filePath.c_str());
     xTEST_EQ(true,  !! ifsStream);
-    xTEST_EQ(false, ifsStream.fail());
+    xTEST_EQ(ifsStream.fail(), false);
     xTEST_EQ(true,  ifsStream.good());
     xTEST_EQ(true,  ifsStream.is_open());
-    xTEST_EQ(false, ifsStream.eof());
+    xTEST_EQ(ifsStream.eof(), false);
 
     ulong_t ulCountBreaks = 0;
     for (ulong_t i = 0; !ifsStream.eof();  ++ i) {
@@ -190,8 +190,8 @@ CxMimeHeader::loadFromFile(
     std::ctstring_t &a_rawMessageFilePath
 )
 {
-    xTEST_EQ(false, a_rawMessageFilePath.empty());
-    xTEST_EQ(true, CxFile::isExists(a_rawMessageFilePath));
+    xTEST_EQ(a_rawMessageFilePath.empty(), false);
+    xTEST_EQ(CxFile::isExists(a_rawMessageFilePath), true);
 
     std::tstring_t sRawHeader;
     std::tstring_t sLine;
@@ -203,10 +203,10 @@ CxMimeHeader::loadFromFile(
     // (\r\n\r\n)
     std::tifstream_t ifsStream(a_rawMessageFilePath.c_str());
     xTEST_EQ(true, !! ifsStream);
-    xTEST_EQ(false, ifsStream.fail());
+    xTEST_EQ(ifsStream.fail(), false);
     xTEST_EQ(true,  ifsStream.good());
     xTEST_EQ(true,  ifsStream.is_open());
-    xTEST_EQ(false, ifsStream.eof());
+    xTEST_EQ(ifsStream.eof(), false);
 
     ////ulong_t ulCountBreaks = 0;
     for (; !ifsStream.eof(); ) {
@@ -240,7 +240,7 @@ CxMimeHeader::generateMessageID()
 
     sRv = CxString::format(xT("%s@%s"), CxGuid().create(CxGuid::tpRandomBased).c_str(),
         CxSystemInfo().hostName().c_str());
-    xTEST_EQ(false, sRv.empty());
+    xTEST_EQ(sRv.empty(), false);
 
     return sRv;
 }

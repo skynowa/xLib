@@ -29,13 +29,13 @@ CxDir::CxDir(
 ) :
     _dirPath(a_dirPath)
 {
-    xTEST_EQ(false, a_dirPath.empty());
+    xTEST_EQ(a_dirPath.empty(), false);
 }
 //-------------------------------------------------------------------------------------------------
 inline std::ctstring_t &
 CxDir::dirPath() const
 {
-    xTEST_EQ(false, _dirPath.empty());
+    xTEST_EQ(_dirPath.empty(), false);
 
     return _dirPath;
 }
@@ -60,7 +60,7 @@ CxDir::isEmpty(
     std::ctstring_t &a_shellFilter /* = CxConst::maskAll() */
 ) const
 {
-    xTEST_EQ(false, a_shellFilter.empty());
+    xTEST_EQ(a_shellFilter.empty(), false);
 
     bool_t bRv = true;
 
@@ -150,7 +150,7 @@ CxDir::copy(
 ) const
 {
     xTEST_EQ(true,  isExists());
-    xTEST_EQ(false, a_dirPathTo.empty());
+    xTEST_EQ(a_dirPathTo.empty(), false);
     xTEST_NA(a_failIfExists);
 
     // sets attribute "normal"
@@ -191,7 +191,7 @@ CxDir::move(
 ) const
 {
     xTEST_EQ(true,  isExists());
-    xTEST_EQ(false, a_dirPathTo.empty());
+    xTEST_EQ(a_dirPathTo.empty(), false);
     xTEST_NA(a_failIfExists);
 
     CxDir dir(dirPath());
@@ -216,7 +216,7 @@ CxDir::remove() const
     xTEST_DIFF(iRv, - 1);
 #endif
 
-    xTEST_EQ(false, isExists());
+    xTEST_EQ(isExists(), false);
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -247,7 +247,7 @@ CxDir::tryRemove(
         CxThread::currentSleep(a_timeoutMsec);
     }
 
-    xTEST_EQ(false, isExists());
+    xTEST_EQ(isExists(), false);
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -295,7 +295,7 @@ CxDir::pathDelete() const
     pathClear();
     remove();
 
-    xTEST_EQ(false, isExists());
+    xTEST_EQ(isExists(), false);
 }
 //-------------------------------------------------------------------------------------------------
 

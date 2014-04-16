@@ -728,7 +728,7 @@ CxConsole::_wndHandle()
 
     // fetch current window title.
     oldWndTitle = title();
-    xTEST_EQ(false, oldWndTitle.empty());
+    xTEST_EQ(oldWndTitle.empty(), false);
 
     // format a "unique" szNewWndTitle.
     newWndTitle = CxString::format(xT("%lu/%lu"), ::GetTickCount(), ::GetCurrentProcessId());

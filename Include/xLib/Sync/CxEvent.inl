@@ -62,7 +62,7 @@ inline void_t
 CxEvent::create()
 {
 #if   xOS_ENV_WIN
-    xTEST_EQ(false, _event.isValid());
+    xTEST_EQ(_event.isValid(), false);
 
     HANDLE hRv = ::CreateEvent(xPTR_NULL, ! _isAutoReset, _initState, xPTR_NULL);
     xTEST_DIFF(hRv, static_cast<HANDLE>(xPTR_NULL));

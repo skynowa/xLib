@@ -127,7 +127,7 @@ CxTest::createTempDir(
 inline std::ctstring_t &
 CxTest::tempDirPath() const
 {
-    xTEST_EQ(false, _tempDirPath.empty());
+    xTEST_EQ(_tempDirPath.empty(), false);
 
     return _tempDirPath;
 }
