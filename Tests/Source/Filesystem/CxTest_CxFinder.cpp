@@ -88,7 +88,7 @@ CxTest_CxFinder::unit(
             std::ctstring_t    filter = data[i].test;
             CxFinder           finder(rootDirPath, filter);
 
-            xFOREVER {
+            for ( ; ; ) {
                 m_bRv = finder.moveNext();
                 xCHECK_DO(!m_bRv, break);
 

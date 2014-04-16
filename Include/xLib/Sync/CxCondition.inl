@@ -98,7 +98,7 @@ CxCondition::wait(
     xTEST_MSG_EQ(iRv, 0, CxLastError::format(iRv));
 
     {
-        xFOREVER {
+        for ( ; ; ) {
             if (a_timeoutMs == xTIMEOUT_INFINITE) {
                 iRv = ::pthread_cond_wait(&_handle, &_mutex);
             } else {

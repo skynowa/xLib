@@ -72,7 +72,7 @@ CxPath::exe()
         ssize_t readed = - 1;
         sRv.resize(xPATH_MAX);
 
-        xFOREVER {
+        for ( ; ; ) {
             readed = ::readlink(procFile.c_str(), &sRv.at(0), sRv.size() *
                 sizeof(std::tstring_t::value_type));
             xTEST_DIFF(readed, ssize_t(- 1));
@@ -520,7 +520,7 @@ CxPath::isNameValid(
         if (pos != std::tstring_t::npos) {
             xCHECK_RET(a_fileNameValid == xPTR_NULL, false);
 
-            xFOREVER {
+            for ( ; ; ) {
                 sRv.erase(pos, 1);
                 pos = sRv.find_first_of(exceptedChars, pos);
                 xCHECK_DO(pos == std::tstring_t::npos, break);
@@ -546,7 +546,7 @@ CxPath::isNameValid(
         if (cit != sRv.end()) {
             xCHECK_RET(a_fileNameValid == xPTR_NULL, false);
 
-            xFOREVER {
+            for ( ; ; ) {
                 std::tstring_t::iterator itNewEnd;
 
                 itNewEnd = std::remove_if(sRv.begin(), sRv.end(), CxChar::isControl);
@@ -610,7 +610,7 @@ CxPath::isNameValid(
         if (pos != std::tstring_t::npos) {
             xCHECK_RET(a_fileNameValid == xPTR_NULL, false);
 
-            xFOREVER {
+            for ( ; ; ) {
                 sRv.erase(pos, 1);
                 pos = sRv.find_first_of(exceptedChars, pos);
                 xCHECK_DO(pos == std::tstring_t::npos, break);
@@ -636,7 +636,7 @@ CxPath::isNameValid(
         if (pos != std::tstring_t::npos) {
             xCHECK_RET(a_fileNameValid == xPTR_NULL, false);
 
-            xFOREVER {
+            for ( ; ; ) {
                 sRv.erase(pos, 1);
                 pos = sRv.find_first_of(exceptedChars, pos);
                 xCHECK_DO(pos == std::tstring_t::npos, break);
@@ -826,7 +826,7 @@ CxPath::brief(
         {
             size_t index = 0;
 
-            xFOREVER {
+            for ( ; ; ) {
                 std::csize_t pos = a_str.find_first_of(CxConst::winSlash() + CxConst::unixSlash());
 
                 a_str.erase(0, pos + CxConst::slash().size());

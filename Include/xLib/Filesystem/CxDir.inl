@@ -66,7 +66,7 @@ CxDir::isEmpty(
 
     CxFinder finder(dirPath(), a_shellFilter);
 
-    xFOREVER {
+    for ( ; ; ) {
         xCHECK_DO(!finder.moveNext(), break);
 
         xCHECK_DO(finder.entryName() == CxConst::dot(),  continue);

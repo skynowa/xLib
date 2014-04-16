@@ -456,10 +456,10 @@ CxConsole::prompt(
     xTEST_EQ(a_prompt.empty(), false);
     xTEST_PTR(a_answer);
 
-    xFOREVER {
+    for ( ; ; ) {
         write(a_prompt + xT(": "));
 
-        xFOREVER {
+        for ( ; ; ) {
             ctchar_t letter = static_cast<tchar_t>( std::tcin.get() );
 
             // asterisks
