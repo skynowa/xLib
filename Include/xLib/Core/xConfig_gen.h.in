@@ -9,10 +9,20 @@
 #ifndef xLib_xConfig_genH
 #define xLib_xConfig_genH
 //-------------------------------------------------------------------------------------------------
+///@name Git information
+///@{
 #cmakedefine xHAVE_GIT_REVISION 1
 #cmakedefine xGIT_REVISION_BRANCH xT("@GIT_REVISION_BRANCH@")
 #cmakedefine xGIT_REVISION_HASH xT("@GIT_REVISION_HASH@")
+///@}
 
+#cmakedefine xHAVE_CPP11 1
+    ///< support C++11 language
+#cmakedefine xHAVE_NAMESPACE_XLIB 1
+    ///< automatically include the xlib namespace
+
+///@name detecting features
+///@{
 #cmakedefine xHAVE_OPENSSL_CRYPTO 1
 #cmakedefine xHAVE_MYSQL 1
 #cmakedefine xHAVE_PR_SET_DUMPABLE 1
@@ -23,66 +33,10 @@
 #cmakedefine xHAVE_ADDR2LINE 1
 #cmakedefine xHAVE_EXECINFO 1
 #cmakedefine xHAVE_XCB 1
+///@}
 
-#if xOS_ENV_WIN
-    #if xCOMPILER_MS
-        #include <SDKDDKVer.h>
-    #endif
-
-    #if !defined(WIN32_LEAN_AND_MEAN)
-        #define WIN32_LEAN_AND_MEAN 1
-    #endif
-
-    #if !defined(STRICT)
-        #define STRICT 1
-    #endif
-
-    #if xCOMPILER_MS
-       /**
-        * 4996: function or variable may be unsafe (deprecated)
-        * 4355: 'this' : used in base member initializer list
-        * 4101: 'e' : unreferenced local variable
-        */
-        #pragma warning(disable: 4996 4355 4101)
-
-        #if !defined(VC_EXTRALEAN)
-            #define VC_EXTRALEAN 1
-        #endif
-    #endif
-
-    #if xCOMPILER_MINGW
-
-    #endif
-
-    #if xCOMPILER_CODEGEAR
-        #pragma option -w-8027  // function not expanded inline
-        #pragma option -w-8057  // parameter is never used
-        #pragma option -w-8058  // cannot create pre-compiled header: initialized data in header
-        #pragma option -w-8004  // is assigned a value that is never used
-        #pragma option -w-8008  // Condition is always true
-    #endif
-
-    #define _CRT_SECURE_NO_WARNINGS 1
-        ///< disable Win CRT warnings
-
-    #define _SCL_SECURE_NO_WARNINGS 1
-        ///< disable Win SCL warnings
-#elif xOS_ENV_UNIX
-    #if !defined(_GNU_SOURCE)
-        #define _GNU_SOURCE 1
-    #endif
-#endif
-
-#cmakedefine xHAVE_CPP11 1
-    ///< support C++11 language
-#cmakedefine xHAVE_NAMESPACE_XLIB 1
-    ///< automatically include the xlib namespace
-
-#cmakedefine xHAVE_DEBUG_DIALOG 1
-    ///< debug prompt dialog:
-    ///<    0 - don't stop executing, pass throw dialog prompt
-    ///<    1 - stop executing on dialog prompt, wait for user choice
-
+///@name debug mode (only one mode can be activated)
+///@{
 // log mode (only one mode can be activated)
 #cmakedefine xHAVE_DEBUG_MODE_MSGBOX 1
     ///< debug mode "message box with plain text"
@@ -92,12 +46,70 @@
     ///< debug mode "logging with plain text"
 #cmakedefine xHAVE_DEBUG_MODE_NO 1
     ///< debug mode "no debugging"
+///@}
 
+#cmakedefine xHAVE_DEBUG_DIALOG 1
+    ///< debug prompt dialog:
+    ///<    0 - don't stop executing, pass throw dialog prompt
+    ///<    1 - stop executing on dialog prompt, wait for user choice
+
+///@name tests
+///@{
+#cmakedefine xHAVE_TESTS 1
+    ///< use xLib tests
 #cmakedefine xHAVE_TEST_PRIVATE 1
     ///< for tests private data
 #cmakedefine xHAVE_TEST_TRACING 1
     ///< use tracing in tests
-#cmakedefine xHAVE_TESTS 1
-    ///< use xLib tests
+///@}
+
+#if   xOS_ENV_WIN
+    #if xCOMPILER_MS
+        #include <SDKDDKVer.h>
+    #endif
+
+    #if !defined(WIN32_LEAN_AND_MEAN)
+        #define WIN32_LEAN_AND_MEAN 1
+    #endif
+        ///< exclude APIs such as Cryptography, DDE, RPC, Shell, Windows Sockets
+    #if !defined(STRICT)
+        #undef  NO_STRICT
+        #define STRICT 1
+    #endif
+        ///< type checking
+    #define _CRT_SECURE_NO_WARNINGS 1
+        ///< disable Win CRT warnings
+    #define _SCL_SECURE_NO_WARNINGS 1
+        ///< disable Win SCL warnings
+    #define _CRT_SECURE_NO_DEPRECATE 1
+        ///< don't complain about all the deprecated functions
+
+    #if   xCOMPILER_MINGW
+        //
+    #elif xCOMPILER_MS
+        // Disable warnings
+        #pragma warning(disable: 4996) // function or variable may be unsafe (deprecated)
+        #pragma warning(disable: 4355) // 'this' : used in base member initializer list
+        #pragma warning(disable: 4101) // 'e' : unreferenced local variable
+
+        #if !defined(VC_EXTRALEAN)
+            #define VC_EXTRALEAN 1
+        #endif
+            ///< exclude rarely-used stuff from Windows headers
+    #elif xCOMPILER_CODEGEAR
+        // Disable warnings
+        #pragma option -w-8027  // function not expanded inline
+        #pragma option -w-8057  // parameter is never used
+        #pragma option -w-8058  // cannot create pre-compiled header: initialized data in header
+        #pragma option -w-8004  // is assigned a value that is never used
+        #pragma option -w-8008  // Condition is always true
+    #elif xCOMPILER_CLANG
+        //
+    #endif
+#elif xOS_ENV_UNIX
+    #if !defined(_GNU_SOURCE)
+        #define _GNU_SOURCE 1
+    #endif
+#endif
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_xConfig_genH
