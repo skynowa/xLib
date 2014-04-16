@@ -12,6 +12,12 @@
 
 xNAMESPACE2_BEGIN(xlib, filesystem)
 
+xNAMESPACE_ANONYM_BEGIN
+
+std::ctstring_t fileExtDefault = xT("cfg");
+
+xNAMESPACE_ANONYM_END
+
 /**************************************************************************************************
 *    public: creation
 *
@@ -21,7 +27,7 @@ xNAMESPACE2_BEGIN(xlib, filesystem)
 inline
 CxLocalStorage::CxLocalStorage() :
     _separator(CxConst::equal()),
-    _fileExt  (xT("ini")),
+    _fileExt  (::fileExtDefault),
     _filePath (),
     _ini      ()
 {
@@ -37,7 +43,7 @@ CxLocalStorage::CxLocalStorage(
     std::ctstring_t &a_filePath
 ) :
     _separator(CxConst::equal()),
-    _fileExt  (xT("ini")),
+    _fileExt  (::fileExtDefault),
     _filePath (),
     _ini      ()
 {
@@ -127,11 +133,11 @@ CxLocalStorage::keyIsExists(
     std::ctstring_t &a_key
 ) const
 {
-    std::map_tstring_t ini;
+    std::map_tstring_t cfg;
 
-    CxFile::textRead(path(), _separator, &ini);
+    CxFile::textRead(path(), _separator, &cfg);
 
-    xCHECK_RET(ini.end() == ini.find(a_key), false);
+    xCHECK_RET(cfg.end() == cfg.find(a_key), false);
 
     return true;
 }
