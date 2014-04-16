@@ -150,4 +150,13 @@
     ///< infinite timeout
 
 //-------------------------------------------------------------------------------------------------
+// xSOCKET_CONNECTIONS_MAX
+#if !defined(SOMAXCONN)
+    #define xSOCKET_CONNECTIONS_MAX \
+            ( SOMAXCONN )
+#else
+    #error xLib: xSOCKET_CONNECTIONS_MAX not defined
+#endif
+    ///< Maximum queue length specifiable by listen
+//-------------------------------------------------------------------------------------------------
 #endif // xLib_xLimitsH
