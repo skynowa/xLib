@@ -170,67 +170,63 @@ public:
     }
 };
 //-------------------------------------------------------------------------------------------------
-namespace NxArray {
-    // comparisons
-    template<class T, std::size_t N>
-    bool_t operator == (const CxArray<T, N> &x, const CxArray<T, N> &y)
-    {
-        return std::equal(x.begin(), x.end(), y.begin());
-    }
-    template<class T, std::size_t N>
-    bool_t operator< (const CxArray<T, N> &x, const CxArray<T, N> &y)
-    {
-        return std::lexicographical_compare(x.begin(),x.end(),y.begin(),y.end());
-    }
-    template<class T, std::size_t N>
-    bool_t operator != (const CxArray<T, N> &x, const CxArray<T, N> &y)
-    {
-        return !(x == y);
-    }
-    template<class T, std::size_t N>
-    bool_t operator > (const CxArray<T, N> &x, const CxArray<T, N> &y)
-    {
-        return (y < x);
-    }
-    template<class T, std::size_t N>
-    bool_t operator <= (const CxArray<T, N> &x, const CxArray<T, N> &y)
-    {
-        return !(y < x);
-    }
-    template<class T, std::size_t N>
-    bool_t operator >= (const CxArray<T, N> &x, const CxArray<T, N> &y)
-    {
-        return !(x < y);
-    }
+// comparisons
+template<class T, std::size_t N>
+bool_t operator == (const CxArray<T, N> &x, const CxArray<T, N> &y)
+{
+    return std::equal(x.begin(), x.end(), y.begin());
+}
+template<class T, std::size_t N>
+bool_t operator< (const CxArray<T, N> &x, const CxArray<T, N> &y)
+{
+    return std::lexicographical_compare(x.begin(),x.end(),y.begin(),y.end());
+}
+template<class T, std::size_t N>
+bool_t operator != (const CxArray<T, N> &x, const CxArray<T, N> &y)
+{
+    return !(x == y);
+}
+template<class T, std::size_t N>
+bool_t operator > (const CxArray<T, N> &x, const CxArray<T, N> &y)
+{
+    return (y < x);
+}
+template<class T, std::size_t N>
+bool_t operator <= (const CxArray<T, N> &x, const CxArray<T, N> &y)
+{
+    return !(y < x);
+}
+template<class T, std::size_t N>
+bool_t operator >= (const CxArray<T, N> &x, const CxArray<T, N> &y)
+{
+    return !(x < y);
+}
 
-    // swap()
-    template<class T, std::size_t N>
-    inline void_t swap(CxArray<T, N> &x, CxArray<T, N> &y)
-    {
-        x.swap(y);
-    }
+// swap()
+template<class T, std::size_t N>
+inline void_t swap(CxArray<T, N> &x, CxArray<T, N> &y)
+{
+    x.swap(y);
 }
 //-------------------------------------------------------------------------------------------------
-namespace NxArray {
-    // make_array (2 elements)
-    template<class T>
-    CxArray<T, 2>
-    make_array(const T &t1, const T &t2)
-    {
-        CxArray<T, 2> aArrayT = {{t1, t2}};
+// make_array (2 elements)
+template<class T>
+CxArray<T, 2>
+make_array(const T &t1, const T &t2)
+{
+    CxArray<T, 2> aArrayT = {{t1, t2}};
 
-        return aArrayT;
-    }
+    return aArrayT;
+}
 
-    // make_array (3 elements)
-    template<class T>
-    CxArray<T, 3>
-    make_array(const T &t1, const T &t2, const T &t3)
-    {
-        CxArray<T, 3> aArrayT = {{t1, t2, t3}};
+// make_array (3 elements)
+template<class T>
+CxArray<T, 3>
+make_array(const T &t1, const T &t2, const T &t3)
+{
+    CxArray<T, 3> aArrayT = {{t1, t2, t3}};
 
-        return aArrayT;
-    }
+    return aArrayT;
 }
 
 xNAMESPACE2_END(xlib, core)

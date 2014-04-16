@@ -17,8 +17,6 @@ class CxCgi;
 class CxCookiePv0;
 class CxCookiePv1;
 
-xNAMESPACE_BEGIN(NxCgi)
-
 //-------------------------------------------------------------------------------------------------
 class CxCgiEnvironment
     /// CGI environment
@@ -204,9 +202,6 @@ private:
 };
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE_END(NxCgi)
-//-------------------------------------------------------------------------------------------------
-
 
 //-------------------------------------------------------------------------------------------------
 class CxCgi
@@ -221,9 +216,9 @@ public:
         return uiRv;
     }
 
-    NxCgi::CxCgiEnvironment Environment;    ///< CxCgiEnvironment object
-    NxCgi::CxCgiCookies     Cookies;        ///< CxCgiCookies object
-    NxCgi::CxCgiFormData    Formdata;       ///< CxCgiFormData object
+    CxCgiEnvironment        Environment;    ///< CxCgiEnvironment object
+    CxCgiCookies            Cookies;        ///< CxCgiCookies object
+    CxCgiFormData           Formdata;       ///< CxCgiFormData object
 
     explicit                CxCgi(std::csize_t &maxSize);
         ///< constructor
