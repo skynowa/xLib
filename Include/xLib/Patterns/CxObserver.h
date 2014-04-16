@@ -16,7 +16,7 @@ xNAMESPACE2_BEGIN(xlib, patterns)
 
 template <class T>
 class xNO_VTABLE IxObserver
-    ///< observer interface
+    /// observer interface
 {
 public:
                     IxObserver() {}
@@ -27,7 +27,7 @@ public:
 //-------------------------------------------------------------------------------------------------
 template <class T>
 class CxObserver
-    ///< observer
+    /// observer
 {
 public:
     CxObserver()

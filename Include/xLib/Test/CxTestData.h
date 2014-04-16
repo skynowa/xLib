@@ -17,7 +17,7 @@ xNAMESPACE2_BEGIN(xlib, test)
 ///@{
 template <class T1>
 struct CxTestData1
-    ///< test data
+    /// test data
 {
     T1 test;
 };
@@ -45,7 +45,7 @@ typedef CxTestData1<std::ustring_t>  data1_ustring_t;
 ///@{
 template <class T1, class T2>
 struct CxTestData2
-    ///< test data
+    /// test data
 {
     T1 test;
     T2 expect;
@@ -74,7 +74,7 @@ typedef CxTestData2<std::tstring_t, std::ustring_t>  data2_ustring_t;
 ///@{
 template <class T1, class T2, class T3>
 struct CxTestData3
-    ///< test data
+    /// test data
 {
     T1 test1;
     T2 test2;
