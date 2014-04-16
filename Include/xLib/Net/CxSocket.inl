@@ -43,8 +43,8 @@ CxSocket::assign(
     csocket_t &a_socket
 )
 {
-    // _socket - n/a
-    // socket  - n/a
+    xTEST_NA(_socket);
+    xTEST_NA(a_socket);
 
     _socket = a_socket;
 }
@@ -62,21 +62,12 @@ CxSocket::operator = (
     csocket_t &a_socket
 )
 {
-    // _socket - n/a
-    // scktSocket   - n/a
+    xTEST_NA(_socket);
+    xTEST_NA(a_socket);
 
     _socket = a_socket;
 
     return *this;
-}
-//-------------------------------------------------------------------------------------------------
-inline
-CxSocket::operator socket_t ()
-{
-    // _socket - n/a
-    // scktSocket   - n/a
-
-    return _socket;
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -103,25 +94,28 @@ CxSocket::create(
 }
 //-------------------------------------------------------------------------------------------------
 inline socket_t
-CxSocket::handle() const {
+CxSocket::handle() const
+{
     xTEST_DIFF(_socket, xSOCKET_HANDLE_INVALID);
 
     return _socket;
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
-CxSocket::isValid() const {
+CxSocket::isValid() const
+{
     // n/a
 
 #if   xOS_ENV_WIN
     return (_socket >= 0);
-#else
+#elif xOS_ENV_UNIX
     return (_socket >= 0);
 #endif
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxSocket::close() {
+CxSocket::close()
+{
     xCHECK_DO(!isValid(), return);
 
     xTEST_DIFF(_socket, xSOCKET_HANDLE_INVALID);
@@ -171,7 +165,7 @@ CxSocket::send(
     xUNUSED(a_flags);
 
     #if !defined(MSG_NOSIGNAL)
-        #define MSG_NOSIGNAL  0x20000
+        cint_t MSG_NOSIGNAL = 0x20000;
     #endif
 
     ssize_t iRv = ::send(_socket, a_buff, a_buffSize, MSG_NOSIGNAL);
@@ -192,8 +186,6 @@ CxSocket::sendAll(
     xTEST_EQ(a_buff.empty(), false);
     xTEST_LESS(size_t(0U), a_buff.size());
 
-    //-------------------------------------
-    // ������ �� ������ ������� � ����� � ������
     size_t currPos  = 0;
     // TODO: CxSocket::send() - overflow CxSocket::sendAll()
     size_t leftSize = a_buff.size() * sizeof(tchar_t);
@@ -206,7 +198,7 @@ CxSocket::sendAll(
         buffOutSize = leftSize;
     }
 
-    xFOREVER {        /*uiLeftSize > 0*/
+    xFOREVER {        /* uiLeftSize > 0 */
         ssize_t iRv = send(&a_buff.at(0) + currPos, buffOutSize, a_flags);
         xCHECK_DO(iRv == xSOCKET_ERROR, break);
         xCHECK_DO(iRv == 0,             break);
@@ -216,7 +208,7 @@ CxSocket::sendAll(
 
         xCHECK_DO(leftSize < buffOutSize, buffOutSize = leftSize);
 
-        //id data is finished - exit from loop
+        // id data is finished - exit from loop
         if (0 >= leftSize) {
             xTEST_EQ(a_buff.size() * sizeof(tchar_t), currPos);
             break;
@@ -265,20 +257,20 @@ CxSocket::recvAll(
     tchar_t        buff[buffSize + 1] = {0};
 
     xFOREVER {
-        int_t   iRv  = - 1;
-        ulong_t ulArg = (ulong_t)a_flags;
+        int_t   iRv = - 1;
+        ulong_t arg = (ulong_t)a_flags;
 
     #if   xOS_ENV_WIN
-        iRv = ::ioctlsocket(_socket, FIONREAD, &ulArg);
+        iRv = ::ioctlsocket(_socket, FIONREAD, &arg);
     #elif xOS_ENV_UNIX
-        iRv = ::ioctl      (_socket, FIONREAD, &ulArg);
+        iRv = ::ioctl      (_socket, FIONREAD, &arg);
     #endif
 
-        xCHECK_DO(iRv   != 0,          break);
-        xCHECK_DO(ulArg == 0,          break);
-        xCHECK_DO(buffSize < ulArg, ulArg = buffSize);
+        xCHECK_DO(iRv != 0,       break);
+        xCHECK_DO(arg == 0,       break);
+        xCHECK_DO(buffSize < arg, arg = buffSize);
 
-        ssize_t uiRv = ::recv(_socket, (char *)&buff[0], ulArg, 0);
+        ssize_t uiRv = ::recv(_socket, (char *)&buff[0], arg, 0);
         xCHECK_DO(uiRv <= 0, break);
 
         sRv.append(buff, uiRv);
@@ -297,8 +289,7 @@ CxSocket::recvAll(
     std::size_t    inSize = SOCKET_BUFF_SIZE * sizeof(tchar_t);
     std::tstring_t in(inSize, xT('\0'));
 
-    //-------------------------------------
-    //read from socket by blocks, write to string
+    // read from socket by blocks, write to string
     xFOREVER {
         ssize_t iRv = receive(&in.at(0), inSize, a_flags);
         xCHECK_DO(iRv == xSOCKET_ERROR, break);
@@ -327,30 +318,30 @@ CxSocket::sendBytes(
     timeval sendTimeout   = {0, 0};
     ssize_t messageLength = a_messageLength;
 
-    //sSetting the timeout
+    // setting the timeout
     sendTimeout.tv_sec  = 0;
     sendTimeout.tv_usec = SOCKET_TIMEOUT;
 
     fd_set fds;    FD_ZERO(&fds);
     FD_SET(_socket, &fds);
 
-    //..as long_t as we need to send data...
+    // ..as long_t as we need to send data...
     while (messageLength > 0) {
         iRv = ::select(0, xPTR_NULL, &fds, xPTR_NULL, &sendTimeout);
 
-        //timed out, return error
+        // timed out, return error
         xCHECK_RET(!iRv, xSOCKET_ERROR);
 
-        //An error occurred
+        // An error occurred
         xCHECK_RET(iRv < 0, lastError());
 
-        //send a few bytes
+        // send a few bytes
         sendStatus = ::send(_socket, a_buff, messageLength, 0);
 
-        //An error occurred when sending data
+        // An error occurred when sending data
         xCHECK_RET(sendStatus < 0, lastError());
 
-        //update the buffer and the counter
+        // update the buffer and the counter
         messageLength -= sendStatus;
         a_buff        += sendStatus;
     }
@@ -358,7 +349,7 @@ CxSocket::sendBytes(
     return 0;
 }
 //-------------------------------------------------------------------------------------------------
-//TODO: ReceiveNBytes
+// TODO: CxSocket::receiveBytes()
 inline int_t
 CxSocket::receiveBytes(
     char    *a_buff,
@@ -370,30 +361,30 @@ CxSocket::receiveBytes(
     timeval receiveTimeout = {0, 0};
     ssize_t stillToReceive = a_stillToReceive;
 
-    //Setting the timeout
+    // Setting the timeout
     receiveTimeout.tv_sec  = 0;
-    receiveTimeout.tv_usec = SOCKET_TIMEOUT;             //500 ms
+    receiveTimeout.tv_usec = SOCKET_TIMEOUT;
 
     fd_set fds;    FD_ZERO(&fds);
     FD_SET(_socket, &fds);
 
-    //.. Until the data is sent ..
+    // Until the data is sent
     while (stillToReceive > 0) {
         iRv = ::select(0, &fds, xPTR_NULL, xPTR_NULL, &receiveTimeout);
 
-        //return by timeout
+        // return by timeout
         xCHECK_RET(!iRv, xSOCKET_ERROR);
 
-        //An error occurred
+        // An error occurred
         xCHECK_RET(iRv < 0, lastError());
 
-        //receive a few bytes
+        // receive a few bytes
         receiveStatus = ::recv(_socket, a_buff, stillToReceive, 0);
 
-        //An error occurred when the function recv ()
+        // An error occurred when the function recv ()
         xCHECK_RET(receiveStatus < 0, lastError());
 
-        //changed the value of the counter and the buffer
+        // changed the value of the counter and the buffer
         stillToReceive -= receiveStatus;
         a_buff         += receiveStatus;
     }
@@ -415,11 +406,11 @@ CxSocket::peerName(
     ushort_t       *a_peerPort
 )
 {
-    //peerAddr  - n/a
-    //peerPort - n/a
+    xTEST_NA(a_peerAddr);
+    xTEST_NA(a_peerPort);
 
 #if   xOS_ENV_WIN
-    SOCKADDR_IN sockAddr     = {0};
+    SOCKADDR_IN sockAddr    = {0};
     int_t       sockAddrLen = sizeof(sockAddr);
 
     int_t iRv = ::getpeername(_socket, CxUtils::reinterpretCastT<SOCKADDR *>( &sockAddr ),
@@ -435,10 +426,10 @@ CxSocket::peerName(
 #endif
 
     if (a_peerAddr != xPTR_NULL) {
-        //convert to UNICODE
+        // convert to UNICODE
         std::string peerAddr = ::inet_ntoa(sockAddr.sin_addr);
 
-        (*a_peerAddr).assign(peerAddr.begin(), peerAddr.end());
+        a_peerAddr->assign(peerAddr.begin(), peerAddr.end());
     }
 
     if (a_peerPort != xPTR_NULL) {
@@ -452,8 +443,8 @@ CxSocket::socketName(
     ushort_t       *a_socketPort
 )
 {
-    //peerAddr  - n/a
-    //peerPort - n/a
+    xTEST_NA(a_socketAddr);
+    xTEST_NA(a_socketPort);
 
 #if   xOS_ENV_WIN
     SOCKADDR_IN sockAddr     = {0};
@@ -472,10 +463,10 @@ CxSocket::socketName(
 #endif
 
     if (a_socketAddr != xPTR_NULL) {
-        //convert to UNICODE
+        // convert to UNICODE
         std::string socketAddr = ::inet_ntoa(sockAddr.sin_addr);
 
-        (*a_socketAddr).assign(socketAddr.begin(), socketAddr.end());
+        a_socketAddr->assign(socketAddr.begin(), socketAddr.end());
     }
 
     if (a_socketPort != xPTR_NULL) {
@@ -508,7 +499,7 @@ CxSocket::select(
 
      int_t iRv = ::select(a_nfds, a_readfds, a_writefds, a_exceptfds, a_timeout);
      xTEST_DIFF(iRv, xSOCKET_ERROR);
-     xTEST_DIFF(iRv, 0);  //zero if the time limit expired
+     xTEST_DIFF(iRv, 0);  // zero if the time limit expired
 
      return iRv;
 }
@@ -520,7 +511,7 @@ CxSocket::lastError()
 
 #if   xOS_ENV_WIN
     return ::WSAGetLastError();
-#else
+#elif xOS_ENV_UNIX
     return errno;
 #endif
 }

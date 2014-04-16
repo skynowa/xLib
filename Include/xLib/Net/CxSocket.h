@@ -213,8 +213,6 @@ public:
 
     CxSocket &     operator = (csocket_t &socket);
         ///< operator =
-                   operator socket_t();
-        ///< operator socket_t
 
 
     /*******************************************************************************
@@ -223,7 +221,7 @@ public:
     *******************************************************************************/
 
     void_t         create(const ExAddressFamily &family, const ExType &type,
-                        const ExProtocol &protocol);
+                       const ExProtocol &protocol);
         ///< creates a socket that is bound to a specific transport service provider
     socket_t       handle() const xWARN_UNUSED_RV;
         ///< get socket
