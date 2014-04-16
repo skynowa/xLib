@@ -158,5 +158,14 @@
     #error xLib: xSOCKET_CONNECTIONS_MAX not defined
 #endif
     ///< Maximum queue length specifiable by listen
+
+//-------------------------------------------------------------------------------------------------
+// xSOCKET_PORT_MIN, xSOCKET_PORT_MAX
+#define xSOCKET_PORT_MIN \
+        ( 1 )
+    ///< socket minimum port number
+#define xSOCKET_PORT_MAX \
+        ( 65535 )
+    ///< socket maximum port number
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_xLimitsH
