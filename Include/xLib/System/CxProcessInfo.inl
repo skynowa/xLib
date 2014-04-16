@@ -134,7 +134,7 @@ CxProcessInfo::exeName() const
         ssize_t readed = - 1;
         sRv.resize(xPATH_MAX);
 
-        xFOREVER {
+        for ( ; ; ) {
             readed = ::readlink(procFile.c_str(), &sRv.at(0), sRv.size() *
                 sizeof(std::tstring_t::value_type));
             xTEST_DIFF(readed, ssize_t(- 1));

@@ -96,7 +96,7 @@ CxMsgBox::_show_impl(
     xTEST_GR(iRv, 0);
 
     // while ( (event = ::xcb_wait_for_event(connection)) ) {
-    xFOREVER {
+    for ( ; ; ) {
         xcb_generic_event_t *event = ::xcb_wait_for_event(connection);
         xTEST_PTR(event);
 

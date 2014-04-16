@@ -173,7 +173,7 @@ CxFinder::moveNext()
     #elif xOS_ENV_UNIX
         int_t iRv = 0;
 
-        xFOREVER {
+        for ( ; ; ) {
             dirent *entryRv = xPTR_NULL;
 
             iRv = ::readdir_r(_entry.handle, &_entry.data, &entryRv);
@@ -246,7 +246,7 @@ CxFinder::dirs(
 
     CxFinder finder(a_rootDirPath, a_shellFilter);
 
-    xFOREVER {
+    for ( ; ; ) {
         bool_t bRv = finder.moveNext();
         xCHECK_DO(!bRv, break);
 
@@ -282,7 +282,7 @@ CxFinder::files(
     if (!a_isRecursively) {
         CxFinder finder(a_rootDirPath, a_shellFilter);
 
-        xFOREVER {
+        for ( ; ; ) {
             bool_t bRv = finder.moveNext();
             xCHECK_DO(!bRv, break);
 

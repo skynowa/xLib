@@ -147,7 +147,7 @@ CxProcess::kill(
     BOOL blRv = ::TerminateProcess(_handle, _exitStatus);
     xTEST_DIFF(blRv, FALSE);
 
-    xFOREVER {
+    for ( ; ; ) {
         xCHECK_DO(exitStatus() != STILL_ACTIVE, break);
 
         CxThread::currentSleep(a_timeoutMsec);
@@ -257,7 +257,7 @@ CxProcess::idByName(
     BOOL blRv = ::Process32First(snapshot.get(), &processEntry);
     xTEST_DIFF(blRv, FALSE);
 
-    xFOREVER {
+    for ( ; ; ) {
         bool_t bRv = CxStringCI::compare(a_processName, processEntry.szExeFile);
         xCHECK_DO(bRv, break);   // OK
 
@@ -276,7 +276,7 @@ CxProcess::idByName(
         xTEST_PTR(dir);
 
         // enumerate all entries in directory until process found
-        xFOREVER {
+        for ( ; ; ) {
             dirent *dirEntry = ::readdir(dir);
             xCHECK_DO(dirEntry == xPTR_NULL, break);
 
@@ -319,7 +319,7 @@ CxProcess::idByName(
         // allocate memory and populate info in the  processes structure
         kinfo_proc *infoProc = xPTR_NULL;
 
-        xFOREVER {
+        for ( ; ; ) {
             buffSize += buffSize / 10;
 
             kinfo_proc *infoProcNew = static_cast<kinfo_proc *>( realloc(infoProc, buffSize) );
@@ -389,7 +389,7 @@ CxProcess::ids(
     BOOL blRv = ::Process32First(snapshot.get(), &processEntry);
     xTEST_DIFF(blRv, FALSE);
 
-    xFOREVER {
+    for ( ; ; ) {
         DWORD pid = processEntry.th32ProcessID;
 
         vidRv.push_back(pid);
@@ -425,7 +425,7 @@ CxProcess::ids(
         // allocate memory and populate info in the  processes structure
         kinfo_proc *infoProc = xPTR_NULL;
 
-        xFOREVER {
+        for ( ; ; ) {
             buffSize += buffSize / 10;
 
             kinfo_proc *infoProcNew = static_cast<kinfo_proc *>( realloc(infoProc, buffSize) );

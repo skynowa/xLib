@@ -198,7 +198,7 @@ CxSocket::sendAll(
         buffOutSize = leftSize;
     }
 
-    xFOREVER {        /* uiLeftSize > 0 */
+    for ( ; ; ) {        /* uiLeftSize > 0 */
         ssize_t iRv = send(&a_buff.at(0) + currPos, buffOutSize, a_flags);
         xCHECK_DO(iRv == xSOCKET_ERROR, break);
         xCHECK_DO(iRv == 0,             break);
@@ -256,7 +256,7 @@ CxSocket::recvAll(
     std::csize_t   buffSize           = 1024 * sizeof(tchar_t);
     tchar_t        buff[buffSize + 1] = {0};
 
-    xFOREVER {
+    for ( ; ; ) {
         int_t   iRv = - 1;
         ulong_t arg = (ulong_t)a_flags;
 
@@ -290,7 +290,7 @@ CxSocket::recvAll(
     std::tstring_t in(inSize, xT('\0'));
 
     // read from socket by blocks, write to string
-    xFOREVER {
+    for ( ; ; ) {
         ssize_t iRv = receive(&in.at(0), inSize, a_flags);
         xCHECK_DO(iRv == xSOCKET_ERROR, break);
         xCHECK_DO(iRv == 0,             break);

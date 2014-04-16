@@ -240,7 +240,7 @@ CxThread::kill(
     BOOL blRv = ::TerminateThread(_thread.get(), _exitStatus);
     xTEST_DIFF(blRv, FALSE);
 
-    xFOREVER {
+    for ( ; ; ) {
         ulRv = exitStatus();
         xCHECK_DO(STILL_ACTIVE != ulRv, break);
 
@@ -1119,7 +1119,7 @@ CxThread::currentSleep(
     timeSleep.tv_sec  = a_timeoutMsec / 1000;
     timeSleep.tv_nsec = (a_timeoutMsec % 1000) * (1000 * 1000);
 
-    xFOREVER {
+    for ( ; ; ) {
         int_t iRv = ::nanosleep(&timeSleep, &timeRemain);
         // n/a
         xCHECK_DO(!(- 1 == iRv && EINTR == CxLastError::get()), break);
@@ -1150,7 +1150,7 @@ CxThread::onRun(
     uint_t uiRv = 0U;
 
     #if xTEMP_DISABLED
-        xFOREVER {
+        for ( ; ; ) {
             bool_t bRv = isTimeToExit();
             xCHECK_DO(bRv, break);
 

@@ -226,7 +226,7 @@ CxEnvironment::expandStrings(
 
     sRv = a_var;
 
-    xFOREVER {
+    for ( ; ; ) {
         // find from left two first chars '%'
         std::csize_t startSepPos = sRv.find(sep);
         xCHECK_DO(startSepPos == std::tstring_t::npos, break);

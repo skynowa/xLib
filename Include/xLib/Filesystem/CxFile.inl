@@ -890,7 +890,7 @@ CxFile::copy(
             std::csize_t buffSize       = 1024;
             uchar_t      buff[buffSize] = {0};
 
-            xFOREVER {
+            for ( ; ; ) {
                 std::csize_t readed  = fileFrom.read(buff, buffSize);
                 xCHECK_DO(0 >= readed, break);
 

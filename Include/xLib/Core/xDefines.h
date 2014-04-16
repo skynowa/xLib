@@ -624,7 +624,7 @@
 #endif
 
 //-------------------------------------------------------------------------------------------------
-// xFOREACH, xFOREVER
+// xFOREACH
 #define xFOREACH(it_t, it, cont) \
     for (it_t::iterator               it((cont).begin());  it != (cont).end();  ++ it)
     ///< iterate STL container (using it_t::iterator)
@@ -640,10 +640,6 @@
 #define xFOREACH_R_CONST(it_t, it, cont) \
     for (it_t::const_reverse_iterator it((cont).rbegin()); it != (cont).rend(); ++ it)
     ///< iterate STL container (using it_t::const_reverse_iterator)
-
-#define xFOREVER \
-    for ( ; ; )
-    ///< infinite loop
 
 //-------------------------------------------------------------------------------------------------
 // xTHROW_REPORT, xTRY, xCATCH_ALL

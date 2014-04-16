@@ -566,7 +566,7 @@ CxString::replaceAll(
 
     size_t pos = 0U;
 
-    xFOREVER {
+    for ( ; ; ) {
         pos = sRv.find(a_strOld, pos);
         xCHECK_DO(pos == std::tstring_t::npos, break);
 
@@ -628,7 +628,7 @@ CxString::split(
     size_t             posPrev = 0U;    // start of string
     size_t             pos     = 0U;
 
-    xFOREVER {
+    for ( ; ; ) {
         pos = a_str.find(a_sep, posPrev);
         xCHECK_DO(pos == std::tstring_t::npos, break);
 
@@ -767,7 +767,7 @@ CxString::formatV(
     std::tstring_t buff(64, 0);
     int_t          writtenSize = - 1;
 
-    xFOREVER {
+    for ( ; ; ) {
         va_list _args;
         xVA_COPY(_args, a_args);
 

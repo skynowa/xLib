@@ -87,7 +87,7 @@ CxVolume::fileSystem() const
         FILE *file = ::setmntent("/etc/mtab", "r");
         xTEST_PTR(file);
 
-        xFOREVER {
+        for ( ; ; ) {
             mntent mnt;  xSTRUCT_ZERO(mnt);
             cint_t buffLen       = 4096 + 1;
             char   buff[buffLen] = {0};
