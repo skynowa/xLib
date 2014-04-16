@@ -202,10 +202,10 @@ CxMimeHeader::loadFromFile(
     //-------------------------------------
     // (\r\n\r\n)
     std::tifstream_t ifsStream(a_rawMessageFilePath.c_str());
-    xTEST_EQ(true, !! ifsStream);
+    xTEST_EQ(!!ifsStream, true);
     xTEST_EQ(ifsStream.fail(), false);
-    xTEST_EQ(true,  ifsStream.good());
-    xTEST_EQ(true,  ifsStream.is_open());
+    xTEST_EQ(ifsStream.good(), true);
+    xTEST_EQ(ifsStream.is_open(), true);
     xTEST_EQ(ifsStream.eof(), false);
 
     ////ulong_t ulCountBreaks = 0;

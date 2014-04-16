@@ -134,8 +134,8 @@ CxDateTime::CxDateTime(
     _msec    (0),
     _thisMSec(0ULL)
 {
-    xTEST_EQ(true, CxValidator::date(a_year, a_month, a_day) &&
-                   CxValidator::time(a_hour, a_minute, a_second, a_msec));
+    xTEST_EQ(CxValidator::date(a_year, a_month, a_day) &&
+        CxValidator::time(a_hour, a_minute, a_second, a_msec), true);
 
     set(a_year, a_month, a_day, a_hour, a_minute, a_second, a_msec);
 }
