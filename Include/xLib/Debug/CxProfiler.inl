@@ -42,7 +42,7 @@ CxProfiler::setLogPath(
     std::ctstring_t &a_logPath
 )
 {
-    xTEST_EQ(true, CxPath::isValid(a_logPath));
+    xTEST_EQ(CxPath::isValid(a_logPath), true);
 
     _log.setFilePath(a_logPath);
 }
@@ -76,7 +76,7 @@ CxProfiler::stop(
     ctchar_t *a_comment, ...
 )
 {
-    xTEST_EQ(true, _isStarted);
+    xTEST_EQ(_isStarted, true);
 
     //-------------------------------------
     // stop, get duration

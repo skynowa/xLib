@@ -79,6 +79,6 @@ CxTest_CxTcpServer::unit(
     //-------------------------------------
     //iGetLastError
     m_iRv = CxTcpServer::lastError();
-    //xTEST_EQ(true, m_bRv);
+    //xTEST_EQ(m_bRv, true);
 }
 //-------------------------------------------------------------------------------------------------

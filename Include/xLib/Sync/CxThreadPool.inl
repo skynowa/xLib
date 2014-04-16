@@ -423,7 +423,7 @@ CxThreadPool<T>::onRun(
     //-------------------------------------
     //���� ���� ����������� �������� ������ (���� �� ������)
     ////bRv = bWaitGroup(INFINITE/*5000*/);
-    ////xTEST_EQ(true, bRv, 0);
+    ////xTEST_EQ(bRv, true, 0);
 
     xFOREVER {
         xCHECK_DO(isEmpty(), break);

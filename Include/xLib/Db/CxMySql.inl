@@ -47,7 +47,7 @@ CxMySQLConnection::~CxMySQLConnection()
 MYSQL *
 CxMySQLConnection::get() const
 {
-    xTEST_EQ(true, isValid());
+    xTEST_EQ(isValid(), true);
 
     return _connection;
 }
@@ -66,7 +66,7 @@ CxMySQLConnection::options(
     cvoid_t            *a_arg
 ) const
 {
-    xTEST_EQ(true, isValid());
+    xTEST_EQ(isValid(), true);
     // moOption - n/a
     // arg   - n/a
 
@@ -107,7 +107,7 @@ CxMySQLConnection::isExists(
 
     {
         bRv = rec.isValid();
-        xTEST_EQ(true, bRv);
+        xTEST_EQ(bRv, true);
         xTEST_EQ(1ULL, rec.rowsNum());
 
         std::vec_tstring_t vsRow;
@@ -117,7 +117,7 @@ CxMySQLConnection::isExists(
 
         xCHECK_RET(CxStringCI::compare(xT("false"), vsRow.at(0)), false);
 
-        xTEST_EQ(true, CxStringCI::compare(xT("true"), vsRow.at(0)));
+        xTEST_EQ(CxStringCI::compare(xT("true"), vsRow.at(0)), true);
     }
 
     return true;
@@ -134,7 +134,7 @@ CxMySQLConnection::connect(
     culong_t        &a_clientFlag
 )
 {
-    xTEST_EQ(true, isValid());
+    xTEST_EQ(isValid(), true);
     // host       - n/a
     // user       - n/a
     // password   - n/a
@@ -158,7 +158,7 @@ CxMySQLConnection::query(
     ctchar_t *a_sqlFormat, ...
 ) const
 {
-    xTEST_EQ(true, isValid());
+    xTEST_EQ(isValid(), true);
     xTEST_PTR(a_sqlFormat);
 
     std::tstring_t sqlQuery;
@@ -178,7 +178,7 @@ CxMySQLConnection::query(
 inline uint_t
 CxMySQLConnection::fieldCount() const
 {
-    xTEST_EQ(true, isValid());
+    xTEST_EQ(isValid(), true);
 
     uint_t uiRv = ::mysql_field_count(_connection);
     // n/a
@@ -209,7 +209,7 @@ CxMySQLConnection::close()
 inline uint_t
 CxMySQLConnection::lastError() const
 {
-    xTEST_EQ(true, isValid());
+    xTEST_EQ(isValid(), true);
 
     uint_t uiRv = ::mysql_errno(_connection);
     // n/a
@@ -220,7 +220,7 @@ CxMySQLConnection::lastError() const
 inline std::tstring_t
 CxMySQLConnection::lastErrorStr() const
 {
-    xTEST_EQ(true, isValid());
+    xTEST_EQ(isValid(), true);
 
     std::tstring_t sRv;
 
@@ -285,7 +285,7 @@ CxMySQLRecordset::~CxMySQLRecordset()
 //-------------------------------------------------------------------------------------------------
 inline MYSQL_RES *
 CxMySQLRecordset::get() const {
-    xTEST_EQ(true, isValid());
+    xTEST_EQ(isValid(), true);
 
     return _result;
 }
@@ -301,7 +301,7 @@ CxMySQLRecordset::isValid() const
 uint_t
 CxMySQLRecordset::fieldsNum() const
 {
-    xTEST_EQ(true, isValid());
+    xTEST_EQ(isValid(), true);
 
     uint_t uiRv = ::mysql_num_fields(_result);
     // n/a
@@ -312,7 +312,7 @@ CxMySQLRecordset::fieldsNum() const
 inline my_ulonglong
 CxMySQLRecordset::rowsNum() const
 {
-    xTEST_EQ(true, isValid());
+    xTEST_EQ(isValid(), true);
 
     my_ulonglong ullRv = ::mysql_num_rows(_result);
     // n/a
@@ -325,7 +325,7 @@ CxMySQLRecordset::fetchField(
     MYSQL_FIELD *a_field
 ) const
 {
-    xTEST_EQ(true, isValid());
+    xTEST_EQ(isValid(), true);
     xTEST_PTR(a_field);
 
     a_field = ::mysql_fetch_field(_result);
@@ -338,7 +338,7 @@ CxMySQLRecordset::fetchFieldDirect(
     MYSQL_FIELD *a_field
 ) const
 {
-    xTEST_EQ(true, isValid());
+    xTEST_EQ(isValid(), true);
     // uiFieldNumber - n/a
     xTEST_PTR(a_field);
 
@@ -351,7 +351,7 @@ CxMySQLRecordset::fetchFields(
     MYSQL_FIELD *a_field
 ) const
 {
-    xTEST_EQ(true, isValid());
+    xTEST_EQ(isValid(), true);
     xTEST_PTR(a_field);
 
     a_field = ::mysql_fetch_fields(_result);
@@ -363,7 +363,7 @@ CxMySQLRecordset::fetchRow(
     std::vec_tstring_t *a_row
 ) const
 {
-    xTEST_EQ(true, isValid());
+    xTEST_EQ(isValid(), true);
     xTEST_PTR(a_row);
 
     uint_t     fieldsNum    = 0;
@@ -419,7 +419,7 @@ CxMySQLRecordset::_fetchRow(
     MYSQL_ROW *a_row
 ) const
 {
-    xTEST_EQ(true, isValid());
+    xTEST_EQ(isValid(), true);
     xTEST_PTR(a_row);
 
     *a_row = ::mysql_fetch_row(_result);
@@ -432,7 +432,7 @@ CxMySQLRecordset::_fetchLengths(
     ulong_t **a_fieldLengths
 ) const
 {
-    xTEST_EQ(true, isValid());
+    xTEST_EQ(isValid(), true);
     xTEST_PTR(*a_fieldLengths);
 
     *a_fieldLengths = ::mysql_fetch_lengths(_result);

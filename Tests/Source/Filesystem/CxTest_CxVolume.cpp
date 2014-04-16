@@ -67,7 +67,7 @@ CxTest_CxVolume::unit(
 
             xFOREACH(std::vec_tstring_t, it, volumePaths) {
                 m_bRv = CxVolume(*it).isValid();
-                xTEST_EQ(true, m_bRv);
+                xTEST_EQ(m_bRv, true);
             }
         }
 
@@ -91,7 +91,7 @@ CxTest_CxVolume::unit(
 
             for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
                 m_bRv = CxVolume(data[i]).isValid();
-                xTEST_EQ(false, m_bRv);
+                xTEST_EQ(m_bRv, false);
             }
         }
     }
@@ -109,10 +109,10 @@ CxTest_CxVolume::unit(
             #endif
 
             m_bRv = CxVolume(volumePathWithSlash).isReady();
-            xTEST_EQ(true, m_bRv);
+            xTEST_EQ(m_bRv, true);
 
             m_bRv = CxVolume(volumePathWithoutSlash).isReady();
-            xTEST_EQ(true, m_bRv);
+            xTEST_EQ(m_bRv, true);
         }
 
         // false
@@ -126,10 +126,10 @@ CxTest_CxVolume::unit(
             #endif
 
             m_bRv = CxVolume(volumePathWithSlash).isReady();
-            xTEST_EQ(false, m_bRv);
+            xTEST_EQ(m_bRv, false);
 
             m_bRv = CxVolume(volumePathWithoutSlash).isReady();
-            xTEST_EQ(false, m_bRv);
+            xTEST_EQ(m_bRv, false);
         }
     }
 
@@ -147,10 +147,10 @@ CxTest_CxVolume::unit(
             #endif
 
             m_bRv = CxVolume(volumePathWithSlash).isEmpty();
-            xTEST_EQ(true, m_bRv);
+            xTEST_EQ(m_bRv, true);
 
             m_bRv = CxVolume(volumePathWithoutSlash).isEmpty();
-            xTEST_EQ(true, m_bRv);
+            xTEST_EQ(m_bRv, true);
         }
 
         // false
@@ -165,10 +165,10 @@ CxTest_CxVolume::unit(
 
             #if xTEMP_DISABLED
                 m_bRv = CxVolume(volumePathWithSlash).isEmpty();
-                xTEST_EQ(false, m_bRv);
+                xTEST_EQ(m_bRv, false);
 
                 m_bRv = CxVolume(volumePathWithoutSlash).isEmpty();
-                xTEST_EQ(false, m_bRv);
+                xTEST_EQ(m_bRv, false);
             #endif
         }
     }

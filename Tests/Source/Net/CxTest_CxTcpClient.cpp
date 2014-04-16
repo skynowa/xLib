@@ -41,7 +41,7 @@ CxTest_CxTcpClient::unit(
     //-------------------------------------
     //bIsServerAlive
     ////m_bRv = objSocket.bIsServerAlive(sIp, usPort);
-    ////xTEST_EQ(true, m_bRv);
+    ////xTEST_EQ(m_bRv, true);
 
     //-------------------------------------
     //bDnsParse
@@ -54,12 +54,12 @@ CxTest_CxTcpClient::unit(
     //-------------------------------------
     //bIsReadable
     m_bRv = objSocket.isReadable();
-    xTEST_EQ(false, m_bRv);
+    xTEST_EQ(m_bRv, false);
 
     //-------------------------------------
     //bIsWritable
     m_bRv = objSocket.isWritable();
-    xTEST_EQ(true, m_bRv);
+    xTEST_EQ(m_bRv, true);
 
     //-------------------------------------
     //bGetPeerName
@@ -82,7 +82,7 @@ CxTest_CxTcpClient::unit(
     //-------------------------------------
     //bIsReadible
     ////m_bRv = objSocket.bIsReadable();
-    ////xTEST_EQ(true, m_bRv);
+    ////xTEST_EQ(m_bRv, true);
 
     for (; ;) {
         std::tstring_t sText;
@@ -110,6 +110,6 @@ CxTest_CxTcpClient::unit(
     //-------------------------------------
     //iGetLastError
     m_iRv = CxTcpClient::lastError();
-    //xTEST_EQ(true, m_bRv);
+    //xTEST_EQ(m_bRv, true);
 }
 //-------------------------------------------------------------------------------------------------

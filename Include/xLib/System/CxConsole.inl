@@ -655,7 +655,7 @@ CxConsole::setFullScreen() const
     xTEST_EQ(_stdOut.isValid(), true);
 
     COORD coord = ::GetLargestConsoleWindowSize(_stdOut.get());
-    xTEST_EQ(true, 0 != coord.X && 0 != coord.Y);
+    xTEST_EQ(coord.X != 0 && coord.Y != 0, true);
 
     coord.X -= 2;
     coord.Y -= 2;

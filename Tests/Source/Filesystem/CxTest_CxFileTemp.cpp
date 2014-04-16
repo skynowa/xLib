@@ -34,7 +34,7 @@ CxTest_CxFileTemp::unit(
         fJobber.writeLine(xT("qwertyuiop"));
 
         m_bRv = fJobber.isEmpty();
-        xTEST_EQ(false, m_bRv);
+        xTEST_EQ(m_bRv, false);
 
         fJobber.clear();
         fJobber.close();

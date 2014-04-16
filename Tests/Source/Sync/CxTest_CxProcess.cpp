@@ -113,7 +113,7 @@ CxTest_CxProcess::unit(
     xTEST_CASE("CxProcess::isRunning", a_caseLoops)
     {
         m_bRv = CxProcess::isRunning( CxProcess::currentId() );
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
     }
 
     xTEST_CASE("CxProcess::currentId", a_caseLoops)

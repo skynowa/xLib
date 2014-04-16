@@ -19,7 +19,7 @@ CxTest_CxSleeper::unit(
         CxSleeper objSleeper;
 
         m_bRv = objSleeper.isSleeping();
-        xTEST_EQ(false, m_bRv);
+        xTEST_EQ(m_bRv, false);
     }
 
     xTEST_CASE("CxSleeper::sleep", a_caseLoops)
@@ -28,15 +28,15 @@ CxTest_CxSleeper::unit(
 
         for (size_t i = 0; i < 3; ++ i) {
             m_bRv = objSleeper.isSleeping();
-            xTEST_EQ(false, m_bRv);
+            xTEST_EQ(m_bRv, false);
 
             objSleeper.sleep(5);
 
             m_bRv = objSleeper.isSleeping();
-            xTEST_EQ(false, m_bRv);
+            xTEST_EQ(m_bRv, false);
 
             m_bRv = objSleeper.isSleeping();
-            xTEST_EQ(false, m_bRv);
+            xTEST_EQ(m_bRv, false);
         }
     }
 

@@ -221,7 +221,7 @@ template<ExHandleValue tagT>
 ulong_t
 CxHandleT<tagT>::info() const
 {
-    xTEST_EQ(true, isValid());
+    xTEST_EQ(isValid(), true);
 
     DWORD flags = 0UL;
 
@@ -243,7 +243,7 @@ CxHandleT<tagT>::setInfo(
     culong_t &a_flags
 )
 {
-    xTEST_EQ(true, isValid());
+    xTEST_EQ(isValid(), true);
     xTEST_NA(a_mask);
     xTEST_NA(a_flags);
 

@@ -27,19 +27,19 @@ CxTest_CxThreadStorage::unit(
             ulong_t *pulValue = new ulong_t(culData);
 
             m_bRv = tlsTls.isSet();
-            xTEST_EQ(false, m_bRv);
+            xTEST_EQ(m_bRv, false);
 
             tlsTls.setValue(static_cast<void_t *>( pulValue ));
 
             m_bRv = tlsTls.isSet();
-            xTEST_EQ(true, m_bRv);
+            xTEST_EQ(m_bRv, true);
 
             ulong_t *pulRes = static_cast<ulong_t *>( tlsTls.value() );
             xTEST_PTR(pulRes);
             xTEST_EQ(culData, ulong_t(*pulRes));
 
             m_bRv = tlsTls.isSet();
-            xTEST_EQ(true, m_bRv);
+            xTEST_EQ(m_bRv, true);
 
             delete pulRes;
         }

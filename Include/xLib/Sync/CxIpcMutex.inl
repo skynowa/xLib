@@ -101,7 +101,7 @@ CxIpcMutex::lock(
     culong_t &a_timeoutMsec
 ) const
 {
-    ////xTEST_EQ(true, _handle.isValid(), false);
+    ////xTEST_EQ(_handle.isValid(), true);
     xTEST_NA(a_timeoutMsec);
 
 #if   xOS_ENV_WIN
@@ -164,7 +164,7 @@ CxIpcMutex::lock(
 inline void_t
 CxIpcMutex::unlock() const
 {
-    ////xTEST_EQ(true, _handle.isValid(), false);
+    ////xTEST_EQ(_handle.isValid(), true);
 
 #if   xOS_ENV_WIN
     BOOL blRv = ::ReleaseMutex(_handle.get());

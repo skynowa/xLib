@@ -47,7 +47,7 @@ CxTest_CxMySql::unit(
     //bIsValid
     {
         m_bRv = conConn.isValid();
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
     }
 
     //--------------------------------------------------
@@ -93,7 +93,7 @@ CxTest_CxMySql::unit(
         }
 
         m_bRv = CxMySQLConnection::isExists(csHost, csUser, csPassword, csDbName, cuiPort, csUnixSocket, culClientFlag);
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
     }
 
     //--------------------------------------------------
@@ -110,7 +110,7 @@ CxTest_CxMySql::unit(
                         xT("       `f_age`   SMALLINT(6) NOT NULL")
                         xT("   )"),
                         sTableName.c_str());
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
 
         //insert records
         conConn.query(
@@ -173,7 +173,7 @@ CxTest_CxMySql::unit(
     //bIsValid
     {
         m_bRv = recRec.isValid();
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
     }
 
     //--------------------------------------------------
@@ -258,7 +258,7 @@ CxTest_CxMySql::unit(
         conConn.query(xT("DROP DATABASE IF EXISTS `%s`"), csDbName.c_str());
 
         m_bRv = CxMySQLConnection::isExists(csHost, csUser, csPassword, csDbName, cuiPort, csUnixSocket, culClientFlag);
-        xTEST_EQ(false, m_bRv);
+        xTEST_EQ(m_bRv, false);
     }
 
     //--------------------------------------------------

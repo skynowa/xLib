@@ -560,7 +560,7 @@ CxTest_CxPath::unit(
                 data.push_back('y');
 
                 m_bRv = CxPath::isNameValid(data);
-                xTEST_EQ(false, m_bRv);
+                xTEST_EQ(m_bRv, false);
             }
         #endif
         }
@@ -705,7 +705,7 @@ CxTest_CxPath::unit(
 
             for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
                 m_bRv = CxPath(data[i]).isAbsolute();
-                xTEST_EQ(true, m_bRv);
+                xTEST_EQ(m_bRv, true);
             }
         }
 
@@ -731,7 +731,7 @@ CxTest_CxPath::unit(
 
             for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
                 m_bRv = CxPath(data[i]).isAbsolute();
-                xTEST_EQ(false, m_bRv);
+                xTEST_EQ(m_bRv, false);
             }
         }
     }

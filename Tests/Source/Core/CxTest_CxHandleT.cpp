@@ -30,7 +30,7 @@ CxTest_CxHandleT::unit(
         CxHandle handle( CxProcess::currentHandle() );
 
         m_bRv = handle.isValid();
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
 
         m_hRv = handle.detach();
         xTEST_EQ(false, handle.isValid());
@@ -108,7 +108,7 @@ CxTest_CxHandleT::unit(
         CxHandle handle;
 
         m_bRv = handle.isValid();
-        xTEST_EQ(false, m_bRv);
+        xTEST_EQ(m_bRv, false);
 
         handle.set(CxProcess::currentHandle());
 
@@ -138,7 +138,7 @@ CxTest_CxHandleT::unit(
         handle.close();
 
         m_bRv = handle.isValid();
-        xTEST_EQ(false, m_bRv);
+        xTEST_EQ(m_bRv, false);
     }
 
     xTEST_CASE("CxHandleT::setInfo", a_caseLoops)

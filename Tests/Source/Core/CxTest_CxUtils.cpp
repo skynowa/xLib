@@ -197,7 +197,7 @@ CxTest_CxUtils::unit(
             cint_t iVal = 0;
 
             m_bRv = CxUtils::intToBoolT(iVal);
-            xTEST_EQ(false, m_bRv);
+            xTEST_EQ(m_bRv, false);
         }
 
         // true
@@ -208,7 +208,7 @@ CxTest_CxUtils::unit(
                 cint_t iVal = caiData[i];
 
                 m_bRv = CxUtils::intToBoolT(iVal);
-                xTEST_EQ(true, m_bRv);
+                xTEST_EQ(m_bRv, true);
             }
         }
     }

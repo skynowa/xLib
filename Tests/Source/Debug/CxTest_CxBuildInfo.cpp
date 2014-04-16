@@ -20,9 +20,9 @@ CxTest_CxBuildInfo::unit(
 
         m_bRv = info.isRelease();
         #if defined(NDEBUG)
-            xTEST_EQ(true, m_bRv);
+            xTEST_EQ(m_bRv, true);
         #else
-            xTEST_EQ(false, m_bRv);
+            xTEST_EQ(m_bRv, false);
         #endif
 
         #if xBUILD_DEBUG

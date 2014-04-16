@@ -17,7 +17,7 @@ CxTest_CxShell::unit(
     xTEST_CASE("CxShell::isAvailable", a_caseLoops)
     {
         m_bRv = CxShell().isAvailable();
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
     }
 
     xTEST_CASE("CxShell::execute", a_caseLoops)

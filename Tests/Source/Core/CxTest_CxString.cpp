@@ -279,28 +279,28 @@ CxTest_CxString::unit(
     xTEST_CASE("CxString::castBool", a_caseLoops)
     {
         m_bRv = CxString::castBool( std::tstring_t(xT("true")) );
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
 
         m_bRv = CxString::castBool( std::tstring_t(xT("trUe")) );
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
 
         m_bRv = CxString::castBool( std::tstring_t(xT("true")) );
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
 
         m_bRv = CxString::castBool( std::tstring_t(xT("false")) );
-        xTEST_EQ(false, m_bRv);
+        xTEST_EQ(m_bRv, false);
 
         m_bRv = CxString::castBool( std::tstring_t(xT("FAlse")) );
-        xTEST_EQ(false, m_bRv);
+        xTEST_EQ(m_bRv, false);
 
         m_bRv = CxString::castBool( std::tstring_t(xT("false")) );
-        xTEST_EQ(false, m_bRv);
+        xTEST_EQ(m_bRv, false);
 
         m_bRv = CxString::castBool( std::tstring_t(xT(" true ")) );
-        xTEST_EQ(false, m_bRv);
+        xTEST_EQ(m_bRv, false);
 
         m_bRv = CxString::castBool( std::tstring_t(xT("qwertyuiop[]")) );
-        xTEST_EQ(false, m_bRv);
+        xTEST_EQ(m_bRv, false);
     }
 
     xTEST_CASE("CxString::toLowerCase", a_caseLoops)
@@ -919,16 +919,16 @@ CxTest_CxString::unit(
     xTEST_CASE("CxString::isRepeated", a_caseLoops)
     {
         m_bRv = CxString::isRepeated(xT("yyyyyyyyyyyy"));
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
 
         m_bRv = CxString::isRepeated(xT("111111111111"));
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
 
         m_bRv = CxString::isRepeated(xT("uuuuuiuuuuuuuuuuuu"));
-        xTEST_EQ(false, m_bRv);
+        xTEST_EQ(m_bRv, false);
 
         m_bRv = CxString::isRepeated(xT("000000000111111111"));
-        xTEST_EQ(false, m_bRv);
+        xTEST_EQ(m_bRv, false);
     }
 
 

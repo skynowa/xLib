@@ -85,7 +85,7 @@ inline void_t
 CxEvent::set()
 {
 #if   xOS_ENV_WIN
-    xTEST_EQ(true, _event.isValid());
+    xTEST_EQ(_event.isValid(), true);
 
     BOOL blRv = ::SetEvent(handle().get());
     xTEST_DIFF(blRv, FALSE);
@@ -116,7 +116,7 @@ inline void_t
 CxEvent::reset()
 {
 #if   xOS_ENV_WIN
-    xTEST_EQ(true, _event.isValid());
+    xTEST_EQ(_event.isValid(), true);
 
     BOOL blRv = ::ResetEvent(handle().get());
     xTEST_DIFF(blRv, FALSE);
@@ -145,7 +145,7 @@ CxEvent::wait(
     ExObjectState osRv = osFailed;
 
 #if   xOS_ENV_WIN
-    xTEST_EQ(true, _event.isValid());
+    xTEST_EQ(_event.isValid(), true);
 
     osRv = static_cast<ExObjectState>( ::WaitForSingleObject(handle().get(), a_timeoutMs) );
 #elif xOS_ENV_UNIX

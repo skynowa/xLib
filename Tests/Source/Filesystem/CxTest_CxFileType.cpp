@@ -37,7 +37,7 @@ CxTest_CxFileType::unit(
         F.close();
 
         m_bRv = CxFile::isExists(csFilePath);
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
     }
 
     xTEST_CASE("CxFileType::set get", a_caseLoops)
@@ -60,7 +60,7 @@ CxTest_CxFileType::unit(
         ftType.add(cfaValue);
 
         m_bRv = ftType.isExists(cfaValue);
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
     }
 
     xTEST_CASE("CxFileType::remove", a_caseLoops)
@@ -75,21 +75,21 @@ CxTest_CxFileType::unit(
             ftType.add(faAttribute);
 
             m_bRv = ftType.isExists(faAttribute);
-            xTEST_EQ(true, m_bRv);
+            xTEST_EQ(m_bRv, true);
 
             ftType.add(faValue);
 
             m_bRv = ftType.isExists(faValue);
-            xTEST_EQ(true, m_bRv);
+            xTEST_EQ(m_bRv, true);
 
             // remove
             ftType.remove(faValue);
 
             m_bRv = ftType.isExists(faValue);
-            xTEST_EQ(false, m_bRv);
+            xTEST_EQ(m_bRv, false);
 
             m_bRv = ftType.isExists(faAttribute);
-            xTEST_EQ(true, m_bRv);
+            xTEST_EQ(m_bRv, true);
 
             CxFileType::types_t faRv = ftType.get();
             xTEST_EQ((int_t)faAttribute, (int_t)faRv);
@@ -99,10 +99,10 @@ CxTest_CxFileType::unit(
                 CxFileType ftType(csFilePath);
 
                 m_bRv = ftType.isExists(CxFileType::faRegularFile);
-                xTEST_EQ(true, m_bRv);
+                xTEST_EQ(m_bRv, true);
 
                 m_bRv = ftType.isExists(CxFileType::faRegularFile);
-                xTEST_EQ(true, m_bRv);
+                xTEST_EQ(m_bRv, true);
             }
 
             // dir
@@ -112,10 +112,10 @@ CxTest_CxFileType::unit(
                 CxFileType ftType(csDirPath);
 
                 m_bRv = ftType.isExists(CxFileType::faDirectory);
-                xTEST_EQ(true, m_bRv);
+                xTEST_EQ(m_bRv, true);
 
                 m_bRv = ftType.isExists(CxFileType::faDirectory);
-                xTEST_EQ(true, m_bRv);
+                xTEST_EQ(m_bRv, true);
             }
         #endif
     }
@@ -148,7 +148,7 @@ CxTest_CxFileType::unit(
         ftType.clear();
 
         m_bRv = ftType.isExists(faAttribute);
-        xTEST_EQ(true, m_bRv);
+        xTEST_EQ(m_bRv, true);
     }
 
     xTEST_CASE("CxFileType::clear", a_caseLoops)
