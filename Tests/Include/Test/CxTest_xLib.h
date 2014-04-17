@@ -72,7 +72,7 @@
 #include <Test/Filesystem/CxTest_CxFinder.h>
 #include <Test/Filesystem/CxTest_CxDir.h>
 #include <Test/Filesystem/CxTest_CxVolume.h>
-#include <Test/Filesystem/CxTest_CxLocalStorage.h>
+#include <Test/Filesystem/CxTest_CxConfig.h>
 #include <Test/Filesystem/CxTest_CxBackup.h>
 
 

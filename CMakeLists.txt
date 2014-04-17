@@ -114,9 +114,9 @@ add_executable(${PROJECT_NAME} ${xLib_tests_SOURCES})
 
 #--------------------------------------------------------------------------------------------------
 # definitions
-#if (xHAVE_CPP11)
-#    add_definitions(-std=c++11)
-#endif()
+if (xHAVE_CPP11)
+    add_definitions(-std=c++11)
+endif()
 
 #--------------------------------------------------------------------------------------------------
 # flags
