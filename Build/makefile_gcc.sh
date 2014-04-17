@@ -6,6 +6,9 @@
 
 
 # vars
+# export CC="gcc"
+# export CXX="g++"
+
 DIR_XLIB="../xLib"
 DIR_BUILD="../../xLib_`basename -s .sh $0`"
 
