@@ -6,8 +6,8 @@
 
 
 # vars
-set CC="clang"
-set CXX="clang++"
+export CC="clang"
+export CXX="clang++"
 
 DIR_XLIB="../xLib"
 DIR_BUILD="../../xLib_`basename -s .sh $0`"
