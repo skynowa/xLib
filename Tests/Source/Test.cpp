@@ -215,7 +215,7 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
         manager.add(new CxTest_CxFinder);
         manager.add(new CxTest_CxDir);
         manager.add(new CxTest_CxVolume);
-        manager.add(new CxTest_CxLocalStorage);
+        manager.add(new CxTest_CxConfig);
         manager.add(new CxTest_CxBackup);
 
         // Log
