@@ -181,7 +181,7 @@ CxTest_xDefines::unit(
         xTEST_DIFF(d.value, valueBase);
     #elif xOS_ENV_UNIX
         xNA
-    #elif xOS_ENV_MAC
+    #elif xOS_ENV_APPLE
         xNA
     #endif
     }
