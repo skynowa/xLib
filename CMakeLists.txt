@@ -7,7 +7,10 @@
 cmake_minimum_required(VERSION 2.6)
 
 project(xLib_test)
-set(CMAKE_BUILD_TYPE "RelWithDebInfo")
+
+set (PROJECT_TYPE "CXX")
+set (CXX_STANDARD "c++11")
+set (CMAKE_BUILD_TYPE "RelWithDebInfo")
     # None (CMAKE_C_FLAGS or CMAKE_CXX_FLAGS used)
     # Debug (CMAKE_C_FLAGS_DEBUG or CMAKE_CXX_FLAGS_DEBUG)
     # Release (CMAKE_C_FLAGS_RELEASE or CMAKE_CXX_FLAGS_RELEASE)
@@ -57,6 +60,7 @@ message("")
 #--------------------------------------------------------------------------------------------------
 # modules
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake")
+include(CMake/CMakeVars.cmake)
 include(Configure)
 
 #--------------------------------------------------------------------------------------------------
@@ -88,7 +92,8 @@ endif()
 
 #--------------------------------------------------------------------------------------------------
 # vars
-if (CMAKE_CXX_COMPILER MATCHES ".*clang")
+if ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
+    set(CMAKE_COMPILER_IS_CLANGCC 1)
     set(CMAKE_COMPILER_IS_CLANGXX 1)
 endif()
 
@@ -105,13 +110,13 @@ endif()
 
 #--------------------------------------------------------------------------------------------------
 # target
-add_executable(xLib_test ${xLib_tests_SOURCES})
+add_executable(${PROJECT_NAME} ${xLib_tests_SOURCES})
 
 #--------------------------------------------------------------------------------------------------
 # definitions
-if (xHAVE_CPP11)
-    add_definitions(-std=c++11)
-endif()
+#if (xHAVE_CPP11)
+#    add_definitions(-std=c++11)
+#endif()
 
 #--------------------------------------------------------------------------------------------------
 # flags
@@ -135,12 +140,12 @@ else()
 endif()
 
 set_target_properties(
-    xLib_test PROPERTIES
+    ${PROJECT_NAME} PROPERTIES
         # COMPILE_DEFINITIONS ${DEFINITIONS}
         COMPILE_FLAGS ${FLAGS}
 )
 
-target_link_libraries(xLib_test ${LIBS} ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS})
+target_link_libraries(${PROJECT_NAME} ${LIBS} ${CMAKE_THREAD_LIBS} ${CMAKE_DL_LIBS})
 
 #--------------------------------------------------------------------------------------------------
 # install
