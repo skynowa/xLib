@@ -53,19 +53,7 @@ CxUri::CxUri(
  * \_/   \_______________________/\_________/ \_________/ \__/
  * |                |                |            |       |
  * scheme        authority           path        query   fragment
- *
- * http   : //ru.wikipedia.org/wiki/URI
- * ftp    : //ftp.is.co.za/rfc/rfc1808.txt
- * file   : //C:\UserName.HostName\Projects\Wikipedia_Articles\URI.xml
- * ldap   : //[2001:db8::7]/c=GB                                       ? objectClass?one
- *
- * mailto : John.Doe@example.com
- * sip    : 911@pbx.mycompany.com
- * news   : comp.infosystems.www.servers.unix
- * data   : text/plain;charset=iso-8859-7,%be%fg%be
- * tel    : +1-816-555-1212
- * telnet : //192.0.2.16:80/
- * */
+ */
 inline std::tstring_t
 CxUri::uri() const
 {
@@ -475,18 +463,6 @@ CxUri::_illegal()
  * \_/   \_______________________/\_________/ \_________/ \__/
  * |                |                |            |       |
  * scheme        authority           path        query   fragment
- *
- * http   : //ru.wikipedia.org/wiki/URI
- * ftp    : //ftp.is.co.za/rfc/rfc1808.txt
- * file   : //C:\UserName.HostName\Projects\Wikipedia_Articles\URI.xml
- * ldap   : //[2001:db8::7]/c=GB                                       ? objectClass?one
- *
- * mailto : John.Doe@example.com
- * sip    : 911@pbx.mycompany.com
- * news   : comp.infosystems.www.servers.unix
- * data   : text/plain;charset=iso-8859-7,%be%fg%be
- * tel    : +1-816-555-1212
- * telnet : //192.0.2.16:80/
  */
 inline void_t
 CxUri::_parse(

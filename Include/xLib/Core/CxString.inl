@@ -33,7 +33,7 @@ xNAMESPACE2_BEGIN(xlib, core)
 template<class T>
 inline std::tstring_t
 CxString::cast(
-    const T &a_value
+    const T &a_value    ///< source value
 )
 {
     xTEST_NA(a_value);
@@ -60,7 +60,7 @@ CxString::cast(
 template<class T>
 inline std::tstring_t
 CxString::cast(
-    const T &a_value,
+    const T &a_value,   ///< source value
     cint_t  &a_base     ///< valid values: 8, 10, 16
 )
 {
@@ -89,7 +89,7 @@ CxString::cast(
 template<class T>
 inline T
 CxString::cast(
-    std::ctstring_t &a_str
+    std::ctstring_t &a_str  ///< source string
 )
 {
     xTEST_NA(a_str);
@@ -114,8 +114,8 @@ CxString::cast(
 template<class T>
 inline T
 CxString::cast(
-    std::ctstring_t &a_str,
-    cint_t          &a_base     ///< valid values: 8, 10, 16
+    std::ctstring_t &a_str, ///< source string
+    cint_t          &a_base ///< valid values: 8, 10, 16
 )
 {
     xTEST_NA(a_str);
@@ -140,7 +140,7 @@ CxString::cast(
 /* static */
 inline std::string
 CxString::castA(
-    std::cwstring_t &a_str
+    std::cwstring_t &a_str  ///< source string
 )
 {
     xTEST_NA(a_str);
@@ -156,7 +156,7 @@ CxString::castA(
 /* static */
 inline std::wstring
 CxString::castW(
-    std::cstring_t &a_str
+    std::cstring_t &a_str   ///< source string
 )
 {
     xTEST_NA(a_str);
@@ -180,8 +180,8 @@ CxString::castW(
 /* static */
 inline std::string
 CxString::castA(
-    std::cwstring_t &a_str,
-    cuint_t         &a_codePage
+    std::cwstring_t &a_str,     ///< source string
+    cuint_t         &a_codePage ///< code page
 )
 {
     xTEST_NA(a_str);
@@ -211,8 +211,8 @@ CxString::castA(
 /* static */
 inline std::wstring
 CxString::castW(
-    std::cstring_t &a_str,
-    cuint_t        &a_codePage
+    std::cstring_t &a_str,      ///< source string
+    cuint_t        &a_codePage  ///< code page
 )
 {
     xTEST_NA(a_str);
@@ -242,8 +242,8 @@ CxString::castW(
 /* static */
 inline std::string
 CxString::castA(
-    std::cwstring_t   &a_str,
-    const std::locale &a_locale
+    std::cwstring_t   &a_str,   ///< source string
+    const std::locale &a_locale ///< locale
 )
 {
     xTEST_NA(a_str);
@@ -279,8 +279,8 @@ CxString::castA(
 /* static */
 inline std::wstring
 CxString::castW(
-    std::cstring_t    &a_str,
-    const std::locale &a_locale
+    std::cstring_t    &a_str,   ///< source string
+    const std::locale &a_locale ///< locale
 )
 {
     xTEST_NA(a_str);
@@ -306,9 +306,9 @@ CxString::castW(
 /* static */
 inline std::string
 CxString::castCodePage(
-    std::cstring_t &a_str,
-    cuint_t        &a_codePageSource,
-    cuint_t        &a_codePageDest
+    std::cstring_t &a_str,              ///< source string
+    cuint_t        &a_codePageSource,   ///< source code page
+    cuint_t        &a_codePageDest      ///< destination code page
 )
 {
     xTEST_NA(a_source);
@@ -321,7 +321,7 @@ CxString::castCodePage(
 /* static */
 inline std::string
 CxString::castToOem(
-    std::ctstring_t &a_str
+    std::ctstring_t &a_str   ///< source string
 )
 {
     xTEST_NA(a_str);
@@ -346,7 +346,7 @@ CxString::castToOem(
 /* static */
 inline std::tstring_t
 CxString::castFromOem(
-    std::cstring_t &a_str
+    std::cstring_t &a_str   ///< source string
 )
 {
     xTEST_NA(a_str);
@@ -371,7 +371,7 @@ CxString::castFromOem(
 /* static */
 inline std::tstring_t
 CxString::castBool(
-    cbool_t &a_value
+    cbool_t &a_value   ///< source string
 )
 {
     xTEST_NA(a_value);
@@ -382,7 +382,7 @@ CxString::castBool(
 /* static */
 inline bool_t
 CxString::castBool(
-    std::ctstring_t &a_str
+    std::ctstring_t &a_str   ///< source string
 )
 {
     xTEST_NA(a_str);
@@ -396,7 +396,7 @@ CxString::castBool(
 /* static */
 inline std::tstring_t
 CxString::toLowerCase(
-    std::ctstring_t &a_str
+    std::ctstring_t &a_str   ///< source string
 )
 {
     xTEST_NA(a_str);
@@ -407,7 +407,7 @@ CxString::toLowerCase(
 /* static */
 inline std::tstring_t
 CxString::toUpperCase(
-    std::ctstring_t &a_str
+    std::ctstring_t &a_str   ///< source string
 )
 {
     xTEST_NA(a_str);
@@ -418,8 +418,8 @@ CxString::toUpperCase(
 /* static */
 inline std::tstring_t
 CxString::toLowerCase(
-    std::ctstring_t &a_str,
-    std::csize_t    &a_length
+    std::ctstring_t &a_str,     ///< source string
+    std::csize_t    &a_length   ///< string size
 )
 {
     xTEST_NA(a_str);
@@ -445,8 +445,8 @@ CxString::toLowerCase(
 /* static */
 inline std::tstring_t
 CxString::toUpperCase(
-    std::ctstring_t &a_str,
-    std::csize_t    &a_length
+    std::ctstring_t &a_str,     ///< source string
+    std::csize_t    &a_length   ///< string size
 )
 {
     xTEST_NA(a_str);
@@ -480,8 +480,8 @@ CxString::toUpperCase(
 /* static */
 inline std::tstring_t
 CxString::trimLeftChars(
-    std::ctstring_t &a_str,
-    std::ctstring_t &a_chars
+    std::ctstring_t &a_str,     ///< source string
+    std::ctstring_t &a_chars    ///< chars for trim
 )
 {
     xTEST_NA(a_str);
@@ -495,8 +495,8 @@ CxString::trimLeftChars(
 /* static */
 inline std::tstring_t
 CxString::trimRightChars(
-    std::ctstring_t &a_str,
-    std::ctstring_t &a_chars
+    std::ctstring_t &a_str,    ///< source string
+    std::ctstring_t &a_chars   ///< chars for trim
 )
 {
     xTEST_NA(a_str);
@@ -510,8 +510,8 @@ CxString::trimRightChars(
 /* static */
 inline std::tstring_t
 CxString::trimChars(
-    std::ctstring_t &a_str,
-    std::ctstring_t &a_chars
+    std::ctstring_t &a_str,    ///< source string
+    std::ctstring_t &a_chars   ///< chars for trim
 )
 {
     xTEST_NA(a_str);
@@ -528,7 +528,7 @@ CxString::trimChars(
 /* static */
 inline std::tstring_t
 CxString::trimSpace(
-    std::ctstring_t &a_str
+    std::ctstring_t &a_str    ///< source string
 )
 {
     xTEST_NA(a_str);
@@ -539,7 +539,7 @@ CxString::trimSpace(
 /* static */
 inline std::tstring_t
 CxString::removeEol(
-    std::ctstring_t &a_str
+    std::ctstring_t &a_str    ///< source string
 )
 {
     xTEST_NA(a_str);
@@ -550,9 +550,9 @@ CxString::removeEol(
 /* static */
 inline std::tstring_t
 CxString::replaceAll(
-    std::ctstring_t &a_str,
-    std::ctstring_t &a_strOld,
-    std::ctstring_t &a_strNew
+    std::ctstring_t &a_str,     ///< source string
+    std::ctstring_t &a_strOld,  ///< old string
+    std::ctstring_t &a_strNew   ///< new string
 )
 {
     xTEST_NA(a_str);
@@ -581,9 +581,9 @@ CxString::replaceAll(
 /* static */
 inline std::tstring_t
 CxString::replaceAll(
-    std::ctstring_t &a_str,
-    ctchar_t        &a_charOld,
-    ctchar_t        &a_charNew
+    std::ctstring_t &a_str,     ///< source string
+    ctchar_t        &a_charOld, ///< old char
+    ctchar_t        &a_charNew  ///< new char
 )
 {
     xTEST_NA(a_str);
@@ -596,8 +596,8 @@ CxString::replaceAll(
 /* static */
 inline std::tstring_t
 CxString::removeAll(
-    std::ctstring_t &a_str,
-    std::ctstring_t &a_removeStr
+    std::ctstring_t &a_str,         ///< source string
+    std::ctstring_t &a_removeStr    ///< string for remove
 )
 {
     xTEST_NA(a_str);
@@ -609,9 +609,9 @@ CxString::removeAll(
 /* static */
 inline void_t
 CxString::split(
-    std::ctstring_t    &a_str,
-    std::ctstring_t    &a_sep,
-    std::vec_tstring_t *a_rv
+    std::ctstring_t    &a_str,  ///< source string
+    std::ctstring_t    &a_sep,  ///< separator
+    std::vec_tstring_t *a_rv    ///< [out] string vector
 )
 {
     xTEST_NA(a_str);
@@ -646,8 +646,8 @@ CxString::split(
 /* static */
 inline std::tstring_t
 CxString::join(
-    std::cvec_tstring_t &a_vec,
-    std::ctstring_t     &a_sep
+    std::cvec_tstring_t &a_vec, ///< source string vector
+    std::ctstring_t     &a_sep  ///< separator
 )
 {
     xTEST_NA(a_vec);
@@ -667,8 +667,8 @@ CxString::join(
 /* static */
 inline std::tstring_t
 CxString::join(
-    std::cvec_tstring_t &a_vec,
-    ctchar_t            &a_sep
+    std::cvec_tstring_t &a_vec, ///< source string vector
+    ctchar_t            &a_sep  ///< separator
 )
 {
     xTEST_NA(a_vec);
@@ -680,9 +680,9 @@ CxString::join(
 /* static */
 inline std::tstring_t
 CxString::cut(
-    std::ctstring_t &a_str,
-    std::ctstring_t &a_sepLeft,
-    std::ctstring_t &a_sepRight
+    std::ctstring_t &a_str,     ///< source string
+    std::ctstring_t &a_sepLeft, ///< left separator
+    std::ctstring_t &a_sepRight ///< right separator
 )
 {
     xTEST_NA(a_str);
@@ -707,9 +707,9 @@ CxString::cut(
 /* static */
 inline std::tstring_t
 CxString::cut(
-    std::ctstring_t &a_str,
-    std::csize_t    &a_posBegin /* = 0 */,
-    std::csize_t    &a_posEnd   /* = std::tstring_t:npos */
+    std::ctstring_t &a_str,                                 ///< source string
+    std::csize_t    &a_posBegin /* = 0 */,                  ///< begin position
+    std::csize_t    &a_posEnd   /* = std::tstring_t:npos */ ///< end osition
 )
 {
     xTEST_NA(a_str);
@@ -733,7 +733,7 @@ CxString::cut(
 /* static */
 inline std::tstring_t
 CxString::format(
-    ctchar_t *a_format, ...
+    ctchar_t *a_format, ...    ///< string format
 )
 {
     xTEST_NA(a_format);
@@ -755,8 +755,8 @@ CxString::format(
 
 inline std::tstring_t
 CxString::formatV(
-    ctchar_t *a_format,
-    va_list   a_args
+    ctchar_t *a_format,    ///< string format
+    va_list   a_args       ///< arguments
 )
 {
     xTEST_NA(a_format);
@@ -841,8 +841,8 @@ CxString::formatV(
 /* static */
 inline std::tstring_t
 CxString::minimize(
-    std::ctstring_t &a_str,
-    std::csize_t    &a_maxLength
+    std::ctstring_t &a_str,         ///< source string
+    std::csize_t    &a_maxLength    ///< string maximum size
 )
 {
     xTEST_NA(a_str);
@@ -877,7 +877,7 @@ CxString::minimize(
 /* static */
 inline std::tstring_t
 CxString::formatBytes(
-    culonglong_t &a_bytes
+    culonglong_t &a_bytes    ///< bytes
 )
 {
     xTEST_NA(a_bytes);
@@ -924,8 +924,8 @@ CxString::formatBytes(
 /* static */
 inline std::tstring_t
 CxString::formatPercentage(
-    culonglong_t &a_maxValue,
-    culonglong_t &a_currentValue
+    culonglong_t &a_maxValue,       ///< maximum value
+    culonglong_t &a_currentValue    ///< current value
 )
 {
     xTEST_NA(a_maxValue);
@@ -952,8 +952,8 @@ CxString::formatPercentage(
 //-------------------------------------------------------------------------------------------------
 inline void_t *
 CxString::memoryZeroSecure(
-    void_t       *a_buff,
-    std::csize_t &a_buffSize
+    void_t       *a_buff,       ///< buffer
+    std::csize_t &a_buffSize    ///< buffer size (bytes)
 )
 {
     xTEST_NA(a_buff);
@@ -982,7 +982,7 @@ CxString::memoryZeroSecure(
 /* static */
 inline bool_t
 CxString::isRepeated(
-    std::ctstring_t &a_str
+    std::ctstring_t &a_str    ///< source string
 )
 {
     xTEST_NA(a_str);
@@ -1005,9 +1005,9 @@ xNAMESPACE2_BEGIN(xlib, core)
 /* static */
 inline std::size_t
 CxStringCI::find(
-    std::ctstring_t   &a_str,               ///< source string
-    std::ctstring_t   &a_target,            ///< target string
-    std::csize_t      &a_pos    /* = 0 */,  ///< start position
+    std::ctstring_t   &a_str,                           ///< source string
+    std::ctstring_t   &a_target,                        ///< target string
+    std::csize_t      &a_pos    /* = 0 */,              ///< start position
     const std::locale &a_locale /* = std::locale() */   ///< locale
 )
 {
@@ -1030,8 +1030,8 @@ CxStringCI::find(
 /* static */
 inline bool_t
 CxStringCI::compare(
-    std::ctstring_t   &a_str1,  ///< source string
-    std::ctstring_t   &a_str2,  ///< target string
+    std::ctstring_t   &a_str1,                          ///< source string
+    std::ctstring_t   &a_str2,                          ///< target string
     const std::locale &a_locale /* = std::locale() */   ///< locale
 )
 {
