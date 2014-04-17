@@ -19,7 +19,7 @@ CxTest_CxConfig::unit(
     culonglong_t &a_caseLoops
 )
 {
-    std::ctstring_t filePath = CxPath( CxPath::exe() ).setExt(xT("ini") );
+    std::ctstring_t filePath = CxPath( CxPath::exe() ).setExt(xT("cfg") );
 
     std::ctstring_t key1     = xT("a");
     std::ctstring_t value1   = xT("1");
