@@ -138,17 +138,18 @@ CxPath::dll()
 #if   xOS_ENV_WIN
     sRv.resize(xPATH_MAX);
 
-    DWORD stored = ::GetModuleFileName(reinterpret_cast<HINSTANCE>( &__ImageBase ),
-        &sRv.at(0), static_cast<DWORD>( sRv.size() ));
+    HMODULE procAddress = reinterpret_cast<HMODULE>( &__ImageBase );
+
+    DWORD stored = ::GetModuleFileName(procAddress, &sRv.at(0), static_cast<DWORD>( sRv.size() ));
     xTEST_DIFF(stored, 0UL);
 
     sRv.resize(stored);
 #elif xOS_ENV_UNIX
-    Dl_info  diInfo;    xSTRUCT_ZERO(diInfo);
-    cvoid_t *procAddress = reinterpret_cast<cvoid_t *>( ::function );
+    Dl_info  diInfo;          xSTRUCT_ZERO(diInfo);
+    void_t (*procAddress)() = ::function;
 
-    int_t iRv = ::dladdr(procAddress, &diInfo);
-    /*DEBUF*/xTEST_LESS(0, iRv);
+    int_t iRv = ::dladdr(&procAddress, &diInfo);
+    xTEST_LESS(iRv, 0);
 
     sRv = CxPath(diInfo.dli_fname).absolute();
 #endif
