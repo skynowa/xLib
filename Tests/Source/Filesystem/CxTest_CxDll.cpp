@@ -14,80 +14,73 @@ CxTest_CxDll::unit(
     culonglong_t &a_caseLoops
 )
 {
-    xUNUSED(a_caseLoops);
-
     // TEST: CxTest_CxDll()
 
-    #if   xOS_ENV_WIN
-        std::ctstring_t sData[][2] = {
-            {xT("kernel32.dll"), xT("Beep")}
-        };
-    #elif xOS_ENV_UNIX
-        #if xOS_FREEBSD
-            //if -static CxDll::bLoad don't load any 'so'-libraries
-            return;
+    xTEST_CASE("CxDll::CxDll", a_caseLoops)
+    {
+        #if   xOS_ENV_WIN
+            const data2_tstring_t data[] = {
+                {xT("kernel32.dll"), xT("Beep")}
+            };
+        #elif xOS_ENV_UNIX
+            #if xOS_FREEBSD
+                // TEST: if -static CxDll::load() don't load any 'so'-libraries
+                return;
 
-            std::ctstring_t sData[][2] = {
-                {xT("libm.so"), xT("cos")}
-            };
-        #else
-            std::ctstring_t sData[][2] = {
-                {xT("libm.so"), xT("cos")}
-            };
+                const data2_tstring_t data[] = {
+                    {xT("libm.so"), xT("cos")}
+                };
+            #else
+                const data2_tstring_t data[] = {
+                    {xT("libm.so"), xT("cos")}
+                };
+            #endif
         #endif
-    #endif
 
-    for (size_t i = 0; i < xARRAY_SIZE(sData); ++ i) {
-        CxDll objDll;
+        for (size_t i = 0; i < xARRAY_SIZE(data); ++ i) {
+            CxDll dll;
 
-        m_bRv = objDll.isLoaded();
-        xTEST_EQ(m_bRv, false);
+            m_bRv = dll.isLoaded();
+            xTEST_EQ(m_bRv, false);
 
-        //-------------------------------------
-        //bLoad
-        objDll.load(sData[i][0]);
+            // load
+            dll.load(data[i].test);
 
-        //-------------------------------------
-        //bIsLoaded
-        m_bRv = objDll.isLoaded();
-        xTEST_EQ(m_bRv, true);
+            // isLoaded
+            m_bRv = dll.isLoaded();
+            xTEST_EQ(m_bRv, true);
 
-        //-------------------------------------
-        //bIsProcExists
-        m_bRv = objDll.isProcExists(sData[i][1]);
-        xTEST_EQ(m_bRv, true);
+            // isProcExists
+            m_bRv = dll.isProcExists(data[i].expect);
+            xTEST_EQ(m_bRv, true);
 
-        //-------------------------------------
-        //fpGetProcAddress
-        CxDll::proc_address_t fpRes = NULL;
+            // procAddress
+        #if   xOS_ENV_WIN
+            CxDll::proc_address_t paRv = dll.procAddress(data[i].expect);
+            xTEST_PTR(paRv);
 
-        fpRes = objDll.procAddress(sData[i][1]);
-        xTEST_PTR(fpRes);
+            typedef void_t (__stdcall *ptr_dll_func_t)(ulong_t, ulong_t);
+            ptr_dll_func_t loadBeep = (ptr_dll_func_t)paRv;
 
-    #if   xOS_ENV_WIN
-        typedef void_t (__stdcall *pDllFunc)(ulong_t, ulong_t);
+            loadBeep(1, 1);
+        #elif xOS_ENV_UNIX
+            CxDll::proc_address_t paRv = dll.procAddress(data[i].expect);
+            xTEST_PTR(paRv);
 
-        pDllFunc pLoadBeepFunc = NULL;
+            typedef double (*ptr_dll_func_t)(double);
+            ptr_dll_func_t cosine = (ptr_dll_func_t)paRv;
 
-        pLoadBeepFunc = (pDllFunc)fpRes;
-        pLoadBeepFunc(1, 1);
-    #elif xOS_ENV_UNIX
-        typedef double (*pDllFunc)(double);
+            double dRv = cosine(2.0);
+            xUNUSED(dRv);
+            // TEST: CxTest_CxDll::unit() - procAddress
+            // xTEST_EQ(-0.416147, m_dRv);
+            // xTRACEV(xT("\tpCosine(2.0): %f"), dRv);
+        #endif
 
-        pDllFunc pCosine = NULL;
-
-        pCosine = (pDllFunc)fpRes;
-        double dRv = pCosine(2.0);
-        xUNUSED(dRv);
-        //xTEST_EQ(-0.416147, m_dRv);
-        //xTRACEV(xT("\tpCosine(2.0): %f"), dRv);
-    #endif
-
-        //-------------------------------------
-        //bIsLoaded
-        m_bRv = objDll.isLoaded();
-        xTEST_EQ(m_bRv, true);
-
-    } //for
+            // isLoaded
+            m_bRv = dll.isLoaded();
+            xTEST_EQ(m_bRv, true);
+        } //for
+    }
 }
 //-------------------------------------------------------------------------------------------------
