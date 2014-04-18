@@ -30,7 +30,7 @@ xNAMESPACE2_BEGIN(xlib, filesystem)
 //-------------------------------------------------------------------------------------------------
 inline
 CxDll::CxDll() :
-    _dll(xPTR_NULL)
+    _handle(xPTR_NULL)
 {
 }
 //-------------------------------------------------------------------------------------------------
@@ -46,7 +46,7 @@ CxDll::isLoaded() const
 {
     xTESTS_NA;
 
-    return (_dll != xPTR_NULL);
+    return (_handle != xPTR_NULL);
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -60,11 +60,11 @@ CxDll::load(
     _destruct();
 
 #if   xOS_ENV_WIN
-    _dll = ::LoadLibrary(a_dllPath.c_str());
-    xTEST_PTR(_dll);
+    _handle = ::LoadLibrary(a_dllPath.c_str());
+    xTEST_PTR(_handle);
 #elif xOS_ENV_UNIX
-    _dll = ::dlopen(a_dllPath.c_str(), RTLD_LAZY | RTLD_GLOBAL);
-    xTEST_PTR(_dll);
+    _handle = ::dlopen(a_dllPath.c_str(), RTLD_LAZY | RTLD_GLOBAL);
+    xTEST_PTR(_handle);
 #endif
 }
 //-------------------------------------------------------------------------------------------------
@@ -73,10 +73,10 @@ CxDll::isProcExists(
     std::ctstring_t &a_procName
 ) const
 {
-    xTEST_PTR(_dll);
+    xTEST_PTR(_handle);
 
 #if   xOS_ENV_WIN
-    proc_address_t fpRv = ::GetProcAddress(_dll, xTS2S(a_procName).c_str());
+    proc_address_t fpRv = ::GetProcAddress(_handle, xTS2S(a_procName).c_str());
     xCHECK_RET(fpRv == xPTR_NULL, false);
 #elif xOS_ENV_UNIX
     const char *error = xPTR_NULL;
@@ -84,7 +84,7 @@ CxDll::isProcExists(
     error = ::dlerror();
     xTEST_PTR_FAIL(error);
 
-    (void_t)::dlsym(_dll, a_procName.c_str());
+    (void_t)::dlsym(_handle, a_procName.c_str());
 
     error = ::dlerror();
     xCHECK_RET(error != xPTR_NULL, false);
@@ -98,12 +98,12 @@ CxDll::procAddress(
     std::ctstring_t &a_procName
 ) const
 {
-    xTEST_PTR(_dll);
+    xTEST_PTR(_handle);
 
     proc_address_t fpRv = xPTR_NULL;
 
 #if   xOS_ENV_WIN
-    fpRv = ::GetProcAddress(_dll, xTS2S(a_procName).c_str());
+    fpRv = ::GetProcAddress(_handle, xTS2S(a_procName).c_str());
     xTEST_PTR(fpRv);
 #elif xOS_ENV_UNIX
     const char *error = xPTR_NULL;
@@ -111,7 +111,7 @@ CxDll::procAddress(
     error = ::dlerror();
     xTEST_PTR_FAIL(error);
 
-    fpRv = ::dlsym(_dll, a_procName.c_str());
+    fpRv = ::dlsym(_handle, a_procName.c_str());
     xTEST_NA(fpRv)
 
     error = ::dlerror();
@@ -137,14 +137,14 @@ CxDll::_destruct()
     xCHECK_DO(!isLoaded(), return);
 
 #if   xOS_ENV_WIN
-    BOOL blRv = ::FreeLibrary(_dll);
+    BOOL blRv = ::FreeLibrary(_handle);
     xTEST_DIFF(blRv, FALSE);
 #elif xOS_ENV_UNIX
-    int_t iRv = ::dlclose(_dll);
+    int_t iRv = ::dlclose(_handle);
     xTEST_EQ(iRv, 0);
 #endif
 
-    _dll = xPTR_NULL;
+    _handle = xPTR_NULL;
 }
 //-------------------------------------------------------------------------------------------------
 
