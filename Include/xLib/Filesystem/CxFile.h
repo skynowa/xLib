@@ -292,10 +292,10 @@ public:
         ///< write binary data
 
 private:
-    friend class   CxFileTemp;    ///< temporary file
+    friend class   CxFileTemp;  ///< temporary file
 
-    std::FILE     *_file;      ///< file handle
-    std::tstring_t _filePath;  ///< file path
+    std::FILE     *_handle;     ///< file handle
+    std::tstring_t _filePath;   ///< file path
 
     static
     int_t          _nativeHandle(std::FILE *file) xWARN_UNUSED_RV;

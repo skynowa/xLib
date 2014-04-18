@@ -203,8 +203,8 @@ public:
     virtual       ~CxSocket() = 0;
         ///< destructor
 
-    void_t         assign(csocket_t &socket);
-        ///< assign to another socket
+    void_t         assign(csocket_t &handle);
+        ///< assign to another handle
 
     /*******************************************************************************
     * operators
@@ -224,7 +224,7 @@ public:
                        const ExProtocol &protocol);
         ///< creates a socket that is bound to a specific transport service provider
     socket_t       handle() const xWARN_UNUSED_RV;
-        ///< get socket
+        ///< get handle
     bool_t         isValid() const xWARN_UNUSED_RV;
         ///< checking for validness
     void_t         close();
@@ -262,7 +262,7 @@ public:
     *******************************************************************************/
 
     void_t           peerName(std::tstring_t *peerAddr, ushort_t *peerPort);
-        ///< get address of the peer to which a socket is connected
+        ///< get address of the peer to which a handle is connected
     void_t           socketName(std::tstring_t *socketAddr, ushort_t *socketPort);
         ///< get local name for a socket
 
@@ -282,9 +282,9 @@ public:
         ///< get error status for the last operation that failed
 
 protected:
-    socket_t         _socket;  ///< handle to socket
+    socket_t         _handle;   ///< handle to socket
     short_t          _family;   ///< family
-    std::tstring_t   _ip;        ///< IP
+    std::tstring_t   _ip;       ///< IP
     ushort_t         _port;     ///< port
 
     xNO_COPY_ASSIGN(CxSocket)

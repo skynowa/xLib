@@ -184,9 +184,9 @@ private:
 
     // thread data
 #if   xOS_ENV_WIN
-    CxHandle        _thread;                 ///< native handle
+    CxHandle        _handle;                 ///< native handle
 #elif xOS_ENV_UNIX
-    handle_t        _thread;                 ///< native handle
+    handle_t        _handle;                 ///< native handle
 #endif
 
     id_t            _id;                    ///< ID

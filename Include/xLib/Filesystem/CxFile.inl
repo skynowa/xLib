@@ -25,7 +25,7 @@ xNAMESPACE2_BEGIN(xlib, filesystem)
 //-------------------------------------------------------------------------------------------------
 inline
 CxFile::CxFile() :
-    _file    (xPTR_NULL),
+    _handle  (xPTR_NULL),
     _filePath()
 {
 }
@@ -64,7 +64,7 @@ CxFile::create(
         std::FILE *file = std::xTFOPEN(a_filePath.c_str(), _openMode(a_mode).c_str());
         xTEST_PTR(file);
 
-        _file     = file;
+        _handle   = file;
         _filePath = a_filePath;
     }
 
@@ -95,7 +95,7 @@ CxFile::reopen(
         std::FILE *file = std::xTFREOPEN(a_filePath.c_str(), _openMode(a_mode).c_str(), get());
         xTEST_PTR(file);
 
-        _file     = file;
+        _handle   = file;
         _filePath = a_filePath;
     }
 
@@ -112,7 +112,7 @@ CxFile::get() const
 {
     xTEST_EQ(isValid(), true);
 
-    return _file;
+    return _handle;
 }
 //-------------------------------------------------------------------------------------------------
 inline std::ctstring_t &
@@ -133,7 +133,7 @@ CxFile::attach(
 
     close();
 
-    _file     = a_file;
+    _handle   = a_file;
     _filePath = CxConst::strEmpty();
 }
 //-------------------------------------------------------------------------------------------------
@@ -142,7 +142,7 @@ CxFile::detach()
 {
     std::FILE *file = get();
 
-    _file = xPTR_NULL;
+    _handle = xPTR_NULL;
 
     return file;
 }
@@ -477,7 +477,7 @@ CxFile::resize(
 inline bool_t
 CxFile::isValid() const
 {
-    return (_file != xPTR_NULL);
+    return (_handle != xPTR_NULL);
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
@@ -541,7 +541,7 @@ CxFile::close()
 
     errorClear();
 
-    int_t iRv = std::fclose(get()); _file = xPTR_NULL;
+    int_t iRv = std::fclose( get() ); _handle = xPTR_NULL;
     xTEST_DIFF(iRv, xTEOF);
 }
 //-------------------------------------------------------------------------------------------------
