@@ -8,9 +8,8 @@ cmake_minimum_required(VERSION 2.6)
 
 project(xLib_test)
 
-set (PROJECT_TYPE "CXX")
-set (CXX_STANDARD "c++11")
-set (CMAKE_BUILD_TYPE "RelWithDebInfo")
+set(PROJECT_TYPE "CXX")
+set(CMAKE_BUILD_TYPE "RelWithDebInfo")
     # None (CMAKE_C_FLAGS or CMAKE_CXX_FLAGS used)
     # Debug (CMAKE_C_FLAGS_DEBUG or CMAKE_CXX_FLAGS_DEBUG)
     # Release (CMAKE_C_FLAGS_RELEASE or CMAKE_CXX_FLAGS_RELEASE)
@@ -115,6 +114,7 @@ add_executable(${PROJECT_NAME} ${xLib_tests_SOURCES})
 #--------------------------------------------------------------------------------------------------
 # definitions
 if (xHAVE_CPP11)
+    set(CXX_STANDARD "c++11")
     add_definitions(-std=c++11)
 endif()
 
