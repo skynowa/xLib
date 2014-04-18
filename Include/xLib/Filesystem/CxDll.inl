@@ -76,8 +76,8 @@ CxDll::isProcExists(
     xTEST_PTR(_handle);
 
 #if   xOS_ENV_WIN
-    proc_address_t fpRv = ::GetProcAddress(_handle, xTS2S(a_procName).c_str());
-    xCHECK_RET(fpRv == xPTR_NULL, false);
+    proc_address_t paRv = ::GetProcAddress(_handle, xTS2S(a_procName).c_str());
+    xCHECK_RET(paRv == xPTR_NULL, false);
 #elif xOS_ENV_UNIX
     const char *error = xPTR_NULL;
 
@@ -100,25 +100,25 @@ CxDll::procAddress(
 {
     xTEST_PTR(_handle);
 
-    proc_address_t fpRv = xPTR_NULL;
+    proc_address_t paRv = xPTR_NULL;
 
 #if   xOS_ENV_WIN
-    fpRv = ::GetProcAddress(_handle, xTS2S(a_procName).c_str());
-    xTEST_PTR(fpRv);
+    paRv = ::GetProcAddress(_handle, xTS2S(a_procName).c_str());
+    xTEST_PTR(paRv);
 #elif xOS_ENV_UNIX
     const char *error = xPTR_NULL;
 
     error = ::dlerror();
     xTEST_PTR_FAIL(error);
 
-    fpRv = ::dlsym(_handle, a_procName.c_str());
-    xTEST_NA(fpRv)
+    paRv = ::dlsym(_handle, a_procName.c_str());
+    xTEST_NA(paRv)
 
     error = ::dlerror();
     xTEST_PTR_FAIL(error);
 #endif
 
-    return fpRv;
+    return paRv;
 }
 //-------------------------------------------------------------------------------------------------
 
