@@ -928,8 +928,8 @@ CxSystemInfo::cpuUsage() const
             FILE *file = fopen("/proc/stat", "r");
             xTEST_PTR(file);
 
-            iRv = fscanf(file, "cpu %Ld %Ld %Ld %Ld", &userTotalOld, &userTotalLowOld,
-                &sysTotalOld, &totalIdleOld);
+            iRv = fscanf(file, "cpu %" xPR_I64u " %" xPR_I64u " %" xPR_I64u " %" xPR_I64u,
+                &userTotalOld, &userTotalLowOld, &sysTotalOld, &totalIdleOld);
             xTEST_DIFF(iRv, - 1);
 
             iRv = fclose(file);
@@ -943,7 +943,8 @@ CxSystemInfo::cpuUsage() const
             FILE *file = fopen("/proc/stat", "r");
             xTEST_PTR(file);
 
-            iRv = fscanf(file, "cpu %Ld %Ld %Ld %Ld", &userTotal, &userTotalLow, &sysTotal, &totalIdle);
+            iRv = fscanf(file, "cpu %" xPR_I64u " %" xPR_I64u " %" xPR_I64u " %" xPR_I64u,
+                &userTotal, &userTotalLow, &sysTotal, &totalIdle);
             xTEST_DIFF(iRv, - 1);
 
             iRv = fclose(file);
