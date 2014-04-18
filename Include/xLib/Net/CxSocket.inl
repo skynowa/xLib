@@ -25,7 +25,7 @@ xNAMESPACE2_BEGIN(xlib, net)
 //-------------------------------------------------------------------------------------------------
 inline
 CxSocket::CxSocket() :
-    _socket(xSOCKET_HANDLE_INVALID),
+    _handle(xSOCKET_HANDLE_INVALID),
     _family(- 1),
     _ip    (),
     _port  (0)
@@ -40,13 +40,13 @@ CxSocket::~CxSocket()
 //-------------------------------------------------------------------------------------------------
 inline void_t
 CxSocket::assign(
-    csocket_t &a_socket
+    csocket_t &a_handle
 )
 {
-    xTEST_NA(_socket);
-    xTEST_NA(a_socket);
+    xTEST_NA(_handle);
+    xTEST_NA(a_handle);
 
-    _socket = a_socket;
+    _handle = a_handle;
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -59,13 +59,13 @@ CxSocket::assign(
 //-------------------------------------------------------------------------------------------------
 inline CxSocket &
 CxSocket::operator = (
-    csocket_t &a_socket
+    csocket_t &a_handle
 )
 {
-    xTEST_NA(_socket);
-    xTEST_NA(a_socket);
+    xTEST_NA(_handle);
+    xTEST_NA(a_handle);
 
-    _socket = a_socket;
+    _handle = a_handle;
 
     return *this;
 }
@@ -85,10 +85,10 @@ CxSocket::create(
     const ExProtocol      &a_protocol
 )
 {
-    xTEST_EQ(_socket, xSOCKET_HANDLE_INVALID);
+    xTEST_EQ(_handle, xSOCKET_HANDLE_INVALID);
 
-    _socket = ::socket(a_family, a_type, a_protocol);
-    xTEST_DIFF(_socket, xSOCKET_HANDLE_INVALID);
+    _handle = ::socket(a_family, a_type, a_protocol);
+    xTEST_DIFF(_handle, xSOCKET_HANDLE_INVALID);
 
     _family = a_family;
 }
@@ -96,9 +96,9 @@ CxSocket::create(
 inline socket_t
 CxSocket::handle() const
 {
-    xTEST_DIFF(_socket, xSOCKET_HANDLE_INVALID);
+    xTEST_DIFF(_handle, xSOCKET_HANDLE_INVALID);
 
-    return _socket;
+    return _handle;
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
@@ -107,9 +107,9 @@ CxSocket::isValid() const
     // n/a
 
 #if   xOS_ENV_WIN
-    return (_socket >= 0);
+    return (_handle >= 0);
 #elif xOS_ENV_UNIX
-    return (_socket >= 0);
+    return (_handle >= 0);
 #endif
 }
 //-------------------------------------------------------------------------------------------------
@@ -118,22 +118,22 @@ CxSocket::close()
 {
     xCHECK_DO(!isValid(), return);
 
-    xTEST_DIFF(_socket, xSOCKET_HANDLE_INVALID);
+    xTEST_DIFF(_handle, xSOCKET_HANDLE_INVALID);
 
     int_t iRv = xSOCKET_ERROR;
 
 #if   xOS_ENV_WIN
-    iRv = shutdown(_socket, SD_BOTH);
+    iRv = shutdown(_handle, SD_BOTH);
     xTEST_DIFF(iRv, xSOCKET_ERROR);
 
-    iRv = ::closesocket(_socket);
+    iRv = ::closesocket(_handle);
     xTEST_DIFF(iRv, xSOCKET_ERROR);
 #elif xOS_ENV_UNIX
-    iRv = ::close(_socket);
+    iRv = ::close(_handle);
     xTEST_DIFF(iRv, xSOCKET_ERROR);
 #endif
 
-    _socket = xSOCKET_HANDLE_INVALID;
+    _handle = xSOCKET_HANDLE_INVALID;
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -153,12 +153,12 @@ CxSocket::send(
 {
     // TODO: CxSocket::send() - LINUX: ssize_t send(int_t sockfd, cvoid_t *buf, size_t len, int_t flags);
 
-    xTEST_DIFF(_socket, xSOCKET_HANDLE_INVALID);
+    xTEST_DIFF(_handle, xSOCKET_HANDLE_INVALID);
     xTEST_PTR(a_buff);
     /////xTEST_LESS(0, ::lstrlen(buff));
 
 #if   xOS_ENV_WIN
-    ssize_t iRv = ::send(_socket, (LPCSTR)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
+    ssize_t iRv = ::send(_handle, (LPCSTR)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
     xTEST_EQ(iRv != xSOCKET_ERROR && CxSocket::lastError() != WSAEWOULDBLOCK, true);
     xTEST_GR_EQ(ssize_t(a_buffSize * sizeof(tchar_t)), iRv);
 #elif xOS_ENV_UNIX
@@ -168,7 +168,7 @@ CxSocket::send(
         cint_t MSG_NOSIGNAL = 0x20000;
     #endif
 
-    ssize_t iRv = ::send(_socket, a_buff, a_buffSize, MSG_NOSIGNAL);
+    ssize_t iRv = ::send(_handle, a_buff, a_buffSize, MSG_NOSIGNAL);
     xTEST_DIFF(iRv, ssize_t(xSOCKET_ERROR));
     xTEST_GR_EQ(ssize_t(a_buffSize * sizeof(tchar_t)), iRv);
 #endif
@@ -182,7 +182,7 @@ CxSocket::sendAll(
     cint_t          &a_flags
 )
 {
-    xTEST_DIFF(_socket, xSOCKET_HANDLE_INVALID);
+    xTEST_DIFF(_handle, xSOCKET_HANDLE_INVALID);
     xTEST_EQ(a_buff.empty(), false);
     xTEST_LESS(size_t(0U), a_buff.size());
 
@@ -223,19 +223,19 @@ CxSocket::receive(
     cint_t       &a_flags
 )
 {
-    xTEST_DIFF(_socket, xSOCKET_HANDLE_INVALID);
+    xTEST_DIFF(_handle, xSOCKET_HANDLE_INVALID);
     xTEST_PTR(a_buff);
     xTEST_DIFF(a_buffSize, (size_t)0);
 
     std::memset(a_buff, 0, a_buffSize * sizeof(tchar_t));
 
 #if   xOS_ENV_WIN
-    int_t iRv = ::recv(_socket, (LPSTR)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
+    int_t iRv = ::recv(_handle, (LPSTR)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
     xTEST_EQ(iRv != xSOCKET_ERROR && CxSocket::lastError() != WSAEWOULDBLOCK, true);
     xTEST_DIFF(iRv, 0);  // gracefully closed
     xTEST_GR_EQ(int_t(a_buffSize * sizeof(tchar_t)), iRv);
 #elif xOS_ENV_UNIX
-    ssize_t iRv = ::recv(_socket, (char *)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
+    ssize_t iRv = ::recv(_handle, (char *)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
     xTEST_DIFF(iRv, (ssize_t)xSOCKET_ERROR);
     xTEST_DIFF(iRv, (ssize_t)0);  // gracefully closed
     xTEST_GR_EQ(ssize_t(a_buffSize * sizeof(tchar_t)), iRv);
@@ -261,16 +261,16 @@ CxSocket::recvAll(
         ulong_t arg = (ulong_t)a_flags;
 
     #if   xOS_ENV_WIN
-        iRv = ::ioctlsocket(_socket, FIONREAD, &arg);
+        iRv = ::ioctlsocket(_handle, FIONREAD, &arg);
     #elif xOS_ENV_UNIX
-        iRv = ::ioctl      (_socket, FIONREAD, &arg);
+        iRv = ::ioctl      (_handle, FIONREAD, &arg);
     #endif
 
         xCHECK_DO(iRv != 0,       break);
         xCHECK_DO(arg == 0,       break);
         xCHECK_DO(buffSize < arg, arg = buffSize);
 
-        ssize_t uiRv = ::recv(_socket, (char *)&buff[0], arg, 0);
+        ssize_t uiRv = ::recv(_handle, (char *)&buff[0], arg, 0);
         xCHECK_DO(uiRv <= 0, break);
 
         sRv.append(buff, uiRv);
@@ -323,7 +323,7 @@ CxSocket::sendBytes(
     sendTimeout.tv_usec = SOCKET_TIMEOUT;
 
     fd_set fds;    FD_ZERO(&fds);
-    FD_SET(_socket, &fds);
+    FD_SET(_handle, &fds);
 
     // ..as long_t as we need to send data...
     while (messageLength > 0) {
@@ -336,7 +336,7 @@ CxSocket::sendBytes(
         xCHECK_RET(iRv < 0, lastError());
 
         // send a few bytes
-        sendStatus = ::send(_socket, a_buff, messageLength, 0);
+        sendStatus = ::send(_handle, a_buff, messageLength, 0);
 
         // An error occurred when sending data
         xCHECK_RET(sendStatus < 0, lastError());
@@ -366,7 +366,7 @@ CxSocket::receiveBytes(
     receiveTimeout.tv_usec = SOCKET_TIMEOUT;
 
     fd_set fds;    FD_ZERO(&fds);
-    FD_SET(_socket, &fds);
+    FD_SET(_handle, &fds);
 
     // Until the data is sent
     while (stillToReceive > 0) {
@@ -379,7 +379,7 @@ CxSocket::receiveBytes(
         xCHECK_RET(iRv < 0, lastError());
 
         // receive a few bytes
-        receiveStatus = ::recv(_socket, a_buff, stillToReceive, 0);
+        receiveStatus = ::recv(_handle, a_buff, stillToReceive, 0);
 
         // An error occurred when the function recv ()
         xCHECK_RET(receiveStatus < 0, lastError());
@@ -413,14 +413,14 @@ CxSocket::peerName(
     SOCKADDR_IN sockAddr    = {0};
     int_t       sockAddrLen = sizeof(sockAddr);
 
-    int_t iRv = ::getpeername(_socket, CxUtils::reinterpretCastT<SOCKADDR *>( &sockAddr ),
+    int_t iRv = ::getpeername(_handle, CxUtils::reinterpretCastT<SOCKADDR *>( &sockAddr ),
         &sockAddrLen);
     xTEST_DIFF(iRv, xSOCKET_ERROR);
 #elif xOS_ENV_UNIX
     sockaddr_in sockAddr;   xSTRUCT_ZERO(sockAddr);
     socklen_t   sockAddrLen = sizeof(sockAddr);
 
-    int_t iRv = ::getpeername(_socket, CxUtils::reinterpretCastT<sockaddr *>( &sockAddr ),
+    int_t iRv = ::getpeername(_handle, CxUtils::reinterpretCastT<sockaddr *>( &sockAddr ),
         &sockAddrLen);
     xTEST_DIFF(iRv, xSOCKET_ERROR);
 #endif
@@ -450,14 +450,14 @@ CxSocket::socketName(
     SOCKADDR_IN sockAddr     = {0};
     int_t       sockAddrLen = sizeof(sockAddr);
 
-    int_t iRv = ::getsockname(_socket, CxUtils::reinterpretCastT<SOCKADDR *>( &sockAddr ),
+    int_t iRv = ::getsockname(_handle, CxUtils::reinterpretCastT<SOCKADDR *>( &sockAddr ),
         &sockAddrLen);
     xTEST_DIFF(iRv, xSOCKET_ERROR);
 #elif xOS_ENV_UNIX
     sockaddr_in sockAddr;   xSTRUCT_ZERO(sockAddr);
     socklen_t   sockAddrLen = sizeof(sockAddr);
 
-    int_t iRv = ::getsockname(_socket, CxUtils::reinterpretCastT<sockaddr *>( &sockAddr ),
+    int_t iRv = ::getsockname(_handle, CxUtils::reinterpretCastT<sockaddr *>( &sockAddr ),
         &sockAddrLen);
     xTEST_DIFF(iRv, xSOCKET_ERROR);
 #endif

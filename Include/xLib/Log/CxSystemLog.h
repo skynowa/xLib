@@ -37,7 +37,7 @@ public:
 
 private:
 #if xOS_ENV_WIN
-    HANDLE         _sysLog;     ///< event log handle
+    HANDLE         _handle;     ///< event log handle
 #endif
 
     void_t         _construct(std::ctstring_t &logName);
