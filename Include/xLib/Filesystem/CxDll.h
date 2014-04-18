@@ -43,7 +43,7 @@ private:
     typedef void_t * handle_t;
 #endif
 
-    handle_t        _dll;   ///< dll module handle
+    handle_t        _handle;   ///< dll module handle
 
     void_t          _destruct();
         ///< free
