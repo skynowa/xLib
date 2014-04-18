@@ -29,7 +29,7 @@ unset(xHAVE_TEST_PRIVATE      CACHE)
 unset(xHAVE_TEST_TRACING      CACHE)
 unset(xHAVE_TESTS             CACHE)
 
-option(xHAVE_CPP11             "support C++11 language"                   ON)
+option(xHAVE_CPP11             "support C++11 language"                   OFF)
 option(xHAVE_NAMESPACE_XLIB    "automatically include the xlib namespace" ON)
 option(xHAVE_DEBUG_DIALOG      "debug prompt dialog"                      ON)
 option(xHAVE_DEBUG_MODE_MSGBOX "debug mode 'message box with plain text'" OFF)
@@ -130,7 +130,7 @@ elseif (CMAKE_COMPILER_IS_CLANGXX)
     set(FLAGS ${FLAGS} "-pipe -Wall -pedantic -Wno-deprecated -Wextra -Wconversion -Wshadow "
         "-Wno-unused-parameter -Wno-unused-variable -Wno-unknown-pragmas "
         "-Wno-return-type-c-linkage -Werror "
-        "-fcolor-diagnostics -Qunused-arguments ")
+        "-fcolor-diagnostics -Qunused-arguments")
 elseif (CMAKE_COMPILER_IS_GNUCXX)
     set(LIBS ${LIBS} pthread rt m z)
     set(FLAGS ${FLAGS} "-pipe -Wall -pedantic -Wno-deprecated -Wextra -Wconversion -Wshadow "
