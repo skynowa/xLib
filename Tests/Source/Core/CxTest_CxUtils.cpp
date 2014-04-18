@@ -18,7 +18,7 @@ enum EData {
     datTree
 };
 
-xNAMESPACE_ANONYM_END;
+xNAMESPACE_ANONYM_END
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
