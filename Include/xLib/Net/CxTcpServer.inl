@@ -22,7 +22,7 @@ CxTcpServer::bind(
     cushort_t &a_port
 ) const
 {
-    xTEST_DIFF(_socket, xSOCKET_HANDLE_INVALID);
+    xTEST_DIFF(_handle, xSOCKET_HANDLE_INVALID);
     xTEST_NA(a_port);
 
     sockaddr_in sockAddr;    xSTRUCT_ZERO(sockAddr);
@@ -30,14 +30,14 @@ CxTcpServer::bind(
     sockAddr.sin_addr.s_addr = INADDR_ANY;
     sockAddr.sin_port        = htons(a_port);
 
-    int_t iRv = ::bind(_socket, CxUtils::reinterpretCastT<const sockaddr *>( &sockAddr ),
+    int_t iRv = ::bind(_handle, CxUtils::reinterpretCastT<const sockaddr *>( &sockAddr ),
         sizeof(sockAddr));
     xTEST_DIFF(iRv, xSOCKET_ERROR);
 
 #if 0
     int_t iOpt = 1;
 
-    if (::setsockopt(_socket, SOL_SOCKET, SO_REUSEADDR, (LPSTR)&iOpt, sizeof(iOpt)) < 0) {
+    if (::setsockopt(_handle, SOL_SOCKET, SO_REUSEADDR, (LPSTR)&iOpt, sizeof(iOpt)) < 0) {
         return false;
     }
 #endif
@@ -48,9 +48,9 @@ CxTcpServer::listen(
     cint_t &a_backlog /* = xSOCKET_CONNECTIONS_MAX */
 ) const
 {
-    xTEST_DIFF(_socket, xSOCKET_HANDLE_INVALID);
+    xTEST_DIFF(_handle, xSOCKET_HANDLE_INVALID);
 
-    int_t iRv = ::listen(_socket, a_backlog);
+    int_t iRv = ::listen(_handle, a_backlog);
     xTEST_DIFF(iRv, xSOCKET_ERROR);
 }
 //-------------------------------------------------------------------------------------------------
@@ -60,7 +60,7 @@ CxTcpServer::accept(
     std::tstring_t *a_fromIp
 ) const
 {
-    xTEST_DIFF(_socket, xSOCKET_HANDLE_INVALID);
+    xTEST_DIFF(_handle, xSOCKET_HANDLE_INVALID);
     xTEST_PTR(a_serverSocket);
     xTEST_PTR(a_fromIp);
 
@@ -70,13 +70,13 @@ CxTcpServer::accept(
     sockaddr_in cliaddr = {0};
     int_t       addrlen = sizeof(cliaddr);
 
-    client = ::accept(_socket, CxUtils::reinterpretCastT<sockaddr *>( &cliaddr ), &addrlen);
+    client = ::accept(_handle, CxUtils::reinterpretCastT<sockaddr *>( &cliaddr ), &addrlen);
     xTEST_DIFF(client, xSOCKET_HANDLE_INVALID);
 #elif xOS_ENV_UNIX
     sockaddr_in cliaddr; xSTRUCT_ZERO(cliaddr);
     socklen_t   addrlen = sizeof(cliaddr);
 
-    client = ::accept(_socket, CxUtils::reinterpretCastT<sockaddr *>( &cliaddr ), &addrlen);
+    client = ::accept(_handle, CxUtils::reinterpretCastT<sockaddr *>( &cliaddr ), &addrlen);
     xTEST_DIFF(client, xSOCKET_HANDLE_INVALID);
 #endif
 

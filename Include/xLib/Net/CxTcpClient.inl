@@ -37,10 +37,10 @@ CxTcpClient::isReadable() const
     timeval timeoutVal = {1, 0};
     fd_set  fds;         FD_ZERO(&fds);
 
-    FD_SET(_socket, &fds);
+    FD_SET(_handle, &fds);
 
     int_t iRv = ::select(0, &fds, xPTR_NULL, xPTR_NULL, &timeoutVal);
-    xCHECK_RET(iRv <= 0 || !FD_ISSET(_socket, &fds), false);
+    xCHECK_RET(iRv <= 0 || !FD_ISSET(_handle, &fds), false);
 
     return true;
 }
@@ -51,10 +51,10 @@ CxTcpClient::isWritable() const
     timeval timeoutVal = {1, 0};
     fd_set  fds;         FD_ZERO(&fds);
 
-    FD_SET(_socket, &fds);
+    FD_SET(_handle, &fds);
 
     int_t iRv = ::select(0, xPTR_NULL, &fds, xPTR_NULL, &timeoutVal);
-    xCHECK_RET(iRv <= 0 || !FD_ISSET(_socket, &fds), false);
+    xCHECK_RET(iRv <= 0 || !FD_ISSET(_handle, &fds), false);
 
     return true;
 }
@@ -65,7 +65,7 @@ CxTcpClient::connect(
     cushort_t       &a_port
 ) const
 {
-    xTEST_DIFF(_socket, xSOCKET_HANDLE_INVALID);
+    xTEST_DIFF(_handle, xSOCKET_HANDLE_INVALID);
     xTEST_EQ(a_ip.empty(), false);
     xTEST_EQ((65535 > a_port) && (0 < a_port), true);
 
@@ -77,7 +77,7 @@ CxTcpClient::connect(
     sockAddr.sin_addr.s_addr = ::inet_addr(ip.c_str());
     sockAddr.sin_port        = htons(a_port); // TODO: CxTcpClient::connect() - htons
 
-    int_t iRv = ::connect(_socket, CxUtils::reinterpretCastT<sockaddr *>( &sockAddr ),
+    int_t iRv = ::connect(_handle, CxUtils::reinterpretCastT<sockaddr *>( &sockAddr ),
         sizeof(sockAddr));
     xTEST_DIFF(iRv, xSOCKET_ERROR);
 }
@@ -88,15 +88,15 @@ CxTcpClient::ioctl(
     ulong_t *a_args
 ) const
 {
-    xTEST_DIFF(xSOCKET_HANDLE_INVALID, _socket);
+    xTEST_DIFF(xSOCKET_HANDLE_INVALID, _handle);
 
     int_t iRv = xSOCKET_ERROR;
 
 #if   xOS_ENV_WIN
-    iRv = ::ioctlsocket(_socket, a_command, a_args);
+    iRv = ::ioctlsocket(_handle, a_command, a_args);
     xTEST_DIFF(iRv, xSOCKET_ERROR);
 #elif xOS_ENV_UNIX
-    iRv = ::ioctl(_socket, a_command, a_args);
+    iRv = ::ioctl(_handle, a_command, a_args);
     xTEST_DIFF(iRv, xSOCKET_ERROR);
 #endif
 }
@@ -120,7 +120,7 @@ CxTcpClient::setNonBlockingMode(
 #elif xOS_ENV_UNIX
     int_t flags = - 1;
 
-    flags = ::fcntl(_socket, F_GETFL);
+    flags = ::fcntl(_handle, F_GETFL);
     xTEST_DIFF(flags, xSOCKET_ERROR);
 
     if (a_flag) {
@@ -129,7 +129,7 @@ CxTcpClient::setNonBlockingMode(
         flags = (flags & ~O_NONBLOCK);
     }
 
-    flags = ::fcntl(_socket, F_SETFL, flags);
+    flags = ::fcntl(_handle, F_SETFL, flags);
     xTEST_DIFF(flags, xSOCKET_ERROR);
 #endif
 }
