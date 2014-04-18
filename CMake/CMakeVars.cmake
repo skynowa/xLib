@@ -11,12 +11,7 @@ message("* Project:")
 message("*   PROJECT_NAME:                " ${PROJECT_NAME})
 message("*   PROJECT_TYPE:                " ${PROJECT_TYPE})
 message("*   PROJECT_LABEL:               " ${PROJECT_LABEL})
-message("*   PROJECT_WC_REVISION:         " ${PROJECT_WC_REVISION})
 message("*")
-
-
-
-
 
 message("* Pathes:")
 # if you are building in-source, this is the same as CMAKE_SOURCE_DIR, otherwise
@@ -57,7 +52,6 @@ message("*   CMAKE_INCLUDE_PATH:          " ${CMAKE_INCLUDE_PATH})
 message("*   CMAKE_LIBRARY_PATH:          " ${CMAKE_LIBRARY_PATH})
 message("*")
 
-
 message("* System:")
 # the complete system name, e.g. "Linux-2.4.22", "FreeBSD-5.4-RELEASE" or "Windows 5.1"
 message("*   CMAKE_SYSTEM:                " ${CMAKE_SYSTEM})
@@ -69,7 +63,6 @@ message("*   CMAKE_SYSTEM_VERSION:        " ${CMAKE_SYSTEM_VERSION})
 message("*   CMAKE_SYSTEM_PROCESSOR:      " ${CMAKE_SYSTEM_PROCESSOR})
 message("*")
 
-
 message("* OS:")
 # is TRUE on all UNIX-like OS's, including Apple OS X and CygWin
 message("*   UNIX:                        " ${UNIX})
@@ -78,7 +71,6 @@ message("*   WIN32:                       " ${WIN32})
 # is TRUE on Apple OS X
 message("*   APPLE:                       " ${APPLE})
 message("*")
-
 
 message("* Rules:")
 # set this to true if you don't want to rebuild the object files if the rules have changed,
@@ -96,7 +88,6 @@ message("*   CMAKE_VERBOSE_MAKEFILE:      " ${CMAKE_VERBOSE_MAKEFILE})
 # you want to use the generated build files on another machine.
 message("*   CMAKE_SUPPRESS_REGENERATION: " ${CMAKE_SUPPRESS_REGENERATION})
 message("*")
-
 
 message("* Tools:")
 #
@@ -133,7 +124,6 @@ message("*   CMAKE_COMPILER_2005:         " ${CMAKE_COMPILER_2005})
 message("*   CMAKE_AR:                    " ${CMAKE_AR})
 message("*   CMAKE_RANLIB:                " ${CMAKE_RANLIB})
 message("*")
-
 
 message("* Flags:")
 # A simple way to get switches to the compiler is to use ADD_DEFINITIONS().

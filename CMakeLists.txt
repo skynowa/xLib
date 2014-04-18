@@ -59,8 +59,8 @@ message("")
 #--------------------------------------------------------------------------------------------------
 # modules
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMake")
-include(CMake/CMakeVars.cmake)
 include(Configure)
+include(CMake/CMakeVars.cmake)
 
 #--------------------------------------------------------------------------------------------------
 # includes, libs
@@ -127,14 +127,16 @@ elseif (MINGW)
     set(FLAGS ${FLAGS} "-Wall -pipe")
 elseif (CMAKE_COMPILER_IS_CLANGXX)
     set(LIBS ${LIBS} pthread rt m z)
-    set(FLAGS ${FLAGS} "-pipe -Wall -Wno-deprecated -Wextra -Wconversion -Wshadow "
+    set(FLAGS ${FLAGS} "-pipe -Wall -pedantic -Wno-deprecated -Wextra -Wconversion -Wshadow "
         "-Wno-unused-parameter -Wno-unused-variable -Wno-unknown-pragmas "
-        "-Wno-return-type-c-linkage -Werror -fcolor-diagnostics -Qunused-arguments ")
+        "-Wno-return-type-c-linkage -Werror "
+        "-fcolor-diagnostics -Qunused-arguments ")
 elseif (CMAKE_COMPILER_IS_GNUCXX)
     set(LIBS ${LIBS} pthread rt m z)
-    set(FLAGS ${FLAGS} "-pipe -Wall -Wno-deprecated -Wextra -Wconversion -Wshadow "
+    set(FLAGS ${FLAGS} "-pipe -Wall -pedantic -Wno-deprecated -Wextra -Wconversion -Wshadow "
         "-Wno-unused-parameter -Wno-unused-variable -Wno-unknown-pragmas "
-        "-Wno-return-type-c-linkage -Werror")
+        "-Wno-return-type-c-linkage -Werror "
+        "")
 else()
     message("xLib: unknown compiler")
 endif()
