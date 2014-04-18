@@ -1257,13 +1257,12 @@ CxSystemInfo::_passwdFileEntry(
         xTEST_LESS(0L, buffSize);
     }
 
-    passwd *pwd = xPTR_NULL;
-    char    buff[buffSize];
+    std::string  buff;
+    passwd      *pwd = xPTR_NULL;
 
-    void_t *pvRv = std::memset(&buff[0], 0, sizeof(buff));
-    xUNUSED(pvRv);
+    buff.resize(buffSize);
 
-    int_t iRv = ::getpwuid_r(::getuid(), a_passwdEntry, buff, sizeof(buff), &pwd);
+    int_t iRv = ::getpwuid_r(::getuid(), a_passwdEntry, &buff.at(0), buff.size(), &pwd);
     xTEST_EQ(iRv, 0);
     xTEST_PTR(pwd);
 
