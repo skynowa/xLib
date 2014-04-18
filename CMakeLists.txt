@@ -29,7 +29,7 @@ unset(xHAVE_TEST_PRIVATE      CACHE)
 unset(xHAVE_TEST_TRACING      CACHE)
 unset(xHAVE_TESTS             CACHE)
 
-option(xHAVE_CPP11             "support C++11 language"                   OFF)
+option(xHAVE_CPP11             "support C++11 language"                   ON)
 option(xHAVE_NAMESPACE_XLIB    "automatically include the xlib namespace" ON)
 option(xHAVE_DEBUG_DIALOG      "debug prompt dialog"                      ON)
 option(xHAVE_DEBUG_MODE_MSGBOX "debug mode 'message box with plain text'" OFF)
