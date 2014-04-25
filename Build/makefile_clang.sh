@@ -10,7 +10,7 @@ export CC="clang"
 export CXX="clang++"
 
 DIR_XLIB="../xLib"
-DIR_BUILD="../../xLib_`basename -s .sh $0`"
+DIR_BUILD="../../xLib_makefile_clang"
 
 
 # build
