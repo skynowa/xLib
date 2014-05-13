@@ -262,7 +262,7 @@ CxProcessInfo::commandLine(
             func_t func = (func_t)dll.procAddress(xT("NtQueryInformationProcess"));
             xTEST_PTR(func);
 
-        #if xARCH_X86
+        #if xARCH_BITS_32
             const PROCESSINFOCLASS    info            = ProcessBasicInformation;
         #else
             const PROCESSINFOCLASS    info            = ProcessWow64Information;

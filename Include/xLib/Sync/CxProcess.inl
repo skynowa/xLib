@@ -527,7 +527,7 @@ CxProcess::currentParentId()
     bool_t bRv = dll.isProcExists(xT("NtQueryInformationProcess"));
     xCHECK_RET(!bRv, invalidId);
 
-#if xARCH_X86
+#if xARCH_BITS_32
     const PROCESSINFOCLASS    infoClass             = ProcessBasicInformation;
 #else
     const PROCESSINFOCLASS    infoClass             = ProcessWow64Information;

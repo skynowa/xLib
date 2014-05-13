@@ -470,7 +470,7 @@
 //-------------------------------------------------------------------------------------------------
 // qualifiers
 #if   xOS_ENV_WIN
-    #ifdef xARCH_X86
+    #ifdef xARCH_BITS_32
         #define xPR_SIZET xT("u")
             ///< qualifier for std::size_t
         #define xPR_I64d  xT("lld")
@@ -494,7 +494,7 @@
             ///< qualifier for long_t long_t int_t (hex)
     #endif
 #elif xOS_ENV_UNIX
-    #ifdef xARCH_X86
+    #ifdef xARCH_BITS_32
         #define xPR_SIZET xT("zu")
             ///< qualifier for std::size_t
         #define xPR_I64d  xT("lld")
