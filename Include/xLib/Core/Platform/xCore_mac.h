@@ -1,5 +1,5 @@
 /**
- * \file  xCore_mac.h
+ * \file  xCore_apple.h
  * \brief Mac core header for xLib
  */
 
