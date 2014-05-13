@@ -12,7 +12,8 @@
     #include <sys/prctl.h>
     #include <sys/sysinfo.h>
     #include <mntent.h>
+    #include <gnu/libc-version.h>
 #elif xOS_ANDROID
-    #error xLib: xOS_ANDROID
+
 #endif
 //-------------------------------------------------------------------------------------------------
