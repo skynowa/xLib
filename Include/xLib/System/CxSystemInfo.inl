@@ -197,7 +197,7 @@ CxSystemInfo::osArch()
         BOOL isWow64Process = ::IsWow64Process(::GetCurrentProcess(), &is64BitOs);
 
         oaRv = (isFuncExist && isWow64Process && is64BitOs) ? oa64bit : oa32bit;
-    #elif xARCH_X64
+    #elif xARCH_BITS_64
         oaRv = oa64bit;
     #else
         // 64-bit Windows does not support Win16

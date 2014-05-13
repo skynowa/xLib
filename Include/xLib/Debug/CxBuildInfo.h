@@ -34,6 +34,8 @@ public:
         ///< OS name
     std::tstring_t arch() const xWARN_UNUSED_RV;
         ///< architecture
+    std::tstring_t bitsArch() const xWARN_UNUSED_RV;
+        ///< bits architecture
     std::tstring_t compiler() const xWARN_UNUSED_RV;
         ///< compilier
     bool_t         isUnicodeEncoding() const xWARN_UNUSED_RV;
