@@ -66,50 +66,72 @@
 #elif defined(__unix__) || defined(__unix)
     #define xOS_ENV_UNIX  1
         ///< Unix environment
-#elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__bsdi__) || \
-        defined(__DragonFly__)
-    #define xOS_ENV_BSD   1
-        ///< BSD environment
-#elif defined(macintosh) || defined(Macintosh) || defined(__APPLE__) || defined(__MACH__)
-    #define xOS_ENV_APPLE   1
-        ///< Apple environment
+
+    #if   defined(linux) || defined(__linux) || defined(__linux__)
+        #define xOS_ENV_LINUX   1
+            ///< Linux environment
+    #elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || \
+            defined(__bsdi__) || defined(__DragonFly__)
+        #define xOS_ENV_BSD   1
+            ///< BSD environment
+    #elif defined(macintosh) || defined(Macintosh) || defined(__APPLE__) || defined(__MACH__)
+        #define xOS_ENV_APPLE   1
+            ///< Apple environment
+    #else
+        #error xLib: unsupported OS environment
+    #endif
 #else
     #error xLib: unsupported OS environment
 #endif
 
 //-------------------------------------------------------------------------------------------------
 // OS family
-#if defined(_WIN32) || defined(_WIN64) || defined(__WIN32__) || defined(__TOS_WIN__) || \
-        defined(__WINDOWS__)
-    #define xOS_WIN     1
-        ///< operating system Windows
-#elif defined(linux) || defined(__linux) || defined(__linux__)
-    #define xOS_LINUX   1
-        ///< operating system Linux
-#elif defined(__FreeBSD__)
-    #define xOS_FREEBSD 1
-        ///< operating system FreeBSD
-#elif defined(macintosh) || defined(Macintosh) || defined(__APPLE__) || defined(__MACH__)
-    #define xOS_MACOS   1
-        ///< operating system MacOS
-#else
-    #error xLib: unsupported OS
+#if   xOS_ENV_WIN
+    #define xOS_WIN 1
+        ///< OS Windows
+#elif xOS_ENV_UNIX
+    #if   xOS_ENV_LINUX
+        #if  !defined(__ANDROID__)
+            #define xOS_LINUX 1
+                ///< OS Linux
+        #elif defined(__ANDROID__)
+            #define xOS_ANDROID 1
+                ///< OS Android
+        #else
+            #error xLib: unsupported OS
+        #endif
+    #elif xOS_ENV_BSD
+        #if defined(__FreeBSD__)
+            #define xOS_FREEBSD 1
+                ///< OS FreeBSD
+        #else
+                #error xLib: unsupported OS
+        #endif
+    #elif xOS_ENV_APPLE
+        #if defined(__APPLE__ && __MACH__)
+            #define xOS_MACOSX 1
+                ///< OS MacOSX
+        #else
+                #error xLib: unsupported OS
+        #endif
+    #endif
 #endif
 
 //-------------------------------------------------------------------------------------------------
 // OS version
-#define xOS_WIN_VER     WINVER      ///< Windows version
+#define xOS_WIN_VER     WINVER          ///< Windows version
 
-#define xOS_WIN_NT4     0x0400      ///< Windows NT 4.0
-#define xOS_WIN_2K      0x0500      ///< Windows 2000
-#define xOS_WIN_XP      0x0501      ///< Windows Server 2003, Windows XP
-#define xOS_WIN_S03     0x0502      ///< Windows Server 2003 SP1, Windows XP SP2
-#define xOS_WIN_VISTA   0x0600      ///< Windows Vista, Windows Server 2008
-#define xOS_WIN_7       0x0601      ///< Windows 7, Windows Server 2008 R2
+#define xOS_WIN_NT4     0x0400          ///< Windows NT 4.0
+#define xOS_WIN_2K      0x0500          ///< Windows 2000
+#define xOS_WIN_XP      0x0501          ///< Windows Server 2003, Windows XP
+#define xOS_WIN_S03     0x0502          ///< Windows Server 2003 SP1, Windows XP SP2
+#define xOS_WIN_VISTA   0x0600          ///< Windows Vista, Windows Server 2008
+#define xOS_WIN_7       0x0601          ///< Windows 7, Windows Server 2008 R2
 
-#define xOS_LINUX_VER   0           ///< Linux version
+#define xOS_LINUX_VER   0               ///< Linux version
+#define xOS_ANDROID_VER __ANDROID_API__ ///< Android version from <android/api-level.h>
 
-#define xOS_FREEBSD_VER __FreeBSD__ ///< FreeBSD version
+#define xOS_FREEBSD_VER __FreeBSD__     ///< FreeBSD version
 
 //-------------------------------------------------------------------------------------------------
 // OS architecture
