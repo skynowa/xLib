@@ -144,7 +144,7 @@
         ///< architecture AMD64
 #elif defined(__arm__) || defined(__thumb__) || defined(__TARGET_ARCH_ARM) || \
         defined(__TARGET_ARCH_THUMB) || defined(_ARM) || defined(_M_ARM) || defined(_M_ARMT)
-    #define xARCH_ARM 1
+    #define xARCH_ARM 1 // ???
         ///< architecture ARM
 #elif defined(__aarch64__)
     #define xARCH_ARM64 1
@@ -153,10 +153,10 @@
     #define xARCH_BLACKFIN 1
         ///< architecture Blackfin
 #elif defined(__convex__)
-    #define xARCH_CONVEX 1
+    #define xARCH_CONVEX 1    // ???
         ///< architecture Convex
 #elif defined(__epiphany__)
-    #define xARCH_EPIPHANY 1
+    #define xARCH_EPIPHANY 1    // ???
         ///< architecture Epiphany
 #elif defined(__hppa__) || defined(__HPPA__) || defined(__hppa)
     #define xARCH_HP_PA_RISC 1
@@ -183,11 +183,11 @@
     #define xARCH_POWERPC 1
         ///< architecture PowerPC
 #elif defined(pyr)
-    #define xARCH_PYRAMID_9810 1
+    #define xARCH_PYRAMID_9810 1 // ???
         ///< architecture Pyramid 9810
 #elif defined(__THW_RS6000) || defined(_IBMR2) || defined(_POWER) || defined(_ARCH_PWR) || \
         defined(_ARCH_PWR2) || defined(_ARCH_PWR3) || defined(_ARCH_PWR4)
-    #define xARCH_RS_6000 1
+    #define xARCH_RS_6000 1 // ???
         ///< architecture RS/6000
 #elif defined(__sparc__) || defined(__sparc)
     #define xARCH_SPARC 1
@@ -197,14 +197,14 @@
         ///< architecture SuperH
 #elif defined(__370__) || defined(__THW_370__) || defined(__s390__) || defined(__s390x__) || \
         defined(__zarch__)|| defined(__SYSC_ZARCH__)
-    #define xARCH_SYSTEMZ 1
+    #define xARCH_SYSTEMZ 1 // ???
         ///< architecture SystemZ
 #elif defined(_TMS320C2XX) || defined(__TMS320C2000__) || defined(_TMS320C5X) || \
         defined(__TMS320C55X__) || defined(_TMS320C6X) || defined(__TMS320C6X__)
-    #define xARCH_TMS320 1
+    #define xARCH_TMS320 1 // ???
         ///< architecture TMS320
 #elif defined(__TMS470__)
-    #define xARCH_TMS470 1
+    #define xARCH_TMS470 1 // ???
         ///< architecture TMS470
 #else
     #error xLib: unsupported architecture
@@ -212,15 +212,13 @@
 
 //-------------------------------------------------------------------------------------------------
 // OS bits architecture
-#if defined(i386) || defined(__i386__) || defined(__i486__) || defined(__i586__) || \
-        defined(__i686__) || defined(__i386) || defined(_M_IX86) || defined(__X86__) || \
-        defined(_X86_) || defined(__THW_INTEL__) || defined(__I86__) || defined(__I86__) || \
-        defined(__INTEL__) || defined(__arm__)
+#if   defined(xARCH_ARM) || defined(xARCH_BLACKFIN) || defined(xARCH_INTEL_X86) || \
+        defined(xARCH_MOTOROLA_68K) || defined(xARCH_SUPERH)
     #define xARCH_BITS_32 1
         ///< architecture 32-bit
-#elif defined(__amd64__) || defined(__amd64) || defined(__x86_64__) || defined(__x86_64) || \
-        defined(_M_X64) || defined(__ia64__) || defined(_IA64) || defined(__IA64__) || \
-        defined(__ia64) || defined(_M_IA64) || defined(__aarch64__)
+#elif defined(xARCH_ALPHA) || defined(xARCH_AMD64) || defined(xARCH_ARM64) || \
+        defined(xARCH_HP_PA_RISC) || defined(xARCH_IA64) || defined(xARCH_MIPS) || \
+        defined(xARCH_POWERPC) || defined(xARCH_SPARC)
     #define xARCH_BITS_64 1
         ///< architecture 64-bit
 #else
