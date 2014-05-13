@@ -6,8 +6,6 @@
 
 #pragma once
 
-#ifndef xLib_xLibH
-#define xLib_xLibH
 //-------------------------------------------------------------------------------------------------
 // Core
 #include <xLib/Core/xCore.h>
@@ -144,4 +142,3 @@
 #include <xLib/Test/CxTestManager.h>
 #include <xLib/Test/xTest.h>
 //-------------------------------------------------------------------------------------------------
-#endif // xLib_xLibH
