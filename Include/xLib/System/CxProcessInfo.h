@@ -18,7 +18,7 @@ class CxProcessInfo
     /// process information
 {
 public:
-                    CxProcessInfo() {}
+                    CxProcessInfo();
         ///< constructor
     virtual        ~CxProcessInfo() {}
         ///< destructor
