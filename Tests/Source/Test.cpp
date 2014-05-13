@@ -171,7 +171,6 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
         manager.add(new CxTest_CxHandleT);
         manager.add(new CxTest_CxType);
         manager.add(new CxTest_CxFlags);
-        manager.add(new CxTest_CxFunctorT);
         manager.add(new CxTest_CxArray);
         manager.add(new CxTest_CxAutoReset);
         manager.add(new CxTest_CxChar);
