@@ -184,7 +184,7 @@ CxSystemInfo::osArch()
     ExOsArch oaRv = oaUnknown;
 
 #if   xOS_ENV_WIN
-    #if   xARCH_X86
+    #if   xARCH_BITS_32
         BOOL isFuncExist = FALSE;
         {
             CxDll dll;

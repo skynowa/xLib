@@ -51,7 +51,7 @@ CxTest_CxIpcSemaphore::unit(
 
     #if   xOS_ENV_WIN
         uintptr_t puiRv = ::_beginthreadex(NULL, 0U, &_Functor::worker, &semSemaphore, 0U, NULL);
-        #if xARCH_X86
+        #if xARCH_BITS_32
             xTEST_DIFF(uintptr_t(0), puiRv);
         #else
             xTEST_PTR(puiRv);

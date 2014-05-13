@@ -793,14 +793,14 @@ CxThread::setCpuAffinity(
 
     DWORD_PTR mask = 0;
 
-    #if xARCH_X86
+    #if xARCH_BITS_32
         mask = 1UL  << a_procNum;
     #else
         mask = 1i64 << a_procNum;
     #endif
 
     DWORD_PTR pdwRv = ::SetThreadAffinityMask(_handle.get(), mask);
-    #if xARCH_X86
+    #if xARCH_BITS_32
         xTEST_DIFF(0UL, pdwRv);
     #else
         xTEST_PTR(pdwRv);
