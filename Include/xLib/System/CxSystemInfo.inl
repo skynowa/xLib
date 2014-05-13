@@ -919,14 +919,14 @@ CxSystemInfo::cpuUsage() const
 
         // read proc file for the first time
         if (isFirstRun) {
-            FILE *file = fopen("/proc/stat", "r");
+            FILE *file = std::fopen("/proc/stat", "r");
             xTEST_PTR(file);
 
-            iRv = fscanf(file, "cpu %" xPR_I64u " %" xPR_I64u " %" xPR_I64u " %" xPR_I64u,
+            iRv = std::fscanf(file, "cpu %" xPR_I64u " %" xPR_I64u " %" xPR_I64u " %" xPR_I64u,
                 &userTotalOld, &userTotalLowOld, &sysTotalOld, &totalIdleOld);
             xTEST_DIFF(iRv, - 1);
 
-            iRv = fclose(file);
+            iRv = std::fclose(file);
             xTEST_DIFF(iRv, - 1);
 
             isFirstRun = false;
@@ -934,14 +934,14 @@ CxSystemInfo::cpuUsage() const
 
         // read proc file for the next times
         {
-            FILE *file = fopen("/proc/stat", "r");
+            FILE *file = std::fopen("/proc/stat", "r");
             xTEST_PTR(file);
 
-            iRv = fscanf(file, "cpu %" xPR_I64u " %" xPR_I64u " %" xPR_I64u " %" xPR_I64u,
+            iRv = std::fscanf(file, "cpu %" xPR_I64u " %" xPR_I64u " %" xPR_I64u " %" xPR_I64u,
                 &userTotal, &userTotalLow, &sysTotal, &totalIdle);
             xTEST_DIFF(iRv, - 1);
 
-            iRv = fclose(file);
+            iRv = std::fclose(file);
             xTEST_DIFF(iRv, - 1);
         }
 
