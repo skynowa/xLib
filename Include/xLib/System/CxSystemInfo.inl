@@ -11,12 +11,6 @@
 #include <xLib/Filesystem/CxDll.h>
 #include <xLib/System/CxEnvironment.h>
 
-#if   xOS_ENV_WIN
-    #include <shlobj.h>
-#elif xOS_ENV_UNIX
-    #include <gnu/libc-version.h>
-#endif
-
 #if xHAVE_GETCPU
     #include <linux/getcpu.h>
 #endif
