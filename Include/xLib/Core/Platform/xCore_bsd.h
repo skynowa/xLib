@@ -1,13 +1,15 @@
 /**
- * \file  xCore_apple.h
- * \brief Mac core header for xLib
+ * \file  xCore_unix.h
+ * \brief Unix core header for xLib
  */
 
 
 #pragma once
 
 //-------------------------------------------------------------------------------------------------
-#if xOS_MACOSX
+#if xOS_FREEBSD
+    #include <osreldate.h>
+    #include <pthread_np.h>     // lib: libpthread, -lpthread (FreeBSD)
     #include <sys/mount.h>
     #include <sys/statvfs.h>
     #include <sys/resource.h>
