@@ -23,7 +23,7 @@ public:
         rtUnknown,  ///< unknown
         rtMsgbox,   ///< as message box with plain text (GUI)
         rtStdout,   ///< to std::cout with plain text
-        rtLog,      ///< to log with plain text
+        rtLog       ///< to log with plain text
     };
 
                    CxErrorReport(culong_t &lastError, std::ctstring_t &file, culong_t &line,
