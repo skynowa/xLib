@@ -11,13 +11,41 @@ Web:     https://bitbucket.org/skynowa/xlib
          https://sourceforge.net/p/x-lib
 
 Features:
-    - platforms: Windows, Linux, FreeBSD, Mac OS
+    - platforms:
+        Windows:
+            + Windows (XP, Vista, Seven)
+            - Windows CE
+        Unix:
+            BSD:
+                - DragonFly BSD
+                + FreeBSD
+                - OpenBSD
+                - NetBSD
+            Linux:
+                + Centos
+                + Debian
+                + Fedora
+                + OpenSUSE
+                + RedHat
+                + Ubuntu
+                + Android
+            Apple:
+                - OSX
+                - iOS
+                - Darwin
+            Solaris:
+                - Oracle Solaris
+                - Open Indiana
+
     - architecture: x86, x64
     - compilers: MinGW, MSVC, CodeGear, Clang, GCC
     - header only
     - unicode support
 
 Repositories:
+    - https://code.google.com
+        git clone https://skynowa@code.google.com/p/xlib-library/
+
     - http://bitbucket.org
         git clone https://skynowa@bitbucket.org/skynowa/xlib.git
         git clone git@bitbucket.org:skynowa/xlib.git
