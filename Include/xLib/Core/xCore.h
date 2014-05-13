@@ -196,7 +196,7 @@ namespace xlib
 #elif xOS_ENV_UNIX
     #include <xLib/Core/Platform/xCore_unix.h>
 #elif xOS_ENV_APPLE
-    #include <xLib/Core/Platform/xCore_mac.h>
+    #include <xLib/Core/Platform/xCore_apple.h>
 #endif
 
 #include <xLib/Core/xVersion.h>
