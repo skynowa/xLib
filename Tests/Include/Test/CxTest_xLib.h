@@ -22,7 +22,6 @@
 #include <Test/Core/CxTest_CxHandleT.h>
 #include <Test/Core/CxTest_CxType.h>
 #include <Test/Core/CxTest_CxFlags.h>
-#include <Test/Core/CxTest_CxFunctorT.h>
 #include <Test/Core/CxTest_CxArray.h>
 #include <Test/Core/CxTest_CxAutoReset.h>
 #include <Test/Core/CxTest_CxChar.h>
