@@ -195,8 +195,14 @@ namespace xlib
     #include <xLib/Core/Platform/xCore_win.h>
 #elif xOS_ENV_UNIX
     #include <xLib/Core/Platform/xCore_unix.h>
-#elif xOS_ENV_APPLE
-    #include <xLib/Core/Platform/xCore_apple.h>
+
+    #if   xOS_ENV_LINUX
+        #include <xLib/Core/Platform/xCore_linux.h>
+    #elif xOS_ENV_BSD
+        #include <xLib/Core/Platform/xCore_bsd.h>
+    #elif xOS_ENV_APPLE
+        #include <xLib/Core/Platform/xCore_apple.h>
+    #endif
 #endif
 
 #include <xLib/Core/xVersion.h>

@@ -6,8 +6,6 @@
 
 #pragma once
 
-#ifndef xLib_xCore_unixH
-#define xLib_xCore_unixH
 //-------------------------------------------------------------------------------------------------
 // POSIX
 #include <cpio.h>
@@ -39,21 +37,6 @@
 // dll
 #include <dlfcn.h>
 
-#if   xOS_LINUX
-    #include <sys/vfs.h>
-    #include <sys/prctl.h>
-    #include <sys/sysinfo.h>
-    #include <mntent.h>
-#elif xOS_FREEBSD
-    #include <osreldate.h>
-    #include <pthread_np.h>     // lib: libpthread, -lpthread (FreeBSD)
-    #include <sys/mount.h>
-    #include <sys/statvfs.h>
-    #include <sys/resource.h>
-    #include <sys/sysctl.h>
-    #include <sys/user.h>       // for struct kinfo_proc
-#endif
-
 // socket
 #include <sys/socket.h>
 #include <sys/ioctl.h>
@@ -64,4 +47,3 @@
 // system
 #include <sys/resource.h>
 //-------------------------------------------------------------------------------------------------
-#endif // xLib_xCore_unixH
