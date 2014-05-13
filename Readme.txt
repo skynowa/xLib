@@ -30,9 +30,9 @@ Features:
                 + Ubuntu
                 + Android
             Apple:
-                - OSX
+                + OSX
                 - iOS
-                - Darwin
+                + Darwin
             Solaris:
                 - Oracle Solaris
                 - Open Indiana
