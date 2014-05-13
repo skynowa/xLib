@@ -24,7 +24,6 @@
 #include <xLib/Core/CxType.h>
 #include <xLib/Core/Win/CxCom.h>
 #include <xLib/Core/CxAutoReset.h>
-#include <xLib/Core/CxFunctorT.h>
 #include <xLib/Core/CxUtils.h>
 #include <xLib/Core/CxConst.h>
 #include <xLib/Core/CxChar.h>
