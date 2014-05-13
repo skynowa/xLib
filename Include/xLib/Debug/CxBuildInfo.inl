@@ -98,12 +98,12 @@ CxBuildInfo::osEnvironment() const
 
 #if   xOS_ENV_WIN
     sRv = xT("Windows");
-#elif xOS_ENV_UNIX
-    sRv = xT("Unix");
+#elif xOS_ENV_LINUX
+    sRv = xT("Unix/Linux");
 #elif xOS_ENV_BSD
-    sRv = xT("BSD");
+    sRv = xT("Unix/BSD");
 #elif xOS_ENV_APPLE
-    sRv = xT("Mac");
+    sRv = xT("Unix/Apple");
 #endif
 
     return sRv;
@@ -120,6 +120,8 @@ CxBuildInfo::os() const
         osName = xT("Windows");
     #elif xOS_LINUX
         osName = xT("Linux");
+    #elif xOS_ANDROID
+        osName = xT("Andriod");
     #elif xOS_FREEBSD
         osName = xT("FreeBSD");
     #elif xOS_MACOSX
@@ -144,7 +146,9 @@ CxBuildInfo::os() const
             osVersion = xT("7, Windows Server 2008 R2");
         #endif
     #elif xOS_LINUX
-        xNA
+        // TODO: CxBuildInfo::os() - OS version
+    #elif xOS_LINUX
+        osName = CxString::cast(xOS_ANDROID);
     #elif xOS_FREEBSD
         osName = CxString::cast(xOS_FREEBSD_VER);
     #elif xOS_MACOSX
