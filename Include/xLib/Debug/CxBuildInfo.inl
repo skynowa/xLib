@@ -122,8 +122,8 @@ CxBuildInfo::os() const
         osName = xT("Linux");
     #elif xOS_FREEBSD
         osName = xT("FreeBSD");
-    #elif xOS_MACOS
-        osName = xT("MacOS");
+    #elif xOS_MACOSX
+        osName = xT("MacOSX");
     #endif
     }
 
@@ -147,7 +147,7 @@ CxBuildInfo::os() const
         xNA
     #elif xOS_FREEBSD
         osName = CxString::cast(xOS_FREEBSD_VER);
-    #elif xOS_MACOS
+    #elif xOS_MACOSX
         // TODO: CxBuildInfo::os() - OS version
     #endif
     }
