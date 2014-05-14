@@ -12,7 +12,7 @@
 #elif xOS_ENV_UNIX
     #include "Platform/CxMsgBox_unix.inl"
 #elif xOS_ENV_APPLE
-    #include "Platform/CxMsgBox_mac.inl"
+    #include "Platform/CxMsgBox_apple.inl"
 #endif
 
 xNAMESPACE2_BEGIN(xlib, gui)
