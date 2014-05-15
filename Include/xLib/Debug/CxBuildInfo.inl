@@ -148,8 +148,10 @@ CxBuildInfo::os() const
             osVersion = xT("7, Windows Server 2008 R2");
         #endif
     #elif xOS_LINUX
-        // TODO: CxBuildInfo::os() - OS version
-        osVersion = CxConst::strUnknown();
+        osVersion = CxString::format(xT("%d.%d.%d"),
+                        (xOS_LINUX_VER & 0x00FF0000) >> 16,
+                        (xOS_LINUX_VER & 0x0000FF00) >> 8,
+                        (xOS_LINUX_VER & 0x000000FF) >> 0);
     #elif xOS_ANDROID
         osVersion = CxString::cast(xOS_ANDROID);
     #elif xOS_FREEBSD
