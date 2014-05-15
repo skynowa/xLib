@@ -134,6 +134,11 @@
 #define xOS_WIN_7       0x0601
     ///< Windows 7, Windows Server 2008 R2
 
+#if !defined(KERNEL_VERSION)
+    #define KERNEL_VERSION(a, b, c) (((a) << 16) + ((b) << 8) + (c))
+        ///< get Linux kernel version
+#endif
+
 #define xOS_LINUX_VER   LINUX_VERSION_CODE
     ///< Linux version
 
