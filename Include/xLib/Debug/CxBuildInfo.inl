@@ -6,6 +6,8 @@
 
 #include <xLib/Core/CxString.h>
 
+#include <xLib/Core/CxConst.h>
+
 
 xNAMESPACE2_BEGIN(xlib, debug)
 
@@ -147,7 +149,8 @@ CxBuildInfo::os() const
         #endif
     #elif xOS_LINUX
         // TODO: CxBuildInfo::os() - OS version
-    #elif xOS_LINUX
+        osName = CxConst::strUnknown();
+    #elif xOS_ANDROID
         osName = CxString::cast(xOS_ANDROID);
     #elif xOS_FREEBSD
         osName = CxString::cast(xOS_FREEBSD_VER);
