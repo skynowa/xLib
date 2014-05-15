@@ -15,7 +15,6 @@
 #include <utime.h>
 #include <csignal>
 #include <sys/ipc.h>
-#include <sys/msg.h>
 #include <sys/time.h>
 #include <sys/utsname.h>
 #include <sys/wait.h>
