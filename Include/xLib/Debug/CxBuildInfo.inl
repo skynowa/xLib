@@ -149,13 +149,14 @@ CxBuildInfo::os() const
         #endif
     #elif xOS_LINUX
         // TODO: CxBuildInfo::os() - OS version
-        osName = CxConst::strUnknown();
+        osVersion = CxConst::strUnknown();
     #elif xOS_ANDROID
-        osName = CxString::cast(xOS_ANDROID);
+        osVersion = CxString::cast(xOS_ANDROID);
     #elif xOS_FREEBSD
-        osName = CxString::cast(xOS_FREEBSD_VER);
+        osVersion = CxString::cast(xOS_FREEBSD_VER);
     #elif xOS_MACOSX
         // TODO: CxBuildInfo::os() - OS version
+        osVersion = CxConst::strUnknown();
     #endif
     }
 
