@@ -119,19 +119,29 @@
 
 //-------------------------------------------------------------------------------------------------
 // OS version
-#define xOS_WIN_VER     WINVER          ///< Windows version
+#define xOS_WIN_VER     WINVER
+    ///< Windows version
+#define xOS_WIN_NT4     0x0400
+    ///< Windows NT 4.0
+#define xOS_WIN_2K      0x0500
+    ///< Windows 2000
+#define xOS_WIN_XP      0x0501
+    ///< Windows Server 2003, Windows XP
+#define xOS_WIN_S03     0x0502
+    ///< Windows Server 2003 SP1, Windows XP SP2
+#define xOS_WIN_VISTA   0x0600
+    ///< Windows Vista, Windows Server 2008
+#define xOS_WIN_7       0x0601
+    ///< Windows 7, Windows Server 2008 R2
 
-#define xOS_WIN_NT4     0x0400          ///< Windows NT 4.0
-#define xOS_WIN_2K      0x0500          ///< Windows 2000
-#define xOS_WIN_XP      0x0501          ///< Windows Server 2003, Windows XP
-#define xOS_WIN_S03     0x0502          ///< Windows Server 2003 SP1, Windows XP SP2
-#define xOS_WIN_VISTA   0x0600          ///< Windows Vista, Windows Server 2008
-#define xOS_WIN_7       0x0601          ///< Windows 7, Windows Server 2008 R2
+#define xOS_LINUX_VER   LINUX_VERSION_CODE
+    ///< Linux version
 
-#define xOS_LINUX_VER   0               ///< Linux version
-#define xOS_ANDROID_VER __ANDROID_API__ ///< Android version from <android/api-level.h>
+#define xOS_ANDROID_VER __ANDROID_API__
+    ///< Android version from <android/api-level.h>
 
-#define xOS_FREEBSD_VER __FreeBSD__     ///< FreeBSD version
+#define xOS_FREEBSD_VER __FreeBSD__
+    ///< FreeBSD version
 
 //-------------------------------------------------------------------------------------------------
 // OS architecture
