@@ -14,6 +14,14 @@
     #include <sys/sysinfo.h>
     #include <mntent.h>
     #include <gnu/libc-version.h>
+
+    // POSIX
+    #include <cpio.h>
+    #include <tar.h>
+    #include <sys/msg.h>
+
+    // thread
+    #include <sys/sem.h>
 #elif xOS_ANDROID
 
 #endif

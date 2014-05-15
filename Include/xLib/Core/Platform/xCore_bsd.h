@@ -15,5 +15,13 @@
     #include <sys/resource.h>
     #include <sys/sysctl.h>
     #include <sys/user.h>       // for struct kinfo_proc
+
+    // POSIX
+    #include <cpio.h>
+    #include <tar.h>
+    #include <sys/msg.h>
+
+    // thread
+    #include <sys/sem.h>
 #endif
 //-------------------------------------------------------------------------------------------------

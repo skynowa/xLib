@@ -8,11 +8,9 @@
 
 //-------------------------------------------------------------------------------------------------
 // POSIX
-#include <cpio.h>
 #include <dirent.h>
 #include <grp.h>
 #include <pwd.h>
-#include <tar.h>
 #include <termios.h>
 #include <utime.h>
 #include <csignal>
@@ -31,7 +29,6 @@
 // thread
 #include <pthread.h>    // lib: -pthread
 #include <sched.h>
-#include <sys/sem.h>
 #include <semaphore.h>
 
 // dll
