@@ -153,7 +153,7 @@ CxBuildInfo::os() const
         cint_t version3 = (xOS_LINUX_VER & 0x000000FF) >> 0;
 
         osVersion = CxString::format(xT("%d.%d.%d"), version1, version2, version3);
-        xTEST_EQ(LINUX_VERSION_CODE, KERNEL_VERSION(version1, version2, version3));
+        xTEST_EQ(LINUX_VERSION_CODE, xLINUX_KERNEL_VER(version1, version2, version3));
     #elif xOS_ANDROID
         osVersion = CxString::cast(xOS_ANDROID);
     #elif xOS_FREEBSD

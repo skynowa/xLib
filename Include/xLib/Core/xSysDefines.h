@@ -135,9 +135,11 @@
     ///< Windows 7, Windows Server 2008 R2
 
 #if !defined(KERNEL_VERSION)
-    #define KERNEL_VERSION(a, b, c) (((a) << 16) + ((b) << 8) + (c))
-        ///< get Linux kernel version
+    #define xLINUX_KERNEL_VER(a, b, c) (((a) << 16) + ((b) << 8) + (c))
+#else
+    #define xLINUX_KERNEL_VER KERNEL_VERSION
 #endif
+    ///< get Linux kernel version
 
 #define xOS_LINUX_VER   LINUX_VERSION_CODE
     ///< Linux version
