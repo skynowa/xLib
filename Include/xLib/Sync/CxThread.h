@@ -22,7 +22,7 @@ public:
     enum ExPriority
         /// priotity
     {
-        #if   xOS_ENV_WIN
+        #if   xENV_WIN
             tpError        = THREAD_PRIORITY_ERROR_RETURN,
             tpIdle         = THREAD_PRIORITY_IDLE,
             tpLowest       = THREAD_PRIORITY_LOWEST,
@@ -31,7 +31,7 @@ public:
             tpAboveNormal  = THREAD_PRIORITY_ABOVE_NORMAL,
             tpHighest      = THREAD_PRIORITY_HIGHEST,
             tpTimeCritical = THREAD_PRIORITY_TIME_CRITICAL
-        #elif xOS_ENV_UNIX
+        #elif xENV_UNIX
             tpError        = - 1,
             tpIdle         ,
             tpLowest       = 10,
@@ -43,10 +43,10 @@ public:
         #endif
     };
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     typedef HANDLE    handle_t; ///< handle
     typedef DWORD     id_t;     ///< ID
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     typedef pthread_t handle_t; ///< handle
     typedef pthread_t id_t;     ///< ID
 #endif
@@ -83,7 +83,7 @@ public:
     bool_t          isExited() xWARN_UNUSED_RV;
         ///< is exited (is set flag "exit")
 
-#if xOS_ENV_WIN
+#if xENV_WIN
     // messages
     void_t          postMessage(HWND wnd, uint_t msg, uint_t param1, long_t param2) const;
         ///< post message from thread to window
@@ -183,9 +183,9 @@ private:
         ///< exit timeout (msec)
 
     // thread data
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     CxHandle        _handle;                 ///< native handle
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     handle_t        _handle;                 ///< native handle
 #endif
 
@@ -208,9 +208,9 @@ private:
     CxEvent         _eventPause;                 ///< pause event
     CxEvent         _eventExit;                  ///< exit event
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     typedef uint_t   exit_status_t;
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     typedef void_t * exit_status_t;
 #endif
 

@@ -32,7 +32,7 @@ CxTest_CxEnvironment::unit(
 
     xTEST_CASE("CxEnvironment::isExists", a_caseLoops)
     {
-    #if   xOS_ENV_WIN
+    #if   xENV_WIN
         std::ctstring_t sData[][2] = {
             {xT("ENV_TEST_1"), xT("true")},
             {xT("ENV_TEST_2"), xT("true")},
@@ -43,7 +43,7 @@ CxTest_CxEnvironment::unit(
             {xT("XXXL"),       xT("false")},
             {xT("windir"),     xT("true") }
         };
-    #elif xOS_ENV_UNIX
+    #elif xENV_UNIX
         std::ctstring_t sData[][2] = {
             {xT("ENV_TEST_1"), xT("true")},
             {xT("ENV_TEST_2"), xT("true")},
@@ -60,7 +60,7 @@ CxTest_CxEnvironment::unit(
 
     xTEST_CASE("CxEnvironment::isVarValid", a_caseLoops)
     {
-    #if   xOS_ENV_WIN
+    #if   xENV_WIN
         std::ctstring_t sData[][2] = {
             {xT("ENV_TEST_1"), xT("true")},
             {xT("ENV_TEST_2"), xT("true")},
@@ -71,7 +71,7 @@ CxTest_CxEnvironment::unit(
             {xT("=windir"),    xT("false")},
             {xT(""),           xT("false")}
         };
-    #elif xOS_ENV_UNIX
+    #elif xENV_UNIX
         std::ctstring_t sData[][2] = {
             {xT("OS="),        xT("false")},
             {xT("XX=XL"),      xT("false")},
@@ -91,7 +91,7 @@ CxTest_CxEnvironment::unit(
 
     xTEST_CASE("CxEnvironment::isValueValid", a_caseLoops)
     {
-    #if   xOS_ENV_WIN
+    #if   xENV_WIN
         std::ctstring_t sData[][2] = {
             {xT("ENV_TEST_1"), xT("true")},
             {xT("ENV_TEST_2"), xT("true")},
@@ -102,7 +102,7 @@ CxTest_CxEnvironment::unit(
             {xT("windir"),     xT("true")},
             {xT(""),           xT("true")}
         };
-    #elif xOS_ENV_UNIX
+    #elif xENV_UNIX
         std::ctstring_t sData[][2] = {
             {xT("ENV_TEST_1"), xT("true")},
             {xT("ENV_TEST_2"), xT("true")},
@@ -120,14 +120,14 @@ CxTest_CxEnvironment::unit(
 
     xTEST_CASE("CxEnvironment::var", a_caseLoops)
     {
-    #if   xOS_ENV_WIN
+    #if   xENV_WIN
         std::ctstring_t sData[][2] = {
             {xT("ENV_TEST_1"), xT("value1")},
             {xT("ENV_TEST_2"), xT("value2")},
             {xT("ENV_TEST_3"), xT("value3")},
             {xT("ENV_TEST_4"), xT("value4")},
         };
-    #elif xOS_ENV_UNIX
+    #elif xENV_UNIX
         std::ctstring_t sData[][2] = {
             {xT("ENV_TEST_1"), xT("value1")},
             {xT("ENV_TEST_2"), xT("value2")},
@@ -151,12 +151,12 @@ CxTest_CxEnvironment::unit(
 
     xTEST_CASE("CxEnvironment::expandStrings", a_caseLoops)
     {
-    #if   xOS_ENV_WIN
+    #if   xENV_WIN
         std::ctstring_t sData[][2] = {
             {xT(" System root: %SystemRoot%"),  xT(" System root: C:\\Windows")},
             {xT("Windows Dir: %windir% "),      xT("Windows Dir: C:\\Windows ")}
         };
-    #elif xOS_ENV_UNIX
+    #elif xENV_UNIX
         std::ctstring_t sData[][2] = {
             {xT("111%ENV_TEST_1%"),    xT("111value1")},
             {xT("%ENV_TEST_2%111"),    xT("value2111")},

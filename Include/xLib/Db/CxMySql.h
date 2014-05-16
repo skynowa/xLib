@@ -13,7 +13,7 @@
 
 #if xHAVE_MYSQL
 
-#if xOS_ENV_WIN
+#if xENV_WIN
     #include <mysql.h>
     #include <errmsg.h>
     #include <mysqld_error.h>

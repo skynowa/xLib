@@ -24,7 +24,7 @@ xNAMESPACE2_BEGIN(xlib, sync)
 //-------------------------------------------------------------------------------------------------
 inline
 CxCondition::CxCondition()
-#if !xOS_ENV_WIN
+#if !xENV_WIN
     :
     _mutex (),
     _handle()
@@ -36,9 +36,9 @@ CxCondition::CxCondition()
 inline
 CxCondition::~CxCondition()
 {
-#if   xOS_ENV_WIN
+#if   xENV_WIN
 
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     int_t iRv = - 1;
 
     iRv = ::pthread_cond_destroy(&_handle);
@@ -49,7 +49,7 @@ CxCondition::~CxCondition()
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-#if xOS_ENV_UNIX
+#if xENV_UNIX
 
 inline const pthread_mutex_t &
 CxCondition::mutex() const
@@ -59,7 +59,7 @@ CxCondition::mutex() const
 
 #endif
 //-------------------------------------------------------------------------------------------------
-#if xOS_ENV_UNIX
+#if xENV_UNIX
 
 inline const pthread_cond_t &
 CxCondition::handle() const
@@ -72,9 +72,9 @@ CxCondition::handle() const
 inline void_t
 CxCondition::create()
 {
-#if   xOS_ENV_WIN
+#if   xENV_WIN
 
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     int_t iRv = - 1;
 
     iRv = ::pthread_mutex_init(&_mutex, xPTR_NULL); // mutex not recursive
@@ -90,9 +90,9 @@ CxCondition::wait(
     culong_t &a_timeoutMs
 )
 {
-#if   xOS_ENV_WIN
+#if   xENV_WIN
 
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     int_t iRv = - 1;
 
     // wait until condition thread returns control
@@ -136,9 +136,9 @@ CxCondition::wait(
 inline void_t
 CxCondition::signal()
 {
-#if   xOS_ENV_WIN
+#if   xENV_WIN
 
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     int_t iRv = - 1;
 
     iRv = ::pthread_mutex_lock(&_mutex);
@@ -157,9 +157,9 @@ CxCondition::signal()
 inline void_t
 CxCondition::broadcast()
 {
-#if   xOS_ENV_WIN
+#if   xENV_WIN
 
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
      int_t iRv = - 1;
 
     iRv = ::pthread_mutex_lock(&_mutex);

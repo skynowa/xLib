@@ -8,7 +8,7 @@
 
 #include <xLib/Core/CxString.h>
 
-#if xOS_ENV_WIN
+#if xENV_WIN
     #if !xCOMPILER_MINGW
         #pragma comment(lib, "mysqlclient.lib")
     #endif

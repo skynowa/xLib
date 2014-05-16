@@ -126,11 +126,11 @@ CxHandleT<tagT>::duplicate() const
 
     native_handle_t hRv = error_value_t::get();
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     BOOL blRes = ::DuplicateHandle(::GetCurrentProcess(), _handle, ::GetCurrentProcess(), &hRv,
         DUPLICATE_SAME_ACCESS, FALSE, DUPLICATE_SAME_ACCESS);
     xTEST_DIFF(FALSE, blRes);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     hRv = ::dup(_handle);
     xTEST_DIFF(error_value_t::get(), hRv);
 #endif
@@ -144,7 +144,7 @@ CxHandleT<tagT>::isValid() const
 {
     bool_t bRv = false;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     // created but not initialised
     bool_t cond1 = (_handle != reinterpret_cast<native_handle_t>(0xCDCDCDCD));
     // uninitialized locals in VC6 when you compile w/ /GZ
@@ -161,7 +161,7 @@ CxHandleT<tagT>::isValid() const
     bool_t cond7 = (_handle != error_value_t::get());
 
     bRv = cond1 && cond2 && cond3 && cond4 && cond5 && cond6 && cond7;
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     // compare with error handle value
     bool_t cond1 = (_handle != error_value_t::get());
     // handle value is negative
@@ -204,10 +204,10 @@ CxHandleT<tagT>::close()
 {
     xCHECK_DO(!isValid(), _handle = error_value_t::get(); return);
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     BOOL blRes = ::CloseHandle(_handle);
     xTEST_DIFF(FALSE, blRes);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     int_t iRv = ::close(_handle);
     xTEST_DIFF(iRv, - 1);
 #endif
@@ -215,7 +215,7 @@ CxHandleT<tagT>::close()
     _handle = error_value_t::get();
 }
 //-------------------------------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if xENV_WIN
 
 template<ExHandleValue tagT>
 ulong_t
@@ -234,7 +234,7 @@ CxHandleT<tagT>::info() const
 
 #endif
 //-------------------------------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if xENV_WIN
 
 template<ExHandleValue tagT>
 void_t

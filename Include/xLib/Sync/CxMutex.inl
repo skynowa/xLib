@@ -26,7 +26,7 @@ xNAMESPACE2_BEGIN(xlib, sync)
 inline
 CxMutex::~CxMutex()
 {
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     bool_t bRv = false;
 
     try {
@@ -38,7 +38,7 @@ CxMutex::~CxMutex()
     }
 
     xTEST_EQ(bRv, true);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     int_t iRv = ::pthread_mutex_destroy(&_handle);
     xTEST_MSG_EQ(iRv, 0, CxLastError::format(iRv));
 #endif
@@ -47,7 +47,7 @@ CxMutex::~CxMutex()
 inline void_t
 CxMutex::create()
 {
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     bool_t bRv = false;
 
     try {
@@ -59,7 +59,7 @@ CxMutex::create()
     }
 
     xTEST_EQ(bRv, true);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     int_t iRv = - 1;
 
     pthread_mutexattr_t attr;    // n/a {{0}}
@@ -95,7 +95,7 @@ CxMutex::handle() const
 inline void_t
 CxMutex::lock()
 {
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     bool_t bRv = false;
 
     try {
@@ -107,7 +107,7 @@ CxMutex::lock()
     }
 
     xTEST_EQ(bRv, true);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     int_t iRv = ::pthread_mutex_lock(&_handle);
     xTEST_MSG_EQ(iRv, 0, CxLastError::format(iRv));
 #endif
@@ -116,10 +116,10 @@ CxMutex::lock()
 inline bool_t
 CxMutex::tryLock()
 {
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     BOOL blRv = ::TryEnterCriticalSection(&_handle);
     xCHECK_RET(blRv == FALSE, false);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     int_t iRv = ::pthread_mutex_trylock(&_handle);
     xCHECK_RET(iRv != 0, false);
 #endif
@@ -130,7 +130,7 @@ CxMutex::tryLock()
 inline void_t
 CxMutex::unlock()
 {
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     bool_t bRv = false;
 
     try {
@@ -142,7 +142,7 @@ CxMutex::unlock()
     }
 
     xTEST_EQ(bRv, true);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     int_t iRv = ::pthread_mutex_unlock(&_handle);
     xTEST_MSG_EQ(iRv, 0, CxLastError::format(iRv));
 #endif

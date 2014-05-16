@@ -23,9 +23,9 @@ CxTest_CxFileType::unit(
 
     // prepare
     {
-    #if   xOS_ENV_WIN
+    #if   xENV_WIN
         cfaValue = CxFileType::faReadOnly;
-    #elif xOS_ENV_UNIX
+    #elif xENV_UNIX
         cfaValue = CxFileType::faRegularFile;
     #endif
 
@@ -65,7 +65,7 @@ CxTest_CxFileType::unit(
 
     xTEST_CASE("CxFileType::remove", a_caseLoops)
     {
-        #if   xOS_ENV_WIN
+        #if   xENV_WIN
             CxFileType ftType(csFilePath);
 
             CxFileType::ExType faAttribute = CxFileType::faHidden;
@@ -93,7 +93,7 @@ CxTest_CxFileType::unit(
 
             CxFileType::types_t faRv = ftType.get();
             xTEST_EQ((int_t)faAttribute, (int_t)faRv);
-        #elif xOS_ENV_UNIX
+        #elif xENV_UNIX
             // file
             {
                 CxFileType ftType(csFilePath);
@@ -124,10 +124,10 @@ CxTest_CxFileType::unit(
     {
         CxFileType ftType(csFilePath);
 
-        #if   xOS_ENV_WIN
+        #if   xENV_WIN
             const CxFileType::ExType cfaRemoveValue = cfaValue;
             const CxFileType::ExType cfaAddValue    = CxFileType::faHidden;
-        #elif xOS_ENV_UNIX
+        #elif xENV_UNIX
             const CxFileType::ExType cfaRemoveValue = cfaValue;
             const CxFileType::ExType cfaAddValue    = CxFileType::faSymbolicLink;
         #endif
@@ -139,9 +139,9 @@ CxTest_CxFileType::unit(
     {
         CxFileType ftType(csFilePath);
 
-        #if   xOS_ENV_WIN
+        #if   xENV_WIN
             CxFileType::ExType faAttribute = CxFileType::faNormal;
-        #elif xOS_ENV_UNIX
+        #elif xENV_UNIX
             CxFileType::ExType faAttribute = CxFileType::faRegularFile;
         #endif
 
@@ -160,9 +160,9 @@ CxTest_CxFileType::unit(
         CxFileType::types_t faRv;
 
         faRv = ftType.get();
-        #if   xOS_ENV_WIN
+        #if   xENV_WIN
             xTEST_EQ((ulong_t)CxFileType::faNormal, (ulong_t)faRv);
-        #elif xOS_ENV_UNIX
+        #elif xENV_UNIX
             xTEST_EQ((ulong_t)CxFileType::faRegularFile, (ulong_t)faRv);
         #endif
     }

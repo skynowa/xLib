@@ -131,14 +131,14 @@ CxTest_CxConsole::unit(
 
             console.setTitle(title);
 
-            #if 1 && xOS_ENV_WIN
+            #if 1 && xENV_WIN
                 m_sRv = console.title();
                 xTEST_EQ(m_sRv, title);
             #endif
         #endif
     }
 
-#if xOS_ENV_WIN && xTEST_IGNORE
+#if xENV_WIN && xTEST_IGNORE
     xTEST_CASE("CxConsole::title", a_caseLoops)
     {
         std::tstring_t title = xT("Title1");
@@ -152,7 +152,7 @@ CxTest_CxConsole::unit(
     }
 #endif
 
-#if xOS_ENV_WIN && xTEST_IGNORE
+#if xENV_WIN && xTEST_IGNORE
     xTEST_CASE("CxConsole::centerWindow", a_caseLoops)
     {
         CxConsole console;
@@ -161,7 +161,7 @@ CxTest_CxConsole::unit(
     }
 #endif
 
-#if xOS_ENV_WIN && xTEST_IGNORE
+#if xENV_WIN && xTEST_IGNORE
     xTEST_CASE("CxConsole::setFullScreen", a_caseLoops)
     {
         CxConsole console;
@@ -170,7 +170,7 @@ CxTest_CxConsole::unit(
     }
 #endif
 
-#if xOS_ENV_WIN && xTEST_IGNORE
+#if xENV_WIN && xTEST_IGNORE
     xTEST_CASE("CxConsole::enableClose", a_caseLoops)
     {
         CxConsole console;

@@ -20,9 +20,9 @@ CxTest_CxEvent::unit(
 
         objEvent.create();
 
-        #if   xOS_ENV_WIN
+        #if   xENV_WIN
             xTEST_EQ(true, objEvent.handle().isValid())
-        #elif xOS_ENV_UNIX
+        #elif xENV_UNIX
             // TEST: CxTest_CxEvent() - hRv
         #endif
     }

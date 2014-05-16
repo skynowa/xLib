@@ -21,9 +21,9 @@ CxTest_CxIpcSemaphore::unit(
     {
         struct _Functor
         {
-        #if   xOS_ENV_WIN
+        #if   xENV_WIN
             static uint_t   xSTDCALL
-        #elif xOS_ENV_UNIX
+        #elif xENV_UNIX
             static void_t * xSTDCALL
         #endif
             worker(void_t *pArguments)
@@ -49,14 +49,14 @@ CxTest_CxIpcSemaphore::unit(
         CxIpcSemaphore semSemaphore;
         semSemaphore.create(4, xT("sema_name"));
 
-    #if   xOS_ENV_WIN
+    #if   xENV_WIN
         uintptr_t puiRv = ::_beginthreadex(NULL, 0U, &_Functor::worker, &semSemaphore, 0U, NULL);
         #if xARCH_BITS_32
             xTEST_DIFF(uintptr_t(0), puiRv);
         #else
             xTEST_PTR(puiRv);
         #endif
-    #elif xOS_ENV_UNIX
+    #elif xENV_UNIX
         pthread_t id = 0UL;
         int_t iRv = ::pthread_create(&id, NULL, &_Functor::worker, &semSemaphore);
         xTEST_EQ(iRv, 0);

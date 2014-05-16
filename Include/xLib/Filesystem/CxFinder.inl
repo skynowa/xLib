@@ -72,9 +72,9 @@ CxFinder::entryName() const
 
     std::tstring_t sRv;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     sRv.assign( _entry.data.cFileName );
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     sRv.assign( _entry.data.d_name );
 #endif
 
@@ -100,11 +100,11 @@ CxFinder::fileTypes() const
 {
     xTEST_EQ(isValid(), true);
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     CxFileType::types_t ftRv = CxFileType::faInvalid;
 
     ftRv = _entry.data.dwFileAttributes;
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     CxFileType::types_t ftRv = 0;
 
     uchar_t ucRv = _entry.data.d_type;
@@ -143,10 +143,10 @@ CxFinder::fileTypes() const
 inline bool_t
 CxFinder::isValid() const
 {
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     xCHECK_RET(_entry.handle == xNATIVE_HANDLE_INVALID, false);
     xCHECK_NA(_entry.data);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     xCHECK_RET(_entry.handle == xPTR_NULL, false);
     xCHECK_NA(entry.data);
 #endif
@@ -163,14 +163,14 @@ CxFinder::moveNext()
         bool_t bRv = _moveFirst();
         xCHECK_RET(!bRv, false);
     } else {
-    #if   xOS_ENV_WIN
+    #if   xENV_WIN
         BOOL blRv = ::FindNextFile(_entry.handle, &_entry.data);
         if (blRv == FALSE) {
             xCHECK_RET(CxLastError::get() == ERROR_NO_MORE_FILES, false);
 
             xTEST_FAIL;
         }
-    #elif xOS_ENV_UNIX
+    #elif xENV_UNIX
         int_t iRv = 0;
 
         for ( ; ; ) {
@@ -202,10 +202,10 @@ CxFinder::close()
 
     // close handle
     {
-    #if   xOS_ENV_WIN
+    #if   xENV_WIN
         BOOL blRv = ::FindClose(_entry.handle);
         xTEST_DIFF(blRv, FALSE);
-    #elif xOS_ENV_UNIX
+    #elif xENV_UNIX
         int_t iRv = ::closedir(_entry.handle);
         xTEST_DIFF(iRv, - 1);
     #endif
@@ -213,9 +213,9 @@ CxFinder::close()
 
     // clear data
     {
-    #if   xOS_ENV_WIN
+    #if   xENV_WIN
         _entry.handle = xNATIVE_HANDLE_INVALID;
-    #elif xOS_ENV_UNIX
+    #elif xENV_UNIX
         _entry.handle = xPTR_NULL;
     #endif
         xSTRUCT_ZERO(_entry.data);
@@ -323,11 +323,11 @@ CxFinder::_moveFirst()
 
     _isMoveFirst = false;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     _entry.handle = ::FindFirstFile((rootDirPath() + CxConst::slash() + shellFilter()).c_str(),
         &_entry.data);
     xCHECK_RET(_entry.handle == xNATIVE_HANDLE_INVALID, false);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     _entry.handle = ::opendir(rootDirPath().c_str());
     xCHECK_RET(_entry.handle == xPTR_NULL, false);
 

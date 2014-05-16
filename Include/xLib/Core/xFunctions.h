@@ -275,7 +275,7 @@
 #endif
 
 // xSTATVFS (struct and function)
-#if xOS_ENV_WIN
+#if xENV_WIN
     xNA
 #else
     #if xOS_FREEBSD
@@ -297,7 +297,7 @@
 xNAMESPACE2_BEGIN(xlib, core)
 
 // xGETTIMEOFDAY
-#if xOS_ENV_WIN
+#if xENV_WIN
     struct timezone
         /// for gettimeofday
     {
@@ -315,9 +315,9 @@ xNAMESPACE2_BEGIN(xlib, core)
     ///< implementation gettimeofday
 
 // xSTD_CLOCK
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     #define xSTD_CLOCK              std::clock
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     #if   xOS_LINUX
         #define xSTD_CLOCK          std::clock
     #elif xOS_FREEBSD
@@ -326,7 +326,7 @@ xNAMESPACE2_BEGIN(xlib, core)
 
         #define xSTD_CLOCK          clock
     #endif
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     #define xSTD_CLOCK              std::clock
 #endif
     ///< implementation std::clock

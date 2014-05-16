@@ -66,13 +66,13 @@ CxTcpServer::accept(
 
     socket_t client = xSOCKET_HANDLE_INVALID;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     sockaddr_in cliaddr = {0};
     int_t       addrlen = sizeof(cliaddr);
 
     client = ::accept(_handle, CxUtils::reinterpretCastT<sockaddr *>( &cliaddr ), &addrlen);
     xTEST_DIFF(client, xSOCKET_HANDLE_INVALID);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     sockaddr_in cliaddr; xSTRUCT_ZERO(cliaddr);
     socklen_t   addrlen = sizeof(cliaddr);
 

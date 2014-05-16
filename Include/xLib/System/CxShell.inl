@@ -33,9 +33,9 @@ CxShell::isAvailable() const
 
     int_t iRv = xTSYSTEM(xPTR_NULL);
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     xCHECK_RET(iRv == 0 && CxStdError::get() == ENOENT, false);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     xCHECK_RET(iRv == 0, false);
 #endif
 
@@ -63,7 +63,7 @@ CxShell::execute(
 //-------------------------------------------------------------------------------------------------
 
 
-#if xOS_ENV_WIN
+#if xENV_WIN
 
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t

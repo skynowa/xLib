@@ -35,7 +35,7 @@ public:
     std::ctstring_t & filePath() const xWARN_UNUSED_RV;
         ///< file path
 
-#if xOS_ENV_WIN
+#if xENV_WIN
     std::tstring_t drive() const xWARN_UNUSED_RV;
         ///< get drive
 #endif
@@ -50,7 +50,7 @@ public:
     std::tstring_t ext() const xWARN_UNUSED_RV;
         ///< get extension
 
-#if xOS_ENV_WIN
+#if xENV_WIN
     std::tstring_t setDrive(std::ctstring_t &drivePath) xWARN_UNUSED_RV;
         ///< set drive
 #endif
@@ -122,7 +122,7 @@ public:
     size_t         nameMaxSize();
         ///< get max name length in symbols
 
-#if xOS_ENV_UNIX
+#if xENV_UNIX
     static
     void_t         proc(std::ctstring_t &procPath, std::vec_tstring_t *fileLines);
         ///< get file lines from UNIX proc file

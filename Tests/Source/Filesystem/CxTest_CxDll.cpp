@@ -18,11 +18,11 @@ CxTest_CxDll::unit(
 
     xTEST_CASE("CxDll::CxDll", a_caseLoops)
     {
-        #if   xOS_ENV_WIN
+        #if   xENV_WIN
             const data2_tstring_t data[] = {
                 {xT("kernel32.dll"), xT("Beep")}
             };
-        #elif xOS_ENV_UNIX
+        #elif xENV_UNIX
             #if xOS_FREEBSD
                 // TEST: if -static CxDll::load() don't load any 'so'-libraries
                 return;
@@ -55,7 +55,7 @@ CxTest_CxDll::unit(
             xTEST_EQ(m_bRv, true);
 
             // procAddress
-        #if   xOS_ENV_WIN
+        #if   xENV_WIN
             CxDll::proc_address_t paRv = dll.procAddress(data[i].expect);
             xTEST_PTR(paRv);
 
@@ -63,7 +63,7 @@ CxTest_CxDll::unit(
             ptr_dll_func_t loadBeep = (ptr_dll_func_t)paRv;
 
             loadBeep(1, 1);
-        #elif xOS_ENV_UNIX
+        #elif xENV_UNIX
             CxDll::proc_address_t paRv = dll.procAddress(data[i].expect);
             xTEST_PTR(paRv);
 

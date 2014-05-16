@@ -14,9 +14,9 @@ CxTest_CxLastError::unit(
     culonglong_t &a_caseLoops
 )
 {
-    #if   xOS_ENV_WIN
+    #if   xENV_WIN
         culong_t cuiMaxErrors = 15999;  /*0...15999*/;
-    #elif xOS_ENV_UNIX
+    #elif xENV_UNIX
         culong_t cuiMaxErrors = 132;    /*0...132*/
     #endif
 

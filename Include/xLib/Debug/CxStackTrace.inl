@@ -11,7 +11,7 @@
 #include <xLib/Log/CxTrace.h>
 #include <xLib/Debug/xStdDebug.h>
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     #if   xCOMPILER_MINGW
         // TODO: CxStackTrace - includes
     #elif xCOMPILER_MS || xCOMPILER_CODEGEAR
@@ -22,13 +22,13 @@
         #include <DbgHelp.h>
         #pragma comment(lib, "DbgHelp.Lib")
     #endif
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     #if xHAVE_EXECINFO
         #include <execinfo.h> // lib: -lexecinfo (FreeBSD)
     #endif
 
     #include <cxxabi.h>
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     #include <execinfo.h>   // lib: -lexecinfo
     #include <cxxabi.h>
 #endif
@@ -102,7 +102,7 @@ CxStackTrace::_get(
     std::vector<std::vec_tstring_t> stack;
     std::ctstring_t                 dataNotFound = xT("[???]");
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     #if   xCOMPILER_MINGW
         // TODO: CxStackTrace::_get()
     #elif xCOMPILER_MS || xCOMPILER_CODEGEAR
@@ -209,7 +209,7 @@ CxStackTrace::_get(
 
         (void_t)::SymCleanup(process); process = xPTR_NULL;
     #endif
-#elif xOS_ENV_UNIX || xOS_ENV_APPLE
+#elif xENV_UNIX || xENV_APPLE
     #if xHAVE_EXECINFO
         void_t *stackBuff[xSTACK_TRACE_FRAMES_MAX] = {0};
 
@@ -346,7 +346,7 @@ CxStackTrace::_format(
     a_stackStr->swap(sRv);
 }
 //-------------------------------------------------------------------------------------------------
-#if xOS_ENV_UNIX
+#if xENV_UNIX
 
 /* static */
 inline void_t
@@ -425,7 +425,7 @@ CxStackTrace::_addr2Line(
 #endif
 }
 
-#endif  // xOS_ENV_UNIX
+#endif  // xENV_UNIX
 //-------------------------------------------------------------------------------------------------
 
 xNAMESPACE2_END(xlib, debug)

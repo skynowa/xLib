@@ -73,7 +73,7 @@ CxTrace::write(
 
     // write
     {
-    #if xOS_ENV_WIN
+    #if xENV_WIN
         (void_t)::OutputDebugString( msg.c_str() );
     #endif
 

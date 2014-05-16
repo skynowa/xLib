@@ -98,13 +98,13 @@ CxBuildInfo::osEnvironment() const
 {
     std::tstring_t sRv;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     sRv = xT("Windows");
-#elif xOS_ENV_LINUX
+#elif xENV_LINUX
     sRv = xT("Unix/Linux");
-#elif xOS_ENV_BSD
+#elif xENV_BSD
     sRv = xT("Unix/BSD");
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     sRv = xT("Unix/Apple");
 #endif
 

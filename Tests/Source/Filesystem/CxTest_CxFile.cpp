@@ -242,9 +242,9 @@ CxTest_CxFile::unit(
 
         CxFile::time(filePath, &tmCreate, &tmAccess, &tmModified);
 
-    #if   xOS_ENV_WIN
+    #if   xENV_WIN
         xTEST_EQ(create, tmCreate);
-    #elif xOS_ENV_UNIX
+    #elif xENV_UNIX
         xUNUSED(tmCreate);
     #endif
 
@@ -382,10 +382,10 @@ CxTest_CxFile::unit(
 
         file.create(filePath, CxFile::omCreateReadWrite, true);
 
-        #if   xOS_ENV_WIN
+        #if   xENV_WIN
             file.setMode(CxFile::tmBinary);
             xTEST_EQ(m_bRv, true);
-        #elif xOS_ENV_UNIX
+        #elif xENV_UNIX
             // TEST: CxFile::setMode()
         #endif
     }
@@ -396,9 +396,9 @@ CxTest_CxFile::unit(
 
         file.create(filePath, CxFile::omCreateReadWrite, true);
 
-        #if   xOS_ENV_WIN
+        #if   xENV_WIN
             file.setMode(CxFile::tmText);
-        #elif xOS_ENV_UNIX
+        #elif xENV_UNIX
             // TEST: CxFile::setMode()
         #endif
     }

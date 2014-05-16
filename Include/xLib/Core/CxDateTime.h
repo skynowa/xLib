@@ -125,7 +125,7 @@ public:
     static
     bool_t         isLeapYear(cint_t &year) xWARN_UNUSED_RV;
         ///< is leap year
-#if xOS_ENV_WIN
+#if xENV_WIN
     static
     longlong_t     filetimeToInt64(const FILETIME &fileTime) xWARN_UNUSED_RV;
         ///< convert FILETIME to longlong_t

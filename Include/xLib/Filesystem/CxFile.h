@@ -36,7 +36,7 @@ public:
         omBinOpenReadAppend    ///< "ab+"
     };
 
-#if xOS_ENV_WIN
+#if xENV_WIN
     enum ExTranslationMode
         /// translation mode
     {
@@ -74,11 +74,11 @@ public:
     enum ExLockingMode
         /// locking mode
     {
-        #if   xOS_ENV_WIN
+        #if   xENV_WIN
             lmLock    = LK_NBLCK,
             lmTryLock = LK_LOCK,
             lmUnlock  = LK_UNLCK
-        #elif xOS_ENV_UNIX
+        #elif xENV_UNIX
             lmLock    = F_LOCK,
             lmTlock   = F_TLOCK,
             lmTryLock = F_TEST,
@@ -89,7 +89,7 @@ public:
     enum ExPermissionMode
         /// permission mode
     {
-        #if xOS_ENV_WIN
+        #if xENV_WIN
             pmRead             = _S_IREAD,
             pmWrite            = _S_IWRITE,
             pmReadWrite        = (_S_IREAD | _S_IWRITE)
@@ -173,7 +173,7 @@ public:
     void_t         setVBuff(char *buff, const ExBufferingMode &mode, std::csize_t &size) const;
         ///< change stream buffering
 
-#if xOS_ENV_WIN
+#if xENV_WIN
     void_t         setMode(const ExTranslationMode &mode) const;
         ///< sets the file translation mode
 #endif

@@ -18,9 +18,9 @@ class CxIpcSemaphore
     /// semaphore (interprocess)
 {
 public:
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     typedef CxHandle handle_t;
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     typedef sem_t *  handle_t;
 #endif
 

@@ -53,7 +53,7 @@ CxPath::exe()
 {
     std::tstring_t sRv;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     // REVIEW: QueryFullProcessImageName on xOS_WIN_VER > xOS_WIN_S03
 
     sRv.resize(xPATH_MAX);
@@ -62,7 +62,7 @@ CxPath::exe()
     xTEST_DIFF(stored, 0UL);
 
     sRv.resize(stored);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     #if   xOS_LINUX
         std::ctstring_t procFile = CxString::format(xT("/proc/%ld/exe"), ::getpid());
 
@@ -110,7 +110,7 @@ CxPath::exe()
             sRv = absolute(args.at(0));
         #endif
     #endif
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -121,9 +121,9 @@ CxPath::exe()
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_ANONYM_BEGIN
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     extern "C" IMAGE_DOS_HEADER __ImageBase;
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     static void_t function() { ; }
 #endif
 
@@ -135,7 +135,7 @@ CxPath::dll()
 {
     std::tstring_t sRv;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     sRv.resize(xPATH_MAX);
 
     HMODULE procAddress = reinterpret_cast<HMODULE>( &__ImageBase );
@@ -144,7 +144,7 @@ CxPath::dll()
     xTEST_DIFF(stored, 0UL);
 
     sRv.resize(stored);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     Dl_info  diInfo;          xSTRUCT_ZERO(diInfo);
     void_t (*procAddress)() = ::function;
 
@@ -164,7 +164,7 @@ CxPath::exeDir()
     return CxPath(exe()).dir();
 }
 //-------------------------------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if xENV_WIN
 
 inline std::tstring_t
 CxPath::drive() const
@@ -241,7 +241,7 @@ CxPath::standartExt(
     std::tstring_t sRv;
 
     switch (a_fileExt) {
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     case seExe:
         sRv = xT("exe");
         break;
@@ -257,7 +257,7 @@ CxPath::standartExt(
     case seShell:
         sRv = xT("bat");
         break;
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     case seExe:
         sRv = xT("");
         break;
@@ -273,7 +273,7 @@ CxPath::standartExt(
     case seShell:
         sRv = xT("sh");
         break;
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     case seExe:
         sRv = xT("");
         break;
@@ -298,7 +298,7 @@ CxPath::standartExt(
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if xENV_WIN
 
 inline std::tstring_t
 CxPath::setDrive(
@@ -465,7 +465,7 @@ CxPath::isNameValid(
         sRv.resize(xNAME_MAX);
     }
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
    /**
     * MSDN: http://msdn.microsoft.com/en-us/library/windows/desktop/aa365247(v=vs.85).aspx
     * FAQ:  Boost Path Name Portability Guide
@@ -595,7 +595,7 @@ CxPath::isNameValid(
         }
 
     }
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
    /**
     * check: excepted chars
     * /  (forward slash)
@@ -624,7 +624,7 @@ CxPath::isNameValid(
         }
 
     }
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
    /**
     * check: excepted chars
     * / (forward slash)
@@ -665,7 +665,7 @@ CxPath::isAbsolute() const {
     xCHECK_RET(filePath().empty(),                         false);
     xCHECK_RET(filePath().at(0) == CxConst::slash().at(0), true);
 
-#if xOS_ENV_WIN
+#if xENV_WIN
     xCHECK_RET(filePath().size() == 1, false);
     xCHECK_RET(CxChar::isAlpha(filePath().at(0)) && CxConst::colon().at(0) == filePath().at(1), true);
 #endif
@@ -728,9 +728,9 @@ CxPath::toNative(
         sRv = slashRemove();
     }
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     std::ctstring_t slash = CxConst::unixSlash();
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     std::ctstring_t slash = CxConst::winSlash();
 #endif
 
@@ -744,7 +744,7 @@ CxPath::absolute() const
 {
     std::tstring_t sRv;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     DWORD          dwRv = 0UL;
     std::tstring_t buff;
 
@@ -760,7 +760,7 @@ CxPath::absolute() const
     buff.resize(dwRv);
 
     sRv = buff;
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     std::tstring_t buff;
 
     buff.resize(xPATH_MAX);
@@ -888,7 +888,7 @@ CxPath::maxSize()
 {
     size_t uiRv = 0;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     #if defined(MAX_PATH)
         uiRv = MAX_PATH;
     #else
@@ -896,7 +896,7 @@ CxPath::maxSize()
 
         uiRv = defaultSize;
     #endif
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     #if defined(PATH_MAX)
         uiRv = PATH_MAX;
     #else
@@ -931,7 +931,7 @@ CxPath::nameMaxSize()
 {
     size_t uiRv = 0;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     #if defined(FILENAME_MAX)
         uiRv = FILENAME_MAX;
     #else
@@ -939,7 +939,7 @@ CxPath::nameMaxSize()
 
         uiRv = defaultSize;
     #endif
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     #if defined(NAME_MAX)
         uiRv = NAME_MAX;
     #else
@@ -967,7 +967,7 @@ CxPath::nameMaxSize()
     return uiRv;
 }
 //-------------------------------------------------------------------------------------------------
-#if xOS_ENV_UNIX
+#if xENV_UNIX
 
 /* static */
 inline void_t
@@ -1013,7 +1013,7 @@ CxPath::proc(
 
 #endif
 //-------------------------------------------------------------------------------------------------
-#if xOS_ENV_UNIX
+#if xENV_UNIX
 
 /* static */
 inline std::tstring_t

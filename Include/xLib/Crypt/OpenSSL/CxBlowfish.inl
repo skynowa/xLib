@@ -10,7 +10,7 @@
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Crypt/CxCrc32.h>
 
-#if xOS_ENV_WIN
+#if xENV_WIN
     #if xCOMPILER_MS
         #pragma comment(lib, "libeay32.lib")
     #endif

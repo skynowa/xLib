@@ -82,13 +82,13 @@ CxTest_CxDnsClient::unit(
             ///*struct addrinfo **/   paiList->ai_next;        // Next structure in linked list
         }
 
-        #if   xOS_ENV_WIN
+        #if   xENV_WIN
             #if xCOMPILER_MS
                 ::FreeAddrInfo(paiList);
             #else
                 freeaddrinfo(paiList);
             #endif
-        #elif xOS_ENV_UNIX
+        #elif xENV_UNIX
                freeaddrinfo(paiList);
         #endif
         // n/a

@@ -51,7 +51,7 @@ inline
 CxStdSeedPolicy::CxStdSeedPolicy() :
     IxSeedPolicy()
 {
-#if xOS_ENV_WIN
+#if xENV_WIN
     (void_t)std::srand(_seed);
 #endif
 }
@@ -68,13 +68,13 @@ CxStdSeedPolicy::next()
 {
     int_t iRv = 0U;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
    /**
     * VC++'s C runtime is multithreaded by default.
     * There's no need for rand_r, rand works fine in this case
     */
     iRv = std::rand();
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     iRv = ::rand_r(&_seed);
 #endif
 
@@ -93,13 +93,13 @@ inline
 CxNativeSeedPolicy::CxNativeSeedPolicy() :
     IxSeedPolicy()
 {
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     _hProv = xPTR_NULL;
 
     BOOL blRv = ::CryptAcquireContext(&_hProv, xPTR_NULL, xPTR_NULL, PROV_RSA_FULL,
         CRYPT_VERIFYCONTEXT | CRYPT_SILENT);
     xTEST_DIFF(blRv, FALSE);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     xSTRUCT_ZERO(_data);
 
     int_t iRv = ::srandom_r(_seed, &_data);
@@ -111,10 +111,10 @@ CxNativeSeedPolicy::CxNativeSeedPolicy() :
 inline
 CxNativeSeedPolicy::~CxNativeSeedPolicy()
 {
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     BOOL blRv = ::CryptReleaseContext(_hProv, 0UL);   _hProv = xPTR_NULL;
     xTEST_DIFF(blRv, FALSE);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     xSTRUCT_ZERO(_data);
 #endif
 }
@@ -125,7 +125,7 @@ CxNativeSeedPolicy::next()
 {
     long_t liRv = 0L;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     union RandBuff
     {
         BYTE   buff[ sizeof(long_t) ];
@@ -136,7 +136,7 @@ CxNativeSeedPolicy::next()
     xTEST_DIFF(blRv, FALSE);
 
     liRv = randBuff.value;
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     int32_t i32Rv = 0;
 
     int iRv = ::random_r(&_data, &i32Rv);

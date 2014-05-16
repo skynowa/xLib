@@ -20,7 +20,7 @@ public:
     enum ExAddressFamily
         /// address family
     {
-    #if   xOS_ENV_WIN
+    #if   xENV_WIN
         afUnspecified = AF_UNSPEC,
         afInet        = AF_INET,
         afIpx         = AF_IPX,
@@ -32,7 +32,7 @@ public:
             ,
             afBluetooth   = AF_BTH
         #endif
-    #elif xOS_ENV_UNIX
+    #elif xENV_UNIX
         #if xOS_FREEBSD
             afLocal     = PF_LOCAL,
             afUnix      = PF_UNIX,
@@ -63,7 +63,7 @@ public:
             afAppletalk   = AF_APPLETALK,
             afPacket      = AF_PACKET
         #endif
-    #elif xOS_ENV_APPLE
+    #elif xENV_APPLE
         afUnix        = AF_UNIX,
         afLocal       = AF_LOCAL,
         afInet        = AF_INET,
@@ -88,7 +88,7 @@ public:
     enum ExProtocol
         /// protocol
     {
-    #if xOS_ENV_WIN
+    #if xENV_WIN
         ptIp          = IPPROTO_IP,
         ptIcmp        = IPPROTO_ICMP,
         ptIgmp        = IPPROTO_IGMP,
@@ -99,7 +99,7 @@ public:
         ptIcmpv6      = IPPROTO_ICMPV6,
         #endif
         ////ptRm          = IPPROTO_RM
-    #elif xOS_ENV_UNIX
+    #elif xENV_UNIX
         #if xOS_FREEBSD
             ptIp          = IPPROTO_IP,
             ptHopopts     = IPPROTO_HOPOPTS,
@@ -159,7 +159,7 @@ public:
             ptRaw         = IPPROTO_RAW,
             ptMax         = IPPROTO_MAX
         #endif
-    #elif xOS_ENV_APPLE
+    #elif xENV_APPLE
         ptIp          = IPPROTO_IP,
         ptHopopts     = IPPROTO_HOPOPTS,
         ptIcmp        = IPPROTO_ICMP,

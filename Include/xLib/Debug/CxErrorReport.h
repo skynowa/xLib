@@ -65,7 +65,7 @@ private:
     // other
     std::tstring_t _currentDate;    ///< current date, time
 
-#if xOS_ENV_UNIX
+#if xENV_UNIX
     std::tstring_t _glibc;          ///< GLIBC available on the system
     std::tstring_t _libPthread;     ///< POSIX implementation supplied by C library
 #endif

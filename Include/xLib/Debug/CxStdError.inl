@@ -75,7 +75,7 @@ CxStdError::format(
 
     sRv = CxString::format(xT("%d - "), a_code);
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     #if   xCOMPILER_MINGW
         tchar_t *error = xSTRERROR(a_code);
         xCHECK_RET(error == xPTR_NULL, sRv.append(xT("[Cann't format error message]")));
@@ -89,7 +89,7 @@ CxStdError::format(
 
         sRv.append(buff);
     #endif
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     #if   xOS_LINUX
         char buff[64 + 1] = {0};
 
@@ -105,7 +105,7 @@ CxStdError::format(
 
         sRv.append(&buff[0]);
     #endif
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 

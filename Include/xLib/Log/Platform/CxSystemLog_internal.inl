@@ -17,7 +17,7 @@ xNAMESPACE3_BEGIN(xlib, internal, enums)
 //-------------------------------------------------------------------------------------------------
 static Types<IxLog::ExLevel, ssize_t, 10> levels =
 {{
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     {IxLog::lvUnknown,  - 1},
     {IxLog::lvEmerg,    EVENTLOG_ERROR_TYPE},
     {IxLog::lvAlert,    EVENTLOG_ERROR_TYPE},
@@ -28,7 +28,7 @@ static Types<IxLog::ExLevel, ssize_t, 10> levels =
     {IxLog::lvInfo,     EVENTLOG_INFORMATION_TYPE},
     {IxLog::lvDebug,    EVENTLOG_INFORMATION_TYPE},
     {IxLog::lvPlain,    EVENTLOG_INFORMATION_TYPE}
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     {IxLog::lvUnknown,  - 1},
     {IxLog::lvEmerg,    0},
     {IxLog::lvAlert,    1},

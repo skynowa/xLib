@@ -61,21 +61,21 @@
 // OS environment
 #if defined(_WIN32) || defined(_WIN64) || defined(__WIN32__) || defined(__TOS_WIN__) || \
         defined(__WINDOWS__)
-    #define xOS_ENV_WIN   1
+    #define xENV_WIN   1
         ///< Windows environment
 #elif defined(__unix__) || defined(__unix)
-    #define xOS_ENV_UNIX  1
+    #define xENV_UNIX  1
         ///< Unix environment
 
     #if   defined(linux) || defined(__linux) || defined(__linux__)
-        #define xOS_ENV_LINUX   1
+        #define xENV_LINUX   1
             ///< Linux environment
     #elif defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || \
             defined(__bsdi__) || defined(__DragonFly__)
-        #define xOS_ENV_BSD   1
+        #define xENV_BSD   1
             ///< BSD environment
     #elif defined(macintosh) || defined(Macintosh) || defined(__APPLE__) || defined(__MACH__)
-        #define xOS_ENV_APPLE   1
+        #define xENV_APPLE   1
             ///< Apple environment
     #else
         #error xLib: unsupported OS environment
@@ -86,11 +86,11 @@
 
 //-------------------------------------------------------------------------------------------------
 // OS family
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     #define xOS_WIN 1
         ///< OS Windows
-#elif xOS_ENV_UNIX
-    #if   xOS_ENV_LINUX
+#elif xENV_UNIX
+    #if   xENV_LINUX
         #if  !defined(__ANDROID__)
             #define xOS_LINUX 1
                 ///< OS Linux
@@ -100,14 +100,14 @@
         #else
             #error xLib: unsupported OS
         #endif
-    #elif xOS_ENV_BSD
+    #elif xENV_BSD
         #if defined(__FreeBSD__)
             #define xOS_FREEBSD 1
                 ///< OS FreeBSD
         #else
                 #error xLib: unsupported OS
         #endif
-    #elif xOS_ENV_APPLE
+    #elif xENV_APPLE
         #if defined(__APPLE__ && __MACH__)
             #define xOS_MACOSX 1
                 ///< OS MacOSX
@@ -304,7 +304,7 @@
 
 //-------------------------------------------------------------------------------------------------
 // standard C libraries
-#if xOS_ENV_WIN
+#if xENV_WIN
     // TODO: xSysDefines - standard C libraries
     #if   xCOMPILER_MINGW
         #include <bits/c++config.h> // standard C++ libraries
@@ -314,7 +314,7 @@
         #define xSTD_LIBC_MSVCRT 1
             ///< Microsoft CRT
     #endif
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     #if xOS_FREEBSD
         // TODO: xSysDefines - standard C libraries
     #else
@@ -322,11 +322,11 @@
     #endif
 
     #include <bits/c++config.h> // standard C++ libraries
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     #include <bits/c++config.h> // standard C++ libraries
 #endif
 
-#if xOS_ENV_WIN
+#if xENV_WIN
     #if defined(__GLIBCXX__)
         #define xSTD_LIBCPP_GNUSTDCPP 1
             ///< GNU libstdc++
@@ -360,7 +360,7 @@
 
 //-------------------------------------------------------------------------------------------------
 // standard C++ libraries
-#if xOS_ENV_WIN
+#if xENV_WIN
     #if defined(__GLIBCXX__)
         #define xSTD_LIBCPP_GNUSTDCPP  1
             ///< GNU libstdc++

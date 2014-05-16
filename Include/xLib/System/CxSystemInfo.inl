@@ -36,7 +36,7 @@ CxSystemInfo::os()
 {
     ExOsType otRv = otUnknown;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     OSVERSIONINFO info = {0};
     info.dwOSVersionInfoSize = sizeof(info);
 
@@ -73,7 +73,7 @@ CxSystemInfo::os()
         break;
     }
 
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     utsname info; xSTRUCT_ZERO(info);
 
     int_t iRv = ::uname(&info);
@@ -88,7 +88,7 @@ CxSystemInfo::os()
     else {
         otRv = otUnknown;
     }
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     utsname info= {{0}};
 
     int_t iRv = ::uname(&info);
@@ -114,7 +114,7 @@ CxSystemInfo::formatOsType()
 
     std::tstring_t sRv;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     ExOsType type = (_osType == otUnknown) ? os() : _osType;
     switch (type) {
     case otWindows3:
@@ -163,7 +163,7 @@ CxSystemInfo::formatOsType()
         sRv = CxConst::strUnknown();
         break;
     }
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     utsname info; xSTRUCT_ZERO(info);
 
     int_t iRv = ::uname(&info);
@@ -171,7 +171,7 @@ CxSystemInfo::formatOsType()
 
     sRv = CxString::format(xT("%s %s (%s) %s"), info.sysname, info.release, info.version,
         info.machine);
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -183,7 +183,7 @@ CxSystemInfo::osArch()
 {
     ExOsArch oaRv = oaUnknown;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     #if   xARCH_BITS_32
         BOOL isFuncExist = FALSE;
         {
@@ -203,7 +203,7 @@ CxSystemInfo::osArch()
         // 64-bit Windows does not support Win16
         oaRv = oaUnknown;
     #endif
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     utsname info; xSTRUCT_ZERO(info);
 
     int_t iRv = ::uname(&info);
@@ -275,7 +275,7 @@ CxSystemInfo::desktopName() const
 {
     std::tstring_t sRv;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     std::ctstring_t nativeDesktop = xT("explorer.exe");
 
     #if 0
@@ -293,10 +293,10 @@ CxSystemInfo::desktopName() const
     #else
         sRv = nativeDesktop;
     #endif
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     sRv = CxEnvironment::var(xT("DESKTOP_SESSION"));
     xTEST_EQ(sRv.empty(), false);
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -308,7 +308,7 @@ CxSystemInfo::hostName() const
 {
     std::tstring_t sRv;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     ulong_t buffSize                 = xHOST_NAME_MAX;
     tchar_t buff[xHOST_NAME_MAX + 1] = {0};
 
@@ -316,7 +316,7 @@ CxSystemInfo::hostName() const
     xTEST_DIFF(blRv, FALSE);
 
     sRv.assign(buff, buffSize);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     utsname info; xSTRUCT_ZERO(info);
 
     int_t iRv = ::uname(&info);
@@ -331,7 +331,7 @@ CxSystemInfo::hostName() const
 inline bool_t
 CxSystemInfo::isUserAdmin() const
 {
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     bool_t                   isAdmin     = false;
     SID_IDENTIFIER_AUTHORITY ntAuthority = { SECURITY_NT_AUTHORITY };
     PSID                     adminGroup  = xPTR_NULL;
@@ -354,7 +354,7 @@ CxSystemInfo::isUserAdmin() const
     (void_t)::FreeSid(adminGroup);
 
     xCHECK_RET(!isAdmin, false);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     const uid_t rootId = 0;
     uid_t       userId = 0;
 
@@ -375,7 +375,7 @@ CxSystemInfo::loginUserName() const
 {
     std::tstring_t sRv;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     // try NetAPI
     {
         WKSTA_USER_INFO_1 *userInfo = xPTR_NULL;
@@ -415,7 +415,7 @@ CxSystemInfo::loginUserName() const
             return sRv;
         }
     }
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     // try API
     {
         char buff[xUSER_NAME_MAX + 1] = {0}; // TODO: CxSystemInfo::loginUserName() - LOGIN_NAME_MAX
@@ -448,7 +448,7 @@ CxSystemInfo::loginUserName() const
             return sRv;
         }
     }
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -460,7 +460,7 @@ CxSystemInfo::userName() const
 {
     std::tstring_t sRv;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     DWORD   buffSize                 = xUSER_NAME_MAX;
     tchar_t buff[xUSER_NAME_MAX + 1] = {0};
 
@@ -468,14 +468,14 @@ CxSystemInfo::userName() const
     xTEST_DIFF(blRv, FALSE);
 
     sRv.assign(buff, buffSize);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     passwd passwd;   xSTRUCT_ZERO(passwd);
 
     _passwdFileEntry(&passwd);
     xTEST_PTR(passwd.pw_name);
 
     sRv.assign(passwd.pw_name);
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -487,14 +487,14 @@ CxSystemInfo::userHomeDir() const
 {
     std::tstring_t sRv;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     tchar_t buff[MAX_PATH + 1] = {0};
 
     HRESULT hrRv = SHGetFolderPath(xPTR_NULL, CSIDL_PROFILE, xPTR_NULL, 0UL, &buff[0]);
     xTEST_EQ(S_OK == hrRv, true);
 
     sRv.assign(buff);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
    /*
     * MAN:
     *
@@ -519,7 +519,7 @@ CxSystemInfo::userHomeDir() const
 
     // try to get from system environment
     sRv = CxEnvironment::var(xT("HOME"));
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -531,7 +531,7 @@ CxSystemInfo::userShellPath() const
 {
     std::tstring_t sRv;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     LPITEMIDLIST idList = {0};
 
     HRESULT hrRv = ::SHGetSpecialFolderLocation(xPTR_NULL, CSIDL_WINDOWS, &idList);
@@ -545,14 +545,14 @@ CxSystemInfo::userShellPath() const
     sRv.append(buff);
     sRv.append(CxConst::slash());
     sRv.append(xT("explorer.exe"));
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     passwd passwd;   xSTRUCT_ZERO(passwd);
 
     _passwdFileEntry(&passwd);
     xTEST_PTR(passwd.pw_shell);
 
     sRv.assign(passwd.pw_shell);
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -564,13 +564,13 @@ CxSystemInfo::numOfCpus() const
 {
     ulong_t ulRv = 0UL;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     SYSTEM_INFO sysInfo = {{0}};
 
     (void_t)::GetNativeSystemInfo(&sysInfo);
 
     ulRv = sysInfo.dwNumberOfProcessors;
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     #if   xOS_LINUX
         long_t liRv = ::sysconf(_SC_NPROCESSORS_ONLN);
         xTEST_DIFF(liRv, - 1L);
@@ -583,7 +583,7 @@ CxSystemInfo::numOfCpus() const
         int_t iRv = ::sysctl(mib, static_cast<u_int>( xARRAY_SIZE(mib) ), &ulRv, &resSize, xPTR_NULL, 0);
         xTEST_DIFF(iRv, - 1);
     #endif
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -595,7 +595,7 @@ CxSystemInfo::currentCpuNum() const
 {
     ulong_t ulRv = 0UL;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     typedef DWORD (WINAPI *func_t)(void);
 
     CxDll dll;
@@ -610,7 +610,7 @@ CxSystemInfo::currentCpuNum() const
 
     ulRv = func();
     xTEST_NA(ulRv);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     #if defined(SYS_getcpu)
         ulong_t cpu = 0UL;
 
@@ -635,7 +635,7 @@ CxSystemInfo::currentCpuNum() const
         #pragma message("xLib: CxSystemInfo::currentCpuNum() - n/a")
         ulRv = 0UL;
     #endif
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -648,7 +648,7 @@ CxSystemInfo::cpuVendor() const
     ExCpuVendor cvRv = cvUnknown;
     std::string value;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     #if   xCOMPILER_MINGW || xCOMPILER_MS
         int_t  cpuInfo[4] = {0};
         char   man[13]    = {0};
@@ -665,7 +665,7 @@ CxSystemInfo::cpuVendor() const
         // TODO: CxSystemInfo::cpuVendor()
         value = std::tstring_t();
     #endif
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     #if   xOS_LINUX
         // target proc line: "vendor_id : GenuineIntel"
         value = CxPath::procValue(xT("/proc/cpuinfo"), xT("vendor_id"));
@@ -719,7 +719,7 @@ CxSystemInfo::cpuVendor() const
         value = std::string(CxUtils::reinterpretCastT<char *>( &cpuInfo[0] ));
         xTEST_EQ(value.empty(), false);
     #endif
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     xNOT_IMPLEMENTED
 #endif
     if      (value == std::string("GenuineIntel")) {
@@ -740,7 +740,7 @@ CxSystemInfo::cpuModel() const
 {
     std::tstring_t sRv;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     #if   xCOMPILER_MINGW || xCOMPILER_MS
         char man[13] = {0};
 
@@ -779,7 +779,7 @@ CxSystemInfo::cpuModel() const
     #elif xCOMPILER_CODEGEAR
         sRv = std::tstring_t();
     #endif
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     #if   xOS_LINUX
         // target proc line: "model name    : Intel(R) Xeon(R) CPU           E5620  @ 2.40GHz"
         std::tstring_t value = CxPath::procValue(xT("/proc/cpuinfo"), xT("model name"));
@@ -803,7 +803,7 @@ CxSystemInfo::cpuModel() const
 
         sRv = value;
     #endif
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -815,7 +815,7 @@ CxSystemInfo::cpuSpeed() const
 {
     ulong_t ulRv = 0UL;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     DWORD cpuSpeedMHz = 0UL;
     DWORD buffSize    = sizeof(cpuSpeedMHz);
     HKEY  key         = xPTR_NULL;
@@ -832,7 +832,7 @@ CxSystemInfo::cpuSpeed() const
     xTEST_EQ(lRv, ERROR_SUCCESS);
 
     ulRv = cpuSpeedMHz;
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     #if   xOS_LINUX
         // target proc line: "cpu MHz         : 2796.380"
         std::ctstring_t value = CxPath::procValue(xT("/proc/cpuinfo"), xT("cpu MHz"));
@@ -850,7 +850,7 @@ CxSystemInfo::cpuSpeed() const
 
         ulRv = cpuSpeedMHz;
     #endif
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -862,7 +862,7 @@ CxSystemInfo::cpuUsage() const
 {
     ulong_t ulRv = 0UL;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     double                dRv            = 0.0;
 
     FILETIME              sysIdle        = {0};
@@ -899,7 +899,7 @@ CxSystemInfo::cpuUsage() const
     s_sysKernelOld.QuadPart = ulSysKernel.QuadPart;
 
     ulRv = static_cast<ulong_t>( dRv );
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     #if   xOS_LINUX
         double             dRv             = 0.0;
         int_t              iRv             = - 1;
@@ -990,7 +990,7 @@ CxSystemInfo::cpuUsage() const
 
         ulRv = CxUtils::roundIntT<ulong_t>( cpuUsage );
     #endif
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -1002,7 +1002,7 @@ CxSystemInfo::ramTotal() const
 {
     ulonglong_t ullRv = 0ULL;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     MEMORYSTATUSEX status = {0};
     status.dwLength = sizeof(status);
 
@@ -1010,7 +1010,7 @@ CxSystemInfo::ramTotal() const
     xTEST_DIFF(blRv, FALSE);
 
     ullRv = status.ullTotalPhys;
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     #if   xOS_LINUX
         struct sysinfo info;   xSTRUCT_ZERO(info);
 
@@ -1029,7 +1029,7 @@ CxSystemInfo::ramTotal() const
 
         ullRv = ramTotal;
     #endif
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -1041,7 +1041,7 @@ CxSystemInfo::ramAvailable() const
 {
     ulonglong_t ullRv = 0ULL;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     MEMORYSTATUSEX status = {0};
     status.dwLength = sizeof(status);
 
@@ -1049,7 +1049,7 @@ CxSystemInfo::ramAvailable() const
     xTEST_DIFF(blRv, FALSE);
 
     ullRv = status.ullAvailPhys;
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     #if   xOS_LINUX
         struct sysinfo info;   xSTRUCT_ZERO(info);
 
@@ -1067,7 +1067,7 @@ CxSystemInfo::ramAvailable() const
 
         ullRv = availPhysPages * pageSize();
     #endif
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -1079,7 +1079,7 @@ CxSystemInfo::ramUsage() const
 {
     ulong_t ulRv = 0UL;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     MEMORYSTATUSEX status = {0};
     status.dwLength = sizeof(status);
 
@@ -1087,7 +1087,7 @@ CxSystemInfo::ramUsage() const
     xTEST_DIFF(blRv, FALSE);
 
     ulRv = status.dwMemoryLoad;
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     #if   xOS_LINUX
         struct sysinfo info;   xSTRUCT_ZERO(info);
 
@@ -1125,7 +1125,7 @@ CxSystemInfo::ramUsage() const
         ulRv = static_cast<ulong_t>( CxUtils::safeDivT(ramUsage * 100.0, ramTotal) );
         xTEST_EQ(ramTotal, ramUsage + ramFree);
     #endif
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -1137,13 +1137,13 @@ CxSystemInfo::pageSize() const
 {
     ulong_t ulRv = 0UL;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     SYSTEM_INFO sysInfo = {{0}};
 
     (void_t)::GetNativeSystemInfo(&sysInfo);
 
     ulRv = sysInfo.dwPageSize;
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     long_t liRv = ::sysconf(xPAGE_SIZE);
     xTEST_DIFF(liRv, - 1L);
     xTEST_LESS(0L,   liRv);
@@ -1164,7 +1164,7 @@ CxSystemInfo::pageSize() const
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-#if xOS_ENV_UNIX
+#if xENV_UNIX
 
 inline std::tstring_t
 CxSystemInfo::glibcVersion() const
@@ -1198,7 +1198,7 @@ CxSystemInfo::glibcVersion() const
 
 #endif
 //-------------------------------------------------------------------------------------------------
-#if xOS_ENV_UNIX
+#if xENV_UNIX
 
 inline std::tstring_t
 CxSystemInfo::libPthreadVersion() const
@@ -1230,7 +1230,7 @@ CxSystemInfo::libPthreadVersion() const
 *
 **************************************************************************************************/
 
-#if !xOS_ENV_WIN
+#if !xENV_WIN
 
 //-------------------------------------------------------------------------------------------------
 inline void_t

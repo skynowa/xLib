@@ -22,7 +22,7 @@ public:
     {
         otUnknown,
 
-    #if   xOS_ENV_WIN
+    #if   xENV_WIN
         // windows family
         otWindows3,
         otWindows95,
@@ -38,12 +38,12 @@ public:
         otWindowsServer2008,
         otWindowsServer2008R2,
         otWindows7
-    #elif xOS_ENV_UNIX
+    #elif xENV_UNIX
         // Linux  family
         otLinux,
         // BSD family
         otFreeBSD
-    #elif xOS_ENV_APPLE
+    #elif xENV_APPLE
         otMac
     #endif
     };
@@ -125,7 +125,7 @@ public:
         ///< get Size of a page (bytes)
 
     // Libs
-#if xOS_ENV_UNIX
+#if xENV_UNIX
     std::tstring_t glibcVersion() const xWARN_UNUSED_RV;
         ///< get glibc version available on the system
     std::tstring_t libPthreadVersion() const xWARN_UNUSED_RV;
@@ -137,7 +137,7 @@ private:
     ExOsType       _osType;
     ExOsArch       _osArch;
 
-#if !xOS_ENV_WIN
+#if !xENV_WIN
     void_t         _passwdFileEntry(passwd *passwdEntry) const;
         ///< get password file entry
 #endif

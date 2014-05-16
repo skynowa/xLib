@@ -219,7 +219,7 @@ CxTest_CxString::unit(
         };
 
         for (size_t i = 0; i < xARRAY_SIZE(csAnsiStr) - 1; i ++) {
-            #if   xOS_ENV_WIN
+            #if   xENV_WIN
                 // CP_ACP(ANSI) <-> CP_UTF8(UTF-8)
                 std::string sAnsi;
                 std::string sUtf8;
@@ -236,7 +236,7 @@ CxTest_CxString::unit(
                 sKoiStr = CxString::castCodePage(csAnsiStr[i], 1251,  20866);
                 sWinStr = CxString::castCodePage(sKoiStr,      20866, 1251);
                 xTEST_EQ(true, csAnsiStr[i] == sWinStr);
-            #elif xOS_ENV_UNIX
+            #elif xENV_UNIX
                 // TODO: TETST - CxString::castCodePage()
                 // xNOT_IMPLEMENTED_RET(RET_VALUE);
             #endif
@@ -247,10 +247,10 @@ CxTest_CxString::unit(
     {
         std::string sRv;
 
-        #if   xOS_ENV_WIN
+        #if   xENV_WIN
             sRv = CxString::castToOem(xT("Boss, hello? "));
             xTEST_EQ(true, std::string("Boss, hello? ") == sRv);
-        #elif xOS_ENV_UNIX
+        #elif xENV_UNIX
             // TEST: CxString::castToOem()
         #endif
     }
@@ -259,10 +259,10 @@ CxTest_CxString::unit(
     {
         std::tstring_t sRv;
 
-        #if   xOS_ENV_WIN
+        #if   xENV_WIN
             sRv = CxString::castFromOem(("1111, hdbhjgjk hkl, jl.,kh."));
             xTEST_EQ(true, std::tstring_t(xT("1111, hdbhjgjk hkl, jl.,kh.")) == sRv);
-        #elif xOS_ENV_UNIX
+        #elif xENV_UNIX
             // TODO: CxString::castFromOem()
         #endif
     }
@@ -472,13 +472,13 @@ CxTest_CxString::unit(
 
     xTEST_CASE("CxString::removeEol", a_caseLoops)
     {
-        #if   xOS_ENV_WIN
+        #if   xENV_WIN
             std::ctstring_t sTestData[][2] = {
                 {xT("TEST_STRING_1"), xT("TEST_STRING_1\r\n")},
                 {xT("TEST_STRING_1"), xT("TEST_STRING_1\r")},
                 {xT("TEST_STRING_1"), xT("TEST_STRING_1\n")}
             };
-        #elif xOS_ENV_UNIX
+        #elif xENV_UNIX
             std::ctstring_t sTestData[][2] = {
                 {xT("TEST_STRING_1"), xT("TEST_STRING_1\n")},
                 {xT("TEST_STRING_1"), xT("TEST_STRING_1\n\n")},
