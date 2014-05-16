@@ -124,7 +124,7 @@ if     (MSVC)
     set(FLAGS ${FLAGS} "/W3")
 elseif (MINGW)
     set(LIBS ${LIBS} ws2_32 netapi32 psapi uuid ole32 mpr dbghelp)
-    set(FLAGS ${FLAGS} "-Wall -pipe")
+    set(FLAGS ${FLAGS} "-pipe -Wall")
 elseif (CMAKE_COMPILER_IS_CLANGXX)
     set(LIBS ${LIBS} pthread rt m z)
     set(FLAGS ${FLAGS} "-pipe -Wall -pedantic -Wno-deprecated -Wextra -Wconversion -Wshadow "
