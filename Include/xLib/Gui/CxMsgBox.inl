@@ -5,14 +5,19 @@
 
 
 #include <xLib/Filesystem/CxPath.h>
+
 #include "Platform/CxMsgBox_internal.inl"
 
 #if   xOS_ENV_WIN
-    #include "Platform/CxMsgBox_win.inl"
+    #include "Platform/Win/CxMsgBox_win.inl"
 #elif xOS_ENV_UNIX
-    #include "Platform/CxMsgBox_unix.inl"
-#elif xOS_ENV_APPLE
-    #include "Platform/CxMsgBox_apple.inl"
+    #if   xOS_ENV_LINUX
+        #include "Platform/Unix/CxMsgBox.inl"
+    #elif xOS_ENV_BSD
+        #include "Platform/Unix/CxMsgBox.inl"
+    #elif xOS_ENV_APPLE
+        #include "Platform/Apple/CxMsgBox.inl"
+    #endif
 #endif
 
 xNAMESPACE2_BEGIN(xlib, gui)
