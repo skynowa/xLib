@@ -78,7 +78,6 @@ CxProfiler::stop(
 {
     xTEST_EQ(_isStarted, true);
 
-    //-------------------------------------
     // stop, get duration
     {
         _stop = xSTD_CLOCK();
@@ -92,7 +91,6 @@ CxProfiler::stop(
         static_cast<double>( CLOCKS_PER_SEC )) * 1000.0;  // 1 sec = 1000 msec
     std::size_t durationMsec2 = CxUtils::roundIntT<std::size_t>( durationMsec1 );
 
-    //-------------------------------------
     // write to log
     if ( !_log.filePath().empty() ) {
         std::tstring_t  sRv;
@@ -118,7 +116,6 @@ CxProfiler::restart(
 {
     size_t uiRV = 0;
 
-    //-------------------------------------
     // format comment
     std::tstring_t sRv;
 
@@ -129,7 +126,6 @@ CxProfiler::restart(
         xVA_END(args);
     }
 
-    //-------------------------------------
     // stop, start
     uiRV = stop(xT("%s"), sRv.c_str());
     start();
