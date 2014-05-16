@@ -72,6 +72,14 @@ CxTest_CxBuildInfo::unit(
         xTEST_EQ(m_sRv.empty(), false);
     }
 
+    xTEST_CASE("CxBuildInfo::bitsArch", a_caseLoops)
+    {
+        CxBuildInfo info;
+
+        m_sRv = info.bitsArch();
+        xTEST_EQ(m_sRv.empty(), false);
+    }
+
     xTEST_CASE("CxBuildInfo::compiler", a_caseLoops)
     {
         CxBuildInfo info;
