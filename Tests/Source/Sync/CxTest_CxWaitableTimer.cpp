@@ -16,7 +16,7 @@ CxTest_CxWaitableTimer::unit(
 {
     xUNUSED(a_caseLoops);
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     CxWaitableTimer WT;
 
     //-------------------------------------
@@ -32,7 +32,7 @@ CxTest_CxWaitableTimer::unit(
         //ждем
         WT.wait(INFINITE);
     }
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
 
 #endif
 }

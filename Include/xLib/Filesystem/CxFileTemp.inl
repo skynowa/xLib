@@ -66,7 +66,7 @@ CxFileTemp::create(
 
     _filePath = CxPath(a_dirPath).slashAppend() + CxPath(a_filePath).fileName() + fileNameTemplate;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     #if xCOMPILER_MINGW || xCOMPILER_CODEGEAR
         _filePath.resize(_filePath.size() + 1);
 
@@ -84,7 +84,7 @@ CxFileTemp::create(
         stdFile = std::xTFOPEN(_filePath.c_str(), CxFile::_openMode(CxFile::omBinCreateReadWrite).c_str());
         xTEST_PTR(stdFile);
     #endif
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     int_t file = xTMKSTEMP(&_filePath.at(0));
     xTEST_DIFF(file, - 1);
 

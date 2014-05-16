@@ -11,7 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 
-#if xOS_ENV_WIN
+#if xENV_WIN
     #include <shellapi.h>
     #include <shlwapi.h>
     #include <shlobj.h>
@@ -33,7 +33,7 @@ public:
     void_t     execute(std::ctstring_t &filePath, std::ctstring_t &params) const;
         ///< execute file
 
-#if xOS_ENV_WIN
+#if xENV_WIN
     enum ExOperation
         /// operations
     {

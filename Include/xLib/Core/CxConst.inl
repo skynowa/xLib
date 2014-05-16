@@ -188,7 +188,7 @@ CxConst::unixSlash()
 }
 //-------------------------------------------------------------------------------------------------
 // slash
-#if xOS_ENV_WIN
+#if xENV_WIN
 
 inline std::cstring_t &
 CxConst::slashA()
@@ -245,7 +245,7 @@ CxConst::slash()
 #endif
 //-------------------------------------------------------------------------------------------------
 // eol
-#if xOS_ENV_WIN
+#if xENV_WIN
 
 inline std::cstring_t &
 CxConst::eolA()

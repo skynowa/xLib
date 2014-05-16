@@ -60,7 +60,7 @@ public:
     void_t          close();
         ///< close
 
-#if xOS_ENV_WIN
+#if xENV_WIN
     ulong_t         info() const xWARN_UNUSED_RV;
         ///< get certain properties of an object handle
     void_t          setInfo(culong_t &mask, culong_t &flags);

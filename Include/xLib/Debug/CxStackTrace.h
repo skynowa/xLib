@@ -40,7 +40,7 @@ private:
     void_t          _format(const std::vector<std::vec_tstring_t> &stack, std::tstring_t *stackStr)
                         const;
         ///< format stack trace
-#if xOS_ENV_UNIX
+#if xENV_UNIX
     static
     void_t          _addr2Line(cvoid_t *symbolAddress, std::tstring_t *filePath,
                         std::tstring_t *functionName, ulong_t *sourceLine);

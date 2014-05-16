@@ -20,7 +20,7 @@ public:
     enum ExType
         /// drive type
     {
-    #if   xOS_ENV_WIN
+    #if   xENV_WIN
         dtUnknown   = DRIVE_UNKNOWN,
         dtNoRoot    = DRIVE_NO_ROOT_DIR,
         dtRemovable = DRIVE_REMOVABLE,
@@ -28,7 +28,7 @@ public:
         dtRemote    = DRIVE_REMOTE,
         dtCdRom     = DRIVE_CDROM,
         dtRam       = DRIVE_RAMDISK
-    #elif xOS_ENV_UNIX
+    #elif xENV_UNIX
         dtUnknown   = 0,
         dtNoRoot    = 1,
         dtRemovable = 2,
@@ -47,7 +47,7 @@ public:
 
     std::ctstring_t & path() const xWARN_UNUSED_RV;
         ///< volume path
-#if xOS_ENV_WIN
+#if xENV_WIN
     ExType          type() const xWARN_UNUSED_RV;
         ///< drive type
 #endif

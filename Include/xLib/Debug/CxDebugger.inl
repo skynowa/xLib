@@ -12,7 +12,7 @@
 #include <xLib/Gui/CxMsgBox.h>
 #include <xLib/System/CxEnvironment.h>
 
-#if xOS_ENV_UNIX
+#if xENV_UNIX
     #if   xOS_LINUX
         #if xTEMP_DISABLED
             #include <linux/kd.h>   // beep
@@ -75,7 +75,7 @@ CxDebugger::setEnabled(
 inline bool_t
 CxDebugger::isActive() const
 {
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     // local debugger
     BOOL blRv = ::IsDebuggerPresent();
     xCHECK_RET(blRv != FALSE, true);
@@ -85,7 +85,7 @@ CxDebugger::isActive() const
 
     blRv = ::CheckRemoteDebuggerPresent(::GetCurrentProcess(), &isRemoteDebuggerPresent);
     xCHECK_RET(blRv == FALSE || isRemoteDebuggerPresent == FALSE, false);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     #if   xOS_LINUX
         // if ppid != sid, some process spawned our app, probably a debugger
         bool_t bRv = ( ::getsid(::getpid()) != ::getppid() );
@@ -111,7 +111,7 @@ CxDebugger::isActive() const
         // we're being debugged if the P_TRACED flag is set.
         xCHECK_RET((info.ki_flag & P_TRACED) == 0, false);
     #endif
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -128,13 +128,13 @@ CxDebugger::coreDumpsEnable(
     bool_t isEnable = false;
     int_t  iRv      = 0;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     // MSDN: MiniDumpWriteDump, http://www.debuginfo.com/
 
     xUNUSED(a_flag);
     isEnable = true;
     #pragma message("xLib: CxDebugger::coreDumpsEnable() - n/a")
-#elif xOS_ENV_UNIX || xOS_ENV_APPLE
+#elif xENV_UNIX || xENV_APPLE
     #if   xHAVE_PR_SET_DUMPABLE
         culong_t isDumpable = a_flag ? 1UL : 0UL;
 
@@ -175,9 +175,9 @@ CxDebugger::breakPoint() const
 {
     xCHECK_DO(!isEnabled(), return);
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     (void_t)::DebugBreak();
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     int_t iRv = ::raise(SIGTRAP);
     xCHECK_DO(iRv == - 1, return);
 

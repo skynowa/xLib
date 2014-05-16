@@ -4,7 +4,7 @@
  */
 
 
-#if xOS_ENV_WIN
+#if xENV_WIN
 
 xNAMESPACE2_BEGIN(xlib, sync)
 

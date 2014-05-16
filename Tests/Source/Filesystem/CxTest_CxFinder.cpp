@@ -72,9 +72,9 @@ CxTest_CxFinder::unit(
         const data2_size_t data[] = {
             {CxConst::maskAll(), 12 - 2},
             {xT("*"),            12 - 2},
-        #if   xOS_ENV_WIN
+        #if   xENV_WIN
             {xT("*.*"),          12 - 2},
-        #elif xOS_ENV_UNIX
+        #elif xENV_UNIX
             {xT("*.*"),          12 - 3},
         #endif
             {xT("*.h"),          4},
@@ -135,9 +135,9 @@ CxTest_CxFinder::unit(
             const data2_size_t data[] = {
                 {CxConst::maskAll(), 12 - 2},
                 {xT("*"),            12 - 2},
-            #if   xOS_ENV_WIN
+            #if   xENV_WIN
                 {xT("*.*"),          12 - 2},
-            #elif xOS_ENV_UNIX
+            #elif xENV_UNIX
                 {xT("*.*"),          12 - 3},
             #endif
                 {xT("*.h"),          4},
@@ -160,9 +160,9 @@ CxTest_CxFinder::unit(
             const data2_size_t data[] = {
                 {CxConst::maskAll(), 12},
                 {xT("*"),            12},
-            #if   xOS_ENV_WIN
+            #if   xENV_WIN
                 {xT("*.*"),          12},
-            #elif xOS_ENV_UNIX
+            #elif xENV_UNIX
                 {xT("*.*"),          12 - 1},
             #endif
                 {xT("*.h"),          4},

@@ -8,7 +8,7 @@
 #include <xLib/Filesystem/CxPath.h>
 #include "Platform/CxSystemLog_internal.inl"
 
-#if xOS_ENV_UNIX
+#if xENV_UNIX
     #include <syslog.h>
 #endif
 
@@ -23,7 +23,7 @@ xNAMESPACE2_BEGIN(xlib, log)
 //-------------------------------------------------------------------------------------------------
 inline
 CxSystemLog::CxSystemLog()
-#if xOS_ENV_WIN
+#if xENV_WIN
     :
     _handle(xPTR_NULL)
 #endif
@@ -35,7 +35,7 @@ inline
 CxSystemLog::CxSystemLog(
     std::ctstring_t &a_logName
 )
-#if xOS_ENV_WIN
+#if xENV_WIN
     :
     _handle   (xPTR_NULL)
 #endif
@@ -49,14 +49,14 @@ CxSystemLog::~CxSystemLog()
 {
     write(xT("%s"), _oss.str().c_str());
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     xTEST_PTR(_handle);
 
     BOOL blRv = ::DeregisterEventSource(_handle);
     xTEST_DIFF(blRv, FALSE);
 
     _handle = xPTR_NULL;
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     (void_t)::closelog();
 #endif
 }
@@ -97,7 +97,7 @@ CxSystemLog::write(
 {
     xCHECK_DO(!isEnabled(), return);
     xTEST_PTR(a_format);
-#if xOS_ENV_WIN
+#if xENV_WIN
     xTEST_DIFF(_handle, xNATIVE_HANDLE_NULL);
 #endif
 
@@ -116,13 +116,13 @@ CxSystemLog::write(
 
     // write
     {
-    #if   xOS_ENV_WIN
+    #if   xENV_WIN
         WORD    level_impl = internal::enums::toCross(level);
         LPCTSTR strings    = msg.c_str();
 
         BOOL bRv = ::ReportEvent(_handle, level, 0, 0UL, xPTR_NULL, 1, 0UL, &strings, xPTR_NULL);
         xTEST_DIFF(bRv, FALSE);
-    #elif xOS_ENV_UNIX
+    #elif xENV_UNIX
         cint_t level_impl = internal::enums::levels.toCross(level);
 
         (void_t)::syslog(level_impl, xT("%s"), msg.c_str());
@@ -143,10 +143,10 @@ CxSystemLog::_construct(
     std::ctstring_t &a_logName
 )
 {
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     _handle = ::RegisterEventSource(xPTR_NULL, a_logName.c_str());
     xTEST_DIFF(_handle, xNATIVE_HANDLE_NULL);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     (void_t)::openlog(a_logName.c_str(), LOG_PID | LOG_NDELAY | LOG_NOWAIT, LOG_USER);
 #endif
 }

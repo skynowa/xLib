@@ -4,7 +4,7 @@
  */
 
 
-#if !xOS_ENV_WIN
+#if !xENV_WIN
     // lib: -lrt
 #endif
 
@@ -31,13 +31,13 @@ CxIpcMutex::create(
 )
 {
     ////xTEST_EQ(_handle.isValid(), false);
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     // name
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     xTEST_GR(xNAME_MAX - 4, a_name.size());
 #endif
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     ctchar_t       *winName = xPTR_NULL;
     std::tstring_t  _winName;
 
@@ -53,7 +53,7 @@ CxIpcMutex::create(
 
     _handle.set(hRv);
     _name = a_name;
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     std::tstring_t unixName = CxConst::unixSlash() + a_name;
 
     handle_t hHandle = ::sem_open(unixName.c_str(), O_CREAT | O_RDWR, 0777, 1U);
@@ -69,7 +69,7 @@ CxIpcMutex::open(
     std::ctstring_t &a_name
 )
 {
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     ctchar_t *winName = xPTR_NULL;
     std::tstring_t _winName;
 
@@ -85,7 +85,7 @@ CxIpcMutex::open(
 
     _handle.set(hRv);
     _name = a_name;
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     std::tstring_t unixName = CxConst::unixSlash() + a_name;
 
     handle_t hHandle = ::sem_open(unixName.c_str(), O_RDWR, 0777, 1U);
@@ -104,11 +104,11 @@ CxIpcMutex::lock(
     ////xTEST_EQ(_handle.isValid(), true);
     xTEST_NA(a_timeoutMsec);
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     DWORD dwRv = ::WaitForSingleObject(_handle.get(), a_timeoutMsec);
     xTEST_EQ(dwRv, WAIT_OBJECT_0);
     xTEST_DIFF(dwRv, WAIT_ABANDONED);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     struct _Functor
     {
         static void_t
@@ -156,7 +156,7 @@ CxIpcMutex::lock(
             xTEST_FAIL;
         }
     }
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 }
@@ -166,10 +166,10 @@ CxIpcMutex::unlock() const
 {
     ////xTEST_EQ(_handle.isValid(), true);
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     BOOL blRv = ::ReleaseMutex(_handle.get());
     xTEST_DIFF(blRv, FALSE);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     int_t iRv = ::sem_post(_handle);
     xTEST_DIFF(iRv, - 1);
 #endif

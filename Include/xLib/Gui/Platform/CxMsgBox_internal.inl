@@ -17,7 +17,7 @@ xNAMESPACE3_BEGIN(xlib, internal, enums)
 //-------------------------------------------------------------------------------------------------
 static Types<CxMsgBox::ExModalResult, ssize_t, 10> modalResults =
 {{
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     {CxMsgBox::mrUnknown,  - 1},
     {CxMsgBox::mrOk,       IDOK},
     {CxMsgBox::mrYes,      IDYES},
@@ -28,7 +28,7 @@ static Types<CxMsgBox::ExModalResult, ssize_t, 10> modalResults =
     {CxMsgBox::mrIgnore,   IDIGNORE},
     {CxMsgBox::mrRetry,    IDRETRY},
     {CxMsgBox::mrTryAgain, IDTRYAGAIN}
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     {CxMsgBox::mrUnknown,  - 1},
     {CxMsgBox::mrOk,       0},
     {CxMsgBox::mrYes,      1},
@@ -39,7 +39,7 @@ static Types<CxMsgBox::ExModalResult, ssize_t, 10> modalResults =
     {CxMsgBox::mrIgnore,   6},
     {CxMsgBox::mrRetry,    7},
     {CxMsgBox::mrTryAgain, 8}
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     {CxMsgBox::mrUnknown,  - 1},
     {CxMsgBox::mrOk,       0},
     {CxMsgBox::mrYes,      1},
@@ -55,7 +55,7 @@ static Types<CxMsgBox::ExModalResult, ssize_t, 10> modalResults =
 //-------------------------------------------------------------------------------------------------
 static Types<CxMsgBox::ExType, ssize_t, 8> types =
 {{
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     {CxMsgBox::tpUnknown,           - 1},
     {CxMsgBox::tpOk,                MB_OK},
     {CxMsgBox::tpOkCancel,          MB_OKCANCEL},
@@ -64,7 +64,7 @@ static Types<CxMsgBox::ExType, ssize_t, 8> types =
     {CxMsgBox::tpYesNoCancel,       MB_YESNOCANCEL},
     {CxMsgBox::tpAbortRetryIgnore,  MB_ABORTRETRYIGNORE},
     {CxMsgBox::tpCancelTryContinue, MB_CANCELTRYCONTINUE}
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     {CxMsgBox::tpUnknown,           - 1},
     {CxMsgBox::tpOk,                0},
     {CxMsgBox::tpOkCancel,          1},
@@ -73,7 +73,7 @@ static Types<CxMsgBox::ExType, ssize_t, 8> types =
     {CxMsgBox::tpYesNoCancel,       4},
     {CxMsgBox::tpAbortRetryIgnore,  5},
     {CxMsgBox::tpCancelTryContinue, 6}
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     {CxMsgBox::tpUnknown,           - 1},
     {CxMsgBox::tpOk,                0},
     {CxMsgBox::tpOkCancel,          1},

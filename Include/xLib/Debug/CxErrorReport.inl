@@ -162,9 +162,9 @@ CxErrorReport::_construct(
     _type         = a_type;
 
     _program      = CxPath( CxPath(CxPath::exe()).brief(::reportWidthMax) ).toUnix(false);
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     _processId    = ::GetCurrentProcessId();
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     _processId    = ::getpid();
 #endif
     _threadId     = (ulong_t)CxThread::currentId();
@@ -180,7 +180,7 @@ CxErrorReport::_construct(
 
     _currentDate  = CxDateTime::current().format(xT("%Y-%m-%d %H:%M:%S"));
 
-#if xOS_ENV_UNIX
+#if xENV_UNIX
     _glibc        = sysInfo.glibcVersion();
     _libPthread   = sysInfo.libPthreadVersion();
 #endif
@@ -211,7 +211,7 @@ CxErrorReport::_initPlain()
         << margin << xT("Last error:    ") << _lastErrorStr << "\n"
                                                             << "\n"
         << margin << xT("Current date:  ") << _currentDate  << "\n"
-    #if xOS_ENV_UNIX
+    #if xENV_UNIX
                                                             << "\n"
         << margin << xT("GLIBC:         ") << _glibc        << "\n"
         << margin << xT("Pthread lib:   ") << _libPthread   << "\n"

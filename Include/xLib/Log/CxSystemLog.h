@@ -36,7 +36,7 @@ public:
         ///< write to log
 
 private:
-#if xOS_ENV_WIN
+#if xENV_WIN
     HANDLE         _handle;     ///< event log handle
 #endif
 

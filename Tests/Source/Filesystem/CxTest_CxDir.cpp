@@ -19,7 +19,7 @@ CxTest_CxDir::unit(
     std::ctstring_t csTempScanDirPath = tempDirPath() + CxConst::slash() + xT("Scan");
     std::ctstring_t csMask            = xT("*.txt");
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     std::ctstring_t csFilePath        = tempDirPath() + xT("\\Test.txt");
     std::ctstring_t csRootTestDirPath = tempDirPath() + xT("\\Test_Dir");
     std::ctstring_t csDirPath         = tempDirPath() + xT("\\Test_Dir\\1\\2\\3");
@@ -27,7 +27,7 @@ CxTest_CxDir::unit(
     std::ctstring_t csNewFilePath     = tempDirPath() + xT("\\New.Test.txt");
     std::ctstring_t csBakFilePath     = tempDirPath() + xT("\\Test_Static.txt.bak");
     std::ctstring_t csFilePathSt      = tempDirPath() + xT("\\Test_Static.txt");
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     std::ctstring_t csFilePath        = tempDirPath() + xT("/Test.txt");
     std::ctstring_t csRootTestDirPath = tempDirPath() + xT("/Test_Dir");
     std::ctstring_t csDirPath         = tempDirPath() + xT("/Test_Dir/1/2/3");
@@ -96,7 +96,7 @@ CxTest_CxDir::unit(
 
     xTEST_CASE("CxDir::isRoot", a_caseLoops)
     {
-        #if   xOS_ENV_WIN
+        #if   xENV_WIN
             std::ctstring_t sTestData[][2] = {
                 {xT("TEST_STRING_1"), xT("false")},
                 {xT("vw4g56be56||||\a\n\t///lk;'"), xT("false")},
@@ -111,7 +111,7 @@ CxTest_CxDir::unit(
                 {xT("B:"),            xT("false")},
                 {xT("B"),             xT("false")}
             };
-        #elif xOS_ENV_UNIX
+        #elif xENV_UNIX
             std::ctstring_t sTestData[][2] = {
                 {xT("TEST_STRING_1"), xT("false")},
                 {xT("vw4g56be56||||\a\n\t///lk;'"), xT("false")},

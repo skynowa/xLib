@@ -154,12 +154,12 @@ CxTest_CxThread::unit(
     {
         const CxThread::ExPriority ctpPriority = CxThread::tpLowest;
 
-        #if   xOS_ENV_WIN
+        #if   xENV_WIN
             pthT->setPriority(ctpPriority);
 
             m_iRv = pthT->priority();
             xTEST_EQ((int_t)ctpPriority, (int_t)m_iRv);
-        #elif xOS_ENV_UNIX
+        #elif xENV_UNIX
             pthT->setPriority(ctpPriority);
 
             m_iRv = pthT->priority();
@@ -178,27 +178,27 @@ CxTest_CxThread::unit(
 
     xTEST_CASE("CxThread::priorityUp CxThread::priorityDown", a_caseLoops)
     {
-        #if   xOS_ENV_WIN
+        #if   xENV_WIN
             pthT->priorityUp();
             pthT->priorityDown();
-        #elif xOS_ENV_UNIX
+        #elif xENV_UNIX
 
         #endif
     }
 
     xTEST_CASE("CxThread::isPriorityBoost", a_caseLoops)
     {
-        #if   xOS_ENV_WIN
+        #if   xENV_WIN
             m_bRv = pthT->isPriorityBoost();
             xTEST_EQ(m_bRv, true);
-        #elif xOS_ENV_UNIX
+        #elif xENV_UNIX
 
         #endif
     }
 
     xTEST_CASE("CxThread::setPriorityBoost", a_caseLoops)
     {
-        #if   xOS_ENV_WIN
+        #if   xENV_WIN
             pthT->setPriorityBoost(false);
 
             m_bRv = pthT->isPriorityBoost();
@@ -208,7 +208,7 @@ CxTest_CxThread::unit(
 
             m_bRv = pthT->isPriorityBoost();
             xTEST_EQ(m_bRv, true);
-        #elif xOS_ENV_UNIX
+        #elif xENV_UNIX
 
         #endif
     }
@@ -225,12 +225,12 @@ CxTest_CxThread::unit(
 
     xTEST_CASE("CxThread::setCpuIdeal CxThread::cpuIdeal", a_caseLoops)
     {
-        #if   xOS_ENV_WIN
+        #if   xENV_WIN
             pthT->setCpuIdeal(0);
 
             m_ulRv = pthT->cpuIdeal();
             xTEST_EQ(true, CxSystemInfo().numOfCpus() > m_ulRv);
-        #elif xOS_ENV_UNIX
+        #elif xENV_UNIX
 
         #endif
     }

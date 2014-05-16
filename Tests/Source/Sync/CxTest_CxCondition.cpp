@@ -8,7 +8,7 @@
 
 
 //-------------------------------------------------------------------------------------------------
-#if xOS_ENV_UNIX
+#if xENV_UNIX
 
 std::csize_t    g_cuiThreadsNum = 3;
 std::csize_t    g_cuiCounterMax = 12;
@@ -17,9 +17,9 @@ size_t          g_uiCounter     = 0;
 pthread_mutex_t g_mtMutex      = PTHREAD_MUTEX_INITIALIZER;
 pthread_cond_t  g_cndCondition = PTHREAD_COND_INITIALIZER;
 
-#endif // xOS_ENV_UNIX
+#endif // xENV_UNIX
 //-------------------------------------------------------------------------------------------------
-#if xOS_ENV_UNIX && xTODO
+#if xENV_UNIX && xTODO
 
 static
 void_t *
@@ -69,9 +69,9 @@ pvWatch(
     return NULL;
 }
 
-#endif // xOS_ENV_UNIX
+#endif // xENV_UNIX
 //-------------------------------------------------------------------------------------------------
-#if xOS_ENV_UNIX && xTODO
+#if xENV_UNIX && xTODO
 
 static
 void_t *
@@ -117,7 +117,7 @@ pvJob(
     return NULL;
 }
 
-#endif // xOS_ENV_UNIX
+#endif // xENV_UNIX
 //-------------------------------------------------------------------------------------------------
 /*virtual*/
 void_t
@@ -127,7 +127,7 @@ CxTest_CxCondition::unit(
 {
     xUNUSED(a_caseLoops);
 
-#if xOS_ENV_UNIX && xTODO
+#if xENV_UNIX && xTODO
     int_t          iRv          = - 1;
     pthread_t    thThreads[3] = {0};
     clong_t liId1        = 1L;
@@ -196,6 +196,6 @@ CxTest_CxCondition::unit(
     cond.broadcast();
 #endif
 
-#endif // xOS_ENV_UNIX
+#endif // xENV_UNIX
 }
 //-------------------------------------------------------------------------------------------------

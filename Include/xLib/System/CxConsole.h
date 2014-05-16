@@ -99,7 +99,7 @@ public:
 
     void_t          setTitle(std::ctstring_t &title) const;
         ///< set title string
-#if xOS_ENV_WIN
+#if xENV_WIN
     std::tstring_t  title() const xWARN_UNUSED_RV;
         ///< get title string
     void_t          centerWindow() const;
@@ -111,7 +111,7 @@ public:
 #endif
 
 private:
-#if xOS_ENV_WIN
+#if xENV_WIN
     HWND            _wnd;             ///< console window handle
     HMENU           _menu;            ///< console menu handle
     CxHandleInvalid _stdIn;           ///< standard input handle

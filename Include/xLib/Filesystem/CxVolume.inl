@@ -17,11 +17,11 @@
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxDir.h>
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     #if !xCOMPILER_MINGW
         #pragma comment(lib, "mpr.lib")
     #endif
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     #include <sys/param.h>
     #include <sys/mount.h>
 #endif
@@ -52,7 +52,7 @@ CxVolume::path() const
     return _path;
 }
 //-------------------------------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if xENV_WIN
 
 inline CxVolume::ExType
 CxVolume::type() const
@@ -72,7 +72,7 @@ CxVolume::fileSystem() const
 {
     std::tstring_t sRv;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     tchar_t fileSystemName[MAX_PATH + 1] = {0};
 
     CxLastError::reset();
@@ -82,7 +82,7 @@ CxVolume::fileSystem() const
     xTEST_DIFF(blRv != FALSE && CxLastError::isSuccess(), false);
 
     sRv.assign(volumeName);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     #if   xOS_LINUX
         FILE *file = ::setmntent("/etc/mtab", "r");
         xTEST_PTR(file);
@@ -109,7 +109,7 @@ CxVolume::fileSystem() const
         // TODO: CxVolume::fileSystem()
         xNOT_IMPLEMENTED
     #endif
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     // TODO: CxVolume::fileSystem()
     xNOT_IMPLEMENTED
 #endif
@@ -125,7 +125,7 @@ CxVolume::label() const
     bool_t bRv = isReady();
     xCHECK_RET(!bRv, std::tstring_t());
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     tchar_t volumeName[MAX_PATH + 1] = {0};
 
     CxLastError::reset();
@@ -135,7 +135,7 @@ CxVolume::label() const
     xTEST_DIFF(blRv != FALSE && CxLastError::isSuccess(), false);
 
     sRv.assign(volumeName);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     // REVIEW: just get the dir name ??
     if (path() == CxConst::unixSlash()) {
         sRv = CxConst::unixSlash();
@@ -150,10 +150,10 @@ CxVolume::label() const
 inline bool_t
 CxVolume::isValid() const
 {
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     bool_t bRv = CxDir( path() ).isRoot();
     xCHECK_RET(!bRv, false);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     xCHECK_RET(path().empty(),                         false);
     xCHECK_RET(path().at(0) != CxConst::slash().at(0), false);
 #endif
@@ -168,7 +168,7 @@ CxVolume::isReady() const
     std::tstring_t volumeDirPath = CxPath( path() ).slashAppend();
     std::tstring_t oldDirPath;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     std::tstring_t sRv;
     UINT           oldErrorMode = 0U;
 
@@ -185,7 +185,7 @@ CxVolume::isReady() const
     CxDir::setCurrent(oldDirPath);
 
     (void_t)::SetErrorMode(oldErrorMode);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     oldDirPath = CxDir::current();
     xTEST_NA(oldDirPath);
 
@@ -212,7 +212,7 @@ CxVolume::mount(
 {
     xTEST_EQ(a_destPath.empty(), false);
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     // TODO: CxVolume::mount - is it correct?
     NETRESOURCE netResource = {0};
 
@@ -227,7 +227,7 @@ CxVolume::mount(
 
     DWORD dwRv = ::WNetAddConnection2(&netResource, xPTR_NULL, xPTR_NULL, CONNECT_UPDATE_PROFILE);
     xTEST_EQ(dwRv, static_cast<DWORD>( NO_ERROR ));
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     #if   xOS_LINUX
         int_t iRv = ::mount(path().c_str(), a_destPath.c_str(), xPTR_NULL, MS_REMOUNT, xPTR_NULL);
         xTEST_DIFF(iRv, - 1);
@@ -235,7 +235,7 @@ CxVolume::mount(
         int_t iRv = ::mount(path().c_str(), a_destPath.c_str(), MNT_UPDATE, xPTR_NULL);
         xTEST_DIFF(iRv, - 1);
     #endif
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 }
@@ -247,11 +247,11 @@ CxVolume::unMount(
 {
     xTEST_NA(a_isForce);
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     // TODO: CxVolume::unMount() - is it correct?
     DWORD dwRv = ::WNetCancelConnection2(path().c_str(), CONNECT_UPDATE_PROFILE, a_isForce);
     xTEST_EQ(dwRv, static_cast<DWORD>( NO_ERROR ));
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     #ifdef MNT_DETACH
         #define xMNT_DETACH MNT_DETACH
     #else
@@ -267,7 +267,7 @@ CxVolume::unMount(
         int_t iRv = ::unmount(path().c_str(), flag);
         xTEST_DIFF(iRv, - 1);
     #endif
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 }
@@ -322,7 +322,7 @@ CxVolume::space(
     bool_t bRv = CxDir(dirPath).isExists();
     xTEST_EQ(bRv, true);
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     ULARGE_INTEGER available = {{0}};
     ULARGE_INTEGER total     = {{0}};
     ULARGE_INTEGER free      = {{0}};
@@ -333,7 +333,7 @@ CxVolume::space(
     CxUtils::ptrAssignT(a_available, available.QuadPart);
     CxUtils::ptrAssignT(a_total,     total.QuadPart);
     CxUtils::ptrAssignT(a_free,      free.QuadPart);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     struct xSTATVFS info;   xSTRUCT_ZERO(info);
 
     int_t iRv = ::xSTATVFS(dirPath.c_str(), &info);
@@ -355,7 +355,7 @@ CxVolume::paths(
 
     std::vec_tstring_t vsRv;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     std::tstring_t sRv;
     DWORD          dwRv = 0UL;
 
@@ -370,7 +370,7 @@ CxVolume::paths(
     for (ctchar_t *s = sRv.c_str(); 0 != *s; s += ::lstrlen(s) + 1) {
         vsRv.push_back(s);
     }
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     #if   xOS_LINUX
         struct _Mounts
         {
@@ -397,7 +397,7 @@ CxVolume::paths(
     #elif xOS_FREEBSD
         // TODO: CxVolume::paths()
     #endif
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 

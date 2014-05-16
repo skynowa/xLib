@@ -66,7 +66,7 @@
 
 //-------------------------------------------------------------------------------------------------
 // xDECL, xDECL_TEMPL
-#if xOS_ENV_WIN && xDLL
+#if xENV_WIN && xDLL
     #if xAPI_EXPORTS
         #define xDECL \
             __declspec(dllexport)
@@ -81,7 +81,7 @@
             extern
             ///< import DLL information
     #endif
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     #define xDECL
         ///< export, import DLL information
     #define xDECL_TEMPL
@@ -90,10 +90,10 @@
 
 //-------------------------------------------------------------------------------------------------
 // xNO_VTABLE
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     #define xNO_VTABLE \
         __declspec(novtable)
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     #define xNO_VTABLE \
         xNOT_AVAILABLE
 #endif
@@ -141,10 +141,10 @@
 
 //-------------------------------------------------------------------------------------------------
 // xSTDCALL
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     #define xSTDCALL \
         __stdcall
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     #define xSTDCALL \
         xNOT_AVAILABLE
 #endif
@@ -469,7 +469,7 @@
 
 //-------------------------------------------------------------------------------------------------
 // qualifiers
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     #ifdef xARCH_BITS_32
         #define xPR_SIZET xT("u")
             ///< qualifier for std::size_t
@@ -493,7 +493,7 @@
         #define xPR_I64X  xT("I64X")
             ///< qualifier for long_t long_t int_t (hex)
     #endif
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     #ifdef xARCH_BITS_32
         #define xPR_SIZET xT("zu")
             ///< qualifier for std::size_t
@@ -522,7 +522,7 @@
 
 //-------------------------------------------------------------------------------------------------
 // xDIR_TEMP temporary directory
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     #if defined(P_tmpdir)
         #define xDIR_TEMP \
             xT(P_tmpdir)
@@ -530,7 +530,7 @@
         #define xDIR_TEMP \
             xT("C:\\Temp")  // custom define
     #endif
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     #if defined(P_tmpdir)
         #define xDIR_TEMP \
             xT(P_tmpdir)
@@ -543,14 +543,14 @@
 
 //-------------------------------------------------------------------------------------------------
 // xNATIVE_HANDLE_NULL, xNATIVE_HANDLE_INVALID
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     #define xNATIVE_HANDLE_NULL \
         ( static_cast<native_handle_t>( xPTR_NULL ) )
         ///< native handle value "null"
     #define xNATIVE_HANDLE_INVALID \
         ( static_cast<native_handle_t>( INVALID_HANDLE_VALUE ) )
         ///< native handle value "invalid"
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     #define xNATIVE_HANDLE_NULL \
         ( static_cast<native_handle_t>( 0 ) )
         ///< native handle value "null"
@@ -561,14 +561,14 @@
 
 //-------------------------------------------------------------------------------------------------
 // xSOCKET_ERROR, xSOCKET_HANDLE_INVALID
-#if xOS_ENV_WIN
+#if xENV_WIN
     #define xSOCKET_ERROR \
         ( SOCKET_ERROR )
         ///< socket native handle value "error"
     #define xSOCKET_HANDLE_INVALID \
         ( static_cast<socket_t>( INVALID_SOCKET ) )
         ///< socket native handle value "null"
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     #define xSOCKET_ERROR \
         ( - 1 )
         ///< socket native handle value "error"
@@ -579,7 +579,7 @@
 
 //-------------------------------------------------------------------------------------------------
 // xWND_NATIVE_HANDLE_NULL
-#if xOS_ENV_WIN
+#if xENV_WIN
     #define xWND_NATIVE_HANDLE_NULL \
         ( static_cast<HWND>( xPTR_NULL ) )
         ///< window native handle value "null"
@@ -587,7 +587,7 @@
 
 //-------------------------------------------------------------------------------------------------
 // generic test for success on any status value (for Windows XP)
-#if xOS_ENV_WIN
+#if xENV_WIN
     #ifndef NT_SUCCESS
         #define NT_SUCCESS(Status) \
             (((NTSTATUS)(Status)) >= 0)
@@ -614,7 +614,7 @@
 #endif
 
 //-------------------------------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if xENV_WIN
     #define xHOTKEY(modifier, key) \
         ((((modifier) & 0xFF) << 8) | ((key) & 0xFF))
         ///< hot key

@@ -42,7 +42,7 @@ public:
     std::mmap_tstring_t  m_mmsRv;     ///< for global use
     native_handle_t      m_hRv;       ///< for global use
 
-#if xOS_ENV_WIN
+#if xENV_WIN
     HWND                 m_hwndRv;    ///< for global use
 #endif
 

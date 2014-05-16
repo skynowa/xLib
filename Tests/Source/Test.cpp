@@ -103,7 +103,7 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
 #if xHAVE_TESTS
     // checks
     {
-    #if xOS_ENV_UNIX
+    #if xENV_UNIX
         CxSystemInfo info;
         xCHECK_MSG_RET(info.isUserAdmin(), xT("xLib_test: Can't run as root"), EXIT_FAILURE);
     #endif

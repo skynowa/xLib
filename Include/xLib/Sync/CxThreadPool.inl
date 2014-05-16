@@ -274,9 +274,9 @@ CxThreadPool<T>::setMaxTasks(
         xFOREACH_R_CONST(typename std::list<T *>, it, _tasks) {
             xCHECK_DO(!(*it)->isRunning(), /*LOG*/_s_log.write(xT("Not running")); continue);
 
-            #if   xOS_ENV_WIN
+            #if   xENV_WIN
                 ::InterlockedExchange(&((*it)->tag), 1UL);
-            #elif xOS_ENV_UNIX
+            #elif xENV_UNIX
 
             #endif
 

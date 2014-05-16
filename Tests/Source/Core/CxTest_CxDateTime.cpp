@@ -459,7 +459,7 @@ CxTest_CxDateTime::unit(
 
     xTEST_CASE("CxDateTime::filetimeToInt64", a_caseLoops)
     {
-    #if xOS_ENV_WIN
+    #if xENV_WIN
         const FILETIME time = {100, 200};
 
         m_ullRv = CxDateTime::filetimeToInt64(time);
@@ -469,7 +469,7 @@ CxTest_CxDateTime::unit(
 
     xTEST_CASE("CxDateTime::unixTimeToFileTime", a_caseLoops)
     {
-    #if xOS_ENV_WIN
+    #if xENV_WIN
         const time_t unixTime = 1000;
         FILETIME     fileTime = {0};
 
@@ -479,7 +479,7 @@ CxTest_CxDateTime::unit(
 
     xTEST_CASE("CxDateTime::fileTimeToUnixTime", a_caseLoops)
     {
-    #if xOS_ENV_WIN
+    #if xENV_WIN
         time_t   unixTime = 0;
         FILETIME fileTime = {0};
 

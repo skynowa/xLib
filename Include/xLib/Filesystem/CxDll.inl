@@ -13,7 +13,7 @@
 #include <xLib/Debug/CxDebugger.h>
 #include <xLib/Log/CxTrace.h>
 
-#if xOS_ENV_WIN
+#if xENV_WIN
     // lib: n/a
 #else
     // lib: -ldl, -lc (FreeBSD)
@@ -59,10 +59,10 @@ CxDll::load(
 
     _destruct();
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     _handle = ::LoadLibrary(a_dllPath.c_str());
     xTEST_PTR(_handle);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     _handle = ::dlopen(a_dllPath.c_str(), RTLD_LAZY | RTLD_GLOBAL);
     xTEST_PTR(_handle);
 #endif
@@ -75,10 +75,10 @@ CxDll::isProcExists(
 {
     xTEST_PTR(_handle);
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     proc_address_t paRv = ::GetProcAddress(_handle, xTS2S(a_procName).c_str());
     xCHECK_RET(paRv == xPTR_NULL, false);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     const char *error = xPTR_NULL;
 
     error = ::dlerror();
@@ -102,10 +102,10 @@ CxDll::procAddress(
 
     proc_address_t paRv = xPTR_NULL;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     paRv = ::GetProcAddress(_handle, xTS2S(a_procName).c_str());
     xTEST_PTR(paRv);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     const char *error = xPTR_NULL;
 
     error = ::dlerror();
@@ -136,10 +136,10 @@ CxDll::_destruct()
 
     xCHECK_DO(!isLoaded(), return);
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     BOOL blRv = ::FreeLibrary(_handle);
     xTEST_DIFF(blRv, FALSE);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     int_t iRv = ::dlclose(_handle);
     xTEST_EQ(iRv, 0);
 #endif

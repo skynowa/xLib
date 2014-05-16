@@ -63,9 +63,9 @@ public:
         ///< get long integer in the range between 0 and RAND_MAX
 
 private:
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     HCRYPTPROV     _hProv;  ///< CSP handle
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     random_data    _data;   ///< data for ::srandom_r()
 #endif
 };

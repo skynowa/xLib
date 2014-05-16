@@ -64,7 +64,7 @@ CxTest_xLimits::unit(
 
     xTEST_CASE("xDefines::xPAGE_SIZE_", a_caseLoops)
     {
-        #if xOS_ENV_UNIX
+        #if xENV_UNIX
             m_stRv = xPAGE_SIZE;
             xTEST_GR(m_stRv, size_t(0));
         #endif

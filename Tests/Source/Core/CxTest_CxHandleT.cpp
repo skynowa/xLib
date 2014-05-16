@@ -145,7 +145,7 @@ CxTest_CxHandleT::unit(
     {
         // TEST: CxHandleT::setInfo
 
-    #if   xOS_ENV_WIN
+    #if   xENV_WIN
         CxHandle handle;
 
         handle = CxProcess::currentHandle();
@@ -155,7 +155,7 @@ CxTest_CxHandleT::unit(
 
         m_ulRv = handle.info();
         xTEST_EQ((ulong_t)HANDLE_FLAG_INHERIT, m_ulRv);
-    #elif xOS_ENV_UNIX
+    #elif xENV_UNIX
 
     #endif
     }
@@ -164,7 +164,7 @@ CxTest_CxHandleT::unit(
     {
         // TEST: CxHandleT::info
 
-    #if   xOS_ENV_WIN
+    #if   xENV_WIN
         CxHandle handle;
 
         handle = CxProcess::currentHandle();
@@ -174,7 +174,7 @@ CxTest_CxHandleT::unit(
 
         m_ulRv = handle.info();
         xTEST_EQ((ulong_t)HANDLE_FLAG_PROTECT_FROM_CLOSE, m_ulRv);
-    #elif xOS_ENV_UNIX
+    #elif xENV_UNIX
 
     #endif
     }

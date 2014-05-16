@@ -106,9 +106,9 @@ CxSocket::isValid() const
 {
     // n/a
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     return (_handle >= 0);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     return (_handle >= 0);
 #endif
 }
@@ -122,13 +122,13 @@ CxSocket::close()
 
     int_t iRv = xSOCKET_ERROR;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     iRv = shutdown(_handle, SD_BOTH);
     xTEST_DIFF(iRv, xSOCKET_ERROR);
 
     iRv = ::closesocket(_handle);
     xTEST_DIFF(iRv, xSOCKET_ERROR);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     iRv = ::close(_handle);
     xTEST_DIFF(iRv, xSOCKET_ERROR);
 #endif
@@ -157,11 +157,11 @@ CxSocket::send(
     xTEST_PTR(a_buff);
     /////xTEST_LESS(0, ::lstrlen(buff));
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     ssize_t iRv = ::send(_handle, (LPCSTR)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
     xTEST_EQ(iRv != xSOCKET_ERROR && CxSocket::lastError() != WSAEWOULDBLOCK, true);
     xTEST_GR_EQ(ssize_t(a_buffSize * sizeof(tchar_t)), iRv);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     xUNUSED(a_flags);
 
     #if !defined(MSG_NOSIGNAL)
@@ -229,12 +229,12 @@ CxSocket::receive(
 
     std::memset(a_buff, 0, a_buffSize * sizeof(tchar_t));
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     int_t iRv = ::recv(_handle, (LPSTR)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
     xTEST_EQ(iRv != xSOCKET_ERROR && CxSocket::lastError() != WSAEWOULDBLOCK, true);
     xTEST_DIFF(iRv, 0);  // gracefully closed
     xTEST_GR_EQ(int_t(a_buffSize * sizeof(tchar_t)), iRv);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     ssize_t iRv = ::recv(_handle, (char *)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
     xTEST_DIFF(iRv, (ssize_t)xSOCKET_ERROR);
     xTEST_DIFF(iRv, (ssize_t)0);  // gracefully closed
@@ -260,9 +260,9 @@ CxSocket::recvAll(
         int_t   iRv = - 1;
         ulong_t arg = (ulong_t)a_flags;
 
-    #if   xOS_ENV_WIN
+    #if   xENV_WIN
         iRv = ::ioctlsocket(_handle, FIONREAD, &arg);
-    #elif xOS_ENV_UNIX
+    #elif xENV_UNIX
         iRv = ::ioctl      (_handle, FIONREAD, &arg);
     #endif
 
@@ -409,14 +409,14 @@ CxSocket::peerName(
     xTEST_NA(a_peerAddr);
     xTEST_NA(a_peerPort);
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     SOCKADDR_IN sockAddr    = {0};
     int_t       sockAddrLen = sizeof(sockAddr);
 
     int_t iRv = ::getpeername(_handle, CxUtils::reinterpretCastT<SOCKADDR *>( &sockAddr ),
         &sockAddrLen);
     xTEST_DIFF(iRv, xSOCKET_ERROR);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     sockaddr_in sockAddr;   xSTRUCT_ZERO(sockAddr);
     socklen_t   sockAddrLen = sizeof(sockAddr);
 
@@ -446,14 +446,14 @@ CxSocket::socketName(
     xTEST_NA(a_socketAddr);
     xTEST_NA(a_socketPort);
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     SOCKADDR_IN sockAddr     = {0};
     int_t       sockAddrLen = sizeof(sockAddr);
 
     int_t iRv = ::getsockname(_handle, CxUtils::reinterpretCastT<SOCKADDR *>( &sockAddr ),
         &sockAddrLen);
     xTEST_DIFF(iRv, xSOCKET_ERROR);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     sockaddr_in sockAddr;   xSTRUCT_ZERO(sockAddr);
     socklen_t   sockAddrLen = sizeof(sockAddr);
 
@@ -509,9 +509,9 @@ CxSocket::lastError()
 {
     // n/a
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     return ::WSAGetLastError();
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     return errno;
 #endif
 }

@@ -8,14 +8,14 @@
 
 #include "Platform/CxMsgBox_internal.inl"
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     #include "Platform/Win/CxMsgBox_win.inl"
-#elif xOS_ENV_UNIX
-    #if   xOS_ENV_LINUX
+#elif xENV_UNIX
+    #if   xENV_LINUX
         #include "Platform/Unix/CxMsgBox.inl"
-    #elif xOS_ENV_BSD
+    #elif xENV_BSD
         #include "Platform/Unix/CxMsgBox.inl"
-    #elif xOS_ENV_APPLE
+    #elif xENV_APPLE
         #include "Platform/Apple/CxMsgBox.inl"
     #endif
 #endif

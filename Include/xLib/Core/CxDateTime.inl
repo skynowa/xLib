@@ -680,7 +680,7 @@ CxDateTime::format(
 inline CxDateTime
 CxDateTime::current()
 {
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     SYSTEMTIME dateTime = {0};
 
     (void_t)::GetLocalTime(&dateTime);
@@ -689,7 +689,7 @@ CxDateTime::current()
 
     return CxDateTime(dateTime.wYear, dateTime.wMonth, dateTime.wDay,
         dateTime.wHour, dateTime.wMinute, dateTime.wSecond, dateTime.wMilliseconds);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     // get msec
     timeval timeNow;   xSTRUCT_ZERO(timeNow);
 
@@ -715,7 +715,7 @@ CxDateTime::current()
 #endif
 }
 //-------------------------------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if xENV_WIN
 
 /* static */
 inline longlong_t
@@ -728,7 +728,7 @@ CxDateTime::filetimeToInt64(
 
 #endif
 //-------------------------------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if xENV_WIN
 
 /* static */
 inline void_t
@@ -749,7 +749,7 @@ CxDateTime::unixTimeToFileTime(
 
 #endif
 //-------------------------------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if xENV_WIN
 
 /* static */
 inline time_t

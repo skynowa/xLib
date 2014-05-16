@@ -11,7 +11,7 @@ xNAMESPACE2_BEGIN(xlib, core)
 #endif
 
 //-------------------------------------------------------------------------------------------------
-#if xOS_ENV_WIN
+#if xENV_WIN
 
 inline int_t
 getTimeOfDay(

@@ -24,7 +24,7 @@ CxTest_CxSystemInfo::unit(
         const CxSystemInfo::ExOsType otType = CxSystemInfo().os();
         xTEST_DIFF(CxSystemInfo::otUnknown, otType);
 
-        #if   xOS_ENV_WIN
+        #if   xENV_WIN
             m_bRv =
                 otType == CxSystemInfo::otWindows3 ||
                 otType == CxSystemInfo::otWindows95 ||
@@ -42,7 +42,7 @@ CxTest_CxSystemInfo::unit(
                 otType == CxSystemInfo::otWindows7;
 
             xTEST_EQ(m_bRv, true);
-        #elif xOS_ENV_UNIX
+        #elif xENV_UNIX
             #if xOS_FREEBSD
                 xTEST_EQ(CxSystemInfo::otFreeBSD, otType);
             #else
@@ -216,7 +216,7 @@ CxTest_CxSystemInfo::unit(
         xTEST_LESS(0UL, m_ulRv);
     }
 
-#if xOS_ENV_UNIX
+#if xENV_UNIX
     xTEST_CASE("CxSystemInfo::glibcVersion", a_caseLoops)
     {
         m_sRv = CxSystemInfo().glibcVersion();
@@ -226,7 +226,7 @@ CxTest_CxSystemInfo::unit(
     }
 #endif
 
-#if xOS_ENV_UNIX
+#if xENV_UNIX
     xTEST_CASE("CxSystemInfo::libPthreadVersion", a_caseLoops)
     {
         m_sRv = CxSystemInfo().libPthreadVersion();

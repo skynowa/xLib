@@ -14,7 +14,7 @@ CxTest_CxCom::unit(
     culonglong_t &a_caseLoops
 )
 {
-#if xOS_ENV_WIN
+#if xENV_WIN
     xTEST_CASE("CxCom::CxCom", a_caseLoops)
     {
         const COINIT model[] = {

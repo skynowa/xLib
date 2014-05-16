@@ -136,7 +136,7 @@ CxTest_xDefines::unit(
 
     xTEST_CASE("xDefines: xNO_VTABLE", a_caseLoops)
     {
-    #if   xOS_ENV_WIN
+    #if   xENV_WIN
         culong_t valueBase    = 1;
         culong_t valueDerived = 2;
 
@@ -179,9 +179,9 @@ CxTest_xDefines::unit(
         Derived *d2 = &d;
         d2->func();
         xTEST_DIFF(d.value, valueBase);
-    #elif xOS_ENV_UNIX
+    #elif xENV_UNIX
         xNA
-    #elif xOS_ENV_APPLE
+    #elif xENV_APPLE
         xNA
     #endif
     }

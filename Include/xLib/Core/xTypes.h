@@ -67,7 +67,7 @@ xNAMESPACE2_BEGIN(xlib, core)
     typedef const ldouble_t        cldouble_t;
 
 // addrinfo_t
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     #if   xCOMPILER_MINGW
         typedef addrinfo           addrinfo_t;
     #elif xCOMPILER_CODEGEAR
@@ -75,25 +75,25 @@ xNAMESPACE2_BEGIN(xlib, core)
     #else
         typedef ADDRINFOT          addrinfo_t;
     #endif
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     typedef addrinfo               addrinfo_t;
 #endif
     typedef const addrinfo_t       caddrinfo_t;
         ///< hold host address information
 
 // native_handle_t
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     typedef HANDLE                 native_handle_t;
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     typedef int                    native_handle_t;
 #endif
     typedef const native_handle_t  cnative_handle_t;
         ///< native handle
 
 // socket_t
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     typedef SOCKET                 socket_t;
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     typedef int                    socket_t;
 #endif
     typedef const socket_t         csocket_t;

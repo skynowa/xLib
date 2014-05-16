@@ -63,7 +63,7 @@
     ///< use tracing in tests
 ///@}
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     #if xCOMPILER_MS
         #include <SDKDDKVer.h>
     #endif
@@ -106,7 +106,7 @@
     #elif xCOMPILER_CLANG
         //
     #endif
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     #if !defined(_GNU_SOURCE)
         #define _GNU_SOURCE 1
     #endif

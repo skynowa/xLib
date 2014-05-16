@@ -29,7 +29,7 @@ CxLocale::current() const
 
     std::tstring_t sRv;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     int_t iRv  = - 1;
     LCID  id = 0;
 
@@ -45,7 +45,7 @@ CxLocale::current() const
     xTEST_DIFF(iRv, 0);
 
     sRv.resize(iRv - sizeof('\0')); // delete from end '\0'
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     ctchar_t *locale = std::xTSETLOCALE(LC_ALL, xPTR_NULL);
     xTEST_PTR(locale);
 

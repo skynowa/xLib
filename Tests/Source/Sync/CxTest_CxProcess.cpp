@@ -20,10 +20,10 @@ CxTest_CxProcess::unit(
     xTEST_CASE("CxProcess::create wait", a_caseLoops)
     {
         #if 1
-            #if   xOS_ENV_WIN
+            #if   xENV_WIN
                 std::ctstring_t filePath = xT("C:\\Windows\\System32\\attrib.exe");
                 std::ctstring_t cmdLine  = xT("");
-            #elif xOS_ENV_UNIX
+            #elif xENV_UNIX
                 std::ctstring_t filePath = xT("/bin/ls");
                 std::ctstring_t cmdLine  = xT("-la");
             #endif
@@ -39,10 +39,10 @@ CxTest_CxProcess::unit(
 
     xTEST_CASE("CxProcess::kill", a_caseLoops)
     {
-        #if   xOS_ENV_WIN
+        #if   xENV_WIN
             std::ctstring_t filePath = xT("C:\\Windows\\System32\\attrib.exe");
             std::ctstring_t cmdLine  = xT("/?");
-        #elif xOS_ENV_UNIX
+        #elif xENV_UNIX
             std::ctstring_t filePath = xT("/usr/bin/xmessage");
             std::ctstring_t cmdLine  = xT("-print \"Test Message\"");
         #endif
@@ -55,10 +55,10 @@ CxTest_CxProcess::unit(
 
     xTEST_CASE("CxProcess::handle id", a_caseLoops)
     {
-        #if   xOS_ENV_WIN
+        #if   xENV_WIN
             std::ctstring_t filePath = xT("C:\\Windows\\System32\\attrib.exe");
             std::ctstring_t cmdLine  = xT("/?");
-        #elif xOS_ENV_UNIX
+        #elif xENV_UNIX
             std::ctstring_t filePath = xT("/usr/bin/xmessage");
             std::ctstring_t cmdLine  = xT("-print \"Test Message\"");
         #endif

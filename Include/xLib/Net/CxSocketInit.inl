@@ -13,7 +13,7 @@
 #include <xLib/Debug/CxDebugger.h>
 #include <xLib/Log/CxTrace.h>
 
-#if xOS_ENV_WIN
+#if xENV_WIN
     #if xCOMPILER_MS
         #pragma comment(lib, "ws2_32.Lib")
     #endif
@@ -34,14 +34,14 @@ CxSocketInit::CxSocketInit(
     cushort_t &a_versionMinor
 )
 {
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     WSADATA wdData = {0};
 
     int_t iRv = ::WSAStartup(MAKEWORD(a_versionMajor, a_versionMinor), &wdData);
     xTEST_EQ(iRv, 0);
     xTEST_EQ(a_versionMajor, (ushort_t)LOBYTE(wdData.wVersion));
     xTEST_EQ(a_versionMinor, (ushort_t)HIBYTE(wdData.wVersion));
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     xUNUSED(a_versionMajor);
     xUNUSED(a_versionMinor);
 #endif
@@ -50,7 +50,7 @@ CxSocketInit::CxSocketInit(
 inline
 CxSocketInit::~CxSocketInit()
 {
-#if xOS_ENV_WIN
+#if xENV_WIN
     int_t iRv = ::WSACleanup();
     xTEST_EQ(iRv, 0);
 #endif

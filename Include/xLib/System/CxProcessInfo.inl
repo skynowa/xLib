@@ -39,11 +39,11 @@ CxProcessInfo::cpuUsage() const
 {
     ulong_t ulRv = 0UL;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     // TODO: CxProcessInfo::cpuUsage()
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     // TODO: CxProcessInfo::cpuUsage()
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     // TODO: CxProcessInfo::cpuUsage()
 #endif
 
@@ -55,15 +55,15 @@ CxProcessInfo::ramUsage() const
 {
     ulong_t ulRv = 0UL;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     // TODO: CxProcessInfo::ramUsage()
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     if (CxProcess::isCurrent( CxProcess::currentId() )) {
         // TODO: CxProcessInfo::ramUsage()
     } else {
         // TODO: CxProcessInfo::ramUsage()
     }
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     // TODO: CxProcessInfo::ramUsage()
 #endif
 
@@ -75,9 +75,9 @@ CxProcessInfo::ioBytes() const
 {
     ulong_t ulRv = 0UL;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     // TODO: CxProcessInfo::ioBytes()
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     #if xCOMMENT
         "/proc/[pid]/io"
 
@@ -109,7 +109,7 @@ CxProcessInfo::ioBytes() const
     ulRv = readBytes + writeBytes;
 
     // xTRACEV("\readBytes: %lu, writeBytes: %lu", readBytes, writeBytes);
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -121,7 +121,7 @@ CxProcessInfo::exeName() const
 {
     std::tstring_t sRv;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     sRv.resize(xPATH_MAX);
 
     CxProcess::handle_t handle = CxProcess::handleById(_id);
@@ -130,7 +130,7 @@ CxProcessInfo::exeName() const
     xTEST_DIFF(stored, 0UL);
 
     sRv.resize(stored);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     #if   xOS_LINUX
         std::ctstring_t procFile = CxString::format(xT("/proc/%ld/exe"), _id);
 
@@ -168,7 +168,7 @@ CxProcessInfo::exeName() const
             xNOT_IMPLEMENTED_RET(std::tstring_t());
         #endif
     #endif
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -180,15 +180,15 @@ CxProcessInfo::parentId() const
 {
     ulong_t ulRv = 0UL;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     // TODO: CxProcessInfo::parentId()
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     #if   xOS_LINUX
         // TODO: CxProcessInfo::parentId()
     #elif xOS_FREEBSD
         // TODO: CxProcessInfo::parentId()
     #endif
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -206,7 +206,7 @@ CxProcessInfo::commandLine(
     std::string        sRv;
     std::vec_tstring_t args;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     // process with PID 4
     {
         // System process for WinXP and later is PID 4 and we cannot access
@@ -329,7 +329,7 @@ CxProcessInfo::commandLine(
     }
 
     CxString::split(sRv, CxConst::space(), &args);
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     #if   xOS_LINUX
         // TODO: CxProcessInfo::commandLine() - review
         std::ctstring_t procPath = CxString::format(xT("/proc/%ld/cmdline"), _id);
@@ -371,7 +371,7 @@ CxProcessInfo::commandLine(
 
         CxString::split(buff, CxConst::space(), &args);
     #endif
-#elif xOS_ENV_APPLE
+#elif xENV_APPLE
     xNOT_IMPLEMENTED
 #endif
 
@@ -385,9 +385,9 @@ CxProcessInfo::commandLineArgsMax()
 {
     long_t liRv = 0L;
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     liRv = 32L * 1024L;
-#elif xOS_ENV_UNIX
+#elif xENV_UNIX
     liRv = ::sysconf(_SC_ARG_MAX) / sizeof(std::tstring_t::value_type);
     xTEST_DIFF(liRv, - 1L);
 #endif

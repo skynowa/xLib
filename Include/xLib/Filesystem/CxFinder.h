@@ -53,12 +53,12 @@ public:
 private:
     struct _Entry
     {
-    #if   xOS_ENV_WIN
+    #if   xENV_WIN
         HANDLE          handle;
         WIN32_FIND_DATA data;
 
         _Entry() : handle(xNATIVE_HANDLE_INVALID), data() {}
-    #elif xOS_ENV_UNIX
+    #elif xENV_UNIX
         DIR *           handle;
         dirent          data;
 

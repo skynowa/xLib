@@ -27,9 +27,9 @@ CxTest_CxShell::unit(
             { xT("cd"), xT(".")  },
             { xT(""),   xT("")   }
 
-        #if   xOS_ENV_WIN
+        #if   xENV_WIN
 
-        #elif xOS_ENV_UNIX
+        #elif xENV_UNIX
 
         #endif
         };
@@ -42,7 +42,7 @@ CxTest_CxShell::unit(
         }
     }
 
-#if   xOS_ENV_WIN
+#if   xENV_WIN
     xTEST_CASE("CxShell::findExecutable", a_caseLoops)
     {
         #if xTEST_IGNORE
