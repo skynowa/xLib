@@ -125,18 +125,21 @@ if     (MSVC)
 elseif (MINGW)
     set(LIBS ${LIBS} ws2_32 netapi32 psapi uuid ole32 mpr dbghelp)
     set(FLAGS ${FLAGS} "-pipe -Wall")
+        # -pedantic
 elseif (CMAKE_COMPILER_IS_CLANGXX)
     set(LIBS ${LIBS} pthread rt m z)
-    set(FLAGS ${FLAGS} "-pipe -Wall -pedantic -Wno-deprecated -Wextra -Wconversion -Wshadow "
+    set(FLAGS ${FLAGS} "-pipe -Wall -Wno-deprecated -Wextra -Wconversion -Wshadow "
         "-Wno-unused-parameter -Wno-unused-variable -Wno-unknown-pragmas "
         "-Wno-return-type-c-linkage -Werror "
         "-fcolor-diagnostics -Qunused-arguments")
+        # -pedantic
 elseif (CMAKE_COMPILER_IS_GNUCXX)
     set(LIBS ${LIBS} pthread rt m z)
-    set(FLAGS ${FLAGS} "-pipe -Wall -pedantic -Wno-deprecated -Wextra -Wconversion -Wshadow "
+    set(FLAGS ${FLAGS} "-pipe -Wall -Wno-deprecated -Wextra -Wconversion -Wshadow "
         "-Wno-unused-parameter -Wno-unused-variable -Wno-unknown-pragmas "
         "-Wno-return-type-c-linkage -Werror "
         "")
+        # -pedantic
 else()
     message("xLib: unknown compiler")
 endif()
