@@ -192,16 +192,16 @@ namespace xlib
 #include <xLib/Core/xLimits.h>
 
 #if   xOS_ENV_WIN
-    #include <xLib/Core/Platform/xCore_win.h>
+    #include <xLib/Core/Platform/Win/xCore.h>
 #elif xOS_ENV_UNIX
-    #include <xLib/Core/Platform/xCore_unix.h>
+    #include <xLib/Core/Platform/Unix/xCore.h>
 
     #if   xOS_ENV_LINUX
-        #include <xLib/Core/Platform/xCore_linux.h>
+        #include <xLib/Core/Platform/Linux/xCore.h>
     #elif xOS_ENV_BSD
-        #include <xLib/Core/Platform/xCore_bsd.h>
+        #include <xLib/Core/Platform/Bsd/xCore.h>
     #elif xOS_ENV_APPLE
-        #include <xLib/Core/Platform/xCore_apple.h>
+        #include <xLib/Core/Platform/Apple/xCore.h>
     #endif
 #endif
 
