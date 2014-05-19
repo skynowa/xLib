@@ -27,7 +27,7 @@
 #endif
 
 
-xNAMESPACE2_BEGIN(xlib, filesystem)
+xNAMESPACE_BEGIN2(xlib, filesystem)
 
 /**************************************************************************************************
 *    public
@@ -406,4 +406,4 @@ CxVolume::paths(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE2_END(xlib, filesystem)
+xNAMESPACE_END2(xlib, filesystem)

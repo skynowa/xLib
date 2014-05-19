@@ -11,7 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 //---------------------------------------------------------------------------
-xNAMESPACE2_BEGIN(xlib, crypt)
+xNAMESPACE_BEGIN2(xlib, crypt)
 
 class CxGuid
     /// GUID (globally unique identifier)
@@ -40,7 +40,7 @@ private:
     xNO_COPY_ASSIGN(CxGuid)
 };
 
-xNAMESPACE2_END(xlib, crypt)
+xNAMESPACE_END2(xlib, crypt)
 //---------------------------------------------------------------------------
 #include <xLib/Crypt/CxGuid.inl>
 //-------------------------------------------------------------------------------------------------

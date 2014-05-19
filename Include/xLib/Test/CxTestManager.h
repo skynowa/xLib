@@ -13,7 +13,7 @@
 #include <xLib/Core/CxConst.h>
 #include <xLib/Test/CxTest.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE2_BEGIN(xlib, test)
+xNAMESPACE_BEGIN2(xlib, test)
 
 class CxTestManager
     /// manage tests (CxTest)
@@ -38,7 +38,7 @@ private:
     xNO_COPY_ASSIGN(CxTestManager)
 };
 
-xNAMESPACE2_END(xlib, test)
+xNAMESPACE_END2(xlib, test)
 //-------------------------------------------------------------------------------------------------
 #include "CxTestManager.inl"
 //-------------------------------------------------------------------------------------------------

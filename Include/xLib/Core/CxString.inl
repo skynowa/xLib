@@ -21,7 +21,7 @@
 #include <xLib/Debug/xStdDebug.h>
 
 
-xNAMESPACE2_BEGIN(xlib, core)
+xNAMESPACE_BEGIN2(xlib, core)
 
 /*******************************************************************************
 *   casting
@@ -991,10 +991,10 @@ CxString::isRepeated(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE2_END(xlib, core)
+xNAMESPACE_END2(xlib, core)
 
 
-xNAMESPACE2_BEGIN(xlib, core)
+xNAMESPACE_BEGIN2(xlib, core)
 
 /**************************************************************************************************
 *   search, compare
@@ -1053,4 +1053,4 @@ CxStringCI::compare(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE2_END(xlib, core)
+xNAMESPACE_END2(xlib, core)

@@ -10,7 +10,7 @@
 #include <xLib/Filesystem/CxFile.h>
 
 
-xNAMESPACE2_BEGIN(xlib, filesystem)
+xNAMESPACE_BEGIN2(xlib, filesystem)
 
 xNAMESPACE_ANONYM_BEGIN
 
@@ -373,4 +373,4 @@ CxConfig::_write(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE2_END(xlib, filesystem)
+xNAMESPACE_END2(xlib, filesystem)

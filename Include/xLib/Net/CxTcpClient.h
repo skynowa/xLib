@@ -12,7 +12,7 @@
 #include <xLib/Net/CxSocket.h>
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE2_BEGIN(xlib, net)
+xNAMESPACE_BEGIN2(xlib, net)
 
 class CxTcpClient :
     public CxSocket
@@ -53,7 +53,7 @@ protected:
 // TODO: CxTcpClient::isWritable() - repeats from CxSocket
 // TODO: CxTcpClient::isReadable() - repeats from CxSocket
 
-xNAMESPACE2_END(xlib, net)
+xNAMESPACE_END2(xlib, net)
 //-------------------------------------------------------------------------------------------------
 #include "CxTcpClient.inl"
 //-------------------------------------------------------------------------------------------------

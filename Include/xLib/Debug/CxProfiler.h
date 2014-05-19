@@ -13,7 +13,7 @@
 #include <xLib/Log/CxFileLog.h>
 #include <xLib/Core/CxDateTime.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE2_BEGIN(xlib, debug)
+xNAMESPACE_BEGIN2(xlib, debug)
 
 class CxProfiler
     /// code profiling
@@ -50,7 +50,7 @@ private:
     xNO_COPY_ASSIGN(CxProfiler)
 };
 
-xNAMESPACE2_END(xlib, debug)
+xNAMESPACE_END2(xlib, debug)
 //-------------------------------------------------------------------------------------------------
 #include "CxProfiler.inl"
 //-------------------------------------------------------------------------------------------------

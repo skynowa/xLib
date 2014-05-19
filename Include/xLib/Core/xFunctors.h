@@ -12,7 +12,7 @@
 #include <xLib/Core/xCore.h>
 #include <xLib/Core/CxChar.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE3_BEGIN(xlib, core, functors)
+xNAMESPACE_BEGIN3(xlib, core, functors)
 //-------------------------------------------------------------------------------------------------
 struct ToLower
     /// char to lower case
@@ -125,6 +125,6 @@ private:
     const std::locale &_locale;
 };
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE3_END(xlib, core, functors)
+xNAMESPACE_END3(xlib, core, functors)
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_xFunctorsH

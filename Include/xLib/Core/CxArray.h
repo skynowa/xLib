@@ -11,7 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE2_BEGIN(xlib, core)
+xNAMESPACE_BEGIN2(xlib, core)
 
 template<class T, const std::size_t N>
 class CxArray
@@ -229,6 +229,6 @@ make_array(const T &t1, const T &t2, const T &t3)
     return aArrayT;
 }
 
-xNAMESPACE2_END(xlib, core)
+xNAMESPACE_END2(xlib, core)
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxArrayH

@@ -12,7 +12,7 @@
 *
 **************************************************************************************************/
 
-xNAMESPACE3_BEGIN(xlib, internal, enums)
+xNAMESPACE_BEGIN3(xlib, internal, enums)
 
 //-------------------------------------------------------------------------------------------------
 static Types<IxLog::ExLevel, ssize_t, 10> levels =
@@ -43,4 +43,4 @@ static Types<IxLog::ExLevel, ssize_t, 10> levels =
 }};
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE3_END(xlib, internal, enums)
+xNAMESPACE_END3(xlib, internal, enums)

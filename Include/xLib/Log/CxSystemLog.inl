@@ -13,7 +13,7 @@
 #endif
 
 
-xNAMESPACE2_BEGIN(xlib, log)
+xNAMESPACE_BEGIN2(xlib, log)
 
 /**************************************************************************************************
 *    public
@@ -152,4 +152,4 @@ CxSystemLog::_construct(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE2_END(xlib, log)
+xNAMESPACE_END2(xlib, log)

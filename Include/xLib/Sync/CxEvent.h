@@ -12,7 +12,7 @@
 #include <xLib/Core/xCore.h>
 #include <xLib/Core/CxHandleT.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE2_BEGIN(xlib, sync)
+xNAMESPACE_BEGIN2(xlib, sync)
 
 class CxEvent
     /// event
@@ -73,7 +73,7 @@ private:
     xNO_COPY_ASSIGN(CxEvent)
 };
 
-xNAMESPACE2_END(xlib, sync)
+xNAMESPACE_END2(xlib, sync)
 //-------------------------------------------------------------------------------------------------
 #include "CxEvent.inl"
 //-------------------------------------------------------------------------------------------------

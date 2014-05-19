@@ -19,7 +19,7 @@
 #include <xLib/Filesystem/CxFile.h>
 
 
-xNAMESPACE2_BEGIN(xlib, filesystem)
+xNAMESPACE_BEGIN2(xlib, filesystem)
 
 /**************************************************************************************************
 *   public
@@ -339,4 +339,4 @@ CxFinder::_moveFirst()
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE2_END(xlib, filesystem)
+xNAMESPACE_END2(xlib, filesystem)

@@ -11,7 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE2_BEGIN(xlib, debug)
+xNAMESPACE_BEGIN2(xlib, debug)
 
 class CxStdError
     /// standard C library last error
@@ -39,7 +39,7 @@ private:
     xNO_COPY_ASSIGN(CxStdError)
 };
 
-xNAMESPACE2_END(xlib, debug)
+xNAMESPACE_END2(xlib, debug)
 //-------------------------------------------------------------------------------------------------
 #include "CxStdError.inl"
 //-------------------------------------------------------------------------------------------------

@@ -11,7 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE2_BEGIN(xlib, system)
+xNAMESPACE_BEGIN2(xlib, system)
 
 class CxSystemInfo
     /// system information
@@ -145,7 +145,7 @@ private:
     xNO_COPY_ASSIGN(CxSystemInfo)
 };
 
-xNAMESPACE2_END(xlib, system)
+xNAMESPACE_END2(xlib, system)
 //-------------------------------------------------------------------------------------------------
 #include "CxSystemInfo.inl"
 //-------------------------------------------------------------------------------------------------

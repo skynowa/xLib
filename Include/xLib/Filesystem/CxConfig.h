@@ -11,7 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE2_BEGIN(xlib, filesystem)
+xNAMESPACE_BEGIN2(xlib, filesystem)
 
 class CxConfig
     /// config file
@@ -94,7 +94,7 @@ private:
     xNO_COPY_ASSIGN(CxConfig)
 };
 
-xNAMESPACE2_END(xlib, filesystem)
+xNAMESPACE_END2(xlib, filesystem)
 //-------------------------------------------------------------------------------------------------
 #include "CxConfig.inl"
 //-------------------------------------------------------------------------------------------------

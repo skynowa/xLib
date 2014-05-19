@@ -9,7 +9,7 @@
 #include <xLib/Core/CxConst.h>
 
 
-xNAMESPACE2_BEGIN(xlib, debug)
+xNAMESPACE_BEGIN2(xlib, debug)
 
 /**************************************************************************************************
 *   public
@@ -364,4 +364,4 @@ CxBuildInfo::binaryType() const
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE2_END(xlib, debug)
+xNAMESPACE_END2(xlib, debug)

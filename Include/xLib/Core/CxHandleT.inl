@@ -13,7 +13,7 @@
 #include <xLib/Debug/CxStackTrace.h>
 
 
-xNAMESPACE2_BEGIN(xlib, core)
+xNAMESPACE_BEGIN2(xlib, core)
 
 /*******************************************************************************
 *    public
@@ -254,4 +254,4 @@ CxHandleT<tagT>::setInfo(
 #endif
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE2_END(xlib, core)
+xNAMESPACE_END2(xlib, core)

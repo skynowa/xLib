@@ -11,7 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE2_BEGIN(xlib, sync)
+xNAMESPACE_BEGIN2(xlib, sync)
 
 class CxThreadStorage
     /// thread local storage
@@ -47,7 +47,7 @@ private:
     xNO_COPY_ASSIGN(CxThreadStorage)
 };
 
-xNAMESPACE2_END(xlib, sync)
+xNAMESPACE_END2(xlib, sync)
 //-------------------------------------------------------------------------------------------------
 #include "CxThreadStorage.inl"
 //-------------------------------------------------------------------------------------------------

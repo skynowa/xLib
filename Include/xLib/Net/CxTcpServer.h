@@ -12,7 +12,7 @@
 #include <xLib/Net/CxSocket.h>
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE2_BEGIN(xlib, net)
+xNAMESPACE_BEGIN2(xlib, net)
 
 class CxTcpServer :
     public CxSocket
@@ -37,7 +37,7 @@ protected:
     xNO_COPY_ASSIGN(CxTcpServer)
 };
 
-xNAMESPACE2_END(xlib, net)
+xNAMESPACE_END2(xlib, net)
 //-------------------------------------------------------------------------------------------------
 #include "CxTcpServer.inl"
 //-------------------------------------------------------------------------------------------------

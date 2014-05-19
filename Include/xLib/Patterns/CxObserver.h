@@ -12,7 +12,7 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE2_BEGIN(xlib, patterns)
+xNAMESPACE_BEGIN2(xlib, patterns)
 
 template <class T>
 class xNO_VTABLE IxObserver
@@ -68,6 +68,6 @@ private:
     xNO_COPY_ASSIGN(CxObserver)
 };
 
-xNAMESPACE2_END(xlib, patterns)
+xNAMESPACE_END2(xlib, patterns)
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxObserverH
