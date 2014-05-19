@@ -17,7 +17,7 @@
 #include <xLib/Filesystem/CxDir.h>
 
 
-xNAMESPACE2_BEGIN(xlib, filesystem)
+xNAMESPACE_BEGIN2(xlib, filesystem)
 
 /**************************************************************************************************
 *   public
@@ -99,4 +99,4 @@ CxFileTemp::create(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE2_END(xlib, filesystem)
+xNAMESPACE_END2(xlib, filesystem)

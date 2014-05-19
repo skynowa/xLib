@@ -9,7 +9,7 @@
 #include <xLib/Sync/CxThread.h>
 
 
-xNAMESPACE2_BEGIN(xlib, system)
+xNAMESPACE_BEGIN2(xlib, system)
 
 /**************************************************************************************************
 *    public
@@ -772,4 +772,4 @@ CxConsole::_menuHandle(
 #endif
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE2_END(xlib, system)
+xNAMESPACE_END2(xlib, system)

@@ -16,7 +16,7 @@
 #include <xLib/Log/CxTrace.h>
 
 
-xNAMESPACE2_BEGIN(xlib, crypt)
+xNAMESPACE_BEGIN2(xlib, crypt)
 
 /**************************************************************************************************
 *   public
@@ -85,4 +85,4 @@ CxGuid::_randomBased() const
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE2_END(xlib, crypt)
+xNAMESPACE_END2(xlib, crypt)

@@ -11,7 +11,7 @@
 
 #if xENV_WIN
 
-xNAMESPACE2_BEGIN(xlib, core)
+xNAMESPACE_BEGIN2(xlib, core)
 
 /**************************************************************************************************
 *    public
@@ -37,6 +37,6 @@ CxCom::~CxCom()
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE2_END(xlib, core)
+xNAMESPACE_END2(xlib, core)
 
 #endif

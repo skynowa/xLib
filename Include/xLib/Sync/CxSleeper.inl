@@ -4,7 +4,7 @@
  */
 
 
-xNAMESPACE2_BEGIN(xlib, sync)
+xNAMESPACE_BEGIN2(xlib, sync)
 
 /**************************************************************************************************
 *    public
@@ -47,4 +47,4 @@ CxSleeper::isSleeping() const
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE2_END(xlib, sync)
+xNAMESPACE_END2(xlib, sync)

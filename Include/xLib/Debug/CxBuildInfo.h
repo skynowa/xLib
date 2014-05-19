@@ -11,7 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE2_BEGIN(xlib, debug)
+xNAMESPACE_BEGIN2(xlib, debug)
 
 class CxBuildInfo
     ///< build information
@@ -53,7 +53,7 @@ private:
     xNO_COPY_ASSIGN(CxBuildInfo)
 };
 
-xNAMESPACE2_END(xlib, debug)
+xNAMESPACE_END2(xlib, debug)
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Debug/CxBuildInfo.inl>
 //-------------------------------------------------------------------------------------------------

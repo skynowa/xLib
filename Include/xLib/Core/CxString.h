@@ -13,7 +13,7 @@
 #include <xLib/Test/xTest.h>
 #include <xLib/Debug/xDebug.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE2_BEGIN(xlib, core)
+xNAMESPACE_BEGIN2(xlib, core)
 
 class CxString
     /// strings utils
@@ -202,9 +202,9 @@ private:
     xNO_COPY_ASSIGN(CxString)
 };
 
-xNAMESPACE2_END(xlib, core)
+xNAMESPACE_END2(xlib, core)
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE2_BEGIN(xlib, core)
+xNAMESPACE_BEGIN2(xlib, core)
 
 class CxStringCI
     /// strings utils (case insensitive)
@@ -233,7 +233,7 @@ private:
     xNO_COPY_ASSIGN(CxStringCI)
 };
 
-xNAMESPACE2_END(xlib, core)
+xNAMESPACE_END2(xlib, core)
 //-------------------------------------------------------------------------------------------------
 #include "CxString.inl"
 //-------------------------------------------------------------------------------------------------

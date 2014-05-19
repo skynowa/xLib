@@ -12,7 +12,7 @@
 #include <xLib/Core/xCore.h>
 #include <xLib/Debug/CxProfiler.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE2_BEGIN(xlib, debug)
+xNAMESPACE_BEGIN2(xlib, debug)
 
 class CxAutoProfiler
     /// auto code profiling
@@ -30,7 +30,7 @@ private:
     xNO_COPY_ASSIGN(CxAutoProfiler)
 };
 
-xNAMESPACE2_END(xlib, debug)
+xNAMESPACE_END2(xlib, debug)
 //-------------------------------------------------------------------------------------------------
 #include "CxAutoProfiler.inl"
 //-------------------------------------------------------------------------------------------------

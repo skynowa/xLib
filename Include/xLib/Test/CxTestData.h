@@ -11,7 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE2_BEGIN(xlib, test)
+xNAMESPACE_BEGIN2(xlib, test)
 //-------------------------------------------------------------------------------------------------
 ///@name Test data (use 1 value)
 ///@{
@@ -100,6 +100,6 @@ typedef CxTestData3<std::tstring_t, std::tstring_t, std::tstring_t>  data3_tstri
 typedef CxTestData3<std::tstring_t, std::tstring_t, std::ustring_t>  data3_ustring_t;
 ///@}
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE2_END(xlib, test)
+xNAMESPACE_END2(xlib, test)
 //-------------------------------------------------------------------------------------------------
 #endif // xLib_CxTestH

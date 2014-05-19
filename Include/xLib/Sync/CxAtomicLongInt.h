@@ -11,7 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE2_BEGIN(xlib, sync)
+xNAMESPACE_BEGIN2(xlib, sync)
 
 class CxAtomicLongInt
     /// atomic operations with long_t
@@ -56,7 +56,7 @@ private:
     volatile long_t   _value;
 };
 
-xNAMESPACE2_END(xlib, sync)
+xNAMESPACE_END2(xlib, sync)
 //-------------------------------------------------------------------------------------------------
 #include "CxAtomicLongInt.inl"
 //-------------------------------------------------------------------------------------------------

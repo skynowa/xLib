@@ -4,7 +4,7 @@
  */
 
 
-xNAMESPACE2_BEGIN(xlib, [NAMESPACE])
+xNAMESPACE_BEGIN2(xlib, [NAMESPACE])
 
 /**************************************************************************************************
 *   public
@@ -15,4 +15,4 @@ xNAMESPACE2_BEGIN(xlib, [NAMESPACE])
 
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE2_END(xlib, [NAMESPACE])
+xNAMESPACE_END2(xlib, [NAMESPACE])

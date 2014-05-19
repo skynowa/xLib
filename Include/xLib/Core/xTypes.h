@@ -14,7 +14,7 @@
     typedef const ssize_t          cssize_t;
 #endif
 
-xNAMESPACE2_BEGIN(xlib, core)
+xNAMESPACE_BEGIN2(xlib, core)
     typedef void                   void_t;
     typedef const void_t           cvoid_t;
 
@@ -108,7 +108,7 @@ xNAMESPACE2_BEGIN(xlib, core)
     typedef const twint_t          ctwint_t;
         ///< twint_t
 
-xNAMESPACE2_END(xlib, core)
+xNAMESPACE_END2(xlib, core)
 
 xNAMESPACE_BEGIN(std)
 #if xOS_WIN

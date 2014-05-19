@@ -11,7 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE2_BEGIN(xlib, filesystem)
+xNAMESPACE_BEGIN2(xlib, filesystem)
 
 class CxFileType
     /// file attribute
@@ -87,7 +87,7 @@ private:
     xNO_COPY_ASSIGN(CxFileType)
 };
 
-xNAMESPACE2_END(xlib, filesystem)
+xNAMESPACE_END2(xlib, filesystem)
 //-------------------------------------------------------------------------------------------------
 #include "CxFileType.inl"
 //-------------------------------------------------------------------------------------------------

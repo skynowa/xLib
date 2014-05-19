@@ -16,7 +16,7 @@
 #include <xLib/Core/CxUtils.h>
 
 
-xNAMESPACE2_BEGIN(xlib, net)
+xNAMESPACE_BEGIN2(xlib, net)
 
 /**************************************************************************************************
 *    Public
@@ -413,4 +413,4 @@ CxDnsClient::isBroadcast(
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE2_END(xlib, net)
+xNAMESPACE_END2(xlib, net)

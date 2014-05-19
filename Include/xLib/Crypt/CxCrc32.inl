@@ -8,7 +8,7 @@
 #include <xLib/Filesystem/CxFile.h>
 
 
-xNAMESPACE2_BEGIN(xlib, crypt)
+xNAMESPACE_BEGIN2(xlib, crypt)
 
 /**************************************************************************************************
 *    public
@@ -160,4 +160,4 @@ CxCrc32::formatHex() const
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE2_END(xlib, crypt)
+xNAMESPACE_END2(xlib, crypt)

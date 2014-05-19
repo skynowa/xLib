@@ -11,7 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE2_BEGIN(xlib, filesystem)
+xNAMESPACE_BEGIN2(xlib, filesystem)
 
 class CxBackup
     /// filesystem backuper
@@ -43,7 +43,7 @@ private:
     xNO_COPY_ASSIGN(CxBackup)
 };
 
-xNAMESPACE2_END(xlib, filesystem)
+xNAMESPACE_END2(xlib, filesystem)
 //-------------------------------------------------------------------------------------------------
 #include "CxBackup.inl"
 //-------------------------------------------------------------------------------------------------

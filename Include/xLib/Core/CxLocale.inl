@@ -14,7 +14,7 @@
 #include <xLib/Log/CxTrace.h>
 
 
-xNAMESPACE2_BEGIN(xlib, core)
+xNAMESPACE_BEGIN2(xlib, core)
 
 /**************************************************************************************************
 *    public
@@ -75,4 +75,4 @@ CxLocale::setDefault() const
 }
 //-------------------------------------------------------------------------------------------------
 
-xNAMESPACE2_END(xlib, core)
+xNAMESPACE_END2(xlib, core)

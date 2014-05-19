@@ -11,7 +11,7 @@
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE2_BEGIN(xlib, system)
+xNAMESPACE_BEGIN2(xlib, system)
 
 class CxEnvironment
     /// system environment variables
@@ -51,7 +51,7 @@ private:
     xNO_COPY_ASSIGN(CxEnvironment)
 };
 
-xNAMESPACE2_END(xlib, system)
+xNAMESPACE_END2(xlib, system)
 //-------------------------------------------------------------------------------------------------
 #include "CxEnvironment.inl"
 //-------------------------------------------------------------------------------------------------

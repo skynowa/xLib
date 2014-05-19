@@ -294,7 +294,7 @@
 *
 *******************************************************************************/
 
-xNAMESPACE2_BEGIN(xlib, core)
+xNAMESPACE_BEGIN2(xlib, core)
 
 // xGETTIMEOFDAY
 #if xENV_WIN
@@ -331,7 +331,7 @@ xNAMESPACE2_BEGIN(xlib, core)
 #endif
     ///< implementation std::clock
 
-xNAMESPACE2_END(xlib, core)
+xNAMESPACE_END2(xlib, core)
 //-------------------------------------------------------------------------------------------------
 #include "xFunctions.inl"
 //-------------------------------------------------------------------------------------------------
