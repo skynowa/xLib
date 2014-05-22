@@ -48,7 +48,6 @@ CxThread::CxThread(
 inline
 CxThread::~CxThread()
 {
-    //-------------------------------------
     // close thread, if it still running
     bool_t bRv = isRunning();
     if (bRv) {
@@ -65,7 +64,6 @@ CxThread::~CxThread()
     #endif
     }
 
-    //-------------------------------------
     // state flags
     _setStatesDefault();
 }
@@ -96,7 +94,6 @@ CxThread::create(
 
     _param = a_param;
 
-    //-------------------------------------
     // events
     _eventStarter = new CxEvent(true, false);
     xTEST_PTR(_eventStarter);
@@ -105,7 +102,6 @@ CxThread::create(
     _eventPause.create();
     _eventExit.create();
 
-    //-------------------------------------
     // start
 #if   xENV_WIN
     id_t id = 0UL;
@@ -148,7 +144,6 @@ CxThread::create(
 #endif
     xTEST_EQ(isCurrent(_id), false);
 
-    //-------------------------------------
     // flags
     {
         _state.isCreated = true;
@@ -176,7 +171,6 @@ CxThread::resume()
 
     _eventPause.set();
 
-    //-------------------------------------
     // flags
     {
         /* _state.isCreated */// n/a
@@ -195,7 +189,6 @@ CxThread::pause()
 
     _eventPause.reset();
 
-    //-------------------------------------
     // flags
     {
         /* _state.isCreated */// n/a
@@ -214,7 +207,6 @@ CxThread::exit()
 
     _eventExit.set();
 
-    //-------------------------------------
     // flags
     {
         /* _state.isCreated */// n/a
@@ -280,7 +272,6 @@ CxThread::wait(
     xTEST_EQ(_handle.isValid(), true);
     xTEST_NA(a_timeoutMsec);
 
-    //-------------------------------------
     // flags
     xTEST_DIFF(currentId(), _id);
     xCHECK_DO(currentId() == _id, return);
@@ -1176,17 +1167,14 @@ CxThread::isTimeToExit()
 
     bool_t bRv = false;
 
-    //-------------------------------------
     // exit
     bRv = isExited();
     xCHECK_RET(bRv, true);
 
-    //-------------------------------------
     // pause / resume
     bRv = isPaused();
     xCHECK_RET(bRv, ! _waitResumption());
 
-    //-------------------------------------
     // flags
     // n/a
 
@@ -1215,7 +1203,6 @@ CxThread::_s_jobEntry(
     CxThread *self = static_cast<CxThread *>( a_param );
     xTEST_PTR(self);
 
-    //-------------------------------------
     // handle must be valid
     currentSleep(500UL);
 
@@ -1224,7 +1211,6 @@ CxThread::_s_jobEntry(
 
     xPTR_DELETE(self->_eventStarter);
 
-    //-------------------------------------
     // if created suspended thread - wait for resumption
     if (self->isPaused()) {
         bRv = self->_waitResumption();
@@ -1232,7 +1218,6 @@ CxThread::_s_jobEntry(
     }
 
     {
-        //-------------------------------------
         // begin of thread function
         try {
             #if xTODO
@@ -1243,7 +1228,6 @@ CxThread::_s_jobEntry(
             xTEST_FAIL;
         }
 
-        //-------------------------------------
         // executing of thread function
         try {
             uiRv = self->onRun(self->_param);
@@ -1256,7 +1240,6 @@ CxThread::_s_jobEntry(
             xTEST_FAIL;
         }
 
-        //-------------------------------------
         // end of thread function
         try {
             #if xTODO
@@ -1268,7 +1251,6 @@ CxThread::_s_jobEntry(
         }
     }
 
-    //-------------------------------------
     // clean members (is need to close???)
 #if   xENV_WIN
     self->_handle.close();
@@ -1282,7 +1264,6 @@ CxThread::_s_jobEntry(
     self->_param      = xPTR_NULL;
     // self->_isAutoDelete - n/a
 
-    //-------------------------------------
     // flags
     self->_setStatesDefault();
 
@@ -1292,7 +1273,6 @@ CxThread::_s_jobEntry(
     exit_status_t esExitStatus = &self->_exitStatus;
 #endif
 
-    //-------------------------------------
     // auto delete oneself
     xCHECK_DO(self->_isAutoDelete, xPTR_DELETE(self));
 
@@ -1302,7 +1282,6 @@ CxThread::_s_jobEntry(
 inline bool_t
 CxThread::_waitResumption()
 {
-    //-------------------------------------
     // flags
     {
         /* _state.isCreated */// n/a
@@ -1322,7 +1301,6 @@ CxThread::_setStatesDefault()
 {
     // n/a
 
-    //-------------------------------------
     // flags
     {
         _state.isCreated  = false;
