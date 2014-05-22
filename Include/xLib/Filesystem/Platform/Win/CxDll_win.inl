@@ -58,7 +58,7 @@ CxDll::_procAddress_impl(
 inline void_t
 CxDll::_destruct_impl()
 {
-    BOOL blRv = ::FreeLibrary(_handle);
+    BOOL blRv = ::FreeLibrary(_handle);    _handle = xPTR_NULL;
     xTEST_DIFF(blRv, FALSE);
 }
 //-------------------------------------------------------------------------------------------------

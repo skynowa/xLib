@@ -73,7 +73,7 @@ CxDll::_procAddress_impl(
 inline void_t
 CxDll::_destruct_impl()
 {
-    int_t iRv = ::dlclose(_handle);
+    int_t iRv = ::dlclose(_handle);    _handle = xPTR_NULL;
     xTEST_EQ(iRv, 0);
 }
 //-------------------------------------------------------------------------------------------------
