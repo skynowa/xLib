@@ -100,8 +100,6 @@ CxDll::_destruct()
     xCHECK_DO(!isLoaded(), return);
 
     _destruct_impl();
-
-    _handle = xPTR_NULL;
 }
 //-------------------------------------------------------------------------------------------------
 
