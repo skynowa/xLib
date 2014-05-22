@@ -4,12 +4,6 @@
  */
 
 
-#if xENV_WIN
-    // lib: n/a
-#else
-    // lib: -ldl, -lc (FreeBSD)
-#endif
-
 #if   xENV_WIN
     #include "Platform/Win/CxDll.inl"
 #elif xENV_UNIX
