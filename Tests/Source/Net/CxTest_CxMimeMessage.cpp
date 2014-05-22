@@ -18,7 +18,7 @@ CxTest_CxMimeMessage::unit(
 {
     xUNUSED(a_caseLoops);
 
-    CxPop3 objPop3;
+    CxPop3Client objPop3;
 
     //-------------------------------------
     //CourierMS.exe

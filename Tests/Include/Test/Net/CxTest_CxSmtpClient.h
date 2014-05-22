@@ -1,22 +1,20 @@
 /**
- * \file   CxTest_CxPop3.h
+ * \file   CxTest_CxSmtpClient.h
  * \brief
  */
 
 
-#pragma once
-
 #include <xLib/Core/xCore.h>
 #include <xLib/Test/CxTest.h>
-#include <xLib/Net/CxPop3.h>
+#include <xLib/Net/CxSmtpClient.h>
 //-------------------------------------------------------------------------------------------------
 #if xHAVE_OPENSSL_CRYPTO
 
-class CxTest_CxPop3 :
+class CxTest_CxSmtpClient :
     public CxTest
 {
 public:
-                   CxTest_CxPop3() {}
+                   CxTest_CxSmtpClient() {}
 
     virtual void_t unit(culonglong_t &caseLoops);
 };

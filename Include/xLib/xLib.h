@@ -98,8 +98,8 @@
 #include <xLib/Net/CxMimeMessage.h>
 
 #include <xLib/Net/CxHttpClient.h>
-#include <xLib/Net/CxPop3.h>
-#include <xLib/Net/CxSmtp.h>
+#include <xLib/Net/CxPop3Client.h>
+#include <xLib/Net/CxSmtpClient.h>
 #include <xLib/Net/CxCgi.h>
 
 

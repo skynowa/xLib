@@ -1,5 +1,5 @@
 /**
- * \file  CxPop3.h
+ * \file  CxPop3Client.h
  * \brief POP3 (RFC 2821)
  */
 
@@ -16,12 +16,12 @@ xNAMESPACE_BEGIN2(xlib, net)
 class CxMimeHeader;
 class CxMimeBody;
 
-class CxPop3
+class CxPop3Client
     /// POP3 (RFC 2821)
 {
 public:
-                      CxPop3();
-                     ~CxPop3();
+                      CxPop3Client();
+                     ~CxPop3Client();
 
     void_t            create(std::ctstring_t &user, std::ctstring_t &password,
                           std::ctstring_t &server, ushort_t port);
@@ -61,12 +61,12 @@ private:
     std::size_t       _mailsSum(std::ctstring_t &serverAnswer) xWARN_UNUSED_RV;
     std::size_t       _mailsSize(std::ctstring_t &serverAnswer) xWARN_UNUSED_RV;
 
-    xNO_COPY_ASSIGN(CxPop3)
+    xNO_COPY_ASSIGN(CxPop3Client)
 };
 
 xNAMESPACE_END2(xlib, net)
 //-------------------------------------------------------------------------------------------------
-#include "CxPop3.inl"
+#include "CxPop3Client.inl"
 
 
 /*

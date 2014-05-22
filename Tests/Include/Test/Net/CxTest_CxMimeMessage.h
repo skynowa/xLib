@@ -9,8 +9,8 @@
 #include <xLib/Core/xCore.h>
 #include <xLib/Test/CxTest.h>
 #include <xLib/Net/CxMimeMessage.h>
-#include <xLib/Net/CxPop3.h>
-#include <xLib/Net/CxSmtp.h>
+#include <xLib/Net/CxPop3Client.h>
+#include <xLib/Net/CxSmtpClient.h>
 #include <xLib/Net/CxMimeHeader.h>
 //-------------------------------------------------------------------------------------------------
 #if xHAVE_OPENSSL_CRYPTO
