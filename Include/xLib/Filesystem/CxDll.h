@@ -46,6 +46,16 @@ private:
         ///< free
 
     xNO_COPY_ASSIGN(CxDll)
+
+xPLATFORM:
+    void_t          _load_impl(std::ctstring_t &dllPath);
+        ///< load
+    bool_t          _isProcExists_impl(std::ctstring_t &procName) const xWARN_UNUSED_RV;
+        ///< is function exists
+    proc_address_t  _procAddress_impl(std::ctstring_t &procName) const xWARN_UNUSED_RV;
+        ///< get address of an exported function or variable
+    void_t          _destruct_impl();
+        ///< free
 };
 
 xNAMESPACE_END2(xlib, filesystem)
