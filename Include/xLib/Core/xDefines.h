@@ -6,8 +6,6 @@
 
 #pragma once
 
-#ifndef xLib_xDefinesH
-#define xLib_xDefinesH
 //-------------------------------------------------------------------------------------------------
 // lexeme utils
 #define xLEX_TO_STR(a) \
@@ -694,4 +692,3 @@
         void  operator delete [] (void*)          { ; }
     ///< disallow array on heap
 //-------------------------------------------------------------------------------------------------
-#endif // xLib_xDefinesH

@@ -6,9 +6,6 @@
 
 #pragma once
 
-#ifndef xLib_CxArrayH
-#define xLib_CxArrayH
-//-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, core)
@@ -231,4 +228,3 @@ make_array(const T &t1, const T &t2, const T &t3)
 
 xNAMESPACE_END2(xlib, core)
 //-------------------------------------------------------------------------------------------------
-#endif // xLib_CxArrayH

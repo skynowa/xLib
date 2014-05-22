@@ -6,7 +6,6 @@
 
 #pragma once
 
-//-------------------------------------------------------------------------------------------------
 #if xOS_FREEBSD
     #include <osreldate.h>
     #include <pthread_np.h>     // lib: libpthread, -lpthread (FreeBSD)
@@ -24,4 +23,3 @@
     // thread
     #include <sys/sem.h>
 #endif
-//-------------------------------------------------------------------------------------------------

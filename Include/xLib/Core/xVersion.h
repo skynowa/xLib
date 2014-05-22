@@ -6,9 +6,6 @@
 
 #pragma once
 
-#ifndef xLib_xVersionH
-#define xLib_xVersionH
-//-------------------------------------------------------------------------------------------------
 #define xLIB_NAME           xT("xLib")
     ///< xLib name
 #define xLIB_DESCRIPTION    xT("C++ cross-platform library")
@@ -38,5 +35,3 @@
     ///< xLib jabber
 #define xLIB_SKYPE          xT("skynowa777")
     ///< xLib skype
-//-------------------------------------------------------------------------------------------------
-#endif // xLib_xVersionH

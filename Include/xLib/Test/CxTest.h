@@ -6,9 +6,6 @@
 
 #pragma once
 
-#ifndef xLib_CxTestH
-#define xLib_CxTestH
-//-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 #include <xLib/Test/xTest.h>
 #include <xLib/Test/CxTestData.h>
@@ -74,5 +71,3 @@ private:
 xNAMESPACE_END2(xlib, test)
 //-------------------------------------------------------------------------------------------------
 #include "CxTest.inl"
-//-------------------------------------------------------------------------------------------------
-#endif // xLib_CxTestH

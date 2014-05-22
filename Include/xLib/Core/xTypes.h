@@ -6,9 +6,6 @@
 
 #pragma once
 
-#ifndef xLib_xTypesH
-#define xLib_xTypesH
-//-------------------------------------------------------------------------------------------------
 #if xOS_WIN
     typedef SSIZE_T                ssize_t;
     typedef const ssize_t          cssize_t;
@@ -186,5 +183,3 @@ xNAMESPACE_BEGIN(std)
     typedef const mmap_tstring_t   cmmap_tstring_t;
 
 xNAMESPACE_END(std)
-//-------------------------------------------------------------------------------------------------
-#endif // xLib_xTypesH

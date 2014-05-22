@@ -6,8 +6,6 @@
 
 #pragma once
 
-#ifndef xLib_CxFileLogH
-#define xLib_CxFileLogH
 //-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 #include <xLib/Core/xUnits.h>
@@ -62,5 +60,3 @@ private:
 xNAMESPACE_END2(xlib, log)
 //-------------------------------------------------------------------------------------------------
 #include "CxFileLog.inl"
-//-------------------------------------------------------------------------------------------------
-#endif // xLib_CxFileLogH

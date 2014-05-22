@@ -6,9 +6,6 @@
 
 #pragma once
 
-#ifndef xLib_xConfig_genH
-#define xLib_xConfig_genH
-//-------------------------------------------------------------------------------------------------
 ///@name Git information
 ///@{
 #cmakedefine xHAVE_GIT_REVISION 1
@@ -111,5 +108,3 @@
         #define _GNU_SOURCE 1
     #endif
 #endif
-//-------------------------------------------------------------------------------------------------
-#endif // xLib_xConfig_genH

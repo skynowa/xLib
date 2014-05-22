@@ -6,9 +6,6 @@
 
 #pragma once
 
-#ifndef xLib_xFunctionsH
-#define xLib_xFunctionsH
-//-------------------------------------------------------------------------------------------------
 #if xUNICODE
         #define tcin            wcin
         #define tcout           wcout
@@ -332,7 +329,5 @@ xNAMESPACE_BEGIN2(xlib, core)
     ///< implementation std::clock
 
 xNAMESPACE_END2(xlib, core)
-//-------------------------------------------------------------------------------------------------
+
 #include "xFunctions.inl"
-//-------------------------------------------------------------------------------------------------
-#endif // xLib_xFunctionsH

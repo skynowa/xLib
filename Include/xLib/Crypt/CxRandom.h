@@ -6,9 +6,6 @@
 
 #pragma once
 
-#ifndef xLib_CxRandomH
-#define xLib_CxRandomH
-//-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, crypt)
@@ -105,5 +102,3 @@ typedef CxRandom<long_t, CxNativeSeedPolicy> CxNativeRandom;
 xNAMESPACE_END2(xlib, crypt)
 //-------------------------------------------------------------------------------------------------
 #include "CxRandom.inl"
-//-------------------------------------------------------------------------------------------------
-#endif // xLib_CxRandomH
