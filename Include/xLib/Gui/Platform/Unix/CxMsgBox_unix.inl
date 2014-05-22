@@ -19,15 +19,13 @@ xNAMESPACE_BEGIN2(xlib, gui)
 
 //-------------------------------------------------------------------------------------------------
 inline CxMsgBox::ExModalResult
-CxMsgBox::show(
+CxMsgBox::_show_impl(
     std::ctstring_t &a_text,
     std::ctstring_t &a_title,
     cExType         &a_type    /* = tpOk */
 ) const
 {
     ExModalResult mrRv = mrUnknown;
-
-#if xPLATFORM_IMPL
 
 #if xHAVE_XCB && 0
     xUNUSED(a_text);
@@ -135,8 +133,6 @@ CxMsgBox::show(
     // TODO: CxMsgBox::_show_impl() - Unix
     // #pragma message("xLib: CxMsgBox::_show_impl() - n/a")
 #endif
-
-#endif // xPLATFORM_IMPL
 
     return mrRv;
 }
