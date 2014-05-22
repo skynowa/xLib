@@ -56,7 +56,7 @@ public:
 private:
     xNO_COPY_ASSIGN(CxMsgBox)
 
-xPLATFORM_IMPL:
+xPLATFORM:
     ExModalResult _show_impl(std::ctstring_t &text, const std::ctstring_t &title,
         cExType &type = tpOk) const xWARN_UNUSED_RV;
 };

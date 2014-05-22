@@ -53,7 +53,7 @@ CxDll::load(
 
     _destruct();
 
-#if 1
+#if xPLATFORM_IMPL
     _handle = ::LoadLibrary(a_dllPath.c_str());
     xTEST_PTR(_handle);
 #endif
@@ -66,7 +66,7 @@ CxDll::isProcExists(
 {
     xTEST_PTR(_handle);
 
-#if  1
+#if xPLATFORM_IMPL
     proc_address_t paRv = ::GetProcAddress(_handle, xTS2S(a_procName).c_str());
     xCHECK_RET(paRv == xPTR_NULL, false);
 #endif
@@ -83,7 +83,7 @@ CxDll::procAddress(
 
     proc_address_t paRv = xPTR_NULL;
 
-#if 1
+#if xPLATFORM_IMPL
     paRv = ::GetProcAddress(_handle, xTS2S(a_procName).c_str());
     xTEST_PTR(paRv);
 #endif
@@ -106,7 +106,7 @@ CxDll::_destruct()
 
     xCHECK_DO(!isLoaded(), return);
 
-#if 1
+#if xPLATFORM_IMPL
     BOOL blRv = ::FreeLibrary(_handle);
     xTEST_DIFF(blRv, FALSE);
 #endif

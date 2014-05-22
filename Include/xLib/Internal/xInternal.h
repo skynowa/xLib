@@ -12,8 +12,10 @@ xNAMESPACE_BEGIN2(xlib, internal)
 //-------------------------------------------------------------------------------------------------
 ///@name Macroses
 ///@{
-#define xPLATFORM_IMPL private
+#define xPLATFORM      private
     ///< for platform code
+#define xPLATFORM_IMPL 1
+    ///< platform depended code
 ///@}
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(enums)
