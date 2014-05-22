@@ -13,13 +13,12 @@ xNAMESPACE_BEGIN2(xlib, gui)
 
 //-------------------------------------------------------------------------------------------------
 inline CxMsgBox::ExModalResult
-CxMsgBox::show(
+CxMsgBox::_show_impl(
     std::ctstring_t &a_text,
     std::ctstring_t &a_title,
     cExType         &a_type    /* = tpOk */
 ) const
 {
-#if xPLATFORM_IMPL
     ExModalResult mrRv      = mrUnknown;
     UINT          type_impl = tpUnknown;
     int_t         iRv       = - 1;
@@ -29,7 +28,6 @@ CxMsgBox::show(
     mrRv      = internal::enums::modalResults.toCross(iRv);
 
     return mrRv;
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 
