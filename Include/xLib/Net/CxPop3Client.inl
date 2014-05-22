@@ -1,5 +1,5 @@
 /**
- * \file  CxPop3.inl
+ * \file  CxPop3Client.inl
  * \brief POP3 (RFC 2821)
  */
 
@@ -19,7 +19,7 @@ xNAMESPACE_BEGIN2(xlib, net)
 
 //-------------------------------------------------------------------------------------------------
 inline
-CxPop3::CxPop3() :
+CxPop3Client::CxPop3Client() :
     _sRv        (),
     ////_socketInit(2, 2),
     _socket     (),
@@ -32,13 +32,13 @@ CxPop3::CxPop3() :
 }
 //-------------------------------------------------------------------------------------------------
 inline
-CxPop3::~CxPop3()
+CxPop3Client::~CxPop3Client()
 {
     disconnect();
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxPop3::create(
+CxPop3Client::create(
     std::ctstring_t &a_user,
     std::ctstring_t &a_password,
     std::ctstring_t &a_server,
@@ -57,7 +57,7 @@ CxPop3::create(
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxPop3::connect()
+CxPop3Client::connect()
 {
      //-------------------------------------
      //Create sock
@@ -82,7 +82,7 @@ CxPop3::connect()
  }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxPop3::login()
+CxPop3Client::login()
 {
     //-------------------------------------
     //RFC
@@ -124,7 +124,7 @@ CxPop3::login()
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxPop3::stat(
+CxPop3Client::stat(
     std::size_t &a_sum,
     std::size_t &a_size
 )
@@ -153,7 +153,7 @@ CxPop3::stat(
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxPop3::list(
+CxPop3Client::list(
     std::vector<std::size_t> &a_list
 )
 {
@@ -183,7 +183,7 @@ CxPop3::list(
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxPop3::listAt(
+CxPop3Client::listAt(
     std::size_t &a_index
 )
 {
@@ -213,7 +213,7 @@ CxPop3::listAt(
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxPop3::noop()
+CxPop3Client::noop()
 {
     //-------------------------------------
     //RFC
@@ -230,7 +230,7 @@ CxPop3::noop()
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxPop3::rset()
+CxPop3Client::rset()
 {
     //-------------------------------------
     //RFC
@@ -247,7 +247,7 @@ CxPop3::rset()
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxPop3::top(
+CxPop3Client::top(
     std::csize_t   &a_num,
     std::csize_t   &a_lines,
     std::tstring_t &a_buff
@@ -278,7 +278,7 @@ CxPop3::top(
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxPop3::retriveRaw(
+CxPop3Client::retriveRaw(
     std::csize_t    &a_num,
     std::ctstring_t &a_dirPath,
     std::ctstring_t &a_fileName
@@ -334,7 +334,7 @@ CxPop3::retriveRaw(
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxPop3::retriveRawAndBackup(
+CxPop3Client::retriveRawAndBackup(
     std::csize_t    &a_num,
     std::ctstring_t &a_dirPath,
     std::ctstring_t &a_backupDirPath,
@@ -401,7 +401,7 @@ CxPop3::retriveRawAndBackup(
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxPop3::retrieveHeader(
+CxPop3Client::retrieveHeader(
     std::csize_t &a_num,
     CxMimeHeader &a_mimeHeader
 )
@@ -431,7 +431,7 @@ CxPop3::retrieveHeader(
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxPop3::del(
+CxPop3Client::del(
     std::csize_t &a_num
 )
 {
@@ -459,7 +459,7 @@ CxPop3::del(
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxPop3::disconnect()
+CxPop3Client::disconnect()
 {
     xCHECK_DO(!_isConnected, return);
 
@@ -482,7 +482,7 @@ CxPop3::disconnect()
 }
 //-------------------------------------------------------------------------------------------------
 inline std::size_t
-CxPop3::_mailsSum(
+CxPop3Client::_mailsSum(
     std::ctstring_t &a_serverAnswer
 )
 {
@@ -502,7 +502,7 @@ CxPop3::_mailsSum(
 }
 //-------------------------------------------------------------------------------------------------
 inline std::size_t
-CxPop3::_mailsSize(
+CxPop3Client::_mailsSize(
     std::ctstring_t &a_serverAnswer
 )
 {
@@ -530,7 +530,7 @@ CxPop3::_mailsSize(
 
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxPop3::_command(
+CxPop3Client::_command(
     std::ctstring_t &command,
     std::ctstring_t &replyDelimiter,
     std::tstring_t  *reply
@@ -555,7 +555,7 @@ CxPop3::_command(
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
-CxPop3::_isError(
+CxPop3Client::_isError(
     std::ctstring_t &text
 )
 {

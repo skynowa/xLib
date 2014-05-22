@@ -1,10 +1,10 @@
 /**
- * \file   CxTest_CxSmtp.cpp
+ * \file   CxTest_CxSmtpClient.cpp
  * \brief
  */
 
 
-#include <Test/Net/CxTest_CxSmtp.h>
+#include <Test/Net/CxTest_CxSmtpClient.h>
 
 
 #if xHAVE_OPENSSL_CRYPTO
@@ -12,7 +12,7 @@
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-CxTest_CxSmtp::unit(
+CxTest_CxSmtpClient::unit(
     culonglong_t &a_caseLoops
 )
 {
@@ -61,7 +61,7 @@ CxTest_CxSmtp::unit(
     int_t                  iNum       = 1;    xUNUSED(iNum);
     std::ctstring_t csText     = xT("HELO");
 
-    CxSmtp objSmtp;
+    CxSmtpClient objSmtp;
 
     //-------------------------------------
     //bCreate
@@ -81,7 +81,7 @@ CxTest_CxSmtp::unit(
 
     //-------------------------------------
     // vSendRaw
-    // TEST: CxSmtp::sendRaw()
+    // TEST: CxSmtpClient::sendRaw()
 #if xTODO
     g_vsRes = CxDir::vsListFiles(csDirPath, "*.eml");
     for (size_t i = 0; i < g_vsRes.size(); i ++) {

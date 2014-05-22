@@ -1,5 +1,5 @@
 /**
- * \file  CxSmtp.h
+ * \file  CxSmtpClient.h
  * \brief SMTP (RFC 2821)
  */
 
@@ -14,12 +14,12 @@ xNAMESPACE_BEGIN2(xlib, net)
 class CxMimeHeader;
 class CxMimeBody;
 
-class CxSmtp
+class CxSmtpClient
     /// SMTP (RFC 2821)
 {
 public:
-                   CxSmtp();
-                  ~CxSmtp();
+                   CxSmtpClient();
+                  ~CxSmtpClient();
 
     void_t         create(std::ctstring_t &user, std::ctstring_t &password,
                        std::ctstring_t &server, cushort_t &port);
@@ -44,12 +44,12 @@ private:
                        std::tstring_t &reply);
     bool_t         _isError(std::ctstring_t &text) xWARN_UNUSED_RV;
 
-    xNO_COPY_ASSIGN(CxSmtp)
+    xNO_COPY_ASSIGN(CxSmtpClient)
 };
 
 xNAMESPACE_END2(xlib, net)
 //-------------------------------------------------------------------------------------------------
-#include "CxSmtp.inl"
+#include "CxSmtpClient.inl"
 
 
 /*

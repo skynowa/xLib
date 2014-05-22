@@ -1,5 +1,5 @@
 /**
- * \file  CxSmtp.inl
+ * \file  CxSmtpClient.inl
  * \brief SMTP (RFC 2821)
  */
 
@@ -27,7 +27,7 @@ xNAMESPACE_BEGIN2(xlib, net)
 
 //-------------------------------------------------------------------------------------------------
 inline
-CxSmtp::CxSmtp() :
+CxSmtpClient::CxSmtpClient() :
     _socket     (),
     _user       (),
     _password   (),
@@ -39,7 +39,7 @@ CxSmtp::CxSmtp() :
 }
 //-------------------------------------------------------------------------------------------------
 inline
-CxSmtp::~CxSmtp()
+CxSmtpClient::~CxSmtpClient()
 {
     disconnect();
 
@@ -48,7 +48,7 @@ CxSmtp::~CxSmtp()
 //-------------------------------------------------------------------------------------------------
 inline
 void_t
-CxSmtp::create(
+CxSmtpClient::create(
     std::ctstring_t &a_user,
     std::ctstring_t &a_password,
     std::ctstring_t &a_server,
@@ -67,7 +67,7 @@ CxSmtp::create(
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxSmtp::connect()
+CxSmtpClient::connect()
 {
     std::tstring_t sRv;
 
@@ -100,7 +100,7 @@ CxSmtp::connect()
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxSmtp::login()
+CxSmtpClient::login()
 {
     //-------------------------------------
     //RFC
@@ -134,7 +134,7 @@ CxSmtp::login()
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxSmtp::noop()
+CxSmtpClient::noop()
 {
     //-------------------------------------
     //RFC
@@ -153,7 +153,7 @@ CxSmtp::noop()
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxSmtp::rset()
+CxSmtpClient::rset()
 {
     //-------------------------------------
     //RFC
@@ -172,7 +172,7 @@ CxSmtp::rset()
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxSmtp::sendRaw
+CxSmtpClient::sendRaw
 (
     std::ctstring_t &a_filePath,
     std::ctstring_t &a_from,
@@ -219,7 +219,7 @@ CxSmtp::sendRaw
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxSmtp::send(
+CxSmtpClient::send(
     std::ctstring_t &a_text,
     std::ctstring_t &a_from,
     std::ctstring_t &a_to
@@ -264,7 +264,7 @@ CxSmtp::send(
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxSmtp::disconnect()
+CxSmtpClient::disconnect()
 {
     xCHECK_DO(!_isConnected, disconnect());
 
@@ -297,7 +297,7 @@ CxSmtp::disconnect()
 
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxSmtp::_command(
+CxSmtpClient::_command(
     std::ctstring_t &a_command,
     std::ctstring_t &a_replyDelimiter,
     std::tstring_t  &a_reply
@@ -315,7 +315,7 @@ CxSmtp::_command(
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
-CxSmtp::_isError(
+CxSmtpClient::_isError(
     std::ctstring_t &a_text
 )
 {

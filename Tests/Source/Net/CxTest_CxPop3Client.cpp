@@ -1,10 +1,10 @@
 /**
- * \file   CxTest_CxPop3.cpp
+ * \file   CxTest_CxPop3Client.cpp
  * \brief
  */
 
 
-#include <Test/Net/CxTest_CxPop3.h>
+#include <Test/Net/CxTest_CxPop3Client.h>
 
 #include <xLib/Core/CxString.h>
 #include <xLib/Filesystem/CxDir.h>
@@ -17,7 +17,7 @@
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 void_t
-CxTest_CxPop3::unit(
+CxTest_CxPop3Client::unit(
     culonglong_t &a_caseLoops
 )
 {
@@ -64,7 +64,7 @@ CxTest_CxPop3::unit(
     std::ctstring_t      csFileName = xT("MailFileName");
 
 
-    CxPop3 objPop3;
+    CxPop3Client objPop3;
 
     //-------------------------------------
     //bCreate
