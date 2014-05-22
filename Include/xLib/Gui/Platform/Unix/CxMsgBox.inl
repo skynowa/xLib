@@ -19,7 +19,7 @@ xNAMESPACE_BEGIN2(xlib, gui)
 
 //-------------------------------------------------------------------------------------------------
 inline CxMsgBox::ExModalResult
-CxMsgBox::_show_impl(
+CxMsgBox::show(
     std::ctstring_t &a_text,
     std::ctstring_t &a_title,
     cExType         &a_type    /* = tpOk */

@@ -19,24 +19,3 @@
         #include "Platform/Apple/CxMsgBox.inl"
     #endif
 #endif
-
-xNAMESPACE_BEGIN2(xlib, gui)
-
-/**************************************************************************************************
-*    public
-*
-**************************************************************************************************/
-
-//-------------------------------------------------------------------------------------------------
-inline CxMsgBox::ExModalResult
-CxMsgBox::show(
-    std::ctstring_t &a_text,
-    std::ctstring_t &a_title,
-    cExType         &a_type    /* = tpOk */
-) const
-{
-    return _show_impl(a_text, a_title, a_type);
-}
-//-------------------------------------------------------------------------------------------------
-
-xNAMESPACE_END2(xlib, gui)
