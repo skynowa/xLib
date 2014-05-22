@@ -6,9 +6,6 @@
 
 #pragma once
 
-#ifndef xLib_xStdDebugH
-#define xLib_xStdDebugH
-//-------------------------------------------------------------------------------------------------
 // C library
 #include <cerrno>
 #include <ctime>
@@ -155,4 +152,3 @@ currentDateTime()
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-#endif // xLib_xStdDebugH

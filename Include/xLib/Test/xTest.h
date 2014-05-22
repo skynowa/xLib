@@ -6,8 +6,6 @@
 
 #pragma once
 
-#ifndef xLib_xTestH
-#define xLib_xTestH
 //-------------------------------------------------------------------------------------------------
 #define xTEST_MSG_EQ_IMPL(reportType, val1, val2, msg) \
     if ( !((val1) == (val2)) ) { \
@@ -272,4 +270,3 @@
 #endif
     ///< test case
 //-------------------------------------------------------------------------------------------------
-#endif // xLib_xTestH

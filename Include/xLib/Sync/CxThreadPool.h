@@ -6,9 +6,6 @@
 
 #pragma once
 
-#ifndef xLib_CxThreadPoolH
-#define xLib_CxThreadPoolH
-//-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 #include <xLib/Sync/CxIpcSemaphore.h>
 #include <xLib/Sync/CxThread.h>
@@ -93,5 +90,3 @@ private:
 xNAMESPACE_END2(xlib, sync)
 //-------------------------------------------------------------------------------------------------
 #include "CxThreadPool.inl"
-//-------------------------------------------------------------------------------------------------
-#endif // xLib_CxThreadPoolH

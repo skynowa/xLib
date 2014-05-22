@@ -6,13 +6,9 @@
 
 #pragma once
 
-#ifndef xLib_CxBlowfishH
-#define xLib_CxBlowfishH
-//-------------------------------------------------------------------------------------------------
-#include <xLib/Core/xCore.h>
-
 #if xHAVE_OPENSSL_CRYPTO
 
+#include <xLib/Core/xCore.h>
 #include <openssl/blowfish.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, crypt)
@@ -76,8 +72,6 @@ xNAMESPACE_END2(xlib, crypt)
 #endif // xHAVE_OPENSSL_CRYPTO
 //-------------------------------------------------------------------------------------------------
 #include "CxBlowfish.inl"
-//-------------------------------------------------------------------------------------------------
-#endif // xLib_CxBlowfishH
 
 
 /*

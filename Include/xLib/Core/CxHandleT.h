@@ -6,8 +6,6 @@
 
 #pragma once
 
-#ifndef xLib_CxHandleTH
-#define xLib_CxHandleTH
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, core)
 
@@ -79,5 +77,3 @@ typedef CxHandleT<hvInvalid> CxHandleInvalid;
 xNAMESPACE_END2(xlib, core)
 //-------------------------------------------------------------------------------------------------
 #include "CxHandleT.inl"
-//-------------------------------------------------------------------------------------------------
-#endif // xLib_CxHandleTH

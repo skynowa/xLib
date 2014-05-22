@@ -103,9 +103,6 @@
 
 #pragma once
 
-#ifndef xLib_xCoreH
-#define xLib_xCoreH
-//-------------------------------------------------------------------------------------------------
 // config
 #include <xLib/Core/xSysDefines.h>
 #include <xLib/Core/xConfig.h>
@@ -210,5 +207,3 @@ namespace xlib
 #include <xLib/Internal/xInternal.h>    // internal
 #include <xLib/Core/xFunctions.h>
 #include <xLib/Core/xStdStream.h>
-//-------------------------------------------------------------------------------------------------
-#endif // xLib_xCoreH

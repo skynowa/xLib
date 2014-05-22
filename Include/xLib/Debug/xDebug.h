@@ -6,8 +6,6 @@
 
 #pragma once
 
-#ifndef xLib_xDebugH
-#define xLib_xDebugH
 //-------------------------------------------------------------------------------------------------
 ///@name check condition
 ///@{
@@ -69,4 +67,3 @@
     { xTEST_MSG_FAIL(xT("Not implemented")); }
     ///< show not implemented message and return value
 //-------------------------------------------------------------------------------------------------
-#endif // xLib_xDebugH

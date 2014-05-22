@@ -7,9 +7,6 @@
 #pragma once
 
 
-#ifndef xLib_CxObserverH
-#define xLib_CxObserverH
-//-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, patterns)
@@ -70,4 +67,3 @@ private:
 
 xNAMESPACE_END2(xlib, patterns)
 //-------------------------------------------------------------------------------------------------
-#endif // xLib_CxObserverH

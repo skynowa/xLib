@@ -6,9 +6,6 @@
 
 #pragma once
 
-#ifndef xLib_CxSingletonH
-#define xLib_CxSingletonH
-//-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, patterns)
@@ -37,4 +34,3 @@ private:
 
 xNAMESPACE_END2(xlib, patterns)
 //-------------------------------------------------------------------------------------------------
-#endif // xLib_CxSingletonH

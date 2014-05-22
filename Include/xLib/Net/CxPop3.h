@@ -6,9 +6,6 @@
 
 #pragma once
 
-#ifndef xLib_CxPop3H
-#define xLib_CxPop3H
-//-------------------------------------------------------------------------------------------------
 #include <xLib/Net/CxSocketInit.h>
 #include <xLib/Net/CxTcpClient.h>
 #include <xLib/Net/CxDnsClient.h>
@@ -70,8 +67,6 @@ private:
 xNAMESPACE_END2(xlib, net)
 //-------------------------------------------------------------------------------------------------
 #include "CxPop3.inl"
-//-------------------------------------------------------------------------------------------------
-#endif // xLib_CxPop3H
 
 
 /*

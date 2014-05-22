@@ -6,12 +6,9 @@
 
 #pragma once
 
-#ifndef xLib_CxMySqlH
-#define xLib_CxMySqlH
-//-------------------------------------------------------------------------------------------------
-#include <xLib/Core/xCore.h>
-
 #if xHAVE_MYSQL
+
+#include <xLib/Core/xCore.h>
 
 #if xENV_WIN
     #include <mysql.h>
@@ -122,8 +119,6 @@ xNAMESPACE_END2(xlib, db)
 #endif // CXMYSQL_IS_USE
 //-------------------------------------------------------------------------------------------------
 #include "CxMySql.inl"
-//-------------------------------------------------------------------------------------------------
-#endif // xLib_CxMySqlH
 
 
 #if xTODO

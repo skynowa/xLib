@@ -6,9 +6,6 @@
 
 #pragma once
 
-#ifndef xLib_xStdStreamH
-#define xLib_xStdStreamH
-//-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN(std)
 
 template<class Traits>
@@ -37,7 +34,5 @@ operator << (basic_ostream<tchar_t, Traits> &os, const multimap<T1, T2> &value);
     ///< overload operators << for std::multimap
 
 xNAMESPACE_END(std)
-//-------------------------------------------------------------------------------------------------
+
 #include "xStdStream.inl"
-//-------------------------------------------------------------------------------------------------
-#endif // xLib_xStdStreamH

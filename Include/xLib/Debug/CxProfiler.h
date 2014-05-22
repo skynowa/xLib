@@ -6,9 +6,6 @@
 
 #pragma once
 
-#ifndef xLib_CxProfilerH
-#define xLib_CxProfilerH
-//-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 #include <xLib/Log/CxFileLog.h>
 #include <xLib/Core/CxDateTime.h>
@@ -53,8 +50,6 @@ private:
 xNAMESPACE_END2(xlib, debug)
 //-------------------------------------------------------------------------------------------------
 #include "CxProfiler.inl"
-//-------------------------------------------------------------------------------------------------
-#endif // xLib_CxProfilerH
 
 
 // http://www.metalshell.com/source_code/133/Microsecond_Benchmark.html

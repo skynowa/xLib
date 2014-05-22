@@ -6,9 +6,6 @@
 
 #pragma once
 
-#ifndef xLib_CxTestManagerH
-#define xLib_CxTestManagerH
-//-------------------------------------------------------------------------------------------------
 #include <xLib/Core/xCore.h>
 #include <xLib/Core/CxConst.h>
 #include <xLib/Test/CxTest.h>
@@ -41,5 +38,3 @@ private:
 xNAMESPACE_END2(xlib, test)
 //-------------------------------------------------------------------------------------------------
 #include "CxTestManager.inl"
-//-------------------------------------------------------------------------------------------------
-#endif // xLib_CxTestManagerH
