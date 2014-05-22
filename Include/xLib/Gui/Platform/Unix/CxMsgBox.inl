@@ -27,6 +27,8 @@ CxMsgBox::show(
 {
     ExModalResult mrRv = mrUnknown;
 
+#if xPLATFORM_IMPL
+
 #if xHAVE_XCB && 0
     xUNUSED(a_text);
     xUNUSED(a_title);
@@ -133,6 +135,8 @@ CxMsgBox::show(
     // TODO: CxMsgBox::_show_impl() - Unix
     // #pragma message("xLib: CxMsgBox::_show_impl() - n/a")
 #endif
+
+#endif // xPLATFORM_IMPL
 
     return mrRv;
 }

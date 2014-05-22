@@ -19,6 +19,7 @@ CxMsgBox::show(
     cExType         &a_type    /* = tpOk */
 ) const
 {
+#if xPLATFORM_IMPL
     ExModalResult mrRv      = mrUnknown;
     UINT          type_impl = tpUnknown;
     int_t         iRv       = - 1;
@@ -28,6 +29,7 @@ CxMsgBox::show(
     mrRv      = internal::enums::modalResults.toCross(iRv);
 
     return mrRv;
+#endif
 }
 //-------------------------------------------------------------------------------------------------
 
