@@ -4,8 +4,6 @@
  */
 
 
-#include <xLib/Filesystem/CxPath.h>
-
 #include "Platform/CxMsgBox_internal.inl"
 
 #if   xENV_WIN
