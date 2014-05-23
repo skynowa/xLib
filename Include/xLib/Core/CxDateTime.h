@@ -32,7 +32,7 @@ public:
         ///< destructor
 
     // validate
-    struct CxValidator
+    struct Validator
         ///< CxDateTime validator
     {
         static bool_t year(cint_t &year) xWARN_UNUSED_RV;
