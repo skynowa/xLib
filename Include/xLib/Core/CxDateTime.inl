@@ -15,6 +15,18 @@
 #include <xLib/Debug/CxDebugger.h>
 #include <xLib/Log/CxTrace.h>
 
+#if   xENV_WIN
+    #include "Platform/Win/CxDateTime_win.inl"
+#elif xENV_UNIX
+    #if   xENV_LINUX
+        #include "Platform/Unix/CxDateTime_unix.inl"
+    #elif xENV_BSD
+        #include "Platform/Unix/CxDateTime_unix.inl"
+    #elif xENV_APPLE
+        #include "Platform/Unix/CxDateTime_unix.inl"
+    #endif
+#endif
+
 
 xNAMESPACE_BEGIN2(xlib, core)
 
@@ -680,97 +692,8 @@ CxDateTime::format(
 inline CxDateTime
 CxDateTime::current()
 {
-#if   xENV_WIN
-    SYSTEMTIME dateTime = {0};
-
-    (void_t)::GetLocalTime(&dateTime);
-    xTEST_EQ(CxValidator::datetime(dateTime.wYear, dateTime.wMonth, dateTime.wDay,
-        dateTime.wHour, dateTime.wMinute, dateTime.wSecond, dateTime.wMilliseconds), true);
-
-    return CxDateTime(dateTime.wYear, dateTime.wMonth, dateTime.wDay,
-        dateTime.wHour, dateTime.wMinute, dateTime.wSecond, dateTime.wMilliseconds);
-#elif xENV_UNIX
-    // get msec
-    timeval timeNow;   xSTRUCT_ZERO(timeNow);
-
-    int_t iRv = ::gettimeofday(&timeNow, xPTR_NULL);
-    xTEST_DIFF(iRv, - 1);
-
-    // get datetime
-    std::tm dateTime; xSTRUCT_ZERO(dateTime);
-
-    std::tm *dtRv = ::localtime_r(&timeNow.tv_sec, &dateTime);
-    xTEST_PTR(dtRv);
-
-    // set datetime
-    cint_t year   = dateTime.tm_year + 1900;
-    cint_t month  = dateTime.tm_mon  + 1;
-    cint_t day    = dateTime.tm_mday;
-    cint_t hour   = dateTime.tm_hour;
-    cint_t minute = dateTime.tm_min;
-    cint_t second = dateTime.tm_sec;
-    cint_t msec   = static_cast<int_t>( static_cast<double>(timeNow.tv_usec) * 0.001 );
-
-    return CxDateTime(year, month, day, hour, minute, second, msec);
-#endif
+    return _current_impl();
 }
-//-------------------------------------------------------------------------------------------------
-#if xENV_WIN
-
-/* static */
-inline longlong_t
-CxDateTime::filetimeToInt64(
-    const FILETIME &a_fileTime
-)
-{
-    return Int64ShllMod32(a_fileTime.dwHighDateTime, 32) | a_fileTime.dwLowDateTime;
-}
-
-#endif
-//-------------------------------------------------------------------------------------------------
-#if xENV_WIN
-
-/* static */
-inline void_t
-CxDateTime::unixTimeToFileTime(
-    const time_t &a_unixTime,
-    FILETIME     *a_fileTime
-)
-{
-    xTEST_NA(a_unixTime);
-    xTEST_PTR(a_fileTime);
-
-    longlong_t llRv = 0LL;
-
-    llRv = Int32x32To64(a_unixTime, 10000000) + 116444736000000000;
-    a_fileTime->dwLowDateTime  = static_cast<ulong_t>( llRv );
-    a_fileTime->dwHighDateTime = llRv >> 32;
-}
-
-#endif
-//-------------------------------------------------------------------------------------------------
-#if xENV_WIN
-
-/* static */
-inline time_t
-CxDateTime::fileTimeToUnixTime(
-    const FILETIME &a_fileTime
-)
-{
-    // TEST: CxDateTime::fileTimeToUnixTime()
-
-    const __int64 nanosecsBetweenEpochs = 116444736000000000LL;
-
-    __int64 llRv = 0LL;
-
-    llRv = (static_cast<__int64>( a_fileTime.dwHighDateTime ) << 32) + a_fileTime.dwLowDateTime;
-    llRv -= nanosecsBetweenEpochs;
-    llRv /= 10000000;
-
-    return static_cast<time_t>( llRv );
-}
-
-#endif
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline int_t
