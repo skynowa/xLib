@@ -62,8 +62,8 @@ CxDateTime::CxDateTime(
     _msec    (0),
     _thisMSec(0ULL)
 {
-    xTEST_EQ(CxValidator::date(a_datetime._year, a_datetime._month, a_datetime._day) &&
-        CxValidator::time(a_datetime._hour, a_datetime._minute, a_datetime._second,
+    xTEST_EQ(Validator::date(a_datetime._year, a_datetime._month, a_datetime._day) &&
+        Validator::time(a_datetime._hour, a_datetime._minute, a_datetime._second,
         a_datetime._msec), true);
 
     set(a_datetime._year, a_datetime._month,  a_datetime._day,
@@ -102,7 +102,7 @@ CxDateTime::CxDateTime(
     _msec    (0),
     _thisMSec(0ULL)
 {
-    xTEST_EQ(CxValidator::time(a_hour, a_minute, a_second, a_msec), true);
+    xTEST_EQ(Validator::time(a_hour, a_minute, a_second, a_msec), true);
 
     set(0, 0, 0, a_hour, a_minute, a_second, a_msec);
 }
@@ -122,7 +122,7 @@ CxDateTime::CxDateTime(
     _msec    (0),
     _thisMSec(0ULL)
 {
-    xTEST_EQ(CxValidator::date(a_year, a_month, a_day), true);
+    xTEST_EQ(Validator::date(a_year, a_month, a_day), true);
 
     set(a_year, a_month, a_day, 0, 0, 0, 0);
 }
@@ -146,8 +146,8 @@ CxDateTime::CxDateTime(
     _msec    (0),
     _thisMSec(0ULL)
 {
-    xTEST_EQ(CxValidator::date(a_year, a_month, a_day) &&
-        CxValidator::time(a_hour, a_minute, a_second, a_msec), true);
+    xTEST_EQ(Validator::date(a_year, a_month, a_day) &&
+        Validator::time(a_hour, a_minute, a_second, a_msec), true);
 
     set(a_year, a_month, a_day, a_hour, a_minute, a_second, a_msec);
 }
@@ -161,7 +161,7 @@ CxDateTime::CxDateTime(
 
 //-------------------------------------------------------------------------------------------------
 inline bool_t
-CxDateTime::CxValidator::year(
+CxDateTime::Validator::year(
     cint_t &a_year
 )
 {
@@ -172,7 +172,7 @@ CxDateTime::CxValidator::year(
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
-CxDateTime::CxValidator::month(
+CxDateTime::Validator::month(
     cint_t &a_month
 )
 {
@@ -183,7 +183,7 @@ CxDateTime::CxValidator::month(
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
-CxDateTime::CxValidator::day(
+CxDateTime::Validator::day(
     cint_t &a_day
 )
 {
@@ -194,7 +194,7 @@ CxDateTime::CxValidator::day(
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
-CxDateTime::CxValidator::hour(
+CxDateTime::Validator::hour(
     cint_t &a_hour
 )
 {
@@ -205,7 +205,7 @@ CxDateTime::CxValidator::hour(
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
-CxDateTime::CxValidator::minute(
+CxDateTime::Validator::minute(
     cint_t &a_minute
 )
 {
@@ -216,7 +216,7 @@ CxDateTime::CxValidator::minute(
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
-CxDateTime::CxValidator::second(
+CxDateTime::Validator::second(
     cint_t &a_second
 )
 {
@@ -227,7 +227,7 @@ CxDateTime::CxValidator::second(
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
-CxDateTime::CxValidator::msec(
+CxDateTime::Validator::msec(
     cint_t &a_msec
 )
 {
@@ -238,7 +238,7 @@ CxDateTime::CxValidator::msec(
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
-CxDateTime::CxValidator::weekDay(
+CxDateTime::Validator::weekDay(
     cint_t &a_weekDay
 )
 {
@@ -249,7 +249,7 @@ CxDateTime::CxValidator::weekDay(
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
-CxDateTime::CxValidator::date(
+CxDateTime::Validator::date(
     cint_t &a_year,
     cint_t &a_month,
     cint_t &a_day
@@ -261,7 +261,7 @@ CxDateTime::CxValidator::date(
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
-CxDateTime::CxValidator::time(
+CxDateTime::Validator::time(
     cint_t &a_hour,
     cint_t &a_minute,
     cint_t &a_second,
@@ -274,7 +274,7 @@ CxDateTime::CxValidator::time(
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
-CxDateTime::CxValidator::datetime(
+CxDateTime::Validator::datetime(
     cint_t &a_year,
     cint_t &a_month,
     cint_t &a_day,
@@ -292,7 +292,7 @@ CxDateTime::CxValidator::datetime(
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
-CxDateTime::CxValidator::datetime(
+CxDateTime::Validator::datetime(
     const CxDateTime &a_datetime
 )
 {
@@ -303,7 +303,7 @@ CxDateTime::CxValidator::datetime(
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
-CxDateTime::CxValidator::dateOrTime(
+CxDateTime::Validator::dateOrTime(
     cint_t &a_year,
     cint_t &a_month,
     cint_t &a_day,
@@ -331,8 +331,8 @@ CxDateTime::operator == (
     const CxDateTime &a_datetime
 ) const
 {
-//    xTEST_EQ(CxValidator::datetime(*this), true);
-//    xTEST_EQ(CxValidator::datetime(a_datetime), true);
+//    xTEST_EQ(Validator::datetime(*this), true);
+//    xTEST_EQ(Validator::datetime(a_datetime), true);
 
     return (_thisMSec == a_datetime._thisMSec);
 }
@@ -342,8 +342,8 @@ CxDateTime::operator != (
     const CxDateTime &a_datetime
 ) const
 {
-//    xTEST_EQ(CxValidator::datetime(*this), true);
-//    xTEST_EQ(CxValidator::datetime(a_datetime), true);
+//    xTEST_EQ(Validator::datetime(*this), true);
+//    xTEST_EQ(Validator::datetime(a_datetime), true);
 
     return ( _thisMSec != a_datetime._thisMSec );
 }
@@ -353,8 +353,8 @@ CxDateTime::operator < (
     const CxDateTime &a_datetime
 ) const
 {
-//    xTEST_EQ(CxValidator::datetime(*this), true);
-//    xTEST_EQ(CxValidator::datetime(a_datetime), true);
+//    xTEST_EQ(Validator::datetime(*this), true);
+//    xTEST_EQ(Validator::datetime(a_datetime), true);
 
     return ( _thisMSec < a_datetime._thisMSec );
 }
@@ -364,8 +364,8 @@ CxDateTime::operator <= (
     const CxDateTime &a_datetime
 ) const
 {
-//    xTEST_EQ(CxValidator::datetime(*this), true);
-//    xTEST_EQ(CxValidator::datetime(a_datetime), true);
+//    xTEST_EQ(Validator::datetime(*this), true);
+//    xTEST_EQ(Validator::datetime(a_datetime), true);
 
     return ( _thisMSec <= a_datetime._thisMSec );
 }
@@ -375,8 +375,8 @@ CxDateTime::operator > (
     const CxDateTime &a_datetime
 ) const
 {
-//    xTEST_EQ(CxValidator::datetime(*this), true);
-//    xTEST_EQ(CxValidator::datetime(a_datetime), true);
+//    xTEST_EQ(Validator::datetime(*this), true);
+//    xTEST_EQ(Validator::datetime(a_datetime), true);
 
     return ( _thisMSec > a_datetime._thisMSec );
 }
@@ -386,8 +386,8 @@ CxDateTime::operator >= (
     const CxDateTime &a_datetime
 ) const
 {
-//    xTEST_EQ(CxValidator::datetime(*this), true);
-//    xTEST_EQ(CxValidator::datetime(a_datetime), true);
+//    xTEST_EQ(Validator::datetime(*this), true);
+//    xTEST_EQ(Validator::datetime(a_datetime), true);
 
     return ( _thisMSec >= a_datetime._thisMSec );
 }
@@ -427,7 +427,7 @@ CxDateTime::operator + (
     const CxDateTime &a_datetime
 ) const
 {
-//    xTEST_EQ(CxValidator::datetime(*this), true);
+//    xTEST_EQ(Validator::datetime(*this), true);
 
     return CxDateTime(_thisMSec + a_datetime._thisMSec);
 }
@@ -437,7 +437,7 @@ CxDateTime::operator - (
     const CxDateTime &a_datetime
 ) const
 {
-//    xTEST_EQ(CxValidator::datetime(*this), true);
+//    xTEST_EQ(Validator::datetime(*this), true);
 
     return CxDateTime(_thisMSec - a_datetime._thisMSec);
 }
@@ -447,7 +447,7 @@ CxDateTime::operator += (
     const CxDateTime &a_datetime
 )
 {
-//    xTEST_EQ(CxValidator::datetime(*this), true);
+//    xTEST_EQ(Validator::datetime(*this), true);
 
     _thisMSec += a_datetime._thisMSec;
 
@@ -461,7 +461,7 @@ CxDateTime::operator -= (
     const CxDateTime &a_datetime
 )
 {
-//    xTEST_EQ(CxValidator::datetime(*this), true);
+//    xTEST_EQ(Validator::datetime(*this), true);
 
     _thisMSec -= a_datetime._thisMSec;
 
@@ -489,7 +489,7 @@ CxDateTime::get(
     int_t *a_msec
 ) const
 {
-//    xTEST_EQ(CxValidator::datetime(*this), true);
+//    xTEST_EQ(Validator::datetime(*this), true);
     xTESTS_NA;
 
     CxUtils::ptrAssignT(a_year,   _year);
@@ -504,7 +504,7 @@ CxDateTime::get(
 inline int_t
 CxDateTime::dayOfWeek() const
 {
-//    xTEST_EQ(CxValidator::datetime(*this), true);
+//    xTEST_EQ(Validator::datetime(*this), true);
 
     int_t iRv     = 0;
     tm    timeInfo;  xSTRUCT_ZERO(timeInfo);
@@ -653,7 +653,7 @@ CxDateTime::format(
     std::ctstring_t &a_formatMsec /* = xT(".%03d") */  ///< milliseconds format
 ) const
 {
-    //xTEST_EQ(CxValidator::datetime(*this), true);
+    //xTEST_EQ(Validator::datetime(*this), true);
     xTEST_EQ(a_format.empty(), false);
     xTEST_NA(a_formatMsec);
 
@@ -822,7 +822,7 @@ CxDateTime::monthStr(
     cbool_t &a_isShortName
 )
 {
-    xTEST_EQ(CxValidator::month(a_month), true);
+    xTEST_EQ(Validator::month(a_month), true);
     xTEST_NA(a_isShortName);
 
     std::tstring_t sRv;
@@ -929,7 +929,7 @@ CxDateTime::weekDayStr(
     cbool_t &a_isShortName
 )
 {
-    xTEST_EQ(CxValidator::weekDay(a_week_day), true);
+    xTEST_EQ(Validator::weekDay(a_week_day), true);
     xTEST_NA(a_isShortName);
 
     // days since Sunday (0-6)
