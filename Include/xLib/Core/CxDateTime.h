@@ -164,6 +164,11 @@ private:
 
     ulonglong_t    _toMsec() const xWARN_UNUSED_RV;
         ///< convert to milliseconds
+
+xPLATFORM:
+    // static
+    static
+    CxDateTime     _current_impl() xWARN_UNUSED_RV;
 };
 
 xNAMESPACE_END2(xlib, core)
