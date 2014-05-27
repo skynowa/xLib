@@ -197,6 +197,20 @@ private:
         ///< destructor
 
     xNO_COPY_ASSIGN(CxString)
+
+xPLATFORM:
+    static
+    std::string    _castA_impl(std::cwstring_t &str, cuint_t &codePage) xWARN_UNUSED_RV;
+    static
+    std::wstring   _castW_impl(std::cstring_t &str, cuint_t &codePage) xWARN_UNUSED_RV;
+    static
+    std::string    _castToOem_impl(std::ctstring_t &str) xWARN_UNUSED_RV;
+    static
+    std::tstring_t _castFromOem_impl(std::cstring_t &str) xWARN_UNUSED_RV;
+    static
+    std::tstring_t _toLowerCase_impl(std::ctstring_t &str, std::csize_t &length) xWARN_UNUSED_RV;
+    static
+    std::tstring_t _toUpperCase_impl(std::ctstring_t &str, std::csize_t &length) xWARN_UNUSED_RV;
 };
 
 xNAMESPACE_END2(xlib, core)
@@ -228,6 +242,11 @@ private:
         ///< destructor
 
     xNO_COPY_ASSIGN(CxStringCI)
+
+xPLATFORM:
+    static
+    bool_t         _compare_impl(std::ctstring_t &str1, std::ctstring_t &str2,
+                       const std::locale &a_locale = std::locale()) xWARN_UNUSED_RV;
 };
 
 xNAMESPACE_END2(xlib, core)

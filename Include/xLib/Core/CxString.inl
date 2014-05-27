@@ -20,6 +20,18 @@
 #include <xLib/Log/CxTrace.h>
 #include <xLib/Debug/xStdDebug.h>
 
+#if   xENV_WIN
+    #include "Platform/Win/CxString_win.inl"
+#elif xENV_UNIX
+    #if   xENV_LINUX
+        #include "Platform/Unix/CxString_unix.inl"
+    #elif xENV_BSD
+        #include "Platform/Unix/CxString_unix.inl"
+    #elif xENV_APPLE
+        #include "Platform/Unix/CxString_unix.inl"
+    #endif
+#endif
+
 
 xNAMESPACE_BEGIN2(xlib, core)
 
@@ -187,25 +199,7 @@ CxString::castA(
     xTEST_NA(a_str);
     xTEST_NA(a_codePage);
 
-    std::string asRv;
-
-#if   xENV_WIN
-    int_t size = ::WideCharToMultiByte(a_codePage, 0UL, a_str.c_str(), - 1, xPTR_NULL, 0, xPTR_NULL, xPTR_NULL);
-    xTEST_LESS(0, size);
-
-    asRv.resize(size - 1);    // remove '\0'
-    size = ::WideCharToMultiByte(a_codePage, 0UL, a_str.c_str(), - 1,
-        static_cast<LPSTR>(&asRv.at(0)), size, xPTR_NULL, xPTR_NULL);
-    xTEST_LESS(0, size);
-#elif xENV_UNIX
-    xUNUSED(a_str);
-    xUNUSED(a_codePage);
-
-    // TODO: CxString::castA() - Unix
-    xNOT_IMPLEMENTED;
-#endif
-
-    return asRv;
+    return _castA_impl(a_str, a_codePage);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -218,25 +212,7 @@ CxString::castW(
     xTEST_NA(a_str);
     xTEST_NA(a_codePage);
 
-    std::wstring wsRv;
-
-#if   xENV_WIN
-    int_t size = ::MultiByteToWideChar(a_codePage, 0UL, a_str.c_str(), - 1, xPTR_NULL, 0);
-    xTEST_LESS(0, size);
-
-    wsRv.resize(size - 1);    // remove '\0'
-    size = ::MultiByteToWideChar(a_codePage, 0UL, a_str.c_str(), - 1,
-        static_cast<LPWSTR>(&wsRv.at(0)), size);
-    xTEST_LESS(0, size);
-#elif xENV_UNIX
-    xUNUSED(a_str);
-    xUNUSED(a_codePage);
-
-    // TODO: CxString::castW() - Unix
-    xNOT_IMPLEMENTED;
-#endif
-
-    return wsRv;
+    return _castW_impl(a_str, a_codePage);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -326,21 +302,7 @@ CxString::castToOem(
 {
     xTEST_NA(a_str);
 
-    std::string dest;
-
-#if   xENV_WIN
-    dest.resize(a_str.size());
-
-    BOOL blRv = ::CharToOemBuff(a_str.c_str(), &dest.at(0), static_cast<DWORD>( dest.size() ));
-    xTEST_DIFF(blRv, FALSE);
-#elif xENV_UNIX
-    xUNUSED(a_str);
-
-    // TODO: CxString::castToOem()
-    xNOT_IMPLEMENTED;
-#endif
-
-    return dest;
+    return _castToOem_impl(a_str);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -351,21 +313,7 @@ CxString::castFromOem(
 {
     xTEST_NA(a_str);
 
-    std::tstring_t dest;
-
-#if   xENV_WIN
-    dest.resize(a_str.size());
-
-    BOOL blRv = ::OemToCharBuff(a_str.c_str(), &dest.at(0), static_cast<DWORD>( dest.size() ));
-    xTEST_DIFF(blRv, FALSE);
-#elif xENV_UNIX
-    xUNUSED(a_str);
-
-    // TODO: CxString::castFromOem()
-    xNOT_IMPLEMENTED;
-#endif
-
-    return dest;
+    return _castFromOem_impl(a_str);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -430,16 +378,7 @@ CxString::toLowerCase(
     xCHECK_RET(a_str.empty(), std::tstring_t());
     xCHECK_DO (a_str.size() < length, length = a_str.size());
 
-    std::tstring_t sRv(a_str);
-
-#if   xENV_WIN
-    DWORD dwRv = ::CharLowerBuff(static_cast<LPTSTR>( &sRv[0] ), static_cast<DWORD>( length ));
-    xTEST_EQ(length, static_cast<size_t>( dwRv ));
-#elif xENV_UNIX
-    std::transform(sRv.begin(), sRv.begin() + length, sRv.begin(), functors::ToLower( std::locale() ));
-#endif
-
-    return sRv;
+    return _toLowerCase_impl(a_str, a_length);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -459,14 +398,7 @@ CxString::toUpperCase(
 
     std::tstring_t sRv(a_str);
 
-#if   xENV_WIN
-    DWORD dwRv = ::CharUpperBuff(static_cast<LPTSTR>( &sRv[0] ), static_cast<DWORD>( length ));
-    xTEST_EQ(length, static_cast<size_t>( dwRv ));
-#elif xENV_UNIX
-    std::transform(sRv.begin(), sRv.begin() + length, sRv.begin(), functors::ToUpper( std::locale() ));
-#endif
-
-    return sRv;
+    return _toUpperCase_impl(a_str, a_length);
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -1040,16 +972,7 @@ CxStringCI::compare(
 
     xCHECK_RET(a_str1.size() != a_str2.size(), false);
 
-#if   xENV_WIN
-    int_t iRv = ::lstrcmpi(a_str1.c_str(), a_str2.c_str());
-    xCHECK_RET(0 != iRv, false);
-#elif xENV_UNIX
-    bool_t bRv = std::equal(a_str1.begin(), a_str1.end(), a_str2.begin(),
-        functors::CompareCI(a_locale));
-    xCHECK_RET(!bRv, false);
-#endif
-
-    return true;
+    return _compare_impl(a_str1, a_str2, a_locale);
 }
 //-------------------------------------------------------------------------------------------------
 
