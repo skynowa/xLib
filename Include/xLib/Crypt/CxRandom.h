@@ -44,6 +44,10 @@ public:
 
     virtual long_t next();
         ///< get integer in the range between 0 and RAND_MAX
+
+xPLATFORM:
+    void_t         _construct_impl();
+    long_t         _next_impl();
 };
 //-------------------------------------------------------------------------------------------------
 class CxNativeSeedPolicy :
@@ -65,6 +69,11 @@ private:
 #elif xENV_UNIX
     random_data    _data;   ///< data for ::srandom_r()
 #endif
+
+xPLATFORM:
+    void_t         _construct_impl();
+    void_t         _destruct_impl();
+    long_t         _next_impl();
 };
 //-------------------------------------------------------------------------------------------------
 template <class RandomValue, class SeedPolicy>
