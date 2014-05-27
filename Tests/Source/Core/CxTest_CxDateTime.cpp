@@ -275,20 +275,20 @@ CxTest_CxDateTime::unit(
     *
     *******************************************************************************/
 
-    xTEST_CASE("CxDateTime::CxValidator", a_caseLoops)
+    xTEST_CASE("CxDateTime::Validator", a_caseLoops)
     {
-        // TEST: CxDateTime::CxValidator::year()
-        // TEST: CxDateTime::CxValidator::month()
-        // TEST: CxDateTime::CxValidator::day()
-        // TEST: CxDateTime::CxValidator::hour()
-        // TEST: CxDateTime::CxValidator::minute()
-        // TEST: CxDateTime::CxValidator::second()
-        // TEST: CxDateTime::CxValidator::msec()
-        // TEST: CxDateTime::CxValidator::weekDay()
-        // TEST: CxDateTime::CxValidator::time()
-        // TEST: CxDateTime::CxValidator::date()
-        // TEST: CxDateTime::CxValidator::datetime()
-        // TEST: CxDateTime::CxValidator::dateOrTime()
+        // TEST: CxDateTime::Validator::year()
+        // TEST: CxDateTime::Validator::month()
+        // TEST: CxDateTime::Validator::day()
+        // TEST: CxDateTime::Validator::hour()
+        // TEST: CxDateTime::Validator::minute()
+        // TEST: CxDateTime::Validator::second()
+        // TEST: CxDateTime::Validator::msec()
+        // TEST: CxDateTime::Validator::weekDay()
+        // TEST: CxDateTime::Validator::time()
+        // TEST: CxDateTime::Validator::date()
+        // TEST: CxDateTime::Validator::datetime()
+        // TEST: CxDateTime::Validator::dateOrTime()
 
         // valid data
         {
@@ -315,7 +315,7 @@ CxTest_CxDateTime::unit(
                 int_t second = valid[i][5];
                 int_t msec   = valid[i][6];
 
-                m_bRv = CxDateTime::CxValidator::datetime(year, month, day, hour, minute, second, msec);
+                m_bRv = CxDateTime::Validator::datetime(year, month, day, hour, minute, second, msec);
                 xTEST_EQ(m_bRv, true);
             }
         }
@@ -375,7 +375,7 @@ CxTest_CxDateTime::unit(
                 int_t second = nonValid[i][5];
                 int_t msec   = nonValid[i][6];
 
-                m_bRv = CxDateTime::CxValidator::datetime(year, month, day, hour, minute, second, msec);
+                m_bRv = CxDateTime::Validator::datetime(year, month, day, hour, minute, second, msec);
                 xTEST_EQ(m_bRv, false);
             }
         #endif
