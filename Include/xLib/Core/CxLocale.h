@@ -28,6 +28,9 @@ public:
 
 private:
     xNO_COPY_ASSIGN(CxLocale)
+
+xPLATFORM:
+    std::tstring_t _current_impl() const xWARN_UNUSED_RV;
 };
 
 xNAMESPACE_END2(xlib, core)
