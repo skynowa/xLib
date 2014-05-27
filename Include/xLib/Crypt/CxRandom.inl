@@ -14,6 +14,18 @@
 #include <xLib/Debug/CxStackTrace.h>
 #include <xLib/Log/CxTrace.h>
 
+#if   xENV_WIN
+    #include "Platform/Win/CxRandom_win.inl"
+#elif xENV_UNIX
+    #if   xENV_LINUX
+        #include "Platform/Unix/CxRandom_unix.inl"
+    #elif xENV_BSD
+        #include "Platform/Unix/CxRandom_unix.inl"
+    #elif xENV_APPLE
+        #include "Platform/Unix/CxRandom_unix.inl"
+    #endif
+#endif
+
 
 xNAMESPACE_BEGIN2(xlib, crypt)
 
@@ -51,9 +63,7 @@ inline
 CxStdSeedPolicy::CxStdSeedPolicy() :
     IxSeedPolicy()
 {
-#if xENV_WIN
-    (void_t)std::srand(_seed);
-#endif
+    _construct_impl();
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -66,19 +76,7 @@ CxStdSeedPolicy::~CxStdSeedPolicy()
 inline long_t
 CxStdSeedPolicy::next()
 {
-    int_t iRv = 0U;
-
-#if   xENV_WIN
-   /**
-    * VC++'s C runtime is multithreaded by default.
-    * There's no need for rand_r, rand works fine in this case
-    */
-    iRv = std::rand();
-#elif xENV_UNIX
-    iRv = ::rand_r(&_seed);
-#endif
-
-    return iRv;
+    return _next_impl();
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -93,59 +91,21 @@ inline
 CxNativeSeedPolicy::CxNativeSeedPolicy() :
     IxSeedPolicy()
 {
-#if   xENV_WIN
-    _hProv = xPTR_NULL;
-
-    BOOL blRv = ::CryptAcquireContext(&_hProv, xPTR_NULL, xPTR_NULL, PROV_RSA_FULL,
-        CRYPT_VERIFYCONTEXT | CRYPT_SILENT);
-    xTEST_DIFF(blRv, FALSE);
-#elif xENV_UNIX
-    xSTRUCT_ZERO(_data);
-
-    int_t iRv = ::srandom_r(_seed, &_data);
-    xTEST_DIFF(iRv, - 1);
-#endif
+    _construct_impl();
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 inline
 CxNativeSeedPolicy::~CxNativeSeedPolicy()
 {
-#if   xENV_WIN
-    BOOL blRv = ::CryptReleaseContext(_hProv, 0UL);   _hProv = xPTR_NULL;
-    xTEST_DIFF(blRv, FALSE);
-#elif xENV_UNIX
-    xSTRUCT_ZERO(_data);
-#endif
+    _destruct_impl();
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
 inline long_t
 CxNativeSeedPolicy::next()
 {
-    long_t liRv = 0L;
-
-#if   xENV_WIN
-    union RandBuff
-    {
-        BYTE   buff[ sizeof(long_t) ];
-        long_t value;
-    } randBuff;
-
-    BOOL blRv = ::CryptGenRandom(_hProv, sizeof(randBuff), reinterpret_cast<BYTE *>( &randBuff ));
-    xTEST_DIFF(blRv, FALSE);
-
-    liRv = randBuff.value;
-#elif xENV_UNIX
-    int32_t i32Rv = 0;
-
-    int iRv = ::random_r(&_data, &i32Rv);
-    xTEST_DIFF(iRv, - 1);
-
-    liRv = static_cast<long_t>( i32Rv );
-#endif
-
-    return liRv;
+    return _next_impl();
 }
 //-------------------------------------------------------------------------------------------------
 
