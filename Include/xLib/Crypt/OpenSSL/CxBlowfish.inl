@@ -13,6 +13,8 @@
 #if xENV_WIN
     #if xCOMPILER_MS
         #pragma comment(lib, "libeay32.lib")
+    #else
+        // -lssl
     #endif
 #else
     // -lssl
