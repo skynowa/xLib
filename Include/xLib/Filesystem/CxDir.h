@@ -65,6 +65,20 @@ private:
     std::ctstring_t   _dirPath;
 
     xNO_COPY_ASSIGN(CxDir)
+
+xPLATFORM:
+    bool_t            _isRoot_impl() const xWARN_UNUSED_RV;
+    void_t            _create_impl() const;
+    void_t            _remove_impl() const;
+    bool_t            _tryRemove_impl() const;
+
+    // static
+    static
+    std::tstring_t    _current_impl() xWARN_UNUSED_RV;
+    static
+    void_t            _setCurrent_impl(std::ctstring_t &dirPath);
+    static
+    std::tstring_t    _temp_impl() xWARN_UNUSED_RV;
 };
 
 xNAMESPACE_END2(xlib, filesystem)
