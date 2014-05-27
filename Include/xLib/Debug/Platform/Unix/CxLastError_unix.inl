@@ -4,23 +4,6 @@
  */
 
 
-#include <xLib/Core/CxConst.h>
-#include <xLib/Core/CxString.h>
-#include <xLib/Core/CxUtils.h>
-
-#if   xENV_WIN
-    #include "Platform/Win/CxLastError_win.inl"
-#elif xENV_UNIX
-    #if   xENV_LINUX
-        #include "Platform/Unix/CxLastError_unix.inl"
-    #elif xENV_BSD
-        #include "Platform/Unix/CxLastError_unix.inl"
-    #elif xENV_APPLE
-        #include "Platform/Unix/CxLastError_unix.inl"
-    #endif
-#endif
-
-
 xNAMESPACE_BEGIN2(xlib, debug)
 
 /**************************************************************************************************
@@ -31,67 +14,71 @@ xNAMESPACE_BEGIN2(xlib, debug)
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline bool_t
-CxLastError::isSuccess()
+CxLastError::_isSuccess_impl()
 {
-    return _isSuccess_impl();
+    bool_t bRv = (static_cast<ulong_t>( errno ) == _nativeCodeSuccess());
+
+    return bRv;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline ulong_t
-CxLastError::get()
+CxLastError::_get_impl()
 {
-    culong_t code = _get_impl();
-
-    reset();
+    culong_t code = static_cast<ulong_t>( errno );
 
     return code;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline void_t
-CxLastError::set(
+CxLastError::_set_impl(
     culong_t &a_code
 )
 {
-    _set_impl(a_code);
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-inline void_t
-CxLastError::reset()
-{
-    set( _nativeCodeSuccess() );
+    errno = static_cast<int_t>( a_code );
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline std::tstring_t
-CxLastError::format()
-{
-    return format( get() );
-}
-//-------------------------------------------------------------------------------------------------
-/* static */
-inline std::tstring_t
-CxLastError::format(
+CxLastError::_format_impl(
     culong_t &a_code
 )
 {
-    return CxString::format(xT("%lu - %s"), a_code, _format_impl(a_code).c_str());
+    std::tstring_t sRv;
+
+#if   xENV_LINUX
+    char buff[64 + 1] = {0};
+
+    ctchar_t *error = ::strerror_r(static_cast<int_t>( a_code ), &buff[0], xARRAY_SIZE(buff));
+    xCHECK_RET(error == xPTR_NULL, sRv.append(xT("[Cann't format error message]")));
+
+    sRv.append(error);
+#elif xENV_BSD
+    char buff[64 + 1] = {0};
+
+    int_t iRv = ::strerror_r(static_cast<int_t>( a_code ), &buff[0], xARRAY_SIZE(buff));
+    xCHECK_RET(iRv == - 1, sRv.append(xT("[Cann't format error message]")));
+
+    sRv.append(&buff[0]);
+#endif
+
+    return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 
 
 /**************************************************************************************************
-*    private
+*    public
 *
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline ulong_t
-CxLastError::_nativeCodeSuccess()
+CxLastError::_nativeCodeSuccess_impl()
 {
-    return _nativeCodeSuccess_impl();
+    return 0UL;
 }
 //-------------------------------------------------------------------------------------------------
 
