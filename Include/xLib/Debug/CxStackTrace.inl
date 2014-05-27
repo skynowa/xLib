@@ -14,14 +14,15 @@
 xNAMESPACE_ANONYM_BEGIN
 
 std::csize_t elementsNum   = 5;
-
-/**
-* Skip 2 first elements of a real stack - it's a class internals:
-*   0  xLib_test  ??  0  0x46d314  xlib::CxStackTrace::_get() const
-*   1  xLib_test  ??  0  0x46e090  xlib::CxStackTrace::toString()
-*/
+    ///< number of elements
 std::csize_t skipFramesNum = 2;
-
+   /**
+    * Skip number of frames
+    *
+    * Skip 2 first elements of a real stack - it's a class internals:
+    *   0  xLib_test  ??  0  0x46d314  xlib::CxStackTrace::_get() const
+    *   1  xLib_test  ??  0  0x46e090  xlib::CxStackTrace::toString()
+    */
 xNAMESPACE_ANONYM_END
 
 #if   xENV_WIN
