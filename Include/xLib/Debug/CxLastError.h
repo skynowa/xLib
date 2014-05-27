@@ -39,7 +39,23 @@ private:
                   ~CxLastError() {}
         ///< destructor
 
+    static
+    ulong_t        _nativeCodeSuccess();
+        ///< native success code
+
     xNO_COPY_ASSIGN(CxLastError)
+
+xPLATFORM:
+    static
+    bool_t         _isSuccess_impl() xWARN_UNUSED_RV;
+    static
+    ulong_t        _get_impl() xWARN_UNUSED_RV;
+    static
+    void_t         _set_impl(culong_t &code);
+    static
+    std::tstring_t _format_impl(culong_t &a_code) xWARN_UNUSED_RV;
+    static
+    ulong_t        _nativeCodeSuccess_impl() xWARN_UNUSED_RV;
 };
 
 xNAMESPACE_END2(xlib, debug)
