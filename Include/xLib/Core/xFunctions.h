@@ -307,7 +307,7 @@ xNAMESPACE_BEGIN2(xlib, core)
 
     #define xGETTIMEOFDAY           getTimeOfDay
 #else
-    #define xGETTIMEOFDAY           gettimeofday
+    #define xGETTIMEOFDAY           ::gettimeofday
 #endif
     ///< implementation gettimeofday
 
@@ -321,7 +321,7 @@ xNAMESPACE_BEGIN2(xlib, core)
         inline std::clock_t clock() xWARN_UNUSED_RV;
             ///< get std::clock_t (http://bugs.vcmi.eu/view.php?id=719)
 
-        #define xSTD_CLOCK          clock
+        #define xSTD_CLOCK          ::clock
     #endif
 #elif xENV_APPLE
     #define xSTD_CLOCK              std::clock
