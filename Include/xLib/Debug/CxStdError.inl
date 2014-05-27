@@ -7,11 +7,17 @@
 #include <xLib/Core/CxString.h>
 #include <xLib/Core/CxUtils.h>
 
-xNAMESPACE_ANONYM_BEGIN
-
-cint_t stdCodeSuccess = 0;
-
-xNAMESPACE_ANONYM_END
+#if   xENV_WIN
+    #include "Platform/Win/CxStdError_win.inl"
+#elif xENV_UNIX
+    #if   xENV_LINUX
+        #include "Platform/Unix/CxStdError_unix.inl"
+    #elif xENV_BSD
+        #include "Platform/Unix/CxStdError_unix.inl"
+    #elif xENV_APPLE
+        #include "Platform/Unix/CxStdError_unix.inl"
+    #endif
+#endif
 
 
 xNAMESPACE_BEGIN2(xlib, debug)
@@ -26,7 +32,7 @@ xNAMESPACE_BEGIN2(xlib, debug)
 inline bool_t
 CxStdError::isSuccess()
 {
-    bool_t bRv = (errno == ::stdCodeSuccess);
+    bool_t bRv = (errno == _stdCodeSuccess());
 
     return bRv;
 }
@@ -55,7 +61,7 @@ CxStdError::set(
 inline void_t
 CxStdError::reset()
 {
-    set(::stdCodeSuccess);
+    set( _stdCodeSuccess() );
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -71,45 +77,22 @@ CxStdError::format(
     cint_t &a_code
 )
 {
-    std::tstring_t sRv;
+    return CxString::format(xT("%d - %s"), a_code, _format_impl(a_code).c_str());
+}
+//-------------------------------------------------------------------------------------------------
 
-    sRv = CxString::format(xT("%d - "), a_code);
 
-#if   xENV_WIN
-    #if   xCOMPILER_MINGW
-        tchar_t *error = xSTRERROR(a_code);
-        xCHECK_RET(error == xPTR_NULL, sRv.append(xT("[Cann't format error message]")));
+/**************************************************************************************************
+*    private
+*
+**************************************************************************************************/
 
-        sRv.append(error);
-    #elif xCOMPILER_MS || xCOMPILER_CODEGEAR
-        tchar_t buff[64 + 1] = {0};
-
-        errno_t error = xSTRERROR(buff, xARRAY_SIZE(buff), a_code);
-        xCHECK_RET(error != 0, sRv.append(xT("[Cann't format error message]")));
-
-        sRv.append(buff);
-    #endif
-#elif xENV_UNIX
-    #if   xOS_LINUX
-        char buff[64 + 1] = {0};
-
-        ctchar_t *error = ::strerror_r(a_code, &buff[0], xARRAY_SIZE(buff));
-        xCHECK_RET(error == xPTR_NULL, sRv.append(xT("[Cann't format error message]")));
-
-        sRv.append(error);
-    #elif xOS_FREEBSD
-        char buff[64 + 1] = {0};
-
-        int_t iRv = ::strerror_r(a_code, &buff[0], xARRAY_SIZE(buff));
-        xCHECK_RET(iRv == - 1, sRv.append(xT("[Cann't format error message]")));
-
-        sRv.append(&buff[0]);
-    #endif
-#elif xENV_APPLE
-    xNOT_IMPLEMENTED
-#endif
-
-    return sRv;
+//-------------------------------------------------------------------------------------------------
+/* static */
+inline int_t
+CxStdError::_stdCodeSuccess()
+{
+    return 0;
 }
 //-------------------------------------------------------------------------------------------------
 

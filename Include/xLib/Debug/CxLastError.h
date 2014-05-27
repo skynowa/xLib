@@ -40,7 +40,7 @@ private:
         ///< destructor
 
     static
-    ulong_t        _nativeCodeSuccess();
+    ulong_t        _nativeCodeSuccess() xWARN_UNUSED_RV;
         ///< native success code
 
     xNO_COPY_ASSIGN(CxLastError)
