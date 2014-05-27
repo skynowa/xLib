@@ -35,6 +35,9 @@ private:
         ///< random based GUID
 
     xNO_COPY_ASSIGN(CxGuid)
+
+xPLATFORM:
+    std::tstring_t _randomBased_impl() const;
 };
 
 xNAMESPACE_END2(xlib, crypt)
