@@ -16,7 +16,7 @@
         #define xTMAIN          wmain
         #define xTFPRINTF       fwprintf
         #define xTASCTIME       _wasctime
-        #define xTSETLOCALE     _wsetlocale
+        #define xTSETLOCALE     std::_wsetlocale
         #define xTFOPEN         _wfopen
         #define xTFREOPEN       _wfreopen
         #define xTFDOPEN        _wfdopen
@@ -121,7 +121,7 @@
         #define xTMAIN          main
         #define xTFPRINTF       fprintf
         #define xTASCTIME       asctime
-        #define xTSETLOCALE     setlocale
+        #define xTSETLOCALE     std::setlocale
         #define xTFOPEN         fopen
         #define xTFREOPEN       freopen
         #define xTFDOPEN        fdopen
