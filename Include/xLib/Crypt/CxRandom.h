@@ -87,7 +87,7 @@ public:
         ///< destructor
 
     bool_t     nextBool();
-        ///< get bool value
+        ///< get bool_t value
     template <class T>
     T          nextChar();
         ///< get character value between min and max
