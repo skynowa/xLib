@@ -82,6 +82,11 @@ private:
     std::ctstring_t   _filePath;
 
     xNO_COPY_ASSIGN(CxFileType)
+
+xPLATFORM:
+    types_t           _get_impl() const xWARN_UNUSED_RV;
+    void_t            _set_impl(ctypes_t &values) const;
+    void_t            _clear_impl() const;
 };
 
 xNAMESPACE_END2(xlib, filesystem)
