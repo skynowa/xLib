@@ -16,6 +16,18 @@
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxDir.h>
 
+#if   xENV_WIN
+    #include "Platform/Win/CxFileTemp_win.inl"
+#elif xENV_UNIX
+    #if   xENV_LINUX
+        #include "Platform/Unix/CxFileTemp_unix.inl"
+    #elif xENV_BSD
+        #include "Platform/Unix/CxFileTemp_unix.inl"
+    #elif xENV_APPLE
+        #include "Platform/Unix/CxFileTemp_unix.inl"
+    #endif
+#endif
+
 
 xNAMESPACE_BEGIN2(xlib, filesystem)
 
@@ -66,33 +78,9 @@ CxFileTemp::create(
 
     _filePath = CxPath(a_dirPath).slashAppend() + CxPath(a_filePath).fileName() + fileNameTemplate;
 
-#if   xENV_WIN
-    #if xCOMPILER_MINGW || xCOMPILER_CODEGEAR
-        _filePath.resize(_filePath.size() + 1);
+    _create_impl(stdFile);
 
-        tchar_t *file = xTMKSTEMP(&_filePath.at(0));
-        xTEST_PTR(file);
-
-        stdFile = std::xTFOPEN(file, CxFile::_openMode(CxFile::omBinCreateReadWrite).c_str());
-        xTEST_PTR(stdFile);
-    #else
-        _filePath.resize(_filePath.size() + 1);
-
-        errno_t error = xTMKSTEMP(&_filePath.at(0), _filePath.size() + 1);
-        xTEST_EQ(0, error);
-
-        stdFile = std::xTFOPEN(_filePath.c_str(), CxFile::_openMode(CxFile::omBinCreateReadWrite).c_str());
-        xTEST_PTR(stdFile);
-    #endif
-#elif xENV_UNIX
-    int_t file = xTMKSTEMP(&_filePath.at(0));
-    xTEST_DIFF(file, - 1);
-
-    stdFile = ::xTFDOPEN(file, CxFile::_openMode(CxFile::omBinCreateReadWrite).c_str());
-    xTEST_PTR(stdFile);
-#endif
-
-    //out
+    // out
     a_file->attach(stdFile);
 
     _file = a_file;
