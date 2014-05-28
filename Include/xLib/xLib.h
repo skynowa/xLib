@@ -6,7 +6,6 @@
 
 #pragma once
 
-//-------------------------------------------------------------------------------------------------
 // Core
 #include <xLib/Core/xCore.h>
 #include <xLib/Core/xSysDefines.h>
@@ -141,4 +140,3 @@
 #include <xLib/Test/CxTest.h>
 #include <xLib/Test/CxTestManager.h>
 #include <xLib/Test/xTest.h>
-//-------------------------------------------------------------------------------------------------
