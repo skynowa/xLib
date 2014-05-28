@@ -10,6 +10,8 @@
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_BEGIN2(xlib, filesystem)
 
+class CxFileType;
+
 class CxFile
     /// file
 {
@@ -305,6 +307,16 @@ private:
         ///< get open mode as string, by default use "r"
 
     xNO_COPY_ASSIGN(CxFile)
+
+xPLATFORM:
+    static
+    bool_t         _isFile_impl(const CxFileType &type) xWARN_UNUSED_RV;
+    static
+    void_t         _time_impl(std::ctstring_t &filePath, time_t *create, time_t *access,
+                       time_t *modified);
+    static
+    void_t         _setTime_impl(std::ctstring_t &filePath, const time_t &create,
+                       const time_t &access, const time_t &modified);
 };
 
 xNAMESPACE_END2(xlib, filesystem)
