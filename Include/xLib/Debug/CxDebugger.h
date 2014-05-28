@@ -50,6 +50,11 @@ private:
         ///< log plain report to file
 
     xNO_COPY_ASSIGN(CxDebugger)
+
+xPLATFORM:
+    bool_t         _isActive_impl() const xWARN_UNUSED_RV;
+    void           _coreDumpsEnable_impl(cbool_t &flag, bool_t *isEnable);
+    void_t         _breakPoint_impl() const;
 };
 
 xNAMESPACE_END2(xlib, debug)
