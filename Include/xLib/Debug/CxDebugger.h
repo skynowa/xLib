@@ -25,7 +25,7 @@ public:
         ///< set debugging mode on/off
     bool_t         isActive() const xWARN_UNUSED_RV;
         ///< is OS debugger presents
-    void           coreDumpsEnable(cbool_t &flag);
+    void_t         coreDumpsEnable(cbool_t &flag);
         ///< core dumps
     void_t         breakPoint() const;
         ///< attach to OS debugger
@@ -53,7 +53,7 @@ private:
 
 xPLATFORM:
     bool_t         _isActive_impl() const xWARN_UNUSED_RV;
-    void           _coreDumpsEnable_impl(cbool_t &flag, bool_t *isEnable);
+    void_t         _coreDumpsEnable_impl(cbool_t &flag, bool_t *isEnable);
     void_t         _breakPoint_impl() const;
 };
 

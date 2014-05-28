@@ -1,5 +1,5 @@
 /**
- * \file  CxDebugger.inl
+ * \file  CxDebugger_unix.inl
  * \brief debugger
  */
 
@@ -65,7 +65,7 @@ CxDebugger::_isActive_impl() const
     return true;
 }
 //-------------------------------------------------------------------------------------------------
-inline void
+inline void_t
 CxDebugger::_coreDumpsEnable_impl(
     cbool_t &a_flag,
     bool_t  *a_isEnable
