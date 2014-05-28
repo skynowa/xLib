@@ -21,6 +21,7 @@
 #include <sys/syscall.h>
 #include <sys/param.h>
 #include <sys/mount.h>
+#include <syslog.h>
 
 // filesystem
 #include <fnmatch.h>    // fnmatch
