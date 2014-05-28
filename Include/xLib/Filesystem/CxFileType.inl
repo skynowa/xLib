@@ -13,6 +13,18 @@
 #include <xLib/Debug/CxDebugger.h>
 #include <xLib/Log/CxTrace.h>
 
+#if   xENV_WIN
+    #include "Platform/Win/CxFileType_win.inl"
+#elif xENV_UNIX
+    #if   xENV_LINUX
+        #include "Platform/Unix/CxFileType_unix.inl"
+    #elif xENV_BSD
+        #include "Platform/Unix/CxFileType_unix.inl"
+    #elif xENV_APPLE
+        #include "Platform/Unix/CxFileType_unix.inl"
+    #endif
+#endif
+
 
 xNAMESPACE_BEGIN2(xlib, filesystem)
 
@@ -58,24 +70,7 @@ CxFileType::get() const
 {
     xTEST_EQ(filePath().empty(), false);
 
-    types_t ftRv = faInvalid;
-
-#if   xENV_WIN
-    ftRv = ::GetFileAttributes(filePath().c_str());
-    xTEST_NA(ftRv);
-#elif xENV_UNIX
-    xTSTAT_STRUCT info;   xSTRUCT_ZERO(info);
-
-    int_t iRv = ::xTSTAT(filePath().c_str(), &info);
-    xTEST_NA(iRv);
-    if (iRv == - 1) {
-        ftRv = faInvalid;
-    } else {
-        ftRv = (info.st_mode & S_IFMT);
-    }
-#endif
-
-    return ftRv;
+    return _get_impl();
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -86,13 +81,7 @@ CxFileType::set(
     xTEST_EQ(filePath().empty(), false);
     xTEST_NA(a_values);
 
-#if   xENV_WIN
-    BOOL blRv = ::SetFileAttributes(filePath().c_str(), a_values);
-    xTEST_DIFF(blRv, FALSE);
-#elif xENV_UNIX
-    int_t iRv = ::xTCHMOD(filePath().c_str(), a_values);
-    xTEST_DIFF(iRv, - 1);
-#endif
+    _set_impl(a_values);
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -143,9 +132,7 @@ CxFileType::clear() const
 {
     xTEST_EQ(filePath().empty(), false);
 
-#if xENV_WIN
-    set(faNormal);
-#endif
+    _clear_impl();
 }
 //-------------------------------------------------------------------------------------------------
 
