@@ -8,8 +8,16 @@
 #include <xLib/Filesystem/CxPath.h>
 #include "Platform/CxSystemLog_internal.inl"
 
-#if xENV_UNIX
-    #include <syslog.h>
+#if   xENV_WIN
+    #include "Platform/Win/CxSystemLog_win.inl"
+#elif xENV_UNIX
+    #if   xENV_LINUX
+        #include "Platform/Unix/CxSystemLog_unix.inl"
+    #elif xENV_BSD
+        #include "Platform/Unix/CxSystemLog_unix.inl"
+    #elif xENV_APPLE
+        #include "Platform/Unix/CxSystemLog_unix.inl"
+    #endif
 #endif
 
 
@@ -28,7 +36,7 @@ CxSystemLog::CxSystemLog()
     _handle(xPTR_NULL)
 #endif
 {
-    _construct( CxPath( CxPath::exe() ).fileBaseName() );
+    _construct_impl( CxPath( CxPath::exe() ).fileBaseName() );
 }
 //-------------------------------------------------------------------------------------------------
 inline
@@ -40,7 +48,7 @@ CxSystemLog::CxSystemLog(
     _handle   (xPTR_NULL)
 #endif
 {
-    _construct(a_logName);
+    _construct_impl(a_logName);
 }
 //-------------------------------------------------------------------------------------------------
 /* virtual */
@@ -49,16 +57,7 @@ CxSystemLog::~CxSystemLog()
 {
     write(xT("%s"), _oss.str().c_str());
 
-#if   xENV_WIN
-    xTEST_PTR(_handle);
-
-    BOOL blRv = ::DeregisterEventSource(_handle);
-    xTEST_DIFF(blRv, FALSE);
-
-    _handle = xPTR_NULL;
-#elif xENV_UNIX
-    (void_t)::closelog();
-#endif
+    _destruct_impl();
 }
 //-------------------------------------------------------------------------------------------------
 template<class T>
@@ -114,41 +113,7 @@ CxSystemLog::write(
         xVA_END(args);
     }
 
-    // write
-    {
-    #if   xENV_WIN
-        WORD    level_impl = internal::enums::toCross(level);
-        LPCTSTR strings    = msg.c_str();
-
-        BOOL bRv = ::ReportEvent(_handle, level, 0, 0UL, xPTR_NULL, 1, 0UL, &strings, xPTR_NULL);
-        xTEST_DIFF(bRv, FALSE);
-    #elif xENV_UNIX
-        cint_t level_impl = internal::enums::levels.toCross(level);
-
-        (void_t)::syslog(level_impl, xT("%s"), msg.c_str());
-    #endif
-    }
-}
-//-------------------------------------------------------------------------------------------------
-
-
-/**************************************************************************************************
-*    private
-*
-**************************************************************************************************/
-
-//-------------------------------------------------------------------------------------------------
-inline void_t
-CxSystemLog::_construct(
-    std::ctstring_t &a_logName
-)
-{
-#if   xENV_WIN
-    _handle = ::RegisterEventSource(xPTR_NULL, a_logName.c_str());
-    xTEST_DIFF(_handle, xNATIVE_HANDLE_NULL);
-#elif xENV_UNIX
-    (void_t)::openlog(a_logName.c_str(), LOG_PID | LOG_NDELAY | LOG_NOWAIT, LOG_USER);
-#endif
+    _write_impl(level, msg);
 }
 //-------------------------------------------------------------------------------------------------
 
