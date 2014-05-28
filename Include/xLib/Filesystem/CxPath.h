@@ -113,10 +113,10 @@ public:
         ///< get short name
 
     static
-    size_t         maxSize();
+    size_t         maxSize() xWARN_UNUSED_RV;
         ///< get max path length in symbols
     static
-    size_t         nameMaxSize();
+    size_t         nameMaxSize() xWARN_UNUSED_RV;
         ///< get max name length in symbols
 
 #if xENV_UNIX
@@ -131,7 +131,26 @@ public:
 private:
     std::tstring_t _filePath;
 
-xNO_COPY_ASSIGN(CxPath)
+    xNO_COPY_ASSIGN(CxPath)
+
+xPLATFORM:
+    void_t         _toNative_impl(std::tstring_t *filePath) const;
+    bool_t         _isAbsolute_impl() const xWARN_UNUSED_RV;
+    std::tstring_t _absolute_impl() const xWARN_UNUSED_RV;
+
+    static
+    std::tstring_t _exe_impl() xWARN_UNUSED_RV;
+    static
+    std::tstring_t _dll_impl() xWARN_UNUSED_RV;
+    static
+    std::tstring_t _standartExt_impl(const ExStandartExt &fileExt) xWARN_UNUSED_RV;
+    static
+    bool_t         _isNameValid_impl(std::ctstring_t &fileName,
+                      std::tstring_t *fileNameValid = xPTR_NULL) xWARN_UNUSED_RV;
+    static
+    size_t         _maxSize_impl() xWARN_UNUSED_RV;
+    static
+    size_t         _nameMaxSize_impl() xWARN_UNUSED_RV;
 };
 
 xNAMESPACE_END2(xlib, filesystem)
