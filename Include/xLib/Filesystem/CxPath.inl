@@ -12,6 +12,18 @@
 #include <xLib/Sync/CxProcess.h>
 #include <xLib/Log/CxTrace.h>
 
+#if   xENV_WIN
+    #include "Platform/Win/CxPath_win.inl"
+#elif xENV_UNIX
+    #if   xENV_LINUX
+        #include "Platform/Unix/CxPath_unix.inl"
+    #elif xENV_BSD
+        #include "Platform/Unix/CxPath_unix.inl"
+    #elif xENV_APPLE
+        #include "Platform/Unix/CxPath_unix.inl"
+    #endif
+#endif
+
 
 xNAMESPACE_BEGIN2(xlib, filesystem)
 
@@ -51,110 +63,17 @@ CxPath::filePath() const
 inline std::tstring_t
 CxPath::exe()
 {
-    std::tstring_t sRv;
-
-#if   xENV_WIN
-    // REVIEW: QueryFullProcessImageName on xOS_WIN_VER > xOS_WIN_S03
-
-    sRv.resize(xPATH_MAX);
-
-    DWORD stored = ::GetModuleFileName(xPTR_NULL, &sRv.at(0), static_cast<DWORD>( sRv.size() ));
-    xTEST_DIFF(stored, 0UL);
-
-    sRv.resize(stored);
-#elif xENV_UNIX
-    #if   xOS_LINUX
-        std::ctstring_t procFile = CxString::format(xT("/proc/%ld/exe"), ::getpid());
-
-        bool_t bRv = CxFile::isExists(procFile);
-        xCHECK_RET(!bRv, std::tstring_t());
-
-        ssize_t readed = - 1;
-        sRv.resize(xPATH_MAX);
-
-        for ( ; ; ) {
-            readed = ::readlink(procFile.c_str(), &sRv.at(0), sRv.size() *
-                sizeof(std::tstring_t::value_type));
-            xTEST_DIFF(readed, ssize_t(- 1));
-
-            xCHECK_DO(sRv.size() * sizeof(std::tstring_t::value_type) >
-                static_cast<size_t>( readed ), break);
-
-            sRv.resize(sRv.size() * 2);
-        }
-
-        sRv.resize(readed);
-    #elif xOS_FREEBSD
-        #if defined(KERN_PROC_PATHNAME)
-            int_t mib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, - 1};
-
-            tchar_t     buff[PATH_MAX + 1] = {0};
-            std::size_t buffSize           = sizeof(buff) - 1;
-
-            int_t iRv = ::sysctl(mib, xARRAY_SIZE(mib), buff, &buffSize, xPTR_NULL, 0U);
-            xTEST_DIFF(iRv, - 1);
-
-            sRv.assign(buff);
-        #else
-            std::vec_tstring_t args;
-
-            CxProcessInfo info;
-            info.setProcessId(CxProcess::currentId());
-            info.commandLine(&args);
-
-            bool_t bRv = info.commandLine(CxProcess::currentId(), &args);
-            xTEST_EQ(bRv, true);
-            xTEST_EQ(args.empty(), false);
-            xTEST_EQ(isAbsolute(args.at(0)), false);
-
-            sRv = absolute(args.at(0));
-        #endif
-    #endif
-#elif xENV_APPLE
-    xNOT_IMPLEMENTED
-#endif
-
+    std::ctstring_t sRv( _exe_impl() );
     xTEST_EQ(CxFile::isExists(sRv), true);
 
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-xNAMESPACE_ANONYM_BEGIN
-
-#if   xENV_WIN
-    extern "C" IMAGE_DOS_HEADER __ImageBase;
-#elif xENV_UNIX
-    static void_t function() { ; }
-#endif
-
-xNAMESPACE_ANONYM_END
-
 /* static */
 inline std::tstring_t
 CxPath::dll()
 {
-    std::tstring_t sRv;
-
-#if   xENV_WIN
-    sRv.resize(xPATH_MAX);
-
-    HMODULE procAddress = reinterpret_cast<HMODULE>( &__ImageBase );
-
-    DWORD stored = ::GetModuleFileName(procAddress, &sRv.at(0), static_cast<DWORD>( sRv.size() ));
-    xTEST_DIFF(stored, 0UL);
-
-    sRv.resize(stored);
-#elif xENV_UNIX
-    Dl_info  diInfo;          xSTRUCT_ZERO(diInfo);
-    void_t (*procAddress)() = ::function;
-
-    int_t iRv = ::dladdr(&procAddress, &diInfo);
-    xTEST_LESS(iRv, 0);
-
-    sRv = CxPath(diInfo.dli_fname).absolute();
-#endif
-
-    return sRv;
+    return _dll_impl();
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -163,20 +82,6 @@ CxPath::exeDir()
 {
     return CxPath(exe()).dir();
 }
-//-------------------------------------------------------------------------------------------------
-#if xENV_WIN
-
-inline std::tstring_t
-CxPath::drive() const
-{
-    std::csize_t driveDelimPos = filePath().find(CxConst::colon());
-    xTEST_DIFF(driveDelimPos, std::tstring_t::npos);
-    xTEST_EQ(driveDelimPos, size_t(1));
-
-    return filePath().substr(0, driveDelimPos + CxConst::colon().size());
-}
-
-#endif
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
 CxPath::dir() const
@@ -238,87 +143,8 @@ CxPath::standartExt(
     const ExStandartExt &a_fileExt
 )
 {
-    std::tstring_t sRv;
-
-    switch (a_fileExt) {
-#if   xENV_WIN
-    case seExe:
-        sRv = xT("exe");
-        break;
-    case seDll:
-        sRv = xT("dll");
-        break;
-    case seLib:
-        sRv = xT("lib");
-        break;
-    case seObj:
-        sRv = xT("obj");
-        break;
-    case seShell:
-        sRv = xT("bat");
-        break;
-#elif xENV_UNIX
-    case seExe:
-        sRv = xT("");
-        break;
-    case seDll:
-        sRv = xT("so");
-        break;
-    case seLib:
-        sRv = xT("a");
-        break;
-    case seObj:
-        sRv = xT("o");
-        break;
-    case seShell:
-        sRv = xT("sh");
-        break;
-#elif xENV_APPLE
-    case seExe:
-        sRv = xT("");
-        break;
-    case seDll:
-        sRv = xT("dylib");
-        break;
-    case seLib:
-        sRv = xT("a");
-        break;
-    case seObj:
-        sRv = xT("o");
-        break;
-    case seShell:
-        sRv = xT("sh");
-        break;
-#endif
-    default:
-        sRv = xT("");
-        break;
-    }
-
-    return sRv;
+    return _standartExt_impl(a_fileExt);
 }
-//-------------------------------------------------------------------------------------------------
-#if xENV_WIN
-
-inline std::tstring_t
-CxPath::setDrive(
-    std::ctstring_t &a_drivePath
-)
-{
-    // csDrivePath
-
-    std::tstring_t sRv(filePath());
-
-    std::tstring_t driveStr = CxPath(sRv).drive();
-    xTEST_EQ(driveStr.empty(), false);
-
-    std::csize_t pos = sRv.find(driveStr);
-    xTEST_DIFF(pos, std::tstring_t::npos);
-
-    return sRv.replace(pos, driveStr.size(), a_drivePath);
-}
-
-#endif
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
 CxPath::setDir(
@@ -465,212 +291,16 @@ CxPath::isNameValid(
         sRv.resize(xNAME_MAX);
     }
 
-#if   xENV_WIN
-   /**
-    * MSDN: http://msdn.microsoft.com/en-us/library/windows/desktop/aa365247(v=vs.85).aspx
-    * FAQ:  Boost Path Name Portability Guide
-    */
-
-   /**
-    * MSDN: Do not end a file or directory name with a space or a period.
-    * Although the underlying file system may support such names,
-    * the Windows shell and user interface does not.
-    * However, it is acceptable to specify a period
-    * as the first character of a name. For example, ".temp".
-    */
-    {
-        ctchar_t begin = *sRv.begin();
-        ctchar_t end   = *(sRv.end() - 1);
-
-        if (a_fileNameValid == xPTR_NULL) {
-            // space
-            xCHECK_RET(CxConst::space().at(0) == begin, false);
-            xCHECK_RET(CxConst::space().at(0) == end,   false);
-
-            // dot
-            xCHECK_RET(CxConst::dot().at(0) == begin, false);
-            xCHECK_RET(CxConst::dot().at(0) == end,   false);
-        } else {
-            // skip checks, trim right now
-            sRv = CxString::trimChars(sRv, CxConst::space() + CxConst::dot());
-
-            if ( sRv.empty() ) {
-                a_fileNameValid->clear();
-                return true;
-            }
-        }
-
-    }
-
-   /**
-    * check: excepted chars
-    * < (less than)
-    * > (greater than)
-    * : (colon)
-    * " (double quote)
-    * / (forward slash)
-    * \ (backslash)
-    * | (vertical bar or pipe)
-    * ? (question mark)
-    * * (asterisk)
-    */
-    {
-        std::ctstring_t exceptedChars = xT("<>:\"/\\|?*");
-
-        std::csize_t pos = sRv.find_first_of(exceptedChars);
-        if (pos != std::tstring_t::npos) {
-            xCHECK_RET(a_fileNameValid == xPTR_NULL, false);
-
-            for ( ; ; ) {
-                sRv.erase(pos, 1);
-                pos = sRv.find_first_of(exceptedChars, pos);
-                xCHECK_DO(pos == std::tstring_t::npos, break);
-            }
-
-            if ( sRv.empty() ) {
-                a_fileNameValid->clear();
-                return true;
-            }
-        }
-
-    }
-
-   /**
-    * check: control chars
-    * MAN: For the standard ASCII character set (used by the "C" locale),
-    * control characters are those between ASCII codes 0x00 (NUL) and 0x1f (US), plus 0x7f (DEL).
-    */
-    {
-        std::tstring_t::const_iterator cit;
-
-        cit = std::find_if(sRv.begin(), sRv.end(), CxChar::isControl);
-        if (cit != sRv.end()) {
-            xCHECK_RET(a_fileNameValid == xPTR_NULL, false);
-
-            for ( ; ; ) {
-                std::tstring_t::iterator itNewEnd;
-
-                itNewEnd = std::remove_if(sRv.begin(), sRv.end(), CxChar::isControl);
-                sRv.erase(itNewEnd, sRv.end());
-
-                cit = std::find_if(sRv.begin(), sRv.end(), CxChar::isControl);
-                xCHECK_DO(cit == sRv.end(), break);
-            }
-
-            if ( sRv.empty() ) {
-                a_fileNameValid->clear();
-                return true;
-            }
-        }
-
-    }
-
-   /**
-    * check: device names
-    * MSDN: Do not use the following reserved names for the name of a file:
-    * CON, PRN, AUX, NUL, COM1, COM2, COM3, COM4, COM5, COM6, COM7, COM8,
-    * COM9, LPT1, LPT2, LPT3, LPT4, LPT5, LPT6, LPT7, LPT8, and LPT9.
-    * Also avoid these names followed immediately by an extension;
-    * for example, NUL.txt is not recommended.
-    */
-    {
-        std::ctstring_t reservedNames[] = {
-            xT("CON"),  xT("PRN"),  xT("AUX"),  xT("NUL"),  xT("CLOCK$"),
-            xT("COM0"), xT("COM1"), xT("COM2"), xT("COM3"), xT("COM4"),
-            xT("COM5"), xT("COM6"), xT("COM7"), xT("COM8"), xT("COM9"),
-            xT("LPT0"), xT("LPT1"), xT("LPT2"), xT("LPT3"), xT("LPT4"),
-            xT("LPT5"), xT("LPT6"), xT("LPT7"), xT("LPT8"), xT("LPT9")
-        };
-
-        std::ctstring_t baseFileName = CxPath(sRv).removeExt();
-
-        for (size_t i = 0; i < xARRAY_SIZE(reservedNames); ++ i) {
-            bool_t bRv = CxStringCI::compare(baseFileName, reservedNames[i]);
-            xCHECK_DO(!bRv, continue);
-
-            xCHECK_RET(a_fileNameValid == xPTR_NULL, false);
-
-            a_fileNameValid->clear();
-            return true;
-        }
-
-    }
-#elif xENV_UNIX
-   /**
-    * check: excepted chars
-    * /  (forward slash)
-    * \0 (xPTR_NULL character)
-    */
-    {
-        std::tstring_t exceptedChars;
-        exceptedChars.push_back(xT('/'));
-        exceptedChars.push_back(xT('\0'));
-        xTEST_EQ(size_t(2), exceptedChars.size());
-
-        std::size_t pos = sRv.find_first_of(exceptedChars);
-        if (pos != std::tstring_t::npos) {
-            xCHECK_RET(a_fileNameValid == xPTR_NULL, false);
-
-            for ( ; ; ) {
-                sRv.erase(pos, 1);
-                pos = sRv.find_first_of(exceptedChars, pos);
-                xCHECK_DO(pos == std::tstring_t::npos, break);
-            }
-
-            if ( sRv.empty() ) {
-                a_fileNameValid->clear();
-                return true;
-            }
-        }
-
-    }
-#elif xENV_APPLE
-   /**
-    * check: excepted chars
-    * / (forward slash)
-    * : (colon)
-    */
-    {
-        std::ctstring_t exceptedChars = xT("/:");
-
-        std::size_t pos = sRv.find_first_of(exceptedChars);
-        if (pos != std::tstring_t::npos) {
-            xCHECK_RET(a_fileNameValid == xPTR_NULL, false);
-
-            for ( ; ; ) {
-                sRv.erase(pos, 1);
-                pos = sRv.find_first_of(exceptedChars, pos);
-                xCHECK_DO(pos == std::tstring_t::npos, break);
-            }
-
-            if ( sRv.empty() ) {
-                a_fileNameValid->clear();
-                return true;
-            }
-        }
-
-    }
-#endif
-
-    // out
-    if (a_fileNameValid != xPTR_NULL) {
-        *a_fileNameValid = sRv;
-    }
-
-    return true;
+    return _isNameValid_impl(sRv, a_fileNameValid);;
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
-CxPath::isAbsolute() const {
+CxPath::isAbsolute() const
+{
     xCHECK_RET(filePath().empty(),                         false);
     xCHECK_RET(filePath().at(0) == CxConst::slash().at(0), true);
 
-#if xENV_WIN
-    xCHECK_RET(filePath().size() == 1, false);
-    xCHECK_RET(CxChar::isAlpha(filePath().at(0)) && CxConst::colon().at(0) == filePath().at(1), true);
-#endif
-
-    return false;
+    return _isAbsolute_impl();
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
@@ -728,13 +358,7 @@ CxPath::toNative(
         sRv = slashRemove();
     }
 
-#if   xENV_WIN
-    std::ctstring_t slash = CxConst::unixSlash();
-#elif xENV_UNIX
-    std::ctstring_t slash = CxConst::winSlash();
-#endif
-
-    sRv = CxString::replaceAll(sRv, slash, CxConst::slash());
+    _toNative_impl(&sRv);
 
     return sRv;
 }
@@ -742,35 +366,7 @@ CxPath::toNative(
 inline std::tstring_t
 CxPath::absolute() const
 {
-    std::tstring_t sRv;
-
-#if   xENV_WIN
-    DWORD          dwRv = 0UL;
-    std::tstring_t buff;
-
-    dwRv = ::GetFullPathName(&filePath().at(0), 0, xPTR_NULL, xPTR_NULL);
-    xTEST_DIFF(dwRv, 0UL);
-
-    buff.resize(dwRv);
-
-    dwRv = ::GetFullPathName(&filePath().at(0), static_cast<DWORD>( buff.size() ), &buff.at(0),
-        xPTR_NULL);
-    xTEST_DIFF(dwRv, 0UL);
-
-    buff.resize(dwRv);
-
-    sRv = buff;
-#elif xENV_UNIX
-    std::tstring_t buff;
-
-    buff.resize(xPATH_MAX);
-
-    tchar_t *pszRv = ::realpath(&filePath().at(0), &buff.at(0));
-    xTEST_PTR(pszRv);
-
-    sRv.assign(pszRv);
-#endif
-
+    std::ctstring_t sRv( _absolute_impl() );
     xTEST_EQ(CxPath(sRv).isAbsolute(), true);
 
     return sRv;
@@ -886,165 +482,15 @@ CxPath::slashRemove() const
 inline size_t
 CxPath::maxSize()
 {
-    size_t uiRv = 0;
-
-#if   xENV_WIN
-    #if defined(MAX_PATH)
-        uiRv = MAX_PATH;
-    #else
-        std::csize_t defaultSize = 260;
-
-        uiRv = defaultSize;
-    #endif
-#elif xENV_UNIX
-    #if defined(PATH_MAX)
-        uiRv = PATH_MAX;
-    #else
-        culong_t savedError = 0UL;
-        long_t   liRv       = - 1L;
-        ulong_t  lastError  = 0UL;
-
-        CxLastError::set(savedError);
-
-        liRv      = ::pathconf("/", _PC_PATH_MAX);
-        lastError = CxLastError::get();
-        xTEST_EQ(liRv == - 1L && savedError != 0UL, true);
-
-        if (liRv == - 1L && savedError == lastError) {
-            // system does not have a limit for the requested resource
-            std::csize_t defaultSize = 1024;
-
-            uiRv = defaultSize;
-        } else {
-            // relative root
-            uiRv = static_cast<size_t>( liRv + 1 );
-        }
-    #endif
-#endif
-
-    return uiRv;
+    return _maxSize_impl();
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline size_t
 CxPath::nameMaxSize()
 {
-    size_t uiRv = 0;
-
-#if   xENV_WIN
-    #if defined(FILENAME_MAX)
-        uiRv = FILENAME_MAX;
-    #else
-        std::csize_t defaultSize = 260;
-
-        uiRv = defaultSize;
-    #endif
-#elif xENV_UNIX
-    #if defined(NAME_MAX)
-        uiRv = NAME_MAX;
-    #else
-        culong_t savedError = 0UL;
-        long_t   liRv       = - 1L;
-        ulong_t  lastError  = 0UL;
-
-        CxLastError::set(savedError);
-
-        liRv      = ::pathconf("/", _PC_NAME_MAX);
-        lastError = CxLastError::get();
-        xTEST_EQ(liRv == - 1L && savedError != 0UL, true);
-
-        if (liRv == - 1L && savedError == lastError) {
-            // system does not have a limit for the requested resource
-            std::csize_t defaultSize = 1024;
-
-            uiRv = defaultSize;
-        } else {
-            uiRv = static_cast<size_t>( liRv );
-        }
-    #endif
-#endif
-
-    return uiRv;
+    return _nameMaxSize_impl();
 }
-//-------------------------------------------------------------------------------------------------
-#if xENV_UNIX
-
-/* static */
-inline void_t
-CxPath::proc(
-    std::ctstring_t    &a_procPath,
-    std::vec_tstring_t *a_fileLines
-)
-{
-    // check for existence "/proc" directory
-    {
-        bool_t bRv = false;
-
-        CxDir proc(xT("/proc"));
-
-        bRv = proc.isExists();
-        xCHECK_DO(!bRv, CxTrace() << xT("::: xLib: warning (/proc dir not mount) :::"); return);
-
-        bRv = proc.isEmpty();
-        xCHECK_DO(bRv, CxTrace() << xT("::: xLib: warning (/proc dir is empty) :::");  return);
-    }
-
-    std::vec_tstring_t vsRv;
-
-    std::tifstream_t ifs(a_procPath.c_str());
-    xTEST_EQ(!! ifs, true);
-    xTEST_EQ(ifs.fail(), false);
-    xTEST_EQ(ifs.good(), true);
-    xTEST_EQ(ifs.is_open(), true);
-    xTEST_EQ(ifs.eof(), false);
-
-    for ( ; !ifs.eof(); ) {
-        std::tstring_t line;
-
-        std::getline(ifs, line);
-        xCHECK_DO(line.empty(), continue);
-
-        vsRv.push_back(line);
-    }
-
-    // out
-    a_fileLines->swap(vsRv);
-}
-
-#endif
-//-------------------------------------------------------------------------------------------------
-#if xENV_UNIX
-
-/* static */
-inline std::tstring_t
-CxPath::procValue(
-    std::ctstring_t &a_procPath,    ///< file path to proc-file
-    std::ctstring_t &a_key          ///< target search data string
-)
-{
-    std::tstring_t     sRv;
-    std::vec_tstring_t procFile;
-
-    proc(a_procPath, &procFile);
-
-    xFOREACH_CONST(std::vec_tstring_t, it, procFile) {
-        std::csize_t pos = CxStringCI::find(*it, a_key);
-        xCHECK_DO(pos == std::tstring_t::npos, continue);
-
-        // parse value
-        std::csize_t delimPos = it->find(xT(":"));
-        xTEST_DIFF(delimPos, std::string::npos);
-
-        sRv = it->substr(delimPos + 1);
-        sRv = CxString::trimSpace(sRv);
-
-        break;
-    }
-
-    return sRv;
-}
-
-#endif
 //-------------------------------------------------------------------------------------------------
 
 xNAMESPACE_END2(xlib, filesystem)
