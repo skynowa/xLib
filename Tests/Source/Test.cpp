@@ -8,7 +8,7 @@
 #include <Test/CxTest_xLib.h>
 
 //-------------------------------------------------------------------------------------------------
-void
+void_t
 onTerminate()
 {
     CxTrace() << xFUNCTION;
@@ -16,7 +16,7 @@ onTerminate()
 
     // abort();  // forces abnormal termination
 }
-void
+void_t
 onSignal(int sig)
 {
     CxTrace() << xFUNCTION;
@@ -46,7 +46,7 @@ onSignal(int sig)
 
     _Exit(1);
 }
-void
+void_t
 setSignalHandler()
 {
     std::signal(SIGABRT, onSignal);
@@ -57,7 +57,7 @@ setSignalHandler()
     std::signal(SIGTERM, onSignal);
 }
 //-------------------------------------------------------------------------------------------------
-void
+void_t
 fail()
 {
 #if 0
@@ -67,17 +67,17 @@ fail()
     throw 0;  // unhandled exception: calls terminate handler
 #endif
 }
-void
+void_t
 foo1()
 {
     fail();
 }
-void
+void_t
 foo2()
 {
     foo1();
 }
-void
+void_t
 foo3()
 {
     foo2();

@@ -596,7 +596,7 @@ CxSystemInfo::currentCpuNum() const
     ulong_t ulRv = 0UL;
 
 #if   xENV_WIN
-    typedef DWORD (WINAPI *func_t)(void);
+    typedef DWORD (WINAPI *func_t)(void_t);
 
     CxDll dll;
 

@@ -108,7 +108,7 @@ CxFlags<T>::unsetFlag(
 
 //-------------------------------------------------------------------------------------------------
 template <class T>
-void
+void_t
 CxFlags<T>::toggleFlag(
     const T &a_value
 )
