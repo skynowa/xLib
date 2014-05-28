@@ -18,6 +18,18 @@
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
 
+#if   xENV_WIN
+    #include "Platform/Win/CxFinder_win.inl"
+#elif xENV_UNIX
+    #if   xENV_LINUX
+        #include "Platform/Unix/CxFinder_unix.inl"
+    #elif xENV_BSD
+        #include "Platform/Unix/CxFinder_unix.inl"
+    #elif xENV_APPLE
+        #include "Platform/Unix/CxFinder_unix.inl"
+    #endif
+#endif
+
 
 xNAMESPACE_BEGIN2(xlib, filesystem)
 
@@ -70,14 +82,7 @@ CxFinder::entryName() const
 {
     xTEST_EQ(isValid(), true);
 
-    std::tstring_t sRv;
-
-#if   xENV_WIN
-    sRv.assign( _entry.data.cFileName );
-#elif xENV_UNIX
-    sRv.assign( _entry.data.d_name );
-#endif
-
+    std::tstring_t sRv = _entryName_impl();
     xTEST_EQ(sRv.empty(), false);
 
     return sRv;
@@ -100,94 +105,28 @@ CxFinder::fileTypes() const
 {
     xTEST_EQ(isValid(), true);
 
-#if   xENV_WIN
-    CxFileType::types_t ftRv = CxFileType::faInvalid;
-
-    ftRv = _entry.data.dwFileAttributes;
-#elif xENV_UNIX
-    CxFileType::types_t ftRv = 0;
-
-    uchar_t ucRv = _entry.data.d_type;
-    switch (ucRv) {
-    case DT_BLK: // block device
-        ftRv |= CxFileType::faBlockDevice;
-        break;
-    case DT_CHR: // character device
-        ftRv |= CxFileType::faCharacterDevice;
-        break;
-    case DT_DIR: // directory
-        ftRv |= CxFileType::faDirectory;
-        break;
-    case DT_FIFO: // named pipe (FIFO)
-        ftRv |= CxFileType::faFifo;
-        break;
-    case DT_LNK: // symbolic link
-        ftRv |= CxFileType::faSymbolicLink;
-        break;
-    case DT_REG: // regular file
-        ftRv |= CxFileType::faRegularFile;
-        break;
-    case DT_SOCK: // UNIX domain socket
-        ftRv |= CxFileType::faSocket;
-        break;
-    case DT_UNKNOWN: // type is unknown
-    default:
-        ftRv = CxFileType::faInvalid;
-        break;
-    }
-#endif
-
-    return ftRv;
+    return _fileTypes_impl();
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
 CxFinder::isValid() const
 {
-#if   xENV_WIN
-    xCHECK_RET(_entry.handle == xNATIVE_HANDLE_INVALID, false);
-    xCHECK_NA(_entry.data);
-#elif xENV_UNIX
-    xCHECK_RET(_entry.handle == xPTR_NULL, false);
-    xCHECK_NA(entry.data);
-#endif
-
-    return true;
+    return _isValid_impl();
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
 CxFinder::moveNext()
 {
-    // xTEST_EQ(isValid(), true);
+    xTEST_EQ(isValid(), true);
+
+    bool_t bRv = false;
 
     if (_isMoveFirst) {
-        bool_t bRv = _moveFirst();
+        bRv = _moveFirst();
         xCHECK_RET(!bRv, false);
     } else {
-    #if   xENV_WIN
-        BOOL blRv = ::FindNextFile(_entry.handle, &_entry.data);
-        if (blRv == FALSE) {
-            xCHECK_RET(CxLastError::get() == ERROR_NO_MORE_FILES, false);
-
-            xTEST_FAIL;
-        }
-    #elif xENV_UNIX
-        int_t iRv = 0;
-
-        for ( ; ; ) {
-            dirent *entryRv = xPTR_NULL;
-
-            iRv = ::readdir_r(_entry.handle, &_entry.data, &entryRv);
-            xTEST_EQ(iRv, 0);
-            xCHECK_RET(entryRv == xPTR_NULL, false);
-
-            // filter by pattern
-            iRv = ::fnmatch(shellFilter().c_str(), entryName().c_str(), 0);
-            xTEST_EQ((iRv == 0) || (iRv == FNM_NOMATCH), true);
-
-            xCHECK_DO(iRv == FNM_NOMATCH, continue);
-            xCHECK_DO(iRv == 0,           break);
-        }
-    #endif
+        bRv = _moveNext_impl();
+        xCHECK_RET(!bRv, false);
     }
 
     return true;
@@ -200,26 +139,7 @@ CxFinder::close()
 
     xCHECK_DO(!isValid(), return);
 
-    // close handle
-    {
-    #if   xENV_WIN
-        BOOL blRv = ::FindClose(_entry.handle);
-        xTEST_DIFF(blRv, FALSE);
-    #elif xENV_UNIX
-        int_t iRv = ::closedir(_entry.handle);
-        xTEST_DIFF(iRv, - 1);
-    #endif
-    }
-
-    // clear data
-    {
-    #if   xENV_WIN
-        _entry.handle = xNATIVE_HANDLE_INVALID;
-    #elif xENV_UNIX
-        _entry.handle = xPTR_NULL;
-    #endif
-        xSTRUCT_ZERO(_entry.data);
-    }
+    _close_impl();
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -323,19 +243,7 @@ CxFinder::_moveFirst()
 
     _isMoveFirst = false;
 
-#if   xENV_WIN
-    _entry.handle = ::FindFirstFile((rootDirPath() + CxConst::slash() + shellFilter()).c_str(),
-        &_entry.data);
-    xCHECK_RET(_entry.handle == xNATIVE_HANDLE_INVALID, false);
-#elif xENV_UNIX
-    _entry.handle = ::opendir(rootDirPath().c_str());
-    xCHECK_RET(_entry.handle == xPTR_NULL, false);
-
-    bool_t bRv = moveNext();
-    xCHECK_RET(!bRv, false);
-#endif
-
-    return true;
+    return _moveFirst_impl();
 }
 //-------------------------------------------------------------------------------------------------
 

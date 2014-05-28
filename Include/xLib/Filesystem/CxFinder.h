@@ -72,6 +72,14 @@ private:
         ///< move first entry
 
     xNO_COPY_ASSIGN(CxFinder)
+
+xPLATFORM:
+    std::tstring_t      _entryName_impl() const xWARN_UNUSED_RV;
+    CxFileType::types_t _fileTypes_impl() const xWARN_UNUSED_RV;
+    bool_t              _isValid_impl() const xWARN_UNUSED_RV;
+    bool_t              _moveNext_impl() xWARN_UNUSED_RV;
+    void_t              _close_impl();
+    bool_t              _moveFirst_impl() xWARN_UNUSED_RV;
 };
 
 xNAMESPACE_END2(xlib, filesystem)
