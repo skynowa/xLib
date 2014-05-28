@@ -13,7 +13,7 @@ xNAMESPACE_ANONYM_BEGIN
 class A
 {
 public:
-    void construct(
+    void_t construct(
         std::tstring_t  *a_value,
         std::ctstring_t &a_clearValue
     )
@@ -21,7 +21,7 @@ public:
         _value      = a_value;
         _clearValue = a_clearValue;
     }
-    void destruct()
+    void_t destruct()
     {
         *_value = _clearValue;
     }

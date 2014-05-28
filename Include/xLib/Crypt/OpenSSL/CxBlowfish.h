@@ -75,12 +75,12 @@ xNAMESPACE_END2(xlib, crypt)
 
 
 /*
-void  BF_set_key      (BF_KEY *key, int_t len, unsigned char *data);
-void  BF_ecb_encrypt  (unsigned char *in, unsigned char *out, BF_KEY *key, int_t enc);
-void  BF_encrypt      (BF_LONG *data, BF_KEY *key);
-void  BF_decrypt      (BF_LONG *data, BF_KEY *key);
-void  BF_cbc_encrypt  (unsigned char *in, unsigned char *out, long_t length, BF_KEY *ks,       unsigned char *iv,             int_t enc);
-void  BF_cfb64_encrypt(unsigned char *in, unsigned char *out, long_t length, BF_KEY *schedule, unsigned char *ivec, int_t *num, int_t enc);
-void  BF_ofb64_encrypt(unsigned char *in, unsigned char *out, long_t length, BF_KEY *schedule, unsigned char *ivec, int_t *num);
+void_t  BF_set_key      (BF_KEY *key, int_t len, unsigned char *data);
+void_t  BF_ecb_encrypt  (unsigned char *in, unsigned char *out, BF_KEY *key, int_t enc);
+void_t  BF_encrypt      (BF_LONG *data, BF_KEY *key);
+void_t  BF_decrypt      (BF_LONG *data, BF_KEY *key);
+void_t  BF_cbc_encrypt  (unsigned char *in, unsigned char *out, long_t length, BF_KEY *ks,       unsigned char *iv,             int_t enc);
+void_t  BF_cfb64_encrypt(unsigned char *in, unsigned char *out, long_t length, BF_KEY *schedule, unsigned char *ivec, int_t *num, int_t enc);
+void_t  BF_ofb64_encrypt(unsigned char *in, unsigned char *out, long_t length, BF_KEY *schedule, unsigned char *ivec, int_t *num);
 char *BF_options      (void_t);
 */

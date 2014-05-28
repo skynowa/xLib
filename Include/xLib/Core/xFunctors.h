@@ -79,7 +79,7 @@ struct Delete
     /// container items deleter
 {
     template<class T>
-    void
+    void_t
     operator () (T* &a_ptr) const
     {
         xPTR_DELETE(a_ptr);

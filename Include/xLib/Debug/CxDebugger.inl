@@ -68,7 +68,7 @@ CxDebugger::isActive() const
     return _isActive_impl();
 }
 //-------------------------------------------------------------------------------------------------
-inline void
+inline void_t
 CxDebugger::coreDumpsEnable(
     cbool_t &a_flag
 )

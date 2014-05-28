@@ -683,12 +683,12 @@
     ///< disallow make instance
 #define xNO_HEAP \
     private: \
-        void* operator new    (size_t) throw() { return xPTR_NULL; } \
-        void  operator delete (void*)          { ; }
+        void_t* operator new    (size_t) throw() { return xPTR_NULL; } \
+        void_t  operator delete (void_t*)        { ; }
     ///< disallow object on heap
 #define xNO_ARRAY_HEAP \
     private: \
-        void* operator new []    (size_t) throw() { return xPTR_NULL; } \
-        void  operator delete [] (void*)          { ; }
+        void_t* operator new []    (size_t) throw() { return xPTR_NULL; } \
+        void_t  operator delete [] (void_t*)        { ; }
     ///< disallow array on heap
 //-------------------------------------------------------------------------------------------------
