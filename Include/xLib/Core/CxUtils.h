@@ -83,7 +83,7 @@ public:
         ///< allows any pointer to be converted into any other pointer type
 
     static
-    inline bool      doubleIsEqual(const double &x, const double &y);
+    inline bool_t    doubleIsEqual(const double &x, const double &y);
         ///< compare double values
 
     static

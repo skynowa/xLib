@@ -184,7 +184,7 @@ CxUtils::reinterpretCastT(
 }
 //-------------------------------------------------------------------------------------------------
 /* static */ inline
-bool
+bool_t
 CxUtils::doubleIsEqual(
     const double &x,
     const double &y
