@@ -78,6 +78,22 @@ private:
     std::ctstring_t _path;  ///< volume path
 
     xNO_COPY_ASSIGN(CxVolume)
+
+xPLATFORM:
+    std::tstring_t  _fileSystem_impl() const xWARN_UNUSED_RV;
+    std::tstring_t  _label_impl() const xWARN_UNUSED_RV;
+    bool_t          _isValid_impl() const xWARN_UNUSED_RV;
+    bool_t          _isReady_impl() const xWARN_UNUSED_RV;
+    void_t          _mount_impl(std::ctstring_t &destPath) const;
+    void_t          _unMount_impl(cbool_t &isForce) const;
+
+    // static
+    static
+    void_t          _space_impl(std::ctstring_t &dirPath, ulonglong_t *available,
+                        ulonglong_t *total, ulonglong_t *free);
+    static
+    void_t          _paths_impl(std::vec_tstring_t *volumePaths);
+
 };
 
 xNAMESPACE_END2(xlib, filesystem)
