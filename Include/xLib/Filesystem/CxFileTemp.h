@@ -30,6 +30,9 @@ private:
     std::tstring_t  _filePath;      ///< temporary file path
 
     xNO_COPY_ASSIGN(CxFileTemp)
+
+xPLATFORM:
+    void_t          _create_impl(FILE *stdFile);
 };
 
 xNAMESPACE_END2(xlib, filesystem)
