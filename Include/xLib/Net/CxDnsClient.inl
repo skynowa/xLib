@@ -191,7 +191,6 @@ CxDnsClient::protocolByName(
     protoent/*PROTOENT*/ *info = ::getprotobyname(protocolName.c_str());
     xTEST_PTR(info);
 
-    //-------------------------------------
     // a_name
     if (a_name != xPTR_NULL) {
         // convert to UNICODE
@@ -199,7 +198,6 @@ CxDnsClient::protocolByName(
         a_name->assign(name.begin(), name.end());
     }
 
-    //-------------------------------------
     // a_aliases
     if (a_aliases != xPTR_NULL) {
         a_aliases->clear();
@@ -216,7 +214,6 @@ CxDnsClient::protocolByName(
         }
     }
 
-    //-------------------------------------
     // a_number
     CxUtils::ptrAssignT(a_number, *a_number = info->p_proto);
 }
@@ -238,7 +235,6 @@ CxDnsClient::protocolByNumber(
     protoent/*PROTOENT*/ *info = ::getprotobynumber(a_number);
     xTEST_PTR(info);
 
-    //-------------------------------------
     // a_name
     // convert to UNICODE
     if (a_name != xPTR_NULL) {
@@ -246,7 +242,6 @@ CxDnsClient::protocolByNumber(
         a_name->assign(name.begin(), name.end());
     }
 
-    //-------------------------------------
     // a_aliases
     if (a_aliases != xPTR_NULL) {
         a_aliases->clear();
@@ -263,7 +258,6 @@ CxDnsClient::protocolByNumber(
         }
     }
 
-    //-------------------------------------
     // a_number_rv
     CxUtils::ptrAssignT(a_number_rv, *a_number_rv = info->p_proto);
 }
@@ -293,14 +287,12 @@ CxDnsClient::serviceByName(
     servent *info = ::getservbyname(serviceName.c_str(), protocolName.c_str());
     xTEST_PTR(info);
 
-    //-------------------------------------
     // name
     if (a_name != xPTR_NULL) {
         std::string name = info->s_name;
         a_name->assign(name.begin(), name.end());
     }
 
-    //-------------------------------------
     // aliases
     if (a_aliases != xPTR_NULL) {
         a_aliases->clear();
@@ -317,11 +309,9 @@ CxDnsClient::serviceByName(
         }
     }
 
-    //-------------------------------------
     // port
     CxUtils::ptrAssignT(a_port, *a_port = info->s_port);
 
-    //-------------------------------------
     // protocolName_rv
     if (a_protocolName_rv != xPTR_NULL) {
         std::string _protocolName = info->s_proto;
@@ -353,14 +343,12 @@ CxDnsClient::serviceByPort(
     servent *info = ::getservbyport(a_port, protocolName.c_str());
     xTEST_PTR(info);
 
-    //-------------------------------------
     // name
     if (a_name != xPTR_NULL) {
         std::string name = info->s_name;
         a_name->assign(name.begin(), name.end());
     }
 
-    //-------------------------------------
     // aliases
     if (a_aliases != xPTR_NULL) {
         a_aliases->clear();
@@ -377,11 +365,9 @@ CxDnsClient::serviceByPort(
         }
     }
 
-    //-------------------------------------
     // port
     CxUtils::ptrAssignT(a_port_rv, static_cast<short_t>( info->s_port ));
 
-    //-------------------------------------
     // protocolName_rv
     if (a_protocolName_rv != xPTR_NULL) {
         std::string _protocolName = info->s_proto;
