@@ -9,10 +9,7 @@
 #include <xLib/Core/CxDateTime.h>
 #include <xLib/Filesystem/CxPath.h>
 #include <xLib/Filesystem/CxFile.h>
-
-#if xENV_WIN
-    #include <xLib/Sync/CxAutoIpcMutex.h>
-#endif
+#include <xLib/Sync/CxAutoIpcMutex.h>
 
 
 xNAMESPACE_BEGIN2(xlib, log)
