@@ -12,26 +12,16 @@
 #include <xLib/Gui/CxMsgBox.h>
 #include <xLib/System/CxEnvironment.h>
 
-#if xENV_UNIX
-    #if   xOS_LINUX
-        #if xTEMP_DISABLED
-            #include <linux/kd.h>   // beep
-            #include <X11/Xlib.h>   // beep -lX11
-        #endif
-    #elif xOS_FREEBSD
-        #include <sys/user.h>
-        #include <sys/proc.h>
+#if   xENV_WIN
+    #include "Platform/Win/CxDebugger_win.inl"
+#elif xENV_UNIX
+    #if   xENV_LINUX
+        #include "Platform/Unix/CxDebugger_unix.inl"
+    #elif xENV_BSD
+        #include "Platform/Unix/CxDebugger_unix.inl"
+    #elif xENV_APPLE
+        #include "Platform/Unix/CxDebugger_unix.inl"
     #endif
-#endif
-
-#if   xHAVE_PR_SET_DUMPABLE
-    #include <sys/prctl.h>
-#elif xHAVE_RLIMIT_CORE
-    #include <sys/resource.h>
-#endif
-
-#if xHAVE_PT_DENY_ATTACH
-    #include <sys/ptrace.h>
 #endif
 
 
@@ -75,47 +65,7 @@ CxDebugger::setEnabled(
 inline bool_t
 CxDebugger::isActive() const
 {
-#if   xENV_WIN
-    // local debugger
-    BOOL blRv = ::IsDebuggerPresent();
-    xCHECK_RET(blRv != FALSE, true);
-
-    // remote debugger
-    BOOL isRemoteDebuggerPresent = FALSE;
-
-    blRv = ::CheckRemoteDebuggerPresent(::GetCurrentProcess(), &isRemoteDebuggerPresent);
-    xCHECK_RET(blRv == FALSE || isRemoteDebuggerPresent == FALSE, false);
-#elif xENV_UNIX
-    #if   xOS_LINUX
-        // if ppid != sid, some process spawned our app, probably a debugger
-        bool_t bRv = ( ::getsid(::getpid()) != ::getppid() );
-        xCHECK_RET(!bRv, false);
-    #elif xOS_FREEBSD
-        int_t      mib[4];  xSTRUCT_ZERO(mib);
-        kinfo_proc info;    xSTRUCT_ZERO(info);
-        size_t     infoSize = 0;
-
-        mib[0] = CTL_KERN;
-        mib[1] = KERN_PROC;
-        mib[2] = KERN_PROC_PID;
-        mib[3] = ::getpid();
-
-        // if sysctl fails for some bizarre reason, we get a predictable result
-        info.ki_flag = 0;
-
-        infoSize = sizeof(info);
-
-        int_t iRv = ::sysctl(mib, xARRAY_SIZE(mib), &info, &infoSize, xPTR_NULL, 0);
-        xCHECK_RET(iRv == - 1, false);
-
-        // we're being debugged if the P_TRACED flag is set.
-        xCHECK_RET((info.ki_flag & P_TRACED) == 0, false);
-    #endif
-#elif xENV_APPLE
-    xNOT_IMPLEMENTED
-#endif
-
-    return true;
+    return _isActive_impl();
 }
 //-------------------------------------------------------------------------------------------------
 inline void
@@ -126,46 +76,8 @@ CxDebugger::coreDumpsEnable(
     xTEST_NA(a_flag);
 
     bool_t isEnable = false;
-    int_t  iRv      = 0;
 
-#if   xENV_WIN
-    // MSDN: MiniDumpWriteDump, http://www.debuginfo.com/
-
-    xUNUSED(a_flag);
-    isEnable = true;
-    #pragma message("xLib: CxDebugger::coreDumpsEnable() - n/a")
-#elif xENV_UNIX || xENV_APPLE
-    #if   xHAVE_PR_SET_DUMPABLE
-        culong_t isDumpable = a_flag ? 1UL : 0UL;
-
-        iRv = ::prctl(PR_SET_DUMPABLE, isDumpable);
-        isEnable = (iRv == 0);
-    #elif xHAVE_RLIMIT_CORE
-        rlimit limit;   xSTRUCT_ZERO(limit);
-        if (a_flag) {
-            limit.rlim_cur = RLIM_INFINITY;
-            limit.rlim_max = RLIM_INFINITY;
-        } else {
-            limit.rlim_cur = 0;
-            limit.rlim_max = 0;
-        }
-
-        iRv = ::setrlimit(RLIMIT_CORE, &limit);
-        isEnable = (iRv == 0);
-    #else
-        xUNUSED(a_flag);
-        isEnable = false;
-        #pragma message("xLib: CxDebugger::coreDumpsEnable() - n/a")
-    #endif
-
-    #if xHAVE_PT_DENY_ATTACH
-        // make sure ::setrlimit() and ::ptrace() succeeded
-        cint_t isAttachable = a_flag ? PT_ATTACH : PT_DENY_ATTACH;
-
-        iRv = ::ptrace(isAttachable, 0, 0, 0);
-        isEnable = isEnable && (iRv == 0);
-    #endif
-#endif
+    _coreDumpsEnable_impl(a_flag, &isEnable);
 
     xCHECK_DO(!isEnable, CxTrace() << xT("xLib: CxDebugger::coreDumpsEnable() - n/a"));
 }
@@ -175,15 +87,7 @@ CxDebugger::breakPoint() const
 {
     xCHECK_DO(!isEnabled(), return);
 
-#if   xENV_WIN
-    (void_t)::DebugBreak();
-#elif xENV_UNIX
-    int_t iRv = ::raise(SIGTRAP);
-    xCHECK_DO(iRv == - 1, return);
-
-    iRv = ::kill(::getpid(), SIGALRM);
-    xCHECK_DO(iRv == - 1, return);
-#endif
+    _breakPoint_impl();
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
