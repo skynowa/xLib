@@ -7,18 +7,6 @@
 #include <xLib/Core/CxConst.h>
 #include <xLib/Core/CxString.h>
 
-#if   xENV_WIN
-    #include "Platform/Win/CxTrace_win.inl"
-#elif xENV_UNIX
-    #if   xENV_LINUX
-        #include "Platform/Unix/CxTrace_unix.inl"
-    #elif xENV_BSD
-        #include "Platform/Unix/CxTrace_unix.inl"
-    #elif xENV_APPLE
-        #include "Platform/Unix/CxTrace_unix.inl"
-    #endif
-#endif
-
 
 xNAMESPACE_BEGIN2(xlib, log)
 
@@ -83,7 +71,14 @@ CxTrace::write(
         }
     }
 
-    _write_impl(msg);
+    // write
+    {
+    #if xENV_WIN
+        (void_t)::OutputDebugString( msg.c_str() );
+    #endif
+
+        std::tcout << msg << std::endl;
+    }
 }
 //-------------------------------------------------------------------------------------------------
 
