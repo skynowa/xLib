@@ -14,6 +14,18 @@
 #include <xLib/Crypt/CxRandom.h>
 #include <xLib/Sync/CxThread.h>
 
+#if   xENV_WIN
+    #include "Platform/Win/CxFile_win.inl"
+#elif xENV_UNIX
+    #if   xENV_LINUX
+        #include "Platform/Unix/CxFile_unix.inl"
+    #elif xENV_BSD
+        #include "Platform/Unix/CxFile_unix.inl"
+    #elif xENV_APPLE
+        #include "Platform/Unix/CxFile_unix.inl"
+    #endif
+#endif
+
 
 xNAMESPACE_BEGIN2(xlib, filesystem)
 
@@ -402,21 +414,6 @@ CxFile::setVBuff(
     xTEST_DIFF(iRv, - 1);
 }
 //-------------------------------------------------------------------------------------------------
-#if xENV_WIN
-
-inline void_t
-CxFile::setMode(
-    const ExTranslationMode &a_mode
-) const
-{
-    xTEST_NA(a_mode);
-
-    int_t iRv = ::setmode(_nativeHandle(get()), a_mode);
-    xTEST_DIFF(iRv, - 1);
-}
-
-#endif
-//-------------------------------------------------------------------------------------------------
 inline longlong_t
 CxFile::size() const
 {
@@ -561,30 +558,10 @@ CxFile::isFile(
 {
     xTEST_NA(a_filePath);
 
-    bool_t bRv = false;
-
     CxFileType type(a_filePath);
-
     xCHECK_RET(type.get() == CxFileType::faInvalid, false);
 
-#if   xENV_WIN
-    bRv = type.isExists(CxFileType::faDirectory);
-    xCHECK_RET(bRv, false);
-
-    bRv = type.isExists(CxFileType::faDevice);
-    xCHECK_RET(bRv, false);
-
-    bRv = type.isExists(CxFileType::faReparsePoint);
-    xCHECK_RET(bRv, false);
-
-    bRv = type.isExists(CxFileType::faOffline);
-    xCHECK_RET(bRv, false);
-#elif xENV_UNIX
-    bRv = type.isExists(CxFileType::faRegularFile);
-    xCHECK_RET(!bRv, false);
-#endif
-
-    return true;
+    return _isFile_impl(type);
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
@@ -964,35 +941,7 @@ CxFile::time(
     xTEST_NA(a_access);
     xTEST_NA(a_modified);
 
-#if   xENV_WIN
-    FILETIME timeCreate   = {0};
-    FILETIME timeAccess   = {0};
-    FILETIME timeModified = {0};
-
-    CxHandleInvalid file;
-
-    file = ::CreateFile(a_filePath.c_str(), GENERIC_READ, FILE_SHARE_READ, xPTR_NULL, OPEN_EXISTING,
-        CxFileType::faNormal, xPTR_NULL);
-    xTEST_EQ(file.isValid(), true);
-
-    BOOL blRv = ::GetFileTime(file.get(), &timeCreate, &timeAccess, &timeModified);
-    xTEST_DIFF(blRv, FALSE);
-
-    CxUtils::ptrAssignT(a_create,   CxDateTime::fileTimeToUnixTime(timeCreate));
-    CxUtils::ptrAssignT(a_access,   CxDateTime::fileTimeToUnixTime(timeAccess));
-    CxUtils::ptrAssignT(a_modified, CxDateTime::fileTimeToUnixTime(timeModified));
-#elif xENV_UNIX
-    xUNUSED(a_create);
-
-    xTSTAT_STRUCT info; xSTRUCT_ZERO(info);
-
-    int_t iRv = ::xTSTAT(a_filePath.c_str(), &info);
-    xTEST_DIFF(iRv, - 1);
-
-    // create - n/a
-    CxUtils::ptrAssignT(a_access,   info.st_atime);
-    CxUtils::ptrAssignT(a_modified, info.st_mtime);
-#endif
+    _time_impl(a_filePath, a_create, a_access, a_modified);
 }
 //-------------------------------------------------------------------------------------------------
 /*static */
@@ -1009,36 +958,7 @@ CxFile::setTime(
     xTEST_NA(a_access);
     xTEST_NA(a_modified);
 
-#if   xENV_WIN
-    FILETIME timeCreate = {0};
-    CxDateTime::unixTimeToFileTime(a_create, &timeCreate);
-
-    FILETIME timeAccess = {0};
-    CxDateTime::unixTimeToFileTime(a_access, &timeAccess);
-
-    FILETIME timeModified = {0};
-    CxDateTime::unixTimeToFileTime(a_modified, &timeModified);
-
-    CxHandleInvalid file;
-
-    file = ::CreateFile(a_filePath.c_str(), GENERIC_WRITE, FILE_SHARE_WRITE, xPTR_NULL,
-        OPEN_EXISTING, CxFileType::faNormal, xPTR_NULL);
-    xTEST_EQ(file.isValid(), true);
-
-    BOOL blRv = ::SetFileTime(file.get(), &timeCreate, &timeAccess, &timeModified);
-    xTEST_DIFF(blRv, FALSE);
-#elif xENV_UNIX
-    xUNUSED(a_create);
-
-    utimbuf times = {0, 0};
-
-    // times.create - n/a
-    times.actime  = a_access;
-    times.modtime = a_modified;
-
-    int_t iRv = ::utime(a_filePath.c_str(), &times);
-    xTEST_DIFF(iRv, - 1);
-#endif
+    _setTime_impl(a_filePath, a_create, a_access, a_modified);
 }
 //-------------------------------------------------------------------------------------------------
 
