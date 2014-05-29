@@ -13,9 +13,15 @@
 #include <xLib/Debug/CxDebugger.h>
 #include <xLib/Log/CxTrace.h>
 
-#if xENV_WIN
-    #if xCOMPILER_MS
-        #pragma comment(lib, "ws2_32.Lib")
+#if   xENV_WIN
+    #include "Platform/Win/CxSocketInit_win.inl"
+#elif xENV_UNIX
+    #if   xENV_LINUX
+        #include "Platform/Unix/CxSocketInit_unix.inl"
+    #elif xENV_BSD
+        #include "Platform/Unix/CxSocketInit_unix.inl"
+    #elif xENV_APPLE
+        #include "Platform/Unix/CxSocketInit_unix.inl"
     #endif
 #endif
 
@@ -34,26 +40,13 @@ CxSocketInit::CxSocketInit(
     cushort_t &a_versionMinor
 )
 {
-#if   xENV_WIN
-    WSADATA wdData = {0};
-
-    int_t iRv = ::WSAStartup(MAKEWORD(a_versionMajor, a_versionMinor), &wdData);
-    xTEST_EQ(iRv, 0);
-    xTEST_EQ(a_versionMajor, (ushort_t)LOBYTE(wdData.wVersion));
-    xTEST_EQ(a_versionMinor, (ushort_t)HIBYTE(wdData.wVersion));
-#elif xENV_UNIX
-    xUNUSED(a_versionMajor);
-    xUNUSED(a_versionMinor);
-#endif
+    _construct_impl(a_versionMajor, a_versionMinor);
 }
 //-------------------------------------------------------------------------------------------------
 inline
 CxSocketInit::~CxSocketInit()
 {
-#if xENV_WIN
-    int_t iRv = ::WSACleanup();
-    xTEST_EQ(iRv, 0);
-#endif
+    _destruct_impl();
 }
 //-------------------------------------------------------------------------------------------------
 
