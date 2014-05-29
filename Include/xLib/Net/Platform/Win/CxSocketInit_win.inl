@@ -13,10 +13,8 @@
 #include <xLib/Debug/CxDebugger.h>
 #include <xLib/Log/CxTrace.h>
 
-#if xENV_WIN
-    #if xCOMPILER_MS
-        #pragma comment(lib, "ws2_32.Lib")
-    #endif
+#if xCOMPILER_MS
+    #pragma comment(lib, "ws2_32.Lib")
 #endif
 
 
@@ -28,32 +26,25 @@ xNAMESPACE_BEGIN2(xlib, net)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline
-CxSocketInit::CxSocketInit(
+inline void_t
+CxSocketInit::_construct_impl(
     cushort_t &a_versionMajor,
     cushort_t &a_versionMinor
-)
+) const
 {
-#if   xENV_WIN
     WSADATA wdData = {0};
 
     int_t iRv = ::WSAStartup(MAKEWORD(a_versionMajor, a_versionMinor), &wdData);
     xTEST_EQ(iRv, 0);
     xTEST_EQ(a_versionMajor, (ushort_t)LOBYTE(wdData.wVersion));
     xTEST_EQ(a_versionMinor, (ushort_t)HIBYTE(wdData.wVersion));
-#elif xENV_UNIX
-    xUNUSED(a_versionMajor);
-    xUNUSED(a_versionMinor);
-#endif
 }
 //-------------------------------------------------------------------------------------------------
-inline
-CxSocketInit::~CxSocketInit()
+inline void_t
+CxSocketInit::_destruct_impl() const
 {
-#if xENV_WIN
     int_t iRv = ::WSACleanup();
     xTEST_EQ(iRv, 0);
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 
