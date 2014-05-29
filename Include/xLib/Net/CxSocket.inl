@@ -14,6 +14,18 @@
 #include <xLib/Log/CxTrace.h>
 #include <xLib/Core/CxUtils.h>
 
+#if   xENV_WIN
+    #include "Platform/Win/CxSocket_win.inl"
+#elif xENV_UNIX
+    #if   xENV_LINUX
+        #include "Platform/Unix/CxSocket_unix.inl"
+    #elif xENV_BSD
+        #include "Platform/Unix/CxSocket_unix.inl"
+    #elif xENV_APPLE
+        #include "Platform/Unix/CxSocket_unix.inl"
+    #endif
+#endif
+
 
 xNAMESPACE_BEGIN2(xlib, net)
 
@@ -36,38 +48,6 @@ inline
 CxSocket::~CxSocket()
 {
     close();
-}
-//-------------------------------------------------------------------------------------------------
-inline void_t
-CxSocket::assign(
-    csocket_t &a_handle
-)
-{
-    xTEST_NA(_handle);
-    xTEST_NA(a_handle);
-
-    _handle = a_handle;
-}
-//-------------------------------------------------------------------------------------------------
-
-
-/**************************************************************************************************
-* operators
-*
-**************************************************************************************************/
-
-//-------------------------------------------------------------------------------------------------
-inline CxSocket &
-CxSocket::operator = (
-    csocket_t &a_handle
-)
-{
-    xTEST_NA(_handle);
-    xTEST_NA(a_handle);
-
-    _handle = a_handle;
-
-    return *this;
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -106,11 +86,18 @@ CxSocket::isValid() const
 {
     // n/a
 
-#if   xENV_WIN
     return (_handle >= 0);
-#elif xENV_UNIX
-    return (_handle >= 0);
-#endif
+}
+//-------------------------------------------------------------------------------------------------
+inline void_t
+CxSocket::assign(
+    csocket_t &a_handle
+)
+{
+    xTEST_NA(_handle);
+    xTEST_NA(a_handle);
+
+    _handle = a_handle;
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -120,20 +107,7 @@ CxSocket::close()
 
     xTEST_DIFF(_handle, xSOCKET_HANDLE_INVALID);
 
-    int_t iRv = xSOCKET_ERROR;
-
-#if   xENV_WIN
-    iRv = shutdown(_handle, SD_BOTH);
-    xTEST_DIFF(iRv, xSOCKET_ERROR);
-
-    iRv = ::closesocket(_handle);
-    xTEST_DIFF(iRv, xSOCKET_ERROR);
-#elif xENV_UNIX
-    iRv = ::close(_handle);
-    xTEST_DIFF(iRv, xSOCKET_ERROR);
-#endif
-
-    _handle = xSOCKET_HANDLE_INVALID;
+    _close_impl();
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -157,23 +131,7 @@ CxSocket::send(
     xTEST_PTR(a_buff);
     /////xTEST_LESS(0, ::lstrlen(buff));
 
-#if   xENV_WIN
-    ssize_t iRv = ::send(_handle, (LPCSTR)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
-    xTEST_EQ(iRv != xSOCKET_ERROR && CxSocket::lastError() != WSAEWOULDBLOCK, true);
-    xTEST_GR_EQ(ssize_t(a_buffSize * sizeof(tchar_t)), iRv);
-#elif xENV_UNIX
-    xUNUSED(a_flags);
-
-    #if !defined(MSG_NOSIGNAL)
-        cint_t MSG_NOSIGNAL = 0x20000;
-    #endif
-
-    ssize_t iRv = ::send(_handle, a_buff, a_buffSize, MSG_NOSIGNAL);
-    xTEST_DIFF(iRv, ssize_t(xSOCKET_ERROR));
-    xTEST_GR_EQ(ssize_t(a_buffSize * sizeof(tchar_t)), iRv);
-#endif
-
-    return iRv / sizeof(tchar_t);
+    return _send_impl(a_buff, a_buffSize, a_flags);
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -229,19 +187,7 @@ CxSocket::receive(
 
     std::memset(a_buff, 0, a_buffSize * sizeof(tchar_t));
 
-#if   xENV_WIN
-    int_t iRv = ::recv(_handle, (LPSTR)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
-    xTEST_EQ(iRv != xSOCKET_ERROR && CxSocket::lastError() != WSAEWOULDBLOCK, true);
-    xTEST_DIFF(iRv, 0);  // gracefully closed
-    xTEST_GR_EQ(int_t(a_buffSize * sizeof(tchar_t)), iRv);
-#elif xENV_UNIX
-    ssize_t iRv = ::recv(_handle, (char *)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
-    xTEST_DIFF(iRv, (ssize_t)xSOCKET_ERROR);
-    xTEST_DIFF(iRv, (ssize_t)0);  // gracefully closed
-    xTEST_GR_EQ(ssize_t(a_buffSize * sizeof(tchar_t)), iRv);
-#endif
-
-    return iRv / sizeof(tchar_t);
+    return _receive_impl(a_buff, a_buffSize, a_flags);
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
@@ -252,7 +198,6 @@ CxSocket::recvAll(
     xTEST_NA(a_flags);
 
     std::tstring_t sRv;
-
     std::csize_t   buffSize           = 1024 * sizeof(tchar_t);
     tchar_t        buff[buffSize + 1] = {0};
 
@@ -260,12 +205,7 @@ CxSocket::recvAll(
         int_t   iRv = - 1;
         ulong_t arg = (ulong_t)a_flags;
 
-    #if   xENV_WIN
-        iRv = ::ioctlsocket(_handle, FIONREAD, &arg);
-    #elif xENV_UNIX
-        iRv = ::ioctl      (_handle, FIONREAD, &arg);
-    #endif
-
+        iRv = xIOCTLSOCKET(_handle, FIONREAD, &arg);
         xCHECK_DO(iRv != 0,       break);
         xCHECK_DO(arg == 0,       break);
         xCHECK_DO(buffSize < arg, arg = buffSize);
@@ -349,7 +289,6 @@ CxSocket::sendBytes(
     return 0;
 }
 //-------------------------------------------------------------------------------------------------
-// TODO: CxSocket::receiveBytes()
 inline int_t
 CxSocket::receiveBytes(
     char    *a_buff,
@@ -409,32 +348,7 @@ CxSocket::peerName(
     xTEST_NA(a_peerAddr);
     xTEST_NA(a_peerPort);
 
-#if   xENV_WIN
-    SOCKADDR_IN sockAddr    = {0};
-    int_t       sockAddrLen = sizeof(sockAddr);
-
-    int_t iRv = ::getpeername(_handle, CxUtils::reinterpretCastT<SOCKADDR *>( &sockAddr ),
-        &sockAddrLen);
-    xTEST_DIFF(iRv, xSOCKET_ERROR);
-#elif xENV_UNIX
-    sockaddr_in sockAddr;   xSTRUCT_ZERO(sockAddr);
-    socklen_t   sockAddrLen = sizeof(sockAddr);
-
-    int_t iRv = ::getpeername(_handle, CxUtils::reinterpretCastT<sockaddr *>( &sockAddr ),
-        &sockAddrLen);
-    xTEST_DIFF(iRv, xSOCKET_ERROR);
-#endif
-
-    if (a_peerAddr != xPTR_NULL) {
-        // convert to UNICODE
-        std::string peerAddr = ::inet_ntoa(sockAddr.sin_addr);
-
-        a_peerAddr->assign(peerAddr.begin(), peerAddr.end());
-    }
-
-    if (a_peerPort != xPTR_NULL) {
-        *a_peerPort = ntohs(sockAddr.sin_port);
-    }
+    _peerName_impl(a_peerAddr, a_peerPort);
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -446,32 +360,7 @@ CxSocket::socketName(
     xTEST_NA(a_socketAddr);
     xTEST_NA(a_socketPort);
 
-#if   xENV_WIN
-    SOCKADDR_IN sockAddr     = {0};
-    int_t       sockAddrLen = sizeof(sockAddr);
-
-    int_t iRv = ::getsockname(_handle, CxUtils::reinterpretCastT<SOCKADDR *>( &sockAddr ),
-        &sockAddrLen);
-    xTEST_DIFF(iRv, xSOCKET_ERROR);
-#elif xENV_UNIX
-    sockaddr_in sockAddr;   xSTRUCT_ZERO(sockAddr);
-    socklen_t   sockAddrLen = sizeof(sockAddr);
-
-    int_t iRv = ::getsockname(_handle, CxUtils::reinterpretCastT<sockaddr *>( &sockAddr ),
-        &sockAddrLen);
-    xTEST_DIFF(iRv, xSOCKET_ERROR);
-#endif
-
-    if (a_socketAddr != xPTR_NULL) {
-        // convert to UNICODE
-        std::string socketAddr = ::inet_ntoa(sockAddr.sin_addr);
-
-        a_socketAddr->assign(socketAddr.begin(), socketAddr.end());
-    }
-
-    if (a_socketPort != xPTR_NULL) {
-        *a_socketPort = ntohs(sockAddr.sin_port);
-    }
+    _socketName_impl(a_socketAddr, a_socketPort);
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -509,11 +398,7 @@ CxSocket::lastError()
 {
     // n/a
 
-#if   xENV_WIN
-    return ::WSAGetLastError();
-#elif xENV_UNIX
-    return errno;
-#endif
+    return _lastError_impl();
 }
 //-------------------------------------------------------------------------------------------------
 
