@@ -245,6 +245,13 @@
     #define xCHSIZE             chsize
 #endif
 
+// xIOCTLSOCKET
+#if   xENV_WIN
+    #define xIOCTLSOCKET        ::ioctlsocket
+#elif xENV_UNIX
+    #define xIOCTLSOCKET        ::ioctl
+#endif
+
 // xGETADDRINFO
 #if   xCOMPILER_MINGW
     #define xGETADDRINFO        getaddrinfo
