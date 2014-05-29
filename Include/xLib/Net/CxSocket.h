@@ -89,13 +89,13 @@ public:
         ptIp          = IPPROTO_IP,
         ptIcmp        = IPPROTO_ICMP,
         ptIgmp        = IPPROTO_IGMP,
-        ////ptRfcomm      = BTHPROTO_RFCOMM,
+        //// ptRfcomm      = BTHPROTO_RFCOMM,
         ptTcp         = IPPROTO_TCP,
         ptUdp         = IPPROTO_UDP,
         #if !xCOMPILER_CODEGEAR
         ptIcmpv6      = IPPROTO_ICMPV6,
         #endif
-        ////ptRm          = IPPROTO_RM
+        //// ptRm          = IPPROTO_RM
     #elif xENV_UNIX
         #if xOS_FREEBSD
             ptIp          = IPPROTO_IP,
@@ -136,7 +136,7 @@ public:
             ptUdp         = IPPROTO_UDP,
             ptIdp         = IPPROTO_IDP,
             ptTp          = IPPROTO_TP,
-            ////ptDccp        = IPPROTO_DCCP,
+            //// ptDccp        = IPPROTO_DCCP,
             ptIpv6        = IPPROTO_IPV6,
             ptRouting     = IPPROTO_ROUTING,
             ptFragment    = IPPROTO_FRAGMENT,
@@ -152,7 +152,7 @@ public:
             ptPim         = IPPROTO_PIM,
             ptComp        = IPPROTO_COMP,
             ptSctp        = IPPROTO_SCTP,
-            ////ptUdplite     = IPPROTO_UDPLITE,
+            //// ptUdplite     = IPPROTO_UDPLITE,
             ptRaw         = IPPROTO_RAW,
             ptMax         = IPPROTO_MAX
         #endif
@@ -200,17 +200,6 @@ public:
     virtual       ~CxSocket() = 0;
         ///< destructor
 
-    void_t         assign(csocket_t &handle);
-        ///< assign to another handle
-
-    /*******************************************************************************
-    * operators
-    *
-    *******************************************************************************/
-
-    CxSocket &     operator = (csocket_t &socket);
-        ///< operator =
-
 
     /*******************************************************************************
     *
@@ -224,6 +213,8 @@ public:
         ///< get handle
     bool_t         isValid() const xWARN_UNUSED_RV;
         ///< checking for validness
+    void_t         assign(csocket_t &handle);
+        ///< assign to another handle
     void_t         close();
         ///< close
 
@@ -233,7 +224,7 @@ public:
     *
     *******************************************************************************/
 
-    //void_t *, std::tstring_t, std::ustring_t
+    // void_t *, std::tstring_t, std::ustring_t
 
     ssize_t        send(ctchar_t *buff, std::csize_t &buffSize, cint_t &flags) xWARN_UNUSED_RV;
         ///< send data
@@ -258,9 +249,9 @@ public:
     *
     *******************************************************************************/
 
-    void_t           peerName(std::tstring_t *peerAddr, ushort_t *peerPort);
+    void_t         peerName(std::tstring_t *peerAddr, ushort_t *peerPort);
         ///< get address of the peer to which a handle is connected
-    void_t           socketName(std::tstring_t *socketAddr, ushort_t *socketPort);
+    void_t         socketName(std::tstring_t *socketAddr, ushort_t *socketPort);
         ///< get local name for a socket
 
     /*******************************************************************************
@@ -270,21 +261,33 @@ public:
 
     ////getsockopt
     static
-    int_t            select(int_t nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds,
-                         timeval *timeout) xWARN_UNUSED_RV;
+    int_t          select(int_t nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds,
+                       timeval *timeout) xWARN_UNUSED_RV;
         ///< determines the status of one or more sockets, waiting if necessary,
         ///< to perform synchronous I/O
     static
-    int_t            lastError() xWARN_UNUSED_RV;
+    int_t          lastError() xWARN_UNUSED_RV;
         ///< get error status for the last operation that failed
 
 protected:
-    socket_t         _handle;   ///< handle to socket
-    short_t          _family;   ///< family
-    std::tstring_t   _ip;       ///< IP
-    ushort_t         _port;     ///< port
+    socket_t       _handle;   ///< socket handle
+    short_t        _family;   ///< family
+    std::tstring_t _ip;       ///< IP
+    ushort_t       _port;     ///< port
 
     xNO_COPY_ASSIGN(CxSocket)
+
+xPLATFORM:
+    void_t         _close_impl();
+    ssize_t        _send_impl(ctchar_t *buff, std::csize_t &buffSize, cint_t &flags)
+                       xWARN_UNUSED_RV;
+    ssize_t        _receive_impl(tchar_t *buff,  std::csize_t &buffSize, cint_t &flags)
+                       xWARN_UNUSED_RV;
+    void_t         _peerName_impl(std::tstring_t *peerAddr, ushort_t *peerPort);
+    void_t         _socketName_impl(std::tstring_t *socketAddr, ushort_t *socketPort);
+    static
+    int_t          _lastError_impl() xWARN_UNUSED_RV;
+
 };
 
 xNAMESPACE_END2(xlib, net)
