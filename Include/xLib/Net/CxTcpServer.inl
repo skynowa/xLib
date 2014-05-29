@@ -64,25 +64,15 @@ CxTcpServer::accept(
     xTEST_PTR(a_serverSocket);
     xTEST_PTR(a_fromIp);
 
-    socket_t client = xSOCKET_HANDLE_INVALID;
+    sockaddr_in     cliaddr; xSTRUCT_ZERO(cliaddr);
+    socket_length_t addrlen = sizeof(cliaddr);
 
-#if   xENV_WIN
-    sockaddr_in cliaddr = {0};
-    int_t       addrlen = sizeof(cliaddr);
-
-    client = ::accept(_handle, CxUtils::reinterpretCastT<sockaddr *>( &cliaddr ), &addrlen);
+    socket_t client = ::accept(_handle, CxUtils::reinterpretCastT<sockaddr *>( &cliaddr ), &addrlen);
     xTEST_DIFF(client, xSOCKET_HANDLE_INVALID);
-#elif xENV_UNIX
-    sockaddr_in cliaddr; xSTRUCT_ZERO(cliaddr);
-    socklen_t   addrlen = sizeof(cliaddr);
-
-    client = ::accept(_handle, CxUtils::reinterpretCastT<sockaddr *>( &cliaddr ), &addrlen);
-    xTEST_DIFF(client, xSOCKET_HANDLE_INVALID);
-#endif
 
 #if 0
     // TODO: CxTcpServer::accept()
-    scktAcceptSocket = client;
+    scktAcceptSocket.assign(client);
 #endif
     a_serverSocket->assign(client);
 
