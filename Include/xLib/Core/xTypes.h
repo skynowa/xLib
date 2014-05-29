@@ -96,6 +96,15 @@ xNAMESPACE_BEGIN2(xlib, core)
     typedef const socket_t         csocket_t;
         ///< socket native handle
 
+// socklen_t
+#if   xENV_WIN
+    typedef int_t                  socket_length_t;
+#elif xENV_UNIX
+    typedef socklen_t              socket_length_t;
+#endif
+    typedef const socket_length_t  csocket_length_t;
+        ///< socket address length
+
 // twint_t
 #if xUNICODE
     typedef wint_t                 twint_t;
