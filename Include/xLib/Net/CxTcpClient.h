@@ -45,6 +45,9 @@ protected:
     timeval  _timeout;    ///< timeout
 
     xNO_COPY_ASSIGN(CxTcpClient)
+
+xPLATFORM:
+    void_t   _setNonBlockingMode_impl(cbool_t &flag) const;
 };
 
 // TODO: CxTcpClient::isWritable() - repeats from CxSocket
