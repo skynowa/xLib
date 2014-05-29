@@ -14,6 +14,18 @@
 #include <xLib/Log/CxTrace.h>
 #include <xLib/Core/CxUtils.h>
 
+#if   xENV_WIN
+    #include "Platform/Win/CxTcpClient_win.inl"
+#elif xENV_UNIX
+    #if   xENV_LINUX
+        #include "Platform/Unix/CxTcpClient_unix.inl"
+    #elif xENV_BSD
+        #include "Platform/Unix/CxTcpClient_unix.inl"
+    #elif xENV_APPLE
+        #include "Platform/Unix/CxTcpClient_unix.inl"
+    #endif
+#endif
+
 
 xNAMESPACE_BEGIN2(xlib, net)
 
@@ -90,15 +102,8 @@ CxTcpClient::ioctl(
 {
     xTEST_DIFF(xSOCKET_HANDLE_INVALID, _handle);
 
-    int_t iRv = xSOCKET_ERROR;
-
-#if   xENV_WIN
-    iRv = ::ioctlsocket(_handle, a_command, a_args);
+    int_t iRv = xIOCTLSOCKET(_handle, a_command, a_args);
     xTEST_DIFF(iRv, xSOCKET_ERROR);
-#elif xENV_UNIX
-    iRv = ::ioctl(_handle, a_command, a_args);
-    xTEST_DIFF(iRv, xSOCKET_ERROR);
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -106,32 +111,7 @@ CxTcpClient::setNonBlockingMode(
     cbool_t &a_flag
 ) const
 {
-#if   xENV_WIN
-    ulong_t nonBlockingMode = static_cast<ulong_t>(a_flag);
-
-    ::ioctl(FIONBIO, static_cast<ulong_t FAR *>(&nonBlockingMode));
-
-#if 0
-    int_t optVal = true;
-    int_t optLen = sizeof(int_t);
-
-    ::setsockopt(sock, IPPROTO_TCP, TCP_NODELAY, (char *)&optVal, optLen);
-#endif
-#elif xENV_UNIX
-    int_t flags = - 1;
-
-    flags = ::fcntl(_handle, F_GETFL);
-    xTEST_DIFF(flags, xSOCKET_ERROR);
-
-    if (a_flag) {
-        flags = (flags |  O_NONBLOCK);
-    } else {
-        flags = (flags & ~O_NONBLOCK);
-    }
-
-    flags = ::fcntl(_handle, F_SETFL, flags);
-    xTEST_DIFF(flags, xSOCKET_ERROR);
-#endif
+    _setNonBlockingMode_impl(a_flag);
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -178,8 +158,6 @@ CxTcpClient::isServerAlive(
     xTEST_EQ(a_ip.empty(), false);
     xTEST_EQ((65535 > a_port) && (0 < a_port), true);
 
-    int_t iRv = - 1;
-
     CxTcpClient client;
 
     client.create(CxSocket::afInet, CxSocket::tpStream, CxSocket::ptIp);
@@ -192,7 +170,7 @@ CxTcpClient::isServerAlive(
     sockAddr.sin_addr.s_addr = ::inet_addr(ip.c_str());
     sockAddr.sin_port        = htons(a_port); // TODO: CxTcpClient::isServerAlive() - htons
 
-    iRv = ::connect(client.handle(), CxUtils::reinterpretCastT<sockaddr *>( &sockAddr ),
+    int_t iRv = ::connect(client.handle(), CxUtils::reinterpretCastT<sockaddr *>( &sockAddr ),
         sizeof(sockAddr));
     xTEST_NA(iRv);
 
