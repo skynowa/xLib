@@ -20,12 +20,14 @@
 #if   xENV_WIN
     #include "Platform/Win/CxVolume_win.inl"
 #elif xENV_UNIX
+    #include "Platform/Unix/CxVolume_unix.inl"
+
     #if   xENV_LINUX
         #include "Platform/Linux/CxVolume_linux.inl"
     #elif xENV_BSD
         #include "Platform/Bsd/CxVolume_bsd.inl"
     #elif xENV_APPLE
-        // #include "Platform/Unix/CxVolume_unix.inl"
+        #include "Platform/Unix/CxVolume_apple.inl"
     #endif
 #endif
 
