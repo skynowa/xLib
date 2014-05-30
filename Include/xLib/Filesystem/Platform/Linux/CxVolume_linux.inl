@@ -44,15 +44,6 @@ CxVolume::_fileSystem_impl() const
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
-inline bool_t
-CxVolume::_isValid_impl() const
-{
-    xCHECK_RET(path().empty(),                         false);
-    xCHECK_RET(path().at(0) != CxConst::slash().at(0), false);
-
-    return true;
-}
-//-------------------------------------------------------------------------------------------------
 inline void_t
 CxVolume::_mount_impl(
     std::ctstring_t &a_destPath    ///< destination path
