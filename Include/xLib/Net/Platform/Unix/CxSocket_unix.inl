@@ -51,6 +51,23 @@ CxSocket::_send_impl(
     return iRv / sizeof(tchar_t);
 }
 //-------------------------------------------------------------------------------------------------
+inline ssize_t
+CxSocket::_receive_impl(
+    tchar_t      *a_buff,
+    std::csize_t &a_buffSize,
+    cint_t       &a_flags
+)
+{
+#if xENV_UNIX
+    ssize_t iRv = ::recv(_handle, (char *)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
+    xTEST_DIFF(iRv, (ssize_t)xSOCKET_ERROR);
+    xTEST_DIFF(iRv, (ssize_t)0);  // gracefully closed
+    xTEST_GR_EQ(ssize_t(a_buffSize * sizeof(tchar_t)), iRv);
+#endif
+
+    return iRv / sizeof(tchar_t);
+}
+//-------------------------------------------------------------------------------------------------
 
 
 /**************************************************************************************************
