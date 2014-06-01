@@ -57,12 +57,10 @@ CxSocket::_receive_impl(
     cint_t       &a_flags
 )
 {
-#if xENV_WIN
     int_t iRv = ::recv(_handle, (LPSTR)a_buff, a_buffSize * sizeof(tchar_t), a_flags);
     xTEST_EQ(iRv != xSOCKET_ERROR && CxSocket::lastError() != WSAEWOULDBLOCK, true);
     xTEST_DIFF(iRv, 0);  // gracefully closed
     xTEST_GR_EQ(int_t(a_buffSize * sizeof(tchar_t)), iRv);
-#endif
 
     return iRv / sizeof(tchar_t);
 }
