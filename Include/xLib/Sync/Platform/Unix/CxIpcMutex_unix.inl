@@ -22,10 +22,10 @@ CxIpcMutex::_create_impl(
 {
     std::tstring_t unixName = CxConst::unixSlash() + a_name;
 
-    handle_t handle = ::sem_open(unixName.c_str(), O_CREAT | O_RDWR, 0777, 1U);
-    xTEST_DIFF(handle, SEM_FAILED);
+    handle_t hRv = ::sem_open(unixName.c_str(), O_CREAT | O_RDWR, 0777, 1U);
+    xTEST_DIFF(hRv, SEM_FAILED);
 
-    _handle = handle;
+    _handle = hRv;
     _name   = unixName;
 }
 //-------------------------------------------------------------------------------------------------
@@ -36,10 +36,10 @@ CxIpcMutex::_open_impl(
 {
     std::ctstring_t unixName = CxConst::unixSlash() + a_name;
 
-    handle_t handle = ::sem_open(unixName.c_str(), O_RDWR, 0777, 1U);
-    xTEST_DIFF(handle, SEM_FAILED);
+    handle_t hRv = ::sem_open(unixName.c_str(), O_RDWR, 0777, 1U);
+    xTEST_DIFF(hRv, SEM_FAILED);
 
-    _handle = handle;
+    _handle = hRv;
     _name   = unixName;
 }
 //-------------------------------------------------------------------------------------------------
