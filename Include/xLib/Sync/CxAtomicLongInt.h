@@ -51,6 +51,17 @@ public:
 
 private:
     volatile long_t   _value;
+
+xPLATFORM:
+    CxAtomicLongInt & _addAssign_impl(const CxAtomicLongInt &value);
+    CxAtomicLongInt & _addAssign_impl(clong_t &right);
+    CxAtomicLongInt & _subtractAssign_impl(const CxAtomicLongInt &value);
+    CxAtomicLongInt & _subtractAssign_impl(clong_t &right);
+    CxAtomicLongInt & _assign_impl(const CxAtomicLongInt &value);
+    CxAtomicLongInt & _assign_impl(clong_t &right);
+    CxAtomicLongInt & _inc_impl(cint_t value);
+    CxAtomicLongInt & _decr_impl(cint_t value);
+    long_t            _value_impl() const xWARN_UNUSED_RV;
 };
 
 xNAMESPACE_END2(xlib, sync)
