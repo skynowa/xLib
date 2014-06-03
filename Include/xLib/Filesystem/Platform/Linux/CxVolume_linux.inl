@@ -17,7 +17,6 @@ CxVolume::_fileSystem_impl() const
 {
     std::tstring_t sRv;
 
-#if xENV_LINUX
     FILE *file = ::setmntent("/etc/mtab", "r");
     xTEST_PTR(file);
 
@@ -39,7 +38,6 @@ CxVolume::_fileSystem_impl() const
 
     int_t iRv = ::endmntent(file);  file = xPTR_NULL;
     xTEST_EQ(iRv, 1);
-#endif
 
     return sRv;
 }
@@ -49,10 +47,8 @@ CxVolume::_mount_impl(
     std::ctstring_t &a_destPath    ///< destination path
 ) const
 {
-#if xENV_LINUX
     int_t iRv = ::mount(path().c_str(), a_destPath.c_str(), xPTR_NULL, MS_REMOUNT, xPTR_NULL);
     xTEST_DIFF(iRv, - 1);
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -68,10 +64,8 @@ CxVolume::_unMount_impl(
 
     cint_t flag = a_isForce ? MNT_FORCE : mntDetach;
 
-#if xENV_LINUX
     int_t iRv = ::umount2(path().c_str(), flag);
     xTEST_DIFF(iRv, - 1);
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -90,7 +84,6 @@ CxVolume::_paths_impl(
 {
     std::vec_tstring_t vsRv;
 
-#if xENV_LINUX
     struct _Mounts
     {
         std::tstring_t device;
@@ -113,7 +106,6 @@ CxVolume::_paths_impl(
 
         vsRv.push_back(mounts.destination);
     }
-#endif
 
     // out
     a_volumePaths->swap(vsRv);
