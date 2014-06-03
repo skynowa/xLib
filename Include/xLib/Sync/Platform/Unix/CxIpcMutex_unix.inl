@@ -4,11 +4,7 @@
  */
 
 
-#if !xENV_WIN
-    // lib: -lrt
-#endif
-
-#include <xLib/Core/CxConst.h>
+// lib: -lrt
 
 
 xNAMESPACE_BEGIN2(xlib, sync)
@@ -19,41 +15,11 @@ xNAMESPACE_BEGIN2(xlib, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline const CxIpcMutex::handle_t &
-CxIpcMutex::handle() const
-{
-    return _handle;
-}
-//-------------------------------------------------------------------------------------------------
 inline void_t
-CxIpcMutex::create(
+CxIpcMutex::_create_impl(
     std::ctstring_t &a_name
 )
 {
-    ////xTEST_EQ(_handle.isValid(), false);
-#if   xENV_WIN
-    // name
-#elif xENV_UNIX
-    xTEST_GR(xNAME_MAX - 4, a_name.size());
-#endif
-
-#if   xENV_WIN
-    ctchar_t       *winName = xPTR_NULL;
-    std::tstring_t  _winName;
-
-    if (a_name.empty()) {
-        winName  = xPTR_NULL;
-    } else {
-        _winName = xT("Global\\") + a_name;
-        winName  = _winName.c_str();
-    }
-
-    HANDLE hRv = ::CreateMutex(xPTR_NULL, FALSE, winName);
-    xTEST_DIFF(hRv, xNATIVE_HANDLE_NULL);
-
-    _handle.set(hRv);
-    _name = a_name;
-#elif xENV_UNIX
     std::tstring_t unixName = CxConst::unixSlash() + a_name;
 
     handle_t hHandle = ::sem_open(unixName.c_str(), O_CREAT | O_RDWR, 0777, 1U);
@@ -61,31 +27,13 @@ CxIpcMutex::create(
 
     _handle = hHandle;
     _name   = unixName;
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxIpcMutex::open(
+CxIpcMutex::_open_impl(
     std::ctstring_t &a_name
 )
 {
-#if   xENV_WIN
-    ctchar_t *winName = xPTR_NULL;
-    std::tstring_t _winName;
-
-    if (a_name.empty()) {
-        winName = xPTR_NULL;
-    } else {
-        _winName = xT("Global\\") + a_name;
-        winName  = _winName.c_str();
-    }
-
-    HANDLE hRv = ::OpenMutex(MUTEX_ALL_ACCESS, FALSE, winName);
-    xTEST_DIFF(hRv, xNATIVE_HANDLE_NULL);
-
-    _handle.set(hRv);
-    _name = a_name;
-#elif xENV_UNIX
     std::tstring_t unixName = CxConst::unixSlash() + a_name;
 
     handle_t hHandle = ::sem_open(unixName.c_str(), O_RDWR, 0777, 1U);
@@ -93,22 +41,13 @@ CxIpcMutex::open(
 
     _handle = hHandle;
     _name   = unixName;
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxIpcMutex::lock(
+CxIpcMutex::_lock_impl(
     culong_t &a_timeoutMsec
 ) const
 {
-    ////xTEST_EQ(_handle.isValid(), true);
-    xTEST_NA(a_timeoutMsec);
-
-#if   xENV_WIN
-    DWORD dwRv = ::WaitForSingleObject(_handle.get(), a_timeoutMsec);
-    xTEST_EQ(dwRv, WAIT_OBJECT_0);
-    xTEST_DIFF(dwRv, WAIT_ABANDONED);
-#elif xENV_UNIX
     struct _Functor
     {
         static void_t
@@ -156,23 +95,13 @@ CxIpcMutex::lock(
             xTEST_FAIL;
         }
     }
-#elif xENV_APPLE
-    xNOT_IMPLEMENTED
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxIpcMutex::unlock() const
+CxIpcMutex::_unlock_impl() const
 {
-    ////xTEST_EQ(_handle.isValid(), true);
-
-#if   xENV_WIN
-    BOOL blRv = ::ReleaseMutex(_handle.get());
-    xTEST_DIFF(blRv, FALSE);
-#elif xENV_UNIX
     int_t iRv = ::sem_post(_handle);
     xTEST_DIFF(iRv, - 1);
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 

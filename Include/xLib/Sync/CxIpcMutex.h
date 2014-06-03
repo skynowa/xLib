@@ -21,7 +21,7 @@ public:
     typedef sem_t *  handle_t;
 #endif
 
-                     CxIpcMutex() {}
+                     CxIpcMutex();
     virtual         ~CxIpcMutex() {}
 
     const handle_t & handle() const xWARN_UNUSED_RV;
@@ -40,6 +40,12 @@ private:
     std::tstring_t   _name;     ///< mutex name
 
     xNO_COPY_ASSIGN(CxIpcMutex)
+
+xPLATFORM:
+    void_t           _create_impl(std::ctstring_t &name);
+    void_t           _open_impl(std::ctstring_t &name);
+    void_t           _lock_impl(culong_t &timeoutMsec) const;
+    void_t           _unlock_impl() const;
 };
 
 xNAMESPACE_END2(xlib, sync)
