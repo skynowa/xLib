@@ -40,6 +40,14 @@ private:
     handle_t         _handle;   ///< mutex native handle
 
     xNO_COPY_ASSIGN(CxMutex)
+
+xPLATFORM:
+    void_t           _destruc_impl();
+    void_t           _create_impl();
+    void_t           _lock_impl();
+    bool_t           _tryLock_impl() xWARN_UNUSED_RV;
+    void_t           _unlock_impl();
+
 };
 //-------------------------------------------------------------------------------------------------
 xNAMESPACE_END2(xlib, sync)
