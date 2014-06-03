@@ -60,7 +60,7 @@ CxVolume::_unMount_impl(
     cbool_t &a_isForce     ///< force unmount even if busy
 ) const
 {
-#ifdef MNT_DETACH
+#if defined(MNT_DETACH)
     #define xMNT_DETACH MNT_DETACH
 #else
     #define xMNT_DETACH MNT_FORCE
