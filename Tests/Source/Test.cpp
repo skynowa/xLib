@@ -88,17 +88,19 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
     xUNUSED(a_argsNum);
     xUNUSED(a_args);
 
-#if 0
-    // FAQ: https://gist.github.com/jvranish/4441299
-    // set handlers
     {
-        std::set_terminate(onTerminate);
-        setSignalHandler();
-    }
+    #if 0
+        // FAQ: https://gist.github.com/jvranish/4441299
+        // set handlers
+        {
+            std::set_terminate(onTerminate);
+            setSignalHandler();
+        }
 
-    // test error
-    foo3();
-#endif
+        // test error
+        foo3();
+    #endif
+    }
 
 #if xHAVE_TESTS
     // checks
@@ -265,7 +267,7 @@ int_t xTMAIN(int_t a_argsNum, tchar_t *a_args[])
 
         manager.run(allLoops, unitLoops, caseLoops);
     }
-#endif
+#endif // xHAVE_TESTS
 
     return EXIT_SUCCESS;
 }
