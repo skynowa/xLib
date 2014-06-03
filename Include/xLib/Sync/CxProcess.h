@@ -100,6 +100,33 @@ private:
     uint_t       _exitStatus;            ///< exit code
 
     xNO_COPY_ASSIGN(CxProcess)
+
+xPLATFORM:
+    void_t       _destruct_impl();
+    void_t       _create_impl(std::ctstring_t &filePath, std::ctstring_t &params);
+    ExWaitResult _wait_impl(culong_t &timeoutMsec) xWARN_UNUSED_RV;
+    void_t       _kill_impl(culong_t &timeoutMsec);
+    ulong_t      _exitStatus_impl() const xWARN_UNUSED_RV;
+
+    static
+    id_t         _idByHandle_impl(const handle_t &handle) xWARN_UNUSED_RV;
+    static
+    handle_t     _handleById_impl(const id_t &id) xWARN_UNUSED_RV;
+    static
+    id_t         _idByName_impl(std::ctstring_t &processName) xWARN_UNUSED_RV;
+    static
+    void_t       _ids_impl(std::vector<CxProcess::id_t> *ids);
+    static
+    bool_t       _isCurrent_impl(const CxProcess::id_t &a_id);
+    static
+    id_t         _currentId_impl() xWARN_UNUSED_RV;
+
+    static
+    id_t         _currentParentId_impl() xWARN_UNUSED_RV;
+    static
+    handle_t     _currentHandle_impl() xWARN_UNUSED_RV;
+    static
+    void_t       _currentExit_impl(cuint_t &exitCode);
 };
 
 xNAMESPACE_END2(xlib, sync)
