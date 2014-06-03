@@ -42,12 +42,12 @@ CxVolume::_unMount_impl(
 ) const
 {
 #if defined(MNT_DETACH)
-    #define xMNT_DETACH MNT_DETACH
+    cint_t mntDetach = MNT_DETACH;
 #else
-    #define xMNT_DETACH MNT_FORCE
+    cint_t mntDetach = MNT_FORCE;
 #endif
 
-    cint_t flag = a_isForce ? MNT_FORCE : xMNT_DETACH;
+    cint_t flag = a_isForce ? MNT_FORCE : mntDetach;
 
 #if xENV_BSD
     int_t iRv = ::unmount(path().c_str(), flag);
