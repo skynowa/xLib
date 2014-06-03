@@ -44,6 +44,16 @@ private:
     bool_t           _isValid() const xWARN_UNUSED_RV;
 
     xNO_COPY_ASSIGN(CxIpcSemaphore)
+
+xPLATFORM:
+    void_t           _construct_impl();
+    void_t           _destruct_impl();
+    void_t           _create_impl(clong_t &initialValue, std::ctstring_t &name);
+    void_t           _open_impl(std::ctstring_t &name);
+    void_t           _post_impl() const;
+    void_t           _wait_impl(culong_t &timeoutMsec) const;
+    long_t           _value_impl() const xWARN_UNUSED_RV;
+    bool_t           _isValid_impl() const xWARN_UNUSED_RV;
 };
 
 xNAMESPACE_END2(xlib, sync)

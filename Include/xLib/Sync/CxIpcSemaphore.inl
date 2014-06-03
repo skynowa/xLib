@@ -8,9 +8,17 @@
 #include <xLib/Filesystem/CxPath.h>
 
 #if   xENV_WIN
-    // lib: n/a
+    #include "Platform/Win/CxIpcSemaphore_win.inl"
 #elif xENV_UNIX
-    // lib: -lrt
+    #include "Platform/Unix/CxIpcSemaphore_unix.inl"
+
+    #if   xENV_LINUX
+        // #include "Platform/Linux/CxIpcSemaphore_linux.inl"
+    #elif xENV_BSD
+        // #include "Platform/Bsd/CxIpcSemaphore_bsd.inl"
+    #elif xENV_APPLE
+        // #include "Platform/Unix/CxIpcSemaphore_apple.inl"
+    #endif
 #endif
 
 
@@ -33,11 +41,7 @@ CxIpcSemaphore::CxIpcSemaphore() :
 {
     xTEST_EQ(_isValid(), false);
 
-#if   xENV_WIN
-    xNA;
-#elif xENV_UNIX
-    // sem_init
-#endif
+    _construct_impl();
 }
 //-------------------------------------------------------------------------------------------------
 inline
@@ -45,15 +49,7 @@ CxIpcSemaphore::~CxIpcSemaphore()
 {
     xTEST_EQ(_isValid(), true);
 
-#if   xENV_WIN
-    xNA;
-#elif xENV_UNIX
-    int_t iRv = ::sem_close(_handle);  _handle = xPTR_NULL;
-    xTEST_DIFF(iRv, - 1);
-
-    // sem_destroy
-    // sem_unlink
-#endif
+    _destruct_impl();
 }
 //-------------------------------------------------------------------------------------------------
 inline const CxIpcSemaphore::handle_t &
@@ -74,33 +70,7 @@ CxIpcSemaphore::create(
     xTEST_GR(CxPath::maxSize(), a_name.size());
     xTEST_EQ(0L <= a_initialValue && a_initialValue <= xSEMAPHORE_VALUE_MAX, true);
 
-#if   xENV_WIN
-    ctchar_t       *winName = xPTR_NULL;
-    std::tstring_t  _winName;
-
-    if (a_name.empty()) {
-        winName  = xPTR_NULL;
-    } else {
-        _winName = xT("Global\\") + a_name;
-        winName  = _winName.c_str();
-    }
-
-    HANDLE  hRv       = ::CreateSemaphore(xPTR_NULL, a_initialValue, xSEMAPHORE_VALUE_MAX, winName);
-    ulong_t lastError = CxLastError::get();
-    xTEST_DIFF(hRv, xNATIVE_HANDLE_NULL);
-    xTEST_DIFF(lastError, static_cast<ulong_t>( ERROR_ALREADY_EXISTS ));
-
-    _handle.set(hRv);
-    _name = a_name;
-#elif xENV_UNIX
-    std::tstring_t unixName = CxConst::unixSlash() + a_name;
-
-    handle_t hRv = ::sem_open(unixName.c_str(), O_CREAT | O_RDWR, 0777, a_initialValue);
-    xTEST_DIFF(hRv, SEM_FAILED);
-
-    _handle = hRv;
-    _name   = unixName;
-#endif
+    _create_impl(a_initialValue, a_name);
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -111,31 +81,7 @@ CxIpcSemaphore::open(
     xTEST_EQ(_isValid(), true);
     //name    - n/a
 
-#if   xENV_WIN
-    ctchar_t       *winName = xPTR_NULL;
-    std::tstring_t  _winName;
-
-    if (a_name.empty()) {
-        winName  = xPTR_NULL;
-    } else {
-        _winName = xT("Global\\") + a_name;
-        winName  = _winName.c_str();
-    }
-
-    HANDLE hRv = ::OpenSemaphore(SEMAPHORE_ALL_ACCESS, FALSE, winName);
-    xTEST_DIFF(hRv, xNATIVE_HANDLE_NULL);
-
-    _handle.set(hRv);
-    _name = a_name;
-#elif xENV_UNIX
-    std::tstring_t unixName = CxConst::unixSlash() + a_name;
-
-    handle_t hRv = ::sem_open(unixName.c_str(), O_RDWR, 0777, 0U);
-    xTEST_DIFF(hRv, SEM_FAILED);
-
-    _handle = hRv;
-    _name   = unixName;
-#endif
+    _open_impl(a_name);
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -143,15 +89,7 @@ CxIpcSemaphore::post() const
 {
     xTEST_EQ(_isValid(), true);
 
-#if   xENV_WIN
-   const LONG postValue = 1L;
-
-   BOOL blRv = ::ReleaseSemaphore(_handle.get(), postValue, xPTR_NULL);
-   xTEST_DIFF(blRv, FALSE);
-#elif xENV_UNIX
-    int_t iRv = ::sem_post(_handle);
-    xTEST_DIFF(iRv, - 1);
-#endif
+    _post_impl();
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
@@ -160,73 +98,9 @@ CxIpcSemaphore::wait(
 ) const
 {
     xTEST_EQ(_isValid(), true);
-    //ulTimeout - n/a
+    xTEST_NA(a_timeoutMsec);
 
-#if   xENV_WIN
-    DWORD dwRv = ::WaitForSingleObject(_handle.get(), a_timeoutMsec);
-    xTEST_EQ(dwRv, WAIT_OBJECT_0);
-#elif xENV_UNIX
-    struct _Functor
-    {
-        static void_t
-        timespecAddMsec(
-            timespec *a_ts,
-            long      a_ms
-        )
-        {
-            long_t sec = 0L;
-
-            sec  = a_ms / 1000;
-            a_ms = a_ms - sec * 1000;
-
-            // perform the addition
-            a_ts->tv_nsec += a_ms * 1000000;
-
-            // adjust the time
-            a_ts->tv_sec += a_ts->tv_nsec / 1000000000 + sec;
-            a_ts->tv_nsec = a_ts->tv_nsec % 1000000000;
-        }
-    };
-
-
-    int_t    iRv        = - 1;
-    timespec tmsTimeout = {0, 0};
-
-    // add msec to timespec
-    {
-        iRv = ::clock_gettime(CLOCK_REALTIME, &tmsTimeout);
-        xTEST_DIFF(iRv, - 1);
-
-        (void_t)_Functor::timespecAddMsec(&tmsTimeout, a_timeoutMsec);
-    }
-
-#if 0
-    while ((iRv = ::sem_timedwait(_handle, &tmsTimeout)) == - 1 && (errno == EINTR)) {
-        // Restart if interrupted by handler
-        continue;
-    }
-#else
-    int_t lastError = 0;
-
-    for ( ; ; ) {
-        iRv       = ::sem_timedwait(_handle, &tmsTimeout);
-        lastError = errno;
-
-        xCHECK_DO(! (iRv == - 1 && lastError == EINTR), break);
-    }
-#endif
-
-    if (iRv == - 1) {
-        if (ETIMEDOUT == lastError) {
-            // timeout
-            xTEST_FAIL;
-        } else {
-            xTEST_FAIL;
-        }
-    }
-#elif xENV_APPLE
-    xNOT_IMPLEMENTED
-#endif
+    _wait_impl(a_timeoutMsec);
 }
 //-------------------------------------------------------------------------------------------------
 inline long_t
@@ -234,23 +108,7 @@ CxIpcSemaphore::value() const
 {
     xTEST_EQ(_isValid(), true);
 
-    long_t liRv = - 1L;
-
-#if   xENV_WIN
-    const LONG postValue = 0L;
-
-    BOOL blRv = ::ReleaseSemaphore(_handle.get(), postValue, &liRv);
-    xTEST_DIFF(blRv, FALSE);
-#elif xENV_UNIX
-    int_t _value = - 1;
-
-    int_t iRv = ::sem_getvalue(_handle, &_value);
-    xTEST_DIFF(iRv, - 1);
-
-    liRv = _value;
-#endif
-
-    return liRv;
+    return _value_impl();
 }
 //-------------------------------------------------------------------------------------------------
 
@@ -264,11 +122,7 @@ CxIpcSemaphore::value() const
 inline bool_t
 CxIpcSemaphore::_isValid() const
 {
-#if   xENV_WIN
-    return _handle.isValid();
-#elif xENV_UNIX
-    return (_handle != xPTR_NULL);
-#endif
+    return _isValid_impl();
 }
 //-------------------------------------------------------------------------------------------------
 
