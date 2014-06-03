@@ -59,15 +59,24 @@ private:
 #if   xENV_WIN
     CxHandle         _event;        ///< event
 #elif xENV_UNIX
-    pthread_mutex_t  _mutex;       ///< mutex
-    handle_t         _cond;       ///< condition variable
+    pthread_mutex_t  _mutex;        ///< mutex
+    handle_t         _cond;         ///< condition variable
     bool_t           _isSignaled;   ///< is signaled flag
 #endif
 
-    cbool_t          _isAutoReset; ///< auto-reset flag
-    cbool_t          _initState;   ///< initial state
+    cbool_t          _isAutoReset;  ///< auto-reset flag
+    cbool_t          _initState;    ///< initial state
 
     xNO_COPY_ASSIGN(CxEvent)
+
+xPLATFORM:
+    void_t           _dectruct_impl();
+    const handle_t & _handle_impl() const xWARN_UNUSED_RV;
+    void_t           _create_impl();
+    void_t           _set_impl();
+    void_t           _reset_impl();
+    ExObjectState    _wait_impl(culong_t &timeoutMs = xTIMEOUT_INFINITE) xWARN_UNUSED_RV;
+    bool_t           _isSignaled_impl() const xWARN_UNUSED_RV;
 };
 
 xNAMESPACE_END2(xlib, sync)

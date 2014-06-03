@@ -4,9 +4,6 @@
  */
 
 
-#include <xLib/Log/CxTrace.h>
-
-
 xNAMESPACE_BEGIN2(xlib, sync)
 
 /**************************************************************************************************
@@ -15,29 +12,9 @@ xNAMESPACE_BEGIN2(xlib, sync)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline
-CxEvent::CxEvent(
-    cbool_t &a_isAutoReset,    ///< is auto reset
-    cbool_t &a_isSignaled      ///< is signaled (false - wait, lock)
-) :
-#if   xENV_WIN
-    _event      (),
-#elif xENV_UNIX
-    _mutex      (),
-    _cond       (),
-    _isSignaled (a_isSignaled),
-#endif
-    _isAutoReset(a_isAutoReset),
-    _initState  (a_isSignaled)
+inline void_t
+CxEvent::_dectruct_impl()
 {
-}
-//-------------------------------------------------------------------------------------------------
-inline
-CxEvent::~CxEvent()
-{
-#if   xENV_WIN
-    xNA;
-#elif xENV_UNIX
     int_t iRv = - 1;
 
     iRv = ::pthread_cond_destroy(&_cond);
@@ -45,31 +22,18 @@ CxEvent::~CxEvent()
 
     iRv = ::pthread_mutex_destroy(&_mutex);
     xTEST_MSG_EQ(iRv, 0, CxLastError::format(iRv));
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 inline const CxEvent::handle_t &
-CxEvent::handle() const
+CxEvent::_handle_impl() const
 {
-#if   xENV_WIN
-    return _event;
-#elif xENV_UNIX
     return _cond;
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxEvent::create()
+CxEvent::_create_impl()
 {
-#if   xENV_WIN
-    xTEST_EQ(_event.isValid(), false);
 
-    HANDLE hRv = ::CreateEvent(xPTR_NULL, ! _isAutoReset, _initState, xPTR_NULL);
-    xTEST_DIFF(hRv, static_cast<HANDLE>(xPTR_NULL));
-
-    _event.set(hRv);
-    // n/a
-#elif xENV_UNIX
     int_t iRv = - 1;
 
     iRv = ::pthread_mutex_init(&_mutex, xPTR_NULL);   // mutex not recursive
@@ -77,19 +41,11 @@ CxEvent::create()
 
     iRv = ::pthread_cond_init(&_cond, xPTR_NULL);
     xTEST_MSG_EQ(iRv, 0, CxLastError::format(iRv));
-#endif
 }
 //-------------------------------------------------------------------------------------------------
-// NOTE: unblock threads blocked on a condition variable
 inline void_t
-CxEvent::set()
+CxEvent::_set_impl()
 {
-#if   xENV_WIN
-    xTEST_EQ(_event.isValid(), true);
-
-    BOOL blRv = ::SetEvent(handle().get());
-    xTEST_DIFF(blRv, FALSE);
-#elif xENV_UNIX
     int_t iRv = - 1;
 
     iRv = ::pthread_mutex_lock(&_mutex);
@@ -109,18 +65,12 @@ CxEvent::set()
 
     iRv = ::pthread_mutex_unlock(&_mutex);
     xTEST_MSG_EQ(iRv, 0, CxLastError::format(iRv));
-#endif
+
 }
 //-------------------------------------------------------------------------------------------------
 inline void_t
-CxEvent::reset()
+CxEvent::_reset_impl()
 {
-#if   xENV_WIN
-    xTEST_EQ(_event.isValid(), true);
-
-    BOOL blRv = ::ResetEvent(handle().get());
-    xTEST_DIFF(blRv, FALSE);
-#elif xENV_UNIX
     int_t iRv = - 1;
 
     iRv = ::pthread_mutex_lock(&_mutex);
@@ -132,23 +82,15 @@ CxEvent::reset()
 
     iRv = ::pthread_mutex_unlock(&_mutex);
     xTEST_MSG_EQ(iRv, 0, CxLastError::format(iRv));
-#endif
 }
 //-------------------------------------------------------------------------------------------------
 inline CxEvent::ExObjectState
-CxEvent::wait(
+CxEvent::_wait_impl(
     culong_t &a_timeoutMs /* = xTIMEOUT_INFINITE */  ///< in milliseconds
 )
 {
-    // timeoutMs - n/a
-
     ExObjectState osRv = osFailed;
 
-#if   xENV_WIN
-    xTEST_EQ(_event.isValid(), true);
-
-    osRv = static_cast<ExObjectState>( ::WaitForSingleObject(handle().get(), a_timeoutMs) );
-#elif xENV_UNIX
     int_t iRv = - 1;
 
     iRv = ::pthread_mutex_lock(&_mutex);
@@ -215,30 +157,16 @@ CxEvent::wait(
 
     iRv = ::pthread_mutex_unlock(&_mutex);
     xTEST_MSG_EQ(iRv, 0, CxLastError::format(iRv));
-#endif
-
-    xTEST_MSG_EQ((osRv == osSignaled) || (osRv == osTimeout), true, CxLastError::format(osRv));
 
     return osRv;
 }
 //-------------------------------------------------------------------------------------------------
 inline bool_t
-CxEvent::isSignaled() const
+CxEvent::_isSignaled_impl() const
 {
     // n/a
 
-    bool_t bRv = false;
-
-#if   xENV_WIN
-    DWORD dwRv = ::WaitForSingleObject(handle().get(), 0UL);
-    // n/a
-
-    bRv = (_event.isValid() && dwRv == osSignaled);
-#elif xENV_UNIX
-    bRv = _isSignaled;
-#endif
-
-    return bRv;
+    return _isSignaled;
 }
 //-------------------------------------------------------------------------------------------------
 
