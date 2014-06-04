@@ -21,6 +21,12 @@
 
     // thread
     #include <sys/sem.h>
+
+    // GUI
+    #if xTEMP_DISABLED
+        #include <linux/kd.h>   // beep
+        #include <X11/Xlib.h>   // beep -lX11
+    #endif
 #elif xOS_ANDROID
 
 #endif

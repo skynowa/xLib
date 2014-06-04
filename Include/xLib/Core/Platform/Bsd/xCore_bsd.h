@@ -14,6 +14,7 @@
     #include <sys/resource.h>
     #include <sys/sysctl.h>
     #include <sys/user.h>       // for struct kinfo_proc
+    #include <sys/proc.h>
 
     // POSIX
     #include <cpio.h>
