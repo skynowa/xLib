@@ -417,10 +417,10 @@ CxFile::setVBuff(
 inline longlong_t
 CxFile::size() const
 {
-/**
- * TODO: CxFile::size() - Do not use fseek() and ftell() to compute the size of a regular file
- * https://www.securecoding.cert.org/confluence/display/seccode/FIO19-C.+Do+not+use+fseek()+and+ftell()+to+compute+the+size+of+a+file
- */
+   /**
+    * TODO: CxFile::size() - Do not use fseek() and ftell() to compute the size of a regular file
+    * https://www.securecoding.cert.org/confluence/display/seccode/FIO19-C.+Do+not+use+fseek()+and+ftell()+to+compute+the+size+of+a+file
+    */
 
 #if xTODO
     vFlush();
