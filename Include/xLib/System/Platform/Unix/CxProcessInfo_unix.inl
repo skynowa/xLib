@@ -82,7 +82,7 @@ CxProcessInfo::_exeName_impl() const
 {
     std::tstring_t sRv;
 
-#if   xOS_LINUX
+#if   xENV_LINUX
     std::ctstring_t procFile = CxString::format(xT("/proc/%ld/exe"), _id);
 
     bool_t bRv = CxFile::isExists(procFile);
@@ -103,7 +103,7 @@ CxProcessInfo::_exeName_impl() const
     }
 
     sRv.resize(readed);
-#elif xOS_FREEBSD
+#elif xENV_BSD
     #if defined(KERN_PROC_PATHNAME)
         int_t   mib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, _id};
 
@@ -143,7 +143,7 @@ CxProcessInfo::_commandLine_impl(
     std::string        sRv;
     std::vec_tstring_t args;
 
-#if   xOS_LINUX
+#if   xENV_LINUX
     // TODO: CxProcessInfo::commandLine() - review
     std::ctstring_t procPath = CxString::format(xT("/proc/%ld/cmdline"), _id);
 
@@ -163,7 +163,7 @@ CxProcessInfo::_commandLine_impl(
     }
 
     xFCLOSE(procFile);
-#elif xOS_FREEBSD
+#elif xENV_BSD
     int_t iRv    = - 1;
     int_t mib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_ARGS, _id};
 
