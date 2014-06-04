@@ -15,12 +15,14 @@
 #if   xENV_WIN
     #include "Platform/Win/CxPath_win.inl"
 #elif xENV_UNIX
+    #include "Platform/Unix/CxPath_unix.inl"
+
     #if   xENV_LINUX
-        #include "Platform/Unix/CxPath_unix.inl"
+        #include "Platform/Linux/CxPath_linux.inl"
     #elif xENV_BSD
-        #include "Platform/Unix/CxPath_unix.inl"
+        #include "Platform/Bsd/CxPath_bsd.inl"
     #elif xENV_APPLE
-        #include "Platform/Unix/CxPath_unix.inl"
+        #include "Platform/Apple/CxPath_apple.inl"
     #endif
 #endif
 
