@@ -4,14 +4,6 @@
  */
 
 
-#include <xLib/Core/CxString.h>
-#include <xLib/Filesystem/CxPath.h>
-#include <xLib/Filesystem/CxFile.h>
-#include <xLib/Filesystem/CxDir.h>
-#include <xLib/Filesystem/CxDll.h>
-#include <xLib/System/CxEnvironment.h>
-
-
 xNAMESPACE_BEGIN2(xlib, system)
 
 /**************************************************************************************************
@@ -20,108 +12,43 @@ xNAMESPACE_BEGIN2(xlib, system)
 **************************************************************************************************/
 
 //-------------------------------------------------------------------------------------------------
-inline
-CxProcessInfo::CxProcessInfo() :
-    _id(0)
-{
-}
-//-------------------------------------------------------------------------------------------------
-inline void_t
-CxProcessInfo::setProcessId(
-    const CxProcess::id_t &a_id
-)
-{
-    _id = a_id;
-}
-//-------------------------------------------------------------------------------------------------
 inline ulong_t
-CxProcessInfo::cpuUsage() const
+CxProcessInfo::_cpuUsage_impl() const
 {
     ulong_t ulRv = 0UL;
 
-#if   xENV_WIN
     // TODO: CxProcessInfo::cpuUsage()
-#elif xENV_UNIX
-    // TODO: CxProcessInfo::cpuUsage()
-#elif xENV_APPLE
-    // TODO: CxProcessInfo::cpuUsage()
-#endif
-
-    return ulRv;
-}
-//-------------------------------------------------------------------------------------------------
-inline ulong_t
-CxProcessInfo::ramUsage() const
-{
-    ulong_t ulRv = 0UL;
-
-#if   xENV_WIN
-    // TODO: CxProcessInfo::ramUsage()
-#elif xENV_UNIX
-    if (CxProcess::isCurrent( CxProcess::currentId() )) {
-        // TODO: CxProcessInfo::ramUsage()
-    } else {
-        // TODO: CxProcessInfo::ramUsage()
-    }
-#elif xENV_APPLE
-    // TODO: CxProcessInfo::ramUsage()
-#endif
-
-    return ulRv;
-}
-//-------------------------------------------------------------------------------------------------
-inline ulong_t
-CxProcessInfo::ioBytes() const
-{
-    ulong_t ulRv = 0UL;
-
-#if   xENV_WIN
-    // TODO: CxProcessInfo::ioBytes()
-#elif xENV_UNIX
-    #if xCOMMENT
-        "/proc/[pid]/io"
-
-        1366    rchar: 323934931
-        1367    wchar: 323929600
-        1368    syscr: 632687
-        1369    syscw: 632675
-        1370    read_bytes: 0
-        1371    write_bytes: 323932160
-        1372    cancelled_write_bytes: 0
-    #endif
-
-    std::tstring_t procPath  = CxString::format(xT("/proc/%lu/io"), _id);
-
-    ulong_t readBytes = 0UL;
-    {
-        std::tstring_t value = CxPath::procValue(procPath, xT("read_bytes"));
-
-        readBytes = CxString::cast<ulong_t>( value );
-    }
-
-    ulong_t writeBytes = 0UL;
-    {
-        std::tstring_t value = CxPath::procValue(procPath, xT("write_bytes"));
-
-        writeBytes = CxString::cast<ulong_t>( value );
-    }
-
-    ulRv = readBytes + writeBytes;
-
-    // xTRACEV("\readBytes: %lu, writeBytes: %lu", readBytes, writeBytes);
-#elif xENV_APPLE
     xNOT_IMPLEMENTED
-#endif
+
+    return ulRv;
+}
+//-------------------------------------------------------------------------------------------------
+inline ulong_t
+CxProcessInfo::_ramUsage_impl() const
+{
+    ulong_t ulRv = 0UL;
+
+    // TODO: CxProcessInfo::ramUsage()
+    xNOT_IMPLEMENTED
+
+    return ulRv;
+}
+//-------------------------------------------------------------------------------------------------
+inline ulong_t
+CxProcessInfo::_ioBytes_impl() const
+{
+    ulong_t ulRv = 0UL;
+
+    // TODO: CxProcessInfo::ioBytes()
+    xNOT_IMPLEMENTED
 
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
 inline std::tstring_t
-CxProcessInfo::exeName() const
+CxProcessInfo::_exeName_impl() const
 {
     std::tstring_t sRv;
-
-#if   xENV_WIN
     sRv.resize(xPATH_MAX);
 
     CxProcess::handle_t handle = CxProcess::handleById(_id);
@@ -130,83 +57,30 @@ CxProcessInfo::exeName() const
     xTEST_DIFF(stored, 0UL);
 
     sRv.resize(stored);
-#elif xENV_UNIX
-    #if   xOS_LINUX
-        std::ctstring_t procFile = CxString::format(xT("/proc/%ld/exe"), _id);
-
-        bool_t bRv = CxFile::isExists(procFile);
-        xCHECK_RET(!bRv, std::tstring_t());
-
-        ssize_t readed = - 1;
-        sRv.resize(xPATH_MAX);
-
-        for ( ; ; ) {
-            readed = ::readlink(procFile.c_str(), &sRv.at(0), sRv.size() *
-                sizeof(std::tstring_t::value_type));
-            xTEST_DIFF(readed, ssize_t(- 1));
-
-            xCHECK_DO(sRv.size() * sizeof(std::tstring_t::value_type) >
-                static_cast<size_t>( readed ), break);
-
-            sRv.resize(sRv.size() * 2);
-        }
-
-        sRv.resize(readed);
-    #elif xOS_FREEBSD
-        #if defined(KERN_PROC_PATHNAME)
-            int_t   mib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_PATHNAME, _id};
-
-            tchar_t buff[PATH_MAX + 1] = {0};
-            size_t  buffSize           = sizeof(buff) - 1;
-
-            int_t iRv = ::sysctl(mib, xARRAY_SIZE(mib), buff, &buffSize, xPTR_NULL, 0U);
-            xTEST_DIFF(iRv, - 1);
-
-            sRv.assign(buff);
-        #else
-            // TODO: CxProcessInfo::exeName()
-            xNOT_IMPLEMENTED_RET(std::tstring_t());
-        #endif
-    #endif
-#elif xENV_APPLE
-    xNOT_IMPLEMENTED
-#endif
 
     return sRv;
 }
 //-------------------------------------------------------------------------------------------------
 inline ulong_t
-CxProcessInfo::parentId() const
+CxProcessInfo::_parentId_impl() const
 {
     ulong_t ulRv = 0UL;
 
-#if   xENV_WIN
     // TODO: CxProcessInfo::parentId()
-#elif xENV_UNIX
-    #if   xOS_LINUX
-        // TODO: CxProcessInfo::parentId()
-    #elif xOS_FREEBSD
-        // TODO: CxProcessInfo::parentId()
-    #endif
-#elif xENV_APPLE
     xNOT_IMPLEMENTED
-#endif
 
     return ulRv;
 }
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline void_t
-CxProcessInfo::commandLine(
+CxProcessInfo::_commandLine_impl(
     std::vec_tstring_t *a_args
 ) const
 {
-    xTEST_PTR(a_args);
-
     std::string        sRv;
     std::vec_tstring_t args;
 
-#if   xENV_WIN
     // process with PID 4
     {
         // System process for WinXP and later is PID 4 and we cannot access
@@ -329,51 +203,6 @@ CxProcessInfo::commandLine(
     }
 
     CxString::split(sRv, CxConst::space(), &args);
-#elif xENV_UNIX
-    #if   xOS_LINUX
-        // TODO: CxProcessInfo::commandLine() - review
-        std::ctstring_t procPath = CxString::format(xT("/proc/%ld/cmdline"), _id);
-
-        FILE *procFile = std::fopen(procPath.c_str(), "r");
-        xTEST_PTR(procFile);
-
-        std::csize_t bufferSize       = 2048;
-        char         buff[bufferSize] = {0};
-
-        while ( std::fgets(buff, static_cast<int_t>(bufferSize), procFile) ) {
-            size_t pos = 0;
-            while (pos < bufferSize && buff[pos] != '\0' ) {
-                args.push_back(buff + pos);
-
-                pos += std::strlen(buff + pos) + 1;
-            }
-        }
-
-        xFCLOSE(procFile);
-    #elif xOS_FREEBSD
-        int_t iRv    = - 1;
-        int_t mib[4] = {CTL_KERN, KERN_PROC, KERN_PROC_ARGS, _id};
-
-        std::string buff;
-        size_t      buffSize = 0;
-
-        // get buffSize
-        iRv = ::sysctl(mib, xARRAY_SIZE(mib), xPTR_NULL, &buffSize, xPTR_NULL, 0);
-        xTEST_DIFF(iRv, - 1);
-
-        buff.resize(buffSize);
-
-        iRv = ::sysctl(mib, xARRAY_SIZE(mib), &buff.at(0), &buffSize, xPTR_NULL, 0U);
-        xTEST_DIFF(iRv, - 1);
-
-        // remove xPTR_NULL terminating symbol
-        buff.resize(buffSize - 1);
-
-        CxString::split(buff, CxConst::space(), &args);
-    #endif
-#elif xENV_APPLE
-    xNOT_IMPLEMENTED
-#endif
 
     // out
     a_args->swap(args);
@@ -381,18 +210,9 @@ CxProcessInfo::commandLine(
 //-------------------------------------------------------------------------------------------------
 /* static */
 inline long_t
-CxProcessInfo::commandLineArgsMax()
+CxProcessInfo::_commandLineArgsMax_impl()
 {
-    long_t liRv = 0L;
-
-#if   xENV_WIN
-    liRv = 32L * 1024L;
-#elif xENV_UNIX
-    liRv = ::sysconf(_SC_ARG_MAX) / sizeof(std::tstring_t::value_type);
-    xTEST_DIFF(liRv, - 1L);
-#endif
-
-    return liRv;
+    return 32L * 1024L;
 }
 //-------------------------------------------------------------------------------------------------
 

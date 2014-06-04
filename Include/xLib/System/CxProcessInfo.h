@@ -43,6 +43,17 @@ private:
     CxProcess::id_t _id;  ///< target process ID
 
     xNO_COPY_ASSIGN(CxProcessInfo)
+
+xPLATFORM:
+    ulong_t         _cpuUsage_impl() const xWARN_UNUSED_RV;
+    ulong_t         _ramUsage_impl() const xWARN_UNUSED_RV;
+    ulong_t         _ioBytes_impl() const xWARN_UNUSED_RV;
+    std::tstring_t  _exeName_impl() const xWARN_UNUSED_RV;
+    ulong_t         _parentId_impl() const xWARN_UNUSED_RV;
+    void_t          _commandLine_impl(std::vec_tstring_t *args) const;
+
+    static
+    long_t          _commandLineArgsMax_impl() xWARN_UNUSED_RV;
 };
 
 xNAMESPACE_END2(xlib, system)
